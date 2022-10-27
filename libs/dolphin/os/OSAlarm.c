@@ -5,26 +5,27 @@
 
 #include "dolphin/os/OSAlarm.h"
 #include "dol2asm.h"
+#include "dolphin/os/OSReset.h"
 #include "dolphin/types.h"
 
 //
 // External References:
 //
 
-extern "C" void PPCMtdec();
-extern "C" void __OSSetExceptionHandler();
-extern "C" void __OSGetExceptionHandler();
-extern "C" void OSSetCurrentContext();
-extern "C" void OSLoadContext();
-extern "C" void OSClearContext();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void OSRegisterResetFunction();
-extern "C" void OSDisableScheduler();
-extern "C" void OSEnableScheduler();
-extern "C" void __OSReschedule();
-extern "C" void __DVDTestAlarm();
-extern "C" void __div2i();
+void PPCMtdec();
+void __OSSetExceptionHandler();
+void __OSGetExceptionHandler();
+void OSSetCurrentContext();
+void OSLoadContext();
+void OSClearContext();
+void OSDisableInterrupts();
+void OSRestoreInterrupts();
+void OSRegisterResetFunction();
+void OSDisableScheduler();
+void OSEnableScheduler();
+void __OSReschedule();
+void __DVDTestAlarm();
+void __div2i();
 
 //
 // Declarations:
@@ -32,11 +33,11 @@ extern "C" void __div2i();
 
 /* ############################################################################################## */
 /* 803CF480-803CF490 -00001 0010+00 1/1 0/0 0/0 .data            ResetFunctionInfo */
-SECTION_DATA static void* ResetFunctionInfo[4] = {
-    (void*)OnReset,
-    (void*)0xFFFFFFFF,
-    (void*)NULL,
-    (void*)NULL,
+static OSResetFunctionInfo ResetFunctionInfo = {
+    OnReset,
+    0xFFFFFFFF,
+    NULL,
+    NULL,
 };
 
 /* 80451638-80451640 000B38 0008+00 5/5 0/0 0/0 .sbss            AlarmQueue */
@@ -53,14 +54,10 @@ asm void OSInitAlarm(void) {
 #pragma pop
 
 /* 8033A8F8-8033A908 335238 0010+00 0/0 17/17 0/0 .text            OSCreateAlarm */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSCreateAlarm(OSAlarm* alarm) {
-    nofralloc
-#include "asm/dolphin/os/OSAlarm/OSCreateAlarm.s"
+void OSCreateAlarm(OSAlarm* alarm) {
+    alarm->handler = NULL;
+    alarm->tag = 0;
 }
-#pragma pop
 
 /* 8033A908-8033AB58 335248 0250+00 3/3 0/0 0/0 .text            InsertAlarm */
 #pragma push
@@ -106,21 +103,40 @@ asm void OSCancelAlarm(OSAlarm* alarm) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void DecrementerExceptionCallback(OSException* exception, struct OSContext* context) {
+static asm void DecrementerExceptionCallback(__OSException exception, OSContext* context) {
     nofralloc
 #include "asm/dolphin/os/OSAlarm/DecrementerExceptionCallback.s"
 }
 #pragma pop
 
 /* 8033AF88-8033AFD8 3358C8 0050+00 1/1 0/0 0/0 .text            DecrementerExceptionHandler */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void DecrementerExceptionHandler(OSException* exception, struct OSContext* context) {
+static asm void DecrementerExceptionHandler(register __OSException exception,
+                                            register OSContext* context) {
+    // clang-format off
     nofralloc
-#include "asm/dolphin/os/OSAlarm/DecrementerExceptionHandler.s"
+
+    stw r0, 0(context)
+    stw r1, 4(context)
+    stw r2, 8(context)
+    stmw r6, 0x18(context)
+    mfspr r0, 0x391
+    stw r0, 0x1a8(context)
+    mfspr r0, 0x392
+    stw r0, 0x1ac(context)
+    mfspr r0, 0x393
+    stw r0, 0x1b0(context)
+    mfspr r0, 0x394
+    stw r0, 0x1b4(context)
+    mfspr r0, 0x395
+    stw r0, 0x1b8(context)
+    mfspr r0, 0x396
+    stw r0, 0x1bc(context)
+    mfspr r0, 0x397
+    stw r0, 0x1c0(context)
+    stwu r1, -8(r1)
+    b DecrementerExceptionCallback
+    // clang-format on
 }
-#pragma pop
 
 /* 8033AFD8-8033B078 335918 00A0+00 1/0 0/0 0/0 .text            OnReset */
 #pragma push

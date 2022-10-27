@@ -11,13 +11,12 @@
 // External References:
 //
 
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void __OSMaskInterrupts();
-extern "C" void __OSGetSystemTime();
-extern "C" void __div2i();
-extern "C" extern u8 __OSStartTime[4];
-extern "C" extern u8 data_80451634[4];
+void OSDisableInterrupts();
+void OSRestoreInterrupts();
+void __OSMaskInterrupts();
+void __OSGetSystemTime();
+void __div2i();
+extern u8 __OSStartTime[4];
 
 //
 // Declarations:

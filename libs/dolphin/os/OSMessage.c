@@ -11,8 +11,8 @@
 // External References:
 //
 
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
+void OSDisableInterrupts();
+void OSRestoreInterrupts();
 
 //
 // Declarations:

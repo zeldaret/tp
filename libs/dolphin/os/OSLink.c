@@ -12,79 +12,28 @@
 //
 
 SECTION_INIT void memset();
-extern "C" void OSReport();
-extern "C" void DCFlushRange();
-extern "C" void ICInvalidateRange();
+void OSReport();
+void DCFlushRange();
+void ICInvalidateRange();
 
 //
 // Declarations:
 //
 
 /* 8033DF60-8033DF64 3388A0 0004+00 1/1 0/0 0/0 .text            OSNotifyLink */
-static void OSNotifyLink(void) {
-    /* empty function */
-}
+static void OSNotifyLink(void) {}
 
 /* 8033DF64-8033DF68 3388A4 0004+00 1/1 0/0 0/0 .text            OSNotifyUnlink */
-static void OSNotifyUnlink(void) {
-    /* empty function */
-}
+static void OSNotifyUnlink(void) {}
 
 /* 8033DF68-8033DF74 3388A8 000C+00 0/0 1/1 0/0 .text            OSSetStringTable */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSSetStringTable(void* string_table) {
-    nofralloc
-#include "asm/dolphin/os/OSLink/OSSetStringTable.s"
+void OSSetStringTable(void* string_table) {
+    __OSStringTable = string_table;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803D0788-803D07B0 02D8A8 0025+03 1/1 0/0 0/0 .data            @62 */
-SECTION_DATA static u8 lit_62[37 + 3 /* padding */] = {
-    0x4F,
-    0x53,
-    0x4C,
-    0x69,
-    0x6E,
-    0x6B,
-    0x3A,
-    0x20,
-    0x75,
-    0x6E,
-    0x6B,
-    0x6E,
-    0x6F,
-    0x77,
-    0x6E,
-    0x20,
-    0x72,
-    0x65,
-    0x6C,
-    0x6F,
-    0x63,
-    0x61,
-    0x74,
-    0x69,
-    0x6F,
-    0x6E,
-    0x20,
-    0x74,
-    0x79,
-    0x70,
-    0x65,
-    0x20,
-    0x25,
-    0x33,
-    0x64,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_DATA static char lit_62[] = "OSLink: unknown relocation type %3d\n";
 
 /* 8033DF74-8033E230 3388B4 02BC+00 1/1 0/0 0/0 .text            Relocate */
 #pragma push
@@ -128,49 +77,7 @@ asm BOOL OSLinkFixed(OSModuleInfo* module, u32 param_1) {
 
 /* ############################################################################################## */
 /* 803D07B0-803D07D8 02D8D0 0027+01 1/1 0/0 0/0 .data            @189 */
-SECTION_DATA static u8 lit_189[39 + 1 /* padding */] = {
-    0x4F,
-    0x53,
-    0x55,
-    0x6E,
-    0x6C,
-    0x69,
-    0x6E,
-    0x6B,
-    0x3A,
-    0x20,
-    0x75,
-    0x6E,
-    0x6B,
-    0x6E,
-    0x6F,
-    0x77,
-    0x6E,
-    0x20,
-    0x72,
-    0x65,
-    0x6C,
-    0x6F,
-    0x63,
-    0x61,
-    0x74,
-    0x69,
-    0x6F,
-    0x6E,
-    0x20,
-    0x74,
-    0x79,
-    0x70,
-    0x65,
-    0x20,
-    0x25,
-    0x33,
-    0x64,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-};
+SECTION_DATA static char lit_189[] = "OSUnlink: unknown relocation type %3d\n";
 
 /* 8033E570-8033E7A8 338EB0 0238+00 1/1 0/0 0/0 .text            Undo */
 #pragma push
@@ -193,11 +100,8 @@ asm BOOL OSUnlink(OSModuleInfo* module) {
 #pragma pop
 
 /* 8033E97C-8033E994 3392BC 0018+00 0/0 1/1 0/0 .text            __OSModuleInit */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __OSModuleInit(void) {
-    nofralloc
-#include "asm/dolphin/os/OSLink/__OSModuleInit.s"
+void __OSModuleInit(void) {
+    __OSModuleList.last = NULL;
+    __OSModuleList.first = NULL;
+    __OSStringTable = NULL;
 }
-#pragma pop

@@ -13,38 +13,38 @@
 
 SECTION_INIT void memset();
 SECTION_INIT void memcpy();
-extern "C" void PPCMtmmcr0();
-extern "C" void PPCMtmmcr1();
-extern "C" void PPCMtpmc1();
-extern "C" void PPCMtpmc2();
-extern "C" void PPCMtpmc3();
-extern "C" void PPCMtpmc4();
-extern "C" void PPCMfhid2();
-extern "C" void PPCMthid2();
-extern "C" void PPCDisableSpeculation();
-extern "C" void PPCSetFpNonIEEEMode();
-extern "C" void OSInitAlarm();
-extern "C" void __OSInitAudioSystem();
-extern "C" void __OSCacheInit();
-extern "C" void __OSContextInit();
-extern "C" void __OSInterruptInit();
-extern "C" void __OSModuleInit();
-extern "C" void __OSInitMemoryProtection();
-extern "C" void __OSResetSWInterruptHandler();
-extern "C" void __OSInitSram();
-extern "C" void __OSInitSystemCall();
-extern "C" void __OSThreadInit();
-extern "C" void EXIInit();
-extern "C" void SIInit();
-extern "C" void __DBIsExceptionMarked();
-extern "C" void DBPrintf();
-extern "C" void DVDInit();
-extern "C" void DVDInquiryAsync();
-extern "C" void EnableMetroTRKInterrupts();
-extern "C" extern u8 __DVDLongFileNameFlag[4];
-extern "C" extern u8 __PADSpec[4 + 4 /* padding */];
-extern "C" void _epilog();
-extern "C" void regist__9daBgObj_cFP4dBgW();
+void PPCMtmmcr0();
+void PPCMtmmcr1();
+void PPCMtpmc1();
+void PPCMtpmc2();
+void PPCMtpmc3();
+void PPCMtpmc4();
+void PPCMfhid2();
+void PPCMthid2();
+void PPCDisableSpeculation();
+void PPCSetFpNonIEEEMode();
+void OSInitAlarm();
+void __OSInitAudioSystem();
+void __OSCacheInit();
+void __OSContextInit();
+void __OSInterruptInit();
+void __OSModuleInit();
+void __OSInitMemoryProtection();
+void __OSResetSWInterruptHandler();
+void __OSInitSram();
+void __OSInitSystemCall();
+void __OSThreadInit();
+void EXIInit();
+void SIInit();
+void __DBIsExceptionMarked();
+void DBPrintf();
+void DVDInit();
+void DVDInquiryAsync();
+void EnableMetroTRKInterrupts();
+extern u8 __DVDLongFileNameFlag[4];
+extern u8 __PADSpec[4 + 4 /* padding */];
+void _epilog();
+void regist__9daBgObj_cFP4dBgW();
 
 //
 // Declarations:
@@ -52,61 +52,158 @@ extern "C" void regist__9daBgObj_cFP4dBgW();
 
 /* ############################################################################################## */
 /* 80451600-80451604 000B00 0004+00 2/2 0/0 0/0 .sbss            BootInfo */
-static u8 BootInfo[4];
+static OSBootInfo* BootInfo;
 
 /* 80451604-80451608 000B04 0004+00 2/2 0/0 0/0 .sbss            BI2DebugFlag */
-static u8 BI2DebugFlag[4];
+static volatile u32* BI2DebugFlag;
 
 /* 80451608-8045160C 000B08 0004+00 1/1 0/0 0/0 .sbss            BI2DebugFlagHolder */
-static u8 BI2DebugFlagHolder[4];
+static u32* BI2DebugFlagHolder;
 
-/* 8045160C-80451610 000B0C 0004+00 1/1 1/1 0/0 .sbss            __OSIsGcam */
-extern u8 __OSIsGcam[4];
-u8 __OSIsGcam[4];
+/* 80451630-80451634 000B30 0004+00 1/1 1/1 0/0 .sbss            __OSStartTime */
+extern OSTime __OSStartTime;
+OSTime __OSStartTime;
 
-/* 80451610-80451618 000B10 0008+00 1/1 0/0 0/0 .sbss            ZeroF */
-static f64 ZeroF;
+/* 80451628-80451630 000B28 0004+04 1/1 1/1 0/0 .sbss            __OSInIPL */
+extern BOOL __OSInIPL;
+BOOL __OSInIPL;
+
+/* 80451624-80451628 000B24 0004+00 3/3 0/0 0/0 .sbss            OSExceptionTable */
+extern OSExceptionHandler* OSExceptionTable;
+OSExceptionHandler* OSExceptionTable;
+
+/* 80451620-80451624 000B20 0004+00 1/1 0/0 0/0 .sbss            AreWeInitialized */
+extern BOOL AreWeInitialized;
+BOOL AreWeInitialized;
 
 /* 80451618-80451620 000B18 0008+00 1/1 0/0 0/0 .sbss            ZeroPS */
-static u8 ZeroPS[8];
+extern f64 ZeroPS;
+f64 ZeroPS;
+
+/* 80451610-80451618 000B10 0008+00 1/1 0/0 0/0 .sbss            ZeroF */
+extern f64 ZeroF;
+f64 ZeroF;
+
+/* 8045160C-80451610 000B0C 0004+00 1/1 1/1 0/0 .sbss            __OSIsGcam */
+extern BOOL __OSIsGcam;
+BOOL __OSIsGcam;
 
 /* 80339DD4-80339EFC 334714 0128+00 0/0 1/1 0/0 .text            __OSFPRInit */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
 asm void __OSFPRInit(void) {
+    // clang-format off
     nofralloc
-#include "asm/dolphin/os/OS/__OSFPRInit.s"
+
+    mfmsr r3
+    ori r3, r3, 0x2000
+    mtmsr r3
+
+    mfspr r3, 0x398
+    rlwinm. r3, r3, 3, 0x1f, 0x1f
+    beq skip_ps_init
+
+    lis r3, ZeroPS@ha
+    addi r3, r3, ZeroPS@l
+    psq_l f0, 0(r3), 0, 0
+    ps_mr f1, f0
+    ps_mr f2, f0
+    ps_mr f3, f0
+    ps_mr f4, f0
+    ps_mr f5, f0
+    ps_mr f6, f0
+    ps_mr f7, f0
+    ps_mr f8, f0
+    ps_mr f9, f0
+    ps_mr f10, f0
+    ps_mr f11, f0
+    ps_mr f12, f0
+    ps_mr f13, f0
+    ps_mr f14, f0
+    ps_mr f15, f0
+    ps_mr f16, f0
+    ps_mr f17, f0
+    ps_mr f18, f0
+    ps_mr f19, f0
+    ps_mr f20, f0
+    ps_mr f21, f0
+    ps_mr f22, f0
+    ps_mr f23, f0
+    ps_mr f24, f0
+    ps_mr f25, f0
+    ps_mr f26, f0
+    ps_mr f27, f0
+    ps_mr f28, f0
+    ps_mr f29, f0
+    ps_mr f30, f0
+    ps_mr f31, f0
+
+skip_ps_init:
+    lfd f0, ZeroF(r13)
+    fmr f1, f0
+    fmr f2, f0
+    fmr f3, f0
+    fmr f4, f0
+    fmr f5, f0
+    fmr f6, f0
+    fmr f7, f0
+    fmr f8, f0
+    fmr f9, f0
+    fmr f10, f0
+    fmr f11, f0
+    fmr f12, f0
+    fmr f13, f0
+    fmr f14, f0
+    fmr f15, f0
+    fmr f16, f0
+    fmr f17, f0
+    fmr f18, f0
+    fmr f19, f0
+    fmr f20, f0
+    fmr f21, f0
+    fmr f22, f0
+    fmr f23, f0
+    fmr f24, f0
+    fmr f25, f0
+    fmr f26, f0
+    fmr f27, f0
+    fmr f28, f0
+    fmr f29, f0
+    fmr f30, f0
+    fmr f31, f0
+
+    mtfsf 0xff, f0
+    blr
+    // clang-format on
 }
-#pragma pop
 
 /* 80339EFC-80339F24 33483C 0028+00 0/0 5/5 0/0 .text            OSGetConsoleType */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 OSGetConsoleType(void) {
-    nofralloc
-#include "asm/dolphin/os/OS/OSGetConsoleType.s"
+u32 OSGetConsoleType(void) {
+    if (BootInfo == NULL || BootInfo->console_type == 0) {
+        return 0x10000002;  // default console type
+    }
+
+    return BootInfo->console_type;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8044BA60-8044BA80 078780 0020+00 2/2 0/0 0/0 .bss             DriveInfo */
-static u8 DriveInfo[32];
+static DVDDriveInfo DriveInfo;
 
 /* 80339F24-80339F60 334864 003C+00 1/1 0/0 0/0 .text            InquiryCallback */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void InquiryCallback(u32 param_0, void* param_1) {
-    nofralloc
-#include "asm/dolphin/os/OS/InquiryCallback.s"
+static void InquiryCallback(u32 result, DVDCommandBlock* block) {
+    switch (block->state) {
+    case 0:
+        __OSDeviceCode = (u16)(0x8000 | DriveInfo.device_code);
+        break;
+    default:
+        __OSDeviceCode = 1;
+        break;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803CF288-803CF2CC 02C3A8 0044+00 3/2 0/0 0/0 .data            @1 */
-SECTION_DATA static char lit_1[68] = "<< Dolphin SDK - OS	release build: Nov 10 2004 06:26:41 (0x2301) >>";
+SECTION_DATA static char lit_1[68] =
+    "<< Dolphin SDK - OS	release build: Nov 10 2004 06:26:41 (0x2301) >>";
 
 /* 803CF2CC-803CF2DC 02C3EC 000D+03 0/1 0/0 0/0 .data            @105 */
 #pragma push
@@ -202,24 +299,6 @@ SECTION_SDATA static void* __OSVersion = (void*)&lit_1;
 /* 80450984-8045098C 000404 0006+02 1/1 0/0 0/0 .sdata           @116 */
 SECTION_SDATA static char lit_116[6] = "%08x\n";
 
-/* 80451620-80451624 000B20 0004+00 1/1 0/0 0/0 .sbss            AreWeInitialized */
-static u8 AreWeInitialized[4];
-
-/* 80451624-80451628 000B24 0004+00 3/3 0/0 0/0 .sbss            OSExceptionTable */
-static u8 OSExceptionTable[4];
-
-/* 80451628-80451630 000B28 0004+04 1/1 1/1 0/0 .sbss            __OSInIPL */
-extern u8 __OSInIPL[4 + 4 /* padding */];
-u8 __OSInIPL[4 + 4 /* padding */];
-
-/* 80451630-80451634 000B30 0004+00 1/1 1/1 0/0 .sbss            __OSStartTime */
-extern u8 __OSStartTime[4];
-u8 __OSStartTime[4];
-
-/* 80451634-80451638 000B34 0004+00 1/1 1/1 0/0 .sbss            None */
-extern u8 data_80451634[4];
-u8 data_80451634[4];
-
 extern void* __ArenaHi;
 extern void* _stack_end;
 
@@ -237,11 +316,22 @@ asm void OSInit(void) {
 /* 803CF3AC-803CF3E8 02C4CC 003C+00 0/1 0/0 0/0 .data            __OSExceptionLocations */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 __OSExceptionLocations[60] = {
-    0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04,
-    0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00,
-    0x08, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x0D, 0x00, 0x00,
-    0x00, 0x0F, 0x00, 0x00, 0x00, 0x13, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x17, 0x00,
+SECTION_DATA static u32 __OSExceptionLocations[] = {
+    0x00000100,  // 0  System reset
+    0x00000200,  // 1  Machine check
+    0x00000300,  // 2  DSI - seg fault or DABR
+    0x00000400,  // 3  ISI
+    0x00000500,  // 4  External interrupt
+    0x00000600,  // 5  Alignment
+    0x00000700,  // 6  Program
+    0x00000800,  // 7  FP Unavailable
+    0x00000900,  // 8  Decrementer
+    0x00000C00,  // 9  System call
+    0x00000D00,  // 10 Trace
+    0x00000F00,  // 11 Performance monitor
+    0x00001300,  // 12 Instruction address breakpoint.
+    0x00001400,  // 13 System management interrupt
+    0x00001700   // 14 Thermal interrupt
 };
 #pragma pop
 
@@ -280,107 +370,168 @@ static asm void OSExceptionInit(void) {
 #pragma pop
 
 /* 8033A6C0-8033A6E4 335000 0024+00 1/1 0/0 0/0 .text            __OSDBIntegrator */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
 asm void __OSDBIntegrator(void) {
+    // clang-format off
     nofralloc
-#include "asm/dolphin/os/OS/__OSDBIntegrator.s"
+
+    li r5, 0x40
+    mflr r3
+    stw r3, 0xc(r5)
+    lwz r3, 8(r5)
+    oris r3, r3, 0x8000
+    mtlr r3
+    li r3, 0x30
+    mtmsr r3
+    blr
+    // clang-format on
 }
-#pragma pop
 
 /* 8033A6E4-8033A6E8 335024 0004+00 1/1 0/0 0/0 .text            __OSDBJump */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __OSDBJump(void) {
+asm void __OSDBJump(void){
+    // clang-format off
     nofralloc
-#include "asm/dolphin/os/OS/__OSDBJump.s"
+
+    bla 0x60
+    // clang-format on
 }
-#pragma pop
 
 /* 8033A6E8-8033A704 335028 001C+00 1/1 3/3 0/0 .text            __OSSetExceptionHandler */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm OSExceptionHandler __OSSetExceptionHandler(OSException exception, OSExceptionHandler handler) {
-    nofralloc
-#include "asm/dolphin/os/OS/__OSSetExceptionHandler.s"
+OSExceptionHandler __OSSetExceptionHandler(__OSException exception, OSExceptionHandler handler) {
+    OSExceptionHandler old = OSExceptionTable[exception];
+    OSExceptionTable[exception] = handler;
+    return old;
 }
-#pragma pop
 
 /* 8033A704-8033A718 335044 0014+00 0/0 1/1 0/0 .text            __OSGetExceptionHandler */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm OSExceptionHandler __OSGetExceptionHandler(OSException exception) {
-    nofralloc
-#include "asm/dolphin/os/OS/__OSGetExceptionHandler.s"
+OSExceptionHandler __OSGetExceptionHandler(__OSException exception) {
+    return OSExceptionTable[exception];
 }
-#pragma pop
 
 /* 8033A718-8033A770 335058 0058+00 1/1 0/0 0/0 .text            OSExceptionVector */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
 static asm void OSExceptionVector(void) {
+    // clang-format off
     nofralloc
-#include "asm/dolphin/os/OS/OSExceptionVector.s"
-}
-#pragma pop
 
-// fake function?
-/* 8033A770-8033A780 3350B0 0010+00 1/1 0/0 0/0 .text            __DBVECTOR */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __DBVECTOR() {
-    nofralloc
-#include "asm/dolphin/os/OS/__DBVECTOR.s"
-}
-#pragma pop
+    mtspr 0x110, r4
 
-// fake function?
-/* 8033A780-8033A7B0 3350C0 0030+00 1/1 0/0 0/0 .text            __OSEVSetNumber */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __OSEVSetNumber() {
-    nofralloc
-#include "asm/dolphin/os/OS/__OSEVSetNumber.s"
-}
-#pragma pop
+    lwz r4, 0xc0(r0)
 
-/* 8033A7B0-8033A7B4 3350F0 0004+00 1/1 0/0 0/0 .text            __OSEVEnd */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __OSEVEnd() {
-    nofralloc
-#include "asm/dolphin/os/OS/__OSEVEnd.s"
-}
-#pragma pop
+    stw r3, 0xc(r4)
+    mfspr r3, 0x110
+    stw r3, 0x10(r4)
+    stw r5, 0x14(r4)
 
-// fake function?
+    lhz r3, 0x1a2(r4)
+    ori r3, r3, 2
+    sth r3, 0x1a2(r4)
+
+    mfcr r3
+    stw r3, 0x80(r4)
+    mflr r3
+    stw r3, 0x84(r4)
+    mfctr r3
+    stw r3, 0x88(r4)
+    mfxer r3
+    stw r3, 0x8c(r4)
+    mfspr r3, 0x1a
+    stw r3, 0x198(r4)
+    mfspr r3, 0x1b
+    stw r3, 0x19c(r4)
+    mr r5, r3
+
+entry __DBVECTOR
+    nop
+
+    mfmsr r3
+    ori r3, r3, 0x30
+    mtspr 0x1b, r3
+
+entry __OSEVSetNumber
+    li r3, 0
+
+    lwz r4, 0xd4(r0)
+
+    rlwinm. r5, r5, 0, 0x1e, 0x1e
+    bne recoverable
+    lis r5, OSDefaultExceptionHandler@ha
+    addi r5, r5, OSDefaultExceptionHandler@l
+    mtspr 0x1a, r5
+    rfi
+
+recoverable:
+    rlwinm r5, r3, 2, 0x16, 0x1d
+    lwz r5, 0x3000(r5)
+    mtspr 0x1a, r5
+    rfi 
+
+entry __OSEVEnd
+    nop
+    // clang-format on
+}
+
 /* 8033A7B4-8033A80C 3350F4 0058+00 2/2 0/0 0/0 .text            OSDefaultExceptionHandler */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void OSDefaultExceptionHandler(OSException exception, OSContext* context) {
+static asm void OSDefaultExceptionHandler(register __OSException exception,
+                                          register OSContext* context) {
+    // clang-format off
     nofralloc
-#include "asm/dolphin/os/OS/OSDefaultExceptionHandler.s"
+
+    stw r0, 0(context)
+    stw r1, 4(context)
+    stw r2, 8(context)
+    stmw r6, 0x18(context)
+    mfspr r0, 0x391
+    stw r0, 0x1a8(context)
+    mfspr r0, 0x392
+    stw r0, 0x1ac(context)
+    mfspr r0, 0x393
+    stw r0, 0x1b0(context)
+    mfspr r0, 0x394
+    stw r0, 0x1b4(context)
+    mfspr r0, 0x395
+    stw r0, 0x1b8(context)
+    mfspr r0, 0x396
+    stw r0, 0x1bc(context)
+    mfspr r0, 0x397
+    stw r0, 0x1c0(context)
+
+    mfdsisr r5
+    mfdar r6
+
+    stwu r1, -8(r1)
+    b __OSUnhandledException
+    // clang-format on
 }
-#pragma pop
 
 /* 8033A80C-8033A860 33514C 0054+00 0/0 1/1 0/0 .text            __OSPSInit */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
 asm void __OSPSInit(void) {
+    // clang-format off
     nofralloc
-#include "asm/dolphin/os/OS/__OSPSInit.s"
+
+    mflr r0
+    stw r0, 4(r1)
+    stwu r1, -8(r1)
+    bl PPCMfhid2
+    oris r3, r3, 0xa000
+    bl PPCMthid2
+    bl ICFlashInvalidate
+    sync
+
+    li r3, 0
+    mtspr 0x390, r3
+    mtspr 0x391, r3
+    mtspr 0x392, r3
+    mtspr 0x393, r3
+    mtspr 0x394, r3
+    mtspr 0x395, r3
+    mtspr 0x396, r3
+    mtspr 0x397, r3
+
+    lwz r0, 0xc(r1)
+    addi r1, r1, 8
+    mtlr r0
+    blr
+    // clang-format on
 }
-#pragma pop
 
 /* 8033A860-8033A874 3351A0 0014+00 0/0 1/1 0/0 .text            __OSGetDIConfig */
 #pragma push

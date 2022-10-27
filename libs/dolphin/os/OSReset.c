@@ -12,20 +12,20 @@
 //
 
 SECTION_INIT void memset();
-extern "C" void OSReport();
-extern "C" void __OSStopAudioSystem();
-extern "C" void ICFlashInvalidate();
-extern "C" void LCDisable();
-extern "C" void OSDisableInterrupts();
-extern "C" void __OSReboot();
-extern "C" void __OSLockSram();
-extern "C" void __OSUnlockSram();
-extern "C" void __OSSyncSram();
-extern "C" void OSDisableScheduler();
-extern "C" void OSEnableScheduler();
-extern "C" void OSCancelThread();
-extern "C" void __PADDisableRecalibration();
-extern "C" extern u8 __OSRebootParams[28 + 4 /* padding */];
+void OSReport();
+void __OSStopAudioSystem();
+void ICFlashInvalidate();
+void LCDisable();
+void OSDisableInterrupts();
+void __OSReboot();
+void __OSLockSram();
+void __OSUnlockSram();
+void __OSSyncSram();
+void OSDisableScheduler();
+void OSEnableScheduler();
+void OSCancelThread();
+void __PADDisableRecalibration();
+extern u8 __OSRebootParams[28 + 4 /* padding */];
 
 //
 // Declarations:
@@ -56,14 +56,58 @@ asm BOOL __OSCallResetFunctions(s32 param_0) {
 #pragma pop
 
 /* 8033F78C-8033F7FC 33A0CC 0070+00 2/2 0/0 0/0 .text            Reset */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void Reset(s32 param_0) {
+static asm void Reset(register s32 param_0) {
+    // clang-format off
     nofralloc
-#include "asm/dolphin/os/OSReset/Reset.s"
+
+    b lbl_8033F7AC
+
+lbl_8033F790:
+    mfspr r8, 0x3f0
+    ori r8, r8, 8
+    mtspr 0x3f0, r8
+    isync 
+    sync
+    nop
+    b lbl_8033F7B0
+
+lbl_8033F7AC:
+    b lbl_8033F7CC
+
+lbl_8033F7B0:
+    mftb r5, 0x10c
+
+lbl_8033F7B4:
+    mftb r6, 0x10c
+    subf r7, r5, r6
+    cmplwi r7, 0x1124
+    blt lbl_8033F7B4
+    nop 
+    b lbl_8033F7D0
+
+lbl_8033F7CC:
+    b lbl_8033F7EC
+
+lbl_8033F7D0:
+    lis r8, 0xCC00
+    ori r8, r8, 0x3000
+    li r4, 3
+    stw r4, 0x24(r8)
+    stw param_0, 0x24(r8)
+    nop 
+    b lbl_8033F7F0
+
+lbl_8033F7EC:
+    b lbl_8033F7F8
+
+lbl_8033F7F0:
+    nop 
+    b lbl_8033F7F0
+
+lbl_8033F7F8:
+    b lbl_8033F790
+    // clang-format on
 }
-#pragma pop
 
 /* 8033F7FC-8033F864 33A13C 0068+00 1/1 0/0 0/0 .text            KillThreads */
 #pragma push
@@ -87,89 +131,7 @@ asm void __OSDoHotReset(s32 param_0) {
 
 /* ############################################################################################## */
 /* 803D07E8-803D0838 02D908 004E+02 1/1 0/0 0/0 .data            @153 */
-SECTION_DATA static u8 lit_153[78 + 2 /* padding */] = {
-    0x4F,
-    0x53,
-    0x52,
-    0x65,
-    0x73,
-    0x65,
-    0x74,
-    0x53,
-    0x79,
-    0x73,
-    0x74,
-    0x65,
-    0x6D,
-    0x28,
-    0x29,
-    0x3A,
-    0x20,
-    0x59,
-    0x6F,
-    0x75,
-    0x20,
-    0x63,
-    0x61,
-    0x6E,
-    0x27,
-    0x74,
-    0x20,
-    0x73,
-    0x70,
-    0x65,
-    0x63,
-    0x69,
-    0x66,
-    0x79,
-    0x20,
-    0x54,
-    0x52,
-    0x55,
-    0x45,
-    0x20,
-    0x74,
-    0x6F,
-    0x20,
-    0x66,
-    0x6F,
-    0x72,
-    0x63,
-    0x65,
-    0x4D,
-    0x65,
-    0x6E,
-    0x75,
-    0x20,
-    0x69,
-    0x66,
-    0x20,
-    0x79,
-    0x6F,
-    0x75,
-    0x20,
-    0x72,
-    0x65,
-    0x73,
-    0x74,
-    0x61,
-    0x72,
-    0x74,
-    0x2E,
-    0x20,
-    0x49,
-    0x67,
-    0x6E,
-    0x6F,
-    0x72,
-    0x65,
-    0x64,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-};
+SECTION_DATA static char lit_153[] = "OSResetSystem(): You can't specify TRUE to forceMenu if you restart. Ignored\n";
 
 /* 80451698-804516A0 000B98 0004+04 1/1 0/0 0/0 .sbss            bootThisDol */
 static u8 bootThisDol[4 + 4 /* padding */];

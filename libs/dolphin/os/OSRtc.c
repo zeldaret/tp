@@ -11,17 +11,17 @@
 // External References:
 //
 
-extern "C" void DCInvalidateRange();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void EXIImm();
-extern "C" void EXIImmEx();
-extern "C" void EXIDma();
-extern "C" void EXISync();
-extern "C" void EXISelect();
-extern "C" void EXIDeselect();
-extern "C" void EXILock();
-extern "C" void EXIUnlock();
+void DCInvalidateRange();
+void OSDisableInterrupts();
+void OSRestoreInterrupts();
+void EXIImm();
+void EXIImmEx();
+void EXIDma();
+void EXISync();
+void EXISelect();
+void EXIDeselect();
+void EXILock();
+void EXIUnlock();
 
 //
 // Declarations:

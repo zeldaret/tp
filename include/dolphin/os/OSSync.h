@@ -10,6 +10,8 @@ extern "C" {
 static void SystemCallVector(void);
 void __OSInitSystemCall(void);
 
+void __OSSystemCallVectorEnd(void);
+
 #ifdef __cplusplus
 };
 #endif

@@ -12,33 +12,30 @@
 //
 
 SECTION_INIT void memcpy();
-extern "C" void DCFlushRangeNoSync();
-extern "C" void ICInvalidateRange();
+void DCFlushRangeNoSync();
+void ICInvalidateRange();
 
 //
 // Declarations:
 //
 
 /* 80340A20-80340A3C 33B360 001C+00 1/1 0/0 0/0 .text            SystemCallVector */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
 static asm void SystemCallVector(void) {
+    // clang-format off
     nofralloc
-#include "asm/dolphin/os/OSSync/SystemCallVector.s"
-}
-#pragma pop
 
-// fake function?
-/* 80340A3C-80340A40 33B37C 0004+00 1/1 0/0 0/0 .text            __OSSystemCallVectorEnd */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __OSSystemCallVectorEnd(void) {
-    nofralloc
-#include "asm/dolphin/os/OSSync/__OSSystemCallVectorEnd.s"
+    mfspr r9, 0x3F0
+    ori r10, r9, 8
+    mtspr 0x3F0, r10
+    isync
+    sync
+    mtspr 0x3F0, r9
+    rfi
+
+    entry __OSSystemCallVectorEnd
+    nop
+    // clang-format on
 }
-#pragma pop
 
 /* 80340A40-80340AA4 33B380 0064+00 0/0 1/1 0/0 .text            __OSInitSystemCall */
 #pragma push

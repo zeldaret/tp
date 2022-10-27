@@ -13,34 +13,34 @@
 
 SECTION_INIT void memset();
 SECTION_INIT void memcpy();
-extern "C" void OSReport();
-extern "C" void OSSetArenaLo();
-extern "C" void OSAllocFromArenaLo();
-extern "C" void ICInvalidateRange();
-extern "C" void ICFlashInvalidate();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSEnableInterrupts();
-extern "C" void __OSMaskInterrupts();
-extern "C" void __OSUnmaskInterrupts();
-extern "C" void OSGetSaveRegion();
-extern "C" void __OSDoHotReset();
-extern "C" void DVDInit();
-extern "C" void DVDReadAbsAsyncPrio();
-extern "C" void DVDCancelStreamAsync();
-extern "C" void DVDGetCommandBlockStatus();
-extern "C" void DVDSetAutoInvalidation();
-extern "C" void DVDResume();
-extern "C" void DVDGetCurrentDiskID();
-extern "C" void DVDCheckDisk();
-extern "C" void __DVDPrepareResetAsync();
-extern "C" void AISetStreamPlayState();
-extern "C" void AISetStreamVolLeft();
-extern "C" void AISetStreamVolRight();
-extern "C" void sprintf();
-extern "C" void strncmp();
-extern "C" void strcpy();
-extern "C" void strlen();
-extern "C" extern u8 __OSIsGcam[4];
+void OSReport();
+void OSSetArenaLo();
+void OSAllocFromArenaLo();
+void ICInvalidateRange();
+void ICFlashInvalidate();
+void OSDisableInterrupts();
+void OSEnableInterrupts();
+void __OSMaskInterrupts();
+void __OSUnmaskInterrupts();
+void OSGetSaveRegion();
+void __OSDoHotReset();
+void DVDInit();
+void DVDReadAbsAsyncPrio();
+void DVDCancelStreamAsync();
+void DVDGetCommandBlockStatus();
+void DVDSetAutoInvalidation();
+void DVDResume();
+void DVDGetCurrentDiskID();
+void DVDCheckDisk();
+void __DVDPrepareResetAsync();
+void AISetStreamPlayState();
+void AISetStreamVolLeft();
+void AISetStreamVolRight();
+void sprintf();
+void strncmp();
+void strcpy();
+void strlen();
+extern u8 __OSIsGcam[4];
 
 //
 // Declarations:
@@ -57,14 +57,28 @@ static asm s32 PackArgs(void* param_0, u32 param_1, void* param_2) {
 #pragma pop
 
 /* 8033CC08-8033CC44 337548 003C+00 1/1 0/0 0/0 .text            Run */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
 static asm void Run(void) {
+    // clang-format off
     nofralloc
-#include "asm/dolphin/os/OSExec/Run.s"
+
+    mflr r0
+    stw r0, 4(r1)
+    stwu r1, -0x18(r1)
+    stw r31, 0x14(r1)
+    mr r31, r3
+    bl ICFlashInvalidate
+    sync
+    isync 
+    mtlr r31
+    blr
+
+    lwz r0, 0x1c(r1)
+    lwz r31, 0x14(r1)
+    addi r1, r1, 0x18
+    mtlr r0
+    blr 
+    // clang-format on
 }
-#pragma pop
 
 /* 8033CC44-8033CCB0 337584 006C+00 1/1 0/0 0/0 .text            ReadDisc */
 #pragma push
@@ -78,17 +92,12 @@ static asm void ReadDisc(void* param_0, s32 param_1, s32 param_2) {
 
 /* ############################################################################################## */
 /* 80451658-8045165C 000B58 0004+00 2/2 0/0 0/0 .sbss            Prepared */
-static u8 Prepared[4];
+static BOOL Prepared;
 
 /* 8033CCB0-8033CCBC 3375F0 000C+00 1/1 0/0 0/0 .text            Callback */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void Callback(void) {
-    nofralloc
-#include "asm/dolphin/os/OSExec/Callback.s"
+static void Callback(void) {
+    Prepared = TRUE;
 }
-#pragma pop
 
 /* 8033CCBC-8033CCFC 3375FC 0040+00 0/0 1/1 0/0 .text            __OSGetExecParams */
 #pragma push
@@ -102,7 +111,7 @@ asm void __OSGetExecParams(void* param_0) {
 
 /* ############################################################################################## */
 /* 8045165C-80451660 000B5C 0004+00 2/2 0/0 0/0 .sbss            apploaderPosition$69 */
-static u8 apploaderPosition[4];
+static s32 apploaderPosition;
 
 /* 8033CCFC-8033CDC0 33763C 00C4+00 1/1 0/0 0/0 .text            GetApploaderPosition */
 #pragma push
@@ -116,25 +125,7 @@ static asm void GetApploaderPosition(void) {
 
 /* ############################################################################################## */
 /* 803CFC38-803CFC48 02CD58 000B+05 1/1 0/0 0/0 .data            @115 */
-SECTION_DATA static u8 lit_115[11 + 5 /* padding */] = {
-    0x32,
-    0x30,
-    0x30,
-    0x34,
-    0x2F,
-    0x30,
-    0x32,
-    0x2F,
-    0x30,
-    0x31,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_DATA static char lit_115[] = "2004/02/01";
 
 /* 8033CDC0-8033D244 337700 0484+00 1/1 0/0 0/0 .text            __OSBootDolSimple */
 #pragma push
@@ -148,17 +139,7 @@ asm void __OSBootDolSimple(u32 param_0, u32 param_1, void* param_2, void* param_
 
 /* ############################################################################################## */
 /* 804509A8-804509B0 000428 0003+05 1/1 0/0 0/0 .sdata           @213 */
-SECTION_SDATA static u8 lit_213[3 + 5 /* padding */] = {
-    0x25,
-    0x64,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_SDATA static char lit_213[] = "%d";
 
 /* 8033D244-8033D3E0 337B84 019C+00 0/0 1/1 0/0 .text            __OSBootDol */
 #pragma push

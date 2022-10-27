@@ -11,15 +11,15 @@
 // Forward References:
 //
 
-extern "C" void __init_user();
-extern "C" void __init_cpp();
-extern "C" void _ExitProcess();
+void __init_user();
+void __init_cpp();
+void _ExitProcess();
 
 //
 // External References:
 //
 
-extern "C" void PPCHalt();
+void PPCHalt();
 SECTION_CTORS10 extern void* const __init_cpp_exceptions_reference;
 
 //
