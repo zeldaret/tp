@@ -11,50 +11,43 @@
 // Forward References:
 //
 
-extern "C" void GXSetMisc();
-extern "C" void GXFlush();
-extern "C" void __GXAbort();
-extern "C" void GXAbortFrame();
-extern "C" void GXSetDrawDone();
-extern "C" void GXDrawDone();
-extern "C" void GXPixModeSync();
-extern "C" void GXPokeAlphaMode();
-extern "C" void GXPokeAlphaRead();
-extern "C" void GXPokeAlphaUpdate();
-extern "C" void GXPokeBlendMode();
-extern "C" void GXPokeColorUpdate();
-extern "C" void GXPokeDstAlpha();
-extern "C" void GXPokeDither();
-extern "C" void GXPokeZMode();
-extern "C" void GXPeekZ();
-extern "C" void GXSetDrawSyncCallback();
-extern "C" static void GXTokenInterruptHandler();
-extern "C" void GXSetDrawDoneCallback();
-extern "C" static void GXFinishInterruptHandler();
-extern "C" void __GXPEInit();
+void GXSetMisc();
+void GXFlush();
+void __GXAbort();
+void GXAbortFrame();
+void GXSetDrawDone();
+void GXDrawDone();
+void GXPixModeSync();
+void GXPokeAlphaRead();
+void GXPokeBlendMode();
+void GXSetDrawSyncCallback();
+static void GXTokenInterruptHandler();
+void GXSetDrawDoneCallback();
+static void GXFinishInterruptHandler();
+void __GXPEInit();
 
 //
 // External References:
 //
 
-extern "C" void PPCSync();
-extern "C" void OSSetCurrentContext();
-extern "C" void OSClearContext();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void __OSSetInterruptHandler();
-extern "C" void __OSUnmaskInterrupts();
-extern "C" void OSInitThreadQueue();
-extern "C" void OSSleepThread();
-extern "C" void OSWakeupThread();
-extern "C" void OSGetTime();
-extern "C" void __GXInitRevisionBits();
-extern "C" void __GXCleanGPFifo();
-extern "C" void GXGetGPFifo();
-extern "C" void __GXSetDirtyState();
-extern "C" extern u8 __peReg[4];
-extern "C" extern u8 __memReg[4];
-extern "C" extern void* __GXData;
+void PPCSync();
+void OSSetCurrentContext();
+void OSClearContext();
+void OSDisableInterrupts();
+void OSRestoreInterrupts();
+void __OSSetInterruptHandler();
+void __OSUnmaskInterrupts();
+void OSInitThreadQueue();
+void OSSleepThread();
+void OSWakeupThread();
+void OSGetTime();
+void __GXInitRevisionBits();
+void __GXCleanGPFifo();
+void GXGetGPFifo();
+void __GXSetDirtyState();
+extern u8 __peReg[4];
+extern u8 __memReg[4];
+extern void* __GXData;
 
 //
 // Declarations:
@@ -64,7 +57,7 @@ extern "C" extern void* __GXData;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetMisc() {
+asm void GXSetMisc(u32 id, u32 value) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXSetMisc.s"
 }
@@ -74,7 +67,7 @@ asm void GXSetMisc() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXFlush() {
+asm void GXFlush(void) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXFlush.s"
 }
@@ -84,7 +77,7 @@ asm void GXFlush() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __GXAbort() {
+asm void __GXAbort(void) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/__GXAbort.s"
 }
@@ -94,7 +87,7 @@ asm void __GXAbort() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXAbortFrame() {
+asm void GXAbortFrame(void) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXAbortFrame.s"
 }
@@ -114,7 +107,7 @@ static u8 data_80451970[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetDrawDone() {
+asm void GXSetDrawDone(void) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXSetDrawDone.s"
 }
@@ -128,7 +121,7 @@ static u8 FinishQueue[8];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXDrawDone() {
+asm void GXDrawDone(void) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXDrawDone.s"
 }
@@ -138,7 +131,7 @@ asm void GXDrawDone() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXPixModeSync() {
+asm void GXPixModeSync(void) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXPixModeSync.s"
 }
@@ -148,7 +141,7 @@ asm void GXPixModeSync() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXPokeAlphaMode() {
+asm void GXPokeAlphaMode(GXCompare comp, u8 threshold) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXPokeAlphaMode.s"
 }
@@ -158,7 +151,7 @@ asm void GXPokeAlphaMode() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXPokeAlphaRead() {
+asm void GXPokeAlphaRead(GXAlphaReadMode mode) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXPokeAlphaRead.s"
 }
@@ -168,7 +161,7 @@ asm void GXPokeAlphaRead() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXPokeAlphaUpdate() {
+asm void GXPokeAlphaUpdate(GXBool enable_update) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXPokeAlphaUpdate.s"
 }
@@ -178,7 +171,7 @@ asm void GXPokeAlphaUpdate() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXPokeBlendMode() {
+asm void GXPokeBlendMode(GXBlendMode mode, GXBlendFactor src_factor, GXBlendFactor dst_factor, GXLogicOp op) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXPokeBlendMode.s"
 }
@@ -188,7 +181,7 @@ asm void GXPokeBlendMode() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXPokeColorUpdate() {
+asm void GXPokeColorUpdate(GXBool enable_update) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXPokeColorUpdate.s"
 }
@@ -198,7 +191,7 @@ asm void GXPokeColorUpdate() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXPokeDstAlpha() {
+asm void GXPokeDstAlpha(GXBool enable, u8 alpha) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXPokeDstAlpha.s"
 }
@@ -208,7 +201,7 @@ asm void GXPokeDstAlpha() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXPokeDither() {
+asm void GXPokeDither(GXBool enable) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXPokeDither.s"
 }
@@ -218,7 +211,7 @@ asm void GXPokeDither() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXPokeZMode() {
+asm void GXPokeZMode(GXBool enable_compare, GXCompare comp) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXPokeZMode.s"
 }
@@ -228,7 +221,7 @@ asm void GXPokeZMode() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXPeekZ() {
+asm void GXPeekZ(u16 x, u16 y, u32* z) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXPeekZ.s"
 }
@@ -238,7 +231,7 @@ asm void GXPeekZ() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetDrawSyncCallback() {
+asm void GXSetDrawSyncCallback(GXDrawSyncCallback callback) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXSetDrawSyncCallback.s"
 }
@@ -258,7 +251,7 @@ static asm void GXTokenInterruptHandler() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetDrawDoneCallback() {
+asm void GXSetDrawDoneCallback(GXDrawDoneCallback callback) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXSetDrawDoneCallback.s"
 }
@@ -278,7 +271,7 @@ static asm void GXFinishInterruptHandler() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __GXPEInit() {
+asm void __GXPEInit(void) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/__GXPEInit.s"
 }

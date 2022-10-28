@@ -29,9 +29,9 @@ public:
     void GetMinMaxCube(cXyz&, cXyz&) const;
     const cXyz& GetC(void) const { return mCenter; }
     const f32 GetR(void) const { return mRadius; }
-    f32 GetCX(void) const { return mCenter.GetX(); }
-    f32 GetCY(void) const { return mCenter.GetY(); }
-    f32 GetCZ(void) const { return mCenter.GetZ(); }
+    f32 GetCX(void) const { return mCenter.x; }
+    f32 GetCY(void) const { return mCenter.y; }
+    f32 GetCZ(void) const { return mCenter.z; }
 
     bool Cross(const cM3dGSph* other, f32* f) const { return cM3d_Cross_SphSph(this, other, f); }
     bool Cross(const cM3dGCps* cps, cXyz* xyz) const { return cM3d_Cross_CpsSph(*cps, *this, xyz); }

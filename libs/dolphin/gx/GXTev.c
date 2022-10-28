@@ -11,28 +11,24 @@
 // Forward References:
 //
 
-extern "C" void GXSetTevOp();
-extern "C" void GXSetTevColorIn();
-extern "C" void GXSetTevAlphaIn();
-extern "C" void GXSetTevColorOp();
-extern "C" void GXSetTevAlphaOp();
-extern "C" void GXSetTevColor();
-extern "C" void GXSetTevColorS10();
-extern "C" void GXSetTevKColor();
-extern "C" void GXSetTevKColorSel();
-extern "C" void GXSetTevKAlphaSel();
-extern "C" void GXSetTevSwapMode();
-extern "C" void GXSetTevSwapModeTable();
-extern "C" void GXSetAlphaCompare();
-extern "C" void GXSetZTexture();
-extern "C" void GXSetTevOrder();
-extern "C" void GXSetNumTevStages();
+void GXSetTevOp();
+void GXSetTevColorIn();
+void GXSetTevAlphaIn();
+void GXSetTevColor();
+void GXSetTevColorS10();
+void GXSetTevKColor();
+void GXSetTevKColorSel();
+void GXSetTevKAlphaSel();
+void GXSetTevSwapMode();
+void GXSetTevSwapModeTable();
+void GXSetZTexture();
+void GXSetTevOrder();
 
 //
 // External References:
 //
 
-extern "C" extern void* __GXData;
+extern void* __GXData;
 
 //
 // Declarations:
@@ -49,7 +45,7 @@ SECTION_DATA static u8 TEVCOpTableST0[20] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetTevOp() {
+asm void GXSetTevOp(GXTevStageID id, GXTevMode mode) {
     nofralloc
 #include "asm/dolphin/gx/GXTev/GXSetTevOp.s"
 }
@@ -59,7 +55,8 @@ asm void GXSetTevOp() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetTevColorIn() {
+asm void GXSetTevColorIn(GXTevStageID stage, GXTevColorArg a, GXTevColorArg b, GXTevColorArg c,
+                         GXTevColorArg d) {
     nofralloc
 #include "asm/dolphin/gx/GXTev/GXSetTevColorIn.s"
 }
@@ -69,7 +66,8 @@ asm void GXSetTevColorIn() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetTevAlphaIn() {
+asm void GXSetTevAlphaIn(GXTevStageID stage, GXTevAlphaArg a, GXTevAlphaArg b, GXTevAlphaArg c,
+                         GXTevAlphaArg d) {
     nofralloc
 #include "asm/dolphin/gx/GXTev/GXSetTevAlphaIn.s"
 }
@@ -79,7 +77,8 @@ asm void GXSetTevAlphaIn() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetTevColorOp() {
+asm void GXSetTevColorOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale,
+                         GXBool clamp, GXTevRegID out_reg) {
     nofralloc
 #include "asm/dolphin/gx/GXTev/GXSetTevColorOp.s"
 }
@@ -89,7 +88,8 @@ asm void GXSetTevColorOp() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetTevAlphaOp() {
+asm void GXSetTevAlphaOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale,
+                         GXBool clamp, GXTevRegID out_reg) {
     nofralloc
 #include "asm/dolphin/gx/GXTev/GXSetTevAlphaOp.s"
 }
@@ -99,7 +99,7 @@ asm void GXSetTevAlphaOp() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetTevColor() {
+asm void GXSetTevColor(GXTevRegID id, GXColor color) {
     nofralloc
 #include "asm/dolphin/gx/GXTev/GXSetTevColor.s"
 }
@@ -109,7 +109,7 @@ asm void GXSetTevColor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetTevColorS10() {
+asm void GXSetTevColorS10(GXTevRegID id, GXColorS10 color) {
     nofralloc
 #include "asm/dolphin/gx/GXTev/GXSetTevColorS10.s"
 }
@@ -119,7 +119,7 @@ asm void GXSetTevColorS10() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetTevKColor() {
+asm void GXSetTevKColor(GXTevKColorID id, GXColor color) {
     nofralloc
 #include "asm/dolphin/gx/GXTev/GXSetTevKColor.s"
 }
@@ -129,7 +129,7 @@ asm void GXSetTevKColor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetTevKColorSel() {
+asm void GXSetTevKColorSel(GXTevStageID stage, GXTevKColorSel color_sel) {
     nofralloc
 #include "asm/dolphin/gx/GXTev/GXSetTevKColorSel.s"
 }
@@ -139,7 +139,7 @@ asm void GXSetTevKColorSel() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetTevKAlphaSel() {
+asm void GXSetTevKAlphaSel(GXTevStageID stage, GXTevKAlphaSel alpha_sel) {
     nofralloc
 #include "asm/dolphin/gx/GXTev/GXSetTevKAlphaSel.s"
 }
@@ -149,7 +149,7 @@ asm void GXSetTevKAlphaSel() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetTevSwapMode() {
+asm void GXSetTevSwapMode(GXTevStageID stage, GXTevSwapSel ras_sel, GXTevSwapSel tex_sel) {
     nofralloc
 #include "asm/dolphin/gx/GXTev/GXSetTevSwapMode.s"
 }
@@ -159,7 +159,8 @@ asm void GXSetTevSwapMode() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetTevSwapModeTable() {
+asm void GXSetTevSwapModeTable(GXTevSwapSel select, GXTevColor r, GXTevColor g, GXTevColor b,
+                               GXTevColor a) {
     nofralloc
 #include "asm/dolphin/gx/GXTev/GXSetTevSwapModeTable.s"
 }
@@ -169,7 +170,7 @@ asm void GXSetTevSwapModeTable() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetAlphaCompare() {
+asm void GXSetAlphaCompare(GXCompare comp0, u8 ref0, GXAlphaOp op, GXCompare comp1, u8 ref1) {
     nofralloc
 #include "asm/dolphin/gx/GXTev/GXSetAlphaCompare.s"
 }
@@ -179,7 +180,7 @@ asm void GXSetAlphaCompare() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetZTexture() {
+asm void GXSetZTexture(GXZTexOp op, GXTexFmt fmt, u32 bias) {
     nofralloc
 #include "asm/dolphin/gx/GXTev/GXSetZTexture.s"
 }
@@ -262,7 +263,7 @@ SECTION_DATA static u8 c2r[36 + 4 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetTevOrder() {
+asm void GXSetTevOrder(GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXChannelID color) {
     nofralloc
 #include "asm/dolphin/gx/GXTev/GXSetTevOrder.s"
 }
@@ -272,7 +273,7 @@ asm void GXSetTevOrder() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetNumTevStages() {
+asm void GXSetNumTevStages(u8 num_stages) {
     nofralloc
 #include "asm/dolphin/gx/GXTev/GXSetNumTevStages.s"
 }

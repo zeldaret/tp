@@ -5,37 +5,34 @@
 
 #include "dolphin/gx/GXFifo.h"
 #include "dolphin/gx/GX.h"
-#include "dolphin/os/OS.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:
 //
 
-extern "C" static void GXCPInterruptHandler(OSInterrupt, OSContext* ctx);
-extern "C" static void GXInitFifoLimits(void);
-extern "C" void GXSetCPUFifo(void);
-extern "C" void GXSetGPFifo(void);
-extern "C" void __GXSaveCPUFifoAux(void);
-extern "C" void GXSetBreakPtCallback(void);
-extern "C" void __GXFifoInit(void);
-extern "C" void __GXFifoReadEnable(void);
-extern "C" void __GXFifoReadDisable(void);
-extern "C" void __GXFifoLink(u8);
-extern "C" void __GXWriteFifoIntEnable(u8, u8);
-extern "C" void __GXWriteFifoIntReset(u8, u8);
-extern "C" void __GXCleanGPFifo(void);
-extern "C" u32 GXGetGPFifo(void);
+static void GXCPInterruptHandler(OSInterrupt, OSContext* ctx);
+static void GXInitFifoLimits(GXFifoObj* fifo, u32 hi_watermark, u32 lo_watermark);
+void GXSetCPUFifo(void);
+void GXSetGPFifo(void);
+void GXSetBreakPtCallback(void);
+void __GXFifoInit(void);
+void __GXFifoReadEnable(void);
+void __GXFifoReadDisable(void);
+void __GXFifoLink(u8);
+void __GXWriteFifoIntEnable(u8, u8);
+void __GXWriteFifoIntReset(u8, u8);
+void __GXCleanGPFifo(void);
+u32 GXGetGPFifo(void);
 
 //
 // External References:
 //
 
-extern "C" void PPCSync(void);
-extern "C" void OSSetCurrentContext(OSContext*);
-extern "C" void OSClearContext(OSContext*);
-extern "C" void GXFlush(void);
+void PPCSync(void);
+void OSSetCurrentContext(OSContext*);
+void OSClearContext(OSContext*);
+void GXFlush(void);
 
 //
 // Declarations:
@@ -110,7 +107,7 @@ static asm void GXCPInterruptHandler(OSInterrupt, OSContext* ctx) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXInitFifoBase(GXFifoObj*, void*, u32) {
+asm void GXInitFifoBase(GXFifoObj* fifo, void* base, u32 size) {
     nofralloc
 #include "asm/dolphin/gx/GXFifo/GXInitFifoBase.s"
 }
@@ -120,21 +117,17 @@ asm void GXInitFifoBase(GXFifoObj*, void*, u32) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXInitFifoPtrs(GXFifoObj*, void*, void*) {
+asm void GXInitFifoPtrs(GXFifoObj* fifo, void* read_ptr, void* write_ptr) {
     nofralloc
 #include "asm/dolphin/gx/GXFifo/GXInitFifoPtrs.s"
 }
 #pragma pop
 
 /* 8035A7B8-8035A7C4 3550F8 000C+00 1/1 0/0 0/0 .text            GXInitFifoLimits */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void GXInitFifoLimits(void) {
-    nofralloc
-#include "asm/dolphin/gx/GXFifo/GXInitFifoLimits.s"
+static void GXInitFifoLimits(GXFifoObj* fifo, u32 hi_watermark, u32 lo_watermark) {
+    fifo->high_wtrmark = hi_watermark;
+    fifo->low_wtrmark = lo_watermark;
 }
-#pragma pop
 
 /* 8035A7C4-8035A8EC 355104 0128+00 1/1 1/1 0/0 .text            GXSetCPUFifo */
 #pragma push
@@ -157,20 +150,16 @@ asm void GXSetGPFifo(void) {
 #pragma pop
 
 /* 8035AA8C-8035AAC0 3553CC 0034+00 0/0 1/1 0/0 .text            GXSaveCPUFifo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSaveCPUFifo(GXFifoObj*) {
-    nofralloc
-#include "asm/dolphin/gx/GXFifo/GXSaveCPUFifo.s"
+void GXSaveCPUFifo(GXFifoObj* fifo) {
+    GXFlush();
+    __GXSaveCPUFifoAux(fifo);
 }
-#pragma pop
 
 /* 8035AAC0-8035AB88 355400 00C8+00 1/1 0/0 0/0 .text            __GXSaveCPUFifoAux */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __GXSaveCPUFifoAux(void) {
+asm void __GXSaveCPUFifoAux(GXFifoObj* fifo) {
     nofralloc
 #include "asm/dolphin/gx/GXFifo/__GXSaveCPUFifoAux.s"
 }
@@ -180,31 +169,21 @@ asm void __GXSaveCPUFifoAux(void) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXGetGPStatus(GXBool*, GXBool*, GXBool*, GXBool*, GXBool*) {
+asm void GXGetGPStatus(GXBool* overhi, GXBool* underlo, GXBool* read_idle, GXBool* cmd_idle, GXBool* breakpoint) {
     nofralloc
 #include "asm/dolphin/gx/GXFifo/GXGetGPStatus.s"
 }
 #pragma pop
 
 /* 8035ABD8-8035ABE0 355518 0008+00 0/0 1/1 0/0 .text            GXGetFifoBase */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* GXGetFifoBase(GXFifoObj*) {
-    nofralloc
-#include "asm/dolphin/gx/GXFifo/GXGetFifoBase.s"
+void* GXGetFifoBase(GXFifoObj* fifo) {
+    return fifo->base;
 }
-#pragma pop
 
 /* 8035ABE0-8035ABE8 355520 0008+00 0/0 1/1 0/0 .text            GXGetFifoSize */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 GXGetFifoSize(GXFifoObj*) {
-    nofralloc
-#include "asm/dolphin/gx/GXFifo/GXGetFifoSize.s"
+u32 GXGetFifoSize(GXFifoObj* fifo) {
+    return fifo->size;
 }
-#pragma pop
 
 /* 8035ABE8-8035AC2C 355528 0044+00 0/0 1/1 0/0 .text            GXSetBreakPtCallback */
 #pragma push
@@ -217,14 +196,14 @@ asm void GXSetBreakPtCallback(void) {
 #pragma pop
 
 /* 8035AC2C-8035AC78 35556C 004C+00 0/0 1/1 0/0 .text            __GXFifoInit */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __GXFifoInit(void) {
-    nofralloc
-#include "asm/dolphin/gx/GXFifo/__GXFifoInit.s"
+void __GXFifoInit(void) {
+    __OSSetInterruptHandler(0x11, GXCPInterruptHandler);
+    __OSUnmaskInterrupts(0x4000);
+    __GXCurrentThread = OSGetCurrentThread();
+    GXOverflowSuspendInProgress = 0;
+    CPUFifo = NULL;
+    GPFifo = NULL;
 }
-#pragma pop
 
 /* 8035AC78-8035AC9C 3555B8 0024+00 1/1 0/0 0/0 .text            __GXFifoReadEnable */
 #pragma push

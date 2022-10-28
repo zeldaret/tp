@@ -4,32 +4,28 @@
 //
 
 #include "dolphin/gx/GXAttr.h"
+#include "dolphin/gx/GXInit.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:
 //
 
-extern "C" void GXSetVtxDesc();
-extern "C" void GXSetVtxDescv();
-extern "C" void __GXSetVCD();
-extern "C" void __GXCalculateVLim();
-extern "C" void GXClearVtxDesc();
-extern "C" void GXSetVtxAttrFmt();
-extern "C" void GXSetVtxAttrFmtv();
-extern "C" void __GXSetVAT();
-extern "C" void GXSetArray();
-extern "C" void GXInvalidateVtxCache();
-extern "C" void GXSetTexCoordGen2();
-extern "C" void GXSetNumTexGens();
+void GXSetVtxDesc();
+void GXSetVtxDescv();
+void __GXSetVCD();
+void __GXCalculateVLim();
+void GXClearVtxDesc();
+void GXSetVtxAttrFmt();
+void GXSetVtxAttrFmtv();
+void __GXSetVAT();
+void GXInvalidateVtxCache();
 
 //
 // External References:
 //
 
-extern "C" void __GXSetMatrixIndex();
-extern "C" extern void* __GXData;
+void __GXSetMatrixIndex();
 
 //
 // Declarations:
@@ -57,7 +53,7 @@ SECTION_DATA static void* lit_176[26] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetVtxDesc() {
+asm void GXSetVtxDesc(GXAttr attr, GXAttrType type) {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/GXSetVtxDesc.s"
 }
@@ -85,7 +81,7 @@ SECTION_DATA static void* lit_223[26] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetVtxDescv() {
+asm void GXSetVtxDescv(GXVtxDescList* list) {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/GXSetVtxDescv.s"
 }
@@ -95,7 +91,7 @@ asm void GXSetVtxDescv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __GXSetVCD() {
+asm void __GXSetVCD(void) {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/__GXSetVCD.s"
 }
@@ -135,7 +131,7 @@ SECTION_SDATA static u8 tbl3[4 + 4 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __GXCalculateVLim() {
+asm void __GXCalculateVLim(void) {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/__GXCalculateVLim.s"
 }
@@ -145,7 +141,7 @@ asm void __GXCalculateVLim() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXClearVtxDesc() {
+asm void GXClearVtxDesc(void) {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/GXClearVtxDesc.s"
 }
@@ -169,7 +165,7 @@ SECTION_DATA static void* lit_476[17] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetVtxAttrFmt() {
+asm void GXSetVtxAttrFmt(GXVtxFmt fmt, GXAttr attr, GXCompCnt cnt, GXCompType type, u32) {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/GXSetVtxAttrFmt.s"
 }
@@ -193,7 +189,7 @@ SECTION_DATA static void* lit_503[17] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetVtxAttrFmtv() {
+asm void GXSetVtxAttrFmtv(GXVtxFmt fmt, GXVtxAttrFmtList* list) {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/GXSetVtxAttrFmtv.s"
 }
@@ -203,7 +199,7 @@ asm void GXSetVtxAttrFmtv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __GXSetVAT() {
+asm void __GXSetVAT(void) {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/__GXSetVAT.s"
 }
@@ -213,7 +209,7 @@ asm void __GXSetVAT() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetArray() {
+asm void GXSetArray(GXAttr attr, void* base, u8) {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/GXSetArray.s"
 }
@@ -223,7 +219,7 @@ asm void GXSetArray() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXInvalidateVtxCache() {
+asm void GXInvalidateVtxCache(void) {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/GXInvalidateVtxCache.s"
 }
@@ -257,7 +253,7 @@ SECTION_DATA static void* lit_739[21] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetTexCoordGen2() {
+asm void GXSetTexCoordGen2(GXTexCoordID dst, GXTexGenType type, GXTexGenSrc src, u32 mtx, GXBool renormalize, u32 pt_mtx) {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/GXSetTexCoordGen2.s"
 }
@@ -267,7 +263,7 @@ asm void GXSetTexCoordGen2() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetNumTexGens() {
+asm void GXSetNumTexGens(u8 numTexGens) {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/GXSetNumTexGens.s"
 }

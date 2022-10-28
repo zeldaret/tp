@@ -11,34 +11,24 @@
 // Forward References:
 //
 
-extern "C" void GXSetDispCopySrc();
-extern "C" void GXSetTexCopySrc();
-extern "C" void GXSetDispCopyDst();
-extern "C" void GXSetTexCopyDst();
-extern "C" void GXSetDispCopyFrame2Field();
-extern "C" void GXSetCopyClamp();
-extern "C" void GXGetNumXfbLines();
-extern "C" void GXGetYScaleFactor();
-extern "C" void GXSetDispCopyYScale();
-extern "C" void GXSetCopyClear();
-extern "C" void GXSetCopyFilter();
-extern "C" void GXSetDispCopyGamma();
-extern "C" void GXCopyDisp();
-extern "C" void GXCopyTex();
-extern "C" void GXClearBoundingBox();
-extern "C" extern u8 GXNtsc480IntDf[60];
-extern "C" extern u8 GXNtsc480Int[60];
-extern "C" extern u8 GXMpal480IntDf[60];
-extern "C" extern u8 GXPal528IntDf[60];
-extern "C" extern u8 GXEurgb60Hz480IntDf[60 + 4 /* padding */];
+void GXSetDispCopyFrame2Field();
+void GXSetCopyClamp();
+void GXSetCopyClear();
+void GXSetDispCopyGamma();
+void GXClearBoundingBox();
+extern u8 GXNtsc480IntDf[60];
+extern u8 GXNtsc480Int[60];
+extern u8 GXMpal480IntDf[60];
+extern u8 GXPal528IntDf[60];
+extern u8 GXEurgb60Hz480IntDf[60 + 4 /* padding */];
 
 //
 // External References:
 //
 
-extern "C" void __GetImageTileCount();
-extern "C" void __cvt_fp2unsigned();
-extern "C" extern void* __GXData;
+void __GetImageTileCount();
+void __cvt_fp2unsigned();
+extern void* __GXData;
 
 //
 // Declarations:
@@ -48,7 +38,7 @@ extern "C" extern void* __GXData;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetDispCopySrc() {
+asm void GXSetDispCopySrc(u16 left, u16 top, u16 width, u16 height) {
     nofralloc
 #include "asm/dolphin/gx/GXFrameBuf/GXSetDispCopySrc.s"
 }
@@ -58,7 +48,7 @@ asm void GXSetDispCopySrc() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetTexCopySrc() {
+asm void GXSetTexCopySrc(u16 left, u16 top, u16 width, u16 height) {
     nofralloc
 #include "asm/dolphin/gx/GXFrameBuf/GXSetTexCopySrc.s"
 }
@@ -68,7 +58,7 @@ asm void GXSetTexCopySrc() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetDispCopyDst() {
+asm void GXSetDispCopyDst(u16 width, u16 height) {
     nofralloc
 #include "asm/dolphin/gx/GXFrameBuf/GXSetDispCopyDst.s"
 }
@@ -78,7 +68,7 @@ asm void GXSetDispCopyDst() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetTexCopyDst() {
+asm void GXSetTexCopyDst(u16 width, u16 height, GXTexFmt fmt, GXBool mipmap) {
     nofralloc
 #include "asm/dolphin/gx/GXFrameBuf/GXSetTexCopyDst.s"
 }
@@ -88,7 +78,7 @@ asm void GXSetTexCopyDst() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetDispCopyFrame2Field() {
+asm void GXSetDispCopyFrame2Field(GXCopyMode mode) {
     nofralloc
 #include "asm/dolphin/gx/GXFrameBuf/GXSetDispCopyFrame2Field.s"
 }
@@ -98,7 +88,7 @@ asm void GXSetDispCopyFrame2Field() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetCopyClamp() {
+asm void GXSetCopyClamp(GXFBClamp clamp) {
     nofralloc
 #include "asm/dolphin/gx/GXFrameBuf/GXSetCopyClamp.s"
 }
@@ -116,7 +106,7 @@ SECTION_SDATA2 static f32 lit_179[1 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXGetNumXfbLines() {
+asm u16 GXGetNumXfbLines(u32 efb_height, f32 y_scale) {
     nofralloc
 #include "asm/dolphin/gx/GXFrameBuf/GXGetNumXfbLines.s"
 }
@@ -130,7 +120,7 @@ SECTION_SDATA2 static f64 lit_234 = 4503599627370496.0 /* cast u32 to float */;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXGetYScaleFactor() {
+asm f32 GXGetYScaleFactor(u16 efb_height, u16 xfb_height) {
     nofralloc
 #include "asm/dolphin/gx/GXFrameBuf/GXGetYScaleFactor.s"
 }
@@ -140,7 +130,7 @@ asm void GXGetYScaleFactor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetDispCopyYScale() {
+asm u32 GXSetDispCopyYScale(f32 y_scale) {
     nofralloc
 #include "asm/dolphin/gx/GXFrameBuf/GXSetDispCopyYScale.s"
 }
@@ -150,7 +140,7 @@ asm void GXSetDispCopyYScale() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetCopyClear() {
+asm void GXSetCopyClear(GXColor color, u32 clear_z) {
     nofralloc
 #include "asm/dolphin/gx/GXFrameBuf/GXSetCopyClear.s"
 }
@@ -160,7 +150,7 @@ asm void GXSetCopyClear() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetCopyFilter() {
+asm void GXSetCopyFilter(GXBool antialias, u8 pattern[12][2], GXBool vf, u8 vfilter[7]) {
     nofralloc
 #include "asm/dolphin/gx/GXFrameBuf/GXSetCopyFilter.s"
 }
@@ -170,7 +160,7 @@ asm void GXSetCopyFilter() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetDispCopyGamma() {
+asm void GXSetDispCopyGamma(GXGamma gamma) {
     nofralloc
 #include "asm/dolphin/gx/GXFrameBuf/GXSetDispCopyGamma.s"
 }
@@ -180,7 +170,7 @@ asm void GXSetDispCopyGamma() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXCopyDisp() {
+asm void GXCopyDisp(void* dst, GXBool clear) {
     nofralloc
 #include "asm/dolphin/gx/GXFrameBuf/GXCopyDisp.s"
 }
@@ -190,7 +180,7 @@ asm void GXCopyDisp() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXCopyTex() {
+asm void GXCopyTex(void* dst, GXBool clear) {
     nofralloc
 #include "asm/dolphin/gx/GXFrameBuf/GXCopyTex.s"
 }
@@ -200,7 +190,7 @@ asm void GXCopyTex() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXClearBoundingBox() {
+asm void GXClearBoundingBox(void) {
     nofralloc
 #include "asm/dolphin/gx/GXFrameBuf/GXClearBoundingBox.s"
 }

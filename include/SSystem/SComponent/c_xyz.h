@@ -72,6 +72,22 @@ struct cXyz : Vec {
     /* 80267128 */ s16 atan2sX_Z() const;
     /* 80267150 */ s16 atan2sY_XZ() const;
 
+    void set(f32 pX, f32 pY, f32 pZ) {
+        x = pX;
+        y = pY;
+        z = pZ;
+    }
+
+    void set(const Vec& other) {
+        x = other.x;
+        y = other.y;
+        z = other.z;
+    }
+
+    f32 getXDiff(const Vec* other) const { return x - other->x; }
+    f32 getYDiff(const Vec* other) const { return y - other->y; }
+    f32 getZDiff(const Vec* other) const { return z - other->z; }
+
     void setAll(f32 f) { set(f, f, f); }
 
     void setMin(const cXyz& other) {

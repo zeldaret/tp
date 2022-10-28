@@ -49,14 +49,12 @@ extern "C" u8 sWorkArea_MtxReg__13J3DSkinDeform[2048 + 8 /* padding */];
 //
 
 SECTION_INIT void memcpy();
-extern "C" void OSReport();
 extern "C" void* __nwa__FUl();
 extern "C" void* __nwa__FUli();
 extern "C" void __dl__FPv();
 extern "C" void J3DGQRSetup7__FUlUlUlUl();
 extern "C" void J3DPSCalcInverseTranspose__FPA4_fPA3_f();
 extern "C" void makeVcdVatCmd__8J3DShapeFv();
-extern "C" void DCStoreRange();
 extern "C" void __construct_new_array();
 extern "C" void __save_gpr();
 extern "C" void _savegpr_17();

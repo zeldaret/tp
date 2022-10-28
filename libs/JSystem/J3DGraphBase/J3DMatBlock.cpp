@@ -484,7 +484,6 @@ extern "C" extern char const* const J3DMatBlock__stringBase0;
 //
 
 SECTION_INIT void memcpy();
-extern "C" void OSReport();
 extern "C" void patchTexNoAndTexCoordScale__11J3DTevBlockFv();
 extern "C" void patch__10J3DPEBlockFv();
 extern "C" void patch__11J3DTevBlockFv();
@@ -577,7 +576,6 @@ extern "C" void patchTexNo_PtrToIdx__FUlRCUs();
 extern "C" void __as__16J3DIndTexMtxInfoFRC16J3DIndTexMtxInfo();
 extern "C" void __as__10J3DFogInfoFRC10J3DFogInfo();
 extern "C" void __as__15J3DNBTScaleInfoFRC15J3DNBTScaleInfo();
-extern "C" void DCStoreRange();
 extern "C" void GDOverflowed();
 extern "C" void __destroy_arr();
 extern "C" void _savegpr_24();

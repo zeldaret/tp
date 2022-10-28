@@ -11,39 +11,22 @@
 // Forward References:
 //
 
-extern "C" void GXGetTexBufferSize();
-extern "C" void __GetImageTileCount();
-extern "C" void GXInitTexObj();
-extern "C" void GXInitTexObjCI();
-extern "C" void GXInitTexObjLOD();
-extern "C" void GXGetTexObjWidth();
-extern "C" void GXGetTexObjHeight();
-extern "C" void GXGetTexObjFmt();
-extern "C" void GXGetTexObjWrapS();
-extern "C" void GXGetTexObjWrapT();
-extern "C" void GXGetTexObjMipMap();
-extern "C" void GXGetTexObjTlut();
-extern "C" static void GXLoadTexObjPreLoaded();
-extern "C" void GXLoadTexObj();
-extern "C" void GXInitTlutObj();
-extern "C" void GXLoadTlut();
-extern "C" void GXInitTexCacheRegion();
-extern "C" void GXInitTlutRegion();
-extern "C" void GXInvalidateTexAll();
-extern "C" void GXSetTexRegionCallback();
-extern "C" void GXSetTlutRegionCallback();
-extern "C" void GXSetTexCoordScaleManually();
-extern "C" void __SetSURegs();
-extern "C" void __GXSetSUTexRegs();
-extern "C" void __GXSetTmemConfig();
+void __GetImageTileCount();
+static void GXLoadTexObjPreLoaded();
+void GXLoadTexObj();
+void GXLoadTlut();
+void GXInitTlutRegion();
+void GXInvalidateTexAll();
+void __SetSURegs();
+void __GXSetSUTexRegs();
+void __GXSetTmemConfig();
 
 //
 // External References:
 //
 
 SECTION_INIT void memset();
-extern "C" void __GXFlushTextureState();
-extern "C" extern void* __GXData;
+void __GXFlushTextureState();
 
 //
 // Declarations:
@@ -89,7 +72,7 @@ SECTION_DATA static void* lit_104[61] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXGetTexBufferSize() {
+asm u32 GXGetTexBufferSize(u16 width, u16 height, u32 format, GXBool mipmap, u8 max_lod) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/GXGetTexBufferSize.s"
 }
@@ -177,7 +160,8 @@ SECTION_SDATA2 static f64 lit_222 = 4503599627370496.0 /* cast u32 to float */;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXInitTexObj() {
+asm void GXInitTexObj(GXTexObj* obj, void* image, u16 width, u16 height, GXTexFmt fmt,
+                      GXTexWrapMode wrapS, GXTexWrapMode wrapT, GXBool mipmap) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/GXInitTexObj.s"
 }
@@ -187,7 +171,8 @@ asm void GXInitTexObj() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXInitTexObjCI() {
+asm void GXInitTexObjCI(GXTexObj* obj, void* image, u16 width, u16 height, GXCITexFmt format,
+                        GXTexWrapMode wrapS, GXTexWrapMode wrapT, GXBool mipmap, u32 tlut_name) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/GXInitTexObjCI.s"
 }
@@ -269,7 +254,9 @@ SECTION_SDATA2 static f32 lit_293 = 10.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXInitTexObjLOD() {
+asm void GXInitTexObjLOD(GXTexObj* obj, GXTexFilter min_filter, GXTexFilter max_filter, f32 min_lod,
+                     f32 max_lod, f32 lod_bias, GXBool bias_clamp, GXBool edge_lod,
+                     GXAnisotropy aniso) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/GXInitTexObjLOD.s"
 }
@@ -279,7 +266,7 @@ asm void GXInitTexObjLOD() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXGetTexObjWidth() {
+asm u16 GXGetTexObjWidth(GXTexObj* obj) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/GXGetTexObjWidth.s"
 }
@@ -289,7 +276,7 @@ asm void GXGetTexObjWidth() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXGetTexObjHeight() {
+asm u16 GXGetTexObjHeight(GXTexObj* obj) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/GXGetTexObjHeight.s"
 }
@@ -299,7 +286,7 @@ asm void GXGetTexObjHeight() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXGetTexObjFmt() {
+asm GXTexFmt GXGetTexObjFmt(GXTexObj* obj) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/GXGetTexObjFmt.s"
 }
@@ -309,7 +296,7 @@ asm void GXGetTexObjFmt() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXGetTexObjWrapS() {
+asm GXTexWrapMode GXGetTexObjWrapS(GXTexObj* obj) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/GXGetTexObjWrapS.s"
 }
@@ -319,7 +306,7 @@ asm void GXGetTexObjWrapS() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXGetTexObjWrapT() {
+asm GXTexWrapMode GXGetTexObjWrapT(GXTexObj* obj) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/GXGetTexObjWrapT.s"
 }
@@ -329,7 +316,7 @@ asm void GXGetTexObjWrapT() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXGetTexObjMipMap() {
+asm GXBool GXGetTexObjMipMap(GXTexObj* obj) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/GXGetTexObjMipMap.s"
 }
@@ -339,7 +326,7 @@ asm void GXGetTexObjMipMap() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXGetTexObjTlut() {
+asm u32 GXGetTexObjTlut(GXTexObj* obj) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/GXGetTexObjTlut.s"
 }
@@ -349,7 +336,7 @@ asm void GXGetTexObjTlut() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void GXLoadTexObjPreLoaded() {
+static asm void GXLoadTexObjPreLoaded(GXTexObj* obj, GXTexRegion* region, GXTexMapID id) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/GXLoadTexObjPreLoaded.s"
 }
@@ -359,7 +346,7 @@ static asm void GXLoadTexObjPreLoaded() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXLoadTexObj() {
+asm void GXLoadTexObj(GXTexObj* obj, GXTexMapID id) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/GXLoadTexObj.s"
 }
@@ -369,7 +356,7 @@ asm void GXLoadTexObj() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXInitTlutObj() {
+asm void GXInitTlutObj(GXTlutObj* obj, void* lut, GXTlutFmt fmt, u16 entry_num) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/GXInitTlutObj.s"
 }
@@ -379,7 +366,7 @@ asm void GXInitTlutObj() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXLoadTlut() {
+asm void GXLoadTlut(GXTlutObj* obj, u32 tlut_name) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/GXLoadTlut.s"
 }
@@ -389,7 +376,8 @@ asm void GXLoadTlut() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXInitTexCacheRegion() {
+asm void GXInitTexCacheRegion(GXTexRegion* region, GXBool is_32b_mipmap, u32 tmem_even,
+                          GXTexCacheSize size_even, u32 tmem_odd, GXTexCacheSize size_odd) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/GXInitTexCacheRegion.s"
 }
@@ -399,7 +387,7 @@ asm void GXInitTexCacheRegion() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXInitTlutRegion() {
+asm void GXInitTlutRegion(GXTlutRegion* region, u32 tmem_addr, GXTlutSize tlut_size) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/GXInitTlutRegion.s"
 }
@@ -409,7 +397,7 @@ asm void GXInitTlutRegion() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXInvalidateTexAll() {
+asm void GXInvalidateTexAll(void) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/GXInvalidateTexAll.s"
 }
@@ -419,7 +407,7 @@ asm void GXInvalidateTexAll() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetTexRegionCallback() {
+asm GXTexRegionCallback GXSetTexRegionCallback(GXTexRegionCallback callback) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/GXSetTexRegionCallback.s"
 }
@@ -429,7 +417,7 @@ asm void GXSetTexRegionCallback() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetTlutRegionCallback() {
+asm GXTlutRegionCallback GXSetTlutRegionCallback(GXTlutRegionCallback callback) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/GXSetTlutRegionCallback.s"
 }
@@ -439,7 +427,7 @@ asm void GXSetTlutRegionCallback() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetTexCoordScaleManually() {
+asm void GXSetTexCoordScaleManually(GXTexCoordID coord, GXBool enable, u16 s_scale, u16 t_scale) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/GXSetTexCoordScaleManually.s"
 }

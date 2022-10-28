@@ -11,16 +11,16 @@
 // Forward References:
 //
 
-extern "C" void GXSetGPMetric();
-extern "C" void GXClearGPMetric();
-extern "C" void GXReadXfRasMetric();
+void GXSetGPMetric();
+void GXClearGPMetric();
+void GXReadXfRasMetric();
 
 //
 // External References:
 //
 
-extern "C" extern u8 __cpReg[4];
-extern "C" extern void* __GXData;
+extern u8 __cpReg[4];
+extern void* __GXData;
 
 //
 // Declarations:
@@ -89,7 +89,7 @@ SECTION_DATA static void* lit_181[36 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetGPMetric() {
+asm void GXSetGPMetric(u32 perf0, u32 perf1) {
     nofralloc
 #include "asm/dolphin/gx/GXPerf/GXSetGPMetric.s"
 }
@@ -99,7 +99,7 @@ asm void GXSetGPMetric() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXClearGPMetric() {
+asm void GXClearGPMetric(void) {
     nofralloc
 #include "asm/dolphin/gx/GXPerf/GXClearGPMetric.s"
 }
@@ -109,7 +109,7 @@ asm void GXClearGPMetric() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXReadXfRasMetric() {
+asm void GXReadXfRasMetric(u32* param_0, u32* param_1, u32* param_2, u32* param_3) {
     nofralloc
 #include "asm/dolphin/gx/GXPerf/GXReadXfRasMetric.s"
 }

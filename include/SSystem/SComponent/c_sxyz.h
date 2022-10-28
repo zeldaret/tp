@@ -18,6 +18,18 @@ public:
     s16 GetX() const { return x; }
     s16 GetY() const { return y; }
     s16 GetZ() const { return z; }
+
+    void set(s16 oX, s16 oY, s16 oZ) {
+        x = oX;
+        y = oY;
+        z = oZ;
+    }
+
+    void setall(s16 val) {
+        x = val;
+        y = val;
+        z = val;
+    }
 };
 
 #endif /* C_SXYZ_H */

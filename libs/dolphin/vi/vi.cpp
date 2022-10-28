@@ -30,20 +30,6 @@ extern "C" void __VIGetCurrentPosition();
 // External References:
 //
 
-extern "C" void OSReport();
-extern "C" void OSPanic();
-extern "C" void OSRegisterVersion();
-extern "C" void OSSetCurrentContext();
-extern "C" void OSClearContext();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void __OSSetInterruptHandler();
-extern "C" void __OSUnmaskInterrupts();
-extern "C" void __OSLockSram();
-extern "C" void __OSUnlockSram();
-extern "C" void OSInitThreadQueue();
-extern "C" void OSSleepThread();
-extern "C" void OSWakeupThread();
 extern "C" void SIRefreshSamplingRate();
 extern "C" void __shl2i();
 extern "C" void __shr2u();

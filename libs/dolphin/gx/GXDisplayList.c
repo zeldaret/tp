@@ -1,7 +1,10 @@
+/**
+ * GXDisplayList.c
+ * Description:
+ */
+
 #include "dolphin/gx/GXDisplayList.h"
 #include "dolphin/gx/GX.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 
 /* 8035FEF0-8035FF60 35A830 0070+00 0/0 20/20 4/4 .text            GXCallDisplayList */
 void GXCallDisplayList(void* list, u32 nbytes) {

@@ -6,13 +6,16 @@
 #include "dolphin/mtx/vec.h"
 #include "dolphin/types.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef f32 Mtx[3][4];
 typedef f32 Mtx33[3][3];
 typedef f32 Mtx23[2][3];
 typedef f32 (*MtxP)[4];
 typedef const f32 (*CMtxP)[4];  // Change name later?
 
-extern "C" {
 void PSMTXIdentity(Mtx m);
 void PSMTXCopy(const Mtx src, Mtx dst);
 void PSMTXConcat(const Mtx a, const Mtx b, Mtx ab);
@@ -38,6 +41,9 @@ void C_MTXLightPerspective(Mtx m, f32 fovY, f32 aspect, f32 scale_s, f32 scale_t
                            f32 trans_t);
 void C_MTXLightOrtho(Mtx m, f32 top, f32 bottom, f32 left, f32 right, f32 scale_s, f32 scale_t,
                      f32 trans_s, f32 trans_t);
-}
+
+#ifdef __cplusplus
+};
+#endif
 
 #endif /* MTX_H */

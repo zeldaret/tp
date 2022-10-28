@@ -11,26 +11,16 @@
 // Forward References:
 //
 
-extern "C" void GXSetFog();
-extern "C" void GXSetFogRangeAdj();
-extern "C" void GXSetBlendMode();
-extern "C" void GXSetColorUpdate();
-extern "C" void GXSetAlphaUpdate();
-extern "C" void GXSetZMode();
-extern "C" void GXSetZCompLoc();
-extern "C" void GXSetPixelFmt();
-extern "C" void GXSetDither();
-extern "C" void GXSetDstAlpha();
-extern "C" void GXSetFieldMask();
-extern "C" void GXSetFieldMode();
+void GXSetBlendMode();
+void GXSetPixelFmt();
 
 //
 // External References:
 //
 
-extern "C" void __GXFlushTextureState();
-extern "C" void __cvt_fp2unsigned();
-extern "C" extern void* __GXData;
+void __GXFlushTextureState();
+void __cvt_fp2unsigned();
+extern void* __GXData;
 
 //
 // Declarations:
@@ -82,7 +72,7 @@ SECTION_SDATA2 static f64 lit_219 = 4503601774854144.0 /* cast s32 to float */;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetFog() {
+asm void GXSetFog(GXFogType type, f32 startZ, f32 endZ, f32 nearZ, f32 farZ, GXColor color) {
     nofralloc
 #include "asm/dolphin/gx/GXPixel/GXSetFog.s"
 }
@@ -92,7 +82,7 @@ asm void GXSetFog() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetFogRangeAdj() {
+asm void GXSetFogRangeAdj(GXBool enable, u16 center, GXFogAdjTable* table) {
     nofralloc
 #include "asm/dolphin/gx/GXPixel/GXSetFogRangeAdj.s"
 }
@@ -102,7 +92,7 @@ asm void GXSetFogRangeAdj() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetBlendMode() {
+asm void GXSetBlendMode(GXBlendMode mode, GXBlendFactor src_factor, GXBlendFactor dst_factor, GXLogicOp op) {
     nofralloc
 #include "asm/dolphin/gx/GXPixel/GXSetBlendMode.s"
 }
@@ -112,7 +102,7 @@ asm void GXSetBlendMode() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetColorUpdate() {
+asm void GXSetColorUpdate(GXBool enable_update) {
     nofralloc
 #include "asm/dolphin/gx/GXPixel/GXSetColorUpdate.s"
 }
@@ -122,7 +112,7 @@ asm void GXSetColorUpdate() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetAlphaUpdate() {
+asm void GXSetAlphaUpdate(GXBool enable_update) {
     nofralloc
 #include "asm/dolphin/gx/GXPixel/GXSetAlphaUpdate.s"
 }
@@ -132,7 +122,7 @@ asm void GXSetAlphaUpdate() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetZMode() {
+asm void GXSetZMode(GXBool enable_compare, GXCompare comp, GXBool enable_update) {
     nofralloc
 #include "asm/dolphin/gx/GXPixel/GXSetZMode.s"
 }
@@ -142,7 +132,7 @@ asm void GXSetZMode() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetZCompLoc() {
+asm void GXSetZCompLoc(GXBool z_buf_before_tex) {
     nofralloc
 #include "asm/dolphin/gx/GXPixel/GXSetZCompLoc.s"
 }
@@ -159,7 +149,7 @@ SECTION_DATA static u8 p2f[32] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetPixelFmt() {
+asm void GXSetPixelFmt(GXPixelFmt pixel_fmt, GXZFmt16 z_fmt) {
     nofralloc
 #include "asm/dolphin/gx/GXPixel/GXSetPixelFmt.s"
 }
@@ -169,7 +159,7 @@ asm void GXSetPixelFmt() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetDither() {
+asm void GXSetDither(GXBool enable_dither) {
     nofralloc
 #include "asm/dolphin/gx/GXPixel/GXSetDither.s"
 }
@@ -179,7 +169,7 @@ asm void GXSetDither() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetDstAlpha() {
+asm void GXSetDstAlpha(GXBool enable, u8 alpha) {
     nofralloc
 #include "asm/dolphin/gx/GXPixel/GXSetDstAlpha.s"
 }
@@ -189,7 +179,7 @@ asm void GXSetDstAlpha() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetFieldMask() {
+asm void GXSetFieldMask(GXBool odd_mask, GXBool even_mask) {
     nofralloc
 #include "asm/dolphin/gx/GXPixel/GXSetFieldMask.s"
 }
@@ -199,7 +189,7 @@ asm void GXSetFieldMask() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetFieldMode() {
+asm void GXSetFieldMode(GXBool field_mode, GXBool half_aspect_ratio) {
     nofralloc
 #include "asm/dolphin/gx/GXPixel/GXSetFieldMode.s"
 }

@@ -11,28 +11,26 @@
 // Forward References:
 //
 
-extern "C" void GXProject();
-extern "C" void GXSetProjection();
-extern "C" void GXSetProjectionv();
-extern "C" void GXGetProjectionv();
-extern "C" void GXLoadPosMtxImm();
-extern "C" void GXLoadNrmMtxImm();
-extern "C" void GXSetCurrentMtx();
-extern "C" void GXLoadTexMtxImm();
-extern "C" void __GXSetViewport();
-extern "C" void GXSetViewport();
-extern "C" void GXGetViewportv();
-extern "C" void GXSetScissor();
-extern "C" void GXGetScissor();
-extern "C" void GXSetScissorBoxOffset();
-extern "C" void GXSetClipMode();
-extern "C" void __GXSetMatrixIndex();
+void GXSetProjection();
+void GXSetProjectionv();
+void GXGetProjectionv();
+void GXLoadPosMtxImm();
+void GXLoadNrmMtxImm();
+void GXSetCurrentMtx();
+void GXLoadTexMtxImm();
+void __GXSetViewport();
+void GXGetViewportv();
+void GXSetScissor();
+void GXGetScissor();
+void GXSetScissorBoxOffset();
+void GXSetClipMode();
+void __GXSetMatrixIndex();
 
 //
 // External References:
 //
 
-extern "C" extern void* __GXData;
+extern void* __GXData;
 
 //
 // Declarations:
@@ -57,7 +55,8 @@ SECTION_SDATA2 static f32 lit_28 = 0.5f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXProject() {
+asm void GXProject(f32 model_x, f32 model_y, f32 model_z, Mtx model_mtx, f32* proj_mtx,
+                   f32* viewpoint, f32* screen_x, f32* screen_y, f32* screen_z) {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXProject.s"
 }
@@ -67,7 +66,7 @@ asm void GXProject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetProjection() {
+asm void GXSetProjection(Mtx44 mtx, GXProjectionType type) {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXSetProjection.s"
 }
@@ -77,7 +76,7 @@ asm void GXSetProjection() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetProjectionv() {
+asm void GXSetProjectionv(f32* p) {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXSetProjectionv.s"
 }
@@ -87,7 +86,7 @@ asm void GXSetProjectionv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXGetProjectionv() {
+asm void GXGetProjectionv(f32* p) {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXGetProjectionv.s"
 }
@@ -97,7 +96,7 @@ asm void GXGetProjectionv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXLoadPosMtxImm() {
+asm void GXLoadPosMtxImm(Mtx mtx, u32 id) {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXLoadPosMtxImm.s"
 }
@@ -107,7 +106,7 @@ asm void GXLoadPosMtxImm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXLoadNrmMtxImm() {
+asm void GXLoadNrmMtxImm(Mtx mtx, u32 id) {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXLoadNrmMtxImm.s"
 }
@@ -117,7 +116,7 @@ asm void GXLoadNrmMtxImm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetCurrentMtx() {
+asm void GXSetCurrentMtx(u32 id) {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXSetCurrentMtx.s"
 }
@@ -127,7 +126,7 @@ asm void GXSetCurrentMtx() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXLoadTexMtxImm() {
+asm void GXLoadTexMtxImm(Mtx mtx, u32 id, GXTexMtxType type) {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXLoadTexMtxImm.s"
 }
@@ -141,7 +140,7 @@ SECTION_SDATA2 static f32 lit_201 = 342.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __GXSetViewport() {
+asm void __GXSetViewport(void) {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/__GXSetViewport.s"
 }
@@ -151,7 +150,7 @@ asm void __GXSetViewport() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetViewport() {
+asm void GXSetViewport(f32 x_orig, f32 y_orig, f32 width, f32 height, f32 near_z, f32 far_z) {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXSetViewport.s"
 }
@@ -161,7 +160,7 @@ asm void GXSetViewport() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXGetViewportv() {
+asm void GXGetViewportv(f32* p) {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXGetViewportv.s"
 }
@@ -171,7 +170,7 @@ asm void GXGetViewportv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetScissor() {
+asm void GXSetScissor(u32 left, u32 top, u32 width, u32 height) {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXSetScissor.s"
 }
@@ -181,7 +180,7 @@ asm void GXSetScissor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXGetScissor() {
+asm void GXGetScissor(u32* left, u32* top, u32* width, u32* height) {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXGetScissor.s"
 }
@@ -191,7 +190,7 @@ asm void GXGetScissor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetScissorBoxOffset() {
+asm void GXSetScissorBoxOffset(u32 x_offset, u32 y_offset) {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXSetScissorBoxOffset.s"
 }
@@ -201,7 +200,7 @@ asm void GXSetScissorBoxOffset() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetClipMode() {
+asm void GXSetClipMode(GXClipMode mode) {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXSetClipMode.s"
 }
@@ -211,7 +210,7 @@ asm void GXSetClipMode() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __GXSetMatrixIndex() {
+asm void __GXSetMatrixIndex(u32 id) {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/__GXSetMatrixIndex.s"
 }
