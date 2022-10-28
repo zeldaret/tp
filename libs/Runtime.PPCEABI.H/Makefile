@@ -3,15 +3,15 @@
 #
 
 LIBRUNTIME_PPCEABI_H_A_CPP_FILES := \
-	libs/Runtime.PPCEABI.H/__va_arg.cpp \
+	libs/Runtime.PPCEABI.H/__va_arg.c \
 	libs/Runtime.PPCEABI.H/global_destructor_chain.cpp \
 	libs/Runtime.PPCEABI.H/CPlusLibPPC.cpp \
 	libs/Runtime.PPCEABI.H/NMWException.cpp \
-	libs/Runtime.PPCEABI.H/ptmf.cpp \
+	libs/Runtime.PPCEABI.H/ptmf.c \
 	libs/Runtime.PPCEABI.H/runtime.cpp \
 	libs/Runtime.PPCEABI.H/__init_cpp_exceptions.cpp \
 	libs/Runtime.PPCEABI.H/Gecko_ExceptionPPC.cpp \
-	libs/Runtime.PPCEABI.H/GCN_mem_alloc.cpp \
+	libs/Runtime.PPCEABI.H/GCN_Mem_Alloc.c \
 
 LIBRUNTIME_PPCEABI_H_A_O_FILES := \
 	$(BUILD_DIR)/libs/Runtime.PPCEABI.H/__va_arg.o \
@@ -22,15 +22,20 @@ LIBRUNTIME_PPCEABI_H_A_O_FILES := \
 	$(BUILD_DIR)/libs/Runtime.PPCEABI.H/runtime.o \
 	$(BUILD_DIR)/libs/Runtime.PPCEABI.H/__init_cpp_exceptions.o \
 	$(BUILD_DIR)/libs/Runtime.PPCEABI.H/Gecko_ExceptionPPC.o \
-	$(BUILD_DIR)/libs/Runtime.PPCEABI.H/GCN_mem_alloc.o \
+	$(BUILD_DIR)/libs/Runtime.PPCEABI.H/GCN_Mem_Alloc.o \
 
 LIBRUNTIME_PPCEABI_H_A_CFLAGS := \
+	-O4,p \
 
 LIBRUNTIME_PPCEABI_H_A_LDFLAGS := \
 	-nodefaults \
 	-fp hard \
 	-proc gekko \
 	-linkmode moreram \
+
+$(BUILD_DIR)/libs/Runtime.PPCEABI.H/GCN_Mem_Alloc.o: CFLAGS := -Cpp_exceptions off -proc gekko -fp hard -O4,p -nodefaults -str readonly -RTTI off -maxerrors 5 -enum int $(INCLUDES) -lang=c
+$(BUILD_DIR)/libs/Runtime.PPCEABI.H/__va_arg.o: CFLAGS := -Cpp_exceptions off -proc gekko -fp hard -O4,p -nodefaults -str pool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES) -lang=c
+
 
 $(BUILD_DIR)/libRuntime.PPCEABI.H.a: $(LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libRuntime.PPCEABI.H.a
@@ -43,3 +48,8 @@ $(BUILD_DIR)/libs/Runtime.PPCEABI.H/%.o: libs/Runtime.PPCEABI.H/%.cpp
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
 	@$(CC) $(CFLAGS) $(LIBRUNTIME_PPCEABI_H_A_CFLAGS) -c -o $@ $(basename $@).cpp
 
+$(BUILD_DIR)/libs/Runtime.PPCEABI.H/%.o: libs/Runtime.PPCEABI.H/%.c
+	@mkdir -p $(@D)
+	@echo building... $<
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(CC) $(CFLAGS) -c -o $@ $(basename $@).c

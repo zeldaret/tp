@@ -28,6 +28,8 @@ void GDInitGDLObj(GDLObj*, u8*, u32);
 void GDFlushCurrToMem();
 void GDPadCurr32();
 
+typedef void (*GDOverflowCallback)(void);
+
 #ifdef __cplusplus
 };
 #endif

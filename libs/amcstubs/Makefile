@@ -3,12 +3,14 @@
 #
 
 LIBAMCSTUBS_A_CPP_FILES := \
-	libs/amcstubs/AmcExi2Stubs.cpp \
+	libs/amcstubs/AmcExi2Stubs.c \
 
 LIBAMCSTUBS_A_O_FILES := \
 	$(BUILD_DIR)/libs/amcstubs/AmcExi2Stubs.o \
 
 LIBAMCSTUBS_A_CFLAGS := \
+	-O4,p \
+	-lang=c \
 
 LIBAMCSTUBS_A_LDFLAGS := \
 	-nodefaults \
@@ -21,9 +23,9 @@ $(BUILD_DIR)/libamcstubs.a: $(LIBAMCSTUBS_A_O_FILES)
 	@echo $(LIBAMCSTUBS_A_O_FILES) > build/LIBAMCSTUBS_A_ofiles
 	@$(LD) -xm l $(LIBAMCSTUBS_A_LDFLAGS) -o $(BUILD_DIR)/libamcstubs.a @build/LIBAMCSTUBS_A_ofiles
 
-$(BUILD_DIR)/libs/amcstubs/%.o: libs/amcstubs/%.cpp
+$(BUILD_DIR)/libs/amcstubs/%.o: libs/amcstubs/%.c
 	@mkdir -p $(@D)
 	@echo building... $<
-	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBAMCSTUBS_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(CC) $(CFLAGS) $(LIBAMCSTUBS_A_CFLAGS) -c -o $@ $(basename $@).c
 

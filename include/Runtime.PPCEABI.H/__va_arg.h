@@ -14,9 +14,9 @@ typedef struct __va_list_struct {
 typedef _va_list_struct __va_list[1];
 
 #ifdef __cplusplus
-extern "C" void __va_arg(void*, int);
+extern "C" void* __va_arg(_va_list_struct*, int);
 #else
-void __va_arg(void*, int);
+void* __va_arg(_va_list_struct*, int);
 #endif
 
 #if IN_VSCODE_EDITOR
