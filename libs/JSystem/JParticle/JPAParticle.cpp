@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/JParticle/JPAParticle.h"
+#include "dolphin/mtx/mtxvec.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

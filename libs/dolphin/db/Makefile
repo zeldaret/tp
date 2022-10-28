@@ -3,12 +3,14 @@
 #
 
 LIBDB_A_CPP_FILES := \
-	libs/dolphin/db/db.cpp \
+	libs/dolphin/db/db.c \
 
 LIBDB_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/db/db.o \
 
 LIBDB_A_CFLAGS := \
+	-O4,p \
+	-lang=c \
 
 LIBDB_A_LDFLAGS := \
 	-nodefaults \
@@ -21,9 +23,9 @@ $(BUILD_DIR)/libdb.a: $(LIBDB_A_O_FILES)
 	@echo $(LIBDB_A_O_FILES) > build/LIBDB_A_ofiles
 	@$(LD) -xm l $(LIBDB_A_LDFLAGS) -o $(BUILD_DIR)/libdb.a @build/LIBDB_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/db/%.o: libs/dolphin/db/%.cpp
+$(BUILD_DIR)/libs/dolphin/db/%.o: libs/dolphin/db/%.c
 	@mkdir -p $(@D)
 	@echo building... $<
-	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBDB_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBDB_A_CFLAGS) -c -o $@ $(basename $@).c
 

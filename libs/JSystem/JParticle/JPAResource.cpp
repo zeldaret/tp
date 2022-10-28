@@ -9,6 +9,7 @@
 #include "JSystem/JParticle/JPAParticle.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx.h"
+#include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 
 //

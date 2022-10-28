@@ -24,17 +24,11 @@ void PSMTXRotRad(Mtx m, u8 axis, f32 rad);
 void PSMTXRotTrig(Mtx m, u8 axis, f32 sin, f32 cos);
 f64 __PSMTXRotAxisRadInternal(f64 param_1, f64 param_2, int param_3, int param_4);
 void PSMTXRotAxisRad(Mtx m, const Vec* axis, f32 rad);
-void PSMTXTrans(Mtx m, f32 x_trans, f32 y_trans, f32 z_trans);
+void PSMTXTrans(Mtx m, f32 x, f32 y, f32 z);
 void PSMTXTransApply(const Mtx src, Mtx dst, f32 x, f32 y, f32 z);
-void PSMTXScale(Mtx m, f32 x_scale, f32 y_scale, f32 z_scale);
-void PSMTXScaleApply(const Mtx src, Mtx dst, f32 x_scale, f32 y_scale, f32 z_scale);
+void PSMTXScale(Mtx m, f32 x, f32 y, f32 z);
+void PSMTXScaleApply(const Mtx src, Mtx dst, f32 x, f32 y, f32 z);
 void PSMTXQuat(Mtx m, const Quaternion* q);
-void PSMTXMultVec(const Mtx m, const Vec* src, Vec* dst);
-void PSMTXMultVecSR(const Mtx m, const Vec* src, Vec* dst);
-void PSMTXMultVec(const Mtx m, const Vec* src, Vec* dst);
-void PSMTXMultVecArray(const Mtx m, const Vec* srcBase, Vec* dstBase, u32 count);
-void PSMTXMultVecSR(const Mtx m, const Vec* src, Vec* dst);
-void PSMTXMultVecArraySR(const Mtx m, const Vec* srcBase, Vec* dstBase, u32 count);
 
 void C_MTXLookAt(Mtx m, const Vec* camPos, const Vec* camUp, const Vec* target);
 void C_MTXLightPerspective(Mtx m, f32 fovY, f32 aspect, f32 scale_s, f32 scale_t, f32 trans_s,

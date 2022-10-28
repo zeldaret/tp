@@ -3,12 +3,14 @@
 #
 
 LIBAI_A_CPP_FILES := \
-	libs/dolphin/ai/ai.cpp \
+	libs/dolphin/ai/ai.c \
 
 LIBAI_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/ai/ai.o \
 
 LIBAI_A_CFLAGS := \
+	-O4,p \
+	-lang=c \
 
 LIBAI_A_LDFLAGS := \
 	-nodefaults \
@@ -21,9 +23,8 @@ $(BUILD_DIR)/libai.a: $(LIBAI_A_O_FILES)
 	@echo $(LIBAI_A_O_FILES) > build/LIBAI_A_ofiles
 	@$(LD) -xm l $(LIBAI_A_LDFLAGS) -o $(BUILD_DIR)/libai.a @build/LIBAI_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/ai/%.o: libs/dolphin/ai/%.cpp
+$(BUILD_DIR)/libs/dolphin/ai/%.o: libs/dolphin/ai/%.c
 	@mkdir -p $(@D)
 	@echo building... $<
-	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBAI_A_CFLAGS) -c -o $@ $(basename $@).cpp
-
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBAI_A_CFLAGS) -c -o $@ $(basename $@).c

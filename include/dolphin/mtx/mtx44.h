@@ -3,7 +3,7 @@
 
 #include "dolphin/types.h"
 
-typedef float Mtx44[4][4];
+typedef f32 Mtx44[4][4];
 
 #ifdef __cplusplus
 extern "C" {

@@ -3,6 +3,10 @@
 
 #include "dolphin/types.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef enum PADMask {
     // PAD_CHAN3_BIT = (1 << 0),
     // PAD_CHAN2_BIT = (1 << 1),
@@ -28,7 +32,6 @@ typedef struct PADStatus {
     /* 0xA */ s8 error;
 } PADStatus;
 
-extern "C" {
 u32 PADInit(void);
 void PADSetAnalogMode(u32 mode);
 void PADSetSpec(int spec);
@@ -38,6 +41,9 @@ void PADClamp(PADStatus* status);
 u32 PADRead(PADStatus* status);
 void PADControlMotor(s32 channel, u32 command);
 s32 PADRecalibrate(PADMask mask);
-}
+
+#ifdef __cplusplus
+};
+#endif
 
 #endif /* PAD_H */
