@@ -26,7 +26,7 @@ double exp(double);
 
 extern float __fabsf(float);
 inline double fabs(double f) {
-    return __fabsf(f);
+    return __fabs(f);
 }
 inline double fabsf2(float f) {
     return __fabsf(f);

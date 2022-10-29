@@ -2,6 +2,7 @@
 #define MSL_COMMON_SRC_FLOAT_H
 
 #include "dolphin/types.h"
+#include "fdlibm.h"
 
 #define FP_SNAN 0
 #define FP_QNAN 1
@@ -42,8 +43,23 @@ inline int __fpclassifyf(float __value) {
 }
 
 inline int __fpclassifyd(double __value) {
-    // TODO:
-    return FP_INFINITE;
+    switch (__HI(__value) & 0x7ff00000) {
+	case 0x7ff00000: {
+		if ((__HI(__value) & 0x000fffff) || (__LO(__value) & 0xffffffff))
+			return FP_QNAN;
+		else
+			return FP_INFINITE;
+		break;
+	}
+	case 0: {
+		if ((__HI(__value) & 0x000fffff) || (__LO(__value) & 0xffffffff))
+			return FP_SUBNORMAL;
+		else
+			return FP_ZERO;
+		break;
+	}
+	}
+	return FP_NORMAL;
 }
 
 #endif /* MSL_COMMON_SRC_FLOAT_H */
