@@ -11,23 +11,7 @@
 // Forward References:
 //
 
-extern "C" void TRKDoSetOption();
-extern "C" void TRKDoStop();
-extern "C" void TRKDoStep();
-extern "C" void TRKDoContinue();
-extern "C" void TRKDoWriteRegisters();
-extern "C" void TRKDoReadRegisters();
-extern "C" void TRKDoWriteMemory();
-extern "C" void TRKDoReadMemory();
-extern "C" bool TRKDoSupportMask();
-extern "C" bool TRKDoVersions();
-extern "C" void TRKDoOverride();
-extern "C" void TRKDoReset();
-extern "C" void TRKDoDisconnect();
-extern "C" void TRKDoConnect();
-extern "C" void SetTRKConnected();
-extern "C" void GetTRKConnected();
-extern "C" void OutputData();
+void OutputData();
 
 //
 // External References:
@@ -35,31 +19,30 @@ extern "C" void OutputData();
 
 SECTION_INIT void memset();
 SECTION_INIT void __TRK_reset();
-extern "C" void TRKConstructEvent();
-extern "C" void TRKPostEvent();
-extern "C" void TRKMessageSend();
-extern "C" void TRKAppendBuffer_ui8();
-extern "C" void TRKReadBuffer();
-extern "C" void TRKAppendBuffer();
-extern "C" void TRKSetBufferPosition();
-extern "C" void TRKResetBuffer();
-extern "C" void usr_puts_serial();
-extern "C" void TRKTargetAccessARAM();
-extern "C" void TRKTargetStop();
-extern "C" void TRKTargetStopped();
-extern "C" void TRKTargetGetPC();
-extern "C" void TRKTargetStepOutOfRange();
-extern "C" void TRKTargetSingleStep();
-extern "C" void TRKTargetAccessExtended2();
-extern "C" void TRKTargetAccessExtended1();
-extern "C" void TRKTargetAccessFP();
-extern "C" void TRKTargetAccessDefault();
-extern "C" void TRKTargetAccessMemory();
-extern "C" void __TRK_copy_vectors();
-extern "C" void TRKWriteUARTN();
-extern "C" void TRKTargetContinue();
-extern "C" void SetUseSerialIO();
-extern "C" void MWTRACE();
+void TRKConstructEvent();
+void TRKPostEvent();
+void TRKMessageSend();
+void TRKAppendBuffer_ui8();
+void TRKReadBuffer();
+void TRKAppendBuffer();
+void TRKResetBuffer();
+void usr_puts_serial();
+void TRKTargetAccessARAM();
+void TRKTargetStop();
+void TRKTargetStopped();
+void TRKTargetGetPC();
+void TRKTargetStepOutOfRange();
+void TRKTargetSingleStep();
+void TRKTargetAccessExtended2();
+void TRKTargetAccessExtended1();
+void TRKTargetAccessFP();
+void TRKTargetAccessDefault();
+void TRKTargetAccessMemory();
+void __TRK_copy_vectors();
+void TRKWriteUARTN();
+void TRKTargetContinue();
+void SetUseSerialIO();
+void MWTRACE();
 
 //
 // Declarations:
@@ -67,70 +50,20 @@ extern "C" void MWTRACE();
 
 /* ############################################################################################## */
 /* 803A28D0-803A28F0 02EF30 001F+01 4/4 0/0 0/0 .rodata          @321 */
-SECTION_RODATA static u8 const lit_321[31 + 1 /* padding */] = {
-    0x0A,
-    0x4D,
-    0x65,
-    0x74,
-    0x72,
-    0x6F,
-    0x54,
-    0x52,
-    0x4B,
-    0x20,
-    0x4F,
-    0x70,
-    0x74,
-    0x69,
-    0x6F,
-    0x6E,
-    0x20,
-    0x3A,
-    0x20,
-    0x53,
-    0x65,
-    0x72,
-    0x69,
-    0x61,
-    0x6C,
-    0x49,
-    0x4F,
-    0x20,
-    0x2D,
-    0x20,
-    0x00,
-    /* padding */
-    0x00,
-};
+SECTION_RODATA static char const lit_321[] = "\nMetroTRK Option : SerialIO - ";
 COMPILER_STRIP_GATE(0x803A28D0, &lit_321);
 
 /* 803A28F0-803A28F8 02EF50 0008+00 0/1 0/0 0/0 .rodata          @322 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const lit_322[8] = {
-    0x45, 0x6E, 0x61, 0x62, 0x6C, 0x65, 0x0A, 0x00,
-};
+SECTION_RODATA static char const lit_322[] = "Enable\n";
 COMPILER_STRIP_GATE(0x803A28F0, &lit_322);
 #pragma pop
 
 /* 803A28F8-803A2904 02EF58 0009+03 0/1 0/0 0/0 .rodata          @323 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const lit_323[9 + 3 /* padding */] = {
-    0x44,
-    0x69,
-    0x73,
-    0x61,
-    0x62,
-    0x6C,
-    0x65,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_RODATA static char const lit_323[] = "Disable\n";
 COMPILER_STRIP_GATE(0x803A28F8, &lit_323);
 #pragma pop
 
@@ -138,7 +71,7 @@ COMPILER_STRIP_GATE(0x803A28F8, &lit_323);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TRKDoSetOption() {
+asm s32 TRKDoSetOption(TRKBuffer*) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msghndlr/TRKDoSetOption.s"
 }
@@ -148,7 +81,7 @@ asm void TRKDoSetOption() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TRKDoStop() {
+asm s32 TRKDoStop(TRKBuffer*) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msghndlr/TRKDoStop.s"
 }
@@ -158,7 +91,7 @@ asm void TRKDoStop() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TRKDoStep() {
+asm s32 TRKDoStep(TRKBuffer*) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msghndlr/TRKDoStep.s"
 }
@@ -166,16 +99,14 @@ asm void TRKDoStep() {
 
 /* ############################################################################################## */
 /* 803A2904-803A2910 02EF64 000C+00 1/1 0/0 0/0 .rodata          @370 */
-SECTION_RODATA static u8 const lit_370[12] = {
-    0x44, 0x6F, 0x43, 0x6F, 0x6E, 0x74, 0x69, 0x6E, 0x75, 0x65, 0x0A, 0x00,
-};
+SECTION_RODATA static char const lit_370[] = "DoContinue\n";
 COMPILER_STRIP_GATE(0x803A2904, &lit_370);
 
 /* 8036E084-8036E134 3689C4 00B0+00 0/0 1/1 0/0 .text            TRKDoContinue */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TRKDoContinue() {
+asm s32 TRKDoContinue(TRKBuffer*) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msghndlr/TRKDoContinue.s"
 }
@@ -185,117 +116,23 @@ asm void TRKDoContinue() {
 /* 803A2910-803A2930 02EF70 001F+01 0/0 0/0 0/0 .rodata          @402 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const lit_402[31 + 1 /* padding */] = {
-    0x44,
-    0x6F,
-    0x46,
-    0x6C,
-    0x75,
-    0x73,
-    0x68,
-    0x43,
-    0x61,
-    0x63,
-    0x68,
-    0x65,
-    0x20,
-    0x75,
-    0x6E,
-    0x69,
-    0x6D,
-    0x70,
-    0x6C,
-    0x65,
-    0x6D,
-    0x65,
-    0x6E,
-    0x74,
-    0x65,
-    0x64,
-    0x21,
-    0x21,
-    0x21,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-};
+SECTION_RODATA static char const lit_402[] = "DoFlushCache unimplemented!!!\n";
 COMPILER_STRIP_GATE(0x803A2910, &lit_402);
 #pragma pop
 
 /* 803A2930-803A2950 02EF90 001F+01 1/4 0/0 0/0 .rodata          @403 */
-SECTION_RODATA static u8 const lit_403[31 + 1 /* padding */] = {
-    0x53,
-    0x65,
-    0x6E,
-    0x64,
-    0x41,
-    0x43,
-    0x4B,
-    0x20,
-    0x3A,
-    0x20,
-    0x43,
-    0x61,
-    0x6C,
-    0x6C,
-    0x69,
-    0x6E,
-    0x67,
-    0x20,
-    0x4D,
-    0x65,
-    0x73,
-    0x73,
-    0x61,
-    0x67,
-    0x65,
-    0x53,
-    0x65,
-    0x6E,
-    0x64,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-};
+SECTION_RODATA static char const lit_403[] = "SendACK : Calling MessageSend\n";
 COMPILER_STRIP_GATE(0x803A2930, &lit_403);
 
 /* 803A2950-803A2968 02EFB0 0017+01 1/4 0/0 0/0 .rodata          @404 */
-SECTION_RODATA static u8 const lit_404[23 + 1 /* padding */] = {
-    0x4D,
-    0x65,
-    0x73,
-    0x73,
-    0x61,
-    0x67,
-    0x65,
-    0x53,
-    0x65,
-    0x6E,
-    0x64,
-    0x20,
-    0x65,
-    0x72,
-    0x72,
-    0x20,
-    0x3A,
-    0x20,
-    0x25,
-    0x6C,
-    0x64,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-};
+SECTION_RODATA static char const lit_404[] = "MessageSend err : %ld\n";
 COMPILER_STRIP_GATE(0x803A2950, &lit_404);
 
 /* 8036E134-8036E3C4 368A74 0290+00 0/0 1/1 0/0 .text            TRKDoWriteRegisters */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TRKDoWriteRegisters() {
+asm s32 TRKDoWriteRegisters(TRKBuffer*) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msghndlr/TRKDoWriteRegisters.s"
 }
@@ -305,201 +142,35 @@ asm void TRKDoWriteRegisters() {
 /* 803A2968-803A2990 02EFC8 0028+00 0/1 0/0 0/0 .rodata          @462 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const lit_462[40] = {
-    0x44, 0x6F, 0x52, 0x65, 0x61, 0x64, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72,
-    0x73, 0x20, 0x3A, 0x20, 0x42, 0x75, 0x66, 0x66, 0x65, 0x72, 0x20, 0x6C, 0x65, 0x6E,
-    0x67, 0x74, 0x68, 0x20, 0x30, 0x78, 0x25, 0x30, 0x38, 0x78, 0x0A, 0x00,
-};
+SECTION_RODATA static char const lit_462[] = "DoReadRegisters : Buffer length 0x%08x\n";
 COMPILER_STRIP_GATE(0x803A2968, &lit_462);
 #pragma pop
 
 /* 803A2990-803A29C8 02EFF0 0036+02 0/1 0/0 0/0 .rodata          @463 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const lit_463[54 + 2 /* padding */] = {
-    0x44,
-    0x6F,
-    0x52,
-    0x65,
-    0x61,
-    0x64,
-    0x52,
-    0x65,
-    0x67,
-    0x69,
-    0x73,
-    0x74,
-    0x65,
-    0x72,
-    0x73,
-    0x20,
-    0x3A,
-    0x20,
-    0x45,
-    0x72,
-    0x72,
-    0x6F,
-    0x72,
-    0x20,
-    0x72,
-    0x65,
-    0x61,
-    0x64,
-    0x69,
-    0x6E,
-    0x67,
-    0x20,
-    0x20,
-    0x64,
-    0x65,
-    0x66,
-    0x61,
-    0x75,
-    0x6C,
-    0x74,
-    0x20,
-    0x72,
-    0x65,
-    0x67,
-    0x73,
-    0x20,
-    0x30,
-    0x78,
-    0x25,
-    0x30,
-    0x38,
-    0x78,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-};
+SECTION_RODATA static char const lit_463[] = "DoReadRegisters : Error reading  default regs 0x%08x\n";
 COMPILER_STRIP_GATE(0x803A2990, &lit_463);
 #pragma pop
 
 /* 803A29C8-803A29F0 02F028 0028+00 0/1 0/0 0/0 .rodata          @464 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const lit_464[40] = {
-    0x44, 0x6F, 0x52, 0x65, 0x61, 0x64, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72,
-    0x73, 0x20, 0x3A, 0x20, 0x45, 0x72, 0x72, 0x6F, 0x72, 0x20, 0x46, 0x50, 0x20, 0x72,
-    0x65, 0x67, 0x73, 0x20, 0x30, 0x78, 0x25, 0x30, 0x38, 0x78, 0x0A, 0x00,
-};
+SECTION_RODATA static char const lit_464[] = "DoReadRegisters : Error FP regs 0x%08x\n";
 COMPILER_STRIP_GATE(0x803A29C8, &lit_464);
 #pragma pop
 
 /* 803A29F0-803A2A20 02F050 002F+01 0/1 0/0 0/0 .rodata          @465 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const lit_465[47 + 1 /* padding */] = {
-    0x44,
-    0x6F,
-    0x52,
-    0x65,
-    0x61,
-    0x64,
-    0x52,
-    0x65,
-    0x67,
-    0x69,
-    0x73,
-    0x74,
-    0x65,
-    0x72,
-    0x73,
-    0x20,
-    0x3A,
-    0x20,
-    0x45,
-    0x72,
-    0x72,
-    0x6F,
-    0x72,
-    0x20,
-    0x65,
-    0x78,
-    0x74,
-    0x65,
-    0x6E,
-    0x64,
-    0x65,
-    0x64,
-    0x31,
-    0x20,
-    0x72,
-    0x65,
-    0x67,
-    0x73,
-    0x20,
-    0x30,
-    0x78,
-    0x25,
-    0x30,
-    0x38,
-    0x78,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-};
+SECTION_RODATA static char const lit_465[] = "DoReadRegisters : Error extended1 regs 0x%08x\n";
 COMPILER_STRIP_GATE(0x803A29F0, &lit_465);
 #pragma pop
 
 /* 803A2A20-803A2A50 02F080 002F+01 0/1 0/0 0/0 .rodata          @466 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const lit_466[47 + 1 /* padding */] = {
-    0x44,
-    0x6F,
-    0x52,
-    0x65,
-    0x61,
-    0x64,
-    0x52,
-    0x65,
-    0x67,
-    0x69,
-    0x73,
-    0x74,
-    0x65,
-    0x72,
-    0x73,
-    0x20,
-    0x3A,
-    0x20,
-    0x45,
-    0x72,
-    0x72,
-    0x6F,
-    0x72,
-    0x20,
-    0x65,
-    0x78,
-    0x74,
-    0x65,
-    0x6E,
-    0x64,
-    0x65,
-    0x64,
-    0x32,
-    0x20,
-    0x72,
-    0x65,
-    0x67,
-    0x73,
-    0x20,
-    0x30,
-    0x78,
-    0x25,
-    0x30,
-    0x38,
-    0x78,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-};
+SECTION_RODATA static char const lit_466[] = "DoReadRegisters : Error extended2 regs 0x%08x\n";
 COMPILER_STRIP_GATE(0x803A2A20, &lit_466);
 #pragma pop
 
@@ -507,7 +178,7 @@ COMPILER_STRIP_GATE(0x803A2A20, &lit_466);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TRKDoReadRegisters() {
+asm s32 TRKDoReadRegisters(TRKBuffer*) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msghndlr/TRKDoReadRegisters.s"
 }
@@ -517,57 +188,7 @@ asm void TRKDoReadRegisters() {
 /* 803A2A50-803A2A80 02F0B0 002D+03 0/1 0/0 0/0 .rodata          @498 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const lit_498[45 + 3 /* padding */] = {
-    0x57,
-    0x72,
-    0x69,
-    0x74,
-    0x65,
-    0x4D,
-    0x65,
-    0x6D,
-    0x6F,
-    0x72,
-    0x79,
-    0x20,
-    0x28,
-    0x30,
-    0x78,
-    0x25,
-    0x30,
-    0x32,
-    0x78,
-    0x29,
-    0x20,
-    0x3A,
-    0x20,
-    0x30,
-    0x78,
-    0x25,
-    0x30,
-    0x38,
-    0x78,
-    0x20,
-    0x30,
-    0x78,
-    0x25,
-    0x30,
-    0x38,
-    0x78,
-    0x20,
-    0x30,
-    0x78,
-    0x25,
-    0x30,
-    0x38,
-    0x78,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_RODATA static char const lit_498[] = "WriteMemory (0x%02x) : 0x%08x 0x%08x 0x%08x\n";
 COMPILER_STRIP_GATE(0x803A2A50, &lit_498);
 #pragma pop
 
@@ -583,7 +204,7 @@ SECTION_DATA static void* lit_499[7] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TRKDoWriteMemory() {
+asm s32 TRKDoWriteMemory(TRKBuffer*) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msghndlr/TRKDoWriteMemory.s"
 }
@@ -593,11 +214,7 @@ asm void TRKDoWriteMemory() {
 /* 803A2A80-803A2AAC 02F0E0 002C+00 0/1 0/0 0/0 .rodata          @535 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const lit_535[44] = {
-    0x52, 0x65, 0x61, 0x64, 0x4D, 0x65, 0x6D, 0x6F, 0x72, 0x79, 0x20, 0x28, 0x30, 0x78, 0x25,
-    0x30, 0x32, 0x78, 0x29, 0x20, 0x3A, 0x20, 0x30, 0x78, 0x25, 0x30, 0x38, 0x78, 0x20, 0x30,
-    0x78, 0x25, 0x30, 0x38, 0x78, 0x20, 0x30, 0x78, 0x25, 0x30, 0x38, 0x78, 0x0A, 0x00,
-};
+SECTION_RODATA static char const lit_535[] = "ReadMemory (0x%02x) : 0x%08x 0x%08x 0x%08x\n";
 COMPILER_STRIP_GATE(0x803A2A80, &lit_535);
 #pragma pop
 
@@ -613,27 +230,27 @@ SECTION_DATA static void* lit_536[7] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TRKDoReadMemory() {
+asm s32 TRKDoReadMemory(TRKBuffer*) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msghndlr/TRKDoReadMemory.s"
 }
 #pragma pop
 
 /* 8036EB24-8036EB2C 369464 0008+00 0/0 1/1 0/0 .text            TRKDoSupportMask */
-bool TRKDoSupportMask() {
-    return false;
+s32 TRKDoSupportMask(TRKBuffer*) {
+    return 0;
 }
 
 /* 8036EB2C-8036EB34 36946C 0008+00 0/0 1/1 0/0 .text            TRKDoVersions */
-bool TRKDoVersions() {
-    return false;
+s32 TRKDoVersions(TRKBuffer*) {
+    return 0;
 }
 
 /* 8036EB34-8036EB8C 369474 0058+00 0/0 1/1 0/0 .text            TRKDoOverride */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TRKDoOverride() {
+asm s32 TRKDoOverride(TRKBuffer*) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msghndlr/TRKDoOverride.s"
 }
@@ -643,7 +260,7 @@ asm void TRKDoOverride() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TRKDoReset() {
+asm s32 TRKDoReset(TRKBuffer*) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msghndlr/TRKDoReset.s"
 }
@@ -657,7 +274,7 @@ SECTION_BSS static u8 IsTRKConnected[4 + 4 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TRKDoDisconnect() {
+asm s32 TRKDoDisconnect(TRKBuffer*) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msghndlr/TRKDoDisconnect.s"
 }
@@ -667,7 +284,7 @@ asm void TRKDoDisconnect() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TRKDoConnect() {
+asm s32 TRKDoConnect(TRKBuffer*) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msghndlr/TRKDoConnect.s"
 }
@@ -677,7 +294,7 @@ asm void TRKDoConnect() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SetTRKConnected() {
+asm void SetTRKConnected(BOOL) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msghndlr/SetTRKConnected.s"
 }
@@ -687,7 +304,7 @@ asm void SetTRKConnected() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GetTRKConnected() {
+asm BOOL GetTRKConnected(void) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msghndlr/GetTRKConnected.s"
 }
@@ -695,25 +312,11 @@ asm void GetTRKConnected() {
 
 /* ############################################################################################## */
 /* 803A2AAC-803A2AB4 02F10C 0006+02 1/1 0/0 0/0 .rodata          @573 */
-SECTION_RODATA static u8 const lit_573[6 + 2 /* padding */] = {
-    0x25,
-    0x30,
-    0x32,
-    0x78,
-    0x20,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-};
+SECTION_RODATA static char const lit_573[] = "%02x ";
 COMPILER_STRIP_GATE(0x803A2AAC, &lit_573);
 
 /* 803A2AB4-803A2AB8 02F114 0002+02 1/1 0/0 0/0 .rodata          @574 */
-SECTION_RODATA static u16 const lit_574[1 + 1 /* padding */] = {
-    0x0A00,
-    /* padding */
-    0x0000,
-};
+SECTION_RODATA static char const lit_574[] = "\n";
 COMPILER_STRIP_GATE(0x803A2AB4, &lit_574);
 
 /* 8036ECDC-8036ED84 36961C 00A8+00 0/0 1/1 0/0 .text            OutputData */

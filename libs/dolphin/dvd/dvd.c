@@ -12,7 +12,6 @@
 //
 
 static void defaultOptionalCommandChecker();
-void DVDInit();
 static void stateReadingFST();
 static void cbForStateReadingFST();
 static void cbForStateError();
@@ -179,7 +178,7 @@ static u8 DVDInitialized[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void DVDInit() {
+asm void DVDInit(void) {
     nofralloc
 #include "asm/dolphin/dvd/dvd/DVDInit.s"
 }
@@ -700,7 +699,7 @@ SECTION_DATA static void* lit_1060[13 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm s32 DVDCheckDisk() {
+asm BOOL DVDCheckDisk() {
     nofralloc
 #include "asm/dolphin/dvd/dvd/DVDCheckDisk.s"
 }

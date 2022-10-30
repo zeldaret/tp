@@ -11,17 +11,17 @@
 // Forward References:
 //
 
-extern "C" void TRKDoNotifyStopped();
+void TRKDoNotifyStopped();
 
 //
 // External References:
 //
 
-extern "C" void TRKReleaseBuffer();
-extern "C" void TRKGetFreeBuffer();
-extern "C" void TRKRequestSend();
-extern "C" void TRKTargetAddExceptionInfo();
-extern "C" void TRKTargetAddStopInfo();
+void TRKReleaseBuffer();
+void TRKGetFreeBuffer();
+void TRKRequestSend();
+void TRKTargetAddExceptionInfo();
+void TRKTargetAddStopInfo();
 
 //
 // Declarations:

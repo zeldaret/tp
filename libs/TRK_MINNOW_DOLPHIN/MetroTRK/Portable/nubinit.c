@@ -8,30 +8,22 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" void TRKNubWelcome();
-extern "C" void TRKTerminateNub();
-extern "C" void TRKInitializeNub();
-
-//
 // External References:
 //
 
-extern "C" void TRKInitializeEventQueue();
-extern "C" void TRKInitializeMessageBuffers();
-extern "C" bool TRKTerminateSerialHandler();
-extern "C" void TRKInitializeSerialHandler();
-extern "C" void usr_put_initialize();
-extern "C" bool TRKInitializeDispatcher();
-extern "C" void TRKTargetSetInputPendingPtr();
-extern "C" void TRKInitializeTarget();
-extern "C" void InitializeProgramEndTrap();
-extern "C" void TRK_board_display();
-extern "C" void TRKInitializeIntDrivenUART();
-extern "C" void MWTRACE();
-extern "C" extern u8 gTRKInputPendingPtr[4 + 4 /* padding */];
+void TRKInitializeEventQueue();
+void TRKInitializeMessageBuffers();
+u8 TRKTerminateSerialHandler();
+void TRKInitializeSerialHandler();
+void usr_put_initialize();
+u8 TRKInitializeDispatcher();
+void TRKTargetSetInputPendingPtr();
+void TRKInitializeTarget();
+void InitializeProgramEndTrap();
+void TRK_board_display();
+void TRKInitializeIntDrivenUART();
+void MWTRACE();
+extern u8 gTRKInputPendingPtr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -39,44 +31,14 @@ extern "C" extern u8 gTRKInputPendingPtr[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 803A2688-803A26A4 02ECE8 001B+01 1/1 0/0 0/0 .rodata          @133 */
-SECTION_RODATA static u8 const lit_133[27 + 1 /* padding */] = {
-    0x4D,
-    0x65,
-    0x74,
-    0x72,
-    0x6F,
-    0x54,
-    0x52,
-    0x4B,
-    0x20,
-    0x66,
-    0x6F,
-    0x72,
-    0x20,
-    0x47,
-    0x41,
-    0x4D,
-    0x45,
-    0x43,
-    0x55,
-    0x42,
-    0x45,
-    0x20,
-    0x76,
-    0x32,
-    0x2E,
-    0x36,
-    0x00,
-    /* padding */
-    0x00,
-};
+SECTION_RODATA static char const lit_133[] = "MetroTRK for GAMECUBE v2.6";
 COMPILER_STRIP_GATE(0x803A2688, &lit_133);
 
 /* 8036CE40-8036CE68 367780 0028+00 0/0 1/1 0/0 .text            TRKNubWelcome */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TRKNubWelcome() {
+asm void TRKNubWelcome(void) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubinit/TRKNubWelcome.s"
 }
@@ -86,7 +48,7 @@ asm void TRKNubWelcome() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TRKTerminateNub() {
+asm s32 TRKTerminateNub(void) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubinit/TRKTerminateNub.s"
 }
@@ -94,29 +56,7 @@ asm void TRKTerminateNub() {
 
 /* ############################################################################################## */
 /* 803A26A4-803A26B8 02ED04 0010+04 1/1 0/0 0/0 .rodata          @154 */
-SECTION_RODATA static u8 const lit_154[16 + 4 /* padding */] = {
-    0x49,
-    0x6E,
-    0x69,
-    0x74,
-    0x69,
-    0x61,
-    0x6C,
-    0x69,
-    0x7A,
-    0x65,
-    0x20,
-    0x4E,
-    0x55,
-    0x42,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_RODATA static char const lit_154[] = "Initialize NUB\n";
 COMPILER_STRIP_GATE(0x803A26A4, &lit_154);
 
 /* 8044D8B8-8044D8C0 07A5D8 0004+04 1/1 4/4 0/0 .bss             gTRKBigEndian */
@@ -127,7 +67,7 @@ SECTION_BSS u8 gTRKBigEndian[4 + 4 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TRKInitializeNub() {
+asm s32 TRKInitializeNub(void) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubinit/TRKInitializeNub.s"
 }

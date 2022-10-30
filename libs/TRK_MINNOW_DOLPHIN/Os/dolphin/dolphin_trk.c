@@ -8,47 +8,37 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct dBgW {};
-
-struct daBgObj_c {
-    /* 80459BB4 */ void regist(dBgW*);
-};
-
-//
 // Forward References:
 //
 
-extern "C" void InitMetroTRK();
-extern "C" void InitMetroTRK_BBA();
-extern "C" void TRK__write_aram();
-extern "C" void TRK__read_aram();
-extern "C" void TRKInitializeTarget();
-extern "C" void __TRK_copy_vectors();
-extern "C" void TRKTargetTranslate();
-extern "C" void EnableMetroTRKInterrupts();
+void InitMetroTRK();
+void InitMetroTRK_BBA();
+void TRK__write_aram();
+void TRK__read_aram();
+void TRKInitializeTarget();
+void __TRK_copy_vectors();
+void TRKTargetTranslate();
+void EnableMetroTRKInterrupts();
 
 //
 // External References:
 //
 
 SECTION_INIT void TRK_memcpy();
-extern "C" extern u8 const __TRK_unknown_data[7988];
-extern "C" void ARGetDMAStatus();
-extern "C" void ARStartDMA();
-extern "C" void __ARClearInterrupt();
-extern "C" void __ARGetInterruptStatus();
-extern "C" void TRK_flush_cache();
-extern "C" void __TRK_get_MSR();
-extern "C" void TRKSaveExtended1Block();
-extern "C" void TRK_main();
-extern "C" void EnableEXI2Interrupts();
-extern "C" void InitMetroTRKCommTable();
-extern "C" extern u8 gTRKState[164];
-extern "C" extern u8 gTRKCPUState[1072];
-extern "C" void regist__9daBgObj_cFP4dBgW();
+extern u8 const __TRK_unknown_data[7988];
+void ARGetDMAStatus();
+void ARStartDMA();
+void __ARClearInterrupt();
+void __ARGetInterruptStatus();
+void TRK_flush_cache();
+void __TRK_get_MSR();
+void TRKSaveExtended1Block();
+void TRK_main();
+void EnableEXI2Interrupts();
+void InitMetroTRKCommTable();
+extern u8 gTRKState[164];
+extern u8 gTRKCPUState[1072];
+void regist__9daBgObj_cFP4dBgW();
 
 //
 // Declarations:

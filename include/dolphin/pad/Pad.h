@@ -8,11 +8,6 @@ extern "C" {
 #endif
 
 typedef enum PADMask {
-    // PAD_CHAN3_BIT = (1 << 0),
-    // PAD_CHAN2_BIT = (1 << 1),
-    // PAD_CHAN1_BIT = (1 << 2),
-    // PAD_CHAN0_BIT = (1 << 3),
-
     PAD_CHAN3_BIT = (1 << 28),
     PAD_CHAN2_BIT = (1 << 29),
     PAD_CHAN1_BIT = (1 << 30),
@@ -35,12 +30,12 @@ typedef struct PADStatus {
 u32 PADInit(void);
 void PADSetAnalogMode(u32 mode);
 void PADSetSpec(int spec);
-s32 PADReset(PADMask mask);
+BOOL PADReset(u32 mask);
 void PADClampCircle(PADStatus* status);
 void PADClamp(PADStatus* status);
-u32 PADRead(PADStatus* status);
+void PADRead(PADStatus* status);
 void PADControlMotor(s32 channel, u32 command);
-s32 PADRecalibrate(PADMask mask);
+BOOL PADRecalibrate(u32 mask);
 
 #ifdef __cplusplus
 };

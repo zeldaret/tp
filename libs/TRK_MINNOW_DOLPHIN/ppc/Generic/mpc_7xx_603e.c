@@ -11,15 +11,15 @@
 // Forward References:
 //
 
-extern "C" void TRKSaveExtended1Block();
-extern "C" void TRKRestoreExtended1Block();
+void TRKSaveExtended1Block();
+void TRKRestoreExtended1Block();
 
 //
 // External References:
 //
 
-extern "C" extern u8 gTRKRestoreFlags[9 + 3 /* padding */];
-extern "C" extern u8 gTRKCPUState[1072];
+extern u8 gTRKRestoreFlags[9 + 3 /* padding */];
+extern u8 gTRKCPUState[1072];
 
 //
 // Declarations:

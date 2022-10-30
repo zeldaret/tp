@@ -11,29 +11,29 @@
 // Forward References:
 //
 
-extern "C" void HandlePositionFileSupportRequest();
-extern "C" void HandleCloseFileSupportRequest();
-extern "C" void HandleOpenFileSupportRequest();
-extern "C" void TRKRequestSend();
-extern "C" void TRKSuppAccessFile();
+void HandlePositionFileSupportRequest();
+void HandleCloseFileSupportRequest();
+void HandleOpenFileSupportRequest();
+void TRKRequestSend();
+void TRKSuppAccessFile();
 
 //
 // External References:
 //
 
 SECTION_INIT void memset();
-extern "C" void strlen();
-extern "C" void TRKMessageSend();
-extern "C" void TRKReadBuffer_ui8();
-extern "C" void TRKAppendBuffer_ui8();
-extern "C" void TRKSetBufferPosition();
-extern "C" void TRKReleaseBuffer();
-extern "C" void TRKGetBuffer();
-extern "C" void TRKGetFreeBuffer();
-extern "C" void TRKProcessInput();
-extern "C" void TRKTestForPacket();
-extern "C" void OutputData();
-extern "C" void MWTRACE();
+void strlen();
+void TRKMessageSend();
+void TRKReadBuffer_ui8();
+void TRKAppendBuffer_ui8();
+void TRKSetBufferPosition();
+void TRKReleaseBuffer();
+void TRKGetBuffer();
+void TRKGetFreeBuffer();
+void TRKProcessInput();
+void TRKTestForPacket();
+void OutputData();
+void MWTRACE();
 
 //
 // Declarations:
@@ -71,146 +71,27 @@ asm void HandleOpenFileSupportRequest() {
 
 /* ############################################################################################## */
 /* 803A2AB8-803A2AD0 02F118 0015+03 1/1 0/0 0/0 .rodata          @274 */
-SECTION_RODATA static u8 const lit_274[21 + 3 /* padding */] = {
-    0x43,
-    0x61,
-    0x6C,
-    0x6C,
-    0x69,
-    0x6E,
-    0x67,
-    0x20,
-    0x4D,
-    0x65,
-    0x73,
-    0x73,
-    0x61,
-    0x67,
-    0x65,
-    0x53,
-    0x65,
-    0x6E,
-    0x64,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_RODATA static char const lit_274[] = "Calling MessageSend\n";
 COMPILER_STRIP_GATE(0x803A2AB8, &lit_274);
 
 /* 803A2AD0-803A2AF8 02F130 0028+00 0/1 0/0 0/0 .rodata          @275 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const lit_275[40] = {
-    0x6D, 0x73, 0x67, 0x5F, 0x63, 0x6F, 0x6D, 0x6D, 0x61, 0x6E, 0x64, 0x20, 0x3A, 0x20,
-    0x30, 0x78, 0x25, 0x30, 0x32, 0x78, 0x20, 0x68, 0x64, 0x72, 0x2D, 0x3E, 0x63, 0x6D,
-    0x64, 0x49, 0x44, 0x20, 0x30, 0x78, 0x25, 0x30, 0x32, 0x78, 0x0A, 0x00,
-};
+SECTION_RODATA static char const lit_275[] = "msg_command : 0x%02x hdr->cmdID 0x%02x\n";
 COMPILER_STRIP_GATE(0x803A2AD0, &lit_275);
 #pragma pop
 
 /* 803A2AF8-803A2B0C 02F158 0014+00 0/1 0/0 0/0 .rodata          @276 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const lit_276[20] = {
-    0x6D, 0x73, 0x67, 0x5F, 0x65, 0x72, 0x72, 0x6F, 0x72, 0x20,
-    0x3A, 0x20, 0x30, 0x78, 0x25, 0x30, 0x32, 0x78, 0x0A, 0x00,
-};
+SECTION_RODATA static char const lit_276[] = "msg_error : 0x%02x\n";
 COMPILER_STRIP_GATE(0x803A2AF8, &lit_276);
 #pragma pop
 
 /* 803A2B0C-803A2B60 02F16C 0051+03 0/1 0/0 0/0 .rodata          @277 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const lit_277[81 + 3 /* padding */] = {
-    0x52,
-    0x65,
-    0x71,
-    0x75,
-    0x65,
-    0x73,
-    0x74,
-    0x53,
-    0x65,
-    0x6E,
-    0x64,
-    0x20,
-    0x3A,
-    0x20,
-    0x42,
-    0x61,
-    0x64,
-    0x20,
-    0x61,
-    0x63,
-    0x6B,
-    0x20,
-    0x6F,
-    0x72,
-    0x20,
-    0x6E,
-    0x6F,
-    0x6E,
-    0x20,
-    0x61,
-    0x63,
-    0x6B,
-    0x20,
-    0x72,
-    0x65,
-    0x63,
-    0x65,
-    0x69,
-    0x76,
-    0x65,
-    0x64,
-    0x20,
-    0x6D,
-    0x73,
-    0x67,
-    0x5F,
-    0x63,
-    0x6F,
-    0x6D,
-    0x6D,
-    0x61,
-    0x6E,
-    0x64,
-    0x20,
-    0x3A,
-    0x20,
-    0x30,
-    0x78,
-    0x25,
-    0x30,
-    0x32,
-    0x78,
-    0x20,
-    0x6D,
-    0x73,
-    0x67,
-    0x5F,
-    0x65,
-    0x72,
-    0x72,
-    0x6F,
-    0x72,
-    0x20,
-    0x30,
-    0x78,
-    0x25,
-    0x30,
-    0x32,
-    0x78,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_RODATA static char const lit_277[] = "RequestSend : Bad ack or non ack received msg_command : 0x%02x msg_error 0x%02x\n";
 COMPILER_STRIP_GATE(0x803A2B0C, &lit_277);
 #pragma pop
 

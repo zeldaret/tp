@@ -184,7 +184,7 @@ static asm void PADReceiveCheckCallback() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm s32 PADReset(PADMask mask) {
+asm BOOL PADReset(u32 mask) {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADReset.s"
 }
@@ -194,7 +194,7 @@ asm s32 PADReset(PADMask mask) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm s32 PADRecalibrate(PADMask mask) {
+asm BOOL PADRecalibrate(u32 mask) {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADRecalibrate.s"
 }
@@ -239,7 +239,7 @@ asm u32 PADInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u32 PADRead(PADStatus*) {
+asm void PADRead(PADStatus* status) {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADRead.s"
 }

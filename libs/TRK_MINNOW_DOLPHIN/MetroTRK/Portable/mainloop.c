@@ -8,25 +8,19 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" void TRKNubMainLoop();
-
-//
 // External References:
 //
 
-extern "C" void TRKDestructEvent();
-extern "C" void TRKGetNextEvent();
-extern "C" void TRKGetBuffer();
-extern "C" void TRKGetInput();
-extern "C" void TRKDispatchMessage();
-extern "C" void TRKTargetStopped();
-extern "C" void TRKTargetSupportRequest();
-extern "C" void TRKTargetInterrupt();
-extern "C" void TRKTargetContinue();
-extern "C" extern u8 gTRKInputPendingPtr[4 + 4 /* padding */];
+void TRKDestructEvent();
+void TRKGetNextEvent();
+void TRKGetBuffer();
+void TRKGetInput();
+void TRKDispatchMessage();
+void TRKTargetStopped();
+void TRKTargetSupportRequest();
+void TRKTargetInterrupt();
+void TRKTargetContinue();
+extern u8 gTRKInputPendingPtr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -36,7 +30,7 @@ extern "C" extern u8 gTRKInputPendingPtr[4 + 4 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TRKNubMainLoop() {
+asm void TRKNubMainLoop(void) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/mainloop/TRKNubMainLoop.s"
 }

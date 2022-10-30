@@ -11,20 +11,19 @@
 // Forward References:
 //
 
-extern "C" void TRKReadBuffer_ui32();
-extern "C" void TRKReadBuffer_ui8();
-extern "C" void TRKReadBuffer1_ui64();
-extern "C" void TRKAppendBuffer_ui32();
-extern "C" void TRKAppendBuffer_ui8();
-extern "C" void TRKAppendBuffer1_ui64();
-extern "C" void TRKReadBuffer();
-extern "C" void TRKAppendBuffer();
-extern "C" void TRKSetBufferPosition();
-extern "C" void TRKResetBuffer();
-extern "C" void TRKReleaseBuffer();
-extern "C" void TRKGetBuffer();
-extern "C" void TRKGetFreeBuffer();
-extern "C" void TRKInitializeMessageBuffers();
+void TRKReadBuffer_ui32();
+void TRKReadBuffer_ui8();
+void TRKReadBuffer1_ui64();
+void TRKAppendBuffer_ui32();
+void TRKAppendBuffer_ui8();
+void TRKAppendBuffer1_ui64();
+void TRKReadBuffer();
+void TRKAppendBuffer();
+void TRKResetBuffer();
+void TRKReleaseBuffer();
+void TRKGetBuffer();
+void TRKGetFreeBuffer();
+void TRKInitializeMessageBuffers();
 
 //
 // External References:
@@ -32,10 +31,10 @@ extern "C" void TRKInitializeMessageBuffers();
 
 SECTION_INIT void TRK_memset();
 SECTION_INIT void TRK_memcpy();
-extern "C" void usr_puts_serial();
-extern "C" bool TRKReleaseMutex();
-extern "C" bool TRKAcquireMutex();
-extern "C" bool TRKInitializeMutex();
+void usr_puts_serial();
+u8 TRKReleaseMutex();
+u8 TRKAcquireMutex();
+u8 TRKInitializeMutex();
 SECTION_BSS extern u8 gTRKBigEndian[4 + 4 /* padding */];
 
 //
@@ -126,7 +125,7 @@ asm void TRKAppendBuffer() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TRKSetBufferPosition() {
+asm s32 TRKSetBufferPosition(TRKBuffer*, u32) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf/TRKSetBufferPosition.s"
 }
@@ -168,41 +167,7 @@ asm void TRKGetBuffer() {
 
 /* ############################################################################################## */
 /* 803A26E0-803A2700 02ED40 001D+03 1/1 0/0 0/0 .rodata          @618 */
-SECTION_RODATA static u8 const lit_618[29 + 3 /* padding */] = {
-    0x45,
-    0x52,
-    0x52,
-    0x4F,
-    0x52,
-    0x20,
-    0x3A,
-    0x20,
-    0x4E,
-    0x6F,
-    0x20,
-    0x62,
-    0x75,
-    0x66,
-    0x66,
-    0x65,
-    0x72,
-    0x20,
-    0x61,
-    0x76,
-    0x61,
-    0x69,
-    0x6C,
-    0x61,
-    0x62,
-    0x6C,
-    0x65,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_RODATA static char const lit_618[] = "ERROR : No buffer available\n";
 COMPILER_STRIP_GATE(0x803A26E0, &lit_618);
 
 /* 8036D71C-8036D7E4 36805C 00C8+00 0/0 6/6 0/0 .text            TRKGetFreeBuffer */

@@ -11,21 +11,21 @@
 // Forward References:
 //
 
-extern "C" void TRKDestructEvent();
-extern "C" void TRKConstructEvent();
-extern "C" void TRKPostEvent();
-extern "C" void TRKGetNextEvent();
-extern "C" void TRKInitializeEventQueue();
+void TRKDestructEvent();
+void TRKConstructEvent();
+void TRKPostEvent();
+void TRKGetNextEvent();
+void TRKInitializeEventQueue();
 
 //
 // External References:
 //
 
 SECTION_INIT void TRK_memcpy();
-extern "C" void TRKReleaseBuffer();
-extern "C" bool TRKReleaseMutex();
-extern "C" bool TRKAcquireMutex();
-extern "C" bool TRKInitializeMutex();
+void TRKReleaseBuffer();
+u8 TRKReleaseMutex();
+u8 TRKAcquireMutex();
+u8 TRKInitializeMutex();
 
 //
 // Declarations:

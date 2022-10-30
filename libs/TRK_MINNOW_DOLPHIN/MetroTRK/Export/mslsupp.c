@@ -11,16 +11,16 @@
 // Forward References:
 //
 
-extern "C" void __TRK_write_console();
-extern "C" void __read_console();
+void __TRK_write_console();
+void __read_console();
 
 //
 // External References:
 //
 
-extern "C" void GetTRKConnected();
-extern "C" void TRKAccessFile();
-extern "C" void GetUseSerialIO();
+void GetTRKConnected();
+void TRKAccessFile();
+void GetUseSerialIO();
 
 //
 // Declarations:

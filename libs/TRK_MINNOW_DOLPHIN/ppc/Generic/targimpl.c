@@ -11,61 +11,59 @@
 // Forward References:
 //
 
-extern "C" void __TRK_get_MSR();
-extern "C" void __TRK_set_MSR();
-extern "C" static void TRK_ppc_memcpy();
-extern "C" void TRKInterruptHandler();
-extern "C" static void TRKExceptionHandler();
-extern "C" void TRKSwapAndGo();
-extern "C" static void TRKInterruptHandlerEnableInterrupts();
-extern "C" static void ReadFPSCR();
-extern "C" static void WriteFPSCR();
-extern "C" void TRKTargetAccessARAM();
-extern "C" void TRKTargetSetInputPendingPtr();
-extern "C" void TRKTargetStop();
-extern "C" void TRKTargetSetStopped();
-extern "C" void TRKTargetStopped();
-extern "C" void TRKTargetSupportRequest();
-extern "C" void TRKTargetGetPC();
-extern "C" void TRKTargetStepOutOfRange();
-extern "C" void TRKTargetSingleStep();
-extern "C" void TRKTargetAddExceptionInfo();
-extern "C" void TRKTargetAddStopInfo();
-extern "C" void TRKTargetInterrupt();
-extern "C" static void TRKPostInterruptEvent();
-extern "C" void TRKTargetAccessExtended2();
-extern "C" void TRKTargetAccessExtended1();
-extern "C" void TRKTargetAccessFP();
-extern "C" void TRKTargetAccessDefault();
-extern "C" static void TRKTargetReadInstruction();
-extern "C" void TRKTargetAccessMemory();
-extern "C" static void TRKValidMemory32();
+void __TRK_get_MSR();
+void __TRK_set_MSR();
+static void TRK_ppc_memcpy();
+void TRKInterruptHandler();
+static void TRKExceptionHandler();
+static void TRKInterruptHandlerEnableInterrupts();
+static void ReadFPSCR();
+static void WriteFPSCR();
+void TRKTargetAccessARAM();
+void TRKTargetSetInputPendingPtr();
+void TRKTargetStop();
+void TRKTargetStopped();
+void TRKTargetSupportRequest();
+void TRKTargetGetPC();
+void TRKTargetStepOutOfRange();
+void TRKTargetSingleStep();
+void TRKTargetAddExceptionInfo();
+void TRKTargetAddStopInfo();
+void TRKTargetInterrupt();
+static void TRKPostInterruptEvent();
+void TRKTargetAccessExtended2();
+void TRKTargetAccessExtended1();
+void TRKTargetAccessFP();
+void TRKTargetAccessDefault();
+static void TRKTargetReadInstruction();
+void TRKTargetAccessMemory();
+static void TRKValidMemory32();
 
 //
 // External References:
 //
 
 SECTION_INIT void memset();
-extern "C" void TRKConstructEvent();
-extern "C" void TRKPostEvent();
-extern "C" void TRKReadBuffer_ui32();
-extern "C" void TRKReadBuffer1_ui64();
-extern "C" void TRKAppendBuffer_ui32();
-extern "C" void TRKAppendBuffer_ui8();
-extern "C" void TRKAppendBuffer1_ui64();
-extern "C" void HandlePositionFileSupportRequest();
-extern "C" void HandleCloseFileSupportRequest();
-extern "C" void HandleOpenFileSupportRequest();
-extern "C" void TRKSuppAccessFile();
-extern "C" void TRKDoNotifyStopped();
-extern "C" void TRK_flush_cache();
-extern "C" void TRKSaveExtended1Block();
-extern "C" void TRKRestoreExtended1Block();
-extern "C" void TRK__write_aram();
-extern "C" void TRK__read_aram();
-extern "C" void TRKTargetTranslate();
-extern "C" void TRKUARTInterruptHandler();
-extern "C" void MWTRACE();
+void TRKConstructEvent();
+void TRKPostEvent();
+void TRKReadBuffer_ui32();
+void TRKReadBuffer1_ui64();
+void TRKAppendBuffer_ui32();
+void TRKAppendBuffer_ui8();
+void TRKAppendBuffer1_ui64();
+void HandlePositionFileSupportRequest();
+void HandleCloseFileSupportRequest();
+void HandleOpenFileSupportRequest();
+void TRKSuppAccessFile();
+void TRKDoNotifyStopped();
+void TRK_flush_cache();
+void TRKSaveExtended1Block();
+void TRKRestoreExtended1Block();
+void TRK__write_aram();
+void TRK__read_aram();
+void TRKTargetTranslate();
+void TRKUARTInterruptHandler();
+void MWTRACE();
 
 //
 // Declarations:
@@ -123,7 +121,7 @@ SECTION_DATA static u8 gTRKExceptionStatus[16] = {
 };
 
 /* 8044F290-8044F294 07BFB0 0002+02 1/1 0/0 0/0 .bss             TRK_saved_exceptionID */
-SECTION_BSS static u8 TRK_saved_exceptionID[2 + 2 /* padding */];
+SECTION_BSS static s32 TRK_saved_exceptionID = 0;
 
 /* 8044F294-8044F338 07BFB4 00A4+00 11/11 1/1 0/0 .bss             gTRKState */
 extern u8 gTRKState[164];
@@ -231,7 +229,7 @@ asm void TRKTargetStop() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TRKTargetSetStopped() {
+asm void TRKTargetSetStopped(s32) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/ppc/Generic/targimpl/TRKTargetSetStopped.s"
 }
@@ -299,9 +297,7 @@ SECTION_RODATA static u8 const lit_290[40] = {
 COMPILER_STRIP_GATE(0x803A2BC0, &lit_290);
 
 /* 803A2BE8-803A2BF8 02F248 0010+00 3/3 0/0 0/0 .rodata          @422 */
-SECTION_RODATA static u8 const lit_422[16] = {
-    0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x44, 0x6F, 0x53, 0x74, 0x65, 0x70, 0x28, 0x29, 0x0A, 0x00,
-};
+SECTION_RODATA static char const lit_422[] = "TargetDoStep()\n";
 COMPILER_STRIP_GATE(0x803A2BE8, &lit_422);
 
 /* 803D3254-803D3268 030374 0014+00 3/3 0/0 0/0 .data            gTRKStepStatus */

@@ -83,21 +83,22 @@ typedef struct DVDDriveInfo {
     /* 0x1C */ u32 field_0x1c;
 } DVDDriveInfo;
 
-s32 DVDOpen(const char*, DVDFileInfo*);
-s32 DVDClose(DVDFileInfo*);
-s32 DVDReadPrio(DVDFileInfo*, void*, s32, s32, s32);
+void DVDInit(void);
+BOOL DVDOpen(const char* filename, DVDFileInfo* fileinfo);
+BOOL DVDClose(DVDFileInfo* fileinfo);
+BOOL DVDReadPrio(DVDFileInfo* fileinfo, void*, s32, s32, s32);
 DVDDiskID* DVDGetCurrentDiskID(void);
-s32 DVDFastOpen(long, DVDFileInfo*);
-int DVDGetCommandBlockStatus(DVDCommandBlock*);
-s32 DVDReadAsyncPrio(DVDFileInfo*, void*, long, long, DVDCallback, long);
-s32 DVDConvertPathToEntrynum(const char*);
+BOOL DVDFastOpen(long, DVDFileInfo* fileinfo);
+BOOL DVDGetCommandBlockStatus(DVDCommandBlock*);
+BOOL DVDReadAsyncPrio(DVDFileInfo* fileinfo, void*, long, long, DVDCallback, long);
+BOOL DVDConvertPathToEntrynum(const char*);
 DVDState DVDGetDriveStatus(void);
-s32 DVDCheckDisk(void);
+BOOL DVDCheckDisk(void);
 
-BOOL DVDChangeDir(const char*);
-BOOL DVDCloseDir(DVDDirectory*);
-BOOL DVDOpenDir(const char*, DVDDirectory*);
-BOOL DVDReadDir(DVDDirectory*, DVDDirectoryEntry*);
+BOOL DVDChangeDir(const char* dirname);
+BOOL DVDCloseDir(DVDDirectory* dir);
+BOOL DVDOpenDir(const char*, DVDDirectory* dir);
+BOOL DVDReadDir(DVDDirectory* dir, DVDDirectoryEntry* entry);
 
 #ifdef __cplusplus
 };

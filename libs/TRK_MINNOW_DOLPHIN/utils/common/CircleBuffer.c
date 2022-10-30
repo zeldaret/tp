@@ -11,19 +11,19 @@
 // Forward References:
 //
 
-extern "C" void CircleBufferReadBytes();
-extern "C" void CircleBufferWriteBytes();
-extern "C" void CircleBufferInitialize();
-extern "C" void CBGetBytesAvailableForRead();
+void CircleBufferReadBytes();
+void CircleBufferWriteBytes();
+void CircleBufferInitialize();
+void CBGetBytesAvailableForRead();
 
 //
 // External References:
 //
 
 SECTION_INIT void memcpy();
-extern "C" void MWExitCriticalSection();
-extern "C" void MWEnterCriticalSection();
-extern "C" void MWInitializeCriticalSection();
+void MWExitCriticalSection();
+void MWEnterCriticalSection();
+void MWInitializeCriticalSection();
 
 //
 // Declarations:
