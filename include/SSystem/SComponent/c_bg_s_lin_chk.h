@@ -8,15 +8,15 @@
 #include "dolphin/types.h"
 
 class cBgS_LinChk : public cBgS_Chk, public cBgS_PolyInfo {
-private:
-    /* 0x024 */ cM3dGLin mLinP;
+public:
+    /* 0x024 */ cM3dGLin mLin;
     /* 0x040 */ cXyz field_0x40;
     /* 0x04C */ u32 field_0x4c;
     /* 0x050 */ bool mPreWallChk;
     /* 0x051 */ bool mPreGroundChk;
     /* 0x052 */ bool mPreRoofChk;
-    /* 0x053 */ u8 mFrontFlag;
-    /* 0x054 */ u8 mBackFlag;
+    /* 0x053 */ bool mFrontFlag;
+    /* 0x054 */ bool mBackFlag;
 
 public:
     cBgS_LinChk();
@@ -30,6 +30,13 @@ public:
     void ClrHit() { field_0x4c &= ~16; }
     void SetHit() { field_0x4c |= 16; }
     u32 ChkHit() const { return field_0x4c & 16; }
+    void SetCross(const cXyz& pos) { mLin.SetEnd(pos); }
+    cM3dGLin* GetLinP() { return &mLin; }
+    bool ChkBackFlag() const { return mBackFlag; }
+    bool ChkFrontFlag() const { return mFrontFlag; }
+    bool GetPreWallChk() const { return mPreWallChk; }
+    bool GetPreGroundChk() const { return mPreGroundChk; }
+    bool GetPreRoofChk() const { return mPreRoofChk; }
 };
 
 #endif /* C_BG_S_LIN_CHK_H */

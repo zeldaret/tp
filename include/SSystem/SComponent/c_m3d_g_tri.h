@@ -27,6 +27,9 @@ public:
     bool Cross(cM3dGTri const& other, cXyz* xyz) const {
         return cM3d_Cross_TriTri(*this, other, xyz);
     }
+    bool cross(const cM3dGLin* lin, Vec* xyz, bool param_2, bool param_3) const {
+        return cM3d_Cross_LinTri(lin, this, xyz, param_2, param_3);
+    }
 };
 
 #endif

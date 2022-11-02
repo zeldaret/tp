@@ -5,10 +5,10 @@
 
 #include "d/bg/d_bg_w.h"
 #include "JSystem/JMath/JMATrigonometric.h"
+#include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtxvec.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:
@@ -458,44 +458,90 @@ void cBgW::FreeArea() {
 }
 
 /* 800793C4-80079484 073D04 00C0+00 2/2 0/0 1/1 .text            GlobalVtx__4cBgWFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::GlobalVtx() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GlobalVtx__4cBgWFv.s"
+void cBgW::GlobalVtx() {
+    if (pm_base != NULL) {
+        if (!field_0x89) {
+            for (int i = 0; i < pm_bgd->m_v_num; i++) {
+                Vec* vtx = &pm_vtx_tbl[i];
+                PSVECAdd(vtx, &field_0x7c, vtx);
+            }
+        } else {
+            for (int i = 0; i < pm_bgd->m_v_num; i++) {
+                PSMTXMultVec(pm_base, &pm_bgd->m_v_tbl[i], &pm_vtx_tbl[i]);
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 80079484-80079564 073DC4 00E0+00 1/1 0/0 0/0 .text            SetVtx__4cBgWFv */
+// matches with literals
+#ifdef NONMATCHING
+int cBgW::SetVtx() {
+    if (field_0x88 & 0x10) {
+        pm_vtx_tbl = NULL;
+    } else if (field_0x88 & 0x1) {
+        pm_vtx_tbl = new Vec[pm_bgd->m_v_num];
+
+        if (pm_vtx_tbl == NULL) {
+            return true;
+        }
+
+        if (field_0x88 & 0x40) {
+            for (int i = 0; i < pm_bgd->m_v_num; i++) {
+                pm_vtx_tbl[i].x = 0.0f;
+                pm_vtx_tbl[i].y = 0.0f;
+                pm_vtx_tbl[i].z = 0.0f;
+            }
+        }
+
+        GlobalVtx();
+    } else {
+        pm_vtx_tbl = pm_bgd->m_v_tbl;
+    }
+
+    return false;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cBgW::SetVtx() {
+asm bool cBgW::SetVtx() {
     nofralloc
 #include "asm/d/bg/d_bg_w/SetVtx__4cBgWFv.s"
 }
 #pragma pop
+#endif
 
 /* 80079564-80079668 073EA4 0104+00 2/0 1/0 0/0 .text            CalcPlane__4cBgWFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::CalcPlane() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/CalcPlane__4cBgWFv.s"
+void cBgW::CalcPlane() {
+    dzb_tri_data* tri_data = pm_bgd->m_t_tbl;
+
+    if (pm_vtx_tbl != NULL) {
+        if (!field_0x89) {
+            for (int i = 0; i < pm_bgd->m_t_num; i++) {
+                pm_tri[i].m_plane.mD -= PSVECDotProduct(&pm_tri[i].m_plane.mNormal, &field_0x7c);
+            }
+        } else {
+            for (int i = 0; i < pm_bgd->m_t_num; i++) {
+                pm_tri[i].m_plane.SetupFrom3Vtx(&pm_vtx_tbl[tri_data[i].field_0x0],
+                                                &pm_vtx_tbl[tri_data[i].field_0x2],
+                                                &pm_vtx_tbl[tri_data[i].field_0x4]);
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 80079668-800796F8 073FA8 0090+00 1/1 0/0 0/0 .text            SetTri__4cBgWFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::SetTri() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/SetTri__4cBgWFv.s"
+bool cBgW::SetTri() {
+    pm_tri = new cBgW_TriElm[pm_bgd->m_t_num];
+
+    if (pm_tri == NULL) {
+        return true;
+    }
+
+    CalcPlane();
+    return false;
 }
-#pragma pop
 
 /* 800796F8-80079754 074038 005C+00 2/1 0/0 0/0 .text            __dt__11cBgW_TriElmFv */
 #pragma push
@@ -509,24 +555,21 @@ extern "C" asm void __dt__11cBgW_TriElmFv() {
 #pragma pop
 
 /* 80079754-80079770 074094 001C+00 1/1 0/0 0/0 .text            __ct__11cBgW_TriElmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cBgW_TriElm::cBgW_TriElm() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/__ct__11cBgW_TriElmFv.s"
-}
-#pragma pop
+cBgW_TriElm::cBgW_TriElm() {}
 
 /* 80079770-800797BC 0740B0 004C+00 1/1 0/0 0/0 .text            BlckConnect__4cBgWFPUsPii */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::BlckConnect(u16* param_0, int* param_1, int param_2) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/BlckConnect__4cBgWFPUsPii.s"
+void cBgW::BlckConnect(u16* param_0, int* param_1, int param_2) {
+    if (*param_0 == 0xFFFF) {
+        *param_0 = param_2;
+    }
+
+    if (*param_1 != 0xFFFF) {
+        pm_rwg[*param_1].field_0x0 = param_2;
+    }
+
+    *param_1 = param_2;
+    pm_rwg[*param_1].field_0x0 = 0xFFFF;
 }
-#pragma pop
 
 /* 800797BC-8007998C 0740FC 01D0+00 2/0 1/0 0/0 .text            ClassifyPlane__4cBgWFv */
 #pragma push
@@ -539,25 +582,40 @@ asm void cBgW::ClassifyPlane() {
 #pragma pop
 
 /* 8007998C-800799E0 0742CC 0054+00 1/1 0/0 0/0 .text MakeBlckTransMinMax__4cBgWFP4cXyzP4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::MakeBlckTransMinMax(cXyz* param_0, cXyz* param_1) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/MakeBlckTransMinMax__4cBgWFP4cXyzP4cXyz.s"
+void cBgW::MakeBlckTransMinMax(cXyz* param_0, cXyz* param_1) {
+    PSVECAdd(param_0, &field_0x7c, param_0);
+    PSVECAdd(param_1, &field_0x7c, param_1);
 }
-#pragma pop
 
 /* 800799E0-80079A68 074320 0088+00 1/1 0/0 0/0 .text            MakeBlckMinMax__4cBgWFiP4cXyzP4cXyz
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::MakeBlckMinMax(int param_0, cXyz* param_1, cXyz* param_2) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/MakeBlckMinMax__4cBgWFiP4cXyzP4cXyz.s"
+void cBgW::MakeBlckMinMax(int vtx_index, cXyz* param_1, cXyz* param_2) {
+    Vec* vtx = &pm_vtx_tbl[vtx_index];
+
+    if (param_1->x > vtx->x) {
+        param_1->x = vtx->x;
+    }
+
+    if (param_2->x < vtx->x) {
+        param_2->x = vtx->x;
+    }
+
+    if (param_1->y > vtx->y) {
+        param_1->y = vtx->y;
+    }
+
+    if (param_2->y < vtx->y) {
+        param_2->y = vtx->y;
+    }
+
+    if (param_1->z > vtx->z) {
+        param_1->z = vtx->z;
+    }
+
+    if (param_2->z < vtx->z) {
+        param_2->z = vtx->z;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804526FC-80452700 000CFC 0004+00 1/1 0/0 0/0 .sdata2          @3935 */
@@ -570,6 +628,43 @@ SECTION_SDATA2 static f32 lit_3936 = -1000000000.0f;
 SECTION_SDATA2 static f32 lit_3937 = 1.0f;
 
 /* 80079A68-80079BDC 0743A8 0174+00 1/1 0/0 0/0 .text            MakeBlckBnd__4cBgWFiP4cXyzP4cXyz */
+// matches with literals
+#ifdef NONMATCHING
+void cBgW::MakeBlckBnd(int param_0, cXyz* param_1, cXyz* param_2) {
+    int tmp = pm_bgd->m_b_tbl[param_0].field_0x0;
+    int tmp2;
+
+    if (param_0 != pm_bgd->m_b_num - 1) {
+        tmp2 = pm_bgd->m_b_tbl[param_0 + 1].field_0x0 - 1;
+    } else {
+        tmp2 = pm_bgd->m_t_num - 1;
+    }
+
+    if (field_0x89 == 0) {
+        MakeBlckTransMinMax(param_1, param_2);
+    } else {
+        param_1->z = 1000000000.0f;
+        param_1->y = 1000000000.0f;
+        param_1->x = 1000000000.0f;
+        param_2->z = -1000000000.0f;
+        param_2->y = -1000000000.0f;
+        param_2->x = -1000000000.0f;
+
+        for (int i = tmp; i <= tmp2; i++) {
+            MakeBlckMinMax(pm_bgd->m_t_tbl[i].field_0x0, param_1, param_2);
+            MakeBlckMinMax(pm_bgd->m_t_tbl[i].field_0x2, param_1, param_2);
+            MakeBlckMinMax(pm_bgd->m_t_tbl[i].field_0x4, param_1, param_2);
+        }
+
+        param_1->x -= 1.0f;
+        param_1->y -= 1.0f;
+        param_1->z -= 1.0f;
+        param_2->x += 1.0f;
+        param_2->y += 1.0f;
+        param_2->z += 1.0f;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -578,16 +673,37 @@ asm void cBgW::MakeBlckBnd(int param_0, cXyz* param_1, cXyz* param_2) {
 #include "asm/d/bg/d_bg_w/MakeBlckBnd__4cBgWFiP4cXyzP4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* 80079BDC-80079CC4 07451C 00E8+00 1/1 0/0 0/0 .text            MakeNodeTreeRp__4cBgWFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::MakeNodeTreeRp(int param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/MakeNodeTreeRp__4cBgWFi.s"
+void cBgW::MakeNodeTreeRp(int param_0) {
+    dzb_tree_data* tree_data = &pm_bgd->m_tree_tbl[param_0];
+
+    if (tree_data->field_0x0 & 1) {
+        int tmp = tree_data->m_id[0];
+
+        if (tmp != 0xFFFF) {
+            cXyz* max = (cXyz*)&pm_node_tree[param_0].getMaxP();
+            cXyz* min = (cXyz*)&pm_node_tree[param_0].getMinP();
+
+            MakeBlckBnd(tmp, min, max);
+        }
+    } else {
+        pm_node_tree[param_0].ClearForMinMax();
+
+        for (int i = 0; i < 8; i++) {
+            // this is probably wrong, fix later
+            u16* tmp_p = (u16*)tree_data;
+            int tmp = tmp_p[i + 2];
+
+            if (tmp != 0xFFFF) {
+                MakeNodeTreeRp(tmp);
+                pm_node_tree[param_0].SetMinMax(pm_node_tree[tmp].getMinP());
+                pm_node_tree[param_0].SetMinMax(pm_node_tree[tmp].getMaxP());
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 80079CC4-80079DF0 074604 012C+00 1/1 0/0 0/0 .text            MakeNodeTreeGrpRp__4cBgWFi */
 #pragma push
@@ -598,6 +714,23 @@ asm void cBgW::MakeNodeTreeGrpRp(int param_0) {
 #include "asm/d/bg/d_bg_w/MakeNodeTreeGrpRp__4cBgWFi.s"
 }
 #pragma pop
+
+/* void cBgW::MakeNodeTreeGrpRp(int param_0) {
+    //u16 tmp = pm_bgd->m_g_tbl[param_0].field_0x2e;
+
+    if (pm_bgd->m_g_tbl[param_0].field_0x2e != 0xFFFF) {
+        MakeNodeTreeRp(pm_bgd->m_g_tbl[param_0].field_0x2e);
+        pm_node_tree[param_0].SetMin(pm_grp[pm_bgd->m_g_tbl[param_0].field_0x2e].mMin);
+        pm_node_tree[param_0].SetMax(pm_grp[pm_bgd->m_g_tbl[param_0].field_0x2e].mMax);
+    }
+
+    u16 tmp2 = pm_bgd->m_g_tbl[param_0].field_0x28;
+    while (tmp2 != 0xFFFF) {
+        MakeNodeTreeGrpRp(tmp2);
+        pm_grp[param_0].SetMin(pm_grp[tmp2].mMin);
+        pm_grp[param_0].SetMax(pm_node_tree[tmp2].mMax);
+    }
+} */
 
 /* 80079DF0-80079EEC 074730 00FC+00 2/2 0/0 0/0 .text            MakeNodeTree__4cBgWFv */
 #pragma push
@@ -610,28 +743,77 @@ asm void cBgW::MakeNodeTree() {
 #pragma pop
 
 /* 80079EEC-80079F38 07482C 004C+00 2/0 1/0 0/0 .text            ChkMemoryError__4cBgWFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::ChkMemoryError() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/ChkMemoryError__4cBgWFv.s"
-}
-#pragma pop
+bool cBgW::ChkMemoryError() {
+    if (pm_tri == NULL || pm_rwg == NULL || field_0xa4 == NULL || pm_node_tree == NULL ||
+        pm_grp == NULL) {
+        return true;
+    }
 
-/* ############################################################################################## */
-/* 80452708-8045270C 000D08 0004+00 1/1 0/0 0/0 .sdata2          @4073 */
-SECTION_SDATA2 static f32 lit_4073 = 128.0f;
+    return false;
+}
 
 /* 80079F38-8007A184 074878 024C+00 1/1 3/3 85/85 .text            Set__4cBgWFP6cBgD_tUlPA3_A4_f */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cBgW::Set(cBgD_t* param_0, u32 param_1, f32 (*param_2)[3][4]) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/Set__4cBgWFP6cBgD_tUlPA3_A4_f.s"
+bool cBgW::Set(cBgD_t* pbgd, u32 param_1, Mtx* pbase_mtx) {
+    field_0x88 = 0x20;
+    pm_vtx_tbl = NULL;
+    pm_tri = NULL;
+    pm_rwg = NULL;
+    field_0xa4 = NULL;
+    pm_node_tree = NULL;
+    pm_grp = NULL;
+    field_0x90 = cM_rndF(128.0f);
+
+    if (pbgd == NULL) {
+        return true;
+    }
+
+    field_0x88 = param_1;
+    if (field_0x88 & 0x20) {
+        pm_base = NULL;
+        PSMTXIdentity(m_inv_mtx);
+        PSMTXIdentity(field_0x4c);
+    } else {
+        pm_base = *pbase_mtx;
+        PSMTXCopy(pm_base, m_inv_mtx);
+        PSMTXCopy(pm_base, field_0x4c);
+    }
+
+    pm_bgd = pbgd;
+
+    if (SetVtx() || SetTri()) {
+        FreeArea();
+        return true;
+    }
+
+    pm_rwg = new cBgW_RwgElm[pm_bgd->m_t_num];
+    if (pm_rwg == NULL) {
+        FreeArea();
+        return true;
+    }
+
+    field_0xa4 = new cBgW_unk_b_data[pm_bgd->m_b_num];
+    if (field_0xa4 == NULL) {
+        FreeArea();
+        return true;
+    }
+
+    pm_node_tree = new cBgW_NodeTree[pm_bgd->m_tree_num];
+    if (pm_node_tree == NULL) {
+        FreeArea();
+        return true;
+    }
+
+    pm_grp = new cBgW_GrpElm[pm_bgd->m_g_num];
+    if (pm_grp == NULL) {
+        FreeArea();
+        return true;
+    }
+
+    ClassifyPlane();
+    field_0x89 = 1;
+    MakeNodeTree();
+    return false;
 }
-#pragma pop
 
 /* 8007A184-8007A1E4 074AC4 0060+00 2/1 0/0 0/0 .text            __dt__11cBgW_GrpElmFv */
 #pragma push
@@ -645,24 +827,50 @@ extern "C" asm void __dt__11cBgW_GrpElmFv() {
 #pragma pop
 
 /* 8007A1E4-8007A200 074B24 001C+00 1/1 0/0 0/0 .text            __ct__11cBgW_GrpElmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cBgW_GrpElm::cBgW_GrpElm() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/__ct__11cBgW_GrpElmFv.s"
-}
-#pragma pop
+cBgW_GrpElm::cBgW_GrpElm() {}
 
 /* 8007A200-8007A344 074B40 0144+00 1/1 0/0 0/0 .text RwgLineCheck__4cBgWFUsP11cBgS_LinChk */
+// loop needs work
+#ifdef NONMATCHING
+bool cBgW::RwgLineCheck(u16 poly_index, cBgS_LinChk* linchk) {
+    bool chk;
+    chk = false;
+    cM3dGTri tri;
+
+    while (1) {
+        dzb_tri_data* tri_data = &pm_bgd->m_t_tbl[poly_index];
+
+        tri.setBg(&pm_vtx_tbl[tri_data->field_0x0], &pm_vtx_tbl[tri_data->field_0x2],
+                  &pm_vtx_tbl[tri_data->field_0x4], &pm_tri[poly_index].m_plane);
+
+        cXyz cross;
+        if (tri.cross(linchk->GetLinP(), &cross, linchk->ChkFrontFlag(), linchk->ChkBackFlag())) {
+            if (!ChkPolyThrough(poly_index, linchk->GetPolyPassChk())) {
+                linchk->SetCross(cross);
+                linchk->SetPolyIndex(poly_index);
+                chk = true;
+            }
+        }
+
+        poly_index = pm_rwg[poly_index].field_0x0;
+
+        if (poly_index != 0xFFFF) {
+            return chk;
+        }
+    }
+
+    return chk;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cBgW::RwgLineCheck(u16 param_0, cBgS_LinChk* param_1) {
+asm bool cBgW::RwgLineCheck(u16 param_0, cBgS_LinChk* param_1) {
     nofralloc
 #include "asm/d/bg/d_bg_w/RwgLineCheck__4cBgWFUsP11cBgS_LinChk.s"
 }
 #pragma pop
+#endif
 
 /* 8007A344-8007A3A0 074C84 005C+00 1/0 0/0 0/0 .text            __dt__8cM3dGTriFv */
 #pragma push
@@ -677,34 +885,81 @@ extern "C" asm void __dt__8cM3dGTriFv() {
 
 /* 8007A3A0-8007A52C 074CE0 018C+00 1/1 0/0 0/0 .text            LineCheckRp__4cBgWFP11cBgS_LinChki
  */
+#ifdef NONMATCHING
+bool cBgW::LineCheckRp(cBgS_LinChk* linchk, int param_1) {
+    cBgW_NodeTree* pnode0 = &pm_node_tree[param_1];
+    cM3dGLin* lin = linchk->GetLinP();
+
+    if (!cM3d_Cross_MinMaxBoxLine(&pnode0->getMinP(), &pnode0->getMaxP(), &lin->GetStartP(),
+                                  &lin->GetEndP())) {
+        return false;
+    }
+
+    dzb_tree_data* pnode = &pm_bgd->m_tree_tbl[param_1];
+    bool chk = false;
+
+    if (pnode->field_0x0 & 1) {
+        if (linchk->GetPreWallChk()) {
+            u16 tmp = field_0xa4[pnode->m_id[0]].field_0x2;
+            if (tmp != 0xFFFF && RwgLineCheck(tmp, linchk)) {
+                chk = true;
+            }
+        }
+
+        if (linchk->GetPreGroundChk()) {
+            u16 tmp = field_0xa4[pnode->m_id[0]].field_0x4;
+            if (tmp != 0xFFFF && RwgLineCheck(tmp, linchk)) {
+                chk = true;
+            }
+        }
+
+        if (linchk->GetPreRoofChk()) {
+            u16 tmp = field_0xa4[pnode->m_id[0]].field_0x0;
+            if (tmp != 0xFFFF && RwgLineCheck(tmp, linchk)) {
+                chk = true;
+            }
+        }
+
+        return chk;
+    }
+
+    for (int i = 0; i < 8; i++) {
+        // this is probably wrong, fix later
+        u16* tmp_p = (u16*)pnode;
+        u16 tmp = tmp_p[i + 2];
+
+        if (tmp != 0xFFFF && LineCheckRp(linchk, tmp)) {
+            chk = true;
+        }
+    }
+
+    return chk;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cBgW::LineCheckRp(cBgS_LinChk* param_0, int param_1) {
+asm bool cBgW::LineCheckRp(cBgS_LinChk* param_0, int param_1) {
     nofralloc
 #include "asm/d/bg/d_bg_w/LineCheckRp__4cBgWFP11cBgS_LinChki.s"
 }
 #pragma pop
+#endif
 
 /* 8007A52C-8007A658 074E6C 012C+00 1/1 0/0 0/0 .text LineCheckGrpRp__4cBgWFP11cBgS_LinChkii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cBgW::LineCheckGrpRp(cBgS_LinChk* param_0, int param_1, int param_2) {
+asm bool cBgW::LineCheckGrpRp(cBgS_LinChk* param_0, int param_1, int param_2) {
     nofralloc
 #include "asm/d/bg/d_bg_w/LineCheckGrpRp__4cBgWFP11cBgS_LinChkii.s"
 }
 #pragma pop
 
 /* 8007A658-8007A680 074F98 0028+00 2/0 1/0 0/0 .text            LineCheck__4cBgWFP11cBgS_LinChk */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cBgW::LineCheck(cBgS_LinChk* param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/LineCheck__4cBgWFP11cBgS_LinChk.s"
+bool cBgW::LineCheck(cBgS_LinChk* pchk) {
+    return LineCheckGrpRp(pchk, field_0x92, 1);
 }
-#pragma pop
 
 /* 8007A680-8007A774 074FC0 00F4+00 2/2 0/0 0/0 .text
  * RwgGroundCheckCommon__4cBgWFfUsP11cBgS_GndChk                */
@@ -756,7 +1011,7 @@ asm void cBgW::GroundCrossRp(cBgS_GndChk* param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cBgW::GroundCrossGrpRp(cBgS_GndChk* param_0, int param_1, int param_2) {
+asm bool cBgW::GroundCrossGrpRp(cBgS_GndChk* param_0, int param_1, int param_2) {
     nofralloc
 #include "asm/d/bg/d_bg_w/GroundCrossGrpRp__4cBgWFP11cBgS_GndChkii.s"
 }
@@ -764,34 +1019,55 @@ asm void cBgW::GroundCrossGrpRp(cBgS_GndChk* param_0, int param_1, int param_2) 
 
 /* 8007AB9C-8007ABC4 0754DC 0028+00 2/0 1/0 0/0 .text            GroundCross__4cBgWFP11cBgS_GndChk
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cBgW::GroundCross(cBgS_GndChk* param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GroundCross__4cBgWFP11cBgS_GndChk.s"
+bool cBgW::GroundCross(cBgS_GndChk* pchk) {
+    return GroundCrossGrpRp(pchk, field_0x92, 1);
 }
-#pragma pop
 
 /* 8007ABC4-8007AC10 075504 004C+00 1/1 0/0 0/0 .text            CopyOldMtx__4cBgWFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::CopyOldMtx() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/CopyOldMtx__4cBgWFv.s"
+void cBgW::CopyOldMtx() {
+    if (pm_base != NULL) {
+        PSMTXCopy(field_0x4c, m_inv_mtx);
+        PSMTXCopy(pm_base, field_0x4c);
+    }
 }
-#pragma pop
 
 /* 8007AC10-8007ADF0 075550 01E0+00 1/1 0/0 0/0 .text            Move__4cBgWFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::Move() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/Move__4cBgWFv.s"
+void cBgW::Move() {
+    if (!ChkLock() && (field_0x88 & 1)) {
+        if (!ChkNoCalcVtx()) {
+            if (field_0x90 >= 0xFF || field_0x4c[0][0] != pm_base[0][0] ||
+                field_0x4c[0][1] != pm_base[0][1] || field_0x4c[0][2] != pm_base[0][2] ||
+                field_0x4c[1][0] != pm_base[1][0] || field_0x4c[1][1] != pm_base[1][1] ||
+                field_0x4c[1][2] != pm_base[1][2] || field_0x4c[2][0] != pm_base[2][0] ||
+                field_0x4c[2][1] != pm_base[2][1] || field_0x4c[2][2] != pm_base[2][2]) {
+                field_0x89 = 1;
+            } else if (field_0x4c[0][3] == pm_base[0][3] && field_0x4c[1][3] == pm_base[1][3] &&
+                       field_0x4c[2][3] == pm_base[2][3]) {
+                PSMTXCopy(pm_base, m_inv_mtx);
+                if (!ChkFlush()) {
+                    return;
+                }
+            } else {
+                field_0x7c.x = pm_base[0][3] - field_0x4c[0][3];
+                field_0x7c.y = pm_base[1][3] - field_0x4c[1][3];
+                field_0x7c.z = pm_base[2][3] - field_0x4c[2][3];
+                field_0x89 = 0;
+            }
+
+            if (field_0x90 >= 0xFF) {
+                field_0x90 = 0;
+            } else {
+                field_0x90++;
+            }
+            GlobalVtx();
+        }
+
+        CopyOldMtx();
+        CalcPlane();
+        ClassifyPlane();
+        MakeNodeTree();
+    }
 }
-#pragma pop
 
 /* 8007ADF0-8007AEA4 075730 00B4+00 1/1 0/0 0/0 .text RwgShdwDraw__4cBgWFiP13cBgS_ShdwDraw */
 #pragma push
@@ -825,14 +1101,9 @@ asm void cBgW::ShdwDrawGrpRp(cBgS_ShdwDraw* param_0, int param_1) {
 #pragma pop
 
 /* 8007B084-8007B0A8 0759C4 0024+00 2/0 1/0 0/0 .text            ShdwDraw__4cBgWFP13cBgS_ShdwDraw */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::ShdwDraw(cBgS_ShdwDraw* param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/ShdwDraw__4cBgWFP13cBgS_ShdwDraw.s"
+void cBgW::ShdwDraw(cBgS_ShdwDraw* pshdw) {
+    ShdwDrawGrpRp(pshdw, field_0x92);
 }
-#pragma pop
 
 /* 8007B0A8-8007B0B0 0759E8 0008+00 1/0 0/0 0/0 .text ChkPolyThrough__4cBgWFiP16cBgS_PolyPassChk
  */
@@ -842,14 +1113,9 @@ bool cBgW::ChkPolyThrough(int param_0, cBgS_PolyPassChk* param_1) {
 
 /* 8007B0B0-8007B0DC 0759F0 002C+00 1/0 0/0 0/0 .text
  * ChkShdwDrawThrough__4cBgWFiP16cBgS_PolyPassChk               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::ChkShdwDrawThrough(int param_0, cBgS_PolyPassChk* param_1) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/ChkShdwDrawThrough__4cBgWFiP16cBgS_PolyPassChk.s"
+bool cBgW::ChkShdwDrawThrough(int param_0, cBgS_PolyPassChk* param_1) {
+    return ChkPolyThrough(param_0, param_1);
 }
-#pragma pop
 
 /* 8007B0DC-8007B0E4 075A1C 0008+00 1/0 0/0 0/0 .text ChkGrpThrough__4cBgWFiP15cBgS_GrpPassChki */
 bool cBgW::ChkGrpThrough(int param_0, cBgS_GrpPassChk* param_1, int param_2) {
@@ -857,6 +1123,27 @@ bool cBgW::ChkGrpThrough(int param_0, cBgS_GrpPassChk* param_1, int param_2) {
 }
 
 /* 8007B0E4-8007B164 075A24 0080+00 2/0 1/0 0/0 .text GetGrpRoomIndex__4cBgWCFRC13cBgS_PolyInfo */
+// missing array access instruction generation
+#ifdef NONMATCHING
+s32 cBgW::GetGrpRoomIndex(cBgS_PolyInfo const& poly) const {
+    u16 poly_index = poly.GetPolyIndex();
+    int grp_index = GetTriGrp(poly_index);
+
+    u16 tmp = pm_bgd->m_g_tbl[grp_index].field_0x24;
+    int room_index;
+
+    if (tmp == 0xFFFF || pm_bgd->m_g_tbl[tmp].field_0x24 == 0xFFFF) {
+        return 0xFF;
+    }
+
+    int room_index = pm_bgd->m_g_tbl[tmp].field_0x2a;
+    if (room_index >= 0xFF) {
+        room_index = 0xFF;
+    }
+
+    return room_index;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -865,477 +1152,284 @@ asm s32 cBgW::GetGrpRoomIndex(cBgS_PolyInfo const& param_0) const {
 #include "asm/d/bg/d_bg_w/GetGrpRoomIndex__4cBgWCFRC13cBgS_PolyInfo.s"
 }
 #pragma pop
+#endif
 
 /* 8007B164-8007B17C 075AA4 0018+00 2/0 1/0 0/0 .text            GetBnd__4cBgWCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::GetBnd() const {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetBnd__4cBgWCFv.s"
+cM3dGAab* cBgW::GetBnd() const {
+    return &pm_grp[field_0x92].m_aab;
 }
-#pragma pop
 
 /* 8007B17C-8007B1B4 075ABC 0038+00 0/0 1/1 0/0 .text            GetTrans__4cBgWCFP4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::GetTrans(cXyz* param_0) const {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetTrans__4cBgWCFP4cXyz.s"
+void cBgW::GetTrans(cXyz* p_trans) const {
+    MtxP base = pm_base;
+    p_trans->x = base[0][3] - m_inv_mtx[0][3];
+    p_trans->y = base[1][3] - m_inv_mtx[1][3];
+    p_trans->z = base[2][3] - m_inv_mtx[2][3];
 }
-#pragma pop
 
 /* 8007B1B4-8007B240 075AF4 008C+00 2/0 1/0 0/0 .text
  * GetTriPnt__4cBgWCFRC13cBgS_PolyInfoP4cXyzP4cXyzP4cXyz        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cBgW::GetTriPnt(cBgS_PolyInfo const& param_0, cXyz* param_1, cXyz* param_2,
-                         cXyz* param_3) const {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetTriPnt__4cBgWCFRC13cBgS_PolyInfoP4cXyzP4cXyzP4cXyz.s"
+bool cBgW::GetTriPnt(cBgS_PolyInfo const& poly, cXyz* p_pnt1, cXyz* p_pnt2, cXyz* p_pnt3) const {
+    u16 poly_index = poly.GetPolyIndex();
+    dzb_tri_data* tri_data = &pm_bgd->m_t_tbl[poly_index];
+
+    p_pnt1->set(pm_vtx_tbl[tri_data->field_0x0]);
+    p_pnt2->set(pm_vtx_tbl[tri_data->field_0x2]);
+    p_pnt3->set(pm_vtx_tbl[tri_data->field_0x4]);
+    return true;
 }
-#pragma pop
 
 /* 8007B240-8007B270 075B80 0030+00 2/0 1/0 0/0 .text            GetTopUnder__4cBgWCFPfPf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::GetTopUnder(f32* param_0, f32* param_1) const {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetTopUnder__4cBgWCFPfPf.s"
+void cBgW::GetTopUnder(f32* p_top, f32* p_under) const {
+    *p_under = pm_grp[field_0x92].m_aab.getMinP().y;
+    *p_top = pm_grp[field_0x92].m_aab.getMaxP().y;
 }
-#pragma pop
 
 /* 8007B270-8007B2B0 075BB0 0040+00 2/0 1/0 0/0 .text            GetTriPla__4cBgWCFRC13cBgS_PolyInfo
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cM3dGPla cBgW::GetTriPla(cBgS_PolyInfo const& param_0) const {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetTriPla__4cBgWCFRC13cBgS_PolyInfo.s"
+cM3dGPla cBgW::GetTriPla(cBgS_PolyInfo const& poly) const {
+    u16 poly_index = poly.GetPolyIndex();
+    return pm_tri[poly_index].m_plane;
 }
-#pragma pop
 
 /* 8007B2B0-8007B2F4 075BF0 0044+00 2/0 1/0 0/0 .text            GetGrpInf__4cBgWCFRC13cBgS_PolyInfo
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 cBgW::GetGrpInf(cBgS_PolyInfo const& param_0) const {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetGrpInf__4cBgWCFRC13cBgS_PolyInfo.s"
+u32 cBgW::GetGrpInf(cBgS_PolyInfo const& poly) const {
+    int grp = GetTriGrp(poly.GetPolyIndex());
+    return pm_bgd->m_g_tbl[grp].m_info;
 }
-#pragma pop
 
 /* 8007B2F4-8007B30C 075C34 0018+00 5/5 0/0 0/0 .text            GetPolyInfId__4cBgWCFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::GetPolyInfId(int param_0) const {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetPolyInfId__4cBgWCFi.s"
+int cBgW::GetPolyInfId(int poly_index) const {
+    return pm_bgd->m_t_tbl[poly_index].m_id;
 }
-#pragma pop
 
 /* 8007B30C-8007B360 075C4C 0054+00 6/6 0/0 0/0 .text            GetPolyInf0__4cBgWCFiUlUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::GetPolyInf0(int param_0, u32 param_1, u32 param_2) const {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetPolyInf0__4cBgWCFiUlUl.s"
+u32 cBgW::GetPolyInf0(int poly_index, u32 mask, u32 shift) const {
+    int id = GetPolyInfId(poly_index);
+    return (pm_bgd->m_ti_tbl[id].m_info0 & mask) >> shift;
 }
-#pragma pop
 
 /* 8007B360-8007B3AC 075CA0 004C+00 10/10 0/0 0/0 .text GetMaskPolyInf0_NoShift__4cBgWCFiUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::GetMaskPolyInf0_NoShift(int param_0, u32 param_1) const {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetMaskPolyInf0_NoShift__4cBgWCFiUl.s"
+u32 cBgW::GetMaskPolyInf0_NoShift(int poly_index, u32 mask) const {
+    int id = GetPolyInfId(poly_index);
+    return (pm_bgd->m_ti_tbl[id].m_info0 & mask);
 }
-#pragma pop
 
 /* 8007B3AC-8007B3D8 075CEC 002C+00 1/0 1/0 0/0 .text            GetExitId__4dBgWFRC13cBgS_PolyInfo
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 dBgW::GetExitId(cBgS_PolyInfo const& param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetExitId__4dBgWFRC13cBgS_PolyInfo.s"
+s32 dBgW::GetExitId(cBgS_PolyInfo const& poly) {
+    return GetPolyInf0(poly.GetPolyIndex(), 0x3F, 0);
 }
-#pragma pop
 
 /* 8007B3D8-8007B404 075D18 002C+00 1/0 1/0 0/0 .text GetPolyColor__4dBgWFRC13cBgS_PolyInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 dBgW::GetPolyColor(cBgS_PolyInfo const& param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetPolyColor__4dBgWFRC13cBgS_PolyInfo.s"
+s32 dBgW::GetPolyColor(cBgS_PolyInfo const& poly) {
+    return GetPolyInf0(poly.GetPolyIndex(), 0x3FC0, 6);
 }
-#pragma pop
 
 /* 8007B404-8007B430 075D44 002C+00 1/0 1/0 0/0 .text GetHorseNoEntry__4dBgWFRC13cBgS_PolyInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL dBgW::GetHorseNoEntry(cBgS_PolyInfo const& param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetHorseNoEntry__4dBgWFRC13cBgS_PolyInfo.s"
+BOOL dBgW::GetHorseNoEntry(cBgS_PolyInfo const& poly) {
+    return GetPolyInf0(poly.GetPolyIndex(), 0x200000, 21);
 }
-#pragma pop
 
 /* 8007B430-8007B460 075D70 0030+00 1/0 1/0 0/0 .text GetSpecialCode__4dBgWFRC13cBgS_PolyInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dBgW::GetSpecialCode(cBgS_PolyInfo const& param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetSpecialCode__4dBgWFRC13cBgS_PolyInfo.s"
+int dBgW::GetSpecialCode(cBgS_PolyInfo const& poly) {
+    return GetSpecialCode(poly.GetPolyIndex());
 }
-#pragma pop
 
 /* 8007B460-8007B488 075DA0 0028+00 1/0 1/0 0/0 .text            GetSpecialCode__4dBgWFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dBgW::GetSpecialCode(int param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetSpecialCode__4dBgWFi.s"
+int dBgW::GetSpecialCode(int poly_index) {
+    return GetPolyInf0(poly_index, 0xF000000, 24);
 }
-#pragma pop
 
 /* 8007B488-8007B4B4 075DC8 002C+00 1/0 1/0 0/0 .text GetMagnetCode__4dBgWFRC13cBgS_PolyInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dBgW::GetMagnetCode(cBgS_PolyInfo const& param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetMagnetCode__4dBgWFRC13cBgS_PolyInfo.s"
+int dBgW::GetMagnetCode(cBgS_PolyInfo const& poly) {
+    return GetPolyInf0(poly.GetPolyIndex(), 0x30000000, 28);
 }
-#pragma pop
 
 /* 8007B4B4-8007B4E0 075DF4 002C+00 1/0 1/0 0/0 .text GetMonkeyBarsCode__4dBgWFRC13cBgS_PolyInfo
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dBgW::GetMonkeyBarsCode(cBgS_PolyInfo const& param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetMonkeyBarsCode__4dBgWFRC13cBgS_PolyInfo.s"
+int dBgW::GetMonkeyBarsCode(cBgS_PolyInfo const& poly) {
+    return GetPolyInf0(poly.GetPolyIndex(), 0x80000000, 31);
 }
-#pragma pop
 
 /* 8007B4E0-8007B504 075E20 0024+00 1/0 1/0 0/0 .text            GetPolyObjThrough__4dBgWFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgW::GetPolyObjThrough(int param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetPolyObjThrough__4dBgWFi.s"
+u32 dBgW::GetPolyObjThrough(int poly_index) {
+    return GetMaskPolyInf0_NoShift(poly_index, 0x4000);
 }
-#pragma pop
 
 /* 8007B504-8007B52C 075E44 0028+00 1/0 1/0 0/0 .text            GetPolyCamThrough__4dBgWFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgW::GetPolyCamThrough(int param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetPolyCamThrough__4dBgWFi.s"
+u32 dBgW::GetPolyCamThrough(int poly_index) {
+    return GetMaskPolyInf0_NoShift(poly_index, 0x8000);
 }
-#pragma pop
 
 /* 8007B52C-8007B550 075E6C 0024+00 1/0 1/0 0/0 .text            GetPolyLinkThrough__4dBgWFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgW::GetPolyLinkThrough(int param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetPolyLinkThrough__4dBgWFi.s"
+u32 dBgW::GetPolyLinkThrough(int poly_index) {
+    return GetMaskPolyInf0_NoShift(poly_index, 0x10000);
 }
-#pragma pop
 
 /* 8007B550-8007B574 075E90 0024+00 1/0 1/0 0/0 .text            GetPolyArrowThrough__4dBgWFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgW::GetPolyArrowThrough(int param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetPolyArrowThrough__4dBgWFi.s"
+u32 dBgW::GetPolyArrowThrough(int poly_index) {
+    return GetMaskPolyInf0_NoShift(poly_index, 0x20000);
 }
-#pragma pop
 
 /* 8007B574-8007B598 075EB4 0024+00 1/0 1/0 0/0 .text            GetPolyHSStick__4dBgWFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 dBgW::GetPolyHSStick(int param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetPolyHSStick__4dBgWFi.s"
+u32 dBgW::GetPolyHSStick(int poly_index) {
+    return GetMaskPolyInf0_NoShift(poly_index, 0x40000);
 }
-#pragma pop
 
 /* 8007B598-8007B5BC 075ED8 0024+00 1/0 1/0 0/0 .text            GetPolyBoomerangThrough__4dBgWFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgW::GetPolyBoomerangThrough(int param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetPolyBoomerangThrough__4dBgWFi.s"
+u32 dBgW::GetPolyBoomerangThrough(int poly_index) {
+    return GetMaskPolyInf0_NoShift(poly_index, 0x80000);
 }
-#pragma pop
 
 /* 8007B5BC-8007B5E0 075EFC 0024+00 1/0 1/0 0/0 .text            GetPolyRopeThrough__4dBgWFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgW::GetPolyRopeThrough(int param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetPolyRopeThrough__4dBgWFi.s"
+u32 dBgW::GetPolyRopeThrough(int poly_index) {
+    return GetMaskPolyInf0_NoShift(poly_index, 0x100000);
 }
-#pragma pop
 
 /* 8007B5E0-8007B604 075F20 0024+00 1/0 1/0 0/0 .text            GetPolyBombThrough__4dBgWFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgW::GetPolyBombThrough(int param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetPolyBombThrough__4dBgWFi.s"
+u32 dBgW::GetPolyBombThrough(int poly_index) {
+    return GetMaskPolyInf0_NoShift(poly_index, 0x800000);
 }
-#pragma pop
 
 /* 8007B604-8007B630 075F44 002C+00 1/0 1/0 0/0 .text            GetShdwThrough__4dBgWFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgW::GetShdwThrough(int param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetShdwThrough__4dBgWFi.s"
+bool dBgW::GetShdwThrough(int poly_index) {
+    return GetMaskPolyInf0_NoShift(poly_index, 0x400000) != 0;
 }
-#pragma pop
 
 /* 8007B630-8007B654 075F70 0024+00 1/0 1/0 0/0 .text            GetUnderwaterRoofCode__4dBgWFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dBgW::GetUnderwaterRoofCode(int param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetUnderwaterRoofCode__4dBgWFi.s"
+u32 dBgW::GetUnderwaterRoofCode(int poly_index) {
+    return GetMaskPolyInf0_NoShift(poly_index, 0x40000000);
 }
-#pragma pop
 
 /* 8007B654-8007B6AC 075F94 0058+00 6/6 0/0 0/0 .text            GetPolyInf1__4cBgWCFiUlUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::GetPolyInf1(int param_0, u32 param_1, u32 param_2) const {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetPolyInf1__4cBgWCFiUlUl.s"
+u32 cBgW::GetPolyInf1(int poly_index, u32 mask, u32 shift) const {
+    int id = GetPolyInfId(poly_index);
+    return (pm_bgd->m_ti_tbl[id].m_info1 & mask) >> shift;
 }
-#pragma pop
 
 /* 8007B6AC-8007B6D8 075FEC 002C+00 1/0 1/0 0/0 .text            GetLinkNo__4dBgWFRC13cBgS_PolyInfo
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgW::GetLinkNo(cBgS_PolyInfo const& param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetLinkNo__4dBgWFRC13cBgS_PolyInfo.s"
+int dBgW::GetLinkNo(cBgS_PolyInfo const& poly) {
+    return GetPolyInf1(poly.GetPolyIndex(), 0xFF, 0);
 }
-#pragma pop
 
 /* 8007B6D8-8007B704 076018 002C+00 1/0 1/0 0/0 .text GetWallCode__4dBgWFRC13cBgS_PolyInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 dBgW::GetWallCode(cBgS_PolyInfo const& param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetWallCode__4dBgWFRC13cBgS_PolyInfo.s"
+s32 dBgW::GetWallCode(cBgS_PolyInfo const& poly) {
+    return GetPolyInf1(poly.GetPolyIndex(), 0xF00, 8);
 }
-#pragma pop
 
 /* 8007B704-8007B734 076044 0030+00 1/0 1/0 0/0 .text GetPolyAtt0__4dBgWFRC13cBgS_PolyInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dBgW::GetPolyAtt0(cBgS_PolyInfo const& param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetPolyAtt0__4dBgWFRC13cBgS_PolyInfo.s"
+int dBgW::GetPolyAtt0(cBgS_PolyInfo const& poly) {
+    return GetPolyInf1(poly.GetPolyIndex(), 0xF000, 12);
 }
-#pragma pop
 
 /* 8007B734-8007B760 076074 002C+00 1/0 1/0 0/0 .text GetPolyAtt1__4dBgWFRC13cBgS_PolyInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dBgW::GetPolyAtt1(cBgS_PolyInfo const& param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetPolyAtt1__4dBgWFRC13cBgS_PolyInfo.s"
+int dBgW::GetPolyAtt1(cBgS_PolyInfo const& poly) {
+    return GetPolyInf1(poly.GetPolyIndex(), 0x70000, 16);
 }
-#pragma pop
 
 /* 8007B760-8007B78C 0760A0 002C+00 1/0 1/0 0/0 .text GetGroundCode__4dBgWFRC13cBgS_PolyInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dBgW::GetGroundCode(cBgS_PolyInfo const& param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetGroundCode__4dBgWFRC13cBgS_PolyInfo.s"
+int dBgW::GetGroundCode(cBgS_PolyInfo const& poly) {
+    return GetPolyInf1(poly.GetPolyIndex(), 0xF80000, 19);
 }
-#pragma pop
 
 /* 8007B78C-8007B7DC 0760CC 0050+00 2/2 0/0 0/0 .text            GetMaskPolyInf1_NoShift__4cBgWCFiUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::GetMaskPolyInf1_NoShift(int param_0, u32 param_1) const {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetMaskPolyInf1_NoShift__4cBgWCFiUl.s"
+u32 cBgW::GetMaskPolyInf1_NoShift(int poly_index, u32 mask) const {
+    int id = GetPolyInfId(poly_index);
+    return (pm_bgd->m_ti_tbl[id].m_info1 & mask);
 }
-#pragma pop
 
 /* 8007B7DC-8007B800 07611C 0024+00 1/0 1/0 0/0 .text            GetIronBallThrough__4dBgWFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgW::GetIronBallThrough(int param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetIronBallThrough__4dBgWFi.s"
+u32 dBgW::GetIronBallThrough(int poly_index) {
+    return GetMaskPolyInf1_NoShift(poly_index, 0x1000000);
 }
-#pragma pop
 
 /* 8007B800-8007B824 076140 0024+00 1/0 1/0 0/0 .text            GetAttackThrough__4dBgWFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 dBgW::GetAttackThrough(int param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetAttackThrough__4dBgWFi.s"
+u32 dBgW::GetAttackThrough(int poly_index) {
+    return GetMaskPolyInf1_NoShift(poly_index, 0x2000000);
 }
-#pragma pop
 
 /* 8007B824-8007B87C 076164 0058+00 4/4 0/0 0/0 .text            GetPolyInf2__4cBgWCFiUlUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::GetPolyInf2(int param_0, u32 param_1, u32 param_2) const {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetPolyInf2__4cBgWCFiUlUl.s"
+u32 cBgW::GetPolyInf2(int poly_index, u32 mask, u32 shift) const {
+    int id = GetPolyInfId(poly_index);
+    return (pm_bgd->m_ti_tbl[id].m_info2 & mask) >> shift;
 }
-#pragma pop
 
 /* 8007B87C-8007B8A8 0761BC 002C+00 1/0 1/0 0/0 .text GetCamMoveBG__4dBgWFRC13cBgS_PolyInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 dBgW::GetCamMoveBG(cBgS_PolyInfo const& param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetCamMoveBG__4dBgWFRC13cBgS_PolyInfo.s"
+s32 dBgW::GetCamMoveBG(cBgS_PolyInfo const& poly) {
+    return GetPolyInf2(poly.GetPolyIndex(), 0xFF, 0);
 }
-#pragma pop
 
 /* 8007B8A8-8007B8D8 0761E8 0030+00 1/0 1/0 0/0 .text GetRoomCamId__4dBgWFRC13cBgS_PolyInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 dBgW::GetRoomCamId(cBgS_PolyInfo const& param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetRoomCamId__4dBgWFRC13cBgS_PolyInfo.s"
+s32 dBgW::GetRoomCamId(cBgS_PolyInfo const& poly) {
+    return GetPolyInf2(poly.GetPolyIndex(), 0xFF00, 8);
 }
-#pragma pop
 
 /* 8007B8D8-8007B904 076218 002C+00 1/0 1/0 0/0 .text GetRoomPathId__4dBgWFRC13cBgS_PolyInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 dBgW::GetRoomPathId(cBgS_PolyInfo const& param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetRoomPathId__4dBgWFRC13cBgS_PolyInfo.s"
+s32 dBgW::GetRoomPathId(cBgS_PolyInfo const& poly) {
+    return GetPolyInf2(poly.GetPolyIndex(), 0xFF0000, 16);
 }
-#pragma pop
 
 /* 8007B904-8007B930 076244 002C+00 1/0 1/0 0/0 .text GetRoomPathPntNo__4dBgWFRC13cBgS_PolyInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 dBgW::GetRoomPathPntNo(cBgS_PolyInfo const& param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetRoomPathPntNo__4dBgWFRC13cBgS_PolyInfo.s"
+s32 dBgW::GetRoomPathPntNo(cBgS_PolyInfo const& poly) {
+    return GetPolyInf2(poly.GetPolyIndex(), 0xFF000000, 24);
 }
-#pragma pop
 
 /* 8007B930-8007B948 076270 0018+00 2/2 0/0 0/0 .text            GetTriGrp__4cBgWCFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::GetTriGrp(int param_0) const {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetTriGrp__4cBgWCFi.s"
+int cBgW::GetTriGrp(int poly_index) const {
+    return pm_bgd->m_t_tbl[poly_index].m_grp;
 }
-#pragma pop
 
 /* 8007B948-8007B958 076288 0010+00 2/0 1/0 0/0 .text            ChkNotReady__4cBgWCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cBgW::ChkNotReady() const {
-    nofralloc
-#include "asm/d/bg/d_bg_w/ChkNotReady__4cBgWCFv.s"
+bool cBgW::ChkNotReady() const {
+    return pm_vtx_tbl == NULL;
 }
-#pragma pop
 
 /* 8007B958-8007B964 076298 000C+00 2/0 1/0 0/0 .text            ChkLock__4cBgWCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cBgW::ChkLock() const {
-    nofralloc
-#include "asm/d/bg/d_bg_w/ChkLock__4cBgWCFv.s"
+bool cBgW::ChkLock() const {
+    return field_0x88 & 0x80;
 }
-#pragma pop
 
 /* 8007B964-8007B970 0762A4 000C+00 2/0 1/0 0/0 .text            ChkMoveBg__4cBgWCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cBgW::ChkMoveBg() const {
-    nofralloc
-#include "asm/d/bg/d_bg_w/ChkMoveBg__4cBgWCFv.s"
+bool cBgW::ChkMoveBg() const {
+    return field_0x88 & 0x1;
 }
-#pragma pop
 
 /* 8007B970-8007B9C0 0762B0 0050+00 1/1 2/2 87/87 .text            __ct__4dBgWFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dBgW::dBgW() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/__ct__4dBgWFv.s"
+dBgW::dBgW() {
+    m_crr_func = NULL;
+    m_ride_callback = NULL;
+    m_arrow_stick_callback = NULL;
+    m_flags = 0;
 }
-#pragma pop
 
 /* 8007B9C0-8007B9EC 076300 002C+00 0/0 2/2 115/115 .text            Move__4dBgWFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgW::Move() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/Move__4dBgWFv.s"
+void dBgW::Move() {
+    OnMoveFlag();
+    cBgW::Move();
 }
-#pragma pop
 
 /* 8007B9EC-8007BA40 07632C 0054+00 2/2 0/0 0/0 .text
  * positionWallCorrect__4dBgWFP9dBgS_AcchfR8cM3dGPlaP4cXyzf     */
+// matches with literals
+#ifdef NONMATCHING
+void dBgW::positionWallCorrect(dBgS_Acch* param_0, f32 param_1, cM3dGPla& param_2, cXyz* pupper_pos,
+                               f32 param_4) {
+    param_0->SetWallHit();
+
+    f32 tmp = param_4 - 1.0f;
+    if (tmp < 0.0f) {
+        tmp = 0.0f;
+    }
+
+    f32 temp_f2 = tmp * param_1;
+    pupper_pos->x += temp_f2 * param_2.mNormal.x;
+    pupper_pos->z += temp_f2 * param_2.mNormal.z;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1345,6 +1439,7 @@ asm void dBgW::positionWallCorrect(dBgS_Acch* param_0, f32 param_1, cM3dGPla& pa
 #include "asm/d/bg/d_bg_w/positionWallCorrect__4dBgWFP9dBgS_AcchfR8cM3dGPlaP4cXyzf.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80452710-80452718 000D10 0004+04 2/2 0/0 0/0 .sdata2          @4962 */
@@ -1380,31 +1475,32 @@ asm void dBgW::WallCorrectRp(dBgS_Acch* param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::WallCorrectGrpRp(dBgS_Acch* param_0, int param_1, int param_2) {
+asm bool dBgW::WallCorrectGrpRp(dBgS_Acch* param_0, int param_1, int param_2) {
     nofralloc
 #include "asm/d/bg/d_bg_w/WallCorrectGrpRp__4dBgWFP9dBgS_Acchii.s"
 }
 #pragma pop
 
 /* 8007C484-8007C4AC 076DC4 0028+00 1/0 1/0 0/0 .text            WallCorrect__4dBgWFP9dBgS_Acch */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgW::WallCorrect(dBgS_Acch* param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/WallCorrect__4dBgWFP9dBgS_Acch.s"
+bool dBgW::WallCorrect(dBgS_Acch* pacch) {
+    return WallCorrectGrpRp(pacch, field_0x92, 1);
 }
-#pragma pop
+
+struct wcs_data {
+    /* 0x0 */ f32 field_0x0;
+    /* 0x4 */ u16 field_0x4;
+    /* 0x8 */ int field_0x8;
+};  // Size: 0xC
 
 /* ############################################################################################## */
 /* 80424B80-80424F70 0518A0 03F0+00 1/1 0/0 0/0 .bss             l_wcsbuf */
-static u8 l_wcsbuf[1008];
+static wcs_data l_wcsbuf[84];
 
 /* 80450F80-80450F84 000480 0004+00 2/2 0/0 0/0 .sbss            l_start */
-static u8 l_start[4];
+static wcs_data* l_start;
 
 /* 80450F84-80450F88 000484 0004+00 2/2 0/0 0/0 .sbss            l_wcsbuf_num */
-static u8 l_wcsbuf_num[4];
+static int l_wcsbuf_num;
 
 /* 8007C4AC-8007C714 076DEC 0268+00 1/1 0/0 0/0 .text RwgWallCorrectSort__4dBgWFP9dBgS_AcchUs */
 #pragma push
@@ -1473,21 +1569,16 @@ asm void dBgW::RoofChkRp(dBgS_RoofChk* param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::RoofChkGrpRp(dBgS_RoofChk* param_0, int param_1, int param_2) {
+asm bool dBgW::RoofChkGrpRp(dBgS_RoofChk* param_0, int param_1, int param_2) {
     nofralloc
 #include "asm/d/bg/d_bg_w/RoofChkGrpRp__4dBgWFP12dBgS_RoofChkii.s"
 }
 #pragma pop
 
 /* 8007D470-8007D498 077DB0 0028+00 1/0 1/0 0/0 .text            RoofChk__4dBgWFP12dBgS_RoofChk */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dBgW::RoofChk(dBgS_RoofChk* param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/RoofChk__4dBgWFP12dBgS_RoofChk.s"
+bool dBgW::RoofChk(dBgS_RoofChk* pchk) {
+    return RoofChkGrpRp(pchk, field_0x92, 1);
 }
-#pragma pop
 
 /* 8007D498-8007D5C4 077DD8 012C+00 1/1 0/0 0/0 .text RwgSplGrpChk__4dBgWFUsP14dBgS_SplGrpChk */
 #pragma push
@@ -1513,7 +1604,7 @@ asm void dBgW::SplGrpChkRp(dBgS_SplGrpChk* param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::SplGrpChkGrpRp(dBgS_SplGrpChk* param_0, int param_1, int param_2) {
+asm bool dBgW::SplGrpChkGrpRp(dBgS_SplGrpChk* param_0, int param_1, int param_2) {
     nofralloc
 #include "asm/d/bg/d_bg_w/SplGrpChkGrpRp__4dBgWFP14dBgS_SplGrpChkii.s"
 }
@@ -1521,14 +1612,9 @@ asm void dBgW::SplGrpChkGrpRp(dBgS_SplGrpChk* param_0, int param_1, int param_2)
 
 /* 8007D830-8007D858 078170 0028+00 1/0 1/0 0/0 .text            SplGrpChk__4dBgWFP14dBgS_SplGrpChk
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dBgW::SplGrpChk(dBgS_SplGrpChk* param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/SplGrpChk__4dBgWFP14dBgS_SplGrpChk.s"
+bool dBgW::SplGrpChk(dBgS_SplGrpChk* pchk) {
+    return SplGrpChkGrpRp(pchk, field_0x92, 1);
 }
-#pragma pop
 
 /* 8007D858-8007D8E8 078198 0090+00 1/1 0/0 0/0 .text RwgCaptPoly__4dBgWFiR13dBgS_CaptPoly */
 #pragma push
@@ -1562,14 +1648,9 @@ asm void dBgW::CaptPolyGrpRp(dBgS_CaptPoly& param_0, int param_1, int param_2) {
 #pragma pop
 
 /* 8007DAF8-8007DB20 078438 0028+00 1/0 1/0 0/0 .text            CaptPoly__4dBgWFR13dBgS_CaptPoly */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgW::CaptPoly(dBgS_CaptPoly& param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/CaptPoly__4dBgWFR13dBgS_CaptPoly.s"
+void dBgW::CaptPoly(dBgS_CaptPoly& poly) {
+    CaptPolyGrpRp(poly, field_0x92, 1);
 }
-#pragma pop
 
 /* 8007DB20-8007DC70 078460 0150+00 1/1 0/0 0/0 .text            RwgSphChk__4dBgWFUsP11dBgS_SphChkPv
  */
@@ -1597,42 +1678,27 @@ asm void dBgW::SphChkRp(dBgS_SphChk* param_0, void* param_1, int param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::SphChkGrpRp(dBgS_SphChk* param_0, void* param_1, int param_2, int param_3) {
+asm bool dBgW::SphChkGrpRp(dBgS_SphChk* param_0, void* param_1, int param_2, int param_3) {
     nofralloc
 #include "asm/d/bg/d_bg_w/SphChkGrpRp__4dBgWFP11dBgS_SphChkPvii.s"
 }
 #pragma pop
 
 /* 8007DF00-8007DF28 078840 0028+00 1/0 1/0 0/0 .text            SphChk__4dBgWFP11dBgS_SphChkPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dBgW::SphChk(dBgS_SphChk* param_0, void* param_1) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/SphChk__4dBgWFP11dBgS_SphChkPv.s"
+bool dBgW::SphChk(dBgS_SphChk* pchk, void* param_1) {
+    return SphChkGrpRp(pchk, param_1, field_0x92, 1);
 }
-#pragma pop
 
 /* 8007DF28-8007DF58 078868 0030+00 1/0 1/0 0/0 .text GetPolyGrpRoomInfId__4dBgWFRC13cBgS_PolyInfo
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgW::GetPolyGrpRoomInfId(cBgS_PolyInfo const& param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetPolyGrpRoomInfId__4dBgWFRC13cBgS_PolyInfo.s"
+u8 dBgW::GetPolyGrpRoomInfId(cBgS_PolyInfo const& poly) {
+    return GetGrpInf(poly) & 0xFF;
 }
-#pragma pop
 
 /* 8007DF58-8007DF88 078898 0030+00 1/0 1/0 0/0 .text GetGrpSoundId__4dBgWFRC13cBgS_PolyInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 dBgW::GetGrpSoundId(cBgS_PolyInfo const& param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/GetGrpSoundId__4dBgWFRC13cBgS_PolyInfo.s"
+u8 dBgW::GetGrpSoundId(cBgS_PolyInfo const& poly) {
+    return GetGrpInf(poly) >> 11;
 }
-#pragma pop
 
 /* 8007DF88-8007DFC4 0788C8 003C+00 1/0 0/0 0/0 .text
  * CrrPos__4dBgWFRC13cBgS_PolyInfoPvbP4cXyzP5csXyzP5csXyz       */
@@ -1672,31 +1738,101 @@ asm void dBgW::MatrixCrrPos(cBgS_PolyInfo const& param_0, void* param_1, bool pa
 
 /* 8007E02C-8007E360 07896C 0334+00 1/0 1/0 0/0 .text ChkPolyThrough__4dBgWFiP16cBgS_PolyPassChk
  */
+// should match when dHorse_c member function table is setup
+#ifdef NONMATCHING
+bool dBgW::ChkPolyThrough(int poly_index, cBgS_PolyPassChk* ppass_chk) {
+    if (ppass_chk == NULL) {
+        return false;
+    }
+    dBgS_PolyPassChk* chk = (dBgS_PolyPassChk*)ppass_chk;
+
+    if (chk->ChkObj() && GetPolyObjThrough(poly_index)) {
+        return true;
+    }
+
+    if (chk->ChkCam() && GetPolyCamThrough(poly_index)) {
+        return true;
+    }
+
+    if ((chk->ChkLink() && GetPolyLinkThrough(poly_index)) ||
+        (chk->ChkHorse() && GetPolyLinkThrough(poly_index))) {
+        return true;
+    }
+
+    if (chk->ChkArrow() && GetPolyArrowThrough(poly_index)) {
+        return true;
+    }
+
+    if (chk->ChkBomb() && GetPolyBombThrough(poly_index)) {
+        return true;
+    }
+
+    if (chk->ChkBoomerang() && GetPolyBoomerangThrough(poly_index)) {
+        return true;
+    }
+
+    if (chk->ChkRope() && GetPolyRopeThrough(poly_index)) {
+        return true;
+    }
+
+    if (chk->ChkUnderwaterRoof() && GetUnderwaterRoofCode(poly_index)) {
+        return true;
+    }
+
+    int info_f00 = GetPolyInf1(poly_index, 0xF00, 8);
+    if (info_f00 == 8 && chk->ChkNoHorse()) {
+        return true;
+    }
+
+    if (info_f00 == 9) {
+        if (chk->ChkNoHorse()) {
+            return true;
+        }
+
+        cXyz pos(pm_tri[poly_index].m_plane.mNormal);
+        if (chk->ChkHorse() && i_dComIfGp_getHorseActor() != NULL) {
+            if (!i_dComIfGp_getHorseActor()->checkSpecialWallHit(pos)) {
+                return true;
+            }
+        }
+    }
+
+    if (chk->ChkStatue() && GetSpecialCode(poly_index) == 7) {
+        return true;
+    }
+
+    if (chk->ChkIronBall() && GetIronBallThrough(poly_index)) {
+        return true;
+    }
+
+    return false;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::ChkPolyThrough(int param_0, cBgS_PolyPassChk* param_1) {
+asm bool dBgW::ChkPolyThrough(int param_0, cBgS_PolyPassChk* param_1) {
     nofralloc
 #include "asm/d/bg/d_bg_w/ChkPolyThrough__4dBgWFiP16cBgS_PolyPassChk.s"
 }
 #pragma pop
+#endif
 
 /* 8007E360-8007E3D8 078CA0 0078+00 1/0 1/0 0/0 .text
  * ChkShdwDrawThrough__4dBgWFiP16cBgS_PolyPassChk               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgW::ChkShdwDrawThrough(int param_0, cBgS_PolyPassChk* param_1) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/ChkShdwDrawThrough__4dBgWFiP16cBgS_PolyPassChk.s"
+bool dBgW::ChkShdwDrawThrough(int poly_index, cBgS_PolyPassChk*) {
+    if (GetShdwThrough(poly_index)) {
+        return true;
+    }
+
+    return GetPolyArrowThrough(poly_index);
 }
-#pragma pop
 
 /* 8007E3D8-8007E444 078D18 006C+00 1/0 1/0 0/0 .text ChkGrpThrough__4dBgWFiP15cBgS_GrpPassChki */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgW::ChkGrpThrough(int param_0, cBgS_GrpPassChk* param_1, int param_2) {
+asm bool dBgW::ChkGrpThrough(int param_0, cBgS_GrpPassChk* param_1, int param_2) {
     nofralloc
 #include "asm/d/bg/d_bg_w/ChkGrpThrough__4dBgWFiP15cBgS_GrpPassChki.s"
 }
@@ -1704,14 +1840,11 @@ asm void dBgW::ChkGrpThrough(int param_0, cBgS_GrpPassChk* param_1, int param_2)
 
 /* 8007E444-8007E474 078D84 0030+00 1/0 1/0 0/0 .text
  * CallRideCallBack__4dBgWFP10fopAc_ac_cP10fopAc_ac_c           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgW::CallRideCallBack(fopAc_ac_c* param_0, fopAc_ac_c* param_1) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/CallRideCallBack__4dBgWFP10fopAc_ac_cP10fopAc_ac_c.s"
+void dBgW::CallRideCallBack(fopAc_ac_c* param_0, fopAc_ac_c* param_1) {
+    if (m_ride_callback != NULL) {
+        m_ride_callback(this, param_0, param_1);
+    }
 }
-#pragma pop
 
 /* 8007E474-8007E4A4 078DB4 0030+00 1/0 1/0 0/0 .text
  * CallArrowStickCallBack__4dBgWFP10fopAc_ac_cP10fopAc_ac_cR4cXyz */
@@ -1725,34 +1858,29 @@ asm void dBgW::CallArrowStickCallBack(fopAc_ac_c* param_0, fopAc_ac_c* param_1, 
 #pragma pop
 
 /* 8007E4A4-8007E4B4 078DE4 0010+00 1/0 1/0 0/0 .text            OffMoveFlag__4dBgWFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgW::OffMoveFlag() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/OffMoveFlag__4dBgWFv.s"
+void dBgW::OffMoveFlag() {
+    m_flags &= ~1;
 }
-#pragma pop
 
 /* 8007E4B4-8007E4C0 078DF4 000C+00 1/0 1/0 0/0 .text            ChkMoveFlag__4dBgWCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 dBgW::ChkMoveFlag() const {
-    nofralloc
-#include "asm/d/bg/d_bg_w/ChkMoveFlag__4dBgWCFv.s"
+u32 dBgW::ChkMoveFlag() const {
+    return m_flags & 1;
 }
-#pragma pop
 
 /* 8007E4C0-8007E548 078E00 0088+00 0/0 0/0 1/1 .text            dBgW_NewSet__FP6cBgD_tUlPA3_A4_f */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgW_NewSet(cBgD_t* param_0, u32 param_1, f32 (*param_2)[3][4]) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/dBgW_NewSet__FP6cBgD_tUlPA3_A4_f.s"
+dBgW* dBgW_NewSet(cBgD_t* pbgd, u32 param_1, Mtx* pbase_mtx) {
+    dBgW* nw = new dBgW();
+
+    if (nw == NULL) {
+        return NULL;
+    }
+
+    if (nw->Set(pbgd, param_1, pbase_mtx)) {
+        return NULL;
+    }
+
+    return nw;
 }
-#pragma pop
 
 /* 8007E548-8007E5A8 078E88 0060+00 1/0 0/0 0/0 .text            __dt__4dBgWFv */
 #pragma push
