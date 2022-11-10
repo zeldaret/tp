@@ -29,7 +29,7 @@ asm bool daAlink_c::checkSetNpcTks(cXyz* param_0, int param_1, int param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkDemoAction() {
+asm int daAlink_c::checkDemoAction() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkDemoAction__9daAlink_cFv.s"
 }
@@ -131,7 +131,7 @@ asm void daAlink_c::getDemoLookActor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkFlyAtnWait() {
+asm bool daAlink_c::checkFlyAtnWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkFlyAtnWait__9daAlink_cFv.s"
 }
@@ -263,50 +263,50 @@ asm void daAlink_c::setDemoBodyBck(dDemo_actor_c* param_0, u16 param_1) {
 #pragma pop
 
 /* 80118AD0-80118B34 113410 0064+00 1/1 0/0 0/0 .text            checkFinalBattle__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkFinalBattle() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkFinalBattle__9daAlink_cFv.s"
+BOOL daAlink_c::checkFinalBattle() {
+    return checkStageName("D_MN09B") && dComIfGs_isSaveDunSwitch(1);
 }
-#pragma pop
 
 /* 80118B34-80118BF4 113474 00C0+00 3/3 0/0 0/0 .text            checkRestartDead__9daAlink_cFii */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkRestartDead(int param_0, int param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkRestartDead__9daAlink_cFii.s"
+BOOL daAlink_c::checkRestartDead(int i_dmgAmount, int param_1) {
+    i_dmgAmount *= (int)damageMagnification(param_1, 1);
+
+    if (mProcID != PROC_DEAD && i_dmgAmount >= i_dComIfGs_getLife() && !checkMagicArmorNoDamage() &&
+        !dComIfGs_checkBottle(FAIRY)) {
+        i_onNoResetFlg2(FLG2_UNK_40000);
+        procCoDeadInit(0);
+        return 1;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 80118BF4-80118C98 113534 00A4+00 2/2 0/0 0/0 .text            setDeadRideSyncPos__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setDeadRideSyncPos() {
-    nofralloc
-#include "asm/d/a/d_a_alink/setDeadRideSyncPos__9daAlink_cFv.s"
+void daAlink_c::setDeadRideSyncPos() {
+    if (i_checkModeFlg(MODE_RIDING) && mRideAcKeep.getActor() != NULL) {
+        if (i_checkReinRide()) {
+            setSyncRidePos();
+        } else if (checkSpinnerRide()) {
+            s16 old_angle = mCollisionRot.y;
+            setSpinnerSyncPos();
+            mCollisionRot.y = old_angle;
+        }
+    }
 }
-#pragma pop
 
 /* 80118C98-80118D7C 1135D8 00E4+00 5/5 0/0 0/0 .text            checkDeadHP__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daAlink_c::checkDeadHP() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkDeadHP__9daAlink_cFv.s"
+BOOL daAlink_c::checkDeadHP() {
+    return ((i_dComIfGs_getLife() == 0 && !i_checkResetFlg0(RFLG0_UNK_400)) &&
+            !dComIfGs_checkBottle(FAIRY)) ||
+           i_checkNoResetFlg2(FLG2_UNK_40000) ||
+           (dComIfGp_getOxygenShowFlag() && dComIfGp_getNowOxygen() == 0);
 }
-#pragma pop
 
 /* 80118D7C-80118FF8 1136BC 027C+00 3/3 0/0 0/0 .text            checkDeadAction__9daAlink_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkDeadAction(int param_0) {
+asm BOOL daAlink_c::checkDeadAction(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/checkDeadAction__9daAlink_cFi.s"
 }
@@ -374,14 +374,10 @@ static asm void daAlink_c_getDemoIDData(dDemo_actor_c* param_0, int* param_1, in
 #pragma pop
 
 /* 801195C0-801195F8 113F00 0038+00 7/0 0/0 0/0 .text            procDemoCommon__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procDemoCommon() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procDemoCommon__9daAlink_cFv.s"
+int daAlink_c::procDemoCommon() {
+    dComIfGp_evmng_cutEnd(field_0x3184);
+    return 1;
 }
-#pragma pop
 
 /* 801195F8-801196D8 113F38 00E0+00 1/1 0/0 0/0 .text            procCoToolDemoInit__9daAlink_cFv */
 #pragma push
@@ -464,14 +460,18 @@ asm void daAlink_c::procCoUnequip() {
 #pragma pop
 
 /* 8011A688-8011A6FC 114FC8 0074+00 4/4 0/0 0/0 .text            setGetSubBgm__9daAlink_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setGetSubBgm(int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setGetSubBgm__9daAlink_cFi.s"
+void daAlink_c::setGetSubBgm(int param_0) {
+    u32 se_type = getSeType[param_0];
+
+    if (se_type == 3 && field_0x3010 == 0) {
+        se_type = 7;
+    }
+
+    if (se_type != 8) {
+        mDoAud_subBgmStart(bgmLabel[se_type]);
+        dComIfGp_setMesgBgmOn();
+    }
 }
-#pragma pop
 
 /* 8011A6FC-8011A798 11503C 009C+00 1/0 0/0 0/0 .text checkTreasureRupeeReturn__9daAlink_cCFi */
 // register issues. probably wrong order of operations
@@ -919,14 +919,14 @@ asm void daAlink_c::procCoTwGateInit() {
 #pragma pop
 
 /* 8011D7D4-8011D82C 118114 0058+00 1/0 0/0 0/0 .text            procCoTwGate__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procCoTwGate() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procCoTwGate__9daAlink_cFv.s"
+int daAlink_c::procCoTwGate() {
+    if (mUnderFrameCtrl[0].checkAnmEnd()) {
+        dComIfGp_evmng_cutEnd(field_0x3184);
+    }
+
+    field_0x2f99 = 7;
+    return 1;
 }
-#pragma pop
 
 /* 8011D82C-8011D8F8 11816C 00CC+00 1/0 0/0 0/0 .text procWolfSnowEscapeInit__9daAlink_cFv */
 #pragma push
@@ -1102,10 +1102,10 @@ asm void daAlink_c::procGanonFinishInit() {
 
 /* 8011EA78-8011EAE8 1193B8 0070+00 1/0 0/0 0/0 .text            procGanonFinish__9daAlink_cFv */
 bool daAlink_c::procGanonFinish() {
-    i_onEndResetFlg1(GANON_FINISH);
+    i_onEndResetFlg1(ERFLG1_GANON_FINISH);
     current.pos = field_0x37c8;
-    if (mFrameCtrl1[0].checkAnmEnd()) {
-        setSingleAnimeBaseMorf(ANM_GANON_FINISH, lit_6041);
+    if (mUnderFrameCtrl[0].checkAnmEnd()) {
+        setSingleAnimeBaseMorf(ANM_GANON_FINISH_WAIT, lit_6041);
     }
     return true;
 }
@@ -1122,14 +1122,13 @@ asm void daAlink_c::procCutFastReadyInit() {
 #pragma pop
 
 /* 8011EB8C-8011EBDC 1194CC 0050+00 1/0 0/0 0/0 .text            procCutFastReady__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procCutFastReady() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procCutFastReady__9daAlink_cFv.s"
+int daAlink_c::procCutFastReady() {
+    if (mUpperFrameCtrl[2].checkAnmEnd()) {
+        dComIfGp_evmng_cutEnd(field_0x3184);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8011EBDC-8011EC60 11951C 0084+00 1/0 0/0 0/0 .text procMasterSwordStickInit__9daAlink_cFv */
 int daAlink_c::procMasterSwordStickInit() {
@@ -1137,7 +1136,7 @@ int daAlink_c::procMasterSwordStickInit() {
         return 0;
     }
 
-    setSingleAnimeBase(ANM_MASTER_SWORD_STICK_INIT);
+    setSingleAnimeBase(ANM_DEMO_MASTER_SWORD_STICK);
     voiceStart(Z2SE_AL_V_MSTR_SW_STICK);
     mNormalSpeed = FLOAT_LABEL(lit_6108);
     current.angle.y = mCollisionRot.y;
@@ -1149,13 +1148,13 @@ int daAlink_c::procMasterSwordStickInit() {
 /* 8011EC60-8011ED18 1195A0 00B8+00 1/0 0/0 0/0 .text            procMasterSwordStick__9daAlink_cFv
  */
 int daAlink_c::procMasterSwordStick() {
-    daPy_frameCtrl_c* fCtrl = &mFrameCtrl1[0];
+    daPy_frameCtrl_c* fCtrl = &mUnderFrameCtrl[0];
 
     if (mCommonCounter != 0) {
         dComIfGp_evmng_cutEnd(field_0x3184);
     } else if (fCtrl->checkAnmEnd()) {
         mCommonCounter = 1;
-        setSingleAnimeBaseMorf(ANM_MASTER_SWORD_STICK, lit_6041);
+        setSingleAnimeBaseMorf(ANM_DEMO_MASTER_SWORD_WAIT, lit_6041);
         dComIfGp_evmng_cutEnd(field_0x3184);
     } else if (fCtrl->getFrame() >= lit_14621) {
         field_0x2f93 = 5;
@@ -1170,7 +1169,7 @@ int daAlink_c::procMasterSwordPullInit() {
         return 0;
     }
 
-    setSingleAnimeBase(ANM_MASTER_SWORD_PULL_INIT);
+    setSingleAnimeBase(ANM_DEMO_MASTER_SWORD_PULL);
     voiceStart(Z2SE_AL_V_MSTR_SW_PULLOUT);
     field_0x3010 = 0;
 
@@ -1202,9 +1201,11 @@ int daAlink_c::procDungeonWarpReadyInit() {
 
     u32 id;
     if (checkItemSetButton(DUNGEON_EXIT) != 2) {
-        id = fopAcM_create(PROC_OBJ_TKS, 0, &current.pos, fopAcM_GetRoomNo(this), &mCollisionRot, NULL, -1);
+        id = fopAcM_create(PROC_OBJ_TKS, 0, &current.pos, fopAcM_GetRoomNo(this), &mCollisionRot,
+                           NULL, -1);
     } else {
-        id = fopAcM_create(PROC_NPC_TKC, 2, &current.pos, fopAcM_GetRoomNo(this), &mCollisionRot, NULL, -1);
+        id = fopAcM_create(PROC_NPC_TKC, 2, &current.pos, fopAcM_GetRoomNo(this), &mCollisionRot,
+                           NULL, -1);
     }
 
     if (id == -1) {
@@ -1213,7 +1214,7 @@ int daAlink_c::procDungeonWarpReadyInit() {
 
     mDemo.i_setSpecialDemoType();
     commonProcInit(PROC_DUNGEON_WARP_READY);
-    setSingleAnimeBase(ANM_DUNGEON_WARP_READY_INIT);
+    setSingleAnimeBase(ANM_TRADE_ITEM_PULL_OUT);
     mNormalSpeed = FLOAT_LABEL(lit_6108);
     current.angle.y = mCollisionRot.y;
     field_0x32cc = id;
@@ -1290,7 +1291,8 @@ int daAlink_c::procDungeonWarp() {
             if (mScale.x < 0.01f) {
                 i_onNoResetFlg0(FLG0_UNK_8000000);
                 if (checkItemGet(DUNGEON_EXIT, 1)) {
-                    int escape = dStage_stagInfo_GetEscapeWarp(i_dComIfGp_getStage()->getStagInfo());
+                    int escape =
+                        dStage_stagInfo_GetEscapeWarp(i_dComIfGp_getStage()->getStagInfo());
                     dStage_changeScene(escape, 0.0f, 12, -1, mCollisionRot.y, -1);
                     dMeter2Info_warpOutProc();
                 } else {
@@ -1345,16 +1347,55 @@ asm void daAlink_c::procDungeonWarpSceneStart() {
 #pragma pop
 
 /* 8011F5D4-8011F658 119F14 0084+00 2/2 0/0 0/0 .text daAlink_searchPortal__FP10fopAc_ac_cPv */
+// matches with literals
+#ifdef NONMATCHING
+static fopAc_ac_c* daAlink_searchPortal(fopAc_ac_c* i_actor, void* i_data) {
+    if (fopAcM_GetName(i_actor) == PROC_KYTAG04) {
+        cXyz* pos = (cXyz*)i_data;
+        if (i_actor->current.pos.abs2XZ(*pos) < 1.0f) {
+            return i_actor;
+        }
+    }
+
+    return NULL;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void* daAlink_searchPortal(fopAc_ac_c* param_0, void* param_1) {
+static asm fopAc_ac_c* daAlink_searchPortal(fopAc_ac_c* param_0, void* param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/daAlink_searchPortal__FP10fopAc_ac_cPv.s"
 }
 #pragma pop
+#endif
 
 /* 8011F658-8011F7D8 119F98 0180+00 1/1 0/0 0/0 .text            checkAcceptWarp__9daAlink_cFv */
+// r3/r4 swap loading midna ptr
+#ifdef NONMATCHING
+bool daAlink_c::checkAcceptWarp() {
+    cM3dGPla plane;
+
+    if (mLinkAcch.ChkGroundHit() && !i_checkModeFlg(MODE_PLAYER_FLY) &&
+        !i_checkNoResetFlg0(FLG0_UNDERWATER)) {
+        if (!getSlidePolygon(&plane) && !checkForestOldCentury()) {
+            if (i_checkMidnaRide() || getMidnaActor()->checkPortalObjRide()) {
+                if ((checkField() || checkCastleTown()) && !checkStageName("R_SP161")) {
+                    if ((i_checkWolf() &&
+                         (i_checkModeFlg(MODE_UNK_1000) || i_dComIfGp_checkPlayerStatus0(0, 0x10))) ||
+                        (!i_checkWolf() &&
+                         (checkEventRun() || getMidnaActor()->checkMetamorphoseEnable()) &&
+                         (i_checkModeFlg(4) || i_dComIfGp_checkPlayerStatus0(0, 0x10)))) {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+
+    return false;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1363,6 +1404,7 @@ asm bool daAlink_c::checkAcceptWarp() {
 #include "asm/d/a/d_a_alink/checkAcceptWarp__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8011F7D8-8011F8B8 11A118 00E0+00 2/2 0/0 0/0 .text            dungeonReturnWarp__9daAlink_cFv */
 void daAlink_c::dungeonReturnWarp() {
@@ -1405,9 +1447,9 @@ void daAlink_c::skipPortalObjWarp() {
 /* 8011F9EC-8011FBC0 11A32C 01D4+00 1/1 0/0 0/0 .text            checkWarpStart__9daAlink_cFv */
 void daAlink_c::checkWarpStart() {
     if (dMeter2Info_getWarpStatus() != 0) {
-        if (dMeter2Info_getWarpStatus() == 3 || dComIfGp_event_compulsory(this, 0, 0xFFFF)) {
-            i_onNoResetFlg0(0x4000);
-            if (dMeter2Info_getWarpStatus() == 3) {
+        if (dMeter2Info_getWarpStatus() == WARP_DECIDED || dComIfGp_event_compulsory(this, 0, 0xFFFF)) {
+            i_onNoResetFlg0(FLG0_UNK_4000);
+            if (dMeter2Info_getWarpStatus() == WARP_DECIDED) {
                 const char* portal;
                 if (!i_checkMidnaRide()) {
                     if (dComIfGp_TargetWarpPt_get() == 3) {
@@ -1434,8 +1476,8 @@ void daAlink_c::checkWarpStart() {
                 mDemo.i_setSpecialDemoType();
                 if (dMeter2Info_getWarpStatus() == 1) {
                     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
-                    u32 tmp = dStage_stagInfo_GetEscapeWarp(stag_info);
-                    dStage_changeScene(tmp, FLOAT_LABEL(lit_6108), 0, -1, mCollisionRot.y, -1);
+                    u32 exitID = dStage_stagInfo_GetEscapeWarp(stag_info);
+                    dStage_changeScene(exitID, FLOAT_LABEL(lit_6108), 0, -1, mCollisionRot.y, -1);
                 } else {
                     dungeonReturnWarp();
                 }

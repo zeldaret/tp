@@ -412,6 +412,7 @@ s32 fopAcM_orderTreasureEvent(fopAc_ac_c*, fopAc_ac_c*, u16, u16);
 void* fopAcM_getTalkEventPartner(const fopAc_ac_c*);
 void* fopAcM_getItemEventPartner(const fopAc_ac_c*);
 void* fopAcM_getEventPartner(const fopAc_ac_c*);
+static void fopAcM_onSwitch(fopAc_ac_c const* param_0, int param_1);
 
 s32 fopAcM_createItemForPresentDemo(cXyz const* p_pos, int i_itemNo, u8 param_2, int i_itemBitNo,
                                     int i_roomNo, csXyz const* p_angle, cXyz const* p_scale);

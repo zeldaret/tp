@@ -148,7 +148,7 @@ extern "C" void checkCommandDemoAccrpt__11dEvt_info_cFv();
 extern "C" void __ct__4cXyzFv();
 extern "C" static void fopAcM_SearchByName__Fs();
 extern "C" static void fopAcM_SearchByID__FUi(unsigned int);
-extern "C" static void dComIfGp_getHorseActor__Fv();
+extern "C" static daHorse_c* dComIfGp_getHorseActor__Fv();
 extern "C" static void dComIfGp_getPlayer__Fi(int);
 extern "C" static void dComIfGp_getCamera__Fi(int);
 extern "C" static void dComIfGp_getPlayerCameraID__Fi();
@@ -4752,7 +4752,7 @@ extern "C" static asm void fopAcM_SearchByID__FUi(unsigned int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_getHorseActor() {
+static asm daHorse_c* dComIfGp_getHorseActor__Fv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/dComIfGp_getHorseActor__Fv.s"
 }
@@ -4782,7 +4782,7 @@ static asm void dComIfGp_getCamera__Fi(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_getPlayerCameraID(int param_0) {
+static asm s8 dComIfGp_getPlayerCameraID(int param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/dComIfGp_getPlayerCameraID__Fi.s"
 }
@@ -4975,7 +4975,7 @@ asm void dEvt_control_c::startCheckSkipEdge(void* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_getEvent() {
+static asm dEvt_control_c& dComIfGp_getEvent() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/dComIfGp_getEvent__Fv.s"
 }

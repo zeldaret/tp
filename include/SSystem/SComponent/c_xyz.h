@@ -41,6 +41,8 @@ struct cXyz : Vec {
     /* 80266B84 */ cXyz operator*(f32) const;
     /* 80266BD0 */ cXyz operator*(Vec const&) const;
     /* 80266C18 */ cXyz operator/(f32) const;
+    /* 800977D8 */ // void operator=(cXyz const&);
+
     void operator+=(f32 f) {
         x += f;
         y += f;

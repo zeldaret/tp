@@ -120,7 +120,7 @@ asm bool daAlink_c::getKandelaarFlamePos() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkKandelaarEquipAnime() const {
+asm BOOL daAlink_c::checkKandelaarEquipAnime() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkKandelaarEquipAnime__9daAlink_cCFv.s"
 }

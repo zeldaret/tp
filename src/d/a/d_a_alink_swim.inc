@@ -33,7 +33,7 @@ asm void daAlink_c::swimDeleteItem() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getZoraSwim() const {
+asm bool daAlink_c::getZoraSwim() const {
     nofralloc
 #include "asm/d/a/d_a_alink/getZoraSwim__9daAlink_cCFv.s"
 }
@@ -85,7 +85,7 @@ asm void daAlink_c::offOxygenTimer() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkPossibleWaterInMode() const {
+asm bool daAlink_c::checkPossibleWaterInMode() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkPossibleWaterInMode__9daAlink_cCFv.s"
 }

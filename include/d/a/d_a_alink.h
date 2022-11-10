@@ -74,7 +74,6 @@ public:
     /* 801266C0 */ virtual void draw();
     /* 800CFDF4 */ virtual ~daAlink_sight_c();
 
-private:
     /* 0x4C */ bool mLockFlag;
     /* 0x4D */ u8 field_0x4d[3];
     /* 0x50 */ daAlink_lockCursor_c mLockCursor;
@@ -147,6 +146,8 @@ public:
     /* 800D0B8C */ virtual ~daAlink_matAnm_c();
     /* 8009D90C */ virtual void calc(J3DMaterial*) const;
 
+    static void decMorfFrame() {}
+
 private:
     /* 0x0F4 */ f32 field_0xf4;
     /* 0x0F8 */ f32 field_0xf8;
@@ -155,9 +156,13 @@ private:
     /* 0x104 */ int mSetFlag;
 };
 
+struct daAlink_BckData {
+    /* 0x0 */ u16 m_underID;
+    /* 0x0 */ u16 m_upperID;
+};
+
 struct daAlink_AnmData {
-    /* 0x0 */ u16 field_0x0;
-    /* 0x2 */ u16 field_0x2;
+    /* 0x0 */ daAlink_BckData field_0x0;
     /* 0x4 */ u8 field_0x4;
     /* 0x5 */ u8 field_0x5;
     /* 0x6 */ u16 field_0x6;
@@ -196,57 +201,105 @@ typedef int (daAlink_c::*daAlink_procFunc)();
 class daAlink_c : public daPy_py_c {
 public:
     enum daAlink_ANM {
-        /* 0x001 */ ANM_ATN_L_WALK_FORWARD = 1,
-
-        /* 0x003 */ ANM_ATN_WALK_BACK = 3,
-
-        /* 0x005 */ ANM_ATN_L_WALK_BACK = 5,
-        /* 0x006 */ ANM_ATN_HEAVY_WALK_LEFT,
-        /* 0x007 */ ANM_ATN_READY_LEFT,
-        /* 0x008 */ ANM_ATN_HEAVY_WALK_RIGHT,
-        /* 0x009 */ ANM_ATN_READY_RIGHT,
-        /* 0x00A */ ANM_ATN_WALK_LEFT,
-        /* 0x00B */ ANM_ATN_L_WALK_LEFT,
-        /* 0x00C */ ANM_ATN_WALK_RIGHT,
-        /* 0x00D */ ANM_ATN_L_WALK_RIGHT,
-        /* 0x00E */ ANM_HEAVY_WALK,
-        /* 0x00F */ ANM_ATN_HEAVY_WALK_BACK,
-        /* 0x010 */ ANM_HOOKSHOT_AIM,
-        /* 0x011 */ ANM_BOW_AIM,
-
-        /* 0x013 */ ANM_RUN = 19,
-
-        /* 0x015 */ ANM_WAIT_TURN = 0x15,
-
-        /* 0x019 */ ANM_IDLE = 0x19,  // name might be inaccurate, subjectivity
-
-        /* 0x01B */ ANM_WAIT_INIT = 0x1B,
-
-        /* 0x01D */ ANM_SIDE_STEP_LEFT = 0x1D,
-        /* 0x01E */ ANM_SIDE_STEP_RIGHT,
-        /* 0x01F */ ANM_SIDE_STEP_LEFT_LAND,
-        /* 0x020 */ ANM_SIDE_STEP_RIGHT_LAND,
+        /* 0x000 */ ANM_ATN_RETURN_FROM_WALK,
+        /* 0x001 */ ANM_ATN_RETURN_FROM_RUN,
+        /* 0x002 */ ANM_ATN_BACK_WALK,
+        /* 0x003 */ ANM_ATN_BACK_RUN,
+        /* 0x004 */ ANM_ATN_LOCK_BACK_WALK,
+        /* 0x005 */ ANM_ATN_LOCK_BACK_RUN,
+        /* 0x006 */ ANM_ATN_WALK_LEFT,
+        /* 0x007 */ ANM_ATN_LOCK_WALK_LEFT,
+        /* 0x008 */ ANM_ATN_WALK_RIGHT,
+        /* 0x009 */ ANM_ATN_LOCK_WALK_RIGHT,
+        /* 0x00A */ ANM_ATN_RUN_LEFT,
+        /* 0x00B */ ANM_ATN_LOCK_RUN_LEFT,
+        /* 0x00C */ ANM_ATN_RUN_RIGHT,
+        /* 0x00D */ ANM_ATN_LOCK_RUN_RIGHT,
+        /* 0x00E */ ANM_WALK_HEAVY,
+        /* 0x00F */ ANM_ATN_BACK_WALK_HEAVY,
+        /* 0x010 */ ANM_ATN_WAIT_LEFT,
+        /* 0x011 */ ANM_ATN_WAIT_RIGHT,
+        /* 0x012 */ ANM_WALK,
+        /* 0x013 */ ANM_RUN,
+        /* 0x014 */ ANM_SWIM_WAIT,
+        /* 0x015 */ ANM_STEP_TURN,
+        /* 0x016 */ ANM_SMALL_GUARD,
+        /* 0x017 */ ANM_STEP_TURN_TIRED,
+        /* 0x018 */ ANM_SMALL_GUARD_TIRED,
+        /* 0x019 */ ANM_WAIT,
+        /* 0x01A */ ANM_WAIT_B,
+        /* 0x01B */ ANM_WAIT_B_TO_A,
+        /* 0x01C */ ANM_RUN_B,
+        /* 0x01D */ ANM_SIDE_JUMP_LEFT,
+        /* 0x01E */ ANM_SIDE_JUMP_RIGHT,
+        /* 0x01F */ ANM_SIDE_JUMP_LEFT_LAND,
+        /* 0x020 */ ANM_SIDE_JUMP_RIGHT_LAND,
         /* 0x021 */ ANM_BACK_JUMP,
         /* 0x022 */ ANM_BACK_JUMP_LAND,
         /* 0x023 */ ANM_FRONT_ROLL,
         /* 0x024 */ ANM_ROLL_CRASH,
-        /* 0x025 */ ANM_BARRIER_RECOIL,
+        /* 0x025 */ ANM_BARRIER_RECOIL,  // ?
         /* 0x026 */ ANM_BACKFLIP,
         /* 0x027 */ ANM_BACKFLIP_LAND,
-
-        /* 0x02C */ ANM_SHIELD_GUARD = 0x2C,
-
-        /* 0x02E */ ANM_SHIELD_ATTACK = 0x2E,
+        /* 0x028 */ ANM_SLIP,
+        /* 0x029 */ ANM_CROUCH,
+        /* 0x02A */ ANM_CROUCH_START,
+        /* 0x02B */ ANM_GUARD_LEFT,
+        /* 0x02C */ ANM_GUARD_RIGHT,
+        /* 0x02D */ ANM_CROUCH_DEF,  // ?
+        /* 0x02E */ ANM_SHIELD_ATTACK,
         /* 0x02F */ ANM_SHIELD_ATTACK_RECOIL,
-
-        /* 0x033 */ ANM_FALL_LAND = 0x33, // ?
-
-        /* 0x036 */ ANM_PUSH_PULL_READY = 0x36,
-        /* 0x037 */ ANM_PUSH,
-
-        /* 0x03A */ ANM_PULL = 0x3A,
-
-        /* 0x062 */ ANM_CUT_NM_VERTICAL = 0x62,
+        /* 0x030 */ ANM_GUARD_BREAK,
+        /* 0x031 */ ANM_JUMP_START,
+        /* 0x032 */ ANM_JUMP,
+        /* 0x033 */ ANM_JUMP_LAND,
+        /* 0x034 */ ANM_CRAWL_START,
+        /* 0x035 */ ANM_CRAWL,
+        /* 0x036 */ ANM_WAIT_PUSH_PULL,
+        /* 0x037 */ ANM_PUSH_LIGHT,
+        /* 0x038 */ ANM_PUSH_START,
+        /* 0x039 */ ANM_PUSH,
+        /* 0x03A */ ANM_PULL_LIGHT,
+        /* 0x03B */ ANM_PULL_START,
+        /* 0x03C */ ANM_PULL,
+        /* 0x03D */ ANM_HORSE_MOUNT_LEFT,
+        /* 0x03E */ ANM_HORSE_MOUNT_RIGHT,
+        /* 0x03F */ ANM_HORSE_MOUNT_BACK,
+        /* 0x040 */ ANM_HORSE_GETOFF_LEFT,
+        /* 0x041 */ ANM_HORSE_GETOFF_RIGHT,
+        /* 0x042 */ ANM_HORSE_STOP,
+        /* 0x043 */ ANM_HORSE_STOP_TO_STAND,
+        /* 0x044 */ ANM_HORSE_STAND,
+        /* 0x045 */ ANM_HORSE_JUMP_START,
+        /* 0x046 */ ANM_HORSE_JUMP,
+        /* 0x047 */ ANM_HORSE_JUMP_LAND,
+        /* 0x048 */ ANM_HORSE_WAIT,
+        /* 0x049 */ ANM_HORSE_WALK_A,
+        /* 0x04A */ ANM_HORSE_WALK_B,
+        /* 0x04B */ ANM_HORSE_DASH_A,
+        /* 0x04C */ ANM_HORSE_DASH_B,
+        /* 0x04D */ ANM_WSTARTH,  // ?
+        /* 0x04E */ ANM_HORSE_DASH_START,
+        /* 0x04F */ ANM_HORSE_LASH,
+        /* 0x050 */ ANM_HORSE_CUT_TURN,
+        /* 0x051 */ ANM_HORSE_WAIT_A,
+        /* 0x052 */ ANM_HORSE_WAIT_B,
+        /* 0x053 */ ANM_HORSE_DIE_RECOVER,
+        /* 0x054 */ ANM_HORSE_TURN_B,
+        /* 0x055 */ ANM_HORSE_CROUCH,
+        /* 0x056 */ ANM_HORSE_DMG_LEFT,
+        /* 0x057 */ ANM_HORSE_DMG_RIGHT,
+        /* 0x058 */ ANM_HORSE_HANG_LEFT,
+        /* 0x059 */ ANM_HORSE_HANG_RIGHT,
+        /* 0x05A */ ANM_HORSE_TURN_LEFT,
+        /* 0x05B */ ANM_HORSE_TURN_RIGHT,
+        /* 0x05C */ ANM_HORSE_RIDE_LEFT,
+        /* 0x05D */ ANM_HORSE_RIDE_RIGHT,
+        /* 0x05E */ ANM_HORSE_FALL_LEFT,
+        /* 0x05F */ ANM_HORSE_FALL_RIGHT,
+        /* 0x060 */ ANM_HORSE_TAME_WAIT_B,
+        /* 0x061 */ ANM_HORSE_TAME_WAIT_A_TO_B,
+        /* 0x062 */ ANM_CUT_NM_VERTICAL,
         /* 0x063 */ ANM_CUT_NM_LEFT,
         /* 0x064 */ ANM_CUT_NM_RIGHT,
         /* 0x065 */ ANM_CUT_COMBO_STAB,
@@ -254,38 +307,45 @@ public:
         /* 0x067 */ ANM_CUT_FINISH_LEFT,
         /* 0x068 */ ANM_CUT_FINISH_VERTICAL,
         /* 0x069 */ ANM_CUT_FINISH_STAB,
-
-        /* 0x06C */ ANM_CUT_FINISH_RIGHT = 0x6C,
+        /* 0x06A */ ANM_CUT_MORTAL_DRAW_A,
+        /* 0x06B */ ANM_CUT_MORTAL_DRAW_B,
+        /* 0x06C */ ANM_CUT_FINISH_RIGHT,
         /* 0x06D */ ANM_CUT_TWIRL,
         /* 0x06E */ ANM_CUT_TWIRL_LAND,
-        /* 0x06F */ ANM_CUT_RECOIL_1,
-        /* 0x070 */ ANM_CUT_RECOIL_2,
+        /* 0x06F */ ANM_CUT_RECOIL_A,
+        /* 0x070 */ ANM_CUT_RECOIL_B,
         /* 0x071 */ ANM_CUT_JUMP,
         /* 0x072 */ ANM_CUT_JUMP_LAND,
         /* 0x073 */ ANM_CUT_TURN_LEFT,
         /* 0x074 */ ANM_CUT_TURN_RIGHT,
-        /* 0x075 */ ANM_CUT_TURN_CHARGE_INIT,
+        /* 0x075 */ ANM_CUT_TURN_CHARGE_START,
         /* 0x076 */ ANM_CUT_TURN_CHARGE,
-
-        /* 0x078 */ ANM_CUT_FINISHING_BLOW_JUMP = 0x78,
+        /* 0x077 */ ANM_CUT_TURN_CHARGE_MOVE,
+        /* 0x078 */ ANM_CUT_FINISHING_BLOW_JUMP,
         /* 0x079 */ ANM_CUT_FINISHING_BLOW_FALL,
         /* 0x07A */ ANM_CUT_FINISHING_BLOW_STAB,
-
-        /* 0x07C */ ANM_CUT_HEAD_JUMP = 0x7C,
+        /* 0x07B */ ANM_CUT_FINISHING_BLOW_MISS,
+        /* 0x07C */ ANM_CUT_HEAD_JUMP,
         /* 0x07D */ ANM_CUT_HEAD,
         /* 0x07E */ ANM_CUT_HEAD_LAND,
-        /* 0x07F */ ANM_DMG_SMALL,
-
-        /* 0x083 */ ANM_DMG_AIR = 0x83,
+        /* 0x07F */ ANM_DMG_SMALL_A,
+        /* 0x080 */ ANM_DMG_SMALL_B,
+        /* 0x081 */ ANM_DMG_SMALL_LEFT,
+        /* 0x082 */ ANM_DMG_SMALL_RIGHT,
+        /* 0x083 */ ANM_DMG_AIR_FRONT,
         /* 0x084 */ ANM_DMG_LARGE,
-
-        /* 0x087 */ ANM_DMG_AIR_LAND = 0x87,
+        /* 0x085 */ ANM_DMG_AIR_LEFT,
+        /* 0x086 */ ANM_DMG_AIR_RIGHT,
+        /* 0x087 */ ANM_DMG_AIR_LAND,
         /* 0x088 */ ANM_DMG_LARGE_LAND,
-
-        /* 0x08C */ ANM_DMG_LARGE_UP_INIT = 0x8C,
-        /* 0x08D */ ANM_DMG_LARGE_UP,
-
-        /* 0x090 */ ANM_SERVICE_WAIT = 0x90,
+        /* 0x089 */ ANM_DMG_AIR_LEFT_LAND,
+        /* 0x08A */ ANM_DMG_AIR_RIGHT_LAND,
+        /* 0x08B */ ANM_DMG,
+        /* 0x08C */ ANM_DMG_FALL,
+        /* 0x08D */ ANM_DMG_FALL_RECOVER,
+        /* 0x08E */ ANM_FINISH,
+        /* 0x08F */ ANM_FINISH_END,
+        /* 0x090 */ ANM_SERVICE_WAIT,
         /* 0x091 */ ANM_CLIMB_JUMP,
         /* 0x092 */ ANM_HANG_READY,
         /* 0x093 */ ANM_CLIMB_TOP_SMALL,
@@ -294,98 +354,433 @@ public:
         /* 0x096 */ ANM_HANG_ONE_HAND_MOVE,
         /* 0x097 */ ANM_HANG_MOVE_LEFT,
         /* 0x098 */ ANM_HANG_MOVE_RIGHT,
-
-        /* 0x0A2 */ ANM_CLIMB_READY = 0xA2,
-        /* 0x0A3 */ ANM_CLIMB_UP_RIGHT,
-        /* 0x0A4 */ ANM_CLIMB_UP_LEFT,
-        /* 0x0A5 */ ANM_CLIMB_MOVE_LEFT,
-        /* 0x0A6 */ ANM_CLIMB_MOVE_RIGHT,
-        /* 0x0A7 */ ANM_FALL_ONE_HAND_GRAB,
-
-        /* 0x0AF */ ANM_PICK_UP_INIT = 0xAF,
-        /* 0x0B0 */ ANM_PICK_UP,
-        /* 0x0B1 */ ANM_THROW_SMALL,
-        /* 0x0B2 */ ANM_THROW_LARGE,
-        /* 0x0B3 */ ANM_PICK_UP_LARGE_INIT,
+        /* 0x099 */ ANM_LADDER_UP_START,
+        /* 0x09A */ ANM_LADDER_UP_END_LEFT,
+        /* 0x09B */ ANM_LADDER_UP_END_RIGHT,
+        /* 0x09C */ ANM_LADDER_DOWN_START,
+        /* 0x09D */ ANM_LADDER_DOWN_END_LEFT,
+        /* 0x09E */ ANM_LADDER_DOWN_END_RIGHT,
+        /* 0x09F */ ANM_LADDER_RIGHT_TO_LEFT,
+        /* 0x0A0 */ ANM_LADDER_LEFT_TO_RIGHT,
+        /* 0x0A1 */ ANM_CLIMB_HANG,
+        /* 0x0A2 */ ANM_CLIMB_START,
+        /* 0x0A3 */ ANM_CLIMB_LEFT,
+        /* 0x0A4 */ ANM_CLIMB_RIGHT,
+        /* 0x0A5 */ ANM_CLIMB_SLIDE_LEFT,
+        /* 0x0A6 */ ANM_CLIMB_SLIDE_RIGHT,
+        /* 0x0A7 */ ANM_CLIMB_HANG_MISS,
+        /* 0x0A8 */ ANM_ROOF_UP,
+        /* 0x0A9 */ ANM_ROOF_HANG_WAIT,
+        /* 0x0AA */ ANM_ROOF_HANG_MOVE,
+        /* 0x0AB */ ANM_ROOF_HANG_LEFT,
+        /* 0x0AC */ ANM_ROOF_HANG_RIGHT,
+        /* 0x0AD */ ANM_ROOF_HANG_TURN,
+        /* 0x0AE */ ANM_ROOF_HANG,
+        /* 0x0AF */ ANM_GRAB_UP_START,
+        /* 0x0B0 */ ANM_GRAB_UP,
+        /* 0x0B1 */ ANM_THROW,
+        /* 0x0B2 */ ANM_THROW_HEAVY,
+        /* 0x0B3 */ ANM_PICK_UP_LARGE_START,
         /* 0x0B4 */ ANM_PICK_UP_LARGE,
-
-        /* 0x0B6 */ ANM_TIRED_WAIT = 0xB6,
-        /* 0x0B7 */ ANM_TIRED_WAIT_INIT,
-        /* 0x0B8 */ ANM_NPC_SPEAK,
-
-        /* 0x0BB */ ANM_BOOMERANG_CATCH = 0xBB,
-
-        /* 0x0BD */ ANM_FORWARD_SLIDE = 0xBD,
-        /* 0x0BE */ ANM_BACKWARD_SLIDE,
-        /* 0x0BF */ ANM_BACKWARD_SLIDE_LAND,
-        /* 0x0C0 */ ANM_FORWARD_SLIDE_LAND,
-
-        /* 0x0CE */ ANM_SWIM_FREEZE = 0xCE,
-
-        /* 0x0D7 */ ANM_BOARD_SPINNER = 0xD7,
-
-        /* 0x0F2 */ ANM_SPINNER_STAND = 0xF2,
-
-        /* 0x0F4 */ ANM_SPINNER_RIDE = 0xF4,
-
-        /* 0x0F7 */ ANM_SPINNER_ATTACK = 0xF7,
-        /* 0x0F8 */ ANM_SPINNER_ATTACK_LAND,
-        /* 0x0F9 */ ANM_SPINNER_PUSH,
-
-        /* 0x0FD */ ANM_TRANSFORM_WOLF = 0xFD,  // verify
-
-        /* 0x100 */ ANM_BOTTLE_DRINK_OPEN = 0x100,
+        /* 0x0B5 */ ANM_CARRY,
+        /* 0x0B6 */ ANM_WAIT_TIRED,
+        /* 0x0B7 */ ANM_WAIT_TO_TIRED,
+        /* 0x0B8 */ ANM_TALK,
+        /* 0x0B9 */ ANM_WAIT_START,
+        /* 0x0BA */ ANM_FROZEN_FREE,  // ?
+        /* 0x0BB */ ANM_BOOMERANG_CATCH,
+        /* 0x0BC */ ANM_WALK_SLOPE,
+        /* 0x0BD */ ANM_SLIDE_FORWARD,
+        /* 0x0BE */ ANM_SLIDE_BACKWARD,
+        /* 0x0BF */ ANM_SLIDE_FORWARD_END,
+        /* 0x0C0 */ ANM_SLIDE_BACKWARD_END,
+        /* 0x0C1 */ ANM_SWIM_A,
+        /* 0x0C2 */ ANM_SWIM_RESURFACE,
+        /* 0x0C3 */ ANM_ATN_SWIM_LEFT,
+        /* 0x0C4 */ ANM_ATN_SWIM_RIGHT,
+        /* 0x0C5 */ ANM_ATN_SWIM_BACK,
+        /* 0x0C6 */ ANM_SWIM_DASH,
+        /* 0x0C7 */ ANM_SWIM_DIVE,
+        /* 0x0C8 */ ANM_SWIM_ZORA_START,
+        /* 0x0C9 */ ANM_SWIM_C,
+        /* 0x0CA */ ANM_SWIM_DMG_FRONT,
+        /* 0x0CB */ ANM_SWIM_DMG_BACK,
+        /* 0x0CC */ ANM_SWIM_DMG_LEFT,
+        /* 0x0CD */ ANM_SWIM_DMG_RIGHT,
+        /* 0x0CE */ ANM_SWIM_DMG_FREEZE,
+        /* 0x0CF */ ANM_TRES_OPEN_SMALL,
+        /* 0x0D0 */ ANM_TRES_OPEN_KICK,
+        /* 0x0D1 */ ANM_TRES_OPEN_BIG,
+        /* 0x0D2 */ ANM_GET_A,
+        /* 0x0D3 */ ANM_GET_A_WAIT,
+        /* 0x0D4 */ ANM_GET_A_WAIT2,  // same under anm, upper anm (0x26A)
+        /* 0x0D5 */ ANM_GET_HOLDOUT,
+        /* 0x0D6 */ ANM_TURN_BACK,
+        /* 0x0D7 */ ANM_VJUMP_START,
+        /* 0x0D8 */ ANM_WAIT_SIT,
+        /* 0x0D9 */ ANM_WAIT_CANOE_LEFT,
+        /* 0x0DA */ ANM_WAIT_CANOE_RIGHT,
+        /* 0x0DB */ ANM_CANOE_ROW_LEFT,
+        /* 0x0DC */ ANM_CANOE_ROW_RIGHT,
+        /* 0x0DD */ ANM_CANOE_ROW_LEFT_BACK,
+        /* 0x0DE */ ANM_CANOE_ROW_RIGHT_BACK,
+        /* 0x0DF */ ANM_CANOE_CHANGE_HAND,
+        /* 0x0E0 */ ANM_CANOE_FISH_LEFT,
+        /* 0x0E1 */ ANM_CANOE_FISH_RIGHT,
+        /* 0x0E2 */ ANM_CANOE_REEL,
+        /* 0x0E3 */ ANM_CANOE_RELEASE,
+        /* 0x0E4 */ ANM_CANOE_PADDLE_TO_ROD,
+        /* 0x0E5 */ ANM_REEL,
+        /* 0x0E6 */ ANM_REEL_LEFT_RIGHT,
+        /* 0x0E7 */ ANM_LAND_UP,  // ?
+        /* 0x0E8 */ ANM_DOOR_OPEN_LEFT,
+        /* 0x0E9 */ ANM_DOOR_OPEN_RIGHT,
+        /* 0x0EA */ ANM_DOOR_OPEN_LOCK_LEFT,
+        /* 0x0EB */ ANM_DOOR_OPEN_LOCK_RIGHT,
+        /* 0x0EC */ ANM_DOOR_OPEN_ROLL,
+        /* 0x0ED */ ANM_DOOR_OPEN_SLIDE,
+        /* 0x0EE */ ANM_PICK_UP,
+        /* 0x0EF */ ANM_ROLL_JUMP,
+        /* 0x0F0 */ ANM_SIDE_ROLL_LEFT,
+        /* 0x0F1 */ ANM_SIDE_ROLL_RIGHT,
+        /* 0x0F2 */ ANM_RIDE_WAIT,
+        /* 0x0F3 */ ANM_RIDE_FRONT,
+        /* 0x0F4 */ ANM_RIDE_CROUCH,
+        /* 0x0F5 */ ANM_RIDE_STOP,
+        /* 0x0F6 */ ANM_RIDE_JUMP_START,
+        /* 0x0F7 */ ANM_RIDE_JUMP,
+        /* 0x0F8 */ ANM_RIDE_JUMP_LAND,
+        /* 0x0F9 */ ANM_RIDE_KICK,
+        /* 0x0FA */ ANM_RIDE_CUT_TURN_CHARGE,
+        /* 0x0FB */ ANM_RIDE_CUT_TURN,
+        /* 0x0FC */ ANM_ROPE_SWING,  // monkey swing?
+        /* 0x0FD */ ANM_TRANSFORM_TO_WOLF,
+        /* 0x0FE */ ANM_TRANSFORM_TO_HUMAN,
+        /* 0x0FF */ ANM_WAIT_WIND,
+        /* 0x100 */ ANM_BOTTLE_DRINK_START,
         /* 0x101 */ ANM_BOTTLE_DRINK,
         /* 0x102 */ ANM_BOTTLE_DRINK_END,
-
-        /* 0x107 */ ANM_BOTTLE_SWING = 0x107,
-        /* 0x108 */ ANM_GRASS_WHISTLE_GRAB,
-
-        /* 0x10B */ ANM_LANTERN_SWING = 0x10B,
-        /* 0x10C */ ANM_OIL_BOTTLE_POUR_INIT,
+        /* 0x103 */ ANM_BOTTLE_DRINK_NASTY,
+        /* 0x104 */ ANM_BOTTLE_OPEN,
+        /* 0x105 */ ANM_BOTTLE_POUR,
+        /* 0x106 */ ANM_BOTTLE_FAIRY,
+        /* 0x107 */ ANM_BOTTLE_SWING,
+        /* 0x108 */ ANM_BOTTLE_SWING_DOWN,
+        /* 0x109 */ ANM_BOTTLE_GET,
+        /* 0x10A */ ANM_BOTTLE_SCOOP,
+        /* 0x10B */ ANM_LANTERN_SWING,
+        /* 0x10C */ ANM_OIL_BOTTLE_POUR_START,
         /* 0x10D */ ANM_OIL_BOTTLE_POUR,
         /* 0x10E */ ANM_OIL_BOTTLE_POUR_END,
-
-        /* 0x110 */ ANM_GRASS_WHISTLE_PLAY = 0x110,
+        /* 0x10F */ ANM_GRASS_WHISTLE_START,
+        /* 0x110 */ ANM_GRASS_WHISTLE_PLAY,
         /* 0x111 */ ANM_HAWK_CATCH,
-        /* 0x112 */ ANM_HAWK_SUBJECT,
-
-        /* 0x129 */ ANM_HOOKSHOT_PULL_TO = 0x129,
-
-        /* 0x12B */ ANM_HOOKSHOT_SHOOT = 0x12B,
-
-        /* 0x13E */ ANM_BOOTS_EQUIP = 0x13E,
-
-        /* 0x181 */ ANM_CHAIN_PICK_UP = 0x181,
+        /* 0x112 */ ANM_HAWK_WAIT,
+        /* 0x113 */ ANM_WAIT_D_B,  // ghost rats?
+        /* 0x114 */ ANM_HORSE_WAIT_D_B,  // ?
+        /* 0x115 */ ANM_MG_KICK, // ?
+        /* 0x116 */ ANM_DIE,
+        /* 0x117 */ ANM_HORSE_DIE,
+        /* 0x118 */ ANM_SWIM_DIE,
+        /* 0x119 */ ANM_SWIM_DROWN,
+        /* 0x11A */ ANM_ATN_COW,
+        /* 0x11B */ ANM_COW_CATCH_START,
+        /* 0x11C */ ANM_COW_CATCH,
+        /* 0x11D */ ANM_COW_A_D,  // ?
+        /* 0x11E */ ANM_COW_PRESS,
+        /* 0x11F */ ANM_COW_THROW_LEFT,
+        /* 0x120 */ ANM_COW_THROW_RIGHT,
+        /* 0x121 */ ANM_ATN_RIGHT,
+        /* 0x122 */ ANM_COW_MOVE_LEFT_RIGHT,
+        /* 0x123 */ ANM_COW_STROKE,
+        /* 0x124 */ ANM_ENTRANCE,
+        /* 0x125 */ ANM_FALL,
+        /* 0x126 */ ANM_APPEARANCE,
+        /* 0x127 */ ANM_S_JUMP_START,  // ?
+        /* 0x128 */ ANM_S_JUMP_END,  // ?
+        /* 0x129 */ ANM_HOOKSHOT_FLY_LEFT,
+        /* 0x12A */ ANM_HOOKSHOT_FLY_RIGHT,
+        /* 0x12B */ ANM_HOOKSHOT_SHOOT,
+        /* 0x12C */ ANM_HOOKSHOT_HANG_END_LEFT,
+        /* 0x12D */ ANM_HOOKSHOT_HANG_END_RIGHT,
+        /* 0x12E */ ANM_HOOKSHOT_HANG_LEFT,
+        /* 0x12F */ ANM_HOOKSHOT_HANG_RIGHT,
+        /* 0x130 */ ANM_HOOKSHOT_HANG_WAIT_LEFT,
+        /* 0x131 */ ANM_HOOKSHOT_HANG_WAIT_RIGHT,
+        /* 0x132 */ ANM_HOOKSHOT_HANG_SHOOT_LEFT,
+        /* 0x133 */ ANM_HOOKSHOT_HANG_SHOOT_RIGHT,
+        /* 0x134 */ ANM_HOOKSHOT_HANG_LEFT_START,
+        /* 0x135 */ ANM_HOOKSHOT_HANG_RIGHT_START,
+        /* 0x136 */ ANM_HOOKSHOT_WALL_END_LEFT,
+        /* 0x137 */ ANM_HOOKSHOT_WALL_END_RIGHT,
+        /* 0x138 */ ANM_HOOKSHOT_WALL_LEFT,
+        /* 0x139 */ ANM_HOOKSHOT_WALL_RIGHT,
+        /* 0x13A */ ANM_HOOKSHOT_WALL_WAIT_LEFT,
+        /* 0x13B */ ANM_HOOKSHOT_WALL_WAIT_RIGHT,
+        /* 0x13C */ ANM_HOOKSHOT_WALL_SHOOT_LEFT,
+        /* 0x13D */ ANM_HOOKSHOT_WALL_SHOOT_RIGHT,
+        /* 0x13E */ ANM_HVY_BOOTS_PUT_ON,
+        /* 0x13F */ ANM_SUMOU_MIAU,  // ?
+        /* 0x140 */ ANM_SUMOU_HAKEYOI,  // ?
+        /* 0x141 */ ANM_SUMOU_FIGHT_WAIT,
+        /* 0x142 */ ANM_SUMOU_FIGHT_STEP_LEFT,
+        /* 0x143 */ ANM_SUMOU_FIGHT_STEP_RIGHT,
+        /* 0x144 */ ANM_SUMOU_FIGHT_STEP,
+        /* 0x145 */ ANM_SUMOU_TACKLE,
+        /* 0x146 */ ANM_SUMOU_TACKLE_GORON,  // ?
+        /* 0x147 */ ANM_SUMOU_DODGE_TACKLE,
+        /* 0x148 */ ANM_SUMOU_TACKLE_MISS,
+        /* 0x149 */ ANM_SUMOU_TACKLE_SHOCK,
+        /* 0x14A */ ANM_SUMOU_TACKLE_WAIT,
+        /* 0x14B */ ANM_SUMOU_TACKLE_WAIT_GORON,  // ?
+        /* 0x14C */ ANM_SUMOU_TACKLE_STAGGER,
+        /* 0x14D */ ANM_SUMOU_TACKLE_STAGGER_GORON,  // ?
+        /* 0x14E */ ANM_SUMOU_TACKLE_SHOCK_RETURN,
+        /* 0x14F */ ANM_SUMOU_PUNCH,
+        /* 0x150 */ ANM_SUMOU_PUNCH_MISS_SHOCK,
+        /* 0x151 */ ANM_SUMOU_PUNCH_MISS_SHOCK_RETURN,
+        /* 0x152 */ ANM_SUMOU_PUNCH_SHOCK,
+        /* 0x153 */ ANM_SUMOU_STAGGER,
+        /* 0x154 */ ANM_SUMOU_PUSH_BACK,
+        /* 0x155 */ ANM_SUMOU_PULL_BACK,
+        /* 0x156 */ ANM_SUMOU_PULL_BACK_GORON,  // ?
+        /* 0x157 */ ANM_SUMOU_WIN,
+        /* 0x158 */ ANM_SUMOU_WIN_GORON,
+        /* 0x159 */ ANM_SUMOU_LOSE,
+        /* 0x15A */ ANM_SUMOU_LOSE_GORON,
+        /* 0x15B */ ANM_SUMOU_KNOCKED_DOWN,
+        /* 0x15C */ ANM_SUMOU_GET_UP,
+        /* 0x15D */ ANM_SUMOU_SHIKO,
+        /* 0x15E */ ANM_SUMOU_SHIKO_WAIT,
+        /* 0x15F */ ANM_DMG_FBW,  // ?
+        /* 0x160 */ ANM_IRONBALL_WAIT,
+        /* 0x161 */ ANM_IRONBALL_WALK,
+        /* 0x162 */ ANM_IRONBALL_ATTACK,
+        /* 0x163 */ ANM_IRONBALL_TURN,
+        /* 0x164 */ ANM_IRONBALL_THROW,
+        /* 0x165 */ ANM_IRONBALL_PULL,
+        /* 0x166 */ ANM_IRONBALL_CATCH,
+        /* 0x167 */ ANM_IRONBALL_DEF,
+        /* 0x168 */ ANM_MORPHEEL_HANG,
+        /* 0x169 */ ANM_MORPHEEL_HANG_MISS,
+        /* 0x16A */ ANM_MORPHEEL_HANG_WAIT,
+        /* 0x16B */ ANM_MORPHEEL_HANG_WAIT_B,
+        /* 0x16C */ ANM_MORPHEEL_CUT,
+        /* 0x16D */ ANM_MORPHEEL_CUT_B,  // final hit of cycles 1 and 2
+        /* 0x16E */ ANM_MORPHEEL_CUT_FINAL,
+        /* 0x16F */ ANM_MORPHEEL_SPIT_OUT,
+        /* 0x170 */ ANM_DRAGON_HANG_LEFT,
+        /* 0x171 */ ANM_DRAGON_HANG_RIGHT,
+        /* 0x172 */ ANM_DRAGON_HANG,
+        /* 0x173 */ ANM_DRAGON_HANG_WAIT,
+        /* 0x174 */ ANM_DRAGON_HANG_WAIT_B,
+        /* 0x175 */ ANM_DRAGON_CUT,
+        /* 0x176 */ ANM_DRAGON_CUT_B,  // final hit of cycles 1 and 2
+        /* 0x177 */ ANM_DRAGON_CUT_FINAL,
+        /* 0x178 */ ANM_COPYROD_SWING,
+        /* 0x179 */ ANM_COPYROD_SWING_LARGE,
+        /* 0x17A */ ANM_GET_MASTER_SWORD, // ?
+        /* 0x17B */ ANM_WAIT_F,
+        /* 0x17C */ ANM_ELEC_STUN_GND,
+        /* 0x17D */ ANM_ELEC_STUN_AIR,
+        /* 0x17E */ ANM_KEY_CATCH,
+        /* 0x17F */ ANM_HORSE_GET_ITEM,
+        /* 0x180 */ ANM_TWGATE_PULLED_IN,
+        /* 0x181 */ ANM_CHAIN_PICK_UP,
         /* 0x182 */ ANM_CHAIN_PULL,
-
-        /* 0x188 */ ANM_DUNGEON_WARP_READY_INIT = 0x188,
-
-        /* 0x18B */ ANM_CUT_JUMP_LARGE_CHARGE = 0x18B,
-        /* 0x18C */ ANM_CUT_JUMP_LARGE_INIT,
+        /* 0x183 */ ANM_CHAIN_PULL_FYRUS,
+        /* 0x184 */ ANM_CHAIN_PULL_END,
+        /* 0x185 */ ANM_WAIT_INSECT,
+        /* 0x186 */ ANM_DEMO_MHOP,  // ?
+        /* 0x187 */ ANM_PULL_IRONBALL_SWITCH,
+        /* 0x188 */ ANM_TRADE_ITEM_PULL_OUT,
+        /* 0x189 */ ANM_TRADE_ITEM_WAIT,
+        /* 0x18A */ ANM_DEMO_KAMAE,  // ?
+        /* 0x18B */ ANM_CUT_JUMP_LARGE_CHARGE,
+        /* 0x18C */ ANM_CUT_JUMP_LARGE_START,
         /* 0x18D */ ANM_CUT_JUMP_LARGE,
         /* 0x18E */ ANM_CUT_JUMP_LARGE_LAND,
-        /* 0x18F */ ANM_MASTER_SWORD_STICK_INIT,
-        /* 0x190 */ ANM_MASTER_SWORD_STICK,
-        /* 0x191 */ ANM_MASTER_SWORD_PULL_INIT,
-
-        /* 0x198 */ ANM_GANON_FINISH = 408,  // name probably wrong, fix later
+        /* 0x18F */ ANM_DEMO_MASTER_SWORD_STICK,
+        /* 0x190 */ ANM_DEMO_MASTER_SWORD_WAIT,
+        /* 0x191 */ ANM_DEMO_MASTER_SWORD_PULL,
+        /* 0x192 */ ANM_GANON_CHANCE,
+        /* 0x193 */ ANM_GANON_CHANCE_LOSING,
+        /* 0x194 */ ANM_GANON_CHANCE_WINNING,
+        /* 0x195 */ ANM_GANON_CHANCE_WIN,
+        /* 0x196 */ ANM_GANON_CHANCE_LOSE,
+        /* 0x197 */ ANM_GANON_FINISH,
+        /* 0x198 */ ANM_GANON_FINISH_WAIT,
+        /* 0x199 */ ANM_GANON_ON_HORSE,
+        /* 0x19A */ ANM_DIVE_START,
+        /* 0x19B */ ANM_DIVE,
+        /* 0x19C */ ANM_ODOROKU,  // ?
+        /* 0x19D */ ANM_ASHIMOTO,  // ?
     };
 
     enum daAlink_UPPER {
-        Unk0,
-        Unk1,
-        UPPER_NOW  // needs better name. main upper anmheap idx checked for actions
+        UPPER_0,
+        UPPER_1,
+        UPPER_2,
     };
 
-    enum daAlink_UNDER {};
+    enum daAlink_UNDER {
+        UNDER_0,
+        UNDER_1,
+        UNDER_2,
+    };
+
+
     enum daAlink_FTANM {};
     enum daAlink_WARP_MAT_MODE {};
 
     enum daAlink_WANM {
-        /* 0x5E */ ANM_WOLF_HOWL_SUCCESS = 94,
-
-        /* 0x70 */ ANM_TRANFORM_HUMAN = 0x70,  // verify
+        /* 0x00 */ WANM_WAIT,
+        /* 0x01 */ WANM_WALK_A,
+        /* 0x02 */ WANM_WALK_B,
+        /* 0x03 */ WANM_DASH_A,
+        /* 0x04 */ WANM_JUMP_ATTACK_START,
+        /* 0x05 */ WANM_JUMP_ATTACK,
+        /* 0x06 */ WANM_JUMP_ATTACK_END,
+        /* 0x07 */ WANM_WAIT_PP,  // ?
+        /* 0x08 */ WANM_PUSH_LIGHT,
+        /* 0x09 */ WANM_PUSH_START,
+        /* 0x0A */ WANM_PUSH,
+        /* 0x0B */ WANM_SIT,
+        /* 0x0C */ WANM_CROUCH,
+        /* 0x0D */ WANM_CROUCH_WALK,
+        /* 0x0E */ WANM_WAIT_SIT,
+        /* 0x0F */ WANM_TRES_OPEN,
+        /* 0x10 */ WANM_VJMP_START,
+        /* 0x11 */ WANM_BUMP_START,
+        /* 0x12 */ WANM_BUMP_END,
+        /* 0x13 */ WANM_VJMP_CLIMB,
+        /* 0x14 */ WANM_VJMP_CLIMB_HANG,
+        /* 0x15 */ WANM_TURN_BACK,
+        /* 0x16 */ WANM_DMG_SMALL,
+        /* 0x17 */ WANM_WAIT_TIRED,
+        /* 0x18 */ WANM_WAIT_TO_TIRED,
+        /* 0x19 */ WANM_HANG,
+        /* 0x1A */ WANM_SLIP,
+        /* 0x1B */ WANM_TURN,
+        /* 0x1C */ WANM_ATN,
+        /* 0x1D */ WANM_WALK_SLOPE,
+        /* 0x1E */ WANM_SLIDE_BACKWARD,
+        /* 0x1F */ WANM_SLIDE_BACKWARD_END,
+        /* 0x20 */ WANM_SLIDE_FORWARD_START,
+        /* 0x21 */ WANM_ROPE_WALK,
+        /* 0x22 */ WANM_ROPE_CLIMB_LEFT,
+        /* 0x23 */ WANM_ROPE_CLIMB_RIGHT,
+        /* 0x24 */ WANM_ROPE_TURN,
+        /* 0x25 */ WANM_ROPE_WAIT,
+        /* 0x26 */ WANM_ROPE_FALTER,
+        /* 0x27 */ WANM_DASH_B,
+        /* 0x28 */ WANM_DMG_AIR_FRONT,
+        /* 0x29 */ WANM_DMG_AIR_BACK,
+        /* 0x2A */ WANM_DMG_AIR_LEFT,
+        /* 0x2B */ WANM_DMG_AIR_RIGHT,
+        /* 0x2C */ WANM_DMG_AIR_FRONT_GETUP,
+        /* 0x2D */ WANM_DMG_AIR_BACK_GETUP,
+        /* 0x2E */ WANM_DMG_AIR_LEFT_GETUP,
+        /* 0x2F */ WANM_DMG_AIR_RIGHT_GETUP,
+        /* 0x30 */ WANM_SERVICE_WAIT_A,
+        /* 0x31 */ WANM_WAIT_B,
+        /* 0x32 */ WANM_JUMP_B_START,
+        /* 0x33 */ WANM_JUMP_B_TURN_START,
+        /* 0x34 */ WANM_JUMP_B,
+        /* 0x35 */ WANM_JUMP_B_END,
+        /* 0x36 */ WANM_SWIM_RESURFACE,
+        /* 0x37 */ WANM_SWIM_WAIT,
+        /* 0x38 */ WANM_SWIM,
+        /* 0x39 */ WANM_SWIM_DASH,
+        /* 0x3A */ WANM_WAIT_SHAKE,
+        /* 0x3B */ WANM_WAIT_START,
+        /* 0x3C */ WANM_DMG_FRONT,
+        /* 0x3D */ WANM_DMG_BACK,
+        /* 0x3E */ WANM_DMG_LEFT,
+        /* 0x3F */ WANM_DMG_RIGHT,
+        /* 0x40 */ WANM_ATTACK_B_LEFT,
+        /* 0x41 */ WANM_ATTACK_B_RIGHT,
+        /* 0x42 */ WANM_ATTACK_B_FRONT,
+        /* 0x43 */ WANM_ATTACK_B_TAIL,
+        /* 0x44 */ WANM_ATN_LOCK_WALK_BACK,
+        /* 0x45 */ WANM_ATN_LOCK_WALK_FRONT,
+        /* 0x46 */ WANM_ATN_LOCK_RUN,
+        /* 0x47 */ WANM_PICKUP_A,
+        /* 0x48 */ WANM_SIDE_JUMP_LEFT_START,
+        /* 0x49 */ WANM_SIDE_JUMP_LEFT_END,
+        /* 0x4A */ WANM_SIDE_JUMP_RIGHT_START,
+        /* 0x4B */ WANM_SIDE_JUMP_RIGHT_END,
+        /* 0x4C */ WANM_BACK_JUMP_START,
+        /* 0x4D */ WANM_BACK_JUMP_END,
+        /* 0x4E */ WANM_PICKUP_B,
+        /* 0x4F */ WANM_PICKUP_THROW,
+        /* 0x50 */ WANM_ATTACK_A_START,
+        /* 0x51 */ WANM_ATTACK_A,
+        /* 0x52 */ WANM_ATTACK_A_END,
+        /* 0x53 */ WANM_ATTACK_A_END_FRONT,
+        /* 0x54 */ WANM_ATTACK_A_END_BACK,
+        /* 0x55 */ WANM_ATTACK_T_START,
+        /* 0x56 */ WANM_ATTACK_T,
+        /* 0x57 */ WANM_HANDLE_HANG,
+        /* 0x58 */ WANM_HANDLE_HANG_WAIT,
+        /* 0x59 */ WANM_HANDLE_HANG_SW,  // ?
+        /* 0x5A */ WANM_CUT_TURN_LEFT,
+        /* 0x5B */ WANM_CUT_TURN_RIGHT,
+        /* 0x5C */ WANM_HOWL,
+        /* 0x5D */ WANM_HOWL_SIT,
+        /* 0x5E */ WANM_HOWL_SUCCESS,
+        /* 0x5F */ WANM_HOWL_END,
+        /* 0x60 */ WANM_FALL_LAND,
+        /* 0x61 */ WANM_FALL_LAND_START,
+        /* 0x62 */ WANM_ATTACK_POE_START,
+        /* 0x63 */ WANM_ATTACK_POE,
+        /* 0x64 */ WANM_ATTACK_POE_END,
+        /* 0x65 */ WANM_ATTACK_POE_MISS,
+        /* 0x66 */ WANM_BACKFLIP_START,
+        /* 0x67 */ WANM_BACKFLIP_END,
+        /* 0x68 */ WANM_DIG,
+        /* 0x69 */ WANM_DIG_IN,
+        /* 0x6A */ WANM_DIG_UNDER,
+        /* 0x6B */ WANM_SLIDE_W,  // ?
+        /* 0x6C */ WANM_JUMP_KICK,
+        /* 0x6D */ WANM_PULL_OUT,
+        /* 0x6E */ WANM_CUT_TURN_CHARGE,
+        /* 0x6F */ WANM_TRANSFORM_TO_WOLF,
+        /* 0x70 */ WANM_TRANSFORM_TO_HUMAN,
+        /* 0x71 */ WANM_WAIT_WIND,
+        /* 0x72 */ WANM_SMELL,
+        /* 0x73 */ WANM_DASH_START,
+        /* 0x74 */ WANM_ATTACK_RECOIL_START,
+        /* 0x75 */ WANM_ATTACK_RECOIL_END,
+        /* 0x76 */ WANM_FLING_LEFT,
+        /* 0x77 */ WANM_FLING_RIGHT,
+        /* 0x78 */ WANM_CATCH_START,
+        /* 0x79 */ WANM_CATCH,
+        /* 0x7A */ WANM_ATTACK_RECOIL_GROUND,
+        /* 0x7B */ WANM_DIE,
+        /* 0x7C */ WANM_SWIM_DIE,
+        /* 0x7D */ WANM_SWIM_DROWN,
+        /* 0x7E */ WANM_WAIT_STUNNED,  // ?
+        /* 0x7F */ WANM_WAIT_A_TO_S,  // ?
+        /* 0x80 */ WANM_SERVICE_WAIT_D,
+        /* 0x81 */ WANM_MIDNA_SHOCK,
+        /* 0x82 */ WANM_ENTRANCE,
+        /* 0x83 */ WANM_GET_A,
+        /* 0x84 */ WANM_GET,
+        /* 0x85 */ WANM_WAIT_KARGOROK,
+        /* 0x86 */ WANM_CATCH_KARGOROK,
+        /* 0x87 */ WANM_DMG_ELEC_GROUND,
+        /* 0x88 */ WANM_DMG_ELEC_AIR,
+        /* 0x89 */ WANM_TWGATE_PULL,
+        /* 0x8A */ WANM_CHAIN_PULL,
+        /* 0x8B */ WANM_CHAIN_PULL_END,
+        /* 0x8C */ WANM_LISTEN,
+        /* 0x8D */ WANM_PIG_GANON_CATCH_ST,
+        /* 0x8E */ WANM_PIG_GANON_CATCH_END,
+        /* 0x8F */ WANM_PIG_GANON_THROW_LEFT_START,
+        /* 0x90 */ WANM_PIG_GANON_THROW_LEFT_END,
+        /* 0x91 */ WANM_PIG_GANON_THROW_RIGHT_START,
+        /* 0x92 */ WANM_PIG_GANON_THROW_RIGHT_END,
     };
 
     enum MODE_FLG {
@@ -655,8 +1050,8 @@ public:
         /* 0x0E8 */ PROC_MASTER_SWORD_STICK,
         /* 0x0E9 */ PROC_MASTER_SWORD_PULL,
         /* 0x0EA */ PROC_DUNGEON_WARP_READY,
-        /* 0x0EB */ PROC_DUNEGON_WARP,
-        /* 0x0EC */ PROC_DUNEGON_WARP_SCN_START,
+        /* 0x0EB */ PROC_DUNGEON_WARP,
+        /* 0x0EC */ PROC_DUNGEON_WARP_SCN_START,
         /* 0x0ED */ PROC_WOLF_HOWL_DEMO,
         /* 0x0EE */ PROC_WOLF_SERVICE_WAIT,
         /* 0x0EF */ PROC_WOLF_TIRED_WAIT,
@@ -774,15 +1169,6 @@ public:
         /* 0x15F */ PROC_QUAKE_WAIT,
     };
 
-    // this might be one of the above enums, but not clear yet
-    enum UPPER_ANM {
-        ANM_SMALL_GUARD = 22,
-        ANM_HUMAN_CHAIN_GRAB = 98,
-        ANM_WOLF_CHAIN_GRAB = 672,
-        ANM_WOLF_ENEMY_THROW_LEFT = 701,
-        ANM_WOLF_ENEMY_THROW_RIGHT,
-    };
-
     enum daAlink_ITEM_BTN {
         /* 0x01 */ BTN_X = (1 << 0),
         /* 0x02 */ BTN_Y = (1 << 1),
@@ -880,13 +1266,13 @@ public:
     /* 800A7358 */ void setPolygonSpeed();
     /* 800A7950 */ void checkWindSpeedOnAngle() const;
     /* 800A79EC */ void checkWindSpeedOnAngleAnime(int) const;
-    /* 800A7A5C */ void checkDashAnime() const;
+    /* 800A7A5C */ bool checkDashAnime() const;
     /* 800A7ABC */ void checkWindWallRate(cXyz const&);
     /* 800A7CB0 */ void setWindSpeed();
     /* 800A8310 */ void setBodyPartPos();
     /* 800A87F8 */ void setAttentionPos();
     /* 800A8CE4 */ void setMatrix();
-    /* 800A9248 */ static void simpleAnmPlay(J3DAnmBase*);
+    /* 800A9248 */ static int simpleAnmPlay(J3DAnmBase*);
     /* 800A92F0 */ void setSwordPos();
     /* 800A9450 */ void setItemMatrix(int);
     /* 800A9F4C */ void setWolfItemMatrix();
@@ -904,10 +1290,10 @@ public:
     /* 800ABB84 */ void setCollisionPos();
     /* 800ABDB8 */ void setCollision();
     /* 800AC394 */ void setFrameCtrl(daPy_frameCtrl_c*, u8, s16, s16, f32, f32);
-    /* 800AC450 */ void getMainBckData(daAlink_c::daAlink_ANM) const;
-    /* 800AC558 */ void checkUnderMove0BckNoArc(daAlink_c::daAlink_ANM) const;
-    /* 800AC5B4 */ void checkUnderMove1BckNoArc(daAlink_c::daAlink_ANM) const;
-    /* 800AC610 */ void getUnderUpperAnime(daAlink_c::daAlink_ANM, J3DAnmTransform**,
+    /* 800AC450 */ const daAlink_BckData* getMainBckData(daAlink_c::daAlink_ANM) const;
+    /* 800AC558 */ BOOL checkUnderMove0BckNoArc(daAlink_c::daAlink_ANM) const;
+    /* 800AC5B4 */ BOOL checkUnderMove1BckNoArc(daAlink_c::daAlink_ANM) const;
+    /* 800AC610 */ int getUnderUpperAnime(daAlink_c::daAlink_ANM, J3DAnmTransform**,
                                            J3DAnmTransform**, int, u32);
     /* 800AC738 */ void setDoubleAnimeBlendRatio(f32);
     /* 800AC754 */ void commonDoubleAnime(J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*,
@@ -918,8 +1304,8 @@ public:
     /* 800ACF80 */ void setSingleAnimeBase(daAlink_c::daAlink_ANM anmID);
     /* 800ACFB0 */ void setSingleAnimeBaseMorf(daAlink_c::daAlink_ANM anmID, f32);
     /* 800ACFE0 */ void setSingleAnimeBaseSpeed(daAlink_c::daAlink_ANM anmID, f32 speed, f32 morf);
-    /* 800AD00C */ void setSingleAnime(daAlink_c::daAlink_ANM anmID, f32 rate, f32 start, s16 endF, f32 morf);
-    /* 800AD0F4 */ void setSingleAnimeParam(daAlink_c::daAlink_ANM anmID, daAlinkHIO_anm_c const*);
+    /* 800AD00C */ int setSingleAnime(daAlink_c::daAlink_ANM anmID, f32 rate, f32 start, s16 endF, f32 morf);
+    /* 800AD0F4 */ int setSingleAnimeParam(daAlink_c::daAlink_ANM anmID, daAlinkHIO_anm_c const*);
     /* 800AD128 */ void animePlay(J3DAnmTransform*, daPy_frameCtrl_c*);
     /* 800AD170 */ void allAnimePlay();
     /* 800AD2D8 */ void setUpperAnimeMorf(f32);
@@ -930,13 +1316,13 @@ public:
     /* 800AD6F0 */ void setUpperAnimeParam(u16, daAlink_c::daAlink_UPPER, daAlinkHIO_anm_c const*);
     /* 800AD724 */ void resetUpperAnime(daAlink_c::daAlink_UPPER, f32);
     /* 800AD8F4 */ void setUnderAnimeMorf(f32);
-    /* 800AD964 */ void setUnderAnime(u16, daAlink_c::daAlink_UNDER, f32, f32, s16, f32);
-    /* 800ADAB8 */ void setUnderAnimeParam(u16, daAlink_c::daAlink_UNDER, daAlinkHIO_anm_c const*);
+    /* 800AD964 */ int setUnderAnime(u16, daAlink_c::daAlink_UNDER, f32, f32, s16, f32);
+    /* 800ADAB8 */ int setUnderAnimeParam(u16, daAlink_c::daAlink_UNDER, daAlinkHIO_anm_c const*);
     /* 800ADAEC */ void resetUnderAnime(daAlink_c::daAlink_UNDER, f32);
     /* 800ADB78 */ void setOldRootQuaternion(s16, s16, s16);
-    /* 800ADC50 */ void checkAtnLeftAnime();
-    /* 800ADCEC */ void checkAtnRightAnime();
-    /* 800ADD88 */ void getMoveGroundAngleSpeedRate();
+    /* 800ADC50 */ BOOL checkAtnLeftAnime();
+    /* 800ADCEC */ BOOL checkAtnRightAnime();
+    /* 800ADD88 */ f32 getMoveGroundAngleSpeedRate();
     /* 800ADE14 */ void setBlendMoveAnime(f32);
     /* 800AEA70 */ void setBlendAtnMoveAnime(f32);
     /* 800AF11C */ void setBlendAtnBackMoveAnime(f32);
@@ -953,7 +1339,7 @@ public:
     /* 800AFC88 */ void resetFacePriTexture();
     /* 800AFCBC */ void resetFacePriAnime();
     /* 800AFCF0 */ void playFaceTextureAnime();
-    /* 800B0098 */ void getGroundAngle(cBgS_PolyInfo*, s16);
+    /* 800B0098 */ s16 getGroundAngle(cBgS_PolyInfo*, s16);
     /* 800B0150 */ void getRoofAngle(cBgS_PolyInfo*, s16);
     /* 800B01FC */ void getWallEdgePos(cXyz const&, cM3dGPla*, cM3dGPla*, cXyz*, int);
     /* 800B02BC */ void setFrontWallType();
@@ -966,7 +1352,7 @@ public:
     /* 800B1B68 */ BOOL checkNotItemSinkLimit();
     /* 800B1BAC */ void setSandShapeOffset();
     /* 800B1FB8 */ bool checkLv2MiddleBossBgRide(s16);
-    /* 800B1FD8 */ void getSlidePolygon(cM3dGPla*);
+    /* 800B1FD8 */ bool getSlidePolygon(cM3dGPla*);
     /* 800B21EC */ BOOL checkSlope() const;
     /* 800B25CC */ BOOL itemTriggerCheck(u8);
     /* 800B25E8 */ BOOL itemButtonCheck(u8);
@@ -999,15 +1385,15 @@ public:
     /* 800B3F2C */ void getStickAngleDistanceRate();
     /* 800B3FD4 */ void setSpeedAndAngleNormal();
     /* 800B444C */ void setSpeedAndAngleAtn();
-    /* 800B477C */ void checkRequestTalkActor(dAttList_c*, fopAc_ac_c*);
+    /* 800B477C */ int checkRequestTalkActor(dAttList_c*, fopAc_ac_c*);
     /* 800B47B4 */ void checkServiceWaitMode();
     /* 800B48D0 */ void setJumpMode();
     /* 800B4908 */ f32 getMetamorphoseNearDis() const;
     /* 800B4918 */ f32 getMetamorphoseFarDis() const;
     /* 800B4928 */ s16 getMetamorphoseFarAngle() const;
     /* 800B4938 */ void setMidnaMsg();
-    /* 800B4950 */ bool notTalk();
-    /* 800B4A08 */ void setTalkStatus();
+    /* 800B4950 */ BOOL notTalk();
+    /* 800B4A08 */ BOOL setTalkStatus();
     /* 800B4B2C */ f32 getFrontRollRate();
     /* 800B4B7C */ void decideCommonDoStatus();
     /* 800B5284 */ void decideDoStatus();
@@ -1017,7 +1403,7 @@ public:
     /* 800B5C64 */ void setStepLandVibration();
     /* 800B5CCC */ void checkLandAction(int);
     /* 800B5F6C */ BOOL checkSlideAction();
-    /* 800B607C */ void checkAutoJumpAction();
+    /* 800B607C */ BOOL checkAutoJumpAction();
     /* 800B69CC */ bool checkCutJumpInFly();
     /* 800B6A30 */ BOOL checkFrontWallTypeAction();
     /* 800B6F28 */ void checkItemActionInitStart();
@@ -1031,8 +1417,8 @@ public:
     /* 800B7528 */ void checkItemButtonChange();
     /* 800B75EC */ void checkUpperItemAction();
     /* 800B7B7C */ void orderPeep();
-    /* 800B7BF8 */ void orderTalk(int);
-    /* 800B80C4 */ void orderZTalk();
+    /* 800B7BF8 */ int orderTalk(int);
+    /* 800B80C4 */ int orderZTalk();
     /* 800B8374 */ void checkNormalAction();
     /* 800B8930 */ bool checkReadyItem();
     /* 800B8988 */ void checkItemAction();
@@ -1043,7 +1429,7 @@ public:
     /* 800B92D0 */ void checkOneHandItemEquipAnime() const;
     /* 800B92F8 */ void checkItemEquipAnime() const;
     /* 800B9340 */ BOOL checkEquipAnime() const;
-    /* 800B9398 */ void checkWindDashAnime() const;
+    /* 800B9398 */ BOOL checkWindDashAnime() const;
     /* 800B93CC */ void checkSwordTwirlAnime() const;
     /* 800B93F4 */ void swordEquip(int);
     /* 800B9580 */ void swordUnequip();
@@ -1078,9 +1464,9 @@ public:
     /* 800BDF60 */ void startRestartRoom(u32, int, int, int);
     /* 800BE26C */ void checkCoachGuardGame();
     /* 800BE2C0 */ void checkRoofRestart();
-    /* 800BE3E4 */ void checkRestartRoom();
+    /* 800BE3E4 */ bool checkRestartRoom();
     /* 800BE9D4 */ s16 getSceneExitMoveAngle();
-    /* 800BEAF8 */ int checkSceneChange(int);
+    /* 800BEAF8 */ int checkSceneChange(int i_exitID);
     /* 800BF0B8 */ void voiceStartLevel(u32);
     /* 800BF0EC */ void seStartSwordCut(u32);
     /* 800BF194 */ void seStartMapInfo(u32);
@@ -1194,7 +1580,7 @@ public:
     /* 800C84D0 */ void procFloorDownRebound();
     /* 800C854C */ void procGoronRideWaitInit(fopAc_ac_c*);
     /* 800C85D8 */ void procGoronRideWait();
-    /* 800C8700 */ void execute();
+    /* 800C8700 */ int execute();
     /* 800CAFC8 */ void setDrawHand();
     /* 800CB480 */ bool checkSwordDraw();
     /* 800CB53C */ bool checkShieldDraw();
@@ -1229,9 +1615,9 @@ public:
     /* 800CFF4C */ BOOL checkAttentionLock();
     /* 800D0020 */ BOOL checkFmChainGrabAnime() const;
     /* 800D0048 */ BOOL checkSmallUpperGuardAnime() const;
-    /* 800D00EC */ BOOL checkReinRide() const;
+    /* 800D00EC */ u32 checkReinRide() const;
     /* 800D0110 */ BOOL checkWolfEnemyThrowAnime() const;
-    /* 800D0138 */ u16 checkSpecialDemoMode() const;
+    /* 800D0138 */ int checkSpecialDemoMode() const;
     /* 800D014C */ void setMidnaTalkStatus(u8);
     /* 800D0164 */ void set3DStatus(u8, u8);
     /* 800D018C */ u32 checkModeFlg(u32) const;
@@ -1244,7 +1630,7 @@ public:
     /* 800D0F90 */ void initCutTurnAt(f32, int);
     /* 800D102C */ bool checkCutFinishJumpUp();
     /* 800D1088 */ void changeCutFast();
-    /* 800D10E0 */ void checkCutFastReady();
+    /* 800D10E0 */ bool checkCutFastReady();
     /* 800D1268 */ void setSwordModel();
     /* 800D1310 */ void offSwordModel();
     /* 800D13AC */ BOOL checkCutTypeNoBlur() const;
@@ -1325,20 +1711,20 @@ public:
     /* 800D6F2C */ void checkNoLandDamageSlidePolygon();
     /* 800D6FE0 */ void checkCutLandDamage();
     /* 800D70A0 */ void checkCaughtEscapeCutTurn();
-    /* 800D7208 */ void damageMagnification(int, int);
+    /* 800D7208 */ f32 damageMagnification(int, int);
     /* 800D72BC */ void setDamagePoint(int, int, int, int);
     /* 800D7478 */ void setDamagePointNormal(int);
     /* 800D74A4 */ void setLandDamagePoint(int);
     /* 800D74F4 */ void getDamageVec(dCcD_GObjInf*);
     /* 800D76C4 */ void setDashDamage();
     /* 800D7768 */ void checkIcePolygonDamage(cBgS_PolyInfo*);
-    /* 800D77C8 */ void checkMagicArmorNoDamage();
+    /* 800D77C8 */ BOOL checkMagicArmorNoDamage();
     /* 800D7820 */ void checkPolyDamage();
     /* 800D7A98 */ void checkElecReturnDamage(dCcD_GObjInf&, fopAc_ac_c**);
     /* 800D7B18 */ void damageTimerCount();
     /* 800D7BE8 */ void checkHugeAttack(int) const;
     /* 800D7C14 */ void checkLargeAttack(int) const;
-    /* 800D7C40 */ void checkDamageAction();
+    /* 800D7C40 */ BOOL checkDamageAction();
     /* 800D8F3C */ void procDamageInit(dCcD_GObjInf*, int);
     /* 800D9514 */ void procDamage();
     /* 800D96DC */ void procCoLargeDamageInit(int, int, s16, s16, dCcD_GObjInf*, int);
@@ -1368,7 +1754,7 @@ public:
     /* 800DC474 */ void procCoSwimFreezeReturn();
     /* 800DC548 */ static BOOL checkEnemyGroup(fopAc_ac_c*);
     /* 800DC5A4 */ static BOOL checkSpecialNpc(fopAc_ac_c*);
-    /* 800DC5DC */ void checkShieldAttackEmphasys();
+    /* 800DC5DC */ bool checkShieldAttackEmphasys();
     /* 800DC678 */ BOOL checkGuardActionChange();
     /* 800DC79C */ void stickArrowIncrement(int);
     /* 800DC8C4 */ void setArrowShieldActor(fopAc_ac_c*, int);
@@ -1458,7 +1844,7 @@ public:
     /* 800E1374 */ fopAc_ac_c* getCopyRodControllActor();
     /* 800E1390 */ fopAc_ac_c* getCopyRodCameraActor();
     /* 800E13AC */ void initCopyRodUpperAnimeSpeed(int);
-    /* 800E1408 */ BOOL checkForestOldCentury();
+    /* 800E1408 */ static BOOL checkForestOldCentury();
     /* 800E1530 */ void checkCopyRodAnime() const;
     /* 800E158C */ void setCopyRodControllAnime();
     /* 800E15FC */ void setCopyRodControllUpperSpeedRate();
@@ -1515,7 +1901,7 @@ public:
     /* 800E3D6C */ void checkGrabHeavyActor();
     /* 800E3D94 */ void checkGrabSideActor();
     /* 800E3DBC */ void setGrabUpperAnime(f32);
-    /* 800E3F20 */ void checkGrabRooster();
+    /* 800E3F20 */ BOOL checkGrabRooster();
     /* 800E3F50 */ void setGrabItemPos();
     /* 800E4BD4 */ void freeGrabItem();
     /* 800E4DEC */ void setGrabUpperSpeedRate();
@@ -1552,7 +1938,7 @@ public:
     /* 800E76E0 */ void procPickPut();
     /* 800E7894 */ void checkSetChainPullAnime(s16);
     /* 800E794C */ s16 getChainStickAngleY(s16) const;
-    /* 800E7994 */ void checkChainEmphasys();
+    /* 800E7994 */ u8 checkChainEmphasys();
     /* 800E79F8 */ void searchFmChainPos();
     /* 800E7AEC */ void setFmChainPosFromOut(fopAc_ac_c*, cXyz*, int);
     /* 800E7C30 */ void procFmChainUpInit();
@@ -1560,7 +1946,7 @@ public:
     /* 800E7DD8 */ void procFmChainStrongPullInit();
     /* 800E7E50 */ void procFmChainStrongPull();
     /* 800E7ED0 */ void setWallGrabStatus(u8, u8);
-    /* 800E7EE4 */ void getWallGrabStatus();
+    /* 800E7EE4 */ int getWallGrabStatus();
     /* 800E7EF4 */ void wallGrabTrigger();
     /* 800E7F18 */ void wallGrabButton();
     /* 800E7F3C */ void setPushPullKeepData(dBgW_Base::PushPullLabel, int);
@@ -1712,7 +2098,7 @@ public:
     /* 800F3C44 */ void getCanoeMaxRotSpeed() const;
     /* 800F3CCC */ void getCanoeLocalPaddleTop();
     /* 800F3CF8 */ void checkCanoeRideTandem();
-    /* 800F3D58 */ void checkFishingRodAndLureItem() const;
+    /* 800F3D58 */ BOOL checkFishingRodAndLureItem() const;
     /* 800F3DA0 */ void initFishingRodHand();
     /* 800F3DFC */ void getCanoePaddleMatrix();
     /* 800F3E4C */ void checkFishingRodGrab(fopAc_ac_c*) const;
@@ -1897,12 +2283,12 @@ public:
     /* 80101890 */ BOOL checkZoraWearMaskDraw();
     /* 801018E4 */ void checkAcceptUseItemInWater(u16) const;
     /* 80101934 */ void swimDeleteItem();
-    /* 801019B8 */ void getZoraSwim() const;
+    /* 801019B8 */ bool getZoraSwim() const;
     /* 80101A18 */ void getSwimFrontMaxSpeed() const;
     /* 80101AA8 */ void getSwimMaxFallSpeed() const;
     /* 80101B44 */ void checkOxygenTimer();
     /* 80101C94 */ void offOxygenTimer();
-    /* 80101CB8 */ void checkPossibleWaterInMode() const;
+    /* 80101CB8 */ bool checkPossibleWaterInMode() const;
     /* 80101CF4 */ void setWaterInAnmRate(daPy_frameCtrl_c*, f32);
     /* 80101D70 */ void swimBgCheck(f32);
     /* 801023E4 */ void setSpeedAndAngleSwim();
@@ -2047,7 +2433,7 @@ public:
     /* 801107BC */ void checkWaterInKandelaar(f32);
     /* 80110840 */ void offKandelaarModel();
     /* 801108EC */ void kandelaarModelCallBack();
-    /* 80110C6C */ void checkKandelaarEquipAnime() const;
+    /* 80110C6C */ BOOL checkKandelaarEquipAnime() const;
     /* 80110C94 */ void preKandelaarDraw();
     /* 80110E84 */ void setKandelaarModel();
     /* 80110F88 */ void resetOilBottleModel();
@@ -2096,7 +2482,7 @@ public:
     /* 80115AA0 */ void procIronBallReturn();
     /* 80115C20 */ BOOL checkEventRun() const;
     /* 80115C50 */ void createNpcTks(cXyz*, int, u32);
-    /* 80115EC0 */ void checkDemoAction();
+    /* 80115EC0 */ int checkDemoAction();
     /* 80116E60 */ void checkDemoMoveMode(u32) const;
     /* 80116E9C */ void setDemoMoveData(u32*, cXyz const*);
     /* 80117064 */ void setNoDrawSwordShield(int, u16);
@@ -2106,7 +2492,7 @@ public:
     /* 80117C90 */ void resetSpecialEvent();
     /* 80117CF8 */ void endDemoMode();
     /* 801180EC */ void getDemoLookActor();
-    /* 80118170 */ void checkFlyAtnWait();
+    /* 80118170 */ bool checkFlyAtnWait();
     /* 801181A0 */ void setGetItemFace(u16);
     /* 801182D4 */ void checkGrabTalkActor(fopAc_ac_c*);
     /* 80118308 */ void setTalkStartBack(cXyz*);
@@ -2119,16 +2505,16 @@ public:
     /* 801188B0 */ void setDemoLeftHandIndex(u16);
     /* 8011894C */ void setDemoRide(u16);
     /* 801189F8 */ void setDemoBodyBck(dDemo_actor_c*, u16);
-    /* 80118AD0 */ void checkFinalBattle();
-    /* 80118B34 */ void checkRestartDead(int, int);
+    /* 80118AD0 */ BOOL checkFinalBattle();
+    /* 80118B34 */ BOOL checkRestartDead(int, int);
     /* 80118BF4 */ void setDeadRideSyncPos();
     /* 80118C98 */ BOOL checkDeadHP();
-    /* 80118D7C */ void checkDeadAction(int);
+    /* 80118D7C */ BOOL checkDeadAction(int);
     /* 80118FF8 */ void setHighModelBck(mDoExt_bckAnm*, u16);
     /* 801190A4 */ void setHighModelFaceBtk(u16);
     /* 80119134 */ void setDemoBrk(J3DAnmTevRegKey**, J3DModel*, u16);
     /* 801191C4 */ void setStickAnmData(J3DAnmBase*, int, int, u16, int);
-    /* 801195C0 */ void procDemoCommon();
+    /* 801195C0 */ int procDemoCommon();
     /* 801195F8 */ void procCoToolDemoInit();
     /* 801196D8 */ void procCoToolDemo();
     /* 80119D98 */ void procCoTalkInit();
@@ -2179,7 +2565,7 @@ public:
     /* 8011D544 */ void procCoGetReadySitInit();
     /* 8011D64C */ void procCoGetReadySit();
     /* 8011D6D0 */ void procCoTwGateInit();
-    /* 8011D7D4 */ void procCoTwGate();
+    /* 8011D7D4 */ int procCoTwGate();
     /* 8011D82C */ void procWolfSnowEscapeInit();
     /* 8011D8F8 */ void procWolfSnowEscape();
     /* 8011DB04 */ void procZoraMoveInit();
@@ -2199,7 +2585,7 @@ public:
     /* 8011E9F8 */ void procGanonFinishInit();
     /* 8011EA78 */ bool procGanonFinish();
     /* 8011EAE8 */ void procCutFastReadyInit();
-    /* 8011EB8C */ void procCutFastReady();
+    /* 8011EB8C */ int procCutFastReady();
     /* 8011EBDC */ int procMasterSwordStickInit();
     /* 8011EC60 */ int procMasterSwordStick();
     /* 8011ED18 */ int procMasterSwordPullInit();
@@ -2697,7 +3083,7 @@ public:
     bool i_checkFmChainGrabAnime() const { return checkUpperAnime(0x62) || checkUpperAnime(0x2A0); }
     BOOL i_checkAttentionLock() { return mAttention->Lockon(); }
 
-    bool checkUpperAnime(u16 pIdx) const { return mUpperAnime[UPPER_NOW].getIdx() == pIdx; }
+    bool checkUpperAnime(u16 pIdx) const { return mUpperAnmHeap[UPPER_2].getIdx() == pIdx; }
     bool checkIronBallWaitAnime() const { return checkUpperAnime(0x19C); }
     bool checkHorseTurnLAnime() const { return checkUpperAnime(0x24C); }
     bool checkHorseTurnRAnime() const { return checkUpperAnime(0x24D); }
@@ -2727,7 +3113,7 @@ public:
         return mEquipItem != 0x102 && checkBoomerangAnime();
     }
     J3DAnmTransform* getNowAnmPackUpper(daAlink_UPPER param_0) {
-        return mNowAnmPack[param_0].getAnmTransform();
+        return mNowAnmPackUpper[param_0].getAnmTransform();
     }
     void setFacePriBck(u16 param_0) { setFaceBck(param_0, 1, 0xFFFF); }
     void cancelFmChainGrabFromOut() {
@@ -2786,12 +3172,15 @@ public:
 
     bool checkResetRootMtx(int param_0) const { return field_0x2f90 != 0 && param_0 == 1; }
 
+    bool talkTrigger() const { return mItemTrigger & BTN_A; }
+    J3DAnmTransform* getNowAnmPackUnder(daAlink_UNDER i_idx) { return mNowAnmPackUnder[i_idx].getAnmTransform(); }
+
     inline void startRestartRoomFromOut(int, u32, int);
     inline u16 getReadyItem();
 
-    static u8 const m_mainBckShield[80];
-    static u8 const m_mainBckSword[20];
-    static u8 const m_mainBckFishing[112];
+    static daAlink_BckData const m_mainBckShield[20];
+    static daAlink_BckData const m_mainBckSword[5];
+    static daAlink_BckData const m_mainBckFishing[28];
     static daAlink_AnmData const m_anmDataTable[414];
     static daAlink_WlAnmData const m_wlAnmDataTable[147];
     static u8 const m_faceTexDataTable[652];
@@ -2830,7 +3219,7 @@ private:
     /* 0x00690 */ mDoExt_bckAnm* mpDemoFCTmpBck;
     /* 0x00694 */ J3DDeformData* mpDemoFCTmpBls;
     /* 0x00698 */ void* field_0x0698;
-    /* 0x0069C */ void* field_0x069c;
+    /* 0x0069C */ mDoExt_blkAnm* field_0x069c;
     /* 0x006A0 */ J3DModel* mpDemoHLTmpModel;
     /* 0x006A4 */ mDoExt_bckAnm* mpDemoHLTmpBck;
     /* 0x006A8 */ J3DModel* mpDemoHRTmpModel;
@@ -2884,7 +3273,10 @@ private:
     /* 0x007A0 */ J3DModel* mpWlMidnaHatModel;
     /* 0x007A4 */ J3DModel* field_0x7a4;  // related to wolf
     /* 0x007A8 */ J3DModel* mpWlMidnaHairModel;
-    /* 0x007AC */ u8 field_0x7ac[0x10];
+    /* 0x007AC */ J3DAnmTevRegKey* field_0x7ac;
+    /* 0x007B0 */ J3DAnmTevRegKey* field_0x7b0;
+    /* 0x007B4 */ J3DAnmTevRegKey* field_0x7b4;
+    /* 0x007B8 */ J3DAnmTevRegKey* field_0x7b8;
     /* 0x007BC */ mDoExt_bckAnm* m_sWindowBck;
     /* 0x007C0 */ u32 mpWarpTexData;
     /* 0x007C4 */ daPy_actorKeep_c mWolfLockAcKeep[10];
@@ -2912,14 +3304,14 @@ private:
     /* 0x01E4C */ cBgS_PolyInfo mPolyInfo4;
     /* 0x01E5C */ dBgS_ObjLinChk mObjLinChk;
     /* 0x01ECC */ dBgS_ObjGndChk mObjGndChk;
-    /* 0x01F20 */ mDoExt_MtxCalcAnmBlendTblOld* field_0x1f20;
+    /* 0x01F20 */ mDoExt_MtxCalcAnmBlendTbl* field_0x1f20;
     /* 0x01F24 */ mDoExt_MtxCalcAnmBlendTblOld* field_0x1f24;
-    /* 0x01F28 */ mDoExt_AnmRatioPack field_0x1f28[3];
-    /* 0x01F40 */ mDoExt_AnmRatioPack mNowAnmPack[3];
-    /* 0x01F58 */ daPy_anmHeap_c mUnderAnime[3];
-    /* 0x01F94 */ daPy_anmHeap_c mUpperAnime[3];
-    /* 0x01FD0 */ daPy_frameCtrl_c mFrameCtrl1[3];
-    /* 0x02018 */ daPy_frameCtrl_c mFrameCtrl2[3];
+    /* 0x01F28 */ mDoExt_AnmRatioPack mNowAnmPackUnder[3];
+    /* 0x01F40 */ mDoExt_AnmRatioPack mNowAnmPackUpper[3];
+    /* 0x01F58 */ daPy_anmHeap_c mUnderAnmHeap[3];
+    /* 0x01F94 */ daPy_anmHeap_c mUpperAnmHeap[3];
+    /* 0x01FD0 */ daPy_frameCtrl_c mUnderFrameCtrl[3];
+    /* 0x02018 */ daPy_frameCtrl_c mUpperFrameCtrl[3];
     /* 0x02060 */ mDoExt_MtxCalcOldFrame* field_0x2060;
     /* 0x02064 */ daAlink_sight_c mSight;
     /* 0x020F0 */ daPy_anmHeap_c mAnmHeap3;
@@ -2970,11 +3362,11 @@ private:
     /* 0x02A4C */ daAlink_footData_c mFootData2[2];
     /* 0x02B94 */ f32* field_0x2b94;
     /* 0x02B98 */ f32 field_0x2b98;
-    /* 0x02B98 */ f32* field_0x2b9c;
+    /* 0x02B98 */ f32 field_0x2b9c;
     /* 0x02BA0 */ f32* field_0x2ba0;
     /* 0x02BA4 */ f32* field_0x2ba4;
     /* 0x02BA8 */ f32 mSinkShapeOffset;
-    /* 0x02BAC */ cXyz field_0x2bac;
+    /* 0x02BAC */ f32 field_0x2bac[3];
     /* 0x02BB8 */ Mtx mInvMtx;
     /* 0x02BE8 */ Mtx field_0x2be8;
     /* 0x02C18 */ Mtx mRootMtx;
@@ -3021,11 +3413,11 @@ private:
     /* 0x02FA2 */ u8 mActiveBombNum;
     /* 0x02FA3 */ u8 field_0x2fa3;
     /* 0x02FA4 */ u8 mRollCrashFlg;
-    /* 0x02FA5 */ u8 field_0x2fa5;
+    /* 0x02FA5 */ u8 mPolySound;
     /* 0x02FA6 */ u8 field_0x2fa6;
     /* 0x02FA7 */ u8 field_0x2fa7;
     /* 0x02FA8 */ u8 field_0x2fa8;
-    /* 0x02FA9 */ u8 field_0x2fa9;
+    /* 0x02FA9 */ u8 mWolfEyeUpTimer;
     /* 0x02FAA */ u8 mRideStatus;
     /* 0x02FAB */ u8 field_0x2fab;
     /* 0x02FAC */ u8 mExitDirection;
@@ -3042,7 +3434,7 @@ private:
     /* 0x02FB7 */ u8 field_0x2fb7;
     /* 0x02FB8 */ u8 field_0x2fb8;
     /* 0x02FB9 */ u8 field_0x2fb9;
-    /* 0x02FBA */ u8 field_0x2fba;
+    /* 0x02FBA */ u8 mHotspringRecoverTimer;
     /* 0x02FBB */ u8 field_0x2fbb;
     /* 0x02FBC */ u8 field_0x2fbc;
     /* 0x02FBD */ u8 field_0x2fbd;
@@ -3206,7 +3598,7 @@ private:
     /* 0x030FA */ s16 field_0x30fa;
     /* 0x030FC */ u16 field_0x30fc;
     /* 0x030FE */ u16 field_0x30fe;
-    /* 0x03100 */ u16 field_0x3100;
+    /* 0x03100 */ s16 field_0x3100;
     /* 0x03102 */ s16 field_0x3102;
     /* 0x03104 */ s16 field_0x3104;
     /* 0x03106 */ u16 field_0x3106;
@@ -5802,16 +6194,26 @@ public:
 
 class mDoExt_morf_c;
 
+typedef int (daMidna_c::*daMidna_func)();
 class daMidna_c : public fopAc_ac_c {
 public:
     enum daMidna_ERFLG0 {
-        NO_SERVICE_WAIT = 128,
-        FORCE_PANIC = 8,
+        ERFLG0_NO_SERVICE_WAIT = 0x80,
+        ERFLG0_FORCE_PANIC = 8,
     };
 
-    enum daMidna_FLG0 { NPC_NEAR = 0x100000, NPC_FAR = 0x40000, NO_DRAW = 0x2000 };
+    enum daMidna_FLG0 {
+        FLG0_UNK_8000000 = 0x8000000,
+        FLG0_NPC_NEAR = 0x100000,
+        FLG0_NPC_FAR = 0x40000,
+        FLG0_NO_DRAW = 0x2000,
+        FLG0_UNK_200 = 0x200,
+    };
 
-    enum daMidna_FLG1 { FORCE_NORMAL_COLOR = 8, FORCE_TIRED_COLOR = 4 };
+    enum daMidna_FLG1 {
+        FLG1_FORCE_NORMAL_COL = 8,
+        FLG1_FORCE_TIRED_COL = 4,
+    };
 
     enum daMidna_ANM {};
 
@@ -5873,9 +6275,14 @@ public:
     bool checkDemoTypeNone() const { return mDemoType == 0; }
     void changeOriginalDemo() { mDemoType = 3; }
     void changeDemoMode(u32 mode) { mDemoMode = mode; }
-    BOOL checkNpcNear() { return checkStateFlg0(NPC_NEAR); }
-    BOOL checkNpcFar() { return checkStateFlg0(NPC_FAR); }
-    BOOL checkNoDraw() const { return checkStateFlg0(NO_DRAW); }
+    BOOL checkNpcNear() { return checkStateFlg0(FLG0_NPC_NEAR); }
+    BOOL checkNpcFar() { return checkStateFlg0(FLG0_NPC_FAR); }
+    BOOL checkNoDraw() const { return checkStateFlg0(FLG0_NO_DRAW); }
+    int checkMetamorphoseEnable() { return (this->*mpFunc)(); }
+    
+    bool checkPortalObjRide() const {
+        return checkStateFlg0(FLG0_UNK_8000000) && checkStateFlg0(FLG0_UNK_200);
+    }
 
     inline bool checkMidnaRealBody();
 
@@ -5883,72 +6290,73 @@ public:
     static u8 const m_anmDataTable[636];
 
 private:
-    /* 0x0568 */ request_of_phase_process_class* field_0x568;
-    /* 0x056C */ u8 field_0x56c[4];
+    /* 0x0568 */ request_of_phase_process_class mPhase;
     /* 0x0570 */ J3DModel* field_0x570;
     /* 0x0574 */ J3DModel* field_0x574;
-    /* 0x0578 */ mDoExt_morf_c* field_0x578;
+    /* 0x0578 */ mDoExt_McaMorfSO* field_0x578;
     /* 0x057C */ mDoExt_McaMorfCallBack1_c* field_0x57c;
     /* 0x0580 */ cXyz* field_0x580;
     /* 0x0584 */ mDoExt_bckAnm field_0x584;
     /* 0x05A0 */ mDoExt_bckAnm field_0x5a0;
-    /* 0x05BC */ u8 field_0x5bc[8];
+    /* 0x05BC */ J3DAnmTexPattern* field_0x5bc;
+    /* 0x05C0 */ J3DAnmTextureSRTKey* field_0x5c0;
     /* 0x05C4 */ mDoExt_invisibleModel field_0x5c4;
-    /* 0x05CC */ mDoExt_invisibleModel field_0x5cc;
-    /* 0x05D4 */ mDoExt_invisibleModel field_0x5d4;
-    /* 0x05DC */ mDoExt_invisibleModel field_0x5dc;
+    /* 0x05CC */ mDoExt_invisibleModel mInvMaskBmd;
+    /* 0x05D4 */ mDoExt_invisibleModel mInvHandsBmd;
+    /* 0x05DC */ mDoExt_invisibleModel mInvHairhandBmd;
     /* 0x05E4 */ daPy_anmHeap_c field_0x5e4[3];
     /* 0x0620 */ daPy_anmHeap_c field_0x620;
     /* 0x0634 */ daPy_anmHeap_c field_0x634;
-    /* 0x0648 */ J3DAnmBase* field_0x648;
-    /* 0x064C */ J3DAnmBase* field_0x64c;
-    /* 0x0650 */ J3DAnmBase* field_0x650;
-    /* 0x0654 */ J3DAnmBase* field_0x654;
-    /* 0x0658 */ u8 field_0x658[0x10];
-    /* 0x0668 */ J3DAnmBase* field_0x668;
-    /* 0x066C */ J3DAnmBase* field_0x66c;
-    /* 0x0670 */ u8 field_0x670[4];
-    /* 0x0674 */ J3DModel* field_0x674;
-    /* 0x0678 */ u8 field_0x678[4];
-    /* 0x067C */ J3DModel* field_0x67c;
-    /* 0x0680 */ u8 field_0x680[4];
-    /* 0x0684 */ J3DModel* field_0x684;
-    /* 0x0688 */ J3DModel* field_0x688;
-    /* 0x068C */ J3DModel* field_0x68c;
-    /* 0x0690 */ J3DModel* field_0x690;
-    /* 0x0694 */ J3DModel* field_0x694;
-    /* 0x0698 */ J3DModel* field_0x698;
-    /* 0x069C */ u8 field_0x98c[0x10];
-    /* 0x06AC */ J3DModel* field_0x6ac;
-    /* 0x06B0 */ J3DModel* field_0x6b0;
-    /* 0x06B4 */ u8 field_0x6b4[4];
-    /* 0x06B8 */ mDoExt_bckAnm* field_0x6b8;
-    /* 0x06BC */ J3DDeformData* field_0x6bc;
-    /* 0x06C0 */ u8 field_0x6c0[4];
-    /* 0x06C4 */ J3DFrameCtrl* field_0x6c4;
-    /* 0x06C8 */ J3DModel* field_0x6c8;
-    /* 0x06CC */ mDoExt_bckAnm* field_0x6cc;
-    /* 0x06D0 */ J3DModel* field_0x6d0;
-    /* 0x06D4 */ mDoExt_bckAnm* field_0x6d4;
-    /* 0x06D8 */ J3DModel* field_0x6d8;
-    /* 0x06DC */ mDoExt_bckAnm* field_0x6dc;
-    /* 0x06E0 */ s16 field_0x6e0;
-    /* 0x06E2 */ s16 field_0x6e2;
-    /* 0x06E4 */ s16 field_0x6e4;
-    /* 0x06E6 */ s16 field_0x6e6;
-    /* 0x06E8 */ u8 field_0x6e8;
-    /* 0x06E9 */ u8 field_0x6e9;
-    /* 0x06EA */ u8 field_0x6ea;
-    /* 0x06EB */ u8 field_0x6eb;
+    /* 0x0648 */ J3DAnmTextureSRTKey* field_0x648;
+    /* 0x064C */ J3DAnmTextureSRTKey* field_0x64c;
+    /* 0x0650 */ J3DAnmTextureSRTKey* field_0x650;
+    /* 0x0654 */ J3DAnmTextureSRTKey* field_0x654;
+    /* 0x0658 */ J3DAnmTevRegKey* field_0x658;
+    /* 0x065C */ J3DAnmTevRegKey* field_0x65c;
+    /* 0x0660 */ J3DAnmTevRegKey* field_0x660;
+    /* 0x0664 */ J3DAnmTevRegKey* field_0x664;
+    /* 0x0668 */ J3DAnmTevRegKey* field_0x668;
+    /* 0x066C */ J3DAnmTevRegKey* field_0x66c;
+    /* 0x0670 */ J3DModel* field_0x670;
+    /* 0x0674 */ J3DModel* mpMaskBmd;
+    /* 0x0678 */ J3DModel* field_0x678;
+    /* 0x067C */ J3DModel* mpHandsBmd;
+    /* 0x0680 */ J3DModel* field_0x680;
+    /* 0x0684 */ J3DModel* mpHairhandBmd;
+    /* 0x0688 */ J3DModel* mpDemoBDTmpBmd;
+    /* 0x068C */ J3DModel* mpDemoBDMaskBmd;
+    /* 0x0690 */ J3DModel* mpDemoBDHandsBmd;
+    /* 0x0694 */ J3DModel* mpDemoBDHairhandBmd;
+    /* 0x0698 */ J3DModel* mpGokouBmd;
+    /* 0x069C */ J3DShape* field_0x69c;
+    /* 0x06A0 */ J3DShape* field_0x6a0;
+    /* 0x06A4 */ J3DShape* field_0x6a4;
+    /* 0x06A8 */ J3DShape* field_0x6a8;
+    /* 0x06AC */ J3DModel* mpDemoFCBlendBmd;
+    /* 0x06B0 */ J3DModel* mpDemoFCTongueBmd;
+    /* 0x06B4 */ J3DAnmTextureSRTKey* field_0x6b4;
+    /* 0x06B8 */ mDoExt_bckAnm* mpDemoFCTmpBck;
+    /* 0x06BC */ J3DDeformData* mpDemoFCTmpBls;
+    /* 0x06C0 */ J3DAnmCluster* field_0x6c0;
+    /* 0x06C4 */ mDoExt_blkAnm* field_0x6c4;
+    /* 0x06C8 */ J3DModel* mpDemoHLTmpBmd;
+    /* 0x06CC */ mDoExt_bckAnm* mpDemoHLTmpBck;
+    /* 0x06D0 */ J3DModel* mpDemoHRTmpBmd;
+    /* 0x06D4 */ mDoExt_bckAnm* mpDemoHRTmpBck;
+    /* 0x06D8 */ J3DModel* mpDemoHDTmpBmd;
+    /* 0x06DC */ mDoExt_bckAnm* mpDemoHDTmpBck;
+    /* 0x06E0 */ J3DGXColorS10 field_0x6e0;
+    /* 0x06E8 */ J3DGXColor field_0x6e8;
     /* 0x06EC */ u8 field_0x6ec;
     /* 0x06ED */ u8 field_0x6ed;
     /* 0x06EE */ u8 field_0x6ee;
     /* 0x06EF */ u8 field_0x6ef;
-    /* 0x06F0 */ u8 field_0x6f0[8];
+    /* 0x06F0 */ void* field_0x6f0;
+    /* 0x06F4 */ void* field_0x6f4;
     /* 0x06F8 */ void* field_0x6f8;
     /* 0x06FC */ Z2Creature field_0x6fc;
-    /* 0x078C */ dMsgFlow_c field_0x78c;
-    /* 0x07D8 */ dBgS_LinkLinChk field_0x7d8;
+    /* 0x078C */ dMsgFlow_c mMsgFlow;
+    /* 0x07D8 */ dBgS_LinkLinChk mLinChk;
     /* 0x0848 */ u8 mMotionNum;
     /* 0x0849 */ u8 mFaceNum;
     /* 0x084A */ u8 field_0x84a[4];
@@ -5958,7 +6366,8 @@ private:
     /* 0x085A */ s16 field_0x85a;
     /* 0x085C */ u8 field_0x85c[0x22];
     /* 0x087E */ s16 field_0x87e;
-    /* 0x0880 */ u8 field_0x880[0x10];
+    /* 0x0880 */ u8 field_0x880[0xC];
+    /* 0x088C */ int mStaffID;
     /* 0x0890 */ u32 mStateFlg0;
     /* 0x0894 */ u32 mStateFlg1;
     /* 0x0898 */ u32 mEndResetStateFlg0;
@@ -5973,9 +6382,11 @@ private:
     /* 0x0964 */ cXyz field_0x964[5];
     /* 0x09A0 */ u8 field_0x9a0[0x14];
     /* 0x09C4 */ cXyz field_0x9c4;
+    /* 0x09D0 */ u8 field_0x9d0[4];
+    /* 0x09D4 */ daMidna_func mpFunc;
 };
 
-static void* daAlink_searchPortal(fopAc_ac_c* param_0, void* param_1);
+static fopAc_ac_c* daAlink_searchPortal(fopAc_ac_c* param_0, void* param_1);
 static void* daAlink_searchCanoe(fopAc_ac_c* param_0, void* param_1);
 static void* daAlink_searchBoar(fopAc_ac_c* param_0, void* param_1);
 static fopAc_ac_c* daAlink_searchLightBall(fopAc_ac_c* p_actor, void* param_1);

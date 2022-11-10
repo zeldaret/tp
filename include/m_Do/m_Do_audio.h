@@ -42,6 +42,9 @@ void mDoAud_resetProcess();
 bool mDoAud_resetRecover();
 void mDoAud_setSceneName(char const* spot, s32 room, s32 layer);
 s32 mDoAud_load1stDynamicWave();
+static void mDoAud_setLinkGroupInfo(u8 param_0);
+static void mDoAud_setLinkHp(s32 param_0, s32 param_1);
+static void mDoAud_seStartLevel(u32 param_0, Vec const* param_1, u32 param_2, s8 param_3);
 
 inline void mDoAud_bgmSetSwordUsing(s32 id) {
     Z2AudioMgr::getInterface()->mSeqMgr.bgmSetSwordUsing(id);
@@ -49,6 +52,10 @@ inline void mDoAud_bgmSetSwordUsing(s32 id) {
 
 inline void mDoAud_bgmStart(u32 i_bgmID) {
     Z2AudioMgr::getInterface()->mSeqMgr.bgmStart(i_bgmID, 0, 0);
+}
+
+inline void mDoAud_subBgmStart(u32 i_bgmID) {
+    Z2AudioMgr::getInterface()->mSeqMgr.subBgmStart(i_bgmID);
 }
 
 inline void mDoAud_bgmNowBattle(f32 param_0) {

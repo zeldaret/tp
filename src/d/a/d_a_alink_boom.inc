@@ -126,11 +126,11 @@ void daAlink_c::initBoomerangUpperAnimeSpeed(int param_0) {
     if (!checkBoomerangThrowAnime()) {
         if (param_0 != 0) {
             f32 tmp = FLOAT_LABEL(lit_6108);
-            mFrameCtrl2[2].setRate(tmp);
-            mFrameCtrl2[2].setFrame(tmp);
-            getNowAnmPackUpper(UPPER_NOW)->setFrame(tmp);
+            mUpperFrameCtrl[2].setRate(tmp);
+            mUpperFrameCtrl[2].setFrame(tmp);
+            getNowAnmPackUpper(UPPER_2)->setFrame(tmp);
         } else {
-            mFrameCtrl2[2].setRate(daAlinkHIO_boom_c0::m.mIdleAnmSpeed);
+            mUpperFrameCtrl[2].setRate(daAlinkHIO_boom_c0::m.mIdleAnmSpeed);
         }
     }
 }
@@ -168,13 +168,13 @@ asm void daAlink_c::setBoomerangReadyAnime() {
 
 /* 800E05E8-800E0630 0DAF28 0048+00 2/2 0/0 0/0 .text setThrowBoomerangAnime__9daAlink_cFv */
 void daAlink_c::setThrowBoomerangAnime() {
-    setUpperAnimeParam(0x53, UPPER_NOW, &daAlinkHIO_boom_c0::m.mThrowAnm);
+    setUpperAnimeParam(0x53, UPPER_2, &daAlinkHIO_boom_c0::m.mThrowAnm);
     cancelItemUseQuake(0);
 }
 
 /* 800E0630-800E06B8 0DAF70 0088+00 2/2 0/0 0/0 .text setBoomerangCatchAnime__9daAlink_cFv */
 void daAlink_c::setBoomerangCatchAnime() {
-    setUpperAnimeParam(0x52, UPPER_NOW, &daAlinkHIO_boom_c0::m.mCatchAnm);
+    setUpperAnimeParam(0x52, UPPER_2, &daAlinkHIO_boom_c0::m.mCatchAnm);
     setFacePriBck(0xE8);
     field_0x2f97 = 254;
     if (mEquipItem != COPY_ROD) {

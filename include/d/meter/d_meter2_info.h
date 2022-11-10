@@ -49,6 +49,10 @@ class dMeter2_c;
 class J2DPicture;
 class dMeterMap_c;
 
+enum dMeter2Info_warpStatus {
+    /* 0x3 */ WARP_DECIDED = 3,
+};
+
 class dMeter2Info_c {
 public:
     class WarpInfo_c {
@@ -246,6 +250,8 @@ void dMeter2Info_setCloth(u8 i_clothId, bool param_1);
 void dMeter2Info_setShield(u8 i_itemId, bool param_1);
 void dMeter2Info_set2DVibration();
 void dMeter2Info_set2DVibrationM();
+static void dMeter2Info_setFloatingMessage(u16 pMessageID, s16 pMessageTimer, bool pWakuVisible);
+static void dMeter2Info_offUseButton(int pButton);
 
 inline void dMeter2Info_Initialize() {
     g_meter2_info.init();

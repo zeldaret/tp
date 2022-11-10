@@ -193,7 +193,7 @@ asm void daAlink_c::setGrabUpperAnime(f32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkGrabRooster() {
+asm BOOL daAlink_c::checkGrabRooster() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkGrabRooster__9daAlink_cFv.s"
 }
@@ -558,7 +558,7 @@ asm void daAlink_c::procInsectCatchInit() {
 
 /* 800E71D4-800E7254 0E1B14 0080+00 1/0 0/0 0/0 .text            procInsectCatch__9daAlink_cFv */
 bool daAlink_c::procInsectCatch() {
-    daPy_frameCtrl_c* tmp = &mFrameCtrl1[0];
+    daPy_frameCtrl_c* tmp = &mUnderFrameCtrl[0];
 
     if (tmp->checkAnmEnd()) {
         checkNextAction(0);
@@ -652,7 +652,7 @@ asm s16 daAlink_c::getChainStickAngleY(s16 param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkChainEmphasys() {
+asm u8 daAlink_c::checkChainEmphasys() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkChainEmphasys__9daAlink_cFv.s"
 }
@@ -685,8 +685,8 @@ bool daAlink_c::checkChainBlockPushPull() {
         fopAc_ac_c* actor = field_0x2844.getActor();
         if (actor != NULL) {
             s16 name = fopAcM_GetName(actor);
-            // actor is Cblock || chainSw || Cwall
-            if (name == 0x7E || name == 0x16F || name == 0x7F) {
+            if (name == PROC_Obj_ChainBlock || name == PROC_Obj_SwChain ||
+                name == PROC_Obj_ChainWall) {
                 return true;
             }
         }
@@ -750,7 +750,7 @@ asm void daAlink_c::setWallGrabStatus(u8 param_0, u8 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getWallGrabStatus() {
+asm int daAlink_c::getWallGrabStatus() {
     nofralloc
 #include "asm/d/a/d_a_alink/getWallGrabStatus__9daAlink_cFv.s"
 }

@@ -157,6 +157,7 @@ public:
     void setDemoStickR(f32 stick) { mDemoStickR = stick; }
     void i_changeDemoMode(u32 param_0, int param_1) { field_0x1740 = param_0; field_0x1728 = param_1; }
     void i_changeOriginalDemo() { field_0x16b8 = 3; field_0x1728 = 0; }
+    void i_setHorsePosAndAngle(cXyz const* i_pos, s16 i_angle) { (this->*mpSetHorsePosAngleFn)(i_pos, i_angle); }
 
     bool checkTurnStandCamera() const { return checkResetStateFlg0(TURN_STAND_CAMERA); }
     bool checkTurnStand() const { return checkResetStateFlg0(TURN_STAND); }
@@ -223,6 +224,15 @@ public:
     /* 0x1790 */ f32 mLashMaxSpeedF;
     /* 0x1794 */ u8 field_0x1794[0x30];
     /* 0x17C4 */ cXyz mDemoPos0;
+    /* 0x17D0 */ u8 field_0x17d0[0x18A4 - 0x17D0];
+    /* 0x18A4 */ int (daHorse_c::*mpProcFn)();
+    /* 0x18A4 */ int (daHorse_c::*mpCheckSpecialWallHitFn)(const cXyz&);
+    /* 0x18A4 */ void (daHorse_c::*mpSetReinPosHandFn)(int);
+    /* 0x18A4 */ void (daHorse_c::*mpSetReinPosNormalFn)();
+    /* 0x18A4 */ int (daHorse_c::*mpCallHorseFn)(const cXyz*);
+    /* 0x18A4 */ int (daHorse_c::*mpSetHorsePosAngleFn)(const cXyz* i_pos, s16 i_angle);
+    /* 0x18A4 */ void (daHorse_c::*mpOnRideFlgFn)();
+    /* 0x18A4 */ void (daHorse_c::*mpOffRideFlgFn)();
 };
 
 #endif /* D_A_HORSE_H */

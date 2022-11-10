@@ -56,11 +56,11 @@ asm void daAlink_c::initCopyRodUpperAnimeSpeed(int param_0) {
 /* void daAlink_c::initCopyRodUpperAnimeSpeed(int param_0) {
     if (checkCopyRodThrowAnime()) {
         if (param_1 == 0) {
-            mFrameCtrl2[2].setRate();
+            mUpperFrameCtrl[2].setRate();
         }
         f32 tmp = FLOAT_LABEL(lit_6108);
-        mFrameCtrl2[2].setRate(tmp);
-        mFrameCtrl2[2].setFrame(tmp);
+        mUpperFrameCtrl[2].setRate(tmp);
+        mUpperFrameCtrl[2].setFrame(tmp);
 
     }
 } */
@@ -173,7 +173,7 @@ void daAlink_c::throwCopyRod() {
     if (checkCopyRodTopUse()) {
         copy_rod->setThrow();
         mCopyRodAcKeep = mItemAcKeep;
-        i_onNoResetFlg3(COPY_ROD_THROW_AFTER);
+        i_onNoResetFlg3(FLG3_COPY_ROD_THROW_AFTER);
         mItemAcKeep.clearData();
     }
     dComIfGp_clearPlayerStatus0(0, 0x80);
@@ -203,7 +203,7 @@ asm void daAlink_c::returnCopyRod() {
 #pragma pop
 
 /* void daAlink_c::returnCopyRod() {
-    i_offNoResetFlg3(COPY_ROD_THROW_AFTER);
+    i_offNoResetFlg3(FLG3_COPY_ROD_THROW_AFTER);
 
     if (mEquipItem == 0x46) {
         mItemAcKeep = mCopyRodAcKeep;
