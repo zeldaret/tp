@@ -168,6 +168,8 @@ public:
     /* 8000DA08 */ int init(J3DDeformData* i_deformData, J3DAnmCluster* i_blk, int i_anmPlay,
                             int i_attribute, f32 i_rate, s16 i_start, s16 param_6);
 
+    J3DAnmCluster* getBlkAnm() { return mpAnm; }
+
 private:
     /* 0x14 */ J3DAnmCluster* mpAnm;
 };
@@ -381,7 +383,7 @@ struct mDoExt_MtxCalcAnmBlendTblOld
 };  // Size: 0xC
 
 struct mDoExt_MtxCalcAnmBlendTbl : public mDoExt_MtxCalcAnmBlendTblOld {
-    /* 800D00BC */ void getAnm(int);
+    /* 800D00BC */ J3DAnmTransform* getAnm(int);
 
     /* 80014F3C */ virtual ~mDoExt_MtxCalcAnmBlendTbl();
     /* 8000F26C */ virtual void calc();

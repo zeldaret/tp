@@ -3,12 +3,14 @@
 #
 
 LIBVI_A_CPP_FILES := \
-	libs/dolphin/vi/vi.cpp \
+	libs/dolphin/vi/vi.c \
 
 LIBVI_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/vi/vi.o \
 
 LIBVI_A_CFLAGS := \
+	-O4,p \
+	-lang=c \
 
 LIBVI_A_LDFLAGS := \
 	-nodefaults \
@@ -21,9 +23,9 @@ $(BUILD_DIR)/libvi.a: $(LIBVI_A_O_FILES)
 	@echo $(LIBVI_A_O_FILES) > build/LIBVI_A_ofiles
 	@$(LD) -xm l $(LIBVI_A_LDFLAGS) -o $(BUILD_DIR)/libvi.a @build/LIBVI_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/vi/%.o: libs/dolphin/vi/%.cpp
+$(BUILD_DIR)/libs/dolphin/vi/%.o: libs/dolphin/vi/%.c
 	@mkdir -p $(@D)
 	@echo building... $<
-	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBVI_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBVI_A_CFLAGS) -c -o $@ $(basename $@).c
 

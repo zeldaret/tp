@@ -201,11 +201,6 @@ extern "C" void entryImm__13J3DDrawBufferFP9J3DPacketUs();
 extern "C" void draw__13J3DDrawBufferCFv();
 extern "C" void GXClearVtxDesc();
 extern "C" void GXPixModeSync();
-extern "C" void GXGetTexObjWidth();
-extern "C" void GXGetTexObjHeight();
-extern "C" void GXGetTexObjWrapS();
-extern "C" void GXGetTexObjWrapT();
-extern "C" void GXGetTexObjTlut();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void _savefpr_26();
@@ -240,7 +235,6 @@ extern "C" extern u32 g_blackColor;
 extern "C" extern u32 g_whiteColor;
 extern "C" f32 mSystemFar__14mDoLib_clipper;
 extern "C" f32 mFovyRate__14mDoLib_clipper;
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 
 //

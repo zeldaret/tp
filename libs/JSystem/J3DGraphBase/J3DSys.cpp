@@ -198,7 +198,7 @@ void J3DSys::drawInit() {
 
     u8 i;
     for (i = 0; i < 3; i++)
-        GXSetIndTexMtx((GXIndTexMtxID)(GX_ITM_0 + i), indTexMtx, 1);
+        GXSetIndTexMtx((GXIndTexMtxID)(GX_ITM_0 + i), (f32*)indTexMtx, 1);
 
     GXSetChanMatColor(GX_COLOR0A0, j3dDefaultColInfo);
     GXSetChanMatColor(GX_COLOR1A1, j3dDefaultColInfo);
@@ -380,9 +380,9 @@ void J3DSys::reinitIndStages() {
     GXSetIndTexCoordScale(GX_INDTEXSTAGE1, GX_ITS_1, GX_ITS_1);
     GXSetIndTexCoordScale(GX_INDTEXSTAGE2, GX_ITS_1, GX_ITS_1);
     GXSetIndTexCoordScale(GX_INDTEXSTAGE3, GX_ITS_1, GX_ITS_1);
-    GXSetIndTexMtx(GX_ITM_0, IndMtx, 1);
-    GXSetIndTexMtx(GX_ITM_1, IndMtx, 1);
-    GXSetIndTexMtx(GX_ITM_2, IndMtx, 1);
+    GXSetIndTexMtx(GX_ITM_0, (f32*)IndMtx, 1);
+    GXSetIndTexMtx(GX_ITM_1, (f32*)IndMtx, 1);
+    GXSetIndTexMtx(GX_ITM_2, (f32*)IndMtx, 1);
 }
 
 /* 80310E3C-80310ED0 30B77C 0094+00 1/1 0/0 0/0 .text            reinitPixelProc__6J3DSysFv */

@@ -23,7 +23,7 @@ asm BOOL daAlink_c::checkSpecialNpc(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkShieldAttackEmphasys() {
+asm bool daAlink_c::checkShieldAttackEmphasys() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkShieldAttackEmphasys__9daAlink_cFv.s"
 }

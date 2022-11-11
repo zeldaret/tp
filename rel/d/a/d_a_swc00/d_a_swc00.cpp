@@ -6,47 +6,25 @@
 #include "rel/d/a/d_a_swc00/d_a_swc00.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "d/com/d_com_inf_game.h"
 
 //
 // Types:
 //
 
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct daSwc00_c {
-    /* 805A15FC */ void execute();
+class daSwc00_c : public fopAc_ac_c {
+public:
+    /* 805A15FC */ int execute();
     /* 805A18E8 */ void event_proc_call();
     /* 805A19A4 */ void actionWait();
     /* 805A1A28 */ void actionOrderEvent();
     /* 805A1A94 */ void actionEvent();
     /* 805A1AF0 */ void actionDead();
-};
-
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 800352B0 */ void offSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dEvt_control_c {
-    /* 80042468 */ void reset();
-};
-
-struct dEvent_manager_c {
-    /* 80047698 */ void getEventIdx(fopAc_ac_c*, u8);
-    /* 80047A78 */ void endCheck(s16);
-};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
+    
+    /* 0x568 */ cXyz field_0x568;
+    /* 0x574 */ cXyz field_0x574;
+    /* 0x580 */ u16 mEventID;
+    /* 0x582 */ u8 mAction;
 };
 
 //
@@ -71,7 +49,6 @@ extern "C" extern void* g_profile_SWC00[12];
 // External References:
 //
 
-extern "C" void OSReport_Error();
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAcM_delete__FP10fopAc_ac_c();
@@ -84,12 +61,9 @@ extern "C" void reset__14dEvt_control_cFv();
 extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc();
 extern "C" void endCheck__16dEvent_manager_cFs();
 extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void PSMTXMultVec();
 extern "C" void __ptmf_scall();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 data_805A1F28[4];
 
 //
@@ -101,25 +75,71 @@ extern "C" extern u8 data_805A1F28[4];
 SECTION_RODATA static f32 const lit_3708 = -100.0f;
 COMPILER_STRIP_GATE(0x805A1D94, &lit_3708);
 
+inline u8 daSwc00_getCondition(daSwc00_c* i_this) {
+    return i_this->mCollisionRot.x;
+}
+
+inline int daSwc00_getShape(daSwc00_c* i_this) {
+    return (fopAcM_GetParam(i_this) >> 0x12) & 3;
+}
+
 /* 805A13F8-805A15DC 000078 01E4+00 1/1 0/0 0/0 .text            hitCheck__FP9daSwc00_c */
+// r30 / r31 swap
+#ifdef NONMATCHING
+static bool hitCheck(daSwc00_c* i_swc) {
+    fopAc_ac_c* playerAc = daPy_getPlayerActorClass();
+    fopAc_ac_c* player;
+
+    if (daSwc00_getCondition(i_swc) == 2) {
+        player = (fopAc_ac_c*)i_dComIfGp_getHorseActor();
+    } else {
+        player = playerAc;
+    }
+
+    if (player == NULL) {
+        return false;
+    }
+
+    int shape = daSwc00_getShape(i_swc);
+    if (shape == 3) {
+        f32 xz_dist = fopAcM_searchActorDistanceXZ2(i_swc, player);
+        f32 y_dist = fopAcM_searchActorDistanceY(i_swc, player);
+
+        if (xz_dist < i_swc->mScale.x && -100.0f < y_dist && y_dist < i_swc->mScale.y) {
+            return true;
+        }
+    } else if (shape == 0) {
+        cXyz tmp1 = i_swc->field_0x568 - i_swc->current.pos;
+        cXyz tmp2 = i_swc->field_0x574 - i_swc->current.pos;
+        cXyz player_dist = player->current.pos - i_swc->current.pos;
+
+        mDoMtx_stack_c::YrotS(-i_swc->current.angle.y);
+        mDoMtx_stack_c::multVec(&player_dist, &player_dist);
+
+        if ((tmp1.x <= player_dist.x && player_dist.x <= tmp2.x) &&
+            (tmp1.y <= player_dist.y && player_dist.y <= tmp2.y) &&
+            (tmp1.z <= player_dist.z && player_dist.z <= tmp2.z)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void hitCheck(daSwc00_c* param_0) {
+static asm bool hitCheck(daSwc00_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_swc00/d_a_swc00/hitCheck__FP9daSwc00_c.s"
 }
 #pragma pop
+#endif
 
 /* 805A15DC-805A15FC 00025C 0020+00 1/0 0/0 0/0 .text            daSwc00_Execute__FP9daSwc00_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daSwc00_Execute(daSwc00_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_swc00/d_a_swc00/daSwc00_Execute__FP9daSwc00_c.s"
+static int daSwc00_Execute(daSwc00_c* i_this) {
+    return i_this->execute();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 805A1DAC-805A1DAC 000018 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -127,6 +147,7 @@ static asm void daSwc00_Execute(daSwc00_c* param_0) {
 #pragma force_active on
 SECTION_DEAD static char const* const stringBase_805A1DAC =
     "領域スイッチ：引数０が不正値<%d>です\n";
+    // "Area Switch: arg 0 is an invalid value <%d>\n";
 #pragma pop
 
 /* 805A1DD4-805A1DE0 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -171,7 +192,7 @@ SECTION_DATA static void* lit_3812[16] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daSwc00_c::execute() {
+asm int daSwc00_c::execute() {
     nofralloc
 #include "asm/rel/d/a/d_a_swc00/d_a_swc00/execute__9daSwc00_cFv.s"
 }

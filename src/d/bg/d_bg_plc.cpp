@@ -54,7 +54,7 @@ asm void dBgPlc::getCode(int param_0, sBgPc** param_1) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgPlc::getGrpCode(int param_0) const {
+asm u32 dBgPlc::getGrpCode(int param_0) const {
     nofralloc
 #include "asm/d/bg/d_bg_plc/getGrpCode__6dBgPlcCFi.s"
 }

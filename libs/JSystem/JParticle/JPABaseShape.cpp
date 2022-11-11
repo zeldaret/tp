@@ -7,6 +7,7 @@
 #include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
+#include "dolphin/mtx/mtxvec.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

@@ -52,11 +52,7 @@ SECTION_DTORS15 extern void* const __dtors_null_terminator = (void*)NULL;
 
 /* ############################################################################################## */
 /* 80450AD0-80450AD8 000550 0004+04 2/2 0/0 0/0 .sdata           fragmentID */
-SECTION_SDATA static u32 fragmentID[1 + 1 /* padding */] = {
-    0xFFFFFFFE,
-    /* padding */
-    0x00000000,
-};
+SECTION_SDATA static int fragmentID = -2;
 
 /* 8036283C-80362870 35D17C 0034+00 1/0 1/0 0/0 .text            __fini_cpp_exceptions */
 #pragma push

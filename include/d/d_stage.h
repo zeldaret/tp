@@ -900,13 +900,14 @@ static int dStage_fieldMapFiliInfo2Init(dStage_dt_c*, void*, int, void*);
 static int dStage_fieldMapMapPathInit(dStage_dt_c*, void*, int, void*);
 
 s8 dStage_roomRead_dt_c_GetReverbStage(roomRead_class&, int);
-int dStage_changeScene(int, f32, u32, s8, s16, int);
+int dStage_changeScene(int i_exitId, f32 i_speed, u32 i_mode, s8 i_roomNo, s16 i_angle, int i_layerOverride);
 void dStage_infoCreate();
 u8 dStage_stagInfo_GetParticleNo(stage_stag_info_class* p_info, int layer);
 int dStage_changeSceneExitId(cBgS_PolyInfo& param_0, f32 speed, u32 mode, s8 roomNo, s16 angle);
 int dStage_changeScene4Event(int i_exitId, s8 room_no, int i_wipe, bool param_3, f32 speed,
-                                  u32 mode, s16 angle, int param_7);
+                             u32 mode, s16 angle, int param_7);
 void dStage_Create();
+static s32 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0);
 
 inline s32 dStage_roomRead_dt_c_GetVrboxswitch(roomRead_data_class& data) {
     return data.field_0x2 & 8;

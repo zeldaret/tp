@@ -34,7 +34,7 @@ typedef struct _GXRenderModeObj {
     /* 0x32 */ u8 vfilter[7];
 } GXRenderModeObj;
 
-STATIC_ASSERT(sizeof(_GXRenderModeObj) == 60);
+STATIC_ASSERT(sizeof(GXRenderModeObj) == 60);
 
 typedef struct _GXTexObj {
     /* 0x00 */ u32 texture_filter;
@@ -56,7 +56,20 @@ typedef struct _GXTlutObj {
 } GXTlutObj;
 
 typedef struct _GXLightObj {
-    /* 0x0 */ u32 data[16];
+    /* 0x00 */ u8 field_0x0[0xc];
+    /* 0x0C */ GXColor color;
+    /* 0x10 */ f32 a0;
+    /* 0x14 */ f32 a1;
+    /* 0x18 */ f32 a2;
+    /* 0x1C */ f32 k0;
+    /* 0x20 */ f32 k1;
+    /* 0x24 */ f32 k2;
+    /* 0x28 */ f32 posX;
+    /* 0x2C */ f32 posY;
+    /* 0x30 */ f32 posZ;
+    /* 0x34 */ f32 dirX;
+    /* 0x38 */ f32 dirY;
+    /* 0x3C */ f32 dirZ;
 } GXLightObj;
 
 typedef struct _GXFogAdjTable {

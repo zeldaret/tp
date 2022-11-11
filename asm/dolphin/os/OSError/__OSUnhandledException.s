@@ -186,7 +186,7 @@ lbl_8033CA4C:
 /* 8033CA54  4C C6 31 82 */	crclr 6
 /* 8033CA58  80 AD 90 F4 */	lwz r5, __OSLastInterruptSrr0(r13)
 /* 8033CA5C  80 ED 91 00 */	lwz r7, __OSLastInterruptTime(r13)
-/* 8033CA60  81 0D 91 04 */	lwz r8, data_80451684(r13)
+/* 8033CA60  81 0D 91 04 */	lwz r8, __OSLastInterruptTime+0x4(r13)
 /* 8033CA64  4B CC A0 59 */	bl OSReport
 /* 8033CA68  4B FF D2 99 */	bl PPCHalt
 /* 8033CA6C  BA C1 00 18 */	lmw r22, 0x18(r1)

@@ -15,7 +15,7 @@ lbl_80339F60:
 /* 80339F94  38 00 00 01 */	li r0, 1
 /* 80339F98  90 0D 90 A0 */	stw r0, AreWeInitialized(r13)
 /* 80339F9C  48 00 87 81 */	bl __OSGetSystemTime
-/* 80339FA0  90 8D 90 B4 */	stw r4, data_80451634(r13)
+/* 80339FA0  90 8D 90 B4 */	stw r4, __OSStartTime+0x4(r13)
 /* 80339FA4  90 6D 90 B0 */	stw r3, __OSStartTime(r13)
 /* 80339FA8  48 00 37 4D */	bl OSDisableInterrupts
 /* 80339FAC  38 7F 00 50 */	addi r3, r31, 0x50

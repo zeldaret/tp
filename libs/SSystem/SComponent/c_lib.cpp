@@ -334,7 +334,7 @@ s16 cLib_targetAngleY(const Vec& lhs, const Vec& rhs) {
 s16 cLib_targetAngleX(cXyz const* param_0, cXyz const* param_1) {
     cXyz diff = *param_1 - *param_0;
     f32 f1 = sqrtf(diff.getMagXZ());
-    return cM_atan2s(diff.GetY(), f1);
+    return cM_atan2s(diff.y, f1);
 }
 
 /* 80270DC0-80270E24 26B700 0064+00 0/0 2/2 118/118 .text cLib_offsetPos__FP4cXyzPC4cXyzsPC4cXyz

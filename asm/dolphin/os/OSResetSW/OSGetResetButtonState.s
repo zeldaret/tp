@@ -129,7 +129,7 @@ lbl_8033FD98:
 /* 8033FDA8  41 82 00 A0 */	beq lbl_8033FE48
 /* 8033FDAC  1D 40 00 3C */	mulli r10, r0, 0x3c
 /* 8033FDB0  80 05 00 F8 */	lwz r0, 0xf8(r5)
-/* 8033FDB4  81 2D 90 B4 */	lwz r9, data_80451634(r13)
+/* 8033FDB4  81 2D 90 B4 */	lwz r9, __OSStartTime+0x4(r13)
 /* 8033FDB8  81 0D 90 B0 */	lwz r8, __OSStartTime(r13)
 /* 8033FDBC  54 06 F0 BE */	srwi r6, r0, 2
 /* 8033FDC0  7D 40 FE 70 */	srawi r0, r10, 0x1f

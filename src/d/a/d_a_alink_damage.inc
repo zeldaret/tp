@@ -116,7 +116,7 @@ asm bool daAlink_c::setThrowDamage(s16 param_0, f32 param_1, f32 param_2, int pa
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::damageMagnification(int param_0, int param_1) {
+asm f32 daAlink_c::damageMagnification(int param_0, int param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/damageMagnification__9daAlink_cFii.s"
 }
@@ -189,7 +189,7 @@ asm void daAlink_c::checkIcePolygonDamage(cBgS_PolyInfo* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkMagicArmorNoDamage() {
+asm BOOL daAlink_c::checkMagicArmorNoDamage() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkMagicArmorNoDamage__9daAlink_cFv.s"
 }
@@ -228,8 +228,8 @@ void daAlink_c::damageTimerCount() {
             i_offNoResetFlg1(1);
         }
 
-        if (checkDkCaught2Anime() && i_checkNoResetFlg0(0x20000)) {
-            i_offNoResetFlg0(0x20000);
+        if (checkDkCaught2Anime() && i_checkNoResetFlg0(FLG0_UNK_20000)) {
+            i_offNoResetFlg0(FLG0_UNK_20000);
         }
     } else if (mDamageColorTime != 0) {
         mDamageColorTime--;
@@ -273,7 +273,7 @@ asm void daAlink_c::checkLargeAttack(int param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkDamageAction() {
+asm BOOL daAlink_c::checkDamageAction() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkDamageAction__9daAlink_cFv.s"
 }

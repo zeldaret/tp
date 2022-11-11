@@ -3,4 +3,7 @@
 
 #include "dolphin/types.h"
 
+void TRKSwapAndGo();
+void TRKTargetSetStopped(s32);
+
 #endif /* PPC_GENERIC_TARGIMPL_H */

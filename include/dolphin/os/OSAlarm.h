@@ -1,7 +1,6 @@
 #ifndef OSALARM_H
 #define OSALARM_H
 
-#include "dolphin/types.h"
 #include "dolphin/os/OSTime.h"
 #include "dolphin/os/OSError.h"
 
@@ -14,7 +13,8 @@ typedef struct OSAlarmLink {
     /* 0x4 */ struct OSAlarm* next;
 } OSAlarmLink;
 
-typedef void (*OSAlarmHandler)(struct OSAlarm* alarm, struct OSContext* context);
+typedef struct OSAlarm;
+typedef void (*OSAlarmHandler)(struct OSAlarm* alarm, OSContext* context);
 
 typedef struct OSAlarm {
     /* 0x00 */ OSAlarmHandler handler;
@@ -31,8 +31,8 @@ static void InsertAlarm(OSAlarm* alarm, s64 time, OSAlarmHandler* handler);
 void OSSetAlarm(OSAlarm* alarm, s64 time, OSAlarmHandler* handler);
 void OSSetPeriodicAlarm(OSAlarm* alarm, s64 start, s64 period, OSAlarmHandler* handler);
 void OSCancelAlarm(OSAlarm* alarm);
-static void DecrementerExceptionCallback(OSException* exception, struct OSContext* context);
-static void DecrementerExceptionHandler(OSException* exception, struct OSContext* context);
+static void DecrementerExceptionCallback(__OSException exception, OSContext* context);
+static void DecrementerExceptionHandler(__OSException exception, OSContext* context);
 static s32 OnReset(s32 param_0);
 
 #ifdef __cplusplus

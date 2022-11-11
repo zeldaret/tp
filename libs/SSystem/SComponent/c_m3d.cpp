@@ -317,17 +317,17 @@ bool cM3d_Cross_AabCyl(const cM3dGAab* pAab, const cM3dGCyl* pCyl) {
 #ifdef NONMATCHING
 bool cM3d_Cross_AabSph(const cM3dGAab* pAab, const cM3dGSph* pSph) {
     f32 radius = pSph->GetR();
-    if (pAab->GetMinX() > pSph->GetC().GetX() + radius) {  // addition registers are flipped
+    if (pAab->GetMinX() > pSph->GetC().x + radius) {  // addition registers are flipped
         return false;
-    } else if (pAab->GetMaxX() < pSph->GetC().GetX() - radius) {
+    } else if (pAab->GetMaxX() < pSph->GetC().x - radius) {
         return false;
-    } else if (pAab->GetMinZ() > pSph->GetC().GetZ() + radius) {
+    } else if (pAab->GetMinZ() > pSph->GetC().z + radius) {
         return false;
-    } else if (pAab->GetMaxZ() < pSph->GetC().GetZ() - radius) {
+    } else if (pAab->GetMaxZ() < pSph->GetC().z - radius) {
         return false;
-    } else if (pAab->GetMinY() > pSph->GetC().GetY() + radius) {
+    } else if (pAab->GetMinY() > pSph->GetC().y + radius) {
         return false;
-    } else if (pAab->GetMaxY() < pSph->GetC().GetY() - radius) {
+    } else if (pAab->GetMaxY() < pSph->GetC().y - radius) {
         return false;
     } else {
         return true;
@@ -564,51 +564,51 @@ asm bool cM3d_Cross_MinMaxBoxLine(Vec const* param_0, Vec const* param_1, Vec co
 bool cM3d_InclusionCheckPosIn3PosBox3d(const Vec* pVecA, const Vec* pVecB, const Vec* pVecC,
                                        const Vec* pVecD, f32 pF) {
     f32 min, max;
-    if (pVecA->GetX() < pVecB->GetX()) {
-        min = pVecA->GetX();
-        max = pVecB->GetX();
+    if (pVecA->x < pVecB->x) {
+        min = pVecA->x;
+        max = pVecB->x;
     } else {
-        min = pVecB->GetX();
-        max = pVecA->GetX();
+        min = pVecB->x;
+        max = pVecA->x;
     }
-    if (min > pVecC->GetX()) {
-        min = pVecC->GetX();
-    } else if (max < pVecC->GetX()) {
-        max = pVecC->GetX();
+    if (min > pVecC->x) {
+        min = pVecC->x;
+    } else if (max < pVecC->x) {
+        max = pVecC->x;
     }
-    if (min - pF > pVecD->GetX() || max + pF < pVecD->GetX()) {
+    if (min - pF > pVecD->x || max + pF < pVecD->x) {
         return false;
     }
 
-    if (pVecA->GetZ() < pVecB->GetZ()) {
-        min = pVecA->GetZ();
-        max = pVecB->GetZ();
+    if (pVecA->z < pVecB->z) {
+        min = pVecA->z;
+        max = pVecB->z;
     } else {
-        min = pVecB->GetZ();
-        max = pVecA->GetZ();
+        min = pVecB->z;
+        max = pVecA->z;
     }
-    if (min > pVecC->GetZ()) {
-        min = pVecC->GetZ();
-    } else if (max < pVecC->GetZ()) {
-        max = pVecC->GetZ();
+    if (min > pVecC->z) {
+        min = pVecC->z;
+    } else if (max < pVecC->z) {
+        max = pVecC->z;
     }
-    if (min - pF > pVecD->GetZ() || max + pF < pVecD->GetZ()) {
+    if (min - pF > pVecD->z || max + pF < pVecD->z) {
         return false;
     }
 
-    if (pVecA->GetY() < pVecB->GetY()) {
-        min = pVecA->GetY();
-        max = pVecB->GetY();
+    if (pVecA->y < pVecB->y) {
+        min = pVecA->y;
+        max = pVecB->y;
     } else {
-        min = pVecB->GetY();
-        max = pVecA->GetY();
+        min = pVecB->y;
+        max = pVecA->y;
     }
-    if (min > pVecC->GetY()) {
-        min = pVecC->GetY();
-    } else if (max < pVecC->GetY()) {
-        max = pVecC->GetY();
+    if (min > pVecC->y) {
+        min = pVecC->y;
+    } else if (max < pVecC->y) {
+        max = pVecC->y;
     }
-    if (min - pF > pVecD->GetY() || max + pF < pVecD->GetY()) {
+    if (min - pF > pVecD->y || max + pF < pVecD->y) {
         return false;
     }
     return true;

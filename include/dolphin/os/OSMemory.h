@@ -13,7 +13,7 @@ static void MEMIntrruptHandler(OSInterrupt interrupt, struct OSContext* context)
 void OSProtectRange(u32 channel, void* address, u32 nBytes, u32 control);
 static void Config24MB(void);
 static void Config48MB(void);
-static void RealMode(void);
+static void RealMode(void* config);
 void __OSInitMemoryProtection(void);
 
 #ifdef __cplusplus

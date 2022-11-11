@@ -78,6 +78,7 @@ public:
     void setBufferSize(u32 size) { mBufferSize = size; }
     void setBuffer(u8* buf) { mBuffer = buf; }
     u8* getBuffer() { return mBuffer; }
+    bool checkNoSetIdx() const { return mIdx == 0xFFFF; }
 
 private:
     /* 0x00 */ u16 mIdx;
@@ -198,29 +199,38 @@ public:
 public:
     enum daPy_FLG0 {
         FLG0_UNK_40000000 = 0x40000000,
-        EQUIP_HEAVY_BOOTS = 0x2000000,
-        PLAYER_NO_DRAW = 0x8000000,
+        FLG0_EQUIP_HVY_BOOTS = 0x2000000,
+        FLG0_PLAYER_NO_DRAW = 0x8000000,
+        FLG0_UNK_10000000 = 0x10000000,
         FLG0_UNK_1000000 = 0x1000000,
-        UNDER_WATER_MOVEMENT = 0x800000,
+        FLG0_UNDERWATER = 0x800000,
+        FLG0_UNK_100000 = 0x100000,
         FLG0_UNK_80000 = 0x80000,
         FLG0_UNK_20000 = 0x20000,
         FLG0_UNK_8000 = 0x8000,
         FLG0_UNK_4000 = 0x4000,
-        MAGNE_BOOTS_ON = 0x1000,
+        FLG0_UNK_2000 = 0x2000,
+        FLG0_MAGNE_BOOTS_ON = 0x1000,
+        FLG0_UNK_100 = 0x100,
         FLG0_UNK_80 = 0x80,
         FLG0_UNK_40 = 0x40,
         FLG0_UNK_20 = 0x20,
-        UNK_F_ROLL_CRASH_2 = 0x10,
-        UNK_F_ROLL_CRASH_1 = 0x8,
-        MIDNA_RIDE = 4,
+        FLG0_UNK_10 = 0x10,
+        FLG0_UNK_8 = 0x8,
+        FLG0_MIDNA_RIDE = 4,
+        FLG0_UNK_2 = 2,
 
-        HEAVY_STATE_BOOTS = FLG0_UNK_40000000 | EQUIP_HEAVY_BOOTS | FLG0_UNK_20000,
+        FLG0_HVY_STATE = FLG0_UNK_40000000 | FLG0_EQUIP_HVY_BOOTS | FLG0_UNK_20000,
     };
 
     enum daPy_FLG1 {
-        IS_WOLF = 0x2000000,
+        FLG1_UNK_10000000 = 0x10000000,
+        FLG1_IS_WOLF = 0x2000000,
+        FLG1_UNK_400000 = 0x400000,
         FLG1_UNK_10000 = 0x10000,
-        THROW_DAMAGE = 0x4000,
+        FLG1_THROW_DAMAGE = 0x4000,
+        FLG1_UNK_20 = 0x20,
+        FLG1_UNK_10 = 0x10,
         FLG1_UNK_4 = 4,
         FLG1_UNK_2 = 2,
     };
@@ -229,51 +239,78 @@ public:
         FLG2_UNK_20000000 = 0x20000000,
         FLG2_UNK_4080000 = 0x4080000,
         FLG2_UNK_2080000 = 0x2080000,
-        BOAR_SINGLE_BATTLE = 0x1800000,
-        STATUS_WINDOW_DRAW = 0x400000,
+        FLG2_BOAR_SINGLE_BATTLE = 0x1800000,
+        FLG2_UNK_1000000 = 0x1000000,
+        FLG2_UNK_800000 = 0x800000,
+        FLG2_STATUS_WINDOW_DRAW = 0x400000,
         FLG2_UNK_280000 = 0x280000,
-        UNK_ARMOR = 0x80000,
-        SCENE_CHANGE_START = 0x8000,
+        FLG2_UNK_200000 = 0x200000,
+        FLG2_UNK_80000 = 0x80000,
+        FLG2_UNK_40000 = 0x40000,
+        FLG2_UNK_20000 = 0x20000,
+        FLG2_SCN_CHG_START = 0x8000,
         FLG2_UNK_4000 = 0x4000,
-        UNK_FLG2_2 = 2,
-        UNK_DAPY_FLG2_1 = 1
+        FLG2_UNK_80 = 0x80,
+        FLG2_UNK_40 = 0x40,
+        FLG2_UNK_10 = 0x10,
+        FLG2_UNK_8 = 8,
+        FLG2_UNK_2 = 2,
+        FLG2_UNK_1 = 1,
+
+        FLG2_UNK_58 = FLG2_UNK_40 | FLG2_UNK_10 | FLG2_UNK_8,
     };
 
     enum daPy_FLG3 {
+        FLG3_UNK_40000000 = 0x40000000,
         FLG3_UNK_2000000 = 0x2000000,
         FLG3_UNK_1000000 = 0x1000000,
         FLG3_UNK_100000 = 0x100000,
-        COPY_ROD_THROW_AFTER = 0x40000
+        FLG3_UNK_80000 = 0x80000,
+        FLG3_COPY_ROD_THROW_AFTER = 0x40000,
+        FLG3_UNK_4000 = 0x4000,
     };
 
     enum daPy_ERFLG0 {
         ERFLG0_UNK_8000000 = 0x8000000,
+        ERFLG0_UNK_2000000 = 0x2000000,
         ERFLG0_UNK_1000000 = 0x1000000,
         ERFLG0_UNK_800000 = 0x800000,
+        ERFLG0_UNK_400000 = 0x400000,
+        ERFLG0_UNK_200000 = 0x200000,
         ERFLG0_UNK_100000 = 0x100000,
+        ERFLG0_UNK_2000 = 0x2000,
         ERFLG0_UNK_400 = 0x400,
+        ERFLG0_UNK_100 = 0x100,
         ERFLG0_UNK_4 = 4,
         ERFLG0_UNK_2 = 2,
         ERFLG0_UNK_1 = 1,
     };
 
     enum daPy_ERFLG1 {
-        GANON_FINISH = 0x80000000,
-        UNK_FORCE_PUT_POS = 0x2000,
+        ERFLG1_GANON_FINISH = 0x80000000,
+        ERFLG1_UNK_10000000 = 0x10000000,
+        ERFLG1_UNK_4000000 = 0x4000000,
+        ERFLG1_UNK_40000 = 0x40000,
+        ERFLG1_UNK_2000 = 0x2000,
+        ERFLG1_UNK_200 = 0x200,
+        ERFLG1_UNK_4 = 4,
         ERFLG1_UNK_2 = 2,
         ERFLG1_UNK_1 = 1,
     };
 
     enum daPy_ERFLG2 {
         ERFLG2_UNK_100 = 0x100,
+        ERFLG2_UNK_20 = 0x20,
     };
 
     enum daPy_RFLG0 {
         RFLG0_UNK_8000000 = 0x8000000,
         RFLG0_UNK_4000 = 0x4000,
-        ENEMY_ATTENTION_LOCK = 0x1000,
+        RFLG0_ENEMY_ATTN_LOCK = 0x1000,
+        RFLG0_UNK_400 = 0x400,
         RFLG0_UNK_80 = 0x80,
         RFLG0_UNK_40 = 0x40,
+        RFLG0_UNK_10 = 0x10,
         RFLG0_UNK_2 = 0x2,
     };
 
@@ -323,7 +360,7 @@ public:
     static BOOL checkTradeItem(int);
     static BOOL checkDungeonWarpItem(int);
     static BOOL checkMasterSwordEquip();
-    void checkWoodShieldEquip();
+    bool checkWoodShieldEquip();
     f32 getAttentionOffsetY();
     s16 checkNowWolfEyeUp();
     static void forceRestartRoom(int, u32, int);
@@ -345,10 +382,10 @@ public:
     static void setPlayerDamage(int, int);
     static void setMidnaMotionNum(int);
     static void setMidnaFaceNum(int);
-    int checkNoResetFlg0(daPy_FLG0) const;
-    int checkEquipHeavyBoots() const;
-    int checkBoarSingleBattle() const;
-    int checkEndResetFlg0(daPy_ERFLG0) const;
+    u32 checkNoResetFlg0(daPy_FLG0) const;
+    u32 checkEquipHeavyBoots() const;
+    u32 checkBoarSingleBattle() const;
+    u32 checkEndResetFlg0(daPy_ERFLG0) const;
     void onNoResetFlg2(daPy_py_c::daPy_FLG2);
     void offNoResetFlg0(daPy_py_c::daPy_FLG0);
     int checkEndResetFlg2(daPy_py_c::daPy_ERFLG2) const;
@@ -356,14 +393,14 @@ public:
     int checkNoResetFlg3(daPy_py_c::daPy_FLG3) const;
     BOOL checkShieldGet();
     void onNoResetFlg0(daPy_py_c::daPy_FLG0);
-    int checkEndResetFlg1(daPy_py_c::daPy_ERFLG1) const;
+    u32 checkEndResetFlg1(daPy_py_c::daPy_ERFLG1) const;
     void offNoResetFlg1(daPy_py_c::daPy_FLG1);
     void offNoResetFlg2(daPy_py_c::daPy_FLG2);
-    int checkWolf() const;
+    u32 checkWolf() const;
     BOOL checkSwordGet();
-    int checkResetFlg0(daPy_py_c::daPy_RFLG0) const;
-    int checkNoResetFlg2(daPy_py_c::daPy_FLG2) const;
-    int checkMagneBootsOn() const;
+    u32 checkResetFlg0(daPy_py_c::daPy_RFLG0) const;
+    u32 checkNoResetFlg2(daPy_py_c::daPy_FLG2) const;
+    u32 checkMagneBootsOn() const;
     void changeDemoPos0(cXyz const*);
     void changeDemoMode(u32, int, int, s16);
     void changeDemoParam2(s16);
@@ -379,6 +416,7 @@ public:
     /* 80182B9C */ void getRightHandPos() const;
     /* 8015DFD8 */ const cXyz getItemPos() const;
     /* 8015DFF4 */ const cXyz& getLeftHandPos() const;
+    /* 800977B4 */ bool checkMidnaRide() const;
 
     /* const cXyz* getItemPos() const {
         return &mItemPos;
@@ -567,15 +605,15 @@ public:
 
     bool i_getSumouMode() const { return getSumouCameraMode(); }
 
-    bool checkStatusWindowDraw() { return i_checkNoResetFlg2(STATUS_WINDOW_DRAW); }
+    bool checkStatusWindowDraw() { return i_checkNoResetFlg2(FLG2_STATUS_WINDOW_DRAW); }
     bool checkCargoCarry() const { return mSpecialMode == SMODE_CARGO_CARRY; }
-    bool getHeavyStateAndBoots() { return i_checkNoResetFlg0(HEAVY_STATE_BOOTS); }
-    bool checkEnemyAttentionLock() const { return i_checkResetFlg0(ENEMY_ATTENTION_LOCK); }
+    bool getHeavyStateAndBoots() { return i_checkNoResetFlg0(FLG0_HVY_STATE); }
+    bool checkEnemyAttentionLock() const { return i_checkResetFlg0(RFLG0_ENEMY_ATTN_LOCK); }
     bool checkCanoeSlider() const { return mSpecialMode == 0x2D; }
     u8 getCutType() const { return mCutType; }
     u16 getSwordAtUpTime() const { return mSwordUpTimer; }
-    bool checkWaterInMove() const { return i_checkNoResetFlg0(UNDER_WATER_MOVEMENT); }
-    bool checkSceneChangeAreaStart() const { return i_checkNoResetFlg2(SCENE_CHANGE_START); }
+    bool checkWaterInMove() const { return i_checkNoResetFlg0(FLG0_UNDERWATER); }
+    bool checkSceneChangeAreaStart() const { return i_checkNoResetFlg2(FLG2_SCN_CHG_START); }
 
     // some functions use these function as an inline
     // is there a better way to handle this?
@@ -583,28 +621,36 @@ public:
     int i_checkNoResetFlg1(daPy_FLG1 pFlag) const { return mNoResetFlg1 & pFlag; }
     int i_checkNoResetFlg2(daPy_FLG2 pFlag) const { return mNoResetFlg2 & pFlag; }
     int i_checkNoResetFlg3(daPy_FLG3 pFlag) const { return mNoResetFlg3 & pFlag; }
+    
     void i_onNoResetFlg0(int pFlg) { mNoResetFlg0 |= pFlg; }
     void i_onNoResetFlg1(int pFlg) { mNoResetFlg1 |= pFlg; }
     void i_onNoResetFlg2(int pFlg) { mNoResetFlg2 |= pFlg; }
     void i_onNoResetFlg3(int pFlg) { mNoResetFlg3 |= pFlg; }
+    
     void i_offNoResetFlg0(int pFlg) { mNoResetFlg0 &= ~pFlg; }
     void i_offNoResetFlg2(int pFlg) { mNoResetFlg2 &= ~pFlg; }
     void i_offNoResetFlg3(int pFlg) { mNoResetFlg3 &= ~pFlg; }
+    
     void i_offResetFlg0(int flag) { mResetFlg0 &= ~flag; }
     void i_onResetFlg0(int flag) { mResetFlg0 |= flag; }
     void i_onResetFlg1(int flag) { mResetFlg1 |= flag; }
+    
     void i_onEndResetFlg0(int flag) { mEndResetFlg0 |= flag; }
     void i_onEndResetFlg2(int flag) { mEndResetFlg2 |= flag; }
+    
     int i_checkResetFlg0(daPy_py_c::daPy_RFLG0 flag) const { return mResetFlg0 & flag; }
+    
     int i_checkEndResetFlg0(daPy_py_c::daPy_ERFLG0 flag) const { return mEndResetFlg0 & flag; }
     int i_checkEndResetFlg1(daPy_py_c::daPy_ERFLG1 flag) const { return mEndResetFlg1 & flag; }
+    
     void i_onEndResetFlg1(daPy_ERFLG1 pFlg) { mEndResetFlg1 |= pFlg; }
-    u32 i_checkWolf() const { return i_checkNoResetFlg1(IS_WOLF); }
-    BOOL i_checkEquipHeavyBoots() const { return i_checkNoResetFlg0(EQUIP_HEAVY_BOOTS); }
-    BOOL i_checkMagneBootsOn() const { return i_checkNoResetFlg0(MAGNE_BOOTS_ON); }
-    bool i_checkMidnaRide() const { return i_checkNoResetFlg0(MIDNA_RIDE); }
-    void i_onPlayerNoDraw() { i_onNoResetFlg0(PLAYER_NO_DRAW); }
-    void i_offPlayerNoDraw() { i_offNoResetFlg0(PLAYER_NO_DRAW); }
+    
+    u32 i_checkWolf() const { return i_checkNoResetFlg1(FLG1_IS_WOLF); }
+    BOOL i_checkEquipHeavyBoots() const { return i_checkNoResetFlg0(FLG0_EQUIP_HVY_BOOTS); }
+    BOOL i_checkMagneBootsOn() const { return i_checkNoResetFlg0(FLG0_MAGNE_BOOTS_ON); }
+    bool i_checkMidnaRide() const { return i_checkNoResetFlg0(FLG0_MIDNA_RIDE); }
+    void i_onPlayerNoDraw() { i_onNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
+    void i_offPlayerNoDraw() { i_offNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
 
     inline static u32 i_getLastSceneMode();
     inline static u32 getLastSceneMode();

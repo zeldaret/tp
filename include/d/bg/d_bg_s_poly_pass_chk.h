@@ -47,17 +47,17 @@ public:
     void SetUnderwaterRoof();
 
 private:
-    bool mObject;
-    bool mCamera;
-    bool mLink;
-    bool mArrow;
-    bool mBomb;
-    bool mBoomerang;
-    bool mRope;
-    bool mUnderwaterRoof;
-    bool mHorse;
-    bool mStatue;
-    bool mIronBall;
+    /* 0x4 */ bool mObject;
+    /* 0x5 */ bool mCamera;
+    /* 0x6 */ bool mLink;
+    /* 0x7 */ bool mArrow;
+    /* 0x8 */ bool mBomb;
+    /* 0x9 */ bool mBoomerang;
+    /* 0xA */ bool mRope;
+    /* 0xB */ bool mUnderwaterRoof;
+    /* 0xC */ bool mHorse;
+    /* 0xD */ bool mStatue;
+    /* 0xE */ bool mIronBall;
 };
 
 #endif /* D_BG_D_BG_S_POLY_PASS_CHK_H */

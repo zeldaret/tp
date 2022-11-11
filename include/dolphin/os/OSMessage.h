@@ -1,7 +1,6 @@
 #ifndef OSMESSAGE_H
 #define OSMESSAGE_H
 
-#include "dolphin/types.h"
 #include "dolphin/os/OSThread.h"
 
 #ifdef __cplusplus

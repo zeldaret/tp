@@ -3,35 +3,35 @@
 #
 
 LIBTRK_MINNOW_DOLPHIN_A_CPP_FILES := \
-	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/mainloop.cpp \
-	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubevent.cpp \
-	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubinit.cpp \
-	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msg.cpp \
-	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf.cpp \
-	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/serpoll.cpp \
-	libs/TRK_MINNOW_DOLPHIN/Os/dolphin/usr_put.cpp \
-	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/dispatch.cpp \
-	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msghndlr.cpp \
-	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/support.cpp \
-	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/mutex_TRK.cpp \
-	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/notify.cpp \
-	libs/TRK_MINNOW_DOLPHIN/ppc/Generic/flush_cache.cpp \
-	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/mem_TRK.cpp \
-	libs/TRK_MINNOW_DOLPHIN/ppc/Generic/targimpl.cpp \
-	libs/TRK_MINNOW_DOLPHIN/ppc/Export/targsupp.cpp \
-	libs/TRK_MINNOW_DOLPHIN/ppc/Generic/mpc_7xx_603e.cpp \
-	libs/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk.cpp \
-	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/main_TRK.cpp \
-	libs/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue.cpp \
-	libs/TRK_MINNOW_DOLPHIN/Os/dolphin/targcont.cpp \
-	libs/TRK_MINNOW_DOLPHIN/Os/dolphin/target_options.cpp \
-	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Export/mslsupp.cpp \
-	libs/TRK_MINNOW_DOLPHIN/Os/dolphin/UDP_Stubs.cpp \
-	libs/TRK_MINNOW_DOLPHIN/GCN/EXI2_DDH_GCN/main.cpp \
-	libs/TRK_MINNOW_DOLPHIN/utils/common/CircleBuffer.cpp \
-	libs/TRK_MINNOW_DOLPHIN/GCN/EXI2_GDEV_GCN/main.cpp \
-	libs/TRK_MINNOW_DOLPHIN/utils/common/MWTrace.cpp \
-	libs/TRK_MINNOW_DOLPHIN/utils/gc/MWCriticalSection_gc.cpp \
+	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/mainloop.c \
+	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubevent.c \
+	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubinit.c \
+	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msg.c \
+	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf.c \
+	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/serpoll.c \
+	libs/TRK_MINNOW_DOLPHIN/Os/dolphin/usr_put.c \
+	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/dispatch.c \
+	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msghndlr.c \
+	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/support.c \
+	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/mutex_TRK.c \
+	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/notify.c \
+	libs/TRK_MINNOW_DOLPHIN/ppc/Generic/flush_cache.c \
+	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/mem_TRK.c \
+	libs/TRK_MINNOW_DOLPHIN/ppc/Generic/targimpl.c \
+	libs/TRK_MINNOW_DOLPHIN/ppc/Export/targsupp.c \
+	libs/TRK_MINNOW_DOLPHIN/ppc/Generic/mpc_7xx_603e.c \
+	libs/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk.c \
+	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/main_TRK.c \
+	libs/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue.c \
+	libs/TRK_MINNOW_DOLPHIN/Os/dolphin/targcont.c \
+	libs/TRK_MINNOW_DOLPHIN/Os/dolphin/target_options.c \
+	libs/TRK_MINNOW_DOLPHIN/MetroTRK/Export/mslsupp.c \
+	libs/TRK_MINNOW_DOLPHIN/Os/dolphin/UDP_Stubs.c \
+	libs/TRK_MINNOW_DOLPHIN/GCN/EXI2_DDH_GCN/main.c \
+	libs/TRK_MINNOW_DOLPHIN/utils/common/CircleBuffer.c \
+	libs/TRK_MINNOW_DOLPHIN/GCN/EXI2_GDEV_GCN/main.c \
+	libs/TRK_MINNOW_DOLPHIN/utils/common/MWTrace.c \
+	libs/TRK_MINNOW_DOLPHIN/utils/gc/MWCriticalSection_gc.c \
 
 LIBTRK_MINNOW_DOLPHIN_A_O_FILES := \
 	$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/mainloop.o \
@@ -65,6 +65,9 @@ LIBTRK_MINNOW_DOLPHIN_A_O_FILES := \
 	$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/utils/gc/MWCriticalSection_gc.o \
 
 LIBTRK_MINNOW_DOLPHIN_A_CFLAGS := \
+	-O4,p \
+	-lang=c \
+	-rostr
 
 LIBTRK_MINNOW_DOLPHIN_A_LDFLAGS := \
 	-nodefaults \
@@ -72,14 +75,15 @@ LIBTRK_MINNOW_DOLPHIN_A_LDFLAGS := \
 	-proc gekko \
 	-linkmode moreram \
 
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/dispatch.o: CFLAGS := -Cpp_exceptions off -proc gekko -fp hard -O4,p -nodefaults -str reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES) -lang=c
+
 $(BUILD_DIR)/libTRK_MINNOW_DOLPHIN.a: $(LIBTRK_MINNOW_DOLPHIN_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libTRK_MINNOW_DOLPHIN.a
 	@echo $(LIBTRK_MINNOW_DOLPHIN_A_O_FILES) > build/LIBTRK_MINNOW_DOLPHIN_A_ofiles
 	@$(LD) -xm l $(LIBTRK_MINNOW_DOLPHIN_A_LDFLAGS) -o $(BUILD_DIR)/libTRK_MINNOW_DOLPHIN.a @build/LIBTRK_MINNOW_DOLPHIN_A_ofiles
 
-$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/%.o: libs/TRK_MINNOW_DOLPHIN/%.cpp
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/%.o: libs/TRK_MINNOW_DOLPHIN/%.c
 	@mkdir -p $(@D)
 	@echo building... $<
-	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBTRK_MINNOW_DOLPHIN_A_CFLAGS) -c -o $@ $(basename $@).cpp
-
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(CC) $(CFLAGS) $(LIBTRK_MINNOW_DOLPHIN_A_CFLAGS) -c -o $@ $(basename $@).c

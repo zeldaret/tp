@@ -485,16 +485,16 @@ void* daPy_anmHeap_c::loadData(u16 i_resId) {
 }
 
 /* 8015F068-8015F0D0 1599A8 0068+00 0/0 9/9 5/5 .text            loadDataIdx__14daPy_anmHeap_cFUs */
-void* daPy_anmHeap_c::loadDataIdx(u16 id) {
+void* daPy_anmHeap_c::loadDataIdx(u16 i_resID) {
     void* data;
 
-    if (id == mIdx && mArcNo == 0xFFFF) {
+    if (i_resID == mIdx && mArcNo == 0xFFFF) {
         data = NULL;
     } else {
-        mIdx = id;
+        mIdx = i_resID;
         mArcNo = 0xFFFF;
         if (mPriIdx == 0xFFFF) {
-            data = loadData(id);
+            data = loadData(i_resID);
         } else {
             data = NULL;
         }
@@ -505,29 +505,29 @@ void* daPy_anmHeap_c::loadDataIdx(u16 id) {
 
 /* 8015F0D0-8015F118 159A10 0048+00 0/0 3/3 0/0 .text            loadDataPriIdx__14daPy_anmHeap_cFUs
  */
-void* daPy_anmHeap_c::loadDataPriIdx(u16 id) {
+void* daPy_anmHeap_c::loadDataPriIdx(u16 i_resID) {
     void* data;
 
-    if (id == mPriIdx || mArcNo != 0xFFFF) {
+    if (i_resID == mPriIdx || mArcNo != 0xFFFF) {
         data = NULL;
     } else {
-        mPriIdx = id;
-        data = loadData(id);
+        mPriIdx = i_resID;
+        data = loadData(i_resID);
     }
 
     return data;
 }
 
 /* 8015F118-8015F168 159A58 0050+00 0/0 5/5 5/5 .text loadDataDemoRID__14daPy_anmHeap_cFUsUs */
-void* daPy_anmHeap_c::loadDataDemoRID(u16 id, u16 arc_no) {
+void* daPy_anmHeap_c::loadDataDemoRID(u16 i_resID, u16 i_arcNo) {
     void* data;
 
-    if (id == mIdx && arc_no == mArcNo) {
+    if (i_resID == mIdx && i_arcNo == mArcNo) {
         data = NULL;
     } else {
-        mIdx = id;
-        mArcNo = arc_no;
-        data = loadData(id);
+        mIdx = i_resID;
+        mArcNo = i_arcNo;
+        data = loadData(i_resID);
     }
 
     return data;
@@ -635,7 +635,8 @@ BOOL daPy_py_c::checkMasterSwordEquip() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::checkWoodShieldEquip(){nofralloc
+asm bool daPy_py_c::checkWoodShieldEquip() {
+    nofralloc
 #include "asm/d/a/d_a_player/checkWoodShieldEquip__9daPy_py_cFv.s"
 }
 #pragma pop

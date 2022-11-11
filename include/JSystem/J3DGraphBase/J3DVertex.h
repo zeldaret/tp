@@ -94,8 +94,4 @@ struct VertexNormal {
     Vec data;
 };
 
-struct VertexPosition {
-    Vec data;
-};
-
 #endif /* J3DVERTEX_H */

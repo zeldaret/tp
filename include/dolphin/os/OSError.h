@@ -1,18 +1,14 @@
 #ifndef OSERROR_H
 #define OSERROR_H
 
-#include "dolphin/types.h"
+#include "dolphin/os/OSContext.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-struct OSContext;
-
 extern u32 __OSFpscrEnableBits;
-
 typedef u16 OSError;
-typedef void (*OSErrorHandler)(OSError error, OSContext* context, u32, u32);
 
 #define OS_ERROR_SYSTEM_RESET 0
 #define OS_ERROR_MACHINE_CHECK 1
@@ -32,7 +28,7 @@ typedef void (*OSErrorHandler)(OSError error, OSContext* context, u32, u32);
 #define OS_ERROR_MEMORY_PROTECTION 15
 #define OS_ERROR_FLOATING_POINT_EXCEPTION 16
 
-typedef enum OSException {
+typedef enum {
     EXCEPTION_SYSTEM_RESET,
     EXCEPTION_MACHINE_CHECK,
     EXCEPTION_DSI,
@@ -51,6 +47,10 @@ typedef enum OSException {
     EXCEPTION_MEMORY_PROTECTION,
     EXCEPTION_FLOATING_POINT_EXCEPTION,
 } OSException;
+
+typedef u8 __OSException;
+
+typedef void (*OSErrorHandler)(OSError error, OSContext* context, u32, u32);
 
 OSErrorHandler OSSetErrorHandler(OSError error, OSErrorHandler handler);
 void __OSUnhandledException(OSException exception, OSContext* context, u32 dsisr, u32 dar);

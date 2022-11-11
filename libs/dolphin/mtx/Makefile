@@ -3,11 +3,11 @@
 #
 
 LIBMTX_A_CPP_FILES := \
-	libs/dolphin/mtx/mtx.cpp \
-	libs/dolphin/mtx/mtxvec.cpp \
-	libs/dolphin/mtx/mtx44.cpp \
-	libs/dolphin/mtx/vec.cpp \
-	libs/dolphin/mtx/quat.cpp \
+	libs/dolphin/mtx/mtx.c \
+	libs/dolphin/mtx/mtxvec.c \
+	libs/dolphin/mtx/mtx44.c \
+	libs/dolphin/mtx/vec.c \
+	libs/dolphin/mtx/quat.c \
 
 LIBMTX_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/mtx/mtx.o \
@@ -17,6 +17,8 @@ LIBMTX_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/mtx/quat.o \
 
 LIBMTX_A_CFLAGS := \
+	-O4,p \
+	-lang=c \
 
 LIBMTX_A_LDFLAGS := \
 	-nodefaults \
@@ -29,9 +31,9 @@ $(BUILD_DIR)/libmtx.a: $(LIBMTX_A_O_FILES)
 	@echo $(LIBMTX_A_O_FILES) > build/LIBMTX_A_ofiles
 	@$(LD) -xm l $(LIBMTX_A_LDFLAGS) -o $(BUILD_DIR)/libmtx.a @build/LIBMTX_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/mtx/%.o: libs/dolphin/mtx/%.cpp
+$(BUILD_DIR)/libs/dolphin/mtx/%.o: libs/dolphin/mtx/%.c
 	@mkdir -p $(@D)
 	@echo building... $<
-	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBMTX_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBMTX_A_CFLAGS) -c -o $@ $(basename $@).c
 

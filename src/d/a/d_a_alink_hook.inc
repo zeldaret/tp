@@ -271,7 +271,7 @@ bool daAlink_c::cancelHookshotMove() {
     if (mFastShotTime == 0 && mHookshotMode == 0) {
         if (checkHookshotAnime() &&
             (mTargetedActor == NULL && !i_checkAttentionLock() || !itemButton())) {
-            resetUpperAnime(UPPER_NOW, -1.0f);
+            resetUpperAnime(UPPER_2, -1.0f);
             return 1;
         }
     }

@@ -276,12 +276,14 @@ public:
     int getOxygen() { return mOxygen; }
     void setMaxOxygen(int max) { mMaxOxygen = max; }
     int getMaxOxygen() { return mMaxOxygen; }
+    int getNowOxygen() { return mNowOxygen; }
     void setItemNowLife(u16 life) { mItemNowLife = life; }
     void setItemNowMagic(s16 magic) { mItemNowMagicCount = magic; }
     void setItemNowOil(s32 oil) { mItemNowOil = oil; }
     void setItemOilCount(s32 oil) { mItemOilCount += oil; }
     s16 getItemMaxLifeCount() { return mItemMaxLifeCount; }
     f32 getItemLifeCount() { return mItemLifeCount; }
+    s16 getItemMaxArrowNumCount() { return mItemMaxArrowNumCount; }
     void clearItemMaxLifeCount() { mItemMaxLifeCount = 0; }
     void clearItemLifeCount() {
         mItemLifeCount = 0.0f;
@@ -396,9 +398,11 @@ public:
     bool& isPauseFlag() { return mPauseFlag; }
     void offPauseFlag() { mPauseFlag = false; }
     void onPauseFlag() { mPauseFlag = true; }
+    u8 getOxygenShowFlag() { return mOxygenShowFlag; }
     void show2dOn() { mShow2D = 1; }
     s8 getLayerOld() { return mLayerOld; }
     void setMesgCancelButton(u8 button) { mMesgCancelButton = button; }
+    void setMesgBgm(u8 param_0) { mMesgBgm = param_0; }
     int getMessageCountNumber() { return mMessageCountNum; }
 
     void setWindowNum(u8 num) { mWindowNum = num; }
@@ -803,6 +807,10 @@ void dComIfGs_onStageSwitch(int i_stageNo, int i_no);
 void dComIfGs_offStageSwitch(int i_stageNo, int i_no);
 void dComIfGs_PolyDamageOff_Set(s8 param_0);
 u8 dComIfGs_staffroll_next_go_check();
+BOOL dComIfGs_isEventBit(u16 id);
+int dComIfGs_isItemFirstBit(u8 i_no);
+u16 dComIfGs_getRupee();
+static u16 dComIfGs_getLife();
 
 inline void dComIfGs_init() {
     g_dComIfG_gameInfo.info.init();
@@ -1513,6 +1521,23 @@ JKRExpHeap* dComIfGp_getSubHeap2D(int flag);
 void dComIfGp_world_dark_set(u8);
 u8 dComIfGp_getNowLevel();
 void dComIfGp_calcNowRegion();
+daHorse_c* dComIfGp_getHorseActor();
+static BOOL dComIfGp_event_runCheck();
+static s32 dComIfGp_evmng_getMyStaffId(const char* pName, fopAc_ac_c* pActor, int param_2);
+static u16 dComIfGp_event_chkEventFlag(u16 flag);
+static s8 dComIfGp_getPlayerCameraID(int idx);
+static dEvent_manager_c& dComIfGp_getEventManager();
+static u32 dComIfGp_checkPlayerStatus0(int param_0, u32 param_1);
+static u32 dComIfGp_checkPlayerStatus1(int param_0, u32 param_1);
+static dEvt_control_c& dComIfGp_getEvent();
+static bool dComIfGp_evmng_startCheck(char const* param_0);
+static dStage_stageDt_c* dComIfGp_getStage();
+void dComIfGp_setItemLifeCount(f32 amount, u8 type);
+void dComIfGp_setItemRupeeCount(s32 param_0);
+static u8 dComIfGp_getDoStatus();
+static u8 dComIfGp_getRStatus();
+static dAttCatch_c* dComIfGp_att_getCatghTarget();
+static void dComIfGp_setBottleStatus(u8 param_0, u8 param_1);
 
 inline void i_dComIfGp_setItemLifeCount(float amount, u8 type) {
     g_dComIfG_gameInfo.play.setItemLifeCount(amount, type);
@@ -2082,6 +2107,14 @@ inline int dComIfGp_getOxygen() {
     return g_dComIfG_gameInfo.play.getOxygen();
 }
 
+inline int dComIfGp_getNowOxygen() {
+    return g_dComIfG_gameInfo.play.getNowOxygen();
+}
+
+inline u8 dComIfGp_getOxygenShowFlag() {
+    return g_dComIfG_gameInfo.play.getOxygenShowFlag();
+}
+
 inline u8 dComIfGp_getNeedLightDropNum() {
     return g_dComIfG_gameInfo.play.getNeedLightDropNum();
 }
@@ -2130,6 +2163,10 @@ inline void dComIfGp_setMesgCancelButton(u8 button) {
     g_dComIfG_gameInfo.play.setMesgCancelButton(button);
 }
 
+inline void dComIfGp_setMesgBgmOn() {
+    g_dComIfG_gameInfo.play.setMesgBgm(1);
+}
+
 inline s32 dComIfGp_checkStatus(u16 flags) {
     return g_dComIfG_gameInfo.play.checkStatus(flags);
 }
@@ -2152,6 +2189,10 @@ inline s16 dComIfGp_getItemMaxLifeCount() {
 
 inline f32 dComIfGp_getItemLifeCount() {
     return g_dComIfG_gameInfo.play.getItemLifeCount();
+}
+
+inline s16 dComIfGp_getItemMaxArrowNumCount() {
+    return g_dComIfG_gameInfo.play.getItemMaxArrowNumCount();
 }
 
 inline void dComIfGp_clearItemMaxLifeCount() {

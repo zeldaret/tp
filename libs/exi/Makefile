@@ -3,14 +3,16 @@
 #
 
 LIBEXI_A_CPP_FILES := \
-	libs/exi/EXIBios.cpp \
-	libs/exi/EXIUart.cpp \
+	libs/exi/EXIBios.c \
+	libs/exi/EXIUart.c \
 
 LIBEXI_A_O_FILES := \
 	$(BUILD_DIR)/libs/exi/EXIBios.o \
 	$(BUILD_DIR)/libs/exi/EXIUart.o \
 
 LIBEXI_A_CFLAGS := \
+	-O4,p \
+	-lang=c \
 
 LIBEXI_A_LDFLAGS := \
 	-nodefaults \
@@ -23,9 +25,9 @@ $(BUILD_DIR)/libexi.a: $(LIBEXI_A_O_FILES)
 	@echo $(LIBEXI_A_O_FILES) > build/LIBEXI_A_ofiles
 	@$(LD) -xm l $(LIBEXI_A_LDFLAGS) -o $(BUILD_DIR)/libexi.a @build/LIBEXI_A_ofiles
 
-$(BUILD_DIR)/libs/exi/%.o: libs/exi/%.cpp
+$(BUILD_DIR)/libs/exi/%.o: libs/exi/%.c
 	@mkdir -p $(@D)
 	@echo building... $<
-	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBEXI_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBEXI_A_CFLAGS) -c -o $@ $(basename $@).c
 

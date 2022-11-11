@@ -2,6 +2,8 @@
 #define OS_H_
 
 #include "Runtime.PPCEABI.H/__va_arg.h"
+#include "dolphin/dvd/dvd.h"
+
 #include "dolphin/os/OSAlarm.h"
 #include "dolphin/os/OSAlloc.h"
 #include "dolphin/os/OSArena.h"
@@ -35,6 +37,20 @@ extern "C" {
 #define OS_MESSAGE_NON_BLOCKING 0
 #define OS_MESSAGE_BLOCKING 1
 
+volatile u16 __OSDeviceCode : 0x800030E6;
+
+volatile u32 OS_PI_INTR_CAUSE : 0xCC003000;
+volatile u32 OS_PI_INTR_MASK : 0xCC003004;
+
+volatile u16 OS_MI_INTR_MASK : 0xCC00401C;
+
+volatile u16 OS_DSP_DMA_ADDR_HI : 0xCC005030;
+volatile u16 OS_DSP_DMA_ADDR_LO : 0xCC005032;
+volatile u16 OS_DSP_INTR_MASK : 0xCC00500A;
+
+volatile u16 OS_ARAM_DMA_ADDR_HI : 0xCC005020;
+volatile u16 OS_ARAM_DMA_ADDR_LO : 0xCC005022;
+
 BOOL OSIsThreadSuspended(OSThread* thread);
 
 u32 OSGetConsoleType(void);
@@ -58,20 +74,20 @@ void OSReportInit__Fv(void);  // needed for inline asm
 
 u8* OSGetStackPointer(void);
 void __OSFPRInit(void);
-static void InquiryCallback(u32 param_0, void* param_1);
+static void InquiryCallback(u32 param_0, DVDCommandBlock* param_1);
 void OSInit(void);
 static void OSExceptionInit(void);
 void __OSDBIntegrator(void);
 void __OSDBJump(void);
 
 typedef void (*OSExceptionHandler)(OSException, OSContext*);
-OSExceptionHandler __OSSetExceptionHandler(OSException exception, OSExceptionHandler handler);
-OSExceptionHandler __OSGetExceptionHandler(OSException exception);
+OSExceptionHandler __OSSetExceptionHandler(__OSException exception, OSExceptionHandler handler);
+OSExceptionHandler __OSGetExceptionHandler(__OSException exception);
 static void OSExceptionVector(void);
 void __DBVECTOR();
 void __OSEVSetNumber();
 void __OSEVEnd();
-static void OSDefaultExceptionHandler(OSException exception, OSContext* context);
+static void OSDefaultExceptionHandler(__OSException exception, OSContext* context);
 void __OSPSInit(void);
 void __OSGetDIConfig(void);
 void OSRegisterVersion(char* version);
@@ -132,7 +148,17 @@ inline void i_OSInitFastCast(void) {
     // clang-format on
 }
 
-#include "dolphin/dvd/dvd.h"
+typedef struct OSBootInfo {
+    /* 0x00 */ DVDDiskID disk_info;
+    /* 0x20 */ u32 boot_code;
+    /* 0x24 */ u32 version;
+    /* 0x28 */ u32 memory_size;
+    /* 0x2C */ u32 console_type;
+    /* 0x30 */ void* arena_lo;
+    /* 0x34 */ void* arena_hi;
+    /* 0x38 */ void* fst_location;
+    /* 0x3C */ u32 fst_max_length;
+} OSBootInfo;
 
 struct GLOBAL_MEMORY {
     DVDDiskID disk;

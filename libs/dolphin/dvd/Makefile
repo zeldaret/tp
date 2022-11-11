@@ -3,14 +3,14 @@
 #
 
 LIBDVD_A_CPP_FILES := \
-	libs/dolphin/dvd/dvdlow.cpp \
-	libs/dolphin/dvd/dvdfs.cpp \
-	libs/dolphin/dvd/dvd.cpp \
-	libs/dolphin/dvd/dvdqueue.cpp \
-	libs/dolphin/dvd/dvderror.cpp \
-	libs/dolphin/dvd/dvdidutils.cpp \
-	libs/dolphin/dvd/dvdFatal.cpp \
-	libs/dolphin/dvd/fstload.cpp \
+	libs/dolphin/dvd/dvdlow.c \
+	libs/dolphin/dvd/dvdfs.c \
+	libs/dolphin/dvd/dvd.c \
+	libs/dolphin/dvd/dvdqueue.c \
+	libs/dolphin/dvd/dvderror.c \
+	libs/dolphin/dvd/dvdidutils.c \
+	libs/dolphin/dvd/dvdFatal.c \
+	libs/dolphin/dvd/fstload.c \
 
 LIBDVD_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/dvd/dvdlow.o \
@@ -23,6 +23,8 @@ LIBDVD_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/dvd/fstload.o \
 
 LIBDVD_A_CFLAGS := \
+	-O4,p \
+	-lang=c \
 
 LIBDVD_A_LDFLAGS := \
 	-nodefaults \
@@ -35,9 +37,9 @@ $(BUILD_DIR)/libdvd.a: $(LIBDVD_A_O_FILES)
 	@echo $(LIBDVD_A_O_FILES) > build/LIBDVD_A_ofiles
 	@$(LD) -xm l $(LIBDVD_A_LDFLAGS) -o $(BUILD_DIR)/libdvd.a @build/LIBDVD_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/dvd/%.o: libs/dolphin/dvd/%.cpp
+$(BUILD_DIR)/libs/dolphin/dvd/%.o: libs/dolphin/dvd/%.c
 	@mkdir -p $(@D)
 	@echo building... $<
-	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBDVD_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBDVD_A_CFLAGS) -c -o $@ $(basename $@).c
 

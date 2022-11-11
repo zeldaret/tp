@@ -12,7 +12,7 @@ struct PLC {
     /* 0x0 */ u32 magic;
     /* 0x4 */ u16 m_code_size;
     /* 0x6 */ u16 m_num;
-    // ...
+    /* 0x8 */ sBgPc* field_0x8;
 };
 
 class dBgPlc {
@@ -21,7 +21,7 @@ public:
     /* 80074080 */ ~dBgPlc();
     /* 800740BC */ void setBase(void*);
     /* 800740C4 */ void getCode(int, sBgPc**) const;
-    /* 800740DC */ void getGrpCode(int) const;
+    /* 800740DC */ u32 getGrpCode(int) const;
 
 private:
     /* 0x00 */ void* m_base;

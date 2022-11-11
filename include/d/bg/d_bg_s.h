@@ -78,7 +78,7 @@ public:
     int GetSpecialCode(cBgS_PolyInfo const&);
     int GetMagnetCode(cBgS_PolyInfo const&);
     int GetMonkeyBarsCode(cBgS_PolyInfo const&);
-    int GetUnderwaterRoofCode(cBgS_PolyInfo const&);
+    u32 GetUnderwaterRoofCode(cBgS_PolyInfo const&);
     s32 GetWallCode(cBgS_PolyInfo const&);
     int GetPolyAtt0(cBgS_PolyInfo const&);
     int GetPolyAtt1(cBgS_PolyInfo const&);
@@ -87,7 +87,7 @@ public:
     s32 GetRoomCamId(cBgS_PolyInfo const&);
     s32 GetRoomPathId(cBgS_PolyInfo const&);
     s32 GetRoomPathPntNo(cBgS_PolyInfo const&);
-    s32 GetGrpSoundId(cBgS_PolyInfo const&);
+    u8 GetGrpSoundId(cBgS_PolyInfo const&);
     u32 ChkGrpInf(cBgS_PolyInfo const&, u32);
     s32 GetRoomId(cBgS_PolyInfo const&);
     bool GetPolyAttackThrough(cBgS_PolyInfo const&);

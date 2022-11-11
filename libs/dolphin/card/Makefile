@@ -3,20 +3,20 @@
 #
 
 LIBCARD_A_CPP_FILES := \
-	libs/dolphin/card/CARDBios.cpp \
-	libs/dolphin/card/CARDUnlock.cpp \
-	libs/dolphin/card/CARDRdwr.cpp \
-	libs/dolphin/card/CARDBlock.cpp \
-	libs/dolphin/card/CARDDir.cpp \
-	libs/dolphin/card/CARDCheck.cpp \
-	libs/dolphin/card/CARDMount.cpp \
-	libs/dolphin/card/CARDFormat.cpp \
-	libs/dolphin/card/CARDOpen.cpp \
-	libs/dolphin/card/CARDCreate.cpp \
-	libs/dolphin/card/CARDRead.cpp \
-	libs/dolphin/card/CARDWrite.cpp \
-	libs/dolphin/card/CARDStat.cpp \
-	libs/dolphin/card/CARDNet.cpp \
+	libs/dolphin/card/CARDBios.c \
+	libs/dolphin/card/CARDUnlock.c \
+	libs/dolphin/card/CARDRdwr.c \
+	libs/dolphin/card/CARDBlock.c \
+	libs/dolphin/card/CARDDir.c \
+	libs/dolphin/card/CARDCheck.c \
+	libs/dolphin/card/CARDMount.c \
+	libs/dolphin/card/CARDFormat.c \
+	libs/dolphin/card/CARDOpen.c \
+	libs/dolphin/card/CARDCreate.c \
+	libs/dolphin/card/CARDRead.c \
+	libs/dolphin/card/CARDWrite.c \
+	libs/dolphin/card/CARDStat.c \
+	libs/dolphin/card/CARDNet.c \
 
 LIBCARD_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/card/CARDBios.o \
@@ -35,6 +35,8 @@ LIBCARD_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/card/CARDNet.o \
 
 LIBCARD_A_CFLAGS := \
+	-O4,p \
+	-lang=c \
 
 LIBCARD_A_LDFLAGS := \
 	-nodefaults \
@@ -47,9 +49,9 @@ $(BUILD_DIR)/libcard.a: $(LIBCARD_A_O_FILES)
 	@echo $(LIBCARD_A_O_FILES) > build/LIBCARD_A_ofiles
 	@$(LD) -xm l $(LIBCARD_A_LDFLAGS) -o $(BUILD_DIR)/libcard.a @build/LIBCARD_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/card/%.o: libs/dolphin/card/%.cpp
+$(BUILD_DIR)/libs/dolphin/card/%.o: libs/dolphin/card/%.c
 	@mkdir -p $(@D)
 	@echo building... $<
-	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBCARD_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBCARD_A_CFLAGS) -c -o $@ $(basename $@).c
 

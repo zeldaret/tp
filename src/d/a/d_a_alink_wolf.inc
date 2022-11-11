@@ -138,8 +138,8 @@ asm void daAlink_c::checkWolfAtnWait() {
 /* 8012880C-80128844 12314C 0038+00 27/27 0/0 0/0 .text
  * checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM */
 BOOL daAlink_c::checkUnderMove0BckNoArcWolf(daAlink_c::daAlink_WANM anm_id) const {
-    return mUnderAnime[0].checkNoSetArcNo() &&
-           m_wlAnmDataTable[anm_id].field_0x0 == mUnderAnime[0].getIdx();
+    return mUnderAnmHeap[0].checkNoSetArcNo() &&
+           m_wlAnmDataTable[anm_id].field_0x0 == mUnderAnmHeap[0].getIdx();
 }
 
 /* 80128844-80128F0C 123184 06C8+00 11/11 0/0 0/0 .text setBlendWolfMoveAnime__9daAlink_cFf */

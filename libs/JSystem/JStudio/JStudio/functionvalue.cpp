@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/JStudio/JStudio/functionvalue.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "MSL_C/math.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"

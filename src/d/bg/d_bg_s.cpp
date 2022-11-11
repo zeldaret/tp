@@ -568,7 +568,7 @@ int dBgS::GetMonkeyBarsCode(cBgS_PolyInfo const& poly) {
 
 /* 80074DAC-80074E00 06F6EC 0054+00 0/0 0/0 1/1 .text
  * GetUnderwaterRoofCode__4dBgSFRC13cBgS_PolyInfo               */
-int dBgS::GetUnderwaterRoofCode(cBgS_PolyInfo const& poly) {
+u32 dBgS::GetUnderwaterRoofCode(cBgS_PolyInfo const& poly) {
     int bg_index = poly.GetBgIndex();
     if (m_chk_element[bg_index].ChkUsed()) {
         return m_chk_element[bg_index].m_bgw_base_ptr->GetUnderwaterRoofCode(poly.GetPolyIndex());
@@ -658,7 +658,7 @@ s32 dBgS::GetRoomPathPntNo(cBgS_PolyInfo const& poly) {
 }
 
 /* 80075080-800750D0 06F9C0 0050+00 0/0 2/2 0/0 .text GetGrpSoundId__4dBgSFRC13cBgS_PolyInfo */
-s32 dBgS::GetGrpSoundId(cBgS_PolyInfo const& poly) {
+u8 dBgS::GetGrpSoundId(cBgS_PolyInfo const& poly) {
     int bg_index = poly.GetBgIndex();
     if (m_chk_element[bg_index].ChkUsed()) {
         return m_chk_element[bg_index].m_bgw_base_ptr->GetGrpSoundId(poly);

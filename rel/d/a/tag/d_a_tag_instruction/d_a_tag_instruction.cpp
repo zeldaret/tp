@@ -8,63 +8,37 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct daTagInst_c {};
-
-//
-// Forward References:
-//
-
-extern "C" static void daTagInst_Create__FP10fopAc_ac_c();
-extern "C" static void daTagInst_Delete__FP11daTagInst_c();
-extern "C" extern void* g_profile_Tag_Instruction[12];
-
-//
 // External References:
 //
 
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 
 //
 // Declarations:
 //
 
 /* 80D59AF8-80D59B48 000078 0050+00 1/0 0/0 0/0 .text            daTagInst_Create__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagInst_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_instruction/d_a_tag_instruction/daTagInst_Create__FP10fopAc_ac_c.s"
+static int daTagInst_Create(fopAc_ac_c* i_this) {
+    if (!fopAcM_CheckCondition(i_this, 8)) {
+        new (i_this) daTagInst_c();
+        fopAcM_OnCondition(i_this, 8);
+    }
+
+    return cPhs_COMPLEATE_e;
 }
-#pragma pop
 
 /* 80D59B48-80D59B78 0000C8 0030+00 1/0 0/0 0/0 .text            daTagInst_Delete__FP11daTagInst_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagInst_Delete(daTagInst_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_instruction/d_a_tag_instruction/daTagInst_Delete__FP11daTagInst_c.s"
+static int daTagInst_Delete(daTagInst_c* i_this) {
+    i_this->~daTagInst_c();
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D59B80-80D59BA0 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagInst_Method */
 SECTION_DATA static void* l_daTagInst_Method[8] = {
-    (void*)daTagInst_Create__FP10fopAc_ac_c,
-    (void*)daTagInst_Delete__FP11daTagInst_c,
+    (void*)daTagInst_Create,
+    (void*)daTagInst_Delete,
     (void*)NULL,
     (void*)NULL,
     (void*)NULL,

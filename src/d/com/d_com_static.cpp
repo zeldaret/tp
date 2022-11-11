@@ -360,7 +360,7 @@ asm void daSus_c::reset() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool daSus_c::check(s8 param_0, cXyz const& param_1) {
+asm bool daSus_c::check(s8 i_roomNo, cXyz const& i_pos) {
     nofralloc
 #include "asm/d/com/d_com_static/check__7daSus_cFScRC4cXyz.s"
 }
