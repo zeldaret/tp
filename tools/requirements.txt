@@ -9,3 +9,4 @@ watchdog
 python-Levenshtein
 cxxfilt
 oead
+pyelftools
