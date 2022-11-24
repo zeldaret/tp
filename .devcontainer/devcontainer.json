@@ -18,7 +18,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"updateContentCommand": "chmod +x tools/mwcc_compiler/2.7/*.exe && python3 -m pip install --user -r tools/requirements.txt",
+	"updateContentCommand": "python3 -m pip install --user -r tools/requirements.txt",
 	"postCreateCommand": "./tp setup || echo \"\\nMake sure you put the compiler in the appropriate folder and copied the ISO in the right folder.\\nThen run \\\"./tp setup\\\" again.\\n\"",
 
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
