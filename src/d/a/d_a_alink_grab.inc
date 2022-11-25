@@ -121,7 +121,7 @@ asm void daAlink_c::checkGrabThrowAnime() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkGrabAnime() const {
+asm BOOL daAlink_c::checkGrabAnime() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkGrabAnime__9daAlink_cCFv.s"
 }
@@ -455,7 +455,7 @@ asm void daAlink_c::procGrabThrow() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGrabPutInit() {
+asm int daAlink_c::procGrabPutInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGrabPutInit__9daAlink_cFv.s"
 }
@@ -662,7 +662,7 @@ asm u8 daAlink_c::checkChainEmphasys() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::searchFmChainPos() {
+asm u8 daAlink_c::searchFmChainPos() {
     nofralloc
 #include "asm/d/a/d_a_alink/searchFmChainPos__9daAlink_cFv.s"
 }

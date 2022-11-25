@@ -208,7 +208,7 @@ asm void daAlink_c::checkUpperItemActionIronBall() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkNextActionIronBall() {
+asm int daAlink_c::checkNextActionIronBall() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkNextActionIronBall__9daAlink_cFv.s"
 }

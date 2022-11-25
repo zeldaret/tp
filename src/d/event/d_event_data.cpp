@@ -876,9 +876,9 @@ SECTION_DEAD static char const* const stringBase_80379E65 = "SCALE";
 
 /* 80044CB8-80044EE4 03F5F8 022C+00 1/1 0/0 0/0 .text            specialProcCreate__12dEvDtStaff_cFv
  */
+// matches with literals
 #ifdef NONMATCHING
 void dEvDtStaff_c::specialProcCreate() {
-    // regalloc
     char* name;
     u32 arg;
     cXyz pos;

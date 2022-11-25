@@ -12,7 +12,7 @@ static asm void* daAlink_searchBoar(fopAc_ac_c* param_0, void* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daAlink_searchCoach(fopAc_ac_c* param_0, void* param_1) {
+static asm fopAc_ac_c* daAlink_searchCoach(fopAc_ac_c* param_0, void* param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/daAlink_searchCoach__FP10fopAc_ac_cPv.s"
 }

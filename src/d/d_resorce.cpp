@@ -367,7 +367,7 @@ SECTION_DATA static void* lit_4017[8] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dRes_info_c::loaderBasicBmd(u32 param_0, void* param_1) {
+asm J3DModelData* dRes_info_c::loaderBasicBmd(u32 param_0, void* param_1) {
     nofralloc
 #include "asm/d/d_resorce/loaderBasicBmd__11dRes_info_cFUlPv.s"
 }

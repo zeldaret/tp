@@ -21,6 +21,9 @@ public:
     /* 8015F384 */ void setSightImage(ResTIMG*);
 
     bool getDrawFlg() { return mDrawFlag; }
+    void onDrawFlg() { mDrawFlag = true; }
+    void offDrawFlg() { mDrawFlag = false; }
+    void setPos(const cXyz* i_pos) { mPos = *i_pos; }
 
 private:
     /* 0x04 */ bool mDrawFlag;
@@ -36,6 +39,9 @@ public:
     /* 8015E5B0 */ void initOffset(cXyz const*);
     /* 8015E654 */ int posMove(cXyz*, s16*, fopAc_ac_c*, s16);
     /* 8015E87C */ void bgCheckAfterOffset(cXyz const*);
+
+    static void initDropAngleY() { m_dropAngleY = 0x4000; }
+    static void offEventKeepFlg() { m_eventKeepFlg = 0; }
 
     static s16 m_dropAngleY;
     static s16 m_eventKeepFlg;
@@ -144,9 +150,11 @@ public:
     int getParam1() const { return mParam1; }
     void setOriginalDemoType() { setDemoType(3); }
     void i_setSpecialDemoType() { setDemoType(5); }
+    void setSystemDemoType() { setDemoType(2); }
     void setStick(f32 stick) { mStick = stick; }
     void setMoveAngle(s16 angle) { mDemoMoveAngle = angle; }
     s16 getMoveAngle() const { return mDemoMoveAngle; }
+    f32 getStick() { return mStick; }
 
 private:
     /* 0x00 */ u16 mDemoType;
@@ -156,7 +164,7 @@ private:
     /* 0x08 */ int mParam0;
     /* 0x0C */ int mParam1;
     /* 0x10 */ u32 mDemoMode;
-    /* 0x14 */ float mStick;
+    /* 0x14 */ f32 mStick;
     /* 0x18 */ cXyz mDemoPos0;
 };  // Size: 0x24
 
@@ -226,9 +234,10 @@ public:
     enum daPy_FLG1 {
         FLG1_UNK_10000000 = 0x10000000,
         FLG1_IS_WOLF = 0x2000000,
-        FLG1_UNK_400000 = 0x400000,
+        FLG1_DASH_MODE = 0x400000,
         FLG1_UNK_10000 = 0x10000,
         FLG1_THROW_DAMAGE = 0x4000,
+        FLG1_UNK_40 = 0x40,
         FLG1_UNK_20 = 0x20,
         FLG1_UNK_10 = 0x10,
         FLG1_UNK_4 = 4,
@@ -237,6 +246,7 @@ public:
 
     enum daPy_FLG2 {
         FLG2_UNK_20000000 = 0x20000000,
+        FLG2_UNK_10000000 = 0x10000000,
         FLG2_UNK_4080000 = 0x4080000,
         FLG2_UNK_2080000 = 0x2080000,
         FLG2_BOAR_SINGLE_BATTLE = 0x1800000,
@@ -250,6 +260,7 @@ public:
         FLG2_UNK_20000 = 0x20000,
         FLG2_SCN_CHG_START = 0x8000,
         FLG2_UNK_4000 = 0x4000,
+        FLG2_UNK_200 = 0x200,
         FLG2_UNK_80 = 0x80,
         FLG2_UNK_40 = 0x40,
         FLG2_UNK_10 = 0x10,
@@ -279,8 +290,10 @@ public:
         ERFLG0_UNK_200000 = 0x200000,
         ERFLG0_UNK_100000 = 0x100000,
         ERFLG0_UNK_2000 = 0x2000,
+        ERFLG0_UNK_1000 = 0x1000,
         ERFLG0_UNK_400 = 0x400,
         ERFLG0_UNK_100 = 0x100,
+        ERFLG0_UNK_8 = 8,
         ERFLG0_UNK_4 = 4,
         ERFLG0_UNK_2 = 2,
         ERFLG0_UNK_1 = 1,
@@ -293,6 +306,7 @@ public:
         ERFLG1_UNK_40000 = 0x40000,
         ERFLG1_UNK_2000 = 0x2000,
         ERFLG1_UNK_200 = 0x200,
+        ERFLG1_UNK_100 = 0x100,
         ERFLG1_UNK_4 = 4,
         ERFLG1_UNK_2 = 2,
         ERFLG1_UNK_1 = 1,
@@ -312,6 +326,10 @@ public:
         RFLG0_UNK_40 = 0x40,
         RFLG0_UNK_10 = 0x10,
         RFLG0_UNK_2 = 0x2,
+    };
+
+    enum daPy_RFLG1 {
+        RFLG1_UNK_2 = 0x2,
     };
 
     enum {
@@ -458,7 +476,7 @@ public:
     virtual BOOL checkGoatThrowAfter() const;
     virtual BOOL checkWolfTagLockJump() const;
     virtual BOOL checkWolfTagLockJumpLand() const;
-    virtual bool checkWolfRope();
+    virtual BOOL checkWolfRope();
     virtual BOOL checkWolfRopeHang() const;
     virtual BOOL checkRollJump() const;
     virtual BOOL checkGoronRideWait() const;
@@ -604,12 +622,18 @@ public:
     }
 
     bool i_getSumouMode() const { return getSumouCameraMode(); }
+    void i_cancelOriginalDemo() {
+        mDemo.setSystemDemoType();
+        mDemo.setDemoMode(1);
+    }
 
     bool checkStatusWindowDraw() { return i_checkNoResetFlg2(FLG2_STATUS_WINDOW_DRAW); }
     bool checkCargoCarry() const { return mSpecialMode == SMODE_CARGO_CARRY; }
     bool getHeavyStateAndBoots() { return i_checkNoResetFlg0(FLG0_HVY_STATE); }
     bool checkEnemyAttentionLock() const { return i_checkResetFlg0(RFLG0_ENEMY_ATTN_LOCK); }
     bool checkCanoeSlider() const { return mSpecialMode == 0x2D; }
+    bool checkGoatStopGame() const { return mSpecialMode == 0x2A; }
+    bool i_checkGoronSideMove() const { return mSpecialMode == 0x2B; }
     u8 getCutType() const { return mCutType; }
     u16 getSwordAtUpTime() const { return mSwordUpTimer; }
     bool checkWaterInMove() const { return i_checkNoResetFlg0(FLG0_UNDERWATER); }
@@ -651,6 +675,8 @@ public:
     bool i_checkMidnaRide() const { return i_checkNoResetFlg0(FLG0_MIDNA_RIDE); }
     void i_onPlayerNoDraw() { i_onNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
     void i_offPlayerNoDraw() { i_offNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
+
+    u32 i_checkBoarSingleBattle() const { return i_checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
 
     inline static u32 i_getLastSceneMode();
     inline static u32 getLastSceneMode();

@@ -73,7 +73,7 @@ asm void daAlink_c::onPressedDamage(cXyz const& param_0, s16 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkNoLandDamageSlidePolygon() {
+asm BOOL daAlink_c::checkNoLandDamageSlidePolygon() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkNoLandDamageSlidePolygon__9daAlink_cFv.s"
 }
@@ -284,7 +284,7 @@ asm BOOL daAlink_c::checkDamageAction() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procDamageInit(dCcD_GObjInf* param_0, int param_1) {
+asm int daAlink_c::procDamageInit(dCcD_GObjInf* param_0, int param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/procDamageInit__9daAlink_cFP12dCcD_GObjInfi.s"
 }
@@ -305,7 +305,7 @@ asm void daAlink_c::procDamage() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoLargeDamageInit(int param_0, int param_1, s16 param_2, s16 param_3,
+asm int daAlink_c::procCoLargeDamageInit(int param_0, int param_1, s16 param_2, s16 param_3,
                                           dCcD_GObjInf* param_4, int param_5) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoLargeDamageInit__9daAlink_cFiissP12dCcD_GObjInfi.s"
@@ -480,7 +480,7 @@ asm void daAlink_c::setScreamWaitAnime() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procScreamWaitInit() {
+asm int daAlink_c::procScreamWaitInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procScreamWaitInit__9daAlink_cFv.s"
 }

@@ -273,6 +273,7 @@ public:
     void setItemMaxLifeCount(s16 max) { mItemMaxLifeCount += max; }
     void setOxygen(int oxygen) { mOxygen = oxygen; }
     void setNowOxygen(s32 oxygen) { mNowOxygen = oxygen; }
+    void setOxygenCount(s32 oxygen) { mOxygenCount += oxygen; }
     int getOxygen() { return mOxygen; }
     void setMaxOxygen(int max) { mMaxOxygen = max; }
     int getMaxOxygen() { return mMaxOxygen; }
@@ -399,7 +400,9 @@ public:
     void offPauseFlag() { mPauseFlag = false; }
     void onPauseFlag() { mPauseFlag = true; }
     u8 getOxygenShowFlag() { return mOxygenShowFlag; }
+    void setOxygenShowFlag(u8 flag) { mOxygenShowFlag = flag; }
     void show2dOn() { mShow2D = 1; }
+    void show2dOff() { mShow2D = 0; }
     s8 getLayerOld() { return mLayerOld; }
     void setMesgCancelButton(u8 button) { mMesgCancelButton = button; }
     void setMesgBgm(u8 param_0) { mMesgBgm = param_0; }
@@ -2099,7 +2102,11 @@ inline void dComIfGp_setNowOxygen(s32 oxygen) {
     g_dComIfG_gameInfo.play.setNowOxygen(oxygen);
 }
 
-inline int dComIfGp_getMaxOxygen() {
+inline void dComIfGp_setOxygenCount(s32 oxygen) {
+    g_dComIfG_gameInfo.play.setOxygenCount(oxygen);
+}
+
+inline s32 dComIfGp_getMaxOxygen() {
     return g_dComIfG_gameInfo.play.getMaxOxygen();
 }
 
@@ -2113,6 +2120,14 @@ inline int dComIfGp_getNowOxygen() {
 
 inline u8 dComIfGp_getOxygenShowFlag() {
     return g_dComIfG_gameInfo.play.getOxygenShowFlag();
+}
+
+inline void dComIfGp_onOxygenShowFlag() {
+    g_dComIfG_gameInfo.play.setOxygenShowFlag(1);
+}
+
+inline void dComIfGp_offOxygenShowFlag() {
+    g_dComIfG_gameInfo.play.setOxygenShowFlag(0);
 }
 
 inline u8 dComIfGp_getNeedLightDropNum() {
@@ -2181,6 +2196,10 @@ inline void dComIfGp_clearItemPachinkoNumCount() {
 
 inline void dComIfGp_2dShowOn() {
     g_dComIfG_gameInfo.play.show2dOn();
+}
+
+inline void dComIfGp_2dShowOff() {
+    g_dComIfG_gameInfo.play.show2dOff();
 }
 
 inline s16 dComIfGp_getItemMaxLifeCount() {
@@ -2357,6 +2376,10 @@ inline int dComIfGp_event_order(u16 eventType, u16 priority, u16 flag, u16 param
 
 inline void dComIfGp_event_setGtItm(int i_itemNo) {
     g_dComIfG_gameInfo.play.getEvent().setGtItm(i_itemNo);
+}
+
+inline void i_dComIfGp_event_reset() {
+    g_dComIfG_gameInfo.play.getEvent().reset();
 }
 
 inline void dComIfGp_evmng_cutEnd(int param_0) {

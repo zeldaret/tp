@@ -105,7 +105,7 @@ asm void daAlink_c::checkBowReadyAnime() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkBowAnime() const {
+asm BOOL daAlink_c::checkBowAnime() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkBowAnime__9daAlink_cCFv.s"
 }
@@ -216,7 +216,7 @@ asm void daAlink_c::checkUpperItemActionBowFly() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkNextActionBow() {
+asm int daAlink_c::checkNextActionBow() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkNextActionBow__9daAlink_cFv.s"
 }

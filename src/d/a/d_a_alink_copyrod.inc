@@ -85,7 +85,7 @@ asm BOOL daAlink_c::checkCopyRodTopUse() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkCopyRodAnime() const {
+asm int daAlink_c::checkCopyRodAnime() const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkCopyRodAnime__9daAlink_cCFv.s"
 }
@@ -239,7 +239,7 @@ asm void daAlink_c::checkUpperItemActionCopyRodFly() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkNextActionCopyRod() {
+asm int daAlink_c::checkNextActionCopyRod() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkNextActionCopyRod__9daAlink_cFv.s"
 }

@@ -1,42 +1,30 @@
 /* 800C2DDC-800C2EAC 0BD71C 00D0+00 17/17 0/0 0/0 .text
  * procPreActionUnequipInit__9daAlink_cFiP10fopAc_ac_c          */
-#ifdef NONMATCHING
 int daAlink_c::procPreActionUnequipInit(int param_0, fopAc_ac_c* param_1) {
-    commonProcInit(ACT_PROC_PREACTION_UNEQUIP);
-    mNormalSpeed = 0.0f;
-    setBlendMoveAnime(4.0f);
+    commonProcInit(PROC_PREACTION_UNEQUIP);
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    setBlendMoveAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
     allUnequip(0);
     field_0x3010 = 0;
 
-    if (param_1 == NULL) {
-        field_0x300e = 0;
-    } else {
+    if (param_1 != NULL) {
         field_0x280c.setData(param_1);
         field_0x300e = 1;
-        if (fopAcM_GetName(param_1) == 0x2cb) {
+
+        if (fopAcM_GetName(param_1) == PROC_Tag_Lv8Gate) {
             if (mEquipItem == KANTERA) {
                 field_0x3010 = 1;
-            } else {
-                if (i_checkNoResetFlg2(1) != 0) {
-                    offKandelaarModel();
-                }
+            } else if (i_checkNoResetFlg2(FLG2_UNK_1)) {
+                offKandelaarModel();
             }
         }
+    } else {
+        field_0x300e = 0;
     }
 
     field_0x3198 = param_0;
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daAlink_c::procPreActionUnequipInit(int param_0, fopAc_ac_c* param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/procPreActionUnequipInit__9daAlink_cFiP10fopAc_ac_c.s"
-}
-#pragma pop
-#endif
 
 /* 800C2EAC-800C3098 0BD7EC 01EC+00 1/0 0/0 0/0 .text            procPreActionUnequip__9daAlink_cFv
  */
@@ -92,6 +80,7 @@ asm void daAlink_c::procTiredWaitInit() {
 /* 800C3338-800C33B8 0BDC78 0080+00 1/0 0/0 0/0 .text            procTiredWait__9daAlink_cFv */
 int daAlink_c::procTiredWait() {
     daPy_frameCtrl_c* ctrl = &mUnderFrameCtrl[0];
+
     if (!checkNextAction(0)) {
         if (ctrl->checkAnmEnd()) {
             setSingleAnimeBase(ANM_WAIT_TIRED);
@@ -99,6 +88,7 @@ int daAlink_c::procTiredWait() {
             setTiredVoice(ctrl);
         }
     }
+
     return 1;
 }
 
@@ -125,15 +115,16 @@ asm void daAlink_c::procWait() {
 /* 800C36CC-800C3730 0BE00C 0064+00 3/3 0/0 0/0 .text            procMoveInit__9daAlink_cFv */
 int daAlink_c::procMoveInit() {
     if (!commonProcInitNotSameProc(PROC_MOVE)) {
-        return false;
+        return 0;
     }
+
     setBlendMoveAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
     setFootEffectProcType(3);
     return 1;
 }
 
 /* 800C3730-800C3810 0BE070 00E0+00 1/0 0/0 0/0 .text            procMove__9daAlink_cFv */
-// results of cLib_minMaxLimit are put in r4 instead of r3
+// reg swap
 #ifdef NONMATCHING
 int daAlink_c::procMove() {
     setFootEffectProcType(3);
@@ -142,6 +133,7 @@ int daAlink_c::procMove() {
             mNormalSpeed > field_0x594 * daAlinkHIO_move_c0::m.mWalkChangeRate) {
             mNormalSpeed = field_0x594 * daAlinkHIO_move_c0::m.mWalkChangeRate;
         }
+
         setBlendMoveAnime(-1.0f);
         if (field_0x3174 != 8) {
             field_0x30a0 =
@@ -167,6 +159,7 @@ int daAlink_c::procAtnMoveInit() {
     if (!commonProcInitNotSameProc(PROC_ATN_MOVE)) {
         return 0;
     }
+
     setBlendAtnMoveAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
     return 1;
 }
@@ -178,6 +171,7 @@ int daAlink_c::procAtnMove() {
             setBlendAtnMoveAnime(lit_6041);
         }
     }
+
     return 1;
 }
 
@@ -191,6 +185,7 @@ int daAlink_c::procAtnActorWaitInit() {
     if (mTargetedActor != NULL) {
         fopAcM_searchActorAngleY(this, mTargetedActor);
     }
+
     mNormalSpeed = FLOAT_LABEL(lit_6108);
     if (field_0x2f98 != 2) {
         field_0x2f98 = 3;
@@ -215,6 +210,7 @@ int daAlink_c::procAtnActorWait() {
         }
         checkSwordTwirlAction();
     }
+
     return 1;
 }
 
@@ -224,6 +220,7 @@ int daAlink_c::procAtnActorMoveInit() {
     if (!commonProcInitNotSameProc(PROC_ATN_ACTOR_MOVE)) {
         return 0;
     }
+
     setBlendAtnMoveAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
     return 1;
 }
@@ -234,6 +231,7 @@ int daAlink_c::procAtnActorMove() {
         setBlendAtnMoveAnime(lit_6041);
         checkSwordTwirlAction();
     }
+
     return 1;
 }
 
@@ -248,6 +246,7 @@ int daAlink_c::procWaitTurnInit() {
     if (checkEventRun()) {
         mNormalSpeed = FLOAT_LABEL(lit_6108);
     }
+
     field_0x300e = field_0x2fe2;
     current.angle.y = mCollisionRot.y;
     return 1;
@@ -256,31 +255,30 @@ int daAlink_c::procWaitTurnInit() {
 /* 800C3B1C-800C3C3C 0BE45C 0120+00 1/0 0/0 0/0 .text            procWaitTurn__9daAlink_cFv */
 int daAlink_c::procWaitTurn() {
     cLib_chaseF(&mNormalSpeed, FLOAT_LABEL(lit_6108), daAlinkHIO_move_c0::m.mDeceleration);
+
     if (checkGroundSpecialMode()) {
         return 1;
+    } else if (i_checkEndResetFlg0(ERFLG0_UNK_100000)) {
+        return procFloorDownReboundInit();
     } else {
-        if (i_checkEndResetFlg0(ERFLG0_UNK_100000)) {
-            return procFloorDownReboundInit();
-        } else {
-            s16 angle = cLib_addCalcAngleS(&mCollisionRot.y, field_0x300e, 30, 0x3CDF, 8000);
-            current.angle.y = mCollisionRot.y;
-            if (checkNextActionFromButton()) {
-                return 1;
-            } else {
-                if (angle == 0) {
-                    if (checkEventRun()) {
-                        if (mDemo.getDemoMode() == 5) {
-                            dComIfGp_evmng_cutEnd(field_0x3184);
-                        } else if (!checkNextAction(0)) {
-                            checkWaitAction();
-                        }
-                    } else {
-                        checkNextAction(0);
-                    }
+        s16 angle = cLib_addCalcAngleS(&mCollisionRot.y, field_0x300e, 30, 0x3CDF, 8000);
+        current.angle.y = mCollisionRot.y;
+
+        if (checkNextActionFromButton()) {
+            return 1;
+        } else if (angle == 0) {
+            if (checkEventRun()) {
+                if (mDemo.getDemoMode() == 5) {
+                    dComIfGp_evmng_cutEnd(field_0x3184);
+                } else if (!checkNextAction(0)) {
+                    checkWaitAction();
                 }
+            } else {
+                checkNextAction(0);
             }
         }
     }
+
     return 1;
 }
 
@@ -294,17 +292,18 @@ int daAlink_c::procMoveTurnInit(int param_0) {
     dComIfGp_setPlayerStatus0(0, 0x800);
 
     if (param_0 != 0) {
-        field_0x300e = (daAlinkHIO_move_c0::m.mMaxTurnAngle << 2) + 19030;
-        field_0x3010 = daAlinkHIO_move_c0::m.mMaxTurnAngle << 1;
+        field_0x300e = (daAlinkHIO_move_c0::m.mMaxTurnAngle * 4) + 19030;
+        field_0x3010 = daAlinkHIO_move_c0::m.mMaxTurnAngle * 2;
         field_0x300a = 2;
         current.angle.y = field_0x2fe2;
         mNormalSpeed *= lit_5943;
     } else {
-        field_0x300e = daAlinkHIO_move_c0::m.mMaxTurnAngle << 1;
+        field_0x300e = daAlinkHIO_move_c0::m.mMaxTurnAngle * 2;
         field_0x3010 = daAlinkHIO_move_c0::m.mMaxTurnAngle;
         field_0x300a = 3;
     }
-    field_0x300e = daAlinkHIO_move_c0::m.mMaxTurnAngle << 1;
+
+    field_0x300e = daAlinkHIO_move_c0::m.mMaxTurnAngle * 2;
     field_0x3010 = daAlinkHIO_move_c0::m.mMaxTurnAngle;
     return 1;
 }
@@ -318,6 +317,7 @@ int daAlink_c::procMoveTurn() {
     if (!checkNextAction(0)) {
         setBlendMoveAnime(lit_6041);
     }
+
     return 1;
 }
 
@@ -326,39 +326,42 @@ int daAlink_c::procSideStepInit(int jump_type) {
     if (jump_type == 1 && !checkHeavyStateOn(1, 1) &&
         (checkNoUpperAnime() || checkEquipAnime() || field_0x2fcc != 0 && checkUpperGuardAnime())) {
         return procBackJumpInit(0);
-    } else {
-        commonProcInit(PROC_SIDESTEP);
-        field_0x2f98 = jump_type;
-
-        if (field_0x2f98 == 1) {
-            current.angle.y = mCollisionRot.y + 0x8000;
-            setSingleAnimeParam(ANM_BACK_JUMP, &daAlinkHIO_sideStep_c0::m.mBackJumpAnm);
-            mNormalSpeed = daAlinkHIO_sideStep_c0::m.mBackJumpSpeedH;
-            mSpeed.y = daAlinkHIO_sideStep_c0::m.mBackJumpSpeedV;
-            field_0x300a = 0;
-        } else {
-            daAlink_ANM anm_id;
-            if (field_0x2f98 == 2) {
-                anm_id = ANM_SIDE_JUMP_LEFT;
-                current.angle.y = mCollisionRot.y + 0x4000;
-            } else {
-                anm_id = ANM_SIDE_JUMP_RIGHT;
-                current.angle.y = mCollisionRot.y - 0x4000;
-            }
-            setSingleAnimeParam(anm_id, &daAlinkHIO_sideStep_c0::m.mSideJumpAnm);
-            mNormalSpeed = daAlinkHIO_sideStep_c0::m.mSideJumpSpeedH;
-            mSpeed.y = daAlinkHIO_sideStep_c0::m.mSideJumpSpeedV;
-            field_0x300a = 1;
-        }
-        if (i_checkNoResetFlg0(FLG0_UNDERWATER)) {
-            mNormalSpeed *= daAlinkHIO_magneBoots_c0::m.mWaterVelocityX;
-            mSpeed.y *= daAlinkHIO_magneBoots_c0::m.mWaterVelocityY;
-        }
-        voiceStart(Z2SE_AL_V_JUMP_S);
-        mCommonCounter = 0;
-        field_0x300e = 0;
-        return 1;
     }
+
+    commonProcInit(PROC_SIDESTEP);
+    field_0x2f98 = jump_type;
+
+    if (field_0x2f98 == 1) {
+        current.angle.y = mCollisionRot.y + 0x8000;
+        setSingleAnimeParam(ANM_BACK_JUMP, &daAlinkHIO_sideStep_c0::m.mBackJumpAnm);
+        mNormalSpeed = daAlinkHIO_sideStep_c0::m.mBackJumpSpeedH;
+        mSpeed.y = daAlinkHIO_sideStep_c0::m.mBackJumpSpeedV;
+        field_0x300a = 0;
+    } else {
+        daAlink_ANM anm_id;
+        if (field_0x2f98 == 2) {
+            anm_id = ANM_SIDE_JUMP_LEFT;
+            current.angle.y = mCollisionRot.y + 0x4000;
+        } else {
+            anm_id = ANM_SIDE_JUMP_RIGHT;
+            current.angle.y = mCollisionRot.y - 0x4000;
+        }
+
+        setSingleAnimeParam(anm_id, &daAlinkHIO_sideStep_c0::m.mSideJumpAnm);
+        mNormalSpeed = daAlinkHIO_sideStep_c0::m.mSideJumpSpeedH;
+        mSpeed.y = daAlinkHIO_sideStep_c0::m.mSideJumpSpeedV;
+        field_0x300a = 1;
+    }
+
+    if (i_checkNoResetFlg0(FLG0_UNDERWATER)) {
+        mNormalSpeed *= daAlinkHIO_magneBoots_c0::m.mWaterVelocityX;
+        mSpeed.y *= daAlinkHIO_magneBoots_c0::m.mWaterVelocityY;
+    }
+
+    voiceStart(Z2SE_AL_V_JUMP_S);
+    mCommonCounter = 0;
+    field_0x300e = 0;
+    return 1;
 }
 
 /* 800C3F60-800C40F0 0BE8A0 0190+00 1/0 0/0 0/0 .text            procSideStep__9daAlink_cFv */
@@ -366,21 +369,23 @@ int daAlink_c::procSideStep() {
     if (mTargetedActor != NULL && field_0x300a != 0) {
         s16 actor_angle = fopAcM_searchActorAngleY(this, mTargetedActor);
         cLib_addCalcAngleS(&mCollisionRot.y, actor_angle, 5, 0x5E8, 0x13C);
+
         if (field_0x2f98 == 2) {
             current.angle.y = mCollisionRot.y + 0x4000;
         } else {
             current.angle.y = mCollisionRot.y - 0x4000;
         }
     }
+
     if (doTrigger() && field_0x300a != 0) {
         mCommonCounter = 1;
     }
 
     if (checkUpperItemActionFly()) {
-        return true;
+        return 1;
     } else if (mLinkAcch.ChkGroundHit() && field_0x300e != 0) {
         if (mCommonCounter != 0 && checkSideRollAction(field_0x2f98)) {
-            return true;
+            return 1;
         } else {
             return procSideStepLandInit();
         }
@@ -400,6 +405,7 @@ int daAlink_c::procSideStep() {
  */
 int daAlink_c::procSideStepLandInit() {
     commonProcInit(PROC_SIDESTEP_LAND);
+
     if (field_0x2f98 == 1) {
         field_0x2f9d = 4;
         setSingleAnimeParam(ANM_BACK_JUMP_LAND, &daAlinkHIO_sideStep_c0::m.mBackLandAnm);
@@ -418,16 +424,19 @@ int daAlink_c::procSideStepLandInit() {
             anm_id = ANM_SIDE_JUMP_RIGHT_LAND;
             uvar3 = 0x40;
         }
+
         setSingleAnimeParam(anm_id, &daAlinkHIO_sideStep_c0::m.mSideLandAnm);
         field_0x3478 = daAlinkHIO_sideStep_c0::m.mSideLandAnm.field_0x10;
         field_0x300a = 1;
         field_0x2fb0 = 8;
         field_0x2fcc = 0;
+
         if (checkEnemyGroup(mTargetedActor) && mEquipItem == EQUIP_SWORD && checkNoUpperAnime()) {
             setUpperAnimeBaseSpeed(uvar3, daAlinkHIO_atnMove_c0::m.mWaitAnmSpeed, lit_6041);
             seStartSwordCut(Z2SE_AL_WAIT_SWORD_SWING);
         }
     }
+
     field_0x2f9d = 4;
     setFootEffectProcType(2);
     i_onResetFlg1(0x30);
@@ -442,6 +451,7 @@ int daAlink_c::procSideStepLandInit() {
 int daAlink_c::procSideStepLand() {
     daPy_frameCtrl_c* ctrl = &mUnderFrameCtrl[0];
     i_onEndResetFlg0(ERFLG0_UNK_8000000);
+
     if (field_0x2fcc != 0) {
         field_0x2fcc = 10;
     }
@@ -474,7 +484,7 @@ int daAlink_c::procSlideInit(s16 param_0) {
     field_0x3090 = 8;
     current.angle.y = param_0;
 
-    if (getMoveBGActorName(mLinkAcch.m_gnd, 0) == 0xD4) {
+    if (getMoveBGActorName(mLinkAcch.m_gnd, 0) == PROC_Obj_Lv3R10Saka) {
         field_0x300e = 1;
     } else {
         field_0x300e = 0;
@@ -499,6 +509,7 @@ int daAlink_c::procSlideInit(s16 param_0) {
         field_0x2f9d = 0x60;
         setFootEffectProcType(1);
     }
+
     field_0x594 = daAlinkHIO_slide_c0::m.mMaxSpeed;
     field_0x33cc = FLOAT_LABEL(lit_6108);
     mCommonCounter = 0;
@@ -535,6 +546,7 @@ int daAlink_c::procSlideLandInit(int param_0) {
         field_0x3478 = daAlinkHIO_slide_c0::m.mBackwardLandAnm.field_0x10;
         field_0x3198 = 0;
     }
+
     field_0x814.SetWeight(255);
     mNormalSpeed *= lit_5943;
     return 1;
@@ -552,15 +564,15 @@ int daAlink_c::procSlideLand() {
     if (ctrl->checkAnmEnd()) {
         current.angle.y = mCollisionRot.y;
         checkNextAction(0);
-    } else {
-        if (ctrl->getFrame() > field_0x3478) {
-            s16 tmp_angle = current.angle.y;
-            current.angle.y = mCollisionRot.y;
-            if (!checkNextAction(1)) {
-                current.angle.y = tmp_angle;
-            }
+    } else if (ctrl->getFrame() > field_0x3478) {
+        s16 tmp_angle = current.angle.y;
+        current.angle.y = mCollisionRot.y;
+
+        if (!checkNextAction(1)) {
+            current.angle.y = tmp_angle;
         }
     }
+
     return 1;
 }
 
@@ -641,14 +653,28 @@ asm void daAlink_c::procFrontRoll() {
 #pragma pop
 
 /* 800C4F14-800C4FFC 0BF854 00E8+00 1/1 0/0 0/0 .text procFrontRollCrashInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procFrontRollCrashInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procFrontRollCrashInit__9daAlink_cFv.s"
+int daAlink_c::procFrontRollCrashInit() {
+    commonProcInit(PROC_FRONT_ROLL_CRASH);
+    setSingleAnime(ANM_ROLL_CRASH, FLOAT_LABEL(lit_6108),
+                   daAlinkHIO_frontRoll_c0::m.mCrashAnm.mStart,
+                   daAlinkHIO_frontRoll_c0::m.mCrashAnm.mEndF,
+                   daAlinkHIO_frontRoll_c0::m.mCrashAnm.mInterpolation);
+    
+    mNormalSpeed = daAlinkHIO_frontRoll_c0::m.mCrashSpeedH;
+    mSpeed.y = daAlinkHIO_frontRoll_c0::m.mCrashSpeedV;
+
+    if (i_checkNoResetFlg0(FLG0_UNDERWATER)) {
+        mNormalSpeed *= daAlinkHIO_magneBoots_c0::m.mWaterVelocityX;
+        mSpeed.y *= daAlinkHIO_magneBoots_c0::m.mWaterVelocityY;
+    }
+
+    current.angle.y -= -0x8000;
+    setFrontRollCrashShock(mRollCrashFlg);
+    voiceStart(Z2SE_AL_V_ZENTEN_FAIL);
+    i_onResetFlg0(0x2000);
+
+    return 1;
 }
-#pragma pop
 
 /* 800C4FFC-800C5160 0BF93C 0164+00 1/0 0/0 0/0 .text            procFrontRollCrash__9daAlink_cFv */
 #pragma push
@@ -661,25 +687,54 @@ asm void daAlink_c::procFrontRollCrash() {
 #pragma pop
 
 /* 800C5160-800C5240 0BFAA0 00E0+00 3/3 0/0 0/0 .text procFrontRollSuccessInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procFrontRollSuccessInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procFrontRollSuccessInit__9daAlink_cFv.s"
+int daAlink_c::procFrontRollSuccessInit() {
+    BOOL dk_caught = mProcID == PROC_DK_CAUGHT;
+
+    commonProcInit(PROC_FRONT_ROLL_SUCCESS);
+    setSingleAnimeParam(ANM_BARRIER_RECOIL, &daAlinkHIO_frontRoll_c0::m.mCrashHitAnm);
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+
+    if (!dk_caught) {
+        setFrontRollCrashShock(mRollCrashFlg);
+        i_onResetFlg0(0x2000);
+    } else {
+        f32 tmp_3 = lit_6109;
+        mUnderFrameCtrl[0].setFrame(tmp_3);
+        getNowAnmPackUnder(UNDER_0)->setFrame(tmp_3);
+    }
+
+    field_0x3588 = l_halfAtnWaitBaseAnime;
+    field_0x2f99 = 4;
+    setFootEffectProcType(1);
+    current.angle.y = mCollisionRot.y - -0x8000;
+
+    return 1;
 }
-#pragma pop
 
 /* 800C5240-800C5328 0BFB80 00E8+00 1/0 0/0 0/0 .text            procFrontRollSuccess__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procFrontRollSuccess() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procFrontRollSuccess__9daAlink_cFv.s"
+int daAlink_c::procFrontRollSuccess() {
+    daPy_frameCtrl_c* frameCtrl = &mUnderFrameCtrl[0];
+
+    field_0x2f99 = 4;
+    i_onEndResetFlg0(0x8000000);
+
+    if (frameCtrl->checkAnmEnd()) {
+        current.angle.y = mCollisionRot.y;
+        checkNextAction(0);
+    } else if (frameCtrl->getFrame() > daAlinkHIO_frontRoll_c0::m.mCrashHitAnm.field_0x10) {
+        onModeFlg(4);
+        current.angle.y = mCollisionRot.y;
+        checkNextAction(1);
+    } else if (frameCtrl->getFrame() >= lit_8130) {
+        field_0x2f92 = 1;
+        field_0x2f93 = 6;
+    } else if (frameCtrl->getFrame() > lit_7710) {
+        field_0x2f9d = 0x60;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 800C5328-800C5484 0BFC68 015C+00 3/3 0/0 0/0 .text            procSideRollInit__9daAlink_cFi */
 #pragma push
@@ -733,25 +788,47 @@ asm int daAlink_c::procBackJumpInit(int param_0) {
 #pragma pop
 
 /* 800C5964-800C5A54 0C02A4 00F0+00 1/0 0/0 0/0 .text            procBackJump__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procBackJump() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procBackJump__9daAlink_cFv.s"
+int daAlink_c::procBackJump() {
+    if (field_0x3008 != 0) {
+        field_0x3008--;
+    } else {
+        offModeFlg(0x2000);
+    }
+
+    if (checkCutTurnInput() && mEquipItem == 0x103) {
+        field_0x3198 = getCutTurnDirection();
+    }
+
+    backJumpSpeedDec();
+
+    if (mLinkAcch.ChkGroundHit() && mUnderFrameCtrl[0].checkAnmEnd()) {
+        procBackJumpLandInit(field_0x3198);
+    } else if (mDemo.getDemoMode() != 0x10 && current.pos.y < mLastJumpPos.y - daAlinkHIO_backJump_c0::m.field_0x30) {
+        procFallInit(2, daAlinkHIO_backJump_c0::m.field_0x34);
+    }
+
+    checkItemChangeFromButton();
+    return 1;
 }
-#pragma pop
 
 /* 800C5A54-800C5AF0 0C0394 009C+00 1/1 0/0 0/0 .text            procBackJumpLandInit__9daAlink_cFi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procBackJumpLandInit(int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/procBackJumpLandInit__9daAlink_cFi.s"
+int daAlink_c::procBackJumpLandInit(int i_cutDirection) {
+    commonProcInit(PROC_BACK_JUMP_LAND);
+    setSingleAnimeParam(ANM_BACKFLIP_LAND, &daAlinkHIO_backJump_c0::m.field_0x14);
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    
+    field_0x2f9d = 4;
+    setFootEffectProcType(2);
+    i_onResetFlg1(0x30);
+
+    field_0x3198 = i_cutDirection;
+    current.angle.y = mCollisionRot.y;
+    field_0x2fcc = 10;
+    setStepLandVibration();
+
+    return 1;
 }
-#pragma pop
 
 /* 800C5AF0-800C5C28 0C0430 0138+00 1/0 0/0 0/0 .text            procBackJumpLand__9daAlink_cFv */
 #pragma push
@@ -764,14 +841,17 @@ asm void daAlink_c::procBackJumpLand() {
 #pragma pop
 
 /* 800C5C28-800C5CA4 0C0568 007C+00 1/1 0/0 0/0 .text            procSlipInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procSlipInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procSlipInit__9daAlink_cFv.s"
+int daAlink_c::procSlipInit() {
+    commonProcInit(PROC_SLIP);
+    setSingleAnimeParam(ANM_SLIP, &daAlinkHIO_move_c0::m.mSlideAnm);
+    mNormalSpeed = mSpeedF * daAlinkHIO_move_c0::m.mSlideSpeed;
+    
+    field_0x2f9d = 0x40;
+    setFootEffectProcType(1);
+    field_0x3008 = 5;
+
+    return 1;
 }
-#pragma pop
 
 /* 800C5CA4-800C5E68 0C05E4 01C4+00 1/0 0/0 0/0 .text            procSlip__9daAlink_cFv */
 #pragma push
@@ -807,39 +887,73 @@ asm void daAlink_c::procAutoJump() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 804532E8-804532EC 0018E8 0004+00 1/1 0/0 0/0 .sdata2          @73790 */
-SECTION_SDATA2 static f32 lit_73790 = 92.0f;
-
 /* 800C66DC-800C6798 0C101C 00BC+00 1/1 0/0 0/0 .text            procDiveJumpInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procDiveJumpInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procDiveJumpInit__9daAlink_cFv.s"
+int daAlink_c::procDiveJumpInit() {
+    commonProcInit(PROC_DIVE_JUMP);
+    setSingleAnimeParam(ANM_DIVE_START, &daAlinkHIO_autoJump_c0::m.mDiveAnm);
+    deleteEquipItem(TRUE, TRUE);
+    setHeavyBoots(0);
+
+    mSpeed.y = daAlinkHIO_autoJump_c0::m.mDiveSpeedV;
+    mNormalSpeed = daAlinkHIO_autoJump_c0::m.mDiveSpeedH;
+    mGravity = daAlinkHIO_autoJump_c0::m.mDiveGravity;
+
+    mCommonCounter = 0;
+    current.angle.y = mCollisionRot.y;
+    field_0x33b0 = 92.0f;
+
+    voiceStart(Z2SE_AL_V_JUMP_DIVING);
+    return 1;
 }
-#pragma pop
 
 /* 800C6798-800C6850 0C10D8 00B8+00 1/0 0/0 0/0 .text            procDiveJump__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procDiveJump() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procDiveJump__9daAlink_cFv.s"
+int daAlink_c::procDiveJump() {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    if (mLinkAcch.ChkGroundHit()) {
+        return procFrontRollInit();
+    }
+
+    if (mCommonCounter == 0) {
+        if (frameCtrl->checkAnmEnd()) {
+            setSingleAnimeParam(ANM_DIVE, &daAlinkHIO_autoJump_c0::m.mDiveUnkAnm);
+            mCommonCounter = 1;
+            field_0x2f99 = 2;
+        }
+    } else {
+        field_0x2f99 = 2;
+        
+        if (frameCtrl->getFrame() >= lit_6109) {
+            cLib_chaseF(&mNormalSpeed, FLOAT_LABEL(lit_6108), lit_5943);
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 800C6850-800C692C 0C1190 00DC+00 1/1 0/0 0/0 .text            procRollJumpInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procRollJumpInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procRollJumpInit__9daAlink_cFv.s"
+int daAlink_c::procRollJumpInit() {
+    commonProcInit(PROC_ROLL_JUMP);
+    setSingleAnimeBaseSpeed(ANM_ROLL_JUMP, FLOAT_LABEL(lit_6108), daAlinkHIO_autoJump_c0::m.mSpinJumpInterpolation);
+
+    field_0x3478 = field_0x3410;
+    mNormalSpeed = field_0x3410;
+    mSpeed.y = field_0x3414;
+
+    field_0x2fe6 = field_0x30ee;
+    mCollisionRot.y = field_0x30ee;
+    current.angle.y = mCollisionRot.y;
+
+    mLinkAcch.i_ClrGroundHit();
+    field_0x347c = FLOAT_LABEL(lit_6108);
+    mCollisionRot.x = 1;
+
+    voiceStart(Z2SE_AL_V_GORONJUMP);
+    seStartOnlyReverb(Z2SE_AL_GORON_JUMP_START);
+    mCommonCounter = 1;
+
+    return 1;
 }
-#pragma pop
 
 /* 800C692C-800C6A48 0C126C 011C+00 1/0 0/0 0/0 .text            procRollJump__9daAlink_cFv */
 #pragma push
@@ -872,14 +986,28 @@ asm void daAlink_c::procFall() {
 #pragma pop
 
 /* 800C6F18-800C6FE4 0C1858 00CC+00 6/6 0/0 0/0 .text            procLandInit__9daAlink_cFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procLandInit(f32 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/procLandInit__9daAlink_cFf.s"
+int daAlink_c::procLandInit(f32 param_0) {
+    commonProcInit(PROC_LAND);
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    
+    setSingleAnimeParam(ANM_JUMP_LAND, &daAlinkHIO_autoJump_c0::m.mLandAnm);
+
+    if (checkGrabGlide()) {
+        mUnderFrameCtrl[0].setRate(lit_5943);
+    } else if (i_checkNoResetFlg0(FLG0_UNDERWATER)) {
+        f32 rate = mUnderFrameCtrl[0].getRate() * lit_28286;
+        mUnderFrameCtrl[0].setRate(rate);
+    }
+
+    field_0x2f9d = 4;
+    setFootEffectProcType(4);
+
+    i_onResetFlg1(0x30);
+    current.angle.y = mCollisionRot.y;
+    field_0x3478 = param_0;
+
+    return 1;
 }
-#pragma pop
 
 /* 800C6FE4-800C70F8 0C1924 0114+00 1/0 0/0 0/0 .text            procLand__9daAlink_cFv */
 #pragma push
@@ -912,14 +1040,17 @@ asm void daAlink_c::procSmallJump() {
 #pragma pop
 
 /* 800C74D4-800C755C 0C1E14 0088+00 1/1 0/0 0/0 .text            procStepMoveInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procStepMoveInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procStepMoveInit__9daAlink_cFv.s"
+int daAlink_c::procStepMoveInit() {
+    commonProcInit(PROC_STEP_MOVE);
+    setSingleAnimeParam(ANM_S_JUMP_START, &daAlinkHIO_smallJump_c0::m.mStepClimbAnm);
+    field_0x3478 = lit_5943 * mNormalSpeed;
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+
+    mCommonCounter = 0;
+    field_0x3588 = l_waitBaseAnime;
+
+    return 1;
 }
-#pragma pop
 
 /* 800C755C-800C7690 0C1E9C 0134+00 1/0 0/0 0/0 .text            procStepMove__9daAlink_cFv */
 #pragma push
@@ -932,14 +1063,15 @@ asm void daAlink_c::procStepMove() {
 #pragma pop
 
 /* 800C7690-800C76F8 0C1FD0 0068+00 1/0 0/0 0/0 .text            procCrouchInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procCrouchInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procCrouchInit__9daAlink_cFv.s"
+int daAlink_c::procCrouchInit() {
+    if (!commonProcInitNotSameProc(PROC_CROUCH)) {
+        return 0;
+    }
+
+    setSingleAnimeBaseSpeed(ANM_CROUCH, daAlinkHIO_crouch_c0::m.field_0x30, daAlinkHIO_crouch_c0::m.field_0x34);
+    current.angle.y = mCollisionRot.y;
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804532EC-804532F0 0018EC 0004+00 1/1 0/0 0/0 .sdata2          @74138 */
@@ -977,15 +1109,15 @@ static u8 lit_4420[12];
 /* 8042561C-80425628 05233C 000C+00 37/39 0/0 0/0 .bss             l_wolfBaseAnime */
 static Vec l_wolfBaseAnime;
 
-bool daMidna_c::checkMidnaRealBody() {
+BOOL daMidna_c::checkMidnaRealBody() {
     return dKy_darkworld_check() == 1 || dComIfGs_isTransformLV(3);
 }
 
 /* 800C77F4-800C7C64 0C2134 0470+00 4/2 0/0 0/0 .text procCoMetamorphoseInit__9daAlink_cFv */
-// 1 missing instruction, lots of regalloc. maybe related
+// small regalloc
 #ifdef NONMATCHING
 int daAlink_c::procCoMetamorphoseInit() {
-    int svar8 = 0;
+    int var_r29 = 0;
 
     if (i_dComIfGp_getEvent().i_isOrderOK()) {
         if (!dComIfGp_event_compulsory(this, NULL, 0xFFFF)) {
@@ -993,14 +1125,14 @@ int daAlink_c::procCoMetamorphoseInit() {
         }
         mDemo.i_setSpecialDemoType();
         mDamageTimer = 0;
-        svar8 = 1;
+        var_r29 = 1;
     }
 
-    if (!commonProcInitNotSameProc(METAMORPHOSE)) {
+    if (!commonProcInitNotSameProc(PROC_METAMORPHOSE)) {
         return 1;
     }
 
-    field_0x3198 = svar8;
+    field_0x3198 = var_r29;
     field_0x3008 = 0;
     field_0x300e = 0;
     field_0x3010 = 0;
@@ -1012,6 +1144,7 @@ int daAlink_c::procCoMetamorphoseInit() {
         field_0x300a = 1;
         mSpeed.y = 0.0f;
         mNormalSpeed = 0.0f;
+
         if (i_checkWolf()) {
             mCommonCounter = mCollisionRot.x;
         }
@@ -1032,7 +1165,7 @@ int daAlink_c::procCoMetamorphoseInit() {
             mCommonCounter = mCollisionRot.x;
 
             daMidna_c* midna = getMidnaActor();
-            if (i_checkMidnaRide() && midna->checkMidnaRealBody() && midna->checkDemoTypeNone()) {
+            if (i_checkMidnaRide() && daMidna_c::checkMidnaRealBody() && midna->checkDemoTypeNone()) {
                 midna->changeOriginalDemo();
                 midna->changeDemoMode(15);
             }
@@ -1041,6 +1174,7 @@ int daAlink_c::procCoMetamorphoseInit() {
             if (mDemo.getDemoMode() == 0x39 && mDemo.getParam1() == 1) {
                 voiceStart(Z2SE_AL_V_TRANSFORM);
             }
+
             setSingleAnimeBase(ANM_TRANSFORM_TO_WOLF);
             setMetamorphoseModel(1);
             field_0x3588 = l_waitBaseAnime;
@@ -1053,34 +1187,33 @@ int daAlink_c::procCoMetamorphoseInit() {
 
             f32 gnd_cross = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
             if (gnd_cross != -1000000000.0f) {
-                pos.y = -1000000000.0f;
-                cXyz tmp_4c = current.pos;
-                cXyz tmp_58 = pos;
-                BOOL check = false;
+                pos.y = gnd_cross;
+
+                cXyz sp14 = current.pos;
+                cXyz sp8 = pos;
+
+                BOOL var_r28 = false;
                 for (int i = 0; i < 4; i++) {
                     if (i == 3) {
-                        tmp_4c.y = gnd_cross + 5.0f;
+                        sp14.y = gnd_cross + 5.0f;
                     } else {
-                        tmp_4c.y = current.pos.y + field_0x18B0[i].GetWallH();
+                        sp14.y = current.pos.y + field_0x18B0[i].GetWallH();
                     }
-                    tmp_58.y = tmp_4c.y;
+                    sp8.y = sp14.y;
 
-                    if (commonLineCheck(&tmp_4c, &tmp_58) && dBgS_CheckBWallPoly(mLinkLinChk)) {
-                        if (dComIfG_Bgsp().GetWallCode(mLinkLinChk) != 7) {
-                            check = true;
-                            break;
-                        }
+                    if (commonLineCheck(&sp14, &sp8) && dBgS_CheckBWallPoly(mLinkLinChk) && dComIfG_Bgsp().GetWallCode(mLinkLinChk) != 7) {
+                        var_r28 = true;
+                        break;
                     }
                 }
 
-                if (check) {
+                if (var_r28) {
                     mCommonCounter = field_0x2ff0;
                 } else {
                     pos -= current.pos;
-                    pos.atan2sY_XZ();
-                    mCommonCounter = svar8;
+                    mCommonCounter = pos.atan2sY_XZ();
 
-                    if (cM_deg2s(70.0f) < abs(mCommonCounter)) {
+                    if (abs(mCommonCounter) > cM_deg2s(70.0f)) {
                         mCommonCounter = field_0x2ff0;
                     }
                 }
@@ -1161,56 +1294,93 @@ asm void daAlink_c::procCoMetamorphose() {
 #pragma pop
 
 /* 800C82E8-800C83A0 0C2C28 00B8+00 2/0 0/0 0/0 .text procCoMetamorphoseOnlyInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procCoMetamorphoseOnlyInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procCoMetamorphoseOnlyInit__9daAlink_cFv.s"
+int daAlink_c::procCoMetamorphoseOnlyInit() {
+    if (!commonProcInitNotSameProc(PROC_METAMORPHOSE_ONLY)) {
+        return 1;
+    }
+
+    deleteEquipItem(0, 1);
+    if ((i_checkWolf() && mDemo.getDemoMode() == 0x46) || (!i_checkWolf() && mDemo.getDemoMode() == 0x47)) {
+        mCommonCounter = 1;
+        field_0x300e = 1;
+    } else {
+        mCommonCounter = 0;
+        field_0x300e = 0;
+    }
+
+    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = tmp_0;
+    mSpeed.y = tmp_0;
+    setSpecialGravity(tmp_0, mMaxFallSpeed, 0);
+
+    return 1;
 }
-#pragma pop
 
 /* 800C83A0-800C8460 0C2CE0 00C0+00 1/0 0/0 0/0 .text procCoMetamorphoseOnly__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procCoMetamorphoseOnly() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procCoMetamorphoseOnly__9daAlink_cFv.s"
+int daAlink_c::procCoMetamorphoseOnly() {
+    if (mCommonCounter == 0) {
+        mClothesChangeWaitTimer = 4;
+        mCommonCounter = 1;
+    } else if (mClothesChangeWaitTimer == 0) {
+        if (field_0x300e == 0) {
+            field_0x300e = 1;
+
+            if (i_checkWolf()) {
+                setSingleAnimeWolfBaseSpeed(WANM_WAIT, daAlinkHIO_wlMoveNoP_c0::m.field_0x14, lit_6041);
+            } else {
+                setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed, lit_6041);
+            }
+        }
+
+        dComIfGp_evmng_cutEnd(field_0x3184);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 800C8460-800C84D0 0C2DA0 0070+00 2/2 0/0 0/0 .text procFloorDownReboundInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daAlink_c::procFloorDownReboundInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procFloorDownReboundInit__9daAlink_cFv.s"
+int daAlink_c::procFloorDownReboundInit() {
+    commonProcInit(PROC_FLOOR_DOWN_REBOUND);
+    setSingleAnime(ANM_JUMP_LAND, lit_9652,
+                   daAlinkHIO_autoJump_c0::m.mLandAnm.mStart,
+                   daAlinkHIO_autoJump_c0::m.mLandAnm.mEndF, lit_7625);
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    current.angle.y = mCollisionRot.y;
+    field_0x2f98 = 4;
+
+    return 1;
 }
-#pragma pop
 
 /* 800C84D0-800C854C 0C2E10 007C+00 1/0 0/0 0/0 .text            procFloorDownRebound__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procFloorDownRebound() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procFloorDownRebound__9daAlink_cFv.s"
+int daAlink_c::procFloorDownRebound() {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    if (frameCtrl->checkAnmEnd()) {
+        checkNextAction(0);
+    } else if (frameCtrl->getFrame() > daAlinkHIO_autoJump_c0::m.mLandAnm.field_0x10) {
+        checkNextAction(1);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 800C854C-800C85D8 0C2E8C 008C+00 1/1 0/0 0/0 .text
  * procGoronRideWaitInit__9daAlink_cFP10fopAc_ac_c              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procGoronRideWaitInit(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/procGoronRideWaitInit__9daAlink_cFP10fopAc_ac_c.s"
+int daAlink_c::procGoronRideWaitInit(fopAc_ac_c* param_0) {
+    if (!commonProcInitNotSameProc(PROC_GORON_RIDE_WAIT)) {
+        return 0;
+    }
+
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    current.pos.x = param_0->current.pos.x;
+    current.pos.z = param_0->current.pos.z;
+    field_0x2f99 = 0x50;
+    current.angle.y = mCollisionRot.y;
+    setBlendMoveAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
+
+    return 1;
 }
-#pragma pop
 
 /* 800C85D8-800C8700 0C2F18 0128+00 1/0 0/0 0/0 .text            procGoronRideWait__9daAlink_cFv */
 #pragma push
@@ -1340,7 +1510,7 @@ int daAlink_c::execute() {
 
     field_0x3798 = next.pos;
     field_0x2fe6 = mCollisionRot.y;
-    field_0x307c = mStickAngle;
+    mPrevStickAngle = mStickAngle;
     field_0x33a4 = field_0x33ac;
 
     if (checkResetFlg0(RFLG0_UNK_8000000) && !checkCutDashAnime()) {
@@ -1493,7 +1663,7 @@ int daAlink_c::execute() {
     if (field_0x30d0 != 0) {
         field_0x30d0--;
     } else {
-        offNoResetFlg1(FLG1_UNK_400000);
+        offNoResetFlg1(FLG1_DASH_MODE);
     }
 
     if (field_0x2fd2 != 0) {
@@ -2194,8 +2364,8 @@ asm int daAlink_c::execute() {
 #endif
 
 /* 800CAFA8-800CAFC8 0C58E8 0020+00 1/0 0/0 0/0 .text            daAlink_Execute__FP9daAlink_c */
-static void daAlink_Execute(daAlink_c* pLinkPtr) {
-    pLinkPtr->execute();
+static void daAlink_Execute(daAlink_c* i_this) {
+    i_this->execute();
 }
 
 /* 800CAFC8-800CB480 0C5908 04B8+00 2/2 0/0 0/0 .text            setDrawHand__9daAlink_cFv */
@@ -2281,25 +2451,25 @@ void daAlink_c::modelCalc(J3DModel* p_model) {
 }
 
 /* 800CC298-800CC2E0 0C6BD8 0048+00 2/2 0/0 0/0 .text basicModelDraw__9daAlink_cFP8J3DModel */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::basicModelDraw(J3DModel* param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/basicModelDraw__9daAlink_cFP8J3DModel.s"
+void daAlink_c::basicModelDraw(J3DModel* i_model) {
+    g_env_light.setLightTevColorType_MAJI(i_model, &mTevStr);
+    mDoExt_modelEntryDL(i_model);
 }
-#pragma pop
 
 /* 800CC2E0-800CC364 0C6C20 0084+00 1/1 0/0 0/0 .text            modelDraw__9daAlink_cFP8J3DModeli
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::modelDraw(J3DModel* param_0, int param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/modelDraw__9daAlink_cFP8J3DModeli.s"
+void daAlink_c::modelDraw(J3DModel* i_model, int param_1) {
+    g_env_light.setLightTevColorType_MAJI(i_model, &mTevStr);
+
+    if (param_1 == 0) {
+        mDoExt_modelEntryDL(i_model);
+    } else {
+        i_model->calcMaterial();
+        i_model->diff();
+    }
+
+    daMirror_c::entry(i_model);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8045333C-80453344 00193C 0008+00 1/1 0/0 0/0 .sdata2          notColor0$76211 */
@@ -2463,13 +2633,20 @@ asm void daAlink_c::checkBodyAngleX(s16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::setBodyAngleToCamera() {
+asm BOOL daAlink_c::setBodyAngleToCamera() {
     nofralloc
 #include "asm/d/a/d_a_alink/setBodyAngleToCamera__9daAlink_cFv.s"
 }
 #pragma pop
 
 /* 800CEAF4-800CEB58 0C9434 0064+00 9/9 0/0 0/0 .text            setSubjectMode__9daAlink_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void daAlink_c::setSubjectMode() {
+    dComIfGp_setPlayerStatus0(0, 0x2000);
+    seStartSystem(Z2SE_SUBJ_VIEW_IN);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2478,23 +2655,23 @@ asm void daAlink_c::setSubjectMode() {
 #include "asm/d/a/d_a_alink/setSubjectMode__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 800CEB58-800CEBD8 0C9498 0080+00 2/2 0/0 0/0 .text            subjectCancelTrigger__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::subjectCancelTrigger() {
-    nofralloc
-#include "asm/d/a/d_a_alink/subjectCancelTrigger__9daAlink_cFv.s"
+BOOL daAlink_c::subjectCancelTrigger() {
+    if (i_checkWolf() || checkNotBattleStage() || !i_checkSwordGet() || (i_checkModeFlg(0x40000) && !i_checkEquipHeavyBoots())) {
+        return itemTriggerCheck(BTN_B);
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 800CEBD8-800CECE4 0C9518 010C+00 9/9 0/0 0/0 .text            checkSubjectEnd__9daAlink_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkSubjectEnd(int param_0) {
+asm int daAlink_c::checkSubjectEnd(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/checkSubjectEnd__9daAlink_cFi.s"
 }
@@ -2511,24 +2688,27 @@ asm void daAlink_c::searchPeepObj(fopAc_ac_c* param_0, void* param_1) {
 #pragma pop
 
 /* 800CED48-800CED84 0C9688 003C+00 1/1 0/0 0/0 .text daAlink_searchPeepObj__FP10fopAc_ac_cPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daAlink_searchPeepObj(fopAc_ac_c* param_0, void* param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/daAlink_searchPeepObj__FP10fopAc_ac_cPv.s"
+static int daAlink_searchPeepObj(fopAc_ac_c* param_0, void* param_1) {
+    daAlink_getAlinkActorClass()->searchPeepObj(param_0, param_1);
+    return 0;
 }
-#pragma pop
 
 /* 800CED84-800CEE08 0C96C4 0084+00 2/2 0/0 0/0 .text procCoSubjectivityInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procCoSubjectivityInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procCoSubjectivityInit__9daAlink_cFv.s"
+int daAlink_c::procCoSubjectivityInit() {
+    commonProcInit(PROC_SUBJECTIVITY);
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    
+    setSubjectMode();
+    field_0x2fe6 = mCollisionRot.y;
+
+    if (i_checkWolf()) {
+        setSingleAnimeWolfBaseSpeed(WANM_WAIT, FLOAT_LABEL(lit_6108), lit_6109);
+    } else {
+        setSingleAnimeBaseSpeed(ANM_WAIT, FLOAT_LABEL(lit_6108), lit_6109);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 800CEE08-800CEF70 0C9748 0168+00 1/0 0/0 0/0 .text            procCoSubjectivity__9daAlink_cFv */
 #pragma push
@@ -2541,14 +2721,23 @@ asm void daAlink_c::procCoSubjectivity() {
 #pragma pop
 
 /* 800CEF70-800CF018 0C98B0 00A8+00 1/1 0/0 0/0 .text procCoSwimSubjectivityInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procCoSwimSubjectivityInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procCoSwimSubjectivityInit__9daAlink_cFv.s"
+int daAlink_c::procCoSwimSubjectivityInit() {
+    commonProcInit(PROC_SWIM_SUBJECTIVITY);
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    
+    setSubjectMode();
+
+    if (i_checkWolf()) {
+        setSingleAnimeWolfBaseSpeed(WANM_SWIM_WAIT, daAlinkHIO_wlSwim_c0::m.field_0x88, daAlinkHIO_wlSwim_c0::m.field_0x68);
+    } else {
+        setSingleAnimeBaseSpeed(ANM_SWIM_WAIT, daAlinkHIO_swim_c0::m.mWaitAnmSpeed, daAlinkHIO_swim_c0::m.mWaitInterpolation);
+    }
+
+    dComIfGp_setPlayerStatus0(0, 0x100000);
+    mCommonCounter = 0;
+
+    return 1;
 }
-#pragma pop
 
 /* 800CF018-800CF100 0C9958 00E8+00 1/0 0/0 0/0 .text procCoSwimSubjectivity__9daAlink_cFv */
 #pragma push
@@ -2561,24 +2750,44 @@ asm void daAlink_c::procCoSwimSubjectivity() {
 #pragma pop
 
 /* 800CF100-800CF1B8 0C9A40 00B8+00 1/1 0/0 0/0 .text procCoPeepSubjectivityInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procCoPeepSubjectivityInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procCoPeepSubjectivityInit__9daAlink_cFv.s"
+int daAlink_c::procCoPeepSubjectivityInit() {
+    commonProcInit(PROC_PEEP_SUBJECTIVITY);
+    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = tmp_0;
+
+    if (i_checkWolf()) {
+        setSingleAnimeWolfBaseSpeed(WANM_WAIT, tmp_0, lit_6109);
+    } else {
+        setSingleAnimeBaseSpeed(ANM_WAIT, tmp_0, lit_6109);
+    }
+
+    i_onPlayerNoDraw();
+    setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
+    mSpeed.y = FLOAT_LABEL(lit_6108);
+    dComIfGp_setPlayerStatus0(0, 0x2000);
+    field_0x3478 = lit_6183;
+    mCommonCounter = mCollisionRot.y;
+
+    return 1;
 }
-#pragma pop
 
 /* 800CF1B8-800CF25C 0C9AF8 00A4+00 1/0 0/0 0/0 .text procCoPeepSubjectivity__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procCoPeepSubjectivity() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procCoPeepSubjectivity__9daAlink_cFv.s"
+int daAlink_c::procCoPeepSubjectivity() {
+    if (doTrigger() || peepSubjectCancelTrigger()) {
+        kytag05_class* peep = NULL;
+        fopAcIt_Executor((fopAcIt_ExecutorFunc)daAlink_searchPeepObj, &peep);
+
+        if (peep != NULL) {
+            mPeepExitID = peep->getSceneListID();
+        }
+
+        if (dComIfGp_event_compulsory(this, 0, 0xFFFF)) {
+            startPeepChange();
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 800CF25C-800CF270 0C9B9C 0014+00 1/0 0/0 0/0 .text            checkBoardRide__9daAlink_cCFv */
 u32 daAlink_c::checkBoardRide() const {

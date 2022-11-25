@@ -113,6 +113,7 @@ public:
     cXyz* GetPos() { return pm_pos; }
     cXyz* GetOldPos() { return pm_old_pos; }
     f32 GetGroundH() const { return m_ground_h; }
+    f32 GetRoofHeight() const { return m_roof_height; }
     void SetLin() { m_lin.SetStartEnd(*pm_old_pos, *pm_pos); }
     bool ChkGroundFind() { return m_flags & GROUND_FIND; }
     bool ChkGroundHit() { return m_flags & GROUND_HIT; }

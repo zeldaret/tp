@@ -262,7 +262,7 @@ asm void daAlink_c::procCanoeRide() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeJumpRideInit(fopAc_ac_c* param_0) {
+asm int daAlink_c::procCanoeJumpRideInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeJumpRideInit__9daAlink_cFP10fopAc_ac_c.s"
 }

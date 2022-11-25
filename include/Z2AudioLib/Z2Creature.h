@@ -72,6 +72,10 @@ public:
     int startHitItemSE(u32, u32, Z2SoundObjBase*, float);
     void setResumeAttack(bool);
 
+    void setInWater(bool status) {
+        mFlags = (u8)((mFlags & ~0x40) | ((status << 6) & 0x40));  // what is going on here
+    }
+
     static Z2CreatureLink* mLinkPtr;
 
 private:

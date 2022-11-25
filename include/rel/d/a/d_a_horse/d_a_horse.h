@@ -51,6 +51,7 @@ public:
     enum daHorse_FLG0 {
         /* 0x00000020 */ RODEO_LEFT = 0x20,
         /* 0x00000040 */ RIDE_START_FLG = 0x40,
+        /* 0x00000080 */ NO_DRAW_WAIT = 0x80,
         /* 0x00010000 */ PLAYER_BACK_RIDE_LASH = 0x10000,
         /* 0x20000000 */ TURN_CANCEL_KEEP = 0x20000000,
         /* 0x80000000 */ RODEO_MODE = 0x80000000
@@ -158,6 +159,9 @@ public:
     void i_changeDemoMode(u32 param_0, int param_1) { field_0x1740 = param_0; field_0x1728 = param_1; }
     void i_changeOriginalDemo() { field_0x16b8 = 3; field_0x1728 = 0; }
     void i_setHorsePosAndAngle(cXyz const* i_pos, s16 i_angle) { (this->*mpSetHorsePosAngleFn)(i_pos, i_angle); }
+    void onStateFlg0(daHorse_FLG0 flag) { mStateFlg0 |= flag; }
+    void offStateFlg0(daHorse_FLG0 flag) { mStateFlg0 &= ~flag; }
+    void offNoDrawWait() { offStateFlg0(NO_DRAW_WAIT); }
 
     bool checkTurnStandCamera() const { return checkResetStateFlg0(TURN_STAND_CAMERA); }
     bool checkTurnStand() const { return checkResetStateFlg0(TURN_STAND); }
@@ -226,13 +230,13 @@ public:
     /* 0x17C4 */ cXyz mDemoPos0;
     /* 0x17D0 */ u8 field_0x17d0[0x18A4 - 0x17D0];
     /* 0x18A4 */ int (daHorse_c::*mpProcFn)();
-    /* 0x18A4 */ int (daHorse_c::*mpCheckSpecialWallHitFn)(const cXyz&);
-    /* 0x18A4 */ void (daHorse_c::*mpSetReinPosHandFn)(int);
-    /* 0x18A4 */ void (daHorse_c::*mpSetReinPosNormalFn)();
-    /* 0x18A4 */ int (daHorse_c::*mpCallHorseFn)(const cXyz*);
-    /* 0x18A4 */ int (daHorse_c::*mpSetHorsePosAngleFn)(const cXyz* i_pos, s16 i_angle);
-    /* 0x18A4 */ void (daHorse_c::*mpOnRideFlgFn)();
-    /* 0x18A4 */ void (daHorse_c::*mpOffRideFlgFn)();
+    /* 0x18B0 */ int (daHorse_c::*mpCheckSpecialWallHitFn)(const cXyz&);
+    /* 0x18BC */ void (daHorse_c::*mpSetReinPosHandFn)(int);
+    /* 0x18C8 */ void (daHorse_c::*mpSetReinPosNormalFn)();
+    /* 0x18D4 */ int (daHorse_c::*mpCallHorseFn)(const cXyz*);
+    /* 0x18E0 */ int (daHorse_c::*mpSetHorsePosAngleFn)(const cXyz* i_pos, s16 i_angle);
+    /* 0x18EC */ void (daHorse_c::*mpOnRideFlgFn)();
+    /* 0x18F8 */ void (daHorse_c::*mpOffRideFlgFn)();
 };
 
 #endif /* D_A_HORSE_H */

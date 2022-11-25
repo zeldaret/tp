@@ -4,9 +4,9 @@
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "Z2AudioLib/Z2SoundObject.h"
 #include "d/bg/d_bg_s_acch.h"
+#include "d/cc/d_cc_d.h"
 #include "d/particle/d_particle_copoly.h"
-#include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
+#include "f_op/f_op_actor_mng.h"
 
 class daBoomerang_sight_c {
 public:
@@ -19,6 +19,8 @@ public:
     /* 8049EF60 */ void draw();
 
     /* 804A278C */ virtual ~daBoomerang_sight_c();
+
+    u8 getReserve() const { return mReserve; }
 
 private:
     /* 0x04 */ J2DScreen* field_0x4;
@@ -60,7 +62,8 @@ class daAlink_c;
 class daBoomerang_c : public fopAc_ac_c {
 public:
     enum daBoomerang_FLG0 {
-        /* 0x80 */ WIND_CATCH = 0x80,
+        /* 0x800 */ FLG0_LOCK_DIST_CANCEL = 0x800,
+        /* 0x080 */ WIND_CATCH = 0x80,
     };
 
     /* 8049F280 */ void windModelCallBack();
@@ -92,25 +95,32 @@ public:
     void onWindCatch() { onStateFlg0(WIND_CATCH); }
     bool checkForceDelete() const { return mForceDelete; }
     bool checkCharge() const { return true; }
+    void setThrow() { fopAcM_SetParam(this, 1); }
+    void setAimActor(fopAc_ac_c* i_actor) { (this->*mpSetAimActorFn)(i_actor); }
+    void cancelLockActor(fopAc_ac_c* i_actor) { (this->*mpCancelLockActorFn)(i_actor); }
+    u8 getLockReserve() const { return mSight.getReserve(); }
+    bool getLockCntMax() { return mLockCnt >= 5; }
+    void onLockDistanceCancel() { onStateFlg0(FLG0_LOCK_DIST_CANCEL); }
 
 private:
-    /* 0x568 */ daMirror_c* field_0x568;
+    /* 0x568 */ J3DModel* field_0x568;
     /* 0x56C */ J3DModel* field_0x56c;
-    /* 0x570 */ daAlink_c* field_0x570;
-    /* 0x574 */ u8 field_0x574[0x1C];
+    /* 0x570 */ J3DAnmTextureSRTKey* m_windBtk;
+    /* 0x574 */ mDoExt_bckAnm field_0x574;
     /* 0x590 */ J3DModel* field_0x590;
-    /* 0x594 */ void* field_0x594;
+    /* 0x594 */ J3DAnmTextureSRTKey* m_waitEffBtk;
     /* 0x598 */ daBoomerang_sight_c mSight;
-    /* 0x6A8 */ int field_0x6a8;
-    /* 0x6AC */ int field_0x6ac[5];
+    /* 0x6A8 */ u32 field_0x6a8;
+    /* 0x6AC */ u32 field_0x6ac[5];
     /* 0x6C0 */ fopAc_ac_c* field_0x6c0[5];
-    /* 0x6D4 */ u8 field_0x6d4[8];
+    /* 0x6D4 */ fopAc_ac_c* field_0x6d4;
+    /* 0x6D8 */ u8 field_0x6d8[4];
     /* 0x6DC */ cXyz field_0x6dc[5];
     /* 0x718 */ u8 field_0x718[5];
     /* 0x720 */ Z2SoundObjSimple field_0x720;
     /* 0x740 */ dBgS_Acch field_0x740;
     /* 0x918 */ dPaPo_c field_0x918;
-    /* 0x950 */ u8 field_0x950;
+    /* 0x950 */ u8 mLockCnt;
     /* 0x951 */ u8 field_0x951;
     /* 0x952 */ u8 field_0x952;
     /* 0x953 */ u8 field_0x953;
@@ -125,6 +135,22 @@ private:
     /* 0x960 */ s16 field_0x960;
     /* 0x962 */ s16 field_0x962;
     /* 0x964 */ u32 mStateFlg0;
-};
+    /* 0x968 */ u8 field_0x968[0x990 - 0x968];
+    /* 0x990 */ cXyz field_0x990;
+    /* 0x99C */ cXyz field_0x99c;
+    /* 0x9A8 */ f32 field_0x9a8;
+    /* 0x9AC */ cXyz field_0x9ac;
+    /* 0x9B8 */ cXyz field_0x9b8;
+    /* 0x9C4 */ cXyz field_0x9c4;
+    /* 0x9D0 */ dCcD_Stts field_0x9d0;
+    /* 0xA0C */ dCcD_Cps field_0xa0c;
+    /* 0xB50 */ dCcD_Cyl field_0xb50;
+    /* 0xC8C */ dBgS_BoomerangLinChk field_0xc8c;
+    /* 0xCFC */ dBgS_ObjLinChk field_0xcfc;
+    /* 0xD6C */ dBgS_ObjGndChk field_0xd6c;
+    /* 0xDC0 */ int (daBoomerang_c::*mpProcFn)();
+    /* 0xDCC */ void (daBoomerang_c::*mpSetAimActorFn)(fopAc_ac_c*);
+    /* 0xDD8 */ void (daBoomerang_c::*mpCancelLockActorFn)(fopAc_ac_c*);
+};  // Size: 0xDE4
 
 #endif /* D_A_BOOMERANG_H */

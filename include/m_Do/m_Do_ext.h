@@ -359,6 +359,7 @@ public:
     /* 8000F8CC */ void decOldFrameMorfCounter();
 
     f32 getOldFrameRate() { return mOldFrameRate; }
+    J3DTransformInfo* getOldFrameTransInfo(int i) { return &mOldFrameTransInfo[i]; }
 
 private:
     /* 0x00 */ bool mOldFrameFlg;
@@ -500,6 +501,7 @@ void mDoExt_modelUpdateDL(J3DModel* i_model);
 J3DModel* mDoExt_J3DModel__create(J3DModelData* i_modelData, u32 param_1, u32 param_2);
 void mDoExt_setAraCacheSize(u32 size);
 int mDoExt_resIDToIndex(JKRArchive* p_archive, u16 id);
+void mDoExt_modelEntryDL(J3DModel* i_model);
 
 struct JUTFont;
 JUTFont* mDoExt_getMesgFont();

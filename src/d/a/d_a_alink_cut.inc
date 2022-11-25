@@ -132,14 +132,9 @@ BOOL daAlink_c::checkCutTypeNoBlur() const {
 }
 
 /* 800D13E4-800D1424 0CBD24 0040+00 7/7 0/0 0/0 .text            checkCutTurnInput__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool daAlink_c::checkCutTurnInput() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkCutTurnInput__9daAlink_cCFv.s"
+bool daAlink_c::checkCutTurnInput() const {
+    return 0xF800 < abs(field_0x3180);
 }
-#pragma pop
 
 /* 800D1424-800D1430 0CBD64 000C+00 7/7 0/0 0/0 .text            getCutTurnDirection__9daAlink_cCFv
  */
@@ -474,7 +469,7 @@ asm void daAlink_c::checkCutAtnActorChange() {
 #pragma pop
 
 /* 800D2C78-800D2F58 0CD5B8 02E0+00 2/2 0/0 0/0 .text            setCutJumpSpeed__9daAlink_cFi */
-// literals, and small issue with JMAFastSqrt instructions
+// matches with literals
 #ifdef NONMATCHING
 void daAlink_c::setCutJumpSpeed(int cut_type) {
     if (i_checkNoResetFlg0(FLG0_UNDERWATER)) {
@@ -752,7 +747,7 @@ asm void daAlink_c::procCutTurnCharge() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutTurnMoveInit(int param_0) {
+asm int daAlink_c::procCutTurnMoveInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutTurnMoveInit__9daAlink_cFi.s"
 }

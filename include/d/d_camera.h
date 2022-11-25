@@ -521,5 +521,6 @@ public:
 
 dCamera_c* dCam_getBody();
 dCamera_c* dCam_getCamera();
+s16 dCam_getControledAngleY(camera_class* param_0);
 
 #endif /* D_D_CAMERA_H */

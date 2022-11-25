@@ -382,13 +382,6 @@ asm int dEvt_control_c::talkCheck(dEvt_order_c* param_0) {
 #pragma pop
 #endif
 
-/* ############################################################################################## */
-/* 80379D80-80379D80 0063E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80379DA3 = "DEFAULT_TALK_XY";
-#pragma pop
-
 /* 80041B58-80041C90 03C498 0138+00 1/1 0/0 0/0 .text
  * talkXyCheck__14dEvt_control_cFP12dEvt_order_c                */
 int dEvt_control_c::talkXyCheck(dEvt_order_c* p_order) {

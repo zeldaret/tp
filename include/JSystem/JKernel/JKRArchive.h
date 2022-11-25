@@ -62,7 +62,7 @@ public:
         u32 name_offset;
         u16 field_0x8;
         u16 num_entries;
-        s32 first_file_index;
+        u32 first_file_index;
     };
 
     struct SDIFileEntry {
@@ -163,8 +163,9 @@ public:
     /* vt[19] */ virtual u32 getExpandSize(SDIFileEntry*) const;
 
     u32 countFile() const { return mArcInfoBlock->num_file_entries; }
+    s32 countDirectory() const { return mArcInfoBlock->num_nodes; }
 
-protected:
+public:
     /* 0x00 */  // vtable
     /* 0x04 */  // JKRFileLoader
     /* 0x38 */ JKRHeap* mHeap;
@@ -173,8 +174,6 @@ protected:
     /* 0x40 */ s32 mEntryNum;
     /* 0x44 */ SArcDataInfo* mArcInfoBlock;
     /* 0x48 */ SDIDirEntry* mNodes;
-
-public:
     /* 0x4C */ SDIFileEntry* mFiles;
 
 protected:

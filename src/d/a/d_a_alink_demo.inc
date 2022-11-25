@@ -40,7 +40,7 @@ asm int daAlink_c::checkDemoAction() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkDemoMoveMode(u32 param_0) const {
+asm bool daAlink_c::checkDemoMoveMode(u32 param_0) const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkDemoMoveMode__9daAlink_cCFUl.s"
 }

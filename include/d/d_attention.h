@@ -211,7 +211,7 @@ public:
     BOOL chkFlag(u32 flag) { return mFlags & flag; }
     void setFlag(u32 flag) { mFlags |= flag; }
     void clrFlag(u32 flag) { mFlags &= ~flag; }
-    s8 Lockon() {
+    bool Lockon() {
         /* s32 chk = true;
         if (!LockonTruth() && !chkFlag(0x20000000)) {
             chk = false;

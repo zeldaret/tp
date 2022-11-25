@@ -29,4 +29,8 @@ inline s16 cM_deg2s(f32 val) {
     return val * 182.04445f;
 }
 
+inline f32 cM_fsin(f32 v) {
+    return JMASSin(cM_rad2s(v));
+}
+
 #endif /* C_MATH_H */

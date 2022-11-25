@@ -356,7 +356,7 @@ asm void daAlink_c::checkUpperItemActionHookshot() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkNextActionHookshot() {
+asm int daAlink_c::checkNextActionHookshot() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkNextActionHookshot__9daAlink_cFv.s"
 }

@@ -29,7 +29,7 @@ void daAlink_c::setSumouPunchStatus() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSumouReadyInit() {
+asm int daAlink_c::procSumouReadyInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSumouReadyInit__9daAlink_cFv.s"
 }

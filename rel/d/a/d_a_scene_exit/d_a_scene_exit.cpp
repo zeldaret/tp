@@ -145,25 +145,25 @@ COMPILER_STRIP_GATE(0x80485CA8, &lit_3842);
 // regalloc
 #ifdef NONMATCHING
 int daScex_c::execute() {
-    Vec spC;
     daPy_py_c* player = daPy_getPlayerActorClass();
+    cXyz spC;
 
     if (checkWork()) {
-        PSMTXMultVec(mMatrix, &player->current.pos, &spC);
+        mDoMtx_multVec(mMatrix, &player->current.pos, &spC);
 
         if (spC.y >= 0.0f && spC.y <= mScale.y && fabsf(spC.x) <= mScale.x && fabsf(spC.z) <= mScale.z) {
             switch (getArg1()) {
             case 0xFF:
             case 1:
-                player->onSceneChangeArea(getArg0(), ((fopAcM_GetParam(this) >> 0x10) & 0xFF), this);
+                player->onSceneChangeArea(getArg0(), getPathID(), this);
                 break;
             case 2:
             case 0:
-                player->onSceneChangeAreaJump(getArg0(), ((fopAcM_GetParam(this) >> 0x10) & 0xFF), this);
+                player->onSceneChangeAreaJump(getArg0(), getPathID(), this);
                 break;
             case 3:
             case 4:
-                player->onSceneChangeAreaJump(getArg0(), ((fopAcM_GetParam(this) >> 0x10) & 0xFF), this);
+                player->onSceneChangeAreaJump(getArg0(), getPathID(), this);
                 break;
             }
         }

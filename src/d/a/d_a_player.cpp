@@ -472,7 +472,7 @@ void* daPy_anmHeap_c::loadData(u16 i_resId) {
     if (mArcNo == 0xFFFF) {
         dComIfGp_getAnmArchive()->readIdxResource(mBuffer, mBufferSize, i_resId);
         JKRHeap* heap = setAnimeHeap();
-        void* data = J3DAnmLoaderDataBase::load(mBuffer, UNK_FLAG0);
+        void* data = J3DAnmLoaderDataBase::load(mBuffer, J3DLOADER_UNK_FLAG0);
         mDoExt_setCurrentHeap(heap);
         return data;
     }
@@ -607,7 +607,7 @@ void daPy_sightPacket_c::setSight() {
     mDoLib_project(&mPos, &tmp);
     mDoMtx_stack_c::transS(tmp.x, tmp.y, tmp.z);
     mDoMtx_stack_c::scaleM(32.0f, 32.0f, 32.0f);
-    mDoMtx_stack_c::copy(field_0x14);
+    mDoMtx_copy(mDoMtx_stack_c::get(), field_0x14);
     dComIfGd_set2DXlu(this);
 }
 
