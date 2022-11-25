@@ -5,7 +5,7 @@ ARG VARIANT="jammy"
 FROM mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
 
 RUN dpkg --add-architecture i386 && apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends build-essential python3-pip wine wine32
+    && apt-get -y install --no-install-recommends build-essential cmake python3-pip wine wine32
 
 USER vscode
 
