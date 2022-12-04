@@ -2027,8 +2027,8 @@ asm void dKyr_evil_draw(f32 (*param_0)[4], u8** param_1) {
 
 /* 8006F160-8006F168 069AA0 0008+00 0/0 1/0 0/0 .text            getKandelaarFlamePos__9daPy_py_cFv
  */
-bool daPy_py_c::getKandelaarFlamePos() {
-    return false;
+cXyz* daPy_py_c::getKandelaarFlamePos() {
+    return NULL;
 }
 
 /* 8037A578-8037A578 006BD8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

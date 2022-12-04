@@ -12,8 +12,8 @@ void daAlink_c::setEmitter(u32* param_0, u16 param_1, cXyz const* param_2, csXyz
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::setEmitter(u32* param_0, u16 param_1, cXyz const* param_2,
-                               csXyz const* param_3) {
+asm JPABaseEmitter* daAlink_c::setEmitter(u32* param_0, u16 param_1, cXyz const* param_2,
+                                          csXyz const* param_3) {
     nofralloc
 #include "asm/d/a/d_a_alink/setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz.s"
 }
@@ -22,35 +22,34 @@ asm void daAlink_c::setEmitter(u32* param_0, u16 param_1, cXyz const* param_2,
 
 /* 80120634-801206C4 11AF74 0090+00 4/4 0/0 0/0 .text
  * setEmitterPolyColor__9daAlink_cFPUlUsR13cBgS_PolyInfoPC4cXyzPC5csXyz */
-void daAlink_c::setEmitterPolyColor(u32* param_0, u16 param_1, cBgS_PolyInfo& param_2,
-                                    cXyz const* param_3, csXyz const* param_4) {
+JPABaseEmitter* daAlink_c::setEmitterPolyColor(u32* param_0, u16 param_1, cBgS_PolyInfo& param_2,
+                                               cXyz const* param_3, csXyz const* param_4) {
     *param_0 = dComIfGp_particle_setPolyColor(*param_0, param_1, param_2, param_3, &mTevStr,
                                               param_4, NULL, 0, NULL, -1, NULL);
     dComIfGp_particle_levelEmitterOnEventMove(*param_0);
-    dComIfGp_particle_getEmitter(*param_0);
+
+    return dComIfGp_particle_getEmitter(*param_0);
 }
 
 /* 801206C4-80120778 11B004 00B4+00 2/2 0/0 0/0 .text
  * setEmitterColor__9daAlink_cFPUlUsPC4cXyzPC5csXyz             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setEmitterColor(u32* param_0, u16 param_1, cXyz const* param_2,
-                                    csXyz const* param_3) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setEmitterColor__9daAlink_cFPUlUsPC4cXyzPC5csXyz.s"
+JPABaseEmitter* daAlink_c::setEmitterColor(u32* param_0, u16 param_1, cXyz const* param_2,
+                                           csXyz const* param_3) {
+    *param_0 = dComIfGp_particle_setColor(*param_0, param_1, param_2, &mTevStr, NULL, NULL,
+                                          FLOAT_LABEL(lit_6108), -1, param_3, NULL, NULL, -1, NULL);
+    dComIfGp_particle_levelEmitterOnEventMove(*param_0);
+
+    return dComIfGp_particle_getEmitter(*param_0);
 }
-#pragma pop
 
 /* 80120778-801207BC 11B0B8 0044+00 9/9 0/0 0/0 .text            stopDrawParticle__9daAlink_cFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::stopDrawParticle(u32 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/stopDrawParticle__9daAlink_cFUl.s"
+void daAlink_c::stopDrawParticle(u32 param_0) {
+    JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(param_0);
+
+    if (emitter != NULL) {
+        emitter->stopDrawParticle();
+    }
 }
-#pragma pop
 
 /* 801207BC-80120880 11B0FC 00C4+00 1/0 0/0 0/0 .text setEffectFrontRollParam__9daAlink_cFv */
 #pragma push
@@ -93,9 +92,7 @@ asm void daAlink_c::setEffectSmallLandParam() {
 #pragma pop
 
 /* 80121000-80121004 11B940 0004+00 1/0 0/0 0/0 .text            setEffectLandParam__9daAlink_cFv */
-void daAlink_c::setEffectLandParam() {
-    /* empty function */
-}
+void daAlink_c::setEffectLandParam() {}
 
 /* 80121004-801211C0 11B944 01BC+00 1/0 0/0 0/0 .text            setEffectSumouParam__9daAlink_cFv
  */
@@ -339,14 +336,14 @@ asm void daAlink_c::setWolfBarrierHitEffect(dBgS_LinChk& param_0) {
 
 /* 80124144-801241E0 11EA84 009C+00 9/9 0/0 0/0 .text            setCutWaterDropEffect__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setCutWaterDropEffect() {
-    nofralloc
-#include "asm/d/a/d_a_alink/setCutWaterDropEffect__9daAlink_cFv.s"
+void daAlink_c::setCutWaterDropEffect() {
+    if (field_0x32c0 > 0) {
+        cXyz sp18;
+        mDoMtx_multVecZero(mpLinkModel->i_getAnmMtx(1), &sp18);
+        dComIfGp_particle_setColor(0x2A4, &sp18, &mTevStr, NULL, NULL, FLOAT_LABEL(lit_6108), -1,
+                                   &shape_angle, NULL, NULL, -1, NULL);
+    }
 }
-#pragma pop
 
 /* 801241E0-801244E4 11EB20 0304+00 1/1 0/0 0/0 .text            setWaterDropEffect__9daAlink_cFv */
 #pragma push
@@ -511,45 +508,44 @@ asm void daAlink_c::setFreezeEffect() {
 #pragma pop
 
 /* 80125524-801255BC 11FE64 0098+00 1/1 0/0 0/0 .text setWoodShieldBurnEffect__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setWoodShieldBurnEffect() {
-    nofralloc
-#include "asm/d/a/d_a_alink/setWoodShieldBurnEffect__9daAlink_cFv.s"
+void daAlink_c::setWoodShieldBurnEffect() {
+    if (field_0x2fcb != 0) {
+        for (int i = 0; i < 2; i++) {
+            JPABaseEmitter* emitter =
+                setEmitter(&field_0x3260[i], effName_42309[i], &current.pos, NULL);
+
+            if (emitter != NULL) {
+                emitter->setGlobalRTMatrix(mShieldModel->getBaseTRMtx());
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 801255BC-80125628 11FEFC 006C+00 3/3 0/0 0/0 .text clearWoodShieldBurnEffect__9daAlink_cFv */
-#ifdef NONMATCHING
 void daAlink_c::clearWoodShieldBurnEffect() {
     if (field_0x2fcb != 0) {
         for (int i = 0; i < 2; i++) {
-            stopDrawParticle(field_0x3260[i].field_0x0);
+            stopDrawParticle(field_0x3260[i]);
         }
+
         field_0x2fcb = 0;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::clearWoodShieldBurnEffect() {
-    nofralloc
-#include "asm/d/a/d_a_alink/clearWoodShieldBurnEffect__9daAlink_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80125628-801256EC 11FF68 00C4+00 1/1 0/0 0/0 .text setWoodShieldBurnOutEffect__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setWoodShieldBurnOutEffect() {
-    nofralloc
-#include "asm/d/a/d_a_alink/setWoodShieldBurnOutEffect__9daAlink_cFv.s"
+void daAlink_c::setWoodShieldBurnOutEffect() {
+    for (int i = 0; i < 2; i++) {
+        JPABaseEmitter* emitter = dComIfGp_particle_setColor(
+            effName_42340[i], &current.pos, &mTevStr, NULL, NULL, FLOAT_LABEL(lit_6108), -1);
+
+        if (emitter != NULL) {
+            emitter->setGlobalRTMatrix(mShieldModel->getBaseTRMtx());
+        }
+    }
+
+    field_0x2fcb = 1;
+    clearWoodShieldBurnEffect();
 }
-#pragma pop
 
 /* 801256EC-80125778 12002C 008C+00 2/2 0/0 0/0 .text
  * initBlur__14daAlink_blur_cFfiPC4cXyzPC4cXyzPC4cXyz           */
@@ -738,6 +734,7 @@ bool daAlink_sight_c::create() {
     if (!mLockCursor.create()) {
         return false;
     }
+
     ResTIMG* data = (ResTIMG*)dComIfG_getObjectRes(l_arcName, daAlink_c::getSightBti());
     setSightImage(data);
     return true;

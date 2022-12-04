@@ -31,13 +31,13 @@ int daTagHinit_c::create() {
         fopAcM_OnCondition(this, 8);
     }
 
-    field_0x569 = mCollisionRot.x;
+    field_0x569 = shape_angle.x;
 
     if (field_0x569 != 0xFF && i_fopAcM_isSwitch(this, field_0x569)) {
         return cPhs_ERROR_e;
     }
 
-    field_0x568 = (mCollisionRot.x >> 8) & 0xFF;
+    field_0x568 = (shape_angle.x >> 8) & 0xFF;
     field_0x56c = fopAcM_GetParam(this);
     field_0x56e = (fopAcM_GetParam(this) >> 0x10);
 
@@ -72,7 +72,7 @@ int daTagHinit_c::execute() {
         }
 
         daHorse_c* horse = i_dComIfGp_getHorseActor();
-        horse->i_setHorsePosAndAngle(&current.pos, mCollisionRot.y);
+        horse->i_setHorsePosAndAngle(&current.pos, shape_angle.y);
         horse->offNoDrawWait();
         fopAcM_delete(this);
     }

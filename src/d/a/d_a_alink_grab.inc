@@ -37,8 +37,6 @@ asm void daAlink_c::checkGrabLineCheck() {
 
 /* 800E3994-800E3A14 0DE2D4 0080+00 1/0 0/0 0/0 .text
  * setGrabCollisionOffset__9daAlink_cFffP13cBgS_PolyInfo        */
-// matches with literals
-#ifdef NONMATCHING
 void daAlink_c::setGrabCollisionOffset(f32 param_0, f32 param_1, cBgS_PolyInfo* param_2) {
     if (param_2 != NULL) {
         mPolyInfo4.SetPolyInfo(*param_2);
@@ -46,36 +44,28 @@ void daAlink_c::setGrabCollisionOffset(f32 param_0, f32 param_1, cBgS_PolyInfo* 
         mPolyInfo4.ClearPi();
     }
 
-    field_0x342c = param_0 * 0.8f;
-    field_0x3430 = param_1 * 0.8f;
+    f32 tmp_08 = lit_14064;
+    field_0x342c = tmp_08 * param_0;
+    field_0x3430 = tmp_08 * param_1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setGrabCollisionOffset(f32 param_0, f32 param_1, cBgS_PolyInfo* param_2) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setGrabCollisionOffset__9daAlink_cFffP13cBgS_PolyInfo.s"
-}
-#pragma pop
-#endif
 
 /* 800E3A14-800E3A9C 0DE354 0088+00 1/0 0/0 0/0 .text exchangeGrabActor__9daAlink_cFP10fopAc_ac_c
  */
 bool daAlink_c::exchangeGrabActor(fopAc_ac_c* p_actor) {
     fopAc_ac_c* actor = mGrabItemAcKeep.getActor();
-
     if (actor == NULL) {
         return false;
     }
 
     fopAcM_cancelCarryNow(actor);
-    actor->mCollisionRot.z = 0;
-    actor->mCollisionRot.x = 0;
+    actor->shape_angle.z = 0;
+    actor->shape_angle.x = 0;
+
     if (checkGrabCarryActor()) {
         actor->current.angle.z = 0;
         actor->current.angle.x = 0;
     }
+
     setGrabItemActor(p_actor);
     return true;
 }
@@ -93,60 +83,41 @@ bool daAlink_c::setForceGrab(fopAc_ac_c* p_actor, int param_1, int param_2) {
         setGrabUpperAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
         return true;
     }
+
     return false;
 }
 
 /* 800E3BCC-800E3C1C 0DE50C 0050+00 2/2 0/0 0/0 .text            getGrabThrowRate__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getGrabThrowRate() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getGrabThrowRate__9daAlink_cFv.s"
+f32 daAlink_c::getGrabThrowRate() {
+    if (checkHeavyStateOn(1, 1)) {
+        return lit_6023 * mHeavySpeedMultiplier;
+    }
+
+    return lit_6023;
 }
-#pragma pop
 
 /* 800E3C1C-800E3C6C 0DE55C 0050+00 3/3 0/0 0/0 .text            checkGrabThrowAnime__9daAlink_cCFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkGrabThrowAnime() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkGrabThrowAnime__9daAlink_cCFv.s"
+BOOL daAlink_c::checkGrabThrowAnime() const {
+    return checkGrabUpThrowAnime() || checkGrabSideThrowAnime() || checkGrabHeavyThrowAnime();
 }
-#pragma pop
 
 /* 800E3C6C-800E3C9C 0DE5AC 0030+00 25/25 0/0 0/0 .text            checkGrabAnime__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daAlink_c::checkGrabAnime() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkGrabAnime__9daAlink_cCFv.s"
+BOOL daAlink_c::checkGrabAnime() const {
+    return checkGrabAnimeUp() || checkGrabAnimeSide() || checkGrabAnimeCarry();
 }
-#pragma pop
 
 /* 800E3C9C-800E3CF4 0DE5DC 0058+00 5/5 0/0 0/0 .text checkGrabAnimeAndThrow__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkGrabAnimeAndThrow() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkGrabAnimeAndThrow__9daAlink_cCFv.s"
+BOOL daAlink_c::checkGrabAnimeAndThrow() const {
+    return checkGrabAnime() || checkGrabThrowAnime();
 }
-#pragma pop
 
 /* 800E3CF4-800E3D1C 0DE634 0028+00 10/10 0/0 0/0 .text            checkGrabCarryActor__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daAlink_c::checkGrabCarryActor() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkGrabCarryActor__9daAlink_cFv.s"
+BOOL daAlink_c::checkGrabCarryActor() {
+    return mGrabItemAcKeep.getActor() != NULL &&
+           fopAcM_CheckCarryType(mGrabItemAcKeep.getActor(), fopAcM_CARRY_TYPE_8);
 }
-#pragma pop
 
 /* 800E3D1C-800E3D6C 0DE65C 0050+00 1/1 0/0 0/0 .text checkGrabSlowMoveActor__9daAlink_cFv */
 #pragma push
@@ -160,24 +131,16 @@ asm void daAlink_c::checkGrabSlowMoveActor() {
 
 /* 800E3D6C-800E3D94 0DE6AC 0028+00 1/1 0/0 0/0 .text            checkGrabHeavyActor__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkGrabHeavyActor() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkGrabHeavyActor__9daAlink_cFv.s"
+BOOL daAlink_c::checkGrabHeavyActor() {
+    return mGrabItemAcKeep.getActor() != NULL &&
+           fopAcM_CheckCarryType(mGrabItemAcKeep.getActor(), fopAcM_CARRY_HEAVY);
 }
-#pragma pop
 
 /* 800E3D94-800E3DBC 0DE6D4 0028+00 2/2 0/0 0/0 .text            checkGrabSideActor__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkGrabSideActor() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkGrabSideActor__9daAlink_cFv.s"
+BOOL daAlink_c::checkGrabSideActor() {
+    return mGrabItemAcKeep.getActor() != NULL &&
+           fopAcM_CheckCarryType(mGrabItemAcKeep.getActor(), fopAcM_CARRY_SIDE);
 }
-#pragma pop
 
 /* 800E3DBC-800E3F20 0DE6FC 0164+00 5/5 0/0 0/0 .text            setGrabUpperAnime__9daAlink_cFf */
 #pragma push
@@ -190,14 +153,15 @@ asm void daAlink_c::setGrabUpperAnime(f32 param_0) {
 #pragma pop
 
 /* 800E3F20-800E3F50 0DE860 0030+00 8/8 0/0 0/0 .text            checkGrabRooster__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daAlink_c::checkGrabRooster() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkGrabRooster__9daAlink_cFv.s"
+BOOL daAlink_c::checkGrabRooster() {
+    if (mGrabItemAcKeep.getActor() != NULL &&
+        (fopAcM_GetName(mGrabItemAcKeep.getActor()) == PROC_NI ||
+         fopAcM_GetName(mGrabItemAcKeep.getActor()) == PROC_NPC_TKJ2)) {
+        return true;
+    }
+
+    return false;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80425628-80425634 052348 000C+00 0/1 0/0 0/0 .bss             @4421 */
@@ -299,14 +263,9 @@ asm void daAlink_c::setCarryArmAngle(f32 param_0, f32 param_1) {
 #pragma pop
 
 /* 800E5150-800E5170 0DFA90 0020+00 1/1 0/0 0/0 .text            checkGrabNotThrow__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkGrabNotThrow() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkGrabNotThrow__9daAlink_cFv.s"
+BOOL daAlink_c::checkGrabNotThrow() {
+    return checkGrabCarryActor();
 }
-#pragma pop
 
 /* 800E5170-800E53AC 0DFAB0 023C+00 1/1 0/0 0/0 .text            checkNextActionGrab__9daAlink_cFv
  */
@@ -320,14 +279,13 @@ asm void daAlink_c::checkNextActionGrab() {
 #pragma pop
 
 /* 800E53AC-800E53F8 0DFCEC 004C+00 2/2 0/0 0/0 .text            initGrabNextMode__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::initGrabNextMode() {
-    nofralloc
-#include "asm/d/a/d_a_alink/initGrabNextMode__9daAlink_cFv.s"
+void daAlink_c::initGrabNextMode() {
+    if (!checkGrabAnime()) {
+        setGrabUpperAnime(lit_6041);
+    }
+
+    checkNextAction(0);
 }
-#pragma pop
 
 /* 800E53F8-800E57AC 0DFD38 03B4+00 3/3 0/0 0/0 .text            setGrabItemThrow__9daAlink_cFv */
 #pragma push
@@ -361,14 +319,10 @@ asm void daAlink_c::putObjLineCheck(dBgS_LinChk& param_0, cXyz* param_1, fopAc_a
 #pragma pop
 
 /* 800E5B6C-800E5BB4 0E04AC 0048+00 3/3 0/0 0/0 .text grabLineCheck__9daAlink_cFP4cXyzP4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::grabLineCheck(cXyz* param_0, cXyz* param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/grabLineCheck__9daAlink_cFP4cXyzP4cXyz.s"
+void daAlink_c::grabLineCheck(cXyz* i_start, cXyz* i_end) {
+    mObjLinChk.Set(i_start, i_end, mGrabItemAcKeep.getActor());
+    dComIfG_Bgsp().LineCross(&mObjLinChk);
 }
-#pragma pop
 
 /* 800E5BB4-800E5CBC 0E04F4 0108+00 6/6 0/0 0/0 .text setGrabItemActor__9daAlink_cFP10fopAc_ac_c
  */
@@ -385,7 +339,7 @@ asm void daAlink_c::setGrabItemActor(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGrabReadyInit() {
+asm int daAlink_c::procGrabReadyInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGrabReadyInit__9daAlink_cFv.s"
 }
@@ -395,7 +349,7 @@ asm void daAlink_c::procGrabReadyInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGrabReady() {
+asm int daAlink_c::procGrabReady() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGrabReady__9daAlink_cFv.s"
 }
@@ -405,7 +359,7 @@ asm void daAlink_c::procGrabReady() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGrabUpInit() {
+asm int daAlink_c::procGrabUpInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGrabUpInit__9daAlink_cFv.s"
 }
@@ -415,7 +369,7 @@ asm void daAlink_c::procGrabUpInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGrabUp() {
+asm int daAlink_c::procGrabUp() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGrabUp__9daAlink_cFv.s"
 }
@@ -425,7 +379,7 @@ asm void daAlink_c::procGrabUp() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGrabMiss() {
+asm int daAlink_c::procGrabMiss() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGrabMiss__9daAlink_cFv.s"
 }
@@ -435,7 +389,7 @@ asm void daAlink_c::procGrabMiss() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGrabThrowInit(int param_0) {
+asm int daAlink_c::procGrabThrowInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procGrabThrowInit__9daAlink_cFi.s"
 }
@@ -445,7 +399,7 @@ asm void daAlink_c::procGrabThrowInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGrabThrow() {
+asm int daAlink_c::procGrabThrow() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGrabThrow__9daAlink_cFv.s"
 }
@@ -465,7 +419,7 @@ asm int daAlink_c::procGrabPutInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGrabPut() {
+asm int daAlink_c::procGrabPut() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGrabPut__9daAlink_cFv.s"
 }
@@ -475,7 +429,7 @@ asm void daAlink_c::procGrabPut() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGrabWaitInit() {
+asm int daAlink_c::procGrabWaitInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGrabWaitInit__9daAlink_cFv.s"
 }
@@ -485,7 +439,7 @@ asm void daAlink_c::procGrabWaitInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGrabWait() {
+asm int daAlink_c::procGrabWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGrabWait__9daAlink_cFv.s"
 }
@@ -496,7 +450,7 @@ asm void daAlink_c::procGrabWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGrabReboundInit(int param_0) {
+asm int daAlink_c::procGrabReboundInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procGrabReboundInit__9daAlink_cFi.s"
 }
@@ -506,7 +460,7 @@ asm void daAlink_c::procGrabReboundInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGrabRebound() {
+asm int daAlink_c::procGrabRebound() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGrabRebound__9daAlink_cFv.s"
 }
@@ -516,7 +470,7 @@ asm void daAlink_c::procGrabRebound() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGrabStandInit() {
+asm int daAlink_c::procGrabStandInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGrabStandInit__9daAlink_cFv.s"
 }
@@ -526,7 +480,7 @@ asm void daAlink_c::procGrabStandInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGrabStand() {
+asm int daAlink_c::procGrabStand() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGrabStand__9daAlink_cFv.s"
 }
@@ -550,7 +504,7 @@ bool daAlink_c::checkInsectActorName(fopAc_ac_c* insectActor) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procInsectCatchInit() {
+asm int daAlink_c::procInsectCatchInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procInsectCatchInit__9daAlink_cFv.s"
 }
@@ -577,7 +531,7 @@ bool daAlink_c::procInsectCatch() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procPickUpInit() {
+asm int daAlink_c::procPickUpInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procPickUpInit__9daAlink_cFv.s"
 }
@@ -587,7 +541,7 @@ asm void daAlink_c::procPickUpInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procPickUp() {
+asm int daAlink_c::procPickUp() {
     nofralloc
 #include "asm/d/a/d_a_alink/procPickUp__9daAlink_cFv.s"
 }
@@ -597,7 +551,7 @@ asm void daAlink_c::procPickUp() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procPickPutInit(int param_0) {
+asm int daAlink_c::procPickPutInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procPickPutInit__9daAlink_cFi.s"
 }
@@ -607,7 +561,7 @@ asm void daAlink_c::procPickPutInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procPickPut() {
+asm int daAlink_c::procPickPut() {
     nofralloc
 #include "asm/d/a/d_a_alink/procPickPut__9daAlink_cFv.s"
 }
@@ -625,28 +579,17 @@ asm void daAlink_c::checkSetChainPullAnime(s16 param_0) {
 
 /* 800E794C-800E7994 0E228C 0048+00 3/3 0/0 0/0 .text            getChainStickAngleY__9daAlink_cCFs
  */
-// one instruction off
-#ifdef NONMATCHING
 s16 daAlink_c::getChainStickAngleY(s16 param_0) const {
-    s16 tmp = field_0x2fe2 - param_0;
+    s16 angle = field_0x2fe2 - param_0;
 
-    if (tmp >= 14336 && tmp < 32640) {
-        return param_0 + 32640;
-    } else if (tmp <= -14336 && tmp <= -32640) {
-        return field_0x2fe2;
+    if (angle >= 0x3800 && angle < 0x7F80) {
+        return param_0 + 0x7F80;
+    } else if (angle <= -0x3800 && angle > -0x7F80) {
+        return param_0 - 0x7F80;
     }
-    return param_0 - 32640;
+
+    return field_0x2fe2;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s16 daAlink_c::getChainStickAngleY(s16 param_0) const {
-    nofralloc
-#include "asm/d/a/d_a_alink/getChainStickAngleY__9daAlink_cCFs.s"
-}
-#pragma pop
-#endif
 
 /* 800E7994-800E79F8 0E22D4 0064+00 1/1 0/0 0/0 .text            checkChainEmphasys__9daAlink_cFv */
 #pragma push
@@ -698,7 +641,7 @@ bool daAlink_c::checkChainBlockPushPull() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procFmChainUpInit() {
+asm int daAlink_c::procFmChainUpInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procFmChainUpInit__9daAlink_cFv.s"
 }
@@ -708,7 +651,7 @@ asm void daAlink_c::procFmChainUpInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procFmChainUp() {
+asm int daAlink_c::procFmChainUp() {
     nofralloc
 #include "asm/d/a/d_a_alink/procFmChainUp__9daAlink_cFv.s"
 }
@@ -718,7 +661,7 @@ asm void daAlink_c::procFmChainUp() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procFmChainStrongPullInit() {
+asm int daAlink_c::procFmChainStrongPullInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procFmChainStrongPullInit__9daAlink_cFv.s"
 }
@@ -729,7 +672,7 @@ asm void daAlink_c::procFmChainStrongPullInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procFmChainStrongPull() {
+asm int daAlink_c::procFmChainStrongPull() {
     nofralloc
 #include "asm/d/a/d_a_alink/procFmChainStrongPull__9daAlink_cFv.s"
 }
@@ -747,14 +690,9 @@ asm void daAlink_c::setWallGrabStatus(u8 param_0, u8 param_1) {
 #pragma pop
 
 /* 800E7EE4-800E7EF4 0E2824 0010+00 2/2 0/0 0/0 .text            getWallGrabStatus__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daAlink_c::getWallGrabStatus() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getWallGrabStatus__9daAlink_cFv.s"
+int daAlink_c::getWallGrabStatus() {
+    return i_dComIfGp_getRStatus();
 }
-#pragma pop
 
 /* 800E7EF4-800E7F18 0E2834 0024+00 1/1 0/0 0/0 .text            wallGrabTrigger__9daAlink_cFv */
 void daAlink_c::wallGrabTrigger() {
@@ -802,43 +740,25 @@ asm void daAlink_c::checkPullBehindWall() {
 void daAlink_c::offGoatStopGame() {
     if (mSpecialMode != SMODE_GOAT_STOP) {
         return;
-    } else {
-        mSpecialMode = 0;
     }
+
+    mSpecialMode = 0;
 }
 
 /* 800E82B0-800E8314 0E2BF0 0064+00 4/4 0/0 0/0 .text
  * checkGoatCatchActor__9daAlink_cFP10fopAc_ac_c                */
-#ifdef NONMATCHING
 BOOL daAlink_c::checkGoatCatchActor(fopAc_ac_c* param_0) {
     s16 name = fopAcM_GetName(param_0);
-    bool check = false;
-
-    if (name == 0x1b1 || name == 0x21) {
-        if (checkSpecialNpc(param_0) || name == 0x106) {
-            check = true;
-        }
-    }
-
-    return check;
+    return name == PROC_E_GOB || (name == PROC_OBJ_GRA && checkSpecialNpc(param_0)) || name == PROC_COW;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daAlink_c::checkGoatCatchActor(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkGoatCatchActor__9daAlink_cFP10fopAc_ac_c.s"
-}
-#pragma pop
-#endif
 
 /* 800E8314-800E8334 0E2C54 0020+00 2/2 0/0 0/0 .text            getGoatCatchDistance2__9daAlink_cFv
  */
-float daAlink_c::getGoatCatchDistance2() {
-    if (field_0x27f4->mBase.mProcName == 0x216) {
+f32 daAlink_c::getGoatCatchDistance2() {
+    if (fopAcM_GetName(field_0x27f4) == PROC_B_MGN) {
         return lit_16066;
     }
+
     return lit_16067;
 }
 
@@ -862,7 +782,7 @@ asm void daAlink_c::getPushPullAnimeSpeed() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoPushPullWaitInit(int param_0) {
+asm int daAlink_c::procCoPushPullWaitInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoPushPullWaitInit__9daAlink_cFi.s"
 }
@@ -872,7 +792,7 @@ asm void daAlink_c::procCoPushPullWaitInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoPushPullWait() {
+asm int daAlink_c::procCoPushPullWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoPushPullWait__9daAlink_cFv.s"
 }
@@ -883,7 +803,7 @@ asm void daAlink_c::procCoPushPullWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoPushMoveInit(int param_0, int param_1) {
+asm int daAlink_c::procCoPushMoveInit(int param_0, int param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoPushMoveInit__9daAlink_cFii.s"
 }
@@ -893,7 +813,7 @@ asm void daAlink_c::procCoPushMoveInit(int param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoPushMove() {
+asm int daAlink_c::procCoPushMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoPushMove__9daAlink_cFv.s"
 }
@@ -903,7 +823,7 @@ asm void daAlink_c::procCoPushMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procPullMoveInit(int param_0) {
+asm int daAlink_c::procPullMoveInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procPullMoveInit__9daAlink_cFi.s"
 }
@@ -913,7 +833,7 @@ asm void daAlink_c::procPullMoveInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procPullMove() {
+asm int daAlink_c::procPullMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procPullMove__9daAlink_cFv.s"
 }

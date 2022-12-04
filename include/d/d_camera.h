@@ -164,6 +164,7 @@ public:
         /* 0x40 */ cSAngle field_0x40;
     };  // Size: 0x44
 
+    /* 80088BBC */ void EndEventCamera(int);
     /* 8008908C */ void getEvIntData(int*, char*, int);
     /* 80088CB0 */ void getEvIntData(int*, char*);
     /* 80089154 */ void getEvFloatData(f32*, char*, f32);

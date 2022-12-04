@@ -218,7 +218,7 @@ asm int daAlink_c::checkNextActionIronBall() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procIronBallSubjectInit() {
+asm int daAlink_c::procIronBallSubjectInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procIronBallSubjectInit__9daAlink_cFv.s"
 }
@@ -229,7 +229,7 @@ asm void daAlink_c::procIronBallSubjectInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procIronBallSubject() {
+asm int daAlink_c::procIronBallSubject() {
     nofralloc
 #include "asm/d/a/d_a_alink/procIronBallSubject__9daAlink_cFv.s"
 }
@@ -240,7 +240,7 @@ asm void daAlink_c::procIronBallSubject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procIronBallMoveInit() {
+asm int daAlink_c::procIronBallMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procIronBallMoveInit__9daAlink_cFv.s"
 }
@@ -250,7 +250,7 @@ asm void daAlink_c::procIronBallMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procIronBallMove() {
+asm int daAlink_c::procIronBallMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procIronBallMove__9daAlink_cFv.s"
 }
@@ -261,7 +261,7 @@ asm void daAlink_c::procIronBallMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procIronBallThrowInit() {
+asm int daAlink_c::procIronBallThrowInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procIronBallThrowInit__9daAlink_cFv.s"
 }
@@ -271,7 +271,7 @@ asm void daAlink_c::procIronBallThrowInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procIronBallThrow() {
+asm int daAlink_c::procIronBallThrow() {
     nofralloc
 #include "asm/d/a/d_a_alink/procIronBallThrow__9daAlink_cFv.s"
 }
@@ -281,7 +281,7 @@ asm void daAlink_c::procIronBallThrow() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procIronBallReturnInit() {
+asm int daAlink_c::procIronBallReturnInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procIronBallReturnInit__9daAlink_cFv.s"
 }
@@ -291,7 +291,7 @@ asm void daAlink_c::procIronBallReturnInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procIronBallReturn() {
+asm int daAlink_c::procIronBallReturn() {
     nofralloc
 #include "asm/d/a/d_a_alink/procIronBallReturn__9daAlink_cFv.s"
 }

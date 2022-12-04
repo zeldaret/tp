@@ -241,7 +241,7 @@ asm void daAlink_c::checkNextActionCanoe() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeRideInit() {
+asm int daAlink_c::procCanoeRideInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeRideInit__9daAlink_cFv.s"
 }
@@ -251,7 +251,7 @@ asm void daAlink_c::procCanoeRideInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeRide() {
+asm int daAlink_c::procCanoeRide() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeRide__9daAlink_cFv.s"
 }
@@ -272,7 +272,7 @@ asm int daAlink_c::procCanoeJumpRideInit(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeJumpRide() {
+asm int daAlink_c::procCanoeJumpRide() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeJumpRide__9daAlink_cFv.s"
 }
@@ -283,7 +283,7 @@ asm void daAlink_c::procCanoeJumpRide() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeGetOffInit() {
+asm int daAlink_c::procCanoeGetOffInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeGetOffInit__9daAlink_cFv.s"
 }
@@ -293,7 +293,7 @@ asm void daAlink_c::procCanoeGetOffInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeGetOff() {
+asm int daAlink_c::procCanoeGetOff() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeGetOff__9daAlink_cFv.s"
 }
@@ -304,7 +304,7 @@ asm void daAlink_c::procCanoeGetOff() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeWaitInit(int param_0) {
+asm int daAlink_c::procCanoeWaitInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeWaitInit__9daAlink_cFi.s"
 }
@@ -314,7 +314,7 @@ asm void daAlink_c::procCanoeWaitInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeWait() {
+asm int daAlink_c::procCanoeWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeWait__9daAlink_cFv.s"
 }
@@ -324,7 +324,7 @@ asm void daAlink_c::procCanoeWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeRowInit(int param_0) {
+asm int daAlink_c::procCanoeRowInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeRowInit__9daAlink_cFi.s"
 }
@@ -334,7 +334,7 @@ asm void daAlink_c::procCanoeRowInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeRow() {
+asm int daAlink_c::procCanoeRow() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeRow__9daAlink_cFv.s"
 }
@@ -344,7 +344,7 @@ asm void daAlink_c::procCanoeRow() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoePaddleShiftInit(int param_0) {
+asm int daAlink_c::procCanoePaddleShiftInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoePaddleShiftInit__9daAlink_cFi.s"
 }
@@ -355,7 +355,7 @@ asm void daAlink_c::procCanoePaddleShiftInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoePaddleShift() {
+asm int daAlink_c::procCanoePaddleShift() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoePaddleShift__9daAlink_cFv.s"
 }
@@ -365,7 +365,7 @@ asm void daAlink_c::procCanoePaddleShift() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoePaddlePutInit(int param_0) {
+asm int daAlink_c::procCanoePaddlePutInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoePaddlePutInit__9daAlink_cFi.s"
 }
@@ -375,7 +375,7 @@ asm void daAlink_c::procCanoePaddlePutInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoePaddlePut() {
+asm int daAlink_c::procCanoePaddlePut() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoePaddlePut__9daAlink_cFv.s"
 }
@@ -385,7 +385,7 @@ asm void daAlink_c::procCanoePaddlePut() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoePaddleGrabInit() {
+asm int daAlink_c::procCanoePaddleGrabInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoePaddleGrabInit__9daAlink_cFv.s"
 }
@@ -396,7 +396,7 @@ asm void daAlink_c::procCanoePaddleGrabInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoePaddleGrab() {
+asm int daAlink_c::procCanoePaddleGrab() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoePaddleGrab__9daAlink_cFv.s"
 }
@@ -407,7 +407,7 @@ asm void daAlink_c::procCanoePaddleGrab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeRodGrabInit() {
+asm int daAlink_c::procCanoeRodGrabInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeRodGrabInit__9daAlink_cFv.s"
 }
@@ -417,7 +417,7 @@ asm void daAlink_c::procCanoeRodGrabInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeRodGrab() {
+asm int daAlink_c::procCanoeRodGrab() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeRodGrab__9daAlink_cFv.s"
 }
@@ -427,7 +427,7 @@ asm void daAlink_c::procCanoeRodGrab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeFishingWaitInit() {
+asm int daAlink_c::procCanoeFishingWaitInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeFishingWaitInit__9daAlink_cFv.s"
 }
@@ -438,7 +438,7 @@ asm void daAlink_c::procCanoeFishingWaitInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeFishingWait() {
+asm int daAlink_c::procCanoeFishingWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeFishingWait__9daAlink_cFv.s"
 }
@@ -448,7 +448,7 @@ asm void daAlink_c::procCanoeFishingWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeFishingReelInit() {
+asm int daAlink_c::procCanoeFishingReelInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeFishingReelInit__9daAlink_cFv.s"
 }
@@ -459,7 +459,7 @@ asm void daAlink_c::procCanoeFishingReelInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeFishingReel() {
+asm int daAlink_c::procCanoeFishingReel() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeFishingReel__9daAlink_cFv.s"
 }
@@ -469,7 +469,7 @@ asm void daAlink_c::procCanoeFishingReel() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeFishingGetInit() {
+asm int daAlink_c::procCanoeFishingGetInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeFishingGetInit__9daAlink_cFv.s"
 }
@@ -480,7 +480,7 @@ asm void daAlink_c::procCanoeFishingGetInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeFishingGet() {
+asm int daAlink_c::procCanoeFishingGet() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeFishingGet__9daAlink_cFv.s"
 }
@@ -490,7 +490,7 @@ asm void daAlink_c::procCanoeFishingGet() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeSubjectivityInit() {
+asm int daAlink_c::procCanoeSubjectivityInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeSubjectivityInit__9daAlink_cFv.s"
 }
@@ -501,7 +501,7 @@ asm void daAlink_c::procCanoeSubjectivityInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeSubjectivity() {
+asm int daAlink_c::procCanoeSubjectivity() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeSubjectivity__9daAlink_cFv.s"
 }
@@ -511,7 +511,7 @@ asm void daAlink_c::procCanoeSubjectivity() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeBowSubjectInit() {
+asm int daAlink_c::procCanoeBowSubjectInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeBowSubjectInit__9daAlink_cFv.s"
 }
@@ -522,7 +522,7 @@ asm void daAlink_c::procCanoeBowSubjectInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeBowSubject() {
+asm int daAlink_c::procCanoeBowSubject() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeBowSubject__9daAlink_cFv.s"
 }
@@ -533,7 +533,7 @@ asm void daAlink_c::procCanoeBowSubject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeBowMoveInit() {
+asm int daAlink_c::procCanoeBowMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeBowMoveInit__9daAlink_cFv.s"
 }
@@ -543,7 +543,7 @@ asm void daAlink_c::procCanoeBowMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeBowMove() {
+asm int daAlink_c::procCanoeBowMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeBowMove__9daAlink_cFv.s"
 }
@@ -554,7 +554,7 @@ asm void daAlink_c::procCanoeBowMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeGrabMoveInit() {
+asm int daAlink_c::procCanoeGrabMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeGrabMoveInit__9daAlink_cFv.s"
 }
@@ -564,7 +564,7 @@ asm void daAlink_c::procCanoeGrabMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeGrabMove() {
+asm int daAlink_c::procCanoeGrabMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeGrabMove__9daAlink_cFv.s"
 }
@@ -575,7 +575,7 @@ asm void daAlink_c::procCanoeGrabMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeBoomerangSubjectInit() {
+asm int daAlink_c::procCanoeBoomerangSubjectInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeBoomerangSubjectInit__9daAlink_cFv.s"
 }
@@ -585,7 +585,7 @@ asm void daAlink_c::procCanoeBoomerangSubjectInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeBoomerangSubject() {
+asm int daAlink_c::procCanoeBoomerangSubject() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeBoomerangSubject__9daAlink_cFv.s"
 }
@@ -595,7 +595,7 @@ asm void daAlink_c::procCanoeBoomerangSubject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeBoomerangMoveInit() {
+asm int daAlink_c::procCanoeBoomerangMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeBoomerangMoveInit__9daAlink_cFv.s"
 }
@@ -605,7 +605,7 @@ asm void daAlink_c::procCanoeBoomerangMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeBoomerangMove() {
+asm int daAlink_c::procCanoeBoomerangMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeBoomerangMove__9daAlink_cFv.s"
 }
@@ -616,7 +616,7 @@ asm void daAlink_c::procCanoeBoomerangMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeHookshotSubjectInit() {
+asm int daAlink_c::procCanoeHookshotSubjectInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeHookshotSubjectInit__9daAlink_cFv.s"
 }
@@ -626,7 +626,7 @@ asm void daAlink_c::procCanoeHookshotSubjectInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeHookshotSubject() {
+asm int daAlink_c::procCanoeHookshotSubject() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeHookshotSubject__9daAlink_cFv.s"
 }
@@ -636,7 +636,7 @@ asm void daAlink_c::procCanoeHookshotSubject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeHookshotMoveInit() {
+asm int daAlink_c::procCanoeHookshotMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeHookshotMoveInit__9daAlink_cFv.s"
 }
@@ -647,7 +647,7 @@ asm void daAlink_c::procCanoeHookshotMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeHookshotMove() {
+asm int daAlink_c::procCanoeHookshotMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeHookshotMove__9daAlink_cFv.s"
 }
@@ -657,7 +657,7 @@ asm void daAlink_c::procCanoeHookshotMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeBottleDrinkInit(u16 param_0) {
+asm int daAlink_c::procCanoeBottleDrinkInit(u16 param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeBottleDrinkInit__9daAlink_cFUs.s"
 }
@@ -668,7 +668,7 @@ asm void daAlink_c::procCanoeBottleDrinkInit(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeBottleDrink() {
+asm int daAlink_c::procCanoeBottleDrink() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeBottleDrink__9daAlink_cFv.s"
 }
@@ -678,7 +678,7 @@ asm void daAlink_c::procCanoeBottleDrink() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeKandelaarPourInit() {
+asm int daAlink_c::procCanoeKandelaarPourInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeKandelaarPourInit__9daAlink_cFv.s"
 }
@@ -688,7 +688,7 @@ asm void daAlink_c::procCanoeKandelaarPourInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeKandelaarPour() {
+asm int daAlink_c::procCanoeKandelaarPour() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeKandelaarPour__9daAlink_cFv.s"
 }
@@ -709,7 +709,7 @@ asm void daAlink_c::setGroundFishingRodActor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procFishingCastInit() {
+asm int daAlink_c::procFishingCastInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procFishingCastInit__9daAlink_cFv.s"
 }
@@ -719,7 +719,7 @@ asm void daAlink_c::procFishingCastInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procFishingCast() {
+asm int daAlink_c::procFishingCast() {
     nofralloc
 #include "asm/d/a/d_a_alink/procFishingCast__9daAlink_cFv.s"
 }
@@ -730,7 +730,7 @@ asm void daAlink_c::procFishingCast() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procFishingFoodInit() {
+asm int daAlink_c::procFishingFoodInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procFishingFoodInit__9daAlink_cFv.s"
 }
@@ -740,7 +740,7 @@ asm void daAlink_c::procFishingFoodInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procFishingFood() {
+asm int daAlink_c::procFishingFood() {
     nofralloc
 #include "asm/d/a/d_a_alink/procFishingFood__9daAlink_cFv.s"
 }

@@ -11,14 +11,19 @@ static asm void daAlink_searchNightStalker(fopAc_ac_c* param_0, void* param_1) {
 
 /* 800D0E08-800D0E98 0CB748 0090+00 1/1 0/0 0/0 .text            checkLightSwordMtrl__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkLightSwordMtrl() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkLightSwordMtrl__9daAlink_cFv.s"
+void daAlink_c::checkLightSwordMtrl() {
+    if (checkLightMasterSwordEquip()) {
+        stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
+
+        if (i_dStage_stagInfo_GetSaveTbl(stag_info) == 0x17 ||
+            fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchNightStalker, NULL)) {
+            i_onNoResetFlg3(FLG3_UNK_100000);
+            return;
+        }
+    }
+    
+    i_offNoResetFlg3(FLG3_UNK_100000);
 }
-#pragma pop
 
 /* 800D0E98-800D0ECC 0CB7D8 0034+00 5/5 0/0 0/0 .text            checkSwordEquipAnime__9daAlink_cCFv
  */
@@ -51,6 +56,7 @@ void daAlink_c::initCutTurnAt(f32 param_0, int param_1) {
     field_0xFB8.SetAtHitMark(3);
     field_0xFB8.SetAtSe(1);
     field_0xFB8.SetAtAtp(param_1);
+
     u8 mtrl;
     if (!i_checkNoResetFlg3(FLG3_UNK_100000)) {
         mtrl = 0;
@@ -64,20 +70,13 @@ void daAlink_c::initCutTurnAt(f32 param_0, int param_1) {
 
 /* 800D102C-800D1088 0CB96C 005C+00 2/2 0/0 0/0 .text            checkCutFinishJumpUp__9daAlink_cFv
  */
-#ifdef NONMATCHING
 bool daAlink_c::checkCutFinishJumpUp() {
-    return checkCutBackState() && (!checkNotBattleStage() && swordSwingTrigger());
+    if (checkCutBackState() && !checkNotBattleStage() && swordSwingTrigger()) {
+        return true;
+    }
+
+    return false;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool daAlink_c::checkCutFinishJumpUp() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkCutFinishJumpUp__9daAlink_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 800D1088-800D10E0 0CB9C8 0058+00 2/2 0/0 0/0 .text            changeCutFast__9daAlink_cFv */
 void daAlink_c::changeCutFast() {
@@ -212,10 +211,12 @@ asm void daAlink_c::setSwordAtParam(dCcG_At_Spl param_0, u8 param_1, u8 param_2,
 bool daAlink_c::notSwordHitVibActor(fopAc_ac_c* p_actor) {
     if (p_actor != NULL && fopAcM_GetGroup(p_actor) == 4) {
         s16 name = fopAcM_GetName(p_actor);
-        if (!checkSpecialNpc(p_actor) && name != 0x108 && name != 0x240) {
+
+        if (!checkSpecialNpc(p_actor) && name != PROC_NI && name != PROC_NPC_BLUENS) {
             return true;
         }
     }
+
     return false;
 }
 
@@ -277,6 +278,7 @@ void daAlink_c::setComboReserb() {
     } else {
         field_0x307e = daAlinkHIO_cut_c0::m.mComboDuration;
     }
+
     if (mComboCutCount != 4 && field_0x2fce == 0 && swordSwingTrigger()) {
         i_onNoResetFlg2(FLG2_UNK_2);
     }
@@ -304,15 +306,15 @@ bool daAlink_c::commonCutAction() {
             mComboCutCount = 1;
         }
         return true;
-    } else {
-        return false;
     }
+
+    return false;
 }
 
 /* 800D2284-800D22BC 0CCBC4 0038+00 13/13 0/0 0/0 .text            setSwordVoiceSe__9daAlink_cFUl */
-void daAlink_c::setSwordVoiceSe(u32 sfx_id) {
+void daAlink_c::setSwordVoiceSe(u32 i_seID) {
     if (!i_checkNoResetFlg0(FLG0_UNDERWATER)) {
-        voiceStart(sfx_id);
+        voiceStart(i_seID);
     }
 }
 
@@ -321,6 +323,7 @@ void daAlink_c::setSwordVoiceSe(u32 sfx_id) {
 void daAlink_c::setSwordChargeVoiceSe() {
     if (mCommonCounter != 0) {
         mCommonCounter--;
+
         if (mCommonCounter == 0) {
             setSwordVoiceSe(Z2SE_AL_V_TAME);
         }
@@ -367,106 +370,130 @@ void daAlink_c::checkCutTurnCharge() {
 }
 
 /* 800D26EC-800D2760 0CD02C 0074+00 4/4 0/0 0/0 .text            getCutDirection__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getCutDirection() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getCutDirection__9daAlink_cFv.s"
+int daAlink_c::getCutDirection() {
+    s16 angle;
+
+    if (!checkInputOnR()) {
+        return DIR_NONE;
+    }
+
+    if (mTargetedActor != NULL) {
+        angle = field_0x2fe2 - fopAcM_searchActorAngleY(this, mTargetedActor);
+    } else {
+        angle = field_0x2fe2 - field_0x2fe6;
+    }
+
+    return getDirectionFromAngle(angle);
 }
-#pragma pop
 
 /* 800D2760-800D27E4 0CD0A0 0084+00 4/4 0/0 0/0 .text checkCutCancelNextMode__9daAlink_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkCutCancelNextMode(int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkCutCancelNextMode__9daAlink_cFi.s"
+BOOL daAlink_c::checkCutCancelNextMode(int param_0) {
+    f32 old_speed = mNormalSpeed;
+    u8 old_2f98 = field_0x2f98;
+
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    field_0x2f98 = param_0;
+    onModeFlg(4);
+
+    if (checkNextAction(1)) {
+        return 1;
+    }
+
+    mNormalSpeed = old_speed;
+    field_0x2f98 = old_2f98;
+    return 0;
 }
-#pragma pop
 
 /* 800D27E4-800D2890 0CD124 00AC+00 4/4 0/0 0/0 .text            checkDoCutAction__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkDoCutAction() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkDoCutAction__9daAlink_cFv.s"
+void daAlink_c::checkDoCutAction() {
+    // event flag 0x2A40: Learned Jump Strike
+    if (doButton() && (i_dComIfGs_isEventBit(0x2A40) || i_checkNoResetFlg3(FLG3_UNK_200))) {
+        procCutLargeJumpChargeInit();
+    } else if (checkDownAttackState()) {
+        procCutDownInit();
+    } else if (checkCutHeadState()) {
+        procCutHeadInit();
+    } else {
+        procCutJumpInit(0);
+    }
 }
-#pragma pop
 
 /* 800D2890-800D28F4 0CD1D0 0064+00 2/2 0/0 0/0 .text            checkCutBackState__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daAlink_c::checkCutBackState() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkCutBackState__9daAlink_cFv.s"
+BOOL daAlink_c::checkCutBackState() {
+    // event flag 0x2902: Learned Backslice
+    return i_dComIfGs_isEventBit(0x2902) || i_checkNoResetFlg3(FLG3_UNK_20);
 }
-#pragma pop
 
 /* 800D28F4-800D29D4 0CD234 00E0+00 6/6 0/0 0/0 .text            checkCutHeadState__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkCutHeadState() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkCutHeadState__9daAlink_cFv.s"
+BOOL daAlink_c::checkCutHeadState() {
+    fopEn_enemy_c* temp_r27 = (fopEn_enemy_c*)mTargetedActor;
+
+    // event flag 0x2901: Learned Helm Splitter
+    return ((!checkBootsOrArmorHeavy() && (temp_r27 != NULL) &&
+            (i_dComIfGs_isEventBit(0x2901) || i_checkNoResetFlg3(FLG3_UNK_40))) &&
+            fopAcM_GetGroup(temp_r27) == 2) && temp_r27->checkHeadLockFlg();
 }
-#pragma pop
 
 /* 800D29D4-800D2ABC 0CD314 00E8+00 4/4 0/0 0/0 .text            checkDownAttackState__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkDownAttackState() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkDownAttackState__9daAlink_cFv.s"
+BOOL daAlink_c::checkDownAttackState() {
+    fopEn_enemy_c* enemy = (fopEn_enemy_c*)mTargetedActor;
+
+    if (enemy != NULL &&
+        (fopAcM_GetGroup(enemy) == 2 && enemy->checkDownFlg() &&
+        ((!i_checkWolf() && (i_dComIfGs_isEventBit(0x2904) || i_checkNoResetFlg3(FLG3_UNK_10)) &&
+        enemy->getDownPos().abs2(current.pos) < lit_7174) || (i_checkWolf() &&
+        (fopAcM_GetName(mTargetedActor) == PROC_E_PO || fopAcM_GetName(mTargetedActor) == PROC_E_HP) &&
+        enemy->getDownPos().abs2(current.pos) < lit_7174)))) {
+        return true;
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 800D2ABC-800D2B88 0CD3FC 00CC+00 1/1 1/1 0/0 .text checkCutLargeTurnState__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkCutLargeTurnState() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkCutLargeTurnState__9daAlink_cCFv.s"
+BOOL daAlink_c::checkCutLargeTurnState() const {
+    // event flag 0x2A20: Learned Great Spin
+    return ((i_dComIfGs_isEventBit(0x2A20) || i_checkNoResetFlg3(FLG3_UNK_100)) &&
+           i_dComIfGs_getLife() == dComIfGs_getMaxLifeGauge()) ||
+           (mDemo.getDemoMode() == 0x24 && mDemo.getParam0() == 0x33);
 }
-#pragma pop
 
 /* 800D2B88-800D2BFC 0CD4C8 0074+00 2/2 0/0 0/0 .text            cancelCutCharge__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::cancelCutCharge() {
-    nofralloc
-#include "asm/d/a/d_a_alink/cancelCutCharge__9daAlink_cFv.s"
+void daAlink_c::cancelCutCharge() {
+    if (mComboCutCount == 4) {
+        resetCombo(1);
+        checkNextAction(0);
+    } else {
+        mComboCutCount++;
+
+        if (mComboCutCount <= 3) {
+            procCutNormalInit(2);
+        } else {
+            procCutFinishInit(1);
+        }
+    }
 }
-#pragma pop
 
 /* 800D2BFC-800D2C54 0CD53C 0058+00 3/3 0/0 0/0 .text            initCutAtnActorSearch__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::initCutAtnActorSearch() {
-    nofralloc
-#include "asm/d/a/d_a_alink/initCutAtnActorSearch__9daAlink_cFv.s"
+void daAlink_c::initCutAtnActorSearch() {
+    if (cLib_distanceAngleS(getShapeAngleYAtnActor(), shape_angle.y) < 0x800) {
+        field_0x3010 = 1;
+    } else {
+        field_0x3010 = 0;
+    }
+
+    field_0x32cc = (u32)mTargetedActor;
 }
-#pragma pop
 
 /* 800D2C54-800D2C78 0CD594 0024+00 3/3 0/0 0/0 .text checkCutAtnActorChange__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkCutAtnActorChange() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkCutAtnActorChange__9daAlink_cFv.s"
+void daAlink_c::checkCutAtnActorChange() {
+    if (field_0x32cc != (u32)mTargetedActor) {
+        field_0x3010 = 0;
+        field_0x32cc = (u32)mTargetedActor;
+    }
 }
-#pragma pop
 
 /* 800D2C78-800D2F58 0CD5B8 02E0+00 2/2 0/0 0/0 .text            setCutJumpSpeed__9daAlink_cFi */
 // matches with literals
@@ -481,10 +508,10 @@ void daAlink_c::setCutJumpSpeed(int cut_type) {
 
     // cut_type 0 = standing jump attack
     if (mTargetedActor != NULL && cut_type == 0) {
-        mCollisionRot.y = cLib_targetAngleY(&current.pos, &mTargetedActor->mEyePos);
-        cXyz targetPos(mTargetedActor->mEyePos.x - (cM_ssin(mCollisionRot.y) * 70.0f),
+        shape_angle.y = cLib_targetAngleY(&current.pos, &mTargetedActor->mEyePos);
+        cXyz targetPos(mTargetedActor->mEyePos.x - (cM_ssin(shape_angle.y) * 70.0f),
                        mTargetedActor->mEyePos.y + 50.0f,
-                       mTargetedActor->mEyePos.z - (cM_scos(mCollisionRot.y) * 70.0f));
+                       mTargetedActor->mEyePos.z - (cM_scos(shape_angle.y) * 70.0f));
 
         if (fopAcM_gc_c::gndCheck(&targetPos)) {
             targetPos.y = fopAcM_gc_c::getGroundY();
@@ -524,7 +551,7 @@ asm void daAlink_c::setCutJumpSpeed(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutNormalInit(int param_0) {
+asm int daAlink_c::procCutNormalInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutNormalInit__9daAlink_cFi.s"
 }
@@ -534,7 +561,7 @@ asm void daAlink_c::procCutNormalInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutNormal() {
+asm int daAlink_c::procCutNormal() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutNormal__9daAlink_cFv.s"
 }
@@ -544,7 +571,7 @@ asm void daAlink_c::procCutNormal() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutFinishInit(int param_0) {
+asm int daAlink_c::procCutFinishInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutFinishInit__9daAlink_cFi.s"
 }
@@ -554,7 +581,7 @@ asm void daAlink_c::procCutFinishInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutFinish() {
+asm int daAlink_c::procCutFinish() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutFinish__9daAlink_cFv.s"
 }
@@ -564,7 +591,7 @@ asm void daAlink_c::procCutFinish() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutFinishJumpUpInit() {
+asm int daAlink_c::procCutFinishJumpUpInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutFinishJumpUpInit__9daAlink_cFv.s"
 }
@@ -575,7 +602,7 @@ asm void daAlink_c::procCutFinishJumpUpInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutFinishJumpUp() {
+asm int daAlink_c::procCutFinishJumpUp() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutFinishJumpUp__9daAlink_cFv.s"
 }
@@ -585,7 +612,7 @@ asm void daAlink_c::procCutFinishJumpUp() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutFinishJumpUpLandInit() {
+asm int daAlink_c::procCutFinishJumpUpLandInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutFinishJumpUpLandInit__9daAlink_cFv.s"
 }
@@ -595,7 +622,7 @@ asm void daAlink_c::procCutFinishJumpUpLandInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutFinishJumpUpLand() {
+asm int daAlink_c::procCutFinishJumpUpLand() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutFinishJumpUpLand__9daAlink_cFv.s"
 }
@@ -606,7 +633,7 @@ asm void daAlink_c::procCutFinishJumpUpLand() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutReverseInit(daAlink_c::daAlink_ANM param_0) {
+asm int daAlink_c::procCutReverseInit(daAlink_c::daAlink_ANM param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutReverseInit__9daAlink_cFQ29daAlink_c11daAlink_ANM.s"
 }
@@ -616,7 +643,7 @@ asm void daAlink_c::procCutReverseInit(daAlink_c::daAlink_ANM param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutReverse() {
+asm int daAlink_c::procCutReverse() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutReverse__9daAlink_cFv.s"
 }
@@ -626,6 +653,7 @@ asm void daAlink_c::procCutReverse() {
 bool daAlink_c::procCutJumpInit(int jump_type) {
     commonProcInit(PROC_CUT_JUMP);
     setSingleAnimeParam(ANM_CUT_JUMP, &daAlinkHIO_cutJump_c0::m.mCutAnm);
+
     if (jump_type != 0) {
         mNormalSpeed = daAlinkHIO_cutJump_c0::m.mAirJumpSpeedH;
         mSpeed.y = daAlinkHIO_cutJump_c0::m.mAirJumpSpeedV;
@@ -633,8 +661,9 @@ bool daAlink_c::procCutJumpInit(int jump_type) {
         mNormalSpeed = daAlinkHIO_cutJump_c0::m.mBaseJumpSpeedH;
         mSpeed.y = daAlinkHIO_cutJump_c0::m.mBaseJumpSpeedV;
     }
+
     setCutJumpSpeed(jump_type);
-    current.angle.y = mCollisionRot.y;
+    current.angle.y = shape_angle.y;
     setSwordAtParam(dCcG_At_Spl_UNK_01, 3, 1, 3, daAlinkHIO_cut_c0::m.mSwordLength,
                     daAlinkHIO_cut_c0::m.mSwordRadius);
     setCutType(TYPE_CUT_JUMP);
@@ -647,26 +676,29 @@ bool daAlink_c::procCutJumpInit(int jump_type) {
 /* 800D43F8-800D452C 0CED38 0134+00 1/0 0/0 0/0 .text            procCutJump__9daAlink_cFv */
 #ifdef NONMATCHING
 bool daAlink_c::procCutJump() {
-    if (current.angle.y == mCollisionRot.y && changeCutReverseProc(ANM_CUT_JUMP)) {
+    if (current.angle.y == shape_angle.y && changeCutReverseProc(ANM_CUT_JUMP)) {
         current.angle.y += 0x8000;
         mNormalSpeed = 27.0f;
         cXyz xyz(0.0f, 1.0f, 0.0f);
         dComIfGp_getVibration().StartShock(5, 31, xyz);
-    } else if (current.angle.y != mCollisionRot.y) {
+    } else if (current.angle.y != shape_angle.y) {
         cLib_chaseF(&mNormalSpeed, 5.0f, 1.0f);
     }
 
     if (checkCutTurnInput()) {
         field_0x3198 = getCutTurnDirection();
     }
+
     if (mLinkAcch.ChkGroundHit()) {
         procCutJumpLandInit(field_0x3198);
     } else if (mUnderFrameCtrl[0].getFrame() >= daAlinkHIO_cutJump_c0::m.mStartAttackFrame) {
         if (!i_checkNoResetFlg0(FLG0_UNK_40)) {
             seStartSwordCut(Z2SE_AL_SWORD_SWING_L);
         }
+
         i_onResetFlg0(RFLG0_UNK_2);
     }
+
     return true;
 }
 #else
@@ -685,7 +717,7 @@ asm bool daAlink_c::procCutJump() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutJumpLandInit(int param_0) {
+asm int daAlink_c::procCutJumpLandInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutJumpLandInit__9daAlink_cFi.s"
 }
@@ -695,7 +727,7 @@ asm void daAlink_c::procCutJumpLandInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutJumpLand() {
+asm int daAlink_c::procCutJumpLand() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutJumpLand__9daAlink_cFv.s"
 }
@@ -705,7 +737,7 @@ asm void daAlink_c::procCutJumpLand() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutTurnInit(int param_0, int param_1) {
+asm int daAlink_c::procCutTurnInit(int param_0, int param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutTurnInit__9daAlink_cFii.s"
 }
@@ -715,7 +747,7 @@ asm void daAlink_c::procCutTurnInit(int param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutTurn() {
+asm int daAlink_c::procCutTurn() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutTurn__9daAlink_cFv.s"
 }
@@ -726,7 +758,7 @@ asm void daAlink_c::procCutTurn() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutTurnChargeInit() {
+asm int daAlink_c::procCutTurnChargeInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutTurnChargeInit__9daAlink_cFv.s"
 }
@@ -736,7 +768,7 @@ asm void daAlink_c::procCutTurnChargeInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutTurnCharge() {
+asm int daAlink_c::procCutTurnCharge() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutTurnCharge__9daAlink_cFv.s"
 }
@@ -757,7 +789,7 @@ asm int daAlink_c::procCutTurnMoveInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutTurnMove() {
+asm int daAlink_c::procCutTurnMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutTurnMove__9daAlink_cFv.s"
 }
@@ -767,7 +799,7 @@ asm void daAlink_c::procCutTurnMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutDownInit() {
+asm int daAlink_c::procCutDownInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutDownInit__9daAlink_cFv.s"
 }
@@ -777,7 +809,7 @@ asm void daAlink_c::procCutDownInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutDown() {
+asm int daAlink_c::procCutDown() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutDown__9daAlink_cFv.s"
 }
@@ -788,7 +820,7 @@ asm void daAlink_c::procCutDown() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutDownLandInit(fopEn_enemy_c* param_0) {
+asm int daAlink_c::procCutDownLandInit(fopEn_enemy_c* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutDownLandInit__9daAlink_cFP13fopEn_enemy_c.s"
 }
@@ -798,7 +830,7 @@ asm void daAlink_c::procCutDownLandInit(fopEn_enemy_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutDownLand() {
+asm int daAlink_c::procCutDownLand() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutDownLand__9daAlink_cFv.s"
 }
@@ -808,7 +840,7 @@ asm void daAlink_c::procCutDownLand() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutHeadInit() {
+asm int daAlink_c::procCutHeadInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutHeadInit__9daAlink_cFv.s"
 }
@@ -818,7 +850,7 @@ asm void daAlink_c::procCutHeadInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutHead() {
+asm int daAlink_c::procCutHead() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutHead__9daAlink_cFv.s"
 }
@@ -829,7 +861,7 @@ asm void daAlink_c::procCutHead() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutHeadLandInit() {
+asm int daAlink_c::procCutHeadLandInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutHeadLandInit__9daAlink_cFv.s"
 }
@@ -839,7 +871,7 @@ asm void daAlink_c::procCutHeadLandInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutHeadLand() {
+asm int daAlink_c::procCutHeadLand() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutHeadLand__9daAlink_cFv.s"
 }
@@ -849,7 +881,7 @@ asm void daAlink_c::procCutHeadLand() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutLargeJumpChargeInit() {
+asm int daAlink_c::procCutLargeJumpChargeInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutLargeJumpChargeInit__9daAlink_cFv.s"
 }
@@ -859,7 +891,7 @@ asm void daAlink_c::procCutLargeJumpChargeInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutLargeJumpCharge() {
+asm int daAlink_c::procCutLargeJumpCharge() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutLargeJumpCharge__9daAlink_cFv.s"
 }
@@ -870,7 +902,7 @@ asm void daAlink_c::procCutLargeJumpCharge() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutLargeJumpInit() {
+asm int daAlink_c::procCutLargeJumpInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutLargeJumpInit__9daAlink_cFv.s"
 }
@@ -942,7 +974,7 @@ bool daAlink_c::procCutLargeJump() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutLargeJumpLandInit(int param_0) {
+asm int daAlink_c::procCutLargeJumpLandInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutLargeJumpLandInit__9daAlink_cFi.s"
 }
@@ -953,7 +985,7 @@ asm void daAlink_c::procCutLargeJumpLandInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutLargeJumpLand() {
+asm int daAlink_c::procCutLargeJumpLand() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutLargeJumpLand__9daAlink_cFv.s"
 }
@@ -963,7 +995,7 @@ asm void daAlink_c::procCutLargeJumpLand() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwordUnequipSpInit() {
+asm int daAlink_c::procSwordUnequipSpInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwordUnequipSpInit__9daAlink_cFv.s"
 }
@@ -973,7 +1005,7 @@ asm void daAlink_c::procSwordUnequipSpInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwordUnequipSp() {
+asm int daAlink_c::procSwordUnequipSp() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwordUnequipSp__9daAlink_cFv.s"
 }

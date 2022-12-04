@@ -76,7 +76,7 @@ SECTION_RODATA static f32 const lit_3708 = -100.0f;
 COMPILER_STRIP_GATE(0x805A1D94, &lit_3708);
 
 inline u8 daSwc00_getCondition(daSwc00_c* i_this) {
-    return i_this->mCollisionRot.x;
+    return i_this->shape_angle.x;
 }
 
 inline int daSwc00_getShape(daSwc00_c* i_this) {

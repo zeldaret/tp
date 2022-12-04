@@ -790,7 +790,7 @@ int dDemo_setDemoData(fopAc_ac_c* param_0, u8 param_1, mDoExt_McaMorf* param_2, 
     }
 
     if (flags & 8) {
-        param_0->mCollisionRot = demo_actor->getRatate();
+        param_0->shape_angle = demo_actor->getRatate();
     }
 
     if (flags & 4) {

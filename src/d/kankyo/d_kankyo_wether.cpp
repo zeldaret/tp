@@ -533,7 +533,7 @@ SECTION_SDATA2 static u8 lit_4378[4] = {
 SECTION_SDATA2 static f32 lit_4379 = 1.0f;
 
 // remove these once float data is fixed
-inline u32 tmp_dComIfGp_particle_set(u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3,
+inline JPABaseEmitter* tmp_dComIfGp_particle_set(u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3,
                                      const csXyz* param_4, const cXyz* param_5, u8 param_6,
                                      dPa_levelEcallBack* param_7, s8 param_8,
                                      const GXColor* param_9, const GXColor* param_10,
@@ -543,7 +543,7 @@ inline u32 tmp_dComIfGp_particle_set(u16 param_1, const cXyz* param_2, const dKy
                                                             param_9, param_10, param_11, lit_4379);
 }
 
-inline u32 tmp_dComIfGp_particle_set(u16 param_0, const cXyz* param_1, const csXyz* param_2,
+inline JPABaseEmitter* tmp_dComIfGp_particle_set(u16 param_0, const cXyz* param_1, const csXyz* param_2,
                                      const cXyz* param_3) {
     return tmp_dComIfGp_particle_set(param_0, param_1, NULL, param_2, param_3, 0xFF, NULL, -1, NULL,
                                      NULL, NULL);

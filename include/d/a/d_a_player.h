@@ -144,7 +144,7 @@ public:
     void setSpecialDemoType();
 
     void setDemoType(u16 pType) { mDemoType = pType; }
-    u16 getDemoType() const { return mDemoType; }
+    int getDemoType() const { return mDemoType; }
     void setDemoMode(u32 mode) { mDemoMode = mode; }
     u32 getDemoMode() const { return mDemoMode; }
     int getParam1() const { return mParam1; }
@@ -155,6 +155,7 @@ public:
     void setMoveAngle(s16 angle) { mDemoMoveAngle = angle; }
     s16 getMoveAngle() const { return mDemoMoveAngle; }
     f32 getStick() { return mStick; }
+    int getParam0() const { return mParam0; }
 
 private:
     /* 0x00 */ u16 mDemoType;
@@ -199,8 +200,8 @@ public:
     /* 0x05BC */ cXyz mSwordTopPos;
     /* 0x05C8 */ cXyz mLeftHandPos;
     /* 0x05D4 */ cXyz mRightHandPos;
-    /* 0x05E0 */ cXyz mLeftFootPosP;
-    /* 0x05EC */ cXyz mRightFootPosP;
+    /* 0x05E0 */ cXyz mLeftFootPos;
+    /* 0x05EC */ cXyz mRightFootPos;
     /* 0x05F8 */ u8 field_0x5f8[0xC];
     /* 0x0604 */ daPy_demo_c mDemo;
 
@@ -237,11 +238,13 @@ public:
         FLG1_DASH_MODE = 0x400000,
         FLG1_UNK_10000 = 0x10000,
         FLG1_THROW_DAMAGE = 0x4000,
+        FLG1_UNK_80 = 0x80,
         FLG1_UNK_40 = 0x40,
         FLG1_UNK_20 = 0x20,
         FLG1_UNK_10 = 0x10,
         FLG1_UNK_4 = 4,
         FLG1_UNK_2 = 2,
+        FLG1_UNK_1 = 1,
     };
 
     enum daPy_FLG2 {
@@ -250,6 +253,7 @@ public:
         FLG2_UNK_4080000 = 0x4080000,
         FLG2_UNK_2080000 = 0x2080000,
         FLG2_BOAR_SINGLE_BATTLE = 0x1800000,
+        FLG2_UNK_8000000 = 0x8000000,
         FLG2_UNK_1000000 = 0x1000000,
         FLG2_UNK_800000 = 0x800000,
         FLG2_STATUS_WINDOW_DRAW = 0x400000,
@@ -260,6 +264,7 @@ public:
         FLG2_UNK_20000 = 0x20000,
         FLG2_SCN_CHG_START = 0x8000,
         FLG2_UNK_4000 = 0x4000,
+        FLG2_UNK_1000 = 0x1000,
         FLG2_UNK_200 = 0x200,
         FLG2_UNK_80 = 0x80,
         FLG2_UNK_40 = 0x40,
@@ -279,9 +284,15 @@ public:
         FLG3_UNK_80000 = 0x80000,
         FLG3_COPY_ROD_THROW_AFTER = 0x40000,
         FLG3_UNK_4000 = 0x4000,
+        FLG3_UNK_200 = 0x200,
+        FLG3_UNK_100 = 0x100,
+        FLG3_UNK_40 = 0x40,
+        FLG3_UNK_20 = 0x20,
+        FLG3_UNK_10 = 0x10,
     };
 
     enum daPy_ERFLG0 {
+        ERFLG0_UNK_40000000 = 0x40000000,
         ERFLG0_UNK_8000000 = 0x8000000,
         ERFLG0_UNK_2000000 = 0x2000000,
         ERFLG0_UNK_1000000 = 0x1000000,
@@ -293,6 +304,8 @@ public:
         ERFLG0_UNK_1000 = 0x1000,
         ERFLG0_UNK_400 = 0x400,
         ERFLG0_UNK_100 = 0x100,
+        ERFLG0_UNK_80 = 0x80,
+        ERFLG0_UNK_40 = 0x40,
         ERFLG0_UNK_8 = 8,
         ERFLG0_UNK_4 = 4,
         ERFLG0_UNK_2 = 2,
@@ -306,7 +319,11 @@ public:
         ERFLG1_UNK_40000 = 0x40000,
         ERFLG1_UNK_2000 = 0x2000,
         ERFLG1_UNK_200 = 0x200,
+        ERFLG1_UNK_400 = 0x400,
         ERFLG1_UNK_100 = 0x100,
+        ERFLG1_UNK_80 = 0x80,
+        ERFLG1_UNK_10 = 0x10,
+        ERFLG1_UNK_8 = 8,
         ERFLG1_UNK_4 = 4,
         ERFLG1_UNK_2 = 2,
         ERFLG1_UNK_1 = 1,
@@ -314,6 +331,7 @@ public:
 
     enum daPy_ERFLG2 {
         ERFLG2_UNK_100 = 0x100,
+        ERFLG2_UNK_40 = 0x40,
         ERFLG2_UNK_20 = 0x20,
     };
 
@@ -378,7 +396,7 @@ public:
     static BOOL checkTradeItem(int);
     static BOOL checkDungeonWarpItem(int);
     static BOOL checkMasterSwordEquip();
-    bool checkWoodShieldEquip();
+    static BOOL checkWoodShieldEquip();
     f32 getAttentionOffsetY();
     s16 checkNowWolfEyeUp();
     static void forceRestartRoom(int, u32, int);
@@ -555,7 +573,7 @@ public:
     virtual s16 getBoardCutTurnOffsetAngleY() const;
     virtual cXyz* getMagneHitPos();
     virtual cXyz* getMagneBootsTopVec();
-    virtual bool getKandelaarFlamePos();
+    virtual cXyz* getKandelaarFlamePos();
     virtual bool checkUseKandelaar(int);
     virtual void setDkCaught(fopAc_ac_c*);
     virtual void onPressedDamage(cXyz const&, short);
@@ -652,6 +670,7 @@ public:
     void i_onNoResetFlg3(int pFlg) { mNoResetFlg3 |= pFlg; }
     
     void i_offNoResetFlg0(int pFlg) { mNoResetFlg0 &= ~pFlg; }
+    void i_offNoResetFlg1(int pFlg) { mNoResetFlg1 &= ~pFlg; }
     void i_offNoResetFlg2(int pFlg) { mNoResetFlg2 &= ~pFlg; }
     void i_offNoResetFlg3(int pFlg) { mNoResetFlg3 &= ~pFlg; }
     
@@ -661,11 +680,13 @@ public:
     
     void i_onEndResetFlg0(int flag) { mEndResetFlg0 |= flag; }
     void i_onEndResetFlg2(int flag) { mEndResetFlg2 |= flag; }
+    void i_offEndResetFlg2(daPy_ERFLG2 flag) { mEndResetFlg2 &= ~flag; }
     
     int i_checkResetFlg0(daPy_py_c::daPy_RFLG0 flag) const { return mResetFlg0 & flag; }
     
     int i_checkEndResetFlg0(daPy_py_c::daPy_ERFLG0 flag) const { return mEndResetFlg0 & flag; }
     int i_checkEndResetFlg1(daPy_py_c::daPy_ERFLG1 flag) const { return mEndResetFlg1 & flag; }
+    int i_checkEndResetFlg2(daPy_py_c::daPy_ERFLG2 flag) const { return mEndResetFlg2 & flag; }
     
     void i_onEndResetFlg1(daPy_ERFLG1 pFlg) { mEndResetFlg1 |= pFlg; }
     
@@ -681,6 +702,7 @@ public:
     inline static u32 i_getLastSceneMode();
     inline static u32 getLastSceneMode();
     inline static bool checkWoodSwordEquip();
+    inline static bool checkLightMasterSwordEquip();
     inline BOOL i_checkSwordGet();
     inline bool i_checkShieldGet() const;
     inline static BOOL checkNowWolf();

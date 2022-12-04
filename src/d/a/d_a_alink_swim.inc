@@ -162,7 +162,7 @@ asm void daAlink_c::checkSwimAction(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkSwimUpAction() {
+asm int daAlink_c::checkSwimUpAction() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkSwimUpAction__9daAlink_cFv.s"
 }
@@ -282,7 +282,7 @@ void daAlink_c::setSwimUpDownOffset() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimUpInit() {
+asm int daAlink_c::procSwimUpInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimUpInit__9daAlink_cFv.s"
 }
@@ -292,7 +292,7 @@ asm void daAlink_c::procSwimUpInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimUp() {
+asm int daAlink_c::procSwimUp() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimUp__9daAlink_cFv.s"
 }
@@ -302,7 +302,7 @@ asm void daAlink_c::procSwimUp() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimWaitInit(int param_0) {
+asm int daAlink_c::procSwimWaitInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimWaitInit__9daAlink_cFi.s"
 }
@@ -312,7 +312,7 @@ asm void daAlink_c::procSwimWaitInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimWait() {
+asm int daAlink_c::procSwimWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimWait__9daAlink_cFv.s"
 }
@@ -322,7 +322,7 @@ asm void daAlink_c::procSwimWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimMoveInit() {
+asm int daAlink_c::procSwimMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimMoveInit__9daAlink_cFv.s"
 }
@@ -332,7 +332,7 @@ asm void daAlink_c::procSwimMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimMove() {
+asm int daAlink_c::procSwimMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimMove__9daAlink_cFv.s"
 }
@@ -342,7 +342,7 @@ asm void daAlink_c::procSwimMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimDiveInit() {
+asm int daAlink_c::procSwimDiveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimDiveInit__9daAlink_cFv.s"
 }
@@ -352,7 +352,7 @@ asm void daAlink_c::procSwimDiveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimDive() {
+asm int daAlink_c::procSwimDive() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimDive__9daAlink_cFv.s"
 }
@@ -362,7 +362,7 @@ asm void daAlink_c::procSwimDive() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimHookshotSubjectInit() {
+asm int daAlink_c::procSwimHookshotSubjectInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimHookshotSubjectInit__9daAlink_cFv.s"
 }
@@ -372,7 +372,7 @@ asm void daAlink_c::procSwimHookshotSubjectInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimHookshotSubject() {
+asm int daAlink_c::procSwimHookshotSubject() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimHookshotSubject__9daAlink_cFv.s"
 }
@@ -382,7 +382,7 @@ asm void daAlink_c::procSwimHookshotSubject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimHookshotMoveInit() {
+asm int daAlink_c::procSwimHookshotMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimHookshotMoveInit__9daAlink_cFv.s"
 }
@@ -393,7 +393,7 @@ asm void daAlink_c::procSwimHookshotMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimHookshotMove() {
+asm int daAlink_c::procSwimHookshotMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimHookshotMove__9daAlink_cFv.s"
 }
@@ -404,7 +404,7 @@ asm void daAlink_c::procSwimHookshotMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimDamageInit(dCcD_GObjInf* param_0) {
+asm int daAlink_c::procSwimDamageInit(dCcD_GObjInf* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimDamageInit__9daAlink_cFP12dCcD_GObjInf.s"
 }
@@ -414,7 +414,7 @@ asm void daAlink_c::procSwimDamageInit(dCcD_GObjInf* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimDamage() {
+asm int daAlink_c::procSwimDamage() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimDamage__9daAlink_cFv.s"
 }
@@ -425,7 +425,7 @@ asm void daAlink_c::procSwimDamage() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procOctaIealSpitInit() {
+asm int daAlink_c::procOctaIealSpitInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procOctaIealSpitInit__9daAlink_cFv.s"
 }

@@ -191,14 +191,14 @@ void daAlink_c::throwBoomerang() {
     BOOL boomerang_item = fopAcM_GetName(item) == PROC_BOOMERANG;
     if (boomerang_item) {
         item->setThrow();
-        item->current.angle.y = mCollisionRot.y + field_0x59e;
+        item->current.angle.y = shape_angle.y + field_0x59e;
         item->current.angle.x = -mLookAngleY;
 
         if (mTargetedActor != NULL) {
             item->setAimActor(mTargetedActor);
         }
 
-        item->mCollisionRot.y = mCollisionRot.y;
+        item->shape_angle.y = shape_angle.y;
         mThrowBoomerangAcKeep = mItemAcKeep;
         dComIfGp_setPlayerStatus0(0, 0x400000);
         daPy_boomerangMove_c::initDropAngleY();
@@ -208,7 +208,7 @@ void daAlink_c::throwBoomerang() {
     } else {
         item->mSpeedF = daAlinkHIO_pickUp_c0::m.field_0x28;
         item->mSpeed.y = daAlinkHIO_pickUp_c0::m.field_0x2C;
-        item->current.angle.y = mCollisionRot.y;
+        item->current.angle.y = shape_angle.y;
 
         fopAcM_cancelCarryNow(item);
         item = NULL;
@@ -341,7 +341,7 @@ int daAlink_c::procBoomerangSubjectInit() {
     initBoomerangUpperAnimeSpeed(1);
     setSingleAnimeBaseSpeed(ANM_ATN_WAIT_RIGHT, FLOAT_LABEL(lit_6108), daAlinkHIO_boom_c0::m.mStartInterpolation);
     dComIfGp_setPlayerStatus0(0, 0x80000);
-    current.angle.y = mCollisionRot.y;
+    current.angle.y = shape_angle.y;
 
     return 1;
 }

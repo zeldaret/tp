@@ -29,7 +29,7 @@ public:
     u32 getNumHandles() const { return this->getNumLinks(); }
 
 private:
-    u8 mNumHandles;
+    /* 0xC */ u8 mNumHandles;
 };
 
 #endif /* Z2SOUNDHANDLES_H */

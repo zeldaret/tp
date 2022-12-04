@@ -31,7 +31,7 @@ int daAlink_c::procPreActionUnequipInit(int param_0, fopAc_ac_c* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procPreActionUnequip() {
+asm int daAlink_c::procPreActionUnequip() {
     nofralloc
 #include "asm/d/a/d_a_alink/procPreActionUnequip__9daAlink_cFv.s"
 }
@@ -43,7 +43,7 @@ int daAlink_c::procServiceWaitInit() {
     commonProcInit(PROC_SERVICE_WAIT);
     setSingleAnimeBase(ANM_SERVICE_WAIT);
     mNormalSpeed = FLOAT_LABEL(lit_6108);
-    current.angle.y = mCollisionRot.y;
+    current.angle.y = shape_angle.y;
     field_0x2f98 = 4;
     return 1;
 }
@@ -52,7 +52,7 @@ int daAlink_c::procServiceWaitInit() {
 int daAlink_c::procServiceWait() {
     J3DFrameCtrl* ctrl = &mUnderFrameCtrl[0];
     if ((!checkNextAction(0) && !checkFrontWallTypeAction()) &&
-        (checkEventRun() || checkGuardActionChange() || mCollisionRot.y != field_0x2fe6)) {
+        (checkEventRun() || checkGuardActionChange() || shape_angle.y != field_0x2fe6)) {
         ctrl->setRate(FLOAT_LABEL(lit_6108));
         procWaitInit();
     } else {
@@ -71,7 +71,7 @@ int daAlink_c::procServiceWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procTiredWaitInit() {
+asm int daAlink_c::procTiredWaitInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procTiredWaitInit__9daAlink_cFv.s"
 }
@@ -106,7 +106,7 @@ asm int daAlink_c::procWaitInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWait() {
+asm int daAlink_c::procWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWait__9daAlink_cFv.s"
 }
@@ -248,7 +248,7 @@ int daAlink_c::procWaitTurnInit() {
     }
 
     field_0x300e = field_0x2fe2;
-    current.angle.y = mCollisionRot.y;
+    current.angle.y = shape_angle.y;
     return 1;
 }
 
@@ -261,8 +261,8 @@ int daAlink_c::procWaitTurn() {
     } else if (i_checkEndResetFlg0(ERFLG0_UNK_100000)) {
         return procFloorDownReboundInit();
     } else {
-        s16 angle = cLib_addCalcAngleS(&mCollisionRot.y, field_0x300e, 30, 0x3CDF, 8000);
-        current.angle.y = mCollisionRot.y;
+        s16 angle = cLib_addCalcAngleS(&shape_angle.y, field_0x300e, 30, 0x3CDF, 8000);
+        current.angle.y = shape_angle.y;
 
         if (checkNextActionFromButton()) {
             return 1;
@@ -311,7 +311,7 @@ int daAlink_c::procMoveTurnInit(int param_0) {
 /* 800C3D38-800C3DA0 0BE678 0068+00 1/0 0/0 0/0 .text            procMoveTurn__9daAlink_cFv */
 int daAlink_c::procMoveTurn() {
     setSpeedAndAngleNormal();
-    cLib_addCalcAngleS(&mCollisionRot.y, current.angle.y, field_0x300a, field_0x300e,
+    cLib_addCalcAngleS(&shape_angle.y, current.angle.y, field_0x300a, field_0x300e,
                        field_0x3010);
 
     if (!checkNextAction(0)) {
@@ -332,7 +332,7 @@ int daAlink_c::procSideStepInit(int jump_type) {
     field_0x2f98 = jump_type;
 
     if (field_0x2f98 == 1) {
-        current.angle.y = mCollisionRot.y + 0x8000;
+        current.angle.y = shape_angle.y + 0x8000;
         setSingleAnimeParam(ANM_BACK_JUMP, &daAlinkHIO_sideStep_c0::m.mBackJumpAnm);
         mNormalSpeed = daAlinkHIO_sideStep_c0::m.mBackJumpSpeedH;
         mSpeed.y = daAlinkHIO_sideStep_c0::m.mBackJumpSpeedV;
@@ -341,10 +341,10 @@ int daAlink_c::procSideStepInit(int jump_type) {
         daAlink_ANM anm_id;
         if (field_0x2f98 == 2) {
             anm_id = ANM_SIDE_JUMP_LEFT;
-            current.angle.y = mCollisionRot.y + 0x4000;
+            current.angle.y = shape_angle.y + 0x4000;
         } else {
             anm_id = ANM_SIDE_JUMP_RIGHT;
-            current.angle.y = mCollisionRot.y - 0x4000;
+            current.angle.y = shape_angle.y - 0x4000;
         }
 
         setSingleAnimeParam(anm_id, &daAlinkHIO_sideStep_c0::m.mSideJumpAnm);
@@ -368,12 +368,12 @@ int daAlink_c::procSideStepInit(int jump_type) {
 int daAlink_c::procSideStep() {
     if (mTargetedActor != NULL && field_0x300a != 0) {
         s16 actor_angle = fopAcM_searchActorAngleY(this, mTargetedActor);
-        cLib_addCalcAngleS(&mCollisionRot.y, actor_angle, 5, 0x5E8, 0x13C);
+        cLib_addCalcAngleS(&shape_angle.y, actor_angle, 5, 0x5E8, 0x13C);
 
         if (field_0x2f98 == 2) {
-            current.angle.y = mCollisionRot.y + 0x4000;
+            current.angle.y = shape_angle.y + 0x4000;
         } else {
-            current.angle.y = mCollisionRot.y - 0x4000;
+            current.angle.y = shape_angle.y - 0x4000;
         }
     }
 
@@ -442,7 +442,7 @@ int daAlink_c::procSideStepLandInit() {
     i_onResetFlg1(0x30);
     mNormalSpeed = FLOAT_LABEL(lit_6108);
     mCommonCounter = 0;
-    current.angle.y = mCollisionRot.y;
+    current.angle.y = shape_angle.y;
     setStepLandVibration();
     return 1;
 }
@@ -490,7 +490,7 @@ int daAlink_c::procSlideInit(s16 param_0) {
         field_0x300e = 0;
     }
 
-    if (cLib_distanceAngleS(param_0, mCollisionRot.y) < 0x3800 || field_0x300e != 0) {
+    if (cLib_distanceAngleS(param_0, shape_angle.y) < 0x3800 || field_0x300e != 0) {
         field_0x3198 = 1;
         setSingleAnimeParam(ANM_SLIDE_FORWARD, &daAlinkHIO_slide_c0::m.mForwardSlideAnm);
         dComIfGp_setPlayerStatus1(0, 0x100);
@@ -525,7 +525,7 @@ SECTION_SDATA2 static f32 lit_73057 = -4096.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSlide() {
+asm int daAlink_c::procSlide() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSlide__9daAlink_cFv.s"
 }
@@ -562,11 +562,11 @@ int daAlink_c::procSlideLand() {
     }
 
     if (ctrl->checkAnmEnd()) {
-        current.angle.y = mCollisionRot.y;
+        current.angle.y = shape_angle.y;
         checkNextAction(0);
     } else if (ctrl->getFrame() > field_0x3478) {
         s16 tmp_angle = current.angle.y;
-        current.angle.y = mCollisionRot.y;
+        current.angle.y = shape_angle.y;
 
         if (!checkNextAction(1)) {
             current.angle.y = tmp_angle;
@@ -611,7 +611,7 @@ int daAlink_c::procFrontRollInit() {
         } else {
             mNormalSpeed *= daAlinkHIO_magneBoots_c0::m.mWaterVelocityX;
         }
-        current.angle.y = mCollisionRot.y;
+        current.angle.y = shape_angle.y;
         voiceStart(Z2SE_AL_V_BACKTEN);
         mCommonCounter = 0;
         setFootEffectProcType(0);
@@ -646,7 +646,7 @@ asm int daAlink_c::procFrontRollInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procFrontRoll() {
+asm int daAlink_c::procFrontRoll() {
     nofralloc
 #include "asm/d/a/d_a_alink/procFrontRoll__9daAlink_cFv.s"
 }
@@ -680,7 +680,7 @@ int daAlink_c::procFrontRollCrashInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procFrontRollCrash() {
+asm int daAlink_c::procFrontRollCrash() {
     nofralloc
 #include "asm/d/a/d_a_alink/procFrontRollCrash__9daAlink_cFv.s"
 }
@@ -706,7 +706,7 @@ int daAlink_c::procFrontRollSuccessInit() {
     field_0x3588 = l_halfAtnWaitBaseAnime;
     field_0x2f99 = 4;
     setFootEffectProcType(1);
-    current.angle.y = mCollisionRot.y - -0x8000;
+    current.angle.y = shape_angle.y - -0x8000;
 
     return 1;
 }
@@ -720,11 +720,11 @@ int daAlink_c::procFrontRollSuccess() {
     i_onEndResetFlg0(0x8000000);
 
     if (frameCtrl->checkAnmEnd()) {
-        current.angle.y = mCollisionRot.y;
+        current.angle.y = shape_angle.y;
         checkNextAction(0);
     } else if (frameCtrl->getFrame() > daAlinkHIO_frontRoll_c0::m.mCrashHitAnm.field_0x10) {
         onModeFlg(4);
-        current.angle.y = mCollisionRot.y;
+        current.angle.y = shape_angle.y;
         checkNextAction(1);
     } else if (frameCtrl->getFrame() >= lit_8130) {
         field_0x2f92 = 1;
@@ -750,7 +750,7 @@ asm int daAlink_c::procSideRollInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSideRoll() {
+asm int daAlink_c::procSideRoll() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSideRoll__9daAlink_cFv.s"
 }
@@ -823,7 +823,7 @@ int daAlink_c::procBackJumpLandInit(int i_cutDirection) {
     i_onResetFlg1(0x30);
 
     field_0x3198 = i_cutDirection;
-    current.angle.y = mCollisionRot.y;
+    current.angle.y = shape_angle.y;
     field_0x2fcc = 10;
     setStepLandVibration();
 
@@ -834,7 +834,7 @@ int daAlink_c::procBackJumpLandInit(int i_cutDirection) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procBackJumpLand() {
+asm int daAlink_c::procBackJumpLand() {
     nofralloc
 #include "asm/d/a/d_a_alink/procBackJumpLand__9daAlink_cFv.s"
 }
@@ -857,7 +857,7 @@ int daAlink_c::procSlipInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSlip() {
+asm int daAlink_c::procSlip() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSlip__9daAlink_cFv.s"
 }
@@ -867,7 +867,7 @@ asm void daAlink_c::procSlip() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procAutoJumpInit(int param_0) {
+asm int daAlink_c::procAutoJumpInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procAutoJumpInit__9daAlink_cFi.s"
 }
@@ -881,7 +881,7 @@ SECTION_SDATA2 static f32 lit_73781 = 2.0f / 3.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procAutoJump() {
+asm int daAlink_c::procAutoJump() {
     nofralloc
 #include "asm/d/a/d_a_alink/procAutoJump__9daAlink_cFv.s"
 }
@@ -899,7 +899,7 @@ int daAlink_c::procDiveJumpInit() {
     mGravity = daAlinkHIO_autoJump_c0::m.mDiveGravity;
 
     mCommonCounter = 0;
-    current.angle.y = mCollisionRot.y;
+    current.angle.y = shape_angle.y;
     field_0x33b0 = 92.0f;
 
     voiceStart(Z2SE_AL_V_JUMP_DIVING);
@@ -941,12 +941,12 @@ int daAlink_c::procRollJumpInit() {
     mSpeed.y = field_0x3414;
 
     field_0x2fe6 = field_0x30ee;
-    mCollisionRot.y = field_0x30ee;
-    current.angle.y = mCollisionRot.y;
+    shape_angle.y = field_0x30ee;
+    current.angle.y = shape_angle.y;
 
     mLinkAcch.i_ClrGroundHit();
     field_0x347c = FLOAT_LABEL(lit_6108);
-    mCollisionRot.x = 1;
+    shape_angle.x = 1;
 
     voiceStart(Z2SE_AL_V_GORONJUMP);
     seStartOnlyReverb(Z2SE_AL_GORON_JUMP_START);
@@ -959,7 +959,7 @@ int daAlink_c::procRollJumpInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procRollJump() {
+asm int daAlink_c::procRollJump() {
     nofralloc
 #include "asm/d/a/d_a_alink/procRollJump__9daAlink_cFv.s"
 }
@@ -979,7 +979,7 @@ asm int daAlink_c::procFallInit(int param_0, f32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procFall() {
+asm int daAlink_c::procFall() {
     nofralloc
 #include "asm/d/a/d_a_alink/procFall__9daAlink_cFv.s"
 }
@@ -1003,7 +1003,7 @@ int daAlink_c::procLandInit(f32 param_0) {
     setFootEffectProcType(4);
 
     i_onResetFlg1(0x30);
-    current.angle.y = mCollisionRot.y;
+    current.angle.y = shape_angle.y;
     field_0x3478 = param_0;
 
     return 1;
@@ -1013,7 +1013,7 @@ int daAlink_c::procLandInit(f32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procLand() {
+asm int daAlink_c::procLand() {
     nofralloc
 #include "asm/d/a/d_a_alink/procLand__9daAlink_cFv.s"
 }
@@ -1033,7 +1033,7 @@ asm int daAlink_c::procSmallJumpInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSmallJump() {
+asm int daAlink_c::procSmallJump() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSmallJump__9daAlink_cFv.s"
 }
@@ -1056,7 +1056,7 @@ int daAlink_c::procStepMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procStepMove() {
+asm int daAlink_c::procStepMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procStepMove__9daAlink_cFv.s"
 }
@@ -1069,7 +1069,7 @@ int daAlink_c::procCrouchInit() {
     }
 
     setSingleAnimeBaseSpeed(ANM_CROUCH, daAlinkHIO_crouch_c0::m.field_0x30, daAlinkHIO_crouch_c0::m.field_0x34);
-    current.angle.y = mCollisionRot.y;
+    current.angle.y = shape_angle.y;
     return 1;
 }
 
@@ -1081,7 +1081,7 @@ SECTION_SDATA2 static f32 lit_74138 = -80.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCrouch() {
+asm int daAlink_c::procCrouch() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCrouch__9daAlink_cFv.s"
 }
@@ -1146,7 +1146,7 @@ int daAlink_c::procCoMetamorphoseInit() {
         mNormalSpeed = 0.0f;
 
         if (i_checkWolf()) {
-            mCommonCounter = mCollisionRot.x;
+            mCommonCounter = shape_angle.x;
         }
     } else {
         deleteEquipItem(FALSE, TRUE);
@@ -1162,7 +1162,7 @@ int daAlink_c::procCoMetamorphoseInit() {
             field_0x3588 = l_wolfBaseAnime;
             field_0x347c = 0.5f;
             field_0x3480 = daAlinkHIO_basic_c0::m.mWolfLinkTransformSpeed;
-            mCommonCounter = mCollisionRot.x;
+            mCommonCounter = shape_angle.x;
 
             daMidna_c* midna = getMidnaActor();
             if (i_checkMidnaRide() && daMidna_c::checkMidnaRealBody() && midna->checkDemoTypeNone()) {
@@ -1180,9 +1180,9 @@ int daAlink_c::procCoMetamorphoseInit() {
             field_0x3588 = l_waitBaseAnime;
             field_0x3480 = daAlinkHIO_basic_c0::m.mLinkWolfTransformSpeed;
 
-            cXyz pos(current.pos.x + (cM_ssin(mCollisionRot.y) * 100.0f),
+            cXyz pos(current.pos.x + (cM_ssin(shape_angle.y) * 100.0f),
                      current.pos.y + 300.0f,
-                     current.pos.z + (cM_scos(mCollisionRot.y) * 100.0f));
+                     current.pos.z + (cM_scos(shape_angle.y) * 100.0f));
             mLinkGndChk.SetPos(&pos);
 
             f32 gnd_cross = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
@@ -1287,7 +1287,7 @@ SECTION_SDATA2 static f32 lit_74395 = 1.0f / 36.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoMetamorphose() {
+asm int daAlink_c::procCoMetamorphose() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoMetamorphose__9daAlink_cFv.s"
 }
@@ -1345,7 +1345,7 @@ int daAlink_c::procFloorDownReboundInit() {
                    daAlinkHIO_autoJump_c0::m.mLandAnm.mStart,
                    daAlinkHIO_autoJump_c0::m.mLandAnm.mEndF, lit_7625);
     mNormalSpeed = FLOAT_LABEL(lit_6108);
-    current.angle.y = mCollisionRot.y;
+    current.angle.y = shape_angle.y;
     field_0x2f98 = 4;
 
     return 1;
@@ -1376,7 +1376,7 @@ int daAlink_c::procGoronRideWaitInit(fopAc_ac_c* param_0) {
     current.pos.x = param_0->current.pos.x;
     current.pos.z = param_0->current.pos.z;
     field_0x2f99 = 0x50;
-    current.angle.y = mCollisionRot.y;
+    current.angle.y = shape_angle.y;
     setBlendMoveAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
 
     return 1;
@@ -1386,7 +1386,7 @@ int daAlink_c::procGoronRideWaitInit(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGoronRideWait() {
+asm int daAlink_c::procGoronRideWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGoronRideWait__9daAlink_cFv.s"
 }
@@ -1441,12 +1441,12 @@ int daAlink_c::execute() {
     }
 
     if (checkHorseRide() && checkBoarSingleBattle() && dComIfGp_getHorseActor() != NULL) {
-        mCollisionRot.y = dComIfGp_getHorseActor()->mCollisionRot.y;
-        current.angle.y = mCollisionRot.y;
+        shape_angle.y = dComIfGp_getHorseActor()->shape_angle.y;
+        current.angle.y = shape_angle.y;
     } else if (checkMagneBootsOn()) {
-        mCollisionRot.y = field_0x3118;
+        shape_angle.y = field_0x3118;
     } else if (checkModeFlg(MODE_VINE_CLIMB) || checkCargoCarry()) {
-        mCollisionRot.y = field_0x3108;
+        shape_angle.y = field_0x3108;
     }
 
     if (checkNoResetFlg2(FLG2_UNK_1) && mEquipItem != KANTERA && checkItemSetButton(KANTERA) == 2) {
@@ -1473,14 +1473,14 @@ int daAlink_c::execute() {
 
     if (checkMagneBootsOn()) {
         if (checkNoResetFlg0(FLG0_UNK_2000) && dComIfG_Bgsp().ChkPolySafe(mMagneLineChk) && dComIfG_Bgsp().ChkMoveBG(mMagneLineChk)) {
-            s16 shape_angle_y = mCollisionRot.y;
+            s16 shape_angle_y = shape_angle.y;
             s16 angle_y = current.angle.y;
             f32 pos_y = current.pos.y;
 
-            dComIfG_Bgsp().MoveBgCrrPos(mMagneLineChk, true, &current.pos, &current.angle, &mCollisionRot, false, false);
+            dComIfG_Bgsp().MoveBgCrrPos(mMagneLineChk, true, &current.pos, &current.angle, &shape_angle, false, false);
             
             if (field_0x3114 > 0x6000 || field_0x3114 == -0x8000) {
-                mCollisionRot.y = shape_angle_y - (s16)(mCollisionRot.y - shape_angle_y);
+                shape_angle.y = shape_angle_y - (s16)(shape_angle.y - shape_angle_y);
                 current.angle.y = angle_y - (s16)(current.angle.y - angle_y);
             }
 
@@ -1503,13 +1503,13 @@ int daAlink_c::execute() {
         }
         f32 pos_y = current.pos.y;
 
-        dComIfG_Bgsp().MoveBgCrrPos(mLinkAcch.m_gnd, uvar23, &current.pos, &current.angle, &mCollisionRot, false, false);
+        dComIfG_Bgsp().MoveBgCrrPos(mLinkAcch.m_gnd, uvar23, &current.pos, &current.angle, &shape_angle, false, false);
         dComIfG_Bgsp().MoveBgCrrPos(mLinkAcch.m_gnd, uvar23, &next.pos, NULL, NULL, false, false);
         field_0x34c8.y += (current.pos.y - pos_y) * 0.1f;
     }
 
     field_0x3798 = next.pos;
-    field_0x2fe6 = mCollisionRot.y;
+    field_0x2fe6 = shape_angle.y;
     mPrevStickAngle = mStickAngle;
     field_0x33a4 = field_0x33ac;
 
@@ -1850,7 +1850,7 @@ int daAlink_c::execute() {
         J3DTransformInfo ti;
         field_0x1f20->getAnm(0)->getTransform(0, &ti);
         mDoMtx_stack_c::transS(old_pos);
-        mDoMtx_stack_c::YrotM(mCollisionRot.y);
+        mDoMtx_stack_c::YrotM(shape_angle.y);
 
         Vec tmp;
         mDoMtx_stack_c::multVec(&tmp, &current.pos);
@@ -1910,7 +1910,7 @@ int daAlink_c::execute() {
                 mPolySound = dKy_pol_sound_get(&mLinkAcch.m_gnd);
             }
 
-            field_0x2ff0 = getGroundAngle(&mLinkAcch.m_gnd, mCollisionRot.y);
+            field_0x2ff0 = getGroundAngle(&mLinkAcch.m_gnd, shape_angle.y);
         } else {
             if (mProcID == PROC_TOOL_DEMO || mProcID == PROC_GANON_FINISH) {
                 if (checkNoResetFlg0(FLG0_UNK_80) && mWaterY >= mLinkAcch.GetGroundH()) {
@@ -2331,23 +2331,23 @@ int daAlink_c::execute() {
     mEndResetFlg2 = 0;
 
     field_0x3540 = next.pos;
-    field_0x3108 = mCollisionRot.y;
+    field_0x3108 = shape_angle.y;
 
     if (checkHorseRide() && checkBoarSingleBattle()) {
-        if (abs(mCollisionRot.y) < 0x4000) {
-            mCollisionRot.y = 0;
+        if (abs(shape_angle.y) < 0x4000) {
+            shape_angle.y = 0;
         } else {
-            mCollisionRot.y = -0x8000;
+            shape_angle.y = -0x8000;
         }
     } else if (checkMagneBootsOn()) {
-        field_0x3118 = mCollisionRot.y;
-        mCollisionRot.y = getMagneBootsLocalAngleY(mCollisionRot.y, 0);
+        field_0x3118 = shape_angle.y;
+        shape_angle.y = getMagneBootsLocalAngleY(shape_angle.y, 0);
     } else if (checkModeFlg(MODE_VINE_CLIMB)) {
-        field_0x3108 = mCollisionRot.y;
-        mCollisionRot.y += field_0x308c;
+        field_0x3108 = shape_angle.y;
+        shape_angle.y += field_0x308c;
     } else if (checkCargoCarry() && mCargoCarryAcKeep.getActor() != NULL) {
-        field_0x3108 = mCollisionRot.y;
-        mCollisionRot.y = mCargoCarryAcKeep.getActor()->mCollisionRot.y;
+        field_0x3108 = shape_angle.y;
+        shape_angle.y = mCargoCarryAcKeep.getActor()->shape_angle.y;
     }
 
     return 1;
@@ -2699,7 +2699,7 @@ int daAlink_c::procCoSubjectivityInit() {
     mNormalSpeed = FLOAT_LABEL(lit_6108);
     
     setSubjectMode();
-    field_0x2fe6 = mCollisionRot.y;
+    field_0x2fe6 = shape_angle.y;
 
     if (i_checkWolf()) {
         setSingleAnimeWolfBaseSpeed(WANM_WAIT, FLOAT_LABEL(lit_6108), lit_6109);
@@ -2714,7 +2714,7 @@ int daAlink_c::procCoSubjectivityInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoSubjectivity() {
+asm int daAlink_c::procCoSubjectivity() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoSubjectivity__9daAlink_cFv.s"
 }
@@ -2743,7 +2743,7 @@ int daAlink_c::procCoSwimSubjectivityInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoSwimSubjectivity() {
+asm int daAlink_c::procCoSwimSubjectivity() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoSwimSubjectivity__9daAlink_cFv.s"
 }
@@ -2766,7 +2766,7 @@ int daAlink_c::procCoPeepSubjectivityInit() {
     mSpeed.y = FLOAT_LABEL(lit_6108);
     dComIfGp_setPlayerStatus0(0, 0x2000);
     field_0x3478 = lit_6183;
-    mCommonCounter = mCollisionRot.y;
+    mCommonCounter = shape_angle.y;
 
     return 1;
 }

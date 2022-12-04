@@ -9,14 +9,13 @@ static asm void* daAlink_searchBoar(fopAc_ac_c* param_0, void* param_1) {
 #pragma pop
 
 /* 800EC758-800EC76C 0E7098 0014+00 1/1 0/0 0/0 .text daAlink_searchCoach__FP10fopAc_ac_cPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm fopAc_ac_c* daAlink_searchCoach(fopAc_ac_c* param_0, void* param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/daAlink_searchCoach__FP10fopAc_ac_cPv.s"
+static fopAc_ac_c* daAlink_searchCoach(fopAc_ac_c* param_0, void* param_1) {
+    if (fopAcM_GetName(param_0) == PROC_NPC_COACH) {
+        return param_0;
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 800EC76C-800EC7B0 0E70AC 0044+00 3/3 0/0 0/0 .text checkHorseZeldaBowMode__9daAlink_cFv */
 #pragma push
@@ -41,35 +40,28 @@ asm void daAlink_c::setHorseZeldaDamage() {
 
 /* 800EC7DC-800EC814 0E711C 0038+00 2/2 0/0 0/0 .text            checkHorseDashAccept__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool daAlink_c::checkHorseDashAccept() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkHorseDashAccept__9daAlink_cFv.s"
+BOOL daAlink_c::checkHorseDashAccept() {
+    return !checkStageName("F_SP103");
 }
-#pragma pop
 
 /* 800EC814-800EC87C 0E7154 0068+00 1/1 0/0 0/0 .text            checkCowGame__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkCowGame() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkCowGame__9daAlink_cFv.s"
+BOOL daAlink_c::checkCowGame() {
+    return checkStageName("F_SP00") && (dComIfGp_getStartStageLayer() == 4 || dComIfGp_getStartStageLayer() == 5);
 }
-#pragma pop
 
 /* 800EC87C-800EC8F8 0E71BC 007C+00 2/2 0/0 0/0 .text            getReinRideDirection__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getReinRideDirection() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getReinRideDirection__9daAlink_cFv.s"
+int daAlink_c::getReinRideDirection() {
+    s16 angle = fopAcM_searchActorAngleY(field_0x27f4, this) - field_0x27f4->shape_angle.y;
+
+    if (fopAcM_GetName(field_0x27f4) == PROC_HORSE && abs(angle) > 0x6800) {
+        return DIR_BACKWARD;
+    } else if (angle > 0) {
+        return DIR_LEFT;
+    }
+
+    return DIR_RIGHT;
 }
-#pragma pop
 
 /* 800EC8F8-800ECA3C 0E7238 0144+00 1/1 0/0 0/0 .text            checkReinRideBgCheck__9daAlink_cFv
  */
@@ -83,14 +75,19 @@ asm void daAlink_c::checkReinRideBgCheck() {
 #pragma pop
 
 /* 800ECA3C-800ECAAC 0E737C 0070+00 3/3 0/0 0/0 .text commonInitForceRideRein__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::commonInitForceRideRein() {
-    nofralloc
-#include "asm/d/a/d_a_alink/commonInitForceRideRein__9daAlink_cFv.s"
+void daAlink_c::commonInitForceRideRein() {
+    setHeavyBoots(0);
+    onModeFlg(0x400);
+    field_0x2fc0 = 0;
+    field_0x2fab = 0x13;
+    field_0x3002 = 0;
+    field_0x3004 = 0;
+    field_0x30a6 = 0;
+
+    initServiceWaitTime();
+    mAttentionInfo.field_0xa = 0x46;
+    mUnderFrameCtrl[0].onEndFlg();
 }
-#pragma pop
 
 /* 800ECAAC-800ECB58 0E73EC 00AC+00 1/1 0/0 0/0 .text            initForceRideBoar__9daAlink_cFv */
 #pragma push
@@ -525,7 +522,7 @@ asm void daAlink_c::setHorseGetOff(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseRideInit() {
+asm int daAlink_c::procHorseRideInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseRideInit__9daAlink_cFv.s"
 }
@@ -535,7 +532,7 @@ asm void daAlink_c::procHorseRideInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseRide() {
+asm int daAlink_c::procHorseRide() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseRide__9daAlink_cFv.s"
 }
@@ -546,7 +543,7 @@ asm void daAlink_c::procHorseRide() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseGetOffInit(int param_0) {
+asm int daAlink_c::procHorseGetOffInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseGetOffInit__9daAlink_cFi.s"
 }
@@ -556,7 +553,7 @@ asm void daAlink_c::procHorseGetOffInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseGetOff() {
+asm int daAlink_c::procHorseGetOff() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseGetOff__9daAlink_cFv.s"
 }
@@ -567,7 +564,7 @@ asm void daAlink_c::procHorseGetOff() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseWaitInit() {
+asm int daAlink_c::procHorseWaitInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseWaitInit__9daAlink_cFv.s"
 }
@@ -577,7 +574,7 @@ asm void daAlink_c::procHorseWaitInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseWait() {
+asm int daAlink_c::procHorseWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseWait__9daAlink_cFv.s"
 }
@@ -587,7 +584,7 @@ asm void daAlink_c::procHorseWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseTurnInit() {
+asm int daAlink_c::procHorseTurnInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseTurnInit__9daAlink_cFv.s"
 }
@@ -597,7 +594,7 @@ asm void daAlink_c::procHorseTurnInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseTurn() {
+asm int daAlink_c::procHorseTurn() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseTurn__9daAlink_cFv.s"
 }
@@ -607,7 +604,7 @@ asm void daAlink_c::procHorseTurn() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseJumpInit() {
+asm int daAlink_c::procHorseJumpInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseJumpInit__9daAlink_cFv.s"
 }
@@ -617,7 +614,7 @@ asm void daAlink_c::procHorseJumpInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseJump() {
+asm int daAlink_c::procHorseJump() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseJump__9daAlink_cFv.s"
 }
@@ -627,7 +624,7 @@ asm void daAlink_c::procHorseJump() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseLandInit() {
+asm int daAlink_c::procHorseLandInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseLandInit__9daAlink_cFv.s"
 }
@@ -637,7 +634,7 @@ asm void daAlink_c::procHorseLandInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseLand() {
+asm int daAlink_c::procHorseLand() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseLand__9daAlink_cFv.s"
 }
@@ -647,7 +644,7 @@ asm void daAlink_c::procHorseLand() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseSubjectivityInit() {
+asm int daAlink_c::procHorseSubjectivityInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseSubjectivityInit__9daAlink_cFv.s"
 }
@@ -658,7 +655,7 @@ asm void daAlink_c::procHorseSubjectivityInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseSubjectivity() {
+asm int daAlink_c::procHorseSubjectivity() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseSubjectivity__9daAlink_cFv.s"
 }
@@ -668,7 +665,7 @@ asm void daAlink_c::procHorseSubjectivity() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseCutInit() {
+asm int daAlink_c::procHorseCutInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseCutInit__9daAlink_cFv.s"
 }
@@ -678,7 +675,7 @@ asm void daAlink_c::procHorseCutInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseCut() {
+asm int daAlink_c::procHorseCut() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseCut__9daAlink_cFv.s"
 }
@@ -688,7 +685,7 @@ asm void daAlink_c::procHorseCut() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseCutChargeReadyInit() {
+asm int daAlink_c::procHorseCutChargeReadyInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseCutChargeReadyInit__9daAlink_cFv.s"
 }
@@ -698,7 +695,7 @@ asm void daAlink_c::procHorseCutChargeReadyInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseCutChargeReady() {
+asm int daAlink_c::procHorseCutChargeReady() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseCutChargeReady__9daAlink_cFv.s"
 }
@@ -709,7 +706,7 @@ asm void daAlink_c::procHorseCutChargeReady() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseCutTurnInit() {
+asm int daAlink_c::procHorseCutTurnInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseCutTurnInit__9daAlink_cFv.s"
 }
@@ -719,7 +716,7 @@ asm void daAlink_c::procHorseCutTurnInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseCutTurn() {
+asm int daAlink_c::procHorseCutTurn() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseCutTurn__9daAlink_cFv.s"
 }
@@ -730,7 +727,7 @@ asm void daAlink_c::procHorseCutTurn() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseDamageInit(dCcD_GObjInf* param_0) {
+asm int daAlink_c::procHorseDamageInit(dCcD_GObjInf* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseDamageInit__9daAlink_cFP12dCcD_GObjInf.s"
 }
@@ -740,7 +737,7 @@ asm void daAlink_c::procHorseDamageInit(dCcD_GObjInf* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseDamage() {
+asm int daAlink_c::procHorseDamage() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseDamage__9daAlink_cFv.s"
 }
@@ -750,7 +747,7 @@ asm void daAlink_c::procHorseDamage() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseBowSubjectInit() {
+asm int daAlink_c::procHorseBowSubjectInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseBowSubjectInit__9daAlink_cFv.s"
 }
@@ -761,7 +758,7 @@ asm void daAlink_c::procHorseBowSubjectInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseBowSubject() {
+asm int daAlink_c::procHorseBowSubject() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseBowSubject__9daAlink_cFv.s"
 }
@@ -772,7 +769,7 @@ asm void daAlink_c::procHorseBowSubject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseBowMoveInit() {
+asm int daAlink_c::procHorseBowMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseBowMoveInit__9daAlink_cFv.s"
 }
@@ -782,7 +779,7 @@ asm void daAlink_c::procHorseBowMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseBowMove() {
+asm int daAlink_c::procHorseBowMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseBowMove__9daAlink_cFv.s"
 }
@@ -793,7 +790,7 @@ asm void daAlink_c::procHorseBowMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseGrabMoveInit() {
+asm int daAlink_c::procHorseGrabMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseGrabMoveInit__9daAlink_cFv.s"
 }
@@ -803,7 +800,7 @@ asm void daAlink_c::procHorseGrabMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseGrabMove() {
+asm int daAlink_c::procHorseGrabMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseGrabMove__9daAlink_cFv.s"
 }
@@ -814,7 +811,7 @@ asm void daAlink_c::procHorseGrabMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseBoomerangSubjectInit() {
+asm int daAlink_c::procHorseBoomerangSubjectInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseBoomerangSubjectInit__9daAlink_cFv.s"
 }
@@ -824,7 +821,7 @@ asm void daAlink_c::procHorseBoomerangSubjectInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseBoomerangSubject() {
+asm int daAlink_c::procHorseBoomerangSubject() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseBoomerangSubject__9daAlink_cFv.s"
 }
@@ -834,7 +831,7 @@ asm void daAlink_c::procHorseBoomerangSubject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseBoomerangMoveInit() {
+asm int daAlink_c::procHorseBoomerangMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseBoomerangMoveInit__9daAlink_cFv.s"
 }
@@ -844,7 +841,7 @@ asm void daAlink_c::procHorseBoomerangMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseBoomerangMove() {
+asm int daAlink_c::procHorseBoomerangMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseBoomerangMove__9daAlink_cFv.s"
 }
@@ -855,7 +852,7 @@ asm void daAlink_c::procHorseBoomerangMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseHookshotSubjectInit() {
+asm int daAlink_c::procHorseHookshotSubjectInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseHookshotSubjectInit__9daAlink_cFv.s"
 }
@@ -865,7 +862,7 @@ asm void daAlink_c::procHorseHookshotSubjectInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseHookshotSubject() {
+asm int daAlink_c::procHorseHookshotSubject() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseHookshotSubject__9daAlink_cFv.s"
 }
@@ -875,7 +872,7 @@ asm void daAlink_c::procHorseHookshotSubject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseHookshotMoveInit() {
+asm int daAlink_c::procHorseHookshotMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseHookshotMoveInit__9daAlink_cFv.s"
 }
@@ -886,7 +883,7 @@ asm void daAlink_c::procHorseHookshotMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseHookshotMove() {
+asm int daAlink_c::procHorseHookshotMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseHookshotMove__9daAlink_cFv.s"
 }
@@ -896,7 +893,7 @@ asm void daAlink_c::procHorseHookshotMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseBottleDrinkInit(u16 param_0) {
+asm int daAlink_c::procHorseBottleDrinkInit(u16 param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseBottleDrinkInit__9daAlink_cFUs.s"
 }
@@ -907,7 +904,7 @@ asm void daAlink_c::procHorseBottleDrinkInit(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseBottleDrink() {
+asm int daAlink_c::procHorseBottleDrink() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseBottleDrink__9daAlink_cFv.s"
 }
@@ -917,7 +914,7 @@ asm void daAlink_c::procHorseBottleDrink() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseKandelaarPourInit() {
+asm int daAlink_c::procHorseKandelaarPourInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseKandelaarPourInit__9daAlink_cFv.s"
 }
@@ -927,7 +924,7 @@ asm void daAlink_c::procHorseKandelaarPourInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseKandelaarPour() {
+asm int daAlink_c::procHorseKandelaarPour() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseKandelaarPour__9daAlink_cFv.s"
 }
@@ -938,7 +935,7 @@ asm void daAlink_c::procHorseKandelaarPour() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseComebackInit() {
+asm int daAlink_c::procHorseComebackInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseComebackInit__9daAlink_cFv.s"
 }
@@ -948,7 +945,7 @@ asm void daAlink_c::procHorseComebackInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseComeback() {
+asm int daAlink_c::procHorseComeback() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseComeback__9daAlink_cFv.s"
 }
@@ -958,7 +955,7 @@ asm void daAlink_c::procHorseComeback() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseRunInit() {
+asm int daAlink_c::procHorseRunInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseRunInit__9daAlink_cFv.s"
 }
@@ -968,7 +965,7 @@ asm void daAlink_c::procHorseRunInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseRun() {
+asm int daAlink_c::procHorseRun() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseRun__9daAlink_cFv.s"
 }
@@ -979,7 +976,7 @@ asm void daAlink_c::procHorseRun() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseHangInit(dCcD_GObjInf* param_0, int param_1) {
+asm int daAlink_c::procHorseHangInit(dCcD_GObjInf* param_0, int param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseHangInit__9daAlink_cFP12dCcD_GObjInfi.s"
 }
@@ -989,7 +986,7 @@ asm void daAlink_c::procHorseHangInit(dCcD_GObjInf* param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseHang() {
+asm int daAlink_c::procHorseHang() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseHang__9daAlink_cFv.s"
 }
@@ -1000,7 +997,7 @@ asm void daAlink_c::procHorseHang() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseGetKeyInit() {
+asm int daAlink_c::procHorseGetKeyInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseGetKeyInit__9daAlink_cFv.s"
 }
@@ -1010,7 +1007,7 @@ asm void daAlink_c::procHorseGetKeyInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseGetKey() {
+asm int daAlink_c::procHorseGetKey() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseGetKey__9daAlink_cFv.s"
 }
@@ -1021,7 +1018,7 @@ asm void daAlink_c::procHorseGetKey() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseLookDownInit() {
+asm int daAlink_c::procHorseLookDownInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseLookDownInit__9daAlink_cFv.s"
 }
@@ -1031,7 +1028,7 @@ asm void daAlink_c::procHorseLookDownInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHorseLookDown() {
+asm int daAlink_c::procHorseLookDown() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHorseLookDown__9daAlink_cFv.s"
 }
@@ -1041,7 +1038,7 @@ asm void daAlink_c::procHorseLookDown() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procBoarRunInit() {
+asm int daAlink_c::procBoarRunInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procBoarRunInit__9daAlink_cFv.s"
 }
@@ -1051,7 +1048,7 @@ asm void daAlink_c::procBoarRunInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procBoarRun() {
+asm int daAlink_c::procBoarRun() {
     nofralloc
 #include "asm/d/a/d_a_alink/procBoarRun__9daAlink_cFv.s"
 }

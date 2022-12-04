@@ -245,7 +245,7 @@ int daPy_boomerangMove_c::posMove(cXyz* param_0, s16* param_1, fopAc_ac_c* param
     daAlink_c* link = daAlink_getAlinkActorClass();
     if ((param_2 == NULL || !link->checkBoomerangCarry(param_2)) &&
         (m_eventKeepFlg == 0 || field_0x0 != 0)) {
-        s16 tmp = (m_dropAngleY + link->mCollisionRot.y) + cM_rndF(2048.0f);
+        s16 tmp = (m_dropAngleY + link->shape_angle.y) + cM_rndF(2048.0f);
 
         param_0->x = link->current.pos.x + field_0x8 * cM_ssin(tmp);
         param_0->z = link->current.pos.z + field_0x8 * cM_scos(tmp);
@@ -635,7 +635,7 @@ BOOL daPy_py_c::checkMasterSwordEquip() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool daPy_py_c::checkWoodShieldEquip() {
+asm BOOL daPy_py_c::checkWoodShieldEquip() {
     nofralloc
 #include "asm/d/a/d_a_player/checkWoodShieldEquip__9daPy_py_cFv.s"
 }

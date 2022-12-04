@@ -74,7 +74,7 @@ fopAc_ac_c* daAlink_c::makeFairy(cXyz* i_pos, u32 i_params) {
 
     fopAc_ac_c* fairy_actor = (fopAc_ac_c*)fopAcM_fastCreate(PROC_Obj_Yousei,
                                                 i_params, i_pos, fopAcM_GetRoomNo(this),
-                                                &mCollisionRot, NULL, -1, NULL, NULL);
+                                                &shape_angle, NULL, -1, NULL, NULL);
 
     field_0x285c.setData(fairy_actor);
     i_onResetFlg0(RFLG0_UNK_400);
@@ -91,7 +91,7 @@ fopAc_ac_c* daAlink_c::makeFairy(cXyz* i_pos, u32 i_params) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procBottleDrinkInit(u16 param_0) {
+asm int daAlink_c::procBottleDrinkInit(u16 param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procBottleDrinkInit__9daAlink_cFUs.s"
 }
@@ -113,7 +113,7 @@ int daAlink_c::procBottleDrink() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procBottleOpenInit(u16 param_0) {
+asm int daAlink_c::procBottleOpenInit(u16 param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procBottleOpenInit__9daAlink_cFUs.s"
 }
@@ -123,7 +123,7 @@ asm void daAlink_c::procBottleOpenInit(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procBottleOpen() {
+asm int daAlink_c::procBottleOpen() {
     nofralloc
 #include "asm/d/a/d_a_alink/procBottleOpen__9daAlink_cFv.s"
 }
@@ -134,7 +134,7 @@ asm void daAlink_c::procBottleOpen() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procBottleSwingInit(fopAc_ac_c* param_0, int param_1) {
+asm int daAlink_c::procBottleSwingInit(fopAc_ac_c* param_0, int param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/procBottleSwingInit__9daAlink_cFP10fopAc_ac_ci.s"
 }
@@ -144,7 +144,7 @@ asm void daAlink_c::procBottleSwingInit(fopAc_ac_c* param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procBottleSwing() {
+asm int daAlink_c::procBottleSwing() {
     nofralloc
 #include "asm/d/a/d_a_alink/procBottleSwing__9daAlink_cFv.s"
 }
@@ -154,7 +154,7 @@ asm void daAlink_c::procBottleSwing() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procBottleGetInit(int param_0) {
+asm int daAlink_c::procBottleGetInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procBottleGetInit__9daAlink_cFi.s"
 }
@@ -164,7 +164,7 @@ asm void daAlink_c::procBottleGetInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procBottleGet() {
+asm int daAlink_c::procBottleGet() {
     nofralloc
 #include "asm/d/a/d_a_alink/procBottleGet__9daAlink_cFv.s"
 }

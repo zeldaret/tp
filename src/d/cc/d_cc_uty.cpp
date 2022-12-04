@@ -466,7 +466,7 @@ fopAc_ac_c* cc_at_check(fopAc_ac_c* p_enemy, dCcU_AtInfo* p_info) {
 
         if (p_info->mHitType == HIT_TYPE_LINK_NORMAL_ATTACK &&
             link->getCutType() == daPy_py_c::TYPE_CUT_HEAD) {
-            p_info->mHitDirection = link->mCollisionRot.y;
+            p_info->mHitDirection = link->shape_angle.y;
         }
 
         if (p_info->mpCollider->ChkAtType(AT_TYPE_HOOKSHOT) &&

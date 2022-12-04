@@ -141,7 +141,7 @@ int daAlink_c::procBootsEquipInit() {
         dComIfGp_clearPlayerStatus0(0, ~0x400030);
     }
 
-    current.angle.y = mCollisionRot.y;
+    current.angle.y = shape_angle.y;
     mNormalSpeed = FLOAT_LABEL(lit_6108);
 
     return 1;
@@ -151,7 +151,7 @@ int daAlink_c::procBootsEquipInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procBootsEquip() {
+asm int daAlink_c::procBootsEquip() {
     nofralloc
 #include "asm/d/a/d_a_alink/procBootsEquip__9daAlink_cFv.s"
 }
@@ -172,7 +172,7 @@ asm int daAlink_c::procMagneBootsFlyInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procMagneBootsFly() {
+asm int daAlink_c::procMagneBootsFly() {
     nofralloc
 #include "asm/d/a/d_a_alink/procMagneBootsFly__9daAlink_cFv.s"
 }

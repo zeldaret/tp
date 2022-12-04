@@ -424,23 +424,23 @@ void dComIfG_play_c::clearItemBombNumCount(u8 i_item) {
     mItemBombNumCount[i_item] = 0;
 }
 
-void dComIfG_play_c::setNowVibration(u8 vib_status) {
-    mNowVibration = vib_status;
+void dComIfG_play_c::setNowVibration(u8 i_vibration) {
+    mNowVibration = i_vibration;
 }
 
 u32 dComIfG_play_c::getNowVibration() {
     return mNowVibration;
 }
 
-void dComIfG_play_c::setStartStage(dStage_startStage_c* p_startStage) {
+void dComIfG_play_c::setStartStage(dStage_startStage_c* i_startStage) {
     mLayerOld = mStartStage.getLayer();
-    mStartStage = *p_startStage;
+    mStartStage = *i_startStage;
 }
 
 /* 8002B3F4-8002B434 025D34 0040+00 1/1 0/0 0/0 .text            dComIfG_get_timelayer__FPi */
-void dComIfG_get_timelayer(int* layer) {
+void dComIfG_get_timelayer(int* i_layer) {
     if (dKy_daynight_check()) {
-        *layer += 1;
+        *i_layer += 1;
     }
 }
 
@@ -1189,8 +1189,8 @@ void dComIfG_play_c::drawSimpleModel() {
 
 /* 8002CAF0-8002CB30 027430 0040+00 0/0 0/0 16/16 .text
  * addSimpleModel__14dComIfG_play_cFP12J3DModelDataiUc          */
-int dComIfG_play_c::addSimpleModel(J3DModelData* i_modelData, int roomNo, u8 drawBG) {
-    if (mSimpleModel != NULL && mSimpleModel->addModel(i_modelData, roomNo, drawBG)) {
+int dComIfG_play_c::addSimpleModel(J3DModelData* i_modelData, int i_roomNo, u8 i_drawBG) {
+    if (mSimpleModel != NULL && mSimpleModel->addModel(i_modelData, i_roomNo, i_drawBG)) {
         return 1;
     }
 
@@ -1199,9 +1199,9 @@ int dComIfG_play_c::addSimpleModel(J3DModelData* i_modelData, int roomNo, u8 dra
 
 /* 8002CB30-8002CB68 027470 0038+00 0/0 0/0 16/16 .text
  * removeSimpleModel__14dComIfG_play_cFP12J3DModelDatai         */
-int dComIfG_play_c::removeSimpleModel(J3DModelData* i_modelData, int roomNo) {
+int dComIfG_play_c::removeSimpleModel(J3DModelData* i_modelData, int i_roomNo) {
     if (mSimpleModel != NULL) {
-        mSimpleModel->removeModel(i_modelData, roomNo);
+        mSimpleModel->removeModel(i_modelData, i_roomNo);
         return 1;
     }
 
@@ -1210,38 +1210,38 @@ int dComIfG_play_c::removeSimpleModel(J3DModelData* i_modelData, int roomNo) {
 
 /* 8002CB68-8002CB94 0274A8 002C+00 0/0 0/0 16/16 .text
  * entrySimpleModel__14dComIfG_play_cFP8J3DModeli               */
-void dComIfG_play_c::entrySimpleModel(J3DModel* i_model, int roomNo) {
+void dComIfG_play_c::entrySimpleModel(J3DModel* i_model, int i_roomNo) {
     if (mSimpleModel != NULL) {
-        mSimpleModel->entry(i_model, roomNo);
+        mSimpleModel->entry(i_model, i_roomNo);
     }
 }
 
-void dComIfG_play_c::setTimerNowTimeMs(int time) {
-    mTimerInfo.mTimerNowTimeMs = time;
+void dComIfG_play_c::setTimerNowTimeMs(int i_time) {
+    mTimerInfo.mTimerNowTimeMs = i_time;
 }
 
 int dComIfG_play_c::getTimerNowTimeMs() {
     return mTimerInfo.mTimerNowTimeMs;
 }
 
-void dComIfG_play_c::setTimerLimitTimeMs(int time) {
-    mTimerInfo.mTimerLimitTimeMs = time;
+void dComIfG_play_c::setTimerLimitTimeMs(int i_time) {
+    mTimerInfo.mTimerLimitTimeMs = i_time;
 }
 
 int dComIfG_play_c::getTimerLimitTimeMs() {
     return mTimerInfo.mTimerLimitTimeMs;
 }
 
-void dComIfG_play_c::setTimerMode(int mode) {
-    mTimerInfo.mTimerMode = mode;
+void dComIfG_play_c::setTimerMode(int i_mode) {
+    mTimerInfo.mTimerMode = i_mode;
 }
 
 int dComIfG_play_c::getTimerMode() {
     return mTimerInfo.mTimerMode;
 }
 
-void dComIfG_play_c::setTimerType(u8 type) {
-    mTimerInfo.mTimerType = type;
+void dComIfG_play_c::setTimerType(u8 i_type) {
+    mTimerInfo.mTimerType = i_type;
 }
 
 u8 dComIfG_play_c::getTimerType() {
@@ -1249,8 +1249,8 @@ u8 dComIfG_play_c::getTimerType() {
 }
 
 /* 8002CBD4-8002CBDC -00001 0008+00 0/0 0/0 0/0 .text setTimerPtr__14dComIfG_play_cFP8dTimer_c */
-void dComIfG_play_c::setTimerPtr(dTimer_c* ptr) {
-    mTimerInfo.mTimerPtr = ptr;
+void dComIfG_play_c::setTimerPtr(dTimer_c* i_ptr) {
+    mTimerInfo.mTimerPtr = i_ptr;
 }
 
 /* 8002CBDC-8002CBE4 02751C 0008+00 6/6 7/7 15/15 .text            getTimerPtr__14dComIfG_play_cFv
@@ -1281,7 +1281,7 @@ SECTION_SDATA extern GXColor g_blackColor = {0, 0, 0, 255};
 
 /* 8002CC54-8002CD44 027594 00F0+00 1/1 1/1 0/0 .text dComIfG_changeOpeningScene__FP11scene_classs
  */
-int dComIfG_changeOpeningScene(scene_class* scene, s16 procName) {
+int dComIfG_changeOpeningScene(scene_class* i_scene, s16 i_procName) {
     dComIfGp_offEnableNextStage();
     dComIfGp_setNextStage("F_SP102", 100, 0, 10);
     mDoAud_setSceneName(dComIfGp_getNextStageName(), dComIfGp_getNextStageRoomNo(),
@@ -1292,28 +1292,28 @@ int dComIfG_changeOpeningScene(scene_class* scene, s16 procName) {
         mDoGph_gInf_c::setFadeColor(*(JUtility::TColor*)&g_blackColor);
     }
 
-    fopScnM_ChangeReq(scene, procName, 0, 30);
-    fopScnM_ReRequest(procName, 0);
+    fopScnM_ChangeReq(i_scene, i_procName, 0, 30);
+    fopScnM_ReRequest(i_procName, 0);
 
     return 1;
 }
 
 /* 8002CD44-8002CDB8 027684 0074+00 0/0 2/2 0/0 .text dComIfG_resetToOpening__FP11scene_class */
-BOOL dComIfG_resetToOpening(scene_class* scene) {
+BOOL dComIfG_resetToOpening(scene_class* i_scene) {
     if (mDoRst::isReturnToMenu() || !mDoRst::isReset() ||
         mDoGph_gInf_c::getFader()->getStatus() == 2) {
         return 0;
     }
 
-    dComIfG_changeOpeningScene(scene, PROC_OPENING_SCENE);
+    dComIfG_changeOpeningScene(i_scene, PROC_OPENING_SCENE);
     mDoAud_bgmStop(30);
     mDoAud_resetProcess();
     return 1;
 }
 
-static int phase_1(char* arc_name) {
-    if (!dComIfG_setObjectRes(arc_name, 0, NULL)) {
-        OSReport_Error("%s.arc Read Error !!\n", arc_name);
+static int phase_1(char* i_arcName) {
+    if (!dComIfG_setObjectRes(i_arcName, 0, NULL)) {
+        OSReport_Error("%s.arc Read Error !!\n", i_arcName);
         return cPhs_ERROR_e;
     }
 
@@ -1321,11 +1321,11 @@ static int phase_1(char* arc_name) {
 }
 
 /* 8002CE38-8002CEB4 027778 007C+00 1/0 0/0 0/0 .text            phase_2__FPc */
-static int phase_2(char* arc_name) {
-    int syncStatus = dComIfG_syncObjectRes(arc_name);
+static int phase_2(char* i_arcName) {
+    int syncStatus = dComIfG_syncObjectRes(i_arcName);
 
     if (syncStatus < 0) {
-        OSReport_Error("%s.arc Sync Read Error !!\n", arc_name);
+        OSReport_Error("%s.arc Sync Read Error !!\n", i_arcName);
         return cPhs_ERROR_e;
     } else {
         return syncStatus > 0 ? 0 : 2;
@@ -1339,7 +1339,7 @@ static int phase_3(char*) {
 
 /* 8002CEBC-8002CEFC 0277FC 0040+00 0/0 7/7 550/550 .text
  * dComIfG_resLoad__FP30request_of_phase_process_classPCc       */
-int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* arc_name) {
+int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_arcName) {
     static int (*l_method[3])(void*) = {(int (*)(void*))phase_1, (int (*)(void*))phase_2,
                                         (int (*)(void*))phase_3};
 
@@ -1347,12 +1347,12 @@ int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* arc_nam
         return cPhs_COMPLEATE_e;
     }
 
-    return dComLbG_PhaseHandler(i_phase, l_method, (void*)arc_name);
+    return dComLbG_PhaseHandler(i_phase, l_method, (void*)i_arcName);
 }
 
 /* 8002CEFC-8002CF5C 02783C 0060+00 1/0 0/0 0/0 .text            phase_01__FP12phaseParam_c */
-static int phase_01(phaseParam_c* phase) {
-    if (dComIfG_setObjectRes(phase->mResName, 0, phase->mpHeap) == 0) {
+static int phase_01(phaseParam_c* i_phasePrm) {
+    if (dComIfG_setObjectRes(i_phasePrm->mResName, 0, i_phasePrm->mpHeap) == 0) {
         return 5;
     }
 
@@ -1360,8 +1360,8 @@ static int phase_01(phaseParam_c* phase) {
 }
 
 /* 8002CF5C-8002CFB8 02789C 005C+00 1/0 0/0 0/0 .text            phase_02__FP12phaseParam_c */
-static int phase_02(phaseParam_c* phase) {
-    int syncStatus = dComIfG_syncObjectRes(phase->mResName);
+static int phase_02(phaseParam_c* i_phasePrm) {
+    int syncStatus = dComIfG_syncObjectRes(i_phasePrm->mResName);
     if (syncStatus < 0) {
         return 5;
     } else {
@@ -1371,12 +1371,12 @@ static int phase_02(phaseParam_c* phase) {
 
 /* 8002CFB8-8002CFC0 0278F8 0008+00 1/0 0/0 0/0 .text            phase_03__FP12phaseParam_c */
 static int phase_03(phaseParam_c*) {
-    return false;
+    return 0;
 }
 
 /* 8002CFC0-8002D008 027900 0048+00 1/1 3/3 0/0 .text
  * dComIfG_resLoad__FP30request_of_phase_process_classPCcP7JKRHeap */
-int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* resName, JKRHeap* heap) {
+int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_resName, JKRHeap* i_heap) {
     static int (*l_method[3])(void*) = {(int (*)(void*))phase_01, (int (*)(void*))phase_02,
                                         (int (*)(void*))phase_03};
 
@@ -1384,42 +1384,42 @@ int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* resName
         return cPhs_COMPLEATE_e;
     }
 
-    phaseParam_c param(resName, heap);
+    phaseParam_c param(i_resName, i_heap);
     return dComLbG_PhaseHandler(i_phase, l_method, &param);
 }
 
 /* 8002D008-8002D06C 027948 0064+00 1/1 10/10 540/540 .text
  * dComIfG_resDelete__FP30request_of_phase_process_classPCc     */
-int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* resName) {
+int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* i_resName) {
     if (i_phase->id != cPhs_TWO_e) {
         return 0;
     }
 
-    dComIfG_deleteObjectResMain(resName);
+    dComIfG_deleteObjectResMain(i_resName);
     i_phase->id = cPhs_ZERO_e;
     return 1;
 }
 
-s8 dComIfGp_getReverb(int roomNo) {
-    return dStage_roomRead_dt_c_GetReverbStage(*dComIfGp_getStageRoom(), roomNo);
+s8 dComIfGp_getReverb(int i_roomNo) {
+    return dStage_roomRead_dt_c_GetReverbStage(*dComIfGp_getStageRoom(), i_roomNo);
 }
 
 /* 8002D0B4-8002D1AC 0279F4 00F8+00 0/0 3/3 34/34 .text
  * dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj */
-int dComIfGd_setSimpleShadow(cXyz* pos, f32 param_1, f32 param_2, cBgS_PolyInfo& param_3, s16 angle,
-                             f32 param_5, _GXTexObj* tex) {
+int dComIfGd_setSimpleShadow(cXyz* i_pos, f32 param_1, f32 param_2, cBgS_PolyInfo& param_3, s16 i_angle,
+                             f32 param_5, GXTexObj* i_tex) {
     if (param_3.ChkSetInfo() && -1000000000.0f != param_1) {
         cM3dGPla plane;
         dComIfG_Bgsp().GetTriPla(param_3, &plane);
 
-        return dComIfGd_setSimpleShadow(pos, param_1, param_2, &plane.mNormal, angle, param_5, tex);
+        return dComIfGd_setSimpleShadow(i_pos, param_1, param_2, &plane.mNormal, i_angle, param_5, i_tex);
     } else {
         return 0;
     }
 }
 
 /* 8002D1AC-8002D25C 027AEC 00B0+00 0/0 0/0 1/1 .text            dComIfGp_getMapTrans__FiPfPfPs */
-int dComIfGp_getMapTrans(int roomNo, f32* transX, f32* transY, s16* angle) {
+int dComIfGp_getMapTrans(int i_roomNo, f32* o_transX, f32* o_transY, s16* o_angle) {
     dStage_Multi_c* multi = dComIfGp_getMulti();
     if (multi == NULL) {
         return 0;
@@ -1427,10 +1427,10 @@ int dComIfGp_getMapTrans(int roomNo, f32* transX, f32* transY, s16* angle) {
 
     dStage_Mult_info* info = multi->mInfo;
     for (int i = 0; i < multi->field_0x0; i++) {
-        if (roomNo == info->mRoomNo) {
-            *transX = info->mTransX;
-            *transY = info->mTransY;
-            *angle = info->mAngle;
+        if (i_roomNo == info->mRoomNo) {
+            *o_transX = info->mTransX;
+            *o_transY = info->mTransY;
+            *o_angle = info->mAngle;
             return 1;
         }
         info++;
@@ -1440,8 +1440,8 @@ int dComIfGp_getMapTrans(int roomNo, f32* transX, f32* transY, s16* angle) {
 }
 
 /* 8002D25C-8002D2AC 027B9C 0050+00 0/0 3/3 3/3 .text            dComIfGp_getRoomCamera__Fi */
-stage_camera_class* dComIfGp_getRoomCamera(int roomNo) {
-    dStage_roomStatus_c* status = dComIfGp_roomControl_getStatusRoomDt(roomNo);
+stage_camera_class* dComIfGp_getRoomCamera(int i_roomNo) {
+    dStage_roomStatus_c* status = dComIfGp_roomControl_getStatusRoomDt(i_roomNo);
 
     if (status == NULL) {
         return NULL;
@@ -1451,8 +1451,8 @@ stage_camera_class* dComIfGp_getRoomCamera(int roomNo) {
 }
 
 /* 8002D2AC-8002D2FC 027BEC 0050+00 0/0 3/3 3/3 .text            dComIfGp_getRoomArrow__Fi */
-stage_arrow_class* dComIfGp_getRoomArrow(int roomNo) {
-    dStage_roomStatus_c* status = dComIfGp_roomControl_getStatusRoomDt(roomNo);
+stage_arrow_class* dComIfGp_getRoomArrow(int i_roomNo) {
+    dStage_roomStatus_c* status = dComIfGp_roomControl_getStatusRoomDt(i_roomNo);
 
     if (status == NULL) {
         return NULL;
@@ -1462,41 +1462,41 @@ stage_arrow_class* dComIfGp_getRoomArrow(int roomNo) {
 }
 
 /* 8002D2FC-8002D554 027C3C 0258+00 2/2 7/7 4/4 .text dComIfGp_setNextStage__FPCcsScScfUliScsii */
-void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer, f32 lastSpeed,
-                           u32 lastMode, int setPoint, s8 wipe, s16 lastAngle, int param_9,
-                           int wipeSpeedT) {
-    if (layer >= 15) {
-        layer = -1;
+void dComIfGp_setNextStage(char const* i_stage, s16 i_point, s8 i_roomNo, s8 i_layer, f32 i_lastSpeed,
+                           u32 i_lastMode, int i_setPoint, s8 i_wipe, s16 i_lastAngle, int param_9,
+                           int i_wipeSpeedT) {
+    if (i_layer >= 15) {
+        i_layer = -1;
     }
 
     if (dComIfGs_isPlayerFieldLastStayFieldDataExistFlag() &&
         daPy_getLinkPlayerActorClass() != NULL) {
         s8 curPoint = (s8)daPy_getLinkPlayerActorClass()->current.mRoomNo;
         cXyz pos = dMapInfo_n::getMapPlayerPos();
-        s16 angle = daPy_getLinkPlayerActorClass()->mCollisionRot.y;
+        s16 angle = daPy_getLinkPlayerActorClass()->shape_angle.y;
         u8 level = dComIfGp_getNowLevel();
         dComIfGs_setPlayerFieldLastStayInfo(dComIfGp_getStartStageName(), pos, angle, curPoint,
                                             level);
     }
 
     // Set Key Num to 2 if loading Wagon Escort after King Bulblin 2
-    if (!strcmp(stage, "F_SP121") && roomNo == 13 && (point == 99 || point == 98) && layer == 2) {
+    if (!strcmp(i_stage, "F_SP121") && i_roomNo == 13 && (i_point == 99 || i_point == 98) && i_layer == 2) {
         dComIfGs_setKeyNum(6, 2);
     } else {
         dComIfGs_setKeyNum(6, 0);
     }
 
     if (daAlink_getAlinkActorClass() != NULL) {
-        daAlink_getAlinkActorClass()->setLastSceneMode(&lastMode);
+        daAlink_getAlinkActorClass()->setLastSceneMode(&i_lastMode);
     }
 
     char* saveName = (char*)dMeter2Info_getSaveStageName();
-    if (strcmp(saveName, "") && strcmp(stage, saveName)) {
+    if (strcmp(saveName, "") && strcmp(i_stage, saveName)) {
         dMeter2Info_setSaveStageName("");
     }
 
     u8 wipe_speed;
-    switch (wipeSpeedT) {
+    switch (i_wipeSpeedT) {
     case 0:
         wipe_speed = 26;
         break;
@@ -1514,15 +1514,15 @@ void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer, f3
         break;
     }
 
-    g_dComIfG_gameInfo.play.setNextStage(stage, roomNo, point, layer, wipe, wipe_speed);
-    g_dComIfG_gameInfo.info.getRestart().setLastSceneInfo(lastSpeed, lastMode, lastAngle);
-    if (setPoint) {
-        dComIfGs_setStartPoint(point);
+    g_dComIfG_gameInfo.play.setNextStage(i_stage, i_roomNo, i_point, i_layer, i_wipe, wipe_speed);
+    g_dComIfG_gameInfo.info.getRestart().setLastSceneInfo(i_lastSpeed, i_lastMode, i_lastAngle);
+    if (i_setPoint) {
+        dComIfGs_setStartPoint(i_point);
     }
 }
 
-void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer) {
-    dComIfGp_setNextStage(stage, point, roomNo, layer, 0.0f, 0, 1, 0, 0, 1, 0);
+void dComIfGp_setNextStage(char const* i_stage, s16 i_point, s8 i_roomNo, s8 i_layer) {
+    dComIfGp_setNextStage(i_stage, i_point, i_roomNo, i_layer, 0.0f, 0, 1, 0, 0, 1, 0);
 }
 
 BOOL dComIfGs_isStageTbox(int i_stageNo, int i_no) {
@@ -1705,29 +1705,29 @@ u16 dComIfGs_getMaxLifeGauge() {
     return (dComIfGs_getMaxLife() / 5) * 4;
 }
 
-void dComIfGs_setSelectItemIndex(int i_no, u8 item_index) {
-    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setSelectItemIndex(i_no, item_index);
+void dComIfGs_setSelectItemIndex(int i_no, u8 i_slotNo) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setSelectItemIndex(i_no, i_slotNo);
     dComIfGp_setSelectItem(i_no);
 }
 
-void dComIfGs_setMixItemIndex(int i_no, u8 item_index) {
-    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setMixItemIndex(i_no, item_index);
+void dComIfGs_setMixItemIndex(int i_no, u8 i_slotNo) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setMixItemIndex(i_no, i_slotNo);
 }
 
 /* 8002DD3C-8002DDC8 02867C 008C+00 3/3 1/1 0/0 .text dComIfGs_getSelectMixItemNoArrowIndex__Fi */
-u8 dComIfGs_getSelectMixItemNoArrowIndex(int index) {
-    u8 item_index = dComIfGs_getSelectItemIndex(index);
-    u8 mix_index = dComIfGs_getMixItemIndex(index);
+u8 dComIfGs_getSelectMixItemNoArrowIndex(int i_selmixItemIdx) {
+    u8 sel_item_slotNo = dComIfGs_getSelectItemIndex(i_selmixItemIdx);
+    u8 mix_item_slotNo = dComIfGs_getMixItemIndex(i_selmixItemIdx);
 
-    if (item_index >= SLOT_15 && item_index < SLOT_18) {
-        return item_index;
+    if (sel_item_slotNo >= SLOT_15 && sel_item_slotNo < SLOT_18) {
+        return sel_item_slotNo;
     }
 
-    if (mix_index != NO_ITEM && mix_index >= SLOT_15 && mix_index < SLOT_18) {
-        return mix_index;
+    if (mix_item_slotNo != NO_ITEM && mix_item_slotNo >= SLOT_15 && mix_item_slotNo < SLOT_18) {
+        return mix_item_slotNo;
     }
 
-    return NO_ITEM;
+    return 0xFF;
 }
 
 u8 dComIfGs_getMixItemIndex(int i_no) {
@@ -1735,37 +1735,37 @@ u8 dComIfGs_getMixItemIndex(int i_no) {
 }
 
 /* 8002DDF4-8002DF1C 028734 0128+00 1/1 13/13 0/0 .text            dComIfGp_setSelectItem__Fi */
-void dComIfGp_setSelectItem(int index) {
-    if (index == SELECT_ITEM_DOWN) {
-        if (dComIfGs_getSelectItemIndex(index) != NO_ITEM) {
-            u8 selectItemIdx = dComIfGs_getSelectItemIndex(index);
-            g_dComIfG_gameInfo.play.setSelectItem(index, selectItemIdx);
+void dComIfGp_setSelectItem(int i_selItemIdx) {
+    if (i_selItemIdx == SELECT_ITEM_DOWN) {
+        if (dComIfGs_getSelectItemIndex(i_selItemIdx) != 0xFF) {
+            u8 selItem_slotNo = dComIfGs_getSelectItemIndex(i_selItemIdx);
+            g_dComIfG_gameInfo.play.setSelectItem(i_selItemIdx, selItem_slotNo);
 
-            if (selectItemIdx == NO_ITEM) {
-                dComIfGs_setSelectItemIndex(index, NO_ITEM);
+            if (selItem_slotNo == 0xFF) {
+                dComIfGs_setSelectItemIndex(i_selItemIdx, 0xFF);
             }
         } else {
-            g_dComIfG_gameInfo.play.setSelectItem(index, NO_ITEM);
+            g_dComIfG_gameInfo.play.setSelectItem(i_selItemIdx, NO_ITEM);
         }
-    } else if (dComIfGs_getSelectItemIndex(index) != NO_ITEM) {
-        u8 item = dComIfGs_getItem(dComIfGs_getSelectItemIndex(index), false);
-        g_dComIfG_gameInfo.play.setSelectItem(index, item);
+    } else if (dComIfGs_getSelectItemIndex(i_selItemIdx) != 0xFF) {
+        u8 item = dComIfGs_getItem(dComIfGs_getSelectItemIndex(i_selItemIdx), false);
+        g_dComIfG_gameInfo.play.setSelectItem(i_selItemIdx, item);
 
         if (item == NO_ITEM) {
-            dComIfGs_setSelectItemIndex(index, NO_ITEM);
+            dComIfGs_setSelectItemIndex(i_selItemIdx, 0xFF);
         }
     } else {
-        g_dComIfG_gameInfo.play.setSelectItem(index, NO_ITEM);
+        g_dComIfG_gameInfo.play.setSelectItem(i_selItemIdx, NO_ITEM);
     }
 }
 
 /* 8002DF1C-8002E048 02885C 012C+00 4/4 19/19 0/0 .text            dComIfGp_getSelectItem__Fi */
-u8 dComIfGp_getSelectItem(int index) {
-    u8 playItem = g_dComIfG_gameInfo.play.getSelectItem(index);
+u8 dComIfGp_getSelectItem(int i_selItemIdx) {
+    u8 playItem = g_dComIfG_gameInfo.play.getSelectItem(i_selItemIdx);
 
-    if ((index == SELECT_ITEM_X || index == SELECT_ITEM_Y) &&
-        dComIfGs_getMixItemIndex(index) != NO_ITEM) {
-        u8 saveItem = dComIfGs_getItem(dComIfGs_getMixItemIndex(index), false);
+    if ((i_selItemIdx == SELECT_ITEM_X || i_selItemIdx == SELECT_ITEM_Y) &&
+        dComIfGs_getMixItemIndex(i_selItemIdx) != 0xFF) {
+        u8 saveItem = dComIfGs_getItem(dComIfGs_getMixItemIndex(i_selItemIdx), false);
 
         if (saveItem == BOW) {
             saveItem = playItem;
@@ -1962,27 +1962,26 @@ u8 dComIfGs_getBottleMax() {
 }
 
 /* 8002E5C0-8002E688 028F00 00C8+00 0/0 11/11 0/0 .text            dComIfGp_getSelectItemNum__Fi */
-int dComIfGp_getSelectItemNum(int index) {
-    u8 selectItem = dComIfGp_getSelectItem(index);
-    int itemNum = 0;
+s16 dComIfGp_getSelectItemNum(int i_selItemIdx) {
+    u8 selectItem = dComIfGp_getSelectItem(i_selItemIdx);
+    s16 itemNum = 0;
 
     if (selectItem == NORMAL_BOMB || selectItem == WATER_BOMB || selectItem == POKE_BOMB ||
         selectItem == BOMB_ARROW) {
-        selectItem = dComIfGs_getSelectMixItemNoArrowIndex(index) - SLOT_15;
+        selectItem = dComIfGs_getSelectMixItemNoArrowIndex(i_selItemIdx) - SLOT_15;
         itemNum = dComIfGs_getBombNum(selectItem);
     } else if (selectItem == PACHINKO) {
         itemNum = dComIfGs_getPachinkoNum();
     } else if (selectItem == BEE_CHILD) {
-        selectItem = dComIfGs_getSelectItemIndex(index);
-        itemNum = dComIfGs_getBottleNum(selectItem - SLOT_11);
+        itemNum = dComIfGs_getBottleNum(dComIfGs_getSelectItemIndex(i_selItemIdx) - SLOT_11);
     }
 
     return itemNum;
 }
 
 /* 8002E688-8002E714 028FC8 008C+00 0/0 5/5 0/0 .text            dComIfGp_getSelectItemMaxNum__Fi */
-int dComIfGp_getSelectItemMaxNum(int index) {
-    u8 selectItem = dComIfGp_getSelectItem(index);
+int dComIfGp_getSelectItemMaxNum(int i_selItemIdx) {
+    u8 selectItem = dComIfGp_getSelectItem(i_selItemIdx);
     int itemNum = 0;
 
     if (selectItem == BOMB_BAG_LV1) {
@@ -2000,42 +1999,41 @@ int dComIfGp_getSelectItemMaxNum(int index) {
 }
 
 /* 8002E714-8002E83C 029054 0128+00 0/0 2/2 0/0 .text            dComIfGp_setSelectItemNum__Fis */
-void dComIfGp_setSelectItemNum(int index, s16 num) {
-    u8 selectItem = dComIfGp_getSelectItem(index);
+void dComIfGp_setSelectItemNum(int i_selItemIdx, s16 i_num) {
+    u8 selectItem = dComIfGp_getSelectItem(i_selItemIdx);
 
     if (selectItem == NORMAL_BOMB || selectItem == WATER_BOMB || selectItem == POKE_BOMB ||
         selectItem == BOMB_ARROW) {
-        u8 mix_index = dComIfGs_getSelectMixItemNoArrowIndex(index) - SLOT_15;
+        u8 mix_slotNo = dComIfGs_getSelectMixItemNoArrowIndex(i_selItemIdx) - SLOT_15;
 
-        if (num > dComIfGs_getBombMax(selectItem)) {
-            num = dComIfGs_getBombMax(selectItem);
+        if (i_num > dComIfGs_getBombMax(selectItem)) {
+            i_num = dComIfGs_getBombMax(selectItem);
         }
-        dComIfGs_setBombNum(mix_index, num);
+        dComIfGs_setBombNum(mix_slotNo, i_num);
     } else if (selectItem == PACHINKO) {
-        dComIfGs_setPachinkoNum(num);
+        dComIfGs_setPachinkoNum(i_num);
     } else if (selectItem == BEE_CHILD) {
-        u8 bottle_idx = dComIfGs_getSelectItemIndex(index) - SLOT_11;
+        u8 bottle_slot_no = dComIfGs_getSelectItemIndex(i_selItemIdx) - SLOT_11;
 
-        if (num > dComIfGs_getBottleMax()) {
-            num = dComIfGs_getBottleMax();
+        if (i_num > dComIfGs_getBottleMax()) {
+            i_num = dComIfGs_getBottleMax();
         }
-        dComIfGs_setBottleNum(bottle_idx, num);
+        dComIfGs_setBottleNum(bottle_slot_no, i_num);
     }
 }
 
 /* 8002E83C-8002E910 02917C 00D4+00 0/0 5/5 0/0 .text            dComIfGp_addSelectItemNum__Fis */
-void dComIfGp_addSelectItemNum(int index, s16 num) {
-    u8 selectItem = dComIfGp_getSelectItem(index);
+void dComIfGp_addSelectItemNum(int i_selItemIdx, s16 i_num) {
+    u8 selectItem = dComIfGp_getSelectItem(i_selItemIdx);
 
     if (selectItem == NORMAL_BOMB || selectItem == WATER_BOMB || selectItem == POKE_BOMB ||
         selectItem == BOMB_ARROW) {
-        u8 mix_index = dComIfGs_getSelectMixItemNoArrowIndex(index) - SLOT_15;
-        dComIfGp_setItemBombNumCount(mix_index, num);
+        u8 slot_no = dComIfGs_getSelectMixItemNoArrowIndex(i_selItemIdx) - SLOT_15;
+        dComIfGp_setItemBombNumCount(slot_no, i_num);
     } else if (selectItem == PACHINKO) {
-        dComIfGp_setItemPachinkoNumCount(num);
+        dComIfGp_setItemPachinkoNumCount(i_num);
     } else if (selectItem == BEE_CHILD) {
-        selectItem = dComIfGs_getSelectItemIndex(index);
-        dComIfGs_addBottleNum(selectItem - SLOT_11, num);
+        dComIfGs_addBottleNum(dComIfGs_getSelectItemIndex(i_selItemIdx) - SLOT_11, i_num);
     }
 }
 
@@ -2062,8 +2060,8 @@ void dComIfGs_gameStart() {
     dComIfGp_setNextStage(name, point, roomNo, -1, 0.0f, 0, 1, 0, 0, 0, 0);
 }
 
-u32 dComIfG_getTrigA(u32 pad) {
-    return mDoCPd_c::getTrigA(pad);
+u32 dComIfG_getTrigA(u32 i_padNo) {
+    return mDoCPd_c::getTrigA(i_padNo);
 }
 
 /* ############################################################################################## */
@@ -2093,7 +2091,7 @@ asm void dComIfGp_calcNowRegion() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfG_getNowCalcRegion() {
+static asm u8 dComIfG_getNowCalcRegion() {
     nofralloc
 #include "asm/d/com/d_com_inf_game/dComIfG_getNowCalcRegion__Fv.s"
 }
@@ -2166,45 +2164,45 @@ void dComIfGs_setSelectEquipShield(u8 i_itemNo) {
     g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setSelectEquip(COLLECT_SHIELD, i_itemNo);
 }
 
-void dComIfGs_setKeyNum(int i_stageNo, u8 keyNum) {
+void dComIfGs_setKeyNum(int i_stageNo, u8 i_keyNum) {
     if (dComIfGp_getStageStagInfo()) {
         stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
         if (i_stageNo == i_dStage_stagInfo_GetSaveTbl(stag_info)) {
-            dComIfGs_setKeyNum(keyNum);
+            dComIfGs_setKeyNum(i_keyNum);
         }
     }
 
-    g_dComIfG_gameInfo.info.getSavedata().getSave(i_stageNo).getBit().setKeyNum(keyNum);
+    g_dComIfG_gameInfo.info.getSavedata().getSave(i_stageNo).getBit().setKeyNum(i_keyNum);
 }
 
 /* 8002F0E0-8002F128 029A20 0048+00 1/1 0/0 0/0 .text dComIfGs_setWarpItemData__FiPCc4cXyzsScUcUc
  */
-static void dComIfGs_setWarpItemData(int param_0, char const* stage, cXyz pos, s16 angle, s8 roomNo,
+static void dComIfGs_setWarpItemData(int, char const* i_stage, cXyz i_pos, s16 i_angle, s8 i_roomNo,
                                      u8 param_5, u8 param_6) {
-    g_dComIfG_gameInfo.play.setWarpItemData(stage, pos, angle, roomNo, param_5, param_6);
+    g_dComIfG_gameInfo.play.setWarpItemData(i_stage, i_pos, i_angle, i_roomNo, param_5, param_6);
 }
 
-void dComIfG_play_c::setWarpItemData(char const* stage, cXyz pos, s16 angle, s8 roomNo, u8 param_4,
+void dComIfG_play_c::setWarpItemData(char const* i_stage, cXyz i_pos, s16 i_angle, s8 i_roomNo, u8 param_4,
                                      u8 param_5) {
-    strcpy(mWarpItemStage, stage);
-    mWarpItemPos.set(pos);
-    mWarpItemAngle = angle;
-    mWarpItemRoom = roomNo;
+    strcpy(mWarpItemStage, i_stage);
+    mWarpItemPos.set(i_pos);
+    mWarpItemAngle = i_angle;
+    mWarpItemRoom = i_roomNo;
     field_0x4fac = param_5;
     field_0x4fab = param_4;
 }
 
-void dComIfGs_setWarpItemData(char const* stage, cXyz pos, s16 angle, s8 roomNo, u8 param_4,
+void dComIfGs_setWarpItemData(char const* i_stage, cXyz i_pos, s16 i_angle, s8 i_roomNo, u8 param_4,
                               u8 param_5) {
-    dComIfGs_setWarpItemData(0, stage, pos, angle, roomNo, param_4, param_5);
-    dComIfGs_setLastWarpMarkItemData(stage, pos, angle, roomNo, param_4, param_5);
+    dComIfGs_setWarpItemData(0, i_stage, i_pos, i_angle, i_roomNo, param_4, param_5);
+    dComIfGs_setLastWarpMarkItemData(i_stage, i_pos, i_angle, i_roomNo, param_4, param_5);
 }
 
-void dComIfGs_setLastWarpMarkItemData(const char* stage, cXyz pos, s16 angle, s8 roomNo, u8 unk1,
-                                      u8 unk2) {
-    g_dComIfG_gameInfo.info.getPlayer().getPlayerLastMarkInfo().setWarpItemData(stage, pos, angle,
-                                                                                roomNo, unk1, unk2);
+void dComIfGs_setLastWarpMarkItemData(const char* i_stage, cXyz i_pos, s16 i_angle, s8 i_roomNo,
+                                      u8 param_4, u8 param_5) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerLastMarkInfo().setWarpItemData(
+        i_stage, i_pos, i_angle, i_roomNo, param_4, param_5);
 }
 
 const char* dComIfGs_getWarpStageName() {
@@ -2228,9 +2226,7 @@ BOOL dComIfGs_getWarpMarkFlag() {
     return dComIfGs_getLastWarpAcceptStage() >= 0;
 }
 
-void dComIfGs_setWarpMarkFlag(u8) {
-    /* empty function */
-}
+void dComIfGs_setWarpMarkFlag(u8) {}
 
 /* 8002F314-8002F328 029C54 0014+00 0/0 0/0 1/1 .text            __ct__19dComIfG_resLoader_cFv */
 dComIfG_resLoader_c::dComIfG_resLoader_c() {
@@ -2250,10 +2246,10 @@ dComIfG_resLoader_c::~dComIfG_resLoader_c() {
 }
 
 /* 8002F3B4-8002F434 029CF4 0080+00 0/0 0/0 1/1 .text load__19dComIfG_resLoader_cFPPCcP7JKRHeap */
-int dComIfG_resLoader_c::load(char const** param_0, JKRHeap* heap) {
-    field_0x0 = param_0;
+int dComIfG_resLoader_c::load(char const** i_resNameTbl, JKRHeap* i_heap) {
+    field_0x0 = i_resNameTbl;
 
-    int phase_state = dComIfG_resLoad(&field_0x4, field_0x0[field_0xc], heap);
+    int phase_state = dComIfG_resLoad(&field_0x4, field_0x0[field_0xc], i_heap);
     if (phase_state == cPhs_COMPLEATE_e) {
         if (field_0x0[field_0xc + 1][0] != 0) {
             field_0xc++;
@@ -2266,25 +2262,23 @@ int dComIfG_resLoader_c::load(char const** param_0, JKRHeap* heap) {
 }
 
 /* 8002F434-8002F478 029D74 0044+00 0/0 12/12 12/12 .text            dComIfG_getStageRes__FPCc */
-void* dComIfG_getStageRes(char const* resName) {
-    return dComIfG_getStageRes("Stg_00", resName);
+void* dComIfG_getStageRes(char const* i_resName) {
+    return dComIfG_getStageRes("Stg_00", i_resName);
 }
 
 /* 8002F478-8002F4BC 029DB8 0044+00 0/0 1/1 0/0 .text            dComIfG_getOldStageRes__FPCc */
-void* dComIfG_getOldStageRes(char const* resName) {
-    return dComIfG_getStageRes("Xtg_00", resName);
+void* dComIfG_getOldStageRes(char const* i_resName) {
+    return dComIfG_getStageRes("Xtg_00", i_resName);
 }
 
-char* dComIfG_getRoomArcName(int roomNo) {
+char* dComIfG_getRoomArcName(int i_roomNo) {
     static char buf[32];
-    sprintf(buf, "R%02d_00", roomNo);
+    sprintf(buf, "R%02d_00", i_roomNo);
     return buf;
 }
 
 /* 8002F500-8002F504 029E40 0004+00 0/0 1/1 0/0 .text            dComIfGp_ret_wp_set__FSc */
-void dComIfGp_ret_wp_set(s8) {
-    /* empty function */
-}
+void dComIfGp_ret_wp_set(s8) {}
 
 void dComIfGp_world_dark_set(u8 param_0) {
     g_dComIfG_gameInfo.mWorldDark = param_0;
@@ -2294,14 +2288,14 @@ u8 dComIfGp_world_dark_get() {
     return g_dComIfG_gameInfo.mWorldDark;
 }
 
-int dComIfG_TimerStart(int mode, s16 time) {
-    if (mode == dComIfG_getTimerMode()) {
+int dComIfG_TimerStart(int i_mode, s16 i_time) {
+    if (i_mode == dComIfG_getTimerMode()) {
         dTimer_c* timer = dComIfG_getTimerPtr();
         if (timer != NULL) {
-            if (time == 0) {
-                timer->start(mode);
+            if (i_time == 0) {
+                timer->start(i_mode);
             } else {
-                timer->start(mode, time);
+                timer->start(i_mode, i_time);
             }
             return 1;
         } else {
@@ -2312,8 +2306,8 @@ int dComIfG_TimerStart(int mode, s16 time) {
     return 0;
 }
 
-int dComIfG_TimerStop(int mode) {
-    if (mode == dComIfG_getTimerMode()) {
+int dComIfG_TimerStop(int i_mode) {
+    if (i_mode == dComIfG_getTimerMode()) {
         dTimer_c* timer = dComIfG_getTimerPtr();
         if (timer != NULL) {
             timer->stop(4);
@@ -2326,8 +2320,8 @@ int dComIfG_TimerStop(int mode) {
     return 0;
 }
 
-int dComIfG_TimerReStart(int mode) {
-    if (mode == dComIfG_getTimerMode()) {
+int dComIfG_TimerReStart(int i_mode) {
+    if (i_mode == dComIfG_getTimerMode()) {
         dTimer_c* timer = dComIfG_getTimerPtr();
         if (timer != NULL) {
             timer->restart(4);
@@ -2340,8 +2334,8 @@ int dComIfG_TimerReStart(int mode) {
     return 0;
 }
 
-int dComIfG_TimerEnd(int mode, int param_1) {
-    if (mode == dComIfG_getTimerMode()) {
+int dComIfG_TimerEnd(int i_mode, int param_1) {
+    if (i_mode == dComIfG_getTimerMode()) {
         dTimer_c* timer = dComIfG_getTimerPtr();
         if (timer != NULL) {
             timer->end(param_1);
@@ -2355,8 +2349,8 @@ int dComIfG_TimerEnd(int mode, int param_1) {
 }
 
 /* 8002F72C-8002F79C 02A06C 0070+00 0/0 0/0 2/2 .text            dComIfG_TimerDeleteCheck__Fi */
-int dComIfG_TimerDeleteCheck(int mode) {
-    if (mode == dComIfG_getTimerMode()) {
+int dComIfG_TimerDeleteCheck(int i_mode) {
+    if (i_mode == dComIfG_getTimerMode()) {
         dTimer_c* timer = dComIfG_getTimerPtr();
         if (timer != NULL) {
             return timer->deleteCheck();
@@ -2368,8 +2362,8 @@ int dComIfG_TimerDeleteCheck(int mode) {
     return 0;
 }
 
-int dComIfG_TimerDeleteRequest(int mode) {
-    if (mode == dComIfG_getTimerMode()) {
+int dComIfG_TimerDeleteRequest(int i_mode) {
+    if (i_mode == dComIfG_getTimerMode()) {
         dTimer_c* timer = dComIfG_getTimerPtr();
         if (timer != NULL) {
             timer->deleteRequest();
@@ -2434,31 +2428,13 @@ bool dComIfGs_shake_kandelaar_check() {
     return check;
 }
 
-/* ############################################################################################## */
-/* 80451D20-80451D28 000320 0008+00 1/1 0/0 0/0 .sdata2          @7580 */
-SECTION_SDATA2 static f64 lit_7580 = 0.6;
-
 /* 8002FA54-8002FA84 02A394 0030+00 0/0 4/4 96/96 .text            dComIfGs_wolfeye_effect_check__Fv
  */
-#ifdef NONMATCHING
-int dComIfGs_wolfeye_effect_check() {
-    BOOL ret = 0;
-    if (g_env_light.field_0xf3d == 1 && g_env_light.field_0xf40 > 0.6) {
-        ret = 1;
-    }
+bool dComIfGs_wolfeye_effect_check() {
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
 
-    return ret;
+    return env_light->field_0xf3d == 1 && env_light->field_0xf40 > 0.6;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dComIfGs_wolfeye_effect_check() {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_wolfeye_effect_check__Fv.s"
-}
-#pragma pop
-#endif
 
 void dComIfGs_Grass_hide_Set(s8 param_0) {
     g_dComIfG_gameInfo.field_0x1ddfc = param_0;
@@ -2491,58 +2467,52 @@ BOOL dComIfGp_TransportWarp_check() {
 
 /* 8002FB20-8002FB80 02A460 0060+00 2/2 6/6 0/0 .text
  * dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv */
-int dComLbG_PhaseHandler(request_of_phase_process_class* param_0, cPhs__Handler* param_1,
-                         void* param_2) {
-    int ret = cPhs_Handler(param_0, param_1, param_2);
-    switch (ret) {
+int dComLbG_PhaseHandler(request_of_phase_process_class* i_phaseReq, cPhs__Handler* i_handler,
+                         void* i_data) {
+    int phase = cPhs_Handler(i_phaseReq, i_handler, i_data);
+    switch (phase) {
     case 2:
-        ret = dComLbG_PhaseHandler(param_0, param_1, param_2);
+        phase = dComLbG_PhaseHandler(i_phaseReq, i_handler, i_data);
         break;
     case 1:
     case 3:
         break;
     }
-    return ret;
+
+    return phase;
 }
 
 /* 8002FB80-8002FC3C 02A4C0 00BC+00 0/0 1/1 1/1 .text            dComIfGs_onVisitedRoom__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_onVisitedRoom(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_onVisitedRoom__Fi.s"
+void dComIfGs_onVisitedRoom(int i_roomNo) {
+    dStage_FileList2_dt_c* fileList = dStage_roomControl_c::getFileList2(i_roomNo);
+
+    if (fileList != NULL && fileList->field_0x13 < 0x40) {
+        u8 region = dComIfG_getNowCalcRegion();
+        if (region != 0xFF && !dComIfGs_isRegionBit(region)) {
+            dComIfGs_onRegionBit(region);
+        }
+
+        s32 stayNo = dComIfGp_roomControl_getStayNo();
+        dStage_FileList2_dt_c* list = dStage_roomControl_c::getFileList2(stayNo);
+        dComIfGs_onSaveVisitedRoom(list->field_0x13, i_roomNo);
+    }
 }
-#pragma pop
 
 /* 8002FC3C-8002FC98 02A57C 005C+00 0/0 0/0 1/1 .text            dComIfGs_offVisitedRoom__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dComIfGs_offVisitedRoom(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_offVisitedRoom__Fi.s"
+void dComIfGs_offVisitedRoom(int i_roomNo) {
+    s32 stayNo = dComIfGp_roomControl_getStayNo();
+    dStage_FileList2_dt_c* list = dStage_roomControl_c::getFileList2(stayNo);
+
+    dComIfGs_offSaveVisitedRoom(list->field_0x13, i_roomNo);
 }
-#pragma pop
 
 /* 8002FC98-8002FCF4 02A5D8 005C+00 0/0 1/1 0/0 .text            dComIfGs_isVisitedRoom__Fi */
-// instructions swapped
-#ifdef NONMATCHING
 BOOL dComIfGs_isVisitedRoom(int param_0) {
-    int stayNo = dComIfGp_roomControl_getStayNo();
+    s32 stayNo = dComIfGp_roomControl_getStayNo();
     dStage_FileList2_dt_c* fileList = dStage_roomControl_c::getFileList2(stayNo);
+
     return dComIfGs_isSaveVisitedRoom(fileList->field_0x13, param_0);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL dComIfGs_isVisitedRoom(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_inf_game/dComIfGs_isVisitedRoom__Fi.s"
-}
-#pragma pop
-#endif
 
 /* 8002FCF4-8002FD08 02A634 0014+00 0/0 1/1 0/0 .text            dComIfGs_staffroll_next_go__Fv */
 void dComIfGs_staffroll_next_go() {

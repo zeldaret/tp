@@ -11,11 +11,6 @@
 // Types:
 //
 
-struct Z2SoundObjArrow {
-    /* 802BEB38 */ Z2SoundObjArrow();
-    /* 802BEB74 */ void init(Vec*, u8);
-};
-
 struct Z2SoundInfo {
     /* 802BBAC8 */ void getSwBit(JAISoundID) const;
 };
@@ -380,7 +375,8 @@ asm void Z2DopplerSoundObjBase::init(Vec* param_0, u8 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2DopplerSoundObjBase::framework(u32 param_0, s8 param_1) {
+// asm void Z2DopplerSoundObjBase::framework(u32 param_0, s8 param_1) {
+extern "C" asm void framework__21Z2DopplerSoundObjBaseFUlSc() {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundObject/framework__21Z2DopplerSoundObjBaseFUlSc.s"
 }
@@ -499,7 +495,8 @@ asm Z2SoundObjArrow::Z2SoundObjArrow() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2SoundObjArrow::init(Vec* param_0, u8 param_1) {
+// asm void Z2SoundObjArrow::init(Vec* param_0, u8 param_1) {
+extern "C" asm void init__15Z2SoundObjArrowFP3VecUc() {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundObject/init__15Z2SoundObjArrowFP3VecUc.s"
 }

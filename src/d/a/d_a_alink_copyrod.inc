@@ -53,18 +53,6 @@ asm void daAlink_c::initCopyRodUpperAnimeSpeed(int param_0) {
 }
 #pragma pop
 
-/* void daAlink_c::initCopyRodUpperAnimeSpeed(int param_0) {
-    if (checkCopyRodThrowAnime()) {
-        if (param_1 == 0) {
-            mUpperFrameCtrl[2].setRate();
-        }
-        f32 tmp = FLOAT_LABEL(lit_6108);
-        mUpperFrameCtrl[2].setRate(tmp);
-        mUpperFrameCtrl[2].setFrame(tmp);
-
-    }
-} */
-
 /* 800E1408-800E145C 0DBD48 0054+00 2/2 0/0 0/0 .text            checkForestOldCentury__9daAlink_cFv
  */
 BOOL daAlink_c::checkForestOldCentury() {
@@ -259,7 +247,7 @@ asm void daAlink_c::setCopyRodSight() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCopyRodSubjectInit() {
+asm int daAlink_c::procCopyRodSubjectInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCopyRodSubjectInit__9daAlink_cFv.s"
 }
@@ -269,7 +257,7 @@ asm void daAlink_c::procCopyRodSubjectInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCopyRodSubject() {
+asm int daAlink_c::procCopyRodSubject() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCopyRodSubject__9daAlink_cFv.s"
 }
@@ -280,7 +268,7 @@ asm void daAlink_c::procCopyRodSubject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCopyRodMoveInit() {
+asm int daAlink_c::procCopyRodMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCopyRodMoveInit__9daAlink_cFv.s"
 }
@@ -290,7 +278,7 @@ asm void daAlink_c::procCopyRodMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCopyRodMove() {
+asm int daAlink_c::procCopyRodMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCopyRodMove__9daAlink_cFv.s"
 }
@@ -301,7 +289,7 @@ asm void daAlink_c::procCopyRodMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCopyRodSwingInit() {
+asm int daAlink_c::procCopyRodSwingInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCopyRodSwingInit__9daAlink_cFv.s"
 }
@@ -311,7 +299,7 @@ asm void daAlink_c::procCopyRodSwingInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCopyRodSwing() {
+asm int daAlink_c::procCopyRodSwing() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCopyRodSwing__9daAlink_cFv.s"
 }
@@ -322,7 +310,7 @@ asm void daAlink_c::procCopyRodSwing() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCopyRodReviveInit() {
+asm int daAlink_c::procCopyRodReviveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCopyRodReviveInit__9daAlink_cFv.s"
 }
@@ -332,7 +320,7 @@ asm void daAlink_c::procCopyRodReviveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCopyRodRevive() {
+asm int daAlink_c::procCopyRodRevive() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCopyRodRevive__9daAlink_cFv.s"
 }

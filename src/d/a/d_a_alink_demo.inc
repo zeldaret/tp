@@ -1,3 +1,5 @@
+#include "f_op/f_op_msg_mng.h"
+
 /* 80115C20-80115C50 110560 0030+00 72/72 0/0 0/0 .text            checkEventRun__9daAlink_cCFv */
 BOOL daAlink_c::checkEventRun() const {
     return i_dComIfGp_event_runCheck() || checkPlayerDemoMode();
@@ -37,14 +39,9 @@ asm int daAlink_c::checkDemoAction() {
 
 /* 80116E60-80116E9C 1117A0 003C+00 4/4 0/0 0/0 .text            checkDemoMoveMode__9daAlink_cCFUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool daAlink_c::checkDemoMoveMode(u32 param_0) const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkDemoMoveMode__9daAlink_cCFUl.s"
+bool daAlink_c::checkDemoMoveMode(u32 i_mode) const {
+    return i_mode == 2 || i_mode == 3 || i_mode == 0x26;
 }
-#pragma pop
 
 /* 80116E9C-80117064 1117DC 01C8+00 1/1 0/0 0/0 .text setDemoMoveData__9daAlink_cFPUlPC4cXyz */
 #pragma push
@@ -77,35 +74,42 @@ asm void daAlink_c::setDemoData() {
 #pragma pop
 
 /* 80117B90-80117C34 1124D0 00A4+00 1/1 0/0 0/0 .text            resetDemoBck__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::resetDemoBck() {
-    nofralloc
-#include "asm/d/a/d_a_alink/resetDemoBck__9daAlink_cFv.s"
+void daAlink_c::resetDemoBck() {
+    mAnmHeap7.resetArcNo();
+    mAnmHeap5.resetArcNo();
+    mAnmHeap6.resetArcNo();
+    mUnderAnmHeap[0].resetArcNo();
+    mUnderAnmHeap[0].resetIdx();
+    mAnmHeap7.resetIdx();
+    mAnmHeap5.resetIdx();
+    mAnmHeap6.resetIdx();
+
+    if (i_checkWolf()) {
+        setSingleAnimeWolfBaseSpeed(WANM_WAIT, daAlinkHIO_wlMoveNoP_c0::m.field_0x14, daAlinkHIO_wlMove_c0::m.field_0x94);
+        setFaceBasicAnime(ANM_WAIT);
+    } else {
+        setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed, daAlinkHIO_basic_c0::m.mAnmBlendFactor);
+    }
 }
-#pragma pop
 
 /* 80117C34-80117C90 112574 005C+00 3/3 0/0 0/0 .text            endHighModel__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::endHighModel() {
-    nofralloc
-#include "asm/d/a/d_a_alink/endHighModel__9daAlink_cFv.s"
+void daAlink_c::endHighModel() {
+    if (field_0x068c != NULL) {
+        mpDemoFCTongueModel->getModelData()->removeTexMtxAnimator(field_0x068c);
+    }
+
+    i_offNoResetFlg1(FLG1_UNK_10);
+    field_0x0698 = NULL;
+    field_0x068c = NULL;
 }
-#pragma pop
 
 /* 80117C90-80117CF8 1125D0 0068+00 21/21 0/0 0/0 .text            resetSpecialEvent__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::resetSpecialEvent() {
-    nofralloc
-#include "asm/d/a/d_a_alink/resetSpecialEvent__9daAlink_cFv.s"
+void daAlink_c::resetSpecialEvent() {
+    i_dComIfGp_event_reset();
+    dCam_getBody()->EndEventCamera(fopAcM_GetID(this));
+    endDemoMode();
 }
-#pragma pop
 
 /* 80117CF8-801180EC 112638 03F4+00 4/4 0/0 0/0 .text            endDemoMode__9daAlink_cFv */
 #pragma push
@@ -118,24 +122,36 @@ asm void daAlink_c::endDemoMode() {
 #pragma pop
 
 /* 801180EC-80118170 112A2C 0084+00 2/2 0/0 0/0 .text            getDemoLookActor__9daAlink_cFv */
+// weird gameinfo load
+#ifdef NONMATCHING
+fopAc_ac_c* daAlink_c::getDemoLookActor() {
+    if (mDemo.getParam0() == 1) {
+        return (fopAc_ac_c*)dComIfGp_event_getPt1();
+    } else if (mDemo.getParam0() == 2) {
+        return (fopAc_ac_c*)dComIfGp_event_getPt2();
+    } else if (mDemo.getParam0() == 3) {
+        return (fopAc_ac_c*)fopAcM_getTalkEventPartner(this);
+    } else if (mDemo.getParam0() == 4) {
+        return getMidnaActor();
+    }
+
+    return NULL;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getDemoLookActor() {
+asm fopAc_ac_c* daAlink_c::getDemoLookActor() {
     nofralloc
 #include "asm/d/a/d_a_alink/getDemoLookActor__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80118170-801181A0 112AB0 0030+00 4/4 0/0 0/0 .text            checkFlyAtnWait__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool daAlink_c::checkFlyAtnWait() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkFlyAtnWait__9daAlink_cFv.s"
+BOOL daAlink_c::checkFlyAtnWait() {
+    return mDemo.getDemoMode() == 0x17 && (mDemo.getParam1() == 4 || mDemo.getParam1() == 5);
 }
-#pragma pop
 
 /* 801181A0-801182D4 112AE0 0134+00 2/2 0/0 0/0 .text            setGetItemFace__9daAlink_cFUs */
 #pragma push
@@ -149,14 +165,10 @@ asm void daAlink_c::setGetItemFace(u16 param_0) {
 
 /* 801182D4-80118308 112C14 0034+00 2/2 0/0 0/0 .text checkGrabTalkActor__9daAlink_cFP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkGrabTalkActor(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkGrabTalkActor__9daAlink_cFP10fopAc_ac_c.s"
+BOOL daAlink_c::checkGrabTalkActor(fopAc_ac_c* i_actor) {
+    s16 name = fopAcM_GetName(i_actor);
+    return name == PROC_NPC_KYURY || name == PROC_MYNA || name == PROC_OBJ_SSITEM || name == PROC_TAG_MSG;
 }
-#pragma pop
 
 /* 80118308-8011856C 112C48 0264+00 2/2 0/0 0/0 .text            setTalkStartBack__9daAlink_cFP4cXyz
  */
@@ -211,14 +223,24 @@ asm void daAlink_c::setTradeItemOutHand() {
 #pragma pop
 
 /* 801187B4-80118840 1130F4 008C+00 5/5 0/0 0/0 .text            checkEndMessage__9daAlink_cFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkEndMessage(u32 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkEndMessage__9daAlink_cFUl.s"
+BOOL daAlink_c::checkEndMessage(u32 param_0) {
+    if (mMsgClassID == -1) {
+        mMsgClassID = fopMsgM_messageSet(param_0, 1000);
+    } else {
+        msg_class* msg = fopMsgM_SearchByID(mMsgClassID);
+
+        if (msg != NULL) {
+            if (msg->field_0xf8 == 14) {
+                msg->field_0xf8 = 16;
+            } else if (msg->field_0xf8 == 0x12) {
+                msg->field_0xf8 = 0x13;
+                return 1;
+            }
+        }
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 80118840-801188B0 113180 0070+00 1/1 0/0 0/0 .text setDemoRightHandIndex__9daAlink_cFUs */
 #pragma push
@@ -268,8 +290,8 @@ BOOL daAlink_c::checkFinalBattle() {
 }
 
 /* 80118B34-80118BF4 113474 00C0+00 3/3 0/0 0/0 .text            checkRestartDead__9daAlink_cFii */
-BOOL daAlink_c::checkRestartDead(int i_dmgAmount, int param_1) {
-    i_dmgAmount *= (int)damageMagnification(param_1, 1);
+BOOL daAlink_c::checkRestartDead(int i_dmgAmount, int i_checkZoraMag) {
+    i_dmgAmount *= (int)damageMagnification(i_checkZoraMag, 1);
 
     if (mProcID != PROC_DEAD && i_dmgAmount >= i_dComIfGs_getLife() && !checkMagicArmorNoDamage() &&
         !dComIfGs_checkBottle(FAIRY)) {
@@ -287,9 +309,9 @@ void daAlink_c::setDeadRideSyncPos() {
         if (i_checkReinRide()) {
             setSyncRidePos();
         } else if (checkSpinnerRide()) {
-            s16 old_angle = mCollisionRot.y;
+            s16 old_angle = shape_angle.y;
             setSpinnerSyncPos();
-            mCollisionRot.y = old_angle;
+            shape_angle.y = old_angle;
         }
     }
 }
@@ -383,7 +405,7 @@ int daAlink_c::procDemoCommon() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoToolDemoInit() {
+asm int daAlink_c::procCoToolDemoInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoToolDemoInit__9daAlink_cFv.s"
 }
@@ -393,7 +415,7 @@ asm void daAlink_c::procCoToolDemoInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoToolDemo() {
+asm int daAlink_c::procCoToolDemo() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoToolDemo__9daAlink_cFv.s"
 }
@@ -403,7 +425,7 @@ asm void daAlink_c::procCoToolDemo() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoTalkInit() {
+asm int daAlink_c::procCoTalkInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoTalkInit__9daAlink_cFv.s"
 }
@@ -413,7 +435,7 @@ asm void daAlink_c::procCoTalkInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoTalk() {
+asm int daAlink_c::procCoTalk() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoTalk__9daAlink_cFv.s"
 }
@@ -423,7 +445,7 @@ asm void daAlink_c::procCoTalk() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoOpenTreasureInit() {
+asm int daAlink_c::procCoOpenTreasureInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoOpenTreasureInit__9daAlink_cFv.s"
 }
@@ -433,7 +455,7 @@ asm void daAlink_c::procCoOpenTreasureInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoOpenTreasure() {
+asm int daAlink_c::procCoOpenTreasure() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoOpenTreasure__9daAlink_cFv.s"
 }
@@ -443,7 +465,7 @@ asm void daAlink_c::procCoOpenTreasure() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoUnequipInit() {
+asm int daAlink_c::procCoUnequipInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoUnequipInit__9daAlink_cFv.s"
 }
@@ -453,7 +475,7 @@ asm void daAlink_c::procCoUnequipInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoUnequip() {
+asm int daAlink_c::procCoUnequip() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoUnequip__9daAlink_cFv.s"
 }
@@ -505,7 +527,7 @@ asm bool daAlink_c::checkTreasureRupeeReturn(int param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoGetItemInit() {
+asm int daAlink_c::procCoGetItemInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoGetItemInit__9daAlink_cFv.s"
 }
@@ -515,7 +537,7 @@ asm void daAlink_c::procCoGetItemInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoGetItem() {
+asm int daAlink_c::procCoGetItem() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoGetItem__9daAlink_cFv.s"
 }
@@ -525,7 +547,7 @@ asm void daAlink_c::procCoGetItem() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoTurnBackInit() {
+asm int daAlink_c::procCoTurnBackInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoTurnBackInit__9daAlink_cFv.s"
 }
@@ -535,7 +557,7 @@ asm void daAlink_c::procCoTurnBackInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoTurnBack() {
+asm int daAlink_c::procCoTurnBack() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoTurnBack__9daAlink_cFv.s"
 }
@@ -545,7 +567,7 @@ asm void daAlink_c::procCoTurnBack() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procDoorOpenInit() {
+asm int daAlink_c::procDoorOpenInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procDoorOpenInit__9daAlink_cFv.s"
 }
@@ -555,7 +577,7 @@ asm void daAlink_c::procDoorOpenInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procDoorOpen() {
+asm int daAlink_c::procDoorOpen() {
     nofralloc
 #include "asm/d/a/d_a_alink/procDoorOpen__9daAlink_cFv.s"
 }
@@ -565,7 +587,7 @@ asm void daAlink_c::procDoorOpen() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoLookWaitInit() {
+asm int daAlink_c::procCoLookWaitInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoLookWaitInit__9daAlink_cFv.s"
 }
@@ -575,7 +597,7 @@ asm void daAlink_c::procCoLookWaitInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoLookWait() {
+asm int daAlink_c::procCoLookWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoLookWait__9daAlink_cFv.s"
 }
@@ -585,7 +607,7 @@ asm void daAlink_c::procCoLookWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoDemoPushPullWaitInit() {
+asm int daAlink_c::procCoDemoPushPullWaitInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoDemoPushPullWaitInit__9daAlink_cFv.s"
 }
@@ -595,7 +617,7 @@ asm void daAlink_c::procCoDemoPushPullWaitInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoDemoPushMoveInit() {
+asm int daAlink_c::procCoDemoPushMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoDemoPushMoveInit__9daAlink_cFv.s"
 }
@@ -615,7 +637,7 @@ asm void daAlink_c::setMonkeyMoveAnime() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procMonkeyMoveInit() {
+asm int daAlink_c::procMonkeyMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procMonkeyMoveInit__9daAlink_cFv.s"
 }
@@ -625,7 +647,7 @@ asm void daAlink_c::procMonkeyMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procMonkeyMove() {
+asm int daAlink_c::procMonkeyMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procMonkeyMove__9daAlink_cFv.s"
 }
@@ -635,7 +657,7 @@ asm void daAlink_c::procMonkeyMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procDemoBoomerangCatchInit() {
+asm int daAlink_c::procDemoBoomerangCatchInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procDemoBoomerangCatchInit__9daAlink_cFv.s"
 }
@@ -645,7 +667,7 @@ asm void daAlink_c::procDemoBoomerangCatchInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procDemoBoomerangCatch() {
+asm int daAlink_c::procDemoBoomerangCatch() {
     nofralloc
 #include "asm/d/a/d_a_alink/procDemoBoomerangCatch__9daAlink_cFv.s"
 }
@@ -655,7 +677,7 @@ asm void daAlink_c::procDemoBoomerangCatch() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoDeadInit(int param_0) {
+asm int daAlink_c::procCoDeadInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoDeadInit__9daAlink_cFi.s"
 }
@@ -665,7 +687,7 @@ asm void daAlink_c::procCoDeadInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoDead() {
+asm int daAlink_c::procCoDead() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoDead__9daAlink_cFv.s"
 }
@@ -676,7 +698,7 @@ asm void daAlink_c::procCoDead() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoLookAroundInit() {
+asm int daAlink_c::procCoLookAroundInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoLookAroundInit__9daAlink_cFv.s"
 }
@@ -686,7 +708,7 @@ asm void daAlink_c::procCoLookAroundInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoLookAround() {
+asm int daAlink_c::procCoLookAround() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoLookAround__9daAlink_cFv.s"
 }
@@ -697,7 +719,7 @@ asm void daAlink_c::procCoLookAround() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procBossAtnWaitInit() {
+asm int daAlink_c::procBossAtnWaitInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procBossAtnWaitInit__9daAlink_cFv.s"
 }
@@ -708,7 +730,7 @@ asm void daAlink_c::procBossAtnWaitInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoQuakeWaitInit() {
+asm int daAlink_c::procCoQuakeWaitInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoQuakeWaitInit__9daAlink_cFv.s"
 }
@@ -718,7 +740,7 @@ asm void daAlink_c::procCoQuakeWaitInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoCaughtInit() {
+asm int daAlink_c::procCoCaughtInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoCaughtInit__9daAlink_cFv.s"
 }
@@ -728,7 +750,7 @@ asm void daAlink_c::procCoCaughtInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procLookUpInit() {
+asm int daAlink_c::procLookUpInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procLookUpInit__9daAlink_cFv.s"
 }
@@ -738,7 +760,7 @@ asm void daAlink_c::procLookUpInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procLookUp() {
+asm int daAlink_c::procLookUp() {
     nofralloc
 #include "asm/d/a/d_a_alink/procLookUp__9daAlink_cFv.s"
 }
@@ -748,7 +770,7 @@ asm void daAlink_c::procLookUp() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procLookUpToGetItemInit() {
+asm int daAlink_c::procLookUpToGetItemInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procLookUpToGetItemInit__9daAlink_cFv.s"
 }
@@ -759,7 +781,7 @@ asm void daAlink_c::procLookUpToGetItemInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procLookUpToGetItem() {
+asm int daAlink_c::procLookUpToGetItem() {
     nofralloc
 #include "asm/d/a/d_a_alink/procLookUpToGetItem__9daAlink_cFv.s"
 }
@@ -769,7 +791,7 @@ asm void daAlink_c::procLookUpToGetItem() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHandPatInit() {
+asm int daAlink_c::procHandPatInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHandPatInit__9daAlink_cFv.s"
 }
@@ -779,7 +801,7 @@ asm void daAlink_c::procHandPatInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHandPat() {
+asm int daAlink_c::procHandPat() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHandPat__9daAlink_cFv.s"
 }
@@ -789,7 +811,7 @@ asm void daAlink_c::procHandPat() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoFogDeadInit() {
+asm int daAlink_c::procCoFogDeadInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoFogDeadInit__9daAlink_cFv.s"
 }
@@ -799,7 +821,7 @@ asm void daAlink_c::procCoFogDeadInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoFogDead() {
+asm int daAlink_c::procCoFogDead() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoFogDead__9daAlink_cFv.s"
 }
@@ -810,7 +832,7 @@ asm void daAlink_c::procCoFogDead() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfSmellWaitInit() {
+asm int daAlink_c::procWolfSmellWaitInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfSmellWaitInit__9daAlink_cFv.s"
 }
@@ -820,7 +842,7 @@ asm void daAlink_c::procWolfSmellWaitInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoNodInit() {
+asm int daAlink_c::procCoNodInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoNodInit__9daAlink_cFv.s"
 }
@@ -830,7 +852,7 @@ asm void daAlink_c::procCoNodInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoNod() {
+asm int daAlink_c::procCoNod() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoNod__9daAlink_cFv.s"
 }
@@ -840,7 +862,7 @@ asm void daAlink_c::procCoNod() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoEyeAwayInit() {
+asm int daAlink_c::procCoEyeAwayInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoEyeAwayInit__9daAlink_cFv.s"
 }
@@ -850,7 +872,7 @@ asm void daAlink_c::procCoEyeAwayInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoGlareInit() {
+asm int daAlink_c::procCoGlareInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoGlareInit__9daAlink_cFv.s"
 }
@@ -860,7 +882,7 @@ asm void daAlink_c::procCoGlareInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoGlare() {
+asm int daAlink_c::procCoGlare() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoGlare__9daAlink_cFv.s"
 }
@@ -871,7 +893,7 @@ asm void daAlink_c::procCoGlare() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGoatStopReadyInit() {
+asm int daAlink_c::procGoatStopReadyInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGoatStopReadyInit__9daAlink_cFv.s"
 }
@@ -881,7 +903,7 @@ asm void daAlink_c::procGoatStopReadyInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGoatStopReady() {
+asm int daAlink_c::procGoatStopReady() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGoatStopReady__9daAlink_cFv.s"
 }
@@ -892,7 +914,7 @@ asm void daAlink_c::procGoatStopReady() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoGetReadySitInit() {
+asm int daAlink_c::procCoGetReadySitInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoGetReadySitInit__9daAlink_cFv.s"
 }
@@ -902,7 +924,7 @@ asm void daAlink_c::procCoGetReadySitInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoGetReadySit() {
+asm int daAlink_c::procCoGetReadySit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoGetReadySit__9daAlink_cFv.s"
 }
@@ -912,7 +934,7 @@ asm void daAlink_c::procCoGetReadySit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoTwGateInit() {
+asm int daAlink_c::procCoTwGateInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoTwGateInit__9daAlink_cFv.s"
 }
@@ -932,7 +954,7 @@ int daAlink_c::procCoTwGate() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfSnowEscapeInit() {
+asm int daAlink_c::procWolfSnowEscapeInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfSnowEscapeInit__9daAlink_cFv.s"
 }
@@ -942,7 +964,7 @@ asm void daAlink_c::procWolfSnowEscapeInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfSnowEscape() {
+asm int daAlink_c::procWolfSnowEscape() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfSnowEscape__9daAlink_cFv.s"
 }
@@ -952,7 +974,7 @@ asm void daAlink_c::procWolfSnowEscape() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procZoraMoveInit() {
+asm int daAlink_c::procZoraMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procZoraMoveInit__9daAlink_cFv.s"
 }
@@ -962,7 +984,7 @@ asm void daAlink_c::procZoraMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procZoraMove() {
+asm int daAlink_c::procZoraMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procZoraMove__9daAlink_cFv.s"
 }
@@ -972,7 +994,7 @@ asm void daAlink_c::procZoraMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procLookAroundTurnInit() {
+asm int daAlink_c::procLookAroundTurnInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procLookAroundTurnInit__9daAlink_cFv.s"
 }
@@ -982,7 +1004,7 @@ asm void daAlink_c::procLookAroundTurnInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procLookAroundTurn() {
+asm int daAlink_c::procLookAroundTurn() {
     nofralloc
 #include "asm/d/a/d_a_alink/procLookAroundTurn__9daAlink_cFv.s"
 }
@@ -993,7 +1015,7 @@ asm void daAlink_c::procLookAroundTurn() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procTradeItemOutInit() {
+asm int daAlink_c::procTradeItemOutInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procTradeItemOutInit__9daAlink_cFv.s"
 }
@@ -1003,7 +1025,7 @@ asm void daAlink_c::procTradeItemOutInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procTradeItemOut() {
+asm int daAlink_c::procTradeItemOut() {
     nofralloc
 #include "asm/d/a/d_a_alink/procTradeItemOut__9daAlink_cFv.s"
 }
@@ -1023,7 +1045,7 @@ asm void daAlink_c::checkLetterItem(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procNotUseItemInit(int param_0) {
+asm int daAlink_c::procNotUseItemInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procNotUseItemInit__9daAlink_cFi.s"
 }
@@ -1033,7 +1055,7 @@ asm void daAlink_c::procNotUseItemInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procNotUseItem() {
+asm int daAlink_c::procNotUseItem() {
     nofralloc
 #include "asm/d/a/d_a_alink/procNotUseItem__9daAlink_cFv.s"
 }
@@ -1043,7 +1065,7 @@ asm void daAlink_c::procNotUseItem() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwordReadyInit() {
+asm int daAlink_c::procSwordReadyInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwordReadyInit__9daAlink_cFv.s"
 }
@@ -1053,7 +1075,7 @@ asm void daAlink_c::procSwordReadyInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwordReady() {
+asm int daAlink_c::procSwordReady() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwordReady__9daAlink_cFv.s"
 }
@@ -1073,7 +1095,7 @@ asm void daAlink_c::setSwordPushAnime() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwordPushInit() {
+asm int daAlink_c::procSwordPushInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwordPushInit__9daAlink_cFv.s"
 }
@@ -1083,7 +1105,7 @@ asm void daAlink_c::procSwordPushInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwordPush() {
+asm int daAlink_c::procSwordPush() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwordPush__9daAlink_cFv.s"
 }
@@ -1094,7 +1116,7 @@ asm void daAlink_c::procSwordPush() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGanonFinishInit() {
+asm int daAlink_c::procGanonFinishInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGanonFinishInit__9daAlink_cFv.s"
 }
@@ -1115,7 +1137,7 @@ bool daAlink_c::procGanonFinish() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCutFastReadyInit() {
+asm int daAlink_c::procCutFastReadyInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutFastReadyInit__9daAlink_cFv.s"
 }
@@ -1139,7 +1161,7 @@ int daAlink_c::procMasterSwordStickInit() {
     setSingleAnimeBase(ANM_DEMO_MASTER_SWORD_STICK);
     voiceStart(Z2SE_AL_V_MSTR_SW_STICK);
     mNormalSpeed = FLOAT_LABEL(lit_6108);
-    current.angle.y = mCollisionRot.y;
+    current.angle.y = shape_angle.y;
     mCommonCounter = 0;
 
     return 1;
@@ -1181,7 +1203,7 @@ int daAlink_c::procMasterSwordPullInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procMasterSwordPull() {
+asm int daAlink_c::procMasterSwordPull() {
     nofralloc
 #include "asm/d/a/d_a_alink/procMasterSwordPull__9daAlink_cFv.s"
 }
@@ -1201,10 +1223,10 @@ int daAlink_c::procDungeonWarpReadyInit() {
 
     u32 id;
     if (checkItemSetButton(DUNGEON_EXIT) != 2) {
-        id = fopAcM_create(PROC_OBJ_TKS, 0, &current.pos, fopAcM_GetRoomNo(this), &mCollisionRot,
+        id = fopAcM_create(PROC_OBJ_TKS, 0, &current.pos, fopAcM_GetRoomNo(this), &shape_angle,
                            NULL, -1);
     } else {
-        id = fopAcM_create(PROC_NPC_TKC, 2, &current.pos, fopAcM_GetRoomNo(this), &mCollisionRot,
+        id = fopAcM_create(PROC_NPC_TKC, 2, &current.pos, fopAcM_GetRoomNo(this), &shape_angle,
                            NULL, -1);
     }
 
@@ -1216,7 +1238,7 @@ int daAlink_c::procDungeonWarpReadyInit() {
     commonProcInit(PROC_DUNGEON_WARP_READY);
     setSingleAnimeBase(ANM_TRADE_ITEM_PULL_OUT);
     mNormalSpeed = FLOAT_LABEL(lit_6108);
-    current.angle.y = mCollisionRot.y;
+    current.angle.y = shape_angle.y;
     field_0x32cc = id;
     mCommonCounter = 0;
     keepItemData();
@@ -1229,7 +1251,7 @@ int daAlink_c::procDungeonWarpReadyInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procDungeonWarpReady() {
+asm int daAlink_c::procDungeonWarpReady() {
     nofralloc
 #include "asm/d/a/d_a_alink/procDungeonWarpReady__9daAlink_cFv.s"
 }
@@ -1253,7 +1275,7 @@ bool daAlink_c::procDungeonWarpInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procDungeonWarpInit() {
+asm int daAlink_c::procDungeonWarpInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procDungeonWarpInit__9daAlink_cFv.s"
 }
@@ -1273,7 +1295,7 @@ int daAlink_c::procDungeonWarp() {
     }
 
     f32 sin = cM_ssin(mCommonCounter);
-    mCollisionRot.y += (s16)(14336.0f * sin);
+    shape_angle.y += (s16)(14336.0f * sin);
     field_0x300e = 8.0f * sin + 24.0f * (1.0f - mScale.x);
 
     if (field_0x3012 != 0) {
@@ -1293,7 +1315,7 @@ int daAlink_c::procDungeonWarp() {
                 if (checkItemGet(DUNGEON_EXIT, 1)) {
                     int escape =
                         dStage_stagInfo_GetEscapeWarp(i_dComIfGp_getStage()->getStagInfo());
-                    dStage_changeScene(escape, 0.0f, 12, -1, mCollisionRot.y, -1);
+                    dStage_changeScene(escape, 0.0f, 12, -1, shape_angle.y, -1);
                     dMeter2Info_warpOutProc();
                 } else {
                     dungeonReturnWarp();
@@ -1330,7 +1352,7 @@ asm int daAlink_c::procDungeonWarp() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procDungeonWarpSceneStartInit() {
+asm int daAlink_c::procDungeonWarpSceneStartInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procDungeonWarpSceneStartInit__9daAlink_cFv.s"
 }
@@ -1340,7 +1362,7 @@ asm void daAlink_c::procDungeonWarpSceneStartInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procDungeonWarpSceneStart() {
+asm int daAlink_c::procDungeonWarpSceneStart() {
     nofralloc
 #include "asm/d/a/d_a_alink/procDungeonWarpSceneStart__9daAlink_cFv.s"
 }
@@ -1429,14 +1451,14 @@ void daAlink_c::skipPortalObjWarp() {
 
     if (i_checkNoResetFlg3(FLG3_UNK_2000000) &&
         (dComIfGp_TargetWarpPt_get() == 9 && dComIfGp_TransportWarp_check())) {
-        dStage_changeScene(2, FLOAT_LABEL(lit_6108), 0, fopAcM_GetRoomNo(this), mCollisionRot.y,
+        dStage_changeScene(2, FLOAT_LABEL(lit_6108), 0, fopAcM_GetRoomNo(this), shape_angle.y,
                            -1);
     } else {
         u32 data = setParamData(dMeter2Info_getWarpRoomNo(), 0, 0xCA, 0);
         dComIfGs_setTurnRestart(dMeter2Info_getWarpPos(), dMeter2Info_getWarpPlayerNo(),
                                 dMeter2Info_getWarpRoomNo(), data);
         dComIfGp_setNextStage(dMeter2Info_getWarpStageName(), -4, dMeter2Info_getWarpRoomNo(), -1,
-                              FLOAT_LABEL(lit_6108), 0, 1, 0, mCollisionRot.y, 1, 0);
+                              FLOAT_LABEL(lit_6108), 0, 1, 0, shape_angle.y, 1, 0);
     }
 
     if (mProcID == PROC_WARP) {
@@ -1477,7 +1499,7 @@ void daAlink_c::checkWarpStart() {
                 if (dMeter2Info_getWarpStatus() == 1) {
                     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
                     u32 exitID = dStage_stagInfo_GetEscapeWarp(stag_info);
-                    dStage_changeScene(exitID, FLOAT_LABEL(lit_6108), 0, -1, mCollisionRot.y, -1);
+                    dStage_changeScene(exitID, FLOAT_LABEL(lit_6108), 0, -1, shape_angle.y, -1);
                 } else {
                     dungeonReturnWarp();
                 }
@@ -1501,7 +1523,7 @@ asm void daAlink_c::warpModelTexScroll() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoWarpInit(int param_0, int param_1) {
+asm int daAlink_c::procCoWarpInit(int param_0, int param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoWarpInit__9daAlink_cFii.s"
 }
@@ -1511,7 +1533,7 @@ asm void daAlink_c::procCoWarpInit(int param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoWarp() {
+asm int daAlink_c::procCoWarp() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoWarp__9daAlink_cFv.s"
 }

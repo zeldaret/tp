@@ -242,8 +242,8 @@ void dSv_player_status_a_c::init() {
     unk10 = 0;
 
     for (int i = 0; i < MAX_SELECT_ITEM; i++) {
-        mSelectItem[i] = NO_ITEM;
-        mMixItem[i] = NO_ITEM;
+        mSelectItem[i] = 0xFF;
+        mMixItem[i] = 0xFF;
         dComIfGp_setSelectItem(i);
     }
 
@@ -268,9 +268,9 @@ void dSv_player_status_a_c::init() {
     }
 }
 
-void dSv_player_status_a_c::setSelectItemIndex(int i_no, u8 item_index) {
+void dSv_player_status_a_c::setSelectItemIndex(int i_no, u8 i_slotNo) {
     if (i_no < MAX_SELECT_ITEM) {
-        mSelectItem[i_no] = item_index;
+        mSelectItem[i_no] = i_slotNo;
     }
 }
 
@@ -281,9 +281,9 @@ u8 dSv_player_status_a_c::getSelectItemIndex(int i_no) const {
     return 0;
 }
 
-void dSv_player_status_a_c::setMixItemIndex(int i_no, u8 item_index) {
+void dSv_player_status_a_c::setMixItemIndex(int i_no, u8 i_slotNo) {
     if (i_no < MAX_SELECT_ITEM) {
-        mMixItem[i_no] = item_index;
+        mMixItem[i_no] = i_slotNo;
     }
 }
 
@@ -312,6 +312,7 @@ BOOL dSv_player_status_a_c::isMagicFlag(u8 i_magic) const {
     if (i_magic == 0) {
         return i_dComIfGs_isEventBit(0x2304);  // Magic Unlocked
     }
+
     return (mMagicFlag & (u8)(1 << i_magic)) ? TRUE : FALSE;
 }
 
@@ -423,7 +424,7 @@ void dSv_player_last_mark_info_c::init() {
 }
 
 void dSv_player_last_mark_info_c::setWarpItemData(const char* i_name, const cXyz& i_pos,
-                                                  s16 i_angle, s8 i_roomNo, u8 unk1, u8 unk2) {
+                                                  s16 i_angle, s8 i_roomNo, u8, u8) {
     strcpy(mName, i_name);
     mPos.set(i_pos);
     mAngleY = i_angle;
@@ -437,25 +438,25 @@ void dSv_player_item_c::init() {
     }
 }
 
-void dSv_player_item_c::setItem(int item_slot, u8 i_itemNo) {
-    if (item_slot < MAX_ITEM_SLOTS) {
-        mItems[item_slot] = i_itemNo;
+void dSv_player_item_c::setItem(int i_slotNo, u8 i_itemNo) {
+    if (i_slotNo < MAX_ITEM_SLOTS) {
+        mItems[i_slotNo] = i_itemNo;
         setLineUpItem();
     }
 
     for (int i = DEFAULT_SELECT_ITEM_INDEX; i < MAX_SELECT_ITEM - 1; i++) {
-        if (item_slot == dComIfGs_getSelectItemIndex(i)) {
+        if (i_slotNo == dComIfGs_getSelectItemIndex(i)) {
             dComIfGp_setSelectItem(i);
         }
     }
 }
 
-u8 dSv_player_item_c::getItem(int slot_no, bool check_combo) const {
-    if (slot_no < MAX_ITEM_SLOTS) {
-        if (check_combo) {
+u8 dSv_player_item_c::getItem(int i_slotNo, bool i_checkCombo) const {
+    if (i_slotNo < MAX_ITEM_SLOTS) {
+        if (i_checkCombo) {
             for (int i = 0; i < SELECT_ITEM_NUM; i++) {
-                if ((slot_no == dComIfGs_getSelectItemIndex(i) ||
-                     slot_no == dComIfGs_getMixItemIndex(i)) &&
+                if ((i_slotNo == dComIfGs_getSelectItemIndex(i) ||
+                     i_slotNo == dComIfGs_getMixItemIndex(i)) &&
                     dComIfGs_getMixItemIndex(i) != NO_ITEM) {
                     u8 select_item = mItems[dComIfGs_getSelectItemIndex(i)];
                     u8 mix_item = mItems[dComIfGs_getMixItemIndex(i)];
@@ -516,14 +517,16 @@ u8 dSv_player_item_c::getItem(int slot_no, bool check_combo) const {
                 }
             }
         }
-        return mItems[slot_no];
+        return mItems[i_slotNo];
     }
 
     return NO_ITEM;
 }
 
-static u8 i_item_lst[23] = {0x0A, 0x08, 0x06, 0x02, 0x09, 0x04, 0x03, 0x00, 0x01, 0x17, 0x14, 0x05,
-                            0x0F, 0x10, 0x11, 0x0B, 0x0C, 0x0D, 0x0E, 0x13, 0x12, 0x16, 0x15};
+static u8 i_item_lst[23] = {
+    0x0A, 0x08, 0x06, 0x02, 0x09, 0x04, 0x03, 0x00, 0x01, 0x17, 0x14, 0x05,
+    0x0F, 0x10, 0x11, 0x0B, 0x0C, 0x0D, 0x0E, 0x13, 0x12, 0x16, 0x15,
+};
 
 /* 800332F8-80033354 02DC38 005C+00 2/2 0/0 0/0 .text setLineUpItem__17dSv_player_item_cFv */
 // this is close
@@ -554,10 +557,11 @@ asm void dSv_player_item_c::setLineUpItem() {
 #pragma pop
 #endif
 
-u8 dSv_player_item_c::getLineUpItem(int slot_no) const {
-    if (slot_no < MAX_ITEM_SLOTS) {
-        return mItemSlots[slot_no];
+u8 dSv_player_item_c::getLineUpItem(int i_slotNo) const {
+    if (i_slotNo < MAX_ITEM_SLOTS) {
+        return mItemSlots[i_slotNo];
     }
+
     return NO_ITEM;
 }
 
@@ -771,13 +775,13 @@ u8 dSv_player_item_c::checkEmptyBottle() {
     return bottleNum;
 }
 
-void dSv_player_item_c::setBombBagItemIn(u8 curBomb, u8 newBomb, bool setNum) {
+void dSv_player_item_c::setBombBagItemIn(u8 i_curBomb, u8 i_newBomb, bool i_setNum) {
     for (int i = 0; i < 3; i++) {
-        if (curBomb == mItems[i + SLOT_15]) {
-            setItem(i + SLOT_15, newBomb);
+        if (i_curBomb == mItems[i + SLOT_15]) {
+            setItem(i + SLOT_15, i_newBomb);
 
-            if (setNum == true && newBomb != BOMB_BAG_LV1) {
-                dComIfGs_setBombNum(i, dComIfGs_getBombMax(newBomb));
+            if (i_setNum == true && i_newBomb != BOMB_BAG_LV1) {
+                dComIfGs_setBombNum(i, dComIfGs_getBombMax(i_newBomb));
             }
 
             for (int j = 0; j < 3; j++) {
@@ -790,16 +794,16 @@ void dSv_player_item_c::setBombBagItemIn(u8 curBomb, u8 newBomb, bool setNum) {
     }
 }
 
-void dSv_player_item_c::setBombBagItemIn(u8 curBomb, u8 newBomb, u8 bombNum, bool setNum) {
+void dSv_player_item_c::setBombBagItemIn(u8 i_curBomb, u8 i_newBomb, u8 i_bombNum, bool i_setNum) {
     for (int i = 0; i < 3; i++) {
-        if (curBomb == mItems[i + SLOT_15]) {
-            setItem(i + SLOT_15, newBomb);
+        if (i_curBomb == mItems[i + SLOT_15]) {
+            setItem(i + SLOT_15, i_newBomb);
 
-            if (setNum == 1 && newBomb != BOMB_BAG_LV1) {
-                if (bombNum > dComIfGs_getBombMax(newBomb)) {
-                    bombNum = dComIfGs_getBombMax(newBomb);
+            if (i_setNum == 1 && i_newBomb != BOMB_BAG_LV1) {
+                if (i_bombNum > dComIfGs_getBombMax(i_newBomb)) {
+                    i_bombNum = dComIfGs_getBombMax(i_newBomb);
                 }
-                dComIfGs_setBombNum(i, bombNum);
+                dComIfGs_setBombNum(i, i_bombNum);
             }
 
             for (int j = 0; j < 3; j++) {
@@ -812,12 +816,12 @@ void dSv_player_item_c::setBombBagItemIn(u8 curBomb, u8 newBomb, u8 bombNum, boo
     }
 }
 
-void dSv_player_item_c::setEmptyBombBagItemIn(u8 newBomb, bool setNum) {
-    setBombBagItemIn(BOMB_BAG_LV1, newBomb, setNum);
+void dSv_player_item_c::setEmptyBombBagItemIn(u8 i_newBomb, bool i_setNum) {
+    setBombBagItemIn(BOMB_BAG_LV1, i_newBomb, i_setNum);
 }
 
-void dSv_player_item_c::setEmptyBombBagItemIn(u8 newBomb, u8 bombNum, bool setNum) {
-    setBombBagItemIn(BOMB_BAG_LV1, newBomb, bombNum, setNum);
+void dSv_player_item_c::setEmptyBombBagItemIn(u8 i_newBomb, u8 i_bombNum, bool i_setNum) {
+    setBombBagItemIn(BOMB_BAG_LV1, i_newBomb, i_bombNum, i_setNum);
 }
 
 void dSv_player_item_c::setEmptyBombBag() {
@@ -829,20 +833,20 @@ void dSv_player_item_c::setEmptyBombBag() {
     }
 }
 
-void dSv_player_item_c::setEmptyBombBag(u8 newBomb, u8 bombNum) {
+void dSv_player_item_c::setEmptyBombBag(u8 i_newBomb, u8 i_bombNum) {
     for (int i = 0; i < 3; i++) {
         if (dComIfGs_getItem((u8)(i + SLOT_15), true) == NO_ITEM) {
-            dComIfGs_setItem((u8)(i + SLOT_15), newBomb);
+            dComIfGs_setItem((u8)(i + SLOT_15), i_newBomb);
 
-            if (newBomb == BOMB_BAG_LV1) {
+            if (i_newBomb == BOMB_BAG_LV1) {
                 return;
             }
 
-            if (bombNum > dComIfGs_getBombMax(newBomb)) {
-                bombNum = dComIfGs_getBombMax(newBomb);
+            if (i_bombNum > dComIfGs_getBombMax(i_newBomb)) {
+                i_bombNum = dComIfGs_getBombMax(i_newBomb);
             }
 
-            dComIfGs_setBombNum(i, bombNum);
+            dComIfGs_setBombNum(i, i_bombNum);
             return;
         }
     }
@@ -895,17 +899,17 @@ void dSv_player_item_c::setBaitItem(u8 i_itemNo) {
     switch (i_itemNo) {
     case BEE_CHILD: {
         i_dComIfGs_isItemFirstBit(ZORAS_JEWEL) ? mItems[SLOT_20] = JEWEL_BEE_ROD :
-                                               mItems[SLOT_20] = BEE_ROD;
+                                                 mItems[SLOT_20] = BEE_ROD;
         break;
     }
     case WORM: {
         i_dComIfGs_isItemFirstBit(ZORAS_JEWEL) ? mItems[SLOT_20] = JEWEL_WORM_ROD :
-                                               mItems[SLOT_20] = WORM_ROD;
+                                                 mItems[SLOT_20] = WORM_ROD;
         break;
     }
     case NO_ITEM: {
         i_dComIfGs_isItemFirstBit(ZORAS_JEWEL) ? mItems[SLOT_20] = JEWEL_ROD :
-                                               mItems[SLOT_20] = FISHING_ROD_1;
+                                                 mItems[SLOT_20] = FISHING_ROD_1;
         break;
     }
     }
@@ -976,20 +980,20 @@ void dSv_player_item_record_c::init() {
     }
 }
 
-void dSv_player_item_record_c::setBombNum(u8 i_bagIdx, u8 bag_id) {
-    mBombNum[i_bagIdx] = bag_id;
+void dSv_player_item_record_c::setBombNum(u8 i_bagIdx, u8 i_bombNum) {
+    mBombNum[i_bagIdx] = i_bombNum;
 }
 
 u8 dSv_player_item_record_c::getBombNum(u8 i_bagIdx) const {
     return mBombNum[i_bagIdx];
 }
 
-void dSv_player_item_record_c::setBottleNum(u8 i_bottleIdx, u8 bottle_num) {
-    mBottleNum[i_bottleIdx] = bottle_num;
+void dSv_player_item_record_c::setBottleNum(u8 i_bottleIdx, u8 i_bottleNum) {
+    mBottleNum[i_bottleIdx] = i_bottleNum;
 }
 
-u8 dSv_player_item_record_c::addBottleNum(u8 i_bottleIdx, s16 num) {
-    int bottleNum = mBottleNum[i_bottleIdx] + num;
+u8 dSv_player_item_record_c::addBottleNum(u8 i_bottleIdx, s16 i_no) {
+    int bottleNum = mBottleNum[i_bottleIdx] + i_no;
 
     dComIfGs_getItem((u8)(i_bottleIdx + SLOT_11), true);
 
@@ -1018,27 +1022,27 @@ void dSv_player_item_max_c::init() {
     mItemMax[7] = 0;
 }
 
-void dSv_player_item_max_c::setBombNum(u8 bomb_id, u8 bomb_max) {
-    switch (bomb_id) {
+void dSv_player_item_max_c::setBombNum(u8 i_bombType, u8 i_maxNum) {
+    switch (i_bombType) {
     case NORMAL_BOMB:
-        mItemMax[NORMAL_BOMB_MAX] = bomb_max;
+        mItemMax[NORMAL_BOMB_MAX] = i_maxNum;
         return;
     case WATER_BOMB:
-        mItemMax[WATER_BOMB_MAX] = bomb_max;
+        mItemMax[WATER_BOMB_MAX] = i_maxNum;
         return;
     case POKE_BOMB:
-        mItemMax[POKE_BOMB_MAX] = bomb_max;
+        mItemMax[POKE_BOMB_MAX] = i_maxNum;
         return;
     }
 }
 
-u8 dSv_player_item_max_c::getBombNum(u8 bombId) const {
+u8 dSv_player_item_max_c::getBombNum(u8 i_bombType) const {
     u8 lv_multiplier = 1;
     if (i_dComIfGs_isItemFirstBit(BOMB_BAG_LV2)) {
         lv_multiplier = 2;
     }
 
-    switch (bombId) {
+    switch (i_bombType) {
     case NORMAL_BOMB:
         return (u8)(mItemMax[NORMAL_BOMB_MAX] * lv_multiplier);
     case WATER_BOMB:
@@ -1106,9 +1110,9 @@ void dSv_light_drop_c::init() {
     }
 }
 
-void dSv_light_drop_c::setLightDropNum(u8 i_nowLevel, u8 dropNum) {
+void dSv_light_drop_c::setLightDropNum(u8 i_nowLevel, u8 i_dropNum) {
     if (i_nowLevel < LIGHT_DROP_STAGE || i_nowLevel > 6) {
-        mLightDropNum[i_nowLevel] = dropNum;
+        mLightDropNum[i_nowLevel] = i_dropNum;
     }
 }
 
@@ -1166,9 +1170,9 @@ void dSv_fishing_info_c::init() {
     }
 }
 
-void dSv_fishing_info_c::addFishCount(u8 fish_index) {
-    if (mFishCount[fish_index] < 999) {
-        mFishCount[fish_index] += 1;
+void dSv_fishing_info_c::addFishCount(u8 i_fishIdx) {
+    if (mFishCount[i_fishIdx] < 999) {
+        mFishCount[i_fishIdx] += 1;
     }
 }
 
@@ -1384,15 +1388,15 @@ BOOL dSv_memory2_c::isVisitedRoom(int i_no) {
     return (1 << (i_no & 0x1F) & mVisitedRoom[i_no >> 5]) ? TRUE : FALSE;
 }
 
-bool dSv_danBit_c::init(s8 i_stage) {
-    if (i_stage != mStageNo) {
+bool dSv_danBit_c::init(s8 i_stageNo) {
+    if (i_stageNo != mStageNo) {
         mSwitch[0] = 0;
         mSwitch[1] = 0;
         mItem[0] = 0;
         mItem[1] = 0;
         mItem[2] = 0;
         mItem[3] = 0;
-        mStageNo = i_stage;
+        mStageNo = i_stageNo;
         unk1 = 0;
 
         for (int i = 0; i < 16; i++) {
@@ -1921,8 +1925,7 @@ int dSv_info_c::initdata_to_card(char* card_ptr, int dataNum) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int dSv_info_c::initdata_to_card(char* card_ptr, int dataNum) {
-    nofralloc
+asm int dSv_info_c::initdata_to_card(char* card_ptr, int dataNum){nofralloc
 #include "asm/d/save/d_save/initdata_to_card__10dSv_info_cFPci.s"
 }
 #pragma pop

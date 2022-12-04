@@ -59,11 +59,11 @@ int daAlink_c::checkNextActionBoard() {
 
 /* 80106618-80106650 100F58 0038+00 2/2 0/0 0/0 .text checkBoardSwordTriggerAction__9daAlink_cFv
  */
-void daAlink_c::checkBoardSwordTriggerAction() {
+int daAlink_c::checkBoardSwordTriggerAction() {
     if (i_checkModeFlg(2)) {
-        procBoardCutInit();
+        return procBoardCutInit();
     } else {
-        procBoardWaitInit(NULL);
+        return procBoardWaitInit(NULL);
     }
 }
 
@@ -106,7 +106,7 @@ asm void daAlink_c::setBoardLandAnime() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procBoardRideInit() {
+asm int daAlink_c::procBoardRideInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procBoardRideInit__9daAlink_cFv.s"
 }
@@ -118,8 +118,8 @@ int daAlink_c::procBoardRide() {
 
     if (mLinkAcch.ChkGroundHit()) {
         if (field_0x280c.getActor()) {
-            mCollisionRot.y = field_0x280c.getActor()->mCollisionRot.y + -0x4000;
-            current.angle.y = mCollisionRot.y;
+            shape_angle.y = field_0x280c.getActor()->shape_angle.y + -0x4000;
+            current.angle.y = shape_angle.y;
             procBoardWaitInit(field_0x280c.getActor());
         } else {
             checkNextAction(1);
@@ -144,7 +144,7 @@ asm int daAlink_c::procBoardWaitInit(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procBoardWait() {
+asm int daAlink_c::procBoardWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procBoardWait__9daAlink_cFv.s"
 }
@@ -166,7 +166,7 @@ int daAlink_c::procBoardRowInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procBoardRow() {
+asm int daAlink_c::procBoardRow() {
     nofralloc
 #include "asm/d/a/d_a_alink/procBoardRow__9daAlink_cFv.s"
 }
@@ -177,7 +177,7 @@ int daAlink_c::procBoardTurnInit() {
     commonProcInit(PROC_BOARD_TURN);
     setSingleAnime(ANM_RIDE_JUMP, FLOAT_LABEL(lit_6108), lit_6040, daAlinkHIO_board_c0::m.mAirborneAnm.mEndF, lit_6109);
     mNormalSpeed = FLOAT_LABEL(lit_6108);
-    field_0x3010 = mCollisionRot.y + 0x8000;
+    field_0x3010 = shape_angle.y + 0x8000;
     field_0x3012 = 0;
     field_0x300a = 0;
 
@@ -188,7 +188,7 @@ int daAlink_c::procBoardTurnInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procBoardTurn() {
+asm int daAlink_c::procBoardTurn() {
     nofralloc
 #include "asm/d/a/d_a_alink/procBoardTurn__9daAlink_cFv.s"
 }
@@ -260,19 +260,19 @@ int daAlink_c::procBoardSubjectivityInit() {
  */
 int daAlink_c::procBoardSubjectivity() {
     i_onResetFlg0(0x4000000);
-    s16 shape_angle = mCollisionRot.y;
-    s16 angle = current.angle.y;
+    s16 old_shape_angle = shape_angle.y;
+    s16 old_angle = current.angle.y;
 
     if (boardCommon(0)) {
         return 1;
     }
 
-    mCollisionRot.y = shape_angle;
+    shape_angle.y = old_shape_angle;
 
     if (checkSubjectEnd(1)) {
         procBoardWaitInit(NULL);
     } else {
-        setRideSubjectAngle(angle);
+        setRideSubjectAngle(old_angle);
     }
 
     return 1;
@@ -327,7 +327,7 @@ int daAlink_c::procBoardCut() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procBoardCutTurnInit() {
+asm int daAlink_c::procBoardCutTurnInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procBoardCutTurnInit__9daAlink_cFv.s"
 }
@@ -337,7 +337,7 @@ asm void daAlink_c::procBoardCutTurnInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procBoardCutTurn() {
+asm int daAlink_c::procBoardCutTurn() {
     nofralloc
 #include "asm/d/a/d_a_alink/procBoardCutTurn__9daAlink_cFv.s"
 }

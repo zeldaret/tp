@@ -94,6 +94,7 @@ public:
     void onStateFlg0(daBoomerang_FLG0 flag) { mStateFlg0 |= flag; }
     void onWindCatch() { onStateFlg0(WIND_CATCH); }
     bool checkForceDelete() const { return mForceDelete; }
+    void onForceDelete() { mForceDelete = true; }
     bool checkCharge() const { return true; }
     void setThrow() { fopAcM_SetParam(this, 1); }
     void setAimActor(fopAc_ac_c* i_actor) { (this->*mpSetAimActorFn)(i_actor); }

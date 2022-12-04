@@ -112,20 +112,18 @@ void daAlink_c::setSpinnerSyncPos() {
     daSpinner_c* spinner = (daSpinner_c*)mRideAcKeep.getActor();
 
     mDoMtx_multVecZero(spinner->getModelMtx(), &current.pos);
-    mDoMtx_stack_c::ZXYrotS(spinner->mCollisionRot);
-    mDoMtx_stack_c::YrotM(mCollisionRot.y - spinner->mCollisionRot.y);
-    mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &mCollisionRot);
+    mDoMtx_stack_c::ZXYrotS(spinner->shape_angle);
+    mDoMtx_stack_c::YrotM(shape_angle.y - spinner->shape_angle.y);
+    mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &shape_angle);
     field_0x37a4 = spinner->current.pos;
 }
 
 /* 8010DC64-8010DDCC 1085A4 0168+00 1/1 0/0 0/0 .text            procSpinnerReadyInit__9daAlink_cFv
  */
-// matches with literals
-#ifdef NONMATCHING
 int daAlink_c::procSpinnerReadyInit() {
     fopAc_ac_c* spinner = (fopAc_ac_c*)fopAcM_fastCreate(
         PROC_SPINNER, daSpinner_c::getWaitArg(), &current.pos, fopAcM_GetRoomNo(this),
-        &mCollisionRot, NULL, -1, NULL, NULL);
+        &shape_angle, NULL, -1, NULL, NULL);
 
     if (spinner == NULL) {
         return 0;
@@ -133,20 +131,20 @@ int daAlink_c::procSpinnerReadyInit() {
 
     commonProcInit(PROC_SPINNER_READY);
     mRideAcKeep.setData(spinner);
-    setSingleAnime(ANM_VJUMP_START, daAlinkHIO_smallJump_c0::m.mSmallJumpAnm.mRate, 6.0f,
+    setSingleAnime(ANM_VJUMP_START, daAlinkHIO_smallJump_c0::m.mSmallJumpAnm.mRate, lit_7977,
                    daAlinkHIO_smallJump_c0::m.mSmallJumpAnm.mEndF,
                    daAlinkHIO_smallJump_c0::m.mSmallJumpAnm.mInterpolation);
-    mNormalSpeed = 0.0f;
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
     setHeavyBoots(0);
 
-    mSpeed.y = 26.0f;
+    mSpeed.y = lit_7451;
     voiceStart(Z2SE_AL_V_JUMP_S);
     seStartOnlyReverb(Z2SE_AL_SPINNER_START);
 
     field_0x2f99 = 15;
     deleteEquipItem(TRUE, TRUE);
 
-    current.angle.y = mCollisionRot.y;
+    current.angle.y = shape_angle.y;
     field_0x3588 = l_waitBaseAnime;
     field_0x33b0 = field_0x3588.y;
     field_0x34d4 = l_waitBaseAnime;
@@ -154,16 +152,6 @@ int daAlink_c::procSpinnerReadyInit() {
 
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daAlink_c::procSpinnerReadyInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procSpinnerReadyInit__9daAlink_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8010DDCC-8010DE64 10870C 0098+00 1/0 0/0 0/0 .text            procSpinnerReady__9daAlink_cFv */
 int daAlink_c::procSpinnerReady() {
@@ -211,7 +199,7 @@ int daAlink_c::procSpinnerWaitInit() {
     mNormalSpeed = 0.0f;
     mCommonCounter = 0;
 
-    field_0x300e = mCollisionRot.y;
+    field_0x300e = shape_angle.y;
     field_0x3010 = 0;
     field_0x3198 = ANM_RIDE_CROUCH;
     field_0x33b0 = 70.0f;
@@ -259,13 +247,13 @@ int daAlink_c::procSpinnerWait() {
             s16 angle = field_0x33ac * 384.0f * field_0x33ac;
 
             if (direction == DIR_LEFT) {
-                mCollisionRot.y += angle;
+                shape_angle.y += angle;
             } else if (direction == DIR_RIGHT) {
-                mCollisionRot.y -= angle;
+                shape_angle.y -= angle;
             }
 
-            current.angle.y = mCollisionRot.y;
-            field_0x300e = mCollisionRot.y;
+            current.angle.y = shape_angle.y;
+            field_0x300e = shape_angle.y;
         }
     } else {
         if (checkSetItemTrigger(SPINNER) || swordSwingTrigger() || itemSetBtn == 2) {
@@ -341,7 +329,7 @@ int daAlink_c::procSpinnerWait() {
     }
 
     setSpinnerSyncPos();
-    mCollisionRot.y = field_0x300e;
+    shape_angle.y = field_0x300e;
 
     return 1;
 }

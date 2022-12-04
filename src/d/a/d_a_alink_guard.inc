@@ -1,13 +1,8 @@
 /* 800DC548-800DC5A4 0D6E88 005C+00 13/13 0/0 0/0 .text checkEnemyGroup__9daAlink_cFP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daAlink_c::checkEnemyGroup(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkEnemyGroup__9daAlink_cFP10fopAc_ac_c.s"
+BOOL daAlink_c::checkEnemyGroup(fopAc_ac_c* i_actor) {
+    return i_actor != NULL && (fopAcM_GetGroup(i_actor) == 2 || fopAcM_GetName(i_actor) == PROC_E_ZH || checkSpecialNpc(i_actor));
 }
-#pragma pop
 
 /* 800DC5A4-800DC5DC 0D6EE4 0038+00 4/4 0/0 0/0 .text checkSpecialNpc__9daAlink_cFP10fopAc_ac_c */
 #pragma push
@@ -63,14 +58,9 @@ asm void daAlink_c::setArrowShieldActor(fopAc_ac_c* param_0, int param_1) {
 
 /* 800DCA2C-800DCA80 0D736C 0054+00 1/1 0/0 2/2 .text
  * checkWoodShieldEquipNotIronBall__9daAlink_cCFv               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkWoodShieldEquipNotIronBall() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkWoodShieldEquipNotIronBall__9daAlink_cCFv.s"
+BOOL daAlink_c::checkWoodShieldEquipNotIronBall() const {
+    return checkWoodShieldEquip() && !checkIronBallEquip();
 }
-#pragma pop
 
 /* 800DCA80-800DCD74 0D73C0 02F4+00 0/0 0/0 1/1 .text
  * getArrowShieldOffset__9daAlink_cCFPC4cXyzPC5csXyzP4cXyzP4cXyz */
@@ -86,98 +76,57 @@ asm void daAlink_c::getArrowShieldOffset(cXyz const* param_0, csXyz const* param
 
 /* 800DCD74-800DCDF0 0D76B4 007C+00 0/0 0/0 2/2 .text
  * setArrowShieldPos__9daAlink_cCFP4cXyzP5csXyzPC4cXyzPC4cXyz   */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setArrowShieldPos(cXyz* param_0, csXyz* param_1, cXyz const* param_2,
-                                      cXyz const* param_3) const {
-    nofralloc
-#include "asm/d/a/d_a_alink/setArrowShieldPos__9daAlink_cCFP4cXyzP5csXyzPC4cXyzPC4cXyz.s"
+void daAlink_c::setArrowShieldPos(cXyz* param_0, csXyz* param_1, cXyz const* param_2,
+                                  cXyz const* param_3) const {
+    cXyz sp1C;
+
+    mDoMtx_multVecSR(getShieldMtx(), param_3, &sp1C);
+    param_1->x = sp1C.atan2sY_XZ();
+    param_1->y = sp1C.atan2sX_Z();
+
+    mDoMtx_multVec(getShieldMtx(), param_2, param_0);
 }
-#pragma pop
 
 /* 800DCDF0-800DCE6C 0D7730 007C+00 17/17 0/0 0/0 .text checkUpperGuardAnime__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daAlink_c::checkUpperGuardAnime() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkUpperGuardAnime__9daAlink_cCFv.s"
+BOOL daAlink_c::checkUpperGuardAnime() const {
+    return i_checkNoResetFlg2(FLG2_UNK_8000000) && !checkEventRun() && !i_checkNoResetFlg0(FLG0_UNK_2) &&
+           mProcID != PROC_GUARD_BREAK && mProcID != PROC_CUT_REVERSE && mProcID != PROC_GUARD_ATTACK;
 }
-#pragma pop
 
 /* 800DCE6C-800DCF04 0D77AC 0098+00 1/0 0/0 0/0 .text            checkPlayerGuard__9daAlink_cCFv */
-#ifdef NONMATCHING
 BOOL daAlink_c::checkPlayerGuard() const {
-    bool ret = true;
-    bool bvar2 = true;
-    if (!i_checkSmallUpperGuardAnime()) {
-        bool bvar1 = false;
-        if (i_checkShieldGet() && checkHorseLieAnime()) {
-            bvar1 = true;
-        }
-        if (!bvar1) {
-            bvar2 = false;
-        }
-    }
-
-    if (!bvar2 && !checkUpperGuardAnime()) {
-        ret = false;
-    }
-
-    return ret;
+    return (i_checkSmallUpperGuardAnime() || (i_checkShieldGet() && checkHorseLieAnime())) ||
+            checkUpperGuardAnime();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daAlink_c::checkPlayerGuard() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkPlayerGuard__9daAlink_cCFv.s"
-}
-#pragma pop
-#endif
 
 /* 800DCF04-800DCF64 0D7844 0060+00 5/5 0/0 0/0 .text checkPlayerGuardAndAttack__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkPlayerGuardAndAttack() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkPlayerGuardAndAttack__9daAlink_cCFv.s"
+BOOL daAlink_c::checkPlayerGuardAndAttack() const {
+    return checkPlayerGuard() || mProcID == PROC_GUARD_ATTACK;
 }
-#pragma pop
 
 /* 800DCF64-800DD008 0D78A4 00A4+00 2/2 0/0 0/0 .text            checkGuardAccept__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkGuardAccept() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkGuardAccept__9daAlink_cFv.s"
+BOOL daAlink_c::checkGuardAccept() {
+    return i_checkModeFlg(0x80) && i_checkShieldGet() && !i_checkFmChainGrabAnime() && !checkNotBattleStage();
 }
-#pragma pop
 
 /* 800DD008-800DD018 0D7948 0010+00 11/11 0/0 0/0 .text            setUpperGuardAnime__9daAlink_cFf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setUpperGuardAnime(f32 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setUpperGuardAnime__9daAlink_cFf.s"
+void daAlink_c::setUpperGuardAnime(f32) {
+    i_onNoResetFlg2(FLG2_UNK_8000000);
 }
-#pragma pop
 
 /* 800DD018-800DD114 0D7958 00FC+00 1/1 0/0 0/0 .text            setShieldGuard__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setShieldGuard() {
-    nofralloc
-#include "asm/d/a/d_a_alink/setShieldGuard__9daAlink_cFv.s"
+void daAlink_c::setShieldGuard() {
+    if ((mProcID == PROC_GUARD_SLIP && mEquipItem != IRONBALL) || i_checkSmallUpperGuardAnime() ||
+        (checkGuardAccept() && !checkGrabAnime() && !checkUpperReadyThrowAnime() &&
+        !checkDkCaught2Anime() && !checkKandelaarSwingAnime() && !checkCutDashAnime() &&
+        !checkCutDashChargeAnime() && (!checkEquipAnime() || checkUpperGuardAnime()) &&
+        !i_checkRideOn() && checkGuardActionChange())) {
+        i_onNoResetFlg2(FLG2_UNK_8000000);
+    } else {
+        i_offNoResetFlg2(FLG2_UNK_8000000);
+    }
 }
-#pragma pop
 
 /* 800DD114-800DD1D4 0D7A54 00C0+00 1/1 0/0 0/0 .text setGuardSe__9daAlink_cFP12dCcD_GObjInf */
 #pragma push
@@ -204,7 +153,7 @@ asm void daAlink_c::setSmallGuard(dCcD_GObjInf* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGuardSlipInit(int param_0, dCcD_GObjInf* param_1) {
+asm int daAlink_c::procGuardSlipInit(int param_0, dCcD_GObjInf* param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/procGuardSlipInit__9daAlink_cFiP12dCcD_GObjInf.s"
 }
@@ -214,7 +163,7 @@ asm void daAlink_c::procGuardSlipInit(int param_0, dCcD_GObjInf* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGuardSlip() {
+asm int daAlink_c::procGuardSlip() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGuardSlip__9daAlink_cFv.s"
 }
@@ -225,7 +174,7 @@ asm void daAlink_c::procGuardSlip() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGuardAttackInit() {
+asm int daAlink_c::procGuardAttackInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGuardAttackInit__9daAlink_cFv.s"
 }
@@ -235,7 +184,7 @@ asm void daAlink_c::procGuardAttackInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGuardAttack() {
+asm int daAlink_c::procGuardAttack() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGuardAttack__9daAlink_cFv.s"
 }
@@ -245,7 +194,7 @@ asm void daAlink_c::procGuardAttack() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGuardBreakInit() {
+asm int daAlink_c::procGuardBreakInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGuardBreakInit__9daAlink_cFv.s"
 }
@@ -255,7 +204,7 @@ asm void daAlink_c::procGuardBreakInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGuardBreak() {
+asm int daAlink_c::procGuardBreak() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGuardBreak__9daAlink_cFv.s"
 }
@@ -275,7 +224,7 @@ asm bool daAlink_c::procTurnMoveInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procTurnMove() {
+asm int daAlink_c::procTurnMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procTurnMove__9daAlink_cFv.s"
 }
