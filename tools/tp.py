@@ -157,36 +157,43 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
         )
         sys.exit(1)
 
-    c27 = compilers.joinpath("2.7")
-    if not c27.exists() or not c27.is_dir():
-        LOG.error(
-            (
-                f"Unable to find MWCC compiler version 2.7: missing directory '{c27}'\n"
-                f"Check the README for instructions on how to obtain the compilers"
-            )
-        )
-        sys.exit(1)
-
+    c27 = compilers.joinpath("1.2.5")
     c27_lmgr326b = c27.joinpath("Lmgr326b.dll")
-    if not c27_lmgr326b.exists() or not c27_lmgr326b.is_file():
-        c27_lmgr326b = c27.joinpath("lmgr326b.dll")
-    if not c27_lmgr326b.exists() or not c27_lmgr326b.is_file():
-        c27_lmgr326b = c27.joinpath("LMGR326B.dll")
-    if not c27_lmgr326b.exists() or not c27_lmgr326b.is_file():
-        c27_lmgr326b = c27.joinpath("LMGR326B.DLL")
-    if not c27_lmgr326b.exists() or not c27_lmgr326b.is_file():
-        LOG.error(
-            (
-                f"Unable to find 'lmgr326b.dll' in '{c27}': missing file '{c27_lmgr326b}'\n"
-                f"Check the README for instructions on how to obtain the compilers"
-            )
-        )
-        sys.exit(1)
 
-    c27_lmgr326b_cc = c27.joinpath("LMGR326B.dll")
-    if not c27_lmgr326b_cc.exists() or not c27_lmgr326b_cc.is_file():
-        LOG.debug(f"copy: '{c27_lmgr326b}', to: '{c27_lmgr326b_cc}'")
-        shutil.copy(c27_lmgr326b, c27_lmgr326b_cc)
+    def capitalizeLMGR():
+        if not c27.exists() or not c27.is_dir():
+            LOG.error(
+                (
+                    f"Unable to find MWCC compiler version 2.7: missing directory '{c27}'\n"
+                    f"Check the README for instructions on how to obtain the compilers"
+                )
+            )
+            sys.exit(1)
+
+        c27_lmgr326b = c27.joinpath("Lmgr326b.dll")
+        if not c27_lmgr326b.exists() or not c27_lmgr326b.is_file():
+            c27_lmgr326b = c27.joinpath("lmgr326b.dll")
+        if not c27_lmgr326b.exists() or not c27_lmgr326b.is_file():
+            c27_lmgr326b = c27.joinpath("LMGR326B.dll")
+        if not c27_lmgr326b.exists() or not c27_lmgr326b.is_file():
+            c27_lmgr326b = c27.joinpath("LMGR326B.DLL")
+        if not c27_lmgr326b.exists() or not c27_lmgr326b.is_file():
+            LOG.error(
+                (
+                    f"Unable to find 'lmgr326b.dll' in '{c27}': missing file '{c27_lmgr326b}'\n"
+                    f"Check the README for instructions on how to obtain the compilers"
+                )
+            )
+            sys.exit(1)
+
+        c27_lmgr326b_cc = c27.joinpath("LMGR326B.dll")
+        if not c27_lmgr326b_cc.exists() or not c27_lmgr326b_cc.is_file():
+            LOG.debug(f"copy: '{c27_lmgr326b}', to: '{c27_lmgr326b_cc}'")
+            shutil.copy(c27_lmgr326b, c27_lmgr326b_cc)
+
+    capitalizeLMGR()
+    c27 = compilers.joinpath("2.7")
+    capitalizeLMGR()
 
     c27_mwcceppc = c27.joinpath("mwcceppc.exe")
     if not c27_mwcceppc.exists() or not c27_mwcceppc.is_file():
@@ -283,9 +290,8 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
     text = Text("--- Complete")
     text.stylize("bold magenta")
     CONSOLE.print(text)
-    CONSOLE.print("You should now be able to build the project 👍")
+    CONSOLE.print("After giving execute permissions to the executables, you should be able to build the project 👍")
     CONSOLE.print("Check the README for instructions for further instructions")
-
 
 #
 # Progress
