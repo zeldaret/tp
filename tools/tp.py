@@ -158,7 +158,6 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
         sys.exit(1)
 
     c27 = compilers.joinpath("1.2.5")
-    c27_lmgr326b = c27.joinpath("Lmgr326b.dll")
 
     def capitalizeLMGR():
         if not c27.exists() or not c27.is_dir():
