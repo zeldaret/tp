@@ -13,24 +13,35 @@ This repo contains a WIP decompilation of The Legend of Zelda: Twilight Princess
         
 <!--te-->
 
-Project Setup
-=================
+# Project Setup
 
-1. Clone down project
+Before starting, the easiest way to setup this project is using WSL on Windows. Commands have been tested and confirmed to work with WSL2 on Windows 11 (but will probably work on Windows 10).
+
+[Here's a guide](https://learn.microsoft.com/en-us/windows/wsl/install#check-which-version-of-wsl-you-are-running) on how to check if you have WSL2 and get it in case you don't.
+
+**Run the commands in WSL** and not in CMD or PowerShell
+
+1. Clone down the project and once it finishes, enter the directory:
 
 ```bash
 $ git clone https://github.com/zeldaret/tp
+
+$ cd tp
 ```
 
-2. Setup compiler directory
+2. Setup compiler directory:
 
 ```bash
 $ mkdir -p tools/mwcc_compiler/
 ```
 
-3. Download `GC_COMPILERS.zip` from the [Discord](https://discord.gg/Nshw5pHS4h) server. See the pins in the `#tp-decomp` channel under the Twilight Princess group.
+3. Download `GC_COMPILERS.zip` from the [Discord](https://discord.gg/Nshw5pHS4h) server and place it into the root directory. See the pins in the `#tp-decomp` channel under the Twilight Princess group. An easy way to download the zip into the root folder is to use wget:
+```bash
+$ wget https://cdn.discordapp.com/attachments/749052920926044170/749054695112441856/GC_COMPILERS.zip
+```
+This link is the latest one as of 2022.12.09, but make sure you are downloading the latest version by getting it from the [Discord](https://discord.gg/Nshw5pHS4h) server (see pinned messages in `#tp-decomp` under the Twilight Princess group)!
 
-4. Extract `GC_COMPILERS.zip` into the previously created `mwcc_compiler` directory
+4. Extract `GC_COMPILERS.zip` into the previously created `mwcc_compiler` directory:
 
 ```bash
 $ unzip GC_COMPILERS.zip -d tools/mwcc_compiler/
@@ -44,18 +55,29 @@ $ unzip GC_COMPILERS.zip -d tools/mwcc_compiler/
 $ ./tp setup
 ```
 
-Building The Game
------
+7. Give execute permissions to the compiler files. Not doing this part can cause missing permissions errors while trying to build the game.
+```bash
+$ chmod +x tools/mwcc_compiler/* -R
+```
 
-1. To build a playable game, complete the [Project Setup](#project-setup) steps, then run
+# Building
+
+## Build game
+
+To build a playable game, complete the [Project Setup](#project-setup) steps, then run
 
 ```bash
 $ make game
 ```
+Even if you do everything correctly you might still get the error below, which you can (apparently) ignore.
+```bash
+### mwcceppc_patched.exe Driver Error:
+#   Cannot find my executable 'mwcceppc_patched.exe'
+```
 
 The completed build is under `build/dolzel2/game/sys/main.dol`
 
-Build DOL
+## Build DOL
 
 ```bash
 $ make
@@ -63,7 +85,7 @@ $ make
 
 (Note that any time you run make you can add the -j# argument where # is the amount of threads your system has in order to greatly speed up build times)
 
-Build RELs
+## Build RELs
 
 ```bash
 $ make rels
@@ -71,13 +93,13 @@ $ make rels
 
 The completed RELs will be under `build/dolzel2/rel`
 
-Extract Game Assets
+## Extract Game Assets
 
 ```bash
 $ make assets
 ```
 
-Create Expected Directory
+## Create Expected Directory
 
 1. Run `make`
 2. Run:
@@ -87,8 +109,7 @@ $ ./tp expected
 ```
 
 
-Clean Directories
------
+# Clean Directories
 
 Clean RELs
 
@@ -115,8 +136,8 @@ $ make clean
 ```
 
 
-Project Overview
-=================
+# Project Overview
+
 ```
 tp/
 ├── .github          # Github actions for this project.
