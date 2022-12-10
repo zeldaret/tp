@@ -909,6 +909,8 @@ int dStage_changeScene4Event(int i_exitId, s8 room_no, int i_wipe, bool param_3,
 void dStage_Create();
 static s32 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0);
 void dStage_restartRoom(u32 roomParam, u32 mode, int param_2);
+struct cBgS_GndChk;
+int dStage_RoomCheck(cBgS_GndChk* gndChk);
 
 inline s32 dStage_roomRead_dt_c_GetVrboxswitch(roomRead_data_class& data) {
     return data.field_0x2 & 8;

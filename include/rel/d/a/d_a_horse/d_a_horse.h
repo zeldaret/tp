@@ -159,6 +159,7 @@ public:
     void i_changeDemoMode(u32 param_0, int param_1) { field_0x1740 = param_0; field_0x1728 = param_1; }
     void i_changeOriginalDemo() { field_0x16b8 = 3; field_0x1728 = 0; }
     void i_setHorsePosAndAngle(cXyz const* i_pos, s16 i_angle) { (this->*mpSetHorsePosAngleFn)(i_pos, i_angle); }
+    void onRideFlg() { (this->*mpOnRideFlgFn)(); }
     void onStateFlg0(daHorse_FLG0 flag) { mStateFlg0 |= flag; }
     void offStateFlg0(daHorse_FLG0 flag) { mStateFlg0 &= ~flag; }
     void offNoDrawWait() { offStateFlg0(NO_DRAW_WAIT); }

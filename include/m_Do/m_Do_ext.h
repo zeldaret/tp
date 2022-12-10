@@ -182,6 +182,7 @@ public:
     /* 80140E2C */ mDoExt_AnmRatioPack();
 
     void setRatio(f32 ratio) { mRatio = ratio; }
+    f32 getRatio() { return mRatio; }
     J3DAnmTransform* getAnmTransform() { return mAnmTransform; }
     void setAnmTransform(J3DAnmTransform* anm) { mAnmTransform = anm; }
 

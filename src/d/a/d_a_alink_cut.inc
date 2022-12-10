@@ -151,12 +151,12 @@ void daAlink_c::resetCombo(int param_0) {
 }
 
 /* 800D1454-800D152C 0CBD94 00D8+00 1/1 0/0 0/0 .text            checkComboCnt__9daAlink_cFv */
-// something with i_checkAttentionLock
-#ifdef NONMATCHING
+#pragma push
+#pragma optimization_level 2
 void daAlink_c::checkComboCnt() {
     if ((mEquipItem == EQUIP_SWORD && mComboCutCount == 2) &&
-        (i_checkAttentionLock() && (field_0x122C[0].ChkAtHit() || field_0x122C[1].ChkAtHit() ||
-                                    field_0x122C[2].ChkAtHit()))) {
+        (i_checkAttentionLock() && (mAtCps[0].ChkAtHit() || mAtCps[1].ChkAtHit() ||
+                                    mAtCps[2].ChkAtHit()))) {
         i_onNoResetFlg0(FLG0_UNK_8000);
     }
     if (field_0x307e > 0) {
@@ -165,16 +165,7 @@ void daAlink_c::checkComboCnt() {
         resetCombo(1);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkComboCnt() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkComboCnt__9daAlink_cFv.s"
-}
 #pragma pop
-#endif
 
 /* 800D152C-800D1540 0CBE6C 0014+00 22/22 0/0 0/0 .text            setCutType__9daAlink_cFUc */
 void daAlink_c::setCutType(u8 type) {
@@ -225,7 +216,7 @@ bool daAlink_c::notSwordHitVibActor(fopAc_ac_c* p_actor) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::setSwordHitVibration(dCcD_GObjInf* param_0) {
+asm BOOL daAlink_c::setSwordHitVibration(dCcD_GObjInf* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/setSwordHitVibration__9daAlink_cFP12dCcD_GObjInf.s"
 }
@@ -650,7 +641,7 @@ asm int daAlink_c::procCutReverse() {
 #pragma pop
 
 /* 800D42FC-800D43F8 0CEC3C 00FC+00 2/2 0/0 0/0 .text            procCutJumpInit__9daAlink_cFi */
-bool daAlink_c::procCutJumpInit(int jump_type) {
+int daAlink_c::procCutJumpInit(int jump_type) {
     commonProcInit(PROC_CUT_JUMP);
     setSingleAnimeParam(ANM_CUT_JUMP, &daAlinkHIO_cutJump_c0::m.mCutAnm);
 
@@ -670,7 +661,7 @@ bool daAlink_c::procCutJumpInit(int jump_type) {
     setSwordComboVoice();
     dComIfGp_setPlayerStatus0(0, 0x8000);
     field_0x3198 = 2;
-    return true;
+    return 1;
 }
 
 /* 800D43F8-800D452C 0CED38 0134+00 1/0 0/0 0/0 .text            procCutJump__9daAlink_cFv */
@@ -705,7 +696,7 @@ bool daAlink_c::procCutJump() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool daAlink_c::procCutJump() {
+asm int daAlink_c::procCutJump() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCutJump__9daAlink_cFv.s"
 }

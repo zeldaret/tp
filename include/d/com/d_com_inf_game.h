@@ -749,6 +749,10 @@ inline dCcS* dComIfG_Ccsp() {
     return &g_dComIfG_gameInfo.play.mCcs;
 }
 
+inline dCcS& dComIfG_Ccsp2() {
+    return g_dComIfG_gameInfo.play.mCcs;
+}
+
 inline dRes_info_c* dComIfG_getObjectResInfo(const char* arc_name) {
     return g_dComIfG_gameInfo.mResControl.getObjectResInfo(arc_name);
 }
@@ -1151,7 +1155,7 @@ inline u16 dComIfGs_getOil() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getOil();
 }
 
-inline s16 dComIfGs_getMaxOil() {
+inline u16 dComIfGs_getMaxOil() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getMaxOil();
 }
 

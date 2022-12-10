@@ -327,7 +327,7 @@ int dMeter2_c::_create() {
     mNowOil = (s16)dComIfGs_getOil();
     dComIfGp_setItemNowOil(mNowOil);
 
-    mMaxOil = dComIfGs_getMaxOil();
+    mMaxOil = (s16)dComIfGs_getMaxOil();
 
     mNowOxygen = dComIfGp_getOxygen();
     dComIfGp_setNowOxygen(mNowOxygen);

@@ -46,7 +46,8 @@ BOOL daAlink_c::checkHorseDashAccept() {
 
 /* 800EC814-800EC87C 0E7154 0068+00 1/1 0/0 0/0 .text            checkCowGame__9daAlink_cFv */
 BOOL daAlink_c::checkCowGame() {
-    return checkStageName("F_SP00") && (dComIfGp_getStartStageLayer() == 4 || dComIfGp_getStartStageLayer() == 5);
+    return checkStageName("F_SP00") &&
+           (dComIfGp_getStartStageLayer() == 4 || dComIfGp_getStartStageLayer() == 5);
 }
 
 /* 800EC87C-800EC8F8 0E71BC 007C+00 2/2 0/0 0/0 .text            getReinRideDirection__9daAlink_cFv
@@ -100,14 +101,14 @@ asm void daAlink_c::initForceRideBoar() {
 #pragma pop
 
 /* 800ECB58-800ECBD0 0E7498 0078+00 4/4 0/0 0/0 .text            initForceRideHorse__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::initForceRideHorse() {
-    nofralloc
-#include "asm/d/a/d_a_alink/initForceRideHorse__9daAlink_cFv.s"
+void daAlink_c::initForceRideHorse() {
+    commonInitForceRideRein();
+    mRideStatus = 1;
+    mRideAcKeep.setData(i_dComIfGp_getHorseActor());
+    field_0x384c = (cXyz*)&l_horseBaseAnime;
+    i_dComIfGp_getHorseActor()->onRideFlg();
+    mZ2Link.setRiding(true);
 }
-#pragma pop
 
 /* 800ECBD0-800ECD90 0E7510 01C0+00 5/5 0/0 0/0 .text            rideGetOff__9daAlink_cFv */
 #pragma push
@@ -121,34 +122,20 @@ asm void daAlink_c::rideGetOff() {
 
 /* 800ECD90-800ECDC4 0E76D0 0034+00 1/1 0/0 0/0 .text checkHorseNotDamageReaction__9daAlink_cCFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkHorseNotDamageReaction() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkHorseNotDamageReaction__9daAlink_cCFv.s"
+BOOL daAlink_c::checkHorseNotDamageReaction() const {
+    return mProcID == PROC_HORSE_TURN || mProcID == PROC_HORSE_JUMP || mProcID == PROC_HORSE_HANG ||
+           mProcID == PROC_HORSE_LAND;
 }
-#pragma pop
 
 /* 800ECDC4-800ECDEC 0E7704 0028+00 1/1 0/0 2/2 .text checkHorseWaitLashAnime__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkHorseWaitLashAnime() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkHorseWaitLashAnime__9daAlink_cCFv.s"
+BOOL daAlink_c::checkHorseWaitLashAnime() const {
+    return checkHorseUnderDashStartAnime() && i_checkModeFlg(1);
 }
-#pragma pop
 
 /* 800ECDEC-800ECE10 0E772C 0024+00 1/1 0/0 0/0 .text checkHorseReinLeftOnly__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkHorseReinLeftOnly() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkHorseReinLeftOnly__9daAlink_cCFv.s"
+BOOL daAlink_c::checkHorseReinLeftOnly() const {
+    return (field_0x2fab & 8) && !(field_0x2fab & 0x10);
 }
-#pragma pop
 
 /* 800ECE10-800ECF04 0E7750 00F4+00 2/2 0/0 0/0 .text            getReinHandType__9daAlink_cCFv */
 #pragma push
@@ -162,35 +149,22 @@ asm void daAlink_c::getReinHandType() const {
 
 /* 800ECF04-800ECF5C 0E7844 0058+00 5/5 0/0 1/1 .text            checkHorseLieAnime__9daAlink_cCFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daAlink_c::checkHorseLieAnime() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkHorseLieAnime__9daAlink_cCFv.s"
+BOOL daAlink_c::checkHorseLieAnime() const {
+    return checkUnderMove0BckNoArc(ANM_HORSE_CROUCH) || checkUpperHorseLieAnime();
 }
-#pragma pop
 
 /* 800ECF5C-800ECF9C 0E789C 0040+00 0/0 0/0 3/3 .text checkHorseSubjectivity__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkHorseSubjectivity() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkHorseSubjectivity__9daAlink_cCFv.s"
+BOOL daAlink_c::checkHorseSubjectivity() const {
+    return i_dComIfGp_checkPlayerStatus0(0, 0x2000) || mProcID == PROC_HORSE_BOW_SUBJECT ||
+           mProcID == PROC_HORSE_HOOKSHOT_SUBJECT || mProcID == PROC_HORSE_BOOMERANG_SUBJECT;
 }
-#pragma pop
 
 /* 800ECF9C-800ECFF4 0E78DC 0058+00 2/2 0/0 0/0 .text            setHorseSwordUpAnime__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setHorseSwordUpAnime() {
-    nofralloc
-#include "asm/d/a/d_a_alink/setHorseSwordUpAnime__9daAlink_cFv.s"
+void daAlink_c::setHorseSwordUpAnime() {
+    setUpperAnimeBaseSpeed(0xCC, daAlinkHIO_horse_c0::m.field_0x5C, daAlinkHIO_horse_c0::m.field_0x60);
+    setFaceBck(0xE8, 1, 0xFFFF);
 }
-#pragma pop
 
 /* 800ECFF4-800ED074 0E7934 0080+00 1/1 0/0 0/0 .text setHorseTurnUpperAnime__9daAlink_cFi */
 #pragma push
@@ -203,14 +177,9 @@ asm void daAlink_c::setHorseTurnUpperAnime(int param_0) {
 #pragma pop
 
 /* 800ED074-800ED0D4 0E79B4 0060+00 9/9 0/0 0/0 .text checkHorseNoUpperAnime__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daAlink_c::checkHorseNoUpperAnime() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkHorseNoUpperAnime__9daAlink_cCFv.s"
+BOOL daAlink_c::checkHorseNoUpperAnime() const {
+    return checkHorseTiredAnime() || checkNoUpperAnime() || checkHorseSwordUpAnime();
 }
-#pragma pop
 
 /* 800ED0D4-800ED1F0 0E7A14 011C+00 0/0 0/0 2/2 .text getHorseReinHandPos__9daAlink_cFP4cXyzP4cXyz
  */
@@ -244,14 +213,9 @@ asm void daAlink_c::setHorseStirrup() {
 #pragma pop
 
 /* 800ED4B8-800ED4DC 0E7DF8 0024+00 1/1 0/0 0/0 .text            changeBoarRunRide__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::changeBoarRunRide() {
-    nofralloc
-#include "asm/d/a/d_a_alink/changeBoarRunRide__9daAlink_cFv.s"
+void daAlink_c::changeBoarRunRide() {
+    static_cast<e_wb_class*>(mRideAcKeep.getActor())->setRunRideMode();
 }
-#pragma pop
 
 /* 800ED4DC-800ED78C 0E7E1C 02B0+00 7/7 0/0 0/0 .text            setSyncHorsePos__9daAlink_cFv */
 #pragma push
@@ -284,14 +248,13 @@ asm void daAlink_c::setSyncBoarRunPos() {
 #pragma pop
 
 /* 800EDA24-800EDA78 0E8364 0054+00 33/33 0/0 0/0 .text            setSyncRidePos__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setSyncRidePos() {
-    nofralloc
-#include "asm/d/a/d_a_alink/setSyncRidePos__9daAlink_cFv.s"
+void daAlink_c::setSyncRidePos() {
+    if (checkHorseRide()) {
+        setSyncHorsePos();
+    } else {
+        setSyncBoarPos();
+    }
 }
-#pragma pop
 
 /* 800EDA78-800EDB48 0E83B8 00D0+00 6/6 0/0 0/0 .text            setHorseTurnAnime__9daAlink_cFv */
 #pragma push

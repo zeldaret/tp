@@ -28,15 +28,15 @@ public:
                                               NULL);
     }
 
-    fopAc_ac_c* getControllActor() { return mControllActor.getActor(); }
+    fopAc_ac_c* getControllActor() { return mControllAcKeep.getActor(); }
 
-    fopAc_ac_c* getCameraActor() { return mCameraActor.getActor(); }
+    fopAc_ac_c* getCameraActor() { return mCameraAcKeep.getActor(); }
 
     void setThrow() { fopAcM_SetParam(this, 2); }
 
 private:
     /* 0x568 */ J3DModel* field_568;
-    /* 0x56C */ mDoExt_bckAnm field_0x56c;
+    /* 0x56C */ mDoExt_bckAnm mBckAnm;
     /* 0x588 */ J3DAnmTevRegKey* field_0x588;
     /* 0x58C */ J3DAnmTextureSRTKey* field_0x58c;
     /* 0x590 */ dCcD_Stts field_0x590;
@@ -46,8 +46,8 @@ private:
     /* 0x731 */ u8 field_0x731;
     /* 0x732 */ u8 field_0x732;
     /* 0x734 */ cXyz field_0x734;
-    /* 0x740 */ daPy_actorKeep_c mControllActor;
-    /* 0x748 */ daPy_actorKeep_c mCameraActor;
+    /* 0x740 */ daPy_actorKeep_c mControllAcKeep;
+    /* 0x748 */ daPy_actorKeep_c mCameraAcKeep;
 };  // Size: 0x750
 
 #endif /* D_A_CROD_H */

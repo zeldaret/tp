@@ -233,10 +233,13 @@ public:
     };
 
     enum daPy_FLG1 {
+        FLG1_UNK_40000000 = 0x40000000,
         FLG1_UNK_10000000 = 0x10000000,
+        FLG1_UNK_4000000 = 0x4000000,
         FLG1_IS_WOLF = 0x2000000,
         FLG1_DASH_MODE = 0x400000,
         FLG1_UNK_10000 = 0x10000,
+        FLG1_UNK_8000 = 0x8000,
         FLG1_THROW_DAMAGE = 0x4000,
         FLG1_UNK_80 = 0x80,
         FLG1_UNK_40 = 0x40,
@@ -278,6 +281,8 @@ public:
 
     enum daPy_FLG3 {
         FLG3_UNK_40000000 = 0x40000000,
+        FLG3_UNK_20000000 = 0x20000000,
+        FLG3_UNK_4000000 = 0x4000000,
         FLG3_UNK_2000000 = 0x2000000,
         FLG3_UNK_1000000 = 0x1000000,
         FLG3_UNK_100000 = 0x100000,
@@ -289,6 +294,7 @@ public:
         FLG3_UNK_40 = 0x40,
         FLG3_UNK_20 = 0x20,
         FLG3_UNK_10 = 0x10,
+        FLG3_UNK_4 = 4,
     };
 
     enum daPy_ERFLG0 {
@@ -323,6 +329,7 @@ public:
         ERFLG1_UNK_100 = 0x100,
         ERFLG1_UNK_80 = 0x80,
         ERFLG1_UNK_10 = 0x10,
+        ERFLG1_UNK_20 = 0x20,
         ERFLG1_UNK_8 = 8,
         ERFLG1_UNK_4 = 4,
         ERFLG1_UNK_2 = 2,
@@ -337,6 +344,7 @@ public:
 
     enum daPy_RFLG0 {
         RFLG0_UNK_8000000 = 0x8000000,
+        RFLG0_UNK_4000000 = 0x4000000,
         RFLG0_UNK_4000 = 0x4000,
         RFLG0_ENEMY_ATTN_LOCK = 0x1000,
         RFLG0_UNK_400 = 0x400,
@@ -586,8 +594,8 @@ public:
     virtual bool checkSpinnerPathMove();
     virtual bool checkSpinnerTriggerAttack();
     virtual void onSpinnerPathForceRemove();
-    virtual bool getIronBallBgHit() const;
-    virtual bool getIronBallCenterPos();
+    virtual s16 getIronBallBgHit() const;
+    virtual cXyz* getIronBallCenterPos();
     virtual bool checkCanoeFishingGetLeft() const;
     virtual bool checkCanoeFishingGetRight() const;
     virtual u8 checkBeeChildDrink() const;
@@ -656,6 +664,12 @@ public:
     u16 getSwordAtUpTime() const { return mSwordUpTimer; }
     bool checkWaterInMove() const { return i_checkNoResetFlg0(FLG0_UNDERWATER); }
     bool checkSceneChangeAreaStart() const { return i_checkNoResetFlg2(FLG2_SCN_CHG_START); }
+    
+    void offGoronSideMove() {
+        if (i_checkGoronSideMove()) {
+            mSpecialMode = 0;
+        }
+    }
 
     // some functions use these function as an inline
     // is there a better way to handle this?

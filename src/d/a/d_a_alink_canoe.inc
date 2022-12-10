@@ -1,64 +1,51 @@
 /* 800F3BB0-800F3BDC 0EE4F0 002C+00 1/1 0/0 2/2 .text            getCanoeMaxSpeed__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getCanoeMaxSpeed() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/getCanoeMaxSpeed__9daAlink_cCFv.s"
+f32 daAlink_c::getCanoeMaxSpeed() const {
+    if (checkCanoeSlider()) {
+        return daAlinkHIO_canoe_c0::m.field_0x3C;
+    }
+
+    return daAlinkHIO_canoe_c0::m.field_0x24;
 }
-#pragma pop
 
 /* 800F3BDC-800F3BEC 0EE51C 0010+00 0/0 0/0 1/1 .text            getCanoeBackMaxSpeed__9daAlink_cCFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getCanoeBackMaxSpeed() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/getCanoeBackMaxSpeed__9daAlink_cCFv.s"
+f32 daAlink_c::getCanoeBackMaxSpeed() const {
+    return daAlinkHIO_canoe_c0::m.mBackMaxSpeed;
 }
-#pragma pop
 
 /* 800F3BEC-800F3C18 0EE52C 002C+00 0/0 0/0 1/1 .text            getCanoeCres__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getCanoeCres() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/getCanoeCres__9daAlink_cCFv.s"
+f32 daAlink_c::getCanoeCres() const {
+    if (checkCanoeSlider()) {
+        return daAlinkHIO_canoe_c0::m.field_0x44;
+    }
+
+    return daAlinkHIO_canoe_c0::m.field_0x28;
 }
-#pragma pop
 
 /* 800F3C18-800F3C44 0EE558 002C+00 2/2 0/0 0/0 .text            getCanoeSpeedRate__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getCanoeSpeedRate() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/getCanoeSpeedRate__9daAlink_cCFv.s"
+f32 daAlink_c::getCanoeSpeedRate() const {
+    if (checkCanoeSlider()) {
+        return daAlinkHIO_canoe_c0::m.field_0x40;
+    }
+
+    return daAlinkHIO_canoe_c0::m.field_0x20;
 }
-#pragma pop
 
 /* 800F3C44-800F3CCC 0EE584 0088+00 0/0 0/0 1/1 .text            getCanoeMaxRotSpeed__9daAlink_cCFv
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getCanoeMaxRotSpeed() const {
+asm s16 daAlink_c::getCanoeMaxRotSpeed() const {
     nofralloc
 #include "asm/d/a/d_a_alink/getCanoeMaxRotSpeed__9daAlink_cCFv.s"
 }
 #pragma pop
 
 /* 800F3CCC-800F3CD8 0EE60C 000C+00 1/1 0/0 1/1 .text getCanoeLocalPaddleTop__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getCanoeLocalPaddleTop() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getCanoeLocalPaddleTop__9daAlink_cFv.s"
+cXyz* daAlink_c::getCanoeLocalPaddleTop() {
+    return (cXyz*)&localPaddleTop;
 }
-#pragma pop
 
 /* 800F3CD8-800F3CF8 0EE618 0020+00 3/3 0/0 0/0 .text daAlink_searchCanoe__FP10fopAc_ac_cPv */
 #pragma push
@@ -82,78 +69,62 @@ asm void daAlink_c::checkCanoeRideTandem() {
 #pragma pop
 
 /* 800F3D58-800F3DA0 0EE698 0048+00 7/7 0/0 0/0 .text checkFishingRodAndLureItem__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daAlink_c::checkFishingRodAndLureItem() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkFishingRodAndLureItem__9daAlink_cCFv.s"
+BOOL daAlink_c::checkFishingRodAndLureItem() const {
+    return checkFisingRodLure() || checkFishingRodItem(mEquipItem);
 }
-#pragma pop
 
 /* 800F3DA0-800F3DFC 0EE6E0 005C+00 4/4 0/0 0/0 .text            initFishingRodHand__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::initFishingRodHand() {
-    nofralloc
-#include "asm/d/a/d_a_alink/initFishingRodHand__9daAlink_cFv.s"
+void daAlink_c::initFishingRodHand() {
+    field_0x2f94 = 0x65;
+    field_0x2f95 = 0x65;
+    field_0x3018 = 1;
+
+    if (mEquipItem == JEWEL_WORM_ROD || mEquipItem == WORM_ROD) {
+        mItemMode = 0x74;
+    } else if (mEquipItem == JEWEL_BEE_ROD || mEquipItem == BEE_ROD) {
+        mItemMode = 0x76;
+    } else {
+        mItemMode = 0xFF;
+    }
 }
-#pragma pop
 
 /* 800F3DFC-800F3E4C 0EE73C 0050+00 1/1 0/0 1/1 .text            getCanoePaddleMatrix__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getCanoePaddleMatrix() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getCanoePaddleMatrix__9daAlink_cFv.s"
+MtxP daAlink_c::getCanoePaddleMatrix() {
+    mDoMtx_stack_c::copy(getRightItemMatrix());
+    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    mDoMtx_stack_c::transM(tmp_0, tmp_0, lit_5944);
+    return mDoMtx_stack_c::get();
 }
-#pragma pop
 
 /* 800F3E4C-800F3EB8 0EE78C 006C+00 0/0 0/0 4/4 .text
  * checkFishingRodGrab__9daAlink_cCFP10fopAc_ac_c               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkFishingRodGrab(fopAc_ac_c* param_0) const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkFishingRodGrab__9daAlink_cCFP10fopAc_ac_c.s"
+BOOL daAlink_c::checkFishingRodGrab(fopAc_ac_c* param_0) const {
+    return checkFishingRodAndLureItem() && mItemAcKeep.getID() == fopAcM_GetID(param_0);
 }
-#pragma pop
 
 /* 800F3EB8-800F3F38 0EE7F8 0080+00 0/0 0/0 2/2 .text
  * checkCanoePaddleGrab__9daAlink_cCFP10fopAc_ac_c              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkCanoePaddleGrab(fopAc_ac_c* param_0) const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkCanoePaddleGrab__9daAlink_cCFP10fopAc_ac_c.s"
+BOOL daAlink_c::checkCanoePaddleGrab(fopAc_ac_c* param_0) const {
+    return mEquipItem == 0x10B && checkCanoeRideOwn(param_0);
 }
-#pragma pop
 
 /* 800F3F38-800F3FC4 0EE878 008C+00 0/0 0/0 1/1 .text checkCanoeFishingRodGrabOrPut__9daAlink_cCFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkCanoeFishingRodGrabOrPut() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkCanoeFishingRodGrabOrPut__9daAlink_cCFv.s"
+BOOL daAlink_c::checkCanoeFishingRodGrabOrPut() const {
+    return checkFisingRodLure() && checkCanoeRide() && (checkEquipAnime() ||
+           mProcID == PROC_CANOE_PADDLE_PUT || mProcID == PROC_CANOE_PADDLE_GRAB ||
+           mProcID == PROC_CANOE_ROD_GRAB);
 }
-#pragma pop
 
 /* 800F3FC4-800F4008 0EE904 0044+00 2/2 0/0 0/0 .text            initCanoeRide__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::initCanoeRide() {
-    nofralloc
-#include "asm/d/a/d_a_alink/initCanoeRide__9daAlink_cFv.s"
+void daAlink_c::initCanoeRide() {
+    field_0x3012 = 1;
+    field_0x3588 = l_waitBaseAnime;
+    field_0x384c = (cXyz*)&l_canoeBaseAnime;
+    mRideStatus = 3;
+    field_0x3010 = 0;
 }
-#pragma pop
 
 /* 800F4008-800F40E4 0EE948 00DC+00 2/2 0/0 0/0 .text            checkCanoeJumpRide__9daAlink_cFv */
 #pragma push
@@ -166,14 +137,13 @@ asm BOOL daAlink_c::checkCanoeJumpRide() {
 #pragma pop
 
 /* 800F40E4-800F4140 0EEA24 005C+00 2/2 0/0 0/0 .text            setArmReelAnime__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setArmReelAnime() {
-    nofralloc
-#include "asm/d/a/d_a_alink/setArmReelAnime__9daAlink_cFv.s"
+void daAlink_c::setArmReelAnime() {
+    setUpperAnimeBaseSpeed(0x1FB, lit_6040, lit_6041);
+    mUpperFrameCtrl[2].setRate(FLOAT_LABEL(lit_6108));
+    mNowAnmPackUpper[2].setRatio(lit_6040);
+    field_0x2f97 = 8;
+    i_offNoResetFlg1(FLG1_UNK_8000);
 }
-#pragma pop
 
 /* 800F4140-800F4490 0EEA80 0350+00 1/1 0/0 0/0 .text            setFishingWaitAction__9daAlink_cFv
  */
@@ -187,14 +157,22 @@ asm void daAlink_c::setFishingWaitAction() {
 #pragma pop
 
 /* 800F4490-800F4564 0EEDD0 00D4+00 3/3 0/0 0/0 .text            setFishGetFace__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setFishGetFace() {
-    nofralloc
-#include "asm/d/a/d_a_alink/setFishGetFace__9daAlink_cFv.s"
+void daAlink_c::setFishGetFace() {
+    if (field_0x2fc8 == 1) {
+        setFacePriBck(0x140);
+    } else if (field_0x2fc8 == 2) {
+        setFacePriTexture(FTANM_UNK_7A);
+        setFacePriBck(0x143);
+    } else if (field_0x2fc8 == 3) {
+        setFacePriTexture(FTANM_UNK_7B);
+        setFacePriBck(0x146);
+    } else if (field_0x2fc8 == 4) {
+        setFacePriTexture(FTANM_UNK_7C);
+        setFacePriBck(0x149);
+    } else {
+        resetFacePriAnime();
+    }
 }
-#pragma pop
 
 /* 800F4564-800F459C 0EEEA4 0038+00 3/3 0/0 0/0 .text
  * setRideCanoeBasePos__9daAlink_cFP10fopAc_ac_c                */
