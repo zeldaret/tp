@@ -1,3 +1,5 @@
+#include "rel/d/a/d_a_canoe/d_a_canoe.h"
+
 /* 800F3BB0-800F3BDC 0EE4F0 002C+00 1/1 0/0 2/2 .text            getCanoeMaxSpeed__9daAlink_cCFv */
 f32 daAlink_c::getCanoeMaxSpeed() const {
     if (checkCanoeSlider()) {
@@ -48,25 +50,26 @@ cXyz* daAlink_c::getCanoeLocalPaddleTop() {
 }
 
 /* 800F3CD8-800F3CF8 0EE618 0020+00 3/3 0/0 0/0 .text daAlink_searchCanoe__FP10fopAc_ac_cPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void* daAlink_searchCanoe(fopAc_ac_c* param_0, void* param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/daAlink_searchCanoe__FP10fopAc_ac_cPv.s"
+static fopAc_ac_c* daAlink_searchCanoe(fopAc_ac_c* param_0, void* param_1) {
+    if (fopAcM_GetName(param_0) == PROC_CANOE &&
+        static_cast<daCanoe_c*>(param_0)->getModel() != NULL) {
+        return param_0;
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 800F3CF8-800F3D58 0EE638 0060+00 0/0 2/2 0/0 .text            checkCanoeRideTandem__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkCanoeRideTandem() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkCanoeRideTandem__9daAlink_cFv.s"
+BOOL daAlink_c::checkCanoeRideTandem() {
+    daCanoe_c* canoe = (daCanoe_c*)mRideAcKeep.getActor();
+
+    if (checkCanoeRide() && canoe != NULL && canoe->checkTandem()) {
+        return true;
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 800F3D58-800F3DA0 0EE698 0048+00 7/7 0/0 0/0 .text checkFishingRodAndLureItem__9daAlink_cCFv */
 BOOL daAlink_c::checkFishingRodAndLureItem() const {
@@ -112,9 +115,9 @@ BOOL daAlink_c::checkCanoePaddleGrab(fopAc_ac_c* param_0) const {
 /* 800F3F38-800F3FC4 0EE878 008C+00 0/0 0/0 1/1 .text checkCanoeFishingRodGrabOrPut__9daAlink_cCFv
  */
 BOOL daAlink_c::checkCanoeFishingRodGrabOrPut() const {
-    return checkFisingRodLure() && checkCanoeRide() && (checkEquipAnime() ||
-           mProcID == PROC_CANOE_PADDLE_PUT || mProcID == PROC_CANOE_PADDLE_GRAB ||
-           mProcID == PROC_CANOE_ROD_GRAB);
+    return checkFisingRodLure() && checkCanoeRide() &&
+           (checkEquipAnime() || mProcID == PROC_CANOE_PADDLE_PUT ||
+            mProcID == PROC_CANOE_PADDLE_GRAB || mProcID == PROC_CANOE_ROD_GRAB);
 }
 
 /* 800F3FC4-800F4008 0EE904 0044+00 2/2 0/0 0/0 .text            initCanoeRide__9daAlink_cFv */
@@ -127,14 +130,23 @@ void daAlink_c::initCanoeRide() {
 }
 
 /* 800F4008-800F40E4 0EE948 00DC+00 2/2 0/0 0/0 .text            checkCanoeJumpRide__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daAlink_c::checkCanoeJumpRide() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkCanoeJumpRide__9daAlink_cFv.s"
+BOOL daAlink_c::checkCanoeJumpRide() {
+    daCanoe_c* canoe = NULL;
+
+    if (field_0x850[0].ChkCoHit()) {
+        canoe = (daCanoe_c*)field_0x850[0].GetCoHitAc();
+    } else if (field_0x850[1].ChkCoHit()) {
+        canoe = (daCanoe_c*)field_0x850[1].GetCoHitAc();
+    }
+
+    if (mSpeed.y < FLOAT_LABEL(lit_6108) && canoe != NULL && fopAcM_GetName(canoe) == PROC_CANOE &&
+        canoe->checkJumpRideFlg() && !checkDeadHP() &&
+        (mProcID != PROC_FALL || field_0x3010 != 0)) {
+        return procCanoeJumpRideInit(canoe);
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 800F40E4-800F4140 0EEA24 005C+00 2/2 0/0 0/0 .text            setArmReelAnime__9daAlink_cFv */
 void daAlink_c::setArmReelAnime() {
@@ -176,14 +188,15 @@ void daAlink_c::setFishGetFace() {
 
 /* 800F4564-800F459C 0EEEA4 0038+00 3/3 0/0 0/0 .text
  * setRideCanoeBasePos__9daAlink_cFP10fopAc_ac_c                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setRideCanoeBasePos(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setRideCanoeBasePos__9daAlink_cFP10fopAc_ac_c.s"
+void daAlink_c::setRideCanoeBasePos(fopAc_ac_c* param_0) {
+    field_0x37c8.x = FLOAT_LABEL(lit_6108);
+    field_0x37c8.y = lit_5944;
+    field_0x37c8.z = lit_20823;
+
+    if (static_cast<daCanoe_c*>(param_0)->checkTandem()) {
+        field_0x37c8.z += lit_20824;
+    }
 }
-#pragma pop
 
 /* 800F459C-800F47D8 0EEEDC 023C+00 20/20 0/0 0/0 .text            setSyncCanoePos__9daAlink_cFv */
 #pragma push
@@ -206,55 +219,144 @@ asm void daAlink_c::canoeCommon() {
 #pragma pop
 
 /* 800F4924-800F4A50 0EF264 012C+00 10/10 0/0 0/0 .text checkNextActionCanoe__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkNextActionCanoe() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkNextActionCanoe__9daAlink_cFv.s"
+int daAlink_c::checkNextActionCanoe() {
+    if ((!checkFishingRodAndLureItem() || mItemAcKeep.getActor() == NULL ||
+         static_cast<dmg_rod_class*>(mItemAcKeep.getActor())->checkRodEquipPermission()) &&
+        checkNextActionFromButton()) {
+        return 1;
+    }
+
+    if (checkBowAnime()) {
+        return checkNextActionBow();
+    } else if (checkBoomerangAnimeAndReturnWait()) {
+        return checkNextActionBoomerang();
+    } else if (checkHookshotAnime()) {
+        return checkNextActionHookshot();
+    } else if (checkGrabAnimeAndThrow()) {
+        return procCanoeGrabMoveInit();
+    } else if (checkCanoeFishingWaitAnime()) {
+        return procCanoeFishingWaitInit();
+    } else {
+        return procCanoeWaitInit(0);
+    }
 }
-#pragma pop
 
 /* 800F4A50-800F4B90 0EF390 0140+00 2/2 0/0 0/0 .text            procCanoeRideInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daAlink_c::procCanoeRideInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procCanoeRideInit__9daAlink_cFv.s"
+int daAlink_c::procCanoeRideInit() {
+    commonProcInit(PROC_CANOE_RIDE);
+    setHeavyBoots(0);
+    mRideAcKeep.setData(field_0x27f4);
+    deleteEquipItem(0, 0);
+    daCanoe_c* canoe = (daCanoe_c*)field_0x27f4;
+
+    setSingleAnime(ANM_HANG_CLIMB_TOP, daAlinkHIO_wallCatch_c0::m.field_0x28.mRate,
+                   daAlinkHIO_wallCatch_c0::m.field_0x50,
+                   daAlinkHIO_wallCatch_c0::m.field_0x28.mEndF,
+                   daAlinkHIO_wallCatch_c0::m.field_0x28.mInterpolation);
+    setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
+
+    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = tmp_0;
+    mSpeed.y = tmp_0;
+    setRideCanoeBasePos(canoe);
+
+    if ((s16)(fopAcM_searchActorAngleY(canoe, this) - canoe->shape_angle.y) > 0) {
+        shape_angle.y = canoe->shape_angle.y - 0x4000;
+        field_0x3008 = 0;
+        field_0x37c8.x = lit_20991;
+    } else {
+        shape_angle.y = canoe->shape_angle.y + 0x4000;
+        field_0x3008 = 1;
+        field_0x37c8.x = lit_20992;
+    }
+
+    mDoMtx_multVec(canoe->getModelMtx(), &field_0x37c8, &current.pos);
+    current.angle.y = shape_angle.y;
+
+    initCanoeRide();
+    field_0x300e = 0x80;
+    swimOutAfter(1);
+    return 1;
 }
-#pragma pop
 
 /* 800F4B90-800F4C78 0EF4D0 00E8+00 1/0 0/0 0/0 .text            procCanoeRide__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daAlink_c::procCanoeRide() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procCanoeRide__9daAlink_cFv.s"
+int daAlink_c::procCanoeRide() {
+    daCanoe_c* canoe = (daCanoe_c*)mRideAcKeep.getActor();
+    if (canoe == NULL) {
+        return checkNextAction(0);
+    }
+
+    mDoMtx_multVec(canoe->getModelMtx(), &field_0x37c8, &current.pos);
+
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+    if (frameCtrl->checkAnmEnd()) {
+        procCanoeWaitInit(1);
+    } else if (frameCtrl->getFrame() < lit_7710) {
+        field_0x300e += 0x180;
+
+        if (field_0x3008 == 0) {
+            canoe->incShapeAngleZ(-field_0x300e);
+        } else {
+            canoe->incShapeAngleZ(field_0x300e);
+        }
+        canoe->incShapeOffsetY(lit_21021);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 800F4C78-800F4D84 0EF5B8 010C+00 4/4 0/0 0/0 .text
  * procCanoeJumpRideInit__9daAlink_cFP10fopAc_ac_c              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daAlink_c::procCanoeJumpRideInit(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/procCanoeJumpRideInit__9daAlink_cFP10fopAc_ac_c.s"
+int daAlink_c::procCanoeJumpRideInit(fopAc_ac_c* param_0) {
+    BOOL var_r31;
+    daCanoe_c* canoe = (daCanoe_c*)param_0;
+
+    commonProcInit(PROC_CANOE_JUMP_RIDE);
+
+    if (canoe == NULL) {
+        canoe = (daCanoe_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchCanoe, NULL);
+        var_r31 = true;
+    } else {
+        var_r31 = false;
+    }
+
+    setHeavyBoots(0);
+    setSingleAnimeParam(ANM_JUMP_LAND, &daAlinkHIO_autoJump_c0::m.mLandAnm);
+    deleteEquipItem(0, 0);
+
+    mRideAcKeep.setData(canoe);
+    setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
+
+    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = tmp_0;
+    mSpeed.y = tmp_0;
+    setRideCanoeBasePos(canoe);
+    mDoMtx_multVec(canoe->getModelMtx(), &field_0x37c8, &current.pos);
+    current.angle.y = shape_angle.y;
+
+    initCanoeRide();
+    if (var_r31) {
+        procCanoeWaitInit(2);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 800F4D84-800F4DF8 0EF6C4 0074+00 1/0 0/0 0/0 .text            procCanoeJumpRide__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daAlink_c::procCanoeJumpRide() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procCanoeJumpRide__9daAlink_cFv.s"
+int daAlink_c::procCanoeJumpRide() {
+    daCanoe_c* canoe = (daCanoe_c*)mRideAcKeep.getActor();
+    if (canoe == NULL) {
+        return checkNextAction(0);
+    }
+
+    mDoMtx_multVec(canoe->getModelMtx(), &field_0x37c8, &current.pos);
+
+    if (mUnderFrameCtrl[0].checkAnmEnd()) {
+        procCanoeWaitInit(1);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 800F4DF8-800F5048 0EF738 0250+00 2/2 0/0 0/0 .text            procCanoeGetOffInit__9daAlink_cFv
  */

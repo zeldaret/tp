@@ -745,10 +745,10 @@ asm void dKyr_rain_move() {
 static bool d_krain_cut_turn_check() {
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
 
-    return player != NULL && (player->getCutType() == daPy_py_c::TYPE_CUT_TURN_RIGHT ||
-                              player->getCutType() == daPy_py_c::TYPE_CUT_TURN_LEFT ||
-                              player->getCutType() == daPy_py_c::TYPE_CUT_LARGE_TURN_LEFT ||
-                              player->getCutType() == daPy_py_c::TYPE_CUT_LARGE_TURN_RIGHT);
+    return player != NULL && (player->getCutType() == daPy_py_c::CUT_TYPE_TURN_RIGHT ||
+                              player->getCutType() == daPy_py_c::CUT_TYPE_TURN_LEFT ||
+                              player->getCutType() == daPy_py_c::CUT_TYPE_LARGE_TURN_LEFT ||
+                              player->getCutType() == daPy_py_c::CUT_TYPE_LARGE_TURN_RIGHT);
 }
 
 /* ############################################################################################## */

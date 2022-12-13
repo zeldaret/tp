@@ -926,41 +926,19 @@ void dSv_player_get_item_c::init() {
 }
 
 /* 80033E60-80033E94 02E7A0 0034+00 0/0 3/3 1/1 .text onFirstBit__21dSv_player_get_item_cFUc */
-// this is a few instructions off
-#ifdef NONMATCHING
 void dSv_player_get_item_c::onFirstBit(u8 i_itemNo) {
-    mItemFlags[i_itemNo >> 5] |= (1 << (i_itemNo & 0x1F));
+    mItemFlags[i_itemNo / 32] |= (1 << (i_itemNo % 32));
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSv_player_get_item_c::onFirstBit(u8 i_itemNo) {
-    nofralloc
-#include "asm/d/save/d_save/onFirstBit__21dSv_player_get_item_cFUc.s"
-}
-#pragma pop
-#endif
 
 /* 80033E94-80033EC8 02E7D4 0034+00 0/0 7/7 1/1 .text offFirstBit__21dSv_player_get_item_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSv_player_get_item_c::offFirstBit(u8 i_itemNo) {
-    nofralloc
-#include "asm/d/save/d_save/offFirstBit__21dSv_player_get_item_cFUc.s"
+void dSv_player_get_item_c::offFirstBit(u8 i_itemNo) {
+    mItemFlags[i_itemNo / 32] &= ~(1 << (i_itemNo % 32));
 }
-#pragma pop
 
 /* 80033EC8-80033F00 02E808 0038+00 4/4 87/87 2/2 .text isFirstBit__21dSv_player_get_item_cCFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dSv_player_get_item_c::isFirstBit(u8 i_itemNo) const {
-    nofralloc
-#include "asm/d/save/d_save/isFirstBit__21dSv_player_get_item_cCFUc.s"
+int dSv_player_get_item_c::isFirstBit(u8 i_itemNo) const {
+    return mItemFlags[i_itemNo / 32] & (1 << (i_itemNo % 32)) ? TRUE : FALSE;
 }
-#pragma pop
 
 void dSv_player_item_record_c::init() {
     mArrowNum = 0;
@@ -1323,7 +1301,7 @@ void dSv_memBit_c::onDungeonItem(int i_no) {
 }
 
 s32 dSv_memBit_c::isDungeonItem(int i_no) const {
-    return mDungeonItem & (u8)(1 << i_no) ? 1 : 0;
+    return mDungeonItem & (u8)(1 << i_no) ? TRUE : FALSE;
 }
 
 void dSv_event_c::init() {

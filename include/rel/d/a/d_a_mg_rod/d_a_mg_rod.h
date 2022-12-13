@@ -26,6 +26,7 @@ public:
 
     f32 getRodStickX() { return mRodStickX; }
     f32 getRodStickY() { return mRodStickY; }
+    bool checkRodEquipPermission() { return field_0x1514 == 0; }
 
 private:
     /* 0x0568 */ u8 field_0x568[0x5A4 - 0x568];
@@ -63,7 +64,9 @@ private:
     /* 0x14C0 */ u8 field_0x14c0[0x14C8 - 0x14C0];
     /* 0x14C8 */ f32 mRodStickX;
     /* 0x14CC */ f32 mRodStickY;
-    /* 0x14D0 */ u8 field_0x14d0[0x1518 - 0x14D0];
+    /* 0x14D0 */ u8 field_0x14d0[0x1514 - 0x14D0];
+    /* 0x1514 */ u8 field_0x1514;
+    /* 0x1515 */ u8 field_0x1515[0x1518 - 0x1515];
     /* 0x1518 */ dCcD_Stts field_0x1518;
     /* 0x1554 */ dCcD_Sph field_0x1554;
 };

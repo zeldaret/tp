@@ -87,7 +87,7 @@ public:
 
 enum dCcG_At_Spl {
     /* 0x0 */ dCcG_At_Spl_UNK_0,
-    /* 0x1 */ dCcG_At_Spl_UNK_01,
+    /* 0x1 */ dCcG_At_Spl_UNK_1,
 };
 
 class dCcD_GObjInf;
@@ -198,10 +198,12 @@ public:
     /* 8008457C */ u8 GetTgHitObjSe();
     /* 800845B0 */ static u32 getHitSeID(u8, int);
     /* 8008460C */ void ClrCoHit();
-    /* 80084658 */ bool ChkCoHit();
+    /* 80084658 */ u32 ChkCoHit();
     /* 800846B0 */ void ResetCoHit();
     /* 800846F0 */ cCcD_Obj* GetCoHitObj();
     /* 80084740 */ void Set(dCcD_SrcGObjInf const&);
+
+    fopAc_ac_c* GetCoHitAc() { return mGObjCo.GetAc(); }
 
     void SetAtVec(cXyz& vec) { mGObjAt.SetVec(vec); }
     bool ChkAtNoMass() const { return mGObjAt.ChkSPrm(8); }

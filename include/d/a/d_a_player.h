@@ -355,6 +355,7 @@ public:
     };
 
     enum daPy_RFLG1 {
+        RFLG1_UNK_30 = 0x30,
         RFLG1_UNK_2 = 0x2,
     };
 
@@ -368,28 +369,51 @@ public:
     };
 
     enum CutType {
-        /* 0x01 */ TYPE_CUT_VERTICAL = 1,
-        /* 0x02 */ TYPE_CUT_STAB,
-        /* 0x03 */ TYPE_CUT_SWEEP,
-        /* 0x04 */ TYPE_CUT_HORIZONTAL,
-        /* 0x05 */ TYPE_CUT_HEAD,  // Helm Splitter
-        /* 0x06 */ TYPE_CUT_LEFT_SWEEP_FINISH,
-        /* 0x07 */ TYPE_CUT_DOWN_FINISH,
-        /* 0x08 */ TYPE_CUT_TURN_RIGHT,
-        /* 0x0A */ TYPE_CUT_JUMP = 10,
-        /* 0x10 */ TYPE_CUT_AIR = 0x10,
-        /* 0x12 */ TYPE_CUT_LARGE_JUMP_INIT = 0x12,
-        /* 0x13 */ TYPE_CUT_LARGE_JUMP,
-        /* 0x14 */ TYPE_CUT_LARGE_JUMP_FINISH,
-        /* 0x15 */ TYPE_CUT_RIGHT_SWEEP_FINISH,
-        /* 0x16 */ TYPE_CUT_TURN_LEFT,
-        /* 0x17 */ TYPE_CUT_LARGE_TURN_LEFT,
-        /* 0x18 */ TYPE_CUT_LARGE_TURN_RIGHT,
-        /* 0x1A */ TYPE_CUT_FAST_MOVE = 0x1A,
-        /* 0x1E */ TYPE_CUT_TWIRL = 0x1E,  // Back Slice
-        /* 0x1F */ TYPE_CUT_FAST,
-        /* 0x20 */ TYPE_CUT_STAB_FINISH,
-        /* 0x21 */ TYPE_CUT_STAB_COMBO,
+        /* 0x01 */ CUT_TYPE_NM_VERTICAL = 1,
+        /* 0x02 */ CUT_TYPE_NM_STAB,
+        /* 0x03 */ CUT_TYPE_NM_RIGHT,
+        /* 0x04 */ CUT_TYPE_NM_LEFT,
+        /* 0x05 */ CUT_TYPE_HEAD_JUMP,  // Helm Splitter
+        /* 0x06 */ CUT_TYPE_FINISH_LEFT,
+        /* 0x07 */ CUT_TYPE_FINISH_VERTICAL,
+        /* 0x08 */ CUT_TYPE_TURN_RIGHT,
+        /* 0x0A */ CUT_TYPE_JUMP = 10,
+        /* 0x0B */ CUT_TYPE_DASH_UNK_B,
+        /* 0x0C */ CUT_TYPE_DASH_UNK_C,
+        /* 0x0D */ CUT_TYPE_DASH_UNK_D,
+        /* 0x10 */ CUT_TYPE_AIR = 0x10,
+        /* 0x11 */ CUT_TYPE_DASH_UNK_11,
+        /* 0x12 */ CUT_TYPE_LARGE_JUMP_INIT,
+        /* 0x13 */ CUT_TYPE_LARGE_JUMP,
+        /* 0x14 */ CUT_TYPE_LARGE_JUMP_FINISH,
+        /* 0x15 */ CUT_TYPE_FINISH_RIGHT,
+        /* 0x16 */ CUT_TYPE_TURN_LEFT,
+        /* 0x17 */ CUT_TYPE_LARGE_TURN_LEFT,
+        /* 0x18 */ CUT_TYPE_LARGE_TURN_RIGHT,
+        /* 0x1A */ CUT_TYPE_MORTAL_DRAW_A = 0x1A,
+        /* 0x1E */ CUT_TYPE_TWIRL = 0x1E,  // Back Slice
+        /* 0x1F */ CUT_TYPE_MORTAL_DRAW_B,
+        /* 0x20 */ CUT_TYPE_FINISH_STAB,
+        /* 0x21 */ CUT_TYPE_COMBO_STAB,
+        /* 0x22 */ CUT_TYPE_HORSE_UNK_22,
+        /* 0x23 */ CUT_TYPE_HORSE_UNK_23,
+        /* 0x25 */ CUT_TYPE_DASH_UNK_25 = 0x25,
+        /* 0x26 */ CUT_TYPE_DASH_UNK_26 = 0x26,
+        /* 0x27 */ CUT_TYPE_DOWN,
+        /* 0x29 */ CUT_TYPE_GUARD_ATTACK = 0x29,
+        /* 0x2A */ CUT_TYPE_HORSE_UNK_2A,
+        /* 0x2B */ CUT_TYPE_HORSE_TURN,
+        /* 0x2C */ CUT_TYPE_WOLF_B_LEFT,
+        /* 0x2D */ CUT_TYPE_WOLF_B_RIGHT,
+        /* 0x2E */ CUT_TYPE_WOLF_B_FRONT,
+        /* 0x2F */ CUT_TYPE_WOLF_B_BACK,
+        /* 0x31 */ CUT_TYPE_WOLF_UNK_31 = 0x31,
+        /* 0x32 */ CUT_TYPE_WOLF_UNK_32,
+        /* 0x33 */ CUT_TYPE_WOLF_TURN_LEFT,
+        /* 0x34 */ CUT_TYPE_WOLF_TURN_RIGHT,
+        /* 0x36 */ CUT_TYPE_WOLF_LOCK = 0x36,
+        /* 0x38 */ CUT_TYPE_DASH_UNK_38 = 0x38,
+        /* 0x39 */ CUT_TYPE_WOLF_UNK_39,
     };
 
     static u32 setParamData(int, int, int, int);

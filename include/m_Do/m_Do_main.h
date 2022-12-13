@@ -6,7 +6,7 @@
 #include "dolphin/types.h"
 
 void version_check();
-void* LOAD_COPYDATE(void*);
+s32 LOAD_COPYDATE(void*);
 
 class HeapCheck {
 public:

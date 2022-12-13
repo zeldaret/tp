@@ -5608,15 +5608,65 @@ static int const normalType3[5] = {4, 0, 1, 2, 1};
 static int const finishType[5] = {2, 0, 0, 5, 1};
 #pragma pop
 
+struct daAlink_cutParamTbl {
+    /* 0x0 */ daAlink_c::daAlink_ANM m_anmID;
+    /* 0x4 */ int field_0x4;
+    /* 0x8 */ u8 m_cutType;
+    /* 0x9 */ u8 m_atSe;
+    /* 0xA */ u8 field_0xa;
+    /* 0xB */ u8 field_0xb;
+    /* 0xC */ f32 m_morf;
+};  // Size: 0x10
+
 /* 80391808-80391858 01DE68 0050+00 0/1 0/0 0/0 .rodata          cutParamTable$7312 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const cutParamTable_7312[80] = {
-    0x00, 0x00, 0x00, 0x62, 0x00, 0x00, 0x00, 0x6F, 0x01, 0x01, 0x00, 0x00, 0x40, 0xC0, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x63, 0x00, 0x00, 0x00, 0x6F, 0x04, 0x01, 0x00, 0x00, 0x40, 0xA0, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x64, 0x00, 0x00, 0x00, 0x6F, 0x03, 0x01, 0x00, 0x00, 0x40, 0xA0, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x65, 0x00, 0x00, 0x00, 0x6F, 0x21, 0x0E, 0x00, 0x00, 0x40, 0xC0, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x66, 0x00, 0x00, 0x00, 0x70, 0x02, 0x0E, 0x00, 0x00, 0x40, 0xC0, 0x00, 0x00,
+SECTION_RODATA static daAlink_cutParamTbl const cutParamTable_7312[5] = {
+    {
+        daAlink_c::ANM_CUT_NM_VERTICAL,
+        0x6F,
+        daAlink_c::CUT_TYPE_NM_VERTICAL,
+        1,
+        0,
+        0,
+        6.0f,
+    },
+    {
+        daAlink_c::ANM_CUT_NM_LEFT,
+        0x6F,
+        daAlink_c::CUT_TYPE_NM_LEFT,
+        1,
+        0,
+        0,
+        5.0f,
+    },
+    {
+        daAlink_c::ANM_CUT_NM_RIGHT,
+        0x6F,
+        daAlink_c::CUT_TYPE_NM_RIGHT,
+        1,
+        0,
+        0,
+        5.0f,
+    },
+    {
+        daAlink_c::ANM_CUT_COMBO_STAB,
+        0x6F,
+        daAlink_c::CUT_TYPE_COMBO_STAB,
+        14,
+        0,
+        0,
+        6.0f,
+    },
+    {
+        daAlink_c::ANM_CUT_NM_STAB,
+        0x70,
+        daAlink_c::CUT_TYPE_NM_STAB,
+        14,
+        0,
+        0,
+        6.0f,
+    },
 };
 COMPILER_STRIP_GATE(0x80391808, &cutParamTable_7312);
 #pragma pop
@@ -5624,13 +5674,61 @@ COMPILER_STRIP_GATE(0x80391808, &cutParamTable_7312);
 /* 80391858-803918B8 01DEB8 0060+00 0/1 0/0 0/0 .rodata          cutParamTable$7455 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const cutParamTable_7455[96] = {
-    0x00, 0x00, 0x00, 0x67, 0x00, 0x00, 0x00, 0x6F, 0x06, 0x01, 0x64, 0x64, 0x40, 0xA0, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x68, 0x00, 0x00, 0x00, 0x6F, 0x07, 0x01, 0x64, 0x64, 0x41, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x69, 0x00, 0x00, 0x00, 0x6F, 0x20, 0x0E, 0x64, 0x64, 0x41, 0x20, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x6A, 0x00, 0x00, 0x00, 0x6F, 0x1A, 0x01, 0x05, 0x0C, 0x41, 0x20, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x6B, 0x00, 0x00, 0x00, 0x6F, 0x1F, 0x01, 0x07, 0x0E, 0x41, 0x20, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x6C, 0x00, 0x00, 0x00, 0x6F, 0x15, 0x01, 0x64, 0x64, 0x41, 0x20, 0x00, 0x00,
+SECTION_RODATA static daAlink_cutParamTbl const cutParamTable_7455[6] = {
+    {
+        daAlink_c::ANM_CUT_FINISH_LEFT,
+        0x6F,
+        daAlink_c::CUT_TYPE_FINISH_LEFT,
+        1,
+        100,
+        100,
+        5.0f,
+    },
+    {
+        daAlink_c::ANM_CUT_FINISH_VERTICAL,
+        0x6F,
+        daAlink_c::CUT_TYPE_FINISH_VERTICAL,
+        1,
+        100,
+        100,
+        8.0f,
+    },
+    {
+        daAlink_c::ANM_CUT_FINISH_STAB,
+        0x6F,
+        daAlink_c::CUT_TYPE_FINISH_STAB,
+        14,
+        100,
+        100,
+        10.0f,
+    },
+    {
+        daAlink_c::ANM_CUT_MORTAL_DRAW_A,
+        0x6F,
+        daAlink_c::CUT_TYPE_MORTAL_DRAW_A,
+        1,
+        5,
+        12,
+        10.0f,
+    },
+    {
+        daAlink_c::ANM_CUT_MORTAL_DRAW_B,
+        0x6F,
+        daAlink_c::CUT_TYPE_MORTAL_DRAW_B,
+        1,
+        7,
+        14,
+        10.0f,
+    },
+    {
+        daAlink_c::ANM_CUT_FINISH_RIGHT,
+        0x6F,
+        daAlink_c::CUT_TYPE_FINISH_RIGHT,
+        1,
+        100,
+        100,
+        10.0f,
+    },
 };
 COMPILER_STRIP_GATE(0x80391858, &cutParamTable_7455);
 #pragma pop
@@ -15019,7 +15117,7 @@ asm s16 daAlink_c::getShapeAngleYAtnActor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::setShapeAngleToAtnActor(int param_0) {
+asm bool daAlink_c::setShapeAngleToAtnActor(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/setShapeAngleToAtnActor__9daAlink_cFi.s"
 }

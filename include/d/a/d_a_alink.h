@@ -642,6 +642,8 @@ public:
 
     enum daAlink_FTANM {
         FTANM_UNK_8 = 8,
+        FTANM_UNK_13 = 0x13,
+        FTANM_UNK_14 = 0x14,
         FTANM_UNK_27 = 0x27,
         FTANM_UNK_2D = 0x2D,
         FTANM_UNK_48 = 0x48,
@@ -1402,7 +1404,7 @@ public:
     /* 800B3494 */ static int getDirectionFromAngle(s16 angle);
     /* 800B3500 */ bool checkAttentionState();
     /* 800B3630 */ s16 getShapeAngleYAtnActor();
-    /* 800B3734 */ void setShapeAngleToAtnActor(int);
+    /* 800B3734 */ bool setShapeAngleToAtnActor(int);
     /* 800B3844 */ void initServiceWaitTime();
     /* 800B3904 */ bool checkZeroSpeedF() const;
     /* 800B3924 */ void setNormalSpeedF(f32, f32);
@@ -1664,8 +1666,9 @@ public:
     /* 800D1454 */ void checkComboCnt();
     /* 800D152C */ void setCutType(u8);
     /* 800D1540 */ void setCylAtParam(u32, dCcG_At_Spl, u8, u8, int, f32, f32);
-    /* 800D1688 */ void setSwordAtParam(dCcG_At_Spl, u8, u8, int, f32, f32);
-    /* 800D1788 */ static bool notSwordHitVibActor(fopAc_ac_c*);
+    /* 800D1688 */ void setSwordAtParam(dCcG_At_Spl i_spl, u8 i_hitMark, u8 i_AtSe, int i_atp, f32 param_4,
+                                        f32 i_radius);
+    /* 800D1788 */ static BOOL notSwordHitVibActor(fopAc_ac_c*);
     /* 800D17EC */ BOOL setSwordHitVibration(dCcD_GObjInf*);
     /* 800D1920 */ BOOL checkAtShieldHit(dCcD_GObjInf&);
     /* 800D1978 */ bool checkCutReverseAt(dCcD_GObjInf*);
@@ -1674,12 +1677,12 @@ public:
     /* 800D20B4 */ BOOL checkForceSwordSwing();
     /* 800D20FC */ void setComboReserb();
     /* 800D2188 */ BOOL checkComboReserb();
-    /* 800D21D0 */ bool commonCutAction();
+    /* 800D21D0 */ int commonCutAction();
     /* 800D2284 */ void setSwordVoiceSe(u32);
     /* 800D22BC */ void setSwordChargeVoiceSe();
     /* 800D2304 */ void setSwordComboVoice();
     /* 800D2368 */ bool checkCutTurnInputTrigger();
-    /* 800D23C0 */ void checkCutAction();
+    /* 800D23C0 */ int checkCutAction();
     /* 800D26EC */ int getCutDirection();
     /* 800D2760 */ BOOL checkCutCancelNextMode(int);
     /* 800D27E4 */ void checkDoCutAction();
@@ -1722,7 +1725,7 @@ public:
     /* 800D6238 */ int procCutLargeJumpChargeInit();
     /* 800D62A0 */ int procCutLargeJumpCharge();
     /* 800D6374 */ int procCutLargeJumpInit();
-    /* 800D6484 */ bool procCutLargeJump();
+    /* 800D6484 */ int procCutLargeJump();
     /* 800D66C0 */ int procCutLargeJumpLandInit(int);
     /* 800D67FC */ int procCutLargeJumpLand();
     /* 800D698C */ int procSwordUnequipSpInit();
@@ -2121,7 +2124,7 @@ public:
     /* 800F3C18 */ f32 getCanoeSpeedRate() const;
     /* 800F3C44 */ s16 getCanoeMaxRotSpeed() const;
     /* 800F3CCC */ cXyz* getCanoeLocalPaddleTop();
-    /* 800F3CF8 */ void checkCanoeRideTandem();
+    /* 800F3CF8 */ BOOL checkCanoeRideTandem();
     /* 800F3D58 */ BOOL checkFishingRodAndLureItem() const;
     /* 800F3DA0 */ void initFishingRodHand();
     /* 800F3DFC */ MtxP getCanoePaddleMatrix();
@@ -2136,7 +2139,7 @@ public:
     /* 800F4564 */ void setRideCanoeBasePos(fopAc_ac_c*);
     /* 800F459C */ void setSyncCanoePos();
     /* 800F47D8 */ void canoeCommon();
-    /* 800F4924 */ void checkNextActionCanoe();
+    /* 800F4924 */ int checkNextActionCanoe();
     /* 800F4A50 */ int procCanoeRideInit();
     /* 800F4B90 */ int procCanoeRide();
     /* 800F4C78 */ int procCanoeJumpRideInit(fopAc_ac_c*);
@@ -3156,6 +3159,7 @@ public:
     bool checkDashDamageAnime() const { return checkUpperAnime(0xAD); }
     bool checkBoomerangCatchAnime() const { return checkUpperAnime(0x52); }
     BOOL checkCopyRodReadyAnime() const { return mEquipItem == COPY_ROD && checkUpperAnime(0x54); }
+    BOOL checkCanoeFishingWaitAnime() const { return checkUpperAnime(0x5D) || checkUpperAnime(0x260); }
 
     s16 checkWolfEyeUp() const { return mWolfEyeUp; }
     void onModeFlg(u32 flag) { mModeFlg |= flag; }
@@ -4112,7 +4116,7 @@ public:
     static daAlinkHIO_cutLargeJump_c1 const m;
 };
 
-class daAlinkHIO_cutNmV_c1 {
+class daAlinkHIO_cutNormal_c1 {
 public:
     /* 0x00 */ daAlinkHIO_anm_c field_0x0;
     /* 0x14 */ f32 field_0x14;
@@ -4122,65 +4126,34 @@ public:
 
 class daAlinkHIO_cutNmV_c0 {
 public:
-    static daAlinkHIO_cutNmV_c1 const m;
+    static daAlinkHIO_cutNormal_c1 const m;
 };
-
-class daAlinkHIO_cutNmL_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1C;
-};  // Size: 0x20
 
 class daAlinkHIO_cutNmL_c0 {
 public:
-    static daAlinkHIO_cutNmL_c1 const m;
+    static daAlinkHIO_cutNormal_c1 const m;
 };
-
-class daAlinkHIO_cutNmR_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1C;
-};  // Size: 0x20
 
 class daAlinkHIO_cutNmR_c0 {
 public:
-    static daAlinkHIO_cutNmR_c1 const m;
+    static daAlinkHIO_cutNormal_c1 const m;
 };
-
-class daAlinkHIO_cutNmSL_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1C;
-};  // Size: 0x20
 
 class daAlinkHIO_cutNmSL_c0 {
 public:
-    static daAlinkHIO_cutNmSL_c1 const m;
+    static daAlinkHIO_cutNormal_c1 const m;
 };
-
-class daAlinkHIO_cutNmSR_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1C;
-};  // Size: 0x20
 
 class daAlinkHIO_cutNmSR_c0 {
 public:
-    static daAlinkHIO_cutNmSR_c1 const m;
+    static daAlinkHIO_cutNormal_c1 const m;
 };
 
-class daAlinkHIO_cutFnL_c1 {
+class daAlinkHIO_cutFinish_c1 {
 public:
     /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ f32 field_0x14;
+    /* 0x14 */ s16 field_0x14;
+    /* 0x14 */ s16 field_0x16;
     /* 0x18 */ f32 field_0x18;
     /* 0x1C */ f32 field_0x1C;
     /* 0x20 */ f32 field_0x20;
@@ -4190,97 +4163,40 @@ public:
 
 class daAlinkHIO_cutFnL_c0 {
 public:
-    static daAlinkHIO_cutFnL_c1 const m;
+    static daAlinkHIO_cutFinish_c1 const m;
 };
-
-class daAlinkHIO_cutFnV_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1C;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ f32 field_0x24;
-    /* 0x28 */ f32 field_0x28;
-};  // Size: 0x2C
 
 class daAlinkHIO_cutFnV_c0 {
 public:
-    static daAlinkHIO_cutFnV_c1 const m;
+    static daAlinkHIO_cutFinish_c1 const m;
 };
-
-class daAlinkHIO_cutFnS_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ s16 field_0x14;
-    /* 0x16 */ s16 field_0x16;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1C;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ f32 field_0x24;
-    /* 0x28 */ f32 field_0x28;
-};  // Size: 0x2C
 
 class daAlinkHIO_cutFnS_c0 {
 public:
-    static daAlinkHIO_cutFnS_c1 const m;
+    static daAlinkHIO_cutFinish_c1 const m;
 };
-
-class daAlinkHIO_cutFnSl_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ s16 field_0x14;
-    /* 0x16 */ s16 field_0x16;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1C;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ f32 field_0x24;
-    /* 0x28 */ f32 field_0x28;
-};  // Size: 0x2C
 
 class daAlinkHIO_cutFnSl_c0 {
 public:
-    static daAlinkHIO_cutFnSl_c1 const m;
+    static daAlinkHIO_cutFinish_c1 const m;
 };
-
-class daAlinkHIO_cutFnSm_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ s16 field_0x14;
-    /* 0x16 */ s16 field_0x16;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1C;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ f32 field_0x24;
-    /* 0x28 */ f32 field_0x28;
-};  // Size: 0x2C
 
 class daAlinkHIO_cutFnSm_c0 {
 public:
-    static daAlinkHIO_cutFnSm_c1 const m;
+    static daAlinkHIO_cutFinish_c1 const m;
 };
-
-class daAlinkHIO_cutFnR_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1C;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ f32 field_0x24;
-    /* 0x28 */ f32 field_0x28;
-};  // Size: 0x2C
 
 class daAlinkHIO_cutFnR_c0 {
 public:
-    static daAlinkHIO_cutFnR_c1 const m;
+    static daAlinkHIO_cutFinish_c1 const m;
 };
 
 class daAlinkHIO_cutFnJU_c1 {
 public:
     /* 0x00 */ daAlinkHIO_anm_c field_0x0;
     /* 0x14 */ daAlinkHIO_anm_c field_0x14;
-    /* 0x28 */ f32 field_0x28;
+    /* 0x28 */ s16 field_0x28;
+    /* 0x28 */ s16 field_0x2A;
     /* 0x2C */ f32 field_0x2C;
     /* 0x30 */ f32 field_0x30;
     /* 0x34 */ f32 field_0x34;
@@ -4303,7 +4219,8 @@ public:
     /* 0x00 */ daAlinkHIO_anm_c field_0x0;
     /* 0x14 */ daAlinkHIO_anm_c field_0x14;
     /* 0x28 */ daAlinkHIO_anm_c field_0x28;
-    /* 0x3C */ f32 field_0x3C;
+    /* 0x3C */ s16 field_0x3C;
+    /* 0x3E */ s16 field_0x3E;
     /* 0x40 */ f32 field_0x40;
     /* 0x44 */ f32 field_0x44;
     /* 0x48 */ f32 field_0x48;
@@ -4679,15 +4596,6 @@ public:
     static daAlinkHIO_wallMove_c1 const m;
 };
 
-class daAlinkHIO_wallCatch_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ daAlinkHIO_anm_c field_0x14;
-    /* 0x28 */ daAlinkHIO_anm_c field_0x28;
-    /* 0x3C */ daAlinkHIO_anm_c field_0x3C;
-    /* 0x50 */ f32 field_0x50;
-};  // Size: 0x54
-
 class daAlinkHIO_wallFall_c1 {
 public:
     /* 0x00 */ daAlinkHIO_anm_c field_0x0;
@@ -4698,6 +4606,15 @@ class daAlinkHIO_wallFall_c0 {
 public:
     static daAlinkHIO_wallFall_c1 const m;
 };
+
+class daAlinkHIO_wallCatch_c1 {
+public:
+    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
+    /* 0x14 */ daAlinkHIO_anm_c field_0x14;
+    /* 0x28 */ daAlinkHIO_anm_c field_0x28;
+    /* 0x3C */ daAlinkHIO_anm_c field_0x3C;
+    /* 0x50 */ f32 field_0x50;
+};  // Size: 0x54
 
 class daAlinkHIO_wallCatch_c0 {
 public:
@@ -6495,7 +6412,7 @@ private:
 };
 
 static fopAc_ac_c* daAlink_searchPortal(fopAc_ac_c* param_0, void* param_1);
-static void* daAlink_searchCanoe(fopAc_ac_c* param_0, void* param_1);
+static fopAc_ac_c* daAlink_searchCanoe(fopAc_ac_c* param_0, void* param_1);
 static void* daAlink_searchBoar(fopAc_ac_c* param_0, void* param_1);
 static fopAc_ac_c* daAlink_searchLightBall(fopAc_ac_c* p_actor, void* param_1);
 

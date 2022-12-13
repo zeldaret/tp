@@ -9,6 +9,7 @@
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTReport.h"
+#include "c/c_dylink.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
@@ -24,26 +25,7 @@
 // Forward References:
 //
 
-extern "C" void version_check__Fv();
-extern "C" void CheckHeap1__9HeapCheckFv();
-extern "C" static void CheckHeap__FUl();
-extern "C" static void countUsed__FP10JKRExpHeap();
-extern "C" void getUsedCount__9HeapCheckCFv();
-extern "C" void heapDisplay__9HeapCheckCFv();
-extern "C" static void debugDisplay__Fv();
-extern "C" static void Debug_console__FUl();
-extern "C" void* LOAD_COPYDATE__FPv();
-extern "C" static void debug__Fv();
-extern "C" static void main01__Fv();
-extern "C" void main();
-extern "C" bool dump_sort__7JKRHeapFv();
-extern "C" void __sinit_m_Do_main_cpp();
 extern "C" extern char const* const m_Do_m_Do_main__stringBase0;
-extern "C" u8 COPYDATE_STRING__7mDoMain[18 + 2 /* padding */];
-extern "C" u32 memMargin__7mDoMain;
-extern "C" u8 sPowerOnTime__7mDoMain[4];
-extern "C" u8 sHungUpTime__7mDoMain[4];
-extern "C" s8 developmentMode__7mDoMain;
 extern "C" extern u8 data_80450B38[4];
 extern "C" extern u8 data_80450B3C[4];
 extern "C" extern u8 data_80450B40[4];
@@ -71,59 +53,8 @@ extern "C" extern u8 data_80450B90[4 + 4 /* padding */];
 // External References:
 //
 
-extern "C" void OSReportInit__Fv();
-extern "C" void mDoAud_Execute__Fv();
-extern "C" void create__8mDoCPd_cFv();
-extern "C" void read__8mDoCPd_cFv();
-extern "C" void mDoGph_Create__Fv();
-extern "C" void mDoMch_HeapCheckAll__Fv();
-extern "C" void mDoMch_Create__Fv();
-extern "C" void mDoExt_getGameHeap__Fv();
-extern "C" void mDoExt_getZeldaHeap__Fv();
-extern "C" void mDoExt_getCommandHeap__Fv();
-extern "C" void mDoExt_getArchiveHeap__Fv();
-extern "C" void mDoExt_getJ2dHeap__Fv();
-extern "C" void mDoExt_getHostIOHeap__Fv();
-extern "C" void create__20mDoDvdThd_callback_cFPFPv_PvPv();
-extern "C" void update__15mDoMemCd_Ctrl_cFv();
-extern "C" void cDyl_InitAsync__Fv();
-extern "C" void fapGm_Execute__Fv();
-extern "C" void fapGm_Create__Fv();
-extern "C" void fopAcM_initManager__Fv();
-extern "C" void ct__13dComIfG_inf_cFv();
 extern "C" void dump__14dRes_control_cFv();
 extern "C" void dump__24DynamicModuleControlBaseFv();
-extern "C" void getFreeSize__7JKRHeapFv();
-extern "C" void getTotalFreeSize__7JKRHeapFv();
-extern "C" void getTotalUsedSize__10JKRExpHeapCFv();
-extern "C" void create__12JKRSolidHeapFUlP7JKRHeapb();
-extern "C" void getFreeSize__11JKRAramHeapFv();
-extern "C" void getTotalFreeSize__11JKRAramHeapFv();
-extern "C" void dump__11JKRAramHeapFv();
-extern "C" void JUTReport__FiiPCce();
-extern "C" void JUTReport__FiiiPCce();
-extern "C" void setMessageCount__12JUTAssertionFi();
-extern "C" void clear__10JUTConsoleFv();
-extern "C" void dumpToTerminal__10JUTConsoleFUi();
-extern "C" void scroll__10JUTConsoleFi();
-extern "C" void getLineOffset__10JUTConsoleCFv();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" u8 m_gamePad__8mDoCPd_c[16];
-extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern JKRSolidHeap* g_mDoAud_audioHeap;
-extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" u8 systemConsole__9JFWSystem[4];
-extern "C" u8 sSystemHeap__7JKRHeap[4];
-extern "C" u8 sCurrentHeap__7JKRHeap[4];
-extern "C" u8 sRootHeap__7JKRHeap[4];
-extern "C" u8 sAramObject__7JKRAram[4];
 
 //
 // Declarations:
@@ -299,7 +230,7 @@ OSTime mDoMain::sHungUpTime;
 /* 80450B18 0001+00 data_80450B18 None */
 /* 80450B19 0001+00 data_80450B19 None */
 /* 80450B1A 0002+00 data_80450B1A None */
-static bool mDisplayHeapSize;  // sDisplayHeapDebug
+static bool mDisplayHeapSize;
 static u8 sDisplayHeap;
 static bool sCheckHeap;
 
@@ -477,40 +408,21 @@ bool Debug_console(u32 i_padNo) {
     return 0;
 }
 
-/* ############################################################################################## */
-/* 803739A0-803739A0 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80373C23 = "/str/Final/Release/COPYDATE";
-#pragma pop
-
 /* 8000614C-800061C8 000A8C 007C+00 1/1 0/0 0/0 .text            LOAD_COPYDATE__FPv */
-#ifdef NONMATCHING
 s32 LOAD_COPYDATE(void*) {
     s32 status;
-    u8 buffer[32];
-    u8 fileInfo[80];
-    // DVDFileInfo fileInfo;
 
-    status = DVDOpen("/str/Final/Release/COPYDATE", (DVDFileInfo*)&fileInfo);
+    DVDFileInfo __attribute__((aligned(0x20))) fileInfo;
+    u8 buffer[0x20];
+    status = DVDOpen("/str/Final/Release/COPYDATE", &fileInfo);
 
     if (status) {
-        DVDReadPrio((DVDFileInfo*)fileInfo, &buffer, 32, 0, 2);
+        DVDReadPrio(&fileInfo, &buffer, 32, 0, 2);
         memcpy(mDoMain::COPYDATE_STRING, buffer, 17);
-        status = DVDClose((DVDFileInfo*)fileInfo);
+        status = DVDClose(&fileInfo);
     }
     return status;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* LOAD_COPYDATE(void* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_main/LOAD_COPYDATE__FPv.s"
-}
-#pragma pop
-#endif
 
 static void debug() {
     if (mDoMain::developmentMode) {
@@ -537,15 +449,11 @@ static void debug() {
     }
 }
 
-/* ############################################################################################## */
-/* 80450B34-80450B38 000034 0004+00 1/1 0/0 0/0 .sbss            frame$3939 */
-static u32 frame;
-
 /* 8000628C-80006454 000BCC 01C8+00 1/1 0/0 0/0 .text            main01__Fv */
-// only issue is output check section with weird code gen
-#ifdef NONMATCHING
 void main01(void) {
-    mDoMch_Create__Fv();
+    static u32 frame;
+
+    mDoMch_Create();
     mDoGph_Create();
     mDoCPd_c::create();
 
@@ -590,26 +498,22 @@ void main01(void) {
     }
 
     JUTConsole* console = JFWSystem::getSystemConsole();
-    s32 output = 0;
-    if (mDoMain::developmentMode != 0) {
-        output = JUTConsole::OUTPUT_OSREPORT | JUTConsole::OUTPUT_CONSOLE;
-    }
-
-    console->setOutput(output);
+    console->setOutput(mDoMain::developmentMode ? JUTConsole::OUTPUT_OSR_AND_CONSOLE :
+                                                  JUTConsole::OUTPUT_NONE);
     console->setPosition(32, 42);
 
-    mDoDvdThd_callback_c::create(LOAD_COPYDATE, NULL);
-    fapGm_Create__Fv();
-    fopAcM_initManager__Fv();
+    mDoDvdThd_callback_c::create((mDoDvdThd_callback_func)LOAD_COPYDATE, NULL);
+    fapGm_Create();
+    fopAcM_initManager();
     mDisplayHeapSize = 0;
-    cDyl_InitAsync__Fv();
+    cDyl_InitAsync();
 
     g_mDoAud_audioHeap = JKRSolidHeap::create(0x14D800, JKRHeap::getCurrentHeap(), false);
 
     do {
         frame++;
         if (fillcheck_check_frame != 0 && frame % fillcheck_check_frame == 0) {
-            mDoMch_HeapCheckAll__Fv();
+            mDoMch_HeapCheckAll();
         }
 
         if (SyncWidthSound) {
@@ -617,21 +521,11 @@ void main01(void) {
         }
 
         mDoCPd_c::read();
-        fapGm_Execute__Fv();
-        mDoAud_Execute__Fv();
+        fapGm_Execute();
+        mDoAud_Execute();
         debug();
     } while (true);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void main01() {
-    nofralloc
-#include "asm/m_Do/m_Do_main/main01__Fv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 803D3420-803DB420 000140 8000+00 1/1 0/0 0/0 .bss             mainThreadStack */
@@ -722,8 +616,7 @@ SECTION_DEAD static char const* const stringBase_80373CA7 = "コマンド";
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __sinit_m_Do_main_cpp() {
-    nofralloc
+asm void __sinit_m_Do_main_cpp(){nofralloc
 #include "asm/m_Do/m_Do_main/__sinit_m_Do_main_cpp.s"
 }
 #pragma pop

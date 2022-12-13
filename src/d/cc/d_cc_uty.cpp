@@ -126,28 +126,28 @@ u16 cc_pl_cut_bit_get() {
     daPy_py_c* link = (daPy_py_c*)dComIfGp_getPlayer(0);
 
     u16 bit = 0;
-    if (link->getCutType() == daPy_py_c::TYPE_CUT_VERTICAL) {
+    if (link->getCutType() == daPy_py_c::CUT_TYPE_NM_VERTICAL) {
         bit = 0x1;
-    } else if (link->getCutType() == daPy_py_c::TYPE_CUT_STAB) {
+    } else if (link->getCutType() == daPy_py_c::CUT_TYPE_NM_STAB) {
         bit = 0x2;
-    } else if (link->getCutType() == daPy_py_c::TYPE_CUT_STAB_COMBO) {
+    } else if (link->getCutType() == daPy_py_c::CUT_TYPE_COMBO_STAB) {
         bit = 0x200;
-    } else if (link->getCutType() == daPy_py_c::TYPE_CUT_SWEEP) {
+    } else if (link->getCutType() == daPy_py_c::CUT_TYPE_NM_RIGHT) {
         bit = 0x4;
-    } else if (link->getCutType() == daPy_py_c::TYPE_CUT_HORIZONTAL) {
+    } else if (link->getCutType() == daPy_py_c::CUT_TYPE_NM_LEFT) {
         bit = 0x8;
-    } else if (link->getCutType() == daPy_py_c::TYPE_CUT_LEFT_SWEEP_FINISH) {
+    } else if (link->getCutType() == daPy_py_c::CUT_TYPE_FINISH_LEFT) {
         bit = 0x20;
-    } else if (link->getCutType() == daPy_py_c::TYPE_CUT_DOWN_FINISH) {
+    } else if (link->getCutType() == daPy_py_c::CUT_TYPE_FINISH_VERTICAL) {
         bit = 0x40;
-    } else if (link->getCutType() == daPy_py_c::TYPE_CUT_TURN_RIGHT || link->getCutType() == 9 ||
+    } else if (link->getCutType() == daPy_py_c::CUT_TYPE_TURN_RIGHT || link->getCutType() == 9 ||
                link->getCutType() == 43 ||
-               link->getCutType() == daPy_py_c::TYPE_CUT_LARGE_TURN_RIGHT) {
+               link->getCutType() == daPy_py_c::CUT_TYPE_LARGE_TURN_RIGHT) {
         bit = 0x80;
-    } else if (link->getCutType() == daPy_py_c::TYPE_CUT_TURN_LEFT ||
-               link->getCutType() == daPy_py_c::TYPE_CUT_LARGE_TURN_LEFT) {
+    } else if (link->getCutType() == daPy_py_c::CUT_TYPE_TURN_LEFT ||
+               link->getCutType() == daPy_py_c::CUT_TYPE_LARGE_TURN_LEFT) {
         bit = 0x800;
-    } else if (link->getCutType() == daPy_py_c::TYPE_CUT_JUMP) {
+    } else if (link->getCutType() == daPy_py_c::CUT_TYPE_JUMP) {
         bit = 0x100;
     } else if (link->getCutType() == 40 || link->getCutType() == 41) {
         bit = 0x400;
@@ -465,7 +465,7 @@ fopAc_ac_c* cc_at_check(fopAc_ac_c* p_enemy, dCcU_AtInfo* p_info) {
         }
 
         if (p_info->mHitType == HIT_TYPE_LINK_NORMAL_ATTACK &&
-            link->getCutType() == daPy_py_c::TYPE_CUT_HEAD) {
+            link->getCutType() == daPy_py_c::CUT_TYPE_HEAD_JUMP) {
             p_info->mHitDirection = link->shape_angle.y;
         }
 

@@ -207,4 +207,13 @@ public:
     /* 80BB336C */ virtual ~dBgS_ObjAcch();
 };
 
+class dBgS_StatueAcch : public dBgS_Acch {
+public:
+    dBgS_StatueAcch() {
+        SetStatue();
+    }
+
+    /* 806646F8 */ virtual ~dBgS_StatueAcch();
+};
+
 #endif /* D_BG_D_BG_S_ACCH_H */

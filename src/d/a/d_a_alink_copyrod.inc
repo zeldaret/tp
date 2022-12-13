@@ -1,3 +1,5 @@
+#include "rel/d/a/d_a_cstatue/d_a_cstatue.h"
+
 /* 800E12E0-800E1310 0DBC20 0030+00 1/1 0/0 0/0 .text            checkLv6BossRoom__9daAlink_cFv */
 BOOL daAlink_c::checkLv6BossRoom() {
     return checkStageName("D_MN06A");
@@ -355,14 +357,35 @@ int daAlink_c::procCopyRodMove() {
 
 /* 800E20C8-800E21FC 0DCA08 0134+00 1/1 0/0 0/0 .text            procCopyRodSwingInit__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daAlink_c::procCopyRodSwingInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procCopyRodSwingInit__9daAlink_cFv.s"
+int daAlink_c::procCopyRodSwingInit() {
+    commonProcInit(PROC_COPY_ROD_SWING);
+    daCstatue_c* statue = (daCstatue_c*)getCopyRodControllActor();
+
+    if (statue != NULL && ((fopAcM_GetName(statue) == PROC_CSTATUE && !statue->checkNotSmallType()) || fopAcM_GetName(statue) != PROC_CSTATUE)) {
+        setSingleAnimeParam(ANM_COPYROD_SWING_LARGE, &daAlinkHIO_copyRod_c0::m.mBigSwingAnm);
+        field_0x3478 = lit_8781;
+        field_0x347c = lit_13382;
+        field_0x3480 = daAlinkHIO_copyRod_c0::m.mBigSwingAnm.field_0x10;
+        field_0x3484 = lit_7807;
+    } else {
+        setSingleAnimeParam(ANM_COPYROD_SWING, &daAlinkHIO_copyRod_c0::m.mSwingAnm);
+        field_0x3478 = lit_7450;
+        field_0x347c = lit_8783;
+        field_0x3480 = daAlinkHIO_copyRod_c0::m.mSwingAnm.field_0x10;
+        field_0x3484 = lit_8130;
+    }
+
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    current.angle.y = shape_angle.y;
+    mCommonCounter = 1;
+    field_0x300e = 0;
+
+    voiceStart(Z2SE_AL_V_ATTACK_S);
+    mAtCps[0].SetR(lit_11442);
+    mAtCps[0].SetAtType(AT_TYPE_COPY_ROD);
+    cancelLockAt();
+    return 1;
 }
-#pragma pop
 
 /* 800E21FC-800E2308 0DCB3C 010C+00 1/0 0/0 0/0 .text            procCopyRodSwing__9daAlink_cFv */
 int daAlink_c::procCopyRodSwing() {
