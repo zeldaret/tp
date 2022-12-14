@@ -33,7 +33,7 @@ void PADSetSpec(int spec);
 BOOL PADReset(u32 mask);
 void PADClampCircle(PADStatus* status);
 void PADClamp(PADStatus* status);
-void PADRead(PADStatus* status);
+u32 PADRead(PADStatus* status);
 void PADControlMotor(s32 channel, u32 command);
 BOOL PADRecalibrate(u32 mask);
 

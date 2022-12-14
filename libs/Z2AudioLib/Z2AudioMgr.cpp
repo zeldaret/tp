@@ -380,7 +380,7 @@ void Z2AudioMgr::resetRecover() {
     mSeqMgr.setTwilightGateVol(1.0f);
     mSeqMgr.setWindStoneVol(1.0f, 0);
     mStatusMgr.menuOut();
-    mSeqMgr.bgmAllUnMute(0);
+    mSeqMgr.i_bgmAllUnMute(0);
     mSeqMgr.unMuteSceneBgm(0);
 }
 #else

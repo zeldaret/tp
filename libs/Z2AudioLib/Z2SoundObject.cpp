@@ -12,7 +12,7 @@
 //
 
 struct Z2SoundInfo {
-    /* 802BBAC8 */ void getSwBit(JAISoundID) const;
+    /* 802BBAC8 */ int getSwBit(JAISoundID) const;
 };
 
 struct Z2SeMgr {
@@ -101,7 +101,7 @@ extern "C" void _restgpr_23();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern u32 __float_max;
-extern "C" extern u8 data_80450B4C[4];
+extern "C" extern Z2SoundInfo* data_80450B4C;
 extern "C" extern u8 data_80450B60[4];
 extern "C" extern Z2SoundStarter* data_80450B74;
 extern "C" extern u8 data_80450B88[4];
@@ -227,7 +227,7 @@ void Z2SoundObjBase::dispose() {
     for (link = getFirst(); link != NULL; link = link->getNext()) {
         handle = link->getObject();
         if (handle != NULL && (bool)*handle) {
-            u32 swBit = lbl_80450B4C->getSwBit((*handle)->getID());
+            u32 swBit = data_80450B4C->getSwBit((*handle)->getID());
             if ((swBit & 0x8000) != 0) {
                 handle->releaseSound();
             } else {
@@ -255,7 +255,7 @@ asm void Z2SoundObjBase::dispose() {
 // sInstance stuff
 #ifdef NONMATCHING
 bool Z2SoundObjBase::stopOK(Z2SoundHandlePool& pSoundHandlePool) {
-    return !(lbl_80450B4C->getSwBit(pSoundHandlePool->getID()) & 0x8000);
+    return !(data_80450B4C->getSwBit(pSoundHandlePool->getID()) & 0x8000);
 }
 #else
 #pragma push

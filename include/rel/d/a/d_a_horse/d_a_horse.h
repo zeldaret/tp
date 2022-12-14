@@ -163,6 +163,7 @@ public:
     void onStateFlg0(daHorse_FLG0 flag) { mStateFlg0 |= flag; }
     void offStateFlg0(daHorse_FLG0 flag) { mStateFlg0 &= ~flag; }
     void offNoDrawWait() { offStateFlg0(NO_DRAW_WAIT); }
+    int checkSpecialWallHit(const cXyz& param_0) { return (this->*mpCheckSpecialWallHitFn)(param_0); }
 
     bool checkTurnStandCamera() const { return checkResetStateFlg0(TURN_STAND_CAMERA); }
     bool checkTurnStand() const { return checkResetStateFlg0(TURN_STAND); }

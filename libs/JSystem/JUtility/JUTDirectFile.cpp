@@ -8,19 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JUTDirectFile {
-    /* 802E8730 */ void fetch32byte();
-    /* 802E87F8 */ JUTDirectFile();
-    /* 802E881C */ ~JUTDirectFile();
-    /* 802E8860 */ void fopen(char const*);
-    /* 802E88FC */ void fclose();
-    /* 802E8958 */ void fgets(void*, int);
-};
-
-//
 // Forward References:
 //
 
@@ -85,7 +72,7 @@ asm JUTDirectFile::~JUTDirectFile() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JUTDirectFile::fopen(char const* param_0) {
+asm bool JUTDirectFile::fopen(char const* param_0) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTDirectFile/fopen__13JUTDirectFileFPCc.s"
 }
@@ -95,7 +82,7 @@ asm void JUTDirectFile::fopen(char const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JUTDirectFile::fclose() {
+asm bool JUTDirectFile::fclose() {
     nofralloc
 #include "asm/JSystem/JUtility/JUTDirectFile/fclose__13JUTDirectFileFv.s"
 }
@@ -105,7 +92,7 @@ asm void JUTDirectFile::fclose() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JUTDirectFile::fgets(void* param_0, int param_1) {
+asm int JUTDirectFile::fgets(void* param_0, int param_1) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTDirectFile/fgets__13JUTDirectFileFPvi.s"
 }

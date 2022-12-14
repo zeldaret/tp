@@ -1062,7 +1062,7 @@ int dComIfG_play_c::getLayerNo_common_common(const char* stageName, int roomId, 
 
             // Stage is Fishing Pond or Hena's Hut
             else if (!strcmp(stageName, "F_SP127") || !strcmp(stageName, "R_SP127")) {
-                switch (g_env_light[0x12fe]) {
+                switch (g_env_light.field_0x12fe) {
                 case 1:
                     layer = 0;
                     break;

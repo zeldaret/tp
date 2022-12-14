@@ -359,7 +359,7 @@ s32 JKRHeap::changeGroupID(u8 param_1) {
  */
 // "not/nor" instruction in the wrong place
 #ifdef NONMATCHING
-s32 JKRHeap::getMaxAllocatableSize(int alignment) {
+u32 JKRHeap::getMaxAllocatableSize(int alignment) {
     u32 maxFreeBlock = (u32)getMaxFreeBlock();
     s32 freeSize = getFreeSize();
 

@@ -805,6 +805,8 @@ SECTION_SDATA2 static f32 lit_4669 = -1.0f;
 #ifdef NONMATCHING
 // matches besides floats
 void dEvDtStaff_c::specialProcSound() {
+    SoundData* data = (SoundData*)&mData;
+
     int staffId = i_dComIfGp_evmng_getMyStaffId("SOUND", NULL, 0);
     if (staffId == -1) {
         return;
@@ -843,7 +845,7 @@ void dEvDtStaff_c::specialProcSound() {
         specialProc_WaitProc(staffId);
         break;
     case 'NOMS':
-        if (mSoundWait <= dDemo_c::getFrameNoMsg()) {
+        if (data->timer <= dDemo_c::getFrameNoMsg()) {
             dComIfGp_evmng_cutEnd(staffId);
         }
         break;
@@ -1097,12 +1099,12 @@ void dEvDtStaff_c::specialProcDirector() {
             dStage_MapEvent_dt_c* mapEvent = dEvt_control_c::searchMapEventData(data->unk);
             if (mapEvent != NULL) {
                 if (mapEvent->mType == 0) {
-                    data->mSoundWait = mapEvent->field_0x14;
+                    data->unk2 = mapEvent->field_0x14;
                 } else {
-                    data->mSoundWait = -1;
+                    data->unk2 = -1;
                 }
             } else {
-                data->mSoundWait = 0;
+                data->unk2 = 0;
             }
             break;
         case 'CAST':
@@ -1176,9 +1178,9 @@ void dEvDtStaff_c::specialProcDirector() {
     case 'NEXT':
         break;
     case 'VIBR':
-        if (data->mSoundWait > 0) {
-            data->mSoundWait--;
-            if (data->mSoundWait == 0) {
+        if (data->unk2 > 0) {
+            data->unk2--;
+            if (data->unk2 == 0) {
                 dComIfGp_getVibration().StopQuake(0x1F);
             }
         } else {
@@ -1197,8 +1199,8 @@ void dEvDtStaff_c::specialProcDirector() {
         }
         break;
     case 'MAPT':
-        data->mSoundWait--;
-        if (data->mSoundWait <= 0) {
+        data->unk2--;
+        if (data->unk2 <= 0) {
             dComIfGp_evmng_cutEnd(staffId);
         }
         break;

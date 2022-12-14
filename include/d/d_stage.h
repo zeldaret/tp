@@ -292,7 +292,8 @@ struct dStage_MapEvent_dt_c {
     /* 0x08 */ u8 field_0x8;
     /* 0x09 */ u8 field_0x9;
     /* 0x0A */ u8 field_0xA[0xD - 0xA];
-    /* 0x0D */ char mName[9];
+    /* 0x0D */ char mName[7];
+    /* 0x14 */ u16 field_0x14;
     /* 0x16 */ u8 field_0x16;
     /* 0x17 */ u8 field_0x17;
     /* 0x18 */ u8 mSeType;  // 1: RIDDLE_A, 2: RIDDLE_B

@@ -480,12 +480,10 @@ void JFWDisplay::waitBlanking(int param_0) {
     }
 }
 
+#ifdef NONMATCHING
 /* ############################################################################################## */
 /* 804511D0-804511D4 0006D0 0004+00 1/1 0/0 0/0 .sbss            nextTick$2642 */
-static u8 nextTick[4] ALIGN_DECL(8);
-
-/* 804511D4-804511D8 0006D4 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_804511D4[4];
+static OSTime nextTick ALIGN_DECL(8);
 
 /* 804511D8-804511DC 0006D8 0004+00 1/1 0/0 0/0 .sbss            None */
 static s8 data_804511D8;
@@ -497,7 +495,6 @@ static u32 nextCount;
 static s8 data_804511E0;
 
 /* 80272CB0-80272DD0 26D5F0 0120+00 2/2 0/0 0/0 .text            waitForTick__FUlUs */
-#ifdef NONMATCHING
 static void waitForTick(u32 param_0, u16 param_1) {
     if (param_0 != 0) {
         if (!data_804511D8) {
@@ -531,6 +528,22 @@ static void waitForTick(u32 param_0, u16 param_1) {
     }
 }
 #else
+/* ############################################################################################## */
+/* 804511D0-804511D4 0006D0 0004+00 1/1 0/0 0/0 .sbss            nextTick$2642 */
+static u8 nextTick[4] ALIGN_DECL(8);
+
+/* 804511D4-804511D8 0006D4 0004+00 1/1 0/0 0/0 .sbss            None */
+static u8 data_804511D4[4];
+
+/* 804511D8-804511DC 0006D8 0004+00 1/1 0/0 0/0 .sbss            None */
+static s8 data_804511D8;
+
+/* 804511DC-804511E0 0006DC 0004+00 1/1 0/0 0/0 .sbss            nextCount$2650 */
+static u32 nextCount;
+
+/* 804511E0-804511E8 0006E0 0008+00 1/1 0/0 0/0 .sbss            None */
+static s8 data_804511E0;
+
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

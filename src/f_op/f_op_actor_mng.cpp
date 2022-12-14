@@ -1747,7 +1747,7 @@ void* enemySearchJugge(void* p_actor, void* p_data) {
 
 /* 8001CA1C-8001CAD8 01735C 00BC+00 0/0 0/0 6/6 .text            fopAcM_myRoomSearchEnemy__FSc */
 #ifdef NONMATCHING
-void fopAcM_myRoomSearchEnemy(s8 roomNo) {
+fopAc_ac_c*  fopAcM_myRoomSearchEnemy(s8 roomNo) {
     int procID = dStage_roomControl_c::getStatusProcID(roomNo);
     scene_class* roomProc = fopScnM_SearchByID(procID);
 
@@ -2150,7 +2150,7 @@ fopAc_ac_c* fopAcM_findObject4EventCB(fopAc_ac_c* p_actor, void* p_data) {
 #ifdef NONMATCHING
 fopAc_ac_c* fopAcM_searchFromName4Event(char const* name, s16 eventID) {
     fopAcM_search4ev_prm prm;
-    prm.field_0x1e = eventID;
+    prm.mEventID = eventID;
     strcpy(prm.mName, name);
 
     char* chr = strchr(prm.mName, ':');

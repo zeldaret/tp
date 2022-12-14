@@ -93,8 +93,8 @@ J3DMaterialTable::~J3DMaterialTable() {}
 /* 8032F64C-8032F6F8 329F8C 00AC+00 0/0 1/1 5/5 .text
  * removeMatColorAnimator__16J3DMaterialTableFP11J3DAnmColor    */
 #ifdef NONMATCHING
-bool J3DMaterialTable::removeMatColorAnimator(J3DAnmColor* pAnmColor) {
-    bool ret = false;
+int J3DMaterialTable::removeMatColorAnimator(J3DAnmColor* pAnmColor) {
+    int ret = false;
     u16 updateMatNum = pAnmColor->getUpdateMaterialNum();
     for (u16 i = 0; i < updateMatNum; i++) {
         if (pAnmColor->isValidUpdateMaterialID(i)) {

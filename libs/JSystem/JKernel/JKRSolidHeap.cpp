@@ -323,7 +323,7 @@ void JKRSolidHeap::state_register(JKRHeap::TState* p, u32 id) const {
 
     getState_(p);
     setState_u32ID_(p, id);
-    setState_uUsedSize_(p, getUsedSize());
+    setState_uUsedSize_(p, getUsedSize((JKRSolidHeap*)this));
     setState_u32CheckCode_(p, (u32)mSolidHead + (u32)mSolidTail * 3);
 }
 #else

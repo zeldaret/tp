@@ -920,7 +920,7 @@ static void wether_move_rain() {
 
         if (g_env_light.mSnowCount == 0 && cam != NULL) {
             // Stage is not Fishing Pond
-            if (strcmp(dComIfGp_getStartStageName(), "R_SP127") || cam->field_0xd8.y > 0.0f) {
+            if (strcmp(dComIfGp_getStartStageName(), "R_SP127") || cam->mLookat.mEye.y > 0.0f) {
                 if (g_env_light.mRainCount < 125.0f) {
                     mDoAud_rainPlay(FALSE);
                 } else {
@@ -1503,14 +1503,14 @@ void dKyw_wether_proc() {
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP108") ||
         !strcmp(dComIfGp_getStartStageName(), "F_SP127") ||
         (!strcmp(dComIfGp_getStartStageName(), "F_SP121") &&
-         FLOAT_LABEL(lit_4378) != g_env_light.field_0x11d8)) {
+         FLOAT_LABEL(lit_4378) != g_env_light.mDiceWeatherTime)) {
         if (!dKy_darkworld_check()) {
             // Stage is Hyrule Field
             if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") || g_env_light.mDaytime >= 75.0f ||
                 g_env_light.mDaytime <= 120.0f) {
                 // Stage is Hyrule Field
                 if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") &&
-                    g_env_light.field_0x12c9 >= 1 && g_env_light.field_0x12c9 < 6) {
+                    g_env_light.mDiceWeatherMode >= 1 && g_env_light.mDiceWeatherMode < 6) {
                     dKy_get_dayofweek();
                     cLib_addCalc(&g_env_light.field_0xebc, lit_4379, lit_5362, lit_5363, lit_4770);
                     g_env_light.mMoyaMode = 7;

@@ -39,6 +39,8 @@ public:
     /* 8029F8B0 */ virtual bool isUsingSeqData(JAISeqDataRegion const&);
     /* 8029F91C */ virtual void releaseSeqData(JAISeqDataRegion const&);
 
+    JAISoundParamsMove* getParams() { return &mParams; }
+
     /* 0x04 */ JASNonCopyable field_0x4;
     /* 0x08 */ JAISoundParamsMove mParams;
     /* 0x58 */ JSUList<JAISe> mSeList;
@@ -65,6 +67,8 @@ public:
     /* 802A08FC */ virtual ~JAISeMgr();  // inline?
     /* 802A0168 */ virtual bool isUsingSeqData(JAISeqDataRegion const&);
     /* 802A01D8 */ virtual void releaseSeqData(JAISeqDataRegion const&);
+
+    JAISeCategoryMgr* getCategory(int categoryIndex) { return &mCategoryMgrs[categoryIndex]; }
 
 private:
     /* 0x008 */ JAIAudience* mAudience;

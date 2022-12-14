@@ -1901,31 +1901,135 @@ int daAlink_c::procCutLargeJumpLandInit(int param_0) {
 
 /* 800D67FC-800D698C 0D113C 0190+00 1/0 0/0 0/0 .text            procCutLargeJumpLand__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daAlink_c::procCutLargeJumpLand() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procCutLargeJumpLand__9daAlink_cFv.s"
+int daAlink_c::procCutLargeJumpLand() {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    i_onEndResetFlg0(ERFLG0_UNK_8000000);
+    field_0x2f99 = 4;
+
+    if (field_0x3198 != 2 && checkCutTurnInput()) {
+        field_0x3198 = getCutTurnDirection();
+    }
+
+    if (frameCtrl->checkAnmEnd()) {
+        if (mDemo.getDemoMode() == 0x56) {
+            dComIfGp_evmng_cutEnd(field_0x3184);
+        } else {
+            checkNextAction(0);
+        }
+    } else if (frameCtrl->getFrame() > daAlinkHIO_cutLargeJump_c0::m.mSpinSlashUnkCF && field_0x3198 != 2) {
+        procCutTurnInit(1, field_0x3198);
+    } else if (frameCtrl->getFrame() > daAlinkHIO_cutLargeJump_c0::m.mLandAnm.field_0x10) {
+        checkNextAction(1);
+    } else if (frameCtrl->getFrame() < daAlinkHIO_cutLargeJump_c0::m.mLandAttackEndF) {
+        i_onResetFlg0(RFLG0_UNK_2);
+
+        if (frameCtrl->getFrame() >= daAlinkHIO_cutLargeJump_c0::m.mLandAttackInitF) {
+            if (mCommonCounter == 0) {
+                resetAtCollision(0);
+                mCommonCounter = 1;
+                setCutType(CUT_TYPE_LARGE_JUMP_FINISH);
+                initCutTurnAt(field_0x347c, 4);
+            }
+
+            cLib_chaseF(&field_0x347c, field_0x3478, lit_8676);
+            field_0xFB8.SetR(field_0x347c);
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 800D698C-800D6A38 0D12CC 00AC+00 2/1 0/0 0/0 .text procSwordUnequipSpInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daAlink_c::procSwordUnequipSpInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procSwordUnequipSpInit__9daAlink_cFv.s"
+int daAlink_c::procSwordUnequipSpInit() {
+    if (!commonProcInitNotSameProc(PROC_SWORD_UNEQUIP_SP)) {
+        return 0;
+    }
+
+    setSingleAnimeBaseSpeed(ANM_FINISH, daAlinkHIO_cut_c0::m.mFlourishAnmSpeed, lit_6109);
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    field_0x3588 = l_halfAtnWaitBaseAnime;
+    field_0x3198 = 0;
+    mCommonCounter = 0;
+    field_0x300e = (0x1E - mDemo.getDemoMode()) != 0;
+    field_0x3010 = 0;
+
+    return 1;
 }
-#pragma pop
 
 /* 800D6A38-800D6D94 0D1378 035C+00 1/0 0/0 0/0 .text            procSwordUnequipSp__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daAlink_c::procSwordUnequipSp() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procSwordUnequipSp__9daAlink_cFv.s"
+int daAlink_c::procSwordUnequipSp() {
+    if (checkGroundSpecialMode()) {
+        return 1;
+    }
+
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    if (field_0x300e != 0) {
+        field_0x2f99 = 4;
+    } else {
+        field_0x300e = 1;
+    }
+
+    i_onEndResetFlg0(ERFLG0_UNK_8000000);
+
+    if (mCommonCounter != 0) {
+        i_onEndResetFlg1(ERFLG1_GANON_FINISH);
+    }
+
+    if (field_0x3010 == 0 && mDemo.getDemoMode() == 0x1E && mDemo.getParam1() == 1) {
+        field_0x3010 = 1;
+        setFaceBasicBck(0x149);
+        setFaceBasicBtp(0x3E1);
+    }
+
+    if (frameCtrl->checkAnmEnd()) {
+        if (field_0x3198 != 0) {
+            if (mDemo.getDemoMode() == 0x1E) {
+                dComIfGp_evmng_cutEnd(field_0x3184);
+            } else {
+                checkNextAction(0);
+            }
+        } else {
+            field_0x3198 = 1;
+            setSingleAnimeBaseSpeed(ANM_FINISH_END, daAlinkHIO_cut_c0::m.mFlourishEndAnmSpeed, lit_6109);
+        }
+    } else if (field_0x3198 != 0) {
+        if (!(frameCtrl->getFrame() > daAlinkHIO_cut_c0::m.mFlourishControlStartFrame) || !checkNextAction(1)) {
+            if (frameCtrl->getFrame() >= lit_8779) {
+                field_0x2f92 = 1;
+            } else if (frameCtrl->getFrame() >= lit_8780) {
+                field_0x2f93 = 6;
+            } else if (frameCtrl->getFrame() >= lit_7451) {
+                field_0x2f92 = 4;
+            } else if (frameCtrl->getFrame() >= lit_8781) {
+                if (mDemo.getDemoMode() == 0x1E) {
+                    if (mDemo.getParam0() == 1) {
+                        frameCtrl->setFrame(lit_8781);
+                        frameCtrl->setRate(FLOAT_LABEL(lit_6108));
+                        dComIfGp_evmng_cutEnd(field_0x3184);
+                    } else if (frameCtrl->getRate() < lit_8782) {
+                        setWaterInAnmRate(frameCtrl, daAlinkHIO_cut_c0::m.mFlourishEndAnmSpeed);
+                    }
+                }
+                deleteEquipItem(0, 1);
+            } else if (frameCtrl->checkPass(lit_8783)) {
+                seStartSwordCut(0x20008);
+            }
+        }
+    } else {
+        if (frameCtrl->getFrame() >= lit_7710) {
+            field_0x2f93 = 0xFE;
+            mCommonCounter = 1;
+            i_onEndResetFlg1(ERFLG1_GANON_FINISH);
+        }
+
+        if (frameCtrl->checkPass(lit_8502) || frameCtrl->checkPass(lit_8781)) {
+            seStartSwordCut(0x20006);
+        } else if (frameCtrl->checkPass(lit_8784) || frameCtrl->checkPass(lit_8785) || frameCtrl->checkPass(lit_8786)) {
+            seStartSwordCut(0x20007);
+        }
+    }
+
+    return 1;
 }
-#pragma pop

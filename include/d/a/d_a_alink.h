@@ -3181,6 +3181,7 @@ public:
     }
     void setFacePriBck(u16 param_0) { setFaceBck(param_0, 1, 0xFFFF); }
     void setFaceBasicBck(u16 param_0) { setFaceBck(param_0, 0, 0xFFFF); }
+    void setFaceBasicBtp(u16 param_0) { setFaceBtp(param_0, 0, 0xFFFF); }
     void cancelFmChainGrabFromOut() {
         field_0x2fa3 = 0;
         field_0x2844.clearData();

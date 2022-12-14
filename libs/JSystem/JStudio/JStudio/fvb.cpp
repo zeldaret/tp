@@ -562,7 +562,7 @@ void TObject_composite::prepare_data_(const data::TParse_TParagraph::TData& rDat
     ASSERT(pfn != NULL);
 
     pfn(pContent->data);
-    fnValue.data_set(*ops, pContent->data);
+    fnValue.data_set((TFunctionValue_composite::CompositeFunc)*ops, pContent->data);
 }
 #else
 /* 802842D4-80284338 27EC14 0064+00 1/0 0/0 0/0 .text

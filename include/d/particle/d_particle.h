@@ -352,6 +352,8 @@ public:
         return ((dPa_selectTexEcallBack*)mTsubo) + idx;
     }
 
+    static JPAEmitterManager* getEmitterManager() { return mEmitterMng; }
+
     static u8 mTsubo[64];
     static u8 mLifeBall[24];
     static Mtx mWindViewMatrix;

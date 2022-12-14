@@ -45,7 +45,7 @@ static u8 sTmpBuf[0x4000];
 
 /* 80017498-8001769C 011DD8 0204+00 0/0 1/1 0/0 .text mDoMemCdRWm_Store__FP12CARDFileInfoPvUl */
 #ifdef NONMATCHING
-void mDoMemCdRWm_Store(CARDFileInfo* file, void* data, u32 length) {
+s32 mDoMemCdRWm_Store(CARDFileInfo* file, void* data, u32 length) {
     mDoMemCdRWm_BuildHeader((mDoMemCdRWm_HeaderData*)sTmpBuf);
 
     s32 card_state = CARDWrite(file, sTmpBuf, sizeof(sTmpBuf), 0);
