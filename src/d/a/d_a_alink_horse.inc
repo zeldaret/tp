@@ -162,7 +162,7 @@ BOOL daAlink_c::checkHorseSubjectivity() const {
 /* 800ECF9C-800ECFF4 0E78DC 0058+00 2/2 0/0 0/0 .text            setHorseSwordUpAnime__9daAlink_cFv
  */
 void daAlink_c::setHorseSwordUpAnime() {
-    setUpperAnimeBaseSpeed(0xCC, daAlinkHIO_horse_c0::m.field_0x5C, daAlinkHIO_horse_c0::m.field_0x60);
+    setUpperAnimeBaseSpeed(0xCC, daAlinkHIO_horse_c0::m.mSwordUpAnmSpeed, daAlinkHIO_horse_c0::m.mSwordUpInterpolation);
     setFaceBck(0xE8, 1, 0xFFFF);
 }
 

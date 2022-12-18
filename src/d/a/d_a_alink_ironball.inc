@@ -46,7 +46,7 @@ bool daAlink_c::checkIronBallGroundStop() const {
 void daAlink_c::setIronBallWaitUpperAnime(int param_0) {
     if (!checkIronBallWaitAnime() && !checkIronBallPreSwingAnime() &&
         (field_0x3018 == 0 || field_0x3018 == 8) && (param_0 || checkNoUpperAnime())) {
-        setUpperAnimeBaseSpeed(0x19C, daAlinkHIO_ironBall_c0::m.field_0x18,
+        setUpperAnimeBaseSpeed(0x19C, daAlinkHIO_ironBall_c0::m.mWaitAnmSpeed,
                                daAlinkHIO_basic_c0::m.mAnmBlendFactor);
         setFacePriBck(0xE8);
         field_0x2f96 = 254;
@@ -163,9 +163,9 @@ BOOL daAlink_c::checkIronBallAnime() const {
  */
 void daAlink_c::setIronBallReadyAnime() {
     resetUpperAnime(UPPER_2, lit_6041);
-    setSingleAnime(ANM_IRONBALL_ATTACK, daAlinkHIO_ironBall_c0::m.field_0x1C, FLOAT_LABEL(lit_6108),
-                   0x15, daAlinkHIO_ironBall_c0::m.field_0x20);
-    setUpperAnimeBaseSpeed(0x19A, daAlinkHIO_ironBall_c0::m.field_0x1C, lit_6041);
+    setSingleAnime(ANM_IRONBALL_ATTACK, daAlinkHIO_ironBall_c0::m.mPrepareAnmSpeed, FLOAT_LABEL(lit_6108),
+                   0x15, daAlinkHIO_ironBall_c0::m.mPrepareInterpolation);
+    setUpperAnimeBaseSpeed(0x19A, daAlinkHIO_ironBall_c0::m.mPrepareAnmSpeed, lit_6041);
     mNowAnmPackUpper[2].setRatio(FLOAT_LABEL(lit_6108));
     voiceStart(Z2SE_AL_V_SWING_IB);
 
@@ -183,7 +183,7 @@ void daAlink_c::setIronBallReadyAnime() {
  */
 void daAlink_c::setIronBallBaseAnime() {
     if (checkIronBallSwingAnime() && !checkUnderMove0BckNoArc(ANM_IRONBALL_TURN)) {
-        setSingleAnimeBaseSpeed(ANM_IRONBALL_TURN, daAlinkHIO_ironBall_c0::m.field_0x24, daAlinkHIO_ironBall_c0::m.field_0x28);
+        setSingleAnimeBaseSpeed(ANM_IRONBALL_TURN, daAlinkHIO_ironBall_c0::m.mTurnAnmSpeed, daAlinkHIO_ironBall_c0::m.mTurnInterpolation);
         mUnderFrameCtrl[0].setFrame(mUpperFrameCtrl[2].getFrame());
         getNowAnmPackUnder(UNDER_0)->setFrame(mUpperFrameCtrl[2].getFrame());
     }
@@ -204,11 +204,11 @@ BOOL daAlink_c::checkUpperItemActionIronBall() {
 
         if (frameCtrl->checkAnmEnd()) {
             if (i_checkModeFlg(1)) {
-                setSingleAnimeBaseSpeed(ANM_IRONBALL_TURN, daAlinkHIO_ironBall_c0::m.field_0x24, daAlinkHIO_ironBall_c0::m.field_0x28);
+                setSingleAnimeBaseSpeed(ANM_IRONBALL_TURN, daAlinkHIO_ironBall_c0::m.mTurnAnmSpeed, daAlinkHIO_ironBall_c0::m.mTurnInterpolation);
             }
 
             u16 upperId = getMainBckData(ANM_IRONBALL_TURN)->m_upperID;
-            setUpperAnimeBaseSpeed(upperId, daAlinkHIO_ironBall_c0::m.field_0x24, daAlinkHIO_ironBall_c0::m.field_0x28);
+            setUpperAnimeBaseSpeed(upperId, daAlinkHIO_ironBall_c0::m.mTurnAnmSpeed, daAlinkHIO_ironBall_c0::m.mTurnInterpolation);
             field_0x3018 = 2;
             seStartOnlyReverb(Z2SE_AL_IB_SWING);
             return 1;
@@ -349,7 +349,7 @@ int daAlink_c::procIronBallMove() {
  */
 int daAlink_c::procIronBallThrowInit() {
     commonProcInit(PROC_IRON_BALL_THROW);
-    setSingleAnime(ANM_IRONBALL_ATTACK, daAlinkHIO_ironBall_c0::m.field_0x2C, lit_34957, 30, daAlinkHIO_ironBall_c0::m.field_0x30);
+    setSingleAnime(ANM_IRONBALL_ATTACK, daAlinkHIO_ironBall_c0::m.mPreThrowAnmSpeed, lit_34957, 30, daAlinkHIO_ironBall_c0::m.mPreThrowAnmInterpolation);
     field_0x2f99 = 12;
     field_0x3588 = l_ironBallBaseAnime;
     mNormalSpeed = FLOAT_LABEL(lit_6108);
@@ -381,10 +381,10 @@ int daAlink_c::procIronBallReturnInit() {
 
     if (field_0x3018 == 8) {
         mCommonCounter = 1;
-        setSingleAnimeParam(ANM_IRONBALL_CATCH, &daAlinkHIO_ironBall_c0::m.field_0x0);
+        setSingleAnimeParam(ANM_IRONBALL_CATCH, &daAlinkHIO_ironBall_c0::m.mCatchAnm);
         field_0x2f99 = 12;
     } else {
-        setSingleAnimeBaseSpeed(ANM_IRONBALL_PULL, daAlinkHIO_ironBall_c0::m.field_0x3C, daAlinkHIO_ironBall_c0::m.field_0x40);
+        setSingleAnimeBaseSpeed(ANM_IRONBALL_PULL, daAlinkHIO_ironBall_c0::m.mPullAnmSpeed, daAlinkHIO_ironBall_c0::m.mPullInterpolation);
         field_0x2f99 = 12;
         mCommonCounter = 0;
     }
@@ -405,7 +405,7 @@ int daAlink_c::procIronBallReturn() {
 
     if (field_0x3018 == 8 && mCommonCounter == 0) {
         mCommonCounter = 1;
-        setSingleAnimeParam(ANM_IRONBALL_CATCH, &daAlinkHIO_ironBall_c0::m.field_0x0);
+        setSingleAnimeParam(ANM_IRONBALL_CATCH, &daAlinkHIO_ironBall_c0::m.mCatchAnm);
         field_0x2f99 = 12;
         seStartOnlyReverb(Z2SE_AL_IB_CATCH);
 
@@ -417,7 +417,7 @@ int daAlink_c::procIronBallReturn() {
             setIronBallWaitUpperAnime(1);
             checkNextAction(0);
         }
-    } else if (field_0x3018 == 8 && frameCtrl->getFrame() > daAlinkHIO_ironBall_c0::m.field_0x0.field_0x10) {
+    } else if (field_0x3018 == 8 && frameCtrl->getFrame() > daAlinkHIO_ironBall_c0::m.mCatchAnm.mCheckFrame) {
         field_0x3018 = 0;
         setIronBallWaitUpperAnime(1);
         

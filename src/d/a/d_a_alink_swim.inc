@@ -139,14 +139,36 @@ asm void daAlink_c::setSpeedAndAngleSwim() {
 
 /* 801029C8-80102B1C 0FD308 0154+00 3/3 0/0 0/0 .text            checkNextActionSwim__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkNextActionSwim() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkNextActionSwim__9daAlink_cFv.s"
+int daAlink_c::checkNextActionSwim() {
+    if (checkSwimButtonMove() && getZoraSwim()) {
+        field_0x3000 = 30;
+    }
+
+    if ((checkZoraWearAbility() && !checkHeavyStateOn(1, 1)) || i_checkNoResetFlg0(FLG0_UNK_100)) {
+        setTalkStatus();
+    }
+
+    if (orderTalk(1)) {
+        return 1;
+    }
+
+    if (mAttList != NULL && mAttList->mType == 7 && i_checkNoResetFlg0(FLG0_UNK_100) && fopAcM_GetName(field_0x27f4) == PROC_CANOE) {
+        setDoStatus(0x17);
+
+        if (doTrigger()) {
+            return procCanoeRideInit();
+        }
+    } else if (checkSwimButtonMove() && !checkZoraSwimMove()) {
+        if (checkSwimButtonAccept()) {
+            return procSwimDiveInit();
+        }
+
+        field_0x3000 = 30;
+        return procSwimMoveInit();
+    }
+
+    return checkNextActionFromButton();
 }
-#pragma pop
 
 /* 80102B1C-80103058 0FD45C 053C+00 3/3 0/0 0/0 .text            checkSwimAction__9daAlink_cFi */
 #pragma push

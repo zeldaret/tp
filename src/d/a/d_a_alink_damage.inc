@@ -180,7 +180,7 @@ int daAlink_c::setDamagePoint(int i_dmgAmount, int i_checkZoraMag, int i_setDmgT
     mSwordUpTimer = 0;
 
     if (i_setDmgTimer) {
-        mDamageTimer = daAlinkHIO_damage_c0::m.field_0x2A;
+        mDamageTimer = daAlinkHIO_damage_c0::m.mInvincibleTime;
         setDamageColorTime();
     }
 
@@ -225,7 +225,7 @@ asm void daAlink_c::getDamageVec(dCcD_GObjInf* param_0) {
 
 /* 800D76C4-800D7768 0D2004 00A4+00 1/1 0/0 0/0 .text            setDashDamage__9daAlink_cFv */
 void daAlink_c::setDashDamage() {
-    setUpperAnimeParam(0xAD, UPPER_2, &daAlinkHIO_damage_c0::m.field_0x14);
+    setUpperAnimeParam(0xAD, UPPER_2, &daAlinkHIO_damage_c0::m.mDashDmgAnm);
     setFacePriBck(0x121);
     setFacePriTexture(FTANM_UNK_27);
     voiceStart(Z2SE_AL_V_DAMAGE_S);
@@ -415,10 +415,10 @@ int daAlink_c::procCoPolyDamageInit() {
     if (i_checkWolf()) {
         setSingleAnimeWolfParam(WANM_DMG_SMALL, &daAlinkHIO_wlDamage_c0::m.field_0x14);
         voiceStart(Z2SE_WL_V_DAMAGE);
-        field_0x3478 = daAlinkHIO_wlDamage_c0::m.field_0x14.field_0x10;
+        field_0x3478 = daAlinkHIO_wlDamage_c0::m.field_0x14.mCheckFrame;
     } else {
-        setSingleAnimeParam(ANM_DMG, &daAlinkHIO_damage_c0::m.field_0x0);
-        field_0x3478 = daAlinkHIO_damage_c0::m.field_0x0.field_0x10;
+        setSingleAnimeParam(ANM_DMG, &daAlinkHIO_damage_c0::m.mFloorDmgAnm);
+        field_0x3478 = daAlinkHIO_damage_c0::m.mFloorDmgAnm.mCheckFrame;
     }
 
     mNormalSpeed = FLOAT_LABEL(lit_6108);
@@ -457,7 +457,7 @@ int daAlink_c::procLandDamage() {
     if (field_0x3198 != 0) {
         if (frameCtrl->checkAnmEnd()) {
             checkNextAction(0);
-        } else if (frameCtrl->getFrame() > daAlinkHIO_damFall_c0::m.mStandAnm.field_0x10) {
+        } else if (frameCtrl->getFrame() > daAlinkHIO_damFall_c0::m.mStandAnm.mCheckFrame) {
             onModeFlg(4);
             checkNextAction(1);
         } 
@@ -516,7 +516,7 @@ int daAlink_c::procStEscape() {
 
     if (frameCtrl->checkAnmEnd()) {
         checkNextAction(0);
-    } else if (frameCtrl->getFrame() > daAlinkHIO_damCaught_c0::m.field_0x0.field_0x10) {
+    } else if (frameCtrl->getFrame() > daAlinkHIO_damCaught_c0::m.field_0x0.mCheckFrame) {
         onModeFlg(4);
         checkNextAction(1);
     }

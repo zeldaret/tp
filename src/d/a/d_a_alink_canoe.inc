@@ -249,10 +249,10 @@ int daAlink_c::procCanoeRideInit() {
     deleteEquipItem(0, 0);
     daCanoe_c* canoe = (daCanoe_c*)field_0x27f4;
 
-    setSingleAnime(ANM_HANG_CLIMB_TOP, daAlinkHIO_wallCatch_c0::m.field_0x28.mRate,
-                   daAlinkHIO_wallCatch_c0::m.field_0x50,
-                   daAlinkHIO_wallCatch_c0::m.field_0x28.mEndF,
-                   daAlinkHIO_wallCatch_c0::m.field_0x28.mInterpolation);
+    setSingleAnime(ANM_HANG_CLIMB_TOP, daAlinkHIO_wallCatch_c0::m.mClimbAnm.mSpeed,
+                   daAlinkHIO_wallCatch_c0::m.mClimbStartFrame,
+                   daAlinkHIO_wallCatch_c0::m.mClimbAnm.mEndFrame,
+                   daAlinkHIO_wallCatch_c0::m.mClimbAnm.mInterpolation);
     setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);

@@ -9,7 +9,7 @@ BOOL daAlink_c::checkBoomerangLockAccept() {
 f32 daAlink_c::getBoomSpeed() {
     f32 speed;
     if (checkBoomerangChargeEndWait()) {
-        speed = daAlinkHIO_boom_c0::m.mFlySpeed2;
+        speed = daAlinkHIO_boom_c0::m.mChargeFlySpeed;
     } else {
         speed = daAlinkHIO_boom_c0::m.mFlySpeed;
     }
@@ -151,7 +151,7 @@ void daAlink_c::setBoomerangReadyQuake() {
     dComIfGp_getVibration().StartQuake(1, 1, cXyz(tmp_0, lit_6040, tmp_0));
 
     i_onNoResetFlg3(FLG3_UNK_4);
-    field_0x3018 = daAlinkHIO_boom_c0::m.field_0x28;
+    field_0x3018 = daAlinkHIO_boom_c0::m.mChargeTime;
 }
 
 /* 800E055C-800E05E8 0DAE9C 008C+00 2/2 0/0 0/0 .text setBoomerangReadyAnime__9daAlink_cFv */
@@ -312,7 +312,7 @@ void daAlink_c::checkUpperItemActionBoomerangFly() {
 #pragma optimization_level 2
 int daAlink_c::checkNextActionBoomerang() {
     if ((checkBoomerangCatchAnime() &&
-         mUpperFrameCtrl[2].getFrame() <= daAlinkHIO_boom_c0::m.mCatchAnm.field_0x10) ||
+         mUpperFrameCtrl[2].getFrame() <= daAlinkHIO_boom_c0::m.mCatchAnm.mCheckFrame) ||
         i_checkNoResetFlg1(FLG1_UNK_2)) {
         return 0;
     }
@@ -495,7 +495,7 @@ int daAlink_c::procBoomerangCatch() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
     i_onEndResetFlg0(ERFLG0_UNK_8000000);
 
-    if (frameCtrl->getFrame() > daAlinkHIO_boom_c0::m.mCatchAnm.field_0x10) {
+    if (frameCtrl->getFrame() > daAlinkHIO_boom_c0::m.mCatchAnm.mCheckFrame) {
         onModeFlg(4);
     }
 

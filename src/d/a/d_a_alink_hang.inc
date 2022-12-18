@@ -24,7 +24,7 @@ asm void daAlink_c::getHangDirectionFromAngle() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::hangMoveBgCheck(s16 param_0, cXyz* param_1) {
+asm BOOL daAlink_c::hangMoveBgCheck(s16 param_0, cXyz* param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/hangMoveBgCheck__9daAlink_cFsP4cXyz.s"
 }

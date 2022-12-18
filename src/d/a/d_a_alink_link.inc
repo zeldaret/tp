@@ -499,7 +499,7 @@ int daAlink_c::procSideStepLandInit() {
     if (field_0x2f98 == 1) {
         field_0x2f9d = 4;
         setSingleAnimeParam(ANM_BACK_JUMP_LAND, &daAlinkHIO_sideStep_c0::m.mBackLandAnm);
-        field_0x3478 = daAlinkHIO_sideStep_c0::m.mBackLandAnm.field_0x10;
+        field_0x3478 = daAlinkHIO_sideStep_c0::m.mBackLandAnm.mCheckFrame;
         field_0x2f98 = 2;
         field_0x300a = 0;
         field_0x2fb0 = 0;
@@ -516,7 +516,7 @@ int daAlink_c::procSideStepLandInit() {
         }
 
         setSingleAnimeParam(anm_id, &daAlinkHIO_sideStep_c0::m.mSideLandAnm);
-        field_0x3478 = daAlinkHIO_sideStep_c0::m.mSideLandAnm.field_0x10;
+        field_0x3478 = daAlinkHIO_sideStep_c0::m.mSideLandAnm.mCheckFrame;
         field_0x300a = 1;
         field_0x2fb0 = 8;
         field_0x2fcc = 0;
@@ -627,13 +627,13 @@ int daAlink_c::procSlideLandInit(int param_0) {
 
     if (param_0 != 0) {
         setSingleAnimeParam(ANM_SLIDE_FORWARD_END, &daAlinkHIO_slide_c0::m.mForwardLandAnm);
-        field_0x3478 = daAlinkHIO_slide_c0::m.mForwardLandAnm.field_0x10;
+        field_0x3478 = daAlinkHIO_slide_c0::m.mForwardLandAnm.mCheckFrame;
         field_0x3198 = 1;
         field_0x2f99 = 4;
         field_0x3588 = l_waitBaseAnime;
     } else {
         setSingleAnimeParam(ANM_SLIDE_BACKWARD_END, &daAlinkHIO_slide_c0::m.mBackwardLandAnm);
-        field_0x3478 = daAlinkHIO_slide_c0::m.mBackwardLandAnm.field_0x10;
+        field_0x3478 = daAlinkHIO_slide_c0::m.mBackwardLandAnm.mCheckFrame;
         field_0x3198 = 0;
     }
 
@@ -746,8 +746,8 @@ asm int daAlink_c::procFrontRoll() {
 int daAlink_c::procFrontRollCrashInit() {
     commonProcInit(PROC_FRONT_ROLL_CRASH);
     setSingleAnime(ANM_ROLL_CRASH, FLOAT_LABEL(lit_6108),
-                   daAlinkHIO_frontRoll_c0::m.mCrashAnm.mStart,
-                   daAlinkHIO_frontRoll_c0::m.mCrashAnm.mEndF,
+                   daAlinkHIO_frontRoll_c0::m.mCrashAnm.mStartFrame,
+                   daAlinkHIO_frontRoll_c0::m.mCrashAnm.mEndFrame,
                    daAlinkHIO_frontRoll_c0::m.mCrashAnm.mInterpolation);
 
     mNormalSpeed = daAlinkHIO_frontRoll_c0::m.mCrashSpeedH;
@@ -773,7 +773,7 @@ int daAlink_c::procFrontRollCrash() {
     if (!i_checkModeFlg(2)) {
         if (frameCtrl->checkAnmEnd()) {
             checkNextAction(0);
-        } else if (frameCtrl->getFrame() > daAlinkHIO_frontRoll_c0::m.mCrashAnm.field_0x10) {
+        } else if (frameCtrl->getFrame() > daAlinkHIO_frontRoll_c0::m.mCrashAnm.mCheckFrame) {
             onModeFlg(4);
             checkNextAction(1);
         } else if (frameCtrl->getFrame() >= lit_10193) {
@@ -785,7 +785,7 @@ int daAlink_c::procFrontRollCrash() {
                 i_checkMagneBootsOn()) &&
                i_checkModeFlg(2)) {
         mNormalSpeed = FLOAT_LABEL(lit_6108);
-        setWaterInAnmRate(frameCtrl, daAlinkHIO_frontRoll_c0::m.mCrashAnm.mRate);
+        setWaterInAnmRate(frameCtrl, daAlinkHIO_frontRoll_c0::m.mCrashAnm.mSpeed);
         frameCtrl->offEndFlg();
         current.angle.y = shape_angle.y;
         voiceStart(Z2SE_AL_V_ZENTEN_FAIL_2);
@@ -832,7 +832,7 @@ int daAlink_c::procFrontRollSuccess() {
     if (frameCtrl->checkAnmEnd()) {
         current.angle.y = shape_angle.y;
         checkNextAction(0);
-    } else if (frameCtrl->getFrame() > daAlinkHIO_frontRoll_c0::m.mCrashHitAnm.field_0x10) {
+    } else if (frameCtrl->getFrame() > daAlinkHIO_frontRoll_c0::m.mCrashHitAnm.mCheckFrame) {
         onModeFlg(4);
         current.angle.y = shape_angle.y;
         checkNextAction(1);
@@ -866,8 +866,8 @@ int daAlink_c::procSideRollInit(int param_0) {
     }
 
     setSingleAnime(anmID, daAlinkHIO_turnMove_c0::m.mSideRollAnmSpeed,
-                   daAlinkHIO_turnMove_c0::m.mTurnAnm.mStart,
-                   daAlinkHIO_turnMove_c0::m.mTurnAnm.mEndF,
+                   daAlinkHIO_turnMove_c0::m.mTurnAnm.mStartFrame,
+                   daAlinkHIO_turnMove_c0::m.mTurnAnm.mEndFrame,
                    daAlinkHIO_turnMove_c0::m.mTurnAnm.mInterpolation);
     mNormalSpeed = daAlinkHIO_turnMove_c0::m.mSideRollSpeed;
 
@@ -929,14 +929,14 @@ int daAlink_c::procBackJumpInit(int param_0) {
     commonProcInit(PROC_BACK_JUMP);
 
     if (param_0) {
-        setSingleAnimeParam(ANM_BACKFLIP, &daAlinkHIO_cutDown_c0::m.field_0x50);
-        mNormalSpeed = daAlinkHIO_cutDown_c0::m.field_0x6C;
-        mSpeed.y = daAlinkHIO_cutDown_c0::m.field_0x70;
+        setSingleAnimeParam(ANM_BACKFLIP, &daAlinkHIO_cutDown_c0::m.mRecoverAnm);
+        mNormalSpeed = daAlinkHIO_cutDown_c0::m.mRecoverSpeedV;
+        mSpeed.y = daAlinkHIO_cutDown_c0::m.mSpeedV;
         voiceStart(Z2SE_AL_V_TODOME_RETURN);
     } else {
-        setSingleAnimeParam(ANM_BACKFLIP, &daAlinkHIO_backJump_c0::m.field_0x0);
-        mNormalSpeed = daAlinkHIO_backJump_c0::m.field_0x28;
-        mSpeed.y = daAlinkHIO_backJump_c0::m.field_0x2C;
+        setSingleAnimeParam(ANM_BACKFLIP, &daAlinkHIO_backJump_c0::m.mBackflipAnm);
+        mNormalSpeed = daAlinkHIO_backJump_c0::m.mBackflipSpeedH;
+        mSpeed.y = daAlinkHIO_backJump_c0::m.mBackflipSpeedV;
         voiceStart(Z2SE_AL_V_BACKTEN);
     }
 
@@ -983,8 +983,8 @@ int daAlink_c::procBackJump() {
     if (mLinkAcch.ChkGroundHit() && mUnderFrameCtrl[0].checkAnmEnd()) {
         procBackJumpLandInit(field_0x3198);
     } else if (mDemo.getDemoMode() != 0x10 &&
-               current.pos.y < mLastJumpPos.y - daAlinkHIO_backJump_c0::m.field_0x30) {
-        procFallInit(2, daAlinkHIO_backJump_c0::m.field_0x34);
+               current.pos.y < mLastJumpPos.y - daAlinkHIO_backJump_c0::m.mFallHeight) {
+        procFallInit(2, daAlinkHIO_backJump_c0::m.mFallInterpolation);
     }
 
     checkItemChangeFromButton();
@@ -995,7 +995,7 @@ int daAlink_c::procBackJump() {
  */
 int daAlink_c::procBackJumpLandInit(int i_cutDirection) {
     commonProcInit(PROC_BACK_JUMP_LAND);
-    setSingleAnimeParam(ANM_BACKFLIP_LAND, &daAlinkHIO_backJump_c0::m.field_0x14);
+    setSingleAnimeParam(ANM_BACKFLIP_LAND, &daAlinkHIO_backJump_c0::m.mLandAnm);
     mNormalSpeed = FLOAT_LABEL(lit_6108);
 
     field_0x2f9d = 4;
@@ -1031,7 +1031,7 @@ int daAlink_c::procBackJumpLand() {
             }
             checkNextAction(0);
         }
-    } else if (frameCtrl->getFrame() > daAlinkHIO_backJump_c0::m.field_0x14.field_0x10) {
+    } else if (frameCtrl->getFrame() > daAlinkHIO_backJump_c0::m.mLandAnm.mCheckFrame) {
         if (mEquipItem == 0x103 && (field_0x3198 != 2 || checkCutTurnInput())) {
             return procCutTurnInit(1, field_0x3198);
         }
@@ -1119,7 +1119,7 @@ int daAlink_c::procDiveJump() {
 
     if (mCommonCounter == 0) {
         if (frameCtrl->checkAnmEnd()) {
-            setSingleAnimeParam(ANM_DIVE, &daAlinkHIO_autoJump_c0::m.mDiveUnkAnm);
+            setSingleAnimeParam(ANM_DIVE, &daAlinkHIO_autoJump_c0::m.mDiveConnectAnm);
             mCommonCounter = 1;
             field_0x2f99 = 2;
         }
@@ -1286,7 +1286,7 @@ int daAlink_c::procLand() {
 
     if (frameCtrl->checkAnmEnd()) {
         checkNextAction(0);
-    } else if (frameCtrl->getFrame() > daAlinkHIO_autoJump_c0::m.mLandAnm.field_0x10) {
+    } else if (frameCtrl->getFrame() > daAlinkHIO_autoJump_c0::m.mLandAnm.mCheckFrame) {
         checkNextAction(1);
     } else if (frameCtrl->checkPass(lit_7450)) {
         int var_r4;
@@ -1351,7 +1351,7 @@ int daAlink_c::procStepMove() {
             return checkNextAction(0);
         }
 
-        if (frameCtrl->getFrame() > daAlinkHIO_smallJump_c0::m.mStepLandAnm.field_0x10) {
+        if (frameCtrl->getFrame() > daAlinkHIO_smallJump_c0::m.mStepLandAnm.mCheckFrame) {
             mNormalSpeed = field_0x3478;
 
             if (checkNextAction(1)) {
@@ -1387,8 +1387,8 @@ int daAlink_c::procCrouchInit() {
         return 0;
     }
 
-    setSingleAnimeBaseSpeed(ANM_CROUCH, daAlinkHIO_crouch_c0::m.field_0x30,
-                            daAlinkHIO_crouch_c0::m.field_0x34);
+    setSingleAnimeBaseSpeed(ANM_CROUCH, daAlinkHIO_crouch_c0::m.mCrouchAnmSpeed,
+                            daAlinkHIO_crouch_c0::m.mCrouchInterpolation);
     current.angle.y = shape_angle.y;
     return 1;
 }
@@ -1671,8 +1671,8 @@ int daAlink_c::procCoMetamorphoseOnly() {
 /* 800C8460-800C84D0 0C2DA0 0070+00 2/2 0/0 0/0 .text procFloorDownReboundInit__9daAlink_cFv */
 int daAlink_c::procFloorDownReboundInit() {
     commonProcInit(PROC_FLOOR_DOWN_REBOUND);
-    setSingleAnime(ANM_JUMP_LAND, lit_9652, daAlinkHIO_autoJump_c0::m.mLandAnm.mStart,
-                   daAlinkHIO_autoJump_c0::m.mLandAnm.mEndF, lit_7625);
+    setSingleAnime(ANM_JUMP_LAND, lit_9652, daAlinkHIO_autoJump_c0::m.mLandAnm.mStartFrame,
+                   daAlinkHIO_autoJump_c0::m.mLandAnm.mEndFrame, lit_7625);
     mNormalSpeed = FLOAT_LABEL(lit_6108);
     current.angle.y = shape_angle.y;
     field_0x2f98 = 4;
@@ -1687,7 +1687,7 @@ int daAlink_c::procFloorDownRebound() {
 
     if (frameCtrl->checkAnmEnd()) {
         checkNextAction(0);
-    } else if (frameCtrl->getFrame() > daAlinkHIO_autoJump_c0::m.mLandAnm.field_0x10) {
+    } else if (frameCtrl->getFrame() > daAlinkHIO_autoJump_c0::m.mLandAnm.mCheckFrame) {
         checkNextAction(1);
     }
 
@@ -2121,8 +2121,8 @@ int daAlink_c::execute() {
 
         if (checkCutFastReady()) {
             if (checkNoUpperAnime()) {
-                setUpperAnime(0x255, UPPER_2, daAlinkHIO_cut_c0::m.mEquipAnm.mRate, 12.0f,
-                              daAlinkHIO_cut_c0::m.mEquipAnm.mEndF,
+                setUpperAnime(0x255, UPPER_2, daAlinkHIO_cut_c0::m.mEquipAnm.mSpeed, 12.0f,
+                              daAlinkHIO_cut_c0::m.mEquipAnm.mEndFrame,
                               daAlinkHIO_cut_c0::m.mEquipAnm.mInterpolation);
                 onNoResetFlg0(FLG0_UNK_1000000);
             }

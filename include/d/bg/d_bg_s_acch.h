@@ -124,6 +124,7 @@ public:
     void SetRoofHit() { m_flags |= ROOF_HIT; }
     bool ChkWallHit() { return m_flags & WALL_HIT; }
     void OffLineCheckHit() { m_flags &= ~LINE_CHECK_HIT; }
+    void OffLineCheck() { m_flags &= ~LINE_CHECK; }
     bool ChkLineCheckNone() { return m_flags & LINE_CHECK_NONE; }
     bool ChkLineCheck() { return m_flags & LINE_CHECK; }
     void ClrRoofHit() { m_flags &= ~ROOF_HIT; }

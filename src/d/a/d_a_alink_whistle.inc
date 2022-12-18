@@ -62,7 +62,7 @@ int daAlink_c::procGrassWhistleGetInit() {
     current.angle.y = shape_angle.y;
     field_0x2f98 = 4;
 
-    setSingleAnimeParam(ANM_BOTTLE_SWING_DOWN, &daAlinkHIO_bottle_c0::m.field_0x50);
+    setSingleAnimeParam(ANM_BOTTLE_SWING_DOWN, &daAlinkHIO_bottle_c0::m.mSwingDownAnm);
     field_0x2f92 = 0xFE;
     field_0x280c.setData(field_0x27f4);
 

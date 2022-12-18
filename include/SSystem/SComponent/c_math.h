@@ -33,4 +33,8 @@ inline f32 cM_fsin(f32 v) {
     return JMASSin(cM_rad2s(v));
 }
 
+inline f32 cM_sht2d(f32 v) {
+    return v * 0.005493164f;
+}
+
 #endif /* C_MATH_H */

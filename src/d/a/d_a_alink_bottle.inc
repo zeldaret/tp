@@ -107,7 +107,7 @@ int daAlink_c::procBottleDrinkInit(u16 param_0) {
     mNormalSpeed = FLOAT_LABEL(lit_6108);
     field_0x2f98 = 4;
 
-    setSingleAnimeParam(ANM_BOTTLE_DRINK_START, &daAlinkHIO_bottle_c0::m.field_0x0);
+    setSingleAnimeParam(ANM_BOTTLE_DRINK_START, &daAlinkHIO_bottle_c0::m.mStartDrinkAnm);
     keepItemData();
     setBottleModel(param_0);
     dComIfGp_setPlayerStatus1(0, 0x2000);
@@ -147,7 +147,7 @@ int daAlink_c::procBottleOpenInit(u16 param_0) {
     mNormalSpeed = FLOAT_LABEL(lit_6108);
     field_0x2f98 = 4;
 
-    setSingleAnimeParam(ANM_BOTTLE_OPEN, &daAlinkHIO_bottle_c0::m.field_0x28);
+    setSingleAnimeParam(ANM_BOTTLE_OPEN, &daAlinkHIO_bottle_c0::m.mOpenBottleAnm);
     keepItemData();
     setBottleModel(param_0);
     dComIfGp_setPlayerStatus1(0, 0x4000);
@@ -232,9 +232,9 @@ int daAlink_c::procBottleGetInit(int param_0) {
 
     int var_r30;
     if (mEquipItem == KANTERA) {
-        setSingleAnime(ANM_BOTTLE_GET, daAlinkHIO_bottle_c0::m.field_0x78.mRate, lit_11442,
-                       daAlinkHIO_bottle_c0::m.field_0x78.mEndF,
-                       daAlinkHIO_bottle_c0::m.field_0x78.mInterpolation);
+        setSingleAnime(ANM_BOTTLE_GET, daAlinkHIO_bottle_c0::m.mGetAnm.mSpeed, lit_11442,
+                       daAlinkHIO_bottle_c0::m.mGetAnm.mEndFrame,
+                       daAlinkHIO_bottle_c0::m.mGetAnm.mInterpolation);
         field_0x2f93 = 0xFE;
 
         if (proc_pickup) {
@@ -253,7 +253,7 @@ int daAlink_c::procBottleGetInit(int param_0) {
 
         setGetSubBgm(var_r30);
     } else {
-        setSingleAnimeParam(ANM_BOTTLE_GET, &daAlinkHIO_bottle_c0::m.field_0x78);
+        setSingleAnimeParam(ANM_BOTTLE_GET, &daAlinkHIO_bottle_c0::m.mGetAnm);
         var_r30 = mEquipItem;
     }
 

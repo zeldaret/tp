@@ -131,8 +131,8 @@ int daAlink_c::procSpinnerReadyInit() {
 
     commonProcInit(PROC_SPINNER_READY);
     mRideAcKeep.setData(spinner);
-    setSingleAnime(ANM_VJUMP_START, daAlinkHIO_smallJump_c0::m.mSmallJumpAnm.mRate, lit_7977,
-                   daAlinkHIO_smallJump_c0::m.mSmallJumpAnm.mEndF,
+    setSingleAnime(ANM_VJUMP_START, daAlinkHIO_smallJump_c0::m.mSmallJumpAnm.mSpeed, lit_7977,
+                   daAlinkHIO_smallJump_c0::m.mSmallJumpAnm.mEndFrame,
                    daAlinkHIO_smallJump_c0::m.mSmallJumpAnm.mInterpolation);
     mNormalSpeed = FLOAT_LABEL(lit_6108);
     setHeavyBoots(0);
@@ -304,20 +304,20 @@ int daAlink_c::procSpinnerWait() {
             }
         } else if (spinner->getButtonJump() && field_0x3198 != ANM_RIDE_JUMP) {
             field_0x3198 = ANM_RIDE_JUMP;
-            setSingleAnime(ANM_RIDE_JUMP, 0.0f, daAlinkHIO_board_c0::m.mAirborneAnm.mStart,
-                           daAlinkHIO_board_c0::m.mAirborneAnm.mEndF,
+            setSingleAnime(ANM_RIDE_JUMP, 0.0f, daAlinkHIO_board_c0::m.mAirborneAnm.mStartFrame,
+                           daAlinkHIO_board_c0::m.mAirborneAnm.mEndFrame,
                            daAlinkHIO_board_c0::m.mAirborneAnm.mInterpolation);
             field_0x3010 = 0;
         } else if (field_0x3198 == ANM_RIDE_JUMP) {
             if (!spinner->getJumpFlg()) {
-                setSingleAnime(ANM_RIDE_JUMP_LAND, daAlinkHIO_board_c0::m.mLandAnm.mRate,
-                               daAlinkHIO_board_c0::m.mLandAnm.mStart, 16,
+                setSingleAnime(ANM_RIDE_JUMP_LAND, daAlinkHIO_board_c0::m.mLandAnm.mSpeed,
+                               daAlinkHIO_board_c0::m.mLandAnm.mStartFrame, 16,
                                daAlinkHIO_board_c0::m.mLandAnm.mInterpolation);
                 field_0x3198 = ANM_RIDE_JUMP_LAND;
             } else if (field_0x3010 == 0 && field_0x2060->getOldFrameRate() < 0.01f) {
-                setSingleAnime(ANM_RIDE_JUMP, daAlinkHIO_board_c0::m.mAirborneAnm.mRate,
-                               daAlinkHIO_board_c0::m.mAirborneAnm.mStart,
-                               daAlinkHIO_board_c0::m.mAirborneAnm.mEndF, -1.0f);
+                setSingleAnime(ANM_RIDE_JUMP, daAlinkHIO_board_c0::m.mAirborneAnm.mSpeed,
+                               daAlinkHIO_board_c0::m.mAirborneAnm.mStartFrame,
+                               daAlinkHIO_board_c0::m.mAirborneAnm.mEndFrame, -1.0f);
                 field_0x3010 = 1;
             }
         } else if ((field_0x3198 == ANM_RIDE_JUMP_LAND && frameCtrl->checkAnmEnd()) ||

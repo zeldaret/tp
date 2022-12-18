@@ -752,9 +752,14 @@ void fopAcM_calcSpeed(fopAc_ac_c* p_actor) {
 
 /* 8001A660-8001A6CC 014FA0 006C+00 1/1 1/1 17/17 .text fopAcM_posMove__FP10fopAc_ac_cPC4cXyz */
 void fopAcM_posMove(fopAc_ac_c* p_actor, const cXyz* p_movePos) {
-    p_actor->current.pos += p_actor->mSpeed;
+    p_actor->current.pos.x += p_actor->mSpeed.x;
+    p_actor->current.pos.y += p_actor->mSpeed.y;
+    p_actor->current.pos.z += p_actor->mSpeed.z;
+    
     if (p_movePos != NULL) {
-        p_actor->current.pos += *p_movePos;
+        p_actor->current.pos.x += p_movePos->x;
+        p_actor->current.pos.y += p_movePos->y;
+        p_actor->current.pos.z += p_movePos->z;
     }
 }
 

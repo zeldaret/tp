@@ -669,7 +669,7 @@ const daAlinkHIO_hoCutCharge_c1 daAlinkHIO_hoCutCharge_c0::m = {
 /* 8038DCF0-8038DD0C 01A350 001C+00 0/3 0/0 0/0 .rodata          m__20daAlinkHIO_cutDaL_c0 */
 #pragma push
 #pragma force_active on
-const daAlinkHIO_cutDaL_c1 daAlinkHIO_cutDaL_c0::m = {
+const daAlinkHIO_cutDash_c1 daAlinkHIO_cutDaL_c0::m = {
 	{
 		12,
         0.8f,
@@ -685,7 +685,7 @@ const daAlinkHIO_cutDaL_c1 daAlinkHIO_cutDaL_c0::m = {
 /* 8038DD0C-8038DD28 01A36C 001C+00 0/3 0/0 0/0 .rodata          m__20daAlinkHIO_cutDaR_c0 */
 #pragma push
 #pragma force_active on
-const daAlinkHIO_cutDaR_c1 daAlinkHIO_cutDaR_c0::m = {
+const daAlinkHIO_cutDash_c1 daAlinkHIO_cutDaR_c0::m = {
 	{
 		14,
         1.0f,
@@ -701,7 +701,7 @@ const daAlinkHIO_cutDaR_c1 daAlinkHIO_cutDaR_c0::m = {
 /* 8038DD28-8038DD44 01A388 001C+00 0/3 0/0 0/0 .rodata          m__25daAlinkHIO_cutDaCharge_c0 */
 #pragma push
 #pragma force_active on
-const daAlinkHIO_cutDaCharge_c1 daAlinkHIO_cutDaCharge_c0::m = {
+const daAlinkHIO_cutDash_c1 daAlinkHIO_cutDaCharge_c0::m = {
 	{
 		14,
         1.0f,
@@ -890,7 +890,7 @@ const daAlinkHIO_cut_c1 daAlinkHIO_cut_c0::m = {
 };
 
 /* 8038DF28-8038DF4C 01A588 0024+00 1/1 0/0 0/0 .rodata          m__21daAlinkHIO_gAtPush_c0 */
-const daAlinkHIO_gAtPush_c1 daAlinkHIO_gAtPush_c0::m = {
+const daAlinkHIO_guardAttack_c1 daAlinkHIO_gAtPush_c0::m = {
 	{
 		14,
         1.0f,
@@ -907,7 +907,7 @@ const daAlinkHIO_gAtPush_c1 daAlinkHIO_gAtPush_c0::m = {
 /* 8038DF4C-8038DF70 01A5AC 0024+00 0/0 0/0 0/0 .rodata          m__21daAlinkHIO_gAtKick_c0 */
 #pragma push
 #pragma force_active on
-const daAlinkHIO_gAtKick_c1 daAlinkHIO_gAtKick_c0::m = {
+const daAlinkHIO_guardAttack_c1 daAlinkHIO_gAtKick_c0::m = {
 	{
 		21,
         1.2f,
@@ -1935,7 +1935,7 @@ const daAlinkHIO_hookshot_c1 daAlinkHIO_hookshot_c0::m = {
         2.0f,
         7.0f,
 	},
-    0.0f,
+    0,
     1.0f,
     3.0f,
     2000.0f,
