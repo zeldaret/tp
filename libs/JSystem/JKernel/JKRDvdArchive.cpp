@@ -8,6 +8,8 @@
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JUtility/JUTException.h"
+#include "MSL_C/math.h"
+#include "MSL_C/string.h"
 #include "dol2asm.h"
 #include "global.h"
 
@@ -29,7 +31,6 @@ extern "C" extern char const* const JKRDvdArchive__stringBase0;
 // External References:
 //
 
-SECTION_INIT void memset();
 extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
 extern "C" void alloc__7JKRHeapFUli();
 extern "C" void free__7JKRHeapFPvP7JKRHeap();
@@ -70,7 +71,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void abs();
 extern "C" u8 sVolumeList__13JKRFileLoader[12];
 extern "C" u8 sSystemHeap__7JKRHeap[4];
 

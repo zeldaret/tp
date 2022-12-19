@@ -177,17 +177,7 @@ SECTION_DEAD static char const* const pad_8039D152 = "\0\0\0\0\0";
 #pragma pop
 
 /* 804508C0-804508C8 000340 0002+06 1/1 0/0 0/0 .sdata           rootPath$2498 */
-SECTION_SDATA static u8 rootPath[2 + 6 /* padding */] = {
-    0x2F,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_SDATA static char rootPath[2] = "/";
 
 /* 802D44C4-802D45A0 2CEE04 00DC+00 1/1 0/0 0/0 .text fetchVolumeName__13JKRFileLoaderFPclPCc */
 // matches, but lbl_804508C0 is accessed through r13
@@ -198,9 +188,9 @@ const char* JKRFileLoader::fetchVolumeName(char* buffer, long bufferSize, const 
     // lbl_804508C0 = JKernel::rootPath$2498 "/"
     // lbl_803D2D18 = MSL_C::__lower_map
 
-    if (strcmp(path, lbl_8039D150) == 0) {
-        strcpy(buffer, lbl_804508C0);
-        return lbl_804508C0;
+    if (strcmp(path, "/") == 0) {
+        strcpy(buffer, rootPath);
+        return rootPath;
     }
 
     path++;
@@ -211,7 +201,7 @@ const char* JKRFileLoader::fetchVolumeName(char* buffer, long bufferSize, const 
             if (ch == -1) {
                 lower_char = -1;
             } else {
-                lower_char = lbl_803D2D18[ch & 0xFF];
+                lower_char = __lower_map[ch & 0xFF];
             }
 
             *buffer = lower_char;
@@ -223,7 +213,7 @@ const char* JKRFileLoader::fetchVolumeName(char* buffer, long bufferSize, const 
 
     *buffer = '\0';
     if (*path == '\0') {
-        path = lbl_804508C0;
+        path = rootPath;
     }
 
     return path;

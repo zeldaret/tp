@@ -38,6 +38,7 @@ public:
 
 extern JKRSolidHeap* g_mDoAud_audioHeap;
 
+void mDoAud_Execute();
 void mDoAud_resetProcess();
 bool mDoAud_resetRecover();
 void mDoAud_setSceneName(char const* spot, s32 room, s32 layer);

@@ -11,9 +11,19 @@ inline f32 JMAFastReciprocal(f32 value) {
     return __fres(value);
 }
 
+inline float __frsqrtes(register double f) {
+    register float out;
+    // clang-format off
+    asm {
+        frsqrte out, f
+    }
+    // clang-format on
+    return out;
+}
+
 inline f32 JMAFastSqrt(f32 input) {
     if (input > 0.0f) {
-        f64 tmp = __frsqrte(input);
+        f32 tmp = __frsqrtes(input);
         return tmp * input;
     }
     return input;

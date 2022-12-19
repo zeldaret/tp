@@ -15,6 +15,7 @@ public:
     u32 getSwNo() { return fopAcM_GetParam(this) >> 0x18; }
     u16 getOffEventBit() { return orig.angle.z & 0xFFF; }
     u16 getOnEventBit() { return orig.angle.x & 0xFFF; }
+    u8 getPathID() { return (fopAcM_GetParam(this) >> 0x10) & 0xFF; }
     void setSceneChangeOK() { mSceneChangeOK = true; }
 
     /* 0x568 */ Mtx mMatrix;

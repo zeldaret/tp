@@ -24,7 +24,7 @@ asm void daAlink_c::getHangDirectionFromAngle() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::hangMoveBgCheck(s16 param_0, cXyz* param_1) {
+asm BOOL daAlink_c::hangMoveBgCheck(s16 param_0, cXyz* param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/hangMoveBgCheck__9daAlink_cFsP4cXyz.s"
 }
@@ -84,7 +84,7 @@ asm void daAlink_c::checkHangStartSideWall(s16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHangStartInit() {
+asm int daAlink_c::procHangStartInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHangStartInit__9daAlink_cFv.s"
 }
@@ -94,7 +94,7 @@ asm void daAlink_c::procHangStartInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHangStart() {
+asm int daAlink_c::procHangStart() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHangStart__9daAlink_cFv.s"
 }
@@ -105,7 +105,7 @@ asm void daAlink_c::procHangStart() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHangFallStartInit(cM3dGPla* param_0) {
+asm int daAlink_c::procHangFallStartInit(cM3dGPla* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procHangFallStartInit__9daAlink_cFP8cM3dGPla.s"
 }
@@ -115,7 +115,7 @@ asm void daAlink_c::procHangFallStartInit(cM3dGPla* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHangFallStart() {
+asm int daAlink_c::procHangFallStart() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHangFallStart__9daAlink_cFv.s"
 }
@@ -125,7 +125,7 @@ asm void daAlink_c::procHangFallStart() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHangUpInit(int param_0) {
+asm int daAlink_c::procHangUpInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procHangUpInit__9daAlink_cFi.s"
 }
@@ -135,7 +135,7 @@ asm void daAlink_c::procHangUpInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHangUp() {
+asm int daAlink_c::procHangUp() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHangUp__9daAlink_cFv.s"
 }
@@ -145,7 +145,7 @@ asm void daAlink_c::procHangUp() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHangWaitInit() {
+asm int daAlink_c::procHangWaitInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHangWaitInit__9daAlink_cFv.s"
 }
@@ -155,7 +155,7 @@ asm void daAlink_c::procHangWaitInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHangWait() {
+asm int daAlink_c::procHangWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHangWait__9daAlink_cFv.s"
 }
@@ -165,7 +165,7 @@ asm void daAlink_c::procHangWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHangMoveInit(int param_0) {
+asm int daAlink_c::procHangMoveInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procHangMoveInit__9daAlink_cFi.s"
 }
@@ -175,7 +175,7 @@ asm void daAlink_c::procHangMoveInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHangMove() {
+asm int daAlink_c::procHangMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHangMove__9daAlink_cFv.s"
 }
@@ -185,7 +185,7 @@ asm void daAlink_c::procHangMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHangClimbInit(f32 param_0) {
+asm int daAlink_c::procHangClimbInit(f32 param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procHangClimbInit__9daAlink_cFf.s"
 }
@@ -195,7 +195,7 @@ asm void daAlink_c::procHangClimbInit(f32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHangClimb() {
+asm int daAlink_c::procHangClimb() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHangClimb__9daAlink_cFv.s"
 }
@@ -206,7 +206,7 @@ asm void daAlink_c::procHangClimb() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHangWallCatchInit() {
+asm int daAlink_c::procHangWallCatchInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHangWallCatchInit__9daAlink_cFv.s"
 }
@@ -216,7 +216,7 @@ asm void daAlink_c::procHangWallCatchInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHangWallCatch() {
+asm int daAlink_c::procHangWallCatch() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHangWallCatch__9daAlink_cFv.s"
 }
@@ -226,7 +226,7 @@ asm void daAlink_c::procHangWallCatch() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHangReadyInit() {
+asm int daAlink_c::procHangReadyInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHangReadyInit__9daAlink_cFv.s"
 }
@@ -236,7 +236,7 @@ asm void daAlink_c::procHangReadyInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHangReady() {
+asm int daAlink_c::procHangReady() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHangReady__9daAlink_cFv.s"
 }
@@ -247,7 +247,7 @@ asm void daAlink_c::procHangReady() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHangLeverDownInit() {
+asm int daAlink_c::procHangLeverDownInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHangLeverDownInit__9daAlink_cFv.s"
 }
@@ -257,7 +257,7 @@ asm void daAlink_c::procHangLeverDownInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHangLeverDown() {
+asm int daAlink_c::procHangLeverDown() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHangLeverDown__9daAlink_cFv.s"
 }
@@ -309,7 +309,7 @@ asm void daAlink_c::setBossBodyHangPos() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procBossBodyHangInit(fopAc_ac_c* param_0) {
+asm int daAlink_c::procBossBodyHangInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procBossBodyHangInit__9daAlink_cFP10fopAc_ac_c.s"
 }
@@ -319,7 +319,7 @@ asm void daAlink_c::procBossBodyHangInit(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procBossBodyHang() {
+asm int daAlink_c::procBossBodyHang() {
     nofralloc
 #include "asm/d/a/d_a_alink/procBossBodyHang__9daAlink_cFv.s"
 }
@@ -413,7 +413,7 @@ asm void daAlink_c::checkLadderFall() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procLadderUpStartInit() {
+asm int daAlink_c::procLadderUpStartInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procLadderUpStartInit__9daAlink_cFv.s"
 }
@@ -423,7 +423,7 @@ asm void daAlink_c::procLadderUpStartInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procLadderUpStart() {
+asm int daAlink_c::procLadderUpStart() {
     nofralloc
 #include "asm/d/a/d_a_alink/procLadderUpStart__9daAlink_cFv.s"
 }
@@ -434,7 +434,7 @@ asm void daAlink_c::procLadderUpStart() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procLadderUpEndInit(int param_0) {
+asm int daAlink_c::procLadderUpEndInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procLadderUpEndInit__9daAlink_cFi.s"
 }
@@ -444,7 +444,7 @@ asm void daAlink_c::procLadderUpEndInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procLadderUpEnd() {
+asm int daAlink_c::procLadderUpEnd() {
     nofralloc
 #include "asm/d/a/d_a_alink/procLadderUpEnd__9daAlink_cFv.s"
 }
@@ -454,7 +454,7 @@ asm void daAlink_c::procLadderUpEnd() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procLadderDownStartInit() {
+asm int daAlink_c::procLadderDownStartInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procLadderDownStartInit__9daAlink_cFv.s"
 }
@@ -465,7 +465,7 @@ asm void daAlink_c::procLadderDownStartInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procLadderDownStart() {
+asm int daAlink_c::procLadderDownStart() {
     nofralloc
 #include "asm/d/a/d_a_alink/procLadderDownStart__9daAlink_cFv.s"
 }
@@ -476,7 +476,7 @@ asm void daAlink_c::procLadderDownStart() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procLadderDownEndInit(int param_0) {
+asm int daAlink_c::procLadderDownEndInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procLadderDownEndInit__9daAlink_cFi.s"
 }
@@ -486,7 +486,7 @@ asm void daAlink_c::procLadderDownEndInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procLadderDownEnd() {
+asm int daAlink_c::procLadderDownEnd() {
     nofralloc
 #include "asm/d/a/d_a_alink/procLadderDownEnd__9daAlink_cFv.s"
 }
@@ -496,7 +496,7 @@ asm void daAlink_c::procLadderDownEnd() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procLadderMoveInit(int param_0, int param_1, cXyz* param_2) {
+asm int daAlink_c::procLadderMoveInit(int param_0, int param_1, cXyz* param_2) {
     nofralloc
 #include "asm/d/a/d_a_alink/procLadderMoveInit__9daAlink_cFiiP4cXyz.s"
 }
@@ -506,7 +506,7 @@ asm void daAlink_c::procLadderMoveInit(int param_0, int param_1, cXyz* param_2) 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procLadderMove() {
+asm int daAlink_c::procLadderMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procLadderMove__9daAlink_cFv.s"
 }
@@ -672,7 +672,7 @@ asm void daAlink_c::setClimbStartNotGround() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procClimbUpStartInit(int param_0) {
+asm int daAlink_c::procClimbUpStartInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procClimbUpStartInit__9daAlink_cFi.s"
 }
@@ -682,7 +682,7 @@ asm void daAlink_c::procClimbUpStartInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procClimbUpStart() {
+asm int daAlink_c::procClimbUpStart() {
     nofralloc
 #include "asm/d/a/d_a_alink/procClimbUpStart__9daAlink_cFv.s"
 }
@@ -692,7 +692,7 @@ asm void daAlink_c::procClimbUpStart() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procClimbDownStartInit(s16 param_0) {
+asm int daAlink_c::procClimbDownStartInit(s16 param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procClimbDownStartInit__9daAlink_cFs.s"
 }
@@ -702,7 +702,7 @@ asm void daAlink_c::procClimbDownStartInit(s16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procClimbDownStart() {
+asm int daAlink_c::procClimbDownStart() {
     nofralloc
 #include "asm/d/a/d_a_alink/procClimbDownStart__9daAlink_cFv.s"
 }
@@ -712,7 +712,7 @@ asm void daAlink_c::procClimbDownStart() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procClimbMoveUpDownInit(int param_0) {
+asm int daAlink_c::procClimbMoveUpDownInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procClimbMoveUpDownInit__9daAlink_cFi.s"
 }
@@ -723,7 +723,7 @@ asm void daAlink_c::procClimbMoveUpDownInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procClimbMoveUpDown() {
+asm int daAlink_c::procClimbMoveUpDown() {
     nofralloc
 #include "asm/d/a/d_a_alink/procClimbMoveUpDown__9daAlink_cFv.s"
 }
@@ -734,7 +734,7 @@ asm void daAlink_c::procClimbMoveUpDown() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procClimbMoveSideInit() {
+asm int daAlink_c::procClimbMoveSideInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procClimbMoveSideInit__9daAlink_cFv.s"
 }
@@ -744,7 +744,7 @@ asm void daAlink_c::procClimbMoveSideInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procClimbMoveSide() {
+asm int daAlink_c::procClimbMoveSide() {
     nofralloc
 #include "asm/d/a/d_a_alink/procClimbMoveSide__9daAlink_cFv.s"
 }
@@ -754,7 +754,7 @@ asm void daAlink_c::procClimbMoveSide() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procClimbWaitInit(int param_0, int param_1) {
+asm int daAlink_c::procClimbWaitInit(int param_0, int param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/procClimbWaitInit__9daAlink_cFii.s"
 }
@@ -764,7 +764,7 @@ asm void daAlink_c::procClimbWaitInit(int param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procClimbWait() {
+asm int daAlink_c::procClimbWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procClimbWait__9daAlink_cFv.s"
 }
@@ -775,7 +775,7 @@ asm void daAlink_c::procClimbWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procClimbToRoofInit() {
+asm int daAlink_c::procClimbToRoofInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procClimbToRoofInit__9daAlink_cFv.s"
 }
@@ -785,7 +785,7 @@ asm void daAlink_c::procClimbToRoofInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procClimbToRoof() {
+asm int daAlink_c::procClimbToRoof() {
     nofralloc
 #include "asm/d/a/d_a_alink/procClimbToRoof__9daAlink_cFv.s"
 }
@@ -858,7 +858,7 @@ asm void daAlink_c::checkNextActionRoofHang() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procRoofHangStartInit(cBgS_PolyInfo const& param_0, cXyz const& param_1,
+asm int daAlink_c::procRoofHangStartInit(cBgS_PolyInfo const& param_0, cXyz const& param_1,
                                           int param_2) {
     nofralloc
 #include "asm/d/a/d_a_alink/procRoofHangStartInit__9daAlink_cFRC13cBgS_PolyInfoRC4cXyzi.s"
@@ -869,7 +869,7 @@ asm void daAlink_c::procRoofHangStartInit(cBgS_PolyInfo const& param_0, cXyz con
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procRoofHangStart() {
+asm int daAlink_c::procRoofHangStart() {
     nofralloc
 #include "asm/d/a/d_a_alink/procRoofHangStart__9daAlink_cFv.s"
 }
@@ -880,7 +880,7 @@ asm void daAlink_c::procRoofHangStart() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procRoofHangWaitInit(int param_0) {
+asm int daAlink_c::procRoofHangWaitInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procRoofHangWaitInit__9daAlink_cFi.s"
 }
@@ -890,7 +890,7 @@ asm void daAlink_c::procRoofHangWaitInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procRoofHangWait() {
+asm int daAlink_c::procRoofHangWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procRoofHangWait__9daAlink_cFv.s"
 }
@@ -900,7 +900,7 @@ asm void daAlink_c::procRoofHangWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procRoofHangFrontMoveInit() {
+asm int daAlink_c::procRoofHangFrontMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procRoofHangFrontMoveInit__9daAlink_cFv.s"
 }
@@ -911,7 +911,7 @@ asm void daAlink_c::procRoofHangFrontMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procRoofHangFrontMove() {
+asm int daAlink_c::procRoofHangFrontMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procRoofHangFrontMove__9daAlink_cFv.s"
 }
@@ -921,7 +921,7 @@ asm void daAlink_c::procRoofHangFrontMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procRoofHangSideMoveInit() {
+asm int daAlink_c::procRoofHangSideMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procRoofHangSideMoveInit__9daAlink_cFv.s"
 }
@@ -932,7 +932,7 @@ asm void daAlink_c::procRoofHangSideMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procRoofHangSideMove() {
+asm int daAlink_c::procRoofHangSideMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procRoofHangSideMove__9daAlink_cFv.s"
 }
@@ -943,7 +943,7 @@ asm void daAlink_c::procRoofHangSideMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procRoofHangTurnInit() {
+asm int daAlink_c::procRoofHangTurnInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procRoofHangTurnInit__9daAlink_cFv.s"
 }
@@ -953,7 +953,7 @@ asm void daAlink_c::procRoofHangTurnInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procRoofHangTurn() {
+asm int daAlink_c::procRoofHangTurn() {
     nofralloc
 #include "asm/d/a/d_a_alink/procRoofHangTurn__9daAlink_cFv.s"
 }
@@ -974,7 +974,7 @@ asm void daAlink_c::setRoofHangSwitch() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procRoofSwitchHangInit(fopAc_ac_c* param_0) {
+asm int daAlink_c::procRoofSwitchHangInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procRoofSwitchHangInit__9daAlink_cFP10fopAc_ac_c.s"
 }
@@ -984,7 +984,7 @@ asm void daAlink_c::procRoofSwitchHangInit(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procRoofSwitchHang() {
+asm int daAlink_c::procRoofSwitchHang() {
     nofralloc
 #include "asm/d/a/d_a_alink/procRoofSwitchHang__9daAlink_cFv.s"
 }

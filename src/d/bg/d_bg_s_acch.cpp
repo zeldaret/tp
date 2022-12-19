@@ -213,8 +213,8 @@ SECTION_SDATA2 static f32 lit_4092 = 1000.0f;
 // matches with literals
 #ifdef NONMATCHING
 dBgS_Acch::dBgS_Acch() {
-    SetPolyPassChk(&GetPolyPassChkInfo());
-    SetGrpPassChk(&GetGrpPassChkInfo());
+    SetPolyPassChk(GetPolyPassChkInfo());
+    SetGrpPassChk(GetGrpPassChkInfo());
 
     m_flags = 0;
     SetRoofNone();
@@ -309,17 +309,12 @@ void dBgS_Acch::GroundCheckInit(dBgS& param_0) {
     }
 }
 
-/* ############################################################################################## */
-/* 80424B20-80424B2C 051840 000C+00 1/1 0/0 0/0 .bss             @4166 */
-static u8 lit_4166[12];
-
-/* 80424B2C-80424B80 05184C 0050+04 1/1 0/0 0/0 .bss             tmpRoofChk$4165 */
-static u8 tmpRoofChk[80 + 4 /* padding */];
-// static dBgS_RoofChk tmpRoofChk;
-
 /* 80076350-8007654C 070C90 01FC+00 2/2 0/0 0/0 .text            GroundCheck__9dBgS_AcchFR4dBgS */
 // issues with tmpRoofChk
 #ifdef NONMATCHING
+/* 80424B2C-80424B80 05184C 0050+04 1/1 0/0 0/0 .bss             tmpRoofChk$4165 */
+static dBgS_RoofChk tmpRoofChk;
+
 void dBgS_Acch::GroundCheck(dBgS& param_0) {
     if (!(m_flags & GRND_NONE)) {
         cXyz grnd_pos;
@@ -369,6 +364,13 @@ void dBgS_Acch::GroundCheck(dBgS& param_0) {
     }
 }
 #else
+/* ############################################################################################## */
+/* 80424B20-80424B2C 051840 000C+00 1/1 0/0 0/0 .bss             @4166 */
+static u8 lit_4166[12];
+
+/* 80424B2C-80424B80 05184C 0050+04 1/1 0/0 0/0 .bss             tmpRoofChk$4165 */
+static u8 tmpRoofChk[80 + 4 /* padding */];
+
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

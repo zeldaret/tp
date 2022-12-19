@@ -116,27 +116,15 @@ SECTION_SDATA2 static u8 lit_853[4] = {
 };
 
 /* 803283FC-8032842C 322D3C 0030+00 0/0 25/25 285/285 .text            init__12J3DFrameCtrlFs */
-// zero-initialized literal
-#ifdef NONMATCHING
-void J3DFrameCtrl::init(s16 pEnd) {
+void J3DFrameCtrl::init(s16 i_end) {
     mAttribute = 2;
-    mState = false;
+    mState = 0;
     mStart = 0;
-    mEnd = pEnd;
+    mEnd = i_end;
     mLoop = 0;
-    mRate = 1.0f;
-    mFrame = 0.0f;
+    mRate = lit_852;
+    mFrame = FLOAT_LABEL(lit_853);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DFrameCtrl::init(s16 param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DAnimation/init__12J3DFrameCtrlFs.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80456438-80456440 004A38 0004+04 2/2 0/0 0/0 .sdata2          @973 */
@@ -151,14 +139,135 @@ SECTION_SDATA2 static f64 lit_975 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8032842C-803289CC 322D6C 05A0+00 0/0 92/92 382/382 .text            checkPass__12J3DFrameCtrlFf
  */
+// matches with literals
+#ifdef NONMATCHING
+int J3DFrameCtrl::checkPass(f32 pass_frame) {
+    f32 cur_frame = mFrame;
+    f32 next_frame = cur_frame + mRate;
+
+    switch (mAttribute) {
+    case 0:
+    case 1:
+        if (next_frame < mStart) {
+            next_frame = mStart;
+        }
+
+        if (next_frame >= mEnd) {
+            next_frame = mEnd - 0.001f;
+        }
+
+        if (cur_frame <= next_frame) {
+            if (cur_frame <= pass_frame && pass_frame < next_frame) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        if (next_frame <= pass_frame && pass_frame < cur_frame) {
+            return true;
+        }
+        return false;
+    case 2:
+        if (cur_frame < mStart) {
+            while (next_frame < mStart) {
+                if (mLoop - mStart <= 0.0f) {
+                    break;
+                }
+                next_frame += mLoop - mStart;
+            }
+
+            if (next_frame <= pass_frame && pass_frame < mLoop) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (mEnd <= cur_frame) {
+            while (next_frame >= mEnd) {            
+                if (mEnd - mLoop <= 0.0f) {
+                    break;
+                }
+                next_frame -= mEnd - mLoop;
+            }
+
+            if (mLoop <= pass_frame && pass_frame < next_frame) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (next_frame < mStart) {
+            while (next_frame < mStart) {            
+                if (mLoop - mStart <= 0.0f) {
+                    break;
+                }
+                next_frame += mLoop - mStart;
+            }
+
+            if ((mStart <= pass_frame && pass_frame < cur_frame) || (next_frame <= pass_frame && pass_frame < mLoop)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (mEnd <= next_frame) {
+            while (next_frame >= mEnd) {            
+                if (mEnd - mLoop <= 0.0f) {
+                    break;
+                }
+
+                next_frame -= mEnd - mLoop;
+            }
+
+            if ((cur_frame <= pass_frame && pass_frame < mEnd) || (mLoop <= pass_frame && pass_frame < next_frame)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (cur_frame <= next_frame) {
+            if (cur_frame <= pass_frame && pass_frame < next_frame) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (next_frame <= pass_frame && pass_frame < cur_frame) {
+            return true;
+        }
+        return false;
+    case 3:
+    case 4:
+        if (next_frame >= mEnd) {
+            next_frame = mEnd - 0.001f;
+        }
+
+        if (next_frame < mStart) {
+            next_frame = mStart;
+        }
+
+        if (cur_frame <= next_frame) {
+            if (cur_frame <= pass_frame && pass_frame < next_frame) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        if (next_frame <= pass_frame && pass_frame < cur_frame) {
+            return true;
+        }
+        return false;
+    default:
+        return false;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int J3DFrameCtrl::checkPass(f32 param_0) {
+asm int J3DFrameCtrl::checkPass(f32 pass_frame) {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/checkPass__12J3DFrameCtrlFf.s"
 }
 #pragma pop
+#endif
 
 /* 803289CC-80328E40 32330C 0474+00 0/0 3/3 0/0 .text            update__12J3DFrameCtrlFv */
 #pragma push
@@ -171,6 +280,19 @@ asm void J3DFrameCtrl::update() {
 #pragma pop
 
 /* 80328E40-80328E90 323780 0050+00 0/0 3/3 0/0 .text            __ct__15J3DAnmTransformFsPfPsPf */
+// matches with literals
+#ifdef NONMATCHING
+J3DAnmTransform::J3DAnmTransform(s16 param_0, f32* param_1, s16* param_2, f32* param_3)
+ : J3DAnmBase(param_0) {
+    field_0xc = param_1;
+    field_0x10 = param_2;
+    field_0x14 = param_3;
+    field_0x18 = 0;
+    field_0x1a = 0;
+    field_0x1c = 0;
+    field_0x1e = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -179,6 +301,7 @@ asm J3DAnmTransform::J3DAnmTransform(s16 param_0, f32* param_1, s16* param_2, f3
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__ct__15J3DAnmTransformFsPfPsPf.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80456448-80456450 004A48 0004+04 4/4 0/0 0/0 .sdata2          @1092 */
@@ -359,7 +482,7 @@ asm void J3DAnmTextureSRTKey::calcTransform(f32 param_0, u16 param_1,
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DAnmClusterFull::getWeight(u16 param_0) const {
+asm f32 J3DAnmClusterFull::getWeight(u16 param_0) const {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/getWeight__17J3DAnmClusterFullCFUs.s"
 }
@@ -370,7 +493,7 @@ asm void J3DAnmClusterFull::getWeight(u16 param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DAnmClusterKey::getWeight(u16 param_0) const {
+asm f32 J3DAnmClusterKey::getWeight(u16 param_0) const {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/getWeight__16J3DAnmClusterKeyCFUs.s"
 }
@@ -818,14 +941,9 @@ s32 J3DAnmCluster::getKind() const {
 }
 
 /* 8032C11C-8032C124 326A5C 0008+00 1/0 0/0 0/0 .text            getWeight__13J3DAnmClusterCFUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DAnmCluster::getWeight(u16 param_0) const {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DAnimation/getWeight__13J3DAnmClusterCFUs.s"
+f32 J3DAnmCluster::getWeight(u16 param_0) const {
+    return lit_852;
 }
-#pragma pop
 
 /* 8032C124-8032C190 326A64 006C+00 1/0 0/0 0/0 .text            __dt__17J3DAnmClusterFullFv */
 #pragma push

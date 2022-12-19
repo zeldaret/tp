@@ -147,7 +147,7 @@ public:
 
     T* operator->() { return this->getObject(); }
 
-private:
+// private:
     JSULink<T>* mLink;
 };
 

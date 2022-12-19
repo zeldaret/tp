@@ -752,9 +752,14 @@ void fopAcM_calcSpeed(fopAc_ac_c* p_actor) {
 
 /* 8001A660-8001A6CC 014FA0 006C+00 1/1 1/1 17/17 .text fopAcM_posMove__FP10fopAc_ac_cPC4cXyz */
 void fopAcM_posMove(fopAc_ac_c* p_actor, const cXyz* p_movePos) {
-    p_actor->current.pos += p_actor->mSpeed;
+    p_actor->current.pos.x += p_actor->mSpeed.x;
+    p_actor->current.pos.y += p_actor->mSpeed.y;
+    p_actor->current.pos.z += p_actor->mSpeed.z;
+    
     if (p_movePos != NULL) {
-        p_actor->current.pos += *p_movePos;
+        p_actor->current.pos.x += p_movePos->x;
+        p_actor->current.pos.y += p_movePos->y;
+        p_actor->current.pos.z += p_movePos->z;
     }
 }
 
@@ -816,7 +821,7 @@ asm s16 fopAcM_searchActorAngleX(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p
 s32 fopAcM_seenActorAngleY(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB) {
     return abs(static_cast<s16>(
         cLib_targetAngleY(&p_actorA->current.pos, &p_actorB->current.pos) -
-        p_actorA->mCollisionRot.y));
+        p_actorA->shape_angle.y));
 }
 
 /* ############################################################################################## */
@@ -1747,7 +1752,7 @@ void* enemySearchJugge(void* p_actor, void* p_data) {
 
 /* 8001CA1C-8001CAD8 01735C 00BC+00 0/0 0/0 6/6 .text            fopAcM_myRoomSearchEnemy__FSc */
 #ifdef NONMATCHING
-void fopAcM_myRoomSearchEnemy(s8 roomNo) {
+fopAc_ac_c*  fopAcM_myRoomSearchEnemy(s8 roomNo) {
     int procID = dStage_roomControl_c::getStatusProcID(roomNo);
     scene_class* roomProc = fopScnM_SearchByID(procID);
 
@@ -1807,8 +1812,8 @@ void fopAcM_cancelCarryNow(fopAc_ac_c* p_actor) {
             }
         }
 
-        p_actor->mCollisionRot.z = 0;
-        p_actor->mCollisionRot.x = 0;
+        p_actor->shape_angle.z = 0;
+        p_actor->shape_angle.x = 0;
 
         if (i_dComIfGp_event_runCheck() && fopAcM_GetGroup(p_actor) != 2) {
             p_actor->mStatus |= 0x800;
@@ -1879,7 +1884,7 @@ s32 fopAcM_wayBgCheck(fopAc_ac_c const* param_0, f32 param_1, f32 param_2) {
 
     tmp0 = param_0->current.pos;
     tmp0.y += param_2;
-    mDoMtx_YrotS((MtxP)calc_mtx, param_0->mCollisionRot.y);
+    mDoMtx_YrotS((MtxP)calc_mtx, param_0->shape_angle.y);
 
     tmp1.x = FLOAT_LABEL(lit_4645);
     tmp1.y = 50.0f;
@@ -1899,7 +1904,7 @@ s32 fopAcM_wayBgCheck(fopAc_ac_c const* param_0, f32 param_1, f32 param_2) {
 
 /* 8001CFD8-8001D020 017918 0048+00 0/0 0/0 2/2 .text fopAcM_plAngleCheck__FPC10fopAc_ac_cs */
 s32 fopAcM_plAngleCheck(fopAc_ac_c const* p_actor, s16 i_angle) {
-    s16 angle = p_actor->mCollisionRot.y - dComIfGp_getPlayer(0)->mCollisionRot.y;
+    s16 angle = p_actor->shape_angle.y - dComIfGp_getPlayer(0)->shape_angle.y;
     if (angle <= i_angle && angle >= (s16)-i_angle) {
         return 0;
     }
@@ -2021,7 +2026,7 @@ s32 fopAcM_carryOffRevise(fopAc_ac_c* param_0) {
 
     tmp0 = player->current.pos;
     tmp0.y = param_0->current.pos.y;
-    mDoMtx_YrotS((MtxP)calc_mtx, player->mCollisionRot.y);
+    mDoMtx_YrotS((MtxP)calc_mtx, player->shape_angle.y);
 
     tmp1.x = FLOAT_LABEL(lit_4645);
     tmp1.y = param_0->current.pos.y - player->current.pos.y;
@@ -2150,7 +2155,7 @@ fopAc_ac_c* fopAcM_findObject4EventCB(fopAc_ac_c* p_actor, void* p_data) {
 #ifdef NONMATCHING
 fopAc_ac_c* fopAcM_searchFromName4Event(char const* name, s16 eventID) {
     fopAcM_search4ev_prm prm;
-    prm.field_0x1e = eventID;
+    prm.mEventID = eventID;
     strcpy(prm.mName, name);
 
     char* chr = strchr(prm.mName, ':');
@@ -2229,7 +2234,7 @@ asm s32 fopAcM_getWaterY(cXyz const* param_0, f32* param_1) {
 /* 8001D900-8001D9A8 018240 00A8+00 0/0 2/2 2/2 .text
  * fpoAcM_relativePos__FPC10fopAc_ac_cPC4cXyzP4cXyz             */
 void fpoAcM_relativePos(fopAc_ac_c const* actor, cXyz const* p_inPos, cXyz* p_outPos) {
-    s16 angle = -actor->mCollisionRot.y;
+    s16 angle = -actor->shape_angle.y;
     cXyz pos = *p_inPos - actor->current.pos;
     
     p_outPos->x = (pos.z * cM_ssin(angle)) + (pos.x * cM_scos(angle));

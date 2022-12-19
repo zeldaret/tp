@@ -7,6 +7,8 @@
 #include "JSystem/JKernel/JKRAramPiece.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSUFileStream.h"
+#include "JSystem/JSupport/JSURandomInputStream.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "dol2asm.h"
 #include "global.h"
 
@@ -125,10 +127,10 @@ s32 JKRAramStream::readFromAram(void) {
 #ifdef NONMATCHING
 s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command) {
     u32 size;
-    u32 dstSize = command->mDstLength;
+    u32 dstSize = command->mSize;
     u32 offset = command->mOffset;
     u32 writtenLength = 0;
-    u32 destination = command->mDst;
+    u32 destination = command->mAddress;
     u8* buffer = command->mTransferBuffer;
     u32 bufferSize = command->mTransferBufferSize;
     JKRHeap* heap = command->mHeap;
@@ -167,13 +169,11 @@ s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command) {
             heap->dump();
         }
 
-        panic_f__12JUTExceptionFPCciPCce("JKRAramStream.cpp", 0xac, "%s",
-                                         ":::Cannot alloc memory\n");
+        JUTException::panic_f("JKRAramStream.cpp", 0xac, "%s", ":::Cannot alloc memory\n");
     }
 
     if (buffer) {
-        seek__20JSURandomInputStreamFl17JSUStreamSeekFrom((JSURandomInputStream*)command->mStream,
-                                                          offset, 0);
+        ((JSURandomInputStream*)command->mStream)->seek(offset, JSUStreamSeekFrom_SET);
         while (dstSize != 0) {
             u32 length;
             if (dstSize > size) {
@@ -182,8 +182,7 @@ s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command) {
                 length = dstSize;
             }
 
-            s32 readLength =
-                read__14JSUInputStreamFPvl((JSUInputStream*)command->mStream, buffer, length);
+            s32 readLength = ((JSURandomInputStream*)command->mStream)->read(buffer, length);
             if (readLength == 0) {
                 writtenLength = 0;
                 break;

@@ -31,6 +31,7 @@ public:
     void SetHit() { field_0x4c |= 16; }
     u32 ChkHit() const { return field_0x4c & 16; }
     void SetCross(const cXyz& pos) { mLin.SetEnd(pos); }
+    cXyz& i_GetCross() { return mLin.GetEnd(); }
     cM3dGLin* GetLinP() { return &mLin; }
     bool ChkBackFlag() const { return mBackFlag; }
     bool ChkFrontFlag() const { return mFrontFlag; }

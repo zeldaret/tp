@@ -1,3 +1,24 @@
+#include "dolphin/types.h"
+#include "d/a/d_a_alink.h"
+#include "JSystem/J2DGraph/J2DAnmLoader.h"
+#include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
+#include "JSystem/JMath/JMath.h"
+#include "SSystem/SComponent/c_math.h"
+#include "Z2AudioLib/Z2AudioMgr.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/msg/d_msg_object.h"
+#include "f_op/f_op_actor_mng.h"
+#include "m_Do/m_Do_audio.h"
+#include "m_Do/m_Do_ext.h"
+#include "m_Do/m_Do_mtx.h"
+#include "rel/d/a/d_a_crod/d_a_crod.h"
+#include "rel/d/a/d_a_horse/d_a_horse.h"
+#include "rel/d/a/d_a_scene_exit/d_a_scene_exit.h"
+#include "rel/d/a/d_a_mg_rod/d_a_mg_rod.h"
+#include "rel/d/a/d_a_spinner/d_a_spinner.h"
+#include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
+#include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"
+
 /* 800E23FC-800E243C 0DCD3C 0040+00 6/6 0/0 0/0 .text            concatMagneBootMtx__9daAlink_cFv */
 void daAlink_c::concatMagneBootMtx() {
     if (i_checkMagneBootsOn()) {
@@ -22,8 +43,8 @@ void daAlink_c::multVecMagneBootInvMtx(cXyz* vec) {
 
 /* 800E24B0-800E251C 0DCDF0 006C+00 2/2 0/0 0/0 .text
  * commonMagneLineCheck__9daAlink_cFP4cXyzP4cXyz                */
-int daAlink_c::commonMagneLineCheck(cXyz* param_0, cXyz* param_1) {
-    mMagneLineChk.Set(param_0, param_1, this);
+int daAlink_c::commonMagneLineCheck(cXyz* i_start, cXyz* i_end) {
+    mMagneLineChk.Set(i_start, i_end, this);
 
     if (dComIfG_Bgsp().LineCross(&mMagneLineChk) && daTagMagne_c::checkMagnetCode(mMagneLineChk)) {
         return 1;
@@ -34,14 +55,9 @@ int daAlink_c::commonMagneLineCheck(cXyz* param_0, cXyz* param_1) {
 
 /* 800E251C-800E2580 0DCE5C 0064+00 2/2 0/0 0/0 .text            checkBootsMoveAnime__9daAlink_cFi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkBootsMoveAnime(int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkBootsMoveAnime__9daAlink_cFi.s"
+BOOL daAlink_c::checkBootsMoveAnime(int param_0) {
+    return (checkHeavyStateOn(param_0, 1) && !i_checkNoResetFlg0(FLG0_UNDERWATER)) || checkDkCaught2Anime();
 }
-#pragma pop
 
 /* 800E2580-800E2738 0DCEC0 01B8+00 17/17 0/0 0/0 .text            setHeavyBoots__9daAlink_cFi */
 #pragma push
@@ -116,20 +132,26 @@ int daAlink_c::checkMagneBootsFly() {
 }
 
 /* 800E3048-800E30DC 0DD988 0094+00 2/2 0/0 0/0 .text            procBootsEquipInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procBootsEquipInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procBootsEquipInit__9daAlink_cFv.s"
+int daAlink_c::procBootsEquipInit() {
+    commonProcInit(PROC_BOOTS_EQUIP);
+    setSingleAnimeParam(ANM_HVY_BOOTS_PUT_ON, &daAlinkHIO_magneBoots_c0::m.mEquipAnm);
+
+    if (checkUpperReadyThrowAnime()) {
+        resetUpperAnime(UPPER_2, lit_6041);
+        dComIfGp_clearPlayerStatus0(0, ~0x400030);
+    }
+
+    current.angle.y = shape_angle.y;
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+
+    return 1;
 }
-#pragma pop
 
 /* 800E30DC-800E3218 0DDA1C 013C+00 1/0 0/0 0/0 .text            procBootsEquip__9daAlink_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procBootsEquip() {
+asm int daAlink_c::procBootsEquip() {
     nofralloc
 #include "asm/d/a/d_a_alink/procBootsEquip__9daAlink_cFv.s"
 }
@@ -150,7 +172,7 @@ asm int daAlink_c::procMagneBootsFlyInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procMagneBootsFly() {
+asm int daAlink_c::procMagneBootsFly() {
     nofralloc
 #include "asm/d/a/d_a_alink/procMagneBootsFly__9daAlink_cFv.s"
 }

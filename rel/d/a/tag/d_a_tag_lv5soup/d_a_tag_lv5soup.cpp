@@ -120,7 +120,7 @@ bool daTag_Lv5Soup_c::isAreaCheck() {
     f32 boundX = mScale.x * 100.0f;
     f32 boundY = mScale.y * 100.0f;
 
-    if (sqrtf(dist.abs2XZ()) < boundX && -boundY < dist.y && dist.y < boundY) {
+    if (dist.absXZ() < boundX && -boundY < dist.y && dist.y < boundY) {
         return true;
     } else {
         return false;

@@ -35,6 +35,8 @@ static void dKy_vrbox_addcol_set(s16 param_0, s16 param_1, s16 param_2, f32 para
 void dKy_GxFog_set();
 static void GxFog_set();
 static void GxXFog_set();
+u8 dKy_pol_argument_get(cBgS_PolyInfo const* i_poly);
+void dKy_Sound_set(cXyz param_0, int param_1, unsigned int param_2, int param_3);
 
 
 struct LIGHT_INFLUENCE {

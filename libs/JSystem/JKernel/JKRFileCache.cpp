@@ -319,7 +319,7 @@ void JKRFileCache::removeResourceAll(void) {
     iterator = mCacheBlockList.getFirst();
     while (iterator != mCacheBlockList.getEnd()) {
         JKRFreeToHeap(mParentHeap, iterator->mMemoryPtr);
-        mCacheBlockList.remove(&iterator->mLink);
+        mCacheBlockList.remove(iterator.mLink);
         JSUListIterator<CCacheBlock> next = iterator++;
         CCacheBlock* cacheBlock = next.getObject();
         delete cacheBlock;

@@ -61,6 +61,8 @@ public:
     }
     J3DNBTScale* getNBTScale() const { return mTexGenBlock->getNBTScale(); }
 
+    void setTevColor(u32 i, const J3DGXColorS10* i_color) { mTevBlock->setTevColor(i, i_color); }
+
 public:
     /* 0x04 */ J3DMaterial* mNext;
     /* 0x08 */ J3DShape* mShape;

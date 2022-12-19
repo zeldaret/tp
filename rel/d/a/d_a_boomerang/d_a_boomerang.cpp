@@ -6,18 +6,11 @@
 #include "rel/d/a/d_a_boomerang/d_a_boomerang.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "d/com/d_com_inf_game.h"
 
 //
 // Types:
 //
-
-struct mDoMtx_stack_c {
-    /* 8000CD64 */ void transS(cXyz const&);
-    /* 8000CD9C */ void transM(f32, f32, f32);
-    /* 8000CF44 */ void ZXYrotM(csXyz const&);
-
-    static u8 now[48];
-};
 
 struct daMirror_c {
     /* 8003194C */ void entry(J3DModel*);
@@ -30,100 +23,6 @@ struct daBoomerang_HIO_c0 {
     static f32 const m_maxCircleR;
     static f32 const m_scale;
     static f32 const m_lockWindScale;
-};
-
-struct daAlink_c {
-    /* 8009D884 */ void getAlinkArcName();
-    /* 800A9248 */ void simpleAnmPlay(J3DAnmBase*);
-    /* 800B26FC */ void itemActionTrigger();
-    /* 800DFFE0 */ void checkBoomerangLockAccept();
-    /* 800E0010 */ void getBoomSpeed();
-    /* 800E00B0 */ void getBoomCatchSpeed() const;
-    /* 800E00C0 */ void getBoomFlyMax() const;
-    /* 800E011C */ void getBoomLockMax();
-    /* 800E0190 */ void getBoomBgThroughTime() const;
-    /* 800E08C4 */ void returnBoomerang(int);
-};
-
-struct dPa_levelEcallBack {};
-
-struct dPa_control_c {
-    struct level_c {
-        /* 8004B918 */ void getEmitter(u32);
-    };
-
-    /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
-                            cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
-                            _GXColor const*, cXyz const*, f32);
-};
-
-struct dBgS {
-    /* 80074BE8 */ void GetPolyColor(cBgS_PolyInfo const&);
-    /* 80074DAC */ void GetUnderwaterRoofCode(cBgS_PolyInfo const&);
-    /* 80074E50 */ void GetPolyAtt0(cBgS_PolyInfo const&);
-    /* 80075100 */ void GetRoomId(cBgS_PolyInfo const&);
-};
-
-struct cCcD_Obj {};
-
-struct dCcMassS_Mng {
-    /* 80085D98 */ void Set(cCcD_Obj*, u8);
-};
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_SrcCps {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 804A262C */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-    /* 80084318 */ void ResetAtHit();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
-struct dCcD_Cps {
-    /* 800847D0 */ void Set(dCcD_SrcCps const&);
-    /* 80084824 */ void CalcAtVec();
-};
-
-struct cM3dGCps {
-    /* 8026EF88 */ cM3dGCps();
-    /* 8026EFA4 */ ~cM3dGCps();
-    /* 8026F000 */ void Set(cXyz const&, cXyz const&, f32);
-};
-
-struct cM3dGAab {
-    /* 804A25E4 */ ~cM3dGAab();
-};
-
-struct cCcS {
-    /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 804A271C */ ~cCcD_GStts();
-};
-
-struct cBgS {
-    /* 800743B4 */ void LineCross(cBgS_LinChk*);
-    /* 800744A0 */ void GroundCross(cBgS_GndChk*);
-    /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
-};
-
-struct J2DAnmLoaderDataBase {
-    /* 80308A6C */ void load(void const*);
 };
 
 //
@@ -341,7 +240,6 @@ extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__16Z2SoundObjSimple[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mRoofCheck__11fopAcM_rc_c[80];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" f32 mRoofY__11fopAcM_rc_c;
@@ -1591,7 +1489,8 @@ extern "C" asm void __dt__8cM3dGCylFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/__dt__8cM3dGAabFv.s"
 }
@@ -1601,7 +1500,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/__dt__10dCcD_GSttsFv.s"
 }
@@ -1638,7 +1538,8 @@ void draw__12dDlst_base_cFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/__dt__10cCcD_GSttsFv.s"
 }

@@ -9,6 +9,7 @@
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtxvec.h"
+#include "rel/d/a/d_a_horse/d_a_horse.h"
 
 //
 // Forward References:
@@ -476,7 +477,7 @@ void cBgW::GlobalVtx() {
 /* 80079484-80079564 073DC4 00E0+00 1/1 0/0 0/0 .text            SetVtx__4cBgWFv */
 // matches with literals
 #ifdef NONMATCHING
-int cBgW::SetVtx() {
+bool cBgW::SetVtx() {
     if (field_0x88 & 0x10) {
         pm_vtx_tbl = NULL;
     } else if (field_0x88 & 0x1) {
@@ -1136,7 +1137,7 @@ s32 cBgW::GetGrpRoomIndex(cBgS_PolyInfo const& poly) const {
         return 0xFF;
     }
 
-    int room_index = pm_bgd->m_g_tbl[tmp].field_0x2a;
+    room_index = pm_bgd->m_g_tbl[tmp].field_0x2a;
     if (room_index >= 0xFF) {
         room_index = 0xFF;
     }

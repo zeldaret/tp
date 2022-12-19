@@ -249,7 +249,7 @@ extern "C" extern void* __vt__Q214JStudio_JStage13TCreateObject[4];
 extern "C" extern void* __vt__Q215JStudio_JAudio213TCreateObject[4];
 extern "C" extern void* __vt__Q217JStudio_JParticle13TCreateObject[6];
 extern "C" u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
-extern "C" extern u8 data_80450B74[4];
+extern "C" extern Z2SoundStarter* data_80450B74;
 extern "C" u8 mEmitterMng__13dPa_control_c[4];
 
 //
@@ -790,7 +790,7 @@ int dDemo_setDemoData(fopAc_ac_c* param_0, u8 param_1, mDoExt_McaMorf* param_2, 
     }
 
     if (flags & 8) {
-        param_0->mCollisionRot = demo_actor->getRatate();
+        param_0->shape_angle = demo_actor->getRatate();
     }
 
     if (flags & 4) {
@@ -1427,6 +1427,10 @@ bool dDemo_system_c::JSGFindObject(JStage::TObject** p_TObj, char const* actorNa
 /* 80451DE0-80451DE8 0003E0 0008+00 1/1 0/0 0/0 .sdata2          @5123 */
 SECTION_SDATA2 static f64 lit_5123 = 1.0 / 29.999998435378155;
 
+inline Z2SoundStarter* Z2GetSoundStarter() {
+    return data_80450B74;
+}
+
 /* 80039678-80039910 033FB8 0298+00 0/0 1/1 0/0 .text            create__7dDemo_cFv */
 #ifdef NONMATCHING
 void dDemo_c::create() {
@@ -1442,10 +1446,10 @@ void dDemo_c::create() {
 
     m_control->setSecondPerFrame(1.0 / 29.999998435378155);
     m_control->setFactory(m_factory);
-    m_control->appendCreateObject(m_stage);
-    m_control->appendCreateObject(m_audio);
-    m_control->appendCreateObject(m_particle);
-    m_control->appendCreateObject(m_message);
+    m_factory->appendCreateObject(m_stage);
+    m_factory->appendCreateObject(m_audio);
+    m_factory->appendCreateObject(m_particle);
+    m_factory->appendCreateObject(m_message);
 
     m_system->setObject(m_object);
     m_data = NULL;

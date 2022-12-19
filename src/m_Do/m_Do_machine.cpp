@@ -669,13 +669,13 @@ int mDoMch_Create() {
     JKRHeap::setDefaultDebugFill(mDebugFill);
     JFWSystem::setMaxStdHeap(1);
 
-    u32 arenaHi = OSGetArenaHi();
-    u32 arenaLo = OSGetArenaLo();
+    u32 arenaHi = (u32)OSGetArenaHi();
+    u32 arenaLo = (u32)OSGetArenaLo();
     if (arenaHi > 0x81800000 && arenaHi - 0x1800000 > arenaLo) {
-        OSSetArenaHi(arenaHi - 0x1800000);
+        OSSetArenaHi((void*)(arenaHi - 0x1800000));
     }
 
-    u32 arenaSize = (OSGetArenaHi() - OSGetArenaLo()) - 0xF0;
+    u32 arenaSize = ((u32)OSGetArenaHi() - (u32)OSGetArenaLo()) - 0xF0;
     my_PrintHeap("アリーナ", arenaSize);
 
     if (mDoMain::memMargin != -1) {

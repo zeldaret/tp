@@ -1044,7 +1044,7 @@ void dEvent_manager_c::cutEnd(int cutIndex) {
         return;
     } else if (cutIndex == -1) {
         return;
-    } else if (field_0x1aa == -1) {
+    } else if (mCurrentEventCompositId == -1) {
         return;
     } else {
         // instruction swap

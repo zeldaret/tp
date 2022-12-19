@@ -19,7 +19,8 @@ public:
     enum OutputFlag {
         /* 0x0 */ OUTPUT_NONE,
         /* 0x1 */ OUTPUT_OSREPORT,
-        /* 0x2 */ OUTPUT_CONSOLE
+        /* 0x2 */ OUTPUT_CONSOLE,
+        /* 0x3 */ OUTPUT_OSR_AND_CONSOLE,
     };
 
     /* 802E73E4 */ static JUTConsole* create(unsigned int, void*, u32);

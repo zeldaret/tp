@@ -168,7 +168,7 @@ void JAISound::start_JAISound_(JAISoundID param_0, JGeometry::TVec3<f32> const* 
     params.init();
     fader.forceIn();
     audience_ = param_2;
-    num_prepare_steps = 0;
+    prepareCount = 0;
     mCount = 0;
 
     if (param_1 == NULL || audience_ == NULL) {

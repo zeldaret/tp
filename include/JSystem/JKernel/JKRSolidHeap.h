@@ -21,7 +21,7 @@ protected:
     void* allocFromHead(u32, int);
     void* allocFromTail(u32, int);
 
-    s32 getUsedSize() { return mSize - getTotalFreeSize(); }
+    static s32 getUsedSize(JKRSolidHeap* heap) { return heap->mSize - heap->getTotalFreeSize(); }
 
 public:
     /* vt[04] */ virtual u32 getHeapType(void); /* override */

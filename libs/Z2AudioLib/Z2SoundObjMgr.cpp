@@ -53,7 +53,7 @@ extern "C" void _savegpr_27();
 extern "C" void _restgpr_23();
 extern "C" void _restgpr_27();
 extern "C" void strcmp();
-extern "C" extern u8 data_80450B48[4];
+extern "C" extern Z2SoundObjMgr* data_80450B48;
 extern "C" extern u8 data_80450B80[4];
 extern "C" extern Z2SeqMgr* data_80450B84;
 extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
@@ -66,9 +66,9 @@ extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 #ifdef NONMATCHING
 // order wrong because this needs to inherit from JASGlobalInstance<T>
 Z2SoundObjMgr::Z2SoundObjMgr() {
-    data_80450B84 = this;
+    data_80450B48 = this;
     mGhostEnemyState = 0;
-    mIsTwilightBattle = false;
+    mTwilightBattle = false;
     setBattleInit();
     setForceBattleArea(false, 700, 1100, 1500);
 }

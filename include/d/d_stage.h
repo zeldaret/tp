@@ -292,7 +292,8 @@ struct dStage_MapEvent_dt_c {
     /* 0x08 */ u8 field_0x8;
     /* 0x09 */ u8 field_0x9;
     /* 0x0A */ u8 field_0xA[0xD - 0xA];
-    /* 0x0D */ char mName[9];
+    /* 0x0D */ char mName[7];
+    /* 0x14 */ u16 field_0x14;
     /* 0x16 */ u8 field_0x16;
     /* 0x17 */ u8 field_0x17;
     /* 0x18 */ u8 mSeType;  // 1: RIDDLE_A, 2: RIDDLE_B
@@ -908,6 +909,9 @@ int dStage_changeScene4Event(int i_exitId, s8 room_no, int i_wipe, bool param_3,
                              u32 mode, s16 angle, int param_7);
 void dStage_Create();
 static s32 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0);
+void dStage_restartRoom(u32 roomParam, u32 mode, int param_2);
+struct cBgS_GndChk;
+int dStage_RoomCheck(cBgS_GndChk* gndChk);
 
 inline s32 dStage_roomRead_dt_c_GetVrboxswitch(roomRead_data_class& data) {
     return data.field_0x2 & 8;

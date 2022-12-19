@@ -365,10 +365,10 @@ f64 interpolateValue_hermite(f64 c0, f64 c1, f64 x, f64 c2, f64 x2, f64 c3, f64 
     f64 b;
 
     a = c0 - c1;
-    b = a * (lbl_80455408 / (x2 - c1));               // (a - b) * 1.0 / (c - d)
-    c = b - lbl_80455408;                             // 1.0
-    d = (lbl_80455410 + lbl_80455418 * b) * (b * b);  // 3.0 - 2.0 * b
-    return (a * b * c * x3) + ((lbl_80455408 - d) * x + (d * c3)) + (a * (c * c) * c2);
+    b = a * (1.0 / (x2 - c1));               // (a - b) * 1.0 / (c - d)
+    c = b - 1.0;                             // 1.0
+    d = (3.0 + -2.0 * b) * (b * b);  // 3.0 - 2.0 * b
+    return (a * b * c * x3) + ((1.0 - d) * x + (d * c3)) + (a * (c * c) * c2);
 }
 #else
 /* 80281710-80281774 27C050 0064+00 4/4 0/0 0/0 .text
@@ -387,15 +387,15 @@ asm f64 interpolateValue_hermite(f64 param_0, f64 param_1, f64 param_2, f64 para
 #ifdef NONMATCHING  // really minor regalloc
 f64 interpolateValue_BSpline_uniform(f64 f1, f64 f2, f64 f3, f64 f4, f64 f5) {
     // pow3(1.0 - f1)
-    f64 f6 = (lbl_80455408 - f1);
+    f64 f6 = (1.0 - f1);
     f64 temp = f6;
     temp *= f6 * f6;
 
     f64 f0 = f1 * f1;
     f64 f8 = f0 * f1;
 
-    return ((lbl_80455420 * f8 - f0) + lbl_80455430) * f3 + (temp * f2 + f8 * f5) * lbl_80455428 +
-           f4 * (lbl_80455428 + lbl_80455420 * ((f1 + f0) - f8));
+    return ((lit_799 * f8 - f0) + lit_801) * f3 + (temp * f2 + f8 * f5) * 0.5 +
+           f4 * (0.5 + lit_799 * ((f1 + f0) - f8));
 }
 #else
 /* 80281774-802817D8 27C0B4 0064+00 1/1 0/0 0/0 .text

@@ -118,6 +118,8 @@ public:
     /* 80039AAC */ virtual ~dDemo_system_c();
     /* 80039528 */ virtual bool JSGFindObject(JStage::TObject**, char const*,
                                               JStage::TEObject) const;
+    
+    void setObject(dDemo_object_c* i_object) { mpObject = i_object; }
 
 private:
     /* 0x4 */ dDemo_object_c* mpObject;
