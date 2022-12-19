@@ -128,6 +128,16 @@ inline u32 fopAcM_checkCarryNow(fopAc_ac_c* pActor) {
     return pActor->mStatus & 0x2000;
 }
 
+enum fopAcM_CARRY {
+    fopAcM_CARRY_HEAVY = 2,
+    fopAcM_CARRY_SIDE = 4,
+    fopAcM_CARRY_TYPE_8 = 8,
+};
+
+inline u32 fopAcM_CheckCarryType(fopAc_ac_c* actor, fopAcM_CARRY type) {
+    return actor->field_0x49a & type;
+}
+
 inline u32 fopAcM_checkHookCarryNow(fopAc_ac_c* pActor) {
     return fopAcM_checkStatus(pActor, 0x100000);
 }
@@ -185,7 +195,7 @@ inline csXyz& fopAcM_GetAngle_p(fopAc_ac_c* pActor) {
 }
 
 inline csXyz& fopAcM_GetShapeAngle_p(fopAc_ac_c* pActor) {
-    return pActor->mCollisionRot;
+    return pActor->shape_angle;
 }
 
 inline bool fopAcM_CheckCondition(fopAc_ac_c* p_actor, u32 flag) {
@@ -308,6 +318,8 @@ inline void fopAcM_onActor(const fopAc_ac_c* p_actor) {
     int setId = fopAcM_GetSetId(p_actor);
     dComIfGs_onActor(setId, fopAcM_GetHomeRoomNo(p_actor));
 }
+
+void fopAcM_initManager();
 
 void* fopAcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3, void* pData);
 

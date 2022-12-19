@@ -3,7 +3,7 @@
 // Translation Unit: d_a_mg_rod
 //
 
-#include "rel/d/a/d_a_mg_rod/d_a_mg_rod.h"
+// #include "rel/d/a/d_a_mg_rod/d_a_mg_rod.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

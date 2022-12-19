@@ -4,6 +4,8 @@
 //
 
 #include "Z2AudioLib/Z2SceneMgr.h"
+#include "Z2AudioLib/Z2SoundMgr.h"
+#include "Z2AudioLib/Z2SeqMgr.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -39,29 +41,6 @@ struct Z2SoundObjMgr {
     /* 802C013C */ void deleteEnemyAll();
 };
 
-struct Z2SoundMgr {
-    /* 802AA430 */ void resetFilterAll();
-};
-
-struct Z2SeqMgr {
-    /* 802AF010 */ void bgmStart(u32, u32, s32);
-    /* 802AF408 */ void bgmStop(u32, s32);
-    /* 802AFB94 */ void bgmStreamPrepare(u32);
-    /* 802AFDEC */ void bgmStreamCheckReady();
-    /* 802AFE18 */ void bgmStreamPlay();
-    /* 802AFF8C */ void changeBgmStatus(s32);
-    /* 802B3318 */ void setHeightVolMod(bool, u32);
-    /* 802B3398 */ void setTimeProcVolMod(bool, u32);
-    /* 802B3EAC */ void checkBgmIDPlaying(u32);
-    /* 802B4128 */ void resetBattleBgmParams();
-    /* 802B4164 */ void setBattleBgmOff(bool);
-    /* 802B9968 */ void setFieldBgmPlay(bool);
-    /* 802B99AC */ void unMuteSceneBgm(u32);
-    /* 802B9A24 */ void muteSceneBgm(u32, f32);
-    /* 802B9AD0 */ void setTwilightGateVol(f32);
-    /* 802B9AFC */ void setWindStoneVol(f32, u32);
-};
-
 struct Z2SeMgr {
     /* 802AB80C */ void resetModY();
     /* 802AD94C */ void seStopAll(u32);
@@ -78,13 +57,6 @@ struct Z2EnvSeMgr {
     /* 802C6AC0 */ void initSceneEnvSe(s32, s8, f32);
 };
 
-template <typename A0>
-struct JSUList {};
-/* JSUList<JAIStream> */
-struct JSUList__template2 {
-    /* 802B9994 */ void func_802B9994(void* _this) /* const */;
-};
-
 struct JAUSoundTable {
     /* 802A7160 */ void getTypeID(JAISoundID) const;
 };
@@ -95,10 +67,6 @@ struct JASWaveArc {
     /* 8029A4C0 */ void load(JASHeap*);
     /* 8029A580 */ void loadTail(JASHeap*);
     /* 8029A640 */ void erase();
-};
-
-struct JAIStreamMgr {
-    /* 802B9978 */ void isActive() const;
 };
 
 //
@@ -193,11 +161,11 @@ extern "C" extern u8 data_80450B3C[4];
 extern "C" extern u8 data_80450B40[4];
 extern "C" extern u8 data_80450B48[4];
 extern "C" extern u8 data_80450B58[4];
-extern "C" extern u8 data_80450B60[4];
+extern "C" extern Z2SoundMgr* data_80450B60;
 extern "C" extern u8 data_80450B7C[4];
-extern "C" extern u8 data_80450B80[4];
+extern "C" extern Z2SceneMgr* data_80450B80;
 extern "C" extern u8 data_80450B84[4];
-extern "C" extern u8 data_80450B88[4];
+extern "C" extern Z2SeMgr* data_80450B88;
 extern "C" extern u8 data_80450CC0[4 + 4 /* padding */];
 
 //
@@ -208,7 +176,7 @@ extern "C" extern u8 data_80450CC0[4 + 4 /* padding */];
 // Missing 2 instructions (beginning and end)
 #ifdef NONMATCHING
 Z2SceneMgr::Z2SceneMgr(void) {
-    lbl_80450B80 = this;
+    data_80450B80 = this;
     sceneNum = -1;
     timer = -1;
     BGM_ID = -1;
@@ -269,25 +237,24 @@ SECTION_SDATA2 static f32 lit_3512 = 1.0f;
 /* 802B68E0-802B697C 2B1220 009C+00 3/3 2/2 2/2 .text            setSceneExist__10Z2SceneMgrFb */
 #ifdef NONMATCHING
 void Z2SceneMgr::setSceneExist(bool param_1) {
-    Z2SoundMgr* Z2soundMgrPtr;
     sceneExist = param_1;
     timer = 0;
-    Z2soundMgrPtr = lbl_80450B60;
-    if (param_1 == false) {
-        Z2soundMgrPtr->JAISoundParamsMove->moveVolume(FLOAT_LABEL(lit_3511), 0xb4);
-    } else {
+
+    JAISeMgr* seMgr = data_80450B60->getSeMgr();
+
+    if (param_1) {
         inGame = 1;
+
         if (SeWave_3 == 0x85) {
-            Z2soundMgrPtr->JAISoundParamsMove->moveVolume(FLOAT_LABEL(lit_3511), 0);
+            seMgr->getCategory(9)->getParams()->moveVolume(FLOAT_LABEL(lit_3511), 0);
+        } else if (SeWave_3 == 0x7F) {
+            data_80450B88->seMoveVolumeAll(FLOAT_LABEL(lit_3511), 0);
         } else {
-            if (SeWave_3 == 0x7f) {
-                lbl_80450B88->seMoveVolumeAll(FLOAT_LABEL(lit_3511), 0);
-            } else {
-                Z2soundMgrPtr->JAISoundParamsMove->moveVolume(lit_3512, 0x21);
-            }
+            seMgr->getCategory(9)->getParams()->moveVolume(lit_3512, 33);
         }
+    } else {
+        seMgr->getCategory(9)->getParams()->moveVolume(FLOAT_LABEL(lit_3511), 180);
     }
-    return;
 }
 #else
 #pragma push
@@ -749,7 +716,7 @@ JAISoundID::JAISoundID(JAISoundID const& soundIdToSet) {
 // 1 Instruction off
 #ifdef NONMATCHING
 void Z2SeqMgr::setFieldBgmPlay(bool param_1) {
-    unk_1 = (param_1 & 1U) << 2 | unk_1 & 0xfb;
+    mFlags = (param_1 & 1U) << 2 | mFlags & 0xfb;
 }
 #else
 #pragma push

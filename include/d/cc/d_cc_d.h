@@ -87,7 +87,7 @@ public:
 
 enum dCcG_At_Spl {
     /* 0x0 */ dCcG_At_Spl_UNK_0,
-    /* 0x1 */ dCcG_At_Spl_UNK_01,
+    /* 0x1 */ dCcG_At_Spl_UNK_1,
 };
 
 class dCcD_GObjInf;
@@ -151,6 +151,7 @@ public:
     /* 0x2C */ cXyz mVec;
     /* 0x38 */ cXyz mRVec;
 };  // Size = 0x44
+
 class dCcD_GObjTg : public dCcD_GAtTgCoCommonBase {
 public:
     /* 800839A0 */ void Set(dCcD_SrcGObjTg const&);
@@ -159,6 +160,7 @@ public:
     cXyz& GetVec() { return mVec; }
     void SetShieldFrontRangeYAngle(s16* angle) { mShieldFrontRangeYAngle = angle; }
     void SetMtrl(u8 mtrl) { mMtrl = mtrl; }
+    void SetHitMark(CcG_Tg_HitMark mark) { mHitMark = mark; }
 
 private:
     /* 0x1C */ u8 mSe;
@@ -171,6 +173,7 @@ private:
     /* 0x44 */ s16* mShieldFrontRangeYAngle;
     /* 0x48 */ s16 mShieldRange;
 };  // Size = 0x4A ?
+
 class dCcD_GObjCo : public dCcD_GAtTgCoCommonBase {
 public:
     /* 80083B8C */ virtual ~dCcD_GObjCo() {}
@@ -195,10 +198,12 @@ public:
     /* 8008457C */ u8 GetTgHitObjSe();
     /* 800845B0 */ static u32 getHitSeID(u8, int);
     /* 8008460C */ void ClrCoHit();
-    /* 80084658 */ bool ChkCoHit();
+    /* 80084658 */ u32 ChkCoHit();
     /* 800846B0 */ void ResetCoHit();
     /* 800846F0 */ cCcD_Obj* GetCoHitObj();
     /* 80084740 */ void Set(dCcD_SrcGObjInf const&);
+
+    fopAc_ac_c* GetCoHitAc() { return mGObjCo.GetAc(); }
 
     void SetAtVec(cXyz& vec) { mGObjAt.SetVec(vec); }
     bool ChkAtNoMass() const { return mGObjAt.ChkSPrm(8); }
@@ -224,6 +229,16 @@ public:
     u8 GetAtMtrl() { return mGObjAt.GetMtrl(); }
     fopAc_ac_c* GetTgHitAc() { return mGObjTg.GetAc(); }
     void SetTgShieldFrontRangeYAngle(s16* angle) { mGObjTg.SetShieldFrontRangeYAngle(angle); }
+    void OffTgWolfSpNoDamage() { mGObjTg.OffSPrm(0x800); }
+    void OnTgWolfSpNoDamage() { mGObjTg.OnSPrm(0x800); }
+    void SetTgHitMark(CcG_Tg_HitMark mark) { mGObjTg.SetHitMark(mark); }
+    void OnTgSpShield() { mGObjTg.OnSPrm(0x40); }
+    void OffTgSpShield() { mGObjTg.OffSPrm(0x40); }
+    void OnTgShield() { mGObjTg.OnSPrm(0x1); }
+    void OffTgShield() { mGObjTg.OffSPrm(0x1); }
+    void OnTgShieldFrontRange() { mGObjTg.OnSPrm(0x8); }
+    void OffTgShieldFrontRange() { mGObjTg.OffSPrm(0x8); }
+    bool ChkTgIronBallRebound() { return mGObjTg.ChkSPrm(0x100); }
     
     static u32 const m_hitSeID[24];
 

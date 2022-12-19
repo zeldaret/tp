@@ -89,20 +89,6 @@ JGadget::TNodeLinkList::iterator JGadget::TNodeLinkList::erase(iterator start, i
 /* 802DCB08-802DCBA8 2D7448 00A0+00 1/1 0/0 0/0 .text
  * splice__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorRQ27JGadget13TNodeLinkListQ37JGadget13TNodeLinkList8iterator
  */
-#ifdef NONMATCHING
-void JGadget::TNodeLinkList::splice(iterator myIt, TNodeLinkList& otherList, iterator otherIt) {
-    TLinkListNode* otherNode = otherIt;
-    TLinkListNode* otherNextNode = otherNode->mNext;
-
-    if (myIt == otherIt) {
-        return;
-    }
-    if (myIt.node != otherNextNode) {
-        otherList.Erase(otherNode);
-        Insert(myIt, otherNode);
-    }
-}
-#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -113,7 +99,6 @@ asm void JGadget::TNodeLinkList::splice(JGadget::TNodeLinkList::iterator param_0
 #include "asm/JSystem/JGadget/linklist/func_802DCB08.s"
 }
 #pragma pop
-#endif
 
 /* 802DCBA8-802DCBD4 2D74E8 002C+00 1/1 7/7 0/0 .text
  * Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode */

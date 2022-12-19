@@ -6,6 +6,7 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
+#include "JSystem/JUtility/JUTDirectFile.h"
 #include "MSL_C/MSL_Common/Src/float.h"
 #include "MSL_C/MSL_Common/Src/printf.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"

@@ -468,10 +468,10 @@ SECTION_SDATA2 static f32 lit_1830 = 1.0f;
 // matches with literals
 #ifdef NONMATCHING
 void J2DScreen::draw(f32 x, f32 y, J2DGrafContext const* grafCtx) {
-    u32 x, y, width, height;
+    u32 l_x, l_y, width, height;
 
     if (mScissor) {
-        GXGetScissor(&x, &y, &width, &height);
+        GXGetScissor(&l_x, &l_y, &width, &height);
     }
 
     if (grafCtx != NULL) {
@@ -483,7 +483,7 @@ void J2DScreen::draw(f32 x, f32 y, J2DGrafContext const* grafCtx) {
     }
 
     if (mScissor) {
-        GXSetScissor(x, y, width, height);
+        GXSetScissor(l_x, l_y, width, height);
     }
 
     GXSetNumIndStages(0);

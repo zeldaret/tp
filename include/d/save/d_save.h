@@ -376,9 +376,9 @@ enum {
 class dSv_player_status_a_c {
 public:
     void init();
-    void setSelectItemIndex(int i_no, u8 item_index);
+    void setSelectItemIndex(int i_no, u8 i_slotNo);
     u8 getSelectItemIndex(int i_no) const;
-    void setMixItemIndex(int i_no, u8 item_index);
+    void setMixItemIndex(int i_no, u8 i_slotNo);
     u8 getMixItemIndex(int i_no) const;
     u16 getRupeeMax() const;
     int isMagicFlag(u8 i_magic) const;
@@ -392,15 +392,15 @@ public:
     u8& getMaxMagic() { return mMaxMagic; }
     u8 getSelectEquip(int item) const { return mSelectEquip[item]; }
     u8 getTransformStatus() const { return mTransformStatus; }
-    void setOil(u16 oil) { mOil = oil; }
-    void setMaxOil(u16 max) { mMaxOil = max; }
-    void setWalletSize(u8 size) { mWalletSize = size; }
-    void setMagic(u8 magic) { mMagic = magic; }
-    void setMaxMagic(u8 max) { mMaxMagic = max; }
-    void setRupee(u16 rupees) { mRupee = rupees; }
-    void setLife(u16 life) { mLife = life; }
-    void setMaxLife(u8 max) { mMaxLife = max; }
-    void setSelectEquip(int item_index, u8 item) { mSelectEquip[item_index] = item; }
+    void setOil(u16 i_oil) { mOil = i_oil; }
+    void setMaxOil(u16 i_maxOil) { mMaxOil = i_maxOil; }
+    void setWalletSize(u8 i_size) { mWalletSize = i_size; }
+    void setMagic(u8 i_magic) { mMagic = i_magic; }
+    void setMaxMagic(u8 i_maxMagic) { mMaxMagic = i_maxMagic; }
+    void setRupee(u16 i_rupees) { mRupee = i_rupees; }
+    void setLife(u16 i_life) { mLife = i_life; }
+    void setMaxLife(u8 i_maxLife) { mMaxLife = i_maxLife; }
+    void setSelectEquip(int i_equipId, u8 i_itemNo) { mSelectEquip[i_equipId] = i_itemNo; }
 
 private:
     /* 0x00 */ u16 mMaxLife;
@@ -431,11 +431,11 @@ public:
     void onTransformLV(int i_no);
     BOOL isTransformLV(int i_no) const;
 
-    void setDateIpl(s64 time) { mDateIpl = time; }
+    void setDateIpl(s64 i_time) { mDateIpl = i_time; }
     u16 getDate() const { return mDate; }
     f32 getTime() const { return mTime; }
-    void setDate(u16 date) { mDate = date; }
-    void setTime(f32 time) { mTime = time; }
+    void setDate(u16 i_date) { mDate = i_date; }
+    void setTime(f32 i_time) { mTime = i_time; }
     OSTime getDateIpl() const { return mDateIpl; }
 
 private:
@@ -530,10 +530,10 @@ private:
 class dSv_player_item_c {
 public:
     void init();
-    void setItem(int item_slot, u8 i_itemNo);
-    u8 getItem(int slot_no, bool check_combo) const;
+    void setItem(int i_slotNo, u8 i_itemNo);
+    u8 getItem(int i_slotNo, bool i_checkCombo) const;
     void setLineUpItem();
-    u8 getLineUpItem(int slot_no) const;
+    u8 getLineUpItem(int i_slotNo) const;
     void setBottleItemIn(u8 curItemIn, u8 newItemIn);
     void setEmptyBottleItemIn(u8 i_itemNo);
     void setEmptyBottle();
@@ -543,12 +543,12 @@ public:
     u8 checkBottle(u8 i_itemNo);
     int checkInsectBottle();
     u8 checkEmptyBottle();
-    void setBombBagItemIn(u8 curBomb, u8 newBomb, bool setNum);
-    void setBombBagItemIn(u8 curBomb, u8 newBomb, u8 bombNum, bool setNum);
-    void setEmptyBombBagItemIn(u8 newBomb, bool setNum);
-    void setEmptyBombBagItemIn(u8 newBomb, u8 bombNum, bool setNum);
+    void setBombBagItemIn(u8 i_curBomb, u8 i_newBomb, bool i_setNum);
+    void setBombBagItemIn(u8 i_curBomb, u8 i_newBomb, u8 i_bombNum, bool i_setNum);
+    void setEmptyBombBagItemIn(u8 i_newBomb, bool i_setNum);
+    void setEmptyBombBagItemIn(u8 i_newBomb, u8 i_bombNum, bool i_setNum);
     void setEmptyBombBag();
-    void setEmptyBombBag(u8 newBomb, u8 bombNum);
+    void setEmptyBombBag(u8 i_newBomb, u8 i_bombNum);
     u8 checkBombBag(u8 i_itemNo);
     void setWarashibeItem(u8 i_itemNo);
     void setRodTypeLevelUp();
@@ -573,16 +573,16 @@ private:
 class dSv_player_item_record_c {
 public:
     void init();
-    void setBombNum(u8 i_bagIdx, u8 bag_id);
+    void setBombNum(u8 i_bagIdx, u8 i_bombNum);
     u8 getBombNum(u8 i_bagIdx) const;
-    void setBottleNum(u8 i_bottleIdx, u8 bottle_num);
-    u8 addBottleNum(u8 i_bottleIdx, s16 num);
+    void setBottleNum(u8 i_bottleIdx, u8 i_bottleNum);
+    u8 addBottleNum(u8 i_bottleIdx, s16 i_num);
     u8 getBottleNum(u8 i_bottleIdx) const;
 
     u8 getArrowNum() const { return mArrowNum; }
-    void setArrowNum(u8 amount) { mArrowNum = amount; }
+    void setArrowNum(u8 i_num) { mArrowNum = i_num; }
     u8 getPachinkoNum() const { return mPachinkoNum; }
-    void setPachinkoNum(u8 num) { mPachinkoNum = num; }
+    void setPachinkoNum(u8 i_num) { mPachinkoNum = i_num; }
 
 private:
     /* 0x0 */ u8 mArrowNum;
@@ -595,10 +595,10 @@ private:
 class dSv_player_item_max_c {
 public:
     void init();
-    void setBombNum(u8 bomb_id, u8 bomb_max);
-    u8 getBombNum(u8 bomb_id) const;
+    void setBombNum(u8 i_bombType, u8 i_maxNum);
+    u8 getBombNum(u8 i_bombType) const;
 
-    void setArrowNum(u8 max) { mItemMax[ARROW_MAX] = max; }
+    void setArrowNum(u8 i_maxNum) { mItemMax[ARROW_MAX] = i_maxNum; }
     u8 getArrowNum() { return mItemMax[ARROW_MAX]; }
 
 private:
@@ -639,7 +639,7 @@ private:
 class dSv_light_drop_c {
 public:
     void init();
-    void setLightDropNum(u8 i_nowLevel, u8 dropNum);
+    void setLightDropNum(u8 i_nowLevel, u8 i_dropNum);
     u8 getLightDropNum(u8 i_nowLevel) const;
     void onLightDropGetFlag(u8 i_nowLevel);
     BOOL isLightDropGetFlag(u8 i_nowLevel) const;
@@ -667,7 +667,7 @@ private:
 class dSv_fishing_info_c {
 public:
     void init();
-    void addFishCount(u8 fish_index);
+    void addFishCount(u8 i_fishIndex);
 
 private:
     /* 0x00 */ u16 mFishCount[16];
@@ -678,9 +678,9 @@ class dSv_player_info_c {
 public:
     void init();
     char* getLinkName() { return mPlayerName; }
-    void setPlayerName(const char* name) { strcpy((char*)mPlayerName, name); }
-    void setHorseName(const char* name) { strcpy((char*)mHorseName, name); }
-    void setTotalTime(s64 time) { mTotalTime = time; }
+    void setPlayerName(const char* i_name) { strcpy((char*)mPlayerName, i_name); }
+    void setHorseName(const char* i_name) { strcpy((char*)mHorseName, i_name); }
+    void setTotalTime(s64 i_time) { mTotalTime = i_time; }
     s64 getTotalTime() const { return mTotalTime; }
 
 private:
@@ -802,7 +802,7 @@ public:
     s32 isDungeonItem(int i_no) const;
 
     u8 getKeyNum() { return mKeyNum; }
-    void setKeyNum(u8 keyNum) { mKeyNum = keyNum; }
+    void setKeyNum(u8 i_keyNum) { mKeyNum = i_keyNum; }
     void onDungeonItemMap() { onDungeonItem(MAP); }
     s32 isDungeonItemMap() const { return isDungeonItem(MAP); }
     void onDungeonItemCompass() { onDungeonItem(COMPASS); }
@@ -884,7 +884,7 @@ STATIC_ASSERT(sizeof(dSv_memory2_c) == 8);
 
 class dSv_danBit_c {
 public:
-    bool init(s8 i_stage);
+    bool init(s8 i_stageNo);
     void onSwitch(int i_no);
     void offSwitch(int i_no);
     BOOL isSwitch(int i_no) const;

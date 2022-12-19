@@ -15,7 +15,7 @@ SECTION_INIT void __check_pad3();
 SECTION_INIT void __set_debug_bba();
 SECTION_INIT u8 __get_debug_bba();
 SECTION_INIT void __start();
-SECTION_INIT void __init_registers();
+SECTION_INIT void __init_registers(void);
 SECTION_INIT void __init_data();
 SECTION_INIT void __init_hardware();
 SECTION_INIT void __flush_cache();
@@ -57,14 +57,48 @@ extern void* _SDA2_BASE_;
 extern void* _SDA_BASE_;
 
 /* 800032B0-80003340 0001B0 0090+00 1/1 0/0 0/0 .init            __init_registers */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-SECTION_INIT asm void __init_registers() {
+SECTION_INIT asm void __init_registers(void) {
+    // clang-format off
     nofralloc
-#include "asm/init/__init_registers.s"
+
+    li r0, 0
+    li r3, 0
+    li r4, 0
+    li r5, 0
+    li r6, 0
+    li r7, 0
+    li r8, 0
+    li r9, 0
+    li r10, 0
+    li r11, 0
+    li r12, 0
+    li r14, 0
+    li r15, 0
+    li r16, 0
+    li r17, 0
+    li r18, 0
+    li r19, 0
+    li r20, 0
+    li r21, 0
+    li r22, 0
+    li r23, 0
+    li r24, 0
+    li r25, 0
+    li r26, 0
+    li r27, 0
+    li r28, 0
+    li r29, 0
+    li r30, 0
+    li r31, 0
+    lis r1, _stack_end+0x1000@h
+    ori r1, r1, _stack_end+0x1000@l
+    lis r2, _SDA2_BASE_@h
+    ori r2, r2, _SDA2_BASE_@l
+    lis r13, _SDA_BASE_@h
+    ori r13, r13, _SDA_BASE_@l
+    blr 
+    // clang-format on
 }
-#pragma pop
 
 /* 80003340-80003400 000240 00C0+00 1/1 0/0 1/1 .init            __init_data */
 #pragma push
@@ -77,24 +111,45 @@ SECTION_INIT asm void __init_data() {
 #pragma pop
 
 /* 80003400-80003424 000300 0024+00 1/1 0/0 0/0 .init            __init_hardware */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
 SECTION_INIT asm void __init_hardware() {
+    // clang-format off
     nofralloc
-#include "asm/init/__init_hardware.s"
+
+    mfmsr r0
+    ori r0, r0, 0x2000
+    mtmsr r0
+    mflr r31
+    bl __OSPSInit
+    bl __OSFPRInit
+    bl __OSCacheInit
+    mtlr r31
+    blr 
+    // clang-format on
 }
-#pragma pop
 
 /* 80003424-80003458 000324 0034+00 1/1 0/0 0/0 .init            __flush_cache */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
 SECTION_INIT asm void __flush_cache() {
+    // clang-format off
     nofralloc
-#include "asm/init/__flush_cache.s"
+
+    lis r5, 0xFFFF
+    ori r5, r5, 0xFFF1
+    and r5, r5, r3
+    subf r3, r5, r3
+    add r4, r4, r3
+
+lbl_80003438:
+    dcbst 0, r5
+    sync
+    icbi 0, r5
+    addic r5, r5, 8
+    addic. r4, r4, -8
+    bge lbl_80003438
+
+    isync 
+    blr
+    // clang-format on
 }
-#pragma pop
 
 /* 80003458-80003488 000358 0030+00 1/1 55/55 137/137 .init            memset */
 SECTION_INIT void* memset(void* dst, int val, size_t n) {

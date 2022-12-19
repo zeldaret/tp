@@ -278,6 +278,13 @@ STATIC_ASSERT(sizeof(J3DAnmColorFullData) == 0x34);
 
 class J3DAnmBase {
 public:
+    J3DAnmBase(s16 i_frameMax) {
+        mAttribute = 0;
+        field_0x5 = 0;
+        mFrameMax = i_frameMax;
+        mFrame = 0.0f;
+    }
+
     virtual ~J3DAnmBase();
 
     u8 getAttribute() const { return mAttribute; }
@@ -287,6 +294,7 @@ public:
 
 private:
     /* 0x4 */ u8 mAttribute;
+    /* 0x5 */ u8 field_0x5;
     /* 0x6 */ s16 mFrameMax;
     /* 0x8 */ f32 mFrame;
 };  // Size: 0xC
@@ -539,7 +547,7 @@ class J3DAnmCluster : public J3DAnmBase {
 public:
     /* 8032BCAC */ virtual ~J3DAnmCluster();
     /* 8032BF44 */ virtual s32 getKind() const;
-    /* 8032BF4C */ virtual void getWeight(u16) const;
+    /* 8032BF4C */ virtual f32 getWeight(u16) const;
 
 private:
     /* 0x0C */ f32* field_0xc;
@@ -549,7 +557,7 @@ class J3DAnmClusterFull : public J3DAnmCluster {
 public:
     /* 8032BCAC */ virtual ~J3DAnmClusterFull();
     /* 8032BF44 */ virtual s32 getKind() const;
-    /* 8032BF4C */ virtual void getWeight(u16) const;
+    /* 8032BF4C */ virtual f32 getWeight(u16) const;
 
 private:
     /* 0x10 */ int field_0x10;
@@ -559,7 +567,7 @@ class J3DAnmClusterKey : public J3DAnmCluster {
 public:
     /* 8032C044 */ virtual ~J3DAnmClusterKey();
     /* 8032C0B0 */ virtual s32 getKind() const;
-    /* 8032A218 */ virtual void getWeight(u16) const;
+    /* 8032A218 */ virtual f32 getWeight(u16) const;
 
 private:
     /* 0x10 */ int field_0x10;

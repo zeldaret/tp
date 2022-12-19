@@ -585,7 +585,7 @@ void J3DModel::prepareShapePackets() {
         if (getMtxCalcMode() == 2) {
             pkt->setBaseMtxPtr(&mInternalView);
         } else {
-            pkt->setBaseMtxPtr(j3dSys.getViewMtx());
+            pkt->setBaseMtxPtr(&j3dSys.mViewMtx);
         }
     }
 }

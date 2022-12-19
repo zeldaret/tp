@@ -72,14 +72,28 @@ public:
 };
 
 class Z2DopplerSoundObjBase : public Z2SoundHandles {
+public:
     Z2DopplerSoundObjBase();
     ~Z2DopplerSoundObjBase();
 
-    virtual void temp();  // temp to build OK, remove later
     virtual void framework(u32, s8);
     virtual void init(Vec*, u8);
     virtual void startSound(JAISoundID, u32, s8);
     virtual void startLevelSound(JAISoundID, u32, s8);
+
+    /* 0x14 */ Z2SoundStarter* field_0x14;
+    /* 0x18 */ JGeometry::TVec3<f32>* field_0x18;
+    /* 0x1C */ u16 field_0x1c;
+    /* 0x1E */ u8 field_0x1e;
+    /* 0x1F */ bool field_0x1f;
+    /* 0x20 */ JGeometry::TVec3<f32> field_0x20;
+    /* 0x2C */ JGeometry::TVec3<f32> field_0x2c;
+};
+
+class Z2SoundObjArrow : public Z2DopplerSoundObjBase {
+public:
+    /* 802BEB38 */ Z2SoundObjArrow();
+    /* 802BEB74 */ virtual void init(Vec*, u8);
 };
 
 #endif /* Z2SOUNDOBJECT_H */

@@ -333,7 +333,7 @@ TControl::~TControl() {
 
 #ifdef NONMATCHING
 void TControl::appendObject(TObject* p) {
-    p->setControl(this);
+    p->setControl_(this);
     mObjectContainer.Push_back(p);
 }
 #else

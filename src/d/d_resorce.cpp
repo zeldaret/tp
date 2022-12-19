@@ -367,7 +367,7 @@ SECTION_DATA static void* lit_4017[8] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dRes_info_c::loaderBasicBmd(u32 param_0, void* param_1) {
+asm J3DModelData* dRes_info_c::loaderBasicBmd(u32 param_0, void* param_1) {
     nofralloc
 #include "asm/d/d_resorce/loaderBasicBmd__11dRes_info_cFUlPv.s"
 }
@@ -686,8 +686,8 @@ void dRes_info_c::dump_long(dRes_info_c* param_0, int param_1) {
         "No Command Archive  ArcHeader(size) SolidHeap(size) Resource Cnt ArchiveName\n");
 
     for (int i = 0; i < param_1; i++) {
-        if (getCount() != 0) {
-            JKRArchive* archive = getArchive();
+        if (param_0->getCount() != 0) {
+            JKRArchive* archive = param_0->getArchive();
             header = NULL;
             blockSize1 = 0;
 
@@ -696,15 +696,15 @@ void dRes_info_c::dump_long(dRes_info_c* param_0, int param_1) {
                 blockSize1 = myGetMemBlockSize0(header);
             }
 
-            JKRSolidHeap* dataHeap = mDataHeap;
+            JKRSolidHeap* dataHeap = param_0->mDataHeap;
             blockSize2 = 0;
             if (dataHeap != NULL) {
                 blockSize2 = myGetMemBlockSize0((void*)dataHeap);
             }
 
-            JUTReportConsole_f("%2d %08x %08x %08x(%6x) %08x(%5x) %08x %3d %s\n", i, getDMCommand(),
-                               archive, header, blockSize1, &mDataHeap, blockSize2, mRes,
-                               getArchiveName());
+            JUTReportConsole_f("%2d %08x %08x %08x(%6x) %08x(%5x) %08x %3d %s\n", i,
+                               param_0->getDMCommand(), archive, header, blockSize1,
+                               &param_0->mDataHeap, blockSize2, param_0->mRes, param_0->getArchiveName());
         }
         param_0++;
     }

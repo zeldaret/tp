@@ -9,6 +9,7 @@
 
 #include "JSystem/JParticle/JPADynamicsBlock.h"
 #include "JSystem/JParticle/JPAResource.h"
+#include "JSystem/JParticle/JPAMath.h"
 
 class JKRHeap;
 class JPABaseEmitter;
@@ -205,6 +206,7 @@ public:
 enum {
     JPAEmtrStts_StopEmit = 0x01,
     JPAEmtrStts_StopCalc = 0x02,
+    JPAEmtrStts_StopDraw = 0x04,
     JPAEmtrStts_FirstEmit = 0x10,
     JPAEmtrStts_RateStepEmit = 0x20,
     JPAEmtrStts_Immortal = 0x40,
@@ -234,6 +236,7 @@ public:
     u8 getDrawTimes() const { return mDrawTimes; }
     void setRate(f32 rate) { mRate = rate; }
     void setEmitterCallBackPtr(JPAEmitterCallBack* ptr) { mpEmtrCallBack = ptr; }
+    void setGlobalRTMatrix(const Mtx m) { JPASetRMtxTVecfromMtx(m, mGlobalRot, &mGlobalTrs); }
 
     f32 get_r_f() { return mRndm.get_rndm_f(); }
     f32 get_r_zp() { return mRndm.get_rndm_zp(); }
@@ -251,6 +254,7 @@ public:
     void quitImmortalEmitter() { clearStatus(JPAEmtrStts_Immortal); }
     void stopCalcEmitter() { setStatus(JPAEmtrStts_StopCalc); }
     void playCalcEmitter() { clearStatus(JPAEmtrStts_StopCalc); }
+    void stopDrawParticle() { setStatus(JPAEmtrStts_StopDraw); }
 
 public:
     /* 0x00 */ Vec mLocalScl;

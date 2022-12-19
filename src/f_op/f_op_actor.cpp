@@ -299,7 +299,7 @@ static int fopAc_Create(void* actor) {
             fopAcM_SetParam(ac, append->mParameter);
             ac->orig.pos = append->mPos;
             ac->orig.angle = append->mAngle;
-            ac->mCollisionRot = append->mAngle;
+            ac->shape_angle = append->mAngle;
             ac->mParentPcId = append->mParentPId;
             ac->mSubtype = append->mSubtype;
             ac->mScale.set(append->mScale[0] * 0.1f, append->mScale[1] * 0.1f, append->mScale[2] * 0.1f);

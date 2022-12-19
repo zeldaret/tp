@@ -206,10 +206,10 @@ bool JKRMemArchive::open(long entryNum, JKRArchive::EMountDirection mountDirecti
     mIsOpen = false;
     mMountDirection = mountDirection;
 
-    if (mMountDirection == JKRArchive::HEAD) {
+    if (mMountDirection == JKRArchive::MOUNT_DIRECTION_HEAD) {
         u32 loadedSize;
         mArcHeader = (SArcHeader*)JKRDvdRipper::loadToMainRAM(
-            entryNum, NULL, EXPAND_SWITCH_UNKNOWN1, 0, mHeap, JKRDvdRipper::FORWARD, 0,
+            entryNum, NULL, EXPAND_SWITCH_UNKNOWN1, 0, mHeap, JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 0,
             &mCompression, &loadedSize);
         if (mArcHeader) {
             DCInvalidateRange(mArcHeader, loadedSize);
@@ -217,7 +217,7 @@ bool JKRMemArchive::open(long entryNum, JKRArchive::EMountDirection mountDirecti
     } else {
         u32 loadedSize;
         mArcHeader = (SArcHeader*)JKRDvdRipper::loadToMainRAM(
-            entryNum, NULL, EXPAND_SWITCH_UNKNOWN1, 0, mHeap, JKRDvdRipper::BACKWARD, 0,
+            entryNum, NULL, EXPAND_SWITCH_UNKNOWN1, 0, mHeap, JKRDvdRipper::ALLOC_DIRECTION_BACKWARD, 0,
             &mCompression, &loadedSize);
         if (mArcHeader) {
             DCInvalidateRange(mArcHeader, loadedSize);
@@ -269,7 +269,7 @@ bool JKRMemArchive::open(void* buffer, u32 bufferSize, JKRMemBreakFlag flag) {
         (u8*)(mArcHeader->file_data_offset + mArcHeader->header_length + (u32)mArcHeader);
     mIsOpen = (flag == JKRMEMBREAK_FLAG_UNKNOWN1);
     mHeap = JKRHeap::findFromRoot(buffer);
-    mCompression = JKRDecomp::NONE;
+    mCompression = COMPRESSION_NONE;
     return true;
 }
 #else

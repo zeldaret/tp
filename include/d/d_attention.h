@@ -213,15 +213,7 @@ public:
     void clrFlag(u32 flag) { mFlags &= ~flag; }
     int GetActionCount() { return mActionCount; }
     int GetLockonCount() { return mLockonCount; }
-    s8 Lockon() {
-        /* s32 chk = true;
-        if (!LockonTruth() && !chkFlag(0x20000000)) {
-            chk = false;
-        }
-        return chk; */
-
-        return !LockonTruth() && !chkFlag(0x20000000);
-    }
+    bool Lockon() { return LockonTruth() || chkFlag(0x20000000); }  // only matches with -O2?
 
     static type_tbl_entry loc_type_tbl[3];
     static type_tbl_entry act_type_tbl[5];

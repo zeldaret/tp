@@ -68,6 +68,8 @@ public:
         transform_setOrigin_TxyzRy(xyz, rotY);
     }
 
+    void setSecondPerFrame(double param_0) { mSecondPerFrame = param_0; }
+
     /* 0x58 */ f64 mSecondPerFrame;
     /* 0x60 */ fvb::TControl fvb_Control;
     /* 0x74 */ ctb::TControl ctb_Control;

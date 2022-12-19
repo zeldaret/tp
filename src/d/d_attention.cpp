@@ -1081,10 +1081,10 @@ bool dAttention_c::chaseAttention() {
 
     if (!chkFlag(0x4000)) {
         cSGlobe g1(actor->mAttentionInfo.mPosition - mOwnerAttnPos);
-        cSAngle a1(g1.U() - mpPlayer->mCollisionRot.y);
+        cSAngle a1(g1.U() - mpPlayer->shape_angle.y);
 
         cSGlobe g2(mOwnerAttnPos - actor->mAttentionInfo.mPosition);
-        cSAngle a2(g2.U() - actor->mCollisionRot.y);
+        cSAngle a2(g2.U() - actor->shape_angle.y);
 
         u32 type;
         f32 weight = calcWeight(0x4C, actor, g1.R(), a1.Val(), a2.Val(), &type);
@@ -1850,7 +1850,7 @@ f32 dAttention_c::LockonReleaseDistanse() {
 
     int idx = mLockOnList[mLockOnOffset].mType + actor->mAttentionInfo.field_0x0[0];
     cSGlobe tmp_g(actor->mAttentionInfo.mPosition - mOwnerAttnPos);
-    cSAngle tmp_a(tmp_g.U() - mpPlayer->mCollisionRot.y);
+    cSAngle tmp_a(tmp_g.U() - mpPlayer->shape_angle.y);
 
     return distace_angle_adjust(dist_table[idx].field_0x8, tmp_a, 1.0f) + dist_table[idx].field_0x4;
 }

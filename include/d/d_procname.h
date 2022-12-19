@@ -1,4 +1,5 @@
-#pragma once
+#ifndef D_PROCNAME_H
+#define D_PROCNAME_H
 
 enum {
     PROC_OVERLAP0          = 0x0000,
@@ -794,3 +795,5 @@ enum {
     PROC_METER2            = 0x0316,
     PROC_GAMEOVER          = 0x0317,
 };
+
+#endif /* D_PROCNAME_H */

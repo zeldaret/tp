@@ -50,6 +50,7 @@ public:
 
     static void setCurrentPipeline(u32 pipeline) { sCurrentPipeline = pipeline; }
     static void setLODFlag(u8 flag) { struct_804515B0[1] = flag; }
+    static u8 getLODFlag() { return struct_804515B0[1]; }
     static void resetMtxLoadCache();
 
 private:

@@ -93,13 +93,14 @@ public:
     /* 0x497 */ u8 mCullType;
     /* 0x498 */ u8 mDemoActorId;
     /* 0x499 */ s8 mSubtype;
+    /* 0x49A */ u8 field_0x49a;
     /* 0x49C */ u32 mStatus;
     /* 0x4A0 */ u32 mCondition;
     /* 0x4A4 */ u32 mParentPcId;
     /* 0x4A8 */ actor_place orig;
     /* 0x4BC */ actor_place next;
     /* 0x4D0 */ actor_place current;
-    /* 0x4E4 */ csXyz mCollisionRot;
+    /* 0x4E4 */ csXyz shape_angle;
     /* 0x4EC */ cXyz mScale;
     /* 0x4F8 */ cXyz mSpeed;
     /* 0x504 */ MtxP mCullMtx;
@@ -141,6 +142,11 @@ public:
     /* 800194FC */ void checkBallModelDraw();
     /* 80019520 */ void setBallModelEffect(dKy_tevstr_c*);
     /* 800196A0 */ void drawBallModel(dKy_tevstr_c*);
+
+    bool checkWolfNoLock() const { return mFlags & 0x200; }
+    bool checkHeadLockFlg() const { return mFlags & 0x80; }
+    bool checkDownFlg() const { return mFlags & 0x1; }
+    cXyz& getDownPos() { return mDownPos; }
 
     /* 0x568 */ cXyz mDownPos;
     /* 0x574 */ cXyz mHeadLockPos;

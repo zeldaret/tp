@@ -11,6 +11,11 @@
 #include "f_op/f_op_actor.h"
 #include "global.h"
 
+enum CcG_Tg_HitMark {
+    CcG_Tg_UNK_MARK_6 = 6,
+    CcG_Tg_UNK_MARK_8 = 8,
+};
+
 class cCcD_PntAttr;
 class cCcD_CpsAttr;
 class cCcD_TriAttr;
@@ -341,6 +346,7 @@ public:
     u32 MskType(u32 msk) const { return mType & msk; }
     void SetType(u32 type) { mType = type; }
     void SetAtp(int atp) { mAtp = atp; }
+    void ClrSet() { OffSPrmBit(1); }
 
 protected:
     /* 0x10 */ int mType;
@@ -361,6 +367,7 @@ public:
     void SetType(u32 type) { mType = type; }
     u32 GetGrp() const { return MskSPrm(0x1E); }
     bool ChkSet() const { return MskSPrm(1); }
+    void ClrSet() { OffSPrmBit(1); }
 
 private:
     /* 0x10 */ int mType;
@@ -429,6 +436,10 @@ public:
     void OffCoSetBit() { mObjCo.ClrSet(); }
     void SetTgType(u32 type) { mObjTg.SetType(type); }
     void OnTgSPrmBit(u32 flag) { mObjTg.OnSPrmBit(flag); }
+    void OffAtSetBit() { mObjAt.ClrSet(); }
+    void OnTgSetBit() { mObjTg.OnSPrmBit(1); }
+    void OffTgSetBit() { mObjTg.ClrSet(); }
+    void OnCoSetBit() { mObjCo.OnSPrmBit(1); }
 
 };  // Size = 0x40
 

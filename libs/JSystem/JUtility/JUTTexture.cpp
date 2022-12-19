@@ -82,13 +82,9 @@ void JUTTexture::storeTIMG(ResTIMG const* param_0, u8 param_1) {
             }
 
             if (mEmbPalette == NULL || !getEmbPaletteDelFlag()) {
-                JUTPalette* palette = new JUTPalette();
-                if (palette) {
-                    palette->storeTLUT(tlut, (_GXTlutFmt)tmp->colorFormat,
-                                       (JUTTransparency)tmp->alphaEnabled, tmp->numColors,
-                                       (void*)(tmp->format + tmp->paletteOffset));
-                }
-                mEmbPalette = palette;
+                mEmbPalette = new JUTPalette(tlut, (_GXTlutFmt)tmp->colorFormat,
+                                             (JUTTransparency)tmp->alphaEnabled, tmp->numColors,
+                                             (void*)(tmp->format + tmp->paletteOffset));
                 mFlags = mFlags & 1 | 2;
             } else {
                 mEmbPalette->storeTLUT(tlut, (_GXTlutFmt)tmp->colorFormat,
@@ -185,10 +181,10 @@ void JUTTexture::initTexObj() {
         offset = 0x20;
     }
 
-    GXInitTexObj(mTexObj, &mTexInfo + offset, mTexInfo->width, mTexInfo->height,
+    GXInitTexObj(&mTexObj, &mTexInfo + offset, mTexInfo->width, mTexInfo->height,
                  (GXTexFmt)mTexInfo->format, (GXTexWrapMode)mTexInfo->wrapS,
                  (GXTexWrapMode)mTexInfo->wrapT, mTexInfo->mipmapEnabled);
-    GXInitTexObjLOD(mTexObj, (GXTexFilter)mTexInfo->minFilter, (GXTexFilter)mTexInfo->magFilter,
+    GXInitTexObjLOD(&mTexObj, (GXTexFilter)mTexInfo->minFilter, (GXTexFilter)mTexInfo->magFilter,
                     mTexInfo->minLOD, mTexInfo->maxLOD, mTexInfo->LODBias, mTexInfo->biasClamp,
                     mTexInfo->doEdgeLOD, (GXAnisotropy)mTexInfo->maxAnisotropy);
 }

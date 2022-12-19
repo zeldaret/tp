@@ -30,7 +30,7 @@ public:
     /* 0x0A */ u16 field_0xa;
     /* 0x0C */ JUtility::TColor mColor;
     /* 0x10 */ JGeometry::TBox2<f32> mBox;
-    /* 0x20 */ EStatus mEStatus;
+    /* 0x20 */ int mEStatus;
     /* 0x24 */ u32 field_0x24;
 };
 

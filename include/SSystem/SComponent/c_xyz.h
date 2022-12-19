@@ -54,11 +54,7 @@ struct cXyz : Vec {
         z -= f;
     }
     void operator-=(const Vec& other) { PSVECSubtract(this, &other, this); }
-    void operator+=(const Vec& vec) {
-        x += vec.x;
-        y += vec.y;
-        z += vec.z;
-    }
+    void operator+=(const Vec& other) { PSVECAdd(this, &other, this); }
     void operator*=(f32 scale) { PSVECScale(this, this, scale); }
     /* 80266C6C */ cXyz getCrossProduct(Vec const&) const;
     /* 80266CBC */ cXyz outprod(Vec const&) const;

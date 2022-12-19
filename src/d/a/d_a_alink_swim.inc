@@ -1,106 +1,120 @@
 /* 80101890-801018E4 0FC1D0 0054+00 6/6 0/0 0/0 .text            checkZoraWearMaskDraw__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daAlink_c::checkZoraWearMaskDraw() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkZoraWearMaskDraw__9daAlink_cFv.s"
+BOOL daAlink_c::checkZoraWearMaskDraw() {
+    return checkZoraWearAbility() && !i_checkNoResetFlg0(FLG0_UNK_100);
 }
-#pragma pop
 
 /* 801018E4-80101934 0FC224 0050+00 1/1 0/0 0/0 .text checkAcceptUseItemInWater__9daAlink_cCFUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkAcceptUseItemInWater(u16 param_0) const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkAcceptUseItemInWater__9daAlink_cCFUs.s"
+BOOL daAlink_c::checkAcceptUseItemInWater(u16 i_itemNo) const {
+    return i_itemNo == HVY_BOOTS || i_itemNo == WATER_BOMB || checkHookshotItem(i_itemNo);
 }
-#pragma pop
 
 /* 80101934-801019B8 0FC274 0084+00 4/4 0/0 0/0 .text            swimDeleteItem__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::swimDeleteItem() {
-    nofralloc
-#include "asm/d/a/d_a_alink/swimDeleteItem__9daAlink_cFv.s"
+void daAlink_c::swimDeleteItem() {
+    if (!checkHookshotItem(mEquipItem) && (mEquipItem != 0x103 || !checkBootsOrArmorHeavy())) {
+        deleteEquipItem(1, 1);
+    }
+
+    if (i_checkNoResetFlg2(FLG2_UNK_1)) {
+        offKandelaarModel();
+    }
 }
-#pragma pop
 
 /* 801019B8-80101A18 0FC2F8 0060+00 11/11 0/0 0/0 .text            getZoraSwim__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool daAlink_c::getZoraSwim() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/getZoraSwim__9daAlink_cCFv.s"
+bool daAlink_c::getZoraSwim() const {
+    return checkUnderMove0BckNoArc(ANM_SWIM_C) || checkUnderMove0BckNoArc(ANM_SWIM_ZORA_START);
 }
-#pragma pop
 
 /* 80101A18-80101AA8 0FC358 0090+00 6/6 0/0 0/0 .text            getSwimFrontMaxSpeed__9daAlink_cCFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getSwimFrontMaxSpeed() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/getSwimFrontMaxSpeed__9daAlink_cCFv.s"
+f32 daAlink_c::getSwimFrontMaxSpeed() const {
+    if (checkBootsOrArmorHeavy()) {
+        return daAlinkHIO_swim_c0::m.mUnderwaterMaxSinkSpeed;
+    } else if (checkZoraWearAbility()) {
+        return lit_8130;
+    } else if (checkSwimDashMode()) {
+        return daAlinkHIO_swim_c0::m.mDMaxSpeed;
+    } else {
+        return daAlinkHIO_swim_c0::m.mMaxForwardSpeed;
+    }
 }
-#pragma pop
 
 /* 80101AA8-80101B44 0FC3E8 009C+00 5/5 0/0 0/0 .text            getSwimMaxFallSpeed__9daAlink_cCFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getSwimMaxFallSpeed() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/getSwimMaxFallSpeed__9daAlink_cCFv.s"
+f32 daAlink_c::getSwimMaxFallSpeed() const {
+    if (mProcID == PROC_DIVE_JUMP) {
+        return -daAlinkHIO_swim_c0::m.mMaxUnderwaterSpeed;
+    } else if (checkBootsOrArmorHeavy()) {
+        return daAlinkHIO_swim_c0::m.mBootsMaxSinkSpeed;
+    } else if (getZoraSwim()) {
+        return daAlinkHIO_swim_c0::m.mMaxSinkSpeed;
+    } else {
+        return daAlinkHIO_swim_c0::m.mInitMaxSinkSpeed;
+    }
 }
-#pragma pop
 
 /* 80101B44-80101C94 0FC484 0150+00 1/1 0/0 0/0 .text            checkOxygenTimer__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkOxygenTimer() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkOxygenTimer__9daAlink_cFv.s"
+void daAlink_c::checkOxygenTimer() {
+    BOOL hide_timer;
+
+    if (!i_checkNoResetFlg0(FLG0_UNK_100) || (i_checkModeFlg(MODE_SWIMMING) && mWaterY > lit_7808 + current.pos.y)) {
+        hide_timer = false;
+    } else {
+        hide_timer = true;
+    }
+
+    if (dComIfGp_getOxygenShowFlag()) {
+        if (checkZoraWearAbility()) {
+            offOxygenTimer();
+        } else if (hide_timer) {
+            s32 max = dComIfGp_getMaxOxygen();
+            dComIfGp_setOxygenCount(max);
+
+            if (field_0x2fbe < 90) {
+                field_0x2fbe++;
+            } else {
+                offOxygenTimer();
+            }
+        } else if (!checkEventRun()) {
+            dComIfGp_setOxygenCount(-1);
+        }
+    } else if (!hide_timer && !checkZoraWearAbility()) {
+        if (field_0x2fbe != 0) {
+            field_0x2fbe--;
+        } else {
+            dComIfGp_onOxygenShowFlag();
+            dComIfGp_setOxygen(dComIfGp_getMaxOxygen());
+        }
+    }
 }
-#pragma pop
 
 /* 80101C94-80101CB8 0FC5D4 0024+00 3/3 0/0 0/0 .text            offOxygenTimer__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::offOxygenTimer() {
-    nofralloc
-#include "asm/d/a/d_a_alink/offOxygenTimer__9daAlink_cFv.s"
+void daAlink_c::offOxygenTimer() {
+    dComIfGp_offOxygenShowFlag();
+    s32 max = dComIfGp_getMaxOxygen();
+    dComIfGp_setOxygen(max);
+
+    field_0x2fbe = 90;
 }
-#pragma pop
 
 /* 80101CB8-80101CF4 0FC5F8 003C+00 2/2 0/0 0/0 .text checkPossibleWaterInMode__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool daAlink_c::checkPossibleWaterInMode() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkPossibleWaterInMode__9daAlink_cCFv.s"
+BOOL daAlink_c::checkPossibleWaterInMode() const {
+    return i_checkModeFlg(MODE_VINE_CLIMB) || i_dComIfGp_checkPlayerStatus1(0, 0x2000000) || mProcID == PROC_HOOKSHOT_FLY;
 }
-#pragma pop
 
 /* 80101CF4-80101D70 0FC634 007C+00 18/18 0/0 0/0 .text
  * setWaterInAnmRate__9daAlink_cFP16daPy_frameCtrl_cf           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setWaterInAnmRate(daPy_frameCtrl_c* param_0, f32 param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setWaterInAnmRate__9daAlink_cFP16daPy_frameCtrl_cf.s"
+void daAlink_c::setWaterInAnmRate(daPy_frameCtrl_c* i_frameCtrl, f32 i_rate) {
+    if (i_checkNoResetFlg0(FLG0_UNDERWATER)) {
+        if (checkZoraWearAbility()) {
+            i_rate *= daAlinkHIO_magneBoots_c0::m.mZoraWaterAnmSpeed;
+        } else {
+            i_rate *= daAlinkHIO_magneBoots_c0::m.mWaterWalkAnmRate;
+        }
+    }
+
+    i_frameCtrl->setRate(i_rate);
 }
-#pragma pop
 
 /* 80101D70-801023E4 0FC6B0 0674+00 2/2 0/0 0/0 .text            swimBgCheck__9daAlink_cFf */
 #pragma push
@@ -125,14 +139,36 @@ asm void daAlink_c::setSpeedAndAngleSwim() {
 
 /* 801029C8-80102B1C 0FD308 0154+00 3/3 0/0 0/0 .text            checkNextActionSwim__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkNextActionSwim() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkNextActionSwim__9daAlink_cFv.s"
+int daAlink_c::checkNextActionSwim() {
+    if (checkSwimButtonMove() && getZoraSwim()) {
+        field_0x3000 = 30;
+    }
+
+    if ((checkZoraWearAbility() && !checkHeavyStateOn(1, 1)) || i_checkNoResetFlg0(FLG0_UNK_100)) {
+        setTalkStatus();
+    }
+
+    if (orderTalk(1)) {
+        return 1;
+    }
+
+    if (mAttList != NULL && mAttList->mType == 7 && i_checkNoResetFlg0(FLG0_UNK_100) && fopAcM_GetName(field_0x27f4) == PROC_CANOE) {
+        setDoStatus(0x17);
+
+        if (doTrigger()) {
+            return procCanoeRideInit();
+        }
+    } else if (checkSwimButtonMove() && !checkZoraSwimMove()) {
+        if (checkSwimButtonAccept()) {
+            return procSwimDiveInit();
+        }
+
+        field_0x3000 = 30;
+        return procSwimMoveInit();
+    }
+
+    return checkNextActionFromButton();
 }
-#pragma pop
 
 /* 80102B1C-80103058 0FD45C 053C+00 3/3 0/0 0/0 .text            checkSwimAction__9daAlink_cFi */
 #pragma push
@@ -148,13 +184,36 @@ asm void daAlink_c::checkSwimAction(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkSwimUpAction() {
+asm int daAlink_c::checkSwimUpAction() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkSwimUpAction__9daAlink_cFv.s"
 }
 #pragma pop
 
 /* 801032C8-80103398 0FDC08 00D0+00 8/8 0/0 0/0 .text            swimOutAfter__9daAlink_cFi */
+// setInWater needs work
+#ifdef NONMATCHING
+void daAlink_c::swimOutAfter(int param_0) {
+    i_onNoResetFlg0(FLG0_UNK_100);
+    i_onEndResetFlg1(ERFLG1_UNK_100);
+    mZ2Link.setInWater(false);
+
+    if (i_checkNoResetFlg0(FLG0_UNDERWATER)) {
+        i_offNoResetFlg0(FLG0_UNDERWATER);
+    } else {
+        field_0x2b98 = FLOAT_LABEL(lit_6108);
+        field_0x2f98 = 4;
+    }
+
+    field_0x3750 = cXyz::Zero;
+    field_0x3000 = 0;
+    offOxygenTimer();
+
+    if (checkSwimMoveHandAnime() || checkZoraSwimDamageAnime()) {
+        resetUpperAnime(UPPER_2, lit_6109);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -163,16 +222,16 @@ asm void daAlink_c::swimOutAfter(int param_0) {
 #include "asm/d/a/d_a_alink/swimOutAfter__9daAlink_cFi.s"
 }
 #pragma pop
+#endif
 
 /* 80103398-801033CC 0FDCD8 0034+00 1/1 0/0 0/0 .text            checkSwimFall__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkSwimFall() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkSwimFall__9daAlink_cFv.s"
+bool daAlink_c::checkSwimFall() {
+    if (!i_checkNoResetFlg0(FLG0_UNK_80) || current.pos.y > mWaterY + l_autoUpHeight) {
+        return true;
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 801033CC-80103698 0FDD0C 02CC+00 1/1 0/0 0/0 .text            checkSwimOutAction__9daAlink_cFv */
 #pragma push
@@ -196,73 +255,56 @@ asm void daAlink_c::setSwimMoveAnime() {
 
 /* 80103EE0-80103F08 0FE820 0028+00 5/5 0/0 0/0 .text            checkSwimButtonAccept__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkSwimButtonAccept() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkSwimButtonAccept__9daAlink_cFv.s"
+bool daAlink_c::checkSwimButtonAccept() {
+    return i_dComIfGp_getDoStatus() == 0x41 || i_dComIfGp_getDoStatus() == 0x4C;
 }
-#pragma pop
 
 /* 80103F08-80103F24 0FE848 001C+00 4/4 0/0 0/0 .text checkUpSwimButtonAccept__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkUpSwimButtonAccept() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkUpSwimButtonAccept__9daAlink_cFv.s"
+bool daAlink_c::checkUpSwimButtonAccept() {
+    return i_dComIfGp_getDoStatus() == 0x97;
 }
-#pragma pop
 
 /* 80103F24-80103F94 0FE864 0070+00 2/2 0/0 0/0 .text            checkSwimButtonMove__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkSwimButtonMove() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkSwimButtonMove__9daAlink_cFv.s"
+BOOL daAlink_c::checkSwimButtonMove() {
+    return !i_checkNoResetFlg0(FLG0_UNK_100) && (checkSwimButtonAccept() || checkUpSwimButtonAccept()) && doButton();
 }
-#pragma pop
 
 /* 80103F94-80103FE8 0FE8D4 0054+00 3/3 0/0 0/0 .text            checkZoraSwimMove__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkZoraSwimMove() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkZoraSwimMove__9daAlink_cFv.s"
+BOOL daAlink_c::checkZoraSwimMove() {
+    return checkSwimButtonMove() || field_0x3000 != 0;
 }
-#pragma pop
 
 /* 80103FE8-80104034 0FE928 004C+00 2/2 0/0 0/0 .text            checkSwimNeckUpDown__9daAlink_cCFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkSwimNeckUpDown() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkSwimNeckUpDown__9daAlink_cCFv.s"
+BOOL daAlink_c::checkSwimNeckUpDown() const {
+    return !i_checkNoResetFlg0(FLG0_UNK_100) && checkUnderMove0BckNoArc(ANM_SWIM_WAIT);
 }
-#pragma pop
 
 /* 80104034-801040F8 0FE974 00C4+00 3/3 0/0 0/0 .text            setSwimUpDownOffset__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setSwimUpDownOffset() {
-    nofralloc
-#include "asm/d/a/d_a_alink/setSwimUpDownOffset__9daAlink_cFv.s"
+void daAlink_c::setSwimUpDownOffset() {
+    mCommonCounter += (s16)((cM_rndF(lit_16570) + lit_27477) * lit_27476);
+
+    f32 var_f1;
+    if (i_checkWolf()) {
+        if (checkHeavyStateOn(1, 1)) {
+            var_f1 = daAlinkHIO_wlSwim_c0::m.field_0x98;
+        } else {
+            var_f1 = daAlinkHIO_wlSwim_c0::m.field_0x6C;
+        }
+    } else {
+        var_f1 = daAlinkHIO_swim_c0::m.mWaitVibrationIntensity;
+    }
+
+    field_0x2b98 = var_f1 * cM_ssin(mCommonCounter);
 }
-#pragma pop
 
 /* 801040F8-801041E8 0FEA38 00F0+00 2/2 0/0 0/0 .text            procSwimUpInit__9daAlink_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimUpInit() {
+asm int daAlink_c::procSwimUpInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimUpInit__9daAlink_cFv.s"
 }
@@ -272,7 +314,7 @@ asm void daAlink_c::procSwimUpInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimUp() {
+asm int daAlink_c::procSwimUp() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimUp__9daAlink_cFv.s"
 }
@@ -282,7 +324,7 @@ asm void daAlink_c::procSwimUp() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimWaitInit(int param_0) {
+asm int daAlink_c::procSwimWaitInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimWaitInit__9daAlink_cFi.s"
 }
@@ -292,7 +334,7 @@ asm void daAlink_c::procSwimWaitInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimWait() {
+asm int daAlink_c::procSwimWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimWait__9daAlink_cFv.s"
 }
@@ -302,7 +344,7 @@ asm void daAlink_c::procSwimWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimMoveInit() {
+asm int daAlink_c::procSwimMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimMoveInit__9daAlink_cFv.s"
 }
@@ -312,7 +354,7 @@ asm void daAlink_c::procSwimMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimMove() {
+asm int daAlink_c::procSwimMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimMove__9daAlink_cFv.s"
 }
@@ -322,7 +364,7 @@ asm void daAlink_c::procSwimMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimDiveInit() {
+asm int daAlink_c::procSwimDiveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimDiveInit__9daAlink_cFv.s"
 }
@@ -332,7 +374,7 @@ asm void daAlink_c::procSwimDiveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimDive() {
+asm int daAlink_c::procSwimDive() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimDive__9daAlink_cFv.s"
 }
@@ -342,7 +384,7 @@ asm void daAlink_c::procSwimDive() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimHookshotSubjectInit() {
+asm int daAlink_c::procSwimHookshotSubjectInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimHookshotSubjectInit__9daAlink_cFv.s"
 }
@@ -352,7 +394,7 @@ asm void daAlink_c::procSwimHookshotSubjectInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimHookshotSubject() {
+asm int daAlink_c::procSwimHookshotSubject() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimHookshotSubject__9daAlink_cFv.s"
 }
@@ -362,7 +404,7 @@ asm void daAlink_c::procSwimHookshotSubject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimHookshotMoveInit() {
+asm int daAlink_c::procSwimHookshotMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimHookshotMoveInit__9daAlink_cFv.s"
 }
@@ -373,7 +415,7 @@ asm void daAlink_c::procSwimHookshotMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimHookshotMove() {
+asm int daAlink_c::procSwimHookshotMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimHookshotMove__9daAlink_cFv.s"
 }
@@ -384,7 +426,7 @@ asm void daAlink_c::procSwimHookshotMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimDamageInit(dCcD_GObjInf* param_0) {
+asm int daAlink_c::procSwimDamageInit(dCcD_GObjInf* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimDamageInit__9daAlink_cFP12dCcD_GObjInf.s"
 }
@@ -394,7 +436,7 @@ asm void daAlink_c::procSwimDamageInit(dCcD_GObjInf* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procSwimDamage() {
+asm int daAlink_c::procSwimDamage() {
     nofralloc
 #include "asm/d/a/d_a_alink/procSwimDamage__9daAlink_cFv.s"
 }
@@ -405,18 +447,24 @@ asm void daAlink_c::procSwimDamage() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procOctaIealSpitInit() {
+asm int daAlink_c::procOctaIealSpitInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procOctaIealSpitInit__9daAlink_cFv.s"
 }
 #pragma pop
 
 /* 80105A00-80105A84 100340 0084+00 1/0 0/0 0/0 .text            procOctaIealSpit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procOctaIealSpit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procOctaIealSpit__9daAlink_cFv.s"
+int daAlink_c::procOctaIealSpit() {
+    if (mDemo.getDemoMode() == 0x2E) {
+        i_cancelOriginalDemo();
+    }
+
+    cLib_addCalc(&mNormalSpeed, FLOAT_LABEL(lit_6108), lit_5943, field_0x3478, lit_9054);
+    field_0x2f99 = 7;
+
+    if (mUnderFrameCtrl[0].checkAnmEnd()) {
+        procSwimWaitInit(0);
+    }
+
+    return 1;
 }
-#pragma pop

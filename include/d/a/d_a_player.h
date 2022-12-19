@@ -21,6 +21,9 @@ public:
     /* 8015F384 */ void setSightImage(ResTIMG*);
 
     bool getDrawFlg() { return mDrawFlag; }
+    void onDrawFlg() { mDrawFlag = true; }
+    void offDrawFlg() { mDrawFlag = false; }
+    void setPos(const cXyz* i_pos) { mPos = *i_pos; }
 
 private:
     /* 0x04 */ bool mDrawFlag;
@@ -36,6 +39,9 @@ public:
     /* 8015E5B0 */ void initOffset(cXyz const*);
     /* 8015E654 */ int posMove(cXyz*, s16*, fopAc_ac_c*, s16);
     /* 8015E87C */ void bgCheckAfterOffset(cXyz const*);
+
+    static void initDropAngleY() { m_dropAngleY = 0x4000; }
+    static void offEventKeepFlg() { m_eventKeepFlg = 0; }
 
     static s16 m_dropAngleY;
     static s16 m_eventKeepFlg;
@@ -138,15 +144,18 @@ public:
     void setSpecialDemoType();
 
     void setDemoType(u16 pType) { mDemoType = pType; }
-    u16 getDemoType() const { return mDemoType; }
+    int getDemoType() const { return mDemoType; }
     void setDemoMode(u32 mode) { mDemoMode = mode; }
     u32 getDemoMode() const { return mDemoMode; }
     int getParam1() const { return mParam1; }
     void setOriginalDemoType() { setDemoType(3); }
     void i_setSpecialDemoType() { setDemoType(5); }
+    void setSystemDemoType() { setDemoType(2); }
     void setStick(f32 stick) { mStick = stick; }
     void setMoveAngle(s16 angle) { mDemoMoveAngle = angle; }
     s16 getMoveAngle() const { return mDemoMoveAngle; }
+    f32 getStick() { return mStick; }
+    int getParam0() const { return mParam0; }
 
 private:
     /* 0x00 */ u16 mDemoType;
@@ -156,7 +165,7 @@ private:
     /* 0x08 */ int mParam0;
     /* 0x0C */ int mParam1;
     /* 0x10 */ u32 mDemoMode;
-    /* 0x14 */ float mStick;
+    /* 0x14 */ f32 mStick;
     /* 0x18 */ cXyz mDemoPos0;
 };  // Size: 0x24
 
@@ -191,8 +200,8 @@ public:
     /* 0x05BC */ cXyz mSwordTopPos;
     /* 0x05C8 */ cXyz mLeftHandPos;
     /* 0x05D4 */ cXyz mRightHandPos;
-    /* 0x05E0 */ cXyz mLeftFootPosP;
-    /* 0x05EC */ cXyz mRightFootPosP;
+    /* 0x05E0 */ cXyz mLeftFootPos;
+    /* 0x05EC */ cXyz mRightFootPos;
     /* 0x05F8 */ u8 field_0x5f8[0xC];
     /* 0x0604 */ daPy_demo_c mDemo;
 
@@ -221,25 +230,34 @@ public:
         FLG0_UNK_2 = 2,
 
         FLG0_HVY_STATE = FLG0_UNK_40000000 | FLG0_EQUIP_HVY_BOOTS | FLG0_UNK_20000,
+        FLG0_UNK_14000 = 0x14000,
     };
 
     enum daPy_FLG1 {
+        FLG1_UNK_40000000 = 0x40000000,
         FLG1_UNK_10000000 = 0x10000000,
+        FLG1_UNK_4000000 = 0x4000000,
         FLG1_IS_WOLF = 0x2000000,
-        FLG1_UNK_400000 = 0x400000,
+        FLG1_DASH_MODE = 0x400000,
         FLG1_UNK_10000 = 0x10000,
+        FLG1_UNK_8000 = 0x8000,
         FLG1_THROW_DAMAGE = 0x4000,
+        FLG1_UNK_80 = 0x80,
+        FLG1_UNK_40 = 0x40,
         FLG1_UNK_20 = 0x20,
         FLG1_UNK_10 = 0x10,
         FLG1_UNK_4 = 4,
         FLG1_UNK_2 = 2,
+        FLG1_UNK_1 = 1,
     };
 
     enum daPy_FLG2 {
         FLG2_UNK_20000000 = 0x20000000,
+        FLG2_UNK_10000000 = 0x10000000,
         FLG2_UNK_4080000 = 0x4080000,
         FLG2_UNK_2080000 = 0x2080000,
         FLG2_BOAR_SINGLE_BATTLE = 0x1800000,
+        FLG2_UNK_8000000 = 0x8000000,
         FLG2_UNK_1000000 = 0x1000000,
         FLG2_UNK_800000 = 0x800000,
         FLG2_STATUS_WINDOW_DRAW = 0x400000,
@@ -250,6 +268,8 @@ public:
         FLG2_UNK_20000 = 0x20000,
         FLG2_SCN_CHG_START = 0x8000,
         FLG2_UNK_4000 = 0x4000,
+        FLG2_UNK_1000 = 0x1000,
+        FLG2_UNK_200 = 0x200,
         FLG2_UNK_80 = 0x80,
         FLG2_UNK_40 = 0x40,
         FLG2_UNK_10 = 0x10,
@@ -262,15 +282,25 @@ public:
 
     enum daPy_FLG3 {
         FLG3_UNK_40000000 = 0x40000000,
+        FLG3_UNK_20000000 = 0x20000000,
+        FLG3_UNK_4000000 = 0x4000000,
         FLG3_UNK_2000000 = 0x2000000,
         FLG3_UNK_1000000 = 0x1000000,
         FLG3_UNK_100000 = 0x100000,
         FLG3_UNK_80000 = 0x80000,
         FLG3_COPY_ROD_THROW_AFTER = 0x40000,
         FLG3_UNK_4000 = 0x4000,
+        FLG3_UNK_200 = 0x200,
+        FLG3_UNK_100 = 0x100,
+        FLG3_UNK_40 = 0x40,
+        FLG3_UNK_20 = 0x20,
+        FLG3_UNK_10 = 0x10,
+        FLG3_UNK_4 = 4,
     };
 
     enum daPy_ERFLG0 {
+        ERFLG0_UNK_40000000 = 0x40000000,
+        ERFLG0_UNK_10000000 = 0x10000000,
         ERFLG0_UNK_8000000 = 0x8000000,
         ERFLG0_UNK_2000000 = 0x2000000,
         ERFLG0_UNK_1000000 = 0x1000000,
@@ -279,8 +309,12 @@ public:
         ERFLG0_UNK_200000 = 0x200000,
         ERFLG0_UNK_100000 = 0x100000,
         ERFLG0_UNK_2000 = 0x2000,
+        ERFLG0_UNK_1000 = 0x1000,
         ERFLG0_UNK_400 = 0x400,
         ERFLG0_UNK_100 = 0x100,
+        ERFLG0_UNK_80 = 0x80,
+        ERFLG0_UNK_40 = 0x40,
+        ERFLG0_UNK_8 = 8,
         ERFLG0_UNK_4 = 4,
         ERFLG0_UNK_2 = 2,
         ERFLG0_UNK_1 = 1,
@@ -288,11 +322,19 @@ public:
 
     enum daPy_ERFLG1 {
         ERFLG1_GANON_FINISH = 0x80000000,
+        ERFLG1_UNK_40000000 = 0x40000000,
         ERFLG1_UNK_10000000 = 0x10000000,
         ERFLG1_UNK_4000000 = 0x4000000,
         ERFLG1_UNK_40000 = 0x40000,
         ERFLG1_UNK_2000 = 0x2000,
+        ERFLG1_UNK_800 = 0x800,
+        ERFLG1_UNK_400 = 0x400,
         ERFLG1_UNK_200 = 0x200,
+        ERFLG1_UNK_100 = 0x100,
+        ERFLG1_UNK_80 = 0x80,
+        ERFLG1_UNK_10 = 0x10,
+        ERFLG1_UNK_20 = 0x20,
+        ERFLG1_UNK_8 = 8,
         ERFLG1_UNK_4 = 4,
         ERFLG1_UNK_2 = 2,
         ERFLG1_UNK_1 = 1,
@@ -300,11 +342,13 @@ public:
 
     enum daPy_ERFLG2 {
         ERFLG2_UNK_100 = 0x100,
+        ERFLG2_UNK_40 = 0x40,
         ERFLG2_UNK_20 = 0x20,
     };
 
     enum daPy_RFLG0 {
         RFLG0_UNK_8000000 = 0x8000000,
+        RFLG0_UNK_4000000 = 0x4000000,
         RFLG0_UNK_4000 = 0x4000,
         RFLG0_ENEMY_ATTN_LOCK = 0x1000,
         RFLG0_UNK_400 = 0x400,
@@ -312,6 +356,11 @@ public:
         RFLG0_UNK_40 = 0x40,
         RFLG0_UNK_10 = 0x10,
         RFLG0_UNK_2 = 0x2,
+    };
+
+    enum daPy_RFLG1 {
+        RFLG1_UNK_30 = 0x30,
+        RFLG1_UNK_2 = 0x2,
     };
 
     enum {
@@ -324,28 +373,51 @@ public:
     };
 
     enum CutType {
-        /* 0x01 */ TYPE_CUT_VERTICAL = 1,
-        /* 0x02 */ TYPE_CUT_STAB,
-        /* 0x03 */ TYPE_CUT_SWEEP,
-        /* 0x04 */ TYPE_CUT_HORIZONTAL,
-        /* 0x05 */ TYPE_CUT_HEAD,  // Helm Splitter
-        /* 0x06 */ TYPE_CUT_LEFT_SWEEP_FINISH,
-        /* 0x07 */ TYPE_CUT_DOWN_FINISH,
-        /* 0x08 */ TYPE_CUT_TURN_RIGHT,
-        /* 0x0A */ TYPE_CUT_JUMP = 10,
-        /* 0x10 */ TYPE_CUT_AIR = 0x10,
-        /* 0x12 */ TYPE_CUT_LARGE_JUMP_INIT = 0x12,
-        /* 0x13 */ TYPE_CUT_LARGE_JUMP,
-        /* 0x14 */ TYPE_CUT_LARGE_JUMP_FINISH,
-        /* 0x15 */ TYPE_CUT_RIGHT_SWEEP_FINISH,
-        /* 0x16 */ TYPE_CUT_TURN_LEFT,
-        /* 0x17 */ TYPE_CUT_LARGE_TURN_LEFT,
-        /* 0x18 */ TYPE_CUT_LARGE_TURN_RIGHT,
-        /* 0x1A */ TYPE_CUT_FAST_MOVE = 0x1A,
-        /* 0x1E */ TYPE_CUT_TWIRL = 0x1E,  // Back Slice
-        /* 0x1F */ TYPE_CUT_FAST,
-        /* 0x20 */ TYPE_CUT_STAB_FINISH,
-        /* 0x21 */ TYPE_CUT_STAB_COMBO,
+        /* 0x01 */ CUT_TYPE_NM_VERTICAL = 1,
+        /* 0x02 */ CUT_TYPE_NM_STAB,
+        /* 0x03 */ CUT_TYPE_NM_RIGHT,
+        /* 0x04 */ CUT_TYPE_NM_LEFT,
+        /* 0x05 */ CUT_TYPE_HEAD_JUMP,  // Helm Splitter
+        /* 0x06 */ CUT_TYPE_FINISH_LEFT,
+        /* 0x07 */ CUT_TYPE_FINISH_VERTICAL,
+        /* 0x08 */ CUT_TYPE_TURN_RIGHT,
+        /* 0x0A */ CUT_TYPE_JUMP = 10,
+        /* 0x0B */ CUT_TYPE_DASH_UNK_B,
+        /* 0x0C */ CUT_TYPE_DASH_UNK_C,
+        /* 0x0D */ CUT_TYPE_DASH_UNK_D,
+        /* 0x10 */ CUT_TYPE_AIR = 0x10,
+        /* 0x11 */ CUT_TYPE_DASH_UNK_11,
+        /* 0x12 */ CUT_TYPE_LARGE_JUMP_INIT,
+        /* 0x13 */ CUT_TYPE_LARGE_JUMP,
+        /* 0x14 */ CUT_TYPE_LARGE_JUMP_FINISH,
+        /* 0x15 */ CUT_TYPE_FINISH_RIGHT,
+        /* 0x16 */ CUT_TYPE_TURN_LEFT,
+        /* 0x17 */ CUT_TYPE_LARGE_TURN_LEFT,
+        /* 0x18 */ CUT_TYPE_LARGE_TURN_RIGHT,
+        /* 0x1A */ CUT_TYPE_MORTAL_DRAW_A = 0x1A,
+        /* 0x1E */ CUT_TYPE_TWIRL = 0x1E,  // Back Slice
+        /* 0x1F */ CUT_TYPE_MORTAL_DRAW_B,
+        /* 0x20 */ CUT_TYPE_FINISH_STAB,
+        /* 0x21 */ CUT_TYPE_COMBO_STAB,
+        /* 0x22 */ CUT_TYPE_HORSE_UNK_22,
+        /* 0x23 */ CUT_TYPE_HORSE_UNK_23,
+        /* 0x25 */ CUT_TYPE_DASH_UNK_25 = 0x25,
+        /* 0x26 */ CUT_TYPE_DASH_UNK_26 = 0x26,
+        /* 0x27 */ CUT_TYPE_DOWN,
+        /* 0x29 */ CUT_TYPE_GUARD_ATTACK = 0x29,
+        /* 0x2A */ CUT_TYPE_HORSE_UNK_2A,
+        /* 0x2B */ CUT_TYPE_HORSE_TURN,
+        /* 0x2C */ CUT_TYPE_WOLF_B_LEFT,
+        /* 0x2D */ CUT_TYPE_WOLF_B_RIGHT,
+        /* 0x2E */ CUT_TYPE_WOLF_B_FRONT,
+        /* 0x2F */ CUT_TYPE_WOLF_B_BACK,
+        /* 0x31 */ CUT_TYPE_WOLF_UNK_31 = 0x31,
+        /* 0x32 */ CUT_TYPE_WOLF_UNK_32,
+        /* 0x33 */ CUT_TYPE_WOLF_TURN_LEFT,
+        /* 0x34 */ CUT_TYPE_WOLF_TURN_RIGHT,
+        /* 0x36 */ CUT_TYPE_WOLF_LOCK = 0x36,
+        /* 0x38 */ CUT_TYPE_DASH_UNK_38 = 0x38,
+        /* 0x39 */ CUT_TYPE_WOLF_UNK_39,
     };
 
     static u32 setParamData(int, int, int, int);
@@ -360,7 +432,7 @@ public:
     static BOOL checkTradeItem(int);
     static BOOL checkDungeonWarpItem(int);
     static BOOL checkMasterSwordEquip();
-    bool checkWoodShieldEquip();
+    static BOOL checkWoodShieldEquip();
     static f32 getAttentionOffsetY();
     s16 checkNowWolfEyeUp();
     static void forceRestartRoom(int, u32, int);
@@ -458,7 +530,7 @@ public:
     virtual BOOL checkGoatThrowAfter() const;
     virtual BOOL checkWolfTagLockJump() const;
     virtual BOOL checkWolfTagLockJumpLand() const;
-    virtual bool checkWolfRope();
+    virtual BOOL checkWolfRope();
     virtual BOOL checkWolfRopeHang() const;
     virtual BOOL checkRollJump() const;
     virtual BOOL checkGoronRideWait() const;
@@ -537,7 +609,7 @@ public:
     virtual s16 getBoardCutTurnOffsetAngleY() const;
     virtual cXyz* getMagneHitPos();
     virtual cXyz* getMagneBootsTopVec();
-    virtual bool getKandelaarFlamePos();
+    virtual cXyz* getKandelaarFlamePos();
     virtual bool checkUseKandelaar(int);
     virtual void setDkCaught(fopAc_ac_c*);
     virtual void onPressedDamage(cXyz const&, short);
@@ -550,8 +622,8 @@ public:
     virtual bool checkSpinnerPathMove();
     virtual bool checkSpinnerTriggerAttack();
     virtual void onSpinnerPathForceRemove();
-    virtual bool getIronBallBgHit() const;
-    virtual bool getIronBallCenterPos();
+    virtual s16 getIronBallBgHit() const;
+    virtual cXyz* getIronBallCenterPos();
     virtual bool checkCanoeFishingGetLeft() const;
     virtual bool checkCanoeFishingGetRight() const;
     virtual u8 checkBeeChildDrink() const;
@@ -604,16 +676,28 @@ public:
     }
 
     bool i_getSumouMode() const { return getSumouCameraMode(); }
+    void i_cancelOriginalDemo() {
+        mDemo.setSystemDemoType();
+        mDemo.setDemoMode(1);
+    }
 
     bool checkStatusWindowDraw() { return i_checkNoResetFlg2(FLG2_STATUS_WINDOW_DRAW); }
     bool checkCargoCarry() const { return mSpecialMode == SMODE_CARGO_CARRY; }
     bool getHeavyStateAndBoots() { return i_checkNoResetFlg0(FLG0_HVY_STATE); }
     bool checkEnemyAttentionLock() const { return i_checkResetFlg0(RFLG0_ENEMY_ATTN_LOCK); }
     bool checkCanoeSlider() const { return mSpecialMode == 0x2D; }
+    bool checkGoatStopGame() const { return mSpecialMode == 0x2A; }
+    bool i_checkGoronSideMove() const { return mSpecialMode == 0x2B; }
     u8 getCutType() const { return mCutType; }
     u16 getSwordAtUpTime() const { return mSwordUpTimer; }
     bool checkWaterInMove() const { return i_checkNoResetFlg0(FLG0_UNDERWATER); }
     bool checkSceneChangeAreaStart() const { return i_checkNoResetFlg2(FLG2_SCN_CHG_START); }
+    
+    void offGoronSideMove() {
+        if (i_checkGoronSideMove()) {
+            mSpecialMode = 0;
+        }
+    }
 
     // some functions use these function as an inline
     // is there a better way to handle this?
@@ -628,6 +712,7 @@ public:
     void i_onNoResetFlg3(int pFlg) { mNoResetFlg3 |= pFlg; }
     
     void i_offNoResetFlg0(int pFlg) { mNoResetFlg0 &= ~pFlg; }
+    void i_offNoResetFlg1(int pFlg) { mNoResetFlg1 &= ~pFlg; }
     void i_offNoResetFlg2(int pFlg) { mNoResetFlg2 &= ~pFlg; }
     void i_offNoResetFlg3(int pFlg) { mNoResetFlg3 &= ~pFlg; }
     
@@ -637,11 +722,13 @@ public:
     
     void i_onEndResetFlg0(int flag) { mEndResetFlg0 |= flag; }
     void i_onEndResetFlg2(int flag) { mEndResetFlg2 |= flag; }
+    void i_offEndResetFlg2(daPy_ERFLG2 flag) { mEndResetFlg2 &= ~flag; }
     
     int i_checkResetFlg0(daPy_py_c::daPy_RFLG0 flag) const { return mResetFlg0 & flag; }
     
     int i_checkEndResetFlg0(daPy_py_c::daPy_ERFLG0 flag) const { return mEndResetFlg0 & flag; }
     int i_checkEndResetFlg1(daPy_py_c::daPy_ERFLG1 flag) const { return mEndResetFlg1 & flag; }
+    int i_checkEndResetFlg2(daPy_py_c::daPy_ERFLG2 flag) const { return mEndResetFlg2 & flag; }
     
     void i_onEndResetFlg1(daPy_ERFLG1 pFlg) { mEndResetFlg1 |= pFlg; }
     
@@ -652,9 +739,12 @@ public:
     void i_onPlayerNoDraw() { i_onNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
     void i_offPlayerNoDraw() { i_offNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
 
+    u32 i_checkBoarSingleBattle() const { return i_checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
+
     inline static u32 i_getLastSceneMode();
     inline static u32 getLastSceneMode();
     inline static bool checkWoodSwordEquip();
+    inline static bool checkLightMasterSwordEquip();
     inline BOOL i_checkSwordGet();
     inline bool i_checkShieldGet() const;
     inline static BOOL checkNowWolf();

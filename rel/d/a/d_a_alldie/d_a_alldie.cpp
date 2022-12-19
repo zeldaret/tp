@@ -185,8 +185,8 @@ int daAlldie_c::create() {
         mAction = ACT_WAIT;
     }
 
-    mCollisionRot.z = 0;
-    mCollisionRot.x = 0;
+    shape_angle.z = 0;
+    shape_angle.x = 0;
     current.angle.z = 0;
     current.angle.x = 0;
 

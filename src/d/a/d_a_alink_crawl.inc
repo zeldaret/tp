@@ -161,7 +161,7 @@ asm void daAlink_c::setCrawlAutoMoveAimPos() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCrawlStartInit() {
+asm int daAlink_c::procCrawlStartInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCrawlStartInit__9daAlink_cFv.s"
 }
@@ -171,7 +171,7 @@ asm void daAlink_c::procCrawlStartInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCrawlStart() {
+asm int daAlink_c::procCrawlStart() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCrawlStart__9daAlink_cFv.s"
 }
@@ -181,7 +181,7 @@ asm void daAlink_c::procCrawlStart() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCrawlMoveInit(s16 param_0, s16 param_1) {
+asm int daAlink_c::procCrawlMoveInit(s16 param_0, s16 param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCrawlMoveInit__9daAlink_cFss.s"
 }
@@ -191,7 +191,7 @@ asm void daAlink_c::procCrawlMoveInit(s16 param_0, s16 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCrawlMove() {
+asm int daAlink_c::procCrawlMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCrawlMove__9daAlink_cFv.s"
 }
@@ -201,7 +201,7 @@ asm void daAlink_c::procCrawlMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCrawlAutoMoveInit(int param_0, cXyz* param_1) {
+asm int daAlink_c::procCrawlAutoMoveInit(int param_0, cXyz* param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCrawlAutoMoveInit__9daAlink_cFiP4cXyz.s"
 }
@@ -211,7 +211,7 @@ asm void daAlink_c::procCrawlAutoMoveInit(int param_0, cXyz* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCrawlAutoMove() {
+asm int daAlink_c::procCrawlAutoMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCrawlAutoMove__9daAlink_cFv.s"
 }
@@ -221,7 +221,7 @@ asm void daAlink_c::procCrawlAutoMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCrawlEndInit(int param_0, s16 param_1, s16 param_2) {
+asm int daAlink_c::procCrawlEndInit(int param_0, s16 param_1, s16 param_2) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCrawlEndInit__9daAlink_cFiss.s"
 }
@@ -231,7 +231,7 @@ asm void daAlink_c::procCrawlEndInit(int param_0, s16 param_1, s16 param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCrawlEnd() {
+asm int daAlink_c::procCrawlEnd() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCrawlEnd__9daAlink_cFv.s"
 }

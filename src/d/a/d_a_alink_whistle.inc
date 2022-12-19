@@ -59,10 +59,10 @@ int daAlink_c::procGrassWhistleGetInit() {
 
     commonProcInit(PROC_GRASS_WHISTLE_GET);
     mNormalSpeed = 0.0f;
-    current.angle.y = mCollisionRot.y;
+    current.angle.y = shape_angle.y;
     field_0x2f98 = 4;
 
-    setSingleAnimeParam(ANM_BOTTLE_SWING_DOWN, &daAlinkHIO_bottle_c0::m.field_0x50);
+    setSingleAnimeParam(ANM_BOTTLE_SWING_DOWN, &daAlinkHIO_bottle_c0::m.mSwingDownAnm);
     field_0x2f92 = 0xFE;
     field_0x280c.setData(field_0x27f4);
 
@@ -70,10 +70,10 @@ int daAlink_c::procGrassWhistleGetInit() {
     mCommonCounter = yobikusa->getType();
     field_0x300e = yobikusa->getPathID();
     field_0x3010 = yobikusa->isPlayerCorrect();
-    field_0x3012 = yobikusa->mCollisionRot.y + 0x8000;
-    field_0x37c8.set(yobikusa->current.pos.x + cM_ssin(yobikusa->mCollisionRot.y) * 50.0f,
+    field_0x3012 = yobikusa->shape_angle.y + 0x8000;
+    field_0x37c8.set(yobikusa->current.pos.x + cM_ssin(yobikusa->shape_angle.y) * 50.0f,
                      yobikusa->current.pos.y + 50.0f,
-                     yobikusa->current.pos.z + cM_scos(yobikusa->mCollisionRot.y) * 50.0f);
+                     yobikusa->current.pos.z + cM_scos(yobikusa->shape_angle.y) * 50.0f);
     voiceStart(Z2SE_AL_V_SWING_BOTTLE);
     return 1;
 }
@@ -112,7 +112,7 @@ int daAlink_c::procGrassWhistleGet() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGrassWhistleWaitInit(int param_0, int param_1, int param_2, s16 param_3,
+asm int daAlink_c::procGrassWhistleWaitInit(int param_0, int param_1, int param_2, s16 param_3,
                                              cXyz* param_4) {
     nofralloc
 #include "asm/d/a/d_a_alink/procGrassWhistleWaitInit__9daAlink_cFiiisP4cXyz.s"
@@ -124,69 +124,92 @@ asm void daAlink_c::procGrassWhistleWaitInit(int param_0, int param_1, int param
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procGrassWhistleWait() {
+asm int daAlink_c::procGrassWhistleWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procGrassWhistleWait__9daAlink_cFv.s"
 }
 #pragma pop
 
 /* 80111FF0-801120C8 10C930 00D8+00 2/2 0/0 0/0 .text procCoHorseCallWaitInit__9daAlink_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procCoHorseCallWaitInit(int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/procCoHorseCallWaitInit__9daAlink_cFi.s"
+int daAlink_c::procCoHorseCallWaitInit(int param_0) {
+    commonProcInit(PROC_HORSE_CALL_WAIT);
+
+    if (param_0 == 4) {
+        field_0x3010 = 2;
+    } else if (param_0 == 1) {
+        field_0x3010 = 0x3D;
+    } else {
+        field_0x3010 = 0x10;
+    }
+
+    if (i_checkWolf()) {
+        setSingleAnimeWolfBaseSpeed(WANM_WAIT, daAlinkHIO_wlMove_c0::m.field_0x70, lit_6109);
+    } else {
+        setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed, lit_6109);
+    }
+
+    setGrassCancelStatus(0);
+    dComIfGp_setPlayerStatus1(0, 0x4000000);
+    return 1;
 }
-#pragma pop
 
 /* 801120C8-801121B4 10CA08 00EC+00 1/0 0/0 0/0 .text            procCoHorseCallWait__9daAlink_cFv
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCoHorseCallWait() {
+asm int daAlink_c::procCoHorseCallWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoHorseCallWait__9daAlink_cFv.s"
 }
 #pragma pop
 
 /* 801121B4-80112220 10CAF4 006C+00 1/0 0/0 0/0 .text            procHawkCatchInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procHawkCatchInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procHawkCatchInit__9daAlink_cFv.s"
+int daAlink_c::procHawkCatchInit() {
+    if (mProcID == PROC_HAWK_SUBJECT || !commonProcInitNotSameProc(PROC_HAWK_CATCH)) {
+        return 0;
+    }
+
+    setSingleAnimeBase(ANM_HAWK_CATCH);
+    deleteEquipItem(0, 1);
+    return 1;
 }
-#pragma pop
 
 /* 80112220-80112278 10CB60 0058+00 1/0 0/0 0/0 .text            procHawkCatch__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procHawkCatch() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procHawkCatch__9daAlink_cFv.s"
+int daAlink_c::procHawkCatch() {
+    if (mUnderFrameCtrl[0].checkAnmEnd()) {
+        dComIfGp_evmng_cutEnd(field_0x3184);
+        procHawkSubjectInit();
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80112278-80112304 10CBB8 008C+00 2/2 0/0 0/0 .text            procHawkSubjectInit__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procHawkSubjectInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procHawkSubjectInit__9daAlink_cFv.s"
+int daAlink_c::procHawkSubjectInit() {
+    if (!commonProcInitNotSameProc(PROC_HAWK_SUBJECT)) {
+        return 0;
+    }
+
+    setSingleAnimeBase(ANM_HAWK_WAIT);
+
+    fopAc_ac_c* actor = (fopAc_ac_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchHawk, NULL);
+    if (actor != NULL) {
+        field_0x280c.setData(actor);
+    }
+
+    mCommonCounter = 0;
+    field_0x59e = 0;
+    deleteEquipItem(0, 1);
+    return 1;
 }
-#pragma pop
 
 /* 80112304-8011243C 10CC44 0138+00 1/0 0/0 0/0 .text            procHawkSubject__9daAlink_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHawkSubject() {
+asm int daAlink_c::procHawkSubject() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHawkSubject__9daAlink_cFv.s"
 }

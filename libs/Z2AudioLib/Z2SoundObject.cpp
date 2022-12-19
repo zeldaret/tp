@@ -11,13 +11,8 @@
 // Types:
 //
 
-struct Z2SoundObjArrow {
-    /* 802BEB38 */ Z2SoundObjArrow();
-    /* 802BEB74 */ void init(Vec*, u8);
-};
-
 struct Z2SoundInfo {
-    /* 802BBAC8 */ void getSwBit(JAISoundID) const;
+    /* 802BBAC8 */ int getSwBit(JAISoundID) const;
 };
 
 struct Z2SeMgr {
@@ -106,7 +101,7 @@ extern "C" void _restgpr_23();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern u32 __float_max;
-extern "C" extern u8 data_80450B4C[4];
+extern "C" extern Z2SoundInfo* data_80450B4C;
 extern "C" extern u8 data_80450B60[4];
 extern "C" extern Z2SoundStarter* data_80450B74;
 extern "C" extern u8 data_80450B88[4];
@@ -232,7 +227,7 @@ void Z2SoundObjBase::dispose() {
     for (link = getFirst(); link != NULL; link = link->getNext()) {
         handle = link->getObject();
         if (handle != NULL && (bool)*handle) {
-            u32 swBit = lbl_80450B4C->getSwBit((*handle)->getID());
+            u32 swBit = data_80450B4C->getSwBit((*handle)->getID());
             if ((swBit & 0x8000) != 0) {
                 handle->releaseSound();
             } else {
@@ -260,7 +255,7 @@ asm void Z2SoundObjBase::dispose() {
 // sInstance stuff
 #ifdef NONMATCHING
 bool Z2SoundObjBase::stopOK(Z2SoundHandlePool& pSoundHandlePool) {
-    return !(lbl_80450B4C->getSwBit(pSoundHandlePool->getID()) & 0x8000);
+    return !(data_80450B4C->getSwBit(pSoundHandlePool->getID()) & 0x8000);
 }
 #else
 #pragma push
@@ -380,7 +375,8 @@ asm void Z2DopplerSoundObjBase::init(Vec* param_0, u8 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2DopplerSoundObjBase::framework(u32 param_0, s8 param_1) {
+// asm void Z2DopplerSoundObjBase::framework(u32 param_0, s8 param_1) {
+extern "C" asm void framework__21Z2DopplerSoundObjBaseFUlSc() {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundObject/framework__21Z2DopplerSoundObjBaseFUlSc.s"
 }
@@ -499,7 +495,8 @@ asm Z2SoundObjArrow::Z2SoundObjArrow() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2SoundObjArrow::init(Vec* param_0, u8 param_1) {
+// asm void Z2SoundObjArrow::init(Vec* param_0, u8 param_1) {
+extern "C" asm void init__15Z2SoundObjArrowFP3VecUc() {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundObject/init__15Z2SoundObjArrowFP3VecUc.s"
 }
