@@ -531,7 +531,7 @@ static void action(b_go_class* b_go) {
         break;
     }
 
-    cLib_addCalcAngleS2(&b_go->mCollisionRot.y, b_go->current.angle.y, 4, 0x2000);
+    cLib_addCalcAngleS2(&b_go->shape_angle.y, b_go->current.angle.y, 4, 0x2000);
     mDoMtx_stack_c::YrotS(b_go->current.angle.y);
 
     cXyz speed;
@@ -579,7 +579,7 @@ static int daB_GO_Execute(b_go_class* b_go) {
     damage_check(b_go);
 
     mDoMtx_stack_c::transS(b_go->current.pos.x, b_go->current.pos.y, b_go->current.pos.z);
-    mDoMtx_stack_c::YrotM(b_go->mCollisionRot.y);
+    mDoMtx_stack_c::YrotM(b_go->shape_angle.y);
     mDoMtx_stack_c::scaleM((*(daB_GO_HIO_c*)l_HIO).mSmallSize, (*(daB_GO_HIO_c*)l_HIO).mSmallSize, (*(daB_GO_HIO_c*)l_HIO).mSmallSize);
     mDoMtx_stack_c::copy(b_go->mpMorf->getModel()->getBaseTRMtx());
     b_go->mpMorf->play(0, dComIfGp_getReverb(b_go->current.mRoomNo));

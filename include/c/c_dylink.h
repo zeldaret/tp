@@ -18,5 +18,6 @@ struct DynamicNameTableEntry {
 };
 
 int cDyl_InitAsyncIsDone();
+void cDyl_InitAsync();
 
 #endif /* C_C_DYLINK_H */

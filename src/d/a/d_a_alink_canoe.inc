@@ -1,179 +1,161 @@
+#include "rel/d/a/d_a_canoe/d_a_canoe.h"
+
 /* 800F3BB0-800F3BDC 0EE4F0 002C+00 1/1 0/0 2/2 .text            getCanoeMaxSpeed__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getCanoeMaxSpeed() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/getCanoeMaxSpeed__9daAlink_cCFv.s"
+f32 daAlink_c::getCanoeMaxSpeed() const {
+    if (checkCanoeSlider()) {
+        return daAlinkHIO_canoe_c0::m.field_0x3C;
+    }
+
+    return daAlinkHIO_canoe_c0::m.field_0x24;
 }
-#pragma pop
 
 /* 800F3BDC-800F3BEC 0EE51C 0010+00 0/0 0/0 1/1 .text            getCanoeBackMaxSpeed__9daAlink_cCFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getCanoeBackMaxSpeed() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/getCanoeBackMaxSpeed__9daAlink_cCFv.s"
+f32 daAlink_c::getCanoeBackMaxSpeed() const {
+    return daAlinkHIO_canoe_c0::m.mBackMaxSpeed;
 }
-#pragma pop
 
 /* 800F3BEC-800F3C18 0EE52C 002C+00 0/0 0/0 1/1 .text            getCanoeCres__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getCanoeCres() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/getCanoeCres__9daAlink_cCFv.s"
+f32 daAlink_c::getCanoeCres() const {
+    if (checkCanoeSlider()) {
+        return daAlinkHIO_canoe_c0::m.field_0x44;
+    }
+
+    return daAlinkHIO_canoe_c0::m.field_0x28;
 }
-#pragma pop
 
 /* 800F3C18-800F3C44 0EE558 002C+00 2/2 0/0 0/0 .text            getCanoeSpeedRate__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getCanoeSpeedRate() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/getCanoeSpeedRate__9daAlink_cCFv.s"
+f32 daAlink_c::getCanoeSpeedRate() const {
+    if (checkCanoeSlider()) {
+        return daAlinkHIO_canoe_c0::m.field_0x40;
+    }
+
+    return daAlinkHIO_canoe_c0::m.field_0x20;
 }
-#pragma pop
 
 /* 800F3C44-800F3CCC 0EE584 0088+00 0/0 0/0 1/1 .text            getCanoeMaxRotSpeed__9daAlink_cCFv
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getCanoeMaxRotSpeed() const {
+asm s16 daAlink_c::getCanoeMaxRotSpeed() const {
     nofralloc
 #include "asm/d/a/d_a_alink/getCanoeMaxRotSpeed__9daAlink_cCFv.s"
 }
 #pragma pop
 
 /* 800F3CCC-800F3CD8 0EE60C 000C+00 1/1 0/0 1/1 .text getCanoeLocalPaddleTop__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getCanoeLocalPaddleTop() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getCanoeLocalPaddleTop__9daAlink_cFv.s"
+cXyz* daAlink_c::getCanoeLocalPaddleTop() {
+    return (cXyz*)&localPaddleTop;
 }
-#pragma pop
 
 /* 800F3CD8-800F3CF8 0EE618 0020+00 3/3 0/0 0/0 .text daAlink_searchCanoe__FP10fopAc_ac_cPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void* daAlink_searchCanoe(fopAc_ac_c* param_0, void* param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/daAlink_searchCanoe__FP10fopAc_ac_cPv.s"
+static fopAc_ac_c* daAlink_searchCanoe(fopAc_ac_c* param_0, void* param_1) {
+    if (fopAcM_GetName(param_0) == PROC_CANOE &&
+        static_cast<daCanoe_c*>(param_0)->getModel() != NULL) {
+        return param_0;
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 800F3CF8-800F3D58 0EE638 0060+00 0/0 2/2 0/0 .text            checkCanoeRideTandem__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkCanoeRideTandem() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkCanoeRideTandem__9daAlink_cFv.s"
+BOOL daAlink_c::checkCanoeRideTandem() {
+    daCanoe_c* canoe = (daCanoe_c*)mRideAcKeep.getActor();
+
+    if (checkCanoeRide() && canoe != NULL && canoe->checkTandem()) {
+        return true;
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 800F3D58-800F3DA0 0EE698 0048+00 7/7 0/0 0/0 .text checkFishingRodAndLureItem__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daAlink_c::checkFishingRodAndLureItem() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkFishingRodAndLureItem__9daAlink_cCFv.s"
+BOOL daAlink_c::checkFishingRodAndLureItem() const {
+    return checkFisingRodLure() || checkFishingRodItem(mEquipItem);
 }
-#pragma pop
 
 /* 800F3DA0-800F3DFC 0EE6E0 005C+00 4/4 0/0 0/0 .text            initFishingRodHand__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::initFishingRodHand() {
-    nofralloc
-#include "asm/d/a/d_a_alink/initFishingRodHand__9daAlink_cFv.s"
+void daAlink_c::initFishingRodHand() {
+    field_0x2f94 = 0x65;
+    field_0x2f95 = 0x65;
+    field_0x3018 = 1;
+
+    if (mEquipItem == JEWEL_WORM_ROD || mEquipItem == WORM_ROD) {
+        mItemMode = 0x74;
+    } else if (mEquipItem == JEWEL_BEE_ROD || mEquipItem == BEE_ROD) {
+        mItemMode = 0x76;
+    } else {
+        mItemMode = 0xFF;
+    }
 }
-#pragma pop
 
 /* 800F3DFC-800F3E4C 0EE73C 0050+00 1/1 0/0 1/1 .text            getCanoePaddleMatrix__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getCanoePaddleMatrix() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getCanoePaddleMatrix__9daAlink_cFv.s"
+MtxP daAlink_c::getCanoePaddleMatrix() {
+    mDoMtx_stack_c::copy(getRightItemMatrix());
+    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    mDoMtx_stack_c::transM(tmp_0, tmp_0, lit_5944);
+    return mDoMtx_stack_c::get();
 }
-#pragma pop
 
 /* 800F3E4C-800F3EB8 0EE78C 006C+00 0/0 0/0 4/4 .text
  * checkFishingRodGrab__9daAlink_cCFP10fopAc_ac_c               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkFishingRodGrab(fopAc_ac_c* param_0) const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkFishingRodGrab__9daAlink_cCFP10fopAc_ac_c.s"
+BOOL daAlink_c::checkFishingRodGrab(fopAc_ac_c* param_0) const {
+    return checkFishingRodAndLureItem() && mItemAcKeep.getID() == fopAcM_GetID(param_0);
 }
-#pragma pop
 
 /* 800F3EB8-800F3F38 0EE7F8 0080+00 0/0 0/0 2/2 .text
  * checkCanoePaddleGrab__9daAlink_cCFP10fopAc_ac_c              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkCanoePaddleGrab(fopAc_ac_c* param_0) const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkCanoePaddleGrab__9daAlink_cCFP10fopAc_ac_c.s"
+BOOL daAlink_c::checkCanoePaddleGrab(fopAc_ac_c* param_0) const {
+    return mEquipItem == 0x10B && checkCanoeRideOwn(param_0);
 }
-#pragma pop
 
 /* 800F3F38-800F3FC4 0EE878 008C+00 0/0 0/0 1/1 .text checkCanoeFishingRodGrabOrPut__9daAlink_cCFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkCanoeFishingRodGrabOrPut() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkCanoeFishingRodGrabOrPut__9daAlink_cCFv.s"
+BOOL daAlink_c::checkCanoeFishingRodGrabOrPut() const {
+    return checkFisingRodLure() && checkCanoeRide() &&
+           (checkEquipAnime() || mProcID == PROC_CANOE_PADDLE_PUT ||
+            mProcID == PROC_CANOE_PADDLE_GRAB || mProcID == PROC_CANOE_ROD_GRAB);
 }
-#pragma pop
 
 /* 800F3FC4-800F4008 0EE904 0044+00 2/2 0/0 0/0 .text            initCanoeRide__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::initCanoeRide() {
-    nofralloc
-#include "asm/d/a/d_a_alink/initCanoeRide__9daAlink_cFv.s"
+void daAlink_c::initCanoeRide() {
+    field_0x3012 = 1;
+    field_0x3588 = l_waitBaseAnime;
+    field_0x384c = (cXyz*)&l_canoeBaseAnime;
+    mRideStatus = 3;
+    field_0x3010 = 0;
 }
-#pragma pop
 
 /* 800F4008-800F40E4 0EE948 00DC+00 2/2 0/0 0/0 .text            checkCanoeJumpRide__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daAlink_c::checkCanoeJumpRide() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkCanoeJumpRide__9daAlink_cFv.s"
+BOOL daAlink_c::checkCanoeJumpRide() {
+    daCanoe_c* canoe = NULL;
+
+    if (field_0x850[0].ChkCoHit()) {
+        canoe = (daCanoe_c*)field_0x850[0].GetCoHitAc();
+    } else if (field_0x850[1].ChkCoHit()) {
+        canoe = (daCanoe_c*)field_0x850[1].GetCoHitAc();
+    }
+
+    if (mSpeed.y < FLOAT_LABEL(lit_6108) && canoe != NULL && fopAcM_GetName(canoe) == PROC_CANOE &&
+        canoe->checkJumpRideFlg() && !checkDeadHP() &&
+        (mProcID != PROC_FALL || field_0x3010 != 0)) {
+        return procCanoeJumpRideInit(canoe);
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 800F40E4-800F4140 0EEA24 005C+00 2/2 0/0 0/0 .text            setArmReelAnime__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setArmReelAnime() {
-    nofralloc
-#include "asm/d/a/d_a_alink/setArmReelAnime__9daAlink_cFv.s"
+void daAlink_c::setArmReelAnime() {
+    setUpperAnimeBaseSpeed(0x1FB, lit_6040, lit_6041);
+    mUpperFrameCtrl[2].setRate(FLOAT_LABEL(lit_6108));
+    mNowAnmPackUpper[2].setRatio(lit_6040);
+    field_0x2f97 = 8;
+    i_offNoResetFlg1(FLG1_UNK_8000);
 }
-#pragma pop
 
 /* 800F4140-800F4490 0EEA80 0350+00 1/1 0/0 0/0 .text            setFishingWaitAction__9daAlink_cFv
  */
@@ -187,25 +169,34 @@ asm void daAlink_c::setFishingWaitAction() {
 #pragma pop
 
 /* 800F4490-800F4564 0EEDD0 00D4+00 3/3 0/0 0/0 .text            setFishGetFace__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setFishGetFace() {
-    nofralloc
-#include "asm/d/a/d_a_alink/setFishGetFace__9daAlink_cFv.s"
+void daAlink_c::setFishGetFace() {
+    if (field_0x2fc8 == 1) {
+        setFacePriBck(0x140);
+    } else if (field_0x2fc8 == 2) {
+        setFacePriTexture(FTANM_UNK_7A);
+        setFacePriBck(0x143);
+    } else if (field_0x2fc8 == 3) {
+        setFacePriTexture(FTANM_UNK_7B);
+        setFacePriBck(0x146);
+    } else if (field_0x2fc8 == 4) {
+        setFacePriTexture(FTANM_UNK_7C);
+        setFacePriBck(0x149);
+    } else {
+        resetFacePriAnime();
+    }
 }
-#pragma pop
 
 /* 800F4564-800F459C 0EEEA4 0038+00 3/3 0/0 0/0 .text
  * setRideCanoeBasePos__9daAlink_cFP10fopAc_ac_c                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setRideCanoeBasePos(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setRideCanoeBasePos__9daAlink_cFP10fopAc_ac_c.s"
+void daAlink_c::setRideCanoeBasePos(fopAc_ac_c* param_0) {
+    field_0x37c8.x = FLOAT_LABEL(lit_6108);
+    field_0x37c8.y = lit_5944;
+    field_0x37c8.z = lit_20823;
+
+    if (static_cast<daCanoe_c*>(param_0)->checkTandem()) {
+        field_0x37c8.z += lit_20824;
+    }
 }
-#pragma pop
 
 /* 800F459C-800F47D8 0EEEDC 023C+00 20/20 0/0 0/0 .text            setSyncCanoePos__9daAlink_cFv */
 #pragma push
@@ -228,62 +219,151 @@ asm void daAlink_c::canoeCommon() {
 #pragma pop
 
 /* 800F4924-800F4A50 0EF264 012C+00 10/10 0/0 0/0 .text checkNextActionCanoe__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkNextActionCanoe() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkNextActionCanoe__9daAlink_cFv.s"
+int daAlink_c::checkNextActionCanoe() {
+    if ((!checkFishingRodAndLureItem() || mItemAcKeep.getActor() == NULL ||
+         static_cast<dmg_rod_class*>(mItemAcKeep.getActor())->checkRodEquipPermission()) &&
+        checkNextActionFromButton()) {
+        return 1;
+    }
+
+    if (checkBowAnime()) {
+        return checkNextActionBow();
+    } else if (checkBoomerangAnimeAndReturnWait()) {
+        return checkNextActionBoomerang();
+    } else if (checkHookshotAnime()) {
+        return checkNextActionHookshot();
+    } else if (checkGrabAnimeAndThrow()) {
+        return procCanoeGrabMoveInit();
+    } else if (checkCanoeFishingWaitAnime()) {
+        return procCanoeFishingWaitInit();
+    } else {
+        return procCanoeWaitInit(0);
+    }
 }
-#pragma pop
 
 /* 800F4A50-800F4B90 0EF390 0140+00 2/2 0/0 0/0 .text            procCanoeRideInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procCanoeRideInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procCanoeRideInit__9daAlink_cFv.s"
+int daAlink_c::procCanoeRideInit() {
+    commonProcInit(PROC_CANOE_RIDE);
+    setHeavyBoots(0);
+    mRideAcKeep.setData(field_0x27f4);
+    deleteEquipItem(0, 0);
+    daCanoe_c* canoe = (daCanoe_c*)field_0x27f4;
+
+    setSingleAnime(ANM_HANG_CLIMB_TOP, daAlinkHIO_wallCatch_c0::m.mClimbAnm.mSpeed,
+                   daAlinkHIO_wallCatch_c0::m.mClimbStartFrame,
+                   daAlinkHIO_wallCatch_c0::m.mClimbAnm.mEndFrame,
+                   daAlinkHIO_wallCatch_c0::m.mClimbAnm.mInterpolation);
+    setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
+
+    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = tmp_0;
+    mSpeed.y = tmp_0;
+    setRideCanoeBasePos(canoe);
+
+    if ((s16)(fopAcM_searchActorAngleY(canoe, this) - canoe->shape_angle.y) > 0) {
+        shape_angle.y = canoe->shape_angle.y - 0x4000;
+        field_0x3008 = 0;
+        field_0x37c8.x = lit_20991;
+    } else {
+        shape_angle.y = canoe->shape_angle.y + 0x4000;
+        field_0x3008 = 1;
+        field_0x37c8.x = lit_20992;
+    }
+
+    mDoMtx_multVec(canoe->getModelMtx(), &field_0x37c8, &current.pos);
+    current.angle.y = shape_angle.y;
+
+    initCanoeRide();
+    field_0x300e = 0x80;
+    swimOutAfter(1);
+    return 1;
 }
-#pragma pop
 
 /* 800F4B90-800F4C78 0EF4D0 00E8+00 1/0 0/0 0/0 .text            procCanoeRide__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procCanoeRide() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procCanoeRide__9daAlink_cFv.s"
+int daAlink_c::procCanoeRide() {
+    daCanoe_c* canoe = (daCanoe_c*)mRideAcKeep.getActor();
+    if (canoe == NULL) {
+        return checkNextAction(0);
+    }
+
+    mDoMtx_multVec(canoe->getModelMtx(), &field_0x37c8, &current.pos);
+
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+    if (frameCtrl->checkAnmEnd()) {
+        procCanoeWaitInit(1);
+    } else if (frameCtrl->getFrame() < lit_7710) {
+        field_0x300e += 0x180;
+
+        if (field_0x3008 == 0) {
+            canoe->incShapeAngleZ(-field_0x300e);
+        } else {
+            canoe->incShapeAngleZ(field_0x300e);
+        }
+        canoe->incShapeOffsetY(lit_21021);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 800F4C78-800F4D84 0EF5B8 010C+00 4/4 0/0 0/0 .text
  * procCanoeJumpRideInit__9daAlink_cFP10fopAc_ac_c              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procCanoeJumpRideInit(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/procCanoeJumpRideInit__9daAlink_cFP10fopAc_ac_c.s"
+int daAlink_c::procCanoeJumpRideInit(fopAc_ac_c* param_0) {
+    BOOL var_r31;
+    daCanoe_c* canoe = (daCanoe_c*)param_0;
+
+    commonProcInit(PROC_CANOE_JUMP_RIDE);
+
+    if (canoe == NULL) {
+        canoe = (daCanoe_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchCanoe, NULL);
+        var_r31 = true;
+    } else {
+        var_r31 = false;
+    }
+
+    setHeavyBoots(0);
+    setSingleAnimeParam(ANM_JUMP_LAND, &daAlinkHIO_autoJump_c0::m.mLandAnm);
+    deleteEquipItem(0, 0);
+
+    mRideAcKeep.setData(canoe);
+    setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
+
+    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = tmp_0;
+    mSpeed.y = tmp_0;
+    setRideCanoeBasePos(canoe);
+    mDoMtx_multVec(canoe->getModelMtx(), &field_0x37c8, &current.pos);
+    current.angle.y = shape_angle.y;
+
+    initCanoeRide();
+    if (var_r31) {
+        procCanoeWaitInit(2);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 800F4D84-800F4DF8 0EF6C4 0074+00 1/0 0/0 0/0 .text            procCanoeJumpRide__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procCanoeJumpRide() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procCanoeJumpRide__9daAlink_cFv.s"
+int daAlink_c::procCanoeJumpRide() {
+    daCanoe_c* canoe = (daCanoe_c*)mRideAcKeep.getActor();
+    if (canoe == NULL) {
+        return checkNextAction(0);
+    }
+
+    mDoMtx_multVec(canoe->getModelMtx(), &field_0x37c8, &current.pos);
+
+    if (mUnderFrameCtrl[0].checkAnmEnd()) {
+        procCanoeWaitInit(1);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 800F4DF8-800F5048 0EF738 0250+00 2/2 0/0 0/0 .text            procCanoeGetOffInit__9daAlink_cFv
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeGetOffInit() {
+asm int daAlink_c::procCanoeGetOffInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeGetOffInit__9daAlink_cFv.s"
 }
@@ -293,7 +373,7 @@ asm void daAlink_c::procCanoeGetOffInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeGetOff() {
+asm int daAlink_c::procCanoeGetOff() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeGetOff__9daAlink_cFv.s"
 }
@@ -304,7 +384,7 @@ asm void daAlink_c::procCanoeGetOff() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeWaitInit(int param_0) {
+asm int daAlink_c::procCanoeWaitInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeWaitInit__9daAlink_cFi.s"
 }
@@ -314,7 +394,7 @@ asm void daAlink_c::procCanoeWaitInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeWait() {
+asm int daAlink_c::procCanoeWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeWait__9daAlink_cFv.s"
 }
@@ -324,7 +404,7 @@ asm void daAlink_c::procCanoeWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeRowInit(int param_0) {
+asm int daAlink_c::procCanoeRowInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeRowInit__9daAlink_cFi.s"
 }
@@ -334,7 +414,7 @@ asm void daAlink_c::procCanoeRowInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeRow() {
+asm int daAlink_c::procCanoeRow() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeRow__9daAlink_cFv.s"
 }
@@ -344,7 +424,7 @@ asm void daAlink_c::procCanoeRow() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoePaddleShiftInit(int param_0) {
+asm int daAlink_c::procCanoePaddleShiftInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoePaddleShiftInit__9daAlink_cFi.s"
 }
@@ -355,7 +435,7 @@ asm void daAlink_c::procCanoePaddleShiftInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoePaddleShift() {
+asm int daAlink_c::procCanoePaddleShift() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoePaddleShift__9daAlink_cFv.s"
 }
@@ -365,7 +445,7 @@ asm void daAlink_c::procCanoePaddleShift() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoePaddlePutInit(int param_0) {
+asm int daAlink_c::procCanoePaddlePutInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoePaddlePutInit__9daAlink_cFi.s"
 }
@@ -375,7 +455,7 @@ asm void daAlink_c::procCanoePaddlePutInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoePaddlePut() {
+asm int daAlink_c::procCanoePaddlePut() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoePaddlePut__9daAlink_cFv.s"
 }
@@ -385,7 +465,7 @@ asm void daAlink_c::procCanoePaddlePut() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoePaddleGrabInit() {
+asm int daAlink_c::procCanoePaddleGrabInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoePaddleGrabInit__9daAlink_cFv.s"
 }
@@ -396,7 +476,7 @@ asm void daAlink_c::procCanoePaddleGrabInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoePaddleGrab() {
+asm int daAlink_c::procCanoePaddleGrab() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoePaddleGrab__9daAlink_cFv.s"
 }
@@ -407,7 +487,7 @@ asm void daAlink_c::procCanoePaddleGrab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeRodGrabInit() {
+asm int daAlink_c::procCanoeRodGrabInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeRodGrabInit__9daAlink_cFv.s"
 }
@@ -417,7 +497,7 @@ asm void daAlink_c::procCanoeRodGrabInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeRodGrab() {
+asm int daAlink_c::procCanoeRodGrab() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeRodGrab__9daAlink_cFv.s"
 }
@@ -427,7 +507,7 @@ asm void daAlink_c::procCanoeRodGrab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeFishingWaitInit() {
+asm int daAlink_c::procCanoeFishingWaitInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeFishingWaitInit__9daAlink_cFv.s"
 }
@@ -438,7 +518,7 @@ asm void daAlink_c::procCanoeFishingWaitInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeFishingWait() {
+asm int daAlink_c::procCanoeFishingWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeFishingWait__9daAlink_cFv.s"
 }
@@ -448,7 +528,7 @@ asm void daAlink_c::procCanoeFishingWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeFishingReelInit() {
+asm int daAlink_c::procCanoeFishingReelInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeFishingReelInit__9daAlink_cFv.s"
 }
@@ -459,7 +539,7 @@ asm void daAlink_c::procCanoeFishingReelInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeFishingReel() {
+asm int daAlink_c::procCanoeFishingReel() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeFishingReel__9daAlink_cFv.s"
 }
@@ -469,7 +549,7 @@ asm void daAlink_c::procCanoeFishingReel() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeFishingGetInit() {
+asm int daAlink_c::procCanoeFishingGetInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeFishingGetInit__9daAlink_cFv.s"
 }
@@ -480,7 +560,7 @@ asm void daAlink_c::procCanoeFishingGetInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeFishingGet() {
+asm int daAlink_c::procCanoeFishingGet() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeFishingGet__9daAlink_cFv.s"
 }
@@ -490,7 +570,7 @@ asm void daAlink_c::procCanoeFishingGet() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeSubjectivityInit() {
+asm int daAlink_c::procCanoeSubjectivityInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeSubjectivityInit__9daAlink_cFv.s"
 }
@@ -501,7 +581,7 @@ asm void daAlink_c::procCanoeSubjectivityInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeSubjectivity() {
+asm int daAlink_c::procCanoeSubjectivity() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeSubjectivity__9daAlink_cFv.s"
 }
@@ -511,7 +591,7 @@ asm void daAlink_c::procCanoeSubjectivity() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeBowSubjectInit() {
+asm int daAlink_c::procCanoeBowSubjectInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeBowSubjectInit__9daAlink_cFv.s"
 }
@@ -522,7 +602,7 @@ asm void daAlink_c::procCanoeBowSubjectInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeBowSubject() {
+asm int daAlink_c::procCanoeBowSubject() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeBowSubject__9daAlink_cFv.s"
 }
@@ -533,7 +613,7 @@ asm void daAlink_c::procCanoeBowSubject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeBowMoveInit() {
+asm int daAlink_c::procCanoeBowMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeBowMoveInit__9daAlink_cFv.s"
 }
@@ -543,7 +623,7 @@ asm void daAlink_c::procCanoeBowMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeBowMove() {
+asm int daAlink_c::procCanoeBowMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeBowMove__9daAlink_cFv.s"
 }
@@ -554,7 +634,7 @@ asm void daAlink_c::procCanoeBowMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeGrabMoveInit() {
+asm int daAlink_c::procCanoeGrabMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeGrabMoveInit__9daAlink_cFv.s"
 }
@@ -564,7 +644,7 @@ asm void daAlink_c::procCanoeGrabMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeGrabMove() {
+asm int daAlink_c::procCanoeGrabMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeGrabMove__9daAlink_cFv.s"
 }
@@ -575,7 +655,7 @@ asm void daAlink_c::procCanoeGrabMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeBoomerangSubjectInit() {
+asm int daAlink_c::procCanoeBoomerangSubjectInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeBoomerangSubjectInit__9daAlink_cFv.s"
 }
@@ -585,7 +665,7 @@ asm void daAlink_c::procCanoeBoomerangSubjectInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeBoomerangSubject() {
+asm int daAlink_c::procCanoeBoomerangSubject() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeBoomerangSubject__9daAlink_cFv.s"
 }
@@ -595,7 +675,7 @@ asm void daAlink_c::procCanoeBoomerangSubject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeBoomerangMoveInit() {
+asm int daAlink_c::procCanoeBoomerangMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeBoomerangMoveInit__9daAlink_cFv.s"
 }
@@ -605,7 +685,7 @@ asm void daAlink_c::procCanoeBoomerangMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeBoomerangMove() {
+asm int daAlink_c::procCanoeBoomerangMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeBoomerangMove__9daAlink_cFv.s"
 }
@@ -616,7 +696,7 @@ asm void daAlink_c::procCanoeBoomerangMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeHookshotSubjectInit() {
+asm int daAlink_c::procCanoeHookshotSubjectInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeHookshotSubjectInit__9daAlink_cFv.s"
 }
@@ -626,7 +706,7 @@ asm void daAlink_c::procCanoeHookshotSubjectInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeHookshotSubject() {
+asm int daAlink_c::procCanoeHookshotSubject() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeHookshotSubject__9daAlink_cFv.s"
 }
@@ -636,7 +716,7 @@ asm void daAlink_c::procCanoeHookshotSubject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeHookshotMoveInit() {
+asm int daAlink_c::procCanoeHookshotMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeHookshotMoveInit__9daAlink_cFv.s"
 }
@@ -647,7 +727,7 @@ asm void daAlink_c::procCanoeHookshotMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeHookshotMove() {
+asm int daAlink_c::procCanoeHookshotMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeHookshotMove__9daAlink_cFv.s"
 }
@@ -657,7 +737,7 @@ asm void daAlink_c::procCanoeHookshotMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeBottleDrinkInit(u16 param_0) {
+asm int daAlink_c::procCanoeBottleDrinkInit(u16 param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeBottleDrinkInit__9daAlink_cFUs.s"
 }
@@ -668,7 +748,7 @@ asm void daAlink_c::procCanoeBottleDrinkInit(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeBottleDrink() {
+asm int daAlink_c::procCanoeBottleDrink() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeBottleDrink__9daAlink_cFv.s"
 }
@@ -678,7 +758,7 @@ asm void daAlink_c::procCanoeBottleDrink() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeKandelaarPourInit() {
+asm int daAlink_c::procCanoeKandelaarPourInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeKandelaarPourInit__9daAlink_cFv.s"
 }
@@ -688,7 +768,7 @@ asm void daAlink_c::procCanoeKandelaarPourInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procCanoeKandelaarPour() {
+asm int daAlink_c::procCanoeKandelaarPour() {
     nofralloc
 #include "asm/d/a/d_a_alink/procCanoeKandelaarPour__9daAlink_cFv.s"
 }
@@ -709,7 +789,7 @@ asm void daAlink_c::setGroundFishingRodActor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procFishingCastInit() {
+asm int daAlink_c::procFishingCastInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procFishingCastInit__9daAlink_cFv.s"
 }
@@ -719,7 +799,7 @@ asm void daAlink_c::procFishingCastInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procFishingCast() {
+asm int daAlink_c::procFishingCast() {
     nofralloc
 #include "asm/d/a/d_a_alink/procFishingCast__9daAlink_cFv.s"
 }
@@ -730,7 +810,7 @@ asm void daAlink_c::procFishingCast() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procFishingFoodInit() {
+asm int daAlink_c::procFishingFoodInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procFishingFoodInit__9daAlink_cFv.s"
 }
@@ -740,7 +820,7 @@ asm void daAlink_c::procFishingFoodInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procFishingFood() {
+asm int daAlink_c::procFishingFood() {
     nofralloc
 #include "asm/d/a/d_a_alink/procFishingFood__9daAlink_cFv.s"
 }

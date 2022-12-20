@@ -28,7 +28,7 @@ private:
     public:
         class {
         public:
-            /* 0x00 */ u32 field_0x0;
+            /* 0x00 */ u32 field_0x0; 
             /* 0x04 */ int field_0x4;
             /* 0x08 */ s32 field_0x8;
             /* 0x0C */ s32 field_0xc;

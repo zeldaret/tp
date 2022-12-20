@@ -284,7 +284,7 @@ void daItem_c::setBaseMtx() {
 /* 8015B190-8015B1C8 155AD0 0038+00 1/1 0/0 0/0 .text            setBaseMtx_0__8daItem_cFv */
 void daItem_c::setBaseMtx_0() {
     mDoMtx_stack_c::transS(current.pos);
-    mDoMtx_stack_c::ZXYrotM(mCollisionRot);
+    mDoMtx_stack_c::ZXYrotM(shape_angle);
 }
 
 /* ############################################################################################## */
@@ -301,7 +301,7 @@ void daItem_c::setBaseMtx_1() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::transM(0.0f, y, 0.0f);
 
-    mDoMtx_stack_c::ZXYrotM(mCollisionRot);
+    mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::transM(0.0f, -y, 0.0f);
 }
 #else
@@ -647,8 +647,8 @@ int daItem_c::_daItem_create() {
         orig.angle.x = 0;
         current.angle.z = 0;
         current.angle.x = 0;
-        mCollisionRot.z = 0;
-        mCollisionRot.x = 0;
+        shape_angle.z = 0;
+        shape_angle.x = 0;
 
         field_0x95d = true;
     }
@@ -744,7 +744,7 @@ int daItem_c::_daItem_execute() {
         }
 
         mDoMtx_stack_c::transS(current.pos);
-        mDoMtx_stack_c::ZXYrotM(mCollisionRot);
+        mDoMtx_stack_c::ZXYrotM(shape_angle);
         mDoMtx_stack_c::inverse();
         mDoMtx_stack_c::multVec(&carry_pos, &carry_pos);
         daPy_getPlayerActorClass()->setHookshotCarryOffset(fopAcM_GetID(this), &carry_pos);
@@ -865,8 +865,8 @@ SECTION_SDATA2 static f32 lit_4404 = 15.0f;
 void daItem_c::procInitSimpleGetDemo() {
     current.pos = daPy_getPlayerActorClass()->getItemPos();
     current.pos.y += 15.0f;
-    mCollisionRot.z = 0;
-    mCollisionRot.x = 0;
+    shape_angle.z = 0;
+    shape_angle.x = 0;
     mScale = field_0x930;
     fopAcM_SetSpeed(this, 0, getData().field_0x2c, 0);
     fopAcM_SetGravity(this, getData().field_0x30);
@@ -1076,8 +1076,8 @@ void daItem_c::mode_water_init() {
     f32 tmp_0 = FLOAT_LABEL(lit_3857);
     fopAcM_SetSpeed(this, tmp_0, tmp_0, tmp_0);
     fopAcM_SetSpeedF(this, tmp_0);
-    mCollisionRot.z = 0;
-    mCollisionRot.x = 0;
+    shape_angle.z = 0;
+    shape_angle.x = 0;
     field_0x940 = 0;
     mScale = field_0x930;
 }
@@ -1361,9 +1361,9 @@ int daItem_c::itemActionForRupee() {
     }
 
     if (field_0x94b == 0) {
-        mCollisionRot.x += getData().field_0x1a;
+        shape_angle.x += getData().field_0x1a;
     } else {
-        mCollisionRot.x = 0;
+        shape_angle.x = 0;
     }
 
     return 1;
@@ -1466,7 +1466,7 @@ int daItem_c::initAction() {
 
     if (isHeart(m_itemNo)) {
         mSpeedF = (cM_rndF(5.0f) + 20.0f) - 15.0f;
-        mCollisionRot.z = cM_rndFX(getData().field_0x2a);
+        shape_angle.z = cM_rndFX(getData().field_0x2a);
     }
 
     field_0x949 = 0;
@@ -1530,8 +1530,8 @@ asm void daItem_c::initSpeed(int param_0) {
 void daItem_c::initAngle() {
     current.angle.z = 0;
     current.angle.x = 0;
-    mCollisionRot.z = 0;
-    mCollisionRot.x = 0;
+    shape_angle.z = 0;
+    shape_angle.x = 0;
 }
 
 /* 8015DE50-8015DE70 158790 0020+00 1/0 0/0 0/0 .text            daItem_Draw__FP8daItem_c */

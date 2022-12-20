@@ -245,7 +245,7 @@ int daPy_boomerangMove_c::posMove(cXyz* param_0, s16* param_1, fopAc_ac_c* param
     daAlink_c* link = daAlink_getAlinkActorClass();
     if ((param_2 == NULL || !link->checkBoomerangCarry(param_2)) &&
         (m_eventKeepFlg == 0 || field_0x0 != 0)) {
-        s16 tmp = (m_dropAngleY + link->mCollisionRot.y) + cM_rndF(2048.0f);
+        s16 tmp = (m_dropAngleY + link->shape_angle.y) + cM_rndF(2048.0f);
 
         param_0->x = link->current.pos.x + field_0x8 * cM_ssin(tmp);
         param_0->z = link->current.pos.z + field_0x8 * cM_scos(tmp);
@@ -472,7 +472,7 @@ void* daPy_anmHeap_c::loadData(u16 i_resId) {
     if (mArcNo == 0xFFFF) {
         dComIfGp_getAnmArchive()->readIdxResource(mBuffer, mBufferSize, i_resId);
         JKRHeap* heap = setAnimeHeap();
-        void* data = J3DAnmLoaderDataBase::load(mBuffer, UNK_FLAG0);
+        void* data = J3DAnmLoaderDataBase::load(mBuffer, J3DLOADER_UNK_FLAG0);
         mDoExt_setCurrentHeap(heap);
         return data;
     }
@@ -607,7 +607,7 @@ void daPy_sightPacket_c::setSight() {
     mDoLib_project(&mPos, &tmp);
     mDoMtx_stack_c::transS(tmp.x, tmp.y, tmp.z);
     mDoMtx_stack_c::scaleM(32.0f, 32.0f, 32.0f);
-    mDoMtx_stack_c::copy(field_0x14);
+    mDoMtx_copy(mDoMtx_stack_c::get(), field_0x14);
     dComIfGd_set2DXlu(this);
 }
 
@@ -635,7 +635,7 @@ BOOL daPy_py_c::checkMasterSwordEquip() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool daPy_py_c::checkWoodShieldEquip() {
+asm BOOL daPy_py_c::checkWoodShieldEquip() {
     nofralloc
 #include "asm/d/a/d_a_player/checkWoodShieldEquip__9daPy_py_cFv.s"
 }

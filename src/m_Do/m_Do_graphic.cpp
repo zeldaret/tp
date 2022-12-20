@@ -462,7 +462,7 @@ int mDoGph_AfterOfDraw() {
         JUTDbPrint::getManager()->setVisible(true);
     } else {
         int sysConsole_visible = JFWSystem::getSystemConsole()->isVisible();
-        int port3_connected = mDoCPd_c::isConnect(mDoCPd_c::PAD_2);
+        int port3_connected = mDoCPd_c::isConnect(PAD_3);
 
         BOOL procBar_visible = port3_connected && fapGmHIO_getMeter() && !sysConsole_visible;
         BOOL console_visible = port3_connected && fapGmHIO_isPrint();
@@ -487,7 +487,7 @@ int mDoGph_AfterOfDraw() {
     GXSetCoPlanar(GX_DISABLE);
     GXSetZTexture(GX_ZT_DISABLE, GX_TF_Z8, 0);
     GXSetDither(GX_ENABLE);
-    GXSetClipMode(GX_DISABLE);
+    GXSetClipMode(GX_CLIP_ENABLE);
     GXSetCullMode(GX_CULL_NONE);
     JUTVideo::getManager()->setRenderMode(mDoMch_render_c::getRenderModeObj());
     mDoGph_gInf_c::endFrame();

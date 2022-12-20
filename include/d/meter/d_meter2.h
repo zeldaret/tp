@@ -116,6 +116,8 @@ public:
 
     /* 80202240 */ virtual void draw();
     /* 80201370 */ virtual ~dMeterButton_c();
+
+    /* 0x004 */ u8 field_0x4[0x630 - 0x4];
 };
 
 class dMeterString_c : public dMeterSub_c {

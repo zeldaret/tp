@@ -21,6 +21,8 @@ public:
     /* 80036FA8 */ void setArrowPosAndAngle(cXyz const*, cXyz const*, int, cXyz*, csXyz*);
 
     bool checkPassNum(int bit) { return field_0xc & (1 << bit); }
+    void onPassNum(int num) { field_0xc |= (1 << num); }
+    void offPassNum(int num) { field_0xc &= ~(1 << num); }
 
     /* 0x00 */ dJntColData_c* mData;
     /* 0x04 */ J3DModel* mModel;

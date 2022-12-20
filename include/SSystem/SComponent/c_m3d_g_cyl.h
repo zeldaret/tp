@@ -24,15 +24,16 @@ public:
     virtual ~cM3dGCyl() {}
     void Set(const cM3dGCylS&);
     void Set(const cXyz&, f32, f32);
-    void SetC(const cXyz&);
-    void SetH(f32);
-    void SetR(f32);
+    void SetC(const cXyz& pos);
+    void SetH(f32 h);
+    void SetR(f32 r);
     bool cross(const cM3dGSph*, cXyz*) const;
     bool cross(const cM3dGCyl*, cXyz*) const;
     void calcMinMax(cXyz*, cXyz*);
     const cXyz& GetCP(void) const { return mCenter; }
     f32 GetR(void) const { return mRadius; }
     f32 GetH(void) const { return mHeight; }
+    cXyz& GetC() { return mCenter; }
 
     bool Cross(const cM3dGCps* cps, cXyz* xyz) const { return cM3d_Cross_CpsCyl(*cps, *this, xyz); }
     bool Cross(const cM3dGTri& tri, cXyz* xyz) const { return cM3d_Cross_CylTri(this, &tri, xyz); }

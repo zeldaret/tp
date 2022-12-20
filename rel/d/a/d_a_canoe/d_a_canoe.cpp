@@ -5,285 +5,18 @@
 
 #include "rel/d/a/d_a_canoe/d_a_canoe.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "d/com/d_com_inf_game.h"
 
 //
 // Types:
 //
 
-struct request_of_phase_process_class {};
-
-struct csXyz {};
-
-struct mDoMtx_stack_c {
-    /* 8000CD9C */ void transM(f32, f32, f32);
-    /* 8000CF44 */ void ZXYrotM(csXyz const&);
-
-    static u8 now[48];
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 80267128 */ void atan2sX_Z() const;
-    /* 80267150 */ void atan2sY_XZ() const;
-    /* 804DA5B8 */ ~cXyz();
-
-    static f32 Zero[3];
-};
-
-struct fopAcM_wt_c {
-    /* 8001DD84 */ void waterCheck(cXyz const*);
-
-    static u8 mWaterCheck[84 + 4 /* padding */];
-    static f32 mWaterY[1 + 1 /* padding */];
-};
-
 struct daTagWaterFall_c {
     /* 80D64768 */ void checkHitWaterFall(cXyz);
 };
 
-struct daPy_py_c {
-    /* 8015EA20 */ void checkFishingRodItem(int);
-};
-
 struct daObjGOMIKABE_c {
     /* 80BFE52C */ void BreakSet();
-};
-
-struct cBgS_PolyInfo {
-    /* 802680B0 */ ~cBgS_PolyInfo();
-};
-
-struct daCanoe_c {
-    /* 804DA5F4 */ void createHeap();
-    /* 804DA740 */ void create();
-    /* 804DAEA8 */ ~daCanoe_c();
-    /* 804DB008 */ void setRoomInfo();
-    /* 804DB0B0 */ void setMatrix();
-    /* 804DB3F4 */ void setCollision();
-    /* 804DB578 */ void posMove();
-    /* 804DB754 */ void checkGomikabe(cBgS_PolyInfo&);
-    /* 804DB7AC */ void setFrontBackPos();
-    /* 804DB828 */ void frontBackBgCheck();
-    /* 804DC330 */ void setPaddleEffect();
-    /* 804DC554 */ void setCanoeSliderEffect();
-    /* 804DC7B4 */ void execute();
-    /* 804DD35C */ void draw();
-};
-
-struct daAlink_c {
-    /* 800A21E0 */ void getMoveBGActorName(cBgS_PolyInfo&, int);
-    /* 800F3BB0 */ void getCanoeMaxSpeed() const;
-    /* 800F3BDC */ void getCanoeBackMaxSpeed() const;
-    /* 800F3BEC */ void getCanoeCres() const;
-    /* 800F3C44 */ void getCanoeMaxRotSpeed() const;
-    /* 800F3CCC */ void getCanoeLocalPaddleTop();
-    /* 800F3DFC */ void getCanoePaddleMatrix();
-    /* 800F3EB8 */ void checkCanoePaddleGrab(fopAc_ac_c*) const;
-};
-
-struct dVibration_c {
-    /* 8006FA24 */ void StartShock(int, int, cXyz);
-};
-
-struct dSv_event_flag_c {
-    static u8 saveBitLabels[1644 + 4 /* padding */];
-};
-
-struct dSv_event_c {
-    /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dPa_levelEcallBack {};
-
-struct _GXColor {};
-
-struct dPa_control_c {
-    struct level_c {
-        /* 8004B918 */ void getEmitter(u32);
-    };
-
-    /* 8004C838 */ void setWaterRipple(u32*, cBgS_PolyInfo&, cXyz const*, f32, dKy_tevstr_c const*,
-                                       cXyz const*, s8);
-    /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
-                            cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
-                            _GXColor const*, cXyz const*, f32);
-};
-
-struct dMeter2Info_c {
-    /* 8021E268 */ void setMiniGameCount(s8);
-};
-
-struct J3DModel {};
-
-struct dDlst_shadowControl_c {
-    /* 80055F1C */ void addReal(u32, J3DModel*);
-
-    static u8 mSimpleTexObj[32];
-};
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80083830 */ void Move();
-    /* 804DAE2C */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-    /* 80084658 */ void ChkCoHit();
-};
-
-struct dCcD_GAtTgCoCommonBase {
-    /* 80083688 */ void GetAc();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-    /* 804DAB18 */ ~dCcD_Cyl();
-    /* 804DABE4 */ dCcD_Cyl();
-};
-
-struct dBgS_PolyPassChk {
-    /* 80078E98 */ void SetLink();
-};
-
-struct dBgS_LinkLinChk {
-    /* 80078030 */ dBgS_LinkLinChk();
-    /* 8007808C */ ~dBgS_LinkLinChk();
-};
-
-struct dBgS_LinkAcch {
-    /* 804DACF8 */ ~dBgS_LinkAcch();
-    /* 804DAD68 */ dBgS_LinkAcch();
-};
-
-struct dBgS_LinChk {
-    /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
-};
-
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-    /* 80075F58 */ void SetWall(f32, f32);
-    /* 804DADBC */ ~dBgS_AcchCir();
-};
-
-struct dBgS {
-    /* 80074BE8 */ void GetPolyColor(cBgS_PolyInfo const&);
-    /* 80075100 */ void GetRoomId(cBgS_PolyInfo const&);
-};
-
-struct dBgS_Acch {
-    /* 80075F94 */ ~dBgS_Acch();
-    /* 800760A0 */ dBgS_Acch();
-    /* 80076248 */ void Set(cXyz*, cXyz*, fopAc_ac_c*, int, dBgS_AcchCir*, cXyz*, csXyz*, csXyz*);
-    /* 80076288 */ void Set(fopAc_ac_c*, int, dBgS_AcchCir*);
-    /* 80076AAC */ void CrrPos(dBgS&);
-};
-
-struct cM3dGPla {
-    /* 804DC2E8 */ ~cM3dGPla();
-};
-
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 804DAC68 */ ~cM3dGCyl();
-};
-
-struct cM3dGCir {
-    /* 8026EF18 */ ~cM3dGCir();
-};
-
-struct cM3dGAab {
-    /* 804DACB0 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
-struct cCcS {
-    /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_Stts {
-    /* 8026395C */ void ClrCcMove();
-};
-
-struct cCcD_ObjCo {
-    /* 8026491C */ void SetVsGrp(u32);
-};
-
-struct cCcD_GStts {
-    /* 804DD574 */ ~cCcD_GStts();
-};
-
-struct cBgS_LinChk {};
-
-struct cBgS {
-    /* 800743B4 */ void LineCross(cBgS_LinChk*);
-    /* 80074618 */ void GetActorPointer(int) const;
-    /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
-};
-
-struct _GXTexObj {};
-
-struct Z2SoundObjSimple {
-    /* 802BE844 */ Z2SoundObjSimple();
-};
-
-struct Z2SoundObjBase {
-    /* 802BDF48 */ ~Z2SoundObjBase();
-    /* 802BDFF8 */ void deleteObject();
-};
-
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
 };
 
 //
@@ -419,13 +152,6 @@ extern "C" void __dt__14Z2SoundObjBaseFv();
 extern "C" void deleteObject__14Z2SoundObjBaseFv();
 extern "C" void __ct__16Z2SoundObjSimpleFv();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSubtract();
-extern "C" void PSVECScale();
-extern "C" void PSVECSquareMag();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void __cvt_fp2unsigned();
@@ -443,10 +169,7 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void abs();
-extern "C" void strcmp();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
@@ -456,16 +179,10 @@ extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__16Z2SoundObjSimple[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mWaterCheck__11fopAcM_wt_c[84 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_meter2_info[248];
 extern "C" f32 Zero__4cXyz[3];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
 extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
-extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 extern "C" void BreakSet__15daObjGOMIKABE_cFv();
@@ -490,7 +207,8 @@ static asm void daCanoe_searchTagWaterFall(fopAc_ac_c* param_0, void* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_canoe/d_a_canoe/__dt__4cXyzFv.s"
 }
@@ -744,7 +462,8 @@ SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Cyl::~dCcD_Cyl() {
+// asm dCcD_Cyl::~dCcD_Cyl() {
+extern "C" asm void __dt__8dCcD_CylFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_canoe/d_a_canoe/__dt__8dCcD_CylFv.s"
 }
@@ -754,7 +473,8 @@ asm dCcD_Cyl::~dCcD_Cyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Cyl::dCcD_Cyl() {
+// asm dCcD_Cyl::dCcD_Cyl() {
+extern "C" asm void __ct__8dCcD_CylFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_canoe/d_a_canoe/__ct__8dCcD_CylFv.s"
 }
@@ -764,7 +484,8 @@ asm dCcD_Cyl::dCcD_Cyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_canoe/d_a_canoe/__dt__8cM3dGCylFv.s"
 }
@@ -774,7 +495,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_canoe/d_a_canoe/__dt__8cM3dGAabFv.s"
 }
@@ -784,7 +506,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_LinkAcch::~dBgS_LinkAcch() {
+// asm dBgS_LinkAcch::~dBgS_LinkAcch() {
+extern "C" asm void __dt__13dBgS_LinkAcchFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_canoe/d_a_canoe/__dt__13dBgS_LinkAcchFv.s"
 }
@@ -794,7 +517,8 @@ asm dBgS_LinkAcch::~dBgS_LinkAcch() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_LinkAcch::dBgS_LinkAcch() {
+// asm dBgS_LinkAcch::dBgS_LinkAcch() {
+extern "C" asm void __ct__13dBgS_LinkAcchFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_canoe/d_a_canoe/__ct__13dBgS_LinkAcchFv.s"
 }
@@ -804,7 +528,8 @@ asm dBgS_LinkAcch::dBgS_LinkAcch() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_AcchCir::~dBgS_AcchCir() {
+// asm dBgS_AcchCir::~dBgS_AcchCir() {
+extern "C" asm void __dt__12dBgS_AcchCirFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_canoe/d_a_canoe/__dt__12dBgS_AcchCirFv.s"
 }
@@ -814,7 +539,8 @@ asm dBgS_AcchCir::~dBgS_AcchCir() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_canoe/d_a_canoe/__dt__10dCcD_GSttsFv.s"
 }
@@ -1119,7 +845,8 @@ asm void daCanoe_c::frontBackBgCheck() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGPla::~cM3dGPla() {
+// asm cM3dGPla::~cM3dGPla() {
+extern "C" asm void __dt__8cM3dGPlaFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_canoe/d_a_canoe/__dt__8cM3dGPlaFv.s"
 }
@@ -1414,7 +1141,8 @@ static asm void daCanoe_Draw(daCanoe_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_canoe/d_a_canoe/__dt__10cCcD_GSttsFv.s"
 }

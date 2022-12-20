@@ -3553,7 +3553,7 @@ asm void dCam_getAngleX(camera_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCam_getControledAngleY(camera_class* param_0) {
+asm s16 dCam_getControledAngleY(camera_class* param_0) {
     nofralloc
 #include "asm/d/d_camera/dCam_getControledAngleY__FP12camera_class.s"
 }

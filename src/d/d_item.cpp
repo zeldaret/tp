@@ -1220,24 +1220,13 @@ void item_func_HAWK_EYE() {
 }
 
 /* 800986C4-80098718 093004 0054+00 1/0 0/0 0/0 .text            item_func_WOOD_STICK__Fv */
-// load instructions are switched
-#ifdef NONMATCHING
 void item_func_WOOD_STICK() {
     dComIfGs_setCollectSword(COLLECT_WOODEN_SWORD);
     dComIfGs_setSelectEquipSword(WOOD_STICK);
 
-    dComIfGs_onSwitch(28, dComIfGp_roomControl_getStayNo());  // wrong order
+    s32 roomNo = dComIfGp_roomControl_getStayNo();
+    dComIfGs_onSwitch(28, roomNo);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void item_func_WOOD_STICK() {
-    nofralloc
-#include "asm/d/d_item/item_func_WOOD_STICK__Fv.s"
-}
-#pragma pop
-#endif
 
 void item_func_BOOMERANG() {
     dComIfGs_setItem(SLOT_0, BOOMERANG);

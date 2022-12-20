@@ -161,7 +161,7 @@ void JFWSystem::init() {
     if (rootHeap == NULL) {
         firstInit();
     }
-    sInitCalled = true;
+    data_804511BC = true;
 
     JKRAram::create(CSetUpParam::aramAudioBufSize, CSetUpParam::aramGraphBufSize,
                     CSetUpParam::streamPriority, CSetUpParam::decompPriority,

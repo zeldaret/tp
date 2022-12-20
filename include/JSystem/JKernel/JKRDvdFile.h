@@ -31,7 +31,7 @@ public:
     /* vt[07] */ virtual s32 getFileSize(void) const;          /* override */
     /* vt[08] */ virtual bool open(s32);
 
-private:
+// private:
     /* 0x00 */  // vtable
     /* 0x04 */  // JKRFile
     /* 0x1C */ OSMutex mMutex1;

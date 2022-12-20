@@ -233,7 +233,7 @@ J3DJoint::J3DJoint() {
     mChild = NULL;
     mYounger = NULL;
     mJntNo = 0;
-    mMtxType = 1;
+    mKind = 1;
     mScaleCompensate = false;
     mTransformInfo = j3dDefaultTransformInfo;
     mBoundingSphereRadius = 0.0f;

@@ -45,7 +45,7 @@ static u8 sTmpBuf[0x4000];
 
 /* 80017498-8001769C 011DD8 0204+00 0/0 1/1 0/0 .text mDoMemCdRWm_Store__FP12CARDFileInfoPvUl */
 #ifdef NONMATCHING
-void mDoMemCdRWm_Store(CARDFileInfo* file, void* data, u32 length) {
+s32 mDoMemCdRWm_Store(CARDFileInfo* file, void* data, u32 length) {
     mDoMemCdRWm_BuildHeader((mDoMemCdRWm_HeaderData*)sTmpBuf);
 
     s32 card_state = CARDWrite(file, sTmpBuf, sizeof(sTmpBuf), 0);
@@ -153,14 +153,15 @@ static asm BOOL mDoMemCdRWm_CheckCardStat(CARDFileInfo* param_0) {
 #pragma pop
 
 /* 80017C74-80017CB4 0125B4 0040+00 1/1 0/0 0/0 .text            mDoMemCdRWm_CalcCheckSum__FPvUl */
-// matches except regalloc in the beginning
-#ifdef NONMATCHING
 static u32 mDoMemCdRWm_CalcCheckSum(void* data, u32 size) {
-    u16 high = 0;
-    u16 low = 0;
+    u16 high;
+    u16 low;
 
+    low = 0;
+    high = 0;
+    
     u16* d = (u16*)data;
-    for (int i = 0; i < size / 2; i++) {
+    for (int i = 0; i < size / 2; i++) {    
         high += *d;
         low += ~*d;
         d++;
@@ -168,23 +169,14 @@ static u32 mDoMemCdRWm_CalcCheckSum(void* data, u32 size) {
 
     return high << 16 | low;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm u32 mDoMemCdRWm_CalcCheckSum(void* param_0, u32 param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_MemCardRWmng/mDoMemCdRWm_CalcCheckSum__FPvUl.s"
-}
-#pragma pop
-#endif
 
 /* 80017CB4-80017CEC 0125F4 0038+00 2/2 0/0 0/0 .text mDoMemCdRWm_CalcCheckSumGameData__FPvUl */
-// same beginning regalloc issue
-#ifdef NONMATCHING
 static u64 mDoMemCdRWm_CalcCheckSumGameData(void* data, u32 size) {
-    u32 high = 0;
-    u32 low = 0;
+    u32 high;
+    u32 low;
+
+    low = 0;
+    high = 0;
 
     u8* d = (u8*)data;
     for (int i = 0; i < size; i++) {
@@ -195,16 +187,6 @@ static u64 mDoMemCdRWm_CalcCheckSumGameData(void* data, u32 size) {
 
     return (u64)high << 32 | low;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm u64 mDoMemCdRWm_CalcCheckSumGameData(void* param_0, u32 param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_MemCardRWmng/mDoMemCdRWm_CalcCheckSumGameData__FPvUl.s"
-}
-#pragma pop
-#endif
 
 /* 80017CEC-80017D38 01262C 004C+00 1/1 4/4 0/0 .text mDoMemCdRWm_TestCheckSumGameData__FPv */
 BOOL mDoMemCdRWm_TestCheckSumGameData(void* data) {

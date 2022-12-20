@@ -25,6 +25,14 @@ inline void mDoMtx_multVecSR(Mtx m, const Vec* src, Vec* dst) {
     PSMTXMultVecSR(m, src, dst);
 }
 
+inline void mDoMtx_multVec(Mtx m, const Vec* src, Vec* dst) {
+    PSMTXMultVec(m, src, dst);
+}
+
+inline void mDoMtx_copy(const Mtx src, Mtx dst) {
+    PSMTXCopy(src, dst);
+}
+
 class mDoMtx_stack_c {
 public:
     /* 8000CCC8 */ static bool push();
@@ -46,6 +54,7 @@ public:
     static void transS(f32 x, f32 y, f32 z) { PSMTXTrans(now, x, y, z); }
     static void scaleS(f32 x, f32 y, f32 z) { PSMTXScale(now, x, y, z); }
     static void multVec(const Vec* a, Vec* b) { PSMTXMultVec(now, a, b); }
+    static void multVecSR(const Vec* a, Vec* b) { PSMTXMultVecSR(now, a, b); }
     static void XYZrotS(s16 x, s16 y, s16 z) { mDoMtx_XYZrotS(now, x, y, z); }
     static void XYZrotM(s16 x, s16 y, s16 z) { mDoMtx_XYZrotM(now, x, y, z); }
     static void ZXYrotS(s16 x, s16 y, s16 z) { mDoMtx_ZXYrotS(now, x, y, z); }
@@ -55,7 +64,7 @@ public:
     static void XrotM(s16 x) { mDoMtx_XrotM(now, x); }
     static void inverse() { PSMTXInverse(now, now); }
     static void concat(const Mtx m) { PSMTXConcat(now, m, now); }
-    static void copy(Mtx m) { PSMTXCopy(now, m); }
+    static void copy(const Mtx m) { PSMTXCopy(m, now); }
 
     static Mtx now;
     static Mtx buffer[16];

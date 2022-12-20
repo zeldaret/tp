@@ -43,6 +43,8 @@ public:
     /* 800872A8 */ virtual void MoveAfterCheck();
     /* 80086754 */ virtual void CalcParticleAngle(dCcD_GObjInf*, cCcD_Stts*, cCcD_Stts*, csXyz*);
 
+    void SetMass(cCcD_Obj* i_obj, u8 i_priority) { mMass_Mng.Set(i_obj, i_priority); }
+
     static u8 m_mtrl_hit_tbl[64];
 
 private:

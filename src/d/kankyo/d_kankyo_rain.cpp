@@ -745,10 +745,10 @@ asm void dKyr_rain_move() {
 static bool d_krain_cut_turn_check() {
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
 
-    return player != NULL && (player->getCutType() == daPy_py_c::TYPE_CUT_TURN_RIGHT ||
-                              player->getCutType() == daPy_py_c::TYPE_CUT_TURN_LEFT ||
-                              player->getCutType() == daPy_py_c::TYPE_CUT_LARGE_TURN_LEFT ||
-                              player->getCutType() == daPy_py_c::TYPE_CUT_LARGE_TURN_RIGHT);
+    return player != NULL && (player->getCutType() == daPy_py_c::CUT_TYPE_TURN_RIGHT ||
+                              player->getCutType() == daPy_py_c::CUT_TYPE_TURN_LEFT ||
+                              player->getCutType() == daPy_py_c::CUT_TYPE_LARGE_TURN_LEFT ||
+                              player->getCutType() == daPy_py_c::CUT_TYPE_LARGE_TURN_RIGHT);
 }
 
 /* ############################################################################################## */
@@ -2027,8 +2027,8 @@ asm void dKyr_evil_draw(f32 (*param_0)[4], u8** param_1) {
 
 /* 8006F160-8006F168 069AA0 0008+00 0/0 1/0 0/0 .text            getKandelaarFlamePos__9daPy_py_cFv
  */
-bool daPy_py_c::getKandelaarFlamePos() {
-    return false;
+cXyz* daPy_py_c::getKandelaarFlamePos() {
+    return NULL;
 }
 
 /* 8037A578-8037A578 006BD8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

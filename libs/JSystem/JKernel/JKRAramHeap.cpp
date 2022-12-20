@@ -78,7 +78,7 @@ JKRAramHeap::JKRAramHeap(u32 startAddress, u32 size) {
 // close match, regalloc problem in the beginning of the while loop
 #ifdef NONMATCHING
 JKRAramHeap::~JKRAramHeap() {
-    JSUList<JKRAramBlock>* list = &lbl_8043430C;
+    JSUList<JKRAramBlock>* list = &sAramList;
     JSUListIterator<JKRAramBlock> iterator = list;
 
     while (iterator != list->getEnd()) {

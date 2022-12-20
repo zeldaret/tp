@@ -164,6 +164,8 @@ public:
         /* 0x40 */ cSAngle field_0x40;
     };  // Size: 0x44
 
+    /* 80088A7C */ void StartEventCamera(int, int, ...);
+    /* 80088BBC */ void EndEventCamera(int);
     /* 8008908C */ void getEvIntData(int*, char*, int);
     /* 80088CB0 */ void getEvIntData(int*, char*);
     /* 80089154 */ void getEvFloatData(f32*, char*, f32);
@@ -521,5 +523,6 @@ public:
 
 dCamera_c* dCam_getBody();
 dCamera_c* dCam_getCamera();
+s16 dCam_getControledAngleY(camera_class* param_0);
 
 #endif /* D_D_CAMERA_H */

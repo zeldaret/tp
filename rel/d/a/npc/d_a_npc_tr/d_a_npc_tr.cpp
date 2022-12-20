@@ -521,8 +521,8 @@ static int daNPC_TR_Execute(npc_tr_class* npc_tr) {
     action(npc_tr);
 
     mDoMtx_stack_c::transS(npc_tr->current.pos.x, npc_tr->current.pos.y, npc_tr->current.pos.z);
-    mDoMtx_stack_c::YrotM(npc_tr->mCollisionRot.y + npc_tr->field_0x5f0);
-    mDoMtx_stack_c::XrotM(npc_tr->mCollisionRot.x);
+    mDoMtx_stack_c::YrotM(npc_tr->shape_angle.y + npc_tr->field_0x5f0);
+    mDoMtx_stack_c::XrotM(npc_tr->shape_angle.x);
 
     f32 scale = npc_tr->mScale.x * l_HIO.field_0x8;
     mDoMtx_stack_c::scaleM(scale, scale, scale);

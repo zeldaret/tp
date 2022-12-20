@@ -27,6 +27,9 @@ public:
     /* 802A9EE8 */ /* virtual */ void startSound(JAISoundID, JAISoundHandle*,
                                                  JGeometry::TVec3<f32> const*);
     /* 0x000 */ void* vtable;  // remove later
+
+    JAISeMgr* getSeMgr() { return &mSeMgr; }
+
 private:
     /* 0x004 */ JAISeMgr mSeMgr;
     /* 0x728 */ JAISeqMgr mSeqMgr;

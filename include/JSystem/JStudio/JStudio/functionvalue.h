@@ -167,7 +167,7 @@ private:
     f64 fValue_;
 };
 
-class TFunctionValue_composite : TFunctionValue, TFunctionValueAttribute_refer {
+class TFunctionValue_composite : public TFunctionValue, public TFunctionValueAttribute_refer {
 public:
     struct TData {
         TData(void* data) : u32data((u32)data) {}
@@ -216,7 +216,7 @@ public:
     const TData* data_getData() const { return &data; }
     void data_setData(const TData& dat) { data = dat; }
 
-private:
+// private:
     UnkFunc pfn_;
     TData data;
 };

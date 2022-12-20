@@ -121,7 +121,7 @@ dMsgFlow_c daTagHstop_c::m_msgFlow;
 int daTagHstop_c::execute() {
     if (mEvtInfo.checkCommandTalk()) {
         if (field_0x573 == 2) {
-            m_msgFlow.init(this, (u16)mCollisionRot.z, 0, NULL);
+            m_msgFlow.init(this, (u16)shape_angle.z, 0, NULL);
             field_0x573 = 3;
         } else if (m_msgFlow.doFlow(this, NULL, 0)) {
             i_dComIfGp_getEvent().reset();

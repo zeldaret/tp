@@ -448,7 +448,7 @@ void dBgS::Move() {
     cBgS_ChkElm* elm = m_chk_element;
     for (int i = 0; i < 0x100; i++) {
         if (elm->ChkUsed()) {
-            elm->m_bgw_base_ptr->CalcDiffShapeAngleY(elm->m_actor_ptr->mCollisionRot.y);
+            elm->m_bgw_base_ptr->CalcDiffShapeAngleY(elm->m_actor_ptr->shape_angle.y);
         }
         elm++;
     }
@@ -462,7 +462,7 @@ bool dBgS::Regist(dBgW_Base* pbgw, fopAc_ac_c* p_actor) {
     }
 
     if (p_actor != NULL && pbgw->ChkMoveBg()) {
-        pbgw->SetOldShapeAngleY(p_actor->mCollisionRot.y);
+        pbgw->SetOldShapeAngleY(p_actor->shape_angle.y);
         pbgw->SetRoomId(fopAcM_GetRoomNo(p_actor));
     }
 

@@ -15,13 +15,6 @@ struct JMath {
     static u8 sincosTable_[65536];
 };
 
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
 //
 // Forward References:
 //

@@ -753,7 +753,7 @@ void daTagTWGate_c::executeDemoFilone3() {
 
             if (old_5e1 == 43) {
                 daPy_py_c* player = daPy_getPlayerActorClass();
-                csXyz sxyz(0, player->mCollisionRot.y + 0x8000, 0);
+                csXyz sxyz(0, player->shape_angle.y + 0x8000, 0);
 
                 mDoMtx_stack_c::transS(player->current.pos);
                 mDoMtx_stack_c::YrotM(sxyz.y);
@@ -1013,9 +1013,9 @@ void daTagTWGate_c::initBaseMtx() {
     mCullMtx = mpMorf->getModel()->getBaseTRMtx();
     fopAc_ac_c* player = (fopAc_ac_c*)dComIfGp_getPlayer(0);
 
-    mCollisionRot.y = player->mCollisionRot.y + 0x8000;
+    shape_angle.y = player->shape_angle.y + 0x8000;
     mDoMtx_stack_c::transS(player->current.pos);
-    mDoMtx_stack_c::YrotM(mCollisionRot.y);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
     mDoMtx_stack_c::transM(0.0f, 250.0f, -840.0f);
 
     current.pos.x = mDoMtx_stack_c::get()[0][3];

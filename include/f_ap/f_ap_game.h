@@ -5,6 +5,8 @@
 #include "dolphin/types.h"
 
 void fapGm_After();
+void fapGm_Create();
+void fapGm_Execute();
 
 class fapGm_HIO_c {
 public:

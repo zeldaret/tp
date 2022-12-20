@@ -16,7 +16,7 @@ public:
     /* 8003AB30 */ static void onWarpMaterial(J3DModelData*);
     /* 8003AC1C */ static void offWarpMaterial(J3DModelData*);
     /* 8003AD08 */ void setWarpSRT(J3DModelData*, cXyz const&, f32, f32);
-    /* 8003AE14 */ void loaderBasicBmd(u32, void*);
+    /* 8003AE14 */ static J3DModelData* loaderBasicBmd(u32, void*);
     /* 8003B30C */ int loadResource();
     /* 8003B998 */ void deleteArchiveRes();
     /* 8003BAC4 */ int setRes(JKRArchive*, JKRHeap*);

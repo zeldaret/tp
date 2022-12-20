@@ -36,6 +36,7 @@ public:
     bool checkSpinnerTagEnd() const { return mSpinnerTag == 5; }
     bool checkSpinnerTagIntoIncRot() const { return mSpinnerTag == 4; }
     bool checkSpinnerTagInto() const { return mSpinnerTag == 3; }
+    bool checkGroundHit() { return mAcch.ChkGroundHit(); }
 
     u8 getButtonJump() const { return mButtonJump; }
     u8 getJumpFlg() const { return mJumpFlg; }

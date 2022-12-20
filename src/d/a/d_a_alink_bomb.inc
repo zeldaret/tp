@@ -37,7 +37,7 @@ f32 daAlink_c::getBombEffScale() const {
 
 /* 800E37D0-800E37E0 0DE110 0010+00 0/0 0/0 1/1 .text            getBombAtR__9daAlink_cCFv */
 f32 daAlink_c::getBombAtR() const {
-    return daAlinkHIO_bomb_c0::m.mAtRadius;
+    return daAlinkHIO_bomb_c0::m.mAttackRadius;
 }
 
 /* 800E37E0-800E37F0 0DE120 0010+00 0/0 0/0 1/1 .text            getEnemyBombColorR__9daAlink_cCFv

@@ -995,17 +995,17 @@ void J2DTevBlock1::setGX() {
     for (int i = 0; i < 4; i++) {
         GXColorS10 color = mTevColor[i];
 
-        GXTevRegID id;
+        int id;
         if (i == 3) {
             id = 0;
         } else {
             id = i + 1;
         }
-        GXSetTevColorS10(id, color);
+        GXSetTevColorS10((GXTevRegID)id, color);
     }
 
     GXSetNumTevStages(1);
-    GXSetTevColorIn(GX_TEVSTAGE0, )
+
 }
 #else
 #pragma push

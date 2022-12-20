@@ -68,20 +68,20 @@ void daAlink_c::setWolfDigStatus(u8 flag) {
 }
 
 /* 80127D68-80127DC4 1226A8 005C+00 4/4 0/0 0/0 .text checkWolfShapeReverse__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daAlink_c::checkWolfShapeReverse() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkWolfShapeReverse__9daAlink_cCFv.s"
+BOOL daAlink_c::checkWolfShapeReverse() const {
+    return ((mProcID == PROC_WOLF_SLIDE_READY || mProcID == PROC_WOLF_LOCK_ATTACK_TURN ||
+             mProcID == PROC_WOLF_JUMP_AT_SLIDE_LAND) &&
+            mCommonCounter != 0) ||
+           mProcID == PROC_WOLF_SLIP_TURN_LAND ||
+           (mProcID == PROC_WOLF_LARGE_DAMAGE_UP && field_0x3198 != 0) ||
+           mProcID == PROC_WOLF_ROPE_TURN;
 }
-#pragma pop
 
 /* 80127DC4-80127E08 122704 0044+00 1/1 0/0 0/0 .text            checkWolfSideStep__9daAlink_cCFv */
 BOOL daAlink_c::checkWolfSideStep() const {
     return field_0x2f98 != 0 &&
-           ((mProcID == PROC_WOLF_ATN_AC_MOVE && !i_checkModeFlg(1)) || mProcID == PROC_WOLF_SIDESTEP_LAND ||
-            mProcID == PROC_WOLF_BACKJUMP_LAND);
+           ((mProcID == PROC_WOLF_ATN_AC_MOVE && !i_checkModeFlg(1)) ||
+            mProcID == PROC_WOLF_SIDESTEP_LAND || mProcID == PROC_WOLF_BACKJUMP_LAND);
 }
 
 /* 80127E08-80127F20 122748 0118+00 1/1 0/0 0/0 .text            setWolfTailAngle__9daAlink_cFv */
@@ -124,7 +124,7 @@ asm void daAlink_c::setSpeedAndAngleWolfAtn() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkWolfAtnWait() {
+asm BOOL daAlink_c::checkWolfAtnWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkWolfAtnWait__9daAlink_cFv.s"
 }
@@ -154,14 +154,10 @@ asm void daAlink_c::setBlendWolfMoveAnime(f32 param_0) {
 
 /* 80128F0C-80128F5C 12384C 0050+00 2/2 0/0 0/0 .text            checkWolfAtnMoveBack__9daAlink_cFs
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkWolfAtnMoveBack(s16 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkWolfAtnMoveBack__9daAlink_cFs.s"
+BOOL daAlink_c::checkWolfAtnMoveBack(s16 param_0) {
+    f32 cos = cM_scos(param_0);
+    return (field_0x2f98 != 1 && cos < lit_44003) || (field_0x2f98 == 1 && cos < lit_44004);
 }
-#pragma pop
 
 /* 80128F5C-80129114 12389C 01B8+00 5/5 0/0 0/0 .text setWolfAtnMoveDirection__9daAlink_cFv */
 #pragma push
@@ -209,45 +205,29 @@ asm void daAlink_c::setDoubleAnimeWolf(f32 param_0, f32 param_1, f32 param_2,
 
 /* 80129678-801296A8 123FB8 0030+00 35/35 0/0 0/0 .text
  * setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setSingleAnimeWolfBase(daAlink_c::daAlink_WANM param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM.s"
+void daAlink_c::setSingleAnimeWolfBase(daAlink_c::daAlink_WANM i_anmID) {
+    setSingleAnimeWolf(i_anmID, lit_6040, FLOAT_LABEL(lit_6108), -1, lit_6109);
 }
-#pragma pop
 
 /* 801296A8-801296D8 123FE8 0030+00 3/3 0/0 0/0 .text
  * setSingleAnimeWolfBaseMorf__9daAlink_cFQ29daAlink_c12daAlink_WANMf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setSingleAnimeWolfBaseMorf(daAlink_c::daAlink_WANM param_0, f32 param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setSingleAnimeWolfBaseMorf__9daAlink_cFQ29daAlink_c12daAlink_WANMf.s"
+void daAlink_c::setSingleAnimeWolfBaseMorf(daAlink_c::daAlink_WANM i_anmID, f32 i_morf) {
+    setSingleAnimeWolf(i_anmID, lit_6040, FLOAT_LABEL(lit_6108), -1, i_morf);
 }
-#pragma pop
 
 /* 801296D8-80129704 124018 002C+00 44/44 0/0 0/0 .text
  * setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setSingleAnimeWolfBaseSpeed(daAlink_c::daAlink_WANM param_0, f32 param_1,
-                                                f32 param_2) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff.s"
+void daAlink_c::setSingleAnimeWolfBaseSpeed(daAlink_c::daAlink_WANM i_anmID, f32 i_speed, f32 i_morf) {
+    setSingleAnimeWolf(i_anmID, i_speed, FLOAT_LABEL(lit_6108), -1, i_morf);
 }
-#pragma pop
 
 /* 80129704-80129848 124044 0144+00 29/29 0/0 0/0 .text
  * setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::setSingleAnimeWolf(daAlink_c::daAlink_WANM param_0, f32 param_1, f32 param_2,
-                                       s16 param_3, f32 param_4) {
+asm void daAlink_c::setSingleAnimeWolf(daAlink_c::daAlink_WANM i_anmID, f32 i_speed, f32 i_start,
+                                       s16 i_endFrame, f32 i_morf) {
     nofralloc
 #include "asm/d/a/d_a_alink/setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf.s"
 }
@@ -255,26 +235,37 @@ asm void daAlink_c::setSingleAnimeWolf(daAlink_c::daAlink_WANM param_0, f32 para
 
 /* 80129848-8012987C 124188 0034+00 53/53 0/0 0/0 .text
  * setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setSingleAnimeWolfParam(daAlink_c::daAlink_WANM param_0,
-                                            daAlinkHIO_anm_c const* param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c.s"
+void daAlink_c::setSingleAnimeWolfParam(daAlink_c::daAlink_WANM i_anmID,
+                                        daAlinkHIO_anm_c const* i_anmData) {
+    setSingleAnimeWolf(i_anmID, i_anmData->mSpeed, i_anmData->mStartFrame, i_anmData->mEndFrame, i_anmData->mInterpolation);
 }
-#pragma pop
 
 /* 8012987C-80129958 1241BC 00DC+00 5/5 0/0 0/0 .text            checkWolfLandAction__9daAlink_cFi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkWolfLandAction(int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkWolfLandAction__9daAlink_cFi.s"
+int daAlink_c::checkWolfLandAction(int param_0) {
+    f32 temp_f31 = lit_8782 * (mFallHeight - current.pos.y);
+
+    if (checkNoLandDamageSlidePolygon() || temp_f31 < daAlinkHIO_wlDamFall_c0::m.field_0x2C) {
+        if (param_0 != 0) {
+            procWolfLandDamageInit(0);
+        } else if (mProcID == PROC_WOLF_JUMP_ATTACK || mProcID == PROC_WOLF_DASH_REVERSE) {
+            return 0;
+        } else {
+            procWolfLandInit();
+        }
+    } else {
+        int var_r4;
+        if (temp_f31 < daAlinkHIO_wlDamFall_c0::m.field_0x30) {
+            var_r4 = 1;
+        } else {
+            var_r4 = 2;
+        }
+
+        procWolfLandDamageInit(var_r4);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80129958-801299A8 124298 0050+00 1/1 0/0 1/1 .text            checkMidnaUseAbility__9daAlink_cCFv
  */
@@ -292,6 +283,7 @@ void daAlink_c::checkWolfUseAbility() {
     if (checkMidnaLockJumpPoint() != NULL && !i_checkMidnaRide()) {
         offWolfEyeUp();
     } else {
+        // event flag 0x4308: senses ability unlocked
         if (i_dComIfGs_isEventBit(0x4308) && field_0x2fd2 == 0 && !checkEventRun() &&
             mWolfEyeUp < daAlinkHIO_wolf_c0::m.mSensesLingerTime && wolfSenseTrigger()) {
             if (mWolfEyeUp == 0) {
@@ -326,7 +318,7 @@ int daAlink_c::checkWolfGroundSpecialMode() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkNextActionWolf(int param_0) {
+asm int daAlink_c::checkNextActionWolf(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/checkNextActionWolf__9daAlink_cFi.s"
 }
@@ -353,25 +345,41 @@ asm void daAlink_c::checkWolfAttackReverse(int param_0) {
 #pragma pop
 
 /* 8012A330-8012A41C 124C70 00EC+00 1/1 0/0 0/0 .text checkWolfBarrierHitReverse__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkWolfBarrierHitReverse() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkWolfBarrierHitReverse__9daAlink_cFv.s"
+int daAlink_c::checkWolfBarrierHitReverse() {
+    if (field_0x3100 != 0 && mProcID != PROC_FRONT_ROLL_SUCCESS && mProcID != PROC_DAMAGE &&
+        mProcID != PROC_WOLF_ATTACK_REVERSE && mProcID != PROC_WOLF_DASH_REVERSE) {
+        if (i_checkWolf()) {
+            return procWolfDashReverseInit(1);
+        } else if (mLinkAcch.ChkGroundHit()) {
+            if (cLib_distanceAngleS(shape_angle.y, field_0x3102) >= 0x4000) {
+                setFrontRollCrashShock(0);
+                return procDamageInit(NULL, 1);
+            } else {
+                return procFrontRollSuccessInit();
+            }
+        } else {
+            setFrontRollCrashShock(0);
+            return procCoLargeDamageInit(-6, 1, 0, 0, NULL, 0);
+        }
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 8012A41C-8012A498 124D5C 007C+00 2/2 0/0 0/0 .text
  * checkWolfBarrierWallHit__9daAlink_cFR13cBgS_PolyInfo         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkWolfBarrierWallHit(cBgS_PolyInfo& param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkWolfBarrierWallHit__9daAlink_cFR13cBgS_PolyInfo.s"
+bool daAlink_c::checkWolfBarrierWallHit(cBgS_PolyInfo& i_poly) {
+    if (field_0x3100 != 0 || checkZeroSpeedF()) {
+        return false;
+    }
+
+    s16 bg_name = getMoveBGActorName(i_poly, 1);
+    if (bg_name == PROC_OBJ_TP || bg_name == PROC_OBJ_GB || bg_name == PROC_Obj_GanonWall2) {
+        return true;
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 8012A498-8012ACCC 124DD8 0834+00 1/1 0/0 0/0 .text            wolfBgCheck__9daAlink_cFv */
 #pragma push
@@ -385,14 +393,21 @@ asm void daAlink_c::wolfBgCheck() {
 
 /* 8012ACCC-8012AD1C 12560C 0050+00 1/1 0/0 0/0 .text            changeWolfBlendRate__9daAlink_cFi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::changeWolfBlendRate(int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/changeWolfBlendRate__9daAlink_cFi.s"
+void daAlink_c::changeWolfBlendRate(int param_0) {
+    if (checkWolfGrabAnime()) {
+        if (param_0 == 7) {
+            mNowAnmPackUpper[2].setRatio(FLOAT_LABEL(lit_6108));
+        } else if (param_0 == 3) {
+            mNowAnmPackUpper[2].setRatio(lit_6040);
+        }
+    } else if (checkBarkAnime()) {
+        if (param_0 == 2) {
+            mNowAnmPackUpper[2].setRatio(FLOAT_LABEL(lit_6108));
+        } else if (param_0 == 3) {
+            mNowAnmPackUpper[2].setRatio(lit_6040);
+        }
+    }
 }
-#pragma pop
 
 /* 8012AD1C-8012B724 12565C 0A08+00 1/1 0/0 0/0 .text            setWolfFootMatrix__9daAlink_cFv */
 #pragma push
@@ -418,7 +433,7 @@ asm void daAlink_c::wolfFootBgCheck() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkWolfWaitSlipPolygon() {
+asm BOOL daAlink_c::checkWolfWaitSlipPolygon() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkWolfWaitSlipPolygon__9daAlink_cFv.s"
 }
@@ -436,9 +451,7 @@ asm void daAlink_c::setWolfWaitSlip() {
 
 /* 8012C308-8012C30C 126C48 0004+00 4/4 0/0 0/0 .text            checkWolfAtnDoCharge__9daAlink_cFv
  */
-void daAlink_c::checkWolfAtnDoCharge() {
-    /* empty function */
-}
+void daAlink_c::checkWolfAtnDoCharge() {}
 
 /* 8012C30C-8012CB0C 126C4C 0800+00 1/1 0/0 0/0 .text            setWolfChainPos__9daAlink_cFv */
 #pragma push
@@ -451,6 +464,23 @@ asm void daAlink_c::setWolfChainPos() {
 #pragma pop
 
 /* 8012CB0C-8012CBE4 12744C 00D8+00 1/1 0/0 0/0 .text            setWolfAnmVoice__9daAlink_cFv */
+#ifdef NONMATCHING
+void daAlink_c::setWolfAnmVoice() {
+    s8* var_r30 = field_0x2160;
+
+    if (field_0x2fd8 >= 12 || field_0x215c == NULL) {
+        return;
+    }
+
+    for (int i = 0; i < 4; i++) {
+        f32 temp_f31 = *var_r30;
+        if (*var_r30 != -1 && field_0x215c->checkPass(temp_f31)) {
+            voiceStart(label[field_0x2fd8]);
+        }
+        var_r30++;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -459,12 +489,13 @@ asm void daAlink_c::setWolfAnmVoice() {
 #include "asm/d/a/d_a_alink/setWolfAnmVoice__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8012CBE4-8012CD28 127524 0144+00 4/4 0/0 0/0 .text procWolfServiceWaitInit__9daAlink_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfServiceWaitInit(int param_0) {
+asm int daAlink_c::procWolfServiceWaitInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfServiceWaitInit__9daAlink_cFi.s"
 }
@@ -475,7 +506,7 @@ asm void daAlink_c::procWolfServiceWaitInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfServiceWait() {
+asm int daAlink_c::procWolfServiceWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfServiceWait__9daAlink_cFv.s"
 }
@@ -483,90 +514,146 @@ asm void daAlink_c::procWolfServiceWait() {
 
 /* 8012CF68-8012CFEC 1278A8 0084+00 1/1 0/0 0/0 .text            procWolfTiredWaitInit__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfTiredWaitInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfTiredWaitInit__9daAlink_cFv.s"
+int daAlink_c::procWolfTiredWaitInit() {
+    if (checkWolfWaitSlipPolygon() && !checkInputOnR()) {
+        return procWolfWaitSlipInit();
+    }
+
+    if (!commonProcInitNotSameProc(PROC_WOLF_TIRED_WAIT)) {
+        return 0;
+    }
+
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    setSingleAnimeWolfBase(WANM_WAIT_TO_TIRED);
+    return 1;
 }
-#pragma pop
 
 /* 8012CFEC-8012D050 12792C 0064+00 1/0 0/0 0/0 .text            procWolfTiredWait__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfTiredWait() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfTiredWait__9daAlink_cFv.s"
+int daAlink_c::procWolfTiredWait() {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    if (!checkNextActionWolf(0) && frameCtrl->checkAnmEnd()) {
+        setSingleAnimeWolfBase(WANM_WAIT_TIRED);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8012D050-8012D104 127990 00B4+00 3/2 0/0 0/0 .text procWolfMidnaRideShockInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfMidnaRideShockInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfMidnaRideShockInit__9daAlink_cFv.s"
+int daAlink_c::procWolfMidnaRideShockInit() {
+    if (!i_checkWolf()) {
+        dComIfGp_evmng_cutEnd(field_0x3184);
+        return procWaitInit();
+    }
+
+    if (!commonProcInitNotSameProc(PROC_WOLF_MIDNA_RIDE_SHOCK)) {
+        return 0;
+    }
+
+    setSingleAnimeWolfBase(WANM_MIDNA_SHOCK);
+    setFaceBasicTexture(FTANM_UNK_9F);
+
+    voiceStart(Z2SE_WL_V_MD_SHOCK);
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    current.angle.y = shape_angle.y;
+
+    return 1;
 }
-#pragma pop
 
 /* 8012D104-8012D1A8 127A44 00A4+00 1/0 0/0 0/0 .text procWolfMidnaRideShock__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfMidnaRideShock() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfMidnaRideShock__9daAlink_cFv.s"
+int daAlink_c::procWolfMidnaRideShock() {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    if (frameCtrl->checkAnmEnd()) {
+        if (mDemo.getDemoMode() == 0x32) {
+            dComIfGp_evmng_cutEnd(field_0x3184);
+        } else {
+            checkNextActionWolf(0);
+        }
+    } else if (frameCtrl->getFrame() > lit_17382 && mDemo.getDemoMode() != 0x32) {
+        checkNextActionWolf(1);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8012D1A8-8012D2A8 127AE8 0100+00 13/13 0/0 0/0 .text            procWolfWaitInit__9daAlink_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfWaitInit() {
+asm int daAlink_c::procWolfWaitInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfWaitInit__9daAlink_cFv.s"
 }
 #pragma pop
 
 /* 8012D2A8-8012D380 127BE8 00D8+00 1/0 0/0 0/0 .text            procWolfWait__9daAlink_cFv */
+// matches with literals
+#ifdef NONMATCHING
+int daAlink_c::procWolfWait() {
+    s16 old_shapeangle = shape_angle.y;
+
+    if (!checkNextActionWolf(0) && !checkFrontWallTypeAction()) {
+        field_0x33f0 = (s16)(shape_angle.y - old_shapeangle) * lit_15460;
+        setBlendWolfMoveAnime(lit_6041);
+
+        if (checkServiceWaitMode()) {
+            field_0x30ca--;
+            
+            if (field_0x30ca == 0) {
+                procWolfServiceWaitInit(0);
+            }
+        } else {
+            initServiceWaitTime();
+        }
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfWait() {
+asm int daAlink_c::procWolfWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfWait__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8012D380-8012D3E4 127CC0 0064+00 2/2 0/0 0/0 .text            procWolfMoveInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfMoveInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfMoveInit__9daAlink_cFv.s"
+int daAlink_c::procWolfMoveInit() {
+    if (!commonProcInitNotSameProc(PROC_WOLF_MOVE)) {
+        return 0;
+    }
+
+    setBlendWolfMoveAnime(daAlinkHIO_wlMove_c0::m.field_0x94);
+    setFootEffectProcType(3);
+
+    return 1;
 }
-#pragma pop
 
 /* 8012D3E4-8012D474 127D24 0090+00 1/0 0/0 0/0 .text            procWolfMove__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfMove() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfMove__9daAlink_cFv.s"
+int daAlink_c::procWolfMove() {
+    if (!checkNextActionWolf(0) && !checkFrontWallTypeAction()) {
+        if (mDemo.getDemoMode() == 2) {            
+            if (mNormalSpeed > field_0x594 * daAlinkHIO_wlMoveNoP_c0::m.field_0x28) {
+                mNormalSpeed = field_0x594 * daAlinkHIO_wlMoveNoP_c0::m.field_0x28;
+            }
+        }
+
+        setBlendWolfMoveAnime(lit_6041);
+        field_0x30a2 = field_0x2fec;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8012D474-8012D590 127DB4 011C+00 1/1 0/0 0/0 .text            procWolfDashInit__9daAlink_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfDashInit() {
+asm int daAlink_c::procWolfDashInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfDashInit__9daAlink_cFv.s"
 }
@@ -576,7 +663,7 @@ asm void daAlink_c::procWolfDashInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfDash() {
+asm int daAlink_c::procWolfDash() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfDash__9daAlink_cFv.s"
 }
@@ -586,7 +673,7 @@ asm void daAlink_c::procWolfDash() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfDashReverseInit(int param_0) {
+asm int daAlink_c::procWolfDashReverseInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfDashReverseInit__9daAlink_cFi.s"
 }
@@ -597,49 +684,89 @@ asm void daAlink_c::procWolfDashReverseInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfDashReverse() {
+asm int daAlink_c::procWolfDashReverse() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfDashReverse__9daAlink_cFv.s"
 }
 #pragma pop
 
 /* 8012DBA8-8012DC44 1284E8 009C+00 1/1 0/0 0/0 .text procWolfAtnActorMoveInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfAtnActorMoveInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfAtnActorMoveInit__9daAlink_cFv.s"
+int daAlink_c::procWolfAtnActorMoveInit() {
+    if (!commonProcInitNotSameProc(PROC_WOLF_ATN_AC_MOVE)) {
+        return 0;
+    }
+
+    if (checkZeroSpeedF()) {
+        onModeFlg(1);
+    }
+
+    setWolfAtnMoveDirection();
+    setBlendWolfAtnMoveAnime(daAlinkHIO_wlMove_c0::m.field_0x94);
+    
+    if (checkWolfAtnWait()) {
+        voiceStartLevel(Z2SE_WL_V_ROAR);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8012DC44-8012DD08 128584 00C4+00 1/0 0/0 0/0 .text            procWolfAtnActorMove__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfAtnActorMove() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfAtnActorMove__9daAlink_cFv.s"
+int daAlink_c::procWolfAtnActorMove() {
+    setWolfAtnMoveDirection();
+
+    if (!checkNextActionWolf(0)) {
+        if (checkZeroSpeedF()) {
+            onModeFlg(1);
+
+            if (checkWolfWaitSlipPolygon() && !checkInputOnR()) {
+                return procWolfWaitSlipInit();
+            }
+        } else {
+            offModeFlg(1);
+        }
+
+        setBlendWolfAtnMoveAnime(lit_6041);
+    
+        if (checkWolfAtnWait()) {
+            voiceStartLevel(Z2SE_WL_V_ROAR);
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8012DD08-8012DDB4 128648 00AC+00 1/1 0/0 0/0 .text            procWolfWaitTurnInit__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfWaitTurnInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfWaitTurnInit__9daAlink_cFv.s"
+int daAlink_c::procWolfWaitTurnInit() {
+    if (!commonProcInitNotSameProc(PROC_WOLF_WAIT_TURN)) {
+        return 0;
+    }
+
+    f32 var_f1;
+    if (checkWolfDashMode()) {
+        var_f1 = daAlinkHIO_wlMove_c0::m.field_0x74;
+    } else {
+        var_f1 = daAlinkHIO_wlMoveNoP_c0::m.field_0x18;
+    }
+
+    setSingleAnimeWolfBaseSpeed(WANM_WALK_A, var_f1, daAlinkHIO_wlMove_c0::m.field_0x94);
+
+    if (checkEventRun()) {
+        mNormalSpeed = FLOAT_LABEL(lit_6108);
+    }
+
+    field_0x300e = field_0x2fe2;
+    current.angle.y = shape_angle.y;
+
+    return 1;
 }
-#pragma pop
 
 /* 8012DDB4-8012DEC8 1286F4 0114+00 1/0 0/0 0/0 .text            procWolfWaitTurn__9daAlink_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfWaitTurn() {
+asm int daAlink_c::procWolfWaitTurn() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfWaitTurn__9daAlink_cFv.s"
 }
@@ -650,7 +777,7 @@ asm void daAlink_c::procWolfWaitTurn() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfSideStepInit(int param_0) {
+asm int daAlink_c::procWolfSideStepInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfSideStepInit__9daAlink_cFi.s"
 }
@@ -660,90 +787,169 @@ asm void daAlink_c::procWolfSideStepInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfSideStep() {
+asm int daAlink_c::procWolfSideStep() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfSideStep__9daAlink_cFv.s"
 }
 #pragma pop
 
 /* 8012E1E8-8012E2DC 128B28 00F4+00 1/1 0/0 0/0 .text procWolfSideStepLandInit__9daAlink_cFs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfSideStepLandInit(s16 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfSideStepLandInit__9daAlink_cFs.s"
+int daAlink_c::procWolfSideStepLandInit(s16 param_0) {
+    commonProcInit(PROC_WOLF_SIDESTEP_LAND);
+
+    if (field_0x2f98 == 1) {
+        setSingleAnimeWolfParam(WANM_BACK_JUMP_END, &daAlinkHIO_wlSideStep_c0::m.field_0x3C);
+        field_0x3478 = daAlinkHIO_wlSideStep_c0::m.field_0x3C.mCheckFrame;
+        field_0x2fcc = 10;
+    } else {
+        field_0x2fcc = 0;
+        setSingleAnimeWolfParam(field_0x2f98 == 2 ? WANM_SIDE_JUMP_LEFT_END : WANM_SIDE_JUMP_RIGHT_END, &daAlinkHIO_wlSideStep_c0::m.field_0x14);
+        field_0x3478 = daAlinkHIO_wlSideStep_c0::m.field_0x14.mCheckFrame;
+    }
+
+    field_0x3012 = param_0;
+    field_0x2f9d = 4;
+    setFootEffectProcType(2);
+    i_onResetFlg1(0xC);
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    setStepLandVibration();
+
+    return 1;
 }
-#pragma pop
 
 /* 8012E2DC-8012E398 128C1C 00BC+00 1/0 0/0 0/0 .text            procWolfSideStepLand__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfSideStepLand() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfSideStepLand__9daAlink_cFv.s"
+int daAlink_c::procWolfSideStepLand() {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    if (field_0x2fcc != 0) {
+        field_0x2fcc = 10;
+    }
+
+    setWolfAtnMoveDirection();
+    checkWolfAtnDoCharge();
+
+    if (frameCtrl->checkAnmEnd()) {
+        if (mDemo.getDemoMode() == 0x10) {
+            dComIfGp_evmng_cutEnd(field_0x3184);
+        } else {
+            checkNextActionWolf(0);
+        }
+    } else if (frameCtrl->getFrame() > field_0x3478) {
+        checkNextActionWolf(1);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8012E398-8012E508 128CD8 0170+00 3/3 0/0 0/0 .text            procWolfBackJumpInit__9daAlink_cFi
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfBackJumpInit(int param_0) {
+asm int daAlink_c::procWolfBackJumpInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfBackJumpInit__9daAlink_cFi.s"
 }
 #pragma pop
 
 /* 8012E508-8012E5F4 128E48 00EC+00 1/0 0/0 0/0 .text            procWolfBackJump__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfBackJump() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfBackJump__9daAlink_cFv.s"
+int daAlink_c::procWolfBackJump() {
+    cLib_addCalcAngleS(&shape_angle.y, mCommonCounter,
+                       daAlinkHIO_wlAtnMove_c0::m.field_0x4,
+                       daAlinkHIO_wlAtnMove_c0::m.field_0x0,
+                       daAlinkHIO_wlAtnMove_c0::m.field_0x2);
+    current.angle.y = shape_angle.y - -0x8000;
+
+    if (field_0x3010 != 0) {
+        checkWolfAtnDoCharge();
+    }
+
+    backJumpSpeedDec();
+
+    if (mUnderFrameCtrl[0].checkAnmEnd() && mLinkAcch.ChkGroundHit()) {
+        procWolfBackJumpLandInit(field_0x3012, field_0x3010);
+    } else if (mDemo.getDemoMode() != 0x10 && current.pos.y < mLastJumpPos.y - daAlinkHIO_wlBackJump_c0::m.field_0x30) {
+        field_0x2f98 = 0;
+        procWolfFallInit(2, daAlinkHIO_wlBackJump_c0::m.field_0x34);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8012E5F4-8012E684 128F34 0090+00 1/1 0/0 0/0 .text procWolfBackJumpLandInit__9daAlink_cFss */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfBackJumpLandInit(s16 param_0, s16 param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfBackJumpLandInit__9daAlink_cFss.s"
+int daAlink_c::procWolfBackJumpLandInit(s16 param_0, s16 param_1) {
+    commonProcInit(PROC_WOLF_BACKJUMP_LAND);
+    setSingleAnimeWolfParam(WANM_BACKFLIP_END, &daAlinkHIO_wlBackJump_c0::m.field_0x14);
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    field_0x2f9d = 4;
+    setFootEffectProcType(2);
+    field_0x2fcc = 10;
+    field_0x3012 = param_0;
+    field_0x3010 = param_1;
+    setStepLandVibration();
+
+    return 1;
 }
-#pragma pop
 
 /* 8012E684-8012E754 128FC4 00D0+00 1/0 0/0 0/0 .text            procWolfBackJumpLand__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfBackJumpLand() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfBackJumpLand__9daAlink_cFv.s"
+int daAlink_c::procWolfBackJumpLand() {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    if (field_0x2fcc != 0) {
+        field_0x2fcc = 10;
+    }
+
+    setWolfAtnMoveDirection();
+
+    if (field_0x3010 != 0) {
+        checkWolfAtnDoCharge();
+    }
+
+    if (frameCtrl->checkAnmEnd()) {
+        if (mDemo.getDemoMode() == 0x10) {
+            dComIfGp_evmng_cutEnd(field_0x3184);
+        } else {
+            checkNextActionWolf(0);
+        }
+    } else if (frameCtrl->getFrame() > daAlinkHIO_wlBackJump_c0::m.field_0x14.mCheckFrame) {
+        checkNextActionWolf(1);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8012E754-8012E83C 129094 00E8+00 2/2 0/0 0/0 .text            procWolfHowlInit__9daAlink_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfHowlInit(int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfHowlInit__9daAlink_cFi.s"
+int daAlink_c::procWolfHowlInit(int param_0) {
+    if (checkEventRun() && mProcID == PROC_WOLF_HOWL) {
+        return 0;
+    }
+
+    commonProcInit(PROC_WOLF_HOWL);
+
+    if (param_0 != 0) {
+        setSingleAnimeWolfParam(WANM_HOWL_SIT, &daAlinkHIO_wlHowl_c0::m.field_0x14);
+        onModeFlg(0x800000);
+        field_0x3478 = daAlinkHIO_wlHowl_c0::m.field_0x14.mCheckFrame;
+        field_0x300e = 1;
+    } else {
+        setSingleAnimeWolfParam(WANM_HOWL, &daAlinkHIO_wlHowl_c0::m.field_0x0);
+        field_0x3478 = daAlinkHIO_wlHowl_c0::m.field_0x0.mCheckFrame;
+        field_0x300e = 0;
+    }
+
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mCommonCounter = 0;
+
+    return 1;
 }
-#pragma pop
 
 /* 8012E83C-8012E9C8 12917C 018C+00 1/0 0/0 0/0 .text            procWolfHowl__9daAlink_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfHowl() {
+asm int daAlink_c::procWolfHowl() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfHowl__9daAlink_cFv.s"
 }
@@ -754,7 +960,7 @@ asm void daAlink_c::procWolfHowl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfAutoJumpInit(int param_0) {
+asm int daAlink_c::procWolfAutoJumpInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfAutoJumpInit__9daAlink_cFi.s"
 }
@@ -764,7 +970,7 @@ asm void daAlink_c::procWolfAutoJumpInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfAutoJump() {
+asm int daAlink_c::procWolfAutoJump() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfAutoJump__9daAlink_cFv.s"
 }
@@ -775,7 +981,7 @@ asm void daAlink_c::procWolfAutoJump() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfFallInit(int param_0, f32 param_1) {
+asm int daAlink_c::procWolfFallInit(int param_0, f32 param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfFallInit__9daAlink_cFif.s"
 }
@@ -785,88 +991,161 @@ asm void daAlink_c::procWolfFallInit(int param_0, f32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfFall() {
+asm int daAlink_c::procWolfFall() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfFall__9daAlink_cFv.s"
 }
 #pragma pop
 
 /* 8012F138-8012F1F0 129A78 00B8+00 2/2 0/0 0/0 .text            procWolfLandInit__9daAlink_cFv */
+// matches with literals
+#ifdef NONMATCHING
+int daAlink_c::procWolfLandInit() {
+    commonProcInit(PROC_WOLF_LAND);
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    field_02f99 = 12;
+
+    setSingleWolfAnimeParam(WANM_JUMP_ATTACK_END, &daAlinkHIO_wlAutoJump_c0::m.field_0x14);
+    field_0x3478 = daAlinkHIO_wlAutoJump_c0::m.field_0x14.mCheckFrame;
+    mCommonCounter = 1;
+
+    field_0x2f9d = 4;
+    setFootEffectProcType(4);
+
+    dComIfGp_getVibration().StartShock(cXyz(0.0f, 1.0f, 0.0f));
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfLandInit() {
+asm int daAlink_c::procWolfLandInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfLandInit__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8012F1F0-8012F278 129B30 0088+00 1/0 0/0 0/0 .text            procWolfLand__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfLand() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfLand__9daAlink_cFv.s"
+int daAlink_c::procWolfLand() {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    if (mCommonCounter != 0) {
+        field_0x2f99 = 4;
+    }
+
+    if (frameCtrl->checkAnmEnd()) {
+        checkNextActionWolf(0);
+    } else if (frameCtrl->getFrame() > field_0x3478) {
+        checkNextActionWolf(1);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8012F278-8012F358 129BB8 00E0+00 1/1 0/0 0/0 .text            procWolfSitInit__9daAlink_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfSitInit(int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfSitInit__9daAlink_cFi.s"
+int daAlink_c::procWolfSitInit(int param_0) {
+    if (!commonProcInitNotSameProc(PROC_WOLF_SIT)) {
+        return 0;
+    }
+
+    if (param_0 != 0 && !checkUnderMove0BckNoArcWolf(WANM_WAIT_SIT) && !checkUnderMove0BckNoArcWolf(WANM_HOWL_SIT)) {
+        setSingleAnimeWolfParam(WANM_SIT, &daAlinkHIO_wlLie_c0::m.field_0x0);
+        field_0x3198 = 0;
+    } else {
+        field_0x3198 = 1;
+        
+        if (!checkUnderMove0BckNoArcWolf(WANM_WAIT_SIT)) {
+            setSingleAnimeWolfBaseSpeed(WANM_WAIT_SIT, daAlinkHIO_wlLie_c0::m.field_0x44, daAlinkHIO_wlLie_c0::m.field_0x48);
+        }
+    }
+
+    current.angle.y = shape_angle.y;
+
+    return 1;
 }
-#pragma pop
 
 /* 8012F358-8012F41C 129C98 00C4+00 1/0 0/0 0/0 .text            procWolfSit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfSit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfSit__9daAlink_cFv.s"
+int daAlink_c::procWolfSit() {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    cLib_chaseF(&mNormalSpeed, FLOAT_LABEL(lit_6108), checkWolfDashMode() ?
+                                                      daAlinkHIO_wlMove_c0::m.field_0x6C :
+                                                      daAlinkHIO_wlMoveNoP_c0::m.field_0x10);
+
+    if (!spActionButton() && mDemo.getDemoMode() != 0xF) {
+        checkNextActionWolfFromLie();
+    } else if (frameCtrl->checkAnmEnd()) {
+        setSingleAnimeWolfBaseSpeed(WANM_WAIT_SIT, daAlinkHIO_wlLie_c0::m.field_0x44, daAlinkHIO_wlLie_c0::m.field_0x48);
+        field_0x3198 = 1;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8012F41C-8012F500 129D5C 00E4+00 1/1 0/0 0/0 .text            procWolfStepMoveInit__9daAlink_cFv
  */
+// matches with literals
+#ifdef NONMATCHING
+int daAlink_c::procWolfStepMoveInit() {
+    commonProcInit(PROC_WOLF_STEP_MOVE);
+    setSingleAnimeWolfParam(WANM_BUMP_START, &daAlinkHIO_wlWallHang_c0::m.field_0x50);
+    field_0x3478 = 0.5f * mNormalSpeed;
+    mNormalSpeed = 0.0f;
+    mCommonCounter = 0;
+
+    field_0x3588 = l_wolfBaseAnime;
+    current.pos.x -= cM_ssin(shape_angle.y) * 10.0f;
+    current.pos.z -= cM_scos(shape_angle.y) * 10.0f;
+
+    field_0x2060->getOldFrameTransInfo(0)->mTranslate.z += 10.0f;
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfStepMoveInit() {
+asm int daAlink_c::procWolfStepMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfStepMoveInit__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8012F500-8012F634 129E40 0134+00 1/0 0/0 0/0 .text            procWolfStepMove__9daAlink_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfStepMove() {
+asm int daAlink_c::procWolfStepMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfStepMove__9daAlink_cFv.s"
 }
 #pragma pop
 
 /* 8012F634-8012F6EC 129F74 00B8+00 1/1 0/0 0/0 .text            procWolfSlipInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfSlipInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfSlipInit__9daAlink_cFv.s"
+int daAlink_c::procWolfSlipInit() {
+    commonProcInit(PROC_WOLF_SLIP);
+    setSingleAnimeWolfParam(WANM_SLIP, &daAlinkHIO_wlMove_c0::m.field_0x0);
+
+    if (checkWolfDashMode()) {
+        mNormalSpeed = mSpeedF * daAlinkHIO_wlMove_c0::m.field_0xA4;
+    } else {
+        mNormalSpeed = mSpeedF * daAlinkHIO_wlMoveNoP_c0::m.field_0x3C;
+    }
+
+    current.angle.y = shape_angle.y;
+    field_0x3588 = l_wolfBaseAnime;
+    setFootEffectProcType(1);
+
+    return 1;
 }
-#pragma pop
 
 /* 8012F6EC-8012F840 12A02C 0154+00 1/0 0/0 0/0 .text            procWolfSlip__9daAlink_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfSlip() {
+asm int daAlink_c::procWolfSlip() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfSlip__9daAlink_cFv.s"
 }
@@ -877,7 +1156,7 @@ asm void daAlink_c::procWolfSlip() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfSlipTurnInit(int param_0) {
+asm int daAlink_c::procWolfSlipTurnInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfSlipTurnInit__9daAlink_cFi.s"
 }
@@ -887,38 +1166,52 @@ asm void daAlink_c::procWolfSlipTurnInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfSlipTurn() {
+asm int daAlink_c::procWolfSlipTurn() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfSlipTurn__9daAlink_cFv.s"
 }
 #pragma pop
 
 /* 8012FB18-8012FBB4 12A458 009C+00 1/1 0/0 0/0 .text procWolfSlipTurnLandInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfSlipTurnLandInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfSlipTurnLandInit__9daAlink_cFv.s"
+int daAlink_c::procWolfSlipTurnLandInit() {
+    commonProcInit(PROC_WOLF_SLIP_TURN_LAND);
+
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+    setFrameCtrl(frameCtrl, 0, 0,
+                 daAlinkHIO_wlMove_c0::m.field_0x14.mEndFrame,
+                 daAlinkHIO_wlMove_c0::m.field_0x14.mSpeed,
+                 frameCtrl->getFrame() + daAlinkHIO_wlMove_c0::m.field_0x14.mSpeed);
+
+    mNormalSpeed = lit_19379 * daAlinkHIO_wlMoveNoP_c0::m.field_0x8;
+    field_0x2f99 = 5;
+    setFootEffectProcType(2);
+    field_0x2f9d = 8;
+    field_0x2f98 = 0;
+
+    return 1;
 }
-#pragma pop
 
 /* 8012FBB4-8012FC38 12A4F4 0084+00 1/0 0/0 0/0 .text            procWolfSlipTurnLand__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfSlipTurnLand() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfSlipTurnLand__9daAlink_cFv.s"
+int daAlink_c::procWolfSlipTurnLand() {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    field_0x2f99 = 5;
+
+    if (frameCtrl->checkAnmEnd()) {
+        checkNextActionWolf(0);
+    } else if (frameCtrl->getFrame() > daAlinkHIO_wlMove_c0::m.field_0x14.mCheckFrame) {
+        checkNextActionWolf(1);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8012FC38-8012FD2C 12A578 00F4+00 2/2 0/0 0/0 .text procWolfSlideReadyInit__9daAlink_cFsi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfSlideReadyInit(s16 param_0, int param_1) {
+asm int daAlink_c::procWolfSlideReadyInit(s16 param_0, int param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfSlideReadyInit__9daAlink_cFsi.s"
 }
@@ -928,7 +1221,7 @@ asm void daAlink_c::procWolfSlideReadyInit(s16 param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfSlideReady() {
+asm int daAlink_c::procWolfSlideReady() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfSlideReady__9daAlink_cFv.s"
 }
@@ -938,7 +1231,7 @@ asm void daAlink_c::procWolfSlideReady() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfSlideInit(s16 param_0, int param_1) {
+asm int daAlink_c::procWolfSlideInit(s16 param_0, int param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfSlideInit__9daAlink_cFsi.s"
 }
@@ -948,7 +1241,7 @@ asm void daAlink_c::procWolfSlideInit(s16 param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfSlide() {
+asm int daAlink_c::procWolfSlide() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfSlide__9daAlink_cFv.s"
 }
@@ -956,75 +1249,102 @@ asm void daAlink_c::procWolfSlide() {
 
 /* 801300D4-80130138 12AA14 0064+00 1/1 0/0 0/0 .text            procWolfSlideLandInit__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfSlideLandInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfSlideLandInit__9daAlink_cFv.s"
+int daAlink_c::procWolfSlideLandInit() {
+    commonProcInit(PROC_WOLF_SLIDE_LAND);
+    setSingleAnimeWolfParam(WANM_SLIDE_BACKWARD_END, &daAlinkHIO_wlSlide_c0::m.field_0x28);
+    mNormalSpeed *= lit_5943;
+    field_0x814.SetWeight(0xFF);
+
+    return 1;
 }
-#pragma pop
 
 /* 80130138-801301E4 12AA78 00AC+00 1/0 0/0 0/0 .text            procWolfSlideLand__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfSlideLand() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfSlideLand__9daAlink_cFv.s"
+int daAlink_c::procWolfSlideLand() {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    cLib_chaseF(&mNormalSpeed, FLOAT_LABEL(lit_6108), lit_7450);
+
+    if (frameCtrl->checkAnmEnd()) {
+        current.angle.y = shape_angle.y;
+        checkNextActionWolf(0);
+    } else if (frameCtrl->getFrame() > daAlinkHIO_wlSlide_c0::m.field_0x28.mCheckFrame) {
+        s16 old_angle = current.angle.y;
+        current.angle.y = shape_angle.y;
+
+        if (!checkNextActionWolf(1)) {
+            current.angle.y = old_angle;
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 801301E4-80130268 12AB24 0084+00 3/3 0/0 0/0 .text            procWolfWaitSlipInit__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfWaitSlipInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfWaitSlipInit__9daAlink_cFv.s"
+int daAlink_c::procWolfWaitSlipInit() {
+    if (!commonProcInitNotSameProc(PROC_WOLF_WAIT_SLIP)) {
+        return 0;
+    }
+
+    setSingleAnimeWolfBaseSpeed(WANM_ATN, daAlinkHIO_wlMove_c0::m.field_0xB8, daAlinkHIO_wlMove_c0::m.field_0xBC);
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    setWolfWaitSlip();
+    field_0x2f9d = 120;
+    setFootEffectProcType(1);
+
+    return 1;
 }
-#pragma pop
 
 /* 80130268-80130440 12ABA8 01D8+00 1/0 0/0 0/0 .text            procWolfWaitSlip__9daAlink_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfWaitSlip() {
+asm int daAlink_c::procWolfWaitSlip() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfWaitSlip__9daAlink_cFv.s"
 }
 #pragma pop
 
 /* 80130440-801304D4 12AD80 0094+00 2/2 0/0 0/0 .text procWolfSlopeStartInit__9daAlink_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfSlopeStartInit(int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfSlopeStartInit__9daAlink_cFi.s"
+int daAlink_c::procWolfSlopeStartInit(int param_0) {
+    commonProcInit(PROC_WOLF_SLOPE_START);
+    setSingleAnimeWolfParam(WANM_SLIDE_W, &daAlinkHIO_wlSlide_c0::m.field_0x3C);
+    field_0x3588 = l_wolfBaseAnime;
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    current.angle.y = shape_angle.y;
+
+    if (param_0) {
+        field_0x2f99 = 13;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 801304D4-8013056C 12AE14 0098+00 1/0 0/0 0/0 .text            procWolfSlopeStart__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfSlopeStart() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfSlopeStart__9daAlink_cFv.s"
+int daAlink_c::procWolfSlopeStart() {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    if (frameCtrl->checkAnmEnd()) {
+        checkNextActionWolf(0);
+    } else if (frameCtrl->getFrame() > daAlinkHIO_wlSlide_c0::m.field_0x3C.mCheckFrame) {
+        if (!checkNextActionWolf(1)) {
+            field_0x2f99 = 5;
+        }
+    } else {
+        field_0x2f99 = 5;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8013056C-80130580 12AEAC 0014+00 1/1 0/0 0/0 .text daAlink_searchGoldWolf__FP10fopAc_ac_cPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daAlink_searchGoldWolf(fopAc_ac_c* param_0, void* param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/daAlink_searchGoldWolf__FP10fopAc_ac_cPv.s"
+static fopAc_ac_c* daAlink_searchGoldWolf(fopAc_ac_c* i_actor, void*) {
+    if (fopAcM_GetName(i_actor) == PROC_NPC_GWOLF) {
+        return i_actor;
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 80130580-80130654 12AEC0 00D4+00 1/1 0/0 0/0 .text daAlink_searchWolfHowl__FP10fopAc_ac_cPv */
 #pragma push
@@ -1038,21 +1358,32 @@ static asm void daAlink_searchWolfHowl(fopAc_ac_c* param_0, void* param_1) {
 
 /* 80130654-80130700 12AF94 00AC+00 1/1 0/0 0/0 .text            setWolfHowlNotHappen__9daAlink_cFi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setWolfHowlNotHappen(int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setWolfHowlNotHappen__9daAlink_cFi.s"
+void daAlink_c::setWolfHowlNotHappen(int param_0) {
+    mMsgClassID = -1;
+
+    if (field_0x3198 == 0xEE) {
+        field_0x32cc = 0x532;
+    } else {
+        field_0x32cc = 0x535;
+    }
+
+    mCommonCounter = 0;
+
+    if (!checkUnderMove0BckNoArcWolf(WANM_HOWL_END)) {
+        if (param_0 != 0) {
+            setSingleAnimeWolfBaseSpeed(WANM_WAIT_SIT, daAlinkHIO_wlLie_c0::m.field_0x44, daAlinkHIO_wlLie_c0::m.field_0x48);
+        } else {
+            setSingleAnimeWolfBase(WANM_SERVICE_WAIT_D);
+        }
+    }
 }
-#pragma pop
 
 /* 80130700-80130BC4 12B040 04C4+00 1/1 0/0 0/0 .text            procWolfHowlDemoInit__9daAlink_cFv
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfHowlDemoInit() {
+asm int daAlink_c::procWolfHowlDemoInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfHowlDemoInit__9daAlink_cFv.s"
 }
@@ -1062,7 +1393,7 @@ asm void daAlink_c::procWolfHowlDemoInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfHowlDemo() {
+asm int daAlink_c::procWolfHowlDemo() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfHowlDemo__9daAlink_cFv.s"
 }
@@ -1080,38 +1411,16 @@ asm void daObj_Sekizoa_c::setWolfHowling() {
 #pragma pop
 
 /* 80131408-80131450 12BD48 0048+00 1/0 0/0 0/0 .text            checkWolfRope__9daAlink_cFv */
-#ifdef NONMATCHING
-bool daAlink_c::checkWolfRope() {
-    bool ret = false;
-    bool bvar1 = false;
-
-    if (i_checkModeFlg(MODE_UNK_20000) && field_0x280c.getActor() != NULL) {
-        bvar1 = true;
-    }
-
-    // actor is Crope
-    if (bvar1 && fopAcM_GetName(field_0x280c.getActor()) == 0x2BE) {
-        ret = true;
-    }
-    return ret;
+BOOL daAlink_c::checkWolfRope() {
+    return i_checkModeFlg(0x20000) && field_0x280c.getActor() != NULL && fopAcM_GetName(field_0x280c.getActor()) == PROC_Obj_Crope;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool daAlink_c::checkWolfRope() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkWolfRope__9daAlink_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80131450-80131628 12BD90 01D8+00 2/2 0/0 0/0 .text
  * checkWolfRopeHit__9daAlink_cCFP12dCcD_GObjInfPC4cXyzi        */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkWolfRopeHit(dCcD_GObjInf* param_0, cXyz const* param_1,
+asm fopAc_ac_c* daAlink_c::checkWolfRopeHit(dCcD_GObjInf* param_0, cXyz const* param_1,
                                      int param_2) const {
     nofralloc
 #include "asm/d/a/d_a_alink/checkWolfRopeHit__9daAlink_cCFP12dCcD_GObjInfPC4cXyzi.s"
@@ -1120,45 +1429,71 @@ asm void daAlink_c::checkWolfRopeHit(dCcD_GObjInf* param_0, cXyz const* param_1,
 
 /* 80131628-801316A4 12BF68 007C+00 2/2 0/0 0/0 .text            checkWolfRopeJumpHang__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkWolfRopeJumpHang() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkWolfRopeJumpHang__9daAlink_cFv.s"
+int daAlink_c::checkWolfRopeJumpHang() {
+    fopAc_ac_c* hit_actor = checkWolfRopeHit(&field_0x850[0], &current.pos, 1);
+    if (hit_actor == NULL) {
+        hit_actor = checkWolfRopeHit(&field_0xFB8, &current.pos, 1);
+    }
+
+    if (hit_actor != NULL) {
+        field_0x280c.setData(hit_actor);
+        return procWolfRopeHangInit(4);
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 801316A4-80131718 12BFE4 0074+00 1/1 0/0 0/0 .text            getWolfRopeMoveSpeed__9daAlink_cFv
  */
+// matches with literals
+#ifdef NONMATCHING
+f32 daAlink_c::getWolfRopeMoveSpeed() {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+    f32 frame = frameCtrl->getFrame();
+
+    if (frame >= 13.5f) {
+        frame -= 13.5f;
+    }
+
+    return daAlinkHIO_wlRope_c0::m.field_0x24 * frameCtrl->getRate() * cM_fsin(0.2327106f * frame);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getWolfRopeMoveSpeed() {
+asm f32 daAlink_c::getWolfRopeMoveSpeed() {
     nofralloc
 #include "asm/d/a/d_a_alink/getWolfRopeMoveSpeed__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80131718-801319F0 12C058 02D8+00 6/6 0/0 0/0 .text            setWolfRopePosY__9daAlink_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::setWolfRopePosY() {
+asm int daAlink_c::setWolfRopePosY() {
     nofralloc
 #include "asm/d/a/d_a_alink/setWolfRopePosY__9daAlink_cFv.s"
 }
 #pragma pop
 
 /* 801319F0-80131A6C 12C330 007C+00 5/5 0/0 0/0 .text initWolfRopeShapeAngle__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::initWolfRopeShapeAngle() {
-    nofralloc
-#include "asm/d/a/d_a_alink/initWolfRopeShapeAngle__9daAlink_cFv.s"
+s16 daAlink_c::initWolfRopeShapeAngle() {
+    fopAc_ac_c* actor = field_0x280c.getActor();
+    int a = abs((s16)(actor->shape_angle.y - shape_angle.y));
+
+    s16 angle;
+    if (a < 0x4000) {
+        shape_angle.y = actor->shape_angle.y;
+        angle = actor->shape_angle.x;
+    } else {
+        shape_angle.y = actor->shape_angle.y - -0x8000;
+        angle = -actor->shape_angle.x;
+    }
+
+    return angle;
 }
-#pragma pop
 
 /* 80131A6C-80131AFC 12C3AC 0090+00 5/5 0/0 0/0 .text            wolfRopeSwingInc__9daAlink_cFf */
 #pragma push
@@ -1182,21 +1517,30 @@ asm void daAlink_c::setWolfRopeOffsetY(int param_0) {
 
 /* 80131C00-80131C74 12C540 0074+00 2/2 0/0 0/0 .text            getDirectionRopeMove__9daAlink_cCFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getDirectionRopeMove() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/getDirectionRopeMove__9daAlink_cCFv.s"
+int daAlink_c::getDirectionRopeMove() const {
+    s16 angle = field_0x2fe2 - shape_angle.y;
+
+    if (abs(angle) > 0x5000) {
+        return DIR_BACKWARD;
+    }
+
+    if (angle >= 0x3000) {
+        return DIR_LEFT;
+    }
+
+    if (angle <= -0x3000) {
+        return DIR_RIGHT;
+    }
+
+    return DIR_FORWARD;
 }
-#pragma pop
 
 /* 80131C74-80131DA0 12C5B4 012C+00 5/5 0/0 0/0 .text            procWolfRopeMoveInit__9daAlink_cFii
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfRopeMoveInit(int param_0, int param_1) {
+asm int daAlink_c::procWolfRopeMoveInit(int param_0, int param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfRopeMoveInit__9daAlink_cFii.s"
 }
@@ -1206,7 +1550,7 @@ asm void daAlink_c::procWolfRopeMoveInit(int param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfRopeMove() {
+asm int daAlink_c::procWolfRopeMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfRopeMove__9daAlink_cFv.s"
 }
@@ -1217,7 +1561,7 @@ asm void daAlink_c::procWolfRopeMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfRopeHangInit(int param_0) {
+asm int daAlink_c::procWolfRopeHangInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfRopeHangInit__9daAlink_cFi.s"
 }
@@ -1227,7 +1571,7 @@ asm void daAlink_c::procWolfRopeHangInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfRopeHang() {
+asm int daAlink_c::procWolfRopeHang() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfRopeHang__9daAlink_cFv.s"
 }
@@ -1238,7 +1582,7 @@ asm void daAlink_c::procWolfRopeHang() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfRopeTurnInit() {
+asm int daAlink_c::procWolfRopeTurnInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfRopeTurnInit__9daAlink_cFv.s"
 }
@@ -1248,7 +1592,7 @@ asm void daAlink_c::procWolfRopeTurnInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfRopeTurn() {
+asm int daAlink_c::procWolfRopeTurn() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfRopeTurn__9daAlink_cFv.s"
 }
@@ -1258,7 +1602,7 @@ asm void daAlink_c::procWolfRopeTurn() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfRopeStaggerInit(int param_0) {
+asm int daAlink_c::procWolfRopeStaggerInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfRopeStaggerInit__9daAlink_cFi.s"
 }
@@ -1269,7 +1613,7 @@ asm void daAlink_c::procWolfRopeStaggerInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfRopeStagger() {
+asm int daAlink_c::procWolfRopeStagger() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfRopeStagger__9daAlink_cFv.s"
 }
@@ -1277,20 +1621,37 @@ asm void daAlink_c::procWolfRopeStagger() {
 
 /* 8013384C-80133930 12E18C 00E4+00 1/1 0/0 0/0 .text procWolfRopeSubjectivityInit__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfRopeSubjectivityInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfRopeSubjectivityInit__9daAlink_cFv.s"
+int daAlink_c::procWolfRopeSubjectivityInit() {
+    commonProcInit(PROC_WOLF_ROPE_SUBJECTIVITY);
+
+    if (!checkUnderMove0BckNoArcWolf(WANM_ROPE_WALK)) {
+        setSingleAnimeWolfBaseSpeed(WANM_ROPE_WALK, FLOAT_LABEL(lit_6108), daAlinkHIO_wlRope_c0::m.field_0x20);
+    }
+
+    mCommonCounter = initWolfRopeShapeAngle();
+    current.angle.y = shape_angle.y;
+
+    setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
+
+    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    mSpeed.y = tmp_0;
+    mNormalSpeed = tmp_0;
+
+    setWolfRopeOffsetY(setWolfRopePosY());
+
+    if (checkWolfGrabAnime()) {
+        field_0x30a0 = -0x1800;
+    }
+
+    setSubjectMode();
+    return 1;
 }
-#pragma pop
 
 /* 80133930-80133D6C 12E270 043C+00 1/0 0/0 0/0 .text procWolfRopeSubjectivity__9daAlink_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfRopeSubjectivity() {
+asm int daAlink_c::procWolfRopeSubjectivity() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfRopeSubjectivity__9daAlink_cFv.s"
 }
@@ -1322,7 +1683,7 @@ asm cXyz* daAlink_c::checkMidnaLockJumpPoint() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfTagJumpInit(fopAc_ac_c* param_0) {
+asm int daAlink_c::procWolfTagJumpInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfTagJumpInit__9daAlink_cFP10fopAc_ac_c.s"
 }
@@ -1332,7 +1693,7 @@ asm void daAlink_c::procWolfTagJumpInit(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfTagJump() {
+asm int daAlink_c::procWolfTagJump() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfTagJump__9daAlink_cFv.s"
 }
@@ -1343,7 +1704,7 @@ asm void daAlink_c::procWolfTagJump() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfTagJumpLandInit(fopAc_ac_c* param_0) {
+asm int daAlink_c::procWolfTagJumpLandInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfTagJumpLandInit__9daAlink_cFP10fopAc_ac_c.s"
 }
@@ -1354,21 +1715,22 @@ asm void daAlink_c::procWolfTagJumpLandInit(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfTagJumpLand() {
+asm int daAlink_c::procWolfTagJumpLand() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfTagJumpLand__9daAlink_cFv.s"
 }
 #pragma pop
 
 /* 80135050-801350A4 12F990 0054+00 1/1 0/0 0/0 .text daAlink_searchGiant__FP10fopAc_ac_cPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daAlink_searchGiant(fopAc_ac_c* param_0, void* param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/daAlink_searchGiant__FP10fopAc_ac_cPv.s"
+static fopAc_ac_c* daAlink_searchGiant(fopAc_ac_c* param_0, void* param_1) {
+    cXyz* tmp = static_cast<cXyz*>(param_1);
+
+    if (fopAcM_GetName(param_0) == PROC_OBJ_SEKIZOA && param_0->current.pos.abs2(*tmp) < lit_49124) {
+        return param_0;
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 801350A4-80135160 12F9E4 00BC+00 1/1 0/0 0/0 .text daAlink_searchGiantTalk__FP10fopAc_ac_cPv */
 #pragma push
@@ -1381,35 +1743,43 @@ static asm void daAlink_searchGiantTalk(fopAc_ac_c* param_0, void* param_1) {
 #pragma pop
 
 /* 80135160-801351F8 12FAA0 0098+00 1/1 0/0 0/0 .text procWolfGiantPuzzleInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daAlink_c::procWolfGiantPuzzleInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfGiantPuzzleInit__9daAlink_cFv.s"
+int daAlink_c::procWolfGiantPuzzleInit() {
+    if (!commonProcInitNotSameProc(PROC_WOLF_GIANT_PUZZLE)) {
+        return 0;
+    }
+
+    setBlendWolfMoveAnime(daAlinkHIO_wlMove_c0::m.field_0xBC);
+    current.angle.y = shape_angle.y;
+
+    field_0x2f98 = 4;
+    mCommonCounter = shape_angle.y;
+    field_0x3478 = FLOAT_LABEL(lit_6108);
+    field_0x347c = daAlinkHIO_wlMoveNoP_c0::m.field_0x10;
+    field_0x594 = daAlinkHIO_wlMoveNoP_c0::m.field_0x8;
+    offWolfEyeUp();
+
+    return 1;
 }
-#pragma pop
 
 /* 801351F8-80135458 12FB38 0260+00 1/0 0/0 0/0 .text            procWolfGiantPuzzle__9daAlink_cFv
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfGiantPuzzle() {
+asm int daAlink_c::procWolfGiantPuzzle() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfGiantPuzzle__9daAlink_cFv.s"
 }
 #pragma pop
 
 /* 80135458-801354C8 12FD98 0070+00 2/2 0/0 0/0 .text            setWolfHangGroundY__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setWolfHangGroundY() {
-    nofralloc
-#include "asm/d/a/d_a_alink/setWolfHangGroundY__9daAlink_cFv.s"
+void daAlink_c::setWolfHangGroundY() {
+    cXyz pos;
+    mDoMtx_multVecZero(mpLinkModel->i_getAnmMtx(0), &pos);
+
+    mLinkGndChk.SetPos(&pos);
+    field_0x33d8 = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
 }
-#pragma pop
 
 /* 801354C8-801355EC 12FE08 0124+00 2/2 0/0 0/0 .text            changeWolfHangEndProc__9daAlink_cFv
  */
@@ -1424,30 +1794,47 @@ asm void daAlink_c::changeWolfHangEndProc() {
 
 /* 801355EC-80135668 12FF2C 007C+00 2/2 0/0 0/0 .text            procWolfHangReadyInit__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfHangReadyInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfHangReadyInit__9daAlink_cFv.s"
+int daAlink_c::procWolfHangReadyInit() {
+    commonProcInit(PROC_WOLF_HANG_READY);
+    setSingleAnimeWolf(WANM_VJMP_START,
+                       daAlinkHIO_wlWallHang_c0::m.field_0x0.mSpeed,
+                       daAlinkHIO_wlWallHang_c0::m.field_0x0.mStartFrame,
+                       12,
+                       daAlinkHIO_wlWallHang_c0::m.field_0x0.mInterpolation);
+    field_0x3198 = field_0x2f91;
+    mCommonCounter = field_0x306e + 0x8000;
+
+    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = tmp_0;
+    mSpeed.y = tmp_0;
+
+    return 1;
 }
-#pragma pop
 
 /* 80135668-801356F0 12FFA8 0088+00 1/0 0/0 0/0 .text            procWolfHangReady__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfHangReady() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfHangReady__9daAlink_cFv.s"
+int daAlink_c::procWolfHangReady() {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    cLib_addCalcAngleS(&shape_angle.y, mCommonCounter, 2, 0x1000, 0x400);
+    current.angle.y = shape_angle.y;
+
+    if (frameCtrl->checkAnmEnd()) {
+        shape_angle.y = mCommonCounter;
+        current.angle.y = shape_angle.y;
+
+        if (!procWolfHangWallCatchInit(field_0x3198)) {
+            checkWaitAction();
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 801356F0-80135AF4 130030 0404+00 3/3 0/0 0/0 .text procWolfHangWallCatchInit__9daAlink_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfHangWallCatchInit(int param_0) {
+asm int daAlink_c::procWolfHangWallCatchInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfHangWallCatchInit__9daAlink_cFi.s"
 }
@@ -1458,7 +1845,7 @@ asm void daAlink_c::procWolfHangWallCatchInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfHangWallCatch() {
+asm int daAlink_c::procWolfHangWallCatch() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfHangWallCatch__9daAlink_cFv.s"
 }
@@ -1469,7 +1856,7 @@ asm void daAlink_c::procWolfHangWallCatch() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfHangFallStartInit(cM3dGPla* param_0) {
+asm int daAlink_c::procWolfHangFallStartInit(cM3dGPla* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfHangFallStartInit__9daAlink_cFP8cM3dGPla.s"
 }
@@ -1480,28 +1867,27 @@ asm void daAlink_c::procWolfHangFallStartInit(cM3dGPla* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfHangFallStart() {
+asm int daAlink_c::procWolfHangFallStart() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfHangFallStart__9daAlink_cFv.s"
 }
 #pragma pop
 
 /* 80136064-801360EC 1309A4 0088+00 1/1 0/0 0/0 .text            setWolfHeadDamage__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setWolfHeadDamage() {
-    nofralloc
-#include "asm/d/a/d_a_alink/setWolfHeadDamage__9daAlink_cFv.s"
+void daAlink_c::setWolfHeadDamage() {
+    setUpperAnimeParam(0x2A7, UPPER_2, &daAlinkHIO_wlDamage_c0::m.field_0x0);
+    seStartOnlyReverb(Z2SE_AL_DAMAGE_NORMAL);
+    freeGrabItem();
+    setFacePriTexture(FTANM_UNK_90);
+    voiceStart(Z2SE_WL_V_DAMAGE);
 }
-#pragma pop
 
 /* 801360EC-80136508 130A2C 041C+00 1/1 0/0 0/0 .text
  * procWolfDamageInit__9daAlink_cFP12dCcD_GObjInf               */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfDamageInit(dCcD_GObjInf* param_0) {
+asm int daAlink_c::procWolfDamageInit(dCcD_GObjInf* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfDamageInit__9daAlink_cFP12dCcD_GObjInf.s"
 }
@@ -1511,7 +1897,7 @@ asm void daAlink_c::procWolfDamageInit(dCcD_GObjInf* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfDamage() {
+asm int daAlink_c::procWolfDamage() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfDamage__9daAlink_cFv.s"
 }
@@ -1522,7 +1908,7 @@ asm void daAlink_c::procWolfDamage() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfLargeDamageUpInit(int param_0, int param_1, s16 param_2, s16 param_3) {
+asm int daAlink_c::procWolfLargeDamageUpInit(int param_0, int param_1, s16 param_2, s16 param_3) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfLargeDamageUpInit__9daAlink_cFiiss.s"
 }
@@ -1533,7 +1919,7 @@ asm void daAlink_c::procWolfLargeDamageUpInit(int param_0, int param_1, s16 para
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfLargeDamageUp() {
+asm int daAlink_c::procWolfLargeDamageUp() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfLargeDamageUp__9daAlink_cFv.s"
 }
@@ -1543,21 +1929,34 @@ asm void daAlink_c::procWolfLargeDamageUp() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfLandDamageInit(int param_0) {
+asm int daAlink_c::procWolfLandDamageInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfLandDamageInit__9daAlink_cFi.s"
 }
 #pragma pop
 
 /* 80136DE4-80136EC4 131724 00E0+00 1/0 0/0 0/0 .text            procWolfLandDamage__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfLandDamage() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfLandDamage__9daAlink_cFv.s"
+int daAlink_c::procWolfLandDamage() {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    if (field_0x3198 != 0) {
+        if (frameCtrl->checkAnmEnd()) {
+            checkNextActionWolf(0);
+        } else if (frameCtrl->getFrame() > daAlinkHIO_wlDamFall_c0::m.field_0x14.mCheckFrame) {
+            checkNextActionWolf(1);
+        }
+    } else if (frameCtrl->checkAnmEnd()) {
+        if (field_0x3008 > 0) {
+            field_0x3008--;
+        } else {
+            setSingleAnimeWolfParam(WANM_FALL_LAND_START, &daAlinkHIO_wlDamFall_c0::m.field_0x14);
+            setFaceBasicTexture(FTANM_UNK_96);
+            field_0x3198 = 1;
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80136EC4-80136F54 131804 0090+00 2/2 0/0 0/0 .text setWolfScreamWaitAnime__9daAlink_cFv */
 #pragma push
@@ -1570,34 +1969,60 @@ asm void daAlink_c::setWolfScreamWaitAnime() {
 #pragma pop
 
 /* 80136F54-80136FF8 131894 00A4+00 1/1 0/0 0/0 .text procWolfScreamWaitInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daAlink_c::procWolfScreamWaitInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfScreamWaitInit__9daAlink_cFv.s"
+int daAlink_c::procWolfScreamWaitInit() {
+    commonProcInit(PROC_WOLF_SCREAM_WAIT);
+    if (i_checkEndResetFlg1(ERFLG1_UNK_2)) {
+        setWolfScreamWaitAnime();
+    } else {
+        setSingleAnimeWolfBaseSpeed(WANM_WAIT, daAlinkHIO_wlMoveNoP_c0::m.field_0x14, daAlinkHIO_wlMove_c0::m.field_0xBC);
+        mCommonCounter = 0;
+    }
+
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    field_0x300e = 0;
+    field_0x3588 = l_wolfBaseAnime;
+
+    return 1;
 }
-#pragma pop
 
 /* 80136FF8-801370E4 131938 00EC+00 1/0 0/0 0/0 .text            procWolfScreamWait__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfScreamWait() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfScreamWait__9daAlink_cFv.s"
+int daAlink_c::procWolfScreamWait() {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    if (!i_checkEndResetFlg1(ERFLG1_UNK_1)) {
+        if (field_0x300e != 0) {
+            field_0x2f99 = 5;
+
+            if (frameCtrl->checkAnmEnd()) {
+                checkNextActionWolf(0);
+            } else if (frameCtrl->getFrame() > daAlinkHIO_wlDamLarge_c0::m.field_0x0.mCheckFrame) {
+                checkNextActionWolf(1);
+            }
+        } else {
+            field_0x300e = 1;
+            setSingleAnimeWolf(WANM_DMG_AIR_FRONT_GETUP,
+                               daAlinkHIO_wlDamLarge_c0::m.field_0x0.mSpeed,
+                               lit_8676,
+                               daAlinkHIO_wlDamLarge_c0::m.field_0x0.mEndFrame,
+                               daAlinkHIO_wlDamLarge_c0::m.field_0x0.mInterpolation);
+            field_0x2f99 = 13;
+        }
+    } else if (mCommonCounter == 0 && i_checkEndResetFlg1(ERFLG1_UNK_2)) {
+        setWolfScreamWaitAnime();
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 801370E4-8013712C 131A24 0048+00 3/3 0/0 0/0 .text getWolfLieMoveAnmSpeed__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::getWolfLieMoveAnmSpeed() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getWolfLieMoveAnmSpeed__9daAlink_cFv.s"
+f32 daAlink_c::getWolfLieMoveAnmSpeed() {
+    if (field_0x3198 != 0) {
+        // return getAnmSpeedStickRate(lit_5943, lit_7624); inline doesnt match here?
+        return lit_5943 + (field_0x33a8 * lit_7624);
+    }
+
+    return getAnmSpeedStickRate(daAlinkHIO_wlLie_c0::m.field_0x3C, daAlinkHIO_wlLie_c0::m.field_0x38);
 }
-#pragma pop
 
 /* 8013712C-801371A0 131A6C 0074+00 3/3 0/0 0/0 .text            getWolfLieMoveSpeed__9daAlink_cFv
  */
@@ -1611,14 +2036,12 @@ asm void daAlink_c::getWolfLieMoveSpeed() {
 #pragma pop
 
 /* 801371A0-801371FC 131AE0 005C+00 0/0 0/0 2/2 .text checkMidnaDisappearMode__9daAlink_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkMidnaDisappearMode() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkMidnaDisappearMode__9daAlink_cCFv.s"
+BOOL daAlink_c::checkMidnaDisappearMode() const {
+    return mProcID == PROC_WOLF_DIG_THROUGH ||
+          (i_checkWolf() && i_dComIfGp_checkPlayerStatus0(0, 0x8000000) &&
+          !i_dComIfGp_checkPlayerStatus0(0, 0x10) &&
+          (mTargetedActor == NULL || !(mTargetedActor->mAttentionInfo.mFlags & 0x800000)));
 }
-#pragma pop
 
 /* 801371FC-801372B4 131B3C 00B8+00 3/3 0/0 0/0 .text            checkWolfLieContinue__9daAlink_cFi
  */
@@ -1632,42 +2055,48 @@ asm void daAlink_c::checkWolfLieContinue(int param_0) {
 #pragma pop
 
 /* 801372B4-80137330 131BF4 007C+00 3/3 0/0 0/0 .text checkNextActionWolfFromLie__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkNextActionWolfFromLie() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkNextActionWolfFromLie__9daAlink_cFv.s"
+int daAlink_c::checkNextActionWolfFromLie() {
+    if (checkNextActionWolf(0)) {
+        if (field_0x2f8c == 1 || field_0x2f8c == 2 || field_0x2f8c == 3) {
+            field_0x2060->initOldFrameMorf(daAlinkHIO_wlLie_c0::m.field_0x30, 0, 40);
+        }
+        return 1;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 80137330-801373F8 131C70 00C8+00 3/3 0/0 0/0 .text            setWolfLieMoveVoice__9daAlink_cFi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setWolfLieMoveVoice(int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setWolfLieMoveVoice__9daAlink_cFi.s"
+void daAlink_c::setWolfLieMoveVoice(int param_0) {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    if (frameCtrl->getRate() == FLOAT_LABEL(lit_6108) && field_0x3012 != 0) {
+        field_0x3012--;
+    }
+
+    if ((param_0 != 0 && (frameCtrl->checkPass(lit_17382) || frameCtrl->checkPass(lit_7451))) ||
+        (frameCtrl->getRate() == FLOAT_LABEL(lit_6108) && field_0x3012 == 0)) {
+        voiceStart(Z2SE_WL_V_BREATH_WALK);
+        field_0x3012 = 30;
+    }
 }
-#pragma pop
 
 /* 801373F8-80137420 131D38 0028+00 2/2 0/0 0/0 .text            checkWolfLieCode__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkWolfLieCode() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkWolfLieCode__9daAlink_cFv.s"
+bool daAlink_c::checkWolfLieCode() {
+    if (mLinkAcch.ChkGroundHit() && field_0x2fa8 == 4) {
+        return true;
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 80137420-8013753C 131D60 011C+00 2/2 0/0 0/0 .text            procWolfLieStartInit__9daAlink_cFi
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfLieStartInit(int param_0) {
+asm int daAlink_c::procWolfLieStartInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfLieStartInit__9daAlink_cFi.s"
 }
@@ -1677,7 +2106,7 @@ asm void daAlink_c::procWolfLieStartInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfLieStart() {
+asm int daAlink_c::procWolfLieStart() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfLieStart__9daAlink_cFv.s"
 }
@@ -1688,7 +2117,7 @@ asm void daAlink_c::procWolfLieStart() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfLieMoveInit(int param_0) {
+asm int daAlink_c::procWolfLieMoveInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfLieMoveInit__9daAlink_cFi.s"
 }
@@ -1698,7 +2127,7 @@ asm void daAlink_c::procWolfLieMoveInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfLieMove() {
+asm int daAlink_c::procWolfLieMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfLieMove__9daAlink_cFv.s"
 }
@@ -1709,7 +2138,7 @@ asm void daAlink_c::procWolfLieMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfLieAutoMoveInit(int param_0, cXyz* param_1) {
+asm int daAlink_c::procWolfLieAutoMoveInit(int param_0, cXyz* param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfLieAutoMoveInit__9daAlink_cFiP4cXyz.s"
 }
@@ -1720,7 +2149,7 @@ asm void daAlink_c::procWolfLieAutoMoveInit(int param_0, cXyz* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfLieAutoMove() {
+asm int daAlink_c::procWolfLieAutoMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfLieAutoMove__9daAlink_cFv.s"
 }
@@ -1740,7 +2169,7 @@ asm void daAlink_c::setSpeedAndAngleSwimWolf() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getWolfSwimMoveAnmSpeed() {
+asm f32 daAlink_c::getWolfSwimMoveAnmSpeed() {
     nofralloc
 #include "asm/d/a/d_a_alink/getWolfSwimMoveAnmSpeed__9daAlink_cFv.s"
 }
@@ -1750,7 +2179,7 @@ asm void daAlink_c::getWolfSwimMoveAnmSpeed() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::decideDoStatusSwimWolf() {
+asm int daAlink_c::decideDoStatusSwimWolf() {
     nofralloc
 #include "asm/d/a/d_a_alink/decideDoStatusSwimWolf__9daAlink_cFv.s"
 }
@@ -1760,59 +2189,90 @@ asm void daAlink_c::decideDoStatusSwimWolf() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfSwimUpInit() {
+asm int daAlink_c::procWolfSwimUpInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfSwimUpInit__9daAlink_cFv.s"
 }
 #pragma pop
 
 /* 80138484-8013852C 132DC4 00A8+00 1/0 0/0 0/0 .text            procWolfSwimUp__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfSwimUp() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfSwimUp__9daAlink_cFv.s"
+int daAlink_c::procWolfSwimUp() {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+    setNormalSpeedF(FLOAT_LABEL(lit_6108), daAlinkHIO_wlSwim_c0::m.field_0x54);
+
+    if (frameCtrl->checkAnmEnd()) {
+        procWolfSwimWaitInit(0);
+    } else if (checkInputOnR() && frameCtrl->getFrame() > daAlinkHIO_wlSwim_c0::m.field_0x0.mCheckFrame) {
+        procWolfSwimMoveInit();
+    } else {
+        current.pos.y = mWaterY;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8013852C-80138644 132E6C 0118+00 7/7 0/0 0/0 .text            procWolfSwimWaitInit__9daAlink_cFi
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfSwimWaitInit(int param_0) {
+asm int daAlink_c::procWolfSwimWaitInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfSwimWaitInit__9daAlink_cFi.s"
 }
 #pragma pop
 
 /* 80138644-8013871C 132F84 00D8+00 1/0 0/0 0/0 .text            procWolfSwimWait__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfSwimWait() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfSwimWait__9daAlink_cFv.s"
+int daAlink_c::procWolfSwimWait() {
+    if (mDemo.getDemoMode() == 6 || mDemo.getDemoMode() == 8) {
+        setShapeAngleToTalkActor();
+        current.angle.y = shape_angle.y;
+    }
+
+    setSpeedAndAngleSwimWolf();
+    setSwimUpDownOffset();
+
+    if (checkWolfDashMode()) {
+        mUnderFrameCtrl[0].setRate(daAlinkHIO_wlSwim_c0::m.field_0x64);
+    } else {
+        mUnderFrameCtrl[0].setRate(daAlinkHIO_wlSwim_c0::m.field_0x88);
+    }
+
+    if (checkSwimUpAction()) {
+        return 1;
+    }
+
+    if (decideDoStatusSwimWolf()) {
+        return 1;
+    }
+
+    if (checkInputOnR()) {
+        procWolfSwimMoveInit();
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8013871C-801387A0 13305C 0084+00 4/4 0/0 0/0 .text            procWolfSwimMoveInit__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfSwimMoveInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfSwimMoveInit__9daAlink_cFv.s"
+int daAlink_c::procWolfSwimMoveInit() {
+    commonProcInit(PROC_WOLF_SWIM_MOVE);
+    setSingleAnimeWolfBaseSpeed(WANM_SWIM, getWolfSwimMoveAnmSpeed(), daAlinkHIO_wlSwim_c0::m.field_0x78);
+
+    if (i_checkNoResetFlg0(FLG0_UNK_100)) {
+        current.pos.y = mWaterY;
+        mSpeed.y = FLOAT_LABEL(lit_6108);
+    }
+
+    dComIfGp_setPlayerStatus0(0, 0x100000);
+    return 1;
 }
-#pragma pop
 
 /* 801387A0-8013890C 1330E0 016C+00 1/0 0/0 0/0 .text            procWolfSwimMove__9daAlink_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfSwimMove() {
+asm int daAlink_c::procWolfSwimMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfSwimMove__9daAlink_cFv.s"
 }
@@ -1822,7 +2282,7 @@ asm void daAlink_c::procWolfSwimMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfSwimEndWaitInit(int param_0) {
+asm int daAlink_c::procWolfSwimEndWaitInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfSwimEndWaitInit__9daAlink_cFi.s"
 }
@@ -1833,7 +2293,7 @@ asm void daAlink_c::procWolfSwimEndWaitInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfSwimEndWait() {
+asm int daAlink_c::procWolfSwimEndWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfSwimEndWait__9daAlink_cFv.s"
 }
@@ -1841,35 +2301,42 @@ asm void daAlink_c::procWolfSwimEndWait() {
 
 /* 80138B6C-80138C04 1334AC 0098+00 1/0 0/0 0/0 .text
  * onWolfEnemyBiteAll__9daAlink_cFP10fopAc_ac_cQ29daPy_py_c9daPy_FLG2 */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool daAlink_c::onWolfEnemyBiteAll(fopAc_ac_c* param_0, daPy_py_c::daPy_FLG2 param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/onWolfEnemyBiteAll__9daAlink_cFP10fopAc_ac_cQ29daPy_py_c9daPy_FLG2.s"
+bool daAlink_c::onWolfEnemyBiteAll(fopAc_ac_c* param_0, daPy_py_c::daPy_FLG2 param_1) {
+    if (field_0x281c.getActor() != NULL) {
+        return 0;
+    }
+
+    if (param_1 == 8) {
+        if (mCutType != 0x2C && mCutType != 0x2D && mCutType != 0x31 && mCutType != 0x39 && mCutType != 0x32) {
+            return 0;
+        }
+    } else if (mCutType != 0x39) {
+        return 0;
+    }
+
+    i_onNoResetFlg2(param_1);
+    field_0x281c.setData(param_0);
+
+    return 1;
 }
-#pragma pop
 
 /* 80138C04-80138C44 133544 0040+00 4/4 0/0 0/0 .text            resetWolfEnemyBiteAll__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::resetWolfEnemyBiteAll() {
-    nofralloc
-#include "asm/d/a/d_a_alink/resetWolfEnemyBiteAll__9daAlink_cFv.s"
+void daAlink_c::resetWolfEnemyBiteAll() {
+    field_0x281c.clearData();
+    i_offNoResetFlg2(0x58);
 }
-#pragma pop
 
 /* 80138C44-80138CB8 133584 0074+00 1/1 0/0 0/0 .text checkWolfEnemyThrowAction__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkWolfEnemyThrowAction() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkWolfEnemyThrowAction__9daAlink_cFv.s"
+void daAlink_c::checkWolfEnemyThrowAction() {
+    daPy_frameCtrl_c* frameCtrl = &mUpperFrameCtrl[2];
+
+    if (frameCtrl->checkAnmEnd()) {
+        resetUpperAnime(UPPER_2, lit_6109);
+    } else if (frameCtrl->checkPass(lit_16210)) {
+        resetWolfEnemyBiteAll();
+    }
 }
-#pragma pop
 
 /* 80138CB8-80138DC0 1335F8 0108+00 1/1 0/0 0/0 .text            setWolfLockDomeModel__9daAlink_cFv
  */
@@ -1903,6 +2370,27 @@ asm void daAlink_c::resetWolfBallGrab() {
 #pragma pop
 
 /* 80139048-8013911C 133988 00D4+00 1/1 0/0 0/0 .text            checkWolfLockData__9daAlink_cFv */
+#ifdef NONMATCHING
+void daAlink_c::checkWolfLockData() {
+    for (int i = 0; i < 10; i++) {
+        mWolfLockAcKeep[i].setActor();
+    }
+
+    for (int i = 0; i < mWolfLockNum; i++) {
+        if (mWolfLockAcKeep[i].getActor() == NULL) {
+            int var_r29 = i;
+        
+            for (; var_r29 < mWolfLockNum - 1; var_r29++) {
+                mWolfLockAcKeep[i].setData(mWolfLockAcKeep[i + 1].getActor());
+            }
+
+            mWolfLockAcKeep[var_r29].clearData();
+            mWolfLockNum--;
+            i--;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1911,6 +2399,7 @@ asm void daAlink_c::checkWolfLockData() {
 #include "asm/d/a/d_a_alink/checkWolfLockData__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8013911C-8013916C 133A5C 0050+00 1/0 0/0 0/0 .text checkWolfLock__9daAlink_cCFP10fopAc_ac_c */
 bool daAlink_c::checkWolfLock(fopAc_ac_c* p_actor) const {
@@ -1945,27 +2434,50 @@ fopAc_ac_c* daAlink_c::getWolfLockActorEnd() {
 
 /* 801391E4-801392A8 133B24 00C4+00 1/1 0/0 0/0 .text
  * searchWolfLockEnemy__9daAlink_cFP10fopAc_ac_cPv              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::searchWolfLockEnemy(fopAc_ac_c* param_0, void* param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/searchWolfLockEnemy__9daAlink_cFP10fopAc_ac_cPv.s"
+void daAlink_c::searchWolfLockEnemy(fopAc_ac_c* param_0, void* param_1) {
+    fopAc_ac_c** tmp = (fopAc_ac_c**)param_1;
+
+    for (int i = 0; i < mWolfLockNum; i++) {
+        if (mWolfLockAcKeep[i].getActor() == param_0) {
+            return;
+        }
+    }
+
+    fopEn_enemy_c* enemy = static_cast<fopEn_enemy_c*>(param_0);
+    if (fopAcM_GetGroup(enemy) == 2 && enemy->mAttentionInfo.mFlags & 5 && !enemy->checkWolfNoLock()) {
+        f32 d = current.pos.abs2(enemy->mEyePos);
+
+        if (enemy->mEyePos.y >= current.pos.y - lit_6895 && d < field_0x3478) {
+            field_0x3478 = d;
+            *tmp = param_0;
+        }
+    }
 }
-#pragma pop
 
 /* 801392A8-801392E4 133BE8 003C+00 1/1 0/0 0/0 .text
  * daAlink_searchWolfLockEnemy__FP10fopAc_ac_cPv                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daAlink_searchWolfLockEnemy(fopAc_ac_c* param_0, void* param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/daAlink_searchWolfLockEnemy__FP10fopAc_ac_cPv.s"
+static int daAlink_searchWolfLockEnemy(fopAc_ac_c* param_0, void* param_1) {
+    daAlink_getAlinkActorClass()->searchWolfLockEnemy(param_0, param_1);
+    return 0;
 }
-#pragma pop
 
 /* 801392E4-801393A4 133C24 00C0+00 1/1 0/0 0/0 .text            checkWolfComboCnt__9daAlink_cFv */
+// checkAttentionLock
+#ifdef NONMATCHING
+void daAlink_c::checkWolfComboCnt() {
+    if (!i_dComIfGp_checkPlayerStatus1(0, 0x1000000)) {
+        if (mComboCutCount == 2 && checkAttentionLock() && field_0x10f0.ChkAtHit()) {
+            i_onNoResetFlg0(FLG0_UNK_8000);
+        }
+
+        if (field_0x307e > 0) {
+            field_0x307e--;
+        } else {
+            resetCombo(1);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1974,6 +2486,7 @@ asm void daAlink_c::checkWolfComboCnt() {
 #include "asm/d/a/d_a_alink/checkWolfComboCnt__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801393A4-801395B4 133CE4 0210+00 4/4 0/0 0/0 .text            checkWolfAttackAction__9daAlink_cFv
  */
@@ -1988,25 +2501,43 @@ asm void daAlink_c::checkWolfAttackAction() {
 
 /* 801395B4-80139600 133EF4 004C+00 2/2 0/0 0/0 .text
  * setWolfEnemyThrowUpperAnime__9daAlink_cFQ29daAlink_c12daAlink_WANMf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setWolfEnemyThrowUpperAnime(daAlink_c::daAlink_WANM param_0, f32 param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setWolfEnemyThrowUpperAnime__9daAlink_cFQ29daAlink_c12daAlink_WANMf.s"
+void daAlink_c::setWolfEnemyThrowUpperAnime(daAlink_c::daAlink_WANM i_anmID, f32 param_1) {
+    setUpperAnime(i_anmID == WANM_FLING_LEFT ? (u16)0x2BD : (u16)0x2BE, UPPER_2, daAlinkHIO_wlAtBite_c0::m.field_0x2C, param_1, -1, lit_6041);
 }
-#pragma pop
 
 /* 80139600-801396F8 133F40 00F8+00 2/2 0/0 0/0 .text
  * setWolfEnemyHangBitePos__9daAlink_cFP13fopEn_enemy_c         */
+// matches with literals
+#ifdef NONMATCHING
+BOOL daAlink_c::setWolfEnemyHangBitePos(fopEn_enemy_c* i_enemy) {
+    if (i_enemy != NULL) {
+        current.pos = i_enemy->getDownPos();
+        cXyz old_pos = current.pos;
+
+        current.pos.x -= 60.0f * cM_ssin(shape_angle.y);
+        current.pos.x -= 135.0f;
+        current.pos.x -= 60.0f * cM_scos(shape_angle.y);
+
+        if (commonLineCheck(&field_0x3540, &current.pos)) {
+            current.pos = old_pos;
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::setWolfEnemyHangBitePos(fopEn_enemy_c* param_0) {
+asm BOOL daAlink_c::setWolfEnemyHangBitePos(fopEn_enemy_c* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/setWolfEnemyHangBitePos__9daAlink_cFP13fopEn_enemy_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804256EC-804256F8 05240C 000C+00 0/1 0/0 0/0 .bss             @50952 */
@@ -2016,7 +2547,7 @@ static u8 lit_50952[12];
 #pragma pop
 
 /* 804256F8-80425708 052418 000C+04 1/2 0/0 0/0 .bss             l_wolfBiteHitMarkScale */
-static u8 l_wolfBiteHitMarkScale[12 + 4 /* padding */];
+static Vec l_wolfBiteHitMarkScale;
 
 /* 801396F8-801397A4 134038 00AC+00 1/1 0/0 0/0 .text
  * setWolfBiteDamage__9daAlink_cFP13fopEn_enemy_c               */
@@ -2042,40 +2573,56 @@ asm void daAlink_c::checkWolfLockAttackChargeState() {
 
 /* 801398A8-80139908 1341E8 0060+00 1/1 0/0 0/0 .text procWolfRollAttackChargeInit__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfRollAttackChargeInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfRollAttackChargeInit__9daAlink_cFv.s"
+int daAlink_c::procWolfRollAttackChargeInit() {
+    commonProcInit(PROC_WOLF_ROLL_ATTACK_CHARGE);
+    setSingleAnimeWolfBaseSpeed(WANM_CUT_TURN_CHARGE, FLOAT_LABEL(lit_6108), daAlinkHIO_wlAttack_c0::m.mReadyInterpolation);
+    voiceStartLevel(Z2SE_WL_V_ROAR);
+    return 1;
 }
-#pragma pop
 
 /* 80139908-801399C4 134248 00BC+00 1/0 0/0 0/0 .text procWolfRollAttackCharge__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfRollAttackCharge() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfRollAttackCharge__9daAlink_cFv.s"
+int daAlink_c::procWolfRollAttackCharge() {
+    if (checkWolfGroundSpecialMode()) {
+        return 1;
+    }
+
+    if (!itemButtonCheck(BTN_B)) {
+        checkWolfAttackAction();
+    } else if (field_0x2060->getOldFrameRate() < lit_9054) {
+        procWolfRollAttackMoveInit();
+    } else {
+        cLib_chaseF(&mNormalSpeed, FLOAT_LABEL(lit_6108), daAlinkHIO_wlMoveNoP_c0::m.field_0x10);
+        setShapeAngleToAtnActor(0);
+        current.angle.y = shape_angle.y;
+        voiceStartLevel(Z2SE_WL_V_ROAR);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 801399C4-80139A70 134304 00AC+00 1/1 0/0 0/0 .text procWolfRollAttackMoveInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfRollAttackMoveInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfRollAttackMoveInit__9daAlink_cFv.s"
+int daAlink_c::procWolfRollAttackMoveInit() {
+    commonProcInit(PROC_WOLF_ROLL_ATTACK_MOVE);
+    if (checkZeroSpeedF()) {
+        onModeFlg(1);
+    }
+
+    field_0x3008 = daAlinkHIO_wlAttack_c0::m.mUnkTime;
+    field_0x300a = daAlinkHIO_wlAtLock_c0::m.field_0x28.mEndFrame;
+    field_0x3012 = 30;
+    field_0x3198 = 0;
+    field_0x2fe4 = shape_angle.y;
+    voiceStartLevel(Z2SE_WL_V_ROAR);
+    dComIfGp_setPlayerStatus0(0, 0x40000000);
+
+    return 1;
 }
-#pragma pop
 
 /* 80139A70-80139DE0 1343B0 0370+00 1/0 0/0 0/0 .text procWolfRollAttackMove__9daAlink_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfRollAttackMove() {
+asm int daAlink_c::procWolfRollAttackMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfRollAttackMove__9daAlink_cFv.s"
 }
@@ -2085,7 +2632,7 @@ asm void daAlink_c::procWolfRollAttackMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfJumpAttackInit(int param_0) {
+asm int daAlink_c::procWolfJumpAttackInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfJumpAttackInit__9daAlink_cFi.s"
 }
@@ -2095,38 +2642,44 @@ asm void daAlink_c::procWolfJumpAttackInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfJumpAttack() {
+asm int daAlink_c::procWolfJumpAttack() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfJumpAttack__9daAlink_cFv.s"
 }
 #pragma pop
 
 /* 8013A7EC-8013A8A0 13512C 00B4+00 2/2 0/0 0/0 .text procWolfJumpAttackKickInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfJumpAttackKickInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfJumpAttackKickInit__9daAlink_cFv.s"
+int daAlink_c::procWolfJumpAttackKickInit() {
+    commonProcInit(PROC_WOLF_JUMP_AT_KICK);
+    setSingleAnimeWolfParam(WANM_JUMP_KICK, &daAlinkHIO_wlAtCjump_c0::m.field_0x14);
+
+    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    mSpeed.y = tmp_0;
+    mNormalSpeed = tmp_0;
+    setSpecialGravity(tmp_0, mMaxFallSpeed, 0);
+
+    voiceStart(Z2SE_WL_V_ATTACK_S);
+    seStartOnlyReverb(Z2SE_WOLFATTACK_WIND_S);
+    dComIfGp_setPlayerStatus1(0, 0x200000);
+    return 1;
 }
-#pragma pop
 
 /* 8013A8A0-8013A8FC 1351E0 005C+00 1/0 0/0 0/0 .text procWolfJumpAttackKick__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfJumpAttackKick() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfJumpAttackKick__9daAlink_cFv.s"
+int daAlink_c::procWolfJumpAttackKick() {
+    if (mUnderFrameCtrl[0].checkAnmEnd()) {
+        procWolfBackJumpInit(2);
+        dComIfGp_setPlayerStatus1(0, 0x200000);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8013A8FC-8013AAC4 13523C 01C8+00 2/2 0/0 0/0 .text
  * procWolfJumpAttackSlideLandInit__9daAlink_cFiii              */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfJumpAttackSlideLandInit(int param_0, int param_1, int param_2) {
+asm int daAlink_c::procWolfJumpAttackSlideLandInit(int param_0, int param_1, int param_2) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfJumpAttackSlideLandInit__9daAlink_cFiii.s"
 }
@@ -2136,7 +2689,7 @@ asm void daAlink_c::procWolfJumpAttackSlideLandInit(int param_0, int param_1, in
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfJumpAttackSlideLand() {
+asm int daAlink_c::procWolfJumpAttackSlideLand() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfJumpAttackSlideLand__9daAlink_cFv.s"
 }
@@ -2144,31 +2697,60 @@ asm void daAlink_c::procWolfJumpAttackSlideLand() {
 
 /* 8013AC44-8013ACF4 135584 00B0+00 1/1 0/0 0/0 .text
  * procWolfJumpAttackNormalLandInit__9daAlink_cFi               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfJumpAttackNormalLandInit(int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfJumpAttackNormalLandInit__9daAlink_cFi.s"
+int daAlink_c::procWolfJumpAttackNormalLandInit(int param_0) {
+    commonProcInit(PROC_WOLF_JUMP_AT_NORMAL_LAND);
+    setSingleAnimeWolfParam(WANM_ATTACK_A_END, &daAlinkHIO_wlAtLand_c0::m.field_0x0);
+    
+    setFootEffectProcType(2);
+    field_0x2f9d = 0x18;
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    field_0x3012 = 0;
+    mCommonCounter = param_0;
+    field_0x2f99 = 12;
+    field_0x307e = daAlinkHIO_wlAttack_c0::m.mComboDuration;
+
+    if (param_0 != 0) {
+        dComIfGp_setPlayerStatus1(0, 0x200000);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8013ACF4-8013ADF0 135634 00FC+00 1/0 0/0 0/0 .text procWolfJumpAttackNormalLand__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfJumpAttackNormalLand() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfJumpAttackNormalLand__9daAlink_cFv.s"
+int daAlink_c::procWolfJumpAttackNormalLand() {
+    if (checkWolfGroundSpecialMode()) {
+        return 1;
+    }
+
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    field_0x2f99 = 4;
+    cLib_chaseF(&mNormalSpeed, FLOAT_LABEL(lit_6108), daAlinkHIO_wlMoveNoP_c0::m.field_0x10);
+    setComboReserb();
+    checkCutTurnCharge();
+
+    if (frameCtrl->checkAnmEnd()) {
+        checkNextActionWolf(0);
+    } else if (frameCtrl->getFrame() > daAlinkHIO_wlAtLand_c0::m.field_0x0.mCheckFrame) {
+        if (mCommonCounter != 0) {
+            shape_angle.y -= -0x8000;
+            return procWolfJumpAttackInit(3);
+        }
+
+        if (checkNextActionWolf(1)) {
+            return 1;
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8013ADF0-8013AFC0 135730 01D0+00 2/2 0/0 0/0 .text procWolfWaitAttackInit__9daAlink_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfWaitAttackInit(int param_0) {
+asm int daAlink_c::procWolfWaitAttackInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfWaitAttackInit__9daAlink_cFi.s"
 }
@@ -2178,7 +2760,7 @@ asm void daAlink_c::procWolfWaitAttackInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfWaitAttack() {
+asm int daAlink_c::procWolfWaitAttack() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfWaitAttack__9daAlink_cFv.s"
 }
@@ -2188,7 +2770,7 @@ asm void daAlink_c::procWolfWaitAttack() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfRollAttackInit(int param_0, int param_1) {
+asm int daAlink_c::procWolfRollAttackInit(int param_0, int param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfRollAttackInit__9daAlink_cFii.s"
 }
@@ -2198,7 +2780,7 @@ asm void daAlink_c::procWolfRollAttackInit(int param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfRollAttack() {
+asm int daAlink_c::procWolfRollAttack() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfRollAttack__9daAlink_cFv.s"
 }
@@ -2208,7 +2790,7 @@ asm void daAlink_c::procWolfRollAttack() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfDownAttackInit() {
+asm int daAlink_c::procWolfDownAttackInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfDownAttackInit__9daAlink_cFv.s"
 }
@@ -2218,7 +2800,7 @@ asm void daAlink_c::procWolfDownAttackInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfDownAttack() {
+asm int daAlink_c::procWolfDownAttack() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfDownAttack__9daAlink_cFv.s"
 }
@@ -2229,7 +2811,7 @@ asm void daAlink_c::procWolfDownAttack() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfDownAtLandInit(fopEn_enemy_c* param_0) {
+asm int daAlink_c::procWolfDownAtLandInit(fopEn_enemy_c* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfDownAtLandInit__9daAlink_cFP13fopEn_enemy_c.s"
 }
@@ -2239,7 +2821,7 @@ asm void daAlink_c::procWolfDownAtLandInit(fopEn_enemy_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfDownAtLand() {
+asm int daAlink_c::procWolfDownAtLand() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfDownAtLand__9daAlink_cFv.s"
 }
@@ -2249,27 +2831,39 @@ asm void daAlink_c::procWolfDownAtLand() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfDownAtMissLandInit() {
+asm int daAlink_c::procWolfDownAtMissLandInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfDownAtMissLandInit__9daAlink_cFv.s"
 }
 #pragma pop
 
 /* 8013BD54-8013BE24 136694 00D0+00 1/0 0/0 0/0 .text procWolfDownAtMissLand__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfDownAtMissLand() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfDownAtMissLand__9daAlink_cFv.s"
+int daAlink_c::procWolfDownAtMissLand() {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    if (checkWolfGroundSpecialMode()) {
+        return 1;
+    }
+
+    field_0x2f99 = 4;
+
+    if (frameCtrl->checkAnmEnd()) {
+        checkNextActionWolf(0);
+    } else if (frameCtrl->getFrame() > daAlinkHIO_wlAtDown_c0::m.field_0x64.mCheckFrame) {
+        checkNextActionWolf(1);
+    } else if (frameCtrl->getFrame() >= lit_6109 && frameCtrl->getFrame() < lit_8783) {
+        seStartMapInfoLevel(Z2SE_FN_WOLF_SLIP);
+        field_0x2f9d = 0x18;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8013BE24-8013C3E4 136764 05C0+00 2/2 0/0 0/0 .text procWolfLockAttackInit__9daAlink_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfLockAttackInit(int param_0) {
+asm int daAlink_c::procWolfLockAttackInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfLockAttackInit__9daAlink_cFi.s"
 }
@@ -2279,7 +2873,7 @@ asm void daAlink_c::procWolfLockAttackInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfLockAttack() {
+asm int daAlink_c::procWolfLockAttack() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfLockAttack__9daAlink_cFv.s"
 }
@@ -2289,7 +2883,7 @@ asm void daAlink_c::procWolfLockAttack() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfLockAttackTurnInit(int param_0) {
+asm int daAlink_c::procWolfLockAttackTurnInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfLockAttackTurnInit__9daAlink_cFi.s"
 }
@@ -2299,7 +2893,7 @@ asm void daAlink_c::procWolfLockAttackTurnInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfLockAttackTurn() {
+asm int daAlink_c::procWolfLockAttackTurn() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfLockAttackTurn__9daAlink_cFv.s"
 }
@@ -2309,7 +2903,7 @@ asm void daAlink_c::procWolfLockAttackTurn() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfAttackReverseInit() {
+asm int daAlink_c::procWolfAttackReverseInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfAttackReverseInit__9daAlink_cFv.s"
 }
@@ -2320,7 +2914,7 @@ asm void daAlink_c::procWolfAttackReverseInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfAttackReverse() {
+asm int daAlink_c::procWolfAttackReverse() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfAttackReverse__9daAlink_cFv.s"
 }
@@ -2330,38 +2924,64 @@ asm void daAlink_c::procWolfAttackReverse() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfEnemyThrowInit(int param_0) {
+asm int daAlink_c::procWolfEnemyThrowInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfEnemyThrowInit__9daAlink_cFi.s"
 }
 #pragma pop
 
 /* 8013CC5C-8013CCF4 13759C 0098+00 1/0 0/0 0/0 .text            procWolfEnemyThrow__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfEnemyThrow() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfEnemyThrow__9daAlink_cFv.s"
+int daAlink_c::procWolfEnemyThrow() {
+    if (checkWolfGroundSpecialMode()) {
+        return 1;
+    }
+
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+    field_0x2f99 = 5;
+
+    if (frameCtrl->checkAnmEnd()) {
+        checkNextActionWolf(0);
+    } else if (frameCtrl->getFrame() > daAlinkHIO_wlAtBite_c0::m.field_0x34) {
+        checkNextActionWolf(1);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8013CCF4-8013CDEC 137634 00F8+00 1/1 0/0 0/0 .text procWolfEnemyHangBiteInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfEnemyHangBiteInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfEnemyHangBiteInit__9daAlink_cFv.s"
+int daAlink_c::procWolfEnemyHangBiteInit() {
+    commonProcInit(PROC_WOLF_ENEMY_HANG_BITE);
+    setSingleAnimeWolfParam(WANM_CATCH_START, &daAlinkHIO_wlAtBite_c0::m.field_0x14);
+
+    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = tmp_0;
+    mSpeed.y = tmp_0;
+    setSpecialGravity(tmp_0, mMaxFallSpeed, 0);
+
+    if (!setWolfEnemyHangBitePos((fopEn_enemy_c*)field_0x281c.getActor())) {
+        return procWolfJumpAttackKickInit();
+    } else {
+        current.angle.y = shape_angle.y;
+        field_0x2f99 = 0x50;
+        field_0x3008 = daAlinkHIO_wlAtBite_c0::m.field_0x28;
+        field_0x300a = 0;
+        mCommonCounter = 0;
+        field_0x300e = 0;
+        field_0x3478 = daAlinkHIO_wlAtBite_c0::m.field_0x40;
+        field_0x3010 = shape_angle.y;
+        voiceStart(Z2SE_WL_V_BITE_ATTACK);
+        dComIfGp_setPlayerStatus1(0, 0x200000);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8013CDEC-8013D0D4 13772C 02E8+00 1/0 0/0 0/0 .text            procWolfEnemyHangBite__9daAlink_cFv
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfEnemyHangBite() {
+asm int daAlink_c::procWolfEnemyHangBite() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfEnemyHangBite__9daAlink_cFv.s"
 }
@@ -2371,7 +2991,7 @@ asm void daAlink_c::procWolfEnemyHangBite() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfGrabUpInit() {
+asm int daAlink_c::procWolfGrabUpInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfGrabUpInit__9daAlink_cFv.s"
 }
@@ -2381,7 +3001,7 @@ asm void daAlink_c::procWolfGrabUpInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfGrabUp() {
+asm int daAlink_c::procWolfGrabUp() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfGrabUp__9daAlink_cFv.s"
 }
@@ -2389,20 +3009,33 @@ asm void daAlink_c::procWolfGrabUp() {
 
 /* 8013D588-8013D65C 137EC8 00D4+00 2/2 0/0 0/0 .text            procWolfGrabPutInit__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfGrabPutInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfGrabPutInit__9daAlink_cFv.s"
+int daAlink_c::procWolfGrabPutInit() {
+    if (mProcID == PROC_WOLF_GRAB_PUT) {
+        return 0;
+    }
+
+    BOOL grab_obj = checkWolfGrabAnimeObj();
+    commonProcInit(PROC_WOLF_GRAB_PUT);
+
+    if (grab_obj) {
+        setSingleAnimeWolfParam(WANM_PICKUP_A, &daAlinkHIO_wlGrab_c0::m.field_0x14);
+        field_0x3478 = lit_7625;
+        field_0x347c = daAlinkHIO_wlGrab_c0::m.field_0x14.mCheckFrame;
+    } else {
+        setSingleAnimeWolfParam(WANM_PICKUP_B, &daAlinkHIO_wlGrab_c0::m.field_0x3C);
+        field_0x3478 = lit_8502;
+        field_0x347c = daAlinkHIO_wlGrab_c0::m.field_0x3C.mCheckFrame;
+    }
+
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    return 1;
 }
-#pragma pop
 
 /* 8013D65C-8013D818 137F9C 01BC+00 1/0 0/0 0/0 .text            procWolfGrabPut__9daAlink_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfGrabPut() {
+asm int daAlink_c::procWolfGrabPut() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfGrabPut__9daAlink_cFv.s"
 }
@@ -2410,71 +3043,118 @@ asm void daAlink_c::procWolfGrabPut() {
 
 /* 8013D818-8013D86C 138158 0054+00 1/1 0/0 0/0 .text            procWolfGrabThrowInit__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfGrabThrowInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfGrabThrowInit__9daAlink_cFv.s"
+int daAlink_c::procWolfGrabThrowInit() {
+    commonProcInit(PROC_WOLF_GRAB_THROW);
+    setSingleAnimeWolfParam(WANM_PICKUP_THROW, &daAlinkHIO_wlGrab_c0::m.field_0x50);
+    current.angle.y = shape_angle.y;
+
+    return 1;
 }
-#pragma pop
 
 /* 8013D86C-8013D930 1381AC 00C4+00 1/0 0/0 0/0 .text            procWolfGrabThrow__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfGrabThrow() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfGrabThrow__9daAlink_cFv.s"
+int daAlink_c::procWolfGrabThrow() {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    cLib_chaseF(&mNormalSpeed, FLOAT_LABEL(lit_6108), daAlinkHIO_wlMoveNoP_c0::m.field_0x10);
+    setShapeAngleToAtnActor(0);
+    current.angle.y = shape_angle.y;
+
+    if (frameCtrl->checkPass(lit_7625)) {
+        setGrabItemThrow();
+    }
+
+    if (frameCtrl->checkAnmEnd()) {
+        checkNextActionWolf(0);
+    } else if (frameCtrl->getFrame() > daAlinkHIO_wlGrab_c0::m.field_0x50.mCheckFrame) {
+        checkNextActionWolf(1);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8013D930-8013DA8C 138270 015C+00 1/1 0/0 0/0 .text            procWolfPushInit__9daAlink_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfPushInit() {
+asm int daAlink_c::procWolfPushInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfPushInit__9daAlink_cFv.s"
 }
 #pragma pop
 
 /* 8013DA8C-8013DB58 1383CC 00CC+00 1/0 0/0 0/0 .text            procWolfPush__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfPush() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfPush__9daAlink_cFv.s"
+int daAlink_c::procWolfPush() {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    field_0x2f99 = 4;
+
+    if (frameCtrl->checkAnmEnd()) {
+        if (mCommonCounter != 0) {
+            setSingleAnimeWolf(WANM_PUSH_LIGHT, lit_6040, FLOAT_LABEL(lit_6108), field_0x300e, lit_6109);
+            mUnderFrameCtrl[0].setAttribute(0);
+            mCommonCounter = 0;
+        } else {
+            checkNextActionWolf(0);
+        }
+    } else if (mCommonCounter == 0 && frameCtrl->checkPass(lit_52470)) {
+        if (field_0x280c.getActor() != NULL) {
+            fopAcM_setCarryNow(field_0x280c.getActor(), 0);
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8013DB58-8013DB6C 138498 0014+00 1/1 0/0 0/0 .text daAlink_searchEnemyCargo__FP10fopAc_ac_cPv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daAlink_searchEnemyCargo(fopAc_ac_c* param_0, void* param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/daAlink_searchEnemyCargo__FP10fopAc_ac_cPv.s"
+static fopAc_ac_c* daAlink_searchEnemyCargo(fopAc_ac_c* param_0, void*) {
+    if (fopAcM_GetName(param_0) == PROC_E_YC) {
+        return param_0;
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 8013DB6C-8013DC5C 1384AC 00F0+00 3/2 0/0 0/0 .text procWolfCargoCarryInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daAlink_c::procWolfCargoCarryInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfCargoCarryInit__9daAlink_cFv.s"
+int daAlink_c::procWolfCargoCarryInit() {
+    if (!commonProcInitNotSameProc(PROC_WOLF_CARGO_CARRY)) {
+        return 1;
+    }
+
+    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = tmp_0;
+    mSpeed.y = tmp_0;
+    setSpecialGravity(tmp_0, mMaxFallSpeed, 0);
+
+    daAlink_WANM wanm;
+    if (checkCargoCarry()) {
+        mCommonCounter = 1;
+        wanm = WANM_WAIT_KARGOROK;
+    } else {
+        mCommonCounter = 0;
+        
+        fopAc_ac_c* cargo_actor = (fopAc_ac_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchEnemyCargo, NULL);
+        if (cargo_actor != NULL) {
+            field_0x280c.setData(cargo_actor);
+        }
+
+        wanm = WANM_CATCH_KARGOROK;
+    }
+
+    if (!dComIfGp_evmng_checkStartDemo()) {
+        voiceStart(Z2SE_WL_V_CATCHED);
+    }
+
+    setSingleAnimeWolfBase(wanm);
+
+    return 1;
 }
-#pragma pop
 
 /* 8013DC5C-8013DDF8 13859C 019C+00 1/0 0/0 0/0 .text            procWolfCargoCarry__9daAlink_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfCargoCarry() {
+asm int daAlink_c::procWolfCargoCarry() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfCargoCarry__9daAlink_cFv.s"
 }
@@ -2482,30 +3162,47 @@ asm void daAlink_c::procWolfCargoCarry() {
 
 /* 8013DDF8-8013DE70 138738 0078+00 1/1 0/0 0/0 .text            procWolfChainUpInit__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfChainUpInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfChainUpInit__9daAlink_cFv.s"
+int daAlink_c::procWolfChainUpInit() {
+    field_0x2fa3 = searchFmChainPos();
+
+    if (field_0x2fa3 == 0) {
+        return procWolfWaitInit();
+    }
+
+    commonProcInit(PROC_WOLF_CHAIN_UP);
+    setSingleAnimeWolfParam(WANM_PICKUP_B, &daAlinkHIO_wlGrab_c0::m.field_0x28);
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+
+    return 1;
 }
-#pragma pop
 
 /* 8013DE70-8013DF30 1387B0 00C0+00 1/0 0/0 0/0 .text            procWolfChainUp__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfChainUp() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfChainUp__9daAlink_cFv.s"
+int daAlink_c::procWolfChainUp() {
+    daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
+
+    setWallGrabStatus(0x96, 2);
+    
+    if (frameCtrl->checkAnmEnd() || (checkInputOnR() && frameCtrl->getFrame() > daAlinkHIO_wlGrab_c0::m.field_0x28.mCheckFrame)) {
+        u8 old_2fa3 = field_0x2fa3;
+        fopAc_ac_c* old_actor = field_0x2844.getActor();
+
+        procWolfWaitInit();
+        setUpperAnimeBaseSpeed(m_wlAnmDataTable[WANM_CHAIN_PULL].field_0x0, FLOAT_LABEL(lit_6108), lit_6109);
+
+        if (old_actor != NULL) {
+            field_0x2fa3 = old_2fa3;
+            field_0x2844.setData(old_actor);
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8013DF30-8013E034 138870 0104+00 1/1 0/0 0/0 .text procWolfGanonCatchInit__9daAlink_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfGanonCatchInit() {
+asm int daAlink_c::procWolfGanonCatchInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfGanonCatchInit__9daAlink_cFv.s"
 }
@@ -2515,27 +3212,29 @@ asm void daAlink_c::procWolfGanonCatchInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfGanonCatch() {
+asm int daAlink_c::procWolfGanonCatch() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfGanonCatch__9daAlink_cFv.s"
 }
 #pragma pop
 
 /* 8013E240-8013E2A8 138B80 0068+00 1/1 0/0 0/0 .text procWolfChainReadyInit__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::procWolfChainReadyInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procWolfChainReadyInit__9daAlink_cFv.s"
+int daAlink_c::procWolfChainReadyInit() {
+    commonProcInit(PROC_WOLF_CHAIN_READY);
+    field_0x280c.setData(field_0x27f4);
+    setSingleAnimeWolfParam(WANM_ATTACK_A_START, &daAlinkHIO_wlAtNjump_c0::m.field_0x0);
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mCommonCounter = 0;
+    field_0x300e = 0;
+
+    return 1;
 }
-#pragma pop
 
 /* 8013E2A8-8013E6C0 138BE8 0418+00 1/0 0/0 0/0 .text            procWolfChainReady__9daAlink_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfChainReady() {
+asm int daAlink_c::procWolfChainReady() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfChainReady__9daAlink_cFv.s"
 }
@@ -2546,7 +3245,7 @@ asm void daAlink_c::procWolfChainReady() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfChainWaitInit() {
+asm int daAlink_c::procWolfChainWaitInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfChainWaitInit__9daAlink_cFv.s"
 }
@@ -2556,7 +3255,7 @@ asm void daAlink_c::procWolfChainWaitInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfChainWait() {
+asm int daAlink_c::procWolfChainWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfChainWait__9daAlink_cFv.s"
 }
@@ -2566,7 +3265,7 @@ asm void daAlink_c::procWolfChainWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfDigInit() {
+asm int daAlink_c::procWolfDigInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfDigInit__9daAlink_cFv.s"
 }
@@ -2576,7 +3275,7 @@ asm void daAlink_c::procWolfDigInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfDig() {
+asm int daAlink_c::procWolfDig() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfDig__9daAlink_cFv.s"
 }
@@ -2586,7 +3285,7 @@ asm void daAlink_c::procWolfDig() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfDigThroughInit(int param_0) {
+asm int daAlink_c::procWolfDigThroughInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfDigThroughInit__9daAlink_cFi.s"
 }
@@ -2596,7 +3295,7 @@ asm void daAlink_c::procWolfDigThroughInit(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfDigThrough() {
+asm int daAlink_c::procWolfDigThrough() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfDigThrough__9daAlink_cFv.s"
 }
@@ -2630,7 +3329,7 @@ void daAlink_c::setSmellSave() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfGetSmellInit() {
+asm int daAlink_c::procWolfGetSmellInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfGetSmellInit__9daAlink_cFv.s"
 }
@@ -2640,7 +3339,7 @@ asm void daAlink_c::procWolfGetSmellInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procWolfGetSmell() {
+asm int daAlink_c::procWolfGetSmell() {
     nofralloc
 #include "asm/d/a/d_a_alink/procWolfGetSmell__9daAlink_cFv.s"
 }

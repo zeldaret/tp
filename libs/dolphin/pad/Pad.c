@@ -239,7 +239,7 @@ asm u32 PADInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PADRead(PADStatus* status) {
+asm u32 PADRead(PADStatus* status) {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADRead.s"
 }

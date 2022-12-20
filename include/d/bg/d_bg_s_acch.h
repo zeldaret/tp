@@ -113,6 +113,7 @@ public:
     cXyz* GetPos() { return pm_pos; }
     cXyz* GetOldPos() { return pm_old_pos; }
     f32 GetGroundH() const { return m_ground_h; }
+    f32 GetRoofHeight() const { return m_roof_height; }
     void SetLin() { m_lin.SetStartEnd(*pm_old_pos, *pm_pos); }
     bool ChkGroundFind() { return m_flags & GROUND_FIND; }
     bool ChkGroundHit() { return m_flags & GROUND_HIT; }
@@ -123,6 +124,7 @@ public:
     void SetRoofHit() { m_flags |= ROOF_HIT; }
     bool ChkWallHit() { return m_flags & WALL_HIT; }
     void OffLineCheckHit() { m_flags &= ~LINE_CHECK_HIT; }
+    void OffLineCheck() { m_flags &= ~LINE_CHECK; }
     bool ChkLineCheckNone() { return m_flags & LINE_CHECK_NONE; }
     bool ChkLineCheck() { return m_flags & LINE_CHECK; }
     void ClrRoofHit() { m_flags &= ~ROOF_HIT; }
@@ -204,6 +206,15 @@ public:
     }
 
     /* 80BB336C */ virtual ~dBgS_ObjAcch();
+};
+
+class dBgS_StatueAcch : public dBgS_Acch {
+public:
+    dBgS_StatueAcch() {
+        SetStatue();
+    }
+
+    /* 806646F8 */ virtual ~dBgS_StatueAcch();
 };
 
 #endif /* D_BG_D_BG_S_ACCH_H */

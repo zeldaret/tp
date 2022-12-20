@@ -251,7 +251,7 @@ SECTION_DATA extern void* __vt__10J2DPicture[83 + 1 /* padding */] = {
 /* 802FC050-802FC118 2F6990 00C8+00 0/0 2/2 0/0 .text            __ct__10J2DPictureFv */
 #ifdef NONMATCHING
 J2DPicture::J2DPicture()
-    : field_0x10a(), field_0x12c(NULL), mWhite(), mBlack(), mCornerColor(), field_0x148(),
+    : field_0x10a(), mPalette(NULL), mWhite(), mBlack(), mCornerColor(), field_0x148(),
       field_0x14c() {
     for (int i = 0; i < 2; i++) {
         mTexture[i] = NULL;
@@ -276,7 +276,7 @@ asm J2DPicture::J2DPicture() {
  * __ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP10JKRArchive */
 #ifdef NONMATCHING
 J2DPicture::J2DPicture(J2DPane* p_pane, JSURandomInputStream* p_stream, JKRArchive* p_archive)
-    : field_0x10a(), field_0x12c(NULL), mWhite(), mBlack(), mCornerColor(), field_0x148(),
+    : field_0x10a(), mPalette(NULL), mWhite(), mBlack(), mCornerColor(), field_0x148(),
       field_0x14c() {
     private_readStream(p_pane, p_stream, p_archive);
 }

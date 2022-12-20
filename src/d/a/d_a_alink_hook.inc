@@ -40,18 +40,18 @@ cXyz* daAlink_c::getHookshotTopPos() {
 /* 80108600-80108668 102F40 0068+00 1/0 0/0 0/0 .text checkHookshotReturnMode__9daAlink_cCFv */
 bool daAlink_c::checkHookshotReturnMode() const {
     return checkHookshotItem(mEquipItem) &&
-           (mHookshotMode == 4 || mHookshotMode == 5 || mHookshotMode == 6);
+           (mItemMode == 4 || mItemMode == 5 || mItemMode == 6);
 }
 
 /* 80108668-801086DC 102FA8 0074+00 1/0 0/0 0/0 .text checkHookshotShootReturnMode__9daAlink_cCFv
  */
 bool daAlink_c::checkHookshotShootReturnMode() const {
-    return (checkHookshotItem(mEquipItem) && mHookshotMode == 3) || checkHookshotReturnMode();
+    return (checkHookshotItem(mEquipItem) && mItemMode == 3) || checkHookshotReturnMode();
 }
 
 /* 801086DC-8010871C 10301C 0040+00 6/6 0/0 0/0 .text            resetHookshotMode__9daAlink_cFv */
 void daAlink_c::resetHookshotMode() {
-    mHookshotMode = 0;
+    mItemMode = 0;
     initLockAt();
     mSearchBallScale = __float_max[0];
 }
@@ -150,7 +150,7 @@ BOOL daAlink_c::checkBossOctaIealRoom() {
 /* 80108A18-80108A3C 103358 0024+00 19/19 0/0 0/0 .text            checkHookshotWait__9daAlink_cCFv
  */
 BOOL daAlink_c::checkHookshotWait() const {
-    return mHookshotMode == 0 || mHookshotMode == 1;
+    return mItemMode == 0 || mItemMode == 1;
 }
 
 /* 80108A3C-80108A90 10337C 0054+00 1/1 0/0 0/0 .text            setHookshotCatchNow__9daAlink_cFv
@@ -187,7 +187,7 @@ bool daAlink_c::setHookshotCarryOffset(unsigned int actorID, cXyz const* offset)
 
     fopAc_ac_c* actor = field_0x284c.getActor();
     if (actor != NULL && fopAcM_checkHookCarryNow(actor) && actorID == field_0x284c.getID()) {
-        field_0x37f8 = *offset;
+        mIronBallCenterPos = *offset;
         return true;
     }
 
@@ -231,16 +231,16 @@ void daAlink_c::setHookshotModel() {
     field_0x3020 = 0;
     field_0x3024 = 0;
 
-    field_0x122C[0].SetAtSpl(dCcG_At_Spl_UNK_0);
-    field_0x122C[0].OffAtNoHitMark();
-    field_0x122C[0].SetAtAtp(0);
-    field_0x122C[0].SetR(lit_7808);
-    field_0x122C[0].SetAtSe(8);
-    field_0x122C[0].SetAtType(AT_TYPE_HOOKSHOT);
-    field_0x122C[0].SetAtHitMark(1);
-    field_0x122C[0].OnAtSetBit();
-    field_0x122C[0].SetAtHitCallback(daAlink_hookshotAtHitCallBack);
-    field_0x122C[0].SetAtMtrl(0);
+    mAtCps[0].SetAtSpl(dCcG_At_Spl_UNK_0);
+    mAtCps[0].OffAtNoHitMark();
+    mAtCps[0].SetAtAtp(0);
+    mAtCps[0].SetR(lit_7808);
+    mAtCps[0].SetAtSe(8);
+    mAtCps[0].SetAtType(AT_TYPE_HOOKSHOT);
+    mAtCps[0].SetAtHitMark(1);
+    mAtCps[0].OnAtSetBit();
+    mAtCps[0].SetAtHitCallback(daAlink_hookshotAtHitCallBack);
+    mAtCps[0].SetAtMtrl(0);
     field_0x076c->init(&mHookshotTopPos, 1);
 }
 
@@ -257,9 +257,9 @@ asm void daAlink_c::setHookshotSight() {
 /* 80108EEC-80108F64 10382C 0078+00 1/1 0/0 0/0 .text            cancelHookshotShot__9daAlink_cFv */
 void daAlink_c::cancelHookshotShot() {
     if (checkHookshotItem(mEquipItem) &&
-        (mHookshotMode == 3 || mHookshotMode == 5 || mHookshotMode == 4)) {
+        (mItemMode == 3 || mItemMode == 5 || mItemMode == 4)) {
         if (mProcID != PROC_HOOKSHOT_MOVE && mProcID != PROC_HOOKSHOT_FLY && mProcID != PROC_HOOKSHOT_SUBJECT) {
-            mHookshotMode = 6;
+            mItemMode = 6;
         }
     }
 }
@@ -268,7 +268,7 @@ void daAlink_c::cancelHookshotShot() {
 // checkAttentionLock has weird codegen
 #ifdef NONMATCHING
 bool daAlink_c::cancelHookshotMove() {
-    if (mFastShotTime == 0 && mHookshotMode == 0) {
+    if (mFastShotTime == 0 && mItemMode == 0) {
         if (checkHookshotAnime() &&
             (mTargetedActor == NULL && !i_checkAttentionLock() || !itemButton())) {
             resetUpperAnime(UPPER_2, -1.0f);
@@ -291,24 +291,26 @@ asm bool daAlink_c::cancelHookshotMove() {
 
 /* 8010903C-80109070 10397C 0034+00 2/2 0/0 0/0 .text
  * checkHookshotReadyMaterialOffMode__9daAlink_cCFv             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkHookshotReadyMaterialOffMode() const {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkHookshotReadyMaterialOffMode__9daAlink_cCFv.s"
+BOOL daAlink_c::checkHookshotReadyMaterialOffMode() const {
+    return mProcID == PROC_HOOKSHOT_WALL_SHOOT || mProcID == PROC_HORSE_HOOKSHOT_SUBJECT ||
+           mProcID == PROC_SWIM_HOOKSHOT_SUBJECT || mProcID == PROC_HOOKSHOT_SUBJECT;
 }
-#pragma pop
 
 /* 80109070-801090EC 1039B0 007C+00 5/5 0/0 0/0 .text setHookshotReadyMaterial__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setHookshotReadyMaterial() {
-    nofralloc
-#include "asm/d/a/d_a_alink/setHookshotReadyMaterial__9daAlink_cFv.s"
+void daAlink_c::setHookshotReadyMaterial() {
+    if (i_checkNoResetFlg2(FLG2_UNK_80000) || checkCasualWearFlg()) {
+        mFallVoiceInit = 0;
+    } else if (checkZoraWearFlg()) {
+        field_0x32cc = 0x37B;
+        mFallVoiceInit = 14;
+    } else if (checkMagicArmorWearFlg()) {
+        field_0x32cc = 0xC80;
+        mFallVoiceInit = 13;        
+    } else {
+        field_0x32cc = 0x11C47;
+        mFallVoiceInit = 18;
+    }
 }
-#pragma pop
 
 /* 801090EC-80109170 103A2C 0084+00 8/8 0/0 0/0 .text initHookshotUpperAnimeSpeed__9daAlink_cFi */
 #pragma push
@@ -356,7 +358,7 @@ asm void daAlink_c::checkUpperItemActionHookshot() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkNextActionHookshot() {
+asm int daAlink_c::checkNextActionHookshot() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkNextActionHookshot__9daAlink_cFv.s"
 }
@@ -501,7 +503,7 @@ asm void daAlink_c::commonHookshotWallWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHookshotSubjectInit() {
+asm int daAlink_c::procHookshotSubjectInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHookshotSubjectInit__9daAlink_cFv.s"
 }
@@ -512,7 +514,7 @@ asm void daAlink_c::procHookshotSubjectInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHookshotSubject() {
+asm int daAlink_c::procHookshotSubject() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHookshotSubject__9daAlink_cFv.s"
 }
@@ -523,7 +525,7 @@ asm void daAlink_c::procHookshotSubject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHookshotMoveInit() {
+asm int daAlink_c::procHookshotMoveInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHookshotMoveInit__9daAlink_cFv.s"
 }
@@ -533,7 +535,7 @@ asm void daAlink_c::procHookshotMoveInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHookshotMove() {
+asm int daAlink_c::procHookshotMove() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHookshotMove__9daAlink_cFv.s"
 }
@@ -544,7 +546,7 @@ asm void daAlink_c::procHookshotMove() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHookshotFlyInit() {
+asm int daAlink_c::procHookshotFlyInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHookshotFlyInit__9daAlink_cFv.s"
 }
@@ -554,7 +556,7 @@ asm void daAlink_c::procHookshotFlyInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHookshotFly() {
+asm int daAlink_c::procHookshotFly() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHookshotFly__9daAlink_cFv.s"
 }
@@ -565,7 +567,7 @@ asm void daAlink_c::procHookshotFly() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHookshotRoofWaitInit(int param_0, fopAc_ac_c* param_1, int param_2) {
+asm int daAlink_c::procHookshotRoofWaitInit(int param_0, fopAc_ac_c* param_1, int param_2) {
     nofralloc
 #include "asm/d/a/d_a_alink/procHookshotRoofWaitInit__9daAlink_cFiP10fopAc_ac_ci.s"
 }
@@ -576,7 +578,7 @@ asm void daAlink_c::procHookshotRoofWaitInit(int param_0, fopAc_ac_c* param_1, i
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHookshotRoofWait() {
+asm int daAlink_c::procHookshotRoofWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHookshotRoofWait__9daAlink_cFv.s"
 }
@@ -587,7 +589,7 @@ asm void daAlink_c::procHookshotRoofWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHookshotRoofShootInit(fopAc_ac_c* param_0) {
+asm int daAlink_c::procHookshotRoofShootInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procHookshotRoofShootInit__9daAlink_cFP10fopAc_ac_c.s"
 }
@@ -598,7 +600,7 @@ asm void daAlink_c::procHookshotRoofShootInit(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHookshotRoofShoot() {
+asm int daAlink_c::procHookshotRoofShoot() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHookshotRoofShoot__9daAlink_cFv.s"
 }
@@ -609,7 +611,7 @@ asm void daAlink_c::procHookshotRoofShoot() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHookshotRoofBootsInit(fopAc_ac_c* param_0) {
+asm int daAlink_c::procHookshotRoofBootsInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procHookshotRoofBootsInit__9daAlink_cFP10fopAc_ac_c.s"
 }
@@ -620,7 +622,7 @@ asm void daAlink_c::procHookshotRoofBootsInit(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHookshotRoofBoots() {
+asm int daAlink_c::procHookshotRoofBoots() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHookshotRoofBoots__9daAlink_cFv.s"
 }
@@ -630,7 +632,7 @@ asm void daAlink_c::procHookshotRoofBoots() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHookshotWallWaitInit(int param_0, s16 param_1, int param_2) {
+asm int daAlink_c::procHookshotWallWaitInit(int param_0, s16 param_1, int param_2) {
     nofralloc
 #include "asm/d/a/d_a_alink/procHookshotWallWaitInit__9daAlink_cFisi.s"
 }
@@ -641,7 +643,7 @@ asm void daAlink_c::procHookshotWallWaitInit(int param_0, s16 param_1, int param
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHookshotWallWait() {
+asm int daAlink_c::procHookshotWallWait() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHookshotWallWait__9daAlink_cFv.s"
 }
@@ -651,7 +653,7 @@ asm void daAlink_c::procHookshotWallWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHookshotWallShootInit() {
+asm int daAlink_c::procHookshotWallShootInit() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHookshotWallShootInit__9daAlink_cFv.s"
 }
@@ -662,7 +664,7 @@ asm void daAlink_c::procHookshotWallShootInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::procHookshotWallShoot() {
+asm int daAlink_c::procHookshotWallShoot() {
     nofralloc
 #include "asm/d/a/d_a_alink/procHookshotWallShoot__9daAlink_cFv.s"
 }
