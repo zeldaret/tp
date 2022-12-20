@@ -751,12 +751,16 @@ def remove_unused_asm_cmd(check: bool):
 def remove_unused_asm(check: bool):
     unused_files, error_files = find_unused_asm_files(False, use_progress_bar=not check)
 
-    if not check:
-        for unused_file in unused_files:
+    for unused_file in unused_files:
+        if not check:
             unused_file.unlink()
-            CONSOLE.print(f"removed '{unused_file}'")
+        CONSOLE.print(f"removed '{unused_file}'")
 
-        text = Text("    OK")
+    text = Text("    OK")
+    text.stylize("bold green")
+    CONSOLE.print(text)
+    if check:
+        text = Text("    NOTE: The was just a check run. No files were actually removed.")
         text.stylize("bold green")
         CONSOLE.print(text)
 
@@ -867,14 +871,19 @@ def find_all_asm_files() -> Tuple[Set[Path], Set[Path]]:
             if path.is_dir():
                 recursive(path)
             else:
-                if path.suffix == ".s":
+                if path.suffix == ".s" or path.suffix == ".inc":
                     files.add(path)
                 else:
                     errors.add(path)
 
+    # Check for all .s files in ./asm/
     root = Path("./asm/")
     assert root.exists()
+    recursive(root)
 
+    # check for .inc files in all directories
+    root = Path("./")
+    assert root.exists()
     recursive(root)
 
     LOG.debug(
@@ -942,7 +951,7 @@ def find_all_files() -> Set[Path]:
             if path.is_dir():
                 recursive(path)
             else:
-                if path.suffix == ".cpp" or path.suffix == ".c":
+                if path.suffix == ".cpp" or path.suffix == ".c" or path.suffix == ".inc":
                     files.add(path)
 
     src_root = Path("./src/")
@@ -960,7 +969,7 @@ def find_all_files() -> Set[Path]:
     return files
 
 
-def find_includes(lines: List[str], non_matching: bool, ext: str = ".s") -> Set[Path]:
+def find_includes(lines: List[str], non_matching: bool, ext: Tuple[str, str] = (".s",".inc")) -> Set[Path]:
     includes = set()
     for line in lines:
         key = '#include "'
@@ -975,6 +984,8 @@ def find_includes(lines: List[str], non_matching: bool, ext: str = ".s") -> Set[
 
         include_path = line[start:end]
         if include_path.endswith(ext):
+            if include_path.endswith(".inc"):
+                include_path = "src/"+include_path
             includes.add(Path(include_path))
 
     return includes
@@ -1002,7 +1013,7 @@ def find_used_asm_files(non_matching: bool, use_progress_bar: bool = True) -> Se
                 includes.update(find_includes(file.readlines(), non_matching))
 
     # TODO: NON_MATCHING
-    LOG.debug(f"find_used_asm_files: found {len(includes)} included .s files")
+    LOG.debug(f"find_used_asm_files: found {len(includes)} included .s or .inc files")
 
     return includes
 
