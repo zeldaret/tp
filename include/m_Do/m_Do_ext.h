@@ -244,11 +244,11 @@ public:
     /* 8000FAE8 */ virtual ~mDoExt_morf_c();
 
     void setPlaySpeed(f32 speed) { mFrameCtrl.setRate(speed); }
+    void setFrame(f32 frame) { mFrameCtrl.setFrame((s16)frame); }
     f32 getPlaySpeed() { return mFrameCtrl.getRate(); }
     f32 getFrame() { return mFrameCtrl.getFrame(); }
     u8 getPlayMode() { return mFrameCtrl.getAttribute(); }
     bool isLoop() { return mFrameCtrl.checkState(2); }
-    void setFrame(f32 frame) { mFrameCtrl.setFrame((s16)frame); }
     f32 getEndFrame() { return mFrameCtrl.getEnd(); } 
 
     bool isStop() {
