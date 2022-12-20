@@ -542,7 +542,7 @@ inline dScnKy_env_light_c* i_dKy_getEnvlight() {
     return &g_env_light;
 }
 
-BOOL dKy_darkworld_stage_check(char const*, int);
+u8 dKy_darkworld_stage_check(char const*, int);
 BOOL dKy_withwarp_capture_check();
 bool dKy_darkworld_check();
 void dKy_undwater_filter_draw();

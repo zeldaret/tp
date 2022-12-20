@@ -2393,10 +2393,10 @@ public:
     /* 80108F64 */ bool cancelHookshotMove();
     /* 8010903C */ BOOL checkHookshotReadyMaterialOffMode() const;
     /* 80109070 */ void setHookshotReadyMaterial();
-    /* 801090EC */ void initHookshotUpperAnimeSpeed(int);
+    /* 801090EC */ int initHookshotUpperAnimeSpeed(int);
     /* 80109170 */ void initHookshotReady();
     /* 801091E4 */ void setHookshotReadyAnime();
-    /* 80109284 */ void checkUpperItemActionHookshot();
+    /* 80109284 */ int checkUpperItemActionHookshot();
     /* 801095C8 */ int checkNextActionHookshot();
     /* 801097A0 */ void setHookshotReturnEnd();
     /* 80109890 */ void setHookshotHangMoveBGCollect();
