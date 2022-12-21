@@ -255,7 +255,7 @@ public:
 // PPNT
 struct dStage_dPnt_c {
     /* 0x0 */ int field_0x0;
-    /* 0xC */ cXyz m_position;
+    /* 0x4 */ cXyz m_position;
 };  // Size: 0x10
 
 struct dStage_FloorInfo_c {

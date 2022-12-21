@@ -1836,7 +1836,7 @@ asm void dMsgObject_c::isMsgSend() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::isMouthCheck() {
+asm bool dMsgObject_c::isMouthCheck() {
     nofralloc
 #include "asm/d/msg/d_msg_object/isMouthCheck__12dMsgObject_cFv.s"
 }
