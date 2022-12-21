@@ -4,7 +4,7 @@ Ghidra Setup
 -----
 1. Install [Java 11 64-bit Runtime and Development Kit](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html).
 2. Download Ghidra from [here](https://github.com/NationalSecurityAgency/ghidra/releases).
-3. Open a pull request against [this repo](), adding your desired username and permissions level into users.yaml
+3. Open a pull request against [this repo](https://github.com/zsrtp/tp-ghidra-server), adding your desired username and permissions level into users.yaml
 4. Login using the following server info:  
 
 ```
