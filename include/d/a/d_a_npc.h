@@ -164,14 +164,14 @@ public:
     /* 80146188 */ int chkPassed1(cXyz, int);
     /* 801464D8 */ int chkPassed2(cXyz, cXyz*, int, int);
 
-    inline cXyz* getPntPos(u16 i_idx) {
+    cXyz* getPntPos(u16 i_idx) {
         u16 tmpidx = i_idx;
 
         dStage_dPnt_c* tmppnt = &mpRoomPath->m_points[tmpidx];
         return &tmppnt->m_position;
     }
 
-    inline int chkClose() { 
+    int chkClose() { 
         int roomPath = dPath_ChkClose(mpRoomPath); 
         return roomPath;
     }
@@ -181,7 +181,7 @@ public:
         return path->m_num; 
     }
 
-    inline u16& getIdx() { return mIdx; }
+    u16& getIdx() { return mIdx; }
 };
 
 class mDoExt_McaMorfSO;
@@ -389,11 +389,11 @@ public:
     /* 8014CCE8 */ virtual void changeBtk(int*, int*);
     /* 8014A628 */ virtual void setMotionAnm(int, f32, int);
 
-    inline bool checkHide() { 
+    bool checkHide() { 
         return field_0xe25 || (!dComIfGs_wolfeye_effect_check() && field_0xa89); 
     }
 
-    inline s16 checkStep() {
+    s16 checkStep() {
         return mStepNo == 1;
     }
 
@@ -820,8 +820,8 @@ public:
     /* 80150DE0 */ int getDstPos(cXyz, cXyz&);
     /* 80150EB4 */ void setNextIdxDst(cXyz);
 
-    inline u16& getIdx() { return mIdx; };
-    inline cXyz* getPntPos(); // finish
+    u16& getIdx() { return mIdx; };
+    cXyz* getPntPos(); // finish
 };
 
 class daNpcF_MoveBgActor_c {

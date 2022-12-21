@@ -898,7 +898,7 @@ int daNpcT_Path_c::setNextPathInfo(s8 param_0, u8 i_direction) {
     mDirection = i_direction;
     u16 next_id = mpRoomPath->m_nextID;
 
-    if (next_id != 65535) {
+    if (next_id != 0xFFFF) {
         mpRoomPath = dPath_GetRoomPath(next_id,param_0);
         if (!mpRoomPath) {
             return 0;
@@ -2152,7 +2152,7 @@ int daNpcT_c::ctrlMsgAnm(int* param_0, int* param_1, fopAc_ac_c* param_2, int pa
                 }
 
                 if (talk_partner_conv->isMouthCheck()) {
-                    field_0xd98 &= 0xffffbfff;
+                    field_0xd98 &= ~0x4000;
                 } else {
                     field_0xd98 |= 0x4000;
                 }
@@ -2160,7 +2160,7 @@ int daNpcT_c::ctrlMsgAnm(int* param_0, int* param_1, fopAc_ac_c* param_2, int pa
                 field_0xdb4 = 0x14;
             } else {
                 if (field_0xd98 & 0x4000) {
-                    field_0xd98 &= 0xffffbfff;
+                    field_0xd98 &= ~0x4000;
                 }
                 mSubMtd = (profile_method_class*)-1;
             }

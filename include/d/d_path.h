@@ -15,7 +15,6 @@ struct dPath {
     /* 0x8 */ dStage_dPnt_c* m_points;
 };
 
-// should be move to dlib TU per chn debug
 inline int dPath_ChkClose(dPath* i_path) { return (i_path->m_closed & 1); }
 
 dPath* dPath_GetRoomPath(int path_index, int room_no);
