@@ -560,7 +560,7 @@ SECTION_SDATA2 static u32 lit_4668 = 0xFF8000FF;
 SECTION_SDATA2 static u32 lit_4669 = 0x321400FF;
 
 /* 8015F1A0-8015F2FC 159AE0 015C+00 1/0 1/1 0/0 .text            draw__18daPy_sightPacket_cFv */
-// dumb instruction block out of order
+// matches with literals
 #ifdef NONMATCHING
 void daPy_sightPacket_c::draw() {
     GXTexObj texObj;
@@ -578,9 +578,11 @@ void daPy_sightPacket_c::draw() {
 
     GXSetTevColor(GX_TEVREG0, reg0);
     GXSetTevColor(GX_TEVREG1, reg1);
+    u8 tmp2 = mpImg->mipmapCount;
+    tmp2 = tmp2 > 1;
     GXInitTexObj(&texObj, mpData, mpImg->width, mpImg->height, (GXTexFmt)mpImg->format,
                  (GXTexWrapMode)mpImg->wrapS, (GXTexWrapMode)mpImg->wrapT,
-                 (GXBool)(mpImg->mipmapCount > 1));
+                 (GXBool)(tmp2));
     GXInitTexObjLOD(&texObj, GX_LINEAR, GX_LINEAR, 0.0, 0.0, 0.0, GX_FALSE, GX_FALSE, GX_ANISO_1);
     GXLoadTexObj(&texObj, GX_TEXMAP0);
     GXLoadPosMtxImm(field_0x14, GX_PNMTX0);
