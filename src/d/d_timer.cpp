@@ -903,27 +903,24 @@ void dTimer_show() {
 }
 
 /* 802612EC-80261340 25BC2C 0054+00 0/0 0/0 2/2 .text            dTimer_hide__Fv */
-#ifndef NONMATCHING
 void dTimer_hide() {
     if (dComIfG_getTimerPtr()) {
         dComIfG_getTimerPtr()->hide();
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dTimer_hide() {
-    nofralloc
-#include "asm/d/d_timer/dTimer_hide__Fv.s"
-}
-#pragma pop
-#endif
 
 /* 80261340-80261394 25BC80 0054+00 0/0 0/0 1/1 .text            dTimer_isReadyFlag__Fv */
-#ifdef NONMATCHING
+#ifndef NONMATCHING
 u32 dTimer_isReadyFlag() {
-    
+    u32 ret;
+
+    if (dComIfG_getTimerPtr()) {
+        ret = dComIfG_getTimerPtr()->isReadyFlag();
+    } else {
+        ret = 0;
+    }
+
+    return ret;
 }
 #else
 #pragma push

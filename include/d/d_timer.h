@@ -72,6 +72,8 @@ private:
     /* 0x16A */ u8 field_0x16A;
     /* 0x16B */ u8 field_0x16B;
     /* 0x16C */ u8 mDeleteCheck;
+    /* 0x16C */ u8 field_0x16D;
+    /* 0x16E */ u8 mIsReady;
 
 public:
     /* 8025CA0C */ void _create();
@@ -103,6 +105,10 @@ public:
 
     void hide() {
         ((dDlst_TimerScrnDraw_c*)field_0xfc)->hide();
+    }
+
+    u8 isReadyFlag() {
+        return mIsReady;
     }
 };
 
