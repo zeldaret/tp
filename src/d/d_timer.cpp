@@ -278,10 +278,21 @@ asm void dTimer_c::start(int param_0, s16 param_1) {
 
 /* 8025D708-8025D7C0 258048 00B8+00 1/1 0/0 0/0 .text            stock_start__8dTimer_cFv */
 #ifdef NONMATCHING
-int dTimer_c::stock_start() {
-    if (mDeleteCheck == 0) {
-        field_0x168 = param_1
+bool dTimer_c::stock_start() {
+    if (mDeleteCheck == 5) {
+        mDeleteCheck = 4;
+        OSTime current_time = dLib_time_c::getTime();
+        mTime1 = current_time;
+        mTime2 = current_time;
+        
+        int timer_ms = dComIfG_getTimerNowTimeMs();
+        OSTime time1 = mTime1;
+        u32 timer_clock_ms = OS_TIMER_CLOCK / 1000;
+
+        mTime1 = time1 - timer_clock_ms * timer_ms;
+
     }
+    return mDeleteCheck == 5;
 }
 #else
 #pragma push
@@ -295,7 +306,6 @@ asm bool dTimer_c::stock_start() {
 #endif
 
 /* 8025D7C0-8025D7E8 258100 0028+00 1/1 0/0 0/0 .text            stock_start__8dTimer_cFs */
-#ifndef NONMATCHING
 int dTimer_c::stock_start(s16 param_0) {
     if (mDeleteCheck == 0) {
         field_0x168 = param_0;
@@ -304,16 +314,6 @@ int dTimer_c::stock_start(s16 param_0) {
     }
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dTimer_c::stock_start(s16 param_0) {
-    nofralloc
-#include "asm/d/d_timer/stock_start__8dTimer_cFs.s"
-}
-#pragma pop
-#endif
 
 /* 8025D7E8-8025D86C 258128 0084+00 3/3 1/1 0/0 .text            stop__8dTimer_cFUc */
 #pragma push

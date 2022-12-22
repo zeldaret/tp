@@ -2548,6 +2548,10 @@ inline void dComIfGp_particle_removeScene(bool param_0) {
     g_dComIfG_gameInfo.play.getParticle()->removeScene(param_0);
 }
 
+inline int dComIfG_getTimerNowTimeMs() {
+    return g_dComIfG_gameInfo.play.getTimerNowTimeMs();
+}
+
 inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* param_2,
                                  const dKy_tevstr_c* param_3, const csXyz* param_4,
                                  const cXyz* param_5, u8 param_6, dPa_levelEcallBack* param_7,
