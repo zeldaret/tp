@@ -49,7 +49,7 @@ public:
     /* 8025DA54 */ int getLimitTimeMs();
     /* 8025DA9C */ int getRestTimeMs();
     /* 8025DB10 */ int isStart();
-    /* 802613DC */ void createGetIn(cXyz);
+    /* 802613DC */ int createGetIn(cXyz);
 };
 
 #endif /* D_D_TIMER_H */

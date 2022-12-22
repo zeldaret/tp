@@ -8,6 +8,7 @@
 #include "f_op/f_op_msg_mng.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_lib.h"
 
 
 //
@@ -857,7 +858,6 @@ SECTION_SDATA2 static f32 lit_5546 = 32.0f;
 SECTION_SDATA2 static f32 lit_5547 = 419.0f;
 
 /* 80261034-80261100 25B974 00CC+00 0/0 1/1 0/0 .text            dTimer_createStockTimer__Fv */
-#ifndef NONMATCHING
 s32 dTimer_createStockTimer() {
     if (dComIfG_getTimerMode() != -1) {
         if ((dComIfG_getTimerMode() == 3 || dComIfG_getTimerMode() == 4) && strcmp(dComIfGp_getStartStageName(),"F_SP115")) {
@@ -871,18 +871,21 @@ s32 dTimer_createStockTimer() {
         return -1;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dTimer_createStockTimer() {
-    nofralloc
-#include "asm/d/d_timer/dTimer_createStockTimer__Fv.s"
-}
-#pragma pop
-#endif
 
 /* 80261100-80261188 25BA40 0088+00 0/0 0/0 1/1 .text            dTimer_createGetIn2D__Fl4cXyz */
+#ifndef NONMATCHING
+u32 dTimer_createGetIn2D(s32 param_0, cXyz param_1) {
+    if (dComIfG_getTimerPtr()) {
+        cXyz tmp;
+        mDoLib_project(&param_1,&tmp);
+        param_0 = dComIfG_getTimerPtr()->createGetIn(tmp);
+    } else {
+        param_0 = 0;
+    }
+
+    return param_0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -891,8 +894,14 @@ asm void dTimer_createGetIn2D(s32 param_0, cXyz param_1) {
 #include "asm/d/d_timer/dTimer_createGetIn2D__Fl4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* 80261188-802611F0 25BAC8 0068+00 1/1 0/0 0/0 .text            dTimer_createStart2D__FlUs */
+#ifdef NONMATCHING
+static int dTimer_createStart2D(s32 param_0, u16 param_1) {
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -901,8 +910,14 @@ static asm void dTimer_createStart2D(s32 param_0, u16 param_1) {
 #include "asm/d/d_timer/dTimer_createStart2D__FlUs.s"
 }
 #pragma pop
+#endif
 
 /* 802611F0-80261244 25BB30 0054+00 0/0 0/0 5/5 .text            dTimer_isStart__Fv */
+#ifdef NONMATCHING
+int dTimer_isStart() {
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -911,8 +926,14 @@ asm void dTimer_isStart() {
 #include "asm/d/d_timer/dTimer_isStart__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 80261244-80261298 25BB84 0054+00 0/0 0/0 2/2 .text            dTimer_getRestTimeMs__Fv */
+#ifdef NONMATCHING
+int dTimer_getRestTimeMs() {
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -921,8 +942,14 @@ asm void dTimer_getRestTimeMs() {
 #include "asm/d/d_timer/dTimer_getRestTimeMs__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 80261298-802612EC 25BBD8 0054+00 0/0 0/0 2/2 .text            dTimer_show__Fv */
+#ifdef NONMATCHING
+void dTimer_show() {
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -931,8 +958,14 @@ asm void dTimer_show() {
 #include "asm/d/d_timer/dTimer_show__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 802612EC-80261340 25BC2C 0054+00 0/0 0/0 2/2 .text            dTimer_hide__Fv */
+#ifdef NONMATCHING
+void dTimer_hide() {
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -941,8 +974,14 @@ asm void dTimer_hide() {
 #include "asm/d/d_timer/dTimer_hide__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 80261340-80261394 25BC80 0054+00 0/0 0/0 1/1 .text            dTimer_isReadyFlag__Fv */
+#ifdef NONMATCHING
+u32 dTimer_isReadyFlag() {
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -951,6 +990,7 @@ asm void dTimer_isReadyFlag() {
 #include "asm/d/d_timer/dTimer_isReadyFlag__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 80261394-802613DC 25BCD4 0048+00 1/0 0/0 0/0 .text            __dt__21dDlst_TimerScrnDraw_cFv */
 #pragma push
@@ -963,13 +1003,19 @@ asm dDlst_TimerScrnDraw_c::~dDlst_TimerScrnDraw_c() {
 #pragma pop
 
 /* 802613DC-8026141C 25BD1C 0040+00 1/1 0/0 0/0 .text            createGetIn__8dTimer_cF4cXyz */
+#ifdef NONMATCHING
+void dTimer_c::createGetIn(cXyz param_0) {
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dTimer_c::createGetIn(cXyz param_0) {
+asm int dTimer_c::createGetIn(cXyz param_0) {
     nofralloc
 #include "asm/d/d_timer/createGetIn__8dTimer_cF4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* 8039A3D8-8039A3D8 026A38 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
