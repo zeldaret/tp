@@ -6,6 +6,7 @@
 #include "dolphin/types.h"
 #include "dolphin/os/OSTime.h"
 #include "d/msg/d_msg_class.h"
+#include "d/msg/d_msg_object.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/J2DGraph/J2DPane.h"
 
@@ -78,7 +79,7 @@ private:
 public:
     /* 8025CA0C */ void _create();
     /* 8025CF04 */ void _execute();
-    /* 8025D33C */ void _draw();
+    /* 8025D33C */ int _draw();
     /* 8025D3BC */ void _delete();
     /* 8025D524 */ int deleteCheck();
     /* 8025D618 */ void start(int, s16);

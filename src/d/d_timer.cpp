@@ -15,10 +15,6 @@
 // Types:
 //
 
-struct dMsgObject_c {
-    /* 8023822C */ void getStatus();
-};
-
 
 
 struct J2DAnmLoaderDataBase {
@@ -208,6 +204,23 @@ asm void dTimer_c::_execute() {
 #pragma pop
 
 /* 8025D33C-8025D3BC 257C7C 0080+00 1/1 0/0 0/0 .text            _draw__8dTimer_cFv */
+
+#ifndef NONMATCHING
+int dTimer_c::_draw() {
+    int ret;
+
+    if (dComIfGp_isPauseFlag() || dMsgObject_isTalkNowCheck()) {
+        ret = 1;
+    } else {
+        dComIfGd_set2DOpa((dDlst_base_c*)field_0xfc);
+        ret = 1;
+    }
+    
+
+    return ret;
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -216,6 +229,7 @@ asm void dTimer_c::_draw() {
 #include "asm/d/d_timer/_draw__8dTimer_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8025D3BC-8025D524 257CFC 0168+00 1/1 0/0 0/0 .text            _delete__8dTimer_cFv */
 #pragma push
@@ -910,7 +924,6 @@ void dTimer_hide() {
 }
 
 /* 80261340-80261394 25BC80 0054+00 0/0 0/0 1/1 .text            dTimer_isReadyFlag__Fv */
-#ifndef NONMATCHING
 u32 dTimer_isReadyFlag() {
     u32 ret;
 
@@ -922,16 +935,6 @@ u32 dTimer_isReadyFlag() {
 
     return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dTimer_isReadyFlag() {
-    nofralloc
-#include "asm/d/d_timer/dTimer_isReadyFlag__Fv.s"
-}
-#pragma pop
-#endif
 
 /* 80261394-802613DC 25BCD4 0048+00 1/0 0/0 0/0 .text            __dt__21dDlst_TimerScrnDraw_cFv */
 #pragma push
@@ -944,11 +947,6 @@ asm dDlst_TimerScrnDraw_c::~dDlst_TimerScrnDraw_c() {
 #pragma pop
 
 /* 802613DC-8026141C 25BD1C 0040+00 1/1 0/0 0/0 .text            createGetIn__8dTimer_cF4cXyz */
-#ifdef NONMATCHING
-void dTimer_c::createGetIn(cXyz param_0) {
-    
-}
-#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -957,6 +955,5 @@ asm int dTimer_c::createGetIn(cXyz param_0) {
 #include "asm/d/d_timer/createGetIn__8dTimer_cF4cXyz.s"
 }
 #pragma pop
-#endif
 
 /* 8039A3D8-8039A3D8 026A38 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
