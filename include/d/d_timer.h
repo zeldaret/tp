@@ -87,7 +87,7 @@ public:
     /* 8025D7C0 */ int stock_start(s16);
     /* 8025D708 */ bool stock_start();
     /* 8025D7E8 */ int stop(u8);
-    /* 8025D86C */ void restart(u8);
+    /* 8025D86C */ int restart(u8);
     /* 8025D920 */ void end(int);
     /* 8025D9E0 */ int deleteRequest();
     /* 8025D9F0 */ int getTimeMs();

@@ -308,14 +308,22 @@ int dTimer_c::stop(u8 param_0) {
 }
 
 /* 8025D86C-8025D920 2581AC 00B4+00 1/1 1/1 0/0 .text            restart__8dTimer_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dTimer_c::restart(u8 param_0) {
-    nofralloc
-#include "asm/d/d_timer/restart__8dTimer_cFUc.s"
+int dTimer_c::restart(u8 param_0) {
+    if (field_0x16A != 1 || field_0x16B != param_0) {
+        return 0;
+    } else {
+        if (mDeleteCheck != 4 && mDeleteCheck != 2) {
+            return 0;
+        } else {
+            mTime2 = dLib_time_c::getTime();
+            OSTime tmp = mTime2 - mTime3;
+            mTime5 += tmp;
+            field_0x16A = 0;
+            field_0x16B = 0;
+            return 1;
+        }
+    }
 }
-#pragma pop
 
 /* 8025D920-8025D9E0 258260 00C0+00 0/0 1/1 0/0 .text            end__8dTimer_cFi */
 #pragma push
