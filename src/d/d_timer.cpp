@@ -19,34 +19,7 @@ struct dMsgObject_c {
     /* 8023822C */ void getStatus();
 };
 
-struct dDlst_TimerScrnDraw_c {
-    /* 8025DB38 */ dDlst_TimerScrnDraw_c();
-    /* 8025DBE0 */ void setHIO();
-    /* 8025DFBC */ void setScreen(s32, JKRArchive*);
-    /* 8025E240 */ void setScreenBase();
-    /* 8025E66C */ void setScreenBoatRace();
-    /* 8025E8B8 */ void setScreenRider();
-    /* 8025EB20 */ void hideDenominator();
-    /* 8025EC5C */ void deleteScreen();
-    /* 8025EE24 */ void changeNumberTexture(J2DPane*, int);
-    /* 8025EECC */ void getNumber(int);
-    /* 8025EEF0 */ void setTimer(int);
-    /* 8025F180 */ void setCounter(u8, u8);
-    /* 8025FA00 */ void setParentPos(f32, f32);
-    /* 8025FA2C */ void setTimerPos(f32, f32);
-    /* 8025FA6C */ void setCounterPos(f32, f32);
-    /* 8025FA98 */ void setImagePos(f32, f32);
-    /* 8025FAC4 */ void setShowType(u8);
-    /* 8025FB74 */ void anime();
-    /* 8025FF98 */ void closeAnime();
-    /* 802601E4 */ void createGetIn(cXyz);
-    /* 80260574 */ void createStart(u16);
-    /* 80260690 */ void draw();
-    /* 80260AA8 */ void checkStartAnimeEnd();
-    /* 80260AD4 */ void playBckAnimation(f32);
-    /* 80260B54 */ void drawPikari(int);
-    /* 80261394 */ ~dDlst_TimerScrnDraw_c();
-};
+
 
 struct J2DAnmLoaderDataBase {
     /* 80308A6C */ void load(void const*);
@@ -739,7 +712,7 @@ asm void dDlst_TimerScrnDraw_c::createGetIn(cXyz param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dDlst_TimerScrnDraw_c::createStart(u16 param_0) {
+asm s32 dDlst_TimerScrnDraw_c::createStart(u16 param_0) {
     nofralloc
 #include "asm/d/d_timer/createStart__21dDlst_TimerScrnDraw_cFUs.s"
 }
@@ -873,7 +846,6 @@ s32 dTimer_createStockTimer() {
 }
 
 /* 80261100-80261188 25BA40 0088+00 0/0 0/0 1/1 .text            dTimer_createGetIn2D__Fl4cXyz */
-#ifndef NONMATCHING
 u32 dTimer_createGetIn2D(s32 param_0, cXyz param_1) {
     if (dComIfG_getTimerPtr()) {
         cXyz tmp;
@@ -885,32 +857,18 @@ u32 dTimer_createGetIn2D(s32 param_0, cXyz param_1) {
 
     return param_0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dTimer_createGetIn2D(s32 param_0, cXyz param_1) {
-    nofralloc
-#include "asm/d/d_timer/dTimer_createGetIn2D__Fl4cXyz.s"
-}
-#pragma pop
-#endif
 
 /* 80261188-802611F0 25BAC8 0068+00 1/1 0/0 0/0 .text            dTimer_createStart2D__FlUs */
-#ifdef NONMATCHING
 static int dTimer_createStart2D(s32 param_0, u16 param_1) {
-    
+    dTimer_c* timer = dComIfG_getTimerPtr();
+    if (timer) {
+        param_0 = dComIfG_getTimerPtr()->createStart(param_1);
+    } else {
+        param_0 = 0;
+    }
+
+    return param_0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dTimer_createStart2D(s32 param_0, u16 param_1) {
-    nofralloc
-#include "asm/d/d_timer/dTimer_createStart2D__FlUs.s"
-}
-#pragma pop
-#endif
 
 /* 802611F0-80261244 25BB30 0054+00 0/0 0/0 5/5 .text            dTimer_isStart__Fv */
 #ifdef NONMATCHING

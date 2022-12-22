@@ -7,8 +7,39 @@
 #include "dolphin/os/OSTime.h"
 #include "d/msg/d_msg_class.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/J2DGraph/J2DPane.h"
 
 s32 dTimer_createStockTimer();
+
+class dDlst_TimerScrnDraw_c {
+public:
+    /* 8025DB38 */ dDlst_TimerScrnDraw_c();
+    /* 8025DBE0 */ void setHIO();
+    /* 8025DFBC */ void setScreen(s32, JKRArchive*);
+    /* 8025E240 */ void setScreenBase();
+    /* 8025E66C */ void setScreenBoatRace();
+    /* 8025E8B8 */ void setScreenRider();
+    /* 8025EB20 */ void hideDenominator();
+    /* 8025EC5C */ void deleteScreen();
+    /* 8025EE24 */ void changeNumberTexture(J2DPane*, int);
+    /* 8025EECC */ void getNumber(int);
+    /* 8025EEF0 */ void setTimer(int);
+    /* 8025F180 */ void setCounter(u8, u8);
+    /* 8025FA00 */ void setParentPos(f32, f32);
+    /* 8025FA2C */ void setTimerPos(f32, f32);
+    /* 8025FA6C */ void setCounterPos(f32, f32);
+    /* 8025FA98 */ void setImagePos(f32, f32);
+    /* 8025FAC4 */ void setShowType(u8);
+    /* 8025FB74 */ void anime();
+    /* 8025FF98 */ void closeAnime();
+    /* 802601E4 */ void createGetIn(cXyz);
+    /* 80260574 */ s32 createStart(u16);
+    /* 80260690 */ void draw();
+    /* 80260AA8 */ void checkStartAnimeEnd();
+    /* 80260AD4 */ void playBckAnimation(f32);
+    /* 80260B54 */ void drawPikari(int);
+    /* 80261394 */ ~dDlst_TimerScrnDraw_c();
+};
 
 class dTimer_c : public msg_class {
 private:
@@ -50,6 +81,10 @@ public:
     /* 8025DA9C */ int getRestTimeMs();
     /* 8025DB10 */ int isStart();
     /* 802613DC */ int createGetIn(cXyz);
+
+    s32 createStart(u16 param_0) {
+        return ((dDlst_TimerScrnDraw_c*)field_0xfc)->createStart(param_0);
+    }
 };
 
 #endif /* D_D_TIMER_H */
