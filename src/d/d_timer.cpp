@@ -860,8 +860,7 @@ u32 dTimer_createGetIn2D(s32 param_0, cXyz param_1) {
 
 /* 80261188-802611F0 25BAC8 0068+00 1/1 0/0 0/0 .text            dTimer_createStart2D__FlUs */
 static int dTimer_createStart2D(s32 param_0, u16 param_1) {
-    dTimer_c* timer = dComIfG_getTimerPtr();
-    if (timer) {
+    if (dComIfG_getTimerPtr()) {
         param_0 = dComIfG_getTimerPtr()->createStart(param_1);
     } else {
         param_0 = 0;
@@ -871,9 +870,17 @@ static int dTimer_createStart2D(s32 param_0, u16 param_1) {
 }
 
 /* 802611F0-80261244 25BB30 0054+00 0/0 0/0 5/5 .text            dTimer_isStart__Fv */
-#ifdef NONMATCHING
+#ifndef NONMATCHING
 int dTimer_isStart() {
-    
+    int ret;
+    if (dComIfG_getTimerPtr()) {
+        ret = dComIfG_getTimerPtr()->isStart();
+    } else {
+        ret = 0;
+    }
+
+    return ret;
+
 }
 #else
 #pragma push
