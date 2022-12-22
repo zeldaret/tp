@@ -17,15 +17,18 @@ private:
     /* 0x108 */ request_of_phase_process_class mPhase;
     /* 0x110 */ OSTime mTime1;
     /* 0x118 */ OSTime mTime2;
-    /* 0x120 */ u8 field_0x120[32];
-    /* 0x140 */ OSTime mTime3;
+    /* 0x120 */ u8 field_0x120[16];
+    /* 0x130 */ OSTime mTime3;
+    /* 0x138 */ u8 field_0x138[8];
+    /* 0x140 */ OSTime mTime4;
     /* 0x148 */ u8 field_0x148[12];
     /* 0x154 */ int mTimerMode;
     /* 0x158 */ u8 field_0x158[12];
     /* 0x164 */ u8 mSeIdx;
     /* 0x165 */ u8 field_0x165[3];
     /* 0x168 */ s16 field_0x168;
-    /* 0x16A */ u8 field_0x16A[2];
+    /* 0x16A */ u8 field_0x16A;
+    /* 0x16B */ u8 field_0x16B;
     /* 0x16C */ u8 mDeleteCheck;
 
 public:
@@ -38,7 +41,7 @@ public:
     /* 8025D538 */ void start(int);
     /* 8025D7C0 */ int stock_start(s16);
     /* 8025D708 */ bool stock_start();
-    /* 8025D7E8 */ void stop(u8);
+    /* 8025D7E8 */ int stop(u8);
     /* 8025D86C */ void restart(u8);
     /* 8025D920 */ void end(int);
     /* 8025D9E0 */ void deleteRequest();

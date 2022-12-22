@@ -316,6 +316,24 @@ int dTimer_c::stock_start(s16 param_0) {
 }
 
 /* 8025D7E8-8025D86C 258128 0084+00 3/3 1/1 0/0 .text            stop__8dTimer_cFUc */
+#ifndef NONMATCHING
+int dTimer_c::stop(u8 param_0) {
+    int ret;
+    
+    if (field_0x16A == 1 || field_0x16B != 0) {
+        ret = 0;
+    } else if (mDeleteCheck != 4) {
+        ret = 0;
+    } else {
+        mTime3 = dLib_time_c::getTime();
+        field_0x16A = 1;
+        field_0x16B = param_0;
+        ret = 1;
+    }
+
+    return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -324,6 +342,7 @@ asm void dTimer_c::stop(u8 param_0) {
 #include "asm/d/d_timer/stop__8dTimer_cFUc.s"
 }
 #pragma pop
+#endif
 
 /* 8025D86C-8025D920 2581AC 00B4+00 1/1 1/1 0/0 .text            restart__8dTimer_cFUc */
 #pragma push
