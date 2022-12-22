@@ -883,7 +883,6 @@ int dTimer_isStart() {
 
 }
 /* 80261244-80261298 25BB84 0054+00 0/0 0/0 2/2 .text            dTimer_getRestTimeMs__Fv */
-#ifndef NONMATCHING
 int dTimer_getRestTimeMs() {
     int ret;
 
@@ -895,37 +894,20 @@ int dTimer_getRestTimeMs() {
 
     return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dTimer_getRestTimeMs() {
-    nofralloc
-#include "asm/d/d_timer/dTimer_getRestTimeMs__Fv.s"
-}
-#pragma pop
-#endif
 
 /* 80261298-802612EC 25BBD8 0054+00 0/0 0/0 2/2 .text            dTimer_show__Fv */
-#ifdef NONMATCHING
 void dTimer_show() {
-    
+    if (dComIfG_getTimerPtr()) {
+        dComIfG_getTimerPtr()->show();
+    }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dTimer_show() {
-    nofralloc
-#include "asm/d/d_timer/dTimer_show__Fv.s"
-}
-#pragma pop
-#endif
 
 /* 802612EC-80261340 25BC2C 0054+00 0/0 0/0 2/2 .text            dTimer_hide__Fv */
-#ifdef NONMATCHING
+#ifndef NONMATCHING
 void dTimer_hide() {
-    
+    if (dComIfG_getTimerPtr()) {
+        dComIfG_getTimerPtr()->hide();
+    }
 }
 #else
 #pragma push

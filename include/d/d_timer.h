@@ -12,6 +12,9 @@
 s32 dTimer_createStockTimer();
 
 class dDlst_TimerScrnDraw_c {
+private:
+    u8 field_0x00[0x3e1];
+    u8 mTimerVisible;
 public:
     /* 8025DB38 */ dDlst_TimerScrnDraw_c();
     /* 8025DBE0 */ void setHIO();
@@ -39,6 +42,14 @@ public:
     /* 80260AD4 */ void playBckAnimation(f32);
     /* 80260B54 */ void drawPikari(int);
     /* 80261394 */ ~dDlst_TimerScrnDraw_c();
+
+    void show() {
+        mTimerVisible = 1;
+    }
+
+    void hide() {
+        mTimerVisible = 0;
+    }
 };
 
 class dTimer_c : public msg_class {
@@ -84,6 +95,14 @@ public:
 
     s32 createStart(u16 param_0) {
         return ((dDlst_TimerScrnDraw_c*)field_0xfc)->createStart(param_0);
+    }
+
+    void show() {
+        ((dDlst_TimerScrnDraw_c*)field_0xfc)->show();
+    }
+
+    void hide() {
+        ((dDlst_TimerScrnDraw_c*)field_0xfc)->hide();
     }
 };
 
