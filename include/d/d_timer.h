@@ -8,7 +8,7 @@
 #include "d/msg/d_msg_class.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 
-void dTimer_createStockTimer();
+s32 dTimer_createStockTimer();
 
 class dTimer_c : public msg_class {
 private:

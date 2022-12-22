@@ -703,8 +703,16 @@ inline int dComIfG_getTimerMode() {
     return g_dComIfG_gameInfo.play.getTimerMode();
 }
 
+inline void dComIfG_setTimerMode(int mode) {
+    return g_dComIfG_gameInfo.play.setTimerMode(mode);
+}
+
 inline dTimer_c* dComIfG_getTimerPtr() {
     return g_dComIfG_gameInfo.play.getTimerPtr();
+}
+
+inline u8 dComIfG_getTimerType() {
+    return g_dComIfG_gameInfo.play.getTimerType();
 }
 
 inline int dComIfG_setObjectRes(const char* name, u8 param_1, JKRHeap* heap) {

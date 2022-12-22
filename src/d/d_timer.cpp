@@ -5,8 +5,10 @@
 
 #include "d/d_timer.h"
 #include "d/com/d_com_inf_game.h"
+#include "f_op/f_op_msg_mng.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+
 
 //
 // Types:
@@ -815,32 +817,24 @@ static void dTimer_Delete(dTimer_c* i_timer) {
 }
 
 /* 80260F6C-80260F8C 25B8AC 0020+00 1/0 0/0 0/0 .text            dTimer_Create__FP9msg_class */
-#ifndef NONMATCHING
 static void dTimer_Create(msg_class* i_timer) {
     ((dTimer_c*)i_timer)->_create();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dTimer_Create(msg_class* param_0) {
-    nofralloc
-#include "asm/d/d_timer/dTimer_Create__FP9msg_class.s"
-}
-#pragma pop
-#endif
 
 /* 80260F8C-80261034 25B8CC 00A8+00 0/0 1/1 9/9 .text            dTimer_createTimer__FlUlUcUcffff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dTimer_createTimer(s32 param_0, u32 param_1, u8 param_2, u8 param_3, f32 param_4,
+s32 dTimer_createTimer(s32 param_0, u32 param_1, u8 param_2, u8 param_3, f32 param_4,
                             f32 param_5, f32 param_6, f32 param_7) {
-    nofralloc
-#include "asm/d/d_timer/dTimer_createTimer__FlUlUcUcffff.s"
-}
-#pragma pop
+    s32 ret;
 
+    if (dComIfG_getTimerMode() == -1) {
+        ret = fopMsgM_Timer_create(0x315,param_0,param_1,param_2,param_3,param_4,param_5,param_6,param_7,0);
+    }
+    else {
+        ret = -1;
+    }
+    
+    return ret;
+}
 /* ############################################################################################## */
 /* 8039A3D8-8039A3D8 026A38 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
@@ -863,6 +857,21 @@ SECTION_SDATA2 static f32 lit_5546 = 32.0f;
 SECTION_SDATA2 static f32 lit_5547 = 419.0f;
 
 /* 80261034-80261100 25B974 00CC+00 0/0 1/1 0/0 .text            dTimer_createStockTimer__Fv */
+#ifndef NONMATCHING
+s32 dTimer_createStockTimer() {
+    if (dComIfG_getTimerMode() != -1) {
+        if ((dComIfG_getTimerMode() == 3 || dComIfG_getTimerMode() == 4) && strcmp(dComIfGp_getStartStageName(),"F_SP115")) {
+            dComIfG_setTimerMode(-1);
+            return -1;
+        } else {
+            u8 timer_type = dComIfG_getTimerType();
+            return fopMsgM_Timer_create(0x315,10,0,timer_type,0,FLOAT_LABEL(lit_5544),FLOAT_LABEL(lit_5545),FLOAT_LABEL(lit_5546),FLOAT_LABEL(lit_5547),0);
+        }
+    } else {
+        return -1;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -871,6 +880,7 @@ asm void dTimer_createStockTimer() {
 #include "asm/d/d_timer/dTimer_createStockTimer__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 80261100-80261188 25BA40 0088+00 0/0 0/0 1/1 .text            dTimer_createGetIn2D__Fl4cXyz */
 #pragma push
