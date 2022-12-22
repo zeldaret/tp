@@ -252,20 +252,9 @@ asm void dTimer_c::_delete() {
 #pragma pop
 
 /* 8025D524-8025D538 257E64 0014+00 0/0 1/1 0/0 .text            deleteCheck__8dTimer_cFv */
-#ifndef NONMATCHING
 int dTimer_c::deleteCheck() {
     return mDeleteCheck == 7;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dTimer_c::deleteCheck() {
-    nofralloc
-#include "asm/d/d_timer/deleteCheck__8dTimer_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8025D538-8025D618 257E78 00E0+00 1/1 1/1 0/0 .text            start__8dTimer_cFi */
 #pragma push
@@ -288,16 +277,34 @@ asm void dTimer_c::start(int param_0, s16 param_1) {
 #pragma pop
 
 /* 8025D708-8025D7C0 258048 00B8+00 1/1 0/0 0/0 .text            stock_start__8dTimer_cFv */
+#ifdef NONMATCHING
+int dTimer_c::stock_start() {
+    if (mDeleteCheck == 0) {
+        field_0x168 = param_1
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dTimer_c::stock_start() {
+asm bool dTimer_c::stock_start() {
     nofralloc
 #include "asm/d/d_timer/stock_start__8dTimer_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8025D7C0-8025D7E8 258100 0028+00 1/1 0/0 0/0 .text            stock_start__8dTimer_cFs */
+#ifndef NONMATCHING
+int dTimer_c::stock_start(s16 param_0) {
+    if (mDeleteCheck == 0) {
+        field_0x168 = param_0;
+        mDeleteCheck = 5;
+        return 1;
+    }
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -306,6 +313,7 @@ asm void dTimer_c::stock_start(s16 param_0) {
 #include "asm/d/d_timer/stock_start__8dTimer_cFs.s"
 }
 #pragma pop
+#endif
 
 /* 8025D7E8-8025D86C 258128 0084+00 3/3 1/1 0/0 .text            stop__8dTimer_cFUc */
 #pragma push

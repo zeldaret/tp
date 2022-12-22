@@ -23,7 +23,9 @@ private:
     /* 0x154 */ int mTimerMode;
     /* 0x158 */ u8 field_0x158[12];
     /* 0x164 */ u8 mSeIdx;
-    /* 0x165 */ u8 field_0x165[7];
+    /* 0x165 */ u8 field_0x165[3];
+    /* 0x168 */ s16 field_0x168;
+    /* 0x16A */ u8 field_0x16A[2];
     /* 0x16C */ u8 mDeleteCheck;
 
 public:
@@ -34,8 +36,8 @@ public:
     /* 8025D524 */ int deleteCheck();
     /* 8025D618 */ void start(int, s16);
     /* 8025D538 */ void start(int);
-    /* 8025D7C0 */ void stock_start(s16);
-    /* 8025D708 */ void stock_start();
+    /* 8025D7C0 */ int stock_start(s16);
+    /* 8025D708 */ bool stock_start();
     /* 8025D7E8 */ void stop(u8);
     /* 8025D86C */ void restart(u8);
     /* 8025D920 */ void end(int);
