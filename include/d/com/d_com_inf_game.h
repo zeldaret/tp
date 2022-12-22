@@ -162,6 +162,8 @@ public:
     u8 getCStickStatusForce() { return mCStickStatusForce; }
     u8 getCStickSetFlagForce() { return mCStickSetFlagForce; }
     u8 getCStickDirectionForce() { return mCStickDirectionForce; }
+    u8 getFaceAnimeID() { return mFaceAnimeID; }
+    u8 getBaseAnimeID() { return mBaseAnimeID; }
     bool isCStickSetFlag(u8 flag) { return mCStickSetFlag & flag; }
     bool isDoSetFlag(u8 flag) { return flag & mDoSetFlag; }
     bool isASetFlag(u8 flag) { return flag & mASetFlag; }
@@ -2249,6 +2251,14 @@ inline u8 dComIfGp_getItemLifeCountType() {
 
 inline int dComIfGp_getMessageCountNumber() {
     return g_dComIfG_gameInfo.play.getMessageCountNumber();
+}
+
+inline u8 dComIfGp_getMesgFaceAnimeAttrInfo() {
+    return g_dComIfG_gameInfo.play.getFaceAnimeID();
+}
+
+inline u8 dComIfGp_getMesgAnimeAttrInfo() {
+    return g_dComIfG_gameInfo.play.getBaseAnimeID();
 }
 
 inline void dComIfGp_setCameraParamFileName(int i, char* name) {
