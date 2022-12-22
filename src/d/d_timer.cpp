@@ -316,8 +316,7 @@ int dTimer_c::restart(u8 param_0) {
             return 0;
         } else {
             mTime2 = dLib_time_c::getTime();
-            OSTime tmp = mTime2 - mTime3;
-            mTime5 += tmp;
+            mTime5 += mTime2 - mTime3;
             field_0x16A = 0;
             field_0x16B = 0;
             return 1;
@@ -326,6 +325,25 @@ int dTimer_c::restart(u8 param_0) {
 }
 
 /* 8025D920-8025D9E0 258260 00C0+00 0/0 1/1 0/0 .text            end__8dTimer_cFi */
+#ifndef NONMATCHING
+int dTimer_c::end(int param_0) {
+    int ret;
+    if (mDeleteCheck != 4) {
+        ret = 0;
+        
+    } else {
+        mTime6 = dLib_time_c::getTime();
+        mDeleteCheck = 6;
+        dComIfG_setTimerNowTimeMs((mTime6 - mTime1 - mTime5) / OS_TIMER_CLOCK_MS);
+        if (param_0 != -1) {
+            field_0x158 = param_0;
+        }
+        ret = 1;
+    }
+
+    return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -334,6 +352,7 @@ asm void dTimer_c::end(int param_0) {
 #include "asm/d/d_timer/end__8dTimer_cFi.s"
 }
 #pragma pop
+#endif
 
 /* 8025D9E0-8025D9F0 258320 0010+00 0/0 1/1 0/0 .text            deleteRequest__8dTimer_cFv */
 int dTimer_c::deleteRequest() {
