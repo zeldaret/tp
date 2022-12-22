@@ -360,6 +360,11 @@ int dTimer_c::deleteRequest() {
 }
 
 /* 8025D9F0-8025DA54 258330 0064+00 3/3 0/0 0/0 .text            getTimeMs__8dTimer_cFv */
+#ifndef NONMATCHING
+int dTimer_c::getTimeMs() {
+    return (mTime2 - mTime1 - mTime5) / OS_TIMER_CLOCK_MS;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -368,11 +373,13 @@ asm void dTimer_c::getTimeMs() {
 #include "asm/d/d_timer/getTimeMs__8dTimer_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8025DA54-8025DA9C 258394 0048+00 3/3 0/0 0/0 .text            getLimitTimeMs__8dTimer_cFv */
 int dTimer_c::getLimitTimeMs() {
     return mTime4 / OS_TIMER_CLOCK_MS;
 }
+
 /* 8025DA9C-8025DB10 2583DC 0074+00 2/2 0/0 1/1 .text            getRestTimeMs__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0

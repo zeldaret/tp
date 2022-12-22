@@ -19,7 +19,7 @@ private:
     /* 0x118 */ OSTime mTime2;
     /* 0x120 */ u8 field_0x120[16];
     /* 0x130 */ OSTime mTime3;
-    /* 0x138 */ u8 field_0x138[8];
+    /* 0x138 */ OSTime mTime5;
     /* 0x140 */ OSTime mTime4;
     /* 0x148 */ u8 field_0x148[12];
     /* 0x154 */ int mTimerMode;
@@ -45,7 +45,7 @@ public:
     /* 8025D86C */ void restart(u8);
     /* 8025D920 */ void end(int);
     /* 8025D9E0 */ int deleteRequest();
-    /* 8025D9F0 */ void getTimeMs();
+    /* 8025D9F0 */ int getTimeMs();
     /* 8025DA54 */ int getLimitTimeMs();
     /* 8025DA9C */ void getRestTimeMs();
     /* 8025DB10 */ void isStart();
