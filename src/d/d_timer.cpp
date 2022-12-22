@@ -325,7 +325,6 @@ int dTimer_c::restart(u8 param_0) {
 }
 
 /* 8025D920-8025D9E0 258260 00C0+00 0/0 1/1 0/0 .text            end__8dTimer_cFi */
-#ifndef NONMATCHING
 int dTimer_c::end(int param_0) {
     int ret;
     if (mDeleteCheck != 4) {
@@ -343,16 +342,6 @@ int dTimer_c::end(int param_0) {
 
     return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dTimer_c::end(int param_0) {
-    nofralloc
-#include "asm/d/d_timer/end__8dTimer_cFi.s"
-}
-#pragma pop
-#endif
 
 /* 8025D9E0-8025D9F0 258320 0010+00 0/0 1/1 0/0 .text            deleteRequest__8dTimer_cFv */
 int dTimer_c::deleteRequest() {
@@ -435,6 +424,26 @@ SECTION_DATA extern void* __vt__21dDlst_TimerScrnDraw_c[4] = {
 };
 
 /* 8025DB38-8025DBE0 258478 00A8+00 1/1 0/0 0/0 .text            __ct__21dDlst_TimerScrnDraw_cFv */
+#ifdef NONMATCHING
+dDlst_TimerScrnDraw_c::dDlst_TimerScrnDraw_c() {
+    mTimerVisible = 0;
+    field_0x3DD = 0;
+    field_0x3D8 = 0;
+    field_0x3CC = -1;
+    field_0x3D0 = -1;
+    field_0x3D4 = 0;
+
+    field_0x3B0 = 0; // fix
+    field_0x3B4 = 0; // fix
+    field_0x3B8 = 0; // fix
+    field_0x3BC = 0; // fix
+
+    field_0x3DE = 0;
+    field_0x3DF = 0;
+    field_0x3E0 = 0;
+    field_0x3E1 = 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -443,6 +452,7 @@ asm dDlst_TimerScrnDraw_c::dDlst_TimerScrnDraw_c() {
 #include "asm/d/d_timer/__ct__21dDlst_TimerScrnDraw_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8025DBE0-8025DFBC 258520 03DC+00 1/1 0/0 0/0 .text            setHIO__21dDlst_TimerScrnDraw_cFv
  */
@@ -559,6 +569,11 @@ asm void dDlst_TimerScrnDraw_c::changeNumberTexture(J2DPane* param_0, int param_
 #pragma pop
 
 /* 8025EECC-8025EEF0 25980C 0024+00 1/1 0/0 0/0 .text getNumber__21dDlst_TimerScrnDraw_cFi */
+#ifndef NONMATCHING
+char* dDlst_TimerScrnDraw_c::getNumber(int pIndex) {
+    return dMeter2Info_getNumberTextureName(pIndex);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -567,6 +582,7 @@ asm void dDlst_TimerScrnDraw_c::getNumber(int param_0) {
 #include "asm/d/d_timer/getNumber__21dDlst_TimerScrnDraw_cFi.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80454F4C-80454F50 00354C 0004+00 5/5 0/0 0/0 .sdata2          @4124 */

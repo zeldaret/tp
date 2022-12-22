@@ -14,8 +14,23 @@ s32 dTimer_createStockTimer();
 
 class dDlst_TimerScrnDraw_c {
 private:
-    u8 field_0x00[0x3e1];
-    u8 mTimerVisible;
+    /* 0x000 */ u8 field_0x000[0x3B0];
+    /* 0x3B0 */ int field_0x3B0;;
+    /* 0x3B4 */ int field_0x3B4;
+    /* 0x3B8 */ int field_0x3B8;
+    /* 0x3BC */ int field_0x3BC;
+    /* 0x3C0 */ u8 field_0x3C0[12];
+    /* 0x3CC */ int field_0x3CC;
+    /* 0x3D0 */ int field_0x3D0;
+    /* 0x3D4 */ int field_0x3D4;
+    /* 0x3D8 */ int field_0x3D8;
+    /* 0x3DC */ u8 field_0x3DC;
+    // /* 0x3DC */ u8 field_0x3DD;
+    /* 0x3DE */ u8 field_0x3DE;
+    /* 0x3DF */ u8 field_0x3DF;
+    /* 0x3E0 */ u8 field_0x3E0;
+    /* 0x3E1 */ u8 field_0x3E1;
+    /* 0x3E2 */ u8 mTimerVisible;
 public:
     /* 8025DB38 */ dDlst_TimerScrnDraw_c();
     /* 8025DBE0 */ void setHIO();
@@ -26,7 +41,7 @@ public:
     /* 8025EB20 */ void hideDenominator();
     /* 8025EC5C */ void deleteScreen();
     /* 8025EE24 */ void changeNumberTexture(J2DPane*, int);
-    /* 8025EECC */ void getNumber(int);
+    /* 8025EECC */ char* getNumber(int);
     /* 8025EEF0 */ void setTimer(int);
     /* 8025F180 */ void setCounter(u8, u8);
     /* 8025FA00 */ void setParentPos(f32, f32);
