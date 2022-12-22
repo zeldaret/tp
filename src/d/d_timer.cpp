@@ -870,9 +870,9 @@ static int dTimer_createStart2D(s32 param_0, u16 param_1) {
 }
 
 /* 802611F0-80261244 25BB30 0054+00 0/0 0/0 5/5 .text            dTimer_isStart__Fv */
-#ifndef NONMATCHING
 int dTimer_isStart() {
     int ret;
+
     if (dComIfG_getTimerPtr()) {
         ret = dComIfG_getTimerPtr()->isStart();
     } else {
@@ -882,21 +882,18 @@ int dTimer_isStart() {
     return ret;
 
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dTimer_isStart() {
-    nofralloc
-#include "asm/d/d_timer/dTimer_isStart__Fv.s"
-}
-#pragma pop
-#endif
-
 /* 80261244-80261298 25BB84 0054+00 0/0 0/0 2/2 .text            dTimer_getRestTimeMs__Fv */
-#ifdef NONMATCHING
+#ifndef NONMATCHING
 int dTimer_getRestTimeMs() {
-    
+    int ret;
+
+    if (dComIfG_getTimerPtr()) {
+        ret = dComIfG_getTimerPtr()->getRestTimeMs();
+    } else {
+        ret = 0;
+    }
+
+    return ret;
 }
 #else
 #pragma push
