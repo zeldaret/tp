@@ -303,6 +303,15 @@ BOOL daPy_py_c::checkFishingRodItem(int i_itemNo) {
 }
 
 /* 8015EA48-8015EA88 159388 0040+00 0/0 3/3 0/0 .text            checkBombItem__9daPy_py_cFi */
+#ifdef NONMATCHING
+BOOL daPy_py_c::checkBombItem(int param_0) {
+    bool ret = true;
+    if (param_0 != NORMAL_BOMB || param_0 != WATER_BOMB) {
+        ret = false;
+    }
+    return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -311,6 +320,7 @@ asm BOOL daPy_py_c::checkBombItem(int param_0) {
 #include "asm/d/a/d_a_player/checkBombItem__9daPy_py_cFi.s"
 }
 #pragma pop
+#endif
 
 /* 8015EA88-8015EAD8 1593C8 0050+00 0/0 5/5 0/0 .text            checkBottleItem__9daPy_py_cFi */
 // is there a way to write this with a switch?
@@ -560,7 +570,7 @@ SECTION_SDATA2 static u32 lit_4668 = 0xFF8000FF;
 SECTION_SDATA2 static u32 lit_4669 = 0x321400FF;
 
 /* 8015F1A0-8015F2FC 159AE0 015C+00 1/0 1/1 0/0 .text            draw__18daPy_sightPacket_cFv */
-// dumb instruction block out of order
+// matches with literals
 #ifdef NONMATCHING
 void daPy_sightPacket_c::draw() {
     GXTexObj texObj;
@@ -578,9 +588,11 @@ void daPy_sightPacket_c::draw() {
 
     GXSetTevColor(GX_TEVREG0, reg0);
     GXSetTevColor(GX_TEVREG1, reg1);
+    u8 tmp2 = mpImg->mipmapCount;
+    tmp2 = tmp2 > 1;
     GXInitTexObj(&texObj, mpData, mpImg->width, mpImg->height, (GXTexFmt)mpImg->format,
                  (GXTexWrapMode)mpImg->wrapS, (GXTexWrapMode)mpImg->wrapT,
-                 (GXBool)(mpImg->mipmapCount > 1));
+                 (GXBool)(tmp2));
     GXInitTexObjLOD(&texObj, GX_LINEAR, GX_LINEAR, 0.0, 0.0, 0.0, GX_FALSE, GX_FALSE, GX_ANISO_1);
     GXLoadTexObj(&texObj, GX_TEXMAP0);
     GXLoadPosMtxImm(field_0x14, GX_PNMTX0);
@@ -632,6 +644,18 @@ BOOL daPy_py_c::checkMasterSwordEquip() {
 
 /* 8015F3C4-8015F3FC 159D04 0038+00 0/0 4/4 0/0 .text            checkWoodShieldEquip__9daPy_py_cFv
  */
+#ifdef NONMATCHING
+BOOL daPy_py_c::checkWoodShieldEquip() {
+    int equipShield = dComIfGs_getSelectEquipShield();
+    bool isWoodShield = true;
+
+    if (equipShield == SHIELD) {
+        isWoodShield = false;
+    }
+
+    return isWoodShield;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -640,6 +664,7 @@ asm BOOL daPy_py_c::checkWoodShieldEquip() {
 #include "asm/d/a/d_a_player/checkWoodShieldEquip__9daPy_py_cFv.s"
 }
 #pragma pop
+#endif
 
 BOOL daPy_py_c::checkNowWolf() {
     return dComIfGp_getLinkPlayer()->i_checkWolf();
@@ -727,13 +752,15 @@ asm bool daPy_py_c::linkGrabSubjectNoDraw(fopAc_ac_c* param_0) {
 
 /* 8015F60C-8015F660 159F4C 0054+00 0/0 0/0 2/2 .text
  * wolfGrabSubjectNoDraw__9daPy_py_cFP10fopAc_ac_c              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_py_c::wolfGrabSubjectNoDraw(fopAc_ac_c* param_0){nofralloc
-#include "asm/d/a/d_a_player/wolfGrabSubjectNoDraw__9daPy_py_cFP10fopAc_ac_c.s"
+bool daPy_py_c::wolfGrabSubjectNoDraw(fopAc_ac_c* param_0){
+    bool ret = false;
+    if (checkNowWolf()) {
+        if (linkGrabSubjectNoDraw(param_0)) {
+            ret = true;
+        }
+    }
+    return ret;
 }
-#pragma pop
 
 u32 daPy_py_c::getLastSceneMode() {
     return dComIfGs_getLastSceneMode() & 0xF;

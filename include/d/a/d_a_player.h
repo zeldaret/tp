@@ -441,7 +441,7 @@ public:
     static void setLookPos(cXyz*);
     static void setPlayerSe(u32);
     static bool linkGrabSubjectNoDraw(fopAc_ac_c*);
-    void wolfGrabSubjectNoDraw(fopAc_ac_c*);
+    static bool wolfGrabSubjectNoDraw(fopAc_ac_c*);
     static bool checkRoomRestartStart();
     static u32 checkCarryStartLightBallA();
     static u32 checkCarryStartLightBallB();
