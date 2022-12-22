@@ -10,17 +10,6 @@
 #include "dolphin/types.h"
 #include "m_Do/m_Do_lib.h"
 
-
-//
-// Types:
-//
-
-
-
-struct J2DAnmLoaderDataBase {
-    /* 80308A6C */ void load(void const*);
-};
-
 //
 // Forward References:
 //
