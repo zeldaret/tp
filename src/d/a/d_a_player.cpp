@@ -303,24 +303,9 @@ BOOL daPy_py_c::checkFishingRodItem(int i_itemNo) {
 }
 
 /* 8015EA48-8015EA88 159388 0040+00 0/0 3/3 0/0 .text            checkBombItem__9daPy_py_cFi */
-#ifdef NONMATCHING
 BOOL daPy_py_c::checkBombItem(int param_0) {
-    bool ret = true;
-    if (param_0 != NORMAL_BOMB || param_0 != WATER_BOMB) {
-        ret = false;
-    }
-    return ret;
+    return param_0 == NORMAL_BOMB || param_0 == WATER_BOMB || param_0 == POKE_BOMB;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daPy_py_c::checkBombItem(int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_player/checkBombItem__9daPy_py_cFi.s"
-}
-#pragma pop
-#endif
 
 /* 8015EA88-8015EAD8 1593C8 0050+00 0/0 5/5 0/0 .text            checkBottleItem__9daPy_py_cFi */
 // is there a way to write this with a switch?
@@ -644,27 +629,11 @@ BOOL daPy_py_c::checkMasterSwordEquip() {
 
 /* 8015F3C4-8015F3FC 159D04 0038+00 0/0 4/4 0/0 .text            checkWoodShieldEquip__9daPy_py_cFv
  */
-#ifdef NONMATCHING
 BOOL daPy_py_c::checkWoodShieldEquip() {
-    int equipShield = dComIfGs_getSelectEquipShield();
-    bool isWoodShield = true;
+    u16 equipShield = dComIfGs_getSelectEquipShield();
 
-    if (equipShield == SHIELD) {
-        isWoodShield = false;
-    }
-
-    return isWoodShield;
+    return equipShield == WOOD_SHIELD || equipShield == SHIELD;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daPy_py_c::checkWoodShieldEquip() {
-    nofralloc
-#include "asm/d/a/d_a_player/checkWoodShieldEquip__9daPy_py_cFv.s"
-}
-#pragma pop
-#endif
 
 BOOL daPy_py_c::checkNowWolf() {
     return dComIfGp_getLinkPlayer()->i_checkWolf();
