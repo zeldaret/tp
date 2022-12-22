@@ -569,20 +569,9 @@ asm void dDlst_TimerScrnDraw_c::changeNumberTexture(J2DPane* param_0, int param_
 #pragma pop
 
 /* 8025EECC-8025EEF0 25980C 0024+00 1/1 0/0 0/0 .text getNumber__21dDlst_TimerScrnDraw_cFi */
-#ifndef NONMATCHING
 char* dDlst_TimerScrnDraw_c::getNumber(int pIndex) {
     return dMeter2Info_getNumberTextureName(pIndex);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_TimerScrnDraw_c::getNumber(int param_0) {
-    nofralloc
-#include "asm/d/d_timer/getNumber__21dDlst_TimerScrnDraw_cFi.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80454F4C-80454F50 00354C 0004+00 5/5 0/0 0/0 .sdata2          @4124 */
