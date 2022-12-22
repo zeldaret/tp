@@ -252,6 +252,11 @@ asm void dTimer_c::_delete() {
 #pragma pop
 
 /* 8025D524-8025D538 257E64 0014+00 0/0 1/1 0/0 .text            deleteCheck__8dTimer_cFv */
+#ifndef NONMATCHING
+int dTimer_c::deleteCheck() {
+    return mDeleteCheck == 7;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -260,6 +265,7 @@ asm int dTimer_c::deleteCheck() {
 #include "asm/d/d_timer/deleteCheck__8dTimer_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8025D538-8025D618 257E78 00E0+00 1/1 1/1 0/0 .text            start__8dTimer_cFi */
 #pragma push

@@ -2,11 +2,30 @@
 #define D_D_TIMER_H
 
 #include "SSystem/SComponent/c_xyz.h"
+#include "SSystem/SComponent/c_phase.h"
 #include "dolphin/types.h"
+#include "dolphin/os/OSTime.h"
+#include "d/msg/d_msg_class.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 
 void dTimer_createStockTimer();
 
-class dTimer_c {
+class dTimer_c : public msg_class {
+private:
+    /* 0x100 */ JKRExpHeap* mpHeap;
+    /* 0x104 */ u8 field_0x104[4];
+    /* 0x108 */ request_of_phase_process_class mPhase;
+    /* 0x110 */ OSTime mTime1;
+    /* 0x118 */ OSTime mTime2;
+    /* 0x120 */ u8 field_0x120[32];
+    /* 0x140 */ OSTime mTime3;
+    /* 0x148 */ u8 field_0x148[12];
+    /* 0x154 */ int mTimerMode;
+    /* 0x158 */ u8 field_0x158[12];
+    /* 0x164 */ u8 mSeIdx;
+    /* 0x165 */ u8 field_0x165[7];
+    /* 0x16C */ u8 mDeleteCheck;
+
 public:
     /* 8025CA0C */ void _create();
     /* 8025CF04 */ void _execute();
