@@ -46,7 +46,7 @@ public:
     /* 8025D920 */ void end(int);
     /* 8025D9E0 */ int deleteRequest();
     /* 8025D9F0 */ void getTimeMs();
-    /* 8025DA54 */ void getLimitTimeMs();
+    /* 8025DA54 */ int getLimitTimeMs();
     /* 8025DA9C */ void getRestTimeMs();
     /* 8025DB10 */ void isStart();
     /* 802613DC */ void createGetIn(cXyz);
