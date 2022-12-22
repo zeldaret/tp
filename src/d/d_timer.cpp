@@ -389,24 +389,12 @@ asm int dTimer_c::getRestTimeMs() {
 #endif
 
 /* 8025DB10-8025DB38 258450 0028+00 1/1 0/0 4/4 .text            isStart__8dTimer_cFv */
-#ifndef NONMATCHING
 int dTimer_c::isStart() {
     if (field_0x16A != 1 && mDeleteCheck == 4) {
         return 1;
     }
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dTimer_c::isStart() {
-    nofralloc
-#include "asm/d/d_timer/isStart__8dTimer_cFv.s"
-}
-#pragma pop
-#endif
-
 /* ############################################################################################## */
 /* 803C33C0-803C33E4 -00001 0024+00 1/1 0/0 0/0 .data            @5239 */
 SECTION_DATA static void* lit_5239[9] = {
@@ -807,6 +795,11 @@ asm void dDlst_TimerScrnDraw_c::drawPikari(int param_0) {
 #pragma pop
 
 /* 80260F04-80260F24 25B844 0020+00 1/0 0/0 0/0 .text            dTimer_Draw__FP8dTimer_c */
+#ifndef NONMATCHING
+static void dTimer_Draw(dTimer_c* i_timer) {
+    i_timer->_draw();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -815,6 +808,7 @@ static asm void dTimer_Draw(dTimer_c* param_0) {
 #include "asm/d/d_timer/dTimer_Draw__FP8dTimer_c.s"
 }
 #pragma pop
+#endif
 
 /* 80260F24-80260F44 25B864 0020+00 1/0 0/0 0/0 .text            dTimer_Execute__FP8dTimer_c */
 #pragma push
