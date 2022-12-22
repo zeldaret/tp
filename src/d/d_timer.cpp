@@ -795,47 +795,31 @@ asm void dDlst_TimerScrnDraw_c::drawPikari(int param_0) {
 #pragma pop
 
 /* 80260F04-80260F24 25B844 0020+00 1/0 0/0 0/0 .text            dTimer_Draw__FP8dTimer_c */
-#ifndef NONMATCHING
 static void dTimer_Draw(dTimer_c* i_timer) {
     i_timer->_draw();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dTimer_Draw(dTimer_c* param_0) {
-    nofralloc
-#include "asm/d/d_timer/dTimer_Draw__FP8dTimer_c.s"
-}
-#pragma pop
-#endif
 
 /* 80260F24-80260F44 25B864 0020+00 1/0 0/0 0/0 .text            dTimer_Execute__FP8dTimer_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dTimer_Execute(dTimer_c* param_0) {
-    nofralloc
-#include "asm/d/d_timer/dTimer_Execute__FP8dTimer_c.s"
+static void dTimer_Execute(dTimer_c* i_timer) {
+    i_timer->_execute();
 }
-#pragma pop
 
 /* 80260F44-80260F4C 25B884 0008+00 1/0 0/0 0/0 .text            dTimer_IsDelete__FP8dTimer_c */
-static bool dTimer_IsDelete(dTimer_c* param_0) {
+static bool dTimer_IsDelete(dTimer_c* i_timer) {
     return true;
 }
 
 /* 80260F4C-80260F6C 25B88C 0020+00 1/0 0/0 0/0 .text            dTimer_Delete__FP8dTimer_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dTimer_Delete(dTimer_c* param_0) {
-    nofralloc
-#include "asm/d/d_timer/dTimer_Delete__FP8dTimer_c.s"
+static void dTimer_Delete(dTimer_c* i_timer) {
+    i_timer->_delete();
 }
-#pragma pop
 
 /* 80260F6C-80260F8C 25B8AC 0020+00 1/0 0/0 0/0 .text            dTimer_Create__FP9msg_class */
+#ifndef NONMATCHING
+static void dTimer_Create(msg_class* i_timer) {
+    ((dTimer_c*)i_timer)->_create();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -844,6 +828,7 @@ static asm void dTimer_Create(msg_class* param_0) {
 #include "asm/d/d_timer/dTimer_Create__FP9msg_class.s"
 }
 #pragma pop
+#endif
 
 /* 80260F8C-80261034 25B8CC 00A8+00 0/0 1/1 9/9 .text            dTimer_createTimer__FlUlUcUcffff */
 #pragma push
