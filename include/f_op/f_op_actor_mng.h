@@ -116,6 +116,10 @@ inline s16 fopAcM_GetName(void* pActor) {
     return fpcM_GetName(pActor);
 }
 
+inline MtxP fopAcM_GetMtx(const fopAc_ac_c* pActor) {
+    return pActor->mCullMtx;
+}
+
 inline u32 fopAcM_checkStatus(fopAc_ac_c* pActor, u32 status) {
     return pActor->mStatus & status;
 }

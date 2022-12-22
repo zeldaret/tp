@@ -433,7 +433,7 @@ public:
     static BOOL checkDungeonWarpItem(int);
     static BOOL checkMasterSwordEquip();
     static BOOL checkWoodShieldEquip();
-    f32 getAttentionOffsetY();
+    static f32 getAttentionOffsetY();
     s16 checkNowWolfEyeUp();
     static void forceRestartRoom(int, u32, int);
     static void setFmChainPos(fopAc_ac_c*, cXyz*, int);
