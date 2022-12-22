@@ -44,7 +44,7 @@ public:
     /* 8025D7E8 */ int stop(u8);
     /* 8025D86C */ void restart(u8);
     /* 8025D920 */ void end(int);
-    /* 8025D9E0 */ void deleteRequest();
+    /* 8025D9E0 */ int deleteRequest();
     /* 8025D9F0 */ void getTimeMs();
     /* 8025DA54 */ void getLimitTimeMs();
     /* 8025DA9C */ void getRestTimeMs();
