@@ -205,7 +205,6 @@ asm void dTimer_c::_execute() {
 
 /* 8025D33C-8025D3BC 257C7C 0080+00 1/1 0/0 0/0 .text            _draw__8dTimer_cFv */
 
-#ifndef NONMATCHING
 int dTimer_c::_draw() {
     int ret;
 
@@ -220,16 +219,6 @@ int dTimer_c::_draw() {
     return ret;
     
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dTimer_c::_draw() {
-    nofralloc
-#include "asm/d/d_timer/_draw__8dTimer_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8025D3BC-8025D524 257CFC 0168+00 1/1 0/0 0/0 .text            _delete__8dTimer_cFv */
 #pragma push
@@ -275,12 +264,7 @@ bool dTimer_c::stock_start() {
         mTime1 = current_time;
         mTime2 = current_time;
         
-        int timer_ms = dComIfG_getTimerNowTimeMs();
-        OSTime time1 = mTime1;
-        u32 timer_clock_ms = OS_TIMER_CLOCK / 1000;
-
-        mTime1 = time1 - timer_clock_ms * timer_ms;
-
+        mTime1 -= OS_TIMER_CLOCK_MS * dComIfG_getTimerNowTimeMs();
     }
     return mDeleteCheck == 5;
 }
