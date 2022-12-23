@@ -240,11 +240,6 @@ asm void dVibration_c::Pause() {
 #pragma pop
 
 /* 8006FFF8-80070018 06A938 0020+00 0/0 1/1 0/0 .text            Remove__12dVibration_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dVibration_c::Remove() {
-    nofralloc
-#include "asm/d/d_vibration/Remove__12dVibration_cFv.s"
+void dVibration_c::Remove() {
+    Kill();
 }
-#pragma pop
