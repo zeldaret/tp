@@ -214,6 +214,38 @@ int dVibration_c::CheckQuake() {
 }
 
 /* 8006FE84-8006FF04 06A7C4 0080+00 2/2 0/0 0/0 .text            setDefault__12dVibration_cFv */
+#ifndef NONMATCHING
+void dVibration_c::setDefault() {
+    field_0x54 = -1;
+    field_0x0.mShock.field_0x4 = -1;
+    field_0x70 = -1;
+    field_0x0.mQuake.field_0x4 = -1;
+    field_0x50 = 0;
+    field_0x0.mShock.field_0x0 = 0;
+    field_0x6c = 0;
+    field_0x0.mQuake.field_0x0 = 0;
+    field_0x58 = 0;
+    field_0x0.mShock.field_0x8 = 0;
+    field_0x74 = 0;
+    field_0x0.mQuake.field_0x8 = 0;
+    field_0x5c = 0;
+    field_0x0.mShock.field_0xc = 0;
+    field_0x78 = 0;
+    field_0x0.mQuake.field_0xc = 0;
+    field_0x60 = 0;
+    field_0x0.mShock.field_0x10 = 0;
+    field_0x7c = 0;
+    field_0x0.mQuake.field_0x10 = 0;
+    field_0x64 = -99;
+    field_0x0.mShock.field_0x24 = -99;
+    field_0x80 = -99;
+    field_0x0.mQuake.field_0x24 = -99;
+    field_0x68 = -99;
+    field_0x84 = -99;
+    field_0x8c = 0;
+    field_0x88 = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -222,6 +254,7 @@ asm void dVibration_c::setDefault() {
 #include "asm/d/d_vibration/setDefault__12dVibration_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8006FF04-8006FF38 06A844 0034+00 0/0 2/2 0/0 .text            Init__12dVibration_cFv */
 void dVibration_c::Init() {
