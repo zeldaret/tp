@@ -6,30 +6,7 @@
 #include "d/d_vibration.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct mDoCPd_c {
-    static u8 m_gamePad[16];
-};
-
-struct dCamera_c {
-    /* 80181000 */ void StartShake(s32, u8*, s32, cXyz);
-    /* 80181158 */ void StopShake();
-};
-
-struct JUTGamePad {
-    struct CRumble {
-        struct ERumble {};
-
-        /* 802E168C */ void stopMotor(int, bool);
-        /* 802E18CC */ void startPatternedRumble(void*, JUTGamePad::CRumble::ERumble, u32);
-        /* 802E1948 */ void stopPatternedRumble(s16);
-        /* 802E1978 */ void stopPatternedRumbleAtThePeriod();
-    };
-};
+#include "d/com/d_com_inf_game.h"
 
 //
 // Forward References:
@@ -78,7 +55,6 @@ extern "C" u8 const CS_patt__12dVibration_c[88];
 extern "C" u8 const MQ_patt__12dVibration_c[80];
 extern "C" u8 const CQ_patt__12dVibration_c[80];
 extern "C" u8 m_gamePad__8mDoCPd_c[16];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
 // Declarations:
@@ -146,6 +122,29 @@ asm void dVibration_c::Run() {
 #pragma pop
 
 /* 8006FA24-8006FB10 06A364 00EC+00 0/0 62/62 298/298 .text StartShock__12dVibration_cFii4cXyz */
+#ifndef NONMATCHING
+bool dVibration_c::StartShock(int param_0, int param_1, cXyz param_2) {
+    bool ret = false;
+    if (param_1 & 0x7eU) {
+        field_0x0.mShock.field_0x4 = param_0;
+        field_0x0.mShock.field_0x24 = 0;
+        field_0x0.mShock.field_0x14 = param_1;
+        field_0x0.mShock.field_0x18 = param_2;
+        field_0x0.mShock.field_0x8 = CS_patt[param_0].field_0x04;
+        field_0x0.mShock.field_0xc = CS_patt[param_0].field_0x02;
+        field_0x0.mShock.field_0x10 = CS_patt[param_0].field_0x00;
+        ret = true;
+    }
+    if (param_1 & 1 && (u8)dComIfGs_checkOptVibration() == 1) {
+        field_0x54 = param_0;
+        field_0x64 = 0;
+        field_0x58 = MS_patt[param_0].field_0x04;
+        field_0x5c = MS_patt[param_0].field_0x02;
+        ret = true;
+    }
+    return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -154,6 +153,7 @@ asm void dVibration_c::StartShock(int param_0, int param_1, cXyz param_2) {
 #include "asm/d/d_vibration/StartShock__12dVibration_cFii4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* 8006FB10-8006FC0C 06A450 00FC+00 0/0 8/8 67/67 .text StartQuake__12dVibration_cFii4cXyz */
 #pragma push

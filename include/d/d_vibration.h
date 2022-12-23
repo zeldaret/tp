@@ -2,12 +2,13 @@
 #define D_D_VIBRATION_H
 
 #include "d/save/d_save.h"
+#include "d/d_vib_pattern.h"
 #include "dolphin/types.h"
 
 class dVibration_c {
 public:
     /* 8006F268 */ void Run();
-    /* 8006FA24 */ void StartShock(int, int, cXyz);
+    /* 8006FA24 */ bool StartShock(int, int, cXyz);
     /* 8006FC0C */ void StartQuake(u8 const*, int, int, cXyz);
     /* 8006FB10 */ void StartQuake(int, int, cXyz);
     /* 8006FD94 */ void StopQuake(int);
@@ -18,10 +19,10 @@ public:
     /* 8006FF38 */ void Pause();
     /* 8006FFF8 */ void Remove();
 
-    static u8 const MS_patt[88];
-    static u8 const CS_patt[88];
-    static u8 const MQ_patt[80];
-    static u8 const CQ_patt[80];
+    static dVibration_pattern const MS_patt[11];
+    static dVibration_pattern const CS_patt[11];
+    static dVibration_pattern const MQ_patt[10];
+    static dVibration_pattern const CQ_patt[10];
 
 private:
     class {

@@ -1005,6 +1005,10 @@ inline u8 dComIfGs_checkBottle(u8 i_itemNo) {
     return g_dComIfG_gameInfo.info.getPlayer().getItem().checkBottle(i_itemNo);
 }
 
+inline u32 dComIfGs_checkOptVibration() {
+    return g_dComIfG_gameInfo.info.getPlayer().getConfig().checkVibration();
+}
+
 inline BOOL dComIfGs_isLightDropGetFlag(u8 i_nowLevel) {
     return g_dComIfG_gameInfo.info.getPlayer().getLightDrop().isLightDropGetFlag(i_nowLevel);
 }
