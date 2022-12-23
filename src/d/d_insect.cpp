@@ -11,10 +11,6 @@
 // Types:
 //
 
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
 struct dSv_event_flag_c {
     static u8 saveBitLabels[1644 + 4 /* padding */];
 };
@@ -25,13 +21,6 @@ struct dSv_event_c {
 
 struct dMenu_Insect_c {
     /* 801D9F3C */ void isCatchNotGiveInsect(u8);
-};
-
-struct dInsect_c {
-    /* 80110648 */ void Insect_Release();
-    /* 8015E010 */ dInsect_c();
-    /* 8015E078 */ void Insect_GetDemoMain();
-    /* 8015E26C */ void CalcZBuffer(f32);
 };
 
 struct dEvt_control_c {
@@ -45,12 +34,6 @@ struct dEvent_manager_c {
 struct dDlst_peekZ_c {
     /* 80056018 */ void newData(s16, s16, u32*);
 };
-
-struct csXyz {};
-
-struct cXyz {};
-
-struct Vec {};
 
 //
 // Forward References:
@@ -98,14 +81,15 @@ SECTION_DATA extern void* __vt__9dInsect_c[3 + 1 /* padding */] = {
 };
 
 /* 8015E010-8015E078 158950 0068+00 0/0 0/0 13/13 .text            __ct__9dInsect_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dInsect_c::dInsect_c() {
-    nofralloc
-#include "asm/d/d_insect/__ct__9dInsect_cFv.s"
+dInsect_c::dInsect_c() {
+    field_0x588 = -1;
+    field_0x56C = 0;
+    field_0x56D = 1;
+    field_0x58C = 0;
+    field_0x580 = 0xD6;
+    field_0x584 = 0;
+    field_0x585 = 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80393D98-80393D98 0203F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
