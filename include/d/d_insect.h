@@ -15,13 +15,24 @@ private:
     /* 0x56D */ u8 field_0x56D;
     /* 0x56E */ u8 field_0x56E[18];
     /* 0x580 */ u8 field_0x580;
-    /* 0x581 */ u8 field_0x581[3];
+    /* 0x581 */ u8 field_0x581;
+    /* 0x582 */ s16 field_0x582;
     /* 0x584 */ u8 field_0x584;
     /* 0x585 */ u8 field_0x585;
     /* 0x586 */ u8 field_0x586[2];
-    /* 0x588 */ int field_0x588;
+    /* 0x588 */ u32 field_0x588;
     /* 0x58C */ int field_0x58C;
 
 };
+
+inline void cLib_offBit(u32& value, u8 bit) {
+    value &= ~bit;
+}
+inline void cLib_onBit(u32& value, u8 bit) {
+    value |= bit;
+}
+inline u8 cLib_checkBit(u32& value, u8 bit) {
+    return value & bit;
+}
 
 #endif /* D_D_INSECT_H */

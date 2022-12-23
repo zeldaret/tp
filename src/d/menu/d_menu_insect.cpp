@@ -792,7 +792,7 @@ asm void dMenu_Insect_c::isGiveInsect(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Insect_c::isCatchNotGiveInsect(u8 param_0) {
+asm u8 dMenu_Insect_c::isCatchNotGiveInsect(u8 param_0) {
     nofralloc
 #include "asm/d/menu/d_menu_insect/isCatchNotGiveInsect__14dMenu_Insect_cFUc.s"
 }

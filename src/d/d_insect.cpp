@@ -6,34 +6,9 @@
 #include "d/d_insect.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct dSv_event_flag_c {
-    static u8 saveBitLabels[1644 + 4 /* padding */];
-};
-
-struct dSv_event_c {
-    /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct dMenu_Insect_c {
-    /* 801D9F3C */ void isCatchNotGiveInsect(u8);
-};
-
-struct dEvt_control_c {
-    /* 80042468 */ void reset();
-};
-
-struct dEvent_manager_c {
-    /* 80047ADC */ void endCheckOld(char const*);
-};
-
-struct dDlst_peekZ_c {
-    /* 80056018 */ void newData(s16, s16, u32*);
-};
+#include "f_op/f_op_actor_mng.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/menu/d_menu_insect.h"
 
 //
 // Forward References:
@@ -64,7 +39,6 @@ extern "C" void newData__13dDlst_peekZ_cFssPUl();
 extern "C" void Insect_Release__9dInsect_cFv();
 extern "C" void isCatchNotGiveInsect__14dMenu_Insect_cFUc();
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
 // Declarations:
@@ -100,6 +74,54 @@ SECTION_DEAD static char const* const stringBase_80393D98 = "DEFAULT_GETITEM";
 
 /* 8015E078-8015E26C 1589B8 01F4+00 0/0 0/0 24/24 .text            Insect_GetDemoMain__9dInsect_cFv
  */
+#ifdef NONMATCHING
+void dInsect_c::Insect_GetDemoMain() {
+    if (field_0x58C != 1) {
+        if (fopAcM_checkCarryNow(this)) {
+            cLib_offBit((u32&)mAttentionInfo.mFlags,0x10);
+            fopAcM_cancelCarryNow(this);
+            fopAcM_orderItemEvent(this,0,0);
+            mEvtInfo.i_onCondition(8);
+
+            field_0x588 = fopAcM_createItemForTrBoxDemo(&current.pos,field_0x580,-1,fopAcM_GetRoomNo(this),0,0);
+            field_0x58C = 1;
+
+            if (dMenu_Insect_c::isCatchNotGiveInsect(field_0x580) != 0) {
+                field_0x585 = 1;
+            }
+        } else {
+            cLib_onBit((u32&)mAttentionInfo.mFlags,0x10);
+        }
+    } else {
+        if (mEvtInfo.checkCommandItem()) {
+            if (field_0x588 != -1) {
+                dComIfGp_event_setItemPartnerId(field_0x588);
+            }
+
+            field_0x56D = 0;
+            field_0x58C = 2;
+        } else {
+            fopAcM_orderItemEvent(this,0,0);
+            mEvtInfo.i_onCondition(8);
+        }
+    }
+
+    if (dComIfGp_evmng_endCheck("DEFAULT_GETITEM")) {
+        i_dComIfGp_event_reset();
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x582]) || field_0x585 != 0) {
+            field_0x56D = 1;
+            field_0x58C = 0;
+            if (field_0x584 == 0) {
+                fopAcM_createItem(&current.pos,0,-1,-1,0,0,0);
+                field_0x584 = 1;
+            }
+        } else {
+            fopAcM_delete(this);
+            
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -108,6 +130,7 @@ asm void dInsect_c::Insect_GetDemoMain() {
 #include "asm/d/d_insect/Insect_GetDemoMain__9dInsect_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804535E0-804535E4 001BE0 0004+00 1/1 0/0 0/0 .sdata2          @3871 */
