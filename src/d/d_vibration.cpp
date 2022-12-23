@@ -252,7 +252,6 @@ void dVibration_c::Init() {
 }
 
 /* 8006FF38-8006FFF8 06A878 00C0+00 0/0 1/1 0/0 .text            Pause__12dVibration_cFv */
-#ifndef NONMATCHING
 void dVibration_c::Pause() {
     if (field_0x8c != -1) {
         if (field_0x54 != -1 || field_0x70 != -1) {
@@ -272,16 +271,6 @@ void dVibration_c::Pause() {
         field_0x8c = -1;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dVibration_c::Pause() {
-    nofralloc
-#include "asm/d/d_vibration/Pause__12dVibration_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8006FFF8-80070018 06A938 0020+00 0/0 1/1 0/0 .text            Remove__12dVibration_cFv */
 void dVibration_c::Remove() {
