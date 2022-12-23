@@ -145,7 +145,6 @@ bool dVibration_c::StartShock(int param_0, int param_1, cXyz param_2) {
 }
 
 /* 8006FB10-8006FC0C 06A450 00FC+00 0/0 8/8 67/67 .text StartQuake__12dVibration_cFii4cXyz */
-#ifndef NONMATCHING
 bool dVibration_c::StartQuake(int param_0, int param_1, cXyz param_2) {
     bool ret = false;
     if (param_1 & 0x7eU) {
@@ -168,16 +167,6 @@ bool dVibration_c::StartQuake(int param_0, int param_1, cXyz param_2) {
     }
     return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dVibration_c::StartQuake(int param_0, int param_1, cXyz param_2) {
-    nofralloc
-#include "asm/d/d_vibration/StartQuake__12dVibration_cFii4cXyz.s"
-}
-#pragma pop
-#endif
 
 /* 8006FC0C-8006FD94 06A54C 0188+00 0/0 2/2 2/2 .text StartQuake__12dVibration_cFPCUcii4cXyz */
 #pragma push
@@ -190,6 +179,25 @@ asm void dVibration_c::StartQuake(u8 const* param_0, int param_1, int param_2, c
 #pragma pop
 
 /* 8006FD94-8006FE00 06A6D4 006C+00 0/0 6/6 82/82 .text            StopQuake__12dVibration_cFi */
+#ifndef NONMATCHING
+int dVibration_c::StopQuake(int param_0) {
+    int ret = 0;
+    if (param_0 & 0x7eU) {
+        if (field_0x0.mQuake.field_0x24 >= 0) {
+            field_0x0.mQuake.field_0x14 &= ~param_0;
+            if (field_0x0.mQuake.field_0x14 == 0) {
+                field_0x0.mQuake.field_0x0 |= 1;
+            }
+            ret = 1;
+        }
+    }
+    if (param_0 & 1 && field_0x80 >= 0) {
+        field_0x6c |= 1;
+        ret = 1;
+    }
+    return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -198,6 +206,7 @@ asm void dVibration_c::StopQuake(int param_0) {
 #include "asm/d/d_vibration/StopQuake__12dVibration_cFi.s"
 }
 #pragma pop
+#endif
 
 /* 8006FE00-8006FE5C 06A740 005C+00 2/2 0/0 0/0 .text            Kill__12dVibration_cFv */
 #pragma push
