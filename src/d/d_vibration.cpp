@@ -122,7 +122,6 @@ asm void dVibration_c::Run() {
 #pragma pop
 
 /* 8006FA24-8006FB10 06A364 00EC+00 0/0 62/62 298/298 .text StartShock__12dVibration_cFii4cXyz */
-#ifndef NONMATCHING
 bool dVibration_c::StartShock(int param_0, int param_1, cXyz param_2) {
     bool ret = false;
     if (param_1 & 0x7eU) {
@@ -144,18 +143,32 @@ bool dVibration_c::StartShock(int param_0, int param_1, cXyz param_2) {
     }
     return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dVibration_c::StartShock(int param_0, int param_1, cXyz param_2) {
-    nofralloc
-#include "asm/d/d_vibration/StartShock__12dVibration_cFii4cXyz.s"
-}
-#pragma pop
-#endif
 
 /* 8006FB10-8006FC0C 06A450 00FC+00 0/0 8/8 67/67 .text StartQuake__12dVibration_cFii4cXyz */
+#ifndef NONMATCHING
+bool dVibration_c::StartQuake(int param_0, int param_1, cXyz param_2) {
+    bool ret = false;
+    if (param_1 & 0x7eU) {
+        field_0x0.mQuake.field_0x4 = param_0;
+        field_0x0.mQuake.field_0x24 = 0;
+        field_0x0.mQuake.field_0x14 = param_1;
+        field_0x0.mQuake.field_0x18 = param_2;
+        field_0x0.mQuake.field_0x8 = CQ_patt[param_0].field_0x04;
+        field_0x0.mQuake.field_0xc = CQ_patt[param_0].field_0x02;
+        field_0x0.mQuake.field_0x10 = CQ_patt[param_0].field_0x00;
+        ret = true;
+    }
+    if (param_1 & 1 && (u8)dComIfGs_checkOptVibration() == 1) {
+        field_0x70 = param_0;
+        field_0x80 = 0;
+        field_0x74 = MQ_patt[param_0].field_0x04;
+        field_0x78 = MQ_patt[param_0].field_0x02;
+        field_0x7c = CQ_patt[param_0].field_0x00;
+        ret = true;
+    }
+    return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -164,6 +177,7 @@ asm void dVibration_c::StartQuake(int param_0, int param_1, cXyz param_2) {
 #include "asm/d/d_vibration/StartQuake__12dVibration_cFii4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* 8006FC0C-8006FD94 06A54C 0188+00 0/0 2/2 2/2 .text StartQuake__12dVibration_cFPCUcii4cXyz */
 #pragma push

@@ -10,7 +10,7 @@ public:
     /* 8006F268 */ void Run();
     /* 8006FA24 */ bool StartShock(int, int, cXyz);
     /* 8006FC0C */ void StartQuake(u8 const*, int, int, cXyz);
-    /* 8006FB10 */ void StartQuake(int, int, cXyz);
+    /* 8006FB10 */ bool StartQuake(int, int, cXyz);
     /* 8006FD94 */ void StopQuake(int);
     /* 8006FE00 */ void Kill();
     /* 8006FE5C */ void CheckQuake();
