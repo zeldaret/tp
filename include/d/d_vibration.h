@@ -13,7 +13,7 @@ public:
     /* 8006FB10 */ bool StartQuake(int, int, cXyz);
     /* 8006FD94 */ int StopQuake(int);
     /* 8006FE00 */ void Kill();
-    /* 8006FE5C */ void CheckQuake();
+    /* 8006FE5C */ int CheckQuake();
     /* 8006FE84 */ void setDefault();
     /* 8006FF04 */ void Init();
     /* 8006FF38 */ void Pause();
@@ -30,7 +30,7 @@ private:
         class {
         public:
             /* 0x00 */ u32 field_0x0; 
-            /* 0x04 */ int field_0x4;
+            /* 0x04 */ s32 field_0x4;
             /* 0x08 */ s32 field_0x8;
             /* 0x0C */ s32 field_0xc;
             /* 0x10 */ s32 field_0x10;
@@ -47,7 +47,7 @@ private:
     /* 0x64 */ u32 field_0x64;
     /* 0x68 */ u32 field_0x68;
     /* 0x6C */ u32 field_0x6c;
-    /* 0x70 */ u32 field_0x70;
+    /* 0x70 */ s32 field_0x70;
     /* 0x74 */ u32 field_0x74;
     /* 0x78 */ u32 field_0x78;
     /* 0x7C */ u32 field_0x7c;
