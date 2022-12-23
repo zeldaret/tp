@@ -2749,6 +2749,10 @@ inline void dComIfGd_init() {
     g_dComIfG_gameInfo.drawlist.init();
 }
 
+inline void dComIfGd_peekZ(s16 param_0, s16 param_1, u32* param_2) {
+    g_dComIfG_gameInfo.drawlist.newPeekZdata(param_0, param_1, param_2);
+}
+
 inline void dComIfGd_peekZdata() {
     g_dComIfG_gameInfo.drawlist.peekZdata();
 }

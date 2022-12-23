@@ -9,6 +9,7 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/menu/d_menu_insect.h"
+#include "m_Do/m_Do_lib.h"
 
 //
 // Forward References:
@@ -164,6 +165,44 @@ SECTION_SDATA2 static f32 lit_3877[1 + 1 /* padding */] = {
 };
 
 /* 8015E26C-8015E3F8 158BAC 018C+00 0/0 0/0 3/3 .text            CalcZBuffer__9dInsect_cFf */
+#ifdef NONMATCHING
+void dInsect_c::CalcZBuffer(f32 param_0) {
+    f32 camera_trim_height;
+    cXyz pos;
+    cXyz pos_projected;
+
+    pos = current.pos;
+    pos.y += FLOAT_LABEL(lit_3871);
+    
+    mDoLib_project(&pos_projected,&pos);
+
+    if (dComIfGp_getCamera(0)) {
+        camera_trim_height = dComIfGp_getCamera(0)->mCamera.field_0x93c;
+    } else {
+        camera_trim_height = FLOAT_LABEL(lit_3872);
+    }
+
+    if (pos_projected.x < FLOAT_LABEL(lit_3872) || 
+        pos_projected.x > FLOAT_LABEL(lit_3873) || 
+        pos_projected.y < camera_trim_height    || 
+        pos_projected.y < FLOAT_LABEL(lit_3874) - camera_trim_height) {
+        dComIfGd_peekZ(pos_projected.x,pos_projected.y,&field_0x578);
+    } else {
+        field_0x578 = 0;
+    }
+
+    f32 view_near = dComIfGd_getView()->mNear;
+    f32 view_far = dComIfGd_getView()->mFar;
+
+    mDoLib_pos2camera(&pos_projected,&pos);
+    pos_projected.z += param_0;
+    if (pos_projected.z == FLOAT_LABEL(lit_3872)) {
+        pos_projected.z = FLOAT_LABEL(lit_3875);
+    }
+
+    field_0x57C = view_near + ((view_far * view_near) / pos_projected.z) / (view_far - view_near);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -172,5 +211,6 @@ asm void dInsect_c::CalcZBuffer(f32 param_0) {
 #include "asm/d/d_insect/CalcZBuffer__9dInsect_cFf.s"
 }
 #pragma pop
+#endif
 
 /* 80393D98-80393D98 0203F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

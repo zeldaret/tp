@@ -326,6 +326,10 @@ public:
                                       param_6);
     }
 
+    void newPeekZdata(s16 param_0, s16 param_1, u32* param_2) {
+        mPeekZ.newData(param_0, param_1, param_2);
+    }
+
     static void offWipe() { mWipe = 0; }
     static f32 getWipeRate() { return mWipeRate; }
 
