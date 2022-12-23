@@ -214,7 +214,6 @@ int dVibration_c::CheckQuake() {
 }
 
 /* 8006FE84-8006FF04 06A7C4 0080+00 2/2 0/0 0/0 .text            setDefault__12dVibration_cFv */
-#ifndef NONMATCHING
 void dVibration_c::setDefault() {
     field_0x54 = -1;
     field_0x0.mShock.field_0x4 = -1;
@@ -245,16 +244,6 @@ void dVibration_c::setDefault() {
     field_0x8c = 0;
     field_0x88 = 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dVibration_c::setDefault() {
-    nofralloc
-#include "asm/d/d_vibration/setDefault__12dVibration_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8006FF04-8006FF38 06A844 0034+00 0/0 2/2 0/0 .text            Init__12dVibration_cFv */
 void dVibration_c::Init() {
@@ -263,6 +252,27 @@ void dVibration_c::Init() {
 }
 
 /* 8006FF38-8006FFF8 06A878 00C0+00 0/0 1/1 0/0 .text            Pause__12dVibration_cFv */
+#ifndef NONMATCHING
+void dVibration_c::Pause() {
+    if (field_0x8c != -1) {
+        if (field_0x54 != -1 || field_0x70 != -1) {
+            mDoCPd_c::stopMotorWaveHard(0);
+            mDoCPd_c::stopMotorHard(0);
+        }
+        field_0x54 = -1;
+        field_0x0.mShock.field_0x4 = -1;
+        field_0x64 = -99;
+        field_0x0.mShock.field_0x24 = -99;
+        if (field_0x0.mQuake.field_0x4 != -1) {
+            field_0x0.mQuake.field_0x24 = 0;
+        }
+        if (field_0x70 != -1) {
+            field_0x80 = 0;
+        }
+        field_0x8c = -1;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -271,6 +281,7 @@ asm void dVibration_c::Pause() {
 #include "asm/d/d_vibration/Pause__12dVibration_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8006FFF8-80070018 06A938 0020+00 0/0 1/1 0/0 .text            Remove__12dVibration_cFv */
 void dVibration_c::Remove() {

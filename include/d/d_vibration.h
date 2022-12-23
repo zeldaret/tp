@@ -54,7 +54,7 @@ private:
     /* 0x80 */ s32 field_0x80;
     /* 0x84 */ u32 field_0x84;
     /* 0x88 */ s32 field_0x88;
-    /* 0x8C */ u32 field_0x8c;
+    /* 0x8C */ s32 field_0x8c;
 };  // Size: 0x90
 
 #endif /* D_D_VIBRATION_H */
