@@ -205,7 +205,6 @@ void dVibration_c::Kill() {
 }   
 
 /* 8006FE5C-8006FE84 06A79C 0028+00 0/0 0/0 10/10 .text            CheckQuake__12dVibration_cFv */
-#ifndef NONMATCHING
 int dVibration_c::CheckQuake() {
     int ret = 0;
     if (field_0x0.mQuake.field_0x4 != -1 || field_0x70 != -1) {
@@ -213,16 +212,6 @@ int dVibration_c::CheckQuake() {
     }
     return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dVibration_c::CheckQuake() {
-    nofralloc
-#include "asm/d/d_vibration/CheckQuake__12dVibration_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8006FE84-8006FF04 06A7C4 0080+00 2/2 0/0 0/0 .text            setDefault__12dVibration_cFv */
 #pragma push
@@ -235,14 +224,10 @@ asm void dVibration_c::setDefault() {
 #pragma pop
 
 /* 8006FF04-8006FF38 06A844 0034+00 0/0 2/2 0/0 .text            Init__12dVibration_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dVibration_c::Init() {
-    nofralloc
-#include "asm/d/d_vibration/Init__12dVibration_cFv.s"
+void dVibration_c::Init() {
+    Kill();
+    setDefault();
 }
-#pragma pop
 
 /* 8006FF38-8006FFF8 06A878 00C0+00 0/0 1/1 0/0 .text            Pause__12dVibration_cFv */
 #pragma push
