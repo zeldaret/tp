@@ -179,7 +179,6 @@ asm void dVibration_c::StartQuake(u8 const* param_0, int param_1, int param_2, c
 #pragma pop
 
 /* 8006FD94-8006FE00 06A6D4 006C+00 0/0 6/6 82/82 .text            StopQuake__12dVibration_cFi */
-#ifndef NONMATCHING
 int dVibration_c::StopQuake(int param_0) {
     int ret = 0;
     if (param_0 & 0x7eU) {
@@ -197,18 +196,16 @@ int dVibration_c::StopQuake(int param_0) {
     }
     return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dVibration_c::StopQuake(int param_0) {
-    nofralloc
-#include "asm/d/d_vibration/StopQuake__12dVibration_cFi.s"
-}
-#pragma pop
-#endif
 
 /* 8006FE00-8006FE5C 06A740 005C+00 2/2 0/0 0/0 .text            Kill__12dVibration_cFv */
+
+#ifndef NONMATCHING
+void dVibration_c::Kill() {
+    mDoCPd_c::stopMotorWaveHard(0);
+    mDoCPd_c::stopMotorHard(0);
+    setDefault();
+}   
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -217,6 +214,7 @@ asm void dVibration_c::Kill() {
 #include "asm/d/d_vibration/Kill__12dVibration_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8006FE5C-8006FE84 06A79C 0028+00 0/0 0/0 10/10 .text            CheckQuake__12dVibration_cFv */
 #pragma push
