@@ -4,6 +4,8 @@
 #include "d/d_drawlist.h"
 #include "d/d_select_icon.h"
 #include "dolphin/types.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
+#include "JSystem/J2DGraph/J2DPane.h"
 
 class dSelect_cursorHIO_c {
 public:
@@ -43,15 +45,30 @@ public:
     /* 801949EC */ virtual ~dSelect_cursor_c();
 
     void setPos(f32 x, f32 y) {
-        field_0x58 = x;
-        field_0x5c = y;
+        mPositionX = x;
+        mPositionY = y;
     }
 
 private:
-    u8 field_0x4[0x54];
-    f32 field_0x58;
-    f32 field_0x5c;
-    u8 field_0x60[0x58];
+    /* 0x04 */ J2DScreen* mpScreen;
+    /* 0x08 */ J2DPane* mpPane;
+    /* 0x0C */ dSelect_icon_c* mpSelectIcon;
+    /* 0x10 */ CPaneMgr* mpPaneMgr;
+    /* 0x14 */ u8 field_0x14[40];
+    /* 0x3C */ dSelect_cursorHIO_c* mpCursorHIO;
+    /* 0x40 */ u8 field_0x40[24];
+    /* 0x58 */ f32 mPositionX;
+    /* 0x5C */ f32 mPositionY;
+    /* 0x60 */ f32 mParam1;
+    /* 0x64 */ f32 mParam2;
+    /* 0x68 */ f32 mParam3;
+    /* 0x6C */ f32 mParam4;
+    /* 0x70 */ f32 mParam5;
+    /* 0x74 */ u8 field_0x74[32];
+    /* 0x94 */ f32 field_0x94[4];
+    /* 0xA4 */ f32 field_0xa4[4];
+    /* 0xB4 */ u8 field_0xb4;
+    /* 0xB5 */ u8 mNameIdx;
 };
 
 #endif /* D_D_SELECT_CURSOR_H */

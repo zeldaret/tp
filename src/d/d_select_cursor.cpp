@@ -6,6 +6,7 @@
 #include "d/d_select_cursor.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "d/com/d_com_inf_game.h"
 
 //
 // Types:
@@ -74,7 +75,6 @@ extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" extern void* __vt__10J2DAnmBase[4];
 extern "C" extern void* __vt__15J2DAnmTransform[5 + 4 /* padding */];
 extern "C" extern void* __vt__18J2DAnmTransformKey[6];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
 // Declarations:
@@ -249,6 +249,18 @@ asm dSelect_cursor_c::~dSelect_cursor_c() {
 #pragma pop
 
 /* 80194C30-80194CC0 18F570 0090+00 1/0 0/0 0/0 .text            draw__16dSelect_cursor_cFv */
+#ifdef NONMATCHING
+void dSelect_cursor_c::draw() {
+    mpPaneMgr->getAlphaRate();
+    update();
+    J2DGrafContext* gphCtx = dComIfGp_getCurrentGrafPort();
+    gphCtx->setup2D();
+    mpScreen->draw(FLOAT_LABEL(lit_3808),FLOAT_LABEL(lit_3808),gphCtx);
+    if (mpSelectIcon) {
+        // mpSelectIcon->drawSelf(); // inline here, but not sure how to properly define it
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -258,6 +270,7 @@ extern "C" asm void draw__16dSelect_cursor_cFv() {
 #include "asm/d/d_select_cursor/draw__16dSelect_cursor_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80453A54-80453A58 002054 0004+00 3/3 0/0 0/0 .sdata2          @4062 */
@@ -281,6 +294,41 @@ asm void dSelect_cursor_c::update() {
 SECTION_SDATA2 static f32 lit_4089 = -1.0f;
 
 /* 801950F4-801951B0 18FA34 00BC+00 0/0 30/30 0/0 .text setPos__16dSelect_cursor_cFffP7J2DPaneb */
+#ifdef NONMATCHING
+void dSelect_cursor_c::setPos(f32 i_posX, f32 i_posY, J2DPane* i_pane, bool i_scaleBounds) {
+    mpPane = i_pane;
+    setPos(i_posX,i_posY);
+
+    if (!i_pane) {
+        return;
+    }
+
+    f32 width = i_pane->getWidth() * FLOAT_LABEL(lit_3673) * FLOAT_LABEL(lit_4062);
+    f32 height = i_pane->getHeight() * FLOAT_LABEL(lit_4062);
+
+    if (i_scaleBounds) {
+        width *= i_pane->getScaleX();
+        height *= i_pane->getScaleY();
+    }
+
+    f32 tmp7 = FLOAT_LABEL(lit_4089);
+
+    for (int i = 0; i < 4; i++) {
+        
+        field_0x94[i] = width;
+        field_0xa4[i] = height;
+
+        if (i < 2) {
+            field_0x94[i] *= tmp7;
+        }
+
+        if ((i & 1) ^ (i >> 0x1f) == i >> 0x1f) {
+            field_0xa4[i] *= tmp7;
+        }
+    }
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -289,8 +337,19 @@ asm void dSelect_cursor_c::setPos(f32 param_0, f32 param_1, J2DPane* param_2, bo
 #include "asm/d/d_select_cursor/setPos__16dSelect_cursor_cFffP7J2DPaneb.s"
 }
 #pragma pop
+#endif
 
 /* 801951B0-801951C8 18FAF0 0018+00 0/0 24/24 0/0 .text setParam__16dSelect_cursor_cFfffff */
+#ifndef NONMATCHING
+void dSelect_cursor_c::setParam(f32 i_param1, f32 i_param2, f32 i_param3, f32 i_param4,
+                                    f32 i_param5) {
+    mParam1 = i_param1;
+    mParam2 = i_param2;
+    mParam3 = i_param3;
+    mParam4 = i_param4;
+    mParam5 = i_param5;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -300,6 +359,7 @@ asm void dSelect_cursor_c::setParam(f32 param_0, f32 param_1, f32 param_2, f32 p
 #include "asm/d/d_select_cursor/setParam__16dSelect_cursor_cFfffff.s"
 }
 #pragma pop
+#endif
 
 /* 801951C8-801952A0 18FB08 00D8+00 0/0 14/14 0/0 .text            setScale__16dSelect_cursor_cFf */
 #pragma push
