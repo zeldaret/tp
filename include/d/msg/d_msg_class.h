@@ -4,6 +4,7 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
+
 class msg_class : public leafdraw_class {
 public:
     /* 0xC0 */ int field_0xc0;
