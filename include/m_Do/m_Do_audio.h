@@ -1,18 +1,10 @@
 #ifndef M_DO_M_DO_AUDIO_H
 #define M_DO_M_DO_AUDIO_H
 
+#include "dolphin/types.h"
+#include "JSystem/JAudio2/JASGadget.h"
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "Z2AudioLib/Z2EnvSeMgr.h"
-#include "dolphin/types.h"
-
-// move/fix later
-template <typename T>
-class JASGlobalInstance {
-public:
-    T* getInstance() { return sInstance; };
-
-    static T* sInstance;
-};
 
 class mDoAud_zelAudio_c {
 public:

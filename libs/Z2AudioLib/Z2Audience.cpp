@@ -739,7 +739,7 @@ asm Z2Audible::~Z2Audible() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2Audience::calcPriority(JAIAudible* param_0) {
+asm u32 Z2Audience::calcPriority(JAIAudible* param_0) {
     nofralloc
 #include "asm/Z2AudioLib/Z2Audience/calcPriority__10Z2AudienceFP10JAIAudible.s"
 }
@@ -882,7 +882,7 @@ asm void Z2Audience::calcPitch_(Z2AudibleChannel* param_0, Z2Audible const* para
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2Audience::getMaxChannels() {
+asm int Z2Audience::getMaxChannels() {
     nofralloc
 #include "asm/Z2AudioLib/Z2Audience/getMaxChannels__10Z2AudienceFv.s"
 }

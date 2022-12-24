@@ -6,9 +6,18 @@
 template <class T>
 class JASGlobalInstance {
 public:
-    // T* getInstance() { return sInstance; }
+    T* getInstance() { return sInstance; }
 
-    // static T* sInstance;
+    JASGlobalInstance(bool param) {
+        if (param) {
+            ASSERT(sInstance == 0);
+            if (this!=NULL) {
+                sInstance = this - sizeof(T);
+            }
+        }
+    }
+
+    static T* sInstance;
 };
 
 #endif /* JASGADGET_H */

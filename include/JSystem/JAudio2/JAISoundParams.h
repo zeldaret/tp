@@ -24,9 +24,9 @@ struct JAISoundParamsTransition {
             field_0x4 = 0.0f;
         }
 
-        void set(f32 newValue, f32 param_1, u32 param_2) {
-            mCount = param_2;
-            field_0x0 = (newValue - param_1) / mCount;
+        void set(f32 newValue, f32 intensity, u32 fadeCount) {
+            mCount = fadeCount;
+            field_0x0 = (newValue - intensity) / mCount;
             field_0x4 = newValue;
         }
 
