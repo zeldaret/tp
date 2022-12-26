@@ -340,7 +340,6 @@ asm void dSelect_cursor_c::setPos(f32 param_0, f32 param_1, J2DPane* param_2, bo
 #endif
 
 /* 801951B0-801951C8 18FAF0 0018+00 0/0 24/24 0/0 .text setParam__16dSelect_cursor_cFfffff */
-#ifndef NONMATCHING
 void dSelect_cursor_c::setParam(f32 i_param1, f32 i_param2, f32 i_param3, f32 i_param4,
                                     f32 i_param5) {
     mParam1 = i_param1;
@@ -349,19 +348,24 @@ void dSelect_cursor_c::setParam(f32 i_param1, f32 i_param2, f32 i_param3, f32 i_
     mParam4 = i_param4;
     mParam5 = i_param5;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSelect_cursor_c::setParam(f32 param_0, f32 param_1, f32 param_2, f32 param_3,
-                                    f32 param_4) {
-    nofralloc
-#include "asm/d/d_select_cursor/setParam__16dSelect_cursor_cFfffff.s"
-}
-#pragma pop
-#endif
 
 /* 801951C8-801952A0 18FB08 00D8+00 0/0 14/14 0/0 .text            setScale__16dSelect_cursor_cFf */
+#ifdef NONMATCHING
+// first conditional has issues
+void dSelect_cursor_c::setScale(f32 i_scale) {
+    J2DPane* pane = mpPaneMgr->getPanePtr();
+    pane->scale(i_scale,i_scale);
+
+    s8 name_idx = mNameIdx;
+    if ((name_idx == 1 || name_idx < 1) || (name_idx < 0 && name_idx < 4)) {
+        field_0x50 = mpScreen->search(0x7373656c5f69636f)->getTranslateX();
+        field_0x54 = mpScreen->search(0x7373656c5f69636f)->getTranslateY();
+    } else {
+        field_0x50 = 0.0f;
+        field_0x54 = 0.0f;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -370,8 +374,25 @@ asm void dSelect_cursor_c::setScale(f32 param_0) {
 #include "asm/d/d_select_cursor/setScale__16dSelect_cursor_cFf.s"
 }
 #pragma pop
+#endif
 
 /* 801952A0-80195330 18FBE0 0090+00 0/0 77/77 0/0 .text setAlphaRate__16dSelect_cursor_cFf */
+#ifndef NONMATCHING
+void dSelect_cursor_c::setAlphaRate(f32 i_alphaRate) {
+    if (i_alphaRate > FLOAT_LABEL(lit_3808)) {
+        if (mpPaneMgr->isVisible() == 0) {
+            mpPaneMgr->show();
+        }
+    } else {
+        i_alphaRate = FLOAT_LABEL(lit_3808);
+        if (mpPaneMgr->isVisible() == 1) {
+            mpPaneMgr->hide();
+        }
+    }
+
+    mpPaneMgr->setAlphaRate(i_alphaRate);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -380,6 +401,7 @@ asm void dSelect_cursor_c::setAlphaRate(f32 param_0) {
 #include "asm/d/d_select_cursor/setAlphaRate__16dSelect_cursor_cFf.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80453A64-80453A68 002064 0004+00 2/2 0/0 0/0 .sdata2          @4157 */

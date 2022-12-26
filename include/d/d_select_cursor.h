@@ -56,7 +56,9 @@ private:
     /* 0x10 */ CPaneMgr* mpPaneMgr;
     /* 0x14 */ u8 field_0x14[40];
     /* 0x3C */ dSelect_cursorHIO_c* mpCursorHIO;
-    /* 0x40 */ u8 field_0x40[24];
+    /* 0x40 */ u8 field_0x40[16];
+    /* 0x50 */ f32 field_0x50;
+    /* 0x54 */ f32 field_0x54;
     /* 0x58 */ f32 mPositionX;
     /* 0x5C */ f32 mPositionY;
     /* 0x60 */ f32 mParam1;
@@ -68,7 +70,7 @@ private:
     /* 0x94 */ f32 field_0x94[4];
     /* 0xA4 */ f32 field_0xa4[4];
     /* 0xB4 */ u8 field_0xb4;
-    /* 0xB5 */ u8 mNameIdx;
+    /* 0xB5 */ s8 mNameIdx;
 };
 
 #endif /* D_D_SELECT_CURSOR_H */
