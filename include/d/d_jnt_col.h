@@ -8,8 +8,6 @@
 
 class dJntColData_c {};
 
-class fopAc_ac_c;
-
 class dJntCol_c {
 public:
     /* 80035C8C */ dJntCol_c();

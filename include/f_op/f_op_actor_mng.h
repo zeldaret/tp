@@ -154,6 +154,10 @@ inline void fopAcM_SetParam(void* p_actor, u32 param) {
     fpcM_SetParam(p_actor, param);
 }
 
+inline void fopAcM_SetJntCol(fopAc_ac_c* i_actorP, dJntCol_c* i_jntColP) {
+    i_actorP->mJntCol = i_jntColP;
+}
+
 inline s16 fopAcM_GetProfName(const void* pActor) {
     return fpcM_GetProfName(pActor);
 }
