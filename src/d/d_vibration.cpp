@@ -134,7 +134,7 @@ bool dVibration_c::StartShock(int param_0, int param_1, cXyz param_2) {
         field_0x0.mShock.field_0x10 = CS_patt[param_0].field_0x00;
         ret = true;
     }
-    if (param_1 & 1 && (u8)dComIfGs_checkOptVibration() == 1) {
+    if (param_1 & 1 && dComIfGs_checkOptVibration() == 1) {
         field_0x54 = param_0;
         field_0x64 = 0;
         field_0x58 = MS_patt[param_0].field_0x04;
@@ -157,7 +157,7 @@ bool dVibration_c::StartQuake(int param_0, int param_1, cXyz param_2) {
         field_0x0.mQuake.field_0x10 = CQ_patt[param_0].field_0x00;
         ret = true;
     }
-    if (param_1 & 1 && (u8)dComIfGs_checkOptVibration() == 1) {
+    if (param_1 & 1 && dComIfGs_checkOptVibration() == 1) {
         field_0x70 = param_0;
         field_0x80 = 0;
         field_0x74 = MQ_patt[param_0].field_0x04;
