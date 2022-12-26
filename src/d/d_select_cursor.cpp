@@ -522,6 +522,11 @@ asm void dSelect_cursor_c::setCursorAnimation() {
 
 /* 801958E0-80195940 190220 0060+00 1/1 0/0 0/0 .text
  * setBckAnimation__16dSelect_cursor_cFP18J2DAnmTransformKey    */
+#ifndef NONMATCHING
+void dSelect_cursor_c::setBckAnimation(J2DAnmTransformKey* param_0) {
+    mpScreen->search(0x7373656c5f69636f)->setAnimation((J2DAnmTransform*)param_0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -530,6 +535,7 @@ asm void dSelect_cursor_c::setBckAnimation(J2DAnmTransformKey* param_0) {
 #include "asm/d/d_select_cursor/setBckAnimation__16dSelect_cursor_cFP18J2DAnmTransformKey.s"
 }
 #pragma pop
+#endif
 
 /* 80195940-80195978 190280 0038+00 1/1 0/0 0/0 .text moveCenter__16dSelect_cursor_cFP7J2DPaneff
  */
