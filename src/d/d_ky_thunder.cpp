@@ -6,6 +6,7 @@
 #include "d/d_ky_thunder.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_ext.h"
 
 //
 // Types:
@@ -15,57 +16,14 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTevRegKey {};
-
-struct J3DMaterialTable {
-    /* 8032F880 */ void removeTevRegAnimator(J3DAnmTevRegKey*);
-};
-
-struct mDoExt_brkAnm {
-    /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
-    /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct mDoExt_baseAnm {
-    /* 8000D428 */ void play();
-};
-
 struct kankyo_class {};
 
-struct dThunder_c {
-    /* 801ADF58 */ void createHeap();
-    /* 801ADFB4 */ void adjustHeap();
-    /* 801AE458 */ void create();
-};
+
 
 struct dRes_info_c {};
 
 struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct cXyz {
-    /* 80009184 */ ~cXyz();
-};
-
-struct Vec {};
-
-struct Z2EnvSeMgr {
-    /* 802C7E68 */ void startFarThunderSe(Vec*, s8);
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct JKRSolidHeap {};
-
-struct J3DModelData {};
-
-struct J3DModel {};
-
-struct J3DFrameCtrl {
-    /* 803283FC */ void init(s16);
 };
 
 //
@@ -111,9 +69,6 @@ extern "C" void cLib_targetAngleY__FPC3VecPC3Vec();
 extern "C" void startFarThunderSe__10Z2EnvSeMgrFP3VecSc();
 extern "C" void init__12J3DFrameCtrlFs();
 extern "C" void removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
-extern "C" void DCStoreRangeNoSync();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
 extern "C" void __register_global_object();
 extern "C" void _savegpr_27();
 extern "C" void _restgpr_27();
@@ -124,9 +79,7 @@ extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_mEnvSeMgr[780];
 extern "C" extern u8 g_Counter[12 + 4 /* padding */];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" extern u8 struct_80451070[8];
@@ -136,24 +89,24 @@ extern "C" extern u8 struct_80451070[8];
 //
 
 /* 801ADF58-801ADFB4 1A8898 005C+00 1/1 0/0 0/0 .text            createHeap__10dThunder_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dThunder_c::createHeap() {
-    nofralloc
-#include "asm/d/d_ky_thunder/createHeap__10dThunder_cFv.s"
+#ifndef NONMATCHING
+int dThunder_c::createHeap() {
+    if (!mpHeap) {
+        mpHeap = mDoExt_createSolidHeapFromGameToCurrent(0,0x20);
+        if (!mpHeap) {
+            return 0;
+        }
+    }
+    return 1;
 }
-#pragma pop
 
 /* 801ADFB4-801AE000 1A88F4 004C+00 1/1 0/0 0/0 .text            adjustHeap__10dThunder_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dThunder_c::adjustHeap() {
-    nofralloc
-#include "asm/d/d_ky_thunder/adjustHeap__10dThunder_cFv.s"
+void dThunder_c::adjustHeap() {
+    mDoExt_restoreCurrentHeap();
+    if ((s32)mDoExt_adjustSolidHeap(mpHeap) >= 0) {
+        DCStoreRangeNoSync(mpHeap->getStartAddr(),mpHeap->getHeapSize());
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8042E7F0-8042E7FC 05B510 000C+00 1/1 0/0 0/0 .bss             @3816 */
