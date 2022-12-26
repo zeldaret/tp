@@ -27,14 +27,4 @@ private:
 
 };
 
-inline void cLib_offBit(u32& value, u8 bit) {
-    value &= ~bit;
-}
-inline void cLib_onBit(u32& value, u8 bit) {
-    value |= bit;
-}
-inline u8 cLib_checkBit(u32& value, u8 bit) {
-    return value & bit;
-}
-
 #endif /* D_D_INSECT_H */

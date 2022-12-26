@@ -79,7 +79,7 @@ SECTION_DEAD static char const* const stringBase_80393D98 = "DEFAULT_GETITEM";
 void dInsect_c::Insect_GetDemoMain() {
     if (field_0x58C != 1) {
         if (fopAcM_checkCarryNow(this)) {
-            cLib_offBit((u32&)mAttentionInfo.mFlags,0x10);
+            cLib_offBit(mAttentionInfo.mFlags,0x10);
             fopAcM_cancelCarryNow(this);
             fopAcM_orderItemEvent(this,0,0);
             mEvtInfo.i_onCondition(8);
@@ -91,7 +91,7 @@ void dInsect_c::Insect_GetDemoMain() {
                 field_0x585 = 1;
             }
         } else {
-            cLib_onBit((u32&)mAttentionInfo.mFlags,0x10);
+            cLib_onBit(mAttentionInfo.mFlags,0x10);
         }
     } else {
         if (mEvtInfo.checkCommandItem()) {
