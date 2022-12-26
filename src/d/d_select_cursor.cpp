@@ -405,7 +405,7 @@ int dSelect_cursor_c::addAlpha() {
     if (mpPaneMgr->isVisible() == 0) {
         mpPaneMgr->show();
     }
-    
+
     if (alpha_timer >= 5) {
         return 1;
     } else {
@@ -420,7 +420,7 @@ int dSelect_cursor_c::addAlpha() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dSelect_cursor_c::addAlpha() {
+asm int dSelect_cursor_c::addAlpha() {
     nofralloc
 #include "asm/d/d_select_cursor/addAlpha__16dSelect_cursor_cFv.s"
 }
@@ -428,14 +428,34 @@ asm void dSelect_cursor_c::addAlpha() {
 #endif
 
 /* 801953CC-80195460 18FD0C 0094+00 0/0 1/1 0/0 .text            decAlpha__16dSelect_cursor_cFv */
+#ifdef NONMATCHING
+// matches with literals
+int dSelect_cursor_c::decAlpha() {
+    s16 alpha_timer = mpPaneMgr->getAlphaTimer();
+
+    if (alpha_timer <= 0) {
+        if (mpPaneMgr->isVisible() == 1) {
+            mpPaneMgr->hide();
+        }
+        return 1;
+    } else {
+        alpha_timer--;
+        mpPaneMgr->alphaAnimeStart(alpha_timer);
+        mpPaneMgr->setAlphaRate(alpha_timer/FLOAT_LABEL(lit_4157));
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dSelect_cursor_c::decAlpha() {
+asm int dSelect_cursor_c::decAlpha() {
     nofralloc
 #include "asm/d/d_select_cursor/decAlpha__16dSelect_cursor_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80394A30-80394A50 021090 0020+00 1/1 0/0 0/0 .rodata          tag$4181 */
