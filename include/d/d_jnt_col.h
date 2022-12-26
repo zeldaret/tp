@@ -13,7 +13,7 @@ class fopAc_ac_c;
 class dJntCol_c {
 public:
     /* 80035C8C */ dJntCol_c();
-    /* 80035CA0 */ void init(fopAc_ac_c*, dJntColData_c const*, J3DModel*, int);
+    /* 80035CA0 */ int init(fopAc_ac_c*, dJntColData_c const*, J3DModel*, int);
     /* 80035CC8 */ void setNowLine(cM3dGLin*, cXyz const*, csXyz const*, cXyz*);
     /* 80035DC8 */ void searchNearPos(cM3dGLin const*, cXyz const*, cXyz*, int) const;
     /* 80036AEC */ void getArrowOffsetPosAndAngle(cXyz const*, csXyz const*, cXyz*, cXyz*) const;

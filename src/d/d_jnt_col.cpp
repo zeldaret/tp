@@ -94,25 +94,27 @@ extern "C" u8 BaseZ__4cXyz[12];
 //
 
 /* 80035C8C-80035CA0 0305CC 0014+00 0/0 1/1 8/8 .text            __ct__9dJntCol_cFv */
-#ifndef NONMATCHING
 dJntCol_c::dJntCol_c() {
     mModel = 0;
     mData = 0;
     field_0x8 = 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dJntCol_c::dJntCol_c() {
-    nofralloc
-#include "asm/d/d_jnt_col/__ct__9dJntCol_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80035CA0-80035CC8 0305E0 0028+00 0/0 2/2 8/8 .text
  * init__9dJntCol_cFP10fopAc_ac_cPC13dJntColData_cP8J3DModeli   */
+#ifndef NONMATCHING
+int dJntCol_c::init(fopAc_ac_c* i_actorP, dJntColData_c const* i_jntColP, J3DModel* i_modelP,
+                         int param_3) {
+    mData = (dJntColData_c*)i_jntColP;
+    mModel = i_modelP;
+    field_0x8 = param_3;
+    field_0xc = 0;
+    if (i_actorP) {
+        i_actorP->mJntCol = this;
+    }
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -122,6 +124,7 @@ asm void dJntCol_c::init(fopAc_ac_c* param_0, dJntColData_c const* param_1, J3DM
 #include "asm/d/d_jnt_col/init__9dJntCol_cFP10fopAc_ac_cPC13dJntColData_cP8J3DModeli.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80451D60-80451D64 000360 0004+00 1/1 0/0 0/0 .sdata2          @3655 */
