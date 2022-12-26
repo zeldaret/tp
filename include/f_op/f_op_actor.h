@@ -136,6 +136,8 @@ public:
     s8 getRoomNo() const { return current.mRoomNo; }
 };  // Size: 0x568
 
+STATIC_ASSERT(sizeof(fopAc_ac_c) == 0x568);
+
 class fopEn_enemy_c : public fopAc_ac_c {
 public:
     /* 80019404 */ void initBallModel();

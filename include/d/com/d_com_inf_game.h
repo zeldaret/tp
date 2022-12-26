@@ -703,8 +703,16 @@ inline int dComIfG_getTimerMode() {
     return g_dComIfG_gameInfo.play.getTimerMode();
 }
 
+inline void dComIfG_setTimerMode(int mode) {
+    return g_dComIfG_gameInfo.play.setTimerMode(mode);
+}
+
 inline dTimer_c* dComIfG_getTimerPtr() {
     return g_dComIfG_gameInfo.play.getTimerPtr();
+}
+
+inline u8 dComIfG_getTimerType() {
+    return g_dComIfG_gameInfo.play.getTimerType();
 }
 
 inline int dComIfG_setObjectRes(const char* name, u8 param_1, JKRHeap* heap) {
@@ -1003,6 +1011,10 @@ inline BOOL dComIfGs_isCollectClothing(u8 i_clothesNo) {
 
 inline u8 dComIfGs_checkBottle(u8 i_itemNo) {
     return g_dComIfG_gameInfo.info.getPlayer().getItem().checkBottle(i_itemNo);
+}
+
+inline u8 dComIfGs_checkOptVibration() {
+    return g_dComIfG_gameInfo.info.getPlayer().getConfig().checkVibration();
 }
 
 inline BOOL dComIfGs_isLightDropGetFlag(u8 i_nowLevel) {
@@ -2548,6 +2560,14 @@ inline void dComIfGp_particle_removeScene(bool param_0) {
     g_dComIfG_gameInfo.play.getParticle()->removeScene(param_0);
 }
 
+inline int dComIfG_getTimerNowTimeMs() {
+    return g_dComIfG_gameInfo.play.getTimerNowTimeMs();
+}
+
+inline int dComIfG_setTimerNowTimeMs(int time) {
+    g_dComIfG_gameInfo.play.setTimerNowTimeMs(time);
+}
+
 inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* param_2,
                                  const dKy_tevstr_c* param_3, const csXyz* param_4,
                                  const cXyz* param_5, u8 param_6, dPa_levelEcallBack* param_7,
@@ -2747,6 +2767,10 @@ inline void dComIfGd_setListBG() {
 
 inline void dComIfGd_init() {
     g_dComIfG_gameInfo.drawlist.init();
+}
+
+inline void dComIfGd_peekZ(s16 param_0, s16 param_1, u32* param_2) {
+    g_dComIfG_gameInfo.drawlist.newPeekZdata(param_0, param_1, param_2);
 }
 
 inline void dComIfGd_peekZdata() {

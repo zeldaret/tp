@@ -6,30 +6,7 @@
 #include "d/d_vibration.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct mDoCPd_c {
-    static u8 m_gamePad[16];
-};
-
-struct dCamera_c {
-    /* 80181000 */ void StartShake(s32, u8*, s32, cXyz);
-    /* 80181158 */ void StopShake();
-};
-
-struct JUTGamePad {
-    struct CRumble {
-        struct ERumble {};
-
-        /* 802E168C */ void stopMotor(int, bool);
-        /* 802E18CC */ void startPatternedRumble(void*, JUTGamePad::CRumble::ERumble, u32);
-        /* 802E1948 */ void stopPatternedRumble(s16);
-        /* 802E1978 */ void stopPatternedRumbleAtThePeriod();
-    };
-};
+#include "d/com/d_com_inf_game.h"
 
 //
 // Forward References:
@@ -78,7 +55,6 @@ extern "C" u8 const CS_patt__12dVibration_c[88];
 extern "C" u8 const MQ_patt__12dVibration_c[80];
 extern "C" u8 const CQ_patt__12dVibration_c[80];
 extern "C" u8 m_gamePad__8mDoCPd_c[16];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
 // Declarations:
@@ -146,24 +122,51 @@ asm void dVibration_c::Run() {
 #pragma pop
 
 /* 8006FA24-8006FB10 06A364 00EC+00 0/0 62/62 298/298 .text StartShock__12dVibration_cFii4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dVibration_c::StartShock(int param_0, int param_1, cXyz param_2) {
-    nofralloc
-#include "asm/d/d_vibration/StartShock__12dVibration_cFii4cXyz.s"
+bool dVibration_c::StartShock(int param_0, int param_1, cXyz param_2) {
+    bool ret = false;
+    if (param_1 & 0x7eU) {
+        field_0x0.mShock.field_0x4 = param_0;
+        field_0x0.mShock.field_0x24 = 0;
+        field_0x0.mShock.field_0x14 = param_1;
+        field_0x0.mShock.field_0x18 = param_2;
+        field_0x0.mShock.field_0x8 = CS_patt[param_0].field_0x04;
+        field_0x0.mShock.field_0xc = CS_patt[param_0].field_0x02;
+        field_0x0.mShock.field_0x10 = CS_patt[param_0].field_0x00;
+        ret = true;
+    }
+    if (param_1 & 1 && dComIfGs_checkOptVibration() == 1) {
+        field_0x54 = param_0;
+        field_0x64 = 0;
+        field_0x58 = MS_patt[param_0].field_0x04;
+        field_0x5c = MS_patt[param_0].field_0x02;
+        ret = true;
+    }
+    return ret;
 }
-#pragma pop
 
 /* 8006FB10-8006FC0C 06A450 00FC+00 0/0 8/8 67/67 .text StartQuake__12dVibration_cFii4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dVibration_c::StartQuake(int param_0, int param_1, cXyz param_2) {
-    nofralloc
-#include "asm/d/d_vibration/StartQuake__12dVibration_cFii4cXyz.s"
+bool dVibration_c::StartQuake(int param_0, int param_1, cXyz param_2) {
+    bool ret = false;
+    if (param_1 & 0x7eU) {
+        field_0x0.mQuake.field_0x4 = param_0;
+        field_0x0.mQuake.field_0x24 = 0;
+        field_0x0.mQuake.field_0x14 = param_1;
+        field_0x0.mQuake.field_0x18 = param_2;
+        field_0x0.mQuake.field_0x8 = CQ_patt[param_0].field_0x04;
+        field_0x0.mQuake.field_0xc = CQ_patt[param_0].field_0x02;
+        field_0x0.mQuake.field_0x10 = CQ_patt[param_0].field_0x00;
+        ret = true;
+    }
+    if (param_1 & 1 && dComIfGs_checkOptVibration() == 1) {
+        field_0x70 = param_0;
+        field_0x80 = 0;
+        field_0x74 = MQ_patt[param_0].field_0x04;
+        field_0x78 = MQ_patt[param_0].field_0x02;
+        field_0x7c = CQ_patt[param_0].field_0x00;
+        ret = true;
+    }
+    return ret;
 }
-#pragma pop
 
 /* 8006FC0C-8006FD94 06A54C 0188+00 0/0 2/2 2/2 .text StartQuake__12dVibration_cFPCUcii4cXyz */
 #pragma push
@@ -176,71 +179,100 @@ asm void dVibration_c::StartQuake(u8 const* param_0, int param_1, int param_2, c
 #pragma pop
 
 /* 8006FD94-8006FE00 06A6D4 006C+00 0/0 6/6 82/82 .text            StopQuake__12dVibration_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dVibration_c::StopQuake(int param_0) {
-    nofralloc
-#include "asm/d/d_vibration/StopQuake__12dVibration_cFi.s"
+int dVibration_c::StopQuake(int param_0) {
+    int ret = 0;
+    if (param_0 & 0x7eU) {
+        if (field_0x0.mQuake.field_0x24 >= 0) {
+            field_0x0.mQuake.field_0x14 &= ~param_0;
+            if (field_0x0.mQuake.field_0x14 == 0) {
+                field_0x0.mQuake.field_0x0 |= 1;
+            }
+            ret = 1;
+        }
+    }
+    if (param_0 & 1 && field_0x80 >= 0) {
+        field_0x6c |= 1;
+        ret = 1;
+    }
+    return ret;
 }
-#pragma pop
 
 /* 8006FE00-8006FE5C 06A740 005C+00 2/2 0/0 0/0 .text            Kill__12dVibration_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dVibration_c::Kill() {
-    nofralloc
-#include "asm/d/d_vibration/Kill__12dVibration_cFv.s"
-}
-#pragma pop
+void dVibration_c::Kill() {
+    mDoCPd_c::stopMotorWaveHard(0);
+    mDoCPd_c::stopMotorHard(0);
+    setDefault();
+}   
 
 /* 8006FE5C-8006FE84 06A79C 0028+00 0/0 0/0 10/10 .text            CheckQuake__12dVibration_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dVibration_c::CheckQuake() {
-    nofralloc
-#include "asm/d/d_vibration/CheckQuake__12dVibration_cFv.s"
+int dVibration_c::CheckQuake() {
+    int ret = 0;
+    if (field_0x0.mQuake.field_0x4 != -1 || field_0x70 != -1) {
+        ret  = 1;
+    }
+    return ret;
 }
-#pragma pop
 
 /* 8006FE84-8006FF04 06A7C4 0080+00 2/2 0/0 0/0 .text            setDefault__12dVibration_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dVibration_c::setDefault() {
-    nofralloc
-#include "asm/d/d_vibration/setDefault__12dVibration_cFv.s"
+void dVibration_c::setDefault() {
+    field_0x54 = -1;
+    field_0x0.mShock.field_0x4 = -1;
+    field_0x70 = -1;
+    field_0x0.mQuake.field_0x4 = -1;
+    field_0x50 = 0;
+    field_0x0.mShock.field_0x0 = 0;
+    field_0x6c = 0;
+    field_0x0.mQuake.field_0x0 = 0;
+    field_0x58 = 0;
+    field_0x0.mShock.field_0x8 = 0;
+    field_0x74 = 0;
+    field_0x0.mQuake.field_0x8 = 0;
+    field_0x5c = 0;
+    field_0x0.mShock.field_0xc = 0;
+    field_0x78 = 0;
+    field_0x0.mQuake.field_0xc = 0;
+    field_0x60 = 0;
+    field_0x0.mShock.field_0x10 = 0;
+    field_0x7c = 0;
+    field_0x0.mQuake.field_0x10 = 0;
+    field_0x64 = -99;
+    field_0x0.mShock.field_0x24 = -99;
+    field_0x80 = -99;
+    field_0x0.mQuake.field_0x24 = -99;
+    field_0x68 = -99;
+    field_0x84 = -99;
+    field_0x8c = 0;
+    field_0x88 = 0;
 }
-#pragma pop
 
 /* 8006FF04-8006FF38 06A844 0034+00 0/0 2/2 0/0 .text            Init__12dVibration_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dVibration_c::Init() {
-    nofralloc
-#include "asm/d/d_vibration/Init__12dVibration_cFv.s"
+void dVibration_c::Init() {
+    Kill();
+    setDefault();
 }
-#pragma pop
 
 /* 8006FF38-8006FFF8 06A878 00C0+00 0/0 1/1 0/0 .text            Pause__12dVibration_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dVibration_c::Pause() {
-    nofralloc
-#include "asm/d/d_vibration/Pause__12dVibration_cFv.s"
+void dVibration_c::Pause() {
+    if (field_0x8c != -1) {
+        if (field_0x54 != -1 || field_0x70 != -1) {
+            mDoCPd_c::stopMotorWaveHard(0);
+            mDoCPd_c::stopMotorHard(0);
+        }
+        field_0x54 = -1;
+        field_0x0.mShock.field_0x4 = -1;
+        field_0x64 = -99;
+        field_0x0.mShock.field_0x24 = -99;
+        if (field_0x0.mQuake.field_0x4 != -1) {
+            field_0x0.mQuake.field_0x24 = 0;
+        }
+        if (field_0x70 != -1) {
+            field_0x80 = 0;
+        }
+        field_0x8c = -1;
+    }
 }
-#pragma pop
 
 /* 8006FFF8-80070018 06A938 0020+00 0/0 1/1 0/0 .text            Remove__12dVibration_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dVibration_c::Remove() {
-    nofralloc
-#include "asm/d/d_vibration/Remove__12dVibration_cFv.s"
+void dVibration_c::Remove() {
+    Kill();
 }
-#pragma pop
