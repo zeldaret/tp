@@ -33,7 +33,7 @@ public:
     /* 801951B0 */ void setParam(f32, f32, f32, f32, f32);
     /* 801951C8 */ void setScale(f32);
     /* 801952A0 */ void setAlphaRate(f32);
-    /* 80195330 */ void addAlpha();
+    /* 80195330 */ int addAlpha();
     /* 801953CC */ void decAlpha();
     /* 80195460 */ void setBpkAnimation(J2DAnmColor*);
     /* 801955F0 */ void setBtk0Animation(J2DAnmTextureSRTKey*);

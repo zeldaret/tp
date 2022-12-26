@@ -377,7 +377,6 @@ asm void dSelect_cursor_c::setScale(f32 param_0) {
 #endif
 
 /* 801952A0-80195330 18FBE0 0090+00 0/0 77/77 0/0 .text setAlphaRate__16dSelect_cursor_cFf */
-#ifndef NONMATCHING
 void dSelect_cursor_c::setAlphaRate(f32 i_alphaRate) {
     if (i_alphaRate > FLOAT_LABEL(lit_3808)) {
         if (mpPaneMgr->isVisible() == 0) {
@@ -392,22 +391,32 @@ void dSelect_cursor_c::setAlphaRate(f32 i_alphaRate) {
 
     mpPaneMgr->setAlphaRate(i_alphaRate);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSelect_cursor_c::setAlphaRate(f32 param_0) {
-    nofralloc
-#include "asm/d/d_select_cursor/setAlphaRate__16dSelect_cursor_cFf.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80453A64-80453A68 002064 0004+00 2/2 0/0 0/0 .sdata2          @4157 */
 SECTION_SDATA2 static f32 lit_4157 = 5.0f;
 
 /* 80195330-801953CC 18FC70 009C+00 0/0 1/1 0/0 .text            addAlpha__16dSelect_cursor_cFv */
+#ifdef NONMATCHING
+// matches with literals
+int dSelect_cursor_c::addAlpha() {
+    s16 alpha_timer = mpPaneMgr->getAlphaTimer();
+
+    if (mpPaneMgr->isVisible() == 0) {
+        mpPaneMgr->show();
+    }
+    
+    if (alpha_timer >= 5) {
+        return 1;
+    } else {
+        alpha_timer++;
+        mpPaneMgr->alphaAnimeStart(alpha_timer);
+        mpPaneMgr->setAlphaRate(alpha_timer/FLOAT_LABEL(lit_4157));
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -416,6 +425,7 @@ asm void dSelect_cursor_c::addAlpha() {
 #include "asm/d/d_select_cursor/addAlpha__16dSelect_cursor_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801953CC-80195460 18FD0C 0094+00 0/0 1/1 0/0 .text            decAlpha__16dSelect_cursor_cFv */
 #pragma push
