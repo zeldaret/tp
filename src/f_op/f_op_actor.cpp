@@ -383,15 +383,25 @@ extern "C" asm void getFileListInfo__15dStage_roomDt_cCFv() {
 #pragma pop
 
 /* 80019404-800194FC 013D44 00F8+00 0/0 0/0 2/2 .text            initBallModel__13fopEn_enemy_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopEn_enemy_c::initBallModel() {
-    nofralloc
-#include "asm/f_op/f_op_actor/initBallModel__13fopEn_enemy_cFv.s"
-}
-#pragma pop
+bool fopEn_enemy_c::initBallModel() {
+    void* objRes = dComIfG_getObjectRes("Alink",((daAlink_c*)this)->getBallModelIdx());
+    mBallModel = mDoExt_J3DModel__create((J3DModelData*)objRes, 0x80000, 0x11000284);
 
+    if (!mBallModel) {
+        return false;
+    }
+    else {
+        mBallModel->setBaseScale(cXyz::Zero);
+
+        mBtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Alink",((daAlink_c*)mBallModel)->getBallBtkIdx());
+        mBtk->searchUpdateMaterialID(mBallModel->getModelData());
+
+        mBrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("Alink",((daAlink_c*)mBallModel)->getBallBrkIdx());
+        mBrk->searchUpdateMaterialID(mBallModel->getModelData());
+    }
+
+    return true;
+}
 /* 800194FC-80019520 013E3C 0024+00 2/2 0/0 2/2 .text checkBallModelDraw__13fopEn_enemy_cFv */
 int fopEn_enemy_c::checkBallModelDraw() {
     int ret = 0;
