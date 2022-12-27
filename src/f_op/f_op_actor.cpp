@@ -212,8 +212,8 @@ static int fopAc_Execute(void* actor) {
                 fopAcM_delete(ac);
             }
 
-            if (ac->current.pos.y < -9.999999848243207e+30f) {
-                ac->current.pos.y = -9.999999848243207e+30f;
+            if (ac->current.pos.y < FLOAT_MIN) {
+                ac->current.pos.y = FLOAT_MIN;
             }
 
             dKy_depth_dist_set(ac);
@@ -480,6 +480,43 @@ SECTION_SDATA2 static f32 lit_4557[1 + 1 /* padding */] = {
 
 /* 800196A0-800197BC 013FE0 011C+00 0/0 0/0 2/2 .text
  * drawBallModel__13fopEn_enemy_cFP12dKy_tevstr_c               */
+#ifndef NONMATCHING
+void fopEn_enemy_c::drawBallModel(dKy_tevstr_c* param_0) {
+    f32 tmp;
+
+    if (mBallModel) {
+        Vec* base_scale = mBallModel->getBaseScale();
+
+        if ((u8)checkBallModelDraw()) {
+            tmp = FLOAT_LABEL(lit_4505);
+        } else {
+            tmp = FLOAT_LABEL(lit_4555);
+        }
+
+        cLib_chaseF(&base_scale->x,tmp,FLOAT_LABEL(lit_4556));
+
+        // f32 result = base_scale->x;
+        base_scale->y = base_scale->x;
+        base_scale->z = base_scale->x;
+
+        mBallModel->setBaseScale(*base_scale);
+
+        if (base_scale->x > FLOAT_LABEL(lit_4557)) {
+            mDoMtx_trans(mBallModel->getBaseTRMtx(),mDownPos.x,mDownPos.y,mDownPos.z);
+            i_dKy_getEnvlight()->setLightTevColorType_MAJI(mBallModel, param_0);
+
+            mBtk->setFrame(field_0x590);
+            mBallModel->getModelData()->entryTexMtxAnimator(mBtk);
+
+            mBrk->setFrame(field_0x590);
+            mBallModel->getModelData()->entryTevRegAnimator(mBrk);
+
+            mDoExt_modelUpdateDL(mBallModel);
+        }
+
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -488,18 +525,10 @@ asm void fopEn_enemy_c::drawBallModel(dKy_tevstr_c* param_0) {
 #include "asm/f_op/f_op_actor/drawBallModel__13fopEn_enemy_cFP12dKy_tevstr_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80450CC0-80450CC8 0001C0 0004+04 0/0 9/9 0/0 .sbss
  * sInstance__35JASGlobalInstance<14JAUSectionHeap>             */
 extern u8 data_80450CC0[4 + 4 /* padding */];
 u8 data_80450CC0[4 + 4 /* padding */];
-
-/* 80378878-80378880 004ED8 0006+02 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80378878 = "Alink";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037887E = "\0";
-#pragma pop
