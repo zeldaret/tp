@@ -426,6 +426,29 @@ SECTION_SDATA2 static f64 lit_4507 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80019520-800196A0 013E60 0180+00 0/0 0/0 2/2 .text
  * setBallModelEffect__13fopEn_enemy_cFP12dKy_tevstr_c          */
+#ifdef NONMATCHING
+// matches with literals
+void fopEn_enemy_c::setBallModelEffect(dKy_tevstr_c* param_0) {
+    if (mBallModel) {
+        field_0x590 += FLOAT_LABEL(lit_4505);
+        
+        if (field_0x590 >= mBtk->getFrameMax()) {
+            field_0x590 -= mBtk->getFrameMax();
+        }
+
+        if ((u8)checkBallModelDraw()) {
+            Vec* base_scale = mBallModel->getBaseScale();
+            cLib_chaseF(&base_scale->x,FLOAT_LABEL(lit_4505),FLOAT_LABEL(lit_4431));
+            f32 result = base_scale->x;
+            base_scale->z = result;
+            base_scale->y = result;
+
+            mEffectID1 = dComIfGp_particle_set(mEffectID1, 0x86c8, &mDownPos, param_0);
+            mEffectID2 = dComIfGp_particle_set(mEffectID2, 0x86c9, &mDownPos, param_0);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -434,6 +457,7 @@ asm void fopEn_enemy_c::setBallModelEffect(dKy_tevstr_c* param_0) {
 #include "asm/f_op/f_op_actor/setBallModelEffect__13fopEn_enemy_cFP12dKy_tevstr_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80451BF0-80451BF4 0001F0 0004+00 1/1 0/0 0/0 .sdata2          @4555 */
