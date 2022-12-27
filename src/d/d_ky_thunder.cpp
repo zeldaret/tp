@@ -6,7 +6,6 @@
 #include "d/d_ky_thunder.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "m_Do/m_Do_ext.h"
 
 //
 // Types:
@@ -89,7 +88,6 @@ extern "C" extern u8 struct_80451070[8];
 //
 
 /* 801ADF58-801ADFB4 1A8898 005C+00 1/1 0/0 0/0 .text            createHeap__10dThunder_cFv */
-#ifndef NONMATCHING
 int dThunder_c::createHeap() {
     if (!mpHeap) {
         mpHeap = mDoExt_createSolidHeapFromGameToCurrent(0,0x20);
@@ -140,6 +138,12 @@ SECTION_SDATA2 static f32 lit_3884 = -250.0f;
 SECTION_SDATA2 static f32 lit_3885 = 1.0f;
 
 /* 801AE000-801AE19C 1A8940 019C+00 1/0 0/0 0/0 .text            dThunder_Draw__FP10dThunder_c */
+#ifdef NONMATCHING
+// needs to have inline defined
+void dThunder_Draw(dThunder_c* i_dthunderP) {
+    i_dthunderP->draw();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -148,6 +152,7 @@ static asm void dThunder_Draw(dThunder_c* param_0) {
 #include "asm/d/d_ky_thunder/dThunder_Draw__FP10dThunder_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80453E80-80453E84 002480 0004+00 2/2 0/0 0/0 .sdata2          @3923 */
@@ -172,6 +177,12 @@ SECTION_SDATA2 static f32 lit_3928 = 1.0f / 100.0f;
 SECTION_SDATA2 static f32 lit_3929 = 1.0f / 50.0f;
 
 /* 801AE19C-801AE374 1A8ADC 01D8+00 1/0 0/0 0/0 .text            dThunder_Execute__FP10dThunder_c */
+#ifdef NONMATCHING
+// needs to have inline defined
+void dThunder_Execute(dThunder_c* i_dthunderP) {
+    i_dthunderP->execute();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -180,6 +191,7 @@ static asm void dThunder_Execute(dThunder_c* param_0) {
 #include "asm/d/d_ky_thunder/dThunder_Execute__FP10dThunder_c.s"
 }
 #pragma pop
+#endif
 
 /* 801AE374-801AE37C 1A8CB4 0008+00 1/0 0/0 0/0 .text            dThunder_IsDelete__FP10dThunder_c
  */
@@ -188,6 +200,12 @@ static bool dThunder_IsDelete(dThunder_c* param_0) {
 }
 
 /* 801AE37C-801AE3FC 1A8CBC 0080+00 1/0 0/0 0/0 .text            dThunder_Delete__FP10dThunder_c */
+#ifdef NONMATCHING
+// needs to have destructor defined
+void dThunder_Delete(dThunder_c* i_dthunderP) {
+    thunder_delete(i_dthunderP);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -196,9 +214,26 @@ static asm void dThunder_Delete(dThunder_c* param_0) {
 #include "asm/d/d_ky_thunder/dThunder_Delete__FP10dThunder_c.s"
 }
 #pragma pop
+#endif
 
 /* 801AE3FC-801AE458 1A8D3C 005C+00 1/0 0/0 0/0 .text            dThunder_Create__FP12kankyo_class
  */
+#ifdef NONMATCHING
+// regalloc
+static int dThunder_Create(kankyo_class* param_0) {
+    dThunder_c* thunder_ptr = (dThunder_c*)param_0;
+    int ret = thunder_ptr->createHeap();
+
+    if (ret == 0) {
+        return 5;
+    } else {
+        ret = thunder_ptr->create();
+        thunder_ptr->adjustHeap();
+    }
+
+    return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -207,6 +242,7 @@ static asm void dThunder_Create(kankyo_class* param_0) {
 #include "asm/d/d_ky_thunder/dThunder_Create__FP12kankyo_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80394F40-80394F40 0215A0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -289,7 +325,7 @@ SECTION_SDATA2 static f32 lit_4099 = 3.0f / 10.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dThunder_c::create() {
+asm int dThunder_c::create() {
     nofralloc
 #include "asm/d/d_ky_thunder/create__10dThunder_cFv.s"
 }
