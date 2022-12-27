@@ -3278,9 +3278,9 @@ public:
         return getDirectionFromAngle(field_0x2fe2 - current.angle.y);
     }
 
-    int getBallModelIdx() { return 0x25; }
-    int getBallBtkIdx() { return 0x49; }
-    int getBallBrkIdx() { return 0x41; }
+    static int getBallModelIdx() { return 0x25; }
+    static int getBallBtkIdx() { return 0x49; }
+    static int getBallBrkIdx() { return 0x41; }
 
     bool checkRootTransClearMode() { return field_0x2f99 & 7; }
     bool checkRootTransZClearMode() { return field_0x2f99 & 4; }

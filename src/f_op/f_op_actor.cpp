@@ -366,7 +366,7 @@ dStage_FileList_dt_c* dStage_roomDt_c::getFileListInfo() const {
 
 /* 80019404-800194FC 013D44 00F8+00 0/0 0/0 2/2 .text            initBallModel__13fopEn_enemy_cFv */
 bool fopEn_enemy_c::initBallModel() {
-    void* objRes = dComIfG_getObjectRes("Alink",((daAlink_c*)this)->getBallModelIdx());
+    void* objRes = dComIfG_getObjectRes("Alink",daAlink_c::getBallModelIdx());
     mBallModel = mDoExt_J3DModel__create((J3DModelData*)objRes, 0x80000, 0x11000284);
 
     if (!mBallModel) {
@@ -375,10 +375,10 @@ bool fopEn_enemy_c::initBallModel() {
     else {
         mBallModel->setBaseScale(cXyz::Zero);
 
-        mBtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Alink",((daAlink_c*)mBallModel)->getBallBtkIdx());
+        mBtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Alink",daAlink_c::getBallBtkIdx());
         mBtk->searchUpdateMaterialID(mBallModel->getModelData());
 
-        mBrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("Alink",((daAlink_c*)mBallModel)->getBallBrkIdx());
+        mBrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("Alink",daAlink_c::getBallBrkIdx());
         mBrk->searchUpdateMaterialID(mBallModel->getModelData());
     }
 
