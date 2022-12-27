@@ -6,27 +6,16 @@
 #include "d/d_jnt_col.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
+#include "m_Do/m_Do_mtx.h"
 
 //
 // Types:
 //
 
-struct mDoMtx_stack_c {
-    /* 8000CD64 */ void transS(cXyz const&);
-    /* 8000CD9C */ void transM(f32, f32, f32);
-    /* 8000CF0C */ void ZXYrotS(csXyz const&);
-
-    static u8 now[48];
-};
-
 struct cM3dGSph {
     /* 80036AA4 */ ~cM3dGSph();
     /* 8026F664 */ void Set(cXyz const&, f32);
-};
-
-struct cM3dGPla {
-    /* 8026F408 */ void crossInfLin(cXyz const&, cXyz const&, cXyz&) const;
-    /* 8026F4C4 */ void SetupNP0(Vec const&, Vec const&);
 };
 
 struct cM3dGCyl {
@@ -94,26 +83,25 @@ extern "C" u8 BaseZ__4cXyz[12];
 //
 
 /* 80035C8C-80035CA0 0305CC 0014+00 0/0 1/1 8/8 .text            __ct__9dJntCol_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dJntCol_c::dJntCol_c() {
-    nofralloc
-#include "asm/d/d_jnt_col/__ct__9dJntCol_cFv.s"
+dJntCol_c::dJntCol_c() {
+    mModel = 0;
+    mData = 0;
+    field_0x8 = 0;
 }
-#pragma pop
 
 /* 80035CA0-80035CC8 0305E0 0028+00 0/0 2/2 8/8 .text
  * init__9dJntCol_cFP10fopAc_ac_cPC13dJntColData_cP8J3DModeli   */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dJntCol_c::init(fopAc_ac_c* param_0, dJntColData_c const* param_1, J3DModel* param_2,
+int dJntCol_c::init(fopAc_ac_c* i_actorP, dJntColData_c const* i_jntColP, J3DModel* i_modelP,
                          int param_3) {
-    nofralloc
-#include "asm/d/d_jnt_col/init__9dJntCol_cFP10fopAc_ac_cPC13dJntColData_cP8J3DModeli.s"
+    mData = (dJntColData_c*)i_jntColP;
+    mModel = i_modelP;
+    field_0x8 = param_3;
+    field_0xc = 0;
+    if (i_actorP) {
+        fopAcM_SetJntCol(i_actorP,this);
+    }
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451D60-80451D64 000360 0004+00 1/1 0/0 0/0 .sdata2          @3655 */
@@ -121,6 +109,23 @@ SECTION_SDATA2 static f32 lit_3655 = 500.0f;
 
 /* 80035CC8-80035DC8 030608 0100+00 2/2 0/0 0/0 .text
  * setNowLine__9dJntCol_cFP8cM3dGLinPC4cXyzPC5csXyzP4cXyz       */
+#ifdef NONMATCHING
+// regalloc, parameters are loading in wrong?
+void dJntCol_c::setNowLine(cM3dGLin* param_0, cXyz const* param_1, csXyz const* param_2,
+                               cXyz* param_3) {
+    
+    if (param_2) {
+        mDoMtx_stack_c::ZXYrotS(*param_2);
+        mDoMtx_stack_c::multVec(&cXyz::BaseZ,param_3); 
+    } else {
+        *param_3 = cXyz::BaseZ;
+    }
+
+    cXyz start_pos = *param_1 - *param_3 * FLOAT_LABEL(lit_3655);
+    cXyz end_pos = *param_1 + *param_3 * FLOAT_LABEL(lit_3655);
+    param_0->SetStartEnd(start_pos,end_pos);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -130,6 +135,7 @@ asm void dJntCol_c::setNowLine(cM3dGLin* param_0, cXyz const* param_1, csXyz con
 #include "asm/d/d_jnt_col/setNowLine__9dJntCol_cFP8cM3dGLinPC4cXyzPC5csXyzP4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803A78F8-803A7904 004A18 000C+00 4/4 21/21 0/0 .data            __vt__8cM3dGLin */
@@ -237,12 +243,11 @@ asm void dJntCol_c::getHitmarkPosAndAngle(cXyz const* param_0, csXyz const* para
 
 /* 80036FA8-80037038 0318E8 0090+00 0/0 0/0 1/1 .text
  * setArrowPosAndAngle__9dJntCol_cFPC4cXyzPC4cXyziP4cXyzP5csXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dJntCol_c::setArrowPosAndAngle(cXyz const* param_0, cXyz const* param_1, int param_2,
-                                        cXyz* param_3, csXyz* param_4) {
-    nofralloc
-#include "asm/d/d_jnt_col/setArrowPosAndAngle__9dJntCol_cFPC4cXyzPC4cXyziP4cXyzP5csXyz.s"
+void dJntCol_c::setArrowPosAndAngle(cXyz const* param_0, cXyz const* i_srcPos, int i_anmMtxIdx,
+                                        cXyz* param_3, csXyz* i_arrowPosP) {
+    cXyz dst_pos;                                            
+    mDoMtx_multVecSR(mModel->i_getAnmMtx(i_anmMtxIdx),i_srcPos,&dst_pos);
+    i_arrowPosP->x = dst_pos.atan2sY_XZ();
+    i_arrowPosP->y = dst_pos.atan2sX_Z();
+    mDoMtx_multVec(mModel->i_getAnmMtx(i_anmMtxIdx),param_0,param_3);
 }
-#pragma pop
