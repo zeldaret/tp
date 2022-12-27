@@ -358,8 +358,8 @@ void dSelect_cursor_c::setScale(f32 i_scale) {
 
     s8 name_idx = mNameIdx;
     if ((name_idx == 1 || name_idx < 1) || (name_idx < 0 && name_idx < 4)) {
-        field_0x50 = mpScreen->search(0x7373656c5f69636f)->getTranslateX();
-        field_0x54 = mpScreen->search(0x7373656c5f69636f)->getTranslateY();
+        field_0x50 = mpScreen->search('ssel_ico')->getTranslateX();
+        field_0x54 = mpScreen->search('ssel_ico')->getTranslateY();
     } else {
         field_0x50 = 0.0f;
         field_0x54 = 0.0f;
@@ -523,7 +523,7 @@ asm void dSelect_cursor_c::setCursorAnimation() {
 /* 801958E0-80195940 190220 0060+00 1/1 0/0 0/0 .text
  * setBckAnimation__16dSelect_cursor_cFP18J2DAnmTransformKey    */
 void dSelect_cursor_c::setBckAnimation(J2DAnmTransformKey* param_0) {
-    mpScreen->search(0x7373656c5f69636f)->setAnimation((J2DAnmTransform*)param_0);
+    mpScreen->search('ssel_ico')->setAnimation((J2DAnmTransform*)param_0);
 }
 
 /* 80195940-80195978 190280 0038+00 1/1 0/0 0/0 .text moveCenter__16dSelect_cursor_cFP7J2DPaneff
