@@ -393,14 +393,15 @@ asm void fopEn_enemy_c::initBallModel() {
 #pragma pop
 
 /* 800194FC-80019520 013E3C 0024+00 2/2 0/0 2/2 .text checkBallModelDraw__13fopEn_enemy_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopEn_enemy_c::checkBallModelDraw() {
-    nofralloc
-#include "asm/f_op/f_op_actor/checkBallModelDraw__13fopEn_enemy_cFv.s"
+int fopEn_enemy_c::checkBallModelDraw() {
+    int ret = 0;
+
+    if ((mFlags & 1) && !(mFlags & 0x32)) {
+        ret = 1;
+    }
+
+    return ret;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451BE0-80451BE8 0001E0 0004+04 2/2 0/0 0/0 .sdata2          @4505 */
