@@ -371,16 +371,9 @@ static asm int fopAc_Create(void* param_0) {
 #endif
 
 /* 800193FC-80019404 013D3C 0008+00 0/0 1/0 0/0 .text getFileListInfo__15dStage_roomDt_cCFv */
-#pragma push
-#pragma force_active on
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dStage_roomDt_c::getFileListInfo() const {
-extern "C" asm void getFileListInfo__15dStage_roomDt_cCFv() {
-    nofralloc
-#include "asm/f_op/f_op_actor/getFileListInfo__15dStage_roomDt_cCFv.s"
+dStage_FileList_dt_c* dStage_roomDt_c::getFileListInfo() const {
+    return mFileListInfo;
 }
-#pragma pop
 
 /* 80019404-800194FC 013D44 00F8+00 0/0 0/0 2/2 .text            initBallModel__13fopEn_enemy_cFv */
 bool fopEn_enemy_c::initBallModel() {
@@ -480,7 +473,6 @@ SECTION_SDATA2 static f32 lit_4557[1 + 1 /* padding */] = {
 
 /* 800196A0-800197BC 013FE0 011C+00 0/0 0/0 2/2 .text
  * drawBallModel__13fopEn_enemy_cFP12dKy_tevstr_c               */
-#ifndef NONMATCHING
 void fopEn_enemy_c::drawBallModel(dKy_tevstr_c* param_0) {
     f32 tmp;
 
@@ -495,7 +487,6 @@ void fopEn_enemy_c::drawBallModel(dKy_tevstr_c* param_0) {
 
         cLib_chaseF(&base_scale->x,tmp,FLOAT_LABEL(lit_4556));
 
-        // f32 result = base_scale->x;
         base_scale->y = base_scale->x;
         base_scale->z = base_scale->x;
 
@@ -516,16 +507,6 @@ void fopEn_enemy_c::drawBallModel(dKy_tevstr_c* param_0) {
 
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopEn_enemy_c::drawBallModel(dKy_tevstr_c* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_actor/drawBallModel__13fopEn_enemy_cFP12dKy_tevstr_c.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80450CC0-80450CC8 0001C0 0004+04 0/0 9/9 0/0 .sbss
