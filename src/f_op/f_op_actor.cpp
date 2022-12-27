@@ -236,7 +236,6 @@ static int fopAc_IsDelete(void* actor) {
 }
 
 /* 80018FCC-8001904C 01390C 0080+00 1/0 0/0 0/0 .text            fopAc_Delete__FPv */
-#ifdef NONMATCHING
 static int fopAc_Delete(void* actor) {
     fopAc_ac_c* ac = (fopAc_ac_c*)actor;
 
@@ -254,16 +253,6 @@ static int fopAc_Delete(void* actor) {
 
     return deleted;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fopAc_Delete(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_actor/fopAc_Delete__FPv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80451BD0-80451BD4 0001D0 0004+00 2/2 0/0 0/0 .sdata2          @4431 */
