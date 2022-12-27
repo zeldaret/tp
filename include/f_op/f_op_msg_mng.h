@@ -40,5 +40,11 @@ int fopMsgM_messageSet(u32 param_0, u32 param_1);
 int fopMsgM_messageSetDemo(u32 param_0);
 msg_class* fopMsgM_SearchByID(unsigned int param_0);
 char* fopMsgM_messageGet(char* msg, u32 string_id);
+s32 fop_Timer_create(s16 param_0, u8 param_1, u32 param_2, u8 param_3, u8 param_4, f32 param_5,
+                     f32 param_6, f32 param_7, f32 param_8, fopMsgCreateFunc createFunc);
+inline s32 fopMsgM_Timer_create(s16 param_0, u8 param_1, u32 param_2, u8 param_3, u8 param_4, f32 param_5,
+                                f32 param_6, f32 param_7, f32 param_8, fopMsgCreateFunc createFunc) {
+    return fop_Timer_create(param_0, param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, createFunc);
+}
 
 #endif

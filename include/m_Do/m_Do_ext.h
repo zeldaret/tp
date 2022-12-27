@@ -131,6 +131,10 @@ public:
 
     void entry(J3DModelData* i_modelData) { entry(i_modelData, getFrame()); }
     J3DAnmTransform* getBckAnm() { return mAnm; }
+    void removeJoint (J3DModelData* i_modelData, u16 i_idx) {
+        J3DJoint* mpJnt = i_modelData->getJointNodePointer(i_idx);
+        mpJnt->setMtxCalc(0);
+    }
 
 private:
     /* 0x14 */ J3DAnmTransform* mAnm;
@@ -241,9 +245,10 @@ public:
 
     void setPlaySpeed(f32 speed) { mFrameCtrl.setRate(speed); }
     void setFrame(f32 frame) { mFrameCtrl.setFrame((s16)frame); }
-
     f32 getPlaySpeed() { return mFrameCtrl.getRate(); }
     f32 getFrame() { return mFrameCtrl.getFrame(); }
+    u8 getPlayMode() { return mFrameCtrl.getAttribute(); }
+    bool isLoop() { return mFrameCtrl.checkState(2); }
     f32 getEndFrame() { return mFrameCtrl.getEnd(); } 
 
     bool isStop() {

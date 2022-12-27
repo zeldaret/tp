@@ -513,6 +513,19 @@ static asm void daE_YC_Draw(e_yc_class* param_0) {
 #pragma pop
 
 /* 807F00BC-807F01AC 0002DC 00F0+00 1/1 0/0 0/0 .text            damage_check__FP10e_yc_class */
+#ifdef NONMATCHING
+static void damage_check(e_yc_class* param_0) {
+    param_0->mCcD_GStts.Move();
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    if (param_0->field_0x6AA == 0 && !param_0->mCcD_GObjInf.ChkTgHit()) {
+        param_0->mpTgHitObj = param_0->mCcD_GObjInf.GetTgHitObj();
+
+        if (((daAlink_c*)player)->getCutType() != 0x2c) {
+            return;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -521,6 +534,7 @@ static asm void damage_check(e_yc_class* param_0) {
 #include "asm/rel/d/a/e/d_a_e_yc/d_a_e_yc/damage_check__FP10e_yc_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 807F2878-807F287C 000014 0004+00 0/2 0/0 0/0 .rodata          @3859 */

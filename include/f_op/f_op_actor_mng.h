@@ -116,6 +116,10 @@ inline s16 fopAcM_GetName(void* pActor) {
     return fpcM_GetName(pActor);
 }
 
+inline MtxP fopAcM_GetMtx(const fopAc_ac_c* pActor) {
+    return pActor->mCullMtx;
+}
+
 inline u32 fopAcM_checkStatus(fopAc_ac_c* pActor, u32 status) {
     return pActor->mStatus & status;
 }
@@ -148,6 +152,10 @@ inline u8 fopAcM_GetParamBit(void* ac, u8 shift, u8 bit) {
 
 inline void fopAcM_SetParam(void* p_actor, u32 param) {
     fpcM_SetParam(p_actor, param);
+}
+
+inline void fopAcM_SetJntCol(fopAc_ac_c* i_actorP, dJntCol_c* i_jntColP) {
+    i_actorP->mJntCol = i_jntColP;
 }
 
 inline s16 fopAcM_GetProfName(const void* pActor) {

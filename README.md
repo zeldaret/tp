@@ -19,13 +19,13 @@ Project Setup
 1. Clone down project
 
 ```bash
-$ git clone https://github.com/zeldaret/tp
+git clone https://github.com/zeldaret/tp
 ```
 
 2. Setup compiler directory
 
 ```bash
-$ mkdir -p tools/mwcc_compiler/
+mkdir -p tools/mwcc_compiler/
 ```
 
 3. Download `GC_COMPILERS.zip` from the [Discord](https://discord.gg/Nshw5pHS4h) server. See the pins in the `#tp-decomp` channel under the Twilight Princess group.
@@ -33,7 +33,7 @@ $ mkdir -p tools/mwcc_compiler/
 4. Extract `GC_COMPILERS.zip` into the previously created `mwcc_compiler` directory
 
 ```bash
-$ unzip GC_COMPILERS.zip -d tools/mwcc_compiler/
+unzip GC_COMPILERS.zip -d tools/mwcc_compiler/
 ```
 
 5. Place a copy of NTSC-U GCN Twilight Princess in the root directory and call it `gz2e01.iso` (find this on your own)
@@ -41,7 +41,7 @@ $ unzip GC_COMPILERS.zip -d tools/mwcc_compiler/
 6. Setup the project
 
 ```bash
-$ ./tp setup
+./tp setup
 ```
 
 Building The Game
@@ -50,7 +50,7 @@ Building The Game
 1. To build a playable game, complete the [Project Setup](#project-setup) steps, then run
 
 ```bash
-$ make game
+make game
 ```
 
 The completed build is under `build/dolzel2/game/sys/main.dol`
@@ -58,7 +58,7 @@ The completed build is under `build/dolzel2/game/sys/main.dol`
 Build DOL
 
 ```bash
-$ make
+make
 ```
 
 (Note that any time you run make you can add the -j# argument where # is the amount of threads your system has in order to greatly speed up build times)
@@ -66,7 +66,7 @@ $ make
 Build RELs
 
 ```bash
-$ make rels
+make rels
 ```
 
 The completed RELs will be under `build/dolzel2/rel`
@@ -74,7 +74,7 @@ The completed RELs will be under `build/dolzel2/rel`
 Extract Game Assets
 
 ```bash
-$ make assets
+make assets
 ```
 
 Create Expected Directory
@@ -83,7 +83,7 @@ Create Expected Directory
 2. Run:
 
 ```bash
-$ ./tp expected
+./tp expected
 ```
 
 
@@ -93,25 +93,25 @@ Clean Directories
 Clean RELs
 
 ```bash
-$ make clean_rels
+make clean_rels
 ```
 
 Clean Game Directory
 
 ```bash
-$ make clean_game
+make clean_game
 ```
 
 Clean Build Directory
 
 ```bash
-$ make clean_all
+make clean_all
 ```
 
 Clean Dol
 
 ```bash
-$ make clean
+make clean
 ```
 
 

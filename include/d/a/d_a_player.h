@@ -433,7 +433,7 @@ public:
     static BOOL checkDungeonWarpItem(int);
     static BOOL checkMasterSwordEquip();
     static BOOL checkWoodShieldEquip();
-    f32 getAttentionOffsetY();
+    static f32 getAttentionOffsetY();
     s16 checkNowWolfEyeUp();
     static void forceRestartRoom(int, u32, int);
     static void setFmChainPos(fopAc_ac_c*, cXyz*, int);
@@ -441,7 +441,7 @@ public:
     static void setLookPos(cXyz*);
     static void setPlayerSe(u32);
     static bool linkGrabSubjectNoDraw(fopAc_ac_c*);
-    void wolfGrabSubjectNoDraw(fopAc_ac_c*);
+    static bool wolfGrabSubjectNoDraw(fopAc_ac_c*);
     static bool checkRoomRestartStart();
     static u32 checkCarryStartLightBallA();
     static u32 checkCarryStartLightBallB();

@@ -60,6 +60,7 @@ public:
     static f32 getAnalogR(u32 pad) { return getCpadInfo(pad).mTriggerRight; }
     static f32 getAnalogL(u32 pad) { return getCpadInfo(pad).mTriggerLeft; }
     static BOOL isConnect(u32 pad) { return JUTGamePad::getPortStatus(pad) == 0; }
+    static void stopMotorHard(u32 pad) { return m_gamePad[pad]->stopMotorHard(); }
     static void stopMotorWaveHard(u32 pad) { return m_gamePad[pad]->stopMotorWaveHard(); }
 
     static JUTGamePad* m_gamePad[4];

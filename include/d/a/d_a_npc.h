@@ -2,8 +2,40 @@
 #define D_A_D_A_NPC_H
 
 #include "d/com/d_com_inf_game.h"
+#include "d/d_path.h"
+#include "d/msg/d_msg_object.h"
 #include "dolphin/types.h"
 #include "global.h"
+
+struct dPnt {};
+
+class daNpcT_ActorMngr_c {
+private:
+    /* 0x0 */ u32 mActorID;
+
+public:
+    /* 801456D4 */ void initialize();
+    /* 801456E0 */ void entry(fopAc_ac_c*);
+    /* 801456FC */ void remove();
+    /* 80145708 */ fopAc_ac_c* getActorP();
+
+    /* 8014D108 */ virtual ~daNpcT_ActorMngr_c();
+};
+
+class daNpcT_MatAnm_c : public J3DMaterialAnm {
+private:
+    /* 0x0F4 */ mutable f32 field_0xF4;
+    /* 0x0F8 */ mutable f32 field_0xF8;
+    /* 0x0FC */ f32 mTranslationX;
+    /* 0x100 */ f32 mTranslationY;
+    /* 0x104 */u8 field_0x104;
+    /* 0x105 */u8 field_0x105;
+
+public:
+    /* 80145764 */ void initialize();
+    /* 80145788 */ virtual void calc(J3DMaterial*) const;
+    /* 8014D24C */ ~daNpcT_MatAnm_c();
+};
 
 class daNpcT_MotionSeqMngr_c {
 public:
@@ -32,19 +64,6 @@ private:
 
 public:
     /* 8014D0C0 */ virtual ~daNpcT_MotionSeqMngr_c();
-};
-
-class daNpcT_ActorMngr_c {
-private:
-    /* 0x0 */ u32 mActorID;
-
-public:
-    /* 801456D4 */ void initialize();
-    /* 801456E0 */ void entry(fopAc_ac_c*);
-    /* 801456FC */ void remove();
-    /* 80145708 */ fopAc_ac_c* getActorP();
-
-    /* 8014D108 */ virtual ~daNpcT_ActorMngr_c();
 };
 
 class daNpcT_JntAnm_c {
@@ -95,7 +114,8 @@ public:
 
 private:
     /* 0x00 */ csXyz field_0x0[2];
-    /* 0x0C */ f32 field_0xc[2];
+    /* 0x0C */ f32 field_0xc;
+    /* 0x0C */ f32 field_0x10;
     /* 0x14 */ s16 mStagger;
     /* 0x16 */ s16 field_0x16;
     /* 0x18 */ u8 mRebirth;
@@ -109,6 +129,59 @@ struct daNpcT_pntData_c {};
 
 struct daNpcT_motionAnmData_c {
     u8 data[8];
+};
+
+class daNpcT_Hermite_c {
+public:
+    /* 8014CBAC */ ~daNpcT_Hermite_c();
+
+    /* 0x00 */ f32 field_0x00;
+    /* 0x04 */ cXyz mPosition;
+    /* 0x10 */ f32 field_0x10;
+};
+
+class daNpcT_Path_c {
+private:
+    /* 0x00 */ dPath* mpRoomPath;
+    /* 0x04 */ cXyz mPosition;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ u16 mIdx;
+    /* 0x1E */ u16 field_0x1E;
+    /* 0x20 */ u8 mDirection;
+    /* 0x21 */ u8 mIsClosed;
+
+public:
+    /* 80145B7C */ void hermite(cXyz&, cXyz&, cXyz&, cXyz&, daNpcT_Hermite_c&, cXyz&);
+    /* 80145C40 */ void initialize();
+    /* 80145C74 */ int setPathInfo(u8, s8, u8);
+    /* 80145D2C */ int setNextPathInfo(s8, u8);
+    /* 80145DA0 */ void reverse();
+    /* 80145DD0 */ int setNextIdx(int);
+    /* 80145E38 */ int getDstPos(cXyz, cXyz*, int);
+    /* 80145FB4 */ int getDstPosH(cXyz, cXyz*, int, int);
+    /* 80146188 */ int chkPassed1(cXyz, int);
+    /* 801464D8 */ int chkPassed2(cXyz, cXyz*, int, int);
+
+    cXyz* getPntPos(u16 i_idx) {
+        u16 tmpidx = i_idx;
+
+        dStage_dPnt_c* tmppnt = &mpRoomPath->m_points[tmpidx];
+        return &tmppnt->m_position;
+    }
+
+    int chkClose() { 
+        int roomPath = dPath_ChkClose(mpRoomPath); 
+        return roomPath;
+    }
+
+    u16& getNumPnts() { 
+        dPath* path = mpRoomPath;
+        return path->m_num; 
+    }
+
+    u16& getIdx() { return mIdx; }
 };
 
 class mDoExt_McaMorfSO;
@@ -162,7 +235,7 @@ public:
     /* 0xD90 */ u32 field_0xd90;
     /* 0xD94 */ u32 field_0xd94;
     /* 0xD98 */ u32 field_0xd98;
-    /* 0xD9C */ u32 field_0xd9c;
+    /* 0xD9C */ profile_method_class* mSubMtd;
     /* 0xDA0 */ u8 field_0xda0[8];
     /* 0xDA8 */ u32 field_0xda8;
     /* 0xDAC */ int field_0xdac;
@@ -174,9 +247,9 @@ public:
     /* 0xDC4 */ u8 field_0xdc4[4];
     /* 0xDC8 */ s16 field_0xdc8;
     /* 0xDCA */ s16 field_0xdca;
-    /* 0xDCC */ u8 field_0xdcc[8];
+    /* 0xDCC */ u8 field_0xdcc[10];
     /* 0xDD4 */ s16 field_0xdd4;
-    /* 0xDD8 */ s16 field_0xdd8;
+    /* 0xDD8 */ s16 mStepNo;
     /* 0xDDA */ s16 field_0xdda;
     /* 0xDDC */ f32 field_0xddc;
     /* 0xDE0 */ f32 field_0xde0;
@@ -235,13 +308,13 @@ public:
     /* 8014886C */ int draw(int, int, f32, _GXColorS10*, f32, int, int, int);
     /* 80148C70 */ void setEnvTevColor();
     /* 80148CCC */ void setRoomNo();
-    /* 80148D10 */ void checkEndAnm(f32);
+    /* 80148D10 */ int checkEndAnm(f32);
     /* 80148DD0 */ void checkEndAnm(J3DFrameCtrl*, f32);
     /* 80148E4C */ void playAllAnm();
     /* 80149190 */ void setMtx();
     /* 8014924C */ void ctrlFaceMotion();
     /* 80149300 */ void ctrlMotion();
-    /* 801493B8 */ void ctrlMsgAnm(int*, int*, fopAc_ac_c*, int);
+    /* 801493B8 */ int ctrlMsgAnm(int*, int*, fopAc_ac_c*, int);
     /* 8014A224 */ void evtChange();
     /* 8014A388 */ void setFaceMotionAnm(int, bool);
     /* 8014A908 */ void setPos(cXyz);
@@ -261,11 +334,11 @@ public:
     /* 8014B648 */ void step(s16, int, int, int, int);
     /* 8014B808 */ void calcSpeedAndAngle(cXyz, int, s16, s16);
     /* 8014BB00 */ void getActorDistance(fopAc_ac_c*, int, int);
-    /* 8014BBF0 */ void initTalk(int, fopAc_ac_c**);
+    /* 8014BBF0 */ int initTalk(int, fopAc_ac_c**);
     /* 8014BC78 */ void talkProc(int*, int, fopAc_ac_c**, int);
     /* 8014BE2C */ void getNearestActorP(s16);
     /* 8014BEE4 */ void getEvtAreaTagP(int, int);
-    /* 8014BFB0 */ void getShopItemTagP();
+    /* 8014BFB0 */ u32 getShopItemTagP();
     /* 8014C030 */ void setHitodamaPrtcl();
 
     /* 8014CD20 */ virtual ~daNpcT_c();
@@ -316,7 +389,13 @@ public:
     /* 8014CCE8 */ virtual void changeBtk(int*, int*);
     /* 8014A628 */ virtual void setMotionAnm(int, f32, int);
 
-    bool checkHide() { return !field_0xe25 && (!dComIfGs_wolfeye_effect_check() && field_0xa89); }
+    bool checkHide() { 
+        return field_0xe25 || (!dComIfGs_wolfeye_effect_check() && field_0xa89); 
+    }
+
+    s16 checkStep() {
+        return mStepNo == 1;
+    }
 
     static u8 const mCcDObjData[48];
     static u8 mCcDCyl[68];
@@ -337,7 +416,7 @@ public:
     /* 801506D8 */ void entry(unsigned int);
     /* 801506BC */ void entry(fopAc_ac_c*);
     /* 801506E0 */ void remove();
-    /* 801506EC */ void getActorP();
+    /* 801506EC */ fopAc_ac_c* getActorP();
 
     /* 80155E40 */ virtual ~daNpcF_ActorMngr_c();
 };
@@ -431,7 +510,7 @@ private:
     /* 0x9F4 */ u8 field_0x9f4;
     /* 0x9F5 */ u8 field_0x9f5;
     /* 0x9F6 */ u8 field_0x9f6;
-    /* 0x9F8 */ dMsgFlow_c field_0x9f8;
+    /* 0x9F8 */ dMsgFlow_c mFlow;
     /* 0xA44 */ cBgS_GndChk field_0xa44;
     /* 0xA80 */ dBgS_GndChk field_0xa80;
     /* 0xAD4 */ dBgS_LinChk field_0xad4;
@@ -443,7 +522,7 @@ public:
     /* 801522AC */ void draw(int, int, f32, _GXColorS10*, int);
     /* 80152614 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
     /* 80152654 */ void srchAttnActor1(void*, void*);
-    /* 801526E8 */ void srchActor(void*, void*);
+    /* 801526E8 */ void* srchActor(void*, void*);
 
     /* 801528C8 */ void initialize();
     /* 80152B2C */ void getTrnsfrmKeyAnmP(char*, int);
@@ -471,19 +550,19 @@ public:
     /* 801539F0 */ void chkActorInSight(fopAc_ac_c*, f32);
     /* 80153A78 */ void chkActorInArea(fopAc_ac_c*, cXyz, cXyz, s16);
     /* 80153BDC */ void chkActorInAttnArea(fopAc_ac_c*, fopAc_ac_c*, int);
-    /* 80153D1C */ void initTalk(int, fopAc_ac_c**);
+    /* 80153D1C */ int initTalk(int, fopAc_ac_c**);
     /* 80153D84 */ void talkProc(int*, int, fopAc_ac_c**);
     /* 80153EF4 */ void turn(s16, f32, int);
     /* 801540A4 */ void step(s16, int, int, int);
     /* 80154250 */ void setAngle(s16);
     /* 80154278 */ void getDistTableIdx(int, int);
-    /* 801542A0 */ void getEvtAreaTagP(int, int);
+    /* 801542A0 */ int getEvtAreaTagP(int, int);
     /* 8015436C */ void getAttnActorP(int, void* (*)(void*, void*), f32, f32, f32, f32, s16, int,
                                       int);
     /* 80154730 */ void chkActorInSight2(fopAc_ac_c*, f32, s16);
-    /* 80154834 */ void chkPointInArea(cXyz, cXyz, f32, f32, f32, s16);
-    /* 801548F4 */ void chkPointInArea(cXyz, cXyz, cXyz, s16);
-    /* 8015496C */ void getAttentionPos(fopAc_ac_c*);
+    /* 80154834 */ bool chkPointInArea(cXyz, cXyz, f32, f32, f32, s16);
+    /* 801548F4 */ bool chkPointInArea(cXyz, cXyz, cXyz, s16);
+    /* 8015496C */ cXyz getAttentionPos(fopAc_ac_c*);
     /* 801549E0 */ void chkFindPlayer2(int, s16);
     /* 80154BD8 */ void setHitodamaPrtcl();
 
@@ -508,13 +587,281 @@ public:
     static u8 mCcDCyl[68];
     static u8 mCcDSph[64];
     static u8 mFindActorPList[400];
-    static u8 mFindCount[4];
-    static u8 mSrchActorName[2 + 2 /* padding */];
+    static s32 mFindCount;
+    static s16 mSrchActorName;
 };
 
 STATIC_ASSERT(sizeof(daNpcF_c) == 0xB48);
 
-void daNpcF_getPlayerInfoFromPlayerList(int param_0, int param_1, cXyz& param_2,
+int daNpcF_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz& param_2,
                                             csXyz& param_3);
+
+struct daBaseNpc_matAnm_c {
+    /* 8014D884 */ void calc(J3DMaterial*) const;
+    /* 80150444 */ ~daBaseNpc_matAnm_c();
+};
+
+class daBaseNpc_acMngr_c {
+private:
+    /* 0x00 */ u8 field_0x00[4];
+    /* 0x04 */ u32 mActorId;
+public:
+    /* 8014D804 */ daBaseNpc_acMngr_c();
+    /* 8014D81C */ void entry(fopAc_ac_c*);
+    /* 8014D838 */ fopAc_ac_c* getActor();
+    /* 80150524 */ ~daBaseNpc_acMngr_c();
+};                                            
+
+class daBaseNpc_path_c {
+private:
+    /* 0x000 */ f32 field_0x0;
+    /* 0x004 */ dPath* mpRoomPath;
+    /* 0x008 */ f32 field_0x8;
+    /* 0x00C */ dPath* field_0xc;
+    /* 0x010 */ u8 field_0x10[2558];
+    /* 0xA0E */ u16 field_0xa0e;
+    /* 0xA10 */ u16 mIdx;
+    /* 0xA12 */ s8 mDirection;
+    /* 0xA13 */ u8 field_0xa13[17];
+
+public:
+    /* 8014D998 */ daBaseNpc_path_c();
+    /* 8014D9A8 */ BOOL isPath();
+    /* 8014D9BC */ int setPathInfo(u8, s8, s8);
+    /* 8014DA48 */ void reverseDir();
+    /* 8014DA64 */ void chkPnt(cXyz);
+    /* 8014DAC4 */ void setNextPnt();
+    /* 8014DB04 */ u16 getIdx();
+    /* 8014DB0C */ void setIdx(u16);
+    /* 8014DB14 */ void getPntPos(u16);
+    /* 801503FC */ ~daBaseNpc_path_c();
+
+    
+};
+
+class daBaseNpc_lookat_c {
+private:
+    /* 0x00 */ int field_0x00;
+    /* 0x04 */ csXyz mMaxJntLmt[2];
+    /* 0x10 */ u8 field_0x0A[12];
+    /* 0x1C */ csXyz mMinJntLmt[2];
+    /* 0x28 */ u8 field_0x28[12];
+    /* 0x34 */ cXyz mJntPos[3];
+    /* 0x4C */ u8 field_0x4C[24];
+    /* 0x64 */ csXyz mUnk[2];
+    /* 0x70 */ u8 field_0x70[12];
+    /* 0x7C */ csXyz mUnk2[2];
+    /* 0x88 */ u8 field_0x88[4];
+    /* 0x8C */ cXyz* mpAttnPos;
+
+public:
+    /* 8014DB40 */ void limitter(s16, s16*, s16, s16);
+    /* 8014DBB4 */ void calc(fopAc_ac_c*, f32 (*)[4], s16);
+    /* 8014E634 */ void setMaxJntLmt(csXyz, int);
+    /* 8014E658 */ void setMinJntLmt(csXyz, int);
+    /* 8014E67C */ void setJntPos(cXyz, int);
+    /* 8014E6A0 */ int setAttnPos(cXyz*);
+    /* 8014E6AC */ void getRot(int);
+    /* 801502EC */ ~daBaseNpc_lookat_c();
+};
+
+class daBaseNpc_c : public fopAc_ac_c {
+private:
+    /* 0x568 */ void* vtable;
+    /* 0x56C */ dBgS_Acch field_0x56c;
+    /* 0x744 */ u8 field_0x744[16];
+    /* 0x754 */ mDoExt_McaMorfSO* mMcaMorfAnm[2];
+    /* 0x758 */ Z2Creature mCreature;
+    /* 0x7EC */ mDoExt_bckAnm mBckAnm;
+    /* 0x808 */ mDoExt_btpAnm mBtpAnm;
+    /* 0x820 */ u8 tmp2[28];
+    /* 0x83c */ u16* field_0x83c;
+    /* 0x840 */ u16 field_0x840;
+    /* 0x842 */ u8 field_0x842[6];
+    /* 0x848 */ s32 mUnk;
+    /* 0x84C */ dMsgFlow_c mMsg;
+    /* 0x898 */ u8 field_0x898[2];
+    /* 0x89A */ s16 mEvtIdx;
+    /* 0x89C */ u8 field_0x89C[34];
+    /* 0x8BE */ u8 mRoomId;
+    /* 0x8C0 */ u8 field_0x8C0[90];
+    /* 0x91A */ csXyz field_0x91a;
+    /* 0x920 */ csXyz field_0xd7e;
+    /* 0x926 */ csXyz field_0xd84;
+    /* 0x92C */ csXyz field_0xd8a;
+    /* 0x932 */ csXyz field_0x932;
+    /* 0x938 */ u8 field_0x938[4];
+    /* 0x93C */ csXyz field_0x93c;
+    /* 0x940 */ u8 field_0x940[18];
+    /* 0x954 */ cXyz field_0x954;
+    /* 0x960 */ u8 field_0x960[36];
+    /* 0x984 */ csXyz field_0x984;
+    /* 0x98A */ u8 field_0x98A[18];
+    /* 0x99C */ csXyz field_0x99c;
+    /* 0x9A2 */ u8 field_0x9a2[70];
+    /* 0x9E8 */ const cBgS_PolyInfo mBgSPolyInfo;
+    /* 0x9F9 */ u8 field_0x9f9[27];
+
+public:
+    /* 8014E6C8 */ daBaseNpc_c();
+    /* 8014E89C */ ~daBaseNpc_c();
+    /* 8014EAD0 */ void execute();
+    /* 8014EC50 */ void draw(f32);
+    /* 8014EE3C */ bool getResName();
+    /* 8014EE44 */ J3DAnmTransform* getTrnsfrmKeyAnmP(char*, int);
+    /* 8014EE80 */ void setMcaMorfAnm(J3DAnmTransformKey*, f32, f32, int, int, int);
+    /* 8014EEE4 */ void setBckAnm(J3DAnmTransform*, f32, int, int, int, bool);
+    /* 8014EF28 */ J3DAnmTransform* getTexPtrnAnmP(char*, int);
+    /* 8014EF64 */ void setBtpAnm(J3DAnmTexPattern*, J3DModelData*, f32, int);
+    /* 8014EFA4 */ void attnSttsOn(int, int);
+    /* 8014EFF0 */ void setParam();
+    /* 8014EFF4 */ void orderEvent(int, char*);
+    /* 8014F09C */ void mainProc();
+    /* 8014F0A0 */ void setEnvTevColor();
+    /* 8014F0FC */ void setRoomNo();
+    /* 8014F140 */ bool btkCtrl();
+    /* 8014F148 */ int checkEndAnm(f32);
+    /* 8014F1C8 */ int checkEndAnm(J3DFrameCtrl*);
+    /* 8014F228 */ void allAnmPlay();
+    /* 8014F38C */ void adjustShapeAngle();
+    /* 8014F390 */ void setMtx(int);
+    /* 8014F4A0 */ void setCollisions();
+    /* 8014F4A4 */ void setAttnPos();
+    /* 8014F4A8 */ void drawOtherMdls();
+    /* 8014F4AC */ bool dbgDraw();
+
+    void setVtable(void* table) { vtable = table;}
+
+    static u8 const mCcDObj[48];
+    static u8 mCcDCyl[68];
+    static u8 mCcDSph[64];
+};
+
+class daBaseNpc_moveBgActor_c : public daBaseNpc_c {
+private:
+    /* 0xA14 */ u32 field_0xa14;
+
+
+public:
+    /* 8014F4B4 */ daBaseNpc_moveBgActor_c();
+    /* 8014F518 */ void MoveBGCreateHeap();
+    /* 8014F60C */ void
+    MoveBGCreate(char const*, int,
+                 void (*)(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*), u32);
+    /* 8014F6FC */ void MoveBGDelete();
+    /* 8014F770 */ void MoveBGExecute();
+    /* 801503BC */ bool CreateHeap();
+    /* 801503C4 */ bool Create();
+    /* 801503CC */ bool Delete();
+    /* 801503D4 */ bool Execute(f32 (**)[3][4]);
+    /* 801503DC */ bool Draw();
+    /* 801503E4 */ bool IsDelete();
+    /* 801503EC */ bool ToFore();
+    /* 801503F4 */ bool ToBack();
+    /* 80155FB0 */ ~daBaseNpc_moveBgActor_c();
+
+    static u8 m_name[4];
+    static u8 m_dzb_id[4];
+    static u8 m_set_func[4];
+};
+
+class daNpcF_MatAnm_c {
+private:
+    /* 0x000 */ J3DMaterialAnm mMaterialAnm;
+    /* 0x0F4 */ mutable f32 field_0xF4;
+    /* 0x0F8 */ mutable f32 field_0xF8;
+    /* 0x0FC */ f32 mTranslationX;
+    /* 0x100 */ f32 mTranslationY;
+    /* 0x104 */ u8 field_0x104;
+    /* 0x105 */ u8 field_0x105;
+
+public:
+    /* 80150738 */ void initialize();
+    /* 8015075C */ void calc(J3DMaterial*) const;
+    /* 80155ED0 */ ~daNpcF_MatAnm_c();
+};
+
+class daNpcF_SPCurve_c {
+private: 
+    /* 0x00 */ u16 mNurbs;
+    /* 0x02 */ u16 field_0x02;
+    /* 0x04 */ u8 field_0x04;
+    /* 0x05 */ bool mIsClosed;
+    // /* 0x08 */ dPnt mPoints[96];
+
+
+public:
+    /* 80150870 */ void initialize(dPath*, int);
+};
+
+class daNpcF_Path_c {
+private:
+    /* 0x00 */ u16 mIdx;
+    /* 0x02 */ u8 field_0x02;
+    /* 0x03 */ u8 mIsClosed;
+    /* 0x04 */ dPath* mpRoomPath;
+    /* 0x08 */ f32 field_0x08;
+    /* 0x0C */ f32 field_0x0C;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ cXyz mPosition;
+    /* 0x20 */ daNpcF_SPCurve_c mSPCurve;
+
+public:
+    /* 80150900 */ void initialize();
+    /* 8015095C */ int setPathInfo(u8, s8, u8);
+    /* 80150A24 */ int chkPassed(cXyz);
+    /* 80150A7C */ void chkPassedDst(cXyz);
+    /* 80150BBC */ void reverse();
+    /* 80150BE0 */ int setNextIdx();
+    /* 80150C18 */ u16 getNextIdx();
+    /* 80150C60 */ u16 getBeforeIdx();
+    /* 80150CA8 */ void getBeforePos(cXyz&);
+    /* 80150D44 */ void getNextPos(cXyz&);
+    /* 80150DE0 */ int getDstPos(cXyz, cXyz&);
+    /* 80150EB4 */ void setNextIdxDst(cXyz);
+
+    u16& getIdx() { return mIdx; };
+    cXyz* getPntPos(); // finish
+};
+
+class daNpcF_MoveBgActor_c {
+private:
+
+public:
+    /* 80155B54 */ ~daNpcF_MoveBgActor_c();
+    /* 80155E88 */ bool CreateHeap();
+    /* 80155E90 */ bool Create();
+    /* 80155E98 */ bool Delete();
+    /* 80155EA0 */ bool Execute(f32 (**)[3][4]);
+    /* 80155EA8 */ bool Draw();
+    /* 80155EB0 */ bool IsDelete();
+    /* 80155EB8 */ bool ToFore();
+    /* 80155EC0 */ bool ToBack();
+};
+
+class daNpcF_Lookat_c {
+private:
+    /* 0x00 */ cXyz field_0x00[4];
+    /* 0x30 */ int field_0x30;
+    /* 0x34 */ csXyz field_0x34[4];
+    /* 0x4C */ csXyz field_0x4c[4];
+    /* 0x64 */ csXyz field_0x64[4];
+    /* 0x7C */ csXyz mRotAngle[4];
+    /* 0x94 */ u8 field_0x94[4];
+    /* 0x98 */ void* vtable;
+
+public:
+    /* 80151038 */ void initialize();
+    /* 801510B8 */ void setParam(f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s16,
+                                 cXyz*);
+    /* 80151350 */ void calc(fopAc_ac_c*, f32 (*)[4], csXyz**, int, int, int);
+    /* 801515D4 */ void adjustMoveDisAngle(s16&, s16, s16, s16);
+    /* 80151648 */ void initCalc(fopAc_ac_c*, f32 (*)[4], cXyz*, csXyz*, f32*, cXyz&, int);
+    /* 80151A54 */ void update(cXyz*, csXyz*, f32*);
+    /* 80151B68 */ void calcMoveDisAngle(int, cXyz*, csXyz*, cXyz, int, int);
+    /* 80151F54 */ void setRotAngle();
+    /* 80151FE0 */ void clrRotAngle();
+};
+
 
 #endif /* D_A_D_A_NPC_H */
