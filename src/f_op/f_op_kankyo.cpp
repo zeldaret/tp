@@ -62,7 +62,6 @@ static int fopKy_Execute(void* param_0) {
 }
 
 /* 8001F314-8001F368 019C54 0054+00 1/0 0/0 0/0 .text            fopKy_IsDelete__FPv */
-#ifndef NONMATCHING
 static int fopKy_IsDelete(void* param_0) {
     int ret;
     msg_class* msg = (msg_class*)param_0;
@@ -76,21 +75,16 @@ static int fopKy_IsDelete(void* param_0) {
 
     return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fopKy_IsDelete(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_kankyo/fopKy_IsDelete__FPv.s"
-}
-#pragma pop
-#endif
 
 /* 8001F368-8001F3B4 019CA8 004C+00 1/0 0/0 0/0 .text            fopKy_Delete__FPv */
-#ifdef NONMATCHING
-static void fopKy_Delete(void* param_0) {
-    
+#ifndef NONMATCHING
+static int fopKy_Delete(void* param_0) {
+    msg_class* msg = (msg_class*)param_0;
+    leafdraw_method_class* leaf_mtd = msg->field_0xd8;
+    process_method_class* proc_mtd = (process_method_class*)leaf_mtd;
+    int ret = fpcMtd_Delete(proc_mtd,msg);
+    fopDwTg_DrawQTo(&msg->field_0xc4);
+    return ret;
 }
 #else
 #pragma push
