@@ -5,6 +5,7 @@
 
 #include "f_op/f_op_kankyo.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/s/d_s_play.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -33,14 +34,12 @@ extern "C" void fpcMtd_Execute__FP20process_method_classPv();
 extern "C" void fpcMtd_IsDelete__FP20process_method_classPv();
 extern "C" void fpcMtd_Delete__FP20process_method_classPv();
 extern "C" void fpcMtd_Create__FP20process_method_classPv();
-extern "C" extern u8 pauseTimer__9dScnPly_c[4];
 
 //
 // Declarations:
 //
 
 /* 8001F284-8001F2C0 019BC4 003C+00 1/0 0/0 0/0 .text            fopKy_Draw__FPv */
-#ifndef NONMATCHING
 static int fopKy_Draw(void* param_0) {
     int ret;
 
@@ -50,21 +49,17 @@ static int fopKy_Draw(void* param_0) {
 
     return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fopKy_Draw(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_kankyo/fopKy_Draw__FPv.s"
-}
-#pragma pop
-#endif
 
 /* 8001F2C0-8001F314 019C00 0054+00 1/0 0/0 0/0 .text            fopKy_Execute__FPv */
-#ifdef NONMATCHING
-static void fopKy_Execute(void* param_0) {
-    
+#ifndef NONMATCHING
+static int fopKy_Execute(void* param_0) {
+    int ret;
+
+    if (dScnPly_c::isPause() && (!dComIfGp_isPauseFlag() || fpcM_GetName(param_0) == 0x15)) {
+        ret = fpcMtd_Execute(((process_method_class*)((msg_class*)param_0)->field_0xd8),param_0);
+    }
+
+    return ret;
 }
 #else
 #pragma push
