@@ -9,6 +9,7 @@
 #include "d/s/d_s_play.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "d/d_procname.h"
 
 // //
 // // External References:
@@ -32,9 +33,10 @@ extern "C" void fpcMtd_Create__FP20process_method_classPv();
 /* 8001F284-8001F2C0 019BC4 003C+00 1/0 0/0 0/0 .text            fopKy_Draw__FPv */
 static int fopKy_Draw(void* param_0) {
     int ret;
+    kankyo_class* env = (kankyo_class*)param_0;
 
     if (!dComIfGp_isPauseFlag()) {
-        ret = fpcLf_DrawMethod(((kankyo_class*)param_0)->field_0xd8, param_0);
+        ret = fpcLf_DrawMethod(env->field_0xd8, param_0);
     }
 
     return ret;
@@ -43,9 +45,10 @@ static int fopKy_Draw(void* param_0) {
 /* 8001F2C0-8001F314 019C00 0054+00 1/0 0/0 0/0 .text            fopKy_Execute__FPv */
 static int fopKy_Execute(void* param_0) {
     int ret;
+    kankyo_class* env = (kankyo_class*)param_0;
 
-    if (dScnPly_c::isPause() && (!dComIfGp_isPauseFlag() || fpcM_GetName(param_0) == 0x15)) {
-        ret = fpcMtd_Execute(((process_method_class*)((kankyo_class*)param_0)->field_0xd8),param_0);
+    if (dScnPly_c::isPause() && (!dComIfGp_isPauseFlag() || fpcM_GetName(param_0) == PROC_ENVSE)) {
+        ret = fpcMtd_Execute((process_method_class*)env->field_0xd8,param_0);
     }
 
     return ret;
@@ -55,10 +58,8 @@ static int fopKy_Execute(void* param_0) {
 static int fopKy_IsDelete(void* param_0) {
     int ret;
     kankyo_class* env = (kankyo_class*)param_0;
-    leafdraw_method_class* leaf_mtd = env->field_0xd8;
-    process_method_class* proc_mtd = (process_method_class*)leaf_mtd;
-    ret = fpcMtd_IsDelete(proc_mtd,env);
 
+    ret = fpcMtd_IsDelete((process_method_class*)env->field_0xd8,env);
     if (ret == 1) {
         fopDwTg_DrawQTo(&env->field_0xc4);
     }
@@ -69,16 +70,16 @@ static int fopKy_IsDelete(void* param_0) {
 /* 8001F368-8001F3B4 019CA8 004C+00 1/0 0/0 0/0 .text            fopKy_Delete__FPv */
 static int fopKy_Delete(void* param_0) {
     kankyo_class* env = (kankyo_class*)param_0;
-    leafdraw_method_class* leaf_mtd = env->field_0xd8;
-    process_method_class* proc_mtd = (process_method_class*)leaf_mtd;
-    int ret = fpcMtd_Delete(proc_mtd,env);
+
+    int ret = fpcMtd_Delete((process_method_class*)env->field_0xd8,env);
     fopDwTg_DrawQTo(&env->field_0xc4);
+    
     return ret;
 }
 
 /* ############################################################################################## */
 /* 80450CE8-80450CF0 0001E8 0004+04 1/1 0/0 0/0 .sbss            fopKy_KANKYO_TYPE */
-static u8 fopKy_KANKYO_TYPE[4 + 4 /* padding */];
+static int fopKy_KANKYO_TYPE;
 
 /* 8001F3B4-8001F488 019CF4 00D4+00 1/0 0/0 0/0 .text            fopKy_Create__FPv */
 #ifdef NONMATCHING
@@ -89,10 +90,10 @@ static int fopKy_Create(void* param_0) {
     if (fpcM_IsFirstCreating(param_0)) {
         leaf_process_profile_definition* profile = fpcM_GetProfile(param_0);
 
-        env->field_0xc0 = fpcBs_MakeOfType((int*)fopKy_KANKYO_TYPE);
+        env->field_0xc0 = fpcBs_MakeOfType(&fopKy_KANKYO_TYPE);
         env->field_0xd8 = profile->mBase.mMethods;
 
-        fopDwTg_Init((create_tag_class*)(&env->field_0xc4), env);
+        fopDwTg_Init((create_tag_class*)&env->field_0xc4, env);
         fopKyM_prm_class* append = (fopKyM_prm_class*)fopKyM_GetAppend(env);
 
         if (append) {
@@ -102,10 +103,10 @@ static int fopKy_Create(void* param_0) {
         }
     }
 
-    int ret = fpcMtd_Create((process_method_class*)(env->field_0xd8), env);
+    int ret = fpcMtd_Create((process_method_class*)env->field_0xd8, env);
     if (ret == 4) {
         s16 priority = fpcM_DrawPriority(env);
-        fopDwTg_ToDrawQ((create_tag_class*)(&env->field_0xc4),priority);
+        fopDwTg_ToDrawQ((create_tag_class*)&env->field_0xc4,priority);
     }
 
     return ret;
