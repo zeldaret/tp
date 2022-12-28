@@ -34,7 +34,7 @@ static int fopKy_Draw(void* param_0) {
     int ret;
 
     if (!dComIfGp_isPauseFlag()) {
-        ret = fpcLf_DrawMethod(((msg_class*)param_0)->field_0xd8, param_0);
+        ret = fpcLf_DrawMethod(((kankyo_class*)param_0)->field_0xd8, param_0);
     }
 
     return ret;
@@ -45,7 +45,7 @@ static int fopKy_Execute(void* param_0) {
     int ret;
 
     if (dScnPly_c::isPause() && (!dComIfGp_isPauseFlag() || fpcM_GetName(param_0) == 0x15)) {
-        ret = fpcMtd_Execute(((process_method_class*)((msg_class*)param_0)->field_0xd8),param_0);
+        ret = fpcMtd_Execute(((process_method_class*)((kankyo_class*)param_0)->field_0xd8),param_0);
     }
 
     return ret;
@@ -54,13 +54,13 @@ static int fopKy_Execute(void* param_0) {
 /* 8001F314-8001F368 019C54 0054+00 1/0 0/0 0/0 .text            fopKy_IsDelete__FPv */
 static int fopKy_IsDelete(void* param_0) {
     int ret;
-    msg_class* msg = (msg_class*)param_0;
-    leafdraw_method_class* leaf_mtd = msg->field_0xd8;
+    kankyo_class* env = (kankyo_class*)param_0;
+    leafdraw_method_class* leaf_mtd = env->field_0xd8;
     process_method_class* proc_mtd = (process_method_class*)leaf_mtd;
-    ret = fpcMtd_IsDelete(proc_mtd,msg);
+    ret = fpcMtd_IsDelete(proc_mtd,env);
 
     if (ret == 1) {
-        fopDwTg_DrawQTo(&msg->field_0xc4);
+        fopDwTg_DrawQTo(&env->field_0xc4);
     }
 
     return ret;
@@ -68,11 +68,11 @@ static int fopKy_IsDelete(void* param_0) {
 
 /* 8001F368-8001F3B4 019CA8 004C+00 1/0 0/0 0/0 .text            fopKy_Delete__FPv */
 static int fopKy_Delete(void* param_0) {
-    msg_class* msg = (msg_class*)param_0;
-    leafdraw_method_class* leaf_mtd = msg->field_0xd8;
+    kankyo_class* env = (kankyo_class*)param_0;
+    leafdraw_method_class* leaf_mtd = env->field_0xd8;
     process_method_class* proc_mtd = (process_method_class*)leaf_mtd;
-    int ret = fpcMtd_Delete(proc_mtd,msg);
-    fopDwTg_DrawQTo(&msg->field_0xc4);
+    int ret = fpcMtd_Delete(proc_mtd,env);
+    fopDwTg_DrawQTo(&env->field_0xc4);
     return ret;
 }
 
@@ -83,44 +83,29 @@ static u8 fopKy_KANKYO_TYPE[4 + 4 /* padding */];
 /* 8001F3B4-8001F488 019CF4 00D4+00 1/0 0/0 0/0 .text            fopKy_Create__FPv */
 #ifdef NONMATCHING
 // regalloc
-class append_class {
-public:
-    cXyz field_0x00;
-    cXyz field_0x0c;
-    u32 field_0x18;
-};
-
-class unk_class {
-public:
-    u8 field_0x00[0xdc];
-    cXyz field_0xdc;
-    cXyz field_0xe8;
-    u32 field_0xf4;
-};
-
 static int fopKy_Create(void* param_0) {
-    msg_class* msg = (msg_class*)param_0;
+    kankyo_class* env = (kankyo_class*)param_0;
 
     if (fpcM_IsFirstCreating(param_0)) {
         leaf_process_profile_definition* profile = fpcM_GetProfile(param_0);
 
-        msg->field_0xc0 = fpcBs_MakeOfType((int*)fopKy_KANKYO_TYPE);
-        msg->field_0xd8 = profile->mBase.mMethods;
+        env->field_0xc0 = fpcBs_MakeOfType((int*)fopKy_KANKYO_TYPE);
+        env->field_0xd8 = profile->mBase.mMethods;
 
-        fopDwTg_Init((create_tag_class*)(&msg->field_0xc4), msg);
-        append_class* append = (append_class*)fopKyM_GetAppend(msg);
+        fopDwTg_Init((create_tag_class*)(&env->field_0xc4), env);
+        fopKyM_prm_class* append = (fopKyM_prm_class*)fopKyM_GetAppend(env);
 
         if (append) {
-            ((unk_class*)msg)->field_0xdc = append->field_0x00;
-            ((unk_class*)msg)->field_0xe8 = append->field_0x0c;
-            ((unk_class*)msg)->field_0xf4 = append->field_0x18;
+            env->field_0xdc = append->field_0x0;
+            env->field_0xe8 = append->field_0xc;
+            env->field_0xf4 = append->field_0x18;
         }
     }
 
-    int ret = fpcMtd_Create((process_method_class*)(msg->field_0xd8), msg);
+    int ret = fpcMtd_Create((process_method_class*)(env->field_0xd8), env);
     if (ret == 4) {
-        s16 priority = fpcM_DrawPriority(msg);
-        fopDwTg_ToDrawQ((create_tag_class*)(&msg->field_0xc4),priority);
+        s16 priority = fpcM_DrawPriority(env);
+        fopDwTg_ToDrawQ((create_tag_class*)(&env->field_0xc4),priority);
     }
 
     return ret;
