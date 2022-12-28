@@ -9,6 +9,7 @@
 #include "f_pc/f_pc_node_req.h"
 #include "f_pc/f_pc_stdcreate_req.h"
 #include "f_pc/f_pc_executor.h"
+#include "f_pc/f_pc_leaf.h"
 
 typedef int (*FastCreateReqFunc)(void*);
 typedef void (*fpcM_ManagementFunc)(void);
@@ -35,6 +36,10 @@ inline s16 fpcM_GetProfName(const void* pActor) {
 inline int fpcM_Create(s16 procName, FastCreateReqFunc createFunc, void* process) {
     return fpcSCtRq_Request(fpcLy_CurrentLayer(), procName, (stdCreateFunc)createFunc, NULL,
                             process);
+}
+
+inline s16 fpcM_DrawPriority(const void* param_0) {
+    return fpcLf_GetPriority((const leafdraw_class*)param_0);
 }
 
 inline s32 fpcM_ChangeLayerID(void* proc, int layerID) {
