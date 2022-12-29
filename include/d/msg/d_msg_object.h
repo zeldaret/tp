@@ -460,7 +460,7 @@ public:
     /* 0x2EC */ f32 mPikariAnmSpeed;
     /* 0x2F0 */ u16 mPikariHaloDelay_spirit;
     /* 0x2F2 */ u8 mStageTitleDisplayType;
-    /* 0x2F4 */ u16 mMsgIndex;
+    /* 0x2F4 */ s16 mMsgIndex;
     /* 0x2F6 */ u16 mFlowIndex;
     /* 0x2F8 */ u16 mSaveSeqMsgIndex;
     /* 0x2FA */ u16 mSelWeightFrame;

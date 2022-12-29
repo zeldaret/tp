@@ -36,6 +36,7 @@ extern "C" void append__10J2DPictureFPCcf();
 extern "C" void insert__10J2DPictureFPCcUcf();
 extern "C" void fopMsgM_createExpHeap__FUlP7JKRHeap();
 extern "C" void fopMsgM_destroyExpHeap__FP10JKRExpHeap();
+extern "C" extern dMsgObject_HIO_c g_MsgObject_HIO_c;
 
 //
 // External References:
@@ -67,7 +68,7 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
+// extern "C" extern u8 g_MsgObject_HIO_c[1040];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u8 mProcID__20dStage_roomControl_c[4];
 
@@ -188,14 +189,46 @@ s32 fop_Timer_create(s16 param_0, u8 param_1, u32 param_2, u8 param_3, u8 param_
 SECTION_SDATA static u32 i_msgID = 0xFFFFFFFF;
 
 /* 8001FD34-8001FE84 01A674 0150+00 0/0 2/2 1/1 .text fopMsgM_messageSet__FUlP10fopAc_ac_cUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopMsgM_messageSet(u32 param_0, fopAc_ac_c* param_1, u32 param_2) {
-    nofralloc
-#include "asm/f_op/f_op_msg_mng/fopMsgM_messageSet__FUlP10fopAc_ac_cUl.s"
+int fopMsgM_messageSet(u32 i_msgIdx, fopAc_ac_c* i_actorP, u32 param_2) {
+    if (dComIfGp_isHeapLockFlag() == 8) {
+        dMeter2Info_getMeterClass()->emphasisButtonDelete();
+    }
+
+    if (dComIfGp_isHeapLockFlag() != 0 && dComIfGp_isHeapLockFlag() != 5 &&
+                                          dComIfGp_isHeapLockFlag() != 2 &&
+                                          dComIfGp_isHeapLockFlag() != 3 &&
+                                          dComIfGp_isHeapLockFlag() != 1) {
+        return -1;
+        
+    } else {
+        dComIfGp_clearMesgAnimeTagInfo();
+        dComIfGp_clearMesgCameraTagInfo();
+
+        cXyz pos;
+        if (i_actorP) {
+            pos = i_actorP->mEyePos;
+        } else {
+            pos.set(FLOAT_LABEL(lit_3902),FLOAT_LABEL(lit_3902),FLOAT_LABEL(lit_3902));
+        }
+
+        if (g_MsgObject_HIO_c.mMsgDebug == true) {
+            i_msgIdx = g_MsgObject_HIO_c.mMsgIndex;
+        }
+
+        dMsgObject_c* msg = (dMsgObject_c*)fopMsgM_SearchByID(i_msgID);
+
+        if (msg && msg->field_0xf8 == 1) {
+            msg->field_0xe0.set(pos);
+            msg->field_0xec = i_msgIdx;
+            msg->field_0xf0 = param_2;
+            msg->field_0xdc = i_actorP;
+            msg->setMessageIndex(i_msgIdx,param_2,false);
+            return i_msgID;
+        } else {
+            return 0;
+        }
+    }
 }
-#pragma pop
 
 /* 8001FE84-8001FFC4 01A7C4 0140+00 0/0 6/6 4/4 .text            fopMsgM_messageSet__FUlUl */
 #pragma push
