@@ -250,6 +250,11 @@ int fopMsgM_messageSet(u32 i_msgIdx, fopAc_ac_c* i_actorP, u32 param_2) {
 }
 
 /* 8001FE84-8001FFC4 01A7C4 0140+00 0/0 6/6 4/4 .text            fopMsgM_messageSet__FUlUl */
+#ifdef NONMATCHING
+int fopMsgM_messageSet(u32 param_0, u32 param_1) {
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -258,8 +263,43 @@ asm int fopMsgM_messageSet(u32 param_0, u32 param_1) {
 #include "asm/f_op/f_op_msg_mng/fopMsgM_messageSet__FUlUl.s"
 }
 #pragma pop
+#endif
 
 /* 8001FFC4-800200C0 01A904 00FC+00 0/0 1/1 13/13 .text            fopMsgM_messageSetDemo__FUl */
+#ifndef NONMATCHING
+int fopMsgM_messageSetDemo(u32 param_0) {
+    dMsgObject_endFlowGroup();
+    if (dComIfGp_isHeapLockFlag() == 8) {
+        dMeter2Info_getMeterClass()->emphasisButtonDelete();
+    }
+
+    if (dComIfGp_isHeapLockFlag() != 0 && dComIfGp_isHeapLockFlag() != 5 &&
+                                          dComIfGp_isHeapLockFlag() != 2 &&
+                                          dComIfGp_isHeapLockFlag() != 3 &&
+                                          dComIfGp_isHeapLockFlag() != 1) {
+        return -1;
+        
+    } else {
+        cXyz pos;
+        pos.z = FLOAT_LABEL(lit_3902);
+        pos.y = FLOAT_LABEL(lit_3902);
+        pos.x = FLOAT_LABEL(lit_3902);
+
+        dMsgObject_c* msg = (dMsgObject_c*)fopMsgM_SearchByID(i_msgID);
+
+        if (msg && msg->field_0xf8 == 1) {
+            msg->field_0xe0.set(pos);
+            msg->field_0xec = param_0;
+            msg->field_0xf0 = 1000;
+            msg->field_0xdc = 0;
+            msg->setMessageIndexDemo(param_0,false);
+            return i_msgID;
+        } else {
+            return 0;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -268,6 +308,7 @@ asm int fopMsgM_messageSetDemo(u32 param_0) {
 #include "asm/f_op/f_op_msg_mng/fopMsgM_messageSetDemo__FUl.s"
 }
 #pragma pop
+#endif
 
 /* 800200C0-80020100 01AA00 0040+00 0/0 7/7 1/1 .text            fopMsgM_messageGet__FPcUl */
 char* fopMsgM_messageGet(char* msg, u32 string_id) {
