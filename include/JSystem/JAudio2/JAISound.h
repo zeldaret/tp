@@ -106,19 +106,19 @@ struct JAISoundFader {
         mIntensity = 1.0f;
         mTransition.zero();
     }
-    inline void forceOut() {
+    void forceOut() {
         mIntensity = 0.0f;
         mTransition.zero();
     }
-    inline void fadeOut(u32 fadeCount) {
+    void fadeOut(u32 fadeCount) {
         if (fadeCount!=0) {
             mTransition.set(0.0f,mIntensity,fadeCount);
         }else{
             forceOut();
         }
     }
-    inline bool isOut() {
-        if(mTransition.mCount!=0||mIntensity<0.01f) {
+    bool isOut() {
+        if(mTransition.mCount != 0 || mIntensity < 0.01f) {
             return true;
         }
         return false;
@@ -181,14 +181,14 @@ public:
     u32 getUserData() const { return status_.user_data; }
     bool isHandleAttached() const { return handle_ != NULL; }
 
-    inline void removeLifeTime_() {
+    void removeLifeTime_() {
         status_.field_0x1.flags.flag1 = false;
     }
-    inline void stop_JAISound_() {
+    void stop_JAISound_() {
         status_.state.flags.flag5 = 0;
         status_.state.flags.flag1 = 1;
     }
-    inline bool isStopping() {
+    bool isStopping() {
         bool isStopping = false;
         if(status_.state.flags.flag1) {
             isStopping = status_.state.flags.flag5 ? fader.isOut() : true;

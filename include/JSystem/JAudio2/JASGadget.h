@@ -21,20 +21,4 @@ public:
     static T* sInstance;
 };
 
-class Parent {
- public:
-  int x;
-};
-
-class Parent2 {
-    public:
-    int y;
-};
-
-class Child : public Parent, public Parent2 {
- public:
-  void func() {
-    Parent2::y = 5; // Access the member x of the Parent class
-  }
-};
 #endif /* JASGADGET_H */
