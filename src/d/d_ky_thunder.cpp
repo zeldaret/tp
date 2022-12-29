@@ -15,57 +15,14 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTevRegKey {};
-
-struct J3DMaterialTable {
-    /* 8032F880 */ void removeTevRegAnimator(J3DAnmTevRegKey*);
-};
-
-struct mDoExt_brkAnm {
-    /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
-    /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct mDoExt_baseAnm {
-    /* 8000D428 */ void play();
-};
-
 struct kankyo_class {};
 
-struct dThunder_c {
-    /* 801ADF58 */ void createHeap();
-    /* 801ADFB4 */ void adjustHeap();
-    /* 801AE458 */ void create();
-};
+
 
 struct dRes_info_c {};
 
 struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct cXyz {
-    /* 80009184 */ ~cXyz();
-};
-
-struct Vec {};
-
-struct Z2EnvSeMgr {
-    /* 802C7E68 */ void startFarThunderSe(Vec*, s8);
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct JKRSolidHeap {};
-
-struct J3DModelData {};
-
-struct J3DModel {};
-
-struct J3DFrameCtrl {
-    /* 803283FC */ void init(s16);
 };
 
 //
@@ -111,9 +68,6 @@ extern "C" void cLib_targetAngleY__FPC3VecPC3Vec();
 extern "C" void startFarThunderSe__10Z2EnvSeMgrFP3VecSc();
 extern "C" void init__12J3DFrameCtrlFs();
 extern "C" void removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
-extern "C" void DCStoreRangeNoSync();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
 extern "C" void __register_global_object();
 extern "C" void _savegpr_27();
 extern "C" void _restgpr_27();
@@ -124,9 +78,7 @@ extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_mEnvSeMgr[780];
 extern "C" extern u8 g_Counter[12 + 4 /* padding */];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" extern u8 struct_80451070[8];
@@ -136,24 +88,23 @@ extern "C" extern u8 struct_80451070[8];
 //
 
 /* 801ADF58-801ADFB4 1A8898 005C+00 1/1 0/0 0/0 .text            createHeap__10dThunder_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dThunder_c::createHeap() {
-    nofralloc
-#include "asm/d/d_ky_thunder/createHeap__10dThunder_cFv.s"
+int dThunder_c::createHeap() {
+    if (!mpHeap) {
+        mpHeap = mDoExt_createSolidHeapFromGameToCurrent(0,0x20);
+        if (!mpHeap) {
+            return 0;
+        }
+    }
+    return 1;
 }
-#pragma pop
 
 /* 801ADFB4-801AE000 1A88F4 004C+00 1/1 0/0 0/0 .text            adjustHeap__10dThunder_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dThunder_c::adjustHeap() {
-    nofralloc
-#include "asm/d/d_ky_thunder/adjustHeap__10dThunder_cFv.s"
+void dThunder_c::adjustHeap() {
+    mDoExt_restoreCurrentHeap();
+    if ((s32)mDoExt_adjustSolidHeap(mpHeap) >= 0) {
+        DCStoreRangeNoSync(mpHeap->getStartAddr(),mpHeap->getHeapSize());
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8042E7F0-8042E7FC 05B510 000C+00 1/1 0/0 0/0 .bss             @3816 */
@@ -187,6 +138,12 @@ SECTION_SDATA2 static f32 lit_3884 = -250.0f;
 SECTION_SDATA2 static f32 lit_3885 = 1.0f;
 
 /* 801AE000-801AE19C 1A8940 019C+00 1/0 0/0 0/0 .text            dThunder_Draw__FP10dThunder_c */
+#ifdef NONMATCHING
+// needs to have inline defined
+void dThunder_Draw(dThunder_c* i_dthunderP) {
+    i_dthunderP->draw();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -195,6 +152,7 @@ static asm void dThunder_Draw(dThunder_c* param_0) {
 #include "asm/d/d_ky_thunder/dThunder_Draw__FP10dThunder_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80453E80-80453E84 002480 0004+00 2/2 0/0 0/0 .sdata2          @3923 */
@@ -219,6 +177,12 @@ SECTION_SDATA2 static f32 lit_3928 = 1.0f / 100.0f;
 SECTION_SDATA2 static f32 lit_3929 = 1.0f / 50.0f;
 
 /* 801AE19C-801AE374 1A8ADC 01D8+00 1/0 0/0 0/0 .text            dThunder_Execute__FP10dThunder_c */
+#ifdef NONMATCHING
+// needs to have inline defined
+void dThunder_Execute(dThunder_c* i_dthunderP) {
+    i_dthunderP->execute();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -227,6 +191,7 @@ static asm void dThunder_Execute(dThunder_c* param_0) {
 #include "asm/d/d_ky_thunder/dThunder_Execute__FP10dThunder_c.s"
 }
 #pragma pop
+#endif
 
 /* 801AE374-801AE37C 1A8CB4 0008+00 1/0 0/0 0/0 .text            dThunder_IsDelete__FP10dThunder_c
  */
@@ -235,6 +200,12 @@ static bool dThunder_IsDelete(dThunder_c* param_0) {
 }
 
 /* 801AE37C-801AE3FC 1A8CBC 0080+00 1/0 0/0 0/0 .text            dThunder_Delete__FP10dThunder_c */
+#ifdef NONMATCHING
+// needs to have destructor defined
+void dThunder_Delete(dThunder_c* i_dthunderP) {
+    thunder_delete(i_dthunderP);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -243,9 +214,26 @@ static asm void dThunder_Delete(dThunder_c* param_0) {
 #include "asm/d/d_ky_thunder/dThunder_Delete__FP10dThunder_c.s"
 }
 #pragma pop
+#endif
 
 /* 801AE3FC-801AE458 1A8D3C 005C+00 1/0 0/0 0/0 .text            dThunder_Create__FP12kankyo_class
  */
+#ifdef NONMATCHING
+// regalloc
+static int dThunder_Create(kankyo_class* param_0) {
+    dThunder_c* thunder_ptr = (dThunder_c*)param_0;
+    int ret = thunder_ptr->createHeap();
+
+    if (ret == 0) {
+        return 5;
+    } else {
+        ret = thunder_ptr->create();
+        thunder_ptr->adjustHeap();
+    }
+
+    return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -254,6 +242,7 @@ static asm void dThunder_Create(kankyo_class* param_0) {
 #include "asm/d/d_ky_thunder/dThunder_Create__FP12kankyo_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80394F40-80394F40 0215A0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -336,7 +325,7 @@ SECTION_SDATA2 static f32 lit_4099 = 3.0f / 10.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dThunder_c::create() {
+asm int dThunder_c::create() {
     nofralloc
 #include "asm/d/d_ky_thunder/create__10dThunder_cFv.s"
 }

@@ -1013,6 +1013,10 @@ inline u8 dComIfGs_checkBottle(u8 i_itemNo) {
     return g_dComIfG_gameInfo.info.getPlayer().getItem().checkBottle(i_itemNo);
 }
 
+inline u8 dComIfGs_checkOptVibration() {
+    return g_dComIfG_gameInfo.info.getPlayer().getConfig().checkVibration();
+}
+
 inline BOOL dComIfGs_isLightDropGetFlag(u8 i_nowLevel) {
     return g_dComIfG_gameInfo.info.getPlayer().getLightDrop().isLightDropGetFlag(i_nowLevel);
 }
@@ -2583,6 +2587,10 @@ inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* param_2,
         param_9, param_10, 1.0f);
 }
 
+inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3) {
+    return dComIfGp_particle_set(param_0,param_1,param_2,param_3,0,0,0xFF,0,0xFFFFFFFF,0,0,0);
+}
+
 inline JPABaseEmitter* dComIfGp_particle_set(u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3,
                                  const csXyz* param_4, const cXyz* param_5, u8 param_6,
                                  dPa_levelEcallBack* param_7, s8 param_8, const GXColor* param_9,
@@ -2763,6 +2771,10 @@ inline void dComIfGd_setListBG() {
 
 inline void dComIfGd_init() {
     g_dComIfG_gameInfo.drawlist.init();
+}
+
+inline void dComIfGd_peekZ(s16 param_0, s16 param_1, u32* param_2) {
+    g_dComIfG_gameInfo.drawlist.newPeekZdata(param_0, param_1, param_2);
 }
 
 inline void dComIfGd_peekZdata() {

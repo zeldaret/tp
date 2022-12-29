@@ -16,5 +16,6 @@ struct mDoLib_clipper {
 void mDoLib_project(Vec* param_0, Vec* param_1);
 bool mDoLib_setResTimgObj(ResTIMG const* res, GXTexObj* o_texObj, u32 param_2,
                           GXTlutObj* o_tlutObj);
+void mDoLib_pos2camera(Vec* param_0, Vec* param_1);
 
 #endif /* M_DO_M_DO_LIB_H */

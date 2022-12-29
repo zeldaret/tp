@@ -6,6 +6,7 @@
 #include "d/d_select_cursor.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "d/com/d_com_inf_game.h"
 
 //
 // Types:
@@ -74,7 +75,6 @@ extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" extern void* __vt__10J2DAnmBase[4];
 extern "C" extern void* __vt__15J2DAnmTransform[5 + 4 /* padding */];
 extern "C" extern void* __vt__18J2DAnmTransformKey[6];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
 // Declarations:
@@ -249,6 +249,18 @@ asm dSelect_cursor_c::~dSelect_cursor_c() {
 #pragma pop
 
 /* 80194C30-80194CC0 18F570 0090+00 1/0 0/0 0/0 .text            draw__16dSelect_cursor_cFv */
+#ifdef NONMATCHING
+void dSelect_cursor_c::draw() {
+    mpPaneMgr->getAlphaRate();
+    update();
+    J2DGrafContext* gphCtx = dComIfGp_getCurrentGrafPort();
+    gphCtx->setup2D();
+    mpScreen->draw(FLOAT_LABEL(lit_3808),FLOAT_LABEL(lit_3808),gphCtx);
+    if (mpSelectIcon) {
+        // mpSelectIcon->drawSelf(); // inline here, but not sure how to properly define it
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -258,6 +270,7 @@ extern "C" asm void draw__16dSelect_cursor_cFv() {
 #include "asm/d/d_select_cursor/draw__16dSelect_cursor_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80453A54-80453A58 002054 0004+00 3/3 0/0 0/0 .sdata2          @4062 */
@@ -281,6 +294,41 @@ asm void dSelect_cursor_c::update() {
 SECTION_SDATA2 static f32 lit_4089 = -1.0f;
 
 /* 801950F4-801951B0 18FA34 00BC+00 0/0 30/30 0/0 .text setPos__16dSelect_cursor_cFffP7J2DPaneb */
+#ifdef NONMATCHING
+void dSelect_cursor_c::setPos(f32 i_posX, f32 i_posY, J2DPane* i_pane, bool i_scaleBounds) {
+    mpPane = i_pane;
+    setPos(i_posX,i_posY);
+
+    if (!i_pane) {
+        return;
+    }
+
+    f32 width = i_pane->getWidth() * FLOAT_LABEL(lit_3673) * FLOAT_LABEL(lit_4062);
+    f32 height = i_pane->getHeight() * FLOAT_LABEL(lit_4062);
+
+    if (i_scaleBounds) {
+        width *= i_pane->getScaleX();
+        height *= i_pane->getScaleY();
+    }
+
+    f32 tmp7 = FLOAT_LABEL(lit_4089);
+
+    for (int i = 0; i < 4; i++) {
+        
+        field_0x94[i] = width;
+        field_0xa4[i] = height;
+
+        if (i < 2) {
+            field_0x94[i] *= tmp7;
+        }
+
+        if ((i & 1) ^ (i >> 0x1f) == i >> 0x1f) {
+            field_0xa4[i] *= tmp7;
+        }
+    }
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -289,19 +337,35 @@ asm void dSelect_cursor_c::setPos(f32 param_0, f32 param_1, J2DPane* param_2, bo
 #include "asm/d/d_select_cursor/setPos__16dSelect_cursor_cFffP7J2DPaneb.s"
 }
 #pragma pop
+#endif
 
 /* 801951B0-801951C8 18FAF0 0018+00 0/0 24/24 0/0 .text setParam__16dSelect_cursor_cFfffff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSelect_cursor_c::setParam(f32 param_0, f32 param_1, f32 param_2, f32 param_3,
-                                    f32 param_4) {
-    nofralloc
-#include "asm/d/d_select_cursor/setParam__16dSelect_cursor_cFfffff.s"
+void dSelect_cursor_c::setParam(f32 i_param1, f32 i_param2, f32 i_param3, f32 i_param4,
+                                    f32 i_param5) {
+    mParam1 = i_param1;
+    mParam2 = i_param2;
+    mParam3 = i_param3;
+    mParam4 = i_param4;
+    mParam5 = i_param5;
 }
-#pragma pop
 
 /* 801951C8-801952A0 18FB08 00D8+00 0/0 14/14 0/0 .text            setScale__16dSelect_cursor_cFf */
+#ifdef NONMATCHING
+// first conditional has issues
+void dSelect_cursor_c::setScale(f32 i_scale) {
+    J2DPane* pane = mpPaneMgr->getPanePtr();
+    pane->scale(i_scale,i_scale);
+
+    s8 name_idx = mNameIdx;
+    if ((name_idx == 1 || name_idx < 1) || (name_idx < 0 && name_idx < 4)) {
+        field_0x50 = mpScreen->search('ssel_ico')->getTranslateX();
+        field_0x54 = mpScreen->search('ssel_ico')->getTranslateY();
+    } else {
+        field_0x50 = 0.0f;
+        field_0x54 = 0.0f;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -310,40 +374,88 @@ asm void dSelect_cursor_c::setScale(f32 param_0) {
 #include "asm/d/d_select_cursor/setScale__16dSelect_cursor_cFf.s"
 }
 #pragma pop
+#endif
 
 /* 801952A0-80195330 18FBE0 0090+00 0/0 77/77 0/0 .text setAlphaRate__16dSelect_cursor_cFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSelect_cursor_c::setAlphaRate(f32 param_0) {
-    nofralloc
-#include "asm/d/d_select_cursor/setAlphaRate__16dSelect_cursor_cFf.s"
+void dSelect_cursor_c::setAlphaRate(f32 i_alphaRate) {
+    if (i_alphaRate > FLOAT_LABEL(lit_3808)) {
+        if (mpPaneMgr->isVisible() == 0) {
+            mpPaneMgr->show();
+        }
+    } else {
+        i_alphaRate = FLOAT_LABEL(lit_3808);
+        if (mpPaneMgr->isVisible() == 1) {
+            mpPaneMgr->hide();
+        }
+    }
+
+    mpPaneMgr->setAlphaRate(i_alphaRate);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80453A64-80453A68 002064 0004+00 2/2 0/0 0/0 .sdata2          @4157 */
 SECTION_SDATA2 static f32 lit_4157 = 5.0f;
 
 /* 80195330-801953CC 18FC70 009C+00 0/0 1/1 0/0 .text            addAlpha__16dSelect_cursor_cFv */
+#ifdef NONMATCHING
+// matches with literals
+int dSelect_cursor_c::addAlpha() {
+    s16 alpha_timer = mpPaneMgr->getAlphaTimer();
+
+    if (mpPaneMgr->isVisible() == 0) {
+        mpPaneMgr->show();
+    }
+
+    if (alpha_timer >= 5) {
+        return 1;
+    } else {
+        alpha_timer++;
+        mpPaneMgr->alphaAnimeStart(alpha_timer);
+        mpPaneMgr->setAlphaRate(alpha_timer/FLOAT_LABEL(lit_4157));
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dSelect_cursor_c::addAlpha() {
+asm int dSelect_cursor_c::addAlpha() {
     nofralloc
 #include "asm/d/d_select_cursor/addAlpha__16dSelect_cursor_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801953CC-80195460 18FD0C 0094+00 0/0 1/1 0/0 .text            decAlpha__16dSelect_cursor_cFv */
+#ifdef NONMATCHING
+// matches with literals
+int dSelect_cursor_c::decAlpha() {
+    s16 alpha_timer = mpPaneMgr->getAlphaTimer();
+
+    if (alpha_timer <= 0) {
+        if (mpPaneMgr->isVisible() == 1) {
+            mpPaneMgr->hide();
+        }
+        return 1;
+    } else {
+        alpha_timer--;
+        mpPaneMgr->alphaAnimeStart(alpha_timer);
+        mpPaneMgr->setAlphaRate(alpha_timer/FLOAT_LABEL(lit_4157));
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dSelect_cursor_c::decAlpha() {
+asm int dSelect_cursor_c::decAlpha() {
     nofralloc
 #include "asm/d/d_select_cursor/decAlpha__16dSelect_cursor_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80394A30-80394A50 021090 0020+00 1/1 0/0 0/0 .rodata          tag$4181 */
@@ -410,25 +522,15 @@ asm void dSelect_cursor_c::setCursorAnimation() {
 
 /* 801958E0-80195940 190220 0060+00 1/1 0/0 0/0 .text
  * setBckAnimation__16dSelect_cursor_cFP18J2DAnmTransformKey    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSelect_cursor_c::setBckAnimation(J2DAnmTransformKey* param_0) {
-    nofralloc
-#include "asm/d/d_select_cursor/setBckAnimation__16dSelect_cursor_cFP18J2DAnmTransformKey.s"
+void dSelect_cursor_c::setBckAnimation(J2DAnmTransformKey* param_0) {
+    mpScreen->search('ssel_ico')->setAnimation((J2DAnmTransform*)param_0);
 }
-#pragma pop
 
 /* 80195940-80195978 190280 0038+00 1/1 0/0 0/0 .text moveCenter__16dSelect_cursor_cFP7J2DPaneff
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSelect_cursor_c::moveCenter(J2DPane* param_0, f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/d/d_select_cursor/moveCenter__16dSelect_cursor_cFP7J2DPaneff.s"
+void dSelect_cursor_c::moveCenter(J2DPane* i_pane, f32 i_x, f32 i_y) {
+    i_pane->translate(i_x,i_y);
 }
-#pragma pop
 
 /* 80195978-801959C0 1902B8 0048+00 1/0 0/0 0/0 .text            __dt__19dSelect_cursorHIO_cFv */
 #pragma push

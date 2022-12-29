@@ -515,7 +515,9 @@ public:
     /* 0x920 */ f32 mTrimHeight;
     /* 0x924 */ int mTrimSize;
     /* 0x928 */ int mTrimTypeForce;
-    /* 0x92C */ u8 field_0x92c[0x970 - 0x92c];
+    /* 0x92C */ u8 field_0x92c[0x93C - 0x92c];
+    /* 0x93C */ f32 field_0x93c;
+    /* 0x940 */ u8 field_0x940[0x970 - 0x940];
     /* 0x970 */ dCamSetup_c mCamSetup;
     /* 0xAEC */ dCamParam_c mCamParam;
     /* 0xB0C */

@@ -235,7 +235,7 @@ cCcD_GObjInf* dCcD_GObjInf::GetAtHitGObj() {
 }
 
 /* 800843DC-800843FC 07ED1C 0020+00 0/0 1/1 0/0 .text            ChkAtNoGuard__12dCcD_GObjInfFv */
-#ifdef NON_MATCHING
+#ifdef NONMATCHING
 bool dCcD_GObjInf::ChkAtNoGuard() {
     return 12 < mGObjAt.mSpl;
 }
