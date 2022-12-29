@@ -20,4 +20,8 @@ static int fopKyM_Create(s16 param_1, fopKyM_CreateFunc param_2, void* param_3);
 base_process_class* fopKyM_fastCreate(s16 param_0, int param_1, cXyz* param_2, cXyz* param_3,
                                       fopKyM_CreateFunc);
 
+inline void* fopKyM_GetAppend(void* param_0) {
+    return fpcM_GetAppend(param_0);
+}
+
 #endif
