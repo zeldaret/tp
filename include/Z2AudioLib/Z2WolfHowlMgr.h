@@ -1,8 +1,9 @@
 #ifndef Z2WOLFHOWLMGR_H
 #define Z2WOLFHOWLMGR_H
 
-#include "Z2AudioLib/Z2SoundObject.h"
 #include "dolphin/types.h"
+#include "Z2AudioLib/Z2SoundObject.h"
+#include "JSystem/JAudio2/JASGadget.h"
 
 /*
  * Z2WolfHowlData
@@ -17,7 +18,7 @@ struct Z2WolfHowlData {
     u16* mSongData;
 };
 
-class Z2WolfHowlMgr {
+class Z2WolfHowlMgr : public JASGlobalInstance<Z2WolfHowlMgr> {
 public:
     Z2WolfHowlMgr();
 
@@ -36,10 +37,11 @@ public:
     void startGuideMelody(bool);
     void skipCorrectDemo();
 
+
 private:
-    /* 0x00 */ JAISoundHandle* field_0x00;
-    /* 0x04 */ JAISoundHandle* field_0x04;
-    /* 0x08 */ JAISoundHandle* field_0x08;
+    /* 0x00 */ JAISoundHandle field_0x00;
+    /* 0x04 */ JAISoundHandle field_0x04;
+    /* 0x08 */ JAISoundHandle field_0x08;
     /* 0x0C */ Z2WolfHowlData* mpCurSong;
     /* 0x10 */ Z2WolfHowlData** mpSongList;
     /* 0x14 */ f32 mNowInputValue;
@@ -51,37 +53,18 @@ private:
     /* 0x2C */ u8 field_0x2c[4];
     /* 0x30 */ f32 field_0x30;
     /* 0x34 */ f32 field_0x34;
-    /* 0x38 */ f32 field_0x38;
-    /* 0x3C */ f32 field_0x3c;
-    /* 0x40 */ f32 field_0x40;
-    /* 0x44 */ f32 field_0x44;
-    /* 0x48 */ f32 field_0x48;
-    /* 0x4C */ f32 field_0x4c;
-    /* 0x50 */ f32 field_0x50;
-    /* 0x54 */ f32 field_0x54;
-    /* 0x58 */ f32 field_0x58;
-    /* 0x5C */ f32 field_0x5c;
-    /* 0x60 */ f32 field_0x60;
-    /* 0x64 */ f32 field_0x64;
-    /* 0x68 */ f32 field_0x68;
-    /* 0x6C */ f32 field_0x6c;
-    /* 0x70 */ f32 field_0x70;
-    /* 0x74 */ f32 field_0x74;
-    /* 0x78 */ f32 field_0x78;
-    /* 0x7C */ f32 field_0x7c;
-    /* 0x80 */ f32 field_0x80;
-    /* 0x84 */ f32 field_0x84;
+    /* 0x38 */ f32 field_0x38[10];
+    /* 0x60 */ f32 field_0x60[10];
     /* 0x88 */ void* mTimer;
     /* 0x8C */ u8 mReleaseTimer;
     /* 0x8D */ u8 field_0x8d;
-    /* 0x8E */ u8 mCorrectCurveID;
+    /* 0x8E */ s8 mCorrectCurveID;
     /* 0x8F */ u8 field_0x8f;
     /* 0x90 */ s16 field_0x90;
-    /* 0x92 */ u8 field_0x92[20];
-    /* 0xA6 */ u8 field_0xa6[0x14];
-    /* 0xBA */ u8 field_0xba;
-    /* 0xBB */ u8 field_0xbb;
-    /* 0xBC */ u8 field_0xbc;
+    /* 0x92 */ u16 field_0x92[20];
+    /* 0xBA */ s8 field_0xba;
+    /* 0xBB */ s8 field_0xbb;
+    /* 0xBC */ s8 field_0xbc;
 };
 
 #endif /* Z2WOLFHOWLMGR_H */
