@@ -93,7 +93,7 @@ public:
     /* 80237994 */ static void onKillMessageFlag();
     /* 802379AC */ static void setKillMessageFlag();
     /* 802379D8 */ void setKillMessageFlagLocal();
-    /* 80237A74 */ void setTalkPartner(fopAc_ac_c*);
+    /* 80237A74 */ static void setTalkPartner(fopAc_ac_c*);
     /* 80237A88 */ void setNowTalkFlowNo(s16);
     /* 80237A9C */ void getNowTalkFlowNo();
     /* 80237AB0 */ void setDemoMessage(u32);
