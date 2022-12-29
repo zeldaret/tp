@@ -17,62 +17,14 @@
 // Forward References:
 //
 
-extern "C" void fopMsgM_setStageLayer__FPv();
-extern "C" void fopMsgM_SearchByID__FUi();
-extern "C" void fopMsgM_GetAppend__FPv();
-extern "C" void fopMsgM_Delete__FPv();
-extern "C" static void createAppend__FP10fopAc_ac_cP4cXyzPUlPUlUi();
-extern "C" static void createTimerAppend__FiUlUcUcffffUi();
-extern "C" void fopMsgM_create__FsP10fopAc_ac_cP4cXyzPUlPUlPFPv_i();
-extern "C" void fop_Timer_create__FsUcUlUcUcffffPFPv_i();
-extern "C" void fopMsgM_messageSet__FUlP10fopAc_ac_cUl();
-extern "C" void fopMsgM_messageSet__FUlUl();
-extern "C" void fopMsgM_messageSetDemo__FUl();
-extern "C" void fopMsgM_messageGet__FPcUl();
-extern "C" void fopMsgM_setMessageID__FUi();
-extern "C" void fopMsgM_Create__FsPFPv_iPv();
-extern "C" void setAlpha__7J2DPaneFUc();
 extern "C" void fopMsgM_valueIncrease__FiiUc();
-extern "C" void setBlendRatio__10J2DPictureFff();
-extern "C" void append__10J2DPictureFPCcf();
-extern "C" void insert__10J2DPictureFPCcUcf();
-extern "C" void fopMsgM_createExpHeap__FUlP7JKRHeap();
-extern "C" void fopMsgM_destroyExpHeap__FP10JKRExpHeap();
 extern "C" extern dMsgObject_HIO_c g_MsgObject_HIO_c;
 
 //
 // External References:
 //
 
-extern "C" void mDoExt_getGameHeap__Fv();
-extern "C" void fopScnM_SearchByID__FUi();
-extern "C" void fpcBs_Is_JustOfType__Fii();
-extern "C" void fpcEx_SearchByID__FUi();
-extern "C" void fpcLy_CurrentLayer__Fv();
-extern "C" void fpcM_Delete__FPv();
-extern "C" void fpcPi_Change__FP22process_priority_classUiUsUs();
-extern "C" void fpcSCtRq_Request__FP11layer_classsPFPvPv_iPvPv();
-extern "C" void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c();
-extern "C" void emphasisButtonDelete__9dMeter2_cFv();
-extern "C" void setMessageIndex__12dMsgObject_cFUlUlb();
-extern "C" void setMessageIndexDemo__12dMsgObject_cFUlb();
-extern "C" void setTalkPartner__12dMsgObject_cFP10fopAc_ac_c();
-extern "C" void endFlowGroup__12dMsgObject_cFv();
-extern "C" void setTalkActor__12dMsgObject_cFP10fopAc_ac_c();
-extern "C" void memalignB__3cMlFiUl();
-extern "C" void destroy__7JKRHeapFv();
-extern "C" void create__10JKRExpHeapFUlP7JKRHeapb();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-// extern "C" extern u8 g_MsgObject_HIO_c[1040];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" u8 mProcID__20dStage_roomControl_c[4];
 
 //
 // Declarations:
@@ -205,7 +157,7 @@ s32 fop_Timer_create(s16 param_0, u8 param_1, u32 param_2, u8 param_3, u8 param_
 
 /* ############################################################################################## */
 /* 804505C8-804505D0 000048 0004+04 4/4 0/0 0/0 .sdata           i_msgID */
-SECTION_SDATA static u32 i_msgID = 0xFFFFFFFF;
+static u32 i_msgID = 0xFFFFFFFF;
 
 /* 8001FD34-8001FE84 01A674 0150+00 0/0 2/2 1/1 .text fopMsgM_messageSet__FUlP10fopAc_ac_cUl */
 int fopMsgM_messageSet(u32 i_msgIdx, fopAc_ac_c* i_actorP, u32 param_2) {
@@ -250,7 +202,6 @@ int fopMsgM_messageSet(u32 i_msgIdx, fopAc_ac_c* i_actorP, u32 param_2) {
 }
 
 /* 8001FE84-8001FFC4 01A7C4 0140+00 0/0 6/6 4/4 .text            fopMsgM_messageSet__FUlUl */
-#ifndef NONMATCHING
 int fopMsgM_messageSet(u32 param_0, u32 param_1) {
     if (dComIfGp_isHeapLockFlag() == 8) {
         dMeter2Info_getMeterClass()->emphasisButtonDelete();
@@ -290,20 +241,10 @@ int fopMsgM_messageSet(u32 param_0, u32 param_1) {
                 return i_msgID;
             }
         }
-        
+
         return 0;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int fopMsgM_messageSet(u32 param_0, u32 param_1) {
-    nofralloc
-#include "asm/f_op/f_op_msg_mng/fopMsgM_messageSet__FUlUl.s"
-}
-#pragma pop
-#endif
 
 /* 8001FFC4-800200C0 01A904 00FC+00 0/0 1/1 13/13 .text            fopMsgM_messageSetDemo__FUl */
 int fopMsgM_messageSetDemo(u32 param_0) {
