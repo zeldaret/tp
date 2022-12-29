@@ -10,6 +10,8 @@
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "JSystem/JMath/JMath.h"
+#include "SSystem/SComponent/c_math.h"
 
 //
 // Forward References:
@@ -279,20 +281,9 @@ void fopMsgM_setMessageID(unsigned int msg_id) {
 }
 
 /* 80020108-80020158 01AA48 0050+00 0/0 2/2 0/0 .text            fopMsgM_Create__FsPFPv_iPv */
-#ifndef NONMATCHING
 u32 fopMsgM_Create(s16 param_0, int (*param_1)(void*), void* param_2) {
     fpcM_Create(param_0,param_1,param_2);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 fopMsgM_Create(s16 param_0, int (*param_1)(void*), void* param_2) {
-    nofralloc
-#include "asm/f_op/f_op_msg_mng/fopMsgM_Create__FsPFPv_iPv.s"
-}
-#pragma pop
-#endif
 
 /* 80020158-80020160 -00001 0008+00 0/0 0/0 0/0 .text            setAlpha__7J2DPaneFUc */
 void J2DPane::setAlpha(u8 alpha) {
@@ -332,6 +323,61 @@ SECTION_SDATA2 static f32 lit_4301 = 65535.0f;
 SECTION_SDATA2 static f64 lit_4303 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80020160-800202CC 01AAA0 016C+00 1/0 4/4 2/2 .text            fopMsgM_valueIncrease__FiiUc */
+#ifdef NONMATCHING
+// regalloc + something up with case 2
+f64 fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
+    f32 ret;
+    
+    if (param_0 <= 0) {
+        return FLOAT_LABEL(lit_4298);
+    } else {
+        if (param_1 < 0) {
+            param_1 = 0;
+        } else if (param_1 > param_0) {
+            param_1 = param_0;
+        }
+
+        ret = param_1;
+        f32 out_tmp = ret / param_0;
+
+        switch(param_2) {
+            case 0: {
+                ret = out_tmp * out_tmp;
+                break;
+            }
+            case 1: {
+                ret = JMAFastSqrt(out_tmp);
+                break;
+            }
+            case 2: { // seems like this should be default case, but it causes other issues
+                ret = out_tmp;
+                break;
+            }
+            case 3: {
+                f32 tmp = (FLOAT_LABEL(lit_4299) * out_tmp) - FLOAT_LABEL(lit_4298);
+                tmp = out_tmp * tmp;
+                ret = tmp - FLOAT_LABEL(lit_4298);
+                break;
+            }
+            case 4: {
+                f32 tmp = cM_ssin(FLOAT_LABEL(lit_4167) * (FLOAT_LABEL(lit_4300) * out_tmp));
+                ret = tmp * tmp;
+                break;
+            }
+            case 5: {
+                f32 tmp = cM_ssin(FLOAT_LABEL(lit_4167) * (FLOAT_LABEL(lit_4301) * out_tmp));
+                ret = tmp * tmp;
+                break;
+            }
+            case 6: {
+                ret = cM_ssin(FLOAT_LABEL(lit_4300) * out_tmp);
+            }
+        }     
+    }
+
+    return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -340,6 +386,7 @@ asm void fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
 #include "asm/f_op/f_op_msg_mng/fopMsgM_valueIncrease__FiiUc.s"
 }
 #pragma pop
+#endif
 
 /* 800202CC-80020338 01AC0C 006C+00 0/0 2/0 0/0 .text            setBlendRatio__10J2DPictureFff */
 void J2DPicture::setBlendRatio(f32 param_0, f32 param_1) {
