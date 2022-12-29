@@ -146,9 +146,34 @@ static fopMsg_prm_class* createAppend(fopAc_ac_c* param_0, cXyz* param_1, u32* p
 
 /* 8001FB50-8001FC4C 01A490 00FC+00 1/1 0/0 0/0 .text            createTimerAppend__FiUlUcUcffffUi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
+static fopMsg_prm_timer* createTimerAppend(int param_0, u32 param_1, u8 param_2, u8 param_3,
+                                           f32 param_4, f32 param_5, f32 param_6, f32 param_7,
+                                           unsigned int param_8) {
+    fopMsg_prm_timer* timer = (fopMsg_prm_timer*)cMl::memalignB(-4,0x38);
+    
+    if (timer == 0) {
+        timer = 0;
+    } else {
+        timer->field_0x0 = 0;
+        timer->field_0x10 = 0;
+        timer->field_0x14 = 0;
+        cXyz pos(FLOAT_LABEL(lit_3902),FLOAT_LABEL(lit_3902),FLOAT_LABEL(lit_3902));
+        timer->field_0x4 = pos;
+        timer->field_0x18 = param_8;
+        timer->field_0x1c = param_0;
+        timer->field_0x20 = param_1;
+        timer->field_0x24 = param_2;
+        timer->field_0x25 = param_3;
+        timer->field_0x28 = param_4;
+        timer->field_0x2c = param_5;
+        timer->field_0x30 = param_6;
+        timer->field_0x34 = param_7;
+    }
+
+    return timer;
+    
+}
+
 static asm fopMsg_prm_timer* createTimerAppend(int param_0, u32 param_1, u8 param_2, u8 param_3,
                                                f32 param_4, f32 param_5, f32 param_6, f32 param_7,
                                                unsigned int param_8) {
@@ -156,6 +181,7 @@ static asm fopMsg_prm_timer* createTimerAppend(int param_0, u32 param_1, u8 para
 #include "asm/f_op/f_op_msg_mng/createTimerAppend__FiUlUcUcffffUi.s"
 }
 #pragma pop
+#endif
 
 /* 8001FC4C-8001FCC0 01A58C 0074+00 0/0 1/1 0/0 .text
  * fopMsgM_create__FsP10fopAc_ac_cP4cXyzPUlPUlPFPv_i            */
