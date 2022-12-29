@@ -174,15 +174,6 @@ static fopMsg_prm_timer* createTimerAppend(int param_0, u32 param_1, u8 param_2,
     
 }
 
-static asm fopMsg_prm_timer* createTimerAppend(int param_0, u32 param_1, u8 param_2, u8 param_3,
-                                               f32 param_4, f32 param_5, f32 param_6, f32 param_7,
-                                               unsigned int param_8) {
-    nofralloc
-#include "asm/f_op/f_op_msg_mng/createTimerAppend__FiUlUcUcffffUi.s"
-}
-#pragma pop
-#endif
-
 /* 8001FC4C-8001FCC0 01A58C 0074+00 0/0 1/1 0/0 .text
  * fopMsgM_create__FsP10fopAc_ac_cP4cXyzPUlPUlPFPv_i            */
 s32 fopMsgM_create(s16 param_0, fopAc_ac_c* param_1, cXyz* param_2, u32* param_3, u32* param_4,
@@ -288,6 +279,11 @@ void fopMsgM_setMessageID(unsigned int msg_id) {
 }
 
 /* 80020108-80020158 01AA48 0050+00 0/0 2/2 0/0 .text            fopMsgM_Create__FsPFPv_iPv */
+#ifndef NONMATCHING
+u32 fopMsgM_Create(s16 param_0, int (*param_1)(void*), void* param_2) {
+    fpcM_Create(param_0,param_1,param_2);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -296,6 +292,7 @@ asm u32 fopMsgM_Create(s16 param_0, int (*param_1)(void*), void* param_2) {
 #include "asm/f_op/f_op_msg_mng/fopMsgM_Create__FsPFPv_iPv.s"
 }
 #pragma pop
+#endif
 
 /* 80020158-80020160 -00001 0008+00 0/0 0/0 0/0 .text            setAlpha__7J2DPaneFUc */
 void J2DPane::setAlpha(u8 alpha) {
