@@ -8,7 +8,6 @@
 extern "C" {
 #endif
 
-static s32 OnReset(s32 param_0);
 static void MEMIntrruptHandler(OSInterrupt interrupt, struct OSContext* context);
 void OSProtectRange(u32 channel, void* address, u32 nBytes, u32 control);
 static void Config24MB(void);

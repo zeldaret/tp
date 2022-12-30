@@ -7,6 +7,7 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
+
 //
 // Forward References:
 //
@@ -23,11 +24,6 @@ void DSPInit();
 //
 
 void __DSPHandler();
-void OSRegisterVersion();
-void OSDisableInterrupts();
-void OSRestoreInterrupts();
-void __OSSetInterruptHandler();
-void __OSUnmaskInterrupts();
 void __DSP_debug_printf();
 extern u8 __DSP_tmp_task[4];
 extern u8 __DSP_last_task[4];

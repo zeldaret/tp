@@ -15,7 +15,7 @@ lbl_80353AC8:
 /* 80353AFC  40 82 00 5C */	bne lbl_80353B58
 lbl_80353B00:
 /* 80353B00  4B FE 9A 55 */	bl OSGetFontEncode
-/* 80353B04  B0 6D 93 98 */	sth r3, struct_80451918+0x0(r13)
+/* 80353B04  B0 6D 93 98 */	sth r3, __CARDEncode+0x0(r13)
 /* 80353B08  80 6D 84 E0 */	lwz r3, __CARDVersion(r13)
 /* 80353B0C  4B FE 6D 69 */	bl OSRegisterVersion
 /* 80353B10  4B FF E9 AD */	bl DSPInit

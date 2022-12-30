@@ -8,6 +8,8 @@
 #include "dolphin/os/OSReset.h"
 #include "dolphin/types.h"
 
+static s32 OnReset(s32 param_0);
+
 //
 // External References:
 //

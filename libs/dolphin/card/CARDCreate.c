@@ -4,69 +4,135 @@
 //
 
 #include "dolphin/card/CARDCreate.h"
+#include "MSL_C/MSL_Common/Src/mem.h"
+#include "MSL_C/MSL_Common/Src/string.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "dolphin/card/CARD.h"
+#include "dolphin/dsp/dsp.h"
+#include "dolphin/dvd/dvd.h"
 
-//
-// Forward References:
-//
+#include "dolphin/card/CARDPriv.h"
 
-static void CreateCallbackFat();
-static void CARDCreateAsync();
-void CARDCreate();
-
-//
-// External References:
-//
-
-SECTION_INIT void memcpy();
-void OSGetTime();
-void __CARDDefaultApiCallback();
-void __CARDSyncCallback();
-void __CARDGetControlBlock();
-void __CARDPutControlBlock();
-void __CARDSync();
-void __CARDGetFatBlock();
-void __CARDAllocBlock();
-void __CARDGetDirBlock();
-void __CARDUpdateDir();
-void __CARDCompareFileName();
-void __div2i();
-void memcmp();
-void strncpy();
-void strlen();
-extern u8 __CARDBlock[544];
-
-//
-// Declarations:
-//
+static void CreateCallbackFat(s32 chan, s32 result);
 
 /* 80358108-80358238 352A48 0130+00 1/1 0/0 0/0 .text            CreateCallbackFat */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void CreateCallbackFat() {
-    nofralloc
-#include "asm/dolphin/card/CARDCreate/CreateCallbackFat.s"
+static void CreateCallbackFat(s32 chan, s32 result) {
+    CARDControl* card;
+    CARDDir* dir;
+    CARDDir* ent;
+    CARDCallback callback;
+
+    card = &__CARDBlock[chan];
+    callback = card->apiCallback;
+    card->apiCallback = 0;
+    if (result < 0) {
+        goto error;
+    }
+
+    dir = __CARDGetDirBlock(card);
+    ent = &dir[card->freeNo];
+    memcpy(ent->gameName, card->diskID->game_name, sizeof(ent->gameName));
+    memcpy(ent->company, card->diskID->company, sizeof(ent->company));
+    ent->permission = CARD_ATTR_PUBLIC;
+    ent->copyTimes = 0;
+    ent->startBlock = card->startBlock;
+
+    ent->bannerFormat = 0;
+    ent->iconAddr = 0xFFFFFFFF;
+    ent->iconFormat = 0;
+    ent->iconSpeed = 0;
+    ent->commentAddr = 0xFFFFFFFF;
+
+    CARDSetIconSpeed(ent, 0, CARD_STAT_SPEED_FAST);
+
+    card->fileInfo->offset = 0;
+    card->fileInfo->iBlock = ent->startBlock;
+
+    ent->time = (u32)OSTicksToSeconds(OSGetTime());
+    result = __CARDUpdateDir(chan, callback);
+    if (result < 0) {
+        goto error;
+    }
+    return;
+
+error:
+    __CARDPutControlBlock(card, result);
+    if (callback) {
+        callback(chan, result);
+    }
 }
-#pragma pop
 
 /* 80358238-80358458 352B78 0220+00 1/1 0/0 0/0 .text            CARDCreateAsync */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void CARDCreateAsync() {
-    nofralloc
-#include "asm/dolphin/card/CARDCreate/CARDCreateAsync.s"
+s32 CARDCreateAsync(s32 chan, const char* fileName, u32 size, CARDFileInfo* fileInfo,
+                    CARDCallback callback) {
+    CARDControl* card;
+    CARDDir* dir;
+    CARDDir* ent;
+    s32 result;
+    u16 fileNo;
+    u16 freeNo;
+    u16* fat;
+
+    if (strlen(fileName) > (u32)CARD_FILENAME_MAX) {
+        return CARD_RESULT_NAMETOOLONG;
+    }
+
+    result = __CARDGetControlBlock(chan, &card);
+    if (result < 0) {
+        return result;
+    }
+
+    if (size <= 0 || (size % card->sectorSize) != 0) {
+        return CARD_RESULT_FATAL_ERROR;
+    }
+
+    freeNo = (u16)-1;
+    dir = __CARDGetDirBlock(card);
+    for (fileNo = 0; fileNo < CARD_MAX_FILE; fileNo++) {
+        ent = &dir[fileNo];
+        if (ent->gameName[0] == 0xff) {
+            if (freeNo == (u16)-1) {
+                freeNo = fileNo;
+            }
+        } else if (memcmp(ent->gameName, card->diskID->game_name, sizeof(ent->gameName)) == 0 &&
+                   memcmp(ent->company, card->diskID->company, sizeof(ent->company)) == 0 &&
+                   __CARDCompareFileName(ent, fileName)) {
+            return __CARDPutControlBlock(card, CARD_RESULT_EXIST);
+        }
+    }
+
+    if (freeNo == (u16)-1) {
+        return __CARDPutControlBlock(card, CARD_RESULT_NOENT);
+    }
+
+    fat = __CARDGetFatBlock(card);
+    if (card->sectorSize * fat[CARD_FAT_FREEBLOCKS] < size) {
+        return __CARDPutControlBlock(card, CARD_RESULT_INSSPACE);
+    }
+
+    card->apiCallback = callback ? callback : __CARDDefaultApiCallback;
+    card->freeNo = freeNo;
+    ent = &dir[freeNo];
+    ent->length = (u16)(size / card->sectorSize);
+    strncpy((char*)ent->fileName, fileName, CARD_FILENAME_MAX);
+
+    card->fileInfo = fileInfo;
+    fileInfo->chan = chan;
+    fileInfo->fileNo = freeNo;
+
+    result = __CARDAllocBlock(chan, size / card->sectorSize, CreateCallbackFat);
+    if (result < 0) {
+        return __CARDPutControlBlock(card, result);
+    }
+    return result;
 }
-#pragma pop
 
 /* 80358458-803584A0 352D98 0048+00 0/0 1/1 0/0 .text            CARDCreate */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CARDCreate() {
-    nofralloc
-#include "asm/dolphin/card/CARDCreate/CARDCreate.s"
+s32 CARDCreate(s32 chan, const char* fileName, u32 size, CARDFileInfo* fileInfo) {
+    s32 result = CARDCreateAsync(chan, fileName, size, fileInfo, __CARDSyncCallback);
+    if (result < 0) {
+        return result;
+    }
+
+    return __CARDSync(chan);
 }
-#pragma pop

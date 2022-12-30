@@ -4,60 +4,59 @@
 //
 
 #include "dolphin/card/CARDCheck.h"
+#include "MSL_C/MSL_Common/Src/string.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "dolphin/card/CARD.h"
+#include "dolphin/dsp/dsp.h"
+#include "dolphin/dvd/dvd.h"
+
+#include "dolphin/card/CARDPriv.h"
 
 //
 // Forward References:
 //
 
-void __CARDCheckSum();
-static void VerifyID();
-static void VerifyDir();
-static void VerifyFAT();
-void __CARDVerify();
-static void CARDCheckExAsync();
-void CARDCheck();
+static s32 VerifyID(CARDControl* card);
+static s32 VerifyDir(CARDControl* card, int* outCurrent);
+static s32 VerifyFAT(CARDControl* card, int* outCurrent);
 
 //
 // External References:
 //
 
-SECTION_INIT void memset();
-SECTION_INIT void memcpy();
-void OSDisableInterrupts();
-void OSRestoreInterrupts();
-void __OSLockSramEx();
-void __OSUnlockSramEx();
-void __CARDSyncCallback();
-void __CARDGetFontEncode();
-void __CARDGetControlBlock();
-void __CARDPutControlBlock();
-void __CARDSync();
-void __CARDUpdateFatBlock();
-void __CARDUpdateDir();
 void __shr2i();
-extern u8 __CARDBlock[544];
 
 //
 // Declarations:
 //
 
 /* 803559E0-80355B90 350320 01B0+00 0/0 3/3 0/0 .text            __CARDCheckSum */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __CARDCheckSum() {
-    nofralloc
-#include "asm/dolphin/card/CARDCheck/__CARDCheckSum.s"
+void __CARDCheckSum(void* ptr, int length, u16* checksum, u16* checksumInv) {
+    u16* p;
+    int i;
+
+    length /= sizeof(u16);
+    *checksum = *checksumInv = 0;
+
+    for (i = 0, p = ptr; i < length; i++, p++) {
+        *checksum += *p;
+        *checksumInv += ~*p;
+    }
+
+    if (*checksum == 0xFFFF) {
+        *checksum = 0;
+    }
+
+    if (*checksumInv == 0xFFFF) {
+        *checksumInv = 0;
+    }
 }
-#pragma pop
 
 /* 80355B90-80355E14 3504D0 0284+00 2/2 0/0 0/0 .text            VerifyID */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void VerifyID() {
+static asm s32 VerifyID(CARDControl* card) {
     nofralloc
 #include "asm/dolphin/card/CARDCheck/VerifyID.s"
 }
@@ -67,7 +66,7 @@ static asm void VerifyID() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void VerifyDir() {
+static asm s32 VerifyDir(CARDControl* card, int* outCurrent) {
     nofralloc
 #include "asm/dolphin/card/CARDCheck/VerifyDir.s"
 }
@@ -77,38 +76,200 @@ static asm void VerifyDir() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void VerifyFAT() {
+static asm s32 VerifyFAT(CARDControl* card, int* outCurrent) {
     nofralloc
 #include "asm/dolphin/card/CARDCheck/VerifyFAT.s"
 }
 #pragma pop
 
 /* 803562D8-80356364 350C18 008C+00 0/0 1/1 0/0 .text            __CARDVerify */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+s32 __CARDVerify(CARDControl* card) {
+    s32 result;
+    int errors;
+
+    result = VerifyID(card);
+    if (result < 0) {
+        return result;
+    }
+
+    errors = VerifyDir(card, NULL);
+    errors += VerifyFAT(card, NULL);
+    switch (errors) {
+    case 0:
+        return CARD_RESULT_READY;
+    case 1:
+        return CARD_RESULT_BROKEN;
+    default:
+        return CARD_RESULT_BROKEN;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __CARDVerify() {
+asm s32 __CARDVerify(CARDControl* card) {
     nofralloc
 #include "asm/dolphin/card/CARDCheck/__CARDVerify.s"
 }
 #pragma pop
+#endif
 
 /* 80356364-803568F4 350CA4 0590+00 1/1 0/0 0/0 .text            CARDCheckExAsync */
+#ifdef NONMATCHING
+s32 CARDCheckExAsync(s32 chan, s32* xferBytes, CARDCallback callback) {
+    CARDControl* card;
+    CARDDir* dir[2];
+    u16* fat[2];
+    u16* map;
+    s32 result;
+    int errors;
+    int currentFat;
+    int currentDir;
+    s32 fileNo;
+    u16 iBlock;
+    u16 cBlock;
+    u16 cFree;
+    BOOL updateFat = FALSE;
+    BOOL updateDir = FALSE;
+    BOOL updateOrphan = FALSE;
+
+    if (xferBytes) {
+        *xferBytes = 0;
+    }
+
+    result = __CARDGetControlBlock(chan, &card);
+    if (result < 0) {
+        return result;
+    }
+
+    result = VerifyID(card);
+    if (result < 0) {
+        return __CARDPutControlBlock(card, result);
+    }
+
+    errors = VerifyDir(card, &currentDir);
+    errors += VerifyFAT(card, &currentFat);
+    if (1 < errors) {
+        return __CARDPutControlBlock(card, CARD_RESULT_BROKEN);
+    }
+
+    dir[0] = (CARDDir*)((u8*)card->workArea + (1 + 0) * CARD_SYSTEM_BLOCK_SIZE);
+    dir[1] = (CARDDir*)((u8*)card->workArea + (1 + 1) * CARD_SYSTEM_BLOCK_SIZE);
+    fat[0] = (u16*)((u8*)card->workArea + (3 + 0) * CARD_SYSTEM_BLOCK_SIZE);
+    fat[1] = (u16*)((u8*)card->workArea + (3 + 1) * CARD_SYSTEM_BLOCK_SIZE);
+
+    switch (errors) {
+    case 0:
+        break;
+    case 1:
+        if (!card->currentDir) {
+            card->currentDir = dir[currentDir];
+            memcpy(dir[currentDir], dir[currentDir ^ 1], CARD_SYSTEM_BLOCK_SIZE);
+            updateDir = TRUE;
+        } else {
+            card->currentFat = fat[currentFat];
+            memcpy(fat[currentFat], fat[currentFat ^ 1], CARD_SYSTEM_BLOCK_SIZE);
+            updateFat = TRUE;
+        }
+        break;
+    }
+
+    map = fat[currentFat ^ 1];
+    memset(map, 0, CARD_SYSTEM_BLOCK_SIZE);
+
+    for (fileNo = 0; fileNo < CARD_MAX_FILE; fileNo++) {
+        CARDDir* ent;
+
+        ent = &card->currentDir[fileNo];
+        if (ent->gameName[0] == 0xff) {
+            continue;
+        }
+
+        for (iBlock = ent->startBlock, cBlock = 0; iBlock != 0xFFFF && cBlock < ent->length;
+             iBlock = card->currentFat[iBlock], ++cBlock) {
+            if (!CARDIsValidBlockNo(card, iBlock) || 1 < ++map[iBlock]) {
+                return __CARDPutControlBlock(card, CARD_RESULT_BROKEN);
+            }
+        }
+        if (cBlock != ent->length || iBlock != 0xFFFF) {
+            return __CARDPutControlBlock(card, CARD_RESULT_BROKEN);
+        }
+    }
+
+    cFree = 0;
+    for (iBlock = CARD_NUM_SYSTEM_BLOCK; iBlock < card->cBlock; iBlock++) {
+        u16 nextBlock;
+
+        nextBlock = card->currentFat[iBlock];
+        if (map[iBlock] == 0) {
+            if (nextBlock != CARD_FAT_AVAIL) {
+                card->currentFat[iBlock] = CARD_FAT_AVAIL;
+                updateOrphan = TRUE;
+            }
+            cFree++;
+        } else if (!CARDIsValidBlockNo(card, nextBlock) && nextBlock != 0xFFFF) {
+            return __CARDPutControlBlock(card, CARD_RESULT_BROKEN);
+        }
+    }
+    if (cFree != card->currentFat[CARD_FAT_FREEBLOCKS]) {
+        card->currentFat[CARD_FAT_FREEBLOCKS] = cFree;
+        updateOrphan = TRUE;
+    }
+    if (updateOrphan) {
+        __CARDCheckSum(&card->currentFat[CARD_FAT_CHECKCODE], CARD_SYSTEM_BLOCK_SIZE - sizeof(u32),
+                       &card->currentFat[CARD_FAT_CHECKSUM],
+                       &card->currentFat[CARD_FAT_CHECKSUMINV]);
+    }
+
+    memcpy(fat[currentFat ^ 1], fat[currentFat], CARD_SYSTEM_BLOCK_SIZE);
+
+    if (updateDir) {
+        if (xferBytes) {
+            *xferBytes = CARD_SYSTEM_BLOCK_SIZE;
+        }
+        return __CARDUpdateDir(chan, callback);
+    }
+
+    if (updateFat | updateOrphan) {
+        if (xferBytes) {
+            *xferBytes = CARD_SYSTEM_BLOCK_SIZE;
+        }
+        return __CARDUpdateFatBlock(chan, card->currentFat, callback);
+    }
+
+    __CARDPutControlBlock(card, CARD_RESULT_READY);
+    if (callback) {
+        BOOL enabled = OSDisableInterrupts();
+        callback(chan, CARD_RESULT_READY);
+        OSRestoreInterrupts(enabled);
+    }
+    return CARD_RESULT_READY;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void CARDCheckExAsync() {
+static asm s32 CARDCheckExAsync(s32 chan, s32* xferBytes, CARDCallback callback) {
     nofralloc
 #include "asm/dolphin/card/CARDCheck/CARDCheckExAsync.s"
 }
 #pragma pop
+#endif
 
 /* 803568F4-80356948 351234 0054+00 0/0 2/2 0/0 .text            CARDCheck */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CARDCheck() {
-    nofralloc
-#include "asm/dolphin/card/CARDCheck/CARDCheck.s"
+s32 CARDCheck(s32 chan) {
+    s32 xferBytes;
+
+    s32 result = CARDCheckExAsync(chan, &xferBytes, __CARDSyncCallback);
+    if (result >= 0) {
+        if (&xferBytes == NULL) {
+            return result;
+        }
+
+        return __CARDSync(chan);
+    }
+
+    return result;
 }
-#pragma pop

@@ -4,80 +4,152 @@
 //
 
 #include "dolphin/card/CARDBlock.h"
+#include "MSL_C/MSL_Common/Src/string.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "dolphin/card/CARD.h"
+#include "dolphin/dsp/dsp.h"
+#include "dolphin/dvd/dvd.h"
+
+#include "dolphin/card/CARDPriv.h"
 
 //
 // Forward References:
 //
 
-void __CARDGetFatBlock();
-static void WriteCallback();
-static void EraseCallback();
-void __CARDAllocBlock();
-void __CARDUpdateFatBlock();
-
-//
-// External References:
-//
-
-SECTION_INIT void memcpy();
-void DCStoreRange();
-void __CARDEraseSector();
-void __CARDPutControlBlock();
-void __CARDWrite();
-void __CARDCheckSum();
-extern u8 __CARDBlock[544];
+static void WriteCallback(s32 chan, s32 result);
+static void EraseCallback(s32 chan, s32 result);
 
 //
 // Declarations:
 //
 
 /* 80355414-8035541C 34FD54 0008+00 0/0 5/5 0/0 .text            __CARDGetFatBlock */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __CARDGetFatBlock() {
-    nofralloc
-#include "asm/dolphin/card/CARDBlock/__CARDGetFatBlock.s"
+u16* __CARDGetFatBlock(CARDControl* card) {
+    return card->currentFat;
 }
-#pragma pop
 
 /* 8035541C-803554F0 34FD5C 00D4+00 1/1 0/0 0/0 .text            WriteCallback */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+static void WriteCallback(s32 chan, s32 result) {
+    CARDControl* card;
+    CARDCallback callback;
+    u16* fat;
+    u16* fatBack;
+
+    card = &__CARDBlock[chan];
+
+    if (result >= 0) {
+        fat = (u16*)((u8*)card->workArea + 0x6000);
+        fatBack = (u16*)((u8*)card->workArea + 0x8000);
+
+        if (card->currentFat == fat) {
+            card->currentFat = fatBack;
+            memcpy(fatBack, fat, 0x2000);
+        } else {
+            card->currentFat = fat;
+            memcpy(fat, fatBack, 0x2000);
+        }
+    }
+
+    if (card->apiCallback == NULL) {
+        __CARDPutControlBlock(card, result);
+    }
+
+    callback = card->eraseCallback;
+    if (callback) {
+        card->eraseCallback = NULL;
+        callback(chan, result);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void WriteCallback() {
+static asm void WriteCallback(s32 chan, s32 result) {
     nofralloc
 #include "asm/dolphin/card/CARDBlock/WriteCallback.s"
 }
 #pragma pop
+#endif
 
 /* 803554F0-803555B8 34FE30 00C8+00 1/1 0/0 0/0 .text            EraseCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void EraseCallback() {
+static asm void EraseCallback(s32 chan, s32 result) {
     nofralloc
 #include "asm/dolphin/card/CARDBlock/EraseCallback.s"
 }
 #pragma pop
 
 /* 803555B8-803556D0 34FEF8 0118+00 0/0 1/1 0/0 .text            __CARDAllocBlock */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+s32 __CARDAllocBlock(s32 chan, u32 cBlock, CARDCallback callback) {
+    CARDControl* card;
+    u16* fat;
+    u16 iBlock;
+    u16 startBlock;
+    u16 prevBlock;
+    u16 count;
+
+    card = &__CARDBlock[chan];
+    if (!card->attached) {
+        return CARD_RESULT_NOCARD;
+    }
+
+    fat = __CARDGetFatBlock(card);
+    if (fat[3] < cBlock) {
+        return CARD_RESULT_INSSPACE;
+    }
+
+    fat[3] -= cBlock;
+    startBlock = 0xFFFF;
+    iBlock = fat[4];
+    count = 0;
+    while (0 < cBlock) {
+        if (card->cBlock - 5 < ++count) {
+            return CARD_RESULT_BROKEN;
+        }
+
+        iBlock++;
+        if (!CARDIsValidBlockNo(card, iBlock)) {
+            iBlock = 5;
+        }
+
+        if (fat[iBlock] == 0x0000u) {
+            if (startBlock == 0xFFFF) {
+                startBlock = iBlock;
+            } else {
+                fat[prevBlock] = iBlock;
+            }
+            prevBlock = iBlock;
+            fat[iBlock] = 0xFFFF;
+            --cBlock;
+        }
+    }
+    fat[4] = iBlock;
+    card->startBlock = startBlock;
+
+    return __CARDUpdateFatBlock(chan, fat, callback);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __CARDAllocBlock() {
+asm s32 __CARDAllocBlock(s32 chan, u32 cBlock, CARDCallback callback) {
     nofralloc
 #include "asm/dolphin/card/CARDBlock/__CARDAllocBlock.s"
 }
 #pragma pop
+#endif
 
 /* 803556D0-8035577C 350010 00AC+00 1/1 1/1 0/0 .text            __CARDUpdateFatBlock */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __CARDUpdateFatBlock() {
+asm s32 __CARDUpdateFatBlock(s32 chan, u16* fat, CARDCallback callback) {
     nofralloc
 #include "asm/dolphin/card/CARDBlock/__CARDUpdateFatBlock.s"
 }

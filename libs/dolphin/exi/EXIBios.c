@@ -3,7 +3,7 @@
 // Translation Unit: EXIBios
 //
 
-#include "exi/EXIBios.h"
+#include "dolphin/exi/EXIBios.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -11,46 +11,17 @@
 // Forward References:
 //
 
-static void SetExiInterruptMask();
-void EXIImm();
-void EXIImmEx();
-void EXIDma();
-void EXISync();
-static void EXIClearInterrupts();
-void EXISetExiCallback();
-void __EXIProbe();
-void EXIProbe();
-void EXIProbeEx();
-void EXIAttach();
-void EXIDetach();
-void EXISelect();
-void EXIDeselect();
-static void EXIIntrruptHandler();
-static void TCIntrruptHandler();
-static void EXTIntrruptHandler();
-void EXIInit();
-void EXILock();
-void EXIUnlock();
-void EXIGetState();
-static void UnlockedHandler();
-void EXIGetID();
+static void SetExiInterruptMask(s32 chan, EXIControl* exi);
+BOOL __EXIProbe(s32 chan);
+static u32 EXIClearInterrupts(s32 chan, BOOL exi, BOOL tc, BOOL ext);
+static void EXIIntrruptHandler(s16 interrupt, OSContext* context);
+static void TCIntrruptHandler(s16 interrupt, OSContext* context);
+static void EXTIntrruptHandler(s16 interrupt, OSContext* context);
 
 //
 // External References:
 //
 
-void OSGetConsoleType();
-void __OSGetDIConfig();
-void OSRegisterVersion();
-void OSSetCurrentContext();
-void OSClearContext();
-void OSDisableInterrupts();
-void OSRestoreInterrupts();
-void __OSSetInterruptHandler();
-void __OSGetInterruptHandler();
-void __OSMaskInterrupts();
-void __OSUnmaskInterrupts();
-void OSGetTime();
 void __OSEnableBarnacle();
 void __div2i();
 void memmove();
@@ -62,13 +33,13 @@ extern u8 __OSInIPL[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 8044C570-8044C630 079290 00C0+00 20/20 0/0 0/0 .bss             Ecb */
-static u8 Ecb[192];
+static EXIControl Ecb[3];
 
 /* 80342C0C-80342D00 33D54C 00F4+00 4/4 0/0 0/0 .text            SetExiInterruptMask */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void SetExiInterruptMask() {
+static asm void SetExiInterruptMask(s32 chan, EXIControl* exi) {
     nofralloc
 #include "asm/exi/EXIBios/SetExiInterruptMask.s"
 }
@@ -78,7 +49,7 @@ static asm void SetExiInterruptMask() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void EXIImm() {
+asm s32 EXIImm(s32 chan, void* buf, s32 len, u32 type, EXICallback callbac) {
     nofralloc
 #include "asm/exi/EXIBios/EXIImm.s"
 }
@@ -88,7 +59,7 @@ asm void EXIImm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void EXIImmEx() {
+asm s32 EXIImmEx(s32 chan, void* buf, s32 len, u32 mode) {
     nofralloc
 #include "asm/exi/EXIBios/EXIImmEx.s"
 }
@@ -98,7 +69,7 @@ asm void EXIImmEx() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void EXIDma() {
+asm BOOL EXIDma(s32 chan, void* buf, s32 len, u32 type, EXICallback callback) {
     nofralloc
 #include "asm/exi/EXIBios/EXIDma.s"
 }
@@ -108,7 +79,7 @@ asm void EXIDma() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void EXISync() {
+asm BOOL EXISync(s32 chan) {
     nofralloc
 #include "asm/exi/EXIBios/EXISync.s"
 }
@@ -118,7 +89,7 @@ asm void EXISync() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void EXIClearInterrupts() {
+static asm u32 EXIClearInterrupts(s32 chan, BOOL exi, BOOL tc, BOOL ext) {
     nofralloc
 #include "asm/exi/EXIBios/EXIClearInterrupts.s"
 }
@@ -128,7 +99,7 @@ static asm void EXIClearInterrupts() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void EXISetExiCallback() {
+asm EXICallback EXISetExiCallback(s32 chan, EXICallback exiCallback) {
     nofralloc
 #include "asm/exi/EXIBios/EXISetExiCallback.s"
 }
@@ -138,7 +109,7 @@ asm void EXISetExiCallback() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __EXIProbe() {
+asm BOOL __EXIProbe(s32 chan) {
     nofralloc
 #include "asm/exi/EXIBios/__EXIProbe.s"
 }
@@ -148,7 +119,7 @@ asm void __EXIProbe() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void EXIProbe() {
+asm BOOL EXIProbe(s32 chan) {
     nofralloc
 #include "asm/exi/EXIBios/EXIProbe.s"
 }
@@ -158,7 +129,7 @@ asm void EXIProbe() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void EXIProbeEx() {
+asm s32 EXIProbeEx(s32 chan) {
     nofralloc
 #include "asm/exi/EXIBios/EXIProbeEx.s"
 }
@@ -168,7 +139,7 @@ asm void EXIProbeEx() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void EXIAttach() {
+asm BOOL EXIAttach(s32 chan, EXICallback extCallback) {
     nofralloc
 #include "asm/exi/EXIBios/EXIAttach.s"
 }
@@ -178,7 +149,7 @@ asm void EXIAttach() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void EXIDetach() {
+asm BOOL EXIDetach(s32 chan) {
     nofralloc
 #include "asm/exi/EXIBios/EXIDetach.s"
 }
@@ -188,7 +159,7 @@ asm void EXIDetach() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void EXISelect() {
+asm BOOL EXISelect(s32 chan, u32 dev, u32 freq) {
     nofralloc
 #include "asm/exi/EXIBios/EXISelect.s"
 }
@@ -198,7 +169,7 @@ asm void EXISelect() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void EXIDeselect() {
+asm BOOL EXIDeselect(s32 chan) {
     nofralloc
 #include "asm/exi/EXIBios/EXIDeselect.s"
 }
@@ -208,7 +179,7 @@ asm void EXIDeselect() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void EXIIntrruptHandler() {
+static asm void EXIIntrruptHandler(s16 interrupt, OSContext* context) {
     nofralloc
 #include "asm/exi/EXIBios/EXIIntrruptHandler.s"
 }
@@ -218,7 +189,7 @@ static asm void EXIIntrruptHandler() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void TCIntrruptHandler() {
+static asm void TCIntrruptHandler(s16 interrupt, OSContext* context) {
     nofralloc
 #include "asm/exi/EXIBios/TCIntrruptHandler.s"
 }
@@ -228,7 +199,7 @@ static asm void TCIntrruptHandler() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void EXTIntrruptHandler() {
+static asm void EXTIntrruptHandler(s16 interrupt, OSContext* context) {
     nofralloc
 #include "asm/exi/EXIBios/EXTIntrruptHandler.s"
 }
@@ -239,11 +210,7 @@ static asm void EXTIntrruptHandler() {
 SECTION_DATA static char lit_1[] = "<< Dolphin SDK - EXI\trelease build: Apr  5 2004 04:14:14 (0x2301) >>";
 
 /* 804509C0-804509C8 -00001 0004+04 1/1 0/0 0/0 .sdata           __EXIVersion */
-SECTION_SDATA static void* __EXIVersion[1 + 1 /* padding */] = {
-    (void*)&lit_1,
-    /* padding */
-    NULL,
-};
+SECTION_SDATA static const char* __EXIVersion = lit_1;
 
 /* 804516D8-804516E0 000BD8 0004+04 2/2 0/0 0/0 .sbss            IDSerialPort1 */
 static u8 IDSerialPort1[4 + 4 /* padding */];
@@ -252,7 +219,7 @@ static u8 IDSerialPort1[4 + 4 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void EXIInit() {
+asm void EXIInit(void) {
     nofralloc
 #include "asm/exi/EXIBios/EXIInit.s"
 }
@@ -262,7 +229,7 @@ asm void EXIInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void EXILock() {
+asm BOOL EXILock(s32 chan, u32 dev, EXICallback unlockedCallback) {
     nofralloc
 #include "asm/exi/EXIBios/EXILock.s"
 }
@@ -272,7 +239,7 @@ asm void EXILock() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void EXIUnlock() {
+asm BOOL EXIUnlock(s32 chan) {
     nofralloc
 #include "asm/exi/EXIBios/EXIUnlock.s"
 }
@@ -282,7 +249,7 @@ asm void EXIUnlock() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void EXIGetState() {
+asm u32 EXIGetState(s32 chan) {
     nofralloc
 #include "asm/exi/EXIBios/EXIGetState.s"
 }
@@ -292,7 +259,7 @@ asm void EXIGetState() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void UnlockedHandler() {
+static asm void UnlockedHandler(s32 chan, OSContext* context) {
     nofralloc
 #include "asm/exi/EXIBios/UnlockedHandler.s"
 }
@@ -302,7 +269,7 @@ static asm void UnlockedHandler() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void EXIGetID() {
+asm s32 EXIGetID(s32 chan, u32 dev, u32* id) {
     nofralloc
 #include "asm/exi/EXIBios/EXIGetID.s"
 }

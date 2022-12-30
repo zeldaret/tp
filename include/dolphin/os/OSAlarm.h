@@ -33,7 +33,6 @@ void OSSetPeriodicAlarm(OSAlarm* alarm, s64 start, s64 period, OSAlarmHandler* h
 void OSCancelAlarm(OSAlarm* alarm);
 static void DecrementerExceptionCallback(__OSException exception, OSContext* context);
 static void DecrementerExceptionHandler(__OSException exception, OSContext* context);
-static s32 OnReset(s32 param_0);
 
 #ifdef __cplusplus
 };

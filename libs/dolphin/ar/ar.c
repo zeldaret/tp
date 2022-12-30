@@ -4,142 +4,186 @@
 //
 
 #include "dolphin/ar/ar.h"
+#include "MSL_C/MSL_Common/Src/string.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "dolphin/base/PPCArch.h"
+#include "dolphin/dsp/dsp.h"
+#include "dolphin/os/OS.h"
 
-//
-// Forward References:
-//
-
-void ARRegisterDMACallback();
-void ARGetDMAStatus();
-void ARStartDMA();
-void __ARHandler();
+void __ARHandler(s16 interrupt, OSContext* context);
 void __ARClearInterrupt();
 void __ARGetInterruptStatus();
 void __ARChecksize();
 
-//
-// External References:
-//
-
-SECTION_INIT void memset();
-void PPCSync();
-void OSRegisterVersion();
-void DCInvalidateRange();
-void DCFlushRange();
-void OSSetCurrentContext();
-void OSClearContext();
-void OSDisableInterrupts();
-void OSRestoreInterrupts();
-void __OSSetInterruptHandler();
-void __OSUnmaskInterrupts();
-
-//
-// Declarations:
-//
-
 /* ############################################################################################## */
 /* 804518B8-804518BC 000DB8 0004+00 3/3 0/0 0/0 .sbss            __AR_Callback */
-static u8 __AR_Callback[4];
+static ARCallback __AR_Callback;
 
 /* 80350554-80350598 34AE94 0044+00 0/0 1/1 0/0 .text            ARRegisterDMACallback */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+ARCallback ARRegisterDMACallback(ARCallback callback) {
+    ARCallback oldCb;
+    BOOL enabled;
+    oldCb = __AR_Callback;
+    enabled = OSDisableInterrupts();
+    __AR_Callback = callback;
+    OSRestoreInterrupts(enabled);
+    return oldCb;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void ARRegisterDMACallback() {
+asm ARCallback ARRegisterDMACallback(ARCallback callback) {
     nofralloc
 #include "asm/dolphin/ar/ar/ARRegisterDMACallback.s"
 }
 #pragma pop
+#endif
 
 /* 80350598-803505D4 34AED8 003C+00 0/0 2/2 0/0 .text            ARGetDMAStatus */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+u32 ARGetDMAStatus() {
+    BOOL enabled;
+    u32 val;
+    enabled = OSDisableInterrupts();
+    val = __DSPRegs[5] & 0x0200;
+    OSRestoreInterrupts(enabled);
+    return val;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void ARGetDMAStatus() {
+asm u32 ARGetDMAStatus(void) {
     nofralloc
 #include "asm/dolphin/ar/ar/ARGetDMAStatus.s"
 }
 #pragma pop
+#endif
 
 /* 803505D4-803506C4 34AF14 00F0+00 0/0 5/5 0/0 .text            ARStartDMA */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+void ARStartDMA(u32 type, u32 mainmem_addr, u32 aram_addr, u32 length) {
+    BOOL enabled;
+
+    enabled = OSDisableInterrupts();
+
+    __DSPRegs[16] = (u16)(__DSPRegs[16] & ~0x3ff) | (u16)(mainmem_addr >> 16);
+    __DSPRegs[17] = (u16)(__DSPRegs[17] & ~0xffe0) | (u16)(mainmem_addr & 0xffff);
+    __DSPRegs[18] = (u16)(__DSPRegs[18] & ~0x3ff) | (u16)(aram_addr >> 16);
+    __DSPRegs[19] = (u16)(__DSPRegs[19] & ~0xffe0) | (u16)(aram_addr & 0xffff);
+    __DSPRegs[20] = (u16)((__DSPRegs[20] & ~0x8000) | (type << 15));
+    __DSPRegs[20] = (u16)(__DSPRegs[20] & ~0x3ff) | (u16)(length >> 16);
+    __DSPRegs[21] = (u16)(__DSPRegs[21] & ~0xffe0) | (u16)(length & 0xffff);
+    OSRestoreInterrupts(enabled);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void ARStartDMA() {
+asm void ARStartDMA(u32 type, u32 mainmem_addr, u32 aram_addr, u32 length) {
     nofralloc
 #include "asm/dolphin/ar/ar/ARStartDMA.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804518BC-804518C0 000DBC 0004+00 2/1 0/0 0/0 .sbss            __AR_Size */
-static u8 __AR_Size[4];
+static u32 __AR_Size;
 
 /* 804518C0-804518C4 000DC0 0004+00 1/1 0/0 0/0 .sbss            __AR_InternalSize */
-static u8 __AR_InternalSize[4];
+static u32 __AR_InternalSize;
 
 /* 804518C4-804518C8 000DC4 0004+00 1/1 0/0 0/0 .sbss            __AR_ExpansionSize */
-static u8 __AR_ExpansionSize[4];
+static u32 __AR_ExpansionSize;
 
 /* 804518C8-804518CC 000DC8 0004+00 2/2 0/0 0/0 .sbss            __AR_StackPointer */
-static u8 __AR_StackPointer[4];
+static u32 __AR_StackPointer;
 
 /* 804518CC-804518D0 000DCC 0004+00 2/2 0/0 0/0 .sbss            __AR_FreeBlocks */
-static u8 __AR_FreeBlocks[4];
+static u32 __AR_FreeBlocks;
 
 /* 804518D0-804518D4 000DD0 0004+00 2/2 0/0 0/0 .sbss            __AR_BlockLength */
-static u8 __AR_BlockLength[4];
+static u32* __AR_BlockLength;
 
 /* 803506C4-8035072C 34B004 0068+00 0/0 1/1 0/0 .text            ARAlloc */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+u32 ARAlloc(u32 length) {
+    u32 tmp;
+    BOOL enabled;
+
+    enabled = OSDisableInterrupts();
+    tmp = __AR_StackPointer;
+    __AR_StackPointer += length;
+    *__AR_BlockLength = length;
+    __AR_BlockLength++;
+    __AR_FreeBlocks--;
+    OSRestoreInterrupts(enabled);
+
+    return tmp;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u32 ARAlloc(u32) {
+asm u32 ARAlloc(u32 length) {
     nofralloc
 #include "asm/dolphin/ar/ar/ARAlloc.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803D1BE8-803D1C30 02ED08 0044+04 1/0 0/0 0/0 .data            @1 */
-SECTION_DATA static char lit_1[] = "<< Dolphin SDK - AR\trelease build: Apr  5 2004 04:15:03 (0x2301) >>";
+SECTION_DATA static char lit_1[] =
+    "<< Dolphin SDK - AR\trelease build: Apr  5 2004 04:15:03 (0x2301) >>";
 
 /* 80450A48-80450A50 -00001 0004+04 1/1 0/0 0/0 .sdata           __ARVersion */
-SECTION_SDATA static void* __ARVersion[1 + 1 /* padding */] = {
-    (void*)&lit_1,
-    /* padding */
-    NULL,
-};
+SECTION_SDATA static const char* __ARVersion = lit_1;
 
 /* 804518D4-804518D8 000DD4 0004+00 1/1 0/0 0/0 .sbss            __AR_init_flag */
-static u8 __AR_init_flag[4];
+static volatile BOOL __AR_init_flag;
 
 /* 8035072C-803507F0 34B06C 00C4+00 0/0 1/1 0/0 .text            ARInit */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u32 ARInit(u32*, u32) {
+asm u32 ARInit(u32* stack_index_addr, u32 num_entries) {
     nofralloc
 #include "asm/dolphin/ar/ar/ARInit.s"
 }
 #pragma pop
 
 /* 803507F0-803507F8 -00001 0008+00 0/0 0/0 0/0 .text            ARGetSize */
-u32 ARGetSize() {
-    return *(u32*)(&__AR_Size);
+u32 ARGetSize(void) {
+    return __AR_Size;
 }
 
 /* 803507F8-80350870 34B138 0078+00 1/1 0/0 0/0 .text            __ARHandler */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __ARHandler() {
-    nofralloc
-#include "asm/dolphin/ar/ar/__ARHandler.s"
+static void __ARHandler(s16 interrupt, OSContext* context) {
+    OSContext exceptionContext;
+    u16 tmp;
+
+    tmp = __DSPRegs[5];
+    tmp = (u16)((tmp & ~0x00000088) | 0x20);
+    __DSPRegs[5] = tmp;
+
+    OSClearContext(&exceptionContext);
+    OSSetCurrentContext(&exceptionContext);
+
+    if (__AR_Callback) {
+        (*__AR_Callback)();
+    }
+
+    OSClearContext(&exceptionContext);
+    OSSetCurrentContext(context);
 }
-#pragma pop
 
 /* 80350870-80350890 34B1B0 0020+00 0/0 2/2 0/0 .text            __ARClearInterrupt */
 #pragma push

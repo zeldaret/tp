@@ -3,7 +3,7 @@
 // Translation Unit: EXIUart
 //
 
-#include "exi/EXIUart.h"
+#include "dolphin/exi/EXIUart.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

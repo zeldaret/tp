@@ -5,66 +5,108 @@
 
 #include "dolphin/card/CARDRdwr.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "dolphin/card/CARD.h"
+#include "dolphin/dsp/dsp.h"
+#include "dolphin/dvd/dvd.h"
+
+#include "dolphin/card/CARDPriv.h"
 
 //
 // Forward References:
 //
 
-static void BlockReadCallback();
-void __CARDRead();
-static void BlockWriteCallback();
-void __CARDWrite();
-
-//
-// External References:
-//
-
-void __CARDReadSegment();
-void __CARDWritePage();
-void __CARDPutControlBlock();
-extern u8 __CARDBlock[544];
+static void BlockReadCallback(s32 chan, s32 result);
+static void BlockWriteCallback(s32 chan, s32 result);
 
 //
 // Declarations:
 //
 
 /* 80355184-80355260 34FAC4 00DC+00 1/1 0/0 0/0 .text            BlockReadCallback */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+static void BlockReadCallback(s32 chan, s32 result) {
+    CARDControl* card;
+    CARDCallback callback;
+
+    card = &__CARDBlock[chan];
+    if (result < 0) {
+        goto error;
+    }
+
+    card->xferred += CARD_SEG_SIZE;
+
+    card->addr += CARD_SEG_SIZE;
+    (u8*)card->buffer += CARD_SEG_SIZE;
+    if (--card->repeat <= 0) {
+        goto error;
+    }
+
+    result = __CARDReadSegment(chan, BlockReadCallback);
+    if (result < 0) {
+        goto error;
+    }
+    return;
+
+error:
+    if (card->apiCallback == 0) {
+        __CARDPutControlBlock(card, result);
+    }
+    callback = card->xferCallback;
+    if (callback) {
+        card->xferCallback = 0;
+        callback(chan, result);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void BlockReadCallback() {
+static asm void BlockReadCallback(s32 chan, s32 result) {
     nofralloc
 #include "asm/dolphin/card/CARDRdwr/BlockReadCallback.s"
 }
 #pragma pop
+#endif
 
 /* 80355260-803552C4 34FBA0 0064+00 0/0 3/3 0/0 .text            __CARDRead */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __CARDRead() {
-    nofralloc
-#include "asm/dolphin/card/CARDRdwr/__CARDRead.s"
+s32 __CARDRead(s32 chan, u32 addr, s32 length, void* dst, CARDCallback callback) {
+    CARDControl* card;
+    card = &__CARDBlock[chan];
+    if (!card->attached) {
+        return CARD_RESULT_NOCARD;
+    }
+
+    card->xferCallback = callback;
+    card->repeat = (int)(length / CARD_SEG_SIZE);
+    card->addr = addr;
+    card->buffer = dst;
+
+    return __CARDReadSegment(chan, BlockReadCallback);
 }
-#pragma pop
 
 /* 803552C4-803553AC 34FC04 00E8+00 1/1 0/0 0/0 .text            BlockWriteCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void BlockWriteCallback() {
+static asm void BlockWriteCallback(s32 chan, s32 result) {
     nofralloc
 #include "asm/dolphin/card/CARDRdwr/BlockWriteCallback.s"
 }
 #pragma pop
 
 /* 803553AC-80355414 34FCEC 0068+00 0/0 4/4 0/0 .text            __CARDWrite */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __CARDWrite() {
-    nofralloc
-#include "asm/dolphin/card/CARDRdwr/__CARDWrite.s"
+s32 __CARDWrite(s32 chan, u32 addr, s32 length, void* dst, CARDCallback callback) {
+    CARDControl* card;
+    card = &__CARDBlock[chan];
+    if (!card->attached) {
+        return CARD_RESULT_NOCARD;
+    }
+
+    card->xferCallback = callback;
+    card->repeat = (int)(length / card->pageSize);
+    card->addr = addr;
+    card->buffer = dst;
+
+    return __CARDWritePage(chan, BlockWriteCallback);
 }
-#pragma pop

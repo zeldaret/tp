@@ -2566,7 +2566,7 @@ inline int dComIfG_getTimerNowTimeMs() {
     return g_dComIfG_gameInfo.play.getTimerNowTimeMs();
 }
 
-inline int dComIfG_setTimerNowTimeMs(int time) {
+inline void dComIfG_setTimerNowTimeMs(int time) {
     g_dComIfG_gameInfo.play.setTimerNowTimeMs(time);
 }
 
