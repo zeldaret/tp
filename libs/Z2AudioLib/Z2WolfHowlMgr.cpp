@@ -71,7 +71,7 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 data_80450B38[4];
+extern "C" extern Z2WolfHowlMgr* data_80450B38;
 extern "C" extern u8 data_80450B44[4];
 extern "C" extern u8 data_80450B60[4];
 extern "C" extern u8 data_80450B74[4];
@@ -194,6 +194,35 @@ SECTION_SDATA2 static u8 lit_3485[4] = {
 SECTION_SDATA2 static f32 lit_3486 = 1.0f;
 
 /* 802CAAC0-802CAB8C 2C5400 00CC+00 0/0 1/1 0/0 .text            __ct__13Z2WolfHowlMgrFv */
+#ifdef NONMATCHING
+Z2WolfHowlMgr* JASGlobalInstance<Z2WolfHowlMgr>::sInstance = reinterpret_cast<Z2WolfHowlMgr*>(data_80450B38);
+Z2WolfHowlMgr::Z2WolfHowlMgr() : JASGlobalInstance<Z2WolfHowlMgr>(true) {
+    mpCurSong = NULL;
+    mNowInputValue = 0.0f;
+    field_0x18 = 1.0f;
+    field_0x1c = 1.0f;
+    field_0x20 = cPitchCenter;
+    field_0x24 = cPitchCenter;
+    field_0x28 = 1.0f;
+    mTimer = NULL;
+    mReleaseTimer = 0;
+    mCorrectCurveID = -1;
+    field_0x90 = -1;
+    field_0xba = 0;
+    field_0xbb = 0;
+    field_0xbc = 0;
+    for (u8 i = 0; i<20; i++) {
+        field_0x92[i] = 0;
+    }
+    for (u8 i = 0; i<10; i++) {
+        field_0x38[i] = 0.0f;
+        field_0x60[i] = 0.0f;
+    }
+    field_0x34 = 0.0f;
+    field_0x30 = 0.0f;
+    mpSongList = (Z2WolfHowlData**)&sGuideData;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -202,8 +231,25 @@ asm Z2WolfHowlMgr::Z2WolfHowlMgr() {
 #include "asm/Z2AudioLib/Z2WolfHowlMgr/__ct__13Z2WolfHowlMgrFv.s"
 }
 #pragma pop
+#endif
 
 /* 802CAB8C-802CABEC 2C54CC 0060+00 1/1 0/0 0/0 .text            resetState__13Z2WolfHowlMgrFv */
+#ifdef NONMATCHING
+void Z2WolfHowlMgr::resetState() {
+    field_0x18 = 1.0f;
+    field_0x24 = cPitchCenter;
+    field_0x28 = 1.0f;
+    mTimer = NULL;
+    mReleaseTimer = 0;
+    field_0xba = 0;
+    for (u8 i = 0; i<10; i++) {
+        field_0x38[i] = 0.0f;
+        field_0x60[i] = 0.0f;
+    }
+    field_0x34 = 0.0f;
+    field_0x30 = 0.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -212,6 +258,7 @@ asm void Z2WolfHowlMgr::resetState() {
 #include "asm/Z2AudioLib/Z2WolfHowlMgr/resetState__13Z2WolfHowlMgrFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80455E68-80455E6C 004468 0004+00 2/2 0/0 0/0 .sdata2          @3527 */

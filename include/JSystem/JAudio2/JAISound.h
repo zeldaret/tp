@@ -11,11 +11,11 @@
 class JAISoundID {
 public:
     operator u32() const { return this->mId; }
-    void operator=(JAISoundID const&);
+    void operator=(JAISoundID const& other) {mId = other.mId;};
 
     JAISoundID(u32 pId) { mId = pId; };
 
-    JAISoundID(JAISoundID const& other);
+    JAISoundID(JAISoundID const& other) {mId = other.mId;};
 
     JAISoundID() {}
 
@@ -29,6 +29,13 @@ struct JASTrack {
     /* 80291C30 */ void openChild(u32);
     /* 80292918 */ void writePort(u32, u16);
     /* 8029297C */ void readPort(u32);
+
+    inline int getChannelMgrCount() {
+        return channelMgrCount;
+    }
+
+    /* 0x0 */u8 field_0x0[0x1d0];
+    /* 0x1d0 */ int channelMgrCount;
 };
 
 struct JAISoundStatus_ {
@@ -36,26 +43,92 @@ struct JAISoundStatus_ {
     /* 802A2244 */ s32 unlockIfLocked();
 
     void init() {
-        field_0x0 = 0;
-        field_0x1 = 0;
-        *((u16*)(this) + 2) = 0;
+        field_0x0.value = 0;
+        field_0x1.value = 0;
+        *((u16*)&state) = 0;
         user_data = 0;
     }
 
-    /* 0x0 */ u8 field_0x0;
-    /* 0x1 */ u8 field_0x1;
-    /* 0x2 */ u8 state[2];  // debug accesses like "state.flags.calcedOnce"
+    bool isAlive(); //used in assert
+
+    inline bool isPlaying() {
+        return state.unk==5;
+    }
+
+    inline bool isPaused() {
+        return field_0x0.flags.paused;
+    }
+
+    /* 0x0 */ union {
+        u8 value;
+        struct{
+            u8 flag1:1;
+            u8 paused:1;
+            u8 flag3:1;
+            u8 flag4:1;
+            u8 flag5:1;
+            u8 flag6:1;
+            u8 flag7:1;
+            u8 flag8:1;
+        }flags;
+    }field_0x0;
+    /* 0x1 */ union {
+        u8 value;
+        struct{
+            u8 flag1:1;
+            u8 flag2:1;
+            u8 flag3:1;
+            u8 flag4:1;
+            u8 flag5:1;
+            u8 flag6:1;
+            u8 flag7:1;
+            u8 flag8:1;
+        }flags;
+    }field_0x1;
+    /* 0x2 */ struct {
+        u8 unk;
+        struct {
+            u8 flag1:1;
+            u8 flag2:1;
+            u8 flag3:1;
+            u8 flag4:1;
+            u8 flag5:1;
+            u8 flag6:1;
+            u8 flag7:1;
+            u8 flag8:1;
+        }flags;
+    } state;
     /* 0x4 */ u32 user_data;
 };  // Size: 0x6
 
 struct JAISoundFader {
     void forceIn() {
         mIntensity = 1.0f;
-        field_0x4.zero();
+        mTransition.zero();
+    }
+    void forceOut() {
+        mIntensity = 0.0f;
+        mTransition.zero();
+    }
+    void fadeOut(u32 fadeCount) {
+        if (fadeCount!=0) {
+            mTransition.set(0.0f,mIntensity,fadeCount);
+        }else{
+            forceOut();
+        }
+    }
+    bool isOut() {
+        if(mTransition.mCount != 0 || mIntensity < 0.01f) {
+            return true;
+        }
+        return false;
+    }
+    inline void calc() {
+        mIntensity = mTransition.apply(mIntensity);
     }
 
     /* 0x00 */ f32 mIntensity;
-    /* 0x04 */ JAISoundParamsTransition::TTransition field_0x4;
+    /* 0x04 */ JAISoundParamsTransition::TTransition mTransition;
 };  // Size: 0x10
 
 template <typename A0>
@@ -88,29 +161,50 @@ public:
                                    JAIAudience*);
     /* 802A2598 */ void stop();
     /* 802A24DC */ void stop(u32 fadeout);
-    /* 802A25D8 */ bool asSe();
-    /* 802A25E0 */ bool asSeq();
-    /* 802A25E8 */ bool asStream();
     /* 802A25F0 */ void die_JAISound_();
     /* 802A266C */ void increasePrepareCount_JAISound_();
-    /* 802A26B8 */ void calc_JAISound_();
+    /* 802A26B8 */ bool calc_JAISound_();
     /* 802A29DC */ void initTrack_JAISound_(JASTrack*);
 
     virtual void getNumChild() = 0;
+    virtual void getChild() = 0;
+    virtual void releaseChild() = 0;
+    /* 802A25D8 */ virtual bool asSe();
+    /* 802A25E0 */ virtual bool asSeq();
+    /* 802A25E8 */ virtual bool asStream();
+    virtual void getTrack() = 0;
+    virtual void getChildTrack() = 0;
+    virtual void getTempoMgr() = 0;
+    virtual bool JAISound_tryDie_() = 0;
 
     JAISoundID getID() const;
     u32 getUserData() const { return status_.user_data; }
     bool isHandleAttached() const { return handle_ != NULL; }
 
+    void removeLifeTime_() {
+        status_.field_0x1.flags.flag1 = false;
+    }
+    void stop_JAISound_() {
+        status_.state.flags.flag5 = 0;
+        status_.state.flags.flag1 = 1;
+    }
+    bool isStopping() {
+        bool isStopping = false;
+        if(status_.state.flags.flag1) {
+            isStopping = status_.state.flags.flag5 ? fader.isOut() : true;
+        }
+        return isStopping;
+    }
+
     /* 0x04 */ JAISoundHandle* handle_;
     /* 0x08 */ JAIAudible* audible_;
     /* 0x0C */ JAIAudience* audience_;
-    /* 0x10 */ s32 lifeTime;
+    /* 0x10 */ u32 lifeTime;
     /* 0x14 */ s32 prepareCount;
     /* 0x18 */ JAISoundID soundID;
     /* 0x1C */ JAISoundStatus_ status_;
     /* 0x24 */ JAISoundFader fader;
-    /* 0x34 */ s32 field_0x34;
+    /* 0x34 */ s32 mPriority;
     /* 0x38 */ s32 mCount;
     /* 0x3C */ JAISoundParams params;
 };  // Size: 0x98

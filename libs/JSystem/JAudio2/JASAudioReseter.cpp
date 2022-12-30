@@ -7,6 +7,9 @@
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
+#include "JSystem/JAudio2/JAISoundHandles.h"
+#include "JSystem/JAudio2/JASGadget.h"
+#include "JSystem/JAudio2/JASAudioThread.h"
 
 //
 // Types:
@@ -14,11 +17,10 @@
 
 struct JASDSPChannel {
     /* 8029D340 */ void drop();
-    /* 8029D948 */ void getHandle(u32);
-};
+    /* 8029D948 */ static JASDSPChannel* getHandle(u32);
 
-struct JASAudioThread {
-    /* 8029CDC0 */ void stop();
+    inline u32 getStatus() {return mStatus;}
+    u32 mStatus;
 };
 
 //
@@ -44,7 +46,7 @@ extern "C" void setDSPLevel__9JASDriverFf();
 extern "C" void getDSPLevel__9JASDriverFv();
 extern "C" void registerDspSyncCallback__9JASDriverFPFPv_lPv();
 extern "C" void __dl__FPv();
-extern "C" extern u8 data_80450B8C[4];
+extern "C" extern JASAudioThread* data_80450B8C;
 
 //
 // Declarations:
@@ -62,38 +64,21 @@ JASAudioReseter::JASAudioReseter() {
 JASAudioReseter::~JASAudioReseter() {}
 
 /* 8029D138-8029D1D4 297A78 009C+00 0/0 1/1 0/0 .text            start__15JASAudioReseterFUlb */
-#ifdef NONMATCHING
 bool JASAudioReseter::start(u32 param_0, bool param_1) {
-    u32 interrupt_status;
-
     if (mIsDone == false) {
         return false;
+    }
+    field_0xc = param_1;
+    JASCriticalSection critical;
+    if (!JASDriver::registerDspSyncCallback(callback, this)) {
+        return false;
     } else {
-        field_0xc = param_1;
-        interrupt_status = OSDisableInterrupts();
-
-        if (!JASDriver::registerDspSyncCallback(callback, (void*)param_0)) {
-            OSRestoreInterrupts(interrupt_status);
-            return false;
-        } else {
-            mDSPLevel = JASDriver::getDSPLevel();
-            field_0x0 = param_0;
-            mIsDone = false;
-            OSRestoreInterrupts(interrupt_status);
-            return true;
-        }
+        mDSPLevel = JASDriver::getDSPLevel();
+        field_0x0 = param_0;
+        mIsDone = false;
+        return true;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool JASAudioReseter::start(u32 param_0, bool param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAudioReseter/start__15JASAudioReseterFUlb.s"
-}
-#pragma pop
-#endif
 
 /* 8029D1D4-8029D1F8 297B14 0024+00 0/0 1/1 0/0 .text            resume__15JASAudioReseterFv */
 void JASAudioReseter::resume() {
@@ -105,21 +90,30 @@ s32 JASAudioReseter::checkDone() const {
     return mIsDone;
 }
 
-/* ############################################################################################## */
-/* 80455740-80455748 003D40 0008+00 1/1 0/0 0/0 .sdata2          @156 */
-SECTION_SDATA2 static f64 lit_156 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8029D200-8029D2D4 297B40 00D4+00 1/1 0/0 0/0 .text            calc__15JASAudioReseterFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 JASAudioReseter::calc() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAudioReseter/calc__15JASAudioReseterFv.s"
+s32 JASAudioReseter::calc() {
+    if(field_0x0==0) {
+        for(size_t i = 0; i<64; i++) {
+            JASDSPChannel* handle = JASDSPChannel::getHandle(i);
+            if ((handle->getStatus()&0xFF)==0) {
+                handle->drop();
+            }
+        }
+        if(field_0xc!=false) {
+            data_80450B8C->stop();//JASGlobalInstance<JASAudioThread>::sInstance->stop();
+        }
+        mIsDone = 1;
+        return -1;
+    }
+    field_0x0--;
+    u32 unk = field_0x0;
+    float dspLevel = JASDriver::getDSPLevel();
+    JASDriver::setDSPLevel(((float)unk*dspLevel)/(float)(unk+1));
+    return 0;
 }
-#pragma pop
 
 /* 8029D2D4-8029D2F4 297C14 0020+00 1/1 0/0 0/0 .text            callback__15JASAudioReseterFPv */
 s32 JASAudioReseter::callback(void* param_0) {
-    return calc();
+    return ((JASAudioReseter*)param_0)->calc();
 }

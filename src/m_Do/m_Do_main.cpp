@@ -20,6 +20,8 @@
 #include "m_Do/m_Do_dvd_thread.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_machine.h"
+#include "JSystem/JAudio2/JASGadget.h"
+#include "JSystem/JAudio2/JASAudioThread.h"
 
 //
 // Forward References:
@@ -735,6 +737,7 @@ u8 data_80450B88[4];
  * sInstance__35JASGlobalInstance<14JASAudioThread>             */
 extern u8 data_80450B8C[4];
 u8 data_80450B8C[4];
+//JASAudioThread* JASGlobalInstance<JASAudioThread>::sInstance;
 
 /* 80450B90-80450B98 000090 0004+04 0/0 4/4 0/0 .sbss
  * sInstance__40JASGlobalInstance<19JASDefaultBankTable>        */

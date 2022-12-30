@@ -10,7 +10,7 @@ class JAISoundID;
 
 class JAISoundHandle {
 public:
-    JAISoundHandle();
+    JAISoundHandle() {sound_ = NULL;};
     ~JAISoundHandle() {}
 
     bool isSoundAttached() const { return sound_ != NULL; }

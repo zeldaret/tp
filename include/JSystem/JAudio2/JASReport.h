@@ -3,4 +3,6 @@
 
 #include "dolphin/types.h"
 
+void JASReport(const char* message, ...);
+
 #endif /* JASREPORT_H */
