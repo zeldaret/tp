@@ -140,8 +140,8 @@ STATIC_ASSERT(sizeof(fopAc_ac_c) == 0x568);
 
 class fopEn_enemy_c : public fopAc_ac_c {
 public:
-    /* 80019404 */ void initBallModel();
-    /* 800194FC */ void checkBallModelDraw();
+    /* 80019404 */ bool initBallModel();
+    /* 800194FC */ int checkBallModelDraw();
     /* 80019520 */ void setBallModelEffect(dKy_tevstr_c*);
     /* 800196A0 */ void drawBallModel(dKy_tevstr_c*);
 

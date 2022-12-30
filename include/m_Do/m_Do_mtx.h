@@ -33,6 +33,10 @@ inline void mDoMtx_copy(const Mtx src, Mtx dst) {
     PSMTXCopy(src, dst);
 }
 
+inline void mDoMtx_trans(Mtx m, f32 x, f32 y, f32 z) {
+    PSMTXTrans(m,x,y,z);
+}
+
 class mDoMtx_stack_c {
 public:
     /* 8000CCC8 */ static bool push();

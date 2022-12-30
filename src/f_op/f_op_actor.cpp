@@ -212,8 +212,8 @@ static int fopAc_Execute(void* actor) {
                 fopAcM_delete(ac);
             }
 
-            if (ac->current.pos.y < -9.999999848243207e+30f) {
-                ac->current.pos.y = -9.999999848243207e+30f;
+            if (ac->current.pos.y < FLOAT_MIN) {
+                ac->current.pos.y = FLOAT_MIN;
             }
 
             dKy_depth_dist_set(ac);
@@ -236,7 +236,6 @@ static int fopAc_IsDelete(void* actor) {
 }
 
 /* 80018FCC-8001904C 01390C 0080+00 1/0 0/0 0/0 .text            fopAc_Delete__FPv */
-#ifdef NONMATCHING
 static int fopAc_Delete(void* actor) {
     fopAc_ac_c* ac = (fopAc_ac_c*)actor;
 
@@ -254,16 +253,6 @@ static int fopAc_Delete(void* actor) {
 
     return deleted;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fopAc_Delete(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_actor/fopAc_Delete__FPv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80451BD0-80451BD4 0001D0 0004+00 2/2 0/0 0/0 .sdata2          @4431 */
@@ -371,36 +360,40 @@ static asm int fopAc_Create(void* param_0) {
 #endif
 
 /* 800193FC-80019404 013D3C 0008+00 0/0 1/0 0/0 .text getFileListInfo__15dStage_roomDt_cCFv */
-#pragma push
-#pragma force_active on
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dStage_roomDt_c::getFileListInfo() const {
-extern "C" asm void getFileListInfo__15dStage_roomDt_cCFv() {
-    nofralloc
-#include "asm/f_op/f_op_actor/getFileListInfo__15dStage_roomDt_cCFv.s"
+dStage_FileList_dt_c* dStage_roomDt_c::getFileListInfo() const {
+    return mFileListInfo;
 }
-#pragma pop
 
 /* 80019404-800194FC 013D44 00F8+00 0/0 0/0 2/2 .text            initBallModel__13fopEn_enemy_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopEn_enemy_c::initBallModel() {
-    nofralloc
-#include "asm/f_op/f_op_actor/initBallModel__13fopEn_enemy_cFv.s"
-}
-#pragma pop
+bool fopEn_enemy_c::initBallModel() {
+    void* objRes = dComIfG_getObjectRes("Alink",daAlink_c::getBallModelIdx());
+    mBallModel = mDoExt_J3DModel__create((J3DModelData*)objRes, 0x80000, 0x11000284);
 
-/* 800194FC-80019520 013E3C 0024+00 2/2 0/0 2/2 .text checkBallModelDraw__13fopEn_enemy_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopEn_enemy_c::checkBallModelDraw() {
-    nofralloc
-#include "asm/f_op/f_op_actor/checkBallModelDraw__13fopEn_enemy_cFv.s"
+    if (!mBallModel) {
+        return false;
+    }
+    else {
+        mBallModel->setBaseScale(cXyz::Zero);
+
+        mBtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Alink",daAlink_c::getBallBtkIdx());
+        mBtk->searchUpdateMaterialID(mBallModel->getModelData());
+
+        mBrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("Alink",daAlink_c::getBallBrkIdx());
+        mBrk->searchUpdateMaterialID(mBallModel->getModelData());
+    }
+
+    return true;
 }
-#pragma pop
+/* 800194FC-80019520 013E3C 0024+00 2/2 0/0 2/2 .text checkBallModelDraw__13fopEn_enemy_cFv */
+int fopEn_enemy_c::checkBallModelDraw() {
+    int ret = 0;
+
+    if ((mFlags & 1) && !(mFlags & 0x32)) {
+        ret = 1;
+    }
+
+    return ret;
+}
 
 /* ############################################################################################## */
 /* 80451BE0-80451BE8 0001E0 0004+04 2/2 0/0 0/0 .sdata2          @4505 */
@@ -415,6 +408,29 @@ SECTION_SDATA2 static f64 lit_4507 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80019520-800196A0 013E60 0180+00 0/0 0/0 2/2 .text
  * setBallModelEffect__13fopEn_enemy_cFP12dKy_tevstr_c          */
+#ifdef NONMATCHING
+// matches with literals
+void fopEn_enemy_c::setBallModelEffect(dKy_tevstr_c* param_0) {
+    if (mBallModel) {
+        field_0x590 += FLOAT_LABEL(lit_4505);
+        
+        if (field_0x590 >= mBtk->getFrameMax()) {
+            field_0x590 -= mBtk->getFrameMax();
+        }
+
+        if ((u8)checkBallModelDraw()) {
+            Vec* base_scale = mBallModel->getBaseScale();
+            cLib_chaseF(&base_scale->x,FLOAT_LABEL(lit_4505),FLOAT_LABEL(lit_4431));
+            f32 result = base_scale->x;
+            base_scale->z = result;
+            base_scale->y = result;
+
+            mEffectID1 = dComIfGp_particle_set(mEffectID1, 0x86c8, &mDownPos, param_0);
+            mEffectID2 = dComIfGp_particle_set(mEffectID2, 0x86c9, &mDownPos, param_0);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -423,6 +439,7 @@ asm void fopEn_enemy_c::setBallModelEffect(dKy_tevstr_c* param_0) {
 #include "asm/f_op/f_op_actor/setBallModelEffect__13fopEn_enemy_cFP12dKy_tevstr_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80451BF0-80451BF4 0001F0 0004+00 1/1 0/0 0/0 .sdata2          @4555 */
@@ -445,26 +462,43 @@ SECTION_SDATA2 static f32 lit_4557[1 + 1 /* padding */] = {
 
 /* 800196A0-800197BC 013FE0 011C+00 0/0 0/0 2/2 .text
  * drawBallModel__13fopEn_enemy_cFP12dKy_tevstr_c               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopEn_enemy_c::drawBallModel(dKy_tevstr_c* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_actor/drawBallModel__13fopEn_enemy_cFP12dKy_tevstr_c.s"
+void fopEn_enemy_c::drawBallModel(dKy_tevstr_c* param_0) {
+    f32 tmp;
+
+    if (mBallModel) {
+        Vec* base_scale = mBallModel->getBaseScale();
+
+        if ((u8)checkBallModelDraw()) {
+            tmp = FLOAT_LABEL(lit_4505);
+        } else {
+            tmp = FLOAT_LABEL(lit_4555);
+        }
+
+        cLib_chaseF(&base_scale->x,tmp,FLOAT_LABEL(lit_4556));
+
+        base_scale->y = base_scale->x;
+        base_scale->z = base_scale->x;
+
+        mBallModel->setBaseScale(*base_scale);
+
+        if (base_scale->x > FLOAT_LABEL(lit_4557)) {
+            mDoMtx_trans(mBallModel->getBaseTRMtx(),mDownPos.x,mDownPos.y,mDownPos.z);
+            i_dKy_getEnvlight()->setLightTevColorType_MAJI(mBallModel, param_0);
+
+            mBtk->setFrame(field_0x590);
+            mBallModel->getModelData()->entryTexMtxAnimator(mBtk);
+
+            mBrk->setFrame(field_0x590);
+            mBallModel->getModelData()->entryTevRegAnimator(mBrk);
+
+            mDoExt_modelUpdateDL(mBallModel);
+        }
+
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450CC0-80450CC8 0001C0 0004+04 0/0 9/9 0/0 .sbss
  * sInstance__35JASGlobalInstance<14JAUSectionHeap>             */
 extern u8 data_80450CC0[4 + 4 /* padding */];
 u8 data_80450CC0[4 + 4 /* padding */];
-
-/* 80378878-80378880 004ED8 0006+02 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80378878 = "Alink";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037887E = "\0";
-#pragma pop

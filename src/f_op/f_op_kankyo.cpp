@@ -4,35 +4,16 @@
 //
 
 #include "f_op/f_op_kankyo.h"
+#include "f_pc/f_pc_manager.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/s/d_s_play.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "d/d_procname.h"
 
-//
-// Types:
-//
-
-struct process_method_class {};
-
-struct leafdraw_method_class {};
-
-struct leafdraw_class {};
-
-struct create_tag_class {};
-
-//
-// Forward References:
-//
-
-extern "C" static void fopKy_Draw__FPv();
-extern "C" static void fopKy_Execute__FPv();
-extern "C" static void fopKy_IsDelete__FPv();
-extern "C" static void fopKy_Delete__FPv();
-extern "C" static void fopKy_Create__FPv();
-extern "C" extern void* g_fopKy_Method[5 + 1 /* padding */];
-
-//
-// External References:
-//
+// //
+// // External References:
+// //
 
 extern "C" void fopDwTg_ToDrawQ__FP16create_tag_classi();
 extern "C" void fopDwTg_DrawQTo__FP16create_tag_class();
@@ -44,58 +25,93 @@ extern "C" void fpcMtd_Execute__FP20process_method_classPv();
 extern "C" void fpcMtd_IsDelete__FP20process_method_classPv();
 extern "C" void fpcMtd_Delete__FP20process_method_classPv();
 extern "C" void fpcMtd_Create__FP20process_method_classPv();
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 pauseTimer__9dScnPly_c[4];
 
 //
 // Declarations:
 //
 
 /* 8001F284-8001F2C0 019BC4 003C+00 1/0 0/0 0/0 .text            fopKy_Draw__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fopKy_Draw(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_kankyo/fopKy_Draw__FPv.s"
+static int fopKy_Draw(void* param_0) {
+    int ret;
+    kankyo_class* env = (kankyo_class*)param_0;
+
+    if (!dComIfGp_isPauseFlag()) {
+        ret = fpcLf_DrawMethod(env->field_0xd8, param_0);
+    }
+
+    return ret;
 }
-#pragma pop
 
 /* 8001F2C0-8001F314 019C00 0054+00 1/0 0/0 0/0 .text            fopKy_Execute__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fopKy_Execute(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_kankyo/fopKy_Execute__FPv.s"
+static int fopKy_Execute(void* param_0) {
+    int ret;
+    kankyo_class* env = (kankyo_class*)param_0;
+
+    if (dScnPly_c::isPause() && (!dComIfGp_isPauseFlag() || fpcM_GetName(param_0) == PROC_ENVSE)) {
+        ret = fpcMtd_Execute((process_method_class*)env->field_0xd8,param_0);
+    }
+
+    return ret;
 }
-#pragma pop
 
 /* 8001F314-8001F368 019C54 0054+00 1/0 0/0 0/0 .text            fopKy_IsDelete__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fopKy_IsDelete(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_kankyo/fopKy_IsDelete__FPv.s"
+static int fopKy_IsDelete(void* param_0) {
+    int ret;
+    kankyo_class* env = (kankyo_class*)param_0;
+
+    ret = fpcMtd_IsDelete((process_method_class*)env->field_0xd8,env);
+    if (ret == 1) {
+        fopDwTg_DrawQTo(&env->field_0xc4);
+    }
+
+    return ret;
 }
-#pragma pop
 
 /* 8001F368-8001F3B4 019CA8 004C+00 1/0 0/0 0/0 .text            fopKy_Delete__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fopKy_Delete(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_kankyo/fopKy_Delete__FPv.s"
+static int fopKy_Delete(void* param_0) {
+    kankyo_class* env = (kankyo_class*)param_0;
+
+    int ret = fpcMtd_Delete((process_method_class*)env->field_0xd8,env);
+    fopDwTg_DrawQTo(&env->field_0xc4);
+    
+    return ret;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450CE8-80450CF0 0001E8 0004+04 1/1 0/0 0/0 .sbss            fopKy_KANKYO_TYPE */
-static u8 fopKy_KANKYO_TYPE[4 + 4 /* padding */];
+static int fopKy_KANKYO_TYPE;
 
 /* 8001F3B4-8001F488 019CF4 00D4+00 1/0 0/0 0/0 .text            fopKy_Create__FPv */
+#ifdef NONMATCHING
+// regalloc
+static int fopKy_Create(void* param_0) {
+    kankyo_class* env = (kankyo_class*)param_0;
+
+    if (fpcM_IsFirstCreating(param_0)) {
+        leaf_process_profile_definition* profile = fpcM_GetProfile(param_0);
+
+        env->field_0xc0 = fpcBs_MakeOfType(&fopKy_KANKYO_TYPE);
+        env->field_0xd8 = profile->mBase.mMethods;
+
+        fopDwTg_Init((create_tag_class*)&env->field_0xc4, env);
+        fopKyM_prm_class* append = (fopKyM_prm_class*)fopKyM_GetAppend(env);
+
+        if (append) {
+            env->field_0xdc = append->field_0x0;
+            env->field_0xe8 = append->field_0xc;
+            env->field_0xf4 = append->field_0x18;
+        }
+    }
+
+    int ret = fpcMtd_Create((process_method_class*)env->field_0xd8, env);
+    if (ret == 4) {
+        s16 priority = fpcM_DrawPriority(env);
+        fopDwTg_ToDrawQ((create_tag_class*)&env->field_0xc4,priority);
+    }
+
+    return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -104,15 +120,14 @@ static asm void fopKy_Create(void* param_0) {
 #include "asm/f_op/f_op_kankyo/fopKy_Create__FPv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803A3940-803A3958 -00001 0014+04 0/0 7/0 0/0 .data            g_fopKy_Method */
-SECTION_DATA extern void* g_fopKy_Method[5 + 1 /* padding */] = {
-    (void*)fopKy_Create__FPv,
-    (void*)fopKy_Delete__FPv,
-    (void*)fopKy_Execute__FPv,
-    (void*)fopKy_IsDelete__FPv,
-    (void*)fopKy_Draw__FPv,
-    /* padding */
-    NULL,
+void* g_fopKy_Method[5] = {
+    fopKy_Create,
+    fopKy_Delete,
+    fopKy_Execute,
+    fopKy_IsDelete,
+    fopKy_Draw
 };

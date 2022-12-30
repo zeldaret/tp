@@ -287,6 +287,8 @@ public:
     s16 getItemMaxLifeCount() { return mItemMaxLifeCount; }
     f32 getItemLifeCount() { return mItemLifeCount; }
     s16 getItemMaxArrowNumCount() { return mItemMaxArrowNumCount; }
+    void clearNowAnimeID() { mNowAnimeID = -1; }
+    void clearMesgCamInfoID() { mMesgCamInfo = (void*)-1; }
     void clearItemMaxLifeCount() { mItemMaxLifeCount = 0; }
     void clearItemLifeCount() {
         mItemLifeCount = 0.0f;
@@ -2570,6 +2572,14 @@ inline void dComIfG_setTimerNowTimeMs(int time) {
     g_dComIfG_gameInfo.play.setTimerNowTimeMs(time);
 }
 
+inline void dComIfGp_clearMesgAnimeTagInfo() {
+    g_dComIfG_gameInfo.play.clearNowAnimeID();
+}
+
+inline void dComIfGp_clearMesgCameraTagInfo() {
+    g_dComIfG_gameInfo.play.clearMesgCamInfoID();
+}
+
 inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* param_2,
                                  const dKy_tevstr_c* param_3, const csXyz* param_4,
                                  const cXyz* param_5, u8 param_6, dPa_levelEcallBack* param_7,
@@ -2587,6 +2597,10 @@ inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* param_2,
     return g_dComIfG_gameInfo.play.getParticle()->setNormal(
         param_0, param_1, param_2, NULL, param_3, param_4, param_5, param_6, param_7, param_8,
         param_9, param_10, 1.0f);
+}
+
+inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3) {
+    return dComIfGp_particle_set(param_0,param_1,param_2,param_3,0,0,0xFF,0,0xFFFFFFFF,0,0,0);
 }
 
 inline JPABaseEmitter* dComIfGp_particle_set(u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3,

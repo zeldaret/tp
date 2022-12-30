@@ -10,66 +10,21 @@
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "JSystem/JMath/JMath.h"
+#include "SSystem/SComponent/c_math.h"
 
 //
 // Forward References:
 //
 
-extern "C" void fopMsgM_setStageLayer__FPv();
-extern "C" void fopMsgM_SearchByID__FUi();
-extern "C" void fopMsgM_GetAppend__FPv();
-extern "C" void fopMsgM_Delete__FPv();
-extern "C" static void createAppend__FP10fopAc_ac_cP4cXyzPUlPUlUi();
-extern "C" static void createTimerAppend__FiUlUcUcffffUi();
-extern "C" void fopMsgM_create__FsP10fopAc_ac_cP4cXyzPUlPUlPFPv_i();
-extern "C" void fop_Timer_create__FsUcUlUcUcffffPFPv_i();
-extern "C" void fopMsgM_messageSet__FUlP10fopAc_ac_cUl();
-extern "C" void fopMsgM_messageSet__FUlUl();
-extern "C" void fopMsgM_messageSetDemo__FUl();
-extern "C" void fopMsgM_messageGet__FPcUl();
-extern "C" void fopMsgM_setMessageID__FUi();
-extern "C" void fopMsgM_Create__FsPFPv_iPv();
-extern "C" void setAlpha__7J2DPaneFUc();
 extern "C" void fopMsgM_valueIncrease__FiiUc();
-extern "C" void setBlendRatio__10J2DPictureFff();
-extern "C" void append__10J2DPictureFPCcf();
-extern "C" void insert__10J2DPictureFPCcUcf();
-extern "C" void fopMsgM_createExpHeap__FUlP7JKRHeap();
-extern "C" void fopMsgM_destroyExpHeap__FP10JKRExpHeap();
+extern "C" extern dMsgObject_HIO_c g_MsgObject_HIO_c;
 
 //
 // External References:
 //
 
-extern "C" void mDoExt_getGameHeap__Fv();
-extern "C" void fopScnM_SearchByID__FUi();
-extern "C" void fpcBs_Is_JustOfType__Fii();
-extern "C" void fpcEx_SearchByID__FUi();
-extern "C" void fpcLy_CurrentLayer__Fv();
-extern "C" void fpcM_Delete__FPv();
-extern "C" void fpcPi_Change__FP22process_priority_classUiUsUs();
-extern "C" void fpcSCtRq_Request__FP11layer_classsPFPvPv_iPvPv();
-extern "C" void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c();
-extern "C" void emphasisButtonDelete__9dMeter2_cFv();
-extern "C" void setMessageIndex__12dMsgObject_cFUlUlb();
-extern "C" void setMessageIndexDemo__12dMsgObject_cFUlb();
-extern "C" void setTalkPartner__12dMsgObject_cFP10fopAc_ac_c();
-extern "C" void endFlowGroup__12dMsgObject_cFv();
-extern "C" void setTalkActor__12dMsgObject_cFP10fopAc_ac_c();
-extern "C" void memalignB__3cMlFiUl();
-extern "C" void destroy__7JKRHeapFv();
-extern "C" void create__10JKRExpHeapFUlP7JKRHeapb();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" u8 mProcID__20dStage_roomControl_c[4];
 
 //
 // Declarations:
@@ -145,16 +100,33 @@ static fopMsg_prm_class* createAppend(fopAc_ac_c* param_0, cXyz* param_1, u32* p
 
 /* 8001FB50-8001FC4C 01A490 00FC+00 1/1 0/0 0/0 .text            createTimerAppend__FiUlUcUcffffUi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm fopMsg_prm_timer* createTimerAppend(int param_0, u32 param_1, u8 param_2, u8 param_3,
-                                               f32 param_4, f32 param_5, f32 param_6, f32 param_7,
-                                               unsigned int param_8) {
-    nofralloc
-#include "asm/f_op/f_op_msg_mng/createTimerAppend__FiUlUcUcffffUi.s"
+static fopMsg_prm_timer* createTimerAppend(int param_0, u32 param_1, u8 param_2, u8 param_3,
+                                           f32 param_4, f32 param_5, f32 param_6, f32 param_7,
+                                           unsigned int param_8) {
+    fopMsg_prm_timer* timer = (fopMsg_prm_timer*)cMl::memalignB(-4,0x38);
+    
+    if (timer == 0) {
+        timer = 0;
+    } else {
+        timer->field_0x0 = 0;
+        timer->field_0x10 = 0;
+        timer->field_0x14 = 0;
+        cXyz pos(FLOAT_LABEL(lit_3902),FLOAT_LABEL(lit_3902),FLOAT_LABEL(lit_3902));
+        timer->field_0x4 = pos;
+        timer->field_0x18 = param_8;
+        timer->field_0x1c = param_0;
+        timer->field_0x20 = param_1;
+        timer->field_0x24 = param_2;
+        timer->field_0x25 = param_3;
+        timer->field_0x28 = param_4;
+        timer->field_0x2c = param_5;
+        timer->field_0x30 = param_6;
+        timer->field_0x34 = param_7;
+    }
+
+    return timer;
+    
 }
-#pragma pop
 
 /* 8001FC4C-8001FCC0 01A58C 0074+00 0/0 1/1 0/0 .text
  * fopMsgM_create__FsP10fopAc_ac_cP4cXyzPUlPUlPFPv_i            */
@@ -185,37 +157,128 @@ s32 fop_Timer_create(s16 param_0, u8 param_1, u32 param_2, u8 param_3, u8 param_
 
 /* ############################################################################################## */
 /* 804505C8-804505D0 000048 0004+04 4/4 0/0 0/0 .sdata           i_msgID */
-SECTION_SDATA static u32 i_msgID = 0xFFFFFFFF;
+static u32 i_msgID = 0xFFFFFFFF;
 
 /* 8001FD34-8001FE84 01A674 0150+00 0/0 2/2 1/1 .text fopMsgM_messageSet__FUlP10fopAc_ac_cUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopMsgM_messageSet(u32 param_0, fopAc_ac_c* param_1, u32 param_2) {
-    nofralloc
-#include "asm/f_op/f_op_msg_mng/fopMsgM_messageSet__FUlP10fopAc_ac_cUl.s"
+int fopMsgM_messageSet(u32 i_msgIdx, fopAc_ac_c* i_actorP, u32 param_2) {
+    if (dComIfGp_isHeapLockFlag() == 8) {
+        dMeter2Info_getMeterClass()->emphasisButtonDelete();
+    }
+
+    if (dComIfGp_isHeapLockFlag() != 0 && dComIfGp_isHeapLockFlag() != 5 &&
+                                          dComIfGp_isHeapLockFlag() != 2 &&
+                                          dComIfGp_isHeapLockFlag() != 3 &&
+                                          dComIfGp_isHeapLockFlag() != 1) {
+        return -1;
+        
+    } else {
+        dComIfGp_clearMesgAnimeTagInfo();
+        dComIfGp_clearMesgCameraTagInfo();
+
+        cXyz pos;
+        if (i_actorP) {
+            pos = i_actorP->mEyePos;
+        } else {
+            pos.set(FLOAT_LABEL(lit_3902),FLOAT_LABEL(lit_3902),FLOAT_LABEL(lit_3902));
+        }
+
+        if (g_MsgObject_HIO_c.mMsgDebug == true) {
+            i_msgIdx = g_MsgObject_HIO_c.mMsgIndex;
+        }
+
+        dMsgObject_c* msg = (dMsgObject_c*)fopMsgM_SearchByID(i_msgID);
+
+        if (msg && msg->field_0xf8 == 1) {
+            msg->field_0xe0.set(pos);
+            msg->field_0xec = i_msgIdx;
+            msg->field_0xf0 = param_2;
+            msg->field_0xdc = i_actorP;
+            msg->setMessageIndex(i_msgIdx,param_2,false);
+            return i_msgID;
+        } else {
+            return 0;
+        }
+    }
 }
-#pragma pop
 
 /* 8001FE84-8001FFC4 01A7C4 0140+00 0/0 6/6 4/4 .text            fopMsgM_messageSet__FUlUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int fopMsgM_messageSet(u32 param_0, u32 param_1) {
-    nofralloc
-#include "asm/f_op/f_op_msg_mng/fopMsgM_messageSet__FUlUl.s"
+int fopMsgM_messageSet(u32 param_0, u32 param_1) {
+    if (dComIfGp_isHeapLockFlag() == 8) {
+        dMeter2Info_getMeterClass()->emphasisButtonDelete();
+    }
+
+    if (dComIfGp_isHeapLockFlag() != 0 && dComIfGp_isHeapLockFlag() != 5 &&
+                                          dComIfGp_isHeapLockFlag() != 2 &&
+                                          dComIfGp_isHeapLockFlag() != 3 &&
+                                          dComIfGp_isHeapLockFlag() != 1) {
+        return -1;
+        
+    } else {
+    
+        cXyz pos;
+        pos.z = FLOAT_LABEL(lit_3902);
+        pos.y = FLOAT_LABEL(lit_3902);
+        pos.x = FLOAT_LABEL(lit_3902);
+
+        dMsgObject_c* msg = (dMsgObject_c*)fopMsgM_SearchByID(i_msgID);
+
+        if (msg) {
+            if (msg->field_0xf8 == 1) {
+                msg->field_0xe0.set(pos);
+                msg->field_0xec = param_0;
+                msg->field_0xf0 = param_1;
+                msg->field_0xdc = 0;
+                msg->setTalkPartner(0);
+                msg->setMessageIndex(param_0,param_1,false);
+                return i_msgID;
+            }
+
+            if (msg->field_0xf8 == 15) {
+                msg->field_0xe0.set(pos);
+                msg->field_0xec = param_0;
+                msg->field_0xf0 = param_1;
+                msg->field_0xdc = 0;
+                return i_msgID;
+            }
+        }
+
+        return 0;
+    }
 }
-#pragma pop
 
 /* 8001FFC4-800200C0 01A904 00FC+00 0/0 1/1 13/13 .text            fopMsgM_messageSetDemo__FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int fopMsgM_messageSetDemo(u32 param_0) {
-    nofralloc
-#include "asm/f_op/f_op_msg_mng/fopMsgM_messageSetDemo__FUl.s"
+int fopMsgM_messageSetDemo(u32 param_0) {
+    dMsgObject_endFlowGroup();
+    if (dComIfGp_isHeapLockFlag() == 8) {
+        dMeter2Info_getMeterClass()->emphasisButtonDelete();
+    }
+
+    if (dComIfGp_isHeapLockFlag() != 0 && dComIfGp_isHeapLockFlag() != 5 &&
+                                          dComIfGp_isHeapLockFlag() != 2 &&
+                                          dComIfGp_isHeapLockFlag() != 3 &&
+                                          dComIfGp_isHeapLockFlag() != 1) {
+        return -1;
+        
+    } else {
+        cXyz pos;
+        pos.z = FLOAT_LABEL(lit_3902);
+        pos.y = FLOAT_LABEL(lit_3902);
+        pos.x = FLOAT_LABEL(lit_3902);
+
+        dMsgObject_c* msg = (dMsgObject_c*)fopMsgM_SearchByID(i_msgID);
+
+        if (msg && msg->field_0xf8 == 1) {
+            msg->field_0xe0.set(pos);
+            msg->field_0xec = param_0;
+            msg->field_0xf0 = 1000;
+            msg->field_0xdc = 0;
+            msg->setMessageIndexDemo(param_0,false);
+            return i_msgID;
+        } else {
+            return 0;
+        }
+    }
 }
-#pragma pop
 
 /* 800200C0-80020100 01AA00 0040+00 0/0 7/7 1/1 .text            fopMsgM_messageGet__FPcUl */
 char* fopMsgM_messageGet(char* msg, u32 string_id) {
@@ -229,14 +292,9 @@ void fopMsgM_setMessageID(unsigned int msg_id) {
 }
 
 /* 80020108-80020158 01AA48 0050+00 0/0 2/2 0/0 .text            fopMsgM_Create__FsPFPv_iPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 fopMsgM_Create(s16 param_0, int (*param_1)(void*), void* param_2) {
-    nofralloc
-#include "asm/f_op/f_op_msg_mng/fopMsgM_Create__FsPFPv_iPv.s"
+u32 fopMsgM_Create(s16 param_0, int (*param_1)(void*), void* param_2) {
+    fpcM_Create(param_0,param_1,param_2);
 }
-#pragma pop
 
 /* 80020158-80020160 -00001 0008+00 0/0 0/0 0/0 .text            setAlpha__7J2DPaneFUc */
 void J2DPane::setAlpha(u8 alpha) {
@@ -276,6 +334,61 @@ SECTION_SDATA2 static f32 lit_4301 = 65535.0f;
 SECTION_SDATA2 static f64 lit_4303 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80020160-800202CC 01AAA0 016C+00 1/0 4/4 2/2 .text            fopMsgM_valueIncrease__FiiUc */
+#ifdef NONMATCHING
+// regalloc + something up with case 2
+f64 fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
+    f32 ret;
+    
+    if (param_0 <= 0) {
+        return FLOAT_LABEL(lit_4298);
+    } else {
+        if (param_1 < 0) {
+            param_1 = 0;
+        } else if (param_1 > param_0) {
+            param_1 = param_0;
+        }
+
+        ret = param_1;
+        f32 out_tmp = ret / param_0;
+
+        switch(param_2) {
+            case 0: {
+                ret = out_tmp * out_tmp;
+                break;
+            }
+            case 1: {
+                ret = JMAFastSqrt(out_tmp);
+                break;
+            }
+            case 2: { // seems like this should be default case, but it causes other issues
+                ret = out_tmp;
+                break;
+            }
+            case 3: {
+                f32 tmp = (FLOAT_LABEL(lit_4299) * out_tmp) - FLOAT_LABEL(lit_4298);
+                tmp = out_tmp * tmp;
+                ret = tmp - FLOAT_LABEL(lit_4298);
+                break;
+            }
+            case 4: {
+                f32 tmp = cM_ssin(FLOAT_LABEL(lit_4167) * (FLOAT_LABEL(lit_4300) * out_tmp));
+                ret = tmp * tmp;
+                break;
+            }
+            case 5: {
+                f32 tmp = cM_ssin(FLOAT_LABEL(lit_4167) * (FLOAT_LABEL(lit_4301) * out_tmp));
+                ret = tmp * tmp;
+                break;
+            }
+            case 6: {
+                ret = cM_ssin(FLOAT_LABEL(lit_4300) * out_tmp);
+            }
+        }     
+    }
+
+    return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -284,6 +397,7 @@ asm void fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
 #include "asm/f_op/f_op_msg_mng/fopMsgM_valueIncrease__FiiUc.s"
 }
 #pragma pop
+#endif
 
 /* 800202CC-80020338 01AC0C 006C+00 0/0 2/0 0/0 .text            setBlendRatio__10J2DPictureFff */
 void J2DPicture::setBlendRatio(f32 param_0, f32 param_1) {
