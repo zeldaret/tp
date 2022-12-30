@@ -8,5 +8,5 @@ ansiwrap
 watchdog
 python-Levenshtein
 cxxfilt
-syaz0
+oead
 pyelftools

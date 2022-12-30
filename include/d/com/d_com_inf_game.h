@@ -287,6 +287,8 @@ public:
     s16 getItemMaxLifeCount() { return mItemMaxLifeCount; }
     f32 getItemLifeCount() { return mItemLifeCount; }
     s16 getItemMaxArrowNumCount() { return mItemMaxArrowNumCount; }
+    void clearNowAnimeID() { mNowAnimeID = -1; }
+    void clearMesgCamInfoID() { mMesgCamInfo = (void*)-1; }
     void clearItemMaxLifeCount() { mItemMaxLifeCount = 0; }
     void clearItemLifeCount() {
         mItemLifeCount = 0.0f;
@@ -2566,6 +2568,14 @@ inline int dComIfG_getTimerNowTimeMs() {
 
 inline int dComIfG_setTimerNowTimeMs(int time) {
     g_dComIfG_gameInfo.play.setTimerNowTimeMs(time);
+}
+
+inline void dComIfGp_clearMesgAnimeTagInfo() {
+    g_dComIfG_gameInfo.play.clearNowAnimeID();
+}
+
+inline void dComIfGp_clearMesgCameraTagInfo() {
+    g_dComIfG_gameInfo.play.clearMesgCamInfoID();
 }
 
 inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* param_2,
