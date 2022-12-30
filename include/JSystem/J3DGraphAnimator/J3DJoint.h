@@ -69,6 +69,7 @@ public:
 
 private:
     friend struct J3DJointFactory;
+    friend class J3DJointTree;
 
     /* 0x00 */ void* mCallBackUserData;
     /* 0x04 */ J3DJointCallBack mCallBack;
