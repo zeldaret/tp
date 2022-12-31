@@ -54,6 +54,7 @@ public:
     /* 803243BC */ void loadPostTexMtx(u32) const;
 
     J3DTexMtxInfo& getTexMtxInfo() { return mTexMtxInfo; }
+    Mtx& getMtx() { return mMtx; }
 
 private:
     /* 0x00 */ J3DTexMtxInfo mTexMtxInfo;

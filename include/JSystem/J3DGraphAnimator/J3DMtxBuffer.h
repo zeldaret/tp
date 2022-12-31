@@ -33,8 +33,8 @@ public:
     Mtx* getDrawMtxPtr() const { return mpDrawMtxArr[mCurrentViewNo]; }
     Mtx33** getNrmMtxPtrPtr() const { return mpNrmMtxArr; }
     Mtx33* getNrmMtxPtr() const { return mpNrmMtxArr[mCurrentViewNo]; }
-    Mtx33** getBumpMtxPtrPtr() const { return mpBumpMtxArr; }
-    Mtx33* getBumpMtxPtr(int idx) const { return mpBumpMtxArr[idx]; }
+    Mtx33*** getBumpMtxPtrPtr() const { return mpBumpMtxArr; }
+    Mtx33* getBumpMtxPtr(int idx) const { return mpBumpMtxArr[idx][mCurrentViewNo]; }
 
     void swapDrawMtx() {
         Mtx* tmp = mpOldDrawMtxArr[mCurrentViewNo];
@@ -64,7 +64,7 @@ private:
     /* 0x1C */ Mtx33** mpOldNrmMtxArr;
     /* 0x20 */ Mtx33** mpNrmMtxArr;
     /* 0x24 */ u32 field_0x24;
-    /* 0x28 */ Mtx33** mpBumpMtxArr;
+    /* 0x28 */ Mtx33*** mpBumpMtxArr;
     /* 0x2C */ u32 mFlags;
     /* 0x30 */ u32 mCurrentViewNo;
     /* 0x34 */ Mtx** mUserAnmMtx;

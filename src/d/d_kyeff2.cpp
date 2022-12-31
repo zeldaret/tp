@@ -4,42 +4,10 @@
 //
 
 #include "d/d_kyeff2.h"
+#include "f_op/f_op_kankyo.h"
 #include "d/kankyo/d_kankyo_wether.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct kankyo_class {};
-
-//
-// Forward References:
-//
-
-extern "C" static void dKyeff2_Draw__FP9dKyeff2_c();
-extern "C" void execute__9dKyeff2_cFv();
-extern "C" static void dKyeff2_Execute__FP9dKyeff2_c();
-extern "C" static bool dKyeff2_IsDelete__FP9dKyeff2_c();
-extern "C" static void dKyeff2_Delete__FP9dKyeff2_c();
-extern "C" static void dKyeff2_Create__FP12kankyo_class();
-extern "C" extern void* g_profile_KYEFF2[10 + 1 /* padding */];
-
-//
-// External References:
-//
-
-extern "C" void dKyw_wether_init2__Fv();
-extern "C" void dKyw_wether_delete2__Fv();
-extern "C" void dKyw_wether_move_draw2__Fv();
-extern "C" void dKyw_wether_draw2__Fv();
-extern "C" extern void* g_fopKy_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-
-//
-// Declarations:
-//
 
 static bool dKyeff2_Draw(dKyeff2_c* ptr) {
     dKyw_wether_draw2();
@@ -71,11 +39,15 @@ static int dKyeff2_Create(kankyo_class* ptr) {
 
 /* ############################################################################################## */
 /* 803BC198-803BC1AC -00001 0014+00 1/0 0/0 0/0 .data            l_dKyeff2_Method */
-SECTION_DATA static void* l_dKyeff2_Method[5] = {
-    (void*)dKyeff2_Create__FP12kankyo_class, (void*)dKyeff2_Delete__FP9dKyeff2_c,
-    (void*)dKyeff2_Execute__FP9dKyeff2_c,    (void*)dKyeff2_IsDelete__FP9dKyeff2_c,
-    (void*)dKyeff2_Draw__FP9dKyeff2_c,
+static leafdraw_method_class l_dKyeff2_Method = {
+    (process_method_func)dKyeff2_Create,
+    (process_method_func)dKyeff2_Delete,
+    (process_method_func)dKyeff2_Execute,
+    (process_method_func)dKyeff2_IsDelete,
+    (process_method_func)dKyeff2_Draw,
 };
+
+extern "C" extern void* g_fopKy_Method[5 + 1 /* padding */];
 
 /* 803BC1AC-803BC1D8 -00001 0028+04 0/0 0/0 1/0 .data            g_profile_KYEFF2 */
 SECTION_DATA extern void* g_profile_KYEFF2[10 + 1 /* padding */] = {

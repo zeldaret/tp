@@ -7,6 +7,14 @@
 class J3DTexMtx;
 class J3DTexGenBlock;
 
+class J3DTexMtxObj {
+public:
+    Mtx& getMtx(u16 idx) { return mpTexMtx[idx]; }
+
+private:
+    /* 0x00 */ Mtx *mpTexMtx;
+};
+
 class J3DDifferedTexMtx {
 public:
     /* 8031322C */ static void loadExecute(f32 const (*)[4]);
@@ -17,7 +25,7 @@ public:
     }
 
     static J3DTexGenBlock* sTexGenBlock;
-    static J3DTexMtx* sTexMtxObj;
+    static J3DTexMtxObj* sTexMtxObj;
 };
 
 extern u8 struct_804515B0[4];

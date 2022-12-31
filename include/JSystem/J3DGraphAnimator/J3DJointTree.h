@@ -48,6 +48,7 @@ public:
     J3DJoint* getJointNodePointer(u16 idx) const { return mJointNodePointer[idx]; }
     J3DMtxCalc* getBasicMtxCalc() const { return mBasicMtxCalc; }
     Mtx& getInvJointMtx(s32 idx) const { return mInvJointMtx[idx]; }
+    u32 getModelDataType() const { return mModelDataType; }
 
 private:
     /* 0x04 */ J3DModelHierarchy* mHierarchy;
