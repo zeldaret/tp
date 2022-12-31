@@ -59,7 +59,6 @@ static int fopCam_Create(void* i_actorP) {
     camera_class* camera = (camera_class*)i_actorP;
 
     if (fpcM_IsFirstCreating(i_actorP)) {
-        // TODO: This should be camera_process_profile_definition
         camera_process_profile_definition* profile = (camera_process_profile_definition*) fpcM_GetProfile(i_actorP);
         camera->mpMtd = profile->mSubMtd;
 

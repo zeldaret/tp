@@ -42,8 +42,9 @@ static s32 fopScn_Create(scene_class * pScene) {
         fopScnTg_Init(&pScene->mScnTg, pScene);
         fopScnTg_ToQueue(&pScene->mScnTg);
 
-        if (pScene->mBase.mBase.mpUserData != NULL) {
-            pScene->mBase.mBase.mParameters = *(u32*)pScene->mBase.mBase.mpUserData;
+        u32 * append = (u32*)fpcM_GetAppend(pScene);
+        if (append != NULL) {
+            pScene->mBase.mBase.mParameters = *append;
         }
     }
 
