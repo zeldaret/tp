@@ -113,6 +113,7 @@ public:
 
 private:
     friend struct J3DShapeFactory;
+    friend class J3DJointTree;
 
     /* 0x04 */ J3DMaterial* mMaterial;
     /* 0x08 */ u16 mIndex;

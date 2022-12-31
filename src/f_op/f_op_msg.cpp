@@ -4,6 +4,7 @@
 //
 
 #include "f_op/f_op_msg.h"
+#include "f_op/f_op_msg_mng.h"
 #include "d/msg/d_msg_class.h"
 #include "d/s/d_s_play.h"
 #include "dol2asm.h"
@@ -42,7 +43,7 @@ extern "C" void fpcMtd_Create__FP20process_method_classPv();
 /* 8001F488-8001F4B0 019DC8 0028+00 1/0 0/0 0/0 .text            fopMsg_Draw__FPv */
 static int fopMsg_Draw(void* msg) {
     msg_class* m = static_cast<msg_class*>(msg);
-    return fpcLf_DrawMethod(m->field_0xd8, msg);
+    return fpcLf_DrawMethod(m->mSubMtd, msg);
 }
 
 /* 8001F4B0-8001F4E8 019DF0 0038+00 1/0 0/0 0/0 .text            fopMsg_Execute__FPv */
@@ -51,7 +52,7 @@ static int fopMsg_Execute(void* msg) {
 
     int stat = 1;
     if (dScnPly_c::isPause()) {
-        stat = fpcMtd_Execute(&m->field_0xd8->mBase, msg);
+        stat = fpcMtd_Execute(&m->mSubMtd->mBase, msg);
     }
 
     return stat;
@@ -61,9 +62,9 @@ static int fopMsg_Execute(void* msg) {
 static int fopMsg_IsDelete(void* msg) {
     msg_class* m = static_cast<msg_class*>(msg);
 
-    int stat = fpcMtd_IsDelete(&m->field_0xd8->mBase, msg);
+    int stat = fpcMtd_IsDelete(&m->mSubMtd->mBase, msg);
     if (stat == 1) {
-        fopDwTg_DrawQTo(&m->field_0xc4);
+        fopDwTg_DrawQTo(&m->mDwTg);
     }
 
     return stat;
@@ -73,8 +74,8 @@ static int fopMsg_IsDelete(void* msg) {
 static int fopMsg_Delete(void* msg) {
     msg_class* m = static_cast<msg_class*>(msg);
 
-    int stat = fpcMtd_Delete(&m->field_0xd8->mBase, msg);
-    fopDwTg_DrawQTo(&m->field_0xc4);
+    int stat = fpcMtd_Delete(&m->mSubMtd->mBase, msg);
+    fopDwTg_DrawQTo(&m->mDwTg);
 
     return stat;
 }
@@ -84,6 +85,35 @@ static int fopMsg_Delete(void* msg) {
 static int fopMsg_MSG_TYPE;
 
 /* 8001F588-8001F660 019EC8 00D8+00 1/0 0/0 0/0 .text            fopMsg_Create__FPv */
+#if defined NON_MATCHING
+int fopMsg_Create(void* data) {
+    // r31 / r30 swap
+    msg_class *msg = (msg_class*)data;
+
+    if (fpcM_IsFirstCreating(msg)) {
+        msg_process_profile_definition* profile = (msg_process_profile_definition*) fpcM_GetProfile(msg);
+        msg->mMsgType = fpcBs_MakeOfType(&fopMsg_MSG_TYPE);
+        msg->mSubMtd = profile->mMethods;
+        fopDwTg_Init(&msg->mDwTg, msg);
+        fopMsg_prm_class * prm = fopMsgM_GetAppend(msg);
+        if (prm != NULL) {
+            msg->mpActor = prm->mpActor;
+            msg->mPos = prm->mPos;
+            msg->mMsgID = prm->mMsgID;
+            msg->field_0xf0 = prm->field_0x14;
+            msg->field_0xf4 = prm->field_0x18;
+        }
+    }
+
+    int status = fpcMtd_Create(&msg->mSubMtd->mBase, msg);
+    if (status == cPhs_COMPLEATE_e) {
+        s32 priority = fpcLf_GetPriority(msg);
+        fopDwTg_ToDrawQ(&msg->mDwTg, priority);
+    }
+
+    return status;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -92,9 +122,14 @@ static asm int fopMsg_Create(void* param_0) {
 #include "asm/f_op/f_op_msg/fopMsg_Create__FPv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803A3958-803A3970 -00001 0014+04 0/0 5/0 0/0 .data            g_fopMsg_Method */
-SECTION_DATA extern leafdraw_method_class g_fopMsg_Method = {
-    &fopMsg_Create, &fopMsg_Delete, &fopMsg_Execute, &fopMsg_IsDelete, &fopMsg_Draw,
+leafdraw_method_class g_fopMsg_Method = {
+    (process_method_func) fopMsg_Create,
+    (process_method_func) fopMsg_Delete,
+    (process_method_func) fopMsg_Execute,
+    (process_method_func) fopMsg_IsDelete,
+    (process_method_func) fopMsg_Draw,
 };

@@ -486,11 +486,11 @@ int dMsgFlow_c::doFlow(fopAc_ac_c* param_0, fopAc_ac_c** param_1, int flow) {
     if (field_0x26 != 0 || field_0x27 != 0) {
         msg_class* msg = fopMsgM_SearchByID(mMsg);
         if (msg != NULL) {
-            if (msg->field_0xf8 != 0x12) {
+            if (msg->mMode != 0x12) {
                 return 0;
             }
 
-            msg->field_0xf8 = 0x13;
+            msg->mMode = 0x13;
             mMsg = -1;
         }
         field_0x27 = 0;
@@ -940,7 +940,7 @@ asm int dMsgFlow_c::query004(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1
 /* 8024B2C0-8024B2F8 245C00 0038+00 2/1 1/1 1/1 .text
  * query005__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
 int dMsgFlow_c::query005(mesg_flow_node_branch*, fopAc_ac_c*, int) {
-    return mChoiceNo = fopMsgM_SearchByID(mMsg)->field_0xfa;
+    return mChoiceNo = fopMsgM_SearchByID(mMsg)->mSelectedChoiceIdx;
 }
 
 /* 8024B2F8-8024B32C 245C38 0034+00 1/0 0/0 0/0 .text
@@ -1261,7 +1261,7 @@ int dMsgFlow_c::query035(mesg_flow_node_branch* flow_node, fopAc_ac_c*, int) {
 /* 8024BC3C-8024BC80 24657C 0044+00 1/0 0/0 0/0 .text
  * query036__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
 int dMsgFlow_c::query036(mesg_flow_node_branch*, fopAc_ac_c*, int) {
-    int tmp = fopMsgM_SearchByID(mMsg)->field_0xfa;
+    int tmp = fopMsgM_SearchByID(mMsg)->mSelectedChoiceIdx;
 
     if (dMsgObject_getMsgObjectClass()->getSelectPushFlag() == 2) {
         tmp = 2;
@@ -1273,7 +1273,7 @@ int dMsgFlow_c::query036(mesg_flow_node_branch*, fopAc_ac_c*, int) {
 /* 8024BC80-8024BCC4 2465C0 0044+00 1/0 0/0 0/0 .text
  * query037__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
 int dMsgFlow_c::query037(mesg_flow_node_branch*, fopAc_ac_c*, int) {
-    int tmp = fopMsgM_SearchByID(mMsg)->field_0xfa;
+    int tmp = fopMsgM_SearchByID(mMsg)->mSelectedChoiceIdx;
 
     if (dMsgObject_getMsgObjectClass()->getSelectPushFlag() == 2) {
         tmp = 3;

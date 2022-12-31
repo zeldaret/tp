@@ -11,14 +11,14 @@ struct process_method_tag_class;
 typedef struct process_node_class process_node_class;
 
 typedef struct layer_class {
-    node_class mNode;
-    u32 mLayerID;
-    node_lists_tree_class mNodeListTree;
-    process_node_class* mpPcNode;
-    node_list_class mCancelList;
+    /* 0x00 */ node_class mNode;
+    /* 0x0C */ u32 mLayerID;
+    /* 0x10 */ node_lists_tree_class mNodeListTree;
+    /* 0x18 */ process_node_class* mpPcNode;
+    /* 0x1C */ node_list_class mCancelList;
     struct {
-        s16 mCreatingCount;
-        s16 mDeletingCount;
+        /* 0x28 */ s16 mCreatingCount;
+        /* 0x2A */ s16 mDeletingCount;
     } counts;
 } layer_class;
 

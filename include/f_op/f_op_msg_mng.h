@@ -5,10 +5,15 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
+struct msg_process_profile_definition {
+    /* 0x00 */ leaf_process_profile_definition mBase;
+    /* 0x24 */ leafdraw_method_class* mSubMtd; // Subclass methods
+};
+
 struct fopMsg_prm_class {
-    /* 0x00 */ fopAc_ac_c* field_0x0;
-    /* 0x04 */ cXyz field_0x4;
-    /* 0x10 */ u32 field_0x10;
+    /* 0x00 */ fopAc_ac_c* mpActor;
+    /* 0x04 */ cXyz mPos;
+    /* 0x10 */ u32 mMsgID;
     /* 0x14 */ u32 field_0x14;
     /* 0x18 */ int field_0x18;
 };  // Size: 0x1C
@@ -33,6 +38,7 @@ typedef int (*fopMsgCreateFunc)(void*);
 
 JKRExpHeap* fopMsgM_createExpHeap(u32, JKRHeap*);
 u32 fopMsgM_Create(s16, fopMsgCreateFunc, void*);
+fopMsg_prm_class* fopMsgM_GetAppend(void* msg);
 void fopMsgM_setMessageID(unsigned int);
 void fopMsgM_destroyExpHeap(JKRExpHeap*);
 s32 fopMsgM_setStageLayer(void*);

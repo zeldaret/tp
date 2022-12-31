@@ -9,6 +9,7 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_draw_tag.h"
+#include "f_op/f_op_msg_mng.h"
 #include "f_pc/f_pc_leaf.h"
 
 /* 8001E140-8001E180 018A80 0040+00 1/0 0/0 0/0 .text            fopCam_Draw__FP12camera_class */
@@ -58,8 +59,8 @@ static int fopCam_Create(void* i_actorP) {
     camera_class* camera = (camera_class*)i_actorP;
 
     if (fpcM_IsFirstCreating(i_actorP)) {
-        leaf_process_profile_definition* profile = fpcM_GetProfile(i_actorP);
-        camera->mpMtd = profile->mMethods;
+        camera_process_profile_definition* profile = (camera_process_profile_definition*) fpcM_GetProfile(i_actorP);
+        camera->mpMtd = profile->mSubMtd;
 
         fopDwTg_Init(&camera->mCreateTag, camera);
         u32* append = (u32*)fpcM_GetAppend(camera);
@@ -70,10 +71,9 @@ static int fopCam_Create(void* i_actorP) {
     }
 
     int ret = fpcMtd_Create(&camera->mpMtd->mBase, camera);
-
-    if (ret == 4) {
-        s16 prior = fpcLf_GetPriority(camera);
-        fopDwTg_ToDrawQ(&camera->mCreateTag, prior);
+    if (ret == cPhs_COMPLEATE_e) {
+        s32 priority = fpcLf_GetPriority(camera);
+        fopDwTg_ToDrawQ(&camera->mCreateTag, priority);
     }
 
     return ret;
@@ -81,10 +81,10 @@ static int fopCam_Create(void* i_actorP) {
 
 /* ############################################################################################## */
 /* 803A3860-803A3878 -00001 0014+04 0/0 2/0 0/0 .data            g_fopCam_Method */
-void* g_fopCam_Method[5] = {
-    fopCam_Create,
-    fopCam_Delete,
-    fopCam_Execute,
-    fopCam_IsDelete,
-    fopCam_Draw
+leafdraw_method_class g_fopCam_Method = {
+    (process_method_func)fopCam_Create,
+    (process_method_func)fopCam_Delete,
+    (process_method_func)fopCam_Execute,
+    (process_method_func)fopCam_IsDelete,
+    (process_method_func)fopCam_Draw
 };

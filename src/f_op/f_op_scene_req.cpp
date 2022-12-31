@@ -78,7 +78,7 @@ static void fopScnRq_Execute(scene_request_class* pScnRq) {
 static int fopScnRq_PostMethod(void* param_1, scene_request_class* pScnRq) {
     if (pScnRq->mFadeRequest) {
         fopScnPause_Enable((scene_class*)param_1);
-        fopOvlpM_ToldAboutID(((scene_class*)param_1)->field_0x0.mBsPcId);
+        fopOvlpM_ToldAboutID(((scene_class*)param_1)->mBase.mBase.mBsPcId);
     }
     return 1;
 }

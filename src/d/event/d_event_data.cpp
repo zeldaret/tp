@@ -635,10 +635,10 @@ void dEvDtStaff_c::specialProcMessage() {
             break;
         case 'END\0':
         case 'FINI':
-            work->mLMsg->field_0xf8 = 0x10;
+            work->mLMsg->mMode = 0x10;
             break;
         case 'CONT':
-            work->mLMsg->field_0xf8 = 0xF;
+            work->mLMsg->mMode = 0xF;
             int* ptr = dComIfGp_evmng_getMyIntegerP(staffId, "msgNo");
             if (ptr == NULL) {
                 ptr = dComIfGp_evmng_getMyIntegerP(staffId, "No");
@@ -702,7 +702,7 @@ void dEvDtStaff_c::specialProcMessage() {
         }
         break;
     case 'PUSH':
-        if (work->mLMsg->field_0xf8 == 0xE) {
+        if (work->mLMsg->mMode == 0xE) {
             dComIfGp_evmng_cutEnd(staffId);
         }
         break;
@@ -724,14 +724,14 @@ void dEvDtStaff_c::specialProcMessage() {
                 break;
             }
 
-            switch (work->mLMsg->field_0xf8) {
+            switch (work->mLMsg->mMode) {
             case 0xE:
-                work->mLMsg->field_0xf8 = 0x10;
+                work->mLMsg->mMode = 0x10;
                 break;
             case 0x11:
                 break;
             case 0x12:
-                work->mLMsg->field_0xf8 = 0x13;
+                work->mLMsg->mMode = 0x13;
                 work->_0 = UINT32_MAX;
                 work->mLMsg = NULL;
                 work->mMsgSubstanceNum--;
@@ -757,8 +757,8 @@ void dEvDtStaff_c::specialProcMessage() {
     case 'FINI':
         if (work->mLMsg == NULL) {
             dComIfGp_evmng_cutEnd(staffId);
-        } else if (work->mLMsg->field_0xf8 == 0x12) {
-            work->mLMsg->field_0xf8 = 0x13;
+        } else if (work->mLMsg->mMode == 0x12) {
+            work->mLMsg->mMode = 0x13;
             work->_0 = UINT32_MAX;
             work->mLMsg = NULL;
             dComIfGp_evmng_cutEnd(staffId);
@@ -768,7 +768,7 @@ void dEvDtStaff_c::specialProcMessage() {
         dComIfGp_evmng_cutEnd(staffId);
         break;
     case 'END\0':
-        switch (work->mLMsg->field_0xf8) {
+        switch (work->mLMsg->mMode) {
         case 0x11:
         case 0x12:
             dComIfGp_evmng_cutEnd(staffId);

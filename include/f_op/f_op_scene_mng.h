@@ -14,7 +14,7 @@ void fopScnM_Init(void);
 
 inline u32 fpcM_LayerID(const void* pProc) {
     return fpcBs_Is_JustOfType(g_fpcNd_type, ((base_process_class*)pProc)->mSubType) != FALSE ?
-               ((scene_class*)pProc)->field_0xc8 :
+               ((scene_class*)pProc)->mBase.mLayer.mLayerID :
                0xFFFFFFFF;
 }
 
