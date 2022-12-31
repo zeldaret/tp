@@ -4,73 +4,48 @@
 //
 
 #include "f_op/f_op_view.h"
+#include "f_pc/f_pc_manager.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Forward References:
-//
-
-extern "C" static void fopVw_Draw__FP10view_class();
-extern "C" static void fopVw_Execute__FP10view_class();
-extern "C" static void fopVw_IsDelete__FPv();
-extern "C" static void fopVw_Delete__FP10view_class();
-extern "C" static void fopVw_Create__FPv();
-extern "C" extern void* g_fopVw_Method[5 + 1 /* padding */];
-
-//
-// External References:
-//
-
-extern "C" void fpcLf_DrawMethod__FP21leafdraw_method_classPv();
-extern "C" void fpcMtd_Execute__FP20process_method_classPv();
-extern "C" void fpcMtd_IsDelete__FP20process_method_classPv();
-extern "C" void fpcMtd_Delete__FP20process_method_classPv();
-extern "C" void fpcMtd_Create__FP20process_method_classPv();
-
-//
-// Declarations:
-//
-
 /* 8001F1A8-8001F1D0 019AE8 0028+00 1/0 0/0 0/0 .text            fopVw_Draw__FP10view_class */
 void fopVw_Draw(view_class* pView) {
-    fpcLf_DrawMethod(pView->mpLeafdrawMtd, pView);
+    fpcLf_DrawMethod(pView->mSubMtd, pView);
 }
 
 /* 8001F1D0-8001F1F8 019B10 0028+00 1/0 0/0 0/0 .text            fopVw_Execute__FP10view_class */
 void fopVw_Execute(view_class* pView) {
-    fpcMtd_Execute((process_method_class*)pView->mpLeafdrawMtd, pView);
+    fpcMtd_Execute(&pView->mSubMtd->mBase, pView);
 }
 
 /* 8001F1F8-8001F220 019B38 0028+00 1/0 0/0 0/0 .text            fopVw_IsDelete__FPv */
-s32 fopVw_IsDelete(void* param_1) {
-    view_class* pView = (view_class*)param_1;
-    return fpcMtd_IsDelete((process_method_class*)pView->mpLeafdrawMtd, pView);
+s32 fopVw_IsDelete(void* data) {
+    view_class* pView = (view_class*)data;
+    return fpcMtd_IsDelete(&pView->mSubMtd->mBase, pView);
 }
 
 /* 8001F220-8001F248 019B60 0028+00 1/0 0/0 0/0 .text            fopVw_Delete__FP10view_class */
 s32 fopVw_Delete(view_class* pView) {
-    return fpcMtd_Delete((process_method_class*)pView->mpLeafdrawMtd, pView);
+    return fpcMtd_Delete(&pView->mSubMtd->mBase, pView);
 }
 
 /* 8001F248-8001F284 019B88 003C+00 1/0 0/0 0/0 .text            fopVw_Create__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fopVw_Create(void* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_view/fopVw_Create__FPv.s"
+s32 fopVw_Create(void* data) {
+    view_class* pView = (view_class*)data;
+
+    view_process_profile_definition* pProf = (view_process_profile_definition*)fpcM_GetProfile(pView);
+    pView->mSubMtd = pProf->mSubMtd;
+    pView->field_0xc4 = pProf->unk28;
+
+    return fpcMtd_Create(&pView->mSubMtd->mBase, pView);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803A3928-803A3940 -00001 0014+04 0/0 2/0 0/0 .data            g_fopVw_Method */
-SECTION_DATA extern void* g_fopVw_Method[5 + 1 /* padding */] = {
-    (void*)fopVw_Create,
-    (void*)fopVw_Delete,
-    (void*)fopVw_Execute,
-    (void*)fopVw_IsDelete,
-    (void*)fopVw_Draw,
-    /* padding */
-    NULL,
+leafdraw_method_class g_fopVw_Method = {
+    (process_method_func)fopVw_Create,
+    (process_method_func)fopVw_Delete,
+    (process_method_func)fopVw_Execute,
+    (process_method_func)fopVw_IsDelete,
+    (process_method_func)fopVw_Draw,
 };
