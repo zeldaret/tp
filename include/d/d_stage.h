@@ -151,9 +151,14 @@ struct stage_camera_class {
     /* 0x4 */ stage_camera2_data_class* field_0x4;
 };
 
-struct stage_arrow_class {
+struct stage_arrow_data_class {
     /* 0x00 */ cXyz mPosition;
     /* 0x0C */ csXyz mAngle;
+};
+
+struct stage_arrow_class {
+    /* 0x00 */ int mNum;
+    /* 0x04 */ stage_arrow_data_class* mEntries;
 };  // Size: 0x14
 
 class stage_actor_data_class {

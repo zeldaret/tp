@@ -3,14 +3,15 @@
 
 #include "d/a/d_a_player.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 
 class daTagMmsg_c : public fopAc_ac_c {
 public:
     daTagMmsg_c() {}
 
-    /* 80D5B918 */ void create();
+    /* 80D5B918 */ int create();
     /* 80D5BAB4 */ ~daTagMmsg_c();
-    /* 80D5BB30 */ void execute();
+    /* 80D5BB30 */ int execute();
 
     void onUseFlg() { mUseFlg = true; }
     bool checkNoAttention() { return mAttention == 0xFF; }
