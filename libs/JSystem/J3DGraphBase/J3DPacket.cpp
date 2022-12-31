@@ -209,7 +209,7 @@ SECTION_DATA static s32 sSizeOfDiffered[8] = {
 J3DDrawPacket::J3DDrawPacket() {
     mFlags = 0;
     mpDisplayListObj = NULL;
-    mpTexMtx = NULL;
+    mpTexMtxObj = NULL;
 }
 
 /* 803127B0-8031280C 30D0F0 005C+00 3/2 0/0 0/0 .text            __dt__13J3DDrawPacketFv */
