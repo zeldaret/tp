@@ -7,6 +7,15 @@
 #include "dolphin/mtx/mtx.h"
 #include "f_pc/f_pc_leaf.h"
 
+struct actor_process_profile_definition {
+    /* 0x00 */ leaf_process_profile_definition mBase;
+    /* 0x24 */ leafdraw_method_class* mSubMtd;
+    /* 0x28 */ int field_0x28; // mStatus
+    /* 0x2C */ u8 field_0x2c;  // mActorType
+    /* 0x2D */ u8 field_0x2d;  // mCullType
+    /* 0x2E */ u8 field_0x2e[2]; // Likely padding
+};
+
 struct JKRSolidHeap;
 
 class dEvt_info_c {

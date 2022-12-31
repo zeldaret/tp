@@ -12,7 +12,7 @@
 //
 
 /* 80021A00-80021A24 0024+00 s=0 e=4 z=2  None .text      fpcLf_GetPriority__FPC14leafdraw_class */
-s32 fpcLf_GetPriority(const leafdraw_class* pLeaf) {
+s16 fpcLf_GetPriority(const leafdraw_class* pLeaf) {
     return fpcDwPi_Get(&pLeaf->mDwPi);
 }
 
@@ -55,10 +55,10 @@ int g_fpcLf_type;
 
 /* 80021B14-80021B88 0074+00 s=1 e=0 z=0  None .text      fpcLf_Create__FP14leafdraw_class */
 s32 fpcLf_Create(leafdraw_class* pLeaf) {
-    process_profile_definition* profDef;
+    leaf_process_profile_definition* profDef;
     if (pLeaf->mBase.mInitState == 0) {
-        profDef = (process_profile_definition*)pLeaf->mBase.mpProf;
-        pLeaf->mpDrawMtd = profDef->mLfDrwMth;
+        profDef = (leaf_process_profile_definition*)pLeaf->mBase.mpProf;
+        pLeaf->mpDrawMtd = profDef->mSubMtd;
         pLeaf->mBase.mSubType = fpcBs_MakeOfType(&g_fpcLf_type);
         fpcDwPi_Init(&pLeaf->mDwPi, profDef->mPriority);
         pLeaf->mbUnk0 = 0;

@@ -6,7 +6,11 @@
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 
-struct J3DModelHierarchy {};
+struct J3DModelHierarchy {
+    /* 0x0 */ u16 mType;
+    /* 0x2 */ u16 mValue;
+};
+
 struct J3DMaterialTable;
 
 struct J3DDrawMtxData {
@@ -32,6 +36,11 @@ public:
     /* 80325D24 */ virtual ~J3DJointTree();
 
     u16 getWEvlpMtxNum() const { return mWEvlpMtxNum; }
+    u8 getWEvlpMixMtxNum(u16 idx) const { return mWEvlpMixMtxNum[idx]; }
+    u16 * getWEvlpMixIndex() const { return mWEvlpMixIndex; }
+    f32 * getWEvlpMixWeight() const { return mWEvlpMixWeight; }
+    u16 * getWEvlpImportantMtxIndex() const { return mWEvlpImportantMtxIdx; }
+    u16 getDrawFullWgtMtxNum() const { return mDrawMtxData.mDrawFullWgtMtxNum; }
     u16 getJointNum() const { return mJointNum; }
     u16 getDrawMtxNum() const { return mDrawMtxData.mEntryNum; }
     JUTNameTab* getJointName() const { return mJointName; }
@@ -49,11 +58,11 @@ private:
     /* 0x18 */ J3DJoint** mJointNodePointer;
     /* 0x1C */ u16 mJointNum;
     /* 0x1E */ u16 mWEvlpMtxNum;
-    /* 0x20 */ u32 mWEvlpMixMtxNum;
-    /* 0x24 */ s32 mWEvlpMixIndex;
-    /* 0x28 */ s32 mWEvlpMixWeight;
+    /* 0x20 */ u8* mWEvlpMixMtxNum;
+    /* 0x24 */ u16* mWEvlpMixIndex;
+    /* 0x28 */ f32* mWEvlpMixWeight;
     /* 0x2C */ Mtx* mInvJointMtx;
-    /* 0x30 */ s32 mWEvlpImportantMtxIdx;
+    /* 0x30 */ u16* mWEvlpImportantMtxIdx;
     /* 0x34 */ J3DDrawMtxData mDrawMtxData;
     /* 0x40 */ u32 field_0x40;
     /* 0x44 */ JUTNameTab* mJointName;

@@ -101,7 +101,7 @@ Write the current folder to disk and return it's name/last entry number
 
 
 def writeFolder(parsedFstBin, i):
-    folderPath =  i["folderName"] + "/"
+    folderPath = i["folderName"] + "/"
     lastEntryNumber = i["lastEntryNumber"]
 
     if i["parentFolderEntryNumber"] == 0:
@@ -133,8 +133,8 @@ def writeAssets(parsedFstBin, handler):
     j = 0
     folderStack = []
     if not os.path.exists("./files/"):
-            os.makedirs("./files/")
-    os.chdir('./files/')
+        os.makedirs("./files/")
+    os.chdir("./files/")
     folderStack.append({"folderName": "./", "lastEntryNumber": numFileEntries})
     for i in parsedFstBin:
         j += 1
@@ -153,37 +153,38 @@ def writeAssets(parsedFstBin, handler):
             while folderStack[-1]["lastEntryNumber"] == j + 1:
                 folderStack.pop()
 
-def writeSys(boot,bi2,apploader,dol,fst):
+
+def writeSys(boot, bi2, apploader, dol, fst):
     if not os.path.exists("./sys/"):
         os.makedirs("./sys/")
-    open("./sys/boot.bin","wb").write(boot)
-    open("./sys/bi2.bin","wb").write(bi2)
-    open("./sys/apploader.img","wb").write(apploader)
-    open("./sys/main.dol","wb").write(dol)
-    open("./sys/fst.bin","wb").write(fst)
+    open("./sys/boot.bin", "wb").write(boot)
+    open("./sys/bi2.bin", "wb").write(bi2)
+    open("./sys/apploader.img", "wb").write(apploader)
+    open("./sys/main.dol", "wb").write(dol)
+    open("./sys/fst.bin", "wb").write(fst)
+
 
 def getDolInfo(disc):
     disc.seek(dolInfoPosition)
     dolOffset = int.from_bytes(bytearray(disc.read(4)), byteorder="big")
     dolSize = 0
     for i in range(7):
-        disc.seek(dolOffset+(i*4))
+        disc.seek(dolOffset + (i * 4))
         segmentOffset = int.from_bytes(bytearray(disc.read(4)), byteorder="big")
-        disc.seek(dolOffset+0x90+(i*4))
+        disc.seek(dolOffset + 0x90 + (i * 4))
         segmentSize = int.from_bytes(bytearray(disc.read(4)), byteorder="big")
-        if (segmentOffset+segmentSize)>dolSize:
+        if (segmentOffset + segmentSize) > dolSize:
             dolSize = segmentOffset + segmentSize
-    
-    for i in range(11):
-        disc.seek(dolOffset+0x1c+(i*4))
-        dataOffset = int.from_bytes(bytearray(disc.read(4)), byteorder="big")
-        disc.seek(dolOffset+0xac+(i*4))
-        dataSize = int.from_bytes(bytearray(disc.read(4)), byteorder="big")
-        if (dataOffset+dataSize)>dolSize:
-            dolSize = dataOffset + dataSize
-    
-    return dolOffset, dolSize
 
+    for i in range(11):
+        disc.seek(dolOffset + 0x1C + (i * 4))
+        dataOffset = int.from_bytes(bytearray(disc.read(4)), byteorder="big")
+        disc.seek(dolOffset + 0xAC + (i * 4))
+        dataSize = int.from_bytes(bytearray(disc.read(4)), byteorder="big")
+        if (dataOffset + dataSize) > dolSize:
+            dolSize = dataOffset + dataSize
+
+    return dolOffset, dolSize
 
 
 def extract(path):
@@ -198,9 +199,9 @@ def extract(path):
         f.seek(bi2Position)
         bi2Bytes = bytearray(f.read(bi2Size))
 
-        f.seek(apploaderPosition+0x14)
+        f.seek(apploaderPosition + 0x14)
         apploaderSize = int.from_bytes(bytearray(f.read(4)), byteorder="big")
-        f.seek(apploaderPosition+0x18)
+        f.seek(apploaderPosition + 0x18)
         trailerSize = int.from_bytes(bytearray(f.read(4)), byteorder="big")
         apploaderMainSize = 0x20 + apploaderSize + trailerSize
         f.seek(apploaderPosition)
@@ -208,13 +209,12 @@ def extract(path):
         dolOffset, dolSize = getDolInfo(f)
         f.seek(dolOffset)
         dolBytes = bytearray(f.read(dolSize))
-        
 
         # Seek to fst.bin and retrieve it
         f.seek(fstOffset)
         fstBinBytes = bytearray(f.read(fstSize))
 
-        writeSys(bootBytes,bi2Bytes,apploaderBytes,dolBytes,fstBinBytes)
+        writeSys(bootBytes, bi2Bytes, apploaderBytes, dolBytes, fstBinBytes)
 
         # Parse fst.bin
         parsedFstBin = parseFstBin(fstBinBytes)

@@ -121,9 +121,9 @@ struct Z2Audience : public JAIAudience {
     /* 802BD1FC */ virtual ~Z2Audience();
     /* 802BD338 */ virtual JAIAudible* newAudible(JGeometry::TVec3<f32> const&, JAISoundID,
                                                   JGeometry::TVec3<f32> const*, u32);
-    /* 802BDED4 */ virtual void getMaxChannels();
+    /* 802BDED4 */ virtual int getMaxChannels();
     /* 802BD4D4 */ virtual void deleteAudible(JAIAudible*);
-    /* 802BD5B8 */ virtual void calcPriority(JAIAudible*);
+    /* 802BD5B8 */ virtual u32 calcPriority(JAIAudible*);
     /* 802BD71C */ virtual void mixChannelOut(JASSoundParams const&, JAIAudible*, int);
 
     /* 0x004 */ f32 field_0x4;

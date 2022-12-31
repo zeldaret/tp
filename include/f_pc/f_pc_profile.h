@@ -14,14 +14,10 @@ typedef struct process_profile_definition {
     /* 0x06 */ u16 mListPrio;
     /* 0x08 */ s16 mProcName;
     /* 0x0A */ s16 unkA;  // probably padding
-    /* 0x0C */ struct process_method_class* mpPcMtd;
+    /* 0x0C */ process_method_class* mSubMtd; // Subclass methods
     /* 0x10 */ s32 mSize;
     /* 0x14 */ s32 mSizeOther;
     /* 0x18 */ s32 mParameters;
-    /* 0x1C */ leafdraw_method_class* mLfDrwMth;
-    /* 0x20 */ s16 mPriority;
-    /* 0x22 */ u8 unk22[2];
-    /* 0x24 */ leafdraw_method_class* mMethods;
 } process_profile_definition;
 
 #define LAYER_DEFAULT (-2)

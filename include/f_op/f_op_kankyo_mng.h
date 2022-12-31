@@ -6,9 +6,9 @@
 #include "f_pc/f_pc_manager.h"
 
 struct fopKyM_prm_class {
-    /* 0x00 */ cXyz field_0x0;
-    /* 0x0C */ cXyz field_0xc;
-    /* 0x18 */ int field_0x18;
+    /* 0x00 */ cXyz mPos;
+    /* 0x0C */ cXyz mScale;
+    /* 0x18 */ int mParam;
 };  // Size: 0x1C
 
 typedef int (*fopKyM_CreateFunc)(void*);

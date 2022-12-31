@@ -21,6 +21,7 @@ TARGET := dolzel2
 
 BUILD_PATH := build
 BUILD_DIR := $(BUILD_PATH)/$(TARGET)
+TARGET_ISO := $(BUILD_DIR)/dolzel2.iso
 
 SRC_DIRS := $(shell find src/ libs/ -type f -name '*.cpp')
 ASM_DIRS := $(shell find asm/ -type f -name '*.s')
@@ -45,10 +46,12 @@ include obj_files.mk
 MWCC_VERSION := 2.7
 
 # Programs
+ifeq ($(WINE),) #if WINE varible is unset (wine can be replaced with a less bloated translation layer such as wibo if needed)
 ifeq ($(WINDOWS),1)
   WINE :=
 else
   WINE := wine
+endif
 endif
 
 # Hack for OSX
@@ -127,6 +130,7 @@ clean:
 
 clean_game:
 	rm -r -f -d $(TARGET)/game
+	rm -r -f -d $(TARGET_ISO)
 
 clean_assets:
 	rm -r -f -d game
@@ -168,9 +172,13 @@ $(DOL_SHIFT): $(ELF_SHIFT) | tools
 
 shift: dirs $(DOL_SHIFT)
 
-game: | shift rels
+game: shift
+	$(MAKE) rels
 	@mkdir -p game
-	@$(PYTHON) tools/package_game_assets.py game $(BUILD_DIR)
+	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_DIR)
+
+iso: game
+	@$(PYTHON) tools/packageISO.py $(BUILD_DIR)/game/ $(TARGET_ISO)
 
 rungame: game
 	@echo If you are playing on a shifted game make sure Hyrule Field Speed hack is disabled in dolphin!
@@ -203,4 +211,4 @@ include tools/elf2dol/Makefile
 ### Debug Print ###
 print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true
 
-.PHONY: default all dirs clean tools docs shift game rungame print-%
+.PHONY: default all dirs clean tools docs shift game rungame iso print-%
