@@ -26,26 +26,29 @@ public:
 
     MtxP getAnmMtx(int idx) const { return mpAnmMtx[idx]; }
 
-    void setScaleFlag(int idx, u8 flag) { mScaleFlagArray[idx] = flag; }
+    void setScaleFlag(int idx, u8 flag) { mpScaleFlagArr[idx] = flag; }
     u32* getCurrentViewNoPtr() { return &mCurrentViewNo; }
-    u8* getScaleFlagArray() const { return mScaleFlagArray; }
-    Mtx** getDrawMtxPtrPtr() const { return mpDrawMtxArr; }
-    Mtx* getDrawMtxPtr() const { return mpDrawMtxArr[mCurrentViewNo]; }
-    Mtx33** getNrmMtxPtrPtr() const { return mpNrmMtxArr; }
-    Mtx33* getNrmMtxPtr() const { return mpNrmMtxArr[mCurrentViewNo]; }
-    Mtx33*** getBumpMtxPtrPtr() const { return mpBumpMtxArr; }
-    Mtx33* getBumpMtxPtr(int idx) const { return mpBumpMtxArr[idx][mCurrentViewNo]; }
+    u8* getScaleFlagArray() const { return mpScaleFlagArr; }
+    u8 getScaleFlag(u16 idx) const { return mpScaleFlagArr[idx]; }
+    Mtx** getDrawMtxPtrPtr() const { return mpDrawMtxArr[0]; }
+    Mtx* getDrawMtxPtr() const { return mpDrawMtxArr[0][mCurrentViewNo]; }
+    Mtx* getDrawMtx(u16 idx) const { return &mpDrawMtxArr[0][mCurrentViewNo][idx]; }
+    Mtx33** getNrmMtxPtrPtr() const { return mpNrmMtxArr[0]; }
+    Mtx33* getNrmMtxPtr() const { return mpNrmMtxArr[0][mCurrentViewNo]; }
+    Mtx33* getNrmMtx(u16 idx) const { return &mpNrmMtxArr[0][mCurrentViewNo][idx]; }
+    Mtx33*** getBumpMtxPtrPtr() const { return mpBumpMtxArr[0]; }
+    Mtx33* getBumpMtxPtr(int idx) const { return mpBumpMtxArr[0][idx][mCurrentViewNo]; }
 
     void swapDrawMtx() {
-        Mtx* tmp = mpOldDrawMtxArr[mCurrentViewNo];
-        mpOldDrawMtxArr[mCurrentViewNo] = mpDrawMtxArr[mCurrentViewNo];
-        mpDrawMtxArr[mCurrentViewNo] = tmp;
+        Mtx* tmp = mpDrawMtxArr[0][mCurrentViewNo];
+        mpDrawMtxArr[0][mCurrentViewNo] = mpDrawMtxArr[1][mCurrentViewNo];
+        mpDrawMtxArr[1][mCurrentViewNo] = tmp;
     }
 
     void swapNrmMtx() {
-        Mtx33* tmp = mpOldNrmMtxArr[mCurrentViewNo];
-        mpOldNrmMtxArr[mCurrentViewNo] = mpNrmMtxArr[mCurrentViewNo];
-        mpNrmMtxArr[mCurrentViewNo] = tmp;
+        Mtx33* tmp = mpNrmMtxArr[0][mCurrentViewNo];
+        mpNrmMtxArr[0][mCurrentViewNo] = mpNrmMtxArr[1][mCurrentViewNo];
+        mpNrmMtxArr[1][mCurrentViewNo] = tmp;
     }
 
     static Mtx sNoUseDrawMtx;
@@ -55,19 +58,16 @@ public:
 
 private:
     /* 0x00 */ J3DJointTree* mJointTree;
-    /* 0x04 */ u8* mScaleFlagArray;
-    /* 0x08 */ u8* mEnvScaleFlag;
+    /* 0x04 */ u8* mpScaleFlagArr;
+    /* 0x08 */ u8* mpEvlpScaleFlagArr;
     /* 0x0C */ Mtx* mpAnmMtx;
-    /* 0x10 */ Mtx* mpWeightEnvMtx;
-    /* 0x14 */ Mtx** mpOldDrawMtxArr;
-    /* 0x18 */ Mtx** mpDrawMtxArr;
-    /* 0x1C */ Mtx33** mpOldNrmMtxArr;
-    /* 0x20 */ Mtx33** mpNrmMtxArr;
-    /* 0x24 */ u32 field_0x24;
-    /* 0x28 */ Mtx33*** mpBumpMtxArr;
+    /* 0x10 */ Mtx* mpWeightEvlpMtx;
+    /* 0x14 */ Mtx** mpDrawMtxArr[2];
+    /* 0x1C */ Mtx33** mpNrmMtxArr[2];
+    /* 0x28 */ Mtx33*** mpBumpMtxArr[2];
     /* 0x2C */ u32 mFlags;
     /* 0x30 */ u32 mCurrentViewNo;
-    /* 0x34 */ Mtx** mUserAnmMtx;
+    /* 0x34 */ Mtx* mpUserAnmMtx;
 
 public:
     /* 803283B4 */ virtual ~J3DMtxBuffer();
