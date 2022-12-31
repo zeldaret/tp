@@ -6,25 +6,25 @@ from pathlib import Path
 import hashlib
 import struct
 import ctypes
-import syaz0
+import oead
 
 
-def copy(path,destPath):
-    for root,dirs,files in os.walk(str(path)):
+def copy(path, destPath):
+    for root, dirs, files in os.walk(str(path)):
         for file in files:
-            outputDir = destPath/Path(str(root))
-            #print(str(outputDir.absolute())+file)
+            outputDir = destPath / Path(str(root))
+            # print(str(outputDir.absolute())+file)
             if not outputDir.absolute().exists():
                 os.makedirs(outputDir.absolute())
-            outputFile = Path(str(outputDir.absolute())+"/"+str(file))
-            inFile = Path(str(Path(root).absolute())+"/"+str(file))
+            outputFile = Path(str(outputDir.absolute()) + "/" + str(file))
+            inFile = Path(str(Path(root).absolute()) + "/" + str(file))
             if not outputFile.exists():
-                print(str(inFile)+" -> "+str(outputFile))
-                shutil.copyfile(inFile,outputFile)
+                print(str(inFile) + " -> " + str(outputFile))
+                shutil.copyfile(inFile, outputFile)
             else:
-                if os.path.getmtime(inFile)>os.path.getmtime(outputFile):
-                    print(str(inFile)+" -> "+str(outputFile))
-                    shutil.copyfile(inFile,outputFile)
+                if os.path.getmtime(inFile) > os.path.getmtime(outputFile):
+                    print(str(inFile) + " -> " + str(outputFile))
+                    shutil.copyfile(inFile, outputFile)
 
 
 aMemRels = """d_a_alldie.rel
@@ -163,56 +163,62 @@ d_a_vrbox.rel
 d_a_vrbox2.rel
 f_pc_profile_lst.rel"""
 
-#Because libarc is only geared toward reading from arcs I'm writing my own arc writer in this file
+# Because libarc is only geared toward reading from arcs I'm writing my own arc writer in this file
+
 
 class HEADER:
-    RARC : int
-    length : int
-    headerLength : int
-    fileDataOffset : int
-    fileDataLen : int
-    fileDataLen2 : int
-    unk1 : int
-    unk2 : int
+    RARC: int
+    length: int
+    headerLength: int
+    fileDataOffset: int
+    fileDataLen: int
+    fileDataLen2: int
+    unk1: int
+    unk2: int
+
 
 class INFO:
-    numNodes : int
-    firstNodeOffset : int
-    totalDirNum : int
-    firstDirOffset : int
-    stringTableLen : int
-    stringTableOffset : int
-    numDirsThatAreFiles : int
-    unk1 : int
-    unk2 : int
+    numNodes: int
+    firstNodeOffset: int
+    totalDirNum: int
+    firstDirOffset: int
+    stringTableLen: int
+    stringTableOffset: int
+    numDirsThatAreFiles: int
+    unk1: int
+    unk2: int
+
 
 class NODE:
-    NAME : int
+    NAME: int
     stringTableOffset: int
-    hash : int
-    numDirs : int
-    firstDirIndex : int
+    hash: int
+    numDirs: int
+    firstDirIndex: int
+
 
 class DIRECTORY:
-    dirIndex : int
-    stringHash : int
-    type : int
-    stringOffset : int
-    fileOffset : int
-    fileLength : int
-    unk1 : int
+    dirIndex: int
+    stringHash: int
+    type: int
+    stringOffset: int
+    fileOffset: int
+    fileLength: int
+    unk1: int
+
 
 def computeHash(string):
     hash = 0
     for char in string:
-        hash = hash*3
+        hash = hash * 3
         hash = hash + ord(char)
 
     hash = ctypes.c_ushort(hash)
     hash = hash.value
     return hash
 
-def addFile(index,sizeIndex,dirs,name,stringTable,paths,data):
+
+def addFile(index, sizeIndex, dirs, name, stringTable, paths, data):
     file = DIRECTORY()
     file.dirIndex = index
     file.stringHash = computeHash(name)
@@ -220,12 +226,12 @@ def addFile(index,sizeIndex,dirs,name,stringTable,paths,data):
     file.stringOffset = stringTable.find(name)
     path = None
     for relPath in paths:
-        if str(relPath).find(name)!=-1:
+        if str(relPath).find(name) != -1:
             path = relPath
     file.unk1 = 0
-    fileData = open(path,"rb")
+    fileData = open(path, "rb")
     compressedData = oead.yaz0.compress(fileData.read())
-    padding = (0x20-(len(compressedData)%0x20))
+    padding = 0x20 - (len(compressedData) % 0x20)
     file.fileLength = len(compressedData)
     file.fileOffset = sizeIndex
     sizeIndex = sizeIndex + file.fileLength + padding
@@ -234,37 +240,41 @@ def addFile(index,sizeIndex,dirs,name,stringTable,paths,data):
     fileData.close()
     dirs.append(file)
 
-    return dirs,data,sizeIndex
+    return dirs, data, sizeIndex
 
 
-def copyRelFiles(buildPath,aMemList,mMemList):
+def copyRelFiles(buildPath, aMemList, mMemList):
     relArcPaths = []
-    for root,dirs,files in os.walk(str(buildPath/"rel")):
+    for root, dirs, files in os.walk(str(buildPath / "rel")):
         for file in files:
-            if file.find(".rel")!=-1:
+            if file.find(".rel") != -1:
                 relArcFound = False
                 for rel in aMemList:
-                    if rel==file:
+                    if rel == file:
                         relArcFound = True
                 for rel in mMemList:
-                    if rel==file:
+                    if rel == file:
                         relArcFound = True
-                fullPath = Path(root+"/"+file)
-                if relArcFound==False:
-                    print(str(fullPath)+" -> "+str(buildPath/"game/files/rel/Final/Release"/file))
-                    relSource = open(fullPath,"rb")
+                fullPath = Path(root + "/" + file)
+                if relArcFound == False:
+                    print(
+                        str(fullPath)
+                        + " -> "
+                        + str(buildPath / "game/files/rel/Final/Release" / file)
+                    )
+                    relSource = open(fullPath, "rb")
                     data = relSource.read()
                     relSource.close()
                     data = oead.yaz0.compress(data)
-                    relNew = open(buildPath/"game/files/rel/Final/Release"/file,"wb")
+                    relNew = open(
+                        buildPath / "game/files/rel/Final/Release" / file, "wb"
+                    )
                     relNew.write(data)
                     relNew.truncate()
                     relNew.close()
                 else:
                     relArcPaths.append(fullPath)
 
-                
-    
     arcHeader = HEADER()
     arcHeader.RARC = 0x52415243
     arcHeader.headerLength = 0x20
@@ -279,24 +289,24 @@ def copyRelFiles(buildPath,aMemList,mMemList):
     rootNode.firstDirIndex = 0
     rootNode.hash = computeHash("rels")
     aMemNode = NODE()
-    aMemNode.NAME = 0x414d454d
+    aMemNode.NAME = 0x414D454D
     aMemNode.hash = computeHash("amem")
     aMemNode.numDirs = 79
     aMemNode.firstDirIndex = 4
     mMemNode = NODE()
     mMemNode.hash = computeHash("mmem")
-    mMemNode.NAME = 0x4d4d454d
+    mMemNode.NAME = 0x4D4D454D
     mMemNode.numDirs = 59
     mMemNode.firstDirIndex = 83
 
     stringTable = ".\0..\0rels\0amem\0"
     for rel in aMemList:
-        stringTable = stringTable+rel+'\0'
-    stringTable = stringTable+"mmem\0"
+        stringTable = stringTable + rel + "\0"
+    stringTable = stringTable + "mmem\0"
     for rel in mMemList:
-        stringTable = stringTable+rel+'\0'
-    stringTable = stringTable+"\0\0\0\0\0\0"
-    
+        stringTable = stringTable + rel + "\0"
+    stringTable = stringTable + "\0\0\0\0\0\0"
+
     rootNode.stringTableOffset = stringTable.find("rels")
     aMemNode.stringTableOffset = stringTable.find("amem")
     mMemNode.stringTableOffset = stringTable.find("mmem")
@@ -337,26 +347,30 @@ def copyRelFiles(buildPath,aMemList,mMemList):
     unkDir2.fileLength = 0x10
     unkDir2.unk1 = 0
 
-    dirs = [aMemDir,mMemDir,unkDir,unkDir2]
+    dirs = [aMemDir, mMemDir, unkDir, unkDir2]
 
     data = bytearray()
 
     dirIndex = 4
     sizeIndex = 0
     for rel in aMemList:
-        retdirs,retdata,retSize = addFile(dirIndex,sizeIndex,dirs,rel,stringTable,relArcPaths,data)
-        dirIndex = dirIndex+1
+        retdirs, retdata, retSize = addFile(
+            dirIndex, sizeIndex, dirs, rel, stringTable, relArcPaths, data
+        )
+        dirIndex = dirIndex + 1
         sizeIndex = retSize
         dirs = retdirs
         data = retdata
     dirs.append(unkDir)
     dirs.append(unkDir2)
-    dirIndex = dirIndex+2
+    dirIndex = dirIndex + 2
     for rel in mMemList:
-        retdirs,retdata,retSize = addFile(dirIndex,sizeIndex,dirs,rel,stringTable,relArcPaths,data)
-        dirIndex = dirIndex+1
+        retdirs, retdata, retSize = addFile(
+            dirIndex, sizeIndex, dirs, rel, stringTable, relArcPaths, data
+        )
+        dirIndex = dirIndex + 1
         sizeIndex = retSize
-        #print(hex(dirIndex))
+        # print(hex(dirIndex))
         dirs = retdirs
         data = retdata
     unkDir3 = DIRECTORY()
@@ -378,12 +392,14 @@ def copyRelFiles(buildPath,aMemList,mMemList):
     unkDir4.unk1 = 0
     dirs.append(unkDir3)
     dirs.append(unkDir4)
-    dirIndex = dirIndex+2
+    dirIndex = dirIndex + 2
 
-    arcHeader.length = len(stringTable)+0x20+0x20+0x30+(len(dirs)*0x14)+len(data)
-    arcHeader.fileDataOffset=0x14E0
-    arcHeader.fileDataLen=len(data)
-    arcHeader.fileDataLen2=arcHeader.fileDataLen
+    arcHeader.length = (
+        len(stringTable) + 0x20 + 0x20 + 0x30 + (len(dirs) * 0x14) + len(data)
+    )
+    arcHeader.fileDataOffset = 0x14E0
+    arcHeader.fileDataLen = len(data)
+    arcHeader.fileDataLen2 = arcHeader.fileDataLen
 
     infoBlock.firstNodeOffset = 0x20
     infoBlock.firstDirOffset = 0x60
@@ -393,49 +409,100 @@ def copyRelFiles(buildPath,aMemList,mMemList):
     infoBlock.unk2 = 0
     infoBlock.totalDirNum = 0x8E
 
-    
-    outputArcFile = open(buildPath/"game/files/RELS.arc","wb")
+    outputArcFile = open(buildPath / "game/files/RELS.arc", "wb")
     outputArcFile.seek(0)
 
-    outputArcFile.write(struct.pack(">IIIIIIII",arcHeader.RARC,arcHeader.length,arcHeader.headerLength,arcHeader.fileDataOffset,arcHeader.fileDataLen,arcHeader.unk1,arcHeader.fileDataLen2,arcHeader.unk2))
-    outputArcFile.write(struct.pack(">IIIIIIHHI",infoBlock.numNodes,infoBlock.firstNodeOffset,infoBlock.totalDirNum,infoBlock.firstDirOffset,infoBlock.stringTableLen,infoBlock.stringTableOffset,infoBlock.numDirsThatAreFiles,infoBlock.unk1,infoBlock.unk2))
-    outputArcFile.write(struct.pack(">IIHHI",rootNode.NAME,rootNode.stringTableOffset,rootNode.hash,rootNode.numDirs,rootNode.firstDirIndex))
-    outputArcFile.write(struct.pack(">IIHHI",aMemNode.NAME,aMemNode.stringTableOffset,aMemNode.hash,aMemNode.numDirs,aMemNode.firstDirIndex))
-    outputArcFile.write(struct.pack(">IIHHI",mMemNode.NAME,mMemNode.stringTableOffset,mMemNode.hash,mMemNode.numDirs,mMemNode.firstDirIndex))
+    outputArcFile.write(
+        struct.pack(
+            ">IIIIIIII",
+            arcHeader.RARC,
+            arcHeader.length,
+            arcHeader.headerLength,
+            arcHeader.fileDataOffset,
+            arcHeader.fileDataLen,
+            arcHeader.unk1,
+            arcHeader.fileDataLen2,
+            arcHeader.unk2,
+        )
+    )
+    outputArcFile.write(
+        struct.pack(
+            ">IIIIIIHHI",
+            infoBlock.numNodes,
+            infoBlock.firstNodeOffset,
+            infoBlock.totalDirNum,
+            infoBlock.firstDirOffset,
+            infoBlock.stringTableLen,
+            infoBlock.stringTableOffset,
+            infoBlock.numDirsThatAreFiles,
+            infoBlock.unk1,
+            infoBlock.unk2,
+        )
+    )
+    outputArcFile.write(
+        struct.pack(
+            ">IIHHI",
+            rootNode.NAME,
+            rootNode.stringTableOffset,
+            rootNode.hash,
+            rootNode.numDirs,
+            rootNode.firstDirIndex,
+        )
+    )
+    outputArcFile.write(
+        struct.pack(
+            ">IIHHI",
+            aMemNode.NAME,
+            aMemNode.stringTableOffset,
+            aMemNode.hash,
+            aMemNode.numDirs,
+            aMemNode.firstDirIndex,
+        )
+    )
+    outputArcFile.write(
+        struct.pack(
+            ">IIHHI",
+            mMemNode.NAME,
+            mMemNode.stringTableOffset,
+            mMemNode.hash,
+            mMemNode.numDirs,
+            mMemNode.firstDirIndex,
+        )
+    )
     outputArcFile.write(bytearray(16))
     for dir in dirs:
-        outputArcFile.write(struct.pack(">HHHHIII",dir.dirIndex,dir.stringHash,dir.type,dir.stringOffset,dir.fileOffset,dir.fileLength,dir.unk1))
+        outputArcFile.write(
+            struct.pack(
+                ">HHHHIII",
+                dir.dirIndex,
+                dir.stringHash,
+                dir.type,
+                dir.stringOffset,
+                dir.fileOffset,
+                dir.fileLength,
+                dir.unk1,
+            )
+        )
     outputArcFile.write(bytearray(8))
     strBytearray = bytearray()
-    strBytearray.extend(map(ord,stringTable))
+    strBytearray.extend(map(ord, stringTable))
     outputArcFile.write(strBytearray)
     outputArcFile.write(data)
 
     outputArcFile.truncate()
     outputArcFile.close()
 
-    
 
-
-
-    
-
-
-
-
-
-    
-
-def main(gamePath,buildPath):
+def main(gamePath, buildPath):
     if not gamePath.exists():
         gamePath.mkdir(parents=True, exist_ok=True)
-    
+
     iso = Path("gz2e01.iso")
     if not iso.exists() or not iso.is_file():
         print("gz2e01.iso doesn't exist in project directory!")
         sys.exit(1)
-    
-    if not (gamePath/"files").exists() or not (gamePath/"sys").exists():
+
+    if not (gamePath / "files").exists() or not (gamePath / "sys").exists():
         print("ISO is not extracted; extracting...")
         previousDir = os.getcwd()
         os.chdir(str(gamePath.absolute()))
@@ -443,15 +510,17 @@ def main(gamePath,buildPath):
         os.chdir(previousDir)
 
     print("Copying game files...")
-    copy(gamePath,buildPath.absolute())
+    copy(gamePath, buildPath.absolute())
 
-    print(str(buildPath/"main_shift.dol")+" -> "+str(buildPath/"game/sys/main.dol"))
-    shutil.copyfile(buildPath/"main_shift.dol",buildPath/"game/sys/main.dol")
-    
-    copyRelFiles(buildPath,aMemRels.splitlines(),mMemRels.splitlines())
+    print(
+        str(buildPath / "main_shift.dol")
+        + " -> "
+        + str(buildPath / "game/sys/main.dol")
+    )
+    shutil.copyfile(buildPath / "main_shift.dol", buildPath / "game/sys/main.dol")
 
+    copyRelFiles(buildPath, aMemRels.splitlines(), mMemRels.splitlines())
 
-    
 
 if __name__ == "__main__":
-    main(Path(sys.argv[1]),Path(sys.argv[2]))
+    main(Path(sys.argv[1]), Path(sys.argv[2]))
