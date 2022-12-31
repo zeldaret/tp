@@ -9,6 +9,7 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_draw_tag.h"
+#include "f_op/f_op_msg_mng.h"
 #include "f_pc/f_pc_leaf.h"
 
 /* 8001E140-8001E180 018A80 0040+00 1/0 0/0 0/0 .text            fopCam_Draw__FP12camera_class */
@@ -59,8 +60,8 @@ static int fopCam_Create(void* i_actorP) {
 
     if (fpcM_IsFirstCreating(i_actorP)) {
         // TODO: This should be camera_process_profile_definition
-        leaf_process_profile_definition* profile = (leaf_process_profile_definition*) fpcM_GetProfile(i_actorP);
-        camera->mpMtd = profile->mMethods;
+        camera_process_profile_definition* profile = (camera_process_profile_definition*) fpcM_GetProfile(i_actorP);
+        camera->mpMtd = profile->mSubMtd;
 
         fopDwTg_Init(&camera->mCreateTag, camera);
         u32* append = (u32*)fpcM_GetAppend(camera);

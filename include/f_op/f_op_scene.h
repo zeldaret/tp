@@ -11,15 +11,16 @@
 struct request_of_phase_process_class;
 class mDoDvdThd_command_c;
 
+typedef struct scene_process_profile_definition {
+    /* 0x00 */ node_process_profile_definition mBase;
+    /* 0x20 */ process_method_class* mpMtd; // Subclass methods
+} scene_process_profile_definition;
+
 class scene_class {
 public:
-    /* 0x000 */ base_process_class field_0x0;
-    /* 0x0B8 */ u8 field_0xb8[0x10];
-    /* 0x0C8 */ u32 field_0xc8;
-    /* 0x0CC */ u8 field_0xcc[0xE0];
-    /* 0x1AC */ process_method_class* mpProcessMtd;
-    /* 0x1B0 */ scene_tag_class field_0x1b0;
-    /* 0x1C4 */ request_of_phase_process_class field_0x1c4;
+    /* 0x000 */ process_node_class mBase;
+    /* 0x1AC */ process_method_class * mpMtd;
+    /* 0x1B0 */ scene_tag_class mScnTg;
 };
 
 #endif

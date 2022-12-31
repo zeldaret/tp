@@ -91,8 +91,7 @@ int fopMsg_Create(void* data) {
     msg_class *msg = (msg_class*)data;
 
     if (fpcM_IsFirstCreating(msg)) {
-        // TODO: This should be msg_process_profile_definition
-        leaf_process_profile_definition* profile = (leaf_process_profile_definition*) fpcM_GetProfile(msg);
+        msg_process_profile_definition* profile = (msg_process_profile_definition*) fpcM_GetProfile(msg);
         msg->mMsgType = fpcBs_MakeOfType(&fopMsg_MSG_TYPE);
         msg->mSubMtd = profile->mMethods;
         fopDwTg_Init(&msg->mDwTg, msg);

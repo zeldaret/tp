@@ -5,6 +5,11 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
+struct msg_process_profile_definition {
+    /* 0x00 */ leaf_process_profile_definition mBase;
+    /* 0x24 */ leafdraw_method_class* mSubMtd; // Subclass methods
+};
+
 struct fopMsg_prm_class {
     /* 0x00 */ fopAc_ac_c* mpActor;
     /* 0x04 */ cXyz mPos;

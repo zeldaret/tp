@@ -22,12 +22,9 @@ typedef struct leafdraw_class {
 
 typedef struct leaf_process_profile_definition {
     /* 0x00 */ process_profile_definition mBase;
-    /* 0x28 */ int field_0x28;
-    /* 0x2C */ u8 field_0x2c;
-    /* 0x2D */ u8 field_0x2d;
-    /* 0x2E */ u8 field_0x2e[0x2]; // extended from here to end to make fopCam_Create match. might be wrong
-    /* 0x30 */ u8 field_0x30[0xc];
-    /* 0x3C */ leafdraw_method_class* mMethods;
+    /* 0x1C */ leafdraw_method_class* mSubMtd; // Subclass methods
+    /* 0x20 */ s16 mPriority; // mDrawPriority
+    /* 0x22 */ u8 unk22[2];   // Likely padding...
 } leaf_process_profile_definition;
 
 s16 fpcLf_GetPriority(const leafdraw_class* pLeaf);

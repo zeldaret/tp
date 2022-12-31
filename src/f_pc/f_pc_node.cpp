@@ -15,7 +15,7 @@
 /* 800224F0-80022514 0024+00 s=1 e=1 z=0  None .text fpcNd_DrawMethod__FP21nodedraw_method_classPv
  */
 s32 fpcNd_DrawMethod(nodedraw_method_class* pNodeMethod, void* pData) {
-    return fpcMtd_Method(pNodeMethod->mNodedrawFunc, pData);
+    return fpcMtd_Method(pNodeMethod->mpDrawFunc, pData);
 }
 
 /* 80022514-80022580 006C+00 s=1 e=0 z=0  None .text      fpcNd_Draw__FP18process_node_class */
@@ -104,7 +104,7 @@ s32 fpcNd_Create(process_node_class* pProcNode1) {
         node_process_profile_definition* pProcProfileDef =
             (node_process_profile_definition*)pProcNode->mBase.mpProf;
         pProcNode->mBase.mSubType = fpcBs_MakeOfType(&g_fpcNd_type);
-        pProcNode->mpNodeMtd = (nodedraw_method_class*)pProcProfileDef->mBase.mLfDrwMth;
+        pProcNode->mpNodeMtd = (nodedraw_method_class*)pProcProfileDef->mSubMtd;
         fpcLy_Create(&pProcNode->mLayer, pProcNode, pProcNode->mLayerNodeLists, 0x10);
         pProcNode->mUnk0 = 0;
     }

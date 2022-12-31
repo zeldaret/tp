@@ -6,6 +6,16 @@
 #include "dolphin/types.h"
 #include "f_pc/f_pc_leaf.h"
 
+struct view_process_profile_definition {
+    /* 0x00 */ leaf_process_profile_definition mBase;
+    /* 0x24 */ leafdraw_method_class* mSubMtd; // Subclass methods
+    /* 0x28 */ u32 unk28;
+    /* 0x2C */ u32 unk2C;
+    /* 0x30 */ u32 unk30;
+    /* 0x34 */ u32 unk34;
+    /* 0x38 */ u32 unk38;
+};
+
 class lookat_class {
 public:
     /* 0x00 */ cXyz mEye;

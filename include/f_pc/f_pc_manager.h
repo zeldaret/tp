@@ -54,8 +54,8 @@ inline bool fpcM_IsFirstCreating(void* proc) {
     return ((base_process_class*)proc)->mInitState == 0;
 }
 
-inline leaf_process_profile_definition* fpcM_GetProfile(void* proc) {
-    return (leaf_process_profile_definition*)((base_process_class*)proc)->mpProf;
+inline process_profile_definition* fpcM_GetProfile(void* proc) {
+    return (process_profile_definition*)((base_process_class*)proc)->mpProf;
 }
 
 inline void* fpcM_GetAppend(const void* proc) {
