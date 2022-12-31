@@ -101,6 +101,7 @@ public:
     u32 getBumpMtxOffset() const { return mBumpMtxOffset; }
 
     inline J3DMaterial* getMaterial() const { return mMaterial; }
+    inline u32 getIndex() const { return mIndex; }
     inline u32 getPipeline() const { return (mFlags >> 2) & 0x07; }
     inline u32 getTexMtxLoadType() const { return mFlags & 0xF000; }
     inline u32 getMtxGroupNum() const { return mMtxGroupNum; }

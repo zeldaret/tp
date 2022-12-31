@@ -38,11 +38,14 @@ public:
     J3DTexture* getTexture() const { return mMaterialTable.getTexture(); }
     JUTNameTab* getTextureName() const { return mMaterialTable.getTextureName(); }
     u16 getWEvlpMtxNum() const { return mJointTree.getWEvlpMtxNum(); }
+    u32 getModelDataType() const { return mJointTree.getModelDataType(); }
     void* getVtxPosArray() const { return mVertexData.getVtxPosArray(); }
     void* getVtxNrmArray() const { return mVertexData.getVtxNrmArray(); }
     GXColor* getVtxColorArray(u8 idx) const { return mVertexData.getVtxColorArray(idx); }
-    bool checkFlag(u32 flag) const { return !!(mFlags & flag); }
-    bool checkBumpFlag() const { return mbHasBumpArray; }
+    bool checkFlag(u32 flag) const { return (mFlags & flag) ? true : false; }
+    u32 getFlag() const { return mFlags; }
+    u16 checkBumpFlag() const { return mbHasBumpArray; }
+    void setBumpFlag(u32 flag) { mbHasBumpArray = flag; }
     bool checkBBoardFlag() const { return mbHasBillboard == 1; }
     bool isLocked() { return mMaterialTable.isLocked(); }
     void entryTexMtxAnimator(J3DAnmTextureSRTKey* anm) { mMaterialTable.entryTexMtxAnimator(anm); }

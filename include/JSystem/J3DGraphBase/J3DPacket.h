@@ -15,6 +15,7 @@ class J3DModel;
 class J3DMtxBuffer;
 class J3DShape;
 class J3DTexMtx;
+class J3DTexMtxObj;
 class J3DTexture;
 
 class J3DDisplayListObj {
@@ -100,13 +101,13 @@ public:
     void offFlag(u32 flag) { mFlags &= ~flag; }
     void lock() { onFlag(LOCKED); }
     void unlock() { offFlag(LOCKED); }
-    J3DTexMtx* getTexMtxObj() const { return mpTexMtx; }
+    J3DTexMtxObj* getTexMtxObj() const { return mpTexMtxObj; }
 
 public:
     /* 0x10 */ u32 mFlags;
     /* 0x14 */ char mPad0[0x0C];  // unk
     /* 0x20 */ J3DDisplayListObj* mpDisplayListObj;
-    /* 0x24 */ J3DTexMtx* mpTexMtx;
+    /* 0x24 */ J3DTexMtxObj* mpTexMtxObj;
 };  // Size: 0x28
 
 class J3DShapePacket : public J3DDrawPacket {
