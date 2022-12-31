@@ -6,7 +6,7 @@ from pathlib import Path
 import hashlib
 import struct
 import ctypes
-import syaz0
+import oead
 
 
 def copy(path,destPath):
@@ -224,7 +224,7 @@ def addFile(index,sizeIndex,dirs,name,stringTable,paths,data):
             path = relPath
     file.unk1 = 0
     fileData = open(path,"rb")
-    compressedData = syaz0.compress(fileData.read())
+    compressedData = oead.yaz0.compress(fileData.read())
     padding = (0x20-(len(compressedData)%0x20))
     file.fileLength = len(compressedData)
     file.fileOffset = sizeIndex
@@ -255,7 +255,7 @@ def copyRelFiles(buildPath,aMemList,mMemList):
                     relSource = open(fullPath,"rb")
                     data = relSource.read()
                     relSource.close()
-                    data = syaz0.compress(data)
+                    data = oead.yaz0.compress(data)
                     relNew = open(buildPath/"game/files/rel/Final/Release"/file,"wb")
                     relNew.write(data)
                     relNew.truncate()
