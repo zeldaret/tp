@@ -23,32 +23,32 @@ int daTagMmsg_c::create() {
         fopAcM_OnCondition(this, 8);
     }
 
-    this->field_0x570 = fpcM_GetParam(this) & 0x3FF;
-    this->field_0x572 = (fpcM_GetParam(this) >> 10) & 0x3FF;
-    this->field_0x56b = (fpcM_GetParam(this) >> 29) & 1;
-    this->field_0x568 = this->shape_angle.x;
-    this->field_0x569 = (this->shape_angle.x >> 8) & 0xFF;
+    field_0x570 = fpcM_GetParam(this) & 0x3FF;
+    field_0x572 = (fpcM_GetParam(this) >> 10) & 0x3FF;
+    field_0x56b = (fpcM_GetParam(this) >> 29) & 1;
+    field_0x568 = shape_angle.x;
+    field_0x569 = (shape_angle.x >> 8) & 0xFF;
 
     if ((fpcM_GetParam(this) >> 30) & 1) {
-        this->mScale.x *= 10.0f;
-        this->mScale.y *= 10.0f;
+        mScale.x *= 10.0f;
+        mScale.y *= 10.0f;
     }
 
-    this->field_0x574 = this->mScale.x * (10000.0f * this->mScale.x);
-    this->field_0x578 = this->current.pos.y + this->mScale.y * 100.0f;
-    this->mAttention = this->shape_angle.y;
+    field_0x574 = mScale.x * (10000.0f * mScale.x);
+    field_0x578 = current.pos.y + mScale.y * 100.0f;
+    mAttention = shape_angle.y;
 
     if (!checkNoAttention()) {
         s32 roomNo = fopAcM_GetRoomNo(this);
         cXyz* tmp =
             &dComIfGp_getRoomArrow(roomNo)
-                 ->mEntries[dComIfGp_getRoomCamera(roomNo)->field_0x4[this->mAttention].field_0x10]
+                 ->mEntries[dComIfGp_getRoomCamera(roomNo)->field_0x4[mAttention].field_0x10]
                  .mPosition;
-        this->mEyePos.set(tmp->x, tmp->y, tmp->z);
-        this->mAttentionInfo.mPosition = this->mEyePos;
+        mEyePos.set(tmp->x, tmp->y, tmp->z);
+        mAttentionInfo.mPosition = mEyePos;
     }
 
-    this->shape_angle.y = fopAcM_searchPlayerAngleY(this);
+    shape_angle.y = fopAcM_searchPlayerAngleY(this);
     return 4;
 }
 
@@ -73,33 +73,29 @@ int daTagMmsg_c::execute() {
         return 1;
     }
 
-    if (this->field_0x572 != 0x3FF &&
-        i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[this->field_0x572])) {
+    if (field_0x572 != 0x3FF &&
+        i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x572])) {
         return 1;
     }
 
-    if (this->field_0x569 != 0xFF &&
-        dComIfGs_isSwitch(this->field_0x569, fopAcM_GetHomeRoomNo(this))) {
+    if (field_0x569 != 0xFF && dComIfGs_isSwitch(field_0x569, fopAcM_GetHomeRoomNo(this))) {
         fopAcM_delete(this);
         return 1;
     }
 
-    if (this->mUseFlg && !i_dComIfGp_event_runCheck() && this->field_0x56b &&
-        this->field_0x569 != 0xFF) {
-        dComIfGs_onSwitch(this->field_0x569, fopAcM_GetHomeRoomNo(this));
+    if (mUseFlg && !i_dComIfGp_event_runCheck() && field_0x56b && field_0x569 != 0xFF) {
+        dComIfGs_onSwitch(field_0x569, fopAcM_GetHomeRoomNo(this));
         fopAcM_delete(this);
         return 1;
     }
 
     daPy_py_c* player = daPy_getLinkPlayerActorClass();
-    if ((this->current.pos.y <= player->current.pos.y) &&
-        (this->field_0x578 >= player->current.pos.y) &&
-        (fopAcM_searchPlayerDistanceXZ2(this) < this->field_0x574) &&
-        (this->field_0x570 == 0x3FF ||
-         i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[this->field_0x570])) &&
-        (this->field_0x568 == 0xFF ||
-         dComIfGs_isSwitch(this->field_0x568, fopAcM_GetHomeRoomNo(this)))) {
-        player->setMidnaMsgNum(this, this->shape_angle.z);
+    if ((current.pos.y <= player->current.pos.y) && (field_0x578 >= player->current.pos.y) &&
+        (fopAcM_searchPlayerDistanceXZ2(this) < field_0x574) &&
+        (field_0x570 == 0x3FF ||
+         i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x570])) &&
+        (field_0x568 == 0xFF || dComIfGs_isSwitch(field_0x568, fopAcM_GetHomeRoomNo(this)))) {
+        player->setMidnaMsgNum(this, shape_angle.z);
     }
 
     return 1;
