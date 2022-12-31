@@ -36,7 +36,7 @@ static int fopKy_Draw(void* param_0) {
     kankyo_class* env = (kankyo_class*)param_0;
 
     if (!dComIfGp_isPauseFlag()) {
-        ret = fpcLf_DrawMethod(env->field_0xd8, param_0);
+        ret = fpcLf_DrawMethod(env->mSubMtd, param_0);
     }
 
     return ret;
@@ -48,7 +48,7 @@ static int fopKy_Execute(void* param_0) {
     kankyo_class* env = (kankyo_class*)param_0;
 
     if (dScnPly_c::isPause() && (!dComIfGp_isPauseFlag() || fpcM_GetName(param_0) == PROC_ENVSE)) {
-        ret = fpcMtd_Execute((process_method_class*)env->field_0xd8,param_0);
+        ret = fpcMtd_Execute(&env->mSubMtd->mBase,param_0);
     }
 
     return ret;
@@ -59,9 +59,9 @@ static int fopKy_IsDelete(void* param_0) {
     int ret;
     kankyo_class* env = (kankyo_class*)param_0;
 
-    ret = fpcMtd_IsDelete((process_method_class*)env->field_0xd8,env);
+    ret = fpcMtd_IsDelete(&env->mSubMtd->mBase,env);
     if (ret == 1) {
-        fopDwTg_DrawQTo(&env->field_0xc4);
+        fopDwTg_DrawQTo(&env->mDwTg);
     }
 
     return ret;
@@ -71,8 +71,8 @@ static int fopKy_IsDelete(void* param_0) {
 static int fopKy_Delete(void* param_0) {
     kankyo_class* env = (kankyo_class*)param_0;
 
-    int ret = fpcMtd_Delete((process_method_class*)env->field_0xd8,env);
-    fopDwTg_DrawQTo(&env->field_0xc4);
+    int ret = fpcMtd_Delete(&env->mSubMtd->mBase,env);
+    fopDwTg_DrawQTo(&env->mDwTg);
     
     return ret;
 }
@@ -91,23 +91,23 @@ static int fopKy_Create(void* param_0) {
         // TODO: This should be kankyo_process_profile_definition
         leaf_process_profile_definition* profile = (leaf_process_profile_definition*) fpcM_GetProfile(param_0);
 
-        env->field_0xc0 = fpcBs_MakeOfType(&fopKy_KANKYO_TYPE);
-        env->field_0xd8 = profile->mBase.mMethods;
+        env->mBsType = fpcBs_MakeOfType(&fopKy_KANKYO_TYPE);
+        env->mSubMtd = profile->mBase.mMethods;
 
-        fopDwTg_Init((create_tag_class*)&env->field_0xc4, env);
+        fopDwTg_Init((create_tag_class*)&env->mDwTg, env);
         fopKyM_prm_class* append = (fopKyM_prm_class*)fopKyM_GetAppend(env);
 
         if (append) {
-            env->field_0xdc = append->field_0x0;
-            env->field_0xe8 = append->field_0xc;
-            env->field_0xf4 = append->field_0x18;
+            env->mPos = append->mPos;
+            env->mScale = append->mScale;
+            env->mParam = append->mParam;
         }
     }
 
-    int ret = fpcMtd_Create((process_method_class*)env->field_0xd8, env);
-    if (ret == 4) {
+    int ret = fpcMtd_Create(&env->mSubMtd->mBase, env);
+    if (ret == cPhs_COMPLEATE_e) {
         s16 priority = fpcM_DrawPriority(env);
-        fopDwTg_ToDrawQ((create_tag_class*)&env->field_0xc4,priority);
+        fopDwTg_ToDrawQ((create_tag_class*)&env->mDwTg,priority);
     }
 
     return ret;

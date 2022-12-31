@@ -7,12 +7,12 @@
 
 class kankyo_class : public leafdraw_class {
 public:
-    /* 0xC0 */ int field_0xc0;
-    /* 0xC4 */ create_tag_class field_0xc4;
-    /* 0xD8 */ leafdraw_method_class* field_0xd8;
-    /* 0xDC */ cXyz field_0xdc;
-    /* 0xE8 */ cXyz field_0xe8;
-    /* 0xF4 */ u32 field_0xf4;
+    /* 0xC0 */ int mBsType;
+    /* 0xC4 */ create_tag_class mDwTg;
+    /* 0xD8 */ leafdraw_method_class* mSubMtd;
+    /* 0xDC */ cXyz mPos;
+    /* 0xE8 */ cXyz mScale;
+    /* 0xF4 */ u32 mParam;
 };
 
 #endif /* F_OP_F_OP_KANKYO_H */

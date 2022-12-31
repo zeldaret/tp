@@ -18,27 +18,27 @@ static fopKyM_prm_class* fopKyM_CreateAppend() {
 
     if (params != NULL) {
         cLib_memSet(params, 0, sizeof(fopKyM_prm_class));
-        params->field_0xc.set(1.0f, 1.0f, 1.0f);
+        params->mScale.set(1.0f, 1.0f, 1.0f);
     }
     return params;
 }
 
 /* 8001F6B8-8001F748 019FF8 0090+00 2/2 0/0 0/0 .text            createAppend__FiP4cXyzP4cXyz */
-static fopKyM_prm_class* createAppend(int param_0, cXyz* param_1, cXyz* param_2) {
+static fopKyM_prm_class* createAppend(int param, cXyz* pPos, cXyz* pScale) {
     fopKyM_prm_class* params = fopKyM_CreateAppend();
 
     if (params == NULL) {
         return NULL;
     }
 
-    if (param_1 != NULL) {
-        params->field_0x0 = *param_1;
+    if (pPos != NULL) {
+        params->mPos = *pPos;
     }
 
-    if (param_2 != NULL) {
-        params->field_0xc = *param_2;
+    if (pScale != NULL) {
+        params->mScale = *pScale;
     }
-    params->field_0x18 = param_0;
+    params->mParam = param;
 
     return params;
 }
@@ -54,9 +54,9 @@ static int fopKyM_Create(s16 procName, fopKyM_CreateFunc createFunc, void* proce
 }
 
 /* 8001F7B8-8001F818 01A0F8 0060+00 0/0 3/3 1/1 .text fopKyM_create__FsiP4cXyzP4cXyzPFPv_i */
-int fopKyM_create(s16 procName, int param_1, cXyz* param_2, cXyz* param_3,
+int fopKyM_create(s16 procName, int param, cXyz* pPos, cXyz* pScale,
                   fopKyM_CreateFunc createFunc) {
-    fopKyM_prm_class* params = createAppend(param_1, param_2, param_3);
+    fopKyM_prm_class* params = createAppend(param, pPos, pScale);
 
     if (params == NULL) {
         return -1;
@@ -66,9 +66,9 @@ int fopKyM_create(s16 procName, int param_1, cXyz* param_2, cXyz* param_3,
 }
 
 /* 8001F818-8001F87C 01A158 0064+00 0/0 1/1 0/0 .text fopKyM_fastCreate__FsiP4cXyzP4cXyzPFPv_i */
-base_process_class* fopKyM_fastCreate(s16 procName, int param_1, cXyz* param_2, cXyz* param_3,
+base_process_class* fopKyM_fastCreate(s16 procName, int param, cXyz* pPos, cXyz* pScale,
                                       fopKyM_CreateFunc createFunc) {
-    fopKyM_prm_class* params = createAppend(param_1, param_2, param_3);
+    fopKyM_prm_class* params = createAppend(param, pPos, pScale);
 
     if (params == NULL) {
         return NULL;
@@ -79,18 +79,18 @@ base_process_class* fopKyM_fastCreate(s16 procName, int param_1, cXyz* param_2, 
 
 /* 8001F87C-8001F90C 01A1BC 0090+00 0/0 6/6 37/37 .text            fopKyM_createWpillar__FPC4cXyzfi
  */
-int fopKyM_createWpillar(cXyz const* param_0, f32 param_1, int param_2) {
+int fopKyM_createWpillar(cXyz const* pPos, f32 scale, int param) {
     fopKyM_prm_class* params = fopKyM_CreateAppend();
 
     if (params == NULL) {
         return -1;
     }
 
-    params->field_0x0 = *param_0;
-    params->field_0xc.x = param_1;
-    params->field_0xc.y = param_1;
-    params->field_0xc.z = param_1;
-    params->field_0x18 = param_2;
+    params->mPos = *pPos;
+    params->mScale.x = scale;
+    params->mScale.y = scale;
+    params->mScale.z = scale;
+    params->mParam = param;
 
     return fopKyM_Create(PROC_WPILLAR, NULL, params);
 }
