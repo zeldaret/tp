@@ -18,7 +18,7 @@ static fopKyM_prm_class* fopKyM_CreateAppend() {
 
     if (params != NULL) {
         cLib_memSet(params, 0, sizeof(fopKyM_prm_class));
-        params->field_0xc.set(1.0f, 1.0f, 1.0f);
+        params->mScale.set(1.0f, 1.0f, 1.0f);
     }
     return params;
 }
@@ -36,7 +36,7 @@ static fopKyM_prm_class* createAppend(int param, cXyz* pPos, cXyz* pScale) {
     }
 
     if (pScale != NULL) {
-        params->mScale = *param;
+        params->mScale = *pScale;
     }
     params->mParam = param;
 
