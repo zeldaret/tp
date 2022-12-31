@@ -65,7 +65,7 @@ SECTION_SDATA2 static u8 lit_3902[4] = {
 
 /* 8001FA6C-8001FB50 01A3AC 00E4+00 1/1 0/0 0/0 .text createAppend__FP10fopAc_ac_cP4cXyzPUlPUlUi
  */
-static fopMsg_prm_class* createAppend(fopAc_ac_c* param_0, cXyz* param_1, u32* param_2,
+static fopMsg_prm_class* createAppend(fopAc_ac_c* pActor, cXyz* pPos, u32* pMsgID,
                                       u32* param_3, unsigned int param_4) {
     fopMsg_prm_class* params =
         static_cast<fopMsg_prm_class*>(cMl::memalignB(-4, sizeof(fopMsg_prm_class)));
@@ -74,23 +74,23 @@ static fopMsg_prm_class* createAppend(fopAc_ac_c* param_0, cXyz* param_1, u32* p
         return NULL;
     }
 
-    params->field_0x0 = param_0;
-    dMsgObject_setTalkActor(param_0);
+    params->mpActor = pActor;
+    dMsgObject_setTalkActor(pActor);
 
-    if (param_2 != NULL) {
-        params->field_0x10 = *param_2;
+    if (pMsgID != NULL) {
+        params->mMsgID = *pMsgID;
     }
 
     if (param_3 != NULL) {
         params->field_0x14 = *param_3;
     }
 
-    if (param_1 != NULL) {
-        params->field_0x4 = *param_1;
+    if (pPos != NULL) {
+        params->mPos = *pPos;
     } else {
         f32 tmp_0 = FLOAT_LABEL(lit_3902);
         cXyz tmp(tmp_0, tmp_0, tmp_0);
-        params->field_0x4 = tmp;
+        params->mPos = tmp;
     }
 
     params->field_0x18 = param_4;
@@ -188,11 +188,11 @@ int fopMsgM_messageSet(u32 i_msgIdx, fopAc_ac_c* i_actorP, u32 param_2) {
 
         dMsgObject_c* msg = (dMsgObject_c*)fopMsgM_SearchByID(i_msgID);
 
-        if (msg && msg->field_0xf8 == 1) {
-            msg->field_0xe0.set(pos);
-            msg->field_0xec = i_msgIdx;
+        if (msg && msg->mMode == 1) {
+            msg->mPos.set(pos);
+            msg->mMsgID = i_msgIdx;
             msg->field_0xf0 = param_2;
-            msg->field_0xdc = i_actorP;
+            msg->mpActor = i_actorP;
             msg->setMessageIndex(i_msgIdx,param_2,false);
             return i_msgID;
         } else {
@@ -202,7 +202,7 @@ int fopMsgM_messageSet(u32 i_msgIdx, fopAc_ac_c* i_actorP, u32 param_2) {
 }
 
 /* 8001FE84-8001FFC4 01A7C4 0140+00 0/0 6/6 4/4 .text            fopMsgM_messageSet__FUlUl */
-int fopMsgM_messageSet(u32 param_0, u32 param_1) {
+int fopMsgM_messageSet(u32 msgIdx, u32 param_1) {
     if (dComIfGp_isHeapLockFlag() == 8) {
         dMeter2Info_getMeterClass()->emphasisButtonDelete();
     }
@@ -223,21 +223,21 @@ int fopMsgM_messageSet(u32 param_0, u32 param_1) {
         dMsgObject_c* msg = (dMsgObject_c*)fopMsgM_SearchByID(i_msgID);
 
         if (msg) {
-            if (msg->field_0xf8 == 1) {
-                msg->field_0xe0.set(pos);
-                msg->field_0xec = param_0;
+            if (msg->mMode == 1) {
+                msg->mPos.set(pos);
+                msg->mMsgID = msgIdx;
                 msg->field_0xf0 = param_1;
-                msg->field_0xdc = 0;
-                msg->setTalkPartner(0);
-                msg->setMessageIndex(param_0,param_1,false);
+                msg->mpActor = NULL;
+                msg->setTalkPartner(NULL);
+                msg->setMessageIndex(msgIdx,param_1,false);
                 return i_msgID;
             }
 
-            if (msg->field_0xf8 == 15) {
-                msg->field_0xe0.set(pos);
-                msg->field_0xec = param_0;
+            if (msg->mMode == 15) {
+                msg->mPos.set(pos);
+                msg->mMsgID = msgIdx;
                 msg->field_0xf0 = param_1;
-                msg->field_0xdc = 0;
+                msg->mpActor = NULL;
                 return i_msgID;
             }
         }
@@ -267,11 +267,11 @@ int fopMsgM_messageSetDemo(u32 param_0) {
 
         dMsgObject_c* msg = (dMsgObject_c*)fopMsgM_SearchByID(i_msgID);
 
-        if (msg && msg->field_0xf8 == 1) {
-            msg->field_0xe0.set(pos);
-            msg->field_0xec = param_0;
+        if (msg && msg->mMode == 1) {
+            msg->mPos.set(pos);
+            msg->mMsgID = param_0;
             msg->field_0xf0 = 1000;
-            msg->field_0xdc = 0;
+            msg->mpActor = NULL;
             msg->setMessageIndexDemo(param_0,false);
             return i_msgID;
         } else {

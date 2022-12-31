@@ -230,10 +230,10 @@ BOOL daAlink_c::checkEndMessage(u32 param_0) {
         msg_class* msg = fopMsgM_SearchByID(mMsgClassID);
 
         if (msg != NULL) {
-            if (msg->field_0xf8 == 14) {
-                msg->field_0xf8 = 16;
-            } else if (msg->field_0xf8 == 0x12) {
-                msg->field_0xf8 = 0x13;
+            if (msg->mMode == 14) {
+                msg->mMode = 16;
+            } else if (msg->mMode == 0x12) {
+                msg->mMode = 0x13;
                 return 1;
             }
         }
