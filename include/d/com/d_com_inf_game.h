@@ -2681,6 +2681,8 @@ inline u32 dComIfGp_particle_setPolyColor(u32 param_0, u16 param_1, cBgS_PolyInf
 
 int dComIfGd_setSimpleShadow(cXyz* pos, f32 param_1, f32 param_2, cBgS_PolyInfo& param_3, s16 angle,
                              f32 param_5, _GXTexObj* tex);
+stage_camera_class* dComIfGp_getRoomCamera(int i_roomNo);
+stage_arrow_class* dComIfGp_getRoomArrow(int i_roomNo);
 int dComIfGd_setShadow(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3, f32 param_4,
                        f32 param_5, f32 param_6, f32 param_7, cBgS_PolyInfo& param_8,
                        dKy_tevstr_c* param_9, s16 param_10, f32 param_11, _GXTexObj* param_12);

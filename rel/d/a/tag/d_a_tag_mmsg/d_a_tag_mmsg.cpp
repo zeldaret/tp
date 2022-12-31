@@ -4,153 +4,145 @@
 //
 
 #include "rel/d/a/tag/d_a_tag_mmsg/d_a_tag_mmsg.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Forward References:
-//
-
-extern "C" void create__11daTagMmsg_cFv();
-extern "C" static void daTagMmsg_Create__FP10fopAc_ac_c();
-extern "C" void __dt__11daTagMmsg_cFv();
-extern "C" static void daTagMmsg_Delete__FP11daTagMmsg_c();
-extern "C" void execute__11daTagMmsg_cFv();
-extern "C" static void daTagMmsg_Execute__FP11daTagMmsg_c();
-extern "C" static bool daTagMmsg_Draw__FP11daTagMmsg_c();
-extern "C" extern void* g_profile_Tag_Mmsg[12];
 
 //
 // External References:
 //
 
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void dComIfGp_getRoomCamera__Fi();
-extern "C" void dComIfGp_getRoomArrow__Fi();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void onSwitch__10dSv_info_cFii();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void __dl__FPv();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" u8 m_midnaActor__9daPy_py_c[4];
-
-//
-// Declarations:
-//
+extern "C" extern leafdraw_method_class g_fopAc_Method;
 
 /* ############################################################################################## */
-/* 80D5BD38-80D5BD3C 000000 0004+00 1/1 0/0 0/0 .rodata          @3702 */
-SECTION_RODATA static f32 const lit_3702 = 10.0f;
-COMPILER_STRIP_GATE(0x80D5BD38, &lit_3702);
-
-/* 80D5BD3C-80D5BD40 000004 0004+00 0/1 0/0 0/0 .rodata          @3703 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3703 = 10000.0f;
-COMPILER_STRIP_GATE(0x80D5BD3C, &lit_3703);
-#pragma pop
-
-/* 80D5BD40-80D5BD44 000008 0004+00 0/1 0/0 0/0 .rodata          @3704 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3704 = 100.0f;
-COMPILER_STRIP_GATE(0x80D5BD40, &lit_3704);
-#pragma pop
-
 /* 80D5B918-80D5BA94 000078 017C+00 1/1 0/0 0/0 .text            create__11daTagMmsg_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagMmsg_c::create() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_mmsg/d_a_tag_mmsg/create__11daTagMmsg_cFv.s"
+int daTagMmsg_c::create() {
+    if (!fopAcM_CheckCondition(this, 8)) {
+        new (this) daTagMmsg_c();
+        fopAcM_OnCondition(this, 8);
+    }
+
+    this->field_0x570 = fpcM_GetParam(this) & 0x3FF;
+    this->field_0x572 = (fpcM_GetParam(this) >> 10) & 0x3FF;
+    this->field_0x56b = (fpcM_GetParam(this) >> 29) & 1;
+    this->field_0x568 = this->shape_angle.x;
+    this->field_0x569 = (this->shape_angle.x >> 8) & 0xFF;
+
+    if ((fpcM_GetParam(this) >> 30) & 1) {
+        this->mScale.x *= 10.0f;
+        this->mScale.y *= 10.0f;
+    }
+
+    this->field_0x574 = this->mScale.x * (10000.0f * this->mScale.x);
+    this->field_0x578 = this->current.pos.y + this->mScale.y * 100.0f;
+    this->mAttention = this->shape_angle.y;
+
+    if (!checkNoAttention()) {
+        s32 roomNo = fopAcM_GetRoomNo(this);
+        cXyz* tmp =
+            &dComIfGp_getRoomArrow(roomNo)
+                 ->mEntries[dComIfGp_getRoomCamera(roomNo)->field_0x4[this->mAttention].field_0x10]
+                 .mPosition;
+        this->mEyePos.set(tmp->x, tmp->y, tmp->z);
+        this->mAttentionInfo.mPosition = this->mEyePos;
+    }
+
+    this->shape_angle.y = fopAcM_searchPlayerAngleY(this);
+    return 4;
 }
-#pragma pop
 
 /* 80D5BA94-80D5BAB4 0001F4 0020+00 1/0 0/0 0/0 .text            daTagMmsg_Create__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagMmsg_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_mmsg/d_a_tag_mmsg/daTagMmsg_Create__FP10fopAc_ac_c.s"
+static int daTagMmsg_Create(fopAc_ac_c* tag) {
+    return static_cast<daTagMmsg_c*>(tag)->create();
 }
-#pragma pop
 
 /* 80D5BAB4-80D5BB08 000214 0054+00 1/1 0/0 0/0 .text            __dt__11daTagMmsg_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm daTagMmsg_c::~daTagMmsg_c() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_mmsg/d_a_tag_mmsg/__dt__11daTagMmsg_cFv.s"
-}
-#pragma pop
+daTagMmsg_c::~daTagMmsg_c() {}
 
 /* 80D5BB08-80D5BB30 000268 0028+00 1/0 0/0 0/0 .text            daTagMmsg_Delete__FP11daTagMmsg_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagMmsg_Delete(daTagMmsg_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_mmsg/d_a_tag_mmsg/daTagMmsg_Delete__FP11daTagMmsg_c.s"
+static int daTagMmsg_Delete(daTagMmsg_c* tag) {
+    tag->~daTagMmsg_c();
+    return 1;
 }
-#pragma pop
 
 /* 80D5BB30-80D5BD08 000290 01D8+00 1/1 0/0 0/0 .text            execute__11daTagMmsg_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagMmsg_c::execute() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_mmsg/d_a_tag_mmsg/execute__11daTagMmsg_cFv.s"
+int daTagMmsg_c::execute() {
+    if (daPy_py_c::getMidnaActor() == NULL) {
+        return 1;
+    }
+
+    if (this->field_0x572 != 0x3FF &&
+        i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[this->field_0x572])) {
+        return 1;
+    }
+
+    if (this->field_0x569 != 0xFF &&
+        dComIfGs_isSwitch(this->field_0x569, fopAcM_GetHomeRoomNo(this))) {
+        fopAcM_delete(this);
+        return 1;
+    }
+
+    if (this->mUseFlg && !i_dComIfGp_event_runCheck() && this->field_0x56b &&
+        this->field_0x569 != 0xFF) {
+        dComIfGs_onSwitch(this->field_0x569, fopAcM_GetHomeRoomNo(this));
+        fopAcM_delete(this);
+        return 1;
+    }
+
+    daPy_py_c* player = daPy_getLinkPlayerActorClass();
+    if ((this->current.pos.y <= player->current.pos.y) &&
+        (this->field_0x578 >= player->current.pos.y) &&
+        (fopAcM_searchPlayerDistanceXZ2(this) < this->field_0x574) &&
+        (this->field_0x570 == 0x3FF ||
+         i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[this->field_0x570])) &&
+        (this->field_0x568 == 0xFF ||
+         dComIfGs_isSwitch(this->field_0x568, fopAcM_GetHomeRoomNo(this)))) {
+        player->setMidnaMsgNum(this, this->shape_angle.z);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80D5BD08-80D5BD28 000468 0020+00 1/0 0/0 0/0 .text            daTagMmsg_Execute__FP11daTagMmsg_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagMmsg_Execute(daTagMmsg_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_mmsg/d_a_tag_mmsg/daTagMmsg_Execute__FP11daTagMmsg_c.s"
+static int daTagMmsg_Execute(daTagMmsg_c* tag) {
+    return tag->execute();
 }
-#pragma pop
 
 /* 80D5BD28-80D5BD30 000488 0008+00 1/0 0/0 0/0 .text            daTagMmsg_Draw__FP11daTagMmsg_c */
-static bool daTagMmsg_Draw(daTagMmsg_c* param_0) {
+static bool daTagMmsg_Draw(daTagMmsg_c* tag) {
     return true;
 }
 
 /* ############################################################################################## */
 /* 80D5BD44-80D5BD64 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagMmsg_Method */
-SECTION_DATA static void* l_daTagMmsg_Method[8] = {
-    (void*)daTagMmsg_Create__FP10fopAc_ac_c,
-    (void*)daTagMmsg_Delete__FP11daTagMmsg_c,
-    (void*)daTagMmsg_Execute__FP11daTagMmsg_c,
-    (void*)NULL,
-    (void*)daTagMmsg_Draw__FP11daTagMmsg_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+// This is probably of type leafdraw_method_class, but I can't get the data to have the right
+// padding without these extra NULLs.
+static void* l_daTagMmsg_Method[8] = {
+    daTagMmsg_Create, daTagMmsg_Delete, daTagMmsg_Execute, NULL, daTagMmsg_Draw, NULL, NULL, NULL,
 };
 
 /* 80D5BD64-80D5BD94 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Mmsg */
-SECTION_DATA extern void* g_profile_Tag_Mmsg[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x02C20000, (void*)&g_fpcLf_Method,
-    (void*)0x0000057C, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x00FF0000, (void*)&l_daTagMmsg_Method,
-    (void*)0x00044000, (void*)0x030E0000,
+extern actor_process_profile_definition g_profile_Tag_Mmsg = {
+    -3,                                           // mLayerID
+    7,                                            // mListID
+    0xFFFD,                                       // mListPrio
+    PROC_Tag_Mmsg,                                // mProcName
+    0,                                            // unkA
+    &g_fpcLf_Method.mBase,                        // mSubMtd
+    sizeof(daTagMmsg_c),                          // mSize
+    0,                                            // mSizeOther
+    0,                                            // mParameters
+    &g_fopAc_Method,                              // mSubMtd
+    0x00FF,                                       // mPriority
+    0,                                            // unk22[0]
+    0,                                            // unk22[1]
+    (leafdraw_method_class*)&l_daTagMmsg_Method,  // mSubMtd
+    0x00044000,                                   // mStatus
+    0x03,                                         // mActorType
+    0x0E,                                         // mCullType
+    0,                                            // field_0x2e[0]
+    0                                             // field_0x2e[1]
 };
