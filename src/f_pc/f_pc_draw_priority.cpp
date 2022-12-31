@@ -12,7 +12,7 @@
 //
 
 /* 80021308-80021310 0008+00 s=0 e=1 z=0  None .text      fpcDwPi_Get__FPC19draw_priority_class */
-s32 fpcDwPi_Get(const draw_priority_class* pDwPi) {
+s16 fpcDwPi_Get(const draw_priority_class* pDwPi) {
     return pDwPi->mPriority;
 }
 

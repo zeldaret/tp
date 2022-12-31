@@ -70,10 +70,9 @@ static int fopCam_Create(void* i_actorP) {
     }
 
     int ret = fpcMtd_Create(&camera->mpMtd->mBase, camera);
-
-    if (ret == 4) {
-        s16 prior = fpcLf_GetPriority(camera);
-        fopDwTg_ToDrawQ(&camera->mCreateTag, prior);
+    if (ret == cPhs_COMPLEATE_e) {
+        s32 priority = fpcLf_GetPriority(camera);
+        fopDwTg_ToDrawQ(&camera->mCreateTag, priority);
     }
 
     return ret;

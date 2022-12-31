@@ -340,7 +340,7 @@ static int fopAc_Create(void* actor) {
 
     int ret = fpcMtd_Create((process_method_class*)ac->mSubMtd, ac);
     if (ret == 4) {
-        s16 priority = fpcLf_GetPriority(ac);
+        s32 priority = fpcLf_GetPriority(ac);
         fopDwTg_ToDrawQ(&ac->mDwTg, priority);
     } else if (ret == 5) {
         fopAcM_OnCondition(ac, 0x10);

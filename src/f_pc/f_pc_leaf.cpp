@@ -12,7 +12,7 @@
 //
 
 /* 80021A00-80021A24 0024+00 s=0 e=4 z=2  None .text      fpcLf_GetPriority__FPC14leafdraw_class */
-s32 fpcLf_GetPriority(const leafdraw_class* pLeaf) {
+s16 fpcLf_GetPriority(const leafdraw_class* pLeaf) {
     return fpcDwPi_Get(&pLeaf->mDwPi);
 }
 
