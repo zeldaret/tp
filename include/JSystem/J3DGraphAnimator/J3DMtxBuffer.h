@@ -30,14 +30,14 @@ public:
     u32* getCurrentViewNoPtr() { return &mCurrentViewNo; }
     u8* getScaleFlagArray() const { return mpScaleFlagArr; }
     u8 getScaleFlag(u16 idx) const { return mpScaleFlagArr[idx]; }
-    Mtx** getDrawMtxPtrPtr() const { return mpDrawMtxArr[0]; }
-    Mtx* getDrawMtxPtr() const { return mpDrawMtxArr[0][mCurrentViewNo]; }
-    Mtx* getDrawMtx(u16 idx) const { return &mpDrawMtxArr[0][mCurrentViewNo][idx]; }
-    Mtx33** getNrmMtxPtrPtr() const { return mpNrmMtxArr[0]; }
-    Mtx33* getNrmMtxPtr() const { return mpNrmMtxArr[0][mCurrentViewNo]; }
-    Mtx33* getNrmMtx(u16 idx) const { return &mpNrmMtxArr[0][mCurrentViewNo][idx]; }
-    Mtx33*** getBumpMtxPtrPtr() const { return mpBumpMtxArr[0]; }
-    Mtx33* getBumpMtxPtr(int idx) const { return mpBumpMtxArr[0][idx][mCurrentViewNo]; }
+    Mtx** getDrawMtxPtrPtr() const { return mpDrawMtxArr[1]; }
+    Mtx* getDrawMtxPtr() const { return mpDrawMtxArr[1][mCurrentViewNo]; }
+    Mtx* getDrawMtx(u16 idx) const { return &mpDrawMtxArr[1][mCurrentViewNo][idx]; }
+    Mtx33** getNrmMtxPtrPtr() const { return mpNrmMtxArr[1]; }
+    Mtx33* getNrmMtxPtr() const { return mpNrmMtxArr[1][mCurrentViewNo]; }
+    Mtx33* getNrmMtx(u16 idx) const { return &mpNrmMtxArr[1][mCurrentViewNo][idx]; }
+    Mtx33*** getBumpMtxPtrPtr() const { return mpBumpMtxArr[1]; }
+    Mtx33* getBumpMtxPtr(int idx) const { return mpBumpMtxArr[1][idx][mCurrentViewNo]; }
 
     void swapDrawMtx() {
         Mtx* tmp = mpDrawMtxArr[0][mCurrentViewNo];
