@@ -5,7 +5,13 @@
 
 #include "dolphin/exi/EXIBios.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "dolphin/os/OS.h"
+
+#define REG_MAX 5
+#define REG(chan, idx) (__EXIRegs[((chan)*REG_MAX) + (idx)])
+
+#define EXI_0CR(tstart, dma, rw, tlen)                                                             \
+    ((((u32)(tstart)) << 0) | (((u32)(dma)) << 1) | (((u32)(rw)) << 2) | (((u32)(tlen)) << 4))
 
 //
 // Forward References:
@@ -36,6 +42,36 @@ extern u8 __OSInIPL[4 + 4 /* padding */];
 static EXIControl Ecb[3];
 
 /* 80342C0C-80342D00 33D54C 00F4+00 4/4 0/0 0/0 .text            SetExiInterruptMask */
+#ifdef NONMATCHING
+static void SetExiInterruptMask(s32 chan, EXIControl* exi) {
+    EXIControl* exi2;
+
+    exi2 = &Ecb[2];
+    switch (chan) {
+    case 0:
+        if ((exi->exiCallback == 0 && exi2->exiCallback == 0) || (exi->state & STATE_LOCKED)) {
+            __OSMaskInterrupts(OS_INTERRUPTMASK_EXI_0_EXI | OS_INTERRUPTMASK_EXI_2_EXI);
+        } else {
+            __OSUnmaskInterrupts(OS_INTERRUPTMASK_EXI_0_EXI | OS_INTERRUPTMASK_EXI_2_EXI);
+        }
+        break;
+    case 1:
+        if (exi->exiCallback == 0 || (exi->state & STATE_LOCKED)) {
+            __OSMaskInterrupts(OS_INTERRUPTMASK_EXI_1_EXI);
+        } else {
+            __OSUnmaskInterrupts(OS_INTERRUPTMASK_EXI_1_EXI);
+        }
+        break;
+    case 2:
+        if (__OSGetInterruptHandler(OS_INTR_PI_DEBUG) == 0 || (exi->state & STATE_LOCKED)) {
+            __OSMaskInterrupts(OS_INTERRUPTMASK_PI_DEBUG);
+        } else {
+            __OSUnmaskInterrupts(OS_INTERRUPTMASK_PI_DEBUG);
+        }
+        break;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -44,18 +80,81 @@ static asm void SetExiInterruptMask(s32 chan, EXIControl* exi) {
 #include "asm/exi/EXIBios/SetExiInterruptMask.s"
 }
 #pragma pop
+#endif
 
 /* 80342D00-80342F5C 33D640 025C+00 2/2 9/9 0/0 .text            EXIImm */
+#ifdef NONMATCHING
+s32 EXIImm(s32 chan, void* buf, s32 len, u32 type, EXICallback callback) {
+    EXIControl* exi = &Ecb[chan];
+    BOOL enabled;
+
+    enabled = OSDisableInterrupts();
+    if ((exi->state & EXI_STATE_BUSY) || !(exi->state & EXI_STATE_SELECTED)) {
+        OSRestoreInterrupts(enabled);
+        return FALSE;
+    }
+
+    exi->tcCallback = callback;
+    if (exi->tcCallback) {
+        EXIClearInterrupts(chan, FALSE, TRUE, FALSE);
+        __OSUnmaskInterrupts(OS_INTERRUPTMASK_EXI_0_TC >> (3 * chan));
+    }
+
+    exi->state |= EXI_STATE_IMM;
+
+    if (type != EXI_READ) {
+        u32 data;
+        int i;
+
+        data = 0;
+        for (i = 0; i < len; i++) {
+            data |= ((u8*)buf)[i] << ((3 - i) * 8);
+        }
+        REG(chan, 4) = data;
+    }
+
+    exi->immBuf = buf;
+    exi->immLen = (type != EXI_WRITE) ? len : 0;
+
+    REG(chan, 3) = EXI_0CR(1, 0, type, len - 1);
+
+    OSRestoreInterrupts(enabled);
+
+    return TRUE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm s32 EXIImm(s32 chan, void* buf, s32 len, u32 type, EXICallback callbac) {
+asm s32 EXIImm(s32 chan, void* buf, s32 len, u32 type, EXICallback callback) {
     nofralloc
 #include "asm/exi/EXIBios/EXIImm.s"
 }
 #pragma pop
+#endif
 
 /* 80342F5C-80342FFC 33D89C 00A0+00 0/0 7/7 0/0 .text            EXIImmEx */
+// needs compiler lmw/lwz order patch
+#ifdef NONMATCHING
+BOOL EXIImmEx(s32 chan, void* buf, s32 len, u32 mode) {
+    s32 xLen;
+
+    while (len) {
+        xLen = (len < 4) ? len : 4;
+        if (!EXIImm(chan, buf, xLen, mode, NULL)) {
+            return FALSE;
+        }
+
+        if (!EXISync(chan)) {
+            return FALSE;
+        }
+
+        (u8*)buf += xLen;
+        len -= xLen;
+    }
+    return TRUE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -64,8 +163,37 @@ asm s32 EXIImmEx(s32 chan, void* buf, s32 len, u32 mode) {
 #include "asm/exi/EXIBios/EXIImmEx.s"
 }
 #pragma pop
+#endif
 
 /* 80342FFC-803430E8 33D93C 00EC+00 0/0 4/4 0/0 .text            EXIDma */
+#ifdef NONMATCHING
+BOOL EXIDma(s32 chan, void* buf, s32 len, u32 type, EXICallback callback) {
+    EXIControl* exi = &Ecb[chan];
+    BOOL enabled;
+
+    enabled = OSDisableInterrupts();
+    if ((exi->state & EXI_STATE_BUSY) || !(exi->state & EXI_STATE_SELECTED)) {
+        OSRestoreInterrupts(enabled);
+        return FALSE;
+    }
+
+    exi->tcCallback = callback;
+    if (exi->tcCallback) {
+        EXIClearInterrupts(chan, FALSE, TRUE, FALSE);
+        __OSUnmaskInterrupts(OS_INTERRUPTMASK_EXI_0_TC >> (3 * chan));
+    }
+
+    exi->state |= EXI_STATE_DMA;
+
+    REG(chan, 1) = (u32)buf & 0x3ffffe0;
+    REG(chan, 2) = (u32)len;
+    REG(chan, 3) = EXI_0CR(1, 1, type, 0);
+
+    OSRestoreInterrupts(enabled);
+
+    return TRUE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -74,6 +202,7 @@ asm BOOL EXIDma(s32 chan, void* buf, s32 len, u32 type, EXICallback callback) {
 #include "asm/exi/EXIBios/EXIDma.s"
 }
 #pragma pop
+#endif
 
 /* 803430E8-80343334 33DA28 024C+00 2/2 9/9 0/0 .text            EXISync */
 #pragma push
@@ -207,7 +336,8 @@ static asm void EXTIntrruptHandler(s16 interrupt, OSContext* context) {
 
 /* ############################################################################################## */
 /* 803D10A8-803D10F0 02E1C8 0045+03 1/0 0/0 0/0 .data            @1 */
-SECTION_DATA static char lit_1[] = "<< Dolphin SDK - EXI\trelease build: Apr  5 2004 04:14:14 (0x2301) >>";
+SECTION_DATA static char lit_1[] =
+    "<< Dolphin SDK - EXI\trelease build: Apr  5 2004 04:14:14 (0x2301) >>";
 
 /* 804509C0-804509C8 -00001 0004+04 1/1 0/0 0/0 .sdata           __EXIVersion */
 SECTION_SDATA static const char* __EXIVersion = lit_1;

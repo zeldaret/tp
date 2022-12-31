@@ -573,7 +573,7 @@ void JFWDisplay::threadSleep(s64 time) {
     s32 status = OSDisableInterrupts();
     alarm.appendLink();
 
-    OSSetAlarm(&alarm, time, (OSAlarmHandler*)JFWThreadAlarmHandler);
+    OSSetAlarm(&alarm, time, JFWThreadAlarmHandler);
     OSSuspendThread(alarm.getThread());
     OSRestoreInterrupts(status);
 }
@@ -694,7 +694,7 @@ static void JFWDrawDoneAlarm() {
     s32 status = OSDisableInterrupts();
     alarm.createAlarm();
     alarm.appendLink();
-    OSSetAlarm(&alarm, 0.5 * (*(u32*)0x800000F8 / 4), (OSAlarmHandler*)JFWGXAbortAlarmHandler);
+    OSSetAlarm(&alarm, 0.5 * (*(u32*)0x800000F8 / 4), JFWGXAbortAlarmHandler);
     GXDrawDone();
     alarm.cancelAlarm();
     alarm.removeLink();

@@ -1,7 +1,7 @@
 #ifndef PAD_H
 #define PAD_H
 
-#include "dolphin/types.h"
+#include "dolphin/os/OS.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -27,15 +27,22 @@ typedef struct PADStatus {
     /* 0xA */ s8 error;
 } PADStatus;
 
-u32 PADInit(void);
+typedef void (*PADSamplingCallback)(void);
+
+BOOL PADInit(void);
 void PADSetAnalogMode(u32 mode);
-void PADSetSpec(int spec);
+void PADSetSpec(u32 spec);
 BOOL PADReset(u32 mask);
 void PADClampCircle(PADStatus* status);
 void PADClamp(PADStatus* status);
 u32 PADRead(PADStatus* status);
 void PADControlMotor(s32 channel, u32 command);
 BOOL PADRecalibrate(u32 mask);
+static void PADOriginCallback(s32 chan, u32 error, OSContext* context);
+static void PADOriginUpdateCallback(s32 chan, u32 error, OSContext* context);
+static void PADProbeCallback(s32 chan, u32 error, OSContext* context);
+static void PADTypeAndStatusCallback(s32 chan, u32 type);
+static void PADReceiveCheckCallback(s32 chan, u32 type);
 
 #ifdef __cplusplus
 };

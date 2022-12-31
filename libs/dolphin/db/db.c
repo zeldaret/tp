@@ -4,88 +4,51 @@
 //
 
 #include "dolphin/db/db.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Forward References:
-//
-
-void DBInit();
-void __DBExceptionDestinationAux();
-void __DBExceptionDestination();
-void __DBIsExceptionMarked();
-void DBPrintf();
-
-//
-// External References:
-//
-
-void OSReport();
-void PPCHalt();
-void OSDumpContext();
-
-//
-// Declarations:
-//
+#include "dolphin/base/PPCArch.h"
+#include "dolphin/os/OS.h"
 
 /* ############################################################################################## */
 /* 80451708-8045170C 000C08 0004+00 2/2 0/0 0/0 .sbss            __DBInterface */
-static u8 __DBInterface[4];
+static DBInterface* __DBInterface;
 
 /* 8045170C-80451710 000C0C 0004+00 1/1 0/0 0/0 .sbss            DBVerbose */
-static u8 DBVerbose[4];
+static int DBVerbose;
 
 /* 80346398-803463C0 340CD8 0028+00 0/0 1/1 0/0 .text            DBInit */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DBInit() {
-    nofralloc
-#include "asm/dolphin/db/db/DBInit.s"
+void DBInit(void) {
+    __DBInterface = (DBInterface*)OSPhysicalToCached(OS_DBINTERFACE_ADDR);
+    __DBInterface->ExceptionDestination = (void (*)())OSCachedToPhysical(__DBExceptionDestination);
+    DBVerbose = TRUE;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 803D1368-803D1380 02E488 0018+00 1/1 0/0 0/0 .data            @9 */
-SECTION_DATA static char lit_9[] = "DBExceptionDestination\n";;
 
 /* 803463C0-80346408 340D00 0048+00 1/1 0/0 0/0 .text            __DBExceptionDestinationAux */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __DBExceptionDestinationAux() {
-    nofralloc
-#include "asm/dolphin/db/db/__DBExceptionDestinationAux.s"
+void __DBExceptionDestinationAux(void) {
+    u32* contextAddr = (void*)0x00C0;
+    OSContext* context = (OSContext*)OSPhysicalToCached(*contextAddr);
+
+    OSReport("DBExceptionDestination\n");
+    OSDumpContext(context);
+    PPCHalt();
 }
-#pragma pop
 
 /* 80346408-80346418 340D48 0010+00 1/1 0/0 0/0 .text            __DBExceptionDestination */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __DBExceptionDestination() {
+/* clang-format off */
+asm void __DBExceptionDestination(void) {
     nofralloc
-#include "asm/dolphin/db/db/__DBExceptionDestination.s"
+    mfmsr       r3
+    ori         r3, r3, 0x10|0x20
+    mtmsr       r3
+
+    b __DBExceptionDestinationAux
 }
-#pragma pop
+/* clang-format on */
 
 /* 80346418-80346434 340D58 001C+00 0/0 1/1 0/0 .text            __DBIsExceptionMarked */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __DBIsExceptionMarked() {
-    nofralloc
-#include "asm/dolphin/db/db/__DBIsExceptionMarked.s"
+BOOL __DBIsExceptionMarked(__OSException exception) {
+    u32 mask = 1 << exception;
+
+    return (BOOL)(__DBInterface->exceptionMask & mask);
 }
-#pragma pop
 
 /* 80346434-80346484 340D74 0050+00 0/0 4/4 0/0 .text            DBPrintf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DBPrintf() {
-    nofralloc
-#include "asm/dolphin/db/db/DBPrintf.s"
-}
-#pragma pop
+void DBPrintf(char* format, ...) {}

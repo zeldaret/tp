@@ -4,8 +4,10 @@
 //
 
 #include "dolphin/dvd/dvd.h"
+#include "MSL_C/MSL_Common/Src/mem.h"
+#include "MSL_C/MSL_Common/Src/string.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "dolphin/os/OS.h"
 
 //
 // Forward References:
@@ -17,7 +19,7 @@ static void cbForStateReadingFST();
 static void cbForStateError();
 static void stateTimeout();
 static void stateGettingError();
-static void CategorizeError();
+static u32 CategorizeError(u32 error);
 static void cbForStateGettingError();
 static void cbForUnrecoveredError();
 static void cbForUnrecoveredErrorRetry();
@@ -40,40 +42,16 @@ static void cbForStateMotorStopped();
 static void stateReady();
 static void stateBusy();
 static void cbForStateBusy();
-void DVDReadAbsAsyncPrio();
-void DVDReadAbsAsyncForBS();
-void DVDReadDiskID();
-void DVDCancelStreamAsync();
-void DVDInquiryAsync();
-void DVDReset();
-void DVDSetAutoInvalidation();
-void DVDResume();
-static void DVDCancelAsync();
-void DVDCancel();
-static void cbForCancelSync();
-void __DVDPrepareResetAsync();
-void __DVDTestAlarm();
+static void cbForCancelSync(s32 result, DVDCommandBlock* block);
+void __DVDPrepareResetAsync(DVDCBCallback callbac);
+BOOL __DVDTestAlarm(OSAlarm* alarm);
 
 //
 // External References:
 //
 
-SECTION_INIT void memcpy();
-void OSReport();
-void OSPanic();
-void OSRegisterVersion();
-void OSCreateAlarm();
-void OSSetAlarm();
-void DCInvalidateRange();
-void OSDisableInterrupts();
-void OSRestoreInterrupts();
-void __OSSetInterruptHandler();
-void __OSUnmaskInterrupts();
-void OSInitThreadQueue();
-void OSSleepThread();
-void OSWakeupThread();
 void __DVDInitWA();
-void __DVDInterruptHandler();
+void __DVDInterruptHandler(s16 interrupt, OSContext* context);
 void DVDLowRead();
 void DVDLowSeek();
 void DVDLowWaitCoverClose();
@@ -87,94 +65,123 @@ void DVDLowAudioBufferConfig();
 void DVDLowReset();
 void DVDLowBreak();
 void DVDLowClearCallback();
-void __DVDLowTestAlarm();
+BOOL __DVDLowTestAlarm(OSAlarm* alarm);
 void __DVDFSInit();
 void __DVDClearWaitingQueue();
-void __DVDPushWaitingQueue();
-void __DVDPopWaitingQueue();
-void __DVDCheckWaitingQueue();
+BOOL __DVDPushWaitingQueue();
+DVDCommandBlock* __DVDPopWaitingQueue();
+BOOL __DVDCheckWaitingQueue();
 void __DVDDequeueWaitingQueue();
 void __DVDStoreErrorCode();
-void DVDCompareDiskID();
+BOOL DVDCompareDiskID(DVDDiskID*, DVDDiskID*);
 void __DVDPrintFatalMessage();
 void __fstLoad();
-void memcmp();
-extern u8 __DVDThreadQueue[8];
+extern OSThreadQueue __DVDThreadQueue;
 
 //
 // Declarations:
 //
 
 /* 803490EC-803490F0 343A2C 0004+00 1/0 0/0 0/0 .text            defaultOptionalCommandChecker */
-static void defaultOptionalCommandChecker() {
-    /* empty function */
-}
+static void defaultOptionalCommandChecker() {}
 
 /* ############################################################################################## */
 /* 803D1520-803D1568 02E640 0045+03 1/0 0/0 0/0 .data            @1 */
-SECTION_DATA static char lit_1[] = "<< Dolphin SDK - DVD\trelease build: Apr  5 2004 04:14:51 (0x2301) >>";
+SECTION_DATA static char lit_1[] =
+    "<< Dolphin SDK - DVD\trelease build: Apr  5 2004 04:14:51 (0x2301) >>";
+
+/* 804509E8-804509EC -00001 0004+00 1/1 0/0 0/0 .sdata           __DVDVersion */
+SECTION_SDATA static char* __DVDVersion = lit_1;
 
 /* 803D1568-803D1574 02E688 000A+02 1/1 0/0 0/0 .data            @18 */
 SECTION_DATA static char lit_18[] = "load fst\n";
 
-/* 804509E8-804509EC -00001 0004+00 1/1 0/0 0/0 .sdata           __DVDVersion */
-SECTION_SDATA static void* __DVDVersion = (void*)&lit_1;
-
 /* 80451778-8045177C 000C78 0004+00 24/24 0/0 0/0 .sbss            executing */
-static u8 executing[4];
+static DVDCommandBlock* executing;
 
 /* 8045177C-80451780 000C7C 0004+00 4/4 0/0 0/0 .sbss            IDShouldBe */
-static u8 IDShouldBe[4];
+static DVDDiskID* IDShouldBe;
 
 /* 80451780-80451784 000C80 0004+00 3/3 0/0 0/0 .sbss            bootInfo */
-static u8 bootInfo[4];
+static OSBootInfo* bootInfo;
 
 /* 80451784-80451788 000C84 0004+00 8/8 0/0 0/0 .sbss            PauseFlag */
-static u8 PauseFlag[4];
+static volatile BOOL PauseFlag;
 
 /* 80451788-8045178C 000C88 0004+00 5/5 0/0 0/0 .sbss            PausingFlag */
-static u8 PausingFlag[4];
+static volatile BOOL PausingFlag;
 
 /* 8045178C-80451790 000C8C 0004+00 2/2 0/0 0/0 .sbss            AutoFinishing */
-static u8 AutoFinishing[4];
+static volatile BOOL AutoFinishing;
 
 /* 80451790-80451794 000C90 0004+00 4/4 0/0 0/0 .sbss            FatalErrorFlag */
-static u8 FatalErrorFlag[4];
+static volatile BOOL FatalErrorFlag;
 
 /* 80451794-80451798 000C94 0004+00 6/6 0/0 0/0 .sbss            CurrCommand */
-static u8 CurrCommand[4];
+static volatile u32 CurrCommand;
 
 /* 80451798-8045179C 000C98 0004+00 8/8 0/0 0/0 .sbss            Canceling */
-static u8 Canceling[4];
+static volatile u32 Canceling;
 
 /* 8045179C-804517A0 000C9C 0004+00 8/8 0/0 0/0 .sbss            CancelCallback */
-static u8 CancelCallback[4];
+static DVDCBCallback CancelCallback;
 
 /* 804517A0-804517A4 000CA0 0004+00 9/9 0/0 0/0 .sbss            ResumeFromHere */
-static u8 ResumeFromHere[4];
+static volatile u32 ResumeFromHere;
 
 /* 804517A4-804517A8 000CA4 0004+00 1/1 0/0 0/0 .sbss            CancelLastError */
-static u8 CancelLastError[4];
+static volatile u32 CancelLastError;
 
 /* 804517A8-804517AC 000CA8 0004+00 1/1 0/0 0/0 .sbss            LastError */
-static u8 LastError[4];
+static volatile u32 LastError;
 
 /* 804517AC-804517B0 000CAC 0004+00 9/9 0/0 0/0 .sbss            NumInternalRetry */
-static u8 NumInternalRetry[4];
+static volatile s32 NumInternalRetry;
 
 /* 804517B0-804517B4 000CB0 0004+00 3/3 0/0 0/0 .sbss            ResetRequired */
-static u8 ResetRequired[4];
+static volatile BOOL ResetRequired;
 
 /* 804517B4-804517B8 000CB4 0004+00 1/1 0/0 0/0 .sbss            FirstTimeInBootrom */
-static u8 FirstTimeInBootrom[4];
+static volatile BOOL FirstTimeInBootrom;
 
 /* 804517B8-804517BC 000CB8 0004+00 5/5 0/0 0/0 .sbss            MotorState */
-static u8 MotorState[4];
+static u32 MotorState;
 
 /* 804517BC-804517C0 000CBC 0004+00 1/1 0/0 0/0 .sbss            DVDInitialized */
-static u8 DVDInitialized[4];
+static BOOL DVDInitialized;
 
 /* 803490F0-803491C8 343A30 00D8+00 0/0 3/3 0/0 .text            DVDInit */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+void DVDInit(void) {
+    if (DVDInitialized) {
+        return;
+    }
+
+    OSRegisterVersion(__DVDVersion);
+    DVDInitialized = TRUE;
+    __DVDFSInit();
+    __DVDClearWaitingQueue();
+    __DVDInitWA();
+
+    bootInfo = (OSBootInfo*)OSPhysicalToCached(0x0000);
+    MotorState = 0;
+    IDShouldBe = &(bootInfo->disk_info);
+    __OSSetInterruptHandler(21, __DVDInterruptHandler);
+    __OSUnmaskInterrupts(0x400);
+    OSInitThreadQueue(&__DVDThreadQueue);
+
+    __DIRegs[0] = 0x2A;
+    __DIRegs[1] = 0;
+
+    if (bootInfo->boot_code == 0xE5207C22) {
+        OSReport("load fst\n");
+        __fstLoad();
+    } else if (bootInfo->boot_code != 0xD15EA5E) {
+        FirstTimeInBootrom = TRUE;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -183,31 +190,33 @@ asm void DVDInit(void) {
 #include "asm/dolphin/dvd/dvd/DVDInit.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803D1574-803D15A8 02E694 0034+00 2/2 0/0 0/0 .data            @24 */
 SECTION_DATA static char lit_24[] = "DVDChangeDisk(): FST in the new disc is too big.   ";
 
 /* 8044C900-8044C920 079620 0020+00 8/8 0/0 0/0 .bss             BB2 */
-static u8 BB2[32];
+static DVDBB2 BB2 ALIGN_DECL(32);
 
 /* 804509EC-804509F0 00046C 0004+00 6/6 0/0 0/0 .sdata           autoInvalidation */
 SECTION_SDATA static u32 autoInvalidation = 0x00000001;
 
 /* 804509F0-804509F4 -00001 0004+00 1/1 0/0 0/0 .sdata           checkOptionalCommand */
-SECTION_SDATA static void* checkOptionalCommand = (void*)defaultOptionalCommandChecker;
+SECTION_SDATA static DVDOptionalCommandChecker checkOptionalCommand = defaultOptionalCommandChecker;
 
 /* 804509F4-804509FC 000474 0006+02 2/2 0/0 0/0 .sdata           @23 */
 SECTION_SDATA static char lit_23[] = "dvd.c";
 
+typedef void (*stateFunc)(DVDCommandBlock* block);
 /* 804517C0-804517C8 000CC0 0004+04 6/6 0/0 0/0 .sbss            LastState */
-static u8 LastState[4 + 4 /* padding */];
+static stateFunc LastState;
 
 /* 803491C8-8034925C 343B08 0094+00 1/1 0/0 0/0 .text            stateReadingFST */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void stateReadingFST() {
+static asm void stateReadingFST(void) {
     nofralloc
 #include "asm/dolphin/dvd/dvd/stateReadingFST.s"
 }
@@ -215,323 +224,736 @@ static asm void stateReadingFST() {
 
 /* ############################################################################################## */
 /* 8044C920-8044C940 079640 0020+00 2/3 0/0 0/0 .bss             CurrDiskID */
-static u8 CurrDiskID[32];
+static DVDDiskID CurrDiskID ALIGN_DECL(32);
 
 /* 8044C940-8044C970 079660 0030+00 10/14 0/0 0/0 .bss             DummyCommandBlock */
-static u8 DummyCommandBlock[48];
+static DVDCommandBlock DummyCommandBlock;
 
 /* 8034925C-803492DC 343B9C 0080+00 2/2 0/0 0/0 .text            cbForStateReadingFST */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void cbForStateReadingFST() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/cbForStateReadingFST.s"
+static void cbForStateReadingFST(u32 intType) {
+    DVDCommandBlock* finished;
+
+    if (intType == 16) {
+        stateTimeout();
+        return;
+    }
+
+    if (intType & 1) {
+        NumInternalRetry = 0;
+        __DVDFSInit();
+        finished = executing;
+        executing = &DummyCommandBlock;
+        finished->state = 0;
+        if (finished->callback) {
+            (finished->callback)(0, finished);
+        }
+
+        stateReady();
+
+    } else {
+        stateGettingError();
+    }
 }
-#pragma pop
 
 /* 803492DC-80349388 343C1C 00AC+00 12/12 0/0 0/0 .text            cbForStateError */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void cbForStateError() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/cbForStateError.s"
+static void cbForStateError(u32 intType) {
+    DVDCommandBlock* finished;
+    executing->state = -1;
+
+    if (intType == 16) {
+        stateTimeout();
+        return;
+    }
+
+    __DVDPrintFatalMessage();
+
+    FatalErrorFlag = TRUE;
+    finished = executing;
+    executing = &DummyCommandBlock;
+    if (finished->callback) {
+        (finished->callback)(-1, finished);
+    }
+
+    if (Canceling) {
+        Canceling = FALSE;
+        if (CancelCallback)
+            (CancelCallback)(0, finished);
+    }
+
+    stateReady();
 }
-#pragma pop
 
 /* 80349388-803493BC 343CC8 0034+00 2/2 0/0 0/0 .text            stateTimeout */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void stateTimeout() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/stateTimeout.s"
+static void stateTimeout(void) {
+    __DVDStoreErrorCode(0x1234568);
+    DVDReset();
+    cbForStateError(0);
 }
-#pragma pop
 
 /* 803493BC-803493E4 343CFC 0028+00 1/1 0/0 0/0 .text            stateGettingError */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void stateGettingError() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/stateGettingError.s"
+static inline void stateGettingError(void) {
+    DVDLowRequestError(cbForStateGettingError);
 }
-#pragma pop
 
 /* 803493E4-80349498 343D24 00B4+00 1/1 0/0 0/0 .text            CategorizeError */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void CategorizeError() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/CategorizeError.s"
+static u32 CategorizeError(u32 error) {
+    if (error == 0x20400) {
+        LastError = error;
+        return 1;
+    }
+
+    error &= 0xffffff;
+
+    if ((error == 0x62800) || (error == 0x23a00) || (error == 0xb5a01)) {
+        return 0;
+    }
+
+    ++NumInternalRetry;
+    if (NumInternalRetry == 2) {
+        if (error == LastError) {
+            LastError = error;
+            return 1;
+        } else {
+            LastError = error;
+            return 2;
+        }
+    } else {
+        LastError = error;
+
+        if ((error == 0x31100) || (executing->command == 5)) {
+            return 2;
+        } else {
+            return 3;
+        }
+    }
 }
-#pragma pop
+
+inline static BOOL CheckCancel(u32 resume) {
+    DVDCommandBlock* finished;
+
+    if (Canceling) {
+        ResumeFromHere = resume;
+        Canceling = FALSE;
+
+        finished = executing;
+        executing = &DummyCommandBlock;
+
+        finished->state = 10;
+        if (finished->callback)
+            (*finished->callback)(-3, finished);
+        if (CancelCallback)
+            (CancelCallback)(0, finished);
+        stateReady();
+        return TRUE;
+    }
+    return FALSE;
+}
 
 /* 80349498-803496FC 343DD8 0264+00 6/6 0/0 0/0 .text            cbForStateGettingError */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+static void cbForStateGettingError(u32 intType) {
+    u32 error;
+    u32 status;
+    u32 errorCategory;
+    u32 resume;
+
+    if (intType == 16) {
+        __DVDStoreErrorCode(0x1234568);
+        DVDReset();
+        cbForStateError(0);
+        return;
+    }
+
+    if (intType & 2) {
+        __DVDStoreErrorCode(0x1234567);
+        DVDLowStopMotor(cbForStateError);
+        return;
+    }
+
+    error = __DIRegs[8];
+    status = error & 0xff000000;
+
+    errorCategory = CategorizeError(error);
+
+    if (errorCategory == 1) {
+        __DVDStoreErrorCode(error);
+        DVDLowStopMotor(cbForStateError);
+        return;
+    }
+
+    if ((errorCategory == 2) || (errorCategory == 3)) {
+        resume = 0;
+    } else {
+        if (status == 0x01000000)
+            resume = 4;
+        else if (status == 0x02000000)
+            resume = 6;
+        else if (status == 0x03000000)
+            resume = 3;
+        else
+            resume = 5;
+    }
+
+    if (CheckCancel(resume))
+        return;
+
+    if (errorCategory == 2) {
+        __DVDStoreErrorCode(error);
+        stateGoToRetry();
+        return;
+    }
+
+    if (errorCategory == 3) {
+        if ((error & 0x00ffffff) == 0x00031100) {
+            DVDLowSeek(executing->offset, cbForUnrecoveredError);
+        } else {
+            LastState(executing);
+        }
+        return;
+    }
+
+    if (status == 0x01000000) {
+        executing->state = 5;
+        stateMotorStopped();
+        return;
+    } else if (status == 0x02000000) {
+        executing->state = 3;
+        stateCoverClosed();
+        return;
+    } else if (status == 0x03000000) {
+        executing->state = 4;
+        stateMotorStopped();
+        return;
+    } else {
+        __DVDStoreErrorCode(0x1234567);
+        DVDLowStopMotor(cbForStateError);
+        return;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void cbForStateGettingError() {
+static asm void cbForStateGettingError(u32 intType) {
     nofralloc
 #include "asm/dolphin/dvd/dvd/cbForStateGettingError.s"
 }
 #pragma pop
+#endif
 
 /* 803496FC-80349758 34403C 005C+00 1/1 0/0 0/0 .text            cbForUnrecoveredError */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void cbForUnrecoveredError() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/cbForUnrecoveredError.s"
+static void cbForUnrecoveredError(u32 intType) {
+    if (intType == 16) {
+        __DVDStoreErrorCode(0x1234568);
+        DVDReset();
+        cbForStateError(0);
+        return;
+    }
+
+    if (intType & 1) {
+        stateGoToRetry();
+        return;
+    }
+
+    DVDLowRequestError(cbForUnrecoveredErrorRetry);
 }
-#pragma pop
 
 /* 80349758-803497D8 344098 0080+00 1/1 0/0 0/0 .text            cbForUnrecoveredErrorRetry */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void cbForUnrecoveredErrorRetry() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/cbForUnrecoveredErrorRetry.s"
+static void cbForUnrecoveredErrorRetry(u32 intType) {
+    if (intType == 16) {
+        __DVDStoreErrorCode(0x1234568);
+        DVDReset();
+        cbForStateError(0);
+        return;
+    }
+
+    if (intType & 2) {
+        __DVDStoreErrorCode(0x1234567);
+        DVDLowStopMotor(cbForStateError);
+        return;
+    }
+
+    __DVDStoreErrorCode(__DIRegs[8]);
+    DVDLowStopMotor(cbForStateError);
 }
-#pragma pop
 
 /* 803497D8-80349800 344118 0028+00 2/2 0/0 0/0 .text            stateGoToRetry */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void stateGoToRetry() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/stateGoToRetry.s"
+static void stateGoToRetry(void) {
+    DVDLowStopMotor(cbForStateGoToRetry);
 }
-#pragma pop
 
 /* 80349800-80349940 344140 0140+00 1/1 0/0 0/0 .text            cbForStateGoToRetry */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void cbForStateGoToRetry() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/cbForStateGoToRetry.s"
+static void cbForStateGoToRetry(u32 intType) {
+    if (intType == 16) {
+        __DVDStoreErrorCode(0x1234568);
+        DVDReset();
+        cbForStateError(0);
+        return;
+    }
+
+    if (intType & 2) {
+        __DVDStoreErrorCode(0x1234567);
+        DVDLowStopMotor(cbForStateError);
+        return;
+    }
+
+    NumInternalRetry = 0;
+
+    if ((CurrCommand == 4) || (CurrCommand == 5) || (CurrCommand == 13) || (CurrCommand == 15)) {
+        ResetRequired = TRUE;
+    }
+
+    if (!CheckCancel(2)) {
+        executing->state = 11;
+        stateMotorStopped();
+    }
 }
-#pragma pop
 
 /* 80349940-80349A20 344280 00E0+00 1/1 0/0 0/0 .text            stateCheckID */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void stateCheckID() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/stateCheckID.s"
+static void stateCheckID(void) {
+    switch (CurrCommand) {
+    case 3:
+        if (DVDCompareDiskID(&CurrDiskID, executing->disk_id)) {
+            memcpy(IDShouldBe, &CurrDiskID, sizeof(DVDDiskID));
+
+            executing->state = 1;
+            DCInvalidateRange(&BB2, sizeof(DVDBB2));
+            LastState = stateCheckID2a;
+            stateCheckID2a(executing);
+            return;
+        } else {
+            DVDLowStopMotor(cbForStateCheckID1);
+        }
+        break;
+
+    default:
+        if (memcmp(&CurrDiskID, IDShouldBe, sizeof(DVDDiskID))) {
+            DVDLowStopMotor(cbForStateCheckID1);
+        } else {
+            LastState = stateCheckID3;
+            stateCheckID3(executing);
+        }
+        break;
+    }
 }
-#pragma pop
 
 /* 80349A20-80349A54 344360 0034+00 1/1 0/0 0/0 .text            stateCheckID3 */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void stateCheckID3() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/stateCheckID3.s"
+static void stateCheckID3(void) {
+    DVDLowAudioBufferConfig(IDShouldBe->is_streaming, 10, cbForStateCheckID3);
 }
-#pragma pop
 
 /* 80349A54-80349A88 344394 0034+00 1/1 0/0 0/0 .text            stateCheckID2a */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void stateCheckID2a() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/stateCheckID2a.s"
+static void stateCheckID2a(void) {
+    DVDLowAudioBufferConfig(IDShouldBe->is_streaming, 10, cbForStateCheckID2a);
 }
-#pragma pop
 
 /* 80349A88-80349AF0 3443C8 0068+00 1/1 0/0 0/0 .text            cbForStateCheckID2a */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void cbForStateCheckID2a() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/cbForStateCheckID2a.s"
+static void cbForStateCheckID2a(u32 intType) {
+    if (intType == 16) {
+        __DVDStoreErrorCode(0x1234568);
+        DVDReset();
+        cbForStateError(0);
+        return;
+    }
+
+    if (intType & 1) {
+        NumInternalRetry = 0;
+        stateCheckID2(executing);
+        return;
+    }
+
+    DVDLowRequestError(cbForStateGettingError);
 }
-#pragma pop
 
 /* 80349AF0-80349B28 344430 0038+00 1/1 0/0 0/0 .text            stateCheckID2 */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void stateCheckID2() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/stateCheckID2.s"
+static void stateCheckID2() {
+    DVDLowRead(&BB2, OSRoundUp32B(sizeof(BB2)), 0x420, cbForStateCheckID2);
 }
-#pragma pop
 
 /* 80349B28-80349C24 344468 00FC+00 1/1 0/0 0/0 .text            cbForStateCheckID1 */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void cbForStateCheckID1() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/cbForStateCheckID1.s"
+static void cbForStateCheckID1(u32 intType) {
+    if (intType == 16) {
+        __DVDStoreErrorCode(0x1234568);
+        DVDReset();
+        cbForStateError(0);
+        return;
+    }
+
+    if (intType & 2) {
+        __DVDStoreErrorCode(0x1234567);
+        DVDLowStopMotor(cbForStateError);
+        return;
+    }
+
+    NumInternalRetry = 0;
+
+    if (!CheckCancel(1)) {
+        executing->state = 6;
+        stateMotorStopped();
+    }
 }
-#pragma pop
 
 /* 80349C24-80349CFC 344564 00D8+00 1/1 0/0 0/0 .text            cbForStateCheckID2 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void cbForStateCheckID2() {
+static asm void cbForStateCheckID2(u32 intType) {
     nofralloc
 #include "asm/dolphin/dvd/dvd/cbForStateCheckID2.s"
 }
 #pragma pop
 
 /* 80349CFC-80349DEC 34463C 00F0+00 1/1 0/0 0/0 .text            cbForStateCheckID3 */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void cbForStateCheckID3() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/cbForStateCheckID3.s"
+static void cbForStateCheckID3(u32 intType) {
+    if (intType == 16) {
+        __DVDStoreErrorCode(0x1234568);
+        DVDReset();
+        cbForStateError(0);
+        return;
+    }
+
+    if (intType & 1) {
+        NumInternalRetry = 0;
+
+        if (!CheckCancel(0)) {
+            executing->state = 1;
+            stateBusy(executing);
+        }
+    } else {
+        stateGettingError();
+    }
 }
-#pragma pop
 
 /* 80349DEC-80349E30 34472C 0044+00 3/3 0/0 0/0 .text            AlarmHandler */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void AlarmHandler() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/AlarmHandler.s"
+static void AlarmHandler(OSAlarm* alarm, OSContext* context) {
+    DVDReset();
+    DCInvalidateRange(&CurrDiskID, sizeof(DVDDiskID));
+    LastState = stateCoverClosed_CMD;
+    stateCoverClosed_CMD(executing);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8044C970-8044C998 079690 0028+00 1/4 0/0 0/0 .bss             ResetAlarm */
-static u8 ResetAlarm[40];
+static OSAlarm ResetAlarm;
 
 /* 80349E30-80349F04 344770 00D4+00 1/1 0/0 0/0 .text            stateCoverClosed */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void stateCoverClosed() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/stateCoverClosed.s"
+static void stateCoverClosed(void) {
+    DVDCommandBlock* finished;
+
+    switch (CurrCommand) {
+    case 5:
+    case 4:
+    case 13:
+    case 15:
+        __DVDClearWaitingQueue();
+        finished = executing;
+        executing = &DummyCommandBlock;
+        if (finished->callback) {
+            (finished->callback)(-4, finished);
+        }
+        stateReady();
+        break;
+
+    default:
+        MotorState = 0;
+        DVDReset();
+        OSCreateAlarm(&ResetAlarm);
+        OSSetAlarm(&ResetAlarm, OSMillisecondsToTicks(1150), AlarmHandler);
+        break;
+    }
 }
-#pragma pop
 
 /* 80349F04-80349F34 344844 0030+00 1/1 0/0 0/0 .text            stateCoverClosed_CMD */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void stateCoverClosed_CMD() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/stateCoverClosed_CMD.s"
+static void stateCoverClosed_CMD(DVDCommandBlock* block) {
+    DVDLowReadDiskID(&CurrDiskID, cbForStateCoverClosed);
 }
-#pragma pop
 
 /* 80349F34-80349F98 344874 0064+00 1/1 0/0 0/0 .text            cbForStateCoverClosed */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void cbForStateCoverClosed() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/cbForStateCoverClosed.s"
+static void cbForStateCoverClosed(u32 intType) {
+    if (intType == 16) {
+        __DVDStoreErrorCode(0x1234568);
+        DVDReset();
+        cbForStateError(0);
+        return;
+    }
+
+    if (intType & 1) {
+        NumInternalRetry = 0;
+        stateCheckID();
+    } else {
+        stateGettingError();
+    }
 }
-#pragma pop
 
 /* 80349F98-80349FC0 3448D8 0028+00 3/3 0/0 0/0 .text            stateMotorStopped */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void stateMotorStopped() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/stateMotorStopped.s"
+static void stateMotorStopped(void) {
+    DVDLowWaitCoverClose(cbForStateMotorStopped);
 }
-#pragma pop
 
 /* 80349FC0-8034A0AC 344900 00EC+00 4/4 0/0 0/0 .text            cbForStateMotorStopped */
+// needs stateCoverClosed converted to static inline
+#ifdef NONMATCHING
+static void cbForStateMotorStopped(u32 intType) {
+    __DIRegs[1] = 0;
+    executing->state = 3;
+    stateCoverClosed();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void cbForStateMotorStopped() {
+static asm void cbForStateMotorStopped(u32 intType) {
     nofralloc
 #include "asm/dolphin/dvd/dvd/cbForStateMotorStopped.s"
 }
 #pragma pop
+#endif
 
 /* 8034A0AC-8034A394 3449EC 02E8+00 18/18 0/0 0/0 .text            stateReady */
+#ifdef NONMATCHING
+static void stateReady() {
+    DVDCommandBlock* finished;
+
+    if (!__DVDCheckWaitingQueue()) {
+        executing = (DVDCommandBlock*)NULL;
+        return;
+    }
+
+    if (PauseFlag) {
+        PausingFlag = TRUE;
+        executing = (DVDCommandBlock*)NULL;
+        return;
+    }
+
+    executing = __DVDPopWaitingQueue();
+
+    if (FatalErrorFlag) {
+        executing->state = -1;
+        finished = executing;
+        executing = &DummyCommandBlock;
+        if (finished->callback) {
+            (finished->callback)(-1, finished);
+        }
+        stateReady();
+        return;
+    }
+
+    CurrCommand = executing->command;
+
+    if (ResumeFromHere) {
+        switch (ResumeFromHere) {
+        case 1:
+            executing->state = 1;
+            stateCoverClosed();
+            break;
+        case 2:
+            executing->state = 11;
+            stateMotorStopped();
+            break;
+
+        case 3:
+            executing->state = 4;
+            stateMotorStopped();
+            break;
+
+        case 4:
+            executing->state = 5;
+            stateMotorStopped();
+            break;
+        case 7:
+        case 6:
+            executing->state = 3;
+            stateCoverClosed();
+            break;
+
+        case 5:
+            executing->state = -1;
+            break;
+        }
+
+        ResumeFromHere = 0;
+    } else {
+        executing->state = 1;
+        stateBusy(executing);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void stateReady() {
+static asm void stateReady(void) {
     nofralloc
 #include "asm/dolphin/dvd/dvd/stateReady.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 803D15A8-803D15EC -00001 0044+00 1/1 0/0 0/0 .data            @359 */
-SECTION_DATA static void* lit_359[17] = {
-    (void*)(((char*)stateBusy) + 0x318), (void*)(((char*)stateBusy) + 0x6C),
-    (void*)(((char*)stateBusy) + 0x10C), (void*)(((char*)stateBusy) + 0x130),
-    (void*)(((char*)stateBusy) + 0x6C),  (void*)(((char*)stateBusy) + 0x40),
-    (void*)(((char*)stateBusy) + 0x150), (void*)(((char*)stateBusy) + 0x1B4),
-    (void*)(((char*)stateBusy) + 0x1E0), (void*)(((char*)stateBusy) + 0x214),
-    (void*)(((char*)stateBusy) + 0x238), (void*)(((char*)stateBusy) + 0x25C),
-    (void*)(((char*)stateBusy) + 0x280), (void*)(((char*)stateBusy) + 0x2A4),
-    (void*)(((char*)stateBusy) + 0x2CC), (void*)(((char*)stateBusy) + 0x140),
-    (void*)(((char*)stateBusy) + 0x2F8),
-};
+#endif
 
 /* 8034A394-8034A6D4 344CD4 0340+00 4/3 0/0 0/0 .text            stateBusy */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void stateBusy() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/stateBusy.s"
+#define MIN(a, b) (((a) > (b)) ? (b) : (a))
+static void stateBusy(DVDCommandBlock* block) {
+    DVDCommandBlock* finished;
+    LastState = stateBusy;
+    switch (block->command) {
+    case 5:
+        __DIRegs[1] = __DIRegs[1];
+        block->current_transfer_size = sizeof(DVDDiskID);
+        DVDLowReadDiskID(block->buffer, cbForStateBusy);
+        break;
+    case 1:
+    case 4:
+        if (!block->length) {
+            finished = executing;
+            executing = &DummyCommandBlock;
+            finished->state = 0;
+            if (finished->callback) {
+                finished->callback(0, finished);
+            }
+            stateReady();
+        } else {
+            __DIRegs[1] = __DIRegs[1];
+            block->current_transfer_size = MIN(block->length - block->transferred_size, 0x80000);
+            DVDLowRead((void*)((u8*)block->buffer + block->transferred_size),
+                       block->current_transfer_size, block->offset + block->transferred_size,
+                       cbForStateBusy);
+        }
+        break;
+    case 2:
+        __DIRegs[1] = __DIRegs[1];
+        DVDLowSeek(block->offset, cbForStateBusy);
+        break;
+    case 3:
+        DVDLowStopMotor(cbForStateBusy);
+        break;
+    case 15:
+        DVDLowStopMotor(cbForStateBusy);
+        break;
+    case 6:
+        __DIRegs[1] = __DIRegs[1];
+        if (AutoFinishing) {
+            executing->current_transfer_size = 0;
+            DVDLowRequestAudioStatus(0, cbForStateBusy);
+        } else {
+            executing->current_transfer_size = 1;
+            DVDLowAudioStream(0, block->length, block->offset, cbForStateBusy);
+        }
+        break;
+    case 7:
+        __DIRegs[1] = __DIRegs[1];
+        DVDLowAudioStream(0x10000, 0, 0, cbForStateBusy);
+        break;
+    case 8:
+        __DIRegs[1] = __DIRegs[1];
+        AutoFinishing = TRUE;
+        DVDLowAudioStream(0, 0, 0, cbForStateBusy);
+        break;
+    case 9:
+        __DIRegs[1] = __DIRegs[1];
+        DVDLowRequestAudioStatus(0, cbForStateBusy);
+        break;
+    case 10:
+        __DIRegs[1] = __DIRegs[1];
+        DVDLowRequestAudioStatus(0x10000, cbForStateBusy);
+        break;
+    case 11:
+        __DIRegs[1] = __DIRegs[1];
+        DVDLowRequestAudioStatus(0x20000, cbForStateBusy);
+        break;
+    case 12:
+        __DIRegs[1] = __DIRegs[1];
+        DVDLowRequestAudioStatus(0x30000, cbForStateBusy);
+        break;
+    case 13:
+        __DIRegs[1] = __DIRegs[1];
+        DVDLowAudioBufferConfig(block->offset, block->length, cbForStateBusy);
+        break;
+    case 14:
+        __DIRegs[1] = __DIRegs[1];
+        block->current_transfer_size = sizeof(DVDDriveInfo);
+        DVDLowInquiry(block->buffer, cbForStateBusy);
+        break;
+    case 16:
+        __DIRegs[1] = __DIRegs[1];
+        DVDLowStopMotor(cbForStateBusy);
+        break;
+    default:
+        checkOptionalCommand(block, cbForStateBusy);
+        break;
+    }
 }
-#pragma pop
-
 /* ############################################################################################## */
 /* 803D15EC-803D15F8 02E70C 000C+00 1/1 0/0 0/0 .data            ImmCommand */
-SECTION_DATA static u8 ImmCommand[12] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-};
+static u32 ImmCommand[] = {0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF};
 
 /* 804509FC-80450A00 00047C 0004+00 1/1 0/0 0/0 .sdata           DmaCommand */
-SECTION_SDATA static u32 DmaCommand = 0xFFFFFFFF;
+SECTION_SDATA static u32 DmaCommand[] = {0xFFFFFFFF};
 
 /* 8034A6D4-8034AD2C 345014 0658+00 1/1 0/0 0/0 .text            cbForStateBusy */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void cbForStateBusy() {
+static asm void cbForStateBusy(u32 intType) {
     nofralloc
 #include "asm/dolphin/dvd/dvd/cbForStateBusy.s"
 }
 #pragma pop
 
+static inline BOOL issueCommand(s32 prio, DVDCommandBlock* block) {
+    BOOL level;
+    BOOL result;
+
+    if (autoInvalidation && (block->command == 1 || block->command == 4 || block->command == 5 ||
+                             block->command == 14)) {
+        DCInvalidateRange(block->buffer, block->length);
+    }
+
+    level = OSDisableInterrupts();
+
+    block->state = 2;
+    result = __DVDPushWaitingQueue(prio, block);
+
+    if ((executing == (DVDCommandBlock*)NULL) && (PauseFlag == FALSE)) {
+        stateReady();
+    }
+
+    OSRestoreInterrupts(level);
+
+    return result;
+}
+
 /* 8034AD2C-8034AE08 34566C 00DC+00 0/0 5/5 0/0 .text            DVDReadAbsAsyncPrio */
+#ifdef NONMATCHING
+BOOL DVDReadAbsAsyncPrio(DVDCommandBlock* block, void* addr, s32 length, s32 offset,
+                         DVDCBCallback callback, s32 prio) {
+    BOOL idle;
+    block->command = 1;
+    block->buffer = addr;
+    block->length = length;
+    block->offset = offset;
+    block->transferred_size = 0;
+    block->callback = callback;
+
+    idle = issueCommand(prio, block);
+    return idle;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void DVDReadAbsAsyncPrio() {
+asm BOOL DVDReadAbsAsyncPrio(DVDCommandBlock* block, void* addr, s32 length, s32 offset,
+                             DVDCBCallback callback, s32 prio) {
     nofralloc
 #include "asm/dolphin/dvd/dvd/DVDReadAbsAsyncPrio.s"
 }
 #pragma pop
+#endif
 
 /* 8034AE08-8034AED8 345748 00D0+00 0/0 1/1 0/0 .text            DVDReadAbsAsyncForBS */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void DVDReadAbsAsyncForBS() {
+asm BOOL DVDReadAbsAsyncForBS(DVDCommandBlock* block, void* addr, s32 length, s32 offset,
+                              DVDCBCallback callback) {
     nofralloc
 #include "asm/dolphin/dvd/dvd/DVDReadAbsAsyncForBS.s"
 }
@@ -541,7 +963,7 @@ asm void DVDReadAbsAsyncForBS() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void DVDReadDiskID() {
+asm BOOL DVDReadDiskID(DVDCommandBlock* block, DVDDiskID* diskID, DVDCBCallback callback) {
     nofralloc
 #include "asm/dolphin/dvd/dvd/DVDReadDiskID.s"
 }
@@ -551,7 +973,7 @@ asm void DVDReadDiskID() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void DVDCancelStreamAsync() {
+asm BOOL DVDCancelStreamAsync(DVDCommandBlock* block, DVDCBCallback callback) {
     nofralloc
 #include "asm/dolphin/dvd/dvd/DVDCancelStreamAsync.s"
 }
@@ -561,67 +983,87 @@ asm void DVDCancelStreamAsync() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void DVDInquiryAsync() {
+asm BOOL DVDInquiryAsync(DVDCommandBlock* block, DVDDriveInfo* info, DVDCBCallback callback) {
     nofralloc
 #include "asm/dolphin/dvd/dvd/DVDInquiryAsync.s"
 }
 #pragma pop
 
 /* 8034B138-8034B17C 345A78 0044+00 15/15 2/2 0/0 .text            DVDReset */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DVDReset() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/DVDReset.s"
+void DVDReset(void) {
+    DVDLowReset();
+    __DIRegs[0] = 0x2A;
+    __DIRegs[1] = __DIRegs[1];
+    ResetRequired = FALSE;
+    ResumeFromHere = 0;
 }
-#pragma pop
 
 /* 8034B17C-8034B1C8 345ABC 004C+00 0/0 6/6 0/0 .text            DVDGetCommandBlockStatus */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+s32 DVDGetCommandBlockStatus(const DVDCommandBlock* block) {
+    BOOL enabled;
+    s32 retVal;
+
+    enabled = OSDisableInterrupts();
+
+    if (block->state == 3) {
+        retVal = 1;
+    } else {
+        retVal = block->state;
+    }
+
+    OSRestoreInterrupts(enabled);
+
+    return retVal;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int DVDGetCommandBlockStatus(DVDCommandBlock*) {
+asm s32 DVDGetCommandBlockStatus(const DVDCommandBlock* block) {
     nofralloc
 #include "asm/dolphin/dvd/dvd/DVDGetCommandBlockStatus.s"
 }
 #pragma pop
+#endif
 
 /* 8034B1C8-8034B274 345B08 00AC+00 0/0 7/7 0/0 .text            DVDGetDriveStatus */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm DVDState DVDGetDriveStatus() {
+asm s32 DVDGetDriveStatus(void) {
     nofralloc
 #include "asm/dolphin/dvd/dvd/DVDGetDriveStatus.s"
 }
 #pragma pop
 
 /* 8034B274-8034B284 345BB4 0010+00 0/0 1/1 0/0 .text            DVDSetAutoInvalidation */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DVDSetAutoInvalidation() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/DVDSetAutoInvalidation.s"
+BOOL DVDSetAutoInvalidation(BOOL autoInval) {
+    BOOL prev;
+    prev = autoInvalidation;
+    autoInvalidation = autoInval;
+    return prev;
 }
-#pragma pop
 
 /* 8034B284-8034B2D4 345BC4 0050+00 0/0 1/1 0/0 .text            DVDResume */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DVDResume() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/DVDResume.s"
+void DVDResume(void) {
+    BOOL level;
+    level = OSDisableInterrupts();
+    PauseFlag = FALSE;
+    if (PausingFlag) {
+        PausingFlag = FALSE;
+        stateReady();
+    }
+    OSRestoreInterrupts(level);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803D15F8-803D163C 02E718 0041+03 0/0 0/0 0/0 .data            @789 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static char lit_789[] = "DVDChangeDiskAsync(): You can't specify NULL to company name.  \n";
+SECTION_DATA static char lit_789[] =
+    "DVDChangeDiskAsync(): You can't specify NULL to company name.  \n";
 #pragma pop
 
 /* 803D163C-803D1670 -00001 0034+00 1/1 0/0 0/0 .data            @956 */
@@ -636,44 +1078,172 @@ SECTION_DATA static void* lit_956[13] = {
 };
 
 /* 8034B2D4-8034B550 345C14 027C+00 3/2 0/0 0/0 .text            DVDCancelAsync */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+BOOL DVDCancelAsync(DVDCommandBlock* block, DVDCBCallback callback) {
+    BOOL enabled;
+    DVDLowCallback old;
+
+    enabled = OSDisableInterrupts();
+
+    switch (block->state) {
+    case -1:
+    case 0:
+    case 10:
+        if (callback)
+            (*callback)(0, block);
+        break;
+
+    case 1:
+        if (Canceling) {
+            OSRestoreInterrupts(enabled);
+            return FALSE;
+        }
+
+        Canceling = TRUE;
+        CancelCallback = callback;
+        if (block->command == 4 || block->command == 1) {
+            DVDLowBreak();
+        }
+        break;
+
+    case 2:
+        __DVDDequeueWaitingQueue(block);
+        block->state = 10;
+        if (block->callback)
+            (block->callback)(-3, block);
+        if (callback)
+            (*callback)(0, block);
+        break;
+
+    case 3:
+        switch (block->command) {
+        case 5:
+        case 4:
+        case 13:
+        case 15:
+            if (callback)
+                (*callback)(0, block);
+            break;
+
+        default:
+            if (Canceling) {
+                OSRestoreInterrupts(enabled);
+                return FALSE;
+            }
+            Canceling = TRUE;
+            CancelCallback = callback;
+            break;
+        }
+        break;
+
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 11:
+        old = DVDLowClearCallback();
+        if (old != cbForStateMotorStopped) {
+            OSRestoreInterrupts(enabled);
+            return FALSE;
+        }
+
+        if (block->state == 4)
+            ResumeFromHere = 3;
+        if (block->state == 5)
+            ResumeFromHere = 4;
+        if (block->state == 6)
+            ResumeFromHere = 1;
+        if (block->state == 11)
+            ResumeFromHere = 2;
+        if (block->state == 7)
+            ResumeFromHere = 7;
+
+        executing = &DummyCommandBlock;
+
+        block->state = 10;
+        if (block->callback) {
+            (block->callback)(-3, block);
+        }
+        if (callback) {
+            (callback)(0, block);
+        }
+        stateReady();
+        break;
+    }
+
+    OSRestoreInterrupts(enabled);
+    return TRUE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void DVDCancelAsync() {
+static asm BOOL DVDCancelAsync(DVDCommandBlock* block, DVDCBCallback callback) {
     nofralloc
 #include "asm/dolphin/dvd/dvd/DVDCancelAsync.s"
 }
 #pragma pop
+#endif
 
 /* 8034B550-8034B5FC 345E90 00AC+00 0/0 1/1 1/1 .text            DVDCancel */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+s32 DVDCancel(DVDCommandBlock* block) {
+    BOOL result;
+    s32 state;
+    u32 command;
+    BOOL enabled;
+
+    result = DVDCancelAsync(block, cbForCancelSync);
+
+    if (result == FALSE) {
+        return -1;
+    }
+
+    enabled = OSDisableInterrupts();
+
+    for (;;) {
+        state = ((volatile DVDCommandBlock*)block)->state;
+
+        if ((state == 0) || (state == -1) || (state == 10)) {
+            break;
+        }
+
+        if (state == 3) {
+            command = ((volatile DVDCommandBlock*)block)->command;
+
+            if ((command == 4) || (command == 5) || (command == 13) || (command == 15)) {
+                break;
+            }
+        }
+
+        OSSleepThread(&__DVDThreadQueue);
+    }
+
+    OSRestoreInterrupts(enabled);
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void DVDCancel() {
+asm s32 DVDCancel(DVDCommandBlock* block) {
     nofralloc
 #include "asm/dolphin/dvd/dvd/DVDCancel.s"
 }
 #pragma pop
+#endif
 
 /* 8034B5FC-8034B620 345F3C 0024+00 1/1 0/0 0/0 .text            cbForCancelSync */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void cbForCancelSync() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/cbForCancelSync.s"
+static void cbForCancelSync(s32 result, DVDCommandBlock* block) {
+    OSWakeupThread(&__DVDThreadQueue);
 }
-#pragma pop
 
 /* 8034B620-8034B628 345F60 0008+00 0/0 3/3 0/0 .text            DVDGetCurrentDiskID */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm DVDDiskID* DVDGetCurrentDiskID() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/DVDGetCurrentDiskID.s"
+DVDDiskID* DVDGetCurrentDiskID(void) {
+    return (DVDDiskID*)OSPhysicalToCached(0);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803D1670-803D16A8 -00001 0034+04 1/1 0/0 0/0 .data            @1060 */
@@ -696,31 +1266,88 @@ SECTION_DATA static void* lit_1060[13 + 1 /* padding */] = {
 };
 
 /* 8034B628-8034B720 345F68 00F8+00 1/0 4/4 0/0 .text            DVDCheckDisk */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+BOOL DVDCheckDisk(void) {
+    BOOL enabled;
+    s32 retVal;
+    s32 state;
+    u32 coverReg;
+
+    enabled = OSDisableInterrupts();
+
+    if (FatalErrorFlag) {
+        state = -1;
+    } else if (PausingFlag) {
+        state = 8;
+    } else {
+        if (executing == (DVDCommandBlock*)NULL) {
+            state = 0;
+        } else if (executing == &DummyCommandBlock) {
+            state = 0;
+        } else {
+            state = executing->state;
+        }
+    }
+
+    switch (state) {
+    case 1:
+    case 9:
+    case 10:
+    case 2:
+        retVal = TRUE;
+        break;
+
+    case -1:
+    case 11:
+    case 7:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+        retVal = FALSE;
+        break;
+
+    case 0:
+    case 8:
+        coverReg = __DIRegs[1];
+        if (((coverReg >> 2) & 1) || (coverReg & 1)) {
+            retVal = FALSE;
+        } else {
+            retVal = TRUE;
+        }
+    }
+
+    OSRestoreInterrupts(enabled);
+
+    return retVal;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm BOOL DVDCheckDisk() {
+asm BOOL DVDCheckDisk(void) {
     nofralloc
 #include "asm/dolphin/dvd/dvd/DVDCheckDisk.s"
 }
 #pragma pop
+#endif
 
 /* 8034B720-8034B83C 346060 011C+00 0/0 1/1 0/0 .text            __DVDPrepareResetAsync */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __DVDPrepareResetAsync() {
+asm void __DVDPrepareResetAsync(DVDCBCallback callback) {
     nofralloc
 #include "asm/dolphin/dvd/dvd/__DVDPrepareResetAsync.s"
 }
 #pragma pop
 
 /* 8034B83C-8034B874 34617C 0038+00 0/0 1/1 0/0 .text            __DVDTestAlarm */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __DVDTestAlarm() {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/__DVDTestAlarm.s"
+BOOL __DVDTestAlarm(OSAlarm* alarm) {
+    if (alarm == &ResetAlarm) {
+        return TRUE;
+    }
+
+    return __DVDLowTestAlarm(alarm);
 }
-#pragma pop

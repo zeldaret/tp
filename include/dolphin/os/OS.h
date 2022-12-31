@@ -30,6 +30,14 @@
 extern "C" {
 #endif
 
+// Upper words of the masks, since UIMM is only 16 bits
+#define OS_CACHED_REGION_PREFIX 0x8000
+#define OS_UNCACHED_REGION_PREFIX 0xC000
+#define OS_PHYSICAL_MASK 0x3FFF
+
+#define OS_BASE_CACHED (OS_CACHED_REGION_PREFIX << 16)
+#define OS_BASE_UNCACHED (OS_UNCACHED_REGION_PREFIX << 16)
+
 #define OS_BUS_CLOCK (*(u32*)0x800000F8)
 #define OS_CORE_CLOCK (*(u32*)0x800000FC)
 #define OS_TIMER_CLOCK (OS_BUS_CLOCK / 4)
@@ -255,10 +263,12 @@ struct GLOBAL_MEMORY {
 
 #define OS_ASSERT(...)
 
-inline void* OSPhysicalToCached(u32 offset) {
-    OS_ASSERT(offset <= 0x1fffffff);
-    return (void*)(offset + 0x80000000);
-}
+#define OSPhysicalToCached(paddr) ((void*)((u32)(paddr) + OS_BASE_CACHED))
+#define OSPhysicalToUncached(paddr) ((void*)((u32)(paddr) + OS_BASE_UNCACHED))
+#define OSCachedToPhysical(caddr) ((u32)((u8*)(caddr)-OS_BASE_CACHED))
+#define OSUncachedToPhysical(ucaddr) ((u32)((u8*)(ucaddr)-OS_BASE_UNCACHED))
+#define OSCachedToUncached(caddr) ((void*)((u8*)(caddr) + (OS_BASE_UNCACHED - OS_BASE_CACHED)))
+#define OSUncachedToCached(ucaddr) ((void*)((u8*)(ucaddr) - (OS_BASE_UNCACHED - OS_BASE_CACHED)))
 
 #ifdef __cplusplus
 };

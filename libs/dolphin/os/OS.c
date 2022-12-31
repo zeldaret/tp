@@ -39,7 +39,6 @@ void SIInit();
 void __DBIsExceptionMarked();
 void DBPrintf();
 void DVDInit();
-void DVDInquiryAsync();
 void EnableMetroTRKInterrupts();
 extern u8 __DVDLongFileNameFlag[4];
 extern u8 __PADSpec[4 + 4 /* padding */];

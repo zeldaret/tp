@@ -18,6 +18,8 @@ LIBDB_A_LDFLAGS := \
 	-proc gekko \
 	-linkmode moreram \
 
+$(BUILD_DIR)/libs/dolphin/db/db.o: CFLAGS := -Cpp_exceptions off -proc gekko -fp hard -O4,p -nodefaults -str reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES) -lang=c
+
 $(BUILD_DIR)/libdb.a: $(LIBDB_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libdb.a
 	@echo $(LIBDB_A_O_FILES) > build/LIBDB_A_ofiles

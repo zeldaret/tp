@@ -28,7 +28,6 @@ static void DoneCallback(void* _task);
 
 SECTION_INIT void memset();
 void DSPAddTask();
-void DSPCheckMailToDSP();
 void DSPSendMailToDSP();
 
 //

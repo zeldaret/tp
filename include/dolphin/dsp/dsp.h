@@ -50,6 +50,13 @@ typedef struct DSPTaskInfo {
     /* 0x48 */ OSTime t_task;
 } DSPTaskInfo;
 
+u32 DSPCheckMailToDSP(void);
+u32 DSPCheckMailFromDSP(void);
+u32 DSPReadMailFromDSP(void);
+void DSPSendMailToDSP(u32 mail);
+void DSPAssertInt();
+void DSPInit(void);
+
 #ifdef __cplusplus
 }
 #endif

@@ -75,7 +75,7 @@ static asm void InsertAlarm(OSAlarm* alarm, s64 time, OSAlarmHandler* handler) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSSetAlarm(OSAlarm* alarm, s64 time, OSAlarmHandler* handler) {
+asm void OSSetAlarm(OSAlarm* alarm, s64 time, OSAlarmHandler handler) {
     nofralloc
 #include "asm/dolphin/os/OSAlarm/OSSetAlarm.s"
 }

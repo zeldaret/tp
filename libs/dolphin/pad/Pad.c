@@ -5,39 +5,26 @@
 
 #include "dolphin/pad/Pad.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+
 
 //
 // Forward References:
 //
 
-static void UpdateOrigin();
-static void PADOriginCallback();
-static void PADOriginUpdateCallback();
-static void PADProbeCallback();
-static void PADTypeAndStatusCallback();
-static void PADReceiveCheckCallback();
-static void SPEC0_MakeStatus();
-static void SPEC1_MakeStatus();
-static void SPEC2_MakeStatus();
-static void OnReset();
-static void SamplingHandler();
-static void PADSetSamplingCallback();
-void __PADDisableRecalibration();
+static void UpdateOrigin(s32 chan);
+static void SPEC0_MakeStatus(s32 chan, PADStatus* status, u32 data[2]);
+static void SPEC1_MakeStatus(s32 chan, PADStatus* status, u32 data[2]);
+static void SPEC2_MakeStatus(s32 chan, PADStatus* status, u32 data[2]);
+static s32 OnReset(s32 final);
+static void SamplingHandler(OSInterrupt interrupt, OSContext* context);
+static PADSamplingCallback PADSetSamplingCallback(PADSamplingCallback callback);
+BOOL __PADDisableRecalibration(BOOL disable);
 
 //
 // External References:
 //
 
 SECTION_INIT void memset();
-void OSRegisterVersion();
-void OSSetCurrentContext();
-void OSClearContext();
-void OSDisableInterrupts();
-void OSRestoreInterrupts();
-void OSRegisterResetFunction();
-void OSSetWirelessID();
-void OSGetTime();
 void SIBusy();
 void SIIsChanBusy();
 void SIRegisterPollingHandler();
@@ -64,19 +51,19 @@ extern u8 __PADFixBits[4 + 4 /* padding */];
 SECTION_DATA static char lit_1[] = "<< Dolphin SDK - PAD\trelease build: Apr  5 2004 04:14:49 (0x2301) >>";
 
 /* 8044CB70-8044CB80 079890 0010+00 3/3 0/0 0/0 .bss             Type */
-static u8 Type[16];
+static u32 Type[4];
 
 /* 8044CB80-8044CBB0 0798A0 0030+00 8/8 0/0 0/0 .bss             Origin */
-static u8 Origin[48];
+static PADStatus Origin[4];
 
 /* 80450A20-80450A24 -00001 0004+00 1/1 0/0 0/0 .sdata           __PADVersion */
 SECTION_SDATA static void* __PADVersion = (void*)&lit_1;
 
 /* 80450A24-80450A28 0004A4 0004+00 7/7 0/0 0/0 .sdata           ResettingChan */
-SECTION_SDATA static u32 ResettingChan = 0x00000020;
+SECTION_SDATA static s32 ResettingChan = 0x00000020;
 
 /* 80450A28-80450A2C 0004A8 0004+00 1/1 0/0 0/0 .sdata           XPatchBits */
-SECTION_SDATA static u32 XPatchBits = 0xF0000000;
+SECTION_SDATA static u32 XPatchBits = PAD_CHAN0_BIT | PAD_CHAN1_BIT | PAD_CHAN2_BIT | PAD_CHAN3_BIT;
 
 /* 80450A2C-80450A30 0004AC 0004+00 7/7 0/0 0/0 .sdata           AnalogMode */
 SECTION_SDATA static u32 AnalogMode = 0x00000300;
@@ -85,7 +72,7 @@ SECTION_SDATA static u32 AnalogMode = 0x00000300;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void UpdateOrigin() {
+static asm void UpdateOrigin(s32 chan) {
     nofralloc
 #include "asm/dolphin/pad/Pad/UpdateOrigin.s"
 }
@@ -93,19 +80,19 @@ static asm void UpdateOrigin() {
 
 /* ############################################################################################## */
 /* 80451848-8045184C 000D48 0004+00 1/1 0/0 0/0 .sbss            Initialized */
-static u8 Initialized[4];
+static BOOL Initialized;
 
 /* 8045184C-80451850 000D4C 0004+00 10/10 0/0 0/0 .sbss            EnabledBits */
-static u8 EnabledBits[4];
+static u32 EnabledBits;
 
 /* 80451850-80451854 000D50 0004+00 7/7 0/0 0/0 .sbss            ResettingBits */
-static u8 ResettingBits[4];
+static u32 ResettingBits;
 
 /* 8034E458-8034E51C 348D98 00C4+00 1/1 0/0 0/0 .text            PADOriginCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void PADOriginCallback() {
+static asm void PADOriginCallback(s32 chan, u32 error, OSContext* context) {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADOriginCallback.s"
 }
@@ -113,25 +100,25 @@ static asm void PADOriginCallback() {
 
 /* ############################################################################################## */
 /* 80451854-80451858 000D54 0004+00 4/4 0/0 0/0 .sbss            RecalibrateBits */
-static u8 RecalibrateBits[4];
+static u32 RecalibrateBits;
 
 /* 80451858-8045185C 000D58 0004+00 7/7 0/0 0/0 .sbss            WaitingBits */
-static u8 WaitingBits[4];
+static u32 WaitingBits;
 
 /* 8045185C-80451860 000D5C 0004+00 6/6 0/0 0/0 .sbss            CheckingBits */
-static u8 CheckingBits[4];
+static u32 CheckingBits;
 
 /* 80451860-80451864 000D60 0004+00 6/6 0/0 0/0 .sbss            PendingBits */
-static u8 PendingBits[4];
+static u32 PendingBits;
 
 /* 80451864-80451868 000D64 0004+00 6/6 0/0 0/0 .sbss            BarrelBits */
-static u8 BarrelBits[4];
+static u32 BarrelBits;
 
 /* 8034E51C-8034E5E8 348E5C 00CC+00 2/2 0/0 0/0 .text            PADOriginUpdateCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void PADOriginUpdateCallback() {
+static asm void PADOriginUpdateCallback(s32 chan, u32 error, OSContext* context) {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADOriginUpdateCallback.s"
 }
@@ -141,7 +128,7 @@ static asm void PADOriginUpdateCallback() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void PADProbeCallback() {
+static asm void PADProbeCallback(s32 chan, u32 error, OSContext* context) {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADProbeCallback.s"
 }
@@ -149,7 +136,7 @@ static asm void PADProbeCallback() {
 
 /* ############################################################################################## */
 /* 80450A30-80450A34 0004B0 0004+00 4/4 0/0 0/0 .sdata           Spec */
-SECTION_SDATA static u32 Spec = 0x00000005;
+SECTION_SDATA static u32 Spec = 5;
 
 /* 80450A34-80450A38 -00001 0004+00 2/2 0/0 0/0 .sdata           MakeStatus */
 SECTION_SDATA static void* MakeStatus = (void*)SPEC2_MakeStatus;
@@ -164,7 +151,7 @@ SECTION_SDATA static f32 CmdCalibrate = 32.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void PADTypeAndStatusCallback() {
+static asm void PADTypeAndStatusCallback(s32 chan, u32 type) {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADTypeAndStatusCallback.s"
 }
@@ -174,7 +161,7 @@ static asm void PADTypeAndStatusCallback() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void PADReceiveCheckCallback() {
+static asm void PADReceiveCheckCallback(s32 chan, u32 type) {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADReceiveCheckCallback.s"
 }
@@ -202,34 +189,34 @@ asm BOOL PADRecalibrate(u32 mask) {
 
 /* ############################################################################################## */
 /* 803D1B90-803D1BA0 -00001 0010+00 1/1 0/0 0/0 .data            ResetFunctionInfo */
-SECTION_DATA static void* ResetFunctionInfo[4] = {
-    (void*)OnReset,
-    (void*)0x0000007F,
-    (void*)NULL,
-    (void*)NULL,
+SECTION_DATA static OSResetFunctionInfo ResetFunctionInfo = {
+    OnReset,
+    0x0000007F,
+    NULL,
+    NULL,
 };
 
 /* 8044CBB0-8044CBC0 0798D0 0010+00 0/1 0/0 0/0 .bss             CmdProbeDevice */
 #pragma push
 #pragma force_active on
-static u8 CmdProbeDevice[16];
+static u32 CmdProbeDevice[4];
 #pragma pop
 
 /* 80451868-8045186C 000D68 0004+00 3/3 0/0 0/0 .sbss            SamplingCallback */
-static u8 SamplingCallback[4];
+static void (*SamplingCallback)(void);
 
 /* 8045186C-80451870 000D6C 0004+00 1/1 0/0 0/0 .sbss            recalibrated$388 */
-static u8 recalibrated[4];
+static BOOL recalibrated;
 
 /* 80451870-80451878 000D70 0004+04 2/2 1/1 0/0 .sbss            __PADSpec */
-extern u8 __PADSpec[4 + 4 /* padding */];
-u8 __PADSpec[4 + 4 /* padding */];
+extern u32 __PADSpec;
+u32 __PADSpec;
 
 /* 8034ED50-8034EEA0 349690 0150+00 0/0 1/1 0/0 .text            PADInit */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u32 PADInit() {
+asm BOOL PADInit(void) {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADInit.s"
 }
@@ -259,7 +246,7 @@ asm void PADControlMotor(s32 channel, u32 command) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PADSetSpec(int spec) {
+asm void PADSetSpec(u32 spec) {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADSetSpec.s"
 }
@@ -269,7 +256,7 @@ asm void PADSetSpec(int spec) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void SPEC0_MakeStatus() {
+static asm void SPEC0_MakeStatus(s32 chan, PADStatus* status, u32 data[2]) {
     nofralloc
 #include "asm/dolphin/pad/Pad/SPEC0_MakeStatus.s"
 }
@@ -279,7 +266,7 @@ static asm void SPEC0_MakeStatus() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void SPEC1_MakeStatus() {
+static asm void SPEC1_MakeStatus(s32 chan, PADStatus* status, u32 data[2]) {
     nofralloc
 #include "asm/dolphin/pad/Pad/SPEC1_MakeStatus.s"
 }
@@ -289,7 +276,7 @@ static asm void SPEC1_MakeStatus() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void SPEC2_MakeStatus() {
+static asm void SPEC2_MakeStatus(s32 chan, PADStatus* status, u32 data[2]) {
     nofralloc
 #include "asm/dolphin/pad/Pad/SPEC2_MakeStatus.s"
 }
@@ -309,7 +296,7 @@ asm void PADSetAnalogMode(u32 mode) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void OnReset() {
+static asm s32 OnReset(s32 final) {
     nofralloc
 #include "asm/dolphin/pad/Pad/OnReset.s"
 }
@@ -319,7 +306,7 @@ static asm void OnReset() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void SamplingHandler() {
+static asm void SamplingHandler(OSInterrupt interrupt, OSContext* context) {
     nofralloc
 #include "asm/dolphin/pad/Pad/SamplingHandler.s"
 }
@@ -329,7 +316,7 @@ static asm void SamplingHandler() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void PADSetSamplingCallback() {
+static asm PADSamplingCallback PADSetSamplingCallback(PADSamplingCallback callback) {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADSetSamplingCallback.s"
 }
@@ -339,7 +326,7 @@ static asm void PADSetSamplingCallback() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __PADDisableRecalibration() {
+asm BOOL __PADDisableRecalibration(BOOL disable) {
     nofralloc
 #include "asm/dolphin/pad/Pad/__PADDisableRecalibration.s"
 }
