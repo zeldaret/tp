@@ -14,11 +14,11 @@ public:
 
     /* 80326214 */ void initialize();
     /* 80326258 */ s32 create(J3DModelData*, u32);
-    /* 80326364 */ void createAnmMtx(J3DModelData*);
-    /* 803263F0 */ void createWeightEnvelopeMtx(J3DModelData*);
-    /* 8032648C */ void setNoUseDrawMtx();
-    /* 803264B8 */ void createDoubleDrawMtx(J3DModelData*, u32);
-    /* 80326664 */ void createBumpMtxArray(J3DModelData*, u32);
+    /* 80326364 */ s32 createAnmMtx(J3DModelData*);
+    /* 803263F0 */ s32 createWeightEnvelopeMtx(J3DModelData*);
+    /* 8032648C */ s32 setNoUseDrawMtx();
+    /* 803264B8 */ s32 createDoubleDrawMtx(J3DModelData*, u32);
+    /* 80326664 */ s32 createBumpMtxArray(J3DModelData*, u32);
     /* 803268D4 */ void calcWeightEnvelopeMtx();
     /* 80326ACC */ void calcDrawMtx(u32, Vec const&, f32 const (&)[3][4]);
     /* 80326D3C */ void calcNrmMtx();

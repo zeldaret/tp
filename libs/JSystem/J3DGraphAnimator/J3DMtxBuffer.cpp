@@ -6,6 +6,7 @@
 #include "JSystem/J3DGraphAnimator/J3DMtxBuffer.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "mtx/mtx.h"
 
 //
 // Forward References:
@@ -55,31 +56,82 @@ extern "C" void _restgpr_29();
 //
 
 /* 80326214-80326258 320B54 0044+00 0/0 1/1 0/0 .text            initialize__12J3DMtxBufferFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMtxBuffer::initialize() {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DMtxBuffer/initialize__12J3DMtxBufferFv.s"
+void J3DMtxBuffer::initialize() {
+    mJointTree = NULL;
+    mScaleFlagArray = NULL;
+    mEnvScaleFlag = NULL;
+    mpAnmMtx = NULL;
+    mpWeightEnvMtx = NULL;
+    mpOldDrawMtxArr = NULL;
+    mpDrawMtxArr = NULL;
+    mpOldNrmMtxArr = NULL;
+    mpNrmMtxArr = NULL;
+    field_0x24 = NULL; // mpOldBumpMtxArr?
+    mpBumpMtxArr = NULL;
+    mFlags = 1;
+    mCurrentViewNo = 0;
+    mUserAnmMtx = NULL;
 }
-#pragma pop
 
 /* 80326258-80326364 320B98 010C+00 0/0 1/1 0/0 .text create__12J3DMtxBufferFP12J3DModelDataUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 J3DMtxBuffer::create(J3DModelData* param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DMtxBuffer/create__12J3DMtxBufferFP12J3DModelDataUl.s"
+enum {
+    J3DMdlDataFlag_ConcatView = 0x10,
+    J3DMdlDataFlag_NoAnimation = 0x100,
+};
+
+static inline u32 getMdlDataFlag_MtxLoadType(u32 flag) {
+    return flag & 0x10;
 }
-#pragma pop
+
+s32 J3DMtxBuffer::create(J3DModelData* p_modelData, u32 flag) {
+    s32 ret;
+    
+    mFlags = flag;
+    mJointTree = &p_modelData->getJointTree();
+
+    ret = createAnmMtx(p_modelData);
+    if (ret != kJ3DError_Success)
+        return ret;
+
+    ret = createWeightEnvelopeMtx(p_modelData);
+    if (ret != kJ3DError_Success)
+        return ret;
+
+    if (p_modelData->checkFlag(J3DMdlDataFlag_NoAnimation)) {
+        setNoUseDrawMtx();
+    } else {
+        switch (getMdlDataFlag_MtxLoadType(p_modelData->getFlag())) {
+        case J3DMdlDataFlag_ConcatView:
+            ret = setNoUseDrawMtx();
+            break;
+        case 0:
+        default:
+            ret = createDoubleDrawMtx(p_modelData, flag);
+            break;
+        }
+    }
+
+    if (ret != kJ3DError_Success)
+        return ret;
+
+    if (p_modelData->getFlag() & J3DMdlDataFlag_ConcatView) {
+        p_modelData->setBumpFlag(0);
+    } else {
+        ret = createBumpMtxArray(p_modelData, flag);
+
+        if (ret != kJ3DError_Success)
+            return ret;
+    }
+
+    return ret;
+}
 
 /* 80326364-803263F0 320CA4 008C+00 1/1 0/0 0/0 .text createAnmMtx__12J3DMtxBufferFP12J3DModelData
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DMtxBuffer::createAnmMtx(J3DModelData* param_0) {
+asm s32 J3DMtxBuffer::createAnmMtx(J3DModelData* param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DMtxBuffer/createAnmMtx__12J3DMtxBufferFP12J3DModelData.s"
 }
@@ -90,7 +142,7 @@ asm void J3DMtxBuffer::createAnmMtx(J3DModelData* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DMtxBuffer::createWeightEnvelopeMtx(J3DModelData* param_0) {
+asm s32 J3DMtxBuffer::createWeightEnvelopeMtx(J3DModelData* param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DMtxBuffer/createWeightEnvelopeMtx__12J3DMtxBufferFP12J3DModelData.s"
 }
@@ -114,7 +166,7 @@ Mtx33* J3DMtxBuffer::sNoUseNrmMtxPtr = &J3DMtxBuffer::sNoUseNrmMtx;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DMtxBuffer::setNoUseDrawMtx() {
+asm s32 J3DMtxBuffer::setNoUseDrawMtx() {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DMtxBuffer/setNoUseDrawMtx__12J3DMtxBufferFv.s"
 }
@@ -125,7 +177,7 @@ asm void J3DMtxBuffer::setNoUseDrawMtx() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DMtxBuffer::createDoubleDrawMtx(J3DModelData* param_0, u32 param_1) {
+asm s32 J3DMtxBuffer::createDoubleDrawMtx(J3DModelData* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DMtxBuffer/createDoubleDrawMtx__12J3DMtxBufferFP12J3DModelDataUl.s"
 }
@@ -136,7 +188,7 @@ asm void J3DMtxBuffer::createDoubleDrawMtx(J3DModelData* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DMtxBuffer::createBumpMtxArray(J3DModelData* param_0, u32 param_1) {
+asm s32 J3DMtxBuffer::createBumpMtxArray(J3DModelData* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphAnimator/J3DMtxBuffer/createBumpMtxArray__12J3DMtxBufferFP12J3DModelDataUl.s"
 }
@@ -203,12 +255,23 @@ asm void J3DMtxBuffer::calcBBoardMtx() {
 
 /* 80327048-80327100 321988 00B8+00 1/1 1/1 0/0 .text
  * J3DCalcViewBaseMtx__FPA4_fRC3VecRA3_A4_CfPA4_f               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DCalcViewBaseMtx(f32 (*param_0)[4], Vec const& param_1, f32 const (&param_2)[3][4],
-                            f32 (*param_3)[4]) {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DMtxBuffer/J3DCalcViewBaseMtx__FPA4_fRC3VecRA3_A4_CfPA4_f.s"
+void J3DCalcViewBaseMtx(Mtx view, Vec const& scale, const Mtx& base, Mtx dst) {
+    Mtx m;
+
+    m[0][0] = base[0][0] * scale.x;
+    m[0][1] = base[0][1] * scale.y;
+    m[0][2] = base[0][2] * scale.z;
+    m[0][3] = base[0][3];
+
+    m[1][0] = base[1][0] * scale.x;
+    m[1][1] = base[1][1] * scale.y;
+    m[1][2] = base[1][2] * scale.z;
+    m[1][3] = base[1][3];
+
+    m[2][0] = base[2][0] * scale.x;
+    m[2][1] = base[2][1] * scale.y;
+    m[2][2] = base[2][2] * scale.z;
+    m[2][3] = base[2][3];
+
+    PSMTXConcat(view, m, dst);
 }
-#pragma pop
