@@ -88,7 +88,8 @@ static int fopKy_Create(void* param_0) {
     kankyo_class* env = (kankyo_class*)param_0;
 
     if (fpcM_IsFirstCreating(param_0)) {
-        leaf_process_profile_definition* profile = fpcM_GetProfile(param_0);
+        // TODO: This should be kankyo_process_profile_definition
+        leaf_process_profile_definition* profile = (leaf_process_profile_definition*) fpcM_GetProfile(param_0);
 
         env->field_0xc0 = fpcBs_MakeOfType(&fopKy_KANKYO_TYPE);
         env->field_0xd8 = profile->mBase.mMethods;

@@ -271,7 +271,7 @@ static int fopAc_Create(void* actor) {
     fopAc_ac_c* ac = (fopAc_ac_c*)actor;
 
     if (fpcM_IsFirstCreating(actor)) {
-        leaf_process_profile_definition* profile = fpcM_GetProfile(actor);
+        leaf_process_profile_definition* profile = (leaf_process_profile_definition*) fpcM_GetProfile(actor);
         ac->mAcType = fpcBs_MakeOfType(&g_fopAc_type);
         ac->mSubMtd = (profile_method_class*)profile->mBase.mMethods;
 

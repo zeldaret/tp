@@ -58,7 +58,8 @@ static int fopCam_Create(void* i_actorP) {
     camera_class* camera = (camera_class*)i_actorP;
 
     if (fpcM_IsFirstCreating(i_actorP)) {
-        leaf_process_profile_definition* profile = fpcM_GetProfile(i_actorP);
+        // TODO: This should be camera_process_profile_definition
+        leaf_process_profile_definition* profile = (leaf_process_profile_definition*) fpcM_GetProfile(i_actorP);
         camera->mpMtd = profile->mMethods;
 
         fopDwTg_Init(&camera->mCreateTag, camera);
@@ -80,10 +81,10 @@ static int fopCam_Create(void* i_actorP) {
 
 /* ############################################################################################## */
 /* 803A3860-803A3878 -00001 0014+04 0/0 2/0 0/0 .data            g_fopCam_Method */
-void* g_fopCam_Method[5] = {
-    fopCam_Create,
-    fopCam_Delete,
-    fopCam_Execute,
-    fopCam_IsDelete,
-    fopCam_Draw
+leafdraw_method_class g_fopCam_Method = {
+    (process_method_func)fopCam_Create,
+    (process_method_func)fopCam_Delete,
+    (process_method_func)fopCam_Execute,
+    (process_method_func)fopCam_IsDelete,
+    (process_method_func)fopCam_Draw
 };
