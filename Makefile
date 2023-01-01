@@ -54,6 +54,10 @@ else
 endif
 endif
 
+ifeq ($(WINE_LD),) 
+WINE_LD := $(WINE)
+endif
+
 # Hack for OSX
 ifeq ($(UNAME_S),Darwin)
 	CPP     := cpp-10 -P
@@ -67,7 +71,7 @@ AS        := $(DEVKITPPC)/bin/powerpc-eabi-as
 OBJCOPY   := $(DEVKITPPC)/bin/powerpc-eabi-objcopy
 STRIP     := $(DEVKITPPC)/bin/powerpc-eabi-strip
 CC        := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc_patched.exe
-LD        := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwldeppc.exe
+LD        := $(WINE_LD) tools/mwcc_compiler/$(MWCC_VERSION)/mwldeppc.exe
 ELF2DOL   := $(BUILD_PATH)/elf2dol
 PYTHON    := python3
 ICONV     := iconv

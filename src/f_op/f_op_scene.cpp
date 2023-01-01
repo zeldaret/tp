@@ -20,8 +20,8 @@ static void fopScn_Execute(scene_class* pScene) {
 }
 
 /* 8001EB84-8001EBAC 0194C4 0028+00 1/0 0/0 0/0 .text            fopScn_IsDelete__FPv */
-static s32 fopScn_IsDelete(scene_class* pScene) {
-    return fpcMtd_IsDelete(pScene->mpMtd, pScene);
+static s32 fopScn_IsDelete(void* pScene) {
+    return fpcMtd_IsDelete(((scene_class*)pScene)->mpMtd, pScene);
 }
 
 /* 8001EBAC-8001EC00 0194EC 0054+00 1/0 0/0 0/0 .text            fopScn_Delete__FPv */
@@ -35,20 +35,21 @@ static s32 fopScn_Delete(void* param_1) {
 }
 
 /* 8001EC00-8001EC74 019540 0074+00 1/0 0/0 0/0 .text            fopScn_Create__FPv */
-static s32 fopScn_Create(scene_class * pScene) {
+static s32 fopScn_Create(void * pScene) {
+    scene_class* scene = (scene_class*)pScene;
     if (fpcM_IsFirstCreating(pScene)) {
         scene_process_profile_definition* profile = (scene_process_profile_definition*) fpcM_GetProfile(pScene);
-        pScene->mpMtd = profile->mpMtd;
-        fopScnTg_Init(&pScene->mScnTg, pScene);
-        fopScnTg_ToQueue(&pScene->mScnTg);
+        scene->mpMtd = profile->mpMtd;
+        fopScnTg_Init(&scene->mScnTg, pScene);
+        fopScnTg_ToQueue(&scene->mScnTg);
 
         u32 * append = (u32*)fpcM_GetAppend(pScene);
         if (append != NULL) {
-            pScene->mBase.mBase.mParameters = *append;
+            scene->mBase.mBase.mParameters = *append;
         }
     }
 
-    return fpcMtd_Create(pScene->mpMtd, pScene);
+    return fpcMtd_Create(scene->mpMtd, pScene);
 }
 
 /* ############################################################################################## */
