@@ -65,7 +65,7 @@ public:
     void offFlag(u32 flag) { mFlags &= ~flag; }
     bool checkFlag(u32 flag) const { return (mFlags & flag) ? true : false; }
 
-    bool isCpuSkinningOn() const { return (mFlags & 4) && (mFlags & 8); }
+    bool isCpuSkinningOn() const { return (mFlags & J3DMdlFlag_SkinPosCpu) && (mFlags & J3DMdlFlag_SkinNrmCpu); }
 
     Mtx& getBaseTRMtx() { return mBaseTransformMtx; }
     void i_setBaseTRMtx(Mtx m) { PSMTXCopy(m, mBaseTransformMtx); }
