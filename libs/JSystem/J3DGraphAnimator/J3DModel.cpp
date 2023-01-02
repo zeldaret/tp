@@ -623,13 +623,13 @@ void J3DModel::viewCalc() {
         if (getMtxCalcMode() == 2) {
             J3DCalcViewBaseMtx(j3dSys.getViewMtx(), mBaseScale, mBaseTransformMtx, (MtxP)&mInternalView);
         }
-    } else if (checkFlag(4)) {
+    } else if (checkFlag(J3DMdlFlag_SkinPosCpu)) {
         mMtxBuffer->calcDrawMtx(getMtxCalcMode(), mBaseScale, mBaseTransformMtx);
         calcNrmMtx();
         calcBumpMtx();
         DCStoreRangeNoSync(getDrawMtxPtr(), mModelData->getDrawMtxNum() * sizeof(Mtx));
         DCStoreRange(getNrmMtxPtr(), mModelData->getDrawMtxNum() * sizeof(Mtx33));
-    } else if (checkFlag(8)) {
+    } else if (checkFlag(J3DMdlFlag_SkinNrmCpu)) {
         mMtxBuffer->calcDrawMtx(getMtxCalcMode(), mBaseScale, mBaseTransformMtx);
         calcBBoardMtx();
         DCStoreRange(getDrawMtxPtr(), mModelData->getDrawMtxNum() * sizeof(Mtx));

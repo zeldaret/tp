@@ -150,7 +150,7 @@ public:
     J3DShapePacket* getShapePacket() const { return mpShapePacket; }
     void setShapePacket(J3DShapePacket* packet) { mpShapePacket = packet; }
     void setInitShapePacket(J3DShapePacket* packet) { mpInitShapePacket = packet; }
-    bool isChanged() const { return mDiffFlag < 0; }
+    bool isChanged() const { return mDiffFlag & 0x80000000; }
 
     virtual ~J3DMatPacket();
     virtual int entry(J3DDrawBuffer*);
