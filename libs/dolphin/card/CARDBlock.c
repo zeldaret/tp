@@ -6,7 +6,7 @@
 #include "dolphin/card/CARDBlock.h"
 #include "MSL_C/MSL_Common/Src/string.h"
 #include "dol2asm.h"
-#include "dolphin/card/CARD.h"
+#include "dolphin/card/card.h"
 #include "dolphin/dsp/dsp.h"
 #include "dolphin/dvd/dvd.h"
 
