@@ -1,16 +1,16 @@
 #ifndef JASWAVEARCLOADER_H
 #define JASWAVEARCLOADER_H
 
+#include "dol2asm.h"
 #include "dolphin/types.h"
 #include "global.h"
-#include "dol2asm.h"
 
 #include "MSL_C/MSL_Common/Src/string.h"
 #include "dolphin/os/OSMutex.h"
 
 #include "JSystem/JAudio2/JASDvdThread.h"
-#include "JSystem/JKernel/JKRDvdAramRipper.h"
 #include "JSystem/JAudio2/JASHeapCtrl.h"
+#include "JSystem/JKernel/JKRDvdAramRipper.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 
 struct JASDisposer {
@@ -29,7 +29,7 @@ struct JASHeap : JSUTree<JASHeap> {
     /* 802906F0 */ void getTailHeap();
     /* 8029077C */ void getTailOffset();
     /* 802907E0 */ void getCurOffset();
-    /* 80290B54 */ ~JASHeap() {};
+    /* 80290B54 */ ~JASHeap(){};
     void* getBase() { return mBase; }
 
     /*0x1c*/ OSMutex mMutex;
