@@ -7,7 +7,7 @@ lbl_8033FAE4:
 /* 8033FAF8  93 A1 00 1C */	stw r29, 0x1c(r1)
 /* 8033FAFC  48 00 2C 21 */	bl __OSGetSystemTime
 /* 8033FB00  3C A0 80 00 */	lis r5, 0x8000 /* 0x800000F8@ha */
-/* 8033FB04  90 8D 91 3C */	stw r4, data_804516BC(r13)
+/* 8033FB04  90 8D 91 3C */	stw r4, HoldDown+0x4(r13)
 /* 8033FB08  80 05 00 F8 */	lwz r0, 0x00F8(r5)  /* 0x800000F8@l */
 /* 8033FB0C  3C 80 43 1C */	lis r4, 0x431C /* 0x431BDE83@ha */
 /* 8033FB10  38 84 DE 83 */	addi r4, r4, 0xDE83 /* 0x431BDE83@l */
@@ -21,7 +21,7 @@ lbl_8033FAE4:
 /* 8033FB30  3F E0 CC 00 */	lis r31, 0xcc00
 lbl_8033FB34:
 /* 8033FB34  48 00 2B E9 */	bl __OSGetSystemTime
-/* 8033FB38  80 CD 91 3C */	lwz r6, data_804516BC(r13)
+/* 8033FB38  80 CD 91 3C */	lwz r6, HoldDown+0x4(r13)
 /* 8033FB3C  6F C5 80 00 */	xoris r5, r30, 0x8000
 /* 8033FB40  80 0D 91 38 */	lwz r0, HoldDown(r13)
 /* 8033FB44  7C 86 20 10 */	subfc r4, r6, r4

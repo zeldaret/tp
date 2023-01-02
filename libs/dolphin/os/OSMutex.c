@@ -5,54 +5,136 @@
 
 #include "dolphin/os/OSMutex.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "dolphin/os/OS.h"
 
-//
-// External References:
-//
+#define PushTail(queue, mutex, link)                                                               \
+    do {                                                                                           \
+        OSMutex* __prev;                                                                           \
+                                                                                                   \
+        __prev = (queue)->tail;                                                                    \
+        if (__prev == NULL)                                                                        \
+            (queue)->head = (mutex);                                                               \
+        else                                                                                       \
+            __prev->link.next = (mutex);                                                           \
+        (mutex)->link.prev = __prev;                                                               \
+        (mutex)->link.next = NULL;                                                                 \
+        (queue)->tail = (mutex);                                                                   \
+    } while (0)
 
-void OSDisableInterrupts();
-void OSRestoreInterrupts();
+#define PopHead(queue, mutex, link)                                                                \
+    do {                                                                                           \
+        OSMutex* __next;                                                                           \
+                                                                                                   \
+        (mutex) = (queue)->head;                                                                   \
+        __next = (mutex)->link.next;                                                               \
+        if (__next == NULL)                                                                        \
+            (queue)->tail = NULL;                                                                  \
+        else                                                                                       \
+            __next->link.prev = NULL;                                                              \
+        (queue)->head = __next;                                                                    \
+    } while (0)
+
+#define PopItem(queue, mutex, link)                                                                \
+    do {                                                                                           \
+        OSMutex* __next;                                                                           \
+        OSMutex* __prev;                                                                           \
+                                                                                                   \
+        __next = (mutex)->link.next;                                                               \
+        __prev = (mutex)->link.prev;                                                               \
+                                                                                                   \
+        if (__next == NULL)                                                                        \
+            (queue)->tail = __prev;                                                                \
+        else                                                                                       \
+            __next->link.prev = __prev;                                                            \
+                                                                                                   \
+        if (__prev == NULL)                                                                        \
+            (queue)->head = __next;                                                                \
+        else                                                                                       \
+            __prev->link.next = __next;                                                            \
+    } while (0)
 
 //
 // Declarations:
 //
 
 /* 8033F008-8033F040 339948 0038+00 0/0 12/12 0/0 .text            OSInitMutex */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSInitMutex(struct OSMutex* mutex) {
-    nofralloc
-#include "asm/dolphin/os/OSMutex/OSInitMutex.s"
+void OSInitMutex(OSMutex* mutex) {
+    OSInitThreadQueue(&mutex->queue);
+    mutex->thread = 0;
+    mutex->count = 0;
 }
-#pragma pop
 
 /* 8033F040-8033F11C 339980 00DC+00 1/1 62/62 0/0 .text            OSLockMutex */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+void OSLockMutex(OSMutex* mutex) {
+    BOOL enabled = OSDisableInterrupts();
+    OSThread* currentThread = OSGetCurrentThread();
+    OSThread* ownerThread;
+
+    while (TRUE) {
+        ownerThread = ((OSMutex*)mutex)->thread;
+        if (ownerThread == 0) {
+            mutex->thread = currentThread;
+            mutex->count++;
+            PushTail(&currentThread->owned_mutexes, mutex, link);
+            break;
+        } else if (ownerThread == currentThread) {
+            mutex->count++;
+            break;
+        } else {
+            currentThread->mutex = mutex;
+            __OSPromoteThread(mutex->thread, currentThread->effective_priority);
+            OSSleepThread(&mutex->queue);
+            currentThread->mutex = 0;
+        }
+    }
+    OSRestoreInterrupts(enabled);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSLockMutex(struct OSMutex* mutex) {
+asm void OSLockMutex(OSMutex* mutex) {
     nofralloc
 #include "asm/dolphin/os/OSMutex/OSLockMutex.s"
 }
 #pragma pop
+#endif
 
 /* 8033F11C-8033F1E4 339A5C 00C8+00 0/0 71/71 0/0 .text            OSUnlockMutex */
+#ifdef NONMATCHING
+void OSUnlockMutex(OSMutex* mutex) {
+    BOOL enabled = OSDisableInterrupts();
+    OSThread* currentThread = OSGetCurrentThread();
+
+    if (mutex->thread == currentThread && --mutex->count == 0) {
+        PopItem(&currentThread->owned_mutexes, mutex, link);
+        mutex->thread = NULL;
+        if (currentThread->effective_priority < currentThread->base_priority) {
+            currentThread->effective_priority = __OSGetEffectivePriority(currentThread);
+        }
+
+        OSWakeupThread(&mutex->queue);
+    }
+    OSRestoreInterrupts(enabled);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSUnlockMutex(struct OSMutex* mutex) {
+asm void OSUnlockMutex(OSMutex* mutex) {
     nofralloc
 #include "asm/dolphin/os/OSMutex/OSUnlockMutex.s"
 }
 #pragma pop
+#endif
 
 /* 8033F1E4-8033F254 339B24 0070+00 0/0 2/2 0/0 .text            __OSUnlockAllMutex */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSUnlockAllMutex(struct OSThread* thread) {
+asm void __OSUnlockAllMutex(OSThread* thread) {
     nofralloc
 #include "asm/dolphin/os/OSMutex/__OSUnlockAllMutex.s"
 }
@@ -62,7 +144,7 @@ asm void __OSUnlockAllMutex(struct OSThread* thread) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm s32 OSTryLockMutex(struct OSMutex* mutex) {
+asm s32 OSTryLockMutex(OSMutex* mutex) {
     nofralloc
 #include "asm/dolphin/os/OSMutex/OSTryLockMutex.s"
 }
@@ -72,7 +154,7 @@ asm s32 OSTryLockMutex(struct OSMutex* mutex) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSInitCond(struct OSCond* cond) {
+asm void OSInitCond(OSCond* cond) {
     nofralloc
 #include "asm/dolphin/os/OSMutex/OSInitCond.s"
 }
@@ -82,7 +164,7 @@ asm void OSInitCond(struct OSCond* cond) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSWaitCond(struct OSCond* cond, struct OSMutex* mutex) {
+asm void OSWaitCond(OSCond* cond, OSMutex* mutex) {
     nofralloc
 #include "asm/dolphin/os/OSMutex/OSWaitCond.s"
 }
@@ -92,7 +174,7 @@ asm void OSWaitCond(struct OSCond* cond, struct OSMutex* mutex) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSSignalCond(struct OSCond* con) {
+asm void OSSignalCond(OSCond* con) {
     nofralloc
 #include "asm/dolphin/os/OSMutex/OSSignalCond.s"
 }
@@ -102,7 +184,7 @@ asm void OSSignalCond(struct OSCond* con) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm s32 __OSCheckMutex(struct OSThread* thread) {
+asm s32 __OSCheckMutex(OSThread* thread) {
     nofralloc
 #include "asm/dolphin/os/OSMutex/__OSCheckMutex.s"
 }
@@ -112,7 +194,7 @@ asm s32 __OSCheckMutex(struct OSThread* thread) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm BOOL __OSCheckDeadLock(struct OSThread* thread) {
+asm BOOL __OSCheckDeadLock(OSThread* thread) {
     nofralloc
 #include "asm/dolphin/os/OSMutex/__OSCheckDeadLock.s"
 }
@@ -122,7 +204,7 @@ asm BOOL __OSCheckDeadLock(struct OSThread* thread) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm BOOL __OSCheckMutexes(struct OSThread* thread) {
+asm BOOL __OSCheckMutexes(OSThread* thread) {
     nofralloc
 #include "asm/dolphin/os/OSMutex/__OSCheckMutexes.s"
 }

@@ -5,27 +5,18 @@
 
 #include "dolphin/os/OSError.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "dolphin/base/PPCArch.h"
+#include "dolphin/os/OS.h"
+#include "dolphin/dsp/dsp.h"
+
+OSThread* __OSCurrentThread : (OS_BASE_CACHED | 0x00E4);
+OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | 0x00DC);
+volatile OSContext* __OSFPUContext : (OS_BASE_CACHED | 0x00D8);
 
 //
 // External References:
 //
 
-void OSReport();
-void PPCMfmsr();
-void PPCMtmsr();
-void PPCHalt();
-void PPCMffpscr();
-void PPCMtfpscr();
-void OSSaveFPUContext();
-void OSLoadContext();
-void OSDumpContext();
-void OSDisableInterrupts();
-void OSRestoreInterrupts();
-void OSDisableScheduler();
-void OSEnableScheduler();
-void __OSReschedule();
-void OSGetTime();
 extern u8 __OSLastInterruptSrr0[4];
 extern u8 __OSLastInterrupt[2 + 6 /* padding */];
 extern u8 __OSLastInterruptTime[4];
@@ -37,11 +28,12 @@ extern u8 data_80451684[4];
 
 /* ############################################################################################## */
 /* 8044BAD0-8044BB20 0787F0 0044+0C 2/2 2/2 0/0 .bss             __OSErrorTable */
-extern OSErrorHandler __OSErrorTable[17 + 3 /* padding */];
-OSErrorHandler __OSErrorTable[17 + 3 /* padding */];
+extern OSErrorHandler __OSErrorTable[17];
+OSErrorHandler __OSErrorTable[17];
 
 /* 804509A0-804509A4 000420 0004+00 1/1 2/2 0/0 .sdata           __OSFpscrEnableBits */
-SECTION_SDATA extern u32 __OSFpscrEnableBits = 0xF8;
+#define FPSCR_ENABLE (FPSCR_VE | FPSCR_OE | FPSCR_UE | FPSCR_ZE | FPSCR_XE)
+SECTION_SDATA extern u32 __OSFpscrEnableBits = FPSCR_ENABLE;
 
 /* 8033C580-8033C798 336EC0 0218+00 0/0 4/4 0/0 .text            OSSetErrorHandler */
 #pragma push
@@ -96,25 +88,29 @@ SECTION_DATA static char lit_78[] = "TB = 0x%016llx\n";
 /* 803CF9F0-803CFA50 02CB10 0060+00 0/1 0/0 0/0 .data            @79 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static char lit_79[] = "\nInstruction at 0x%x (read from SRR0) attempted to access invalid address 0x%x (read from DAR)\n";
+SECTION_DATA static char lit_79[] = "\nInstruction at 0x%x (read from SRR0) attempted to access "
+                                    "invalid address 0x%x (read from DAR)\n";
 #pragma pop
 
 /* 803CFA50-803CFA9C 02CB70 004C+00 0/0 0/0 0/0 .data            @80 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static char lit_80[] = "\nAttempted to fetch instruction from invalid address 0x%x (read from SRR0)\n";
+SECTION_DATA static char lit_80[] =
+    "\nAttempted to fetch instruction from invalid address 0x%x (read from SRR0)\n";
 #pragma pop
 
 /* 803CFA9C-803CFB00 02CBBC 0062+02 0/0 0/0 0/0 .data            @81 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static char lit_81[] = "\nInstruction at 0x%x (read from SRR0) attempted to access unaligned address 0x%x (read from DAR)\n";
+SECTION_DATA static char lit_81[] = "\nInstruction at 0x%x (read from SRR0) attempted to access "
+                                    "unaligned address 0x%x (read from DAR)\n";
 #pragma pop
 
 /* 803CFB00-803CFB60 02CC20 0060+00 0/0 0/0 0/0 .data            @82 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static char lit_82[] = "\nProgram exception : Possible illegal instruction/operation at or around 0x%x (read from SRR0)\n";
+SECTION_DATA static char lit_82[] = "\nProgram exception : Possible illegal instruction/operation "
+                                    "at or around 0x%x (read from SRR0)\n";
 #pragma pop
 
 /* 803CFB60-803CFB80 02CC80 001F+01 0/0 0/0 0/0 .data            @83 */
@@ -167,11 +163,120 @@ SECTION_DATA static void* lit_87[16 + 1 /* padding */] = {
 SECTION_SDATA static char lit_76[] = "\n";
 
 /* 8033C798-8033CA80 3370D8 02E8+00 1/0 2/2 0/0 .text            __OSUnhandledException */
+#ifdef NONMATCHING
+void __OSUnhandledException(__OSException exception, OSContext* context, u32 dsisr, u32 dar) {
+    OSTime now;
+
+    now = OSGetTime();
+
+    if (!(context->srr1 & MSR_RI)) {
+        OSReport("Non-recoverable Exception %d", exception);
+    } else {
+        if (exception == EXCEPTION_PROGRAM && (context->srr1 & (0x80000000 >> 11)) &&
+            __OSErrorTable[EXCEPTION_FLOATING_POINT_EXCEPTION] != 0) {
+            u32 fpscr;
+            u32 msr;
+
+            exception = EXCEPTION_FLOATING_POINT_EXCEPTION;
+
+            msr = PPCMfmsr();
+            PPCMtmsr(msr | MSR_FP);
+
+            if (__OSFPUContext) {
+                OSSaveFPUContext((OSContext*)__OSFPUContext);
+            }
+
+            fpscr = PPCMffpscr();
+            fpscr &= ~(FPSCR_VXVC | FPSCR_VXIMZ | FPSCR_VXZDZ | FPSCR_VXIDI | FPSCR_VXISI |
+                       FPSCR_VXSNAN | FPSCR_VXSOFT | FPSCR_VXSQRT | FPSCR_VXCVI | FPSCR_XX |
+                       FPSCR_ZX | FPSCR_UX | FPSCR_OX | FPSCR_FX | FPSCR_FI);
+            PPCMtfpscr(fpscr);
+
+            PPCMtmsr(msr);
+
+            if (__OSFPUContext == context) {
+                OSDisableScheduler();
+                __OSErrorTable[exception](exception, context, dsisr, dar);
+                context->srr1 &= ~MSR_FP;
+                __OSFPUContext = NULL;
+
+                context->fpscr &=
+                    ~(FPSCR_VXVC | FPSCR_VXIMZ | FPSCR_VXZDZ | FPSCR_VXIDI | FPSCR_VXISI |
+                      FPSCR_VXSNAN | FPSCR_VXSOFT | FPSCR_VXSQRT | FPSCR_VXCVI | FPSCR_XX |
+                      FPSCR_ZX | FPSCR_UX | FPSCR_OX | FPSCR_FX | FPSCR_FI);
+                OSEnableScheduler();
+                __OSReschedule();
+            } else {
+                context->srr1 &= ~MSR_FP;
+                __OSFPUContext = NULL;
+            }
+
+            OSLoadContext(context);
+        }
+
+        if (__OSErrorTable[exception]) {
+            OSDisableScheduler();
+            __OSErrorTable[exception](exception, context, dsisr, dar);
+            OSEnableScheduler();
+            __OSReschedule();
+            OSLoadContext(context);
+        }
+
+        if (exception == OS_ERROR_DECREMENTER) {
+            OSLoadContext(context);
+        }
+
+        OSReport("Unhandled Exception %d", exception);
+    }
+
+    OSReport("\n");
+    OSDumpContext(context);
+    OSReport("\nDSISR = 0x%08x                   DAR  = 0x%08x\n", dsisr, dar);
+    OSReport("TB = 0x%016llx\n", now);
+
+    switch (exception) {
+    case EXCEPTION_DSI:
+        OSReport("\nInstruction at 0x%x (read from SRR0) attempted to access "
+                 "invalid address 0x%x (read from DAR)\n",
+                 context->srr0, dar);
+        break;
+    case EXCEPTION_ISI:
+        OSReport("\nAttempted to fetch instruction from invalid address 0x%x "
+                 "(read from SRR0)\n",
+                 context->srr0);
+        break;
+    case EXCEPTION_ALIGNMENT:
+        OSReport("\nInstruction at 0x%x (read from SRR0) attempted to access "
+                 "unaligned address 0x%x (read from DAR)\n",
+                 context->srr0, dar);
+        break;
+    case EXCEPTION_PROGRAM:
+        OSReport("\nProgram exception : Possible illegal instruction/operation "
+                 "at or around 0x%x (read from SRR0)\n",
+                 context->srr0, dar);
+        break;
+    case EXCEPTION_MEMORY_PROTECTION:
+        OSReport("\n");
+        OSReport("AI DMA Address =   0x%04x%04x\n", __DSPRegs[0x00000018],
+                 __DSPRegs[0x00000018 + 1]);
+        OSReport("ARAM DMA Address = 0x%04x%04x\n", __DSPRegs[0x00000010],
+                 __DSPRegs[0x00000010 + 1]);
+        OSReport("DI DMA Address =   0x%08x\n", __DIRegs[0x00000005]);
+        break;
+    }
+
+    OSReport("\nLast interrupt (%d): SRR0 = 0x%08x  TB = 0x%016llx\n", __OSLastInterrupt,
+             __OSLastInterruptSrr0, __OSLastInterruptTime);
+
+    PPCHalt();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSUnhandledException(OSException exception, OSContext* context, u32 dsisr, u32 dar) {
+asm void __OSUnhandledException(__OSException exception, OSContext* context, u32 dsisr, u32 dar) {
     nofralloc
 #include "asm/dolphin/os/OSError/__OSUnhandledException.s"
 }
 #pragma pop
+#endif

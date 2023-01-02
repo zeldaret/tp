@@ -56,6 +56,28 @@ extern "C" {
 #define OS_MESSAGE_NON_BLOCKING 0
 #define OS_MESSAGE_BLOCKING 1
 
+#define OS_CONSOLE_MASK 0xf0000000
+#define OS_CONSOLE_RETAIL 0x00000000
+#define OS_CONSOLE_DEVELOPMENT 0x10000000
+#define OS_CONSOLE_TDEV 0x20000000
+
+#define OS_CONSOLE_RETAIL4 0x00000004
+#define OS_CONSOLE_RETAIL3 0x00000003
+#define OS_CONSOLE_RETAIL2 0x00000002
+#define OS_CONSOLE_RETAIL1 0x00000001
+#define OS_CONSOLE_TDEVHW4 0x20000007
+#define OS_CONSOLE_TDEVHW3 0x20000006
+#define OS_CONSOLE_TDEVHW2 0x20000005
+#define OS_CONSOLE_TDEVHW1 0x20000004
+#define OS_CONSOLE_DEVHW4 0x10000007
+#define OS_CONSOLE_DEVHW3 0x10000006
+#define OS_CONSOLE_DEVHW2 0x10000005
+#define OS_CONSOLE_DEVHW1 0x10000004
+#define OS_CONSOLE_MINNOW 0x10000003
+#define OS_CONSOLE_ARTHUR 0x10000002
+#define OS_CONSOLE_PC_EMULATOR 0x10000001
+#define OS_CONSOLE_EMULATOR 0x10000000
+
 volatile u16 __OSDeviceCode : 0x800030E6;
 
 volatile u32 OS_PI_INTR_CAUSE : 0xCC003000;
@@ -99,7 +121,7 @@ static void OSExceptionInit(void);
 void __OSDBIntegrator(void);
 void __OSDBJump(void);
 
-typedef void (*OSExceptionHandler)(OSException, OSContext*);
+typedef void (*OSExceptionHandler)(__OSException, OSContext*);
 OSExceptionHandler __OSSetExceptionHandler(__OSException exception, OSExceptionHandler handler);
 OSExceptionHandler __OSGetExceptionHandler(__OSException exception);
 static void OSExceptionVector(void);
@@ -108,7 +130,7 @@ void __OSEVSetNumber();
 void __OSEVEnd();
 static void OSDefaultExceptionHandler(__OSException exception, OSContext* context);
 void __OSPSInit(void);
-void __OSGetDIConfig(void);
+u32 __OSGetDIConfig(void);
 void OSRegisterVersion(char* version);
 void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);
 
@@ -178,6 +200,28 @@ typedef struct OSBootInfo {
     /* 0x38 */ void* fst_location;
     /* 0x3C */ u32 fst_max_length;
 } OSBootInfo;
+
+typedef struct {
+    BOOL valid;
+    u32 restartCode;
+    u32 bootDol;
+    void* regionStart;
+    void* regionEnd;
+    BOOL argsUseDefault;
+    void* argsAddr;  // valid only when argsUseDefault = FALSE
+} OSExecParams;
+
+typedef struct BI2Debug {
+    /* 0x00 */ s32 debugMonSize;
+    /* 0x04 */ s32 simMemSize;
+    /* 0x08 */ u32 argOffset;
+    /* 0x0C */ u32 debugFlag;
+    /* 0x10 */ int trackLocation;
+    /* 0x14 */ int trackSize;
+    /* 0x18 */ u32 countryCode;
+    /* 0x1C */ u8 unk[8];
+    /* 0x24 */ u32 padSpec;
+} BI2Debug;
 
 struct GLOBAL_MEMORY {
     DVDDiskID disk;
@@ -269,6 +313,8 @@ struct GLOBAL_MEMORY {
 #define OSUncachedToPhysical(ucaddr) ((u32)((u8*)(ucaddr)-OS_BASE_UNCACHED))
 #define OSCachedToUncached(caddr) ((void*)((u8*)(caddr) + (OS_BASE_UNCACHED - OS_BASE_CACHED)))
 #define OSUncachedToCached(ucaddr) ((void*)((u8*)(ucaddr) - (OS_BASE_UNCACHED - OS_BASE_CACHED)))
+
+extern OSTime __OSStartTime;
 
 #ifdef __cplusplus
 };

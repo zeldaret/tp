@@ -5,23 +5,13 @@
 
 #include "dolphin/si/SISamplingRate.h"
 #include "dol2asm.h"
+#include "dolphin/si/SIBios.h"
 #include "dolphin/types.h"
-
-//
-// Forward References:
-//
-
-void SISetSamplingRate();
-void SIRefreshSamplingRate();
 
 //
 // External References:
 //
 
-void OSReport();
-void OSDisableInterrupts();
-void OSRestoreInterrupts();
-void SISetXY();
 void VIGetTvFormat();
 
 //

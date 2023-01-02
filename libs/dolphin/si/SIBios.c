@@ -5,49 +5,24 @@
 
 #include "dolphin/si/SIBios.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+
+vu32 __SIRegs[64] : 0xCC006400;
 
 //
 // Forward References:
 //
 
-void SIBusy();
-void SIIsChanBusy();
-static void CompleteTransfer();
-static void SIInterruptHandler();
-static void SIEnablePollingInterrupt();
-void SIRegisterPollingHandler();
-void SIUnregisterPollingHandler();
-void SIInit();
-void __SITransfer();
-void SIGetStatus();
-void SISetCommand();
-void SITransferCommands();
-void SISetXY();
-void SIEnablePolling();
-void SIDisablePolling();
-static void SIGetResponseRaw();
-void SIGetResponse();
-static void AlarmHandler();
-void SITransfer();
-static void GetTypeCallback();
-void SIGetType();
-void SIGetTypeAsync();
+
+static u32 CompleteTransfer(void);
+BOOL __SITransfer(s32 chan, void* output, u32 outputBytes, void* input, u32 inputBytes,
+                  SICallback callback);
+static void AlarmHandler(OSAlarm* alarm, OSContext* context);
+static void GetTypeCallback(s32 chan, u32 error, OSContext* context);
 
 //
 // External References:
 //
 
-void OSRegisterVersion();
-void OSSetAlarm();
-void OSCancelAlarm();
-void OSDisableInterrupts();
-void OSRestoreInterrupts();
-void __OSSetInterruptHandler();
-void __OSUnmaskInterrupts();
-void OSGetWirelessID();
-void OSSetWirelessID();
-void __OSGetSystemTime();
 void SISetSamplingRate();
 void VIGetCurrentLine();
 
@@ -57,7 +32,8 @@ void VIGetCurrentLine();
 
 /* ############################################################################################## */
 /* 803D11B8-803D11FC 02E2D8 0044+00 4/3 0/0 0/0 .data            @1 */
-SECTION_DATA static char lit_1[] = "<< Dolphin SDK - SI\trelease build: Apr  5 2004 04:14:16 (0x2301) >>";
+SECTION_DATA static char lit_1[] =
+    "<< Dolphin SDK - SI\trelease build: Apr  5 2004 04:14:16 (0x2301) >>";
 
 /* 803D11FC-803D1210 02E31C 0014+00 8/11 0/0 0/0 .data            Si */
 SECTION_DATA static u8 Si[20] = {
@@ -69,7 +45,7 @@ SECTION_DATA static u8 Si[20] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SIBusy() {
+asm BOOL SIBusy(void) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIBusy.s"
 }
@@ -83,7 +59,7 @@ static u8 Packet[128];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SIIsChanBusy() {
+asm BOOL SIIsChanBusy(s32 chan) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIIsChanBusy.s"
 }
@@ -103,7 +79,7 @@ static u8 XferTime[32];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void CompleteTransfer() {
+static asm u32 CompleteTransfer(void) {
     nofralloc
 #include "asm/dolphin/si/SIBios/CompleteTransfer.s"
 }
@@ -141,7 +117,7 @@ static u8 cmdTypeAndStatus_78[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void SIInterruptHandler() {
+static asm void SIInterruptHandler(OSInterrupt interrupt, OSContext* context) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIInterruptHandler.s"
 }
@@ -151,7 +127,7 @@ static asm void SIInterruptHandler() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void SIEnablePollingInterrupt() {
+static asm BOOL SIEnablePollingInterrupt(BOOL enable) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIEnablePollingInterrupt.s"
 }
@@ -161,7 +137,7 @@ static asm void SIEnablePollingInterrupt() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SIRegisterPollingHandler() {
+asm BOOL SIRegisterPollingHandler(OSInterruptHandler handler) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIRegisterPollingHandler.s"
 }
@@ -171,7 +147,7 @@ asm void SIRegisterPollingHandler() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SIUnregisterPollingHandler() {
+asm BOOL SIUnregisterPollingHandler(OSInterruptHandler handler) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIUnregisterPollingHandler.s"
 }
@@ -189,7 +165,7 @@ SECTION_SDATA static void* __SIVersion[1 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SIInit() {
+asm void SIInit(void) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIInit.s"
 }
@@ -199,7 +175,8 @@ asm void SIInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __SITransfer() {
+asm BOOL __SITransfer(s32 chan, void* output, u32 outputBytes, void* input, u32 inputBytes,
+                      SICallback callback) {
     nofralloc
 #include "asm/dolphin/si/SIBios/__SITransfer.s"
 }
@@ -215,7 +192,7 @@ SECTION_DATA static u8 Type[16] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SIGetStatus() {
+asm u32 SIGetStatus(s32 chan) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIGetStatus.s"
 }
@@ -225,7 +202,7 @@ asm void SIGetStatus() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SISetCommand() {
+asm void SISetCommand(s32 chan, u32 command) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SISetCommand.s"
 }
@@ -235,7 +212,7 @@ asm void SISetCommand() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SITransferCommands() {
+asm void SITransferCommands(void) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SITransferCommands.s"
 }
@@ -245,7 +222,7 @@ asm void SITransferCommands() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SISetXY() {
+asm u32 SISetXY(u32 x, u32 y) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SISetXY.s"
 }
@@ -255,7 +232,7 @@ asm void SISetXY() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SIEnablePolling() {
+asm u32 SIEnablePolling(u32 poll) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIEnablePolling.s"
 }
@@ -265,7 +242,7 @@ asm void SIEnablePolling() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SIDisablePolling() {
+asm u32 SIDisablePolling(u32 poll) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIDisablePolling.s"
 }
@@ -275,7 +252,7 @@ asm void SIDisablePolling() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void SIGetResponseRaw() {
+static asm BOOL SIGetResponseRaw(s32 chan) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIGetResponseRaw.s"
 }
@@ -285,7 +262,7 @@ static asm void SIGetResponseRaw() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SIGetResponse() {
+asm BOOL SIGetResponse(s32 chan, void* data) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIGetResponse.s"
 }
@@ -295,7 +272,7 @@ asm void SIGetResponse() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void AlarmHandler() {
+static asm void AlarmHandler(OSAlarm* alarm, OSContext* context) {
     nofralloc
 #include "asm/dolphin/si/SIBios/AlarmHandler.s"
 }
@@ -305,7 +282,8 @@ static asm void AlarmHandler() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SITransfer() {
+asm BOOL SITransfer(s32 chan, void* output, u32 outputBytes, void* input, u32 inputBytes,
+                    SICallback callback, OSTime delay) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SITransfer.s"
 }
@@ -323,7 +301,7 @@ u8 __PADFixBits[4 + 4 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void GetTypeCallback() {
+static asm void GetTypeCallback(s32 chan, u32 error, OSContext* context) {
     nofralloc
 #include "asm/dolphin/si/SIBios/GetTypeCallback.s"
 }
@@ -333,7 +311,7 @@ static asm void GetTypeCallback() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SIGetType() {
+asm u32 SIGetType(s32 chan) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIGetType.s"
 }
@@ -343,7 +321,7 @@ asm void SIGetType() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SIGetTypeAsync() {
+asm u32 SIGetTypeAsync(s32 chan, SITypeAndStatusCallback callback) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIGetTypeAsync.s"
 }
@@ -351,6 +329,8 @@ asm void SIGetTypeAsync() {
 
 /* ############################################################################################## */
 /* 803D1220-803D122C 02E340 000C+00 0/0 0/0 0/0 .data            @457 */
+
+// All of these strings are from the stripped `SIGetTypeString` function
 #pragma push
 #pragma force_active on
 SECTION_DATA static char lit_457[] = "No response";
