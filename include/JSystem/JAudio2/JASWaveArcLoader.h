@@ -14,7 +14,7 @@
 #include "JSystem/JKernel/JKRSolidHeap.h"
 
 struct JASDisposer {
-    JASDisposer(){};
+    JASDisposer() {}
     /* 8029A7B8 */ virtual ~JASDisposer() {}
     /* 80290BCC */ virtual void onDispose();
 };
