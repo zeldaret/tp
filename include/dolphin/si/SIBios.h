@@ -54,7 +54,7 @@ extern "C" {
 #define SI_GC_CONTROLLER (SI_TYPE_GC | SI_GC_STANDARD)
 #define SI_GC_RECEIVER (SI_TYPE_GC | SI_GC_WIRELESS)
 #define SI_GC_WAVEBIRD                                                                             \
-  (SI_TYPE_GC | SI_GC_WIRELESS | SI_GC_STANDARD | SI_WIRELESS_STATE | SI_WIRELESS_FIX_ID)
+    (SI_TYPE_GC | SI_GC_WIRELESS | SI_GC_STANDARD | SI_WIRELESS_STATE | SI_WIRELESS_FIX_ID)
 #define SI_GC_KEYBOARD (SI_TYPE_GC | 0x00200000)
 #define SI_GC_STEERING (SI_TYPE_GC | 0x00000000)
 
@@ -70,6 +70,34 @@ typedef struct SIPacket {
     SICallback callback;
     OSTime fire;
 } SIPacket;
+
+typedef struct SIControl {
+    s32 chan;
+    u32 poll;
+    u32 inputBytes;
+    void* input;
+    SICallback callback;
+} SIControl;
+
+typedef struct SIComm_s {
+    u32 tcint : 1;
+    u32 tcintmsk : 1;
+    u32 comerr : 1;
+    u32 rdstint : 1;
+    u32 rdstintmsk : 1;
+    u32 pad0 : 4;
+    u32 outlngth : 7;
+    u32 pad1 : 1;
+    u32 inlngth : 7;
+    u32 pad2 : 5;
+    u32 channel : 2;
+    u32 tstart : 1;
+} SIComm_s;
+
+typedef union SIComm_u {
+    u32 val;
+    SIComm_s f;
+} SIComm_u;
 
 BOOL SIBusy(void);
 BOOL SIIsChanBusy(s32 chan);
@@ -90,6 +118,8 @@ BOOL SITransfer(s32 chan, void* output, u32 outputBytes, void* input, u32 inputB
                 SICallback callback, OSTime delay);
 u32 SIGetType(s32 chan);
 u32 SIGetTypeAsync(s32 chan, SITypeAndStatusCallback callback);
+
+vu32 __SIRegs[64] : 0xCC006400;
 
 #ifdef __cplusplus
 }

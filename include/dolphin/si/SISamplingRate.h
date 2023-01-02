@@ -7,6 +7,11 @@
 extern "C" {
 #endif
 
+typedef struct XY {
+    u16 line;
+    u8 count;
+} XY;
+
 void SISetSamplingRate(u32 msec);
 void SIRefreshSamplingRate(void);
 
