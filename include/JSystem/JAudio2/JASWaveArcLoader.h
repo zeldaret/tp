@@ -15,7 +15,7 @@
 
 struct JASDisposer {
     JASDisposer(){};
-    /* 8029A7B8 */ virtual ~JASDisposer(){};
+    /* 8029A7B8 */ virtual ~JASDisposer() {}
     /* 80290BCC */ virtual void onDispose();
 };
 
@@ -29,14 +29,14 @@ struct JASHeap : JSUTree<JASHeap> {
     /* 802906F0 */ void getTailHeap();
     /* 8029077C */ void getTailOffset();
     /* 802907E0 */ void getCurOffset();
-    /* 80290B54 */ ~JASHeap(){};
+    /* 80290B54 */ ~JASHeap() {}
     void* getBase() { return mBase; }
 
-    /*0x1c*/ OSMutex mMutex;
-    /*0x38*/ JASDisposer* mDisposer;
-    /*0x3c*/ void* mBase;
-    /*0x40*/ u32 _3c;
-    /*0x44*/ u32 _40;
+    /* 0x1C */ OSMutex mMutex;
+    /* 0x38 */ JASDisposer* mDisposer;
+    /* 0x3C */ void* mBase;
+    /* 0x40 */ u32 _3c;
+    /* 0x44 */ u32 _40;
 };
 
 struct JASKernel {
@@ -81,20 +81,20 @@ struct JASWaveArc : JASDisposer {
 
     struct loadToAramCallbackParams {
         // not official struct name
-        JASWaveArc* mWavArc;
-        long mEntryNum;
-        u32 mBase;
-        u32 _c;
+        /* 0x0 */ JASWaveArc* mWavArc;
+        /* 0x4 */ long mEntryNum;
+        /* 0x8 */ u32 mBase;
+        /* 0xC */ u32 _c;
     };
 
-    /*0x04*/ JASHeap mHeap;
-    /*0x48*/ u32 _48;
-    /*0x4c*/ volatile s32 _4c;
-    /*0x50*/ int mEntryNum;
-    /*0x54*/ u32 mFileLength;
-    /*0x58*/ u16 _58;
-    /*0x5a*/ u16 _5a;
-    /*0x5c*/ OSMutex mMutex;
+    /* 0x04 */ JASHeap mHeap;
+    /* 0x48 */ u32 _48;
+    /* 0x4C */ volatile s32 _4c;
+    /* 0x50 */ int mEntryNum;
+    /* 0x54 */ u32 mFileLength;
+    /* 0x58 */ u16 _58;
+    /* 0x5A */ u16 _5a;
+    /* 0x5C */ OSMutex mMutex;
 };
 
 struct JASMutexLock {
@@ -103,7 +103,8 @@ struct JASMutexLock {
         OSLockMutex(mMutex);
     }
     ~JASMutexLock() { OSUnlockMutex(mMutex); }
-    OSMutex* mMutex;
+
+    /* 0x0 */ OSMutex* mMutex;
 };
 
 #endif /* JASWAVEARCLOADER_H */
