@@ -10,7 +10,7 @@ public:
     /* 8028F9EC */ void allocCallStack(void (*)(void*), void*);
     /* 8028F850 */ void allocCallStack(void (*)(void*), void const*, u32);
     /* 8028FC54 */ void sendCmdMsg(void (*)(void*), void*);
-    /* 8028FB5C */ void sendCmdMsg(void (*)(void*), void const*, u32);
+    /* 8028FB5C */ int sendCmdMsg(void (*)(void*), void const*, u32);
     /* 8028FE88 */ void pause(bool);
 
     /* 8028F724 */ virtual ~JASTaskThread();
