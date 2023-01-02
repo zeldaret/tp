@@ -8,6 +8,7 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "JSystem/J3DGraphBase/J3DPacket.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 
 //
 // Forward References:
@@ -90,48 +91,82 @@ J3DDrawBuffer::~J3DDrawBuffer() {
     mpBuf = NULL;
 }
 
-#ifdef NONMATCHING
 /* 80325068-8032509C 31F9A8 0034+00 2/2 1/1 0/0 .text            frameInit__13J3DDrawBufferFv */
 void J3DDrawBuffer::frameInit() {
-    // can't make mwcc not generate "mtctr" for this loop
-    for (int i = 0; i < mBufSize; i++)
+    u32 bufSize = mBufSize;
+    for (u32 i = 0; i < bufSize; i++)
         mpBuf[i] = NULL;
 
     mpCallBackPacket = NULL;
 }
-#else
-/* 80325068-8032509C 31F9A8 0034+00 2/2 1/1 0/0 .text            frameInit__13J3DDrawBufferFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DDrawBuffer::frameInit() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DDrawBuffer/frameInit__13J3DDrawBufferFv.s"
-}
-#pragma pop
-#endif
 
 /* 8032509C-803251E4 31F9DC 0148+00 2/1 0/0 0/0 .text
  * entryMatSort__13J3DDrawBufferFP12J3DMatPacket                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int J3DDrawBuffer::entryMatSort(J3DMatPacket* param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DDrawBuffer/entryMatSort__13J3DDrawBufferFP12J3DMatPacket.s"
+int J3DDrawBuffer::entryMatSort(J3DMatPacket* pMatPacket) {
+    pMatPacket->drawClear();
+    pMatPacket->getShapePacket()->drawClear();
+
+    if (pMatPacket->isChanged()) {
+        pMatPacket->setNextPacket(mpBuf[0]);
+        mpBuf[0] = pMatPacket;
+        return 1;
+    }
+
+    J3DTexture* texture = j3dSys.getTexture();
+    u32 hash;
+    u32 texNo = pMatPacket->getMaterial()->getTexNo(0);
+    if ((u16)texNo == 0xFFFF) {
+        hash = 0;
+    } else {
+        hash = ((u32)texture->getResTIMG(texNo) + texture->getResTIMG(texNo)->imageOffset) >> 5;
+    }
+    u32 slot = hash & (mBufSize - 1);
+
+    if (mpBuf[slot] == NULL) {
+        mpBuf[slot] = pMatPacket;
+        return 1;
+    } else {
+        for (J3DMatPacket* pkt = (J3DMatPacket*)mpBuf[slot]; pkt != NULL; pkt = (J3DMatPacket*)pkt->getNextPacket()) {
+            if (pkt->isSame(pMatPacket)) {
+                pkt->addShapePacket(pMatPacket->getShapePacket());
+                return 0;
+            }
+        }
+
+        pMatPacket->setNextPacket(mpBuf[slot]);
+        mpBuf[slot] = pMatPacket;
+        return 1;
+    }
 }
-#pragma pop
 
 /* 803251E4-8032529C 31FB24 00B8+00 1/0 0/0 0/0 .text
  * entryMatAnmSort__13J3DDrawBufferFP12J3DMatPacket             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int J3DDrawBuffer::entryMatAnmSort(J3DMatPacket* param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DDrawBuffer/entryMatAnmSort__13J3DDrawBufferFP12J3DMatPacket.s"
+int J3DDrawBuffer::entryMatAnmSort(J3DMatPacket* pMatPacket) {
+    J3DMaterialAnm* pMaterialAnm = pMatPacket->mpMaterialAnm;
+    u32 slot = (u32)pMaterialAnm & (mBufSize - 1);
+
+    if (pMaterialAnm == NULL) {
+        return entryMatSort(pMatPacket);
+    } else {
+        pMatPacket->drawClear();
+        pMatPacket->getShapePacket()->drawClear();
+        if (mpBuf[slot] == NULL) {
+            mpBuf[slot] = pMatPacket;
+            return 1;
+        } else {
+            for (J3DMatPacket* pkt = (J3DMatPacket*)mpBuf[slot]; pkt != NULL; pkt = (J3DMatPacket*)pkt->getNextPacket()) {
+                if (pkt->mpMaterialAnm == pMaterialAnm) {
+                    pkt->addShapePacket(pMatPacket->getShapePacket());
+                    return 0;
+                }
+            }
+
+            pMatPacket->setNextPacket(mpBuf[slot]);
+            mpBuf[slot] = pMatPacket;
+            return 1;
+        }
+    }
 }
-#pragma pop
 
 inline f32 J3DCalcZValue(register MtxP m, register Vec v) {
     register f32 out;

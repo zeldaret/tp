@@ -206,7 +206,6 @@ s32 J3DModel::entryModelData(J3DModelData* p_modelData, u32 param_1, u32 param_2
 
 /* 80327300-803273CC 321C40 00CC+00 1/1 0/0 0/0 .text createShapePacket__8J3DModelFP12J3DModelData
  */
-// probably some wrong member types
 s32 J3DModel::createShapePacket(J3DModelData* p_modelData) {
     if (p_modelData->getShapeNum() != 0) {
         u16 shapeNum = p_modelData->getShapeNum();
@@ -229,6 +228,87 @@ s32 J3DModel::createShapePacket(J3DModelData* p_modelData) {
 
 /* 803273CC-803275FC 321D0C 0230+00 1/1 0/0 0/0 .text createMatPacket__8J3DModelFP12J3DModelDataUl
  */
+#if defined NON_MATCHING
+s32 J3DModel::createMatPacket(J3DModelData* p_modelData, u32 flag) {
+    // regalloc
+    if (p_modelData->getMaterialNum() != 0) {
+        mMatPacket = new J3DMatPacket[p_modelData->getMaterialNum()];
+
+        if (mMatPacket == NULL) {
+            return kJ3DError_Alloc;
+        }
+    }
+
+    s32 ret;
+    u16 matNum = p_modelData->getMaterialNum();
+    u16 i = 0;
+
+    u32 singleDLFlag = flag & 0x40000;
+    for (; i < matNum; i++) {
+        J3DMaterial* materialNode = p_modelData->getMaterialNodePointer(i);
+        J3DMatPacket* pkt = getMatPacket(i);
+        u16 shapeIndex = materialNode->getShape()->getIndex();
+        J3DShapePacket* shapePacket = getShapePacket(shapeIndex);
+        pkt->mpMaterial = materialNode;
+        pkt->mpInitShapePacket = shapePacket;
+        pkt->addShapePacket(shapePacket);
+        pkt->mpTexture = p_modelData->getMaterialTable().getTexture();
+        pkt->mDiffFlag = materialNode->mDiffFlag;
+
+        if (p_modelData->getModelDataType() == 1) {
+            pkt->mFlags |= 0x01;
+        }
+
+        if (!!(flag & 0x80000)) {
+            pkt->mpDisplayListObj = materialNode->getSharedDisplayListObj();
+        } else {
+            if (p_modelData->getModelDataType() == 1) {
+                if (!!(flag & 0x40000)) {
+                    pkt->mpDisplayListObj = materialNode->getSharedDisplayListObj();
+                } else {
+                    J3DDisplayListObj* sharedDL = materialNode->getSharedDisplayListObj();
+                    ret = sharedDL->single_To_Double();
+                    if (ret != kJ3DError_Success)
+                        return ret;
+
+                    pkt->mpDisplayListObj = sharedDL;
+                }
+            } else if (!!(flag & 0x20000)) {
+                if (!!(flag & 0x40000)) {
+                    ret = materialNode->newSingleSharedDisplayList(materialNode->countDLSize());
+                    if (ret != kJ3DError_Success)
+                        return ret;
+
+                    pkt->mpDisplayListObj = materialNode->getSharedDisplayListObj();
+                } else {
+                    ret = materialNode->newSharedDisplayList(materialNode->countDLSize());
+                    if (ret != kJ3DError_Success)
+                        return ret;
+
+                    J3DDisplayListObj* sharedDL = materialNode->getSharedDisplayListObj();
+                    ret = sharedDL->single_To_Double();
+                    if (ret != kJ3DError_Success)
+                        return ret;
+
+                    pkt->mpDisplayListObj = sharedDL;
+                }
+            } else {
+                if (!!(flag & 0x40000)) {
+                    ret = pkt->newSingleDisplayList(materialNode->countDLSize());
+                    if (ret != kJ3DError_Success)
+                        return ret;
+                } else {
+                    ret = pkt->newDisplayList(materialNode->countDLSize());
+                    if (ret != kJ3DError_Success)
+                        return ret;
+                }
+            }
+        }
+    }
+
+    return kJ3DError_Success;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -237,16 +317,19 @@ asm s32 J3DModel::createMatPacket(J3DModelData* param_0, u32 param_1) {
 #include "asm/JSystem/J3DGraphAnimator/J3DModel/createMatPacket__8J3DModelFP12J3DModelDataUl.s"
 }
 #pragma pop
+#endif
 
 /* 803275FC-8032767C 321F3C 0080+00 0/0 1/1 0/0 .text newDifferedDisplayList__8J3DModelFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 J3DModel::newDifferedDisplayList(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DModel/newDifferedDisplayList__8J3DModelFUl.s"
+s32 J3DModel::newDifferedDisplayList(u32 flag) {
+    mDiffFlag = flag;
+    u16 shapeNum = getModelData()->getShapeNum();
+    for (u16 i = 0; i < shapeNum; i++) {
+        s32 ret = mShapePacket[i].newDifferedDisplayList(flag);
+        if (ret != kJ3DError_Success)
+            return ret;
+    }
+    return kJ3DError_Success;
 }
-#pragma pop
 
 /* 8032767C-803276B4 321FBC 0038+00 0/0 4/4 0/0 .text            lock__8J3DModelFv */
 void J3DModel::lock() {
@@ -300,6 +383,33 @@ void J3DModel::calcMaterial() {
 }
 
 /* 80327858-803279A0 322198 0148+00 1/0 0/0 0/0 .text            calcDiffTexMtx__8J3DModelFv */
+#if defined NON_MATCHING
+void J3DModel::calcDiffTexMtx() {
+    // regalloc
+    j3dSys.setModel(this);
+
+    u16 num;
+    num = getModelData()->getMaterialNum();
+    for (u16 i = 0; i < num; i++) {
+        j3dSys.setMatPacket(getMatPacket(i));
+        J3DMaterial* materialNode = getModelData()->getMaterialNodePointer(i);
+        materialNode->calcDiffTexMtx(i_getAnmMtx(materialNode->getJoint()->getJntNo()));
+    }
+
+    num = getModelData()->getShapeNum();
+    for (u16 i = 0; i < num; i++) {
+        J3DShapePacket* shapePacket = getShapePacket(i);
+        J3DTexGenBlock* texGenBlock = getModelData()->getShapeNodePointer(i)->getMaterial()->getTexGenBlock();
+        for (u16 j = 0; (int)j < 8; j++) {
+            J3DTexMtx* texMtxNode = texGenBlock->getTexMtx(j);
+            J3DTexMtxObj* texMtxObj = shapePacket->getTexMtxObj();
+            if (texMtxNode != NULL && texMtxObj != NULL) {
+                PSMTXCopy(texMtxNode->getMtx(), texMtxObj->getMtx(j));
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -308,6 +418,7 @@ asm void J3DModel::calcDiffTexMtx() {
 #include "asm/JSystem/J3DGraphAnimator/J3DModel/calcDiffTexMtx__8J3DModelFv.s"
 }
 #pragma pop
+#endif
 
 /* 803279A0-80327A2C 3222E0 008C+00 0/0 2/2 0/0 .text            diff__8J3DModelFv */
 void J3DModel::diff() {
@@ -350,7 +461,7 @@ s32 J3DModel::setSkinDeform(J3DSkinDeform* p_skinDeform, u32 flags) {
         mSkinDeform->initMtxIndexArray(mModelData);
 
         ret = mModelData->checkFlag(0x100);
-        if (ret != 0) {
+        if (ret != kJ3DError_Success) {
             mSkinDeform->changeFastSkinDL(mModelData);
             flags &= ~2;
             flags &= ~4;
@@ -512,13 +623,13 @@ void J3DModel::viewCalc() {
         if (getMtxCalcMode() == 2) {
             J3DCalcViewBaseMtx(j3dSys.getViewMtx(), mBaseScale, mBaseTransformMtx, (MtxP)&mInternalView);
         }
-    } else if (checkFlag(4)) {
+    } else if (checkFlag(J3DMdlFlag_SkinPosCpu)) {
         mMtxBuffer->calcDrawMtx(getMtxCalcMode(), mBaseScale, mBaseTransformMtx);
         calcNrmMtx();
         calcBumpMtx();
         DCStoreRangeNoSync(getDrawMtxPtr(), mModelData->getDrawMtxNum() * sizeof(Mtx));
         DCStoreRange(getNrmMtxPtr(), mModelData->getDrawMtxNum() * sizeof(Mtx33));
-    } else if (checkFlag(8)) {
+    } else if (checkFlag(J3DMdlFlag_SkinNrmCpu)) {
         mMtxBuffer->calcDrawMtx(getMtxCalcMode(), mBaseScale, mBaseTransformMtx);
         calcBBoardMtx();
         DCStoreRange(getDrawMtxPtr(), mModelData->getDrawMtxNum() * sizeof(Mtx));
@@ -540,33 +651,22 @@ void J3DModel::calcNrmMtx() {
 }
 
 /* 803281B4-803282B8 322AF4 0104+00 1/1 0/0 0/0 .text            calcBumpMtx__8J3DModelFv */
-#ifdef NONMATCHING
 void J3DModel::calcBumpMtx() {
-    // comparison (might be b/c of bool rather than u8?)
-    if (!getModelData()->checkBumpFlag())
-        return;
+    if (getModelData()->checkBumpFlag() == 1) {
+        u32 bumpMtxIdx = 0;
+        u16 materialNum = getModelData()->getMaterialNum();
+        u16 i = 0;
 
-    // loop is a bit different
-    for (u16 n = getModelData()->getMaterialNum(), i = 0; i < n; i++) {
-        J3DMaterial* material = getModelData()->getMaterialNodePointer(i);
-        if (!material->getNBTScale()->mbHasScale)
-            continue;
-
-        material->getShape()->calcNBTScale(*material->getNBTScale()->getScale(), getNrmMtxPtr(),
-                                           getBumpMtxPtr(i));
-        DCStoreRange(getBumpMtxPtr(i), getModelData()->getDrawMtxNum() * 0x24);
+        for (; i < materialNum; i++) {
+            J3DMaterial* material = getModelData()->getMaterialNodePointer(i);
+            if (material->getNBTScale()->mbHasScale == 1) {
+                material->getShape()->calcNBTScale(*material->getNBTScale()->getScale(), getNrmMtxPtr(), getBumpMtxPtr(bumpMtxIdx));
+                DCStoreRange(getBumpMtxPtr(bumpMtxIdx), getModelData()->getDrawMtxNum() * 0x24);
+                bumpMtxIdx++;
+            }
+        }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DModel::calcBumpMtx() {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DModel/calcBumpMtx__8J3DModelFv.s"
-}
-#pragma pop
-#endif
 
 /* 803282B8-803282EC 322BF8 0034+00 1/1 0/0 0/0 .text            calcBBoardMtx__8J3DModelFv */
 void J3DModel::calcBBoardMtx() {
@@ -576,9 +676,11 @@ void J3DModel::calcBBoardMtx() {
 }
 
 /* 803282EC-80328350 322C2C 0064+00 2/2 0/0 0/0 .text            prepareShapePackets__8J3DModelFv */
-#ifdef NONMATCHING
+#if defined NONMATCHING
 void J3DModel::prepareShapePackets() {
-    for (u16 n = getModelData()->getShapeNum(), i = 0; i < n; i++) {
+    u16 shapeNum = getModelData()->getShapeNum();
+
+    for (u16 i = 0; i < shapeNum; i++) {
         // two swapped instructions right around here when calling getShapePacket
         J3DShapePacket* pkt = getShapePacket(i);
         pkt->setMtxBuffer(mMtxBuffer);

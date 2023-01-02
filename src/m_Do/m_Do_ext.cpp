@@ -1657,7 +1657,7 @@ bool J3DTevBlock::getTevStage(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DTevBlock::getTexNo(u32 param_0) const {
+asm u32 J3DTevBlock::getTexNo(u32 param_0) const {
     nofralloc
 #include "asm/m_Do/m_Do_ext/getTexNo__11J3DTevBlockCFUl.s"
 }

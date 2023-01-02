@@ -65,12 +65,13 @@ public:
     void offFlag(u32 flag) { mFlags &= ~flag; }
     bool checkFlag(u32 flag) const { return (mFlags & flag) ? true : false; }
 
-    bool isCpuSkinningOn() const { return (mFlags & 4) && (mFlags & 8); }
+    bool isCpuSkinningOn() const { return (mFlags & J3DMdlFlag_SkinPosCpu) && (mFlags & J3DMdlFlag_SkinNrmCpu); }
 
     Mtx& getBaseTRMtx() { return mBaseTransformMtx; }
     void i_setBaseTRMtx(Mtx m) { PSMTXCopy(m, mBaseTransformMtx); }
     u32 getMtxCalcMode() const { return mFlags & 0x03; }
     J3DVertexBuffer* getVertexBuffer() const { return (J3DVertexBuffer*)&mVertexBuffer; }
+    J3DMatPacket* getMatPacket(u16 idx) const { return &mMatPacket[idx]; }
     J3DShapePacket* getShapePacket(u16 idx) const { return &mShapePacket[idx]; }
     Mtx33* getBumpMtxPtr(int idx) const { return mMtxBuffer->getBumpMtxPtr(idx); }
     Mtx33* getNrmMtxPtr() const { return mMtxBuffer->getNrmMtxPtr(); }

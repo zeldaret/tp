@@ -76,41 +76,23 @@ J3DModelData::J3DModelData() {
 }
 
 /* 80325E14-80325EC8 320754 00B4+00 0/0 2/2 0/0 .text newSharedDisplayList__12J3DModelDataFUl */
-#ifdef NONMATCHING
-s32 J3DModelData::newSharedDisplayList(u32 param_0) {
+s32 J3DModelData::newSharedDisplayList(u32 flag) {
     u16 matNum = getMaterialNum();
 
     for (u16 i = 0; i < matNum; i++) {
-        if ((param_0 & 0x40000)) {
-            J3DMaterial* matNode = getMaterialNodePointer(i);
-            u32 dl_size = matNode->countDLSize();
-            switch (matNode->newSingleSharedDisplayList(dl_size)) {
-            case 0:
-                continue;
-            }
-            break;
+        if (!!(flag & 0x40000)) {
+            s32 ret = getMaterialNodePointer(i)->newSingleSharedDisplayList(getMaterialNodePointer(i)->countDLSize());
+            if (ret != kJ3DError_Success)
+                return ret;
         } else {
-            J3DMaterial* matNode = getMaterialNodePointer(i);
-            u32 dl_size = matNode->countDLSize();
-            switch (matNode->newSharedDisplayList(dl_size)) {
-            case 0:
-                continue;
-            }
-            break;
+            s32 ret = getMaterialNodePointer(i)->newSharedDisplayList(getMaterialNodePointer(i)->countDLSize());
+            if (ret != kJ3DError_Success)
+                return ret;
         }
     }
-    return 0;
+
+    return kJ3DError_Success;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 J3DModelData::newSharedDisplayList(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DModelData/newSharedDisplayList__12J3DModelDataFUl.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 804515E8-804515EC 000AE8 0004+00 1/1 0/0 0/0 .sbss            sInterruptFlag$965 */
