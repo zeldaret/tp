@@ -39,7 +39,7 @@ def import_c_file(in_file) -> str:
             defines.add(guard_match[1])
           print("Processing file", in_file)
         include_match = include_pattern.match(line.strip())
-        if include_match:
+        if include_match and not include_match[1].endswith(".s"):
           out_text += f"/* \"{in_file}\" line {idx} \"{include_match[1]}\" */\n"
           out_text += import_h_file(include_match[1], os.path.dirname(in_file))
           out_text += f"/* end \"{include_match[1]}\" */\n"
