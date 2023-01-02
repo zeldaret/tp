@@ -29,7 +29,7 @@ OSTime OSGetTime(void);
 OSTick OSGetTick(void);
 OSTime __OSGetSystemTime(void);
 OSTime __OSTimeToSystemTime(OSTime time);
-void GetDates(OSTime ticks, OSCalendarTime* ct);
+void GetDates(s32 days, OSCalendarTime* ct);
 void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime* ct);
 
 #ifdef __cplusplus

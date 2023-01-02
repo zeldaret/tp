@@ -28,7 +28,7 @@
 -include libs/JSystem/JMath/Makefile
 -include libs/dolphin/base/Makefile
 -include libs/dolphin/os/Makefile
--include libs/exi/Makefile
+-include libs/dolphin/exi/Makefile
 -include libs/dolphin/si/Makefile
 -include libs/dolphin/db/Makefile
 -include libs/dolphin/mtx/Makefile

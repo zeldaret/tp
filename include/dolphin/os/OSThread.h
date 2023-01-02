@@ -8,37 +8,52 @@ extern "C" {
 #endif
 
 typedef u16 OSThreadState;
+typedef s32 OSPriority;  //  0 highest, 31 lowest
+
 #define OS_THREAD_STATE_UNINITIALIZED 0
 #define OS_THREAD_STATE_READY 1
 #define OS_THREAD_STATE_RUNNING 2
 #define OS_THREAD_STATE_WAITING 4
 #define OS_THREAD_STATE_DEAD 8
 
-typedef struct OSThreadLink {
-    struct OSThread* prev;
-    struct OSThread* next;
-} OSThreadLink;
+#define OS_THREAD_ATTR_DETACH 0x0001u
 
-typedef struct OSThreadQueue {
-    /* 0x0 */ struct OSThread* head;
-    /* 0x4 */ struct OSThread* tail;
-} OSThreadQueue;
+#define OS_THREAD_STACK_MAGIC 0xDEADBABE
 
-typedef struct OSMutexLink {
-    struct OSMutex* prev;
-    struct OSMutex* next;
-} OSMutexLink;
+#define OS_PRIORITY_MIN 0   // highest
+#define OS_PRIORITY_MAX 31  // lowest
+#define OS_PRIORITY_IDLE OS_PRIORITY_MAX
 
-typedef struct OSMutexQueue {
-    struct OSMutex* prev;
-    struct OSMutex* next;
-} OSMutexQueue;
+typedef struct OSThread OSThread;
+typedef struct OSThreadQueue OSThreadQueue;
+typedef struct OSThreadLink OSThreadLink;
 
-typedef struct OSCond {
-    OSThreadQueue queue;
-} OSCond;
+typedef struct OSMutex OSMutex;
+typedef struct OSMutexQueue OSMutexQueue;
+typedef struct OSMutexLink OSMutexLink;
+typedef struct OSCond OSCond;
 
-typedef struct OSThread {
+struct OSThreadLink {
+    OSThread* next;
+    OSThread* prev;
+};
+
+struct OSThreadQueue {
+    /* 0x0 */ OSThread* head;
+    /* 0x4 */ OSThread* tail;
+};
+
+struct OSMutexLink {
+    OSMutex* prev;
+    OSMutex* next;
+};
+
+struct OSMutexQueue {
+    OSMutex* head;
+    OSMutex* tail;
+};
+
+struct OSThread {
     OSContext context;
     OSThreadState state;
     u16 attributes;
@@ -49,14 +64,14 @@ typedef struct OSThread {
     OSThreadQueue* queue;
     OSThreadLink link;
     OSThreadQueue join_queue;
-    struct OSMutex* mutex;
+    OSMutex* mutex;
     OSMutexQueue owned_mutexes;
     OSThreadLink active_threads_link;
     u8* stack_base;
     u8* stack_end;
     u8* error_code;
     void* data[2];
-} OSThread;
+};
 
 typedef void (*OSSwitchThreadCallback)(OSThread* from, OSThread* to);
 
@@ -73,13 +88,13 @@ s32 OSDisableScheduler(void);
 s32 OSEnableScheduler(void);
 static void UnsetRun(OSThread* thread);
 s32 __OSGetEffectivePriority(OSThread* thread);
-static void SetEffectivePriority(OSThread* thread, s32 priority);
+static OSThread* SetEffectivePriority(OSThread* thread, s32 priority);
 void __OSPromoteThread(OSThread* thread, s32 priority);
-static void SelectThread(OSThread* thread);
+static OSThread* SelectThread(BOOL yield);
 void __OSReschedule(void);
 void OSYieldThread(void);
-BOOL OSCreateThread(OSThread* thread, void* func, void* param, void* stackBase,
-                    u32 stackSize, s32 priority, u16 attribute);
+BOOL OSCreateThread(OSThread* thread, void* func, void* param, void* stackBase, u32 stackSize,
+                    s32 priority, u16 attribute);
 void OSExitThread(void* exitValue);
 void OSCancelThread(OSThread* thread);
 void OSDetachThread(OSThread* thread);

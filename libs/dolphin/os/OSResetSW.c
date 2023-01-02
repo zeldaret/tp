@@ -5,18 +5,19 @@
 
 #include "dolphin/os/OSResetSW.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "dolphin/os/OS.h"
+
+u8 GameChoice : (OS_BASE_CACHED | 0x30E3);
+
+vu32 __PIRegs[12] : 0xCC003000;
+
+void __OSResetSWInterruptHandler(OSInterrupt interrupt, OSContext* context);
 
 //
 // External References:
 //
 
-void OSDisableInterrupts();
-void OSRestoreInterrupts();
-void __OSMaskInterrupts();
-void __OSGetSystemTime();
 void __div2i();
-extern u8 __OSStartTime[4];
 
 //
 // Declarations:
@@ -24,35 +25,51 @@ extern u8 __OSStartTime[4];
 
 /* ############################################################################################## */
 /* 804516A0-804516A4 000BA0 0004+00 1/1 0/0 0/0 .sbss            ResetCallback */
-static u8 ResetCallback[4];
+static OSResetCallback ResetCallback;
 
 /* 804516A4-804516A8 000BA4 0004+00 2/2 0/0 0/0 .sbss            Down */
-static u8 Down[4];
+static BOOL Down;
 
 /* 804516A8-804516B0 000BA8 0004+04 2/2 0/0 0/0 .sbss            LastState */
-static u8 LastState[4 + 4 /* padding */];
+static BOOL LastState;
 
 /* 804516B0-804516B4 000BB0 0004+00 1/1 0/0 0/0 .sbss            HoldUp */
-static u8 HoldUp[4];
-
-/* 804516B4-804516B8 000BB4 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_804516B4[4];
+static OSTime HoldUp;
 
 /* 804516B8-804516BC 000BB8 0004+00 2/2 0/0 0/0 .sbss            HoldDown */
-static u8 HoldDown[4];
-
-/* 804516BC-804516C0 000BBC 0004+00 2/2 0/0 0/0 .sbss            None */
-static u8 data_804516BC[4];
+static OSTime HoldDown;
 
 /* 8033FAE4-8033FBD8 33A424 00F4+00 0/0 1/1 0/0 .text            __OSResetSWInterruptHandler */
+#ifdef NONMATCHING
+void __OSResetSWInterruptHandler(OSInterrupt interrupt, OSContext* context) {
+    OSResetCallback callback;
+
+    HoldDown = __OSGetSystemTime();
+    while (__OSGetSystemTime() - HoldDown < OSMicrosecondsToTicks(100) &&
+           !(__PIRegs[0] & 0x00010000)) {
+        ;
+    }
+    if (!(__PIRegs[0] & 0x00010000)) {
+        LastState = Down = TRUE;
+        __OSMaskInterrupts(OS_INTERRUPTMASK_PI_RSW);
+        if (ResetCallback) {
+            callback = ResetCallback;
+            ResetCallback = NULL;
+            callback();
+        }
+    }
+    __PIRegs[0] = 2;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __OSResetSWInterruptHandler(void) {
+asm void __OSResetSWInterruptHandler(OSInterrupt interrupt, OSContext* context) {
     nofralloc
 #include "asm/dolphin/os/OSResetSW/__OSResetSWInterruptHandler.s"
 }
 #pragma pop
+#endif
 
 /* 8033FBD8-8033FE70 33A518 0298+00 1/1 0/0 0/0 .text            OSGetResetButtonState */
 #pragma push
@@ -65,11 +82,6 @@ static asm BOOL OSGetResetButtonState(void) {
 #pragma pop
 
 /* 8033FE70-8033FE90 33A7B0 0020+00 0/0 1/1 0/0 .text            OSGetResetSwitchState */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL OSGetResetSwitchState(void) {
-    nofralloc
-#include "asm/dolphin/os/OSResetSW/OSGetResetSwitchState.s"
+BOOL OSGetResetSwitchState(void) {
+    return OSGetResetButtonState();
 }
-#pragma pop

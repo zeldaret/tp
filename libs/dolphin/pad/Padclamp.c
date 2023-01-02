@@ -3,36 +3,76 @@
 // Translation Unit: Padclamp
 //
 
+#include "dolphin/pad/Pad.h"
 #include "dolphin/pad/Padclamp.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:
 //
 
-static void ClampStick();
-static void ClampCircle();
-void PADClamp();
-void PADClampCircle();
-
-//
-// External References:
-//
+static void ClampStick(s8* px, s8* py, s8 max, s8 xy, s8 min);
+static void ClampCircle(s8* px, s8* py, s8 radius, s8 min);
 
 //
 // Declarations:
 //
 
 /* 8034DDBC-8034DEEC 3486FC 0130+00 1/1 0/0 0/0 .text            ClampStick */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void ClampStick() {
-    nofralloc
-#include "asm/dolphin/pad/Padclamp/ClampStick.s"
+static void ClampStick(s8* px, s8* py, s8 max, s8 xy, s8 min) {
+    int x = *px;
+    int y = *py;
+    int signX;
+    int signY;
+    int d;
+
+    if (0 <= x) {
+        signX = 1;
+    } else {
+        signX = -1;
+        x = -x;
+    }
+
+    if (0 <= y) {
+        signY = 1;
+    } else {
+        signY = -1;
+        y = -y;
+    }
+
+    if (x <= min) {
+        x = 0;
+    } else {
+        x -= min;
+    }
+    if (y <= min) {
+        y = 0;
+    } else {
+        y -= min;
+    }
+
+    if (x == 0 && y == 0) {
+        *px = *py = 0;
+        return;
+    }
+
+    if (xy * y <= xy * x) {
+        d = xy * x + (max - xy) * y;
+        if (xy * max < d) {
+            x = (s8)(xy * max * x / d);
+            y = (s8)(xy * max * y / d);
+        }
+    } else {
+        d = xy * y + (max - xy) * x;
+        if (xy * max < d) {
+            x = (s8)(xy * max * x / d);
+            y = (s8)(xy * max * y / d);
+        }
+    }
+
+    *px = (s8)(signX * x);
+    *py = (s8)(signY * y);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80456560-80456568 004B60 0004+04 1/1 0/0 0/0 .sdata2          @160 */
@@ -55,7 +95,7 @@ SECTION_SDATA2 static f64 lit_164 = 4503601774854144.0 /* cast s32 to float */;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void ClampCircle() {
+static asm void ClampCircle(s8* px, s8* py, s8 radius, s8 min) {
     nofralloc
 #include "asm/dolphin/pad/Padclamp/ClampCircle.s"
 }
@@ -63,43 +103,90 @@ static asm void ClampCircle() {
 
 /* ############################################################################################## */
 /* 803A2170-803A2180 02E7D0 000A+06 2/2 0/0 0/0 .rodata          ClampRegion */
-SECTION_RODATA static u8 const ClampRegion[10 + 6 /* padding */] = {
-    0x1E,
-    0xB4,
-    0x0F,
-    0x48,
-    0x28,
-    0x0F,
-    0x3B,
-    0x1F,
-    0x38,
-    0x2C,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+static const PADClampRegion ClampRegion = {
+    // Triggers
+    30,
+    180,
+
+    // Left stick
+    15,
+    72,
+    40,
+
+    // Right stick
+    15,
+    59,
+    31,
+
+    // Stick radii
+    56,
+    44,
 };
-COMPILER_STRIP_GATE(0x803A2170, &ClampRegion);
+
+inline void ClampTrigger(u8* trigger, u8 min, u8 max) {
+    if (*trigger <= min) {
+        *trigger = 0;
+    } else {
+        if (max < *trigger) {
+            *trigger = max;
+        }
+        *trigger -= min;
+    }
+}
 
 /* 8034E094-8034E1A8 3489D4 0114+00 0/0 1/1 0/0 .text            PADClamp */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+void PADClamp(PADStatus* status) {
+    int i;
+    for (i = 0; i < 4; i++, status++) {
+        if (status->error != PAD_ERR_NONE) {
+            continue;
+        }
+
+        ClampStick(&status->stick_x, &status->stick_y, ClampRegion.maxStick, ClampRegion.xyStick,
+                   ClampRegion.minStick);
+        ClampStick(&status->substick_x, &status->substick_y, ClampRegion.maxSubstick,
+                   ClampRegion.xySubstick, ClampRegion.minSubstick);
+        ClampTrigger(&status->trigger_left, ClampRegion.minTrigger, ClampRegion.maxTrigger);
+        ClampTrigger(&status->trigger_right, ClampRegion.minTrigger, ClampRegion.maxTrigger);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PADClamp() {
+asm void PADClamp(PADStatus* status) {
     nofralloc
 #include "asm/dolphin/pad/Padclamp/PADClamp.s"
 }
 #pragma pop
+#endif
 
 /* 8034E1A8-8034E2B4 348AE8 010C+00 0/0 1/1 0/0 .text            PADClampCircle */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+void PADClampCircle(PADStatus* status) {
+    u32 i;
+    for (i = 0; i < 4; ++i, status++) {
+        if (status->error != PAD_ERR_NONE) {
+            continue;
+        }
+
+        ClampCircle(&status->stick_x, &status->stick_y, ClampRegion.radStick, ClampRegion.minStick);
+        ClampCircle(&status->substick_x, &status->substick_y, ClampRegion.radSubstick,
+                    ClampRegion.minSubstick);
+        ClampTrigger(&status->trigger_left, ClampRegion.minTrigger, ClampRegion.maxTrigger);
+        ClampTrigger(&status->trigger_right, ClampRegion.minTrigger, ClampRegion.maxTrigger);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PADClampCircle() {
+asm void PADClampCircle(PADStatus* status) {
     nofralloc
 #include "asm/dolphin/pad/Padclamp/PADClampCircle.s"
 }
 #pragma pop
+#endif

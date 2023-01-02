@@ -5,25 +5,16 @@
 
 #include "dolphin/os/OSAlarm.h"
 #include "dol2asm.h"
+#include "dolphin/base/PPCArch.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/os/OSReset.h"
-#include "dolphin/types.h"
+
+static s32 OnReset(s32 param_0);
 
 //
 // External References:
 //
 
-void PPCMtdec();
-void __OSSetExceptionHandler();
-void __OSGetExceptionHandler();
-void OSSetCurrentContext();
-void OSLoadContext();
-void OSClearContext();
-void OSDisableInterrupts();
-void OSRestoreInterrupts();
-void OSRegisterResetFunction();
-void OSDisableScheduler();
-void OSEnableScheduler();
-void __OSReschedule();
 void __DVDTestAlarm();
 void __div2i();
 
@@ -41,17 +32,16 @@ static OSResetFunctionInfo ResetFunctionInfo = {
 };
 
 /* 80451638-80451640 000B38 0008+00 5/5 0/0 0/0 .sbss            AlarmQueue */
-static u8 AlarmQueue[8];
+static OSAlarmQueue AlarmQueue;
 
 /* 8033A8A0-8033A8F8 3351E0 0058+00 0/0 3/3 0/0 .text            OSInitAlarm */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSInitAlarm(void) {
-    nofralloc
-#include "asm/dolphin/os/OSAlarm/OSInitAlarm.s"
+void OSInitAlarm(void) {
+    if (__OSGetExceptionHandler(8) != DecrementerExceptionHandler) {
+        AlarmQueue.head = AlarmQueue.tail = NULL;
+        __OSSetExceptionHandler(8, DecrementerExceptionHandler);
+        OSRegisterResetFunction(&ResetFunctionInfo);
+    }
 }
-#pragma pop
 
 /* 8033A8F8-8033A908 335238 0010+00 0/0 17/17 0/0 .text            OSCreateAlarm */
 void OSCreateAlarm(OSAlarm* alarm) {
@@ -59,37 +49,119 @@ void OSCreateAlarm(OSAlarm* alarm) {
     alarm->tag = 0;
 }
 
-/* 8033A908-8033AB58 335248 0250+00 3/3 0/0 0/0 .text            InsertAlarm */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void InsertAlarm(OSAlarm* alarm, s64 time, OSAlarmHandler* handler) {
-    nofralloc
-#include "asm/dolphin/os/OSAlarm/InsertAlarm.s"
+static inline SetTimer(OSAlarm* alarm) {
+    OSTime delta;
+
+    delta = alarm->fire_time - __OSGetSystemTime();
+    if (delta < 0) {
+        PPCMtdec(0);
+    } else if (delta < 0x80000000) {
+        PPCMtdec((u32)delta);
+    } else {
+        PPCMtdec(0x7fffffff);
+    }
 }
-#pragma pop
+
+/* 8033A908-8033AB58 335248 0250+00 3/3 0/0 0/0 .text            InsertAlarm */
+static void InsertAlarm(OSAlarm* alarm, OSTime fire, OSAlarmHandler handler) {
+    OSAlarm* next;
+    OSAlarm* prev;
+
+    if (0 < alarm->period_time) {
+        OSTime time = __OSGetSystemTime();
+
+        fire = alarm->start_time;
+        if (alarm->start_time < time) {
+            fire += alarm->period_time * ((time - alarm->start_time) / alarm->period_time + 1);
+        }
+    }
+
+    alarm->handler = handler;
+    alarm->fire_time = fire;
+
+    for (next = AlarmQueue.head; next; next = next->link.next) {
+        if (next->fire_time <= fire) {
+            continue;
+        }
+
+        alarm->link.prev = next->link.prev;
+        next->link.prev = alarm;
+        alarm->link.next = next;
+        prev = alarm->link.prev;
+        if (prev) {
+            prev->link.next = alarm;
+        } else {
+            AlarmQueue.head = alarm;
+            SetTimer(alarm);
+        }
+        return;
+    }
+
+    alarm->link.next = 0;
+    prev = AlarmQueue.tail;
+    AlarmQueue.tail = alarm;
+    alarm->link.prev = prev;
+
+    if (prev) {
+        prev->link.next = alarm;
+    } else {
+        AlarmQueue.head = AlarmQueue.tail = alarm;
+        SetTimer(alarm);
+    }
+}
 
 /* 8033AB58-8033ABC0 335498 0068+00 0/0 18/18 0/0 .text            OSSetAlarm */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSSetAlarm(OSAlarm* alarm, s64 time, OSAlarmHandler* handler) {
-    nofralloc
-#include "asm/dolphin/os/OSAlarm/OSSetAlarm.s"
+void OSSetAlarm(OSAlarm* alarm, OSTime tick, OSAlarmHandler handler) {
+    BOOL enabled;
+    enabled = OSDisableInterrupts();
+    alarm->period_time = 0;
+    InsertAlarm(alarm, __OSGetSystemTime() + tick, handler);
+    OSRestoreInterrupts(enabled);
 }
-#pragma pop
 
 /* 8033ABC0-8033AC3C 335500 007C+00 0/0 1/1 0/0 .text            OSSetPeriodicAlarm */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSSetPeriodicAlarm(OSAlarm* alarm, s64 start, s64 period, OSAlarmHandler* handler) {
-    nofralloc
-#include "asm/dolphin/os/OSAlarm/OSSetPeriodicAlarm.s"
+void OSSetPeriodicAlarm(OSAlarm* alarm, OSTime start, OSTime period, OSAlarmHandler handler) {
+    BOOL enabled;
+    enabled = OSDisableInterrupts();
+    alarm->period_time = period;
+    alarm->start_time = __OSTimeToSystemTime(start);
+    InsertAlarm(alarm, 0, handler);
+    OSRestoreInterrupts(enabled);
 }
-#pragma pop
 
 /* 8033AC3C-8033AD58 33557C 011C+00 1/1 11/11 0/0 .text            OSCancelAlarm */
+// need compiler epilogue patch
+#ifdef NONMATCHING
+void OSCancelAlarm(OSAlarm* alarm) {
+    OSAlarm* next;
+    BOOL enabled;
+
+    enabled = OSDisableInterrupts();
+
+    if (alarm->handler == 0) {
+        OSRestoreInterrupts(enabled);
+        return;
+    }
+
+    next = alarm->link.next;
+    if (next == 0) {
+        AlarmQueue.tail = alarm->link.prev;
+    } else {
+        next->link.prev = alarm->link.prev;
+    }
+    if (alarm->link.prev) {
+        alarm->link.prev->link.next = next;
+    } else {
+        AlarmQueue.head = next;
+        if (next) {
+            SetTimer(next);
+        }
+    }
+    alarm->handler = 0;
+
+    OSRestoreInterrupts(enabled);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -98,8 +170,58 @@ asm void OSCancelAlarm(OSAlarm* alarm) {
 #include "asm/dolphin/os/OSAlarm/OSCancelAlarm.s"
 }
 #pragma pop
+#endif
 
 /* 8033AD58-8033AF88 335698 0230+00 1/1 0/0 0/0 .text            DecrementerExceptionCallback */
+// need compiler epilogue patch
+#ifdef NONMATCHING
+static void DecrementerExceptionCallback(register __OSException exception,
+                                         register OSContext* context) {
+    OSAlarm* alarm;
+    OSAlarm* next;
+    OSAlarmHandler handler;
+    OSTime time;
+    OSContext exceptionContext;
+    time = __OSGetSystemTime();
+    alarm = AlarmQueue.head;
+    if (alarm == 0) {
+        OSLoadContext(context);
+    }
+
+    if (time < alarm->fire_time) {
+        SetTimer(alarm);
+        OSLoadContext(context);
+    }
+
+    next = alarm->link.next;
+    AlarmQueue.head = next;
+    if (next == 0) {
+        AlarmQueue.tail = 0;
+    } else {
+        next->link.prev = 0;
+    }
+
+    handler = alarm->handler;
+    alarm->handler = 0;
+    if (0 < alarm->period_time) {
+        InsertAlarm(alarm, 0, handler);
+    }
+
+    if (AlarmQueue.head) {
+        SetTimer(AlarmQueue.head);
+    }
+
+    OSDisableScheduler();
+    OSClearContext(&exceptionContext);
+    OSSetCurrentContext(&exceptionContext);
+    handler(alarm, context);
+    OSClearContext(&exceptionContext);
+    OSSetCurrentContext(context);
+    OSEnableScheduler();
+    __OSReschedule();
+    OSLoadContext(context);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -108,6 +230,7 @@ static asm void DecrementerExceptionCallback(__OSException exception, OSContext*
 #include "asm/dolphin/os/OSAlarm/DecrementerExceptionCallback.s"
 }
 #pragma pop
+#endif
 
 /* 8033AF88-8033AFD8 3358C8 0050+00 1/1 0/0 0/0 .text            DecrementerExceptionHandler */
 static asm void DecrementerExceptionHandler(register __OSException exception,

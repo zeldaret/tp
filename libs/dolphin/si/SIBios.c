@@ -5,352 +5,800 @@
 
 #include "dolphin/si/SIBios.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "dolphin/si/SISamplingRate.h"
+#include "dolphin/vi/vi.h"
+
+/* 803D11B8-803D11FC 02E2D8 0044+00 4/3 0/0 0/0 .data            @1 */
+SECTION_DATA static char lit_1[] =
+    "<< Dolphin SDK - SI\trelease build: Apr  5 2004 04:14:16 (0x2301) >>";
+
+/* 804509C8-804509D0 -00001 0004+04 1/1 0/0 0/0 .sdata           __SIVersion */
+SECTION_SDATA static char* __SIVersion = lit_1;
 
 //
 // Forward References:
 //
 
-void SIBusy();
-void SIIsChanBusy();
-static void CompleteTransfer();
-static void SIInterruptHandler();
-static void SIEnablePollingInterrupt();
-void SIRegisterPollingHandler();
-void SIUnregisterPollingHandler();
-void SIInit();
-void __SITransfer();
-void SIGetStatus();
-void SISetCommand();
-void SITransferCommands();
-void SISetXY();
-void SIEnablePolling();
-void SIDisablePolling();
-static void SIGetResponseRaw();
-void SIGetResponse();
-static void AlarmHandler();
-void SITransfer();
-static void GetTypeCallback();
-void SIGetType();
-void SIGetTypeAsync();
+static u32 CompleteTransfer(void);
+BOOL __SITransfer(s32 chan, void* output, u32 outputBytes, void* input, u32 inputBytes,
+                  SICallback callback);
+static void AlarmHandler(OSAlarm* alarm, OSContext* context);
+static void GetTypeCallback(s32 chan, u32 error, OSContext* context);
 
 //
 // External References:
 //
 
-void OSRegisterVersion();
-void OSSetAlarm();
-void OSCancelAlarm();
-void OSDisableInterrupts();
-void OSRestoreInterrupts();
-void __OSSetInterruptHandler();
-void __OSUnmaskInterrupts();
-void OSGetWirelessID();
-void OSSetWirelessID();
-void __OSGetSystemTime();
-void SISetSamplingRate();
-void VIGetCurrentLine();
+u32 VIGetCurrentLine();
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803D11B8-803D11FC 02E2D8 0044+00 4/3 0/0 0/0 .data            @1 */
-SECTION_DATA static char lit_1[] = "<< Dolphin SDK - SI\trelease build: Apr  5 2004 04:14:16 (0x2301) >>";
-
 /* 803D11FC-803D1210 02E31C 0014+00 8/11 0/0 0/0 .data            Si */
-SECTION_DATA static u8 Si[20] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static SIControl Si = {
+    -1, 0, 0, NULL, NULL,
+};
+
+/* ############################################################################################## */
+/* 803D1210-803D1220 02E330 0010+00 5/5 0/0 0/0 .data            Type */
+static u32 Type[SI_MAX_CHAN] = {
+    SI_ERROR_NO_RESPONSE,
+    SI_ERROR_NO_RESPONSE,
+    SI_ERROR_NO_RESPONSE,
+    SI_ERROR_NO_RESPONSE,
 };
 
 /* 80344BA0-80344BC0 33F4E0 0020+00 0/0 1/1 0/0 .text            SIBusy */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void SIBusy() {
-    nofralloc
-#include "asm/dolphin/si/SIBios/SIBusy.s"
+BOOL SIBusy() {
+    return Si.chan != -1 ? TRUE : FALSE;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8044C630-8044C6B0 079350 0080+00 9/9 0/0 0/0 .bss             Packet */
-static u8 Packet[128];
+static SIPacket Packet[SI_MAX_CHAN];
 
 /* 80344BC0-80344BFC 33F500 003C+00 0/0 1/1 0/0 .text            SIIsChanBusy */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void SIIsChanBusy() {
-    nofralloc
-#include "asm/dolphin/si/SIBios/SIIsChanBusy.s"
+BOOL SIIsChanBusy(s32 chan) {
+    return (Packet[chan].chan != -1 || Si.chan == chan);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8044C6B0-8044C750 0793D0 00A0+00 1/1 0/0 0/0 .bss             Alarm */
-static u8 Alarm[160];
+static OSAlarm Alarm[SI_MAX_CHAN];
 
 /* 8044C750-8044C770 079470 0020+00 2/2 0/0 0/0 .bss             TypeTime */
-static u8 TypeTime[32];
+static OSTime TypeTime[SI_MAX_CHAN];
 
 /* 8044C770-8044C790 079490 0020+00 1/1 0/0 0/0 .bss             XferTime */
-static u8 XferTime[32];
+static OSTime XferTime[SI_MAX_CHAN];
+
+static inline void SIClearTCInterrupt() {
+    u32 reg;
+
+    reg = __SIRegs[13];
+    reg |= 0x80000000;
+    reg &= ~0x00000001;
+    __SIRegs[13] = reg;
+}
 
 /* 80344BFC-80344EF8 33F53C 02FC+00 1/1 0/0 0/0 .text            CompleteTransfer */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+static u32 CompleteTransfer() {
+    u32 sr;
+    u32 i;
+    u32 rLen;
+    u8* input;
+
+    sr = __SIRegs[14];
+
+    SIClearTCInterrupt();
+
+    if (Si.chan != -1) {
+        XferTime[Si.chan] = __OSGetSystemTime();
+
+        input = Si.input;
+
+        rLen = Si.inputBytes / 4;
+        for (i = 0; i < rLen; i++) {
+            *(u32*)input = __SIRegs[32 + i];
+            input += 4;
+        }
+
+        rLen = Si.inputBytes & 3;
+        if (rLen) {
+            u32 temp = __SIRegs[32 + i];
+            for (i = 0; i < rLen; i++) {
+                *input++ = (u8)((temp >> ((3 - i) * 8)) & 0xff);
+            }
+        }
+
+        if (__SIRegs[13] & 0x20000000) {
+            sr >>= 8 * (3 - Si.chan);
+            sr &= 0xf;
+
+            if ((sr & SI_ERROR_NO_RESPONSE) && !(Type[Si.chan] & SI_ERROR_BUSY)) {
+                Type[Si.chan] = SI_ERROR_NO_RESPONSE;
+            }
+            if (sr == 0) {
+                sr = SI_ERROR_COLLISION;
+            }
+        } else {
+            TypeTime[Si.chan] = __OSGetSystemTime();
+            sr = 0;
+        }
+
+        Si.chan = -1;
+    }
+    return sr;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void CompleteTransfer() {
+static asm u32 CompleteTransfer(void) {
     nofralloc
 #include "asm/dolphin/si/SIBios/CompleteTransfer.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8044C790-8044C7D0 0794B0 0040+00 1/1 0/0 0/0 .bss             TypeCallback */
-static u8 TypeCallback[64];
+static SITypeAndStatusCallback TypeCallback[SI_MAX_CHAN][4];
 
 /* 8044C7D0-8044C7E0 0794F0 0010+00 2/3 0/0 0/0 .bss             RDSTHandler */
-static u8 RDSTHandler[16];
+static OSInterruptHandler RDSTHandler[4];
 
 /* 8044C7E0-8044C7F0 079500 0010+00 0/0 0/0 0/0 .bss             InputBufferValid */
 #pragma push
 #pragma force_active on
-static u8 InputBufferValid[16];
+static BOOL InputBufferValid[SI_MAX_CHAN];
 #pragma pop
 
 /* 8044C7F0-8044C810 079510 0020+00 0/0 0/0 0/0 .bss             InputBuffer */
 #pragma push
 #pragma force_active on
-static u8 InputBuffer[32];
+static u32 InputBuffer[SI_MAX_CHAN][2];
 #pragma pop
 
 /* 8044C810-8044C820 079530 0010+00 0/2 0/0 0/0 .bss             InputBufferVcount */
 #pragma push
 #pragma force_active on
-static u8 InputBufferVcount[16];
+static volatile u32 InputBufferVcount[SI_MAX_CHAN];
 #pragma pop
+
+inline void SITransferNext(s32 chan) {
+    int i;
+    SIPacket* packet;
+
+    for (i = 0; i < SI_MAX_CHAN; ++i) {
+        ++chan;
+        chan %= SI_MAX_CHAN;
+        packet = &Packet[chan];
+        if (packet->chan != -1 && packet->fire <= __OSGetSystemTime()) {
+            if (__SITransfer(packet->chan, packet->output, packet->outputBytes, packet->input,
+                             packet->inputBytes, packet->callback)) {
+                OSCancelAlarm(&Alarm[chan]);
+                packet->chan = -1;
+            }
+            break;
+        }
+    }
+}
 
 /* 804516F0-804516F4 000BF0 0004+00 1/1 0/0 0/0 .sbss            cmdTypeAndStatus$78 */
 static u8 cmdTypeAndStatus_78[4];
 
 /* 80344EF8-8034523C 33F838 0344+00 1/1 0/0 0/0 .text            SIInterruptHandler */
+#ifdef NONMATCHING
+static void SIInterruptHandler(OSInterrupt interrupt, OSContext* context) {
+    u32 reg;
+
+    reg = __SIRegs[13];
+
+    if ((reg & 0xc0000000) == 0xc0000000) {
+        s32 chan;
+        u32 sr;
+        SICallback callback;
+
+        chan = Si.chan;
+        sr = CompleteTransfer();
+        callback = Si.callback;
+        Si.callback = 0;
+
+        SITransferNext(chan);
+
+        if (callback) {
+            callback(chan, sr, context);
+        }
+
+        sr = __SIRegs[14];
+        sr &= 0xf000000 >> (8 * chan);
+        __SIRegs[14] = sr;
+
+        if (Type[chan] == SI_ERROR_BUSY && !SIIsChanBusy(chan)) {
+            static u32 cmdTypeAndStatus = 0 << 24;
+            SITransfer(chan, &cmdTypeAndStatus, 1, &Type[chan], 3, GetTypeCallback,
+                       OSMicrosecondsToTicks(65));
+        }
+    }
+
+    if ((reg & 0x18000000) == 0x18000000) {
+        int i;
+        u32 vcount;
+        u32 x;
+
+        vcount = VIGetCurrentLine() + 1;
+        x = (Si.poll & 0x03ff0000) >> 16;
+
+        for (i = 0; i < SI_MAX_CHAN; ++i) {
+            if (SIGetResponseRaw(i)) {
+                InputBufferVcount[i] = vcount;
+            }
+        }
+
+        for (i = 0; i < SI_MAX_CHAN; ++i) {
+            if (!(Si.poll & (SI_CHAN0_BIT >> (31 - 7 + i)))) {
+                continue;
+            }
+            if (InputBufferVcount[i] == 0 || InputBufferVcount[i] + (x / 2) < vcount) {
+                return;
+            }
+        }
+
+        for (i = 0; i < SI_MAX_CHAN; ++i) {
+            InputBufferVcount[i] = 0;
+        }
+
+        for (i = 0; i < 4; ++i) {
+            if (RDSTHandler[i]) {
+                RDSTHandler[i](interrupt, context);
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void SIInterruptHandler() {
+static asm void SIInterruptHandler(OSInterrupt interrupt, OSContext* context) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIInterruptHandler.s"
 }
 #pragma pop
+#endif
 
 /* 8034523C-803452D4 33FB7C 0098+00 2/2 0/0 0/0 .text            SIEnablePollingInterrupt */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+static BOOL SIEnablePollingInterrupt(BOOL enable) {
+    BOOL enabled;
+    BOOL rc;
+    u32 reg;
+    int i;
+
+    enabled = OSDisableInterrupts();
+    reg = __SIRegs[13];
+    rc = (reg & 0x08000000) ? TRUE : FALSE;
+    if (enable) {
+        reg |= 0x08000000;
+        for (i = 0; i < SI_MAX_CHAN; ++i) {
+            InputBufferVcount[i] = 0;
+        }
+    } else {
+        reg &= ~0x08000000;
+    }
+    reg &= ~0x80000001;
+    __SIRegs[13] = reg;
+    OSRestoreInterrupts(enabled);
+    return rc;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void SIEnablePollingInterrupt() {
+static asm BOOL SIEnablePollingInterrupt(BOOL enable) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIEnablePollingInterrupt.s"
 }
 #pragma pop
+#endif
 
 /* 803452D4-803453A0 33FC14 00CC+00 0/0 1/1 0/0 .text            SIRegisterPollingHandler */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+BOOL SIRegisterPollingHandler(__OSInterruptHandler handler) {
+    BOOL enabled;
+    int i;
+
+    enabled = OSDisableInterrupts();
+    for (i = 0; i < 4; ++i) {
+        if (RDSTHandler[i] == handler) {
+            OSRestoreInterrupts(enabled);
+            return TRUE;
+        }
+    }
+    for (i = 0; i < 4; ++i) {
+        if (RDSTHandler[i] == 0) {
+            RDSTHandler[i] = handler;
+            SIEnablePollingInterrupt(TRUE);
+            OSRestoreInterrupts(enabled);
+            return TRUE;
+        }
+    }
+    OSRestoreInterrupts(enabled);
+    return FALSE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SIRegisterPollingHandler() {
+asm BOOL SIRegisterPollingHandler(OSInterruptHandler handler) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIRegisterPollingHandler.s"
 }
 #pragma pop
+#endif
 
 /* 803453A0-80345494 33FCE0 00F4+00 0/0 1/1 0/0 .text            SIUnregisterPollingHandler */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+BOOL SIUnregisterPollingHandler(OSInterruptHandler handler) {
+    BOOL enabled;
+    int i;
+
+    enabled = OSDisableInterrupts();
+    for (i = 0; i < 4; ++i) {
+        if (RDSTHandler[i] == handler) {
+            RDSTHandler[i] = 0;
+            for (i = 0; i < 4; ++i) {
+                if (RDSTHandler[i]) {
+                    break;
+                }
+            }
+            if (i == 4) {
+                SIEnablePollingInterrupt(FALSE);
+            }
+            OSRestoreInterrupts(enabled);
+            return TRUE;
+            break;
+        }
+    }
+    OSRestoreInterrupts(enabled);
+    return FALSE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SIUnregisterPollingHandler() {
+asm BOOL SIUnregisterPollingHandler(OSInterruptHandler handler) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIUnregisterPollingHandler.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 804509C8-804509D0 -00001 0004+04 1/1 0/0 0/0 .sdata           __SIVersion */
-SECTION_SDATA static void* __SIVersion[1 + 1 /* padding */] = {
-    (void*)&lit_1,
-    /* padding */
-    NULL,
-};
+#endif
 
 /* 80345494-80345548 33FDD4 00B4+00 0/0 1/1 0/0 .text            SIInit */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void SIInit() {
-    nofralloc
-#include "asm/dolphin/si/SIBios/SIInit.s"
+void SIInit(void) {
+    OSRegisterVersion(__SIVersion);
+
+    Packet[0].chan = Packet[1].chan = Packet[2].chan = Packet[3].chan = -1;
+
+    Si.poll = 0;
+    SISetSamplingRate(0);
+
+    while (__SIRegs[13] & 1)
+        ;
+
+    __SIRegs[13] = 0x80000000;
+
+    __OSSetInterruptHandler(OS_INTR_PI_SI, SIInterruptHandler);
+    __OSUnmaskInterrupts(OS_INTERRUPTMASK_PI_SI);
+
+    SIGetType(0);
+    SIGetType(1);
+    SIGetType(2);
+    SIGetType(3);
 }
-#pragma pop
+
+#define ROUND(n, a) (((u32)(n) + (a)-1) & ~((a)-1))
 
 /* 80345548-80345754 33FE88 020C+00 3/3 0/0 0/0 .text            __SITransfer */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __SITransfer() {
-    nofralloc
-#include "asm/dolphin/si/SIBios/__SITransfer.s"
-}
-#pragma pop
+static BOOL __SITransfer(s32 chan, void* output, u32 outputBytes, void* input, u32 inputBytes,
+                         SICallback callback) {
+    BOOL enabled;
+    u32 rLen;
+    u32 i;
+    u32 sr;
+    SIComm_u comcsr;
 
-/* ############################################################################################## */
-/* 803D1210-803D1220 02E330 0010+00 5/5 0/0 0/0 .data            Type */
-SECTION_DATA static u8 Type[16] = {
-    0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x08,
-};
+    enabled = OSDisableInterrupts();
+    if (Si.chan != -1) {
+        OSRestoreInterrupts(enabled);
+        return FALSE;
+    }
+
+    sr = __SIRegs[14];
+    sr &= (0xf000000) >> (8 * chan);
+    __SIRegs[14] = sr;
+
+    Si.chan = chan;
+    Si.callback = callback;
+    Si.inputBytes = inputBytes;
+    Si.input = input;
+
+    rLen = ROUND(outputBytes, 4) / 4;
+    for (i = 0; i < rLen; i++) {
+        __SIRegs[32 + i] = ((u32*)output)[i];
+    }
+
+    comcsr.val = __SIRegs[13];
+    comcsr.f.tcint = 1;
+    comcsr.f.tcintmsk = callback ? 1 : 0;
+    comcsr.f.outlngth = (outputBytes == SI_MAX_COMCSR_OUTLNGTH) ? 0 : outputBytes;
+    comcsr.f.inlngth = (inputBytes == SI_MAX_COMCSR_INLNGTH) ? 0 : inputBytes;
+    comcsr.f.channel = chan;
+    comcsr.f.tstart = 1;
+    __SIRegs[13] = comcsr.val;
+
+    OSRestoreInterrupts(enabled);
+
+    return TRUE;
+}
 
 /* 80345754-803457D0 340094 007C+00 1/1 1/1 0/0 .text            SIGetStatus */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+u32 SIGetStatus(s32 chan) {
+    BOOL enabled;
+    u32 sr;
+    int chanShift;
+
+    enabled = OSDisableInterrupts();
+    sr = __SIRegs[14];
+    chanShift = 8 * (SI_MAX_CHAN - 1 - chan);
+    sr >>= chanShift;
+    if (sr & SI_ERROR_NO_RESPONSE) {
+        if (!(Type[chan] & SI_ERROR_BUSY)) {
+            Type[chan] = SI_ERROR_NO_RESPONSE;
+        }
+    }
+    OSRestoreInterrupts(enabled);
+    return sr;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SIGetStatus() {
+asm u32 SIGetStatus(s32 chan) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIGetStatus.s"
 }
 #pragma pop
+#endif
 
 /* 803457D0-803457E4 340110 0014+00 0/0 4/4 0/0 .text            SISetCommand */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void SISetCommand() {
-    nofralloc
-#include "asm/dolphin/si/SIBios/SISetCommand.s"
+void SISetCommand(s32 chan, u32 command) {
+    __SIRegs[3 * chan] = command;
 }
-#pragma pop
 
 /* 803457E4-803457F4 340124 0010+00 0/0 1/1 0/0 .text            SITransferCommands */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void SITransferCommands() {
-    nofralloc
-#include "asm/dolphin/si/SIBios/SITransferCommands.s"
+void SITransferCommands(void) {
+    __SIRegs[14] = 0x80000000;
 }
-#pragma pop
 
 /* 803457F4-80345860 340134 006C+00 0/0 1/1 0/0 .text            SISetXY */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+u32 SISetXY(u32 x, u32 y) {
+    u32 poll;
+    BOOL enabled;
+
+    poll = x << 16;
+    poll |= y << 8;
+
+    enabled = OSDisableInterrupts();
+    Si.poll &= ~(0x03ff0000 | 0x0000ff00);
+    Si.poll |= poll;
+    poll = Si.poll;
+    __SIRegs[12] = poll;
+    OSRestoreInterrupts(enabled);
+    return poll;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SISetXY() {
+asm u32 SISetXY(u32 x, u32 y) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SISetXY.s"
 }
 #pragma pop
+#endif
 
 /* 80345860-803458FC 3401A0 009C+00 0/0 3/3 0/0 .text            SIEnablePolling */
+#ifdef NONMATCHING
+u32 SIEnablePolling(u32 poll) {
+    BOOL enabled;
+    u32 en;
+
+    if (poll == 0) {
+        return Si.poll;
+    }
+
+    enabled = OSDisableInterrupts();
+
+    poll >>= (31 - 7);
+    en = poll & 0xf0;
+
+    poll &= (en >> 4) | 0x03fffff0;
+
+    poll &= ~0x03ffff00;
+
+    Si.poll &= ~(en >> 4);
+
+    Si.poll |= poll;
+
+    poll = Si.poll;
+
+    SITransferCommands();
+
+    __SIRegs[12] = poll;
+
+    OSRestoreInterrupts(enabled);
+
+    return poll;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SIEnablePolling() {
+asm u32 SIEnablePolling(u32 poll) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIEnablePolling.s"
 }
 #pragma pop
+#endif
 
 /* 803458FC-80345968 34023C 006C+00 0/0 6/6 0/0 .text            SIDisablePolling */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void SIDisablePolling() {
-    nofralloc
-#include "asm/dolphin/si/SIBios/SIDisablePolling.s"
+u32 SIDisablePolling(u32 poll) {
+    BOOL enabled;
+
+    if (poll == 0) {
+        return Si.poll;
+    }
+
+    enabled = OSDisableInterrupts();
+
+    poll >>= (31 - 7);
+    poll &= 0xf0;
+
+    poll = Si.poll & ~poll;
+
+    __SIRegs[12] = poll;
+    Si.poll = poll;
+
+    OSRestoreInterrupts(enabled);
+    return poll;
 }
-#pragma pop
 
 /* 80345968-80345A3C 3402A8 00D4+00 1/1 0/0 0/0 .text            SIGetResponseRaw */
+#ifdef NONMATCHING
+static BOOL SIGetResponseRaw(s32 chan) {
+    u32 sr;
+
+    sr = SIGetStatus(chan);
+    if (sr & SI_ERROR_RDST) {
+        InputBuffer[chan][0] = __SIRegs[3 * chan + 1];
+        InputBuffer[chan][1] = __SIRegs[3 * chan + 2];
+        InputBufferValid[chan] = TRUE;
+        return TRUE;
+    }
+    return FALSE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void SIGetResponseRaw() {
+static asm BOOL SIGetResponseRaw(s32 chan) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIGetResponseRaw.s"
 }
 #pragma pop
+#endif
 
 /* 80345A3C-80345B00 34037C 00C4+00 0/0 4/4 0/0 .text            SIGetResponse */
+#ifdef NONMATCHING
+BOOL SIGetResponse(s32 chan, void* data) {
+    BOOL rc;
+    BOOL enabled;
+
+    enabled = OSDisableInterrupts();
+    SIGetResponseRaw(chan);
+    rc = InputBufferValid[chan];
+    InputBufferValid[chan] = FALSE;
+    if (rc) {
+        ((u32*)data)[0] = InputBuffer[chan][0];
+        ((u32*)data)[1] = InputBuffer[chan][1];
+    }
+    OSRestoreInterrupts(enabled);
+    return rc;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SIGetResponse() {
+asm BOOL SIGetResponse(s32 chan, void* data) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIGetResponse.s"
 }
 #pragma pop
+#endif
 
 /* 80345B00-80345B8C 340440 008C+00 1/1 0/0 0/0 .text            AlarmHandler */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void AlarmHandler() {
-    nofralloc
-#include "asm/dolphin/si/SIBios/AlarmHandler.s"
+static void AlarmHandler(OSAlarm* alarm, OSContext* context) {
+    s32 chan;
+    SIPacket* packet;
+
+    chan = alarm - Alarm;
+    packet = &Packet[chan];
+    if (packet->chan != -1) {
+        if (__SITransfer(packet->chan, packet->output, packet->outputBytes, packet->input,
+                         packet->inputBytes, packet->callback)) {
+            packet->chan = -1;
+        }
+    }
 }
-#pragma pop
 
 /* 80345B8C-80345CF8 3404CC 016C+00 3/3 3/3 0/0 .text            SITransfer */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void SITransfer() {
-    nofralloc
-#include "asm/dolphin/si/SIBios/SITransfer.s"
+BOOL SITransfer(s32 chan, void* output, u32 outputBytes, void* input, u32 inputBytes,
+                SICallback callback, OSTime delay) {
+    BOOL enabled;
+    SIPacket* packet = &Packet[chan];
+    OSTime now;
+    OSTime fire;
+
+    enabled = OSDisableInterrupts();
+    if (packet->chan != -1 || Si.chan == chan) {
+        OSRestoreInterrupts(enabled);
+        return FALSE;
+    }
+
+    now = __OSGetSystemTime();
+    if (delay == 0) {
+        fire = now;
+    } else {
+        fire = XferTime[chan] + delay;
+    }
+    if (now < fire) {
+        delay = fire - now;
+        OSSetAlarm(&Alarm[chan], delay, AlarmHandler);
+    } else if (__SITransfer(chan, output, outputBytes, input, inputBytes, callback)) {
+        OSRestoreInterrupts(enabled);
+        return TRUE;
+    }
+
+    packet->chan = chan;
+    packet->output = output;
+    packet->outputBytes = outputBytes;
+    packet->input = input;
+    packet->inputBytes = inputBytes;
+    packet->callback = callback;
+    packet->fire = fire;
+
+    OSRestoreInterrupts(enabled);
+    return TRUE;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804516F4-804516F8 000BF4 0004+00 1/1 0/0 0/0 .sbss            cmdTypeAndStatus$372 */
 static u8 cmdTypeAndStatus_372[4];
 
 /* 804516F8-80451700 000BF8 0004+04 1/1 1/1 0/0 .sbss            __PADFixBits */
-extern u8 __PADFixBits[4 + 4 /* padding */];
-u8 __PADFixBits[4 + 4 /* padding */];
+extern u32 __PADFixBits;
+u32 __PADFixBits;
 
 /* 80345CF8-80345F90 340638 0298+00 2/2 0/0 0/0 .text            GetTypeCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void GetTypeCallback() {
+static asm void GetTypeCallback(s32 chan, u32 error, OSContext* context) {
     nofralloc
 #include "asm/dolphin/si/SIBios/GetTypeCallback.s"
 }
 #pragma pop
 
 /* 80345F90-80346154 3408D0 01C4+00 2/2 3/3 0/0 .text            SIGetType */
+#ifdef NONMATCHING
+u32 SIGetType(s32 chan) {
+    static u32 cmdTypeAndStatus;
+    BOOL enabled;
+    u32 type;
+    OSTime diff;
+
+    enabled = OSDisableInterrupts();
+
+    type = Type[chan];
+    diff = __OSGetSystemTime() - TypeTime[chan];
+    if (Si.poll & (0x80 >> chan)) {
+        if (type != SI_ERROR_NO_RESPONSE) {
+            TypeTime[chan] = __OSGetSystemTime();
+            OSRestoreInterrupts(enabled);
+            return type;
+        } else {
+            type = Type[chan] = SI_ERROR_BUSY;
+        }
+    } else if (diff <= OSMillisecondsToTicks(50) && type != SI_ERROR_NO_RESPONSE) {
+        OSRestoreInterrupts(enabled);
+        return type;
+    } else if (diff <= OSMillisecondsToTicks(75)) {
+        Type[chan] = SI_ERROR_BUSY;
+    } else {
+        type = Type[chan] = SI_ERROR_BUSY;
+    }
+    TypeTime[chan] = __OSGetSystemTime();
+
+    SITransfer(chan, &cmdTypeAndStatus, 1, &Type[chan], 3, GetTypeCallback,
+               OSMicrosecondsToTicks(65));
+
+    OSRestoreInterrupts(enabled);
+    return type;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SIGetType() {
+asm u32 SIGetType(s32 chan) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIGetType.s"
 }
 #pragma pop
+#endif
 
 /* 80346154-80346290 340A94 013C+00 0/0 6/6 0/0 .text            SIGetTypeAsync */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+u32 SIGetTypeAsync(s32 chan, SITypeAndStatusCallback callback) {
+    BOOL enabled;
+    u32 type;
+
+    enabled = OSDisableInterrupts();
+    type = SIGetType(chan);
+    if (Type[chan] & SI_ERROR_BUSY) {
+        int i;
+
+        for (i = 0; i < 4; ++i) {
+            if (TypeCallback[chan][i] == callback) {
+                break;
+            }
+            if (TypeCallback[chan][i] == 0) {
+                TypeCallback[chan][i] = callback;
+                break;
+            }
+        }
+    } else {
+        callback(chan, type);
+    }
+    OSRestoreInterrupts(enabled);
+    return type;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void SIGetTypeAsync() {
+asm u32 SIGetTypeAsync(s32 chan, SITypeAndStatusCallback callback) {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIGetTypeAsync.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803D1220-803D122C 02E340 000C+00 0/0 0/0 0/0 .data            @457 */
+
+// All of these strings are from the stripped `SIGetTypeString` function
 #pragma push
 #pragma force_active on
 SECTION_DATA static char lit_457[] = "No response";

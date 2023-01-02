@@ -5,26 +5,17 @@
 
 #include "dolphin/os/OSReset.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "dolphin/os/OS.h"
+
+vu16 __VIRegs[59] : 0xCC002000;
+OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | 0x00DC);
 
 //
 // External References:
 //
 
 SECTION_INIT void memset();
-void OSReport();
-void __OSStopAudioSystem();
-void ICFlashInvalidate();
-void LCDisable();
-void OSDisableInterrupts();
-void __OSReboot();
-void __OSLockSram();
-void __OSUnlockSram();
-void __OSSyncSram();
-void OSDisableScheduler();
-void OSEnableScheduler();
-void OSCancelThread();
-void __PADDisableRecalibration();
+int __PADDisableRecalibration();
 extern u8 __OSRebootParams[28 + 4 /* padding */];
 
 //
@@ -33,27 +24,66 @@ extern u8 __OSRebootParams[28 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 80451690-80451698 000B90 0008+00 2/2 0/0 0/0 .sbss            ResetFunctionQueue */
-static u8 ResetFunctionQueue[8];
+static OSResetQueue ResetFunctionQueue;
 
 /* 8033F660-8033F6E4 339FA0 0084+00 0/0 5/5 0/0 .text            OSRegisterResetFunction */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSRegisterResetFunction(OSResetFunctionInfo* info) {
-    nofralloc
-#include "asm/dolphin/os/OSReset/OSRegisterResetFunction.s"
+void OSRegisterResetFunction(OSResetFunctionInfo* func) {
+    OSResetFunctionInfo* tmp;
+    OSResetFunctionInfo* iter;
+
+    for (iter = ResetFunctionQueue.first; iter && iter->priority <= func->priority;
+         iter = iter->next)
+        ;
+
+    if (iter == NULL) {
+        tmp = ResetFunctionQueue.last;
+        if (tmp == NULL) {
+            ResetFunctionQueue.first = func;
+        } else {
+            tmp->next = func;
+        }
+        func->prev = tmp;
+        func->next = NULL;
+        ResetFunctionQueue.last = func;
+        return;
+    }
+
+    func->next = iter;
+    tmp = iter->prev;
+    iter->prev = func;
+    func->prev = tmp;
+    if (tmp == NULL) {
+        ResetFunctionQueue.first = func;
+        return;
+    }
+    tmp->next = func;
 }
-#pragma pop
 
 /* 8033F6E4-8033F78C 33A024 00A8+00 1/1 0/0 0/0 .text            __OSCallResetFunctions */
+#ifdef NONMATCHING
+BOOL __OSCallResetFunctions(u32 arg0) {
+    OSResetFunctionInfo* iter;
+    s32 retCode = 0;
+
+    for (iter = ResetFunctionQueue.first; iter != NULL; iter = iter->next) {
+        retCode |= !iter->func(arg0);
+    }
+    retCode |= !__OSSyncSram();
+    if (retCode) {
+        return 0;
+    }
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm BOOL __OSCallResetFunctions(s32 param_0) {
+asm BOOL __OSCallResetFunctions(u32 param_0) {
     nofralloc
 #include "asm/dolphin/os/OSReset/__OSCallResetFunctions.s"
 }
 #pragma pop
+#endif
 
 /* 8033F78C-8033F7FC 33A0CC 0070+00 2/2 0/0 0/0 .text            Reset */
 static asm void Reset(register s32 param_0) {
@@ -120,31 +150,77 @@ static asm void KillThreads(void) {
 #pragma pop
 
 /* 8033F864-8033F8AC 33A1A4 0048+00 0/0 3/3 0/0 .text            __OSDoHotReset */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __OSDoHotReset(s32 param_0) {
-    nofralloc
-#include "asm/dolphin/os/OSReset/__OSDoHotReset.s"
+void __OSDoHotReset(s32 arg0) {
+    OSDisableInterrupts();
+    __VIRegs[1] = 0;
+    ICFlashInvalidate();
+    Reset(arg0 * 8);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803D07E8-803D0838 02D908 004E+02 1/1 0/0 0/0 .data            @153 */
-SECTION_DATA static char lit_153[] = "OSResetSystem(): You can't specify TRUE to forceMenu if you restart. Ignored\n";
+SECTION_DATA static char lit_153[] =
+    "OSResetSystem(): You can't specify TRUE to forceMenu if you restart. Ignored\n";
 
 /* 80451698-804516A0 000B98 0004+04 1/1 0/0 0/0 .sbss            bootThisDol */
 static u8 bootThisDol[4 + 4 /* padding */];
 
 /* 8033F8AC-8033FAAC 33A1EC 0200+00 0/0 5/5 0/0 .text            OSResetSystem */
+#ifdef NONMATCHING
+void OSResetSystem(int reset, u32 resetCode, BOOL forceMenu) {
+    BOOL rc;
+    BOOL disableRecalibration;
+    u32 unk[3];
+    OSDisableScheduler();
+    __OSStopAudioSystem();
+
+    if (reset == OS_RESET_SHUTDOWN) {
+        disableRecalibration = __PADDisableRecalibration(TRUE);
+    }
+
+    while (!__OSCallResetFunctions(FALSE))
+        ;
+
+    if (reset == OS_RESET_HOTRESET && forceMenu) {
+        OSSram* sram;
+
+        sram = __OSLockSram();
+        sram->flags |= 0x40;
+        __OSUnlockSram(TRUE);
+
+        while (!__OSSyncSram())
+            ;
+    }
+    OSDisableInterrupts();
+    __OSCallResetFunctions(TRUE);
+    LCDisable();
+    if (reset == OS_RESET_HOTRESET) {
+        __OSDoHotReset(resetCode);
+    } else if (reset == OS_RESET_RESTART) {
+        KillThreads();
+        OSEnableScheduler();
+        __OSReboot(resetCode, forceMenu);
+    }
+    KillThreads();
+    memset(OSPhysicalToCached(0x40), 0, 0xcc - 0x40);
+    memset(OSPhysicalToCached(0xd4), 0, 0xe8 - 0xd4);
+    memset(OSPhysicalToCached(0xf4), 0, 0xf8 - 0xf4);
+    memset(OSPhysicalToCached(0x3000), 0, 0xc0);
+    memset(OSPhysicalToCached(0x30c8), 0, 0xd4 - 0xc8);
+    memset(OSPhysicalToCached(0x30e2), 0, 1);
+
+    __PADDisableRecalibration(disableRecalibration);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSResetSystem(s32 reset, u32 resetCode, BOOL forceMenu) {
+asm void OSResetSystem(int reset, u32 resetCode, BOOL forceMenu) {
     nofralloc
 #include "asm/dolphin/os/OSReset/OSResetSystem.s"
 }
 #pragma pop
+#endif
 
 /* 8033FAAC-8033FAE4 33A3EC 0038+00 0/0 3/3 0/0 .text            OSGetResetCode */
 #pragma push

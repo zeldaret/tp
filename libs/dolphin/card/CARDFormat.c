@@ -4,71 +4,97 @@
 //
 
 #include "dolphin/card/CARDFormat.h"
+#include "MSL_C/MSL_Common/Src/string.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "dolphin/card/card.h"
+#include "dolphin/dsp/dsp.h"
+#include "dolphin/dvd/dvd.h"
+
+#include "dolphin/card/CARDPriv.h"
 
 //
 // Forward References:
 //
 
-static void FormatCallback();
-void __CARDFormatRegionAsync();
-void CARDFormat();
+static void FormatCallback(s32 chan, s32 result);
 
 //
 // External References:
 //
 
-SECTION_INIT void memset();
-SECTION_INIT void memcpy();
-void DCStoreRange();
-void __OSLockSram();
-void __OSLockSramEx();
-void __OSUnlockSram();
-void __OSUnlockSramEx();
-void OSGetTime();
-void __CARDDefaultApiCallback();
-void __CARDSyncCallback();
-void __CARDEraseSector();
-void __CARDGetFontEncode();
-void __CARDGetControlBlock();
-void __CARDPutControlBlock();
-void __CARDSync();
-void __CARDWrite();
-void __CARDCheckSum();
 void __shr2i();
-extern u8 __CARDBlock[544];
 
 //
 // Declarations:
 //
 
 /* 80357484-803575C8 351DC4 0144+00 1/1 0/0 0/0 .text            FormatCallback */
+// needs compiler epilogue patch
+#ifdef NONMATCHING
+static void FormatCallback(s32 chan, s32 result) {
+    CARDControl* card;
+    CARDCallback callback;
+
+    card = &__CARDBlock[chan];
+    if (result < 0) {
+        goto error;
+    }
+
+    ++card->formatStep;
+    if (card->formatStep < CARD_NUM_SYSTEM_BLOCK) {
+        result = __CARDEraseSector(chan, (u32)card->sectorSize * card->formatStep, FormatCallback);
+        if (0 <= result) {
+            return;
+        }
+    } else if (card->formatStep < 2 * CARD_NUM_SYSTEM_BLOCK) {
+        int step = card->formatStep - CARD_NUM_SYSTEM_BLOCK;
+        result = __CARDWrite(chan, (u32)card->sectorSize * step, CARD_SYSTEM_BLOCK_SIZE,
+                             (u8*)card->workArea + (CARD_SYSTEM_BLOCK_SIZE * step), FormatCallback);
+        if (result >= 0) {
+            return;
+        }
+    } else {
+        card->currentDir = (CARDDir*)((u8*)card->workArea + (1 + 0) * CARD_SYSTEM_BLOCK_SIZE);
+        memcpy(card->currentDir, (u8*)card->workArea + (1 + 1) * CARD_SYSTEM_BLOCK_SIZE,
+               CARD_SYSTEM_BLOCK_SIZE);
+        card->currentFat = (u16*)((u8*)card->workArea + (3 + 0) * CARD_SYSTEM_BLOCK_SIZE);
+        memcpy(card->currentFat, (u8*)card->workArea + (3 + 1) * CARD_SYSTEM_BLOCK_SIZE,
+               CARD_SYSTEM_BLOCK_SIZE);
+    }
+
+error:
+    callback = card->apiCallback;
+    card->apiCallback = 0;
+    __CARDPutControlBlock(card, result);
+    callback(chan, result);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void FormatCallback() {
+static asm void FormatCallback(s32 chan, s32 result) {
     nofralloc
 #include "asm/dolphin/card/CARDFormat/FormatCallback.s"
 }
 #pragma pop
+#endif
 
 /* 803575C8-80357C20 351F08 0658+00 1/1 0/0 0/0 .text            __CARDFormatRegionAsync */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __CARDFormatRegionAsync() {
+asm s32 __CARDFormatRegionAsync(s32 chan, u16 encode, CARDCallback callback) {
     nofralloc
 #include "asm/dolphin/card/CARDFormat/__CARDFormatRegionAsync.s"
 }
 #pragma pop
 
 /* 80357C20-80357C74 352560 0054+00 0/0 1/1 0/0 .text            CARDFormat */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CARDFormat() {
-    nofralloc
-#include "asm/dolphin/card/CARDFormat/CARDFormat.s"
+s32 CARDFormat(s32 chan) {
+    s32 result = __CARDFormatRegionAsync(chan, __CARDGetFontEncode(), __CARDSyncCallback);
+    if (result < 0) {
+        return result;
+    }
+
+    return __CARDSync(chan);
 }
-#pragma pop

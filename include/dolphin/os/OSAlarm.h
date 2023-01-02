@@ -25,15 +25,19 @@ typedef struct OSAlarm {
     /* 0x20 */ OSTime start_time;
 } OSAlarm;  // Size: 0x28
 
+typedef struct OSAlarmQueue {
+    OSAlarm* head;
+    OSAlarm* tail;
+} OSAlarmQueue;
+
 void OSInitAlarm(void);
 void OSCreateAlarm(OSAlarm* alarm);
-static void InsertAlarm(OSAlarm* alarm, s64 time, OSAlarmHandler* handler);
-void OSSetAlarm(OSAlarm* alarm, s64 time, OSAlarmHandler* handler);
-void OSSetPeriodicAlarm(OSAlarm* alarm, s64 start, s64 period, OSAlarmHandler* handler);
+static void InsertAlarm(OSAlarm* alarm, s64 time, OSAlarmHandler handler);
+void OSSetAlarm(OSAlarm* alarm, s64 time, OSAlarmHandler handler);
+void OSSetPeriodicAlarm(OSAlarm* alarm, s64 start, s64 period, OSAlarmHandler handler);
 void OSCancelAlarm(OSAlarm* alarm);
 static void DecrementerExceptionCallback(__OSException exception, OSContext* context);
 static void DecrementerExceptionHandler(__OSException exception, OSContext* context);
-static s32 OnReset(s32 param_0);
 
 #ifdef __cplusplus
 };

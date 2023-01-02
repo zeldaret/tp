@@ -246,50 +246,27 @@ void OSReport_System(char* fmt, ...) {
     }
 }
 
-/* ############################################################################################## */
-/* 80373CB0-80373CB0 000310 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80373D10 = " in \"%s\" on line %d.\n";
-SECTION_DEAD static char const* const stringBase_80373D26 =
-    "\nAddress:      Back Chain    LR Save\n";
-SECTION_DEAD static char const* const stringBase_80373D4C = "0x%08x:   0x%08x    0x%08x\n";
-#pragma pop
-
 /* 80006E7C-80006FB4 0017BC 0138+00 0/0 9/9 0/0 .text            OSPanic */
-// loop stuff / ending
-#ifdef NONMATCHING
 void OSPanic(char* file, s32 line, char* fmt, ...) {
-    OSDisableInterrupts();
-
     va_list args;
+    u32 i;
+    u32* p;
+    u32* tmp;
+
+    OSDisableInterrupts();
     va_start(args, fmt);
-
     mDoPrintf_vprintf(fmt, args);
-    OSAttention(" in \"%s\" on line %d.\n", file, line);
-    OSAttention("\nAddress:      Back Chain    LR Save\n");
-
-    u32 tmp = 0;
-    u8* stackPtr = OSGetStackPointer();
-    while (stackPtr != NULL && tmp < 0x10) {
-        OSAttention("0x%08x:   0x%08x    0x%08x\n", stackPtr, *(u32*)stackPtr,
-                    *(u32*)(stackPtr + 4));
-        stackPtr++;
-        tmp++;
-    }
-    PPCHalt();
-
     va_end(args);
+    OSAttention(" in \"%s\" on line %d.\n", file, line);
+
+    OSAttention("\nAddress:      Back Chain    LR Save\n");
+    for (i = 0, p = (u32*)OSGetStackPointer(); p && (u32)p != 0xFFFFFFFF && i++ < 16; p = (u32*)*p) {
+        OSAttention("0x%08x:   0x%08x    0x%08x\n", p, p[0], p[1]);
+    }
+
+    tmp = (u32*)0x1234567;  // ??????
+    *tmp = 0x1234567;
+    PPCHalt();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSPanic(char* file, s32 line, char* fmt, ...) {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/OSPanic.s"
-}
-#pragma pop
-#endif
 
 /* 80373CB0-80373CB0 000310 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

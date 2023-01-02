@@ -1173,12 +1173,12 @@ void dSv_player_info_c::init() {
 void dSv_player_config_c::init() {
     unk0 = 1;
 
-    if (OSGetSoundMode() == SOUND_MODE_MONO) {
-        mSoundMode = SOUND_MODE_MONO;
-        Z2AudioMgr::mAudioMgrPtr->setOutputMode(SOUND_MODE_MONO);
+    if (OSGetSoundMode() == OS_SOUND_MODE_MONO) {
+        mSoundMode = OS_SOUND_MODE_MONO;
+        Z2AudioMgr::mAudioMgrPtr->setOutputMode(OS_SOUND_MODE_MONO);
     } else {
-        mSoundMode = SOUND_MODE_STEREO;
-        Z2AudioMgr::mAudioMgrPtr->setOutputMode(SOUND_MODE_STEREO);
+        mSoundMode = OS_SOUND_MODE_STEREO;
+        Z2AudioMgr::mAudioMgrPtr->setOutputMode(OS_SOUND_MODE_STEREO);
     }
 
     mAttentionType = 0;
@@ -1828,9 +1828,9 @@ SECTION_DEAD static char const* const stringBase_8037927A = "LOAD size:%d\n";
 int dSv_info_c::card_to_memory(char* card_ptr, int dataNum) {
     memcpy(dComIfGs_getSaveData(), card_ptr + dataNum * 0xa94, sizeof(dSv_save_c));
 
-    if (OSGetSoundMode() == SOUND_MODE_MONO) {
-        g_dComIfG_gameInfo.info.getPlayer().getConfig().setSound(SOUND_MODE_MONO);
-        Z2AudioMgr::mAudioMgrPtr->setOutputMode(SOUND_MODE_MONO);
+    if (OSGetSoundMode() == OS_SOUND_MODE_MONO) {
+        g_dComIfG_gameInfo.info.getPlayer().getConfig().setSound(OS_SOUND_MODE_MONO);
+        Z2AudioMgr::mAudioMgrPtr->setOutputMode(OS_SOUND_MODE_MONO);
     } else if (g_dComIfG_gameInfo.info.getPlayer().getConfig().getSound() == 2) {
         Z2AudioMgr::mAudioMgrPtr->setOutputMode(2);
     } else {

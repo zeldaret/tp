@@ -53,7 +53,7 @@ typedef u8 __OSException;
 typedef void (*OSErrorHandler)(OSError error, OSContext* context, u32, u32);
 
 OSErrorHandler OSSetErrorHandler(OSError error, OSErrorHandler handler);
-void __OSUnhandledException(OSException exception, OSContext* context, u32 dsisr, u32 dar);
+void __OSUnhandledException(__OSException exception, OSContext* context, u32 dsisr, u32 dar);
 
 #ifdef __cplusplus
 };

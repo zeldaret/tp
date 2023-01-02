@@ -9,6 +9,14 @@ LIBDB_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/db/db.o \
 
 LIBDB_A_CFLAGS := \
+	-Cpp_exceptions off \
+	-proc gekko \
+	-fp hard \
+	-nodefaults \
+	-str reuse \
+	-RTTI off \
+	-maxerrors 5 \
+	-enum int $(INCLUDES) \
 	-O4,p \
 	-lang=c \
 
@@ -27,5 +35,5 @@ $(BUILD_DIR)/libs/dolphin/db/%.o: libs/dolphin/db/%.c
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
-	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBDB_A_CFLAGS) -c -o $@ $(basename $@).c
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(LIBDB_A_CFLAGS) -c -o $@ $(basename $@).c
 
