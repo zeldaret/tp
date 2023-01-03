@@ -22,8 +22,6 @@ static void ReadCallback(s32 chan, s32 result);
 //
 
 /* 803584A0-80358658 352DE0 01B8+00 1/1 1/1 0/0 .text            __CARDSeek */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 s32 __CARDSeek(CARDFileInfo* fileInfo, s32 length, s32 offset, CARDControl** pcard) {
     CARDControl* card;
     CARDDir* dir;
@@ -71,16 +69,6 @@ s32 __CARDSeek(CARDFileInfo* fileInfo, s32 length, s32 offset, CARDControl** pca
     *pcard = card;
     return CARD_RESULT_READY;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 __CARDSeek(CARDFileInfo* fileInfo, s32 length, s32 offset, CARDControl** pcard) {
-    nofralloc
-#include "asm/dolphin/card/CARDRead/__CARDSeek.s"
-}
-#pragma pop
-#endif
 
 /* 80358658-80358788 352F98 0130+00 1/1 0/0 0/0 .text            ReadCallback */
 static void ReadCallback(s32 chan, s32 result) {

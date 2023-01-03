@@ -15,7 +15,7 @@ void AIInitDMA(u32 addr, u32 length);
 void AIStartDMA(void);
 void AIStopDMA(void);
 void AISetStreamPlayState(u32 state);
-u32 AIGetStreamPlayState(void);
+inline u32 AIGetStreamPlayState(void);
 void AISetDSPSampleRate(u32 rate);
 u32 AIGetDSPSampleRate(void);
 void __AI_set_stream_sample_rate(u32 rate);

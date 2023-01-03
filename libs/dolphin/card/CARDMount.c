@@ -156,8 +156,6 @@ static asm s32 DoMount(s32 chan) {
 #pragma pop
 
 /* 8035701C-80357154 35195C 0138+00 2/2 1/1 0/0 .text            __CARDMountCallback */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 void __CARDMountCallback(s32 chan, s32 result) {
     CARDControl* card;
     CARDCallback callback;
@@ -198,16 +196,6 @@ void __CARDMountCallback(s32 chan, s32 result) {
     __CARDPutControlBlock(card, result);
     callback(chan, result);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __CARDMountCallback(s32 chan, s32 result) {
-    nofralloc
-#include "asm/dolphin/card/CARDMount/__CARDMountCallback.s"
-}
-#pragma pop
-#endif
 
 /* 80357154-803572F4 351A94 01A0+00 1/1 0/0 0/0 .text            CARDMountAsync */
 s32 CARDMountAsync(s32 chan, void* workArea, CARDCallback detachCallback,
@@ -278,8 +266,6 @@ s32 CARDMount(s32 chan, void* workArea, CARDCallback attachCb) {
 }
 
 /* 8035733C-803573D8 351C7C 009C+00 2/2 0/0 0/0 .text            DoUnmount */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 static void DoUnmount(s32 chan, s32 result) {
     CARDControl* card;
     BOOL enabled;
@@ -296,16 +282,6 @@ static void DoUnmount(s32 chan, s32 result) {
     }
     OSRestoreInterrupts(enabled);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void DoUnmount(s32 chan, s32 result) {
-    nofralloc
-#include "asm/dolphin/card/CARDMount/DoUnmount.s"
-}
-#pragma pop
-#endif
 
 /* 803573D8-80357484 351D18 00AC+00 0/0 2/2 0/0 .text            CARDUnmount */
 #pragma push

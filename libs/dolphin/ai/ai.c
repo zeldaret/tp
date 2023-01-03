@@ -32,8 +32,6 @@ asm AIDCallback AIRegisterDMACallback(AIDCallback callback) {
 #pragma pop
 
 /* 8034FCB4-8034FD3C 34A5F4 0088+00 0/0 2/2 0/0 .text            AIInitDMA */
-// need compiler epilogue patch
-#ifdef NONMATCHING
 void AIInitDMA(u32 addr, u32 length) {
     s32 oldInts;
     oldInts = OSDisableInterrupts();
@@ -42,16 +40,6 @@ void AIInitDMA(u32 addr, u32 length) {
     __DSPRegs[27] = (u16)((__DSPRegs[27] & ~0x7FFF) | (u16)((length >> 5) & 0xFFFF));
     OSRestoreInterrupts(oldInts);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void AIInitDMA(u32 addr, u32 length) {
-    nofralloc
-#include "asm/dolphin/ai/ai/AIInitDMA.s"
-}
-#pragma pop
-#endif
 
 /* 8034FD3C-8034FD54 34A67C 0018+00 0/0 1/1 0/0 .text            AIStartDMA */
 void AIStartDMA(void) {
@@ -65,8 +53,6 @@ void AIStopDMA(void) {
 }
 
 /* 8034FD6C-8034FE44 34A6AC 00D8+00 1/1 1/1 0/0 .text            AISetStreamPlayState */
-// need compiler epilogue patch
-#ifdef NONMATCHING
 void AISetStreamPlayState(u32 state) {
     s32 oldInts;
     u8 volRight;
@@ -92,25 +78,13 @@ void AISetStreamPlayState(u32 state) {
         __AIRegs[0] = (__AIRegs[0] & ~1) | state;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void AISetStreamPlayState(u32 state) {
-    nofralloc
-#include "asm/dolphin/ai/ai/AISetStreamPlayState.s"
-}
-#pragma pop
-#endif
 
 /* 8034FE44-8034FE54 34A784 0010+00 1/1 0/0 0/0 .text            AIGetStreamPlayState */
-u32 AIGetStreamPlayState(void) {
+inline u32 AIGetStreamPlayState(void) {
     return __AIRegs[0] & 1;
 }
 
 /* 8034FE54-8034FF34 34A794 00E0+00 1/1 1/1 0/0 .text            AISetDSPSampleRate */
-// need compiler epilogue patch
-#ifdef NONMATCHING
 void AISetDSPSampleRate(u32 rate) {
     u32 state;
     s32 oldInts;
@@ -141,16 +115,6 @@ void AISetDSPSampleRate(u32 rate) {
         AISetStreamVolRight(right);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void AISetDSPSampleRate(u32 rate) {
-    nofralloc
-#include "asm/dolphin/ai/ai/AISetDSPSampleRate.s"
-}
-#pragma pop
-#endif
 
 /* 8034FF34-8034FF48 34A874 0014+00 1/1 0/0 1/1 .text            AIGetDSPSampleRate */
 u32 AIGetDSPSampleRate(void) {
@@ -158,8 +122,6 @@ u32 AIGetDSPSampleRate(void) {
 }
 
 /* 8034FF48-8035001C 34A888 00D4+00 1/1 0/1 0/0 .text            __AI_set_stream_sample_rate */
-// need compiler epilogue patch
-#ifdef NONMATCHING
 void __AI_set_stream_sample_rate(u32 rate) {
     s32 oldInts;
     s32 state;
@@ -188,16 +150,6 @@ void __AI_set_stream_sample_rate(u32 rate) {
     AISetStreamVolLeft(left);
     AISetStreamVolRight(right);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __AI_set_stream_sample_rate(u32 rate) {
-    nofralloc
-#include "asm/dolphin/ai/ai/__AI_set_stream_sample_rate.s"
-}
-#pragma pop
-#endif
 
 /* 8035001C-8035002C 34A95C 0010+00 3/3 0/0 0/0 .text            AIGetStreamSampleRate */
 u32 AIGetStreamSampleRate(void) {
@@ -271,8 +223,6 @@ asm void AIInit(u8* stack) {
 #pragma pop
 
 /* 803501F0-8035026C 34AB30 007C+00 1/1 0/0 0/0 .text            __AISHandler */
-// need compiler epilogue patch
-#ifdef NONMATCHING
 void __AISHandler(s16 interrupt, OSContext* context) {
     OSContext tmpContext;
     __AIRegs[0] |= 8;
@@ -286,16 +236,6 @@ void __AISHandler(s16 interrupt, OSContext* context) {
     OSClearContext(&tmpContext);
     OSSetCurrentContext(context);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __AISHandler(s16 interrupt, OSContext* context) {
-    nofralloc
-#include "asm/dolphin/ai/ai/__AISHandler.s"
-}
-#pragma pop
-#endif
 
 /* 8035026C-80350318 34ABAC 00AC+00 1/1 0/0 0/0 .text            __AIDHandler */
 void __AIDHandler(s16 interrupt, OSContext* context) {

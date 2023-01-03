@@ -40,4 +40,6 @@ $(BUILD_DIR)/libs/dolphin/dsp/%.o: libs/dolphin/dsp/%.c
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
 	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(LIBDSP_A_CFLAGS) -c -o $@ $(basename $@).c
+	@echo Frank is fixing $@
+	@$(PYTHON) $(FRANK) $@ $@ $@
 

@@ -136,7 +136,7 @@ asm s32 EXIImm(s32 chan, void* buf, s32 len, u32 type, EXICallback callback) {
 /* 80342F5C-80342FFC 33D89C 00A0+00 0/0 7/7 0/0 .text            EXIImmEx */
 // needs compiler lmw/lwz order patch
 #ifdef NONMATCHING
-BOOL EXIImmEx(s32 chan, void* buf, s32 len, u32 mode) {
+s32 EXIImmEx(s32 chan, void* buf, s32 len, u32 mode) {
     s32 xLen;
 
     while (len) {

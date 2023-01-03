@@ -21,24 +21,12 @@ static BOOL UnlockSram(BOOL commit, u32 offset);
 static SramControlBlock Scb ALIGN_DECL(32);
 
 /* 8033FE90-8033FEF0 33A7D0 0060+00 2/2 0/0 0/0 .text            WriteSramCallback */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 static void WriteSramCallback(s32 chan, OSContext* context) {
     Scb.sync = WriteSram(Scb.sram + Scb.offset, Scb.offset, RTC_SRAM_SIZE - Scb.offset);
     if (Scb.sync) {
         Scb.offset = RTC_SRAM_SIZE;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void WriteSramCallback(s32 chan, OSContext* context) {
-    nofralloc
-#include "asm/dolphin/os/OSRtc/WriteSramCallback.s"
-}
-#pragma pop
-#endif
 
 static inline BOOL ReadSram(void* buffer) {
     BOOL err;
@@ -67,8 +55,6 @@ static inline BOOL ReadSram(void* buffer) {
 }
 
 /* 8033FEF0-80340008 33A830 0118+00 1/1 0/0 0/0 .text            WriteSram */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 BOOL WriteSram(void* buffer, u32 offset, u32 size) {
     BOOL err;
     u32 cmd;
@@ -92,36 +78,14 @@ BOOL WriteSram(void* buffer, u32 offset, u32 size) {
 
     return !err;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm BOOL WriteSram(void* buffer, u32 offset, u32 size) {
-    nofralloc
-#include "asm/dolphin/os/OSRtc/WriteSram.s"
-}
-#pragma pop
-#endif
 
 /* 80340008-80340144 33A948 013C+00 0/0 1/1 0/0 .text            __OSInitSram */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 void __OSInitSram(void) {
     Scb.locked = Scb.enabled = FALSE;
     Scb.sync = ReadSram(Scb.sram);
     Scb.offset = RTC_SRAM_SIZE;
     OSSetGbsMode(OSGetGbsMode());
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __OSInitSram(void) {
-    nofralloc
-#include "asm/dolphin/os/OSRtc/__OSInitSram.s"
-}
-#pragma pop
-#endif
 
 /* 80340144-803401A0 33AA84 005C+00 0/0 3/3 0/0 .text            __OSLockSram */
 #pragma push

@@ -34,8 +34,6 @@ void __DSP_remove_task();
 //
 
 /* 803525D0-80352770 34CF10 01A0+00 0/0 1/1 0/0 .text            __DSP_exec_task */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 void __DSP_exec_task(DSPTaskInfo* curr, DSPTaskInfo* next) {
     if (curr) {
         DSPSendMailToDSP((u32)(curr->dram_mmem_addr));
@@ -99,56 +97,10 @@ void __DSP_exec_task(DSPTaskInfo* curr, DSPTaskInfo* next) {
             ;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __DSP_exec_task(DSPTaskInfo* curr, DSPTaskInfo* next) {
-    nofralloc
-#include "asm/dolphin/dsp/dsp_task/__DSP_exec_task.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 803D1CF8-803D1D18 02EE18 001D+03 1/1 0/0 0/0 .data            @266 */
-SECTION_DATA static char lit_266[] = "DSP is booting task: 0x%08X\n";
-
-/* 803D1D18-803D1D48 02EE38 002D+03 0/1 0/0 0/0 .data            @267 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_267[] = "__DSP_boot_task()  : IRAM MMEM ADDR: 0x%08X\n";
-#pragma pop
-
-/* 803D1D48-803D1D78 02EE68 002D+03 0/1 0/0 0/0 .data            @268 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_268[] = "__DSP_boot_task()  : IRAM DSP ADDR : 0x%08X\n";
-#pragma pop
-
-/* 803D1D78-803D1DA8 02EE98 002D+03 0/1 0/0 0/0 .data            @269 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_269[] = "__DSP_boot_task()  : IRAM LENGTH   : 0x%08X\n";
-#pragma pop
-
-/* 803D1DA8-803D1DD8 02EEC8 002D+03 0/1 0/0 0/0 .data            @270 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_270[] = "__DSP_boot_task()  : DRAM MMEM ADDR: 0x%08X\n";
-#pragma pop
-
-/* 803D1DD8-803D1E08 02EEF8 002D+03 0/1 0/0 0/0 .data            @271 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_271[] = "__DSP_boot_task()  : Start Vector  : 0x%08X\n";
-#pragma pop
 
 #define MSG_BASE 0x80F30000
 
 /* 80352770-803528FC 34D0B0 018C+00 0/0 1/1 0/0 .text            __DSP_boot_task */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 void __DSP_boot_task(DSPTaskInfo* task) {
     volatile u32 mail;
 
@@ -201,16 +153,6 @@ void __DSP_boot_task(DSPTaskInfo* task) {
     __DSP_debug_printf("__DSP_boot_task()  : Start Vector  : 0x%08X\n",
                        (u32)(task->dsp_init_vector));
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __DSP_boot_task(DSPTaskInfo* task) {
-    nofralloc
-#include "asm/dolphin/dsp/dsp_task/__DSP_boot_task.s"
-}
-#pragma pop
-#endif
 
 /* 803528FC-8035299C 34D23C 00A0+00 0/0 1/1 0/0 .text            __DSP_insert_task */
 void __DSP_insert_task(DSPTaskInfo* task) {

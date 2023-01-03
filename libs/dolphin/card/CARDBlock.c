@@ -29,8 +29,6 @@ u16* __CARDGetFatBlock(CARDControl* card) {
 }
 
 /* 8035541C-803554F0 34FD5C 00D4+00 1/1 0/0 0/0 .text            WriteCallback */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 static void WriteCallback(s32 chan, s32 result) {
     CARDControl* card;
     CARDCallback callback;
@@ -62,16 +60,6 @@ static void WriteCallback(s32 chan, s32 result) {
         callback(chan, result);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void WriteCallback(s32 chan, s32 result) {
-    nofralloc
-#include "asm/dolphin/card/CARDBlock/WriteCallback.s"
-}
-#pragma pop
-#endif
 
 /* 803554F0-803555B8 34FE30 00C8+00 1/1 0/0 0/0 .text            EraseCallback */
 #pragma push

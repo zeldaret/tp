@@ -25,8 +25,6 @@ CARDDir* __CARDGetDirBlock(CARDControl* card) {
 }
 
 /* 80355784-80355854 3500C4 00D0+00 1/1 0/0 0/0 .text            WriteCallback */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 static void WriteCallback(s32 chan, s32 result) {
     CARDControl* card;
     CARDCallback callback;
@@ -55,16 +53,6 @@ error:
         callback(chan, result);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void WriteCallback(s32 chan, s32 result) {
-    nofralloc
-#include "asm/dolphin/card/CARDDir/WriteCallback.s"
-}
-#pragma pop
-#endif
 
 /* 80355854-8035591C 350194 00C8+00 1/1 0/0 0/0 .text            EraseCallback */
 // needs compiler epilogue patch

@@ -29,8 +29,6 @@ void __shr2i();
 //
 
 /* 80357484-803575C8 351DC4 0144+00 1/1 0/0 0/0 .text            FormatCallback */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 static void FormatCallback(s32 chan, s32 result) {
     CARDControl* card;
     CARDCallback callback;
@@ -68,16 +66,6 @@ error:
     __CARDPutControlBlock(card, result);
     callback(chan, result);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void FormatCallback(s32 chan, s32 result) {
-    nofralloc
-#include "asm/dolphin/card/CARDFormat/FormatCallback.s"
-}
-#pragma pop
-#endif
 
 /* 803575C8-80357C20 351F08 0658+00 1/1 0/0 0/0 .text            __CARDFormatRegionAsync */
 #pragma push

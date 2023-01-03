@@ -3,8 +3,6 @@
 #include "dolphin/dvd/dvd.h"
 
 /* 8034BC04-8034BCFC 346544 00F8+00 0/0 1/1 0/0 .text            DVDCompareDiskID */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 BOOL DVDCompareDiskID(DVDDiskID* id1, DVDDiskID* id2) {
     if (id1->game_name[0] && id2->game_name[0] &&
         strncmp(&id1->game_name[0], &id2->game_name[0], 4)) {
@@ -27,13 +25,3 @@ BOOL DVDCompareDiskID(DVDDiskID* id1, DVDDiskID* id2) {
 
     return TRUE;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL DVDCompareDiskID(DVDDiskID* id1, DVDDiskID* id2) {
-    nofralloc
-#include "asm/dolphin/dvd/dvdidutils/DVDCompareDiskID.s"
-}
-#pragma pop
-#endif

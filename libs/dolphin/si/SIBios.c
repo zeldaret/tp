@@ -83,8 +83,6 @@ static inline void SIClearTCInterrupt() {
 }
 
 /* 80344BFC-80344EF8 33F53C 02FC+00 1/1 0/0 0/0 .text            CompleteTransfer */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 static u32 CompleteTransfer() {
     u32 sr;
     u32 i;
@@ -133,16 +131,6 @@ static u32 CompleteTransfer() {
     }
     return sr;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm u32 CompleteTransfer(void) {
-    nofralloc
-#include "asm/dolphin/si/SIBios/CompleteTransfer.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 8044C790-8044C7D0 0794B0 0040+00 1/1 0/0 0/0 .bss             TypeCallback */
@@ -271,7 +259,7 @@ static asm void SIInterruptHandler(OSInterrupt interrupt, OSContext* context) {
 #endif
 
 /* 8034523C-803452D4 33FB7C 0098+00 2/2 0/0 0/0 .text            SIEnablePollingInterrupt */
-// needs compiler epilogue patch
+// lwz and mr swapped
 #ifdef NONMATCHING
 static BOOL SIEnablePollingInterrupt(BOOL enable) {
     BOOL enabled;
@@ -307,9 +295,7 @@ static asm BOOL SIEnablePollingInterrupt(BOOL enable) {
 #endif
 
 /* 803452D4-803453A0 33FC14 00CC+00 0/0 1/1 0/0 .text            SIRegisterPollingHandler */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
-BOOL SIRegisterPollingHandler(__OSInterruptHandler handler) {
+BOOL SIRegisterPollingHandler(OSInterruptHandler handler) {
     BOOL enabled;
     int i;
 
@@ -331,20 +317,8 @@ BOOL SIRegisterPollingHandler(__OSInterruptHandler handler) {
     OSRestoreInterrupts(enabled);
     return FALSE;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL SIRegisterPollingHandler(OSInterruptHandler handler) {
-    nofralloc
-#include "asm/dolphin/si/SIBios/SIRegisterPollingHandler.s"
-}
-#pragma pop
-#endif
 
 /* 803453A0-80345494 33FCE0 00F4+00 0/0 1/1 0/0 .text            SIUnregisterPollingHandler */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 BOOL SIUnregisterPollingHandler(OSInterruptHandler handler) {
     BOOL enabled;
     int i;
@@ -369,16 +343,6 @@ BOOL SIUnregisterPollingHandler(OSInterruptHandler handler) {
     OSRestoreInterrupts(enabled);
     return FALSE;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL SIUnregisterPollingHandler(OSInterruptHandler handler) {
-    nofralloc
-#include "asm/dolphin/si/SIBios/SIUnregisterPollingHandler.s"
-}
-#pragma pop
-#endif
 
 /* 80345494-80345548 33FDD4 00B4+00 0/0 1/1 0/0 .text            SIInit */
 void SIInit(void) {
@@ -449,7 +413,7 @@ static BOOL __SITransfer(s32 chan, void* output, u32 outputBytes, void* input, u
 }
 
 /* 80345754-803457D0 340094 007C+00 1/1 1/1 0/0 .text            SIGetStatus */
-// needs compiler epilogue patch
+// lwz and mr swap
 #ifdef NONMATCHING
 u32 SIGetStatus(s32 chan) {
     BOOL enabled;

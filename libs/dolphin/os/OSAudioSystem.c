@@ -96,7 +96,6 @@ void __OSInitAudioSystem(void) {
 }
 
 /* 8033B494-8033B56C 335DD4 00D8+00 0/0 1/1 0/0 .text            __OSStopAudioSystem */
-#ifdef NONMATCHING
 void __OSStopAudioSystem(void) {
     u32 r28;
 
@@ -124,13 +123,3 @@ void __OSStopAudioSystem(void) {
 
 #undef waitUntil
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __OSStopAudioSystem(void) {
-    nofralloc
-#include "asm/dolphin/os/OSAudioSystem/__OSStopAudioSystem.s"
-}
-#pragma pop
-#endif

@@ -22,8 +22,6 @@ void OSInitMessageQueue(OSMessageQueue* mq, OSMessage* msgArray, s32 msgCount) {
 }
 
 /* 8033E9F4-8033EABC 339334 00C8+00 0/0 21/21 9/9 .text            OSSendMessage */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 BOOL OSSendMessage(OSMessageQueue* mq, OSMessage msg, s32 flags) {
     BOOL enabled;
     s32 lastIndex;
@@ -48,20 +46,8 @@ BOOL OSSendMessage(OSMessageQueue* mq, OSMessage msg, s32 flags) {
     OSRestoreInterrupts(enabled);
     return TRUE;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL OSSendMessage(OSMessageQueue* queue, OSMessage msg, s32 flags) {
-    nofralloc
-#include "asm/dolphin/os/OSMessage/OSSendMessage.s"
-}
-#pragma pop
-#endif
 
 /* 8033EABC-8033EB98 3393FC 00DC+00 0/0 15/15 9/9 .text            OSReceiveMessage */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 BOOL OSReceiveMessage(OSMessageQueue* mq, OSMessage* msg, s32 flags) {
     BOOL enabled;
 
@@ -87,16 +73,6 @@ BOOL OSReceiveMessage(OSMessageQueue* mq, OSMessage* msg, s32 flags) {
     OSRestoreInterrupts(enabled);
     return TRUE;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL OSReceiveMessage(OSMessageQueue* queue, OSMessage* msg, s32 flags) {
-    nofralloc
-#include "asm/dolphin/os/OSMessage/OSReceiveMessage.s"
-}
-#pragma pop
-#endif
 
 /* 8033EB98-8033EC6C 3394D8 00D4+00 0/0 1/1 0/0 .text            OSJamMessage */
 #pragma push

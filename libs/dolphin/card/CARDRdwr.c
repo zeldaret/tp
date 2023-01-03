@@ -23,8 +23,6 @@ static void BlockWriteCallback(s32 chan, s32 result);
 //
 
 /* 80355184-80355260 34FAC4 00DC+00 1/1 0/0 0/0 .text            BlockReadCallback */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 static void BlockReadCallback(s32 chan, s32 result) {
     CARDControl* card;
     CARDCallback callback;
@@ -58,16 +56,6 @@ error:
         callback(chan, result);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void BlockReadCallback(s32 chan, s32 result) {
-    nofralloc
-#include "asm/dolphin/card/CARDRdwr/BlockReadCallback.s"
-}
-#pragma pop
-#endif
 
 /* 80355260-803552C4 34FBA0 0064+00 0/0 3/3 0/0 .text            __CARDRead */
 s32 __CARDRead(s32 chan, u32 addr, s32 length, void* dst, CARDCallback callback) {
