@@ -2,7 +2,6 @@
 #define MSL_MATH_H_
 
 #include "MSL_C/MSL_Common/Src/float.h"
-#include "dolphin/types.h"
 
 #define M_PI 3.14159265358979323846f
 
@@ -76,7 +75,7 @@ inline float sqrtf(float mag) {
 }
 
 inline float atan2f(float y, float x) {
-    return (f32)atan2(y, x);
+    return (float)atan2(y, x);
 }
 
 #ifdef __cplusplus

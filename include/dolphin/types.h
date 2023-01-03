@@ -26,12 +26,10 @@ typedef volatile f64 vf64;
 
 typedef int BOOL;
 
-typedef unsigned long size_t;
-
 #define TRUE 1
 #define FALSE 0
 
-#define NULL (0)
+#include "MSL_C/MSL_Common/Src/stddef.h"
 
 #define INT32_MAX (0x7fffffff)
 #define UINT32_MAX (0xffffffff)

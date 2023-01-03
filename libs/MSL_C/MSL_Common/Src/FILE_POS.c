@@ -4,25 +4,15 @@
 //
 
 #include "MSL_C/MSL_Common/Src/FILE_POS.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Forward References:
-//
-
-void fseek();
-static void _fseek();
-void ftell();
+#include "MSL_C/MSL_Common/Src/buffer_io.h"
+#include "errno.h"
 
 //
 // External References:
 //
 
-void __flush_buffer();
 void __end_critical_region();
 void __begin_critical_region();
-extern u8 errno[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -32,7 +22,7 @@ extern u8 errno[4 + 4 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fseek() {
+asm int fseek(FILE* file, long offset, int mode) {
     nofralloc
 #include "asm/MSL_C/MSL_Common/Src/FILE_POS/fseek.s"
 }
@@ -42,7 +32,7 @@ asm void fseek() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void _fseek() {
+asm int _fseek(FILE* file, fpos_t offset, int mode) {
     nofralloc
 #include "asm/MSL_C/MSL_Common/Src/FILE_POS/_fseek.s"
 }
@@ -52,7 +42,7 @@ static asm void _fseek() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void ftell() {
+asm long ftell(FILE* file) {
     nofralloc
 #include "asm/MSL_C/MSL_Common/Src/FILE_POS/ftell.s"
 }

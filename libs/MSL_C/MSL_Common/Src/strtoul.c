@@ -4,35 +4,16 @@
 //
 
 #include "MSL_C/MSL_Common/Src/strtoul.h"
+#include "MSL_C/MSL_Common/Src/ctype.h"
+#include "MSL_C/MSL_Common/Src/scanf.h"
+#include "errno.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Forward References:
-//
-
-void strtol();
-void strtoul();
-void __strtoul();
-
-//
-// External References:
-//
-
-void __StringRead();
-extern u8 __ctype_map[256];
-extern u8 __upper_map[256];
-extern u8 errno[4 + 4 /* padding */];
-
-//
-// Declarations:
-//
 
 /* 80368C00-80368CF0 363540 00F0+00 0/0 3/3 0/0 .text            strtol */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void strtol() {
+asm long strtol(const char* str, char** endptr, int base) {
     nofralloc
 #include "asm/MSL_C/MSL_Common/Src/strtoul/strtol.s"
 }
@@ -42,7 +23,7 @@ asm void strtol() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void strtoul() {
+asm unsigned long strtoul(const char* str, char** endptr, int base) {
     nofralloc
 #include "asm/MSL_C/MSL_Common/Src/strtoul/strtoul.s"
 }
@@ -69,14 +50,14 @@ SECTION_DATA static void* lit_431[17 + 1 /* padding */] = {
     (void*)(((char*)__strtoul) + 0x310),
     (void*)(((char*)__strtoul) + 0x1FC),
     /* padding */
-    NULL,
+    0,
 };
 
 /* 80368D9C-80369114 3636DC 0378+00 3/2 0/0 0/0 .text            __strtoul */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __strtoul() {
+asm unsigned long __strtoul(const char* str, char** endptr, int base) {
     nofralloc
 #include "asm/MSL_C/MSL_Common/Src/strtoul/__strtoul.s"
 }

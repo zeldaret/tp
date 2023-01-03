@@ -123,6 +123,7 @@ LIBMSL_C_PPCEABI_BARE_H_A_CFLAGS := \
 	-lang=c \
 	-fp_contract on \
 	-use_lmw_stmw on \
+	-inline deferred,auto \
 
 LIBMSL_C_PPCEABI_BARE_H_A_LDFLAGS := \
 	-nodefaults \
