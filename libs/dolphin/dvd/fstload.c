@@ -51,52 +51,13 @@ static void cb(s32 result, DVDCommandBlock* block) {
     }
 }
 
-/* ############################################################################################## */
-/* 803D16F0-803D170C 02E810 001A+02 1/1 0/0 0/0 .data            @38 */
-SECTION_DATA static char lit_38[] = "  Game Name ... %c%c%c%c\n";
-
-/* 803D170C-803D1724 02E82C 0016+02 0/1 0/0 0/0 .data            @39 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_39[] = "  Company ..... %c%c\n";
-#pragma pop
-
-/* 803D1724-803D1738 02E844 0014+00 0/1 0/0 0/0 .data            @40 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_40[] = "  Disk # ...... %d\n";
-#pragma pop
-
-/* 803D1738-803D174C 02E858 0014+00 0/1 0/0 0/0 .data            @41 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_41[] = "  Game ver .... %d\n";
-#pragma pop
-
-/* 803D174C-803D1760 02E86C 0014+00 0/1 0/0 0/0 .data            @44 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_44[] = "  Streaming ... %s\n";
-#pragma pop
-
 /* 8044C9B8-8044C9F8 0796D8 003F+01 1/1 0/0 0/0 .bss             bb2Buf */
 static u8 bb2Buf[OSRoundUp32B(sizeof(DVDBB2)) + 31];
 
 /* 8044C9F8-8044CA28 079718 0030+00 1/1 0/0 0/0 .bss             block$18 */
 static u8 block[48];
 
-/* 80450A00-80450A04 000480 0002+02 1/1 0/0 0/0 .sdata           @37 */
-SECTION_SDATA static char lit_37[] = "\n";
-
-/* 80450A04-80450A08 000484 0004+00 1/1 0/0 0/0 .sdata           @42 */
-SECTION_SDATA static char lit_42[] = "OFF";
-
-/* 80450A08-80450A10 000488 0003+05 1/1 0/0 0/0 .sdata           @43 */
-SECTION_SDATA static char lit_43[] = "ON";
-
 /* 8034BE04-8034BF6C 346744 0168+00 0/0 1/1 0/0 .text            __fstLoad */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 void __fstLoad(void) {
     OSBootInfo* bootInfo;
     DVDDiskID* id;
@@ -131,13 +92,3 @@ void __fstLoad(void) {
     OSReport("\n");
     OSSetArenaHi(bb2->FSTAddress);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __fstLoad(void) {
-    nofralloc
-#include "asm/dolphin/dvd/fstload/__fstLoad.s"
-}
-#pragma pop
-#endif

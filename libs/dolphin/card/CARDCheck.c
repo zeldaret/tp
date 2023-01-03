@@ -83,8 +83,6 @@ static asm s32 VerifyFAT(CARDControl* card, int* outCurrent) {
 #pragma pop
 
 /* 803562D8-80356364 350C18 008C+00 0/0 1/1 0/0 .text            __CARDVerify */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 s32 __CARDVerify(CARDControl* card) {
     s32 result;
     int errors;
@@ -105,16 +103,6 @@ s32 __CARDVerify(CARDControl* card) {
         return CARD_RESULT_BROKEN;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 __CARDVerify(CARDControl* card) {
-    nofralloc
-#include "asm/dolphin/card/CARDCheck/__CARDVerify.s"
-}
-#pragma pop
-#endif
 
 /* 80356364-803568F4 350CA4 0590+00 1/1 0/0 0/0 .text            CARDCheckExAsync */
 #ifdef NONMATCHING

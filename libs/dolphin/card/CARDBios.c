@@ -46,8 +46,6 @@ void __CARDSyncCallback(s32 chan, s32 result) {
 }
 
 /* 80352A68-80352B40 34D3A8 00D8+00 0/0 1/1 0/0 .text            __CARDExtHandler */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 void __CARDExtHandler(s32 chan, OSContext* context) {
     CARDControl* card;
     CARDCallback callback;
@@ -75,20 +73,8 @@ void __CARDExtHandler(s32 chan, OSContext* context) {
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __CARDExtHandler(s32 chan, OSContext* context) {
-    nofralloc
-#include "asm/dolphin/card/CARDBios/__CARDExtHandler.s"
-}
-#pragma pop
-#endif
 
 /* 80352B40-80352C58 34D480 0118+00 0/0 1/1 0/0 .text            __CARDExiHandler */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 void __CARDExiHandler(s32 chan, OSContext* context) {
     CARDControl* card;
     CARDCallback callback;
@@ -132,16 +118,6 @@ fatal:
         callback(chan, result);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __CARDExiHandler(s32 chan, OSContext* context) {
-    nofralloc
-#include "asm/dolphin/card/CARDBios/__CARDExiHandler.s"
-}
-#pragma pop
-#endif
 
 /* 80352C58-80352D00 34D598 00A8+00 3/3 0/0 0/0 .text            __CARDTxHandler */
 void __CARDTxHandler(s32 chan, OSContext* context) {
@@ -161,8 +137,6 @@ void __CARDTxHandler(s32 chan, OSContext* context) {
 }
 
 /* 80352D00-80352D84 34D640 0084+00 2/2 2/2 0/0 .text            __CARDUnlockedHandler */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 void __CARDUnlockedHandler(s32 chan, OSContext* context) {
     CARDControl* card;
     CARDCallback callback;
@@ -174,20 +148,8 @@ void __CARDUnlockedHandler(s32 chan, OSContext* context) {
         callback(chan, EXIProbe(chan) ? CARD_RESULT_UNLOCKED : CARD_RESULT_NOCARD);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __CARDUnlockedHandler(s32 chan, OSContext* context) {
-    nofralloc
-#include "asm/dolphin/card/CARDBios/__CARDUnlockedHandler.s"
-}
-#pragma pop
-#endif
 
 /* 80352D84-80352E44 34D6C4 00C0+00 0/0 1/1 0/0 .text            __CARDEnableInterrupt */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 s32 __CARDEnableInterrupt(s32 chan, BOOL enable) {
     BOOL err;
     u32 cmd;
@@ -203,20 +165,8 @@ s32 __CARDEnableInterrupt(s32 chan, BOOL enable) {
     err |= !EXIDeselect(chan);
     return err ? CARD_RESULT_NOCARD : CARD_RESULT_READY;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 __CARDEnableInterrupt(s32 chan, BOOL enable) {
-    nofralloc
-#include "asm/dolphin/card/CARDBios/__CARDEnableInterrupt.s"
-}
-#pragma pop
-#endif
 
 /* 80352E44-80352F34 34D784 00F0+00 1/1 2/2 0/0 .text            __CARDReadStatus */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 s32 __CARDReadStatus(s32 chan, u8* status) {
     BOOL err;
     u32 cmd;
@@ -234,16 +184,6 @@ s32 __CARDReadStatus(s32 chan, u8* status) {
     err |= !EXIDeselect(chan);
     return err ? CARD_RESULT_NOCARD : CARD_RESULT_READY;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 __CARDReadStatus(s32 chan, u8* status) {
-    nofralloc
-#include "asm/dolphin/card/CARDBios/__CARDReadStatus.s"
-}
-#pragma pop
-#endif
 
 /* 80352F34-80353024 34D874 00F0+00 0/0 1/1 0/0 .text            __CARDReadVendorID */
 #pragma push
@@ -256,8 +196,6 @@ asm void __CARDReadVendorID() {
 #pragma pop
 
 /* 80353024-803530D0 34D964 00AC+00 1/1 1/1 0/0 .text            __CARDClearStatus */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 s32 __CARDClearStatus(s32 chan) {
     BOOL err;
     u32 cmd;
@@ -274,20 +212,8 @@ s32 __CARDClearStatus(s32 chan) {
 
     return err ? CARD_RESULT_NOCARD : CARD_RESULT_READY;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 __CARDClearStatus(s32 chan) {
-    nofralloc
-#include "asm/dolphin/card/CARDBios/__CARDClearStatus.s"
-}
-#pragma pop
-#endif
 
 /* 803530D0-80353174 34DA10 00A4+00 2/2 0/0 0/0 .text            TimeoutHandler */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 static void TimeoutHandler(OSAlarm* alarm, OSContext* context) {
     s32 chan;
     CARDControl* card;
@@ -310,16 +236,6 @@ static void TimeoutHandler(OSAlarm* alarm, OSContext* context) {
         callback(chan, CARD_RESULT_IOERROR);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void TimeoutHandler(OSAlarm* alarm, OSContext* context) {
-    nofralloc
-#include "asm/dolphin/card/CARDBios/TimeoutHandler.s"
-}
-#pragma pop
-#endif
 
 /* 80353174-80353414 34DAB4 02A0+00 2/2 0/0 0/0 .text            Retry */
 #pragma push
@@ -332,8 +248,6 @@ static asm s32 Retry(s32 chan) {
 #pragma pop
 
 /* 80353414-80353524 34DD54 0110+00 1/1 0/0 0/0 .text            UnlockedCallback */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 static void UnlockedCallback(s32 chan, s32 result) {
     CARDCallback callback;
     CARDControl* card;
@@ -371,16 +285,6 @@ static void UnlockedCallback(s32 chan, s32 result) {
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void UnlockedCallback(s32 chan, s32 result) {
-    nofralloc
-#include "asm/dolphin/card/CARDBios/UnlockedCallback.s"
-}
-#pragma pop
-#endif
 
 /* 80353524-80353748 34DE64 0224+00 3/3 0/0 0/0 .text            __CARDStart */
 #pragma push
@@ -399,8 +303,6 @@ asm s32 __CARDStart(s32 chan, CARDCallback txCallback, CARDCallback exiCallback)
 #define BA(x) ((u8)((x)&0x7f))
 
 /* 80353748-8035387C 34E088 0134+00 0/0 2/2 0/0 .text            __CARDReadSegment */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 s32 __CARDReadSegment(s32 chan, CARDCallback callback) {
     CARDControl* card;
     s32 result;
@@ -433,16 +335,6 @@ s32 __CARDReadSegment(s32 chan, CARDCallback callback) {
     }
     return result;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 __CARDReadSegment(s32 chan, CARDCallback callback) {
-    nofralloc
-#include "asm/dolphin/card/CARDBios/__CARDReadSegment.s"
-}
-#pragma pop
-#endif
 
 /* 8035387C-803539B8 34E1BC 013C+00 0/0 2/2 0/0 .text            __CARDWritePage */
 // needs compiler epilogue patch
@@ -522,8 +414,6 @@ static u16 __CARDEncode;
 static u16 __CARDFastMode;
 
 /* 80353AC8-80353B74 34E408 00AC+00 0/0 1/1 0/0 .text            CARDInit */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 void CARDInit(void) {
     int chan;
 
@@ -549,16 +439,6 @@ void CARDInit(void) {
 
     OSRegisterResetFunction(&ResetFunctionInfo);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CARDInit(void) {
-    nofralloc
-#include "asm/dolphin/card/CARDBios/CARDInit.s"
-}
-#pragma pop
-#endif
 
 /* 80353B74-80353B7C 34E4B4 0008+00 0/0 2/2 0/0 .text            __CARDGetFontEncode */
 u16 __CARDGetFontEncode(void) {
@@ -572,8 +452,6 @@ void __CARDSetDiskID(const DVDDiskID* id) {
 }
 
 /* 80353BB4-80353C6C 34E4F4 00B8+00 1/1 10/10 0/0 .text            __CARDGetControlBlock */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 s32 __CARDGetControlBlock(s32 chan, CARDControl** pcard) {
     BOOL enabled;
     s32 result;
@@ -598,16 +476,6 @@ s32 __CARDGetControlBlock(s32 chan, CARDControl** pcard) {
     OSRestoreInterrupts(enabled);
     return result;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 __CARDGetControlBlock(s32 chan, CARDControl** pcard) {
-    nofralloc
-#include "asm/dolphin/card/CARDBios/__CARDGetControlBlock.s"
-}
-#pragma pop
-#endif
 
 /* 80353C6C-80353CD0 34E5AC 0064+00 0/0 24/24 0/0 .text            __CARDPutControlBlock */
 #pragma push

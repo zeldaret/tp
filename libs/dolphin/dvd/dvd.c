@@ -85,16 +85,8 @@ extern OSThreadQueue __DVDThreadQueue;
 /* 803490EC-803490F0 343A2C 0004+00 1/0 0/0 0/0 .text            defaultOptionalCommandChecker */
 static void defaultOptionalCommandChecker() {}
 
-/* ############################################################################################## */
-/* 803D1520-803D1568 02E640 0045+03 1/0 0/0 0/0 .data            @1 */
-SECTION_DATA static char lit_1[] =
-    "<< Dolphin SDK - DVD\trelease build: Apr  5 2004 04:14:51 (0x2301) >>";
-
 /* 804509E8-804509EC -00001 0004+00 1/1 0/0 0/0 .sdata           __DVDVersion */
-SECTION_SDATA static char* __DVDVersion = lit_1;
-
-/* 803D1568-803D1574 02E688 000A+02 1/1 0/0 0/0 .data            @18 */
-SECTION_DATA static char lit_18[] = "load fst\n";
+SECTION_SDATA static char* __DVDVersion = "<< Dolphin SDK - DVD\trelease build: Apr  5 2004 04:14:51 (0x2301) >>";
 
 /* 80451778-8045177C 000C78 0004+00 24/24 0/0 0/0 .sbss            executing */
 static DVDCommandBlock* executing;
@@ -151,8 +143,6 @@ static u32 MotorState;
 static BOOL DVDInitialized;
 
 /* 803490F0-803491C8 343A30 00D8+00 0/0 3/3 0/0 .text            DVDInit */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 void DVDInit(void) {
     if (DVDInitialized) {
         return;
@@ -181,16 +171,6 @@ void DVDInit(void) {
         FirstTimeInBootrom = TRUE;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DVDInit(void) {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/DVDInit.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 803D1574-803D15A8 02E694 0034+00 2/2 0/0 0/0 .data            @24 */
@@ -350,8 +330,6 @@ inline static BOOL CheckCancel(u32 resume) {
 }
 
 /* 80349498-803496FC 343DD8 0264+00 6/6 0/0 0/0 .text            cbForStateGettingError */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 static void cbForStateGettingError(u32 intType) {
     u32 error;
     u32 status;
@@ -431,16 +409,6 @@ static void cbForStateGettingError(u32 intType) {
         return;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void cbForStateGettingError(u32 intType) {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/cbForStateGettingError.s"
-}
-#pragma pop
-#endif
 
 /* 803496FC-80349758 34403C 005C+00 1/1 0/0 0/0 .text            cbForUnrecoveredError */
 static void cbForUnrecoveredError(u32 intType) {
@@ -638,7 +606,7 @@ static void AlarmHandler(OSAlarm* alarm, OSContext* context) {
 static OSAlarm ResetAlarm;
 
 /* 80349E30-80349F04 344770 00D4+00 1/1 0/0 0/0 .text            stateCoverClosed */
-static void stateCoverClosed(void) {
+static inline void stateCoverClosed(void) {
     DVDCommandBlock* finished;
 
     switch (CurrCommand) {
@@ -692,23 +660,11 @@ static void stateMotorStopped(void) {
 }
 
 /* 80349FC0-8034A0AC 344900 00EC+00 4/4 0/0 0/0 .text            cbForStateMotorStopped */
-// needs stateCoverClosed converted to static inline
-#ifdef NONMATCHING
 static void cbForStateMotorStopped(u32 intType) {
     __DIRegs[1] = 0;
     executing->state = 3;
     stateCoverClosed();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void cbForStateMotorStopped(u32 intType) {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/cbForStateMotorStopped.s"
-}
-#pragma pop
-#endif
 
 /* 8034A0AC-8034A394 3449EC 02E8+00 18/18 0/0 0/0 .text            stateReady */
 #ifdef NONMATCHING
@@ -1187,8 +1143,6 @@ static asm BOOL DVDCancelAsync(DVDCommandBlock* block, DVDCBCallback callback) {
 #endif
 
 /* 8034B550-8034B5FC 345E90 00AC+00 0/0 1/1 1/1 .text            DVDCancel */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 s32 DVDCancel(DVDCommandBlock* block) {
     BOOL result;
     s32 state;
@@ -1224,16 +1178,6 @@ s32 DVDCancel(DVDCommandBlock* block) {
     OSRestoreInterrupts(enabled);
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 DVDCancel(DVDCommandBlock* block) {
-    nofralloc
-#include "asm/dolphin/dvd/dvd/DVDCancel.s"
-}
-#pragma pop
-#endif
 
 /* 8034B5FC-8034B620 345F3C 0024+00 1/1 0/0 0/0 .text            cbForCancelSync */
 static void cbForCancelSync(s32 result, DVDCommandBlock* block) {

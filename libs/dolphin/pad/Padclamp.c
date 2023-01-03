@@ -135,8 +135,6 @@ inline void ClampTrigger(u8* trigger, u8 min, u8 max) {
 }
 
 /* 8034E094-8034E1A8 3489D4 0114+00 0/0 1/1 0/0 .text            PADClamp */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 void PADClamp(PADStatus* status) {
     int i;
     for (i = 0; i < 4; i++, status++) {
@@ -152,22 +150,10 @@ void PADClamp(PADStatus* status) {
         ClampTrigger(&status->trigger_right, ClampRegion.minTrigger, ClampRegion.maxTrigger);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void PADClamp(PADStatus* status) {
-    nofralloc
-#include "asm/dolphin/pad/Padclamp/PADClamp.s"
-}
-#pragma pop
-#endif
 
 /* 8034E1A8-8034E2B4 348AE8 010C+00 0/0 1/1 0/0 .text            PADClampCircle */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 void PADClampCircle(PADStatus* status) {
-    u32 i;
+    int i;
     for (i = 0; i < 4; ++i, status++) {
         if (status->error != PAD_ERR_NONE) {
             continue;
@@ -180,13 +166,3 @@ void PADClampCircle(PADStatus* status) {
         ClampTrigger(&status->trigger_right, ClampRegion.minTrigger, ClampRegion.maxTrigger);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void PADClampCircle(PADStatus* status) {
-    nofralloc
-#include "asm/dolphin/pad/Padclamp/PADClampCircle.s"
-}
-#pragma pop
-#endif

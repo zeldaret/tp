@@ -28,4 +28,6 @@ $(BUILD_DIR)/libs/dolphin/base/%.o: libs/dolphin/base/%.c
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
 	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBBASE_A_CFLAGS) -c -o $@ $(basename $@).c
+	@echo Frank is fixing $@
+	@$(PYTHON) $(FRANK) $@ $@ $@
 

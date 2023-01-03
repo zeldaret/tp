@@ -65,8 +65,6 @@ asm u32 ARGetDMAStatus(void) {
 #endif
 
 /* 803505D4-803506C4 34AF14 00F0+00 0/0 5/5 0/0 .text            ARStartDMA */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 void ARStartDMA(u32 type, u32 mainmem_addr, u32 aram_addr, u32 length) {
     BOOL enabled;
 
@@ -81,16 +79,6 @@ void ARStartDMA(u32 type, u32 mainmem_addr, u32 aram_addr, u32 length) {
     __DSPRegs[21] = (u16)(__DSPRegs[21] & ~0xffe0) | (u16)(length & 0xffff);
     OSRestoreInterrupts(enabled);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void ARStartDMA(u32 type, u32 mainmem_addr, u32 aram_addr, u32 length) {
-    nofralloc
-#include "asm/dolphin/ar/ar/ARStartDMA.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 804518BC-804518C0 000DBC 0004+00 2/1 0/0 0/0 .sbss            __AR_Size */

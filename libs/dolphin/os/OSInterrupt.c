@@ -256,8 +256,6 @@ u32 SetInterruptMask(OSInterruptMask mask, OSInterruptMask current) {
 }
 
 /* 8033DABC-8033DB44 3383FC 0088+00 1/1 15/15 0/0 .text            __OSMaskInterrupts */
-// need compiler epilogue patch
-#ifdef NONMATCHING
 OSInterruptMask __OSMaskInterrupts(OSInterruptMask global) {
     BOOL enabled;
     OSInterruptMask prev;
@@ -276,20 +274,8 @@ OSInterruptMask __OSMaskInterrupts(OSInterruptMask global) {
     OSRestoreInterrupts(enabled);
     return prev;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm OSInterruptMask __OSMaskInterrupts(OSInterruptMask mask) {
-    nofralloc
-#include "asm/dolphin/os/OSInterrupt/__OSMaskInterrupts.s"
-}
-#pragma pop
-#endif
 
 /* 8033DB44-8033DBCC 338484 0088+00 0/0 18/18 0/0 .text            __OSUnmaskInterrupts */
-// need compiler epilogue patch
-#ifdef NONMATCHING
 OSInterruptMask __OSUnmaskInterrupts(OSInterruptMask global) {
     BOOL enabled;
     OSInterruptMask prev;
@@ -308,16 +294,6 @@ OSInterruptMask __OSUnmaskInterrupts(OSInterruptMask global) {
     OSRestoreInterrupts(enabled);
     return prev;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm OSInterruptMask __OSUnmaskInterrupts(OSInterruptMask mask) {
-    nofralloc
-#include "asm/dolphin/os/OSInterrupt/__OSUnmaskInterrupts.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 803D0758-803D0788 02D878 002C+04 1/1 0/0 0/0 .data            InterruptPrioTable */

@@ -77,6 +77,7 @@ PYTHON    := python3
 ICONV     := iconv
 DOXYGEN   := doxygen
 MAKEREL   := tools/makerel.py
+FRANK     := tools/frank.py
 IMAGENAME := gz2e01.iso
 
 # Options

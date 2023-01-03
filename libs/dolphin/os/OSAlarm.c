@@ -130,8 +130,6 @@ void OSSetPeriodicAlarm(OSAlarm* alarm, OSTime start, OSTime period, OSAlarmHand
 }
 
 /* 8033AC3C-8033AD58 33557C 011C+00 1/1 11/11 0/0 .text            OSCancelAlarm */
-// need compiler epilogue patch
-#ifdef NONMATCHING
 void OSCancelAlarm(OSAlarm* alarm) {
     OSAlarm* next;
     BOOL enabled;
@@ -161,20 +159,8 @@ void OSCancelAlarm(OSAlarm* alarm) {
 
     OSRestoreInterrupts(enabled);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSCancelAlarm(OSAlarm* alarm) {
-    nofralloc
-#include "asm/dolphin/os/OSAlarm/OSCancelAlarm.s"
-}
-#pragma pop
-#endif
 
 /* 8033AD58-8033AF88 335698 0230+00 1/1 0/0 0/0 .text            DecrementerExceptionCallback */
-// need compiler epilogue patch
-#ifdef NONMATCHING
 static void DecrementerExceptionCallback(register __OSException exception,
                                          register OSContext* context) {
     OSAlarm* alarm;
@@ -221,16 +207,6 @@ static void DecrementerExceptionCallback(register __OSException exception,
     __OSReschedule();
     OSLoadContext(context);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void DecrementerExceptionCallback(__OSException exception, OSContext* context) {
-    nofralloc
-#include "asm/dolphin/os/OSAlarm/DecrementerExceptionCallback.s"
-}
-#pragma pop
-#endif
 
 /* 8033AF88-8033AFD8 3358C8 0050+00 1/1 0/0 0/0 .text            DecrementerExceptionHandler */
 static asm void DecrementerExceptionHandler(register __OSException exception,

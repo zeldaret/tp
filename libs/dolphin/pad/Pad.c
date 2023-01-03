@@ -184,8 +184,6 @@ inline void PADDisable(s32 chan) {
 }
 
 /* 8034E51C-8034E5E8 348E5C 00CC+00 2/2 0/0 0/0 .text            PADOriginUpdateCallback */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 static void PADOriginUpdateCallback(s32 chan, u32 error, OSContext* context) {
     if (!(EnabledBits & ((u32)PAD_CHAN0_BIT >> chan))) {
         return;
@@ -200,20 +198,8 @@ static void PADOriginUpdateCallback(s32 chan, u32 error, OSContext* context) {
         PADDisable(chan);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void PADOriginUpdateCallback(s32 chan, u32 error, OSContext* context) {
-    nofralloc
-#include "asm/dolphin/pad/Pad/PADOriginUpdateCallback.s"
-}
-#pragma pop
-#endif
 
 /* 8034E5E8-8034E6C0 348F28 00D8+00 1/1 0/0 0/0 .text            PADProbeCallback */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 static void PADProbeCallback(s32 chan, u32 error, OSContext* context) {
     if (!(error &
           (SI_ERROR_UNDER_RUN | SI_ERROR_OVER_RUN | SI_ERROR_NO_RESPONSE | SI_ERROR_COLLISION))) {
@@ -222,16 +208,6 @@ static void PADProbeCallback(s32 chan, u32 error, OSContext* context) {
     }
     DoReset();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void PADProbeCallback(s32 chan, u32 error, OSContext* context) {
-    nofralloc
-#include "asm/dolphin/pad/Pad/PADProbeCallback.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80450A30-80450A34 0004B0 0004+00 4/4 0/0 0/0 .sdata           Spec */
@@ -253,8 +229,6 @@ static u32 CmdProbeDevice[4];
 #pragma pop
 
 /* 8034E6C0-8034E9EC 349000 032C+00 4/4 0/0 0/0 .text            PADTypeAndStatusCallback */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 static void PADTypeAndStatusCallback(s32 chan, u32 type) {
     u32 chanBit;
     u32 recalibrate;
@@ -310,16 +284,6 @@ static void PADTypeAndStatusCallback(s32 chan, u32 type) {
         return;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void PADTypeAndStatusCallback(s32 chan, u32 type) {
-    nofralloc
-#include "asm/dolphin/pad/Pad/PADTypeAndStatusCallback.s"
-}
-#pragma pop
-#endif
 
 /* 8034E9EC-8034EB2C 34932C 0140+00 1/1 0/0 0/0 .text            PADReceiveCheckCallback */
 #pragma push

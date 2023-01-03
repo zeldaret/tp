@@ -52,8 +52,6 @@ asm OSTick OSGetTick(void) {
 #define OS_SYSTEMTIME_BASE 0x30D8
 
 /* 8034271C-80342780 33D05C 0064+00 0/0 16/16 0/0 .text            __OSGetSystemTime */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 OSTime __OSGetSystemTime(void) {
     BOOL enabled;
     OSTime* timeAdjustAddr = (OSTime*)(OS_BASE_CACHED + OS_SYSTEMTIME_BASE);
@@ -65,20 +63,8 @@ OSTime __OSGetSystemTime(void) {
 
     return result;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm OSTime __OSGetSystemTime(void) {
-    nofralloc
-#include "asm/dolphin/os/OSTime/__OSGetSystemTime.s"
-}
-#pragma pop
-#endif
 
 /* 80342780-803427D8 33D0C0 0058+00 0/0 1/1 0/0 .text            __OSTimeToSystemTime */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 OSTime __OSTimeToSystemTime(OSTime time) {
     BOOL enabled;
     OSTime* timeAdjustAddr = (OSTime*)(OS_BASE_CACHED + OS_SYSTEMTIME_BASE);
@@ -90,16 +76,6 @@ OSTime __OSTimeToSystemTime(OSTime time) {
 
     return result;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm OSTime __OSTimeToSystemTime(OSTime time) {
-    nofralloc
-#include "asm/dolphin/os/OSTime/__OSTimeToSystemTime.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 803D1048-803D1078 02E168 0030+00 1/1 0/0 0/0 .data            YearDays */
