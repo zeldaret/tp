@@ -6,250 +6,7 @@
 #include "rel/d/a/d_a_do/d_a_do.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct request_of_phase_process_class {};
-
-struct mDoMtx_stack_c {
-    /* 8000CE38 */ void scaleM(f32, f32, f32);
-
-    static u8 now[48];
-};
-
-struct J3DMaterialTable {};
-
-struct J3DAnmTexPattern {};
-
-struct mDoExt_btpAnm {
-    /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
-    /* 8000D5E8 */ void entry(J3DMaterialTable*, s16);
-};
-
-struct J3DAnmTextureSRTKey {};
-
-struct mDoExt_btkAnm {
-    /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
-    /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct mDoExt_McaMorfCallBack2_c {};
-
-struct mDoExt_McaMorfCallBack1_c {};
-
-struct Vec {};
-
-struct J3DAnmTransform {};
-
-struct J3DModelData {};
-
-struct mDoExt_McaMorf {
-    /* 8000FC4C */ mDoExt_McaMorf(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
-                                  mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int, int,
-                                  int, void*, u32, u32);
-    /* 8001037C */ void setAnm(J3DAnmTransform*, int, f32, f32, f32, f32, void*);
-    /* 800105C8 */ void play(Vec*, u32, s8);
-    /* 80010680 */ void entryDL();
-    /* 800106AC */ void modelCalc();
-};
-
-struct mDoCPd_c {
-    static u8 m_cpadInfo[256];
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct do_class {
-    /* 8066EAE4 */ do_class();
-};
-
-struct daPy_py_c {
-    /* 8015F55C */ void linkGrabSubjectNoDraw(fopAc_ac_c*);
-};
-
-struct daItem_c {
-    /* 80037BF4 */ void startControl();
-    /* 80037C04 */ void endControl();
-};
-
-struct daDo_HIO_c {
-    /* 80667D4C */ daDo_HIO_c();
-    /* 8066ED40 */ ~daDo_HIO_c();
-};
-
-struct dKy_tevstr_c {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 80668134 */ ~cXyz();
-};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dPa_levelEcallBack {};
-
-struct csXyz {};
-
-struct _GXColor {};
-
-struct dPa_control_c {
-    /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
-                            u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
-                            cXyz const*, f32);
-    /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
-                            cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
-                            _GXColor const*, cXyz const*, f32);
-};
-
-struct dMsgFlow_c {
-    /* 80249F00 */ dMsgFlow_c();
-    /* 80249F90 */ void init(fopAc_ac_c*, int, int, fopAc_ac_c**);
-    /* 8024A2D8 */ void doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
-};
-
-struct dEvt_control_c {
-    /* 80042468 */ void reset();
-};
-
-struct dDlst_shadowControl_c {
-    static u8 mSimpleTexObj[32];
-};
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-};
-
-struct dBgS_PolyPassChk {
-    /* 80078E68 */ void SetObj();
-};
-
-struct dBgS_ObjGndChk_Spl {
-    /* 800777B0 */ dBgS_ObjGndChk_Spl();
-    /* 80077848 */ ~dBgS_ObjGndChk_Spl();
-};
-
-struct dBgS_ObjAcch {
-    /* 8066ECD0 */ ~dBgS_ObjAcch();
-};
-
-struct dBgS_LinChk {
-    /* 80077C68 */ dBgS_LinChk();
-    /* 80077CDC */ ~dBgS_LinChk();
-    /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
-};
-
-struct dBgS_GndChk {
-    /* 8007757C */ dBgS_GndChk();
-    /* 800775F0 */ ~dBgS_GndChk();
-};
-
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-    /* 80075F58 */ void SetWall(f32, f32);
-};
-
-struct dBgS {};
-
-struct dBgS_Acch {
-    /* 80075F94 */ ~dBgS_Acch();
-    /* 800760A0 */ dBgS_Acch();
-    /* 80076248 */ void Set(cXyz*, cXyz*, fopAc_ac_c*, int, dBgS_AcchCir*, cXyz*, csXyz*, csXyz*);
-    /* 80076AAC */ void CrrPos(dBgS&);
-};
-
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 8026F708 */ void SetR(f32);
-    /* 8066EC40 */ ~cM3dGSph();
-};
-
-struct cM3dGAab {
-    /* 8066EC88 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
-struct cCcS {
-    /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cBgS_PolyInfo {};
-
-struct cBgS_LinChk {};
-
-struct cBgS_GndChk {
-    /* 80267D28 */ void SetPos(cXyz const*);
-    /* 80267D0C */ void SetPos(Vec const*);
-};
-
-struct cBgS {
-    /* 800743B4 */ void LineCross(cBgS_LinChk*);
-    /* 800744A0 */ void GroundCross(cBgS_GndChk*);
-};
-
-struct _GXTexObj {};
-
-struct Z2SoundObjSimple {
-    /* 802BE844 */ Z2SoundObjSimple();
-};
-
-struct Z2SoundObjBase {
-    /* 802BDFF8 */ void deleteObject();
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
-struct J3DSys {
-    static u8 mCurrentMtx[48];
-};
-
-struct J3DModel {};
-
-struct J3DJoint {};
-
-struct J3DFrameCtrl {
-    /* 803283FC */ void init(s16);
-    /* 8032842C */ void checkPass(f32);
-    /* 8066E7D4 */ ~J3DFrameCtrl();
-};
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Forward References:
@@ -336,7 +93,7 @@ extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
 extern "C" void fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c();
 extern "C" void fopAcM_createItem__FPC4cXyziiiPC5csXyzPC4cXyzi();
 extern "C" void fopAcM_effHamonSet__FPUlPC4cXyzff();
-extern "C" bool fopAcM_riverStream__FP4cXyzPsPff();
+// extern "C" bool fopAcM_riverStream__FP4cXyzPsPff();
 extern "C" void fpcEx_Search__FPFPvPv_PvPv();
 extern "C" void fpcSch_JudgeByID__FPvPv();
 extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
@@ -401,10 +158,6 @@ extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
 extern "C" void init__12J3DFrameCtrlFs();
 extern "C" void checkPass__12J3DFrameCtrlFf();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSquareMag();
 extern "C" void _savegpr_22();
 extern "C" void _savegpr_24();
 extern "C" void _savegpr_26();
@@ -417,9 +170,7 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcmp();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
@@ -429,12 +180,9 @@ extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
+// extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -635,7 +383,25 @@ SECTION_DATA extern void* __vt__10daDo_HIO_c[3] = {
     (void*)__dt__10daDo_HIO_cFv,
 };
 
+
 /* 80667D4C-80667DA8 0000EC 005C+00 1/1 0/0 0/0 .text            __ct__10daDo_HIO_cFv */
+#ifdef NONMATCHING
+daDo_HIO_c::daDo_HIO_c() {
+    f32 value1 = FLOAT_LABEL(lit_3662);
+    f32 value2 = FLOAT_LABEL(lit_3663);
+    f32 value3 = FLOAT_LABEL(lit_3664);
+    f32 value4 = FLOAT_LABEL(lit_3664);
+    setAttribute(-1);
+    setEnd(0x3f800000);
+    setRate(value1);
+    setFrame(value2);
+    field_0x14 = value3;
+    field_0x18 = value4;
+    field_0x1c = 0;
+    field_0x1d = 0;
+    field_0x1e = 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -644,6 +410,7 @@ asm daDo_HIO_c::daDo_HIO_c() {
 #include "asm/rel/d/a/d_a_do/d_a_do/__ct__10daDo_HIO_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8066EDFC-8066EE00 000014 0004+00 0/16 0/0 0/0 .rodata          @3682 */
@@ -720,7 +487,8 @@ static asm void daDo_Draw(do_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/__dt__4cXyzFv.s"
 }
@@ -894,23 +662,34 @@ static u8 target_bgc[20];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void search_food(do_class* param_0) {
+static asm u32 search_food(do_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/search_food__FP8do_class.s"
 }
 #pragma pop
 
 /* 8066858C-806685EC 00092C 0060+00 1/1 0/0 0/0 .text            food_check__FP8do_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void food_check(do_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_do/d_a_do/food_check__FP8do_class.s"
+static void food_check(do_class* i_dogP) {
+    i_dogP->isFood = search_food(i_dogP);
+
+    if (fopAcM_SearchByID(i_dogP->isFood)) {
+        i_dogP->field_0x5f2 = 5;
+        i_dogP->field_0x5f6 = 0;
+    }
 }
-#pragma pop
 
 /* 806685EC-80668624 00098C 0038+00 1/1 0/0 0/0 .text            do_carry_check__FP8do_class */
+#ifndef NONMATCHING
+static int do_carry_check(do_class* i_dogP) {
+    if (i_dogP->field_0x5f2 != 0x23 && fopAcM_checkCarryNow(i_dogP)) {
+        i_dogP->field_0x5f2 = 0x23;
+        i_dogP->field_0x5f6 = 0;
+        return 1;
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -919,6 +698,7 @@ static asm void do_carry_check(do_class* param_0) {
 #include "asm/rel/d/a/d_a_do/d_a_do/do_carry_check__FP8do_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8066EE1C-8066EE20 000034 0004+00 0/2 0/0 0/0 .rodata          @3981 */
@@ -1889,7 +1669,8 @@ static asm void useHeapInit(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DFrameCtrl::~J3DFrameCtrl() {
+// asm J3DFrameCtrl::~J3DFrameCtrl() {
+extern "C" asm void __dt__12J3DFrameCtrlFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/__dt__12J3DFrameCtrlFv.s"
 }
@@ -1948,7 +1729,8 @@ asm do_class::do_class() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/__dt__8cM3dGSphFv.s"
 }
@@ -1958,7 +1740,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/__dt__8cM3dGAabFv.s"
 }

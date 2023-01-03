@@ -154,6 +154,7 @@ docs:
 rels: $(ELF) $(RELS)
 	@echo generating RELs from .plf
 	@$(PYTHON) $(MAKEREL) build --string-table $(BUILD_DIR)/frameworkF.str $(RELS) $(ELF)
+	@$(PYTHON) tools/tp.py check --rels
 
 $(ELF): $(LIBS) $(O_FILES)
 	@echo $(O_FILES) > build/o_files
