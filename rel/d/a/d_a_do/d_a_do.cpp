@@ -679,7 +679,6 @@ static void food_check(do_class* i_dogP) {
 }
 
 /* 806685EC-80668624 00098C 0038+00 1/1 0/0 0/0 .text            do_carry_check__FP8do_class */
-#ifndef NONMATCHING
 static int do_carry_check(do_class* i_dogP) {
     if (i_dogP->field_0x5f2 != 0x23 && fopAcM_checkCarryNow(i_dogP)) {
         i_dogP->field_0x5f2 = 0x23;
@@ -689,16 +688,6 @@ static int do_carry_check(do_class* i_dogP) {
 
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void do_carry_check(do_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_do/d_a_do/do_carry_check__FP8do_class.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 8066EE1C-8066EE20 000034 0004+00 0/2 0/0 0/0 .rodata          @3981 */
