@@ -4,15 +4,17 @@
 //
 
 #include "MSL_C/MSL_Common/Src/printf.h"
+#include "MSL_C/MSL_Common/Src/ctype.h"
+#include "MSL_C/MSL_Common/Src/mem.h"
+#include "MSL_C/MSL_Common/Src/string.h"
+#include "MSL_C/MSL_Common/Src/wchar_io.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:
 //
 
-void fprintf();
 void __StringWrite();
 void __FileWrite();
 void __pformatter();
@@ -28,7 +30,6 @@ extern char const* const MSL_Common_Src_printf__stringBase0;
 // External References:
 //
 
-SECTION_INIT void memcpy();
 void __div2u();
 void __mod2u();
 void __num2dec();
@@ -36,13 +37,6 @@ void __end_critical_region();
 void __begin_critical_region();
 void fwrite();
 void wcstombs();
-void memchr();
-void strchr();
-void strcpy();
-void strlen();
-void fwide();
-extern void* __files[80];
-extern u8 __ctype_map[256];
 
 //
 // Declarations:
@@ -52,7 +46,7 @@ extern u8 __ctype_map[256];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm size_t sprintf(const char*, const char*, ...) {
+asm int sprintf(const char* str, const char* format, ...) {
     nofralloc
 #include "asm/MSL_C/MSL_Common/Src/printf/sprintf.s"
 }
@@ -62,7 +56,7 @@ asm size_t sprintf(const char*, const char*, ...) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm size_t snprintf(const char*, size_t, const char*, ...) {
+asm int snprintf(const char* str, size_t n, const char* format, ...) {
     nofralloc
 #include "asm/MSL_C/MSL_Common/Src/printf/snprintf.s"
 }
@@ -72,7 +66,7 @@ asm size_t snprintf(const char*, size_t, const char*, ...) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm size_t vsnprintf(char* buffer, size_t buffer_size, const char* format, va_list args) {
+asm int vsnprintf(char* str, size_t n, const char* format, va_list arg) {
     nofralloc
 #include "asm/MSL_C/MSL_Common/Src/printf/vsnprintf.s"
 }
@@ -82,7 +76,7 @@ asm size_t vsnprintf(char* buffer, size_t buffer_size, const char* format, va_li
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm size_t vprintf(const char*, va_list) {
+asm int vprintf(const char* format, va_list arg) {
     nofralloc
 #include "asm/MSL_C/MSL_Common/Src/printf/vprintf.s"
 }
@@ -92,7 +86,7 @@ asm size_t vprintf(const char*, va_list) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fprintf() {
+asm int fprintf(FILE* stream, const char* format, ...) {
     nofralloc
 #include "asm/MSL_C/MSL_Common/Src/printf/fprintf.s"
 }
@@ -102,7 +96,7 @@ asm void fprintf() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm size_t printf(const char*, ...) {
+asm int printf(const char* format, ...) {
     nofralloc
 #include "asm/MSL_C/MSL_Common/Src/printf/printf.s"
 }
@@ -136,7 +130,7 @@ SECTION_DEAD static char const* const stringBase_803A2318 = "";
 #pragma pop
 
 /* 80450AD8-80450AE0 000558 0002+06 1/1 0/0 0/0 .sdata           @wstringBase0 */
-SECTION_SDATA static u8 data_80450AD8[2 + 6 /* padding */] = {
+SECTION_SDATA static unsigned char data_80450AD8[2 + 6 /* padding */] = {
     0x00,
     0x00,
     /* padding */
@@ -176,7 +170,7 @@ SECTION_DEAD static char const* const pad_803A233D = "\0\0";
 #pragma pop
 
 /* 80456670-80456678 004C70 0008+00 1/1 0/0 0/0 .sdata2          @1089 */
-SECTION_SDATA2 static u8 lit_1089[8] = {
+SECTION_SDATA2 static unsigned char lit_1089[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 

@@ -12,6 +12,7 @@
 #include "JSystem/J3DGraphLoader/J3DClusterLoader.h"
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
+#include "MSL_C/MSL_Common/Src/extras.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx.h"
@@ -704,7 +705,8 @@ void dRes_info_c::dump_long(dRes_info_c* param_0, int param_1) {
 
             JUTReportConsole_f("%2d %08x %08x %08x(%6x) %08x(%5x) %08x %3d %s\n", i,
                                param_0->getDMCommand(), archive, header, blockSize1,
-                               &param_0->mDataHeap, blockSize2, param_0->mRes, param_0->getArchiveName());
+                               &param_0->mDataHeap, blockSize2, param_0->mRes,
+                               param_0->getArchiveName());
         }
         param_0++;
     }

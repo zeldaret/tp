@@ -22,7 +22,7 @@ static const double
 
 double ldexp(double x, int n)
 {
-	s32 k, hx, lx; /*- cc 020130 -*/
+	long k, hx, lx; /*- cc 020130 -*/
 	if (!isfinite(x) || x == 0.0)
 		return x;
 

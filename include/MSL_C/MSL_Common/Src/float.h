@@ -1,7 +1,6 @@
 #ifndef MSL_COMMON_SRC_FLOAT_H
 #define MSL_COMMON_SRC_FLOAT_H
 
-#include "dolphin/types.h"
 #include "fdlibm.h"
 
 #define FP_SNAN 0
@@ -17,13 +16,13 @@
 #define signbit(x) ((sizeof(x) == sizeof(float)) ? __signbitf(x) : __signbitd(x))
 #define isfinite(x) ((fpclassify(x) > 2))
 
-#define __signbitf(x) ((*(u8*)&(x)) & 0x80)
+#define __signbitf(x) ((*(unsigned char*)&(x)) & 0x80)
 
 // TODO: OK?
-#define __signbitd(x) ((*(u8*)&(x)) & 0x80)
+#define __signbitd(x) ((*(unsigned char*)&(x)) & 0x80)
 
 inline int __fpclassifyf(float __value) {
-    u32 integer = *(u32*)&__value;
+    unsigned long integer = *(unsigned long*)&__value;
 
     switch (integer & 0x7f800000) {
     case 0x7f800000:
