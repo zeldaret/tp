@@ -1,4 +1,4 @@
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 from .. import util
 from ..globals import *
@@ -8,7 +8,7 @@ from ..builder import AsyncBuilder
 async def create_library(library: Library):
     assert library.name
     lib_path = library.makefile_path
-    cpp_path = library.source_path
+    cpp_path = PurePosixPath(library.source_path)
     o_path = f"$(BUILD_DIR)/{cpp_path}"
 
     makefile_path = lib_path.joinpath("Makefile")
@@ -30,7 +30,7 @@ async def create_library(library: Library):
             if tu.is_empty:
                 continue
             
-            await builder.write(f"\t{tu.source_path(library)} \\")
+            await builder.write(f"\t{PurePosixPath(tu.source_path(library))} \\")
         await builder.write("")
 
         await builder.write(f"{prefix}_O_FILES := \\")
@@ -38,7 +38,7 @@ async def create_library(library: Library):
             if tu.is_empty:
                 continue
             
-            await builder.write(f"\t$(BUILD_DIR)/{tu.object_path(library)} \\")
+            await builder.write(f"\t$(BUILD_DIR)/{PurePosixPath(tu.object_path(library))} \\")
         await builder.write("")
 
         await builder.write(f"{prefix}_CFLAGS := \\")
@@ -73,7 +73,7 @@ async def create_rel(module: Module, rel_path: Path):
     prefix = f"m{module.index}".upper()
 
     lib_path = base.makefile_path
-    cpp_path = base.source_path
+    cpp_path = PurePosixPath(base.source_path)
     o_path = f"$(BUILD_DIR)/{cpp_path}"
 
     makefile_path = lib_path.joinpath("Makefile")
@@ -101,9 +101,9 @@ async def create_rel(module: Module, rel_path: Path):
             if tu.is_empty:
                 continue
             if tu.special == "rel":
-                await builder.write(f"\t{rel_path.joinpath(tu.name)}.cpp \\")
+                await builder.write(f"\t{PurePosixPath(rel_path.joinpath(tu.name))}.cpp \\")
             else:
-                await builder.write(f"\t{tu.source_path(base)} \\")
+                await builder.write(f"\t{PurePosixPath(tu.source_path(base))} \\")
         await builder.write("")
 
         await builder.write(f"{prefix}_O_FILES := \\")
@@ -111,9 +111,9 @@ async def create_rel(module: Module, rel_path: Path):
             if tu.is_empty:
                 continue
             if tu.special == "rel":
-                await builder.write(f"\t$(BUILD_DIR)/{rel_path.joinpath(tu.name)}.o \\")
+                await builder.write(f"\t$(BUILD_DIR)/{PurePosixPath(rel_path.joinpath(tu.name))}.o \\")
             else:
-                await builder.write(f"\t$(BUILD_DIR)/{tu.object_path(base)} \\")
+                await builder.write(f"\t$(BUILD_DIR)/{PurePosixPath(tu.object_path(base))} \\")
         await builder.write("")
 
         await builder.write(f"{prefix}_LIBS := \\")
@@ -250,7 +250,7 @@ async def create_obj_files(modules: Module):
             if tu.is_empty:
                 continue
 
-            await builder.write(f"\t$(BUILD_DIR)/{tu.object_path(base)} \\")
+            await builder.write(f"\t$(BUILD_DIR)/{PurePosixPath(tu.object_path(base))} \\")
         await builder.write("")
 
         await builder.write(f"LIBS := \\")
@@ -288,7 +288,7 @@ async def create_include_link(modules: Module):
             if name == None:
                 continue
 
-            target = lib.makefile_path.joinpath('Makefile')
+            target = PurePosixPath(lib.makefile_path.joinpath('Makefile'))
             await builder.write(f"-include {target}")
         await builder.write("")
 
@@ -297,7 +297,7 @@ async def create_include_link(modules: Module):
             if module.index == 0:
                 continue
             
-            target = module.base_library.makefile_path.joinpath('Makefile')
+            target = PurePosixPath(module.base_library.makefile_path.joinpath('Makefile'))
             await builder.write(f"-include {target}")
         await builder.write("")
 
