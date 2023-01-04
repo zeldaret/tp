@@ -474,7 +474,8 @@ asm void daObjYobikusa_c::create_init() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+// asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+extern "C" asm void __dt__12dBgS_ObjAcchFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/__dt__12dBgS_ObjAcchFv.s"
 }
@@ -484,7 +485,8 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_AcchCir::~dBgS_AcchCir() {
+// asm dBgS_AcchCir::~dBgS_AcchCir() {
+extern "C" asm void __dt__12dBgS_AcchCirFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/__dt__12dBgS_AcchCirFv.s"
 }

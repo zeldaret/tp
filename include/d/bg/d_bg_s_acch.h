@@ -38,7 +38,7 @@ public:
     /* 80075F58 */ void SetWall(f32, f32);
     /* 80075F80 */ void SetWallHDirect(f32);
 
-    /* 80077414 */ virtual ~dBgS_AcchCir();
+    /* 80077414 */ virtual ~dBgS_AcchCir() {}
 
     f32 GetWallH() { return m_wall_h; }
     f32 GetWallR() { return m_wall_r; }
@@ -108,7 +108,7 @@ public:
     /* 800D00DC */ void ClrGroundHit();
     /* 80141404 */ bool ChkGroundHit() const;
 
-    /* 80075F94 */ virtual ~dBgS_Acch();
+    /* 80075F94 */ virtual ~dBgS_Acch() {}
 
     cXyz* GetPos() { return pm_pos; }
     cXyz* GetOldPos() { return pm_old_pos; }
@@ -205,7 +205,7 @@ public:
         SetObj();
     }
 
-    /* 80BB336C */ virtual ~dBgS_ObjAcch();
+    /* 80BB336C */ virtual ~dBgS_ObjAcch() {}
 };
 
 class dBgS_StatueAcch : public dBgS_Acch {

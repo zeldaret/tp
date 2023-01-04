@@ -6,6 +6,7 @@
 #include "rel/d/a/d_a_do/d_a_do.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+// #include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
 //
@@ -93,7 +94,6 @@ extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
 extern "C" void fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c();
 extern "C" void fopAcM_createItem__FPC4cXyziiiPC5csXyzPC4cXyzi();
 extern "C" void fopAcM_effHamonSet__FPUlPC4cXyzff();
-// extern "C" bool fopAcM_riverStream__FP4cXyzPsPff();
 extern "C" void fpcEx_Search__FPFPvPv_PvPv();
 extern "C" void fpcSch_JudgeByID__FPvPv();
 extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
@@ -182,7 +182,6 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
-// extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -369,6 +368,7 @@ SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
     (void*)func_8066EDC4,
 };
 
+
 /* 8066F258-8066F264 00029C 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
 SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
     (void*)NULL /* RTTI */,
@@ -439,14 +439,23 @@ SECTION_DEAD static char const* const stringBase_8066EFB0 = "Do";
 #pragma pop
 
 /* 80667DA8-80667E68 000148 00C0+00 16/16 0/0 0/0 .text            anm_init__FP8do_classifUcf */
+#ifdef NONMATCHING
+static void anm_init(do_class* i_dogP, int param_1, f32 param_2, u8 param_3, f32 param_4) {
+    if (i_dogP->field_0x610 < 1.0f) {
+        i_dogP->mpMorf->setAnm(dComIfG_getObjectRes("Do",param_1),param_4,param_2,0.0f,0.0f,-1.0f,0);
+        i_dogP->field_0x5e4 = param_3;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void anm_init(do_class* param_0, int param_1, f32 param_2, u8 param_3, f32 param_4) {
+static asm void anm_init(do_class* i_dogP, int param_1, f32 param_2, u8 param_3, f32 param_4) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/anm_init__FP8do_classifUcf.s"
 }
 #pragma pop
+#endif
 
 /* 80667E68-80667FE4 000208 017C+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
 #pragma push
@@ -477,7 +486,7 @@ COMPILER_STRIP_GATE(0x8066EE08, &lit_3773);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daDo_Draw(do_class* param_0) {
+static asm void daDo_Draw(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/daDo_Draw__FP8do_class.s"
 }
@@ -504,7 +513,7 @@ COMPILER_STRIP_GATE(0x8066EE0C, &lit_3816);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daDo_other_bg_check(do_class* param_0, fopAc_ac_c* param_1) {
+static asm void daDo_other_bg_check(do_class* i_dogP, fopAc_ac_c* i_actorP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/daDo_other_bg_check__FP8do_classP10fopAc_ac_c.s"
 }
@@ -519,7 +528,7 @@ COMPILER_STRIP_GATE(0x8066EE10, &lit_3846);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daDo_other_bg_check2(do_class* param_0, cXyz* param_1) {
+static asm void daDo_other_bg_check2(do_class* i_dogP, cXyz* i_posP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/daDo_other_bg_check2__FP8do_classP4cXyz.s"
 }
@@ -662,7 +671,7 @@ static u8 target_bgc[20];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm u32 search_food(do_class* param_0) {
+static asm u32 search_food(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/search_food__FP8do_class.s"
 }
@@ -701,7 +710,7 @@ COMPILER_STRIP_GATE(0x8066EE1C, &lit_3981);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void depth_check(do_class* param_0, cXyz param_1, f32 param_2) {
+static asm void depth_check(do_class* i_dogP, cXyz i_pos, f32 param_2) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/depth_check__FP8do_class4cXyzf.s"
 }
@@ -716,7 +725,7 @@ COMPILER_STRIP_GATE(0x8066EE20, &lit_3994);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void water_check(do_class* param_0) {
+static asm void water_check(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/water_check__FP8do_class.s"
 }
@@ -748,7 +757,7 @@ COMPILER_STRIP_GATE(0x8066EE2C, &lit_4027);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dansa_check(do_class* param_0, cXyz param_1, f32 param_2) {
+static asm void dansa_check(do_class* i_dogP, cXyz param_1, f32 param_2) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/dansa_check__FP8do_class4cXyzf.s"
 }
@@ -773,7 +782,7 @@ COMPILER_STRIP_GATE(0x8066EE34, &lit_4058);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dansa_check2(do_class* param_0, f32 param_1) {
+static asm void dansa_check2(do_class* i_dogP, f32 param_1) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/dansa_check2__FP8do_classf.s"
 }
@@ -792,7 +801,7 @@ COMPILER_STRIP_GATE(0x8066EE3C, &lit_4069);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void move_dansa_check(do_class* param_0, f32 param_1) {
+static asm void move_dansa_check(do_class* i_dogP, f32 param_1) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/move_dansa_check__FP8do_classf.s"
 }
@@ -839,7 +848,7 @@ COMPILER_STRIP_GATE(0x8066EE58, &lit_4138);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void area_check(do_class* param_0) {
+static asm void area_check(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/area_check__FP8do_class.s"
 }
@@ -857,7 +866,7 @@ COMPILER_STRIP_GATE(0x8066EE60, &lit_4189);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_stay(do_class* param_0) {
+static asm void do_stay(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_stay__FP8do_class.s"
 }
@@ -973,7 +982,7 @@ COMPILER_STRIP_GATE(0x8066EE9C, &lit_4345);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_walk(do_class* param_0) {
+static asm void do_walk(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_walk__FP8do_class.s"
 }
@@ -998,7 +1007,7 @@ COMPILER_STRIP_GATE(0x8066EEA4, &lit_4378);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_walk_run(do_class* param_0) {
+static asm void do_walk_run(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_walk_run__FP8do_class.s"
 }
@@ -1058,7 +1067,7 @@ COMPILER_STRIP_GATE(0x8066EEC0, &lit_4406);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_run(do_class* param_0) {
+static asm void do_run(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_run__FP8do_class.s"
 }
@@ -1076,7 +1085,7 @@ COMPILER_STRIP_GATE(0x8066EEC4, &lit_4435);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_run_walk(do_class* param_0) {
+static asm void do_run_walk(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_run_walk__FP8do_class.s"
 }
@@ -1086,7 +1095,7 @@ static asm void do_run_walk(do_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_wait_1(do_class* param_0) {
+static asm void do_wait_1(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_wait_1__FP8do_class.s"
 }
@@ -1195,7 +1204,7 @@ COMPILER_STRIP_GATE(0x8066EEFC, &lit_4588);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_wait_2(do_class* param_0) {
+static asm void do_wait_2(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_wait_2__FP8do_class.s"
 }
@@ -1205,7 +1214,7 @@ static asm void do_wait_2(do_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_sit(do_class* param_0) {
+static asm void do_sit(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_sit__FP8do_class.s"
 }
@@ -1230,7 +1239,7 @@ COMPILER_STRIP_GATE(0x8066EF04, &lit_4710);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void hang_set(do_class* param_0) {
+static asm void hang_set(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/hang_set__FP8do_class.s"
 }
@@ -1255,7 +1264,7 @@ COMPILER_STRIP_GATE(0x8066EF0C, &lit_4764);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_hang(do_class* param_0) {
+static asm void do_hang(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_hang__FP8do_class.s"
 }
@@ -1272,7 +1281,7 @@ SECTION_DEAD static char const* const stringBase_8066EFB3 = "F_SP116";
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_food(do_class* param_0) {
+static asm void do_food(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_food__FP8do_class.s"
 }
@@ -1353,7 +1362,7 @@ COMPILER_STRIP_GATE(0x8066EF34, &lit_4993);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_swim(do_class* param_0) {
+static asm void do_swim(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_swim__FP8do_class.s"
 }
@@ -1409,7 +1418,7 @@ COMPILER_STRIP_GATE(0x8066EF48, &lit_5114);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_help(do_class* param_0) {
+static asm void do_help(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_help__FP8do_class.s"
 }
@@ -1434,7 +1443,7 @@ COMPILER_STRIP_GATE(0x8066EF50, &lit_5345);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_boat(do_class* param_0) {
+static asm void do_boat(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_boat__FP8do_class.s"
 }
@@ -1466,7 +1475,7 @@ COMPILER_STRIP_GATE(0x8066EF5C, &lit_5407);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_a_swim(do_class* param_0) {
+static asm void do_a_swim(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_a_swim__FP8do_class.s"
 }
@@ -1497,7 +1506,7 @@ COMPILER_STRIP_GATE(0x8066EF68, &lit_5480);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_carry(do_class* param_0) {
+static asm void do_carry(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_carry__FP8do_class.s"
 }
@@ -1507,7 +1516,7 @@ static asm void do_carry(do_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_message(do_class* param_0) {
+static asm void do_message(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_message__FP8do_class.s"
 }
@@ -1525,7 +1534,7 @@ COMPILER_STRIP_GATE(0x8066EF70, &lit_5948);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void action(do_class* param_0) {
+static asm void action(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/action__FP8do_class.s"
 }
@@ -1535,7 +1544,7 @@ static asm void action(do_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void message(do_class* param_0) {
+static asm void message(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/message__FP8do_class.s"
 }
@@ -1623,18 +1632,34 @@ COMPILER_STRIP_GATE(0x8066EF9C, &lit_6214);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daDo_Execute(do_class* param_0) {
+static asm void daDo_Execute(do_class* i_dogP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/daDo_Execute__FP8do_class.s"
 }
 #pragma pop
 
 /* 8066E494-8066E49C 006834 0008+00 1/0 0/0 0/0 .text            daDo_IsDelete__FP8do_class */
-static bool daDo_IsDelete(do_class* param_0) {
+static bool daDo_IsDelete(do_class* i_dogP) {
     return true;
 }
 
 /* 8066E49C-8066E504 00683C 0068+00 1/0 0/0 0/0 .text            daDo_Delete__FP8do_class */
+#ifdef NONMATCHING
+no clue how to generate the struct assignment...
+int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* resName);
+static int daDo_Delete(do_class* i_dogP) {
+    u32 actor_id = fopAcM_GetID(i_dogP);
+    dComIfG_resDelete(&i_dogP->mPhase,"Do");
+    if (i_dogP->field_0xcc0 != 0) {
+        u8* tmp = (u8*)struct_8066F2B4+2;
+        *tmp = 0;
+    }
+    if (i_dogP->mHeap) {
+        i_dogP->mSound.deleteObject();
+    }
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1643,6 +1668,7 @@ static asm void daDo_Delete(do_class* param_0) {
 #include "asm/rel/d/a/d_a_do/d_a_do/daDo_Delete__FP8do_class.s"
 }
 #pragma pop
+#endif
 
 /* 8066E504-8066E7D4 0068A4 02D0+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push
@@ -1740,7 +1766,8 @@ extern "C" asm void __dt__8cM3dGAabFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+// asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+extern "C" asm void __dt__12dBgS_ObjAcchFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/__dt__12dBgS_ObjAcchFv.s"
 }
@@ -1750,7 +1777,8 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm daDo_HIO_c::~daDo_HIO_c() {
+// asm daDo_HIO_c::~daDo_HIO_c() {
+extern "C" asm void __dt__10daDo_HIO_cFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/__dt__10daDo_HIO_cFv.s"
 }
