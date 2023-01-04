@@ -1365,10 +1365,10 @@ int dComIfGd_setSimpleShadow(cXyz* i_pos, f32 param_1, f32 param_2, cBgS_PolyInf
 }
 
 /* 8002D1AC-8002D25C 027AEC 00B0+00 0/0 0/0 1/1 .text            dComIfGp_getMapTrans__FiPfPfPs */
-int dComIfGp_getMapTrans(int i_roomNo, f32* o_transX, f32* o_transY, s16* o_angle) {
+bool dComIfGp_getMapTrans(int i_roomNo, f32* o_transX, f32* o_transY, s16* o_angle) {
     dStage_Multi_c* multi = dComIfGp_getMulti();
     if (multi == NULL) {
-        return 0;
+        return false;
     }
 
     dStage_Mult_info* info = multi->mInfo;
@@ -1377,12 +1377,12 @@ int dComIfGp_getMapTrans(int i_roomNo, f32* o_transX, f32* o_transY, s16* o_angl
             *o_transX = info->mTransX;
             *o_transY = info->mTransY;
             *o_angle = info->mAngle;
-            return 1;
+            return true;
         }
         info++;
     }
 
-    return 0;
+    return false;
 }
 
 /* 8002D25C-8002D2AC 027B9C 0050+00 0/0 3/3 3/3 .text            dComIfGp_getRoomCamera__Fi */

@@ -368,6 +368,9 @@ public:
         calcTransform(getFrame(), param_0, pSRTInfo);
     }
 
+    u16 getUpdateMaterialID(u16 idx) const { return mUpdateMaterialID[idx]; }
+    u16 getUpdateMaterialNum() const { return field_0x14 / 3; }
+
 private:
     /* 0x0C */ int field_0xc;
     /* 0x10 */ int field_0x10;
@@ -379,7 +382,7 @@ private:
     /* 0x20 */ int field_0x20;
     /* 0x24 */ int field_0x24;
     /* 0x28 */ u8 mUpdateTexMtxID[4];
-    /* 0x2C */ u16 mUpdateMaterialID[2];
+    /* 0x2C */ u16* mUpdateMaterialID;
     /* 0x30 */ JUTNameTab field_0x30;
     /* 0x40 */ int field_0x40;
     /* 0x44 */ u16 field_0x44;
@@ -427,6 +430,12 @@ public:
     /* 8032BD9C */ virtual ~J3DAnmTevRegKey();
     /* 8032BE24 */ virtual s32 getKind() const;
 
+    u16 getCRegUpdateMaterialNum() const { return mCRegUpdateMaterialNum; }
+    u16 getKRegUpdateMaterialNum() const { return mKRegUpdateMaterialNum; }
+
+    u16 getCRegUpdateMaterialID(u16 idx) const { return mCRegUpdateMaterialID[idx]; }
+    u16 getKRegUpdateMaterialID(u16 idx) const { return mKRegUpdateMaterialID[idx]; }
+
 private:
     /* 0x0C */ u16 mCRegUpdateMaterialNum;
     /* 0x0E */ u16 mKRegUpdateMaterialNum;
@@ -438,8 +447,10 @@ private:
     /* 0x1A */ u16 field_0x1a;
     /* 0x1C */ u16 field_0x1c;
     /* 0x1E */ u16 field_0x1e;
-    /* 0x20 */ u16 mCRegUpdateMaterialID[20];
-    /* 0x34 */ u16 mKRegUpdateMaterialID[20];
+    /* 0x20 */ u16* mCRegUpdateMaterialID;
+    /* 0x24 */ u8 field_0x24[0x34 - 0x24];
+    /* 0x34 */ u16* mKRegUpdateMaterialID;
+    /* 0x38 */ u8 field_0x38[0x48 - 0x38];
     /* 0x48 */ void* field_0x48;
     /* 0x4C */ void* field_0x4c;
     /* 0x50 */ int field_0x50;

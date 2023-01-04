@@ -22,6 +22,7 @@ public:
     /* 8032617C */ virtual ~J3DModelData();
 
     J3DMaterialTable& getMaterialTable() { return mMaterialTable; }
+    JUTNameTab* getMaterialName() const { return mMaterialTable.getMaterialName(); }
     J3DVertexData& getVertexData() { return mVertexData; }
     u16 getShapeNum() const { return mShapeTable.getShapeNum(); }
     u16 getMaterialNum() const { return mMaterialTable.getMaterialNum(); }

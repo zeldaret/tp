@@ -97,16 +97,19 @@ public:
     void setScaleFlagArray(u8* pScaleFlagArray) { mScaleFlagArray = pScaleFlagArray; }
     void setDrawMtx(Mtx** pDrawMtx) { mDrawMtx = pDrawMtx; }
     void setNrmMtx(Mtx33** pNrmMtx) { mNrmMtx = pNrmMtx; }
+    void setTexMtxLoadType(u32 type) { mFlags = (mFlags & 0xFFFF0FFF) | type; }
     bool getNBTFlag() const { return mHasNBT; }
     u32 getBumpMtxOffset() const { return mBumpMtxOffset; }
 
-    inline J3DMaterial* getMaterial() const { return mMaterial; }
-    inline u32 getIndex() const { return mIndex; }
-    inline u32 getPipeline() const { return (mFlags >> 2) & 0x07; }
-    inline u32 getTexMtxLoadType() const { return mFlags & 0xF000; }
-    inline u32 getMtxGroupNum() const { return mMtxGroupNum; }
-    inline J3DShapeDraw* getShapeDraw(u32 idx) const { return mShapeDraw[idx]; }
-    inline J3DShapeMtx* getShapeMtx(u32 idx) const { return mShapeMtx[idx]; }
+    J3DMaterial* getMaterial() const { return mMaterial; }
+    u32 getIndex() const { return mIndex; }
+    u32 getPipeline() const { return (mFlags >> 2) & 0x07; }
+    u32 getTexMtxLoadType() const { return mFlags & 0xF000; }
+    u32 getMtxGroupNum() const { return mMtxGroupNum; }
+    J3DShapeDraw* getShapeDraw(u32 idx) const { return mShapeDraw[idx]; }
+    J3DShapeMtx* getShapeMtx(u32 idx) const { return mShapeMtx[idx]; }
+    Vec* getMin() { return &mMin; }
+    Vec* getMax() { return &mMax; }
 
     static void resetVcdVatCache() { sOldVcdVatCmd = NULL; }
 

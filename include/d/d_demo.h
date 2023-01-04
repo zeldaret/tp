@@ -273,6 +273,7 @@ public:
     static dDemo_actor_c* getActor(u8 param_0) { return m_object->getActor(param_0); }
     static u32 getFrameNoMsg() { return m_frameNoMsg; }
     static s32 getMode() { return m_mode; }
+    static int getFrame() { return m_frame; }
     static JStudio::stb::TControl* getControl() { return m_control; }
     static bool isStatus(u32 status) { return m_status & status; }
     static void onStatus(u32 status) { m_status |= status; }
