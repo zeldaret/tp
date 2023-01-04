@@ -5,23 +5,12 @@
 
 #include "dolphin/os/OSRtc.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "dolphin/exi/EXIBios.h"
+#include "dolphin/os/OS.h"
 
-//
-// External References:
-//
-
-void DCInvalidateRange();
-void OSDisableInterrupts();
-void OSRestoreInterrupts();
-void EXIImm();
-void EXIImmEx();
-void EXIDma();
-void EXISync();
-void EXISelect();
-void EXIDeselect();
-void EXILock();
-void EXIUnlock();
+static void WriteSramCallback(s32 chan, OSContext* context);
+static BOOL WriteSram(void* buffer, u32 offset, u32 size);
+static BOOL UnlockSram(BOOL commit, u32 offset);
 
 //
 // Declarations:
@@ -29,43 +18,80 @@ void EXIUnlock();
 
 /* ############################################################################################## */
 /* 8044BB20-8044BB78 078840 0054+04 14/14 0/0 0/0 .bss             Scb */
-static u8 Scb[84 + 4 /* padding */];
+static SramControlBlock Scb ALIGN_DECL(32);
 
 /* 8033FE90-8033FEF0 33A7D0 0060+00 2/2 0/0 0/0 .text            WriteSramCallback */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void WriteSramCallback(void) {
-    nofralloc
-#include "asm/dolphin/os/OSRtc/WriteSramCallback.s"
+static void WriteSramCallback(s32 chan, OSContext* context) {
+    Scb.sync = WriteSram(Scb.sram + Scb.offset, Scb.offset, RTC_SRAM_SIZE - Scb.offset);
+    if (Scb.sync) {
+        Scb.offset = RTC_SRAM_SIZE;
+    }
 }
-#pragma pop
+
+static inline BOOL ReadSram(void* buffer) {
+    BOOL err;
+    u32 cmd;
+
+    DCInvalidateRange(buffer, RTC_SRAM_SIZE);
+
+    if (!EXILock(RTC_CHAN, RTC_DEV, 0)) {
+        return FALSE;
+    }
+    if (!EXISelect(RTC_CHAN, RTC_DEV, RTC_FREQ)) {
+        EXIUnlock(RTC_CHAN);
+        return FALSE;
+    }
+
+    cmd = RTC_CMD_READ | RTC_SRAM_ADDR;
+    err = FALSE;
+    err |= !EXIImm(RTC_CHAN, &cmd, 4, 1, NULL);
+    err |= !EXISync(RTC_CHAN);
+    err |= !EXIDma(RTC_CHAN, buffer, RTC_SRAM_SIZE, 0, NULL);
+    err |= !EXISync(RTC_CHAN);
+    err |= !EXIDeselect(RTC_CHAN);
+    EXIUnlock(RTC_CHAN);
+
+    return !err;
+}
 
 /* 8033FEF0-80340008 33A830 0118+00 1/1 0/0 0/0 .text            WriteSram */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm u8 WriteSram(u8* param_0, u32 param_1, u32 param_2) {
-    nofralloc
-#include "asm/dolphin/os/OSRtc/WriteSram.s"
+BOOL WriteSram(void* buffer, u32 offset, u32 size) {
+    BOOL err;
+    u32 cmd;
+
+    if (!EXILock(RTC_CHAN, RTC_DEV, WriteSramCallback)) {
+        return FALSE;
+    }
+    if (!EXISelect(RTC_CHAN, RTC_DEV, RTC_FREQ)) {
+        EXIUnlock(RTC_CHAN);
+        return FALSE;
+    }
+
+    offset <<= 6;
+    cmd = RTC_CMD_WRITE | RTC_SRAM_ADDR + offset;
+    err = FALSE;
+    err |= !EXIImm(RTC_CHAN, &cmd, 4, 1, NULL);
+    err |= !EXISync(RTC_CHAN);
+    err |= !EXIImmEx(RTC_CHAN, buffer, (s32)size, 1);
+    err |= !EXIDeselect(RTC_CHAN);
+    EXIUnlock(RTC_CHAN);
+
+    return !err;
 }
-#pragma pop
 
 /* 80340008-80340144 33A948 013C+00 0/0 1/1 0/0 .text            __OSInitSram */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __OSInitSram(void) {
-    nofralloc
-#include "asm/dolphin/os/OSRtc/__OSInitSram.s"
+void __OSInitSram(void) {
+    Scb.locked = Scb.enabled = FALSE;
+    Scb.sync = ReadSram(Scb.sram);
+    Scb.offset = RTC_SRAM_SIZE;
+    OSSetGbsMode(OSGetGbsMode());
 }
-#pragma pop
 
 /* 80340144-803401A0 33AA84 005C+00 0/0 3/3 0/0 .text            __OSLockSram */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u16* __OSLockSram(void) {
+asm OSSram* __OSLockSram(void) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/__OSLockSram.s"
 }
@@ -75,7 +101,7 @@ asm u16* __OSLockSram(void) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u16* __OSLockSramEx(void) {
+asm OSSramEx* __OSLockSramEx(void) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/__OSLockSramEx.s"
 }
@@ -85,7 +111,7 @@ asm u16* __OSLockSramEx(void) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm u32 UnlockSram(s32 param_0, u32 param_1) {
+static asm BOOL UnlockSram(BOOL commit, u32 offset) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/UnlockSram.s"
 }
@@ -95,7 +121,7 @@ static asm u32 UnlockSram(s32 param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u32 __OSUnlockSram(s32 param_0) {
+asm BOOL __OSUnlockSram(BOOL commit) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/__OSUnlockSram.s"
 }
@@ -105,21 +131,16 @@ asm u32 __OSUnlockSram(s32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u32 __OSUnlockSramEx(s32 param_0) {
+asm BOOL __OSUnlockSramEx(BOOL commit) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/__OSUnlockSramEx.s"
 }
 #pragma pop
 
 /* 80340580-80340590 33AEC0 0010+00 0/0 2/2 0/0 .text            __OSSyncSram */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 __OSSyncSram(void) {
-    nofralloc
-#include "asm/dolphin/os/OSRtc/__OSSyncSram.s"
+BOOL __OSSyncSram(void) {
+    return Scb.sync;
 }
-#pragma pop
 
 /* 80340590-80340610 33AED0 0080+00 0/0 4/4 0/0 .text            OSGetSoundMode */
 #pragma push
@@ -165,21 +186,36 @@ asm void OSSetProgressiveMode(u32 mode) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u16 OSGetWirelessID(s32 index) {
+asm u16 OSGetWirelessID(s32 channel) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/OSGetWirelessID.s"
 }
 #pragma pop
 
 /* 8034084C-803408F8 33B18C 00AC+00 0/0 4/4 0/0 .text            OSSetWirelessID */
+#ifdef NONMATCHING
+void OSSetWirelessID(s32 channel, u16 id) {
+    OSSramEx* sram;
+
+    sram = __OSLockSramEx();
+    if (sram->wirelessPadID[channel] != id) {
+        sram->wirelessPadID[channel] = id;
+        __OSUnlockSramEx(TRUE);
+        return;
+    }
+
+    __OSUnlockSramEx(FALSE);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void OSSetWirelessID(s32 index, u16 id) {
+asm void OSSetWirelessID(s32 channel, u16 id) {
     nofralloc
 #include "asm/dolphin/os/OSRtc/OSSetWirelessID.s"
 }
 #pragma pop
+#endif
 
 /* 803408F8-80340968 33B238 0070+00 1/1 0/0 0/0 .text            OSGetGbsMode */
 #pragma push

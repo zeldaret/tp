@@ -1,18 +1,19 @@
 #ifndef MSL_COMMON_SRC_PRINTF_H
 #define MSL_COMMON_SRC_PRINTF_H
 
+#include "MSL_C/MSL_Common/Src/ansi_files.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
-#include "dolphin/types.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-size_t sprintf(const char*, const char*, ...);
-size_t snprintf(const char*, size_t, const char*, ...);
-size_t vsnprintf(char*, size_t, const char*, va_list);
-size_t vprintf(const char*, va_list);
-size_t printf(const char*, ...);
+int fprintf(FILE* stream, const char* format, ...);
+int printf(const char* format, ...);
+int sprintf(const char* str, const char* format, ...);
+int snprintf(const char* str, size_t n, const char* format, ...);
+int vsnprintf(char* str, size_t n, const char* format, va_list arg);
+int vprintf(const char* format, va_list arg);
 
 #ifdef __cplusplus
 }

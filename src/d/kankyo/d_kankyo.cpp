@@ -3865,9 +3865,9 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, i
  * cleared it, else FALSE.
  */
 /* 801AC70C-801AC7E0 1A704C 00D4+00 0/0 2/2 0/0 .text            dKy_darkworld_stage_check__FPCci */
-BOOL dKy_darkworld_stage_check(char const* stageName, int roomNo) {
+u8 dKy_darkworld_stage_check(char const* stageName, int roomNo) {
     dKydata_darkworldInfo_c* darkworldTbl = dKyd_darkworld_tbl_getp();
-    BOOL result = FALSE;
+    u8 result = FALSE;
     u8 darkLv[1];
 
     for (int i = 0; i < 34; i++) {

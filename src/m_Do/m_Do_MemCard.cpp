@@ -164,7 +164,7 @@ void mDoMemCd_Ctrl_c::restore() {
     field_0x1fc8 = 0;
 
     s32 card_state = CARDOpen(mChannel, "gczelda2", &file);
-    if (card_state == CARD_ERROR_READY) {
+    if (card_state == CARD_RESULT_READY) {
         if (!mDoMemCdRWm_Restore(&file, this, sizeof(mData))) {
             mCardState = 3;
         } else {
@@ -221,7 +221,7 @@ void mDoMemCd_Ctrl_c::store() {
 
     if (mCardState == 2) {
         card_state = CARDCreate(mChannel, "gczelda2", 0x8000, &file);
-        if (card_state == CARD_ERROR_READY || card_state == CARD_ERROR_EXIST) {
+        if (card_state == CARD_RESULT_READY || card_state == CARD_RESULT_EXIST) {
             mCardState = 1;
         } else {
             setCardState(card_state);
@@ -230,9 +230,9 @@ void mDoMemCd_Ctrl_c::store() {
 
     if (mCardState == 1) {
         card_state = CARDOpen(mChannel, "gczelda2", &file);
-        if (card_state == CARD_ERROR_READY) {
+        if (card_state == CARD_RESULT_READY) {
             card_state = mDoMemCdRWm_Store(&file, this, sizeof(mData));
-            if (card_state != CARD_ERROR_READY) {
+            if (card_state != CARD_RESULT_READY) {
                 setCardState(card_state);
             } else {
                 mCardState = 4;
@@ -343,7 +343,7 @@ void mDoMemCd_Ctrl_c::format() {
 
     s32 card_state = CARDFormat(mChannel);
     if (OSTryLockMutex(&mMutex)) {
-        if (card_state == CARD_ERROR_READY) {
+        if (card_state == CARD_RESULT_READY) {
             mCardState = 5;
         } else {
             setCardState(card_state);
@@ -478,12 +478,12 @@ s32 mDoMemCd_Ctrl_c::loadfile() {
     CARDFileInfo file;
 
     s32 card_state = CARDOpen(mChannel, "gczelda2", &file);
-    if (card_state == CARD_ERROR_READY) {
+    if (card_state == CARD_RESULT_READY) {
         CARDClose(&file);
-        return CARD_ERROR_UNLOCKED;
+        return CARD_RESULT_UNLOCKED;
     } else {
         setCardState(card_state);
-        return CARD_ERROR_READY;
+        return CARD_RESULT_READY;
     }
 }
 

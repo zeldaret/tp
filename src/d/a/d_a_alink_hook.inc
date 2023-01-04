@@ -313,46 +313,161 @@ void daAlink_c::setHookshotReadyMaterial() {
 }
 
 /* 801090EC-80109170 103A2C 0084+00 8/8 0/0 0/0 .text initHookshotUpperAnimeSpeed__9daAlink_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::initHookshotUpperAnimeSpeed(int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/initHookshotUpperAnimeSpeed__9daAlink_cFi.s"
+int daAlink_c::initHookshotUpperAnimeSpeed(int param_0) {
+    if (checkHookshotWait()) {
+        if (param_0) {
+            f32 tmp_0 = FLOAT_LABEL(lit_6108);
+            mUpperFrameCtrl[2].setRate(tmp_0);
+            mUpperFrameCtrl[2].setFrame(tmp_0);
+            getNowAnmPackUpper(UPPER_2)->setFrame(tmp_0);
+        } else {
+            setWaterInAnmRate(&mUpperFrameCtrl[2], daAlinkHIO_hookshot_c0::m.mWaitAnmSpeed);
+        }
+
+        return 1;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 80109170-801091E4 103AB0 0074+00 4/4 0/0 0/0 .text            initHookshotReady__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::initHookshotReady() {
-    nofralloc
-#include "asm/d/a/d_a_alink/initHookshotReady__9daAlink_cFv.s"
+void daAlink_c::initHookshotReady() {
+    mItemMode = 1;
+
+    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    field_0x33e0 = tmp_0;
+    
+    dComIfGp_getVibration().StartShock(1, 1, cXyz(tmp_0, lit_6040, tmp_0));
+
+    field_0x3018 = 3;
+    field_0x3494 = lit_6041;
 }
-#pragma pop
 
 /* 801091E4-80109284 103B24 00A0+00 1/1 0/0 0/0 .text            setHookshotReadyAnime__9daAlink_cFv
  */
 #pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setHookshotReadyAnime() {
-    nofralloc
-#include "asm/d/a/d_a_alink/setHookshotReadyAnime__9daAlink_cFv.s"
+#pragma optimization_level 2
+void daAlink_c::setHookshotReadyAnime() {
+    f32 speed;
+    if (!i_checkAttentionLock() && mFastShotTime == 0) {
+        speed = FLOAT_LABEL(lit_6108);
+    } else {
+        speed = daAlinkHIO_hookshot_c0::m.mWaitAnmSpeed;
+    }
+
+    setUpperAnimeBaseSpeed(0x18D, speed, lit_6109);
+    field_0x3020 = 0;
+    initHookshotReady();
 }
 #pragma pop
 
 /* 80109284-801095C8 103BC4 0344+00 3/3 0/0 0/0 .text checkUpperItemActionHookshot__9daAlink_cFv
  */
+// checkAttentionLock
+#ifdef NONMATCHING
+int daAlink_c::checkUpperItemActionHookshot() {
+    if (checkHookshotWait()) {
+        mSearchBallScale = __float_max[0];
+    }
+
+    if (mItemMode == 1) {
+        if (!itemButton() && field_0x3018 == 0 && checkReadyItem()) {
+            mItemMode = 2;
+            field_0x3026 = 0;
+            field_0x3494 = lit_6041;
+            field_0x284c.clearData();
+            cancelLockAt();
+            field_0x2804 = NULL;
+
+            if (mProcID == PROC_HOOKSHOT_ROOF_SHOOT || mProcID == PROC_HOOKSHOT_WALL_SHOOT) {
+                daAlink_ANM anmID;
+                if (mProcID == PROC_HOOKSHOT_ROOF_SHOOT) {
+                    if (field_0x3020 == 0) {
+                        anmID = ANM_HOOKSHOT_HANG_SHOOT_RIGHT;
+                    } else {
+                        anmID = ANM_HOOKSHOT_HANG_SHOOT_LEFT;
+                    }
+                } else if (field_0x3020 == 0) {
+                    anmID = ANM_HOOKSHOT_WALL_SHOOT_RIGHT;
+                } else {
+                    anmID = ANM_HOOKSHOT_WALL_SHOOT_LEFT;
+                }
+
+                setSingleAnimeBaseMorf(anmID, FLOAT_LABEL(lit_6108));
+            } else if (i_checkModeFlg(0x40400)) {
+                setUpperAnimeParam(0x18C, UPPER_2, &daAlinkHIO_hookshot_c0::m.mShootAnm);
+
+                if (i_checkModeFlg(0x40000)) {
+                    mNormalSpeed = FLOAT_LABEL(lit_6108);
+                }
+            } else {
+                f32 tmp_0 = FLOAT_LABEL(lit_6108);
+                mUpperFrameCtrl[2].setRate(tmp_0);
+                mUpperFrameCtrl[2].setFrame(tmp_0);
+                getNowAnmPackUpper(UPPER_2)->setFrame(tmp_0);
+
+                mNormalSpeed = tmp_0;
+                onModeFlg(1);
+                mSpeedModifier = tmp_0;
+                mNowAnmPackUpper[2].setRatio(tmp_0);
+                
+                setSingleAnimeParam(ANM_HOOKSHOT_SHOOT, &daAlinkHIO_hookshot_c0::m.mShootAnm);
+            }
+
+            if (!i_checkNoResetFlg3(FLG3_UNK_4)) {
+                f32 tmp_0 = FLOAT_LABEL(lit_6108);
+                dComIfGp_getVibration().StartQuake(1, 1, cXyz(tmp_0, lit_6040, tmp_0));
+                i_onNoResetFlg3(FLG3_UNK_4);
+            }
+
+            return 1;
+        }
+    } else if (mItemMode == 0) {
+        if (i_checkModeFlg(0x400) && i_checkAttentionLock() && mTargetedActor == NULL) {
+            resetUpperAnime(UPPER_2, lit_6109);
+            dComIfGp_clearPlayerStatus0(0, 0x4000);
+            return 1;
+        }
+
+        if (checkReadyItem() && itemButton()) {
+            initHookshotReady();
+        }
+    } else if (mItemMode == 3) {
+        if (checkReadyItem() && itemTrigger()) {
+            mItemMode = 6;
+        }
+
+        checkNextActionHookshot();
+        return 1;
+    } else if (mItemMode == 6) {
+        checkNextActionHookshot();
+        return 1;
+    } else if (mItemMode == 5 || mItemMode == 4) {
+        if (field_0x3026 != 0) {
+            field_0x3026--;
+            setHookshotTopPosFly();
+            return 1;
+        }
+
+        return procHookshotFlyInit();
+    }
+
+    if (field_0x3018 > 0) {
+        field_0x3018--;
+    }
+
+    return cancelUpperItemReadyAnime(0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkUpperItemActionHookshot() {
+asm int daAlink_c::checkUpperItemActionHookshot() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkUpperItemActionHookshot__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801095C8-801097A0 103F08 01D8+00 7/7 0/0 0/0 .text checkNextActionHookshot__9daAlink_cFv */
 #pragma push

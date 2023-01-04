@@ -7,63 +7,13 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Types:
-//
-
-struct JSUPtrLink {};
-
-struct JSUPtrList {
-    /* 802DBF4C */ void append(JSUPtrLink*);
-};
-
-template <typename A0>
-struct JSULink {};
-/* JSULink<JAUBankTable> */
-struct JSULink__template0 {};
-
-struct JAUBankTable {
-    /* 802A4AA0 */ void getBank(u32) const;
-};
-
-struct JAUBankTableDictionary {
-    /* 802A4A80 */ void appendBankTable(JSULink<JAUBankTable>*);
-};
-
-//
-// Forward References:
-//
-
-extern "C" void func_802A4A80();
-extern "C" void getBank__12JAUBankTableCFUl();
-
-//
-// External References:
-//
-
-extern "C" void append__10JSUPtrListFP10JSUPtrLink();
-
-//
-// Declarations:
-//
-
 /* 802A4A80-802A4AA0 29F3C0 0020+00 0/0 1/1 0/0 .text
  * appendBankTable__22JAUBankTableDictionaryFP23JSULink<12JAUBankTable> */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAUBankTableDictionary::appendBankTable(JSULink<JAUBankTable>* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAUBankTable/func_802A4A80.s"
+void JAUBankTableDictionary::appendBankTable(JSULink<JAUBankTable>* bankTableList) {
+    append(bankTableList);
 }
-#pragma pop
 
 /* 802A4AA0-802A4AC4 29F3E0 0024+00 0/0 2/0 0/0 .text            getBank__12JAUBankTableCFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAUBankTable::getBank(u32 param_0) const {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAUBankTable/getBank__12JAUBankTableCFUl.s"
+JASBank* JAUBankTable::getBank(u32 bank) const {
+    return mBankPtrTable.get(bank);
 }
-#pragma pop

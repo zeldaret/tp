@@ -224,7 +224,6 @@ extern "C" void free__7JKRHeapFPvP7JKRHeap();
 extern "C" void PPCMfhid2();
 extern "C" void LCEnable();
 extern "C" void LCDisable();
-extern "C" void DVDCancel();
 extern "C" void VISetPostRetraceCallback();
 extern "C" void VIGetNextField();
 extern "C" void VIGetTvFormat();

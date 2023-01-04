@@ -228,7 +228,7 @@ lbl_80356EF4:
 /* 80356F18  7F 83 02 2E */	lhzx r28, r3, r0
 /* 80356F1C  38 60 00 00 */	li r3, 0
 /* 80356F20  4B FE 96 3D */	bl __OSUnlockSramEx
-/* 80356F24  A0 0D 84 F0 */	lhz r0, struct_80450A70+0x0(r13)
+/* 80356F24  A0 0D 84 F0 */	lhz r0, __CARDVendorID+0x0(r13)
 /* 80356F28  28 00 FF FF */	cmplwi r0, 0xffff
 /* 80356F2C  41 82 00 0C */	beq lbl_80356F38
 /* 80356F30  7C 1C 00 40 */	cmplw r28, r0

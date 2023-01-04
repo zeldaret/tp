@@ -7,7 +7,8 @@
 extern "C" {
 #endif
 
-void __OSResetSWInterruptHandler(void);
+typedef void (*OSResetCallback)(void);
+
 static BOOL OSGetResetButtonState(void);
 BOOL OSGetResetSwitchState(void);
 

@@ -370,7 +370,7 @@ u8 J3DShapeMtxConcatView::sMtxPtrTbl[8];
 J3DTexGenBlock* J3DDifferedTexMtx::sTexGenBlock;
 
 /* 804515C4-804515C8 000AC4 0004+00 1/1 2/2 0/0 .sbss            sTexMtxObj__17J3DDifferedTexMtx */
-J3DTexMtx* J3DDifferedTexMtx::sTexMtxObj;
+J3DTexMtxObj* J3DDifferedTexMtx::sTexMtxObj;
 
 /* 80456398-8045639C 004998 0004+00 2/2 0/0 0/0 .sdata2          @1032 */
 SECTION_SDATA2 static u8 lit_1032[4] = {

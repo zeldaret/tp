@@ -36,7 +36,7 @@ lbl_80357DE8:
 /* 80357DE8  2C 1E FF F6 */	cmpwi r30, -10
 /* 80357DEC  40 82 00 A0 */	bne lbl_80357E8C
 /* 80357DF0  88 7B 00 34 */	lbz r3, 0x34(r27)
-/* 80357DF4  88 0D 84 F2 */	lbz r0, struct_80450A70+0x2(r13)
+/* 80357DF4  88 0D 84 F2 */	lbz r0, data_80450A72(r13)
 /* 80357DF8  7C 60 00 38 */	and r0, r3, r0
 /* 80357DFC  54 1C 06 3E */	clrlwi r28, r0, 0x18
 /* 80357E00  54 00 06 B5 */	rlwinm. r0, r0, 0, 0x1a, 0x1a

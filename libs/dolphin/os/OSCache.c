@@ -351,8 +351,6 @@ static asm void LCStoreBlocks(register void* destAddr, register void* srcAddr,
     // clang-format on
 }
 /* 8033B838-8033B8E4 336178 00AC+00 0/0 0/0 3/3 .text            LCStoreData */
-// matches with mwcc 1.2.5e
-#ifdef NONMATCHING
 u32 LCStoreData(void* destAddr, void* srcAddr, u32 nBytes) {
     u32 blocks = (nBytes + 31) / 32;
     u32 ret = (blocks + 127) / 128;
@@ -372,16 +370,6 @@ u32 LCStoreData(void* destAddr, void* srcAddr, u32 nBytes) {
 
     return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 LCStoreData(void* destAddr, void* srcAddr, u32 nBytes) {
-    nofralloc
-#include "asm/dolphin/os/OSCache/LCStoreData.s"
-}
-#pragma pop
-#endif
 
 /* 8033B8E4-8033B8F8 336224 0014+00 0/0 0/0 3/3 .text            LCQueueWait */
 asm void LCQueueWait(register u32 len){

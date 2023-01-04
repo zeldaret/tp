@@ -4,17 +4,16 @@
 //
 
 #include "d/d_kyeff.h"
+
 #include "Z2AudioLib/Z2EnvSeMgr.h"
 #include "d/com/d_com_inf_game.h"
+#include "f_op/f_op_actor.h"
+#include "f_op/f_op_kankyo.h"
+#include "OS/OSTime.h"
 #include "d/kankyo/d_kankyo.h"
+#include "d/kankyo/d_kankyo_wether.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct kankyo_class {};
 
 //
 // Forward References:
@@ -131,11 +130,15 @@ static asm int dKyeff_Create(kankyo_class* param_0) {
 
 /* ############################################################################################## */
 /* 803BC158-803BC16C -00001 0014+00 1/0 0/0 0/0 .data            l_dKyeff_Method */
-SECTION_DATA static void* l_dKyeff_Method[5] = {
-    (void*)dKyeff_Create__FP12kankyo_class, (void*)dKyeff_Delete__FP8dKyeff_c,
-    (void*)dKyeff_Execute__FP8dKyeff_c,     (void*)dKyeff_IsDelete__FP8dKyeff_c,
-    (void*)dKyeff_Draw__FP8dKyeff_c,
+static leafdraw_method_class l_dKyeff_Method = {
+    (process_method_func)dKyeff_Create,
+    (process_method_func)dKyeff_Delete,
+    (process_method_func)dKyeff_Execute,
+    (process_method_func)dKyeff_IsDelete,
+    (process_method_func)dKyeff_Draw,
 };
+
+extern "C" extern void* g_fopKy_Method[5 + 1 /* padding */];
 
 /* 803BC16C-803BC198 -00001 0028+04 0/0 0/0 1/0 .data            g_profile_KYEFF */
 SECTION_DATA extern void* g_profile_KYEFF[10 + 1 /* padding */] = {

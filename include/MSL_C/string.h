@@ -2,7 +2,7 @@
 #define MSL_STRING_H_
 
 #include "Runtime.PPCEABI.H/__va_arg.h"
-#include "dolphin/types.h"
+
 
 // TODO: move to MSL_C/
 extern "C" {

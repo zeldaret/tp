@@ -5,36 +5,24 @@
 
 #include "dolphin/card/CARDWrite.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "dolphin/card/card.h"
+#include "dolphin/dsp/dsp.h"
+#include "dolphin/os/OS.h"
+
+#include "dolphin/card/CARDPriv.h"
 
 //
 // Forward References:
 //
 
-static void WriteCallback();
-static void EraseCallback();
-static void CARDWriteAsync();
-void CARDWrite();
+static void WriteCallback(s32 chan, s32 result);
+static void EraseCallback(s32 chan, s32 result);
 
 //
 // External References:
 //
 
-void DCStoreRange();
-void OSGetTime();
-void __CARDDefaultApiCallback();
-void __CARDSyncCallback();
-void __CARDEraseSector();
-void __CARDPutControlBlock();
-void __CARDSync();
-void __CARDWrite();
-void __CARDGetFatBlock();
-void __CARDGetDirBlock();
-void __CARDUpdateDir();
-void __CARDIsWritable();
-void __CARDSeek();
 void __div2i();
-extern u8 __CARDBlock[544];
 
 //
 // Declarations:
@@ -44,7 +32,7 @@ extern u8 __CARDBlock[544];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void WriteCallback() {
+static asm void WriteCallback(s32 chan, s32 result) {
     nofralloc
 #include "asm/dolphin/card/CARDWrite/WriteCallback.s"
 }
@@ -54,28 +42,53 @@ static asm void WriteCallback() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void EraseCallback() {
+static asm void EraseCallback(s32 chan, s32 result) {
     nofralloc
 #include "asm/dolphin/card/CARDWrite/EraseCallback.s"
 }
 #pragma pop
 
 /* 80358B34-80358C48 353474 0114+00 1/1 0/0 0/0 .text            CARDWriteAsync */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void CARDWriteAsync() {
-    nofralloc
-#include "asm/dolphin/card/CARDWrite/CARDWriteAsync.s"
+s32 CARDWriteAsync(CARDFileInfo* fileInfo, const void* buf, s32 length, s32 offset,
+                   CARDCallback callback) {
+    CARDControl* card;
+    s32 result;
+    CARDDir* dir;
+    CARDDir* ent;
+
+    result = __CARDSeek(fileInfo, length, offset, &card);
+    if (result < 0) {
+        return result;
+    }
+
+    if (OFFSET(offset, card->sectorSize) != 0 || OFFSET(length, card->sectorSize) != 0) {
+        return __CARDPutControlBlock(card, CARD_RESULT_FATAL_ERROR);
+    }
+
+    dir = __CARDGetDirBlock(card);
+    ent = &dir[fileInfo->fileNo];
+    result = __CARDIsWritable(card, ent);
+    if (result < 0) {
+        return __CARDPutControlBlock(card, result);
+    }
+
+    DCStoreRange((void*)buf, (u32)length);
+    card->apiCallback = callback ? callback : __CARDDefaultApiCallback;
+    card->buffer = (void*)buf;
+    result =
+        __CARDEraseSector(fileInfo->chan, card->sectorSize * (u32)fileInfo->iBlock, EraseCallback);
+    if (result < 0) {
+        __CARDPutControlBlock(card, result);
+    }
+    return result;
 }
-#pragma pop
 
 /* 80358C48-80358C90 353588 0048+00 0/0 2/2 0/0 .text            CARDWrite */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CARDWrite() {
-    nofralloc
-#include "asm/dolphin/card/CARDWrite/CARDWrite.s"
+s32 CARDWrite(CARDFileInfo* fileInfo, const void* buf, s32 length, s32 offset) {
+    s32 result = CARDWriteAsync(fileInfo, buf, length, offset, __CARDSyncCallback);
+    if (result < 0) {
+        return result;
+    }
+
+    return __CARDSync(fileInfo->chan);
 }
-#pragma pop

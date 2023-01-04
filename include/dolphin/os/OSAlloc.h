@@ -26,6 +26,8 @@ typedef u32 OSHeapHandle;
 
 extern volatile s32 __OSCurrHeap;
 
+#define OSRoundUp32B(v) (((u32)(v + 31) & ~31))
+
 #define OSRoundUp(x, align) (((x) + (align)-1) & (-(align)))
 #define OSRoundUpPtr(x, align) ((void*)((((u32)(x)) + (align)-1) & (~((align)-1))))
 

@@ -4,74 +4,6 @@
 //
 
 #include "JSystem/JAudio2/JASWaveArcLoader.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JSUPtrList {
-    /* 802DBEAC */ ~JSUPtrList();
-};
-
-struct JSUPtrLink {
-    /* 802DBE14 */ ~JSUPtrLink();
-};
-
-struct JKRHeap {};
-
-struct JKRExpandSwitch {};
-
-struct JKRDvdAramRipper {
-    /* 802DA874 */ void loadToAram(s32, u32, JKRExpandSwitch, u32, u32, u32*);
-};
-
-struct JASWaveArcLoader {
-    /* 8029A0A0 */ void getRootHeap();
-    /* 8029A0D0 */ void setCurrentDir(char const*);
-    /* 8029A130 */ void getCurrentDir();
-
-    static u8 sCurrentDir[64];
-    static u8 sAramHeap[4 + 4 /* padding */];
-};
-
-struct JASDisposer {
-    /* 80290BCC */ void onDispose();
-    /* 8029A7B8 */ ~JASDisposer();
-};
-
-struct JASHeap {
-    /* 80290140 */ JASHeap(JASDisposer*);
-    /* 8029021C */ void alloc(JASHeap*, u32);
-    /* 802903F4 */ void allocTail(JASHeap*, u32);
-    /* 802904E4 */ void free();
-};
-
-struct JASWaveArc {
-    /* 80298FA0 */ void onLoadDone();
-    /* 80298FA4 */ void onEraseDone();
-    /* 8029A13C */ JASWaveArc();
-    /* 8029A1B4 */ ~JASWaveArc();
-    /* 8029A258 */ void loadSetup(u32);
-    /* 8029A2EC */ void eraseSetup();
-    /* 8029A378 */ void loadToAramCallback(void*);
-    /* 8029A404 */ void sendLoadCmd();
-    /* 8029A4C0 */ void load(JASHeap*);
-    /* 8029A580 */ void loadTail(JASHeap*);
-    /* 8029A640 */ void erase();
-    /* 8029A664 */ void onDispose();
-    /* 8029A6AC */ void setEntryNum(s32);
-    /* 8029A70C */ void setFileName(char const*);
-};
-
-struct JASTaskThread {
-    /* 8028FB5C */ void sendCmdMsg(void (*)(void*), void const*, u32);
-};
-
-struct JASKernel {
-    /* 80290B08 */ void getAramHeap();
-};
 
 //
 // Forward References:
@@ -117,17 +49,8 @@ extern "C" void __dla__FPv();
 extern "C" void loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl();
 extern "C" void __dt__10JSUPtrLinkFv();
 extern "C" void __dt__10JSUPtrListFv();
-extern "C" void OSInitMutex();
-extern "C" void OSLockMutex();
-extern "C" void OSUnlockMutex();
-extern "C" void DVDConvertPathToEntrynum();
-extern "C" void DVDFastOpen();
-extern "C" void DVDClose();
 extern "C" void _savegpr_27();
 extern "C" void _restgpr_27();
-extern "C" void strcat();
-extern "C" void strcpy();
-extern "C" void strlen();
 
 //
 // Declarations:
@@ -135,48 +58,39 @@ extern "C" void strlen();
 
 /* ############################################################################################## */
 /* 80451290-80451298 000790 0004+04 1/1 0/0 0/0 .sbss            sAramHeap__16JASWaveArcLoader */
-u8 JASWaveArcLoader::sAramHeap[4 + 4 /* padding */];
+JASHeap* JASWaveArcLoader::sAramHeap;
 
 /* 8029A0A0-8029A0D0 2949E0 0030+00 2/2 0/0 0/0 .text            getRootHeap__16JASWaveArcLoaderFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASWaveArcLoader::getRootHeap() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASWaveArcLoader/getRootHeap__16JASWaveArcLoaderFv.s"
+JASHeap* JASWaveArcLoader::getRootHeap() {
+    if (JASWaveArcLoader::sAramHeap) {
+        return JASWaveArcLoader::sAramHeap;
+    }
+    return JASKernel::getAramHeap();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803C77E0-803C7820 024900 0040+00 2/2 0/0 0/0 .data            sCurrentDir__16JASWaveArcLoader */
-SECTION_DATA u8 JASWaveArcLoader::sCurrentDir[64] = {
-    0x2F, 0x41, 0x75, 0x64, 0x69, 0x6F, 0x52, 0x65, 0x73, 0x2F, 0x57, 0x61, 0x76, 0x65, 0x73, 0x2F,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+char JASWaveArcLoader::sCurrentDir[DIR_MAX] = "/AudioRes/Waves/";
 
 /* 8029A0D0-8029A130 294A10 0060+00 0/0 1/1 0/0 .text setCurrentDir__16JASWaveArcLoaderFPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASWaveArcLoader::setCurrentDir(char const* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASWaveArcLoader/setCurrentDir__16JASWaveArcLoaderFPCc.s"
+void JASWaveArcLoader::setCurrentDir(char const* dir) {
+    ASSERT(std::strlen(dir) < DIR_MAX - 1);
+    strcpy(sCurrentDir, dir);
+    u32 len = strlen(sCurrentDir);
+    if (sCurrentDir[len - 1] != '/') {
+        ASSERT(len + 1 < DIR_MAX);
+        sCurrentDir[len] = '/';
+        sCurrentDir[len + 1] = '\0';
+    }
 }
-#pragma pop
 
 /* 8029A130-8029A13C 294A70 000C+00 1/1 0/0 0/0 .text            getCurrentDir__16JASWaveArcLoaderFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASWaveArcLoader::getCurrentDir() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASWaveArcLoader/getCurrentDir__16JASWaveArcLoaderFv.s"
+
+char* JASWaveArcLoader::getCurrentDir() {
+    return sCurrentDir;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803C7820-803C7838 024940 0018+00 2/2 0/0 0/0 .data            __vt__10JASWaveArc */
@@ -198,131 +112,185 @@ SECTION_DATA extern void* __vt__11JASDisposer[4] = {
 };
 
 /* 8029A13C-8029A1B4 294A7C 0078+00 0/0 2/2 0/0 .text            __ct__10JASWaveArcFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JASWaveArc::JASWaveArc() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASWaveArcLoader/__ct__10JASWaveArcFv.s"
+
+JASWaveArc::JASWaveArc() : mHeap(this) {
+    _48 = 0;
+    _4c = 0;
+    mEntryNum = -1;
+    mFileLength = 0;
+    _58 = 0;
+    _5a = 0;
+    OSInitMutex(&mMutex);
 }
-#pragma pop
 
 /* 8029A1B4-8029A258 294AF4 00A4+00 1/0 2/2 0/0 .text            __dt__10JASWaveArcFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JASWaveArc::~JASWaveArc() {
+#ifdef NONMATCHING
+JASWaveArc::~JASWaveArc() {}
+#else
+asm void __dt__10JASWaveArcFv() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASWaveArcLoader/__dt__10JASWaveArcFv.s"
 }
-#pragma pop
+#endif
 
 /* 8029A258-8029A2EC 294B98 0094+00 1/1 0/0 0/0 .text            loadSetup__10JASWaveArcFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASWaveArc::loadSetup(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASWaveArcLoader/loadSetup__10JASWaveArcFUl.s"
+bool JASWaveArc::loadSetup(u32 param_0) {
+    JASMutexLock mutexLock(&mMutex);
+    if (_58 != param_0) {
+        return false;
+    }
+    if (_4c != 1) {
+        return false;
+    }
+    _48 = 1;
+    _4c = 2;
+    return true;
 }
-#pragma pop
 
 /* 8029A2EC-8029A378 294C2C 008C+00 1/1 0/0 0/0 .text            eraseSetup__10JASWaveArcFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASWaveArc::eraseSetup() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASWaveArcLoader/eraseSetup__10JASWaveArcFv.s"
+bool JASWaveArc::eraseSetup() {
+    JASMutexLock mutexLock(&mMutex);
+    if (_4c == 0) {
+        return false;
+    }
+    if (_4c == 1) {
+        _4c = 0;
+        return false;
+    }
+    _48 = 0;
+    _4c = 0;
+    return true;
 }
-#pragma pop
 
 /* 8029A378-8029A404 294CB8 008C+00 1/1 0/0 0/0 .text            loadToAramCallback__10JASWaveArcFPv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASWaveArc::loadToAramCallback(void* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASWaveArcLoader/loadToAramCallback__10JASWaveArcFPv.s"
+void JASWaveArc::loadToAramCallback(void* this_) {
+    loadToAramCallbackParams* tmp = (loadToAramCallbackParams*)this_;
+    JASWaveArc* wavArc = tmp->mWavArc;
+    JKRAramBlock* block = JKRDvdAramRipper::loadToAram(tmp->mEntryNum, tmp->mBase,
+                                                       EXPAND_SWITCH_UNKNOWN0, 0, 0, NULL);
+    if (block == NULL) {
+        // "loadToAram Failed"
+        return;
+    }
+    wavArc->_5a--;
+    if (wavArc->loadSetup(tmp->_c)) {
+        wavArc->onLoadDone();
+    }
 }
-#pragma pop
 
 /* 8029A404-8029A4C0 294D44 00BC+00 2/2 0/0 0/0 .text            sendLoadCmd__10JASWaveArcFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASWaveArc::sendLoadCmd() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASWaveArcLoader/sendLoadCmd__10JASWaveArcFv.s"
+bool JASWaveArc::sendLoadCmd() {
+    JASMutexLock mutexLock(&mMutex);
+    _48 = 0;
+    _4c = 1;
+    void* base = mHeap.getBase();
+    loadToAramCallbackParams commandInfo;
+    commandInfo.mWavArc = this;
+    commandInfo.mEntryNum = mEntryNum;
+    commandInfo.mBase = (u32)mHeap.mBase;
+    commandInfo._c = ++_58;
+
+    _5a++;
+
+    JASTaskThread* thread = JASDvd::getThreadPointer();
+    int status = thread->sendCmdMsg(loadToAramCallback, &commandInfo, 0x10);
+    if (status == 0) {
+        // "sendCmdMsg loadToAramCallback Failed"
+        mHeap.free();
+        return false;
+    }
+    return true;
 }
-#pragma pop
 
 /* 8029A4C0-8029A580 294E00 00C0+00 0/0 2/2 0/0 .text            load__10JASWaveArcFP7JASHeap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASWaveArc::load(JASHeap* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASWaveArcLoader/load__10JASWaveArcFP7JASHeap.s"
+bool JASWaveArc::load(JASHeap* heap) {
+    if (mEntryNum < 0) {
+        return false;
+    }
+    JASMutexLock mutexLock(&mMutex);
+    if (_4c != 0) {
+        return false;
+    }
+    if (heap == NULL) {
+        heap = JASWaveArcLoader::getRootHeap();
+    }
+    bool result = mHeap.alloc(heap, mFileLength);
+    if (result == false) {
+        return false;
+    }
+    return sendLoadCmd();
 }
-#pragma pop
 
 /* 8029A580-8029A640 294EC0 00C0+00 0/0 1/1 0/0 .text            loadTail__10JASWaveArcFP7JASHeap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASWaveArc::loadTail(JASHeap* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASWaveArcLoader/loadTail__10JASWaveArcFP7JASHeap.s"
+bool JASWaveArc::loadTail(JASHeap* heap) {
+    if (mEntryNum < 0) {
+        return false;
+    }
+    JASMutexLock mutexLock(&mMutex);
+    if (_4c != 0) {
+        return false;
+    }
+    if (heap == NULL) {
+        heap = JASWaveArcLoader::getRootHeap();
+    }
+    bool result = mHeap.allocTail(heap, mFileLength);
+    if (result == false) {
+        return false;
+    }
+    return sendLoadCmd();
 }
-#pragma pop
 
 /* 8029A640-8029A664 294F80 0024+00 0/0 2/2 0/0 .text            erase__10JASWaveArcFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASWaveArc::erase() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASWaveArcLoader/erase__10JASWaveArcFv.s"
+void JASWaveArc::erase() {
+    mHeap.free();
 }
-#pragma pop
 
 /* 8029A664-8029A6AC 294FA4 0048+00 1/0 2/0 0/0 .text            onDispose__10JASWaveArcFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASWaveArc::onDispose() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASWaveArcLoader/onDispose__10JASWaveArcFv.s"
+void JASWaveArc::onDispose() {
+    if (eraseSetup()) {
+        onEraseDone();
+    }
 }
-#pragma pop
 
 /* 8029A6AC-8029A70C 294FEC 0060+00 1/1 0/0 0/0 .text            setEntryNum__10JASWaveArcFl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASWaveArc::setEntryNum(s32 param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASWaveArcLoader/setEntryNum__10JASWaveArcFl.s"
+void JASWaveArc::setEntryNum(s32 entryNum) {
+    DVDFileInfo fileInfo;
+    if (entryNum < 0) {
+        return;
+    }
+    BOOL openStatus = DVDFastOpen(entryNum, &fileInfo);
+    if (openStatus == FALSE) {
+        return;
+    }
+    mFileLength = fileInfo.length;
+    DVDClose(&fileInfo);
+    mEntryNum = entryNum;
 }
-#pragma pop
 
 /* 8029A70C-8029A7B8 29504C 00AC+00 0/0 2/2 0/0 .text            setFileName__10JASWaveArcFPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASWaveArc::setFileName(char const* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASWaveArcLoader/setFileName__10JASWaveArcFPCc.s"
+void JASWaveArc::setFileName(char const* fileName) {
+    char* currentDir = JASWaveArcLoader::getCurrentDir();
+    size_t length = strlen(currentDir);
+    length = length + strlen(fileName);
+    JKRHeap* systemHeap = JASKernel::getSystemHeap();
+    char* fileString = new (systemHeap, -4) char[length + 1];
+    strcpy(fileString, currentDir);
+    strcat(fileString, fileName);
+    fileString[length] = '\0';
+    int entryNum = DVDConvertPathToEntrynum(fileString);
+    delete[] fileString;
+    if (entryNum < 0) {
+        return;
+    }
+    setEntryNum(entryNum);
 }
-#pragma pop
 
 /* 8029A7B8-8029A800 2950F8 0048+00 1/0 0/0 0/0 .text            __dt__11JASDisposerFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JASDisposer::~JASDisposer() {
+asm void __dt__11JASDisposerFv() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASWaveArcLoader/__dt__11JASDisposerFv.s"
 }

@@ -5,48 +5,40 @@
 
 #include "dolphin/card/CARDNet.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "dolphin/card/card.h"
+#include "dolphin/dsp/dsp.h"
+#include "dolphin/dvd/dvd.h"
 
-//
-// Forward References:
-//
+#include "dolphin/card/CARDPriv.h"
 
-void CARDGetSerialNo();
-extern u8 struct_80450A70[8];
+/* 80450A70 0002+00 data_80450A70 __CARDVendorID */
+SECTION_SDATA u16 __CARDVendorID = 0xFFFF;
 
-//
-// External References:
-//
-
-void __CARDGetControlBlock();
-void __CARDPutControlBlock();
-
-//
-// Declarations:
-//
+/* 80450A72 0006+00 data_80450A72 None */
+SECTION_SDATA u8 data_80450A72 = 0x1C;
 
 /* 80359158-8035921C 353A98 00C4+00 0/0 1/1 0/0 .text            CARDGetSerialNo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void CARDGetSerialNo() {
-    nofralloc
-#include "asm/dolphin/card/CARDNet/CARDGetSerialNo.s"
-}
-#pragma pop
+s32 CARDGetSerialNo(s32 chan, u64* serialNo) {
+    CARDControl* card;
+    CARDID* id;
+    int i;
+    u64 code;
+    s32 result;
 
-/* ############################################################################################## */
-/* 80450A70-80450A78 -00001 0008+00 0/0 4/4 0/0 .sdata           None */
-SECTION_SDATA extern u8 struct_80450A70[8];
-SECTION_SDATA u8 struct_80450A70[8] = {
-    /* 80450A70 0002+00 data_80450A70 __CARDVendorID */
-    0xFF,
-    0xFF,
-    /* 80450A72 0006+00 data_80450A72 None */
-    0x1C,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+    if (!(0 <= chan && chan < 2)) {
+        return CARD_RESULT_FATAL_ERROR;
+    }
+
+    result = __CARDGetControlBlock(chan, &card);
+    if (result < 0) {
+        return result;
+    }
+
+    id = (CARDID*)card->workArea;
+    for (code = 0, i = 0; i < sizeof(id->serial) / sizeof(u64); ++i) {
+        code ^= *(u64*)&id->serial[sizeof(u64) * i];
+    }
+    *serialNo = code;
+
+    return __CARDPutControlBlock(card, CARD_RESULT_READY);
+}

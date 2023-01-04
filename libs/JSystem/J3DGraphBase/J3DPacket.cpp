@@ -209,7 +209,7 @@ SECTION_DATA static s32 sSizeOfDiffered[8] = {
 J3DDrawPacket::J3DDrawPacket() {
     mFlags = 0;
     mpDisplayListObj = NULL;
-    mpTexMtx = NULL;
+    mpTexMtxObj = NULL;
 }
 
 /* 803127B0-8031280C 30D0F0 005C+00 3/2 0/0 0/0 .text            __dt__13J3DDrawPacketFv */
@@ -348,7 +348,7 @@ J3DError J3DShapePacket::newDifferedDisplayList(u32 flag) {
 }
 
 /* 80312E08-80312F24 30D748 011C+00 2/2 0/0 0/0 .text            prepareDraw__14J3DShapePacketCFv */
-#ifdef NONMATCHING
+#if defined NONMATCHING
 void J3DShapePacket::prepareDraw() const {
     mpModel->getVertexBuffer()->setArray();
     j3dSys.setModel(mpModel);
@@ -376,7 +376,7 @@ void J3DShapePacket::prepareDraw() const {
     if (!mpShape->getNBTFlag()) {
         mpShape->setNrmMtx(mpMtxBuffer->getNrmMtxPtrPtr());
     } else {
-        mpShape->setNrmMtx(mpMtxBuffer->getBumpMtxPtrPtr() + mpShape->getBumpMtxOffset());
+        mpShape->setNrmMtx(mpMtxBuffer->getBumpMtxPtrPtr()[mpShape->getBumpMtxOffset()]);
     }
 
     mpModel->getModelData()->syncJ3DSysFlags();
@@ -397,7 +397,7 @@ void J3DShapePacket::draw() {
     if (!checkFlag(J3DShpFlag_Hidden) && mpShape != NULL) {
         prepareDraw();
 
-        if (mpTexMtx != NULL) {
+        if (mpTexMtxObj != NULL) {
             J3DMaterial* material = mpShape->getMaterial();
             J3DDifferedTexMtx::sTexGenBlock = material->getTexGenBlock();
             J3DDifferedTexMtx::sTexMtxObj = getTexMtxObj();
@@ -418,7 +418,7 @@ void J3DShapePacket::drawFast() {
     if (!checkFlag(J3DShpFlag_Hidden) && mpShape != NULL) {
         prepareDraw();
 
-        if (mpTexMtx != NULL) {
+        if (mpTexMtxObj != NULL) {
             J3DMaterial* material = mpShape->getMaterial();
             J3DDifferedTexMtx::sTexGenBlock = material->getTexGenBlock();
             J3DDifferedTexMtx::sTexMtxObj = getTexMtxObj();
