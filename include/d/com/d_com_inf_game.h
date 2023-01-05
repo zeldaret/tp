@@ -825,6 +825,7 @@ BOOL dComIfGs_isEventBit(u16 i_flag);
 int dComIfGs_isItemFirstBit(u8 i_no);
 u16 dComIfGs_getRupee();
 static u16 dComIfGs_getLife();
+s8 dComIfGs_BossLife_public_Get();
 
 inline void dComIfGs_init() {
     g_dComIfG_gameInfo.info.init();
@@ -1523,6 +1524,10 @@ inline void dComIfGs_setMemoryToCard(u8* i_saveData, int i_dataNum) {
     g_dComIfG_gameInfo.info.memory_to_card((char*)i_saveData, i_dataNum);
 }
 
+inline int dComIfGs_createZone(int roomNo) {
+    return g_dComIfG_gameInfo.info.createZone(roomNo);
+}
+
 
 void dComIfGp_setSelectItem(int index);
 s32 dComIfGp_offHeapLockFlag(int flag);
@@ -1544,6 +1549,7 @@ int dComIfGp_getSelectItemMaxNum(int index);
 void dComIfGp_mapShow();
 void dComIfGp_mapHide();
 bool dComIfGp_checkMapShow();
+void dComIfGp_ret_wp_set(s8);
 s32 dComIfGp_setHeapLockFlag(u8 flag);
 u8 dComIfGp_world_dark_get();
 JKRExpHeap* dComIfGp_getSubHeap2D(int flag);
@@ -1567,6 +1573,7 @@ static u8 dComIfGp_getDoStatus();
 static u8 dComIfGp_getRStatus();
 static dAttCatch_c* dComIfGp_att_getCatghTarget();
 static void dComIfGp_setBottleStatus(u8 param_0, u8 param_1);
+bool dComIfGp_getMapTrans(int i_roomNo, f32* o_transX, f32* o_transY, s16* o_angle);
 
 inline bool i_dComIfGp_checkPlayerStatus0(int param_0, u32 flag) {
     return g_dComIfG_gameInfo.play.checkPlayerStatus(param_0, 0, flag);
@@ -2347,6 +2354,10 @@ inline s32 dComIfGp_roomControl_getStayNo() {
     return dStage_roomControl_c::getStayNo();
 }
 
+inline s32 dComIfGp_roomControl_getZoneNo(int i_roomNo) {
+    return dStage_roomControl_c::getZoneNo(i_roomNo);
+}
+
 inline void dComIfGp_roomControl_initZone() {
     g_dComIfG_gameInfo.play.getRoomControl()->initZone();
 }
@@ -2375,12 +2386,28 @@ inline void dComIfGp_roomControl_setStayNo(int stayNo) {
     g_dComIfG_gameInfo.play.getRoomControl()->setStayNo(stayNo);
 }
 
+inline void dComIfGp_roomControl_setZoneNo(int roomNo, int zoneNo) {
+    g_dComIfG_gameInfo.play.getRoomControl()->setZoneNo(roomNo, zoneNo);
+}
+
 inline dKy_tevstr_c* dComIfGp_roomControl_getTevStr(int i_roomNo) {
     return g_dComIfG_gameInfo.play.getRoomControl()->getTevStr(i_roomNo);
 }
 
-inline bool dComIfGp_roomControl_checkStatusFlag(int i_roomNo, u8 flag) {
-    return g_dComIfG_gameInfo.play.mRoomControl.checkStatusFlag(i_roomNo, flag);
+inline BOOL dComIfGp_roomControl_checkStatusFlag(int i_roomNo, u8 flag) {
+    return g_dComIfG_gameInfo.play.getRoomControl()->checkStatusFlag(i_roomNo, flag);
+}
+
+inline void dComIfGp_roomControl_offStatusFlag(int i_roomNo, u8 flag) {
+    return g_dComIfG_gameInfo.play.getRoomControl()->offStatusFlag(i_roomNo, flag);
+}
+
+inline void dComIfGp_roomControl_onStatusFlag(int i_roomNo, u8 flag) {
+    return g_dComIfG_gameInfo.play.getRoomControl()->onStatusFlag(i_roomNo, flag);
+}
+
+inline void dComIfGp_roomControl_setStatusFlag(int i_roomNo, u8 flag) {
+    return g_dComIfG_gameInfo.play.getRoomControl()->setStatusFlag(i_roomNo, flag);
 }
 
 inline void dComIfGp_roomControl_zoneCountCheck(int i_roomNo) {

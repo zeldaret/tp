@@ -26,4 +26,8 @@ inline int fopScnM_LayerID(void* proc) {
     return fpcM_LayerID(proc);
 }
 
+inline u32 fopScnM_GetParam(void* proc) {
+    return fpcM_GetParam(proc);
+}
+
 #endif

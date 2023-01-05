@@ -106,8 +106,8 @@ lbl_80458A38:
 /* 80458A44  41 80 FF AC */	blt lbl_804589F0
 /* 80458A48  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
 /* 80458A4C  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
-/* 80458A50  3C 80 80 46 */	lis r4, data_80459534@ha /* 0x80459534@ha */
-/* 80458A54  38 84 95 34 */	addi r4, r4, data_80459534@l /* 0x80459534@l */
+/* 80458A50  3C 80 80 46 */	lis r4, l_tevStrType@ha /* 0x80459534@ha */
+/* 80458A54  38 84 95 34 */	addi r4, r4, l_tevStrType@l /* 0x80459534@l */
 /* 80458A58  7C 84 F0 2E */	lwzx r4, r4, r30
 /* 80458A5C  38 A0 00 00 */	li r5, 0
 /* 80458A60  80 D6 00 0C */	lwz r6, 0xc(r22)

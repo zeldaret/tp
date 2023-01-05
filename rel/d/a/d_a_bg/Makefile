@@ -17,6 +17,7 @@ M3_O_FILES := \
 M3_LIBS := \
 
 M3_CFLAGS := \
+	-pool off \
 	-sdata 0 \
 	-sdata2 0 \
 

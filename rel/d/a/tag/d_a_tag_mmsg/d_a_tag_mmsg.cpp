@@ -108,37 +108,39 @@ static int daTagMmsg_Execute(daTagMmsg_c* tag) {
 }
 
 /* 80D5BD28-80D5BD30 000488 0008+00 1/0 0/0 0/0 .text            daTagMmsg_Draw__FP11daTagMmsg_c */
-static bool daTagMmsg_Draw(daTagMmsg_c* tag) {
-    return true;
+static int daTagMmsg_Draw(daTagMmsg_c* tag) {
+    return 1;
 }
 
 /* ############################################################################################## */
 /* 80D5BD44-80D5BD64 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagMmsg_Method */
-// This is probably of type leafdraw_method_class, but I can't get the data to have the right
-// padding without these extra NULLs.
-static void* l_daTagMmsg_Method[8] = {
-    daTagMmsg_Create, daTagMmsg_Delete, daTagMmsg_Execute, NULL, daTagMmsg_Draw, NULL, NULL, NULL,
+static actor_method_class l_daTagMmsg_Method = {
+    (process_method_func)daTagMmsg_Create,
+    (process_method_func)daTagMmsg_Delete,
+    (process_method_func)daTagMmsg_Execute,
+    (process_method_func)NULL,
+    (process_method_func)daTagMmsg_Draw,
 };
 
 /* 80D5BD64-80D5BD94 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Mmsg */
 extern actor_process_profile_definition g_profile_Tag_Mmsg = {
-    -3,                                           // mLayerID
-    7,                                            // mListID
-    0xFFFD,                                       // mListPrio
-    PROC_Tag_Mmsg,                                // mProcName
-    0,                                            // unkA
-    &g_fpcLf_Method.mBase,                        // mSubMtd
-    sizeof(daTagMmsg_c),                          // mSize
-    0,                                            // mSizeOther
-    0,                                            // mParameters
-    &g_fopAc_Method,                              // mSubMtd
-    0x00FF,                                       // mPriority
-    0,                                            // unk22[0]
-    0,                                            // unk22[1]
-    (leafdraw_method_class*)&l_daTagMmsg_Method,  // mSubMtd
-    0x00044000,                                   // mStatus
-    0x03,                                         // mActorType
-    0x0E,                                         // mCullType
-    0,                                            // field_0x2e[0]
-    0                                             // field_0x2e[1]
+    -3,                     // mLayerID
+    7,                      // mListID
+    0xFFFD,                 // mListPrio
+    PROC_Tag_Mmsg,          // mProcName
+    0,                      // unkA
+    &g_fpcLf_Method.mBase,  // mSubMtd
+    sizeof(daTagMmsg_c),    // mSize
+    0,                      // mSizeOther
+    0,                      // mParameters
+    &g_fopAc_Method,        // mSubMtd
+    0x00FF,                 // mPriority
+    0,                      // unk22[0]
+    0,                      // unk22[1]
+    &l_daTagMmsg_Method,    // mSubMtd
+    0x00044000,             // mStatus
+    0x03,                   // mActorType
+    0x0E,                   // mCullType
+    0,                      // field_0x2e[0]
+    0                       // field_0x2e[1]
 };

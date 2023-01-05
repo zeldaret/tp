@@ -344,6 +344,8 @@ public:
 
     JKRExpHeap* getResHeap() { return m_resHeap; }
 
+    void levelAllForceOnEventMove() { field_0x210.allForceOnEventMove(); }
+
     static void onStatus(u8 status) { mStatus |= status; }
     static void offStatus(u8 status) { mStatus &= ~status; }
     static bool isStatus(u8 status) { return mStatus & status; }
