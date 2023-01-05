@@ -225,7 +225,7 @@ void daObjE_CREATE_c::NameChk() {
 /* 80BE3770-80BE3878 000670 0108+00 1/1 0/0 0/0 .text            create__15daObjE_CREATE_cFv */
 int daObjE_CREATE_c::create() {
     if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) kytag05_class();
+        new (this) daObjE_CREATE_c();
         fopAcM_OnCondition(this, 8);
     }
 
