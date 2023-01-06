@@ -58,11 +58,19 @@ async def create_library(library: Library):
         #await builder.write(f"\t@$(STRIP) -d -R .dead -R .comment {target_path}")
         await builder.write("")
 
-        await builder.write(f"{o_path}/%.o: {cpp_path}/%.cpp")
+        await builder.write(f"{o_path}/%.o: {cpp_path}/%.cpp {o_path}/%.d")
         await builder.write(f"\t@mkdir -p $(@D)")
         await builder.write(f"\t@echo building... $<")
         await builder.write(f"\t@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp")
-        await builder.write(f"\t@$(CC) $(CFLAGS) $({prefix}_CFLAGS) -c -o $@ $(basename $@).cpp")
+        await builder.write(f"\t@$(CC) $(CFLAGS) $({prefix}_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp")
+        await builder.write("\t@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi")
+        await builder.write("")
+
+        await builder.write("ifndef DISABLE_DEPS")
+        await builder.write(f"{prefix}_D_FILES := $({prefix}_O_FILES:.o=.d)")
+        await builder.write(f"$({prefix}_D_FILES):")
+        await builder.write(f"include $(wildcard $({prefix}_D_FILES))")
+        await builder.write("endif")
         await builder.write("")
     
     debug(f"generated Makefile: '{makefile_path}'")
@@ -146,11 +154,19 @@ async def create_rel(module: Module, rel_path: Path):
         await builder.write(f"\t@$(LD) -opt_partial -strip_partial $({prefix}_LDFLAGS) -o $({prefix}_TARGET) @{input_file}")
         await builder.write("")
 
-        await builder.write(f"{o_path}/%.o: {cpp_path}/%.cpp")
+        await builder.write(f"{o_path}/%.o: {cpp_path}/%.cpp {o_path}/%.d")
         await builder.write(f"\t@echo [{module.index:>3}] building $@")
         await builder.write(f"\t@mkdir -p $(@D)")
         await builder.write(f"\t@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp")
-        await builder.write(f"\t@$(CC) $(CFLAGS) $({prefix}_CFLAGS) -c -o $@ $(basename $@).cpp")
+        await builder.write(f"\t@$(CC) $(CFLAGS) $({prefix}_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp")
+        await builder.write("\t@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi")
+        await builder.write("")
+
+        await builder.write("ifndef DISABLE_DEPS")
+        await builder.write(f"{prefix}_D_FILES := $({prefix}_O_FILES:.o=.d)")
+        await builder.write(f"$({prefix}_D_FILES):")
+        await builder.write(f"include $(wildcard $({prefix}_D_FILES))")
+        await builder.write("endif")
         await builder.write("")
 
         for library in libraries[1:]:

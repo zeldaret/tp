@@ -92,6 +92,8 @@ LDFLAGS := -unused -map $(MAP) -fp hard -nodefaults -w off
 # Compiler flags
 CFLAGS  += -Cpp_exceptions off -proc gekko -fp hard -O3 -nodefaults -str pool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
 
+DEPFLAGS := $(if $(DISABLE_DEPS),,-MD)
+
 # O4,p for init.c
 $(BUILD_DIR)/src/init.o: CFLAGS := -Cpp_exceptions off -proc gekko -fp hard -O4,p -nodefaults -str pool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
 
