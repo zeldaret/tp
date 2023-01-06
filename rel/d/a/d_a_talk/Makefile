@@ -38,10 +38,17 @@ $(M754_TARGET): $(M754_O_FILES) $(M754_LIBS)
 	@python3 tools/lcf.py rel 754 --output $(M754_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M754_LDFLAGS) -o $(M754_TARGET) @build/M754_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_talk/%.o: rel/d/a/d_a_talk/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_talk/%.o: rel/d/a/d_a_talk/%.cpp $(BUILD_DIR)/rel/d/a/d_a_talk/%.d
 	@echo [754] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M754_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M754_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M754_D_FILES := $(M754_O_FILES:.o=.d)
+$(M754_D_FILES):
+include $(wildcard $(M754_D_FILES))
+endif
 
 

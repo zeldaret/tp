@@ -40,10 +40,17 @@ $(M364_TARGET): $(M364_O_FILES) $(M364_LIBS)
 	@python3 tools/lcf.py rel 364 --output $(M364_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M364_LDFLAGS) -o $(M364_TARGET) @build/M364_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_sola/%.o: rel/d/a/npc/d_a_npc_sola/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_sola/%.o: rel/d/a/npc/d_a_npc_sola/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_sola/%.d
 	@echo [364] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M364_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M364_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M364_D_FILES := $(M364_O_FILES:.o=.d)
+$(M364_D_FILES):
+include $(wildcard $(M364_D_FILES))
+endif
 
 

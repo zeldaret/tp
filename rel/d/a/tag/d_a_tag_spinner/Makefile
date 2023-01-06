@@ -38,10 +38,17 @@ $(M744_TARGET): $(M744_O_FILES) $(M744_LIBS)
 	@python3 tools/lcf.py rel 744 --output $(M744_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M744_LDFLAGS) -o $(M744_TARGET) @build/M744_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_spinner/%.o: rel/d/a/tag/d_a_tag_spinner/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_spinner/%.o: rel/d/a/tag/d_a_tag_spinner/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_spinner/%.d
 	@echo [744] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M744_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M744_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M744_D_FILES := $(M744_O_FILES:.o=.d)
+$(M744_D_FILES):
+include $(wildcard $(M744_D_FILES))
+endif
 
 

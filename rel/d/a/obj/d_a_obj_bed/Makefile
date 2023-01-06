@@ -40,10 +40,17 @@ $(M405_TARGET): $(M405_O_FILES) $(M405_LIBS)
 	@python3 tools/lcf.py rel 405 --output $(M405_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M405_LDFLAGS) -o $(M405_TARGET) @build/M405_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bed/%.o: rel/d/a/obj/d_a_obj_bed/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bed/%.o: rel/d/a/obj/d_a_obj_bed/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bed/%.d
 	@echo [405] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M405_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M405_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M405_D_FILES := $(M405_O_FILES:.o=.d)
+$(M405_D_FILES):
+include $(wildcard $(M405_D_FILES))
+endif
 
 

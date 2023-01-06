@@ -40,10 +40,17 @@ $(M566_TARGET): $(M566_O_FILES) $(M566_LIBS)
 	@python3 tools/lcf.py rel 566 --output $(M566_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M566_LDFLAGS) -o $(M566_TARGET) @build/M566_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_magLiftRot/%.o: rel/d/a/obj/d_a_obj_magLiftRot/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_magLiftRot/%.o: rel/d/a/obj/d_a_obj_magLiftRot/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_magLiftRot/%.d
 	@echo [566] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M566_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M566_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M566_D_FILES := $(M566_O_FILES:.o=.d)
+$(M566_D_FILES):
+include $(wildcard $(M566_D_FILES))
+endif
 
 

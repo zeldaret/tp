@@ -40,10 +40,17 @@ $(M68_TARGET): $(M68_O_FILES) $(M68_LIBS)
 	@python3 tools/lcf.py rel 68 --output $(M68_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M68_LDFLAGS) -o $(M68_TARGET) @build/M68_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_hb/%.o: rel/d/a/e/d_a_e_hb/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_hb/%.o: rel/d/a/e/d_a_e_hb/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_hb/%.d
 	@echo [ 68] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M68_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M68_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M68_D_FILES := $(M68_O_FILES:.o=.d)
+$(M68_D_FILES):
+include $(wildcard $(M68_D_FILES))
+endif
 
 

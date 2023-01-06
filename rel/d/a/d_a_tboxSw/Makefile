@@ -38,10 +38,17 @@ $(M755_TARGET): $(M755_O_FILES) $(M755_LIBS)
 	@python3 tools/lcf.py rel 755 --output $(M755_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M755_LDFLAGS) -o $(M755_TARGET) @build/M755_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_tboxSw/%.o: rel/d/a/d_a_tboxSw/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_tboxSw/%.o: rel/d/a/d_a_tboxSw/%.cpp $(BUILD_DIR)/rel/d/a/d_a_tboxSw/%.d
 	@echo [755] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M755_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M755_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M755_D_FILES := $(M755_O_FILES:.o=.d)
+$(M755_D_FILES):
+include $(wildcard $(M755_D_FILES))
+endif
 
 

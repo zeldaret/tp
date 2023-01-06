@@ -38,10 +38,17 @@ $(M700_TARGET): $(M700_O_FILES) $(M700_LIBS)
 	@python3 tools/lcf.py rel 700 --output $(M700_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M700_LDFLAGS) -o $(M700_TARGET) @build/M700_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zra_freeze/%.o: rel/d/a/obj/d_a_obj_zra_freeze/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zra_freeze/%.o: rel/d/a/obj/d_a_obj_zra_freeze/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zra_freeze/%.d
 	@echo [700] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M700_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M700_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M700_D_FILES := $(M700_O_FILES:.o=.d)
+$(M700_D_FILES):
+include $(wildcard $(M700_D_FILES))
+endif
 
 

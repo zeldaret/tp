@@ -38,10 +38,17 @@ $(M742_TARGET): $(M742_O_FILES) $(M742_LIBS)
 	@python3 tools/lcf.py rel 742 --output $(M742_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M742_LDFLAGS) -o $(M742_TARGET) @build/M742_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_item/%.o: rel/d/a/tag/d_a_tag_shop_item/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_item/%.o: rel/d/a/tag/d_a_tag_shop_item/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_item/%.d
 	@echo [742] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M742_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M742_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M742_D_FILES := $(M742_O_FILES:.o=.d)
+$(M742_D_FILES):
+include $(wildcard $(M742_D_FILES))
+endif
 
 

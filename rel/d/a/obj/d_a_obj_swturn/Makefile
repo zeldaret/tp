@@ -40,10 +40,17 @@ $(M647_TARGET): $(M647_O_FILES) $(M647_LIBS)
 	@python3 tools/lcf.py rel 647 --output $(M647_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M647_LDFLAGS) -o $(M647_TARGET) @build/M647_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swturn/%.o: rel/d/a/obj/d_a_obj_swturn/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swturn/%.o: rel/d/a/obj/d_a_obj_swturn/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swturn/%.d
 	@echo [647] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M647_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M647_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M647_D_FILES := $(M647_O_FILES:.o=.d)
+$(M647_D_FILES):
+include $(wildcard $(M647_D_FILES))
+endif
 
 

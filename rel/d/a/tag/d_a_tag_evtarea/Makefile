@@ -38,10 +38,17 @@ $(M32_TARGET): $(M32_O_FILES) $(M32_LIBS)
 	@python3 tools/lcf.py rel 32 --output $(M32_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M32_LDFLAGS) -o $(M32_TARGET) @build/M32_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtarea/%.o: rel/d/a/tag/d_a_tag_evtarea/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtarea/%.o: rel/d/a/tag/d_a_tag_evtarea/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtarea/%.d
 	@echo [ 32] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M32_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M32_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M32_D_FILES := $(M32_O_FILES:.o=.d)
+$(M32_D_FILES):
+include $(wildcard $(M32_D_FILES))
+endif
 
 

@@ -40,10 +40,17 @@ $(M250_TARGET): $(M250_O_FILES) $(M250_LIBS)
 	@python3 tools/lcf.py rel 250 --output $(M250_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M250_LDFLAGS) -o $(M250_TARGET) @build/M250_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_yg/%.o: rel/d/a/e/d_a_e_yg/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_yg/%.o: rel/d/a/e/d_a_e_yg/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_yg/%.d
 	@echo [250] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M250_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M250_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M250_D_FILES := $(M250_O_FILES:.o=.d)
+$(M250_D_FILES):
+include $(wildcard $(M250_D_FILES))
+endif
 
 

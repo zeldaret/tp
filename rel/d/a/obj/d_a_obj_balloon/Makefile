@@ -40,10 +40,17 @@ $(M401_TARGET): $(M401_O_FILES) $(M401_LIBS)
 	@python3 tools/lcf.py rel 401 --output $(M401_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M401_LDFLAGS) -o $(M401_TARGET) @build/M401_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_balloon/%.o: rel/d/a/obj/d_a_obj_balloon/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_balloon/%.o: rel/d/a/obj/d_a_obj_balloon/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_balloon/%.d
 	@echo [401] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M401_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M401_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M401_D_FILES := $(M401_O_FILES:.o=.d)
+$(M401_D_FILES):
+include $(wildcard $(M401_D_FILES))
+endif
 
 

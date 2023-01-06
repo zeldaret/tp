@@ -40,10 +40,17 @@ $(M560_TARGET): $(M560_O_FILES) $(M560_LIBS)
 	@python3 tools/lcf.py rel 560 --output $(M560_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M560_LDFLAGS) -o $(M560_TARGET) @build/M560_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8KekkaiTrap/%.o: rel/d/a/obj/d_a_obj_lv8KekkaiTrap/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8KekkaiTrap/%.o: rel/d/a/obj/d_a_obj_lv8KekkaiTrap/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8KekkaiTrap/%.d
 	@echo [560] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M560_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M560_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M560_D_FILES := $(M560_O_FILES:.o=.d)
+$(M560_D_FILES):
+include $(wildcard $(M560_D_FILES))
+endif
 
 

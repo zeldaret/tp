@@ -40,10 +40,17 @@ $(M36_TARGET): $(M36_O_FILES) $(M36_LIBS)
 	@python3 tools/lcf.py rel 36 --output $(M36_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M36_LDFLAGS) -o $(M36_TARGET) @build/M36_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lantern/%.o: rel/d/a/tag/d_a_tag_lantern/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lantern/%.o: rel/d/a/tag/d_a_tag_lantern/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lantern/%.d
 	@echo [ 36] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M36_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M36_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M36_D_FILES := $(M36_O_FILES:.o=.d)
+$(M36_D_FILES):
+include $(wildcard $(M36_D_FILES))
+endif
 
 

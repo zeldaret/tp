@@ -40,10 +40,17 @@ $(M486_TARGET): $(M486_O_FILES) $(M486_LIBS)
 	@python3 tools/lcf.py rel 486 --output $(M486_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M486_LDFLAGS) -o $(M486_TARGET) @build/M486_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ita/%.o: rel/d/a/obj/d_a_obj_ita/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ita/%.o: rel/d/a/obj/d_a_obj_ita/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ita/%.d
 	@echo [486] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M486_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M486_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M486_D_FILES := $(M486_O_FILES:.o=.d)
+$(M486_D_FILES):
+include $(wildcard $(M486_D_FILES))
+endif
 
 

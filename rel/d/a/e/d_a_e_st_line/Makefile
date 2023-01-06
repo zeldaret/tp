@@ -38,10 +38,17 @@ $(M234_TARGET): $(M234_O_FILES) $(M234_LIBS)
 	@python3 tools/lcf.py rel 234 --output $(M234_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M234_LDFLAGS) -o $(M234_TARGET) @build/M234_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_st_line/%.o: rel/d/a/e/d_a_e_st_line/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_st_line/%.o: rel/d/a/e/d_a_e_st_line/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_st_line/%.d
 	@echo [234] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M234_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M234_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M234_D_FILES := $(M234_O_FILES:.o=.d)
+$(M234_D_FILES):
+include $(wildcard $(M234_D_FILES))
+endif
 
 

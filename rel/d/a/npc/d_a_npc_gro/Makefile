@@ -40,10 +40,17 @@ $(M310_TARGET): $(M310_O_FILES) $(M310_LIBS)
 	@python3 tools/lcf.py rel 310 --output $(M310_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M310_LDFLAGS) -o $(M310_TARGET) @build/M310_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gro/%.o: rel/d/a/npc/d_a_npc_gro/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gro/%.o: rel/d/a/npc/d_a_npc_gro/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_gro/%.d
 	@echo [310] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M310_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M310_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M310_D_FILES := $(M310_O_FILES:.o=.d)
+$(M310_D_FILES):
+include $(wildcard $(M310_D_FILES))
+endif
 
 

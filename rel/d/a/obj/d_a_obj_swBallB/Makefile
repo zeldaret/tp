@@ -38,10 +38,17 @@ $(M639_TARGET): $(M639_O_FILES) $(M639_LIBS)
 	@python3 tools/lcf.py rel 639 --output $(M639_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M639_LDFLAGS) -o $(M639_TARGET) @build/M639_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallB/%.o: rel/d/a/obj/d_a_obj_swBallB/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallB/%.o: rel/d/a/obj/d_a_obj_swBallB/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallB/%.d
 	@echo [639] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M639_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M639_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M639_D_FILES := $(M639_O_FILES:.o=.d)
+$(M639_D_FILES):
+include $(wildcard $(M639_D_FILES))
+endif
 
 

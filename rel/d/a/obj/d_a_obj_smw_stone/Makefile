@@ -38,10 +38,17 @@ $(M625_TARGET): $(M625_O_FILES) $(M625_LIBS)
 	@python3 tools/lcf.py rel 625 --output $(M625_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M625_LDFLAGS) -o $(M625_TARGET) @build/M625_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_smw_stone/%.o: rel/d/a/obj/d_a_obj_smw_stone/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_smw_stone/%.o: rel/d/a/obj/d_a_obj_smw_stone/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smw_stone/%.d
 	@echo [625] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M625_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M625_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M625_D_FILES := $(M625_O_FILES:.o=.d)
+$(M625_D_FILES):
+include $(wildcard $(M625_D_FILES))
+endif
 
 

@@ -38,10 +38,17 @@ $(M156_TARGET): $(M156_O_FILES) $(M156_LIBS)
 	@python3 tools/lcf.py rel 156 --output $(M156_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M156_LDFLAGS) -o $(M156_TARGET) @build/M156_ofiles
 
-$(BUILD_DIR)/rel/d/a/b/d_a_b_zant_magic/%.o: rel/d/a/b/d_a_b_zant_magic/%.cpp
+$(BUILD_DIR)/rel/d/a/b/d_a_b_zant_magic/%.o: rel/d/a/b/d_a_b_zant_magic/%.cpp $(BUILD_DIR)/rel/d/a/b/d_a_b_zant_magic/%.d
 	@echo [156] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M156_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M156_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M156_D_FILES := $(M156_O_FILES:.o=.d)
+$(M156_D_FILES):
+include $(wildcard $(M156_D_FILES))
+endif
 
 

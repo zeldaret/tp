@@ -38,10 +38,17 @@ $(M407_TARGET): $(M407_O_FILES) $(M407_LIBS)
 	@python3 tools/lcf.py rel 407 --output $(M407_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M407_LDFLAGS) -o $(M407_TARGET) @build/M407_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bhbridge/%.o: rel/d/a/obj/d_a_obj_bhbridge/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bhbridge/%.o: rel/d/a/obj/d_a_obj_bhbridge/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bhbridge/%.d
 	@echo [407] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M407_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M407_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M407_D_FILES := $(M407_O_FILES:.o=.d)
+$(M407_D_FILES):
+include $(wildcard $(M407_D_FILES))
+endif
 
 

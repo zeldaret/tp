@@ -47,9 +47,16 @@ $(BUILD_DIR)/libJ3DGraphBase.a: $(LIBJ3DGRAPHBASE_A_O_FILES)
 	@echo $(LIBJ3DGRAPHBASE_A_O_FILES) > build/LIBJ3DGRAPHBASE_A_ofiles
 	@$(LD) -xm l $(LIBJ3DGRAPHBASE_A_LDFLAGS) -o $(BUILD_DIR)/libJ3DGraphBase.a @build/LIBJ3DGRAPHBASE_A_ofiles
 
-$(BUILD_DIR)/libs/JSystem/J3DGraphBase/%.o: libs/JSystem/J3DGraphBase/%.cpp
+$(BUILD_DIR)/libs/JSystem/J3DGraphBase/%.o: libs/JSystem/J3DGraphBase/%.cpp $(BUILD_DIR)/libs/JSystem/J3DGraphBase/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBJ3DGRAPHBASE_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBJ3DGRAPHBASE_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+LIBJ3DGRAPHBASE_A_D_FILES := $(LIBJ3DGRAPHBASE_A_O_FILES:.o=.d)
+$(LIBJ3DGRAPHBASE_A_D_FILES):
+include $(wildcard $(LIBJ3DGRAPHBASE_A_D_FILES))
+endif
 

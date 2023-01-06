@@ -40,10 +40,17 @@ $(M265_TARGET): $(M265_O_FILES) $(M265_LIBS)
 	@python3 tools/lcf.py rel 265 --output $(M265_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M265_LDFLAGS) -o $(M265_TARGET) @build/M265_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_kago/%.o: rel/d/a/d_a_kago/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_kago/%.o: rel/d/a/d_a_kago/%.cpp $(BUILD_DIR)/rel/d/a/d_a_kago/%.d
 	@echo [265] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M265_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M265_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M265_D_FILES := $(M265_O_FILES:.o=.d)
+$(M265_D_FILES):
+include $(wildcard $(M265_D_FILES))
+endif
 
 

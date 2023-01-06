@@ -38,10 +38,17 @@ $(M37_TARGET): $(M37_O_FILES) $(M37_LIBS)
 	@python3 tools/lcf.py rel 37 --output $(M37_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M37_LDFLAGS) -o $(M37_TARGET) @build/M37_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_mist/%.o: rel/d/a/tag/d_a_tag_mist/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_mist/%.o: rel/d/a/tag/d_a_tag_mist/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_mist/%.d
 	@echo [ 37] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M37_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M37_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M37_D_FILES := $(M37_O_FILES:.o=.d)
+$(M37_D_FILES):
+include $(wildcard $(M37_D_FILES))
+endif
 
 

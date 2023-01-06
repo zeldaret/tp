@@ -40,10 +40,17 @@ $(M680_TARGET): $(M680_O_FILES) $(M680_LIBS)
 	@python3 tools/lcf.py rel 680 --output $(M680_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M680_LDFLAGS) -o $(M680_TARGET) @build/M680_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_waterPillar/%.o: rel/d/a/obj/d_a_obj_waterPillar/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_waterPillar/%.o: rel/d/a/obj/d_a_obj_waterPillar/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_waterPillar/%.d
 	@echo [680] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M680_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M680_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M680_D_FILES := $(M680_O_FILES:.o=.d)
+$(M680_D_FILES):
+include $(wildcard $(M680_D_FILES))
+endif
 
 

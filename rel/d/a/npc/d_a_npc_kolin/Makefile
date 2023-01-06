@@ -40,10 +40,17 @@ $(M85_TARGET): $(M85_O_FILES) $(M85_LIBS)
 	@python3 tools/lcf.py rel 85 --output $(M85_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M85_LDFLAGS) -o $(M85_TARGET) @build/M85_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolin/%.o: rel/d/a/npc/d_a_npc_kolin/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolin/%.o: rel/d/a/npc/d_a_npc_kolin/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolin/%.d
 	@echo [ 85] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M85_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M85_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M85_D_FILES := $(M85_O_FILES:.o=.d)
+$(M85_D_FILES):
+include $(wildcard $(M85_D_FILES))
+endif
 
 

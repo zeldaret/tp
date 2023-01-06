@@ -33,11 +33,18 @@ $(BUILD_DIR)/libpad.a: $(LIBPAD_A_O_FILES)
 	@echo $(LIBPAD_A_O_FILES) > build/LIBPAD_A_ofiles
 	@$(LD) -xm l $(LIBPAD_A_LDFLAGS) -o $(BUILD_DIR)/libpad.a @build/LIBPAD_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/pad/%.o: libs/dolphin/pad/%.c
+$(BUILD_DIR)/libs/dolphin/pad/%.o: libs/dolphin/pad/%.c $(BUILD_DIR)/libs/dolphin/pad/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
-	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(LIBPAD_A_CFLAGS) -c -o $@ $(basename $@).c
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(LIBPAD_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
 	@echo Frank is fixing $@
 	@$(PYTHON) $(FRANK) $@ $@ $@
+
+ifndef DISABLE_DEPS
+LIBPAD_A_D_FILES := $(LIBPAD_A_O_FILES:.o=.d)
+$(LIBPAD_A_D_FILES):
+include $(wildcard $(LIBPAD_A_D_FILES))
+endif
 

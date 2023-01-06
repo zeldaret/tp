@@ -27,9 +27,16 @@ $(BUILD_DIR)/libgf.a: $(LIBGF_A_O_FILES)
 	@echo $(LIBGF_A_O_FILES) > build/LIBGF_A_ofiles
 	@$(LD) -xm l $(LIBGF_A_LDFLAGS) -o $(BUILD_DIR)/libgf.a @build/LIBGF_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/gf/%.o: libs/dolphin/gf/%.cpp
+$(BUILD_DIR)/libs/dolphin/gf/%.o: libs/dolphin/gf/%.cpp $(BUILD_DIR)/libs/dolphin/gf/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBGF_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBGF_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+LIBGF_A_D_FILES := $(LIBGF_A_O_FILES:.o=.d)
+$(LIBGF_A_D_FILES):
+include $(wildcard $(LIBGF_A_D_FILES))
+endif
 

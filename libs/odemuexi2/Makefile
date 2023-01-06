@@ -21,9 +21,16 @@ $(BUILD_DIR)/libodemuexi2.a: $(LIBODEMUEXI2_A_O_FILES)
 	@echo $(LIBODEMUEXI2_A_O_FILES) > build/LIBODEMUEXI2_A_ofiles
 	@$(LD) -xm l $(LIBODEMUEXI2_A_LDFLAGS) -o $(BUILD_DIR)/libodemuexi2.a @build/LIBODEMUEXI2_A_ofiles
 
-$(BUILD_DIR)/libs/odemuexi2/%.o: libs/odemuexi2/%.cpp
+$(BUILD_DIR)/libs/odemuexi2/%.o: libs/odemuexi2/%.cpp $(BUILD_DIR)/libs/odemuexi2/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBODEMUEXI2_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBODEMUEXI2_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+LIBODEMUEXI2_A_D_FILES := $(LIBODEMUEXI2_A_O_FILES:.o=.d)
+$(LIBODEMUEXI2_A_D_FILES):
+include $(wildcard $(LIBODEMUEXI2_A_D_FILES))
+endif
 

@@ -40,10 +40,17 @@ $(M224_TARGET): $(M224_O_FILES) $(M224_LIBS)
 	@python3 tools/lcf.py rel 224 --output $(M224_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M224_LDFLAGS) -o $(M224_TARGET) @build/M224_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_rdb/%.o: rel/d/a/e/d_a_e_rdb/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_rdb/%.o: rel/d/a/e/d_a_e_rdb/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_rdb/%.d
 	@echo [224] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M224_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M224_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M224_D_FILES := $(M224_O_FILES:.o=.d)
+$(M224_D_FILES):
+include $(wildcard $(M224_D_FILES))
+endif
 
 

@@ -38,10 +38,17 @@ $(M421_TARGET): $(M421_O_FILES) $(M421_LIBS)
 	@python3 tools/lcf.py rel 421 --output $(M421_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M421_LDFLAGS) -o $(M421_TARGET) @build/M421_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_chandelier/%.o: rel/d/a/obj/d_a_obj_chandelier/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_chandelier/%.o: rel/d/a/obj/d_a_obj_chandelier/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_chandelier/%.d
 	@echo [421] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M421_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M421_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M421_D_FILES := $(M421_O_FILES:.o=.d)
+$(M421_D_FILES):
+include $(wildcard $(M421_D_FILES))
+endif
 
 

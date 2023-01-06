@@ -33,11 +33,18 @@ $(BUILD_DIR)/libexi.a: $(LIBEXI_A_O_FILES)
 	@echo $(LIBEXI_A_O_FILES) > build/LIBEXI_A_ofiles
 	@$(LD) -xm l $(LIBEXI_A_LDFLAGS) -o $(BUILD_DIR)/libexi.a @build/LIBEXI_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/exi/%.o: libs/dolphin/exi/%.c
+$(BUILD_DIR)/libs/dolphin/exi/%.o: libs/dolphin/exi/%.c $(BUILD_DIR)/libs/dolphin/exi/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
-	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(LIBEXI_A_CFLAGS) -c -o $@ $(basename $@).c
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(LIBEXI_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
 	@echo Frank is fixing $@
 	@$(PYTHON) $(FRANK) $@ $@ $@
+
+ifndef DISABLE_DEPS
+LIBEXI_A_D_FILES := $(LIBEXI_A_O_FILES:.o=.d)
+$(LIBEXI_A_D_FILES):
+include $(wildcard $(LIBEXI_A_D_FILES))
+endif
 

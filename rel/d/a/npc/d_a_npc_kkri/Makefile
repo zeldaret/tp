@@ -40,10 +40,17 @@ $(M84_TARGET): $(M84_O_FILES) $(M84_LIBS)
 	@python3 tools/lcf.py rel 84 --output $(M84_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M84_LDFLAGS) -o $(M84_TARGET) @build/M84_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kkri/%.o: rel/d/a/npc/d_a_npc_kkri/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kkri/%.o: rel/d/a/npc/d_a_npc_kkri/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kkri/%.d
 	@echo [ 84] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M84_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M84_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M84_D_FILES := $(M84_O_FILES:.o=.d)
+$(M84_D_FILES):
+include $(wildcard $(M84_D_FILES))
+endif
 
 

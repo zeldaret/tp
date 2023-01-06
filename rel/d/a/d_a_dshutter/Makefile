@@ -38,10 +38,17 @@ $(M10_TARGET): $(M10_O_FILES) $(M10_LIBS)
 	@python3 tools/lcf.py rel 10 --output $(M10_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M10_LDFLAGS) -o $(M10_TARGET) @build/M10_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_dshutter/%.o: rel/d/a/d_a_dshutter/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_dshutter/%.o: rel/d/a/d_a_dshutter/%.cpp $(BUILD_DIR)/rel/d/a/d_a_dshutter/%.d
 	@echo [ 10] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M10_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M10_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M10_D_FILES := $(M10_O_FILES:.o=.d)
+$(M10_D_FILES):
+include $(wildcard $(M10_D_FILES))
+endif
 
 

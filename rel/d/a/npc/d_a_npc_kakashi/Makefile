@@ -40,10 +40,17 @@ $(M83_TARGET): $(M83_O_FILES) $(M83_LIBS)
 	@python3 tools/lcf.py rel 83 --output $(M83_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M83_LDFLAGS) -o $(M83_TARGET) @build/M83_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kakashi/%.o: rel/d/a/npc/d_a_npc_kakashi/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kakashi/%.o: rel/d/a/npc/d_a_npc_kakashi/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kakashi/%.d
 	@echo [ 83] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M83_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M83_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M83_D_FILES := $(M83_O_FILES:.o=.d)
+$(M83_D_FILES):
+include $(wildcard $(M83_D_FILES))
+endif
 
 

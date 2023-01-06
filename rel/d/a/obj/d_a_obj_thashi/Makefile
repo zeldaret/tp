@@ -38,10 +38,17 @@ $(M657_TARGET): $(M657_O_FILES) $(M657_LIBS)
 	@python3 tools/lcf.py rel 657 --output $(M657_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M657_LDFLAGS) -o $(M657_TARGET) @build/M657_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_thashi/%.o: rel/d/a/obj/d_a_obj_thashi/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_thashi/%.o: rel/d/a/obj/d_a_obj_thashi/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_thashi/%.d
 	@echo [657] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M657_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M657_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M657_D_FILES := $(M657_O_FILES:.o=.d)
+$(M657_D_FILES):
+include $(wildcard $(M657_D_FILES))
+endif
 
 

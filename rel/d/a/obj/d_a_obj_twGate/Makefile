@@ -40,10 +40,17 @@ $(M671_TARGET): $(M671_O_FILES) $(M671_LIBS)
 	@python3 tools/lcf.py rel 671 --output $(M671_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M671_LDFLAGS) -o $(M671_TARGET) @build/M671_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_twGate/%.o: rel/d/a/obj/d_a_obj_twGate/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_twGate/%.o: rel/d/a/obj/d_a_obj_twGate/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_twGate/%.d
 	@echo [671] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M671_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M671_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M671_D_FILES := $(M671_O_FILES:.o=.d)
+$(M671_D_FILES):
+include $(wildcard $(M671_D_FILES))
+endif
 
 

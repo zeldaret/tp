@@ -40,10 +40,17 @@ $(M66_TARGET): $(M66_O_FILES) $(M66_LIBS)
 	@python3 tools/lcf.py rel 66 --output $(M66_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M66_LDFLAGS) -o $(M66_TARGET) @build/M66_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_fm/%.o: rel/d/a/e/d_a_e_fm/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_fm/%.o: rel/d/a/e/d_a_e_fm/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_fm/%.d
 	@echo [ 66] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M66_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M66_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M66_D_FILES := $(M66_O_FILES:.o=.d)
+$(M66_D_FILES):
+include $(wildcard $(M66_D_FILES))
+endif
 
 

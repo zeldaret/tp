@@ -40,10 +40,17 @@ $(M134_TARGET): $(M134_O_FILES) $(M134_LIBS)
 	@python3 tools/lcf.py rel 134 --output $(M134_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M134_LDFLAGS) -o $(M134_TARGET) @build/M134_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_ykgr/%.o: rel/d/a/d_a_ykgr/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_ykgr/%.o: rel/d/a/d_a_ykgr/%.cpp $(BUILD_DIR)/rel/d/a/d_a_ykgr/%.d
 	@echo [134] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M134_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M134_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M134_D_FILES := $(M134_O_FILES:.o=.d)
+$(M134_D_FILES):
+include $(wildcard $(M134_D_FILES))
+endif
 
 

@@ -40,10 +40,17 @@ $(M476_TARGET): $(M476_O_FILES) $(M476_LIBS)
 	@python3 tools/lcf.py rel 476 --output $(M476_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M476_LDFLAGS) -o $(M476_TARGET) @build/M476_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_heavySw/%.o: rel/d/a/obj/d_a_obj_heavySw/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_heavySw/%.o: rel/d/a/obj/d_a_obj_heavySw/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_heavySw/%.d
 	@echo [476] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M476_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M476_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M476_D_FILES := $(M476_O_FILES:.o=.d)
+$(M476_D_FILES):
+include $(wildcard $(M476_D_FILES))
+endif
 
 

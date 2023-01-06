@@ -40,10 +40,17 @@ $(M474_TARGET): $(M474_O_FILES) $(M474_LIBS)
 	@python3 tools/lcf.py rel 474 --output $(M474_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M474_LDFLAGS) -o $(M474_TARGET) @build/M474_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hb/%.o: rel/d/a/obj/d_a_obj_hb/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hb/%.o: rel/d/a/obj/d_a_obj_hb/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hb/%.d
 	@echo [474] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M474_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M474_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M474_D_FILES := $(M474_O_FILES:.o=.d)
+$(M474_D_FILES):
+include $(wildcard $(M474_D_FILES))
+endif
 
 

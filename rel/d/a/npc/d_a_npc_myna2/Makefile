@@ -40,10 +40,17 @@ $(M339_TARGET): $(M339_O_FILES) $(M339_LIBS)
 	@python3 tools/lcf.py rel 339 --output $(M339_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M339_LDFLAGS) -o $(M339_TARGET) @build/M339_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_myna2/%.o: rel/d/a/npc/d_a_npc_myna2/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_myna2/%.o: rel/d/a/npc/d_a_npc_myna2/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_myna2/%.d
 	@echo [339] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M339_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M339_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M339_D_FILES := $(M339_O_FILES:.o=.d)
+$(M339_D_FILES):
+include $(wildcard $(M339_D_FILES))
+endif
 
 

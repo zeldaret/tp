@@ -38,10 +38,17 @@ $(M39_TARGET): $(M39_O_FILES) $(M39_LIBS)
 	@python3 tools/lcf.py rel 39 --output $(M39_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M39_LDFLAGS) -o $(M39_TARGET) @build/M39_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_push/%.o: rel/d/a/tag/d_a_tag_push/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_push/%.o: rel/d/a/tag/d_a_tag_push/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_push/%.d
 	@echo [ 39] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M39_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M39_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M39_D_FILES := $(M39_O_FILES:.o=.d)
+$(M39_D_FILES):
+include $(wildcard $(M39_D_FILES))
+endif
 
 

@@ -38,10 +38,17 @@ $(M62_TARGET): $(M62_O_FILES) $(M62_LIBS)
 	@python3 tools/lcf.py rel 62 --output $(M62_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M62_LDFLAGS) -o $(M62_TARGET) @build/M62_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_cstaf/%.o: rel/d/a/d_a_cstaf/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_cstaf/%.o: rel/d/a/d_a_cstaf/%.cpp $(BUILD_DIR)/rel/d/a/d_a_cstaf/%.d
 	@echo [ 62] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M62_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M62_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M62_D_FILES := $(M62_O_FILES:.o=.d)
+$(M62_D_FILES):
+include $(wildcard $(M62_D_FILES))
+endif
 
 

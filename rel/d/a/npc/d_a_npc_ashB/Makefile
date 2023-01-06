@@ -40,10 +40,17 @@ $(M285_TARGET): $(M285_O_FILES) $(M285_LIBS)
 	@python3 tools/lcf.py rel 285 --output $(M285_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M285_LDFLAGS) -o $(M285_TARGET) @build/M285_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ashB/%.o: rel/d/a/npc/d_a_npc_ashB/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ashB/%.o: rel/d/a/npc/d_a_npc_ashB/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ashB/%.d
 	@echo [285] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M285_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M285_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M285_D_FILES := $(M285_O_FILES:.o=.d)
+$(M285_D_FILES):
+include $(wildcard $(M285_D_FILES))
+endif
 
 

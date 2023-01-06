@@ -40,10 +40,17 @@ $(M64_TARGET): $(M64_O_FILES) $(M64_LIBS)
 	@python3 tools/lcf.py rel 64 --output $(M64_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M64_LDFLAGS) -o $(M64_TARGET) @build/M64_ofiles
 
-$(BUILD_DIR)/rel/d/a/door/d_a_door_bossl1/%.o: rel/d/a/door/d_a_door_bossl1/%.cpp
+$(BUILD_DIR)/rel/d/a/door/d_a_door_bossl1/%.o: rel/d/a/door/d_a_door_bossl1/%.cpp $(BUILD_DIR)/rel/d/a/door/d_a_door_bossl1/%.d
 	@echo [ 64] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M64_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M64_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M64_D_FILES := $(M64_O_FILES:.o=.d)
+$(M64_D_FILES):
+include $(wildcard $(M64_D_FILES))
+endif
 
 

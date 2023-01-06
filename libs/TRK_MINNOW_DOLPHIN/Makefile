@@ -82,8 +82,16 @@ $(BUILD_DIR)/libTRK_MINNOW_DOLPHIN.a: $(LIBTRK_MINNOW_DOLPHIN_A_O_FILES)
 	@echo $(LIBTRK_MINNOW_DOLPHIN_A_O_FILES) > build/LIBTRK_MINNOW_DOLPHIN_A_ofiles
 	@$(LD) -xm l $(LIBTRK_MINNOW_DOLPHIN_A_LDFLAGS) -o $(BUILD_DIR)/libTRK_MINNOW_DOLPHIN.a @build/LIBTRK_MINNOW_DOLPHIN_A_ofiles
 
-$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/%.o: libs/TRK_MINNOW_DOLPHIN/%.c
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/%.o: libs/TRK_MINNOW_DOLPHIN/%.c $(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
-	@$(CC) $(CFLAGS) $(LIBTRK_MINNOW_DOLPHIN_A_CFLAGS) -c -o $@ $(basename $@).c
+	@$(CC) $(CFLAGS) $(LIBTRK_MINNOW_DOLPHIN_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+LIBTRK_MINNOW_DOLPHIN_A_D_FILES := $(LIBTRK_MINNOW_DOLPHIN_A_O_FILES:.o=.d)
+$(LIBTRK_MINNOW_DOLPHIN_A_D_FILES):
+include $(wildcard $(LIBTRK_MINNOW_DOLPHIN_A_D_FILES))
+endif
+

@@ -38,10 +38,17 @@ $(M746_TARGET): $(M746_O_FILES) $(M746_LIBS)
 	@python3 tools/lcf.py rel 746 --output $(M746_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M746_LDFLAGS) -o $(M746_TARGET) @build/M746_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_ss_drink/%.o: rel/d/a/tag/d_a_tag_ss_drink/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_ss_drink/%.o: rel/d/a/tag/d_a_tag_ss_drink/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_ss_drink/%.d
 	@echo [746] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M746_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M746_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M746_D_FILES := $(M746_O_FILES:.o=.d)
+$(M746_D_FILES):
+include $(wildcard $(M746_D_FILES))
+endif
 
 

@@ -38,10 +38,17 @@ $(M690_TARGET): $(M690_O_FILES) $(M690_LIBS)
 	@python3 tools/lcf.py rel 690 --output $(M690_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M690_LDFLAGS) -o $(M690_TARGET) @build/M690_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_pendulum/%.o: rel/d/a/obj/d_a_obj_wood_pendulum/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_pendulum/%.o: rel/d/a/obj/d_a_obj_wood_pendulum/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_pendulum/%.d
 	@echo [690] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M690_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M690_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M690_D_FILES := $(M690_O_FILES:.o=.d)
+$(M690_D_FILES):
+include $(wildcard $(M690_D_FILES))
+endif
 
 

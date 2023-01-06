@@ -40,10 +40,17 @@ $(M531_TARGET): $(M531_O_FILES) $(M531_LIBS)
 	@python3 tools/lcf.py rel 531 --output $(M531_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M531_LDFLAGS) -o $(M531_TARGET) @build/M531_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4bridge/%.o: rel/d/a/obj/d_a_obj_lv4bridge/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4bridge/%.o: rel/d/a/obj/d_a_obj_lv4bridge/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4bridge/%.d
 	@echo [531] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M531_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M531_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M531_D_FILES := $(M531_O_FILES:.o=.d)
+$(M531_D_FILES):
+include $(wildcard $(M531_D_FILES))
+endif
 
 

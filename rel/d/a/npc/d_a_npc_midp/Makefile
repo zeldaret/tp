@@ -40,10 +40,17 @@ $(M335_TARGET): $(M335_O_FILES) $(M335_LIBS)
 	@python3 tools/lcf.py rel 335 --output $(M335_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M335_LDFLAGS) -o $(M335_TARGET) @build/M335_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_midp/%.o: rel/d/a/npc/d_a_npc_midp/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_midp/%.o: rel/d/a/npc/d_a_npc_midp/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_midp/%.d
 	@echo [335] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M335_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M335_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M335_D_FILES := $(M335_O_FILES:.o=.d)
+$(M335_D_FILES):
+include $(wildcard $(M335_D_FILES))
+endif
 
 

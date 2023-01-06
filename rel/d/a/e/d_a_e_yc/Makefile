@@ -40,10 +40,17 @@ $(M247_TARGET): $(M247_O_FILES) $(M247_LIBS)
 	@python3 tools/lcf.py rel 247 --output $(M247_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M247_LDFLAGS) -o $(M247_TARGET) @build/M247_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_yc/%.o: rel/d/a/e/d_a_e_yc/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_yc/%.o: rel/d/a/e/d_a_e_yc/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_yc/%.d
 	@echo [247] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M247_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M247_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M247_D_FILES := $(M247_O_FILES:.o=.d)
+$(M247_D_FILES):
+include $(wildcard $(M247_D_FILES))
+endif
 
 

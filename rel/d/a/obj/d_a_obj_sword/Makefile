@@ -40,10 +40,17 @@ $(M644_TARGET): $(M644_O_FILES) $(M644_LIBS)
 	@python3 tools/lcf.py rel 644 --output $(M644_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M644_LDFLAGS) -o $(M644_TARGET) @build/M644_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sword/%.o: rel/d/a/obj/d_a_obj_sword/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sword/%.o: rel/d/a/obj/d_a_obj_sword/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sword/%.d
 	@echo [644] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M644_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M644_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M644_D_FILES := $(M644_O_FILES:.o=.d)
+$(M644_D_FILES):
+include $(wildcard $(M644_D_FILES))
+endif
 
 

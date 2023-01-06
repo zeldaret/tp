@@ -38,10 +38,17 @@ $(M108_TARGET): $(M108_O_FILES) $(M108_LIBS)
 	@python3 tools/lcf.py rel 108 --output $(M108_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M108_LDFLAGS) -o $(M108_TARGET) @build/M108_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_nameplate/%.o: rel/d/a/obj/d_a_obj_nameplate/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_nameplate/%.o: rel/d/a/obj/d_a_obj_nameplate/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_nameplate/%.d
 	@echo [108] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M108_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M108_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M108_D_FILES := $(M108_O_FILES:.o=.d)
+$(M108_D_FILES):
+include $(wildcard $(M108_D_FILES))
+endif
 
 

@@ -40,10 +40,17 @@ $(M529_TARGET): $(M529_O_FILES) $(M529_LIBS)
 	@python3 tools/lcf.py rel 529 --output $(M529_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M529_LDFLAGS) -o $(M529_TARGET) @build/M529_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4RailWall/%.o: rel/d/a/obj/d_a_obj_lv4RailWall/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4RailWall/%.o: rel/d/a/obj/d_a_obj_lv4RailWall/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4RailWall/%.d
 	@echo [529] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M529_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M529_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M529_D_FILES := $(M529_O_FILES:.o=.d)
+$(M529_D_FILES):
+include $(wildcard $(M529_D_FILES))
+endif
 
 

@@ -38,10 +38,17 @@ $(M674_TARGET): $(M674_O_FILES) $(M674_LIBS)
 	@python3 tools/lcf.py rel 674 --output $(M674_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M674_LDFLAGS) -o $(M674_TARGET) @build/M674_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_vground/%.o: rel/d/a/obj/d_a_obj_vground/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_vground/%.o: rel/d/a/obj/d_a_obj_vground/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_vground/%.d
 	@echo [674] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M674_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M674_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M674_D_FILES := $(M674_O_FILES:.o=.d)
+$(M674_D_FILES):
+include $(wildcard $(M674_D_FILES))
+endif
 
 

@@ -38,10 +38,17 @@ $(M107_TARGET): $(M107_O_FILES) $(M107_LIBS)
 	@python3 tools/lcf.py rel 107 --output $(M107_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M107_LDFLAGS) -o $(M107_TARGET) @build/M107_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mgate/%.o: rel/d/a/obj/d_a_obj_mgate/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mgate/%.o: rel/d/a/obj/d_a_obj_mgate/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mgate/%.d
 	@echo [107] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M107_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M107_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M107_D_FILES := $(M107_O_FILES:.o=.d)
+$(M107_D_FILES):
+include $(wildcard $(M107_D_FILES))
+endif
 
 

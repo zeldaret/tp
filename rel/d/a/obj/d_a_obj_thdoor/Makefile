@@ -40,10 +40,17 @@ $(M658_TARGET): $(M658_O_FILES) $(M658_LIBS)
 	@python3 tools/lcf.py rel 658 --output $(M658_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M658_LDFLAGS) -o $(M658_TARGET) @build/M658_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_thdoor/%.o: rel/d/a/obj/d_a_obj_thdoor/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_thdoor/%.o: rel/d/a/obj/d_a_obj_thdoor/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_thdoor/%.d
 	@echo [658] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M658_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M658_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M658_D_FILES := $(M658_O_FILES:.o=.d)
+$(M658_D_FILES):
+include $(wildcard $(M658_D_FILES))
+endif
 
 

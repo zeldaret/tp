@@ -38,10 +38,17 @@ $(M404_TARGET): $(M404_O_FILES) $(M404_LIBS)
 	@python3 tools/lcf.py rel 404 --output $(M404_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M404_LDFLAGS) -o $(M404_TARGET) @build/M404_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bbox/%.o: rel/d/a/obj/d_a_obj_bbox/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bbox/%.o: rel/d/a/obj/d_a_obj_bbox/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bbox/%.d
 	@echo [404] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M404_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M404_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M404_D_FILES := $(M404_O_FILES:.o=.d)
+$(M404_D_FILES):
+include $(wildcard $(M404_D_FILES))
+endif
 
 

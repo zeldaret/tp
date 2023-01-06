@@ -40,10 +40,17 @@ $(M53_TARGET): $(M53_O_FILES) $(M53_LIBS)
 	@python3 tools/lcf.py rel 53 --output $(M53_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M53_LDFLAGS) -o $(M53_TARGET) @build/M53_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_life_container/%.o: rel/d/a/obj/d_a_obj_life_container/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_life_container/%.o: rel/d/a/obj/d_a_obj_life_container/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_life_container/%.d
 	@echo [ 53] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M53_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M53_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M53_D_FILES := $(M53_O_FILES:.o=.d)
+$(M53_D_FILES):
+include $(wildcard $(M53_D_FILES))
+endif
 
 

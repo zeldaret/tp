@@ -38,10 +38,17 @@ $(M425_TARGET): $(M425_O_FILES) $(M425_LIBS)
 	@python3 tools/lcf.py rel 425 --output $(M425_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M425_LDFLAGS) -o $(M425_TARGET) @build/M425_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crope/%.o: rel/d/a/obj/d_a_obj_crope/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crope/%.o: rel/d/a/obj/d_a_obj_crope/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crope/%.d
 	@echo [425] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M425_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M425_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M425_D_FILES := $(M425_O_FILES:.o=.d)
+$(M425_D_FILES):
+include $(wildcard $(M425_D_FILES))
+endif
 
 

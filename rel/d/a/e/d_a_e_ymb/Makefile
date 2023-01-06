@@ -40,10 +40,17 @@ $(M255_TARGET): $(M255_O_FILES) $(M255_LIBS)
 	@python3 tools/lcf.py rel 255 --output $(M255_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M255_LDFLAGS) -o $(M255_TARGET) @build/M255_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_ymb/%.o: rel/d/a/e/d_a_e_ymb/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_ymb/%.o: rel/d/a/e/d_a_e_ymb/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_ymb/%.d
 	@echo [255] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M255_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M255_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M255_D_FILES := $(M255_O_FILES:.o=.d)
+$(M255_D_FILES):
+include $(wildcard $(M255_D_FILES))
+endif
 
 

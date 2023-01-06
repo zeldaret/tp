@@ -69,9 +69,16 @@ $(BUILD_DIR)/libJKernel.a: $(LIBJKERNEL_A_O_FILES)
 	@echo $(LIBJKERNEL_A_O_FILES) > build/LIBJKERNEL_A_ofiles
 	@$(LD) -xm l $(LIBJKERNEL_A_LDFLAGS) -o $(BUILD_DIR)/libJKernel.a @build/LIBJKERNEL_A_ofiles
 
-$(BUILD_DIR)/libs/JSystem/JKernel/%.o: libs/JSystem/JKernel/%.cpp
+$(BUILD_DIR)/libs/JSystem/JKernel/%.o: libs/JSystem/JKernel/%.cpp $(BUILD_DIR)/libs/JSystem/JKernel/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBJKERNEL_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBJKERNEL_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+LIBJKERNEL_A_D_FILES := $(LIBJKERNEL_A_O_FILES:.o=.d)
+$(LIBJKERNEL_A_D_FILES):
+include $(wildcard $(LIBJKERNEL_A_D_FILES))
+endif
 

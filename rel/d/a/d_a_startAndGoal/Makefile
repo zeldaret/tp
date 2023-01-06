@@ -38,10 +38,17 @@ $(M706_TARGET): $(M706_O_FILES) $(M706_LIBS)
 	@python3 tools/lcf.py rel 706 --output $(M706_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M706_LDFLAGS) -o $(M706_TARGET) @build/M706_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_startAndGoal/%.o: rel/d/a/d_a_startAndGoal/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_startAndGoal/%.o: rel/d/a/d_a_startAndGoal/%.cpp $(BUILD_DIR)/rel/d/a/d_a_startAndGoal/%.d
 	@echo [706] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M706_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M706_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M706_D_FILES := $(M706_O_FILES:.o=.d)
+$(M706_D_FILES):
+include $(wildcard $(M706_D_FILES))
+endif
 
 

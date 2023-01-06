@@ -38,10 +38,17 @@ $(M732_TARGET): $(M732_O_FILES) $(M732_LIBS)
 	@python3 tools/lcf.py rel 732 --output $(M732_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M732_LDFLAGS) -o $(M732_TARGET) @build/M732_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_pachi/%.o: rel/d/a/tag/d_a_tag_pachi/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_pachi/%.o: rel/d/a/tag/d_a_tag_pachi/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_pachi/%.d
 	@echo [732] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M732_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M732_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M732_D_FILES := $(M732_O_FILES:.o=.d)
+$(M732_D_FILES):
+include $(wildcard $(M732_D_FILES))
+endif
 
 

@@ -38,10 +38,17 @@ $(M442_TARGET): $(M442_O_FILES) $(M442_LIBS)
 	@python3 tools/lcf.py rel 442 --output $(M442_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M442_LDFLAGS) -o $(M442_TARGET) @build/M442_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fallobj/%.o: rel/d/a/obj/d_a_obj_fallobj/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fallobj/%.o: rel/d/a/obj/d_a_obj_fallobj/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fallobj/%.d
 	@echo [442] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M442_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M442_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M442_D_FILES := $(M442_O_FILES:.o=.d)
+$(M442_D_FILES):
+include $(wildcard $(M442_D_FILES))
+endif
 
 

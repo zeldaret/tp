@@ -38,10 +38,17 @@ $(M724_TARGET): $(M724_O_FILES) $(M724_LIBS)
 	@python3 tools/lcf.py rel 724 --output $(M724_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M724_LDFLAGS) -o $(M724_TARGET) @build/M724_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_kago_fall/%.o: rel/d/a/tag/d_a_tag_kago_fall/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_kago_fall/%.o: rel/d/a/tag/d_a_tag_kago_fall/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_kago_fall/%.d
 	@echo [724] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M724_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M724_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M724_D_FILES := $(M724_O_FILES:.o=.d)
+$(M724_D_FILES):
+include $(wildcard $(M724_D_FILES))
+endif
 
 

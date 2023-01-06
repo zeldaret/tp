@@ -38,10 +38,17 @@ $(M475_TARGET): $(M475_O_FILES) $(M475_LIBS)
 	@python3 tools/lcf.py rel 475 --output $(M475_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M475_LDFLAGS) -o $(M475_TARGET) @build/M475_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hbombkoya/%.o: rel/d/a/obj/d_a_obj_hbombkoya/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hbombkoya/%.o: rel/d/a/obj/d_a_obj_hbombkoya/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hbombkoya/%.d
 	@echo [475] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M475_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M475_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M475_D_FILES := $(M475_O_FILES:.o=.d)
+$(M475_D_FILES):
+include $(wildcard $(M475_D_FILES))
+endif
 
 

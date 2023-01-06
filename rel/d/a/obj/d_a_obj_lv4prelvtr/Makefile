@@ -38,10 +38,17 @@ $(M536_TARGET): $(M536_O_FILES) $(M536_LIBS)
 	@python3 tools/lcf.py rel 536 --output $(M536_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M536_LDFLAGS) -o $(M536_TARGET) @build/M536_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prelvtr/%.o: rel/d/a/obj/d_a_obj_lv4prelvtr/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prelvtr/%.o: rel/d/a/obj/d_a_obj_lv4prelvtr/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prelvtr/%.d
 	@echo [536] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M536_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M536_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M536_D_FILES := $(M536_O_FILES:.o=.d)
+$(M536_D_FILES):
+include $(wildcard $(M536_D_FILES))
+endif
 
 

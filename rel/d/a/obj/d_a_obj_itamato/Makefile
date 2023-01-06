@@ -40,10 +40,17 @@ $(M487_TARGET): $(M487_O_FILES) $(M487_LIBS)
 	@python3 tools/lcf.py rel 487 --output $(M487_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M487_LDFLAGS) -o $(M487_TARGET) @build/M487_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_itamato/%.o: rel/d/a/obj/d_a_obj_itamato/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_itamato/%.o: rel/d/a/obj/d_a_obj_itamato/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_itamato/%.d
 	@echo [487] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M487_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M487_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M487_D_FILES := $(M487_O_FILES:.o=.d)
+$(M487_D_FILES):
+include $(wildcard $(M487_D_FILES))
+endif
 
 

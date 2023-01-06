@@ -38,10 +38,17 @@ $(M320_TARGET): $(M320_O_FILES) $(M320_LIBS)
 	@python3 tools/lcf.py rel 320 --output $(M320_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M320_LDFLAGS) -o $(M320_TARGET) @build/M320_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_inko/%.o: rel/d/a/npc/d_a_npc_inko/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_inko/%.o: rel/d/a/npc/d_a_npc_inko/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_inko/%.d
 	@echo [320] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M320_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M320_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M320_D_FILES := $(M320_O_FILES:.o=.d)
+$(M320_D_FILES):
+include $(wildcard $(M320_D_FILES))
+endif
 
 

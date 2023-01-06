@@ -40,10 +40,17 @@ $(M163_TARGET): $(M163_O_FILES) $(M163_LIBS)
 	@python3 tools/lcf.py rel 163 --output $(M163_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M163_LDFLAGS) -o $(M163_TARGET) @build/M163_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_cow/%.o: rel/d/a/d_a_cow/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_cow/%.o: rel/d/a/d_a_cow/%.cpp $(BUILD_DIR)/rel/d/a/d_a_cow/%.d
 	@echo [163] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M163_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M163_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M163_D_FILES := $(M163_O_FILES:.o=.d)
+$(M163_D_FILES):
+include $(wildcard $(M163_D_FILES))
+endif
 
 
