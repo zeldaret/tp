@@ -6,7 +6,7 @@
 #include "rel/d/a/d_a_do/d_a_do.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-// #include "d/com/d_com_inf_game.h"
+#include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
 //
@@ -178,7 +178,6 @@ extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
@@ -439,11 +438,11 @@ SECTION_DEAD static char const* const stringBase_8066EFB0 = "Do";
 #pragma pop
 
 /* 80667DA8-80667E68 000148 00C0+00 16/16 0/0 0/0 .text            anm_init__FP8do_classifUcf */
-#ifdef NONMATCHING
+#ifndef NONMATCHING
 static void anm_init(do_class* i_dogP, int param_1, f32 param_2, u8 param_3, f32 param_4) {
-    if (i_dogP->field_0x610 < 1.0f) {
-        i_dogP->mpMorf->setAnm(dComIfG_getObjectRes("Do",param_1),param_4,param_2,0.0f,0.0f,-1.0f,0);
-        i_dogP->field_0x5e4 = param_3;
+    if (!(i_dogP->field_0x608 > FLOAT_LABEL(lit_3662))) {
+        i_dogP->mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Do",param_1),param_3,param_2,param_4,FLOAT_LABEL(lit_3682),FLOAT_LABEL(lit_3683),0);
+        i_dogP->field_0x5e4 = param_1;
     }
 }
 #else

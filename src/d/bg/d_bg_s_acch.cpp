@@ -3,6 +3,7 @@
 // Translation Unit: d/bg/d_bg_s_acch
 //
 
+// Temporary fix until the TU matches
 #define __dt__12dBgS_AcchCirFv_DEFINED
 
 #include "d/bg/d_bg_s_acch.h"
