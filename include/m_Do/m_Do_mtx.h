@@ -15,8 +15,9 @@ void mDoMtx_ZXYrotM(Mtx, s16, s16, s16);
 void mDoMtx_ZrotS(Mtx, s16);
 void mDoMtx_YrotS(Mtx, s16);
 void mDoMtx_XrotS(Mtx, s16);
-void mDoMtx_XrotM(Mtx mtx, s16 x);
+void mDoMtx_XrotM(Mtx, s16);
 void mDoMtx_YrotM(Mtx, s16);
+void mDoMtx_ZrotM(Mtx, s16);
 void mDoMtx_MtxToRot(CMtxP, csXyz*);
 void mDoMtx_lookAt(f32 (*param_0)[4], Vec const* param_1, Vec const* param_2, s16 param_3);
 void mDoMtx_concatProjView(f32 const (*param_0)[4], f32 const (*param_1)[4], f32 (*param_2)[4]);
@@ -36,6 +37,19 @@ inline void mDoMtx_copy(const Mtx src, Mtx dst) {
 inline void mDoMtx_trans(Mtx m, f32 x, f32 y, f32 z) {
     PSMTXTrans(m,x,y,z);
 }
+
+inline void cMtx_XrotM(Mtx mtx, s16 x) {
+    mDoMtx_XrotM(mtx, x);
+}
+
+inline void cMtx_YrotM(Mtx mtx, s16 y) {
+    mDoMtx_YrotM(mtx, y);
+}
+
+inline void cMtx_ZrotM(Mtx mtx, s16 z) {
+    mDoMtx_ZrotM(mtx, z);
+}
+
 
 class mDoMtx_stack_c {
 public:

@@ -2036,7 +2036,7 @@ void daNpcT_c::setMtx() {
     mDoMtx_stack_c::scaleM(mScale);
 
     model->i_setBaseTRMtx(mDoMtx_stack_c::get());
-    model->setUserArea((u32)this);
+    model->setUserArea((UserArea*)this);
 
     mMcaMorfAnm[0]->onMorfNone();
     if (cM3d_IsZero(field_0xdfc) != 0) {
@@ -3786,7 +3786,7 @@ void daBaseNpc_c::setMtx(int param_0) {
     model->i_setBaseTRMtx(mDoMtx_stack_c::get());
 
     if (param_0) {
-        model->setUserArea((u32)this);
+        model->setUserArea((UserArea*)this);
     } else {
         model->setUserArea(0);
     }

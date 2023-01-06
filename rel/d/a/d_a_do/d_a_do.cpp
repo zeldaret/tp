@@ -438,25 +438,47 @@ SECTION_DEAD static char const* const stringBase_8066EFB0 = "Do";
 #pragma pop
 
 /* 80667DA8-80667E68 000148 00C0+00 16/16 0/0 0/0 .text            anm_init__FP8do_classifUcf */
-#ifndef NONMATCHING
 static void anm_init(do_class* i_dogP, int param_1, f32 param_2, u8 param_3, f32 param_4) {
     if (!(i_dogP->field_0x608 > FLOAT_LABEL(lit_3662))) {
         i_dogP->mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Do",param_1),param_3,param_2,param_4,FLOAT_LABEL(lit_3682),FLOAT_LABEL(lit_3683),0);
         i_dogP->field_0x5e4 = param_1;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void anm_init(do_class* i_dogP, int param_1, f32 param_2, u8 param_3, f32 param_4) {
-    nofralloc
-#include "asm/rel/d/a/d_a_do/d_a_do/anm_init__FP8do_classifUcf.s"
-}
-#pragma pop
-#endif
 
 /* 80667E68-80667FE4 000208 017C+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
+#ifdef NONMATCHING
+// regalloc on user_area
+static int nodeCallBack(J3DJoint* i_jntP, int param_1) {
+    if (param_1 == 0) {
+        int joint_num = i_jntP->getJntNo();
+        J3DModel* model = j3dSys.getModel();
+        UserArea* user_area = model->getUserArea();
+
+        if (user_area) {
+            PSMTXCopy(model->i_getAnmMtx(joint_num),*calc_mtx);
+
+            if (joint_num == 9 || joint_num  == 10) {
+                
+                
+                cMtx_YrotM(*calc_mtx,user_area->field_0x610 + user_area->field_0x628);
+                cMtx_XrotM(*calc_mtx,user_area->field_0x612 + user_area->field_0x62a);
+                cMtx_ZrotM(*calc_mtx,user_area->field_0x60e);
+            } else if (joint_num == 22) {
+                
+                cMtx_YrotM(*calc_mtx,user_area->field_0x640 << 1);
+                cMtx_ZrotM(*calc_mtx,user_area->field_0x63e << 1);
+            } else {
+                cMtx_YrotM(*calc_mtx,user_area->field_0x640);
+                cMtx_ZrotM(*calc_mtx,user_area->field_0x63e);
+            }
+
+            model->setAnmMtx(joint_num,*calc_mtx);
+            PSMTXCopy(*calc_mtx,j3dSys.mCurrentMtx);
+        }
+    }
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -465,6 +487,7 @@ static asm void nodeCallBack(J3DJoint* param_0, int param_1) {
 #include "asm/rel/d/a/d_a_do/d_a_do/nodeCallBack__FP8J3DJointi.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8066EE04-8066EE08 00001C 0004+00 0/8 0/0 0/0 .rodata          @3772 */

@@ -4813,7 +4813,8 @@ extern "C" asm void abs__4cXyzCFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void cMtx_XrotM(f32 (*param_0)[4], s16 param_1) {
+// static asm void cMtx_XrotM(f32 (*param_0)[4], s16 param_1) {
+extern "C" asm void cMtx_XrotM__FPA4_fs() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/cMtx_XrotM__FPA4_fs.s"
 }

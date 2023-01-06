@@ -25,6 +25,7 @@ public:
     /* 80326EF0 */ void calcBBoardMtx();
 
     MtxP getAnmMtx(int idx) const { return mpAnmMtx[idx]; }
+    void setAnmMtx(int idx, Mtx mtx) { PSMTXCopy(mtx,mpAnmMtx[idx]); }
 
     void setScaleFlag(int idx, u8 flag) { mpScaleFlagArr[idx] = flag; }
     u32* getCurrentViewNoPtr() { return &mCurrentViewNo; }

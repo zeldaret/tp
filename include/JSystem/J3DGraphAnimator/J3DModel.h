@@ -24,6 +24,19 @@ struct J3DUnkCalc2 {
     virtual void calc(J3DModelData* mpModelData);
 };
 
+struct UserArea {
+    u8 field_0x00[0x60e];
+    s16 field_0x60e;
+    s16 field_0x610;
+    s16 field_0x612;
+    u8 field_0x614[0x14];
+    s16 field_0x628;
+    s16 field_0x62a;
+    u8 field_0x62c[0x12];
+    s16 field_0x63e;
+    s16 field_0x640;
+};
+
 typedef void (*J3DCalcCallBack)(J3DModel*, u32 timing);
 
 class J3DModel {
@@ -77,18 +90,19 @@ public:
     Mtx33* getNrmMtxPtr() const { return mMtxBuffer->getNrmMtxPtr(); }
     Mtx* getDrawMtxPtr() const { return mMtxBuffer->getDrawMtxPtr(); }
     void setBaseScale(const Vec& scale) { mBaseScale = scale; }
-    void setUserArea(u32 area) { mUserArea = area; }
-    u32 getUserArea() const { return mUserArea; }
+    void setUserArea(UserArea* area) { mUserArea = area; }
+    UserArea* getUserArea() const { return mUserArea; }
     Vec* getBaseScale() { return &mBaseScale; }
 
     // is there a better way to handle inlines with same name as non-inlines?
     MtxP i_getAnmMtx(int p1) { return mMtxBuffer->getAnmMtx(p1); }
+    void setAnmMtx(int p1, Mtx mtx) { return mMtxBuffer->setAnmMtx(p1, mtx); }
 
     /* 0x04 */ J3DModelData* mModelData;
     /* 0x08 */ u32 mFlags;
     /* 0x0C */ u32 mDiffFlag;
     /* 0x10 */ J3DCalcCallBack mCalcCallBack;
-    /* 0x14 */ u32 mUserArea;
+    /* 0x14 */ UserArea* mUserArea;
     /* 0x18 */ Vec mBaseScale;
     /* 0x24 */ Mtx mBaseTransformMtx;
     /* 0x54 */ Mtx mInternalView;
