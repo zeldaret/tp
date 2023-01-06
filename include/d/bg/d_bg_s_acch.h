@@ -38,7 +38,11 @@ public:
     /* 80075F58 */ void SetWall(f32, f32);
     /* 80075F80 */ void SetWallHDirect(f32);
 
+    #ifdef __dt__12dBgS_AcchCirFv_DEFINED
+    /* 80077414 */ virtual ~dBgS_AcchCir();
+    #else
     /* 80077414 */ virtual ~dBgS_AcchCir() {}
+    #endif
 
     f32 GetWallH() { return m_wall_h; }
     f32 GetWallR() { return m_wall_r; }

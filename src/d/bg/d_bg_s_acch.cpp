@@ -3,6 +3,8 @@
 // Translation Unit: d/bg/d_bg_s_acch
 //
 
+#define __dt__12dBgS_AcchCirFv_DEFINED
+
 #include "d/bg/d_bg_s_acch.h"
 #include "d/bg/d_bg_s.h"
 #include "dol2asm.h"
