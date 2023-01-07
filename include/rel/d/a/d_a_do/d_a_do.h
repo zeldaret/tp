@@ -53,8 +53,11 @@ public:
     /* 0x65C */ u8 field_0x65c[32];
     /* 0x67C */ float field_0x67c;
     /* 0x680 */ u8 field_0x680[4];
-    /* 0x684 */ u32 isFood; // maybe can pick a better name here
-    /* 0x688 */ u8 field_0x688[4];
+    /* 0x684 */ u32 mFoodBsPcId;
+    /* 0x688 */ u8 field_0x688;
+    /* 0x689 */ u8 field_0x689;
+    /* 0x68A */ u8 field_0x68a;
+    /* 0x68B */ u8 field_0x68b;
     /* 0x68C */ float field_0x68c;
     /* 0x690 */ float field_0x690;
     /* 0x694 */ float field_0x694;

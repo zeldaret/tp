@@ -4,10 +4,12 @@
 //
 
 #include "rel/d/a/d_a_do/d_a_do.h"
+#include "JSystem/JMath/JMath.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
+#include "f_pc/f_pc_executor.h"
 
 //
 // Forward References:
@@ -367,7 +369,6 @@ SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
     (void*)func_8066EDC4,
 };
 
-
 /* 8066F258-8066F264 00029C 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
 SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
     (void*)NULL /* RTTI */,
@@ -381,7 +382,6 @@ SECTION_DATA extern void* __vt__10daDo_HIO_c[3] = {
     (void*)NULL,
     (void*)__dt__10daDo_HIO_cFv,
 };
-
 
 /* 80667D4C-80667DA8 0000EC 005C+00 1/1 0/0 0/0 .text            __ct__10daDo_HIO_cFv */
 #ifdef NONMATCHING
@@ -440,7 +440,8 @@ SECTION_DEAD static char const* const stringBase_8066EFB0 = "Do";
 /* 80667DA8-80667E68 000148 00C0+00 16/16 0/0 0/0 .text            anm_init__FP8do_classifUcf */
 static void anm_init(do_class* i_dogP, int param_1, f32 param_2, u8 param_3, f32 param_4) {
     if (!(i_dogP->field_0x608 > FLOAT_LABEL(lit_3662))) {
-        i_dogP->mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Do",param_1),param_3,param_2,param_4,FLOAT_LABEL(lit_3682),FLOAT_LABEL(lit_3683),0);
+        i_dogP->mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Do", param_1), param_3,
+                               param_2, param_4, FLOAT_LABEL(lit_3682), FLOAT_LABEL(lit_3683), 0);
         i_dogP->field_0x5e4 = param_1;
     }
 }
@@ -455,25 +456,22 @@ static int nodeCallBack(J3DJoint* i_jntP, int param_1) {
         UserArea* user_area = model->getUserArea();
 
         if (user_area) {
-            PSMTXCopy(model->i_getAnmMtx(joint_num),*calc_mtx);
+            PSMTXCopy(model->i_getAnmMtx(joint_num), *calc_mtx);
 
-            if (joint_num == 9 || joint_num  == 10) {
-                
-                
-                cMtx_YrotM(*calc_mtx,user_area->field_0x610 + user_area->field_0x628);
-                cMtx_XrotM(*calc_mtx,user_area->field_0x612 + user_area->field_0x62a);
-                cMtx_ZrotM(*calc_mtx,user_area->field_0x60e);
+            if (joint_num == 9 || joint_num == 10) {
+                cMtx_YrotM(*calc_mtx, user_area->field_0x610 + user_area->field_0x628);
+                cMtx_XrotM(*calc_mtx, user_area->field_0x612 + user_area->field_0x62a);
+                cMtx_ZrotM(*calc_mtx, user_area->field_0x60e);
             } else if (joint_num == 22) {
-                
-                cMtx_YrotM(*calc_mtx,user_area->field_0x640 << 1);
-                cMtx_ZrotM(*calc_mtx,user_area->field_0x63e << 1);
+                cMtx_YrotM(*calc_mtx, user_area->field_0x640 << 1);
+                cMtx_ZrotM(*calc_mtx, user_area->field_0x63e << 1);
             } else {
-                cMtx_YrotM(*calc_mtx,user_area->field_0x640);
-                cMtx_ZrotM(*calc_mtx,user_area->field_0x63e);
+                cMtx_YrotM(*calc_mtx, user_area->field_0x640);
+                cMtx_ZrotM(*calc_mtx, user_area->field_0x63e);
             }
 
-            model->setAnmMtx(joint_num,*calc_mtx);
-            PSMTXCopy(*calc_mtx,j3dSys.mCurrentMtx);
+            model->setAnmMtx(joint_num, *calc_mtx);
+            PSMTXCopy(*calc_mtx, j3dSys.mCurrentMtx);
         }
     }
     return 1;
@@ -505,6 +503,9 @@ COMPILER_STRIP_GATE(0x8066EE08, &lit_3773);
 #pragma pop
 
 /* 80667FE4-80668134 000384 0150+00 1/0 0/0 0/0 .text            daDo_Draw__FP8do_class */
+#ifdef NONMATCHING
+static void daDo_Draw(do_class* i_dogP) {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -513,6 +514,7 @@ static asm void daDo_Draw(do_class* i_dogP) {
 #include "asm/rel/d/a/d_a_do/d_a_do/daDo_Draw__FP8do_class.s"
 }
 #pragma pop
+#endif
 
 /* 80668134-80668170 0004D4 003C+00 1/1 0/0 0/0 .text            __dt__4cXyzFv */
 #pragma push
@@ -535,7 +537,7 @@ COMPILER_STRIP_GATE(0x8066EE0C, &lit_3816);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daDo_other_bg_check(do_class* i_dogP, fopAc_ac_c* i_actorP) {
+static asm int daDo_other_bg_check(do_class* i_dogP, fopAc_ac_c* i_actorP) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/daDo_other_bg_check__FP8do_classP10fopAc_ac_c.s"
 }
@@ -656,10 +658,10 @@ static u8 lit_3657[12];
 static u8 l_HIO[32];
 
 /* 8066F2E4-8066F2F8 000074 0014+00 1/2 0/0 0/0 .bss             target_info */
-static u8 target_info[20];
+static fopAc_ac_c* target_info[5];
 
 /* 8066F2F8-8066F2FC 000088 0004+00 1/2 0/0 0/0 .bss             target_info_count */
-static u8 target_info_count[4];
+static int target_info_count;
 
 /* 8066833C-806683C0 0006DC 0084+00 1/1 0/0 0/0 .text            s_w_sub__FPvPv */
 #pragma push
@@ -686,10 +688,64 @@ COMPILER_STRIP_GATE(0x8066EE18, &lit_3923);
 /* 8066F2FC-8066F310 00008C 0014+00 0/1 0/0 0/0 .bss             target_bgc */
 #pragma push
 #pragma force_active on
-static u8 target_bgc[20];
+static int target_bgc[5];
 #pragma pop
 
 /* 806683C0-8066858C 000760 01CC+00 1/1 0/0 0/0 .text            search_food__FP8do_class */
+#ifdef NONMATCHING
+// gave up. ghidra is not even close
+static u32 search_food(do_class* i_dogP) {
+    int ret;
+    target_info_count = 0;
+
+    for (int i = 0; i < 5; i++) {
+        target_info[i] = 0;
+        target_bgc[i] = 0;
+    }
+
+    i_fpcM_Search((fpcLyIt_JudgeFunc)s_w_sub, i_dogP);
+    f32 tmp = FLOAT_LABEL(lit_3662);
+
+    if (target_info_count != 0) {
+        int i = 0;
+        f32 pos_check = 0.0f;
+
+        do {
+            // for (int j = 0; j != target_info_count; j++) {
+                fopAc_ac_c* actorP = target_info[i];
+                f32 x_pos = actorP->current.pos.x - i_dogP->mEyePos.x;
+                f32 z_pos = actorP->current.pos.z - i_dogP->mEyePos.z;
+                f32 f_pos = JMAFastSqrt(x_pos * x_pos + z_pos * z_pos);
+
+                if (f_pos < tmp) {
+                    if (target_bgc[i] == 0) {
+                        if (daDo_other_bg_check(i_dogP, actorP) == 0) {
+                            target_bgc[i] = 1;
+
+                            if (!actorP) {
+                                ret = -1;
+                            } else {
+                                ret = actorP->mBase.mBsPcId;
+                            }
+                        }
+                    }
+                }
+
+                if (target_info_count == i) {
+                    ret = 0;
+                }
+            // }
+
+            i++;
+            pos_check += 100.0f;
+        } while (pos_check <= i_dogP->field_0x67c * 240.0f);
+    } else {
+        ret = -1;
+    }
+
+    return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -698,12 +754,13 @@ static asm u32 search_food(do_class* i_dogP) {
 #include "asm/rel/d/a/d_a_do/d_a_do/search_food__FP8do_class.s"
 }
 #pragma pop
+#endif
 
 /* 8066858C-806685EC 00092C 0060+00 1/1 0/0 0/0 .text            food_check__FP8do_class */
 static void food_check(do_class* i_dogP) {
-    i_dogP->isFood = search_food(i_dogP);
+    i_dogP->mFoodBsPcId = search_food(i_dogP);
 
-    if (fopAcM_SearchByID(i_dogP->isFood)) {
+    if (fopAcM_SearchByID(i_dogP->mFoodBsPcId)) {
         i_dogP->field_0x5f2 = 5;
         i_dogP->field_0x5f6 = 0;
     }
@@ -729,6 +786,32 @@ COMPILER_STRIP_GATE(0x8066EE1C, &lit_3981);
 #pragma pop
 
 /* 80668624-80668754 0009C4 0130+00 1/1 0/0 0/0 .text            depth_check__FP8do_class4cXyzf */
+#ifndef NONMATCHING
+static bool depth_check(do_class* i_dogP, cXyz i_pos, f32 param_2) {
+    dBgS_GndChk gnd_chk;
+    dBgS_ObjGndChk_Spl gnd_chk_spl;
+    cXyz pos;
+
+    pos.set(i_pos.x,i_pos.y+200.f,i_pos.z);
+    gnd_chk.SetPos(&pos);
+    f32 f_gnd_chk = dComIfG_Bgsp().GroundCross(&gnd_chk);
+    
+    gnd_chk_spl.SetPos(&pos);
+    f32 f_gnd_chk_spl = dComIfG_Bgsp().GroundCross(&gnd_chk_spl);
+
+    bool check = f_gnd_chk_spl - f_gnd_chk <= param_2 * 2.0f * 0.8f * i_dogP->field_0x67c;
+
+    if (check == -1) {
+        delete &gnd_chk_spl;
+        delete &gnd_chk;
+    } else {
+        delete &gnd_chk_spl;
+        delete &gnd_chk;
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -737,6 +820,7 @@ static asm void depth_check(do_class* i_dogP, cXyz i_pos, f32 param_2) {
 #include "asm/rel/d/a/d_a_do/d_a_do/depth_check__FP8do_class4cXyzf.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8066EE20-8066EE24 000038 0004+00 1/1 0/0 0/0 .rodata          @3994 */
@@ -1667,13 +1751,13 @@ static bool daDo_IsDelete(do_class* i_dogP) {
 
 /* 8066E49C-8066E504 00683C 0068+00 1/0 0/0 0/0 .text            daDo_Delete__FP8do_class */
 #ifdef NONMATCHING
-no clue how to generate the struct assignment...
-int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* resName);
+no clue how to generate the struct assignment... int
+dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* resName);
 static int daDo_Delete(do_class* i_dogP) {
     u32 actor_id = fopAcM_GetID(i_dogP);
-    dComIfG_resDelete(&i_dogP->mPhase,"Do");
+    dComIfG_resDelete(&i_dogP->mPhase, "Do");
     if (i_dogP->field_0xcc0 != 0) {
-        u8* tmp = (u8*)struct_8066F2B4+2;
+        u8* tmp = (u8*)struct_8066F2B4 + 2;
         *tmp = 0;
     }
     if (i_dogP->mHeap) {
@@ -1810,8 +1894,7 @@ extern "C" asm void __dt__10daDo_HIO_cFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __sinit_d_a_do_cpp() {
-    nofralloc
+asm void __sinit_d_a_do_cpp(){nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/__sinit_d_a_do_cpp.s"
 }
 #pragma pop
