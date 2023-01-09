@@ -293,7 +293,7 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
 @tp.command(name="progress")
 @click.option("--debug/--no-debug")
 @click.option("--matching/--no-matching", default=True, is_flag=True)
-@click.option("--print-rels", default=True, is_flag=True)
+@click.option("--print-rels/--no-print-rels", default=True, is_flag=True)
 @click.option(
     "--format",
     "-f",
@@ -583,7 +583,7 @@ def calculate_progress(build_path: Path, matching: bool, format: str, print_rels
             tableString = tableString+"Total | "+f"{100 * (rel_decompiled / rel_size):10.6f}%"+" | "+f"{rel_decompiled}"+" | "+f"{rel_size}"+"\n"
             CONSOLE.print(table)
 
-        
+
         table = Table(title="Total")
         table.add_column("Section", justify="right", style="cyan", no_wrap=True)
         table.add_column("Percentage", style="green")
@@ -596,7 +596,7 @@ def calculate_progress(build_path: Path, matching: bool, format: str, print_rels
             f"{dol_progress.decompiled}",
             f"{dol_progress.size}",
         )
-       
+
         if rels_progress:
             table.add_row(
                 "RELs",
