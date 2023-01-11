@@ -143,6 +143,13 @@ public:
     /* 802C1A14 */ virtual void startCollisionSE(u32, u32);
     /* 802C1B7C */ void setLinkSearch(bool);
     /* 802C1B90 */ void setEnemyName(char const*);
-};
+
+private:
+    /* 0x90 */ JSULink<Z2CreatureEnemy> mLink;
+    /* 0xA0 */ u8 mEnemyID;
+    /* 0xA1 */ u8 field_0xa1;
+    /* 0xA2 */ bool mLinkSearch;
+    /* 0xA3 */ u8 field_0xa3;
+};  // Size: 0xA4
 
 #endif /* Z2CREATURE_H */

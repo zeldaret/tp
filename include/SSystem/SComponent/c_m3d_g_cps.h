@@ -7,10 +7,10 @@
 #include "dolphin/types.h"
 
 struct cM3dGCpsS {
-    Vec mStart;
-    Vec mEnd;
-    f32 mRadius;
-};
+    /* 0x00 */ Vec mStart;
+    /* 0x0C */ Vec mEnd;
+    /* 0x18 */ f32 mRadius;
+};  // Size: 0x1C
 
 class cM3dGCps : public cM3dGLin {
 public:

@@ -4,51 +4,78 @@
 #include "SSystem/SComponent/c_cc_d.h"
 #include "dolphin/types.h"
 
-struct dCcD_SrcGAtTgCoCommonBase {
-    /* 0x00 */ u32 mGFlag;
+enum dCcD_hitSe {
+    /* 0  */ dCcD_SE_NONE,
+    /* 1  */ dCcD_SE_SWORD,
+    /* 2  */ dCcD_SE_SHIELD_ATTACK,
+    /* 3  */ dCcD_SE_WOLF_KICK,
+    /* 4  */ dCcD_SE_WOLF_BITE,
+    /* 5  */ dCcD_SE_WOOD,
+    /* 6  */ dCcD_SE_HAMMER,
+    /* 7  */ dCcD_SE_ARROW_STICK,
+    /* 8  */ dCcD_SE_HOOKSHOT_STICK,
+    /* 9  */ dCcD_SE_METAL,
+    /* 10 */ dCcD_SE_STONE,
+    /* 11 */ dCcD_SE_HARD_BODY,
+    /* 12 */ dCcD_SE_SOFT_BODY,
+    /* 13 */ dCcD_SE_13,
+    /* 14 */ dCcD_SE_SWORD_STAB,
+    /* 15 */ dCcD_SE_15,
+    /* 16 */ dCcD_SE_SWORD_RUN,
+    /* 17 */ dCcD_SE_17,
+    /* 18 */ dCcD_SE_THROW_OBJ,
+    /* 19 */ dCcD_SE_SPINNER,
+    /* 20 */ dCcD_SE_COPYROD,
+    /* 21 */ dCcD_SE_STATUE_HAMMER,
+    /* 22 */ dCcD_SE_PACHINKO,
+    /* 23 */ dCcD_SE_23,
 };
+
+struct dCcD_SrcGAtTgCoCommonBase {
+    /* 0x0 */ u32 mGFlag;
+};  // Size: 0x4
 
 struct dCcD_SrcGObjAt {
-    u8 mSe;
-    u8 mHitMark;
-    u8 mSpl;
-    u8 mMtrl;
-    dCcD_SrcGAtTgCoCommonBase mBase;
-};
+    /* 0x0 */ u8 mSe;       // Sound Effect ID
+    /* 0x1 */ u8 mHitMark;  // Hit Mark particle ID
+    /* 0x2 */ u8 mSpl;
+    /* 0x3 */ u8 mMtrl;
+    /* 0x4 */ dCcD_SrcGAtTgCoCommonBase mBase;
+};  // Size: 0x8
 
 struct dCcD_SrcGObjTg {
-    u8 mSe;
-    u8 mHitMark;
-    u8 mSpl;
-    u8 mMtrl;
-    dCcD_SrcGAtTgCoCommonBase mBase;
-};
+    /* 0x0 */ u8 mSe;       // Sound Effect ID
+    /* 0x1 */ u8 mHitMark;  // Hit Mark particle ID
+    /* 0x2 */ u8 mSpl;
+    /* 0x3 */ u8 mMtrl;
+    /* 0x4 */ dCcD_SrcGAtTgCoCommonBase mBase;
+};  // Size: 0x8
 
 struct dCcD_SrcGObjInf {
-    cCcD_SrcObj mObj;
-    dCcD_SrcGObjAt mGObjAt;
-    dCcD_SrcGObjTg mGObjTg;
-    dCcD_SrcGAtTgCoCommonBase mGObjCo;
-};
+    /* 0x00 */ cCcD_SrcObj mObj;
+    /* 0x1C */ dCcD_SrcGObjAt mGObjAt;
+    /* 0x24 */ dCcD_SrcGObjTg mGObjTg;
+    /* 0x2C */ dCcD_SrcGAtTgCoCommonBase mGObjCo;
+};  // Size: 0x30
 
 struct dCcD_SrcSph {
-    dCcD_SrcGObjInf mObjInf;
-    cM3dGSphS mSph;
-};
+    /* 0x00 */ dCcD_SrcGObjInf mObjInf;
+    /* 0x30 */ cM3dGSphS mSph;
+};  // Size: 0x40
 
 struct dCcD_SrcTri {
-    dCcD_SrcGObjInf mObjInf;
-};
+    /* 0x00 */ dCcD_SrcGObjInf mObjInf;
+};  // Size: 0x30
 
 struct dCcD_SrcCyl {
-    dCcD_SrcGObjInf mObjInf;
-    cM3dGCylS mCyl;
-};
+    /* 0x00 */ dCcD_SrcGObjInf mObjInf;
+    /* 0x30 */ cM3dGCylS mCyl;
+};  // Size: 0x44
 
 struct dCcD_SrcCps {
-    dCcD_SrcGObjInf mObjInf;
-    cM3dGCpsS mCps;
-};
+    /* 0x00 */ dCcD_SrcGObjInf mObjInf;
+    /* 0x30 */ cM3dGCpsS mCps;
+};  // Size: 0x4C
 
 class dCcD_GStts : public cCcD_GStts {
 public:

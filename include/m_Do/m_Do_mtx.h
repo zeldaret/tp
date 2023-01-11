@@ -20,6 +20,7 @@ void mDoMtx_YrotM(Mtx, s16);
 void mDoMtx_MtxToRot(CMtxP, csXyz*);
 void mDoMtx_lookAt(f32 (*param_0)[4], Vec const* param_1, Vec const* param_2, s16 param_3);
 void mDoMtx_concatProjView(f32 const (*param_0)[4], f32 const (*param_1)[4], f32 (*param_2)[4]);
+void mDoMtx_ZrotM(Mtx mtx, s16 z);
 
 inline void mDoMtx_multVecSR(Mtx m, const Vec* src, Vec* dst) {
     PSMTXMultVecSR(m, src, dst);
@@ -35,6 +36,12 @@ inline void mDoMtx_copy(const Mtx src, Mtx dst) {
 
 inline void mDoMtx_trans(Mtx m, f32 x, f32 y, f32 z) {
     PSMTXTrans(m,x,y,z);
+}
+
+inline void mDoMtx_multVecZero(MtxP param_0, Vec* param_1) {
+    param_1->x = param_0[0][3];
+    param_1->y = param_0[1][3];
+    param_1->z = param_0[2][3];
 }
 
 class mDoMtx_stack_c {
@@ -59,6 +66,7 @@ public:
     static void scaleS(f32 x, f32 y, f32 z) { PSMTXScale(now, x, y, z); }
     static void multVec(const Vec* a, Vec* b) { PSMTXMultVec(now, a, b); }
     static void multVecSR(const Vec* a, Vec* b) { PSMTXMultVecSR(now, a, b); }
+    static void multVecZero(Vec* v) { mDoMtx_multVecZero(now, v); } 
     static void XYZrotS(s16 x, s16 y, s16 z) { mDoMtx_XYZrotS(now, x, y, z); }
     static void XYZrotM(s16 x, s16 y, s16 z) { mDoMtx_XYZrotM(now, x, y, z); }
     static void ZXYrotS(s16 x, s16 y, s16 z) { mDoMtx_ZXYrotS(now, x, y, z); }
@@ -66,6 +74,7 @@ public:
     static void YrotM(s16 y) { mDoMtx_YrotM(now, y); }
     static void YrotS(s16 y) { mDoMtx_YrotS(now, y); }
     static void XrotM(s16 x) { mDoMtx_XrotM(now, x); }
+    static void ZrotM(s16 z) { mDoMtx_ZrotM(now, z); }
     static void inverse() { PSMTXInverse(now, now); }
     static void concat(const Mtx m) { PSMTXConcat(now, m, now); }
     static void copy(const Mtx m) { PSMTXCopy(m, now); }
@@ -90,11 +99,5 @@ public:
     /* 0x114 */ mDoMtx_quatStack_c* field_0x114;
     /* 0x118 */ mDoMtx_quatStack_c* field_0x118;
 };  // Size: 0x11C
-
-inline void mDoMtx_multVecZero(MtxP param_0, Vec* param_1) {
-    param_1->x = param_0[0][3];
-    param_1->y = param_0[1][3];
-    param_1->z = param_0[2][3];
-}
 
 #endif /* M_DO_M_DO_MTX_H */

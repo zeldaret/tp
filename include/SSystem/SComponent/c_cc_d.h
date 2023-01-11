@@ -30,6 +30,7 @@ enum cCcD_ObjAtType {
     /* 0x00000010 */ AT_TYPE_SHIELD_ATTACK = (1 << 4),
     /* 0x00000020 */ AT_TYPE_BOMB = (1 << 5),
     /* 0x00000080 */ AT_TYPE_SLINGSHOT = (1 << 7),
+    /* 0x00000200 */ AT_TYPE_LANTERN_SWING = (1 << 9),
     /* 0x00000400 */ AT_TYPE_CSTATUE_SWING = (1 << 10),
     /* 0x00002000 */ AT_TYPE_ARROW = (1 << 13),
     /* 0x00004000 */ AT_TYPE_HOOKSHOT = (1 << 14),
@@ -248,26 +249,26 @@ public:
 STATIC_ASSERT(0x40 == sizeof(cCcD_DivideArea));
 
 struct cCcD_SrcObjTg {
-    s32 mType;
-    s32 mSPrm;
-};
+    /* 0x0 */ s32 mType;
+    /* 0x4 */ s32 mSPrm;
+};  // Size: 0x8
 
 struct cCcD_SrcObjAt {
-    s32 mType;
-    u8 mAtp;
-    s32 mSPrm;
-};
+    /* 0x0 */ s32 mType;
+    /* 0x4 */ u8 mAtp;
+    /* 0x8 */ s32 mSPrm;
+};  // Size: 0xC
 
 struct cCcD_SrcObjHitInf {
-    cCcD_SrcObjAt mObjAt;
-    cCcD_SrcObjTg mObjTg;
-    s32 mSPrm;
-};
+    /* 0x00 */ cCcD_SrcObjAt mObjAt;
+    /* 0x0C */ cCcD_SrcObjTg mObjTg;
+    /* 0x14 */ s32 mSPrm;
+};  // Size: 0x18
 
 struct cCcD_SrcObj {
-    int field_0x0;
-    cCcD_SrcObjHitInf mSrcObjHitInf;
-};
+    /* 0x0 */ int field_0x0;
+    /* 0x4 */ cCcD_SrcObjHitInf mSrcObjHitInf;
+};  // Size: 0x1C
 
 class cCcD_GStts {
 public:

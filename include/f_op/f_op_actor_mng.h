@@ -544,6 +544,10 @@ inline f32 fopAcM_searchPlayerDistanceXZ2(const fopAc_ac_c* actor) {
     return fopAcM_searchActorDistanceXZ2(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));
 }
 
+inline f32 fopAcM_searchPlayerDistanceXZ(const fopAc_ac_c* actor) {
+    return fopAcM_searchActorDistanceXZ(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));
+}
+
 inline f32 fopAcM_searchPlayerDistance(const fopAc_ac_c* actor) {
     return fopAcM_searchActorDistance(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));
 }
@@ -553,6 +557,16 @@ s8 dComIfGp_getReverb(int roomNo);
 inline void fopAcM_seStartCurrent(const fopAc_ac_c* actor, u32 sfxID, u32 param_2) {
     s8 roomNo = fopAcM_GetRoomNo(actor);
     mDoAud_seStart(sfxID, &actor->current.pos, param_2, dComIfGp_getReverb(roomNo));
+}
+
+inline void fopAcM_seStart(const fopAc_ac_c* actor, u32 sfxID, u32 param_2) {
+    s8 roomNo = fopAcM_GetRoomNo(actor);
+    mDoAud_seStart(sfxID, &actor->mEyePos, param_2, dComIfGp_getReverb(roomNo));
+}
+
+inline void fopAcM_seStartLevel(const fopAc_ac_c* actor, u32 sfxID, u32 param_2) {
+    s8 roomNo = fopAcM_GetRoomNo(actor);
+    i_mDoAud_seStartLevel(sfxID, &actor->mEyePos, param_2, dComIfGp_getReverb(roomNo));
 }
 
 extern "C" {

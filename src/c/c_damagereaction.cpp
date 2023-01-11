@@ -56,6 +56,17 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 //
 
 /* ############################################################################################## */
+/* 80450C98-80450C9C -00001 0004+00 0/0 0/0 50/50 .sbss            None */
+extern u8 struct_80450C98[4];
+u8 struct_80450C98[4];
+
+/* 80450C9C-80450CA0 -00001 0004+00 0/0 0/0 6/6 .sbss            None */
+#pragma push
+#pragma force_active on
+u8 cDmr_SkipInfo;
+#pragma pop
+
+/* ############################################################################################## */
 /* 80451BA8-80451BAC 0001A8 0004+00 1/1 0/0 0/0 .sdata2          @3731 */
 SECTION_SDATA2 static f32 lit_3731 = 25.0f;
 
@@ -97,7 +108,7 @@ void JPTraceParticleCallBack4::draw(JPABaseEmitter* param_0, JPABaseParticle* pa
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cDmrNowMidnaTalk() {
+asm BOOL cDmrNowMidnaTalk() {
     nofralloc
 #include "asm/c/c_damagereaction/cDmrNowMidnaTalk__Fv.s"
 }

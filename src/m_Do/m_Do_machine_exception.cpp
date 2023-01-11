@@ -121,21 +121,4 @@ void exception_addition(JUTConsole* pConsole) {
     dispGameInfo();
 }
 
-/* ############################################################################################## */
-/* 80450C98-80450C9C -00001 0004+00 0/0 0/0 50/50 .sbss            None */
-/* 80450C98 0001+00 data_80450C98 None */
-/* 80450C99 0001+00 data_80450C99 None */
-/* 80450C9A 0001+00 data_80450C9A None */
-/* 80450C9B 0001+00 data_80450C9B None */
-extern u8 struct_80450C98[4];
-u8 struct_80450C98[4];
-
-/* 80450C9C-80450CA0 -00001 0004+00 0/0 0/0 6/6 .sbss            None */
-/* 80450C9C 0001+00 data_80450C9C None */
-/* 80450C9D 0001+00 data_80450C9D None */
-/* 80450C9E 0001+00 data_80450C9E None */
-/* 80450C9F 0001+00 data_80450C9F None */
-extern u8 struct_80450C9C[4];
-u8 struct_80450C9C[4];
-
 /* 80374460-80374460 000AC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
