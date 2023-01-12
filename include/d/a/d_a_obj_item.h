@@ -20,6 +20,14 @@ namespace daItem_prm {
     static inline u8 checkInWater(daItem_c* item) {
         return fopAcM_GetParamBit(item, 0x1C, 4);
     }
+
+    static inline u8 getType(daItem_c* item) {
+        return (fopAcM_GetParam(item) >> 0x18) & 0xF;
+    }
+
+    static inline u8 getSwitchNo(daItem_c* item) {
+        return (fopAcM_GetParam(item) >> 0x10) & 0xFF;
+    }
 };
 
 #endif /* A_OBJ_D_A_OBJ_ITEM_H */

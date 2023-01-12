@@ -462,10 +462,10 @@ u8 daYkgr_c::m_emitter[4];
 
 /* 80031870-800318B4 02C1B0 0044+00 0/0 0/0 19/19 .text getArcName__12daSetBgObj_cFP10fopAc_ac_c
  */
-const char* daSetBgObj_c::getArcName(fopAc_ac_c* param_0) {
+const char* daSetBgObj_c::getArcName(fopAc_ac_c* i_this) {
     static char arcName[8];
 
-    sprintf(arcName, "@bg%04x", (u16)fopAcM_GetParam(param_0));
+    sprintf(arcName, "@bg%04x", (u16)fopAcM_GetParam(i_this));
     return arcName;
 }
 
