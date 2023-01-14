@@ -38,10 +38,17 @@ $(M113_TARGET): $(M113_O_FILES) $(M113_LIBS)
 	@python3 tools/lcf.py rel 113 --output $(M113_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M113_LDFLAGS) -o $(M113_TARGET) @build/M113_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stonemark/%.o: rel/d/a/obj/d_a_obj_stonemark/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stonemark/%.o: rel/d/a/obj/d_a_obj_stonemark/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stonemark/%.d
 	@echo [113] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M113_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M113_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M113_D_FILES := $(M113_O_FILES:.o=.d)
+$(M113_D_FILES):
+include $(wildcard $(M113_D_FILES))
+endif
 
 

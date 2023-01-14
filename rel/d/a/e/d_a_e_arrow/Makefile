@@ -40,10 +40,17 @@ $(M171_TARGET): $(M171_O_FILES) $(M171_LIBS)
 	@python3 tools/lcf.py rel 171 --output $(M171_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M171_LDFLAGS) -o $(M171_TARGET) @build/M171_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_arrow/%.o: rel/d/a/e/d_a_e_arrow/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_arrow/%.o: rel/d/a/e/d_a_e_arrow/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_arrow/%.d
 	@echo [171] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M171_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M171_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M171_D_FILES := $(M171_O_FILES:.o=.d)
+$(M171_D_FILES):
+include $(wildcard $(M171_D_FILES))
+endif
 
 

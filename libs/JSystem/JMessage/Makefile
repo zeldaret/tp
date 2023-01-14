@@ -29,9 +29,16 @@ $(BUILD_DIR)/libJMessage.a: $(LIBJMESSAGE_A_O_FILES)
 	@echo $(LIBJMESSAGE_A_O_FILES) > build/LIBJMESSAGE_A_ofiles
 	@$(LD) -xm l $(LIBJMESSAGE_A_LDFLAGS) -o $(BUILD_DIR)/libJMessage.a @build/LIBJMESSAGE_A_ofiles
 
-$(BUILD_DIR)/libs/JSystem/JMessage/%.o: libs/JSystem/JMessage/%.cpp
+$(BUILD_DIR)/libs/JSystem/JMessage/%.o: libs/JSystem/JMessage/%.cpp $(BUILD_DIR)/libs/JSystem/JMessage/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBJMESSAGE_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBJMESSAGE_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+LIBJMESSAGE_A_D_FILES := $(LIBJMESSAGE_A_O_FILES:.o=.d)
+$(LIBJMESSAGE_A_D_FILES):
+include $(wildcard $(LIBJMESSAGE_A_D_FILES))
+endif
 

@@ -40,10 +40,17 @@ $(M206_TARGET): $(M206_O_FILES) $(M206_LIBS)
 	@python3 tools/lcf.py rel 206 --output $(M206_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M206_LDFLAGS) -o $(M206_TARGET) @build/M206_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_kr/%.o: rel/d/a/e/d_a_e_kr/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_kr/%.o: rel/d/a/e/d_a_e_kr/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_kr/%.d
 	@echo [206] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M206_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M206_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M206_D_FILES := $(M206_O_FILES:.o=.d)
+$(M206_D_FILES):
+include $(wildcard $(M206_D_FILES))
+endif
 
 

@@ -38,10 +38,17 @@ $(M485_TARGET): $(M485_O_FILES) $(M485_LIBS)
 	@python3 tools/lcf.py rel 485 --output $(M485_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M485_LDFLAGS) -o $(M485_TARGET) @build/M485_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_inobone/%.o: rel/d/a/obj/d_a_obj_inobone/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_inobone/%.o: rel/d/a/obj/d_a_obj_inobone/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_inobone/%.d
 	@echo [485] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M485_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M485_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M485_D_FILES := $(M485_O_FILES:.o=.d)
+$(M485_D_FILES):
+include $(wildcard $(M485_D_FILES))
+endif
 
 

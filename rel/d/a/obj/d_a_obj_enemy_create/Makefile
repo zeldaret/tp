@@ -38,10 +38,17 @@ $(M441_TARGET): $(M441_O_FILES) $(M441_LIBS)
 	@python3 tools/lcf.py rel 441 --output $(M441_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M441_LDFLAGS) -o $(M441_TARGET) @build/M441_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_enemy_create/%.o: rel/d/a/obj/d_a_obj_enemy_create/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_enemy_create/%.o: rel/d/a/obj/d_a_obj_enemy_create/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_enemy_create/%.d
 	@echo [441] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M441_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M441_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M441_D_FILES := $(M441_O_FILES:.o=.d)
+$(M441_D_FILES):
+include $(wildcard $(M441_D_FILES))
+endif
 
 

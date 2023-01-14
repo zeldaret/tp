@@ -40,10 +40,17 @@ $(M300_TARGET): $(M300_O_FILES) $(M300_LIBS)
 	@python3 tools/lcf.py rel 300 --output $(M300_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M300_LDFLAGS) -o $(M300_TARGET) @build/M300_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_drainSol/%.o: rel/d/a/npc/d_a_npc_drainSol/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_drainSol/%.o: rel/d/a/npc/d_a_npc_drainSol/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_drainSol/%.d
 	@echo [300] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M300_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M300_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M300_D_FILES := $(M300_O_FILES:.o=.d)
+$(M300_D_FILES):
+include $(wildcard $(M300_D_FILES))
+endif
 
 

@@ -38,10 +38,17 @@ $(M7_TARGET): $(M7_O_FILES) $(M7_LIBS)
 	@python3 tools/lcf.py rel 7 --output $(M7_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M7_LDFLAGS) -o $(M7_TARGET) @build/M7_ofiles
 
-$(BUILD_DIR)/rel/d/a/door/d_a_door_knob00/%.o: rel/d/a/door/d_a_door_knob00/%.cpp
+$(BUILD_DIR)/rel/d/a/door/d_a_door_knob00/%.o: rel/d/a/door/d_a_door_knob00/%.cpp $(BUILD_DIR)/rel/d/a/door/d_a_door_knob00/%.d
 	@echo [  7] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M7_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M7_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M7_D_FILES := $(M7_O_FILES:.o=.d)
+$(M7_D_FILES):
+include $(wildcard $(M7_D_FILES))
+endif
 
 

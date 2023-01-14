@@ -40,10 +40,17 @@ $(M546_TARGET): $(M546_O_FILES) $(M546_LIBS)
 	@python3 tools/lcf.py rel 546 --output $(M546_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M546_LDFLAGS) -o $(M546_TARGET) @build/M546_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Lblock/%.o: rel/d/a/obj/d_a_obj_lv6Lblock/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Lblock/%.o: rel/d/a/obj/d_a_obj_lv6Lblock/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Lblock/%.d
 	@echo [546] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M546_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M546_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M546_D_FILES := $(M546_O_FILES:.o=.d)
+$(M546_D_FILES):
+include $(wildcard $(M546_D_FILES))
+endif
 
 

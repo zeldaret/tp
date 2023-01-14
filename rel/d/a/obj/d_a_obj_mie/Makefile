@@ -40,10 +40,17 @@ $(M571_TARGET): $(M571_O_FILES) $(M571_LIBS)
 	@python3 tools/lcf.py rel 571 --output $(M571_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M571_LDFLAGS) -o $(M571_TARGET) @build/M571_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mie/%.o: rel/d/a/obj/d_a_obj_mie/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mie/%.o: rel/d/a/obj/d_a_obj_mie/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mie/%.d
 	@echo [571] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M571_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M571_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M571_D_FILES := $(M571_O_FILES:.o=.d)
+$(M571_D_FILES):
+include $(wildcard $(M571_D_FILES))
+endif
 
 

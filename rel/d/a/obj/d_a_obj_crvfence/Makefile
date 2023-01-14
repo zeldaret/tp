@@ -38,10 +38,17 @@ $(M426_TARGET): $(M426_O_FILES) $(M426_LIBS)
 	@python3 tools/lcf.py rel 426 --output $(M426_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M426_LDFLAGS) -o $(M426_TARGET) @build/M426_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvfence/%.o: rel/d/a/obj/d_a_obj_crvfence/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvfence/%.o: rel/d/a/obj/d_a_obj_crvfence/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvfence/%.d
 	@echo [426] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M426_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M426_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M426_D_FILES := $(M426_O_FILES:.o=.d)
+$(M426_D_FILES):
+include $(wildcard $(M426_D_FILES))
+endif
 
 

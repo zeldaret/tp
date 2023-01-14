@@ -40,10 +40,17 @@ $(M366_TARGET): $(M366_O_FILES) $(M366_LIBS)
 	@python3 tools/lcf.py rel 366 --output $(M366_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M366_LDFLAGS) -o $(M366_TARGET) @build/M366_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_soldierB/%.o: rel/d/a/npc/d_a_npc_soldierB/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_soldierB/%.o: rel/d/a/npc/d_a_npc_soldierB/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_soldierB/%.d
 	@echo [366] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M366_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M366_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M366_D_FILES := $(M366_O_FILES:.o=.d)
+$(M366_D_FILES):
+include $(wildcard $(M366_D_FILES))
+endif
 
 

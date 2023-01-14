@@ -40,10 +40,17 @@ $(M70_TARGET): $(M70_O_FILES) $(M70_LIBS)
 	@python3 tools/lcf.py rel 70 --output $(M70_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M70_LDFLAGS) -o $(M70_TARGET) @build/M70_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_rd/%.o: rel/d/a/e/d_a_e_rd/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_rd/%.o: rel/d/a/e/d_a_e_rd/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_rd/%.d
 	@echo [ 70] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M70_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M70_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M70_D_FILES := $(M70_O_FILES:.o=.d)
+$(M70_D_FILES):
+include $(wildcard $(M70_D_FILES))
+endif
 
 

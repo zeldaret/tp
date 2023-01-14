@@ -38,10 +38,17 @@ $(M600_TARGET): $(M600_O_FILES) $(M600_LIBS)
 	@python3 tools/lcf.py rel 600 --output $(M600_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M600_LDFLAGS) -o $(M600_TARGET) @build/M600_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rcircle/%.o: rel/d/a/obj/d_a_obj_rcircle/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rcircle/%.o: rel/d/a/obj/d_a_obj_rcircle/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rcircle/%.d
 	@echo [600] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M600_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M600_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M600_D_FILES := $(M600_O_FILES:.o=.d)
+$(M600_D_FILES):
+include $(wildcard $(M600_D_FILES))
+endif
 
 

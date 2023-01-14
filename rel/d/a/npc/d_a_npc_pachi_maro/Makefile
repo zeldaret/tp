@@ -40,10 +40,17 @@ $(M343_TARGET): $(M343_O_FILES) $(M343_LIBS)
 	@python3 tools/lcf.py rel 343 --output $(M343_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M343_LDFLAGS) -o $(M343_TARGET) @build/M343_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_maro/%.o: rel/d/a/npc/d_a_npc_pachi_maro/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_maro/%.o: rel/d/a/npc/d_a_npc_pachi_maro/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_maro/%.d
 	@echo [343] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M343_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M343_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M343_D_FILES := $(M343_O_FILES:.o=.d)
+$(M343_D_FILES):
+include $(wildcard $(M343_D_FILES))
+endif
 
 

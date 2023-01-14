@@ -40,10 +40,17 @@ $(M102_TARGET): $(M102_O_FILES) $(M102_LIBS)
 	@python3 tools/lcf.py rel 102 --output $(M102_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M102_LDFLAGS) -o $(M102_TARGET) @build/M102_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ktonfire/%.o: rel/d/a/obj/d_a_obj_ktonfire/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ktonfire/%.o: rel/d/a/obj/d_a_obj_ktonfire/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ktonfire/%.d
 	@echo [102] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M102_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M102_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M102_D_FILES := $(M102_O_FILES:.o=.d)
+$(M102_D_FILES):
+include $(wildcard $(M102_D_FILES))
+endif
 
 

@@ -155,9 +155,16 @@ $(BUILD_DIR)/libJAudio2.a: $(LIBJAUDIO2_A_O_FILES)
 	@echo $(LIBJAUDIO2_A_O_FILES) > build/LIBJAUDIO2_A_ofiles
 	@$(LD) -xm l $(LIBJAUDIO2_A_LDFLAGS) -o $(BUILD_DIR)/libJAudio2.a @build/LIBJAUDIO2_A_ofiles
 
-$(BUILD_DIR)/libs/JSystem/JAudio2/%.o: libs/JSystem/JAudio2/%.cpp
+$(BUILD_DIR)/libs/JSystem/JAudio2/%.o: libs/JSystem/JAudio2/%.cpp $(BUILD_DIR)/libs/JSystem/JAudio2/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBJAUDIO2_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBJAUDIO2_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+LIBJAUDIO2_A_D_FILES := $(LIBJAUDIO2_A_O_FILES:.o=.d)
+$(LIBJAUDIO2_A_D_FILES):
+include $(wildcard $(LIBJAUDIO2_A_D_FILES))
+endif
 

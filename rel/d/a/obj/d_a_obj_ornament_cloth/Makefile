@@ -38,10 +38,17 @@ $(M109_TARGET): $(M109_O_FILES) $(M109_LIBS)
 	@python3 tools/lcf.py rel 109 --output $(M109_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M109_LDFLAGS) -o $(M109_TARGET) @build/M109_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ornament_cloth/%.o: rel/d/a/obj/d_a_obj_ornament_cloth/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ornament_cloth/%.o: rel/d/a/obj/d_a_obj_ornament_cloth/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ornament_cloth/%.d
 	@echo [109] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M109_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M109_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M109_D_FILES := $(M109_O_FILES:.o=.d)
+$(M109_D_FILES):
+include $(wildcard $(M109_D_FILES))
+endif
 
 

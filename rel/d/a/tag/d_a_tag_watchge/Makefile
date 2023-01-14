@@ -38,10 +38,17 @@ $(M750_TARGET): $(M750_O_FILES) $(M750_LIBS)
 	@python3 tools/lcf.py rel 750 --output $(M750_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M750_LDFLAGS) -o $(M750_TARGET) @build/M750_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_watchge/%.o: rel/d/a/tag/d_a_tag_watchge/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_watchge/%.o: rel/d/a/tag/d_a_tag_watchge/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_watchge/%.d
 	@echo [750] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M750_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M750_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M750_D_FILES := $(M750_O_FILES:.o=.d)
+$(M750_D_FILES):
+include $(wildcard $(M750_D_FILES))
+endif
 
 

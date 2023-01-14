@@ -40,10 +40,17 @@ $(M185_TARGET): $(M185_O_FILES) $(M185_LIBS)
 	@python3 tools/lcf.py rel 185 --output $(M185_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M185_LDFLAGS) -o $(M185_TARGET) @build/M185_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_df/%.o: rel/d/a/e/d_a_e_df/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_df/%.o: rel/d/a/e/d_a_e_df/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_df/%.d
 	@echo [185] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M185_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M185_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M185_D_FILES := $(M185_O_FILES:.o=.d)
+$(M185_D_FILES):
+include $(wildcard $(M185_D_FILES))
+endif
 
 

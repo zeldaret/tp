@@ -40,10 +40,17 @@ $(M506_TARGET): $(M506_O_FILES) $(M506_LIBS)
 	@python3 tools/lcf.py rel 506 --output $(M506_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M506_LDFLAGS) -o $(M506_TARGET) @build/M506_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kshutter/%.o: rel/d/a/obj/d_a_obj_kshutter/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kshutter/%.o: rel/d/a/obj/d_a_obj_kshutter/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kshutter/%.d
 	@echo [506] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M506_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M506_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M506_D_FILES := $(M506_O_FILES:.o=.d)
+$(M506_D_FILES):
+include $(wildcard $(M506_D_FILES))
+endif
 
 

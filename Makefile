@@ -92,6 +92,8 @@ LDFLAGS := -unused -map $(MAP) -fp hard -nodefaults -w off
 # Compiler flags
 CFLAGS  += -Cpp_exceptions off -proc gekko -fp hard -O3 -nodefaults -str pool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
 
+DEPFLAGS := $(if $(DISABLE_DEPS),,-MD)
+
 # O4,p for init.c
 $(BUILD_DIR)/src/init.o: CFLAGS := -Cpp_exceptions off -proc gekko -fp hard -O4,p -nodefaults -str pool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
 
@@ -190,17 +192,25 @@ rungame: game
 	dolphin-emu $(BUILD_DIR)/game/sys/main.dol
 
 #
-$(BUILD_DIR)/%.o: %.c
+$(BUILD_DIR)/%.o: %.c $(BUILD_DIR)/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
-	@$(CC) $(CFLAGS) -c -o $@ $(basename $@).c
+	@$(CC) $(CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
 
-$(BUILD_DIR)/%.o: %.cpp
+$(BUILD_DIR)/%.o: %.cpp $(BUILD_DIR)/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+D_FILES := $(O_FILES:.o=.d)
+$(D_FILES):
+include $(wildcard $(D_FILES))
+endif
 
 # shared cpp files for RELs
 $(BUILD_DIR)/rel/%.o: rel/%.cpp

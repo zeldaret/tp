@@ -40,10 +40,17 @@ $(M538_TARGET): $(M538_O_FILES) $(M538_LIBS)
 	@python3 tools/lcf.py rel 538 --output $(M538_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M538_LDFLAGS) -o $(M538_TARGET) @build/M538_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4sand/%.o: rel/d/a/obj/d_a_obj_lv4sand/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4sand/%.o: rel/d/a/obj/d_a_obj_lv4sand/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4sand/%.d
 	@echo [538] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M538_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M538_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M538_D_FILES := $(M538_O_FILES:.o=.d)
+$(M538_D_FILES):
+include $(wildcard $(M538_D_FILES))
+endif
 
 

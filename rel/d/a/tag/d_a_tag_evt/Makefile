@@ -38,10 +38,17 @@ $(M31_TARGET): $(M31_O_FILES) $(M31_LIBS)
 	@python3 tools/lcf.py rel 31 --output $(M31_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M31_LDFLAGS) -o $(M31_TARGET) @build/M31_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_evt/%.o: rel/d/a/tag/d_a_tag_evt/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_evt/%.o: rel/d/a/tag/d_a_tag_evt/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_evt/%.d
 	@echo [ 31] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M31_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M31_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M31_D_FILES := $(M31_O_FILES:.o=.d)
+$(M31_D_FILES):
+include $(wildcard $(M31_D_FILES))
+endif
 
 

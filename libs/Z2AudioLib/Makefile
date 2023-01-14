@@ -61,9 +61,16 @@ $(BUILD_DIR)/libZ2AudioLib.a: $(LIBZ2AUDIOLIB_A_O_FILES)
 	@echo $(LIBZ2AUDIOLIB_A_O_FILES) > build/LIBZ2AUDIOLIB_A_ofiles
 	@$(LD) -xm l $(LIBZ2AUDIOLIB_A_LDFLAGS) -o $(BUILD_DIR)/libZ2AudioLib.a @build/LIBZ2AUDIOLIB_A_ofiles
 
-$(BUILD_DIR)/libs/Z2AudioLib/%.o: libs/Z2AudioLib/%.cpp
+$(BUILD_DIR)/libs/Z2AudioLib/%.o: libs/Z2AudioLib/%.cpp $(BUILD_DIR)/libs/Z2AudioLib/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBZ2AUDIOLIB_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBZ2AUDIOLIB_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+LIBZ2AUDIOLIB_A_D_FILES := $(LIBZ2AUDIOLIB_A_O_FILES:.o=.d)
+$(LIBZ2AUDIOLIB_A_D_FILES):
+include $(wildcard $(LIBZ2AUDIOLIB_A_D_FILES))
+endif
 

@@ -40,10 +40,17 @@ $(M467_TARGET): $(M467_O_FILES) $(M467_LIBS)
 	@python3 tools/lcf.py rel 467 --output $(M467_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M467_LDFLAGS) -o $(M467_TARGET) @build/M467_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_groundwater/%.o: rel/d/a/obj/d_a_obj_groundwater/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_groundwater/%.o: rel/d/a/obj/d_a_obj_groundwater/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_groundwater/%.d
 	@echo [467] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M467_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M467_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M467_D_FILES := $(M467_O_FILES:.o=.d)
+$(M467_D_FILES):
+include $(wildcard $(M467_D_FILES))
+endif
 
 

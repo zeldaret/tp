@@ -38,10 +38,17 @@ $(M695_TARGET): $(M695_O_FILES) $(M695_LIBS)
 	@python3 tools/lcf.py rel 695 --output $(M695_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M695_LDFLAGS) -o $(M695_TARGET) @build/M695_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zcloth/%.o: rel/d/a/obj/d_a_obj_zcloth/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zcloth/%.o: rel/d/a/obj/d_a_obj_zcloth/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zcloth/%.d
 	@echo [695] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M695_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M695_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M695_D_FILES := $(M695_O_FILES:.o=.d)
+$(M695_D_FILES):
+include $(wildcard $(M695_D_FILES))
+endif
 
 

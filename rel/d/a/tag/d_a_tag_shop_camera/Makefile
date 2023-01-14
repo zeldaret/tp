@@ -38,10 +38,17 @@ $(M741_TARGET): $(M741_O_FILES) $(M741_LIBS)
 	@python3 tools/lcf.py rel 741 --output $(M741_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M741_LDFLAGS) -o $(M741_TARGET) @build/M741_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_camera/%.o: rel/d/a/tag/d_a_tag_shop_camera/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_camera/%.o: rel/d/a/tag/d_a_tag_shop_camera/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_camera/%.d
 	@echo [741] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M741_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M741_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M741_D_FILES := $(M741_O_FILES:.o=.d)
+$(M741_D_FILES):
+include $(wildcard $(M741_D_FILES))
+endif
 
 

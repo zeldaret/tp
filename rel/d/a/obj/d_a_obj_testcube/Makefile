@@ -38,10 +38,17 @@ $(M655_TARGET): $(M655_O_FILES) $(M655_LIBS)
 	@python3 tools/lcf.py rel 655 --output $(M655_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M655_LDFLAGS) -o $(M655_TARGET) @build/M655_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_testcube/%.o: rel/d/a/obj/d_a_obj_testcube/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_testcube/%.o: rel/d/a/obj/d_a_obj_testcube/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_testcube/%.d
 	@echo [655] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M655_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M655_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M655_D_FILES := $(M655_O_FILES:.o=.d)
+$(M655_D_FILES):
+include $(wildcard $(M655_D_FILES))
+endif
 
 

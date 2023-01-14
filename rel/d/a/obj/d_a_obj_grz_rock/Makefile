@@ -38,10 +38,17 @@ $(M468_TARGET): $(M468_O_FILES) $(M468_LIBS)
 	@python3 tools/lcf.py rel 468 --output $(M468_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M468_LDFLAGS) -o $(M468_TARGET) @build/M468_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_grz_rock/%.o: rel/d/a/obj/d_a_obj_grz_rock/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_grz_rock/%.o: rel/d/a/obj/d_a_obj_grz_rock/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_grz_rock/%.d
 	@echo [468] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M468_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M468_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M468_D_FILES := $(M468_O_FILES:.o=.d)
+$(M468_D_FILES):
+include $(wildcard $(M468_D_FILES))
+endif
 
 

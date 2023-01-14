@@ -41,9 +41,16 @@ $(BUILD_DIR)/libJ3DGraphAnimator.a: $(LIBJ3DGRAPHANIMATOR_A_O_FILES)
 	@echo $(LIBJ3DGRAPHANIMATOR_A_O_FILES) > build/LIBJ3DGRAPHANIMATOR_A_ofiles
 	@$(LD) -xm l $(LIBJ3DGRAPHANIMATOR_A_LDFLAGS) -o $(BUILD_DIR)/libJ3DGraphAnimator.a @build/LIBJ3DGRAPHANIMATOR_A_ofiles
 
-$(BUILD_DIR)/libs/JSystem/J3DGraphAnimator/%.o: libs/JSystem/J3DGraphAnimator/%.cpp
+$(BUILD_DIR)/libs/JSystem/J3DGraphAnimator/%.o: libs/JSystem/J3DGraphAnimator/%.cpp $(BUILD_DIR)/libs/JSystem/J3DGraphAnimator/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBJ3DGRAPHANIMATOR_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBJ3DGRAPHANIMATOR_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+LIBJ3DGRAPHANIMATOR_A_D_FILES := $(LIBJ3DGRAPHANIMATOR_A_O_FILES:.o=.d)
+$(LIBJ3DGRAPHANIMATOR_A_D_FILES):
+include $(wildcard $(LIBJ3DGRAPHANIMATOR_A_D_FILES))
+endif
 

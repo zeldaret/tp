@@ -95,9 +95,16 @@ $(BUILD_DIR)/libSComponent.a: $(LIBSCOMPONENT_A_O_FILES)
 	@echo $(LIBSCOMPONENT_A_O_FILES) > build/LIBSCOMPONENT_A_ofiles
 	@$(LD) -xm l $(LIBSCOMPONENT_A_LDFLAGS) -o $(BUILD_DIR)/libSComponent.a @build/LIBSCOMPONENT_A_ofiles
 
-$(BUILD_DIR)/libs/SSystem/SComponent/%.o: libs/SSystem/SComponent/%.cpp
+$(BUILD_DIR)/libs/SSystem/SComponent/%.o: libs/SSystem/SComponent/%.cpp $(BUILD_DIR)/libs/SSystem/SComponent/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBSCOMPONENT_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBSCOMPONENT_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+LIBSCOMPONENT_A_D_FILES := $(LIBSCOMPONENT_A_O_FILES:.o=.d)
+$(LIBSCOMPONENT_A_D_FILES):
+include $(wildcard $(LIBSCOMPONENT_A_D_FILES))
+endif
 

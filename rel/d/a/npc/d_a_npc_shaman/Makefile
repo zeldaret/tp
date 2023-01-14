@@ -40,10 +40,17 @@ $(M360_TARGET): $(M360_O_FILES) $(M360_LIBS)
 	@python3 tools/lcf.py rel 360 --output $(M360_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M360_LDFLAGS) -o $(M360_TARGET) @build/M360_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shaman/%.o: rel/d/a/npc/d_a_npc_shaman/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shaman/%.o: rel/d/a/npc/d_a_npc_shaman/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shaman/%.d
 	@echo [360] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M360_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M360_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M360_D_FILES := $(M360_O_FILES:.o=.d)
+$(M360_D_FILES):
+include $(wildcard $(M360_D_FILES))
+endif
 
 

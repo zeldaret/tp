@@ -40,10 +40,17 @@ $(M518_TARGET): $(M518_O_FILES) $(M518_LIBS)
 	@python3 tools/lcf.py rel 518 --output $(M518_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M518_LDFLAGS) -o $(M518_TARGET) @build/M518_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Water/%.o: rel/d/a/obj/d_a_obj_lv3Water/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Water/%.o: rel/d/a/obj/d_a_obj_lv3Water/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Water/%.d
 	@echo [518] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M518_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M518_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M518_D_FILES := $(M518_O_FILES:.o=.d)
+$(M518_D_FILES):
+include $(wildcard $(M518_D_FILES))
+endif
 
 

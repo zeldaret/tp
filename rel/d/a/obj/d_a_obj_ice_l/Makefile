@@ -38,10 +38,17 @@ $(M479_TARGET): $(M479_O_FILES) $(M479_LIBS)
 	@python3 tools/lcf.py rel 479 --output $(M479_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M479_LDFLAGS) -o $(M479_TARGET) @build/M479_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ice_l/%.o: rel/d/a/obj/d_a_obj_ice_l/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ice_l/%.o: rel/d/a/obj/d_a_obj_ice_l/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ice_l/%.d
 	@echo [479] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M479_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M479_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M479_D_FILES := $(M479_O_FILES:.o=.d)
+$(M479_D_FILES):
+include $(wildcard $(M479_D_FILES))
+endif
 
 

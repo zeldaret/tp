@@ -40,10 +40,17 @@ $(M676_TARGET): $(M676_O_FILES) $(M676_LIBS)
 	@python3 tools/lcf.py rel 676 --output $(M676_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M676_LDFLAGS) -o $(M676_TARGET) @build/M676_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_volcbom/%.o: rel/d/a/obj/d_a_obj_volcbom/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_volcbom/%.o: rel/d/a/obj/d_a_obj_volcbom/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_volcbom/%.d
 	@echo [676] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M676_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M676_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M676_D_FILES := $(M676_O_FILES:.o=.d)
+$(M676_D_FILES):
+include $(wildcard $(M676_D_FILES))
+endif
 
 

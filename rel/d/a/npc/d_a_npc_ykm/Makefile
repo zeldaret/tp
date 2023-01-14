@@ -40,10 +40,17 @@ $(M383_TARGET): $(M383_O_FILES) $(M383_LIBS)
 	@python3 tools/lcf.py rel 383 --output $(M383_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M383_LDFLAGS) -o $(M383_TARGET) @build/M383_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykm/%.o: rel/d/a/npc/d_a_npc_ykm/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykm/%.o: rel/d/a/npc/d_a_npc_ykm/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykm/%.d
 	@echo [383] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M383_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M383_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M383_D_FILES := $(M383_O_FILES:.o=.d)
+$(M383_D_FILES):
+include $(wildcard $(M383_D_FILES))
+endif
 
 

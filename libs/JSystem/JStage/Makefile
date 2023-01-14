@@ -33,9 +33,16 @@ $(BUILD_DIR)/libJStage.a: $(LIBJSTAGE_A_O_FILES)
 	@echo $(LIBJSTAGE_A_O_FILES) > build/LIBJSTAGE_A_ofiles
 	@$(LD) -xm l $(LIBJSTAGE_A_LDFLAGS) -o $(BUILD_DIR)/libJStage.a @build/LIBJSTAGE_A_ofiles
 
-$(BUILD_DIR)/libs/JSystem/JStage/%.o: libs/JSystem/JStage/%.cpp
+$(BUILD_DIR)/libs/JSystem/JStage/%.o: libs/JSystem/JStage/%.cpp $(BUILD_DIR)/libs/JSystem/JStage/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBJSTAGE_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBJSTAGE_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+LIBJSTAGE_A_D_FILES := $(LIBJSTAGE_A_O_FILES:.o=.d)
+$(LIBJSTAGE_A_D_FILES):
+include $(wildcard $(LIBJSTAGE_A_D_FILES))
+endif
 

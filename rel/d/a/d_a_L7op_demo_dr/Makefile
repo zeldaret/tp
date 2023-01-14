@@ -38,10 +38,17 @@ $(M137_TARGET): $(M137_O_FILES) $(M137_LIBS)
 	@python3 tools/lcf.py rel 137 --output $(M137_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M137_LDFLAGS) -o $(M137_TARGET) @build/M137_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_L7op_demo_dr/%.o: rel/d/a/d_a_L7op_demo_dr/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_L7op_demo_dr/%.o: rel/d/a/d_a_L7op_demo_dr/%.cpp $(BUILD_DIR)/rel/d/a/d_a_L7op_demo_dr/%.d
 	@echo [137] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M137_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M137_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M137_D_FILES := $(M137_O_FILES:.o=.d)
+$(M137_D_FILES):
+include $(wildcard $(M137_D_FILES))
+endif
 
 

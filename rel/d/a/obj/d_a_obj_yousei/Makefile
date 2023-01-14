@@ -38,10 +38,17 @@ $(M54_TARGET): $(M54_O_FILES) $(M54_LIBS)
 	@python3 tools/lcf.py rel 54 --output $(M54_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M54_LDFLAGS) -o $(M54_TARGET) @build/M54_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_yousei/%.o: rel/d/a/obj/d_a_obj_yousei/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_yousei/%.o: rel/d/a/obj/d_a_obj_yousei/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_yousei/%.d
 	@echo [ 54] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M54_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M54_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M54_D_FILES := $(M54_O_FILES:.o=.d)
+$(M54_D_FILES):
+include $(wildcard $(M54_D_FILES))
+endif
 
 

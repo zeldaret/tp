@@ -38,10 +38,17 @@ $(M707_TARGET): $(M707_O_FILES) $(M707_LIBS)
 	@python3 tools/lcf.py rel 707 --output $(M707_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M707_LDFLAGS) -o $(M707_TARGET) @build/M707_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_swBall/%.o: rel/d/a/d_a_swBall/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_swBall/%.o: rel/d/a/d_a_swBall/%.cpp $(BUILD_DIR)/rel/d/a/d_a_swBall/%.d
 	@echo [707] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M707_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M707_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M707_D_FILES := $(M707_O_FILES:.o=.d)
+$(M707_D_FILES):
+include $(wildcard $(M707_D_FILES))
+endif
 
 

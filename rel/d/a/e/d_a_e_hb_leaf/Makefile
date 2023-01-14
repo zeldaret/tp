@@ -38,10 +38,17 @@ $(M198_TARGET): $(M198_O_FILES) $(M198_LIBS)
 	@python3 tools/lcf.py rel 198 --output $(M198_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M198_LDFLAGS) -o $(M198_TARGET) @build/M198_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_hb_leaf/%.o: rel/d/a/e/d_a_e_hb_leaf/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_hb_leaf/%.o: rel/d/a/e/d_a_e_hb_leaf/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_hb_leaf/%.d
 	@echo [198] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M198_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M198_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M198_D_FILES := $(M198_O_FILES:.o=.d)
+$(M198_D_FILES):
+include $(wildcard $(M198_D_FILES))
+endif
 
 

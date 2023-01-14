@@ -49,9 +49,16 @@ $(BUILD_DIR)/libJParticle.a: $(LIBJPARTICLE_A_O_FILES)
 	@echo $(LIBJPARTICLE_A_O_FILES) > build/LIBJPARTICLE_A_ofiles
 	@$(LD) -xm l $(LIBJPARTICLE_A_LDFLAGS) -o $(BUILD_DIR)/libJParticle.a @build/LIBJPARTICLE_A_ofiles
 
-$(BUILD_DIR)/libs/JSystem/JParticle/%.o: libs/JSystem/JParticle/%.cpp
+$(BUILD_DIR)/libs/JSystem/JParticle/%.o: libs/JSystem/JParticle/%.cpp $(BUILD_DIR)/libs/JSystem/JParticle/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBJPARTICLE_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBJPARTICLE_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+LIBJPARTICLE_A_D_FILES := $(LIBJPARTICLE_A_O_FILES:.o=.d)
+$(LIBJPARTICLE_A_D_FILES):
+include $(wildcard $(LIBJPARTICLE_A_D_FILES))
+endif
 

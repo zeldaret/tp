@@ -38,10 +38,17 @@ $(M450_TARGET): $(M450_O_FILES) $(M450_LIBS)
 	@python3 tools/lcf.py rel 450 --output $(M450_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M450_LDFLAGS) -o $(M450_TARGET) @build/M450_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag2/%.o: rel/d/a/obj/d_a_obj_flag2/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag2/%.o: rel/d/a/obj/d_a_obj_flag2/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag2/%.d
 	@echo [450] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M450_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M450_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M450_D_FILES := $(M450_O_FILES:.o=.d)
+$(M450_D_FILES):
+include $(wildcard $(M450_D_FILES))
+endif
 
 

@@ -38,10 +38,17 @@ $(M554_TARGET): $(M554_O_FILES) $(M554_LIBS)
 	@python3 tools/lcf.py rel 554 --output $(M554_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M554_LDFLAGS) -o $(M554_TARGET) @build/M554_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6egate/%.o: rel/d/a/obj/d_a_obj_lv6egate/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6egate/%.o: rel/d/a/obj/d_a_obj_lv6egate/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6egate/%.d
 	@echo [554] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M554_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M554_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M554_D_FILES := $(M554_O_FILES:.o=.d)
+$(M554_D_FILES):
+include $(wildcard $(M554_D_FILES))
+endif
 
 

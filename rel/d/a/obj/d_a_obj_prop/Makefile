@@ -38,10 +38,17 @@ $(M598_TARGET): $(M598_O_FILES) $(M598_LIBS)
 	@python3 tools/lcf.py rel 598 --output $(M598_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M598_LDFLAGS) -o $(M598_TARGET) @build/M598_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_prop/%.o: rel/d/a/obj/d_a_obj_prop/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_prop/%.o: rel/d/a/obj/d_a_obj_prop/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_prop/%.d
 	@echo [598] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M598_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M598_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M598_D_FILES := $(M598_O_FILES:.o=.d)
+$(M598_D_FILES):
+include $(wildcard $(M598_D_FILES))
+endif
 
 

@@ -38,10 +38,17 @@ $(M543_TARGET): $(M543_O_FILES) $(M543_LIBS)
 	@python3 tools/lcf.py rel 543 --output $(M543_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M543_LDFLAGS) -o $(M543_TARGET) @build/M543_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5yiblltray/%.o: rel/d/a/obj/d_a_obj_lv5yiblltray/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5yiblltray/%.o: rel/d/a/obj/d_a_obj_lv5yiblltray/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5yiblltray/%.d
 	@echo [543] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M543_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M543_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M543_D_FILES := $(M543_O_FILES:.o=.d)
+$(M543_D_FILES):
+include $(wildcard $(M543_D_FILES))
+endif
 
 

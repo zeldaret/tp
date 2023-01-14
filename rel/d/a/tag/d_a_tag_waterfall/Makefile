@@ -40,10 +40,17 @@ $(M751_TARGET): $(M751_O_FILES) $(M751_LIBS)
 	@python3 tools/lcf.py rel 751 --output $(M751_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M751_LDFLAGS) -o $(M751_TARGET) @build/M751_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_waterfall/%.o: rel/d/a/tag/d_a_tag_waterfall/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_waterfall/%.o: rel/d/a/tag/d_a_tag_waterfall/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_waterfall/%.d
 	@echo [751] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M751_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M751_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M751_D_FILES := $(M751_O_FILES:.o=.d)
+$(M751_D_FILES):
+include $(wildcard $(M751_D_FILES))
+endif
 
 

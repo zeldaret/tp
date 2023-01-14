@@ -40,10 +40,17 @@ $(M491_TARGET): $(M491_O_FILES) $(M491_LIBS)
 	@python3 tools/lcf.py rel 491 --output $(M491_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M491_LDFLAGS) -o $(M491_TARGET) @build/M491_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kago/%.o: rel/d/a/obj/d_a_obj_kago/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kago/%.o: rel/d/a/obj/d_a_obj_kago/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kago/%.d
 	@echo [491] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M491_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M491_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M491_D_FILES := $(M491_O_FILES:.o=.d)
+$(M491_D_FILES):
+include $(wildcard $(M491_D_FILES))
+endif
 
 

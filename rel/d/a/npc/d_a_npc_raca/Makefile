@@ -40,10 +40,17 @@ $(M350_TARGET): $(M350_O_FILES) $(M350_LIBS)
 	@python3 tools/lcf.py rel 350 --output $(M350_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M350_LDFLAGS) -o $(M350_TARGET) @build/M350_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_raca/%.o: rel/d/a/npc/d_a_npc_raca/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_raca/%.o: rel/d/a/npc/d_a_npc_raca/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_raca/%.d
 	@echo [350] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M350_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M350_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M350_D_FILES := $(M350_O_FILES:.o=.d)
+$(M350_D_FILES):
+include $(wildcard $(M350_D_FILES))
+endif
 
 

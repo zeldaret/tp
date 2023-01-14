@@ -40,10 +40,17 @@ $(M256_TARGET): $(M256_O_FILES) $(M256_LIBS)
 	@python3 tools/lcf.py rel 256 --output $(M256_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M256_LDFLAGS) -o $(M256_TARGET) @build/M256_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_yr/%.o: rel/d/a/e/d_a_e_yr/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_yr/%.o: rel/d/a/e/d_a_e_yr/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_yr/%.d
 	@echo [256] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M256_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M256_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M256_D_FILES := $(M256_O_FILES:.o=.d)
+$(M256_D_FILES):
+include $(wildcard $(M256_D_FILES))
+endif
 
 

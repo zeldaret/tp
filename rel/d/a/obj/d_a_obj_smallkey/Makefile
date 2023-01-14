@@ -40,10 +40,17 @@ $(M621_TARGET): $(M621_O_FILES) $(M621_LIBS)
 	@python3 tools/lcf.py rel 621 --output $(M621_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M621_LDFLAGS) -o $(M621_TARGET) @build/M621_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_smallkey/%.o: rel/d/a/obj/d_a_obj_smallkey/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_smallkey/%.o: rel/d/a/obj/d_a_obj_smallkey/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smallkey/%.d
 	@echo [621] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M621_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M621_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M621_D_FILES := $(M621_O_FILES:.o=.d)
+$(M621_D_FILES):
+include $(wildcard $(M621_D_FILES))
+endif
 
 

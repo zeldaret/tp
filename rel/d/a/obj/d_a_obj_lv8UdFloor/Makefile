@@ -40,10 +40,17 @@ $(M563_TARGET): $(M563_O_FILES) $(M563_LIBS)
 	@python3 tools/lcf.py rel 563 --output $(M563_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M563_LDFLAGS) -o $(M563_TARGET) @build/M563_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8UdFloor/%.o: rel/d/a/obj/d_a_obj_lv8UdFloor/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8UdFloor/%.o: rel/d/a/obj/d_a_obj_lv8UdFloor/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8UdFloor/%.d
 	@echo [563] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M563_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M563_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M563_D_FILES := $(M563_O_FILES:.o=.d)
+$(M563_D_FILES):
+include $(wildcard $(M563_D_FILES))
+endif
 
 

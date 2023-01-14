@@ -40,10 +40,17 @@ $(M634_TARGET): $(M634_O_FILES) $(M634_LIBS)
 	@python3 tools/lcf.py rel 634 --output $(M634_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M634_LDFLAGS) -o $(M634_TARGET) @build/M634_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper/%.o: rel/d/a/obj/d_a_obj_stopper/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper/%.o: rel/d/a/obj/d_a_obj_stopper/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper/%.d
 	@echo [634] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M634_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M634_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M634_D_FILES := $(M634_O_FILES:.o=.d)
+$(M634_D_FILES):
+include $(wildcard $(M634_D_FILES))
+endif
 
 

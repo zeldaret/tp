@@ -40,10 +40,17 @@ $(M371_TARGET): $(M371_O_FILES) $(M371_LIBS)
 	@python3 tools/lcf.py rel 371 --output $(M371_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M371_LDFLAGS) -o $(M371_TARGET) @build/M371_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkc/%.o: rel/d/a/npc/d_a_npc_tkc/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkc/%.o: rel/d/a/npc/d_a_npc_tkc/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkc/%.d
 	@echo [371] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M371_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M371_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M371_D_FILES := $(M371_O_FILES:.o=.d)
+$(M371_D_FILES):
+include $(wildcard $(M371_D_FILES))
+endif
 
 

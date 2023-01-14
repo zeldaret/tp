@@ -40,10 +40,17 @@ $(M375_TARGET): $(M375_O_FILES) $(M375_LIBS)
 	@python3 tools/lcf.py rel 375 --output $(M375_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M375_LDFLAGS) -o $(M375_TARGET) @build/M375_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_tr/%.o: rel/d/a/npc/d_a_npc_tr/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_tr/%.o: rel/d/a/npc/d_a_npc_tr/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tr/%.d
 	@echo [375] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M375_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M375_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M375_D_FILES := $(M375_O_FILES:.o=.d)
+$(M375_D_FILES):
+include $(wildcard $(M375_D_FILES))
+endif
 
 

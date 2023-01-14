@@ -40,10 +40,17 @@ $(M597_TARGET): $(M597_O_FILES) $(M597_LIBS)
 	@python3 tools/lcf.py rel 597 --output $(M597_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M597_LDFLAGS) -o $(M597_TARGET) @build/M597_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_poTbox/%.o: rel/d/a/obj/d_a_obj_poTbox/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_poTbox/%.o: rel/d/a/obj/d_a_obj_poTbox/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_poTbox/%.d
 	@echo [597] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M597_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M597_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M597_D_FILES := $(M597_O_FILES:.o=.d)
+$(M597_D_FILES):
+include $(wildcard $(M597_D_FILES))
+endif
 
 

@@ -40,10 +40,17 @@ $(M178_TARGET): $(M178_O_FILES) $(M178_LIBS)
 	@python3 tools/lcf.py rel 178 --output $(M178_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M178_LDFLAGS) -o $(M178_TARGET) @build/M178_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_bu/%.o: rel/d/a/e/d_a_e_bu/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_bu/%.o: rel/d/a/e/d_a_e_bu/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_bu/%.d
 	@echo [178] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M178_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M178_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M178_D_FILES := $(M178_O_FILES:.o=.d)
+$(M178_D_FILES):
+include $(wildcard $(M178_D_FILES))
+endif
 
 

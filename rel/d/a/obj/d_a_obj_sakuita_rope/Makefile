@@ -38,10 +38,17 @@ $(M612_TARGET): $(M612_O_FILES) $(M612_LIBS)
 	@python3 tools/lcf.py rel 612 --output $(M612_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M612_LDFLAGS) -o $(M612_TARGET) @build/M612_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sakuita_rope/%.o: rel/d/a/obj/d_a_obj_sakuita_rope/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sakuita_rope/%.o: rel/d/a/obj/d_a_obj_sakuita_rope/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sakuita_rope/%.d
 	@echo [612] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M612_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M612_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M612_D_FILES := $(M612_O_FILES:.o=.d)
+$(M612_D_FILES):
+include $(wildcard $(M612_D_FILES))
+endif
 
 

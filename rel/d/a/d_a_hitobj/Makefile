@@ -38,10 +38,17 @@ $(M12_TARGET): $(M12_O_FILES) $(M12_LIBS)
 	@python3 tools/lcf.py rel 12 --output $(M12_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M12_LDFLAGS) -o $(M12_TARGET) @build/M12_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_hitobj/%.o: rel/d/a/d_a_hitobj/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_hitobj/%.o: rel/d/a/d_a_hitobj/%.cpp $(BUILD_DIR)/rel/d/a/d_a_hitobj/%.d
 	@echo [ 12] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M12_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M12_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M12_D_FILES := $(M12_O_FILES:.o=.d)
+$(M12_D_FILES):
+include $(wildcard $(M12_D_FILES))
+endif
 
 

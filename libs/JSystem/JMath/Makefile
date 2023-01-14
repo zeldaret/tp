@@ -25,9 +25,16 @@ $(BUILD_DIR)/libJMath.a: $(LIBJMATH_A_O_FILES)
 	@echo $(LIBJMATH_A_O_FILES) > build/LIBJMATH_A_ofiles
 	@$(LD) -xm l $(LIBJMATH_A_LDFLAGS) -o $(BUILD_DIR)/libJMath.a @build/LIBJMATH_A_ofiles
 
-$(BUILD_DIR)/libs/JSystem/JMath/%.o: libs/JSystem/JMath/%.cpp
+$(BUILD_DIR)/libs/JSystem/JMath/%.o: libs/JSystem/JMath/%.cpp $(BUILD_DIR)/libs/JSystem/JMath/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBJMATH_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBJMATH_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+LIBJMATH_A_D_FILES := $(LIBJMATH_A_O_FILES:.o=.d)
+$(LIBJMATH_A_D_FILES):
+include $(wildcard $(LIBJMATH_A_D_FILES))
+endif
 

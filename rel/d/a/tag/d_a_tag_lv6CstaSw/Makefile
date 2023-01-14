@@ -40,10 +40,17 @@ $(M727_TARGET): $(M727_O_FILES) $(M727_LIBS)
 	@python3 tools/lcf.py rel 727 --output $(M727_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M727_LDFLAGS) -o $(M727_TARGET) @build/M727_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv6CstaSw/%.o: rel/d/a/tag/d_a_tag_lv6CstaSw/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv6CstaSw/%.o: rel/d/a/tag/d_a_tag_lv6CstaSw/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv6CstaSw/%.d
 	@echo [727] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M727_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M727_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M727_D_FILES := $(M727_O_FILES:.o=.d)
+$(M727_D_FILES):
+include $(wildcard $(M727_D_FILES))
+endif
 
 

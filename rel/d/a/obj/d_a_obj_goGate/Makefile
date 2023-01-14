@@ -40,10 +40,17 @@ $(M461_TARGET): $(M461_O_FILES) $(M461_LIBS)
 	@python3 tools/lcf.py rel 461 --output $(M461_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M461_LDFLAGS) -o $(M461_TARGET) @build/M461_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_goGate/%.o: rel/d/a/obj/d_a_obj_goGate/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_goGate/%.o: rel/d/a/obj/d_a_obj_goGate/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_goGate/%.d
 	@echo [461] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M461_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M461_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M461_D_FILES := $(M461_O_FILES:.o=.d)
+$(M461_D_FILES):
+include $(wildcard $(M461_D_FILES))
+endif
 
 

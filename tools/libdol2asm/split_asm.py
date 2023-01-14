@@ -61,6 +61,8 @@ class Dol2AsmSplitter:
                  select_tu, select_asm):
         self.debug_logging = debug_logging
         self.game_path = game_path
+        self.files_path = game_path / "files"
+        self.sys_path = game_path / "sys"
         self.lib_path = lib_path
         self.src_path = src_path
         self.asm_path = asm_path
@@ -88,15 +90,15 @@ class Dol2AsmSplitter:
             fatal_exit()
 
         # check if the 'main.dol' and 'frameworkF.map' exists
-        self.baserom_path = util.check_file(self.game_path, "main.dol")
+        self.baserom_path = util.check_file(self.sys_path, "main.dol")
         self.framework_path = util.check_file(
-            self.game_path, "map/Final/Release/frameworkF.map")
+            self.files_path , "map/Final/Release/frameworkF.map")
 
         info(f"found 'main.dol' at '{self.baserom_path}'")
         info(f"found 'frameworkF.map' at '{self.framework_path}'")
 
         # search for '.map' files
-        self.map_path = util.check_dir(self.game_path, "map/Final/Release")
+        self.map_path = util.check_dir(self.files_path, "map/Final/Release")
         self.maps_path = [
             x
             for x in util.get_files_with_ext(self.map_path, ".map")
@@ -105,9 +107,9 @@ class Dol2AsmSplitter:
         info(f"found {len(self.maps_path)} map files in '{self.map_path}'")
 
         # search for '.rel' files
-        self._rel_path = util.check_dir(self.game_path, "rel/Final/Release")
+        self._rel_path = util.check_dir(self.files_path, "rel/Final/Release")
         self.rels_path = util.get_files_with_ext(self._rel_path, ".rel")
-        self.rels_archive_path = util.check_file(self.game_path, "RELS.arc")
+        self.rels_archive_path = util.check_file(self.files_path, "RELS.arc")
         info(f"found {len(self.rels_path)} RELs in '{self._rel_path}'")
 
     def read_dol(self):

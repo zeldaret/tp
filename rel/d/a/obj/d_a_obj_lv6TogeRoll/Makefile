@@ -40,10 +40,17 @@ $(M550_TARGET): $(M550_O_FILES) $(M550_LIBS)
 	@python3 tools/lcf.py rel 550 --output $(M550_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M550_LDFLAGS) -o $(M550_TARGET) @build/M550_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6TogeRoll/%.o: rel/d/a/obj/d_a_obj_lv6TogeRoll/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6TogeRoll/%.o: rel/d/a/obj/d_a_obj_lv6TogeRoll/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6TogeRoll/%.d
 	@echo [550] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M550_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M550_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M550_D_FILES := $(M550_O_FILES:.o=.d)
+$(M550_D_FILES):
+include $(wildcard $(M550_D_FILES))
+endif
 
 

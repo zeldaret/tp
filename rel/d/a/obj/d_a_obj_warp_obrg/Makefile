@@ -40,10 +40,17 @@ $(M678_TARGET): $(M678_O_FILES) $(M678_LIBS)
 	@python3 tools/lcf.py rel 678 --output $(M678_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M678_LDFLAGS) -o $(M678_TARGET) @build/M678_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_warp_obrg/%.o: rel/d/a/obj/d_a_obj_warp_obrg/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_warp_obrg/%.o: rel/d/a/obj/d_a_obj_warp_obrg/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_warp_obrg/%.d
 	@echo [678] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M678_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M678_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M678_D_FILES := $(M678_O_FILES:.o=.d)
+$(M678_D_FILES):
+include $(wildcard $(M678_D_FILES))
+endif
 
 

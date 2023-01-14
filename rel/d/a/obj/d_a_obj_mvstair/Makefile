@@ -40,10 +40,17 @@ $(M578_TARGET): $(M578_O_FILES) $(M578_LIBS)
 	@python3 tools/lcf.py rel 578 --output $(M578_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M578_LDFLAGS) -o $(M578_TARGET) @build/M578_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mvstair/%.o: rel/d/a/obj/d_a_obj_mvstair/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mvstair/%.o: rel/d/a/obj/d_a_obj_mvstair/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mvstair/%.d
 	@echo [578] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M578_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M578_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M578_D_FILES := $(M578_O_FILES:.o=.d)
+$(M578_D_FILES):
+include $(wildcard $(M578_D_FILES))
+endif
 
 

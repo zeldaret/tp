@@ -38,10 +38,17 @@ $(M277_TARGET): $(M277_O_FILES) $(M277_LIBS)
 	@python3 tools/lcf.py rel 277 --output $(M277_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M277_LDFLAGS) -o $(M277_TARGET) @build/M277_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_mant/%.o: rel/d/a/d_a_mant/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_mant/%.o: rel/d/a/d_a_mant/%.cpp $(BUILD_DIR)/rel/d/a/d_a_mant/%.d
 	@echo [277] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M277_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M277_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M277_D_FILES := $(M277_O_FILES:.o=.d)
+$(M277_D_FILES):
+include $(wildcard $(M277_D_FILES))
+endif
 
 

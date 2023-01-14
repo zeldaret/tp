@@ -40,10 +40,17 @@ $(M50_TARGET): $(M50_O_FILES) $(M50_LIBS)
 	@python3 tools/lcf.py rel 50 --output $(M50_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M50_LDFLAGS) -o $(M50_TARGET) @build/M50_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_mg_rod/%.o: rel/d/a/d_a_mg_rod/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_mg_rod/%.o: rel/d/a/d_a_mg_rod/%.cpp $(BUILD_DIR)/rel/d/a/d_a_mg_rod/%.d
 	@echo [ 50] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M50_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M50_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M50_D_FILES := $(M50_O_FILES:.o=.d)
+$(M50_D_FILES):
+include $(wildcard $(M50_D_FILES))
+endif
 
 

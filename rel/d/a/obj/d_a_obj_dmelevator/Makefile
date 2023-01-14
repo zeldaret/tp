@@ -40,10 +40,17 @@ $(M438_TARGET): $(M438_O_FILES) $(M438_LIBS)
 	@python3 tools/lcf.py rel 438 --output $(M438_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M438_LDFLAGS) -o $(M438_TARGET) @build/M438_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_dmelevator/%.o: rel/d/a/obj/d_a_obj_dmelevator/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_dmelevator/%.o: rel/d/a/obj/d_a_obj_dmelevator/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_dmelevator/%.d
 	@echo [438] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M438_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M438_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M438_D_FILES := $(M438_O_FILES:.o=.d)
+$(M438_D_FILES):
+include $(wildcard $(M438_D_FILES))
+endif
 
 

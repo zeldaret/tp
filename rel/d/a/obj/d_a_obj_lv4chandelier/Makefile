@@ -38,10 +38,17 @@ $(M532_TARGET): $(M532_O_FILES) $(M532_LIBS)
 	@python3 tools/lcf.py rel 532 --output $(M532_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M532_LDFLAGS) -o $(M532_TARGET) @build/M532_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4chandelier/%.o: rel/d/a/obj/d_a_obj_lv4chandelier/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4chandelier/%.o: rel/d/a/obj/d_a_obj_lv4chandelier/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4chandelier/%.d
 	@echo [532] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M532_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M532_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M532_D_FILES := $(M532_O_FILES:.o=.d)
+$(M532_D_FILES):
+include $(wildcard $(M532_D_FILES))
+endif
 
 

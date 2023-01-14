@@ -38,10 +38,17 @@ $(M725_TARGET): $(M725_O_FILES) $(M725_LIBS)
 	@python3 tools/lcf.py rel 725 --output $(M725_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M725_LDFLAGS) -o $(M725_TARGET) @build/M725_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lightball/%.o: rel/d/a/tag/d_a_tag_lightball/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lightball/%.o: rel/d/a/tag/d_a_tag_lightball/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lightball/%.d
 	@echo [725] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M725_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M725_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M725_D_FILES := $(M725_O_FILES:.o=.d)
+$(M725_D_FILES):
+include $(wildcard $(M725_D_FILES))
+endif
 
 

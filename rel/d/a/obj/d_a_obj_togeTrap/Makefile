@@ -40,10 +40,17 @@ $(M665_TARGET): $(M665_O_FILES) $(M665_LIBS)
 	@python3 tools/lcf.py rel 665 --output $(M665_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M665_LDFLAGS) -o $(M665_TARGET) @build/M665_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_togeTrap/%.o: rel/d/a/obj/d_a_obj_togeTrap/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_togeTrap/%.o: rel/d/a/obj/d_a_obj_togeTrap/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_togeTrap/%.d
 	@echo [665] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M665_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M665_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M665_D_FILES := $(M665_O_FILES:.o=.d)
+$(M665_D_FILES):
+include $(wildcard $(M665_D_FILES))
+endif
 
 

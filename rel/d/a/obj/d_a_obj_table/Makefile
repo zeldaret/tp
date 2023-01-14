@@ -38,10 +38,17 @@ $(M651_TARGET): $(M651_O_FILES) $(M651_LIBS)
 	@python3 tools/lcf.py rel 651 --output $(M651_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M651_LDFLAGS) -o $(M651_TARGET) @build/M651_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_table/%.o: rel/d/a/obj/d_a_obj_table/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_table/%.o: rel/d/a/obj/d_a_obj_table/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_table/%.d
 	@echo [651] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M651_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M651_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M651_D_FILES := $(M651_O_FILES:.o=.d)
+$(M651_D_FILES):
+include $(wildcard $(M651_D_FILES))
+endif
 
 

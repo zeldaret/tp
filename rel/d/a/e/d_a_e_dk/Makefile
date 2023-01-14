@@ -40,10 +40,17 @@ $(M186_TARGET): $(M186_O_FILES) $(M186_LIBS)
 	@python3 tools/lcf.py rel 186 --output $(M186_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M186_LDFLAGS) -o $(M186_TARGET) @build/M186_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_dk/%.o: rel/d/a/e/d_a_e_dk/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_dk/%.o: rel/d/a/e/d_a_e_dk/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_dk/%.d
 	@echo [186] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M186_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M186_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M186_D_FILES := $(M186_O_FILES:.o=.d)
+$(M186_D_FILES):
+include $(wildcard $(M186_D_FILES))
+endif
 
 

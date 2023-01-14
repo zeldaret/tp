@@ -38,10 +38,17 @@ $(M573_TARGET): $(M573_O_FILES) $(M573_LIBS)
 	@python3 tools/lcf.py rel 573 --output $(M573_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M573_LDFLAGS) -o $(M573_TARGET) @build/M573_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_chain/%.o: rel/d/a/obj/mirror/d_a_obj_mirror_chain/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_chain/%.o: rel/d/a/obj/mirror/d_a_obj_mirror_chain/%.cpp $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_chain/%.d
 	@echo [573] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M573_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M573_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M573_D_FILES := $(M573_O_FILES:.o=.d)
+$(M573_D_FILES):
+include $(wildcard $(M573_D_FILES))
+endif
 
 

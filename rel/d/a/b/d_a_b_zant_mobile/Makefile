@@ -40,10 +40,17 @@ $(M157_TARGET): $(M157_O_FILES) $(M157_LIBS)
 	@python3 tools/lcf.py rel 157 --output $(M157_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M157_LDFLAGS) -o $(M157_TARGET) @build/M157_ofiles
 
-$(BUILD_DIR)/rel/d/a/b/d_a_b_zant_mobile/%.o: rel/d/a/b/d_a_b_zant_mobile/%.cpp
+$(BUILD_DIR)/rel/d/a/b/d_a_b_zant_mobile/%.o: rel/d/a/b/d_a_b_zant_mobile/%.cpp $(BUILD_DIR)/rel/d/a/b/d_a_b_zant_mobile/%.d
 	@echo [157] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M157_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M157_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M157_D_FILES := $(M157_O_FILES:.o=.d)
+$(M157_D_FILES):
+include $(wildcard $(M157_D_FILES))
+endif
 
 

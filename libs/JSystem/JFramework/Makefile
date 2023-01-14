@@ -23,9 +23,16 @@ $(BUILD_DIR)/libJFramework.a: $(LIBJFRAMEWORK_A_O_FILES)
 	@echo $(LIBJFRAMEWORK_A_O_FILES) > build/LIBJFRAMEWORK_A_ofiles
 	@$(LD) -xm l $(LIBJFRAMEWORK_A_LDFLAGS) -o $(BUILD_DIR)/libJFramework.a @build/LIBJFRAMEWORK_A_ofiles
 
-$(BUILD_DIR)/libs/JSystem/JFramework/%.o: libs/JSystem/JFramework/%.cpp
+$(BUILD_DIR)/libs/JSystem/JFramework/%.o: libs/JSystem/JFramework/%.cpp $(BUILD_DIR)/libs/JSystem/JFramework/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBJFRAMEWORK_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBJFRAMEWORK_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+LIBJFRAMEWORK_A_D_FILES := $(LIBJFRAMEWORK_A_O_FILES:.o=.d)
+$(LIBJFRAMEWORK_A_D_FILES):
+include $(wildcard $(LIBJFRAMEWORK_A_D_FILES))
+endif
 

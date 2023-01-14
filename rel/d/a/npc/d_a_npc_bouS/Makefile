@@ -40,10 +40,17 @@ $(M289_TARGET): $(M289_O_FILES) $(M289_LIBS)
 	@python3 tools/lcf.py rel 289 --output $(M289_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M289_LDFLAGS) -o $(M289_TARGET) @build/M289_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_bouS/%.o: rel/d/a/npc/d_a_npc_bouS/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_bouS/%.o: rel/d/a/npc/d_a_npc_bouS/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_bouS/%.d
 	@echo [289] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M289_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M289_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M289_D_FILES := $(M289_O_FILES:.o=.d)
+$(M289_D_FILES):
+include $(wildcard $(M289_D_FILES))
+endif
 
 

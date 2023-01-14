@@ -40,10 +40,17 @@ $(M321_TARGET): $(M321_O_FILES) $(M321_LIBS)
 	@python3 tools/lcf.py rel 321 --output $(M321_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M321_LDFLAGS) -o $(M321_TARGET) @build/M321_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ins/%.o: rel/d/a/npc/d_a_npc_ins/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ins/%.o: rel/d/a/npc/d_a_npc_ins/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ins/%.d
 	@echo [321] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M321_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M321_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M321_D_FILES := $(M321_O_FILES:.o=.d)
+$(M321_D_FILES):
+include $(wildcard $(M321_D_FILES))
+endif
 
 

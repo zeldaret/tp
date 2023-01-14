@@ -38,10 +38,17 @@ $(M692_TARGET): $(M692_O_FILES) $(M692_LIBS)
 	@python3 tools/lcf.py rel 692 --output $(M692_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M692_LDFLAGS) -o $(M692_TARGET) @build/M692_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wsword/%.o: rel/d/a/obj/d_a_obj_wsword/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wsword/%.o: rel/d/a/obj/d_a_obj_wsword/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wsword/%.d
 	@echo [692] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M692_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M692_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M692_D_FILES := $(M692_O_FILES:.o=.d)
+$(M692_D_FILES):
+include $(wildcard $(M692_D_FILES))
+endif
 
 

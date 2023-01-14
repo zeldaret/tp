@@ -40,10 +40,17 @@ $(M633_TARGET): $(M633_O_FILES) $(M633_LIBS)
 	@python3 tools/lcf.py rel 633 --output $(M633_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M633_LDFLAGS) -o $(M633_TARGET) @build/M633_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stone/%.o: rel/d/a/obj/d_a_obj_stone/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stone/%.o: rel/d/a/obj/d_a_obj_stone/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stone/%.d
 	@echo [633] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M633_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M633_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M633_D_FILES := $(M633_O_FILES:.o=.d)
+$(M633_D_FILES):
+include $(wildcard $(M633_D_FILES))
+endif
 
 

@@ -23,9 +23,16 @@ $(BUILD_DIR)/libamcstubs.a: $(LIBAMCSTUBS_A_O_FILES)
 	@echo $(LIBAMCSTUBS_A_O_FILES) > build/LIBAMCSTUBS_A_ofiles
 	@$(LD) -xm l $(LIBAMCSTUBS_A_LDFLAGS) -o $(BUILD_DIR)/libamcstubs.a @build/LIBAMCSTUBS_A_ofiles
 
-$(BUILD_DIR)/libs/amcstubs/%.o: libs/amcstubs/%.c
+$(BUILD_DIR)/libs/amcstubs/%.o: libs/amcstubs/%.c $(BUILD_DIR)/libs/amcstubs/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
-	@$(CC) $(CFLAGS) $(LIBAMCSTUBS_A_CFLAGS) -c -o $@ $(basename $@).c
+	@$(CC) $(CFLAGS) $(LIBAMCSTUBS_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+LIBAMCSTUBS_A_D_FILES := $(LIBAMCSTUBS_A_O_FILES:.o=.d)
+$(LIBAMCSTUBS_A_D_FILES):
+include $(wildcard $(LIBAMCSTUBS_A_D_FILES))
+endif
 

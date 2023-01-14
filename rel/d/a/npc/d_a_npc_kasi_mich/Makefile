@@ -40,10 +40,17 @@ $(M325_TARGET): $(M325_O_FILES) $(M325_LIBS)
 	@python3 tools/lcf.py rel 325 --output $(M325_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M325_LDFLAGS) -o $(M325_TARGET) @build/M325_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kasi_mich/%.o: rel/d/a/npc/d_a_npc_kasi_mich/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kasi_mich/%.o: rel/d/a/npc/d_a_npc_kasi_mich/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kasi_mich/%.d
 	@echo [325] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M325_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M325_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M325_D_FILES := $(M325_O_FILES:.o=.d)
+$(M325_D_FILES):
+include $(wildcard $(M325_D_FILES))
+endif
 
 

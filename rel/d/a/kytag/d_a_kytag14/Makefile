@@ -38,10 +38,17 @@ $(M77_TARGET): $(M77_O_FILES) $(M77_LIBS)
 	@python3 tools/lcf.py rel 77 --output $(M77_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M77_LDFLAGS) -o $(M77_TARGET) @build/M77_ofiles
 
-$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag14/%.o: rel/d/a/kytag/d_a_kytag14/%.cpp
+$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag14/%.o: rel/d/a/kytag/d_a_kytag14/%.cpp $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag14/%.d
 	@echo [ 77] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M77_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M77_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M77_D_FILES := $(M77_O_FILES:.o=.d)
+$(M77_D_FILES):
+include $(wildcard $(M77_D_FILES))
+endif
 
 

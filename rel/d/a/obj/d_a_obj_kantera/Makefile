@@ -40,10 +40,17 @@ $(M494_TARGET): $(M494_O_FILES) $(M494_LIBS)
 	@python3 tools/lcf.py rel 494 --output $(M494_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M494_LDFLAGS) -o $(M494_TARGET) @build/M494_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kantera/%.o: rel/d/a/obj/d_a_obj_kantera/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kantera/%.o: rel/d/a/obj/d_a_obj_kantera/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kantera/%.d
 	@echo [494] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M494_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M494_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M494_D_FILES := $(M494_O_FILES:.o=.d)
+$(M494_D_FILES):
+include $(wildcard $(M494_D_FILES))
+endif
 
 

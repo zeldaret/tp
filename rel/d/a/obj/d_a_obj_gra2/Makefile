@@ -40,10 +40,17 @@ $(M463_TARGET): $(M463_O_FILES) $(M463_LIBS)
 	@python3 tools/lcf.py rel 463 --output $(M463_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M463_LDFLAGS) -o $(M463_TARGET) @build/M463_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra2/%.o: rel/d/a/obj/d_a_obj_gra2/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra2/%.o: rel/d/a/obj/d_a_obj_gra2/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra2/%.d
 	@echo [463] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M463_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M463_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M463_D_FILES := $(M463_O_FILES:.o=.d)
+$(M463_D_FILES):
+include $(wildcard $(M463_D_FILES))
+endif
 
 

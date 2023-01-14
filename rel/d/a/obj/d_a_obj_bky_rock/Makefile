@@ -38,10 +38,17 @@ $(M409_TARGET): $(M409_O_FILES) $(M409_LIBS)
 	@python3 tools/lcf.py rel 409 --output $(M409_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M409_LDFLAGS) -o $(M409_TARGET) @build/M409_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bky_rock/%.o: rel/d/a/obj/d_a_obj_bky_rock/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bky_rock/%.o: rel/d/a/obj/d_a_obj_bky_rock/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bky_rock/%.d
 	@echo [409] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M409_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M409_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M409_D_FILES := $(M409_O_FILES:.o=.d)
+$(M409_D_FILES):
+include $(wildcard $(M409_D_FILES))
+endif
 
 

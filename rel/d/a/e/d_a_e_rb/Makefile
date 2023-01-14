@@ -40,10 +40,17 @@ $(M223_TARGET): $(M223_O_FILES) $(M223_LIBS)
 	@python3 tools/lcf.py rel 223 --output $(M223_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M223_LDFLAGS) -o $(M223_TARGET) @build/M223_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_rb/%.o: rel/d/a/e/d_a_e_rb/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_rb/%.o: rel/d/a/e/d_a_e_rb/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_rb/%.d
 	@echo [223] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M223_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M223_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M223_D_FILES := $(M223_O_FILES:.o=.d)
+$(M223_D_FILES):
+include $(wildcard $(M223_D_FILES))
+endif
 
 

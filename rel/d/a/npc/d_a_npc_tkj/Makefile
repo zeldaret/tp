@@ -40,10 +40,17 @@ $(M88_TARGET): $(M88_O_FILES) $(M88_LIBS)
 	@python3 tools/lcf.py rel 88 --output $(M88_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M88_LDFLAGS) -o $(M88_TARGET) @build/M88_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkj/%.o: rel/d/a/npc/d_a_npc_tkj/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkj/%.o: rel/d/a/npc/d_a_npc_tkj/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkj/%.d
 	@echo [ 88] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M88_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M88_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M88_D_FILES := $(M88_O_FILES:.o=.d)
+$(M88_D_FILES):
+include $(wildcard $(M88_D_FILES))
+endif
 
 

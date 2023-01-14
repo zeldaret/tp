@@ -38,10 +38,17 @@ $(M586_TARGET): $(M586_O_FILES) $(M586_LIBS)
 	@python3 tools/lcf.py rel 586 --output $(M586_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M586_LDFLAGS) -o $(M586_TARGET) @build/M586_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_onsen/%.o: rel/d/a/obj/d_a_obj_onsen/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_onsen/%.o: rel/d/a/obj/d_a_obj_onsen/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_onsen/%.d
 	@echo [586] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M586_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M586_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M586_D_FILES := $(M586_O_FILES:.o=.d)
+$(M586_D_FILES):
+include $(wildcard $(M586_D_FILES))
+endif
 
 

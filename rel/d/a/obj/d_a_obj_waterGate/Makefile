@@ -40,10 +40,17 @@ $(M679_TARGET): $(M679_O_FILES) $(M679_LIBS)
 	@python3 tools/lcf.py rel 679 --output $(M679_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M679_LDFLAGS) -o $(M679_TARGET) @build/M679_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_waterGate/%.o: rel/d/a/obj/d_a_obj_waterGate/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_waterGate/%.o: rel/d/a/obj/d_a_obj_waterGate/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_waterGate/%.d
 	@echo [679] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M679_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M679_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M679_D_FILES := $(M679_O_FILES:.o=.d)
+$(M679_D_FILES):
+include $(wildcard $(M679_D_FILES))
+endif
 
 

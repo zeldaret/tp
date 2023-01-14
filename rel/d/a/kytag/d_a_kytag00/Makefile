@@ -38,10 +38,17 @@ $(M13_TARGET): $(M13_O_FILES) $(M13_LIBS)
 	@python3 tools/lcf.py rel 13 --output $(M13_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M13_LDFLAGS) -o $(M13_TARGET) @build/M13_ofiles
 
-$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag00/%.o: rel/d/a/kytag/d_a_kytag00/%.cpp
+$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag00/%.o: rel/d/a/kytag/d_a_kytag00/%.cpp $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag00/%.d
 	@echo [ 13] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M13_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M13_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M13_D_FILES := $(M13_O_FILES:.o=.d)
+$(M13_D_FILES):
+include $(wildcard $(M13_D_FILES))
+endif
 
 
