@@ -400,7 +400,7 @@ def calculate_rel_progress(build_path: Path, matching: bool, format: str, asm_fi
         str_file = str(file)
         if not str_file.startswith("asm/rel/"):
             continue
-        rel = str_file.split("/")[-2]
+        rel = str_file.split("/")[-3]
         range_dict[rel].append(range[1] - range[0])
 
     end = time.time()
@@ -871,7 +871,7 @@ def find_all_asm_files() -> Tuple[Set[Path], Set[Path]]:
             if path.is_dir():
                 recursive(path)
             else:
-                if path.suffix == ".s" or path.suffix == ".inc":
+                if path.suffix == ".s":
                     files.add(path)
                 else:
                     errors.add(path)
@@ -969,7 +969,7 @@ def find_all_files() -> Set[Path]:
     return files
 
 
-def find_includes(lines: List[str], non_matching: bool, ext: Tuple[str, str] = (".s",".inc")) -> Set[Path]:
+def find_includes(lines: List[str], non_matching: bool, ext: str = ".s") -> Set[Path]:
     includes = set()
     for line in lines:
         key = '#include "'
@@ -984,8 +984,6 @@ def find_includes(lines: List[str], non_matching: bool, ext: Tuple[str, str] = (
 
         include_path = line[start:end]
         if include_path.endswith(ext):
-            if include_path.endswith(".inc"):
-                include_path = "src/"+include_path
             includes.add(Path(include_path))
 
     return includes
@@ -1097,6 +1095,7 @@ def check_sha1(game_path: Path, build_path: Path, include_rels: bool):
         "",
         "4997D93B9692620C40E90374A0F1DBF0E4889395",
     )
+
     if include_rels:
         with open('sha1sums.json') as f:
             rel_shas = json.load(f)
@@ -1124,7 +1123,7 @@ def check_sha1(game_path: Path, build_path: Path, include_rels: bool):
         )
 
     if include_rels:
-        build_rels_path = get_files_with_ext(build_path, ".rel")
+        build_rels_path = get_files_with_ext(build_path/"rel", ".rel")
         for rel_filepath in build_rels_path:
             with rel_filepath.open("rb") as file:
                 data = bytearray(file.read())
