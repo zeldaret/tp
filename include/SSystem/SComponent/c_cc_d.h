@@ -32,6 +32,8 @@ enum cCcD_ObjAtType {
     /* 0x00000080 */ AT_TYPE_SLINGSHOT = (1 << 7),
     /* 0x00000200 */ AT_TYPE_LANTERN_SWING = (1 << 9),
     /* 0x00000400 */ AT_TYPE_CSTATUE_SWING = (1 << 10),
+    /* 0x00000800 */ AT_TYPE_800 = (1 << 11),
+    /* 0x00001000 */ AT_TYPE_1000 = (1 << 12),
     /* 0x00002000 */ AT_TYPE_ARROW = (1 << 13),
     /* 0x00004000 */ AT_TYPE_HOOKSHOT = (1 << 14),
     /* 0x00010000 */ AT_TYPE_BOOMERANG = (1 << 16),
@@ -42,6 +44,7 @@ enum cCcD_ObjAtType {
     /* 0x00800000 */ AT_TYPE_COPY_ROD = (1 << 23),
     /* 0x04000000 */ AT_TYPE_MASTER_SWORD = (1 << 26),
     /* 0x08000000 */ AT_TYPE_MIDNA_LOCK = (1 << 27),
+    /* 0x10000000 */ AT_TYPE_10000000 = (1 << 28),
     /* 0x40000000 */ AT_TYPE_WOLF_CUT_TURN = (1 << 30),
     /* 0x80000000 */ AT_TYPE_WOLF_ATTACK = (1 << 31),
 };
@@ -54,7 +57,7 @@ public:
     struct Shape {
         /* 80167BBC */ ~Shape();
 
-        /* 0x00 */ u32 _0;
+        /* 0x00 */ int _0;
         /* 0x04 */ f32 _4;
         /* 0x08 */ f32 _8;
         /* 0x0C */ f32 _C;
@@ -147,9 +150,15 @@ public:
 
 STATIC_ASSERT(0x40 == sizeof(cCcD_CpsAttr));
 
+class cCcD_SrcSphAttr : public cM3dGSphS {};
+
 class cCcD_SphAttr : public cCcD_ShapeAttr, public cM3dGSph {
 public:
     cCcD_SphAttr() {}
+    void Set(const cCcD_SrcSphAttr& src) {
+        cM3dGSph::Set(src);
+    }
+
     /* 8008721C */ virtual ~cCcD_SphAttr() {}
     /* 80084B44 */ virtual const cXyz& GetCoCP() const { return mCenter; }
     /* 80037A54 */ virtual cXyz& GetCoCP() { return mCenter; }
@@ -300,11 +309,14 @@ public:
     /* 80263984 */ f32 GetWeightF() const;
     /* 802649E8 vt[7] */ virtual void ClrAt() {}
     /* 802649EC vt[8] */ virtual void ClrTg() { mTg = 0; }
+    
     u8 GetWeightUc() const { return mWeight; }
     void SetWeight(u8 weight) { mWeight = weight; }
     fopAc_ac_c* GetAc() { return mActor; }
+    fopAc_ac_c* GetActor() const { return mActor; }
     void SetActor(void* ac) { mActor = (fopAc_ac_c*)ac; }
     cXyz* GetCCMoveP() { return &mXyz; }
+    unsigned int GetApid() const { return mApid; }
 };  // Size = 0x1C
 
 STATIC_ASSERT(0x1C == sizeof(cCcD_Stts));
@@ -410,7 +422,7 @@ public:
     u32 GetAtGrp() const { return mObjAt.GetGrp(); }
     u32 GetCoGrp() const { return mObjCo.GetGrp(); }
     int GetTgType() const { return mObjTg.GetType(); }
-    int GetAtType() const { return mObjAt.GetType(); }
+    u32 GetAtType() const { return mObjAt.GetType(); }
     bool ChkTgSet() const { return mObjTg.ChkSet(); }
     bool ChkAtSet() const { return mObjAt.ChkSet(); }
     bool ChkCoSet() const { return mObjCo.ChkSet(); }
@@ -464,6 +476,7 @@ public:
     cCcD_Stts* GetStts() { return mStts; }
     void SetStts(cCcD_Stts* stts) { mStts = stts; }
     cCcD_DivideInfo& GetDivideInfo() { return mDivideInfo; }
+    cCcD_DivideInfo* GetPDivideInfo() { return &mDivideInfo; }
     int ChkBsRevHit() const { return field_0x40 & 2; }
 
 private:

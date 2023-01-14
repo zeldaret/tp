@@ -286,6 +286,10 @@ inline const cXyz& fopAcM_GetPosition_p(const fopAc_ac_c* p_actor) {
     return p_actor->current.pos;
 }
 
+inline dJntCol_c* fopAcM_GetJntCol(fopAc_ac_c* i_actor) {
+    return i_actor->mJntCol;
+}
+
 inline void dComIfGs_onSwitch(int i_no, int i_roomNo);
 inline void dComIfGs_offSwitch(int i_no, int i_roomNo);
 inline BOOL dComIfGs_isSwitch(int i_no, int i_roomNo);

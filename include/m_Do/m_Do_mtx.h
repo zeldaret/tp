@@ -77,6 +77,7 @@ public:
     static void ZrotM(s16 z) { mDoMtx_ZrotM(now, z); }
     static void inverse() { PSMTXInverse(now, now); }
     static void concat(const Mtx m) { PSMTXConcat(now, m, now); }
+    static void revConcat(const Mtx m) { PSMTXConcat(m, now, now); }
     static void copy(const Mtx m) { PSMTXCopy(m, now); }
 
     static Mtx now;
