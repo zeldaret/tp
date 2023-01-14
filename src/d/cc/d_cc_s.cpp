@@ -520,7 +520,7 @@ void dCcS::ProcAtTgHitmark(bool i_setAt, bool i_setTg, cCcD_Obj* param_2, cCcD_O
                         u32 atType = i_atObjInf->GetAtType();
                         fopAc_ac_c* ac = i_tgObjInf->GetAc();
 
-                        dComIfGp_setHitMark(2, ac, i_hitPos, &sp10, NULL, atType);
+                        i_dComIfGp_setHitMark(2, ac, i_hitPos, &sp10, NULL, atType);
                     } else {
                         u16 hitmark;
                         if (i_tgObjInf->GetTgHitMark() == 3) {
@@ -533,7 +533,7 @@ void dCcS::ProcAtTgHitmark(bool i_setAt, bool i_setTg, cCcD_Obj* param_2, cCcD_O
                             u32 atType = i_atObjInf->GetAtType();
                             fopAc_ac_c* ac = i_tgObjInf->GetAc();
 
-                            dComIfGp_setHitMark(hitmark, ac, i_hitPos, &sp10, NULL, atType);
+                            i_dComIfGp_setHitMark(hitmark, ac, i_hitPos, &sp10, NULL, atType);
                         }
                     }
                 }
@@ -545,7 +545,7 @@ void dCcS::ProcAtTgHitmark(bool i_setAt, bool i_setTg, cCcD_Obj* param_2, cCcD_O
                 fopAc_ac_c* ac = i_tgObjInf->GetAc();
                 u16 hitmark = i_tgObjInf->GetTgHitMark();
 
-                dComIfGp_setHitMark(hitmark, ac, i_hitPos, &sp8, NULL, atType);
+                i_dComIfGp_setHitMark(hitmark, ac, i_hitPos, &sp8, NULL, atType);
             }
         }
     }

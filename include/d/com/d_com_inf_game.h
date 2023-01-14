@@ -2352,8 +2352,8 @@ inline void dComIfGp_createSimpleModel() {
     g_dComIfG_gameInfo.play.createSimpleModel();
 }
 
-inline void dComIfGp_setHitMark(u16 i_hitmark, fopAc_ac_c* param_1, const cXyz* param_2,
-                                const csXyz* param_3, const cXyz* param_4, u32 i_atType) {
+inline void i_dComIfGp_setHitMark(u16 i_hitmark, fopAc_ac_c* param_1, const cXyz* param_2,
+                                  const csXyz* param_3, const cXyz* param_4, u32 i_atType) {
     g_dComIfG_gameInfo.play.getParticle()->setHitMark(i_hitmark, param_1, param_2, param_3, param_4,
                                                       i_atType);
 }
