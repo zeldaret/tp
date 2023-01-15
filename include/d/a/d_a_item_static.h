@@ -112,13 +112,13 @@ public:
 
     static u8 mFuncPtr[120];
     //static procFunc mFuncPtr[9];
-    static u8 m_cyl_src[68];
+    static dCcD_SrcCyl m_cyl_src;
     static s32 m_timer_max;
 
     /* 0x92C */ s16 field_0x92c;
     /* 0x92E */ u16 field_0x92e;
     /* 0x930 */ cXyz field_0x930;
-    /* 0x93C */ u32 field_0x93c;
+    /* 0x93C */ int field_0x93c;
     /* 0x940 */ u16 field_0x940;
     /* 0x942 */ s16 field_0x942;
     /* 0x944 */ s16 field_0x944;

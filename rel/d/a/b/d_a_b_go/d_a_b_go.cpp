@@ -61,7 +61,6 @@ public:
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ mDoExt_McaMorfSO* mpMorf;
     /* 0x5B8 */ Z2CreatureEnemy mZ2Enemy;
-    /* 0x648 */ u8 field_0x648[0x14];
     /* 0x65C */ int field_0x65c;
     /* 0x660 */ u8 field_0x660;
     /* 0x661 */ u8 field_0x661[0x668 - 0x661];

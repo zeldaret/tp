@@ -1048,27 +1048,6 @@ f32 dBgS_GetNY(cBgS_PolyInfo const& poly) {
     return pla.mNormal.y;
 }
 
-/* ############################################################################################## */
-/* 803AB608-803AB61C 008728 0014+00 0/0 3/3 0/0 .data            __vt__4dBgS */
-SECTION_DATA extern void* __vt__4dBgS[5] = {
-    (void*)NULL /* RTTI */, (void*)NULL,        (void*)__dt__4dBgSFv,
-    (void*)Ct__4dBgSFv,     (void*)Dt__4dBgSFv,
-};
-
-/* 803AB61C-803AB630 00873C 0014+00 0/0 4/4 0/0 .data            __vt__4cBgS */
-SECTION_DATA extern void* __vt__4cBgS[5] = {
-    (void*)NULL /* RTTI */, (void*)NULL,        (void*)__dt__4cBgSFv,
-    (void*)Ct__4cBgSFv,     (void*)Dt__4cBgSFv,
-};
-
-/* 803AB630-803AB640 008750 0010+00 0/0 2/2 0/0 .data            __vt__11cBgS_ChkElm */
-SECTION_DATA extern void* __vt__11cBgS_ChkElm[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__11cBgS_ChkElmFv,
-    (void*)Regist2__11cBgS_ChkElmFP9dBgW_BaseUiPv,
-};
-
 /* 80450F68-80450F70 000468 0008+00 0/0 1/1 0/0 .sbss            None */
 extern u8 data_80450F68[8];
 u8 data_80450F68[8] ALIGN_DECL(8);

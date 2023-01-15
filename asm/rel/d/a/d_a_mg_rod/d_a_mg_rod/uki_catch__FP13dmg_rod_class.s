@@ -253,8 +253,8 @@ lbl_804B4530:
 /* 804B4548  88 1F 0C 3D */	lbz r0, 0xc3d(r31)
 /* 804B454C  28 00 00 01 */	cmplwi r0, 1
 /* 804B4550  40 82 00 6C */	bne lbl_804B45BC
-/* 804B4554  3C 60 80 45 */	lis r3, struct_80450C9C+0x2@ha /* 0x80450C9E@ha */
-/* 804B4558  88 03 0C 9E */	lbz r0, struct_80450C9C+0x2@l(r3)  /* 0x80450C9E@l */
+/* 804B4554  3C 60 80 45 */	lis r3, cDmr_SkipInfo+0x2@ha /* 0x80450C9E@ha */
+/* 804B4558  88 03 0C 9E */	lbz r0, cDmr_SkipInfo+0x2@l(r3)  /* 0x80450C9E@l */
 /* 804B455C  28 00 00 00 */	cmplwi r0, 0
 /* 804B4560  41 82 00 20 */	beq lbl_804B4580
 /* 804B4564  38 7C 14 74 */	addi r3, r28, 0x1474
@@ -272,8 +272,8 @@ lbl_804B4580:
 /* 804B4590  38 E0 00 00 */	li r7, 0
 /* 804B4594  4B D9 59 FD */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
 /* 804B4598  38 00 00 01 */	li r0, 1
-/* 804B459C  3C 60 80 45 */	lis r3, struct_80450C9C+0x2@ha /* 0x80450C9E@ha */
-/* 804B45A0  98 03 0C 9E */	stb r0, struct_80450C9C+0x2@l(r3)  /* 0x80450C9E@l */
+/* 804B459C  3C 60 80 45 */	lis r3, cDmr_SkipInfo+0x2@ha /* 0x80450C9E@ha */
+/* 804B45A0  98 03 0C 9E */	stb r0, cDmr_SkipInfo+0x2@l(r3)  /* 0x80450C9E@l */
 lbl_804B45A4:
 /* 804B45A4  80 7D 00 40 */	lwz r3, 0x40(r29)
 /* 804B45A8  28 03 00 00 */	cmplwi r3, 0

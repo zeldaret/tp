@@ -63,9 +63,9 @@ public:
         HEAP_TYPE_5,
     };
 
-    /* 80140DCC */ void __defctor();  // supposed to be the ctor?
+    /* 80140DCC */ void __defctor();  // compiler generated due to ctor with default param
 
-    daPy_anmHeap_c(u32);
+    daPy_anmHeap_c(u32 param_0 = 0);
     ~daPy_anmHeap_c();
     void initData();
     void* mallocBuffer();
@@ -350,6 +350,7 @@ public:
         RFLG0_UNK_8000000 = 0x8000000,
         RFLG0_UNK_4000000 = 0x4000000,
         RFLG0_UNK_4000 = 0x4000,
+        RFLG0_FRONT_ROLL_CRASH = 0x2000,
         RFLG0_ENEMY_ATTN_LOCK = 0x1000,
         RFLG0_UNK_400 = 0x400,
         RFLG0_UNK_80 = 0x80,
@@ -692,6 +693,7 @@ public:
     u16 getSwordAtUpTime() const { return mSwordUpTimer; }
     bool checkWaterInMove() const { return i_checkNoResetFlg0(FLG0_UNDERWATER); }
     bool checkSceneChangeAreaStart() const { return i_checkNoResetFlg2(FLG2_SCN_CHG_START); }
+    bool checkFrontRollCrash() const { return i_checkResetFlg0(RFLG0_FRONT_ROLL_CRASH); }
     
     void offGoronSideMove() {
         if (i_checkGoronSideMove()) {

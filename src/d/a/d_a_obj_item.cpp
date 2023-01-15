@@ -4,13 +4,13 @@
 //
 
 #include "d/a/d_a_obj_item.h"
+#include "SSystem/SComponent/c_math.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_item.h"
+#include "d/d_item_data.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "d/d_item_data.h"
-#include "d/d_item.h"
-#include "d/com/d_com_inf_game.h"
 #include "m_Do/m_Do_mtx.h"
-#include "SSystem/SComponent/c_math.h"
 
 //
 // Forward References:
@@ -261,7 +261,7 @@ void daItem_c::initBaseMtx() {
 void daItem_c::setBaseMtx() {
     if (mpModel != NULL) {
         mpModel->setBaseScale(mScale);
-        
+
         switch (m_itemNo) {
         case GREEN_RUPEE:
         case BLUE_RUPEE:
@@ -500,18 +500,25 @@ SECTION_DATA u8 daItem_c::mFuncPtr[120] = {
 };
 
 /* SECTION_DATA procFunc daItem_c::mFuncPtr[9] = {
-    &daItem_c::procMainNormal, &daItem_c::procMainEnemyCarry, &daItem_c::procMainSimpleGetDemo, 
-    &daItem_c::procWaitGetDemoEvent, &daItem_c::procMainGetDemoEvent, &daItem_c::procMainBoomerangCarry,
-    &daItem_c::procMainSwOnWait, &daItem_c::procMainBoomHitWait, &daItem_c::procMainForceGet,
+    &daItem_c::procMainNormal, &daItem_c::procMainEnemyCarry, &daItem_c::procMainSimpleGetDemo,
+    &daItem_c::procWaitGetDemoEvent, &daItem_c::procMainGetDemoEvent,
+&daItem_c::procMainBoomerangCarry, &daItem_c::procMainSwOnWait, &daItem_c::procMainBoomHitWait,
+&daItem_c::procMainForceGet,
 }; */
 
 /* 803B9F10-803B9F54 017030 0044+00 1/1 0/0 0/0 .data            m_cyl_src__8daItem_c */
-SECTION_DATA u8 daItem_c::m_cyl_src[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x59,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00,
+dCcD_SrcCyl daItem_c::m_cyl_src = {
+    {
+        {0, {{0, 0, 0}, {0xFFFFFFFF, 17}, 0x59}},
+        {dCcD_SE_NONE, 0, 0, 0, {0}},
+        {dCcD_SE_NONE, 0, 0, 0, {4}},
+        {0},
+    },
+    {
+        {0.0f, 0.0f, 0.0f},
+        10.0f,
+        50.0f,
+    },
 };
 
 /* 80453574-80453578 001B74 0004+00 1/1 0/0 0/0 .sdata2          @4067 */
@@ -534,6 +541,103 @@ SECTION_SDATA2 static f32 lit_4070[1 + 1 /* padding */] = {
 SECTION_SDATA2 static f64 lit_4072 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8015B3D8-8015B7BC 155D18 03E4+00 1/1 0/0 0/0 .text            CreateInit__8daItem_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void daItem_c::CreateInit() {
+    mAcchCir.SetWall(30.0f, 30.0f);
+    mAcch.Set(&current.pos, &next.pos, this, 1, &mAcchCir, &mSpeed, NULL, NULL);
+    mAcch.ClrWaterNone();
+    mAcch.ClrRoofNone();
+    mAcch.SetWtrChkMode(2);
+    mAcch.SetWaterCheckOffset(10000.0f);
+
+    mColStatus.Init(0, 0xFF, this);
+    mCollider.Set(m_cyl_src);
+    mCollider.SetStts(&mColStatus);
+    mCollider.SetCoHitCallback(itemGetCoCallBack);
+    mCollider.SetTgHitCallback(itemGetTgCallBack);
+
+    f32 cylHeight = dItem_data::getH(m_itemNo);
+    f32 cylRadius = dItem_data::getR(m_itemNo);
+
+    if (mScale.x > 1.0f) {
+        cylHeight *= mScale.x;
+        cylRadius *= mScale.x;
+    }
+
+    mCollider.SetR(cylRadius);
+    mCollider.SetH(cylHeight);
+
+    setCullInfo();
+
+    field_0x942 = getData().field_0x16;
+    field_0x944 = getData().field_0x18;
+
+    procInitNormal();
+    show();
+
+    field_0x930.setAll(1.0f);
+
+    switch (daItem_prm::getType(this)) {
+    case 5:
+        hide();
+        procInitBoomHitWait();
+        break;
+    case 7:
+        procInitForceGet();
+        break;
+    case 4:
+        procInitSimpleGetDemo();
+        procMainSimpleGetDemo();
+        break;
+    default:
+    case 6:
+        field_0x93c = daItem_prm::getSwitchNo(this);
+        if (field_0x93c != 0xFF && !i_fopAcM_isSwitch(this, field_0x93c)) {
+            hide();
+            setFlag(8);
+            procInitSwOnWait();
+        }
+        break;
+    }
+
+    initAction();
+    initBaseMtx();
+    animPlay(1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f);
+
+    if (m_itemNo == BOOMERANG) {
+        itemGetNextExecute();
+    } else if ((m_itemNo == ORANGE_RUPEE || m_itemNo == SILVER_RUPEE) &&
+               field_0x998.getEmitter() == NULL) {
+        dComIfGp_particle_set(0x0C14, &field_0x9ac, NULL, NULL, -1, &field_0x998, -1, NULL, NULL,
+                              NULL);
+    }
+
+    field_0x978.init(&current.pos, 1);
+
+    f32 old_speedF = mSpeedF;
+    cXyz old_speed = mSpeed;
+
+    mAcch.CrrPos(dComIfG_Bgsp());
+
+    if (mAcch.ChkWaterHit() && mAcch.m_wtr.GetHeight() > orig.pos.y + 150.0f) {
+        field_0x9c0 = 1;
+    }
+
+    if (daItem_prm::checkInWater(this) == true) {
+        field_0x9c0 = 1;
+    }
+
+    mSpeedF = old_speedF;
+    mSpeed = old_speed;
+
+    mAcch.ClrGroundLanding();
+    mAcch.i_ClrGroundHit();
+    mAcch.ClrWaterHit();
+    mAcch.ClrWaterIn();
+    mAcch.ClrWallHit();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -542,6 +646,7 @@ asm void daItem_c::CreateInit() {
 #include "asm/a/obj/d_a_obj_item/CreateInit__8daItem_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8015B7BC-8015B7D4 1560FC 0018+00 1/1 0/0 0/0 .text            setCullInfo__8daItem_cFv */
 void daItem_c::setCullInfo() {
@@ -668,7 +773,8 @@ int daItem_c::_daItem_create() {
             phase_state = dComIfG_resLoad(&mPhase, dItem_data::getFieldArc(m_itemNo));
 
             if (phase_state == cPhs_COMPLEATE_e) {
-                if (!fopAcM_entrySolidHeap(this, (heapCallbackFunc)CheckFieldItemCreateHeap, dItem_data::getFieldHeapSize(m_itemNo))) {
+                if (!fopAcM_entrySolidHeap(this, (heapCallbackFunc)CheckFieldItemCreateHeap,
+                                           dItem_data::getFieldHeapSize(m_itemNo))) {
                     return cPhs_ERROR_e;
                 } else {
                     CreateInit();
@@ -713,7 +819,7 @@ SECTION_SDATA2 static f32 lit_4321 = 18.0f;
 int daItem_c::_daItem_execute() {
     field_0x950 = mSpeed;
     CountTimer();
-    
+
     mEyePos = current.pos;
     mEyePos.y += (f32)dItem_data::getH(m_itemNo) * 0.5f;
 
@@ -749,7 +855,6 @@ int daItem_c::_daItem_execute() {
         mDoMtx_stack_c::multVec(&carry_pos, &carry_pos);
         daPy_getPlayerActorClass()->setHookshotCarryOffset(fopAcM_GetID(this), &carry_pos);
     }
-
 
     animPlay(1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f);
     setBaseMtx();
@@ -910,7 +1015,8 @@ void daItem_c::procInitGetDemoEvent() {
     fopAcM_orderItemEvent(this, 0, 0);
     mEvtInfo.i_onCondition(8);
 
-    m_item_id = fopAcM_createItemForTrBoxDemo(&current.pos, m_itemNo, -1, fopAcM_GetRoomNo(this), NULL, NULL);
+    m_item_id = fopAcM_createItemForTrBoxDemo(&current.pos, m_itemNo, -1, fopAcM_GetRoomNo(this),
+                                              NULL, NULL);
     setStatus(3);
 }
 
@@ -1203,7 +1309,8 @@ void daItem_c::itemGetNextExecute() {
         case ORANGE_RUPEE:
         case SILVER_RUPEE:
         case PACHINKO_SHOT:
-            if (daPy_getPlayerActorClass()->checkCanoeRide() || daPy_getPlayerActorClass()->checkHorseRide()) {
+            if (daPy_getPlayerActorClass()->checkCanoeRide() ||
+                daPy_getPlayerActorClass()->checkHorseRide()) {
                 if (checkItemGet(m_itemNo, 1)) {
                     haveItem = true;
                 }
@@ -1306,7 +1413,7 @@ BOOL daItem_c::checkCountTimer() {
     if (i_dComIfGp_event_runCheck()) {
         count = false;
     }
-    
+
     if (mStatus == 5 || fopAcM_checkHookCarryNow(this)) {
         count = false;
     }
@@ -1578,8 +1685,7 @@ static asm void daItem_Create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __sinit_d_a_obj_item_cpp() {
-    nofralloc
+asm void __sinit_d_a_obj_item_cpp(){nofralloc
 #include "asm/a/obj/d_a_obj_item/__sinit_d_a_obj_item_cpp.s"
 }
 #pragma pop

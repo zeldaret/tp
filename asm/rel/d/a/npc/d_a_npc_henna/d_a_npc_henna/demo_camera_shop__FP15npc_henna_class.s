@@ -653,8 +653,8 @@ lbl_80545F64:
 /* 80545FC0  38 E0 FF FF */	li r7, -1
 /* 80545FC4  4B AE 11 AD */	bl dStage_changeScene__FifUlScsi
 /* 80545FC8  38 00 00 01 */	li r0, 1
-/* 80545FCC  3C 60 80 45 */	lis r3, struct_80450C9C+0x0@ha /* 0x80450C9C@ha */
-/* 80545FD0  98 03 0C 9C */	stb r0, struct_80450C9C+0x0@l(r3)  /* 0x80450C9C@l */
+/* 80545FCC  3C 60 80 45 */	lis r3, cDmr_SkipInfo+0x0@ha /* 0x80450C9C@ha */
+/* 80545FD0  98 03 0C 9C */	stb r0, cDmr_SkipInfo+0x0@l(r3)  /* 0x80450C9C@l */
 /* 80545FD4  38 00 00 00 */	li r0, 0
 /* 80545FD8  3C 60 80 45 */	lis r3, struct_80450C98+0x2@ha /* 0x80450C9A@ha */
 /* 80545FDC  98 03 0C 9A */	stb r0, struct_80450C98+0x2@l(r3)  /* 0x80450C9A@l */
@@ -1377,8 +1377,8 @@ lbl_80546A34:
 /* 80546A40  38 C0 00 00 */	li r6, 0
 /* 80546A44  38 E0 00 00 */	li r7, 0
 /* 80546A48  4B D0 35 49 */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
-/* 80546A4C  3C 60 80 45 */	lis r3, struct_80450C9C+0x1@ha /* 0x80450C9D@ha */
-/* 80546A50  8C 03 0C 9D */	lbzu r0, struct_80450C9C+0x1@l(r3)  /* 0x80450C9D@l */
+/* 80546A4C  3C 60 80 45 */	lis r3, cDmr_SkipInfo+0x1@ha /* 0x80450C9D@ha */
+/* 80546A50  8C 03 0C 9D */	lbzu r0, cDmr_SkipInfo+0x1@l(r3)  /* 0x80450C9D@l */
 /* 80546A54  60 00 00 80 */	ori r0, r0, 0x80
 /* 80546A58  98 03 00 00 */	stb r0, 0(r3)
 /* 80546A5C  48 00 02 6C */	b lbl_80546CC8

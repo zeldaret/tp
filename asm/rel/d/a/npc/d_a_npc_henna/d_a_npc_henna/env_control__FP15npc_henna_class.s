@@ -103,8 +103,8 @@ lbl_805487F0:
 /* 80548800  4B D1 F1 55 */	bl cM_rndF__Ff
 /* 80548804  FC 01 F8 40 */	fcmpo cr0, f1, f31
 /* 80548808  40 80 00 90 */	bge lbl_80548898
-/* 8054880C  3C 60 80 45 */	lis r3, struct_80450C9C+0x3@ha /* 0x80450C9F@ha */
-/* 80548810  38 63 0C 9F */	addi r3, r3, struct_80450C9C+0x3@l /* 0x80450C9F@l */
+/* 8054880C  3C 60 80 45 */	lis r3, cDmr_SkipInfo+0x3@ha /* 0x80450C9F@ha */
+/* 80548810  38 63 0C 9F */	addi r3, r3, cDmr_SkipInfo+0x3@l /* 0x80450C9F@l */
 /* 80548814  88 63 00 00 */	lbz r3, 0(r3)
 /* 80548818  28 03 00 00 */	cmplwi r3, 0
 /* 8054881C  40 82 00 10 */	bne lbl_8054882C
@@ -142,8 +142,8 @@ lbl_80548884:
 /* 80548888  98 1F 12 CC */	stb r0, 0x12cc(r31)
 lbl_8054888C:
 /* 8054888C  88 1F 12 CC */	lbz r0, 0x12cc(r31)
-/* 80548890  3C 60 80 45 */	lis r3, struct_80450C9C+0x3@ha /* 0x80450C9F@ha */
-/* 80548894  98 03 0C 9F */	stb r0, struct_80450C9C+0x3@l(r3)  /* 0x80450C9F@l */
+/* 80548890  3C 60 80 45 */	lis r3, cDmr_SkipInfo+0x3@ha /* 0x80450C9F@ha */
+/* 80548894  98 03 0C 9F */	stb r0, cDmr_SkipInfo+0x3@l(r3)  /* 0x80450C9F@l */
 lbl_80548898:
 /* 80548898  E3 E1 00 38 */	psq_l f31, 56(r1), 0, 0 /* qr0 */
 /* 8054889C  CB E1 00 30 */	lfd f31, 0x30(r1)

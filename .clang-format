@@ -20,7 +20,19 @@ AlwaysBreakTemplateDeclarations: true
 BinPackArguments: true
 BinPackParameters: true
 BreakBeforeBinaryOperators: None
-BreakBeforeBraces: Attach
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterControlStatement: MultiLine
+  AfterFunction: false
+  AfterEnum: false
+  AfterClass: false
+  AfterCaseLabel: false
+  AfterNamespace: false
+  AfterStruct: false
+  AfterUnion: false
+  AfterExternBlock: false
+  BeforeElse: false
+  BeforeWhile: false
 BreakBeforeTernaryOperators: false
 BreakConstructorInitializersBeforeComma: false
 ColumnLimit:     100
@@ -57,6 +69,7 @@ PenaltyBreakString: 1000
 PenaltyExcessCharacter: 1000000
 PenaltyReturnTypeOnItsOwnLine: 60
 PointerAlignment: Left
+ReferenceAlignment: Left
 ReflowComments:  true
 SortIncludes:    true
 SpaceAfterCStyleCast: false

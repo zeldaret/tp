@@ -93,6 +93,7 @@ public:
     void setUserArea(UserArea* area) { mUserArea = area; }
     UserArea* getUserArea() const { return mUserArea; }
     Vec* getBaseScale() { return &mBaseScale; }
+    void setAnmMtx(int i, Mtx m) { mMtxBuffer->setAnmMtx(i, m); }
 
     // is there a better way to handle inlines with same name as non-inlines?
     MtxP i_getAnmMtx(int p1) { return mMtxBuffer->getAnmMtx(p1); }

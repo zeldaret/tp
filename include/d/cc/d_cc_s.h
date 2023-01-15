@@ -11,21 +11,21 @@ public:
     dCcS() {}
     /* 80085ED4 */ void Ct();
     /* 80085F08 */ void Dt();
-    /* 80085F28 */ void ChkShieldFrontRange(cCcD_Obj*, cCcD_Obj*, int, cXyz const*);
-    /* 800860F8 */ void ChkShield(cCcD_Obj*, cCcD_Obj*, dCcD_GObjInf*, dCcD_GObjInf*, cXyz const*);
+    /* 80085F28 */ bool ChkShieldFrontRange(cCcD_Obj*, cCcD_Obj*, int, cXyz const*);
+    /* 800860F8 */ bool ChkShield(cCcD_Obj*, cCcD_Obj*, dCcD_GObjInf*, dCcD_GObjInf*, cXyz const*);
     /* 800861B0 */ void CalcTgPlusDmg(cCcD_Obj*, cCcD_Obj*, cCcD_Stts*, cCcD_Stts*);
-    /* 80086360 */ void GetRank(u8);
+    /* 80086360 */ int GetRank(u8);
     /* 8008685C */ void ProcAtTgHitmark(bool, bool, cCcD_Obj*, cCcD_Obj*, dCcD_GObjInf*,
                                         dCcD_GObjInf*, cCcD_Stts*, cCcD_Stts*, dCcD_GStts*,
                                         dCcD_GStts*, cXyz*, bool);
-    /* 80086D8C */ void ChkCamera(cXyz&, cXyz&, f32, fopAc_ac_c*, fopAc_ac_c*, fopAc_ac_c*);
-    /* 80086FBC */ void chkCameraPoint(cXyz const&, cCcD_ShapeAttr::Shape*, fopAc_ac_c*,
+    /* 80086D8C */ bool ChkCamera(cXyz&, cXyz&, f32, fopAc_ac_c*, fopAc_ac_c*, fopAc_ac_c*);
+    /* 80086FBC */ bool chkCameraPoint(cXyz const&, cCcD_ShapeAttr::Shape*, fopAc_ac_c*,
                                        fopAc_ac_c*);
     /* 800872AC */ void DrawAfter();
     /* 800872B0 */ void Move();
     /* 800872D0 */ void Draw();
     /* 8008730C */ void MassClear();
-    /* 80087330 */ void ChkAtTgMtrlHit(u8, u8);
+    /* 80087330 */ int ChkAtTgMtrlHit(u8, u8);
 
     /* 8008640C */ virtual void SetPosCorrect(cCcD_Obj*, cXyz*, cCcD_Obj*, cXyz*, f32);
     /* 80086240 */ virtual void SetCoGObjInf(bool, bool, cCcD_GObjInf*, cCcD_GObjInf*, cCcD_Stts*,
