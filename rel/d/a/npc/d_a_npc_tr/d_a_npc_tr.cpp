@@ -560,7 +560,7 @@ static int useHeapInit(fopAc_ac_c* actor) {
         return 0;
     }
 
-    npc_tr->field_0x5b8->setUserArea((UserArea*)actor);
+    npc_tr->field_0x5b8->setUserArea((u32)actor);
 
     for (u16 i = 0; i < npc_tr->field_0x5b8->getModelData()->getJointNum(); i++) {
         npc_tr->field_0x5b8->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack);

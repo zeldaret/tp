@@ -786,7 +786,7 @@ COMPILER_STRIP_GATE(0x8066EE1C, &lit_3981);
 #pragma pop
 
 /* 80668624-80668754 0009C4 0130+00 1/1 0/0 0/0 .text            depth_check__FP8do_class4cXyzf */
-#ifndef NONMATCHING
+#ifdef NONMATCHING
 static bool depth_check(do_class* i_dogP, cXyz i_pos, f32 param_2) {
     dBgS_GndChk gnd_chk;
     dBgS_ObjGndChk_Spl gnd_chk_spl;
