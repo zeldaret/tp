@@ -40,10 +40,17 @@ $(M387_TARGET): $(M387_O_FILES) $(M387_LIBS)
 	@python3 tools/lcf.py rel 387 --output $(M387_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M387_LDFLAGS) -o $(M387_TARGET) @build/M387_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelR/%.o: rel/d/a/npc/d_a_npc_zelR/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelR/%.o: rel/d/a/npc/d_a_npc_zelR/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelR/%.d
 	@echo [387] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M387_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M387_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M387_D_FILES := $(M387_O_FILES:.o=.d)
+$(M387_D_FILES):
+include $(wildcard $(M387_D_FILES))
+endif
 
 

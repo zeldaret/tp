@@ -38,10 +38,17 @@ $(M393_TARGET): $(M393_O_FILES) $(M393_LIBS)
 	@python3 tools/lcf.py rel 393 --output $(M393_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M393_LDFLAGS) -o $(M393_TARGET) @build/M393_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_Lv5Key/%.o: rel/d/a/obj/d_a_obj_Lv5Key/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_Lv5Key/%.o: rel/d/a/obj/d_a_obj_Lv5Key/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_Lv5Key/%.d
 	@echo [393] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M393_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M393_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M393_D_FILES := $(M393_O_FILES:.o=.d)
+$(M393_D_FILES):
+include $(wildcard $(M393_D_FILES))
+endif
 
 

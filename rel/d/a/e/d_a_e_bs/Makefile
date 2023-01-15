@@ -40,10 +40,17 @@ $(M177_TARGET): $(M177_O_FILES) $(M177_LIBS)
 	@python3 tools/lcf.py rel 177 --output $(M177_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M177_LDFLAGS) -o $(M177_TARGET) @build/M177_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_bs/%.o: rel/d/a/e/d_a_e_bs/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_bs/%.o: rel/d/a/e/d_a_e_bs/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_bs/%.d
 	@echo [177] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M177_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M177_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M177_D_FILES := $(M177_O_FILES:.o=.d)
+$(M177_D_FILES):
+include $(wildcard $(M177_D_FILES))
+endif
 
 

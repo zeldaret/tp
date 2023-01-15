@@ -38,10 +38,17 @@ $(M576_TARGET): $(M576_O_FILES) $(M576_LIBS)
 	@python3 tools/lcf.py rel 576 --output $(M576_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M576_LDFLAGS) -o $(M576_TARGET) @build/M576_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_table/%.o: rel/d/a/obj/mirror/d_a_obj_mirror_table/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_table/%.o: rel/d/a/obj/mirror/d_a_obj_mirror_table/%.cpp $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_table/%.d
 	@echo [576] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M576_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M576_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M576_D_FILES := $(M576_O_FILES:.o=.d)
+$(M576_D_FILES):
+include $(wildcard $(M576_D_FILES))
+endif
 
 

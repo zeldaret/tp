@@ -40,10 +40,17 @@ $(M544_TARGET): $(M544_O_FILES) $(M544_LIBS)
 	@python3 tools/lcf.py rel 544 --output $(M544_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M544_LDFLAGS) -o $(M544_TARGET) @build/M544_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6ChangeGate/%.o: rel/d/a/obj/d_a_obj_lv6ChangeGate/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6ChangeGate/%.o: rel/d/a/obj/d_a_obj_lv6ChangeGate/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6ChangeGate/%.d
 	@echo [544] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M544_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M544_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M544_D_FILES := $(M544_O_FILES:.o=.d)
+$(M544_D_FILES):
+include $(wildcard $(M544_D_FILES))
+endif
 
 

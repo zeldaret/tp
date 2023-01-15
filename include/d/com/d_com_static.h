@@ -48,6 +48,11 @@ public:
     /* 80031434 */ static bool check(s8 i_roomNo, cXyz const& i_pos);
     /* 800315A4 */ static void execute();
 
+    static void reset(int roomNo) {
+        room_c* room = (room_c*)mRoom;  // tmp
+        room[roomNo].reset();
+    }
+
     static u8 mData[1152];
     static u8 mRoom[256];
     static s16 mSetTop;

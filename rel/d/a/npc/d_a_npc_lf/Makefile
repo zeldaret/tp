@@ -40,10 +40,17 @@ $(M333_TARGET): $(M333_O_FILES) $(M333_LIBS)
 	@python3 tools/lcf.py rel 333 --output $(M333_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M333_LDFLAGS) -o $(M333_TARGET) @build/M333_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_lf/%.o: rel/d/a/npc/d_a_npc_lf/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_lf/%.o: rel/d/a/npc/d_a_npc_lf/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_lf/%.d
 	@echo [333] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M333_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M333_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M333_D_FILES := $(M333_O_FILES:.o=.d)
+$(M333_D_FILES):
+include $(wildcard $(M333_D_FILES))
+endif
 
 

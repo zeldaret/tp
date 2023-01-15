@@ -40,10 +40,17 @@ $(M78_TARGET): $(M78_O_FILES) $(M78_LIBS)
 	@python3 tools/lcf.py rel 78 --output $(M78_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M78_LDFLAGS) -o $(M78_TARGET) @build/M78_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_mg_fish/%.o: rel/d/a/d_a_mg_fish/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_mg_fish/%.o: rel/d/a/d_a_mg_fish/%.cpp $(BUILD_DIR)/rel/d/a/d_a_mg_fish/%.d
 	@echo [ 78] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M78_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M78_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M78_D_FILES := $(M78_O_FILES:.o=.d)
+$(M78_D_FILES):
+include $(wildcard $(M78_D_FILES))
+endif
 
 

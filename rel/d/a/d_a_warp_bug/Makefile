@@ -38,10 +38,17 @@ $(M757_TARGET): $(M757_O_FILES) $(M757_LIBS)
 	@python3 tools/lcf.py rel 757 --output $(M757_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M757_LDFLAGS) -o $(M757_TARGET) @build/M757_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_warp_bug/%.o: rel/d/a/d_a_warp_bug/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_warp_bug/%.o: rel/d/a/d_a_warp_bug/%.cpp $(BUILD_DIR)/rel/d/a/d_a_warp_bug/%.d
 	@echo [757] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M757_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M757_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M757_D_FILES := $(M757_O_FILES:.o=.d)
+$(M757_D_FILES):
+include $(wildcard $(M757_D_FILES))
+endif
 
 

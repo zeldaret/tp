@@ -38,10 +38,17 @@ $(M363_TARGET): $(M363_O_FILES) $(M363_LIBS)
 	@python3 tools/lcf.py rel 363 --output $(M363_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M363_LDFLAGS) -o $(M363_TARGET) @build/M363_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop_maro/%.o: rel/d/a/npc/d_a_npc_shop_maro/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop_maro/%.o: rel/d/a/npc/d_a_npc_shop_maro/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop_maro/%.d
 	@echo [363] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M363_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M363_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M363_D_FILES := $(M363_O_FILES:.o=.d)
+$(M363_D_FILES):
+include $(wildcard $(M363_D_FILES))
+endif
 
 

@@ -40,10 +40,17 @@ $(M435_TARGET): $(M435_O_FILES) $(M435_LIBS)
 	@python3 tools/lcf.py rel 435 --output $(M435_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M435_LDFLAGS) -o $(M435_TARGET) @build/M435_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_dan/%.o: rel/d/a/obj/d_a_obj_dan/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_dan/%.o: rel/d/a/obj/d_a_obj_dan/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_dan/%.d
 	@echo [435] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M435_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M435_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M435_D_FILES := $(M435_O_FILES:.o=.d)
+$(M435_D_FILES):
+include $(wildcard $(M435_D_FILES))
+endif
 
 

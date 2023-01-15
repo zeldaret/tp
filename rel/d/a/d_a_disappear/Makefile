@@ -38,10 +38,17 @@ $(M49_TARGET): $(M49_O_FILES) $(M49_LIBS)
 	@python3 tools/lcf.py rel 49 --output $(M49_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M49_LDFLAGS) -o $(M49_TARGET) @build/M49_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_disappear/%.o: rel/d/a/d_a_disappear/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_disappear/%.o: rel/d/a/d_a_disappear/%.cpp $(BUILD_DIR)/rel/d/a/d_a_disappear/%.d
 	@echo [ 49] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M49_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M49_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M49_D_FILES := $(M49_O_FILES:.o=.d)
+$(M49_D_FILES):
+include $(wildcard $(M49_D_FILES))
+endif
 
 

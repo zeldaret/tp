@@ -40,10 +40,17 @@ $(M351_TARGET): $(M351_O_FILES) $(M351_LIBS)
 	@python3 tools/lcf.py rel 351 --output $(M351_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M351_LDFLAGS) -o $(M351_TARGET) @build/M351_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_rafrel/%.o: rel/d/a/npc/d_a_npc_rafrel/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_rafrel/%.o: rel/d/a/npc/d_a_npc_rafrel/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_rafrel/%.d
 	@echo [351] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M351_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M351_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M351_D_FILES := $(M351_O_FILES:.o=.d)
+$(M351_D_FILES):
+include $(wildcard $(M351_D_FILES))
+endif
 
 

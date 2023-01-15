@@ -38,10 +38,17 @@ $(M637_TARGET): $(M637_O_FILES) $(M637_LIBS)
 	@python3 tools/lcf.py rel 637 --output $(M637_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M637_LDFLAGS) -o $(M637_TARGET) @build/M637_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sw/%.o: rel/d/a/obj/d_a_obj_sw/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sw/%.o: rel/d/a/obj/d_a_obj_sw/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sw/%.d
 	@echo [637] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M637_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M637_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M637_D_FILES := $(M637_O_FILES:.o=.d)
+$(M637_D_FILES):
+include $(wildcard $(M637_D_FILES))
+endif
 
 

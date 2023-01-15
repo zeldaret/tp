@@ -38,10 +38,17 @@ $(M9_TARGET): $(M9_O_FILES) $(M9_LIBS)
 	@python3 tools/lcf.py rel 9 --output $(M9_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M9_LDFLAGS) -o $(M9_TARGET) @build/M9_ofiles
 
-$(BUILD_DIR)/rel/d/a/door/d_a_door_spiral/%.o: rel/d/a/door/d_a_door_spiral/%.cpp
+$(BUILD_DIR)/rel/d/a/door/d_a_door_spiral/%.o: rel/d/a/door/d_a_door_spiral/%.cpp $(BUILD_DIR)/rel/d/a/door/d_a_door_spiral/%.d
 	@echo [  9] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M9_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M9_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M9_D_FILES := $(M9_O_FILES:.o=.d)
+$(M9_D_FILES):
+include $(wildcard $(M9_D_FILES))
+endif
 
 

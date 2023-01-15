@@ -40,10 +40,17 @@ $(M378_TARGET): $(M378_O_FILES) $(M378_LIBS)
 	@python3 tools/lcf.py rel 378 --output $(M378_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M378_LDFLAGS) -o $(M378_TARGET) @build/M378_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_wrestler/%.o: rel/d/a/npc/d_a_npc_wrestler/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_wrestler/%.o: rel/d/a/npc/d_a_npc_wrestler/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_wrestler/%.d
 	@echo [378] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M378_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M378_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M378_D_FILES := $(M378_O_FILES:.o=.d)
+$(M378_D_FILES):
+include $(wildcard $(M378_D_FILES))
+endif
 
 

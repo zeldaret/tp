@@ -38,10 +38,17 @@ $(M46_TARGET): $(M46_O_FILES) $(M46_LIBS)
 	@python3 tools/lcf.py rel 46 --output $(M46_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M46_LDFLAGS) -o $(M46_TARGET) @build/M46_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_boomerang/%.o: rel/d/a/d_a_boomerang/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_boomerang/%.o: rel/d/a/d_a_boomerang/%.cpp $(BUILD_DIR)/rel/d/a/d_a_boomerang/%.d
 	@echo [ 46] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M46_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M46_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M46_D_FILES := $(M46_O_FILES:.o=.d)
+$(M46_D_FILES):
+include $(wildcard $(M46_D_FILES))
+endif
 
 

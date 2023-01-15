@@ -40,10 +40,17 @@ $(M241_TARGET): $(M241_O_FILES) $(M241_LIBS)
 	@python3 tools/lcf.py rel 241 --output $(M241_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M241_LDFLAGS) -o $(M241_TARGET) @build/M241_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_tt/%.o: rel/d/a/e/d_a_e_tt/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_tt/%.o: rel/d/a/e/d_a_e_tt/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_tt/%.d
 	@echo [241] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M241_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M241_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M241_D_FILES := $(M241_O_FILES:.o=.d)
+$(M241_D_FILES):
+include $(wildcard $(M241_D_FILES))
+endif
 
 

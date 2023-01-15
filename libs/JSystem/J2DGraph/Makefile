@@ -55,9 +55,16 @@ $(BUILD_DIR)/libJ2DGraph.a: $(LIBJ2DGRAPH_A_O_FILES)
 	@echo $(LIBJ2DGRAPH_A_O_FILES) > build/LIBJ2DGRAPH_A_ofiles
 	@$(LD) -xm l $(LIBJ2DGRAPH_A_LDFLAGS) -o $(BUILD_DIR)/libJ2DGraph.a @build/LIBJ2DGRAPH_A_ofiles
 
-$(BUILD_DIR)/libs/JSystem/J2DGraph/%.o: libs/JSystem/J2DGraph/%.cpp
+$(BUILD_DIR)/libs/JSystem/J2DGraph/%.o: libs/JSystem/J2DGraph/%.cpp $(BUILD_DIR)/libs/JSystem/J2DGraph/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBJ2DGRAPH_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBJ2DGRAPH_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+LIBJ2DGRAPH_A_D_FILES := $(LIBJ2DGRAPH_A_O_FILES:.o=.d)
+$(LIBJ2DGRAPH_A_D_FILES):
+include $(wildcard $(LIBJ2DGRAPH_A_D_FILES))
+endif
 

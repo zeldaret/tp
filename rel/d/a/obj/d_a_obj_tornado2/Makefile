@@ -38,10 +38,17 @@ $(M668_TARGET): $(M668_O_FILES) $(M668_LIBS)
 	@python3 tools/lcf.py rel 668 --output $(M668_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M668_LDFLAGS) -o $(M668_TARGET) @build/M668_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado2/%.o: rel/d/a/obj/d_a_obj_tornado2/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado2/%.o: rel/d/a/obj/d_a_obj_tornado2/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado2/%.d
 	@echo [668] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M668_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M668_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M668_D_FILES := $(M668_O_FILES:.o=.d)
+$(M668_D_FILES):
+include $(wildcard $(M668_D_FILES))
+endif
 
 

@@ -38,10 +38,17 @@ $(M702_TARGET): $(M702_O_FILES) $(M702_LIBS)
 	@python3 tools/lcf.py rel 702 --output $(M702_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M702_LDFLAGS) -o $(M702_TARGET) @build/M702_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_passer_mng/%.o: rel/d/a/d_a_passer_mng/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_passer_mng/%.o: rel/d/a/d_a_passer_mng/%.cpp $(BUILD_DIR)/rel/d/a/d_a_passer_mng/%.d
 	@echo [702] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M702_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M702_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M702_D_FILES := $(M702_O_FILES:.o=.d)
+$(M702_D_FILES):
+include $(wildcard $(M702_D_FILES))
+endif
 
 

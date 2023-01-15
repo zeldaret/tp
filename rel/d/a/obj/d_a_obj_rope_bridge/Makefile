@@ -40,10 +40,17 @@ $(M110_TARGET): $(M110_O_FILES) $(M110_LIBS)
 	@python3 tools/lcf.py rel 110 --output $(M110_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M110_LDFLAGS) -o $(M110_TARGET) @build/M110_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rope_bridge/%.o: rel/d/a/obj/d_a_obj_rope_bridge/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rope_bridge/%.o: rel/d/a/obj/d_a_obj_rope_bridge/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rope_bridge/%.d
 	@echo [110] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M110_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M110_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M110_D_FILES := $(M110_O_FILES:.o=.d)
+$(M110_D_FILES):
+include $(wildcard $(M110_D_FILES))
+endif
 
 

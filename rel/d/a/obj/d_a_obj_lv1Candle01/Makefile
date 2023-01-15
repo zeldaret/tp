@@ -40,10 +40,17 @@ $(M516_TARGET): $(M516_O_FILES) $(M516_LIBS)
 	@python3 tools/lcf.py rel 516 --output $(M516_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M516_LDFLAGS) -o $(M516_TARGET) @build/M516_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv1Candle01/%.o: rel/d/a/obj/d_a_obj_lv1Candle01/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv1Candle01/%.o: rel/d/a/obj/d_a_obj_lv1Candle01/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv1Candle01/%.d
 	@echo [516] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M516_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M516_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M516_D_FILES := $(M516_O_FILES:.o=.d)
+$(M516_D_FILES):
+include $(wildcard $(M516_D_FILES))
+endif
 
 

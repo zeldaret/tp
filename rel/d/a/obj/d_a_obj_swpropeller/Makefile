@@ -38,10 +38,17 @@ $(M114_TARGET): $(M114_O_FILES) $(M114_LIBS)
 	@python3 tools/lcf.py rel 114 --output $(M114_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M114_LDFLAGS) -o $(M114_TARGET) @build/M114_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpropeller/%.o: rel/d/a/obj/d_a_obj_swpropeller/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpropeller/%.o: rel/d/a/obj/d_a_obj_swpropeller/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpropeller/%.d
 	@echo [114] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M114_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M114_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M114_D_FILES := $(M114_O_FILES:.o=.d)
+$(M114_D_FILES):
+include $(wildcard $(M114_D_FILES))
+endif
 
 

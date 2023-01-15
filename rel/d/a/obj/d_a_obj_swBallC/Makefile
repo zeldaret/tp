@@ -40,10 +40,17 @@ $(M640_TARGET): $(M640_O_FILES) $(M640_LIBS)
 	@python3 tools/lcf.py rel 640 --output $(M640_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M640_LDFLAGS) -o $(M640_TARGET) @build/M640_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallC/%.o: rel/d/a/obj/d_a_obj_swBallC/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallC/%.o: rel/d/a/obj/d_a_obj_swBallC/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallC/%.d
 	@echo [640] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M640_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M640_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M640_D_FILES := $(M640_O_FILES:.o=.d)
+$(M640_D_FILES):
+include $(wildcard $(M640_D_FILES))
+endif
 
 

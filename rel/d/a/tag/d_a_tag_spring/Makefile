@@ -38,10 +38,17 @@ $(M132_TARGET): $(M132_O_FILES) $(M132_LIBS)
 	@python3 tools/lcf.py rel 132 --output $(M132_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M132_LDFLAGS) -o $(M132_TARGET) @build/M132_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_spring/%.o: rel/d/a/tag/d_a_tag_spring/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_spring/%.o: rel/d/a/tag/d_a_tag_spring/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_spring/%.d
 	@echo [132] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M132_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M132_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M132_D_FILES := $(M132_O_FILES:.o=.d)
+$(M132_D_FILES):
+include $(wildcard $(M132_D_FILES))
+endif
 
 

@@ -40,10 +40,17 @@ $(M416_TARGET): $(M416_O_FILES) $(M416_LIBS)
 	@python3 tools/lcf.py rel 416 --output $(M416_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M416_LDFLAGS) -o $(M416_TARGET) @build/M416_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bubblePilar/%.o: rel/d/a/obj/d_a_obj_bubblePilar/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bubblePilar/%.o: rel/d/a/obj/d_a_obj_bubblePilar/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bubblePilar/%.d
 	@echo [416] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M416_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M416_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M416_D_FILES := $(M416_O_FILES:.o=.d)
+$(M416_D_FILES):
+include $(wildcard $(M416_D_FILES))
+endif
 
 

@@ -38,10 +38,17 @@ $(M473_TARGET): $(M473_O_FILES) $(M473_LIBS)
 	@python3 tools/lcf.py rel 473 --output $(M473_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M473_LDFLAGS) -o $(M473_TARGET) @build/M473_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hata/%.o: rel/d/a/obj/d_a_obj_hata/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hata/%.o: rel/d/a/obj/d_a_obj_hata/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hata/%.d
 	@echo [473] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M473_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M473_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M473_D_FILES := $(M473_O_FILES:.o=.d)
+$(M473_D_FILES):
+include $(wildcard $(M473_D_FILES))
+endif
 
 

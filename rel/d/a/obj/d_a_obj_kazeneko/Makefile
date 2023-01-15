@@ -38,10 +38,17 @@ $(M496_TARGET): $(M496_O_FILES) $(M496_LIBS)
 	@python3 tools/lcf.py rel 496 --output $(M496_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M496_LDFLAGS) -o $(M496_TARGET) @build/M496_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kazeneko/%.o: rel/d/a/obj/d_a_obj_kazeneko/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kazeneko/%.o: rel/d/a/obj/d_a_obj_kazeneko/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kazeneko/%.d
 	@echo [496] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M496_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M496_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M496_D_FILES := $(M496_O_FILES:.o=.d)
+$(M496_D_FILES):
+include $(wildcard $(M496_D_FILES))
+endif
 
 

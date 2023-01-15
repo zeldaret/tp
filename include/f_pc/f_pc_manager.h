@@ -10,6 +10,7 @@
 #include "f_pc/f_pc_stdcreate_req.h"
 #include "f_pc/f_pc_executor.h"
 #include "f_pc/f_pc_leaf.h"
+#include "f_pc/f_pc_layer_iter.h"
 
 typedef int (*FastCreateReqFunc)(void*);
 typedef void (*fpcM_ManagementFunc)(void);
@@ -64,6 +65,10 @@ inline void* fpcM_GetAppend(const void* proc) {
 
 inline BOOL fpcM_IsExecuting(unsigned int id) {
     return fpcEx_IsExist(id);
+}
+
+inline void* fpcM_LyJudge(process_node_class* i_node, fpcLyIt_JudgeFunc i_func, void* i_data) {
+    return fpcLyIt_Judge(&i_node->mLayer, i_func, i_data);
 }
 
 void fpcM_Draw(void* pProc);

@@ -12,6 +12,8 @@ import json
 import subprocess
 import multiprocessing as mp
 import shutil
+import platform
+import stat
 
 from dataclasses import dataclass, field
 from typing import Dict, List, Set, Tuple
@@ -167,6 +169,16 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
         )
         sys.exit(1)
 
+    c125 = compilers.joinpath("1.2.5")
+    if not c125.exists() or not c125.is_dir():
+        LOG.error(
+            (
+                f"Unable to find MWCC compiler version 1.2.5: missing directory '{c125}'\n"
+                f"Check the README for instructions on how to obtain the compilers"
+            )
+        )
+        sys.exit(1)
+
     c27_lmgr326b = c27.joinpath("Lmgr326b.dll")
     if not c27_lmgr326b.exists() or not c27_lmgr326b.is_file():
         c27_lmgr326b = c27.joinpath("lmgr326b.dll")
@@ -187,6 +199,11 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
     if not c27_lmgr326b_cc.exists() or not c27_lmgr326b_cc.is_file():
         LOG.debug(f"copy: '{c27_lmgr326b}', to: '{c27_lmgr326b_cc}'")
         shutil.copy(c27_lmgr326b, c27_lmgr326b_cc)
+
+    c125_lmgr326b_cc = c125.joinpath("LMGR326B.dll")
+    if not c125_lmgr326b_cc.exists() or not c125_lmgr326b_cc.is_file():
+        LOG.debug(f"copy: '{c27_lmgr326b}', to: '{c125_lmgr326b_cc}'")
+        shutil.copy(c27_lmgr326b, c125_lmgr326b_cc)
 
     c27_mwcceppc = c27.joinpath("mwcceppc.exe")
     if not c27_mwcceppc.exists() or not c27_mwcceppc.is_file():
@@ -231,6 +248,8 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
                 else:
                     data[0x001C6A54] = 0x69
                 dst_file.write(data)
+            if platform.system() == "Linux":
+                os.chmod(dst, stat.S_IRWXU | stat.S_IRGRP | stat.S_IXGRP | stat.S_IROTH | stat.S_IXOTH)
 
     if mwcceppc_sha1 == MWCCEPPC_SHA1:
         LOG.debug(f"found original compiler: '{c27_mwcceppc}' ('{mwcceppc_sha1}')")
@@ -293,7 +312,7 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
 @tp.command(name="progress")
 @click.option("--debug/--no-debug")
 @click.option("--matching/--no-matching", default=True, is_flag=True)
-@click.option("--print-rels", default=True, is_flag=True)
+@click.option("--print-rels/--no-print-rels", default=True, is_flag=True)
 @click.option(
     "--format",
     "-f",
@@ -583,7 +602,7 @@ def calculate_progress(build_path: Path, matching: bool, format: str, print_rels
             tableString = tableString+"Total | "+f"{100 * (rel_decompiled / rel_size):10.6f}%"+" | "+f"{rel_decompiled}"+" | "+f"{rel_size}"+"\n"
             CONSOLE.print(table)
 
-        
+
         table = Table(title="Total")
         table.add_column("Section", justify="right", style="cyan", no_wrap=True)
         table.add_column("Percentage", style="green")
@@ -596,7 +615,7 @@ def calculate_progress(build_path: Path, matching: bool, format: str, print_rels
             f"{dol_progress.decompiled}",
             f"{dol_progress.size}",
         )
-       
+
         if rels_progress:
             table.add_row(
                 "RELs",

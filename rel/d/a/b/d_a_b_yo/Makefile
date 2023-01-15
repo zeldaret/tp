@@ -40,10 +40,17 @@ $(M153_TARGET): $(M153_O_FILES) $(M153_LIBS)
 	@python3 tools/lcf.py rel 153 --output $(M153_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M153_LDFLAGS) -o $(M153_TARGET) @build/M153_ofiles
 
-$(BUILD_DIR)/rel/d/a/b/d_a_b_yo/%.o: rel/d/a/b/d_a_b_yo/%.cpp
+$(BUILD_DIR)/rel/d/a/b/d_a_b_yo/%.o: rel/d/a/b/d_a_b_yo/%.cpp $(BUILD_DIR)/rel/d/a/b/d_a_b_yo/%.d
 	@echo [153] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M153_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M153_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M153_D_FILES := $(M153_O_FILES:.o=.d)
+$(M153_D_FILES):
+include $(wildcard $(M153_D_FILES))
+endif
 
 

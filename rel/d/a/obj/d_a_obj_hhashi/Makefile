@@ -38,10 +38,17 @@ $(M97_TARGET): $(M97_O_FILES) $(M97_LIBS)
 	@python3 tools/lcf.py rel 97 --output $(M97_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M97_LDFLAGS) -o $(M97_TARGET) @build/M97_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hhashi/%.o: rel/d/a/obj/d_a_obj_hhashi/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hhashi/%.o: rel/d/a/obj/d_a_obj_hhashi/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hhashi/%.d
 	@echo [ 97] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M97_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M97_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M97_D_FILES := $(M97_O_FILES:.o=.d)
+$(M97_D_FILES):
+include $(wildcard $(M97_D_FILES))
+endif
 
 

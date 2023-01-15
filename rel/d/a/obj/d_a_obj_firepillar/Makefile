@@ -40,10 +40,17 @@ $(M447_TARGET): $(M447_O_FILES) $(M447_LIBS)
 	@python3 tools/lcf.py rel 447 --output $(M447_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M447_LDFLAGS) -o $(M447_TARGET) @build/M447_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_firepillar/%.o: rel/d/a/obj/d_a_obj_firepillar/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_firepillar/%.o: rel/d/a/obj/d_a_obj_firepillar/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_firepillar/%.d
 	@echo [447] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M447_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M447_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M447_D_FILES := $(M447_O_FILES:.o=.d)
+$(M447_D_FILES):
+include $(wildcard $(M447_D_FILES))
+endif
 
 

@@ -38,10 +38,17 @@ $(M126_TARGET): $(M126_O_FILES) $(M126_LIBS)
 	@python3 tools/lcf.py rel 126 --output $(M126_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M126_LDFLAGS) -o $(M126_TARGET) @build/M126_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_hjump/%.o: rel/d/a/tag/d_a_tag_hjump/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_hjump/%.o: rel/d/a/tag/d_a_tag_hjump/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_hjump/%.d
 	@echo [126] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M126_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M126_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M126_D_FILES := $(M126_O_FILES:.o=.d)
+$(M126_D_FILES):
+include $(wildcard $(M126_D_FILES))
+endif
 
 

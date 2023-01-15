@@ -38,10 +38,17 @@ $(M505_TARGET): $(M505_O_FILES) $(M505_LIBS)
 	@python3 tools/lcf.py rel 505 --output $(M505_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M505_LDFLAGS) -o $(M505_TARGET) @build/M505_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_knBullet/%.o: rel/d/a/obj/d_a_obj_knBullet/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_knBullet/%.o: rel/d/a/obj/d_a_obj_knBullet/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_knBullet/%.d
 	@echo [505] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M505_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M505_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M505_D_FILES := $(M505_O_FILES:.o=.d)
+$(M505_D_FILES):
+include $(wildcard $(M505_D_FILES))
+endif
 
 

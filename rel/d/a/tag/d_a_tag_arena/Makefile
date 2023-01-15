@@ -38,10 +38,17 @@ $(M714_TARGET): $(M714_O_FILES) $(M714_LIBS)
 	@python3 tools/lcf.py rel 714 --output $(M714_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M714_LDFLAGS) -o $(M714_TARGET) @build/M714_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_arena/%.o: rel/d/a/tag/d_a_tag_arena/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_arena/%.o: rel/d/a/tag/d_a_tag_arena/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_arena/%.d
 	@echo [714] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M714_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M714_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M714_D_FILES := $(M714_O_FILES:.o=.d)
+$(M714_D_FILES):
+include $(wildcard $(M714_D_FILES))
+endif
 
 

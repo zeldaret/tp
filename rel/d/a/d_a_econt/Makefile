@@ -40,10 +40,17 @@ $(M71_TARGET): $(M71_O_FILES) $(M71_LIBS)
 	@python3 tools/lcf.py rel 71 --output $(M71_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M71_LDFLAGS) -o $(M71_TARGET) @build/M71_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_econt/%.o: rel/d/a/d_a_econt/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_econt/%.o: rel/d/a/d_a_econt/%.cpp $(BUILD_DIR)/rel/d/a/d_a_econt/%.d
 	@echo [ 71] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M71_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M71_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M71_D_FILES := $(M71_O_FILES:.o=.d)
+$(M71_D_FILES):
+include $(wildcard $(M71_D_FILES))
+endif
 
 

@@ -38,10 +38,17 @@ $(M456_TARGET): $(M456_O_FILES) $(M456_LIBS)
 	@python3 tools/lcf.py rel 456 --output $(M456_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M456_LDFLAGS) -o $(M456_TARGET) @build/M456_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ganonwall2/%.o: rel/d/a/obj/d_a_obj_ganonwall2/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ganonwall2/%.o: rel/d/a/obj/d_a_obj_ganonwall2/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ganonwall2/%.d
 	@echo [456] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M456_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M456_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M456_D_FILES := $(M456_O_FILES:.o=.d)
+$(M456_D_FILES):
+include $(wildcard $(M456_D_FILES))
+endif
 
 

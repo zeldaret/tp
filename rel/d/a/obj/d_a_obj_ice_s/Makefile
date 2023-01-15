@@ -40,10 +40,17 @@ $(M480_TARGET): $(M480_O_FILES) $(M480_LIBS)
 	@python3 tools/lcf.py rel 480 --output $(M480_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M480_LDFLAGS) -o $(M480_TARGET) @build/M480_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ice_s/%.o: rel/d/a/obj/d_a_obj_ice_s/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ice_s/%.o: rel/d/a/obj/d_a_obj_ice_s/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ice_s/%.d
 	@echo [480] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M480_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M480_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M480_D_FILES := $(M480_O_FILES:.o=.d)
+$(M480_D_FILES):
+include $(wildcard $(M480_D_FILES))
+endif
 
 

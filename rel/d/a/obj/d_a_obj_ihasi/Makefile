@@ -38,10 +38,17 @@ $(M483_TARGET): $(M483_O_FILES) $(M483_LIBS)
 	@python3 tools/lcf.py rel 483 --output $(M483_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M483_LDFLAGS) -o $(M483_TARGET) @build/M483_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ihasi/%.o: rel/d/a/obj/d_a_obj_ihasi/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ihasi/%.o: rel/d/a/obj/d_a_obj_ihasi/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ihasi/%.d
 	@echo [483] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M483_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M483_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M483_D_FILES := $(M483_O_FILES:.o=.d)
+$(M483_D_FILES):
+include $(wildcard $(M483_D_FILES))
+endif
 
 

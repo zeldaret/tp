@@ -40,10 +40,17 @@ $(M361_TARGET): $(M361_O_FILES) $(M361_LIBS)
 	@python3 tools/lcf.py rel 361 --output $(M361_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M361_LDFLAGS) -o $(M361_TARGET) @build/M361_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shoe/%.o: rel/d/a/npc/d_a_npc_shoe/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shoe/%.o: rel/d/a/npc/d_a_npc_shoe/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shoe/%.d
 	@echo [361] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M361_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M361_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M361_D_FILES := $(M361_O_FILES:.o=.d)
+$(M361_D_FILES):
+include $(wildcard $(M361_D_FILES))
+endif
 
 

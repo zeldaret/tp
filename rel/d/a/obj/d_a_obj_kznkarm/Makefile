@@ -38,10 +38,17 @@ $(M510_TARGET): $(M510_O_FILES) $(M510_LIBS)
 	@python3 tools/lcf.py rel 510 --output $(M510_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M510_LDFLAGS) -o $(M510_TARGET) @build/M510_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kznkarm/%.o: rel/d/a/obj/d_a_obj_kznkarm/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kznkarm/%.o: rel/d/a/obj/d_a_obj_kznkarm/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kznkarm/%.d
 	@echo [510] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M510_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M510_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M510_D_FILES := $(M510_O_FILES:.o=.d)
+$(M510_D_FILES):
+include $(wildcard $(M510_D_FILES))
+endif
 
 

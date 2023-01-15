@@ -38,10 +38,17 @@ $(M434_TARGET): $(M434_O_FILES) $(M434_LIBS)
 	@python3 tools/lcf.py rel 434 --output $(M434_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M434_LDFLAGS) -o $(M434_TARGET) @build/M434_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_damCps/%.o: rel/d/a/obj/d_a_obj_damCps/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_damCps/%.o: rel/d/a/obj/d_a_obj_damCps/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_damCps/%.d
 	@echo [434] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M434_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M434_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M434_D_FILES := $(M434_O_FILES:.o=.d)
+$(M434_D_FILES):
+include $(wildcard $(M434_D_FILES))
+endif
 
 

@@ -40,10 +40,17 @@ $(M624_TARGET): $(M624_O_FILES) $(M624_LIBS)
 	@python3 tools/lcf.py rel 624 --output $(M624_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M624_LDFLAGS) -o $(M624_TARGET) @build/M624_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_smtile/%.o: rel/d/a/obj/d_a_obj_smtile/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_smtile/%.o: rel/d/a/obj/d_a_obj_smtile/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smtile/%.d
 	@echo [624] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M624_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M624_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M624_D_FILES := $(M624_O_FILES:.o=.d)
+$(M624_D_FILES):
+include $(wildcard $(M624_D_FILES))
+endif
 
 

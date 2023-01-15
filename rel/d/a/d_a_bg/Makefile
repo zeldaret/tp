@@ -17,6 +17,7 @@ M3_O_FILES := \
 M3_LIBS := \
 
 M3_CFLAGS := \
+	-pool off \
 	-sdata 0 \
 	-sdata2 0 \
 
@@ -38,10 +39,17 @@ $(M3_TARGET): $(M3_O_FILES) $(M3_LIBS)
 	@python3 tools/lcf.py rel 3 --output $(M3_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M3_LDFLAGS) -o $(M3_TARGET) @build/M3_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_bg/%.o: rel/d/a/d_a_bg/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_bg/%.o: rel/d/a/d_a_bg/%.cpp $(BUILD_DIR)/rel/d/a/d_a_bg/%.d
 	@echo [  3] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M3_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M3_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M3_D_FILES := $(M3_O_FILES:.o=.d)
+$(M3_D_FILES):
+include $(wildcard $(M3_D_FILES))
+endif
 
 

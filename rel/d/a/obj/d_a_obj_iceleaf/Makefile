@@ -40,10 +40,17 @@ $(M482_TARGET): $(M482_O_FILES) $(M482_LIBS)
 	@python3 tools/lcf.py rel 482 --output $(M482_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M482_LDFLAGS) -o $(M482_TARGET) @build/M482_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_iceleaf/%.o: rel/d/a/obj/d_a_obj_iceleaf/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_iceleaf/%.o: rel/d/a/obj/d_a_obj_iceleaf/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_iceleaf/%.d
 	@echo [482] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M482_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M482_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M482_D_FILES := $(M482_O_FILES:.o=.d)
+$(M482_D_FILES):
+include $(wildcard $(M482_D_FILES))
+endif
 
 

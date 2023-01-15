@@ -38,10 +38,17 @@ $(M569_TARGET): $(M569_O_FILES) $(M569_LIBS)
 	@python3 tools/lcf.py rel 569 --output $(M569_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M569_LDFLAGS) -o $(M569_TARGET) @build/M569_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mato/%.o: rel/d/a/obj/d_a_obj_mato/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mato/%.o: rel/d/a/obj/d_a_obj_mato/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mato/%.d
 	@echo [569] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M569_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M569_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M569_D_FILES := $(M569_O_FILES:.o=.d)
+$(M569_D_FILES):
+include $(wildcard $(M569_D_FILES))
+endif
 
 

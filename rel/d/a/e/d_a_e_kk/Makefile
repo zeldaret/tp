@@ -40,10 +40,17 @@ $(M205_TARGET): $(M205_O_FILES) $(M205_LIBS)
 	@python3 tools/lcf.py rel 205 --output $(M205_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M205_LDFLAGS) -o $(M205_TARGET) @build/M205_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_kk/%.o: rel/d/a/e/d_a_e_kk/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_kk/%.o: rel/d/a/e/d_a_e_kk/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_kk/%.d
 	@echo [205] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M205_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M205_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M205_D_FILES := $(M205_O_FILES:.o=.d)
+$(M205_D_FILES):
+include $(wildcard $(M205_D_FILES))
+endif
 
 

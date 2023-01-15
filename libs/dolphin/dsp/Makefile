@@ -35,11 +35,18 @@ $(BUILD_DIR)/libdsp.a: $(LIBDSP_A_O_FILES)
 	@echo $(LIBDSP_A_O_FILES) > build/LIBDSP_A_ofiles
 	@$(LD) -xm l $(LIBDSP_A_LDFLAGS) -o $(BUILD_DIR)/libdsp.a @build/LIBDSP_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/dsp/%.o: libs/dolphin/dsp/%.c
+$(BUILD_DIR)/libs/dolphin/dsp/%.o: libs/dolphin/dsp/%.c $(BUILD_DIR)/libs/dolphin/dsp/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
-	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(LIBDSP_A_CFLAGS) -c -o $@ $(basename $@).c
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(LIBDSP_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
 	@echo Frank is fixing $@
 	@$(PYTHON) $(FRANK) $@ $@ $@
+
+ifndef DISABLE_DEPS
+LIBDSP_A_D_FILES := $(LIBDSP_A_O_FILES:.o=.d)
+$(LIBDSP_A_D_FILES):
+include $(wildcard $(LIBDSP_A_D_FILES))
+endif
 

@@ -38,10 +38,17 @@ $(M689_TARGET): $(M689_O_FILES) $(M689_LIBS)
 	@python3 tools/lcf.py rel 689 --output $(M689_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M689_LDFLAGS) -o $(M689_TARGET) @build/M689_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_window/%.o: rel/d/a/obj/d_a_obj_window/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_window/%.o: rel/d/a/obj/d_a_obj_window/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_window/%.d
 	@echo [689] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M689_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M689_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M689_D_FILES := $(M689_O_FILES:.o=.d)
+$(M689_D_FILES):
+include $(wildcard $(M689_D_FILES))
+endif
 
 

@@ -40,10 +40,17 @@ $(M301_TARGET): $(M301_O_FILES) $(M301_LIBS)
 	@python3 tools/lcf.py rel 301 --output $(M301_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M301_LDFLAGS) -o $(M301_TARGET) @build/M301_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_du/%.o: rel/d/a/npc/d_a_npc_du/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_du/%.o: rel/d/a/npc/d_a_npc_du/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_du/%.d
 	@echo [301] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M301_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M301_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M301_D_FILES := $(M301_O_FILES:.o=.d)
+$(M301_D_FILES):
+include $(wildcard $(M301_D_FILES))
+endif
 
 

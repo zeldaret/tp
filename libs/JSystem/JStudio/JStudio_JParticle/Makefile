@@ -23,9 +23,16 @@ $(BUILD_DIR)/libJStudio_JParticle.a: $(LIBJSTUDIO_JPARTICLE_A_O_FILES)
 	@echo $(LIBJSTUDIO_JPARTICLE_A_O_FILES) > build/LIBJSTUDIO_JPARTICLE_A_ofiles
 	@$(LD) -xm l $(LIBJSTUDIO_JPARTICLE_A_LDFLAGS) -o $(BUILD_DIR)/libJStudio_JParticle.a @build/LIBJSTUDIO_JPARTICLE_A_ofiles
 
-$(BUILD_DIR)/libs/JSystem/JStudio/JStudio_JParticle/%.o: libs/JSystem/JStudio/JStudio_JParticle/%.cpp
+$(BUILD_DIR)/libs/JSystem/JStudio/JStudio_JParticle/%.o: libs/JSystem/JStudio/JStudio_JParticle/%.cpp $(BUILD_DIR)/libs/JSystem/JStudio/JStudio_JParticle/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBJSTUDIO_JPARTICLE_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBJSTUDIO_JPARTICLE_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+LIBJSTUDIO_JPARTICLE_A_D_FILES := $(LIBJSTUDIO_JPARTICLE_A_O_FILES:.o=.d)
+$(LIBJSTUDIO_JPARTICLE_A_D_FILES):
+include $(wildcard $(LIBJSTUDIO_JPARTICLE_A_D_FILES))
+endif
 

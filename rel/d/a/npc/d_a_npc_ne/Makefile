@@ -40,10 +40,17 @@ $(M340_TARGET): $(M340_O_FILES) $(M340_LIBS)
 	@python3 tools/lcf.py rel 340 --output $(M340_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M340_LDFLAGS) -o $(M340_TARGET) @build/M340_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ne/%.o: rel/d/a/npc/d_a_npc_ne/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ne/%.o: rel/d/a/npc/d_a_npc_ne/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ne/%.d
 	@echo [340] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M340_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M340_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M340_D_FILES := $(M340_O_FILES:.o=.d)
+$(M340_D_FILES):
+include $(wildcard $(M340_D_FILES))
+endif
 
 

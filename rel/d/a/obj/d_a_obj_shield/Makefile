@@ -40,10 +40,17 @@ $(M619_TARGET): $(M619_O_FILES) $(M619_LIBS)
 	@python3 tools/lcf.py rel 619 --output $(M619_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M619_LDFLAGS) -o $(M619_TARGET) @build/M619_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_shield/%.o: rel/d/a/obj/d_a_obj_shield/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_shield/%.o: rel/d/a/obj/d_a_obj_shield/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_shield/%.d
 	@echo [619] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M619_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M619_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M619_D_FILES := $(M619_O_FILES:.o=.d)
+$(M619_D_FILES):
+include $(wildcard $(M619_D_FILES))
+endif
 
 

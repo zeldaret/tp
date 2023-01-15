@@ -38,10 +38,17 @@ $(M116_TARGET): $(M116_O_FILES) $(M116_LIBS)
 	@python3 tools/lcf.py rel 116 --output $(M116_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M116_LDFLAGS) -o $(M116_TARGET) @build/M116_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_yobikusa/%.o: rel/d/a/obj/d_a_obj_yobikusa/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_yobikusa/%.o: rel/d/a/obj/d_a_obj_yobikusa/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_yobikusa/%.d
 	@echo [116] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M116_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M116_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M116_D_FILES := $(M116_O_FILES:.o=.d)
+$(M116_D_FILES):
+include $(wildcard $(M116_D_FILES))
+endif
 
 

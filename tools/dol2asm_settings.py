@@ -1613,6 +1613,7 @@ LIBRARY_LUT = [
     ("db", "dolphin/"),
     ("dsp", "dolphin/"),
     ("dvd", "dolphin/"),
+    ("exi", "dolphin/"),
     ("gd", "dolphin/"),
     ("gf", "dolphin/"),
     ("gx", "dolphin/"),

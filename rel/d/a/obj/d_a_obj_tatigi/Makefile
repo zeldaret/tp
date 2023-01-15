@@ -38,10 +38,17 @@ $(M653_TARGET): $(M653_O_FILES) $(M653_LIBS)
 	@python3 tools/lcf.py rel 653 --output $(M653_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M653_LDFLAGS) -o $(M653_TARGET) @build/M653_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tatigi/%.o: rel/d/a/obj/d_a_obj_tatigi/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tatigi/%.o: rel/d/a/obj/d_a_obj_tatigi/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tatigi/%.d
 	@echo [653] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M653_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M653_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M653_D_FILES := $(M653_O_FILES:.o=.d)
+$(M653_D_FILES):
+include $(wildcard $(M653_D_FILES))
+endif
 
 

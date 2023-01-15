@@ -40,10 +40,17 @@ $(M334_TARGET): $(M334_O_FILES) $(M334_LIBS)
 	@python3 tools/lcf.py rel 334 --output $(M334_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M334_LDFLAGS) -o $(M334_TARGET) @build/M334_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_lud/%.o: rel/d/a/npc/d_a_npc_lud/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_lud/%.o: rel/d/a/npc/d_a_npc_lud/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_lud/%.d
 	@echo [334] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M334_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M334_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M334_D_FILES := $(M334_O_FILES:.o=.d)
+$(M334_D_FILES):
+include $(wildcard $(M334_D_FILES))
+endif
 
 

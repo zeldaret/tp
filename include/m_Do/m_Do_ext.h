@@ -61,6 +61,10 @@ public:
     }
 
     int remove(J3DModelData* i_modelData) { return i_modelData->removeTexMtxAnimator(mpAnm); }
+    void entryFrame() { entryFrame(getFrame()); }
+    void entryFrame(f32 frame) { setFrame(frame); }
+
+    J3DAnmTextureSRTKey* getBtkAnm() const { return mpAnm; }
 
 private:
     /* 0x14 */ J3DAnmTextureSRTKey* mpAnm;
@@ -87,6 +91,10 @@ public:
     }
 
     int remove(J3DModelData* i_modelData) { return i_modelData->removeTevRegAnimator(mpAnm); }
+    void entryFrame() { entryFrame(getFrame()); }
+    void entryFrame(f32 frame) { setFrame(frame); }
+
+    J3DAnmTevRegKey* getBrkAnm() const { return mpAnm; }
 
 private:
     /* 0x14 */ J3DAnmTevRegKey* mpAnm;
@@ -508,6 +516,7 @@ J3DModel* mDoExt_J3DModel__create(J3DModelData* i_modelData, u32 param_1, u32 pa
 void mDoExt_setAraCacheSize(u32 size);
 int mDoExt_resIDToIndex(JKRArchive* p_archive, u16 id);
 void mDoExt_modelEntryDL(J3DModel* i_model);
+void mDoExt_setupStageTexture(J3DModelData* i_modelData);
 
 struct JUTFont;
 JUTFont* mDoExt_getMesgFont();

@@ -1,8 +1,7 @@
 
 
 from dataclasses import dataclass, field
-from capstone import *
-from capstone.ppc import *
+from capstone.ppc import PPC_REG_R3
 
 from ...builder import AsyncBuilder
 from ...types import *

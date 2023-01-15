@@ -186,6 +186,10 @@ inline cXyz& fopAcM_GetPosition_p(fopAc_ac_c* pActor) {
     return pActor->current.pos;
 }
 
+inline cXyz& fopAcM_GetPosition(fopAc_ac_c* pActor) {
+    return pActor->current.pos;
+}
+
 inline cXyz& fopAcM_GetOldPosition_p(fopAc_ac_c* pActor) {
     return pActor->next.pos;
 }

@@ -40,10 +40,17 @@ $(M670_TARGET): $(M670_O_FILES) $(M670_LIBS)
 	@python3 tools/lcf.py rel 670 --output $(M670_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M670_LDFLAGS) -o $(M670_TARGET) @build/M670_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_treesh/%.o: rel/d/a/obj/d_a_obj_treesh/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_treesh/%.o: rel/d/a/obj/d_a_obj_treesh/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_treesh/%.d
 	@echo [670] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M670_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M670_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M670_D_FILES := $(M670_O_FILES:.o=.d)
+$(M670_D_FILES):
+include $(wildcard $(M670_D_FILES))
+endif
 
 

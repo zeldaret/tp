@@ -38,10 +38,17 @@ $(M1_TARGET): $(M1_O_FILES) $(M1_LIBS)
 	@python3 tools/lcf.py rel 1 --output $(M1_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M1_LDFLAGS) -o $(M1_TARGET) @build/M1_ofiles
 
-$(BUILD_DIR)/rel/f_pc/f_pc_profile_lst/%.o: rel/f_pc/f_pc_profile_lst/%.cpp
+$(BUILD_DIR)/rel/f_pc/f_pc_profile_lst/%.o: rel/f_pc/f_pc_profile_lst/%.cpp $(BUILD_DIR)/rel/f_pc/f_pc_profile_lst/%.d
 	@echo [  1] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M1_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M1_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M1_D_FILES := $(M1_O_FILES:.o=.d)
+$(M1_D_FILES):
+include $(wildcard $(M1_D_FILES))
+endif
 
 

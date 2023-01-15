@@ -40,10 +40,17 @@ $(M605_TARGET): $(M605_O_FILES) $(M605_LIBS)
 	@python3 tools/lcf.py rel 605 --output $(M605_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M605_LDFLAGS) -o $(M605_TARGET) @build/M605_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotBridge/%.o: rel/d/a/obj/d_a_obj_rotBridge/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotBridge/%.o: rel/d/a/obj/d_a_obj_rotBridge/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotBridge/%.d
 	@echo [605] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M605_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M605_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M605_D_FILES := $(M605_O_FILES:.o=.d)
+$(M605_D_FILES):
+include $(wildcard $(M605_D_FILES))
+endif
 
 

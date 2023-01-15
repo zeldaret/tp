@@ -38,10 +38,17 @@ $(M687_TARGET): $(M687_O_FILES) $(M687_LIBS)
 	@python3 tools/lcf.py rel 687 --output $(M687_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M687_LDFLAGS) -o $(M687_TARGET) @build/M687_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wflag/%.o: rel/d/a/obj/d_a_obj_wflag/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wflag/%.o: rel/d/a/obj/d_a_obj_wflag/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wflag/%.d
 	@echo [687] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M687_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M687_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M687_D_FILES := $(M687_O_FILES:.o=.d)
+$(M687_D_FILES):
+include $(wildcard $(M687_D_FILES))
+endif
 
 

@@ -528,7 +528,7 @@ void dStage_roomControl_c::init() {
         }
 
         status->mMemBlockID = -1;
-        status->field_0x400 = 0;
+        status->mpBgW = NULL;
         status++;
     }
 

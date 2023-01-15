@@ -33,11 +33,18 @@ $(BUILD_DIR)/libar.a: $(LIBAR_A_O_FILES)
 	@echo $(LIBAR_A_O_FILES) > build/LIBAR_A_ofiles
 	@$(LD) -xm l $(LIBAR_A_LDFLAGS) -o $(BUILD_DIR)/libar.a @build/LIBAR_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/ar/%.o: libs/dolphin/ar/%.c
+$(BUILD_DIR)/libs/dolphin/ar/%.o: libs/dolphin/ar/%.c $(BUILD_DIR)/libs/dolphin/ar/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
-	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(LIBAR_A_CFLAGS) -c -o $@ $(basename $@).c
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(LIBAR_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
 	@echo Frank is fixing $@
 	@$(PYTHON) $(FRANK) $@ $@ $@
+
+ifndef DISABLE_DEPS
+LIBAR_A_D_FILES := $(LIBAR_A_O_FILES:.o=.d)
+$(LIBAR_A_D_FILES):
+include $(wildcard $(LIBAR_A_D_FILES))
+endif
 

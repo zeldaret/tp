@@ -40,10 +40,17 @@ $(M96_TARGET): $(M96_O_FILES) $(M96_LIBS)
 	@python3 tools/lcf.py rel 96 --output $(M96_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M96_LDFLAGS) -o $(M96_TARGET) @build/M96_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gptaru/%.o: rel/d/a/obj/d_a_obj_gptaru/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gptaru/%.o: rel/d/a/obj/d_a_obj_gptaru/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gptaru/%.d
 	@echo [ 96] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M96_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M96_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M96_D_FILES := $(M96_O_FILES:.o=.d)
+$(M96_D_FILES):
+include $(wildcard $(M96_D_FILES))
+endif
 
 

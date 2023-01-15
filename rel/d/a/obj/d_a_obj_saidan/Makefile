@@ -40,10 +40,17 @@ $(M610_TARGET): $(M610_O_FILES) $(M610_LIBS)
 	@python3 tools/lcf.py rel 610 --output $(M610_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M610_LDFLAGS) -o $(M610_TARGET) @build/M610_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_saidan/%.o: rel/d/a/obj/d_a_obj_saidan/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_saidan/%.o: rel/d/a/obj/d_a_obj_saidan/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_saidan/%.d
 	@echo [610] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M610_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M610_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M610_D_FILES := $(M610_O_FILES:.o=.d)
+$(M610_D_FILES):
+include $(wildcard $(M610_D_FILES))
+endif
 
 

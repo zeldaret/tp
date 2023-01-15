@@ -40,10 +40,17 @@ $(M650_TARGET): $(M650_O_FILES) $(M650_LIBS)
 	@python3 tools/lcf.py rel 650 --output $(M650_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M650_LDFLAGS) -o $(M650_TARGET) @build/M650_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_taFence/%.o: rel/d/a/obj/d_a_obj_taFence/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_taFence/%.o: rel/d/a/obj/d_a_obj_taFence/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_taFence/%.d
 	@echo [650] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M650_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M650_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M650_D_FILES := $(M650_O_FILES:.o=.d)
+$(M650_D_FILES):
+include $(wildcard $(M650_D_FILES))
+endif
 
 

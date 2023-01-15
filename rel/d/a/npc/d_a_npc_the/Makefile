@@ -40,10 +40,17 @@ $(M368_TARGET): $(M368_O_FILES) $(M368_LIBS)
 	@python3 tools/lcf.py rel 368 --output $(M368_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M368_LDFLAGS) -o $(M368_TARGET) @build/M368_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_the/%.o: rel/d/a/npc/d_a_npc_the/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_the/%.o: rel/d/a/npc/d_a_npc_the/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_the/%.d
 	@echo [368] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M368_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M368_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M368_D_FILES := $(M368_O_FILES:.o=.d)
+$(M368_D_FILES):
+include $(wildcard $(M368_D_FILES))
+endif
 
 

@@ -40,10 +40,17 @@ $(M526_TARGET): $(M526_O_FILES) $(M526_LIBS)
 	@python3 tools/lcf.py rel 526 --output $(M526_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M526_LDFLAGS) -o $(M526_TARGET) @build/M526_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4Gate/%.o: rel/d/a/obj/d_a_obj_lv4Gate/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4Gate/%.o: rel/d/a/obj/d_a_obj_lv4Gate/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4Gate/%.d
 	@echo [526] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M526_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M526_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M526_D_FILES := $(M526_O_FILES:.o=.d)
+$(M526_D_FILES):
+include $(wildcard $(M526_D_FILES))
+endif
 
 

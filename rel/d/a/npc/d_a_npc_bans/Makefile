@@ -40,10 +40,17 @@ $(M286_TARGET): $(M286_O_FILES) $(M286_LIBS)
 	@python3 tools/lcf.py rel 286 --output $(M286_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M286_LDFLAGS) -o $(M286_TARGET) @build/M286_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_bans/%.o: rel/d/a/npc/d_a_npc_bans/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_bans/%.o: rel/d/a/npc/d_a_npc_bans/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_bans/%.d
 	@echo [286] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M286_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M286_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M286_D_FILES := $(M286_O_FILES:.o=.d)
+$(M286_D_FILES):
+include $(wildcard $(M286_D_FILES))
+endif
 
 

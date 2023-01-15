@@ -8,6 +8,15 @@
 struct mDoLib_clipper {
     /* 8001528C */ void setup(f32, f32, f32, f32);
 
+    static void changeFar(f32 far) {
+        mClipper.setFar(far);
+        mClipper.calcViewFrustum();
+    }
+
+    static u32 clip(const Mtx m, const Vec* param_1, const Vec* param_2) {
+        return mClipper.clip(m, (Vec*)param_1, (Vec*)param_2);
+    }
+
     static J3DUClipper mClipper;
     static f32 mSystemFar;
     static f32 mFovyRate;

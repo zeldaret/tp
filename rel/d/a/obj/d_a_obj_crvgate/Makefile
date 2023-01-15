@@ -38,10 +38,17 @@ $(M427_TARGET): $(M427_O_FILES) $(M427_LIBS)
 	@python3 tools/lcf.py rel 427 --output $(M427_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M427_LDFLAGS) -o $(M427_TARGET) @build/M427_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvgate/%.o: rel/d/a/obj/d_a_obj_crvgate/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvgate/%.o: rel/d/a/obj/d_a_obj_crvgate/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvgate/%.d
 	@echo [427] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M427_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M427_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M427_D_FILES := $(M427_O_FILES:.o=.d)
+$(M427_D_FILES):
+include $(wildcard $(M427_D_FILES))
+endif
 
 

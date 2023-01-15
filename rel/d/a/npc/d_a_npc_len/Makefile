@@ -40,10 +40,17 @@ $(M332_TARGET): $(M332_O_FILES) $(M332_LIBS)
 	@python3 tools/lcf.py rel 332 --output $(M332_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M332_LDFLAGS) -o $(M332_TARGET) @build/M332_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_len/%.o: rel/d/a/npc/d_a_npc_len/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_len/%.o: rel/d/a/npc/d_a_npc_len/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_len/%.d
 	@echo [332] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M332_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M332_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M332_D_FILES := $(M332_O_FILES:.o=.d)
+$(M332_D_FILES):
+include $(wildcard $(M332_D_FILES))
+endif
 
 

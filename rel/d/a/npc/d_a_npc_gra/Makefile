@@ -40,10 +40,17 @@ $(M305_TARGET): $(M305_O_FILES) $(M305_LIBS)
 	@python3 tools/lcf.py rel 305 --output $(M305_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M305_LDFLAGS) -o $(M305_TARGET) @build/M305_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gra/%.o: rel/d/a/npc/d_a_npc_gra/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gra/%.o: rel/d/a/npc/d_a_npc_gra/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_gra/%.d
 	@echo [305] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M305_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M305_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M305_D_FILES := $(M305_O_FILES:.o=.d)
+$(M305_D_FILES):
+include $(wildcard $(M305_D_FILES))
+endif
 
 

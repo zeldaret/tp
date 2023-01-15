@@ -38,10 +38,17 @@ $(M582_TARGET): $(M582_O_FILES) $(M582_LIBS)
 	@python3 tools/lcf.py rel 582 --output $(M582_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M582_LDFLAGS) -o $(M582_TARGET) @build/M582_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ndoor/%.o: rel/d/a/obj/d_a_obj_ndoor/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ndoor/%.o: rel/d/a/obj/d_a_obj_ndoor/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ndoor/%.d
 	@echo [582] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M582_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M582_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M582_D_FILES := $(M582_O_FILES:.o=.d)
+$(M582_D_FILES):
+include $(wildcard $(M582_D_FILES))
+endif
 
 

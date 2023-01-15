@@ -38,10 +38,17 @@ $(M537_TARGET): $(M537_O_FILES) $(M537_LIBS)
 	@python3 tools/lcf.py rel 537 --output $(M537_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M537_LDFLAGS) -o $(M537_TARGET) @build/M537_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prwall/%.o: rel/d/a/obj/d_a_obj_lv4prwall/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prwall/%.o: rel/d/a/obj/d_a_obj_lv4prwall/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prwall/%.d
 	@echo [537] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M537_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M537_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M537_D_FILES := $(M537_O_FILES:.o=.d)
+$(M537_D_FILES):
+include $(wildcard $(M537_D_FILES))
+endif
 
 

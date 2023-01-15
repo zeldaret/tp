@@ -40,10 +40,17 @@ $(M381_TARGET): $(M381_O_FILES) $(M381_LIBS)
 	@python3 tools/lcf.py rel 381 --output $(M381_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M381_LDFLAGS) -o $(M381_TARGET) @build/M381_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamit/%.o: rel/d/a/npc/d_a_npc_yamit/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamit/%.o: rel/d/a/npc/d_a_npc_yamit/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamit/%.d
 	@echo [381] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M381_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M381_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M381_D_FILES := $(M381_O_FILES:.o=.d)
+$(M381_D_FILES):
+include $(wildcard $(M381_D_FILES))
+endif
 
 

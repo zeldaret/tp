@@ -38,10 +38,17 @@ $(M264_TARGET): $(M264_O_FILES) $(M264_LIBS)
 	@python3 tools/lcf.py rel 264 --output $(M264_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M264_LDFLAGS) -o $(M264_TARGET) @build/M264_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_izumi_gate/%.o: rel/d/a/d_a_izumi_gate/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_izumi_gate/%.o: rel/d/a/d_a_izumi_gate/%.cpp $(BUILD_DIR)/rel/d/a/d_a_izumi_gate/%.d
 	@echo [264] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M264_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M264_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M264_D_FILES := $(M264_O_FILES:.o=.d)
+$(M264_D_FILES):
+include $(wildcard $(M264_D_FILES))
+endif
 
 

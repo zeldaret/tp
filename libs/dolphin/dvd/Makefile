@@ -45,11 +45,18 @@ $(BUILD_DIR)/libdvd.a: $(LIBDVD_A_O_FILES)
 	@echo $(LIBDVD_A_O_FILES) > build/LIBDVD_A_ofiles
 	@$(LD) -xm l $(LIBDVD_A_LDFLAGS) -o $(BUILD_DIR)/libdvd.a @build/LIBDVD_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/dvd/%.o: libs/dolphin/dvd/%.c
+$(BUILD_DIR)/libs/dolphin/dvd/%.o: libs/dolphin/dvd/%.c $(BUILD_DIR)/libs/dolphin/dvd/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
-	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(LIBDVD_A_CFLAGS) -c -o $@ $(basename $@).c
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(LIBDVD_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
 	@echo Frank is fixing $@
 	@$(PYTHON) $(FRANK) $@ $@ $@
+
+ifndef DISABLE_DEPS
+LIBDVD_A_D_FILES := $(LIBDVD_A_O_FILES:.o=.d)
+$(LIBDVD_A_D_FILES):
+include $(wildcard $(LIBDVD_A_D_FILES))
+endif
 

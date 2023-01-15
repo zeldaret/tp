@@ -7,9 +7,15 @@
 #include "dolphin/mtx/mtx.h"
 #include "f_pc/f_pc_leaf.h"
 
+struct actor_method_class {
+    /* 0x00 */ process_method_class mBase;
+    /* 0x10 */ process_method_func mpDrawFunc;
+    /* 0x14 */ u8 field_0x14[0xC];  // Likely padding
+};
+
 struct actor_process_profile_definition {
     /* 0x00 */ leaf_process_profile_definition mBase;
-    /* 0x24 */ leafdraw_method_class* mSubMtd;
+    /* 0x24 */ actor_method_class* mSubMtd;
     /* 0x28 */ int field_0x28; // mStatus
     /* 0x2C */ u8 field_0x2c;  // mActorType
     /* 0x2D */ u8 field_0x2d;  // mCullType

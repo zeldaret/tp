@@ -17,6 +17,10 @@ class dBgW_Base : public cBgW_BgId {
 public:
     enum PushPullLabel {};
 
+    enum PRIORITY {
+        PRIORITY_0,
+    };
+
     typedef s32 (*PushPull_CallBack)(cBgS_PolyInfo const&, fopAc_ac_c*, s16,
                                      dBgW_Base::PushPullLabel);
 
@@ -91,6 +95,7 @@ public:
     bool ChkPushPullOk() const { return m_pushPull_Ok; }
     void SetRoomId(int id) { m_roomId = id; }
     bool ChkPriority(int prio) { return m_priority == prio; }
+    void SetPriority(PRIORITY priority) { m_priority = priority; }
 
 private:
     /* 0x08 */ u8 m_priority;

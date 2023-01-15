@@ -40,10 +40,17 @@ $(M281_TARGET): $(M281_O_FILES) $(M281_LIBS)
 	@python3 tools/lcf.py rel 281 --output $(M281_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M281_LDFLAGS) -o $(M281_TARGET) @build/M281_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_myna/%.o: rel/d/a/d_a_myna/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_myna/%.o: rel/d/a/d_a_myna/%.cpp $(BUILD_DIR)/rel/d/a/d_a_myna/%.d
 	@echo [281] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M281_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M281_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M281_D_FILES := $(M281_O_FILES:.o=.d)
+$(M281_D_FILES):
+include $(wildcard $(M281_D_FILES))
+endif
 
 

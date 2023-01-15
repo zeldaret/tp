@@ -40,10 +40,17 @@ $(M685_TARGET): $(M685_O_FILES) $(M685_LIBS)
 	@python3 tools/lcf.py rel 685 --output $(M685_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M685_LDFLAGS) -o $(M685_TARGET) @build/M685_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_web1/%.o: rel/d/a/obj/d_a_obj_web1/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_web1/%.o: rel/d/a/obj/d_a_obj_web1/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_web1/%.d
 	@echo [685] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M685_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M685_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M685_D_FILES := $(M685_O_FILES:.o=.d)
+$(M685_D_FILES):
+include $(wildcard $(M685_D_FILES))
+endif
 
 

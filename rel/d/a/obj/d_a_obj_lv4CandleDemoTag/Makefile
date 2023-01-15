@@ -40,10 +40,17 @@ $(M523_TARGET): $(M523_O_FILES) $(M523_LIBS)
 	@python3 tools/lcf.py rel 523 --output $(M523_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M523_LDFLAGS) -o $(M523_TARGET) @build/M523_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/%.o: rel/d/a/obj/d_a_obj_lv4CandleDemoTag/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/%.o: rel/d/a/obj/d_a_obj_lv4CandleDemoTag/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/%.d
 	@echo [523] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M523_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M523_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M523_D_FILES := $(M523_O_FILES:.o=.d)
+$(M523_D_FILES):
+include $(wildcard $(M523_D_FILES))
+endif
 
 

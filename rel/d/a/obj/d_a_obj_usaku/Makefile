@@ -38,10 +38,17 @@ $(M673_TARGET): $(M673_O_FILES) $(M673_LIBS)
 	@python3 tools/lcf.py rel 673 --output $(M673_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M673_LDFLAGS) -o $(M673_TARGET) @build/M673_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_usaku/%.o: rel/d/a/obj/d_a_obj_usaku/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_usaku/%.o: rel/d/a/obj/d_a_obj_usaku/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_usaku/%.d
 	@echo [673] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M673_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M673_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M673_D_FILES := $(M673_O_FILES:.o=.d)
+$(M673_D_FILES):
+include $(wildcard $(M673_D_FILES))
+endif
 
 

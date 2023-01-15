@@ -40,10 +40,17 @@ $(M384_TARGET): $(M384_O_FILES) $(M384_LIBS)
 	@python3 tools/lcf.py rel 384 --output $(M384_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M384_LDFLAGS) -o $(M384_TARGET) @build/M384_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykw/%.o: rel/d/a/npc/d_a_npc_ykw/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykw/%.o: rel/d/a/npc/d_a_npc_ykw/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykw/%.d
 	@echo [384] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M384_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M384_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M384_D_FILES := $(M384_O_FILES:.o=.d)
+$(M384_D_FILES):
+include $(wildcard $(M384_D_FILES))
+endif
 
 

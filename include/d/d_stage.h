@@ -684,6 +684,7 @@ public:
     /* 0x68 */ int mVrboxcolNumInfo;
 };  // Size: 0x6C
 
+class dBgW_base;
 class dStage_roomStatus_c {
 public:
     /* 0x000 */ dStage_roomDt_c mRoomDt;
@@ -695,7 +696,7 @@ public:
     /* 0x3F8 */ s8 mMemBlockID;
     /* 0x3F9 */ u8 mRegionNo;
     /* 0x3FC */ int mProcID;
-    /* 0x400 */ int field_0x400;
+    /* 0x400 */ dBgW_base* mpBgW;
 
     int getZoneNo() const { return mZoneNo; }
     ~dStage_roomStatus_c() {}
@@ -723,6 +724,11 @@ public:
         /* 0x04 */ void** m_dzs;
     };
 
+    struct nameData {
+        /* 0x0 */ s8 m_num;
+        /* 0x1 */ char m_names[32][10];  // ?
+    };
+
     static void createRoomDzs(u8 i_num) { m_roomDzs.create(i_num); }
     static void* addRoomDzs(u8 i_num, u8 roomNo) { return m_roomDzs.add(i_num, roomNo); }
     static void removeRoomDzs() { m_roomDzs.remove(); }
@@ -744,7 +750,7 @@ public:
     /* 80024940 */ static char* getArcBank(int);
     /* 80024954 */ static bool resetArchiveBank(int);
     /* 80024DB0 */ static void SetTimePass(int);
-    /* 8025BAAC */ void setZoneNo(int, int);
+    /* 8025BAAC */ static void setZoneNo(int, int);
     static s32 GetTimePass();
 
     static s8 getStayNo() { return mStayNo; }
@@ -763,12 +769,26 @@ public:
     static void offNoChangeRoom() { mNoChangeRoom = false; }
     static void setProcID(u32 id) { mProcID = id; }
     static u32 getProcID() { return mProcID; }
+    static void setStatusProcID(int i_roomNo, unsigned int i_id) { mStatus[i_roomNo].mProcID = i_id; }
     static int getStatusProcID(int i_roomNo) { return mStatus[i_roomNo].mProcID; }
     static void setFileList2(int i_roomNo, dStage_FileList2_dt_c* list) {
         mStatus[i_roomNo].mRoomDt.mFileList2Info = list;
     }
-    bool checkStatusFlag(int i_roomNo, u8 flag) const {
+
+    static void setBgW(int param_0, dBgW_base* i_bgw) {
+        mStatus[param_0].mpBgW = i_bgw;
+    }
+
+    BOOL checkStatusFlag(int i_roomNo, u8 flag) const {
         return cLib_checkBit(mStatus[i_roomNo].mFlag, flag);
+    }
+
+    void offStatusFlag(int i_roomNo, u8 flag) {
+        return cLib_offBit(mStatus[i_roomNo].mFlag, flag);
+    }
+
+    void onStatusFlag(int i_roomNo, u8 flag) {
+        return cLib_onBit(mStatus[i_roomNo].mFlag, flag);
     }
 
     static JKRExpHeap* mMemoryBlock[19];
@@ -917,6 +937,12 @@ static s32 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0);
 void dStage_restartRoom(u32 roomParam, u32 mode, int param_2);
 struct cBgS_GndChk;
 int dStage_RoomCheck(cBgS_GndChk* gndChk);
+void dStage_dt_c_roomReLoader(void* i_data, dStage_dt_c* stageDt, int param_2);
+void dStage_dt_c_roomLoader(void* i_data, dStage_dt_c* stageDt, int param_2);
+
+inline bool dStage_roomRead_dt_c_ChkBg(u8 param_0) {
+    return param_0 & 0x80;
+}
 
 inline s32 dStage_roomRead_dt_c_GetVrboxswitch(roomRead_data_class& data) {
     return data.field_0x2 & 8;
@@ -968,6 +994,10 @@ inline s32 i_dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
 
 inline s8 dStage_stagInfo_GetTimeH(stage_stag_info_class* p_info) {
     return p_info->field_0x0c >> 8;
+}
+
+inline BOOL dStage_staginfo_GetArchiveHeap(stage_stag_info_class* p_info) {
+    return p_info->field_0x0a & 0x1000;
 }
 
 inline u32 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {

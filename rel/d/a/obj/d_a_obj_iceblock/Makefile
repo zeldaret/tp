@@ -40,10 +40,17 @@ $(M481_TARGET): $(M481_O_FILES) $(M481_LIBS)
 	@python3 tools/lcf.py rel 481 --output $(M481_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M481_LDFLAGS) -o $(M481_TARGET) @build/M481_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_iceblock/%.o: rel/d/a/obj/d_a_obj_iceblock/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_iceblock/%.o: rel/d/a/obj/d_a_obj_iceblock/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_iceblock/%.d
 	@echo [481] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M481_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M481_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M481_D_FILES := $(M481_O_FILES:.o=.d)
+$(M481_D_FILES):
+include $(wildcard $(M481_D_FILES))
+endif
 
 

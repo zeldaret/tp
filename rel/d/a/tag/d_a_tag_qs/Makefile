@@ -38,10 +38,17 @@ $(M734_TARGET): $(M734_O_FILES) $(M734_LIBS)
 	@python3 tools/lcf.py rel 734 --output $(M734_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M734_LDFLAGS) -o $(M734_TARGET) @build/M734_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_qs/%.o: rel/d/a/tag/d_a_tag_qs/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_qs/%.o: rel/d/a/tag/d_a_tag_qs/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_qs/%.d
 	@echo [734] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M734_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M734_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M734_D_FILES := $(M734_O_FILES:.o=.d)
+$(M734_D_FILES):
+include $(wildcard $(M734_D_FILES))
+endif
 
 

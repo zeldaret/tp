@@ -31,11 +31,18 @@ $(BUILD_DIR)/libvi.a: $(LIBVI_A_O_FILES)
 	@echo $(LIBVI_A_O_FILES) > build/LIBVI_A_ofiles
 	@$(LD) -xm l $(LIBVI_A_LDFLAGS) -o $(BUILD_DIR)/libvi.a @build/LIBVI_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/vi/%.o: libs/dolphin/vi/%.c
+$(BUILD_DIR)/libs/dolphin/vi/%.o: libs/dolphin/vi/%.c $(BUILD_DIR)/libs/dolphin/vi/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
-	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(LIBVI_A_CFLAGS) -c -o $@ $(basename $@).c
+	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(LIBVI_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
 	@echo Frank is fixing $@
 	@$(PYTHON) $(FRANK) $@ $@ $@
+
+ifndef DISABLE_DEPS
+LIBVI_A_D_FILES := $(LIBVI_A_O_FILES:.o=.d)
+$(LIBVI_A_D_FILES):
+include $(wildcard $(LIBVI_A_D_FILES))
+endif
 

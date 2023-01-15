@@ -40,10 +40,17 @@ $(M552_TARGET): $(M552_O_FILES) $(M552_LIBS)
 	@python3 tools/lcf.py rel 552 --output $(M552_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M552_LDFLAGS) -o $(M552_TARGET) @build/M552_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6bemos/%.o: rel/d/a/obj/d_a_obj_lv6bemos/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6bemos/%.o: rel/d/a/obj/d_a_obj_lv6bemos/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6bemos/%.d
 	@echo [552] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M552_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M552_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M552_D_FILES := $(M552_O_FILES:.o=.d)
+$(M552_D_FILES):
+include $(wildcard $(M552_D_FILES))
+endif
 
 

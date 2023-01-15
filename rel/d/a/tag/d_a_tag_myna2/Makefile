@@ -38,10 +38,17 @@ $(M730_TARGET): $(M730_O_FILES) $(M730_LIBS)
 	@python3 tools/lcf.py rel 730 --output $(M730_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M730_LDFLAGS) -o $(M730_TARGET) @build/M730_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_myna2/%.o: rel/d/a/tag/d_a_tag_myna2/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_myna2/%.o: rel/d/a/tag/d_a_tag_myna2/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_myna2/%.d
 	@echo [730] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M730_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M730_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M730_D_FILES := $(M730_O_FILES:.o=.d)
+$(M730_D_FILES):
+include $(wildcard $(M730_D_FILES))
+endif
 
 

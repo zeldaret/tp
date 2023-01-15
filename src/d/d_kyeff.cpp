@@ -9,7 +9,7 @@
 #include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor.h"
 #include "f_op/f_op_kankyo.h"
-#include "OS/OSTime.h"
+#include "os/OSTime.h"
 #include "d/kankyo/d_kankyo.h"
 #include "d/kankyo/d_kankyo_wether.h"
 #include "dol2asm.h"

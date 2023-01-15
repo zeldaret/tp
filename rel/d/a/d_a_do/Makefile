@@ -40,10 +40,17 @@ $(M165_TARGET): $(M165_O_FILES) $(M165_LIBS)
 	@python3 tools/lcf.py rel 165 --output $(M165_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M165_LDFLAGS) -o $(M165_TARGET) @build/M165_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_do/%.o: rel/d/a/d_a_do/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_do/%.o: rel/d/a/d_a_do/%.cpp $(BUILD_DIR)/rel/d/a/d_a_do/%.d
 	@echo [165] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M165_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M165_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M165_D_FILES := $(M165_O_FILES:.o=.d)
+$(M165_D_FILES):
+include $(wildcard $(M165_D_FILES))
+endif
 
 

@@ -38,10 +38,17 @@ $(M471_TARGET): $(M471_O_FILES) $(M471_LIBS)
 	@python3 tools/lcf.py rel 471 --output $(M471_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M471_LDFLAGS) -o $(M471_TARGET) @build/M471_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hakai_ftr/%.o: rel/d/a/obj/d_a_obj_hakai_ftr/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hakai_ftr/%.o: rel/d/a/obj/d_a_obj_hakai_ftr/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hakai_ftr/%.d
 	@echo [471] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M471_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M471_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M471_D_FILES := $(M471_O_FILES:.o=.d)
+$(M471_D_FILES):
+include $(wildcard $(M471_D_FILES))
+endif
 
 

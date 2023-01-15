@@ -38,10 +38,17 @@ $(M509_TARGET): $(M509_O_FILES) $(M509_LIBS)
 	@python3 tools/lcf.py rel 509 --output $(M509_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M509_LDFLAGS) -o $(M509_TARGET) @build/M509_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kwheel01/%.o: rel/d/a/obj/d_a_obj_kwheel01/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kwheel01/%.o: rel/d/a/obj/d_a_obj_kwheel01/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kwheel01/%.d
 	@echo [509] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M509_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M509_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M509_D_FILES := $(M509_O_FILES:.o=.d)
+$(M509_D_FILES):
+include $(wildcard $(M509_D_FILES))
+endif
 
 

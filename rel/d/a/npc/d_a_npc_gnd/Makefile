@@ -40,10 +40,17 @@ $(M304_TARGET): $(M304_O_FILES) $(M304_LIBS)
 	@python3 tools/lcf.py rel 304 --output $(M304_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M304_LDFLAGS) -o $(M304_TARGET) @build/M304_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gnd/%.o: rel/d/a/npc/d_a_npc_gnd/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gnd/%.o: rel/d/a/npc/d_a_npc_gnd/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_gnd/%.d
 	@echo [304] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M304_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M304_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M304_D_FILES := $(M304_O_FILES:.o=.d)
+$(M304_D_FILES):
+include $(wildcard $(M304_D_FILES))
+endif
 
 

@@ -38,10 +38,17 @@ $(M667_TARGET): $(M667_O_FILES) $(M667_LIBS)
 	@python3 tools/lcf.py rel 667 --output $(M667_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M667_LDFLAGS) -o $(M667_TARGET) @build/M667_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado/%.o: rel/d/a/obj/d_a_obj_tornado/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado/%.o: rel/d/a/obj/d_a_obj_tornado/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado/%.d
 	@echo [667] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M667_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M667_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M667_D_FILES := $(M667_O_FILES:.o=.d)
+$(M667_D_FILES):
+include $(wildcard $(M667_D_FILES))
+endif
 
 

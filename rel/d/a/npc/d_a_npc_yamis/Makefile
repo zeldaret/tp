@@ -40,10 +40,17 @@ $(M380_TARGET): $(M380_O_FILES) $(M380_LIBS)
 	@python3 tools/lcf.py rel 380 --output $(M380_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M380_LDFLAGS) -o $(M380_TARGET) @build/M380_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamis/%.o: rel/d/a/npc/d_a_npc_yamis/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamis/%.o: rel/d/a/npc/d_a_npc_yamis/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamis/%.d
 	@echo [380] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M380_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M380_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M380_D_FILES := $(M380_O_FILES:.o=.d)
+$(M380_D_FILES):
+include $(wildcard $(M380_D_FILES))
+endif
 
 

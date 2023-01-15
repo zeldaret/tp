@@ -40,10 +40,17 @@ $(M389_TARGET): $(M389_O_FILES) $(M389_LIBS)
 	@python3 tools/lcf.py rel 389 --output $(M389_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M389_LDFLAGS) -o $(M389_TARGET) @build/M389_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelda/%.o: rel/d/a/npc/d_a_npc_zelda/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelda/%.o: rel/d/a/npc/d_a_npc_zelda/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelda/%.d
 	@echo [389] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M389_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M389_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M389_D_FILES := $(M389_O_FILES:.o=.d)
+$(M389_D_FILES):
+include $(wildcard $(M389_D_FILES))
+endif
 
 

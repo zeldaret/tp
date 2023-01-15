@@ -40,10 +40,17 @@ $(M278_TARGET): $(M278_O_FILES) $(M278_LIBS)
 	@python3 tools/lcf.py rel 278 --output $(M278_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M278_LDFLAGS) -o $(M278_TARGET) @build/M278_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_mg_fshop/%.o: rel/d/a/d_a_mg_fshop/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_mg_fshop/%.o: rel/d/a/d_a_mg_fshop/%.cpp $(BUILD_DIR)/rel/d/a/d_a_mg_fshop/%.d
 	@echo [278] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M278_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M278_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M278_D_FILES := $(M278_O_FILES:.o=.d)
+$(M278_D_FILES):
+include $(wildcard $(M278_D_FILES))
+endif
 
 
