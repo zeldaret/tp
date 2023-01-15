@@ -56,21 +56,6 @@ extern "C" u8 now__14mDoMtx_stack_c[48];
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803AB9A0-803AB9C8 008AC0 0028+00 1/1 0/0 34/34 .data            __vt__16dBgS_MoveBgActor */
-SECTION_DATA extern void* __vt__16dBgS_MoveBgActor[10] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)CreateHeap__16dBgS_MoveBgActorFv,
-    (void*)Create__16dBgS_MoveBgActorFv,
-    (void*)Execute__16dBgS_MoveBgActorFPPA3_A4_f,
-    (void*)Draw__16dBgS_MoveBgActorFv,
-    (void*)Delete__16dBgS_MoveBgActorFv,
-    (void*)IsDelete__16dBgS_MoveBgActorFv,
-    (void*)ToFore__16dBgS_MoveBgActorFv,
-    (void*)ToBack__16dBgS_MoveBgActorFv,
-};
-
 /* 80078624-80078668 072F64 0044+00 0/0 0/0 173/173 .text            __ct__16dBgS_MoveBgActorFv */
 dBgS_MoveBgActor::dBgS_MoveBgActor() {
     field_0x568 = NULL;

@@ -4,51 +4,88 @@
 #include "SSystem/SComponent/c_cc_d.h"
 #include "dolphin/types.h"
 
-struct dCcD_SrcGAtTgCoCommonBase {
-    /* 0x00 */ u32 mGFlag;
+enum dCcD_hitSe {
+    /* 0  */ dCcD_SE_NONE,
+    /* 1  */ dCcD_SE_SWORD,
+    /* 2  */ dCcD_SE_SHIELD_ATTACK,
+    /* 3  */ dCcD_SE_WOLF_KICK,
+    /* 4  */ dCcD_SE_WOLF_BITE,
+    /* 5  */ dCcD_SE_WOOD,
+    /* 6  */ dCcD_SE_HAMMER,
+    /* 7  */ dCcD_SE_ARROW_STICK,
+    /* 8  */ dCcD_SE_HOOKSHOT_STICK,
+    /* 9  */ dCcD_SE_METAL,
+    /* 10 */ dCcD_SE_STONE,
+    /* 11 */ dCcD_SE_HARD_BODY,
+    /* 12 */ dCcD_SE_SOFT_BODY,
+    /* 13 */ dCcD_SE_13,
+    /* 14 */ dCcD_SE_SWORD_STAB,
+    /* 15 */ dCcD_SE_15,
+    /* 16 */ dCcD_SE_SWORD_RUN,
+    /* 17 */ dCcD_SE_17,
+    /* 18 */ dCcD_SE_THROW_OBJ,
+    /* 19 */ dCcD_SE_SPINNER,
+    /* 20 */ dCcD_SE_COPYROD,
+    /* 21 */ dCcD_SE_STATUE_HAMMER,
+    /* 22 */ dCcD_SE_PACHINKO,
+    /* 23 */ dCcD_SE_23,
 };
+
+enum dCcG_At_Spl {
+    /* 0x0 */ dCcG_At_Spl_UNK_0,
+    /* 0x1 */ dCcG_At_Spl_UNK_1,
+};
+
+enum dCcG_Tg_Spl {
+    /* 0x0 */ dCcG_Tg_Spl_UNK_0,
+    /* 0x1 */ dCcG_Tg_Spl_UNK_1,
+};
+
+struct dCcD_SrcGAtTgCoCommonBase {
+    /* 0x0 */ u32 mGFlag;
+};  // Size: 0x4
 
 struct dCcD_SrcGObjAt {
-    u8 mSe;
-    u8 mHitMark;
-    u8 mSpl;
-    u8 mMtrl;
-    dCcD_SrcGAtTgCoCommonBase mBase;
-};
+    /* 0x0 */ u8 mSe;       // Sound Effect ID
+    /* 0x1 */ u8 mHitMark;  // Hit Mark particle ID
+    /* 0x2 */ u8 mSpl;
+    /* 0x3 */ u8 mMtrl;
+    /* 0x4 */ dCcD_SrcGAtTgCoCommonBase mBase;
+};  // Size: 0x8
 
 struct dCcD_SrcGObjTg {
-    u8 mSe;
-    u8 mHitMark;
-    u8 mSpl;
-    u8 mMtrl;
-    dCcD_SrcGAtTgCoCommonBase mBase;
-};
+    /* 0x0 */ u8 mSe;       // Sound Effect ID
+    /* 0x1 */ u8 mHitMark;  // Hit Mark particle ID
+    /* 0x2 */ u8 mSpl;
+    /* 0x3 */ u8 mMtrl;
+    /* 0x4 */ dCcD_SrcGAtTgCoCommonBase mBase;
+};  // Size: 0x8
 
 struct dCcD_SrcGObjInf {
-    cCcD_SrcObj mObj;
-    dCcD_SrcGObjAt mGObjAt;
-    dCcD_SrcGObjTg mGObjTg;
-    dCcD_SrcGAtTgCoCommonBase mGObjCo;
-};
+    /* 0x00 */ cCcD_SrcObj mObj;
+    /* 0x1C */ dCcD_SrcGObjAt mGObjAt;
+    /* 0x24 */ dCcD_SrcGObjTg mGObjTg;
+    /* 0x2C */ dCcD_SrcGAtTgCoCommonBase mGObjCo;
+};  // Size: 0x30
 
 struct dCcD_SrcSph {
-    dCcD_SrcGObjInf mObjInf;
-    cM3dGSphS mSph;
-};
+    /* 0x00 */ dCcD_SrcGObjInf mObjInf;
+    /* 0x30 */ cM3dGSphS mSph;
+};  // Size: 0x40
 
 struct dCcD_SrcTri {
-    dCcD_SrcGObjInf mObjInf;
-};
+    /* 0x00 */ dCcD_SrcGObjInf mObjInf;
+};  // Size: 0x30
 
 struct dCcD_SrcCyl {
-    dCcD_SrcGObjInf mObjInf;
-    cM3dGCylS mCyl;
-};
+    /* 0x00 */ dCcD_SrcGObjInf mObjInf;
+    /* 0x30 */ cM3dGCylS mCyl;
+};  // Size: 0x44
 
 struct dCcD_SrcCps {
-    dCcD_SrcGObjInf mObjInf;
-    cM3dGCpsS mCps;
-};
+    /* 0x00 */ dCcD_SrcGObjInf mObjInf;
+    /* 0x30 */ cM3dGCpsS mCps;
+};  // Size: 0x4C
 
 class dCcD_GStts : public cCcD_GStts {
 public:
@@ -58,8 +95,17 @@ public:
     /* 8008523C */ virtual ~dCcD_GStts() {}
     void ClrTg() { mTg = 0; }
     void SetAtApid(unsigned int id) { mAtApid = id; }
+    void SetTgApid(unsigned int id) { mTgApid = id; }
     u8 GetRoomId() { return mRoomId; }
     void SetRoomId(int id) { mRoomId = id; }
+    unsigned int GetAtOldApid() { return mAtOldApid; }
+    unsigned int GetTgOldApid() { return mTgOldApid; }
+    bool ChkNoActor() { return field_0x1C & 1;}
+    bool ChkNoneActorPerfTblId() { return field_0x08 == 0xFFFF; }
+    dCcG_At_Spl GetAtSpl() { return (dCcG_At_Spl)mAt; }
+    void SetAtSpl(dCcG_At_Spl spl) { mAt = spl; }
+    dCcG_Tg_Spl GetTgSpl() { return (dCcG_Tg_Spl)mTg; }
+    void SetTgSpl(dCcG_Tg_Spl spl) { mTg = spl; }
 
     // private:
     /* 0x04 */ u8 mAt;
@@ -84,11 +130,6 @@ public:
     /* 800851AC */ virtual ~dCcD_Stts() {}
 
 };  // Size = 0x3C
-
-enum dCcG_At_Spl {
-    /* 0x0 */ dCcG_At_Spl_UNK_0,
-    /* 0x1 */ dCcG_At_Spl_UNK_1,
-};
 
 class dCcD_GObjInf;
 typedef void (*dCcD_HitCallback)(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
@@ -115,6 +156,7 @@ public:
     /* 80083724 */ void SubtractEffCounter();
     /* 80083748 */ bool ChkEffCounter();
     /* 80083CA0 */ virtual ~dCcD_GAtTgCoCommonBase() {}
+
     void ResetEffCounter() { mEffCounter = 0; }
     u32 GetGFlag() const { return mGFlag; }
     u32 GetRPrm() const { return mRPrm; }
@@ -122,9 +164,11 @@ public:
     u32 MskRPrm(u32 mask) const { return mRPrm & mask; }
     bool ChkSPrm(u32 mask) const { return MskSPrm(mask); }
     void OnSPrm(u32 flag) { mGFlag |= flag; }
+    void OnRPrm(u32 flag) { mRPrm |= flag; }
     void OffSPrm(u32 flag) { mGFlag &= ~flag; }
     bool ChkRPrm(u32 flag) const { return MskRPrm(flag); }
     void SetHitCallback(dCcD_HitCallback callback) { mHitCallback = callback; }
+    dCcD_HitCallback GetHitCallback() { return mHitCallback; }
 };  // Size = 0x1C
 
 class dCcD_GObjAt : public dCcD_GAtTgCoCommonBase {
@@ -141,6 +185,9 @@ public:
     u8 GetSe() { return mSe; }
     u8 GetSpl() { return mSpl; }
     u8 GetMtrl() { return mMtrl; }
+    u8 GetHitMark() { return mHitMark; }
+    void SetRVec(cXyz& vec) { mRVec = vec; }
+    void SetHitPos(cXyz& pos) { mHitPos = pos; }
 
     // private:
     /* 0x1C */ u8 mSe;
@@ -160,7 +207,15 @@ public:
     cXyz& GetVec() { return mVec; }
     void SetShieldFrontRangeYAngle(s16* angle) { mShieldFrontRangeYAngle = angle; }
     void SetMtrl(u8 mtrl) { mMtrl = mtrl; }
+    u8 GetMtrl() { return mMtrl; }
     void SetHitMark(CcG_Tg_HitMark mark) { mHitMark = mark; }
+    s16* GetShieldFrontRangeYAngle() { return mShieldFrontRangeYAngle; }
+    s16 GetShieldRange() { return mShieldRange; }
+    u8 GetSpl() { return mSpl; }
+    u8 GetHitMark() { return mHitMark; }
+    void SetRVec(cXyz& vec) { mRVec = vec; }
+    cXyz* GetVecP() { return &mVec; }
+    void SetHitPos(cXyz& pos) { mHitPos = pos; }
 
 private:
     /* 0x1C */ u8 mSe;
@@ -220,13 +275,15 @@ public:
     fopAc_ac_c* GetAtHitAc() { return mGObjAt.GetAc(); }
     bool ChkAtShieldHit() { return mGObjAt.ChkRPrm(1); }
     cXyz* GetAtVecP() { return mGObjAt.GetVecP(); }
+    cXyz* GetTgVecP() { return mGObjTg.GetVecP(); }
     void SetAtSpl(dCcG_At_Spl spl) { mGObjAt.SetAtSpl(spl); }
     void SetAtHitCallback(dCcD_HitCallback callback) { mGObjAt.SetHitCallback(callback); }
     void SetTgHitCallback(dCcD_HitCallback callback) { mGObjTg.SetHitCallback(callback); }
     void SetCoHitCallback(dCcD_HitCallback callback) { mGObjCo.SetHitCallback(callback); }
     u8 GetAtSe() { return mGObjAt.GetSe(); }
-    s32 GetAtSpl() { return mGObjAt.GetSpl(); }
+    dCcG_At_Spl GetAtSpl() { return (dCcG_At_Spl)mGObjAt.GetSpl(); }
     u8 GetAtMtrl() { return mGObjAt.GetMtrl(); }
+    u8 GetTgMtrl() { return mGObjTg.GetMtrl(); }
     fopAc_ac_c* GetTgHitAc() { return mGObjTg.GetAc(); }
     void SetTgShieldFrontRangeYAngle(s16* angle) { mGObjTg.SetShieldFrontRangeYAngle(angle); }
     void OffTgWolfSpNoDamage() { mGObjTg.OffSPrm(0x800); }
@@ -239,6 +296,44 @@ public:
     void OnTgShieldFrontRange() { mGObjTg.OnSPrm(0x8); }
     void OffTgShieldFrontRange() { mGObjTg.OffSPrm(0x8); }
     bool ChkTgIronBallRebound() { return mGObjTg.ChkSPrm(0x100); }
+    s16* GetTgShieldFrontRangeYAngle() { return mGObjTg.GetShieldFrontRangeYAngle(); }
+    s16 GetTgShieldRange() { return mGObjTg.GetShieldRange(); }
+    bool ChkTgShield() { return mGObjTg.ChkSPrm(1); }
+    bool ChkTgSpShield() { return mGObjTg.ChkSPrm(0x40); }
+    bool ChkTgSmallShield() { return mGObjTg.ChkSPrm(0x10); }
+    bool ChkTgShieldFrontRange() { return mGObjTg.ChkSPrm(8); }
+    bool ChkAtNoConHit() { return mGObjAt.ChkSPrm(1); }
+    bool ChkAtStopNoConHit() { return mGObjAt.ChkSPrm(0x4); }
+    bool ChkTgNoConHit() { return mGObjTg.ChkSPrm(2); }
+    bool ChkTgStopNoConHit() { return mGObjTg.ChkSPrm(0x2000); }
+    bool ChkCoNoCamHit() { return mGObjCo.ChkSPrm(2); }
+    dCcD_HitCallback GetCoHitCallback() { return mGObjCo.GetHitCallback(); }
+    dCcD_HitCallback GetAtHitCallback() { return mGObjAt.GetHitCallback(); }
+    dCcD_HitCallback GetTgHitCallback() { return mGObjTg.GetHitCallback(); }
+    void SetCoHitApid(unsigned int apid) { mGObjCo.SetHitApid(apid); }
+    void SetAtHitApid(unsigned int apid) { mGObjAt.SetHitApid(apid); }
+    void SetTgHitApid(unsigned int apid) { mGObjTg.SetHitApid(apid); }
+    void OnCoHitNoActor() { mGObjCo.OnRPrm(1); }
+    void OnAtHitNoActor() { mGObjAt.OnRPrm(2); }
+    void OnTgHitNoActor() { mGObjTg.OnRPrm(1); }
+    bool ChkTgWolfSpNoDamage() { return mGObjTg.ChkSPrm(0x800); }
+    bool ChkAtNoHitMark() { return mGObjAt.ChkSPrm(2); }
+    bool ChkTgNoHitMark() { return mGObjTg.ChkSPrm(4); }
+    bool ChkTgHookShotNoHitMark() { return mGObjTg.ChkSPrm(0x400); }
+    bool ChkTgArrowNoHitMark() { return mGObjTg.ChkSPrm(0x1000); }
+    dCcG_Tg_Spl GetTgSpl() { return (dCcG_Tg_Spl)mGObjTg.GetSpl(); }
+    int GetTgHitMark() { return mGObjTg.GetHitMark(); }
+    int GetAtHitMark() { return mGObjAt.GetHitMark(); }
+    bool ChkAtEffCounter() { return mGObjAt.ChkEffCounter(); }
+    bool ChkTgEffCounter() { return mGObjTg.ChkEffCounter(); }
+    void SetAtEffCounterTimer() { mGObjAt.SetEffCounterTimer(); }
+    void SetTgEffCounterTimer() { mGObjTg.SetEffCounterTimer(); }
+    void OnTgShieldHit() { mGObjTg.OnRPrm(2); }
+    void OnAtShieldHit() { mGObjAt.OnRPrm(1); }
+    void SetTgRVec(cXyz& vec) { mGObjTg.SetRVec(vec); }
+    void SetAtRVec(cXyz& vec) { mGObjAt.SetRVec(vec); }
+    void SetTgHitPos(cXyz& pos) { mGObjTg.SetHitPos(pos); }
+    void SetAtHitPos(cXyz& pos) { mGObjAt.SetHitPos(pos); }
     
     static u32 const m_hitSeID[24];
 
