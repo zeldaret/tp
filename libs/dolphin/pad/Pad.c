@@ -324,7 +324,6 @@ BOOL PADReset(u32 mask) {
 }
 
 /* 8034EC3C-8034ED50 34957C 0114+00 1/1 1/1 0/0 .text            PADRecalibrate */
-#ifdef NONMATCHING
 BOOL PADRecalibrate(u32 mask) {
     BOOL enabled;
     u32 disableBits;
@@ -335,9 +334,9 @@ BOOL PADRecalibrate(u32 mask) {
     PendingBits = 0;
     mask &= ~(WaitingBits | CheckingBits);
     ResettingBits |= mask;
-    BarrelBits &= ~mask;
     disableBits = ResettingBits & EnabledBits;
     EnabledBits &= ~mask;
+    BarrelBits &= ~mask;
 
     if (!(UnkVal & 0x40)) {
         RecalibrateBits |= mask;
@@ -350,16 +349,6 @@ BOOL PADRecalibrate(u32 mask) {
     OSRestoreInterrupts(enabled);
     return TRUE;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL PADRecalibrate(u32 mask) {
-    nofralloc
-#include "asm/dolphin/pad/Pad/PADRecalibrate.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 803D1B90-803D1BA0 -00001 0010+00 1/1 0/0 0/0 .data            ResetFunctionInfo */
