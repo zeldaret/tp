@@ -296,7 +296,6 @@ static asm void PADReceiveCheckCallback(s32 chan, u32 type) {
 #pragma pop
 
 /* 8034EB2C-8034EC3C 34946C 0110+00 2/2 1/1 0/0 .text            PADReset */
-#ifdef NONMATCHING
 BOOL PADReset(u32 mask) {
     BOOL enabled;
     u32 diableBits;
@@ -309,6 +308,7 @@ BOOL PADReset(u32 mask) {
     ResettingBits |= mask;
     diableBits = ResettingBits & EnabledBits;
     EnabledBits &= ~mask;
+    BarrelBits &= ~mask;
 
     if (Spec == PAD_SPEC_4) {
         RecalibrateBits |= mask;
@@ -322,16 +322,6 @@ BOOL PADReset(u32 mask) {
     OSRestoreInterrupts(enabled);
     return TRUE;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL PADReset(u32 mask) {
-    nofralloc
-#include "asm/dolphin/pad/Pad/PADReset.s"
-}
-#pragma pop
-#endif
 
 /* 8034EC3C-8034ED50 34957C 0114+00 1/1 1/1 0/0 .text            PADRecalibrate */
 #ifdef NONMATCHING
