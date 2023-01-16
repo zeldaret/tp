@@ -33,7 +33,6 @@ extern "C" void draw__9J2DScreenFffPC14J2DGrafContext();
 extern "C" void search__9J2DScreenFUx();
 extern "C" void searchUserInfo__9J2DScreenFUx();
 extern "C" void drawSelf__9J2DScreenFffPA3_A4_f();
-extern "C" void getResReference__9J2DScreenFP20JSURandomInputStreamUl();
 extern "C" void createMaterial__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive();
 extern "C" void isUsed__9J2DScreenFPC7ResTIMG();
 extern "C" void isUsed__9J2DScreenFPC7ResFONT();
@@ -575,43 +574,31 @@ asm void J2DScreen::drawSelf(f32 param_0, f32 param_1, Mtx* param_2) {
 
 /* 802F9280-802F937C 2F3BC0 00FC+00 1/1 0/0 0/0 .text
  * getResReference__9J2DScreenFP20JSURandomInputStreamUl        */
-// small regalloc
-#ifdef NONMATCHING
 J2DResReference* J2DScreen::getResReference(JSURandomInputStream* p_stream, u32 param_1) {
     s32 position = p_stream->getPosition();
     p_stream->skip(4);
 
-    s32 start, end;
-    start = p_stream->readS32();
+    s32 size1, size2;
+    size1 = p_stream->readS32();
     p_stream->skip(4);
-    end = p_stream->readS32();
-    p_stream->seek(position + end, JSUStreamSeekFrom_SET);
+    size2 = p_stream->readS32();
+    p_stream->seek(position + size2, JSUStreamSeekFrom_SET);
 
-    s32 size = end - start;
+    size1 = size1 - size2;
 
     char* buffer;
     if (param_1 & 0x1F0000) {
-        buffer = new char[size];
+        buffer = new char[size1];
     } else {
-        buffer = new (-4) char[size];
+        buffer = new (-4) char[size1];
     }
 
     if (buffer != NULL) {
-        p_stream->read(buffer, size);
+        p_stream->read(buffer, size1);
     }
 
     return (J2DResReference*)buffer;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DResReference* J2DScreen::getResReference(JSURandomInputStream* param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DScreen/getResReference__9J2DScreenFP20JSURandomInputStreamUl.s"
-}
-#pragma pop
-#endif
 
 /* 802F937C-802F9600 2F3CBC 0284+00 1/1 0/0 0/0 .text
  * createMaterial__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive */
@@ -646,28 +633,31 @@ bool J2DScreen::createMaterial(JSURandomInputStream* p_stream, u32 param_1, JKRA
             u32 offset =
                 buffer[0x14] << 0x18 | buffer[0x15] << 0x10 | buffer[0x16] << 8 | buffer[0x17];
             char* sec = (char*)buffer + offset;
-            u16* sec_s = (u16*)sec + *(u16*)sec;
-
-            u16 num = sec_s[1];
+            u16* sec_s = ((u16*)sec);
+            u32 size = ((u16*)sec)[0]*2;
+            u16 num = sec_s[size + 1];
             while (sec[num] != 0) {
-                num++;
+                num++;  
             }
-            num++;
+            num++; 
 
-            ResNTAB* nametab = new ResNTAB[num];
+            u8* nametab = new u8[num];
             if (nametab != NULL) {
                 for (u16 i = 0; i < num; i++) {
-                    nametab->mEntries[i].mKeyCode = sec[i];
+                    nametab[i] = sec[i];
                 }
 
-                mNameTable = new JUTNameTab(nametab);
+                mNameTable = new JUTNameTab((ResNTAB*)nametab);
                 if (mNameTable == NULL) {
                     delete[] nametab;
                 } else {
+                    success:
                     delete[] buffer;
                     return true;
                 }
             }
+        } else {
+            goto success;
         }
     }
 
