@@ -510,7 +510,6 @@ u32 PADRead(PADStatus* status) {
 }
 
 /* 8034F1A0-8034F258 349AE0 00B8+00 0/0 2/2 0/0 .text            PADControlMotor */
-#ifdef NONMATCHING
 void PADControlMotor(s32 chan, u32 command) {
     BOOL enabled;
     u32 chanBit;
@@ -522,21 +521,15 @@ void PADControlMotor(s32 chan, u32 command) {
             command = PAD_MOTOR_STOP;
         }
 
+        if (UnkVal & 0x20) {
+             command = PAD_MOTOR_STOP;
+        }
+
         SISetCommand(chan, (0x40 << 16) | AnalogMode | (command & (0x00000001 | 0x00000002)));
         SITransferCommands();
     }
     OSRestoreInterrupts(enabled);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void PADControlMotor(s32 channel, u32 command) {
-    nofralloc
-#include "asm/dolphin/pad/Pad/PADControlMotor.s"
-}
-#pragma pop
-#endif
 
 /* 8034F258-8034F2B8 349B98 0060+00 1/1 1/1 0/0 .text            PADSetSpec */
 void PADSetSpec(u32 spec) {
