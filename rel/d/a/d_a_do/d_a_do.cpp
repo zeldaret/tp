@@ -786,8 +786,6 @@ COMPILER_STRIP_GATE(0x8066EE1C, &lit_3981);
 #pragma pop
 
 /* 80668624-80668754 0009C4 0130+00 1/1 0/0 0/0 .text            depth_check__FP8do_class4cXyzf */
-#ifndef NONMATCHING
-// destructor calls at the bottom are generating extra instructions
 static BOOL depth_check(do_class* i_dogP, cXyz i_pos, f32 param_2) {
     dBgS_GndChk gnd_chk;
     Vec pos;
@@ -818,16 +816,6 @@ static BOOL depth_check(do_class* i_dogP, cXyz i_pos, f32 param_2) {
         return 0;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void depth_check(do_class* i_dogP, cXyz i_pos, f32 param_2) {
-    nofralloc
-#include "asm/rel/d/a/d_a_do/d_a_do/depth_check__FP8do_class4cXyzf.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 8066EE20-8066EE24 000038 0004+00 1/1 0/0 0/0 .rodata          @3994 */
@@ -836,12 +824,15 @@ COMPILER_STRIP_GATE(0x8066EE20, &lit_3994);
 
 /* 80668754-8066886C 000AF4 0118+00 1/1 0/0 0/0 .text            water_check__FP8do_class */
 #ifdef NONMATCHING
+// regalloc
 static bool water_check(do_class* i_dogP) {
     dBgS_GndChk gnd_chk;
     Vec pos;
+
     pos.x = i_dogP->current.pos.x;
     pos.y = i_dogP->current.pos.y;
-    pos.x = FLOAT_LABEL(lit_3922)+i_dogP->current.pos.z;
+    pos.z = i_dogP->current.pos.z;
+    pos.y = i_dogP->current.pos.x+FLOAT_LABEL(lit_3922);
 
     gnd_chk.SetPos(&pos);
     f32 f_gnd_chk = dComIfG_Bgsp().GroundCross(&gnd_chk);
@@ -894,14 +885,55 @@ COMPILER_STRIP_GATE(0x8066EE2C, &lit_4027);
 #pragma pop
 
 /* 8066886C-80668A30 000C0C 01C4+00 4/4 0/0 0/0 .text            dansa_check__FP8do_class4cXyzf */
+#ifdef NONMATCHING
+// regalloc
+static int dansa_check(do_class* i_dogP, cXyz i_pos, f32 param_2) {
+    i_pos.y += FLOAT_LABEL(lit_4025);
+    dBgS_GndChk gnd_chk;
+    
+    Vec pos;
+    pos.x = i_pos.x;
+    pos.y = FLOAT_LABEL(lit_4025)+i_pos.y;
+    pos.z = i_pos.z;
+
+    gnd_chk.SetPos(&pos);
+    f32 f_gnd_chk = dComIfG_Bgsp().GroundCross(&gnd_chk);
+
+    if (i_dogP->current.pos.y - f_gnd_chk > param_2) {
+        return 1;
+    } else {
+        dBgS_LinChk lin_chk;
+        cXyz pos2;
+
+        pos2.x = i_dogP->current.pos.x;
+        pos2.y = i_dogP->current.pos.y;
+        pos2.z = i_dogP->current.pos.z;
+        pos2.y = i_dogP->current.pos.y + FLOAT_LABEL(lit_4026);
+
+        lin_chk.Set(&pos2,&i_pos,i_dogP);
+
+        if (dComIfG_Bgsp().LineCross(&lin_chk) != 0) {
+            return -1;
+        } else {
+            if (depth_check(i_dogP,i_pos,FLOAT_LABEL(lit_4027)) && l_HIO[29] == 0) {
+                return 0xffffff9c;
+                
+            } else {
+                return 0;
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dansa_check(do_class* i_dogP, cXyz param_1, f32 param_2) {
+static asm int dansa_check(do_class* i_dogP, cXyz param_1, f32 param_2) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/dansa_check__FP8do_class4cXyzf.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8066EE30-8066EE34 000048 0004+00 0/1 0/0 0/0 .rodata          @4057 */
@@ -919,14 +951,38 @@ COMPILER_STRIP_GATE(0x8066EE34, &lit_4058);
 #pragma pop
 
 /* 80668A30-80668B18 000DD0 00E8+00 3/3 0/0 0/0 .text            dansa_check2__FP8do_classf */
+#ifdef NONMATCHING
+// floats in wrong order
+static bool dansa_check2(do_class* i_dogP, f32 param_1) {
+    cXyz pos;
+    cXyz pos2;
+
+    mDoMtx_YrotS((MtxP)calc_mtx,i_dogP->current.angle.y);
+    pos.x = FLOAT_LABEL(lit_3682);
+    pos.y = FLOAT_LABEL(lit_4057);
+
+    f32 tmp = i_dogP->field_0x67c;
+
+    f32 tmp1 = FLOAT_LABEL(lit_3981) * param_1;
+    f32 tmp3 = tmp1 * tmp;
+    f32 tmp2 = FLOAT_LABEL(lit_4058) * i_dogP->mSpeedF * i_dogP->field_0x67c * FLOAT_LABEL(lit_3981);
+
+    pos.z = tmp3 + tmp2;
+
+    MtxPosition(&pos,&pos2);
+    pos2 += i_dogP->current.pos;
+    return dansa_check(i_dogP,pos2,FLOAT_LABEL(lit_3772)) != 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dansa_check2(do_class* i_dogP, f32 param_1) {
+static asm int dansa_check2(do_class* i_dogP, f32 param_1) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/dansa_check2__FP8do_classf.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8066EE38-8066EE3C 000050 0004+00 1/1 0/0 0/0 .rodata          @4068 */
@@ -938,14 +994,21 @@ SECTION_RODATA static f32 const lit_4069 = 15.0f;
 COMPILER_STRIP_GATE(0x8066EE3C, &lit_4069);
 
 /* 80668B18-80668BA0 000EB8 0088+00 4/4 0/0 0/0 .text            move_dansa_check__FP8do_classf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void move_dansa_check(do_class* i_dogP, f32 param_1) {
-    nofralloc
-#include "asm/rel/d/a/d_a_do/d_a_do/move_dansa_check__FP8do_classf.s"
+static int move_dansa_check(do_class* i_dogP, f32 param_1) {
+    if (dansa_check2(i_dogP,FLOAT_LABEL(lit_4068)) != 0) {
+        i_dogP->field_0x5f2 = 6;
+
+        if (param_1 > FLOAT_LABEL(lit_4069)) {
+            i_dogP->field_0x5f6 = 10;
+        } else {
+            i_dogP->field_0x5f6 = 0;
+        }
+
+        return 1;
+    } else {
+        return 0;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8066EE40-8066EE48 000058 0008+00 0/3 0/0 0/0 .rodata          @4134 */
