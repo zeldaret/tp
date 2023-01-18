@@ -23,7 +23,9 @@ class do_class : public fopAc_ac_c {
 public:
     /* 0x56C */ u8 field_0x56c[68];
     /* 0x5AC */ request_of_phase_process_class mPhase;
-    /* 0x5B4 */ u8 field_0x5b4[20];
+    /* 0x5B4 */ u8 field_0x5b4[2];
+    /* 0x5B6 */ u8 field_0x5b6;
+    /* 0x5B7 */ u8 field_0x5b7[17];
     /* 0x5C8 */ float field_0x5c8;
     /* 0x5CC */ u8 field_0x5cc[4];
     /* 0x5D8 */ mDoExt_McaMorf* mpMorf;
@@ -35,10 +37,12 @@ public:
     /* 0x5F0 */ u8 field_0x5f0[2];
     /* 0x5F2 */ s16 field_0x5f2;
     /* 0x5F4 */ u8 field_0x5f4[2];
-    /* 0x5F6 */ u16 field_0x5f6;
+    /* 0x5F6 */ s16 field_0x5f6;
     /* 0x5F8 */ u8 field_0x5f8[4];
     /* 0x5FC */ u16 field_0x5fc;
-    /* 0x5FE */ u8 field_0x5fe[6];
+    /* 0x5FE */ u8 field_0x5fe[2];
+    /* 0x600 */ s16 field_0x600;
+    /* 0x602 */ u8 field_0x602[2];
     /* 0x604 */ u16 field_0x604;
     /* 0x606 */ u8 field_0x606[2];
     /* 0x608 */ float field_0x608;

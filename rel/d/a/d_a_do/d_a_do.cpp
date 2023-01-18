@@ -10,6 +10,7 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 #include "f_pc/f_pc_executor.h"
+#include "SSystem/SComponent/c_math.h"
 
 //
 // Forward References:
@@ -1048,6 +1049,20 @@ COMPILER_STRIP_GATE(0x8066EE58, &lit_4138);
 #pragma pop
 
 /* 80668BA0-80668D5C 000F40 01BC+00 5/5 0/0 0/0 .text            area_check__FP8do_class */
+#ifdef NONMATCHING
+// matches with literals
+static void area_check(do_class* i_dogP) {
+    cXyz pos_delta = i_dogP->orig.pos - i_dogP->current.pos;
+
+    if (i_dogP->field_0x5b6 != 255) {
+        if ((i_dogP->field_0x5b6 * 100.f * 2.0f) > pos_delta.abs()) {
+            i_dogP->field_0x5f2 = 1;
+            i_dogP->field_0x5f6 = -1;
+            i_dogP->field_0x600 = cM_rndF(100.0f) + 100.0f; // random value between 100 and 200
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1056,6 +1071,7 @@ static asm void area_check(do_class* i_dogP) {
 #include "asm/rel/d/a/d_a_do/d_a_do/area_check__FP8do_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8066EE60-8066EE64 000078 0004+00 0/5 0/0 0/0 .rodata          @4189 */
