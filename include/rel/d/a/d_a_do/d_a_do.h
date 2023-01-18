@@ -50,7 +50,8 @@ public:
     /* 0x648 */ u32 field_0x648;
     /* 0x64c */ u8 field_0x64c[12];
     /* 0x658 */ float field_0x658;
-    /* 0x65C */ u8 field_0x65c[32];
+    /* 0x65C */ float field_0x65c;
+    /* 0x660 */ u8 field_0x660[28];
     /* 0x67C */ float field_0x67c;
     /* 0x680 */ u8 field_0x680[4];
     /* 0x684 */ u32 mFoodBsPcId;

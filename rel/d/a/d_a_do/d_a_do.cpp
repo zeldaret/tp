@@ -786,30 +786,37 @@ COMPILER_STRIP_GATE(0x8066EE1C, &lit_3981);
 #pragma pop
 
 /* 80668624-80668754 0009C4 0130+00 1/1 0/0 0/0 .text            depth_check__FP8do_class4cXyzf */
-#ifdef NONMATCHING
-static bool depth_check(do_class* i_dogP, cXyz i_pos, f32 param_2) {
+#ifndef NONMATCHING
+// destructor calls at the bottom are generating extra instructions
+static BOOL depth_check(do_class* i_dogP, cXyz i_pos, f32 param_2) {
     dBgS_GndChk gnd_chk;
-    dBgS_ObjGndChk_Spl gnd_chk_spl;
-    cXyz pos;
+    Vec pos;
+    f32 f_gnd_chk;
+    f32 f_gnd_chk_spl;
+    f32 sub_res;
+    f32 mul_res;
+    f32 f_res;
 
-    pos.set(i_pos.x,i_pos.y+200.f,i_pos.z);
+    pos.x = i_pos.x;
+    pos.y = FLOAT_LABEL(lit_3922)+i_pos.y;
+    pos.z = i_pos.z;
+
     gnd_chk.SetPos(&pos);
-    f32 f_gnd_chk = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    
+    f_gnd_chk = dComIfG_Bgsp().GroundCross(&gnd_chk);
+
+    dBgS_ObjGndChk_Spl gnd_chk_spl;
     gnd_chk_spl.SetPos(&pos);
-    f32 f_gnd_chk_spl = dComIfG_Bgsp().GroundCross(&gnd_chk_spl);
+    f_gnd_chk_spl = dComIfG_Bgsp().GroundCross(&gnd_chk_spl);
 
-    bool check = f_gnd_chk_spl - f_gnd_chk <= param_2 * 2.0f * 0.8f * i_dogP->field_0x67c;
+    sub_res = f_gnd_chk_spl - f_gnd_chk;
+    mul_res =  FLOAT_LABEL(lit_3665) * param_2 * FLOAT_LABEL(lit_3981);
+    f_res = mul_res * i_dogP->field_0x67c;
 
-    if (check == -1) {
-        delete &gnd_chk_spl;
-        delete &gnd_chk;
+    if (sub_res > f_res) {
+        return 1;
     } else {
-        delete &gnd_chk_spl;
-        delete &gnd_chk;
+        return 0;
     }
-
-    return 0;
 }
 #else
 #pragma push
@@ -828,6 +835,32 @@ SECTION_RODATA static f32 const lit_3994 = 8.0f;
 COMPILER_STRIP_GATE(0x8066EE20, &lit_3994);
 
 /* 80668754-8066886C 000AF4 0118+00 1/1 0/0 0/0 .text            water_check__FP8do_class */
+#ifdef NONMATCHING
+static bool water_check(do_class* i_dogP) {
+    dBgS_GndChk gnd_chk;
+    Vec pos;
+    pos.x = i_dogP->current.pos.x;
+    pos.y = i_dogP->current.pos.y;
+    pos.x = FLOAT_LABEL(lit_3922)+i_dogP->current.pos.z;
+
+    gnd_chk.SetPos(&pos);
+    f32 f_gnd_chk = dComIfG_Bgsp().GroundCross(&gnd_chk);
+
+    dBgS_ObjGndChk_Spl gnd_chk_spl;
+    gnd_chk_spl.SetPos(&pos);
+    i_dogP->field_0x65c = dComIfG_Bgsp().GroundCross(&gnd_chk_spl);
+    f32 sub_res = i_dogP->field_0x65c - f_gnd_chk;
+    f32 mul_res = FLOAT_LABEL(lit_3994) * i_dogP->field_0x67c;
+
+    if (sub_res > mul_res) {
+        return 1;
+    } else {
+        return 0;
+    }
+
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -836,6 +869,7 @@ static asm void water_check(do_class* i_dogP) {
 #include "asm/rel/d/a/d_a_do/d_a_do/water_check__FP8do_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8066EE24-8066EE28 00003C 0004+00 0/2 0/0 0/0 .rodata          @4025 */
