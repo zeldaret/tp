@@ -6,6 +6,7 @@
 #include "rel/d/a/d_a_do/d_a_do.h"
 #include "JSystem/JMath/JMath.h"
 #include "d/a/d_a_player.h"
+#include "d/d_procname.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
@@ -667,14 +668,13 @@ static fopAc_ac_c* target_info[5];
 static int target_info_count;
 
 /* 8066833C-806683C0 0006DC 0084+00 1/1 0/0 0/0 .text            s_w_sub__FPvPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void s_w_sub(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/rel/d/a/d_a_do/d_a_do/s_w_sub__FPvPv.s"
+static int s_w_sub(void* param_0, void* param_1) {
+    if (fopAcM_IsActor(param_0) && (fopAcM_GetName(param_0) == PROC_OBJ_FOOD || fopAcM_GetName(param_0) == PROC_OBJ_KANBAN2) && fopAcM_checkCarryNow((fopAc_ac_c*)param_0) && target_info_count < 5) {
+        target_info[target_info_count] = (fopAc_ac_c*)param_0;
+        target_info_count++;
+    }
+    return 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8066EE14-8066EE18 00002C 0004+00 1/4 0/0 0/0 .rodata          @3922 */
@@ -1672,9 +1672,8 @@ COMPILER_STRIP_GATE(0x8066EF34, &lit_4993);
 #pragma pop
 
 /* 8066B650-8066B774 0039F0 0124+00 1/1 0/0 0/0 .text            do_swim__FP8do_class */
-#ifndef NONMATCHING
 static void do_swim(do_class* i_dogP) {
-    Vec pos;
+    Vec pos; // this is probably cXyz but defining it as such moves ~cXyz to right after this function, breaking the TU match
     i_dogP->field_0x616 = 1;
     i_dogP->field_0x648 = FLOAT_LABEL(lit_4191);
 
@@ -1702,20 +1701,10 @@ static void do_swim(do_class* i_dogP) {
 
     fopAcM_effHamonSet(&i_dogP->field_0xbcc,(cXyz*)&pos,FLOAT_LABEL(lit_4993),FLOAT_LABEL(lit_4402));
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void do_swim(do_class* i_dogP) {
-    nofralloc
-#include "asm/rel/d/a/d_a_do/d_a_do/do_swim__FP8do_class.s"
-}
-#pragma pop
-#endif
 
 /* 8066B774-8066B7C0 003B14 004C+00 2/2 0/0 0/0 .text            s_c_sub__FPvPv */
 static void* s_c_sub(void* param_0, void* param_1) {
-    if (fopAcM_IsActor(param_0) != 0 && fopAcM_GetName(param_0) == 0xed) {
+    if (fopAcM_IsActor(param_0) != 0 && fopAcM_GetName(param_0) == PROC_CANOE) {
         return param_0;
     }
     return 0;
