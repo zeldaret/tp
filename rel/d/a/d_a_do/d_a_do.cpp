@@ -537,14 +537,33 @@ COMPILER_STRIP_GATE(0x8066EE0C, &lit_3816);
 
 /* 80668170-80668264 000510 00F4+00 1/1 0/0 0/0 .text
  * daDo_other_bg_check__FP8do_classP10fopAc_ac_c                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int daDo_other_bg_check(do_class* i_dogP, fopAc_ac_c* i_actorP) {
-    nofralloc
-#include "asm/rel/d/a/d_a_do/d_a_do/daDo_other_bg_check__FP8do_classP10fopAc_ac_c.s"
+static int daDo_other_bg_check(do_class* i_dogP, fopAc_ac_c* i_actorP) {
+    Vec dog_pos; // defining as cXyz moves the destructor above this function, breaking the TU
+    Vec actor_pos; // defining as cXyz moves the destructor above this function, breaking the TU
+
+    fopAc_ac_c* actor = (fopAc_ac_c*)i_actorP; // required for match, maybe fake match?
+    do_class* dog = (do_class*)i_dogP; // required for match, maybe fake match?
+    
+    dBgS_LinChk lin_chk;
+
+    if (actor) {
+        actor_pos = actor->current.pos;
+        actor_pos.y += FLOAT_LABEL(lit_3816);
+
+        dog_pos = dog->current.pos;
+        dog_pos.y = dog->mEyePos.y;
+
+        lin_chk.Set((cXyz*)&dog_pos,(cXyz*)&actor_pos,dog);
+        if (dComIfG_Bgsp().LineCross(&lin_chk)) {
+            return 1;
+        } else {
+            return 0;
+        }
+
+    } else {
+        return 1;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8066EE10-8066EE14 000028 0004+00 1/7 0/0 0/0 .rodata          @3846 */
