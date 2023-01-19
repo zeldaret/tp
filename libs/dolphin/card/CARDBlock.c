@@ -28,6 +28,10 @@ u16* __CARDGetFatBlock(CARDControl* card) {
     return card->currentFat;
 }
 
+static inline u16* __CARDGetFatBlockI(CARDControl* card) {
+    return card->currentFat;
+}
+
 /* 8035541C-803554F0 34FD5C 00D4+00 1/1 0/0 0/0 .text            WriteCallback */
 static void WriteCallback(s32 chan, s32 result) {
     CARDControl* card;
@@ -62,18 +66,39 @@ static void WriteCallback(s32 chan, s32 result) {
 }
 
 /* 803554F0-803555B8 34FE30 00C8+00 1/1 0/0 0/0 .text            EraseCallback */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void EraseCallback(s32 chan, s32 result) {
-    nofralloc
-#include "asm/dolphin/card/CARDBlock/EraseCallback.s"
+static void EraseCallback(s32 chan, s32 result) {
+  CARDControl* card;
+  CARDCallback callback;
+  u32 temp[2]; /* this compiler sucks */
+  u16* fat;
+  u32 addr;
+
+  card = &__CARDBlock[chan];
+  if (result < 0) {
+    goto error;
+  }
+
+  fat = __CARDGetFatBlockI(card);
+  addr = ((u32)fat - (u32)card->workArea) / CARD_SYSTEM_BLOCK_SIZE * card->sectorSize;
+  result = __CARDWrite(chan, addr, CARD_SYSTEM_BLOCK_SIZE, fat, WriteCallback);
+  if (result < 0) {
+    goto error;
+  }
+
+  return;
+
+error:
+  if (card->apiCallback == NULL) {
+    __CARDPutControlBlock(card, result);
+  }
+  callback = card->eraseCallback;
+  if (callback) {
+    card->eraseCallback = NULL;
+    callback(chan, result);
+  }
 }
-#pragma pop
 
 /* 803555B8-803556D0 34FEF8 0118+00 0/0 1/1 0/0 .text            __CARDAllocBlock */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 s32 __CARDAllocBlock(s32 chan, u32 cBlock, CARDCallback callback) {
     CARDControl* card;
     u16* fat;
@@ -87,7 +112,7 @@ s32 __CARDAllocBlock(s32 chan, u32 cBlock, CARDCallback callback) {
         return CARD_RESULT_NOCARD;
     }
 
-    fat = __CARDGetFatBlock(card);
+    fat = __CARDGetFatBlockI(card);
     if (fat[3] < cBlock) {
         return CARD_RESULT_INSSPACE;
     }
@@ -122,23 +147,17 @@ s32 __CARDAllocBlock(s32 chan, u32 cBlock, CARDCallback callback) {
 
     return __CARDUpdateFatBlock(chan, fat, callback);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 __CARDAllocBlock(s32 chan, u32 cBlock, CARDCallback callback) {
-    nofralloc
-#include "asm/dolphin/card/CARDBlock/__CARDAllocBlock.s"
-}
-#pragma pop
-#endif
 
 /* 803556D0-8035577C 350010 00AC+00 1/1 1/1 0/0 .text            __CARDUpdateFatBlock */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 __CARDUpdateFatBlock(s32 chan, u16* fat, CARDCallback callback) {
-    nofralloc
-#include "asm/dolphin/card/CARDBlock/__CARDUpdateFatBlock.s"
+s32 __CARDUpdateFatBlock(s32 chan, u16* fat, CARDCallback callback) {
+  CARDControl* card;
+
+  card = &__CARDBlock[chan];
+  ++fat[2];
+  __CARDCheckSum(fat + 2, 0x1FFC, fat, fat + 1);
+  DCStoreRange(fat, 0x2000);
+  card->eraseCallback = callback;
+
+  return __CARDEraseSector(chan, (((u32)fat - (u32)card->workArea) / 8192u) * card->sectorSize,
+                           EraseCallback);
 }
-#pragma pop

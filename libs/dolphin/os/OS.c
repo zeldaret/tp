@@ -832,6 +832,6 @@ u32 __OSGetDIConfig(void) {
 }
 
 /* 8033A874-8033A8A0 3351B4 002C+00 1/1 11/11 0/0 .text            OSRegisterVersion */
-void OSRegisterVersion(char* version) {
+void OSRegisterVersion(const char* version) {
     OSReport("%s\n", version);
 }

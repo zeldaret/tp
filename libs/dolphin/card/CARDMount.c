@@ -146,14 +146,133 @@ static u32 LatencyTable[8] = {
 };
 
 /* 80356BC8-8035701C 351508 0454+00 2/2 0/0 0/0 .text            DoMount */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm s32 DoMount(s32 chan) {
-    nofralloc
-#include "asm/dolphin/card/CARDMount/DoMount.s"
+static s32 DoMount(s32 chan) {
+    CARDControl* card;
+    u32 id;
+    u8 status;
+    s32 result;
+    OSSramEx* sram;
+    int i;
+    u8 checkSum;
+    int step;
+
+    card = &__CARDBlock[chan];
+
+    if (card->mountStep == 0) {
+        if (EXIGetID(chan, 0, &id) == 0) {
+            result = CARD_RESULT_NOCARD;
+        } else if (IsCard(id)) {
+            result = CARD_RESULT_READY;
+        } else {
+            result = CARD_RESULT_WRONGDEVICE;
+        }
+        if (result < 0) {
+            goto error;
+        }
+
+        card->cid = id;
+
+        card->size = (u16)(id & 0xFC);
+        card->sectorSize = SectorSizeTable[(id & 0x00003800) >> 11];
+        card->cBlock = (u16)((card->size * 1024 * 1024 / 8) / card->sectorSize);
+        card->latency = LatencyTable[(id & 0x00000700) >> 8];
+
+        result = __CARDReadVendorID(chan, &card->vendorID);
+        if (result < 0) {
+            goto error;
+        }
+
+        if (CARDGetFastMode() && (card->vendorID >> 8) == 0xec) {
+            card->pageSize = 0x200;
+        } else {
+            card->pageSize = 0x80;
+        }
+        result = __CARDClearStatus(chan);
+        if (result < 0) {
+            goto error;
+        }
+
+        result = __CARDReadStatus(chan, &status);
+        if (result < 0) {
+            goto error;
+        }
+
+        if (!EXIProbe(chan)) {
+            result = CARD_RESULT_NOCARD;
+            goto error;
+        }
+
+        if (!(status & 0x40)) {
+            result = __CARDUnlock(chan, card->id);
+            if (result < 0) {
+                goto error;
+            }
+
+            checkSum = 0;
+            sram = __OSLockSramEx();
+            for (i = 0; i < 12; i++) {
+                sram->flashID[chan][i] = card->id[i];
+                checkSum += card->id[i];
+            }
+            sram->flashIDCheckSum[chan] = (u8)~checkSum;
+            __OSUnlockSramEx(TRUE);
+
+            return result;
+        } else {
+            card->mountStep = 1;
+
+            checkSum = 0;
+            sram = __OSLockSramEx();
+            for (i = 0; i < 12; i++) {
+                checkSum += sram->flashID[chan][i];
+            }
+            __OSUnlockSramEx(FALSE);
+            if (sram->flashIDCheckSum[chan] != (u8)~checkSum) {
+                result = CARD_RESULT_IOERROR;
+                goto error;
+            }
+        }
+    }
+
+    if (card->mountStep == 1) {
+        if (card->cid == 0x80000004) {
+            u16 vendorID;
+
+            sram = __OSLockSramEx();
+            vendorID = *(u16*)sram->flashID[chan];
+            __OSUnlockSramEx(FALSE);
+
+            if (__CARDVendorID == 0xffff || vendorID != __CARDVendorID) {
+                result = CARD_RESULT_WRONGDEVICE;
+                goto error;
+            }
+        }
+
+        card->mountStep = 2;
+
+        result = __CARDEnableInterrupt(chan, TRUE);
+        if (result < 0) {
+            goto error;
+        }
+
+        EXISetExiCallback(chan, __CARDExiHandler);
+        EXIUnlock(chan);
+        DCInvalidateRange(card->workArea, CARD_WORKAREA_SIZE);
+    }
+
+    step = card->mountStep - 2;
+    result = __CARDRead(chan, (u32)card->sectorSize * step, CARD_SYSTEM_BLOCK_SIZE,
+                        (u8*)card->workArea + (CARD_SYSTEM_BLOCK_SIZE * step), __CARDMountCallback);
+    if (result < 0) {
+        __CARDPutControlBlock(card, result);
+    }
+    return result;
+
+error:
+    EXIUnlock(chan);
+    DoUnmount(chan, result);
+    return result;
 }
-#pragma pop
 
 /* 8035701C-80357154 35195C 0138+00 2/2 1/1 0/0 .text            __CARDMountCallback */
 void __CARDMountCallback(s32 chan, s32 result) {
@@ -266,7 +385,7 @@ s32 CARDMount(s32 chan, void* workArea, CARDCallback attachCb) {
 }
 
 /* 8035733C-803573D8 351C7C 009C+00 2/2 0/0 0/0 .text            DoUnmount */
-static void DoUnmount(s32 chan, s32 result) {
+static inline void DoUnmount(s32 chan, s32 result) {
     CARDControl* card;
     BOOL enabled;
 
@@ -284,11 +403,14 @@ static void DoUnmount(s32 chan, s32 result) {
 }
 
 /* 803573D8-80357484 351D18 00AC+00 0/0 2/2 0/0 .text            CARDUnmount */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 CARDUnmount(s32 chan) {
-    nofralloc
-#include "asm/dolphin/card/CARDMount/CARDUnmount.s"
+s32 CARDUnmount(s32 chan) {
+    CARDControl* card;
+    s32 result;
+
+    result = __CARDGetControlBlock(chan, &card);
+    if (result < 0) {
+        return result;
+    }
+    DoUnmount(chan, CARD_RESULT_NOCARD);
+    return CARD_RESULT_READY;
 }
-#pragma pop

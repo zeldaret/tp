@@ -12,10 +12,10 @@
 #include "dolphin/card/CARDPriv.h"
 
 /* 80450A70 0002+00 data_80450A70 __CARDVendorID */
-SECTION_SDATA u16 __CARDVendorID = 0xFFFF;
+u16 __CARDVendorID = 0xFFFF;
 
 /* 80450A72 0006+00 data_80450A72 None */
-SECTION_SDATA u8 data_80450A72 = 0x1C;
+u8 data_80450A72 = 0x1C;
 
 /* 80359158-8035921C 353A98 00C4+00 0/0 1/1 0/0 .text            CARDGetSerialNo */
 s32 CARDGetSerialNo(s32 chan, u64* serialNo) {

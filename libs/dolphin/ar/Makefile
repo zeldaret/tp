@@ -37,10 +37,11 @@ $(BUILD_DIR)/libs/dolphin/ar/%.o: libs/dolphin/ar/%.c $(BUILD_DIR)/libs/dolphin/
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(WINE) $(FRANK_COMPILER) $(LIBAR_A_CFLAGS) -c -o $(@:.o=.po) $(basename $@).c
 	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(LIBAR_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
 	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
 	@echo Frank is fixing $@
-	@$(PYTHON) $(FRANK) $@ $@ $@
+	@$(PYTHON) $(FRANK) $@ $(@:.o=.po) $@
 
 ifndef DISABLE_DEPS
 LIBAR_A_D_FILES := $(LIBAR_A_O_FILES:.o=.d)

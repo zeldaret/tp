@@ -117,7 +117,7 @@ void __CARDTxHandler(s32 chan, OSContext* context);
 void __CARDUnlockedHandler(s32 chan, OSContext* context);
 s32 __CARDEnableInterrupt(s32 chan, BOOL enable);
 s32 __CARDReadStatus(s32 chan, u8* status);
-void __CARDReadVendorID();
+s32 __CARDReadVendorID(s32 chan, u16* vendorId);
 s32 __CARDClearStatus(s32 chan);
 s32 __CARDStart(s32 chan, CARDCallback txCallback, CARDCallback exiCallback);
 s32 __CARDReadSegment(s32 chan, CARDCallback callback);

@@ -77,6 +77,7 @@ PYTHON    := python3
 ICONV     := iconv
 DOXYGEN   := doxygen
 MAKEREL   := tools/makerel.py
+FRANK_COMPILER := $(WINE_LD) tools/mwcc_compiler/1.2.5e/mwcceppc.exe
 FRANK     := tools/frank.py
 IMAGENAME := gz2e01.iso
 

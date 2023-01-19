@@ -7,7 +7,19 @@
 extern "C" {
 #endif
 
+#define ARQ_CHUNK_SIZE_DEFAULT 4096
+
 typedef void (*ARQCallback)(u32 request_address);
+
+typedef enum _ARamType {
+    ARAM_DIR_MRAM_TO_ARAM,
+    ARAM_DIR_ARAM_TO_MRAM,
+} ARamType;
+
+typedef enum _ArqPriotity {
+    ARQ_PRIORITY_LOW,
+    ARQ_PRIORITY_HIGH,
+} ArqPriotity;
 
 typedef struct ARQRequest {
     struct ARQRequest* next;
