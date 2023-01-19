@@ -571,6 +571,32 @@ SECTION_RODATA static f32 const lit_3846 = 30.0f;
 COMPILER_STRIP_GATE(0x8066EE10, &lit_3846);
 
 /* 80668264-8066833C 000604 00D8+00 1/1 0/0 0/0 .text daDo_other_bg_check2__FP8do_classP4cXyz */
+#ifndef NONMATCHING
+static int daDo_other_bg_check2(do_class* i_dogP, cXyz* i_posP) {
+    Vec dog_pos; // defining as cXyz moves the destructor above this function, breaking the TU
+    Vec i_pos; // defining as cXyz moves the destructor above this function, breaking the TU
+
+    cXyz* pos = (cXyz*)i_posP; // required for match, maybe fake match?
+    do_class* dog = (do_class*)i_dogP; // required for match, maybe fake match?
+
+    dBgS_LinChk lin_chk;
+
+    // do_class* dog = (do_class*)i_dogP; // required for match, maybe fake match?
+
+    i_pos = *pos;
+    i_pos.y += 30.0f;
+
+    dog_pos = dog->current.pos;
+    dog_pos.y += 30.0f;
+
+    lin_chk.Set((cXyz*)&dog_pos,(cXyz*)&i_pos,dog);
+    if (dComIfG_Bgsp().LineCross(&lin_chk)) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -579,6 +605,7 @@ static asm void daDo_other_bg_check2(do_class* i_dogP, cXyz* i_posP) {
 #include "asm/rel/d/a/d_a_do/d_a_do/daDo_other_bg_check2__FP8do_classP4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8066F278-8066F27C 000008 0001+03 3/3 0/0 0/0 .bss             @1109 */
