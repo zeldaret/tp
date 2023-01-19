@@ -694,7 +694,18 @@ static u8 lit_3657[12];
 
 /* 8066F2C4-8066F2E4 000054 0020+00 11/12 0/0 0/0 .bss             l_HIO */
 // likely is a more complicated struct that needs to be mapped
-static f32 l_HIO[8];
+struct do_class_HIO {
+    /* 0x00 */ f32 field_0x00;
+    /* 0x04 */ f32 field_0x04;
+    /* 0x08 */ f32 field_0x08;
+    /* 0x0C */ f32 field_0x0c;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ u8 field_0x1c;
+    /* 0x1D */ u8 field_0x1d;
+};
+static do_class_HIO l_HIO;
 
 /* 8066F2E4-8066F2F8 000074 0014+00 1/2 0/0 0/0 .bss             target_info */
 static fopAc_ac_c* target_info[5];
@@ -886,8 +897,6 @@ static bool water_check(do_class* i_dogP) {
     } else {
         return 0;
     }
-
-
 }
 #else
 #pragma push
@@ -1352,6 +1361,46 @@ COMPILER_STRIP_GATE(0x8066EEA4, &lit_4378);
 #pragma pop
 
 /* 8066973C-806698D0 001ADC 0194+00 1/1 0/0 0/0 .text            do_walk_run__FP8do_class */
+#ifndef NONMATCHING
+static void do_walk_run(do_class* i_dogP) {
+    i_dogP->field_0x616 = 1;
+    i_dogP->field_0x648 = FLOAT_LABEL(lit_4344);
+
+    switch (i_dogP->mStayStatus) {
+        case 0: {
+            i_dogP->field_0x5e8 = FLOAT_LABEL(lit_4377);
+
+            anm_init(i_dogP,22,FLOAT_LABEL(lit_4192),2,i_dogP->field_0x5e8);
+            i_dogP->mStayStatus++;
+        }
+        case 1: {
+            cLib_addCalc2(&i_dogP->field_0x5e8,FLOAT_LABEL(lit_3665),FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_4345));
+            i_dogP->mpMorf->setPlaySpeed(i_dogP->field_0x5e8);
+
+            if (i_dogP->field_0x5e8 >= FLOAT_LABEL(lit_3665) ) {
+                i_dogP->mActionStatus = do_class::ACTION_STATUS_RUN;
+                i_dogP->mStayStatus = 0;
+
+             
+                i_dogP->mSound.startSound(JAISoundID(327693),0,-1);
+            }
+        }
+        default: {
+            cLib_addCalc2(&i_dogP->mSpeedF, i_dogP->field_0x5e8 * l_HIO.field_0x0c, FLOAT_LABEL(lit_3662), FLOAT_LABEL(lit_4342) * l_HIO.field_0x0c);
+            cLib_addCalcAngleS2(&i_dogP->current.angle.y,i_dogP->field_0x5cc,8,0x400);
+
+            if (i_dogP->field_0x5c8 < FLOAT_LABEL(lit_4378) * i_dogP->field_0x67c) {
+
+                l_HIO.field_0x1c != 0 ? i_dogP->mActionStatus = do_class::ACTION_STATUS_WAIT_2 : i_dogP->mActionStatus = do_class::ACTION_STATUS_WAIT_1;
+                i_dogP->mStayStatus = 0;
+            }
+
+            area_check(i_dogP);
+            move_dansa_check(i_dogP,i_dogP->mSpeedF);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1360,6 +1409,7 @@ static asm void do_walk_run(do_class* i_dogP) {
 #include "asm/rel/d/a/d_a_do/d_a_do/do_walk_run__FP8do_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8066EEA8-8066EEAC 0000C0 0004+00 0/3 0/0 0/0 .rodata          @4400 */
@@ -1723,7 +1773,7 @@ static void do_swim(do_class* i_dogP) {
         }
     }
 
-    cLib_addCalc2(&i_dogP->mSpeedF,l_HIO[5],FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_4588)*l_HIO[5]);
+    cLib_addCalc2(&i_dogP->mSpeedF,l_HIO.field_0x14,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_4588)*l_HIO.field_0x14);
     cLib_addCalcAngleS2(&i_dogP->current.angle.y,i_dogP->field_0x5cc,16,0x100);
 
     i_dogP->mSpeed.y = FLOAT_LABEL(lit_3682);
