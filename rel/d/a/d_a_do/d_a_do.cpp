@@ -5,6 +5,7 @@
 
 #include "rel/d/a/d_a_do/d_a_do.h"
 #include "JSystem/JMath/JMath.h"
+#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
@@ -1825,7 +1826,6 @@ static asm void do_carry(do_class* i_dogP) {
 #pragma pop
 
 /* 8066CDEC-8066CEC4 00518C 00D8+00 1/1 0/0 0/0 .text            do_message__FP8do_class */
-#ifndef NONMATCHING
 static void do_message(do_class* i_dogP) {
     i_dogP->field_0x648 = FLOAT_LABEL(lit_4191);
 
@@ -1850,16 +1850,6 @@ static void do_message(do_class* i_dogP) {
     }
 
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void do_message(do_class* i_dogP) {
-    nofralloc
-#include "asm/rel/d/a/d_a_do/d_a_do/do_message__FP8do_class.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 8066EF70-8066EF74 000188 0004+00 0/2 0/0 0/0 .rodata          @5948 */
@@ -1880,14 +1870,32 @@ static asm void action(do_class* i_dogP) {
 #pragma pop
 
 /* 8066DD48-8066DE64 0060E8 011C+00 1/1 0/0 0/0 .text            message__FP8do_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void message(do_class* i_dogP) {
-    nofralloc
-#include "asm/rel/d/a/d_a_do/d_a_do/message__FP8do_class.s"
+static void message(do_class* i_dogP) {
+    if (i_dogP->field_0xc06 != 0) {
+        i_dogP->field_0x604 = 10;
+
+        if (i_dogP->mMsg.doFlow(i_dogP,0,0)) {
+            i_dComIfGp_event_reset();
+            i_dogP->field_0xc06 = 0;
+        }
+
+    } else {
+        if (i_dComIfGp_event_runCheck() && i_dogP->mEvtInfo.checkCommandTalk()) {
+            i_dogP->mMsg.init(i_dogP,i_dogP->field_0xc08,0,0);
+            i_dogP->field_0xc06 = 1;
+        }
+
+        if (i_dogP->field_0xc05 == 2 && i_dogP->field_0xc08 != -1 && daPy_py_c::i_checkNowWolf()) {
+            fopAcM_OnStatus(i_dogP,0);
+            cLib_onBit(i_dogP->mAttentionInfo.mFlags,10);
+            i_dogP->mEvtInfo.i_onCondition(1);
+        } else {
+            fopAcM_OffStatus(i_dogP,0);
+            cLib_offBit(i_dogP->mAttentionInfo.mFlags,10);
+        }
+        
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8066EF74-8066EF78 00018C 0004+00 0/0 0/0 0/0 .rodata          @5949 */

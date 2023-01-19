@@ -80,7 +80,10 @@ public:
     /* 0xA48 */ dCcD_GObjInf mCcD_GObjInf2;
     /* 0xB4C */ u8 field_0xb4c[152];
     /* 0xBE4 */ Z2SoundObjSimple mSound;
-    /* 0xC04 */ u8 field_0xc04[8];
+    /* 0xC04 */ u8 field_0xc04;
+    /* 0xC05 */ s8 field_0xc05;
+    /* 0xC06 */ s16 field_0xc06;
+    /* 0xC08 */ s16 field_0xc08;
     /* 0xC0C */ dMsgFlow_c mMsg;
     /* 0xC58 */ u8 field_0xc58[104];
     /* 0xCC0 */ u8 field_0xcc0;
