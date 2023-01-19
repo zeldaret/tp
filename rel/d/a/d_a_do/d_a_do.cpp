@@ -1682,6 +1682,14 @@ static asm void do_swim(do_class* i_dogP) {
 #pragma pop
 
 /* 8066B774-8066B7C0 003B14 004C+00 2/2 0/0 0/0 .text            s_c_sub__FPvPv */
+#ifndef NONMATCHING
+static void* s_c_sub(void* param_0, void* param_1) {
+    if (fopAcM_IsActor(param_0) != 0 && fopAcM_GetName(param_0) == 0xed) {
+        return param_0;
+    }
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1690,6 +1698,7 @@ static asm void s_c_sub(void* param_0, void* param_1) {
 #include "asm/rel/d/a/d_a_do/d_a_do/s_c_sub__FPvPv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8066EF38-8066EF3C 000150 0004+00 0/1 0/0 0/0 .rodata          @5110 */
