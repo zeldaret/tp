@@ -23,23 +23,25 @@ class do_class : public fopAc_ac_c {
 public:
     /* 0x56C */ u8 field_0x56c[68];
     /* 0x5AC */ request_of_phase_process_class mPhase;
-    /* 0x5B4 */ u8 field_0x5b4[2];
+    /* 0x5B4 */ u8 field_0x5b4;
+    /* 0x5B5 */ u8 field_0x5b5;
     /* 0x5B6 */ u8 field_0x5b6;
     /* 0x5B7 */ u8 field_0x5b7[17];
     /* 0x5C8 */ float field_0x5c8;
-    /* 0x5CC */ u8 field_0x5cc[4];
+    /* 0x5CC */ s16 field_0x5cc;
+    /* 0x5CE */ u8 field_0x5ce[2];
     /* 0x5D8 */ mDoExt_McaMorf* mpMorf;
     /* 0x5D4 */ u8 field_0x5d4[8];
     /* 0x5DC */ u8 field_0x5dc[8];
-    /* 0x5E4 */ s32 field_0x5e4;
+    /* 0x5E4 */ s32 mResIdx;
     /* 0x5E8 */ float field_0x5e8;
     /* 0x5EC */ float field_0x5ec;
     /* 0x5F0 */ u8 field_0x5f0[2];
-    /* 0x5F2 */ s16 field_0x5f2;
-    /* 0x5F4 */ u8 field_0x5f4[2];
-    /* 0x5F6 */ s16 field_0x5f6;
+    /* 0x5F2 */ s16 mActionStatus;
+    /* 0x5F4 */ u16 field_0x5f4;
+    /* 0x5F6 */ s16 mStayStatus;
     /* 0x5F8 */ u8 field_0x5f8[4];
-    /* 0x5FC */ u16 field_0x5fc;
+    /* 0x5FC */ s16 field_0x5fc;
     /* 0x5FE */ u8 field_0x5fe[2];
     /* 0x600 */ s16 field_0x600;
     /* 0x602 */ u8 field_0x602[2];
@@ -47,11 +49,12 @@ public:
     /* 0x606 */ u8 field_0x606[2];
     /* 0x608 */ float field_0x608;
     /* 0x60C */ u8 field_0x60c[8];
-    /* 0x614 */ u16 field_0x614;
-    /* 0x616 */ u8 field_0x616[30];
+    /* 0x614 */ s16 field_0x614;
+    /* 0x616 */ u8 field_0x616;
+    /* 0x617 */ u8 field_0x617[29];
     /* 0x634 */ u32 field_0x634;
     /* 0x638 */ u8 field_0x638[16];
-    /* 0x648 */ u32 field_0x648;
+    /* 0x648 */ f32 field_0x648;
     /* 0x64c */ u8 field_0x64c[12];
     /* 0x658 */ float field_0x658;
     /* 0x65C */ float field_0x65c;
@@ -83,7 +86,27 @@ public:
     /* 0xCC0 */ u8 field_0xcc0;
 
 public:
+    enum {
+        ACTION_STATUS_STAY,
+        ACTION_STATUS_WALK,
+        ACTION_STATUS_WALK_RUN,
+        ACTION_STATUS_RUN,
+        ACTION_STATUS_RUN_WALK,
+        ACTION_STATUS_FOOD,
+        ACTION_STATUS_WAIT_1,
+        ACTION_STATUS_WAIT_2,
+        ACTION_STATUS_SIT,
+        ACTION_STATUS_A_SWIM = 10,
+        ACTION_STATUS_SWIM = 20,
+        ACTION_STATUS_HELP,
+        ACTION_STATUS_BOAT,
+        ACTION_STATUS_HANG = 30,
+        ACTION_STATUS_CARRY = 35,
+        ACTION_STATUS_MESSAGE = 39
+    };
+
     /* 8066EAE4 */ do_class();
+    
 };
 
 class daDo_HIO_c : public do_class {

@@ -439,11 +439,11 @@ SECTION_DEAD static char const* const stringBase_8066EFB0 = "Do";
 #pragma pop
 
 /* 80667DA8-80667E68 000148 00C0+00 16/16 0/0 0/0 .text            anm_init__FP8do_classifUcf */
-static void anm_init(do_class* i_dogP, int param_1, f32 param_2, u8 param_3, f32 param_4) {
+static void anm_init(do_class* i_dogP, int i_resIdx, f32 param_2, u8 param_3, f32 param_4) {
     if (!(i_dogP->field_0x608 > FLOAT_LABEL(lit_3662))) {
-        i_dogP->mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Do", param_1), param_3,
+        i_dogP->mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Do", i_resIdx), param_3,
                                param_2, param_4, FLOAT_LABEL(lit_3682), FLOAT_LABEL(lit_3683), 0);
-        i_dogP->field_0x5e4 = param_1;
+        i_dogP->mResIdx = i_resIdx;
     }
 }
 
@@ -656,7 +656,8 @@ static u8 struct_8066F2B4[4];
 static u8 lit_3657[12];
 
 /* 8066F2C4-8066F2E4 000054 0020+00 11/12 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[32];
+// likely is a more complicated struct that needs to be mapped
+static f32 l_HIO[8];
 
 /* 8066F2E4-8066F2F8 000074 0014+00 1/2 0/0 0/0 .bss             target_info */
 static fopAc_ac_c* target_info[5];
@@ -762,16 +763,16 @@ static void food_check(do_class* i_dogP) {
     i_dogP->mFoodBsPcId = search_food(i_dogP);
 
     if (fopAcM_SearchByID(i_dogP->mFoodBsPcId)) {
-        i_dogP->field_0x5f2 = 5;
-        i_dogP->field_0x5f6 = 0;
+        i_dogP->mActionStatus = do_class::ACTION_STATUS_FOOD;
+        i_dogP->mStayStatus = 0;
     }
 }
 
 /* 806685EC-80668624 00098C 0038+00 1/1 0/0 0/0 .text            do_carry_check__FP8do_class */
 static int do_carry_check(do_class* i_dogP) {
-    if (i_dogP->field_0x5f2 != 0x23 && fopAcM_checkCarryNow(i_dogP)) {
-        i_dogP->field_0x5f2 = 0x23;
-        i_dogP->field_0x5f6 = 0;
+    if (i_dogP->mActionStatus != do_class::ACTION_STATUS_CARRY && fopAcM_checkCarryNow(i_dogP)) {
+        i_dogP->mActionStatus = do_class::ACTION_STATUS_CARRY;
+        i_dogP->mStayStatus = 0;
         return 1;
     }
 
@@ -997,12 +998,12 @@ COMPILER_STRIP_GATE(0x8066EE3C, &lit_4069);
 /* 80668B18-80668BA0 000EB8 0088+00 4/4 0/0 0/0 .text            move_dansa_check__FP8do_classf */
 static int move_dansa_check(do_class* i_dogP, f32 param_1) {
     if (dansa_check2(i_dogP,FLOAT_LABEL(lit_4068)) != 0) {
-        i_dogP->field_0x5f2 = 6;
+        i_dogP->mActionStatus = do_class::ACTION_STATUS_WAIT_1;
 
         if (param_1 > FLOAT_LABEL(lit_4069)) {
-            i_dogP->field_0x5f6 = 10;
+            i_dogP->mStayStatus = 10;
         } else {
-            i_dogP->field_0x5f6 = 0;
+            i_dogP->mStayStatus = 0;
         }
 
         return 1;
@@ -1056,8 +1057,8 @@ static void area_check(do_class* i_dogP) {
 
     if (i_dogP->field_0x5b6 != 255) {
         if ((i_dogP->field_0x5b6 * 100.f * 2.0f) > pos_delta.abs()) {
-            i_dogP->field_0x5f2 = 1;
-            i_dogP->field_0x5f6 = -1;
+            i_dogP->mActionStatus = do_class::ACTION_STATUS_WALK;
+            i_dogP->mStayStatus = -1;
             i_dogP->field_0x600 = cM_rndF(100.0f) + 100.0f; // random value between 100 and 200
         }
     }
@@ -1082,6 +1083,97 @@ COMPILER_STRIP_GATE(0x8066EE60, &lit_4189);
 #pragma pop
 
 /* 80668D5C-80669050 0010FC 02F4+00 2/1 0/0 0/0 .text            do_stay__FP8do_class */
+#ifdef NONMATCHING
+// regalloc and float literals
+static void do_stay(do_class* i_dogP) {
+    switch (i_dogP->mStayStatus) {
+        case 0: {
+            if (i_dogP->field_0x5b4 == 0) {
+                anm_init(i_dogP,12,0.0f,2,2.0f); // fix float literals
+                i_dogP->mStayStatus++;
+                i_dogP->field_0x5fc = 10;
+            } else {
+                i_dogP->mActionStatus = do_class::ACTION_STATUS_WALK;
+                i_dogP->mStayStatus = 0;
+                return;
+            }
+        }
+        case 1: {
+            if (i_dogP->field_0x5fc == 0 && i_dogP->field_0x5c8 < l_HIO[6]) {
+                i_dogP->mStayStatus++;
+                i_dogP->field_0x5fc = cM_rndF(50.0) + 20.f; // fix float literals // random number between 20 and 70
+            }
+            break;
+        }
+        case 2: {
+            i_dogP->field_0x616 = 1;
+            i_dogP->field_0x614 = 0xe764;
+            i_dogP->field_0x648 = 1000.0f; // fix float literals
+            if (i_dogP->field_0x5fc == 0) {
+                anm_init(i_dogP,11,0.0f,0,2.0f); // fix float literals
+                i_dogP->mStayStatus++;
+            }
+            break;
+        }
+        case 3: {
+            i_dogP->field_0x616 = 1;
+            i_dogP->field_0x648 = 2000.0f; // fix float literals
+
+            if (i_dogP->mpMorf->isStop()) {
+                i_dogP->mActionStatus = do_class::ACTION_STATUS_WALK_RUN;
+                i_dogP->mStayStatus = 0;
+            }
+            break;
+        }
+        case 10: {
+            anm_init(i_dogP,12,0.0f,2,2.0f); // fix float literals
+            i_dogP->mStayStatus++;
+        }
+        case 11: {
+            i_dogP->field_0x616 = 1;
+            i_dogP->field_0x614 = 0xe764;
+            i_dogP->field_0x648 = 1000.0f; // fix float literals
+
+            if (i_dogP->field_0x658 > 30.0f) {
+                i_dogP->mStayStatus++;
+                i_dogP->field_0x5fc = cM_rndF(10.0) + 10.f; // fix float literals // random number between 10 and 20
+            }
+
+            if (i_dogP->field_0x5c8 > l_HIO[6] + 100.0f) { // fix float literals 
+                i_dogP->field_0x5f4 = 0;
+                i_dogP->mStayStatus = 0;
+            }
+            break;
+        }
+        case 12: {
+            i_dogP->field_0x616 = 1;
+            i_dogP->field_0x614 = 0xe764;
+            i_dogP->field_0x648 = 1500.0f;
+
+            if (i_dogP->field_0x658 > 30.0f) {
+                if (i_dogP->field_0x5fc == 0) {
+                    anm_init(i_dogP,11,0.0f,0,2.0f); // fix float literals
+                    i_dogP->mStayStatus = 13;
+                }
+            } else {
+                i_dogP->mStayStatus = 11;
+            }
+            break;
+        }
+        case 13: {
+            i_dogP->field_0x616 = 1;
+            i_dogP->field_0x648 = 1500.0f; // fix float literals
+
+            if (i_dogP->mpMorf->isStop()) {
+                i_dogP->mActionStatus = do_class::ACTION_STATUS_WAIT_1;
+                i_dogP->mStayStatus = 0;
+            }
+        }
+    }
+
+    cLib_addCalc0(&i_dogP->mSpeedF,1.0f,1.0f);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1090,6 +1182,7 @@ static asm void do_stay(do_class* i_dogP) {
 #include "asm/rel/d/a/d_a_do/d_a_do/do_stay__FP8do_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8066EE64-8066EE68 00007C 0004+00 0/4 0/0 0/0 .rodata          @4190 */
@@ -1732,6 +1825,32 @@ static asm void do_carry(do_class* i_dogP) {
 #pragma pop
 
 /* 8066CDEC-8066CEC4 00518C 00D8+00 1/1 0/0 0/0 .text            do_message__FP8do_class */
+#ifndef NONMATCHING
+static void do_message(do_class* i_dogP) {
+    i_dogP->field_0x648 = FLOAT_LABEL(lit_4191);
+
+    switch(i_dogP->mStayStatus) {
+        case 1: {
+            break;
+        }
+        case 0: {
+            anm_init(i_dogP,21,FLOAT_LABEL(lit_4027),2,FLOAT_LABEL(lit_3662));
+            i_dogP->mStayStatus++;
+            break;
+        }
+    }
+
+    cLib_addCalc0(&i_dogP->mSpeedF,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_3665));
+    i_dogP->field_0x616 = 1;
+    cLib_addCalcAngleS2(&i_dogP->current.angle.y,i_dogP->field_0x5cc,2,0x1000);
+    
+    if (i_dComIfGp_event_runCheck() == 0 && i_dogP->field_0x5c8 > FLOAT_LABEL(lit_3773)) {
+        i_dogP->mActionStatus = 0;
+        i_dogP->mStayStatus = 0;
+    }
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1740,6 +1859,7 @@ static asm void do_message(do_class* i_dogP) {
 #include "asm/rel/d/a/d_a_do/d_a_do/do_message__FP8do_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8066EF70-8066EF74 000188 0004+00 0/2 0/0 0/0 .rodata          @5948 */
