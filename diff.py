@@ -334,7 +334,7 @@ parser.add_argument(
     "--select-occurence",
     dest="select_occurence",
     type=int,
-    default=0,
+    default=None,
     help="If multiple occurence of the same symbol is found, use this to select the correct ocurrance."
 )
 parser.add_argument(
@@ -426,6 +426,7 @@ class Config:
     source_old_binutils: bool
     diff_section: str
     inlines: bool
+    select_occurence: Optional[int]
     max_function_size_lines: int
     max_function_size_bytes: int
 
@@ -515,6 +516,7 @@ def create_config(args: argparse.Namespace, project: ProjectSettings) -> Config:
         source_old_binutils=args.source_old_binutils,
         diff_section=args.diff_section,
         inlines=args.inlines,
+        select_occurence=args.select_occurence,
         max_function_size_lines=args.max_lines,
         max_function_size_bytes=args.max_lines * 4,
         # Display options
@@ -1155,7 +1157,12 @@ def search_map_file(
             fail(f"Internal error while parsing map file")
 
         if len(cands) > 1:
-            fail(f"Found multiple occurrences of function {fn_name} in map file.")
+            if config.select_occurence is None :
+                fail(f"Found {len(cands)} occurrences of function {fn_name} in map file.")
+            elif config.select_occurence >= len(cands):
+                fail(f"Could not choose index {config.select_occurence} of {fn_name} in map file out of {len(cands)}.")
+            else:
+                return cands[config.select_occurence] 
         if len(cands) == 1:
             return cands[0]
     elif project.map_format == "mw":
@@ -1171,7 +1178,12 @@ def search_map_file(
             contents,
         )
         if len(find) > 1:
-            fail(f"Found multiple occurrences of function {fn_name} in map file.")
+            if config.select_occurence is None:
+                fail(f"Found {len(find)} occurrences of function {fn_name} in map file.")
+            elif config.select_occurence >= len(find):
+                fail(f"Could not choose index {config.select_occurence} of {fn_name} in map file out of {len(find)}.")
+            else:
+                find = [find[config.select_occurence]]
         if len(find) == 1:
             rom = int(find[0][1], 16)
             objname = find[0][2]
@@ -1209,7 +1221,11 @@ def search_map_file(
             contents,
         )
         if len(find) > 1:
-            fail(f"Found multiple occurrences of function {fn_name} in map file.")
+            fail(f"Found {len(find)} occurrences of function {fn_name} in map file.")
+        elif config.select_occurence >= len(find):
+            fail(f"Could not choose index {config.select_occurence} of {fn_name} in map file out of {len(find)}.")
+        else:
+            find = [find[config.select_occurence]]
         if len(find) == 1:
             names_find = re.search(r"(\S+) ... (\S+)", find[0])
             assert names_find is not None
