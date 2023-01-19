@@ -296,7 +296,6 @@ static asm void PADReceiveCheckCallback(s32 chan, u32 type) {
 #pragma pop
 
 /* 8034EB2C-8034EC3C 34946C 0110+00 2/2 1/1 0/0 .text            PADReset */
-#ifdef NONMATCHING
 BOOL PADReset(u32 mask) {
     BOOL enabled;
     u32 diableBits;
@@ -309,6 +308,7 @@ BOOL PADReset(u32 mask) {
     ResettingBits |= mask;
     diableBits = ResettingBits & EnabledBits;
     EnabledBits &= ~mask;
+    BarrelBits &= ~mask;
 
     if (Spec == PAD_SPEC_4) {
         RecalibrateBits |= mask;
@@ -322,19 +322,8 @@ BOOL PADReset(u32 mask) {
     OSRestoreInterrupts(enabled);
     return TRUE;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL PADReset(u32 mask) {
-    nofralloc
-#include "asm/dolphin/pad/Pad/PADReset.s"
-}
-#pragma pop
-#endif
 
 /* 8034EC3C-8034ED50 34957C 0114+00 1/1 1/1 0/0 .text            PADRecalibrate */
-#ifdef NONMATCHING
 BOOL PADRecalibrate(u32 mask) {
     BOOL enabled;
     u32 disableBits;
@@ -345,9 +334,9 @@ BOOL PADRecalibrate(u32 mask) {
     PendingBits = 0;
     mask &= ~(WaitingBits | CheckingBits);
     ResettingBits |= mask;
-    BarrelBits &= ~mask;
     disableBits = ResettingBits & EnabledBits;
     EnabledBits &= ~mask;
+    BarrelBits &= ~mask;
 
     if (!(UnkVal & 0x40)) {
         RecalibrateBits |= mask;
@@ -360,16 +349,6 @@ BOOL PADRecalibrate(u32 mask) {
     OSRestoreInterrupts(enabled);
     return TRUE;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL PADRecalibrate(u32 mask) {
-    nofralloc
-#include "asm/dolphin/pad/Pad/PADRecalibrate.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 803D1B90-803D1BA0 -00001 0010+00 1/1 0/0 0/0 .data            ResetFunctionInfo */
@@ -531,7 +510,6 @@ u32 PADRead(PADStatus* status) {
 }
 
 /* 8034F1A0-8034F258 349AE0 00B8+00 0/0 2/2 0/0 .text            PADControlMotor */
-#ifdef NONMATCHING
 void PADControlMotor(s32 chan, u32 command) {
     BOOL enabled;
     u32 chanBit;
@@ -543,21 +521,15 @@ void PADControlMotor(s32 chan, u32 command) {
             command = PAD_MOTOR_STOP;
         }
 
+        if (UnkVal & 0x20) {
+             command = PAD_MOTOR_STOP;
+        }
+
         SISetCommand(chan, (0x40 << 16) | AnalogMode | (command & (0x00000001 | 0x00000002)));
         SITransferCommands();
     }
     OSRestoreInterrupts(enabled);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void PADControlMotor(s32 channel, u32 command) {
-    nofralloc
-#include "asm/dolphin/pad/Pad/PADControlMotor.s"
-}
-#pragma pop
-#endif
 
 /* 8034F258-8034F2B8 349B98 0060+00 1/1 1/1 0/0 .text            PADSetSpec */
 void PADSetSpec(u32 spec) {
