@@ -78,7 +78,9 @@ public:
     /* 0x910 */ dCcD_GObjInf mCcD_GObjInf1;
     /* 0xA14 */ u8 field_0xa14[52];
     /* 0xA48 */ dCcD_GObjInf mCcD_GObjInf2;
-    /* 0xB4C */ u8 field_0xb4c[152];
+    /* 0xB4C */ u8 field_0xb4c[128];
+    /* 0xBCC */ u32 field_0xbcc;
+    /* 0xBD0 */ u8 field_0xbd0[20];
     /* 0xBE4 */ Z2SoundObjSimple mSound;
     /* 0xC04 */ u8 field_0xc04;
     /* 0xC05 */ s8 field_0xc05;

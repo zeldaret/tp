@@ -1672,6 +1672,37 @@ COMPILER_STRIP_GATE(0x8066EF34, &lit_4993);
 #pragma pop
 
 /* 8066B650-8066B774 0039F0 0124+00 1/1 0/0 0/0 .text            do_swim__FP8do_class */
+#ifndef NONMATCHING
+static void do_swim(do_class* i_dogP) {
+    Vec pos;
+    i_dogP->field_0x616 = 1;
+    i_dogP->field_0x648 = FLOAT_LABEL(lit_4191);
+
+    switch(i_dogP->mStayStatus) {
+        case 1: {
+            break;
+        }
+        case 0: {
+            anm_init(i_dogP,19,FLOAT_LABEL(lit_4027),2,cM_rndF(FLOAT_LABEL(lit_4991))+FLOAT_LABEL(lit_4340));
+            i_dogP->mStayStatus++;
+            break;
+        }
+    }
+
+    cLib_addCalc2(&i_dogP->mSpeedF,l_HIO[5],FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_4588)*l_HIO[5]);
+    cLib_addCalcAngleS2(&i_dogP->current.angle.y,i_dogP->field_0x5cc,16,0x100);
+
+    i_dogP->mSpeed.y = FLOAT_LABEL(lit_3682);
+    i_dogP->mGravity = FLOAT_LABEL(lit_3682);
+
+    cLib_addCalc2(&i_dogP->current.pos.y,i_dogP->field_0x65c - FLOAT_LABEL(lit_4992),FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_4027));
+
+    pos = i_dogP->mEyePos;
+    pos.y = i_dogP->field_0x65c;
+
+    fopAcM_effHamonSet(&i_dogP->field_0xbcc,(cXyz*)&pos,FLOAT_LABEL(lit_4993),FLOAT_LABEL(lit_4402));
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1680,25 +1711,15 @@ static asm void do_swim(do_class* i_dogP) {
 #include "asm/rel/d/a/d_a_do/d_a_do/do_swim__FP8do_class.s"
 }
 #pragma pop
+#endif
 
 /* 8066B774-8066B7C0 003B14 004C+00 2/2 0/0 0/0 .text            s_c_sub__FPvPv */
-#ifndef NONMATCHING
 static void* s_c_sub(void* param_0, void* param_1) {
     if (fopAcM_IsActor(param_0) != 0 && fopAcM_GetName(param_0) == 0xed) {
         return param_0;
     }
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void s_c_sub(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/rel/d/a/d_a_do/d_a_do/s_c_sub__FPvPv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 8066EF38-8066EF3C 000150 0004+00 0/1 0/0 0/0 .rodata          @5110 */
