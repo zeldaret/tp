@@ -1451,7 +1451,6 @@ COMPILER_STRIP_GATE(0x8066EEC0, &lit_4406);
 #pragma pop
 
 /* 806698D0-80669A1C 001C70 014C+00 1/1 0/0 0/0 .text            do_run__FP8do_class */
-#ifndef NONMATCHING
 static void do_run(do_class* i_dogP) {
     i_dogP->field_0x616 = 1;
     i_dogP->field_0x648 = FLOAT_LABEL(lit_4400);
@@ -1481,16 +1480,6 @@ static void do_run(do_class* i_dogP) {
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void do_run(do_class* i_dogP) {
-    nofralloc
-#include "asm/rel/d/a/d_a_do/d_a_do/do_run__FP8do_class.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 8066EEC4-8066EEC8 0000DC 0004+00 0/1 0/0 0/0 .rodata          @4435 */
@@ -1501,14 +1490,42 @@ COMPILER_STRIP_GATE(0x8066EEC4, &lit_4435);
 #pragma pop
 
 /* 80669A1C-80669B80 001DBC 0164+00 1/1 0/0 0/0 .text            do_run_walk__FP8do_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void do_run_walk(do_class* i_dogP) {
-    nofralloc
-#include "asm/rel/d/a/d_a_do/d_a_do/do_run_walk__FP8do_class.s"
+static void do_run_walk(do_class* i_dogP) {
+    i_dogP->field_0x616 = 1;
+    i_dogP->field_0x648 = FLOAT_LABEL(lit_4344);
+
+    switch (i_dogP->mStayStatus) {
+        case 0: {
+            i_dogP->field_0x5e8 = FLOAT_LABEL(lit_4336);
+
+            anm_init(i_dogP,22,FLOAT_LABEL(lit_4194),2,i_dogP->field_0x5e8);
+            i_dogP->mStayStatus++;
+        }
+        case 1: {
+            cLib_addCalc2(&i_dogP->field_0x5e8,FLOAT_LABEL(lit_4401),FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_4345));
+            i_dogP->mpMorf->setPlaySpeed(i_dogP->field_0x5e8);
+        }
+        default: {
+            cLib_addCalc2(&i_dogP->mSpeedF, i_dogP->field_0x5e8 * l_HIO.field_0x0c, FLOAT_LABEL(lit_3662), FLOAT_LABEL(lit_4027));
+            cLib_addCalcAngleS2(&i_dogP->current.angle.y,i_dogP->field_0x5cc,8,0x400);
+
+            if (i_dogP->field_0x5c8 < FLOAT_LABEL(lit_4378) * i_dogP->field_0x67c) {
+
+                l_HIO.field_0x1c != 0 ? i_dogP->mActionStatus = do_class::ACTION_STATUS_WAIT_2 : i_dogP->mActionStatus = do_class::ACTION_STATUS_WAIT_1;
+                i_dogP->mStayStatus = 0;
+
+                
+            } else {
+                if (i_dogP->field_0x5c8 > FLOAT_LABEL(lit_4435) * i_dogP->field_0x67c) {
+                    i_dogP->mActionStatus = do_class::ACTION_STATUS_RUN;
+                    i_dogP->mStayStatus = 0;
+                }
+            }
+            area_check(i_dogP);
+            move_dansa_check(i_dogP,i_dogP->mSpeedF);
+        }
+    }
 }
-#pragma pop
 
 /* 80669B80-8066A1C4 001F20 0644+00 2/1 0/0 0/0 .text            do_wait_1__FP8do_class */
 #pragma push
