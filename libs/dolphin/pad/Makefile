@@ -37,8 +37,8 @@ $(BUILD_DIR)/libs/dolphin/pad/%.o: libs/dolphin/pad/%.c $(BUILD_DIR)/libs/dolphi
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
-	@$(FRANK_COMPILER) $(LIBDVD_A_CFLAGS) -c -o $(@:.o=.po) $(basename $@).c
-	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(LIBPAD_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
+	@$(FRANK_CC) $(LIBDVD_A_CFLAGS) -c -o $(@:.o=.po) $(basename $@).c
+	@$(DOLPHIN_LIB_CC) $(LIBPAD_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
 	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
 	@echo Frank is fixing $@
 	@$(PYTHON) $(FRANK) $@ $(@:.o=.po) $@
