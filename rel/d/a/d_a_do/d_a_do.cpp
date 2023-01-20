@@ -1451,41 +1451,31 @@ COMPILER_STRIP_GATE(0x8066EEC0, &lit_4406);
 #pragma pop
 
 /* 806698D0-80669A1C 001C70 014C+00 1/1 0/0 0/0 .text            do_run__FP8do_class */
-#ifdef NONMATCHING
+#ifndef NONMATCHING
 static void do_run(do_class* i_dogP) {
     i_dogP->field_0x616 = 1;
     i_dogP->field_0x648 = FLOAT_LABEL(lit_4400);
 
     switch (i_dogP->mStayStatus) {
         case 0: {
-            i_dogP->field_0x5e8 = FLOAT_LABEL(lit_4377);
-            i_dogP->field_0x5ec = FLOAT_LABEL(lit_3662);
+            i_dogP->field_0x5e8 = FLOAT_LABEL(lit_3662);
+            i_dogP->field_0x5ec = cM_rndF(FLOAT_LABEL(lit_4402))+FLOAT_LABEL(lit_4401);
 
-            anm_init(i_dogP,22,FLOAT_LABEL(lit_4192),2,i_dogP->field_0x5e8);
+            anm_init(i_dogP,14,FLOAT_LABEL(lit_3665),2,FLOAT_LABEL(lit_4403)*i_dogP->field_0x5e8);
             i_dogP->mStayStatus++;
         }
         case 1: {
-            cLib_addCalc2(&i_dogP->field_0x5e8,FLOAT_LABEL(lit_3665),FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_4345));
+            cLib_addCalc2(&i_dogP->field_0x5e8,i_dogP->field_0x5ec,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_4404));
             i_dogP->mpMorf->setPlaySpeed(i_dogP->field_0x5e8);
 
-            if (i_dogP->field_0x5e8 >= FLOAT_LABEL(lit_3665) ) {
-                i_dogP->mActionStatus = do_class::ACTION_STATUS_RUN;
+            if (i_dogP->field_0x5c8 < FLOAT_LABEL(lit_4405)*i_dogP->field_0x67c) {
+                i_dogP->mActionStatus = do_class::ACTION_STATUS_RUN_WALK;
                 i_dogP->mStayStatus = 0;
-
-             
-                // i_dogP->mSound.startSosund(JAISoundID(327693),0,-1);
             }
         }
         default: {
-            cLib_addCalc2(&i_dogP->mSpeedF, i_dogP->field_0x5e8 * l_HIO.field_0x0c, FLOAT_LABEL(lit_3662), FLOAT_LABEL(lit_4342) * l_HIO.field_0x0c);
-            cLib_addCalcAngleS2(&i_dogP->current.angle.y,i_dogP->field_0x5cc,8,0x400);
-
-            if (i_dogP->field_0x5c8 < FLOAT_LABEL(lit_4378) * i_dogP->field_0x67c) {
-
-                l_HIO.field_0x1c != 0 ? i_dogP->mActionStatus = do_class::ACTION_STATUS_WAIT_2 : i_dogP->mActionStatus = do_class::ACTION_STATUS_WAIT_1;
-                i_dogP->mStayStatus = 0;
-            }
-
+            cLib_addCalc2(&i_dogP->mSpeedF, i_dogP->field_0x5e8 * l_HIO.field_0x10 * FLOAT_LABEL(lit_4406), FLOAT_LABEL(lit_3662), FLOAT_LABEL(lit_4342) * l_HIO.field_0x10);
+            cLib_addCalcAngleS2(&i_dogP->current.angle.y,i_dogP->field_0x5cc,8,0x800);
             area_check(i_dogP);
             move_dansa_check(i_dogP,i_dogP->mSpeedF);
         }
