@@ -7,8 +7,6 @@
 extern "C" {
 #endif
 
-vu32 __DIRegs[16] : 0xCC006000;
-
 typedef enum DVDState {
     DVD_STATE_END = 0x0,
     DVD_STATE_BUSY = 0x1,
@@ -50,7 +48,6 @@ struct DVDFileInfo;
 struct DVDCommandBlock;
 typedef void (*DVDCBCallback)(s32 result, struct DVDCommandBlock* block);
 typedef void (*DVDCallback)(s32 result, struct DVDFileInfo* info);
-typedef void (*DVDLowCallback)(u32 intType);
 
 typedef struct DVDCommandBlock {
     /* 0x00 */ struct DVDCommandBlock* next;

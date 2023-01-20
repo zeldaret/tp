@@ -179,6 +179,16 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
         )
         sys.exit(1)
 
+    c125e = compilers.joinpath("1.2.5e")
+    if not c125e.exists() or not c125e.is_dir():
+        LOG.error(
+            (
+                f"Unable to find patched MWCC compiler version 1.2.5e: missing directory '{c125e}'\n"
+                f"Check the README for instructions on how to obtain the compilers"
+            )
+        )
+        sys.exit(1)
+
     c27_lmgr326b = c27.joinpath("Lmgr326b.dll")
     if not c27_lmgr326b.exists() or not c27_lmgr326b.is_file():
         c27_lmgr326b = c27.joinpath("lmgr326b.dll")

@@ -120,7 +120,6 @@ error:
 }
 
 /* 80358788-803588CC 3530C8 0144+00 1/1 0/0 0/0 .text            CARDReadAsync */
-#ifdef NONMATCHING
 s32 CARDReadAsync(CARDFileInfo* fileInfo, void* buf, s32 length, s32 offset,
                   CARDCallback callback) {
     CARDControl* card;
@@ -138,10 +137,7 @@ s32 CARDReadAsync(CARDFileInfo* fileInfo, void* buf, s32 length, s32 offset,
 
     dir = __CARDGetDirBlock(card);
     ent = &dir[fileInfo->fileNo];
-    result = __CARDAccess(card, ent);
-    if (result == CARD_RESULT_NOPERM) {
-        result = __CARDIsWritable(ent);
-    }
+    result = __CARDIsReadable(card, ent);
 
     if (result < 0) {
         return __CARDPutControlBlock(card, result);
@@ -159,17 +155,6 @@ s32 CARDReadAsync(CARDFileInfo* fileInfo, void* buf, s32 length, s32 offset,
     }
     return result;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm s32 CARDReadAsync(CARDFileInfo* fileInfo, void* buf, s32 length, s32 offset,
-                             CARDCallback callback) {
-    nofralloc
-#include "asm/dolphin/card/CARDRead/CARDReadAsync.s"
-}
-#pragma pop
-#endif
 
 /* 803588CC-80358914 35320C 0048+00 0/0 2/2 0/0 .text            CARDRead */
 s32 CARDRead(CARDFileInfo* fileInfo, void* buf, s32 length, s32 offset) {

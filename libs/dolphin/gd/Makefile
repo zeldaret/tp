@@ -37,7 +37,7 @@ $(BUILD_DIR)/libs/dolphin/gd/%.o: libs/dolphin/gd/%.c $(BUILD_DIR)/libs/dolphin/
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
-	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(LIBGD_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
+	@$(DOLPHIN_LIB_CC) $(LIBGD_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
 	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
 	@echo Frank is fixing $@
 	@$(PYTHON) $(FRANK) $@ $@ $@
