@@ -604,19 +604,6 @@ s32 __CARDPutControlBlock(CARDControl* card, s32 result) {
     return result;
 }
 
-static inline s32 __CARDPutControlBlockI(CARDControl* card, s32 result) {
-    BOOL enabled;
-
-    enabled = OSDisableInterrupts();
-    if (card->attached) {
-        card->result = result;
-    } else if (card->result == CARD_RESULT_BUSY) {
-        card->result = result;
-    }
-    OSRestoreInterrupts(enabled);
-    return result;
-}
-
 /* 80353CD0-80353E20 34E610 0150+00 0/0 1/1 0/0 .text            CARDFreeBlocks */
 s32 CARDFreeBlocks(s32 chan, s32* byteNotUsed, s32* filesNotUsed) {
   CARDControl* card;
@@ -634,7 +621,7 @@ s32 CARDFreeBlocks(s32 chan, s32* byteNotUsed, s32* filesNotUsed) {
   fat = __CARDGetFatBlock(card);
   dir = __CARDGetDirBlock(card);
   if (fat == 0 || dir == 0) {
-    return __CARDPutControlBlockI(card, CARD_RESULT_BROKEN);
+    return __CARDPutControlBlock(card, CARD_RESULT_BROKEN);
   }
 
   if (byteNotUsed) {
@@ -651,7 +638,7 @@ s32 CARDFreeBlocks(s32 chan, s32* byteNotUsed, s32* filesNotUsed) {
     }
   }
 
-  return __CARDPutControlBlockI(card, CARD_RESULT_READY);
+  return __CARDPutControlBlock(card, CARD_RESULT_READY);
 }
 
 /* 80353E20-80353EB8 34E760 0098+00 0/0 7/7 0/0 .text            __CARDSync */

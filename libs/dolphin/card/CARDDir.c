@@ -24,10 +24,6 @@ CARDDir* __CARDGetDirBlock(CARDControl* card) {
     return card->currentDir;
 }
 
-inline CARDDir* __CARDGetDirBlockI(CARDControl* card) {
-    return card->currentDir;
-}
-
 /* 80355784-80355854 3500C4 00D0+00 1/1 0/0 0/0 .text            WriteCallback */
 static void WriteCallback(s32 chan, s32 result) {
     CARDControl* card;
@@ -71,7 +67,7 @@ static void EraseCallback(s32 chan, s32 result) {
         goto error;
     }
 
-    dir = __CARDGetDirBlockI(card);
+    dir = __CARDGetDirBlock(card);
     addr = ((u32)dir - (u32)card->workArea) / 0x2000 * card->sectorSize;
     result = __CARDWrite(chan, addr, 0x2000, dir, WriteCallback);
     if (result < 0) {
@@ -104,7 +100,7 @@ s32 __CARDUpdateDir(s32 chan, CARDCallback callback) {
         return CARD_RESULT_NOCARD;
     }
 
-    dir = __CARDGetDirBlockI(card);
+    dir = __CARDGetDirBlock(card);
     check = __CARDGetDirCheck(dir);
     ++check->checkCode;
     __CARDCheckSum(dir, 0x2000 - sizeof(u32), &check->checkSum, &check->checkSumInv);

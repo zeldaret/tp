@@ -34,12 +34,15 @@ LIBCARD_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/card/CARDStat.o \
 	$(BUILD_DIR)/libs/dolphin/card/CARDNet.o \
 
-LIBCARD_A_CFLAGS := \
+NO_INLINE_FILES = libs/dolphin/card/CARDOpen.c
+
+LIBCARD_A_CFLAGS = \
 	-Cpp_exceptions off \
 	-proc gekko \
 	-fp hard \
 	-nodefaults \
 	-str reuse \
+	$(if $(filter $(NO_INLINE_FILES), $<),,-inline auto) \
 	-RTTI off \
 	-maxerrors 5 \
 	-enum int $(INCLUDES) \

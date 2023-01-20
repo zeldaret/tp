@@ -52,27 +52,6 @@ void __CARDCheckSum(void* ptr, int length, u16* checksum, u16* checksumInv) {
     }
 }
 
-static inline void __CARDCheckSumI(void* ptr, int length, u16* checksum, u16* checksumInv) {
-    u16* p;
-    int i;
-
-    length /= sizeof(u16);
-    *checksum = *checksumInv = 0;
-
-    for (i = 0, p = ptr; i < length; i++, p++) {
-        *checksum += *p;
-        *checksumInv += ~*p;
-    }
-
-    if (*checksum == 0xFFFF) {
-        *checksum = 0;
-    }
-
-    if (*checksumInv == 0xFFFF) {
-        *checksumInv = 0;
-    }
-}
-
 /* 80355B90-80355E14 3504D0 0284+00 2/2 0/0 0/0 .text            VerifyID */
 static s32 VerifyID(CARDControl* card) {
   CARDID* id;
@@ -88,7 +67,7 @@ static s32 VerifyID(CARDControl* card) {
     return CARD_RESULT_BROKEN;
   }
 
-  __CARDCheckSumI(id, sizeof(CARDID) - sizeof(u32), &checksum, &checksumInv);
+  __CARDCheckSum(id, sizeof(CARDID) - sizeof(u32), &checksum, &checksumInv);
   if (id->checkSum != checksum || id->checkSumInv != checksumInv) {
     return CARD_RESULT_BROKEN;
   }
@@ -127,7 +106,7 @@ static s32 VerifyDir(CARDControl* card, int* outCurrent) {
   for (i = 0; i < 2; i++) {
     dir[i] = (CARDDir*)((u8*)card->workArea + (1 + i) * CARD_SYSTEM_BLOCK_SIZE);
     check[i] = __CARDGetDirCheck(dir[i]);
-    __CARDCheckSumI(dir[i], CARD_SYSTEM_BLOCK_SIZE - sizeof(u32), &checkSum, &checkSumInv);
+    __CARDCheckSum(dir[i], CARD_SYSTEM_BLOCK_SIZE - sizeof(u32), &checkSum, &checkSumInv);
     if (check[i]->checkSum != checkSum || check[i]->checkSumInv != checkSumInv) {
       ++errors;
       current = i;
@@ -170,7 +149,7 @@ static s32 VerifyFAT(CARDControl* card, int* outCurrent) {
   for (i = 0; i < 2; i++) {
     fatp = fat[i] = (u16*)((u8*)card->workArea + (3 + i) * CARD_SYSTEM_BLOCK_SIZE);
 
-    __CARDCheckSumI(&fatp[CARD_FAT_CHECKCODE], CARD_SYSTEM_BLOCK_SIZE - sizeof(u32), &checkSum,
+    __CARDCheckSum(&fatp[CARD_FAT_CHECKCODE], CARD_SYSTEM_BLOCK_SIZE - sizeof(u32), &checkSum,
                    &checkSumInv);
     if (fatp[CARD_FAT_CHECKSUM] != checkSum || fatp[CARD_FAT_CHECKSUMINV] != checkSumInv) {
       ++errors;
@@ -335,7 +314,7 @@ s32 CARDCheckExAsync(s32 chan, s32* xferBytes, CARDCallback callback) {
         updateOrphan = TRUE;
     }
     if (updateOrphan) {
-        __CARDCheckSumI(&card->currentFat[CARD_FAT_CHECKCODE], CARD_SYSTEM_BLOCK_SIZE - sizeof(u32),
+        __CARDCheckSum(&card->currentFat[CARD_FAT_CHECKCODE], CARD_SYSTEM_BLOCK_SIZE - sizeof(u32),
                        &card->currentFat[CARD_FAT_CHECKSUM],
                        &card->currentFat[CARD_FAT_CHECKSUMINV]);
     }

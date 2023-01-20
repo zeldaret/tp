@@ -215,12 +215,6 @@ inline void AIResetStreamSampleCount(void) { __AIRegs[0] = (__AIRegs[0] & ~0x20)
 
 inline void AISetStreamTrigger(u32 trigger) { __AIRegs[3] = trigger; }
 
-inline void AISetStreamVolRightInline(u8 volume) {
-  __AIRegs[1] = (__AIRegs[1] & ~0xFF00) | ((volume & 0xFF) << 8);
-}
-
-inline void AISetStreamVolLeftInline(u8 volume) { __AIRegs[1] = (__AIRegs[1] & ~0xFF) | (volume & 0xFF); }
-
 /* 80350084-803501F0 34A9C4 016C+00 0/0 1/1 0/0 .text            AIInit */
 // time assignments are weird
 #ifdef NONMATCHING
@@ -236,8 +230,8 @@ void AIInit(u8* stack) {
   max_wait = OSNanosecondsToTicks(63000);
   buffer = OSNanosecondsToTicks(3000);
 
-  AISetStreamVolRightInline(0);
-  AISetStreamVolLeftInline(0);
+  AISetStreamVolRight(0);
+  AISetStreamVolLeft(0);
   AISetStreamTrigger(0);
   AIResetStreamSampleCount();
   __AI_set_stream_sample_rate(1);

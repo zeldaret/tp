@@ -1149,24 +1149,6 @@ s32 DVDGetCommandBlockStatus(const DVDCommandBlock* block) {
     return retVal;
 }
 
-// if we make DVDGetCommandBlockStatus inline, code doesn't match
-static inline s32 DVDGetCommandBlockStatusInline(const DVDCommandBlock* block) {
-    BOOL enabled;
-    s32 retVal;
-
-    enabled = OSDisableInterrupts();
-
-    if (block->state == 3) {
-        retVal = 1;
-    } else {
-        retVal = block->state;
-    }
-
-    OSRestoreInterrupts(enabled);
-
-    return retVal;
-}
-
 /* 8034B1C8-8034B274 345B08 00AC+00 0/0 7/7 0/0 .text            DVDGetDriveStatus */
 s32 DVDGetDriveStatus() {
     BOOL enabled;
@@ -1186,7 +1168,7 @@ s32 DVDGetDriveStatus() {
         } else if (cmd == &DummyCommandBlock) {
             retVal = 0;
         } else {
-            retVal = DVDGetCommandBlockStatusInline(executing);
+            retVal = DVDGetCommandBlockStatus(executing);
         }
     }
 
@@ -1205,17 +1187,6 @@ BOOL DVDSetAutoInvalidation(BOOL autoInval) {
 
 /* 8034B284-8034B2D4 345BC4 0050+00 0/0 1/1 0/0 .text            DVDResume */
 void DVDResume(void) {
-    BOOL level;
-    level = OSDisableInterrupts();
-    PauseFlag = FALSE;
-    if (PausingFlag) {
-        PausingFlag = FALSE;
-        stateReady();
-    }
-    OSRestoreInterrupts(level);
-}
-
-inline void DVDResumeInline(void) {
     BOOL level;
     level = OSDisableInterrupts();
     PauseFlag = FALSE;
@@ -1466,7 +1437,7 @@ inline BOOL DVDCancelAllAsync(DVDCBCallback callback) {
       (*callback)(0, NULL);
   }
 
-  DVDResumeInline();
+  DVDResume();
   OSRestoreInterrupts(enabled);
   return retVal;
 }

@@ -14,6 +14,7 @@ LIBAI_A_CFLAGS := \
 	-fp hard \
 	-nodefaults \
 	-str reuse \
+	-inline auto \
 	-RTTI off \
 	-maxerrors 5 \
 	-enum int $(INCLUDES) \
