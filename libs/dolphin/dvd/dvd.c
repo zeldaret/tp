@@ -195,7 +195,7 @@ void stateReadingFST() {
     LastState = (stateFunc)stateReadingFST;
 
     if (bootInfo->fst_max_length < BB2.FSTLength) {
-        OSPanic("dvd.c", 661, "DVDChangeDisk(): FST in the new disc is too big.   ");
+        OSPanic(__FILE__, 661, "DVDChangeDisk(): FST in the new disc is too big.   ");
     }
 
     DVDLowRead(bootInfo->fst_location, OSRoundUp32B(BB2.FSTLength), BB2.FSTPosition,
@@ -574,7 +574,7 @@ static void cbForStateCheckID2(u32 intType) {
         LastState = (stateFunc)stateReadingFST;
 
         if (bootInfo->fst_max_length < BB2.FSTLength) {
-            OSPanic("dvd.c", 661, "DVDChangeDisk(): FST in the new disc is too big.   ");
+            OSPanic(__FILE__, 661, "DVDChangeDisk(): FST in the new disc is too big.   ");
         }
 
         DVDLowRead(bootInfo->fst_location, OSRoundUp32B(BB2.FSTLength), BB2.FSTPosition,

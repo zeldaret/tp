@@ -10,6 +10,9 @@
 #define REG_MAX 5
 #define REG(chan, idx) (__EXIRegs[((chan)*REG_MAX) + (idx)])
 
+#define CPR_CS(x) ((1u << (x)) << 7)
+#define CPR_CLK(x) ((x) << 4)
+
 #define EXI_0CR(tstart, dma, rw, tlen)                                                             \
     ((((u32)(tstart)) << 0) | (((u32)(dma)) << 1) | (((u32)(rw)) << 2) | (((u32)(tlen)) << 4))
 
@@ -28,10 +31,10 @@ static void EXTIntrruptHandler(s16 interrupt, OSContext* context);
 // External References:
 //
 
-void __OSEnableBarnacle();
+void __OSEnableBarnacle(u32, u32);
 void __div2i();
 void memmove();
-extern u8 __OSInIPL[4 + 4 /* padding */];
+extern s32 __OSInIPL;
 
 //
 // Declarations:
@@ -42,28 +45,27 @@ extern u8 __OSInIPL[4 + 4 /* padding */];
 static EXIControl Ecb[3];
 
 /* 80342C0C-80342D00 33D54C 00F4+00 4/4 0/0 0/0 .text            SetExiInterruptMask */
-#ifdef NONMATCHING
 static void SetExiInterruptMask(s32 chan, EXIControl* exi) {
     EXIControl* exi2;
 
     exi2 = &Ecb[2];
     switch (chan) {
     case 0:
-        if ((exi->exiCallback == 0 && exi2->exiCallback == 0) || (exi->state & STATE_LOCKED)) {
+        if ((exi->exiCallback == 0 && exi2->exiCallback == 0) || (exi->state & EXI_STATE_LOCKED)) {
             __OSMaskInterrupts(OS_INTERRUPTMASK_EXI_0_EXI | OS_INTERRUPTMASK_EXI_2_EXI);
         } else {
             __OSUnmaskInterrupts(OS_INTERRUPTMASK_EXI_0_EXI | OS_INTERRUPTMASK_EXI_2_EXI);
         }
         break;
     case 1:
-        if (exi->exiCallback == 0 || (exi->state & STATE_LOCKED)) {
+        if (exi->exiCallback == 0 || (exi->state & EXI_STATE_LOCKED)) {
             __OSMaskInterrupts(OS_INTERRUPTMASK_EXI_1_EXI);
         } else {
             __OSUnmaskInterrupts(OS_INTERRUPTMASK_EXI_1_EXI);
         }
         break;
     case 2:
-        if (__OSGetInterruptHandler(OS_INTR_PI_DEBUG) == 0 || (exi->state & STATE_LOCKED)) {
+        if (__OSGetInterruptHandler(OS_INTR_PI_DEBUG) == 0 || (exi->state & EXI_STATE_LOCKED)) {
             __OSMaskInterrupts(OS_INTERRUPTMASK_PI_DEBUG);
         } else {
             __OSUnmaskInterrupts(OS_INTERRUPTMASK_PI_DEBUG);
@@ -71,19 +73,8 @@ static void SetExiInterruptMask(s32 chan, EXIControl* exi) {
         break;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void SetExiInterruptMask(s32 chan, EXIControl* exi) {
-    nofralloc
-#include "asm/exi/EXIBios/SetExiInterruptMask.s"
-}
-#pragma pop
-#endif
 
 /* 80342D00-80342F5C 33D640 025C+00 2/2 9/9 0/0 .text            EXIImm */
-#ifdef NONMATCHING
 s32 EXIImm(s32 chan, void* buf, s32 len, u32 type, EXICallback callback) {
     EXIControl* exi = &Ecb[chan];
     BOOL enabled;
@@ -122,20 +113,8 @@ s32 EXIImm(s32 chan, void* buf, s32 len, u32 type, EXICallback callback) {
 
     return TRUE;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 EXIImm(s32 chan, void* buf, s32 len, u32 type, EXICallback callback) {
-    nofralloc
-#include "asm/exi/EXIBios/EXIImm.s"
-}
-#pragma pop
-#endif
 
 /* 80342F5C-80342FFC 33D89C 00A0+00 0/0 7/7 0/0 .text            EXIImmEx */
-// needs compiler lmw/lwz order patch
-#ifdef NONMATCHING
 s32 EXIImmEx(s32 chan, void* buf, s32 len, u32 mode) {
     s32 xLen;
 
@@ -154,19 +133,8 @@ s32 EXIImmEx(s32 chan, void* buf, s32 len, u32 mode) {
     }
     return TRUE;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 EXIImmEx(s32 chan, void* buf, s32 len, u32 mode) {
-    nofralloc
-#include "asm/exi/EXIBios/EXIImmEx.s"
-}
-#pragma pop
-#endif
 
 /* 80342FFC-803430E8 33D93C 00EC+00 0/0 4/4 0/0 .text            EXIDma */
-#ifdef NONMATCHING
 BOOL EXIDma(s32 chan, void* buf, s32 len, u32 type, EXICallback callback) {
     EXIControl* exi = &Ecb[chan];
     BOOL enabled;
@@ -193,146 +161,365 @@ BOOL EXIDma(s32 chan, void* buf, s32 len, u32 type, EXICallback callback) {
 
     return TRUE;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL EXIDma(s32 chan, void* buf, s32 len, u32 type, EXICallback callback) {
-    nofralloc
-#include "asm/exi/EXIBios/EXIDma.s"
+
+static void CompleteTransfer(s32 chan) {
+    EXIControl* exi = &Ecb[chan];
+    u8* buf;
+    u32 data;
+    int i;
+    int len;
+
+    if (exi->state & EXI_STATE_BUSY) {
+        if ((exi->state & EXI_STATE_IMM) && (len = exi->immLen)) {
+            buf = exi->immBuf;
+            data = REG(chan, 4);
+            for (i = 0; i < len; i++) {
+                *buf++ = (u8)((data >> ((3 - i) * 8)) & 0xff);
+            }
+        }
+        exi->state &= ~EXI_STATE_BUSY;
+    }
 }
-#pragma pop
-#endif
 
 /* 803430E8-80343334 33DA28 024C+00 2/2 9/9 0/0 .text            EXISync */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL EXISync(s32 chan) {
-    nofralloc
-#include "asm/exi/EXIBios/EXISync.s"
+BOOL EXISync(s32 chan) {
+  EXIControl* exi = &Ecb[chan];
+  BOOL rc = FALSE;
+  BOOL enabled;
+
+  while (exi->state & EXI_STATE_SELECTED) {
+    if (((REG(chan, 3) & 1) >> 0) == 0) {
+      enabled = OSDisableInterrupts();
+      if (exi->state & EXI_STATE_SELECTED) {
+        CompleteTransfer(chan);
+        if (__OSGetDIConfig() != 0xff || 
+            (OSGetConsoleType() & 0xf0000000) == 0x20000000 ||
+            exi->immLen != 4 ||
+            (REG(chan, 0) & 0x00000070) != (EXI_FREQ_1M << 4) ||
+            (REG(chan, 4) != EXI_USB_ADAPTER && REG(chan, 4) != EXI_IS_VIEWER &&
+             REG(chan, 4) != 0x04220001) ||
+            __OSDeviceCode == 0x8200) {
+          rc = TRUE;
+        }
+      }
+      OSRestoreInterrupts(enabled);
+      break;
+    }
+  }
+  return rc;
 }
-#pragma pop
+
 
 /* 80343334-8034337C 33DC74 0048+00 4/4 0/0 0/0 .text            EXIClearInterrupts */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm u32 EXIClearInterrupts(s32 chan, BOOL exi, BOOL tc, BOOL ext) {
-    nofralloc
-#include "asm/exi/EXIBios/EXIClearInterrupts.s"
+u32 EXIClearInterrupts(s32 chan, BOOL exi, BOOL tc, BOOL ext) {
+    u32 cpr;
+    u32 prev;
+
+    prev = cpr = REG(chan, 0);
+    cpr &= 0x7f5;
+    if (exi)
+        cpr |= 2;
+    if (tc)
+        cpr |= 8;
+    if (ext)
+        cpr |= 0x800;
+    REG(chan, 0) = cpr;
+    return prev;
 }
-#pragma pop
+
 
 /* 8034337C-803433F8 33DCBC 007C+00 0/0 6/6 0/0 .text            EXISetExiCallback */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm EXICallback EXISetExiCallback(s32 chan, EXICallback exiCallback) {
-    nofralloc
-#include "asm/exi/EXIBios/EXISetExiCallback.s"
+EXICallback EXISetExiCallback(s32 chan, EXICallback exiCallback) {
+    EXIControl* exi = &Ecb[chan];
+    EXICallback prev;
+    BOOL enabled;
+
+    enabled = OSDisableInterrupts();
+    prev = exi->exiCallback;
+    exi->exiCallback = exiCallback;
+
+    if (chan != 2) {
+        SetExiInterruptMask(chan, exi);
+    } else {
+        SetExiInterruptMask(0, &Ecb[0]);
+    }
+
+    OSRestoreInterrupts(enabled);
+    return prev;
 }
-#pragma pop
+
+s32 __EXIProbeStartTime[2] : (OS_BASE_CACHED | 0x30C0);
 
 /* 803433F8-8034356C 33DD38 0174+00 7/7 0/0 0/0 .text            __EXIProbe */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL __EXIProbe(s32 chan) {
-    nofralloc
-#include "asm/exi/EXIBios/__EXIProbe.s"
+static BOOL __EXIProbe(s32 chan) {
+    EXIControl* exi = &Ecb[chan];
+    BOOL enabled;
+    BOOL rc;
+    u32 cpr;
+    s32 t;
+
+    if (chan == 2) {
+        return TRUE;
+    }
+
+    rc = TRUE;
+    enabled = OSDisableInterrupts();
+    cpr = REG(chan, 0);
+    if (!(exi->state & EXI_STATE_ATTACHED)) {
+        if (cpr & 0x00000800) {
+            EXIClearInterrupts(chan, FALSE, FALSE, TRUE);
+            __EXIProbeStartTime[chan] = exi->idTime = 0;
+        }
+
+        if (cpr & 0x00001000) {
+            t = (s32)(OSTicksToMilliseconds(OSGetTime()) / 100) + 1;
+            if (__EXIProbeStartTime[chan] == 0) {
+                __EXIProbeStartTime[chan] = t;
+            }
+            if (t - __EXIProbeStartTime[chan] < 300 / 100) {
+                rc = FALSE;
+            }
+        } else {
+            __EXIProbeStartTime[chan] = exi->idTime = 0;
+            rc = FALSE;
+        }
+    } else if (!(cpr & 0x00001000) || (cpr & 0x00000800)) {
+        __EXIProbeStartTime[chan] = exi->idTime = 0;
+        rc = FALSE;
+    }
+    OSRestoreInterrupts(enabled);
+
+    return rc;
 }
-#pragma pop
 
 /* 8034356C-803435EC 33DEAC 0080+00 0/0 5/5 0/0 .text            EXIProbe */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL EXIProbe(s32 chan) {
-    nofralloc
-#include "asm/exi/EXIBios/EXIProbe.s"
+BOOL EXIProbe(s32 chan) {
+    EXIControl* exi = &Ecb[chan];
+    BOOL rc;
+    u32 id;
+
+    rc = __EXIProbe(chan);
+    if (rc && exi->idTime == 0) {
+        rc = EXIGetID(chan, 0, &id) ? TRUE : FALSE;
+    }
+    return rc;
 }
-#pragma pop
 
 /* 803435EC-803436A0 33DF2C 00B4+00 0/0 1/1 0/0 .text            EXIProbeEx */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 EXIProbeEx(s32 chan) {
-    nofralloc
-#include "asm/exi/EXIBios/EXIProbeEx.s"
+
+s32 EXIProbeEx(s32 chan) {
+    if (EXIProbe(chan)) {
+        return 1;
+    } else if (__EXIProbeStartTime[chan] != 0) {
+        return 0;
+    } else {
+        return -1;
+    }
 }
-#pragma pop
 
 /* 803436A0-803437AC 33DFE0 010C+00 0/0 2/2 0/0 .text            EXIAttach */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL EXIAttach(s32 chan, EXICallback extCallback) {
-    nofralloc
-#include "asm/exi/EXIBios/EXIAttach.s"
+static BOOL __EXIAttach(s32 chan, EXICallback extCallback) {
+    EXIControl* exi = &Ecb[chan];
+    BOOL enabled;
+
+    enabled = OSDisableInterrupts();
+    if ((exi->state & EXI_STATE_ATTACHED) || __EXIProbe(chan) == FALSE) {
+        OSRestoreInterrupts(enabled);
+        return FALSE;
+    }
+
+    EXIClearInterrupts(chan, TRUE, FALSE, FALSE);
+
+    exi->extCallback = extCallback;
+    __OSUnmaskInterrupts(OS_INTERRUPTMASK_EXI_0_EXT >> (3 * chan));
+    exi->state |= EXI_STATE_ATTACHED;
+    OSRestoreInterrupts(enabled);
+
+    return TRUE;
 }
-#pragma pop
+
+BOOL EXIAttach(s32 chan, EXICallback extCallback) {
+    EXIControl* exi = &Ecb[chan];
+    BOOL enabled;
+    BOOL rc;
+
+    EXIProbe(chan);
+
+    enabled = OSDisableInterrupts();
+    if (exi->idTime == 0) {
+        OSRestoreInterrupts(enabled);
+        return FALSE;
+    }
+    rc = __EXIAttach(chan, extCallback);
+    OSRestoreInterrupts(enabled);
+    return rc;
+}
 
 /* 803437AC-80343868 33E0EC 00BC+00 0/0 3/3 0/0 .text            EXIDetach */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL EXIDetach(s32 chan) {
-    nofralloc
-#include "asm/exi/EXIBios/EXIDetach.s"
+BOOL EXIDetach(s32 chan) {
+    EXIControl* exi = &Ecb[chan];
+    BOOL enabled;
+
+    enabled = OSDisableInterrupts();
+    if (!(exi->state & EXI_STATE_ATTACHED)) {
+        OSRestoreInterrupts(enabled);
+        return TRUE;
+    }
+    if ((exi->state & EXI_STATE_LOCKED) && exi->dev == 0) {
+        OSRestoreInterrupts(enabled);
+        return FALSE;
+    }
+
+    exi->state &= ~EXI_STATE_ATTACHED;
+    __OSMaskInterrupts((OS_INTERRUPTMASK_EXI_0_EXT | OS_INTERRUPTMASK_EXI_0_EXI) >> (3 * chan));
+    OSRestoreInterrupts(enabled);
+    return TRUE;
 }
-#pragma pop
 
 /* 80343868-80343994 33E1A8 012C+00 1/1 12/12 0/0 .text            EXISelect */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL EXISelect(s32 chan, u32 dev, u32 freq) {
-    nofralloc
-#include "asm/exi/EXIBios/EXISelect.s"
+BOOL EXISelect(s32 chan, u32 dev, u32 freq) {
+    EXIControl* exi = &Ecb[chan];
+    u32 cpr;
+    BOOL enabled;
+
+    enabled = OSDisableInterrupts();
+    if ((exi->state & EXI_STATE_SELECTED) ||
+        chan != 2 && (dev == 0 && !(exi->state & EXI_STATE_ATTACHED) && !__EXIProbe(chan) ||
+                      !(exi->state & EXI_STATE_LOCKED) || (exi->dev != dev)))
+    {
+        OSRestoreInterrupts(enabled);
+        return FALSE;
+    }
+
+    exi->state |= EXI_STATE_SELECTED;
+    cpr = REG(chan, 0);
+    cpr &= 0x405;
+    cpr |= CPR_CS(dev) | CPR_CLK(freq);
+    REG(chan, 0) = cpr;
+
+    if (exi->state & EXI_STATE_ATTACHED) {
+        switch (chan) {
+        case 0:
+            __OSMaskInterrupts(OS_INTERRUPTMASK_EXI_0_EXT);
+            break;
+        case 1:
+            __OSMaskInterrupts(OS_INTERRUPTMASK_EXI_1_EXT);
+            break;
+        }
+    }
+
+    OSRestoreInterrupts(enabled);
+    return TRUE;
 }
-#pragma pop
 
 /* 80343994-80343AA4 33E2D4 0110+00 1/1 15/15 0/0 .text            EXIDeselect */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL EXIDeselect(s32 chan) {
-    nofralloc
-#include "asm/exi/EXIBios/EXIDeselect.s"
+BOOL EXIDeselect(s32 chan) {
+    EXIControl* exi = &Ecb[chan];
+    u32 cpr;
+    BOOL enabled;
+
+    enabled = OSDisableInterrupts();
+    if (!(exi->state & EXI_STATE_SELECTED)) {
+        OSRestoreInterrupts(enabled);
+        return FALSE;
+    }
+    exi->state &= ~EXI_STATE_SELECTED;
+    cpr = REG(chan, 0);
+    REG(chan, 0) = cpr & 0x405;
+
+    if (exi->state & EXI_STATE_ATTACHED) {
+        switch (chan) {
+        case 0:
+            __OSUnmaskInterrupts(OS_INTERRUPTMASK_EXI_0_EXT);
+            break;
+        case 1:
+            __OSUnmaskInterrupts(OS_INTERRUPTMASK_EXI_1_EXT);
+            break;
+        }
+    }
+
+    OSRestoreInterrupts(enabled);
+
+    if (chan != 2 && (cpr & CPR_CS(0))) {
+        return __EXIProbe(chan) ? TRUE : FALSE;
+    }
+
+    return TRUE;
 }
-#pragma pop
 
 /* 80343AA4-80343B6C 33E3E4 00C8+00 1/1 0/0 0/0 .text            EXIIntrruptHandler */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void EXIIntrruptHandler(s16 interrupt, OSContext* context) {
-    nofralloc
-#include "asm/exi/EXIBios/EXIIntrruptHandler.s"
+static void EXIIntrruptHandler(s16 interrupt, OSContext* context) {
+    s32 chan;
+    EXIControl* exi;
+    EXICallback callback;
+
+    chan = (interrupt - OS_INTR_EXI_0_EXI) / 3;
+    exi = &Ecb[chan];
+    EXIClearInterrupts(chan, TRUE, FALSE, FALSE);
+    callback = exi->exiCallback;
+    if (callback) {
+        OSContext exceptionContext;
+
+        OSClearContext(&exceptionContext);
+        OSSetCurrentContext(&exceptionContext);
+
+        callback(chan, context);
+
+        OSClearContext(&exceptionContext);
+        OSSetCurrentContext(context);
+    }
 }
-#pragma pop
 
 /* 80343B6C-80343D84 33E4AC 0218+00 1/1 0/0 0/0 .text            TCIntrruptHandler */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void TCIntrruptHandler(s16 interrupt, OSContext* context) {
-    nofralloc
-#include "asm/exi/EXIBios/TCIntrruptHandler.s"
+static void TCIntrruptHandler(s16 interrupt, OSContext* context) {
+    OSContext exceptionContext;
+    s32 chan;
+    EXIControl* exi;
+    EXICallback callback;
+
+    chan = (interrupt - OS_INTR_EXI_0_TC) / 3;
+    exi = &Ecb[chan];
+    __OSMaskInterrupts(OS_INTERRUPTMASK(interrupt));
+    EXIClearInterrupts(chan, FALSE, TRUE, FALSE);
+    callback = exi->tcCallback;
+    if (callback) {
+        exi->tcCallback = 0;
+        CompleteTransfer(chan);
+
+        OSClearContext(&exceptionContext);
+        OSSetCurrentContext(&exceptionContext);
+
+        callback(chan, context);
+
+        OSClearContext(&exceptionContext);
+        OSSetCurrentContext(context);
+    }
 }
-#pragma pop
 
 /* 80343D84-80343E54 33E6C4 00D0+00 1/1 0/0 0/0 .text            EXTIntrruptHandler */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void EXTIntrruptHandler(s16 interrupt, OSContext* context) {
-    nofralloc
-#include "asm/exi/EXIBios/EXTIntrruptHandler.s"
+static void EXTIntrruptHandler(s16 interrupt, OSContext* context) {
+    s32 chan;
+    EXIControl* exi;
+    EXICallback callback;
+
+    chan = (interrupt - OS_INTR_EXI_0_EXT) / 3;
+    __OSMaskInterrupts((OS_INTERRUPTMASK_EXI_0_EXT | OS_INTERRUPTMASK_EXI_0_EXI) >> (3 * chan));
+    exi = &Ecb[chan];
+    callback = exi->extCallback;
+    exi->state &= ~EXI_STATE_ATTACHED;
+    if (callback) {
+        OSContext exceptionContext;
+
+        OSClearContext(&exceptionContext);
+        OSSetCurrentContext(&exceptionContext);
+
+        exi->extCallback = 0;
+        callback(chan, context);
+
+        OSClearContext(&exceptionContext);
+        OSSetCurrentContext(context);
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803D10A8-803D10F0 02E1C8 0045+03 1/0 0/0 0/0 .data            @1 */
@@ -343,59 +530,187 @@ SECTION_DATA static char lit_1[] =
 SECTION_SDATA static const char* __EXIVersion = lit_1;
 
 /* 804516D8-804516E0 000BD8 0004+04 2/2 0/0 0/0 .sbss            IDSerialPort1 */
-static u8 IDSerialPort1[4 + 4 /* padding */];
+static u32 IDSerialPort1[2 /* padding */];
 
 /* 80343E54-80344028 33E794 01D4+00 0/0 1/1 0/0 .text            EXIInit */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void EXIInit(void) {
-    nofralloc
-#include "asm/exi/EXIBios/EXIInit.s"
+void EXIInit(void) {
+    u32 idSerial;
+
+    while (((REG(0, 3) & 1) == 1) || ((REG(1, 3) & 1) == 1) || ((REG(2, 3) & 1) == 1)) {}
+
+    __OSMaskInterrupts(OS_INTERRUPTMASK_EXI_0_EXI | OS_INTERRUPTMASK_EXI_0_TC |
+                       OS_INTERRUPTMASK_EXI_0_EXT | OS_INTERRUPTMASK_EXI_1_EXI |
+                       OS_INTERRUPTMASK_EXI_1_TC | OS_INTERRUPTMASK_EXI_1_EXT |
+                       OS_INTERRUPTMASK_EXI_2_EXI | OS_INTERRUPTMASK_EXI_2_TC);
+
+    REG(0, 0) = 0;
+    REG(1, 0) = 0;
+    REG(2, 0) = 0;
+
+    REG(0, 0) = 0x00002000;
+
+    __OSSetInterruptHandler(OS_INTR_EXI_0_EXI, EXIIntrruptHandler);
+    __OSSetInterruptHandler(OS_INTR_EXI_0_TC, TCIntrruptHandler);
+    __OSSetInterruptHandler(OS_INTR_EXI_0_EXT, EXTIntrruptHandler);
+    __OSSetInterruptHandler(OS_INTR_EXI_1_EXI, EXIIntrruptHandler);
+    __OSSetInterruptHandler(OS_INTR_EXI_1_TC, TCIntrruptHandler);
+    __OSSetInterruptHandler(OS_INTR_EXI_1_EXT, EXTIntrruptHandler);
+    __OSSetInterruptHandler(OS_INTR_EXI_2_EXI, EXIIntrruptHandler);
+    __OSSetInterruptHandler(OS_INTR_EXI_2_TC, TCIntrruptHandler);
+
+    EXIGetID(0, 2, IDSerialPort1);
+    if (__OSInIPL) {
+        __EXIProbeStartTime[0] = __EXIProbeStartTime[1] = 0;
+        Ecb[0].idTime = Ecb[1].idTime = 0;
+        __EXIProbe(0);
+        __EXIProbe(1);
+    } else if (EXIGetID(0, 0, &idSerial) && idSerial == 0x7010000) {
+        __OSEnableBarnacle(1, 0);
+    } else if (EXIGetID(1, 0, &idSerial) && idSerial == 0x7010000) {
+        __OSEnableBarnacle(0, 2);
+    }
+
+    OSRegisterVersion(__EXIVersion);
 }
-#pragma pop
 
 /* 80344028-8034411C 33E968 00F4+00 1/1 10/10 0/0 .text            EXILock */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL EXILock(s32 chan, u32 dev, EXICallback unlockedCallback) {
-    nofralloc
-#include "asm/exi/EXIBios/EXILock.s"
+BOOL EXILock(s32 chan, u32 dev, EXICallback unlockedCallback) {
+    EXIControl* exi = &Ecb[chan];
+    BOOL enabled;
+    int i;
+
+    enabled = OSDisableInterrupts();
+    if (exi->state & EXI_STATE_LOCKED) {
+        if (unlockedCallback) {
+            for (i = 0; i < exi->items; i++) {
+                if (exi->queue[i].dev == dev) {
+          OSRestoreInterrupts(enabled);
+          return FALSE;
+                }
+            }
+            exi->queue[exi->items].callback = unlockedCallback;
+            exi->queue[exi->items].dev = dev;
+            exi->items++;
+        }
+        OSRestoreInterrupts(enabled);
+        return FALSE;
+    }
+
+    exi->state |= EXI_STATE_LOCKED;
+    exi->dev = dev;
+    SetExiInterruptMask(chan, exi);
+
+    OSRestoreInterrupts(enabled);
+    return TRUE;
 }
-#pragma pop
+
 
 /* 8034411C-803441F8 33EA5C 00DC+00 0/0 14/14 0/0 .text            EXIUnlock */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL EXIUnlock(s32 chan) {
-    nofralloc
-#include "asm/exi/EXIBios/EXIUnlock.s"
+BOOL EXIUnlock(s32 chan) {
+    EXIControl* exi = &Ecb[chan];
+    BOOL enabled;
+    EXICallback unlockedCallback;
+
+    enabled = OSDisableInterrupts();
+    if (!(exi->state & EXI_STATE_LOCKED)) {
+        OSRestoreInterrupts(enabled);
+        return FALSE;
+    }
+    exi->state &= ~EXI_STATE_LOCKED;
+    SetExiInterruptMask(chan, exi);
+
+    if (0 < exi->items) {
+        unlockedCallback = exi->queue[0].callback;
+        if (0 < --exi->items) {
+            memmove(&exi->queue[0], &exi->queue[1], sizeof(exi->queue[0]) * exi->items);
+        }
+        unlockedCallback(chan, 0);
+    }
+
+    OSRestoreInterrupts(enabled);
+    return TRUE;
 }
-#pragma pop
 
 /* 803441F8-80344210 33EB38 0018+00 0/0 2/2 0/0 .text            EXIGetState */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 EXIGetState(s32 chan) {
-    nofralloc
-#include "asm/exi/EXIBios/EXIGetState.s"
+u32 EXIGetState(s32 chan) {
+    EXIControl* exi = &Ecb[chan];
+
+    return (u32)exi->state;
 }
-#pragma pop
 
 /* 80344210-80344238 33EB50 0028+00 1/1 0/0 0/0 .text            UnlockedHandler */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void UnlockedHandler(s32 chan, OSContext* context) {
-    nofralloc
-#include "asm/exi/EXIBios/UnlockedHandler.s"
+static void UnlockedHandler(s32 chan, OSContext* context) {
+    u32 id;
+
+    EXIGetID(chan, 0, &id);
 }
-#pragma pop
 
 /* 80344238-803445E8 33EB78 03B0+00 5/5 3/3 0/0 .text            EXIGetID */
+// Use of add. instead of add
+#ifdef NONMATCHING
+s32 EXIGetID(s32 chan, u32 dev, u32* id) {
+    EXIControl* exi = &Ecb[chan];
+    BOOL err;
+    u32 cmd;
+    s32 startTime;
+    BOOL enabled;
+
+    if (exi == (EXIControl*)NULL && dev == 2 && IDSerialPort1[0] != 0) {
+        *id = IDSerialPort1[0];
+        return 1;
+    }
+
+    if (chan < 2 && dev == 0) {
+        if (!__EXIProbe(chan)) {
+            return 0;
+        }
+
+        if (exi->idTime == __EXIProbeStartTime[chan]) {
+            *id = exi->id;
+            return exi->idTime;
+        }
+
+        if (!__EXIAttach(chan, NULL)) {
+            return 0;
+        }
+
+        startTime = __EXIProbeStartTime[chan];
+    }
+
+    enabled = OSDisableInterrupts();
+
+    err = !EXILock(chan, dev, (chan < 2 && dev == 0) ? UnlockedHandler : NULL);
+    if (!err) {
+        err = !EXISelect(chan, dev, EXI_FREQ_1M);
+        if (!err) {
+            cmd = 0;
+            err |= !EXIImm(chan, &cmd, 2, EXI_WRITE, NULL);
+            err |= !EXISync(chan);
+            err |= !EXIImm(chan, id, 4, EXI_READ, NULL);
+            err |= !EXISync(chan);
+            err |= !EXIDeselect(chan);
+        }
+        EXIUnlock(chan);
+    }
+
+    OSRestoreInterrupts(enabled);
+
+    if (chan < 2 && dev == 0) {
+        EXIDetach(chan);
+        enabled = OSDisableInterrupts();
+        err |= (startTime != __EXIProbeStartTime[chan]);
+        if (!err) {
+            exi->id = *id;
+            exi->idTime = startTime;
+        }
+        OSRestoreInterrupts(enabled);
+
+        return err ? 0 : exi->idTime;
+    }
+
+    return err ? 0 : !0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -404,6 +719,7 @@ asm s32 EXIGetID(s32 chan, u32 dev, u32* id) {
 #include "asm/exi/EXIBios/EXIGetID.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803D10F0-803D1100 02E210 000F+01 0/0 0/0 0/0 .data            @473 */
