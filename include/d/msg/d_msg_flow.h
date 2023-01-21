@@ -160,6 +160,7 @@ public:
     void onNonStopJunpFlowFlag() { mNonStopJunpFlowFlag = 1; }
     int getSelectNum() { return query005(NULL, NULL, 0); }
     s16 getChoiceNo() { return mChoiceNo; }
+    void setMsg(u32 msg) { mMsg = msg; }
 
     static queryFunc mQueryList[53];
     static eventFunc mEventList[43];

@@ -16,7 +16,17 @@
 #include "SSystem/SComponent/c_phase.h"
 #include "Z2AudioLib/Z2SoundObject.h"
 
-
+struct do_class_HIO {
+    /* 0x00 */ f32 field_0x00;
+    /* 0x04 */ f32 field_0x04;
+    /* 0x08 */ f32 field_0x08;
+    /* 0x0C */ f32 field_0x0c;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ u8 field_0x1c;
+    /* 0x1D */ u8 field_0x1d;
+};
 
 // this might actually inherit from npc_tr_class?
 class do_class : public fopAc_ac_c {
@@ -27,15 +37,16 @@ public:
     /* 0x5B5 */ u8 field_0x5b5;
     /* 0x5B6 */ u8 field_0x5b6;
     /* 0x5B7 */ u8 field_0x5b7[17];
-    /* 0x5C8 */ f32 field_0x5c8;
-    /* 0x5CC */ s16 field_0x5cc;
+    /* 0x5C8 */ f32 mDistFromPlayer;
+    /* 0x5CC */ s16 mAngleYFromPlayer;
     /* 0x5CE */ u8 field_0x5ce[2];
     /* 0x5D8 */ mDoExt_McaMorf* mpMorf;
     /* 0x5D4 */ u8 field_0x5d4[8];
     /* 0x5DC */ u8 field_0x5dc[2];
     /* 0x5DE */ s16 field_0x5de;
     /* 0x5E0 */ s16 field_0x5e0;
-    /* 0x5E2 */ u8 field_0x5e2[2];
+    /* 0x5E2 */ u8 field_0x5e2;
+    /* 0x5E3 */ u8 field_0x5e3;
     /* 0x5E4 */ s32 mResIdx;
     /* 0x5E8 */ f32 field_0x5e8;
     /* 0x5EC */ f32 field_0x5ec;
@@ -51,13 +62,15 @@ public:
     /* 0x604 */ u16 field_0x604;
     /* 0x606 */ s16 field_0x606;
     /* 0x608 */ f32 field_0x608;
-    /* 0x60C */ u8 field_0x60c[2];
+    /* 0x60C */ u16 field_0x60c;
     /* 0x60E */ s16 field_0x60e;
     /* 0x60E */ s16 field_0x610;
     /* 0x60E */ s16 field_0x612;
     /* 0x614 */ s16 field_0x614;
     /* 0x616 */ u8 field_0x616;
-    /* 0x617 */ u8 field_0x617[14];
+    /* 0x617 */ u8 field_0x617;
+    /* 0x618 */ cXyz mUnkPos; // something to do with the dog's eye position
+    u8 alignment[4]; // remove later
     /* 0x624 */ s16 field_0x624;
     /* 0x626 */ u8 field_0x626[2];
     /* 0x628 */ s16 field_0x628;
@@ -76,12 +89,12 @@ public:
     /* 0x64C */ f32 field_0x64c;
     /* 0x650 */ f32 field_0x650;
     /* 0x654 */ u8 field_0x654[4];
-    /* 0x658 */ f32 field_0x658;
+    /* 0x658 */ f32 mEyePosYDistFromPlayer; 
     /* 0x65C */ f32 field_0x65c;
     /* 0x660 */ u16 field_0x660;
     /* 0x662 */ u8 field_0x662[26];
     /* 0x67C */ f32 field_0x67c;
-    /* 0x680 */ u32 field_0x680;
+    /* 0x680 */ u32 field_0x680; // some proc ID
     /* 0x684 */ u32 mFoodBsPcId;
     /* 0x688 */ u8 field_0x688;
     /* 0x689 */ u8 field_0x689;
@@ -90,7 +103,11 @@ public:
     /* 0x68C */ f32 field_0x68c;
     /* 0x690 */ f32 field_0x690;
     /* 0x694 */ f32 field_0x694;
-    /* 0x698 */ u8 field_0x698[36];
+    /* 0x698 */ u8 field_0x698[22];
+    /* 0x6AE */ u8 field_0x6ae;
+    /* 0x6AF */ u8 field_0x6af[9];
+    /* 0x6B8 */ u8 field_0x6b8;
+    /* 0x6B9 */ u8 field_0x6b9[3];
     /* 0x6BC */ dBgS_AcchCir mBgS_AcchCir;
     /* 0x6FC */ dBgS_Acch mBgS_Acch;      
     /* 0x8D4 */ f32 field_0x8d4;
