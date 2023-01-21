@@ -10,7 +10,7 @@ LIBEXI_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/exi/EXIBios.o \
 	$(BUILD_DIR)/libs/dolphin/exi/EXIUart.o \
 
-LIBEXI_A_CFLAGS := \
+LIBEXI_A_CFLAGS = \
 	-Cpp_exceptions off \
 	-proc gekko \
 	-fp hard \
@@ -21,7 +21,7 @@ LIBEXI_A_CFLAGS := \
 	-RTTI off \
 	-maxerrors 5 \
 	-enum int $(INCLUDES) \
-	-O3,p \
+	$(if $(filter %EXIBios.c, $<),-O3,-O4),p \
 	-lang=c \
 
 LIBEXI_A_LDFLAGS := \
