@@ -21,7 +21,13 @@ enum J2DRotateAxis {
     /* 0x7A */ ROTATE_Z = 'z'
 };
 
-enum J2DBasePosition {};
+enum J2DBasePosition {
+    J2DBasePosition_0,
+    J2DBasePosition_1,
+    J2DBasePosition_2,
+    J2DBasePosition_3,
+    J2DBasePosition_4,
+};
 
 struct J2DPaneHeader {
     /* 0x0 */ u32 mKind;

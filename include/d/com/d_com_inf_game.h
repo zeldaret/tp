@@ -345,6 +345,7 @@ public:
     JKRArchive* getCollectResArchive() { return mCollectResArchive; }
     JKRArchive* getItemIconArchive() { return mItemIconArchive; }
     JKRArchive* getNameResArchive() { return mNameResArchive; }
+    JKRArchive* getFmapResArchive() { return mFmapResArchive; }
     JKRAramArchive* getFieldMapArchive2() { return (JKRAramArchive*)mFieldMapArchive2; }
 
     void setFieldMapArchive2(JKRArchive* arc) { mFieldMapArchive2 = arc; }
@@ -2848,6 +2849,10 @@ inline daPy_py_c* daPy_getPlayerActorClass() {
 
 inline daAlink_c* daAlink_getAlinkActorClass() {
     return (daAlink_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR);
+}
+
+inline JKRArchive* dComIfGp_getFmapResArchive() {
+    return g_dComIfG_gameInfo.play.getFmapResArchive();
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */
