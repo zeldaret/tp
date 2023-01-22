@@ -40,10 +40,17 @@ $(M220_TARGET): $(M220_O_FILES) $(M220_LIBS)
 	@python3 tools/lcf.py rel 220 --output $(M220_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M220_LDFLAGS) -o $(M220_TARGET) @build/M220_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_pm/%.o: rel/d/a/e/d_a_e_pm/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_pm/%.o: rel/d/a/e/d_a_e_pm/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_pm/%.d
 	@echo [220] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M220_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M220_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M220_D_FILES := $(M220_O_FILES:.o=.d)
+$(M220_D_FILES):
+include $(wildcard $(M220_D_FILES))
+endif
 
 

@@ -38,10 +38,17 @@ $(M103_TARGET): $(M103_O_FILES) $(M103_LIBS)
 	@python3 tools/lcf.py rel 103 --output $(M103_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M103_LDFLAGS) -o $(M103_TARGET) @build/M103_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ladder/%.o: rel/d/a/obj/d_a_obj_ladder/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ladder/%.o: rel/d/a/obj/d_a_obj_ladder/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ladder/%.d
 	@echo [103] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M103_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M103_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M103_D_FILES := $(M103_O_FILES:.o=.d)
+$(M103_D_FILES):
+include $(wildcard $(M103_D_FILES))
+endif
 
 

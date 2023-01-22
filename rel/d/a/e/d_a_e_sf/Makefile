@@ -40,10 +40,17 @@ $(M228_TARGET): $(M228_O_FILES) $(M228_LIBS)
 	@python3 tools/lcf.py rel 228 --output $(M228_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M228_LDFLAGS) -o $(M228_TARGET) @build/M228_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_sf/%.o: rel/d/a/e/d_a_e_sf/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_sf/%.o: rel/d/a/e/d_a_e_sf/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_sf/%.d
 	@echo [228] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M228_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M228_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M228_D_FILES := $(M228_O_FILES:.o=.d)
+$(M228_D_FILES):
+include $(wildcard $(M228_D_FILES))
+endif
 
 

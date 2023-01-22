@@ -38,10 +38,17 @@ $(M44_TARGET): $(M44_O_FILES) $(M44_LIBS)
 	@python3 tools/lcf.py rel 44 --output $(M44_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M44_LDFLAGS) -o $(M44_TARGET) @build/M44_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_vrbox2/%.o: rel/d/a/d_a_vrbox2/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_vrbox2/%.o: rel/d/a/d_a_vrbox2/%.cpp $(BUILD_DIR)/rel/d/a/d_a_vrbox2/%.d
 	@echo [ 44] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M44_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M44_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M44_D_FILES := $(M44_O_FILES:.o=.d)
+$(M44_D_FILES):
+include $(wildcard $(M44_D_FILES))
+endif
 
 

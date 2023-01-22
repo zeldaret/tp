@@ -29,7 +29,7 @@ void DVDLowRequestAudioStatus();
 void DVDLowAudioBufferConfig();
 void DVDLowReset();
 void DVDLowBreak();
-void DVDLowClearCallback();
+DVDLowCallback DVDLowClearCallback();
 void __DVDLowSetWAType();
 void __DVDLowTestAlarm();
 
@@ -64,7 +64,7 @@ static u8 StopAtNextInt[4];
 static u8 LastLength[4];
 
 /* 80451718-8045171C 000C18 0004+00 13/13 0/0 0/0 .sbss            Callback */
-static u8 Callback[4];
+static DVDLowCallback Callback;
 
 /* 8045171C-80451720 000C1C 0004+00 1/1 0/0 0/0 .sbss            ResetCoverCallback */
 static u8 ResetCoverCallback[4];
@@ -79,7 +79,7 @@ static u8 data_80451724[4];
 static u8 ResetOccurred[4];
 
 /* 8045172C-80451730 000C2C 0004+00 3/3 0/0 0/0 .sbss            WaitingCoverClose */
-static u8 WaitingCoverClose[4];
+static DVDLowCallback WaitingCoverClose;
 
 /* 80451730-80451734 000C30 0004+00 2/2 0/0 0/0 .sbss            Breaking */
 static u8 Breaking[4];
@@ -321,14 +321,14 @@ asm void DVDLowBreak() {
 #pragma pop
 
 /* 80348458-80348474 342D98 001C+00 0/0 1/1 0/0 .text            DVDLowClearCallback */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DVDLowClearCallback() {
-    nofralloc
-#include "asm/dolphin/dvd/dvdlow/DVDLowClearCallback.s"
+DVDLowCallback DVDLowClearCallback() {
+    DVDLowCallback rv;
+    __DIRegs[1] = 0;
+    rv = Callback;
+    WaitingCoverClose = NULL;
+    Callback = NULL;
+    return rv;
 }
-#pragma pop
 
 /* 80348474-803484B8 342DB4 0044+00 1/1 0/0 0/0 .text            __DVDLowSetWAType */
 #pragma push

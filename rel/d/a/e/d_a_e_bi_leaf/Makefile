@@ -38,10 +38,17 @@ $(M176_TARGET): $(M176_O_FILES) $(M176_LIBS)
 	@python3 tools/lcf.py rel 176 --output $(M176_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M176_LDFLAGS) -o $(M176_TARGET) @build/M176_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_bi_leaf/%.o: rel/d/a/e/d_a_e_bi_leaf/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_bi_leaf/%.o: rel/d/a/e/d_a_e_bi_leaf/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_bi_leaf/%.d
 	@echo [176] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M176_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M176_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M176_D_FILES := $(M176_O_FILES:.o=.d)
+$(M176_D_FILES):
+include $(wildcard $(M176_D_FILES))
+endif
 
 

@@ -26,7 +26,7 @@ static void DoneCallback(void* _task);
 // External References:
 //
 
-SECTION_INIT void memset();
+void memset();
 void DSPAddTask();
 void DSPSendMailToDSP();
 
@@ -100,15 +100,47 @@ static s32 ReadArrayUnlock(s32 chan, u32 data, void* rbuf, s32 rlen, s32 mode) {
 /* 80450A68-80450A70 0004E8 0004+04 2/2 0/0 0/0 .sdata           next */
 static unsigned long int next = 1;
 
-/* 803541D4-80354298 34EB14 00C4+00 2/2 0/0 0/0 .text            DummyLen */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm s32 DummyLen(void) {
-    nofralloc
-#include "asm/dolphin/card/CARDUnlock/DummyLen.s"
+static inline int CARDRand(void) {
+    next = next * 1103515245 + 12345;
+    return (int)((unsigned int)(next / 65536) % 32768);
 }
-#pragma pop
+
+static inline void CARDSrand(unsigned int seed) { next = seed; }
+
+/* 803541D4-80354298 34EB14 00C4+00 2/2 0/0 0/0 .text            DummyLen */
+static s32 DummyLen(void) {
+    u32 tick;
+    u32 wk;
+    s32 tmp;
+    u32 max;
+
+    wk = 1;
+    max = 0;
+    tick = OSGetTick();
+    CARDSrand(tick);
+
+    tmp = CARDRand();
+    tmp &= 0x0000001f;
+    tmp += 1;
+    while ((tmp < 4) && (max < 10)) {
+        tick = OSGetTick();
+        tmp = (s32)(tick << wk);
+        wk++;
+        if (wk > 16) {
+        wk = 1;
+        }
+        CARDSrand((u32)tmp);
+        tmp = CARDRand();
+        tmp &= 0x0000001f;
+        tmp += 1;
+        max++;
+    }
+    if (tmp < 4) {
+        tmp = 4;
+    }
+
+    return tmp;
+}
 
 /* ############################################################################################## */
 /* 803D1EA0-803D2000 02EFC0 0160+00 1/1 0/0 0/0 .data            CardData */
@@ -137,32 +169,263 @@ SECTION_DATA static u8 CardData[352] ALIGN_DECL(32) = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80354298-80354DF0 34EBD8 0B58+00 0/0 1/1 0/0 .text            __CARDUnlock */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 __CARDUnlock(s32 chan, u8 flashID[12]) {
-    nofralloc
-#include "asm/dolphin/card/CARDUnlock/__CARDUnlock.s"
+typedef struct DecodeParameters {
+    u8* inputAddr;
+    u32 inputLength;
+    u32 aramAddr;
+    u8* outputAddr;
+} DecodeParameters;
+
+static inline u32 GetInitVal(void) {
+    u32 tmp;
+    u32 tick;
+
+    tick = OSGetTick();
+    CARDSrand(tick);
+    tmp = 0x7fec8000;
+    tmp |= CARDRand();
+    tmp &= 0xfffff000;
+    return tmp;
 }
-#pragma pop
+
+static inline u32 exnor_1st(u32 data, u32 rshift) {
+    u32 wk;
+    u32 w;
+    u32 i;
+
+    w = data;
+    for (i = 0; i < rshift; i++) {
+        wk = ~(w ^ (w >> 7) ^ (w >> 15) ^ (w >> 23));
+        w = (w >> 1) | ((wk << 30) & 0x40000000);
+    }
+    return w;
+}
+
+static inline u32 exnor(u32 data, u32 lshift) {
+    u32 wk;
+    u32 w;
+    u32 i;
+
+    w = data;
+    for (i = 0; i < lshift; i++) {
+        // 1bit Left Shift
+        wk = ~(w ^ (w << 7) ^ (w << 15) ^ (w << 23));
+        w = (w << 1) | ((wk >> 30) & 0x00000002);
+        // printf("i=%d, w=%8x\n", i, w);
+    }
+    return w;
+}
+
+/* 80354298-80354DF0 34EBD8 0B58+00 0/0 1/1 0/0 .text            __CARDUnlock */
+s32 __CARDUnlock(s32 chan, u8 flashID[12]) {
+    u32 init_val;
+    u32 data;
+
+    s32 dummy;
+    s32 rlen;
+    u32 rshift;
+
+    u8 fsts;
+    u32 wk, wk1;
+    u32 Ans1 = 0;
+    u32 Ans2 = 0;
+    u32* dp;
+    u8 rbuf[64];
+    u32 para1A = 0;
+    u32 para1B = 0;
+    u32 para2A = 0;
+    u32 para2B = 0;
+
+    CARDControl* card;
+    DSPTaskInfo* task;
+    DecodeParameters* param;
+    u8* input;
+    u8* output;
+
+    card = &__CARDBlock[chan];
+    task = &card->task;
+    param = (DecodeParameters*)card->workArea;
+    input = (u8*)((u8*)param + sizeof(DecodeParameters));
+    input = (u8*)OSRoundUp32B(input);
+    output = input + 32;
+
+    fsts = 0;
+    init_val = GetInitVal();
+
+    dummy = DummyLen();
+    rlen = dummy;
+    if (ReadArrayUnlock(chan, init_val, rbuf, rlen, 0) < 0) {
+        return CARD_RESULT_NOCARD;
+    }
+
+    rshift = (u32)(dummy * 8 + 1);
+    wk = exnor_1st(init_val, rshift);
+    wk1 = ~(wk ^ (wk >> 7) ^ (wk >> 15) ^ (wk >> 23));
+    card->scramble = (wk | ((wk1 << 31) & 0x80000000));
+    card->scramble = bitrev(card->scramble);
+    dummy = DummyLen();
+    rlen = 20 + dummy;
+    data = 0;
+    if (ReadArrayUnlock(chan, data, rbuf, rlen, 1) < 0) {
+        return CARD_RESULT_NOCARD;
+    }
+    dp = (u32*)rbuf;
+    para1A = *dp++;
+    para1B = *dp++;
+    Ans1 = *dp++;
+    para2A = *dp++;
+    para2B = *dp++;
+    para1A = (para1A ^ card->scramble);
+    rshift = 32;
+    wk = exnor(card->scramble, rshift);
+    wk1 = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+    card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
+    para1B = (para1B ^ card->scramble);
+    rshift = 32;
+    wk = exnor(card->scramble, rshift);
+    wk1 = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+    card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
+    Ans1 ^= card->scramble;
+    rshift = 32;
+    wk = exnor(card->scramble, rshift);
+    wk1 = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+    card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
+    para2A = (para2A ^ card->scramble);
+    rshift = 32;
+    wk = exnor(card->scramble, rshift);
+    wk1 = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+    card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
+    para2B = (para2B ^ card->scramble);
+    rshift = (u32)(dummy * 8);
+    wk = exnor(card->scramble, rshift);
+    wk1 = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+    card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
+    rshift = 32 + 1;
+    wk = exnor(card->scramble, rshift);
+    wk1 = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+    card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
+
+    *(u32*)&input[0] = para2A;
+    *(u32*)&input[4] = para2B;
+
+    param->inputAddr = input;
+    param->inputLength = 8;
+    param->outputAddr = output;
+    param->aramAddr = 0;
+
+    DCFlushRange(input, 8);
+    DCInvalidateRange(output, 4);
+    DCFlushRange(param, sizeof(DecodeParameters));
+
+    task->priority = 255;
+    task->iram_mmem_addr = (u16*)OSPhysicalToCached(CardData);
+    task->iram_length = 0x160;
+    task->iram_addr = 0;
+    task->dsp_init_vector = 0x10;
+    task->init_cb = InitCallback;
+    task->res_cb = NULL;
+    task->done_cb = DoneCallback;
+    task->req_cb = NULL;
+    DSPAddTask(task);
+
+    dp = (u32*)flashID;
+    *dp++ = para1A;
+    *dp++ = para1B;
+    *dp = Ans1;
+
+    return CARD_RESULT_READY;
+}
 
 /* 80354DF0-80354E60 34F730 0070+00 1/1 0/0 0/0 .text            InitCallback */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void InitCallback(void* _task) {
-    nofralloc
-#include "asm/dolphin/card/CARDUnlock/InitCallback.s"
+static void InitCallback(void* _task) {
+  s32 chan;
+  CARDControl* card;
+  DSPTaskInfo* task;
+  DecodeParameters* param;
+
+  task = _task;
+  for (chan = 0; chan < 2; ++chan) {
+    card = &__CARDBlock[chan];
+    if ((DSPTaskInfo*)&card->task == task) {
+      break;
+    }
+  }
+  param = (DecodeParameters*)card->workArea;
+
+  DSPSendMailToDSP(0xff000000);
+  while (DSPCheckMailToDSP())
+    ;
+
+  DSPSendMailToDSP((u32)param);
+  while (DSPCheckMailToDSP())
+    ;
 }
-#pragma pop
 
 /* 80354E60-80355184 34F7A0 0324+00 1/1 0/0 0/0 .text            DoneCallback */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void DoneCallback(void* _task) {
-    nofralloc
-#include "asm/dolphin/card/CARDUnlock/DoneCallback.s"
+static void DoneCallback(void* _task) {
+  u8 rbuf[64];
+  u32 data;
+  s32 dummy;
+  s32 rlen;
+  u32 rshift;
+
+  u8 unk;
+  u32 wk, wk1;
+  u32 Ans2;
+
+  s32 chan;
+  CARDControl* card;
+  s32 result;
+  DSPTaskInfo* task;
+  DecodeParameters* param;
+
+  u8* input;
+  u8* output;
+  task = _task;
+  for (chan = 0; chan < 2; ++chan) {
+    card = &__CARDBlock[chan];
+    if ((DSPTaskInfo*)&card->task == task) {
+      break;
+    }
+  }
+
+  param = (DecodeParameters*)card->workArea;
+  input = (u8*)((u8*)param + sizeof(DecodeParameters));
+  input = (u8*)OSRoundUp32B(input);
+  output = input + 32;
+
+  Ans2 = *(u32*)output;
+  dummy = DummyLen();
+  rlen = dummy;
+  data = ((Ans2 ^ card->scramble) & 0xffff0000);
+  if (ReadArrayUnlock(chan, data, rbuf, rlen, 1) < 0) {
+    EXIUnlock(chan);
+    __CARDMountCallback(chan, CARD_RESULT_NOCARD);
+    return;
+  }
+
+  rshift = (u32)((dummy + 4 + card->latency) * 8 + 1);
+  wk = exnor(card->scramble, rshift);
+  wk1 = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+  card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
+
+  dummy = DummyLen();
+  rlen = dummy;
+  data = (((Ans2 << 16) ^ card->scramble) & 0xffff0000);
+  if (ReadArrayUnlock(chan, data, rbuf, rlen, 1) < 0) {
+    EXIUnlock(chan);
+    __CARDMountCallback(chan, CARD_RESULT_NOCARD);
+    return;
+  }
+  result = __CARDReadStatus(chan, &unk);
+  if (!EXIProbe(chan)) {
+    EXIUnlock(chan);
+    __CARDMountCallback(chan, CARD_RESULT_NOCARD);
+    return;
+  }
+  if (result == CARD_RESULT_READY && !(unk & 0x40)) {
+    EXIUnlock(chan);
+    result = CARD_RESULT_IOERROR;
+  }
+  __CARDMountCallback(chan, result);
 }
-#pragma pop

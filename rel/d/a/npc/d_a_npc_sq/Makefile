@@ -40,10 +40,17 @@ $(M367_TARGET): $(M367_O_FILES) $(M367_LIBS)
 	@python3 tools/lcf.py rel 367 --output $(M367_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M367_LDFLAGS) -o $(M367_TARGET) @build/M367_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_sq/%.o: rel/d/a/npc/d_a_npc_sq/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_sq/%.o: rel/d/a/npc/d_a_npc_sq/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_sq/%.d
 	@echo [367] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M367_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M367_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M367_D_FILES := $(M367_O_FILES:.o=.d)
+$(M367_D_FILES):
+include $(wildcard $(M367_D_FILES))
+endif
 
 

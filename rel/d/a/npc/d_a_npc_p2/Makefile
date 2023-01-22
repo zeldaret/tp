@@ -38,10 +38,17 @@ $(M341_TARGET): $(M341_O_FILES) $(M341_LIBS)
 	@python3 tools/lcf.py rel 341 --output $(M341_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M341_LDFLAGS) -o $(M341_TARGET) @build/M341_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_p2/%.o: rel/d/a/npc/d_a_npc_p2/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_p2/%.o: rel/d/a/npc/d_a_npc_p2/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_p2/%.d
 	@echo [341] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M341_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M341_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M341_D_FILES := $(M341_O_FILES:.o=.d)
+$(M341_D_FILES):
+include $(wildcard $(M341_D_FILES))
+endif
 
 

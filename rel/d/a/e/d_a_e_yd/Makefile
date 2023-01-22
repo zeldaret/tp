@@ -40,10 +40,17 @@ $(M248_TARGET): $(M248_O_FILES) $(M248_LIBS)
 	@python3 tools/lcf.py rel 248 --output $(M248_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M248_LDFLAGS) -o $(M248_TARGET) @build/M248_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_yd/%.o: rel/d/a/e/d_a_e_yd/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_yd/%.o: rel/d/a/e/d_a_e_yd/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_yd/%.d
 	@echo [248] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M248_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M248_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M248_D_FILES := $(M248_O_FILES:.o=.d)
+$(M248_D_FILES):
+include $(wildcard $(M248_D_FILES))
+endif
 
 

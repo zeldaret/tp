@@ -25,9 +25,16 @@ $(BUILD_DIR)/libJGadget.a: $(LIBJGADGET_A_O_FILES)
 	@echo $(LIBJGADGET_A_O_FILES) > build/LIBJGADGET_A_ofiles
 	@$(LD) -xm l $(LIBJGADGET_A_LDFLAGS) -o $(BUILD_DIR)/libJGadget.a @build/LIBJGADGET_A_ofiles
 
-$(BUILD_DIR)/libs/JSystem/JGadget/%.o: libs/JSystem/JGadget/%.cpp
+$(BUILD_DIR)/libs/JSystem/JGadget/%.o: libs/JSystem/JGadget/%.cpp $(BUILD_DIR)/libs/JSystem/JGadget/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBJGADGET_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBJGADGET_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+LIBJGADGET_A_D_FILES := $(LIBJGADGET_A_O_FILES:.o=.d)
+$(LIBJGADGET_A_D_FILES):
+include $(wildcard $(LIBJGADGET_A_D_FILES))
+endif
 

@@ -40,10 +40,17 @@ $(M683_TARGET): $(M683_O_FILES) $(M683_LIBS)
 	@python3 tools/lcf.py rel 683 --output $(M683_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M683_LDFLAGS) -o $(M683_TARGET) @build/M683_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wdStick/%.o: rel/d/a/obj/d_a_obj_wdStick/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wdStick/%.o: rel/d/a/obj/d_a_obj_wdStick/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wdStick/%.d
 	@echo [683] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M683_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M683_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M683_D_FILES := $(M683_O_FILES:.o=.d)
+$(M683_D_FILES):
+include $(wildcard $(M683_D_FILES))
+endif
 
 

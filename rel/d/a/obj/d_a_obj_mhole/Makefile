@@ -38,10 +38,17 @@ $(M570_TARGET): $(M570_O_FILES) $(M570_LIBS)
 	@python3 tools/lcf.py rel 570 --output $(M570_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M570_LDFLAGS) -o $(M570_TARGET) @build/M570_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mhole/%.o: rel/d/a/obj/d_a_obj_mhole/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mhole/%.o: rel/d/a/obj/d_a_obj_mhole/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mhole/%.d
 	@echo [570] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M570_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M570_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M570_D_FILES := $(M570_O_FILES:.o=.d)
+$(M570_D_FILES):
+include $(wildcard $(M570_D_FILES))
+endif
 
 

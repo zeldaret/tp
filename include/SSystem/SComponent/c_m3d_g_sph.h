@@ -7,9 +7,9 @@
 #include "dolphin/types.h"
 
 struct cM3dGSphS {
-    Vec mCenter;
-    f32 mRadius;
-};
+    /* 0x0 */ Vec mCenter;
+    /* 0xC */ f32 mRadius;
+};  // Size: 0x10
 
 class cM3dGSph {
 private:

@@ -38,10 +38,17 @@ $(M81_TARGET): $(M81_O_FILES) $(M81_LIBS)
 	@python3 tools/lcf.py rel 81 --output $(M81_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M81_LDFLAGS) -o $(M81_TARGET) @build/M81_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_fish/%.o: rel/d/a/npc/d_a_npc_fish/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_fish/%.o: rel/d/a/npc/d_a_npc_fish/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fish/%.d
 	@echo [ 81] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M81_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M81_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M81_D_FILES := $(M81_O_FILES:.o=.d)
+$(M81_D_FILES):
+include $(wildcard $(M81_D_FILES))
+endif
 
 

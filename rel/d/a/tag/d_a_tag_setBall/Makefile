@@ -38,10 +38,17 @@ $(M739_TARGET): $(M739_O_FILES) $(M739_LIBS)
 	@python3 tools/lcf.py rel 739 --output $(M739_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M739_LDFLAGS) -o $(M739_TARGET) @build/M739_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_setBall/%.o: rel/d/a/tag/d_a_tag_setBall/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_setBall/%.o: rel/d/a/tag/d_a_tag_setBall/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_setBall/%.d
 	@echo [739] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M739_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M739_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M739_D_FILES := $(M739_O_FILES:.o=.d)
+$(M739_D_FILES):
+include $(wildcard $(M739_D_FILES))
+endif
 
 

@@ -38,10 +38,17 @@ $(M94_TARGET): $(M94_O_FILES) $(M94_LIBS)
 	@python3 tools/lcf.py rel 94 --output $(M94_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M94_LDFLAGS) -o $(M94_TARGET) @build/M94_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_eff/%.o: rel/d/a/obj/d_a_obj_eff/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_eff/%.o: rel/d/a/obj/d_a_obj_eff/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_eff/%.d
 	@echo [ 94] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M94_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M94_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M94_D_FILES := $(M94_O_FILES:.o=.d)
+$(M94_D_FILES):
+include $(wildcard $(M94_D_FILES))
+endif
 
 

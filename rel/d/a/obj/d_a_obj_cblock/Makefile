@@ -40,10 +40,17 @@ $(M419_TARGET): $(M419_O_FILES) $(M419_LIBS)
 	@python3 tools/lcf.py rel 419 --output $(M419_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M419_LDFLAGS) -o $(M419_TARGET) @build/M419_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cblock/%.o: rel/d/a/obj/d_a_obj_cblock/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cblock/%.o: rel/d/a/obj/d_a_obj_cblock/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cblock/%.d
 	@echo [419] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M419_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M419_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M419_D_FILES := $(M419_O_FILES:.o=.d)
+$(M419_D_FILES):
+include $(wildcard $(M419_D_FILES))
+endif
 
 

@@ -40,10 +40,17 @@ $(M577_TARGET): $(M577_O_FILES) $(M577_LIBS)
 	@python3 tools/lcf.py rel 577 --output $(M577_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M577_LDFLAGS) -o $(M577_TARGET) @build/M577_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_msima/%.o: rel/d/a/obj/d_a_obj_msima/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_msima/%.o: rel/d/a/obj/d_a_obj_msima/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_msima/%.d
 	@echo [577] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M577_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M577_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M577_D_FILES := $(M577_O_FILES:.o=.d)
+$(M577_D_FILES):
+include $(wildcard $(M577_D_FILES))
+endif
 
 

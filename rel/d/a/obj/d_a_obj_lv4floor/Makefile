@@ -40,10 +40,17 @@ $(M534_TARGET): $(M534_O_FILES) $(M534_LIBS)
 	@python3 tools/lcf.py rel 534 --output $(M534_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M534_LDFLAGS) -o $(M534_TARGET) @build/M534_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4floor/%.o: rel/d/a/obj/d_a_obj_lv4floor/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4floor/%.o: rel/d/a/obj/d_a_obj_lv4floor/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4floor/%.d
 	@echo [534] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M534_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M534_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M534_D_FILES := $(M534_O_FILES:.o=.d)
+$(M534_D_FILES):
+include $(wildcard $(M534_D_FILES))
+endif
 
 

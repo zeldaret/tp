@@ -40,10 +40,17 @@ $(M120_TARGET): $(M120_O_FILES) $(M120_LIBS)
 	@python3 tools/lcf.py rel 120 --output $(M120_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M120_LDFLAGS) -o $(M120_TARGET) @build/M120_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_swc00/%.o: rel/d/a/d_a_swc00/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_swc00/%.o: rel/d/a/d_a_swc00/%.cpp $(BUILD_DIR)/rel/d/a/d_a_swc00/%.d
 	@echo [120] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M120_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M120_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M120_D_FILES := $(M120_O_FILES:.o=.d)
+$(M120_D_FILES):
+include $(wildcard $(M120_D_FILES))
+endif
 
 

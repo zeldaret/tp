@@ -49,11 +49,18 @@ $(BUILD_DIR)/libgx.a: $(LIBGX_A_O_FILES)
 	@echo $(LIBGX_A_O_FILES) > build/LIBGX_A_ofiles
 	@$(LD) -xm l $(LIBGX_A_LDFLAGS) -o $(BUILD_DIR)/libgx.a @build/LIBGX_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/gx/%.o: libs/dolphin/gx/%.c
+$(BUILD_DIR)/libs/dolphin/gx/%.o: libs/dolphin/gx/%.c $(BUILD_DIR)/libs/dolphin/gx/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
-	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBGX_A_CFLAGS) -c -o $@ $(basename $@).c
+	@$(DOLPHIN_LIB_CC) $(CFLAGS) $(LIBGX_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
 	@echo Frank is fixing $@
 	@$(PYTHON) $(FRANK) $@ $@ $@
+
+ifndef DISABLE_DEPS
+LIBGX_A_D_FILES := $(LIBGX_A_O_FILES:.o=.d)
+$(LIBGX_A_D_FILES):
+include $(wildcard $(LIBGX_A_D_FILES))
+endif
 

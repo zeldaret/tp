@@ -136,9 +136,16 @@ $(BUILD_DIR)/libMSL_C.a: $(LIBMSL_C_PPCEABI_BARE_H_A_O_FILES)
 	@echo $(LIBMSL_C_PPCEABI_BARE_H_A_O_FILES) > build/LIBMSL_C_PPCEABI_BARE_H_A_ofiles
 	@$(LD) -xm l $(LIBMSL_C_PPCEABI_BARE_H_A_LDFLAGS) -o $(BUILD_DIR)/libMSL_C.a @build/LIBMSL_C_PPCEABI_BARE_H_A_ofiles
 
-$(BUILD_DIR)/libs/MSL_C/%.o: libs/MSL_C/%.c
+$(BUILD_DIR)/libs/MSL_C/%.o: libs/MSL_C/%.c $(BUILD_DIR)/libs/MSL_C/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
-	@$(CC) $(CFLAGS) $(LIBMSL_C_PPCEABI_BARE_H_A_CFLAGS) -c -o $@ $(basename $@).c
+	@$(CC) $(CFLAGS) $(LIBMSL_C_PPCEABI_BARE_H_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+LIBMSL_C_PPCEABI_BARE_H_A_D_FILES := $(LIBMSL_C_PPCEABI_BARE_H_A_O_FILES:.o=.d)
+$(LIBMSL_C_PPCEABI_BARE_H_A_D_FILES):
+include $(wildcard $(LIBMSL_C_PPCEABI_BARE_H_A_D_FILES))
+endif
 

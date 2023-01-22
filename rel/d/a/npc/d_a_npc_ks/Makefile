@@ -40,10 +40,17 @@ $(M330_TARGET): $(M330_O_FILES) $(M330_LIBS)
 	@python3 tools/lcf.py rel 330 --output $(M330_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M330_LDFLAGS) -o $(M330_TARGET) @build/M330_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ks/%.o: rel/d/a/npc/d_a_npc_ks/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ks/%.o: rel/d/a/npc/d_a_npc_ks/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ks/%.d
 	@echo [330] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M330_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M330_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M330_D_FILES := $(M330_O_FILES:.o=.d)
+$(M330_D_FILES):
+include $(wildcard $(M330_D_FILES))
+endif
 
 

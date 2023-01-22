@@ -17,7 +17,7 @@ static void UpdateIconOffsets(CARDDir* ent, CARDStat* stat);
 // External References:
 //
 
-SECTION_INIT void memcpy();
+void memcpy();
 void __div2i();
 
 //
@@ -84,7 +84,6 @@ static void UpdateIconOffsets(CARDDir* ent, CARDStat* stat) {
 }
 
 /* 80358E88-80358F9C 3537C8 0114+00 0/0 2/2 0/0 .text            CARDGetStatus */
-#ifdef NONMATCHING
 s32 CARDGetStatus(s32 chan, s32 fileNo, CARDStat* stat) {
     CARDControl* card;
     CARDDir* dir;
@@ -101,10 +100,7 @@ s32 CARDGetStatus(s32 chan, s32 fileNo, CARDStat* stat) {
 
     dir = __CARDGetDirBlock(card);
     ent = &dir[fileNo];
-    result = __CARDAccess(card, ent);
-    if (result == CARD_RESULT_NOPERM) {
-        result = __CARDIsWritable(ent);
-    }
+    result = __CARDIsReadable(card, ent);
 
     if (result >= 0) {
         memcpy(stat->gameName, ent->gameName, sizeof(stat->gameName));
@@ -123,19 +119,8 @@ s32 CARDGetStatus(s32 chan, s32 fileNo, CARDStat* stat) {
     }
     return __CARDPutControlBlock(card, result);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 CARDGetStatus(s32 chan, s32 fileNo, CARDStat* stat) {
-    nofralloc
-#include "asm/dolphin/card/CARDStat/CARDGetStatus.s"
-}
-#pragma pop
-#endif
 
 /* 80358F9C-80359110 3538DC 0174+00 1/1 0/0 0/0 .text            CARDSetStatusAsync */
-#ifdef NONMATCHING
 s32 CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callback) {
     CARDControl* card;
     CARDDir* dir;
@@ -155,7 +140,7 @@ s32 CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callba
 
     dir = __CARDGetDirBlock(card);
     ent = &dir[fileNo];
-    result = __CARDAccess(card, ent);
+    result = __CARDIsWritable(card, ent);
     if (result < 0) {
         return __CARDPutControlBlock(card, result);
     }
@@ -178,16 +163,6 @@ s32 CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callba
     }
     return result;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm s32 CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callback) {
-    nofralloc
-#include "asm/dolphin/card/CARDStat/CARDSetStatusAsync.s"
-}
-#pragma pop
-#endif
 
 /* 80359110-80359158 353A50 0048+00 0/0 1/1 0/0 .text            CARDSetStatus */
 s32 CARDSetStatus(s32 chan, s32 fileNo, CARDStat* stat) {

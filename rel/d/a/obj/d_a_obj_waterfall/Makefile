@@ -38,10 +38,17 @@ $(M681_TARGET): $(M681_O_FILES) $(M681_LIBS)
 	@python3 tools/lcf.py rel 681 --output $(M681_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M681_LDFLAGS) -o $(M681_TARGET) @build/M681_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_waterfall/%.o: rel/d/a/obj/d_a_obj_waterfall/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_waterfall/%.o: rel/d/a/obj/d_a_obj_waterfall/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_waterfall/%.d
 	@echo [681] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M681_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M681_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M681_D_FILES := $(M681_O_FILES:.o=.d)
+$(M681_D_FILES):
+include $(wildcard $(M681_D_FILES))
+endif
 
 

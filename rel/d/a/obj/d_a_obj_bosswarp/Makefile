@@ -40,10 +40,17 @@ $(M91_TARGET): $(M91_O_FILES) $(M91_LIBS)
 	@python3 tools/lcf.py rel 91 --output $(M91_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M91_LDFLAGS) -o $(M91_TARGET) @build/M91_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bosswarp/%.o: rel/d/a/obj/d_a_obj_bosswarp/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bosswarp/%.o: rel/d/a/obj/d_a_obj_bosswarp/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bosswarp/%.d
 	@echo [ 91] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M91_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M91_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M91_D_FILES := $(M91_O_FILES:.o=.d)
+$(M91_D_FILES):
+include $(wildcard $(M91_D_FILES))
+endif
 
 

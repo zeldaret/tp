@@ -31,11 +31,18 @@ $(BUILD_DIR)/libmtx.a: $(LIBMTX_A_O_FILES)
 	@echo $(LIBMTX_A_O_FILES) > build/LIBMTX_A_ofiles
 	@$(LD) -xm l $(LIBMTX_A_LDFLAGS) -o $(BUILD_DIR)/libmtx.a @build/LIBMTX_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/mtx/%.o: libs/dolphin/mtx/%.c
+$(BUILD_DIR)/libs/dolphin/mtx/%.o: libs/dolphin/mtx/%.c $(BUILD_DIR)/libs/dolphin/mtx/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
-	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBMTX_A_CFLAGS) -c -o $@ $(basename $@).c
+	@$(DOLPHIN_LIB_CC) $(CFLAGS) $(LIBMTX_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
 	@echo Frank is fixing $@
 	@$(PYTHON) $(FRANK) $@ $@ $@
+
+ifndef DISABLE_DEPS
+LIBMTX_A_D_FILES := $(LIBMTX_A_O_FILES:.o=.d)
+$(LIBMTX_A_D_FILES):
+include $(wildcard $(LIBMTX_A_D_FILES))
+endif
 

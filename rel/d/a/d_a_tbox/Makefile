@@ -40,10 +40,17 @@ $(M41_TARGET): $(M41_O_FILES) $(M41_LIBS)
 	@python3 tools/lcf.py rel 41 --output $(M41_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M41_LDFLAGS) -o $(M41_TARGET) @build/M41_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_tbox/%.o: rel/d/a/d_a_tbox/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_tbox/%.o: rel/d/a/d_a_tbox/%.cpp $(BUILD_DIR)/rel/d/a/d_a_tbox/%.d
 	@echo [ 41] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M41_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M41_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M41_D_FILES := $(M41_O_FILES:.o=.d)
+$(M41_D_FILES):
+include $(wildcard $(M41_D_FILES))
+endif
 
 

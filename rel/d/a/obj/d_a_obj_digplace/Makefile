@@ -38,10 +38,17 @@ $(M93_TARGET): $(M93_O_FILES) $(M93_LIBS)
 	@python3 tools/lcf.py rel 93 --output $(M93_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M93_LDFLAGS) -o $(M93_TARGET) @build/M93_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_digplace/%.o: rel/d/a/obj/d_a_obj_digplace/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_digplace/%.o: rel/d/a/obj/d_a_obj_digplace/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_digplace/%.d
 	@echo [ 93] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M93_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M93_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M93_D_FILES := $(M93_O_FILES:.o=.d)
+$(M93_D_FILES):
+include $(wildcard $(M93_D_FILES))
+endif
 
 

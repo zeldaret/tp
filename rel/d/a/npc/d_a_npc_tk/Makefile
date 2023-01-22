@@ -40,10 +40,17 @@ $(M370_TARGET): $(M370_O_FILES) $(M370_LIBS)
 	@python3 tools/lcf.py rel 370 --output $(M370_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M370_LDFLAGS) -o $(M370_TARGET) @build/M370_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_tk/%.o: rel/d/a/npc/d_a_npc_tk/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_tk/%.o: rel/d/a/npc/d_a_npc_tk/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tk/%.d
 	@echo [370] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M370_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M370_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M370_D_FILES := $(M370_O_FILES:.o=.d)
+$(M370_D_FILES):
+include $(wildcard $(M370_D_FILES))
+endif
 
 

@@ -40,10 +40,17 @@ $(M344_TARGET): $(M344_O_FILES) $(M344_LIBS)
 	@python3 tools/lcf.py rel 344 --output $(M344_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M344_LDFLAGS) -o $(M344_TARGET) @build/M344_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_taro/%.o: rel/d/a/npc/d_a_npc_pachi_taro/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_taro/%.o: rel/d/a/npc/d_a_npc_pachi_taro/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_taro/%.d
 	@echo [344] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M344_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M344_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M344_D_FILES := $(M344_O_FILES:.o=.d)
+$(M344_D_FILES):
+include $(wildcard $(M344_D_FILES))
+endif
 
 

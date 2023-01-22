@@ -38,10 +38,17 @@ $(M636_TARGET): $(M636_O_FILES) $(M636_LIBS)
 	@python3 tools/lcf.py rel 636 --output $(M636_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M636_LDFLAGS) -o $(M636_TARGET) @build/M636_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_suisya/%.o: rel/d/a/obj/d_a_obj_suisya/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_suisya/%.o: rel/d/a/obj/d_a_obj_suisya/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_suisya/%.d
 	@echo [636] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M636_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M636_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M636_D_FILES := $(M636_O_FILES:.o=.d)
+$(M636_D_FILES):
+include $(wildcard $(M636_D_FILES))
+endif
 
 

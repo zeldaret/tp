@@ -38,10 +38,17 @@ $(M614_TARGET): $(M614_O_FILES) $(M614_LIBS)
 	@python3 tools/lcf.py rel 614 --output $(M614_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M614_LDFLAGS) -o $(M614_TARGET) @build/M614_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_scannon_crs/%.o: rel/d/a/obj/d_a_obj_scannon_crs/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_scannon_crs/%.o: rel/d/a/obj/d_a_obj_scannon_crs/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_scannon_crs/%.d
 	@echo [614] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M614_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M614_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M614_D_FILES := $(M614_O_FILES:.o=.d)
+$(M614_D_FILES):
+include $(wildcard $(M614_D_FILES))
+endif
 
 

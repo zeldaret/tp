@@ -40,10 +40,17 @@ $(M439_TARGET): $(M439_O_FILES) $(M439_LIBS)
 	@python3 tools/lcf.py rel 439 --output $(M439_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M439_LDFLAGS) -o $(M439_TARGET) @build/M439_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_drop/%.o: rel/d/a/obj/d_a_obj_drop/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_drop/%.o: rel/d/a/obj/d_a_obj_drop/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_drop/%.d
 	@echo [439] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M439_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M439_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M439_D_FILES := $(M439_O_FILES:.o=.d)
+$(M439_D_FILES):
+include $(wildcard $(M439_D_FILES))
+endif
 
 

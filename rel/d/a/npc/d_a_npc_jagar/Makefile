@@ -40,10 +40,17 @@ $(M322_TARGET): $(M322_O_FILES) $(M322_LIBS)
 	@python3 tools/lcf.py rel 322 --output $(M322_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M322_LDFLAGS) -o $(M322_TARGET) @build/M322_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_jagar/%.o: rel/d/a/npc/d_a_npc_jagar/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_jagar/%.o: rel/d/a/npc/d_a_npc_jagar/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_jagar/%.d
 	@echo [322] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M322_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M322_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M322_D_FILES := $(M322_O_FILES:.o=.d)
+$(M322_D_FILES):
+include $(wildcard $(M322_D_FILES))
+endif
 
 

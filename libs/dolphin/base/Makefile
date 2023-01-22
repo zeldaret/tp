@@ -23,11 +23,18 @@ $(BUILD_DIR)/libbase.a: $(LIBBASE_A_O_FILES)
 	@echo $(LIBBASE_A_O_FILES) > build/LIBBASE_A_ofiles
 	@$(LD) -xm l $(LIBBASE_A_LDFLAGS) -o $(BUILD_DIR)/libbase.a @build/LIBBASE_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/base/%.o: libs/dolphin/base/%.c
+$(BUILD_DIR)/libs/dolphin/base/%.o: libs/dolphin/base/%.c $(BUILD_DIR)/libs/dolphin/base/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
-	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(CFLAGS) $(LIBBASE_A_CFLAGS) -c -o $@ $(basename $@).c
+	@$(DOLPHIN_LIB_CC) $(CFLAGS) $(LIBBASE_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
 	@echo Frank is fixing $@
 	@$(PYTHON) $(FRANK) $@ $@ $@
+
+ifndef DISABLE_DEPS
+LIBBASE_A_D_FILES := $(LIBBASE_A_O_FILES:.o=.d)
+$(LIBBASE_A_D_FILES):
+include $(wildcard $(LIBBASE_A_D_FILES))
+endif
 

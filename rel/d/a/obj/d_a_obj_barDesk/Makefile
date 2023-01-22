@@ -40,10 +40,17 @@ $(M402_TARGET): $(M402_O_FILES) $(M402_LIBS)
 	@python3 tools/lcf.py rel 402 --output $(M402_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M402_LDFLAGS) -o $(M402_TARGET) @build/M402_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_barDesk/%.o: rel/d/a/obj/d_a_obj_barDesk/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_barDesk/%.o: rel/d/a/obj/d_a_obj_barDesk/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_barDesk/%.d
 	@echo [402] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M402_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M402_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M402_D_FILES := $(M402_O_FILES:.o=.d)
+$(M402_D_FILES):
+include $(wildcard $(M402_D_FILES))
+endif
 
 

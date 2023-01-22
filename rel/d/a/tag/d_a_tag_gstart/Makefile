@@ -38,10 +38,17 @@ $(M124_TARGET): $(M124_O_FILES) $(M124_LIBS)
 	@python3 tools/lcf.py rel 124 --output $(M124_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M124_LDFLAGS) -o $(M124_TARGET) @build/M124_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_gstart/%.o: rel/d/a/tag/d_a_tag_gstart/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_gstart/%.o: rel/d/a/tag/d_a_tag_gstart/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_gstart/%.d
 	@echo [124] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M124_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M124_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M124_D_FILES := $(M124_O_FILES:.o=.d)
+$(M124_D_FILES):
+include $(wildcard $(M124_D_FILES))
+endif
 
 

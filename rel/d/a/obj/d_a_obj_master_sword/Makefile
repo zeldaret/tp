@@ -40,10 +40,17 @@ $(M568_TARGET): $(M568_O_FILES) $(M568_LIBS)
 	@python3 tools/lcf.py rel 568 --output $(M568_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M568_LDFLAGS) -o $(M568_TARGET) @build/M568_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_master_sword/%.o: rel/d/a/obj/d_a_obj_master_sword/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_master_sword/%.o: rel/d/a/obj/d_a_obj_master_sword/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_master_sword/%.d
 	@echo [568] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M568_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M568_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M568_D_FILES := $(M568_O_FILES:.o=.d)
+$(M568_D_FILES):
+include $(wildcard $(M568_D_FILES))
+endif
 
 

@@ -40,10 +40,17 @@ $(M608_TARGET): $(M608_O_FILES) $(M608_LIBS)
 	@python3 tools/lcf.py rel 608 --output $(M608_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M608_LDFLAGS) -o $(M608_TARGET) @build/M608_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rstair/%.o: rel/d/a/obj/d_a_obj_rstair/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rstair/%.o: rel/d/a/obj/d_a_obj_rstair/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rstair/%.d
 	@echo [608] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M608_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M608_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M608_D_FILES := $(M608_O_FILES:.o=.d)
+$(M608_D_FILES):
+include $(wildcard $(M608_D_FILES))
+endif
 
 

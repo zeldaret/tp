@@ -40,10 +40,17 @@ $(M347_TARGET): $(M347_O_FILES) $(M347_LIBS)
 	@python3 tools/lcf.py rel 347 --output $(M347_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M347_LDFLAGS) -o $(M347_TARGET) @build/M347_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_post/%.o: rel/d/a/npc/d_a_npc_post/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_post/%.o: rel/d/a/npc/d_a_npc_post/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_post/%.d
 	@echo [347] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M347_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M347_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M347_D_FILES := $(M347_O_FILES:.o=.d)
+$(M347_D_FILES):
+include $(wildcard $(M347_D_FILES))
+endif
 
 

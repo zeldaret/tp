@@ -40,10 +40,17 @@ $(M262_TARGET): $(M262_O_FILES) $(M262_LIBS)
 	@python3 tools/lcf.py rel 262 --output $(M262_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M262_LDFLAGS) -o $(M262_TARGET) @build/M262_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_horse/%.o: rel/d/a/d_a_horse/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_horse/%.o: rel/d/a/d_a_horse/%.cpp $(BUILD_DIR)/rel/d/a/d_a_horse/%.d
 	@echo [262] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M262_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M262_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M262_D_FILES := $(M262_O_FILES:.o=.d)
+$(M262_D_FILES):
+include $(wildcard $(M262_D_FILES))
+endif
 
 

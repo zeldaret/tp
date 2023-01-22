@@ -40,10 +40,17 @@ $(M356_TARGET): $(M356_O_FILES) $(M356_LIBS)
 	@python3 tools/lcf.py rel 356 --output $(M356_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M356_LDFLAGS) -o $(M356_TARGET) @build/M356_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira/%.o: rel/d/a/npc/d_a_npc_seira/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira/%.o: rel/d/a/npc/d_a_npc_seira/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira/%.d
 	@echo [356] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M356_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M356_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M356_D_FILES := $(M356_O_FILES:.o=.d)
+$(M356_D_FILES):
+include $(wildcard $(M356_D_FILES))
+endif
 
 

@@ -67,6 +67,7 @@ public:
     /* 8004974C */ virtual void end();
 
     void remove() { end(); }
+    JPABaseEmitter* getEmitter() { return mpEmitter; }
 
     /* 0x04 */ JPABaseEmitter* mpEmitter;
     /* 0x08 */ const cXyz* field_0x8;

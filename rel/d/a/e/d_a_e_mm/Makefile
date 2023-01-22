@@ -40,10 +40,17 @@ $(M212_TARGET): $(M212_O_FILES) $(M212_LIBS)
 	@python3 tools/lcf.py rel 212 --output $(M212_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M212_LDFLAGS) -o $(M212_TARGET) @build/M212_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_mm/%.o: rel/d/a/e/d_a_e_mm/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_mm/%.o: rel/d/a/e/d_a_e_mm/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_mm/%.d
 	@echo [212] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M212_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M212_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M212_D_FILES := $(M212_O_FILES:.o=.d)
+$(M212_D_FILES):
+include $(wildcard $(M212_D_FILES))
+endif
 
 

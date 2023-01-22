@@ -40,10 +40,17 @@ $(M47_TARGET): $(M47_O_FILES) $(M47_LIBS)
 	@python3 tools/lcf.py rel 47 --output $(M47_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M47_LDFLAGS) -o $(M47_TARGET) @build/M47_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_crod/%.o: rel/d/a/d_a_crod/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_crod/%.o: rel/d/a/d_a_crod/%.cpp $(BUILD_DIR)/rel/d/a/d_a_crod/%.d
 	@echo [ 47] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M47_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M47_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M47_D_FILES := $(M47_O_FILES:.o=.d)
+$(M47_D_FILES):
+include $(wildcard $(M47_D_FILES))
+endif
 
 

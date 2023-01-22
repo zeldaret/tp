@@ -38,10 +38,17 @@ $(M424_TARGET): $(M424_O_FILES) $(M424_LIBS)
 	@python3 tools/lcf.py rel 424 --output $(M424_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M424_LDFLAGS) -o $(M424_TARGET) @build/M424_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cowdoor/%.o: rel/d/a/obj/d_a_obj_cowdoor/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cowdoor/%.o: rel/d/a/obj/d_a_obj_cowdoor/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cowdoor/%.d
 	@echo [424] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M424_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M424_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M424_D_FILES := $(M424_O_FILES:.o=.d)
+$(M424_D_FILES):
+include $(wildcard $(M424_D_FILES))
+endif
 
 

@@ -40,10 +40,17 @@ $(M452_TARGET): $(M452_O_FILES) $(M452_LIBS)
 	@python3 tools/lcf.py rel 452 --output $(M452_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M452_LDFLAGS) -o $(M452_TARGET) @build/M452_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_food/%.o: rel/d/a/obj/d_a_obj_food/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_food/%.o: rel/d/a/obj/d_a_obj_food/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_food/%.d
 	@echo [452] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M452_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M452_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M452_D_FILES := $(M452_O_FILES:.o=.d)
+$(M452_D_FILES):
+include $(wildcard $(M452_D_FILES))
+endif
 
 

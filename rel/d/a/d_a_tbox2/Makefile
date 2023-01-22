@@ -40,10 +40,17 @@ $(M42_TARGET): $(M42_O_FILES) $(M42_LIBS)
 	@python3 tools/lcf.py rel 42 --output $(M42_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M42_LDFLAGS) -o $(M42_TARGET) @build/M42_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_tbox2/%.o: rel/d/a/d_a_tbox2/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_tbox2/%.o: rel/d/a/d_a_tbox2/%.cpp $(BUILD_DIR)/rel/d/a/d_a_tbox2/%.d
 	@echo [ 42] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M42_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M42_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M42_D_FILES := $(M42_O_FILES:.o=.d)
+$(M42_D_FILES):
+include $(wildcard $(M42_D_FILES))
+endif
 
 

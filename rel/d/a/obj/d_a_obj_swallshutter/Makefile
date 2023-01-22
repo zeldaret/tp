@@ -40,10 +40,17 @@ $(M111_TARGET): $(M111_O_FILES) $(M111_LIBS)
 	@python3 tools/lcf.py rel 111 --output $(M111_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M111_LDFLAGS) -o $(M111_TARGET) @build/M111_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swallshutter/%.o: rel/d/a/obj/d_a_obj_swallshutter/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swallshutter/%.o: rel/d/a/obj/d_a_obj_swallshutter/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swallshutter/%.d
 	@echo [111] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M111_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M111_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M111_D_FILES := $(M111_O_FILES:.o=.d)
+$(M111_D_FILES):
+include $(wildcard $(M111_D_FILES))
+endif
 
 

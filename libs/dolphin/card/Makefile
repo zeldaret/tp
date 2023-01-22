@@ -34,12 +34,15 @@ LIBCARD_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/card/CARDStat.o \
 	$(BUILD_DIR)/libs/dolphin/card/CARDNet.o \
 
-LIBCARD_A_CFLAGS := \
+NO_INLINE_FILES = libs/dolphin/card/CARDOpen.c
+
+LIBCARD_A_CFLAGS = \
 	-Cpp_exceptions off \
 	-proc gekko \
 	-fp hard \
 	-nodefaults \
 	-str reuse \
+	$(if $(filter $(NO_INLINE_FILES), $<),,-inline auto) \
 	-RTTI off \
 	-maxerrors 5 \
 	-enum int $(INCLUDES) \
@@ -57,11 +60,19 @@ $(BUILD_DIR)/libcard.a: $(LIBCARD_A_O_FILES)
 	@echo $(LIBCARD_A_O_FILES) > build/LIBCARD_A_ofiles
 	@$(LD) -xm l $(LIBCARD_A_LDFLAGS) -o $(BUILD_DIR)/libcard.a @build/LIBCARD_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/card/%.o: libs/dolphin/card/%.c
+$(BUILD_DIR)/libs/dolphin/card/%.o: libs/dolphin/card/%.c $(BUILD_DIR)/libs/dolphin/card/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
-	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(LIBCARD_A_CFLAGS) -c -o $@ $(basename $@).c
+	@$(FRANK_CC) $(LIBCARD_A_CFLAGS) -c -o $(@:.o=.po) $(basename $@).c
+	@$(DOLPHIN_LIB_CC) $(LIBCARD_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
 	@echo Frank is fixing $@
-	@$(PYTHON) $(FRANK) $@ $@ $@
+	@$(PYTHON) $(FRANK) $@ $(@:.o=.po) $@
+
+ifndef DISABLE_DEPS
+LIBCARD_A_D_FILES := $(LIBCARD_A_O_FILES:.o=.d)
+$(LIBCARD_A_D_FILES):
+include $(wildcard $(LIBCARD_A_D_FILES))
+endif
 

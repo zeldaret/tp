@@ -40,10 +40,17 @@ $(M100_TARGET): $(M100_O_FILES) $(M100_LIBS)
 	@python3 tools/lcf.py rel 100 --output $(M100_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M100_LDFLAGS) -o $(M100_TARGET) @build/M100_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kgate/%.o: rel/d/a/obj/d_a_obj_kgate/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kgate/%.o: rel/d/a/obj/d_a_obj_kgate/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kgate/%.d
 	@echo [100] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M100_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M100_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M100_D_FILES := $(M100_O_FILES:.o=.d)
+$(M100_D_FILES):
+include $(wildcard $(M100_D_FILES))
+endif
 
 

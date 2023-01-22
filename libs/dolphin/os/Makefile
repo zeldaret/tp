@@ -75,11 +75,18 @@ $(BUILD_DIR)/libos.a: $(LIBOS_A_O_FILES)
 	@echo $(LIBOS_A_O_FILES) > build/LIBOS_A_ofiles
 	@$(LD) -xm l $(LIBOS_A_LDFLAGS) -o $(BUILD_DIR)/libos.a @build/LIBOS_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/os/%.o: libs/dolphin/os/%.c
+$(BUILD_DIR)/libs/dolphin/os/%.o: libs/dolphin/os/%.c $(BUILD_DIR)/libs/dolphin/os/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
-	@$(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe $(LIBOS_A_CFLAGS) -c -o $@ $(basename $@).c
+	@$(DOLPHIN_LIB_CC) $(LIBOS_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
 	@echo Frank is fixing $@
 	@$(PYTHON) $(FRANK) $@ $@ $@
+
+ifndef DISABLE_DEPS
+LIBOS_A_D_FILES := $(LIBOS_A_O_FILES:.o=.d)
+$(LIBOS_A_D_FILES):
+include $(wildcard $(LIBOS_A_D_FILES))
+endif
 

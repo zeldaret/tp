@@ -38,10 +38,17 @@ $(M688_TARGET): $(M688_O_FILES) $(M688_LIBS)
 	@python3 tools/lcf.py rel 688 --output $(M688_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M688_LDFLAGS) -o $(M688_TARGET) @build/M688_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wind_stone/%.o: rel/d/a/obj/d_a_obj_wind_stone/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wind_stone/%.o: rel/d/a/obj/d_a_obj_wind_stone/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wind_stone/%.d
 	@echo [688] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M688_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M688_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M688_D_FILES := $(M688_O_FILES:.o=.d)
+$(M688_D_FILES):
+include $(wildcard $(M688_D_FILES))
+endif
 
 

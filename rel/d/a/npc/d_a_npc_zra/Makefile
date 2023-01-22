@@ -40,10 +40,17 @@ $(M390_TARGET): $(M390_O_FILES) $(M390_LIBS)
 	@python3 tools/lcf.py rel 390 --output $(M390_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M390_LDFLAGS) -o $(M390_TARGET) @build/M390_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zra/%.o: rel/d/a/npc/d_a_npc_zra/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zra/%.o: rel/d/a/npc/d_a_npc_zra/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zra/%.d
 	@echo [390] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M390_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M390_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M390_D_FILES := $(M390_O_FILES:.o=.d)
+$(M390_D_FILES):
+include $(wildcard $(M390_D_FILES))
+endif
 
 

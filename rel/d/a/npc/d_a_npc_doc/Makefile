@@ -40,10 +40,17 @@ $(M298_TARGET): $(M298_O_FILES) $(M298_LIBS)
 	@python3 tools/lcf.py rel 298 --output $(M298_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M298_LDFLAGS) -o $(M298_TARGET) @build/M298_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_doc/%.o: rel/d/a/npc/d_a_npc_doc/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_doc/%.o: rel/d/a/npc/d_a_npc_doc/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_doc/%.d
 	@echo [298] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M298_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M298_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M298_D_FILES := $(M298_O_FILES:.o=.d)
+$(M298_D_FILES):
+include $(wildcard $(M298_D_FILES))
+endif
 
 

@@ -38,10 +38,17 @@ $(M466_TARGET): $(M466_O_FILES) $(M466_LIBS)
 	@python3 tools/lcf.py rel 466 --output $(M466_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M466_LDFLAGS) -o $(M466_TARGET) @build/M466_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_grave_stone/%.o: rel/d/a/obj/d_a_obj_grave_stone/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_grave_stone/%.o: rel/d/a/obj/d_a_obj_grave_stone/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_grave_stone/%.d
 	@echo [466] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M466_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M466_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M466_D_FILES := $(M466_O_FILES:.o=.d)
+$(M466_D_FILES):
+include $(wildcard $(M466_D_FILES))
+endif
 
 

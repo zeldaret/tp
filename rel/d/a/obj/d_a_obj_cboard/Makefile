@@ -38,10 +38,17 @@ $(M92_TARGET): $(M92_O_FILES) $(M92_LIBS)
 	@python3 tools/lcf.py rel 92 --output $(M92_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M92_LDFLAGS) -o $(M92_TARGET) @build/M92_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cboard/%.o: rel/d/a/obj/d_a_obj_cboard/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cboard/%.o: rel/d/a/obj/d_a_obj_cboard/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cboard/%.d
 	@echo [ 92] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M92_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M92_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M92_D_FILES := $(M92_O_FILES:.o=.d)
+$(M92_D_FILES):
+include $(wildcard $(M92_D_FILES))
+endif
 
 

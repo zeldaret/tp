@@ -55,8 +55,6 @@ error:
 }
 
 /* 80355854-8035591C 350194 00C8+00 1/1 0/0 0/0 .text            EraseCallback */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 static void EraseCallback(s32 chan, s32 result) {
     CARDControl* card;
     CARDCallback callback;
@@ -88,19 +86,8 @@ error:
         callback(chan, result);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void EraseCallback(s32 chan, s32 result) {
-    nofralloc
-#include "asm/dolphin/card/CARDDir/EraseCallback.s"
-}
-#pragma pop
-#endif
 
 /* 8035591C-803559E0 35025C 00C4+00 0/0 4/4 0/0 .text            __CARDUpdateDir */
-#ifdef NONMATCHING
 s32 __CARDUpdateDir(s32 chan, CARDCallback callback) {
     CARDControl* card;
     CARDDirCheck* check;
@@ -123,13 +110,3 @@ s32 __CARDUpdateDir(s32 chan, CARDCallback callback) {
     addr = ((u32)dir - (u32)card->workArea) / 0x2000 * card->sectorSize;
     return __CARDEraseSector(chan, addr, EraseCallback);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 __CARDUpdateDir(s32 chan, CARDCallback callback) {
-    nofralloc
-#include "asm/dolphin/card/CARDDir/__CARDUpdateDir.s"
-}
-#pragma pop
-#endif

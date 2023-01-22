@@ -42,14 +42,23 @@ $(BUILD_DIR)/libRuntime.PPCEABI.H.a: $(LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo $(LIBRUNTIME_PPCEABI_H_A_O_FILES) > build/LIBRUNTIME_PPCEABI_H_A_ofiles
 	@$(LD) -xm l $(LIBRUNTIME_PPCEABI_H_A_LDFLAGS) -o $(BUILD_DIR)/libRuntime.PPCEABI.H.a @build/LIBRUNTIME_PPCEABI_H_A_ofiles
 
-$(BUILD_DIR)/libs/Runtime.PPCEABI.H/%.o: libs/Runtime.PPCEABI.H/%.cpp
+$(BUILD_DIR)/libs/Runtime.PPCEABI.H/%.o: libs/Runtime.PPCEABI.H/%.cpp $(BUILD_DIR)/libs/Runtime.PPCEABI.H/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBRUNTIME_PPCEABI_H_A_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(LIBRUNTIME_PPCEABI_H_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
 
-$(BUILD_DIR)/libs/Runtime.PPCEABI.H/%.o: libs/Runtime.PPCEABI.H/%.c
+$(BUILD_DIR)/libs/Runtime.PPCEABI.H/%.o: libs/Runtime.PPCEABI.H/%.c $(BUILD_DIR)/libs/Runtime.PPCEABI.H/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
-	@$(CC) $(CFLAGS) -c -o $@ $(basename $@).c
+	@$(CC) $(CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+LIBRUNTIME_PPCEABI_H_A_D_FILES := $(LIBRUNTIME_PPCEABI_H_A_O_FILES:.o=.d)
+$(LIBRUNTIME_PPCEABI_H_A_D_FILES):
+include $(wildcard $(LIBRUNTIME_PPCEABI_H_A_D_FILES))
+endif
+

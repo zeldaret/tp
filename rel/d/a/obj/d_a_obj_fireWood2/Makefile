@@ -40,10 +40,17 @@ $(M446_TARGET): $(M446_O_FILES) $(M446_LIBS)
 	@python3 tools/lcf.py rel 446 --output $(M446_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M446_LDFLAGS) -o $(M446_TARGET) @build/M446_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fireWood2/%.o: rel/d/a/obj/d_a_obj_fireWood2/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fireWood2/%.o: rel/d/a/obj/d_a_obj_fireWood2/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fireWood2/%.d
 	@echo [446] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M446_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M446_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M446_D_FILES := $(M446_O_FILES:.o=.d)
+$(M446_D_FILES):
+include $(wildcard $(M446_D_FILES))
+endif
 
 

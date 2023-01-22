@@ -40,10 +40,17 @@ $(M641_TARGET): $(M641_O_FILES) $(M641_LIBS)
 	@python3 tools/lcf.py rel 641 --output $(M641_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M641_LDFLAGS) -o $(M641_TARGET) @build/M641_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swLight/%.o: rel/d/a/obj/d_a_obj_swLight/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swLight/%.o: rel/d/a/obj/d_a_obj_swLight/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swLight/%.d
 	@echo [641] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M641_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M641_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M641_D_FILES := $(M641_O_FILES:.o=.d)
+$(M641_D_FILES):
+include $(wildcard $(M641_D_FILES))
+endif
 
 

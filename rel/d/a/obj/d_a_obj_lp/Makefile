@@ -38,10 +38,17 @@ $(M514_TARGET): $(M514_O_FILES) $(M514_LIBS)
 	@python3 tools/lcf.py rel 514 --output $(M514_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M514_LDFLAGS) -o $(M514_TARGET) @build/M514_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lp/%.o: rel/d/a/obj/d_a_obj_lp/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lp/%.o: rel/d/a/obj/d_a_obj_lp/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lp/%.d
 	@echo [514] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M514_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M514_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M514_D_FILES := $(M514_O_FILES:.o=.d)
+$(M514_D_FILES):
+include $(wildcard $(M514_D_FILES))
+endif
 
 

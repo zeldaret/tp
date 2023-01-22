@@ -40,10 +40,17 @@ $(M558_TARGET): $(M558_O_FILES) $(M558_LIBS)
 	@python3 tools/lcf.py rel 558 --output $(M558_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M558_LDFLAGS) -o $(M558_TARGET) @build/M558_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7PropellerY/%.o: rel/d/a/obj/d_a_obj_lv7PropellerY/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7PropellerY/%.o: rel/d/a/obj/d_a_obj_lv7PropellerY/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7PropellerY/%.d
 	@echo [558] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M558_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M558_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M558_D_FILES := $(M558_O_FILES:.o=.d)
+$(M558_D_FILES):
+include $(wildcard $(M558_D_FILES))
+endif
 
 

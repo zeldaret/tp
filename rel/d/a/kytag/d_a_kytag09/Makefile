@@ -38,10 +38,17 @@ $(M272_TARGET): $(M272_O_FILES) $(M272_LIBS)
 	@python3 tools/lcf.py rel 272 --output $(M272_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M272_LDFLAGS) -o $(M272_TARGET) @build/M272_ofiles
 
-$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag09/%.o: rel/d/a/kytag/d_a_kytag09/%.cpp
+$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag09/%.o: rel/d/a/kytag/d_a_kytag09/%.cpp $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag09/%.d
 	@echo [272] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M272_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M272_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M272_D_FILES := $(M272_O_FILES:.o=.d)
+$(M272_D_FILES):
+include $(wildcard $(M272_D_FILES))
+endif
 
 

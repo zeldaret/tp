@@ -40,10 +40,17 @@ $(M73_TARGET): $(M73_O_FILES) $(M73_LIBS)
 	@python3 tools/lcf.py rel 73 --output $(M73_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M73_LDFLAGS) -o $(M73_TARGET) @build/M73_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_grass/%.o: rel/d/a/d_a_grass/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_grass/%.o: rel/d/a/d_a_grass/%.cpp $(BUILD_DIR)/rel/d/a/d_a_grass/%.d
 	@echo [ 73] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M73_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M73_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M73_D_FILES := $(M73_O_FILES:.o=.d)
+$(M73_D_FILES):
+include $(wildcard $(M73_D_FILES))
+endif
 
 

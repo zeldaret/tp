@@ -38,10 +38,17 @@ $(M662_TARGET): $(M662_O_FILES) $(M662_LIBS)
 	@python3 tools/lcf.py rel 662 --output $(M662_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M662_LDFLAGS) -o $(M662_TARGET) @build/M662_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_toaru_maki/%.o: rel/d/a/obj/d_a_obj_toaru_maki/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_toaru_maki/%.o: rel/d/a/obj/d_a_obj_toaru_maki/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_toaru_maki/%.d
 	@echo [662] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M662_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M662_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M662_D_FILES := $(M662_O_FILES:.o=.d)
+$(M662_D_FILES):
+include $(wildcard $(M662_D_FILES))
+endif
 
 

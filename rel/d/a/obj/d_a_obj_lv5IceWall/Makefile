@@ -40,10 +40,17 @@ $(M540_TARGET): $(M540_O_FILES) $(M540_LIBS)
 	@python3 tools/lcf.py rel 540 --output $(M540_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M540_LDFLAGS) -o $(M540_TARGET) @build/M540_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5IceWall/%.o: rel/d/a/obj/d_a_obj_lv5IceWall/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5IceWall/%.o: rel/d/a/obj/d_a_obj_lv5IceWall/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5IceWall/%.d
 	@echo [540] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M540_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M540_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M540_D_FILES := $(M540_O_FILES:.o=.d)
+$(M540_D_FILES):
+include $(wildcard $(M540_D_FILES))
+endif
 
 

@@ -211,8 +211,41 @@ static OSTime max_wait;
 /* 804518B0-804518B4 000DB0 0004+00 2/2 0/0 0/0 .sbss            buffer */
 static OSTime buffer;
 
+inline void AIResetStreamSampleCount(void) { __AIRegs[0] = (__AIRegs[0] & ~0x20) | 0x20; }
+
+inline void AISetStreamTrigger(u32 trigger) { __AIRegs[3] = trigger; }
+
 /* 80350084-803501F0 34A9C4 016C+00 0/0 1/1 0/0 .text            AIInit */
-// need compiler epilogue patch
+// time assignments are weird
+#ifdef NONMATCHING
+void AIInit(u8* stack) {
+  if (__AI_init_flag == TRUE) {
+    return;
+  }
+
+  OSRegisterVersion(__AIVersion);
+  bound_32KHz = OSNanosecondsToTicks(31524);
+  bound_48KHz = OSNanosecondsToTicks(42024);
+  min_wait = OSNanosecondsToTicks(42000);
+  max_wait = OSNanosecondsToTicks(63000);
+  buffer = OSNanosecondsToTicks(3000);
+
+  AISetStreamVolRight(0);
+  AISetStreamVolLeft(0);
+  AISetStreamTrigger(0);
+  AIResetStreamSampleCount();
+  __AI_set_stream_sample_rate(1);
+  AISetDSPSampleRate(0);
+  __AIS_Callback = 0;
+  __AID_Callback = 0;
+  __CallbackStack = stack;
+  __OSSetInterruptHandler(5, __AIDHandler);
+  __OSUnmaskInterrupts(0x04000000);
+  __OSSetInterruptHandler(8, __AISHandler);
+  __OSUnmaskInterrupts(0x800000);
+  __AI_init_flag = TRUE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -221,6 +254,7 @@ asm void AIInit(u8* stack) {
 #include "asm/dolphin/ai/ai/AIInit.s"
 }
 #pragma pop
+#endif
 
 /* 803501F0-8035026C 34AB30 007C+00 1/1 0/0 0/0 .text            __AISHandler */
 void __AISHandler(s16 interrupt, OSContext* context) {

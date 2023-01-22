@@ -10,7 +10,9 @@ def apply(config, args):
     config['expected_build_dir'] = 'expected/build/'
     config['myimg'] = 'build/dolzel2/main.elf'
     config['baseimg'] = 'expected/build/dolzel2/main.elf'
-    config['makeflags'] = []
+    config['makeflags'] = [
+        'DISABLE_DEPS=1',
+    ]
     if args.show_source:
         config['makeflags'].append('DEBUG=1')
     config['source_directories'] = ['src', 'libs', 'include']

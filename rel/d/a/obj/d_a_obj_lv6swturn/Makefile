@@ -40,10 +40,17 @@ $(M556_TARGET): $(M556_O_FILES) $(M556_LIBS)
 	@python3 tools/lcf.py rel 556 --output $(M556_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M556_LDFLAGS) -o $(M556_TARGET) @build/M556_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6swturn/%.o: rel/d/a/obj/d_a_obj_lv6swturn/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6swturn/%.o: rel/d/a/obj/d_a_obj_lv6swturn/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6swturn/%.d
 	@echo [556] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M556_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M556_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M556_D_FILES := $(M556_O_FILES:.o=.d)
+$(M556_D_FILES):
+include $(wildcard $(M556_D_FILES))
+endif
 
 

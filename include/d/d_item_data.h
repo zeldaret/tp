@@ -76,9 +76,9 @@ struct dItem_data {
 
     static u8 getShadowSize(u8 index) { return item_info[index].mShadowSize; }
 
-    static u8 getH(u8 index) { return item_info[index].mH; }
+    static const u8 getH(u8 index) { return item_info[index].mH; }
 
-    static u8 getR(u8 index) { return item_info[index].mR; }
+    static const u8 getR(u8 index) { return item_info[index].mR; }
 
     static u16 getFieldHeapSize(u8 index) { return field_item_res[index].mHeapSize; } 
 

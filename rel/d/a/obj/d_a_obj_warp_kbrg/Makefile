@@ -40,10 +40,17 @@ $(M677_TARGET): $(M677_O_FILES) $(M677_LIBS)
 	@python3 tools/lcf.py rel 677 --output $(M677_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M677_LDFLAGS) -o $(M677_TARGET) @build/M677_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_warp_kbrg/%.o: rel/d/a/obj/d_a_obj_warp_kbrg/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_warp_kbrg/%.o: rel/d/a/obj/d_a_obj_warp_kbrg/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_warp_kbrg/%.d
 	@echo [677] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M677_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M677_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M677_D_FILES := $(M677_O_FILES:.o=.d)
+$(M677_D_FILES):
+include $(wildcard $(M677_D_FILES))
+endif
 
 

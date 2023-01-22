@@ -38,10 +38,17 @@ $(M237_TARGET): $(M237_O_FILES) $(M237_LIBS)
 	@python3 tools/lcf.py rel 237 --output $(M237_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M237_LDFLAGS) -o $(M237_TARGET) @build/M237_ofiles
 
-$(BUILD_DIR)/rel/d/a/e/d_a_e_th_ball/%.o: rel/d/a/e/d_a_e_th_ball/%.cpp
+$(BUILD_DIR)/rel/d/a/e/d_a_e_th_ball/%.o: rel/d/a/e/d_a_e_th_ball/%.cpp $(BUILD_DIR)/rel/d/a/e/d_a_e_th_ball/%.d
 	@echo [237] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M237_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M237_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M237_D_FILES := $(M237_O_FILES:.o=.d)
+$(M237_D_FILES):
+include $(wildcard $(M237_D_FILES))
+endif
 
 

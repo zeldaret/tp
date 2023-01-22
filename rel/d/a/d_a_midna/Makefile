@@ -40,10 +40,17 @@ $(M51_TARGET): $(M51_O_FILES) $(M51_LIBS)
 	@python3 tools/lcf.py rel 51 --output $(M51_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M51_LDFLAGS) -o $(M51_TARGET) @build/M51_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_midna/%.o: rel/d/a/d_a_midna/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_midna/%.o: rel/d/a/d_a_midna/%.cpp $(BUILD_DIR)/rel/d/a/d_a_midna/%.d
 	@echo [ 51] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M51_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M51_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M51_D_FILES := $(M51_O_FILES:.o=.d)
+$(M51_D_FILES):
+include $(wildcard $(M51_D_FILES))
+endif
 
 

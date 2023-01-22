@@ -40,10 +40,17 @@ $(M561_TARGET): $(M561_O_FILES) $(M561_LIBS)
 	@python3 tools/lcf.py rel 561 --output $(M561_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M561_LDFLAGS) -o $(M561_TARGET) @build/M561_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8Lift/%.o: rel/d/a/obj/d_a_obj_lv8Lift/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8Lift/%.o: rel/d/a/obj/d_a_obj_lv8Lift/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8Lift/%.d
 	@echo [561] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M561_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M561_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M561_D_FILES := $(M561_O_FILES:.o=.d)
+$(M561_D_FILES):
+include $(wildcard $(M561_D_FILES))
+endif
 
 

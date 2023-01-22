@@ -53,34 +53,143 @@ void __CARDCheckSum(void* ptr, int length, u16* checksum, u16* checksumInv) {
 }
 
 /* 80355B90-80355E14 3504D0 0284+00 2/2 0/0 0/0 .text            VerifyID */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm s32 VerifyID(CARDControl* card) {
-    nofralloc
-#include "asm/dolphin/card/CARDCheck/VerifyID.s"
+static s32 VerifyID(CARDControl* card) {
+  CARDID* id;
+  u16 checksum;
+  u16 checksumInv;
+  OSSramEx* sramEx;
+  OSTime rand;
+  int i;
+
+  id = card->workArea;
+
+  if (id->deviceID != 0 || id->size != card->size) {
+    return CARD_RESULT_BROKEN;
+  }
+
+  __CARDCheckSum(id, sizeof(CARDID) - sizeof(u32), &checksum, &checksumInv);
+  if (id->checkSum != checksum || id->checkSumInv != checksumInv) {
+    return CARD_RESULT_BROKEN;
+  }
+
+  rand = *(OSTime*)&id->serial[12];
+  sramEx = __OSLockSramEx();
+
+  for (i = 0; i < 12; i++) {
+    rand = (rand * 1103515245 + 12345) >> 16;
+    if (id->serial[i] != (u8)(sramEx->flashID[card - __CARDBlock][i] + rand)) {
+      __OSUnlockSramEx(FALSE);
+      return CARD_RESULT_BROKEN;
+    }
+    rand = ((rand * 1103515245 + 12345) >> 16) & 0x7FFF;
+  }
+
+  __OSUnlockSramEx(FALSE);
+  if (id->encode != __CARDGetFontEncode()) {
+    return CARD_RESULT_ENCODING;
+  }
+
+  return CARD_RESULT_READY;
 }
-#pragma pop
 
 /* 80355E14-80356054 350754 0240+00 2/2 0/0 0/0 .text            VerifyDir */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm s32 VerifyDir(CARDControl* card, int* outCurrent) {
-    nofralloc
-#include "asm/dolphin/card/CARDCheck/VerifyDir.s"
+static s32 VerifyDir(CARDControl* card, int* outCurrent) {
+  CARDDir* dir[2];
+  CARDDirCheck* check[2];
+  u16 checkSum;
+  u16 checkSumInv;
+  int i;
+  int errors;
+  int current;
+
+  current = errors = 0;
+  for (i = 0; i < 2; i++) {
+    dir[i] = (CARDDir*)((u8*)card->workArea + (1 + i) * CARD_SYSTEM_BLOCK_SIZE);
+    check[i] = __CARDGetDirCheck(dir[i]);
+    __CARDCheckSum(dir[i], CARD_SYSTEM_BLOCK_SIZE - sizeof(u32), &checkSum, &checkSumInv);
+    if (check[i]->checkSum != checkSum || check[i]->checkSumInv != checkSumInv) {
+      ++errors;
+      current = i;
+      card->currentDir = 0;
+    }
+  }
+
+  if (0 == errors) {
+    if (card->currentDir == 0) {
+      if ((check[0]->checkCode - check[1]->checkCode) < 0) {
+        current = 0;
+      } else {
+        current = 1;
+      }
+      card->currentDir = dir[current];
+      memcpy(dir[current], dir[current ^ 1], CARD_SYSTEM_BLOCK_SIZE);
+    } else {
+      current = (card->currentDir == dir[0]) ? 0 : 1;
+    }
+  }
+  if (outCurrent) {
+    *outCurrent = current;
+  }
+  return errors;
 }
-#pragma pop
 
 /* 80356054-803562D8 350994 0284+00 2/2 0/0 0/0 .text            VerifyFAT */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm s32 VerifyFAT(CARDControl* card, int* outCurrent) {
-    nofralloc
-#include "asm/dolphin/card/CARDCheck/VerifyFAT.s"
+static s32 VerifyFAT(CARDControl* card, int* outCurrent) {
+  u16* fat[2];
+  u16* fatp;
+  u16 nBlock;
+  u16 cFree;
+  int i;
+  u16 checkSum;
+  u16 checkSumInv;
+  int errors;
+  int current;
+
+  current = errors = 0;
+  for (i = 0; i < 2; i++) {
+    fatp = fat[i] = (u16*)((u8*)card->workArea + (3 + i) * CARD_SYSTEM_BLOCK_SIZE);
+
+    __CARDCheckSum(&fatp[CARD_FAT_CHECKCODE], CARD_SYSTEM_BLOCK_SIZE - sizeof(u32), &checkSum,
+                   &checkSumInv);
+    if (fatp[CARD_FAT_CHECKSUM] != checkSum || fatp[CARD_FAT_CHECKSUMINV] != checkSumInv) {
+      ++errors;
+      current = i;
+      card->currentFat = 0;
+      continue;
+    }
+
+    cFree = 0;
+    for (nBlock = CARD_NUM_SYSTEM_BLOCK; nBlock < card->cBlock; nBlock++) {
+      if (fatp[nBlock] == CARD_FAT_AVAIL) {
+        cFree++;
+      }
+    }
+    if (cFree != fatp[CARD_FAT_FREEBLOCKS]) {
+      ++errors;
+      current = i;
+      card->currentFat = 0;
+      continue;
+    }
+  }
+
+  if (0 == errors) {
+    if (card->currentFat == 0) {
+      if (((s16)fat[0][CARD_FAT_CHECKCODE] - (s16)fat[1][CARD_FAT_CHECKCODE]) < 0) {
+        current = 0;
+      } else {
+        current = 1;
+      }
+      card->currentFat = fat[current];
+      memcpy(fat[current], fat[current ^ 1], CARD_SYSTEM_BLOCK_SIZE);
+    } else {
+      current = (card->currentFat == fat[0]) ? 0 : 1;
+    }
+  }
+  if (outCurrent) {
+    *outCurrent = current;
+  }
+  return errors;
 }
-#pragma pop
 
 /* 803562D8-80356364 350C18 008C+00 0/0 1/1 0/0 .text            __CARDVerify */
 s32 __CARDVerify(CARDControl* card) {
@@ -105,7 +214,6 @@ s32 __CARDVerify(CARDControl* card) {
 }
 
 /* 80356364-803568F4 350CA4 0590+00 1/1 0/0 0/0 .text            CARDCheckExAsync */
-#ifdef NONMATCHING
 s32 CARDCheckExAsync(s32 chan, s32* xferBytes, CARDCallback callback) {
     CARDControl* card;
     CARDDir* dir[2];
@@ -235,16 +343,6 @@ s32 CARDCheckExAsync(s32 chan, s32* xferBytes, CARDCallback callback) {
     }
     return CARD_RESULT_READY;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm s32 CARDCheckExAsync(s32 chan, s32* xferBytes, CARDCallback callback) {
-    nofralloc
-#include "asm/dolphin/card/CARDCheck/CARDCheckExAsync.s"
-}
-#pragma pop
-#endif
 
 /* 803568F4-80356948 351234 0054+00 0/0 2/2 0/0 .text            CARDCheck */
 s32 CARDCheck(s32 chan) {

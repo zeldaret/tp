@@ -40,10 +40,17 @@ $(M632_TARGET): $(M632_O_FILES) $(M632_LIBS)
 	@python3 tools/lcf.py rel 632 --output $(M632_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M632_LDFLAGS) -o $(M632_TARGET) @build/M632_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stairBlock/%.o: rel/d/a/obj/d_a_obj_stairBlock/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stairBlock/%.o: rel/d/a/obj/d_a_obj_stairBlock/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stairBlock/%.d
 	@echo [632] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M632_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M632_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M632_D_FILES := $(M632_O_FILES:.o=.d)
+$(M632_D_FILES):
+include $(wildcard $(M632_D_FILES))
+endif
 
 

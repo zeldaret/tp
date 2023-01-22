@@ -38,10 +38,17 @@ $(M590_TARGET): $(M590_O_FILES) $(M590_LIBS)
 	@python3 tools/lcf.py rel 590 --output $(M590_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M590_LDFLAGS) -o $(M590_TARGET) @build/M590_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdtile/%.o: rel/d/a/obj/d_a_obj_pdtile/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdtile/%.o: rel/d/a/obj/d_a_obj_pdtile/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdtile/%.d
 	@echo [590] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M590_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M590_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M590_D_FILES := $(M590_O_FILES:.o=.d)
+$(M590_D_FILES):
+include $(wildcard $(M590_D_FILES))
+endif
 
 

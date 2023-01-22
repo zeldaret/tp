@@ -12,6 +12,7 @@ from pathlib import Path
 try:
     import click
     import libdol2asm
+    import libdol2asm.util
 except ImportError as e:
     MISSING_PREREQUISITES = (
         f"Missing prerequisite python module {e}.\n"

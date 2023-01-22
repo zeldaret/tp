@@ -40,10 +40,17 @@ $(M697_TARGET): $(M697_O_FILES) $(M697_LIBS)
 	@python3 tools/lcf.py rel 697 --output $(M697_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M697_LDFLAGS) -o $(M697_TARGET) @build/M697_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zrTurara/%.o: rel/d/a/obj/d_a_obj_zrTurara/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zrTurara/%.o: rel/d/a/obj/d_a_obj_zrTurara/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zrTurara/%.d
 	@echo [697] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M697_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M697_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M697_D_FILES := $(M697_O_FILES:.o=.d)
+$(M697_D_FILES):
+include $(wildcard $(M697_D_FILES))
+endif
 
 

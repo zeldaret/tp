@@ -286,17 +286,33 @@ static void PADTypeAndStatusCallback(s32 chan, u32 type) {
 }
 
 /* 8034E9EC-8034EB2C 34932C 0140+00 1/1 0/0 0/0 .text            PADReceiveCheckCallback */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void PADReceiveCheckCallback(s32 chan, u32 type) {
-    nofralloc
-#include "asm/dolphin/pad/Pad/PADReceiveCheckCallback.s"
+static void PADReceiveCheckCallback(s32 chan, u32 type) {
+  u32 error;
+  u32 chanBit;
+
+  chanBit = (u32)PAD_CHAN0_BIT >> chan;
+  if (!(EnabledBits & chanBit)) {
+    return;
+  }
+
+  error = type & 0xFF;
+  type &= ~0xFF;
+
+  WaitingBits &= ~chanBit;
+  CheckingBits &= ~chanBit;
+
+  if (!(error &
+        (SI_ERROR_UNDER_RUN | SI_ERROR_OVER_RUN | SI_ERROR_NO_RESPONSE | SI_ERROR_COLLISION)) &&
+      (type & SI_GC_WIRELESS) && (type & SI_WIRELESS_FIX_ID) && (type & SI_WIRELESS_RECEIVED) &&
+      !(type & SI_WIRELESS_IR) && (type & SI_WIRELESS_CONT_MASK) == SI_WIRELESS_CONT &&
+      !(type & SI_WIRELESS_LITE)) {
+    SITransfer(chan, &CmdReadOrigin, 1, &Origin[chan], 10, PADOriginUpdateCallback, 0);
+  } else {
+    PADDisable(chan);
+  }
 }
-#pragma pop
 
 /* 8034EB2C-8034EC3C 34946C 0110+00 2/2 1/1 0/0 .text            PADReset */
-#ifdef NONMATCHING
 BOOL PADReset(u32 mask) {
     BOOL enabled;
     u32 diableBits;
@@ -309,6 +325,7 @@ BOOL PADReset(u32 mask) {
     ResettingBits |= mask;
     diableBits = ResettingBits & EnabledBits;
     EnabledBits &= ~mask;
+    BarrelBits &= ~mask;
 
     if (Spec == PAD_SPEC_4) {
         RecalibrateBits |= mask;
@@ -322,19 +339,8 @@ BOOL PADReset(u32 mask) {
     OSRestoreInterrupts(enabled);
     return TRUE;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL PADReset(u32 mask) {
-    nofralloc
-#include "asm/dolphin/pad/Pad/PADReset.s"
-}
-#pragma pop
-#endif
 
 /* 8034EC3C-8034ED50 34957C 0114+00 1/1 1/1 0/0 .text            PADRecalibrate */
-#ifdef NONMATCHING
 BOOL PADRecalibrate(u32 mask) {
     BOOL enabled;
     u32 disableBits;
@@ -345,9 +351,9 @@ BOOL PADRecalibrate(u32 mask) {
     PendingBits = 0;
     mask &= ~(WaitingBits | CheckingBits);
     ResettingBits |= mask;
-    BarrelBits &= ~mask;
     disableBits = ResettingBits & EnabledBits;
     EnabledBits &= ~mask;
+    BarrelBits &= ~mask;
 
     if (!(UnkVal & 0x40)) {
         RecalibrateBits |= mask;
@@ -360,16 +366,6 @@ BOOL PADRecalibrate(u32 mask) {
     OSRestoreInterrupts(enabled);
     return TRUE;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL PADRecalibrate(u32 mask) {
-    nofralloc
-#include "asm/dolphin/pad/Pad/PADRecalibrate.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 803D1B90-803D1BA0 -00001 0010+00 1/1 0/0 0/0 .data            ResetFunctionInfo */
@@ -531,7 +527,6 @@ u32 PADRead(PADStatus* status) {
 }
 
 /* 8034F1A0-8034F258 349AE0 00B8+00 0/0 2/2 0/0 .text            PADControlMotor */
-#ifdef NONMATCHING
 void PADControlMotor(s32 chan, u32 command) {
     BOOL enabled;
     u32 chanBit;
@@ -543,21 +538,15 @@ void PADControlMotor(s32 chan, u32 command) {
             command = PAD_MOTOR_STOP;
         }
 
+        if (UnkVal & 0x20) {
+             command = PAD_MOTOR_STOP;
+        }
+
         SISetCommand(chan, (0x40 << 16) | AnalogMode | (command & (0x00000001 | 0x00000002)));
         SITransferCommands();
     }
     OSRestoreInterrupts(enabled);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void PADControlMotor(s32 channel, u32 command) {
-    nofralloc
-#include "asm/dolphin/pad/Pad/PADControlMotor.s"
-}
-#pragma pop
-#endif
 
 /* 8034F258-8034F2B8 349B98 0060+00 1/1 1/1 0/0 .text            PADSetSpec */
 void PADSetSpec(u32 spec) {
@@ -677,9 +666,12 @@ inline u8 ClampU8(u8 var, u8 org) {
      PAD_BUTTON_MENU | 0x2000 | 0x0080)
 
 /* 8034F5A0-8034FA10 349EE0 0470+00 2/1 0/0 0/0 .text            SPEC2_MakeStatus */
+// lis and stw instruction order
 #ifdef NONMATCHING
 static void SPEC2_MakeStatus(s32 chan, PADStatus* status, u32 data[2]) {
+    u32 type;
     PADStatus* origin;
+    u32 chanBit;
 
     status->button = (u16)((data[0] >> 16) & PAD_ALL);
     status->stick_x = (s8)(data[0] >> 8);
@@ -736,13 +728,24 @@ static void SPEC2_MakeStatus(s32 chan, PADStatus* status, u32 data[2]) {
     status->substick_x -= 128;
     status->substick_y -= 128;
 
-    origin = &Origin[chan];
-    status->stick_x = ClampS8(status->stick_x, origin->stick_x);
-    status->stick_y = ClampS8(status->stick_y, origin->stick_y);
-    status->substick_x = ClampS8(status->substick_x, origin->substick_x);
-    status->substick_y = ClampS8(status->substick_y, origin->substick_y);
-    status->trigger_left = ClampU8(status->trigger_left, origin->trigger_left);
-    status->trigger_right = ClampU8(status->trigger_right, origin->trigger_right);
+    type = Type[chan];
+
+    if (((type & (0xffff0000u)) == SI_GC_CONTROLLER) && ((status->button & 0x80) ^ 0x80)) {
+        BarrelBits |= ((u32)PAD_CHAN0_BIT >> chan);
+        status->stick_x = 0;
+        status->stick_y = 0;
+        status->substick_x = 0;
+        status->substick_y = 0;
+    } else {
+        BarrelBits &= ~((u32)PAD_CHAN0_BIT >> chan);
+        origin = &Origin[chan];
+        status->stick_x = ClampS8(status->stick_x, origin->stick_x);
+        status->stick_y = ClampS8(status->stick_y, origin->stick_y);
+        status->substick_x = ClampS8(status->substick_x, origin->substick_x);
+        status->substick_y = ClampS8(status->substick_y, origin->substick_y);
+        status->trigger_left = ClampU8(status->trigger_left, origin->trigger_left);
+        status->trigger_right = ClampU8(status->trigger_right, origin->trigger_right);
+    }
 }
 #else
 #pragma push
@@ -814,21 +817,30 @@ static void SamplingHandler(OSInterrupt interrupt, OSContext* context) {
 }
 
 /* 8034FBA0-8034FBF4 34A4E0 0054+00 1/1 0/0 0/0 .text            PADSetSamplingCallback */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm PADSamplingCallback PADSetSamplingCallback(PADSamplingCallback callback) {
-    nofralloc
-#include "asm/dolphin/pad/Pad/PADSetSamplingCallback.s"
+PADSamplingCallback PADSetSamplingCallback(PADSamplingCallback callback) {
+  PADSamplingCallback prev;
+
+  prev = SamplingCallback;
+  SamplingCallback = callback;
+  if (callback) {
+    SIRegisterPollingHandler(SamplingHandler);
+  } else {
+    SIUnregisterPollingHandler(SamplingHandler);
+  }
+  return prev;
 }
-#pragma pop
 
 /* 8034FBF4-8034FC70 34A534 007C+00 0/0 1/1 0/0 .text            __PADDisableRecalibration */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL __PADDisableRecalibration(BOOL disable) {
-    nofralloc
-#include "asm/dolphin/pad/Pad/__PADDisableRecalibration.s"
+BOOL __PADDisableRecalibration(BOOL disable) {
+  BOOL enabled;
+  BOOL prev;
+
+  enabled = OSDisableInterrupts();
+  prev = (UnkVal & 0x40) ? TRUE : FALSE;
+  UnkVal &= ~0x40;
+  if (disable) {
+    UnkVal |= 0x40;
+  }
+  OSRestoreInterrupts(enabled);
+  return prev;
 }
-#pragma pop

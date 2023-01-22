@@ -12,6 +12,8 @@ import json
 import subprocess
 import multiprocessing as mp
 import shutil
+import platform
+import stat
 
 from dataclasses import dataclass, field
 from typing import Dict, List, Set, Tuple
@@ -167,6 +169,26 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
         )
         sys.exit(1)
 
+    c125 = compilers.joinpath("1.2.5")
+    if not c125.exists() or not c125.is_dir():
+        LOG.error(
+            (
+                f"Unable to find MWCC compiler version 1.2.5: missing directory '{c125}'\n"
+                f"Check the README for instructions on how to obtain the compilers"
+            )
+        )
+        sys.exit(1)
+
+    c125e = compilers.joinpath("1.2.5e")
+    if not c125e.exists() or not c125e.is_dir():
+        LOG.error(
+            (
+                f"Unable to find patched MWCC compiler version 1.2.5e: missing directory '{c125e}'\n"
+                f"Check the README for instructions on how to obtain the compilers"
+            )
+        )
+        sys.exit(1)
+
     c27_lmgr326b = c27.joinpath("Lmgr326b.dll")
     if not c27_lmgr326b.exists() or not c27_lmgr326b.is_file():
         c27_lmgr326b = c27.joinpath("lmgr326b.dll")
@@ -187,6 +209,11 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
     if not c27_lmgr326b_cc.exists() or not c27_lmgr326b_cc.is_file():
         LOG.debug(f"copy: '{c27_lmgr326b}', to: '{c27_lmgr326b_cc}'")
         shutil.copy(c27_lmgr326b, c27_lmgr326b_cc)
+
+    c125_lmgr326b_cc = c125.joinpath("LMGR326B.dll")
+    if not c125_lmgr326b_cc.exists() or not c125_lmgr326b_cc.is_file():
+        LOG.debug(f"copy: '{c27_lmgr326b}', to: '{c125_lmgr326b_cc}'")
+        shutil.copy(c27_lmgr326b, c125_lmgr326b_cc)
 
     c27_mwcceppc = c27.joinpath("mwcceppc.exe")
     if not c27_mwcceppc.exists() or not c27_mwcceppc.is_file():
@@ -231,6 +258,8 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
                 else:
                     data[0x001C6A54] = 0x69
                 dst_file.write(data)
+            if platform.system() == "Linux":
+                os.chmod(dst, stat.S_IRWXU | stat.S_IRGRP | stat.S_IXGRP | stat.S_IROTH | stat.S_IXOTH)
 
     if mwcceppc_sha1 == MWCCEPPC_SHA1:
         LOG.debug(f"found original compiler: '{c27_mwcceppc}' ('{mwcceppc_sha1}')")
@@ -293,7 +322,7 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
 @tp.command(name="progress")
 @click.option("--debug/--no-debug")
 @click.option("--matching/--no-matching", default=True, is_flag=True)
-@click.option("--print-rels", default=True, is_flag=True)
+@click.option("--print-rels/--no-print-rels", default=True, is_flag=True)
 @click.option(
     "--format",
     "-f",
@@ -400,7 +429,7 @@ def calculate_rel_progress(build_path: Path, matching: bool, format: str, asm_fi
         str_file = str(file)
         if not str_file.startswith("asm/rel/"):
             continue
-        rel = str_file.split("/")[-2]
+        rel = str_file.split("/")[-3]
         range_dict[rel].append(range[1] - range[0])
 
     end = time.time()
@@ -583,7 +612,7 @@ def calculate_progress(build_path: Path, matching: bool, format: str, print_rels
             tableString = tableString+"Total | "+f"{100 * (rel_decompiled / rel_size):10.6f}%"+" | "+f"{rel_decompiled}"+" | "+f"{rel_size}"+"\n"
             CONSOLE.print(table)
 
-        
+
         table = Table(title="Total")
         table.add_column("Section", justify="right", style="cyan", no_wrap=True)
         table.add_column("Percentage", style="green")
@@ -596,7 +625,7 @@ def calculate_progress(build_path: Path, matching: bool, format: str, print_rels
             f"{dol_progress.decompiled}",
             f"{dol_progress.size}",
         )
-       
+
         if rels_progress:
             table.add_row(
                 "RELs",
@@ -871,7 +900,7 @@ def find_all_asm_files() -> Tuple[Set[Path], Set[Path]]:
             if path.is_dir():
                 recursive(path)
             else:
-                if path.suffix == ".s" or path.suffix == ".inc":
+                if path.suffix == ".s":
                     files.add(path)
                 else:
                     errors.add(path)
@@ -969,7 +998,7 @@ def find_all_files() -> Set[Path]:
     return files
 
 
-def find_includes(lines: List[str], non_matching: bool, ext: Tuple[str, str] = (".s",".inc")) -> Set[Path]:
+def find_includes(lines: List[str], non_matching: bool, ext: str = ".s") -> Set[Path]:
     includes = set()
     for line in lines:
         key = '#include "'
@@ -984,8 +1013,6 @@ def find_includes(lines: List[str], non_matching: bool, ext: Tuple[str, str] = (
 
         include_path = line[start:end]
         if include_path.endswith(ext):
-            if include_path.endswith(".inc"):
-                include_path = "src/"+include_path
             includes.add(Path(include_path))
 
     return includes
@@ -1097,6 +1124,7 @@ def check_sha1(game_path: Path, build_path: Path, include_rels: bool):
         "",
         "4997D93B9692620C40E90374A0F1DBF0E4889395",
     )
+
     if include_rels:
         with open('sha1sums.json') as f:
             rel_shas = json.load(f)
@@ -1124,7 +1152,7 @@ def check_sha1(game_path: Path, build_path: Path, include_rels: bool):
         )
 
     if include_rels:
-        build_rels_path = get_files_with_ext(build_path, ".rel")
+        build_rels_path = get_files_with_ext(build_path/"rel", ".rel")
         for rel_filepath in build_rels_path:
             with rel_filepath.open("rb") as file:
                 data = bytearray(file.read())

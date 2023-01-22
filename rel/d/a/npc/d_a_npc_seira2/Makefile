@@ -40,10 +40,17 @@ $(M357_TARGET): $(M357_O_FILES) $(M357_LIBS)
 	@python3 tools/lcf.py rel 357 --output $(M357_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M357_LDFLAGS) -o $(M357_TARGET) @build/M357_ofiles
 
-$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira2/%.o: rel/d/a/npc/d_a_npc_seira2/%.cpp
+$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira2/%.o: rel/d/a/npc/d_a_npc_seira2/%.cpp $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira2/%.d
 	@echo [357] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M357_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M357_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M357_D_FILES := $(M357_O_FILES:.o=.d)
+$(M357_D_FILES):
+include $(wildcard $(M357_D_FILES))
+endif
 
 

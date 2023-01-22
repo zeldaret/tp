@@ -40,10 +40,17 @@ $(M399_TARGET): $(M399_O_FILES) $(M399_LIBS)
 	@python3 tools/lcf.py rel 399 --output $(M399_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M399_LDFLAGS) -o $(M399_TARGET) @build/M399_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_automata/%.o: rel/d/a/obj/d_a_obj_automata/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_automata/%.o: rel/d/a/obj/d_a_obj_automata/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_automata/%.d
 	@echo [399] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M399_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M399_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M399_D_FILES := $(M399_O_FILES:.o=.d)
+$(M399_D_FILES):
+include $(wildcard $(M399_D_FILES))
+endif
 
 

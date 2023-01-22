@@ -40,10 +40,17 @@ $(M549_TARGET): $(M549_O_FILES) $(M549_LIBS)
 	@python3 tools/lcf.py rel 549 --output $(M549_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M549_LDFLAGS) -o $(M549_TARGET) @build/M549_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Tenbin/%.o: rel/d/a/obj/d_a_obj_lv6Tenbin/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Tenbin/%.o: rel/d/a/obj/d_a_obj_lv6Tenbin/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Tenbin/%.d
 	@echo [549] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M549_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M549_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M549_D_FILES := $(M549_O_FILES:.o=.d)
+$(M549_D_FILES):
+include $(wildcard $(M549_D_FILES))
+endif
 
 

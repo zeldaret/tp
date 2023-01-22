@@ -131,7 +131,7 @@ void __OSEVEnd();
 static void OSDefaultExceptionHandler(__OSException exception, OSContext* context);
 void __OSPSInit(void);
 u32 __OSGetDIConfig(void);
-void OSRegisterVersion(char* version);
+void OSRegisterVersion(const char* version);
 void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);
 
 inline s16 __OSf32tos16(register f32 inF) {

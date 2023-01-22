@@ -38,10 +38,17 @@ $(M40_TARGET): $(M40_O_FILES) $(M40_LIBS)
 	@python3 tools/lcf.py rel 40 --output $(M40_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M40_LDFLAGS) -o $(M40_TARGET) @build/M40_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_telop/%.o: rel/d/a/tag/d_a_tag_telop/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_telop/%.o: rel/d/a/tag/d_a_tag_telop/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_telop/%.d
 	@echo [ 40] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M40_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M40_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M40_D_FILES := $(M40_O_FILES:.o=.d)
+$(M40_D_FILES):
+include $(wildcard $(M40_D_FILES))
+endif
 
 

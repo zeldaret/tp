@@ -40,10 +40,17 @@ $(M397_TARGET): $(M397_O_FILES) $(M397_LIBS)
 	@python3 tools/lcf.py rel 397 --output $(M397_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M397_LDFLAGS) -o $(M397_TARGET) @build/M397_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_amiShutter/%.o: rel/d/a/obj/d_a_obj_amiShutter/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_amiShutter/%.o: rel/d/a/obj/d_a_obj_amiShutter/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_amiShutter/%.d
 	@echo [397] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M397_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M397_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M397_D_FILES := $(M397_O_FILES:.o=.d)
+$(M397_D_FILES):
+include $(wildcard $(M397_D_FILES))
+endif
 
 

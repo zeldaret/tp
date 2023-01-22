@@ -40,10 +40,17 @@ $(M629_TARGET): $(M629_O_FILES) $(M629_LIBS)
 	@python3 tools/lcf.py rel 629 --output $(M629_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M629_LDFLAGS) -o $(M629_TARGET) @build/M629_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_spinLift/%.o: rel/d/a/obj/d_a_obj_spinLift/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_spinLift/%.o: rel/d/a/obj/d_a_obj_spinLift/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_spinLift/%.d
 	@echo [629] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M629_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M629_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M629_D_FILES := $(M629_O_FILES:.o=.d)
+$(M629_D_FILES):
+include $(wildcard $(M629_D_FILES))
+endif
 
 

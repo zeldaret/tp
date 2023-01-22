@@ -38,10 +38,17 @@ $(M129_TARGET): $(M129_O_FILES) $(M129_LIBS)
 	@python3 tools/lcf.py rel 129 --output $(M129_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M129_LDFLAGS) -o $(M129_TARGET) @build/M129_ofiles
 
-$(BUILD_DIR)/rel/d/a/tag/d_a_tag_magne/%.o: rel/d/a/tag/d_a_tag_magne/%.cpp
+$(BUILD_DIR)/rel/d/a/tag/d_a_tag_magne/%.o: rel/d/a/tag/d_a_tag_magne/%.cpp $(BUILD_DIR)/rel/d/a/tag/d_a_tag_magne/%.d
 	@echo [129] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M129_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M129_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M129_D_FILES := $(M129_O_FILES:.o=.d)
+$(M129_D_FILES):
+include $(wildcard $(M129_D_FILES))
+endif
 
 

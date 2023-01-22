@@ -28,7 +28,7 @@ git clone https://github.com/zeldaret/tp
 mkdir -p tools/mwcc_compiler/
 ```
 
-3. Download `GC_COMPILERS.zip` from the [Discord](https://discord.gg/Nshw5pHS4h) server. See the pins in the `#tp-decomp` channel under the Twilight Princess group.
+3. Download [GC_WII_COMPILERS.zip](https://cdn.discordapp.com/attachments/727918646525165659/917185027656286218/GC_WII_COMPILERS.zip).
 
 4. Extract `GC_COMPILERS.zip` into the previously created `mwcc_compiler` directory
 

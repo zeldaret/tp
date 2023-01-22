@@ -40,10 +40,17 @@ $(M48_TARGET): $(M48_O_FILES) $(M48_LIBS)
 	@python3 tools/lcf.py rel 48 --output $(M48_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M48_LDFLAGS) -o $(M48_TARGET) @build/M48_ofiles
 
-$(BUILD_DIR)/rel/d/a/d_a_demo00/%.o: rel/d/a/d_a_demo00/%.cpp
+$(BUILD_DIR)/rel/d/a/d_a_demo00/%.o: rel/d/a/d_a_demo00/%.cpp $(BUILD_DIR)/rel/d/a/d_a_demo00/%.d
 	@echo [ 48] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M48_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M48_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M48_D_FILES := $(M48_O_FILES:.o=.d)
+$(M48_D_FILES):
+include $(wildcard $(M48_D_FILES))
+endif
 
 

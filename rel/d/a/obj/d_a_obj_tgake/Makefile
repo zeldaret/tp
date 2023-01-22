@@ -38,10 +38,17 @@ $(M656_TARGET): $(M656_O_FILES) $(M656_LIBS)
 	@python3 tools/lcf.py rel 656 --output $(M656_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M656_LDFLAGS) -o $(M656_TARGET) @build/M656_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tgake/%.o: rel/d/a/obj/d_a_obj_tgake/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tgake/%.o: rel/d/a/obj/d_a_obj_tgake/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tgake/%.d
 	@echo [656] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M656_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M656_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M656_D_FILES := $(M656_O_FILES:.o=.d)
+$(M656_D_FILES):
+include $(wildcard $(M656_D_FILES))
+endif
 
 

@@ -38,10 +38,17 @@ $(M431_TARGET): $(M431_O_FILES) $(M431_LIBS)
 	@python3 tools/lcf.py rel 431 --output $(M431_LDSCRIPT)
 	@$(LD) -opt_partial -strip_partial $(M431_LDFLAGS) -o $(M431_TARGET) @build/M431_ofiles
 
-$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvsteel/%.o: rel/d/a/obj/d_a_obj_crvsteel/%.cpp
+$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvsteel/%.o: rel/d/a/obj/d_a_obj_crvsteel/%.cpp $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvsteel/%.d
 	@echo [431] building $@
 	@mkdir -p $(@D)
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(M431_CFLAGS) -c -o $@ $(basename $@).cpp
+	@$(CC) $(CFLAGS) $(M431_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+ifndef DISABLE_DEPS
+M431_D_FILES := $(M431_O_FILES:.o=.d)
+$(M431_D_FILES):
+include $(wildcard $(M431_D_FILES))
+endif
 
 
