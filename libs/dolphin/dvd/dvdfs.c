@@ -64,13 +64,13 @@ static unsigned int MaxEntryNum;
 
 /* 803484F0-80348528 342E30 0038+00 0/0 2/2 0/0 .text            __DVDFSInit */
 void __DVDFSInit() {
-  BootInfo = (OSBootInfo*)OSPhysicalToCached(0);
-  FstStart = (FSTEntry*)BootInfo->fst_location;
+    BootInfo = (OSBootInfo*)OSPhysicalToCached(0);
+    FstStart = (FSTEntry*)BootInfo->fst_location;
 
-  if (FstStart) {
-    MaxEntryNum = FstStart[0].nextEntryOrLength;
-    FstStringStart = (char*)&(FstStart[MaxEntryNum]);
-  }
+    if (FstStart) {
+        MaxEntryNum = FstStart[0].nextEntryOrLength;
+        FstStringStart = (char*)&(FstStart[MaxEntryNum]);
+    }
 }
 
 /* ############################################################################################## */
@@ -104,7 +104,7 @@ u32 __DVDLongFileNameFlag;
 static inline BOOL isSame(const char* path, const char* string) {
     while (*string != '\0') {
         if (tolower(*path++) != tolower(*string++)) {
-        return FALSE;
+            return FALSE;
         }
     }
 
@@ -131,57 +131,54 @@ int DVDConvertPathToEntrynum(const char* pathPtr) {
     dirLookAt = currentDirectory;
 
     while (1) {
-
         if (*pathPtr == '\0') {
-        return (s32)dirLookAt;
-        } else if (*pathPtr == '/') {
-        dirLookAt = 0;
-        pathPtr++;
-        continue;
-        } else if (*pathPtr == '.') {
-        if (*(pathPtr + 1) == '.') {
-            if (*(pathPtr + 2) == '/') {
-            dirLookAt = parentDir(dirLookAt);
-            pathPtr += 3;
-            continue;
-            } else if (*(pathPtr + 2) == '\0') {
-            return (s32)parentDir(dirLookAt);
-            }
-        } else if (*(pathPtr + 1) == '/') {
-            pathPtr += 2;
-            continue;
-        } else if (*(pathPtr + 1) == '\0') {
             return (s32)dirLookAt;
-        }
+        } else if (*pathPtr == '/') {
+            dirLookAt = 0;
+            pathPtr++;
+            continue;
+        } else if (*pathPtr == '.') {
+            if (*(pathPtr + 1) == '.') {
+                if (*(pathPtr + 2) == '/') {
+                    dirLookAt = parentDir(dirLookAt);
+                    pathPtr += 3;
+                    continue;
+                } else if (*(pathPtr + 2) == '\0') {
+                    return (s32)parentDir(dirLookAt);
+                }
+            } else if (*(pathPtr + 1) == '/') {
+                pathPtr += 2;
+                continue;
+            } else if (*(pathPtr + 1) == '\0') {
+                return (s32)dirLookAt;
+            }
         }
 
         if (__DVDLongFileNameFlag == 0) {
-        extention = FALSE;
-        illegal = FALSE;
+            extention = FALSE;
+            illegal = FALSE;
 
-        for (ptr = pathPtr; (*ptr != '\0') && (*ptr != '/'); ptr++) {
-            if (*ptr == '.') {
-            if ((ptr - pathPtr > 8) || (extention == TRUE)) {
-                illegal = TRUE;
-                break;
+            for (ptr = pathPtr; (*ptr != '\0') && (*ptr != '/'); ptr++) {
+                if (*ptr == '.') {
+                    if ((ptr - pathPtr > 8) || (extention == TRUE)) {
+                        illegal = TRUE;
+                        break;
+                    }
+                    extention = TRUE;
+                    extentionStart = ptr + 1;
+
+                } else if (*ptr == ' ')
+                    illegal = TRUE;
             }
-            extention = TRUE;
-            extentionStart = ptr + 1;
 
-            } else if (*ptr == ' ')
-            illegal = TRUE;
-        }
+            if ((extention == TRUE) && (ptr - extentionStart > 3))
+                illegal = TRUE;
 
-        if ((extention == TRUE) && (ptr - extentionStart > 3))
-            illegal = TRUE;
-
-        if (illegal)
-            OSPanic(lit_118, 387,
-                    lit_119,
-                    origPathPtr);
+            if (illegal)
+                OSPanic(lit_118, 387, lit_119, origPathPtr);
         } else {
-        for (ptr = pathPtr; (*ptr != '\0') && (*ptr != '/'); ptr++)
-            ;
+            for (ptr = pathPtr; (*ptr != '\0') && (*ptr != '/'); ptr++)
+                ;
         }
 
         isDir = (*ptr == '\0') ? FALSE : TRUE;
@@ -190,22 +187,22 @@ int DVDConvertPathToEntrynum(const char* pathPtr) {
         ptr = pathPtr;
 
         for (i = dirLookAt + 1; i < nextDir(dirLookAt); i = entryIsDir(i) ? nextDir(i) : (i + 1)) {
-        if ((entryIsDir(i) == FALSE) && (isDir == TRUE)) {
-            continue;
-        }
+            if ((entryIsDir(i) == FALSE) && (isDir == TRUE)) {
+                continue;
+            }
 
-        stringPtr = FstStringStart + stringOff(i);
+            stringPtr = FstStringStart + stringOff(i);
 
-        if (isSame(ptr, stringPtr) == TRUE) {
-            goto next_hier;
-        }
+            if (isSame(ptr, stringPtr) == TRUE) {
+                goto next_hier;
+            }
         }
 
         return -1;
 
     next_hier:
         if (!isDir) {
-        return (s32)i;
+            return (s32)i;
         }
 
         dirLookAt = i;
@@ -412,7 +409,7 @@ int DVDReadPrio(DVDFileInfo* fileInfo, void* addr, s32 length, s32 offset, s32 p
     block = &(fileInfo->block);
 
     result = DVDReadAbsAsyncPrio(block, addr, length, (s32)(fileInfo->start_address + offset),
-                                cbForReadSync, prio);
+                                 cbForReadSync, prio);
 
     if (result == FALSE) {
         return -1;
@@ -420,20 +417,20 @@ int DVDReadPrio(DVDFileInfo* fileInfo, void* addr, s32 length, s32 offset, s32 p
 
     enabled = OSDisableInterrupts();
 
-    while(1) {
+    while (1) {
         state = ((volatile DVDCommandBlock*)block)->state;
 
         if (state == DVD_STATE_END) {
-        retVal = (s32)block->transferred_size;
-        break;
+            retVal = (s32)block->transferred_size;
+            break;
         }
         if (state == DVD_STATE_FATAL_ERROR) {
-        retVal = DVD_RESULT_FATAL_ERROR;
-        break;
+            retVal = DVD_RESULT_FATAL_ERROR;
+            break;
         }
         if (state == DVD_STATE_CANCELED) {
-        retVal = DVD_RESULT_CANCELED;
-        break;
+            retVal = DVD_RESULT_CANCELED;
+            break;
         }
 
         OSSleepThread(&__DVDThreadQueue);

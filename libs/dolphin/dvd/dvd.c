@@ -4,10 +4,10 @@
 //
 
 #include "dolphin/dvd/dvd.h"
-#include "dolphin/dvd/dvdlow.h"
 #include "MSL_C/MSL_Common/Src/mem.h"
 #include "MSL_C/MSL_Common/Src/string.h"
 #include "dol2asm.h"
+#include "dolphin/dvd/dvdlow.h"
 #include "dolphin/os/OS.h"
 
 //
@@ -236,8 +236,8 @@ static void cbForStateReadingFST(u32 intType) {
 }
 
 inline static void stateError(u32 error) {
-  __DVDStoreErrorCode(error);
-  DVDLowStopMotor(cbForStateError);
+    __DVDStoreErrorCode(error);
+    DVDLowStopMotor(cbForStateError);
 }
 
 /* 803492DC-80349388 343C1C 00AC+00 12/12 0/0 0/0 .text            cbForStateError */
@@ -578,7 +578,7 @@ static void cbForStateCheckID2(u32 intType) {
         }
 
         DVDLowRead(bootInfo->fst_location, OSRoundUp32B(BB2.FSTLength), BB2.FSTPosition,
-                cbForStateReadingFST);
+                   cbForStateReadingFST);
 
     } else {
         stateGettingError();
@@ -844,199 +844,199 @@ static u32 ImmCommand[] = {0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF};
 SECTION_SDATA static u32 DmaCommand[] = {0xFFFFFFFF};
 
 inline static BOOL IsImmCommandWithResult(u32 command) {
-  u32 i;
+    u32 i;
 
-  if (command == 9 || command == 10 || command == 11 || command == 12) {
-    return TRUE;
-  }
+    if (command == 9 || command == 10 || command == 11 || command == 12) {
+        return TRUE;
+    }
 
-  for (i = 0; i < sizeof(ImmCommand) / sizeof(ImmCommand[0]); i++) {
-    if (command == ImmCommand[i])
-      return TRUE;
-  }
+    for (i = 0; i < sizeof(ImmCommand) / sizeof(ImmCommand[0]); i++) {
+        if (command == ImmCommand[i])
+            return TRUE;
+    }
 
-  return FALSE;
+    return FALSE;
 }
 
 inline static BOOL IsDmaCommand(u32 command) {
-  u32 i;
+    u32 i;
 
-  if (command == 1 || command == 4 || command == 5 || command == 14)
-    return TRUE;
+    if (command == 1 || command == 4 || command == 5 || command == 14)
+        return TRUE;
 
-  for (i = 0; i < sizeof(DmaCommand) / sizeof(DmaCommand[0]); i++) {
-    if (command == DmaCommand[i])
-      return TRUE;
-  }
+    for (i = 0; i < sizeof(DmaCommand) / sizeof(DmaCommand[0]); i++) {
+        if (command == DmaCommand[i])
+            return TRUE;
+    }
 
-  return FALSE;
+    return FALSE;
 }
 
 /* 8034A6D4-8034AD2C 345014 0658+00 1/1 0/0 0/0 .text            cbForStateBusy */
 static void cbForStateBusy(u32 intType) {
-  DVDCommandBlock* finished;
+    DVDCommandBlock* finished;
 
-  if (intType == 16) {
-    stateTimeout();
-    return;
-  }
-
-  if ((CurrCommand == 3) || (CurrCommand == 15)) {
-    if (intType & 2) {
-      stateError(0x1234567);
-      return;
-    }
-
-    NumInternalRetry = 0;
-
-    if (CurrCommand == 15) {
-      ResetRequired = TRUE;
-    }
-
-    if (CheckCancel(7)) {
-      return;
-    }
-
-    executing->state = 7;
-    stateMotorStopped();
-    return;
-  }
-
-  if (IsDmaCommand(CurrCommand)) {
-    executing->transferred_size += executing->current_transfer_size - __DIRegs[6];
-  }
-
-  if (intType & 8) {
-    Canceling = FALSE;
-    finished = executing;
-    executing = &DummyCommandBlock;
-
-    finished->state = 10;
-    if (finished->callback)
-      (*finished->callback)(-3, finished);
-    if (CancelCallback)
-      (CancelCallback)(0, finished);
-    stateReady();
-
-    return;
-  }
-
-  if (intType & 1) {
-    NumInternalRetry = 0;
-
-    if (CurrCommand == 16) {
-        MotorState = 1;
-        finished = executing;
-        executing = &DummyCommandBlock;
-        finished->state = 0;
-        if (finished->callback) {
-            (*finished->callback)(0, finished);
-        }
-        stateReady();
+    if (intType == 16) {
+        stateTimeout();
         return;
     }
 
-    if (CheckCancel(0))
-      return;
+    if ((CurrCommand == 3) || (CurrCommand == 15)) {
+        if (intType & 2) {
+            stateError(0x1234567);
+            return;
+        }
+
+        NumInternalRetry = 0;
+
+        if (CurrCommand == 15) {
+            ResetRequired = TRUE;
+        }
+
+        if (CheckCancel(7)) {
+            return;
+        }
+
+        executing->state = 7;
+        stateMotorStopped();
+        return;
+    }
 
     if (IsDmaCommand(CurrCommand)) {
-      if (executing->transferred_size != executing->length) {
-        stateBusy(executing);
-        return;
-      }
+        executing->transferred_size += executing->current_transfer_size - __DIRegs[6];
+    }
 
-      finished = executing;
-      executing = &DummyCommandBlock;
-
-      finished->state = 0;
-      if (finished->callback) {
-        (finished->callback)((s32)finished->transferred_size, finished);
-      }
-      stateReady();
-    } else if (IsImmCommandWithResult(CurrCommand)) {
-      s32 result;
-
-      if ((CurrCommand == 11) || (CurrCommand == 10)) {
-        result = (s32)(__DIRegs[8] << 2);
-      } else {
-        result = (s32)__DIRegs[8];
-      }
-      finished = executing;
-      executing = &DummyCommandBlock;
-
-      finished->state = 0;
-      if (finished->callback) {
-        (finished->callback)(result, finished);
-      }
-      stateReady();
-    } else if (CurrCommand == 6) {
-      if (executing->current_transfer_size == 0) {
-        if (__DIRegs[8] & 1) {
-          finished = executing;
-          executing = &DummyCommandBlock;
-
-          finished->state = 9;
-          if (finished->callback) {
-            (finished->callback)(-2, finished);
-          }
-          stateReady();
-        } else {
-          AutoFinishing = FALSE;
-          executing->current_transfer_size = 1;
-          DVDLowAudioStream(0, executing->length, executing->offset, cbForStateBusy);
-        }
-      } else {
+    if (intType & 8) {
+        Canceling = FALSE;
         finished = executing;
         executing = &DummyCommandBlock;
 
-        finished->state = 0;
-        if (finished->callback) {
-          (finished->callback)(0, finished);
-        }
+        finished->state = 10;
+        if (finished->callback)
+            (*finished->callback)(-3, finished);
+        if (CancelCallback)
+            (CancelCallback)(0, finished);
         stateReady();
-      }
-    } else {
-      finished = executing;
-      executing = &DummyCommandBlock;
 
-      finished->state = 0;
-      if (finished->callback) {
-        (finished->callback)(0, finished);
-      }
-      stateReady();
-    }
-  } else {
-    if (CurrCommand == 14) {
-      stateError(0x01234567);
-      return;
-    }
-
-    if ((CurrCommand == 1 || CurrCommand == 4 || CurrCommand == 5 || CurrCommand == 14) &&
-        (executing->transferred_size == executing->length)) {
-      if (CheckCancel(0)) {
         return;
-      }
-      finished = executing;
-      executing = &DummyCommandBlock;
-
-      finished->state = 0;
-      if (finished->callback) {
-        (finished->callback)((s32)finished->transferred_size, finished);
-      }
-      stateReady();
-      return;
     }
 
-    stateGettingError();
-  }
+    if (intType & 1) {
+        NumInternalRetry = 0;
+
+        if (CurrCommand == 16) {
+            MotorState = 1;
+            finished = executing;
+            executing = &DummyCommandBlock;
+            finished->state = 0;
+            if (finished->callback) {
+                (*finished->callback)(0, finished);
+            }
+            stateReady();
+            return;
+        }
+
+        if (CheckCancel(0))
+            return;
+
+        if (IsDmaCommand(CurrCommand)) {
+            if (executing->transferred_size != executing->length) {
+                stateBusy(executing);
+                return;
+            }
+
+            finished = executing;
+            executing = &DummyCommandBlock;
+
+            finished->state = 0;
+            if (finished->callback) {
+                (finished->callback)((s32)finished->transferred_size, finished);
+            }
+            stateReady();
+        } else if (IsImmCommandWithResult(CurrCommand)) {
+            s32 result;
+
+            if ((CurrCommand == 11) || (CurrCommand == 10)) {
+                result = (s32)(__DIRegs[8] << 2);
+            } else {
+                result = (s32)__DIRegs[8];
+            }
+            finished = executing;
+            executing = &DummyCommandBlock;
+
+            finished->state = 0;
+            if (finished->callback) {
+                (finished->callback)(result, finished);
+            }
+            stateReady();
+        } else if (CurrCommand == 6) {
+            if (executing->current_transfer_size == 0) {
+                if (__DIRegs[8] & 1) {
+                    finished = executing;
+                    executing = &DummyCommandBlock;
+
+                    finished->state = 9;
+                    if (finished->callback) {
+                        (finished->callback)(-2, finished);
+                    }
+                    stateReady();
+                } else {
+                    AutoFinishing = FALSE;
+                    executing->current_transfer_size = 1;
+                    DVDLowAudioStream(0, executing->length, executing->offset, cbForStateBusy);
+                }
+            } else {
+                finished = executing;
+                executing = &DummyCommandBlock;
+
+                finished->state = 0;
+                if (finished->callback) {
+                    (finished->callback)(0, finished);
+                }
+                stateReady();
+            }
+        } else {
+            finished = executing;
+            executing = &DummyCommandBlock;
+
+            finished->state = 0;
+            if (finished->callback) {
+                (finished->callback)(0, finished);
+            }
+            stateReady();
+        }
+    } else {
+        if (CurrCommand == 14) {
+            stateError(0x01234567);
+            return;
+        }
+
+        if ((CurrCommand == 1 || CurrCommand == 4 || CurrCommand == 5 || CurrCommand == 14) &&
+            (executing->transferred_size == executing->length)) {
+            if (CheckCancel(0)) {
+                return;
+            }
+            finished = executing;
+            executing = &DummyCommandBlock;
+
+            finished->state = 0;
+            if (finished->callback) {
+                (finished->callback)((s32)finished->transferred_size, finished);
+            }
+            stateReady();
+            return;
+        }
+
+        stateGettingError();
+    }
 }
 
 static inline BOOL issueCommand(s32 prio, DVDCommandBlock* block) {
     BOOL level;
     BOOL result;
 
-    if (autoInvalidation && (block->command == 1 || block->command == 4 || block->command == 5 ||
-                             block->command == 14)) {
+    if (autoInvalidation &&
+        (block->command == 1 || block->command == 4 || block->command == 5 || block->command == 14)) {
         DCInvalidateRange(block->buffer, block->length);
     }
 
@@ -1199,7 +1199,8 @@ void DVDResume(void) {
 
 /* ############################################################################################## */
 /* 803D15F8-803D163C 02E718 0041+03 0/0 0/0 0/0 .data            @789 */
-static char string_DVDChangeDiskAsyncMsg[] = "DVDChangeDiskAsync(): You can't specify NULL to company name.  \n";
+static char string_DVDChangeDiskAsyncMsg[] =
+    "DVDChangeDiskAsync(): You can't specify NULL to company name.  \n";
 
 /* 8034B2D4-8034B550 345C14 027C+00 3/2 0/0 0/0 .text            DVDCancelAsync */
 BOOL DVDCancelAsync(DVDCommandBlock* block, DVDCBCallback callback) {
@@ -1408,38 +1409,38 @@ BOOL DVDCheckDisk(void) {
 }
 
 inline void DVDPause(void) {
-  BOOL level;
-  level = OSDisableInterrupts();
-  PauseFlag = TRUE;
-  if (executing == (DVDCommandBlock*)NULL) {
-    PausingFlag = TRUE;
-  }
-  OSRestoreInterrupts(level);
+    BOOL level;
+    level = OSDisableInterrupts();
+    PauseFlag = TRUE;
+    if (executing == (DVDCommandBlock*)NULL) {
+        PausingFlag = TRUE;
+    }
+    OSRestoreInterrupts(level);
 }
 
 inline BOOL DVDCancelAllAsync(DVDCBCallback callback) {
-  BOOL enabled;
-  DVDCommandBlock* p;
-  BOOL retVal;
+    BOOL enabled;
+    DVDCommandBlock* p;
+    BOOL retVal;
 
-  enabled = OSDisableInterrupts();
-  DVDPause();
+    enabled = OSDisableInterrupts();
+    DVDPause();
 
-  while ((p = __DVDPopWaitingQueue()) != 0) {
-    DVDCancelAsync(p, NULL);
-  }
+    while ((p = __DVDPopWaitingQueue()) != 0) {
+        DVDCancelAsync(p, NULL);
+    }
 
-  if (executing)
-    retVal = DVDCancelAsync(executing, callback);
-  else {
-    retVal = TRUE;
-    if (callback)
-      (*callback)(0, NULL);
-  }
+    if (executing)
+        retVal = DVDCancelAsync(executing, callback);
+    else {
+        retVal = TRUE;
+        if (callback)
+            (*callback)(0, NULL);
+    }
 
-  DVDResume();
-  OSRestoreInterrupts(enabled);
-  return retVal;
+    DVDResume();
+    OSRestoreInterrupts(enabled);
+    return retVal;
 }
 
 /* 8034B720-8034B83C 346060 011C+00 0/0 1/1 0/0 .text            __DVDPrepareResetAsync */

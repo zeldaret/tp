@@ -4,8 +4,8 @@
 //
 
 #include "dolphin/exi/EXIUart.h"
-#include "dolphin/exi/EXIBios.h"
 #include "dol2asm.h"
+#include "dolphin/exi/EXIBios.h"
 #include "dolphin/types.h"
 
 //
@@ -57,7 +57,6 @@ static BOOL ProbeBarnacle(s32 chan, u32 dev, u32* revision) {
 
     return (*revision != 0xFFFFFFFF) ? TRUE : FALSE;
 }
-
 
 /* ############################################################################################## */
 /* 804516E0-804516E4 000BE0 0004+00 3/3 0/0 0/0 .sbss            Chan */
@@ -128,23 +127,25 @@ u32 InitializeUART(u32 baudRate) {
     }
 }
 
-u32 ReadUARTN(void* bytes, unsigned long length) { return 4; }
+u32 ReadUARTN(void* bytes, unsigned long length) {
+    return 4;
+}
 
 static int QueueLength(void) {
-  u32 cmd;
+    u32 cmd;
 
-  if (!EXISelect(Chan, Dev, EXI_FREQ_8M))
-    return -1;
+    if (!EXISelect(Chan, Dev, EXI_FREQ_8M))
+        return -1;
 
-  cmd = EXI_TX << 6;
-  EXIImm(Chan, &cmd, 4, EXI_WRITE, NULL);
-  EXISync(Chan);
+    cmd = EXI_TX << 6;
+    EXIImm(Chan, &cmd, 4, EXI_WRITE, NULL);
+    EXISync(Chan);
 
-  EXIImm(Chan, &cmd, 1, EXI_READ, NULL);
-  EXISync(Chan);
-  EXIDeselect(Chan);
+    EXIImm(Chan, &cmd, 1, EXI_READ, NULL);
+    EXISync(Chan);
+    EXIDeselect(Chan);
 
-  return 16 - (int)((cmd >> 24) & 0xff);
+    return 16 - (int)((cmd >> 24) & 0xff);
 }
 
 /* 803449A0-80344BA0 33F2E0 0200+00 0/0 1/1 0/0 .text            WriteUARTN */
@@ -166,7 +167,7 @@ u32 WriteUARTN(const void* buf, unsigned long len) {
 
     for (ptr = (char*)buf; ptr - buf < len; ptr++) {
         if (*ptr == '\n')
-        *ptr = '\r';
+            *ptr = '\r';
     }
 
     error = 0;

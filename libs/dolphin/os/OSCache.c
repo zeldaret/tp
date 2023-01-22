@@ -5,11 +5,11 @@
 
 #include "dolphin/os/OSCache.h"
 #include "dol2asm.h"
-#include "dolphin/os/OSError.h"
-#include "dolphin/os/OS.h"
-#include "dolphin/db/db.h"
-#include "dolphin/os/OSInterrupt.h"
 #include "dolphin/base/PPCArch.h"
+#include "dolphin/db/db.h"
+#include "dolphin/os/OS.h"
+#include "dolphin/os/OSError.h"
+#include "dolphin/os/OSInterrupt.h"
 
 //
 // External References:
@@ -325,7 +325,7 @@ do_invalidate:
 
 /* 8033B814-8033B838 336154 0024+00 1/1 0/0 0/0 .text            LCStoreBlocks */
 static asm void LCStoreBlocks(register void* destAddr, register void* srcAddr,
-                              register u32 blockNum) {
+                              register u32 blockNum){
     // clang-format off
     nofralloc
 
@@ -340,8 +340,7 @@ static asm void LCStoreBlocks(register void* destAddr, register void* srcAddr,
 
     blr
     // clang-format on
-}
-/* 8033B838-8033B8E4 336178 00AC+00 0/0 0/0 3/3 .text            LCStoreData */
+} /* 8033B838-8033B8E4 336178 00AC+00 0/0 0/0 3/3 .text            LCStoreData */
 u32 LCStoreData(void* destAddr, void* srcAddr, u32 nBytes) {
     u32 blocks = (nBytes + 31) / 32;
     u32 ret = (blocks + 127) / 128;
@@ -363,7 +362,7 @@ u32 LCStoreData(void* destAddr, void* srcAddr, u32 nBytes) {
 }
 
 /* 8033B8E4-8033B8F8 336224 0014+00 0/0 0/0 3/3 .text            LCQueueWait */
-asm void LCQueueWait(register u32 len){
+asm void LCQueueWait(register u32 len) {
     // clang-format off
     nofralloc
 
@@ -448,7 +447,9 @@ static void L2Init(void) {
     PPCMtmsr(oldMSR);
 }
 
-void L2Enable(void) { PPCMtl2cr((PPCMfl2cr() | L2CR_L2E) & ~L2CR_L2I); }
+void L2Enable(void) {
+    PPCMtl2cr((PPCMfl2cr() | L2CR_L2E) & ~L2CR_L2I);
+}
 
 /* 8033BAF0-8033BBE4 336430 00F4+00 0/0 2/2 0/0 .text            __OSCacheInit */
 void __OSCacheInit() {

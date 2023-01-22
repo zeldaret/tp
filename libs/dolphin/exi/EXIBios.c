@@ -183,32 +183,29 @@ static void CompleteTransfer(s32 chan) {
 
 /* 803430E8-80343334 33DA28 024C+00 2/2 9/9 0/0 .text            EXISync */
 BOOL EXISync(s32 chan) {
-  EXIControl* exi = &Ecb[chan];
-  BOOL rc = FALSE;
-  BOOL enabled;
+    EXIControl* exi = &Ecb[chan];
+    BOOL rc = FALSE;
+    BOOL enabled;
 
-  while (exi->state & EXI_STATE_SELECTED) {
-    if (((REG(chan, 3) & 1) >> 0) == 0) {
-      enabled = OSDisableInterrupts();
-      if (exi->state & EXI_STATE_SELECTED) {
-        CompleteTransfer(chan);
-        if (__OSGetDIConfig() != 0xff || 
-            (OSGetConsoleType() & 0xf0000000) == 0x20000000 ||
-            exi->immLen != 4 ||
-            (REG(chan, 0) & 0x00000070) != (EXI_FREQ_1M << 4) ||
-            (REG(chan, 4) != EXI_USB_ADAPTER && REG(chan, 4) != EXI_IS_VIEWER &&
-             REG(chan, 4) != 0x04220001) ||
-            __OSDeviceCode == 0x8200) {
-          rc = TRUE;
+    while (exi->state & EXI_STATE_SELECTED) {
+        if (((REG(chan, 3) & 1) >> 0) == 0) {
+            enabled = OSDisableInterrupts();
+            if (exi->state & EXI_STATE_SELECTED) {
+                CompleteTransfer(chan);
+                if (__OSGetDIConfig() != 0xff || (OSGetConsoleType() & 0xf0000000) == 0x20000000 ||
+                    exi->immLen != 4 || (REG(chan, 0) & 0x00000070) != (EXI_FREQ_1M << 4) ||
+                    (REG(chan, 4) != EXI_USB_ADAPTER && REG(chan, 4) != EXI_IS_VIEWER &&
+                     REG(chan, 4) != 0x04220001) ||
+                    __OSDeviceCode == 0x8200) {
+                    rc = TRUE;
+                }
+            }
+            OSRestoreInterrupts(enabled);
+            break;
         }
-      }
-      OSRestoreInterrupts(enabled);
-      break;
     }
-  }
-  return rc;
+    return rc;
 }
-
 
 /* 80343334-8034337C 33DC74 0048+00 4/4 0/0 0/0 .text            EXIClearInterrupts */
 u32 EXIClearInterrupts(s32 chan, BOOL exi, BOOL tc, BOOL ext) {
@@ -226,7 +223,6 @@ u32 EXIClearInterrupts(s32 chan, BOOL exi, BOOL tc, BOOL ext) {
     REG(chan, 0) = cpr;
     return prev;
 }
-
 
 /* 8034337C-803433F8 33DCBC 007C+00 0/0 6/6 0/0 .text            EXISetExiCallback */
 EXICallback EXISetExiCallback(s32 chan, EXICallback exiCallback) {
@@ -536,7 +532,8 @@ static u32 IDSerialPort1[2 /* padding */];
 void EXIInit(void) {
     u32 idSerial;
 
-    while (((REG(0, 3) & 1) == 1) || ((REG(1, 3) & 1) == 1) || ((REG(2, 3) & 1) == 1)) {}
+    while (((REG(0, 3) & 1) == 1) || ((REG(1, 3) & 1) == 1) || ((REG(2, 3) & 1) == 1)) {
+    }
 
     __OSMaskInterrupts(OS_INTERRUPTMASK_EXI_0_EXI | OS_INTERRUPTMASK_EXI_0_TC |
                        OS_INTERRUPTMASK_EXI_0_EXT | OS_INTERRUPTMASK_EXI_1_EXI |
@@ -584,8 +581,8 @@ BOOL EXILock(s32 chan, u32 dev, EXICallback unlockedCallback) {
         if (unlockedCallback) {
             for (i = 0; i < exi->items; i++) {
                 if (exi->queue[i].dev == dev) {
-          OSRestoreInterrupts(enabled);
-          return FALSE;
+                    OSRestoreInterrupts(enabled);
+                    return FALSE;
                 }
             }
             exi->queue[exi->items].callback = unlockedCallback;
@@ -603,7 +600,6 @@ BOOL EXILock(s32 chan, u32 dev, EXICallback unlockedCallback) {
     OSRestoreInterrupts(enabled);
     return TRUE;
 }
-
 
 /* 8034411C-803441F8 33EA5C 00DC+00 0/0 14/14 0/0 .text            EXIUnlock */
 BOOL EXIUnlock(s32 chan) {
