@@ -387,7 +387,6 @@ SECTION_DATA extern void* __vt__10daDo_HIO_c[3] = {
 };
 
 /* 80667D4C-80667DA8 0000EC 005C+00 1/1 0/0 0/0 .text            __ct__10daDo_HIO_cFv */
-#ifndef NONMATCHING
 daDo_HIO_c::daDo_HIO_c() {
     field_0x04 = -1;
     mBaseSize = FLOAT_LABEL(lit_3662);
@@ -399,16 +398,6 @@ daDo_HIO_c::daDo_HIO_c() {
     mSwimming = 1;
     mWaterHuntAnimType = 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm daDo_HIO_c::daDo_HIO_c() {
-    nofralloc
-#include "asm/rel/d/a/d_a_do/d_a_do/__ct__10daDo_HIO_cFv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 8066EDFC-8066EE00 000014 0004+00 0/16 0/0 0/0 .rodata          @3682 */
@@ -441,18 +430,16 @@ static void anm_init(do_class* i_dogP, int i_resIdx, f32 param_2, u8 param_3, f3
     if (!(i_dogP->field_0x608 > FLOAT_LABEL(lit_3662))) {
         i_dogP->mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Do", i_resIdx), param_3,
                                param_2, param_4, FLOAT_LABEL(lit_3682), FLOAT_LABEL(lit_3683), 0);
-        i_dogP->mAnmID = (daDo_Anm)i_resIdx;
+        i_dogP->mAnmID = i_resIdx;
     }
 }
 
 /* 80667E68-80667FE4 000208 017C+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
-#ifdef NONMATCHING
-// regalloc on user_area
 static int nodeCallBack(J3DJoint* i_jntP, int param_1) {
     if (param_1 == 0) {
         int joint_num = i_jntP->getJntNo();
         J3DModel* model = j3dSys.getModel();
-        UserArea* user_area = model->getUserArea();
+        UserArea* user_area = (UserArea*)model->getUserArea();
 
         if (user_area) {
             PSMTXCopy(model->i_getAnmMtx(joint_num), *calc_mtx);
@@ -475,16 +462,6 @@ static int nodeCallBack(J3DJoint* i_jntP, int param_1) {
     }
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void nodeCallBack(J3DJoint* param_0, int param_1) {
-    nofralloc
-#include "asm/rel/d/a/d_a_do/d_a_do/nodeCallBack__FP8J3DJointi.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 8066EE04-8066EE08 00001C 0004+00 0/8 0/0 0/0 .rodata          @3772 */
