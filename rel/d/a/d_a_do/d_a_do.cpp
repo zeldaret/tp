@@ -480,7 +480,9 @@ COMPILER_STRIP_GATE(0x8066EE08, &lit_3773);
 
 /* 80667FE4-80668134 000384 0150+00 1/0 0/0 0/0 .text            daDo_Draw__FP8do_class */
 #ifdef NONMATCHING
-static void daDo_Draw(do_class* i_dogP) {}
+static void daDo_Draw(do_class* i_dogP) {
+
+}
 #else
 #pragma push
 #pragma optimization_level 0
@@ -833,16 +835,12 @@ SECTION_RODATA static f32 const lit_3994 = 8.0f;
 COMPILER_STRIP_GATE(0x8066EE20, &lit_3994);
 
 /* 80668754-8066886C 000AF4 0118+00 1/1 0/0 0/0 .text            water_check__FP8do_class */
-#ifdef NONMATCHING
-// regalloc
 static bool water_check(do_class* i_dogP) {
     dBgS_GndChk gnd_chk;
     Vec pos;
 
-    pos.x = i_dogP->current.pos.x;
-    pos.y = i_dogP->current.pos.y;
-    pos.z = i_dogP->current.pos.z;
-    pos.y = i_dogP->current.pos.x+FLOAT_LABEL(lit_3922);
+    pos = i_dogP->current.pos;
+    pos.y += FLOAT_LABEL(lit_3922);
 
     gnd_chk.SetPos(&pos);
     f32 f_gnd_chk = dComIfG_Bgsp().GroundCross(&gnd_chk);
@@ -859,16 +857,6 @@ static bool water_check(do_class* i_dogP) {
         return 0;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void water_check(do_class* i_dogP) {
-    nofralloc
-#include "asm/rel/d/a/d_a_do/d_a_do/water_check__FP8do_class.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 8066EE24-8066EE28 00003C 0004+00 0/2 0/0 0/0 .rodata          @4025 */
