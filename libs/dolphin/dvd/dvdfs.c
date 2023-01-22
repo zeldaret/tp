@@ -387,8 +387,6 @@ static void cbForReadAsync(s32 result, DVDCommandBlock* block) {
 }
 
 /* ############################################################################################## */
-/* 803D14B4-803D14E4 02E5D4 002F+01 1/1 0/0 0/0 .data            @265 */
-SECTION_DATA static char lit_265[] = "DVDRead(): specified area is out of the file  ";
 
 /* 80348E44-80348F5C 343784 0118+00 0/0 9/9 3/3 .text            DVDReadPrio */
 int DVDReadPrio(DVDFileInfo* fileInfo, void* addr, s32 length, s32 offset, s32 prio) {
@@ -399,11 +397,11 @@ int DVDReadPrio(DVDFileInfo* fileInfo, void* addr, s32 length, s32 offset, s32 p
     int retVal;
 
     if (!((0 <= offset) && (offset <= fileInfo->length))) {
-        OSPanic(lit_118, 820, lit_265);
+        OSPanic(lit_118, 820, "DVDRead(): specified area is out of the file  ");
     }
 
     if (!((0 <= offset + length) && (offset + length < fileInfo->length + DVD_MIN_TRANSFER_SIZE))) {
-        OSPanic(lit_118, 826, lit_265);
+        OSPanic(lit_118, 826, "DVDRead(): specified area is out of the file  ");
     }
 
     block = &(fileInfo->block);
