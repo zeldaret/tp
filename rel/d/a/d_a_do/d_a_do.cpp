@@ -1947,8 +1947,78 @@ static void do_wait_2(do_class* i_dogP) {
 
 /* 8066A3D0-8066A5DC 002770 020C+00 1/1 0/0 0/0 .text            do_sit__FP8do_class */
 #ifdef NONMATCHING
+// matches except float literal in inline
 static void do_sit(do_class* i_dogP) {
+    i_dogP->field_0x616 = 1;
+    i_dogP->field_0x648 = FLOAT_LABEL(lit_4190);
+
+    switch (i_dogP->mStayStatus) {
+        
+
+        case 0: {
+            anm_init(i_dogP,ANM_SIT_WAIT,FLOAT_LABEL(lit_4192),2,FLOAT_LABEL(lit_3662));
+            i_dogP->mStayStatus++;
+        }
+
+        case 1: {
+            if (i_dogP->mEyePosYDistFromPlayer > FLOAT_LABEL(lit_4545)) {
+                i_dogP->mStayStatus = 3;
+                i_dogP->field_0x5fc[0] = cM_rndF(FLOAT_LABEL(lit_4192)) + FLOAT_LABEL(lit_4192);
+            } else {
+                if (i_dogP->mEyePosYDistFromPlayer < FLOAT_LABEL(lit_3846)) {
+                    i_dogP->mStayStatus = 2;
+                    i_dogP->field_0x5fc[0] = cM_rndF(FLOAT_LABEL(lit_4192)) + FLOAT_LABEL(lit_4192);
+                }
+            }
+            break;
+        }
+
+        case 2: {
+            if (i_dogP->mEyePosYDistFromPlayer < FLOAT_LABEL(lit_3846) ) {
+                if (i_dogP->field_0x5fc[0] == 0) {
+                    i_dogP->mAction = ACT_STAY;
+                    i_dogP->mStayStatus = 10;
+                }
+            } else { 
+                i_dogP->mStayStatus = 1;
+            }
+            break;
+        }
+
+        case 3: {
+            if (i_dogP->mEyePosYDistFromPlayer > FLOAT_LABEL(lit_4545)) {
+                if (i_dogP->field_0x5fc[0] == 0) {
+                    anm_init(i_dogP,ANM_SIT,FLOAT_LABEL(lit_4194),0,FLOAT_LABEL(lit_3662));
+                    i_dogP->mStayStatus++;
+                }
+            } else {
+                i_dogP->mStayStatus = 1;
+            }
+
+            break;
+        }
+
+        case 4: {
+            if (i_dogP->mpMorf->isStop()) {
+                i_dogP->mAction = ACT_WAIT_1;
+                i_dogP->mStayStatus = 0;
+            }
+            break;
+        }
+
+        
+    }
     
+    
+    cLib_addCalc0(&i_dogP->mSpeedF,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_3665));
+
+    if (i_dogP->mDistFromPlayer > FLOAT_LABEL(lit_3773) * i_dogP->field_0x674.z) {
+        i_dogP->mAction = ACT_STAY;
+        i_dogP->field_0x5f4 = 8;
+        i_dogP->mStayStatus = 0;
+    }
+
+    area_check(i_dogP);
 }
 #else
 #pragma push

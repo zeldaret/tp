@@ -20,6 +20,7 @@ public:
     f32 getFrame() { return mFrameCtrl.getFrame(); }
     f32 getEndFrame() { return mFrameCtrl.getEnd(); }
     void setFrame(f32 frame) { mFrameCtrl.setFrame(frame); }
+
     bool isStop() {
         bool stopped = true;
         if (!mFrameCtrl.checkState(1) && mFrameCtrl.getRate() != 0.0f) {
