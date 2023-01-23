@@ -1897,20 +1897,53 @@ COMPILER_STRIP_GATE(0x8066EEFC, &lit_4588);
 #pragma pop
 
 /* 8066A1C4-8066A3D0 002564 020C+00 1/1 0/0 0/0 .text            do_wait_2__FP8do_class */
-#ifdef NONMATCHING
 static void do_wait_2(do_class* i_dogP) {
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+
+    i_dogP->field_0x616 = 1;
+    i_dogP->field_0x648 = FLOAT_LABEL(lit_4400);
+
+     switch(i_dogP->mStayStatus) {
+        case 0: {
+            i_dogP->mStayStatus++;
+        }
+        case 1: {
+            if (i_dogP->field_0x5fc[0] == 0) {
+                i_dogP->field_0x5fc[0] = cM_rndF(FLOAT_LABEL(lit_4189)) + FLOAT_LABEL(lit_4192);
+                i_dogP->field_0x656 = cM_rndFX(FLOAT_LABEL(lit_4587));
+                
+                cM_rndF(FLOAT_LABEL(lit_3662)) < FLOAT_LABEL(lit_4588) ? i_dogP->field_0x5e8 = cM_rndF(FLOAT_LABEL(lit_4342)) + FLOAT_LABEL(lit_3665) : i_dogP->field_0x5e8 = -(cM_rndF(FLOAT_LABEL(lit_4342)) + FLOAT_LABEL(lit_3665));
+
+                anm_init(i_dogP,ANM_STEP,FLOAT_LABEL(lit_4194),2,i_dogP->field_0x5e8);
+                mDoMtx_YrotS((MtxP)calc_mtx,player->shape_angle.y);
+
+                Vec local_38;
+
+                local_38.x = cM_rndFX(FLOAT_LABEL(lit_3772));
+                local_38.y = FLOAT_LABEL(lit_3682);
+                local_38.z = cM_rndF(FLOAT_LABEL(lit_3816)) + FLOAT_LABEL(lit_4551);
+
+                MtxPosition((cXyz*)&local_38,&i_dogP->field_0x5b8);
+                i_dogP->field_0x5b8 += player->current.pos;
+            }
+
+            break;
+        }
+    }
     
+    cLib_addCalc2(&i_dogP->current.pos.x,i_dogP->field_0x5b8.x,FLOAT_LABEL(lit_4342),FLOAT_LABEL(lit_3665));
+    cLib_addCalc2(&i_dogP->current.pos.z,i_dogP->field_0x5b8.z,FLOAT_LABEL(lit_4342),FLOAT_LABEL(lit_3665));
+    cLib_addCalc0(&i_dogP->mSpeedF,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_3665));
+    cLib_addCalcAngleS2(&i_dogP->current.angle.y,i_dogP->mAngleYFromPlayer + i_dogP->field_0x654,4,0x800);
+    cLib_addCalcAngleS2(&i_dogP->field_0x654,i_dogP->field_0x656,4,0x1000);
+
+    if (i_dogP->mDistFromPlayer > FLOAT_LABEL(lit_3923) * i_dogP->field_0x674.z) {
+        i_dogP->mAction = ACT_RUN;
+        i_dogP->mStayStatus = 0;
+    }
+
+    area_check(i_dogP);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void do_wait_2(do_class* i_dogP) {
-    nofralloc
-#include "asm/rel/d/a/d_a_do/d_a_do/do_wait_2__FP8do_class.s"
-}
-#pragma pop
-#endif
 
 /* 8066A3D0-8066A5DC 002770 020C+00 1/1 0/0 0/0 .text            do_sit__FP8do_class */
 #ifdef NONMATCHING
@@ -2266,6 +2299,11 @@ COMPILER_STRIP_GATE(0x8066EF68, &lit_5480);
 #pragma pop
 
 /* 8066CAA8-8066CDEC 004E48 0344+00 1/1 0/0 0/0 .text            do_carry__FP8do_class */
+#ifdef NONMATCHING
+static asm u8 do_carry(do_class* i_dogP) {
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2274,6 +2312,7 @@ static asm u8 do_carry(do_class* i_dogP) {
 #include "asm/rel/d/a/d_a_do/d_a_do/do_carry__FP8do_class.s"
 }
 #pragma pop
+#endif
 
 /* 8066CDEC-8066CEC4 00518C 00D8+00 1/1 0/0 0/0 .text            do_message__FP8do_class */
 static void do_message(do_class* i_dogP) {
