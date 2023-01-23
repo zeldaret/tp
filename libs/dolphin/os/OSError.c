@@ -6,8 +6,9 @@
 #include "dolphin/os/OSError.h"
 #include "dol2asm.h"
 #include "dolphin/base/PPCArch.h"
-#include "dolphin/os/OS.h"
 #include "dolphin/dsp/dsp.h"
+#include "dolphin/dvd/dvdlow.h"
+#include "dolphin/os/OS.h"
 
 OSThread* __OSCurrentThread : (OS_BASE_CACHED | 0x00E4);
 OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | 0x00DC);
@@ -17,10 +18,9 @@ volatile OSContext* __OSFPUContext : (OS_BASE_CACHED | 0x00D8);
 // External References:
 //
 
-extern u8 __OSLastInterruptSrr0[4];
-extern u8 __OSLastInterrupt[2 + 6 /* padding */];
-extern u8 __OSLastInterruptTime[4];
-extern u8 data_80451684[4];
+extern u32 __OSLastInterruptSrr0;
+extern s16 __OSLastInterrupt[4];
+extern OSTime __OSLastInterruptTime;
 
 //
 // Declarations:
@@ -36,26 +36,82 @@ OSErrorHandler __OSErrorTable[17];
 SECTION_SDATA extern u32 __OSFpscrEnableBits = FPSCR_ENABLE;
 
 /* 8033C580-8033C798 336EC0 0218+00 0/0 4/4 0/0 .text            OSSetErrorHandler */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm OSErrorHandler OSSetErrorHandler(OSError error, OSErrorHandler handler) {
-    nofralloc
-#include "asm/dolphin/os/OSError/OSSetErrorHandler.s"
+OSErrorHandler OSSetErrorHandler(OSError error, OSErrorHandler handler) {
+    OSErrorHandler oldHandler;
+    BOOL enabled;
+
+    enabled = OSDisableInterrupts();
+    oldHandler = __OSErrorTable[error];
+    __OSErrorTable[error] = handler;
+
+    if (error == EXCEPTION_FLOATING_POINT_EXCEPTION) {
+        u32 msr;
+        u32 fpscr;
+        OSThread* thread;
+
+        msr = PPCMfmsr();
+        PPCMtmsr(msr | MSR_FP);
+        fpscr = PPCMffpscr();
+        if (handler) {
+            for (thread = __OSActiveThreadQueue.head; thread;
+                 thread = thread->active_threads_link.next)
+            {
+                thread->context.srr1 |= MSR_FE0 | MSR_FE1;
+                if ((thread->context.state & OS_CONTEXT_STATE_FPSAVED) == 0) {
+                    int i;
+                    thread->context.state |= OS_CONTEXT_STATE_FPSAVED;
+                    for (i = 0; i < 32; ++i) {
+                        *(u64*)&thread->context.fpr[i] = (u64)0xffffffffffffffffLL;
+                        *(u64*)&thread->context.ps[i] = (u64)0xffffffffffffffffLL;
+                    }
+                    thread->context.fpscr = FPSCR_NI;
+                }
+                thread->context.fpscr |= __OSFpscrEnableBits & FPSCR_ENABLE;
+                thread->context.fpscr &=
+                    ~(FPSCR_VXVC | FPSCR_VXIMZ | FPSCR_VXZDZ | FPSCR_VXIDI | FPSCR_VXISI |
+                      FPSCR_VXSNAN | FPSCR_VXSOFT | FPSCR_VXSQRT | FPSCR_VXCVI | FPSCR_XX |
+                      FPSCR_ZX | FPSCR_UX | FPSCR_OX | FPSCR_FX | FPSCR_FI);
+            }
+            fpscr |= __OSFpscrEnableBits & FPSCR_ENABLE;
+            msr |= MSR_FE0 | MSR_FE1;
+        } else {
+            for (thread = __OSActiveThreadQueue.head; thread;
+                 thread = thread->active_threads_link.next)
+            {
+                thread->context.srr1 &= ~(MSR_FE0 | MSR_FE1);
+                thread->context.fpscr &= ~FPSCR_ENABLE;
+                thread->context.fpscr &=
+                    ~(FPSCR_VXVC | FPSCR_VXIMZ | FPSCR_VXZDZ | FPSCR_VXIDI | FPSCR_VXISI |
+                      FPSCR_VXSNAN | FPSCR_VXSOFT | FPSCR_VXSQRT | FPSCR_VXCVI | FPSCR_XX |
+                      FPSCR_ZX | FPSCR_UX | FPSCR_OX | FPSCR_FX | FPSCR_FI);
+            }
+            fpscr &= ~FPSCR_ENABLE;
+            msr &= ~(MSR_FE0 | MSR_FE1);
+        }
+
+        fpscr &= ~(FPSCR_VXVC | FPSCR_VXIMZ | FPSCR_VXZDZ | FPSCR_VXIDI | FPSCR_VXISI |
+                   FPSCR_VXSNAN | FPSCR_VXSOFT | FPSCR_VXSQRT | FPSCR_VXCVI | FPSCR_XX | FPSCR_ZX |
+                   FPSCR_UX | FPSCR_OX | FPSCR_FX | FPSCR_FI);
+
+        PPCMtfpscr(fpscr);
+        PPCMtmsr(msr);
+    }
+
+    OSRestoreInterrupts(enabled);
+    return oldHandler;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803CF918-803CF930 02CA38 0016+02 1/1 0/0 0/0 .data            @13 */
-SECTION_DATA static char lit_13[] = " in \"%s\" on line %d.\n";
+ SECTION_DATA static char lit_13[] = " in \"%s\" on line %d.\n";
 
-/* 803CF930-803CF958 02CA50 0026+02 0/0 0/0 0/0 .data            @14 */
+// /* 803CF930-803CF958 02CA50 0026+02 0/0 0/0 0/0 .data            @14 */
 #pragma push
 #pragma force_active on
 SECTION_DATA static char lit_14[] = "\nAddress:      Back Chain    LR Save\n";
 #pragma pop
 
-/* 803CF958-803CF974 02CA78 001C+00 0/0 0/0 0/0 .data            @15 */
+// /* 803CF958-803CF974 02CA78 001C+00 0/0 0/0 0/0 .data            @15 */
 #pragma push
 #pragma force_active on
 SECTION_DATA static char lit_15[] = "0x%08x:   0x%08x    0x%08x\n";
@@ -265,7 +321,7 @@ void __OSUnhandledException(__OSException exception, OSContext* context, u32 dsi
         break;
     }
 
-    OSReport("\nLast interrupt (%d): SRR0 = 0x%08x  TB = 0x%016llx\n", __OSLastInterrupt,
+    OSReport("\nLast interrupt (%d): SRR0 = 0x%08x  TB = 0x%016llx\n", __OSLastInterrupt[0],
              __OSLastInterruptSrr0, __OSLastInterruptTime);
 
     PPCHalt();
