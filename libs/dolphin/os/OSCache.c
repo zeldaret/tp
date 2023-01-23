@@ -5,24 +5,15 @@
 
 #include "dolphin/os/OSCache.h"
 #include "dol2asm.h"
+#include "dolphin/base/PPCArch.h"
+#include "dolphin/db/db.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/os/OSError.h"
 #include "dolphin/os/OSInterrupt.h"
 
 //
 // External References:
 //
-
-void OSReport();
-void PPCMfmsr();
-void PPCMtmsr();
-void PPCMfhid0();
-void PPCMfl2cr();
-void PPCMtl2cr();
-void PPCHalt();
-void PPCMfhid2();
-void PPCMthid2();
-void OSDumpContext();
-void DBPrintf();
 
 //
 // Declarations:
@@ -334,7 +325,7 @@ do_invalidate:
 
 /* 8033B814-8033B838 336154 0024+00 1/1 0/0 0/0 .text            LCStoreBlocks */
 static asm void LCStoreBlocks(register void* destAddr, register void* srcAddr,
-                              register u32 blockNum) {
+                              register u32 blockNum){
     // clang-format off
     nofralloc
 
@@ -349,8 +340,7 @@ static asm void LCStoreBlocks(register void* destAddr, register void* srcAddr,
 
     blr
     // clang-format on
-}
-/* 8033B838-8033B8E4 336178 00AC+00 0/0 0/0 3/3 .text            LCStoreData */
+} /* 8033B838-8033B8E4 336178 00AC+00 0/0 0/0 3/3 .text            LCStoreData */
 u32 LCStoreData(void* destAddr, void* srcAddr, u32 nBytes) {
     u32 blocks = (nBytes + 31) / 32;
     u32 ret = (blocks + 127) / 128;
@@ -372,7 +362,7 @@ u32 LCStoreData(void* destAddr, void* srcAddr, u32 nBytes) {
 }
 
 /* 8033B8E4-8033B8F8 336224 0014+00 0/0 0/0 3/3 .text            LCQueueWait */
-asm void LCQueueWait(register u32 len){
+asm void LCQueueWait(register u32 len) {
     // clang-format off
     nofralloc
 
@@ -386,116 +376,98 @@ asm void LCQueueWait(register u32 len){
 }
 
 /* ############################################################################################## */
-/* 803CF510-803CF53C 02C630 0029+03 3/3 0/0 0/0 .data            @63 */
-SECTION_DATA static char lit_63[] = ">>> L2 INVALIDATE : SHOULD NEVER HAPPEN\n";
+
+static void L2Disable(void) {
+    __sync();
+    PPCMtl2cr(PPCMfl2cr() & ~0x80000000);
+    __sync();
+}
 
 /* 8033B8F8-8033B990 336238 0098+00 1/1 0/0 0/0 .text            L2GlobalInvalidate */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void L2GlobalInvalidate(void) {
-    nofralloc
-#include "asm/dolphin/os/OSCache/L2GlobalInvalidate.s"
+void L2GlobalInvalidate(void) {
+    L2Disable();
+    PPCMtl2cr(PPCMfl2cr() | 0x00200000);
+    while (PPCMfl2cr() & 0x00000001u)
+        ;
+    PPCMtl2cr(PPCMfl2cr() & ~0x00200000);
+    while (PPCMfl2cr() & 0x00000001u) {
+        DBPrintf(">>> L2 INVALIDATE : SHOULD NEVER HAPPEN\n");
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 803CF53C-803CF554 02C65C 0018+00 0/1 0/0 0/0 .data            @84 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_84[] = "Machine check received\n";
-#pragma pop
-
-/* 803CF554-803CF570 02C674 001B+01 0/1 0/0 0/0 .data            @85 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_85[] = "HID2 = 0x%x   SRR1 = 0x%x\n";
-#pragma pop
-
-/* 803CF570-803CF5A0 02C690 0030+00 0/1 0/0 0/0 .data            @86 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_86[] = "Machine check was not DMA/locked cache related\n";
-#pragma pop
-
-/* 803CF5A0-803CF5DC 02C6C0 003C+00 0/1 0/0 0/0 .data            @87 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_87[] = "DMAErrorHandler(): An error occurred while processing DMA.\n";
-#pragma pop
-
-/* 803CF5DC-803CF614 02C6FC 0037+01 0/1 0/0 0/0 .data            @88 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_88[] = "The following errors have been detected and cleared :\n";
-#pragma pop
-
-/* 803CF614-803CF654 02C734 003F+01 0/1 0/0 0/0 .data            @89 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_89[] =
-    "\t- Requested a locked cache tag that was already in the cache\n";
-#pragma pop
-
-/* 803CF654-803CF680 02C774 0029+03 0/1 0/0 0/0 .data            @90 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_90[] = "\t- DMA attempted to access normal cache\n";
-#pragma pop
-
-/* 803CF680-803CF6A0 02C7A0 001D+03 0/1 0/0 0/0 .data            @91 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_91[] = "\t- DMA missed in data cache\n";
-#pragma pop
-
-/* 803CF6A0-803CF6BC 02C7C0 0019+03 0/1 0/0 0/0 .data            @92 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_92[] = "\t- DMA queue overflowed\n";
-#pragma pop
 
 /* 8033B990-8033BAF0 3362D0 0160+00 1/1 0/0 0/0 .text            DMAErrorHandler */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void DMAErrorHandler(s32 error, OSContext* context) {
-    nofralloc
-#include "asm/dolphin/os/OSCache/DMAErrorHandler.s"
+void DMAErrorHandler(u16 error, OSContext* context, ...) {
+    u32 hid2 = PPCMfhid2();
+
+    OSReport("Machine check received\n");
+    OSReport("HID2 = 0x%x   SRR1 = 0x%x\n", hid2, context->srr1);
+    if (!(hid2 & (HID2_DCHERR | HID2_DNCERR | HID2_DCMERR | HID2_DQOERR)) ||
+        !(context->srr1 & SRR1_DMA_BIT)) {
+        OSReport("Machine check was not DMA/locked cache related\n");
+        OSDumpContext(context);
+        PPCHalt();
+    }
+
+    OSReport("DMAErrorHandler(): An error occurred while processing DMA.\n");
+    OSReport("The following errors have been detected and cleared :\n");
+
+    if (hid2 & HID2_DCHERR) {
+        OSReport("\t- Requested a locked cache tag that was already in the cache\n");
+    }
+
+    if (hid2 & HID2_DNCERR) {
+        OSReport("\t- DMA attempted to access normal cache\n");
+    }
+
+    if (hid2 & HID2_DCMERR) {
+        OSReport("\t- DMA missed in data cache\n");
+    }
+
+    if (hid2 & HID2_DQOERR) {
+        OSReport("\t- DMA queue overflowed\n");
+    }
+
+    // write hid2 back to clear the error bits
+    PPCMthid2(hid2);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803CF6BC-803CF6D8 02C7DC 0019+03 0/1 0/0 0/0 .data            @104 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_104[] = "L1 i-caches initialized\n";
-#pragma pop
 
-/* 803CF6D8-803CF6F4 02C7F8 0019+03 0/1 0/0 0/0 .data            @105 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_105[] = "L1 d-caches initialized\n";
-#pragma pop
+static void L2Init(void) {
+    u32 oldMSR;
+    oldMSR = PPCMfmsr();
+    __sync();
+    PPCMtmsr(MSR_IR | MSR_DR);
+    __sync();
+    L2Disable();
+    L2GlobalInvalidate();
+    PPCMtmsr(oldMSR);
+}
 
-/* 803CF6F4-803CF70C 02C814 0016+02 0/1 0/0 0/0 .data            @106 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_106[] = "L2 cache initialized\n";
-#pragma pop
-
-/* 803CF70C-803CF740 02C82C 002E+06 0/1 0/0 0/0 .data            @107 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_107[] = "Locked cache machine check handler installed\n";
-#pragma pop
+void L2Enable(void) {
+    PPCMtl2cr((PPCMfl2cr() | L2CR_L2E) & ~L2CR_L2I);
+}
 
 /* 8033BAF0-8033BBE4 336430 00F4+00 0/0 2/2 0/0 .text            __OSCacheInit */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __OSCacheInit(void) {
-    nofralloc
-#include "asm/dolphin/os/OSCache/__OSCacheInit.s"
+void __OSCacheInit() {
+    if (!(PPCMfhid0() & HID0_ICE)) {
+        ICEnable();
+        DBPrintf("L1 i-caches initialized\n");
+    }
+    if (!(PPCMfhid0() & HID0_DCE)) {
+        DCEnable();
+        DBPrintf("L1 d-caches initialized\n");
+    }
+
+    if (!(PPCMfl2cr() & L2CR_L2E)) {
+        L2Init();
+        L2Enable();
+        DBPrintf("L2 cache initialized\n");
+    }
+
+    OSSetErrorHandler(OS_ERROR_MACHINE_CHECK, DMAErrorHandler);
+    DBPrintf("Locked cache machine check handler installed\n");
 }
-#pragma pop

@@ -22,6 +22,14 @@ typedef enum DVDState {
     DVD_STATE_FATAL_ERROR = -1,
 } DVDState;
 
+
+typedef enum DVDResult {
+    DVD_RESULT_GOOD = 0,
+    DVD_RESULT_FATAL_ERROR = -1,
+    DVD_RESULT_IGNORED = -2,
+    DVD_RESULT_CANCELED = -3,
+} DVDResult;
+
 typedef struct DVDDirectory {
     /* 0x0 */ u32 entry_number;
     /* 0x4 */ u32 location;

@@ -30,10 +30,10 @@ mkdir -p tools/mwcc_compiler/
 
 3. Download [GC_WII_COMPILERS.zip](https://cdn.discordapp.com/attachments/727918646525165659/917185027656286218/GC_WII_COMPILERS.zip).
 
-4. Extract `GC_COMPILERS.zip` into the previously created `mwcc_compiler` directory
+4. Extract `GC_WII_COMPILERS.zip` into the previously created `mwcc_compiler` directory
 
 ```bash
-unzip GC_COMPILERS.zip -d tools/mwcc_compiler/
+unzip GC_WII_COMPILERS.zip "GC/*" -d tools/mwcc_compiler/ && mv tools/mwcc_compiler/GC/* tools/mwcc_compiler/ && rmdir tools/mwcc_compiler/GC
 ```
 
 5. Place a copy of NTSC-U GCN Twilight Princess in the root directory and call it `gz2e01.iso` (find this on your own)

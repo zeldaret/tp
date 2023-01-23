@@ -5,21 +5,19 @@
 
 #include "dolphin/dvd/dvderror.h"
 #include "dol2asm.h"
+#include "dolphin/os/OSRtc.h"
 #include "dolphin/types.h"
 
 //
 // Forward References:
 //
 
-static void ErrorCode2Num();
+static u8 ErrorCode2Num(u32 errorCode);
 void __DVDStoreErrorCode();
 
 //
 // External References:
 //
-
-void __OSLockSramEx();
-void __OSUnlockSramEx();
 
 //
 // Declarations:
@@ -27,30 +25,58 @@ void __OSUnlockSramEx();
 
 /* ############################################################################################## */
 /* 803D16A8-803D16F0 02E7C8 0048+00 1/1 0/0 0/0 .data            ErrorTable */
-SECTION_DATA static u8 ErrorTable[72] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x3A, 0x00, 0x00, 0x06, 0x28, 0x00, 0x00, 0x03, 0x02,
-    0x00, 0x00, 0x03, 0x11, 0x00, 0x00, 0x05, 0x20, 0x00, 0x00, 0x05, 0x20, 0x01, 0x00, 0x05,
-    0x21, 0x00, 0x00, 0x05, 0x24, 0x00, 0x00, 0x05, 0x24, 0x01, 0x00, 0x05, 0x24, 0x02, 0x00,
-    0x0B, 0x5A, 0x01, 0x00, 0x05, 0x63, 0x00, 0x00, 0x02, 0x04, 0x01, 0x00, 0x02, 0x04, 0x00,
-    0x00, 0x04, 0x08, 0x00, 0x00, 0x10, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00,
+static u32 ErrorTable[] = {
+    0,          0x00023A00, 0x00062800, 0x00030200, 0x00031100, 0x00052000,
+    0x00052001, 0x00052100, 0x00052400, 0x00052401, 0x00052402, 0x000B5A01,
+    0x00056300, 0x00020401, 0x00020400, 0x00040800, 0x00100007, 0,
 };
 
 /* 8034BA6C-8034BB88 3463AC 011C+00 1/1 0/0 0/0 .text            ErrorCode2Num */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void ErrorCode2Num() {
-    nofralloc
-#include "asm/dolphin/dvd/dvderror/ErrorCode2Num.s"
+static u8 ErrorCode2Num(u32 errorCode) {
+    u32 i;
+
+    for (i = 0; i < sizeof(ErrorTable) / sizeof(ErrorTable[0]); i++) {
+        if (ErrorTable[i] == errorCode) {
+            return (u8)i;
+        }
+    }
+
+    if ((errorCode >= 0x00100000) && (errorCode <= 0x00100008)) {
+        return 17;
+    }
+
+    return 29;
 }
-#pragma pop
 
 /* 8034BB88-8034BC04 3464C8 007C+00 0/0 12/12 0/0 .text            __DVDStoreErrorCode */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __DVDStoreErrorCode() {
-    nofralloc
-#include "asm/dolphin/dvd/dvderror/__DVDStoreErrorCode.s"
+static u8 Convert(u32 error) {
+    u32 statusCode;
+    u32 errorCode;
+    u8 errorNum;
+
+    if (error == 0x01234567)
+        return 255;
+
+    if (error == 0x01234568)
+        return 254;
+
+    statusCode = (error & 0xff000000) >> 24;
+    errorCode = error & 0x00ffffff;
+
+    errorNum = ErrorCode2Num(errorCode);
+    if (statusCode >= 6)
+        statusCode = 6;
+
+    return (u8)(statusCode * 30 + errorNum);
 }
-#pragma pop
+
+void __DVDStoreErrorCode(u32 error) {
+    OSSramEx* sram;
+    u8 num;
+
+    num = Convert(error);
+
+    sram = __OSLockSramEx();
+    sram->dvdErrorCode = num;
+    __OSUnlockSramEx(TRUE);
+}
