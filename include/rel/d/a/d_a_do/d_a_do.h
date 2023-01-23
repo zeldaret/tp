@@ -98,7 +98,7 @@ public:
     /* 0x5B5 */ u8 field_0x5b5;
     /* 0x5B6 */ u8 field_0x5b6;
     /* 0x5B7 */ u8 field_0x5b7;
-    /* 0x5B8 */ cXyz field_0x588;
+    /* 0x5B8 */ cXyz field_0x5b8;
     /* 0x5C4 */ u8 field_0x5c4[4]; 
     /* 0x5C8 */ f32 mDistFromPlayer;
     /* 0x5CC */ s16 mAngleYFromPlayer;
@@ -117,7 +117,7 @@ public:
     /* 0x5EC */ f32 field_0x5ec;
     /* 0x5F0 */ s16 field_0x5f0;
     /* 0x5F2 */ s16 mAction;
-    /* 0x5F4 */ u16 field_0x5f4;
+    /* 0x5F4 */ s16 field_0x5f4;
     /* 0x5F6 */ s16 mStayStatus; // probably a better name for this
     /* 0x5F8 */ u32 mShadowKey;
     /* 0x5FC */ s16 field_0x5fc[4];
