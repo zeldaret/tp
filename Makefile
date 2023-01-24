@@ -179,7 +179,17 @@ $(ELF_SHIFT): $(DOL)
 $(DOL_SHIFT): $(ELF_SHIFT) | tools
 	$(ELF2DOL) $< $@ $(SDATA_PDHR) $(SBSS_PDHR) $(TARGET_COL)
 	@cp -v $(DOL_SHIFT) $(DOL)
-
+	
+setup: 
+	@if [ ! -d tools/mwcc_compiler/ ]; then \
+	mkdir tools/mwcc_compiler/ ; \
+	wget https://cdn.discordapp.com/attachments/727918646525165659/917185027656286218/GC_WII_COMPILERS.zip -P tools/mwcc_compiler/ ; \
+	unzip tools/mwcc_compiler/GC_WII_COMPILERS.zip "GC/*" -d tools/mwcc_compiler/ ; \
+	mv tools/mwcc_compiler/GC/* tools/mwcc_compiler/ ; \
+	rm tools/mwcc_compiler/GC_WII_COMPILERS.zip ; \
+	rmdir tools/mwcc_compiler/GC ; \
+	fi 
+	
 shift: dirs $(DOL_SHIFT)
 
 game: shift
