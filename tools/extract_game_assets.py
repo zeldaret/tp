@@ -131,13 +131,18 @@ Use the parsed fst.bin contents to write assets to file
 """
 
 convertDefinitions = [
-    {"extension": ".arc", "function": libarc.extract_to_directory, "exceptions": ["archive/dat/speakerse.arc"]}
+    {
+        "extension": ".arc",
+        "function": libarc.extract_to_directory,
+        "exceptions": ["archive/dat/speakerse.arc"],
+    }
 ]
 
-def writeFile(name,data):
-    if (data[0:4]==bytes("Yaz0","ascii")):
+
+def writeFile(name, data):
+    if data[0:4] == bytes("Yaz0", "ascii"):
         splitName = os.path.splitext(name)
-        name = splitName[0]+".c"+splitName[1]
+        name = splitName[0] + ".c" + splitName[1]
         data = yaz0.decompress(data)
 
     extractDef = None
@@ -148,18 +153,18 @@ def writeFile(name,data):
             extractDef = extractData
             if extractData["exceptions"] != None:
                 for exception in extractData["exceptions"]:
-                    if str(name)==exception:
+                    if str(name) == exception:
                         extractDef = None
             break
-        
+
     if extractDef == None:
-        file = open(name,"wb")
+        file = open(name, "wb")
         file.write(data)
         file.close()
     else:
-        name = extractDef["function"](name,data,writeFile)
+        name = extractDef["function"](name, data, writeFile)
     return name
-    
+
 
 def writeAssets(parsedFstBin, handler):
     # Write the folder structure and files to disc
@@ -178,10 +183,13 @@ def writeAssets(parsedFstBin, handler):
             )
         else:
             handler.seek(i["fileOffset"])
-            writeFile(folderStack[-1]["folderName"] + i["fileName"],bytearray(handler.read(i["fileSize"])))
-            #with open(
+            writeFile(
+                folderStack[-1]["folderName"] + i["fileName"],
+                bytearray(handler.read(i["fileSize"])),
+            )
+            # with open(
             #    (folderStack[-1]["folderName"] + i["fileName"]), "wb"
-            #) as currentFile:
+            # ) as currentFile:
             #    currentFile.write(bytearray(handler.read(i["fileSize"])))
 
             while folderStack[-1]["lastEntryNumber"] == j + 1:
@@ -259,6 +267,7 @@ def extract(path):
 
 def main():
     extract(sys.argv[1])
+
 
 if __name__ == "__main__":
     main()

@@ -9,25 +9,33 @@ import ctypes
 import oead
 import libarc
 
+
 def getMaxDateFromDir(path):
     maxTime = 0
-    for root,dirs,files in os.walk(str(path)):
+    for root, dirs, files in os.walk(str(path)):
         for file in files:
-            time = os.path.getmtime(Path(root+"/"+file))
+            time = os.path.getmtime(Path(root + "/" + file))
             if time > maxTime:
                 maxTime = time
     return maxTime
 
+
 convertDefinitions = [
-    {"sourceExtension" : ".arc", "destExtension" : ".arc", "convertFunction" : libarc.convert_dir_to_arc, "exceptions": ["game/files/res/Object/HomeBtn.c.arc/archive/dat/speakerse.arc"]}
+    {
+        "sourceExtension": ".arc",
+        "destExtension": ".arc",
+        "convertFunction": libarc.convert_dir_to_arc,
+        "exceptions": ["game/files/res/Object/HomeBtn.c.arc/archive/dat/speakerse.arc"],
+    }
 ]
 
-def convertEntry(file,path,destPath,returnData):
+
+def convertEntry(file, path, destPath, returnData):
     split = os.path.splitext(file)
     mustBeCompressed = False
     destFileName = file
     if split[0].split(".")[-1] == "c":
-        destFileName = split[0][0:-2]+split[-1]
+        destFileName = split[0][0:-2] + split[-1]
         mustBeCompressed = True
     sourceExtension = split[-1]
     data = None
@@ -38,57 +46,59 @@ def convertEntry(file,path,destPath,returnData):
             extractDef = extractData
             if extractData["exceptions"] != None:
                 for exception in extractData["exceptions"]:
-                    if str(path/file)==exception:
+                    if str(path / file) == exception:
                         extractDef = None
             break
-    
+
     if extractDef != None:
-        destFileName = os.path.splitext(destFileName)[0]+extractDef["destExtension"]
+        destFileName = os.path.splitext(destFileName)[0] + extractDef["destExtension"]
 
     targetTime = 0
-    if destPath != None and os.path.exists(destPath/destFileName):
-        targetTime = os.path.getmtime(destPath/destFileName)
+    if destPath != None and os.path.exists(destPath / destFileName):
+        targetTime = os.path.getmtime(destPath / destFileName)
     sourceTime = 0
     if targetTime != 0:
-        if os.path.isdir(path/file):
-            sourceTime = getMaxDateFromDir(path/file)
+        if os.path.isdir(path / file):
+            sourceTime = getMaxDateFromDir(path / file)
         else:
-            sourceTime = os.path.getmtime(path/file)
+            sourceTime = os.path.getmtime(path / file)
     if returnData == False and sourceTime < targetTime:
         return destFileName
-    
+
     if extractDef != None:
-        data = extractDef["convertFunction"](path/file,convertEntry)
+        data = extractDef["convertFunction"](path / file, convertEntry)
 
     if mustBeCompressed == True:
         if data == None:
-            data = open(path/file,"rb").read()
+            data = open(path / file, "rb").read()
         data = oead.yaz0.compress(data)
     if returnData == True:
         if data == None and returnData == True:
-            data = open(path/file,"rb").read()
-        return destFileName,data
+            data = open(path / file, "rb").read()
+        return destFileName, data
     else:
-        print(str(path/file)+" -> "+str(destPath/destFileName))
+        print(str(path / file) + " -> " + str(destPath / destFileName))
         if data != None:
-            open(destPath/destFileName,"wb").write(data)
+            open(destPath / destFileName, "wb").write(data)
         else:
-            shutil.copy(path/file,destPath/destFileName)
+            shutil.copy(path / file, destPath / destFileName)
         return destFileName
+
 
 def copy(path, destPath):
     for file in os.listdir(path):
         split = os.path.splitext(file)
-        if len(split[1])==0 and os.path.isdir(path/file):
-            #is a standard directory
-            if not Path(destPath/file).exists():
-                os.mkdir(destPath/file)
-            copy(path/file,destPath/file)
+        if len(split[1]) == 0 and os.path.isdir(path / file):
+            # is a standard directory
+            if not Path(destPath / file).exists():
+                os.mkdir(destPath / file)
+            copy(path / file, destPath / file)
         else:
-            #either a file or directory that needs to be converted
-            convertEntry(file,path,destPath,False)
+            # either a file or directory that needs to be converted
+            convertEntry(file, path, destPath, False)
 
-#copy(Path("srcArc"),Path("arcDest"))
+
+# copy(Path("srcArc"),Path("arcDest"))
 
 aMemRels = """d_a_alldie.rel
 d_a_andsw2.rel
@@ -258,41 +268,46 @@ def copyRelFiles(gamePath, buildPath, aMemList, mMemList):
                     relNew.close()
                 else:
                     relArcPaths.append(fullPath)
-    
-    if os.path.exists(buildPath/"RELS.arc") == False:
-        os.mkdir(buildPath/"RELS.arc")
-        os.mkdir(buildPath/"RELS.arc/rels")
-        os.mkdir(buildPath/"RELS.arc/rels/mmem")
-        os.mkdir(buildPath/"RELS.arc/rels/amem")
 
-    filesTxtData = "Folder:rels/amem/\nFolder:rels/mmem/\nFolder:rels/./\nFolder:rels/../\n"
-    for i,rel in enumerate(aMemRels.splitlines()):
-        filesTxtData = filesTxtData + str(i+4) + ":rels/amem/" + rel + ":0xa500\n"
+    if os.path.exists(buildPath / "RELS.arc") == False:
+        os.mkdir(buildPath / "RELS.arc")
+        os.mkdir(buildPath / "RELS.arc/rels")
+        os.mkdir(buildPath / "RELS.arc/rels/mmem")
+        os.mkdir(buildPath / "RELS.arc/rels/amem")
+
+    filesTxtData = (
+        "Folder:rels/amem/\nFolder:rels/mmem/\nFolder:rels/./\nFolder:rels/../\n"
+    )
+    for i, rel in enumerate(aMemRels.splitlines()):
+        filesTxtData = filesTxtData + str(i + 4) + ":rels/amem/" + rel + ":0xa500\n"
     filesTxtData = filesTxtData + "Folder:rels/amem/./\nFolder:rels/amem/../\n"
-    for i,rel in enumerate(mMemRels.splitlines()):
-        filesTxtData = filesTxtData + str(i+83) + ":rels/mmem/" + rel + ":0xa500\n"
+    for i, rel in enumerate(mMemRels.splitlines()):
+        filesTxtData = filesTxtData + str(i + 83) + ":rels/mmem/" + rel + ":0xa500\n"
     filesTxtData = filesTxtData + "Folder:rels/mmem/./\nFolder:rels/mmem/../\n"
-    open(buildPath/"RELS.arc/_files.txt","w").write(filesTxtData)
+    open(buildPath / "RELS.arc/_files.txt", "w").write(filesTxtData)
     for rel in relArcPaths:
         for rel2 in aMemRels.splitlines():
             if str(rel).find(rel2) != -1:
-                sourceRel = open(rel,"rb").read()
-                open(buildPath/"RELS.arc/rels/amem/"/rel2,"wb").write(oead.yaz0.compress(sourceRel))
+                sourceRel = open(rel, "rb").read()
+                open(buildPath / "RELS.arc/rels/amem/" / rel2, "wb").write(
+                    oead.yaz0.compress(sourceRel)
+                )
                 break
         for rel2 in mMemRels.splitlines():
             if str(rel).find(rel2) != -1:
-                sourceRel = open(rel,"rb").read()
-                open(buildPath/"RELS.arc/rels/mmem/"/rel2,"wb").write(oead.yaz0.compress(sourceRel))
+                sourceRel = open(rel, "rb").read()
+                open(buildPath / "RELS.arc/rels/mmem/" / rel2, "wb").write(
+                    oead.yaz0.compress(sourceRel)
+                )
                 break
 
     print("Creating RELS.arc")
-    open(buildPath/"dolzel2/game/files/RELS.arc","wb").write(libarc.convert_dir_to_arc(buildPath/"RELS.arc",convertEntry))
-        
+    open(buildPath / "dolzel2/game/files/RELS.arc", "wb").write(
+        libarc.convert_dir_to_arc(buildPath / "RELS.arc", convertEntry)
+    )
 
 
-
-
-def main(gamePath, buildPath,copyCode):
+def main(gamePath, buildPath, copyCode):
     if not gamePath.exists():
         gamePath.mkdir(parents=True, exist_ok=True)
 
@@ -309,11 +324,11 @@ def main(gamePath, buildPath,copyCode):
         os.chdir(previousDir)
 
     print("Copying game files...")
-    if os.path.exists(buildPath/"dolzel2") == False:
-        os.mkdir(buildPath/"dolzel2")
-    if os.path.exists(buildPath/"dolzel2"/"game") == False:
-        os.mkdir(buildPath/"dolzel2/game")
-    copy(gamePath, Path(buildPath/"dolzel2/game").absolute())
+    if os.path.exists(buildPath / "dolzel2") == False:
+        os.mkdir(buildPath / "dolzel2")
+    if os.path.exists(buildPath / "dolzel2" / "game") == False:
+        os.mkdir(buildPath / "dolzel2/game")
+    copy(gamePath, Path(buildPath / "dolzel2/game").absolute())
 
     if copyCode != "noCopyCode":
         print(
@@ -321,9 +336,12 @@ def main(gamePath, buildPath,copyCode):
             + " -> "
             + str(buildPath / "dolzel2/game/sys/main.dol")
         )
-        shutil.copyfile(buildPath / "dolzel2/main_shift.dol", buildPath / "dolzel2/game/sys/main.dol")
+        shutil.copyfile(
+            buildPath / "dolzel2/main_shift.dol",
+            buildPath / "dolzel2/game/sys/main.dol",
+        )
 
-        copyRelFiles(gamePath,buildPath, aMemRels.splitlines(), mMemRels.splitlines())
+        copyRelFiles(gamePath, buildPath, aMemRels.splitlines(), mMemRels.splitlines())
 
 
 if __name__ == "__main__":

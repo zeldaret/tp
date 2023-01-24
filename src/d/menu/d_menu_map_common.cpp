@@ -179,7 +179,6 @@ SECTION_SDATA2 static f32 lit_3882 = 1.0f;
 // matches with literals
 #ifdef NONMATCHING
 void dMenuMapCommon_c::initiate(JKRArchive* arc) {
-    // Links the images on the map zoomed out to the ones zoomed in
     ResTIMG* mp_image;
 
     mp_image = (ResTIMG*)arc->getResource('TIMG', "tt_map_icon_boss_s_ci8_16_00.bti");
@@ -467,6 +466,7 @@ SECTION_SDATA2 static f32 lit_4013 = 180.0f;
 
 /* 801C38E4-801C3EC4 1BE224 05E0+00 0/0 2/2 0/0 .text            drawIcon__16dMenuMapCommon_cFffff
  */
+//unfinished
 #ifdef NONMATCHING
 void dMenuMapCommon_c::drawIcon(f32 param_0, f32 param_1, f32 param_2, f32 param_3) {
     s16 tmp[128];
@@ -603,7 +603,7 @@ asm void dMenuMapCommon_c::moveLightDropAnime() {
  */
 #ifdef NONMATCHING
 float dMenuMapCommon_c::getIconSizeX(u8 index) {
-    for (int i = 0; i<ARRAY_SIZE(map_icon_size); i++) {
+    for (int i = 0; i < ARRAY_SIZE(map_icon_size); i++) {
         if (map_icon_size[index].mIndex == index) {
             return map_icon_size[index].mXSize;
         }
@@ -625,7 +625,7 @@ asm float dMenuMapCommon_c::getIconSizeX(u8 param_0) {
  */
 #ifdef NONMATCHING
 float dMenuMapCommon_c::getIconSizeY(u8 index) {
-    for (int i = 0; i<ARRAY_SIZE(map_icon_size); i++) {
+    for (int i = 0; i < ARRAY_SIZE(map_icon_size); i++) {
         if (map_icon_size[index].mIndex == index) {
             return map_icon_size[index].mYSize;
         }
