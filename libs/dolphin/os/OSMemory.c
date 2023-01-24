@@ -17,7 +17,7 @@ vu16 __MEMRegs[64] : 0xCC004000;
 // External References:
 //
 
-extern OSErrorHandler __OSErrorTable[16];
+extern OSErrorHandlerEx __OSErrorTable[16];
 
 //
 // Declarations:
@@ -34,7 +34,6 @@ static asm s32 OnReset(s32 param_0) {
 #pragma pop
 
 /* 8033ECA8-8033ED14 3395E8 006C+00 1/1 0/0 0/0 .text            MEMIntrruptHandler */
-#ifdef NONMATCHING
 static void MEMIntrruptHandler(OSInterrupt interrupt, OSContext* context) {
     u32 addr;
     u32 cause;
@@ -51,16 +50,6 @@ static void MEMIntrruptHandler(OSInterrupt interrupt, OSContext* context) {
 
     __OSUnhandledException(EXCEPTION_MEMORY_PROTECTION, context, cause, addr);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void MEMIntrruptHandler(OSInterrupt interrupt, struct OSContext* context) {
-    nofralloc
-#include "asm/dolphin/os/OSMemory/MEMIntrruptHandler.s"
-}
-#pragma pop
-#endif
 
 /* 8033ED14-8033EDD8 339654 00C4+00 0/0 1/1 0/0 .text            OSProtectRange */
 void OSProtectRange(u32 chan, void* addr, u32 nBytes, u32 control) {

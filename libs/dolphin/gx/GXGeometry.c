@@ -127,25 +127,18 @@ void GXEnableTexOffsets(GXTexCoordID coord, GXBool line, GXBool point) {
 }
 
 /* 8035C984-8035C9AC 3572C4 0028+00 0/0 33/33 5/5 .text            GXSetCullMode */
-// extra mr
-#ifdef NONMATCHING
 void GXSetCullMode(GXCullMode mode) {
-    GXData* data = __GXData;
+    GXData* data;
+    GXCullMode mode2;
+    data  = __GXData;
 
-    mode = (mode << 1 & 2 | mode >> 1 & 1);
-    GX_BITFIELD_SET(data->field_0x204, 16, 2, mode);
+    // Useless set
+    mode2 = (mode >> 1) & 1;
+    GX_BITFIELD_SET(mode2, 30, 1, mode);
+
+    GX_BITFIELD_SET(data->field_0x204, 16, 2, mode2);
     data->field_0x5ac |= 4;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetCullMode(GXCullMode mode) {
-    nofralloc
-#include "asm/dolphin/gx/GXGeometry/GXSetCullMode.s"
-}
-#pragma pop
-#endif
 
 /* 8035C9AC-8035C9E0 3572EC 0034+00 0/0 6/6 0/0 .text            GXSetCoPlanar */
 void GXSetCoPlanar(GXBool enable) {

@@ -44,8 +44,8 @@ struct OSThreadQueue {
 };
 
 struct OSMutexLink {
-    OSMutex* prev;
     OSMutex* next;
+    OSMutex* prev;
 };
 
 struct OSMutexQueue {

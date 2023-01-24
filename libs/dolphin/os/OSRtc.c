@@ -87,55 +87,73 @@ void __OSInitSram(void) {
     OSSetGbsMode(OSGetGbsMode());
 }
 
-/* 80340144-803401A0 33AA84 005C+00 0/0 3/3 0/0 .text            __OSLockSram */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm OSSram* __OSLockSram(void) {
-    nofralloc
-#include "asm/dolphin/os/OSRtc/__OSLockSram.s"
+static void* LockSram(u32 offset) {
+    BOOL enabled;
+    enabled = OSDisableInterrupts();
+
+    if (Scb.locked != FALSE) {
+        OSRestoreInterrupts(enabled);
+        return NULL;
+    }
+
+    Scb.enabled = enabled;
+    Scb.locked = TRUE;
+
+    return Scb.sram + offset;
 }
-#pragma pop
+
+/* 80340144-803401A0 33AA84 005C+00 0/0 3/3 0/0 .text            __OSLockSram */
+OSSram* __OSLockSram() { return LockSram(0); }
 
 /* 803401A0-803401FC 33AAE0 005C+00 0/0 4/4 0/0 .text            __OSLockSramEx */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm OSSramEx* __OSLockSramEx(void) {
-    nofralloc
-#include "asm/dolphin/os/OSRtc/__OSLockSramEx.s"
-}
-#pragma pop
+OSSramEx* __OSLockSramEx() { return LockSram(sizeof(OSSram)); }
 
 /* 803401FC-80340538 33AB3C 033C+00 10/10 0/0 0/0 .text            UnlockSram */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm BOOL UnlockSram(BOOL commit, u32 offset) {
-    nofralloc
-#include "asm/dolphin/os/OSRtc/UnlockSram.s"
+static BOOL UnlockSram(BOOL commit, u32 offset) {
+    u16* p;
+
+    if (commit) {
+        if (offset == 0) {
+            OSSram* sram = (OSSram*)Scb.sram;
+
+            if (2u < (sram->flags & 3)) {
+                sram->flags &= ~3;
+            }
+
+            sram->checkSum = sram->checkSumInv = 0;
+            for (p = (u16*)&sram->counterBias; p < (u16*)(Scb.sram + sizeof(OSSram)); p++) {
+                sram->checkSum += *p;
+                sram->checkSumInv += ~*p;
+            }
+        }
+
+        if (offset < Scb.offset) {
+            Scb.offset = offset;
+        }
+
+        if (Scb.offset <= 0x14) {
+            OSSramEx* sram = (OSSramEx*)(Scb.sram + sizeof(OSSram));
+            if (((u32)sram->gbs & 0x7c00) == 0x5000 || ((u32)sram->gbs & 0xc0) == 0xc0) {
+                sram->gbs = 0;
+            }
+        }
+
+        Scb.sync = WriteSram(Scb.sram + Scb.offset, Scb.offset, RTC_SRAM_SIZE - Scb.offset);
+        if (Scb.sync) {
+            Scb.offset = RTC_SRAM_SIZE;
+        }
+    }
+    Scb.locked = FALSE;
+    OSRestoreInterrupts(Scb.enabled);
+    return Scb.sync;
 }
-#pragma pop
+
 
 /* 80340538-8034055C 33AE78 0024+00 0/0 3/3 0/0 .text            __OSUnlockSram */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL __OSUnlockSram(BOOL commit) {
-    nofralloc
-#include "asm/dolphin/os/OSRtc/__OSUnlockSram.s"
-}
-#pragma pop
+BOOL __OSUnlockSram(BOOL commit) { return UnlockSram(commit, 0); }
 
 /* 8034055C-80340580 33AE9C 0024+00 0/0 4/4 0/0 .text            __OSUnlockSramEx */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL __OSUnlockSramEx(BOOL commit) {
-    nofralloc
-#include "asm/dolphin/os/OSRtc/__OSUnlockSramEx.s"
-}
-#pragma pop
+BOOL __OSUnlockSramEx(BOOL commit) { return UnlockSram(commit, sizeof(OSSram)); }
 
 /* 80340580-80340590 33AEC0 0010+00 0/0 2/2 0/0 .text            __OSSyncSram */
 BOOL __OSSyncSram(void) {
@@ -143,57 +161,74 @@ BOOL __OSSyncSram(void) {
 }
 
 /* 80340590-80340610 33AED0 0080+00 0/0 4/4 0/0 .text            OSGetSoundMode */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 OSGetSoundMode(void) {
-    nofralloc
-#include "asm/dolphin/os/OSRtc/OSGetSoundMode.s"
+u32 OSGetSoundMode() {
+    OSSram* sram;
+    u32 mode;
+
+    sram = __OSLockSram();
+    mode = (sram->flags & 0x4) ? OS_SOUND_MODE_STEREO : OS_SOUND_MODE_MONO;
+    __OSUnlockSram(FALSE);
+    return mode;
 }
-#pragma pop
 
 /* 80340610-803406B4 33AF50 00A4+00 0/0 1/1 0/0 .text            OSSetSoundMode */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSSetSoundMode(OSSoundMode mode) {
-    nofralloc
-#include "asm/dolphin/os/OSRtc/OSSetSoundMode.s"
+void OSSetSoundMode(u32 mode) {
+    OSSram* sram;
+    mode <<= 2;
+    mode &= 4;
+
+    sram = __OSLockSram();
+    if (mode == (sram->flags & 4)) {
+        __OSUnlockSram(FALSE);
+        return;
+    }
+
+    sram->flags &= ~4;
+    sram->flags |= mode;
+    __OSUnlockSram(TRUE);
 }
-#pragma pop
 
 /* 803406B4-80340724 33AFF4 0070+00 0/0 3/3 0/0 .text            OSGetProgressiveMode */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 OSGetProgressiveMode(void) {
-    nofralloc
-#include "asm/dolphin/os/OSRtc/OSGetProgressiveMode.s"
+u32 OSGetProgressiveMode() {
+    OSSram* sram;
+    u32 mode;
+
+    sram = __OSLockSram();
+    mode = (sram->flags & 0x80) >> 7;
+    __OSUnlockSram(FALSE);
+    return mode;
 }
-#pragma pop
 
 /* 80340724-803407C8 33B064 00A4+00 0/0 2/2 0/0 .text            OSSetProgressiveMode */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSSetProgressiveMode(u32 mode) {
-    nofralloc
-#include "asm/dolphin/os/OSRtc/OSSetProgressiveMode.s"
+
+void OSSetProgressiveMode(u32 mode) {
+    OSSram* sram;
+    mode <<= 7;
+    mode &= 0x80;
+
+    sram = __OSLockSram();
+    if (mode == (sram->flags & 0x80)) {
+        __OSUnlockSram(FALSE);
+        return;
+    }
+
+    sram->flags &= ~0x80;
+    sram->flags |= mode;
+    __OSUnlockSram(TRUE);
 }
-#pragma pop
 
 /* 803407C8-8034084C 33B108 0084+00 0/0 1/1 0/0 .text            OSGetWirelessID */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u16 OSGetWirelessID(s32 channel) {
-    nofralloc
-#include "asm/dolphin/os/OSRtc/OSGetWirelessID.s"
+u16 OSGetWirelessID(s32 channel) {
+    OSSramEx* sram;
+    u16 id;
+
+    sram = __OSLockSramEx();
+    id = sram->wirelessPadID[channel];
+    __OSUnlockSramEx(FALSE);
+    return id;
 }
-#pragma pop
 
 /* 8034084C-803408F8 33B18C 00AC+00 0/0 4/4 0/0 .text            OSSetWirelessID */
-#ifdef NONMATCHING
 void OSSetWirelessID(s32 channel, u16 id) {
     OSSramEx* sram;
 
@@ -206,33 +241,33 @@ void OSSetWirelessID(s32 channel, u16 id) {
 
     __OSUnlockSramEx(FALSE);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSSetWirelessID(s32 channel, u16 id) {
-    nofralloc
-#include "asm/dolphin/os/OSRtc/OSSetWirelessID.s"
-}
-#pragma pop
-#endif
 
 /* 803408F8-80340968 33B238 0070+00 1/1 0/0 0/0 .text            OSGetGbsMode */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm u16 OSGetGbsMode(void) {
-    nofralloc
-#include "asm/dolphin/os/OSRtc/OSGetGbsMode.s"
+u16 OSGetGbsMode() {
+    OSSramEx* sram;
+    u16 gbs;
+
+    sram = __OSLockSramEx();
+    gbs = sram->gbs;
+    __OSUnlockSramEx(FALSE);
+    return gbs;
 }
-#pragma pop
 
 /* 80340968-80340A20 33B2A8 00B8+00 1/1 0/0 0/0 .text            OSSetGbsMode */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void OSSetGbsMode(u16 mode) {
-    nofralloc
-#include "asm/dolphin/os/OSRtc/OSSetGbsMode.s"
+void OSSetGbsMode(u16 mode) {
+    OSSramEx* sram;
+
+    if (((u32)mode & 0x7c00) == 0x5000 || ((u32)mode & 0xc0) == 0xc0) {
+        mode = 0;
+    }
+
+    sram = __OSLockSramEx();
+
+    if (mode == sram->gbs) {
+        __OSUnlockSramEx(FALSE);
+        return;
+    }
+    sram->gbs = mode;
+
+    __OSUnlockSramEx(TRUE);
 }
-#pragma pop

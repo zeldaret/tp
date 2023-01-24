@@ -6,6 +6,7 @@
 #include "dolphin/dvd/dvdlow.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "dolphin/os/OSAlarm.h"
 
 //
 // Forward References:
@@ -46,12 +47,20 @@ void OSClearContext();
 void OSDisableInterrupts();
 void OSRestoreInterrupts();
 void __OSMaskInterrupts();
-void __OSGetSystemTime();
+OSTime __OSGetSystemTime();
 void DVDGetCurrentDiskID();
 
 //
 // Declarations:
 //
+
+typedef struct DVDCommand {
+  s32 _0;
+  u32 _4;
+  u32 _8;
+  u32 _c;
+  DVDLowCallback callback;
+} DVDCommand;
 
 /* ############################################################################################## */
 /* 8044C830-8044C870 079550 003C+04 6/6 0/0 0/0 .bss             CommandList */
@@ -106,7 +115,7 @@ static u8 data_8045174C[4];
 static u8 LastCommandWasRead[4];
 
 /* 80451754-80451758 000C54 0004+00 5/5 0/0 0/0 .sbss            NextCommandNumber */
-static u8 NextCommandNumber[4];
+static u32 NextCommandNumber;
 
 /* 80347674-803476B4 341FB4 0040+00 0/0 1/1 0/0 .text            __DVDInitWA */
 #pragma push
@@ -161,6 +170,20 @@ asm void __DVDInterruptHandler() {
 #pragma pop
 
 /* 80347994-80347A18 3422D4 0084+00 1/1 0/0 0/0 .text            AlarmHandler */
+#ifdef NONMATCHING
+static void AlarmHandler(OSAlarm* alarm, OSContext* context) {
+    DVDCommand* cmd;
+    cmd = &CommandList[NextCommandNumber];
+
+    if (cmd->_0 == 1) {
+        ++NextCommandNumber;
+        Read(cmd->_4, cmd->_8, cmd->_c, cmd->callback);
+    } else if (cmd->_0 == 2) {
+        ++NextCommandNumber;
+        DVDLowSeek(cmd->_c, cmd->callback);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -169,16 +192,23 @@ static asm void AlarmHandler() {
 #include "asm/dolphin/dvd/dvdlow/AlarmHandler.s"
 }
 #pragma pop
+#endif
 
 /* 80347A18-80347A88 342358 0070+00 9/9 0/0 0/0 .text            AlarmHandlerForTimeout */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void AlarmHandlerForTimeout() {
-    nofralloc
-#include "asm/dolphin/dvd/dvdlow/AlarmHandlerForTimeout.s"
+static void AlarmHandlerForTimeout(OSAlarm* alarm, OSContext* context) {
+    OSContext tmpContext;
+    DVDLowCallback callback;
+    __OSMaskInterrupts(0x400);
+    OSClearContext(&tmpContext);
+    OSSetCurrentContext(&tmpContext);
+    callback = Callback;
+    Callback = NULL;
+    if (callback != NULL) {
+        callback(0x10);
+    }
+    OSClearContext(&tmpContext);
+    OSSetCurrentContext(context);
 }
-#pragma pop
 
 /* 80347A88-80347B98 3423C8 0110+00 3/3 0/0 0/0 .text            Read */
 #pragma push
