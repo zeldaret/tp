@@ -583,5 +583,27 @@ def load_elfs(str_paths):
     return static, plfs
 
 
+def convert_arg_line_to_args(arg_line: str):
+    return arg_line.split(' ')
+
+
+def _read_args_from_files(args: List[str]):
+    new_args: List[str] = []
+    for arg in args:
+        if not arg or arg[0] != '@':
+            new_args.append(arg)
+        else:
+            with open(arg[1:], 'r') as file:
+                file_args: List[str] = []
+                for line in file:
+                    for file_arg in convert_arg_line_to_args(line.strip()):
+                        file_args.append(file_arg)
+                file_args = _read_args_from_files(file_args)
+                new_args.extend(file_args)
+    
+    return new_args
+
+
 if __name__ == "__main__":
-    makerel()
+    args = _read_args_from_files(sys.argv[1:])
+    makerel(args)

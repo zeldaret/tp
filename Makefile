@@ -162,7 +162,8 @@ docs:
 	
 rels: $(ELF) $(RELS)
 	@echo generating RELs from .plf
-	@$(PYTHON) $(MAKEREL) build --string-table $(BUILD_DIR)/frameworkF.str $(RELS) $(ELF)
+	@echo $(RELS) > build/plf_files
+	$(PYTHON) $(MAKEREL) build --string-table $(BUILD_DIR)/frameworkF.str @build/plf_files $(ELF)
 
 $(ELF): $(LIBS) $(O_FILES)
 	@echo $(O_FILES) > build/o_files
