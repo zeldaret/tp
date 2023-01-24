@@ -803,7 +803,7 @@ def remove_unused_asm(check: bool):
 @click.option("--debug/--no-debug")
 @click.option(
     "--rels",
-    default=False,
+    default=True,
     is_flag=True,
     help="RELs will also be build and checked",
 )
