@@ -10,16 +10,18 @@ LIBEXI_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/exi/EXIBios.o \
 	$(BUILD_DIR)/libs/dolphin/exi/EXIUart.o \
 
-LIBEXI_A_CFLAGS := \
+LIBEXI_A_CFLAGS = \
 	-Cpp_exceptions off \
 	-proc gekko \
 	-fp hard \
+	-fp_contract on \
 	-nodefaults \
 	-str reuse \
+	-inline auto \
 	-RTTI off \
 	-maxerrors 5 \
 	-enum int $(INCLUDES) \
-	-O4,p \
+	$(if $(filter %EXIBios.c, $<),-O3,-O4),p \
 	-lang=c \
 
 LIBEXI_A_LDFLAGS := \
@@ -37,10 +39,11 @@ $(BUILD_DIR)/libs/dolphin/exi/%.o: libs/dolphin/exi/%.c $(BUILD_DIR)/libs/dolphi
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(FRANK_CC) $(LIBEXI_A_CFLAGS) -c -o $(@:.o=.po) $(basename $@).c
 	@$(DOLPHIN_LIB_CC) $(LIBEXI_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
 	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
 	@echo Frank is fixing $@
-	@$(PYTHON) $(FRANK) $@ $@ $@
+	@$(PYTHON) $(FRANK) $@ $(@:.o=.po) $@
 
 ifndef DISABLE_DEPS
 LIBEXI_A_D_FILES := $(LIBEXI_A_O_FILES:.o=.d)
