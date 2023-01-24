@@ -184,7 +184,15 @@ shift: dirs $(DOL_SHIFT)
 game: shift
 	$(MAKE) rels
 	@mkdir -p game
-	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_DIR)
+	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) copyCode
+
+game-nocompile:
+	@mkdir -p game
+	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) noCopyCode
+
+rungame-nocompile: game-nocompile
+	@echo If you are playing on a shifted game make sure Hyrule Field Speed hack is disabled in dolphin!
+	dolphin-emu $(BUILD_DIR)/game/sys/main.dol
 
 iso: game
 	@$(PYTHON) tools/packageISO.py $(BUILD_DIR)/game/ $(TARGET_ISO)
