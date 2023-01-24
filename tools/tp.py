@@ -247,7 +247,7 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
 
     c27_mwcceppc_old = c27.joinpath("mwcceppc.old.exe")
     c27_mwcceppc_orignal = c27.joinpath("mwcceppc.exe")
-    c27_mwcceppc_patched = c27.joinpath("mwcceppc_patched.exe")
+    c27_mwcceppc_patched = c27.joinpath("mwcceppc_modded.exe")
 
     def patch_compiler(src: Path, dst: Path, apply: bool):
         with src.open("rb") as src_file:

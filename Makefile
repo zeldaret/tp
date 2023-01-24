@@ -70,7 +70,7 @@ endif
 AS        := $(DEVKITPPC)/bin/powerpc-eabi-as
 OBJCOPY   := $(DEVKITPPC)/bin/powerpc-eabi-objcopy
 STRIP     := $(DEVKITPPC)/bin/powerpc-eabi-strip
-CC        := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc_patched.exe
+CC        := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc_modded.exe
 DOLPHIN_LIB_CC := $(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe
 FRANK_CC  := $(WINE) tools/mwcc_compiler/1.2.5e/mwcceppc.exe
 LD        := $(WINE_LD) tools/mwcc_compiler/$(MWCC_VERSION)/mwldeppc.exe
