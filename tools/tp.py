@@ -28,6 +28,9 @@ try:
     import libarc
     import io
     import extract_game_assets
+    import requests
+    import zipfile
+    import shutil
 
     from rich.logging import RichHandler
     from rich.console import Console
@@ -145,19 +148,29 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
         sys.exit(1)
 
     #
-    text = Text("--- Patching compiler")
+    text = Text("--- Fetching compiler")
     text.stylize("bold magenta")
     CONSOLE.print(text)
 
     compilers = tools_path.joinpath("mwcc_compiler")
     if not compilers.exists() or not compilers.is_dir():
-        LOG.error(
-            (
-                f"Unable to find MWCC compilers: missing directory '{compilers}'\n"
-                f"Check the README for instructions on how to obtain the compilers"
-            )
-        )
-        sys.exit(1)
+        os.mkdir(compilers)
+        r = requests.get('https://cdn.discordapp.com/attachments/727918646525165659/917185027656286218/GC_WII_COMPILERS.zip')
+        z = zipfile.ZipFile(io.BytesIO(r.content))
+        z.extractall(compilers)
+        gc_path = compilers.joinpath("GC")
+
+        allfiles = os.listdir(gc_path)
+        for f in allfiles:
+            src_path = os.path.join(gc_path, f)
+            dst_path = os.path.join(compilers, f)
+            shutil.move(src_path, dst_path)
+        os.rmdir(gc_path)
+
+    #
+    text = Text("--- Patching compiler")
+    text.stylize("bold magenta")
+    CONSOLE.print(text)
 
     c27 = compilers.joinpath("2.7")
     if not c27.exists() or not c27.is_dir():

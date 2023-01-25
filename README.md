@@ -22,15 +22,9 @@ Project Setup
 git clone https://github.com/zeldaret/tp
 ```
 
-2. Setup the compiler 
+2. Place a copy of NTSC-U GCN Twilight Princess in the root directory and call it `gz2e01.iso` (find this on your own)
 
-```bash
-make setup
-```
-
-3. Place a copy of NTSC-U GCN Twilight Princess in the root directory and call it `gz2e01.iso` (find this on your own)
-
-4. Setup the project
+3. Then run the setup script
 
 ```bash
 ./tp setup
