@@ -1,6 +1,5 @@
 rich
 click
-yaz0
 GitPython
 hexdump
 colorama
@@ -8,7 +7,6 @@ ansiwrap
 watchdog
 python-Levenshtein
 cxxfilt
-oead
 pyelftools
 requests
 zipfile
