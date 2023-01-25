@@ -135,6 +135,8 @@ static void GetDates(s32 days, OSCalendarTime* cal) {
 
 /* 80342974-80342B78 33D2B4 0204+00 0/0 4/4 0/0 .text            OSTicksToCalendarTime */
 #ifdef NONMATCHING
+#pragma push
+#pragma dont_inline on
 void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime* td) {
     int days;
     int secs;
@@ -161,6 +163,7 @@ void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime* td) {
     td->minutes = (secs / 60) % 60;
     td->seconds = secs % 60;
 }
+#pragma pop
 #else
 #pragma push
 #pragma optimization_level 0

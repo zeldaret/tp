@@ -65,8 +65,6 @@ void OSInitMutex(OSMutex* mutex) {
 }
 
 /* 8033F040-8033F11C 339980 00DC+00 1/1 62/62 0/0 .text            OSLockMutex */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 void OSLockMutex(OSMutex* mutex) {
     BOOL enabled = OSDisableInterrupts();
     OSThread* currentThread = OSGetCurrentThread();
@@ -91,19 +89,8 @@ void OSLockMutex(OSMutex* mutex) {
     }
     OSRestoreInterrupts(enabled);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSLockMutex(OSMutex* mutex) {
-    nofralloc
-#include "asm/dolphin/os/OSMutex/OSLockMutex.s"
-}
-#pragma pop
-#endif
 
 /* 8033F11C-8033F1E4 339A5C 00C8+00 0/0 71/71 0/0 .text            OSUnlockMutex */
-#ifdef NONMATCHING
 void OSUnlockMutex(OSMutex* mutex) {
     BOOL enabled = OSDisableInterrupts();
     OSThread* currentThread = OSGetCurrentThread();
@@ -111,7 +98,7 @@ void OSUnlockMutex(OSMutex* mutex) {
     if (mutex->thread == currentThread && --mutex->count == 0) {
         PopItem(&currentThread->owned_mutexes, mutex, link);
         mutex->thread = NULL;
-        if (currentThread->effective_priority < currentThread->base_priority) {
+        if ((s32)currentThread->effective_priority < (s32)currentThread->base_priority) {
             currentThread->effective_priority = __OSGetEffectivePriority(currentThread);
         }
 
@@ -119,93 +106,143 @@ void OSUnlockMutex(OSMutex* mutex) {
     }
     OSRestoreInterrupts(enabled);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSUnlockMutex(OSMutex* mutex) {
-    nofralloc
-#include "asm/dolphin/os/OSMutex/OSUnlockMutex.s"
-}
-#pragma pop
-#endif
 
 /* 8033F1E4-8033F254 339B24 0070+00 0/0 2/2 0/0 .text            __OSUnlockAllMutex */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __OSUnlockAllMutex(OSThread* thread) {
-    nofralloc
-#include "asm/dolphin/os/OSMutex/__OSUnlockAllMutex.s"
+void __OSUnlockAllMutex(OSThread* thread) {
+    OSMutex* mutex;
+
+    while (thread->owned_mutexes.head) {
+        PopHead(&thread->owned_mutexes, mutex, link);
+        mutex->count = 0;
+        mutex->thread = NULL;
+        OSWakeupThread(&mutex->queue);
+    }
 }
-#pragma pop
 
 /* 8033F254-8033F310 339B94 00BC+00 0/0 9/9 0/0 .text            OSTryLockMutex */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 OSTryLockMutex(OSMutex* mutex) {
-    nofralloc
-#include "asm/dolphin/os/OSMutex/OSTryLockMutex.s"
+
+BOOL OSTryLockMutex(OSMutex* mutex) {
+    BOOL enabled = OSDisableInterrupts();
+    OSThread* currentThread = OSGetCurrentThread();
+    BOOL locked;
+    if (mutex->thread == 0) {
+        mutex->thread = currentThread;
+        mutex->count++;
+        PushTail(&currentThread->owned_mutexes, mutex, link);
+        locked = TRUE;
+    } else if (mutex->thread == currentThread) {
+        mutex->count++;
+        locked = TRUE;
+    } else {
+        locked = FALSE;
+    }
+    OSRestoreInterrupts(enabled);
+    return locked;
 }
-#pragma pop
 
 /* 8033F310-8033F330 339C50 0020+00 0/0 1/1 0/0 .text            OSInitCond */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSInitCond(OSCond* cond) {
-    nofralloc
-#include "asm/dolphin/os/OSMutex/OSInitCond.s"
-}
-#pragma pop
+void OSInitCond(OSCond* cond) { OSInitThreadQueue(&cond->queue); }
 
 /* 8033F330-8033F404 339C70 00D4+00 0/0 1/1 0/0 .text            OSWaitCond */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSWaitCond(OSCond* cond, OSMutex* mutex) {
-    nofralloc
-#include "asm/dolphin/os/OSMutex/OSWaitCond.s"
+void OSWaitCond(OSCond* cond, OSMutex* mutex) {
+    BOOL enabled = OSDisableInterrupts();
+    OSThread* currentThread = OSGetCurrentThread();
+    s32 count;
+
+    if (mutex->thread == currentThread) {
+        count = mutex->count;
+        mutex->count = 0;
+        PopItem(&currentThread->owned_mutexes, mutex, link);
+        mutex->thread = NULL;
+
+        if (currentThread->effective_priority < (s32)currentThread->base_priority) {
+            currentThread->effective_priority = __OSGetEffectivePriority(currentThread);
+        }
+
+        OSDisableScheduler();
+        OSWakeupThread(&mutex->queue);
+        OSEnableScheduler();
+        OSSleepThread(&cond->queue);
+        OSLockMutex(mutex);
+        mutex->count = count;
+    }
+
+    OSRestoreInterrupts(enabled);
 }
-#pragma pop
 
 /* 8033F404-8033F424 339D44 0020+00 0/0 5/5 0/0 .text            OSSignalCond */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSSignalCond(OSCond* con) {
-    nofralloc
-#include "asm/dolphin/os/OSMutex/OSSignalCond.s"
+void OSSignalCond(OSCond* cond) {
+    OSWakeupThread(&cond->queue);
 }
-#pragma pop
+
+static BOOL IsMember(OSMutexQueue* queue, OSMutex* mutex) {
+    OSMutex* member;
+
+    for (member = queue->head; member; member = member->link.next) {
+        if (mutex == member)
+            return TRUE;
+    }
+    return FALSE;
+}
 
 /* 8033F424-8033F524 339D64 0100+00 1/1 0/0 0/0 .text            __OSCheckMutex */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 __OSCheckMutex(OSThread* thread) {
-    nofralloc
-#include "asm/dolphin/os/OSMutex/__OSCheckMutex.s"
+BOOL __OSCheckMutex(OSMutex* mutex) {
+    OSThread* thread;
+    OSThreadQueue* queue;
+    OSPriority priority = 0;
+
+    queue = &mutex->queue;
+    if (!(queue->head == NULL || queue->head->link.prev == NULL))
+        return FALSE;
+    if (!(queue->tail == NULL || queue->tail->link.next == NULL))
+        return FALSE;
+    for (thread = queue->head; thread; thread = thread->link.next) {
+        if (!(thread->link.next == NULL || thread == thread->link.next->link.prev))
+            return FALSE;
+        if (!(thread->link.prev == NULL || thread == thread->link.prev->link.next))
+            return FALSE;
+
+        if (thread->state != OS_THREAD_STATE_WAITING)
+            return FALSE;
+
+        if (thread->effective_priority < priority)
+            return FALSE;
+        priority = thread->effective_priority;
+    }
+
+    if (mutex->thread) {
+        if (mutex->count <= 0)
+            return FALSE;
+    } else {
+        if (0 != mutex->count)
+            return FALSE;
+    }
+
+    return TRUE;
 }
-#pragma pop
 
 /* 8033F524-8033F55C 339E64 0038+00 0/0 1/1 0/0 .text            __OSCheckDeadLock */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL __OSCheckDeadLock(OSThread* thread) {
-    nofralloc
-#include "asm/dolphin/os/OSMutex/__OSCheckDeadLock.s"
+BOOL __OSCheckDeadLock(OSThread* thread) {
+    OSMutex* mutex;
+
+    mutex = thread->mutex;
+    while (mutex && mutex->thread) {
+        if (mutex->thread == thread)
+            return TRUE;
+        mutex = mutex->thread->mutex;
+    }
+    return FALSE;
 }
-#pragma pop
 
 /* 8033F55C-8033F5D0 339E9C 0074+00 0/0 1/1 0/0 .text            __OSCheckMutexes */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL __OSCheckMutexes(OSThread* thread) {
-    nofralloc
-#include "asm/dolphin/os/OSMutex/__OSCheckMutexes.s"
+BOOL __OSCheckMutexes(OSThread* thread) {
+    OSMutex* mutex;
+
+    for (mutex = thread->owned_mutexes.head; mutex; mutex = mutex->link.next) {
+        if (mutex->thread != thread)
+            return FALSE;
+        if (!__OSCheckMutex(mutex))
+            return FALSE;
+    }
+    return TRUE;
 }
-#pragma pop

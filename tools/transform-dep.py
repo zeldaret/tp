@@ -9,7 +9,9 @@ if os.name != 'nt':
     winedevices = os.path.join(wineprefix, 'dosdevices')
 
 def in_wsl() -> bool:
-    return 'microsoft-standard' in uname().release
+    # wsl1 has Microsoft, wsl2 has microsoft-standard
+    release = uname().release
+    return 'microsoft-standard' in release or 'Microsoft' in release
 
 def import_d_file(in_file) -> str:
     out_lines = []
@@ -36,8 +38,15 @@ def import_d_file(in_file) -> str:
                     # shortcut for z:
                     path = path[2:].replace('\\', '/')
                 elif in_wsl():
-                    path = path[0:1] + path[2:]
-                    path = os.path.join('/mnt', path.replace('\\', '/'))
+                    if path.startswith(r'\\wsl'):
+                        # first part could be wsl$ or wsl.localhost
+                        pos = path.find('\\', 2)
+                        pos = path.find('\\', pos + 1)
+                        path = path[pos:]
+                        path = path.replace('\\', '/')
+                    else:
+                        path = path[0:1] + path[2:]
+                        path = os.path.join('/mnt', path.replace('\\', '/'))
                 else:
                     # use $WINEPREFIX/dosdevices to resolve path
                     path = os.path.realpath(os.path.join(winedevices, path.replace('\\', '/')))
