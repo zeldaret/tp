@@ -180,7 +180,7 @@ $(ELF_SHIFT): $(DOL)
 $(DOL_SHIFT): $(ELF_SHIFT) | tools
 	$(ELF2DOL) $< $@ $(SDATA_PDHR) $(SBSS_PDHR) $(TARGET_COL)
 	@cp -v $(DOL_SHIFT) $(DOL)
-
+	
 shift: dirs $(DOL_SHIFT)
 
 game: shift
