@@ -2,7 +2,7 @@ import os
 import sys
 import libarc
 from pathlib import Path
-from oead import yaz0
+import libyaz0
 
 """
 Extracts the game assets and stores them in the game folder
@@ -143,7 +143,7 @@ def writeFile(name, data):
     if data[0:4] == bytes("Yaz0", "ascii"):
         splitName = os.path.splitext(name)
         name = splitName[0] + ".c" + splitName[1]
-        data = yaz0.decompress(data)
+        data = libyaz0.decompress(data)
 
     extractDef = None
     splitName = os.path.splitext(name)

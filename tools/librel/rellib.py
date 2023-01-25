@@ -1,6 +1,6 @@
 import struct
 import os
-import yaz0
+import libyaz0
 import io
 
 from dataclasses import dataclass, field
@@ -149,7 +149,7 @@ def read_section(index, buffer):
 def read(buffer):
     # check if the rel is compressed
     if struct.unpack('>I', buffer[:4])[0] == 0x59617A30:
-        buffer = yaz0.decompress(io.BytesIO(buffer))
+        buffer = libyaz0.decompress(io.BytesIO(buffer))
 
     header_size = 0x40
     header = struct.unpack('>IIIIIIIIIIIIBBBBIII', buffer[:0x40])

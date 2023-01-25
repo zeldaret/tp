@@ -75,6 +75,7 @@ DOLPHIN_LIB_CC := $(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe
 FRANK_CC  := $(WINE) tools/mwcc_compiler/1.2.5e/mwcceppc.exe
 LD        := $(WINE_LD) tools/mwcc_compiler/$(MWCC_VERSION)/mwldeppc.exe
 ELF2DOL   := $(BUILD_PATH)/elf2dol
+YAZ0   := $(BUILD_PATH)/yaz0.so
 PYTHON    := python3
 ICONV     := iconv
 DOXYGEN   := doxygen
@@ -151,7 +152,7 @@ clean_rels:
 	rm -f -d -r $(BUILD_DIR)/rel
 	rm -f $(BUILD_PATH)/*.rel
 
-tools: $(ELF2DOL)
+tools: $(ELF2DOL) $(YAZ0)
 
 assets:
 	@mkdir -p game
@@ -232,6 +233,7 @@ $(BUILD_DIR)/rel/%.o: rel/%.cpp
 
 # tools
 include tools/elf2dol/Makefile
+include tools/yaz0/Makefile
 
 ### Debug Print ###
 print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true

@@ -3,11 +3,9 @@ import sys
 import shutil
 import extract_game_assets
 from pathlib import Path
-import hashlib
-import struct
-import ctypes
-import oead
+import libyaz0
 import libarc
+import threading
 
 
 def getMaxDateFromDir(path):
@@ -71,7 +69,7 @@ def convertEntry(file, path, destPath, returnData):
     if mustBeCompressed == True:
         if data == None:
             data = open(path / file, "rb").read()
-        data = oead.yaz0.compress(data)
+        data = libyaz0.compress(data)
     if returnData == True:
         if data == None and returnData == True:
             data = open(path / file, "rb").read()
@@ -83,7 +81,6 @@ def convertEntry(file, path, destPath, returnData):
         else:
             shutil.copy(path / file, destPath / destFileName)
         return destFileName
-
 
 def copy(path, destPath):
     for file in os.listdir(path):
@@ -97,8 +94,6 @@ def copy(path, destPath):
             # either a file or directory that needs to be converted
             convertEntry(file, path, destPath, False)
 
-
-# copy(Path("srcArc"),Path("arcDest"))
 
 aMemRels = """d_a_alldie.rel
 d_a_andsw2.rel
@@ -259,7 +254,7 @@ def copyRelFiles(gamePath, buildPath, aMemList, mMemList):
                     relSource = open(fullPath, "rb")
                     data = relSource.read()
                     relSource.close()
-                    data = oead.yaz0.compress(data)
+                    data = libyaz0.compress(data)
                     relNew = open(
                         buildPath / "dolzel2/game/files/rel/Final/Release" / file, "wb"
                     )
@@ -290,14 +285,14 @@ def copyRelFiles(gamePath, buildPath, aMemList, mMemList):
             if str(rel).find(rel2) != -1:
                 sourceRel = open(rel, "rb").read()
                 open(buildPath / "RELS.arc/rels/amem/" / rel2, "wb").write(
-                    oead.yaz0.compress(sourceRel)
+                    libyaz0.compress(sourceRel)
                 )
                 break
         for rel2 in mMemRels.splitlines():
             if str(rel).find(rel2) != -1:
                 sourceRel = open(rel, "rb").read()
                 open(buildPath / "RELS.arc/rels/mmem/" / rel2, "wb").write(
-                    oead.yaz0.compress(sourceRel)
+                    libyaz0.compress(sourceRel)
                 )
                 break
 
