@@ -22,7 +22,7 @@ Project Setup
 git clone https://github.com/zeldaret/tp
 ```
 
-2. Setup compiler 
+2. Setup the compiler 
 
 ```bash
 make setup
