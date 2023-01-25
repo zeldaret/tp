@@ -49,6 +49,18 @@ public:
         mPositionY = y;
     }
 
+    void onUpdateFlag() {
+        mUpdateFlag = true;
+    }
+
+    void resetUpdateFlag() {
+        mUpdateFlag = false;
+    }
+
+    bool getUpdateFlag() {
+        return mUpdateFlag;
+    }
+
 private:
     /* 0x04 */ J2DScreen* mpScreen;
     /* 0x08 */ J2DPane* mpPane;
@@ -71,6 +83,8 @@ private:
     /* 0xA4 */ f32 field_0xa4[4];
     /* 0xB4 */ u8 field_0xb4;
     /* 0xB5 */ s8 mNameIdx;
+    /* 0xB6 */ u8 field_0xb6;
+    /* 0xB7 */ bool mUpdateFlag;
 };
 
 #endif /* D_D_SELECT_CURSOR_H */
