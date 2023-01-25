@@ -10,3 +10,6 @@ python-Levenshtein
 cxxfilt
 oead
 pyelftools
+requests
+zipfile
+shutil
