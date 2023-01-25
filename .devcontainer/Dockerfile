@@ -20,3 +20,4 @@ RUN sudo dkp-pacman -Syu --noconfirm
 WORKDIR /etc
 RUN sudo ln -sf /proc/self/mounts mtab
 RUN sudo dkp-pacman -S --noconfirm gamecube-dev wii-dev
+RUN pip3 install requests
