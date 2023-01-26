@@ -249,7 +249,7 @@ def extract_to_directory(directory, data, write_function):
 
     fileDataLines = files_data.splitlines()
     # fileDataLines.sort(key=lambda x : int(x.split(":")[0]))
-    filesFile = open("_files.txt", "w")
+    filesFile = open("_files.txt", "w", encoding="utf-8")
     for line in fileDataLines:
         filesFile.write(line + "\n")
     os.chdir(cwd)
@@ -384,7 +384,7 @@ def parseDirForPack(
 
 def convert_dir_to_arc(sourceDir, convertFunction):
     # print("Converting "+str(sourceDir))
-    fileData = open(sourceDir / "_files.txt", "r").read()
+    fileData = open(sourceDir / "_files.txt", "r", encoding="utf-8").read()
     fileDataLinesFull = fileData.splitlines()
     # fileDataLinesFull.sort(key=lambda x : int(x.split(":")[0]))
 
