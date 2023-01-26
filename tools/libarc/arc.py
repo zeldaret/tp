@@ -194,7 +194,9 @@ def read(buffer) -> RARC:
 
 
 def extract_node(node, arcData, write_function, parentDir, dirNames) -> str:
-    os.mkdir(Path(parentDir) / node.name)
+    nodeDir = Path(parentDir) / node.name
+    if not os.path.exists(nodeDir):
+        os.mkdir(nodeDir)
     for i in range(node.directory_index, node.directory_count + node.directory_index):
         dir = arcData._directories[i]
         dirNames[i] = str(Path(parentDir) / Path(node.name)) + "/" + dir.name
@@ -219,7 +221,8 @@ def extract_node(node, arcData, write_function, parentDir, dirNames) -> str:
 
 def extract_to_directory(directory, data, write_function):
     print("Extracting " + str(directory))
-    os.mkdir(directory)
+    if not os.path.exists(directory):
+        os.mkdir(directory)
     arcData = read(data)
     cwd = os.getcwd()
     os.chdir(directory)
