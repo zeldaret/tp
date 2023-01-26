@@ -948,7 +948,7 @@ COMPILER_STRIP_GATE(0x8066EE34, &lit_4058);
 
 /* 80668A30-80668B18 000DD0 00E8+00 3/3 0/0 0/0 .text            dansa_check2__FP8do_classf */
 #ifdef NONMATCHING
-// floats in wrong order
+// float regalloc
 static bool dansa_check2(do_class* i_dogP, f32 param_1) {
     cXyz pos;
     cXyz pos2;
@@ -956,14 +956,8 @@ static bool dansa_check2(do_class* i_dogP, f32 param_1) {
     mDoMtx_YrotS((MtxP)calc_mtx,i_dogP->current.angle.y);
     pos.x = FLOAT_LABEL(lit_3682);
     pos.y = FLOAT_LABEL(lit_4057);
-
     f32 tmp = i_dogP->field_0x674.z;
-
-    f32 tmp1 = FLOAT_LABEL(lit_3981) * param_1;
-    f32 tmp3 = tmp1 * tmp;
-    f32 tmp2 = FLOAT_LABEL(lit_4058) * i_dogP->mSpeedF * i_dogP->field_0x674.z * FLOAT_LABEL(lit_3981);
-
-    pos.z = tmp3 + tmp2;
+    pos.z = tmp * (FLOAT_LABEL(lit_3981) * param_1) + tmp * (FLOAT_LABEL(lit_3981) * i_dogP->mSpeedF) * FLOAT_LABEL(lit_4058);
 
     MtxPosition(&pos,&pos2);
     pos2 += i_dogP->current.pos;
@@ -2332,9 +2326,44 @@ COMPILER_STRIP_GATE(0x8066EF5C, &lit_5407);
 #pragma pop
 
 /* 8066C894-8066CAA8 004C34 0214+00 1/1 0/0 0/0 .text            do_a_swim__FP8do_class */
-#ifdef NONMATCHING
+#ifndef NONMATCHING
 static void do_a_swim(do_class* i_dogP) {
-    
+    i_dogP->field_0x648 = 2000.0;
+    cLib_addCalc0(&i_dogP->mSpeedF,1.0,1.0);
+
+    switch (i_dogP->mStayStatus) {
+        case 2: {
+            l_HIO.mWaterHuntAnimType == 1 ? i_dogP->mpMorf->setPlaySpeed(i_dogP->field46_0x634 * 5.0) : i_dogP->mpMorf->setPlaySpeed(i_dogP->field46_0x634 * 5.0);
+
+            if (0.025 < i_dogP->field_0x634) {
+                break;
+            }
+
+            i_dogP->field_0x634 = 0.0;
+            i_dogP->mAction = ACT_WAIT_1;
+            i_dogP->mStayStatus = 0;
+            break;
+        }
+        case 0: {
+            l_HIO.mWaterHuntAnimType == 1 ? anm_init(param_1,ANM_JOYFUL,0.0,2,0.0) : anm_init(param_1,ANM_BULBUL,0.0,2,0.0);
+            i_dogP->mStayStatus = 1;
+            i_dogP->field32_0x5fc[0] = 0x14;
+
+            JPABaseEmitter* emitter = dComIfGp_particle_set(0x2a3,&i_dogP->.current.pos,0,0);
+
+            if (emitter) {
+                emitter->setGlobalRTMatrix(i_dogP->mpMorf->getModel()->getAnmMtx(2));
+                cXyz pos = cXyz(0.6,0.6,0.6);
+                emitter->setGlobalScale(pTVar3);
+            }
+        }
+    }
+
+    if (i_dogP->field_0x5fc[0] == 0) {
+        i_dogP->mStayStatus = 2;
+        i_dogP->field_0x634 = 0.1;
+        i_dogP->field_0x638 = 1.0;
+    }
 }
 #else
 #pragma push
