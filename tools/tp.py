@@ -317,7 +317,7 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
         os.chdir(str(game_path.absolute()))
         extract_game_assets.extract("../" + str(iso))
         os.chdir(previous_dir)
-    except e as Exception:
+    except Exception as e:
         LOG.error(f"failure:")
         LOG.error(e)
         sys.exit(1)
