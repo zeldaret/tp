@@ -8,7 +8,7 @@ import struct
 import os
 import ctypes
 
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from dataclasses import dataclass, field
 from typing import List, Dict
 
@@ -199,7 +199,7 @@ def extract_node(node, arcData, write_function, parentDir, dirNames) -> str:
         os.mkdir(nodeDir)
     for i in range(node.directory_index, node.directory_count + node.directory_index):
         dir = arcData._directories[i]
-        dirNames[i] = str(Path(parentDir) / Path(node.name)) + "/" + dir.name
+        dirNames[i] = str(PurePosixPath(parentDir) / PurePosixPath(node.name)) + "/" + dir.name
         if type(dir) == Folder and dir.name != "." and dir.name != "..":
             for j, node2 in enumerate(arcData._nodes):
                 if dir.data_offset == j:
@@ -213,7 +213,7 @@ def extract_node(node, arcData, write_function, parentDir, dirNames) -> str:
                     break
         elif type(dir) == File:
             dirNames[i] = write_function(
-                Path(parentDir) / Path(node.name) / dir.name, dir.data
+                PurePosixPath(parentDir) / PurePosixPath(node.name) / dir.name, dir.data
             )
 
     return dirNames
