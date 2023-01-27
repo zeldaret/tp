@@ -809,18 +809,22 @@ void dMeter2_c::moveLife() {
         field_0x204 = g_drawHIO.mLifeGaugePosX;
         setDraw = true;
     }
+
     if (field_0x208 != g_drawHIO.mLifeGaugePosY) {
         field_0x208 = g_drawHIO.mLifeGaugePosY;
         setDraw = true;
     }
+
     if (field_0x20c != g_drawHIO.mLifeGaugeScale) {
         field_0x20c = g_drawHIO.mLifeGaugeScale;
         setDraw = true;
     }
+
     if (field_0x210 != g_drawHIO.mHeartScale) {
         field_0x210 = g_drawHIO.mHeartScale;
         setDraw = true;
     }
+
     if (field_0x214 != g_drawHIO.mLargeHeartScale) {
         field_0x214 = g_drawHIO.mLargeHeartScale;
         setDraw = true;

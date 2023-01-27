@@ -5,9 +5,9 @@
 
 #include "d/d_timer.h"
 #include "d/com/d_com_inf_game.h"
-#include "f_op/f_op_msg_mng.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_lib.h"
 
 //
@@ -195,18 +195,12 @@ asm void dTimer_c::_execute() {
 /* 8025D33C-8025D3BC 257C7C 0080+00 1/1 0/0 0/0 .text            _draw__8dTimer_cFv */
 
 int dTimer_c::_draw() {
-    int ret;
-
     if (dComIfGp_isPauseFlag() || dMsgObject_isTalkNowCheck()) {
-        ret = 1;
-    } else {
-        dComIfGd_set2DOpa((dDlst_base_c*)field_0xfc);
-        ret = 1;
+        return 1;
     }
-    
 
-    return ret;
-    
+    dComIfGd_set2DOpa(mp_tm_scrn);
+    return 1;
 }
 
 /* 8025D3BC-8025D524 257CFC 0168+00 1/1 0/0 0/0 .text            _delete__8dTimer_cFv */
@@ -252,7 +246,7 @@ bool dTimer_c::stock_start() {
         OSTime current_time = dLib_time_c::getTime();
         mTime1 = current_time;
         mTime2 = current_time;
-        
+
         mTime1 -= OS_TIMER_CLOCK_MS * dComIfG_getTimerNowTimeMs();
     }
     return mDeleteCheck == 5;
@@ -275,61 +269,54 @@ int dTimer_c::stock_start(s16 param_0) {
         mDeleteCheck = 5;
         return 1;
     }
+
     return 0;
 }
 
 /* 8025D7E8-8025D86C 258128 0084+00 3/3 1/1 0/0 .text            stop__8dTimer_cFUc */
 int dTimer_c::stop(u8 param_0) {
-    int ret;
-
     if (field_0x16A == 1 || field_0x16B != 0) {
-        ret = 0;
+        return 0;
     } else if (mDeleteCheck != 4) {
-        ret = 0;
+        return 0;
     } else {
         mTime3 = dLib_time_c::getTime();
         field_0x16A = 1;
         field_0x16B = param_0;
-        ret = 1;
+        return 1;
     }
-
-    return ret;
 }
 
 /* 8025D86C-8025D920 2581AC 00B4+00 1/1 1/1 0/0 .text            restart__8dTimer_cFUc */
 int dTimer_c::restart(u8 param_0) {
     if (field_0x16A != 1 || field_0x16B != param_0) {
         return 0;
+    } else if (mDeleteCheck != 4 && mDeleteCheck != 2) {
+        return 0;
     } else {
-        if (mDeleteCheck != 4 && mDeleteCheck != 2) {
-            return 0;
-        } else {
-            mTime2 = dLib_time_c::getTime();
-            mTime5 += mTime2 - mTime3;
-            field_0x16A = 0;
-            field_0x16B = 0;
-            return 1;
-        }
+        mTime2 = dLib_time_c::getTime();
+        mTime5 += mTime2 - mTime3;
+        field_0x16A = 0;
+        field_0x16B = 0;
+        return 1;
     }
 }
 
 /* 8025D920-8025D9E0 258260 00C0+00 0/0 1/1 0/0 .text            end__8dTimer_cFi */
 int dTimer_c::end(int param_0) {
-    int ret;
     if (mDeleteCheck != 4) {
-        ret = 0;
-        
-    } else {
-        mTime6 = dLib_time_c::getTime();
-        mDeleteCheck = 6;
-        dComIfG_setTimerNowTimeMs((mTime6 - mTime1 - mTime5) / OS_TIMER_CLOCK_MS);
-        if (param_0 != -1) {
-            field_0x158 = param_0;
-        }
-        ret = 1;
+        return 0;
     }
 
-    return ret;
+    mTime6 = dLib_time_c::getTime();
+    mDeleteCheck = 6;
+    dComIfG_setTimerNowTimeMs((mTime6 - mTime1 - mTime5) / OS_TIMER_CLOCK_MS);
+
+    if (param_0 != -1) {
+        field_0x158 = param_0;
+    }
+
+    return 1;
 }
 
 /* 8025D9E0-8025D9F0 258320 0010+00 0/0 1/1 0/0 .text            deleteRequest__8dTimer_cFv */
@@ -353,8 +340,8 @@ int dTimer_c::getLimitTimeMs() {
 int dTimer_c::getRestTimeMs() {
     OSTime tmpTime2 = mTime2 - mTime1 - mTime5;
     // OSTime tmpTime = (mTime5) - mLimitTime;
-    
-   return (tmpTime2 - mLimitTime) / OS_TIMER_CLOCK_MS;
+
+    return (tmpTime2 - mLimitTime) / OS_TIMER_CLOCK_MS;
 }
 #else
 #pragma push
@@ -372,6 +359,7 @@ int dTimer_c::isStart() {
     if (field_0x16A != 1 && mDeleteCheck == 4) {
         return 1;
     }
+
     return 0;
 }
 /* ############################################################################################## */
@@ -422,10 +410,10 @@ dDlst_TimerScrnDraw_c::dDlst_TimerScrnDraw_c() {
     field_0x3D0 = -1;
     field_0x3D4 = 0;
 
-    field_0x3B0 = 0; // fix
-    field_0x3B4 = 0; // fix
-    field_0x3B8 = 0; // fix
-    field_0x3BC = 0; // fix
+    field_0x3B0 = 0;  // fix
+    field_0x3B4 = 0;  // fix
+    field_0x3B8 = 0;  // fix
+    field_0x3BC = 0;  // fix
 
     field_0x3DE = 0;
     field_0x3DF = 0;
@@ -790,43 +778,39 @@ asm void dDlst_TimerScrnDraw_c::drawPikari(int param_0) {
 #pragma pop
 
 /* 80260F04-80260F24 25B844 0020+00 1/0 0/0 0/0 .text            dTimer_Draw__FP8dTimer_c */
-static void dTimer_Draw(dTimer_c* i_timer) {
-    i_timer->_draw();
+static void dTimer_Draw(dTimer_c* i_this) {
+    i_this->_draw();
 }
 
 /* 80260F24-80260F44 25B864 0020+00 1/0 0/0 0/0 .text            dTimer_Execute__FP8dTimer_c */
-static void dTimer_Execute(dTimer_c* i_timer) {
-    i_timer->_execute();
+static void dTimer_Execute(dTimer_c* i_this) {
+    i_this->_execute();
 }
 
 /* 80260F44-80260F4C 25B884 0008+00 1/0 0/0 0/0 .text            dTimer_IsDelete__FP8dTimer_c */
-static bool dTimer_IsDelete(dTimer_c* i_timer) {
+static bool dTimer_IsDelete(dTimer_c* i_this) {
     return true;
 }
 
 /* 80260F4C-80260F6C 25B88C 0020+00 1/0 0/0 0/0 .text            dTimer_Delete__FP8dTimer_c */
-static void dTimer_Delete(dTimer_c* i_timer) {
-    i_timer->_delete();
+static void dTimer_Delete(dTimer_c* i_this) {
+    i_this->_delete();
 }
 
 /* 80260F6C-80260F8C 25B8AC 0020+00 1/0 0/0 0/0 .text            dTimer_Create__FP9msg_class */
-static void dTimer_Create(msg_class* i_timer) {
-    ((dTimer_c*)i_timer)->_create();
+static void dTimer_Create(msg_class* i_this) {
+    ((dTimer_c*)i_this)->_create();
 }
 
 /* 80260F8C-80261034 25B8CC 00A8+00 0/0 1/1 9/9 .text            dTimer_createTimer__FlUlUcUcffff */
-s32 dTimer_createTimer(s32 param_0, u32 param_1, u8 param_2, u8 param_3, f32 param_4,
-                            f32 param_5, f32 param_6, f32 param_7) {
-    s32 ret;
-
+s32 dTimer_createTimer(s32 param_0, u32 param_1, u8 param_2, u8 param_3, f32 param_4, f32 param_5,
+                       f32 param_6, f32 param_7) {
     if (dComIfG_getTimerMode() == -1) {
-        ret = fopMsgM_Timer_create(0x315,param_0,param_1,param_2,param_3,param_4,param_5,param_6,param_7,0);
+        return fopMsgM_Timer_create(PROC_TIMER, param_0, param_1, param_2, param_3, param_4,
+                                    param_5, param_6, param_7, 0);
     }
-    else {
-        ret = -1;
-    }
-    
-    return ret;
+
+    return -1;
 }
 /* ############################################################################################## */
 /* 8039A3D8-8039A3D8 026A38 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -852,12 +836,16 @@ SECTION_SDATA2 static f32 lit_5547 = 419.0f;
 /* 80261034-80261100 25B974 00CC+00 0/0 1/1 0/0 .text            dTimer_createStockTimer__Fv */
 s32 dTimer_createStockTimer() {
     if (dComIfG_getTimerMode() != -1) {
-        if ((dComIfG_getTimerMode() == 3 || dComIfG_getTimerMode() == 4) && strcmp(dComIfGp_getStartStageName(),"F_SP115")) {
+        if ((dComIfG_getTimerMode() == 3 || dComIfG_getTimerMode() == 4) &&
+            strcmp(dComIfGp_getStartStageName(), "F_SP115"))
+        {
             dComIfG_setTimerMode(-1);
             return -1;
         } else {
             u8 timer_type = dComIfG_getTimerType();
-            return fopMsgM_Timer_create(0x315,10,0,timer_type,0,FLOAT_LABEL(lit_5544),FLOAT_LABEL(lit_5545),FLOAT_LABEL(lit_5546),FLOAT_LABEL(lit_5547),0);
+            return fopMsgM_Timer_create(PROC_TIMER, 10, 0, timer_type, 0, FLOAT_LABEL(lit_5544),
+                                        FLOAT_LABEL(lit_5545), FLOAT_LABEL(lit_5546),
+                                        FLOAT_LABEL(lit_5547), 0);
         }
     } else {
         return -1;
@@ -868,7 +856,7 @@ s32 dTimer_createStockTimer() {
 u32 dTimer_createGetIn2D(s32 param_0, cXyz param_1) {
     if (dComIfG_getTimerPtr()) {
         cXyz tmp;
-        mDoLib_project(&param_1,&tmp);
+        mDoLib_project(&param_1, &tmp);
         param_0 = dComIfG_getTimerPtr()->createGetIn(tmp);
     } else {
         param_0 = 0;
@@ -890,28 +878,20 @@ static int dTimer_createStart2D(s32 param_0, u16 param_1) {
 
 /* 802611F0-80261244 25BB30 0054+00 0/0 0/0 5/5 .text            dTimer_isStart__Fv */
 int dTimer_isStart() {
-    int ret;
-
     if (dComIfG_getTimerPtr()) {
-        ret = dComIfG_getTimerPtr()->isStart();
-    } else {
-        ret = 0;
+        return dComIfG_getTimerPtr()->isStart();
     }
 
-    return ret;
-
+    return 0;
 }
+
 /* 80261244-80261298 25BB84 0054+00 0/0 0/0 2/2 .text            dTimer_getRestTimeMs__Fv */
 int dTimer_getRestTimeMs() {
-    int ret;
-
     if (dComIfG_getTimerPtr()) {
-        ret = dComIfG_getTimerPtr()->getRestTimeMs();
-    } else {
-        ret = 0;
+        return dComIfG_getTimerPtr()->getRestTimeMs();
     }
 
-    return ret;
+    return 0;
 }
 
 /* 80261298-802612EC 25BBD8 0054+00 0/0 0/0 2/2 .text            dTimer_show__Fv */
@@ -930,15 +910,11 @@ void dTimer_hide() {
 
 /* 80261340-80261394 25BC80 0054+00 0/0 0/0 1/1 .text            dTimer_isReadyFlag__Fv */
 u32 dTimer_isReadyFlag() {
-    u32 ret;
-
     if (dComIfG_getTimerPtr()) {
-        ret = dComIfG_getTimerPtr()->isReadyFlag();
-    } else {
-        ret = 0;
+        return dComIfG_getTimerPtr()->isReadyFlag();
     }
 
-    return ret;
+    return 0;
 }
 
 /* 80261394-802613DC 25BCD4 0048+00 1/0 0/0 0/0 .text            __dt__21dDlst_TimerScrnDraw_cFv */

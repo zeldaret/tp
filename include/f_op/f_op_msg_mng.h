@@ -7,7 +7,7 @@
 
 struct msg_process_profile_definition {
     /* 0x00 */ leaf_process_profile_definition mBase;
-    /* 0x24 */ leafdraw_method_class* mSubMtd; // Subclass methods
+    /* 0x24 */ leafdraw_method_class* mSubMtd;  // Subclass methods
 };
 
 struct fopMsg_prm_class {
@@ -38,6 +38,9 @@ typedef int (*fopMsgCreateFunc)(void*);
 
 JKRExpHeap* fopMsgM_createExpHeap(u32, JKRHeap*);
 u32 fopMsgM_Create(s16, fopMsgCreateFunc, void*);
+s32 fopMsgM_create(s16 param_0, fopAc_ac_c* param_1, cXyz* param_2, u32* param_3, u32* param_4,
+                   fopMsgCreateFunc createFunc);
+void fopMsgM_Delete(void* process);
 fopMsg_prm_class* fopMsgM_GetAppend(void* msg);
 void fopMsgM_setMessageID(unsigned int);
 void fopMsgM_destroyExpHeap(JKRExpHeap*);
@@ -48,9 +51,11 @@ msg_class* fopMsgM_SearchByID(unsigned int param_0);
 char* fopMsgM_messageGet(char* msg, u32 string_id);
 s32 fop_Timer_create(s16 param_0, u8 param_1, u32 param_2, u8 param_3, u8 param_4, f32 param_5,
                      f32 param_6, f32 param_7, f32 param_8, fopMsgCreateFunc createFunc);
-inline s32 fopMsgM_Timer_create(s16 param_0, u8 param_1, u32 param_2, u8 param_3, u8 param_4, f32 param_5,
-                                f32 param_6, f32 param_7, f32 param_8, fopMsgCreateFunc createFunc) {
-    return fop_Timer_create(param_0, param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, createFunc);
+inline s32 fopMsgM_Timer_create(s16 param_0, u8 param_1, u32 param_2, u8 param_3, u8 param_4,
+                                f32 param_5, f32 param_6, f32 param_7, f32 param_8,
+                                fopMsgCreateFunc createFunc) {
+    return fop_Timer_create(param_0, param_1, param_2, param_3, param_4, param_5, param_6, param_7,
+                            param_8, createFunc);
 }
 
 #endif
