@@ -8,7 +8,7 @@ import struct
 import os
 import ctypes
 
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from dataclasses import dataclass, field
 from typing import List, Dict
 
@@ -194,10 +194,12 @@ def read(buffer) -> RARC:
 
 
 def extract_node(node, arcData, write_function, parentDir, dirNames) -> str:
-    os.mkdir(Path(parentDir) / node.name)
+    nodeDir = Path(parentDir) / node.name
+    if not os.path.exists(nodeDir):
+        os.mkdir(nodeDir)
     for i in range(node.directory_index, node.directory_count + node.directory_index):
         dir = arcData._directories[i]
-        dirNames[i] = str(Path(parentDir) / Path(node.name)) + "/" + dir.name
+        dirNames[i] = str(PurePosixPath(parentDir) / PurePosixPath(node.name)) + "/" + dir.name
         if type(dir) == Folder and dir.name != "." and dir.name != "..":
             for j, node2 in enumerate(arcData._nodes):
                 if dir.data_offset == j:
@@ -211,7 +213,7 @@ def extract_node(node, arcData, write_function, parentDir, dirNames) -> str:
                     break
         elif type(dir) == File:
             dirNames[i] = write_function(
-                Path(parentDir) / Path(node.name) / dir.name, dir.data
+                PurePosixPath(parentDir) / PurePosixPath(node.name) / dir.name, dir.data
             )
 
     return dirNames
@@ -219,7 +221,8 @@ def extract_node(node, arcData, write_function, parentDir, dirNames) -> str:
 
 def extract_to_directory(directory, data, write_function):
     print("Extracting " + str(directory))
-    os.mkdir(directory)
+    if not os.path.exists(directory):
+        os.mkdir(directory)
     arcData = read(data)
     cwd = os.getcwd()
     os.chdir(directory)
@@ -249,7 +252,7 @@ def extract_to_directory(directory, data, write_function):
 
     fileDataLines = files_data.splitlines()
     # fileDataLines.sort(key=lambda x : int(x.split(":")[0]))
-    filesFile = open("_files.txt", "w")
+    filesFile = open("_files.txt", "w", encoding="utf-8")
     for line in fileDataLines:
         filesFile.write(line + "\n")
     os.chdir(cwd)
@@ -384,7 +387,7 @@ def parseDirForPack(
 
 def convert_dir_to_arc(sourceDir, convertFunction):
     # print("Converting "+str(sourceDir))
-    fileData = open(sourceDir / "_files.txt", "r").read()
+    fileData = open(sourceDir / "_files.txt", "r", encoding="utf-8").read()
     fileDataLinesFull = fileData.splitlines()
     # fileDataLinesFull.sort(key=lambda x : int(x.split(":")[0]))
 
