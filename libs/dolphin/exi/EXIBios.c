@@ -642,8 +642,6 @@ static void UnlockedHandler(s32 chan, OSContext* context) {
 }
 
 /* 80344238-803445E8 33EB78 03B0+00 5/5 3/3 0/0 .text            EXIGetID */
-// Use of add. instead of add
-#ifdef NONMATCHING
 s32 EXIGetID(s32 chan, u32 dev, u32* id) {
     EXIControl* exi = &Ecb[chan];
     BOOL err;
@@ -651,7 +649,7 @@ s32 EXIGetID(s32 chan, u32 dev, u32* id) {
     s32 startTime;
     BOOL enabled;
 
-    if (exi == (EXIControl*)NULL && dev == 2 && IDSerialPort1[0] != 0) {
+    if (chan == 0 && dev == 2 && IDSerialPort1[0] != 0) {
         *id = IDSerialPort1[0];
         return 1;
     }
@@ -706,16 +704,6 @@ s32 EXIGetID(s32 chan, u32 dev, u32* id) {
 
     return err ? 0 : !0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 EXIGetID(s32 chan, u32 dev, u32* id) {
-    nofralloc
-#include "asm/exi/EXIBios/EXIGetID.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 803D10F0-803D1100 02E210 000F+01 0/0 0/0 0/0 .data            @473 */

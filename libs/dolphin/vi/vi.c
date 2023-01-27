@@ -14,15 +14,15 @@
 void __VIRetraceHandler();
 static void getTiming();
 void __VIInit();
-static void setFbbRegs();
-static void setVerticalRegs();
+static void setFbbRegs(void**, void**, void**, void**, void**);
+static void setVerticalRegs(u16, u16, u8, u16, u16, u16, u16, u16, u32);
 u32 VIGetRetraceCount();
-static void GetCurrentDisplayPosition();
+static void GetCurrentDisplayPosition(u32* x, u32* y);
 static void getCurrentFieldEvenOdd();
-void VIGetNextField();
+u32 VIGetNextField();
 void VIGetCurrentLine();
 void VIGetTvFormat();
-void VIGetDTVStatus();
+u32 VIGetDTVStatus();
 void __VIDisplayPositionToXY();
 void __VIGetCurrentPosition();
 
@@ -46,19 +46,19 @@ static u8 regs[118 + 2 /* padding */];
 static u8 IsInitialized[4];
 
 /* 804517E4-804517E8 000CE4 0004+00 4/3 0/0 0/0 .sbss            retraceCount */
-static u8 retraceCount[4];
+static u32 retraceCount;
 
 /* 804517E8-804517EC 000CE8 0004+00 3/3 0/0 0/0 .sbss            flushFlag */
 static u8 flushFlag[4];
 
 /* 804517EC-804517F4 000CEC 0008+00 3/3 0/0 0/0 .sbss            retraceQueue */
-static u8 retraceQueue[8];
+static OSThreadQueue retraceQueue;
 
 /* 804517F4-804517F8 000CF4 0004+00 3/3 0/0 0/0 .sbss            PreCB */
-static u8 PreCB[4];
+static VIRetraceCallback PreCB;
 
 /* 804517F8-804517FC 000CF8 0004+00 3/3 0/0 0/0 .sbss            PostCB */
-static u8 PostCB[4];
+static VIRetraceCallback PostCB;
 
 /* 804517FC-80451800 000CFC 0004+00 1/1 0/0 0/0 .sbss            PositionCallback */
 static u8 PositionCallback[4];
@@ -112,24 +112,22 @@ asm void __VIRetraceHandler() {
 #pragma pop
 
 /* 8034C1E0-8034C224 346B20 0044+00 0/0 4/4 0/0 .text            VISetPreRetraceCallback */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm VIRetraceCallback VISetPreRetraceCallback(VIRetraceCallback) {
-    nofralloc
-#include "asm/dolphin/vi/vi/VISetPreRetraceCallback.s"
+VIRetraceCallback VISetPreRetraceCallback(VIRetraceCallback cb) {
+    VIRetraceCallback prevCb = PreCB;
+    BOOL enable = OSDisableInterrupts();
+    PreCB = cb;
+    OSRestoreInterrupts(enable);
+    return prevCb;
 }
-#pragma pop
 
 /* 8034C224-8034C268 346B64 0044+00 0/0 4/4 2/2 .text            VISetPostRetraceCallback */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm VIRetraceCallback VISetPostRetraceCallback(VIRetraceCallback) {
-    nofralloc
-#include "asm/dolphin/vi/vi/VISetPostRetraceCallback.s"
+VIRetraceCallback VISetPostRetraceCallback(VIRetraceCallback cb) {
+    VIRetraceCallback prevCb = PostCB;
+    BOOL enable = OSDisableInterrupts();
+    PostCB = cb;
+    OSRestoreInterrupts(enable);
+    return prevCb;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803D1760-803D17A4 02E880 0044+00 4/3 0/0 0/0 .data            @1 */
@@ -247,7 +245,7 @@ SECTION_DATA static void* lit_101[31] = {
 };
 
 /* 80451838-8045183C 000D38 0004+00 2/2 0/0 0/0 .sbss            FBSet */
-static u8 FBSet[4];
+static u32 FBSet;
 
 /* 8045183C-80451840 000D3C 0004+00 1/1 0/0 0/0 .sbss            timingExtra */
 static u8 timingExtra[4];
@@ -296,20 +294,22 @@ asm void VIInit() {
 #pragma pop
 
 /* 8034C9C4-8034CA18 347304 0054+00 0/0 10/10 0/0 .text            VIWaitForRetrace */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void VIWaitForRetrace() {
-    nofralloc
-#include "asm/dolphin/vi/vi/VIWaitForRetrace.s"
+void VIWaitForRetrace() {
+    BOOL enable = OSDisableInterrupts();
+    u32 startVal = retraceCount;
+
+    do {
+        OSSleepThread(&retraceQueue);
+    } while(startVal == retraceCount);
+
+    OSRestoreInterrupts(enable);
 }
-#pragma pop
 
 /* 8034CA18-8034CCEC 347358 02D4+00 2/2 0/0 0/0 .text            setFbbRegs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void setFbbRegs() {
+static asm void setFbbRegs(void**, void**, void**, void**, void**) {
     nofralloc
 #include "asm/dolphin/vi/vi/setFbbRegs.s"
 }
@@ -319,7 +319,7 @@ static asm void setFbbRegs() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void setVerticalRegs() {
+static asm void setVerticalRegs(u16 arg0, u16 arg1, u8 arg2, u16 arg3, u16 arg4, u16 arg5, u16 arg6, u16 arg7, u32 arg8) {
     nofralloc
 #include "asm/dolphin/vi/vi/setVerticalRegs.s"
 }
@@ -395,14 +395,18 @@ asm void VIFlush() {
 #pragma pop
 
 /* 8034D7C4-8034D830 348104 006C+00 0/0 3/3 0/0 .text            VISetNextFrameBuffer */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void VISetNextFrameBuffer(void*) {
-    nofralloc
-#include "asm/dolphin/vi/vi/VISetNextFrameBuffer.s"
+void VISetNextFrameBuffer(void* buffer) {
+    void** bufferArray = (void**)regs;
+    BOOL enable = OSDisableInterrupts();
+    
+    bufferArray[72] = buffer;
+    FBSet = 1;
+    setFbbRegs(bufferArray + 60, bufferArray + 73,
+    bufferArray + 74, bufferArray + 79, bufferArray + 80
+    );
+
+    OSRestoreInterrupts(enable);
 }
-#pragma pop
 
 /* 8034D830-8034D838 -00001 0008+00 0/0 0/0 0/0 .text            VIGetNextFrameBuffer */
 void* VIGetNextFrameBuffer() {
@@ -415,29 +419,59 @@ void* VIGetCurrentFrameBuffer() {
 }
 
 /* 8034D840-8034D8BC 348180 007C+00 0/0 7/7 0/0 .text            VISetBlack */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void VISetBlack(BOOL) {
-    nofralloc
-#include "asm/dolphin/vi/vi/VISetBlack.s"
+void VISetBlack(BOOL isBlack) {
+    u8* ptr = regs;
+    u16* ptr2;
+    BOOL enable = OSDisableInterrupts();
+    
+    ((u32*)ptr)[76] = isBlack;
+    ptr2 = ((u16**)ptr)[81];
+    setVerticalRegs(
+        ((u16*)ptr)[125], 
+        ((u16*)ptr)[123], 
+        ((u8*)ptr2)[0],
+        ptr2[1],
+        ptr2[2],
+        ptr2[3],
+        ptr2[4],
+        ptr2[5],
+        ((u32*)ptr)[76]
+    );
+
+    OSRestoreInterrupts(enable);
 }
-#pragma pop
 
 /* 8034D8BC-8034D8C4 -00001 0008+00 0/0 0/0 0/0 .text            VIGetRetraceCount */
 u32 VIGetRetraceCount() {
-    return *(u32*)(&retraceCount);
+    return retraceCount;
 }
 
 /* 8034D8C4-8034D900 348204 003C+00 1/1 0/0 0/0 .text            GetCurrentDisplayPosition */
+#ifdef NONMATCHING
+void GetCurrentDisplayPosition(u32* x, u32* y) {
+    u32 val3;
+    u32 val4;
+    u32 val = __VIRegs[22] & 0x7FF;
+
+    do {
+        val4 = val;
+        val = __VIRegs[22] & 0x7FF;
+        val3 = __VIRegs[23] & 0x7FF;
+    } while (val4 != val);
+
+    *x = val3;
+    *y = val;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void GetCurrentDisplayPosition() {
+static asm void GetCurrentDisplayPosition(u32* x, u32* y) {
     nofralloc
 #include "asm/dolphin/vi/vi/GetCurrentDisplayPosition.s"
 }
 #pragma pop
+#endif
 
 /* 8034D900-8034D968 348240 0068+00 1/1 0/0 0/0 .text            getCurrentFieldEvenOdd */
 #pragma push
@@ -453,7 +487,7 @@ static asm void getCurrentFieldEvenOdd() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void VIGetNextField() {
+asm u32 VIGetNextField() {
     nofralloc
 #include "asm/dolphin/vi/vi/VIGetNextField.s"
 }
@@ -495,14 +529,13 @@ asm void VIGetTvFormat() {
 #pragma pop
 
 /* 8034DB04-8034DB40 348444 003C+00 0/0 2/2 0/0 .text            VIGetDTVStatus */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void VIGetDTVStatus() {
-    nofralloc
-#include "asm/dolphin/vi/vi/VIGetDTVStatus.s"
+u32 VIGetDTVStatus() {
+    u32 val;
+    BOOL enable = OSDisableInterrupts();
+    val = __VIRegs[55] & 3;
+    OSRestoreInterrupts(enable);
+    return val & 1;
 }
-#pragma pop
 
 /* 8034DB40-8034DD5C 348480 021C+00 1/1 0/0 0/0 .text            __VIDisplayPositionToXY */
 #pragma push
