@@ -4,6 +4,8 @@
 //
 
 #include "dolphin/gx/GXFrameBuf.h"
+#include "dolphin/gx/GXInit.h"
+#include "dolphin/gx/GX.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -26,73 +28,112 @@ extern u8 GXEurgb60Hz480IntDf[60 + 4 /* padding */];
 // External References:
 //
 
-void __GetImageTileCount();
 void __cvt_fp2unsigned();
-extern void* __GXData;
 
 //
 // Declarations:
 //
 
 /* 8035CA04-8035CA80 357344 007C+00 0/0 2/2 0/0 .text            GXSetDispCopySrc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetDispCopySrc(u16 left, u16 top, u16 width, u16 height) {
-    nofralloc
-#include "asm/dolphin/gx/GXFrameBuf/GXSetDispCopySrc.s"
+void GXSetDispCopySrc(u16 left, u16 top, u16 width, u16 height)
+{
+    __GXData->field_0x1e0 = 0;
+    GX_BITFIELD_SET(__GXData->field_0x1e0, 22, 10, left);
+    GX_BITFIELD_SET(__GXData->field_0x1e0, 12, 10, top);
+    GX_BITFIELD_SET(__GXData->field_0x1e0, 0, 8, 73);
+    __GXData->field_0x1e4 = 0;
+    GX_BITFIELD_SET(__GXData->field_0x1e4, 22, 10, width - 1);
+    GX_BITFIELD_SET(__GXData->field_0x1e4, 12, 10, height - 1);
+    GX_BITFIELD_SET(__GXData->field_0x1e4, 0, 8, 74);
 }
-#pragma pop
 
 /* 8035CA80-8035CAFC 3573C0 007C+00 0/0 9/9 0/0 .text            GXSetTexCopySrc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetTexCopySrc(u16 left, u16 top, u16 width, u16 height) {
-    nofralloc
-#include "asm/dolphin/gx/GXFrameBuf/GXSetTexCopySrc.s"
+void GXSetTexCopySrc(u16 left, u16 top, u16 width, u16 height)
+{
+    __GXData->field_0x1f0 = 0;
+    GX_BITFIELD_SET(__GXData->field_0x1f0, 22, 10, left);
+    GX_BITFIELD_SET(__GXData->field_0x1f0, 12, 10, top);
+    GX_BITFIELD_SET(__GXData->field_0x1f0, 0, 8, 0x49);
+    __GXData->field_0x1f4 = 0;
+    GX_BITFIELD_SET(__GXData->field_0x1f4, 22, 10, width - 1);
+    GX_BITFIELD_SET(__GXData->field_0x1f4, 12, 10, height - 1);
+    GX_BITFIELD_SET(__GXData->field_0x1f4, 0, 8, 0x4A);
 }
-#pragma pop
 
 /* 8035CAFC-8035CB30 35743C 0034+00 0/0 2/2 0/0 .text            GXSetDispCopyDst */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetDispCopyDst(u16 width, u16 height) {
-    nofralloc
-#include "asm/dolphin/gx/GXFrameBuf/GXSetDispCopyDst.s"
+void GXSetDispCopyDst(u16 arg0, u16 arg1)
+{
+    s32 val = (s32) ((arg0 << 1) & 0xFFFE) >> 5;
+    __GXData->field_0x1e8 = 0;
+    GX_BITFIELD_SET(__GXData->field_0x1e8, 22, 10, val);
+    GX_BITFIELD_SET(__GXData->field_0x1e8, 0, 8, 0x4D);
 }
-#pragma pop
 
 /* 8035CB30-8035CC60 357470 0130+00 0/0 9/9 0/0 .text            GXSetTexCopyDst */
+#ifdef NONMATCHING
+void GXSetTexCopyDst(u16 width, u16 height, s32 fmt, GXBool mipmap) {
+    s32 fmt2;
+    s32 arg3, arg4, arg5;
+    __GXData->field_0x200 = 0;
+
+    fmt2 = fmt & 0xf;
+    if ((s32)fmt == GX_TF_Z16) {
+        fmt2 = 0xb;
+    }
+
+    switch (fmt) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 0x26:
+        GX_BITFIELD_SET(__GXData->field_0x1fc, 15, 2, 3);
+        break;
+    default:
+        GX_BITFIELD_SET(__GXData->field_0x1fc, 15, 2, 2);
+        break;
+    }
+
+    __GXData->field_0x200 = (fmt & 0x10) == 0x10;
+    __GXData->field_0x1fc = __rlwimi(__GXData->field_0x1fc, fmt2, 0, 28, 28);
+    fmt2 &= 7;
+    __GetImageTileCount(fmt, width, height, &arg3, &arg4, &arg5);
+    __GXData->field_0x1f8 = 0;
+    GX_BITFIELD_SET(__GXData->field_0x1f8, 22, 10, arg3*arg5);
+    GX_BITFIELD_SET(__GXData->field_0x1f8, 0, 8, 0x4d);
+    GX_BITFIELD_SET(__GXData->field_0x1fc, 22, 1, mipmap);
+    GX_BITFIELD_SET(__GXData->field_0x1fc, 25, 3, fmt2);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void GXSetTexCopyDst(u16 width, u16 height, GXTexFmt fmt, GXBool mipmap) {
+asm void GXSetTexCopyDst(u16 width, u16 height, s32 fmt, GXBool mipmap) {
     nofralloc
 #include "asm/dolphin/gx/GXFrameBuf/GXSetTexCopyDst.s"
 }
 #pragma pop
+#endif
 
 /* 8035CC60-8035CC84 3575A0 0024+00 0/0 1/1 0/0 .text            GXSetDispCopyFrame2Field */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetDispCopyFrame2Field(GXCopyMode mode) {
-    nofralloc
-#include "asm/dolphin/gx/GXFrameBuf/GXSetDispCopyFrame2Field.s"
+void GXSetDispCopyFrame2Field(GXCopyMode arg0)
+{
+    GX_BITFIELD_SET(__GXData->field_0x1ec, 18, 2, arg0);
+    GX_BITFIELD_SET(__GXData->field_0x1fc, 18, 2, 0);
 }
-#pragma pop
+#define INSERT_FIELD(reg, value, nbits, shift)                                 \
+    (reg) = ((u32) (reg) & ~(((1 << (nbits)) - 1) << (shift))) |               \
+            ((u32) (value) << (shift));
 
 /* 8035CC84-8035CCDC 3575C4 0058+00 0/0 2/2 0/0 .text            GXSetCopyClamp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetCopyClamp(GXFBClamp clamp) {
-    nofralloc
-#include "asm/dolphin/gx/GXFrameBuf/GXSetCopyClamp.s"
+void GXSetCopyClamp(GXFBClamp clamp) {
+    u8 isTop = (clamp & GX_CLAMP_TOP) == GX_CLAMP_TOP;
+    u8 isBottom = (clamp & GX_CLAMP_BOTTOM) == GX_CLAMP_BOTTOM;
+    __GXData->field_0x1ec = __rlwimi(__GXData->field_0x1ec, isTop, 0, 31, 31);
+    __GXData->field_0x1ec = __rlwimi(__GXData->field_0x1ec, isBottom, 1, 30, 30);
+    __GXData->field_0x1fc = __rlwimi(__GXData->field_0x1fc, isTop, 0, 31, 31);
+    __GXData->field_0x1fc = __rlwimi(__GXData->field_0x1fc, isBottom, 1, 30, 30);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804565A8-804565B0 004BA8 0004+04 3/3 0/0 0/0 .sdata2          @179 */
@@ -137,14 +178,29 @@ asm u32 GXSetDispCopyYScale(f32 y_scale) {
 #pragma pop
 
 /* 8035D070-8035D0E8 3579B0 0078+00 0/0 2/2 0/0 .text            GXSetCopyClear */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetCopyClear(GXColor color, u32 clear_z) {
-    nofralloc
-#include "asm/dolphin/gx/GXFrameBuf/GXSetCopyClear.s"
+void GXSetCopyClear(GXColor color, u32 clear_z) {
+    u32 r6 = 0;
+    GX_BITFIELD_SET(r6, 24, 8, color.r);
+    GX_BITFIELD_SET(r6, 16, 8, color.a);
+    GX_BITFIELD_SET(r6, 0, 8, 0x4f);
+    GXFIFO.u8 = 0x61;
+    GXFIFO.u32 = r6;
+
+    r6 = 0;
+    GX_BITFIELD_SET(r6, 24, 8, color.b);
+    GX_BITFIELD_SET(r6, 16, 8, color.g);
+    GX_BITFIELD_SET(r6, 0, 8, 0x50);
+    GXFIFO.u8 = 0x61;
+    GXFIFO.u32 = r6;
+
+    r6 = 0;
+    GX_BITFIELD_SET(r6, 8, 24, clear_z);
+    GX_BITFIELD_SET(r6, 0, 8, 0x51);
+    GXFIFO.u8 = 0x61;
+    GXFIFO.u32 = r6;
+
+    __GXData->field_0x2 = 0;
 }
-#pragma pop
 
 /* 8035D0E8-8035D2F0 357A28 0208+00 0/0 4/4 0/0 .text            GXSetCopyFilter */
 #pragma push
@@ -157,14 +213,10 @@ asm void GXSetCopyFilter(GXBool antialias, u8 pattern[12][2], GXBool vf, u8 vfil
 #pragma pop
 
 /* 8035D2F0-8035D304 357C30 0014+00 0/0 2/2 0/0 .text            GXSetDispCopyGamma */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetDispCopyGamma(GXGamma gamma) {
-    nofralloc
-#include "asm/dolphin/gx/GXFrameBuf/GXSetDispCopyGamma.s"
+void GXSetDispCopyGamma(GXGamma gamma)
+{
+    GX_BITFIELD_SET(__GXData->field_0x1ec, 23, 2, gamma);
 }
-#pragma pop
 
 /* 8035D304-8035D46C 357C44 0168+00 0/0 3/3 0/0 .text            GXCopyDisp */
 #pragma push
@@ -187,14 +239,14 @@ asm void GXCopyTex(void* dst, GXBool clear) {
 #pragma pop
 
 /* 8035D5F8-8035D630 357F38 0038+00 0/0 1/1 0/0 .text            GXClearBoundingBox */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXClearBoundingBox(void) {
-    nofralloc
-#include "asm/dolphin/gx/GXFrameBuf/GXClearBoundingBox.s"
+void GXClearBoundingBox(void)
+{
+    GXFIFO.u8 = GX_LOAD_BP_REG;
+    GXFIFO.u32 = 0x550003FF;
+    GXFIFO.u8 = GX_LOAD_BP_REG;
+    GXFIFO.u32 = 0x560003FF;
+    set_x2(GX_FALSE);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803D2448-803D2484 02F568 003C+00 0/0 2/1 0/0 .data            GXNtsc480IntDf */

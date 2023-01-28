@@ -67,7 +67,7 @@ static GXFifoObj FifoObj;
 static GXData gxData;
 
 /* 80456580-80456584 -00001 0004+00 6/6 108/108 0/0 .sdata2          __GXData */
-SECTION_SDATA2 extern GXData* __GXData = &gxData;
+GXData* const __GXData = &gxData;
 
 /* 8035921C-80359318 353B5C 00FC+00 1/1 0/0 0/0 .text            __GXDefaultTexRegionCallback */
 #pragma push
@@ -80,29 +80,16 @@ asm GXTexRegion* __GXDefaultTexRegionCallback(GXTexObj* obj, GXTexMapID mapID) {
 #pragma pop
 
 /* 80359318-8035933C 353C58 0024+00 1/1 0/0 0/0 .text            __GXDefaultTlutRegionCallback */
-// blr instead of b
-#ifdef NONMATCHING
-GXTlutRegion* __GXDefaultTlutRegionCallback(u32 tlut) {
-    GXTlutRegion* region;
-
-    if (tlut >= 20) {
-        region = NULL;
-    } else {
-        region = &__GXData->field_0x388[tlut];
-    }
-
-    return region;
-}
-#else
 #pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm GXTlutRegion* __GXDefaultTlutRegionCallback(u32 tlut) {
-    nofralloc
-#include "asm/dolphin/gx/GXInit/__GXDefaultTlutRegionCallback.s"
+#pragma peephole off
+GXTlutRegion* __GXDefaultTlutRegionCallback(u32 tlut) {
+    if (tlut >= 0x14) {
+        return NULL;
+    } else {
+        return &__GXData->field_0x388[tlut];
+    }
 }
 #pragma pop
-#endif
 
 /* 80451944-80451948 000E44 0004+00 1/1 0/0 0/0 .sbss            resetFuncRegistered$145 */
 /* static */ u8 resetFuncRegistered[4];

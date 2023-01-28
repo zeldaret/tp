@@ -36,6 +36,39 @@ SECTION_SDATA2 static f32 lit_105 = 0.5f;
 SECTION_SDATA2 static f32 lit_106 = 0.01745329238474369f;
 
 /* 80346F28-80346FF8 341868 00D0+00 0/0 6/6 0/0 .text            C_MTXPerspective */
+// Functions match but has issues with float constants
+#ifdef NONMATCHING
+void C_MTXPerspective(Mtx44 m, f32 fovY, f32 aspect, f32 n, f32 f)
+{
+    f32 temp_f3;
+    f32 temp_f4;
+
+    fovY = 0.5F * fovY;
+
+    temp_f4 = 1.0F / tanf(0.017453292F * (fovY));
+    temp_f3 = 1.0F / (f - n);
+
+    m[0][0] = temp_f4 / aspect;
+    m[0][1] = 0.0F;
+    m[0][2] = 0.0F;
+    m[0][3] = 0.0F;
+
+    m[1][0] = 0.0F;
+    m[1][1] = temp_f4;
+    m[1][2] = 0.0F;
+    m[1][3] = 0.0F;
+
+    m[2][0] = 0.0F;
+    m[2][1] = 0.0F;
+    m[2][2] = -n * temp_f3;
+    m[2][3] = temp_f3 * -(f * n);
+
+    m[3][0] = 0.0F;
+    m[3][1] = 0.0F;
+    m[3][2] = -1.0F;
+    m[3][3] = 0.0F;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -44,8 +77,40 @@ asm void C_MTXPerspective(Mtx44 m, f32 fovy, f32 aspect, f32 near, f32 far) {
 #include "asm/dolphin/mtx/mtx44/C_MTXPerspective.s"
 }
 #pragma pop
+#endif
 
 /* 80346FF8-80347090 341938 0098+00 0/0 11/11 2/2 .text            C_MTXOrtho */
+#ifdef NONMATCHING
+void C_MTXOrtho(Mtx44 m, f32 t, f32 b, f32 l, f32 r, f32 n, f32 f)
+{
+    f32 temp_f8;
+    f32 temp_f10;
+    f32 temp_f4;
+
+    temp_f10 = 1.0F / (r - l);
+    m[0][0] = 2.0F * temp_f10;
+    m[0][1] = 0.0F;
+    m[0][2] = 0.0F;
+    m[0][3] = temp_f10 * -(r + l);
+
+    temp_f8 = 1.0F / (t - b);
+    m[1][0] = 0.0F;
+    m[1][1] = 2.0F * temp_f8;
+    m[1][2] = 0.0F;
+    m[1][3] = temp_f8 * -(t + b);
+
+    temp_f4 = 1.0F / (f - n);
+    m[2][0] = 0.0F;
+    m[2][1] = 0.0F;
+    m[2][2] = -1.0F * temp_f4;
+    m[2][3] = -f * temp_f4;
+
+    m[3][0] = 0.0F;
+    m[3][1] = 0.0F;
+    m[3][2] = 0.0F;
+    m[3][3] = 1.0F;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -54,3 +119,4 @@ asm void C_MTXOrtho(Mtx44 m, f32 top, f32 bottom, f32 left, f32 right, f32 near,
 #include "asm/dolphin/mtx/mtx44/C_MTXOrtho.s"
 }
 #pragma pop
+#endif
