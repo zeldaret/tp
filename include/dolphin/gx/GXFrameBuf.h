@@ -10,8 +10,8 @@ extern "C" {
 
 void GXSetDispCopySrc(u16 left, u16 top, u16 width, u16 height);
 void GXSetTexCopySrc(u16 left, u16 top, u16 width, u16 height);
-void GXSetDispCopyDst(u16 width, u16 height);
-void GXSetTexCopyDst(u16 width, u16 height, GXTexFmt fmt, GXBool mipmap);
+void GXSetDispCopyDst(u16 arg0, u16 arg1);
+void GXSetTexCopyDst(u16 width, u16 height, s32 fmt, GXBool mipmap);
 void GXSetDispCopyFrame2Field(GXCopyMode mode);
 void GXSetCopyClamp(GXFBClamp clamp);
 u16 GXGetNumXfbLines(u32 efb_height, f32 y_scale);

@@ -132,7 +132,6 @@ void GXSetCullMode(GXCullMode mode) {
     GXCullMode mode2;
     data  = __GXData;
 
-    // Useless set
     mode2 = (mode >> 1) & 1;
     GX_BITFIELD_SET(mode2, 30, 1, mode);
 

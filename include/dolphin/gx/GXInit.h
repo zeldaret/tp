@@ -87,7 +87,7 @@ typedef struct _GXData {
 
 STATIC_ASSERT(sizeof(GXData) == 0x5B0);
 
-extern GXData* __GXData;
+extern GXData* const __GXData;
 
 extern u32* __piReg;
 extern u16* __cpReg;
@@ -98,6 +98,11 @@ inline void GXSetWasteFlags() {
 	GXData* data = __GXData;
 	data->field_0x5ac |= 0x3;
 	data->field_0x2 = 0;
+}
+
+static inline void set_x2(u16 value)
+{
+    __GXData->field_0x2 = value;
 }
 
 #ifdef __cplusplus

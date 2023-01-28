@@ -34,18 +34,10 @@ static XY XYPAL[12] = {
 };
 #pragma pop
 
-/* 803D1330-803D1368 02E450 0033+05 0/1 0/0 0/0 .data            @16 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_16[] = "SISetSamplingRate: unknown TV format. Use default.";
-#pragma pop
-
 /* 80451700-80451708 000C00 0004+04 2/2 0/0 0/0 .sbss            SamplingRate */
 static u32 SamplingRate;
 
 /* 80346290-80346374 340BD0 00E4+00 1/1 1/1 0/0 .text            SISetSamplingRate */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 void SISetSamplingRate(u32 msec) {
     XY* xy;
     BOOL enabled;
@@ -77,16 +69,6 @@ void SISetSamplingRate(u32 msec) {
     SISetXY((__VIRegs[54] & 1 ? 2u : 1u) * xy[msec].line, xy[msec].count);
     OSRestoreInterrupts(enabled);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void SISetSamplingRate(u32 msec) {
-    nofralloc
-#include "asm/dolphin/si/SISamplingRate/SISetSamplingRate.s"
-}
-#pragma pop
-#endif
 
 /* 80346374-80346398 340CB4 0024+00 0/0 2/2 0/0 .text            SIRefreshSamplingRate */
 void SIRefreshSamplingRate() {
