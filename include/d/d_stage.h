@@ -241,8 +241,22 @@ public:
     /* 0x4 */ dStage_Mult_info* mInfo;
 };
 
+struct stage_sound_data {
+    /* 0x00 */ char field_0x0[8];
+    /* 0x08 */ Vec field_0x8;
+    /* 0x14 */ u8 field_0x14;
+    /* 0x15 */ u8 field_0x15;
+    /* 0x16 */ u8 field_0x16;
+    /* 0x17 */ u8 field_0x17;
+    /* 0x18 */ u8 field_0x18;
+    /* 0x19 */ u8 field_0x19;
+    /* 0x1A */ u8 field_0x1a;
+};  // Size: 0x1C
+
 struct dStage_SoundInfo_c {
     // SOND
+    /* 0x0 */ int field_0x0;
+    /* 0x4 */ stage_sound_data* field_0x4;
 };
 
 class dStage_FileList_dt_c {

@@ -55,6 +55,8 @@ public:
     static void waitBlanking(int wait) { JFWDisplay::getManager()->waitBlanking(wait); }
     static f32 getWidthF() { return 608.0f; }
     static f32 getHeightF() { return 448.0f; }
+    static f32 getWidth() { return 608.0f; }
+    static f32 getHeight() { return 448.0f; }
     static f32 getMinYF() { return 0.0f; }
     static f32 getMinXF() { return 0.0f; }
     static int getMinY() { return 0; }
@@ -66,6 +68,7 @@ public:
     static void setFadeRate(f32 rate) { mFadeRate = rate; }
     static f32 getFadeRate() { return mFadeRate; }
     static bloom_c* getBloom() { return &m_bloom; }
+    static GXColor& getFadeColor() { return mFadeColor; }
 
     static GXTexObj mFrameBufferTexObj;
     static GXTexObj mZbufferTexObj;

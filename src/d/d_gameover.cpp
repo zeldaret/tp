@@ -4,128 +4,23 @@
 //
 
 #include "d/d_gameover.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
+#include "d/menu/d_menu_save.h"
+#include "d/meter/d_meter_HIO.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "f_op/f_op_msg_mng.h"
 
 //
 // Types:
 //
 
-struct request_of_phase_process_class {};
-
-struct mDoRst {
-    static u8 mResetData[4 + 4 /* padding */];
-};
-
-struct mDoGph_gInf_c {
-    static u8 mFadeColor[4];
-    static u8 mFader[4];
-    static u8 mFrameBufferTimg[4];
-    static u8 mFrameBufferTex[4];
-    static u8 mZbufferTex[4];
-    static f32 mFadeRate;
-};
-
-struct dSv_player_item_c {
-    /* 80032FB8 */ void setItem(int, u8);
-    /* 80033030 */ void getItem(int, bool) const;
-};
-
-struct dSv_player_get_item_c {
-    /* 80033EC8 */ void isFirstBit(u8) const;
-};
-
-struct dSv_event_flag_c {
-    static u8 saveBitLabels[1644 + 4 /* padding */];
-};
-
-struct dSv_event_c {
-    /* 800349A4 */ void offEventBit(u16);
-    /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C1E4 */ void getResInfo(char const*, dRes_info_c*, int);
-};
-
-struct JUtility {
-    struct TColor {};
-};
-
 struct dMsgScrnLight_c {
     /* 80245934 */ dMsgScrnLight_c(u8, u8);
     /* 80245F90 */ void draw(f32*, f32, f32, f32, f32, f32, f32, JUtility::TColor,
                              JUtility::TColor);
-};
 
-struct JMSMesgEntry_c {};
-
-struct dMeter2Info_c {
-    /* 8021C250 */ void getString(u32, char*, JMSMesgEntry_c*);
-    /* 8021E0C4 */ void resetMiniGameItem(bool);
-};
-
-struct dMenu_save_c {
-    /* 8019C314 */ ~dMenu_save_c();
-    /* 801EF6A0 */ dMenu_save_c();
-    /* 801EF7AC */ void _create();
-    /* 801F09AC */ void _open();
-    /* 801F0B28 */ void _delete();
-    /* 801F1048 */ void _move();
-    /* 801F69FC */ void _draw2();
-};
-
-class dGov_HIO_c {
-public:
-    /* 8019AFE0 */ dGov_HIO_c();
-    /* 8019C06C */ virtual ~dGov_HIO_c();
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 mScale;
-    /* 0x0C */ f32 mAlpha;
-    /* 0x10 */ f32 mAnimSpeed;
-    /* 0x14 */ GXColor mBlack;
-    /* 0x18 */ GXColor mWhite;
-};  // Size: 0x1C
-
-struct dDlst_base_c {};
-
-struct dDlst_list_c {
-    /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
-};
-
-struct dDlst_Gameover_CAPTURE_c {
-    /* 8019ACF8 */ void draw();
-    /* 8019C2CC */ ~dDlst_Gameover_CAPTURE_c();
-};
-
-struct dDlst_GameOverScrnDraw_c {
-    /* 8019B940 */ dDlst_GameOverScrnDraw_c(JKRArchive*);
-    /* 8019BBFC */ ~dDlst_GameOverScrnDraw_c();
-    /* 8019BCB0 */ void setBackAlpha(f32);
-    /* 8019BCF4 */ void draw();
-};
-
-struct JFWDisplay {
-    static u8 sManager[4];
-};
-
-struct J2DTextBox {
-    /* 80300660 */ void setString(char const*, ...);
-};
-
-struct J2DGrafContext {};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-};
-
-struct J2DPicture {
-    /* 802FC800 */ J2DPicture(u64, JGeometry::TBox2<f32> const&, ResTIMG const*, ResTLUT const*);
+    /* 0x00 */ u8 field_0x0[0x24];
 };
 
 //
@@ -221,26 +116,19 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_24();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcmp();
-extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
 extern "C" extern void* g_fopMsg_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__14mDoHIO_entry_c[3];
 extern "C" extern void* __vt__16dDlst_MenuSave_c[4];
 extern "C" extern void* __vt__23dDlst_MenuSaveExplain_c[4 + 18 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
 extern "C" u8 mFadeColor__13mDoGph_gInf_c[4];
-extern "C" extern u8 g_clearColor[4];
-extern "C" extern u32 g_blackColor;
 extern "C" u8 mFader__13mDoGph_gInf_c[4];
 extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
 extern "C" u8 mFrameBufferTex__13mDoGph_gInf_c[4];
 extern "C" u8 mZbufferTex__13mDoGph_gInf_c[4];
 extern "C" f32 mFadeRate__13mDoGph_gInf_c;
 extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 g_menuHIO[8];
 extern "C" u8 sManager__10JFWDisplay[4];
 
 //
@@ -264,6 +152,65 @@ SECTION_SDATA2 static f32 lit_3870 = 10.0f;
 
 /* 8019ACF8-8019AFE0 195638 02E8+00 1/0 0/0 0/0 .text            draw__24dDlst_Gameover_CAPTURE_cFv
  */
+// matches with literals
+#ifdef NONMATCHING
+void dDlst_Gameover_CAPTURE_c::draw() {
+    GXTexObj tex_obj;
+    Mtx44 m;
+
+    GXSetTexCopySrc(0, 0, 608, 448);
+    GXSetTexCopyDst(304, 224, GX_TF_RGB565, 1);
+    GXCopyTex(mDoGph_gInf_c::mZbufferTex, 0);
+    GXPixModeSync();
+    GXInitTexObj(&tex_obj, mDoGph_gInf_c::mFrameBufferTex, 304, 224,
+                 (GXTexFmt)mDoGph_gInf_c::mFrameBufferTimg->format, GX_CLAMP, GX_CLAMP, GX_FALSE);
+    GXInitTexObjLOD(&tex_obj, GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE,
+                    GX_ANISO_1);
+    GXLoadTexObj(&tex_obj, GX_TEXMAP0);
+    GXSetNumChans(0);
+    GXSetNumTexGens(1);
+    GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 60, GX_FALSE, 125);
+    GXSetNumTevStages(1);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
+    GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, GX_CC_TEXC);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXSetZCompLoc(1);
+    GXSetZMode(GX_FALSE, GX_ALWAYS, GX_FALSE);
+    GXSetBlendMode(GX_BM_NONE, GX_BL_ZERO, GX_BL_ZERO, GX_LO_OR);
+    GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
+    GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
+    GXSetFogRangeAdj(GX_FALSE, 0, NULL);
+    GXSetCullMode(GX_CULL_NONE);
+    GXSetDither(1);
+    C_MTXOrtho(m, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 10.0f);
+    GXSetProjection(m, GX_ORTHOGRAPHIC);
+    GXLoadPosMtxImm(g_mDoMtx_identity, GX_PNMTX0);
+    GXSetCurrentMtx(0);
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGB8, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGB8, 0);
+
+    GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+
+    GXPosition3s8(0, 0, -5);
+    GXTexCoord2s8(0, 0);
+
+    GXPosition3s8(1, 0, -5);
+    GXTexCoord2s8(1, 0);
+
+    GXPosition3s8(1, 1, -5);
+    GXTexCoord2s8(1, 1);
+
+    GXPosition3s8(0, 1, -5);
+    GXTexCoord2s8(0, 1);
+
+    i_GXEnd();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -272,6 +219,7 @@ asm void dDlst_Gameover_CAPTURE_c::draw() {
 #include "asm/d/d_gameover/draw__24dDlst_Gameover_CAPTURE_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803BBB50-803BBB5C 018C70 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -380,6 +328,13 @@ SECTION_DATA static u8 init_process[108] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
+/* typedef void (dGameover_c::*initFunc)();
+SECTION_DATA initFunc init_process[] = {
+    &dGameover_c::playerAnmWait_init, &dGameover_c::dispFadeOut_init, &dGameover_c::dispWait_init,
+    &dGameover_c::demoFadeIn_init,    &dGameover_c::demoFadeOut_init, &dGameover_c::saveOpen_init,
+    &dGameover_c::saveMove_init,      &dGameover_c::saveClose_init,   &dGameover_c::deleteWait_init,
+}; */
+
 /* 803BBC34-803BBC40 -00001 000C+00 0/1 0/0 0/0 .data            @3892 */
 #pragma push
 #pragma force_active on
@@ -481,10 +436,16 @@ SECTION_DATA static u8 move_process[108] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
+/* typedef void (dGameover_c::*moveFunc)();
+SECTION_DATA moveFunc move_process[] = {
+    &dGameover_c::playerAnmWait_proc, &dGameover_c::dispFadeOut_proc, &dGameover_c::dispWait_proc,
+    &dGameover_c::demoFadeIn_proc,    &dGameover_c::demoFadeOut_proc, &dGameover_c::saveOpen_proc,
+    &dGameover_c::saveMove_proc,      &dGameover_c::saveClose_proc,   &dGameover_c::deleteWait_proc,
+}; */
+
 /* 803BBD0C-803BBD2C 018E2C 0020+00 1/1 0/0 0/0 .data            offset$4331 */
-SECTION_DATA static u8 offset[32] = {
-    0xC3, 0x0A, 0x00, 0x00, 0xC2, 0xC0, 0x00, 0x00, 0xC2, 0x60, 0x00, 0x00, 0xC1, 0x90, 0x00, 0x00,
-    0x42, 0x28, 0x00, 0x00, 0x42, 0x96, 0x00, 0x00, 0x42, 0xDC, 0x00, 0x00, 0x43, 0x0F, 0x00, 0x00,
+SECTION_DATA static f32 offset[8] = {
+    -138.0f, -96.0f, -56.0f, -18.0f, 42.0f, 75.0f, 110.0f, 143.0f,
 };
 
 /* 803BBD2C-803BBD40 -00001 0014+00 1/0 0/0 0/0 .data            l_dGameover_Method */
@@ -533,21 +494,22 @@ SECTION_DATA extern void* __vt__10dGov_HIO_c[3 + 3 /* padding */] = {
     NULL,
 };
 
-/* 80453B8C-80453B90 00218C 0004+00 1/1 0/0 0/0 .sdata2          @3878 */
-SECTION_SDATA2 static f32 lit_3878 = 27.0f / 10.0f;
-
-/* 80453B90-80453B94 002190 0004+00 1/1 0/0 0/0 .sdata2          @3879 */
-SECTION_SDATA2 static f32 lit_3879 = 1.0f / 5.0f;
-
 /* 8019AFE0-8019B044 195920 0064+00 1/1 0/0 0/0 .text            __ct__10dGov_HIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dGov_HIO_c::dGov_HIO_c() {
-    nofralloc
-#include "asm/d/d_gameover/__ct__10dGov_HIO_cFv.s"
+dGov_HIO_c::dGov_HIO_c() {
+    mScale = 2.7f;
+    mAlpha = lit_3869;
+    mAnimSpeed = 0.2f;
+
+    mBlack.r = 0;
+    mBlack.g = 0;
+    mBlack.b = 0;
+    mBlack.a = 0;
+
+    mWhite.r = 255;
+    mWhite.g = 220;
+    mWhite.b = 125;
+    mWhite.a = 255;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80394C28-80394C28 021288 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -566,207 +528,288 @@ SECTION_DATA extern void* __vt__24dDlst_Gameover_CAPTURE_c[4] = {
 };
 
 /* 8019B044-8019B2F4 195984 02B0+00 1/1 0/0 0/0 .text            _create__11dGameover_cFv */
+#ifdef NONMATCHING
+int dGameover_c::_create() {
+    int phase = dComIfG_resLoad(&mPhase, "Gover");
+
+    if (dComIfGp_isPauseFlag() ||
+        (dComIfGp_isHeapLockFlag() != 0 && dComIfGp_isHeapLockFlag() != 6) ||
+        dComIfGp_getMesgStatus() != 0)
+    {
+        return 0;
+    }
+
+    if (phase == cPhs_COMPLEATE_e) {
+        if (dMeter2Info_getGameOverType() == 0) {
+            mDoGph_gInf_c::setFadeColor(*(JUtility::TColor*)&g_blackColor);
+            dComIfGs_addDeathCount();
+        }
+
+        dRes_info_c* resInfo = dComIfG_getObjectResInfo("Gover");
+
+        mpHeap = dComIfGp_getExpHeap2D();
+        dComIfGp_setHeapLockFlag(6);
+        JKRHeap* old_heap = mDoExt_setCurrentHeap(mpHeap);
+        mpHeap->getTotalFreeSize();
+
+        dgo_screen_c = new dDlst_GameOverScrnDraw_c(resInfo->getArchive());
+        dMs_c = new dMenu_save_c();
+
+        if (dMeter2Info_getGameOverType() == 1) {
+            if (!strcmp(dComIfGp_getLastPlayStageName(), "D_MN10A")) {
+                // Last stage was Stallord Arena
+                // Remove Ooccoo from inventory
+                dComIfGs_setItem(SLOT_18, NO_ITEM);
+                dComIfGs_resetLastWarpAcceptStage();
+            }
+
+            dMs_c->setUseType(3);
+        } else if (dMeter2Info_getGameOverType() == 2) {
+            dMs_c->setUseType(4);
+        } else {
+            dMs_c->setUseType(2);
+        }
+
+        dMs_c->_create();
+        dgo_capture_c = new dDlst_Gameover_CAPTURE_c();
+
+        mDoExt_setCurrentHeap(old_heap);
+        field_0x116 = g_menuHIO.mGameover;
+
+        if (dMeter2Info_getGameOverType() == 1 || dMeter2Info_getGameOverType() == 2) {
+            mIsDemoSave = true;
+            mProc = PROC_DEMO_FADE_IN;
+            dgo_screen_c->setBackAlpha(1.0f);
+        } else {
+            mIsDemoSave = false;
+            mProc = PROC_PLAYER_ANM_WAIT;
+        }
+
+        (this->*init_process[mProc])();
+        return cPhs_COMPLEATE_e;
+    }
+
+    return phase;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dGameover_c::_create() {
+asm int dGameover_c::_create() {
     nofralloc
 #include "asm/d/d_gameover/_create__11dGameover_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8019B2F4-8019B384 195C34 0090+00 1/1 0/0 0/0 .text            _execute__11dGameover_cFv */
+// matches with sinit
+#ifdef NONMATCHING
+int dGameover_c::_execute() {
+    JKRHeap* old_heap = mDoExt_setCurrentHeap(mpHeap);
+    u8 old_proc = mProc;
+
+    (this->*move_process[mProc])();
+    if (mProc != old_proc) {
+        (this->*init_process[mProc])();
+    }
+
+    mDoExt_setCurrentHeap(old_heap);
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dGameover_c::_execute() {
+asm int dGameover_c::_execute() {
     nofralloc
 #include "asm/d/d_gameover/_execute__11dGameover_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8019B384-8019B388 195CC4 0004+00 1/0 0/0 0/0 .text            playerAnmWait_init__11dGameover_cFv
  */
-void dGameover_c::playerAnmWait_init() {
-    /* empty function */
-}
+void dGameover_c::playerAnmWait_init() {}
 
 /* 8019B388-8019B3A0 195CC8 0018+00 1/0 0/0 0/0 .text            playerAnmWait_proc__11dGameover_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dGameover_c::playerAnmWait_proc() {
-    nofralloc
-#include "asm/d/d_gameover/playerAnmWait_proc__11dGameover_cFv.s"
+void dGameover_c::playerAnmWait_proc() {
+    if (mIsDemoSave) {
+        mProc = PROC_DISP_FADE_OUT;
+    }
 }
-#pragma pop
 
 /* 8019B3A0-8019B3E8 195CE0 0048+00 1/0 0/0 0/0 .text            dispFadeOut_init__11dGameover_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dGameover_c::dispFadeOut_init() {
-    nofralloc
-#include "asm/d/d_gameover/dispFadeOut_init__11dGameover_cFv.s"
+void dGameover_c::dispFadeOut_init() {
+    mTimer = 30;
+    mDoGph_gInf_c::startFadeOut(15);
 }
-#pragma pop
 
 /* 8019B3E8-8019B40C 195D28 0024+00 1/0 0/0 0/0 .text            dispFadeOut_proc__11dGameover_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dGameover_c::dispFadeOut_proc() {
-    nofralloc
-#include "asm/d/d_gameover/dispFadeOut_proc__11dGameover_cFv.s"
+void dGameover_c::dispFadeOut_proc() {
+    if (mTimer != 0) {
+        mTimer--;
+    } else {
+        mProc = PROC_DISP_WAIT;
+    }
 }
-#pragma pop
 
 /* 8019B40C-8019B454 195D4C 0048+00 1/0 0/0 0/0 .text            dispWait_init__11dGameover_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dGameover_c::dispWait_init() {
-    nofralloc
-#include "asm/d/d_gameover/dispWait_init__11dGameover_cFv.s"
+void dGameover_c::dispWait_init() {
+    mTimer = 90;
+    mDoGph_gInf_c::startFadeIn(30);
 }
-#pragma pop
 
 /* 8019B454-8019B478 195D94 0024+00 1/0 0/0 0/0 .text            dispWait_proc__11dGameover_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dGameover_c::dispWait_proc() {
-    nofralloc
-#include "asm/d/d_gameover/dispWait_proc__11dGameover_cFv.s"
+void dGameover_c::dispWait_proc() {
+    if (mTimer != 0) {
+        mTimer--;
+    } else {
+        mProc = PROC_SAVE_OPEN;
+    }
 }
-#pragma pop
 
 /* 8019B478-8019B484 195DB8 000C+00 1/0 0/0 0/0 .text            demoFadeIn_init__11dGameover_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dGameover_c::demoFadeIn_init() {
-    nofralloc
-#include "asm/d/d_gameover/demoFadeIn_init__11dGameover_cFv.s"
+void dGameover_c::demoFadeIn_init() {
+    mTimer = 0;
 }
-#pragma pop
 
 /* 8019B484-8019B4D8 195DC4 0054+00 1/0 0/0 0/0 .text            demoFadeIn_proc__11dGameover_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dGameover_c::demoFadeIn_proc() {
-    nofralloc
-#include "asm/d/d_gameover/demoFadeIn_proc__11dGameover_cFv.s"
+void dGameover_c::demoFadeIn_proc() {
+    mTimer++;
+    dgo_screen_c->setBackAlpha(lit_3869);
+
+    if (mTimer >= 30) {
+        mProc = PROC_SAVE_OPEN;
+    }
 }
-#pragma pop
 
 /* 8019B4D8-8019B4E4 195E18 000C+00 1/0 0/0 0/0 .text            demoFadeOut_init__11dGameover_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dGameover_c::demoFadeOut_init() {
-    nofralloc
-#include "asm/d/d_gameover/demoFadeOut_init__11dGameover_cFv.s"
+void dGameover_c::demoFadeOut_init() {
+    mTimer = 30;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80453B94-80453B98 002194 0004+00 1/1 0/0 0/0 .sdata2          @4069 */
-SECTION_SDATA2 static f32 lit_4069 = 900.0f;
-
-/* 80453B98-80453BA0 002198 0008+00 1/1 0/0 0/0 .sdata2          @4071 */
-SECTION_SDATA2 static f64 lit_4071 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8019B4E4-8019B560 195E24 007C+00 1/0 0/0 0/0 .text            demoFadeOut_proc__11dGameover_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dGameover_c::demoFadeOut_proc() {
-    nofralloc
-#include "asm/d/d_gameover/demoFadeOut_proc__11dGameover_cFv.s"
+void dGameover_c::demoFadeOut_proc() {
+    mTimer--;
+    dgo_screen_c->setBackAlpha((mTimer * mTimer) / 900.0f);
+
+    if (mTimer <= 0) {
+        mProc = PROC_DELETE_WAIT;
+    }
 }
-#pragma pop
 
 /* 8019B560-8019B564 195EA0 0004+00 1/0 0/0 0/0 .text            saveOpen_init__11dGameover_cFv */
-void dGameover_c::saveOpen_init() {
-    /* empty function */
-}
+void dGameover_c::saveOpen_init() {}
 
 /* 8019B564-8019B5A4 195EA4 0040+00 1/0 0/0 0/0 .text            saveOpen_proc__11dGameover_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dGameover_c::saveOpen_proc() {
-    nofralloc
-#include "asm/d/d_gameover/saveOpen_proc__11dGameover_cFv.s"
+void dGameover_c::saveOpen_proc() {
+    if (dMs_c->_open()) {
+        mProc = PROC_SAVE_MOVE;
+    }
 }
-#pragma pop
 
 /* 8019B5A4-8019B5A8 195EE4 0004+00 1/0 0/0 0/0 .text            saveMove_init__11dGameover_cFv */
-void dGameover_c::saveMove_init() {
-    /* empty function */
-}
+void dGameover_c::saveMove_init() {}
 
 /* 8019B5A8-8019B5F0 195EE8 0048+00 1/0 0/0 0/0 .text            saveMove_proc__11dGameover_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dGameover_c::saveMove_proc() {
-    nofralloc
-#include "asm/d/d_gameover/saveMove_proc__11dGameover_cFv.s"
+void dGameover_c::saveMove_proc() {
+    dMs_c->_move();
+
+    if (dMs_c->getSaveStatus() == 3) {
+        mProc = PROC_SAVE_CLOSE;
+    }
 }
-#pragma pop
 
 /* 8019B5F0-8019B5F4 195F30 0004+00 1/0 0/0 0/0 .text            saveClose_init__11dGameover_cFv */
-void dGameover_c::saveClose_init() {
-    /* empty function */
-}
+void dGameover_c::saveClose_init() {}
 
 /* 8019B5F4-8019B7BC 195F34 01C8+00 1/0 0/0 0/0 .text            saveClose_proc__11dGameover_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dGameover_c::saveClose_proc() {
-    nofralloc
-#include "asm/d/d_gameover/saveClose_proc__11dGameover_cFv.s"
+void dGameover_c::saveClose_proc() {
+    if (dMs_c->getEndStatus() == 0) {
+        dComIfGp_setGameoverStatus(3);
+        dComIfGp_offPauseFlag();
+        mDoRst::onReset();
+    } else if (dMs_c->getEndStatus() == 1) {
+        if (dMeter2Info_getGameOverType() == 1 || dMeter2Info_getGameOverType() == 2) {
+            dComIfGp_setGameoverStatus(1);
+        } else {
+            dComIfGp_setGameoverStatus(2);
+        }
+
+        dComIfGp_offPauseFlag();
+
+        // Reset Monkey lantern steal sequence flags if player hasn't regained lantern
+        if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[226])) {
+            dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[224]);
+            dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[225]);
+        }
+
+        // Reset Lantern and oil status back into inventory if gameover during monkey steal sequence
+        if (i_dComIfGs_isItemFirstBit(KANTERA) && dComIfGs_getItem(SLOT_1, true) == NO_ITEM) {
+            dComIfGs_setItem(SLOT_1, KANTERA);
+            dComIfGs_setOil(dMeter2Info_getOilGaugeBackUp());
+        }
+
+        dMeter2Info_resetMiniGameItem(false);
+    }
+
+    if (dMeter2Info_getGameOverType() == 1 && dMeter2Info_getGameOverType() == 2 &&
+        dComIfGp_getGameoverStatus() == 1)
+    {
+        mProc = PROC_DEMO_FADE_OUT;
+    } else {
+        mProc = PROC_DELETE_WAIT;
+    }
 }
-#pragma pop
 
 /* 8019B7BC-8019B7C0 1960FC 0004+00 1/0 0/0 0/0 .text            deleteWait_init__11dGameover_cFv */
-void dGameover_c::deleteWait_init() {
-    /* empty function */
-}
+void dGameover_c::deleteWait_init() {}
 
 /* 8019B7C0-8019B7C4 196100 0004+00 1/0 0/0 0/0 .text            deleteWait_proc__11dGameover_cFv */
-void dGameover_c::deleteWait_proc() {
-    /* empty function */
-}
+void dGameover_c::deleteWait_proc() {}
 
 /* 8019B7C4-8019B864 196104 00A0+00 1/1 0/0 0/0 .text            _draw__11dGameover_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dGameover_c::_draw() {
-    nofralloc
-#include "asm/d/d_gameover/_draw__11dGameover_cFv.s"
+int dGameover_c::_draw() {
+    if (dgo_capture_c != NULL && dComIfGp_isPauseFlag()) {
+        dComIfGd_set2DOpa(dgo_capture_c);
+    }
+
+    if (mIsDemoSave && mProc >= PROC_DISP_WAIT) {
+        if (dgo_screen_c != NULL) {
+            dComIfGd_set2DOpa(dgo_screen_c);
+        }
+        dMs_c->_draw2();
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8019B864-8019B940 1961A4 00DC+00 1/1 0/0 0/0 .text            _delete__11dGameover_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dGameover_c::_delete() {
-    nofralloc
-#include "asm/d/d_gameover/_delete__11dGameover_cFv.s"
+int dGameover_c::_delete() {
+    JKRHeap* old_heap = mDoExt_setCurrentHeap(mpHeap);
+
+    if (dgo_screen_c != NULL) {
+        delete dgo_screen_c;
+        dgo_screen_c = NULL;
+    }
+
+    dMs_c->_delete();
+    delete dMs_c;
+    delete dgo_capture_c;
+
+    mpHeap->freeAll();
+    dComIfGp_offHeapLockFlag(0);
+    mDoExt_setCurrentHeap(old_heap);
+
+    dComIfG_resDelete(&mPhase, "Gover");
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80394C28-80394C28 021288 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -786,6 +829,46 @@ SECTION_SDATA2 static f32 lit_4291 = 660.0f;
 
 /* 8019B940-8019BBFC 196280 02BC+00 1/1 0/0 0/0 .text
  * __ct__24dDlst_GameOverScrnDraw_cFP10JKRArchive               */
+// matches with literals
+#ifdef NONMATCHING
+dDlst_GameOverScrnDraw_c::dDlst_GameOverScrnDraw_c(JKRArchive* i_archive) {
+    mpScreen = new J2DScreen();
+    mpScreen->setPriority("zelda_game_over.blo", 0x100000, i_archive);
+    dPaneClass_showNullPane(mpScreen);
+
+    mFadeColor.set(0, 0, 0, 0);
+
+    if (dMeter2Info_getGameOverType() != 0) {
+        mpScreen->search('n_base')->hide();
+
+        if (mDoGph_gInf_c::getFadeRate() == 1.0f) {
+            mFadeColor = mDoGph_gInf_c::getFadeColor();
+        }
+    }
+
+    mpScreen->search('base_b')->hide();
+
+    JUtility::TColor img_white(mFadeColor);
+    JUtility::TColor img_black(mFadeColor);
+    img_white.a = 0;
+    img_black.a = 255;
+
+    ResTIMG* img = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "tt_block8x8.bti");
+    mpBackImg =
+        new J2DPicture('PICT01', JGeometry::TBox2<f32>(0.0f, 486.0f, 0.0f, 660.0f), img, NULL);
+    mpBackImg->setBlackWhite(img_white, img_black);
+
+    J2DTextBox* gold_tbox = (J2DTextBox*)mpScreen->search('gold_00');
+    gold_tbox->setFont(mDoExt_getSubFont());
+
+    char string[64];
+    dMeter2Info_getString(0x381, string, NULL);
+    gold_tbox->setString(string);
+
+    mpLight = new dMsgScrnLight_c(6, 0xFF);
+    field_0x10 = 0.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -794,39 +877,21 @@ asm dDlst_GameOverScrnDraw_c::dDlst_GameOverScrnDraw_c(JKRArchive* param_0) {
 #include "asm/d/d_gameover/__ct__24dDlst_GameOverScrnDraw_cFP10JKRArchive.s"
 }
 #pragma pop
+#endif
 
 /* 8019BBFC-8019BCB0 19653C 00B4+00 1/0 0/0 0/0 .text            __dt__24dDlst_GameOverScrnDraw_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dDlst_GameOverScrnDraw_c::~dDlst_GameOverScrnDraw_c() {
-    nofralloc
-#include "asm/d/d_gameover/__dt__24dDlst_GameOverScrnDraw_cFv.s"
+dDlst_GameOverScrnDraw_c::~dDlst_GameOverScrnDraw_c() {
+    delete mpBackImg;
+    delete mpScreen;
+    dComIfGp_getMain2DArchive()->removeResourceAll();
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80453BA8-80453BAC 0021A8 0004+00 1/1 0/0 0/0 .sdata2          @4316 */
-SECTION_SDATA2 static f32 lit_4316 = 255.0f;
 
 /* 8019BCB0-8019BCF4 1965F0 0044+00 3/3 0/0 0/0 .text setBackAlpha__24dDlst_GameOverScrnDraw_cFf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_GameOverScrnDraw_c::setBackAlpha(f32 param_0) {
-    nofralloc
-#include "asm/d/d_gameover/setBackAlpha__24dDlst_GameOverScrnDraw_cFf.s"
+void dDlst_GameOverScrnDraw_c::setBackAlpha(f32 i_alpha) {
+    mpBackImg->setAlpha(i_alpha * 255.0f);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 8042CA20-8042CA2C 059740 000C+00 1/1 0/0 0/0 .bss             @3882 */
-static u8 lit_3882[12];
-
-/* 8042CA2C-8042CA48 05974C 001C+00 2/2 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[28];
 
 /* 80453BAC-80453BB0 0021AC 0004+00 1/1 0/0 0/0 .sdata2          @4374 */
 SECTION_SDATA2 static f32 lit_4374 = 608.0f;
@@ -846,82 +911,119 @@ SECTION_SDATA2 static f32 lit_4377[1 + 1 /* padding */] = {
 
 /* 8019BCF4-8019BF3C 196634 0248+00 1/0 0/0 0/0 .text            draw__24dDlst_GameOverScrnDraw_cFv
  */
+// matches with literals / sinit
+#ifdef NONMATCHING
+/* ############################################################################################## */
+/* 8042CA20-8042CA2C 059740 000C+00 1/1 0/0 0/0 .bss             @3882 */
+static u8 lit_3882[12];
+
+/* 8042CA2C-8042CA48 05974C 001C+00 2/2 0/0 0/0 .bss             l_HIO */
+static dGov_HIO_c l_HIO;
+
+void dDlst_GameOverScrnDraw_c::draw() {
+    J2DGrafContext* graf_ctx = dComIfGp_getCurrentGrafPort();
+    graf_ctx->setup2D();
+
+    if (dMeter2Info_getGameOverType() == 1 || dMeter2Info_getGameOverType() == 2) {
+        if (mDoGph_gInf_c::getFadeRate() == 1.0f) {
+            mFadeColor = mDoGph_gInf_c::getFadeColor();
+        }
+
+        JUtility::TColor img_black(mFadeColor);
+        JUtility::TColor img_white(mFadeColor);
+        img_black.a = 0;
+        img_white.a = 255;
+
+        mpBackImg->setBlackWhite(img_black, img_white);
+        mpBackImg->draw(0.0f, 0.0f, 608.0f, 448.0f, false, false, false);
+    } else {
+        JUtility::TColor img_black;
+        JUtility::TColor img_white;
+
+        img_black.r = l_HIO.mBlack.r;
+        img_black.g = l_HIO.mBlack.g;
+        img_black.b = l_HIO.mBlack.b;
+        img_black.a = l_HIO.mBlack.a;
+
+        img_white.r = l_HIO.mWhite.r;
+        img_white.g = l_HIO.mWhite.g;
+        img_white.b = l_HIO.mWhite.b;
+        img_white.a = l_HIO.mWhite.a;
+
+        mpBackImg->draw(0.0f, 0.0f, 608.0f, 448.0f, false, false, false);
+
+        for (int i = 0; i < 8; i++) {
+            mpLight->draw(&field_0x10, offset[i] + 304.0f, 224.0f, l_HIO.mScale, l_HIO.mScale,
+                          l_HIO.mAlpha, l_HIO.mAnimSpeed, img_black, img_white);
+        }
+    }
+
+    mpScreen->draw(0.0f, 0.0f, graf_ctx);
+}
+#else
+/* ############################################################################################## */
+/* 8042CA20-8042CA2C 059740 000C+00 1/1 0/0 0/0 .bss             @3882 */
+static u8 lit_3882[12];
+
+/* 8042CA2C-8042CA48 05974C 001C+00 2/2 0/0 0/0 .bss             l_HIO */
+static u8 l_HIO[28];
+
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dDlst_GameOverScrnDraw_c::draw() {
+// asm void dDlst_GameOverScrnDraw_c::draw() {
+extern "C" asm void draw__24dDlst_GameOverScrnDraw_cFv() {
     nofralloc
 #include "asm/d/d_gameover/draw__24dDlst_GameOverScrnDraw_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8019BF3C-8019BF5C 19687C 0020+00 1/0 0/0 0/0 .text            dGameover_Draw__FP11dGameover_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dGameover_Draw(dGameover_c* param_0) {
-    nofralloc
-#include "asm/d/d_gameover/dGameover_Draw__FP11dGameover_c.s"
+static int dGameover_Draw(dGameover_c* i_this) {
+    return i_this->_draw();
 }
-#pragma pop
 
 /* 8019BF5C-8019BF7C 19689C 0020+00 1/0 0/0 0/0 .text            dGameover_Execute__FP11dGameover_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dGameover_Execute(dGameover_c* param_0) {
-    nofralloc
-#include "asm/d/d_gameover/dGameover_Execute__FP11dGameover_c.s"
+static int dGameover_Execute(dGameover_c* i_this) {
+    return i_this->_execute();
 }
-#pragma pop
 
 /* 8019BF7C-8019BF84 1968BC 0008+00 1/0 0/0 0/0 .text            dGameover_IsDelete__FP11dGameover_c
  */
-static bool dGameover_IsDelete(dGameover_c* param_0) {
-    return true;
+static int dGameover_IsDelete(dGameover_c* i_this) {
+    return 1;
 }
 
 /* 8019BF84-8019BFA4 1968C4 0020+00 1/0 0/0 0/0 .text            dGameover_Delete__FP11dGameover_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dGameover_Delete(dGameover_c* param_0) {
-    nofralloc
-#include "asm/d/d_gameover/dGameover_Delete__FP11dGameover_c.s"
+static int dGameover_Delete(dGameover_c* i_this) {
+    return i_this->_delete();
 }
-#pragma pop
 
 /* 8019BFA4-8019BFC4 1968E4 0020+00 1/0 0/0 0/0 .text            dGameover_Create__FP9msg_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dGameover_Create(msg_class* param_0) {
-    nofralloc
-#include "asm/d/d_gameover/dGameover_Create__FP9msg_class.s"
+static int dGameover_Create(msg_class* i_this) {
+    return static_cast<dGameover_c*>(i_this)->_create();
 }
-#pragma pop
 
 /* 8019BFC4-8019C008 196904 0044+00 0/0 2/2 0/0 .text            d_GameOver_Create__FUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 d_GameOver_Create(u8 param_0) {
-    nofralloc
-#include "asm/d/d_gameover/d_GameOver_Create__FUc.s"
+s32 d_GameOver_Create(u8 i_gameoverType) {
+    dMeter2Info_setGameOverType(i_gameoverType);
+    return fopMsgM_create(PROC_GAMEOVER, NULL, NULL, NULL, NULL, NULL);
 }
-#pragma pop
 
 /* 8019C008-8019C06C 196948 0064+00 0/0 1/1 0/0 .text            d_GameOver_Delete__FRUi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void d_GameOver_Delete(unsigned int& param_0) {
-    nofralloc
-#include "asm/d/d_gameover/d_GameOver_Delete__FRUi.s"
+bool d_GameOver_Delete(unsigned int& i_id) {
+    if (i_id != UINT32_MAX) {
+        fopMsgM_Delete(fopMsgM_SearchByID(i_id));
+        i_id = -1;
+        dMeter2Info_setGameOverType(0);
+        return true;
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 8019C06C-8019C0C8 1969AC 005C+00 2/1 0/0 0/0 .text            __dt__10dGov_HIO_cFv */
 #pragma push
@@ -938,8 +1040,7 @@ extern "C" asm void __dt__10dGov_HIO_cFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __sinit_d_gameover_cpp() {
-    nofralloc
+asm void __sinit_d_gameover_cpp(){nofralloc
 #include "asm/d/d_gameover/__sinit_d_gameover_cpp.s"
 }
 #pragma pop
@@ -964,7 +1065,8 @@ asm dDlst_Gameover_CAPTURE_c::~dDlst_Gameover_CAPTURE_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMenu_save_c::~dMenu_save_c() {
+// asm dMenu_save_c::~dMenu_save_c() {
+extern "C" asm void __dt__12dMenu_save_cFv() {
     nofralloc
 #include "asm/d/d_gameover/__dt__12dMenu_save_cFv.s"
 }

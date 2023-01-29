@@ -434,7 +434,9 @@ public:
     }
     char* getLastPlayStageName() { return mLastPlayStageName; }
 
+    void setGameoverStatus(u8 status) { mGameoverStatus = status; }
     u8 getGameoverStatus() { return mGameoverStatus; }
+    u8 getMesgStatus() { return mMesgStatus; }
 
 public:
     /* 0x00000 */ dBgS mBgs;
@@ -1532,6 +1534,10 @@ inline int dComIfGs_createZone(int roomNo) {
     return g_dComIfG_gameInfo.info.createZone(roomNo);
 }
 
+inline void dComIfGs_addDeathCount() {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().addDeathCount();
+}
+
 void dComIfGp_setSelectItem(int index);
 s32 dComIfGp_offHeapLockFlag(int flag);
 void dComIfGp_createSubExpHeap2D();
@@ -1832,6 +1838,10 @@ inline char* dComIfGp_getLastPlayStageName() {
 
 inline u8 dComIfGp_getGameoverStatus() {
     return g_dComIfG_gameInfo.play.getGameoverStatus();
+}
+
+inline void dComIfGp_setGameoverStatus(u8 i_status) {
+    return g_dComIfG_gameInfo.play.setGameoverStatus(i_status);
 }
 
 inline u32 dComIfGp_getNowVibration() {
@@ -2359,6 +2369,14 @@ inline void i_dComIfGp_setHitMark(u16 i_hitmark, fopAc_ac_c* param_1, const cXyz
                                                       i_atType);
 }
 
+inline JKRArchive* dComIfGp_getFmapResArchive() {
+    return g_dComIfG_gameInfo.play.getFmapResArchive();
+}
+
+inline u8 dComIfGp_getMesgStatus() {
+    return g_dComIfG_gameInfo.play.getMesgStatus();
+}
+
 inline s32 dComIfGp_roomControl_getStayNo() {
     return dStage_roomControl_c::getStayNo();
 }
@@ -2869,10 +2887,6 @@ inline daPy_py_c* daPy_getPlayerActorClass() {
 
 inline daAlink_c* daAlink_getAlinkActorClass() {
     return (daAlink_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR);
-}
-
-inline JKRArchive* dComIfGp_getFmapResArchive() {
-    return g_dComIfG_gameInfo.play.getFmapResArchive();
 }
 
 #endif /* D_COM_D_COM_INF_GAME_H */

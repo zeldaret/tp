@@ -5,11 +5,11 @@
 #include "SSystem/SComponent/c_xyz.h"
 
 struct dCamMath {
-    /* 8008813C */ void rationalBezierRatio(f32, f32);
-    /* 80088284 */ void zoomFovy(f32, f32);
-    /* 8008831C */ void xyzRotateX(cXyz&, cSAngle);
-    /* 80088384 */ void xyzRotateY(cXyz&, cSAngle);
-    /* 800883EC */ void xyzHorizontalDistance(cXyz&, cXyz&);
+    /* 8008813C */ static f32 rationalBezierRatio(f32, f32);
+    /* 80088284 */ static f32 zoomFovy(f32, f32);
+    /* 8008831C */ static cXyz xyzRotateX(cXyz&, cSAngle);
+    /* 80088384 */ static cXyz xyzRotateY(cXyz&, cSAngle);
+    /* 800883EC */ static f32 xyzHorizontalDistance(cXyz&, cXyz&);
 };
 
 class dCstick_c {
@@ -29,31 +29,43 @@ class dCamBGChk_c {
 public:
     /* 80088464 */ dCamBGChk_c();
 
-    /* 0x00 */ f32 field_0x0;
-    /* 0x04 */ f32 field_0x4;
-    /* 0x08 */ f32 field_0x8;
-    /* 0x0C */ f32 field_0xc;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1c;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ f32 field_0x24;
-    /* 0x28 */ f32 field_0x28;
+    // name is a guess for now
+    struct ChkInfo {
+        /* 0x0 */ f32 mDistance;
+        /* 0x4 */ f32 mChkAngle;
+        /* 0x8 */ f32 mWeightH;
+        /* 0xC */ f32 mWeightL;
+    };  // Size: 0x10
+
+    /* 0x00 */ f32 mFloorMargin;
+    /* 0x04 */ ChkInfo mChkInfo[2];
+    /* 0x24 */ f32 mFwdBackMargin;
+    /* 0x28 */ f32 mFwdCushion;
     /* 0x2C */ f32 field_0x2c;
-    /* 0x30 */ f32 field_0x30;
-    /* 0x34 */ f32 field_0x34;
-    /* 0x38 */ f32 field_0x38;
-    /* 0x3C */ f32 field_0x3c;
-    /* 0x40 */ f32 field_0x40;
-    /* 0x44 */ f32 field_0x44;
+    /* 0x30 */ f32 mGazeBackMargin;
+    /* 0x34 */ f32 mCornerCushion;
+    /* 0x38 */ f32 mWallCushion;
+    /* 0x3C */ f32 mWallUpDistance;
+    /* 0x40 */ f32 mWallBackCushion;
+    /* 0x44 */ f32 mCornerAngleMax;
+};
+
+struct dCamStyleData {
+    struct StyleData {
+        /* 0x0 */ u32 field_0x0;
+        /* 0x4 */ u8 field_0x4[0x78 - 0x4];
+    };  // Size: 0x78
+
+    /* 0x0 */ u8 field_0x0[4];
+    /* 0x4 */ int mStyleNum;
+    /* 0x8 */ StyleData* mStyleData;
 };
 
 class dCamParam_c {
 public:
     /* 800884F0 */ dCamParam_c(s32);
-    /* 800885D4 */ void Change(s32);
-    /* 80088620 */ void SearchStyle(u32);
+    /* 800885D4 */ int Change(s32);
+    /* 80088620 */ int SearchStyle(u32);
     /* 80182C60 */ void Arg2(s16);
     /* 80182C3C */ void Arg2();
     /* 80182C48 */ void Arg1();
@@ -70,9 +82,9 @@ public:
     /* 0x01 */ u8 mMapToolArg0;
     /* 0x02 */ u8 mMapToolArg1;
     /* 0x04 */ int mMapToolArg2;
-    /* 0x08 */ u8* mCamStyleData;
-    /* 0x0C */ int field_0xc;
-    /* 0x10 */ u8* field_0x10;
+    /* 0x08 */ dCamStyleData::StyleData* mCamStyleData;
+    /* 0x0C */ s32 mStyleNum;
+    /* 0x10 */ dCamStyleData::StyleData* mCurrentStyle;
     /* 0x14 */ int mStyleID;
     /* 0x18 */ u8 field_0x18[4];
 
@@ -82,8 +94,8 @@ public:
 class dCamSetup_c {
 public:
     /* 80088668 */ dCamSetup_c();
-    /* 80088918 */ void CheckLatitudeRange(s16*);
-    /* 80088988 */ void PlayerHideDist();
+    /* 80088918 */ bool CheckLatitudeRange(s16*);
+    /* 80088988 */ f32 PlayerHideDist();
     /* 80182BB8 */ void CheckFlag2(u16);
     /* 80182BD0 */ void CheckFlag(u16);
     /* 80182BE8 */ void WaitRollSpeed();
@@ -169,7 +181,7 @@ public:
     /* 0x114 */ dCamBGChk_c mBGChk;
     /* 0x15C */ f32 field_0x15c;
     /* 0x160 */ f32 field_0x160;
-    /* 0x164 */ f32 mWaitRollTimer;
+    /* 0x164 */ int mWaitRollTimer;
     /* 0x168 */ f32 mWaitRollSpeed;
     /* 0x16C */ f32 field_0x16c;
     /* 0x170 */ int mScreensaverFirstWaitTimer;
