@@ -105,7 +105,7 @@ def lcf_generate(output_path,shiftable,map_file):
             if shiftable==True:        
                 for line in map_file:
                     literals_found = []
-                    if type(symbol['name'])==str and line.find(' '+symbol['name']+' ')!=-1 and name[0] != "@" or type(symbol['label']) == str and line.find(' '+symbol['label']+' ')!=-1:
+                    if type(symbol['name'])==str and line.find(' '+symbol['name']+' ')!=-1 and symbol['name'][0] != "@" or type(symbol['label']) == str and line.find(' '+symbol['label']+' ')!=-1:
                         linesplit = line.split()
                         if len(linesplit) > 3 and linesplit[2]!="NOT":
                             if line.find("lit_")!=-1:
