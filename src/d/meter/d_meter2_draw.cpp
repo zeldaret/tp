@@ -637,8 +637,8 @@ dMeter2Draw_c::~dMeter2Draw_c() {
     mpMagicFrameR = NULL;
 
     for (int i = 0; i < 3; i++) {
-        delete field_0x53c[i];
-        field_0x53c[i] = NULL;
+        delete mpOxygenBpk[i];
+        mpOxygenBpk[i] = NULL;
     }
 
     delete mpMagicMeter;
@@ -961,7 +961,8 @@ void dMeter2Draw_c::exec(u32 param_0) {
 
     if (param_0 & 0x1000000) {
         if (mButtonsPosX != g_drawHIO.mRingHUDButtonsPosX ||
-            mButtonsPosY != g_drawHIO.mRingHUDButtonsPosY) {
+            mButtonsPosY != g_drawHIO.mRingHUDButtonsPosY)
+        {
             mButtonsPosX = g_drawHIO.mRingHUDButtonsPosX;
             mButtonsPosY = g_drawHIO.mRingHUDButtonsPosY;
             mpButtonParent->paneTrans(g_drawHIO.mRingHUDButtonsPosX, g_drawHIO.mRingHUDButtonsPosY);
@@ -973,7 +974,8 @@ void dMeter2Draw_c::exec(u32 param_0) {
         }
     } else {
         if (mButtonsPosX != g_drawHIO.mMainHUDButtonsPosX ||
-            mButtonsPosY != g_drawHIO.mMainHUDButtonsPosY) {
+            mButtonsPosY != g_drawHIO.mMainHUDButtonsPosY)
+        {
             mButtonsPosX = g_drawHIO.mMainHUDButtonsPosX;
             mButtonsPosY = g_drawHIO.mMainHUDButtonsPosY;
             mpButtonParent->paneTrans(g_drawHIO.mMainHUDButtonsPosX, g_drawHIO.mMainHUDButtonsPosY);
@@ -1004,6 +1006,57 @@ SECTION_SDATA2 static f32 lit_4923[1 + 1 /* padding */] = {
 SECTION_SDATA2 static f64 lit_4925 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8021151C-80211BEC 20BE5C 06D0+00 1/0 0/0 0/0 .text            draw__13dMeter2Draw_cFv */
+#ifdef NONMATCHING
+void dMeter2Draw_c::draw() {
+    J2DGrafContext* graf = dComIfGp_getCurrentGrafPort();
+
+    mpScreen->draw(0.0f, 0.0f, graf);
+    drawKanteraScreen(1);
+    drawKanteraScreen(2);
+
+    for (int i = 0; i < 2; i++) {
+        if (mpItemXY[i] != NULL) {
+            for (int j = 0; j < 3; j++) {
+                JGeometry::TVec3<f32> vtx1 = pane->getPanePtr()->getGlbVtx(0);
+                JGeometry::TVec3<f32> vtx2 = pane->getPanePtr()->getGlbVtx(3);
+
+                // mpItemNumTex[i][j]->
+            }
+        }
+    }
+
+    for (int i = 0; i < 2; i++) {
+        mpKanteraMeter[i]->drawSelf();
+    }
+
+    if (!dComIfGp_isPauseFlag() && mpButtonParent->getAlphaRate() != 0.0f) {
+        if (field_0x608 > 0.0f) {
+            drawPikari(mpBTextA, &field_0x608, g_drawHIO.mAButtonHighlightScale,
+                       g_drawHIO.mAButtonHighlightFrontOuter, g_drawHIO.mAButtonHighlightFrontInner,
+                       g_drawHIO.mAButtonHighlightBackOuter, g_drawHIO.mAButtonHighlightBackInner,
+                       g_drawHIO.mAButtonHighlightAnimSpeed, field_0x759);
+        }
+
+        if (field_0x60c > 0.0f) {
+            drawPikari(mpBTextB, &field_0x60c, g_drawHIO.mBButtonHighlightScale,
+                       g_drawHIO.mBButtonHighlightFrontOuter, g_drawHIO.mBButtonHighlightFrontInner,
+                       g_drawHIO.mBButtonHighlightBackOuter, g_drawHIO.mBButtonHighlightBackInner,
+                       g_drawHIO.mBButtonHighlightAnimSpeed, field_0x75a);
+        }
+
+        for (int i = 0; i < 2; i++) {
+            if (field_0x60c > 0.0f) {
+                drawPikari(mpBTextXY[i], &field_0x620[i], g_drawHIO.mXYButtonHighlightScale,
+                        g_drawHIO.mXYButtonHighlightFrontOuter, g_drawHIO.mXYButtonHighlightFrontInner,
+                        g_drawHIO.mXYButtonHighlightBackOuter, g_drawHIO.XYButtonHighlightBackInner,
+                        g_drawHIO.mXYButtonHighlightAnimSpeed, field_0x768[i]);
+            }
+        }
+    }
+
+    // TODO
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1012,6 +1065,7 @@ asm void dMeter2Draw_c::draw() {
 #include "asm/d/meter/d_meter2_draw/draw__13dMeter2Draw_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80398320-803983C0 024980 00A0+00 0/1 0/0 0/0 .rodata          life_tag$4931 */
@@ -1139,18 +1193,18 @@ void dMeter2Draw_c::initMagic() {
 
     void* res = JKRFileLoader::getGlbResource("zelda_game_image_sanso_10percent.bpk",
                                               dComIfGp_getMain2DArchive());
-    field_0x53c[0] = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(res);
-    field_0x53c[0]->searchUpdateMaterialID(mpKanteraScreen);
+    mpOxygenBpk[0] = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(res);
+    mpOxygenBpk[0]->searchUpdateMaterialID(mpKanteraScreen);
 
     res = JKRFileLoader::getGlbResource("zelda_game_image_sanso_25percent.bpk",
                                         dComIfGp_getMain2DArchive());
-    field_0x53c[1] = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(res);
-    field_0x53c[1]->searchUpdateMaterialID(mpKanteraScreen);
+    mpOxygenBpk[1] = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(res);
+    mpOxygenBpk[1]->searchUpdateMaterialID(mpKanteraScreen);
 
     res = JKRFileLoader::getGlbResource("zelda_game_image_sanso_50percent.bpk",
                                         dComIfGp_getMain2DArchive());
-    field_0x53c[2] = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(res);
-    field_0x53c[2]->searchUpdateMaterialID(mpKanteraScreen);
+    mpOxygenBpk[2] = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(res);
+    mpOxygenBpk[2]->searchUpdateMaterialID(mpKanteraScreen);
 
     field_0x558 = 0.0f;
     mpMagicParent->setAlphaRate(0.0f);
@@ -1163,7 +1217,7 @@ void dMeter2Draw_c::initMagic() {
     }
 
     for (int i = 0; i < 3; i++) {
-        field_0x5fc[i] = 0.0f;
+        mMeterAlphaRate[i] = 0.0f;
         field_0x742[i] = 0;
     }
 
@@ -1486,6 +1540,60 @@ asm void dMeter2Draw_c::setAlphaLifeAnimeMax() {
 SECTION_SDATA2 static f32 lit_6143 = 0.25f;
 
 /* 80214EB4-80215290 20F7F4 03DC+00 1/1 0/0 0/0 .text drawKanteraScreen__13dMeter2Draw_cFUc */
+// matches with literals
+#ifdef NONMATCHING
+void dMeter2Draw_c::drawKanteraScreen(u8 i_meterType) {
+    J2DGrafContext* graf = dComIfGp_getCurrentGrafPort();
+
+    mpMagicParent->setAlphaRate(mMeterAlphaRate[i_meterType]);
+
+    if (i_meterType == 0) {
+        JUtility::TColor black = mpMagicMeter->getInitBlack();
+        black.a = 255;
+
+        mpMagicMeter->setBlackWhite(black, mpMagicMeter->getInitWhite());
+        setAlphaMagicChange(true);
+    } else if (i_meterType == 1) {
+        mpMagicMeter->setBlackWhite(JUtility::TColor(255, 255, 140, 255),
+                                    JUtility::TColor(230, 170, 0, 255));
+        setAlphaKanteraChange(true);
+    } else if (i_meterType == 2) {
+        f32 oxygen_percent = (f32)dComIfGp_getOxygen() / (f32)dComIfGp_getMaxOxygen();
+
+        if (oxygen_percent <= 0.25f) {
+            mpMagicMeter->setBlackWhite(JUtility::TColor(255, 100, 100, 255),
+                                        JUtility::TColor(255, 10, 10, 255));
+            playOxygenBpkAnimation(mpOxygenBpk[0]);
+
+            if (mMeterAlphaRate[i_meterType] > 0.0f) {
+                Z2GetAudioMgr()->mSeMgr.seStartLevel(Z2SE_SWIM_TIMER_BLINK_2, NULL, 0, 0, 1.0f,
+                                                     1.0f, -1.0f, -1.0f, 0);
+            }
+        } else if (oxygen_percent <= 0.5f) {
+            mpMagicMeter->setBlackWhite(JUtility::TColor(200, 200, 255, 255),
+                                        JUtility::TColor(80, 180, 255, 255));
+            playOxygenBpkAnimation(mpOxygenBpk[1]);
+
+            if (mMeterAlphaRate[i_meterType] > 0.0f) {
+                Z2GetAudioMgr()->mSeMgr.seStartLevel(Z2SE_SWIM_TIMER_BLINK_1, NULL, 0, 0, 1.0f,
+                                                     1.0f, -1.0f, -1.0f, 0);
+            }
+        } else {
+            mpMagicMeter->setBlackWhite(JUtility::TColor(200, 200, 255, 255),
+                                        JUtility::TColor(80, 180, 255, 255));
+        }
+
+        setAlphaOxygenChange(true);
+    }
+
+    mpMagicMeter->resize(field_0x584[i_meterType], field_0x590[i_meterType]);
+    mpMagicFrameR->move(field_0x59c[i_meterType], field_0x5a8[i_meterType]);
+    mpMagicBase->resize(field_0x5b4[i_meterType], field_0x5c0[i_meterType]);
+    mpMagicParent->scale(field_0x5cc[i_meterType], field_0x5d8[i_meterType]);
+    mpMagicParent->paneTrans(field_0x5e4[i_meterType], field_0x5f0[i_meterType]);
+    mpKanteraScreen->draw(0.0f, 0.0f, graf);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1494,6 +1602,7 @@ asm void dMeter2Draw_c::drawKanteraScreen(u8 param_0) {
 #include "asm/d/meter/d_meter2_draw/drawKanteraScreen__13dMeter2Draw_cFUc.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804548B8-804548BC 002EB8 0004+00 1/1 0/0 0/0 .sdata2          @6175 */
@@ -1501,29 +1610,31 @@ SECTION_SDATA2 static f32 lit_6175 = 0.03125f;
 
 /* 80215290-80215380 20FBD0 00F0+00 1/1 0/0 0/0 .text            drawMagic__13dMeter2Draw_cFssff */
 #ifdef NONMATCHING
-void dMeter2Draw_c::drawMagic(s16 max_count, s16 now_count, f32 x_pos, f32 y_pos) {
-    f32 x_diff = mpMagicFrameR->getInitPosX() - mpMagicFrameL->getInitPosX();
+void dMeter2Draw_c::drawMagic(s16 i_maxMagic, s16 i_nowMagic, f32 i_xPos, f32 i_yPos) {
+    f32 frameL_posX = mpMagicFrameL->getInitPosX();
+    f32 frameR_posX = mpMagicFrameR->getInitPosX();
 
-    field_0x584 = mpMagicMeter->getInitSizeX() * (lit_6175 * now_count);
-    field_0x590 = mpMagicMeter->getInitSizeY();
+    field_0x584[0] = (mpMagicMeter->getInitSizeX() * i_nowMagic) * 0.03125f;
+    field_0x590[0] = mpMagicMeter->getInitSizeY();
 
-    field_0x59c = mpMagicFrameL->getInitPosX() * x_diff * (max_count * lit_6175);
-    field_0x5a8 = mpMagicFrameL->getInitPosY();
+    field_0x59c[0] =
+        ((f32)i_maxMagic * (frameR_posX - frameL_posX)) * 0.03125f + mpMagicFrameL->getInitPosX();
+    field_0x5a8[0] = mpMagicFrameL->getInitPosY();
 
-    field_0x5b4 = mpMagicBase->getInitSizeX() * (max_count * lit_6175);
-    field_0x5c0 = mpMagicBase->getInitSizeY();
+    field_0x5b4[0] = (f32)i_maxMagic * mpMagicBase->getInitSizeX() * 0.03125f;
+    field_0x5c0[0] = mpMagicBase->getInitSizeY();
 
-    field_0x5cc = g_drawHIO.mMagicMeterScale;
-    field_0x5d8 = g_drawHIO.mMagicMeterScale;
+    field_0x5cc[0] = g_drawHIO.mMagicMeterScale;
+    field_0x5d8[0] = g_drawHIO.mMagicMeterScale;
 
-    field_0x5e4 = x_pos;
-    field_0x5f0 = y_pos;
+    field_0x5e4[0] = i_xPos;
+    field_0x5f0[0] = i_yPos;
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Draw_c::drawMagic(s16 param_0, s16 param_1, f32 param_2, f32 param_3) {
+asm void dMeter2Draw_c::drawMagic(s16 i_maxMagic, s16 i_nowMagic, f32 i_xPos, f32 i_yPos) {
     nofralloc
 #include "asm/d/meter/d_meter2_draw/drawMagic__13dMeter2Draw_cFssff.s"
 }
@@ -1531,14 +1642,35 @@ asm void dMeter2Draw_c::drawMagic(s16 param_0, s16 param_1, f32 param_2, f32 par
 #endif
 
 /* 80215380-802154A8 20FCC0 0128+00 2/2 0/0 0/0 .text setAlphaMagicChange__13dMeter2Draw_cFb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Draw_c::setAlphaMagicChange(bool param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2_draw/setAlphaMagicChange__13dMeter2Draw_cFb.s"
+void dMeter2Draw_c::setAlphaMagicChange(bool i_forceSet) {
+    bool meter_parent_alpha_set = false;
+    bool meter_alpha_set = false;
+    bool meter_frame_alpha_set = false;
+
+    if (field_0x7a4 != mpMagicParent->getAlphaRate() || i_forceSet) {
+        field_0x7a4 = mpMagicParent->getAlphaRate();
+        meter_parent_alpha_set = true;
+    }
+
+    if (mMagicMeterAlpha != g_drawHIO.mMagicMeterAlpha || i_forceSet) {
+        mMagicMeterAlpha = g_drawHIO.mMagicMeterAlpha;
+        meter_alpha_set = true;
+    }
+
+    if (mMagicMeterFrameAlpha != g_drawHIO.mMagicMeterFrameAlpha || i_forceSet) {
+        mMagicMeterFrameAlpha = g_drawHIO.mMagicMeterFrameAlpha;
+        meter_frame_alpha_set = true;
+    }
+
+    if (meter_parent_alpha_set || meter_alpha_set || i_forceSet) {
+        mpMagicMeter->setAlphaRate(mMagicMeterAlpha * field_0x7a4);
+    }
+
+    if (meter_parent_alpha_set || meter_frame_alpha_set || i_forceSet) {
+        mpMagicFrameL->setAlphaRate(mMagicMeterFrameAlpha * field_0x7a4);
+        mpMagicFrameR->setAlphaRate(mMagicMeterFrameAlpha * field_0x7a4);
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804548BC-804548C0 002EBC 0004+00 4/4 0/0 0/0 .sdata2          @6210 */
@@ -1552,24 +1684,60 @@ SECTION_SDATA2 static f64 lit_6293 = 4503599627370496.0 /* cast u32 to float */;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Draw_c::drawKantera(s32 param_0, s32 param_1, f32 param_2, f32 param_3) {
+asm void dMeter2Draw_c::drawKantera(s32 i_maxOil, s32 i_nowOil, f32 i_xPos, f32 i_yPos) {
     nofralloc
 #include "asm/d/meter/d_meter2_draw/drawKantera__13dMeter2Draw_cFllff.s"
 }
 #pragma pop
 
 /* 802155B8-802156E0 20FEF8 0128+00 2/2 1/1 0/0 .text setAlphaKanteraChange__13dMeter2Draw_cFb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Draw_c::setAlphaKanteraChange(bool param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2_draw/setAlphaKanteraChange__13dMeter2Draw_cFb.s"
+void dMeter2Draw_c::setAlphaKanteraChange(bool i_forceSet) {
+    bool meter_parent_alpha_set = false;
+    bool meter_alpha_set = false;
+    bool meter_frame_alpha_set = false;
+
+    if (field_0x7b0 != mpMagicParent->getAlphaRate() || i_forceSet) {
+        field_0x7b0 = mpMagicParent->getAlphaRate();
+        meter_parent_alpha_set = true;
+    }
+
+    if (mLanternMeterAlpha != g_drawHIO.mLanternMeterAlpha || i_forceSet) {
+        mLanternMeterAlpha = g_drawHIO.mLanternMeterAlpha;
+        meter_alpha_set = true;
+    }
+
+    if (mLanternMeterFrameAlpha != g_drawHIO.mLanternMeterFrameAlpha || i_forceSet) {
+        mLanternMeterFrameAlpha = g_drawHIO.mLanternMeterFrameAlpha;
+        meter_frame_alpha_set = true;
+    }
+
+    if (meter_parent_alpha_set || meter_alpha_set || i_forceSet) {
+        mpMagicMeter->setAlphaRate(mLanternMeterAlpha * field_0x7b0);
+    }
+
+    if (meter_parent_alpha_set || meter_frame_alpha_set || i_forceSet) {
+        mpMagicFrameL->setAlphaRate(mLanternMeterFrameAlpha * field_0x7b0);
+        mpMagicFrameR->setAlphaRate(mLanternMeterFrameAlpha * field_0x7b0);
+    }
 }
-#pragma pop
 
 /* 802156E0-8021575C 210020 007C+00 0/0 1/1 0/0 .text setAlphaKanteraAnimeMin__13dMeter2Draw_cFv
  */
+// matches with literals
+#ifdef NONMATCHING
+void dMeter2Draw_c::setAlphaKanteraAnimeMin() {
+    if (field_0x742[1] <= 0) {
+        mMeterAlphaRate[1] = 0.0f;
+    } else {
+        field_0x742[1]--;
+        if (field_0x742[1] < 0) {
+            field_0x742[1] = 0;
+        }
+
+        mMeterAlphaRate[1] = (field_0x742[1] / 5.0f) * g_drawHIO.mHUDAlpha;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1578,9 +1746,25 @@ asm void dMeter2Draw_c::setAlphaKanteraAnimeMin() {
 #include "asm/d/meter/d_meter2_draw/setAlphaKanteraAnimeMin__13dMeter2Draw_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8021575C-802157E0 21009C 0084+00 0/0 1/1 0/0 .text setAlphaKanteraAnimeMax__13dMeter2Draw_cFv
  */
+// matches with literals
+#ifdef NONMATCHING
+void dMeter2Draw_c::setAlphaKanteraAnimeMax() {
+    if (field_0x742[1] >= 5) {
+        mMeterAlphaRate[1] = g_drawHIO.mHUDAlpha;
+    } else {
+        field_0x742[1]++;
+        if (field_0x742[1] > 5) {
+            field_0x742[1] = 5;
+        }
+
+        mMeterAlphaRate[1] = (field_0x742[1] / 5.0f) * g_drawHIO.mHUDAlpha;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1589,6 +1773,7 @@ asm void dMeter2Draw_c::setAlphaKanteraAnimeMax() {
 #include "asm/d/meter/d_meter2_draw/setAlphaKanteraAnimeMax__13dMeter2Draw_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 802157E0-802158F0 210120 0110+00 0/0 1/1 0/0 .text            drawOxygen__13dMeter2Draw_cFllff */
 #pragma push
@@ -1601,16 +1786,52 @@ asm void dMeter2Draw_c::drawOxygen(s32 param_0, s32 param_1, f32 param_2, f32 pa
 #pragma pop
 
 /* 802158F0-80215A18 210230 0128+00 1/1 1/1 0/0 .text setAlphaOxygenChange__13dMeter2Draw_cFb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2Draw_c::setAlphaOxygenChange(bool param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter2_draw/setAlphaOxygenChange__13dMeter2Draw_cFb.s"
+void dMeter2Draw_c::setAlphaOxygenChange(bool i_forceSet) {
+    bool meter_parent_alpha_set = false;
+    bool meter_alpha_set = false;
+    bool meter_frame_alpha_set = false;
+
+    if (field_0x7bc != mpMagicParent->getAlphaRate() || i_forceSet) {
+        field_0x7bc = mpMagicParent->getAlphaRate();
+        meter_parent_alpha_set = true;
+    }
+
+    if (mOxygenMeterAlpha != g_drawHIO.mOxygenMeterAlpha || i_forceSet) {
+        mOxygenMeterAlpha = g_drawHIO.mOxygenMeterAlpha;
+        meter_alpha_set = true;
+    }
+
+    if (mOxygenMeterFrameAlpha != g_drawHIO.mOxygenMeterFrameAlpha || i_forceSet) {
+        mOxygenMeterFrameAlpha = g_drawHIO.mOxygenMeterFrameAlpha;
+        meter_frame_alpha_set = true;
+    }
+
+    if (meter_parent_alpha_set || meter_alpha_set || i_forceSet) {
+        mpMagicMeter->setAlphaRate(mOxygenMeterAlpha * field_0x7bc);
+    }
+
+    if (meter_parent_alpha_set || meter_frame_alpha_set || i_forceSet) {
+        mpMagicFrameL->setAlphaRate(mOxygenMeterFrameAlpha * field_0x7bc);
+        mpMagicFrameR->setAlphaRate(mOxygenMeterFrameAlpha * field_0x7bc);
+    }
 }
-#pragma pop
 
 /* 80215A18-80215A94 210358 007C+00 0/0 1/1 0/0 .text setAlphaOxygenAnimeMin__13dMeter2Draw_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dMeter2Draw_c::setAlphaOxygenAnimeMin() {
+    if (field_0x742[2] <= 0) {
+        mMeterAlphaRate[2] = 0.0f;
+    } else {
+        field_0x742[2]--;
+        if (field_0x742[2] < 0) {
+            field_0x742[2] = 0;
+        }
+
+        mMeterAlphaRate[2] = (field_0x742[2] / 5.0f) * g_drawHIO.mHUDAlpha;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1619,8 +1840,24 @@ asm void dMeter2Draw_c::setAlphaOxygenAnimeMin() {
 #include "asm/d/meter/d_meter2_draw/setAlphaOxygenAnimeMin__13dMeter2Draw_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80215A94-80215B18 2103D4 0084+00 0/0 1/1 0/0 .text setAlphaOxygenAnimeMax__13dMeter2Draw_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dMeter2Draw_c::setAlphaOxygenAnimeMax() {
+    if (field_0x742[2] >= 5) {
+        mMeterAlphaRate[2] = g_drawHIO.mHUDAlpha;
+    } else {
+        field_0x742[2]++;
+        if (field_0x742[2] > 5) {
+            field_0x742[2] = 5;
+        }
+
+        mMeterAlphaRate[2] = (field_0x742[2] / 5.0f) * g_drawHIO.mHUDAlpha;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1629,6 +1866,7 @@ asm void dMeter2Draw_c::setAlphaOxygenAnimeMax() {
 #include "asm/d/meter/d_meter2_draw/setAlphaOxygenAnimeMax__13dMeter2Draw_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804548C8-804548CC 002EC8 0004+00 4/4 0/0 0/0 .sdata2          @6524 */
@@ -1647,9 +1885,7 @@ asm void dMeter2Draw_c::drawLightDrop(u8 param_0, u8 param_1, f32 param_2, f32 p
 
 /* 80215DA4-80215DA8 2106E4 0004+00 1/1 1/1 0/0 .text setAlphaLightDropChange__13dMeter2Draw_cFb
  */
-void dMeter2Draw_c::setAlphaLightDropChange(bool param_0) {
-    /* empty function */
-}
+void dMeter2Draw_c::setAlphaLightDropChange(bool param_0) {}
 
 /* 80215DA8-80215E40 2106E8 0098+00 0/0 1/1 0/0 .text getNowLightDropRateCalc__13dMeter2Draw_cFv
  */
@@ -2192,6 +2428,29 @@ SECTION_SBSS2 static u8 lit_8747[4];
 SECTION_SBSS2 static u8 data_80456B9C[4];
 
 /* 8021AF78-8021B0C8 2158B8 0150+00 0/0 1/1 0/0 .text drawKanteraMeter__13dMeter2Draw_cFUcf */
+#ifdef NONMATCHING
+void dMeter2Draw_c::drawKanteraMeter(u8 i_button, f32 i_alphaRate) {
+    CPaneMgr* pane = mpItemXY[i_button];
+    f32 local_68[2][2];
+    local_68[1][0] = 0.0f;
+    local_68[1][1] = 0.0f;
+    local_68[0][0] = 0.0f;
+    local_68[0][1] = 0.0f;
+
+    if (i_alphaRate == 1.0f) {
+        i_alphaRate = pane->getAlphaRate();
+    }
+
+    JGeometry::TVec3<f32> vtx1 = pane->getPanePtr()->getGlbVtx(0);
+    JGeometry::TVec3<f32> vtx2 = pane->getPanePtr()->getGlbVtx(3);
+
+    mpKanteraMeter[i_button]->setPos((vtx1.x + vtx2.x) * 0.5f + 9.0f + local_68[1][i_button],
+                                     vtx2.y + local_68[0][i_button]);
+    mpKanteraMeter[i_button]->setScale(0.6f, 0.6f);
+    mpKanteraMeter[i_button]->setNowGauge(dComIfGs_getMaxOil(), dComIfGs_getOil());
+    mpKanteraMeter[i_button]->setAlphaRate(i_alphaRate);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2200,6 +2459,7 @@ asm void dMeter2Draw_c::drawKanteraMeter(u8 param_0, f32 param_1) {
 #include "asm/d/meter/d_meter2_draw/drawKanteraMeter__13dMeter2Draw_cFUcf.s"
 }
 #pragma pop
+#endif
 
 /* 8021B0C8-8021B104 215A08 003C+00 0/0 3/3 0/0 .text            isButtonVisible__13dMeter2Draw_cFv
  */
@@ -2414,7 +2674,8 @@ SECTION_DEAD static char const* const pad_80398A77 = "";
  */
 bool dMeter2Draw_c::getCanoeFishing() {
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") &&
-        g_dComIfG_gameInfo.play.mPlayer[0]->checkCanoeRide()) {
+        g_dComIfG_gameInfo.play.mPlayer[0]->checkCanoeRide())
+    {
         return TRUE;
     } else {
         return FALSE;

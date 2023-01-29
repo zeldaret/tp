@@ -17,7 +17,6 @@ public:
     /* 0xF4 */ u32 field_0xf4;
     /* 0xF8 */ u16 mMode;
     /* 0xFA */ u8 mSelectedChoiceIdx;
-    /* 0xFC */ int field_0xfc;
-};  // Size: 0x100
+};  // Size: 0xFC
 
 #endif /* D_MSG_D_MSG_CLASS_H */
