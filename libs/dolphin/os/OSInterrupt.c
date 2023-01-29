@@ -315,8 +315,6 @@ extern u32 __OSLastInterruptSrr0;
 u32 __OSLastInterruptSrr0;
 
 /* 8033DBCC-8033DF10 33850C 0344+00 1/1 0/0 0/0 .text            __OSDispatchInterrupt */
-// need compiler epilogue patch
-#ifdef NONMATCHING
 void __OSDispatchInterrupt(__OSException exception, OSContext* context) {
     u32 intsr;
     u32 reg;
@@ -435,16 +433,6 @@ void __OSDispatchInterrupt(__OSException exception, OSContext* context) {
 
     OSLoadContext(context);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __OSDispatchInterrupt(__OSException exception, OSContext* context) {
-    nofralloc
-#include "asm/dolphin/os/OSInterrupt/__OSDispatchInterrupt.s"
-}
-#pragma pop
-#endif
 
 /* 8033DF10-8033DF60 338850 0050+00 1/1 0/0 0/0 .text            ExternalInterruptHandler */
 static asm void ExternalInterruptHandler(register OSInterrupt type, register OSContext* context) {

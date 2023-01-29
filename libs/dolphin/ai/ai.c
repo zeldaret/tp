@@ -21,15 +21,16 @@ static AISCallback __AIS_Callback;
 static AIDCallback __AID_Callback;
 
 /* 8034FC70-8034FCB4 34A5B0 0044+00 0/0 1/1 0/0 .text            AIRegisterDMACallback */
-// need compiler epilogue patch
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm AIDCallback AIRegisterDMACallback(AIDCallback callback) {
-    nofralloc
-#include "asm/dolphin/ai/ai/AIRegisterDMACallback.s"
+AIDCallback AIRegisterDMACallback(AIDCallback callback) {
+    s32 oldInts;
+    AIDCallback ret;
+
+    ret = __AID_Callback;
+    oldInts = OSDisableInterrupts();
+    __AID_Callback = callback;
+    OSRestoreInterrupts(oldInts);
+    return ret;
 }
-#pragma pop
 
 /* 8034FCB4-8034FD3C 34A5F4 0088+00 0/0 2/2 0/0 .text            AIInitDMA */
 void AIInitDMA(u32 addr, u32 length) {
