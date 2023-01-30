@@ -11,12 +11,12 @@ lbl_8003F760:
 /* 8003F784  41 82 00 28 */	beq lbl_8003F7AC
 /* 8003F788  28 1E 00 00 */	cmplwi r30, 0
 /* 8003F78C  41 82 00 0C */	beq lbl_8003F798
-/* 8003F790  88 0D 80 B5 */	lbz r0, struct_80450634+0x1(r13)
+/* 8003F790  88 0D 80 B5 */	lbz r0, mBottomFloorNo__8dMpath_c+0x1(r13)
 /* 8003F794  98 1E 00 00 */	stb r0, 0(r30)
 lbl_8003F798:
 /* 8003F798  28 1F 00 00 */	cmplwi r31, 0
 /* 8003F79C  41 82 00 30 */	beq lbl_8003F7CC
-/* 8003F7A0  88 0D 80 B4 */	lbz r0, struct_80450634+0x0(r13)
+/* 8003F7A0  88 0D 80 B4 */	lbz r0, mBottomFloorNo__8dMpath_c+0x0(r13)
 /* 8003F7A4  98 1F 00 00 */	stb r0, 0(r31)
 /* 8003F7A8  48 00 00 24 */	b lbl_8003F7CC
 lbl_8003F7AC:

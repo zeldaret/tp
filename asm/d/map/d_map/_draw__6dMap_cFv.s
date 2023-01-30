@@ -9,10 +9,10 @@ lbl_8002AB54:
 /* 8002AB70  28 00 00 00 */	cmplwi r0, 0
 /* 8002AB74  41 82 00 28 */	beq lbl_8002AB9C
 /* 8002AB78  38 A0 00 00 */	li r5, 0
-/* 8002AB7C  88 0D 88 E0 */	lbz r0, data_80450E60(r13)
+/* 8002AB7C  88 0D 88 E0 */	lbz r0, mNowStayFloorNoDecisionFlg__10dMapInfo_c(r13)
 /* 8002AB80  28 00 00 00 */	cmplwi r0, 0
 /* 8002AB84  41 82 00 08 */	beq lbl_8002AB8C
-/* 8002AB88  88 AD 88 D8 */	lbz r5, data_80450E58(r13)
+/* 8002AB88  88 AD 88 D8 */	lbz r5, mNowStayFloorNo__10dMapInfo_c(r13)
 lbl_8002AB8C:
 /* 8002AB8C  C0 23 00 50 */	lfs f1, 0x50(r3)
 /* 8002AB90  C0 43 00 54 */	lfs f2, 0x54(r3)

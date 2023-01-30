@@ -9,14 +9,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct dMapInfo_c {
-    /* 8003F40C */ static s8 calcFloorNo(f32, bool, int);
-};
-
-//
 // Forward References:
 //
 

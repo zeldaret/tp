@@ -13,7 +13,7 @@ lbl_8003F570:
 /* 8003F59C  38 C1 00 0C */	addi r6, r1, 0xc
 /* 8003F5A0  38 E0 00 00 */	li r7, 0
 /* 8003F5A4  4B FF FC A9 */	bl getFloorParameter__10dMapInfo_nFfPScPfPfPfPf
-/* 8003F5A8  88 0D 88 E0 */	lbz r0, data_80450E60(r13)
+/* 8003F5A8  88 0D 88 E0 */	lbz r0, mNowStayFloorNoDecisionFlg__10dMapInfo_c(r13)
 /* 8003F5AC  28 00 00 00 */	cmplwi r0, 0
 /* 8003F5B0  41 82 00 5C */	beq lbl_8003F60C
 /* 8003F5B4  C0 01 00 10 */	lfs f0, 0x10(r1)
@@ -23,7 +23,7 @@ lbl_8003F570:
 /* 8003F5C4  FC 1F 00 40 */	fcmpo cr0, f31, f0
 /* 8003F5C8  4C 41 13 82 */	cror 2, 1, 2
 /* 8003F5CC  40 82 00 6C */	bne lbl_8003F638
-/* 8003F5D0  88 AD 88 D8 */	lbz r5, data_80450E58(r13)
+/* 8003F5D0  88 AD 88 D8 */	lbz r5, mNowStayFloorNo__10dMapInfo_c(r13)
 /* 8003F5D4  7C A4 07 74 */	extsb r4, r5
 /* 8003F5D8  88 01 00 08 */	lbz r0, 8(r1)
 /* 8003F5DC  7C 03 07 74 */	extsb r3, r0

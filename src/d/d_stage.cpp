@@ -448,7 +448,7 @@ static u8 dStage_isBossStage(dStage_dt_c* stageDt) {
 /* 80023F50-80023F84 01E890 0034+00 1/1 0/0 0/1 .text dStage_KeepDoorInfoInit__FP11dStage_dt_c */
 static void dStage_KeepDoorInfoInit(dStage_dt_c* param_0) {
     if (dStage_isBossStage(param_0) == 0) {
-        DoorInfo.unk_0x0 = NULL;
+        DoorInfo.unk_0x0 = 0;
     }
 }
 
@@ -471,7 +471,7 @@ dStage_KeepDoorInfo* dStage_GetRoomKeepDoorInfo() {
 }
 
 static void dStage_initRoomKeepDoorInfo() {
-    l_RoomKeepDoorInfo.unk_0x0 = NULL;
+    l_RoomKeepDoorInfo.unk_0x0 = 0;
 }
 
 /* 80024078-80024174 01E9B8 00FC+00 1/1 0/0 0/0 .text

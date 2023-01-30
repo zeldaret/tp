@@ -25,10 +25,10 @@ lbl_8003F40C:
 /* 8003F468  80 0D 88 DC */	lwz r0, mNowStayRoomNo__10dMapInfo_c(r13)
 /* 8003F46C  7C 1F 00 00 */	cmpw r31, r0
 /* 8003F470  40 82 00 3C */	bne lbl_8003F4AC
-/* 8003F474  88 0D 88 E0 */	lbz r0, data_80450E60(r13)
+/* 8003F474  88 0D 88 E0 */	lbz r0, mNowStayFloorNoDecisionFlg__10dMapInfo_c(r13)
 /* 8003F478  28 00 00 00 */	cmplwi r0, 0
 /* 8003F47C  41 82 00 30 */	beq lbl_8003F4AC
-/* 8003F480  88 AD 88 D8 */	lbz r5, data_80450E58(r13)
+/* 8003F480  88 AD 88 D8 */	lbz r5, mNowStayFloorNo__10dMapInfo_c(r13)
 /* 8003F484  7C A4 07 74 */	extsb r4, r5
 /* 8003F488  88 01 00 08 */	lbz r0, 8(r1)
 /* 8003F48C  7C 03 07 74 */	extsb r3, r0

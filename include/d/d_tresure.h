@@ -15,12 +15,13 @@ public:
         /* 0x10 */ u8 mSwBit;
         /* 0x11 */ u8 mType;
         /* 0x12 */ u8 mArg2;
-        /* 0x13 */ u8 mAngleY;
+        /* 0x13 */ s8 mAngleY;
     };
 
     class typeGroupData_c {
     public:
         data_s* getDataPointer() { return &mData; }
+        const data_s* getConstDataPointer() const { return &mData; }
         typeGroupData_c* getNextDataPointer() const { return mNextData; }
         void setNextDataPointer(typeGroupData_c* data) { mNextData = data; }
         void setTypeGroupNo(u8 no) { mTypeGroupNo = no; }
@@ -32,6 +33,7 @@ public:
         void setPos(const Vec& pos) { mData.mPos = pos; }
         u8 getSwBit() const { return mData.mSwBit; }
         const Vec* getPos() const { return &mData.mPos; }
+        int getAngleY() const { return mData.mAngleY; }
 
         /* 0x00 */ data_s mData;
         /* 0x14 */ typeGroupData_c* mNextData;

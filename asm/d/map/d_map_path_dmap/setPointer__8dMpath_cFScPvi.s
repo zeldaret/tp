@@ -14,8 +14,8 @@ lbl_8003FA40:
 /* 8003FA70  38 00 00 01 */	li r0, 1
 /* 8003FA74  98 0D 89 08 */	stb r0, data_80450E88(r13)
 /* 8003FA78  7F C3 F3 78 */	mr r3, r30
-/* 8003FA7C  38 8D 80 B4 */	la r4, struct_80450634+0x0(r13) /* 80450634-_SDA_BASE_ */
-/* 8003FA80  38 AD 80 B5 */	la r5, struct_80450634+0x1(r13) /* 80450635-_SDA_BASE_ */
+/* 8003FA7C  38 8D 80 B4 */	la r4, mBottomFloorNo__8dMpath_c+0x0(r13) /* 80450634-_SDA_BASE_ */
+/* 8003FA80  38 AD 80 B5 */	la r5, mBottomFloorNo__8dMpath_c+0x1(r13) /* 80450635-_SDA_BASE_ */
 /* 8003FA84  4B FF FD 8D */	bl setPointer__8dMpath_cFPQ211dDrawPath_c10room_classPScPSc
 /* 8003FA88  C0 02 84 28 */	lfs f0, lit_3796(r2)
 /* 8003FA8C  D0 01 00 14 */	stfs f0, 0x14(r1)

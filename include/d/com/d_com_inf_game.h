@@ -2788,6 +2788,10 @@ inline void dComIfGd_set2DOpaTop(dDlst_base_c* dlst) {
     g_dComIfG_gameInfo.drawlist.set2DOpaTop(dlst);
 }
 
+inline void dComIfGd_setCopy2D(dDlst_base_c* dlst) {
+    g_dComIfG_gameInfo.drawlist.setCopy2D(dlst);
+}
+
 inline view_class* dComIfGd_getView() {
     return g_dComIfG_gameInfo.drawlist.getView();
 }
