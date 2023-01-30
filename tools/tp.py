@@ -202,14 +202,12 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
         )
         sys.exit(1)
 
-    c27_lmgr326b = c27.joinpath("Lmgr326b.dll")
-    if not c27_lmgr326b.exists() or not c27_lmgr326b.is_file():
-        c27_lmgr326b = c27.joinpath("lmgr326b.dll")
-    if not c27_lmgr326b.exists() or not c27_lmgr326b.is_file():
-        c27_lmgr326b = c27.joinpath("LMGR326B.dll")
-    if not c27_lmgr326b.exists() or not c27_lmgr326b.is_file():
-        c27_lmgr326b = c27.joinpath("LMGR326B.DLL")
-    if not c27_lmgr326b.exists() or not c27_lmgr326b.is_file():
+    c27_lmgr326b = None
+    for name in os.listdir(c27):
+        if name.lower() == "lmgr326b.dll":
+            c27_lmgr326b = c27.joinpath(name)
+            break
+    if not c27_lmgr326b or not c27_lmgr326b.is_file():
         LOG.error(
             (
                 f"Unable to find 'lmgr326b.dll' in '{c27}': missing file '{c27_lmgr326b}'\n"
@@ -218,15 +216,15 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
         )
         sys.exit(1)
 
-    c27_lmgr326b_cc = c27.joinpath("LMGR326B.dll")
-    if not c27_lmgr326b_cc.exists() or not c27_lmgr326b_cc.is_file():
-        LOG.debug(f"copy: '{c27_lmgr326b}', to: '{c27_lmgr326b_cc}'")
-        shutil.copy(c27_lmgr326b, c27_lmgr326b_cc)
+    def copy_lmgr326b(path: Path):
+        lmgr326b_cc = path.joinpath("LMGR326B.dll")
+        if not lmgr326b_cc.is_file():
+            LOG.debug(f"copy: '{c27_lmgr326b}', to: '{lmgr326b_cc}'")
+            shutil.copy(c27_lmgr326b, lmgr326b_cc)
 
-    c125_lmgr326b_cc = c125.joinpath("LMGR326B.dll")
-    if not c125_lmgr326b_cc.exists() or not c125_lmgr326b_cc.is_file():
-        LOG.debug(f"copy: '{c27_lmgr326b}', to: '{c125_lmgr326b_cc}'")
-        shutil.copy(c27_lmgr326b, c125_lmgr326b_cc)
+    copy_lmgr326b(c27)
+    copy_lmgr326b(c125)
+    copy_lmgr326b(c125e)
 
     c27_mwcceppc = c27.joinpath("mwcceppc.exe")
     if not c27_mwcceppc.exists() or not c27_mwcceppc.is_file():
