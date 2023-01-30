@@ -4,16 +4,19 @@ tp.py - Various tools used for the zeldaret/tp project.
 
 """
 
+import hashlib
+import io
 import os
 import sys
 import time
-import struct
 import json
 import subprocess
+import logging
 import multiprocessing as mp
 import shutil
 import platform
 import stat
+import zipfile
 
 from dataclasses import dataclass, field
 from typing import Dict, List, Set, Tuple
@@ -21,16 +24,11 @@ from pathlib import Path
 
 try:
     import click
-    import logging
-    import hashlib
     import libdol
     import librel
     import libarc
-    import io
     import extract_game_assets
     import requests
-    import zipfile
-    import shutil
 
     from rich.logging import RichHandler
     from rich.console import Console
