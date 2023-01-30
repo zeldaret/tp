@@ -22,20 +22,8 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Set, Tuple
 from pathlib import Path
 
-try:
-    import click
-    import libdol
-    import librel
-    import libarc
-    import extract_game_assets
-    import requests
 
-    from rich.logging import RichHandler
-    from rich.console import Console
-    from rich.progress import Progress
-    from rich.text import Text
-    from rich.table import Table
-except ImportError as e:
+def _handle_import_error(ex: ImportError):
     MISSING_PREREQUISITES = (
         f"Missing prerequisite python module {e}.\n"
         f"Run `python3 -m pip install --user -r tools/requirements.txt` to install prerequisites."
@@ -43,6 +31,20 @@ except ImportError as e:
 
     print(MISSING_PREREQUISITES, file=sys.stderr)
     sys.exit(1)
+
+try:
+    import click
+    import libdol
+    import libarc
+    import requests
+
+    from rich.logging import RichHandler
+    from rich.console import Console
+    from rich.progress import Progress
+    from rich.text import Text
+    from rich.table import Table
+except ImportError as ex:
+    _handle_import_error(ex)
 
 
 class PathPath(click.Path):
@@ -298,6 +300,14 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
         subprocess.run(['chmod', '+x'] + list(compilers.glob("*/*.exe")))
 
     #
+    text = Text("--- Building tools")
+    text.stylize("bold magenta")
+    CONSOLE.print(text)
+    if subprocess.run(["make", "tools"]).returncode != 0:
+        LOG.error("An error occurred while running 'make tools'")
+        exit(1)
+
+    #
     text = Text("--- Extracting game assets")
     text.stylize("bold magenta")
     CONSOLE.print(text)
@@ -313,10 +323,13 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
         sys.exit(1)
 
     try:
+        import extract_game_assets
         previous_dir = os.getcwd()
         os.chdir(str(game_path.absolute()))
         extract_game_assets.extract("../" + str(iso))
         os.chdir(previous_dir)
+    except ImportError as ex:
+        _handle_import_error(ex)
     except Exception as e:
         LOG.error(f"failure:")
         LOG.error(e)
@@ -1132,6 +1145,11 @@ class CheckException(Exception):
 
 
 def check_sha1(game_path: Path, build_path: Path, include_rels: bool):
+    try:
+        import librel
+    except ImportError as ex:
+        _handle_import_error(ex)
+
     EXPECTED = {}
     EXPECTED[0] = (
         "",
