@@ -295,6 +295,10 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
         )
         sys.exit(1)
 
+    # add execute flag to compilers for WSL
+    if os.name == 'posix':
+        subprocess.run(['chmod', '+x'] + list(compilers.glob("*/*.exe")))
+
     #
     text = Text("--- Extracting game assets")
     text.stylize("bold magenta")
