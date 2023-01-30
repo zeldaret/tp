@@ -8,21 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct daTagAJnot_c {
-    /* 805A2658 */ void create();
-    /* 805A26C8 */ ~daTagAJnot_c();
-    /* 805A2744 */ void execute();
-};
-
-//
 // Forward References:
 //
 
@@ -42,58 +27,39 @@ extern "C" extern void* g_profile_Tag_AJnot[12];
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
 extern "C" void __dl__FPv();
-extern "C" void PSVECSquareDistance();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
 // Declarations:
 //
 
 /* 805A2658-805A26A8 000078 0050+00 1/1 0/0 0/0 .text            create__12daTagAJnot_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagAJnot_c::create() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_ajnot/d_a_tag_ajnot/create__12daTagAJnot_cFv.s"
+int daTagAJnot_c::create() {
+    if (!fopAcM_CheckCondition(this, 8)) {
+        new (this) daTagAJnot_c();
+        fopAcM_OnCondition(this, 8);
+    }
+    return 4;
 }
-#pragma pop
 
 /* 805A26A8-805A26C8 0000C8 0020+00 1/0 0/0 0/0 .text            daTagAJnot_Create__FP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagAJnot_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_ajnot/d_a_tag_ajnot/daTagAJnot_Create__FP10fopAc_ac_c.s"
+
+static int daTagAJnot_Create(fopAc_ac_c* ajnot) {
+    return static_cast<daTagAJnot_c*>(ajnot)->create();
 }
-#pragma pop
 
 /* 805A26C8-805A271C 0000E8 0054+00 1/1 0/0 0/0 .text            __dt__12daTagAJnot_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm daTagAJnot_c::~daTagAJnot_c() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_ajnot/d_a_tag_ajnot/__dt__12daTagAJnot_cFv.s"
-}
-#pragma pop
+daTagAJnot_c::~daTagAJnot_c() {}
 
 /* 805A271C-805A2744 00013C 0028+00 1/0 0/0 0/0 .text            daTagAJnot_Delete__FP12daTagAJnot_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagAJnot_Delete(daTagAJnot_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_ajnot/d_a_tag_ajnot/daTagAJnot_Delete__FP12daTagAJnot_c.s"
+static int daTagAJnot_Delete(daTagAJnot_c* ajnot) {
+    ajnot->~daTagAJnot_c();
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 805A2880-805A2884 000000 0004+00 1/1 0/0 0/0 .rodata          @3713 */
@@ -123,25 +89,19 @@ COMPILER_STRIP_GATE(0x805A2888, &lit_3715);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTagAJnot_c::execute() {
+asm int daTagAJnot_c::execute() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_ajnot/d_a_tag_ajnot/execute__12daTagAJnot_cFv.s"
 }
 #pragma pop
-
 /* 805A2850-805A2870 000270 0020+00 1/0 0/0 0/0 .text daTagAJnot_Execute__FP12daTagAJnot_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagAJnot_Execute(daTagAJnot_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_ajnot/d_a_tag_ajnot/daTagAJnot_Execute__FP12daTagAJnot_c.s"
+static int daTagAJnot_Execute(daTagAJnot_c* ajnot) {
+    return ajnot->execute();
 }
-#pragma pop
 
 /* 805A2870-805A2878 000290 0008+00 1/0 0/0 0/0 .text            daTagAJnot_Draw__FP12daTagAJnot_c
  */
-static bool daTagAJnot_Draw(daTagAJnot_c* param_0) {
+static bool daTagAJnot_Draw(daTagAJnot_c* ajnot) {
     return true;
 }
 
