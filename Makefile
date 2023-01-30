@@ -152,7 +152,7 @@ clean_rels:
 	rm -f -d -r $(BUILD_DIR)/rel
 	rm -f $(BUILD_PATH)/*.rel
 
-tools: $(ELF2DOL) $(YAZ0)
+tools: dirs $(ELF2DOL) $(YAZ0)
 
 assets:
 	@mkdir -p game
