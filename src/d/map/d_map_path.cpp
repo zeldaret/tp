@@ -4,8 +4,6 @@
 //
 
 #include "d/map/d_map_path.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "d/com/d_com_inf_game.h"
 #include "m_Do/m_Do_lib.h"
 
@@ -42,25 +40,12 @@ extern "C" u8 m_texObjAgg__8dMpath_n[28];
 // External References:
 //
 
-extern "C" void mDoLib_setResTimgObj__FPC7ResTIMGP9_GXTexObjUlP10_GXTlutObj();
 extern "C" void draw__12dDlst_base_cFv();
 extern "C" bool isDrawType__11dDrawPath_cFi();
 extern "C" void __dt__18dRenderingFDAmap_cFv();
 extern "C" void __dt__11dDrawPath_cFv();
 extern "C" void getLineColor__11dDrawPath_cFii();
 extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void GXClearVtxDesc();
-extern "C" void GXPixModeSync();
-extern "C" void __register_global_object();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" extern Mtx g_mDoMtx_identity;
 
 //
 // Declarations:
@@ -93,7 +78,7 @@ void dMpath_n::dTexObjAggregate_c::remove() {
 void dDrawPath_c::rendering(dDrawPath_c::line_class const* p_line) {
     if (isDrawType(p_line->unk0)) {
         int width = getLineWidth(p_line->unk1);
-        
+
         if (width > 0 && p_line->unk2 >= 2) {
             GXSetLineWidth(width, GX_TO_ZERO);
             GXSetTevColor(GX_TEVREG0, *getLineColor(p_line->unk0 & 0x3F, p_line->unk1));
@@ -114,7 +99,7 @@ void dDrawPath_c::rendering(dDrawPath_c::line_class const* p_line) {
 void dDrawPath_c::rendering(dDrawPath_c::poly_class const* p_poly) {
     if (isDrawType(p_poly->field_0x0)) {
         GXSetTevColor(GX_TEVREG0, *getColor(p_poly->field_0x0 & 0x3F));
-        
+
         if (p_poly->field_0x1 >= 3) {
             GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, p_poly->field_0x1);
 
@@ -169,7 +154,7 @@ void dDrawPath_c::rendering(dDrawPath_c::room_class const* p_room) {
         if (floor != NULL) {
             for (int i = 0; i < p_room->field_0x0; i++) {
                 if (isRenderingFloor(floor->field_0x0)) {
-                    rendering(floor); 
+                    rendering(floor);
                 }
                 floor++;
             }
@@ -189,7 +174,7 @@ void dDrawPath_c::drawPath() {
 /* 8003CD38-8003CDAC 037678 0074+00 0/0 3/3 0/0 .text
  * makeResTIMG__15dRenderingMap_cCFP7ResTIMGUsUsPUcPUcUs        */
 void dRenderingMap_c::makeResTIMG(ResTIMG* p_image, u16 width, u16 height, u8* p_data,
-                                      u8* p_palette, u16 param_5) const {
+                                  u8* p_palette, u16 param_5) const {
     p_image->format = GX_TF_CI14;
     p_image->alphaEnabled = 2;
     p_image->width = width;
@@ -253,7 +238,8 @@ void dRenderingFDAmap_c::setTevSettingIntensityTextureToCI() const {
     GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_KONST, GX_CC_TEXC, GX_CC_C1);
     GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     GXSetTevColorIn(GX_TEVSTAGE1, GX_CC_CPREV, GX_CC_C2, GX_CC_CPREV, GX_CC_ZERO);
-    GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_COMP_R8_GT, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_COMP_R8_GT, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE,
+                    GX_TEVPREV);
     GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO);
     GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     GXSetTevAlphaIn(GX_TEVSTAGE1, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_TEXA);
@@ -324,7 +310,7 @@ dMpath_n::dTexObjAggregate_c dMpath_n::m_texObjAgg;
  * make the map look worse for extra speed in the emulator, especially in large
  * areas such as hyrule field.
  */
-//#define HYRULE_FIELD_SPEEDHACK
+// #define HYRULE_FIELD_SPEEDHACK
 
 /* 8003D3C0-8003D68C 037D00 02CC+00 0/0 2/2 0/0 .text
  * renderingDecoration__18dRenderingFDAmap_cFPCQ211dDrawPath_c10line_class */
@@ -333,6 +319,7 @@ void dRenderingFDAmap_c::renderingDecoration(dDrawPath_c::line_class const* p_li
     if (width <= 0) {
         return;
     }
+
     setTevSettingIntensityTextureToCI();
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_INDEX16);
@@ -341,6 +328,7 @@ void dRenderingFDAmap_c::renderingDecoration(dDrawPath_c::line_class const* p_li
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_F32, 0);
     GXSetNumTevStages(1);
     GXLoadTexObj(dMpath_n::m_texObjAgg.mp_texObj[6], GX_TEXMAP0);
+
     u16* unk = p_line->unk4;
     s32 unk2 = p_line->unk2;
     GXSetLineWidth(width, GX_TO_ONE);
@@ -349,6 +337,7 @@ void dRenderingFDAmap_c::renderingDecoration(dDrawPath_c::line_class const* p_li
     GXSetTevColor(GX_TEVREG0, lineColor);
     lineColor.r = lineColor.r - 4;
     GXSetTevColor(GX_TEVREG1, lineColor);
+
     for (int i = 0; i < unk2; unk++, i++) {
 #ifndef HYRULE_FIELD_SPEEDHACK
         if (i < unk2 - 1) {
@@ -374,6 +363,7 @@ void dRenderingFDAmap_c::renderingDecoration(dDrawPath_c::line_class const* p_li
         GXTexCoord2f32(0, 0);
         i_GXEnd();
     }
+
     setTevSettingNonTextureDirectColor();
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_INDEX16);
@@ -393,7 +383,7 @@ s32 dRenderingFDAmap_c::getDecorationLineWidth(int param_0) {
 
 /* ############################################################################################## */
 /* 803A7C90-803A7CF8 004DB0 0068+00 0/0 12/12 0/0 .data            __vt__18dRenderingFDAmap_c */
-SECTION_DATA extern void* __vt__18dRenderingFDAmap_c[26] = {
+extern void* __vt__18dRenderingFDAmap_c[26] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__12dDlst_base_cFv,
@@ -423,7 +413,7 @@ SECTION_DATA extern void* __vt__18dRenderingFDAmap_c[26] = {
 };
 
 /* 803A7CF8-803A7D38 004E18 0040+00 0/0 15/15 0/0 .data            __vt__11dDrawPath_c */
-SECTION_DATA extern void* __vt__11dDrawPath_c[16] = {
+extern void* __vt__11dDrawPath_c[16] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__12dDlst_base_cFv,

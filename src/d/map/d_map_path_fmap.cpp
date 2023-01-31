@@ -4,78 +4,143 @@
 //
 
 #include "d/map/d_map_path_fmap.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
 //
 
-struct fmpTresTypeGroupData_c {
+class fmpTresTypeGroupData_c {
+public:
+    fmpTresTypeGroupData_c() {
+        mpTresData = NULL;
+        mpNext = NULL;
+    }
+
     /* 8003EB70 */ ~fmpTresTypeGroupData_c();
-};
 
-struct dTres_c {
-    struct data_s {};
+    void setTypeGroupNo(u8 i_no) { mTypeGroupNo = i_no; }
+    void setNextData(fmpTresTypeGroupData_c* i_next) { mpNext = i_next; }
+    void setTresData(const dTres_c::data_s* i_data) { mpTresData = i_data; }
+    const dTres_c::data_s* getTresData() { return mpTresData; }
+    fmpTresTypeGroupData_c* getNextData() { return mpNext; }
 
-    struct typeGroupData_c {};
+    /* 0x0 */ const dTres_c::data_s* mpTresData;
+    /* 0x0 */ fmpTresTypeGroupData_c* mpNext;
+    /* 0x8 */ u8 mTypeGroupNo;
+};  // Size: 0xC
 
-    /* 8009C360 */ void getFirstData(u8);
-    /* 8009C39C */ void getNextData(dTres_c::typeGroupData_c*);
-    /* 8009C49C */ void getTypeGroupNoToType(u8);
-    /* 8009C4B0 */ void getTypeToTypeGroupNo(u8);
-};
-
-struct fmpTresTypeGroupDataList_c {
+class fmpTresTypeGroupDataList_c {
+public:
     /* 8003D790 */ void addTypeGroupData(u8, dTres_c::data_s const*);
     /* 8003EB10 */ ~fmpTresTypeGroupDataList_c();
     /* 8003EC90 */ fmpTresTypeGroupDataList_c();
+
+    /* 0x0 */ fmpTresTypeGroupData_c* mpTypeGroupDataHead;
+    /* 0x4 */ fmpTresTypeGroupData_c* mpNextData;
 };
 
-struct dSv_save_c {
-    /* 800350A8 */ void getSave2(int);
+class fmpTresTypeGroupDataListAll_c {
+public:
+    void addTypeGroupData(u8 i_typeGroupNo, const dTres_c::data_s* i_data) {
+        mpTypeGroupData[i_typeGroupNo].addTypeGroupData(i_typeGroupNo, i_data);
+    }
+
+    /* 0x0 */ fmpTresTypeGroupDataList_c mpTypeGroupData[17];
 };
 
-struct dSv_memory2_c {
-    /* 80034AEC */ void isVisitedRoom(int);
+class dMenu_Fmap_data_c {
+public:
+    dTres_c::list_class* getTresure() { return mp_tresure; }
+    f32 getFilelist2MinX() { return m_fileList2->mLeftRmX; }
+    f32 getFilelist2MinZ() { return m_fileList2->mInnerRmZ; }
+    f32 getFilelist2MaxX() { return m_fileList2->mRightRmX; }
+    f32 getFilelist2MaxZ() { return m_fileList2->mFrontRmZ; }
+
+    /* 0x0 */ dTres_c::list_class* mp_tresure;
+    /* 0x4 */ dStage_FileList2_dt_c* m_fileList2;
+    /* 0x8 */ dDrawPath_c::room_class* mp_mapPath;
+    /* 0xC */ void* mp_dzsData;
 };
 
-struct dSv_memBit_c {
-    /* 800347E8 */ void isTbox(int) const;
+class dMenu_Fmap_stage_data_c;
+class dMenu_Fmap_room_data_c {
+public:
+    /* 8003D818 */ bool isArrival();
+    /* 8003D868 */ void buildTresTypeGroup(int, int, int);
+    /* 8003D92C */ void buildFmapRoomData(int, int, f32, f32, f32, f32);
+
+    f32 getFileList2MinX() { return mp_fmapData->getFilelist2MinX(); }
+    f32 getFileList2MinZ() { return mp_fmapData->getFilelist2MinZ(); }
+    f32 getFileList2MaxX() { return mp_fmapData->getFilelist2MaxX(); }
+    f32 getFileList2MaxZ() { return mp_fmapData->getFilelist2MaxZ(); }
+    dMenu_Fmap_room_data_c* getNextData() { return mp_nextData; }
+    int getRoomNo() { return m_roomNo; }
+
+    /* 0x00 */ dMenu_Fmap_data_c* mp_fmapData;
+    /* 0x04 */ fmpTresTypeGroupDataListAll_c* mp_fmpTresTypeGroupDataListAll;
+    /* 0x08 */ dMenu_Fmap_room_data_c* mp_nextData;
+    /* 0x0C */ dMenu_Fmap_stage_data_c* mp_parentStage;
+    /* 0x10 */ u8 m_roomNo;
 };
 
-struct dSv_info_c {
-    /* 80035360 */ void isSwitch(int, int) const;
+class dMenu_Fmap_stage_arc_data_c {
+public:
+    u8 getVisitedRoomSaveTableNo() { return mVisitedRoomSaveTableNo; }
+
+    /* 0x0 */ u8 field_0x0;
+    /* 0x1 */ u8 mSaveTableNo;
+    /* 0x2 */ u8 mVisitedRoomSaveTableNo;
 };
 
-struct dSv_event_flag_c {
-    static u8 saveBitLabels[1644 + 4 /* padding */];
+class dMenu_Fmap_stage_data_c {
+public:
+    /* 8003D95C */ bool isArrival();
+    /* 8003D9D8 */ int buildFmapStageData(int, f32, f32);
+
+    dMenu_Fmap_stage_arc_data_c* getStageArc() { return mpStageArc; }
+    dMenu_Fmap_stage_data_c* getNextData() { return mpNextData; }
+
+    /* 0x00 */ char name[8];
+    /* 0x08 */ dMenu_Fmap_stage_arc_data_c* mpStageArc;
+    /* 0x0C */ dMenu_Fmap_room_data_c* mp_roomTop;
+    /* 0x10 */ dMenu_Fmap_stage_data_c* mpNextData;
+    /* 0x14 */ f32 m_offsetX;
+    /* 0x18 */ f32 m_offsetZ;
+    /* 0x1C */ f32 m_stageMinX;
+    /* 0x20 */ f32 m_stageMinZ;
+    /* 0x24 */ f32 m_stageMaxX;
+    /* 0x28 */ f32 m_stageMaxZ;
+    /* 0x2C */ int m_stageCntNo;
 };
 
-struct dSv_event_c {
-    /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct dMenu_Fmap_region_data_c {
-    /* 8003DB48 */ void getMenuFmapStageData(int);
+class dMenu_Fmap_region_data_c {
+public:
+    /* 8003DB48 */ dMenu_Fmap_stage_data_c* getMenuFmapStageData(int);
     /* 8003DB70 */ void getPointStagePathInnerNo(f32, f32, int, int*, int*);
     /* 8003DEE0 */ void buildFmapRegionData(int);
+
+    /* 0x00 */ dMenu_Fmap_stage_data_c* mpMenuFmapStageDataTop;
+    /* 0x04 */ dMenu_Fmap_region_data_c* mpNextData;
+    /* 0x08 */ f32 mRegionOffsetX;
+    /* 0x0C */ f32 mRegionOffsetZ;
+    /* 0x10 */ f32 mRegionMinX;
+    /* 0x14 */ f32 mRegionMaxX;
+    /* 0x18 */ f32 mRegionMinZ;
+    /* 0x1C */ f32 mRegionMaxZ;
+    /* 0x20 */ int mRegionNo;
 };
 
 struct dMenu_Fmap_world_data_c {
     /* 8003E028 */ void create(dMenu_Fmap_region_data_c*);
     /* 8003E04C */ void buildFmapWorldData();
-};
 
-struct dMenu_Fmap_stage_data_c {
-    /* 8003D95C */ void isArrival();
-    /* 8003D9D8 */ void buildFmapStageData(int, f32, f32);
-};
-
-struct dMenu_Fmap_room_data_c {
-    /* 8003D818 */ void isArrival();
-    /* 8003D868 */ void buildTresTypeGroup(int, int, int);
-    /* 8003D92C */ void buildFmapRoomData(int, int, f32, f32, f32, f32);
+    /* 0x00 */ dMenu_Fmap_region_data_c* mp_fmapRegionData;
+    /* 0x04 */ f32 m_worldMinX;
+    /* 0x08 */ f32 m_worldMinZ;
+    /* 0x0C */ f32 m_worldMaxX;
+    /* 0x10 */ f32 m_worldMaxZ;
 };
 
 struct dMenuFmapIconPointer_c {
@@ -145,7 +210,6 @@ extern "C" void getTypeGroupNoToType__7dTres_cFUc();
 extern "C" void getTypeToTypeGroupNo__7dTres_cFUc();
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
-extern "C" void PSVECCrossProduct();
 extern "C" void __construct_array();
 extern "C" void __save_gpr();
 extern "C" void _savegpr_22();
@@ -159,10 +223,7 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcmp();
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_max;
 
 //
 // Declarations:
@@ -170,57 +231,98 @@ extern "C" extern u32 __float_max;
 
 /* 8003D790-8003D818 0380D0 0088+00 1/1 0/0 0/0 .text
  * addTypeGroupData__26fmpTresTypeGroupDataList_cFUcPCQ27dTres_c6data_s */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fmpTresTypeGroupDataList_c::addTypeGroupData(u8 param_0, dTres_c::data_s const* param_1) {
-    nofralloc
-#include "asm/d/map/d_map_path_fmap/addTypeGroupData__26fmpTresTypeGroupDataList_cFUcPCQ27dTres_c6data_s.s"
+void fmpTresTypeGroupDataList_c::addTypeGroupData(u8 i_typeGroupNo,
+                                                  dTres_c::data_s const* i_tresData) {
+    fmpTresTypeGroupData_c* next = mpNextData;
+    fmpTresTypeGroupData_c* fmpTresTypeGroupData_p = new fmpTresTypeGroupData_c();
+
+    if (mpTypeGroupDataHead == NULL) {
+        mpTypeGroupDataHead = fmpTresTypeGroupData_p;
+    }
+
+    fmpTresTypeGroupData_p->setTresData(i_tresData);
+    fmpTresTypeGroupData_p->setNextData(NULL);
+    fmpTresTypeGroupData_p->setTypeGroupNo(i_typeGroupNo);
+
+    if (next != NULL) {
+        next->setNextData(fmpTresTypeGroupData_p);
+    }
+
+    mpNextData = fmpTresTypeGroupData_p;
 }
-#pragma pop
 
 /* 8003D818-8003D868 038158 0050+00 1/1 1/1 0/0 .text isArrival__22dMenu_Fmap_room_data_cFv */
+#ifdef NONMATCHING
+bool dMenu_Fmap_room_data_c::isArrival() {
+    u8 table_no = mp_parentStage->getStageArc()->getVisitedRoomSaveTableNo();
+    return dComIfGs_isSaveVisitedRoom(table_no, m_roomNo) != false;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap_room_data_c::isArrival() {
+asm bool dMenu_Fmap_room_data_c::isArrival() {
     nofralloc
 #include "asm/d/map/d_map_path_fmap/isArrival__22dMenu_Fmap_room_data_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8003D868-8003D92C 0381A8 00C4+00 1/1 0/0 0/0 .text
  * buildTresTypeGroup__22dMenu_Fmap_room_data_cFiii             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fmap_room_data_c::buildTresTypeGroup(int param_0, int param_1, int param_2) {
-    nofralloc
-#include "asm/d/map/d_map_path_fmap/buildTresTypeGroup__22dMenu_Fmap_room_data_cFiii.s"
+void dMenu_Fmap_room_data_c::buildTresTypeGroup(int param_0, int param_1, int param_2) {
+    dTres_c::list_class* tresure_p = mp_fmapData->getTresure();
+    if (tresure_p != NULL) {
+        int num = tresure_p->field_0x0;
+        dTres_c::data_s* data_p = tresure_p->field_0x4;
+
+        if (mp_fmpTresTypeGroupDataListAll == NULL) {
+            mp_fmpTresTypeGroupDataListAll = new fmpTresTypeGroupDataListAll_c();
+        }
+
+        for (int i = 0; i < num; i++) {
+            data_p->mRoomNo = param_2;
+            u8 typeGroupNo = dTres_c::getTypeToTypeGroupNo(data_p->mType);
+            mp_fmpTresTypeGroupDataListAll->addTypeGroupData(typeGroupNo, data_p);
+            data_p++;
+        }
+    }
 }
-#pragma pop
 
 /* 8003D92C-8003D95C 03826C 0030+00 1/1 0/0 0/0 .text
  * buildFmapRoomData__22dMenu_Fmap_room_data_cFiiffff           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fmap_room_data_c::buildFmapRoomData(int param_0, int param_1, f32 param_2,
-                                                   f32 param_3, f32 param_4, f32 param_5) {
-    nofralloc
-#include "asm/d/map/d_map_path_fmap/buildFmapRoomData__22dMenu_Fmap_room_data_cFiiffff.s"
+void dMenu_Fmap_room_data_c::buildFmapRoomData(int param_0, int param_1, f32 param_2, f32 param_3,
+                                               f32 param_4, f32 param_5) {
+    int roomNo = m_roomNo;
+
+    if (mp_fmapData != NULL) {
+        buildTresTypeGroup(param_0, param_1, roomNo);
+    }
 }
-#pragma pop
 
 /* 8003D95C-8003D9D8 03829C 007C+00 1/1 0/0 0/0 .text isArrival__23dMenu_Fmap_stage_data_cFv */
+#ifdef NONMATCHING
+bool dMenu_Fmap_stage_data_c::isArrival() {
+    bool is_arrival = false;
+
+    dMenu_Fmap_room_data_c* room = mp_roomTop;
+    u8 table_no = mpStageArc->getVisitedRoomSaveTableNo();
+    for (; !is_arrival && room != NULL; room = room->getNextData()) {
+        is_arrival = dComIfGs_isSaveVisitedRoom(table_no, room->getRoomNo()) != false;
+    }
+
+    return is_arrival;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap_stage_data_c::isArrival() {
+asm bool dMenu_Fmap_stage_data_c::isArrival() {
     nofralloc
 #include "asm/d/map/d_map_path_fmap/isArrival__23dMenu_Fmap_stage_data_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80451E20-80451E28 000420 0004+04 5/5 0/0 0/0 .sdata2          @3894 */
@@ -232,25 +334,66 @@ SECTION_SDATA2 static f32 lit_3894[1 + 1 /* padding */] = {
 
 /* 8003D9D8-8003DB48 038318 0170+00 1/1 0/0 0/0 .text
  * buildFmapStageData__23dMenu_Fmap_stage_data_cFiff            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fmap_stage_data_c::buildFmapStageData(int param_0, f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/d/map/d_map_path_fmap/buildFmapStageData__23dMenu_Fmap_stage_data_cFiff.s"
+int dMenu_Fmap_stage_data_c::buildFmapStageData(int param_0, f32 param_1, f32 param_2) {
+    dMenu_Fmap_room_data_c* room = mp_roomTop;
+    f32 fvar3 = __float_max[0];
+    f32 fvar4 = __float_max[0];
+    f32 fvar5 = -__float_max[0];
+    f32 fvar6 = -__float_max[0];
+    int ivar = 0;
+
+    for (; room != NULL; room = room->getNextData()) {
+        room->buildFmapRoomData(param_0, ivar, param_1, param_2, m_offsetX, m_offsetZ);
+        f32 min_x = room->getFileList2MinX();
+        f32 min_z = room->getFileList2MinZ();
+        f32 max_x = room->getFileList2MaxX();
+        f32 max_z = room->getFileList2MaxZ();
+
+        if (min_x < fvar3) {
+            fvar3 = min_x;
+        }
+
+        if (min_z < fvar4) {
+            fvar4 = min_z;
+        }
+
+        if (max_x > fvar5) {
+            fvar5 = max_x;
+        }
+
+        if (max_z > fvar6) {
+            fvar6 = max_z;
+        }
+
+        ivar++;
+    }
+
+    if (ivar > 0) {
+        m_stageMinX = fvar3;
+        m_stageMinZ = fvar4;
+        m_stageMaxX = fvar5;
+        m_stageMaxZ = fvar6;
+    } else {
+        f32 tmp_0 = lit_3894[0];
+        m_stageMinX = tmp_0;
+        m_stageMinZ = tmp_0;
+        m_stageMaxX = tmp_0;
+        m_stageMaxZ = tmp_0;
+    }
+
+    return ivar;
 }
-#pragma pop
 
 /* 8003DB48-8003DB70 038488 0028+00 0/0 1/1 0/0 .text
  * getMenuFmapStageData__24dMenu_Fmap_region_data_cFi           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fmap_region_data_c::getMenuFmapStageData(int param_0) {
-    nofralloc
-#include "asm/d/map/d_map_path_fmap/getMenuFmapStageData__24dMenu_Fmap_region_data_cFi.s"
+dMenu_Fmap_stage_data_c* dMenu_Fmap_region_data_c::getMenuFmapStageData(int param_0) {
+    dMenu_Fmap_stage_data_c* stage = mpMenuFmapStageDataTop;
+    for (int i = 0; stage != NULL && i < param_0; i++) {
+        stage = stage->getNextData();
+    }
+
+    return stage;
 }
-#pragma pop
 
 /* 8003DB70-8003DEE0 0384B0 0370+00 0/0 1/1 0/0 .text
  * getPointStagePathInnerNo__24dMenu_Fmap_region_data_cFffiPiPi */

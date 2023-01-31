@@ -41,8 +41,8 @@ public:
     };  // Size: 0x1C
 
     struct list_class {
-        /* 0x0 */ typeGroupData_c* field_0x0;
-        /* 0x4 */ typeGroupData_c* field_0x4;
+        /* 0x0 */ int field_0x0;
+        /* 0x4 */ data_s* field_0x4;
         /* 0x8 */ u8 mNumber;
     };
 
@@ -60,7 +60,7 @@ public:
     /* 8009C3B4 */ static typeGroupData_c* getNextData(dTres_c::typeGroupData_c const*);
     /* 8009C3CC */ static void setPosition(int, u8, Vec const*, int);
     /* 8009C49C */ static int getTypeGroupNoToType(u8);
-    /* 8009C4B0 */ static int getTypeToTypeGroupNo(u8);
+    /* 8009C4B0 */ static u8 getTypeToTypeGroupNo(u8);
 
     static int getTypeGroupNumber(int index) {
         return mTypeGroupListAll[index].mNumber;
