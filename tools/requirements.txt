@@ -9,5 +9,3 @@ python-Levenshtein
 cxxfilt
 pyelftools
 requests
-zipfile
-shutil
