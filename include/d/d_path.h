@@ -18,5 +18,6 @@ struct dPath {
 inline int dPath_ChkClose(dPath* i_path) { return (i_path->m_closed & 1); }
 
 dPath* dPath_GetRoomPath(int path_index, int room_no);
+dStage_dPnt_c* dPath_GetPnt(dPath const* path, int pnt_index);
 
 #endif /* D_D_PATH_H */
