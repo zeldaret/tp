@@ -18,7 +18,7 @@ void __DVDInterruptHandler();
 static void AlarmHandler();
 static void AlarmHandlerForTimeout();
 static void Read(u32 arg0, u32 arg1, u32 arg2, DVDLowCallback cb);
-static void SeekTwiceBeforeRead();
+static void SeekTwiceBeforeRead(u32 arg0, u32 arg1, u32 arg2, DVDLowCallback cb);
 void DVDLowRead();
 BOOL DVDLowSeek(u32 arg0, DVDLowCallback cb);
 BOOL DVDLowWaitCoverClose(DVDLowCallback cb);
@@ -65,7 +65,7 @@ typedef struct DVDCommand {
 
 /* ############################################################################################## */
 /* 8044C830-8044C870 079550 003C+04 6/6 0/0 0/0 .bss             CommandList */
-static u8 CommandList[60 + 4 /* padding */];
+static DVDCommand CommandList[3];
 
 /* 80451710-80451714 000C10 0004+00 12/12 0/0 0/0 .sbss            StopAtNextInt */
 static volatile BOOL StopAtNextInt;
@@ -233,14 +233,27 @@ void Read(u32 arg0, u32 arg1, u32 arg2, DVDLowCallback cb) {
 }
 
 /* 80347B98-80347C18 3424D8 0080+00 1/1 0/0 0/0 .text            SeekTwiceBeforeRead */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void SeekTwiceBeforeRead() {
-    nofralloc
-#include "asm/dolphin/dvd/dvdlow/SeekTwiceBeforeRead.s"
+void SeekTwiceBeforeRead(u32 arg0, u32 arg1, u32 arg2, DVDLowCallback cb) {
+    u32 val;
+    u32 temp = arg2 & 0xffff8000;
+    if (temp == 0) {
+        val = 0;
+    } else {
+        val = temp + WorkAroundSeekLocation[0];
+    }
+
+    CommandList[0]._0 = 2;
+    CommandList[0]._c = val;
+    CommandList[0].callback = cb;
+    CommandList[1]._0 = 1;
+    CommandList[1]._4 = arg0;
+    CommandList[1]._8 = arg1;
+    CommandList[1]._c = arg2;
+    CommandList[1].callback = cb;
+    CommandList[2]._0 = -1;
+    NextCommandNumber = 0;
+    DVDLowSeek(val, cb);
 }
-#pragma pop
 
 /* 80347C18-80347EB0 342558 0298+00 0/0 4/4 0/0 .text            DVDLowRead */
 #pragma push
