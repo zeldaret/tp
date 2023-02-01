@@ -17,7 +17,7 @@ lbl_80347A88:
 /* 80347AC4  3B E6 C8 30 */	addi r31, r6, CommandList@l /* 0x8044C830@l */
 /* 80347AC8  90 0D 91 D0 */	stw r0, LastCommandWasRead(r13)
 /* 80347ACC  4B FF AC 51 */	bl __OSGetSystemTime
-/* 80347AD0  90 8D 91 CC */	stw r4, data_8045174C(r13)
+/* 80347AD0  90 8D 91 CC */	stw r4, LastReadIssued+0x4(r13)
 /* 80347AD4  3C 80 CC 00 */	lis r4, 0xCC00 /* 0xCC006000@ha */
 /* 80347AD8  3C 00 00 A0 */	lis r0, 0xa0
 /* 80347ADC  90 6D 91 C8 */	stw r3, LastReadIssued(r13)
