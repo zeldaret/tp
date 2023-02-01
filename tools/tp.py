@@ -4,40 +4,26 @@ tp.py - Various tools used for the zeldaret/tp project.
 
 """
 
+import hashlib
+import io
 import os
 import sys
 import time
-import struct
 import json
 import subprocess
+import logging
 import multiprocessing as mp
 import shutil
 import platform
 import stat
+import zipfile
 
 from dataclasses import dataclass, field
 from typing import Dict, List, Set, Tuple
 from pathlib import Path
 
-try:
-    import click
-    import logging
-    import hashlib
-    import libdol
-    import librel
-    import libarc
-    import io
-    import extract_game_assets
-    import requests
-    import zipfile
-    import shutil
 
-    from rich.logging import RichHandler
-    from rich.console import Console
-    from rich.progress import Progress
-    from rich.text import Text
-    from rich.table import Table
-except ImportError as e:
+def _handle_import_error(ex: ImportError):
     MISSING_PREREQUISITES = (
         f"Missing prerequisite python module {e}.\n"
         f"Run `python3 -m pip install --user -r tools/requirements.txt` to install prerequisites."
@@ -45,6 +31,20 @@ except ImportError as e:
 
     print(MISSING_PREREQUISITES, file=sys.stderr)
     sys.exit(1)
+
+try:
+    import click
+    import libdol
+    import libarc
+    import requests
+
+    from rich.logging import RichHandler
+    from rich.console import Console
+    from rich.progress import Progress
+    from rich.text import Text
+    from rich.table import Table
+except ImportError as ex:
+    _handle_import_error(ex)
 
 
 class PathPath(click.Path):
@@ -202,14 +202,12 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
         )
         sys.exit(1)
 
-    c27_lmgr326b = c27.joinpath("Lmgr326b.dll")
-    if not c27_lmgr326b.exists() or not c27_lmgr326b.is_file():
-        c27_lmgr326b = c27.joinpath("lmgr326b.dll")
-    if not c27_lmgr326b.exists() or not c27_lmgr326b.is_file():
-        c27_lmgr326b = c27.joinpath("LMGR326B.dll")
-    if not c27_lmgr326b.exists() or not c27_lmgr326b.is_file():
-        c27_lmgr326b = c27.joinpath("LMGR326B.DLL")
-    if not c27_lmgr326b.exists() or not c27_lmgr326b.is_file():
+    c27_lmgr326b = None
+    for name in os.listdir(c27):
+        if name.lower() == "lmgr326b.dll":
+            c27_lmgr326b = c27.joinpath(name)
+            break
+    if not c27_lmgr326b or not c27_lmgr326b.is_file():
         LOG.error(
             (
                 f"Unable to find 'lmgr326b.dll' in '{c27}': missing file '{c27_lmgr326b}'\n"
@@ -218,15 +216,15 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
         )
         sys.exit(1)
 
-    c27_lmgr326b_cc = c27.joinpath("LMGR326B.dll")
-    if not c27_lmgr326b_cc.exists() or not c27_lmgr326b_cc.is_file():
-        LOG.debug(f"copy: '{c27_lmgr326b}', to: '{c27_lmgr326b_cc}'")
-        shutil.copy(c27_lmgr326b, c27_lmgr326b_cc)
+    def copy_lmgr326b(path: Path):
+        lmgr326b_cc = path.joinpath("LMGR326B.dll")
+        if not lmgr326b_cc.is_file():
+            LOG.debug(f"copy: '{c27_lmgr326b}', to: '{lmgr326b_cc}'")
+            shutil.copy(c27_lmgr326b, lmgr326b_cc)
 
-    c125_lmgr326b_cc = c125.joinpath("LMGR326B.dll")
-    if not c125_lmgr326b_cc.exists() or not c125_lmgr326b_cc.is_file():
-        LOG.debug(f"copy: '{c27_lmgr326b}', to: '{c125_lmgr326b_cc}'")
-        shutil.copy(c27_lmgr326b, c125_lmgr326b_cc)
+    copy_lmgr326b(c27)
+    copy_lmgr326b(c125)
+    copy_lmgr326b(c125e)
 
     c27_mwcceppc = c27.joinpath("mwcceppc.exe")
     if not c27_mwcceppc.exists() or not c27_mwcceppc.is_file():
@@ -297,6 +295,18 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
         )
         sys.exit(1)
 
+    # add execute flag to compilers for WSL
+    if os.name == 'posix':
+        subprocess.run(['chmod', '+x'] + list(compilers.glob("*/*.exe")))
+
+    #
+    text = Text("--- Building tools")
+    text.stylize("bold magenta")
+    CONSOLE.print(text)
+    if subprocess.run(["make", "tools"]).returncode != 0:
+        LOG.error("An error occurred while running 'make tools'")
+        exit(1)
+
     #
     text = Text("--- Extracting game assets")
     text.stylize("bold magenta")
@@ -313,10 +323,13 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
         sys.exit(1)
 
     try:
+        import extract_game_assets
         previous_dir = os.getcwd()
         os.chdir(str(game_path.absolute()))
         extract_game_assets.extract("../" + str(iso))
         os.chdir(previous_dir)
+    except ImportError as ex:
+        _handle_import_error(ex)
     except Exception as e:
         LOG.error(f"failure:")
         LOG.error(e)
@@ -428,7 +441,7 @@ class ProgressGroup:
 
 
 def calculate_rel_progress(build_path: Path, matching: bool, format: str, asm_files: Set[Path], ranges: List[Tuple[int, int]]):
-    results = []
+    results: List[ProgressGroup] = []
     start = time.time()
     rel_paths = get_files_with_ext(build_path.joinpath("rel"), ".rel")
     end = time.time()
@@ -437,12 +450,13 @@ def calculate_rel_progress(build_path: Path, matching: bool, format: str, asm_fi
     start = time.time()
     from collections import defaultdict
 
+    str_asm_rel = f"asm{os.path.sep}rel{os.path.sep}"
     range_dict = defaultdict(list)
     for file, range in zip(asm_files, ranges):
         str_file = str(file)
-        if not str_file.startswith("asm/rel/"):
+        if not str_file.startswith(str_asm_rel):
             continue
-        rel = str_file.split("/")[-3]
+        rel = str_file.split(os.path.sep)[-3]
         range_dict[rel].append(range[1] - range[0])
 
     end = time.time()
@@ -459,6 +473,7 @@ def calculate_rel_progress(build_path: Path, matching: bool, format: str, asm_fi
         decompiled = size - sum(rel_ranges)
         results.append(ProgressGroup(name, size, decompiled, {}))
 
+    results.sort(key=lambda prog: prog.name)
     return results
 
 
@@ -1132,6 +1147,11 @@ class CheckException(Exception):
 
 
 def check_sha1(game_path: Path, build_path: Path, include_rels: bool):
+    try:
+        import librel
+    except ImportError as ex:
+        _handle_import_error(ex)
+
     EXPECTED = {}
     EXPECTED[0] = (
         "",
