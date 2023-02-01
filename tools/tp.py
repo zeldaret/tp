@@ -441,7 +441,7 @@ class ProgressGroup:
 
 
 def calculate_rel_progress(build_path: Path, matching: bool, format: str, asm_files: Set[Path], ranges: List[Tuple[int, int]]):
-    results = []
+    results: List[ProgressGroup] = []
     start = time.time()
     rel_paths = get_files_with_ext(build_path.joinpath("rel"), ".rel")
     end = time.time()
@@ -450,12 +450,13 @@ def calculate_rel_progress(build_path: Path, matching: bool, format: str, asm_fi
     start = time.time()
     from collections import defaultdict
 
+    str_asm_rel = f"asm{os.path.sep}rel{os.path.sep}"
     range_dict = defaultdict(list)
     for file, range in zip(asm_files, ranges):
         str_file = str(file)
-        if not str_file.startswith("asm/rel/"):
+        if not str_file.startswith(str_asm_rel):
             continue
-        rel = str_file.split("/")[-3]
+        rel = str_file.split(os.path.sep)[-3]
         range_dict[rel].append(range[1] - range[0])
 
     end = time.time()
@@ -472,6 +473,7 @@ def calculate_rel_progress(build_path: Path, matching: bool, format: str, asm_fi
         decompiled = size - sum(rel_ranges)
         results.append(ProgressGroup(name, size, decompiled, {}))
 
+    results.sort(key=lambda prog: prog.name)
     return results
 
 
