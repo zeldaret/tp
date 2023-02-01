@@ -152,8 +152,6 @@ JKRAram::~JKRAram() {
 }
 
 /* 802D21DC-802D2248 2CCB1C 006C+00 1/0 0/0 0/0 .text            run__7JKRAramFv */
-// almost full match
-#ifdef NONMATCHING
 void* JKRAram::run(void) {
     int result;
     JKRAMCommand* command;
@@ -165,22 +163,13 @@ void* JKRAram::run(void) {
         command = message->command;
         delete message;
 
-        if (result != 1) {
-        } else {
+        switch (result) {
+        case 1:
             JKRAramPiece::startDMA(command);
+            break;
         }
     } while (true);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* JKRAram::run() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAram/run__7JKRAramFv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 8039D078-8039D078 0296D8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

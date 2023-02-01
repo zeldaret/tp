@@ -11,7 +11,7 @@ lbl_80CC652C:
 /* 80CC6550  4B FF F9 7D */	bl setNormalRopePos__14daObjItaRope_cFv
 /* 80CC6554  38 61 00 20 */	addi r3, r1, 0x20
 /* 80CC6558  38 9C 04 D0 */	addi r4, r28, 0x4d0
-/* 80CC655C  4B 39 4F D5 */	bl dKyw_get_AllWind_vecpow__FP4cXyz
+/* 80CC655C  4B 39 4F D5 */	bl dKyw_get_AllWind_vecpow__FP4cXyzP4cXyz
 /* 80CC6560  C0 01 00 20 */	lfs f0, 0x20(r1)
 /* 80CC6564  D0 01 00 08 */	stfs f0, 8(r1)
 /* 80CC6568  C0 01 00 24 */	lfs f0, 0x24(r1)

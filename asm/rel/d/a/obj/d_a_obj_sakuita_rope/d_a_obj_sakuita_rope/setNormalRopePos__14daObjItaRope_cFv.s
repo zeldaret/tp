@@ -17,7 +17,7 @@ lbl_80CC5ECC:
 /* 80CC5F08  83 7F 06 18 */	lwz r27, 0x618(r31)
 /* 80CC5F0C  38 61 00 80 */	addi r3, r1, 0x80
 /* 80CC5F10  38 9F 04 D0 */	addi r4, r31, 0x4d0
-/* 80CC5F14  4B 39 56 1D */	bl dKyw_get_AllWind_vecpow__FP4cXyz
+/* 80CC5F14  4B 39 56 1D */	bl dKyw_get_AllWind_vecpow__FP4cXyzP4cXyz
 /* 80CC5F18  C0 01 00 80 */	lfs f0, 0x80(r1)
 /* 80CC5F1C  D0 01 00 8C */	stfs f0, 0x8c(r1)
 /* 80CC5F20  C0 01 00 84 */	lfs f0, 0x84(r1)

@@ -53,10 +53,10 @@ public:
 
     f32 get_rndm_zh() {
         f32 f = get_rndm_f();
-        return f - 1.0f;
+        return f - 0.5f;
     }
 
-    s16 get_rndm_ss() { return ((s16)get_rndm_u()) >> 16; }
+    s16 get_rndm_ss() { return (s16)(get_rndm_u() >> 16); }
 
 public:
     u32 mSeed;
@@ -161,8 +161,8 @@ struct JPAEmitterWorkData {
     /* 0x34 */ f32 mVolumeSize;
     /* 0x38 */ f32 mVolumeMinRad;
     /* 0x3C */ f32 mVolumeSweep;
-    /* 0x40 */ u32 mEmitCount;
-    /* 0x44 */ u32 mVolumeEmitIdx;
+    /* 0x40 */ s32 mEmitCount;
+    /* 0x44 */ s32 mVolumeEmitIdx;
     /* 0x48 */ Mtx mDirectionMtx;
     /* 0x78 */ Mtx mRotationMtx;
     /* 0xA8 */ Mtx mGlobalRot;

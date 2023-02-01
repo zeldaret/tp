@@ -176,7 +176,7 @@ extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
 extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
 extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
 extern "C" void getRes__14dRes_control_cFPCcPCcP11dRes_info_ci();
-extern "C" void dKyw_get_AllWind_vecpow__FP4cXyz();
+extern "C" void dKyw_get_AllWind_vecpow__FP4cXyzP4cXyz();
 extern "C" void GetAc__22dCcD_GAtTgCoCommonBaseFv();
 extern "C" void __ct__10dCcD_GSttsFv();
 extern "C" void __ct__12dCcD_GObjInfFv();

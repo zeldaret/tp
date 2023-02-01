@@ -222,37 +222,35 @@ static u8 data_80451060;
 
 /* 80197098-80197270 1919D8 01D8+00 1/1 0/0 0/0 .text            dShopSystem_searchItemActor__FPvPv
  */
-#ifdef NONMATCHING
 static int dShopSystem_searchItemActor(void* param_0, void* param_1) {
     if (fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_TAG_SHOPITM) {
-        u32 param = fopAcM_GetParam(param_0);
-        if ((param & 0xF0000000) == (fopAcM_GetParam(param_1) & 0xF0000000) &&
+        if ((fopAcM_GetParam(param_1) & 0xF0000000) == (fopAcM_GetParam(param_0) & 0xF0000000) &&
             dShopSystem_item_count < data_80451058) {
-            u32 param2 = (param >> 0x18) & 0xF;
+            u8 param2 = (fopAcM_GetParam(param_0) >> 0x18) & 0xF;
 
             if (dShopSystem_itemActor[0] != param_0 && dShopSystem_itemActor[1] != param_0 &&
                 dShopSystem_itemActor[2] != param_0 && dShopSystem_itemActor[3] != param_0 &&
                 dShopSystem_itemActor[4] != param_0 && dShopSystem_itemActor[5] != param_0 &&
                 dShopSystem_itemActor[6] != param_0) {
                 u8 sw = static_cast<fopAc_ac_c*>(param_0)->orig.angle.z;
-                u8 sw2 = static_cast<fopAc_ac_c*>(param_0)->orig.angle.z >> 8;
-                u8 item_no = param;
+                u8 sw2 = ((u16)static_cast<fopAc_ac_c*>(param_0)->orig.angle.z) >> 8;
+                u8 item_no = fopAcM_GetParam(param_0) & 0xff;
 
                 if ((sw == 0xFF || !dComIfGs_isSaveSwitch(sw)) &&
                     (sw2 == 0xFF || dComIfGs_isSaveSwitch(sw2))) {
                     if (sw != 0xFF && item_no == HYLIA_SHIELD && checkItemGet(item_no, true)) {
                         dComIfGs_onSaveSwitch(sw);
+                    } else {
+                        if (param2 == 0) {
+                            data_80451060 = 1;
+                            dShopSystem_itemActor[dShopSystem_item_count] = (fopAc_ac_c*) param_0;
+                            dShopSystem_itemNo[dShopSystem_item_count] = item_no;
+                        } else if (dShopSystem_itemActor[param2 - 1] == NULL) {
+                            dShopSystem_itemActor[param2 - 1] = (fopAc_ac_c*) param_0;
+                            dShopSystem_itemNo[param2 - 1] = item_no;
+                        }
+                        dShopSystem_item_count++;
                     }
-
-                    if (param2 == 0) {
-                        data_80451060 = 1;
-                        dShopSystem_itemActor[dShopSystem_item_count] = param_0;
-                        dShopSystem_itemNo[dShopSystem_item_count] = item_no;
-                    } else if (dShopSystem_itemActor[param2 - 1] == NULL) {
-                        dShopSystem_itemActor[param2 - 1] = param_0;
-                        dShopSystem_itemNo[param2 - 1] = item_no;
-                    }
-                    dShopSystem_item_count++;
                 }
             }
         }
@@ -260,16 +258,6 @@ static int dShopSystem_searchItemActor(void* param_0, void* param_1) {
 
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dShopSystem_searchItemActor(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/dShopSystem_searchItemActor__FPvPv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 804506F0-804506F8 000170 0008+00 6/6 0/0 0/0 .sdata           dShopSystem_cameraActor */

@@ -19,20 +19,20 @@ static void AlarmHandlerForTimeout();
 static void Read();
 static void SeekTwiceBeforeRead();
 void DVDLowRead();
-void DVDLowSeek();
-void DVDLowWaitCoverClose();
-void DVDLowReadDiskID();
-void DVDLowStopMotor();
-void DVDLowRequestError();
-void DVDLowInquiry();
-void DVDLowAudioStream();
-void DVDLowRequestAudioStatus();
-void DVDLowAudioBufferConfig();
+BOOL DVDLowSeek(u32 arg0, DVDLowCallback cb);
+BOOL DVDLowWaitCoverClose(DVDLowCallback cb);
+BOOL DVDLowReadDiskID(u32 arg0, DVDLowCallback cb);
+BOOL DVDLowStopMotor(DVDLowCallback cb);
+BOOL DVDLowRequestError(DVDLowCallback cb);
+BOOL DVDLowInquiry(u32 arg0, DVDLowCallback cb);
+BOOL DVDLowAudioStream(u32 arg0, u32 arg1, u32 arg2, DVDLowCallback cb);
+BOOL DVDLowRequestAudioStatus(u32 arg0, DVDLowCallback cb);
+BOOL DVDLowAudioBufferConfig(s32 arg0, u32 arg1, DVDLowCallback cb);
 void DVDLowReset();
-void DVDLowBreak();
+BOOL DVDLowBreak();
 DVDLowCallback DVDLowClearCallback();
-void __DVDLowSetWAType();
-void __DVDLowTestAlarm();
+void __DVDLowSetWAType(u32 arg0, u32 arg1);
+BOOL __DVDLowTestAlarm(OSAlarm* alarm);
 
 //
 // External References:
@@ -44,8 +44,8 @@ void OSSetAlarm();
 void OSCancelAlarm();
 void OSSetCurrentContext();
 void OSClearContext();
-void OSDisableInterrupts();
-void OSRestoreInterrupts();
+BOOL OSDisableInterrupts();
+void OSRestoreInterrupts(BOOL enabled);
 void __OSMaskInterrupts();
 OSTime __OSGetSystemTime();
 void DVDGetCurrentDiskID();
@@ -62,12 +62,26 @@ typedef struct DVDCommand {
   DVDLowCallback callback;
 } DVDCommand;
 
+typedef struct BI2Debug {
+    /* 0x00 */ s32 debugMonSize;
+    /* 0x04 */ s32 simMemSize;
+    /* 0x08 */ u32 argOffset;
+    /* 0x0C */ u32 debugFlag;
+    /* 0x10 */ int trackLocation;
+    /* 0x14 */ int trackSize;
+    /* 0x18 */ u32 countryCode;
+    /* 0x1C */ u8 unk[8];
+    /* 0x24 */ u32 padSpec;
+} BI2Debug;
+
+#define OS_BI2_DEBUG_ADDRESS 0x800000F4
+
 /* ############################################################################################## */
 /* 8044C830-8044C870 079550 003C+04 6/6 0/0 0/0 .bss             CommandList */
 static u8 CommandList[60 + 4 /* padding */];
 
 /* 80451710-80451714 000C10 0004+00 12/12 0/0 0/0 .sbss            StopAtNextInt */
-static u8 StopAtNextInt[4];
+static volatile BOOL StopAtNextInt;
 
 /* 80451714-80451718 000C14 0004+00 1/1 0/0 0/0 .sbss            LastLength */
 static u8 LastLength[4];
@@ -88,19 +102,19 @@ static u8 data_80451724[4];
 static u8 ResetOccurred[4];
 
 /* 8045172C-80451730 000C2C 0004+00 3/3 0/0 0/0 .sbss            WaitingCoverClose */
-static DVDLowCallback WaitingCoverClose;
+static volatile BOOL WaitingCoverClose;
 
 /* 80451730-80451734 000C30 0004+00 2/2 0/0 0/0 .sbss            Breaking */
-static u8 Breaking[4];
+static BOOL Breaking;
 
 /* 80451734-80451738 000C34 0004+00 2/2 0/0 0/0 .sbss            WorkAroundType */
-static u8 WorkAroundType[4];
+static u32 WorkAroundType;
 
 /* 80451738-80451740 000C38 0004+04 2/2 0/0 0/0 .sbss            WorkAroundSeekLocation */
-static u8 WorkAroundSeekLocation[4 + 4 /* padding */];
+static u32 WorkAroundSeekLocation[2];
 
 /* 80451740-80451744 000C40 0004+00 2/2 0/0 0/0 .sbss            LastReadFinished */
-static u8 LastReadFinished[4];
+static BOOL LastReadFinished;
 
 /* 80451744-80451748 000C44 0004+00 2/2 0/0 0/0 .sbss            None */
 static u8 data_80451744[4];
@@ -118,14 +132,12 @@ static u8 LastCommandWasRead[4];
 static u32 NextCommandNumber;
 
 /* 80347674-803476B4 341FB4 0040+00 0/0 1/1 0/0 .text            __DVDInitWA */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __DVDInitWA() {
-    nofralloc
-#include "asm/dolphin/dvd/dvdlow/__DVDInitWA.s"
+void __DVDInitWA() {
+    NextCommandNumber = 0;
+    ((DVDCommand*)CommandList)[0]._0 = -1;
+    __DVDLowSetWAType(0, 0);
+    OSInitAlarm();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8044C870-8044C898 079590 0028+00 0/1 0/0 0/0 .bss             AlarmForWA */
@@ -135,10 +147,10 @@ static u8 AlarmForWA[40];
 #pragma pop
 
 /* 8044C898-8044C8C0 0795B8 0028+00 9/11 0/0 0/0 .bss             AlarmForTimeout */
-static u8 AlarmForTimeout[40];
+static OSAlarm AlarmForTimeout;
 
 /* 8044C8C0-8044C8E8 0795E0 0028+00 1/1 0/0 0/0 .bss             AlarmForBreak */
-static u8 AlarmForBreak[40];
+static OSAlarm AlarmForBreak;
 
 /* 8044C8E8-8044C8F4 079608 000C+00 0/1 0/0 0/0 .bss             Prev */
 #pragma push
@@ -241,94 +253,127 @@ asm void DVDLowRead() {
 #pragma pop
 
 /* 80347EB0-80347F44 3427F0 0094+00 3/3 2/2 0/0 .text            DVDLowSeek */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DVDLowSeek() {
-    nofralloc
-#include "asm/dolphin/dvd/dvdlow/DVDLowSeek.s"
+BOOL DVDLowSeek(u32 arg0, DVDLowCallback cb) {
+    u32 temp;
+    Callback = cb;
+    StopAtNextInt = FALSE;
+    __DIRegs[2] = 0xAB000000;
+    __DIRegs[3] = arg0 >> 2;
+    __DIRegs[7] = 1;
+    temp = ((u32)((BI2Debug*)(OS_BI2_DEBUG_ADDRESS))->simMemSize >> 2) * 10;
+    OSCreateAlarm(&AlarmForTimeout);
+    OSSetAlarm(&AlarmForTimeout, (OSTime)temp, AlarmHandlerForTimeout);
+    return TRUE;
 }
-#pragma pop
 
 /* 80347F44-80347F70 342884 002C+00 0/0 3/3 0/0 .text            DVDLowWaitCoverClose */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DVDLowWaitCoverClose() {
-    nofralloc
-#include "asm/dolphin/dvd/dvdlow/DVDLowWaitCoverClose.s"
+BOOL DVDLowWaitCoverClose(DVDLowCallback cb) {
+    Callback = cb;
+    WaitingCoverClose = TRUE;
+    StopAtNextInt = FALSE;
+    __DIRegs[1] = 2;
+    return TRUE;
 }
-#pragma pop
 
 /* 80347F70-80348014 3428B0 00A4+00 0/0 2/2 0/0 .text            DVDLowReadDiskID */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DVDLowReadDiskID() {
-    nofralloc
-#include "asm/dolphin/dvd/dvdlow/DVDLowReadDiskID.s"
+BOOL DVDLowReadDiskID(u32 arg0, DVDLowCallback cb) {
+    u32 temp;
+    Callback = cb;
+    StopAtNextInt = FALSE;
+    __DIRegs[2] = 0xA8000040;
+    __DIRegs[3] = 0;
+    __DIRegs[4] = 0x20;
+    __DIRegs[5] = arg0;
+    __DIRegs[6] = 0x20;
+    __DIRegs[7] = 3;
+    temp = ((u32)((BI2Debug*)(OS_BI2_DEBUG_ADDRESS))->simMemSize >> 2) * 10;
+    OSCreateAlarm(&AlarmForTimeout);
+    OSSetAlarm(&AlarmForTimeout, (OSTime)temp, AlarmHandlerForTimeout);
+    return 1;
 }
-#pragma pop
 
 /* 80348014-803480A0 342954 008C+00 0/0 9/9 0/0 .text            DVDLowStopMotor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DVDLowStopMotor() {
-    nofralloc
-#include "asm/dolphin/dvd/dvdlow/DVDLowStopMotor.s"
+BOOL DVDLowStopMotor(DVDLowCallback cb) {
+    u32 temp;
+    Callback = cb;
+    StopAtNextInt = FALSE;
+    __DIRegs[2] = 0xE3000000;
+    __DIRegs[7] = 1;
+    temp = ((u32)((BI2Debug*)(OS_BI2_DEBUG_ADDRESS))->simMemSize >> 2) * 10;
+    OSCreateAlarm(&AlarmForTimeout);
+    OSSetAlarm(&AlarmForTimeout, (OSTime)temp, AlarmHandlerForTimeout);
+    return 1;
 }
-#pragma pop
 
 /* 803480A0-8034812C 3429E0 008C+00 0/0 7/7 0/0 .text            DVDLowRequestError */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DVDLowRequestError() {
-    nofralloc
-#include "asm/dolphin/dvd/dvdlow/DVDLowRequestError.s"
+BOOL DVDLowRequestError(DVDLowCallback cb) {
+    u32 temp;
+    Callback = cb;
+    StopAtNextInt = FALSE;
+    __DIRegs[2] = 0xE0000000;
+    __DIRegs[7] = 1;
+    temp = ((u32)((BI2Debug*)(OS_BI2_DEBUG_ADDRESS))->simMemSize >> 2) * 10;
+    OSCreateAlarm(&AlarmForTimeout);
+    OSSetAlarm(&AlarmForTimeout, (OSTime)temp, AlarmHandlerForTimeout);
+    return 1;
 }
-#pragma pop
 
 /* 8034812C-803481C8 342A6C 009C+00 0/0 1/1 0/0 .text            DVDLowInquiry */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DVDLowInquiry() {
-    nofralloc
-#include "asm/dolphin/dvd/dvdlow/DVDLowInquiry.s"
+BOOL DVDLowInquiry(u32 arg0, DVDLowCallback cb) {
+    u32 temp;
+    Callback = cb;
+    StopAtNextInt = FALSE;
+    __DIRegs[2] = 0x12000000;
+    __DIRegs[4] = 0x20;
+    __DIRegs[5] = arg0;
+    __DIRegs[6] = 0x20;
+    __DIRegs[7] = 3;
+    temp = ((u32)((BI2Debug*)(OS_BI2_DEBUG_ADDRESS))->simMemSize >> 2) * 10;
+    OSCreateAlarm(&AlarmForTimeout);
+    OSSetAlarm(&AlarmForTimeout, (OSTime)temp, AlarmHandlerForTimeout);
+    return 1;
 }
-#pragma pop
 
 /* 803481C8-80348260 342B08 0098+00 0/0 2/2 0/0 .text            DVDLowAudioStream */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DVDLowAudioStream() {
-    nofralloc
-#include "asm/dolphin/dvd/dvdlow/DVDLowAudioStream.s"
+BOOL DVDLowAudioStream(u32 arg0, u32 arg1, u32 arg2, DVDLowCallback cb) {
+    u32 temp;
+    Callback = cb;
+    StopAtNextInt = FALSE;
+    __DIRegs[2] = arg0 | 0xe1000000;
+    __DIRegs[3] = arg2 >> 2;
+    __DIRegs[4] = arg1;
+    __DIRegs[7] = 1;
+    temp = ((u32)((BI2Debug*)(OS_BI2_DEBUG_ADDRESS))->simMemSize >> 2) * 10;
+    OSCreateAlarm(&AlarmForTimeout);
+    OSSetAlarm(&AlarmForTimeout, (OSTime)temp, AlarmHandlerForTimeout);
+    return 1;
 }
-#pragma pop
 
 /* 80348260-803482EC 342BA0 008C+00 0/0 1/1 0/0 .text            DVDLowRequestAudioStatus */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DVDLowRequestAudioStatus() {
-    nofralloc
-#include "asm/dolphin/dvd/dvdlow/DVDLowRequestAudioStatus.s"
+BOOL DVDLowRequestAudioStatus(u32 arg0, DVDLowCallback cb) {
+    u32 temp;
+    Callback = cb;
+    StopAtNextInt = FALSE;
+    __DIRegs[2] = arg0 | 0xe2000000;
+    __DIRegs[7] = 1;
+    temp = ((u32)((BI2Debug*)(OS_BI2_DEBUG_ADDRESS))->simMemSize >> 2) * 10;
+    OSCreateAlarm(&AlarmForTimeout);
+    OSSetAlarm(&AlarmForTimeout, (OSTime)temp, AlarmHandlerForTimeout);
+    return 1;
 }
-#pragma pop
 
 /* 803482EC-80348388 342C2C 009C+00 0/0 3/3 0/0 .text            DVDLowAudioBufferConfig */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DVDLowAudioBufferConfig() {
-    nofralloc
-#include "asm/dolphin/dvd/dvdlow/DVDLowAudioBufferConfig.s"
+BOOL DVDLowAudioBufferConfig(s32 arg0, u32 arg1, DVDLowCallback cb) {
+    u32 temp;
+    Callback = cb;
+    StopAtNextInt = FALSE;
+    __DIRegs[2] = arg1 | ((arg0 ? 0x10000 : 0) | 0xe4000000);
+    __DIRegs[7] = 1;
+    temp = ((u32)((BI2Debug*)(OS_BI2_DEBUG_ADDRESS))->simMemSize >> 2) * 10;
+    OSCreateAlarm(&AlarmForTimeout);
+    OSSetAlarm(&AlarmForTimeout, (OSTime)temp, AlarmHandlerForTimeout);
+    return 1;
 }
-#pragma pop
 
 /* 80348388-80348444 342CC8 00BC+00 0/0 1/1 0/0 .text            DVDLowReset */
 #pragma push
@@ -341,41 +386,39 @@ asm void DVDLowReset() {
 #pragma pop
 
 /* 80348444-80348458 342D84 0014+00 0/0 1/1 0/0 .text            DVDLowBreak */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void DVDLowBreak() {
-    nofralloc
-#include "asm/dolphin/dvd/dvdlow/DVDLowBreak.s"
+BOOL DVDLowBreak() {
+    StopAtNextInt = TRUE;
+    Breaking = TRUE;
+    return TRUE;
 }
-#pragma pop
 
 /* 80348458-80348474 342D98 001C+00 0/0 1/1 0/0 .text            DVDLowClearCallback */
 DVDLowCallback DVDLowClearCallback() {
     DVDLowCallback rv;
     __DIRegs[1] = 0;
     rv = Callback;
-    WaitingCoverClose = NULL;
+    WaitingCoverClose = FALSE;
     Callback = NULL;
     return rv;
 }
 
 /* 80348474-803484B8 342DB4 0044+00 1/1 0/0 0/0 .text            __DVDLowSetWAType */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __DVDLowSetWAType() {
-    nofralloc
-#include "asm/dolphin/dvd/dvdlow/__DVDLowSetWAType.s"
+void __DVDLowSetWAType(u32 arg0, u32 arg1) {
+    BOOL enabled = OSDisableInterrupts();
+    WorkAroundType = arg0;
+    WorkAroundSeekLocation[0] = arg1;
+    OSRestoreInterrupts(enabled);
 }
-#pragma pop
 
 /* 803484B8-803484F0 342DF8 0038+00 0/0 1/1 0/0 .text            __DVDLowTestAlarm */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __DVDLowTestAlarm() {
-    nofralloc
-#include "asm/dolphin/dvd/dvdlow/__DVDLowTestAlarm.s"
+BOOL __DVDLowTestAlarm(OSAlarm* alarm) {
+    if (alarm == &AlarmForBreak) {
+        return TRUE;
+    }
+
+    if (alarm == &AlarmForTimeout) {
+        return TRUE;
+    }
+
+    return FALSE;
 }
-#pragma pop

@@ -122,7 +122,7 @@ extern "C" static void dKyw_pntwind_get_info__FP4cXyzP4cXyzPf();
 extern "C" void dKyw_pntlight_collision_get_info__FP4cXyzP4cXyzPf();
 extern "C" void dKyw_pntwind_get_vecpow__FP4cXyz();
 extern "C" void dKyw_get_AllWind_vec__FP4cXyzP4cXyzPf();
-extern "C" void dKyw_get_AllWind_vecpow__FP4cXyz();
+extern "C" void dKyw_get_AllWind_vecpow__FP4cXyzP4cXyz();
 extern "C" void dKyw_custom_windpower__Ff();
 extern "C" void dKyw_evt_wind_set__Fss();
 extern "C" void dKyw_evt_wind_set_go__Fv();
@@ -1753,17 +1753,17 @@ asm void dKyw_get_AllWind_vec(cXyz* param_0, cXyz* param_1, f32* param_2) {
 }
 #pragma pop
 
-/* 8005B530-8005B60C 055E70 00DC+00 0/0 0/0 5/5 .text            dKyw_get_AllWind_vecpow__FP4cXyz */
-// missing mr instruction
+/* 8005B530-8005B60C 055E70 00DC+00 0/0 0/0 5/5 .text            dKyw_get_AllWind_vecpow__FP4cXyzP4cXyz */
+// matches with literals
 #ifdef NONMATCHING
-void dKyw_get_AllWind_vecpow(cXyz* param_0) {
+void dKyw_get_AllWind_vecpow(cXyz* param_0, cXyz* param_1) {
     f32 sp8;
     cXyz spC;
     cXyz sp18;
     cXyz sp24;
     cXyz sp30;
 
-    dKyw_pntwind_get_info(param_0, &sp30, &sp8);
+    dKyw_pntwind_get_info(param_1, &sp30, &sp8);
     sp18 = g_env_light.mWind.vec * (g_env_light.mWind.pow * (1.0f - sp8));
     sp24 = sp30 * (5.0f * sp8);
     spC = sp18 + sp24;
@@ -1774,9 +1774,9 @@ void dKyw_get_AllWind_vecpow(cXyz* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dKyw_get_AllWind_vecpow(cXyz* param_0) {
+asm void dKyw_get_AllWind_vecpow(cXyz* param_0, cXyz* param_1) {
     nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_get_AllWind_vecpow__FP4cXyz.s"
+#include "asm/d/kankyo/d_kankyo_wether/dKyw_get_AllWind_vecpow__FP4cXyzP4cXyz.s"
 }
 #pragma pop
 #endif
