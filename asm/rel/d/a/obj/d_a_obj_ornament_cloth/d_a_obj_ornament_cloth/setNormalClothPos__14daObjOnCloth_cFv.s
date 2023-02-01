@@ -13,7 +13,7 @@ lbl_805951DC:
 /* 80595208  3B C3 5C B4 */	addi r30, r3, M_attr__14daObjOnCloth_c@l /* 0x80595CB4@l */
 /* 8059520C  38 61 00 6C */	addi r3, r1, 0x6c
 /* 80595210  38 9F 04 D0 */	addi r4, r31, 0x4d0
-/* 80595214  4B AC 63 1D */	bl dKyw_get_AllWind_vecpow__FP4cXyzP4cXyz
+/* 80595214  4B AC 63 1D */	bl dKyw_get_AllWind_vecpow__FP4cXyz
 /* 80595218  C0 01 00 6C */	lfs f0, 0x6c(r1)
 /* 8059521C  D0 01 00 84 */	stfs f0, 0x84(r1)
 /* 80595220  C0 01 00 70 */	lfs f0, 0x70(r1)

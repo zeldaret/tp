@@ -18,7 +18,7 @@ lbl_80C528E0:
 /* 80C52920  3B 7F 16 8C */	addi r27, r31, 0x168c
 /* 80C52924  38 61 00 8C */	addi r3, r1, 0x8c
 /* 80C52928  38 9F 04 D0 */	addi r4, r31, 0x4d0
-/* 80C5292C  4B 40 8C 05 */	bl dKyw_get_AllWind_vecpow__FP4cXyzP4cXyz
+/* 80C5292C  4B 40 8C 05 */	bl dKyw_get_AllWind_vecpow__FP4cXyz
 /* 80C52930  C0 01 00 8C */	lfs f0, 0x8c(r1)
 /* 80C52934  D0 01 00 A4 */	stfs f0, 0xa4(r1)
 /* 80C52938  C0 01 00 90 */	lfs f0, 0x90(r1)

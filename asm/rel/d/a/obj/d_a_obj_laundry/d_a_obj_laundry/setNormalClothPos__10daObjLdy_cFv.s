@@ -15,7 +15,7 @@ lbl_80C51194:
 /* 80C511C8  3B E3 20 00 */	addi r31, r3, M_attr__10daObjLdy_c@l /* 0x80C52000@l */
 /* 80C511CC  38 61 00 9C */	addi r3, r1, 0x9c
 /* 80C511D0  38 9D 04 D0 */	addi r4, r29, 0x4d0
-/* 80C511D4  4B 40 A3 5D */	bl dKyw_get_AllWind_vecpow__FP4cXyzP4cXyz
+/* 80C511D4  4B 40 A3 5D */	bl dKyw_get_AllWind_vecpow__FP4cXyz
 /* 80C511D8  C0 01 00 9C */	lfs f0, 0x9c(r1)
 /* 80C511DC  D0 01 00 C0 */	stfs f0, 0xc0(r1)
 /* 80C511E0  C0 01 00 A0 */	lfs f0, 0xa0(r1)
