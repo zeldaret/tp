@@ -84,6 +84,19 @@ public:
 
 class dRenderingFDAmap_c : public dRenderingMap_c {
 public:
+    dRenderingFDAmap_c() {
+        field_0x4 = NULL;
+        field_0x8 = 0.0f;
+        field_0xc = 0.0f;
+        field_0x10 = 0.0f;
+        field_0x14 = 0.0f;
+        mCmPerTexel = 0.0f;
+        field_0x1c = 0;
+        field_0x1e = 0;
+        field_0x20 = 0;
+        field_0x22 = 0;
+    }
+
     /* 8003CE78 */ void setTevSettingNonTextureDirectColor() const;
     /* 8003CF40 */ void setTevSettingIntensityTextureToCI() const;
     /* 8003D0AC */ void drawBack() const;
@@ -95,8 +108,14 @@ public:
     /* 8003D68C */ virtual GXColor* getDecoLineColor(int, int);
     /* 8003D6B8 */ virtual s32 getDecorationLineWidth(int);
 
-private:
-    /* 0x04 */ void* field_0x4;
+    bool isDrawAreaCheck(const Vec& param_0) {
+        return (param_0.x >= field_0x10 - field_0x8 * 2.0f &&
+                param_0.x <= field_0x10 + field_0x8 * 2.0f) &&
+               (param_0.z >= field_0x14 - field_0xc * 2.0f &&
+                param_0.z <= field_0x14 + field_0xc * 2.0f);
+    }
+
+    /* 0x04 */ u8* field_0x4;
     /* 0x08 */ f32 field_0x8;
     /* 0x0C */ f32 field_0xc;
     /* 0x10 */ f32 field_0x10;
@@ -114,6 +133,8 @@ struct dMpath_n {
         /* 8003C85C */ void create();
         /* 8003C8F4 */ void remove();
         /* 8003D740 */ ~dTexObjAggregate_c() { remove(); };
+
+        GXTexObj* getTexObjPointer(int i_no) { return mp_texObj[i_no]; }
 
         dTexObjAggregate_c() {
             for (int i = 0; i < 7; i++) {

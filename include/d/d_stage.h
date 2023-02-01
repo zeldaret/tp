@@ -868,7 +868,7 @@ struct dStage_objectNameInf {
 class dStage_KeepDoorInfo {
 public:
     /* 80028418 */ ~dStage_KeepDoorInfo() {}
-    /* 0x000 */ stage_tgsc_class* unk_0x0;
+    /* 0x000 */ int unk_0x0;
     /* 0x004 */ stage_tgsc_data_class unk_0x4[0x40];
 };  // Size = 0x904
 
@@ -953,6 +953,8 @@ struct cBgS_GndChk;
 int dStage_RoomCheck(cBgS_GndChk* gndChk);
 void dStage_dt_c_roomReLoader(void* i_data, dStage_dt_c* stageDt, int param_2);
 void dStage_dt_c_roomLoader(void* i_data, dStage_dt_c* stageDt, int param_2);
+dStage_KeepDoorInfo* dStage_GetKeepDoorInfo();
+dStage_KeepDoorInfo* dStage_GetRoomKeepDoorInfo();
 
 inline bool dStage_roomRead_dt_c_ChkBg(u8 param_0) {
     return param_0 & 0x80;
@@ -1014,6 +1016,18 @@ inline BOOL dStage_staginfo_GetArchiveHeap(stage_stag_info_class* p_info) {
     return p_info->field_0x0a & 0x1000;
 }
 
+inline int dStage_stagInfo_GetGapLevel(stage_stag_info_class* pstag) {
+    return pstag->mGapLevel;
+}
+
+inline int dStage_stagInfo_GetRangeUp(stage_stag_info_class* pstag) {
+    return pstag->mRangeUp;
+}
+
+inline int dStage_stagInfo_GetRangeDown(stage_stag_info_class* pstag) {
+    return pstag->mRangeDown;
+}
+
 inline u32 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {
     return p_info->field_0xb & 0xF;
 }
@@ -1040,6 +1054,30 @@ inline u32 dStage_FileList_dt_GetEnemyAppear1Flag(dStage_FileList_dt_c* p_fList)
 
 inline int dStage_FileList_dt_GetBitSw(dStage_FileList_dt_c* p_fList) {
     return p_fList->mBitSw;
+}
+
+inline f32 dStage_FileList2_dt_GetLeftRmX(dStage_FileList2_dt_c* p_fList2) {
+    return p_fList2->mLeftRmX;
+}
+
+inline f32 dStage_FileList2_dt_GetRightRmX(dStage_FileList2_dt_c* p_fList2) {
+    return p_fList2->mRightRmX;
+}
+
+inline f32 dStage_FileList2_dt_GetInnerRmZ(dStage_FileList2_dt_c* p_fList2) {
+    return p_fList2->mInnerRmZ;
+}
+
+inline f32 dStage_FileList2_dt_GetFrontRmZ(dStage_FileList2_dt_c* p_fList2) {
+    return p_fList2->mFrontRmZ;
+}
+
+inline s8 dStage_FileList2_dt_GetMinFloorNo(dStage_FileList2_dt_c* p_fList2) {
+    return p_fList2->mMinFloorNo;
+}
+
+inline s8 dStage_FileList2_dt_GetMaxFloorNo(dStage_FileList2_dt_c* p_fList2) {
+    return p_fList2->mMaxFloorNo;
 }
 
 inline int dStage_MapEvent_dt_c_getEventSCutSW(dStage_MapEvent_dt_c* event) {

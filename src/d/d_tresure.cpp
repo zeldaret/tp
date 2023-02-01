@@ -9,14 +9,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct dMapInfo_c {
-    /* 8003F40C */ static s8 calcFloorNo(f32, bool, int);
-};
-
-//
 // Forward References:
 //
 
@@ -272,7 +264,8 @@ dTres_c::typeGroupData_c* dTres_c::getFirstData(u8 listIdx) {
         return NULL;
     }
 
-    return mTypeGroupListAll[listIdx].field_0x0;
+    // this is wrong, fix later
+    return (dTres_c::typeGroupData_c*)mTypeGroupListAll[listIdx].field_0x0;
 }
 
 /* 8009C39C-8009C3B4 096CDC 0018+00 2/2 3/3 0/0 .text
@@ -335,8 +328,8 @@ int dTres_c::getTypeGroupNoToType(u8 i_typeGroupNo) {
 
 /* 8009C4B0-8009C4FC 096DF0 004C+00 1/1 3/3 0/0 .text            getTypeToTypeGroupNo__7dTres_cFUc
  */
-int dTres_c::getTypeToTypeGroupNo(u8 i_type) {
-    u8 groupNo = 17;
+u8 dTres_c::getTypeToTypeGroupNo(u8 i_type) {
+    int groupNo = 17;
     for (int i = 0; i < 17; i++) {
         if (i_type == typeToTypeGroup[i][0]) {
             groupNo = typeToTypeGroup[i][1];

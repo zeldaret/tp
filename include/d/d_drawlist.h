@@ -286,6 +286,7 @@ public:
     void set2DOpa(dDlst_base_c* dlst) { set(mp2DOpaSet[0], mp2DOpaSet[1], dlst); }
     void set2DOpaTop(dDlst_base_c* dlst) { set(mp2DOpaTopSet[0], mp2DOpaTopSet[1], dlst); }
     void set2DXlu(dDlst_base_c* dlst) { set(mp2DXluSet[0], mp2DXluSet[1], dlst); }
+    void setCopy2D(dDlst_base_c* dlst) { set(mpCopy2DSet[0], mpCopy2DSet[1], dlst); }
     view_class* getView() { return mView; }
     void setView(view_class* view) { mView = view; }
     void setWindow(dDlst_window_c* window) { mWindow = window; }

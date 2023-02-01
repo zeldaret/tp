@@ -8,16 +8,16 @@
 
 class dMpath_c {
 public:
-    /* 8003F758 */ static u8 isExistMapPathData();
-    /* 8003F760 */ void getTopBottomFloorNo(s8*, s8*);
+    /* 8003F758 */ static bool isExistMapPathData();
+    /* 8003F760 */ static int getTopBottomFloorNo(s8*, s8*);
     /* 8003F7E8 */ static void createWork();
-    /* 8003FA40 */ void setPointer(s8, void*, int);
-    /* 8003F810 */ void setPointer(dDrawPath_c::room_class*, s8*, s8*);
+    /* 8003FA40 */ static void setPointer(s8, void*, int);
+    /* 8003F810 */ static void setPointer(dDrawPath_c::room_class*, s8*, s8*);
     /* 8003FB70 */ static void create();
-    /* 8003FBD0 */ void reset();
-    /* 8003FC70 */ void remove();
+    /* 8003FBD0 */ static void reset();
+    /* 8003FC70 */ static void remove();
 
-    static u8 mLayerList[4];
+    static dDrawPath_c::room_class** mLayerList;  // this doesn't seem right, but can't figure it out atm
     static f32 mMinX;
     static f32 mMaxX;
     static f32 mMinZ;
@@ -26,33 +26,59 @@ public:
     static f32 mAllCenterZ;
     static f32 mAllSizeX;
     static f32 mAllSizeZ;
+    static s8 mBottomFloorNo;
+    static s8 mTopFloorNo;
 };
 
 struct dMapInfo_n {
-    /* 8003ECA0 */ bool chkGetCompass();
-    /* 8003ECD8 */ bool chkGetMap();
+    /* 8003ECA0 */ static bool chkGetCompass();
+    /* 8003ECD8 */ static bool chkGetMap();
     /* 8003ED10 */ static bool isVisitedRoom(int);
     /* 8003ED60 */ static void correctionOriginPos(s8, Vec*);
     /* 8003EDC0 */ static void offsetPlus(dStage_FileList2_dt_c const*, Vec*);
     /* 8003EDEC */ static void rotAngle(dStage_FileList2_dt_c const*, Vec*);
     /* 8003EE5C */ static Vec getMapPlayerPos();
-    /* 8003EF20 */ void getMapPlayerAngleY();
-    /* 8003EF70 */ void getConstRestartIconPointer();
-    /* 8003F02C */ void getMapRestartPos();
-    /* 8003F0F8 */ void getMapRestartAngleY();
-    /* 8003F19C */ void getRoomCenter(int, f32*, f32*);
-    /* 8003F1F4 */ void getRoomMinMaxXZ(int, f32*, f32*, f32*, f32*);
-    /* 8003F24C */ void getFloorParameter(f32, s8*, f32*, f32*, f32*, f32*);
+    /* 8003EF20 */ static s16 getMapPlayerAngleY();
+    /* 8003EF70 */ static const dTres_c::typeGroupData_c* getConstRestartIconPointer();
+    /* 8003F02C */ static Vec getMapRestartPos();
+    /* 8003F0F8 */ static s16 getMapRestartAngleY();
+    /* 8003F19C */ static void getRoomCenter(int, f32*, f32*);
+    /* 8003F1F4 */ static void getRoomMinMaxXZ(int, f32*, f32*, f32*, f32*);
+    /* 8003F24C */ static void getFloorParameter(f32, s8*, f32*, f32*, f32*, f32*);
+};
+
+class dMapInfo_c {
+public:
+    /* 8003F40C */ static s8 calcFloorNo(f32, bool, int);
+    /* 8003F570 */ static s8 calcNowStayFloorNo(f32, bool);
+    /* 8003F6C8 */ static void move(int, f32);
+    /* 8003F6FC */ static void init();
+    /* 8003F714 */ static void reset();
+    /* 8003F734 */ static void create();
+    /* 8003F754 */ static void remove();
+
+    static int mNextRoomNo;
+    static int mNowStayRoomNo;
+    static s8 mNowStayFloorNo;
+    static u8 mNowStayFloorNoDecisionFlg;
 };
 
 class renderingDAmap_c : public dRenderingFDAmap_c {
 public:
-    /* 8003FCA4 */ void calcFloorNoForObjectByMapPathRend(f32, int) const;
+    renderingDAmap_c() {
+        mRoomNo = 0;
+        field_0x28 = 0;
+        mRoomNoSingle = 0;
+        mRenderedFloor = 0;
+        mIsDraw = false;
+    }
+
+    /* 8003FCA4 */ s8 calcFloorNoForObjectByMapPathRend(f32, int) const;
     /* 8003FCC8 */ void init(u8*, u16, u16, u16, u16);
     /* 8003FD08 */ void entry(f32, f32, f32, int, s8);
     /* 8003FE6C */ void setSingleRoomSetting();
-    /* 8003FFF4 */ void getFirstDrawRoomNo();
-    /* 80040094 */ void getNextDrawRoomNo(int);
+    /* 8003FFF4 */ int getFirstDrawRoomNo();
+    /* 80040094 */ int getNextDrawRoomNo(int);
 
     /* 8003FE18 */ virtual void draw();
     /* 8002B150 */ virtual ~renderingDAmap_c();
@@ -65,27 +91,26 @@ public:
     /* 800402C0 */ virtual bool isDrawPath();
     /* 8003FE4C */ virtual GXColor* getBackColor() const;
     /* 800402E0 */ virtual bool getFirstDrawLayerNo();
-    /* 800402E8 */ virtual void getNextDrawLayerNo(int);
-    /* 800409E0 */ virtual void isDrawIconSingle(dTres_c::data_s const*, int, int, bool, bool,
+    /* 800402E8 */ virtual int getNextDrawLayerNo(int);
+    /* 800409E0 */ virtual bool isDrawIconSingle(dTres_c::data_s const*, int, int, bool, bool,
                                                  Vec const*) const;
-    /* 80040AE4 */ virtual void getIconGroupNumber(u8) const;
-    virtual void hasMap() const = 0;
-    virtual void isRendAllRoom() const = 0;
-    virtual void isRendDoor() const = 0;
+    /* 80040AE4 */ virtual int getIconGroupNumber(u8) const;
+    virtual bool hasMap() const = 0;
+    virtual bool isRendAllRoom() const = 0;
+    virtual bool isRendDoor() const = 0;
     virtual bool isCheckFloor() const = 0;
-    virtual void isDrawIconSingle2(dTres_c::data_s const*, bool, bool, int) const = 0;
-    /* 8003FFEC */ virtual void getRoomNoSingle();
-    /* 8003FE70 */ virtual void isDrawRoom(int, int) const;
-    /* 800409B4 */ virtual void isDrawRoomIcon(int, int) const;
+    virtual bool isDrawIconSingle2(dTres_c::data_s const*, bool, bool, int) const = 0;
+    /* 8003FFEC */ virtual int getRoomNoSingle();
+    /* 8003FE70 */ virtual bool isDrawRoom(int, int) const;
+    /* 800409B4 */ virtual bool isDrawRoomIcon(int, int) const;
 
-    bool isDraw() const { return mDraw; }
+    bool isDraw() const { return mIsDraw; }
 
-private:
-    /* 0x24 */ int field_0x24;
+    /* 0x24 */ int mRoomNo;
     /* 0x28 */ int field_0x28;
     /* 0x2C */ int mRoomNoSingle;
-    /* 0x30 */ u8 field_0x30;
-    /* 0x31 */ bool mDraw;
+    /* 0x30 */ s8 mRenderedFloor;
+    /* 0x31 */ bool mIsDraw;
 };  // Size: 0x34
 
 class stage_tgsc_data_class;
@@ -95,7 +120,7 @@ public:
     /* 80040574 */ void drawDoor1();
     /* 800405B8 */ void drawDoor2();
     /* 800405FC */ void drawDoorCommon(stage_tgsc_data_class const*, int, bool);
-    /* 80040710 */ void checkDispDoorS(int, int, f32);
+    /* 80040710 */ bool checkDispDoorS(int, int, f32);
     /* 80040838 */ void drawNormalDoorS(stage_tgsc_data_class const*, int, int, bool);
 
     /* 8002B0B4 */ virtual ~renderingPlusDoor_c();
@@ -115,11 +140,12 @@ public:
 
     /* 8002B008 */ virtual ~renderingPlusDoorAndCursor_c();
     /* 800402FC */ virtual void afterDrawPath();
-    /* 80040ADC */ virtual void getIconPosition(dTres_c::typeGroupData_c*) const;
-    /* 80040A94 */ virtual void getFirstData(u8);
-    /* 80040AB8 */ virtual void getNextData(dTres_c::typeGroupData_c*);
-    virtual void getPlayerCursorSize() = 0;
-    virtual void getRestartCursorSize() = 0;
+    virtual f32 getIconSize(u8) const = 0;
+    /* 80040ADC */ virtual const Vec* getIconPosition(dTres_c::typeGroupData_c*) const;
+    /* 80040A94 */ virtual dTres_c::typeGroupData_c* getFirstData(u8);
+    /* 80040AB8 */ virtual dTres_c::typeGroupData_c* getNextData(dTres_c::typeGroupData_c*);
+    virtual f32 getPlayerCursorSize() = 0;
+    virtual f32 getRestartCursorSize() = 0;
 };
 
 #endif /* D_MAP_D_MAP_PATH_DMAP_H */

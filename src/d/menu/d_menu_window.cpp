@@ -343,7 +343,7 @@ void dMw_offMenuRing() {
     }
 }
 
-static bool dMw_isMenuRing() {
+static BOOL dMw_isMenuRing() {
     dMw_c* menu_window = dMeter2Info_getMenuWindowClass();
 
     if (menu_window) {
@@ -739,6 +739,45 @@ SECTION_DATA static u8 init_proc[420] = {
     0x00, 0x00, 0x00, 0x00,
 };
 
+/* typedef void (dMw_c::*initFunc)(u8);
+SECTION_DATA initFunc init_proc[] = {
+    &dMw_c::key_wait_init,
+    &dMw_c::ring_open_init,
+    &dMw_c::ring_move_init,
+    &dMw_c::ring_close_init,
+    &dMw_c::collect_open_init,
+    &dMw_c::collect_move_init,
+    &dMw_c::collect_close_init,
+    &dMw_c::fmap_open_init,
+    &dMw_c::fmap_move_init,
+    &dMw_c::fmap_close_init,
+    &dMw_c::dmap_open_init,
+    &dMw_c::dmap_move_init,
+    &dMw_c::dmap_close_init,
+    &dMw_c::collect_save_open_init,
+    &dMw_c::collect_save_move_init,
+    &dMw_c::collect_save_close_init,
+    &dMw_c::collect_option_open_init,
+    &dMw_c::collect_option_move_init,
+    &dMw_c::collect_option_close_init,
+    &dMw_c::collect_letter_open_init,
+    &dMw_c::collect_letter_move_init,
+    &dMw_c::collect_letter_close_init,
+    &dMw_c::collect_fishing_open_init,
+    &dMw_c::collect_fishing_move_init,
+    &dMw_c::collect_fishing_close_init,
+    &dMw_c::collect_skill_open_init,
+    &dMw_c::collect_skill_move_init,
+    &dMw_c::collect_skill_close_init,
+    &dMw_c::collect_insect_open_init,
+    &dMw_c::collect_insect_move_init,
+    &dMw_c::collect_insect_close_init,
+    &dMw_c::insect_open_init,
+    &dMw_c::insect_open2_init,
+    &dMw_c::insect_move_init,
+    &dMw_c::insect_close_init,
+}; */
+
 /* 803BEC4C-803BEC58 -00001 000C+00 0/1 0/0 0/0 .data            @4311 */
 #pragma push
 #pragma force_active on
@@ -1120,6 +1159,45 @@ SECTION_DATA static u8 move_proc[420] = {
     0x00, 0x00, 0x00, 0x00,
 };
 
+/* typedef void (dMw_c::*procFunc)();
+SECTION_DATA procFunc move_proc[] = {
+    &dMw_c::key_wait_proc,
+    &dMw_c::ring_open_proc,
+    &dMw_c::ring_move_proc,
+    &dMw_c::ring_close_proc,
+    &dMw_c::collect_open_proc,
+    &dMw_c::collect_move_proc,
+    &dMw_c::collect_close_proc,
+    &dMw_c::fmap_open_proc,
+    &dMw_c::fmap_move_proc,
+    &dMw_c::fmap_close_proc,
+    &dMw_c::dmap_open_proc,
+    &dMw_c::dmap_move_proc,
+    &dMw_c::dmap_close_proc,
+    &dMw_c::collect_save_open_proc,
+    &dMw_c::collect_save_move_proc,
+    &dMw_c::collect_save_close_proc,
+    &dMw_c::collect_option_open_proc,
+    &dMw_c::collect_option_move_proc,
+    &dMw_c::collect_option_close_proc,
+    &dMw_c::collect_letter_open_proc,
+    &dMw_c::collect_letter_move_proc,
+    &dMw_c::collect_letter_close_proc,
+    &dMw_c::collect_fishing_open_proc,
+    &dMw_c::collect_fishing_move_proc,
+    &dMw_c::collect_fishing_close_proc,
+    &dMw_c::collect_skill_open_proc,
+    &dMw_c::collect_skill_move_proc,
+    &dMw_c::collect_skill_close_proc,
+    &dMw_c::collect_insect_open_proc,
+    &dMw_c::collect_insect_move_proc,
+    &dMw_c::collect_insect_close_proc,
+    &dMw_c::insect_open_proc,
+    &dMw_c::insect_open2_proc,
+    &dMw_c::insect_move_proc,
+    &dMw_c::insect_close_proc,
+}; */
+
 /* 801FA13C-801FA220 1F4A7C 00E4+00 2/0 0/0 0/0 .text            key_wait_init__5dMw_cFUc */
 void dMw_c::key_wait_init(u8 menu_status) {
     dMeter2Info_setWindowStatus(0);
@@ -1238,12 +1316,13 @@ void dMw_c::collect_move_init(u8 menu_status) {
 
 /* 801FA46C-801FA538 1F4DAC 00CC+00 1/0 0/0 0/0 .text            collect_close_init__5dMw_cFUc */
 void dMw_c::collect_close_init(u8 param_0) {
-    if (mpMenuCollect->getSubWindowOpenCheck() != 1 &&
-        mpMenuCollect->getSubWindowOpenCheck() != 2) {
+    if (mpMenuCollect->getSubWindowOpenCheck() != 1 && mpMenuCollect->getSubWindowOpenCheck() != 2)
+    {
         if (mpMenuCollect->getSubWindowOpenCheck() == 3 ||
             mpMenuCollect->getSubWindowOpenCheck() == 4 ||
             mpMenuCollect->getSubWindowOpenCheck() == 5 ||
-            mpMenuCollect->getSubWindowOpenCheck() == 6) {
+            mpMenuCollect->getSubWindowOpenCheck() == 6)
+        {
             Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_SUB_IN, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
         } else {
@@ -1495,8 +1574,8 @@ void dMw_c::collect_move_proc() {
     if (mpMenuCollect->getSubWindowOpenCheck()) {
         mMenuStatus = COLLECT_CLOSE;
     } else {
-        if ((dMw_isPush_S_Button() && !mpMenuCollect->isKeyCheck()) ||
-            mpMenuCollect->isOutCheck()) {
+        if ((dMw_isPush_S_Button() && !mpMenuCollect->isKeyCheck()) || mpMenuCollect->isOutCheck())
+        {
             mMenuStatus = COLLECT_CLOSE;
         } else {
             mpMenuCollect->_move();
@@ -2033,7 +2112,8 @@ void dMw_c::dMw_fmap_create() {
     if (dMeter2Info_getMapKeyDirection() == 0x400 || dMeter2Info_getMapStatus() == 3 ||
         dMeter2Info_getMapStatus() == 4 || dMeter2Info_getMapStatus() == 5 ||
         dMeter2Info_getMapStatus() == 7 || dMeter2Info_getMapStatus() == 8 ||
-        dMeter2Info_getMapStatus() == 9 || dMeter2Info_getMapStatus() == 6) {
+        dMeter2Info_getMapStatus() == 9 || dMeter2Info_getMapStatus() == 6)
+    {
         tmp = 1;
     } else if (dMeter2Info_getMapKeyDirection() == 0x200) {
         tmp = 3;
@@ -2330,7 +2410,8 @@ BOOL dMw_c::dMw_isPush_S_Button() {
     if (isFadeNowCheck()) {
         if (daPy_getLinkPlayerActorClass()->getClothesChangeWaitTimer() == 0 &&
             daPy_getLinkPlayerActorClass()->getShieldChangeWaitTimer() == 0 &&
-            daPy_getLinkPlayerActorClass()->getSwordChangeWaitTimer() == 0) {
+            daPy_getLinkPlayerActorClass()->getSwordChangeWaitTimer() == 0)
+        {
             if (dMw_START_TRIGGER() || dMw_B_TRIGGER()) {
                 return true;
             }
@@ -2414,7 +2495,8 @@ bool dMw_c::isEventCheck() {
                  dMeter2Info_getMapStatus() == 7 || dMeter2Info_getMapStatus() == 8 ||
                  dMeter2Info_getMapStatus() == 9 || dMeter2Info_getMapStatus() == 6 ||
                  dMeter2Info_getMapStatus() == 3 || dMeter2Info_isMenuInForce(2) ||
-                 dMeter2Info_getPauseStatus() == 8)) {
+                 dMeter2Info_getPauseStatus() == 8))
+            {
                 return false;
             }
             return true;
@@ -2493,6 +2575,47 @@ int dMw_c::_create() {
 }
 
 /* 801FD2D8-801FD450 1F7C18 0178+00 1/1 0/0 0/0 .text            _execute__5dMw_cFv */
+// matches with sinit
+#ifdef NONMATCHING
+int dMw_c::_execute() {
+    if (field_0x151 != 0) {
+        field_0x151--;
+    }
+
+    JKRHeap* old_heap = mDoExt_setCurrentHeap(mpHeap);
+    u8 old_proc = mMenuStatus;
+    mpStick->checkTrigger();
+
+    if (dMw_isMenuRing()) {
+        mpCStick->checkTrigger();
+        checkCStickTrigger();
+    }
+
+    if (i_dComIfGp_event_runCheck()) {
+        field_0x148 = 5;
+    } else if (field_0x148 > 0) {
+        field_0x148--;
+    } else {
+        field_0x148 = 0;
+    }
+
+    (this->*move_proc[mMenuStatus])();
+    if (mMenuStatus != old_proc) {
+        (this->*init_proc[mMenuStatus])(old_proc);
+    }
+
+    if (!mDoCPd_c::getHoldLockL(PAD_1) && dMw_isButtonBit(1)) {
+        dMw_offButtonBit(1);
+    }
+
+    if (!mDoCPd_c::getHoldLockR(PAD_1) && dMw_isButtonBit(2)) {
+        dMw_offButtonBit(2);
+    }
+
+    mDoExt_setCurrentHeap(old_heap);
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2501,6 +2624,7 @@ asm int dMw_c::_execute() {
 #include "asm/d/menu/d_menu_window/_execute__5dMw_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801FD450-801FD67C 1F7D90 022C+00 1/1 0/0 0/0 .text            _draw__5dMw_cFv */
 int dMw_c::_draw() {
@@ -2646,8 +2770,7 @@ static int dMw_Create(msg_class* p_menu) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __sinit_d_menu_window_cpp() {
-    nofralloc
+asm void __sinit_d_menu_window_cpp(){nofralloc
 #include "asm/d/menu/d_menu_window/__sinit_d_menu_window_cpp.s"
 }
 #pragma pop
