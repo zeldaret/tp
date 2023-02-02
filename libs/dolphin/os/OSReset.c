@@ -16,7 +16,7 @@ OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | 0x00DC);
 
 SECTION_INIT void memset();
 int __PADDisableRecalibration();
-extern u8 __OSRebootParams[28 + 4 /* padding */];
+extern OSExecParams __OSRebootParams;
 
 //
 // Declarations:
@@ -60,13 +60,19 @@ void OSRegisterResetFunction(OSResetFunctionInfo* func) {
 }
 
 /* 8033F6E4-8033F78C 33A024 00A8+00 1/1 0/0 0/0 .text            __OSCallResetFunctions */
-#ifdef NONMATCHING
 BOOL __OSCallResetFunctions(u32 arg0) {
     OSResetFunctionInfo* iter;
     s32 retCode = 0;
+    u32 priority = 0;
+    s32 temp;
 
-    for (iter = ResetFunctionQueue.first; iter != NULL; iter = iter->next) {
-        retCode |= !iter->func(arg0);
+    for (iter = ResetFunctionQueue.first; iter != NULL; ) {
+        if (retCode != 0 && priority != iter->priority)
+            break;
+        temp = !iter->func(arg0);
+        priority = iter->priority;
+        iter = iter->next;
+        retCode |= temp;
     }
     retCode |= !__OSSyncSram();
     if (retCode) {
@@ -74,16 +80,6 @@ BOOL __OSCallResetFunctions(u32 arg0) {
     }
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL __OSCallResetFunctions(u32 param_0) {
-    nofralloc
-#include "asm/dolphin/os/OSReset/__OSCallResetFunctions.s"
-}
-#pragma pop
-#endif
 
 /* 8033F78C-8033F7FC 33A0CC 0070+00 2/2 0/0 0/0 .text            Reset */
 static asm void Reset(register s32 param_0) {
@@ -140,14 +136,24 @@ lbl_8033F7F8:
 }
 
 /* 8033F7FC-8033F864 33A13C 0068+00 1/1 0/0 0/0 .text            KillThreads */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void KillThreads(void) {
-    nofralloc
-#include "asm/dolphin/os/OSReset/KillThreads.s"
+#pragma dont_inline on
+static void KillThreads(void) {
+    OSThread* thread;
+    OSThread* next;
+
+    for (thread = __OSActiveThreadQueue.head; thread; thread = next) {
+        next = thread->active_threads_link.next;
+        switch (thread->state) {
+        case 1:
+        case 4:
+            OSCancelThread(thread);
+            continue;
+        default:
+            continue;
+        }
+    }
 }
-#pragma pop
+#pragma dont_inline reset
 
 /* 8033F864-8033F8AC 33A1A4 0048+00 0/0 3/3 0/0 .text            __OSDoHotReset */
 void __OSDoHotReset(s32 arg0) {
@@ -158,28 +164,15 @@ void __OSDoHotReset(s32 arg0) {
 }
 
 /* ############################################################################################## */
-/* 803D07E8-803D0838 02D908 004E+02 1/1 0/0 0/0 .data            @153 */
-SECTION_DATA static char lit_153[] =
-    "OSResetSystem(): You can't specify TRUE to forceMenu if you restart. Ignored\n";
-
 /* 80451698-804516A0 000B98 0004+04 1/1 0/0 0/0 .sbss            bootThisDol */
-static u8 bootThisDol[4 + 4 /* padding */];
+static u32 bootThisDol;
 
 /* 8033F8AC-8033FAAC 33A1EC 0200+00 0/0 5/5 0/0 .text            OSResetSystem */
-#ifdef NONMATCHING
 void OSResetSystem(int reset, u32 resetCode, BOOL forceMenu) {
     BOOL rc;
     BOOL disableRecalibration;
-    u32 unk[3];
+    u32 unk;
     OSDisableScheduler();
-    __OSStopAudioSystem();
-
-    if (reset == OS_RESET_SHUTDOWN) {
-        disableRecalibration = __PADDisableRecalibration(TRUE);
-    }
-
-    while (!__OSCallResetFunctions(FALSE))
-        ;
 
     if (reset == OS_RESET_HOTRESET && forceMenu) {
         OSSram* sram;
@@ -188,46 +181,52 @@ void OSResetSystem(int reset, u32 resetCode, BOOL forceMenu) {
         sram->flags |= 0x40;
         __OSUnlockSram(TRUE);
 
-        while (!__OSSyncSram())
-            ;
+       
+        resetCode = 0;
     }
-    OSDisableInterrupts();
-    __OSCallResetFunctions(TRUE);
-    LCDisable();
+
+    if (reset == OS_RESET_SHUTDOWN || (reset == OS_RESET_RESTART && (bootThisDol || resetCode + 0x3fff0000 == 0))) {
+        __OSStopAudioSystem();
+        disableRecalibration = __PADDisableRecalibration(TRUE);
+        while (!__OSCallResetFunctions(FALSE));
+        while (!__OSSyncSram());
+            OSDisableInterrupts();
+        __OSCallResetFunctions(TRUE);
+        LCDisable();
+        __PADDisableRecalibration(disableRecalibration);
+        KillThreads();
+    } else {
+        __OSStopAudioSystem();
+        while (!__OSCallResetFunctions(FALSE));
+        while (!__OSSyncSram());
+        OSDisableInterrupts();
+        __OSCallResetFunctions(TRUE);
+        LCDisable();
+        KillThreads();
+    }
+
     if (reset == OS_RESET_HOTRESET) {
         __OSDoHotReset(resetCode);
     } else if (reset == OS_RESET_RESTART) {
-        KillThreads();
+        if (forceMenu == TRUE) {
+            OSReport("OSResetSystem(): You can't specify TRUE to forceMenu if you restart. Ignored\n");
+        }
         OSEnableScheduler();
-        __OSReboot(resetCode, forceMenu);
+        __OSReboot(resetCode, bootThisDol);
     }
-    KillThreads();
     memset(OSPhysicalToCached(0x40), 0, 0xcc - 0x40);
     memset(OSPhysicalToCached(0xd4), 0, 0xe8 - 0xd4);
     memset(OSPhysicalToCached(0xf4), 0, 0xf8 - 0xf4);
     memset(OSPhysicalToCached(0x3000), 0, 0xc0);
     memset(OSPhysicalToCached(0x30c8), 0, 0xd4 - 0xc8);
     memset(OSPhysicalToCached(0x30e2), 0, 1);
-
-    __PADDisableRecalibration(disableRecalibration);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSResetSystem(int reset, u32 resetCode, BOOL forceMenu) {
-    nofralloc
-#include "asm/dolphin/os/OSReset/OSResetSystem.s"
-}
-#pragma pop
-#endif
 
 /* 8033FAAC-8033FAE4 33A3EC 0038+00 0/0 3/3 0/0 .text            OSGetResetCode */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 OSGetResetCode(void) {
-    nofralloc
-#include "asm/dolphin/os/OSReset/OSGetResetCode.s"
+u32 OSGetResetCode(void)
+{
+    if (__OSRebootParams.valid)
+        return 0x80000000 | __OSRebootParams.restartCode;
+
+    return ((__PIRegs[9] & ~7) >> 3);
 }
-#pragma pop

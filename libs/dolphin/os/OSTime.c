@@ -134,8 +134,6 @@ static void GetDates(s32 days, OSCalendarTime* cal) {
 #define BIAS (2000 * 365 + (2000 + 3) / 4 - (2000 - 1) / 100 + (2000 - 1) / 400)
 
 /* 80342974-80342B78 33D2B4 0204+00 0/0 4/4 0/0 .text            OSTicksToCalendarTime */
-#ifdef NONMATCHING
-#pragma push
 #pragma dont_inline on
 void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime* td) {
     int days;
@@ -163,14 +161,4 @@ void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime* td) {
     td->minutes = (secs / 60) % 60;
     td->seconds = secs % 60;
 }
-#pragma pop
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime* ct) {
-    nofralloc
-#include "asm/dolphin/os/OSTime/OSTicksToCalendarTime.s"
-}
-#pragma pop
-#endif
+#pragma dont_inline reset

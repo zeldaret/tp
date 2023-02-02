@@ -3394,7 +3394,7 @@ def main() -> None:
                     if ret.returncode != 0:
                         display.update(
                             ret.stderr.decode("utf-8-sig", "replace")
-                            or ret.stdout.decode("utf-8-sig", "replace"),
+                            + ret.stdout.decode("utf-8-sig", "replace"),
                             error=True,
                         )
                         continue

@@ -220,25 +220,9 @@ void Z2StatusMgr::menuOut() {
 }
 
 /* 802B61BC-802B61E8 2B0AFC 002C+00 2/2 1/1 0/0 .text            isMovieDemo__11Z2StatusMgrFv */
-#ifdef NONMATCHING
 bool Z2StatusMgr::isMovieDemo(void) {
-    bool isMovieDemo = false;
-
-    if (mDemoStatus == 2 || mDemoStatus == 8 || mDemoStatus == 9) {
-        isMovieDemo = true;
-    }
-    return isMovieDemo;
+    return mDemoStatus == 2 || mDemoStatus == 8 || mDemoStatus == 9;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool Z2StatusMgr::isMovieDemo() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2StatusMgr/isMovieDemo__11Z2StatusMgrFv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 8039BC88-8039BC88 0282E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

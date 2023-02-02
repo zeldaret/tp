@@ -152,7 +152,7 @@ SECTION_SDATA2 static f64 lit_650 = 4503601774854144.0 /* cast s32 to float */;
 /* 802F4468-802F4658 2EEDA8 01F0+00 1/1 0/0 0/0 .text
  * private_initiate__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorb
  */
-// close
+// matches with float literals
 #ifdef NONMATCHING
 void J2DPrint::private_initiate(JUTFont* pFont, f32 param_1, f32 param_2, JUtility::TColor param_3,
                                 JUtility::TColor param_4, JUtility::TColor param_5,
@@ -165,10 +165,13 @@ void J2DPrint::private_initiate(JUTFont* pFont, f32 param_1, f32 param_2, JUtili
     field_0x4c = 32.0f;
 
     if (mFont != NULL) {
-        if (!param_7) {
-            param_2 = mFont->getLeading();
+        f32 temp;
+        if (param_7 == false) {
+            temp = param_2;
+        } else {
+            temp = mFont->getLeading();
         }
-        field_0x4c = param_2;
+        field_0x4c = temp;
     }
 
     field_0x5a = 1;

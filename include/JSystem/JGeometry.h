@@ -55,9 +55,25 @@ struct TVec3<f32> {
     void zero() { x = y = z = 0.0f; }
 
     void mul(const TVec3<f32>& a, const TVec3<f32>& b) {
-        x = a.x * b.x;
-        y = a.y * b.y;
-        z = a.z * b.z;
+        register f32* dst = &x;
+        const register f32* srca = &a.x;
+        const register f32* srcb = &b.x;
+        register f32 a_x_y;
+        register f32 b_x_y;
+        register f32 x_y;
+        register f32 za;
+        register f32 zb;
+        register f32 z;
+        asm {
+            psq_l  a_x_y, 0(srca), 0, 0
+            psq_l  b_x_y, 0(srcb), 0, 0
+            ps_mul x_y, a_x_y, b_x_y
+            psq_st x_y, 0(dst), 0, 0
+            lfs    za,   8(srca)
+            lfs    zb,   8(srcb)
+            fmuls  z, za, zb
+            stfs   z,   8(dst)
+        };
     }
 
     inline TVec3<f32>& operator=(const TVec3<f32>& b) {

@@ -218,13 +218,11 @@ static asm void dThunder_Delete(dThunder_c* param_0) {
 
 /* 801AE3FC-801AE458 1A8D3C 005C+00 1/0 0/0 0/0 .text            dThunder_Create__FP12kankyo_class
  */
-#ifdef NONMATCHING
-// regalloc
 static int dThunder_Create(kankyo_class* param_0) {
     dThunder_c* thunder_ptr = (dThunder_c*)param_0;
-    int ret = thunder_ptr->createHeap();
+    int ret;
 
-    if (ret == 0) {
+    if (thunder_ptr->createHeap() == 0) {
         return 5;
     } else {
         ret = thunder_ptr->create();
@@ -233,16 +231,6 @@ static int dThunder_Create(kankyo_class* param_0) {
 
     return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dThunder_Create(kankyo_class* param_0) {
-    nofralloc
-#include "asm/d/d_ky_thunder/dThunder_Create__FP12kankyo_class.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80394F40-80394F40 0215A0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

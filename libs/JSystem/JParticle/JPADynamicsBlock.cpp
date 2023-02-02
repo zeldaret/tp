@@ -59,9 +59,8 @@ SECTION_SDATA2 static f32 lit_2289[1 + 1 /* padding */] = {
 };
 
 /* 8027B144-8027B220 275A84 00DC+00 1/1 0/0 0/0 .text JPAVolumePoint__FP18JPAEmitterWorkData */
+// matches with literals
 #ifdef NONMATCHING
-
-// bug in diff.py preventing me from seeing what's wrong
 void JPAVolumePoint(JPAEmitterWorkData* work) {
     work->mVolumePos.zero();
     work->mVelOmni.set(work->mpEmtr->get_r_zh(), work->mpEmtr->get_r_zh(),
@@ -86,15 +85,14 @@ static asm void JPAVolumePoint(JPAEmitterWorkData* param_0) {
 /* 80455320-80455328 003920 0008+00 6/6 0/0 0/0 .sdata2          @2321 */
 SECTION_SDATA2 static f64 lit_2321 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 8027B220-8027B33C 275B60 011C+00 1/1 0/0 0/0 .text JPAVolumeLine__FP18JPAEmitterWorkData */
+/* 8027B220-8027B33C 275B60 011C+00 1/1 0/0 0/0 .text JPAVolumeLine */
+// matches with literals
 #ifdef NONMATCHING
-
-// bug in diff.py preventing me from seeing what's wrong
 void JPAVolumeLine(JPAEmitterWorkData* work) {
     if (work->mpEmtr->checkFlag(JPADynFlag_FixedInterval)) {
         work->mVolumePos.set(0.0f, 0.0f,
                              work->mVolumeSize *
-                                 (s32)((work->mVolumeEmitIdx / (work->mEmitCount - 1.0f) - 0.5f)));
+                                 ((work->mVolumeEmitIdx / (work->mEmitCount - 1.0f) - 0.5f)));
         work->mVolumeEmitIdx++;
     } else {
         work->mVolumePos.set(0.0f, 0.0f, work->mVolumeSize * work->mpEmtr->get_r_zh());
@@ -117,17 +115,22 @@ static asm void JPAVolumeLine(JPAEmitterWorkData* param_0) {
 
 #endif
 
-/* 8027B33C-8027B4E8 275C7C 01AC+00 1/1 0/0 0/0 .text JPAVolumeCircle__FP18JPAEmitterWorkData */
-
+/* 8027B33C-8027B4E8 275C7C 01AC+00 1/1 0/0 0/0 .text JPAVolumeCircle */
+// regalloc. Could be issue with mul asm implementations
 #ifdef NONMATCHING
-
-// bug in diff.py preventing me from seeing what's wrong
 void JPAVolumeCircle(JPAEmitterWorkData* work) {
-    f32 theta, distance, sizeXZ;
+    s16 thetai;
+    f32 theta;
+    f32 distance;
+    f32 sizeXZ;
+    f32 temp;
     if (work->mpEmtr->checkFlag(JPADynFlag_FixedInterval)) {
-        theta = work->mVolumeSweep * (work->mVolumeEmitIdx++ / work->mEmitCount);
+        theta = (s16)((work->mVolumeEmitIdx << 16) / work->mEmitCount);
+        thetai = theta * work->mVolumeSweep;
+        work->mVolumeEmitIdx++;
     } else {
         theta = work->mVolumeSweep * work->mpEmtr->get_r_ss();
+        thetai = theta;
     }
 
     distance = work->mpEmtr->get_r_f();
@@ -136,7 +139,7 @@ void JPAVolumeCircle(JPAEmitterWorkData* work) {
     }
 
     sizeXZ = work->mVolumeSize * (work->mVolumeMinRad + distance * (1.0f - work->mVolumeMinRad));
-    work->mVolumePos.set(sizeXZ * JMASSin(theta), 0.0f, sizeXZ * JMASCos(theta));
+    work->mVolumePos.set(sizeXZ * JMASSin(thetai), 0.0f, sizeXZ * JMASCos(thetai));
     work->mVelOmni.mul(work->mVolumePos, work->mGlobalScl);
     work->mVelAxis.set(work->mVolumePos.x, 0.0f, work->mVolumePos.z);
 }
@@ -154,15 +157,13 @@ static asm void JPAVolumeCircle(JPAEmitterWorkData* param_0) {
 
 #endif
 
-/* 8027B4E8-8027B5F0 275E28 0108+00 1/1 0/0 0/0 .text JPAVolumeCube__FP18JPAEmitterWorkData */
-
+/* 8027B4E8-8027B5F0 275E28 0108+00 1/1 0/0 0/0 .text JPAVolumeCube */
+// matches with literals
 #ifdef NONMATCHING
-
-// bug in diff.py preventing me from seeing what's wrong
 void JPAVolumeCube(JPAEmitterWorkData* work) {
-    f32 size = work->mVolumeSize;
-    work->mVolumePos.set(size * work->mpEmtr->get_r_zh(), size * work->mpEmtr->get_r_zh(),
-                         size * work->mpEmtr->get_r_zh());
+    work->mVolumePos.set(work->mpEmtr->get_r_zh() * work->mVolumeSize,
+                         work->mpEmtr->get_r_zh() * work->mVolumeSize,
+                         work->mpEmtr->get_r_zh() * work->mVolumeSize);
     work->mVelOmni.mul(work->mVolumePos, work->mGlobalScl);
     work->mVelAxis.set(work->mVolumePos.x, 0.0f, work->mVolumePos.z);
 }

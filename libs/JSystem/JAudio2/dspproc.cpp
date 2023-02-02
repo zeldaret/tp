@@ -55,7 +55,7 @@ asm void DSPReleaseHalt2(u32 param_0) {
 
 /* ############################################################################################## */
 /* 804512F8-80451300 0007F8 0004+04 2/2 0/0 0/0 .sbss            flag */
-static u32 flag;
+static volatile BOOL flag;
 
 /* 8029E540-8029E54C 298E80 000C+00 1/1 0/0 0/0 .text            setup_callback__FUs */
 static void setup_callback(u16 param_0) {
