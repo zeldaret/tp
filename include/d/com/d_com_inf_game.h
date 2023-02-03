@@ -6,6 +6,7 @@
 #include "d/cc/d_cc_s.h"
 #include "d/d_attention.h"
 #include "d/d_drawlist.h"
+#include "d/d_procname.h"
 #include "d/d_resorce.h"
 #include "d/d_simple_model.h"
 #include "d/d_stage.h"
@@ -14,7 +15,6 @@
 #include "d/event/d_event_manager.h"
 #include "d/particle/d_particle.h"
 #include "d/save/d_save.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_scene_mng.h"
 
@@ -788,6 +788,10 @@ inline void* dComIfG_getObjectIDRes(const char* arc_name, u16 id) {
 
 inline u8 dComIfG_getBrightness() {
     return g_dComIfG_gameInfo.mFadeBrightness;
+}
+
+inline int dComIfG_getObjctResName2Index(const char* i_arcName, const char* i_resName) {
+    return g_dComIfG_gameInfo.mResControl.getObjectResName2Index(i_arcName, i_resName);
 }
 
 u8 dComIfGs_getMixItemIndex(int i_no);

@@ -184,7 +184,6 @@ extern "C" void _savegpr_25();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_25();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* __vt__4dBgW[65];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 

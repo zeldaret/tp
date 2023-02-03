@@ -6,17 +6,6 @@
 
 #include "rel/d/a/kytag/d_a_kytag14/d_a_kytag14.h"
 #include "d/com/d_com_inf_game.h"
-#include "dol2asm.h"
-
-//
-// External References:
-//
-
-extern "C" extern void* g_fopAc_Method[8];
-
-//
-// Declarations:
-//
 
 /* 80529998-805299A0 000078 0008+00 1/0 0/0 0/0 .text            daKytag14_Draw__FP13kytag14_class
  */
@@ -69,7 +58,8 @@ static int daKytag14_Execute(kytag14_class* i_this) {
         }
     }
 
-    if (event1_set == true && event2_unset == true && switch1_set == true && switch2_unset == true) {
+    if (event1_set == true && event2_unset == true && switch1_set == true && switch2_unset == true)
+    {
         g_dComIfG_gameInfo.info.getPlayer().getPlayerReturnPlace().set(
             dComIfGp_getStartStageName(), i_this->mSaveRoomNo, i_this->mSavePoint);
     }
@@ -112,23 +102,31 @@ static int daKytag14_Create(fopAc_ac_c* i_this) {
 
 /* ############################################################################################## */
 /* 80529BE8-80529C08 -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag14_Method */
-SECTION_DATA static void* l_daKytag14_Method[8] = {
-    (void*)daKytag14_Create,
-    (void*)daKytag14_Delete,
-    (void*)daKytag14_Execute,
-    (void*)daKytag14_IsDelete,
-    (void*)daKytag14_Draw,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daKytag14_Method = {
+    (process_method_func)daKytag14_Create,  (process_method_func)daKytag14_Delete,
+    (process_method_func)daKytag14_Execute, (process_method_func)daKytag14_IsDelete,
+    (process_method_func)daKytag14_Draw,
 };
 
 /* 80529C08-80529C38 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_KYTAG14 */
-SECTION_DATA extern void* g_profile_KYTAG14[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x02B80000, (void*)&g_fpcLf_Method,
-    (void*)0x00000570, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x006C0000, (void*)&l_daKytag14_Method,
-    (void*)0x00044000, (void*)NULL,
+extern actor_process_profile_definition g_profile_KYTAG14 = {
+    -3,
+    7,
+    0xFFFD,
+    PROC_KYTAG14,
+    0,
+    &g_fpcLf_Method.mBase,
+    sizeof(kytag14_class),
+    0,
+    0,
+    &g_fopAc_Method.base,
+    0x006C,
+    0,
+    0,
+    &l_daKytag14_Method,
+    0x00044000,
+    0,
+    0,
+    0,
+    0,
 };

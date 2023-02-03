@@ -3029,7 +3029,6 @@ extern "C" extern void* __vt__28mDoExt_MtxCalcAnmBlendTblOld[11];
 extern "C" extern void* __vt__25mDoExt_MtxCalcAnmBlendTbl[11];
 extern "C" extern void* __vt__10J3DMtxCalc[11 + 1 /* padding */];
 extern "C" extern void* __vt__19JPAParticleCallBack[5];
-extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* __vt__14dBgS_ObjGndChk[12 + 1 /* padding */];
 extern "C" extern void* __vt__12dDlst_base_c[3];

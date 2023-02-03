@@ -191,7 +191,6 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" u8 const m_data__12daItemBase_c[56];
 extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* __vt__8cM3dGCyl[3];
 extern "C" extern void* __vt__8cM3dGAab[3];

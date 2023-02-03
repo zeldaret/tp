@@ -9,8 +9,6 @@
 #include "c/c_damagereaction.h"
 #include "d/d_procname.h"
 
-extern "C" extern leafdraw_method_class g_fopAc_Method;
-
 /* 8061DCB8-8061DDB0 000078 00F8+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
 static int nodeCallBack(J3DJoint* i_joint, int param_1) {
     if (param_1 == 0) {
@@ -324,7 +322,7 @@ extern actor_process_profile_definition g_profile_B_OH2 = {
     sizeof(b_oh2_class),
     0,
     0,
-    &g_fopAc_Method,
+    &g_fopAc_Method.base,
     0x00DB,
     0,
     0,

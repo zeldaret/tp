@@ -4,17 +4,6 @@
  */
 
 #include "rel/d/a/d_a_skip_2D/d_a_skip_2D.h"
-#include "dol2asm.h"
-
-//
-// External References:
-//
-
-extern "C" extern void* g_fopAc_Method[8];
-
-//
-// Declarations:
-//
 
 /* 80D4D478-80D4D498 000078 0020+00 1/1 0/0 0/0 .text            daSkip2D_createHeap__FP10fopAc_ac_c
  */
@@ -97,23 +86,31 @@ static int daSkip2D_IsDelete(void*) {
 
 /* ############################################################################################## */
 /* 80D4D6DC-80D4D6FC -00001 0020+00 1/0 0/0 0/0 .data            daSkip2D_MethodTable */
-SECTION_DATA static void* daSkip2D_MethodTable[8] = {
-    (void*)daSkip2D_Create,
-    (void*)daSkip2D_Delete,
-    (void*)daSkip2D_Execute,
-    (void*)daSkip2D_IsDelete,
-    (void*)daSkip2D_Draw,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class daSkip2D_MethodTable = {
+    (process_method_func)daSkip2D_Create,  (process_method_func)daSkip2D_Delete,
+    (process_method_func)daSkip2D_Execute, (process_method_func)daSkip2D_IsDelete,
+    (process_method_func)daSkip2D_Draw,
 };
 
 /* 80D4D6FC-80D4D72C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_SKIP2D */
-SECTION_DATA extern void* g_profile_SKIP2D[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0003FFFD,
-    (void*)0x005B0000, (void*)&g_fpcLf_Method,
-    (void*)0x00000578, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x03040000, (void*)&daSkip2D_MethodTable,
-    (void*)0x00040000, (void*)NULL,
+extern actor_process_profile_definition g_profile_SKIP2D = {
+    -3,
+    3,
+    0xFFFD,
+    PROC_SKIP2D,
+    0000,
+    &g_fpcLf_Method.mBase,
+    sizeof(daSkip2D_c),
+    0,
+    0,
+    &g_fopAc_Method.base,
+    0x0304,
+    0,
+    0,
+    &daSkip2D_MethodTable,
+    0x00040000,
+    0,
+    0,
+    0,
+    0,
 };

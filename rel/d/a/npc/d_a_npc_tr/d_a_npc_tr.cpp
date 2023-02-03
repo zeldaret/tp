@@ -98,7 +98,6 @@ extern "C" void MtxPosition__FP4cXyzP4cXyz();
 extern "C" void __dl__FPv();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
-extern "C" extern void* g_fopAc_Method[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];

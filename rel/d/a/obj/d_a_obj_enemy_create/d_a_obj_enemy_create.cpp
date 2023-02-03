@@ -6,8 +6,6 @@
 #include "rel/d/a/obj/d_a_obj_enemy_create/d_a_obj_enemy_create.h"
 #include "d/d_procname.h"
 
-extern "C" extern leafdraw_method_class g_fopAc_Method;
-
 /* 80BE3178-80BE3198 000078 0020+00 1/0 0/0 0/0 .text daObjE_CREATE_Create__FP10fopAc_ac_c */
 static int daObjE_CREATE_Create(fopAc_ac_c* i_this) {
     return static_cast<daObjE_CREATE_c*>(i_this)->create();
@@ -284,7 +282,7 @@ extern actor_process_profile_definition g_profile_Obj_E_CREATE = {
     sizeof(daObjE_CREATE_c),
     0,
     0,
-    &g_fopAc_Method,
+    &g_fopAc_Method.base,
     0x01CA,
     0,
     0,

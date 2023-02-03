@@ -9,12 +9,6 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// External References:
-//
-
-extern "C" extern leafdraw_method_class g_fopAc_Method;
-
 /* ############################################################################################## */
 /* 80D5B918-80D5BA94 000078 017C+00 1/1 0/0 0/0 .text            create__11daTagMmsg_cFv */
 int daTagMmsg_c::create() {
@@ -53,8 +47,8 @@ int daTagMmsg_c::create() {
 }
 
 /* 80D5BA94-80D5BAB4 0001F4 0020+00 1/0 0/0 0/0 .text            daTagMmsg_Create__FP10fopAc_ac_c */
-static int daTagMmsg_Create(fopAc_ac_c* tag) {
-    return static_cast<daTagMmsg_c*>(tag)->create();
+static int daTagMmsg_Create(fopAc_ac_c* i_this) {
+    return static_cast<daTagMmsg_c*>(i_this)->create();
 }
 
 /* 80D5BAB4-80D5BB08 000214 0054+00 1/1 0/0 0/0 .text            __dt__11daTagMmsg_cFv */
@@ -62,8 +56,8 @@ daTagMmsg_c::~daTagMmsg_c() {}
 
 /* 80D5BB08-80D5BB30 000268 0028+00 1/0 0/0 0/0 .text            daTagMmsg_Delete__FP11daTagMmsg_c
  */
-static int daTagMmsg_Delete(daTagMmsg_c* tag) {
-    tag->~daTagMmsg_c();
+static int daTagMmsg_Delete(daTagMmsg_c* i_this) {
+    i_this->~daTagMmsg_c();
     return 1;
 }
 
@@ -73,8 +67,8 @@ int daTagMmsg_c::execute() {
         return 1;
     }
 
-    if (field_0x572 != 0x3FF &&
-        i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x572])) {
+    if (field_0x572 != 0x3FF && i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x572]))
+    {
         return 1;
     }
 
@@ -94,7 +88,8 @@ int daTagMmsg_c::execute() {
         (fopAcM_searchPlayerDistanceXZ2(this) < field_0x574) &&
         (field_0x570 == 0x3FF ||
          i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x570])) &&
-        (field_0x568 == 0xFF || dComIfGs_isSwitch(field_0x568, fopAcM_GetHomeRoomNo(this)))) {
+        (field_0x568 == 0xFF || dComIfGs_isSwitch(field_0x568, fopAcM_GetHomeRoomNo(this))))
+    {
         player->setMidnaMsgNum(this, shape_angle.z);
     }
 
@@ -103,22 +98,20 @@ int daTagMmsg_c::execute() {
 
 /* 80D5BD08-80D5BD28 000468 0020+00 1/0 0/0 0/0 .text            daTagMmsg_Execute__FP11daTagMmsg_c
  */
-static int daTagMmsg_Execute(daTagMmsg_c* tag) {
-    return tag->execute();
+static int daTagMmsg_Execute(daTagMmsg_c* i_this) {
+    return i_this->execute();
 }
 
 /* 80D5BD28-80D5BD30 000488 0008+00 1/0 0/0 0/0 .text            daTagMmsg_Draw__FP11daTagMmsg_c */
-static int daTagMmsg_Draw(daTagMmsg_c* tag) {
+static int daTagMmsg_Draw(daTagMmsg_c* i_this) {
     return 1;
 }
 
 /* ############################################################################################## */
 /* 80D5BD44-80D5BD64 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagMmsg_Method */
 static actor_method_class l_daTagMmsg_Method = {
-    (process_method_func)daTagMmsg_Create,
-    (process_method_func)daTagMmsg_Delete,
-    (process_method_func)daTagMmsg_Execute,
-    (process_method_func)NULL,
+    (process_method_func)daTagMmsg_Create,  (process_method_func)daTagMmsg_Delete,
+    (process_method_func)daTagMmsg_Execute, (process_method_func)NULL,
     (process_method_func)daTagMmsg_Draw,
 };
 
@@ -133,7 +126,7 @@ extern actor_process_profile_definition g_profile_Tag_Mmsg = {
     sizeof(daTagMmsg_c),    // mSize
     0,                      // mSizeOther
     0,                      // mParameters
-    &g_fopAc_Method,        // mSubMtd
+    &g_fopAc_Method.base,   // mSubMtd
     0x00FF,                 // mPriority
     0,                      // unk22[0]
     0,                      // unk22[1]
