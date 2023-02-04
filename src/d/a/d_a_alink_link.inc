@@ -425,7 +425,7 @@ int daAlink_c::procSideStepInit(int jump_type) {
         current.angle.y = shape_angle.y + 0x8000;
         setSingleAnimeParam(ANM_BACK_JUMP, &daAlinkHIO_sideStep_c0::m.mBackJumpAnm);
         mNormalSpeed = daAlinkHIO_sideStep_c0::m.mBackJumpSpeedH;
-        mSpeed.y = daAlinkHIO_sideStep_c0::m.mBackJumpSpeedV;
+        speed.y = daAlinkHIO_sideStep_c0::m.mBackJumpSpeedV;
         field_0x300a = 0;
     } else {
         daAlink_ANM anm_id;
@@ -439,13 +439,13 @@ int daAlink_c::procSideStepInit(int jump_type) {
 
         setSingleAnimeParam(anm_id, &daAlinkHIO_sideStep_c0::m.mSideJumpAnm);
         mNormalSpeed = daAlinkHIO_sideStep_c0::m.mSideJumpSpeedH;
-        mSpeed.y = daAlinkHIO_sideStep_c0::m.mSideJumpSpeedV;
+        speed.y = daAlinkHIO_sideStep_c0::m.mSideJumpSpeedV;
         field_0x300a = 1;
     }
 
     if (i_checkNoResetFlg0(FLG0_UNDERWATER)) {
         mNormalSpeed *= daAlinkHIO_magneBoots_c0::m.mWaterVelocityX;
-        mSpeed.y *= daAlinkHIO_magneBoots_c0::m.mWaterVelocityY;
+        speed.y *= daAlinkHIO_magneBoots_c0::m.mWaterVelocityY;
     }
 
     voiceStart(Z2SE_AL_V_JUMP_S);
@@ -686,7 +686,7 @@ int daAlink_c::procFrontRollInit() {
                        daAlinkHIO_frontRoll_c0::m.mRollAnm.field_0x00,
                        daAlinkHIO_frontRoll_c0::m.mRollAnm.field_0x0c);
         mNormalSpeed =
-            mSpeedF * daAlinkHIO_frontRoll_c0::m.mInitSpeed + daAlinkHIO_frontRoll_c0::m.mSpeedRate;
+            speedF * daAlinkHIO_frontRoll_c0::m.mInitSpeed + daAlinkHIO_frontRoll_c0::m.mSpeedRate;
         if (mNormalSpeed > daAlinkHIO_frontRoll_c0::m.mCrashHitAnm.field_0x08) {
             mNormalSpeed = daAlinkHIO_frontRoll_c0::m.mCrashHitAnm.field_0x08;
         }
@@ -751,11 +751,11 @@ int daAlink_c::procFrontRollCrashInit() {
                    daAlinkHIO_frontRoll_c0::m.mCrashAnm.mInterpolation);
 
     mNormalSpeed = daAlinkHIO_frontRoll_c0::m.mCrashSpeedH;
-    mSpeed.y = daAlinkHIO_frontRoll_c0::m.mCrashSpeedV;
+    speed.y = daAlinkHIO_frontRoll_c0::m.mCrashSpeedV;
 
     if (i_checkNoResetFlg0(FLG0_UNDERWATER)) {
         mNormalSpeed *= daAlinkHIO_magneBoots_c0::m.mWaterVelocityX;
-        mSpeed.y *= daAlinkHIO_magneBoots_c0::m.mWaterVelocityY;
+        speed.y *= daAlinkHIO_magneBoots_c0::m.mWaterVelocityY;
     }
 
     current.angle.y -= -0x8000;
@@ -931,12 +931,12 @@ int daAlink_c::procBackJumpInit(int param_0) {
     if (param_0) {
         setSingleAnimeParam(ANM_BACKFLIP, &daAlinkHIO_cutDown_c0::m.mRecoverAnm);
         mNormalSpeed = daAlinkHIO_cutDown_c0::m.mRecoverSpeedV;
-        mSpeed.y = daAlinkHIO_cutDown_c0::m.mSpeedV;
+        speed.y = daAlinkHIO_cutDown_c0::m.mSpeedV;
         voiceStart(Z2SE_AL_V_TODOME_RETURN);
     } else {
         setSingleAnimeParam(ANM_BACKFLIP, &daAlinkHIO_backJump_c0::m.mBackflipAnm);
         mNormalSpeed = daAlinkHIO_backJump_c0::m.mBackflipSpeedH;
-        mSpeed.y = daAlinkHIO_backJump_c0::m.mBackflipSpeedV;
+        speed.y = daAlinkHIO_backJump_c0::m.mBackflipSpeedV;
         voiceStart(Z2SE_AL_V_BACKTEN);
     }
 
@@ -1047,7 +1047,7 @@ int daAlink_c::procBackJumpLand() {
 int daAlink_c::procSlipInit() {
     commonProcInit(PROC_SLIP);
     setSingleAnimeParam(ANM_SLIP, &daAlinkHIO_move_c0::m.mSlideAnm);
-    mNormalSpeed = mSpeedF * daAlinkHIO_move_c0::m.mSlideSpeed;
+    mNormalSpeed = speedF * daAlinkHIO_move_c0::m.mSlideSpeed;
 
     field_0x2f9d = 0x40;
     setFootEffectProcType(1);
@@ -1097,7 +1097,7 @@ int daAlink_c::procDiveJumpInit() {
     deleteEquipItem(TRUE, TRUE);
     setHeavyBoots(0);
 
-    mSpeed.y = daAlinkHIO_autoJump_c0::m.mDiveSpeedV;
+    speed.y = daAlinkHIO_autoJump_c0::m.mDiveSpeedV;
     mNormalSpeed = daAlinkHIO_autoJump_c0::m.mDiveSpeedH;
     mGravity = daAlinkHIO_autoJump_c0::m.mDiveGravity;
 
@@ -1142,7 +1142,7 @@ int daAlink_c::procRollJumpInit() {
 
     field_0x3478 = field_0x3410;
     mNormalSpeed = field_0x3410;
-    mSpeed.y = field_0x3414;
+    speed.y = field_0x3414;
 
     field_0x2fe6 = field_0x30ee;
     shape_angle.y = field_0x30ee;
@@ -1165,7 +1165,7 @@ int daAlink_c::procRollJump() {
         return checkLandAction(0);
     }
 
-    if (mSpeed.y < FLOAT_LABEL(lit_6108)) {
+    if (speed.y < FLOAT_LABEL(lit_6108)) {
         procFallInit(3, daAlinkHIO_autoJump_c0::m.mSpinJumpFallInterpolation);
     } else {
         s16 old_angle = shape_angle.x;
@@ -1469,7 +1469,7 @@ int daAlink_c::procCoMetamorphoseInit() {
     if ((i_checkWolf() && mDemo.getDemoMode() == 0x39) ||
         (!i_checkWolf() && mDemo.getDemoMode() == 0x3A)) {
         field_0x300a = 1;
-        mSpeed.y = 0.0f;
+        speed.y = 0.0f;
         mNormalSpeed = 0.0f;
 
         if (i_checkWolf()) {
@@ -1549,7 +1549,7 @@ int daAlink_c::procCoMetamorphoseInit() {
                 mCommonCounter = 0;
             }
         }
-        mSpeed.y = 0.0f;
+        speed.y = 0.0f;
         mNormalSpeed = 0.0f;
         field_0x3012 = 0;
     }
@@ -1639,7 +1639,7 @@ int daAlink_c::procCoMetamorphoseOnlyInit() {
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     mNormalSpeed = tmp_0;
-    mSpeed.y = tmp_0;
+    speed.y = tmp_0;
     setSpecialGravity(tmp_0, mMaxFallSpeed, 0);
 
     return 1;
@@ -2161,7 +2161,7 @@ int daAlink_c::execute() {
     }
 
     cXyz pos = current.pos;
-    field_0x3528 = mSpeed;
+    field_0x3528 = speed;
 
     mLinkAcch.ClrGroundHit();
     mLinkAcch.CrrPos(dComIfG_Bgsp());
@@ -2203,7 +2203,7 @@ int daAlink_c::execute() {
 
         Vec tmp;
         mDoMtx_stack_c::multVec(&tmp, &current.pos);
-        mSpeed.y = 0.0f;
+        speed.y = 0.0f;
 
         if (field_0x3198 != 0) {
             if (mLinkAcch.GetGroundH() != -1000000000.0f) {
@@ -2218,13 +2218,13 @@ int daAlink_c::execute() {
     } else if (checkModeFlg(MODE_UNK_4000)) {
         if (mProcID == PROC_DOOR_OPEN || mProcID == PROC_HANG_LEVER_DOWN) {
             current.pos.y = old_pos.y;
-            mSpeed.y = 0.0f;
+            speed.y = 0.0f;
         }
         current.pos.x = pos.x;
         current.pos.z = pos.z;
     } else if (checkFlyAtnWait() || mProcID == PROC_WARP) {
         current.pos.y = old_pos.y;
-        mSpeed.y = 0.0f;
+        speed.y = 0.0f;
     }
 
     field_0x3178 = field_0x3174;
@@ -2629,7 +2629,7 @@ int daAlink_c::execute() {
         } else if (dComIfGp_getDoStatus() == 0x91) {
             if (checkWolf() ||
                 (field_0x27f4 != NULL &&
-                 (field_0x27f4->mSpeedF > 0.1f || (checkGoatCatchActor(field_0x27f4) &&
+                 (field_0x27f4->speedF > 0.1f || (checkGoatCatchActor(field_0x27f4) &&
                                                    fopAcM_GetName(field_0x27f4) != PROC_COW)))) {
                 setDoStatusEmphasys(0x15);
             } else {
@@ -3192,7 +3192,7 @@ int daAlink_c::procCoPeepSubjectivityInit() {
 
     i_onPlayerNoDraw();
     setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
-    mSpeed.y = FLOAT_LABEL(lit_6108);
+    speed.y = FLOAT_LABEL(lit_6108);
     dComIfGp_setPlayerStatus0(0, 0x2000);
     field_0x3478 = lit_6183;
     mCommonCounter = shape_angle.y;

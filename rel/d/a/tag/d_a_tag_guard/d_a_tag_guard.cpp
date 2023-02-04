@@ -6,8 +6,6 @@
 #include "rel/d/a/tag/d_a_tag_guard/d_a_tag_guard.h"
 #include "d/d_procname.h"
 
-extern "C" extern leafdraw_method_class g_fopAc_Method;
-
 /* 80D597F8-80D5985C 000078 0064+00 0/0 0/0 1/1 .text getAppearPoint__12daTagGuard_cFP3Vec */
 int daTagGuard_c::getAppearPoint(Vec* i_appearPnt) {
     if (mPath == NULL) {
@@ -84,7 +82,7 @@ extern actor_process_profile_definition g_profile_TAG_GUARD = {
     sizeof(daTagGuard_c),
     0,
     0,
-    &g_fopAc_Method,
+    &g_fopAc_Method.base,
     0x0198,
     0,
     0,

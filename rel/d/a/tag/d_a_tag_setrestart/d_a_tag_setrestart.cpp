@@ -6,24 +6,6 @@
 
 #include "rel/d/a/tag/d_a_tag_setrestart/d_a_tag_setrestart.h"
 #include "d/com/d_com_inf_game.h"
-#include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" extern void* g_profile_Tag_Restart[12];
-
-//
-// External References:
-//
-
-extern "C" void __dl__FPv();
-extern "C" extern void* g_fopAc_Method[8];
-
-//
-// Declarations:
-//
 
 /* 80D603F8-80D6048C 000078 0094+00 1/1 0/0 0/0 .text            Create__14daTagRestart_cFv */
 int daTagRestart_c::Create() {
@@ -62,21 +44,6 @@ int daTagRestart_c::create() {
     return cPhs_COMPLEATE_e;
 }
 
-/* 80D60520-80D6055C 0001A0 003C+00 1/1 0/0 0/0 .text            __dt__4cXyzFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm cXyz::~cXyz() {
-extern "C" asm void __dt__4cXyzFv() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_setrestart/d_a_tag_setrestart/__dt__4cXyzFv.s"
-}
-#pragma pop
-
-/* 80D6055C-80D60560 0001DC 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-// cXyz::cXyz() {
-extern "C" void __ct__4cXyzFv() {}
-
 /* 80D60560-80D60744 0001E0 01E4+00 1/1 0/0 0/0 .text            execute__14daTagRestart_cFv */
 int daTagRestart_c::execute() {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
@@ -87,7 +54,8 @@ int daTagRestart_c::execute() {
     mDoMtx_stack_c::multVec(&player_pos, &player_pos);
 
     if (field_0x56c[0].x < player_pos.x && field_0x56c[0].z < player_pos.z &&
-        field_0x56c[2].x > player_pos.x && field_0x56c[2].z > player_pos.z) {
+        field_0x56c[2].x > player_pos.x && field_0x56c[2].z > player_pos.z)
+    {
         int roomNo = dComIfGp_roomControl_getStayNo();
         if (roomNo != mPlayerRoomNo) {
             cXyz pos_offset;
@@ -141,23 +109,33 @@ static int daTagRestart_Create(fopAc_ac_c* i_this) {
 
 /* ############################################################################################## */
 /* 80D607C0-80D607E0 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagRestart_Method */
-SECTION_DATA static void* l_daTagRestart_Method[8] = {
-    (void*)daTagRestart_Create,
-    (void*)daTagRestart_Delete,
-    (void*)daTagRestart_Execute,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daTagRestart_Method = {
+    (process_method_func)daTagRestart_Create,
+    (process_method_func)daTagRestart_Delete,
+    (process_method_func)daTagRestart_Execute,
+    (process_method_func)NULL,
+    (process_method_func)NULL,
 };
 
 /* 80D607E0-80D60810 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Restart */
-SECTION_DATA extern void* g_profile_Tag_Restart[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x022F0000, (void*)&g_fpcLf_Method,
-    (void*)0x0000059C, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x02500000, (void*)&l_daTagRestart_Method,
-    (void*)0x00040000, (void*)0x000E0000,
+extern actor_process_profile_definition g_profile_Tag_Restart = {
+    -3,
+    7,
+    0xFFFD,
+    PROC_Tag_Restart,
+    0,
+    &g_fpcLf_Method.mBase,
+    sizeof(daTagRestart_c),
+    0,
+    0,
+    &g_fopAc_Method.base,
+    0x0250,
+    0,
+    0,
+    &l_daTagRestart_Method,
+    0x00040000,
+    0,
+    14,
+    0,
+    0,
 };

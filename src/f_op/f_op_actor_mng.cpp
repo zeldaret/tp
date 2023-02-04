@@ -743,7 +743,7 @@ void fopAcM_calcSpeed(fopAc_ac_c* p_actor) {
     f32 speedF = fopAcM_GetSpeedF(p_actor);
     f32 gravity = fopAcM_GetGravity(p_actor);
     f32 xSpeed = speedF * cM_ssin(p_actor->getAngle().GetY());
-    f32 ySpeed = p_actor->mSpeed.y + gravity;
+    f32 ySpeed = p_actor->speed.y + gravity;
     f32 zSpeed = speedF * cM_scos(p_actor->getAngle().GetY());
 
     clampMin(ySpeed, fopAcM_GetMaxFallSpeed(p_actor));
@@ -752,9 +752,9 @@ void fopAcM_calcSpeed(fopAc_ac_c* p_actor) {
 
 /* 8001A660-8001A6CC 014FA0 006C+00 1/1 1/1 17/17 .text fopAcM_posMove__FP10fopAc_ac_cPC4cXyz */
 void fopAcM_posMove(fopAc_ac_c* p_actor, const cXyz* p_movePos) {
-    p_actor->current.pos.x += p_actor->mSpeed.x;
-    p_actor->current.pos.y += p_actor->mSpeed.y;
-    p_actor->current.pos.z += p_actor->mSpeed.z;
+    p_actor->current.pos.x += p_actor->speed.x;
+    p_actor->current.pos.y += p_actor->speed.y;
+    p_actor->current.pos.z += p_actor->speed.z;
     
     if (p_movePos != NULL) {
         p_actor->current.pos.x += p_movePos->x;
@@ -1501,8 +1501,8 @@ s32 fopAcM_createItemForBoss(const cXyz* p_pos, int param_2, int roomNo, const c
     fopAc_ac_c* actor = (fopAc_ac_c*)fopAcM_fastCreate(PROC_Obj_LifeContainer, 0xFFFF0000 | param_8 << 0x8 | (param_2 & 0xFF), p_pos, roomNo, p_angle,
                           p_scale, -1, NULL, NULL);
     if (actor != NULL) {
-        actor->mSpeedF = speedF;
-        actor->mSpeed.y = speedY;
+        actor->speedF = speedF;
+        actor->speed.y = speedY;
     }
     return fopAcM_GetID(actor);
 }
@@ -1668,11 +1668,11 @@ void* fopAcM_fastCreateItem(const cXyz* p_pos, int i_itemNo, int i_roomNo, const
 
             if (actor != NULL) {
                 if (p_speedF != NULL) {
-                    actor->mSpeedF = *p_speedF * (1.0f + cM_rndFX(0.3f));
+                    actor->speedF = *p_speedF * (1.0f + cM_rndFX(0.3f));
                 }
 
                 if (p_speedY != NULL) {
-                    actor->mSpeed.y = *p_speedY * (1.0f + cM_rndFX(0.2f));
+                    actor->speed.y = *p_speedY * (1.0f + cM_rndFX(0.2f));
                 }
             }
         }
@@ -1688,11 +1688,11 @@ void* fopAcM_fastCreateItem(const cXyz* p_pos, int i_itemNo, int i_roomNo, const
 
         if (actor != NULL) {
             if (p_speedF != NULL) {
-                actor->mSpeedF = *p_speedF;
+                actor->speedF = *p_speedF;
             }
 
             if (p_speedY != NULL) {
-                actor->mSpeed.y = *p_speedY;
+                actor->speed.y = *p_speedY;
             }
         }
 
@@ -1780,7 +1780,7 @@ asm fopAc_ac_c* fopAcM_myRoomSearchEnemy(s8 param_0) {
  * fopAcM_createDisappear__FPC10fopAc_ac_cPC4cXyzUcUcUc         */
 s32 fopAcM_createDisappear(const fopAc_ac_c* p_actor, const cXyz* p_pos, u8 param_3, u8 param_4,
                            u8 param_5) {
-    s8 roomNo = p_actor->current.mRoomNo;
+    s8 roomNo = p_actor->current.roomNo;
     return fopAcM_GetID(fopAcM_fastCreate(PROC_DISAPPEAR, (param_5 << 0x10) | (param_3 << 0x8) | param_4,
                                           p_pos, roomNo, &p_actor->current.angle, NULL, 0xFF, NULL,
                                           NULL));
@@ -2041,7 +2041,7 @@ s32 fopAcM_carryOffRevise(fopAc_ac_c* param_0) {
         param_0->current.pos.x = player->current.pos.x;
         param_0->current.pos.z = player->current.pos.z;
         param_0->next.pos = param_0->current.pos;
-        param_0->mSpeedF = FLOAT_LABEL(lit_4645);
+        param_0->speedF = FLOAT_LABEL(lit_4645);
         return 1;
     }
 

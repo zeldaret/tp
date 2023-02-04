@@ -474,7 +474,6 @@ extern "C" u8 const m_handRightInSidePos__9daAlink_c[12];
 extern "C" extern void* __vt__19mDoExt_3DlineMat1_c[5];
 extern "C" extern void* __vt__28mDoExt_MtxCalcAnmBlendTblOld[11];
 extern "C" extern void* __vt__25mDoExt_MtxCalcAnmBlendTbl[11];
-extern "C" extern void* g_fopAc_Method[8];
 extern "C" u8 m_typeFourData__8dPaPoF_c[60];
 extern "C" u8 m_emitterFourData__8dPaPoF_c[60 + 28 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];

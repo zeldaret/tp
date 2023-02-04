@@ -15,12 +15,6 @@
 extern "C" extern void* g_profile_Tag_Hinit[12];
 
 //
-// External References:
-//
-
-extern "C" extern void* g_fopAc_Method[8];
-
-//
 // Declarations:
 //
 

@@ -446,11 +446,11 @@ fopAc_ac_c* cc_at_check(fopAc_ac_c* p_enemy, dCcU_AtInfo* p_info) {
     p_info->mpActor = at_power_check(p_info);
 
     if (p_info->mpActor != NULL) {
-        cXyz tmp = p_info->mpActor->mSpeed;
+        cXyz tmp = p_info->mpActor->speed;
         tmp.y = 0.0f;
         if (tmp.abs() > 100.0f) {
-            f32 x = p_info->mpActor->mSpeed.x;
-            f32 z = p_info->mpActor->mSpeed.z;
+            f32 x = p_info->mpActor->speed.x;
+            f32 z = p_info->mpActor->speed.z;
             p_info->mHitDirection = cM_atan2s(-x, -z) + (s16)cM_rndFX(4000.0f);
         } else {
             if (fopAcM_GetName(p_info->mpActor) == PROC_BOOMERANG) {

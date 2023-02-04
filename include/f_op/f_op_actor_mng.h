@@ -105,7 +105,7 @@ struct DOUBLE_POS {
 };
 
 inline s32 fopAcM_GetRoomNo(const fopAc_ac_c* pActor) {
-    return (s8)pActor->current.mRoomNo;
+    return (s8)pActor->current.roomNo;
 }
 
 inline u32 fopAcM_GetID(const void* pActor) {
@@ -195,7 +195,7 @@ inline cXyz& fopAcM_GetOldPosition_p(fopAc_ac_c* pActor) {
 }
 
 inline cXyz& fopAcM_GetSpeed_p(fopAc_ac_c* pActor) {
-    return pActor->mSpeed;
+    return pActor->speed;
 }
 
 inline csXyz& fopAcM_GetAngle_p(fopAc_ac_c* pActor) {
@@ -223,7 +223,7 @@ inline BOOL fopAcM_IsActor(void* actor) {
 }
 
 inline void fopAcM_SetRoomNo(fopAc_ac_c* actor, s8 roomNo) {
-    actor->current.mRoomNo = roomNo;
+    actor->current.roomNo = roomNo;
 }
 
 inline void fopAcM_setHookCarryNow(fopAc_ac_c* actor) {
@@ -235,7 +235,7 @@ inline void fopAcM_cancelHookCarryNow(fopAc_ac_c* actor) {
 }
 
 inline s8 fopAcM_GetHomeRoomNo(const fopAc_ac_c* pActor) {
-    return pActor->orig.mRoomNo;
+    return pActor->orig.roomNo;
 }
 
 inline void fopAcM_SetGravity(fopAc_ac_c* actor, f32 gravity) {
@@ -247,11 +247,11 @@ inline void fopAcM_SetMtx(fopAc_ac_c* actor, MtxP m) {
 }
 
 inline void fopAcM_SetSpeed(fopAc_ac_c* actor, f32 x, f32 y, f32 z) {
-    actor->mSpeed.set(x, y, z);
+    actor->speed.set(x, y, z);
 }
 
 inline void fopAcM_SetSpeedF(fopAc_ac_c* actor, f32 f) {
-    actor->mSpeedF = f;
+    actor->speedF = f;
 }
 
 inline void fopAcM_SetStatus(fopAc_ac_c* actor, u32 status) {
@@ -267,7 +267,7 @@ inline BOOL fopAcM_IsExecuting(unsigned int id) {
 }
 
 inline f32 fopAcM_GetSpeedF(const fopAc_ac_c* p_actor) {
-    return p_actor->mSpeedF;
+    return p_actor->speedF;
 }
 
 inline f32 fopAcM_GetGravity(const fopAc_ac_c* p_actor) {
@@ -279,7 +279,7 @@ inline f32 fopAcM_GetMaxFallSpeed(const fopAc_ac_c* p_actor) {
 }
 
 inline const cXyz& fopAcM_GetSpeed_p(const fopAc_ac_c* p_actor) {
-    return p_actor->mSpeed;
+    return p_actor->speed;
 }
 
 inline const cXyz& fopAcM_GetPosition_p(const fopAc_ac_c* p_actor) {

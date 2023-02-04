@@ -8,8 +8,6 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_procname.h"
 
-extern "C" extern leafdraw_method_class g_fopAc_Method;
-
 /* 80D353AC-80D353C4 0000EC 0018+00 1/1 0/0 0/0 .text            __ct__16daObj_Web1_HIO_cFv */
 daObj_Web1_HIO_c::daObj_Web1_HIO_c() {
     field_0x4 = -1;
@@ -341,7 +339,7 @@ extern actor_process_profile_definition g_profile_OBJ_WEB1 = {
     sizeof(obj_web1_class),
     0,
     0,
-    &g_fopAc_Method,
+    &g_fopAc_Method.base,
     0x0030,
     0,
     0,

@@ -250,7 +250,6 @@ extern "C" void _restgpr_27();
 extern "C" void __div2i();
 extern "C" void sprintf();
 extern "C" void strcmp();
-extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_clearColor[4];
 extern "C" extern u8 mBlureFlag__13mDoGph_gInf_c[4];

@@ -171,7 +171,6 @@ extern "C" void _restgpr_20();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mClipper__14mDoLib_clipper[92];
@@ -995,8 +994,8 @@ int daBg_c::create() {
             fopAcM_OnCondition(this, 8);
         }
 
-        orig.mRoomNo = roomNo;
-        current.mRoomNo = roomNo;
+        orig.roomNo = roomNo;
+        current.roomNo = roomNo;
 
         JKRExpHeap* heap = dStage_roomControl_c::getMemoryBlock(roomNo);
         if (heap != NULL) {

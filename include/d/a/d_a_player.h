@@ -311,9 +311,12 @@ public:
         ERFLG0_UNK_2000 = 0x2000,
         ERFLG0_UNK_1000 = 0x1000,
         ERFLG0_UNK_400 = 0x400,
+        ERFLG0_FORCE_AUTO_JUMP = 0x200,
         ERFLG0_UNK_100 = 0x100,
         ERFLG0_UNK_80 = 0x80,
         ERFLG0_UNK_40 = 0x40,
+        ERFLG0_NOT_AUTO_JUMP = 0x20,
+        ERFLG0_NOT_HANG = 0x10,
         ERFLG0_UNK_8 = 8,
         ERFLG0_UNK_4 = 4,
         ERFLG0_UNK_2 = 2,
@@ -694,6 +697,10 @@ public:
     bool checkWaterInMove() const { return i_checkNoResetFlg0(FLG0_UNDERWATER); }
     bool checkSceneChangeAreaStart() const { return i_checkNoResetFlg2(FLG2_SCN_CHG_START); }
     bool checkFrontRollCrash() const { return i_checkResetFlg0(RFLG0_FRONT_ROLL_CRASH); }
+    
+    void onForceAutoJump() { i_onEndResetFlg0(ERFLG0_FORCE_AUTO_JUMP); }
+    void onNotAutoJump() { i_onEndResetFlg0(ERFLG0_NOT_AUTO_JUMP); }
+    void onNotHang() { i_onEndResetFlg0(ERFLG0_NOT_HANG); }
     
     void offGoronSideMove() {
         if (i_checkGoronSideMove()) {

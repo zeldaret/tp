@@ -62,7 +62,6 @@ extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc();
 extern "C" void endCheck__16dEvent_manager_cFs();
 extern "C" void __mi__4cXyzCFRC3Vec();
 extern "C" void __ptmf_scall();
-extern "C" extern void* g_fopAc_Method[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 data_805A1F28[4];
 
