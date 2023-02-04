@@ -112,7 +112,7 @@ lbl_80347D9C:
 /* 80347DA4  81 0D 91 C0 */	lwz r8, LastReadFinished(r13)
 /* 80347DA8  80 05 00 F8 */	lwz r0, 0x00F8(r5)  /* 0x800000F8@l */
 /* 80347DAC  3C A0 10 62 */	lis r5, 0x1062 /* 0x10624DD3@ha */
-/* 80347DB0  81 2D 91 C4 */	lwz r9, data_80451744(r13)
+/* 80347DB0  81 2D 91 C4 */	lwz r9, LastReadFinished+0x4(r13)
 /* 80347DB4  38 C0 00 00 */	li r6, 0
 /* 80347DB8  54 07 F0 BE */	srwi r7, r0, 2
 /* 80347DBC  38 05 4D D3 */	addi r0, r5, 0x4DD3 /* 0x10624DD3@l */
