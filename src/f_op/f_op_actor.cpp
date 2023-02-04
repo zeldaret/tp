@@ -152,7 +152,7 @@ static int fopAc_Create(void* actor) {
             ac->mScale.set(append->mScale[0] * 0.1f, append->mScale[1] * 0.1f,
                            append->mScale[2] * 0.1f);
             ac->mSetID = append->mEnemyNo;
-            ac->orig.mRoomNo = append->mRoomNo;
+            ac->orig.roomNo = append->mRoomNo;
         }
 
         ac->next = ac->orig;
@@ -170,7 +170,7 @@ static int fopAc_Create(void* actor) {
         ac->mAttentionInfo.field_0x8[0] = 51;
         ac->mAttentionInfo.mPosition = ac->orig.pos;
         ac->mAttentionInfo.field_0xa = 30;
-        dKy_tevstr_init(&ac->mTevStr, ac->orig.mRoomNo, -1);
+        dKy_tevstr_init(&ac->mTevStr, ac->orig.roomNo, -1);
 
         int roomNo = dComIfGp_roomControl_getStayNo();
         if (roomNo >= 0) {
@@ -178,22 +178,22 @@ static int fopAc_Create(void* actor) {
         }
 
         dStage_FileList_dt_c* filelist = NULL;
-        if (ac->orig.mRoomNo >= 0) {
+        if (ac->orig.roomNo >= 0) {
             filelist =
-                dComIfGp_roomControl_getStatusRoomDt(ac->orig.mRoomNo)->mRoomDt.getFileListInfo();
+                dComIfGp_roomControl_getStatusRoomDt(ac->orig.roomNo)->mRoomDt.getFileListInfo();
         }
 
         if (filelist != NULL) {
             if (!dStage_FileList_dt_GetEnemyAppear1Flag(filelist)) {
                 u32 sw = dStage_FileList_dt_GetBitSw(filelist);
-                if (sw != 0xFF && dComIfGs_isSwitch(sw, ac->orig.mRoomNo) &&
+                if (sw != 0xFF && dComIfGs_isSwitch(sw, ac->orig.roomNo) &&
                     profile->mActorType == 2)
                 {
                     return cPhs_ERROR_e;
                 }
             } else {
                 u32 sw = dStage_FileList_dt_GetBitSw(filelist);
-                if (sw != 0xFF && !dComIfGs_isSwitch(sw, ac->orig.mRoomNo) &&
+                if (sw != 0xFF && !dComIfGs_isSwitch(sw, ac->orig.roomNo) &&
                     profile->mActorType == 2)
                 {
                     return cPhs_ERROR_e;

@@ -370,7 +370,7 @@ COMPILER_STRIP_GATE(0x80604064, &lit_3705);
 // matches with literals
 #ifdef NONMATCHING
 static void h_wait(b_go_class* b_go) {
-    b_go->mSpeedF = 0.0f;
+    b_go->speedF = 0.0f;
 
     switch (b_go->field_0x66c) {
     case 0:
@@ -430,7 +430,7 @@ static void h_walk(b_go_class* b_go) {
         break;
     }
 
-    cLib_addCalc2(&b_go->mSpeedF, speed, 1.0f, 1.0f);
+    cLib_addCalc2(&b_go->speedF, speed, 1.0f, 1.0f);
     cLib_addCalcAngleS2(&b_go->current.angle.y, b_go->mAngleToPlayer, 1, 0x200);
 }
 #else
@@ -448,7 +448,7 @@ static asm void h_walk(b_go_class* param_0) {
 #ifdef NONMATCHING
 static void h_attack(b_go_class* b_go) {
     int frame = b_go->mpMorf->getFrame();
-    cLib_addCalc0(&b_go->mSpeedF, 1.0f, 1.0f);
+    cLib_addCalc0(&b_go->speedF, 1.0f, 1.0f);
 
     switch (b_go->field_0x66c) {
     case 0:
@@ -535,15 +535,15 @@ static void action(b_go_class* b_go) {
     cXyz speed;
     speed.x = 0.0f;
     speed.y = 0.0f;
-    speed.z = b_go->mSpeedF;
+    speed.z = b_go->speedF;
 
     cXyz newSpeed;
     MtxPosition(&speed, &newSpeed);
-    b_go->mSpeed.x = newSpeed.x;
-    b_go->mSpeed.z = newSpeed.z;
+    b_go->speed.x = newSpeed.x;
+    b_go->speed.z = newSpeed.z;
 
-    PSVECAdd(&b_go->current.pos, &b_go->mSpeed, &b_go->current.pos);
-    b_go->mSpeed.y += b_go->mGravity;
+    PSVECAdd(&b_go->current.pos, &b_go->speed, &b_go->current.pos);
+    b_go->speed.y += b_go->mGravity;
 
     b_go->mAcch.CrrPos(dComIfG_Bgsp());
 }
@@ -580,7 +580,7 @@ static int daB_GO_Execute(b_go_class* b_go) {
     mDoMtx_stack_c::YrotM(b_go->shape_angle.y);
     mDoMtx_stack_c::scaleM((*(daB_GO_HIO_c*)l_HIO).mSmallSize, (*(daB_GO_HIO_c*)l_HIO).mSmallSize, (*(daB_GO_HIO_c*)l_HIO).mSmallSize);
     mDoMtx_stack_c::copy(b_go->mpMorf->getModel()->getBaseTRMtx());
-    b_go->mpMorf->play(0, dComIfGp_getReverb(b_go->current.mRoomNo));
+    b_go->mpMorf->play(0, dComIfGp_getReverb(b_go->current.roomNo));
     b_go->mpMorf->modelCalc();
 
     return 1;
@@ -717,7 +717,7 @@ static int daB_GO_Create(fopAc_ac_c* i_actor) {
         b_go->field_0x560 = 1000;
 
         b_go->mAcch.Set(&b_go->current.pos, &b_go->next.pos, b_go, 1, &b_go->mAcchCir,
-                        &b_go->mSpeed, NULL, NULL);
+                        &b_go->speed, NULL, NULL);
         b_go->mAcchCir.SetWall(100.0f, 300.0f);
 
         b_go->mZ2Enemy.init(&b_go->current.pos, &b_go->mEyePos, 3, 1);

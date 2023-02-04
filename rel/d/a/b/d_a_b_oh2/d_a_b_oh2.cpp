@@ -81,7 +81,7 @@ static void dmcalc(b_oh2_class* i_this) {
     f32 var_f30 = 0.0f;
     f32 var_f29 = -50000.0f;
 
-    if (boss->mSpeedF < var_f31) {
+    if (boss->speedF < var_f31) {
         var_f29 = boss->field_0x47a0 + 100.0f;
         var_f30 = -20.0f;
     }
@@ -120,7 +120,7 @@ static void dmcalc(b_oh2_class* i_this) {
 
     int temp_r6 = 0;
     for (int i = 0; i < 30; i++, temp_r6 += -10000) {
-        if (boss->mSpeedF > 1.0f) {
+        if (boss->speedF > 1.0f) {
             i_this->field_0x5e8[i] = i_this->field_0x5e0 + 1.0f +
                                      (i_this->field_0x5e0 * cM_ssin(i_this->field_0x5dc + temp_r6));
         } else {
@@ -162,7 +162,7 @@ static void action(b_oh2_class* i_this) {
     int roomNo = fopAcM_GetRoomNo(i_this);
     i_this->mpMorf->play(0, dComIfGp_getReverb(roomNo));
 
-    if (boss->mSpeedF <= 1.0f) {
+    if (boss->speedF <= 1.0f) {
         i_this->mpBrk->setFrame(0.0f);
         i_this->mpBtk->setFrame(0.0f);
     } else {

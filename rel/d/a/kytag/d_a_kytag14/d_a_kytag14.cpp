@@ -93,8 +93,8 @@ static int daKytag14_Create(fopAc_ac_c* i_this) {
     kytag->mSwitchNo1 = kytag->current.angle.z;
     kytag->mSwitchNo2 = (kytag->current.angle.z >> 8) & 0xFF;
 
-    if (kytag->orig.mRoomNo != -1) {
-        kytag->mSaveRoomNo = kytag->orig.mRoomNo;
+    if (kytag->orig.roomNo != -1) {
+        kytag->mSaveRoomNo = kytag->orig.roomNo;
     }
 
     return cPhs_COMPLEATE_e;

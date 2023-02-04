@@ -994,8 +994,8 @@ int daBg_c::create() {
             fopAcM_OnCondition(this, 8);
         }
 
-        orig.mRoomNo = roomNo;
-        current.mRoomNo = roomNo;
+        orig.roomNo = roomNo;
+        current.roomNo = roomNo;
 
         JKRExpHeap* heap = dStage_roomControl_c::getMemoryBlock(roomNo);
         if (heap != NULL) {

@@ -43,7 +43,7 @@ public:
 
     void setMove(f32 speedF, s16 param_1) {
         fopAcM_SetParam(this, 1);
-        mSpeedF = speedF;
+        speedF = speedF;
         field_0xa7a = param_1;
         mCyl.OnAtSetBit();
     }

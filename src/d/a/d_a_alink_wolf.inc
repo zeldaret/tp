@@ -1129,9 +1129,9 @@ int daAlink_c::procWolfSlipInit() {
     setSingleAnimeWolfParam(WANM_SLIP, &daAlinkHIO_wlMove_c0::m.field_0x0);
 
     if (checkWolfDashMode()) {
-        mNormalSpeed = mSpeedF * daAlinkHIO_wlMove_c0::m.field_0xA4;
+        mNormalSpeed = speedF * daAlinkHIO_wlMove_c0::m.field_0xA4;
     } else {
-        mNormalSpeed = mSpeedF * daAlinkHIO_wlMoveNoP_c0::m.field_0x3C;
+        mNormalSpeed = speedF * daAlinkHIO_wlMoveNoP_c0::m.field_0x3C;
     }
 
     current.angle.y = shape_angle.y;
@@ -1634,7 +1634,7 @@ int daAlink_c::procWolfRopeSubjectivityInit() {
     setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
-    mSpeed.y = tmp_0;
+    speed.y = tmp_0;
     mNormalSpeed = tmp_0;
 
     setWolfRopeOffsetY(setWolfRopePosY());
@@ -1806,7 +1806,7 @@ int daAlink_c::procWolfHangReadyInit() {
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     mNormalSpeed = tmp_0;
-    mSpeed.y = tmp_0;
+    speed.y = tmp_0;
 
     return 1;
 }
@@ -2261,7 +2261,7 @@ int daAlink_c::procWolfSwimMoveInit() {
 
     if (i_checkNoResetFlg0(FLG0_UNK_100)) {
         current.pos.y = mWaterY;
-        mSpeed.y = FLOAT_LABEL(lit_6108);
+        speed.y = FLOAT_LABEL(lit_6108);
     }
 
     dComIfGp_setPlayerStatus0(0, 0x100000);
@@ -2654,7 +2654,7 @@ int daAlink_c::procWolfJumpAttackKickInit() {
     setSingleAnimeWolfParam(WANM_JUMP_KICK, &daAlinkHIO_wlAtCjump_c0::m.field_0x14);
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
-    mSpeed.y = tmp_0;
+    speed.y = tmp_0;
     mNormalSpeed = tmp_0;
     setSpecialGravity(tmp_0, mMaxFallSpeed, 0);
 
@@ -2955,7 +2955,7 @@ int daAlink_c::procWolfEnemyHangBiteInit() {
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     mNormalSpeed = tmp_0;
-    mSpeed.y = tmp_0;
+    speed.y = tmp_0;
     setSpecialGravity(tmp_0, mMaxFallSpeed, 0);
 
     if (!setWolfEnemyHangBitePos((fopEn_enemy_c*)field_0x281c.getActor())) {
@@ -3123,7 +3123,7 @@ int daAlink_c::procWolfCargoCarryInit() {
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     mNormalSpeed = tmp_0;
-    mSpeed.y = tmp_0;
+    speed.y = tmp_0;
     setSpecialGravity(tmp_0, mMaxFallSpeed, 0);
 
     daAlink_WANM wanm;

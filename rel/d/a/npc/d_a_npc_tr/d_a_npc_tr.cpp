@@ -445,7 +445,7 @@ static void npc_tr_move(npc_tr_class* npc_tr) {
     }
 
     cLib_addCalc2(&npc_tr->field_0x5f8, var_f1_2, 0.5f, 1000.0f);
-    cLib_addCalc2(&npc_tr->mSpeedF, npc_tr->field_0x5e4 * l_HIO.field_0xc, 1.0f, var_f31);
+    cLib_addCalc2(&npc_tr->speedF, npc_tr->field_0x5e4 * l_HIO.field_0xc, 1.0f, var_f31);
 }
 #else
 #pragma push

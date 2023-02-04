@@ -16,8 +16,8 @@ f32 daAlink_c::getBoomSpeed() {
 
     if (i_checkModeFlg(0x400)) {
         fopAc_ac_c* ride_actor = mRideAcKeep.getActor();
-        if (ride_actor != NULL && ride_actor->mSpeedF > FLOAT_LABEL(lit_6108)) {
-            speed += ride_actor->mSpeedF;
+        if (ride_actor != NULL && ride_actor->speedF > FLOAT_LABEL(lit_6108)) {
+            speed += ride_actor->speedF;
         }
     }
 
@@ -211,8 +211,8 @@ void daAlink_c::throwBoomerang() {
         mFastShotTime = -1;
         daPy_boomerangMove_c::offEventKeepFlg();
     } else {
-        item->mSpeedF = daAlinkHIO_pickUp_c0::m.field_0x28;
-        item->mSpeed.y = daAlinkHIO_pickUp_c0::m.field_0x2C;
+        item->speedF = daAlinkHIO_pickUp_c0::m.field_0x28;
+        item->speed.y = daAlinkHIO_pickUp_c0::m.field_0x2C;
         item->current.angle.y = shape_angle.y;
 
         fopAcM_cancelCarryNow(item);

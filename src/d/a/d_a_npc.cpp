@@ -2550,8 +2550,8 @@ int daNpcT_c::initTalk(int param_0, fopAc_ac_c** param_1) {
     }
 
     f32 tmp = FLOAT_LABEL(lit_4116);
-    mSpeedF = tmp;
-    mSpeed.set(tmp,tmp,tmp);
+    speedF = tmp;
+    speed.set(tmp,tmp,tmp);
     return 1;
 }
 
@@ -3685,7 +3685,7 @@ void daBaseNpc_c::setEnvTevColor() {
 /* 8014F0FC-8014F140 149A3C 0044+00 1/1 0/0 2/2 .text            setRoomNo__11daBaseNpc_cFv */
 void daBaseNpc_c::setRoomNo() {
     s32 room_id = dComIfG_Bgsp().GetRoomId(mBgSPolyInfo);
-    current.mRoomNo = room_id;
+    current.roomNo = room_id;
     mRoomId = room_id;
 }
 
@@ -5090,8 +5090,8 @@ asm void daNpcF_c::chkActorInAttnArea(fopAc_ac_c* param_0, fopAc_ac_c* param_1, 
 int daNpcF_c::initTalk(int param_0, fopAc_ac_c** param_1) {
     mFlow.init(this,param_0,0,param_1);
     f32 tmp = FLOAT_LABEL(lit_4116);
-    mSpeedF = tmp;
-    mSpeed.set(tmp,tmp,tmp);
+    speedF = tmp;
+    speed.set(tmp,tmp,tmp);
     field_0x9e9 = 0;
     field_0x9ec = 0;
     return 1;

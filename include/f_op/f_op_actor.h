@@ -76,7 +76,7 @@ struct actor_place {
 
     /* 0x00 */ cXyz pos;
     /* 0x0C */ csXyz angle;
-    /* 0x12 */ s8 mRoomNo;
+    /* 0x12 */ s8 roomNo;
     /* 0x13 */ u8 field_0x13;
 };
 
@@ -116,7 +116,7 @@ public:
     /* 0x4D0 */ actor_place current;
     /* 0x4E4 */ csXyz shape_angle;
     /* 0x4EC */ cXyz mScale;
-    /* 0x4F8 */ cXyz mSpeed;
+    /* 0x4F8 */ cXyz speed;
     /* 0x504 */ MtxP mCullMtx;
     union {
         struct {
@@ -131,7 +131,7 @@ public:
     /* 0x520 */ f32 mCullSizeFar;
     /* 0x524 */ J3DModel* field_0x524;
     /* 0x528 */ dJntCol_c* mJntCol;
-    /* 0x52C */ f32 mSpeedF;
+    /* 0x52C */ f32 speedF;
     /* 0x530 */ f32 mGravity;
     /* 0x534 */ f32 mMaxFallSpeed;
     /* 0x538 */ cXyz mEyePos;
@@ -147,7 +147,7 @@ public:
 
     const cXyz& getPosition() const { return current.pos; }
     const csXyz& getAngle() const { return current.angle; }
-    s8 getRoomNo() const { return current.mRoomNo; }
+    s8 getRoomNo() const { return current.roomNo; }
 };  // Size: 0x568
 
 STATIC_ASSERT(sizeof(fopAc_ac_c) == 0x568);

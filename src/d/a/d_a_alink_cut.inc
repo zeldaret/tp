@@ -686,9 +686,9 @@ void daAlink_c::checkCutAtnActorChange() {
 void daAlink_c::setCutJumpSpeed(int i_airAt) {
     if (i_checkNoResetFlg0(FLG0_UNDERWATER)) {
         mNormalSpeed *= daAlinkHIO_magneBoots_c0::m.mWaterVelocityX;
-        mSpeed.y *= daAlinkHIO_magneBoots_c0::m.mWaterVelocityY;
+        speed.y *= daAlinkHIO_magneBoots_c0::m.mWaterVelocityY;
     } else if (checkHeavyStateOn(1, 1)) {
-        mSpeed.y *= 1.35f;
+        speed.y *= 1.35f;
     }
 
     if (mTargetedActor != NULL && !i_airAt) {
@@ -703,7 +703,7 @@ void daAlink_c::setCutJumpSpeed(int i_airAt) {
             targetPos.y = mTargetedActor->mEyePos.y;
         }
 
-        f32 dvar12 = mSpeed.y + mGravity;
+        f32 dvar12 = speed.y + mGravity;
         f32 dvar10 = 1.0f / mGravity;
         f32 fvar1 = targetPos.y - (current.pos.y - (dvar10 * (dvar12 * dvar12) * 0.5f));
 
@@ -1027,14 +1027,14 @@ int daAlink_c::procCutFinishJumpUpInit() {
     }
 
     setCutType(CUT_TYPE_TWIRL);
-    mSpeed.y = daAlinkHIO_cutFnJU_c0::m.mSpeedV;
+    speed.y = daAlinkHIO_cutFnJU_c0::m.mSpeedV;
     mNormalSpeed = daAlinkHIO_cutFnJU_c0::m.mSpeedH;
 
     if (i_checkNoResetFlg0(FLG0_UNDERWATER)) {
         mNormalSpeed *= daAlinkHIO_magneBoots_c0::m.mWaterVelocityX;
-        mSpeed.y *= daAlinkHIO_magneBoots_c0::m.mWaterVelocityY;
+        speed.y *= daAlinkHIO_magneBoots_c0::m.mWaterVelocityY;
     } else if (checkHeavyStateOn(1, 1)) {
-        mSpeed.y *= lit_7624;
+        speed.y *= lit_7624;
     }
 
     if (side_roll) {
@@ -1255,10 +1255,10 @@ int daAlink_c::procCutJumpInit(int i_airCut) {
 
     if (i_airCut) {
         mNormalSpeed = daAlinkHIO_cutJump_c0::m.mAirJumpSpeedH;
-        mSpeed.y = daAlinkHIO_cutJump_c0::m.mAirJumpSpeedV;
+        speed.y = daAlinkHIO_cutJump_c0::m.mAirJumpSpeedV;
     } else {
         mNormalSpeed = daAlinkHIO_cutJump_c0::m.mBaseJumpSpeedH;
-        mSpeed.y = daAlinkHIO_cutJump_c0::m.mBaseJumpSpeedV;
+        speed.y = daAlinkHIO_cutJump_c0::m.mBaseJumpSpeedV;
     }
 
     setCutJumpSpeed(i_airCut);
@@ -1639,7 +1639,7 @@ int daAlink_c::procCutDown() {
         return 1;
     }
 
-    if (mLinkAcch.ChkGroundHit() && mSpeed.y <= FLOAT_LABEL(lit_6108)) {
+    if (mLinkAcch.ChkGroundHit() && speed.y <= FLOAT_LABEL(lit_6108)) {
         procCutDownLandInit((fopEn_enemy_c*)field_0x280c.getActor());
     } else if (mUnderFrameCtrl[0].checkAnmEnd() && mCommonCounter == 0) {
         mCommonCounter = 1;
@@ -1685,11 +1685,11 @@ int daAlink_c::procCutHead() {
     if (field_0x300e == 0) {
         cLib_chaseF(&mNormalSpeed, FLOAT_LABEL(lit_6108), field_0x3478);
 
-        if (mSpeed.y <= FLOAT_LABEL(lit_6108)) {
+        if (speed.y <= FLOAT_LABEL(lit_6108)) {
             setSingleAnimeParam(ANM_CUT_HEAD, &daAlinkHIO_cutHead_c0::m.mCutAnm);
             f32 tmp_0 = FLOAT_LABEL(lit_6108);
             mNormalSpeed = tmp_0;
-            mSpeed.y = tmp_0;
+            speed.y = tmp_0;
             setSpecialGravity(tmp_0, mMaxFallSpeed, 0);
             field_0x300e = 1;
             setCutWaterDropEffect();
@@ -1700,7 +1700,7 @@ int daAlink_c::procCutHead() {
         mNormalSpeed *= lit_8501;
 
         if (frameCtrl->checkPass(lit_8502)) {
-            mSpeed.y = daAlinkHIO_cutHead_c0::m.mAddSpeedV;
+            speed.y = daAlinkHIO_cutHead_c0::m.mAddSpeedV;
             mNormalSpeed = daAlinkHIO_cutHead_c0::m.mAddSpeedH;
             initGravity();
         }
@@ -1837,7 +1837,7 @@ int daAlink_c::procCutLargeJump() {
             if (!i_checkModeFlg(2) && frameCtrl->getFrame() >= lit_7808) {
                 setJumpMode();
                 mNormalSpeed = daAlinkHIO_cutLargeJump_c0::m.mCutSpeedH;
-                mSpeed.y = daAlinkHIO_cutLargeJump_c0::m.mCutSpeedV;
+                speed.y = daAlinkHIO_cutLargeJump_c0::m.mCutSpeedV;
                 setCutJumpSpeed(0);
             }
 

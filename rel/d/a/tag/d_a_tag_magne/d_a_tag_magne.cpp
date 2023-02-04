@@ -27,7 +27,7 @@ int daTagMagne_c::create() {
         fopAcM_OnCondition(this, 8);
     }
 
-    if (mTagMagne != NULL && mTagMagne->current.mRoomNo != current.mRoomNo) {
+    if (mTagMagne != NULL && mTagMagne->current.roomNo != current.roomNo) {
         return cPhs_ZERO_e;
     }
 

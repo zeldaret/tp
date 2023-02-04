@@ -1417,7 +1417,7 @@ void dComIfGp_setNextStage(char const* i_stage, s16 i_point, s8 i_roomNo, s8 i_l
 
     if (dComIfGs_isPlayerFieldLastStayFieldDataExistFlag() &&
         daPy_getLinkPlayerActorClass() != NULL) {
-        s8 curPoint = (s8)daPy_getLinkPlayerActorClass()->current.mRoomNo;
+        s8 curPoint = (s8)daPy_getLinkPlayerActorClass()->current.roomNo;
         cXyz pos = dMapInfo_n::getMapPlayerPos();
         s16 angle = daPy_getLinkPlayerActorClass()->shape_angle.y;
         u8 level = dComIfGp_getNowLevel();
