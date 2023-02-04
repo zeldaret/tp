@@ -15,38 +15,21 @@
 // Forward References:
 //
 
-extern "C" void __ct__9dInsect_cFv();
-extern "C" void Insect_GetDemoMain__9dInsect_cFv();
-extern "C" void CalcZBuffer__9dInsect_cFf();
-extern "C" extern char const* const d_d_insect__stringBase0;
-
 //
 // External References:
 //
 
-extern "C" void mDoLib_project__FP3VecP3Vec();
-extern "C" void mDoLib_pos2camera__FP3VecP3Vec();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_orderItemEvent__FP10fopAc_ac_cUsUs();
-extern "C" void fopAcM_createItemForTrBoxDemo__FPC4cXyziiiPC5csXyzPC4cXyz();
-extern "C" void fopAcM_createItem__FPC4cXyziiiPC5csXyzPC4cXyzi();
-extern "C" void fopAcM_cancelCarryNow__FP10fopAc_ac_c();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void setPtI_Id__14dEvt_control_cFUi();
-extern "C" void endCheckOld__16dEvent_manager_cFPCc();
-extern "C" void newData__13dDlst_peekZ_cFssPUl();
 extern "C" void Insect_Release__9dInsect_cFv();
-extern "C" void isCatchNotGiveInsect__14dMenu_Insect_cFUc();
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 
 //
 // Declarations:
 //
 
+inline int dComIfGs_isEventBit(u16 event) {
+    return g_dComIfG_gameInfo.info.getSavedata().getEvent().isEventBit(event);
+}
+
 /* ############################################################################################## */
-/* 803BA078-803BA088 017198 000C+04 1/1 0/0 0/0 .data            __vt__9dInsect_c */
 SECTION_DATA extern void* __vt__9dInsect_c[3 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
@@ -67,17 +50,12 @@ dInsect_c::dInsect_c() {
 }
 
 /* ############################################################################################## */
-/* 80393D98-80393D98 0203F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80393D98 = "DEFAULT_GETITEM";
-#pragma pop
 
 /* 8015E078-8015E26C 1589B8 01F4+00 0/0 0/0 24/24 .text            Insect_GetDemoMain__9dInsect_cFv
  */
-#ifdef NONMATCHING
 void dInsect_c::Insect_GetDemoMain() {
-    if (field_0x58C != 1) {
+    switch (field_0x58C) {
+    case 0:
         if (fopAcM_checkCarryNow(this)) {
             cLib_offBit(mAttentionInfo.mFlags,0x10);
             fopAcM_cancelCarryNow(this);
@@ -93,7 +71,8 @@ void dInsect_c::Insect_GetDemoMain() {
         } else {
             cLib_onBit(mAttentionInfo.mFlags,0x10);
         }
-    } else {
+        break;
+    case 1:
         if (mEvtInfo.checkCommandItem()) {
             if (field_0x588 != -1) {
                 dComIfGp_event_setItemPartnerId(field_0x588);
@@ -105,87 +84,49 @@ void dInsect_c::Insect_GetDemoMain() {
             fopAcM_orderItemEvent(this,0,0);
             mEvtInfo.i_onCondition(8);
         }
-    }
-
-    if (dComIfGp_evmng_endCheck("DEFAULT_GETITEM")) {
-        i_dComIfGp_event_reset();
-        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x582]) || field_0x585 != 0) {
-            field_0x56D = 1;
-            field_0x58C = 0;
-            if (field_0x584 == 0) {
-                fopAcM_createItem(&current.pos,0,-1,-1,0,0,0);
-                field_0x584 = 1;
+        break;
+    case 2:
+         if (dComIfGp_evmng_endCheck("DEFAULT_GETITEM")) {
+            i_dComIfGp_event_reset();
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x582]) || field_0x585 != 0) {
+                field_0x56D = 1;
+                field_0x58C = 0;
+                if (field_0x584 == 0) {
+                    fopAcM_createItem(&current.pos,0,-1,-1,0,0,0);
+                    field_0x584 = 1;
+                }
+            } else {
+                fopAcM_delete(this);
+                
             }
-        } else {
-            fopAcM_delete(this);
-            
         }
+        break;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dInsect_c::Insect_GetDemoMain() {
-    nofralloc
-#include "asm/d/d_insect/Insect_GetDemoMain__9dInsect_cFv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
-/* 804535E0-804535E4 001BE0 0004+00 1/1 0/0 0/0 .sdata2          @3871 */
-SECTION_SDATA2 static f32 lit_3871 = 20.0f;
-
-/* 804535E4-804535E8 001BE4 0004+00 1/1 0/0 0/0 .sdata2          @3872 */
-SECTION_SDATA2 static u8 lit_3872[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 804535E8-804535EC 001BE8 0004+00 1/1 0/0 0/0 .sdata2          @3873 */
-SECTION_SDATA2 static f32 lit_3873 = 608.0f;
-
-/* 804535EC-804535F0 001BEC 0004+00 1/1 0/0 0/0 .sdata2          @3874 */
-SECTION_SDATA2 static f32 lit_3874 = 448.0f;
-
-/* 804535F0-804535F4 001BF0 0004+00 1/1 0/0 0/0 .sdata2          @3875 */
-SECTION_SDATA2 static f32 lit_3875 = -10.0f;
-
-/* 804535F4-804535F8 001BF4 0004+00 1/1 0/0 0/0 .sdata2          @3876 */
-SECTION_SDATA2 static f32 lit_3876 = 16777215.0f;
-
-/* 804535F8-80453600 001BF8 0004+04 1/1 0/0 0/0 .sdata2          @3877 */
-SECTION_SDATA2 static f32 lit_3877[1 + 1 /* padding */] = {
-    1.0f,
-    /* padding */
-    0.0f,
-};
 
 /* 8015E26C-8015E3F8 158BAC 018C+00 0/0 0/0 3/3 .text            CalcZBuffer__9dInsect_cFf */
-#ifdef NONMATCHING
 void dInsect_c::CalcZBuffer(f32 param_0) {
     f32 camera_trim_height;
-    cXyz pos;
     cXyz pos_projected;
+    cXyz pos;
 
     pos = current.pos;
-    pos.y += FLOAT_LABEL(lit_3871);
+    pos.y += 20.0f;
     
-    mDoLib_project(&pos_projected,&pos);
+    mDoLib_project(&pos, &pos_projected);
 
     if (dComIfGp_getCamera(0)) {
-        camera_trim_height = dComIfGp_getCamera(0)->mCamera.field_0x93c;
+        camera_trim_height = *(f32*)&dComIfGp_getCamera(0)->mCamera.mCamSetup.mTypeTable;
     } else {
-        camera_trim_height = FLOAT_LABEL(lit_3872);
+        camera_trim_height = 0.0f;
     }
 
-    if (pos_projected.x < FLOAT_LABEL(lit_3872) || 
-        pos_projected.x > FLOAT_LABEL(lit_3873) || 
-        pos_projected.y < camera_trim_height    || 
-        pos_projected.y < FLOAT_LABEL(lit_3874) - camera_trim_height) {
+    if (pos_projected.x > 0.0f &&
+        pos_projected.x < 608.0f && 
+        pos_projected.y > camera_trim_height &&
+        pos_projected.y < 448.0f - camera_trim_height) {
         dComIfGd_peekZ(pos_projected.x,pos_projected.y,&field_0x578);
     } else {
         field_0x578 = 0;
@@ -194,23 +135,13 @@ void dInsect_c::CalcZBuffer(f32 param_0) {
     f32 view_near = dComIfGd_getView()->mNear;
     f32 view_far = dComIfGd_getView()->mFar;
 
-    mDoLib_pos2camera(&pos_projected,&pos);
+    mDoLib_pos2camera(&pos, &pos_projected);
     pos_projected.z += param_0;
-    if (pos_projected.z == FLOAT_LABEL(lit_3872)) {
-        pos_projected.z = FLOAT_LABEL(lit_3875);
+    if (!pos_projected.z) {
+        pos_projected.z = -10.0f;
     }
 
-    field_0x57C = view_near + ((view_far * view_near) / pos_projected.z) / (view_far - view_near);
+    field_0x57C = (((view_near + ((view_far * view_near) / pos_projected.z)) / (view_far - view_near)) + 1.0f) * 16777215.0f;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dInsect_c::CalcZBuffer(f32 param_0) {
-    nofralloc
-#include "asm/d/d_insect/CalcZBuffer__9dInsect_cFf.s"
-}
-#pragma pop
-#endif
 
 /* 80393D98-80393D98 0203F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

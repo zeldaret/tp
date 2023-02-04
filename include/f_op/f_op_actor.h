@@ -8,17 +8,16 @@
 #include "f_pc/f_pc_leaf.h"
 
 struct actor_method_class {
-    /* 0x00 */ process_method_class mBase;
-    /* 0x10 */ process_method_func mpDrawFunc;
+    /* 0x00 */ leafdraw_method_class base;
     /* 0x14 */ u8 field_0x14[0xC];  // Likely padding
 };
 
 struct actor_process_profile_definition {
     /* 0x00 */ leaf_process_profile_definition mBase;
     /* 0x24 */ actor_method_class* mSubMtd;
-    /* 0x28 */ int field_0x28; // mStatus
-    /* 0x2C */ u8 field_0x2c;  // mActorType
-    /* 0x2D */ u8 field_0x2d;  // mCullType
+    /* 0x28 */ u32 mStatus;
+    /* 0x2C */ u8 mActorType;
+    /* 0x2D */ u8 mCullType;
     /* 0x2E */ u8 field_0x2e[2]; // Likely padding
 };
 
@@ -77,7 +76,7 @@ struct actor_place {
 
     /* 0x00 */ cXyz pos;
     /* 0x0C */ csXyz angle;
-    /* 0x12 */ s8 mRoomNo;
+    /* 0x12 */ s8 roomNo;
     /* 0x13 */ u8 field_0x13;
 };
 
@@ -117,7 +116,7 @@ public:
     /* 0x4D0 */ actor_place current;
     /* 0x4E4 */ csXyz shape_angle;
     /* 0x4EC */ cXyz mScale;
-    /* 0x4F8 */ cXyz mSpeed;
+    /* 0x4F8 */ cXyz speed;
     /* 0x504 */ MtxP mCullMtx;
     union {
         struct {
@@ -132,7 +131,7 @@ public:
     /* 0x520 */ f32 mCullSizeFar;
     /* 0x524 */ J3DModel* field_0x524;
     /* 0x528 */ dJntCol_c* mJntCol;
-    /* 0x52C */ f32 mSpeedF;
+    /* 0x52C */ f32 speedF;
     /* 0x530 */ f32 mGravity;
     /* 0x534 */ f32 mMaxFallSpeed;
     /* 0x538 */ cXyz mEyePos;
@@ -148,7 +147,7 @@ public:
 
     const cXyz& getPosition() const { return current.pos; }
     const csXyz& getAngle() const { return current.angle; }
-    s8 getRoomNo() const { return current.mRoomNo; }
+    s8 getRoomNo() const { return current.roomNo; }
 };  // Size: 0x568
 
 STATIC_ASSERT(sizeof(fopAc_ac_c) == 0x568);
@@ -156,7 +155,7 @@ STATIC_ASSERT(sizeof(fopAc_ac_c) == 0x568);
 class fopEn_enemy_c : public fopAc_ac_c {
 public:
     /* 80019404 */ bool initBallModel();
-    /* 800194FC */ int checkBallModelDraw();
+    /* 800194FC */ bool checkBallModelDraw();
     /* 80019520 */ void setBallModelEffect(dKy_tevstr_c*);
     /* 800196A0 */ void drawBallModel(dKy_tevstr_c*);
 
@@ -181,5 +180,7 @@ public:
 };  // Size: 0x5AC
 
 s32 fopAc_IsActor(void* actor);
+
+extern actor_method_class g_fopAc_Method;
 
 #endif

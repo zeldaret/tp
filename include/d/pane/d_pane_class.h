@@ -36,8 +36,10 @@ public:
     }
 
     void translate(f32 x, f32 y) { getPanePtr()->translate(x, y); }
-
     void scale(f32 h, f32 v) { getPanePtr()->scale(h, v); }
+    void resize(f32 x, f32 y) { getPanePtr()->resize(x, y); }
+    void move(f32 x, f32 y) { getPanePtr()->move(x, y); }
+
     void scaleAnimeStart(s16 v) { mScaleAnime = v; }
     void colorAnimeStart(s16 start) { mColorAnime = start; }
 
@@ -60,6 +62,7 @@ public:
     f32 getInitPosY() { return mInitPos.y; }
 
     JUtility::TColor getInitBlack() { return mInitBlack; }
+    JUtility::TColor getInitWhite() { return mInitWhite; }
 
 private:
     /* 0x1C */ void* mpFirstStackSize;

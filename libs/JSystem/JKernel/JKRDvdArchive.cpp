@@ -127,7 +127,6 @@ JKRDvdArchive::~JKRDvdArchive() {
 }
 
 /* 802D7DB4-802D8050 2D26F4 029C+00 1/1 0/0 0/0 .text            open__13JKRDvdArchiveFl */
-#ifdef NONMATCHING
 bool JKRDvdArchive::open(s32 entryNum) {
     mArcInfoBlock = NULL;
     field_0x64 = NULL;
@@ -151,12 +150,7 @@ bool JKRDvdArchive::open(s32 entryNum) {
                     JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 0, &mCompression, NULL);
     DCInvalidateRange(arcHeader, sizeof(SArcHeader));
 
-    int alignment;
-    if (mMountDirection == MOUNT_DIRECTION_HEAD) {
-        alignment = 0x20;
-    } else {
-        alignment = -0x20;
-    }
+    int alignment = mMountDirection == MOUNT_DIRECTION_HEAD ? 0x20 : -0x20;
 
     mArcInfoBlock = (SArcDataInfo*)JKRAllocFromHeap(mHeap, arcHeader->file_data_offset, alignment);
     if (!mArcInfoBlock) {
@@ -174,18 +168,18 @@ bool JKRDvdArchive::open(s32 entryNum) {
     mStringTable = (char*)((int)&mArcInfoBlock->num_nodes + mArcInfoBlock->string_table_offset);
     mExpandedSize = NULL;
 
-    bool useCompression = false;
+    u8 useCompression = 0;
     SDIFileEntry* fileEntry = mFiles;
     for (u32 i = 0; i < mArcInfoBlock->num_file_entries; fileEntry++, i++) {
-        if (!fileEntry->isUnknownFlag1()) {
-            useCompression |= fileEntry->isCompressed();
+        if (fileEntry->isUnknownFlag1()) {
+            useCompression |= fileEntry->getCompressFlag();
         }
     }
 
     if (useCompression) {
         mExpandedSize = (s32*)JKRAllocFromHeap(mHeap, sizeof(s32) * mArcInfoBlock->num_file_entries,
                                                abs(alignment));
-        if (mExpandedSize) {
+        if (!mExpandedSize) {
             // !@bug: mArcInfoBlock is allocated from mHeap but free'd to sSystemHeap. I don't know
             // what will happen if mHeap != sSystemHeap, but it's still a bug to free to the wrong
             // allocator.
@@ -213,16 +207,6 @@ cleanup:
 
     return true;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool JKRDvdArchive::open(s32 param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRDvdArchive/open__13JKRDvdArchiveFl.s"
-}
-#pragma pop
-#endif
 
 /* 802D8050-802D8168 2D2990 0118+00 1/0 0/0 0/0 .text
  * fetchResource__13JKRDvdArchiveFPQ210JKRArchive12SDIFileEntryPUl */

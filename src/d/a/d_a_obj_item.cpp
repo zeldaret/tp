@@ -191,7 +191,6 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" u8 const m_data__12daItemBase_c[56];
 extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* __vt__8cM3dGCyl[3];
 extern "C" extern void* __vt__8cM3dGAab[3];
@@ -545,7 +544,7 @@ SECTION_SDATA2 static f64 lit_4072 = 4503599627370496.0 /* cast u32 to float */;
 #ifdef NONMATCHING
 void daItem_c::CreateInit() {
     mAcchCir.SetWall(30.0f, 30.0f);
-    mAcch.Set(&current.pos, &next.pos, this, 1, &mAcchCir, &mSpeed, NULL, NULL);
+    mAcch.Set(&current.pos, &next.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
     mAcch.ClrWaterNone();
     mAcch.ClrRoofNone();
     mAcch.SetWtrChkMode(2);
@@ -615,8 +614,8 @@ void daItem_c::CreateInit() {
 
     field_0x978.init(&current.pos, 1);
 
-    f32 old_speedF = mSpeedF;
-    cXyz old_speed = mSpeed;
+    f32 old_speedF = speedF;
+    cXyz old_speed = speed;
 
     mAcch.CrrPos(dComIfG_Bgsp());
 
@@ -628,8 +627,8 @@ void daItem_c::CreateInit() {
         field_0x9c0 = 1;
     }
 
-    mSpeedF = old_speedF;
-    mSpeed = old_speed;
+    speedF = old_speedF;
+    speed = old_speed;
 
     mAcch.ClrGroundLanding();
     mAcch.i_ClrGroundHit();
@@ -817,7 +816,7 @@ SECTION_SDATA2 static f32 lit_4321 = 18.0f;
 // eyepos.y issue / need sinit for mFuncPtr
 #ifdef NONMATCHING
 int daItem_c::_daItem_execute() {
-    field_0x950 = mSpeed;
+    field_0x950 = speed;
     CountTimer();
 
     mEyePos = current.pos;
@@ -1190,7 +1189,7 @@ void daItem_c::mode_water_init() {
 
 /* 8015CCD0-8015CDCC 157610 00FC+00 1/0 0/0 0/0 .text            mode_wait__8daItem_cFv */
 void daItem_c::mode_wait() {
-    if (field_0x924 < 5 && mSpeed.y > FLOAT_LABEL(lit_3857)) {
+    if (field_0x924 < 5 && speed.y > FLOAT_LABEL(lit_3857)) {
         mAcch.SetGrndNone();
     }
 
@@ -1460,7 +1459,7 @@ int daItem_c::itemActionForRupee() {
 
     if (mAcch.ChkGroundHit()) {
         RotateYBase();
-        mSpeedF *= 0.95f;
+        speedF *= 0.95f;
     }
 
     if (field_0x94b >= 2) {
@@ -1572,7 +1571,7 @@ int daItem_c::initAction() {
     initAngle();
 
     if (isHeart(m_itemNo)) {
-        mSpeedF = (cM_rndF(5.0f) + 20.0f) - 15.0f;
+        speedF = (cM_rndF(5.0f) + 20.0f) - 15.0f;
         shape_angle.z = cM_rndFX(getData().field_0x2a);
     }
 

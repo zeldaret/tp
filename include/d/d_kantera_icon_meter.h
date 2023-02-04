@@ -29,6 +29,8 @@ public:
 
     /* 801AE974 */ virtual ~dKantera_icon_c();
 
+    void drawSelf() { mpKanteraIcon->draw(); }
+
 private:
     /* 0x04 */ dDlst_KanteraIcon_c* mpKanteraIcon;
     /* 0x08 */ CPaneMgr* mpParent;

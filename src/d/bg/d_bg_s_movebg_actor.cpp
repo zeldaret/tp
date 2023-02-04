@@ -67,43 +67,43 @@ static int CheckCreateHeap(fopAc_ac_c* p_actor) {
 }
 
 /* 80078688-80078690 072FC8 0008+00 1/0 0/0 2/0 .text            CreateHeap__16dBgS_MoveBgActorFv */
-s32 dBgS_MoveBgActor::CreateHeap() {
+int dBgS_MoveBgActor::CreateHeap() {
     return 1;
 }
 
 /* 80078690-80078698 072FD0 0008+00 1/0 0/0 60/0 .text            Create__16dBgS_MoveBgActorFv */
-bool dBgS_MoveBgActor::Create() {
-    return true;
+int dBgS_MoveBgActor::Create() {
+    return 1;
 }
 
 /* 80078698-800786A0 072FD8 0008+00 1/0 0/0 3/0 .text Execute__16dBgS_MoveBgActorFPPA3_A4_f */
-bool dBgS_MoveBgActor::Execute(f32 (**param_0)[3][4]) {
-    return true;
+int dBgS_MoveBgActor::Execute(f32 (**param_0)[3][4]) {
+    return 1;
 }
 
 /* 800786A0-800786A8 072FE0 0008+00 1/0 0/0 2/0 .text            Draw__16dBgS_MoveBgActorFv */
-bool dBgS_MoveBgActor::Draw() {
-    return true;
+int dBgS_MoveBgActor::Draw() {
+    return 1;
 }
 
 /* 800786A8-800786B0 072FE8 0008+00 1/0 0/0 6/0 .text            Delete__16dBgS_MoveBgActorFv */
-bool dBgS_MoveBgActor::Delete() {
-    return true;
+int dBgS_MoveBgActor::Delete() {
+    return 1;
 }
 
 /* 800786B0-800786B8 072FF0 0008+00 1/0 0/0 171/0 .text            IsDelete__16dBgS_MoveBgActorFv */
-bool dBgS_MoveBgActor::IsDelete() {
-    return true;
+int dBgS_MoveBgActor::IsDelete() {
+    return 1;
 }
 
 /* 800786B8-800786C0 072FF8 0008+00 1/0 0/0 171/0 .text            ToFore__16dBgS_MoveBgActorFv */
-bool dBgS_MoveBgActor::ToFore() {
-    return true;
+int dBgS_MoveBgActor::ToFore() {
+    return 1;
 }
 
 /* 800786C0-800786C8 073000 0008+00 1/0 0/0 171/0 .text            ToBack__16dBgS_MoveBgActorFv */
-bool dBgS_MoveBgActor::ToBack() {
-    return true;
+int dBgS_MoveBgActor::ToBack() {
+    return 1;
 }
 
 /* ############################################################################################## */
@@ -189,8 +189,8 @@ asm int dBgS_MoveBgActor::MoveBGCreate(char const* param_0, int param_1, MoveBGA
 #endif
 
 /* 800788DC-80078950 07321C 0074+00 0/0 0/0 169/169 .text MoveBGDelete__16dBgS_MoveBgActorFv */
-bool dBgS_MoveBgActor::MoveBGDelete() {
-    bool ret = Delete();
+int dBgS_MoveBgActor::MoveBGDelete() {
+    int ret = Delete();
 
     if (field_0x568 != NULL && field_0x568->ChkUsed()) {
         dComIfG_Bgsp().Release(field_0x568);
@@ -199,10 +199,10 @@ bool dBgS_MoveBgActor::MoveBGDelete() {
 }
 
 /* 80078950-80078A14 073290 00C4+00 0/0 0/0 183/183 .text MoveBGExecute__16dBgS_MoveBgActorFv */
-bool dBgS_MoveBgActor::MoveBGExecute() {
+int dBgS_MoveBgActor::MoveBGExecute() {
     Mtx* tmp = NULL;
 
-    bool ret = Execute(&tmp);
+    int ret = Execute(&tmp);
     if (tmp == NULL) {
         mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
         mDoMtx_stack_c::YrotM(shape_angle.y);

@@ -30,9 +30,9 @@ lbl_8003FC00:
 /* 8003FC38  D0 2D 88 F0 */	stfs f1, mMinZ__8dMpath_c(r13)
 /* 8003FC3C  D0 0D 88 F4 */	stfs f0, mMaxZ__8dMpath_c(r13)
 /* 8003FC40  38 00 00 7F */	li r0, 0x7f
-/* 8003FC44  98 0D 80 B4 */	stb r0, struct_80450634+0x0(r13)
+/* 8003FC44  98 0D 80 B4 */	stb r0, mBottomFloorNo__8dMpath_c+0x0(r13)
 /* 8003FC48  38 00 FF 80 */	li r0, -128
-/* 8003FC4C  98 0D 80 B5 */	stb r0, struct_80450634+0x1(r13)
+/* 8003FC4C  98 0D 80 B5 */	stb r0, mBottomFloorNo__8dMpath_c+0x1(r13)
 /* 8003FC50  38 00 00 00 */	li r0, 0
 /* 8003FC54  98 0D 80 B6 */	stb r0, data_80450636(r13)
 /* 8003FC58  98 0D 89 08 */	stb r0, data_80450E88(r13)

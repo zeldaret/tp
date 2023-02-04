@@ -683,6 +683,12 @@ public:
     void setTotalTime(s64 i_time) { mTotalTime = i_time; }
     s64 getTotalTime() const { return mTotalTime; }
 
+    void addDeathCount() {
+        if (mDeathCount < 0xFFFF) {
+            mDeathCount++;
+        }
+    }
+
 private:
     /* 0x00 */ u32 unk0;
     /* 0x04 */ u32 unk4;

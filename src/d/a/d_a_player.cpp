@@ -773,7 +773,7 @@ f32 daPy_py_c::getSpinnerRideSpeed() const {
     f32 rideSpeed;
 
     if (checkSpinnerRide()) {
-        rideSpeed = mSpeedF;
+        rideSpeed = speedF;
     } else {
         rideSpeed = lit_4215[0];
     }

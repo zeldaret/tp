@@ -193,7 +193,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* __vt__22dPa_hermiteEcallBack_c[9];
 extern "C" extern void* __vt__8dCcD_Sph[36];
 extern "C" extern void* __vt__8dCcD_Cps[36];

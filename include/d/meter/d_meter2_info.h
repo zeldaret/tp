@@ -159,6 +159,8 @@ public:
     dMeter2_c* getMeterClass() { return mMeterClass; }
     u8 getMiniGameItemSetFlag() { return mMiniGameItemSetFlag; }
     s16 getMsgKeyWaitTimer() { return mMsgKeyWaitTimer; }
+    u8 getGameOverType() { return mGameOverType; }
+    void setGameOverType(u8 i_gameoverType) { mGameOverType = i_gameoverType; }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -503,6 +505,14 @@ inline void dMeter2Info_onDirectUseItem(int param_0) {
 
 inline void dMeter2Info_setFloatingFlow(u16 param_0, s16 param_1, bool param_2) {
     g_meter2_info.setFloatingFlow(param_0, param_1, param_2);
+}
+
+inline u8 dMeter2Info_getGameOverType() {
+    return g_meter2_info.getGameOverType();
+}
+
+inline void dMeter2Info_setGameOverType(u8 i_gameoverType) {
+    g_meter2_info.setGameOverType(i_gameoverType);
 }
 
 char* dMeter2Info_getNumberTextureName(int pIndex);

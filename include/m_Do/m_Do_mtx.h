@@ -20,6 +20,8 @@ void mDoMtx_YrotM(Mtx, s16);
 void mDoMtx_ZrotM(Mtx, s16);
 void mDoMtx_MtxToRot(CMtxP, csXyz*);
 void mDoMtx_lookAt(f32 (*param_0)[4], Vec const* param_1, Vec const* param_2, s16 param_3);
+void mDoMtx_lookAt(f32 (*param_0)[4], Vec const* param_1, Vec const* param_2, Vec const* param_3,
+                   s16 param_4);
 void mDoMtx_concatProjView(f32 const (*param_0)[4], f32 const (*param_1)[4], f32 (*param_2)[4]);
 void mDoMtx_ZrotM(Mtx mtx, s16 z);
 
@@ -36,7 +38,7 @@ inline void mDoMtx_copy(const Mtx src, Mtx dst) {
 }
 
 inline void mDoMtx_trans(Mtx m, f32 x, f32 y, f32 z) {
-    PSMTXTrans(m,x,y,z);
+    PSMTXTrans(m, x, y, z);
 }
 
 inline void cMtx_XrotM(Mtx mtx, s16 x) {
@@ -80,7 +82,8 @@ public:
     static void scaleS(f32 x, f32 y, f32 z) { PSMTXScale(now, x, y, z); }
     static void multVec(const Vec* a, Vec* b) { PSMTXMultVec(now, a, b); }
     static void multVecSR(const Vec* a, Vec* b) { PSMTXMultVecSR(now, a, b); }
-    static void multVecZero(Vec* v) { mDoMtx_multVecZero(now, v); } 
+    static void multVecZero(Vec* v) { mDoMtx_multVecZero(now, v); }
+    static void multVecArray(const Vec* src, Vec* dst, u32 count) { PSMTXMultVecArray(now, src, dst, count); }
     static void XYZrotS(s16 x, s16 y, s16 z) { mDoMtx_XYZrotS(now, x, y, z); }
     static void XYZrotM(s16 x, s16 y, s16 z) { mDoMtx_XYZrotM(now, x, y, z); }
     static void ZXYrotS(s16 x, s16 y, s16 z) { mDoMtx_ZXYrotS(now, x, y, z); }

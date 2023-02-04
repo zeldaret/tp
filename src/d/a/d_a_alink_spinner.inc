@@ -137,7 +137,7 @@ int daAlink_c::procSpinnerReadyInit() {
     mNormalSpeed = FLOAT_LABEL(lit_6108);
     setHeavyBoots(0);
 
-    mSpeed.y = lit_7451;
+    speed.y = lit_7451;
     voiceStart(Z2SE_AL_V_JUMP_S);
     seStartOnlyReverb(Z2SE_AL_SPINNER_START);
 
@@ -194,7 +194,7 @@ int daAlink_c::procSpinnerWaitInit() {
     mRideStatus = 5;
     setBgCheckParam();
     setSingleAnimeBaseSpeed(ANM_RIDE_CROUCH, daAlinkHIO_board_c0::m.mSitAnmSpeed, 4.0f);
-    mSpeed.y = 0.0f;
+    speed.y = 0.0f;
     setSpecialGravity(0.0f, mMaxFallSpeed, 0);
     mNormalSpeed = 0.0f;
     mCommonCounter = 0;
@@ -276,7 +276,7 @@ int daAlink_c::procSpinnerWait() {
             setSpinnerStatus(ACTION_STR_JUMP2, ACTION_FLG_DEFAULT);
         }
 
-        mNormalSpeed = spinner->mSpeedF;
+        mNormalSpeed = spinner->speedF;
         current.angle.y = spinner->current.angle.y;
 
         if (spinner->checkSpinnerTagIntoIncRot()) {

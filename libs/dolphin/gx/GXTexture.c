@@ -11,7 +11,6 @@
 // Forward References:
 //
 
-void __GetImageTileCount();
 static void GXLoadTexObjPreLoaded();
 void GXLoadTexObj();
 void GXLoadTlut();
@@ -118,7 +117,7 @@ SECTION_DATA static void* lit_145[61] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __GetImageTileCount() {
+asm void __GetImageTileCount(u32 arg0, s16 arg1, s16 arg2, s32* arg3, s32* arg4, s32* arg5) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/__GetImageTileCount.s"
 }

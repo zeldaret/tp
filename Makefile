@@ -70,11 +70,12 @@ endif
 AS        := $(DEVKITPPC)/bin/powerpc-eabi-as
 OBJCOPY   := $(DEVKITPPC)/bin/powerpc-eabi-objcopy
 STRIP     := $(DEVKITPPC)/bin/powerpc-eabi-strip
-CC        := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc_patched.exe
+CC        := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc_modded.exe
 DOLPHIN_LIB_CC := $(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe
 FRANK_CC  := $(WINE) tools/mwcc_compiler/1.2.5e/mwcceppc.exe
 LD        := $(WINE_LD) tools/mwcc_compiler/$(MWCC_VERSION)/mwldeppc.exe
 ELF2DOL   := $(BUILD_PATH)/elf2dol
+YAZ0   := $(BUILD_PATH)/yaz0.so
 PYTHON    := python3
 ICONV     := iconv
 DOXYGEN   := doxygen
@@ -151,7 +152,7 @@ clean_rels:
 	rm -f -d -r $(BUILD_DIR)/rel
 	rm -f $(BUILD_PATH)/*.rel
 
-tools: $(ELF2DOL)
+tools: dirs $(ELF2DOL) $(YAZ0)
 
 assets:
 	@mkdir -p game
@@ -162,8 +163,8 @@ docs:
 	
 rels: $(ELF) $(RELS)
 	@echo generating RELs from .plf
-	@$(PYTHON) $(MAKEREL) build --string-table $(BUILD_DIR)/frameworkF.str $(RELS) $(ELF)
-	@$(PYTHON) tools/tp.py check --rels
+	@echo $(RELS) > build/plf_files
+	$(PYTHON) $(MAKEREL) build --string-table $(BUILD_DIR)/frameworkF.str @build/plf_files $(ELF)
 
 $(ELF): $(LIBS) $(O_FILES)
 	@echo $(O_FILES) > build/o_files
@@ -179,13 +180,21 @@ $(ELF_SHIFT): $(DOL)
 $(DOL_SHIFT): $(ELF_SHIFT) | tools
 	$(ELF2DOL) $< $@ $(SDATA_PDHR) $(SBSS_PDHR) $(TARGET_COL)
 	@cp -v $(DOL_SHIFT) $(DOL)
-
+	
 shift: dirs $(DOL_SHIFT)
 
 game: shift
 	$(MAKE) rels
 	@mkdir -p game
-	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_DIR)
+	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) copyCode
+
+game-nocompile:
+	@mkdir -p game
+	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) noCopyCode
+
+rungame-nocompile: game-nocompile
+	@echo If you are playing on a shifted game make sure Hyrule Field Speed hack is disabled in dolphin!
+	dolphin-emu $(BUILD_DIR)/game/sys/main.dol
 
 iso: game
 	@$(PYTHON) tools/packageISO.py $(BUILD_DIR)/game/ $(TARGET_ISO)
@@ -225,6 +234,7 @@ $(BUILD_DIR)/rel/%.o: rel/%.cpp
 
 # tools
 include tools/elf2dol/Makefile
+include tools/yaz0/Makefile
 
 ### Debug Print ###
 print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true

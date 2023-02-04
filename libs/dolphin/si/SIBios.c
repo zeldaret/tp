@@ -180,7 +180,6 @@ inline void SITransferNext(s32 chan) {
 static u8 cmdTypeAndStatus_78[4];
 
 /* 80344EF8-8034523C 33F838 0344+00 1/1 0/0 0/0 .text            SIInterruptHandler */
-#ifdef NONMATCHING
 static void SIInterruptHandler(OSInterrupt interrupt, OSContext* context) {
     u32 reg;
 
@@ -247,16 +246,6 @@ static void SIInterruptHandler(OSInterrupt interrupt, OSContext* context) {
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void SIInterruptHandler(OSInterrupt interrupt, OSContext* context) {
-    nofralloc
-#include "asm/dolphin/si/SIBios/SIInterruptHandler.s"
-}
-#pragma pop
-#endif
 
 /* 8034523C-803452D4 33FB7C 0098+00 2/2 0/0 0/0 .text            SIEnablePollingInterrupt */
 static BOOL SIEnablePollingInterrupt(BOOL enable) {
@@ -677,7 +666,6 @@ static void GetTypeCallback(s32 chan, u32 error, OSContext* context) {
 }
 
 /* 80345F90-80346154 3408D0 01C4+00 2/2 3/3 0/0 .text            SIGetType */
-#ifdef NONMATCHING
 u32 SIGetType(s32 chan) {
     static u32 cmdTypeAndStatus;
     BOOL enabled;
@@ -712,16 +700,6 @@ u32 SIGetType(s32 chan) {
     OSRestoreInterrupts(enabled);
     return type;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 SIGetType(s32 chan) {
-    nofralloc
-#include "asm/dolphin/si/SIBios/SIGetType.s"
-}
-#pragma pop
-#endif
 
 /* 80346154-80346290 340A94 013C+00 0/0 6/6 0/0 .text            SIGetTypeAsync */
 u32 SIGetTypeAsync(s32 chan, SITypeAndStatusCallback callback) {

@@ -6,8 +6,6 @@
 #include "rel/d/a/d_a_set_bgobj/d_a_set_bgobj.h"
 #include "d/d_procname.h"
 
-extern "C" extern leafdraw_method_class g_fopAc_Method;
-
 /* 80485F00-80485F0C 000000 0009+03 1/1 0/0 0/0 .rodata          l_specName */
 static const char l_specName[] = "spec.dat";
 
@@ -78,7 +76,7 @@ extern actor_process_profile_definition g_profile_SET_BG_OBJ = {
     sizeof(daSetBgObj_c),
     0,
     0,
-    &g_fopAc_Method,
+    &g_fopAc_Method.base,
     0x02F2,
     0,
     0,

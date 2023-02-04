@@ -6,6 +6,7 @@
 #include "d/cc/d_cc_s.h"
 #include "d/d_attention.h"
 #include "d/d_drawlist.h"
+#include "d/d_procname.h"
 #include "d/d_resorce.h"
 #include "d/d_simple_model.h"
 #include "d/d_stage.h"
@@ -14,7 +15,6 @@
 #include "d/event/d_event_manager.h"
 #include "d/particle/d_particle.h"
 #include "d/save/d_save.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_scene_mng.h"
 
@@ -345,6 +345,7 @@ public:
     JKRArchive* getCollectResArchive() { return mCollectResArchive; }
     JKRArchive* getItemIconArchive() { return mItemIconArchive; }
     JKRArchive* getNameResArchive() { return mNameResArchive; }
+    JKRArchive* getFmapResArchive() { return mFmapResArchive; }
     JKRAramArchive* getFieldMapArchive2() { return (JKRAramArchive*)mFieldMapArchive2; }
 
     void setFieldMapArchive2(JKRArchive* arc) { mFieldMapArchive2 = arc; }
@@ -433,7 +434,9 @@ public:
     }
     char* getLastPlayStageName() { return mLastPlayStageName; }
 
+    void setGameoverStatus(u8 status) { mGameoverStatus = status; }
     u8 getGameoverStatus() { return mGameoverStatus; }
+    u8 getMesgStatus() { return mMesgStatus; }
 
 public:
     /* 0x00000 */ dBgS mBgs;
@@ -785,6 +788,10 @@ inline void* dComIfG_getObjectIDRes(const char* arc_name, u16 id) {
 
 inline u8 dComIfG_getBrightness() {
     return g_dComIfG_gameInfo.mFadeBrightness;
+}
+
+inline int dComIfG_getObjctResName2Index(const char* i_arcName, const char* i_resName) {
+    return g_dComIfG_gameInfo.mResControl.getObjectResName2Index(i_arcName, i_resName);
 }
 
 u8 dComIfGs_getMixItemIndex(int i_no);
@@ -1531,6 +1538,10 @@ inline int dComIfGs_createZone(int roomNo) {
     return g_dComIfG_gameInfo.info.createZone(roomNo);
 }
 
+inline void dComIfGs_addDeathCount() {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().addDeathCount();
+}
+
 void dComIfGp_setSelectItem(int index);
 s32 dComIfGp_offHeapLockFlag(int flag);
 void dComIfGp_createSubExpHeap2D();
@@ -1831,6 +1842,10 @@ inline char* dComIfGp_getLastPlayStageName() {
 
 inline u8 dComIfGp_getGameoverStatus() {
     return g_dComIfG_gameInfo.play.getGameoverStatus();
+}
+
+inline void dComIfGp_setGameoverStatus(u8 i_status) {
+    return g_dComIfG_gameInfo.play.setGameoverStatus(i_status);
 }
 
 inline u32 dComIfGp_getNowVibration() {
@@ -2358,6 +2373,14 @@ inline void i_dComIfGp_setHitMark(u16 i_hitmark, fopAc_ac_c* param_1, const cXyz
                                                       i_atType);
 }
 
+inline JKRArchive* dComIfGp_getFmapResArchive() {
+    return g_dComIfG_gameInfo.play.getFmapResArchive();
+}
+
+inline u8 dComIfGp_getMesgStatus() {
+    return g_dComIfG_gameInfo.play.getMesgStatus();
+}
+
 inline s32 dComIfGp_roomControl_getStayNo() {
     return dStage_roomControl_c::getStayNo();
 }
@@ -2767,6 +2790,10 @@ inline void dComIfGd_set2DXlu(dDlst_base_c* dlst) {
 
 inline void dComIfGd_set2DOpaTop(dDlst_base_c* dlst) {
     g_dComIfG_gameInfo.drawlist.set2DOpaTop(dlst);
+}
+
+inline void dComIfGd_setCopy2D(dDlst_base_c* dlst) {
+    g_dComIfG_gameInfo.drawlist.setCopy2D(dlst);
 }
 
 inline view_class* dComIfGd_getView() {

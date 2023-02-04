@@ -255,8 +255,8 @@ public:
     /* 80056770 */ void drawXluListItem3d();
     /* 80056794 */ int set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
     /* 800567C4 */ void draw(dDlst_base_c**, dDlst_base_c**);
-    /* 8005681C */ void wipeIn(f32, _GXColor&);
-    /* 800568D8 */ static void wipeIn(f32);
+    /* 8005681C */ static void wipeIn(f32 i_wipeSpeed, GXColor& i_wipeColor);
+    /* 800568D8 */ static void wipeIn(f32 i_wipeSpeed);
     /* 80056900 */ void calcWipe();
 
     enum DrawBuffer {
@@ -286,6 +286,7 @@ public:
     void set2DOpa(dDlst_base_c* dlst) { set(mp2DOpaSet[0], mp2DOpaSet[1], dlst); }
     void set2DOpaTop(dDlst_base_c* dlst) { set(mp2DOpaTopSet[0], mp2DOpaTopSet[1], dlst); }
     void set2DXlu(dDlst_base_c* dlst) { set(mp2DXluSet[0], mp2DXluSet[1], dlst); }
+    void setCopy2D(dDlst_base_c* dlst) { set(mpCopy2DSet[0], mpCopy2DSet[1], dlst); }
     view_class* getView() { return mView; }
     void setView(view_class* view) { mView = view; }
     void setWindow(dDlst_window_c* window) { mWindow = window; }
@@ -336,7 +337,7 @@ public:
     static dDlst_2DT2_c mWipeDlst;
     static GXColor mWipeColor;
     static f32 mWipeRate;
-    static f32 mWipeSpeed[1 + 1 /* padding */];
+    static f32 mWipeSpeed;
     static u8 mWipe;
 
 private:

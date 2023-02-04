@@ -229,6 +229,7 @@ public:
     u16 getSubContentsStringType() { return mSubContentsStringType; }
 
 private:
+    /* 0x0FC */ int field_0xfc;
     /* 0x100 */ JKRExpHeap* mpHeap;
     /* 0x104 */ JKRExpHeap* mpSubHeap;
     /* 0x108 */ void* field_0x108;

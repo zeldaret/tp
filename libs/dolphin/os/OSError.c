@@ -28,8 +28,8 @@ extern OSTime __OSLastInterruptTime;
 
 /* ############################################################################################## */
 /* 8044BAD0-8044BB20 0787F0 0044+0C 2/2 2/2 0/0 .bss             __OSErrorTable */
-extern OSErrorHandler __OSErrorTable[17];
-OSErrorHandler __OSErrorTable[17];
+extern OSErrorHandlerEx __OSErrorTable[17];
+OSErrorHandlerEx __OSErrorTable[17];
 
 /* 804509A0-804509A4 000420 0004+00 1/1 2/2 0/0 .sdata           __OSFpscrEnableBits */
 #define FPSCR_ENABLE (FPSCR_VE | FPSCR_OE | FPSCR_UE | FPSCR_ZE | FPSCR_XE)
@@ -37,12 +37,12 @@ SECTION_SDATA extern u32 __OSFpscrEnableBits = FPSCR_ENABLE;
 
 /* 8033C580-8033C798 336EC0 0218+00 0/0 4/4 0/0 .text            OSSetErrorHandler */
 OSErrorHandler OSSetErrorHandler(OSError error, OSErrorHandler handler) {
-    OSErrorHandler oldHandler;
+    OSErrorHandlerEx oldHandler;
     BOOL enabled;
 
     enabled = OSDisableInterrupts();
     oldHandler = __OSErrorTable[error];
-    __OSErrorTable[error] = handler;
+    __OSErrorTable[error] = (OSErrorHandlerEx) handler;
 
     if (error == EXCEPTION_FLOATING_POINT_EXCEPTION) {
         u32 msr;

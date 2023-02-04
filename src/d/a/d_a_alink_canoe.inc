@@ -139,7 +139,7 @@ BOOL daAlink_c::checkCanoeJumpRide() {
         canoe = (daCanoe_c*)field_0x850[1].GetCoHitAc();
     }
 
-    if (mSpeed.y < FLOAT_LABEL(lit_6108) && canoe != NULL && fopAcM_GetName(canoe) == PROC_CANOE &&
+    if (speed.y < FLOAT_LABEL(lit_6108) && canoe != NULL && fopAcM_GetName(canoe) == PROC_CANOE &&
         canoe->checkJumpRideFlg() && !checkDeadHP() &&
         (mProcID != PROC_FALL || field_0x3010 != 0)) {
         return procCanoeJumpRideInit(canoe);
@@ -257,7 +257,7 @@ int daAlink_c::procCanoeRideInit() {
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     mNormalSpeed = tmp_0;
-    mSpeed.y = tmp_0;
+    speed.y = tmp_0;
     setRideCanoeBasePos(canoe);
 
     if ((s16)(fopAcM_searchActorAngleY(canoe, this) - canoe->shape_angle.y) > 0) {
@@ -329,7 +329,7 @@ int daAlink_c::procCanoeJumpRideInit(fopAc_ac_c* param_0) {
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     mNormalSpeed = tmp_0;
-    mSpeed.y = tmp_0;
+    speed.y = tmp_0;
     setRideCanoeBasePos(canoe);
     mDoMtx_multVec(canoe->getModelMtx(), &field_0x37c8, &current.pos);
     current.angle.y = shape_angle.y;

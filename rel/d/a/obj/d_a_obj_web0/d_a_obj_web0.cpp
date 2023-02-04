@@ -66,7 +66,6 @@ extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern leafdraw_method_class g_fopAc_Method;
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
@@ -450,7 +449,7 @@ extern actor_process_profile_definition g_profile_OBJ_WEB0 = {
     sizeof(obj_web0_class),
     0,
     0,
-    &g_fopAc_Method,
+    &g_fopAc_Method.base,
     0x002F,
     0,
     0,

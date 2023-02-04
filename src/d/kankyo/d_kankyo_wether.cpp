@@ -1754,9 +1754,9 @@ asm void dKyw_get_AllWind_vec(cXyz* param_0, cXyz* param_1, f32* param_2) {
 #pragma pop
 
 /* 8005B530-8005B60C 055E70 00DC+00 0/0 0/0 5/5 .text            dKyw_get_AllWind_vecpow__FP4cXyz */
-// missing mr instruction
+// matches with literals
 #ifdef NONMATCHING
-void dKyw_get_AllWind_vecpow(cXyz* param_0) {
+cXyz dKyw_get_AllWind_vecpow(cXyz* param_0) {
     f32 sp8;
     cXyz spC;
     cXyz sp18;
@@ -1768,7 +1768,7 @@ void dKyw_get_AllWind_vecpow(cXyz* param_0) {
     sp24 = sp30 * (5.0f * sp8);
     spC = sp18 + sp24;
 
-    *param_0 = spC;
+    return spC;
 }
 #else
 #pragma push

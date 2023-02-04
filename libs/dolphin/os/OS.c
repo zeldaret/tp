@@ -12,7 +12,6 @@
 #define OS_CURRENTCONTEXT_PADDR 0x00C0
 #define OS_EXCEPTIONTABLE_ADDR 0x3000
 #define OS_DBJUMPPOINT_ADDR 0x60
-#define OS_BI2_DEBUG_ADDRESS 0x800000F4
 #define OS_DEBUG_ADDRESS_2 0x800030E9
 #define DEBUGFLAG_ADDR 0x800030E8
 
@@ -199,14 +198,13 @@ extern u32 BOOT_REGION_START : 0x812FDFF0;  //(*(u32 *)0x812fdff0)
 extern u32 BOOT_REGION_END : 0x812FDFEC;    //(*(u32 *)0x812fdfec)
 
 inline void ClearArena(void) {
-    if ((u32)(OSGetResetCode() + 0x80000000) != 0U) {
-        __OSSavedRegionStart = 0U;
-        __OSSavedRegionEnd = 0U;
+    u32 resetCode = OSGetResetCode();
+    BOOL val = resetCode != 0U ? TRUE : FALSE;
+    if (val) {
         memset(OSGetArenaLo(), 0U, (u32)OSGetArenaHi() - (u32)OSGetArenaLo());
         return;
     }
-    __OSSavedRegionStart = (void*)BOOT_REGION_START;
-    __OSSavedRegionEnd = (void*)BOOT_REGION_END;
+
     if (BOOT_REGION_START == 0U) {
         memset(OSGetArenaLo(), 0U, (u32)OSGetArenaHi() - (u32)OSGetArenaLo());
         return;
@@ -404,7 +402,7 @@ void OSInit(void) {
         // HEAP //
         // set up bottom of heap (ArenaLo)
         // grab address from BootInfo if it exists, otherwise use default __ArenaLo
-        OSSetArenaLo((BootInfo->arena_lo == NULL) ? /* __ArenaLo */ 0 : BootInfo->arena_lo);
+        OSSetArenaLo((BootInfo->arena_lo == NULL) ? /* __ArenaLo */ _stack_end : BootInfo->arena_lo);
 
         // if the input arenaLo is null, and debug flag location exists (and flag is < 2),
         //     set arenaLo to just past the end of the db stack
@@ -415,7 +413,7 @@ void OSInit(void) {
 
         // set up top of heap (ArenaHi)
         // grab address from BootInfo if it exists, otherwise use default __ArenaHi
-        OSSetArenaHi((BootInfo->arena_hi == NULL) ? /* __ArenaHi */ 0 : BootInfo->arena_hi);
+        OSSetArenaHi((BootInfo->arena_hi == NULL) ? __ArenaHi : BootInfo->arena_hi);
 
         // OS INIT AND REPORT //
         // initialise a whole bunch of OS stuff
@@ -455,12 +453,13 @@ void OSInit(void) {
 
         // work out what console type this corresponds to and report it
         // consoleTypeSwitchHi = inputConsoleType & 0xF0000000;
-        switch (inputConsoleType & 0xffff0000) {  // check "first" byte
+        switch (inputConsoleType & 0xf0000000) {  // check "first" byte
         case OS_CONSOLE_RETAIL:
             OSReport("Retail %d\n", inputConsoleType);
             break;
-        default:
-            switch (inputConsoleType & 0x0000ffff) {  // if "first" byte is 2, check "the rest"
+        case OS_CONSOLE_DEVELOPMENT:
+        case OS_CONSOLE_TDEV:
+            switch (inputConsoleType & 0x0fffffff) {  // if "first" byte is 2, check "the rest"
             case OS_CONSOLE_EMULATOR:
                 OSReport("Mac Emulator\n");
                 break;
@@ -474,10 +473,13 @@ void OSInit(void) {
                 OSReport("EPPC Minnow\n");
                 break;
             default:
-                tdev = ((u32)inputConsoleType & 0x0000ffff);
+                tdev = ((u32)inputConsoleType & 0x0fffffff);
                 OSReport("Development HW%d (%08x)\n", tdev - 3, inputConsoleType);
                 break;
             }
+            break;
+        default:
+            OSReport("%08x\n", inputConsoleType);
             break;
         }
 

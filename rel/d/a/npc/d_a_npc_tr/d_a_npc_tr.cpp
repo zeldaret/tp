@@ -98,7 +98,6 @@ extern "C" void MtxPosition__FP4cXyzP4cXyz();
 extern "C" void __dl__FPv();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
-extern "C" extern void* g_fopAc_Method[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
@@ -446,7 +445,7 @@ static void npc_tr_move(npc_tr_class* npc_tr) {
     }
 
     cLib_addCalc2(&npc_tr->field_0x5f8, var_f1_2, 0.5f, 1000.0f);
-    cLib_addCalc2(&npc_tr->mSpeedF, npc_tr->field_0x5e4 * l_HIO.field_0xc, 1.0f, var_f31);
+    cLib_addCalc2(&npc_tr->speedF, npc_tr->field_0x5e4 * l_HIO.field_0xc, 1.0f, var_f31);
 }
 #else
 #pragma push

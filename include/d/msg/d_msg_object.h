@@ -162,6 +162,7 @@ public:
     u8 getSelectPushFlag() { return mSelectPushFlag; }
     u8 getSelectCancelPos() { return mSelectCancelPos; }
 
+    /* 0x0FC */ int field_0xfc;
     /* 0x100 */ msg_class* field_0x100;
     /* 0x104 */ dMsgScrnBase_c* mpScrnDraw;
     /* 0x108 */ dMsgString_c* mpMsgString;

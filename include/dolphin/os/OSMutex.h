@@ -21,13 +21,13 @@ typedef struct OSCond {
 void OSInitMutex(OSMutex* mutex);
 void OSLockMutex(OSMutex* mutex);
 void OSUnlockMutex(OSMutex* mutex);
-s32 OSTryLockMutex(OSMutex* mutex);
+BOOL OSTryLockMutex(OSMutex* mutex);
 void OSInitCond(OSCond* cond);
 void OSWaitCond(OSCond* cond, OSMutex* mutex);
 void OSSignalCond(OSCond* cond);
 
 void __OSUnlockAllMutex(OSThread* thread);
-s32 __OSCheckMutex(OSThread* thread);
+BOOL __OSCheckMutex(OSMutex* thread);
 BOOL __OSCheckDeadLock(OSThread* thread);
 BOOL __OSCheckMutexes(OSThread* thread);
 

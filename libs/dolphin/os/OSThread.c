@@ -79,7 +79,7 @@ volatile OSContext* __OSFPUContext : OS_BASE_CACHED + 0x00D8;
 // External References:
 //
 
-extern u8 __OSErrorTable[68 + 12 /* padding */];
+extern OSErrorHandlerEx __OSErrorTable[17];
 extern u32 __OSFpscrEnableBits;
 void _epilog();
 
@@ -92,17 +92,27 @@ static void DefaultSwitchThreadCallback(OSThread* from, OSThread* to) {}
 
 /* ############################################################################################## */
 /* 804509B8-804509BC -00001 0004+00 3/3 0/0 0/0 .sdata           SwitchThreadCallback */
-SECTION_SDATA static OSSwitchThreadCallback SwitchThreadCallback = DefaultSwitchThreadCallback;
+static OSSwitchThreadCallback SwitchThreadCallback = DefaultSwitchThreadCallback;
 
 /* 80340AA8-80340B1C 33B3E8 0074+00 0/0 1/1 0/0 .text            OSSetSwitchThreadCallback */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm OSSwitchThreadCallback OSSetSwitchThreadCallback(OSSwitchThreadCallback func) {
-    nofralloc
-#include "asm/dolphin/os/OSThread/OSSetSwitchThreadCallback.s"
+OSSwitchThreadCallback OSSetSwitchThreadCallback(OSSwitchThreadCallback func) {
+    BOOL enable = OSDisableInterrupts();
+    OSSwitchThreadCallback prev = SwitchThreadCallback;
+    OSSwitchThreadCallback temp;
+    if (func) {
+        temp = func;
+    } else {
+        temp = DefaultSwitchThreadCallback;
+    }
+    SwitchThreadCallback = temp;
+
+    OSRestoreInterrupts(enable);
+    if (prev == DefaultSwitchThreadCallback) {
+        return NULL;
+    }
+
+    return prev;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8044BB78-8044BC78 078898 0100+00 6/6 0/0 0/0 .bss             RunQueue */
@@ -127,10 +137,10 @@ static OSContext IdleContext;
 #pragma pop
 
 /* 804516C0-804516C4 000BC0 0004+00 7/7 0/0 0/0 .sbss            RunQueueBits */
-static u32 RunQueueBits;
+static vu32 RunQueueBits;
 
 /* 804516C4-804516C8 000BC4 0004+00 11/11 0/0 0/0 .sbss            RunQueueHint */
-static BOOL RunQueueHint;
+static volatile BOOL RunQueueHint;
 
 /* 804516C8-804516D0 000BC8 0004+04 4/4 0/0 0/0 .sbss            Reschedule */
 static volatile s32 Reschedule;
@@ -213,24 +223,20 @@ BOOL OSIsThreadTerminated(OSThread* thread) {
 }
 
 /* 80340CC4-80340D04 33B604 0040+00 0/0 8/8 0/0 .text            OSDisableScheduler */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 OSDisableScheduler(void) {
-    nofralloc
-#include "asm/dolphin/os/OSThread/OSDisableScheduler.s"
+s32 OSDisableScheduler(void) {
+    BOOL intr = OSDisableInterrupts();
+    s32 ret = Reschedule++;
+    OSRestoreInterrupts(intr);
+    return ret;
 }
-#pragma pop
 
 /* 80340D04-80340D44 33B644 0040+00 0/0 10/10 0/0 .text            OSEnableScheduler */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 OSEnableScheduler(void) {
-    nofralloc
-#include "asm/dolphin/os/OSThread/OSEnableScheduler.s"
+s32 OSEnableScheduler(void) {
+    BOOL intr = OSDisableInterrupts();
+    s32 ret = Reschedule--;
+    OSRestoreInterrupts(intr);
+    return ret;
 }
-#pragma pop
 
 static inline void SetRun(OSThread* thread) {
     thread->queue = &RunQueue[thread->effective_priority];
@@ -240,7 +246,8 @@ static inline void SetRun(OSThread* thread) {
 }
 
 /* 80340D44-80340DAC 33B684 0068+00 3/3 0/0 0/0 .text            UnsetRun */
-static void UnsetRun(OSThread* thread) {
+#pragma dont_inline on
+static void UnsetRun(OSThread* thread)  {
     OSThreadQueue* queue;
     OSThread* next;
     OSThread* prev;
@@ -267,13 +274,14 @@ static void UnsetRun(OSThread* thread) {
 
     thread->queue = NULL;
 }
+#pragma dont_inline reset
 
 /* 80340DAC-80340DE8 33B6EC 003C+00 4/4 2/2 0/0 .text            __OSGetEffectivePriority */
 s32 __OSGetEffectivePriority(OSThread* thread) {
     s32 prio = thread->base_priority;
 
     OSMutex* mutex;
-    for (mutex = thread->owned_mutexes.head; mutex != NULL; mutex = mutex->link.prev) {
+    for (mutex = thread->owned_mutexes.head; mutex != NULL; mutex = mutex->link.next) {
         OSThread* mutexThread = mutex->queue.head;
         if (mutexThread != NULL && mutexThread->effective_priority < prio) {
             prio = mutexThread->effective_priority;
@@ -284,8 +292,6 @@ s32 __OSGetEffectivePriority(OSThread* thread) {
 }
 
 /* 80340DE8-80340FA8 33B728 01C0+00 5/5 0/0 0/0 .text            SetEffectivePriority */
-// needs compiler epilogue patch
-#ifdef NONMATCHING
 static OSThread* SetEffectivePriority(OSThread* thread, s32 priority) {
     switch (thread->state) {
     case OS_THREAD_STATE_READY:
@@ -308,26 +314,32 @@ static OSThread* SetEffectivePriority(OSThread* thread, s32 priority) {
     }
     return NULL;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm OSThread* SetEffectivePriority(OSThread* thread, s32 priority) {
-    nofralloc
-#include "asm/dolphin/os/OSThread/SetEffectivePriority.s"
+
+static void UpdatePriority(OSThread* thread) {
+    OSPriority priority;
+
+    do {
+        if (0 < thread->suspend_count) {
+            break;
+        }
+        priority = __OSGetEffectivePriority(thread);
+        if (thread->effective_priority == priority) {
+            break;
+        }
+        thread = SetEffectivePriority(thread, priority);
+    } while (thread);
 }
-#pragma pop
-#endif
 
 /* 80340FA8-80340FF8 33B8E8 0050+00 0/0 1/1 0/0 .text            __OSPromoteThread */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __OSPromoteThread(OSThread* thread, s32 priority) {
-    nofralloc
-#include "asm/dolphin/os/OSThread/__OSPromoteThread.s"
+void __OSPromoteThread(OSThread* thread, s32 priority) {
+    do {
+        if (thread->suspend_count > 0 || thread->effective_priority <= priority) {
+            break;
+        }
+        
+        thread = SetEffectivePriority(thread, priority);
+    } while(thread != NULL);
 }
-#pragma pop
 
 static inline void __OSSwitchThread(OSThread* nextThread) {
     OSSetCurrentThread(nextThread);
@@ -336,7 +348,6 @@ static inline void __OSSwitchThread(OSThread* nextThread) {
 }
 
 /* 80340FF8-80341220 33B938 0228+00 9/9 0/0 0/0 .text            SelectThread */
-#ifdef NONMATCHING
 inline OSThread* i_OSGetCurrentThread(void) {
     return OS_CURRENT_THREAD;
 }
@@ -376,8 +387,8 @@ static OSThread* SelectThread(BOOL yield) {
         }
     }
 
-    OSSetCurrentThread(NULL);
     if (RunQueueBits == 0) {
+        OSSetCurrentThread(NULL);
         OSSetCurrentContext(&IdleContext);
         do {
             OSEnableInterrupts();
@@ -402,16 +413,6 @@ static OSThread* SelectThread(BOOL yield) {
     __OSSwitchThread(nextThread);
     return nextThread;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm OSThread* SelectThread(BOOL yield) {
-    nofralloc
-#include "asm/dolphin/os/OSThread/SelectThread.s"
-}
-#pragma pop
-#endif
 
 /* 80341220-80341250 33BB60 0030+00 0/0 3/3 0/0 .text            __OSReschedule */
 void __OSReschedule(void) {
@@ -432,95 +433,258 @@ void OSYieldThread(void) {
 }
 
 /* 8034128C-80341474 33BBCC 01E8+00 0/0 5/5 3/3 .text            OSCreateThread */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL OSCreateThread(OSThread* thread, void* func, void* param, void* stackBase, u32 stackSize,
-                        s32 priority, u16 attribute) {
-    nofralloc
-#include "asm/dolphin/os/OSThread/OSCreateThread.s"
+BOOL OSCreateThread(OSThread* thread_, void* func, void* param, void* stackBase, u32 stackSize,
+                    s32 priority, u16 attribute) {
+    BOOL enabled;
+    u32 i;
+    u32* stack;
+    OSThread* thread;
+    u32 stack1, stack2;
+    
+    if (priority < 0 || priority > 31) {
+        return FALSE;
+    }
+
+    thread = thread_;
+
+    thread->state = OS_THREAD_STATE_READY;
+    thread->attributes = attribute & 1;
+    thread->base_priority = priority;
+    thread->effective_priority = priority;
+    thread->suspend_count = 1;
+    thread->exit_value = (void*)-1;
+    thread->mutex = NULL;
+    thread->join_queue.tail = NULL;
+    thread->join_queue.head = NULL;
+    thread->owned_mutexes.tail = NULL;
+    thread->owned_mutexes.head = NULL;
+    stack = (u32*)((u32)stackBase & 0xfffffff8);
+    stack[-2] = 0;
+    stack[-1] = 0;
+    OSInitContext(&thread->context, (u32)func,(u32)stack - 8);
+    thread->context.lr = (u32) OSExitThread;
+    thread->context.gpr[3] = (u32) param;
+    thread->stack_base = (u8*)stackBase;
+    thread->stack_end = (void*)((u32)stackBase - stackSize);
+    *(u32*)thread->stack_end = OS_THREAD_STACK_MAGIC;
+    thread->error_code = NULL;
+    thread->data[0] = NULL;
+    thread->data[1] = NULL;
+    enabled = OSDisableInterrupts();
+    if (__OSErrorTable[16]) {
+        thread->context.srr1 |= 0x900;
+        thread->context.state |= 1;
+        thread->context.fpscr = (__OSFpscrEnableBits & 0xf8) | 4;
+        for (i = 0; i < 32; ++i) {
+            *(u64*)&thread->context.fpr[i] = (u64)0xffffffffffffffffLL;
+            *(u64*)&thread->context.ps[i] = (u64)0xffffffffffffffffLL;
+        }
+    }
+
+    AddTail(&OS_THREAD_QUEUE, thread, active_threads_link);
+    OSRestoreInterrupts(enabled);
+    return TRUE;
 }
-#pragma pop
 
 /* 80341474-80341558 33BDB4 00E4+00 1/1 1/1 0/0 .text            OSExitThread */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSExitThread(void* exitValue) {
-    nofralloc
-#include "asm/dolphin/os/OSThread/OSExitThread.s"
+void OSExitThread(void* exitValue) {
+    OSThread* currentThread;
+    BOOL enabled;
+    enabled = OSDisableInterrupts();
+    currentThread = OS_CURRENT_THREAD;
+    OSClearContext(&currentThread->context);
+
+    if (currentThread->attributes & OS_THREAD_ATTR_DETACH) {
+        RemoveItem(&OS_THREAD_QUEUE, currentThread, active_threads_link);
+        currentThread->state = OS_THREAD_STATE_UNINITIALIZED;
+    } else {
+        currentThread->state = OS_THREAD_STATE_DEAD;
+        currentThread->exit_value = exitValue;
+    }
+
+    __OSUnlockAllMutex(currentThread);
+    OSWakeupThread(&currentThread->join_queue);
+    RunQueueHint = TRUE;
+
+    if (RunQueueHint) {
+        SelectThread(FALSE);
+    }
+
+    OSRestoreInterrupts(enabled);
 }
-#pragma pop
 
 /* 80341558-80341714 33BE98 01BC+00 0/0 4/4 3/3 .text            OSCancelThread */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSCancelThread(OSThread* thread) {
-    nofralloc
-#include "asm/dolphin/os/OSThread/OSCancelThread.s"
+void OSCancelThread(OSThread* thread) {
+    BOOL enabled;
+
+    enabled = OSDisableInterrupts();
+
+    switch (thread->state) {
+    case OS_THREAD_STATE_READY:
+        if (!(0 < thread->suspend_count)) {
+            UnsetRun(thread);
+        }
+        break;
+    case OS_THREAD_STATE_RUNNING:
+        RunQueueHint = TRUE;
+        break;
+    case OS_THREAD_STATE_WAITING:
+        RemoveItem(thread->queue, thread, link);
+        thread->queue = NULL;
+        if (!(0 < thread->suspend_count) && thread->mutex) {
+            UpdatePriority(thread->mutex->thread);
+        }
+        break;
+    default:
+        OSRestoreInterrupts(enabled);
+        return;
+    }
+
+    OSClearContext(&thread->context);
+    if (thread->attributes & OS_THREAD_ATTR_DETACH) {
+        RemoveItem(&__OSActiveThreadQueue, thread, active_threads_link);
+        thread->state = 0;
+    } else {
+        thread->state = OS_THREAD_STATE_DEAD;
+    }
+
+    __OSUnlockAllMutex(thread);
+
+    OSWakeupThread(&thread->join_queue);
+
+    __OSReschedule();
+    OSRestoreInterrupts(enabled);
 }
-#pragma pop
 
 /* 80341714-803417B4 33C054 00A0+00 0/0 2/2 0/0 .text            OSDetachThread */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSDetachThread(OSThread* thread) {
-    nofralloc
-#include "asm/dolphin/os/OSThread/OSDetachThread.s"
+void OSDetachThread(OSThread* thread) {
+    BOOL enabled;
+
+    enabled = OSDisableInterrupts();
+    thread->attributes |= OS_THREAD_ATTR_DETACH;
+
+    if (thread->state == OS_THREAD_STATE_DEAD) {
+        RemoveItem(&__OSActiveThreadQueue, thread, active_threads_link);
+        thread->state = OS_THREAD_STATE_UNINITIALIZED;
+    }
+
+    OSWakeupThread(&thread->join_queue);
+    OSRestoreInterrupts(enabled);
 }
-#pragma pop
 
 /* 803417B4-80341A3C 33C0F4 0288+00 0/0 13/13 3/3 .text            OSResumeThread */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 OSResumeThread(OSThread* thread) {
-    nofralloc
-#include "asm/dolphin/os/OSThread/OSResumeThread.s"
+s32 OSResumeThread(OSThread* thread) {
+    BOOL enabled;
+    s32 suspendCount;
+
+    enabled = OSDisableInterrupts();
+    suspendCount = thread->suspend_count--;
+    if (thread->suspend_count < 0) {
+        thread->suspend_count = 0;
+    } else if (thread->suspend_count == 0) {
+        switch (thread->state) {
+        case OS_THREAD_STATE_READY:
+            thread->effective_priority = __OSGetEffectivePriority(thread);
+            SetRun(thread);
+            break;
+        case OS_THREAD_STATE_WAITING:
+            RemoveItem(thread->queue, thread, link);
+            thread->effective_priority = __OSGetEffectivePriority(thread);
+            AddPrio(thread->queue, thread, link);
+            if (thread->mutex) {
+                UpdatePriority(thread->mutex->thread);
+            }
+            break;
+        }
+        __OSReschedule();
+    }
+    OSRestoreInterrupts(enabled);
+    return suspendCount;
 }
-#pragma pop
 
 /* 80341A3C-80341BAC 33C37C 0170+00 0/0 7/7 4/4 .text            OSSuspendThread */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 OSSuspendThread(OSThread* thread) {
-    nofralloc
-#include "asm/dolphin/os/OSThread/OSSuspendThread.s"
+s32 OSSuspendThread(OSThread* thread) {
+    BOOL enabled;
+    s32 suspendCount;
+
+    enabled = OSDisableInterrupts();
+    suspendCount = thread->suspend_count++;
+    if (suspendCount == 0) {
+        switch (thread->state) {
+        case OS_THREAD_STATE_RUNNING:
+            RunQueueHint = TRUE;
+            thread->state = OS_THREAD_STATE_READY;
+            break;
+        case OS_THREAD_STATE_READY:
+            UnsetRun(thread);
+            break;
+        case OS_THREAD_STATE_WAITING:
+            RemoveItem(thread->queue, thread, link);
+            thread->effective_priority = 32;
+            AddTail(thread->queue, thread, link);
+            if (thread->mutex) {
+                UpdatePriority(thread->mutex->thread);
+            }
+            break;
+        }
+
+        __OSReschedule();
+    }
+    OSRestoreInterrupts(enabled);
+    return suspendCount;
 }
-#pragma pop
 
 /* 80341BAC-80341C98 33C4EC 00EC+00 0/0 12/12 0/0 .text            OSSleepThread */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSSleepThread(OSThreadQueue* queue) {
-    nofralloc
-#include "asm/dolphin/os/OSThread/OSSleepThread.s"
+void OSSleepThread(OSThreadQueue* queue) {
+    BOOL enabled;
+    OSThread* currentThread;
+
+    enabled = OSDisableInterrupts();
+    currentThread = OSGetCurrentThread();
+
+    currentThread->state = OS_THREAD_STATE_WAITING;
+    currentThread->queue = queue;
+    AddPrio(queue, currentThread, link);
+    RunQueueHint = TRUE;
+    __OSReschedule();
+    OSRestoreInterrupts(enabled);
 }
-#pragma pop
 
 /* 80341C98-80341D9C 33C5D8 0104+00 3/3 13/13 0/0 .text            OSWakeupThread */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSWakeupThread(OSThreadQueue* queue) {
-    nofralloc
-#include "asm/dolphin/os/OSThread/OSWakeupThread.s"
+void OSWakeupThread(OSThreadQueue* queue) {
+    BOOL enabled;
+    OSThread* thread;
+
+    enabled = OSDisableInterrupts();
+    while (queue->head) {
+        RemoveHead(queue, thread, link);
+        thread->state = OS_THREAD_STATE_READY;
+        if (!(0 < thread->suspend_count)) {
+            SetRun(thread);
+        }
+    }
+    __OSReschedule();
+    OSRestoreInterrupts(enabled);
 }
-#pragma pop
 
 /* 80341D9C-80341E5C 33C6DC 00C0+00 0/0 1/1 0/0 .text            OSSetThreadPriority */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 OSSetThreadPriority(OSThread* thread, s32 priority) {
-    nofralloc
-#include "asm/dolphin/os/OSThread/OSSetThreadPriority.s"
+s32 OSSetThreadPriority(OSThread* thread, s32 priority) {
+    BOOL enabled;
+
+    if (priority < 0 || priority > 31) {
+        return FALSE;
+    }
+
+    enabled = OSDisableInterrupts();
+    if ((s32)thread->base_priority != priority) {
+        thread->base_priority = priority;
+
+        UpdatePriority(thread);
+        __OSReschedule();
+    }
+    OSRestoreInterrupts(enabled);
+    return TRUE;
 }
-#pragma pop
 
 /* 80341E5C-80341E64 33C79C 0008+00 0/0 4/4 0/0 .text            OSGetThreadPriority */
 s32 OSGetThreadPriority(OSThread* thread) {
@@ -528,210 +692,218 @@ s32 OSGetThreadPriority(OSThread* thread) {
 }
 
 /* 80341E64-80341F00 33C7A4 009C+00 1/1 0/0 0/0 .text            CheckThreadQueue */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm s32 CheckThreadQueue(OSThread* thread) {
-    nofralloc
-#include "asm/dolphin/os/OSThread/CheckThreadQueue.s"
+s32 CheckThreadQueue(OSThreadQueue* thread) {
+    OSThread* current;
+    if (thread->head && thread->head->link.prev) {
+        return 0;
+    }
+
+    if (thread->tail && thread->tail->link.next) {
+        return 0;
+    }
+
+    current = thread->head;
+
+    while(current) {
+        if (current->link.next && current != current->link.next->link.prev) {
+            return 0;
+        }
+
+        if (current->link.prev && current != current->link.prev->link.next) {
+            return 0;
+        }
+
+        current = current->link.next;
+    }
+
+    return 1;
 }
-#pragma pop
 
-/* ############################################################################################## */
-/* 803D0838-803D0898 02D958 005F+01 1/1 0/0 0/0 .data            @831 */
-SECTION_DATA static char lit_831[] = "OSCheckActiveThreads: Failed RunQueue[prio].head != NULL && "
-                                     "RunQueue[prio].tail != NULL in %d\n";
+static BOOL isMember(OSThreadQueue* queue, OSThread* thread) {
+    OSThread* current = queue->head;
+    while (current != NULL) {
+        if (thread == current) {
+            return TRUE;
+        }
 
-/* 803D0898-803D08A4 02D9B8 000B+01 0/1 0/0 0/0 .data            @832 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_832[] = "OSThread.c";
-#pragma pop
-
-/* 803D08A4-803D0904 02D9C4 005F+01 0/1 0/0 0/0 .data            @834 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_834[] = "OSCheckActiveThreads: Failed RunQueue[prio].head == NULL && "
-                                     "RunQueue[prio].tail == NULL in %d\n";
-#pragma pop
-
-/* 803D0904-803D094C 02DA24 0046+02 0/1 0/0 0/0 .data            @835 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_835[] =
-    "OSCheckActiveThreads: Failed CheckThreadQueue(&RunQueue[prio]) in %d\n";
-#pragma pop
-
-/* 803D094C-803D09CC 02DA6C 007E+02 0/1 0/0 0/0 .data            @836 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_836[] =
-    "OSCheckActiveThreads: Failed __OSActiveThreadQueue.head == NULL || "
-    "__OSActiveThreadQueue.head->linkActive.prev == NULL in %d\n";
-#pragma pop
-
-/* 803D09CC-803D0A4C 02DAEC 007E+02 0/1 0/0 0/0 .data            @837 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_837[] =
-    "OSCheckActiveThreads: Failed __OSActiveThreadQueue.tail == NULL || "
-    "__OSActiveThreadQueue.tail->linkActive.next == NULL in %d\n";
-#pragma pop
-
-/* 803D0A4C-803D0AC8 02DB6C 007A+02 0/1 0/0 0/0 .data            @838 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_838[] =
-    "OSCheckActiveThreads: Failed thread->linkActive.next == NULL || thread == "
-    "thread->linkActive.next->linkActive.prev in %d\n";
-#pragma pop
-
-/* 803D0AC8-803D0B44 02DBE8 007A+02 0/1 0/0 0/0 .data            @839 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_839[] =
-    "OSCheckActiveThreads: Failed thread->linkActive.prev == NULL || thread == "
-    "thread->linkActive.prev->linkActive.next in %d\n";
-#pragma pop
-
-/* 803D0B44-803D0B98 02DC64 0051+03 0/1 0/0 0/0 .data            @840 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_840[] =
-    "OSCheckActiveThreads: Failed *(thread->stackEnd) == OS_THREAD_STACK_MAGIC in %d\n";
-#pragma pop
-
-/* 803D0B98-803D0C0C 02DCB8 0071+03 0/1 0/0 0/0 .data            @841 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_841[] =
-    "OSCheckActiveThreads: Failed OS_PRIORITY_MIN <= thread->priority && thread->priority <= "
-    "OS_PRIORITY_MAX+1 in %d\n";
-#pragma pop
-
-/* 803D0C0C-803D0C48 02DD2C 0039+03 0/1 0/0 0/0 .data            @842 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_842[] = "OSCheckActiveThreads: Failed 0 <= thread->suspend in %d\n";
-#pragma pop
-
-/* 803D0C48-803D0C94 02DD68 0049+03 0/1 0/0 0/0 .data            @843 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_843[] =
-    "OSCheckActiveThreads: Failed CheckThreadQueue(&thread->queueJoin) in %d\n";
-#pragma pop
-
-/* 803D0C94-803D0CE8 02DDB4 0051+03 0/1 0/0 0/0 .data            @844 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_844[] =
-    "OSCheckActiveThreads: Failed thread->queue == &RunQueue[thread->priority] in %d\n";
-#pragma pop
-
-/* 803D0CE8-803D0D3C 02DE08 0052+02 0/1 0/0 0/0 .data            @845 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_845[] =
-    "OSCheckActiveThreads: Failed IsMember(&RunQueue[thread->priority], thread) in %d\n";
-#pragma pop
-
-/* 803D0D3C-803D0D98 02DE5C 0059+03 0/1 0/0 0/0 .data            @846 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_846[] =
-    "OSCheckActiveThreads: Failed thread->priority == __OSGetEffectivePriority(thread) in %d\n";
-#pragma pop
-
-/* 803D0D98-803D0DDC 02DEB8 0042+02 0/1 0/0 0/0 .data            @847 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_847[] =
-    "OSCheckActiveThreads: Failed !IsSuspended(thread->suspend) in %d\n";
-#pragma pop
-
-/* 803D0DDC-803D0E18 02DEFC 003A+02 0/1 0/0 0/0 .data            @848 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_848[] = "OSCheckActiveThreads: Failed thread->queue == NULL in %d\n";
-#pragma pop
-
-/* 803D0E18-803D0E54 02DF38 003A+02 0/1 0/0 0/0 .data            @849 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_849[] = "OSCheckActiveThreads: Failed thread->queue != NULL in %d\n";
-#pragma pop
-
-/* 803D0E54-803D0E98 02DF74 0044+00 0/1 0/0 0/0 .data            @850 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_850[] =
-    "OSCheckActiveThreads: Failed CheckThreadQueue(thread->queue) in %d\n";
-#pragma pop
-
-/* 803D0E98-803D0EDC 02DFB8 0044+00 0/1 0/0 0/0 .data            @851 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_851[] =
-    "OSCheckActiveThreads: Failed IsMember(thread->queue, thread) in %d\n";
-#pragma pop
-
-/* 803D0EDC-803D0F18 02DFFC 003B+01 0/1 0/0 0/0 .data            @852 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_852[] = "OSCheckActiveThreads: Failed thread->priority == 32 in %d\n";
-#pragma pop
-
-/* 803D0F18-803D0F58 02E038 003F+01 0/1 0/0 0/0 .data            @853 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_853[] =
-    "OSCheckActiveThreads: Failed !__OSCheckDeadLock(thread) in %d\n";
-#pragma pop
-
-/* 803D0F58-803D0FC0 02E078 0067+01 0/1 0/0 0/0 .data            @854 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_854[] = "OSCheckActiveThreads: Failed thread->queueMutex.head == NULL "
-                                     "&& thread->queueMutex.tail == NULL in %d\n";
-#pragma pop
-
-/* 803D0FC0-803D1008 02E0E0 0045+03 0/1 0/0 0/0 .data            @855 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_855[] =
-    "OSCheckActiveThreads: Failed. unkown thread state (%d) of thread %p\n";
-#pragma pop
-
-/* 803D1008-803D1048 02E128 003D+03 0/1 0/0 0/0 .data            @856 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_856[] =
-    "OSCheckActiveThreads: Failed __OSCheckMutexes(thread) in %d\n";
-#pragma pop
-
-/* 804509BC-804509C0 00043C 0001+03 1/1 0/0 0/0 .sdata           @833 */
-SECTION_SDATA static char lit_833[] = "";
+        current = current->link.next;
+    }
+    return FALSE;
+}
 
 /* 80341F00-80342650 33C840 0750+00 0/0 1/1 0/0 .text            OSCheckActiveThreads */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 OSCheckActiveThreads(void) {
-    nofralloc
-#include "asm/dolphin/os/OSThread/OSCheckActiveThreads.s"
+s32 OSCheckActiveThreads(void) {
+    s32 i;
+    OSThread* thread;
+    s32 rv = 0;
+    BOOL enabled;
+    enabled = OSDisableInterrupts();
+
+    for (i = 0; i <= 31; i++) {
+        if (RunQueueBits & (1 << (31-i))) {
+            if (RunQueue[i].head == NULL || RunQueue[i].tail == NULL) {
+                OSReport("OSCheckActiveThreads: Failed RunQueue[prio].head != NULL && RunQueue[prio].tail != NULL in %d\n", 0x5e0);
+                OSPanic(__FILE__, 0x5e0, "");
+            }
+        } else {
+            if (RunQueue[i].head != NULL || RunQueue[i].tail != NULL) {
+                OSReport("OSCheckActiveThreads: Failed RunQueue[prio].head == NULL && RunQueue[prio].tail == NULL in %d\n", 0x5e5);
+                OSPanic(__FILE__, 0x5e5, "");
+            }
+        }
+
+        if (CheckThreadQueue(&RunQueue[i]) == 0) {
+            OSReport("OSCheckActiveThreads: Failed CheckThreadQueue(&RunQueue[prio]) in %d\n", 0x5e7);
+            OSPanic(__FILE__, 0x5e7, "");
+        }
+    }
+
+    if (OS_THREAD_QUEUE.head != NULL && OS_THREAD_QUEUE.head->active_threads_link.prev != NULL) {
+        OSReport("OSCheckActiveThreads: Failed __OSActiveThreadQueue.head == NULL || __OSActiveThreadQueue.head->linkActive.prev == NULL in %d\n", 0x5ec);
+        OSPanic(__FILE__, 0x5ec, "");
+    }
+
+    if (OS_THREAD_QUEUE.tail != NULL && OS_THREAD_QUEUE.tail->active_threads_link.next != NULL) {
+        OSReport("OSCheckActiveThreads: Failed __OSActiveThreadQueue.tail == NULL || __OSActiveThreadQueue.tail->linkActive.next == NULL in %d\n", 0x5ee);
+        OSPanic(__FILE__, 0x5ee, "");
+    }
+
+    thread = OS_THREAD_QUEUE.head;
+
+    while (thread != NULL) {
+        rv++;
+        if (thread->active_threads_link.next != NULL && thread != thread->active_threads_link.next->active_threads_link.prev) {
+            OSReport("OSCheckActiveThreads: Failed thread->linkActive.next == NULL || thread == thread->linkActive.next->linkActive.prev in %d\n", 0x5f6);
+            OSPanic(__FILE__, 0x5f6, "");
+        }
+
+        if (thread->active_threads_link.prev != NULL && thread != thread->active_threads_link.prev->active_threads_link.next) {
+            OSReport("OSCheckActiveThreads: Failed thread->linkActive.prev == NULL || thread == thread->linkActive.prev->linkActive.next in %d\n", 0x5f8);
+            OSPanic(__FILE__, 0x5f8, "");
+        }
+
+        if (*(u32*)thread->stack_end != OS_THREAD_STACK_MAGIC) {
+            OSReport("OSCheckActiveThreads: Failed *(thread->stackEnd) == OS_THREAD_STACK_MAGIC in %d\n", 0x5fb);
+            OSPanic(__FILE__, 0x5fb, "");
+        }
+
+        if (OS_PRIORITY_MIN > thread->effective_priority || thread->effective_priority > OS_PRIORITY_MAX+1) {
+            OSReport("OSCheckActiveThreads: Failed OS_PRIORITY_MIN <= thread->priority && thread->priority <= OS_PRIORITY_MAX+1 in %d\n", 0x5fe);
+            OSPanic(__FILE__, 0x5fe, "");
+        }
+
+        if (thread->suspend_count < 0) {
+            OSReport("OSCheckActiveThreads: Failed 0 <= thread->suspend in %d\n", 0x5ff);
+            OSPanic(__FILE__, 0x5ff, "");
+        }
+
+        if (!CheckThreadQueue(&thread->join_queue)) {
+            OSReport("OSCheckActiveThreads: Failed CheckThreadQueue(&thread->queueJoin) in %d\n", 0x600);
+            OSPanic(__FILE__, 0x600, "");
+        }
+
+        switch (thread->state) {
+            case OS_THREAD_STATE_READY:
+                if (thread->suspend_count <= 0) {
+                    if (thread->queue != &RunQueue[thread->effective_priority]) {
+                        OSReport("OSCheckActiveThreads: Failed thread->queue == &RunQueue[thread->priority] in %d\n", 0x606);
+                        OSPanic(__FILE__, 0x606, "");
+                    }
+
+                    if (!isMember(&RunQueue[thread->effective_priority], thread)) {
+                        OSReport("OSCheckActiveThreads: Failed IsMember(&RunQueue[thread->priority], thread) in %d\n", 0x607);
+                        OSPanic(__FILE__, 0x607, "");
+                    }
+
+                    if (thread->effective_priority != __OSGetEffectivePriority(thread)) {
+                        OSReport("OSCheckActiveThreads: Failed thread->priority == __OSGetEffectivePriority(thread) in %d\n", 0x608);
+                        OSPanic(__FILE__, 0x608, "");
+                    }
+                }
+                break;
+            case OS_THREAD_STATE_RUNNING:
+                if (thread->suspend_count > 0) {
+                    OSReport("OSCheckActiveThreads: Failed !IsSuspended(thread->suspend) in %d\n", 0x60c);
+                    OSPanic(__FILE__, 0x60c, "");
+                }
+
+                if (thread->queue != NULL) {
+                    OSReport("OSCheckActiveThreads: Failed thread->queue == NULL in %d\n", 0x60d);
+                    OSPanic(__FILE__, 0x60d, "");
+                }
+
+                if (thread->effective_priority != __OSGetEffectivePriority(thread)) {
+                    OSReport("OSCheckActiveThreads: Failed thread->priority == __OSGetEffectivePriority(thread) in %d\n", 0x60e);
+                    OSPanic(__FILE__, 0x60e, "");
+                }
+                break;
+            case OS_THREAD_STATE_WAITING:
+                if (thread->queue == NULL) {
+                    OSReport("OSCheckActiveThreads: Failed thread->queue != NULL in %d\n", 0x611);
+                    OSPanic(__FILE__, 0x611, "");
+                }
+
+                if (CheckThreadQueue(thread->queue) == 0) {
+                    OSReport("OSCheckActiveThreads: Failed CheckThreadQueue(thread->queue) in %d\n", 0x612);
+                    OSPanic(__FILE__, 0x612, "");
+                }
+
+                if (!isMember(thread->queue, thread)) {
+                    OSReport("OSCheckActiveThreads: Failed IsMember(thread->queue, thread) in %d\n", 0x613);
+                    OSPanic(__FILE__, 0x613, "");
+                }
+
+                if (thread->suspend_count <= 0) {
+                    if (thread->effective_priority != __OSGetEffectivePriority(thread)) {
+                        OSReport("OSCheckActiveThreads: Failed thread->priority == __OSGetEffectivePriority(thread) in %d\n", 0x616);
+                        OSPanic(__FILE__, 0x616, "");
+                    }
+                } else if (thread->effective_priority != 32) {
+                    OSReport("OSCheckActiveThreads: Failed thread->priority == 32 in %d\n", 0x61a);
+                    OSPanic(__FILE__, 0x61a, "");
+                }
+
+                if (__OSCheckDeadLock(thread)) {
+                    OSReport("OSCheckActiveThreads: Failed !__OSCheckDeadLock(thread) in %d\n", 0x61c);
+                    OSPanic(__FILE__, 0x61c, "");
+                }
+                break;
+            case OS_THREAD_STATE_DEAD:
+                if (thread->owned_mutexes.head != NULL || thread->owned_mutexes.tail != NULL) {
+                    OSReport("OSCheckActiveThreads: Failed thread->queueMutex.head == NULL && thread->queueMutex.tail == NULL in %d\n", 0x620);
+                    OSPanic(__FILE__, 0x620, "");
+                }
+                break;
+            default:
+                OSReport("OSCheckActiveThreads: Failed. unkown thread state (%d) of thread %p\n", thread->state, thread);
+                OSPanic(__FILE__, 0x626, "");
+                break;
+        }
+
+        if (!__OSCheckMutexes(thread)) {
+            OSReport("OSCheckActiveThreads: Failed __OSCheckMutexes(thread) in %d\n", 0x62b);
+            OSPanic(__FILE__, 0x62b, "");
+        }
+
+        thread = thread->active_threads_link.next;
+    }
+
+    OSRestoreInterrupts(enabled);
+    return rv;
 }
-#pragma pop
 
 /* 80342650-803426FC 33CF90 00AC+00 1/1 0/0 0/0 .text            OSClearStack */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void OSClearStack(u32 value) {
-    nofralloc
-#include "asm/dolphin/os/OSThread/OSClearStack.s"
+void OSClearStack(u8 val) {
+    u32* sp;
+    u32* p;
+    u32 pattern;
+
+    pattern = ((u32)val << 24) | ((u32)val << 16) | ((u32)val << 8) | (u32)val;
+    sp = (u32*)OSGetStackPointer();
+    for (p = ((u32*)__OSCurrentThread->stack_end) + 1; p < sp; ++p) {
+        *p = pattern;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804516D0-804516D8 000BD0 0008+00 0/0 2/1 0/0 .sbss            None */

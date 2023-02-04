@@ -52,12 +52,44 @@ public:
 cSAngle operator+(short, const cSAngle&);
 cSAngle operator-(short, const cSAngle&);
 
+struct cAngle {
+    static f32 Radian_to_Degree(f32 rad) { return rad * 57.2957763671875f; }
+    static f32 Degree_to_Radian(f32 deg) { return deg * 0.017453292f; }
+    static s16 Degree_to_SAngle(f32 deg) { return deg * 182.04444885253906f; }
+    static f32 SAngle_to_Degree(s16 angle) { return (360.0f / 65536.0f) * angle; }
+    static f32 SAngle_to_Radian(s16 angle) { return 9.58738E-5f * angle; }
+    static f32 SAngle_to_Normal(s16 angle) { return 3.0517578E-5f * angle; }
+    static s16 Radian_to_SAngle(f32 rad) { return rad * 10430.378f; }
+
+    /* Converts Radian value into Degree value */
+    static f32 r2d(f32 r) { return Radian_to_Degree(r); }
+
+    /* Converts Degree value to s16 angle */
+    static s16 d2s(f32 d) { return Degree_to_SAngle(d); }
+
+    template <typename T>
+    static T Adjust(T f1, T f2, T f3);
+};
+
+template <typename T>
+T cAngle::Adjust(T f1, T f2, T f3) {
+    while (f1 >= f3) {
+        f1 -= f3 - f2;
+    }
+    while (f1 < f2) {
+        f1 += f3 - f2;
+    }
+    return f1;
+}
+
 class cDegree {
 private:
     float mDegree;
 
 public:
     cDegree(float);
+    ~cDegree() {}
+
     cDegree& Formal(void);
     void Val(float);
     float Radian(void) const;

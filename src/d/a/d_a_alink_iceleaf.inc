@@ -207,7 +207,7 @@ int daAlink_c::procBoardJumpInit(f32 param_0, int param_1) {
                    daAlinkHIO_board_c0::m.mAirborneAnm.mInterpolation);
 
     if (param_1 == 0) {
-        mSpeed.y = cLib_minMaxLimit(param_0, daAlinkHIO_board_c0::m.mMinJumpSpeedY, daAlinkHIO_board_c0::m.mMaxJumpSpeedY);
+        speed.y = cLib_minMaxLimit(param_0, daAlinkHIO_board_c0::m.mMinJumpSpeedY, daAlinkHIO_board_c0::m.mMaxJumpSpeedY);
     }
 
     field_0x3010 = 0;

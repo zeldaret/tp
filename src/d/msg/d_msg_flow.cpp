@@ -962,21 +962,11 @@ asm int dMsgFlow_c::query007(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1
 
 /* 8024B45C-8024B4A4 245D9C 0048+00 1/0 0/0 0/0 .text
  * query008__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#ifdef NONMATCHING
 int dMsgFlow_c::query008(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
-    u16 prm0 = flow_node->params[0];
-    return (u8)daNpcKakashi_getSwdTutorialStep() != (u16)(prm0 - 1);
+    u32 prm0 = flow_node->params[0];
+    u16 prm1 = prm0;
+    return (u8)daNpcKakashi_getSwdTutorialStep() - 1 != (u16)prm1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query008(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query008__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
-}
-#pragma pop
-#endif
 
 /* 8024B4A4-8024B4D0 245DE4 002C+00 1/0 0/0 0/0 .text
  * query009__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
@@ -1353,7 +1343,7 @@ int dMsgFlow_c::query043(mesg_flow_node_branch* flow_node, fopAc_ac_c*, int) {
     u8 bomb_num = dComIfGs_getBombNum(dComIfGs_getTmpReg(0xFBFF) - 1);
     u8 bomb_max = dComIfGs_getBombMax(POKE_BOMB);
 
-    return bomb_num + (u8)prm0 >= bomb_max;
+    return bomb_max >= bomb_num + prm0;
 }
 #else
 #pragma push
@@ -1569,11 +1559,13 @@ asm int dMsgFlow_c::event004(mesg_flow_node_event* param_0, fopAc_ac_c* param_1)
 
 /* 8024C5F0-8024C654 246F30 0064+00 1/0 0/0 0/0 .text
  * event005__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
+// matches with literals
 #ifdef NONMATCHING
 int dMsgFlow_c::event005(mesg_flow_node_event* flow_node, fopAc_ac_c*) {
     f32 prm0 = getParam(flow_node->params);
 
-    i_dComIfGp_setItemLifeCount(-prm0, 0);
+    f32 prm1 = -prm0;
+    i_dComIfGp_setItemLifeCount(prm1, 0);
     return 1;
 }
 #else

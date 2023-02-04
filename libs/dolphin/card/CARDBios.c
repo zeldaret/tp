@@ -641,43 +641,30 @@ s32 CARDFreeBlocks(s32 chan, s32* byteNotUsed, s32* filesNotUsed) {
   return __CARDPutControlBlock(card, CARD_RESULT_READY);
 }
 
-/* 80353E20-80353EB8 34E760 0098+00 0/0 7/7 0/0 .text            __CARDSync */
-#ifdef NONMATCHING
-s32 __CARDSync(s32 chan) {
+s32 CARDGetResultCode(s32 chan)
+{
     CARDControl* card;
-    s32 val;
-    BOOL enabled;
-    s32 result;
-
+    if (chan < 0 || chan >= 2) {
+        return CARD_RESULT_FATAL_ERROR;
+    }
     card = &__CARDBlock[chan];
+    return card->result;
+}
+
+/* 80353E20-80353EB8 34E760 0098+00 0/0 7/7 0/0 .text            __CARDSync */
+s32 __CARDSync(s32 chan) {
+    CARDControl* block;
+    s32 result;
+    s32 enabled;
+
+    block = &__CARDBlock[chan];
     enabled = OSDisableInterrupts();
-    for (;; ) {
-        if (chan < 0 || chan >= 2) 
-            result = -0x80;
-        else 
-            result = card->result;
-        val = result;
-
-        if (val != CARD_RESULT_BUSY){
-            break;
-        } else {
-            OSSleepThread(&card->threadQueue);
-        }
-    } 
+    while ((result = CARDGetResultCode(chan)) == -1) {
+        OSSleepThread(&block->threadQueue);
+    }
     OSRestoreInterrupts(enabled);
-
-    return val;
+    return result;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 __CARDSync(s32 chan) {
-    nofralloc
-#include "asm/dolphin/card/CARDBios/__CARDSync.s"
-}
-#pragma pop
-#endif
 
 /* 80353EB8-80353F08 34E7F8 0050+00 1/0 0/0 0/0 .text            OnReset */
 static s32 OnReset(s32 f) {

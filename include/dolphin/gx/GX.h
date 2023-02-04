@@ -45,9 +45,14 @@ volatile PPCWGPipe GXFIFO : 0xCC008000;
 #define GFX_FIFO(T) (*(volatile T*)0xCC008000)
 
 inline void GXPosition3f32(f32 x, f32 y, f32 z) {
-    GFX_FIFO(f32) = x;
-    GFX_FIFO(f32) = y;
-    GFX_FIFO(f32) = z;
+    GXFIFO.f32 = x;
+    GXFIFO.f32 = y;
+    GXFIFO.f32 = z;
+}
+
+inline void GXPosition2f32(f32 x, f32 z) {
+    GXFIFO.f32 = x;
+    GXFIFO.f32 = z;
 }
 
 inline void GXColor1u32(u32 c) {
@@ -62,6 +67,10 @@ inline void GXTexCoord2f32(f32 s, f32 t) {
 inline void GXTexCoord2u8(u8 s, u8 t) {
     GFX_FIFO(u8) = s;
     GFX_FIFO(u8) = t;
+}
+
+inline void GXTexCoord1x8(u8 s) {
+    GFX_FIFO(u8) = s;
 }
 
 inline void GXPosition2u16(u16 x, u16 y) {

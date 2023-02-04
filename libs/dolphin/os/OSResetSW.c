@@ -6,10 +6,9 @@
 #include "dolphin/os/OSResetSW.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
+#include "dolphin/os/OSReset.h"
 
 u8 GameChoice : (OS_BASE_CACHED | 0x30E3);
-
-vu32 __PIRegs[12] : 0xCC003000;
 
 void __OSResetSWInterruptHandler(OSInterrupt interrupt, OSContext* context);
 
@@ -40,7 +39,6 @@ static OSTime HoldUp;
 static OSTime HoldDown;
 
 /* 8033FAE4-8033FBD8 33A424 00F4+00 0/0 1/1 0/0 .text            __OSResetSWInterruptHandler */
-#ifdef NONMATCHING
 void __OSResetSWInterruptHandler(OSInterrupt interrupt, OSContext* context) {
     OSResetCallback callback;
 
@@ -60,26 +58,58 @@ void __OSResetSWInterruptHandler(OSInterrupt interrupt, OSContext* context) {
     }
     __PIRegs[0] = 2;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __OSResetSWInterruptHandler(OSInterrupt interrupt, OSContext* context) {
-    nofralloc
-#include "asm/dolphin/os/OSResetSW/__OSResetSWInterruptHandler.s"
-}
-#pragma pop
-#endif
 
 /* 8033FBD8-8033FE70 33A518 0298+00 1/1 0/0 0/0 .text            OSGetResetButtonState */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm BOOL OSGetResetButtonState(void) {
-    nofralloc
-#include "asm/dolphin/os/OSResetSW/OSGetResetButtonState.s"
+BOOL OSGetResetButtonState(void) {
+    BOOL enabled = OSDisableInterrupts();
+    BOOL state;
+    OSTime now = __OSGetSystemTime();
+    u32 reg = __PIRegs[0];
+
+    if (!(reg & 0x00010000)) {
+        if (!Down) {
+            Down = TRUE;
+            state = HoldUp ? TRUE : FALSE;
+            HoldDown = now;
+        } else {
+            state = HoldUp || (OSMicrosecondsToTicks(100) < now - HoldDown)
+                        ? TRUE
+                        : FALSE;
+        }
+    } else if (Down) {
+        Down = FALSE;
+        state = LastState;
+        if (state) {
+            HoldUp = now;
+        } else {
+            HoldUp = 0;
+        }
+    } else if (HoldUp && (now - HoldUp < OSMillisecondsToTicks(40))) {
+        state = TRUE;
+    } else {
+        state = FALSE;
+        HoldUp = 0;
+    }
+
+    LastState = state;
+
+    if (GameChoice & 0x1F) {
+        OSTime fire = (GameChoice & 0x1F) * 60;
+        fire = __OSStartTime + OSSecondsToTicks(fire);
+        if (fire < now) {
+            now -= fire;
+            now = OSTicksToSeconds(now) / 2;
+            if ((now & 1) == 0) {
+                state = TRUE;
+            } else {
+                state = FALSE;
+            }
+        }
+    }
+
+    OSRestoreInterrupts(enabled);
+    return state;
 }
-#pragma pop
 
 /* 8033FE70-8033FE90 33A7B0 0020+00 0/0 1/1 0/0 .text            OSGetResetSwitchState */
 BOOL OSGetResetSwitchState(void) {

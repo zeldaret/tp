@@ -10,25 +10,24 @@ typedef void (*MoveBGActor_SetFunc)(dBgW*, void*, cBgS_PolyInfo const&, bool, cX
                                     csXyz*);
 
 class dBgS_MoveBgActor : public fopAc_ac_c {
-private:
+public:
     /* 0x568 */ dBgW* field_0x568;
     /* 0x56C */ Mtx field_0x56c;
 
-public:
     /* 80078624 */ dBgS_MoveBgActor();
     /* 800786C8 */ int MoveBGCreateHeap();
     /* 800787BC */ int MoveBGCreate(char const*, int, MoveBGActor_SetFunc, u32, Mtx*);
-    /* 800788DC */ bool MoveBGDelete();
-    /* 80078950 */ bool MoveBGExecute();
+    /* 800788DC */ int MoveBGDelete();
+    /* 80078950 */ int MoveBGExecute();
 
-    /* 80078688 */ virtual s32 CreateHeap();
-    /* 80078690 */ virtual bool Create();
-    /* 80078698 */ virtual bool Execute(f32 (**)[3][4]);
-    /* 800786A0 */ virtual bool Draw();
-    /* 800786A8 */ virtual bool Delete();
-    /* 800786B0 */ virtual bool IsDelete();
-    /* 800786B8 */ virtual bool ToFore();
-    /* 800786C0 */ virtual bool ToBack();
+    /* 80078688 */ virtual int CreateHeap();
+    /* 80078690 */ virtual int Create();
+    /* 80078698 */ virtual int Execute(f32 (**)[3][4]);
+    /* 800786A0 */ virtual int Draw();
+    /* 800786A8 */ virtual int Delete();
+    /* 800786B0 */ virtual int IsDelete();
+    /* 800786B8 */ virtual int ToFore();
+    /* 800786C0 */ virtual int ToBack();
 
     static const char* m_name;
     static int m_dzb_id;

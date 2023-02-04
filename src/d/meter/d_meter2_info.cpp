@@ -360,7 +360,7 @@ void dMeter2Info_c::decMsgKeyWaitTimer() {
 
 /* 8021C250-8021C370 216B90 0120+00 0/0 16/16 0/0 .text
  * getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c             */
-// missing branch + some regalloc
+// missing branch
 #ifdef NONMATCHING
 void dMeter2Info_c::getString(u32 stringID, char* outStr, JMSMesgEntry_c* p_msgEntry) {
     strcpy(outStr, "");
@@ -378,10 +378,9 @@ void dMeter2Info_c::getString(u32 stringID, char* outStr, JMSMesgEntry_c* p_msgE
     u32 stringOffset = (*(u32*)(msgRes + 0x24));
     u8* strPtr = inf + stringOffset + 8;
 
-    u16 i = 0;
-    u16 entryCount = *(u16*)(inf + 8);
+    u16 i;
 
-    for (; i < entryCount; i++) {
+    for (i = 0; i < *(u16*)(inf + 8); i++) {
         u8* entry = (inf + (i * 0x14));
 
         if (stringID == *(u16*)(entry + 0x14)) {

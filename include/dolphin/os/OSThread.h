@@ -44,8 +44,8 @@ struct OSThreadQueue {
 };
 
 struct OSMutexLink {
-    OSMutex* prev;
     OSMutex* next;
+    OSMutex* prev;
 };
 
 struct OSMutexQueue {
@@ -104,9 +104,9 @@ void OSSleepThread(OSThreadQueue* queue);
 void OSWakeupThread(OSThreadQueue* queue);
 s32 OSSetThreadPriority(OSThread* thread, s32 priority);
 s32 OSGetThreadPriority(OSThread* thread);
-static s32 CheckThreadQueue(OSThread* thread);
+static s32 CheckThreadQueue(OSThreadQueue* thread);
 s32 OSCheckActiveThreads(void);
-static void OSClearStack(u32 value);
+static void OSClearStack(u8 value);
 extern u8 data_804516D0[8];
 
 #ifdef __cplusplus
