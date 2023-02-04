@@ -175,7 +175,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* __vt__8dCcD_Sph[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
@@ -426,11 +425,11 @@ SECTION_DEAD static char const* const stringBase_8066EFB0 = "Do";
 #pragma pop
 
 /* 80667DA8-80667E68 000148 00C0+00 16/16 0/0 0/0 .text            anm_init__FP8do_classifUcf */
-static void anm_init(do_class* i_dogP, int i_resIdx, f32 param_2, u8 param_3, f32 param_4) {
-    if (!(i_dogP->field_0x608 > FLOAT_LABEL(lit_3662))) {
-        i_dogP->mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Do", i_resIdx), param_3,
+static void anm_init(do_class* i_this, int i_resIdx, f32 param_2, u8 param_3, f32 param_4) {
+    if (!(i_this->field_0x608 > FLOAT_LABEL(lit_3662))) {
+        i_this->mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Do", i_resIdx), param_3,
                                param_2, param_4, FLOAT_LABEL(lit_3682), FLOAT_LABEL(lit_3683), 0);
-        i_dogP->mAnmID = i_resIdx;
+        i_this->mAnmID = i_resIdx;
     }
 }
 
@@ -480,14 +479,14 @@ COMPILER_STRIP_GATE(0x8066EE08, &lit_3773);
 
 /* 80667FE4-80668134 000384 0150+00 1/0 0/0 0/0 .text            daDo_Draw__FP8do_class */
 #ifdef NONMATCHING
-static void daDo_Draw(do_class* i_dogP) {
+static void daDo_Draw(do_class* i_this) {
 
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daDo_Draw(do_class* i_dogP) {
+static asm void daDo_Draw(do_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/daDo_Draw__FP8do_class.s"
 }
@@ -512,12 +511,12 @@ COMPILER_STRIP_GATE(0x8066EE0C, &lit_3816);
 
 /* 80668170-80668264 000510 00F4+00 1/1 0/0 0/0 .text
  * daDo_other_bg_check__FP8do_classP10fopAc_ac_c                */
-static int daDo_other_bg_check(do_class* i_dogP, fopAc_ac_c* i_actorP) {
+static int daDo_other_bg_check(do_class* i_this, fopAc_ac_c* i_actorP) {
     Vec dog_pos; // defining as cXyz moves the destructor above this function, breaking the TU
     Vec actor_pos; // defining as cXyz moves the destructor above this function, breaking the TU
 
     fopAc_ac_c* actor = (fopAc_ac_c*)i_actorP; // required for match, maybe fake match?
-    do_class* dog = (do_class*)i_dogP; // required for match, maybe fake match?
+    do_class* dog = (do_class*)i_this; // required for match, maybe fake match?
     
     dBgS_LinChk lin_chk;
 
@@ -546,16 +545,16 @@ SECTION_RODATA static f32 const lit_3846 = 30.0f;
 COMPILER_STRIP_GATE(0x8066EE10, &lit_3846);
 
 /* 80668264-8066833C 000604 00D8+00 1/1 0/0 0/0 .text daDo_other_bg_check2__FP8do_classP4cXyz */
-static int daDo_other_bg_check2(do_class* i_dogP, cXyz* i_posP) {
+static int daDo_other_bg_check2(do_class* i_this, cXyz* i_posP) {
     Vec dog_pos; // defining as cXyz moves the destructor above this function, breaking the TU
     Vec i_pos; // defining as cXyz moves the destructor above this function, breaking the TU
 
     cXyz* pos = (cXyz*)i_posP; // required for match, maybe fake match?
-    do_class* dog = (do_class*)i_dogP; // required for match, maybe fake match?
+    do_class* dog = (do_class*)i_this; // required for match, maybe fake match?
 
     dBgS_LinChk lin_chk;
 
-    // do_class* dog = (do_class*)i_dogP; // required for match, maybe fake match?
+    // do_class* dog = (do_class*)i_this; // required for match, maybe fake match?
 
     i_pos = *pos;
     i_pos.y += FLOAT_LABEL(lit_3846);
@@ -706,7 +705,7 @@ static int target_bgc[5];
 /* 806683C0-8066858C 000760 01CC+00 1/1 0/0 0/0 .text            search_food__FP8do_class */
 #ifdef NONMATCHING
 // gave up. ghidra is not even close
-static u32 search_food(do_class* i_dogP) {
+static u32 search_food(do_class* i_this) {
     int ret;
     target_info_count = 0;
 
@@ -715,7 +714,7 @@ static u32 search_food(do_class* i_dogP) {
         target_bgc[i] = 0;
     }
 
-    i_fpcM_Search((fpcLyIt_JudgeFunc)s_w_sub, i_dogP);
+    i_fpcM_Search((fpcLyIt_JudgeFunc)s_w_sub, i_this);
     f32 tmp = FLOAT_LABEL(lit_3662);
 
     if (target_info_count != 0) {
@@ -725,13 +724,13 @@ static u32 search_food(do_class* i_dogP) {
         do {
             // for (int j = 0; j != target_info_count; j++) {
                 fopAc_ac_c* actorP = target_info[i];
-                f32 x_pos = actorP->current.pos.x - i_dogP->mEyePos.x;
-                f32 z_pos = actorP->current.pos.z - i_dogP->mEyePos.z;
+                f32 x_pos = actorP->current.pos.x - i_this->mEyePos.x;
+                f32 z_pos = actorP->current.pos.z - i_this->mEyePos.z;
                 f32 f_pos = JMAFastSqrt(x_pos * x_pos + z_pos * z_pos);
 
                 if (f_pos < tmp) {
                     if (target_bgc[i] == 0) {
-                        if (daDo_other_bg_check(i_dogP, actorP) == 0) {
+                        if (daDo_other_bg_check(i_this, actorP) == 0) {
                             target_bgc[i] = 1;
 
                             if (!actorP) {
@@ -750,7 +749,7 @@ static u32 search_food(do_class* i_dogP) {
 
             i++;
             pos_check += 100.0f;
-        } while (pos_check <= i_dogP->field_0x674.z * 240.0f);
+        } while (pos_check <= i_this->field_0x674.z * 240.0f);
     } else {
         ret = -1;
     }
@@ -761,7 +760,7 @@ static u32 search_food(do_class* i_dogP) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm u32 search_food(do_class* i_dogP) {
+static asm u32 search_food(do_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/search_food__FP8do_class.s"
 }
@@ -769,20 +768,20 @@ static asm u32 search_food(do_class* i_dogP) {
 #endif
 
 /* 8066858C-806685EC 00092C 0060+00 1/1 0/0 0/0 .text            food_check__FP8do_class */
-static void food_check(do_class* i_dogP) {
-    i_dogP->mFoodActorID = search_food(i_dogP);
+static void food_check(do_class* i_this) {
+    i_this->mFoodActorID = search_food(i_this);
 
-    if (fopAcM_SearchByID(i_dogP->mFoodActorID)) {
-        i_dogP->mAction = ACT_FOOD;
-        i_dogP->mStayStatus = 0;
+    if (fopAcM_SearchByID(i_this->mFoodActorID)) {
+        i_this->mAction = ACT_FOOD;
+        i_this->mStayStatus = 0;
     }
 }
 
 /* 806685EC-80668624 00098C 0038+00 1/1 0/0 0/0 .text            do_carry_check__FP8do_class */
-static int do_carry_check(do_class* i_dogP) {
-    if (i_dogP->mAction != ACT_CARRY && fopAcM_checkCarryNow(i_dogP)) {
-        i_dogP->mAction = ACT_CARRY;
-        i_dogP->mStayStatus = 0;
+static int do_carry_check(do_class* i_this) {
+    if (i_this->mAction != ACT_CARRY && fopAcM_checkCarryNow(i_this)) {
+        i_this->mAction = ACT_CARRY;
+        i_this->mStayStatus = 0;
         return 1;
     }
 
@@ -798,7 +797,7 @@ COMPILER_STRIP_GATE(0x8066EE1C, &lit_3981);
 #pragma pop
 
 /* 80668624-80668754 0009C4 0130+00 1/1 0/0 0/0 .text            depth_check__FP8do_class4cXyzf */
-static BOOL depth_check(do_class* i_dogP, cXyz i_pos, f32 param_2) {
+static BOOL depth_check(do_class* i_this, cXyz i_pos, f32 param_2) {
     dBgS_GndChk gnd_chk;
     Vec pos;
     f32 f_gnd_chk;
@@ -820,7 +819,7 @@ static BOOL depth_check(do_class* i_dogP, cXyz i_pos, f32 param_2) {
 
     sub_res = f_gnd_chk_spl - f_gnd_chk;
     mul_res =  FLOAT_LABEL(lit_3665) * param_2 * FLOAT_LABEL(lit_3981);
-    f_res = mul_res * i_dogP->field_0x674.z;
+    f_res = mul_res * i_this->field_0x674.z;
 
     if (sub_res > f_res) {
         return 1;
@@ -835,11 +834,11 @@ SECTION_RODATA static f32 const lit_3994 = 8.0f;
 COMPILER_STRIP_GATE(0x8066EE20, &lit_3994);
 
 /* 80668754-8066886C 000AF4 0118+00 1/1 0/0 0/0 .text            water_check__FP8do_class */
-static bool water_check(do_class* i_dogP) {
+static bool water_check(do_class* i_this) {
     dBgS_GndChk gnd_chk;
     Vec pos;
 
-    pos = i_dogP->current.pos;
+    pos = i_this->current.pos;
     pos.y += FLOAT_LABEL(lit_3922);
 
     gnd_chk.SetPos(&pos);
@@ -847,9 +846,9 @@ static bool water_check(do_class* i_dogP) {
 
     dBgS_ObjGndChk_Spl gnd_chk_spl;
     gnd_chk_spl.SetPos(&pos);
-    i_dogP->field_0x65c = dComIfG_Bgsp().GroundCross(&gnd_chk_spl);
-    f32 sub_res = i_dogP->field_0x65c - f_gnd_chk;
-    f32 mul_res = FLOAT_LABEL(lit_3994) * i_dogP->field_0x674.z;
+    i_this->field_0x65c = dComIfG_Bgsp().GroundCross(&gnd_chk_spl);
+    f32 sub_res = i_this->field_0x65c - f_gnd_chk;
+    f32 mul_res = FLOAT_LABEL(lit_3994) * i_this->field_0x674.z;
 
     if (sub_res > mul_res) {
         return 1;
@@ -883,7 +882,7 @@ COMPILER_STRIP_GATE(0x8066EE2C, &lit_4027);
 /* 8066886C-80668A30 000C0C 01C4+00 4/4 0/0 0/0 .text            dansa_check__FP8do_class4cXyzf */
 #ifdef NONMATCHING
 // regalloc
-static int dansa_check(do_class* i_dogP, cXyz i_pos, f32 param_2) {
+static int dansa_check(do_class* i_this, cXyz i_pos, f32 param_2) {
     i_pos.y = i_pos.y + FLOAT_LABEL(lit_4025);
     dBgS_GndChk gnd_chk;
     
@@ -895,23 +894,23 @@ static int dansa_check(do_class* i_dogP, cXyz i_pos, f32 param_2) {
     gnd_chk.SetPos(&pos);
     f32 f_gnd_chk = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-    if (i_dogP->current.pos.y - f_gnd_chk > param_2) {
+    if (i_this->current.pos.y - f_gnd_chk > param_2) {
         return 1;
     } else {
         dBgS_LinChk lin_chk;
         cXyz pos2;
 
-        pos2.x = i_dogP->current.pos.x;
-        pos2.y = i_dogP->current.pos.y;
-        pos2.z = i_dogP->current.pos.z;
-        pos2.y = i_dogP->current.pos.y + FLOAT_LABEL(lit_4026);
+        pos2.x = i_this->current.pos.x;
+        pos2.y = i_this->current.pos.y;
+        pos2.z = i_this->current.pos.z;
+        pos2.y = i_this->current.pos.y + FLOAT_LABEL(lit_4026);
 
-        lin_chk.Set(&pos2,&i_pos,i_dogP);
+        lin_chk.Set(&pos2,&i_pos,i_this);
 
         if (dComIfG_Bgsp().LineCross(&lin_chk) != 0) {
             return -1;
         } else {
-            if (depth_check(i_dogP,i_pos,FLOAT_LABEL(lit_4027)) && l_HIO.mSwimming == 0) {
+            if (depth_check(i_this,i_pos,FLOAT_LABEL(lit_4027)) && l_HIO.mSwimming == 0) {
                 return 0xffffff9c;
                 
             } else {
@@ -924,7 +923,7 @@ static int dansa_check(do_class* i_dogP, cXyz i_pos, f32 param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm int dansa_check(do_class* i_dogP, cXyz param_1, f32 param_2) {
+static asm int dansa_check(do_class* i_this, cXyz param_1, f32 param_2) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/dansa_check__FP8do_class4cXyzf.s"
 }
@@ -949,25 +948,25 @@ COMPILER_STRIP_GATE(0x8066EE34, &lit_4058);
 /* 80668A30-80668B18 000DD0 00E8+00 3/3 0/0 0/0 .text            dansa_check2__FP8do_classf */
 #ifdef NONMATCHING
 // float regalloc
-static bool dansa_check2(do_class* i_dogP, f32 param_1) {
+static bool dansa_check2(do_class* i_this, f32 param_1) {
     cXyz pos;
     cXyz pos2;
 
-    mDoMtx_YrotS((MtxP)calc_mtx,i_dogP->current.angle.y);
+    mDoMtx_YrotS((MtxP)calc_mtx,i_this->current.angle.y);
     pos.x = FLOAT_LABEL(lit_3682);
     pos.y = FLOAT_LABEL(lit_4057);
-    f32 tmp = i_dogP->field_0x674.z;
-    pos.z = tmp * (FLOAT_LABEL(lit_3981) * param_1) + tmp * (FLOAT_LABEL(lit_3981) * i_dogP->mSpeedF) * FLOAT_LABEL(lit_4058);
+    f32 tmp = i_this->field_0x674.z;
+    pos.z = tmp * (FLOAT_LABEL(lit_3981) * param_1) + tmp * (FLOAT_LABEL(lit_3981) * i_this->speedF) * FLOAT_LABEL(lit_4058);
 
     MtxPosition(&pos,&pos2);
-    pos2 += i_dogP->current.pos;
-    return dansa_check(i_dogP,pos2,FLOAT_LABEL(lit_3772)) != 0;
+    pos2 += i_this->current.pos;
+    return dansa_check(i_this,pos2,FLOAT_LABEL(lit_3772)) != 0;
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm int dansa_check2(do_class* i_dogP, f32 param_1) {
+static asm int dansa_check2(do_class* i_this, f32 param_1) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/dansa_check2__FP8do_classf.s"
 }
@@ -984,14 +983,14 @@ SECTION_RODATA static f32 const lit_4069 = 15.0f;
 COMPILER_STRIP_GATE(0x8066EE3C, &lit_4069);
 
 /* 80668B18-80668BA0 000EB8 0088+00 4/4 0/0 0/0 .text            move_dansa_check__FP8do_classf */
-static int move_dansa_check(do_class* i_dogP, f32 i_speed) {
-    if (dansa_check2(i_dogP,FLOAT_LABEL(lit_4068)) != 0) {
-        i_dogP->mAction = ACT_WAIT_1;
+static int move_dansa_check(do_class* i_this, f32 i_speed) {
+    if (dansa_check2(i_this,FLOAT_LABEL(lit_4068)) != 0) {
+        i_this->mAction = ACT_WAIT_1;
 
         if (i_speed > FLOAT_LABEL(lit_4069)) {
-            i_dogP->mStayStatus = 10;
+            i_this->mStayStatus = 10;
         } else {
-            i_dogP->mStayStatus = 0;
+            i_this->mStayStatus = 0;
         }
 
         return 1;
@@ -1040,14 +1039,14 @@ COMPILER_STRIP_GATE(0x8066EE58, &lit_4138);
 /* 80668BA0-80668D5C 000F40 01BC+00 5/5 0/0 0/0 .text            area_check__FP8do_class */
 #ifdef NONMATCHING
 // matches with literals
-static void area_check(do_class* i_dogP) {
-    cXyz pos_delta = i_dogP->orig.pos - i_dogP->current.pos;
+static void area_check(do_class* i_this) {
+    cXyz pos_delta = i_this->orig.pos - i_this->current.pos;
 
-    if (i_dogP->field_0x5b6 != 255) {
-        if ((i_dogP->field_0x5b6 * FLOAT_LABEL(lit_3772) * FLOAT_LABEL(lit_3665)) > pos_delta.abs()) {
-            i_dogP->mAction = ACT_WALK;
-            i_dogP->mStayStatus = -1;
-            i_dogP->field_0x5fc[2] = cM_rndF(FLOAT_LABEL(lit_3772)) + FLOAT_LABEL(lit_3772); // random value between 100 and 200
+    if (i_this->field_0x5b6 != 255) {
+        if ((i_this->field_0x5b6 * FLOAT_LABEL(lit_3772) * FLOAT_LABEL(lit_3665)) > pos_delta.abs()) {
+            i_this->mAction = ACT_WALK;
+            i_this->mStayStatus = -1;
+            i_this->field_0x5fc[2] = cM_rndF(FLOAT_LABEL(lit_3772)) + FLOAT_LABEL(lit_3772); // random value between 100 and 200
         }
     }
 }
@@ -1055,7 +1054,7 @@ static void area_check(do_class* i_dogP) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void area_check(do_class* i_dogP) {
+static asm void area_check(do_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/area_check__FP8do_class.s"
 }
@@ -1136,93 +1135,93 @@ COMPILER_STRIP_GATE(0x8066EE84, &lit_4339);
 /* 80668D5C-80669050 0010FC 02F4+00 2/1 0/0 0/0 .text            do_stay__FP8do_class */
 #ifdef NONMATCHING
 // regalloc and float literals
-static void do_stay(do_class* i_dogP) {
-    switch (i_dogP->mStayStatus) {
+static void do_stay(do_class* i_this) {
+    switch (i_this->mStayStatus) {
         case 0: {
-            if (i_dogP->field_0x5b4 == 0) {
-                anm_init(i_dogP,ANM_DOWN_WT,FLOAT_LABEL(lit_4069),2,FLOAT_LABEL(lit_3662));
-                i_dogP->mStayStatus++;
-                i_dogP->field_0x5fc[0] = 10;
+            if (i_this->field_0x5b4 == 0) {
+                anm_init(i_this,ANM_DOWN_WT,FLOAT_LABEL(lit_4069),2,FLOAT_LABEL(lit_3662));
+                i_this->mStayStatus++;
+                i_this->field_0x5fc[0] = 10;
             } else {
-                i_dogP->mAction = ACT_WALK;
-                i_dogP->mStayStatus = 0;
+                i_this->mAction = ACT_WALK;
+                i_this->mStayStatus = 0;
                 return;
             }
         }
         case 1: {
-            if (i_dogP->field_0x5fc[0] == 0 && i_dogP->mDistFromPlayer < l_HIO.mRunSpeed) {
-                i_dogP->mStayStatus++;
-                i_dogP->field_0x5fc[0] = cM_rndF(FLOAT_LABEL(lit_3816)) + FLOAT_LABEL(lit_4189); // random number between 20 and 70
+            if (i_this->field_0x5fc[0] == 0 && i_this->mDistFromPlayer < l_HIO.mRunSpeed) {
+                i_this->mStayStatus++;
+                i_this->field_0x5fc[0] = cM_rndF(FLOAT_LABEL(lit_3816)) + FLOAT_LABEL(lit_4189); // random number between 20 and 70
             }
             break;
         }
         case 2: {
-            i_dogP->field_0x616 = 1;
-            i_dogP->field_0x614 = 0xe764;
-            i_dogP->field_0x648 = FLOAT_LABEL(lit_4190);
-            if (i_dogP->field_0x5fc[0] == 0) {
-                anm_init(i_dogP,ANM_DOWN,FLOAT_LABEL(lit_4027),0,FLOAT_LABEL(lit_3662));
-                i_dogP->mStayStatus++;
+            i_this->field_0x616 = 1;
+            i_this->field_0x614 = 0xe764;
+            i_this->field_0x648 = FLOAT_LABEL(lit_4190);
+            if (i_this->field_0x5fc[0] == 0) {
+                anm_init(i_this,ANM_DOWN,FLOAT_LABEL(lit_4027),0,FLOAT_LABEL(lit_3662));
+                i_this->mStayStatus++;
             }
             break;
         }
         case 3: {
-            i_dogP->field_0x616 = 1;
-            i_dogP->field_0x648 = FLOAT_LABEL(lit_4191);
+            i_this->field_0x616 = 1;
+            i_this->field_0x648 = FLOAT_LABEL(lit_4191);
 
-            if (i_dogP->mpMorf->isStop()) {
-                i_dogP->mAction = ACT_WALK_RUN;
-                i_dogP->mStayStatus = 0;
+            if (i_this->mpMorf->isStop()) {
+                i_this->mAction = ACT_WALK_RUN;
+                i_this->mStayStatus = 0;
             }
             break;
         }
         case 10: {
-            anm_init(i_dogP,ANM_DOWN_WT,FLOAT_LABEL(lit_4069),2,FLOAT_LABEL(lit_3662));
-            i_dogP->mStayStatus++;
+            anm_init(i_this,ANM_DOWN_WT,FLOAT_LABEL(lit_4069),2,FLOAT_LABEL(lit_3662));
+            i_this->mStayStatus++;
         }
         case 11: {
-            i_dogP->field_0x616 = 1;
-            i_dogP->field_0x614 = 0xe764;
-            i_dogP->field_0x648 = FLOAT_LABEL(lit_4190);
+            i_this->field_0x616 = 1;
+            i_this->field_0x614 = 0xe764;
+            i_this->field_0x648 = FLOAT_LABEL(lit_4190);
 
-            if (i_dogP->mEyePosYDistFromPlayer > FLOAT_LABEL(lit_3846)) {
-                i_dogP->mStayStatus++;
-                i_dogP->field_0x5fc[0] = cM_rndF(FLOAT_LABEL(lit_4192)) + FLOAT_LABEL(lit_4192); // random number between 10 and 20
+            if (i_this->mEyePosYDistFromPlayer > FLOAT_LABEL(lit_3846)) {
+                i_this->mStayStatus++;
+                i_this->field_0x5fc[0] = cM_rndF(FLOAT_LABEL(lit_4192)) + FLOAT_LABEL(lit_4192); // random number between 10 and 20
             }
 
-            if (i_dogP->mDistFromPlayer > FLOAT_LABEL(lit_3772) + l_HIO.mPlayerRecogniztionDist) {
-                i_dogP->field_0x5f4 = 0;
-                i_dogP->mStayStatus = 0;
+            if (i_this->mDistFromPlayer > FLOAT_LABEL(lit_3772) + l_HIO.mPlayerRecogniztionDist) {
+                i_this->field_0x5f4 = 0;
+                i_this->mStayStatus = 0;
             }
             break;
         }
         case 12: {
-            i_dogP->field_0x616 = 1;
-            i_dogP->field_0x614 = 0xe764;
-            i_dogP->field_0x648 = FLOAT_LABEL(lit_4193);
+            i_this->field_0x616 = 1;
+            i_this->field_0x614 = 0xe764;
+            i_this->field_0x648 = FLOAT_LABEL(lit_4193);
 
-            if (i_dogP->mEyePosYDistFromPlayer > FLOAT_LABEL(lit_3846)) {
-                if (i_dogP->field_0x5fc[0] == 0) {
-                    anm_init(i_dogP,ANM_DOWN,FLOAT_LABEL(lit_4194),0,FLOAT_LABEL(lit_3662));
-                    i_dogP->mStayStatus = 13;
+            if (i_this->mEyePosYDistFromPlayer > FLOAT_LABEL(lit_3846)) {
+                if (i_this->field_0x5fc[0] == 0) {
+                    anm_init(i_this,ANM_DOWN,FLOAT_LABEL(lit_4194),0,FLOAT_LABEL(lit_3662));
+                    i_this->mStayStatus = 13;
                 }
             } else {
-                i_dogP->mStayStatus = 11;
+                i_this->mStayStatus = 11;
             }
             break;
         }
         case 13: {
-            i_dogP->field_0x616 = 1;
-            i_dogP->field_0x648 = FLOAT_LABEL(lit_4193);
+            i_this->field_0x616 = 1;
+            i_this->field_0x648 = FLOAT_LABEL(lit_4193);
 
-            if (i_dogP->mpMorf->isStop()) {
-                i_dogP->mAction = ACT_WAIT_1;
-                i_dogP->mStayStatus = 0;
+            if (i_this->mpMorf->isStop()) {
+                i_this->mAction = ACT_WAIT_1;
+                i_this->mStayStatus = 0;
             }
         }
     }
 
-    f32* speedF = (f32*)&i_dogP->mSpeedF;
+    f32* speedF = (f32*)&i_this->speedF;
 
     cLib_addCalc0(speedF,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_3662));
 }
@@ -1230,7 +1229,7 @@ static void do_stay(do_class* i_dogP) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_stay(do_class* i_dogP) {
+static asm void do_stay(do_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_stay__FP8do_class.s"
 }
@@ -1283,35 +1282,35 @@ COMPILER_STRIP_GATE(0x8066EE9C, &lit_4345);
 /* 80669050-8066973C 0013F0 06EC+00 2/1 0/0 0/0 .text            do_walk__FP8do_class */
 #ifdef NONMATCHING
 // float literals + regalloc
-static void do_walk(do_class* i_dogP) {
+static void do_walk(do_class* i_this) {
     cXyz local_5c;
-    i_dogP->field_0x648 = 1000.0;
+    i_this->field_0x648 = 1000.0;
 
-    switch(i_dogP->mStayStatus+1) {
+    switch(i_this->mStayStatus+1) {
         case 12: {
-            i_dogP->field_0x5b8 = i_dogP->orig.pos;
-            i_dogP->mSpeedF >= l_HIO.mRunSpeed ? i_dogP->field_0x5e8 = 1.7 : i_dogP->field_0x5e8 = 4.0;
+            i_this->field_0x5b8 = i_this->orig.pos;
+            i_this->speedF >= l_HIO.mRunSpeed ? i_this->field_0x5e8 = 1.7 : i_this->field_0x5e8 = 4.0;
 
-            i_dogP->field_0x5ec = 1.7;
-            anm_init(i_dogP,ANM_WALK,0.0,2,i_dogP->field_0x5e8);
-            i_dogP->mStayStatus = 3;
+            i_this->field_0x5ec = 1.7;
+            anm_init(i_this,ANM_WALK,0.0,2,i_this->field_0x5e8);
+            i_this->mStayStatus = 3;
             break;
         }
         case 0: {
-            if (i_dogP->field_0x5f4 == 8) {
-                anm_init(i_dogP,ANM_SIT,0.0,0,1.0);
+            if (i_this->field_0x5f4 == 8) {
+                anm_init(i_this,ANM_SIT,0.0,0,1.0);
             }
             else {
-                anm_init(i_dogP,ANM_DOWN,0.0,0,1.0);
+                anm_init(i_this,ANM_DOWN,0.0,0,1.0);
             }
 
-            i_dogP->mStayStatus++;
+            i_this->mStayStatus++;
             break;
         }
         
         case 1: {
-            if (i_dogP->mpMorf->isStop()) {
-                i_dogP->mStayStatus++;;
+            if (i_this->mpMorf->isStop()) {
+                i_this->mStayStatus++;;
             }
             break;
         }
@@ -1323,42 +1322,42 @@ static void do_walk(do_class* i_dogP) {
             for (int i = 0; i < 100; i++) {
                 mDoMtx_YrotS((MtxP)calc_mtx,cM_rndF(65536.0));
 
-                local_5c.z = cM_rndF(100.0f * i_dogP->field_0x5b6);
-                MtxPosition(&local_5c,&i_dogP->field_0x5b8);
+                local_5c.z = cM_rndF(100.0f * i_this->field_0x5b6);
+                MtxPosition(&local_5c,&i_this->field_0x5b8);
 
-                i_dogP->field_0x5b8 += i_dogP->orig.pos;
+                i_this->field_0x5b8 += i_this->orig.pos;
 
-                if (dansa_check(i_dogP,i_dogP->field_0x5b8,0.0) == 0) {
-                    local_5c = i_dogP->field_0x5b8 - i_dogP->current.pos;
+                if (dansa_check(i_this,i_this->field_0x5b8,0.0) == 0) {
+                    local_5c = i_this->field_0x5b8 - i_this->current.pos;
 
                     if (local_5c.abs() > 300.0f) break;
                 }
             }
 
             f32 rnd_number = cM_rndF(0.6);
-            i_dogP->field_0x5ec = rnd_number + 1.3;
-            i_dogP->field_0x5e8 = rnd_number + 1.3;
+            i_this->field_0x5ec = rnd_number + 1.3;
+            i_this->field_0x5e8 = rnd_number + 1.3;
 
-            anm_init(i_dogP,ANM_WALK,0.0,2,i_dogP->field_0x5e8);
+            anm_init(i_this,ANM_WALK,0.0,2,i_this->field_0x5e8);
 
-            i_dogP->mStayStatus++;
+            i_this->mStayStatus++;
         }
 
         case 3: {
-            local_5c = i_dogP->field_0x5b8 - i_dogP->current.pos;
+            local_5c = i_this->field_0x5b8 - i_this->current.pos;
 
-            cLib_addCalcAngleS2(&i_dogP->current.angle.y,(s16)cM_atan2s(local_5c.x,local_5c.z),0x10,0x100);
-            cLib_addCalc2(&i_dogP->mSpeedF,i_dogP->field_0x5e8 * l_HIO.mWalkSpeed,1.0,l_HIO.mWalkSpeed * 0.2);
+            cLib_addCalcAngleS2(&i_this->current.angle.y,(s16)cM_atan2s(local_5c.x,local_5c.z),0x10,0x100);
+            cLib_addCalc2(&i_this->speedF,i_this->field_0x5e8 * l_HIO.mWalkSpeed,1.0,l_HIO.mWalkSpeed * 0.2);
             
             if (local_5c.abs() < 150.0) {
-                if (i_dogP->field_0x5b4 == 0) {
-                    i_dogP->mAction = ACT_STAY;
-                    i_dogP->mStayStatus = 0;
+                if (i_this->field_0x5b4 == 0) {
+                    i_this->mAction = ACT_STAY;
+                    i_this->mStayStatus = 0;
                 } else {
-                    anm_init(i_dogP,ANM_WAIT,0.0,2,1.0);
-                    i_dogP->field_0x5fc[0] = cM_rndF(50.0) + 20.0;
-                    i_dogP->field_0x5ec = 1.0;
-                    i_dogP->mStayStatus++;
+                    anm_init(i_this,ANM_WAIT,0.0,2,1.0);
+                    i_this->field_0x5fc[0] = cM_rndF(50.0) + 20.0;
+                    i_this->field_0x5ec = 1.0;
+                    i_this->mStayStatus++;
                 }
             }
 
@@ -1366,44 +1365,44 @@ static void do_walk(do_class* i_dogP) {
         }
 
         case 4: {
-            cLib_addCalc0(&i_dogP->mSpeedF,1.0,1.0);
+            cLib_addCalc0(&i_this->speedF,1.0,1.0);
 
-            if (i_dogP->field_0x5fc[0] == 0) {
-                i_dogP->mStayStatus = 2;
+            if (i_this->field_0x5fc[0] == 0) {
+                i_this->mStayStatus = 2;
             }
 
             break;
         }
 
         case 10: {
-            cLib_addCalc0(&i_dogP->mSpeedF,1.0,1.0);
-            cLib_addCalcAngleS2(&i_dogP->current.angle.y,i_dogP->mAngleYFromPlayer,4,0x400);
+            cLib_addCalc0(&i_this->speedF,1.0,1.0);
+            cLib_addCalcAngleS2(&i_this->current.angle.y,i_this->mAngleYFromPlayer,4,0x400);
 
-            i_dogP->field_0x616 = 1;
-            i_dogP->field_0x648 = 2000.0;
+            i_this->field_0x616 = 1;
+            i_this->field_0x648 = 2000.0;
 
-            s16 angle_diff = i_dogP->current.angle.y - i_dogP->mAngleYFromPlayer;
+            s16 angle_diff = i_this->current.angle.y - i_this->mAngleYFromPlayer;
 
             if (angle_diff < 0) {
                 angle_diff *= -1;
             }
             
             if (angle_diff < 0x800) {
-                i_dogP->mStayStatus++;
-                anm_init(i_dogP,ANM_WAIT,0.0,2,1.0);
-                i_dogP->field_0x5ec = 1.0;
-                i_dogP->field_0x5fc[0] = cM_rndF(10.0) + 10.0;
+                i_this->mStayStatus++;
+                anm_init(i_this,ANM_WAIT,0.0,2,1.0);
+                i_this->field_0x5ec = 1.0;
+                i_this->field_0x5fc[0] = cM_rndF(10.0) + 10.0;
             }
             
             break;
         }
         
         case 11: {
-            i_dogP->field_0x616 = 1;
-            i_dogP->field_0x648 = 3000.0;
-            if (i_dogP->field_0x5fc[0] == 0) {
-                i_dogP->mAction = ACT_WALK_RUN;
-                i_dogP->mStayStatus = 0;
+            i_this->field_0x616 = 1;
+            i_this->field_0x648 = 3000.0;
+            if (i_this->field_0x5fc[0] == 0) {
+                i_this->mAction = ACT_WALK_RUN;
+                i_this->mStayStatus = 0;
                 return;
             }
             break;
@@ -1411,21 +1410,21 @@ static void do_walk(do_class* i_dogP) {
         
     }
     
-    cLib_addCalc2(&i_dogP->field_0x5e8,i_dogP->field_0x5ec,1.0,0.05);
-    i_dogP->mpMorf->setPlaySpeed(i_dogP->field_0x5e8);
+    cLib_addCalc2(&i_this->field_0x5e8,i_this->field_0x5ec,1.0,0.05);
+    i_this->mpMorf->setPlaySpeed(i_this->field_0x5e8);
 
-    if (i_dogP->field_0x5fc[2] == 0 && i_dogP->mStayStatus < 10 && i_dogP->mDistFromPlayer < l_HIO.mPlayerRecogniztionDist) {
-        anm_init(i_dogP,ANM_STEP_2,0.0,2,1.0);
-        i_dogP->mStayStatus = 10;
+    if (i_this->field_0x5fc[2] == 0 && i_this->mStayStatus < 10 && i_this->mDistFromPlayer < l_HIO.mPlayerRecogniztionDist) {
+        anm_init(i_this,ANM_STEP_2,0.0,2,1.0);
+        i_this->mStayStatus = 10;
     }
 
-    move_dansa_check(i_dogP,i_dogP->mSpeedF);
+    move_dansa_check(i_this,i_this->speedF);
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_walk(do_class* i_dogP) {
+static asm void do_walk(do_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_walk__FP8do_class.s"
 }
@@ -1448,37 +1447,37 @@ COMPILER_STRIP_GATE(0x8066EEA4, &lit_4378);
 #pragma pop
 
 /* 8066973C-806698D0 001ADC 0194+00 1/1 0/0 0/0 .text            do_walk_run__FP8do_class */
-static void do_walk_run(do_class* i_dogP) {
-    i_dogP->field_0x616 = 1;
-    i_dogP->field_0x648 = FLOAT_LABEL(lit_4344);
+static void do_walk_run(do_class* i_this) {
+    i_this->field_0x616 = 1;
+    i_this->field_0x648 = FLOAT_LABEL(lit_4344);
 
-    switch (i_dogP->mStayStatus) {
+    switch (i_this->mStayStatus) {
         case 0: {
-            i_dogP->field_0x5e8 = FLOAT_LABEL(lit_4377);
-            anm_init(i_dogP,22,FLOAT_LABEL(lit_4192),2,i_dogP->field_0x5e8);
-            i_dogP->mStayStatus++;
+            i_this->field_0x5e8 = FLOAT_LABEL(lit_4377);
+            anm_init(i_this,22,FLOAT_LABEL(lit_4192),2,i_this->field_0x5e8);
+            i_this->mStayStatus++;
         }
         case 1: {
-            cLib_addCalc2(&i_dogP->field_0x5e8,FLOAT_LABEL(lit_3665),FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_4345));
-            i_dogP->mpMorf->setPlaySpeed(i_dogP->field_0x5e8);
+            cLib_addCalc2(&i_this->field_0x5e8,FLOAT_LABEL(lit_3665),FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_4345));
+            i_this->mpMorf->setPlaySpeed(i_this->field_0x5e8);
 
-            if (i_dogP->field_0x5e8 >= FLOAT_LABEL(lit_3665) ) {
-                i_dogP->mAction = ACT_RUN;
-                i_dogP->mStayStatus = 0;
-                i_dogP->mSound.startSound(JAISoundID(Z2SE_DOG_BARK),0,-1);
+            if (i_this->field_0x5e8 >= FLOAT_LABEL(lit_3665) ) {
+                i_this->mAction = ACT_RUN;
+                i_this->mStayStatus = 0;
+                i_this->mSound.startSound(JAISoundID(Z2SE_DOG_BARK),0,-1);
             }
         }
         default: {
-            cLib_addCalc2(&i_dogP->mSpeedF, i_dogP->field_0x5e8 * l_HIO.mWalkSpeed, FLOAT_LABEL(lit_3662), FLOAT_LABEL(lit_4342) * l_HIO.mWalkSpeed);
-            cLib_addCalcAngleS2(&i_dogP->current.angle.y,i_dogP->mAngleYFromPlayer,8,0x400);
+            cLib_addCalc2(&i_this->speedF, i_this->field_0x5e8 * l_HIO.mWalkSpeed, FLOAT_LABEL(lit_3662), FLOAT_LABEL(lit_4342) * l_HIO.mWalkSpeed);
+            cLib_addCalcAngleS2(&i_this->current.angle.y,i_this->mAngleYFromPlayer,8,0x400);
 
-            if (i_dogP->mDistFromPlayer < FLOAT_LABEL(lit_4378) * i_dogP->field_0x674.z) {
-                l_HIO.field_0x1c != 0 ? i_dogP->mAction = ACT_WAIT_2 : i_dogP->mAction = ACT_WAIT_1;
-                i_dogP->mStayStatus = 0;
+            if (i_this->mDistFromPlayer < FLOAT_LABEL(lit_4378) * i_this->field_0x674.z) {
+                l_HIO.field_0x1c != 0 ? i_this->mAction = ACT_WAIT_2 : i_this->mAction = ACT_WAIT_1;
+                i_this->mStayStatus = 0;
             }
 
-            area_check(i_dogP);
-            move_dansa_check(i_dogP,i_dogP->mSpeedF);
+            area_check(i_this);
+            move_dansa_check(i_this,i_this->speedF);
         }
     }
 }
@@ -1534,31 +1533,31 @@ COMPILER_STRIP_GATE(0x8066EEC0, &lit_4406);
 #pragma pop
 
 /* 806698D0-80669A1C 001C70 014C+00 1/1 0/0 0/0 .text            do_run__FP8do_class */
-static void do_run(do_class* i_dogP) {
-    i_dogP->field_0x616 = 1;
-    i_dogP->field_0x648 = FLOAT_LABEL(lit_4400);
+static void do_run(do_class* i_this) {
+    i_this->field_0x616 = 1;
+    i_this->field_0x648 = FLOAT_LABEL(lit_4400);
 
-    switch (i_dogP->mStayStatus) {
+    switch (i_this->mStayStatus) {
         case 0: {
-            i_dogP->field_0x5e8 = FLOAT_LABEL(lit_3662);
-            i_dogP->field_0x5ec = cM_rndF(FLOAT_LABEL(lit_4402))+FLOAT_LABEL(lit_4401);
-            anm_init(i_dogP,14,FLOAT_LABEL(lit_3665),2,FLOAT_LABEL(lit_4403)*i_dogP->field_0x5e8);
-            i_dogP->mStayStatus++;
+            i_this->field_0x5e8 = FLOAT_LABEL(lit_3662);
+            i_this->field_0x5ec = cM_rndF(FLOAT_LABEL(lit_4402))+FLOAT_LABEL(lit_4401);
+            anm_init(i_this,14,FLOAT_LABEL(lit_3665),2,FLOAT_LABEL(lit_4403)*i_this->field_0x5e8);
+            i_this->mStayStatus++;
         }
         case 1: {
-            cLib_addCalc2(&i_dogP->field_0x5e8,i_dogP->field_0x5ec,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_4404));
-            i_dogP->mpMorf->setPlaySpeed(i_dogP->field_0x5e8);
+            cLib_addCalc2(&i_this->field_0x5e8,i_this->field_0x5ec,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_4404));
+            i_this->mpMorf->setPlaySpeed(i_this->field_0x5e8);
 
-            if (i_dogP->mDistFromPlayer < FLOAT_LABEL(lit_4405)*i_dogP->field_0x674.z) {
-                i_dogP->mAction = ACT_RUN_WALK;
-                i_dogP->mStayStatus = 0;
+            if (i_this->mDistFromPlayer < FLOAT_LABEL(lit_4405)*i_this->field_0x674.z) {
+                i_this->mAction = ACT_RUN_WALK;
+                i_this->mStayStatus = 0;
             }
         }
         default: {
-            cLib_addCalc2(&i_dogP->mSpeedF, i_dogP->field_0x5e8 * l_HIO.mRunSpeed * FLOAT_LABEL(lit_4406), FLOAT_LABEL(lit_3662), FLOAT_LABEL(lit_4342) * l_HIO.mRunSpeed);
-            cLib_addCalcAngleS2(&i_dogP->current.angle.y,i_dogP->mAngleYFromPlayer,8,0x800);
-            area_check(i_dogP);
-            move_dansa_check(i_dogP,i_dogP->mSpeedF);
+            cLib_addCalc2(&i_this->speedF, i_this->field_0x5e8 * l_HIO.mRunSpeed * FLOAT_LABEL(lit_4406), FLOAT_LABEL(lit_3662), FLOAT_LABEL(lit_4342) * l_HIO.mRunSpeed);
+            cLib_addCalcAngleS2(&i_this->current.angle.y,i_this->mAngleYFromPlayer,8,0x800);
+            area_check(i_this);
+            move_dansa_check(i_this,i_this->speedF);
         }
     }
 }
@@ -1572,49 +1571,49 @@ COMPILER_STRIP_GATE(0x8066EEC4, &lit_4435);
 #pragma pop
 
 /* 80669A1C-80669B80 001DBC 0164+00 1/1 0/0 0/0 .text            do_run_walk__FP8do_class */
-static void do_run_walk(do_class* i_dogP) {
-    i_dogP->field_0x616 = 1;
-    i_dogP->field_0x648 = FLOAT_LABEL(lit_4344);
+static void do_run_walk(do_class* i_this) {
+    i_this->field_0x616 = 1;
+    i_this->field_0x648 = FLOAT_LABEL(lit_4344);
 
-    switch (i_dogP->mStayStatus) {
+    switch (i_this->mStayStatus) {
         case 0: {
-            i_dogP->field_0x5e8 = FLOAT_LABEL(lit_4336);
-            anm_init(i_dogP,22,FLOAT_LABEL(lit_4194),2,i_dogP->field_0x5e8);
-            i_dogP->mStayStatus++;
+            i_this->field_0x5e8 = FLOAT_LABEL(lit_4336);
+            anm_init(i_this,22,FLOAT_LABEL(lit_4194),2,i_this->field_0x5e8);
+            i_this->mStayStatus++;
         }
         case 1: {
-            cLib_addCalc2(&i_dogP->field_0x5e8,FLOAT_LABEL(lit_4401),FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_4345));
-            i_dogP->mpMorf->setPlaySpeed(i_dogP->field_0x5e8);
+            cLib_addCalc2(&i_this->field_0x5e8,FLOAT_LABEL(lit_4401),FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_4345));
+            i_this->mpMorf->setPlaySpeed(i_this->field_0x5e8);
         }
         default: {
-            cLib_addCalc2(&i_dogP->mSpeedF, i_dogP->field_0x5e8 * l_HIO.mWalkSpeed, FLOAT_LABEL(lit_3662), FLOAT_LABEL(lit_4027));
-            cLib_addCalcAngleS2(&i_dogP->current.angle.y,i_dogP->mAngleYFromPlayer,8,0x400);
+            cLib_addCalc2(&i_this->speedF, i_this->field_0x5e8 * l_HIO.mWalkSpeed, FLOAT_LABEL(lit_3662), FLOAT_LABEL(lit_4027));
+            cLib_addCalcAngleS2(&i_this->current.angle.y,i_this->mAngleYFromPlayer,8,0x400);
 
-            if (i_dogP->mDistFromPlayer < FLOAT_LABEL(lit_4378) * i_dogP->field_0x674.z) {
-                l_HIO.field_0x1c != 0 ? i_dogP->mAction = ACT_WAIT_2 : i_dogP->mAction = ACT_WAIT_1;
-                i_dogP->mStayStatus = 0;
+            if (i_this->mDistFromPlayer < FLOAT_LABEL(lit_4378) * i_this->field_0x674.z) {
+                l_HIO.field_0x1c != 0 ? i_this->mAction = ACT_WAIT_2 : i_this->mAction = ACT_WAIT_1;
+                i_this->mStayStatus = 0;
             } else {
-                if (i_dogP->mDistFromPlayer > FLOAT_LABEL(lit_4435) * i_dogP->field_0x674.z) {
-                    i_dogP->mAction = ACT_RUN;
-                    i_dogP->mStayStatus = 0;
+                if (i_this->mDistFromPlayer > FLOAT_LABEL(lit_4435) * i_this->field_0x674.z) {
+                    i_this->mAction = ACT_RUN;
+                    i_this->mStayStatus = 0;
                 }
             }
 
-            area_check(i_dogP);
-            move_dansa_check(i_dogP,i_dogP->mSpeedF);
+            area_check(i_this);
+            move_dansa_check(i_this,i_this->speedF);
         }
     }
 }
 
 /* 80669B80-8066A1C4 001F20 0644+00 2/1 0/0 0/0 .text            do_wait_1__FP8do_class */
 #ifdef NONMATCHING
-static void do_wait_1(do_class* i_dogP) {
+static void do_wait_1(do_class* i_this) {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    i_dogP->field_0x616 = 1;
-    i_dogP->field_0x648 = 2000.0;
+    i_this->field_0x616 = 1;
+    i_this->field_0x648 = 2000.0;
 
-    s16 player_angle = i_dogP->mAngleYFromPlayer;
-    s16 angle_diff = i_dogP->current.angle.y - player_angle;
+    s16 player_angle = i_this->mAngleYFromPlayer;
+    s16 angle_diff = i_this->current.angle.y - player_angle;
 
     if (angle_diff < 0) {
         angle_diff *= -1;
@@ -1622,73 +1621,73 @@ static void do_wait_1(do_class* i_dogP) {
 
     s16 some_val = 0x3000;
 
-    if ((i_dogP->field_0x5f0 & 0x7fU) == 0) {
+    if ((i_this->field_0x5f0 & 0x7fU) == 0) {
         some_val = 0x1000;
     }
 
-    switch(i_dogP->mStayStatus) {
+    switch(i_this->mStayStatus) {
         case 0: {
-            if (i_dogP->mDistFromPlayer <= i_dogP->field_0x674.z * 320.0) {
-                anm_init(i_dogP,ANM_WAIT,0.0,2,0.0);
-                i_dogP->mStayStatus++;
+            if (i_this->mDistFromPlayer <= i_this->field_0x674.z * 320.0) {
+                anm_init(i_this,ANM_WAIT,0.0,2,0.0);
+                i_this->mStayStatus++;
             } else {
-                anm_init(i_dogP,ANM_JOYFUL,0.0,2,cM_rndFX(0.1) + 0.6);
-                i_dogP->mStayStatus = -1;
+                anm_init(i_this,ANM_JOYFUL,0.0,2,cM_rndFX(0.1) + 0.6);
+                i_this->mStayStatus = -1;
             }
             // goto default;
         }
         case 2: {
-            cLib_addCalcAngleS2(&i_dogP->current.angle.y,player_angle,4,0x400);
+            cLib_addCalcAngleS2(&i_this->current.angle.y,player_angle,4,0x400);
 
             if (angle_diff < 0x800) {
-                i_dogP->mStayStatus = 0;
+                i_this->mStayStatus = 0;
             }
 
             break;
         }
         case 3: {
-            if (75.0 <= i_dogP->mEyePosYDistFromPlayer) {
-                i_dogP->mStayStatus = 1;
-            } else if (i_dogP->field_0x5fc[0] == 0) {
-                if (30.0 <= i_dogP->mEyePosYDistFromPlayer) {
-                    i_dogP->mAction = ACT_SIT;
-                    i_dogP->mStayStatus = 0;
+            if (75.0 <= i_this->mEyePosYDistFromPlayer) {
+                i_this->mStayStatus = 1;
+            } else if (i_this->field_0x5fc[0] == 0) {
+                if (30.0 <= i_this->mEyePosYDistFromPlayer) {
+                    i_this->mAction = ACT_SIT;
+                    i_this->mStayStatus = 0;
                 } else {
-                    i_dogP->mAction = ACT_STAY;
-                    i_dogP->mStayStatus = 10;
+                    i_this->mAction = ACT_STAY;
+                    i_this->mStayStatus = 10;
                 }
             }
             break;
         }
         case 5: {
-            cLib_addCalcAngleS2(&i_dogP->current.angle.y,player_angle + i_dogP->field_0x654,4,0x800);
-            cLib_addCalcAngleS2(&i_dogP->field_0x654,i_dogP->field_0x656,4,0x1000);
-            cLib_addCalc2(&i_dogP->current.pos.x,i_dogP->field_0x5b8.x,0.2,3.5);
-            cLib_addCalc2(&i_dogP->current.pos.z,i_dogP->field_0x5b8.z,0.2,3.5);
+            cLib_addCalcAngleS2(&i_this->current.angle.y,player_angle + i_this->field_0x654,4,0x800);
+            cLib_addCalcAngleS2(&i_this->field_0x654,i_this->field_0x656,4,0x1000);
+            cLib_addCalc2(&i_this->current.pos.x,i_this->field_0x5b8.x,0.2,3.5);
+            cLib_addCalc2(&i_this->current.pos.z,i_this->field_0x5b8.z,0.2,3.5);
 
-            if (i_dogP->field_0x5fc[0] == 0) {
-                i_dogP->mStayStatus = 0;
+            if (i_this->field_0x5fc[0] == 0) {
+                i_this->mStayStatus = 0;
             }
             break;
         }
         case 6: {
-            i_dogP->field_0x648 = 4000.0;
+            i_this->field_0x648 = 4000.0;
 
-            if (i_dogP->field_0x674.z * 176.0 < i_dogP->mDistFromPlayer) {
-                i_dogP->mStayStatus = 0;
+            if (i_this->field_0x674.z * 176.0 < i_this->mDistFromPlayer) {
+                i_this->mStayStatus = 0;
             }
         }
         default: {
             if (some_val < angle_diff) {
-                anm_init(i_dogP,ANM_STEP_2,0.0,2,0.0);
-                i_dogP->mStayStatus = 2;
-            } else if (75.0 <= i_dogP->mEyePosYDistFromPlayer) {
+                anm_init(i_this,ANM_STEP_2,0.0,2,0.0);
+                i_this->mStayStatus = 2;
+            } else if (75.0 <= i_this->mEyePosYDistFromPlayer) {
             
-                // i_dogP->field_0x674.z might be a store in a variable
-                if (i_dogP->field_0x674.z * 96.0 <= i_dogP->mDistFromPlayer) {
-                    if ((i_dogP->mStayStatus != 6) && (i_dogP->mDistFromPlayer < i_dogP->field_0x674.z * 120.0)) {
-                        anm_init(i_dogP,ANM_JOYFUL,0.0,2,cM_rndFX(0.1) + 1.0);
-                        i_dogP->mStayStatus = 6;
+                // i_this->field_0x674.z might be a store in a variable
+                if (i_this->field_0x674.z * 96.0 <= i_this->mDistFromPlayer) {
+                    if ((i_this->mStayStatus != 6) && (i_this->mDistFromPlayer < i_this->field_0x674.z * 120.0)) {
+                        anm_init(i_this,ANM_JOYFUL,0.0,2,cM_rndFX(0.1) + 1.0);
+                        i_this->mStayStatus = 6;
                     }
                 } else {
                     cXyz local_68;
@@ -1701,50 +1700,50 @@ static void do_wait_1(do_class* i_dogP) {
 
                     for (int i = 0; i < 20; i++) {
                         if (i < 10) {    
-                            mDoMtx_YrotS((MtxP)calc_mtx,i_dogP->mAngleYFromPlayer + cM_rndFX(5000.0));
+                            mDoMtx_YrotS((MtxP)calc_mtx,i_this->mAngleYFromPlayer + cM_rndFX(5000.0));
                         } else {
                             mDoMtx_YrotS((MtxP)calc_mtx,cM_rndF(65536.0));
                         }
 
-                        local_68.z = dVar11 * i_dogP->field_0x674.z;
+                        local_68.z = dVar11 * i_this->field_0x674.z;
 
-                        MtxPosition(&local_68,&i_dogP->field_0x5b8);
-                        i_dogP->field_0x5b8 += player->current.pos;
+                        MtxPosition(&local_68,&i_this->field_0x5b8);
+                        i_this->field_0x5b8 += player->current.pos;
 
                         if (cM_rndF(1.0) < dVar12) break;
 
-                        // local_74 = i_dogP->field6_0x5b8;
-                        if (dansa_check(i_dogP,i_dogP->field_0x5b8,0.0) == 0) break;
+                        // local_74 = i_this->field6_0x5b8;
+                        if (dansa_check(i_this,i_this->field_0x5b8,0.0) == 0) break;
 
-                        i_dogP->mUnkPos = i_dogP->field_0x5b8;
-                        i_dogP->field_0x624 = dVar10 + cM_rndF(10.0);
+                        i_this->mUnkPos = i_this->field_0x5b8;
+                        i_this->field_0x624 = dVar10 + cM_rndF(10.0);
                     }
 
-                    i_dogP->mStayStatus = 5;
-                    i_dogP->field_0x656 = cM_rndFX(10000.0);
+                    i_this->mStayStatus = 5;
+                    i_this->field_0x656 = cM_rndFX(10000.0);
 
-                    anm_init(i_dogP,ANM_WALK,0.0,2,0.0);
-                    i_dogP->field_0x5fc[0] = cM_rndF(10.0) + 15.0;
+                    anm_init(i_this,ANM_WALK,0.0,2,0.0);
+                    i_this->field_0x5fc[0] = cM_rndF(10.0) + 15.0;
                 }
             }
             else {
-                i_dogP->mStayStatus = 3;
-                i_dogP->field_0x5fc[0] = cM_rndF(10.0) + 10.0;
+                i_this->mStayStatus = 3;
+                i_this->field_0x5fc[0] = cM_rndF(10.0) + 10.0;
             }
             break;
         }
         case 10: {
-            i_dogP->field_0x5e8 = 5.0;
-            anm_init(i_dogP,ANM_WALK,0.0,2,i_dogP->field_0x5e8);
+            i_this->field_0x5e8 = 5.0;
+            anm_init(i_this,ANM_WALK,0.0,2,i_this->field_0x5e8);
 
-            i_dogP->mStayStatus++;
+            i_this->mStayStatus++;
         }
         case 11: {
-            cLib_addCalc2(&i_dogP->field_0x5e8,2.0,1.0,0.2);
-            i_dogP->mpMorf->setPlaySpeed(i_dogP->field_0x5e8);
+            cLib_addCalc2(&i_this->field_0x5e8,2.0,1.0,0.2);
+            i_this->mpMorf->setPlaySpeed(i_this->field_0x5e8);
 
-            if (i_dogP->field_0x5e8 <= 2.2) {
-                i_dogP->mStayStatus = 0;
+            if (i_this->field_0x5e8 <= 2.2) {
+                i_this->mStayStatus = 0;
             }
 
             break;
@@ -1755,36 +1754,36 @@ static void do_wait_1(do_class* i_dogP) {
         }
     }
 
-    cLib_addCalc0(&i_dogP->mSpeedF,1.0,1.0);
+    cLib_addCalc0(&i_this->speedF,1.0,1.0);
 
-    if (i_dogP->field_0x674.z * 240.0 < i_dogP->mDistFromPlayer && !dansa_check2(i_dogP,0.0) && i_dogP->mStayStatus < 10) {
-        i_dogP->mAction = ACT_WALK_RUN;
-        i_dogP->field_0x5e8 = 1.5;
-        anm_init(i_dogP,ANM_WALK,0.0,2,i_dogP->field_0x5e8);
-        i_dogP->mStayStatus = 1;
+    if (i_this->field_0x674.z * 240.0 < i_this->mDistFromPlayer && !dansa_check2(i_this,0.0) && i_this->mStayStatus < 10) {
+        i_this->mAction = ACT_WALK_RUN;
+        i_this->field_0x5e8 = 1.5;
+        anm_init(i_this,ANM_WALK,0.0,2,i_this->field_0x5e8);
+        i_this->mStayStatus = 1;
     }
 
     // might be a seperate variable for link
-    if (daPy_getLinkPlayerActorClass()->checkCanoeRide() && i_dogP->mDistFromPlayer < 1000.0) {
-        i_dogP->mAction = ACT_HELP;
-        i_dogP->mStayStatus = 0;
+    if (daPy_getLinkPlayerActorClass()->checkCanoeRide() && i_this->mDistFromPlayer < 1000.0) {
+        i_this->mAction = ACT_HELP;
+        i_this->mStayStatus = 0;
     }
 
-    if (i_dogP->field_0x5b4 == 2) {
-        f32 distance = i_dogP->mDistFromPlayer * 0.0215;
+    if (i_this->field_0x5b4 == 2) {
+        f32 distance = i_this->mDistFromPlayer * 0.0215;
 
         if (127.0 < distance) {
             distance = 127.0;
         }
 
-        i_dogP->mSound.startLevelSound(JAISoundID(Z2SE_DOG_V_CALL_HELP),distance,-1);
+        i_this->mSound.startLevelSound(JAISoundID(Z2SE_DOG_V_CALL_HELP),distance,-1);
     }
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_wait_1(do_class* i_dogP) {
+static asm void do_wait_1(do_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_wait_1__FP8do_class.s"
 }
@@ -1891,24 +1890,24 @@ COMPILER_STRIP_GATE(0x8066EEFC, &lit_4588);
 #pragma pop
 
 /* 8066A1C4-8066A3D0 002564 020C+00 1/1 0/0 0/0 .text            do_wait_2__FP8do_class */
-static void do_wait_2(do_class* i_dogP) {
+static void do_wait_2(do_class* i_this) {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
-    i_dogP->field_0x616 = 1;
-    i_dogP->field_0x648 = FLOAT_LABEL(lit_4400);
+    i_this->field_0x616 = 1;
+    i_this->field_0x648 = FLOAT_LABEL(lit_4400);
 
-     switch(i_dogP->mStayStatus) {
+     switch(i_this->mStayStatus) {
         case 0: {
-            i_dogP->mStayStatus++;
+            i_this->mStayStatus++;
         }
         case 1: {
-            if (i_dogP->field_0x5fc[0] == 0) {
-                i_dogP->field_0x5fc[0] = cM_rndF(FLOAT_LABEL(lit_4189)) + FLOAT_LABEL(lit_4192);
-                i_dogP->field_0x656 = cM_rndFX(FLOAT_LABEL(lit_4587));
+            if (i_this->field_0x5fc[0] == 0) {
+                i_this->field_0x5fc[0] = cM_rndF(FLOAT_LABEL(lit_4189)) + FLOAT_LABEL(lit_4192);
+                i_this->field_0x656 = cM_rndFX(FLOAT_LABEL(lit_4587));
                 
-                cM_rndF(FLOAT_LABEL(lit_3662)) < FLOAT_LABEL(lit_4588) ? i_dogP->field_0x5e8 = cM_rndF(FLOAT_LABEL(lit_4342)) + FLOAT_LABEL(lit_3665) : i_dogP->field_0x5e8 = -(cM_rndF(FLOAT_LABEL(lit_4342)) + FLOAT_LABEL(lit_3665));
+                cM_rndF(FLOAT_LABEL(lit_3662)) < FLOAT_LABEL(lit_4588) ? i_this->field_0x5e8 = cM_rndF(FLOAT_LABEL(lit_4342)) + FLOAT_LABEL(lit_3665) : i_this->field_0x5e8 = -(cM_rndF(FLOAT_LABEL(lit_4342)) + FLOAT_LABEL(lit_3665));
 
-                anm_init(i_dogP,ANM_STEP,FLOAT_LABEL(lit_4194),2,i_dogP->field_0x5e8);
+                anm_init(i_this,ANM_STEP,FLOAT_LABEL(lit_4194),2,i_this->field_0x5e8);
                 mDoMtx_YrotS((MtxP)calc_mtx,player->shape_angle.y);
 
                 Vec local_38;
@@ -1917,85 +1916,85 @@ static void do_wait_2(do_class* i_dogP) {
                 local_38.y = FLOAT_LABEL(lit_3682);
                 local_38.z = cM_rndF(FLOAT_LABEL(lit_3816)) + FLOAT_LABEL(lit_4551);
 
-                MtxPosition((cXyz*)&local_38,&i_dogP->field_0x5b8);
-                i_dogP->field_0x5b8 += player->current.pos;
+                MtxPosition((cXyz*)&local_38,&i_this->field_0x5b8);
+                i_this->field_0x5b8 += player->current.pos;
             }
 
             break;
         }
     }
     
-    cLib_addCalc2(&i_dogP->current.pos.x,i_dogP->field_0x5b8.x,FLOAT_LABEL(lit_4342),FLOAT_LABEL(lit_3665));
-    cLib_addCalc2(&i_dogP->current.pos.z,i_dogP->field_0x5b8.z,FLOAT_LABEL(lit_4342),FLOAT_LABEL(lit_3665));
-    cLib_addCalc0(&i_dogP->mSpeedF,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_3665));
-    cLib_addCalcAngleS2(&i_dogP->current.angle.y,i_dogP->mAngleYFromPlayer + i_dogP->field_0x654,4,0x800);
-    cLib_addCalcAngleS2(&i_dogP->field_0x654,i_dogP->field_0x656,4,0x1000);
+    cLib_addCalc2(&i_this->current.pos.x,i_this->field_0x5b8.x,FLOAT_LABEL(lit_4342),FLOAT_LABEL(lit_3665));
+    cLib_addCalc2(&i_this->current.pos.z,i_this->field_0x5b8.z,FLOAT_LABEL(lit_4342),FLOAT_LABEL(lit_3665));
+    cLib_addCalc0(&i_this->speedF,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_3665));
+    cLib_addCalcAngleS2(&i_this->current.angle.y,i_this->mAngleYFromPlayer + i_this->field_0x654,4,0x800);
+    cLib_addCalcAngleS2(&i_this->field_0x654,i_this->field_0x656,4,0x1000);
 
-    if (i_dogP->mDistFromPlayer > FLOAT_LABEL(lit_3923) * i_dogP->field_0x674.z) {
-        i_dogP->mAction = ACT_RUN;
-        i_dogP->mStayStatus = 0;
+    if (i_this->mDistFromPlayer > FLOAT_LABEL(lit_3923) * i_this->field_0x674.z) {
+        i_this->mAction = ACT_RUN;
+        i_this->mStayStatus = 0;
     }
 
-    area_check(i_dogP);
+    area_check(i_this);
 }
 
 /* 8066A3D0-8066A5DC 002770 020C+00 1/1 0/0 0/0 .text            do_sit__FP8do_class */
 #ifdef NONMATCHING
 // matches except float literal in inline
-static void do_sit(do_class* i_dogP) {
-    i_dogP->field_0x616 = 1;
-    i_dogP->field_0x648 = FLOAT_LABEL(lit_4190);
+static void do_sit(do_class* i_this) {
+    i_this->field_0x616 = 1;
+    i_this->field_0x648 = FLOAT_LABEL(lit_4190);
 
-    switch (i_dogP->mStayStatus) {
+    switch (i_this->mStayStatus) {
         
 
         case 0: {
-            anm_init(i_dogP,ANM_SIT_WAIT,FLOAT_LABEL(lit_4192),2,FLOAT_LABEL(lit_3662));
-            i_dogP->mStayStatus++;
+            anm_init(i_this,ANM_SIT_WAIT,FLOAT_LABEL(lit_4192),2,FLOAT_LABEL(lit_3662));
+            i_this->mStayStatus++;
         }
 
         case 1: {
-            if (i_dogP->mEyePosYDistFromPlayer > FLOAT_LABEL(lit_4545)) {
-                i_dogP->mStayStatus = 3;
-                i_dogP->field_0x5fc[0] = cM_rndF(FLOAT_LABEL(lit_4192)) + FLOAT_LABEL(lit_4192);
+            if (i_this->mEyePosYDistFromPlayer > FLOAT_LABEL(lit_4545)) {
+                i_this->mStayStatus = 3;
+                i_this->field_0x5fc[0] = cM_rndF(FLOAT_LABEL(lit_4192)) + FLOAT_LABEL(lit_4192);
             } else {
-                if (i_dogP->mEyePosYDistFromPlayer < FLOAT_LABEL(lit_3846)) {
-                    i_dogP->mStayStatus = 2;
-                    i_dogP->field_0x5fc[0] = cM_rndF(FLOAT_LABEL(lit_4192)) + FLOAT_LABEL(lit_4192);
+                if (i_this->mEyePosYDistFromPlayer < FLOAT_LABEL(lit_3846)) {
+                    i_this->mStayStatus = 2;
+                    i_this->field_0x5fc[0] = cM_rndF(FLOAT_LABEL(lit_4192)) + FLOAT_LABEL(lit_4192);
                 }
             }
             break;
         }
 
         case 2: {
-            if (i_dogP->mEyePosYDistFromPlayer < FLOAT_LABEL(lit_3846) ) {
-                if (i_dogP->field_0x5fc[0] == 0) {
-                    i_dogP->mAction = ACT_STAY;
-                    i_dogP->mStayStatus = 10;
+            if (i_this->mEyePosYDistFromPlayer < FLOAT_LABEL(lit_3846) ) {
+                if (i_this->field_0x5fc[0] == 0) {
+                    i_this->mAction = ACT_STAY;
+                    i_this->mStayStatus = 10;
                 }
             } else { 
-                i_dogP->mStayStatus = 1;
+                i_this->mStayStatus = 1;
             }
             break;
         }
 
         case 3: {
-            if (i_dogP->mEyePosYDistFromPlayer > FLOAT_LABEL(lit_4545)) {
-                if (i_dogP->field_0x5fc[0] == 0) {
-                    anm_init(i_dogP,ANM_SIT,FLOAT_LABEL(lit_4194),0,FLOAT_LABEL(lit_3662));
-                    i_dogP->mStayStatus++;
+            if (i_this->mEyePosYDistFromPlayer > FLOAT_LABEL(lit_4545)) {
+                if (i_this->field_0x5fc[0] == 0) {
+                    anm_init(i_this,ANM_SIT,FLOAT_LABEL(lit_4194),0,FLOAT_LABEL(lit_3662));
+                    i_this->mStayStatus++;
                 }
             } else {
-                i_dogP->mStayStatus = 1;
+                i_this->mStayStatus = 1;
             }
 
             break;
         }
 
         case 4: {
-            if (i_dogP->mpMorf->isStop()) {
-                i_dogP->mAction = ACT_WAIT_1;
-                i_dogP->mStayStatus = 0;
+            if (i_this->mpMorf->isStop()) {
+                i_this->mAction = ACT_WAIT_1;
+                i_this->mStayStatus = 0;
             }
             break;
         }
@@ -2004,21 +2003,21 @@ static void do_sit(do_class* i_dogP) {
     }
     
     
-    cLib_addCalc0(&i_dogP->mSpeedF,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_3665));
+    cLib_addCalc0(&i_this->speedF,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_3665));
 
-    if (i_dogP->mDistFromPlayer > FLOAT_LABEL(lit_3773) * i_dogP->field_0x674.z) {
-        i_dogP->mAction = ACT_STAY;
-        i_dogP->field_0x5f4 = 8;
-        i_dogP->mStayStatus = 0;
+    if (i_this->mDistFromPlayer > FLOAT_LABEL(lit_3773) * i_this->field_0x674.z) {
+        i_this->mAction = ACT_STAY;
+        i_this->field_0x5f4 = 8;
+        i_this->mStayStatus = 0;
     }
 
-    area_check(i_dogP);
+    area_check(i_this);
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_sit(do_class* i_dogP) {
+static asm void do_sit(do_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_sit__FP8do_class.s"
 }
@@ -2042,14 +2041,14 @@ COMPILER_STRIP_GATE(0x8066EF04, &lit_4710);
 
 /* 8066A5DC-8066A80C 00297C 0230+00 1/1 0/0 0/0 .text            hang_set__FP8do_class */
 #ifdef NONMATCHING
-static u16 hang_set(do_class* i_dogP) {
+static u16 hang_set(do_class* i_this) {
     
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm u16 hang_set(do_class* i_dogP) {
+static asm u16 hang_set(do_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/hang_set__FP8do_class.s"
 }
@@ -2073,14 +2072,14 @@ COMPILER_STRIP_GATE(0x8066EF0C, &lit_4764);
 
 /* 8066A80C-8066AB78 002BAC 036C+00 1/1 0/0 0/0 .text            do_hang__FP8do_class */
 #ifdef NONMATCHING
-static void do_hang(do_class* i_dogP) {
+static void do_hang(do_class* i_this) {
     
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_hang(do_class* i_dogP) {
+static asm void do_hang(do_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_hang__FP8do_class.s"
 }
@@ -2096,14 +2095,14 @@ SECTION_DEAD static char const* const stringBase_8066EFB3 = "F_SP116";
 
 /* 8066AB78-8066B650 002F18 0AD8+00 2/1 0/0 0/0 .text            do_food__FP8do_class */
 #ifdef NONMATCHING
-static void do_food(do_class* i_dogP) {
+static void do_food(do_class* i_this) {
     
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_food(do_class* i_dogP) {
+static asm void do_food(do_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_food__FP8do_class.s"
 }
@@ -2182,34 +2181,34 @@ COMPILER_STRIP_GATE(0x8066EF34, &lit_4993);
 #pragma pop
 
 /* 8066B650-8066B774 0039F0 0124+00 1/1 0/0 0/0 .text            do_swim__FP8do_class */
-static void do_swim(do_class* i_dogP) {
+static void do_swim(do_class* i_this) {
     Vec pos; // this is probably cXyz but defining it as such moves ~cXyz to right after this function, breaking the TU match
-    i_dogP->field_0x616 = 1;
-    i_dogP->field_0x648 = FLOAT_LABEL(lit_4191);
+    i_this->field_0x616 = 1;
+    i_this->field_0x648 = FLOAT_LABEL(lit_4191);
 
-    switch(i_dogP->mStayStatus) {
+    switch(i_this->mStayStatus) {
         case 1: {
             break;
         }
         case 0: {
-            anm_init(i_dogP,19,FLOAT_LABEL(lit_4027),2,cM_rndF(FLOAT_LABEL(lit_4991))+FLOAT_LABEL(lit_4340));
-            i_dogP->mStayStatus++;
+            anm_init(i_this,19,FLOAT_LABEL(lit_4027),2,cM_rndF(FLOAT_LABEL(lit_4991))+FLOAT_LABEL(lit_4340));
+            i_this->mStayStatus++;
             break;
         }
     }
 
-    cLib_addCalc2(&i_dogP->mSpeedF,l_HIO.mSwimSpeed,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_4588)*l_HIO.mSwimSpeed);
-    cLib_addCalcAngleS2(&i_dogP->current.angle.y,i_dogP->mAngleYFromPlayer,16,0x100);
+    cLib_addCalc2(&i_this->speedF,l_HIO.mSwimSpeed,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_4588)*l_HIO.mSwimSpeed);
+    cLib_addCalcAngleS2(&i_this->current.angle.y,i_this->mAngleYFromPlayer,16,0x100);
 
-    i_dogP->mSpeed.y = FLOAT_LABEL(lit_3682);
-    i_dogP->mGravity = FLOAT_LABEL(lit_3682);
+    i_this->speed.y = FLOAT_LABEL(lit_3682);
+    i_this->mGravity = FLOAT_LABEL(lit_3682);
 
-    cLib_addCalc2(&i_dogP->current.pos.y,i_dogP->field_0x65c - FLOAT_LABEL(lit_4992),FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_4027));
+    cLib_addCalc2(&i_this->current.pos.y,i_this->field_0x65c - FLOAT_LABEL(lit_4992),FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_4027));
 
-    pos = i_dogP->mEyePos;
-    pos.y = i_dogP->field_0x65c;
+    pos = i_this->mEyePos;
+    pos.y = i_this->field_0x65c;
 
-    fopAcM_effHamonSet(&i_dogP->field_0xbcc,(cXyz*)&pos,FLOAT_LABEL(lit_4993),FLOAT_LABEL(lit_4402));
+    fopAcM_effHamonSet(&i_this->field_0xbcc,(cXyz*)&pos,FLOAT_LABEL(lit_4993),FLOAT_LABEL(lit_4402));
 }
 
 /* 8066B774-8066B7C0 003B14 004C+00 2/2 0/0 0/0 .text            s_c_sub__FPvPv */
@@ -2258,14 +2257,14 @@ COMPILER_STRIP_GATE(0x8066EF48, &lit_5114);
 
 /* 8066B7C0-8066BD3C 003B60 057C+00 1/1 0/0 0/0 .text            do_help__FP8do_class */
 #ifdef NONMATCHING
-static void do_help(do_class* i_dogP) {
+static void do_help(do_class* i_this) {
     
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_help(do_class* i_dogP) {
+static asm void do_help(do_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_help__FP8do_class.s"
 }
@@ -2289,14 +2288,14 @@ COMPILER_STRIP_GATE(0x8066EF50, &lit_5345);
 
 /* 8066BD3C-8066C894 0040DC 0B58+00 2/1 0/0 0/0 .text            do_boat__FP8do_class */
 #ifdef NONMATCHING
-static u8 do_boat(do_class* i_dogP) {
+static u8 do_boat(do_class* i_this) {
     
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm u8 do_boat(do_class* i_dogP) {
+static asm u8 do_boat(do_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_boat__FP8do_class.s"
 }
@@ -2327,49 +2326,49 @@ COMPILER_STRIP_GATE(0x8066EF5C, &lit_5407);
 
 /* 8066C894-8066CAA8 004C34 0214+00 1/1 0/0 0/0 .text            do_a_swim__FP8do_class */
 #ifdef NONMATCHING
-static void do_a_swim(do_class* i_dogP) {
-    i_dogP->field_0x648 = 2000.0;
-    cLib_addCalc0(&i_dogP->mSpeedF,1.0,1.0);
+static void do_a_swim(do_class* i_this) {
+    i_this->field_0x648 = 2000.0;
+    cLib_addCalc0(&i_this->speedF,1.0,1.0);
 
-    switch (i_dogP->mStayStatus) {
+    switch (i_this->mStayStatus) {
         case 2: {
-            l_HIO.mWaterHuntAnimType == 1 ? i_dogP->mpMorf->setPlaySpeed(i_dogP->field46_0x634 * 5.0) : i_dogP->mpMorf->setPlaySpeed(i_dogP->field46_0x634 * 5.0);
+            l_HIO.mWaterHuntAnimType == 1 ? i_this->mpMorf->setPlaySpeed(i_this->field46_0x634 * 5.0) : i_this->mpMorf->setPlaySpeed(i_this->field46_0x634 * 5.0);
 
-            if (0.025 < i_dogP->field_0x634) {
+            if (0.025 < i_this->field_0x634) {
                 break;
             }
 
-            i_dogP->field_0x634 = 0.0;
-            i_dogP->mAction = ACT_WAIT_1;
-            i_dogP->mStayStatus = 0;
+            i_this->field_0x634 = 0.0;
+            i_this->mAction = ACT_WAIT_1;
+            i_this->mStayStatus = 0;
             break;
         }
         case 0: {
             l_HIO.mWaterHuntAnimType == 1 ? anm_init(param_1,ANM_JOYFUL,0.0,2,0.0) : anm_init(param_1,ANM_BULBUL,0.0,2,0.0);
-            i_dogP->mStayStatus = 1;
-            i_dogP->field32_0x5fc[0] = 0x14;
+            i_this->mStayStatus = 1;
+            i_this->field32_0x5fc[0] = 0x14;
 
-            JPABaseEmitter* emitter = dComIfGp_particle_set(0x2a3,&i_dogP->.current.pos,0,0);
+            JPABaseEmitter* emitter = dComIfGp_particle_set(0x2a3,&i_this->.current.pos,0,0);
 
             if (emitter) {
-                emitter->setGlobalRTMatrix(i_dogP->mpMorf->getModel()->getAnmMtx(2));
+                emitter->setGlobalRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(2));
                 cXyz pos = cXyz(0.6,0.6,0.6);
                 emitter->setGlobalScale(pTVar3);
             }
         }
     }
 
-    if (i_dogP->field_0x5fc[0] == 0) {
-        i_dogP->mStayStatus = 2;
-        i_dogP->field_0x634 = 0.1;
-        i_dogP->field_0x638 = 1.0;
+    if (i_this->field_0x5fc[0] == 0) {
+        i_this->mStayStatus = 2;
+        i_this->field_0x634 = 0.1;
+        i_this->field_0x638 = 1.0;
     }
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void do_a_swim(do_class* i_dogP) {
+static asm void do_a_swim(do_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_a_swim__FP8do_class.s"
 }
@@ -2399,14 +2398,14 @@ COMPILER_STRIP_GATE(0x8066EF68, &lit_5480);
 
 /* 8066CAA8-8066CDEC 004E48 0344+00 1/1 0/0 0/0 .text            do_carry__FP8do_class */
 #ifdef NONMATCHING
-static asm u8 do_carry(do_class* i_dogP) {
+static asm u8 do_carry(do_class* i_this) {
     
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm u8 do_carry(do_class* i_dogP) {
+static asm u8 do_carry(do_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/do_carry__FP8do_class.s"
 }
@@ -2414,27 +2413,27 @@ static asm u8 do_carry(do_class* i_dogP) {
 #endif
 
 /* 8066CDEC-8066CEC4 00518C 00D8+00 1/1 0/0 0/0 .text            do_message__FP8do_class */
-static void do_message(do_class* i_dogP) {
-    i_dogP->field_0x648 = FLOAT_LABEL(lit_4191);
+static void do_message(do_class* i_this) {
+    i_this->field_0x648 = FLOAT_LABEL(lit_4191);
 
-    switch(i_dogP->mStayStatus) {
+    switch(i_this->mStayStatus) {
         case 1: {
             break;
         }
         case 0: {
-            anm_init(i_dogP,21,FLOAT_LABEL(lit_4027),2,FLOAT_LABEL(lit_3662));
-            i_dogP->mStayStatus++;
+            anm_init(i_this,21,FLOAT_LABEL(lit_4027),2,FLOAT_LABEL(lit_3662));
+            i_this->mStayStatus++;
             break;
         }
     }
 
-    cLib_addCalc0(&i_dogP->mSpeedF,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_3665));
-    i_dogP->field_0x616 = 1;
-    cLib_addCalcAngleS2(&i_dogP->current.angle.y,i_dogP->mAngleYFromPlayer,2,0x1000);
+    cLib_addCalc0(&i_this->speedF,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_3665));
+    i_this->field_0x616 = 1;
+    cLib_addCalcAngleS2(&i_this->current.angle.y,i_this->mAngleYFromPlayer,2,0x1000);
     
-    if (i_dComIfGp_event_runCheck() == 0 && i_dogP->mDistFromPlayer > FLOAT_LABEL(lit_3773)) {
-        i_dogP->mAction = ACT_STAY;
-        i_dogP->mStayStatus = 0;
+    if (i_dComIfGp_event_runCheck() == 0 && i_this->mDistFromPlayer > FLOAT_LABEL(lit_3773)) {
+        i_this->mAction = ACT_STAY;
+        i_this->mStayStatus = 0;
     }
 
 }
@@ -2527,7 +2526,7 @@ COMPILER_STRIP_GATE(0x8066EF9C, &lit_6214);
 /* 8066CEC4-8066DD48 005264 0E84+00 2/1 0/0 0/0 .text            action__FP8do_class */
 #ifdef NONMATCHING
 extern "C" u8 scc[12];
-static void action(do_class* i_dogP) {
+static void action(do_class* i_this) {
     cXyz pos1;
     cXyz pos2;
     cXyz pos3;
@@ -2535,213 +2534,213 @@ static void action(do_class* i_dogP) {
 
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
-    i_dogP->mGravity = FLOAT_LABEL(lit_5948);
-    i_dogP->mDistFromPlayer = fopAcM_searchPlayerDistance(i_dogP);
+    i_this->mGravity = FLOAT_LABEL(lit_5948);
+    i_this->mDistFromPlayer = fopAcM_searchPlayerDistance(i_this);
 
     daPy_py_c* player2 = daPy_getPlayerActorClass();
 
     if (player2->checkHorseRide()) {
-        i_dogP->mDistFromPlayer -= FLOAT_LABEL(lit_3772);
+        i_this->mDistFromPlayer -= FLOAT_LABEL(lit_3772);
     }
 
-    i_dogP->mAngleYFromPlayer = fopAcM_searchPlayerAngleY(i_dogP);
-    i_dogP->mEyePosYDistFromPlayer = fabsf(i_dogP->mEyePos.y - player->current.pos.y);
+    i_this->mAngleYFromPlayer = fopAcM_searchPlayerAngleY(i_this);
+    i_this->mEyePosYDistFromPlayer = fabsf(i_this->mEyePos.y - player->current.pos.y);
 
-    if (!mDoCPd_c::getHoldR(PAD_1) || fabsf(i_dogP->current.pos.y - player->current.pos.y) > FLOAT_LABEL(lit_3816)) {
-        i_dogP->mEyePosYDistFromPlayer = FLOAT_LABEL(lit_4339);
+    if (!mDoCPd_c::getHoldR(PAD_1) || fabsf(i_this->current.pos.y - player->current.pos.y) > FLOAT_LABEL(lit_3816)) {
+        i_this->mEyePosYDistFromPlayer = FLOAT_LABEL(lit_4339);
     }
 
-    i_dogP->mEyePosYDistFromPlayer *= FLOAT_LABEL(lit_4341);
+    i_this->mEyePosYDistFromPlayer *= FLOAT_LABEL(lit_4341);
 
     u8 tmp1 = 1;
     s8 tmp2 = 1;
     bool tmp3 = true;
 
-    i_dogP->mCcD_GObjInf1.OnCoSetBit();
+    i_this->mCcD_GObjInf1.OnCoSetBit();
 
-    if (i_dogP->field_0x608 < FLOAT_LABEL(lit_3662)) {
-        i_dogP->field_0xc05 = 0;
+    if (i_this->field_0x608 < FLOAT_LABEL(lit_3662)) {
+        i_this->field_0xc05 = 0;
 
-        switch(i_dogP->mAction) {
+        switch(i_this->mAction) {
             case ACT_STAY: {
-                do_stay(i_dogP);
-                food_check(i_dogP);
-                i_dogP->field_0xc05 = 1;
+                do_stay(i_this);
+                food_check(i_this);
+                i_this->field_0xc05 = 1;
                 break;
             }
             case ACT_WALK: {
-                do_walk(i_dogP);
-                food_check(i_dogP);
-                i_dogP->field_0xc05 = 1;
+                do_walk(i_this);
+                food_check(i_this);
+                i_this->field_0xc05 = 1;
                 break;
             }
             case ACT_WALK_RUN: {
-                do_walk_run(i_dogP);
-                food_check(i_dogP);
-                i_dogP->field_0xc05 = 1;
+                do_walk_run(i_this);
+                food_check(i_this);
+                i_this->field_0xc05 = 1;
                 break;
             }
             case ACT_RUN: {
-                do_run(i_dogP);
-                food_check(i_dogP);
-                i_dogP->field_0xc05 = 1;
+                do_run(i_this);
+                food_check(i_this);
+                i_this->field_0xc05 = 1;
                 break;
             }
             case ACT_RUN_WALK: {
-                do_run_walk(i_dogP);
-                food_check(i_dogP);
-                i_dogP->field_0xc05 = 1;
+                do_run_walk(i_this);
+                food_check(i_this);
+                i_this->field_0xc05 = 1;
                 break;
             }
             case ACT_FOOD: {
-                do_food(i_dogP);
-                i_dogP->field_0xc05 = 1;
+                do_food(i_this);
+                i_this->field_0xc05 = 1;
                 break;
             }
             case ACT_WAIT_1: {
-                do_wait_1(i_dogP);
-                food_check(i_dogP);
-                i_dogP->field_0xc05 = 1;
+                do_wait_1(i_this);
+                food_check(i_this);
+                i_this->field_0xc05 = 1;
                 break;
             }
             case ACT_WAIT_2: {
-                do_wait_2(i_dogP);
-                food_check(i_dogP);
-                i_dogP->field_0xc05 = 1;
+                do_wait_2(i_this);
+                food_check(i_this);
+                i_this->field_0xc05 = 1;
                 break;
             }
             case ACT_SIT: {
-                do_sit(i_dogP);
-                food_check(i_dogP);
-                i_dogP->field_0xc05 = 1;
+                do_sit(i_this);
+                food_check(i_this);
+                i_this->field_0xc05 = 1;
                 break;
             }
             case ACT_A_SWIM: {
-                do_a_swim(i_dogP);
+                do_a_swim(i_this);
                 break;
             }
             case ACT_SWIM: {
-                do_swim(i_dogP);
+                do_swim(i_this);
                 tmp3 = false;
-                fopAcM_riverStream(&i_dogP->current.pos,&i_dogP->field_0x6b0,&i_dogP->field_0x6b4,FLOAT_LABEL(lit_4588));
+                fopAcM_riverStream(&i_this->current.pos,&i_this->field_0x6b0,&i_this->field_0x6b4,FLOAT_LABEL(lit_4588));
                 break;
             }
             case ACT_HELP: {
-                do_help(i_dogP);
+                do_help(i_this);
                 break;
             }
             case ACT_BOAT: {
-                tmp1 = do_boat(i_dogP);
+                tmp1 = do_boat(i_this);
                 break;
             }
             case ACT_HANG: {
-                do_hang(i_dogP);
+                do_hang(i_this);
                 break;
             }
             case ACT_CARRY: {
-                tmp1 = do_carry(i_dogP);
-                i_dogP->mCcD_GObjInf1.OffCoSetBit();
+                tmp1 = do_carry(i_this);
+                i_this->mCcD_GObjInf1.OffCoSetBit();
                 tmp2 = 0;
                 break;
             }
             case ACT_MESSAGE: {
-                do_message(i_dogP);
-                i_dogP->field_0xc05 = 2;
+                do_message(i_this);
+                i_this->field_0xc05 = 2;
             }
         }
     }
 
-    if (i_dogP->mItemPcId != -1 && i_dogP->mDistFromPlayer <  FLOAT_LABEL(lit_4378) * i_dogP->field_0x674.z) {
-        daItem_c* item = (daItem_c*)fopAcM_SearchByID(i_dogP->mItemPcId);
+    if (i_this->mItemPcId != -1 && i_this->mDistFromPlayer <  FLOAT_LABEL(lit_4378) * i_this->field_0x674.z) {
+        daItem_c* item = (daItem_c*)fopAcM_SearchByID(i_this->mItemPcId);
 
         if (item) {
             item->endControl();
         }
 
-        i_dogP->field_0x6b8 = 0;
-        i_dogP->mItemPcId = -1;
+        i_this->field_0x6b8 = 0;
+        i_this->mItemPcId = -1;
     }
 
-    if (i_dogP->field_0x6ae != 0) {
-        i_dogP->field_0x6ae--;
-        if (i_dogP->field_0x6ae == 0) {
-            i_dogP->mSound.startSound(JAISoundID(Z2SE_M007_DOG_COME_RUNNING),0,-1);
+    if (i_this->field_0x6ae != 0) {
+        i_this->field_0x6ae--;
+        if (i_this->field_0x6ae == 0) {
+            i_this->mSound.startSound(JAISoundID(Z2SE_M007_DOG_COME_RUNNING),0,-1);
         }
     }
 
-    if (i_dogP->field_0xc05 == 1 && daPy_py_c::i_checkNowWolf() && i_dogP->mDistFromPlayer < FLOAT_LABEL(lit_4339)) {
-        i_dogP->mAction = ACT_MESSAGE;
-        i_dogP->mStayStatus = 0;
+    if (i_this->field_0xc05 == 1 && daPy_py_c::i_checkNowWolf() && i_this->mDistFromPlayer < FLOAT_LABEL(lit_4339)) {
+        i_this->mAction = ACT_MESSAGE;
+        i_this->mStayStatus = 0;
     }
 
     if (tmp2 != 0 && player->mSpeedF < FLOAT_LABEL(lit_3665)) {
-        cLib_onBit(i_dogP->mAttentionInfo.mFlags,0x10);
+        cLib_onBit(i_this->mAttentionInfo.mFlags,0x10);
 
-        if (do_carry_check(i_dogP)) {
+        if (do_carry_check(i_this)) {
             return;
         }
     } else {
-        cLib_offBit(i_dogP->mAttentionInfo.mFlags,0x10);
+        cLib_offBit(i_this->mAttentionInfo.mFlags,0x10);
     }
 
-    cLib_addCalcAngleS2(&i_dogP->current.angle.x,0,1,0x400);
+    cLib_addCalcAngleS2(&i_this->current.angle.x,0,1,0x400);
 
-    if (i_dogP->mAction != ACT_HANG) {
-        mDoMtx_YrotS((MtxP)calc_mtx,i_dogP->current.angle.y);
+    if (i_this->mAction != ACT_HANG) {
+        mDoMtx_YrotS((MtxP)calc_mtx,i_this->current.angle.y);
 
         pos1.x = FLOAT_LABEL(lit_3682);
         pos1.y = FLOAT_LABEL(lit_3682);
-        pos1.z = FLOAT_LABEL(lit_3981) * i_dogP->mSpeedF;
-        pos1.z *= i_dogP->field_0x674.z;
+        pos1.z = FLOAT_LABEL(lit_3981) * i_this->speedF;
+        pos1.z *= i_this->field_0x674.z;
 
         MtxPosition(&pos1,&pos2);
 
-        i_dogP->mSpeed.x = pos2.x;
-        i_dogP->mSpeed.z = pos2.z;
-        i_dogP->mSpeed.y += i_dogP->mGravity;;
+        i_this->speed.x = pos2.x;
+        i_this->speed.z = pos2.z;
+        i_this->speed.y += i_this->mGravity;;
 
-        i_dogP->current.pos += i_dogP->mSpeed;
+        i_this->current.pos += i_this->speed;
 
-        if (i_dogP->mSpeed.y < FLOAT_LABEL(lit_5345)) {
-            i_dogP->mSpeed.y = FLOAT_LABEL(lit_5345);
+        if (i_this->speed.y < FLOAT_LABEL(lit_5345)) {
+            i_this->speed.y = FLOAT_LABEL(lit_5345);
         }
 
         cXyz* posP;
 
-        if (!fopAcM_checkCarryNow(i_dogP) && (posP = i_dogP->mCcD_Stts.GetCCMoveP(), posP)) {
-            i_dogP->current.pos.x = i_dogP->current.pos.x + FLOAT_LABEL(lit_4967) * posP->x;
-            i_dogP->current.pos.z = i_dogP->current.pos.z + FLOAT_LABEL(lit_4967) * posP->z;
+        if (!fopAcM_checkCarryNow(i_this) && (posP = i_this->mCcD_Stts.GetCCMoveP(), posP)) {
+            i_this->current.pos.x = i_this->current.pos.x + FLOAT_LABEL(lit_4967) * posP->x;
+            i_this->current.pos.z = i_this->current.pos.z + FLOAT_LABEL(lit_4967) * posP->z;
         }
 
-        if (i_dogP->field_0x608 > FLOAT_LABEL(lit_3662)) {
+        if (i_this->field_0x608 > FLOAT_LABEL(lit_3662)) {
             pos1.x = FLOAT_LABEL(lit_3682);
             pos1.y = FLOAT_LABEL(lit_3682);
-            pos1.z = -i_dogP->field_0x608;
+            pos1.z = -i_this->field_0x608;
 
-            mDoMtx_YrotS((MtxP)calc_mtx,i_dogP->field_0x60c);
+            mDoMtx_YrotS((MtxP)calc_mtx,i_this->field_0x60c);
             MtxPosition(&pos1,&pos2);
 
-            i_dogP->current.pos += pos2;
-            cLib_addCalc0(&i_dogP->field_0x608,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_5949));
+            i_this->current.pos += pos2;
+            cLib_addCalc0(&i_this->field_0x608,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_5949));
 
-            i_dogP->mSpeedF = FLOAT_LABEL(lit_3682);
+            i_this->speedF = FLOAT_LABEL(lit_3682);
             tmp1 = 1;
         }
         if ((s8)tmp1 != 0) {
-            i_dogP->mBgS_AcchCir.SetWall(FLOAT_LABEL(lit_3846), (fabsf(i_dogP->field_0x608) + fabsf(i_dogP->mSpeedF)) + FLOAT_LABEL(lit_3846));
-            i_dogP->mBgS_Acch.CrrPos(dComIfG_Bgsp());
+            i_this->mBgS_AcchCir.SetWall(FLOAT_LABEL(lit_3846), (fabsf(i_this->field_0x608) + fabsf(i_this->speedF)) + FLOAT_LABEL(lit_3846));
+            i_this->mBgS_Acch.CrrPos(dComIfG_Bgsp());
 
-            if (i_dogP->mBgS_Acch.ChkGroundHit() && tmp_lit[0x3d] == 0 && !fopAcM_checkCarryNow(i_dogP)) {
+            if (i_this->mBgS_Acch.ChkGroundHit() && tmp_lit[0x3d] == 0 && !fopAcM_checkCarryNow(i_this)) {
                 dBgS_GndChk gnd_chk;
 
-                mDoMtx_YrotS((MtxP)calc_mtx,i_dogP->shape_angle.y);
+                mDoMtx_YrotS((MtxP)calc_mtx,i_this->shape_angle.y);
 
                 pos1.x = FLOAT_LABEL(lit_3682);
                 pos1.y = FLOAT_LABEL(lit_3682);
-                pos1.z = FLOAT_LABEL(lit_5950) * i_dogP->field_0x674.z;
+                pos1.z = FLOAT_LABEL(lit_5950) * i_this->field_0x674.z;
 
                 MtxPosition(&pos1,&pos2);
-                pos2 += i_dogP->current.pos;
+                pos2 += i_this->current.pos;
 
                 pos3.x = pos2.x;
                 pos3.y = pos2.y + FLOAT_LABEL(lit_3772);
@@ -2750,49 +2749,49 @@ static void action(do_class* i_dogP) {
                 gnd_chk.SetPos(&pos3);
                 pos2.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-                pos1 = pos2 - i_dogP->current.pos;
+                pos1 = pos2 - i_this->current.pos;
 
                 if (fabsf(pos1.y) < FLOAT_LABEL(lit_3816)) {
-                    i_dogP->current.angle.x = cM_atan2s(pos1.y, JMAFastSqrt(pos1.x * pos1.x + pos1.z * pos1.z));
+                    i_this->current.angle.x = cM_atan2s(pos1.y, JMAFastSqrt(pos1.x * pos1.x + pos1.z * pos1.z));
                 }
             }
         }
     } else {
-        if (i_dogP->field_0x608 < FLOAT_LABEL(lit_3662)) {
-            cXyz pos = i_dogP->current.pos;
-            int check = dansa_check(i_dogP,pos,pos.x);
+        if (i_this->field_0x608 < FLOAT_LABEL(lit_3662)) {
+            cXyz pos = i_this->current.pos;
+            int check = dansa_check(i_this,pos,pos.x);
 
             if ((-check & ~check) < 0) {
-                i_dogP->field_0x660 = hang_set(i_dogP);
+                i_this->field_0x660 = hang_set(i_this);
 
-                if (i_dogP->field_0x660 == 0xdcf) {
-                    i_dogP->mAction = ACT_HANG;
-                    i_dogP->mStayStatus = 0;
-                    i_dogP->field_0x63c = 0;
+                if (i_this->field_0x660 == 0xdcf) {
+                    i_this->mAction = ACT_HANG;
+                    i_this->mStayStatus = 0;
+                    i_this->field_0x63c = 0;
                 }
             }
         }
     }
 
-    water_check(i_dogP);
+    water_check(i_this);
     
     if (tmp3) {
-        if (i_dogP->mAction == ACT_CARRY) {
-            if (i_dogP->field_0x63c != 0 && i_dogP->field_0x63c--, i_dogP->field_0x63c == 0) {
-                i_dogP->mAction = ACT_A_SWIM;
-                i_dogP->mStayStatus = 0;
+        if (i_this->mAction == ACT_CARRY) {
+            if (i_this->field_0x63c != 0 && i_this->field_0x63c--, i_this->field_0x63c == 0) {
+                i_this->mAction = ACT_A_SWIM;
+                i_this->mStayStatus = 0;
             }
 
-            if (45.0f < i_dogP->field_0x65c - i_dogP->current.pos.y) {
-                    i_dogP->mAction = ACT_SWIM;
-                    i_dogP->mStayStatus = 0;
-                    i_dogP->field_0x608 = FLOAT_LABEL(lit_3682);
+            if (45.0f < i_this->field_0x65c - i_this->current.pos.y) {
+                    i_this->mAction = ACT_SWIM;
+                    i_this->mStayStatus = 0;
+                    i_this->field_0x608 = FLOAT_LABEL(lit_3682);
 
-                    if (i_dogP->field_0x606 == 0) {
+                    if (i_this->field_0x606 == 0) {
                     
-                        i_dogP->field_0x606 = 0x14;
-                        cXyz pos = i_dogP->current.pos;
-                        pos.y = i_dogP->field_0x65c;
+                        i_this->field_0x606 = 0x14;
+                        cXyz pos = i_this->current.pos;
+                        pos.y = i_this->field_0x65c;
 
                         if (l_HIO.mRunSpeed == 0) {
                             scc[0] = 0; // fix later
@@ -2803,50 +2802,50 @@ static void action(do_class* i_dogP) {
 
                         for (int i = 0; i < 4; i++) {
                             // wrong
-                            i_dogP->mMsg.setMsg(dComIfGp_particle_set((u32)0,(u16)l_HIO.field_0x1c,&pos,&i_dogP->mTevStr,(csXyz*)0,(cXyz*)&scc,(u8)0xFF,(dPa_levelEcallBack *)0,(s8)-1,(GXColor*)0,(GXColor*)0,(cXyz*)0));
+                            i_this->mMsg.setMsg(dComIfGp_particle_set((u32)0,(u16)l_HIO.field_0x1c,&pos,&i_this->mTevStr,(csXyz*)0,(cXyz*)&scc,(u8)0xFF,(dPa_levelEcallBack *)0,(s8)-1,(GXColor*)0,(GXColor*)0,(cXyz*)0));
                         }
 
-                        i_dogP->mSound.startSound(JAISoundID(Z2SE_CM_BODYFALL_WATER_S),0,-1);
+                        i_this->mSound.startSound(JAISoundID(Z2SE_CM_BODYFALL_WATER_S),0,-1);
                 }
             }
         }
     } else {
-        i_dogP->field_0x63c = cM_rndF(FLOAT_LABEL(lit_4025)) + FLOAT_LABEL(lit_3846);
+        i_this->field_0x63c = cM_rndF(FLOAT_LABEL(lit_4025)) + FLOAT_LABEL(lit_3846);
 
-        if (i_dogP->field_0x65c - i_dogP->current.pos.y < FLOAT_LABEL(lit_5951)) {
-            i_dogP->mAction = ACT_WAIT_1;
-            i_dogP->mStayStatus = 0;
+        if (i_this->field_0x65c - i_this->current.pos.y < FLOAT_LABEL(lit_5951)) {
+            i_this->mAction = ACT_WAIT_1;
+            i_this->mStayStatus = 0;
         }
     }
 
-    cLib_addCalcAngleS2(&i_dogP->shape_angle.y,i_dogP->current.angle.y,2,0x2000);
-    cLib_addCalcAngleS2(&i_dogP->shape_angle.x,i_dogP->current.angle.x,4,0x1000);
-    i_dogP->shape_angle.z = i_dogP->current.angle.z;
+    cLib_addCalcAngleS2(&i_this->shape_angle.y,i_this->current.angle.y,2,0x2000);
+    cLib_addCalcAngleS2(&i_this->shape_angle.x,i_this->current.angle.x,4,0x1000);
+    i_this->shape_angle.z = i_this->current.angle.z;
 
     int tmp4 = 0;
     int tmp5 = 0;
 
-    if (i_dogP->field_0x616 != 0 || i_dogP->field_0x624 != 0) {
-        if (i_dogP->field_0x616 == 2) {
-            i_dogP->field_0x5f0 & 8U ? tmp4 = -10000 : tmp4 = 10000;
+    if (i_this->field_0x616 != 0 || i_this->field_0x624 != 0) {
+        if (i_this->field_0x616 == 2) {
+            i_this->field_0x5f0 & 8U ? tmp4 = -10000 : tmp4 = 10000;
         } else {
             cXyz eyePosDiff;
 
-            if (i_dogP->field_0x624 == 0) {
-                eyePosDiff = player->mEyePos - i_dogP->mEyePos;
+            if (i_this->field_0x624 == 0) {
+                eyePosDiff = player->mEyePos - i_this->mEyePos;
 
             } else {
-                i_dogP->field_0x624++;
-                eyePosDiff = i_dogP->mUnkPos - i_dogP->mEyePos;
+                i_this->field_0x624++;
+                eyePosDiff = i_this->mUnkPos - i_this->mEyePos;
             }
 
-            eyePosDiff.y += i_dogP->field_0x674.z * FLOAT_LABEL(lit_5952);
+            eyePosDiff.y += i_this->field_0x674.z * FLOAT_LABEL(lit_5952);
 
-            s16 some_angle = cM_atan2s(eyePosDiff.x,eyePosDiff.z) - i_dogP->shape_angle.y;
+            s16 some_angle = cM_atan2s(eyePosDiff.x,eyePosDiff.z) - i_this->shape_angle.y;
             s16 some_angle2 = cM_atan2s(eyePosDiff.y,JMAFastSqrt(eyePosDiff.x * eyePosDiff.x + eyePosDiff.z * eyePosDiff.z));
-            tmp5 = i_dogP->shape_angle.x + some_angle2;
+            tmp5 = i_this->shape_angle.x + some_angle2;
 
-            if (i_dogP->field_0x624 == 0 && some_angle > 24000 || some_angle < -24000) {
+            if (i_this->field_0x624 == 0 && some_angle > 24000 || some_angle < -24000) {
                 some_angle = 0;
             }
 
@@ -2866,82 +2865,82 @@ static void action(do_class* i_dogP) {
                 tmp5 = 12000;
             }
 
-            tmp4 = some_angle + i_dogP->field_0x614;
+            tmp4 = some_angle + i_this->field_0x614;
         }
 
-        i_dogP->field_0x616 = 0;
+        i_this->field_0x616 = 0;
     }
 
-    cLib_addCalcAngleS2(&i_dogP->field_0x610,tmp4 / 2,4,0x2000);
-    cLib_addCalcAngleS2(&i_dogP->field_0x60e,tmp5 / 2,4,0x2000);
-    cLib_addCalcAngleS2(&i_dogP->field_0x614,0,2,0x300);
-    cLib_addCalcAngleS2(&i_dogP->field_0x628,i_dogP->field_0x62e,4,0x400);
-    cLib_addCalcAngleS2(&i_dogP->field_0x62a,i_dogP->field_0x630,4,0x400);
+    cLib_addCalcAngleS2(&i_this->field_0x610,tmp4 / 2,4,0x2000);
+    cLib_addCalcAngleS2(&i_this->field_0x60e,tmp5 / 2,4,0x2000);
+    cLib_addCalcAngleS2(&i_this->field_0x614,0,2,0x300);
+    cLib_addCalcAngleS2(&i_this->field_0x628,i_this->field_0x62e,4,0x400);
+    cLib_addCalcAngleS2(&i_this->field_0x62a,i_this->field_0x630,4,0x400);
 
-    if (FLOAT_LABEL(lit_3682) <= fabsf(player->mSpeedF) || FLOAT_LABEL(lit_3682) <= fabsf(i_dogP->mSpeedF)) {
-        i_dogP->field_0x630 = 0;
-        i_dogP->field_0x62e = 0;
-        i_dogP->field_0x632 = cM_rndF(FLOAT_LABEL(lit_3772)) + FLOAT_LABEL(lit_5953);
-    } else if (i_dogP->field_0x632 != 0 && i_dogP->field_0x632--, i_dogP->field_0x632 == 0) {
-        i_dogP->field_0x632 = cM_rndF(FLOAT_LABEL(lit_3772)) + FLOAT_LABEL(lit_4189);
+    if (FLOAT_LABEL(lit_3682) <= fabsf(player->mSpeedF) || FLOAT_LABEL(lit_3682) <= fabsf(i_this->speedF)) {
+        i_this->field_0x630 = 0;
+        i_this->field_0x62e = 0;
+        i_this->field_0x632 = cM_rndF(FLOAT_LABEL(lit_3772)) + FLOAT_LABEL(lit_5953);
+    } else if (i_this->field_0x632 != 0 && i_this->field_0x632--, i_this->field_0x632 == 0) {
+        i_this->field_0x632 = cM_rndF(FLOAT_LABEL(lit_3772)) + FLOAT_LABEL(lit_4189);
 
         if (cM_rndF(1.0) < 0.5) {
-            i_dogP->field_0x62e = cM_rndFX(FLOAT_LABEL(lit_4191));
+            i_this->field_0x62e = cM_rndFX(FLOAT_LABEL(lit_4191));
         }
 
         if (cM_rndF(1.0) < 0.5) {
-            i_dogP->field_0x630 = cM_rndFX(FLOAT_LABEL(lit_4191));
+            i_this->field_0x630 = cM_rndFX(FLOAT_LABEL(lit_4191));
         }
     }
 
-    if (0.025 <= i_dogP->field_0x634) {
+    if (0.025 <= i_this->field_0x634) {
         if (l_HIO.field_0x1c ==  0) {
-            i_dogP->field_0x612 = 0;
-            i_dogP->field_0x610 = 0;
+            i_this->field_0x612 = 0;
+            i_this->field_0x610 = 0;
         } else {
-            i_dogP->field_0x610 = cM_ssin(i_dogP->field_0x634 * FLOAT_LABEL(lit_4344));
-            i_dogP->field_0x612 = cM_ssin(i_dogP->field_0x634 * FLOAT_LABEL(lit_4344));
+            i_this->field_0x610 = cM_ssin(i_this->field_0x634 * FLOAT_LABEL(lit_4344));
+            i_this->field_0x612 = cM_ssin(i_this->field_0x634 * FLOAT_LABEL(lit_4344));
         }
     }
 
-    cLib_addCalc2(&i_dogP->field_0x634,i_dogP->field_0x638,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_5407));
-    cLib_addCalc0(&i_dogP->field_0x638,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_5954));
+    cLib_addCalc2(&i_this->field_0x634,i_this->field_0x638,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_5407));
+    cLib_addCalc0(&i_this->field_0x638,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_5954));
 
-    i_dogP->field_0x640 = cM_ssin(i_dogP->field_0x648 * i_dogP->field_0x64c);
-    i_dogP->field_0x63e = cM_ssin(i_dogP->field_0x648 * i_dogP->field_0x650);
-    i_dogP->field_0x64c += i_dogP->field_0x648 * FLOAT_LABEL(lit_3682);
+    i_this->field_0x640 = cM_ssin(i_this->field_0x648 * i_this->field_0x64c);
+    i_this->field_0x63e = cM_ssin(i_this->field_0x648 * i_this->field_0x650);
+    i_this->field_0x64c += i_this->field_0x648 * FLOAT_LABEL(lit_3682);
 
-    if (65536.0 < i_dogP->field_0x64c) {
-        i_dogP->field_0x64c -= FLOAT_LABEL(lit_4338);
+    if (65536.0 < i_this->field_0x64c) {
+        i_this->field_0x64c -= FLOAT_LABEL(lit_4338);
     }
 
-    i_dogP->field_0x650 += i_dogP->field_0x648 * FLOAT_LABEL(lit_4401);
+    i_this->field_0x650 += i_this->field_0x648 * FLOAT_LABEL(lit_4401);
 
-    if (65536.0 < i_dogP->field_0x650) {
-        i_dogP->field_0x650 -= FLOAT_LABEL(lit_4338);
+    if (65536.0 < i_this->field_0x650) {
+        i_this->field_0x650 -= FLOAT_LABEL(lit_4338);
     }
 
-    cLib_addCalc2(&i_dogP->field_0x648,i_dogP->field_0x648,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_3772));
-    i_dogP->field_0x648 = FLOAT_LABEL(lit_3682);
+    cLib_addCalc2(&i_this->field_0x648,i_this->field_0x648,FLOAT_LABEL(lit_3662),FLOAT_LABEL(lit_3772));
+    i_this->field_0x648 = FLOAT_LABEL(lit_3682);
 
-    if (i_dogP->field_0x5e2 == 0) {
-        if (i_dogP->field_0x5e0 == 0) {
-            i_dogP->field_0x5e0 = cM_rndF(FLOAT_LABEL(lit_3772)) + FLOAT_LABEL(lit_3846);
+    if (i_this->field_0x5e2 == 0) {
+        if (i_this->field_0x5e0 == 0) {
+            i_this->field_0x5e0 = cM_rndF(FLOAT_LABEL(lit_3772)) + FLOAT_LABEL(lit_3846);
         } else {
-            i_dogP->field_0x5e0--;
-            i_dogP->field_0x5e0 < 6 ? i_dogP->field_0x5de = 5 - i_dogP->field_0x5e0 : i_dogP->field_0x5e0 = 0;
+            i_this->field_0x5e0--;
+            i_this->field_0x5e0 < 6 ? i_this->field_0x5de = 5 - i_this->field_0x5e0 : i_this->field_0x5e0 = 0;
         }
     } else {
-        cLib_addCalcAngleS2(&i_dogP->field_0x5de,3,1,1);
-        i_dogP->field_0x5e2 = 0;
-        i_dogP->field_0x5e0 = 0x3c;
+        cLib_addCalcAngleS2(&i_this->field_0x5de,3,1,1);
+        i_this->field_0x5e2 = 0;
+        i_this->field_0x5e0 = 0x3c;
     }
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void action(do_class* i_dogP) {
+static asm void action(do_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/action__FP8do_class.s"
 }
@@ -2949,28 +2948,28 @@ static asm void action(do_class* i_dogP) {
 #endif
 
 /* 8066DD48-8066DE64 0060E8 011C+00 1/1 0/0 0/0 .text            message__FP8do_class */
-static void message(do_class* i_dogP) {
-    if (i_dogP->field_0xc06 != 0) {
-        i_dogP->field_0x604 = 10;
+static void message(do_class* i_this) {
+    if (i_this->field_0xc06 != 0) {
+        i_this->field_0x604 = 10;
 
-        if (i_dogP->mMsg.doFlow(i_dogP,0,0)) {
+        if (i_this->mMsg.doFlow(i_this,0,0)) {
             i_dComIfGp_event_reset();
-            i_dogP->field_0xc06 = 0;
+            i_this->field_0xc06 = 0;
         }
 
     } else {
-        if (i_dComIfGp_event_runCheck() && i_dogP->mEvtInfo.checkCommandTalk()) {
-            i_dogP->mMsg.init(i_dogP,i_dogP->field_0xc08,0,0);
-            i_dogP->field_0xc06 = 1;
+        if (i_dComIfGp_event_runCheck() && i_this->mEvtInfo.checkCommandTalk()) {
+            i_this->mMsg.init(i_this,i_this->field_0xc08,0,0);
+            i_this->field_0xc06 = 1;
         }
 
-        if (i_dogP->field_0xc05 == 2 && i_dogP->field_0xc08 != -1 && daPy_py_c::i_checkNowWolf()) {
-            fopAcM_OnStatus(i_dogP,0);
-            cLib_onBit(i_dogP->mAttentionInfo.mFlags,10);
-            i_dogP->mEvtInfo.i_onCondition(1);
+        if (i_this->field_0xc05 == 2 && i_this->field_0xc08 != -1 && daPy_py_c::i_checkNowWolf()) {
+            fopAcM_OnStatus(i_this,0);
+            cLib_onBit(i_this->mAttentionInfo.mFlags,10);
+            i_this->mEvtInfo.i_onCondition(1);
         } else {
-            fopAcM_OffStatus(i_dogP,0);
-            cLib_offBit(i_dogP->mAttentionInfo.mFlags,10);
+            fopAcM_OffStatus(i_this,0);
+            cLib_offBit(i_this->mAttentionInfo.mFlags,10);
         }
         
     }
@@ -2980,14 +2979,14 @@ static void message(do_class* i_dogP) {
 
 /* 8066DE64-8066E494 006204 0630+00 2/1 0/0 0/0 .text            daDo_Execute__FP8do_class */
 #ifdef NONMATCHING
-static void daDo_Execute(do_class* i_dogP) {
+static void daDo_Execute(do_class* i_this) {
     
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daDo_Execute(do_class* i_dogP) {
+static asm void daDo_Execute(do_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/daDo_Execute__FP8do_class.s"
 }
@@ -2995,22 +2994,22 @@ static asm void daDo_Execute(do_class* i_dogP) {
 #endif
 
 /* 8066E494-8066E49C 006834 0008+00 1/0 0/0 0/0 .text            daDo_IsDelete__FP8do_class */
-static bool daDo_IsDelete(do_class* i_dogP) {
+static bool daDo_IsDelete(do_class* i_this) {
     return true;
 }
 
 /* 8066E49C-8066E504 00683C 0068+00 1/0 0/0 0/0 .text            daDo_Delete__FP8do_class */
 #ifdef NONMATCHING
 int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* resName);
-static int daDo_Delete(do_class* i_dogP) {
-    u32 actor_id = fopAcM_GetID(i_dogP);
-    dComIfG_resDelete(&i_dogP->mPhase, "Do");
-    if (i_dogP->field_0xcc0 != 0) {
+static int daDo_Delete(do_class* i_this) {
+    u32 actor_id = fopAcM_GetID(i_this);
+    dComIfG_resDelete(&i_this->mPhase, "Do");
+    if (i_this->field_0xcc0 != 0) {
         u8* tmp = (u8*)struct_8066F2B4 + 2;
         *tmp = 0;
     }
-    if (i_dogP->mHeap) {
-        i_dogP->mSound.deleteObject();
+    if (i_this->mHeap) {
+        i_this->mSound.deleteObject();
     }
     return 1;
 }
