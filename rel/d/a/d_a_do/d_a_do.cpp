@@ -2326,7 +2326,7 @@ COMPILER_STRIP_GATE(0x8066EF5C, &lit_5407);
 #pragma pop
 
 /* 8066C894-8066CAA8 004C34 0214+00 1/1 0/0 0/0 .text            do_a_swim__FP8do_class */
-#ifndef NONMATCHING
+#ifdef NONMATCHING
 static void do_a_swim(do_class* i_dogP) {
     i_dogP->field_0x648 = 2000.0;
     cLib_addCalc0(&i_dogP->mSpeedF,1.0,1.0);

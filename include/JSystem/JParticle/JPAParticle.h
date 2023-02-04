@@ -237,10 +237,10 @@ public:
     void setRate(f32 rate) { mRate = rate; }
     void setEmitterCallBackPtr(JPAEmitterCallBack* ptr) { mpEmtrCallBack = ptr; }
     void setGlobalRTMatrix(const Mtx m) { JPASetRMtxTVecfromMtx(m, mGlobalRot, &mGlobalTrs); }
-    void setGlobalScale(const JGeometry::TVec3<f32>& scale) {
-        mGlobalScl = scale;
-        mGlobalPScl = scale;
-    }
+    // void setGlobalScale(const JGeometry::TVec3<f32>& scale) {
+    //     mGlobalScl = scale;
+    //     mGlobalPScl = scale;
+    // }
 
     f32 get_r_f() { return mRndm.get_rndm_f(); }
     f32 get_r_zp() { return mRndm.get_rndm_zp(); }
