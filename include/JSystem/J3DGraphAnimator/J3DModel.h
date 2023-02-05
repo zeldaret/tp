@@ -84,6 +84,7 @@ public:
 
     // is there a better way to handle inlines with same name as non-inlines?
     MtxP i_getAnmMtx(int p1) { return mMtxBuffer->getAnmMtx(p1); }
+    void i_setAnmMtx(int p1, Mtx mtx) { mMtxBuffer->setAnmMtx(p1, mtx); }
 
     /* 0x04 */ J3DModelData* mModelData;
     /* 0x08 */ u32 mFlags;
