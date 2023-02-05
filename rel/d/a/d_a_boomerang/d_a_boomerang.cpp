@@ -1463,21 +1463,11 @@ asm void daBoomerang_c::createHeap() {
 #pragma pop
 
 /* 804A2064-804A2084 004024 0020+00 1/1 0/0 0/0 .text daBoomerang_createHeap__FP10fopAc_ac_c */
-#ifndef NONMATCHING
 static void daBoomerang_createHeap(fopAc_ac_c* i_this) {
     daBoomerang_c* boomerang = (daBoomerang_c*)i_this;
     boomerang->createHeap();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBoomerang_createHeap(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/daBoomerang_createHeap__FP10fopAc_ac_c.s"
-}
-#pragma pop
-#endif
+
 
 /* ############################################################################################## */
 /* 804A298C-804A2990 00013C 0004+00 1/1 0/0 0/0 .rodata          @6077 */
