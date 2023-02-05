@@ -768,7 +768,6 @@ asm void daBoomerang_c::setLockActor(fopAc_ac_c* param_0, int param_1) {
 
 /* 8049F9A4-8049F9F0 001964 004C+00 3/3 0/0 0/0 .text            resetLockActor__13daBoomerang_cFv
  */
-#ifndef NONMATCHING
 void daBoomerang_c::resetLockActor() {
     for (int i = 0; i < 5; i++) {
         field_0x6ac[i] = -1;
@@ -779,16 +778,6 @@ void daBoomerang_c::resetLockActor() {
     mLockCnt = 0;
     field_0x951 = 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBoomerang_c::resetLockActor() {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/resetLockActor__13daBoomerang_cFv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 804A2900-804A2904 0000B0 0004+00 1/1 0/0 0/0 .rodata          @4886 */
@@ -1434,14 +1423,9 @@ asm void daBoomerang_c::execute() {
 #pragma pop
 
 /* 804A1BD4-804A1BF4 003B94 0020+00 1/0 0/0 0/0 .text daBoomerang_Execute__FP13daBoomerang_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBoomerang_Execute(daBoomerang_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/daBoomerang_Execute__FP13daBoomerang_c.s"
+static void daBoomerang_Execute(daBoomerang_c* i_this) {
+    i_this->execute();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804A2CC0-804A2CD0 0001E4 0010+00 3/3 0/0 0/0 .data            __vt__19daBoomerang_sight_c */
