@@ -469,6 +469,27 @@ asm void daBoomerang_sight_c::initFrame(int param_0) {
 #pragma pop
 
 /* 8049EDE8-8049EE8C 000DA8 00A4+00 1/1 0/0 0/0 .text copyNumData__19daBoomerang_sight_cFi */
+#ifndef NONMATCHING
+void daBoomerang_sight_c::copyNumData(int i_idx) {
+    int idx2 = i_idx + 1;
+    
+    u8 alpha = mAlpha[i_idx];
+    mAlpha[i_idx] = mAlpha[idx2];
+    mAlpha[idx2] = alpha;
+
+    f32 some_float1 = field_0x98[i_idx];
+    field_0x98[i_idx] = field_0x98[idx2];
+    field_0x98[idx2] = some_float1;
+
+    f32 some_float2 = field_0xb0[i_idx];
+    field_0xb0[i_idx] = field_0xb0[idx2];
+    field_0xb0[idx2] = some_float2;
+
+    cXyz pos = field_0xc8[i_idx];
+    field_0xc8[i_idx] = field_0xc8[idx2];
+    field_0xc8[idx2] = pos;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -477,6 +498,7 @@ asm void daBoomerang_sight_c::copyNumData(int param_0) {
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/copyNumData__19daBoomerang_sight_cFi.s"
 }
 #pragma pop
+#endif
 
 /* 8049EE8C-8049EEC8 000E4C 003C+00 3/3 0/0 0/0 .text            __dt__4cXyzFv */
 #pragma push
