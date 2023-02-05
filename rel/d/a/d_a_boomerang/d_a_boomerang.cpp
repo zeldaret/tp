@@ -652,14 +652,9 @@ asm void daBoomerang_c::draw() {
 
 /* 8049F5D4-8049F5F4 001594 0020+00 1/0 0/0 0/0 .text            daBoomerang_Draw__FP13daBoomerang_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBoomerang_Draw(daBoomerang_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/daBoomerang_Draw__FP13daBoomerang_c.s"
+static void daBoomerang_Draw(daBoomerang_c* i_this) {
+    i_this->draw();
 }
-#pragma pop
 
 /* 8049F5F4-8049F63C 0015B4 0048+00 1/1 0/0 0/0 .text
  * lockLineCallback__13daBoomerang_cFP10fopAc_ac_c              */
