@@ -1447,14 +1447,10 @@ asm daBoomerang_c::~daBoomerang_c() {
 #pragma pop
 
 /* 804A1EBC-804A1EE4 003E7C 0028+00 1/0 0/0 0/0 .text daBoomerang_Delete__FP13daBoomerang_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBoomerang_Delete(daBoomerang_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/daBoomerang_Delete__FP13daBoomerang_c.s"
+static int daBoomerang_Delete(daBoomerang_c* i_this) {
+    i_this->~daBoomerang_c();
+    return 1;
 }
-#pragma pop
 
 /* 804A1EE4-804A2064 003EA4 0180+00 1/1 0/0 0/0 .text            createHeap__13daBoomerang_cFv */
 #pragma push
