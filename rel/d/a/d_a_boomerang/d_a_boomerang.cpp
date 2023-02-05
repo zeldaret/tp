@@ -697,23 +697,11 @@ void daBoomerang_c::moveLineCallback(fopAc_ac_c* i_actorP) {
 
 /* 8049F6EC-8049F710 0016AC 0024+00 1/1 0/0 0/0 .text
  * daBoomerang_moveLineCallback__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
-#ifndef NONMATCHING
 static void daBoomerang_moveLineCallback(fopAc_ac_c* i_actorP1, dCcD_GObjInf* param_1,
                                              fopAc_ac_c* i_actorP2, dCcD_GObjInf* param_3) {
     daBoomerang_c* boomerang = (daBoomerang_c*)i_actorP1;
     boomerang->moveLineCallback(i_actorP2);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBoomerang_moveLineCallback(fopAc_ac_c* param_0, dCcD_GObjInf* param_1,
-                                             fopAc_ac_c* param_2, dCcD_GObjInf* param_3) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/func_8049F6EC.s"
-}
-#pragma pop
-#endif
 
 /* 8049F710-8049F818 0016D0 0108+00 3/3 0/0 0/0 .text            pushLockList__13daBoomerang_cFi */
 #pragma push
@@ -727,6 +715,27 @@ asm void daBoomerang_c::pushLockList(int param_0) {
 
 /* 8049F818-8049F874 0017D8 005C+00 1/0 0/0 0/0 .text
  * cancelLockActorBase__13daBoomerang_cFP10fopAc_ac_c           */
+#ifdef NONMATCHING
+// no clue. pushLockList appears to be in the loop, but doing so causes a ton of problems
+void daBoomerang_c::cancelLockActorBase(fopAc_ac_c* i_actorP) {
+    int i = 0;
+    int lock_count = mLockCnt;
+
+    if (lock_count <= 0) {
+        return;
+    }
+
+    while (true) {
+        if (field_0x6c0[i] == i_actorP) { 
+            break;
+        } else { 
+            i++;
+        }
+    }
+
+    pushLockList(i);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -735,9 +744,18 @@ asm void daBoomerang_c::cancelLockActorBase(fopAc_ac_c* param_0) {
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/cancelLockActorBase__13daBoomerang_cFP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* 8049F874-8049F8B0 001834 003C+00 1/0 0/0 0/0 .text
  * setAimActorBase__13daBoomerang_cFP10fopAc_ac_c               */
+#ifndef NONMATCHING
+void daBoomerang_c::setAimActorBase(fopAc_ac_c* i_actorP) {
+    if (mLockCnt == 0) {
+        onStateFlg0(FLG0_UNK);
+        setLockActor(i_actorP,0);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -746,6 +764,7 @@ asm void daBoomerang_c::setAimActorBase(fopAc_ac_c* param_0) {
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/setAimActorBase__13daBoomerang_cFP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* 8049F8B0-8049F9A4 001870 00F4+00 2/2 0/0 0/0 .text setLockActor__13daBoomerang_cFP10fopAc_ac_ci
  */

@@ -62,6 +62,7 @@ class daAlink_c;
 class daBoomerang_c : public fopAc_ac_c {
 public:
     enum daBoomerang_FLG0 {
+        /* 0x004 */ FLG0_UNK = 0x004,
         /* 0x800 */ FLG0_LOCK_DIST_CANCEL = 0x800,
         /* 0x080 */ WIND_CATCH = 0x80,
     };
