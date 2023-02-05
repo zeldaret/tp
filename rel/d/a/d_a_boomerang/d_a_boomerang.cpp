@@ -610,6 +610,25 @@ asm void daBoomerang_sight_c::draw() {
 #pragma pop
 
 /* 8049F280-8049F360 001240 00E0+00 1/1 0/0 0/0 .text windModelCallBack__13daBoomerang_cFv */
+#ifndef NONMATCHING
+void daBoomerang_c::windModelCallBack() {
+    mDoMtx_YrotS((MtxP)mDoMtx_stack_c::get(),shape_angle.y);
+    mDoMtx_ZrotM((MtxP)mDoMtx_stack_c::get(),-shape_angle.z);
+    mDoMtx_XrotM((MtxP)mDoMtx_stack_c::get(),-shape_angle.x);
+    mDoMtx_YrotM((MtxP)mDoMtx_stack_c::get(),-shape_angle.y);
+
+    PSMTXConcat(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx, mDoMtx_stack_c::get());
+
+    mDoMtx_stack_c::get()[0][3] = J3DSys::mCurrentMtx[0][3];
+    mDoMtx_stack_c::get()[1][3] = J3DSys::mCurrentMtx[1][3];
+    mDoMtx_stack_c::get()[2][3] = J3DSys::mCurrentMtx[2][3];
+
+    PSMTXCopy(mDoMtx_stack_c::get(),J3DSys::mCurrentMtx);
+    field_0x56c->setAnmMtx(4,mDoMtx_stack_c::get());
+
+    return;  
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -618,6 +637,7 @@ asm void daBoomerang_c::windModelCallBack() {
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/windModelCallBack__13daBoomerang_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8049F360-8049F39C 001320 003C+00 1/1 0/0 0/0 .text daBoomeang_windModelCallBack__FP8J3DJointi
  */
