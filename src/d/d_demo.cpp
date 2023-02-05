@@ -1251,8 +1251,8 @@ JStage::TObject* dDemo_object_c::appendActor(fopAc_ac_c* p_actor) {
     demoActor->setActor(p_actor);
     p_actor->mDemoActorId = mActorNum;
 
-    if (p_actor->field_0x524 != NULL) {
-        demoActor->setModel((J3DModel*)p_actor->field_0x524);
+    if (p_actor->model != NULL) {
+        demoActor->setModel((J3DModel*)p_actor->model);
     }
 
     return demoActor;

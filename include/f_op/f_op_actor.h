@@ -129,7 +129,7 @@ public:
         } mSphere;
     } mCull;
     /* 0x520 */ f32 mCullSizeFar;
-    /* 0x524 */ J3DModel* field_0x524;
+    /* 0x524 */ J3DModel* model;
     /* 0x528 */ dJntCol_c* mJntCol;
     /* 0x52C */ f32 speedF;
     /* 0x530 */ f32 mGravity;

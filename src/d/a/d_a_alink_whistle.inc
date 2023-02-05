@@ -200,7 +200,7 @@ int daAlink_c::procHawkSubjectInit() {
     }
 
     mCommonCounter = 0;
-    field_0x59e = 0;
+    mBodyAngleY = 0;
     deleteEquipItem(0, 1);
     return 1;
 }

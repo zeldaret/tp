@@ -98,7 +98,7 @@ int daCrod_c::create() {
     mAtCps.Set(l_atCpsSrc);
     mAtCps.SetStts(&mCcStts);
 
-    field_0x524 = mpBallModel;
+    model = mpBallModel;
 
     J3DModelData* model_data = mpBallModel->getModelData();
     mpBallBrk =

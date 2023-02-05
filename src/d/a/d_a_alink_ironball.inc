@@ -132,8 +132,8 @@ asm void daAlink_c::setIronBallChainPos() {
 /* 80113CA0-80113D58 10E5E0 00B8+00 1/1 0/0 0/0 .text checkIronBallReturnChange__9daAlink_cFv */
 BOOL daAlink_c::checkIronBallReturnChange() {
     if (mProcID != PROC_IRON_BALL_THROW ||
-        (!(mLookAngleY > 0x400) && mIronBallBgChkPos.y < (current.pos.y - lit_8472)) ||
-        (mLookAngleY > 0x400 && mItemMode == 0x64) ||
+        (!(mBodyAngleX > 0x400) && mIronBallBgChkPos.y < (current.pos.y - lit_8472)) ||
+        (mBodyAngleX > 0x400 && mItemMode == 0x64) ||
         (field_0xFB8.ChkAtHit() && field_0xFB8.GetAtHitGObj() != NULL &&
          static_cast<dCcD_GObjInf*>(field_0xFB8.GetAtHitGObj())->ChkTgIronBallRebound())) {
         setIronBallReturn(0);
