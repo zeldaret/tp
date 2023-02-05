@@ -69,11 +69,7 @@ struct daDo_HIO_tmp {
     /* 0x1E */ u16 mWaterHuntAnimType;
 };
 
-struct some_class {
-
-};
-
-class daDo_HIO_c : public some_class  {
+class daDo_HIO_c {
 public:
 /* 80667D4C */ daDo_HIO_c();
 /* 8066ED40 */ virtual ~daDo_HIO_c();
@@ -131,10 +127,10 @@ public:
     /* 0x617 */ u8 field_0x617;
     /* 0x618 */ cXyz mUnkPos; // something to do with the dog's eye position
     /* 0x624 */ s16 field_0x624;
-    /* 0x63C */ s16 field_0x63c;
+    /* 0x626 */ csXyz field_0x626;
+    /* 0x62C */ u8 field_0x62c[18];
     /* 0x63E */ csXyz field_0x63e;
     /* 0x644 */ f32 field_0x644;
-    /* 0x000 */ u8 field_0x000[20]; // some alignment issue here
     /* 0x648 */ f32 field_0x648;
     /* 0x64C */ f32 field_0x64c;
     /* 0x650 */ f32 field_0x650;

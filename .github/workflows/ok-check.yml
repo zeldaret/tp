@@ -17,4 +17,4 @@ jobs:
     - name: Copy in dol and compilers
       run: cp /tmp/baserom.dol ./baserom.dol && cp -r /tmp/mwcc_compiler/ tools/mwcc_compiler && cp tools/mwcc_compiler/2.7/mwcceppc.exe tools/mwcc_compiler/2.7/mwcceppc_modded.exe  && chown root /github/home/
     - name: Run Make (OK)
-      run: make all rels
+      run: make all rels && ./tp check --rels

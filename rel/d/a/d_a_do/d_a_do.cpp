@@ -438,21 +438,21 @@ static int nodeCallBack(J3DJoint* i_jntP, int param_1) {
     if (param_1 == 0) {
         int joint_num = i_jntP->getJntNo();
         J3DModel* model = j3dSys.getModel();
-        UserArea* user_area = (UserArea*)model->getUserArea();
+        do_class* user_area = (do_class*)model->getUserArea();
 
         if (user_area) {
             PSMTXCopy(model->i_getAnmMtx(joint_num), *calc_mtx);
 
             if (joint_num == 9 || joint_num == 10) {
-                cMtx_YrotM(*calc_mtx, user_area->field_0x610 + user_area->field_0x628);
-                cMtx_XrotM(*calc_mtx, user_area->field_0x612 + user_area->field_0x62a);
-                cMtx_ZrotM(*calc_mtx, user_area->field_0x60e);
+                cMtx_YrotM(*calc_mtx, user_area->field_0x60e.y + user_area->field_0x626.y);
+                cMtx_XrotM(*calc_mtx, user_area->field_0x60e.z + user_area->field_0x626.z);
+                cMtx_ZrotM(*calc_mtx, user_area->field_0x60e.x);
             } else if (joint_num == 22) {
-                cMtx_YrotM(*calc_mtx, user_area->field_0x640 << 1);
-                cMtx_ZrotM(*calc_mtx, user_area->field_0x63e << 1);
+                cMtx_YrotM(*calc_mtx, user_area->field_0x63e.y << 1);
+                cMtx_ZrotM(*calc_mtx, user_area->field_0x63e.x << 1);
             } else {
-                cMtx_YrotM(*calc_mtx, user_area->field_0x640);
-                cMtx_ZrotM(*calc_mtx, user_area->field_0x63e);
+                cMtx_YrotM(*calc_mtx, user_area->field_0x63e.y);
+                cMtx_ZrotM(*calc_mtx, user_area->field_0x63e.x);
             }
 
             model->setAnmMtx(joint_num, *calc_mtx);

@@ -24,19 +24,6 @@ struct J3DUnkCalc2 {
     virtual void calc(J3DModelData* mpModelData);
 };
 
-struct UserArea {
-    u8 field_0x00[0x60e];
-    s16 field_0x60e;
-    s16 field_0x610;
-    s16 field_0x612;
-    u8 field_0x614[0x14];
-    s16 field_0x628;
-    s16 field_0x62a;
-    u8 field_0x62c[0x12];
-    s16 field_0x63e;
-    s16 field_0x640;
-};
-
 typedef void (*J3DCalcCallBack)(J3DModel*, u32 timing);
 
 class J3DModel {
@@ -97,7 +84,7 @@ public:
 
     // is there a better way to handle inlines with same name as non-inlines?
     MtxP i_getAnmMtx(int p1) { return mMtxBuffer->getAnmMtx(p1); }
-    void i_setAnmMtx(int p1, Mtx mtx) { return mMtxBuffer->setAnmMtx(p1, mtx); }
+    void i_setAnmMtx(int p1, Mtx mtx) { mMtxBuffer->setAnmMtx(p1, mtx); }
 
     /* 0x04 */ J3DModelData* mModelData;
     /* 0x08 */ u32 mFlags;
