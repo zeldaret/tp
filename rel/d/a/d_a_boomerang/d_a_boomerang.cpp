@@ -610,7 +610,6 @@ asm void daBoomerang_sight_c::draw() {
 #pragma pop
 
 /* 8049F280-8049F360 001240 00E0+00 1/1 0/0 0/0 .text windModelCallBack__13daBoomerang_cFv */
-#ifndef NONMATCHING
 void daBoomerang_c::windModelCallBack() {
     mDoMtx_YrotS((MtxP)mDoMtx_stack_c::get(),shape_angle.y);
     mDoMtx_ZrotM((MtxP)mDoMtx_stack_c::get(),-shape_angle.z);
@@ -628,27 +627,18 @@ void daBoomerang_c::windModelCallBack() {
 
     return;  
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBoomerang_c::windModelCallBack() {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/windModelCallBack__13daBoomerang_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8049F360-8049F39C 001320 003C+00 1/1 0/0 0/0 .text daBoomeang_windModelCallBack__FP8J3DJointi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBoomeang_windModelCallBack(J3DJoint* param_0, int param_1) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/daBoomeang_windModelCallBack__FP8J3DJointi.s"
+static int daBoomeang_windModelCallBack(J3DJoint* param_0, int param_1) {
+    daBoomerang_c* boomerang = (daBoomerang_c*)j3dSys.getModel()->getUserArea();
+
+    if (param_1 == 0) {
+        boomerang->windModelCallBack();
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8049F39C-8049F5D4 00135C 0238+00 1/1 0/0 0/0 .text            draw__13daBoomerang_cFv */
 #pragma push
