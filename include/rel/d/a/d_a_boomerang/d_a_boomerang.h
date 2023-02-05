@@ -114,7 +114,7 @@ private:
     /* 0x598 */ daBoomerang_sight_c mSight;
     /* 0x6A8 */ u32 field_0x6a8;
     /* 0x6AC */ u32 field_0x6ac[5];
-    /* 0x6C0 */ fopAc_ac_c* field_0x6c0[5];
+    /* 0x6C0 */ fopAc_ac_c* mLockActors[5]; // Actors corresponding to the five target points
     /* 0x6D4 */ fopAc_ac_c* field_0x6d4;
     /* 0x6D8 */ u8 field_0x6d8[4];
     /* 0x6DC */ cXyz field_0x6dc[5];

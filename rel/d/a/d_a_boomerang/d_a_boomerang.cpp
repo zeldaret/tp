@@ -680,9 +680,9 @@ static void daBoomerang_lockLineCallback(fopAc_ac_c* i_actorP1, dCcD_GObjInf* pa
 void daBoomerang_c::moveLineCallback(fopAc_ac_c* i_actorP) {
     if (i_actorP) {
         for (int i = 0; i < 5; i++) {
-            if (field_0x6c0[i] == i_actorP) {
+            if (mLockActors[i] == i_actorP) {
                 field_0x6ac[i] = -1;
-                field_0x6c0[i] = 0;
+                mLockActors[i] = 0;
 
                 if (i == field_0x951) {
                     field_0x957 = 10;
@@ -726,7 +726,7 @@ void daBoomerang_c::cancelLockActorBase(fopAc_ac_c* i_actorP) {
     }
 
     while (true) {
-        if (field_0x6c0[i] == i_actorP) { 
+        if (mLockActors[i] == i_actorP) { 
             break;
         } else { 
             i++;
@@ -748,23 +748,12 @@ asm void daBoomerang_c::cancelLockActorBase(fopAc_ac_c* param_0) {
 
 /* 8049F874-8049F8B0 001834 003C+00 1/0 0/0 0/0 .text
  * setAimActorBase__13daBoomerang_cFP10fopAc_ac_c               */
-#ifndef NONMATCHING
 void daBoomerang_c::setAimActorBase(fopAc_ac_c* i_actorP) {
     if (mLockCnt == 0) {
         onStateFlg0(FLG0_UNK);
         setLockActor(i_actorP,0);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBoomerang_c::setAimActorBase(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/setAimActorBase__13daBoomerang_cFP10fopAc_ac_c.s"
-}
-#pragma pop
-#endif
 
 /* 8049F8B0-8049F9A4 001870 00F4+00 2/2 0/0 0/0 .text setLockActor__13daBoomerang_cFP10fopAc_ac_ci
  */
@@ -779,6 +768,18 @@ asm void daBoomerang_c::setLockActor(fopAc_ac_c* param_0, int param_1) {
 
 /* 8049F9A4-8049F9F0 001964 004C+00 3/3 0/0 0/0 .text            resetLockActor__13daBoomerang_cFv
  */
+#ifndef NONMATCHING
+void daBoomerang_c::resetLockActor() {
+    for (int i = 0; i < 5; i++) {
+        field_0x6ac[i] = -1;
+        mLockActors[i] = 0;
+        field_0x718[i] = 0;
+    }
+
+    mLockCnt = 0;
+    field_0x951 = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -787,6 +788,7 @@ asm void daBoomerang_c::resetLockActor() {
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/resetLockActor__13daBoomerang_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804A2900-804A2904 0000B0 0004+00 1/1 0/0 0/0 .rodata          @4886 */
