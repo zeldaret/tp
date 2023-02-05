@@ -677,17 +677,33 @@ static void daBoomerang_lockLineCallback(fopAc_ac_c* i_actorP1, dCcD_GObjInf* pa
 
 /* 8049F660-8049F6EC 001620 008C+00 1/1 0/0 0/0 .text
  * moveLineCallback__13daBoomerang_cFP10fopAc_ac_c              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBoomerang_c::moveLineCallback(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/moveLineCallback__13daBoomerang_cFP10fopAc_ac_c.s"
+void daBoomerang_c::moveLineCallback(fopAc_ac_c* i_actorP) {
+    if (i_actorP) {
+        for (int i = 0; i < 5; i++) {
+            if (field_0x6c0[i] == i_actorP) {
+                field_0x6ac[i] = -1;
+                field_0x6c0[i] = 0;
+
+                if (i == field_0x951) {
+                    field_0x957 = 10;
+                    field_0x9ac = i_actorP->mEyePos;
+                    field_0x9c4 = current.pos;
+                }
+            }
+        }
+    }    
 }
-#pragma pop
+
 
 /* 8049F6EC-8049F710 0016AC 0024+00 1/1 0/0 0/0 .text
  * daBoomerang_moveLineCallback__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
+#ifndef NONMATCHING
+static void daBoomerang_moveLineCallback(fopAc_ac_c* i_actorP1, dCcD_GObjInf* param_1,
+                                             fopAc_ac_c* i_actorP2, dCcD_GObjInf* param_3) {
+    daBoomerang_c* boomerang = (daBoomerang_c*)i_actorP1;
+    boomerang->moveLineCallback(i_actorP2);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -697,6 +713,7 @@ static asm void daBoomerang_moveLineCallback(fopAc_ac_c* param_0, dCcD_GObjInf* 
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/func_8049F6EC.s"
 }
 #pragma pop
+#endif
 
 /* 8049F710-8049F818 0016D0 0108+00 3/3 0/0 0/0 .text            pushLockList__13daBoomerang_cFi */
 #pragma push
