@@ -80,14 +80,14 @@ cXyz* daAlink_c::checkBowCameraArrowPosP(s16* param_0, s16* param_1) {
         var_28 = shape_angle.y;
     }
 
-    var_28 += field_0x59e;
+    var_28 += mBodyAngleY;
 
     mDoMtx_stack_c::transS(field_0x3834);
     concatMagneBootMtx();
-    mDoMtx_stack_c::ZXYrotM(mLookAngleY, var_28, 0);
+    mDoMtx_stack_c::ZXYrotM(mBodyAngleX, var_28, 0);
     mDoMtx_stack_c::multVec(&localPos, &field_0x37e0);
 
-    *param_0 = mLookAngleY;
+    *param_0 = mBodyAngleX;
     *param_1 = var_28;
     return &field_0x37e0;
 }

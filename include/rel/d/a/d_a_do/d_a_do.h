@@ -1,20 +1,20 @@
 #ifndef D_A_DO_H
 #define D_A_DO_H
 
-#include "dolphin/types.h"
-#include "d/a/d_a_player.h"
+#include "JSystem/J3DGraphAnimator/J3DAnimation.h"
+#include "SSystem/SComponent/c_phase.h"
+#include "Z2AudioLib/Z2SoundObject.h"
 #include "d/a/d_a_item_static.h"
+#include "d/a/d_a_player.h"
 #include "d/bg/d_bg_s_acch.h"
 #include "d/cc/d_cc_d.h"
 #include "d/msg/d_msg_flow.h"
 #include "d/particle/d_particle.h"
+#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
-#include "m_Do/m_Do_mtx.h"
-#include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_controller_pad.h"
-#include "JSystem/J3DGraphAnimator/J3DAnimation.h"
-#include "SSystem/SComponent/c_phase.h"
-#include "Z2AudioLib/Z2SoundObject.h"
+#include "m_Do/m_Do_ext.h"
+#include "m_Do/m_Do_mtx.h"
 
 enum daDo_Anm {
     ANM_BULBUL = 6,
@@ -71,20 +71,20 @@ struct daDo_HIO_tmp {
 
 class daDo_HIO_c {
 public:
-/* 80667D4C */ daDo_HIO_c();
-/* 8066ED40 */ virtual ~daDo_HIO_c();
+    /* 80667D4C */ daDo_HIO_c();
+    /* 8066ED40 */ virtual ~daDo_HIO_c();  // should be inlined
 
 public:
-/* 0x04 */ s8 field_0x04;
-/* 0x05 */ u8 field_0x05[3];
-/* 0x08 */ f32 mBaseSize;
-/* 0x0C */ f32 mWalkSpeed;
-/* 0x10 */ f32 mRunSpeed;
-/* 0x14 */ f32 mSwimSpeed;
-/* 0x18 */ f32 mPlayerRecogniztionDist;
-/* 0x1C */ u8 field_0x1c;
-/* 0x1D */ u8 mSwimming;
-/* 0x1E */ u16 mWaterHuntAnimType;
+    /* 0x04 */ s8 field_0x04;
+    /* 0x05 */ u8 field_0x05[3];
+    /* 0x08 */ f32 mBaseSize;
+    /* 0x0C */ f32 mWalkSpeed;
+    /* 0x10 */ f32 mRunSpeed;
+    /* 0x14 */ f32 mSwimSpeed;
+    /* 0x18 */ f32 mPlayerRecogniztionDist;
+    /* 0x1C */ u8 field_0x1c;
+    /* 0x1D */ u8 mSwimming;
+    /* 0x1E */ u16 mWaterHuntAnimType;
 };
 
 class do_class : public fopEn_enemy_c {
@@ -95,7 +95,7 @@ public:
     /* 0x5B6 */ u8 field_0x5b6;
     /* 0x5B7 */ u8 field_0x5b7;
     /* 0x5B8 */ cXyz field_0x5b8;
-    /* 0x5C4 */ u8 field_0x5c4[4]; 
+    /* 0x5C4 */ u8 field_0x5c4[4];
     /* 0x5C8 */ f32 mDistFromPlayer;
     /* 0x5CC */ s16 mAngleYFromPlayer;
     /* 0x5CE */ u8 field_0x5ce[2];
@@ -114,7 +114,7 @@ public:
     /* 0x5F0 */ s16 field_0x5f0;
     /* 0x5F2 */ s16 mAction;
     /* 0x5F4 */ s16 field_0x5f4;
-    /* 0x5F6 */ s16 mStayStatus; // probably a better name for this
+    /* 0x5F6 */ s16 mStayStatus;  // probably a better name for this
     /* 0x5F8 */ u32 mShadowKey;
     /* 0x5FC */ s16 field_0x5fc[4];
     /* 0x604 */ u16 field_0x604;
@@ -125,7 +125,7 @@ public:
     /* 0x614 */ s16 field_0x614;
     /* 0x616 */ u8 field_0x616;
     /* 0x617 */ u8 field_0x617;
-    /* 0x618 */ cXyz mUnkPos; // something to do with the dog's eye position
+    /* 0x618 */ cXyz mUnkPos;  // something to do with the dog's eye position
     /* 0x624 */ s16 field_0x624;
     /* 0x626 */ csXyz field_0x626;
     /* 0x62C */ u8 field_0x62c[18];
@@ -136,7 +136,7 @@ public:
     /* 0x650 */ f32 field_0x650;
     /* 0x654 */ s16 field_0x654;
     /* 0x656 */ s16 field_0x656;
-    /* 0x658 */ f32 mEyePosYDistFromPlayer; 
+    /* 0x658 */ f32 mEyePosYDistFromPlayer;
     /* 0x65C */ f32 field_0x65c;
     /* 0x660 */ s16 field_0x660;
     /* 0x662 */ u8 field_0x662[2];
@@ -159,7 +159,7 @@ public:
     /* 0x6B8 */ u8 field_0x6b8;
     /* 0x6B9 */ u8 field_0x6b9[3];
     /* 0x6BC */ dBgS_AcchCir mBgS_AcchCir;
-    /* 0x6FC */ dBgS_ObjAcch mBgS_Acch;      
+    /* 0x6FC */ dBgS_ObjAcch mBgS_Acch;
     /* 0x8D4 */ dCcD_Stts mStts;
     /* 0x910 */ dCcD_Sph mCcSph1;
     /* 0xA48 */ dCcD_Sph mCcSph2;
@@ -192,7 +192,6 @@ public:
 
 public:
     /* 8066EAE4 */ do_class();
-    
 };
 
 #endif /* D_A_DO_H */

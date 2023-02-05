@@ -2357,12 +2357,12 @@ int daAlink_c::execute() {
                 if (checkUpperGuardAnime()) {
                     setBodyAngleXReadyAnime(0);
                 } else if (!checkUpperReadyThrowAnime()) {
-                    cLib_addCalcAngleS(&mLookAngleY, 0, 4, 0x0C00, 0x0180);
+                    cLib_addCalcAngleS(&mBodyAngleX, 0, 4, 0x0C00, 0x0180);
                 }
             }
 
             if (!checkModeFlg(MODE_UNK_40000000)) {
-                cLib_addCalcAngleS(&field_0x59e, 0, 4, 0x0C00, 0x0180);
+                cLib_addCalcAngleS(&mBodyAngleY, 0, 4, 0x0C00, 0x0180);
             }
         }
     }
@@ -2384,7 +2384,7 @@ int daAlink_c::execute() {
         footBgCheck();
         handBgCheck();
 
-        field_0x30c8 = field_0x59e >> 1;
+        field_0x30c8 = mBodyAngleY >> 1;
         modelCalc(mpLinkModel);
 
         if (field_0x2fcb != 0) {

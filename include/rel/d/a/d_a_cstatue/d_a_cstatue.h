@@ -27,6 +27,8 @@ public:
     /* 80667438 */ void draw();
 
     bool checkNotSmallType() const { return mType == 1; }
+    bool checkBossType() const { return mType == 4 || mType == 3; }
+    cXyz& getBallPos() { return mBallPos; }
 
     static u8 const m_bckIdxTable[70 + 2 /* padding */];
 

@@ -8,12 +8,10 @@ M47_MAP := $(BUILD_DIR)/rel/d/a/d_a_crod.map
 
 M47_CPP_FILES := \
 	rel/executor.cpp \
-	rel/d/a/d_a_crod/unknown_translation_unit_bss.cpp \
 	rel/d/a/d_a_crod/d_a_crod.cpp \
 
 M47_O_FILES := \
 	$(BUILD_DIR)/rel/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_crod/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/d_a_crod/d_a_crod.o \
 
 M47_LIBS := \

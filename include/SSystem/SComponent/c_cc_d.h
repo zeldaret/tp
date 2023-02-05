@@ -42,6 +42,7 @@ enum cCcD_ObjAtType {
     /* 0x00200000 */ AT_TYPE_HEAVY_BOOTS = (1 << 21),
     /* 0x00400000 */ AT_TYPE_IRON_BALL = (1 << 22),
     /* 0x00800000 */ AT_TYPE_COPY_ROD = (1 << 23),
+    /* 0x01000000 */ AT_TYPE_1000000 = (1 << 24),
     /* 0x04000000 */ AT_TYPE_MASTER_SWORD = (1 << 26),
     /* 0x08000000 */ AT_TYPE_MIDNA_LOCK = (1 << 27),
     /* 0x10000000 */ AT_TYPE_10000000 = (1 << 28),
