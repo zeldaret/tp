@@ -7,6 +7,7 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "d/com/d_com_inf_game.h"
+#include "m_Do/m_Do_lib.h"
 
 //
 // Types:
@@ -469,7 +470,6 @@ asm void daBoomerang_sight_c::initFrame(int param_0) {
 #pragma pop
 
 /* 8049EDE8-8049EE8C 000DA8 00A4+00 1/1 0/0 0/0 .text copyNumData__19daBoomerang_sight_cFi */
-#ifndef NONMATCHING
 void daBoomerang_sight_c::copyNumData(int i_idx) {
     int idx2 = i_idx + 1;
     
@@ -489,16 +489,6 @@ void daBoomerang_sight_c::copyNumData(int i_idx) {
     field_0xc8[i_idx] = field_0xc8[idx2];
     field_0xc8[idx2] = pos;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBoomerang_sight_c::copyNumData(int param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/copyNumData__19daBoomerang_sight_cFi.s"
-}
-#pragma pop
-#endif
 
 /* 8049EE8C-8049EEC8 000E4C 003C+00 3/3 0/0 0/0 .text            __dt__4cXyzFv */
 #pragma push
@@ -512,14 +502,18 @@ extern "C" asm void __dt__4cXyzFv() {
 #pragma pop
 
 /* 8049EEC8-8049EF60 000E88 0098+00 1/1 0/0 0/0 .text setSight__19daBoomerang_sight_cFPC4cXyzi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBoomerang_sight_c::setSight(cXyz const* param_0, int param_1) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/setSight__19daBoomerang_sight_cFPC4cXyzi.s"
+void daBoomerang_sight_c::setSight(cXyz const* i_posP, int i_idx) {
+    Vec pos;
+
+    if (mAlpha[i_idx]) {
+        if (i_posP) {
+            field_0xc8[i_idx] = *i_posP;
+        }
+        mDoLib_project(&field_0xc8[i_idx],&pos);
+        field_0x68[i_idx] = pos.x;
+        field_0x80[i_idx] = pos.y;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804A28CC-804A28D0 00007C 0004+00 0/1 0/0 0/0 .rodata          @4643 */
