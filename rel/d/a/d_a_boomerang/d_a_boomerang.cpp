@@ -669,15 +669,11 @@ void daBoomerang_c::lockLineCallback(fopAc_ac_c* i_actorP) {
 
 /* 8049F63C-8049F660 0015FC 0024+00 1/1 0/0 0/0 .text
  * daBoomerang_lockLineCallback__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBoomerang_lockLineCallback(fopAc_ac_c* param_0, dCcD_GObjInf* param_1,
-                                             fopAc_ac_c* param_2, dCcD_GObjInf* param_3) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/func_8049F63C.s"
+static void daBoomerang_lockLineCallback(fopAc_ac_c* i_actorP1, dCcD_GObjInf* param_1,
+                                         fopAc_ac_c* i_actorP2, dCcD_GObjInf* param_3) {
+    daBoomerang_c* boomerang = (daBoomerang_c*)i_actorP1;
+    boomerang->lockLineCallback(i_actorP2);
 }
-#pragma pop
 
 /* 8049F660-8049F6EC 001620 008C+00 1/1 0/0 0/0 .text
  * moveLineCallback__13daBoomerang_cFP10fopAc_ac_c              */
