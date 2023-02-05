@@ -98,7 +98,10 @@ private:
 
 class daPy_actorKeep_c {
 public:
-    daPy_actorKeep_c();
+    daPy_actorKeep_c() {
+        clearData();
+    }
+
     void setActor();
     void setData(fopAc_ac_c*);
     void clearData();
@@ -707,6 +710,9 @@ public:
             mSpecialMode = 0;
         }
     }
+
+    s16 getBodyAngleX() const { return mLookAngleY; }
+    s16 getBodyAngleY() const { return field_0x59e; }
 
     // some functions use these function as an inline
     // is there a better way to handle this?

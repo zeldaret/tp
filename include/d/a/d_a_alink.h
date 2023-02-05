@@ -1234,7 +1234,7 @@ public:
     };  // Size: 0x10
 
     /* 8009D87C */ bool getE3Zhint();
-    /* 8009D884 */ char* getAlinkArcName();
+    /* 8009D884 */ static char* getAlinkArcName();
     /* 8009DA60 */ static bool checkStageName(char const*);
     /* 8009DA98 */ void tgHitCallback(fopAc_ac_c*, dCcD_GObjInf*, dCcD_GObjInf*);
     /* 8009DB64 */ void coHitCallback(fopAc_ac_c*, dCcD_GObjInf*);
@@ -3228,6 +3228,18 @@ public:
         return var_r4;
     }
 
+    MtxP getCopyRodMtx() {
+        if (mHeldItemModel != NULL) {
+            return mHeldItemModel->i_getAnmMtx(0);
+        }
+        return NULL;
+    }
+
+    cXyz* getRootPosP() { return &field_0x3834; }
+    const cXyz& getBoomerangCatchPos() const { return field_0x3534; }
+    f32 getCopyRodBallDisFlyMax() const { return mSearchBallScale; }
+
+    void clearIronBallActor() { field_0x173c.SetActor(this); }
     BOOL checkCanoeRideOwn(const fopAc_ac_c* param_0) const { return checkCanoeRide() && mRideAcKeep.getActorConst() == param_0; }
     bool checkWolfDashMode() const { return i_checkNoResetFlg1(FLG1_DASH_MODE); }
 
@@ -3242,6 +3254,8 @@ public:
     bool checkResetRootMtx(int param_0) const { return field_0x2f90 != 0 && param_0 == 1; }
 
     bool checkGrabGlide() { return checkGrabRooster(); }
+
+    bool checkCopyRodRevive() const { return mProcID == PROC_COPY_ROD_REVIVE; }
 
     BOOL i_checkRideOn() const { return mRideStatus != 0; }
 

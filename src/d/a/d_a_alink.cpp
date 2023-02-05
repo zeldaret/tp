@@ -18733,9 +18733,14 @@ extern "C" asm void __dt__9cCcD_SttsFv() {
 #pragma pop
 
 /* 801410EC-8014111C 13BA2C 0030+00 1/1 0/0 0/0 .text            __ct__16daPy_actorKeep_cFv */
-daPy_actorKeep_c::daPy_actorKeep_c() {
-    clearData();
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void __ct__16daPy_actorKeep_cFv() {
+    nofralloc
+#include "asm/d/a/d_a_alink/__ct__16daPy_actorKeep_cFv.s"
 }
+#pragma pop
 
 /* 8014111C-8014112C 13BA5C 0010+00 1/1 0/0 0/0 .text
  * onNoResetFlg2__9daPy_py_cFQ29daPy_py_c9daPy_FLG2             */

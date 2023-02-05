@@ -3,15 +3,13 @@
 
 #include "d/a/d_a_player.h"
 #include "d/cc/d_cc_d.h"
-#include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
 #include "f_op/f_op_actor_mng.h"
 
 class daCrod_c : public fopAc_ac_c {
 public:
     /* 80141A94 */ void setControllActorData();
-    /* 804A2E38 */ void createHeap();
-    /* 804A2F18 */ void create();
+    /* 804A2E38 */ int createHeap();
+    /* 804A2F18 */ int create();
     /* 804A3304 */ ~daCrod_c();
     /* 804A34B0 */ void setRoomInfo();
     /* 804A34B4 */ void setMatrix();
@@ -19,8 +17,8 @@ public:
     /* 804A3580 */ void setBckAnm(u16);
     /* 804A35FC */ void setReturn();
     /* 804A365C */ void setLightPower();
-    /* 804A36D8 */ void execute();
-    /* 804A3FD4 */ void draw();
+    /* 804A36D8 */ int execute();
+    /* 804A3FD4 */ int draw();
 
     static fopAc_ac_c* makeIronBallDummy(fopAc_ac_c* p_actor) {
         return (fopAc_ac_c*)fopAcM_fastCreate(0x2F4, 6, &p_actor->current.pos,
@@ -28,26 +26,29 @@ public:
                                               NULL);
     }
 
-    fopAc_ac_c* getControllActor() { return mControllAcKeep.getActor(); }
+    fopAc_ac_c* getControllActor() { return mControllActorKeep.getActor(); }
 
-    fopAc_ac_c* getCameraActor() { return mCameraAcKeep.getActor(); }
+    fopAc_ac_c* getCameraActor() { return mCameraActorKeep.getActor(); }
 
     void setThrow() { fopAcM_SetParam(this, 2); }
 
+    static f32 getFlyInitY() { return 40.0f; }
+    static f32 getFlyInitZ() { return 50.0f; }
+
 private:
-    /* 0x568 */ J3DModel* field_568;
-    /* 0x56C */ mDoExt_bckAnm mBckAnm;
-    /* 0x588 */ J3DAnmTevRegKey* field_0x588;
-    /* 0x58C */ J3DAnmTextureSRTKey* field_0x58c;
-    /* 0x590 */ dCcD_Stts field_0x590;
-    /* 0x5CC */ dCcD_Cps field_0x5cc;
-    /* 0x710 */ LIGHT_INFLUENCE field_0x710;
+    /* 0x568 */ J3DModel* mpBallModel;
+    /* 0x56C */ mDoExt_bckAnm mBck;
+    /* 0x588 */ J3DAnmTevRegKey* mpBallBrk;
+    /* 0x58C */ J3DAnmTextureSRTKey* mpBallBtk;
+    /* 0x590 */ dCcD_Stts mCcStts;
+    /* 0x5CC */ dCcD_Cps mAtCps;
+    /* 0x710 */ LIGHT_INFLUENCE mLight;
     /* 0x730 */ u8 field_0x730;
     /* 0x731 */ u8 field_0x731;
     /* 0x732 */ u8 field_0x732;
     /* 0x734 */ cXyz field_0x734;
-    /* 0x740 */ daPy_actorKeep_c mControllAcKeep;
-    /* 0x748 */ daPy_actorKeep_c mCameraAcKeep;
+    /* 0x740 */ daPy_actorKeep_c mControllActorKeep;
+    /* 0x748 */ daPy_actorKeep_c mCameraActorKeep;
 };  // Size: 0x750
 
 #endif /* D_A_CROD_H */

@@ -20,7 +20,8 @@ public:
     f32 getFrame() { return mFrameCtrl.getFrame(); }
     f32 getEndFrame() { return mFrameCtrl.getEnd(); }
     void setFrame(f32 frame) { mFrameCtrl.setFrame(frame); }
-
+    void setPlayMode(int i_mode) { mFrameCtrl.setAttribute(i_mode); }
+    void setLoopFrame(f32 i_frame) { mFrameCtrl.setLoop(i_frame); }
     bool isStop() {
         bool stopped = true;
         if (!mFrameCtrl.checkState(1) && mFrameCtrl.getRate() != 0.0f) {
