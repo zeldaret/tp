@@ -658,14 +658,14 @@ static void daBoomerang_Draw(daBoomerang_c* i_this) {
 
 /* 8049F5F4-8049F63C 0015B4 0048+00 1/1 0/0 0/0 .text
  * lockLineCallback__13daBoomerang_cFP10fopAc_ac_c              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBoomerang_c::lockLineCallback(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/lockLineCallback__13daBoomerang_cFP10fopAc_ac_c.s"
+void daBoomerang_c::lockLineCallback(fopAc_ac_c* i_actorP) {
+    if (i_actorP && 
+            fopAcM_GetName(i_actorP) != PROC_Obj_glowSphere && 
+            fopAcM_GetName(i_actorP) != PROC_E_VT &&
+            fopAcM_GetName(i_actorP) != PROC_OBJ_BRG) {
+        setLockActor(i_actorP,1);
+    }
 }
-#pragma pop
 
 /* 8049F63C-8049F660 0015FC 0024+00 1/1 0/0 0/0 .text
  * daBoomerang_lockLineCallback__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
