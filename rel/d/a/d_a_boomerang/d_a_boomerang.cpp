@@ -7,6 +7,7 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "d/com/d_com_inf_game.h"
+#include "m_Do/m_Do_lib.h"
 
 //
 // Types:
@@ -469,14 +470,25 @@ asm void daBoomerang_sight_c::initFrame(int param_0) {
 #pragma pop
 
 /* 8049EDE8-8049EE8C 000DA8 00A4+00 1/1 0/0 0/0 .text copyNumData__19daBoomerang_sight_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBoomerang_sight_c::copyNumData(int param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/copyNumData__19daBoomerang_sight_cFi.s"
+void daBoomerang_sight_c::copyNumData(int i_idx) {
+    int idx2 = i_idx + 1;
+    
+    u8 alpha = mAlpha[i_idx];
+    mAlpha[i_idx] = mAlpha[idx2];
+    mAlpha[idx2] = alpha;
+
+    f32 some_float1 = field_0x98[i_idx];
+    field_0x98[i_idx] = field_0x98[idx2];
+    field_0x98[idx2] = some_float1;
+
+    f32 some_float2 = field_0xb0[i_idx];
+    field_0xb0[i_idx] = field_0xb0[idx2];
+    field_0xb0[idx2] = some_float2;
+
+    cXyz pos = field_0xc8[i_idx];
+    field_0xc8[i_idx] = field_0xc8[idx2];
+    field_0xc8[idx2] = pos;
 }
-#pragma pop
 
 /* 8049EE8C-8049EEC8 000E4C 003C+00 3/3 0/0 0/0 .text            __dt__4cXyzFv */
 #pragma push
@@ -490,14 +502,18 @@ extern "C" asm void __dt__4cXyzFv() {
 #pragma pop
 
 /* 8049EEC8-8049EF60 000E88 0098+00 1/1 0/0 0/0 .text setSight__19daBoomerang_sight_cFPC4cXyzi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBoomerang_sight_c::setSight(cXyz const* param_0, int param_1) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/setSight__19daBoomerang_sight_cFPC4cXyzi.s"
+void daBoomerang_sight_c::setSight(cXyz const* i_posP, int i_idx) {
+    Vec pos;
+
+    if (mAlpha[i_idx]) {
+        if (i_posP) {
+            field_0xc8[i_idx] = *i_posP;
+        }
+        mDoLib_project(&field_0xc8[i_idx],&pos);
+        field_0x68[i_idx] = pos.x;
+        field_0x80[i_idx] = pos.y;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804A28CC-804A28D0 00007C 0004+00 0/1 0/0 0/0 .rodata          @4643 */
@@ -594,25 +610,35 @@ asm void daBoomerang_sight_c::draw() {
 #pragma pop
 
 /* 8049F280-8049F360 001240 00E0+00 1/1 0/0 0/0 .text windModelCallBack__13daBoomerang_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBoomerang_c::windModelCallBack() {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/windModelCallBack__13daBoomerang_cFv.s"
+void daBoomerang_c::windModelCallBack() {
+    mDoMtx_YrotS((MtxP)mDoMtx_stack_c::get(),shape_angle.y);
+    mDoMtx_ZrotM((MtxP)mDoMtx_stack_c::get(),-shape_angle.z);
+    mDoMtx_XrotM((MtxP)mDoMtx_stack_c::get(),-shape_angle.x);
+    mDoMtx_YrotM((MtxP)mDoMtx_stack_c::get(),-shape_angle.y);
+
+    PSMTXConcat(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx, mDoMtx_stack_c::get());
+
+    mDoMtx_stack_c::get()[0][3] = J3DSys::mCurrentMtx[0][3];
+    mDoMtx_stack_c::get()[1][3] = J3DSys::mCurrentMtx[1][3];
+    mDoMtx_stack_c::get()[2][3] = J3DSys::mCurrentMtx[2][3];
+
+    PSMTXCopy(mDoMtx_stack_c::get(),J3DSys::mCurrentMtx);
+    field_0x56c->setAnmMtx(4,mDoMtx_stack_c::get());
+
+    return;  
 }
-#pragma pop
 
 /* 8049F360-8049F39C 001320 003C+00 1/1 0/0 0/0 .text daBoomeang_windModelCallBack__FP8J3DJointi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBoomeang_windModelCallBack(J3DJoint* param_0, int param_1) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/daBoomeang_windModelCallBack__FP8J3DJointi.s"
+static int daBoomeang_windModelCallBack(J3DJoint* param_0, int param_1) {
+    daBoomerang_c* boomerang = (daBoomerang_c*)j3dSys.getModel()->getUserArea();
+
+    if (param_1 == 0) {
+        boomerang->windModelCallBack();
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8049F39C-8049F5D4 00135C 0238+00 1/1 0/0 0/0 .text            draw__13daBoomerang_cFv */
 #pragma push
@@ -626,60 +652,56 @@ asm void daBoomerang_c::draw() {
 
 /* 8049F5D4-8049F5F4 001594 0020+00 1/0 0/0 0/0 .text            daBoomerang_Draw__FP13daBoomerang_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBoomerang_Draw(daBoomerang_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/daBoomerang_Draw__FP13daBoomerang_c.s"
+static void daBoomerang_Draw(daBoomerang_c* i_this) {
+    i_this->draw();
 }
-#pragma pop
 
 /* 8049F5F4-8049F63C 0015B4 0048+00 1/1 0/0 0/0 .text
  * lockLineCallback__13daBoomerang_cFP10fopAc_ac_c              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBoomerang_c::lockLineCallback(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/lockLineCallback__13daBoomerang_cFP10fopAc_ac_c.s"
+void daBoomerang_c::lockLineCallback(fopAc_ac_c* i_actorP) {
+    if (i_actorP && 
+            fopAcM_GetName(i_actorP) != PROC_Obj_glowSphere && 
+            fopAcM_GetName(i_actorP) != PROC_E_VT &&
+            fopAcM_GetName(i_actorP) != PROC_OBJ_BRG) {
+        setLockActor(i_actorP,1);
+    }
 }
-#pragma pop
 
 /* 8049F63C-8049F660 0015FC 0024+00 1/1 0/0 0/0 .text
  * daBoomerang_lockLineCallback__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBoomerang_lockLineCallback(fopAc_ac_c* param_0, dCcD_GObjInf* param_1,
-                                             fopAc_ac_c* param_2, dCcD_GObjInf* param_3) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/func_8049F63C.s"
+static void daBoomerang_lockLineCallback(fopAc_ac_c* i_actorP1, dCcD_GObjInf* param_1,
+                                         fopAc_ac_c* i_actorP2, dCcD_GObjInf* param_3) {
+    daBoomerang_c* boomerang = (daBoomerang_c*)i_actorP1;
+    boomerang->lockLineCallback(i_actorP2);
 }
-#pragma pop
 
 /* 8049F660-8049F6EC 001620 008C+00 1/1 0/0 0/0 .text
  * moveLineCallback__13daBoomerang_cFP10fopAc_ac_c              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBoomerang_c::moveLineCallback(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/moveLineCallback__13daBoomerang_cFP10fopAc_ac_c.s"
+void daBoomerang_c::moveLineCallback(fopAc_ac_c* i_actorP) {
+    if (i_actorP) {
+        for (int i = 0; i < 5; i++) {
+            if (mLockActors[i] == i_actorP) {
+                field_0x6ac[i] = -1;
+                mLockActors[i] = 0;
+
+                if (i == field_0x951) {
+                    field_0x957 = 10;
+                    field_0x9ac = i_actorP->mEyePos;
+                    field_0x9c4 = current.pos;
+                }
+            }
+        }
+    }    
 }
-#pragma pop
+
 
 /* 8049F6EC-8049F710 0016AC 0024+00 1/1 0/0 0/0 .text
  * daBoomerang_moveLineCallback__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBoomerang_moveLineCallback(fopAc_ac_c* param_0, dCcD_GObjInf* param_1,
-                                             fopAc_ac_c* param_2, dCcD_GObjInf* param_3) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/func_8049F6EC.s"
+static void daBoomerang_moveLineCallback(fopAc_ac_c* i_actorP1, dCcD_GObjInf* param_1,
+                                             fopAc_ac_c* i_actorP2, dCcD_GObjInf* param_3) {
+    daBoomerang_c* boomerang = (daBoomerang_c*)i_actorP1;
+    boomerang->moveLineCallback(i_actorP2);
 }
-#pragma pop
 
 /* 8049F710-8049F818 0016D0 0108+00 3/3 0/0 0/0 .text            pushLockList__13daBoomerang_cFi */
 #pragma push
@@ -693,6 +715,27 @@ asm void daBoomerang_c::pushLockList(int param_0) {
 
 /* 8049F818-8049F874 0017D8 005C+00 1/0 0/0 0/0 .text
  * cancelLockActorBase__13daBoomerang_cFP10fopAc_ac_c           */
+#ifdef NONMATCHING
+// no clue. pushLockList appears to be in the loop, but doing so causes a ton of problems
+void daBoomerang_c::cancelLockActorBase(fopAc_ac_c* i_actorP) {
+    int i = 0;
+    int lock_count = mLockCnt;
+
+    if (lock_count <= 0) {
+        return;
+    }
+
+    while (true) {
+        if (mLockActors[i] == i_actorP) { 
+            break;
+        } else { 
+            i++;
+        }
+    }
+
+    pushLockList(i);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -701,17 +744,16 @@ asm void daBoomerang_c::cancelLockActorBase(fopAc_ac_c* param_0) {
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/cancelLockActorBase__13daBoomerang_cFP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* 8049F874-8049F8B0 001834 003C+00 1/0 0/0 0/0 .text
  * setAimActorBase__13daBoomerang_cFP10fopAc_ac_c               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBoomerang_c::setAimActorBase(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/setAimActorBase__13daBoomerang_cFP10fopAc_ac_c.s"
+void daBoomerang_c::setAimActorBase(fopAc_ac_c* i_actorP) {
+    if (mLockCnt == 0) {
+        onStateFlg0(FLG0_UNK);
+        setLockActor(i_actorP,0);
+    }
 }
-#pragma pop
 
 /* 8049F8B0-8049F9A4 001870 00F4+00 2/2 0/0 0/0 .text setLockActor__13daBoomerang_cFP10fopAc_ac_ci
  */
@@ -726,14 +768,16 @@ asm void daBoomerang_c::setLockActor(fopAc_ac_c* param_0, int param_1) {
 
 /* 8049F9A4-8049F9F0 001964 004C+00 3/3 0/0 0/0 .text            resetLockActor__13daBoomerang_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBoomerang_c::resetLockActor() {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/resetLockActor__13daBoomerang_cFv.s"
+void daBoomerang_c::resetLockActor() {
+    for (int i = 0; i < 5; i++) {
+        field_0x6ac[i] = -1;
+        mLockActors[i] = 0;
+        field_0x718[i] = 0;
+    }
+
+    mLockCnt = 0;
+    field_0x951 = 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804A2900-804A2904 0000B0 0004+00 1/1 0/0 0/0 .rodata          @4886 */
@@ -1379,14 +1423,9 @@ asm void daBoomerang_c::execute() {
 #pragma pop
 
 /* 804A1BD4-804A1BF4 003B94 0020+00 1/0 0/0 0/0 .text daBoomerang_Execute__FP13daBoomerang_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBoomerang_Execute(daBoomerang_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/daBoomerang_Execute__FP13daBoomerang_c.s"
+static void daBoomerang_Execute(daBoomerang_c* i_this) {
+    i_this->execute();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804A2CC0-804A2CD0 0001E4 0010+00 3/3 0/0 0/0 .data            __vt__19daBoomerang_sight_c */
@@ -1408,14 +1447,10 @@ asm daBoomerang_c::~daBoomerang_c() {
 #pragma pop
 
 /* 804A1EBC-804A1EE4 003E7C 0028+00 1/0 0/0 0/0 .text daBoomerang_Delete__FP13daBoomerang_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBoomerang_Delete(daBoomerang_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/daBoomerang_Delete__FP13daBoomerang_c.s"
+static int daBoomerang_Delete(daBoomerang_c* i_this) {
+    i_this->~daBoomerang_c();
+    return 1;
 }
-#pragma pop
 
 /* 804A1EE4-804A2064 003EA4 0180+00 1/1 0/0 0/0 .text            createHeap__13daBoomerang_cFv */
 #pragma push
@@ -1428,14 +1463,11 @@ asm void daBoomerang_c::createHeap() {
 #pragma pop
 
 /* 804A2064-804A2084 004024 0020+00 1/1 0/0 0/0 .text daBoomerang_createHeap__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBoomerang_createHeap(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/daBoomerang_createHeap__FP10fopAc_ac_c.s"
+static void daBoomerang_createHeap(fopAc_ac_c* i_this) {
+    daBoomerang_c* boomerang = (daBoomerang_c*)i_this;
+    boomerang->createHeap();
 }
-#pragma pop
+
 
 /* ############################################################################################## */
 /* 804A298C-804A2990 00013C 0004+00 1/1 0/0 0/0 .rodata          @6077 */

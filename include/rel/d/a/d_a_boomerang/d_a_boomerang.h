@@ -62,6 +62,7 @@ class daAlink_c;
 class daBoomerang_c : public fopAc_ac_c {
 public:
     enum daBoomerang_FLG0 {
+        /* 0x004 */ FLG0_UNK = 0x004,
         /* 0x800 */ FLG0_LOCK_DIST_CANCEL = 0x800,
         /* 0x080 */ WIND_CATCH = 0x80,
     };
@@ -113,7 +114,7 @@ private:
     /* 0x598 */ daBoomerang_sight_c mSight;
     /* 0x6A8 */ u32 field_0x6a8;
     /* 0x6AC */ u32 field_0x6ac[5];
-    /* 0x6C0 */ fopAc_ac_c* field_0x6c0[5];
+    /* 0x6C0 */ fopAc_ac_c* mLockActors[5]; // Actors corresponding to the five target points
     /* 0x6D4 */ fopAc_ac_c* field_0x6d4;
     /* 0x6D8 */ u8 field_0x6d8[4];
     /* 0x6DC */ cXyz field_0x6dc[5];
