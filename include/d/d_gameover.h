@@ -5,20 +5,14 @@
 #include "d/menu/d_menu_save.h"
 #include "d/msg/d_msg_class.h"
 #include "f_op/f_op_msg_mng.h"
-
-class mDoHIO_entry_c {
-public:
-    virtual ~mDoHIO_entry_c() {}
-
-    /* 0x4 */ s8 mNo;
-    /* 0x5 */ u8 mCount;
-};
+#include "m_Do/m_Do_hostIO.h"
 
 class dGov_HIO_c : public mDoHIO_entry_c {
 public:
     /* 8019AFE0 */ dGov_HIO_c();
     /* 8019C06C */ virtual ~dGov_HIO_c();
 
+    /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 mScale;
     /* 0x0C */ f32 mAlpha;
     /* 0x10 */ f32 mAnimSpeed;
