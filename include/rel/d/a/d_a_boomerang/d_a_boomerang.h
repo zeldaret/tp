@@ -68,7 +68,7 @@ public:
     };
 
     /* 8049F280 */ void windModelCallBack();
-    /* 8049F39C */ void draw();
+    /* 8049F39C */ int draw();
     /* 8049F5F4 */ void lockLineCallback(fopAc_ac_c*);
     /* 8049F660 */ void moveLineCallback(fopAc_ac_c*);
     /* 8049F710 */ void pushLockList(int);
@@ -86,10 +86,10 @@ public:
     /* 804A012C */ void setEffect();
     /* 804A0874 */ void procWait();
     /* 804A0F0C */ void procMove();
-    /* 804A1814 */ void execute();
+    /* 804A1814 */ int execute();
     /* 804A1BF4 */ ~daBoomerang_c();
-    /* 804A1EE4 */ void createHeap();
-    /* 804A2084 */ void create();
+    /* 804A1EE4 */ int createHeap();
+    /* 804A2084 */ int create();
     /* 804A230C */ daBoomerang_c();
 
     void onStateFlg0(daBoomerang_FLG0 flag) { mStateFlg0 |= flag; }
