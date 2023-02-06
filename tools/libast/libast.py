@@ -1,5 +1,5 @@
-# adpcm encoding currently doesn't work, so this isn't being integrated into the assets scripts
-# however, this can be used to encode a wav file to a pcm16 ast file
+# adpcm encoding currently doesn't work well, so this isn't being integrated into the assets scripts
+# however, this can be used to convert all ast files to a wav file and to encode a wav file to a pcm16 ast file
 import struct
 import os
 import sys
