@@ -5,8 +5,6 @@
 
 #include "d/d_bomb.h"
 #include "d/d_procname.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 bool dBomb_c::checkStateCarry() {

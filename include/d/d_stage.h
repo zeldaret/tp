@@ -187,6 +187,11 @@ struct stage_tgsc_data_class : public stage_actor_data_class {
 
 STATIC_ASSERT(sizeof(stage_tgsc_data_class) == 0x24);
 
+struct stage_door_data_class : public stage_actor_data_class {
+    /* 0x20 */ u16 field_0x20;
+    /* 0x22 */ u8 field_0x22;
+};  // Size: 0x24
+
 class stage_tgsc_class {
 public:
     /* 0x00 */ int mEntryNum;
@@ -869,7 +874,7 @@ class dStage_KeepDoorInfo {
 public:
     /* 80028418 */ ~dStage_KeepDoorInfo() {}
     /* 0x000 */ int unk_0x0;
-    /* 0x004 */ stage_tgsc_data_class unk_0x4[0x40];
+    /* 0x004 */ stage_door_data_class unk_0x4[0x40];
 };  // Size = 0x904
 
 typedef int (*dStage_Func)(dStage_dt_c*, void*, int, void*);

@@ -93,48 +93,33 @@ dJntCol_c::dJntCol_c() {
  * init__9dJntCol_cFP10fopAc_ac_cPC13dJntColData_cP8J3DModeli   */
 int dJntCol_c::init(fopAc_ac_c* i_actorP, dJntColData_c const* i_jntColP, J3DModel* i_modelP,
                     int param_3) {
-    mData = (dJntColData_c*)i_jntColP;
+    mData = i_jntColP;
     mModel = i_modelP;
     field_0x8 = param_3;
     field_0xc = 0;
+
     if (i_actorP) {
         fopAcM_SetJntCol(i_actorP, this);
     }
+
     return 1;
 }
 
-/* ############################################################################################## */
-/* 80451D60-80451D64 000360 0004+00 1/1 0/0 0/0 .sdata2          @3655 */
-SECTION_SDATA2 static f32 lit_3655 = 500.0f;
-
 /* 80035CC8-80035DC8 030608 0100+00 2/2 0/0 0/0 .text
  * setNowLine__9dJntCol_cFP8cM3dGLinPC4cXyzPC5csXyzP4cXyz       */
-#ifdef NONMATCHING
-// regalloc, parameters are loading in wrong?
-void dJntCol_c::setNowLine(cM3dGLin* param_0, cXyz const* param_1, csXyz const* param_2,
+void dJntCol_c::setNowLine(cM3dGLin* i_line, cXyz const* param_1, csXyz const* param_2,
                            cXyz* param_3) {
-    if (param_2) {
+    if (param_2 != NULL) {
         mDoMtx_stack_c::ZXYrotS(*param_2);
         mDoMtx_stack_c::multVec(&cXyz::BaseZ, param_3);
     } else {
         *param_3 = cXyz::BaseZ;
     }
 
-    cXyz start_pos = *param_1 - *param_3 * FLOAT_LABEL(lit_3655);
-    cXyz end_pos = *param_1 + *param_3 * FLOAT_LABEL(lit_3655);
-    param_0->SetStartEnd(start_pos, end_pos);
+    cXyz start_pos = *param_1 - *param_3 * 500.0f;
+    cXyz end_pos = *param_1 + *param_3 * 500.0f;
+    i_line->SetStartEnd(start_pos, end_pos);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dJntCol_c::setNowLine(cM3dGLin* param_0, cXyz const* param_1, csXyz const* param_2,
-                               cXyz* param_3) {
-    nofralloc
-#include "asm/d/d_jnt_col/setNowLine__9dJntCol_cFP8cM3dGLinPC4cXyzPC5csXyzP4cXyz.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 803A78F8-803A7904 004A18 000C+00 4/4 21/21 0/0 .data            __vt__8cM3dGLin */
@@ -234,7 +219,7 @@ asm void dJntCol_c::getArrowOffsetPosAndAngle(cXyz const* param_0, csXyz const* 
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm int dJntCol_c::getHitmarkPosAndAngle(cXyz const* param_0, csXyz const* param_1, cXyz* param_2,
-                                          csXyz* param_3, int param_4) const {
+                                         csXyz* param_3, int param_4) const {
     nofralloc
 #include "asm/d/d_jnt_col/getHitmarkPosAndAngle__9dJntCol_cCFPC4cXyzPC5csXyzP4cXyzP5csXyzi.s"
 }
@@ -246,6 +231,7 @@ void dJntCol_c::setArrowPosAndAngle(cXyz const* param_0, cXyz const* i_srcPos, i
                                     cXyz* param_3, csXyz* i_arrowPosP) {
     cXyz dst_pos;
     mDoMtx_multVecSR(mModel->i_getAnmMtx(i_anmMtxIdx), i_srcPos, &dst_pos);
+
     i_arrowPosP->x = dst_pos.atan2sY_XZ();
     i_arrowPosP->y = dst_pos.atan2sX_Z();
     mDoMtx_multVec(mModel->i_getAnmMtx(i_anmMtxIdx), param_0, param_3);

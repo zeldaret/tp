@@ -12,6 +12,10 @@
 #include "f_pc/f_pc_leaf.h"
 #include "f_pc/f_pc_layer_iter.h"
 
+enum {
+    fpcM_ERROR_PROCESS_ID_e = -1,
+};
+
 typedef int (*FastCreateReqFunc)(void*);
 typedef void (*fpcM_ManagementFunc)(void);
 typedef int (*fpcM_DrawIteraterFunc)(void*, void*);
