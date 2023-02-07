@@ -5,7 +5,6 @@
 
 #include "rel/d/a/tag/d_a_tag_spinner/d_a_tag_spinner.h"
 
-
 //
 // Forward References:
 //
@@ -56,7 +55,7 @@ static void* search_spinner_sub(void* tag_0, void* tag_1) {
     daTagSpinner_c* actor2 = (daTagSpinner_c*)tag_1;
 
     if ((actor != NULL) && (fopAcM_IsActor(actor) != NULL) && (fopAcM_GetProfName(actor) == 0xF2)) {
-        if((actor->current.pos.absXZ(actor2->current.pos)) < (actor2->GetR())) {
+        if ((actor->current.pos.absXZ(actor2->current.pos)) < (actor2->GetR())) {
             return actor;
         }
     }
@@ -70,9 +69,9 @@ void daTagSpinner_c::initBaseMtx() {
 
 /* 80D618C4-80D6191C 000244 0058+00 1/1 0/0 0/0 .text            setBaseMtx__14daTagSpinner_cFv */
 void daTagSpinner_c::setBaseMtx() {
-    PSMTXTrans(mDoMtx_stack_c::now, current.pos.x, current.pos.y, current.pos.z );
-    mDoMtx_ZXYrotM(mDoMtx_stack_c::now, shape_angle.x, shape_angle.y, shape_angle.z );
-    }
+    PSMTXTrans(mDoMtx_stack_c::now, current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_ZXYrotM(mDoMtx_stack_c::now, shape_angle.x, shape_angle.y, shape_angle.z);
+}
 
 /* 80D6191C-80D6196C 00029C 0050+00 1/1 0/0 0/0 .text            Create__14daTagSpinner_cFv */
 int daTagSpinner_c::Create() {
@@ -81,7 +80,6 @@ int daTagSpinner_c::Create() {
     field_0x56c = mScale.y * 100.0f;
     return 1;
 }
-
 
 /* 80D6196C-80D61974 0002EC 0008+00 1/1 0/0 0/0 .text            CreateHeap__14daTagSpinner_cFv */
 int daTagSpinner_c::CreateHeap() {
@@ -97,18 +95,16 @@ int daTagSpinner_c::create() {
         fopAcM_OnCondition(this, 8);
     }
 
-    if(!fopAcM_entrySolidHeap(this, CheckCreateHeap, 0)) {
+    if (!fopAcM_entrySolidHeap(this, CheckCreateHeap, 0)) {
         iVar2 = 5;
-    }
-    else {
+    } else {
         iVar1 = Create();
         if (iVar1 == NULL) {
-             iVar2 = 5;
+            iVar2 = 5;
+        } else {
+            iVar2 = 4;
         }
-        else {
-        iVar2 = 4;
-     }
-    } 
+    }
     return iVar2;
 }
 
@@ -116,11 +112,11 @@ int daTagSpinner_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
- asm int daTagSpinner_c::execute() {
+asm int daTagSpinner_c::execute() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_spinner/d_a_tag_spinner/execute__14daTagSpinner_cFv.s"
 }
-#pragma pop 
+#pragma pop
 
 /* 80D61AB4-80D61ABC 000434 0008+00 1/1 0/0 0/0 .text            _delete__14daTagSpinner_cFv */
 int daTagSpinner_c::_delete() {
@@ -137,7 +133,8 @@ static int daTagSpinner_Delete(daTagSpinner_c* i_this) {
     return i_this->_delete();
 }
 
-/* 80D61AFC-80D61B1C 00047C 0020+00 1/0 0/0 0/0 .text            daTagSpinner_Create__FP10fopAc_ac_c  */
+/* 80D61AFC-80D61B1C 00047C 0020+00 1/0 0/0 0/0 .text            daTagSpinner_Create__FP10fopAc_ac_c
+ */
 static int daTagSpinner_Create(fopAc_ac_c* tag) {
     return static_cast<daTagSpinner_c*>(tag)->create();
 }
