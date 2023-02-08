@@ -76,7 +76,7 @@ void daTagSpinner_c::setBaseMtx() {
 /* 80D6191C-80D6196C 00029C 0050+00 1/1 0/0 0/0 .text            Create__14daTagSpinner_cFv */
 int daTagSpinner_c::Create() {
     initBaseMtx();
-    field_0x568 = mScale.x * 100.0f;
+    mRadius = mScale.x * 100.0f;
     field_0x56c = mScale.y * 100.0f;
     return 1;
 }
