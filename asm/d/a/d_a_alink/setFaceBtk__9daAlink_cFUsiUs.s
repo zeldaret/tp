@@ -44,7 +44,7 @@ lbl_800AF84C:
 /* 800AF86C  80 9E 21 58 */	lwz r4, 0x2158(r30)
 /* 800AF870  48 28 04 55 */	bl entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey
 /* 800AF874  38 00 00 03 */	li r0, 3
-/* 800AF878  98 0D 8A 49 */	stb r0, struct_80450FC8+0x1(r13)
+/* 800AF878  98 0D 8A 49 */	stb r0, m_eye_move_flg+0x1(r13)
 /* 800AF87C  C0 02 92 C0 */	lfs f0, lit_6108(r2)
 /* 800AF880  80 7E 21 58 */	lwz r3, 0x2158(r30)
 /* 800AF884  D0 03 00 08 */	stfs f0, 8(r3)

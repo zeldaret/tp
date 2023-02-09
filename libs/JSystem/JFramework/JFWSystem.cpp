@@ -142,8 +142,7 @@ JUTConsoleManager* JFWSystem::systemConsoleManager;
 JUTConsole* JFWSystem::systemConsole;
 
 /* 804511BC-804511C0 0006BC 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_804511BC;
-// static bool sInitCalled
+static u8 sInitCalled;
 
 /* 80455240-80455244 003840 0004+00 1/1 0/0 0/0 .sdata2          @2242 */
 SECTION_SDATA2 static f32 lit_2242 = 0.5f;
@@ -161,7 +160,7 @@ void JFWSystem::init() {
     if (rootHeap == NULL) {
         firstInit();
     }
-    data_804511BC = true;
+    sInitCalled = true;
 
     JKRAram::create(CSetUpParam::aramAudioBufSize, CSetUpParam::aramGraphBufSize,
                     CSetUpParam::streamPriority, CSetUpParam::decompPriority,

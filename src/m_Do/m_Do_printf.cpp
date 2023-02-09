@@ -72,22 +72,22 @@ void OSAttention(char* fmt, ...) {
 
 /* 80006894-800068A0 0011D4 000C+00 0/0 1/1 0/0 .text            OSReportDisable */
 void OSReportDisable() {
-    sOSReportDisabled = true;
+    __OSReport_disable = true;
 }
 
 /* 800068A0-800068AC 0011E0 000C+00 0/0 1/1 0/0 .text            OSReportEnable */
 void OSReportEnable() {
-    sOSReportDisabled = false;
+    __OSReport_disable = false;
 }
 
 /* 800068AC-800068B8 0011EC 000C+00 4/4 0/0 0/0 .text            OSReportForceEnableOn */
 void OSReportForceEnableOn() {
-    sOSReportForceEnable = true;
+    __OSReport_enable = true;
 }
 
 /* 800068B8-800068C4 0011F8 000C+00 4/4 0/0 0/0 .text            OSReportForceEnableOff */
 void OSReportForceEnableOff() {
-    sOSReportForceEnable = false;
+    __OSReport_enable = false;
 }
 
 /* ############################################################################################## */
@@ -163,7 +163,7 @@ void mDoPrintf_VReport(const char* fmt, va_list args) {
     if (!print_initialized) {
         OSReportInit();
     }
-    if (sOSReportForceEnable || !sOSReportDisabled) {
+    if (__OSReport_enable || !__OSReport_disable) {
         OSThread* currentThread = mDoExt_GetCurrentRunningThread__Fv();
         if (__OSReport_MonopolyThread == NULL || __OSReport_MonopolyThread == currentThread) {
             mDoPrintf_vprintf(fmt, args);
@@ -204,7 +204,7 @@ void OSReport_FatalError(char* fmt, ...) {
 /* 80006C0C-80006CEC 00154C 00E0+00 0/0 31/31 10/10 .text            OSReport_Error */
 void OSReport_Error(char* fmt, ...) {
     print_errors++;
-    if (!data_80450B99) {
+    if (!__OSReport_Error_disable) {
         va_list args;
         va_start(args, fmt);
         OSReportForceEnableOn();
@@ -220,7 +220,7 @@ void OSReport_Error(char* fmt, ...) {
 /* 80006CEC-80006DCC 00162C 00E0+00 0/0 6/6 0/0 .text            OSReport_Warning */
 void OSReport_Warning(char* fmt, ...) {
     print_warings++;
-    if (!data_80450B9A) {
+    if (!__OSReport_Warning_disable) {
         va_list args;
         va_start(args, fmt);
         OSReportForceEnableOn();
@@ -236,7 +236,7 @@ void OSReport_Warning(char* fmt, ...) {
 /* 80006DCC-80006E7C 00170C 00B0+00 0/0 1/1 0/0 .text            OSReport_System */
 void OSReport_System(char* fmt, ...) {
     print_systems++;
-    if (!data_80450B9B) {
+    if (!__OSReport_System_disable) {
         va_list args;
         va_start(args, fmt);
         OSReportForceEnableOn();

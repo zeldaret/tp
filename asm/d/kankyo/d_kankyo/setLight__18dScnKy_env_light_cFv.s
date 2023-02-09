@@ -439,7 +439,7 @@ lbl_801A0A14:
 /* 801A0AA0  48 00 BA DD */	bl dKy_darkworld_check__Fv
 /* 801A0AA4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801A0AA8  41 82 00 70 */	beq lbl_801A0B18
-/* 801A0AAC  A8 0D 8A E8 */	lha r0, struct_80451068+0x0(r13)
+/* 801A0AAC  A8 0D 8A E8 */	lha r0, S_fuwan_sin+0x0(r13)
 /* 801A0AB0  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 801A0AB4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
 /* 801A0AB8  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
@@ -449,10 +449,10 @@ lbl_801A0A14:
 /* 801A0AC8  FC 00 08 1E */	fctiwz f0, f1
 /* 801A0ACC  D8 01 00 C8 */	stfd f0, 0xc8(r1)
 /* 801A0AD0  80 61 00 CC */	lwz r3, 0xcc(r1)
-/* 801A0AD4  A8 0D 8A E8 */	lha r0, struct_80451068+0x0(r13)
+/* 801A0AD4  A8 0D 8A E8 */	lha r0, S_fuwan_sin+0x0(r13)
 /* 801A0AD8  7C 63 02 14 */	add r3, r3, r0
 /* 801A0ADC  38 03 01 F4 */	addi r0, r3, 0x1f4
-/* 801A0AE0  B0 0D 8A E8 */	sth r0, struct_80451068+0x0(r13)
+/* 801A0AE0  B0 0D 8A E8 */	sth r0, S_fuwan_sin+0x0(r13)
 /* 801A0AE4  C0 42 A2 F4 */	lfs f2, lit_6035(r2)
 /* 801A0AE8  C8 22 A2 80 */	lfd f1, lit_4964(r2)
 /* 801A0AEC  92 01 00 D4 */	stw r16, 0xd4(r1)

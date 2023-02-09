@@ -97,16 +97,9 @@ extern "C" void stopPatternedRumble__Q210JUTGamePad7CRumbleFs();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
 extern "C" extern u8 m_gamePad__8mDoCPd_c[16];
-extern "C" extern u8 struct_80450D38;
-
 //
 // Declarations:
 //
-
-/* 80450D38-80450D40 0008+00 s=0 e=1 z=0  None .sbss      None */
-u8 struct_80450D38;
-
-s8 data_80450D39;
 
 /* 800220A0-800220C0 0020+00 s=1 e=1 z=0  None .text      fpcM_Draw__FPv */
 void fpcM_Draw(void* pProc) {
@@ -139,16 +132,13 @@ void fpcM_Management(fpcM_ManagementFunc func1, fpcM_ManagementFunc func2) {
     dComIfGd_peekZdata();
 
     if (!dShutdownErrorMsg_c::execute()) {
-        if (data_80450D39 == 0) {
-            struct_80450D38 = 0;
-            data_80450D39 = 1;
-        }
+        static bool l_dvdError = false;
 
         if (!dDvdErrorMsg_c::execute()) {
-            if (struct_80450D38 != 0) {
+            if (l_dvdError) {
                 dLib_time_c::startTime();
                 Z2GetSoundMgr()->pauseAllGameSound(false);
-                struct_80450D38 = 0;
+                l_dvdError = false;
             }
 
             cAPIGph_Painter();
@@ -174,11 +164,11 @@ void fpcM_Management(fpcM_ManagementFunc func1, fpcM_ManagementFunc func2) {
             }
 
             dComIfGp_drawSimpleModel();
-        } else if (struct_80450D38 == 0) {
+        } else if (!l_dvdError) {
             dLib_time_c::stopTime();
             Z2GetSoundMgr()->pauseAllGameSound(true);
             mDoCPd_c::stopMotorWaveHard(0);
-            struct_80450D38 = 1;
+            l_dvdError = true;
         }
     }
 }

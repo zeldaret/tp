@@ -224,16 +224,16 @@ lbl_800A1E00:
 /* 800A1E18  D0 03 01 00 */	stfs f0, 0x100(r3)
 /* 800A1E1C  80 7F 21 84 */	lwz r3, 0x2184(r31)
 /* 800A1E20  D0 03 01 00 */	stfs f0, 0x100(r3)
-/* 800A1E24  88 0D 8A 48 */	lbz r0, struct_80450FC8+0x0(r13)
+/* 800A1E24  88 0D 8A 48 */	lbz r0, m_eye_move_flg+0x0(r13)
 /* 800A1E28  28 00 00 00 */	cmplwi r0, 0
 /* 800A1E2C  41 82 01 3C */	beq lbl_800A1F68
 /* 800A1E30  38 00 00 00 */	li r0, 0
-/* 800A1E34  98 0D 8A 48 */	stb r0, struct_80450FC8+0x0(r13)
+/* 800A1E34  98 0D 8A 48 */	stb r0, m_eye_move_flg+0x0(r13)
 /* 800A1E38  38 00 00 03 */	li r0, 3
-/* 800A1E3C  98 0D 8A 49 */	stb r0, struct_80450FC8+0x1(r13)
+/* 800A1E3C  98 0D 8A 49 */	stb r0, m_eye_move_flg+0x1(r13)
 /* 800A1E40  48 00 01 28 */	b lbl_800A1F68
 lbl_800A1E44:
-/* 800A1E44  88 0D 8A 49 */	lbz r0, struct_80450FC8+0x1(r13)
+/* 800A1E44  88 0D 8A 49 */	lbz r0, m_eye_move_flg+0x1(r13)
 /* 800A1E48  28 00 00 00 */	cmplwi r0, 0
 /* 800A1E4C  40 82 01 1C */	bne lbl_800A1F68
 /* 800A1E50  C0 42 92 BC */	lfs f2, lit_6041(r2)
@@ -292,7 +292,7 @@ lbl_800A1EE8:
 /* 800A1EFC  EF DE 00 32 */	fmuls f30, f30, f0
 lbl_800A1F00:
 /* 800A1F00  38 00 00 01 */	li r0, 1
-/* 800A1F04  98 0D 8A 48 */	stb r0, struct_80450FC8+0x0(r13)
+/* 800A1F04  98 0D 8A 48 */	stb r0, m_eye_move_flg+0x0(r13)
 /* 800A1F08  80 7F 21 80 */	lwz r3, 0x2180(r31)
 /* 800A1F0C  38 63 00 FC */	addi r3, r3, 0xfc
 /* 800A1F10  C0 42 92 98 */	lfs f2, lit_5943(r2)

@@ -3164,10 +3164,10 @@ static u8 struct_80450FC4[4];
 
 /* 80450FC8-80450FCC -00001 0004+00 5/5 0/0 0/0 .sbss            None */
 /* 80450FC8 0001+00 data_80450FC8 None */
-static bool struct_80450FC8;  // sEyeMoveFlg
+static bool m_eye_move_flg;
 
 /* 80450FC9 0003+00 data_80450FC9 None */
-static u8 sMorfFrame;
+static u8 m_morf_frame;
 
 /* 80452C98-80452C9C 001298 0004+00 102/102 0/0 0/0 .sdata2          @5943 */
 SECTION_SDATA2 static f32 lit_5943 = 0.5f;
@@ -3215,8 +3215,8 @@ void daAlink_matAnm_c::init() {
     field_0xf8 = tmp_0;
     mNowOffsetX = tmp_0;
     mNowOffsetY = tmp_0;
-    struct_80450FC8 = false;  // sEyeMoveFlg
-    sMorfFrame = 0;
+    m_eye_move_flg = false;
+    m_morf_frame = 0;
     mSetFlag = 0;
 }
 
@@ -3237,9 +3237,9 @@ asm void daAlink_matAnm_c::calc(J3DMaterial* param_0) const {
         for (u32 i = 0; i < 8; i++) {
             if (getTexMtxAnm(i).getAnmFlag()) {
                 J3DTexMtxInfo* info = &param_0->getTexGenBlock()->getTexMtx(i)->getTexMtxInfo();
-                if (sMorfFrame != 0) {
+                if (m_morf_frame != 0) {
                     if (mSetFlag == 0) {
-                        f32 tmp = 1.0f / sMorfFrame;
+                        f32 tmp = 1.0f / m_morf_frame;
                         info->field_0x10.field_0xc = field_0xf4 * (1.0f - tmp) +
 info->field_0x10.field_0xc * tmp; info->field_0x10.mCheckFrame = field_0xf8 * (1.0f - tmp) +
 info->field_0x10.field_0xc * tmp;
@@ -3250,7 +3250,7 @@ info->field_0x10.field_0xc * tmp;
                     }
                 }
 
-                if (struct_80450FC8) {
+                if (m_eye_move_flg) {
                         info->field_0x10.field_0xc = mNowOffsetX;
                         info->field_0x10.mCheckFrame = mNowOffsetY;
                     }
@@ -12617,7 +12617,7 @@ static s32 bgWaitFlg;
 /* 80450FD0-80450FD8 -00001 0008+00 2/2 0/0 0/0 .sbss            None */
 /* 80450FD0 0001+00 data_80450FD0 None */
 /* 80450FD1 0007+00 data_80450FD1 None */
-static s8 struct_80450FD0;
+static s8 struct_80450FD0; // init$
 
 #pragma push
 #pragma force_active on

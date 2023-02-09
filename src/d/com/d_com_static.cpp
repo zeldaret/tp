@@ -446,8 +446,14 @@ SECTION_DEAD static char const* const stringBase_803790B8 = "@bg%04x";
 
 /* 80450D8C-80450D90 -00001 0004+00 0/0 1/1 3/3 .sbss            None */
 /* 80450D8C 0001+00 data_80450D8C None */
+// u8 daYkgr_c::m_flag;
+
 /* 80450D8D 0001+00 data_80450D8D None */
+// u8 daYkgr_c::m_alpha_flag;
+
 /* 80450D8E 0002+00 data_80450D8E None */
+// u8 daYkgr_c::m_alpha;
+
 extern u8 struct_80450D8C[4];
 u8 struct_80450D8C[4];
 

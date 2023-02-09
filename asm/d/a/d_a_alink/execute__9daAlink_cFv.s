@@ -313,7 +313,7 @@ lbl_800C8B98:
 /* 800C8B98  38 00 00 00 */	li r0, 0
 /* 800C8B9C  90 1F 05 80 */	stw r0, 0x580(r31)
 /* 800C8BA0  90 1F 05 84 */	stw r0, 0x584(r31)
-/* 800C8BA4  38 6D 8A 49 */	la r3, struct_80450FC8+0x1(r13) /* 80450FC9-_SDA_BASE_ */
+/* 800C8BA4  38 6D 8A 49 */	la r3, m_eye_move_flg+0x1(r13) /* 80450FC9-_SDA_BASE_ */
 /* 800C8BA8  48 07 8F 41 */	bl func_80141AE8
 /* 800C8BAC  80 7F 21 80 */	lwz r3, 0x2180(r31)
 /* 800C8BB0  48 00 75 D1 */	bl offSetFlg__16daAlink_matAnm_cFv

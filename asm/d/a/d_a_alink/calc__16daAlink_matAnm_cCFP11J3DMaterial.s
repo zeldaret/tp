@@ -27,7 +27,7 @@ lbl_8009D94C:
 /* 8009D96C  81 8C 00 50 */	lwz r12, 0x50(r12)
 /* 8009D970  7D 89 03 A6 */	mtctr r12
 /* 8009D974  4E 80 04 21 */	bctrl 
-/* 8009D978  88 8D 8A 49 */	lbz r4, struct_80450FC8+0x1(r13)
+/* 8009D978  88 8D 8A 49 */	lbz r4, m_eye_move_flg+0x1(r13)
 /* 8009D97C  28 04 00 00 */	cmplwi r4, 0
 /* 8009D980  41 82 00 8C */	beq lbl_8009DA0C
 /* 8009D984  80 1E 01 04 */	lwz r0, 0x104(r30)
@@ -66,7 +66,7 @@ lbl_8009D9F8:
 /* 8009DA04  D0 03 00 20 */	stfs f0, 0x20(r3)
 /* 8009DA08  48 00 00 20 */	b lbl_8009DA28
 lbl_8009DA0C:
-/* 8009DA0C  88 0D 8A 48 */	lbz r0, struct_80450FC8+0x0(r13)
+/* 8009DA0C  88 0D 8A 48 */	lbz r0, m_eye_move_flg+0x0(r13)
 /* 8009DA10  28 00 00 00 */	cmplwi r0, 0
 /* 8009DA14  41 82 00 14 */	beq lbl_8009DA28
 /* 8009DA18  C0 1E 00 FC */	lfs f0, 0xfc(r30)
