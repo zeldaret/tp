@@ -21,8 +21,11 @@ extern "C" {
 #endif
 
 // Pack value into bitfield
-// Pack value into bitfield
 #define GX_BITFIELD_SET(field, pos, size, value) (field) = __rlwimi((field), (value), 31 - (pos) - (size) + 1, (pos), (pos) + (size)-1)
+
+#define INSERT_FIELD(reg, value, nbits, shift)                                 \
+    (reg) = ((u32) (reg) & ~(((1 << (nbits)) - 1) << (shift))) |               \
+            ((u32) (value) << (shift));
 
 #define GX_LOAD_BP_REG 0x61
 #define GX_NOP 0
@@ -106,6 +109,19 @@ inline void i_GXPosition3s16(s16 x, s16 y, s16 z) {
 inline void GXTexCoord2s8(s8 x, s8 y) {
     GFX_FIFO(s8) = x;
     GFX_FIFO(s8) = y;
+}
+
+
+inline void GFWriteBPCmd(u32 param_1) {
+  GXFIFO.u8 = 0x61;
+  GXFIFO.u32 = param_1;
+}
+
+inline void GFFill(u16 param_1, u32 param_2) {
+  GXFIFO.u8 = 0x10;
+  GXFIFO.u16 = 0;
+  GXFIFO.u16 = param_1;
+  GXFIFO.u32 = param_2;
 }
 
 inline void i_GXEnd() {}

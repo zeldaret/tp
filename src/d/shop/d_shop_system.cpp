@@ -361,6 +361,32 @@ struct shop_item_data {
 SECTION_DATA static shop_item_data item_seira_shop = {
     {{110.0f, 150.0f, -115.0f}, {160.0f, 150.0f, -115.0f}, {210.0f, 150.0f, -115.0f}}};
 
+#ifdef NONMATCHING
+static processFunc process[22] = {
+    &dShopSystem_c::seq_wait,
+    &dShopSystem_c::seq_start,
+    &dShopSystem_c::seq_select_wait,
+    &dShopSystem_c::seq_select_start,
+    &dShopSystem_c::seq_select,
+    &dShopSystem_c::seq_moving,
+    &dShopSystem_c::seq_decide,
+    &dShopSystem_c::seq_choose,
+    &dShopSystem_c::seq_decide_yes,
+    &dShopSystem_c::seq_decide_no,
+    &dShopSystem_c::seq_finish,
+    (processFunc)&dShopSystem_c::seq_event,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};
+#else
 /* 803BB8E4-803BB8F0 -00001 000C+00 0/1 0/0 0/0 .data            @4056 */
 #pragma push
 #pragma force_active on
@@ -749,6 +775,7 @@ SECTION_DATA static u8 process[144 + 120 /* padding */] = {
     0x00,
     0x00,
 };
+#endif
 
 /* 801974E4-801975C0 191E24 00DC+00 1/0 0/0 10/10 .text            __dt__13dShopSystem_cFv */
 dShopSystem_c::~dShopSystem_c() {
@@ -2072,14 +2099,45 @@ int dShopSystem_c::shop_init(bool param_0) {
 
 /* 8019A158-8019A238 194A98 00E0+00 0/0 0/0 9/9 .text
  * shop_process__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c     */
+// process array match issues
+#ifdef NONMATCHING
+int dShopSystem_c::shop_process(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
+    int iVar1;
+    iVar1 = (this->*process[mSeq])(param_0, param_1);
+
+    if (mWaitTimer != 0) {
+        mWaitTimer--;
+    }
+    if (field_0xf7a != 0) {
+        dMeter2Info_set2DVibration();
+        field_0xf7a = 0;
+    }
+    if (iVar1 != 0) {
+        g_meter2_info.offShopTalkFlag();
+        if (mSeq != 0) {
+            setSeq(0);
+        }
+        if (iVar1 != 2) {
+            mCursorPos = 0;
+            mLastCursorPos = 0;
+        }
+    }
+    if (mSeq != field_0xf71) {
+        field_0xf71 = mSeq;
+        field_0xf79 = 1;
+    }
+    return iVar1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dShopSystem_c::shop_process(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
+asm int dShopSystem_c::shop_process(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
     nofralloc
 #include "asm/d/shop/d_shop_system/shop_process__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804506F8-80450700 -00001 0004+04 1/1 0/0 0/0 .sdata           shop_item_pos_data_tbl */

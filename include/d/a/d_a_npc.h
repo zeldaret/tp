@@ -164,11 +164,8 @@ public:
     /* 80146188 */ int chkPassed1(cXyz, int);
     /* 801464D8 */ int chkPassed2(cXyz, cXyz*, int, int);
 
-    cXyz* getPntPos(u16 i_idx) {
-        u16 tmpidx = i_idx;
-
-        dStage_dPnt_c* tmppnt = &mpRoomPath->m_points[tmpidx];
-        return &tmppnt->m_position;
+    inline cXyz& getPntPos(u16 i_idx) {
+        return mpRoomPath->m_points[i_idx].m_position;
     }
 
     int chkClose() { 
@@ -176,7 +173,7 @@ public:
         return roomPath;
     }
 
-    u16& getNumPnts() { 
+    u16 getNumPnts() { 
         dPath* path = mpRoomPath;
         return path->m_num; 
     }
