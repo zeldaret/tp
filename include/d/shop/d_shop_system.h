@@ -110,7 +110,7 @@ public:
     /* 8019A020 */ int seq_finish(fopAc_ac_c*, dMsgFlow_c*);
     /* 8019A0C0 */ bool seq_event(fopAc_ac_c*, dMsgFlow_c*);
     /* 8019A0D0 */ int shop_init(bool);
-    /* 8019A158 */ void shop_process(fopAc_ac_c*, dMsgFlow_c*);
+    /* 8019A158 */ int shop_process(fopAc_ac_c*, dMsgFlow_c*);
     /* 8019A238 */ void createShopItem(int);
     /* 8019A344 */ void setSeq(u8);
     /* 8019A354 */ void setSoldOutFlag();

@@ -311,7 +311,6 @@ u32 JKRFileCache::readResource(void* dst, u32 dstLength, u32, const char* path) 
 
 /* 802D50D4-802D5164 2CFA14 0090+00 1/0 0/0 0/0 .text            removeResourceAll__12JKRFileCacheFv
  */
-#ifdef NONMATCHING
 void JKRFileCache::removeResourceAll(void) {
     ASSERT(isMounted());
 
@@ -319,22 +318,11 @@ void JKRFileCache::removeResourceAll(void) {
     iterator = mCacheBlockList.getFirst();
     while (iterator != mCacheBlockList.getEnd()) {
         JKRFreeToHeap(mParentHeap, iterator->mMemoryPtr);
-        mCacheBlockList.remove(iterator.mLink);
-        JSUListIterator<CCacheBlock> next = iterator++;
-        CCacheBlock* cacheBlock = next.getObject();
+        mCacheBlockList.remove(&iterator.getObject()->mCacheBlockLink);
+        CCacheBlock* cacheBlock = (iterator++).getObject();
         delete cacheBlock;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRFileCache::removeResourceAll() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRFileCache/removeResourceAll__12JKRFileCacheFv.s"
-}
-#pragma pop
-#endif
 
 /* 802D5164-802D51F8 2CFAA4 0094+00 1/0 0/0 0/0 .text            removeResource__12JKRFileCacheFPv
  */

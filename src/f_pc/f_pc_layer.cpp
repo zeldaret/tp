@@ -29,8 +29,8 @@ s32 fpcLy_ToCancelQ(layer_class* pLayer, process_method_tag_class* pMthd) {
 
 /* 800215CC-800215F8 002C+00 s=1 e=0 z=0  None .text
  * fpcLy_CancelMethod__FP24process_method_tag_class             */
-BOOL fpcLy_CancelMethod(process_method_tag_class* pLayer) {
-    return checkEqual(1, fpcMtdTg_Do(pLayer));
+bool fpcLy_CancelMethod(process_method_tag_class* pLayer) {
+    return fpcMtdTg_Do(pLayer) == 1;
 }
 
 /* 800215F8-8002161C 0024+00 s=0 e=1 z=0  None .text

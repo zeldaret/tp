@@ -19,6 +19,7 @@ LIBMTX_A_O_FILES := \
 LIBMTX_A_CFLAGS := \
 	-O4,p \
 	-lang=c \
+	-inline auto \
 
 LIBMTX_A_LDFLAGS := \
 	-nodefaults \

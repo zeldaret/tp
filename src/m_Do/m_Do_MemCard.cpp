@@ -5,6 +5,7 @@
 
 #include "m_Do/m_Do_MemCard.h"
 #include "JSystem/JKernel/JKRThread.h"
+#include "JSystem/JGadget/binary.h"
 #include "MSL_C/MSL_Common/Src/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
@@ -15,46 +16,12 @@
 // Forward References:
 //
 
-extern "C" void __ct__15mDoMemCd_Ctrl_cFv();
-extern "C" void ThdInit__15mDoMemCd_Ctrl_cFv();
-extern "C" void main__15mDoMemCd_Ctrl_cFv();
-extern "C" void update__15mDoMemCd_Ctrl_cFv();
-extern "C" void load__15mDoMemCd_Ctrl_cFv();
-extern "C" void restore__15mDoMemCd_Ctrl_cFv();
-extern "C" void LoadSync__15mDoMemCd_Ctrl_cFPvUlUl();
-extern "C" void save__15mDoMemCd_Ctrl_cFPvUlUl();
-extern "C" void store__15mDoMemCd_Ctrl_cFv();
-extern "C" void SaveSync__15mDoMemCd_Ctrl_cFv();
-extern "C" void getStatus__15mDoMemCd_Ctrl_cFUl();
-extern "C" void command_format__15mDoMemCd_Ctrl_cFv();
-extern "C" void format__15mDoMemCd_Ctrl_cFv();
-extern "C" void FormatSync__15mDoMemCd_Ctrl_cFv();
-extern "C" void attach__15mDoMemCd_Ctrl_cFv();
-extern "C" void command_attach__15mDoMemCd_Ctrl_cFv();
-extern "C" void detach__15mDoMemCd_Ctrl_cFv();
 extern "C" void mount__15mDoMemCd_Ctrl_cFv();
-extern "C" void loadfile__15mDoMemCd_Ctrl_cFv();
-extern "C" void checkspace__15mDoMemCd_Ctrl_cFv();
 extern "C" void setCardState__15mDoMemCd_Ctrl_cFl();
-extern "C" static void mDoMemCd_main__FPv();
-extern "C" void __sinit_m_Do_MemCard_cpp();
-extern "C" extern char const* const m_Do_m_Do_MemCard__stringBase0;
 
 //
 // External References:
 //
-
-extern "C" void mDoExt_getAssertHeap__Fv();
-extern "C" void mDoMemCdRWm_Store__FP12CARDFileInfoPvUl();
-extern "C" void mDoMemCdRWm_Restore__FP12CARDFileInfoPvUl();
-extern "C" void becomeCurrentHeap__7JKRHeapFv();
-extern "C" void __ct__9JKRThreadFP8OSThreadi();
-extern "C" void __dt__9JKRThreadFv();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -378,18 +345,16 @@ s32 mDoMemCd_Ctrl_c::FormatSync() {
 }
 
 /* 80016FB8-800170B8 0118F8 0100+00 1/1 0/0 0/0 .text            attach__15mDoMemCd_Ctrl_cFv */
-// switch has case issues
-#ifdef NONMATCHING
 void mDoMemCd_Ctrl_c::attach() {
     s32 mem_size;
     s32 sect_size;
 
     s32 card_state = CARDProbeEx(mChannel, &mem_size, &sect_size);
-    if (card_state == CARD_ERROR_NOCARD) {
+    if (card_state == CARD_RESULT_NOCARD) {
         mCardState = 0;
-    } else if (card_state == CARD_ERROR_FATAL_ERROR) {
+    } else if (card_state == CARD_RESULT_FATAL_ERROR) {
         mCardState = 12;
-    } else if (card_state == CARD_ERROR_WRONGDEVICE) {
+    } else if (card_state == CARD_RESULT_WRONGDEVICE) {
         mCardState = 10;
     } else if (sect_size != 0x2000) {
         mCardState = 11;
@@ -408,21 +373,13 @@ void mDoMemCd_Ctrl_c::attach() {
                 case 2:
                     mCardState = 9;
                     break;
+                case 3:
+                    break;
                 }
             }
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoMemCd_Ctrl_c::attach() {
-    nofralloc
-#include "asm/m_Do/m_Do_MemCard/attach__15mDoMemCd_Ctrl_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 800170B8-80017110 0119F8 0058+00 0/0 1/1 0/0 .text            command_attach__15mDoMemCd_Ctrl_cFv
  */
@@ -442,36 +399,48 @@ void mDoMemCd_Ctrl_c::detach() {
 }
 
 /* ############################################################################################## */
-/* 803A3530-803A3568 -00001 0038+00 1/1 0/0 0/0 .data            @3850 */
-SECTION_DATA static void* lit_3850[14] = {
-    (void*)(((char*)mount__15mDoMemCd_Ctrl_cFv) + 0xF4),
-    (void*)(((char*)mount__15mDoMemCd_Ctrl_cFv) + 0x114),
-    (void*)(((char*)mount__15mDoMemCd_Ctrl_cFv) + 0x114),
-    (void*)(((char*)mount__15mDoMemCd_Ctrl_cFv) + 0x114),
-    (void*)(((char*)mount__15mDoMemCd_Ctrl_cFv) + 0x114),
-    (void*)(((char*)mount__15mDoMemCd_Ctrl_cFv) + 0x114),
-    (void*)(((char*)mount__15mDoMemCd_Ctrl_cFv) + 0x114),
-    (void*)(((char*)mount__15mDoMemCd_Ctrl_cFv) + 0xC4),
-    (void*)(((char*)mount__15mDoMemCd_Ctrl_cFv) + 0xD4),
-    (void*)(((char*)mount__15mDoMemCd_Ctrl_cFv) + 0x114),
-    (void*)(((char*)mount__15mDoMemCd_Ctrl_cFv) + 0xE4),
-    (void*)(((char*)mount__15mDoMemCd_Ctrl_cFv) + 0x114),
-    (void*)(((char*)mount__15mDoMemCd_Ctrl_cFv) + 0x114),
-    (void*)(((char*)mount__15mDoMemCd_Ctrl_cFv) + 0xBC),
-};
 
 /* 803E0F40-803EAF40 00DC60 A000+00 1/1 0/0 0/0 .bss             MemCardWorkArea0 */
 static u8 MemCardWorkArea0[5 * 8 * 1024] ALIGN_DECL(32);
 
 /* 80017148-80017274 011A88 012C+00 2/1 0/0 0/0 .text            mount__15mDoMemCd_Ctrl_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 mDoMemCd_Ctrl_c::mount() {
-    nofralloc
-#include "asm/m_Do/m_Do_MemCard/mount__15mDoMemCd_Ctrl_cFv.s"
+s32 mDoMemCd_Ctrl_c::mount() {
+    s32 result = CARDMount(mChannel, MemCardWorkArea0, 0);
+
+    switch (result) {
+    case CARD_RESULT_IOERROR:
+    case CARD_RESULT_FATAL_ERROR:
+        mCardState = 12;
+        return 0;
+    case CARD_RESULT_NOCARD:
+        mCardState = 0;
+        return 0;
+    case CARD_RESULT_BROKEN:
+    case CARD_RESULT_READY:
+        switch (CARDCheck(mChannel)) {
+        case CARD_RESULT_READY:
+            return 1;
+        case CARD_RESULT_BROKEN:
+            mCardState = 7;
+            return 0;
+        case CARD_RESULT_IOERROR:
+            mCardState = 12;
+            return 0;
+        case CARD_RESULT_NOCARD:
+            mCardState = 0;
+            return 0;
+        case CARD_RESULT_ENCODING:
+            mCardState = 6;
+            return 0;
+        }
+        break;
+    case CARD_RESULT_ENCODING:
+        mCardState = 6;
+        return 0;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 80017274-800172D4 011BB4 0060+00 1/1 0/0 0/0 .text            loadfile__15mDoMemCd_Ctrl_cFv */
 s32 mDoMemCd_Ctrl_c::loadfile() {
@@ -488,6 +457,26 @@ s32 mDoMemCd_Ctrl_c::loadfile() {
 }
 
 /* 800172D4-80017360 011C14 008C+00 1/1 0/0 0/0 .text            checkspace__15mDoMemCd_Ctrl_cFv */
+// 
+#ifdef NONMATCHING
+// final return statement
+s32 mDoMemCd_Ctrl_c::checkspace() {
+    s32 bytesNotUsed, filesNotUsed;
+    s32 result;
+    result = CARDFreeBlocks(mChannel, &bytesNotUsed, &filesNotUsed);
+
+    if (result) {
+        setCardState(result);
+        return 3;
+    }
+
+    if (bytesNotUsed < 0x8000) {
+        return 1;
+    }
+
+    return (filesNotUsed - 1 < 0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -496,43 +485,33 @@ asm s32 mDoMemCd_Ctrl_c::checkspace() {
 #include "asm/m_Do/m_Do_MemCard/checkspace__15mDoMemCd_Ctrl_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80017360-8001741C 011CA0 00BC+00 5/5 0/0 0/0 .text            setCardState__15mDoMemCd_Ctrl_cFl
  */
-// cases aren't fully correct
-#ifdef NONMATCHING
 void mDoMemCd_Ctrl_c::setCardState(s32 param_0) {
     switch (param_0) {
-    case CARD_ERROR_IOERROR:
-    case CARD_ERROR_FATAL_ERROR:
+    case CARD_RESULT_IOERROR:
+    case CARD_RESULT_FATAL_ERROR:
         mCardState = 12;
         break;
-    case CARD_ERROR_NOCARD:
+    case CARD_RESULT_NOCARD:
         mCardState = 0;
         break;
-    case CARD_ERROR_READY:
+    case CARD_RESULT_BROKEN:
+    case CARD_RESULT_READY:
         if (CARDCheck(mChannel) != 0) {
             mCardState = 7;
         }
         break;
-    case CARD_ERROR_ENCODING:
+    case CARD_RESULT_ENCODING:
         mCardState = 6;
         break;
-    case CARD_ERROR_BROKEN:
+    case CARD_RESULT_NOFILE:
         mCardState = 2;
         break;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoMemCd_Ctrl_c::setCardState(s32 param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_MemCard/setCardState__15mDoMemCd_Ctrl_cFl.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 803EAF40-803ECF40 017C60 2000+00 2/2 27/27 0/0 .bss             g_mDoMemCd_control */

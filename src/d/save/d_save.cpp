@@ -529,33 +529,21 @@ static u8 i_item_lst[23] = {
 };
 
 /* 800332F8-80033354 02DC38 005C+00 2/2 0/0 0/0 .text setLineUpItem__17dSv_player_item_cFv */
-// this is close
-#ifdef NONMATCHING
 void dSv_player_item_c::setLineUpItem() {
-    int i1 = 0;
     int i2 = 0;
 
-    for (; i1 < 24; i1++) {
+    for (int i1 = 0; i1 < 24; i1++) {
         mItemSlots[i1] = NO_ITEM;
     }
 
     for (int i1 = 0; i1 < 23; i1++) {
-        if (mItems[i_item_lst[i1]] != NO_ITEM) {
-            mItemSlots[i2] = i_item_lst[i1];
+        u32 current = i_item_lst[i1];
+        if (mItems[current] != NO_ITEM) {
+            mItemSlots[i2] = current;
             i2++;
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSv_player_item_c::setLineUpItem() {
-    nofralloc
-#include "asm/d/save/d_save/setLineUpItem__17dSv_player_item_cFv.s"
-}
-#pragma pop
-#endif
 
 u8 dSv_player_item_c::getLineUpItem(int i_slotNo) const {
     if (i_slotNo < MAX_ITEM_SLOTS) {
@@ -566,15 +554,14 @@ u8 dSv_player_item_c::getLineUpItem(int i_slotNo) const {
 }
 
 /* 80033370-80033450 02DCB0 00E0+00 1/1 2/2 0/0 .text setBottleItemIn__17dSv_player_item_cFUcUc */
-#ifdef NONMATCHING
 void dSv_player_item_c::setBottleItemIn(u8 curItemIn, u8 newItemIn) {
-    u8 cur_item = dSv_item_rename(curItemIn);
-    u8 new_item = dSv_item_rename(newItemIn);
+    curItemIn = dSv_item_rename(curItemIn);
+    newItemIn = dSv_item_rename(newItemIn);
 
     for (int i = 0; i < 4; i++) {
-        if (cur_item == mItems[i + SLOT_11]) {
-            setItem(i + SLOT_11, new_item);
-            if (new_item == HOT_SPRING) {
+        if (curItemIn == mItems[i + SLOT_11]) {
+            setItem(i + SLOT_11, newItemIn);
+            if (newItemIn == HOT_SPRING) {
                 dMeter2Info_setHotSpringTimer(i + SLOT_11);
             }
 
@@ -587,34 +574,13 @@ void dSv_player_item_c::setBottleItemIn(u8 curItemIn, u8 newItemIn) {
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSv_player_item_c::setBottleItemIn(u8 curItemIn, u8 newItemIn) {
-    nofralloc
-#include "asm/d/save/d_save/setBottleItemIn__17dSv_player_item_cFUcUc.s"
-}
-#pragma pop
-#endif
 
 /* 80033450-80033494 02DD90 0044+00 0/0 26/26 0/0 .text
  * setEmptyBottleItemIn__17dSv_player_item_cFUc                 */
-// this is 1 instruction off
-#ifdef NONMATCHING
 void dSv_player_item_c::setEmptyBottleItemIn(u8 i_itemNo) {
-    setBottleItemIn(EMPTY_BOTTLE, dSv_item_rename(i_itemNo));
+    i_itemNo = dSv_item_rename(i_itemNo);
+    setBottleItemIn(EMPTY_BOTTLE, i_itemNo);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSv_player_item_c::setEmptyBottleItemIn(u8 i_itemNo) {
-    nofralloc
-#include "asm/d/save/d_save/setEmptyBottleItemIn__17dSv_player_item_cFUc.s"
-}
-#pragma pop
-#endif
 
 void dSv_player_item_c::setEmptyBottle() {
     for (int i = 0; i < 4; i++) {
@@ -636,33 +602,21 @@ void dSv_player_item_c::setEmptyBottle(u8 i_itemNo) {
 
 /* 80033598-800336BC 02DED8 0124+00 1/1 3/3 0/0 .text
  * setEquipBottleItemIn__17dSv_player_item_cFUcUc               */
-// one instruction
-#ifdef NONMATCHING
 void dSv_player_item_c::setEquipBottleItemIn(u8 curItemIn, u8 newItemIn) {
-    u8 new_item = dSv_item_rename(newItemIn);
+    newItemIn = dSv_item_rename(newItemIn);
 
     if (dComIfGs_getSelectItemIndex(curItemIn) >= SLOT_11 &&
         dComIfGs_getSelectItemIndex(curItemIn) <= SLOT_14) {
-        if (new_item == HOT_SPRING) {
+        if (newItemIn == HOT_SPRING) {
             dMeter2Info_setHotSpringTimer(dComIfGs_getSelectItemIndex(curItemIn));
         }
 
-        setItem(dComIfGs_getSelectItemIndex(curItemIn), new_item);
-        dComIfGs_setItem(dComIfGs_getSelectItemIndex(curItemIn), new_item);
-        dComIfGp_setItem(dComIfGs_getSelectItemIndex(curItemIn), new_item);
+        setItem(dComIfGs_getSelectItemIndex(curItemIn), newItemIn);
+        dComIfGs_setItem(dComIfGs_getSelectItemIndex(curItemIn), newItemIn);
+        dComIfGp_setItem(dComIfGs_getSelectItemIndex(curItemIn), newItemIn);
         dComIfGp_setSelectItem(curItemIn);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSv_player_item_c::setEquipBottleItemIn(u8 curItemIn, u8 newItemIn) {
-    nofralloc
-#include "asm/d/save/d_save/setEquipBottleItemIn__17dSv_player_item_cFUcUc.s"
-}
-#pragma pop
-#endif
 
 void dSv_player_item_c::setEquipBottleItemEmpty(u8 curItemIn) {
     setEquipBottleItemIn(curItemIn, EMPTY_BOTTLE);
@@ -1270,23 +1224,12 @@ BOOL dSv_memBit_c::isSwitch(int i_no) const {
 }
 
 /* 8003488C-800348C4 02F1CC 0038+00 1/1 0/0 0/0 .text            revSwitch__12dSv_memBit_cFi */
-// instruction in wrong place
-#ifdef NONMATCHING
 BOOL dSv_memBit_c::revSwitch(int i_no) {
+    u32 switchInd = i_no >> 5;
     u32 tmp = 1 << (i_no & 0x1F);
-    mSwitch[i_no >> 5] ^= tmp;
-    return mSwitch[i_no >> 5] & tmp ? TRUE : FALSE;
+    mSwitch[switchInd] ^= tmp;
+    return mSwitch[switchInd] & tmp ? TRUE : FALSE;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dSv_memBit_c::revSwitch(int i_no) {
-    nofralloc
-#include "asm/d/save/d_save/revSwitch__12dSv_memBit_cFi.s"
-}
-#pragma pop
-#endif
 
 void dSv_memBit_c::onItem(int i_no) {
     mItem[i_no >> 5] |= 1 << (i_no & 0x1F);
@@ -1450,23 +1393,12 @@ BOOL dSv_zoneBit_c::isSwitch(int i_no) const {
 }
 
 /* 80034D78-80034DAC 02F6B8 0034+00 1/1 0/0 0/0 .text            revSwitch__13dSv_zoneBit_cFi */
-// instruction in wrong place
-#ifdef NONMATCHING
 BOOL dSv_zoneBit_c::revSwitch(int i_no) {
+    u32 switchInd = i_no >> 4;
     int uVar1 = 1 << (i_no & 0xF);
-    mSwitch[i_no >> 4] ^= uVar1;
-    return mSwitch[i_no >> 4] & uVar1 ? TRUE : FALSE;
+    mSwitch[switchInd] ^= uVar1;
+    return mSwitch[switchInd] & uVar1 ? TRUE : FALSE;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dSv_zoneBit_c::revSwitch(int i_no) {
-    nofralloc
-#include "asm/d/save/d_save/revSwitch__13dSv_zoneBit_cFi.s"
-}
-#pragma pop
-#endif
 
 void dSv_zoneBit_c::onOneSwitch(int i_no) {
     mRoomSwitch |= (u16)(1 << i_no);
@@ -1772,19 +1704,20 @@ int dSv_info_c::memory_to_card(char* card_ptr, int dataNum) {
         phi_r30 = true;
     }
 
-    char* save_ptr = card_ptr + (dataNum * 0xA94);  // 0xA94 = Quest Log size
+    card_ptr = card_ptr + (dataNum * 0xA94);  // 0xA94 = Quest Log size
     dSv_save_c* savedata = dComIfGs_getSaveData();
 
     s64 play_time = (OSGetTime() - dComIfGs_getSaveStartTime());
-    s64 total_time = (play_time + dComIfGs_getSaveTotalTime()) / (OS_BUS_CLOCK / 4);
+    s64 total_time = (play_time + dComIfGs_getSaveTotalTime());
+    s64 play_time_secs = play_time / (OS_BUS_CLOCK / 4);
 
     // 3599940 = 999:59 in seconds
-    if (total_time < 3599940) {
+    if (play_time_secs < 3599940) {
         savedata->getPlayer().getPlayerInfo().setTotalTime(total_time);
     }
     savedata->getPlayer().getPlayerStatusB().setDateIpl(OSGetTime());
 
-    memcpy(save_ptr, savedata, sizeof(dSv_save_c));
+    memcpy(card_ptr, savedata, sizeof(dSv_save_c));
     printf("Write size:%d\n", sizeof(dSv_save_c));
 
     if (lantern_not_recovered == true) {
@@ -1816,17 +1749,11 @@ asm int dSv_info_c::memory_to_card(char* card_ptr, int dataNum) {
 #endif
 
 /* ############################################################################################## */
-/* 80379234-80379234 005894 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037927A = "LOAD size:%d\n";
-#pragma pop
 
 /* 80035A04-80035BD0 030344 01CC+00 0/0 2/2 0/0 .text            card_to_memory__10dSv_info_cFPci */
-// memcpy param loads out of order
-#ifdef NONMATCHING
 int dSv_info_c::card_to_memory(char* card_ptr, int dataNum) {
-    memcpy(dComIfGs_getSaveData(), card_ptr + dataNum * 0xa94, sizeof(dSv_save_c));
+    card_ptr = card_ptr + dataNum * 0xa94;
+    memcpy(dComIfGs_getSaveData(), card_ptr, sizeof(dSv_save_c));
 
     if (OSGetSoundMode() == OS_SOUND_MODE_MONO) {
         g_dComIfG_gameInfo.info.getPlayer().getConfig().setSound(OS_SOUND_MODE_MONO);
@@ -1834,8 +1761,8 @@ int dSv_info_c::card_to_memory(char* card_ptr, int dataNum) {
     } else if (g_dComIfG_gameInfo.info.getPlayer().getConfig().getSound() == 2) {
         Z2AudioMgr::mAudioMgrPtr->setOutputMode(2);
     } else {
-        g_dComIfG_gameInfo.info.getPlayer().getConfig().setSound(SOUND_MODE_STEREO);
-        Z2AudioMgr::mAudioMgrPtr->setOutputMode(SOUND_MODE_STEREO);
+        g_dComIfG_gameInfo.info.getPlayer().getConfig().setSound(OS_SOUND_MODE_STEREO);
+        Z2AudioMgr::mAudioMgrPtr->setOutputMode(OS_SOUND_MODE_STEREO);
     }
 
     dSv_save_c* savedata = dComIfGs_getSaveData();
@@ -1865,49 +1792,22 @@ int dSv_info_c::card_to_memory(char* card_ptr, int dataNum) {
     printf("LOAD size:%d\n", sizeof(dSv_save_c));
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dSv_info_c::card_to_memory(char* card_ptr, int dataNum) {
-    nofralloc
-#include "asm/d/save/d_save/card_to_memory__10dSv_info_cFPci.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
-/* 80379234-80379234 005894 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80379288 = "INIT size:%d\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80379296 = "\0";
-#pragma pop
 
 /* 80035BD0-80035C88 030510 00B8+00 0/0 3/3 0/0 .text            initdata_to_card__10dSv_info_cFPci
  */
-#ifdef NONMATCHING
 int dSv_info_c::initdata_to_card(char* card_ptr, int dataNum) {
-    char* ptr = card_ptr + (dataNum * 0xa94);
+    card_ptr = card_ptr + (dataNum * 0xa94);
     dSv_save_c tmp;
 
     tmp.init();
     tmp.getPlayer().getPlayerInfo().setPlayerName("");
     tmp.getPlayer().getPlayerInfo().setHorseName("");
-    memcpy(&ptr, &tmp, 0x958);
+    memcpy(card_ptr, &tmp, 0x958);
     printf("INIT size:%d\n", 0x958);
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dSv_info_c::initdata_to_card(char* card_ptr, int dataNum){nofralloc
-#include "asm/d/save/d_save/initdata_to_card__10dSv_info_cFPci.s"
-}
-#pragma pop
-#endif
 
 u16 const dSv_event_tmp_flag_c::tempBitLabels[185] = {
     0xFFFF, 0xFFFF, 0xFF0F, 0xFEFF, 0x0040, 0xFDFF, 0xFCFF, 0x0020, 0x0080, 0x0010, 0x0008, 0x0004,

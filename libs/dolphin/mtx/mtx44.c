@@ -12,32 +12,37 @@
 //
 
 /* ############################################################################################## */
-/* 80456528-8045652C 004B28 0004+00 2/2 0/0 0/0 .sdata2          @99 */
-SECTION_SDATA2 static f32 lit_99 = 1.0f;
 
-/* 8045652C-80456530 004B2C 0004+00 1/1 0/0 0/0 .sdata2          @100 */
-SECTION_SDATA2 static f32 lit_100 = 2.0f;
+static void __C_MTXOrtho1(Mtx44 m, f32 l, f32 r, f32 t, f32 b) {
+    f32 temp_f10 = 1.0F / (r - l);
+    f32 temp_f8;
+    m[0][0] = 2.0F * temp_f10;
+    m[0][1] = 0.0F;
+    m[0][2] = 0.0F;
+    m[0][3] = temp_f10 * -(r + l);
 
-/* 80456530-80456534 004B30 0004+00 2/2 0/0 0/0 .sdata2          @101 */
-SECTION_SDATA2 static u8 lit_101[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+    temp_f8 = 1.0F / (t - b);
+    m[1][0] = 0.0F;
+    m[1][1] = 2.0F * temp_f8;
+    m[1][2] = 0.0F;
+    m[1][3] = temp_f8 * -(t + b);
+}
 
-/* 80456534-80456538 004B34 0004+00 2/2 0/0 0/0 .sdata2          @102 */
-SECTION_SDATA2 static f32 lit_102 = -1.0f;
+static void __C_MTXOrtho2(Mtx44 m, f32 f, f32 n) {
+    f32 temp_f4 = 1.0F / (f - n);
+    m[2][0] = 0.0F;
+    m[2][1] = 0.0F;
+    m[2][2] = -1.0F * temp_f4;
+    m[2][3] = -f * temp_f4;
 
-/* 80456538-8045653C 004B38 0004+00 1/1 0/0 0/0 .sdata2          @105 */
-SECTION_SDATA2 static f32 lit_105 = 0.5f;
-
-/* 8045653C-80456540 004B3C 0004+00 1/1 0/0 0/0 .sdata2          @106 */
-SECTION_SDATA2 static f32 lit_106 = 0.01745329238474369f;
+    m[3][0] = 0.0F;
+    m[3][1] = 0.0F;
+    m[3][2] = 0.0F;
+    m[3][3] = 1.0F;
+}
 
 /* 80346F28-80346FF8 341868 00D0+00 0/0 6/6 0/0 .text            C_MTXPerspective */
 // Functions match but has issues with float constants
-#ifdef NONMATCHING
 void C_MTXPerspective(Mtx44 m, f32 fovY, f32 aspect, f32 n, f32 f)
 {
     f32 temp_f3;
@@ -68,55 +73,11 @@ void C_MTXPerspective(Mtx44 m, f32 fovY, f32 aspect, f32 n, f32 f)
     m[3][2] = -1.0F;
     m[3][3] = 0.0F;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void C_MTXPerspective(Mtx44 m, f32 fovy, f32 aspect, f32 near, f32 far) {
-    nofralloc
-#include "asm/dolphin/mtx/mtx44/C_MTXPerspective.s"
-}
-#pragma pop
-#endif
 
 /* 80346FF8-80347090 341938 0098+00 0/0 11/11 2/2 .text            C_MTXOrtho */
-#ifdef NONMATCHING
 void C_MTXOrtho(Mtx44 m, f32 t, f32 b, f32 l, f32 r, f32 n, f32 f)
 {
-    f32 temp_f8;
-    f32 temp_f10;
-    f32 temp_f4;
+    __C_MTXOrtho1(m, l, r, t, b);
 
-    temp_f10 = 1.0F / (r - l);
-    m[0][0] = 2.0F * temp_f10;
-    m[0][1] = 0.0F;
-    m[0][2] = 0.0F;
-    m[0][3] = temp_f10 * -(r + l);
-
-    temp_f8 = 1.0F / (t - b);
-    m[1][0] = 0.0F;
-    m[1][1] = 2.0F * temp_f8;
-    m[1][2] = 0.0F;
-    m[1][3] = temp_f8 * -(t + b);
-
-    temp_f4 = 1.0F / (f - n);
-    m[2][0] = 0.0F;
-    m[2][1] = 0.0F;
-    m[2][2] = -1.0F * temp_f4;
-    m[2][3] = -f * temp_f4;
-
-    m[3][0] = 0.0F;
-    m[3][1] = 0.0F;
-    m[3][2] = 0.0F;
-    m[3][3] = 1.0F;
+    __C_MTXOrtho2(m, f, n);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void C_MTXOrtho(Mtx44 m, f32 top, f32 bottom, f32 left, f32 right, f32 near, f32 far) {
-    nofralloc
-#include "asm/dolphin/mtx/mtx44/C_MTXOrtho.s"
-}
-#pragma pop
-#endif

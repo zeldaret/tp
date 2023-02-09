@@ -153,6 +153,7 @@ public:
     u8 getLifeGaugeSE() { return mLifeGaugeSE; }
     const char* getSaveStageName() { return mSaveStageName; }
     void onShopTalkFlag() { mShopTalkFlag = true; }
+    void offShopTalkFlag() { mShopTalkFlag = false; }
     void setLightDropGetFlag(int index, u8 flag) { mLightDropGetFlag[index] = flag; }
     u8 getRentalBombBag() { return mRentalBombBagIdx; }
     void setTableMapRegionNo(u8 regionNo) { mTableMapRegionNo = regionNo; }

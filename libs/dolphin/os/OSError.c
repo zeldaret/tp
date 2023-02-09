@@ -18,9 +18,9 @@ volatile OSContext* __OSFPUContext : (OS_BASE_CACHED | 0x00D8);
 // External References:
 //
 
-extern u32 __OSLastInterruptSrr0;
-extern s16 __OSLastInterrupt[4];
-extern OSTime __OSLastInterruptTime;
+extern volatile u32 __OSLastInterruptSrr0;
+extern volatile s16 __OSLastInterrupt;
+extern volatile OSTime __OSLastInterruptTime;
 
 //
 // Declarations:
@@ -103,7 +103,10 @@ OSErrorHandler OSSetErrorHandler(OSError error, OSErrorHandler handler) {
 
 /* ############################################################################################## */
 /* 803CF918-803CF930 02CA38 0016+02 1/1 0/0 0/0 .data            @13 */
+#pragma push
+#pragma force_active on
  SECTION_DATA static char lit_13[] = " in \"%s\" on line %d.\n";
+ #pragma pop
 
 // /* 803CF930-803CF958 02CA50 0026+02 0/0 0/0 0/0 .data            @14 */
 #pragma push
@@ -321,7 +324,7 @@ void __OSUnhandledException(__OSException exception, OSContext* context, u32 dsi
         break;
     }
 
-    OSReport("\nLast interrupt (%d): SRR0 = 0x%08x  TB = 0x%016llx\n", __OSLastInterrupt[0],
+    OSReport("\nLast interrupt (%d): SRR0 = 0x%08x  TB = 0x%016llx\n", __OSLastInterrupt,
              __OSLastInterruptSrr0, __OSLastInterruptTime);
 
     PPCHalt();
