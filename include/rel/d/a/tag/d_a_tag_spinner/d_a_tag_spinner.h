@@ -9,7 +9,7 @@ class daTagSpinner_c : public fopAc_ac_c {
 public:
     /* 0x568 */ f32 mRadius;
     /* 0x56c */ f32 field_0x56c;
-    
+
     /* 80D618A4 */ void initBaseMtx();
     /* 80D618C4 */ void setBaseMtx();
     /* 80D6191C */ int Create();
