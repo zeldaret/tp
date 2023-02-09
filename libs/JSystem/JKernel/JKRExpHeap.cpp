@@ -1147,33 +1147,21 @@ void JKRExpHeap::CMemBlock::initiate(JKRExpHeap::CMemBlock* prev, JKRExpHeap::CM
 
 /* 802D0830-802D0874 2CB170 0044+00 3/3 0/0 0/0 .text
  * allocFore__Q210JKRExpHeap9CMemBlockFUlUcUcUcUc               */
-#ifdef NONMATCHING
 JKRExpHeap::CMemBlock* JKRExpHeap::CMemBlock::allocFore(u32 size, u8 groupId1, u8 alignment1,
                                                         u8 groupId2, u8 alignment2) {
     CMemBlock* block = NULL;
     mGroupId = groupId1;
     mFlags = alignment1;
     if (getSize() >= size + sizeof(CMemBlock)) {
-        CMemBlock* newblock = (CMemBlock*)(size + (u32)this);
-        newblock[1].mGroupId = groupId2;
-        newblock[1].mFlags = alignment2;
-        newblock[1].size = this->size - (size + sizeof(CMemBlock));
+        block = (CMemBlock*)(size + (u32)this);
+        block[1].mGroupId = groupId2;
+        block[1].mFlags = alignment2;
+        block[1].size = this->size - (size + sizeof(CMemBlock));
         this->size = size;
-        block = newblock + 1;
+        block = block + 1;
     }
     return block;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRExpHeap::CMemBlock* JKRExpHeap::CMemBlock::allocFore(u32 param_0, u8 param_1, u8 param_2,
-                                                            u8 param_3, u8 param_4) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRExpHeap/allocFore__Q210JKRExpHeap9CMemBlockFUlUcUcUcUc.s"
-}
-#pragma pop
-#endif
 
 /* 802D0874-802D08CC 2CB1B4 0058+00 1/1 0/0 0/0 .text
  * allocBack__Q210JKRExpHeap9CMemBlockFUlUcUcUcUc               */

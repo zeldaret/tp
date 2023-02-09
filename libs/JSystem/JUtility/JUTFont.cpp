@@ -4,26 +4,15 @@
 //
 
 #include "JSystem/JUtility/JUTFont.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //
 // Forward References:
 //
 
-extern "C" void __ct__7JUTFontFv();
-extern "C" void initialize_state__7JUTFontFv();
-extern "C" void setCharColor__7JUTFontFQ28JUtility6TColor();
-extern "C" void setGradColor__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor();
-extern "C" void drawString_size_scale__7JUTFontFffffPCcUlb();
-
 //
 // External References:
 //
-
-extern "C" void _savegpr_27();
-extern "C" void _restgpr_27();
-extern "C" extern void* __vt__7JUTFont[17];
 
 //
 // Declarations:
@@ -61,33 +50,23 @@ void JUTFont::setGradColor(JUtility::TColor col1, JUtility::TColor col2) {
 
 /* 802DEE28-802DEF48 2D9768 0120+00 0/0 3/3 0/0 .text drawString_size_scale__7JUTFontFffffPCcUlb
  */
-#ifdef NONMATCHING
 f32 JUTFont::drawString_size_scale(f32 a1, f32 a2, f32 a3, f32 a4, const char* str, u32 usz,
                                    bool a7) {
     f32 temp = a1;
 
     for (; usz > 0; usz--, str++) {
-        u32 b = *(u8*)str;
+        u32 c = *(u8*)str;
+        u32 b = c;
         if (isLeadByte(b)) {
             str++;
-            b = (b << 8 | *(u8*)str);
+            b <<= 8;
+            b |= *(u8*)str;
             usz--;
         }
 
-        a1 += drawChar_scale(temp, a2, a3, a4, b, a7);
+        a1 += drawChar_scale(a1, a2, a3, a4, b, a7);
         a7 = 1;
     }
 
     return a1 - temp;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 JUTFont::drawString_size_scale(f32 param_0, f32 param_1, f32 param_2, f32 param_3,
-                                       char const* param_4, u32 param_5, bool param_6) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTFont/drawString_size_scale__7JUTFontFffffPCcUlb.s"
-}
-#pragma pop
-#endif

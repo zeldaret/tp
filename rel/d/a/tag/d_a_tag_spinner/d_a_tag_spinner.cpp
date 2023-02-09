@@ -4,35 +4,6 @@
 //
 
 #include "rel/d/a/tag/d_a_tag_spinner/d_a_tag_spinner.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct daTagSpinner_c {
-    /* 80D618A4 */ void initBaseMtx();
-    /* 80D618C4 */ void setBaseMtx();
-    /* 80D6191C */ void Create();
-    /* 80D6196C */ bool CreateHeap();
-    /* 80D61974 */ void create();
-    /* 80D61A00 */ void execute();
-    /* 80D61AB4 */ bool _delete();
-};
-
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 800352B0 */ void offSwitch(int, int);
-};
 
 //
 // Forward References:
@@ -63,177 +34,110 @@ extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
 extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
 extern "C" void onSwitch__10dSv_info_cFii();
 extern "C" void offSwitch__10dSv_info_cFii();
-extern "C" void PSMTXTrans();
-extern "C" void PSVECSquareDistance();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
+
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_nan;
 
 //
 // Declarations:
 //
 
 /* 80D616F8-80D61718 000078 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void CheckCreateHeap(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_spinner/d_a_tag_spinner/CheckCreateHeap__FP10fopAc_ac_c.s"
+static int CheckCreateHeap(fopAc_ac_c* param_0) {
+    daTagSpinner_c* tag = (daTagSpinner_c*)param_0;
+    return tag->CreateHeap();
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80D61B24-80D61B2C 000000 0004+04 1/1 0/0 0/0 .rodata          @3689 */
-SECTION_RODATA static u8 const lit_3689[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80D61B24, &lit_3689);
-
-/* 80D61B2C-80D61B34 000008 0008+00 0/1 0/0 0/0 .rodata          @3690 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3690[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D61B2C, &lit_3690);
-#pragma pop
-
-/* 80D61B34-80D61B3C 000010 0008+00 0/1 0/0 0/0 .rodata          @3691 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3691[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D61B34, &lit_3691);
-#pragma pop
-
-/* 80D61B3C-80D61B44 000018 0008+00 0/1 0/0 0/0 .rodata          @3692 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3692[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D61B3C, &lit_3692);
-#pragma pop
 
 /* 80D61718-80D618A4 000098 018C+00 1/1 0/0 0/0 .text            search_spinner_sub__FPvPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void search_spinner_sub(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_spinner/d_a_tag_spinner/search_spinner_sub__FPvPv.s"
+static void* search_spinner_sub(void* tag_0, void* tag_1) {
+    fopAc_ac_c* actor = (fopAc_ac_c*)tag_0;
+    daTagSpinner_c* actor2 = (daTagSpinner_c*)tag_1;
+
+    if ((actor != NULL) && (fopAcM_IsActor(actor) != NULL) && (fopAcM_GetProfName(actor) == 0xF2)) {
+        if ((actor->current.pos.absXZ(actor2->current.pos)) < (actor2->GetR())) {
+            return actor;
+        }
+    }
+    return 0;
 }
-#pragma pop
 
 /* 80D618A4-80D618C4 000224 0020+00 1/1 0/0 0/0 .text            initBaseMtx__14daTagSpinner_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagSpinner_c::initBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_spinner/d_a_tag_spinner/initBaseMtx__14daTagSpinner_cFv.s"
+void daTagSpinner_c::initBaseMtx() {
+    setBaseMtx();
 }
-#pragma pop
 
 /* 80D618C4-80D6191C 000244 0058+00 1/1 0/0 0/0 .text            setBaseMtx__14daTagSpinner_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagSpinner_c::setBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_spinner/d_a_tag_spinner/setBaseMtx__14daTagSpinner_cFv.s"
+void daTagSpinner_c::setBaseMtx() {
+    PSMTXTrans(mDoMtx_stack_c::now, current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_ZXYrotM(mDoMtx_stack_c::now, shape_angle.x, shape_angle.y, shape_angle.z);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80D61B44-80D61B48 000020 0004+00 1/1 0/0 0/0 .rodata          @3715 */
-SECTION_RODATA static f32 const lit_3715 = 100.0f;
-COMPILER_STRIP_GATE(0x80D61B44, &lit_3715);
 
 /* 80D6191C-80D6196C 00029C 0050+00 1/1 0/0 0/0 .text            Create__14daTagSpinner_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagSpinner_c::Create() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_spinner/d_a_tag_spinner/Create__14daTagSpinner_cFv.s"
+int daTagSpinner_c::Create() {
+    initBaseMtx();
+    mRadius = mScale.x * 100.0f;
+    field_0x56c = mScale.y * 100.0f;
+    return 1;
 }
-#pragma pop
 
 /* 80D6196C-80D61974 0002EC 0008+00 1/1 0/0 0/0 .text            CreateHeap__14daTagSpinner_cFv */
-bool daTagSpinner_c::CreateHeap() {
-    return true;
+int daTagSpinner_c::CreateHeap() {
+    return 1;
 }
 
 /* 80D61974-80D61A00 0002F4 008C+00 1/1 0/0 0/0 .text            create__14daTagSpinner_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagSpinner_c::create() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_spinner/d_a_tag_spinner/func_80D61974.s"
+int daTagSpinner_c::create() {
+    int iVar1;
+    int iVar2;
+    if (!fopAcM_CheckCondition(this, 8)) {
+        new (this) daTagSpinner_c();
+        fopAcM_OnCondition(this, 8);
+    }
+
+    if (!fopAcM_entrySolidHeap(this, CheckCreateHeap, 0)) {
+        iVar2 = 5;
+    } else {
+        iVar1 = Create();
+        if (iVar1 == NULL) {
+            iVar2 = 5;
+        } else {
+            iVar2 = 4;
+        }
+    }
+    return iVar2;
 }
-#pragma pop
 
 /* 80D61A00-80D61AB4 000380 00B4+00 1/1 0/0 0/0 .text            execute__14daTagSpinner_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTagSpinner_c::execute() {
+asm int daTagSpinner_c::execute() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_spinner/d_a_tag_spinner/execute__14daTagSpinner_cFv.s"
 }
 #pragma pop
 
 /* 80D61AB4-80D61ABC 000434 0008+00 1/1 0/0 0/0 .text            _delete__14daTagSpinner_cFv */
-bool daTagSpinner_c::_delete() {
-    return true;
+int daTagSpinner_c::_delete() {
+    return 1;
 }
 
 /* 80D61ABC-80D61ADC 00043C 0020+00 1/0 0/0 0/0 .text daTagSpinner_Execute__FP14daTagSpinner_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagSpinner_Execute(daTagSpinner_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_spinner/d_a_tag_spinner/daTagSpinner_Execute__FP14daTagSpinner_c.s"
+static int daTagSpinner_Execute(daTagSpinner_c* tag) {
+    return tag->execute();
 }
-#pragma pop
 
 /* 80D61ADC-80D61AFC 00045C 0020+00 1/0 0/0 0/0 .text daTagSpinner_Delete__FP14daTagSpinner_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagSpinner_Delete(daTagSpinner_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_spinner/d_a_tag_spinner/daTagSpinner_Delete__FP14daTagSpinner_c.s"
+static int daTagSpinner_Delete(daTagSpinner_c* i_this) {
+    return i_this->_delete();
 }
-#pragma pop
 
 /* 80D61AFC-80D61B1C 00047C 0020+00 1/0 0/0 0/0 .text            daTagSpinner_Create__FP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagSpinner_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_spinner/d_a_tag_spinner/daTagSpinner_Create__FP10fopAc_ac_c.s"
+static int daTagSpinner_Create(fopAc_ac_c* tag) {
+    return static_cast<daTagSpinner_c*>(tag)->create();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D61B48-80D61B68 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagSpinner_Method */

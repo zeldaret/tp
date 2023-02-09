@@ -19,9 +19,9 @@
 
 /* 80020ACC-80020AE8 001C+00 s=1 e=0 z=0  None .text      fpcCtRq_isCreatingByID__FP10create_tagPUi
  */
-BOOL fpcCtRq_isCreatingByID(create_tag* pTag, unsigned int* pId) {
+bool fpcCtRq_isCreatingByID(create_tag* pTag, unsigned int* pId) {
     create_request* pReq = static_cast<create_request*>(pTag->mBase.mpTagData);
-    return checkEqual(*pId, pReq->mBsPcId);
+    return pReq->mBsPcId == *pId;
 }
 
 /* 80020AE8-80020B20 0038+00 s=0 e=2 z=0  None .text      fpcCtRq_IsCreatingByID__FUi */

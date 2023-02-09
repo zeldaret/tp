@@ -67,7 +67,7 @@ s32 fpcDt_ToDeleteQ(base_process_class* pProc) {
         if (cTg_IsUse(&pProc->mDtTg.mBase) != 0) {
             return 1;
         } else {
-            if (fpcBs_Is_JustOfType(g_fpcNd_type, pProc->mSubType) != 0) {
+            if (fpcBs_Is_JustOfType(g_fpcNd_type, pProc->mSubType)) {
                 process_node_class* procNode = (process_node_class*)pProc;
                 if (fpcNd_IsDeleteTiming(procNode) == 0) {
                     return 0;

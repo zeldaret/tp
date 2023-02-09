@@ -4,22 +4,18 @@
 //
 
 #include "dolphin/gf/GFLight.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
+#include "dolphin/gx/GXEnum.h"
+#include "dolphin/gx/GXStruct.h"
+#include "dolphin/gx/GX.h"
 
 //
 // Types:
 //
 
-struct _GXColor {};
-
-struct _GXChannelID {};
-
 //
 // Forward References:
 //
-
-extern "C" void GFSetChanAmbColor__F12_GXChannelID8_GXColor();
 
 //
 // External References:
@@ -31,11 +27,7 @@ extern "C" void GFSetChanAmbColor__F12_GXChannelID8_GXColor();
 
 /* 802CDE54-802CDE9C 2C8794 0048+00 0/0 0/0 1/1 .text GFSetChanAmbColor__F12_GXChannelID8_GXColor
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GFSetChanAmbColor(_GXChannelID param_0, _GXColor param_1) {
-    nofralloc
-#include "asm/dolphin/gf/GFLight/GFSetChanAmbColor__F12_GXChannelID8_GXColor.s"
+void GFSetChanAmbColor(_GXChannelID param_0, _GXColor param_1) {
+    GFFill((param_0 & 1) + 0x100a,
+           param_1.r << 0x18 | param_1.g << 0x10 | param_1.b << 8 | param_1.a);
 }
-#pragma pop

@@ -55,11 +55,17 @@ OSTime __OSGetSystemTime();
 // Declarations:
 //
 
+typedef struct DVDBuffer {
+  void* addr;
+  u32 length;
+  u32 offset;
+} DVDBuffer;
+
 typedef struct DVDCommand {
-  s32 _0;
-  void* _4;
-  u32 _8;
-  u32 _c;
+  s32 cmd;
+  void* addr;
+  u32 length;
+  u32 offset;
   DVDLowCallback callback;
 } DVDCommand;
 
@@ -112,7 +118,7 @@ static volatile u32 NextCommandNumber;
 /* 80347674-803476B4 341FB4 0040+00 0/0 1/1 0/0 .text            __DVDInitWA */
 void __DVDInitWA() {
     NextCommandNumber = 0;
-    ((DVDCommand*)CommandList)[0]._0 = -1;
+    ((DVDCommand*)CommandList)[0].cmd = -1;
     __DVDLowSetWAType(0, 0);
     OSInitAlarm();
 }
@@ -128,23 +134,13 @@ static OSAlarm AlarmForTimeout;
 static OSAlarm AlarmForBreak;
 
 /* 8044C8E8-8044C8F4 079608 000C+00 0/1 0/0 0/0 .bss             Prev */
-#pragma push
-#pragma force_active on
-static u32 Prev[3];
-#pragma pop
+static DVDBuffer Prev;
 
 /* 8044C8F4-8044C900 079614 000C+00 0/2 0/0 0/0 .bss             Curr */
-#pragma push
-#pragma force_active on
-static u32 Curr[3];
-#pragma pop
+static DVDBuffer Curr;
 
 /* 804509D8-804509E0 000458 0004+04 2/2 0/0 0/0 .sdata           FirstRead */
-SECTION_SDATA static BOOL FirstRead[1 + 1 /* padding */] = {
-    0x00000001,
-    /* padding */
-    0x00000000,
-};
+SECTION_SDATA static BOOL FirstRead = TRUE;
 
 /* 803476B4-80347994 341FF4 02E0+00 0/0 1/1 0/0 .text            __DVDInterruptHandler */
 void __DVDInterruptHandler(u32 arg0, OSContext* context) {
@@ -157,10 +153,10 @@ void __DVDInterruptHandler(u32 arg0, OSContext* context) {
     OSContext localContext;
     if (LastCommandWasRead) {
         LastReadFinished = __OSGetSystemTime();
-        FirstRead[0] = 0;
-        Prev[0] = Curr[0];
-        Prev[1] = Curr[1];
-        Prev[2] = Curr[2];
+        FirstRead = FALSE;
+        Prev.addr = Curr.addr;
+        Prev.length = Curr.length;
+        Prev.offset = Curr.offset;
 
         if (StopAtNextInt == TRUE) {
             val |= 8;
@@ -219,16 +215,16 @@ void __DVDInterruptHandler(u32 arg0, OSContext* context) {
     if (val & 1) {
         u32 num;
         DVDCommand* command;
-        s32 cmd0 = CommandList[num = NextCommandNumber]._0;
+        s32 cmd0 = CommandList[num = NextCommandNumber].cmd;
         if (cmd0 == 1) {
             NextCommandNumber++;
             command = &CommandList[num];
-            Read(command->_4, command->_8, command->_c, command->callback);
+            Read(command->addr, command->length, command->offset, command->callback);
             rv = 1;
         } else if (cmd0 == 2) {
             NextCommandNumber++;
             command = &CommandList[num];
-            DVDLowSeek(command->_c, command->callback);
+            DVDLowSeek(command->offset, command->callback);
             rv = 1;
         } else {
             rv = 0;
@@ -238,7 +234,7 @@ void __DVDInterruptHandler(u32 arg0, OSContext* context) {
             return;
         }
     } else {
-        CommandList[0]._0 = -1;
+        CommandList[0].cmd = -1;
         NextCommandNumber = 0;
     }
 
@@ -261,16 +257,16 @@ void __DVDInterruptHandler(u32 arg0, OSContext* context) {
 static void AlarmHandler(OSAlarm* alarm, OSContext* context) {
     DVDCommand* cmd;
     u32 num;
-    s32 cmd0 = CommandList[num = NextCommandNumber]._0;
+    s32 cmd0 = CommandList[num = NextCommandNumber].cmd;
 
     if (cmd0 == 1) {
         ++NextCommandNumber;
         cmd = &CommandList[num];
-        Read(cmd->_4, cmd->_8, cmd->_c, cmd->callback);
+        Read(cmd->addr, cmd->length, cmd->offset, cmd->callback);
     } else if (cmd0 == 2) {
         ++NextCommandNumber;
         cmd = &CommandList[num];
-        DVDLowSeek(cmd->_c, cmd->callback);
+        DVDLowSeek(cmd->offset, cmd->callback);
     }
 }
 
@@ -326,96 +322,86 @@ void SeekTwiceBeforeRead(void* arg0, u32 arg1, u32 arg2, DVDLowCallback cb) {
         val = temp + WorkAroundSeekLocation[0];
     }
 
-    CommandList[0]._0 = 2;
-    CommandList[0]._c = val;
+    CommandList[0].cmd = 2;
+    CommandList[0].offset = val;
     CommandList[0].callback = cb;
-    CommandList[1]._0 = 1;
-    CommandList[1]._4 = arg0;
-    CommandList[1]._8 = arg1;
-    CommandList[1]._c = arg2;
+    CommandList[1].cmd = 1;
+    CommandList[1].addr = arg0;
+    CommandList[1].length = arg1;
+    CommandList[1].offset = arg2;
     CommandList[1].callback = cb;
-    CommandList[2]._0 = -1;
+    CommandList[2].cmd = -1;
     NextCommandNumber = 0;
     DVDLowSeek(val, cb);
 }
 
+BOOL HitCache() {
+    u32 uVar1 = (Prev.offset + Prev.length - 1) >> 15;
+    u32 uVar2 = (Curr.offset >> 15);
+    u32 iVar3 = (DVDGetCurrentDiskID()->is_streaming ? TRUE : FALSE) ? 5 : 15;
+
+    if ((uVar2 > uVar1 - 2) || (uVar2 < uVar1 + iVar3 + 3)) {
+        return TRUE;
+    }
+    return FALSE;
+}
+
+static void DoJustRead(void* addr, u32 length, u32 offset, DVDLowCallback callback) {
+    CommandList[0].cmd = -1;
+    NextCommandNumber = 0;
+    Read(addr, length, offset, callback);
+}
+
+static void WaitBeforeRead(void* addr, u32 length, u32 offset, DVDLowCallback callback,
+                           OSTime timeout) {
+    CommandList[0].cmd = 1;
+    CommandList[0].addr = addr;
+    CommandList[0].length = length;
+    CommandList[0].offset = offset;
+    CommandList[0].callback = callback;
+    CommandList[1].cmd = -1;
+    NextCommandNumber = 0;
+    OSCreateAlarm(&AlarmForWA);
+    OSSetAlarm(&AlarmForWA, timeout, AlarmHandler);
+}
+
 /* 80347C18-80347EB0 342558 0298+00 0/0 4/4 0/0 .text            DVDLowRead */
-// Issues with alarm time calculation
-#ifdef NONMATCHING
-BOOL DVDLowRead(void* arg0, u32 arg1, u32 arg2, DVDLowCallback cb) {
+BOOL DVDLowRead(void* addr, u32 length, u32 offset, DVDLowCallback cb) {
+    OSTime diff;
+    u32 prev;
+
+    __DIRegs[6] = length;
+    Curr.addr = addr;
+    Curr.length = length;
+    Curr.offset = offset;
+
     if (WorkAroundType == 0) {
-        Curr[2] = -1;
-        NextCommandNumber = 0;
-        Read(arg0, arg1, arg2, cb);
+        DoJustRead(addr, length, offset, cb);
     } else if (WorkAroundType == 1) {
-        if (FirstRead[0]) {
-            SeekTwiceBeforeRead(arg0, arg1, arg2, cb);
+        if (FirstRead) {
+            SeekTwiceBeforeRead(addr, length, offset, cb);
         } else {
-            u32 curr2 = Curr[2] >> 15;
-            u32 prev1 = (Prev[2] + Prev[1] - 1) >> 15;
-            DVDDiskID* id = DVDGetCurrentDiskID();
-
-            BOOL is_streaming =  id->is_streaming ? TRUE : FALSE;
-            u32 val;
-            BOOL val2;
-            if (is_streaming) {
-                val = 5;
+            if (!HitCache(&Curr, &Prev)) {
+                DoJustRead(addr, length, offset, cb);
             } else {
-                val = 15;
-            }
-
-            if (curr2 > prev1 - 2  || curr2 < prev1 + (val + 3)) {
-                val2 = TRUE;
-            } else {
-                val2 = FALSE;
-            }
-
-            if (!val2) {
-                CommandList[0]._0 = -1;
-                NextCommandNumber = 0;
-                Read(arg0, arg1, arg2, cb);
-            } else {
-                curr2 = Curr[2] >> 15;
-                prev1 = (Prev[2] + Prev[1] - 1) >> 15;
-                if (curr2 == prev1 || curr2 + 1 == prev1) {
-                    OSTime diff = __OSGetSystemTime() - LastReadFinished;
-                    OSTime five_ms = (OSTime)OSMillisecondsToTicks(5);
-                    if (diff < five_ms) {
-                        CommandList[0]._0 = -1;
-                        NextCommandNumber = 0;
-                        Read(arg0, arg1, arg2, cb);
+                prev = (Prev.offset + Prev.length - 1) >> 15;
+                if (prev == Curr.offset >> 15 || prev + 1 == Curr.offset >> 15) {
+                    diff = __OSGetSystemTime() - LastReadFinished;
+                    if (OSMillisecondsToTicks(5) < diff) {
+                        DoJustRead(addr, length, offset, cb);
                     } else {
-                        OSTime temp;
-                        temp = diff - five_ms + (OSTime)OSMicrosecondsToTicks(500); 
-                        CommandList[0]._0 = 1;
-                        CommandList[0]._4 = arg0;
-                        CommandList[0]._8 = arg1;
-                        CommandList[0]._c = arg2;
-                        CommandList[0].callback = cb;
-                        CommandList[1]._0 = -1;
-                        NextCommandNumber = 0;
-                        OSCreateAlarm(&AlarmForWA);
-                        OSSetAlarm(&AlarmForWA, temp, AlarmHandler);
+                        WaitBeforeRead(addr, length, offset, cb,
+                                       OSMillisecondsToTicks(5) - diff +
+                                           OSMicrosecondsToTicks(500));
                     }
                 } else {
-                    SeekTwiceBeforeRead(arg0, arg1, arg2, cb);
+                    SeekTwiceBeforeRead(addr, length, offset, cb);
                 }
             }
         }
     }
-
     return TRUE;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL DVDLowRead(void* arg0, u32 arg1, u32 arg2, DVDLowCallback cb) {
-    nofralloc
-#include "asm/dolphin/dvd/dvdlow/DVDLowRead.s"
-}
-#pragma pop
-#endif
 
 /* 80347EB0-80347F44 3427F0 0094+00 3/3 2/2 0/0 .text            DVDLowSeek */
 BOOL DVDLowSeek(u32 arg0, DVDLowCallback cb) {

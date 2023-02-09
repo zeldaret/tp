@@ -102,19 +102,24 @@ SECTION_SDATA2 static f32 lit_3671 = 1.0f;
 /* 80037038-80037180 031978 0148+00 4/4 0/0 0/0 .text eff_break_tsubo__5daObjFP10fopAc_ac_c4cXyzi
  */
 #ifdef NONMATCHING
+// Matches with literals
 void daObj::eff_break_tsubo(fopAc_ac_c* param_0, cXyz param_1, int param_2) {
     J3DModelData* tubo_bmd = (J3DModelData*)dComIfG_getObjectRes("Always", 0x20);
     J3DAnmTexPattern* tubo_btp = (J3DAnmTexPattern*)dComIfG_getObjectRes("Always", 0x42);
 
+    s32 roomNo = fopAcM_GetRoomNo(param_0);
+
+    // not sure what's up with mEcallback. Probably the argument type for dComIfGp_particle_set is wrong.
     JPABaseEmitter* emitter = (JPABaseEmitter*)dComIfGp_particle_set(
-        0x15C, &param_0->current.pos, NULL, NULL, 0xFF, dPa_modelEcallBack::getEcallback(),
-        fopAcM_GetRoomNo(param_0), NULL, NULL, &param_1);
+        0x15C, &param_0->current.pos, NULL, NULL, 0xFF, (dPa_modelEcallBack*)&dPa_modelEcallBack::mEcallback,
+        roomNo, NULL, NULL, &param_1);
 
     dPa_modelEcallBack::setModel(emitter, tubo_bmd, param_0->mTevStr, 3, tubo_btp, 0, param_2);
 
+    s32 roomNo2 = fopAcM_GetRoomNo(param_0);
     dComIfGp_particle_set(0x15D, &param_0->current.pos, NULL, NULL, 0xFF,
-                          dPa_control_c::getTsuboSelectTexEcallBack(param_2),
-                          fopAcM_GetRoomNo(param_0), NULL, NULL, &param_1);
+                           dPa_control_c::getTsuboSelectTexEcallBack(param_2),
+                          roomNo2, NULL, NULL, &param_1);
 }
 #else
 #pragma push

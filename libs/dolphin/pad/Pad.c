@@ -44,7 +44,7 @@ extern u32 __PADFixBits;
 static u32 Type[4];
 
 /* 8044CB80-8044CBB0 0798A0 0030+00 8/8 0/0 0/0 .bss             Origin */
-static PADStatus Origin[4];
+static volatile PADStatus Origin[4];
 
 /* 80450A24-80450A28 0004A4 0004+00 7/7 0/0 0/0 .sdata           ResettingChan */
 SECTION_SDATA static s32 ResettingChan = 0x00000020;

@@ -15,6 +15,7 @@ LIBGF_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/gf/GFTev.o \
 
 LIBGF_A_CFLAGS := \
+	-inline auto \
 
 LIBGF_A_LDFLAGS := \
 	-nodefaults \
