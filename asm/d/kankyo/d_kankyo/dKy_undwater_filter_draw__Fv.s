@@ -9,7 +9,7 @@ lbl_801A572C:
 /* 801A5748  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
 /* 801A574C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801A5750  83 A3 5D 74 */	lwz r29, 0x5d74(r3)
-/* 801A5754  88 0D 8A EA */	lbz r0, struct_80451068+0x2(r13)
+/* 801A5754  88 0D 8A EA */	lbz r0, S_fuwan_sin+0x2(r13)
 /* 801A5758  7C 00 07 75 */	extsb. r0, r0
 /* 801A575C  40 82 00 30 */	bne lbl_801A578C
 /* 801A5760  C0 02 A2 0C */	lfs f0, lit_4409(r2)
@@ -22,9 +22,9 @@ lbl_801A572C:
 /* 801A577C  38 BF 1D 74 */	addi r5, r31, 0x1d74
 /* 801A5780  48 1B C4 A5 */	bl __register_global_object
 /* 801A5784  38 00 00 01 */	li r0, 1
-/* 801A5788  98 0D 8A EA */	stb r0, struct_80451068+0x2(r13)
+/* 801A5788  98 0D 8A EA */	stb r0, S_fuwan_sin+0x2(r13)
 lbl_801A578C:
-/* 801A578C  88 0D 8A EB */	lbz r0, struct_80451068+0x3(r13)
+/* 801A578C  88 0D 8A EB */	lbz r0, S_fuwan_sin+0x3(r13)
 /* 801A5790  7C 00 07 75 */	extsb. r0, r0
 /* 801A5794  40 82 00 30 */	bne lbl_801A57C4
 /* 801A5798  C0 02 A2 0C */	lfs f0, lit_4409(r2)
@@ -37,7 +37,7 @@ lbl_801A578C:
 /* 801A57B4  38 BF 1D 8C */	addi r5, r31, 0x1d8c
 /* 801A57B8  48 1B C4 6D */	bl __register_global_object
 /* 801A57BC  38 00 00 01 */	li r0, 1
-/* 801A57C0  98 0D 8A EB */	stb r0, struct_80451068+0x3(r13)
+/* 801A57C0  98 0D 8A EB */	stb r0, S_fuwan_sin+0x3(r13)
 lbl_801A57C4:
 /* 801A57C4  48 00 5A BD */	bl dKy_camera_water_in_status_check__Fv
 /* 801A57C8  2C 03 00 00 */	cmpwi r3, 0

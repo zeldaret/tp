@@ -12,7 +12,7 @@ lbl_80271D18:
 /* 80271D40  4B FF FF 91 */	bl firstInit__9JFWSystemFv
 lbl_80271D44:
 /* 80271D44  38 00 00 01 */	li r0, 1
-/* 80271D48  98 0D 8C 3C */	stb r0, data_804511BC(r13)
+/* 80271D48  98 0D 8C 3C */	stb r0, sInitCalled(r13)
 /* 80271D4C  80 6D 81 FC */	lwz r3, aramAudioBufSize__Q29JFWSystem11CSetUpParam(r13)
 /* 80271D50  80 8D 82 00 */	lwz r4, aramGraphBufSize__Q29JFWSystem11CSetUpParam(r13)
 /* 80271D54  80 AD 82 04 */	lwz r5, streamPriority__Q29JFWSystem11CSetUpParam(r13)

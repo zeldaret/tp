@@ -66,10 +66,10 @@ struct mDoMain {
     static s8 developmentMode;
 };
 
-extern bool sOSReportDisabled;
-extern bool data_80450B99;
-extern bool data_80450B9A;
-extern bool data_80450B9B;
-extern bool sOSReportForceEnable;
+extern bool __OSReport_disable;
+extern bool __OSReport_Error_disable;
+extern bool __OSReport_Warning_disable;
+extern bool __OSReport_System_disable;
+extern bool __OSReport_enable;
 
 #endif /* M_DO_M_DO_MAIN_H */

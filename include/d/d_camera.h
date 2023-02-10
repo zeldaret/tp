@@ -16,7 +16,7 @@ struct dCamMapToolData {
     /* 8015FEB8 */ void Set(s32, s32, fopAc_ac_c*, u16, u8);
 
     /* 0x00 */ stage_camera2_data_class field_0x0;
-    /* 0x18 */ stage_arrow_class field_0x18;
+    /* 0x18 */ stage_arrow_data_class field_0x18;
     /* 0x2C */ u32 field_0x2c;
     /* 0x30 */ s32 field_0x30;
     /* 0x34 */ fopAc_ac_c* field_0x34;
@@ -332,6 +332,7 @@ public:
     /* 801829AC */ void Bank();
 
     bool Active() { return field_0x24 == 0; }
+    f32 TrimHeight() { return mTrimHeight; }
 
     static u8 engine_tbl[240];
 
@@ -405,6 +406,7 @@ public:
     /* 0x1A0 */ int mCurMode;
     /* 0x1A4 */ int mNextMode;
     /* 0x1A8 */ int field_0x1a8;
+    /* 0x1AC */ int field_0x1ac;
     /* 0x1B0 */ cSAngle field_0x1b0;
     /* 0x1B4 */ f32 field_0x1b4;
     /* 0x1B8 */ u8 field_0x1b8[4];
@@ -452,7 +454,7 @@ public:
     class {
     public:
         /* 0x00 */ u8 field_0x0[8];
-        /* 0x08 */ cSAngle field_0x8;
+        /* 0x08 */ cSGlobe field_0x8;
         /* 0x10 */ u8 field_0x10[4];
     }
     /* 0x614 */ field_0x614[4];
@@ -520,8 +522,8 @@ public:
     /* 0x940 */ u8 field_0x940[0x970 - 0x940];
     /* 0x970 */ dCamSetup_c mCamSetup;
     /* 0xAEC */ dCamParam_c mCamParam;
-    /* 0xB0C */
-};
+    /* 0xB0C */ u8 field_0xb0c[0xd58 - 0xb0c];
+};  // Size: 0xD58
 
 dCamera_c* dCam_getBody();
 dCamera_c* dCam_getCamera();

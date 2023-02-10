@@ -2058,7 +2058,7 @@ static asm void dKy_calc_color_set(_GXColorS10* param_0, color_RGB_class* param_
 /* 80451068 0002+00 data_80451068 S_fuwan_sin$5904 */
 /* 8045106A 0001+00 data_8045106A None */
 /* 8045106B 0005+00 data_8045106B None */
-static u8 struct_80451068[8];
+static u8 S_fuwan_sin[8];
 
 /* 80453CE8-80453CEC 0022E8 0004+00 3/3 0/0 0/0 .sdata2          @6032 */
 SECTION_SDATA2 static f32 lit_6032 = 100000.0f;

@@ -233,8 +233,8 @@ OSTime mDoMain::sHungUpTime;
 /* 80450B19 0001+00 data_80450B19 None */
 /* 80450B1A 0002+00 data_80450B1A None */
 static bool mDisplayHeapSize;
-static u8 sDisplayHeap;
-static bool sCheckHeap;
+static u8 mSelectHeapBar;
+static bool mCheckHeap;
 
 /* 80005AD8-80005D4C 000418 0274+00 1/1 0/0 0/0 .text            debugDisplay__Fv */
 void debugDisplay() {
@@ -246,8 +246,8 @@ void debugDisplay() {
         "", "/ MaxFree", "/HeapSize", "Blk/Bytes", "Blk/Bytes",
     };
 
-    if (sDisplayHeap >= 1 && sDisplayHeap <= 6) {
-        HeapCheckTable[sDisplayHeap - 1]->heapDisplay();
+    if (mSelectHeapBar >= 1 && mSelectHeapBar <= 6) {
+        HeapCheckTable[mSelectHeapBar - 1]->heapDisplay();
     }
 
     if (mDoMain::mHeapBriefType == 5) {
@@ -428,7 +428,7 @@ s32 LOAD_COPYDATE(void*) {
 
 static void debug() {
     if (mDoMain::developmentMode) {
-        if (sCheckHeap) {
+        if (mCheckHeap) {
             CheckHeap(PAD_3);
         }
 
@@ -745,15 +745,15 @@ extern u8 data_80450B90[4 + 4 /* padding */];
 u8 data_80450B90[4 + 4 /* padding */];
 
 /* 80450B98-80450B9C -00001 0004+00 0/0 6/6 0/0 .sbss            None */
-bool sOSReportDisabled;
+bool __OSReport_disable;
 
-bool data_80450B99;
+bool __OSReport_Error_disable;
 
-bool data_80450B9A;
+bool __OSReport_Warning_disable;
 
-bool data_80450B9B;
+bool __OSReport_System_disable;
 
 /* 80450B9C-80450BA0 00009C 0004+00 0/0 3/3 0/0 .sbss            None */
-bool sOSReportForceEnable;
+bool __OSReport_enable;
 
 /* 803739A0-803739A0 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

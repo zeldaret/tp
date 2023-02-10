@@ -12,8 +12,8 @@
 class mDoExt_baseAnm {
 public:
     mDoExt_baseAnm() {}
-    /* 8000D320 */ int initPlay(s16 i_frameMax, int i_attribute, f32 i_rate, s16 i_start,
-                                s16 param_4);
+    /* 8000D320 */ int initPlay(s16 i_frameMax, int i_attribute, f32 i_rate, s16 i_startF,
+                                s16 i_endF);
     /* 8000D428 */ int play();
 
     void setPlaySpeed(f32 speed) { mFrameCtrl.setRate(speed); }
@@ -141,7 +141,7 @@ public:
 
     void entry(J3DModelData* i_modelData) { entry(i_modelData, getFrame()); }
     J3DAnmTransform* getBckAnm() { return mAnm; }
-    void removeJoint (J3DModelData* i_modelData, u16 i_idx) {
+    void removeJoint(J3DModelData* i_modelData, u16 i_idx) {
         J3DJoint* mpJnt = i_modelData->getJointNodePointer(i_idx);
         mpJnt->setMtxCalc(0);
     }
@@ -259,7 +259,7 @@ public:
     f32 getFrame() { return mFrameCtrl.getFrame(); }
     u8 getPlayMode() { return mFrameCtrl.getAttribute(); }
     bool isLoop() { return mFrameCtrl.checkState(2); }
-    f32 getEndFrame() { return mFrameCtrl.getEnd(); } 
+    f32 getEndFrame() { return mFrameCtrl.getEnd(); }
 
     bool isStop() {
         bool stopped = true;

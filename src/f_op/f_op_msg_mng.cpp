@@ -5,13 +5,13 @@
 
 #include "f_op/f_op_msg_mng.h"
 #include "JSystem/J2DGraph/J2DPane.h"
+#include "JSystem/JMath/JMath.h"
 #include "SSystem/SComponent/c_malloc.h"
+#include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "JSystem/JMath/JMath.h"
-#include "SSystem/SComponent/c_math.h"
 
 //
 // Forward References:
@@ -39,19 +39,19 @@ s32 fopMsgM_setStageLayer(void* param_0) {
 }
 
 /* 8001FA24-8001FA44 01A364 0020+00 3/3 14/14 4/4 .text            fopMsgM_SearchByID__FUi */
-msg_class* fopMsgM_SearchByID(unsigned int id) {
-    return (msg_class*)fpcEx_SearchByID(id);
+msg_class* fopMsgM_SearchByID(unsigned int i_id) {
+    return (msg_class*)fpcEx_SearchByID(i_id);
 }
 
 /* 8001FA44-8001FA4C 01A384 0008+00 0/0 2/2 0/0 .text            fopMsgM_GetAppend__FPv */
-fopMsg_prm_class* fopMsgM_GetAppend(void* msg) {
-    msg_class* m = static_cast<msg_class*>(msg);
-    return (fopMsg_prm_class*)m->mBase.mpUserData;
+fopMsg_prm_class* fopMsgM_GetAppend(void* i_msg) {
+    msg_class* msg = static_cast<msg_class*>(i_msg);
+    return (fopMsg_prm_class*)msg->mBase.mpUserData;
 }
 
 /* 8001FA4C-8001FA6C 01A38C 0020+00 0/0 2/2 0/0 .text            fopMsgM_Delete__FPv */
-void fopMsgM_Delete(void* process) {
-    fpcM_Delete(process);
+void fopMsgM_Delete(void* i_this) {
+    fpcM_Delete(i_this);
 }
 
 /* ############################################################################################## */
@@ -65,8 +65,8 @@ SECTION_SDATA2 static u8 lit_3902[4] = {
 
 /* 8001FA6C-8001FB50 01A3AC 00E4+00 1/1 0/0 0/0 .text createAppend__FP10fopAc_ac_cP4cXyzPUlPUlUi
  */
-static fopMsg_prm_class* createAppend(fopAc_ac_c* pActor, cXyz* pPos, u32* pMsgID,
-                                      u32* param_3, unsigned int param_4) {
+static fopMsg_prm_class* createAppend(fopAc_ac_c* i_actor, cXyz* i_pos, u32* i_msgID, u32* param_3,
+                                      unsigned int param_4) {
     fopMsg_prm_class* params =
         static_cast<fopMsg_prm_class*>(cMl::memalignB(-4, sizeof(fopMsg_prm_class)));
 
@@ -74,19 +74,19 @@ static fopMsg_prm_class* createAppend(fopAc_ac_c* pActor, cXyz* pPos, u32* pMsgI
         return NULL;
     }
 
-    params->mpActor = pActor;
-    dMsgObject_setTalkActor(pActor);
+    params->mpActor = i_actor;
+    dMsgObject_setTalkActor(i_actor);
 
-    if (pMsgID != NULL) {
-        params->mMsgID = *pMsgID;
+    if (i_msgID != NULL) {
+        params->mMsgID = *i_msgID;
     }
 
     if (param_3 != NULL) {
         params->field_0x14 = *param_3;
     }
 
-    if (pPos != NULL) {
-        params->mPos = *pPos;
+    if (i_pos != NULL) {
+        params->mPos = *i_pos;
     } else {
         f32 tmp_0 = FLOAT_LABEL(lit_3902);
         cXyz tmp(tmp_0, tmp_0, tmp_0);
@@ -103,15 +103,15 @@ static fopMsg_prm_class* createAppend(fopAc_ac_c* pActor, cXyz* pPos, u32* pMsgI
 static fopMsg_prm_timer* createTimerAppend(int param_0, u32 param_1, u8 param_2, u8 param_3,
                                            f32 param_4, f32 param_5, f32 param_6, f32 param_7,
                                            unsigned int param_8) {
-    fopMsg_prm_timer* timer = (fopMsg_prm_timer*)cMl::memalignB(-4,0x38);
-    
-    if (timer == 0) {
-        timer = 0;
+    fopMsg_prm_timer* timer = (fopMsg_prm_timer*)cMl::memalignB(-4, 0x38);
+
+    if (timer == NULL) {
+        timer = NULL;
     } else {
         timer->field_0x0 = 0;
         timer->field_0x10 = 0;
         timer->field_0x14 = 0;
-        cXyz pos(FLOAT_LABEL(lit_3902),FLOAT_LABEL(lit_3902),FLOAT_LABEL(lit_3902));
+        cXyz pos(FLOAT_LABEL(lit_3902), FLOAT_LABEL(lit_3902), FLOAT_LABEL(lit_3902));
         timer->field_0x4 = pos;
         timer->field_0x18 = param_8;
         timer->field_0x1c = param_0;
@@ -125,7 +125,6 @@ static fopMsg_prm_timer* createTimerAppend(int param_0, u32 param_1, u8 param_2,
     }
 
     return timer;
-    
 }
 
 /* 8001FC4C-8001FCC0 01A58C 0074+00 0/0 1/1 0/0 .text
@@ -166,11 +165,11 @@ int fopMsgM_messageSet(u32 i_msgIdx, fopAc_ac_c* i_actorP, u32 param_2) {
     }
 
     if (dComIfGp_isHeapLockFlag() != 0 && dComIfGp_isHeapLockFlag() != 5 &&
-                                          dComIfGp_isHeapLockFlag() != 2 &&
-                                          dComIfGp_isHeapLockFlag() != 3 &&
-                                          dComIfGp_isHeapLockFlag() != 1) {
+        dComIfGp_isHeapLockFlag() != 2 && dComIfGp_isHeapLockFlag() != 3 &&
+        dComIfGp_isHeapLockFlag() != 1)
+    {
         return -1;
-        
+
     } else {
         dComIfGp_clearMesgAnimeTagInfo();
         dComIfGp_clearMesgCameraTagInfo();
@@ -179,7 +178,7 @@ int fopMsgM_messageSet(u32 i_msgIdx, fopAc_ac_c* i_actorP, u32 param_2) {
         if (i_actorP) {
             pos = i_actorP->mEyePos;
         } else {
-            pos.set(FLOAT_LABEL(lit_3902),FLOAT_LABEL(lit_3902),FLOAT_LABEL(lit_3902));
+            pos.set(FLOAT_LABEL(lit_3902), FLOAT_LABEL(lit_3902), FLOAT_LABEL(lit_3902));
         }
 
         if (g_MsgObject_HIO_c.mMsgDebug == true) {
@@ -193,7 +192,7 @@ int fopMsgM_messageSet(u32 i_msgIdx, fopAc_ac_c* i_actorP, u32 param_2) {
             msg->mMsgID = i_msgIdx;
             msg->field_0xf0 = param_2;
             msg->mpActor = i_actorP;
-            msg->setMessageIndex(i_msgIdx,param_2,false);
+            msg->setMessageIndex(i_msgIdx, param_2, false);
             return i_msgID;
         } else {
             return 0;
@@ -208,13 +207,12 @@ int fopMsgM_messageSet(u32 msgIdx, u32 param_1) {
     }
 
     if (dComIfGp_isHeapLockFlag() != 0 && dComIfGp_isHeapLockFlag() != 5 &&
-                                          dComIfGp_isHeapLockFlag() != 2 &&
-                                          dComIfGp_isHeapLockFlag() != 3 &&
-                                          dComIfGp_isHeapLockFlag() != 1) {
+        dComIfGp_isHeapLockFlag() != 2 && dComIfGp_isHeapLockFlag() != 3 &&
+        dComIfGp_isHeapLockFlag() != 1)
+    {
         return -1;
-        
+
     } else {
-    
         cXyz pos;
         pos.z = FLOAT_LABEL(lit_3902);
         pos.y = FLOAT_LABEL(lit_3902);
@@ -229,7 +227,7 @@ int fopMsgM_messageSet(u32 msgIdx, u32 param_1) {
                 msg->field_0xf0 = param_1;
                 msg->mpActor = NULL;
                 msg->setTalkPartner(NULL);
-                msg->setMessageIndex(msgIdx,param_1,false);
+                msg->setMessageIndex(msgIdx, param_1, false);
                 return i_msgID;
             }
 
@@ -254,11 +252,11 @@ int fopMsgM_messageSetDemo(u32 param_0) {
     }
 
     if (dComIfGp_isHeapLockFlag() != 0 && dComIfGp_isHeapLockFlag() != 5 &&
-                                          dComIfGp_isHeapLockFlag() != 2 &&
-                                          dComIfGp_isHeapLockFlag() != 3 &&
-                                          dComIfGp_isHeapLockFlag() != 1) {
+        dComIfGp_isHeapLockFlag() != 2 && dComIfGp_isHeapLockFlag() != 3 &&
+        dComIfGp_isHeapLockFlag() != 1)
+    {
         return -1;
-        
+
     } else {
         cXyz pos;
         pos.z = FLOAT_LABEL(lit_3902);
@@ -272,7 +270,7 @@ int fopMsgM_messageSetDemo(u32 param_0) {
             msg->mMsgID = param_0;
             msg->field_0xf0 = 1000;
             msg->mpActor = NULL;
-            msg->setMessageIndexDemo(param_0,false);
+            msg->setMessageIndexDemo(param_0, false);
             return i_msgID;
         } else {
             return 0;
@@ -281,9 +279,9 @@ int fopMsgM_messageSetDemo(u32 param_0) {
 }
 
 /* 800200C0-80020100 01AA00 0040+00 0/0 7/7 1/1 .text            fopMsgM_messageGet__FPcUl */
-char* fopMsgM_messageGet(char* msg, u32 string_id) {
-    dMeter2Info_getString(string_id, msg, NULL);
-    return msg;
+char* fopMsgM_messageGet(char* i_stringBuf, u32 i_msgId) {
+    dMeter2Info_getString(i_msgId, i_stringBuf, NULL);
+    return i_stringBuf;
 }
 
 /* 80020100-80020108 01AA40 0008+00 0/0 1/1 0/0 .text            fopMsgM_setMessageID__FUi */
@@ -292,8 +290,8 @@ void fopMsgM_setMessageID(unsigned int msg_id) {
 }
 
 /* 80020108-80020158 01AA48 0050+00 0/0 2/2 0/0 .text            fopMsgM_Create__FsPFPv_iPv */
-u32 fopMsgM_Create(s16 param_0, int (*param_1)(void*), void* param_2) {
-    fpcM_Create(param_0,param_1,param_2);
+u32 fopMsgM_Create(s16 i_procName, FastCreateReqFunc i_createFunc, void* i_process) {
+    fpcM_Create(i_procName, i_createFunc, i_process);
 }
 
 /* 80020158-80020160 -00001 0008+00 0/0 0/0 0/0 .text            setAlpha__7J2DPaneFUc */
@@ -338,7 +336,7 @@ SECTION_SDATA2 static f64 lit_4303 = 4503601774854144.0 /* cast s32 to float */;
 // regalloc + something up with case 2
 f64 fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
     f32 ret;
-    
+
     if (param_0 <= 0) {
         return FLOAT_LABEL(lit_4298);
     } else {
@@ -351,39 +349,39 @@ f64 fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
         ret = param_1;
         f32 out_tmp = ret / param_0;
 
-        switch(param_2) {
-            case 0: {
-                ret = out_tmp * out_tmp;
-                break;
-            }
-            case 1: {
-                ret = JMAFastSqrt(out_tmp);
-                break;
-            }
-            case 2: { // seems like this should be default case, but it causes other issues
-                ret = out_tmp;
-                break;
-            }
-            case 3: {
-                f32 tmp = (FLOAT_LABEL(lit_4299) * out_tmp) - FLOAT_LABEL(lit_4298);
-                tmp = out_tmp * tmp;
-                ret = tmp - FLOAT_LABEL(lit_4298);
-                break;
-            }
-            case 4: {
-                f32 tmp = cM_ssin(FLOAT_LABEL(lit_4167) * (FLOAT_LABEL(lit_4300) * out_tmp));
-                ret = tmp * tmp;
-                break;
-            }
-            case 5: {
-                f32 tmp = cM_ssin(FLOAT_LABEL(lit_4167) * (FLOAT_LABEL(lit_4301) * out_tmp));
-                ret = tmp * tmp;
-                break;
-            }
-            case 6: {
-                ret = cM_ssin(FLOAT_LABEL(lit_4300) * out_tmp);
-            }
-        }     
+        switch (param_2) {
+        case 0: {
+            ret = out_tmp * out_tmp;
+            break;
+        }
+        case 1: {
+            ret = JMAFastSqrt(out_tmp);
+            break;
+        }
+        case 2: {  // seems like this should be default case, but it causes other issues
+            ret = out_tmp;
+            break;
+        }
+        case 3: {
+            f32 tmp = (FLOAT_LABEL(lit_4299) * out_tmp) - FLOAT_LABEL(lit_4298);
+            tmp = out_tmp * tmp;
+            ret = tmp - FLOAT_LABEL(lit_4298);
+            break;
+        }
+        case 4: {
+            f32 tmp = cM_ssin(FLOAT_LABEL(lit_4167) * (FLOAT_LABEL(lit_4300) * out_tmp));
+            ret = tmp * tmp;
+            break;
+        }
+        case 5: {
+            f32 tmp = cM_ssin(FLOAT_LABEL(lit_4167) * (FLOAT_LABEL(lit_4301) * out_tmp));
+            ret = tmp * tmp;
+            break;
+        }
+        case 6: {
+            ret = cM_ssin(FLOAT_LABEL(lit_4300) * out_tmp);
+        }
+        }
     }
 
     return ret;
@@ -417,15 +415,15 @@ void J2DPicture::insert(char const* param_0, u8 param_1, f32 param_2) {
 
 /* 8002039C-800203E0 01ACDC 0044+00 0/0 3/3 0/0 .text            fopMsgM_createExpHeap__FUlP7JKRHeap
  */
-JKRExpHeap* fopMsgM_createExpHeap(u32 param_0, JKRHeap* heap) {
-    if (heap == NULL) {
-        heap = mDoExt_getGameHeap();
+JKRExpHeap* fopMsgM_createExpHeap(u32 i_heapSize, JKRHeap* i_heap) {
+    if (i_heap == NULL) {
+        i_heap = mDoExt_getGameHeap();
     }
 
-    return JKRExpHeap::create(param_0, heap, false);
+    return JKRExpHeap::create(i_heapSize, i_heap, false);
 }
 
 /* 800203E0-80020400 01AD20 0020+00 0/0 3/3 0/0 .text fopMsgM_destroyExpHeap__FP10JKRExpHeap */
-void fopMsgM_destroyExpHeap(JKRExpHeap* heap) {
-    heap->destroy();
+void fopMsgM_destroyExpHeap(JKRExpHeap* i_heap) {
+    i_heap->destroy();
 }

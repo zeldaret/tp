@@ -1,7 +1,5 @@
 #include "f_ap/f_ap_game.h"
 #include "SSystem/SComponent/c_counter.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_draw_tag.h"
 #include "f_op/f_op_overlap_mng.h"
