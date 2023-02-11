@@ -2800,6 +2800,14 @@ inline view_class* dComIfGd_getView() {
     return g_dComIfG_gameInfo.drawlist.getView();
 }
 
+inline Mtx44* dComIfGd_getProjViewMtx() {
+    return &(((camera_class*)g_dComIfG_gameInfo.drawlist.getView())->mProjViewMtx);
+}
+
+inline view_port_class* dComIfGd_getViewport() {
+    return g_dComIfG_gameInfo.drawlist.getViewport();
+}
+
 inline MtxP dComIfGd_getViewRotMtx() {
     return ((camera_process_class*)g_dComIfG_gameInfo.drawlist.getView())->mViewMtxNoTrans;
 }

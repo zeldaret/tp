@@ -398,7 +398,7 @@ void dScnName_c::setView() {
     mCamera.mViewMtxNoTrans[1][3] = tmp_0;
     mCamera.mViewMtxNoTrans[2][3] = tmp_0;
     PSMTXCopy(mCamera.mViewMtx, j3dSys.mViewMtx);
-    mDoMtx_concatProjView(mCamera.mProjMtx, mCamera.mViewMtx, mCamera.field_0x1a0);
+    mDoMtx_concatProjView(mCamera.mProjMtx, mCamera.mViewMtx, mCamera.mProjViewMtx);
 }
 
 /* 80258BC8-80258C5C 253508 0094+00 1/1 0/0 0/0 .text            execute__10dScnName_cFv */

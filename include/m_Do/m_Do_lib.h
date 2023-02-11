@@ -22,9 +22,9 @@ struct mDoLib_clipper {
     static f32 mFovyRate;
 };
 
-void mDoLib_project(Vec* param_0, Vec* param_1);
-bool mDoLib_setResTimgObj(ResTIMG const* res, GXTexObj* o_texObj, u32 param_2,
+void mDoLib_project(Vec* src, Vec* dst);
+u8 mDoLib_setResTimgObj(ResTIMG const* res, GXTexObj* o_texObj, u32 tlut_name,
                           GXTlutObj* o_tlutObj);
-void mDoLib_pos2camera(Vec* param_0, Vec* param_1);
+void mDoLib_pos2camera(Vec* src, Vec* dst);
 
 #endif /* M_DO_M_DO_LIB_H */
