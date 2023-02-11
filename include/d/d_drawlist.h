@@ -331,6 +331,10 @@ public:
         mPeekZ.newData(param_0, param_1, param_2);
     }
 
+    view_port_class* getViewport() {
+        return mViewport;
+    }
+
     static void offWipe() { mWipe = 0; }
     static f32 getWipeRate() { return mWipeRate; }
 

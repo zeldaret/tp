@@ -53,6 +53,9 @@ inline void cMtx_ZrotM(Mtx mtx, s16 z) {
     mDoMtx_ZrotM(mtx, z);
 }
 
+inline void cMtx_multVec(Mtx mtx, const Vec* src, Vec* dst) {
+    mDoMtx_multVec(mtx, src, dst);
+}
 
 inline void mDoMtx_multVecZero(MtxP param_0, Vec* param_1) {
     param_1->x = param_0[0][3];
@@ -83,7 +86,9 @@ public:
     static void multVec(const Vec* a, Vec* b) { PSMTXMultVec(now, a, b); }
     static void multVecSR(const Vec* a, Vec* b) { PSMTXMultVecSR(now, a, b); }
     static void multVecZero(Vec* v) { mDoMtx_multVecZero(now, v); }
-    static void multVecArray(const Vec* src, Vec* dst, u32 count) { PSMTXMultVecArray(now, src, dst, count); }
+    static void multVecArray(const Vec* src, Vec* dst, u32 count) {
+        PSMTXMultVecArray(now, src, dst, count);
+    }
     static void XYZrotS(s16 x, s16 y, s16 z) { mDoMtx_XYZrotS(now, x, y, z); }
     static void XYZrotM(s16 x, s16 y, s16 z) { mDoMtx_XYZrotM(now, x, y, z); }
     static void ZXYrotS(s16 x, s16 y, s16 z) { mDoMtx_ZXYrotS(now, x, y, z); }
