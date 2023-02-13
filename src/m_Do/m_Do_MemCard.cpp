@@ -502,5 +502,3 @@ static int mDoMemCd_main(void*) {
     g_mDoMemCd_control.main();
     return 0;
 }
-
-/* 803743F8-803743F8 000A58 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

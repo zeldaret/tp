@@ -12,9 +12,6 @@
 
 class camera_process_class : public view_class {
 public:
-    /* 0x170 */ Mtx mInvViewMtx;
-    /* 0x1A0 */ Mtx44 mProjViewMtx;
-    /* 0x1E0 */ Mtx mViewMtxNoTrans;
     /* 0x210 */ create_tag_class mCreateTag;
     /* 0x224 */ leafdraw_method_class* mpMtd;
     /* 0x228 */ u8 field_0x228[4];

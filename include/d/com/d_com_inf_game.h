@@ -2801,7 +2801,7 @@ inline view_class* dComIfGd_getView() {
 }
 
 inline Mtx44* dComIfGd_getProjViewMtx() {
-    return &(((camera_class*)g_dComIfG_gameInfo.drawlist.getView())->mProjViewMtx);
+    return &(g_dComIfG_gameInfo.drawlist.getView()->mProjViewMtx);
 }
 
 inline view_port_class* dComIfGd_getViewport() {
