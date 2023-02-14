@@ -3,6 +3,7 @@
 
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
+#include "d/com/d_com_inf_game.h"
 
 class daTagAssist_c : public fopAc_ac_c {
 public:
@@ -18,6 +19,11 @@ public:
         }
         create_init();
         return cPhs_COMPLEATE_e;
+    }
+
+    int execute() {
+        fopAcM_searchPlayerDistanceXZ(this);
+        return 1;
     }
 
     u8 field_0x568[8];
