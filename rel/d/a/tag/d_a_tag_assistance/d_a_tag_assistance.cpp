@@ -6,17 +6,7 @@
 #include "rel/d/a/tag/d_a_tag_assistance/d_a_tag_assistance.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct daTagAssist_c {};
+#include "d/d_procname.h"
 
 //
 // Forward References:
@@ -35,8 +25,8 @@ extern "C" extern void* g_profile_Tag_Assist[12];
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
 extern "C" void fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
+// extern "C" extern void* g_fopAc_Method[8];
+// extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
@@ -45,6 +35,12 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 /* 80D55E38-80D55E98 000078 0060+00 1/0 0/0 0/0 .text            daTagAssist_Create__FP10fopAc_ac_c
  */
+#ifndef NONMATCHING
+static int daTagAssist_Create(fopAc_ac_c* i_actorP) {
+    daTagAssist_c* tag_assist = (daTagAssist_c*)i_actorP;
+    return tag_assist->create();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -53,6 +49,7 @@ static asm void daTagAssist_Create(fopAc_ac_c* param_0) {
 #include "asm/rel/d/a/tag/d_a_tag_assistance/d_a_tag_assistance/daTagAssist_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* 80D55E98-80D55EC8 0000D8 0030+00 1/0 0/0 0/0 .text daTagAssist_Execute__FP13daTagAssist_c */
 #pragma push
