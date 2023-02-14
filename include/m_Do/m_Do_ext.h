@@ -519,6 +519,7 @@ void mDoExt_setAraCacheSize(u32 size);
 int mDoExt_resIDToIndex(JKRArchive* p_archive, u16 id);
 void mDoExt_modelEntryDL(J3DModel* i_model);
 void mDoExt_setupStageTexture(J3DModelData* i_modelData);
+OSThread* mDoExt_GetCurrentRunningThread();
 
 struct JUTFont;
 JUTFont* mDoExt_getMesgFont();

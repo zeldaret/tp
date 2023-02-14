@@ -58,7 +58,7 @@ private:
 class mDoDvdThd_mountXArchive_c : public mDoDvdThd_command_c {
 public:
     /* 80016108 */ virtual ~mDoDvdThd_mountXArchive_c();
-    /* 80016168 */ mDoDvdThd_mountXArchive_c(u8, JKRArchive::EMountMode);
+    /* 80016168 */ mDoDvdThd_mountXArchive_c(u8 mountDirection, JKRArchive::EMountMode mountMode);
     /* 800161E0 */ static mDoDvdThd_mountXArchive_c* create(char const*, u8, JKRArchive::EMountMode,
                                                             JKRHeap*);
     /* 800162B0 */ virtual s32 execute();
