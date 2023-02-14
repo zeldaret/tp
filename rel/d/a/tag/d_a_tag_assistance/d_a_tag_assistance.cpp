@@ -41,35 +41,21 @@ static int daTagAssist_Create(fopAc_ac_c* i_this) {
 }
 
 /* 80D55E98-80D55EC8 0000D8 0030+00 1/0 0/0 0/0 .text daTagAssist_Execute__FP13daTagAssist_c */
-#ifndef NONMATCHING
 static int daTagAssist_Execute(daTagAssist_c* i_this) {
     return i_this->execute();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagAssist_Execute(daTagAssist_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_assistance/d_a_tag_assistance/daTagAssist_Execute__FP13daTagAssist_c.s"
-}
-#pragma pop
-#endif
 
 /* 80D55EC8-80D55ED0 000108 0008+00 1/0 0/0 0/0 .text daTagAssist_IsDelete__FP13daTagAssist_c */
-static bool daTagAssist_IsDelete(daTagAssist_c* param_0) {
+static bool daTagAssist_IsDelete(daTagAssist_c* i_this) {
     return true;
 }
 
 /* 80D55ED0-80D55F00 000110 0030+00 1/0 0/0 0/0 .text daTagAssist_Delete__FP13daTagAssist_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagAssist_Delete(daTagAssist_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_assistance/d_a_tag_assistance/daTagAssist_Delete__FP13daTagAssist_c.s"
+static int daTagAssist_Delete(daTagAssist_c* i_this) {
+    i_this->~daTagAssist_c();
+    return 1;
+
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D55F08-80D55F28 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagAssist_Method */
