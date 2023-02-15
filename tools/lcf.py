@@ -32,6 +32,130 @@ VERSION = "1.0"
 # load the symbol definition file for main.dol
 sys.path.append("defs")
 
+FUNCITON_SYMBOLS = """func_802A3C3C
+func_802E9368
+func_802FAED0
+func_802A2474
+func_80339CB0
+func_802F5DD0
+func_802E9260
+func_8001505C
+func_8027EEB0
+func_802A4A80
+func_8007914C
+func_802BF660
+func_802A2328
+func_80280588
+func_8027833C
+func_802D2DF0
+func_80078B78
+func_802A0A8C
+func_802F5E88
+func_802D1F50
+func_80282200
+func_80048970
+func_802C0074
+func_80078B80
+func_802E9488
+func_802F7264
+func_802F6D18
+func_802BF890
+func_80271BA8
+func_802E90C0
+func_802E1D08
+func_80267F80
+func_8028421C
+func_80284204
+func_802A9EE8
+func_80273724
+func_80078D5C
+func_80278320
+func_80078B70
+func_802E9564
+func_802BD338
+func_8027936C
+func_802E1C54
+func_8029F03C
+func_80267D54
+func_802C4928
+func_802BDCB0
+func_802FFBC4
+func_803012CC
+func_802AABF4
+func_802E90E4
+func_802BBCDC
+func_80301FC8
+func_80304EF0
+func_802A2FEC
+func_80070018
+func_802BBD18
+func_802A69D8
+func_802D45E4
+func_802A69F8
+func_802BF898
+func_802E4194
+func_802BBD94
+func_802FDF88
+func_802841F8
+func_80279364
+func_80078D54
+func_802807E0
+func_8029F650
+func_80264A5C
+func_802D9B44
+func_80015084
+func_80077574
+func_802AB538
+func_8028202C
+func_80281E5C
+func_802FED84
+func_802E980C
+func_802DCCD0
+func_80079154
+func_80281EC8
+func_8027DEBC
+func_802C0190
+func_802E9B0C
+func_802FB338
+func_802F5D40
+func_80041488
+func_802841EC
+func_802D32B0
+func_802A1B48
+func_802FA928
+func_802AAC3C
+func_80078D4C
+func_802E9BE8
+func_802C5284
+func_802A319C
+func_80282094
+func_802D1EFC
+func_802585A4
+func_80078B88
+func_80264A54
+func_80264A64
+func_802F5F08
+func_802E987C
+func_802A0768
+func_80284234
+func_802CCFF8
+func_80302164
+func_80282118
+func_80264A4C
+func_802782B4
+func_80284210
+func_802782EC
+func_80284228
+func_80280808
+func_80041480
+func_802A0B64
+func_8007915C
+func_802A3104
+func_802FC800
+func_802FAA5C
+func_802782D0
+func_80301994
+func_80282284"""
 
 def lcf_generate(output_path,shiftable,map_file):
     """Script for generating .lcf files"""
@@ -43,6 +167,8 @@ def lcf_generate(output_path,shiftable,map_file):
         map_file = open(map_file,'r')
         map_file = map_file.read()
         map_file = map_file.splitlines()
+    else:
+        print("Generating LCF")
 
     # load symbols from compiled files
     symbols = []
@@ -94,31 +220,32 @@ def lcf_generate(output_path,shiftable,map_file):
         base_names = set(module0.SYMBOL_NAMES.keys())
         main_names = set([sym.name for sym in symbols])
         names = base_names - main_names
-        for name in names:
-            symbol = module0.SYMBOLS[module0.SYMBOL_NAMES[name]]
-            if symbol["type"] == "StringBase":  # @stringBase0 is handled below
-                continue
-            if symbol["type"] == "LinkerGenerated":  # linker handles these symbols
-                continue
+        if shiftable == False:
+            for name in names:
+                symbol = module0.SYMBOLS[module0.SYMBOL_NAMES[name]]
+                if symbol["type"] == "StringBase":  # @stringBase0 is handled below
+                    continue
+                if symbol["type"] == "LinkerGenerated":  # linker handles these symbols
+                    continue
 
-            addr = symbol['addr']
-            if shiftable==True:        
-                for line in map_file:
-                    literals_found = []
-                    if type(symbol['name'])==str and line.find(' '+symbol['name']+' ')!=-1 and symbol['name'][0] != "@" or type(symbol['label']) == str and line.find(' '+symbol['label']+' ')!=-1:
-                        linesplit = line.split()
-                        if len(linesplit) > 3 and linesplit[2]!="NOT":
-                            if line.find("lit_")!=-1:
-                                lbl = symbol['label']
-                                for literal in literals_found:
-                                    if literal == lbl:
-                                        print("Warning! two literals with the same name found!\n"+lbl)
-                                literals_found.append(symbol['label'])
-                            addr = int(linesplit[2],16)
-                            file.write(f"\t\"{symbol['label']}\" = 0x{addr:08X};\n")
-            else:
+                addr = symbol['addr']
                 file.write(f"\t\"{symbol['label']}\" = 0x{addr:08X};\n")
-
+        elif shiftable == True:
+            realNames = []
+            symInfo = []
+            for func in FUNCITON_SYMBOLS.splitlines():
+                symbol = module0.SYMBOLS[module0.SYMBOL_NAMES[func]]
+                realNames.append(symbol['name'])
+                symInfo.append({'func': func, 'symbol': symbol['name']})
+            for line in map_file:
+                split = line.split()
+                if len(split) >5 and split[2] != 'NOT':
+                    sym = split[5]
+                    if sym in realNames:
+                        #print(line)
+                        file.write(f"\t\"{symInfo[realNames.index(sym)]['func']}\" = 0x{int(split[2],16):08X};\n")
+                
+        
         file.write("\n")
 
         # @stringBase0 is generated by the compiler. The dol2asm is using a trick to
@@ -127,20 +254,32 @@ def lcf_generate(output_path,shiftable,map_file):
         # So all references will be to the new symbol, thus the linker will think
         # that the @stringBase0 symbol is never used and strip it.
         file.write("\t/* @stringBase0 */\n")
-        for x in module0.SYMBOLS:
-            if x["type"] == "StringBase":
-                addr = x['addr']
-                if shiftable==True:
-                    obj = (module0.TRANSLATION_UNITS[x['tu']].split('/')[-1])+'.o'
-                    #print(obj)
-                    for line in map_file:
-                        if line.find(' '+obj)!=-1 and line.find(' '+x['name']+' ')!=-1 or line.find('\t'+obj)!=-1 and line.find(' '+x['name']+' ')!=-1:
-                            linesplit = line.split()
-                            if len(linesplit) > 3:
-                                addr = int(linesplit[2],16)
-                                file.write("\t\"%s\" = 0x%08X;\n" % (x['label'], addr))
-                else:
+        if shiftable == False:
+            for x in module0.SYMBOLS:
+                if x["type"] == "StringBase":
+                    addr = x['addr']
                     file.write("\t\"%s\" = 0x%08X;\n" % (x['label'], addr))
+        elif shiftable == True:
+            stringBaseObjs = []
+            stringBaseSyms = []
+            for x in module0.SYMBOLS:
+                if x['type'] == 'StringBase':
+                    #print(x)
+                    stringBaseObjs.append((module0.TRANSLATION_UNITS[x['tu']].split('/')[-1])+'.o')
+                    stringBaseSyms.append(x['label'])
+            for line in map_file:
+                split = line.split()
+                if len(split) > 6 and split[2] != 'NOT':
+                    sym = split[5]
+                    tu = split[6]
+                    if tu[-2:] == '.a':
+                        tu = split[7]
+                    if sym == '@stringBase0' and tu in stringBaseObjs:
+                        addr = int(split[2],16)
+                        #print(tu)
+                        file.write("\t\"%s\" = 0x%08X;\n" % (stringBaseSyms[stringBaseObjs.index(tu)], addr))
+
+                    
 
         file.write("}\n")
         file.write("\n")
@@ -307,7 +446,7 @@ def get_symbols_from_object_file(obj):
 def load_archive(ar_path):
     symbols = []
 
-    print(ar_path)
+    #print(ar_path)
     archive = libar.read(ar_path)
     for path, data in archive.files:
         obj = libelf.load_object_from_file(None, path, io.BytesIO(data))

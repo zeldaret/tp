@@ -5,7 +5,7 @@ import extract_game_assets
 from pathlib import Path
 import libyaz0
 import libarc
-import threading
+from datetime import datetime
 
 
 def getMaxDateFromDir(path):
@@ -99,9 +99,9 @@ aMemRels = """d_a_alldie.rel
 d_a_andsw2.rel
 d_a_bd.rel
 d_a_canoe.rel
-d_a_cstaf.rel
+d_a_cstaF.rel
 d_a_demo_item.rel
-d_a_door_bossl1.rel
+d_a_door_bossL1.rel
 d_a_econt.rel
 d_a_e_dn.rel
 d_a_e_fm.rel
@@ -133,15 +133,15 @@ d_a_obj_cboard.rel
 d_a_obj_digplace.rel
 d_a_obj_eff.rel
 d_a_obj_fmobj.rel
-d_a_obj_gptaru.rel
+d_a_obj_gpTaru.rel
 d_a_obj_hhashi.rel
 d_a_obj_kanban2.rel
 d_a_obj_kbacket.rel
 d_a_obj_kgate.rel
 d_a_obj_klift00.rel
-d_a_obj_ktonfire.rel
+d_a_obj_ktOnFire.rel
 d_a_obj_ladder.rel
-d_a_obj_lv2candle.rel
+d_a_obj_lv2Candle.rel
 d_a_obj_magne_arm.rel
 d_a_obj_metalbox.rel
 d_a_obj_mgate.rel
@@ -149,8 +149,8 @@ d_a_obj_nameplate.rel
 d_a_obj_ornament_cloth.rel
 d_a_obj_rope_bridge.rel
 d_a_obj_stick.rel
-d_a_obj_stonemark.rel
-d_a_obj_swallshutter.rel
+d_a_obj_stoneMark.rel
+d_a_obj_sWallShutter.rel
 d_a_obj_swpropeller.rel
 d_a_obj_swpush5.rel
 d_a_obj_yobikusa.rel
@@ -160,7 +160,7 @@ d_a_sq.rel
 d_a_swc00.rel
 d_a_tag_ajnot.rel
 d_a_tag_attack_item.rel
-d_a_tag_cstasw.rel
+d_a_tag_CstaSw.rel
 d_a_tag_gstart.rel
 d_a_tag_hinit.rel
 d_a_tag_hjump.rel
@@ -274,24 +274,24 @@ def copyRelFiles(gamePath, buildPath, aMemList, mMemList):
         "Folder:rels/amem/\nFolder:rels/mmem/\nFolder:rels/./\nFolder:rels/../\n"
     )
     for i, rel in enumerate(aMemRels.splitlines()):
-        filesTxtData = filesTxtData + str(i + 4) + ":rels/amem/" + rel + ":0xa500\n"
+        filesTxtData = filesTxtData + str(i + 4) + ":rels/amem/" + rel.lower() + ":0xa500\n"
     filesTxtData = filesTxtData + "Folder:rels/amem/./\nFolder:rels/amem/../\n"
     for i, rel in enumerate(mMemRels.splitlines()):
-        filesTxtData = filesTxtData + str(i + 83) + ":rels/mmem/" + rel + ":0xa500\n"
+        filesTxtData = filesTxtData + str(i + 83) + ":rels/mmem/" + rel.lower() + ":0xa500\n"
     filesTxtData = filesTxtData + "Folder:rels/mmem/./\nFolder:rels/mmem/../\n"
     open(buildPath / "RELS.arc/_files.txt", "w").write(filesTxtData)
     for rel in relArcPaths:
         for rel2 in aMemRels.splitlines():
             if str(rel).find(rel2) != -1:
                 sourceRel = open(rel, "rb").read()
-                open(buildPath / "RELS.arc/rels/amem/" / rel2, "wb").write(
+                open(buildPath / "RELS.arc/rels/amem/" / rel2.lower(), "wb").write(
                     libyaz0.compress(sourceRel)
                 )
                 break
         for rel2 in mMemRels.splitlines():
             if str(rel).find(rel2) != -1:
                 sourceRel = open(rel, "rb").read()
-                open(buildPath / "RELS.arc/rels/mmem/" / rel2, "wb").write(
+                open(buildPath / "RELS.arc/rels/mmem/" / rel2.lower(), "wb").write(
                     libyaz0.compress(sourceRel)
                 )
                 break
@@ -337,6 +337,12 @@ def main(gamePath, buildPath, copyCode):
         )
 
         copyRelFiles(gamePath, buildPath, aMemRels.splitlines(), mMemRels.splitlines())
+
+        shutil.copy(buildPath/"dolzel2/frameworkF.str",buildPath/"dolzel2/game/files/str/Final/Release/frameworkF.str")
+    
+    now = datetime.now()
+    copydate = str(now.year)+"/"+str(now.month).zfill(2)+"/"+str(now.day).zfill(2)+" "+str(now.hour).zfill(2)+":"+str(now.minute).zfill(2)+"\n"
+    open(buildPath/"dolzel2/game/files/str/Final/Release/COPYDATE","w").write(copydate)
 
 
 if __name__ == "__main__":
