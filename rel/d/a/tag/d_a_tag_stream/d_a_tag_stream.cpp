@@ -8,31 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct daTagStream_c {
-    /* 80D638F8 */ void create();
-    /* 80D63A98 */ ~daTagStream_c();
-    /* 80D63B58 */ void execute();
-
-    static u8 m_top[4];
-};
-
-struct dSv_info_c {
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-//
 // Forward References:
 //
 
@@ -53,9 +28,9 @@ extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
 extern "C" void isSwitch__10dSv_info_cCFii();
 extern "C" void __dl__FPv();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
+// extern "C" extern void* g_fopAc_Method[8];
+// extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
+// extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u8 m_top__13daTagStream_c[4];
 
@@ -72,7 +47,7 @@ COMPILER_STRIP_GATE(0x80D63BF0, &lit_3721);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTagStream_c::create() {
+asm int daTagStream_c::create() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_stream/d_a_tag_stream/create__13daTagStream_cFv.s"
 }
@@ -80,14 +55,9 @@ asm void daTagStream_c::create() {
 
 /* 80D63A78-80D63A98 0001F8 0020+00 1/0 0/0 0/0 .text            daTagStream_Create__FP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagStream_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_stream/d_a_tag_stream/daTagStream_Create__FP10fopAc_ac_c.s"
+static int daTagStream_Create(fopAc_ac_c* i_this) {
+    return static_cast<daTagStream_c*>(i_this)->create();
 }
-#pragma pop
 
 /* 80D63A98-80D63B30 000218 0098+00 1/1 0/0 0/0 .text            __dt__13daTagStream_cFv */
 #pragma push
@@ -113,7 +83,7 @@ static asm void daTagStream_Delete(daTagStream_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTagStream_c::execute() {
+asm int daTagStream_c::execute() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_stream/d_a_tag_stream/execute__13daTagStream_cFv.s"
 }
