@@ -6,25 +6,7 @@
 #include "rel/d/a/tag/d_a_tag_schedule/d_a_tag_schedule.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Forward References:
-//
-
-extern "C" static void daTagSchedule_Create__FP10fopAc_ac_c();
-extern "C" static void daTagSchedule_Delete__FP15daTagSchedule_c();
-extern "C" extern void* g_profile_Tag_Schedule[12];
-
-//
-// External References:
-//
-
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-
-//
-// Declarations:
-//
+#include "d/d_procname.h"
 
 /* 80D60098-80D600E8 000078 0050+00 1/0 0/0 0/0 .text daTagSchedule_Create__FP10fopAc_ac_c */
 static int daTagSchedule_Create(fopAc_ac_c* i_this) {
@@ -40,23 +22,30 @@ static int daTagSchedule_Delete(daTagSchedule_c* i_this) {
 
 /* ############################################################################################## */
 /* 80D60120-80D60140 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagSchedule_Method */
-SECTION_DATA static void* l_daTagSchedule_Method[8] = {
-    (void*)daTagSchedule_Create__FP10fopAc_ac_c,
-    (void*)daTagSchedule_Delete__FP15daTagSchedule_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daTagSchedule_Method = {
+    (process_method_func)daTagSchedule_Create,
+    (process_method_func)daTagSchedule_Delete
 };
 
 /* 80D60140-80D60170 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Schedule */
-SECTION_DATA extern void* g_profile_Tag_Schedule[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x02890000, (void*)&g_fpcLf_Method,
-    (void*)0x0000056C, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x018C0000, (void*)&l_daTagSchedule_Method,
-    (void*)0x00040000, (void*)0x000E0000,
+extern actor_process_profile_definition g_profile_Tag_Schedule = {
+    0xFFFFFFFD,                 // mLayerID
+    0x0007,                     // mListID
+    0xFFFD,                     // mListPrio
+    PROC_Tag_Schedule,          // mProcName
+    0,                          // padding
+    &g_fpcLf_Method.mBase,      // mSubMtd
+    sizeof(daTagSchedule_c),    // mSize
+    0,                          // mSizeOther
+    0,                          // mParameters
+    &g_fopAc_Method.base,       // mSubMtd
+    0x018C,                     // mPriority
+    0,                          // padding
+    0,                          // padding
+    &l_daTagSchedule_Method,    // mSubMtd
+    0x00040000,                 // mStatus
+    0x00,                       // mActorType
+    0x0E,                       // mCullType
+    0,                          // padding
+    0,                          // padding
 };
