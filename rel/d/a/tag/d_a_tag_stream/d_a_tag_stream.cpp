@@ -70,14 +70,10 @@ asm daTagStream_c::~daTagStream_c() {
 #pragma pop
 
 /* 80D63B30-80D63B58 0002B0 0028+00 1/0 0/0 0/0 .text daTagStream_Delete__FP13daTagStream_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagStream_Delete(daTagStream_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_stream/d_a_tag_stream/daTagStream_Delete__FP13daTagStream_c.s"
+static int daTagStream_Delete(daTagStream_c* i_this) {
+    i_this->~daTagStream_c();
+    return 1;
 }
-#pragma pop
 
 /* 80D63B58-80D63BC0 0002D8 0068+00 1/1 0/0 0/0 .text            execute__13daTagStream_cFv */
 #pragma push
