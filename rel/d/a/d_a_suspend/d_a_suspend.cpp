@@ -8,21 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct cXyz {};
-
-struct daSus_c {
-    /* 80031248 */ void newData(s8, cXyz const&, cXyz const&, u8, u8, u8);
-    /* 804D5118 */ void create();
-};
-
-//
 // Forward References:
 //
 
@@ -36,12 +21,6 @@ extern "C" extern void* g_profile_SUSPEND[12];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void newData__7daSus_cFScRC4cXyzRC4cXyzUcUcUc();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-
-//
-// Declarations:
-//
 
 /* ############################################################################################## */
 /* 804D523C-804D5240 000000 0004+00 1/1 0/0 0/0 .rodata          @3640 */
@@ -70,25 +49,52 @@ COMPILER_STRIP_GATE(0x804D5248, &lit_3643);
 #pragma pop
 
 /* 804D5118-804D51E0 000078 00C8+00 1/1 0/0 0/0 .text            create__7daSus_cFv */
+#ifdef NONMATCHING
+// missing mr instruction
+int daSus_c::create() {
+    daSus_c* suspend = static_cast<daSus_c*>(this);
+    s8 roomNo = fopAcM_GetRoomNo(suspend);
+
+    if (roomNo < 0) {
+        roomNo = suspend->getRoom();
+    }
+
+    u8 sw = suspend->getSw();
+    u8 arg0 = suspend->getArg0();
+    u8 arg1 = suspend->getArg1();
+
+    if (suspend->getScale() != 0) {
+        mScale.x *= 1250.0f;
+        mScale.y *= 2500.0f;
+        mScale.z *= 1250.0f;
+    } else {
+        mScale.x *= 125.0f;
+        mScale.y *= 250.0f;
+        mScale.z *= 125.0f;
+    }
+
+    newData(roomNo,current.pos,mScale,sw,arg0,arg1);
+    return cPhs_COMPLEATE_e;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daSus_c::create() {
+asm int daSus_c::create() {
     nofralloc
 #include "asm/rel/d/a/d_a_suspend/d_a_suspend/create__7daSus_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 804D51E0-804D5234 000140 0054+00 1/0 0/0 0/0 .text            daSus_create__FP7daSus_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daSus_create(daSus_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_suspend/d_a_suspend/daSus_create__FP7daSus_c.s"
+static int daSus_create(daSus_c* i_this) {
+    if (!fopAcM_CheckCondition(i_this, 8)) {
+        new (i_this) daSus_c();
+        fopAcM_OnCondition(i_this, 8);
+    }
+    return i_this->create();
 }
-#pragma pop
-
 /* ############################################################################################## */
 /* 804D524C-804D526C -00001 0020+00 1/0 0/0 0/0 .data            daSus_METHODS */
 SECTION_DATA static void* daSus_METHODS[8] = {
