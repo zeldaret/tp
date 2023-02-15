@@ -40,6 +40,8 @@ struct Z2SpotMic {
     /* 802BCFE4 */ void calcMicPriority(f32);
     /* 802BD03C */ void calcMicVolume(f32, int, f32);
 
+    void setPosPtr(Vec* i_posPtr) { mPosPtr = i_posPtr; }
+
     /* 0x00 */ f32 field_0x0;
     /* 0x04 */ f32 field_0x4;
     /* 0x08 */ f32 field_0x8;
@@ -125,6 +127,8 @@ struct Z2Audience : public JAIAudience {
     /* 802BD4D4 */ virtual void deleteAudible(JAIAudible*);
     /* 802BD5B8 */ virtual u32 calcPriority(JAIAudible*);
     /* 802BD71C */ virtual void mixChannelOut(JASSoundParams const&, JAIAudible*, int);
+
+    Z2SpotMic* getLinkMic() { return mLinkMic; }
 
     /* 0x004 */ f32 field_0x4;
     /* 0x008 */ u8 field_0x8;

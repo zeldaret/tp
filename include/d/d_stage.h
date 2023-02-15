@@ -62,7 +62,7 @@ struct stage_stag_info_class {
     /* 0x24 */ f32 field_0x24;
     /* 0x28 */ u8 mMsgGroup;
     /* 0x2A */ u16 mStageTitleNo;
-    /* 0x2C */ u8 mParticleNo;
+    /* 0x2C */ u8 mParticleNo[16];
 };
 
 struct stage_scls_info_class {

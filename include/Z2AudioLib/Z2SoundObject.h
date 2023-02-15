@@ -17,6 +17,7 @@ public:
     void startCollisionSE(u32, u32, Z2SoundObjBase*);
 
     bool isAlive() const { return mIsInitialized; }
+    void setSoundStarter(Z2SoundStarter* i_soundStarter) { mSoundStarter = i_soundStarter; }
 
     virtual void framework(u32, s8);
     virtual void dispose();

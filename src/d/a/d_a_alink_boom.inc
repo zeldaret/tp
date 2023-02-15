@@ -196,8 +196,8 @@ void daAlink_c::throwBoomerang() {
     BOOL boomerang_item = fopAcM_GetName(item) == PROC_BOOMERANG;
     if (boomerang_item) {
         item->setThrow();
-        item->current.angle.y = shape_angle.y + mBodyAngleY;
-        item->current.angle.x = -mBodyAngleX;
+        item->current.angle.y = shape_angle.y + mBodyAngle.y;
+        item->current.angle.x = -mBodyAngle.x;
 
         if (mTargetedActor != NULL) {
             item->setAimActor(mTargetedActor);

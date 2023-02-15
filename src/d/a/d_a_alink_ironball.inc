@@ -132,8 +132,8 @@ asm void daAlink_c::setIronBallChainPos() {
 /* 80113CA0-80113D58 10E5E0 00B8+00 1/1 0/0 0/0 .text checkIronBallReturnChange__9daAlink_cFv */
 BOOL daAlink_c::checkIronBallReturnChange() {
     if (mProcID != PROC_IRON_BALL_THROW ||
-        (!(mBodyAngleX > 0x400) && mIronBallBgChkPos.y < (current.pos.y - lit_8472)) ||
-        (mBodyAngleX > 0x400 && mItemMode == 0x64) ||
+        (!(mBodyAngle.x > 0x400) && mIronBallBgChkPos.y < (current.pos.y - lit_8472)) ||
+        (mBodyAngle.x > 0x400 && mItemMode == 0x64) ||
         (field_0xFB8.ChkAtHit() && field_0xFB8.GetAtHitGObj() != NULL &&
          static_cast<dCcD_GObjInf*>(field_0xFB8.GetAtHitGObj())->ChkTgIronBallRebound())) {
         setIronBallReturn(0);
@@ -354,7 +354,7 @@ int daAlink_c::procIronBallThrowInit() {
     field_0x3588 = l_ironBallBaseAnime;
     mNormalSpeed = FLOAT_LABEL(lit_6108);
     current.angle.y = shape_angle.y;
-    mCommonCounter = 0;
+    field_0x300c = 0;
     field_0x3018 = 3;
     field_0x3024 = 0;
     field_0x3026 = 0;
@@ -380,13 +380,13 @@ int daAlink_c::procIronBallReturnInit() {
     commonProcInit(PROC_IRON_BALL_RETURN);
 
     if (field_0x3018 == 8) {
-        mCommonCounter = 1;
+        field_0x300c = 1;
         setSingleAnimeParam(ANM_IRONBALL_CATCH, &daAlinkHIO_ironBall_c0::m.mCatchAnm);
         field_0x2f99 = 12;
     } else {
         setSingleAnimeBaseSpeed(ANM_IRONBALL_PULL, daAlinkHIO_ironBall_c0::m.mPullAnmSpeed, daAlinkHIO_ironBall_c0::m.mPullInterpolation);
         field_0x2f99 = 12;
-        mCommonCounter = 0;
+        field_0x300c = 0;
     }
 
     field_0x3588 = l_ironBallBaseAnime;
@@ -403,8 +403,8 @@ int daAlink_c::procIronBallReturn() {
 
     field_0x2f99 = 4;
 
-    if (field_0x3018 == 8 && mCommonCounter == 0) {
-        mCommonCounter = 1;
+    if (field_0x3018 == 8 && field_0x300c == 0) {
+        field_0x300c = 1;
         setSingleAnimeParam(ANM_IRONBALL_CATCH, &daAlinkHIO_ironBall_c0::m.mCatchAnm);
         field_0x2f99 = 12;
         seStartOnlyReverb(Z2SE_AL_IB_CATCH);

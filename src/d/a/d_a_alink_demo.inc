@@ -1162,7 +1162,7 @@ int daAlink_c::procMasterSwordStickInit() {
     voiceStart(Z2SE_AL_V_MSTR_SW_STICK);
     mNormalSpeed = FLOAT_LABEL(lit_6108);
     current.angle.y = shape_angle.y;
-    mCommonCounter = 0;
+    field_0x300c = 0;
 
     return 1;
 }
@@ -1172,10 +1172,10 @@ int daAlink_c::procMasterSwordStickInit() {
 int daAlink_c::procMasterSwordStick() {
     daPy_frameCtrl_c* fCtrl = &mUnderFrameCtrl[0];
 
-    if (mCommonCounter != 0) {
+    if (field_0x300c != 0) {
         dComIfGp_evmng_cutEnd(field_0x3184);
     } else if (fCtrl->checkAnmEnd()) {
-        mCommonCounter = 1;
+        field_0x300c = 1;
         setSingleAnimeBaseMorf(ANM_DEMO_MASTER_SWORD_WAIT, lit_6041);
         dComIfGp_evmng_cutEnd(field_0x3184);
     } else if (fCtrl->getFrame() >= lit_14621) {
@@ -1240,7 +1240,7 @@ int daAlink_c::procDungeonWarpReadyInit() {
     mNormalSpeed = FLOAT_LABEL(lit_6108);
     current.angle.y = shape_angle.y;
     field_0x32cc = id;
-    mCommonCounter = 0;
+    field_0x300c = 0;
     keepItemData();
 
     return 1;
@@ -1262,7 +1262,7 @@ asm int daAlink_c::procDungeonWarpReady() {
 #ifdef NONMATCHING
 bool daAlink_c::procDungeonWarpInit() {
     if (!commonProcInitNotSameProc(DUNEGON_WARP_START) {
-        mCommonCounter = 0;
+        field_0x300c = 0;
         field_0x3012 = 0;
         setSpecialGravity(0.0f, mMaxFallSpeed, 0);
         field_0x300e = 0;
@@ -1286,22 +1286,22 @@ asm int daAlink_c::procDungeonWarpInit() {
 // matches with literals
 #ifdef NONMATCHING
 int daAlink_c::procDungeonWarp() {
-    mCommonCounter += 0x200;
+    field_0x300c += 0x200;
 
-    if (mCommonCounter > 0x4000) {
-        mCommonCounter = 0x4000;
+    if (field_0x300c > 0x4000) {
+        field_0x300c = 0x4000;
     } else {
         current.pos.y += 1.0f;
     }
 
-    f32 sin = cM_ssin(mCommonCounter);
+    f32 sin = cM_ssin(field_0x300c);
     shape_angle.y += (s16)(14336.0f * sin);
     field_0x300e = 8.0f * sin + 24.0f * (1.0f - mScale.x);
 
     if (field_0x3012 != 0) {
         return 1;
     } else {
-        if (mCommonCounter == 0x4000) {
+        if (field_0x300c == 0x4000) {
             if (field_0x3010 == 0) {
                 dComIfGp_particle_set(0xA61, &current.pos, &mTevStr, NULL, NULL);
                 field_0x3010 = 1;
@@ -1326,7 +1326,7 @@ int daAlink_c::procDungeonWarp() {
             }
             current.pos.y += 5.0f;
             field_0x2b98 = (1.0f - mScale.y) * 100.0f;
-        } else if (mCommonCounter >= 0x2000) {
+        } else if (field_0x300c >= 0x2000) {
             cLib_chaseF(&mScale.x, 0.8f, 0.01f);
         }
 

@@ -76,7 +76,6 @@ SECTION_SDATA2 static f32 lit_3862 = 2.0f;
 SECTION_SDATA2 static f32 lit_3863 = 45.0f;
 
 /* 8009CA48-8009CB14 097388 00CC+00 0/0 1/1 0/0 .text            update__12dEyeHL_mng_cFv */
-// small issue with cLib_minMaxLimit
 #ifdef NONMATCHING
 void dEyeHL_mng_c::update() {
     dEyeHL_mng_c* obj = m_obj;

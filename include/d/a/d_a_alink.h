@@ -1742,7 +1742,7 @@ public:
     /* 800D72BC */ int setDamagePoint(int i_dmgAmount, int i_checkZoraMag, int i_setDmgTimer, int);
     /* 800D7478 */ void setDamagePointNormal(int);
     /* 800D74A4 */ void setLandDamagePoint(int);
-    /* 800D74F4 */ void getDamageVec(dCcD_GObjInf*);
+    /* 800D74F4 */ Vec* getDamageVec(dCcD_GObjInf*);
     /* 800D76C4 */ void setDashDamage();
     /* 800D7768 */ static bool checkIcePolygonDamage(cBgS_PolyInfo*);
     /* 800D77C8 */ BOOL checkMagicArmorNoDamage();
@@ -3292,6 +3292,10 @@ public:
         return getDirectionFromAngle(field_0x2fe2 - current.angle.y);
     }
 
+    bool checkAnmEnd(daPy_frameCtrl_c* i_frameCtrl) {
+        return i_frameCtrl->checkAnmEnd();
+    }
+
     static int getBallModelIdx() { return 0x25; }
     static int getBallBtkIdx() { return 0x49; }
     static int getBallBrkIdx() { return 0x41; }
@@ -3620,7 +3624,7 @@ private:
     /* 0x03006 */ s16 field_0x3006;
     /* 0x03008 */ s16 field_0x3008;
     /* 0x0300A */ s16 field_0x300a;
-    /* 0x0300C */ s16 mCommonCounter;  // might need more accurate name
+    /* 0x0300C */ s16 field_0x300c;  // might need more accurate name
     /* 0x0300E */ s16 field_0x300e;
     /* 0x03010 */ s16 field_0x3010;
     /* 0x03012 */ s16 field_0x3012;

@@ -77,6 +77,8 @@ public:
     /* 802B9AD0 */ void setTwilightGateVol(f32);
     /* 802B9AFC */ void setWindStoneVol(f32, u32);
 
+    void onEnemyDamage() { setBattleSeqState(2); }
+
     void i_setTwilightGateVol(f32 vol) { mTwilightGateVol = vol; }
 
     void i_setWindStoneVol(f32 vol, u32 count) { mWindStone.move(vol, count); }

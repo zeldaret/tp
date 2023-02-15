@@ -67,7 +67,7 @@ int daAlink_c::procGrassWhistleGetInit() {
     field_0x280c.setData(field_0x27f4);
 
     daObjYobikusa_c* yobikusa = (daObjYobikusa_c*)field_0x27f4;
-    mCommonCounter = yobikusa->getType();
+    field_0x300c = yobikusa->getType();
     field_0x300e = yobikusa->getPathID();
     field_0x3010 = yobikusa->isPlayerCorrect();
     field_0x3012 = yobikusa->shape_angle.y + 0x8000;
@@ -94,9 +94,9 @@ int daAlink_c::procGrassWhistleGet() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
     
     if (frameCtrl->checkAnmEnd()) {
-        procGrassWhistleWaitInit(mCommonCounter, field_0x300e, field_0x3010, field_0x3012, &field_0x37c8);
+        procGrassWhistleWaitInit(field_0x300c, field_0x300e, field_0x3010, field_0x3012, &field_0x37c8);
     } else if (mEquipItem == NO_ITEM && frameCtrl->getFrame() >= lit_7710) {
-        setGrassWhistleModel(mCommonCounter);
+        setGrassWhistleModel(field_0x300c);
         
         if (field_0x280c.getActor() != NULL) {
             fopAcM_setCarryNow(field_0x280c.getActor(), 0);
@@ -199,8 +199,8 @@ int daAlink_c::procHawkSubjectInit() {
         field_0x280c.setData(actor);
     }
 
-    mCommonCounter = 0;
-    mBodyAngleY = 0;
+    field_0x300c = 0;
+    mBodyAngle.y = 0;
     deleteEquipItem(0, 1);
     return 1;
 }

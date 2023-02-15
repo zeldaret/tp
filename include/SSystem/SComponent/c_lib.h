@@ -54,16 +54,21 @@ inline T cLib_checkBit(T& value, u8 bit) {
 template <typename T>
 inline T cLib_minMaxLimit(T val, T min, T max) {
     T ret;
+    T var_r30;
+
     if (val < min) {
         ret = min;
     } else {
         if (val > max) {
-            val = max;
+            var_r30 = max;
+        } else {
+            var_r30 = val;
         }
-        ret = val;
+
+        ret = var_r30;
     }
 
-    return ret;
+    return (T)ret;
 }
 
 template <typename T>

@@ -195,9 +195,7 @@ public:
     /* 0x0590 */ u32 mEndResetFlg2;
     /* 0x0594 */ f32 field_0x594;
     /* 0x0598 */ f32 field_0x598;
-    /* 0x059C */ s16 mBodyAngleX;
-    /* 0x059E */ s16 mBodyAngleY;
-    /* 0x05A0 */ u8 field_0x5a0[0x4];
+    /* 0x059C */ csXyz mBodyAngle;
     /* 0x05A4 */ cXyz mHeadTopPos;
     /* 0x05B0 */ cXyz mItemPos;
     /* 0x05BC */ cXyz mSwordTopPos;
@@ -711,8 +709,8 @@ public:
         }
     }
 
-    s16 getBodyAngleX() const { return mBodyAngleX; }
-    s16 getBodyAngleY() const { return mBodyAngleY; }
+    s16 getBodyAngleX() const { return mBodyAngle.x; }
+    s16 getBodyAngleY() const { return mBodyAngle.y; }
 
     // some functions use these function as an inline
     // is there a better way to handle this?

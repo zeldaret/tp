@@ -377,7 +377,7 @@ int daAlink_c::procCopyRodSwingInit() {
 
     mNormalSpeed = FLOAT_LABEL(lit_6108);
     current.angle.y = shape_angle.y;
-    mCommonCounter = 1;
+    field_0x300c = 1;
     field_0x300e = 0;
 
     voiceStart(Z2SE_AL_V_ATTACK_S);
@@ -390,7 +390,7 @@ int daAlink_c::procCopyRodSwingInit() {
 /* 800E21FC-800E2308 0DCB3C 010C+00 1/0 0/0 0/0 .text            procCopyRodSwing__9daAlink_cFv */
 int daAlink_c::procCopyRodSwing() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
-    mCommonCounter = 0;
+    field_0x300c = 0;
 
     if (frameCtrl->checkAnmEnd()) {
         setCopyRodControllAnime();

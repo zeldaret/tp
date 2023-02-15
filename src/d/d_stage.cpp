@@ -2244,20 +2244,9 @@ static int dStage_lgtvInfoInit(dStage_dt_c* stageDt, void* i_data, int entryNum,
 
 /* 80025738-80025744 020078 000C+00 0/0 1/1 0/0 .text
  * dStage_stagInfo_GetParticleNo__FP21stage_stag_info_classi    */
-#ifdef NONMATCHING
 u8 dStage_stagInfo_GetParticleNo(stage_stag_info_class* p_info, int layer) {
-    return p_info[layer].mParticleNo;
+    return p_info->mParticleNo[layer];
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u8 dStage_stagInfo_GetParticleNo(stage_stag_info_class* p_info, int layer) {
-    nofralloc
-#include "asm/d/d_stage/dStage_stagInfo_GetParticleNo__FP21stage_stag_info_classi.s"
-}
-#pragma pop
-#endif
 
 /* 80025744-8002582C 020084 00E8+00 1/0 0/0 0/0 .text dStage_stagInfoInit__FP11dStage_dt_cPviPv */
 static int dStage_stagInfoInit(dStage_dt_c* stageDt, void* i_data, int entryNum, void* param_3) {
