@@ -274,10 +274,10 @@ def copyRelFiles(gamePath, buildPath, aMemList, mMemList):
         "Folder:rels/amem/\nFolder:rels/mmem/\nFolder:rels/./\nFolder:rels/../\n"
     )
     for i, rel in enumerate(aMemRels.splitlines()):
-        filesTxtData = filesTxtData + str(i + 4) + ":rels/amem/" + rel + ":0xa500\n"
+        filesTxtData = filesTxtData + str(i + 4) + ":rels/amem/" + rel.lower() + ":0xa500\n"
     filesTxtData = filesTxtData + "Folder:rels/amem/./\nFolder:rels/amem/../\n"
     for i, rel in enumerate(mMemRels.splitlines()):
-        filesTxtData = filesTxtData + str(i + 83) + ":rels/mmem/" + rel + ":0xa500\n"
+        filesTxtData = filesTxtData + str(i + 83) + ":rels/mmem/" + rel.lower() + ":0xa500\n"
     filesTxtData = filesTxtData + "Folder:rels/mmem/./\nFolder:rels/mmem/../\n"
     open(buildPath / "RELS.arc/_files.txt", "w").write(filesTxtData)
     for rel in relArcPaths:
