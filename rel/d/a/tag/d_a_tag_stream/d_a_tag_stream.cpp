@@ -76,30 +76,20 @@ static int daTagStream_Delete(daTagStream_c* i_this) {
 }
 
 /* 80D63B58-80D63BC0 0002D8 0068+00 1/1 0/0 0/0 .text            execute__13daTagStream_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daTagStream_c::execute() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_stream/d_a_tag_stream/execute__13daTagStream_cFv.s"
+int daTagStream_c::execute() {
+    if (field_0x56b == 0xFF || i_fopAcM_isSwitch(this,field_0x56b)) {
+        field_0x569 = 1;
+    } else {
+        field_0x569 = 0;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80D63BC0-80D63BE0 000340 0020+00 1/0 0/0 0/0 .text daTagStream_Execute__FP13daTagStream_c */
-#ifndef NONMATCHING
 static int daTagStream_Execute(daTagStream_c* i_this) {
     return i_this->execute();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagStream_Execute(daTagStream_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_stream/d_a_tag_stream/daTagStream_Execute__FP13daTagStream_c.s"
-}
-#pragma pop
-#endif
 
 /* 80D63BE0-80D63BE8 000360 0008+00 1/0 0/0 0/0 .text            daTagStream_Draw__FP13daTagStream_c
  */

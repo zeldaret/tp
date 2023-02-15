@@ -15,6 +15,11 @@ public:
     /* 80D63A98 */ ~daTagStream_c();
     /* 80D63B58 */ int execute();
 
+    /* 0x568 */ u8 field_0x568;
+    /* 0x569 */ u8 field_0x569;
+    /* 0x56A */ u8 field_0x56a;
+    /* 0x56B */ u8 field_0x56b;
+
     static u8 m_top[4];
 };
 
