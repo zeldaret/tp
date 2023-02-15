@@ -213,7 +213,7 @@ class StringList:
     def write(self):
         if len(self.data) > 0:
             with open(self.output_path, "w") as file:
-                file.write(self.data)
+                file.write(self.data.replace(' ','\0'))
 
 
 @dataclass

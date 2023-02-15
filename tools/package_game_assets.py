@@ -5,7 +5,7 @@ import extract_game_assets
 from pathlib import Path
 import libyaz0
 import libarc
-import threading
+from datetime import datetime
 
 
 def getMaxDateFromDir(path):
@@ -337,6 +337,12 @@ def main(gamePath, buildPath, copyCode):
         )
 
         copyRelFiles(gamePath, buildPath, aMemRels.splitlines(), mMemRels.splitlines())
+
+        shutil.copy(buildPath/"dolzel2/frameworkF.str",buildPath/"dolzel2/game/files/str/Final/Release/frameworkF.str")
+    
+    now = datetime.now()
+    copydate = str(now.year)+"/"+str(now.month).zfill(2)+"/"+str(now.day).zfill(2)+" "+str(now.hour).zfill(2)+":"+str(now.minute).zfill(2)+"\n"
+    open(buildPath/"dolzel2/game/files/str/Final/Release/COPYDATE","w").write(copydate)
 
 
 if __name__ == "__main__":
