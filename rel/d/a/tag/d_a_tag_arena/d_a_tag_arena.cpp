@@ -31,13 +31,13 @@ static actor_method_class l_daTagArena_Method = {
 
 /* 80D55D80-80D55DB0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Arena */
 extern actor_process_profile_definition g_profile_Tag_Arena = {
-    0xFFFFFFFD,             // mLayerID
-    0x0007,                 // mListID
-    0xFFFD,                 // mListPrio
+    -3,                     // mLayerID
+    7,                      // mListID
+    -3,                     // mListPrio
     PROC_Tag_Arena,         // mProcName
-    0x0000,                 // padding
+    0,                      // padding
     &g_fpcLf_Method.mBase,  // mSubMtd
-    0x00000568,             // mSize
+    sizeof(daTagArena_c),   // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
@@ -46,7 +46,7 @@ extern actor_process_profile_definition g_profile_Tag_Arena = {
     0,                      // padding
     &l_daTagArena_Method,   // mSubMtd
     0x00040000,             // mStatus
-    0x00,                   // mActorType
+    0,                      // mActorType
     0x0E,                   // mCullType
     0,                      // padding
     0                       // padding

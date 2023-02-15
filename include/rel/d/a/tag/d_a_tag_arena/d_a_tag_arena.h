@@ -13,8 +13,6 @@ public:
         }
         return cPhs_COMPLEATE_e;
     }
-
-    u8 field_0x568[4];
 };
 
 #endif /* D_A_TAG_ARENA_H */
