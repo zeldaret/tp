@@ -86,6 +86,11 @@ asm int daTagStream_c::execute() {
 #pragma pop
 
 /* 80D63BC0-80D63BE0 000340 0020+00 1/0 0/0 0/0 .text daTagStream_Execute__FP13daTagStream_c */
+#ifndef NONMATCHING
+static int daTagStream_Execute(daTagStream_c* i_this) {
+    return i_this->execute();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -94,6 +99,7 @@ static asm void daTagStream_Execute(daTagStream_c* param_0) {
 #include "asm/rel/d/a/tag/d_a_tag_stream/d_a_tag_stream/daTagStream_Execute__FP13daTagStream_c.s"
 }
 #pragma pop
+#endif
 
 /* 80D63BE0-80D63BE8 000360 0008+00 1/0 0/0 0/0 .text            daTagStream_Draw__FP13daTagStream_c
  */
