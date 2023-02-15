@@ -40,7 +40,7 @@ static int daKytag17_Create(fopAc_ac_c* i_this) {
         fopAcM_OnCondition(kytag17, 8);
     }
 
-    kytag17->mParameters = kytag17->mBase.mParameters;
+    kytag17->mParameters = fopAcM_GetParam(kytag17);
     g_env_light.field_0x1308 = kytag17->mParameters;
     return cPhs_COMPLEATE_e;
 }
