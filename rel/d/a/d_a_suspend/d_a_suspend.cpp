@@ -8,21 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct cXyz {};
-
-struct daSus_c {
-    /* 80031248 */ void newData(s8, cXyz const&, cXyz const&, u8, u8, u8);
-    /* 804D5118 */ void create();
-};
-
-//
 // Forward References:
 //
 
@@ -36,9 +21,6 @@ extern "C" extern void* g_profile_SUSPEND[12];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void newData__7daSus_cFScRC4cXyzRC4cXyzUcUcUc();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-
 //
 // Declarations:
 //
@@ -70,24 +52,41 @@ COMPILER_STRIP_GATE(0x804D5248, &lit_3643);
 #pragma pop
 
 /* 804D5118-804D51E0 000078 00C8+00 1/1 0/0 0/0 .text            create__7daSus_cFv */
+#ifdef NONMATCHING
+asm void daSus_c::create() {
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daSus_c::create() {
+asm int daSus_c::create() {
     nofralloc
 #include "asm/rel/d/a/d_a_suspend/d_a_suspend/create__7daSus_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 804D51E0-804D5234 000140 0054+00 1/0 0/0 0/0 .text            daSus_create__FP7daSus_c */
+#ifndef NONMATCHING
+static int daSus_create(daSus_c* i_this) {
+    if (!fopAcM_CheckCondition(i_this, 8)) {
+        new (i_this) daSus_c();
+        fopAcM_OnCondition(i_this, 8);
+    }
+    return i_this->create();
+    // return cPhs_COMPLEATE_e;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daSus_create(daSus_c* param_0) {
+static asm void daSus_create(daSus_c* i_this) {
     nofralloc
 #include "asm/rel/d/a/d_a_suspend/d_a_suspend/daSus_create__FP7daSus_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804D524C-804D526C -00001 0020+00 1/0 0/0 0/0 .data            daSus_METHODS */
