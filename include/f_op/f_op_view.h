@@ -48,6 +48,9 @@ struct view_class : public leafdraw_class {
     /* 0x0FC */ s16 mBank;
     /* 0x100 */ Mtx44 mProjMtx;
     /* 0x140 */ Mtx mViewMtx;
+    /* 0x170 */ Mtx mInvViewMtx;
+    /* 0x1A0 */ Mtx44 mProjViewMtx;
+    /* 0x1E0 */ Mtx mViewMtxNoTrans;
 };
 
 #endif
