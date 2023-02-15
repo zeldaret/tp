@@ -27,31 +27,16 @@ extern "C" void __dt__10fopAc_ac_cFv();
 //
 
 /* 80D60098-80D600E8 000078 0050+00 1/0 0/0 0/0 .text daTagSchedule_Create__FP10fopAc_ac_c */
-#ifndef NONMATCHING
 static int daTagSchedule_Create(fopAc_ac_c* i_this) {
     daTagSchedule_c* schedule_tag = (daTagSchedule_c*)i_this;
     return schedule_tag->create();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagSchedule_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_schedule/d_a_tag_schedule/daTagSchedule_Create__FP10fopAc_ac_c.s"
-}
-#pragma pop
-#endif
 
 /* 80D600E8-80D60118 0000C8 0030+00 1/0 0/0 0/0 .text daTagSchedule_Delete__FP15daTagSchedule_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagSchedule_Delete(daTagSchedule_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_schedule/d_a_tag_schedule/daTagSchedule_Delete__FP15daTagSchedule_c.s"
+static int daTagSchedule_Delete(daTagSchedule_c* i_this) {
+    i_this->~daTagSchedule_c();
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D60120-80D60140 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagSchedule_Method */
