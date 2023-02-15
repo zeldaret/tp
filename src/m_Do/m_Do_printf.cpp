@@ -12,6 +12,18 @@
 #include "dolphin/base/PPCArch.h"
 #include "MSL_C/MSL_Common/Src/file_io.h"
 
+/* 80450B98-80450B9C -00001 0004+00 0/0 6/6 0/0 .sbss            None */
+bool __OSReport_disable;
+
+bool __OSReport_Error_disable;
+
+bool __OSReport_Warning_disable;
+
+bool __OSReport_System_disable;
+
+/* 80450B9C-80450BA0 00009C 0004+00 0/0 3/3 0/0 .sbss            None */
+bool __OSReport_enable;
+
 /* 80006798-800067C8 0010D8 0030+00 1/1 0/0 0/0 .text            OSSwitchFiberEx__FUlUlUlUlUlUl */
 #pragma push
 #pragma optimization_level 0

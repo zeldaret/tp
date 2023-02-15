@@ -584,7 +584,6 @@ extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" f32 Zero__4cXyz[3];
 extern "C" u8 BaseY__4cXyz[12];
 extern "C" extern u8 g_dComIfGoat_gameInfo[4 + 4 /* padding */];
-extern "C" extern u8 data_80450B44[4];
 extern "C" u8 stopStatus__10fopAc_ac_c[4];
 extern "C" u8 m_object__7dDemo_c[4];
 extern "C" u8 m_midnaActor__9daPy_py_c[4];

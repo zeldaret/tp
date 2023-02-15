@@ -124,6 +124,13 @@ private:
     /* 0xD0 */ u8 mFlags;
 };  // Size = 0xD4
 
+/**
+ * this is supposed to be:
+ * JASGlobalInstance<Z2SeqMgr>::sInstance
+ * sInstance__28JASGlobalInstance<8Z2SeqMgr>
+ */
+extern Z2SeqMgr* data_80450B84;
+
 enum Z2BgmID {
     Z2BGM_FIELD_LINK_DAY = 0x1000000,
     Z2BGM_FIELD_LINK_NIGHT = 0x1000001,

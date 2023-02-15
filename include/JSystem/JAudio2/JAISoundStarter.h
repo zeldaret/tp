@@ -11,4 +11,11 @@ struct JAISoundStarter {
     virtual ~JAISoundStarter();
 };
 
+/**
+ * this is supposed to be:
+ * JASGlobalInstance<JAISoundStarter>::sInstance
+ * sInstance__36JASGlobalInstance<15JAISoundStarter>
+ */
+extern JAISoundStarter* data_80450B78;
+
 #endif /* JAISOUNDSTARTER_H */

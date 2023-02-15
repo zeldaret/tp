@@ -39,6 +39,11 @@ private:
 
 STATIC_ASSERT(sizeof(Z2SoundMgr) == 0x810);
 
+/**
+ * this is supposed to be:
+ * JASGlobalInstance<Z2SoundMgr>::sInstance
+ * sInstance__31JASGlobalInstance<10Z2SoundMgr>
+ */
 extern Z2SoundMgr* data_80450B60;
 
 inline Z2SoundMgr* Z2GetSoundMgr() {

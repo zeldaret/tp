@@ -141,4 +141,11 @@ struct Z2Audience : public JAIAudience {
     /* 0x1DC */ bool mUsingOffMicVol;
 };  // Size: 0x1E0
 
+/**
+ * this is supposed to be:
+ * JASGlobalInstance<Z2Audience>::sInstance
+ * sInstance__31JASGlobalInstance<10Z2Audience>
+ */
+extern Z2Audience* data_80450B44;
+
 #endif /* Z2AUDIENCE_H */

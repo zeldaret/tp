@@ -16,4 +16,11 @@ struct Z2SoundStarter : public JAISoundStarter {
                             float, float, float, float, u32);
 };
 
+/**
+ * this is supposed to be:
+ * JASGlobalInstance<Z2SoundStarter>::sInstance
+ * sInstance__35JASGlobalInstance<14Z2SoundStarter>
+ */
+extern Z2SoundStarter* data_80450B74;
+
 #endif /* Z2SOUNDSTARTER_H */

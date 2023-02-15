@@ -80,4 +80,11 @@ private:
 
 STATIC_ASSERT(sizeof(JAISeMgr) == 0x724);
 
+/**
+ * this is supposed to be:
+ * JASGlobalInstance<JAISeMgr>::sInstance
+ * sInstance__28JASGlobalInstance<8JAISeMgr>
+ */
+extern JAISeMgr* data_80450B6C;
+
 #endif /* JAISEMGR_H */

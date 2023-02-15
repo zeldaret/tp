@@ -8,22 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct JAISoundID {};
-
-struct JAUSoundTable {
-    /* 802A7114 */ void init(void const*);
-    /* 802A7160 */ void getTypeID(JAISoundID) const;
-    /* 802A728C */ void getData(JAISoundID) const;
-};
-
-struct JAUSoundNameTable {
-    /* 802A73D4 */ void init(void const*);
-};
-
-//
 // Forward References:
 //
 

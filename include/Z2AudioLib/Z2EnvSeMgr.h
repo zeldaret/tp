@@ -164,4 +164,11 @@ STATIC_ASSERT(sizeof(Z2EnvSeMgr) == 0x30C);
 
 extern Z2EnvSeMgr g_mEnvSeMgr;
 
+/**
+ * this is supposed to be:
+ * JASGlobalInstance<Z2EnvSeMgr>::sInstance
+ * sInstance__31JASGlobalInstance<10Z2EnvSeMgr>
+ */
+extern Z2EnvSeMgr* data_80450B3C;
+
 #endif /* Z2ENVSEMGR_H */

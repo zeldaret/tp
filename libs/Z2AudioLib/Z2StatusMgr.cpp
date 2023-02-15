@@ -108,7 +108,6 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 struct_80450860[4];
 extern "C" extern u8 data_80450B40[4];
 extern "C" extern u8 data_80450B60[4];
-extern "C" extern Z2StatusMgr* data_80450B7C;
 extern "C" extern u8 data_80450B80[4];
 extern "C" extern Z2SeqMgr* data_80450B84;
 extern "C" extern Z2SeMgr* data_80450B88;

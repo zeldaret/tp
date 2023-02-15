@@ -38,4 +38,12 @@ private:
     /* 0x6C */ int field_0x6c;
 };  // Size: 0x70
 
+
+/**
+ * this is supposed to be:
+ * JASGlobalInstance<JAIStreamMgr>::sInstance
+ * sInstance__33JASGlobalInstance<12JAIStreamMgr>
+ */
+extern JAIStreamMgr* data_80450B64;
+
 #endif /* JAISTREAMMGR_H */

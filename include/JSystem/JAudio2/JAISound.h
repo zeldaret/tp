@@ -29,18 +29,7 @@ public:
     } mId;
 };
 
-struct JASTrack {
-    /* 80291444 */ void setChannelMgrCount(u32);
-    /* 802919F4 */ void assignExtBuffer(u32, JASSoundParams*);
-    /* 80291C30 */ void openChild(u32);
-    /* 80292918 */ void writePort(u32, u16);
-    /* 8029297C */ void readPort(u32);
-
-    inline int getChannelMgrCount() { return channelMgrCount; }
-
-    /* 0x0 */ u8 field_0x0[0x1d0];
-    /* 0x1d0 */ int channelMgrCount;
-};
+class JASTrack;
 
 struct JAISoundStatus_ {
     /* 802A2220 */ s32 lockWhenPrepared();

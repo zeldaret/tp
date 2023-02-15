@@ -45,4 +45,11 @@ struct Z2SpeechMgr2 {
 
 STATIC_ASSERT(sizeof(Z2SpeechMgr2) == 0x444);
 
+/**
+ * this is supposed to be:
+ * JASGlobalInstance<Z2SpeechMgr2>::sInstance
+ * sInstance__33JASGlobalInstance<12Z2SpeechMgr2>
+ */
+extern Z2SpeechMgr2* data_80450B70;
+
 #endif /* Z2SPEECHMGR2_H */

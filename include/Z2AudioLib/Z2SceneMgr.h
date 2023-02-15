@@ -55,4 +55,11 @@ private:
     /* 0x1E */ bool inDarkness;
 };  // Size = 0x20
 
+/**
+ * this is supposed to be:
+ * JASGlobalInstance<Z2SceneMgr>::sInstance
+ * sInstance__31JASGlobalInstance<10Z2SceneMgr>
+ */
+extern Z2SceneMgr* data_80450B80;
+
 #endif /* Z2SCENEMGR_H */

@@ -78,6 +78,13 @@ private:
     /* 0x3CC */ u8 mCrowdSize;
 };  // Size = 0x3D0
 
+/**
+ * this is supposed to be:
+ * JASGlobalInstance<Z2SeMgr>::sInstance
+ * sInstance__27JASGlobalInstance<7Z2SeMgr>
+ */
+extern Z2SeMgr* data_80450B88;
+
 // JAISoundID's for sound effects
 enum Z2SoundID {
     Z2SE_SY_DUMMY = 0x0,

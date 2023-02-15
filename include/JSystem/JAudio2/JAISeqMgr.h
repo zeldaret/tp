@@ -36,4 +36,11 @@ private:
     /* 0x70 */ int field_0x70;
 };  // Size: 0x74
 
+/**
+ * this is supposed to be:
+ * JASGlobalInstance<JAISeqMgr>::sInstance
+ * sInstance__29JASGlobalInstance<9JAISeqMgr>
+ */
+extern JAISeqMgr* data_80450B68;
+
 #endif /* JAISEQMGR_H */

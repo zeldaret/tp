@@ -41,4 +41,11 @@ struct Z2StatusMgr {
     /* 0x2D */ u8 mHeartGaugeOn;
 };  // Size = 0x30
 
+/**
+ * this is supposed to be:
+ * JASGlobalInstance<Z2StatusMgr>::sInstance
+ * sInstance__32JASGlobalInstance<11Z2StatusMgr>
+ */
+extern Z2StatusMgr* data_80450B7C;
+
 #endif /* Z2STATUSMGR_H */

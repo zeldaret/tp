@@ -26,4 +26,11 @@ struct Z2FxLineMgr {
     /* 0x18 */ Z2FxLineEditNode* mHIOEdit;
 };  // Size: 0x1C
 
+/**
+ * this is supposed to be:
+ * JASGlobalInstance<Z2FxLineMgr>::sInstance
+ * sInstance__32JASGlobalInstance<11Z2FxLineMgr>
+ */
+extern Z2FxLineMgr* data_80450B40;
+
 #endif /* Z2FXLINEMGR_H */

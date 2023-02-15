@@ -1,9 +1,9 @@
 #ifndef Z2WOLFHOWLMGR_H
 #define Z2WOLFHOWLMGR_H
 
-#include "dolphin/types.h"
-#include "Z2AudioLib/Z2SoundObject.h"
 #include "JSystem/JAudio2/JASGadget.h"
+#include "Z2AudioLib/Z2SoundObject.h"
+#include "dolphin/types.h"
 
 /*
  * Z2WolfHowlData
@@ -37,7 +37,6 @@ public:
     void startGuideMelody(bool);
     void skipCorrectDemo();
 
-
 private:
     /* 0x00 */ JAISoundHandle field_0x00;
     /* 0x04 */ JAISoundHandle field_0x04;
@@ -66,5 +65,12 @@ private:
     /* 0xBB */ s8 field_0xbb;
     /* 0xBC */ s8 field_0xbc;
 };
+
+/**
+ * this is supposed to be:
+ * JASGlobalInstance<Z2WolfHowlMgr>::sInstance
+ * sInstance__34JASGlobalInstance<13Z2WolfHowlMgr>
+ */
+extern Z2WolfHowlMgr* data_80450B38;
 
 #endif /* Z2WOLFHOWLMGR_H */

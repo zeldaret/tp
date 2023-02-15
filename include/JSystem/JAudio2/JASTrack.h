@@ -106,6 +106,17 @@ struct JASTrack {
     static u8 const sPitchEnvOsc[24];
     static u8 sDefaultBankTable[1036];
     static u8 sTrackList[16];
+
+    int getChannelMgrCount() { return channelMgrCount; }
+
+    /* 0x000 */ u8 field_0x0[0x1d0];
+    /* 0x1D0 */ int channelMgrCount;
 };
+
+struct JASDefaultBankTable {
+    /* 802934B4 */ ~JASDefaultBankTable();
+};
+
+extern JASDefaultBankTable* data_80450B90;
 
 #endif /* JASTRACK_H */

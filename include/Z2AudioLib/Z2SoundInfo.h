@@ -1,17 +1,15 @@
 #ifndef Z2SOUNDINFO_H
 #define Z2SOUNDINFO_H
 
-#include "dolphin/types.h"
+#include "JSystem/JAudio2/JAISound.h"
 
-struct JAISeq {};
+struct JAISeq;
 
-struct JAISound {};
+struct JAISound;
 
-struct JAIStream {};
+struct JAIStream;
 
-struct JAISe {};
-
-struct JAISoundID {};
+struct JAISe;
 
 struct JAISoundInfo {
     virtual void getSoundType(JAISoundID) const = 0;
@@ -50,5 +48,19 @@ struct Z2SoundInfo /* : public JAISoundInfo, public JAUSoundInfo, public JAIStre
     /* 802BB8E0 */ void getStreamInfo(JAISoundID, JAIStream*) const;
     /* 802BBBE0 */ virtual ~Z2SoundInfo();
 };
+
+/**
+ * this is supposed to be:
+ * JASGlobalInstance<Z2SoundInfo>::sInstance
+ * sInstance__32JASGlobalInstance<11Z2SoundInfo>
+ */
+extern Z2SoundInfo* data_80450B4C;
+
+/**
+ * this is supposed to be:
+ * JASGlobalInstance<JAUSoundInfo>::sInstance
+ * sInstance__33JASGlobalInstance<12JAUSoundInfo>
+ */
+extern JAUSoundInfo* data_80450B50;
 
 #endif /* Z2SOUNDINFO_H */

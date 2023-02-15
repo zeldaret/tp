@@ -36,4 +36,11 @@ private:
     /* 0x1C */ bool mForceBattle;
 };  // Size = 0x20
 
+/**
+ * this is supposed to be:
+ * JASGlobalInstance<Z2SoundObjMgr>::sInstance
+ * sInstance__34JASGlobalInstance<13Z2SoundObjMgr>
+ */
+extern Z2SoundObjMgr* data_80450B48;
+
 #endif /* Z2SOUNDOBJMGR_H */

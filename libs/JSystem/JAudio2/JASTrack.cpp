@@ -71,10 +71,6 @@ struct JASDriver {
     /* 8029E274 */ void registerSubFrameCallback(s32 (*)(void*), void*);
 };
 
-struct JASDefaultBankTable {
-    /* 802934B4 */ ~JASDefaultBankTable();
-};
-
 template <typename A0>
 struct JASBankTable {};
 /* JASBankTable<256> */
@@ -221,7 +217,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 data_80450B90[4 + 4 /* padding */];
 extern "C" extern u8 struct_80451230[8];
 
 //
