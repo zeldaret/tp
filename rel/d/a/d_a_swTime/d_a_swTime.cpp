@@ -47,7 +47,6 @@ int daSwTime_c::Create() {
 }
 
 /* 80D4F660-80D4F6C8 0000A0 0068+00 1/1 0/0 0/0 .text            create__10daSwTime_cFv */
-#ifndef NONMATCHING
 int daSwTime_c::create() {
     if (!fopAcM_CheckCondition(this, 8)) {
         new (this) daSwTime_c();
@@ -58,26 +57,19 @@ int daSwTime_c::create() {
     }
     return cPhs_COMPLEATE_e;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSwTime_c::create() {
-    nofralloc
-#include "asm/rel/d/a/d_a_swTime/d_a_swTime/func_80D4F660.s"
-}
-#pragma pop
-#endif
 
 /* 80D4F6C8-80D4F758 000108 0090+00 1/1 0/0 0/0 .text            execute__10daSwTime_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSwTime_c::execute() {
-    nofralloc
-#include "asm/rel/d/a/d_a_swTime/d_a_swTime/execute__10daSwTime_cFv.s"
+int daSwTime_c::execute() {
+    if (mSwbit2 != 0xFF && !i_fopAcM_isSwitch(this,mSwbit2)) {
+        return 1;
+    }
+
+    if (dKy_getdaytime_hour() == mTime && dKy_getdaytime_minute() == 0) {
+        i_fopAcM_onSwitch(this,mSwbit);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80D4F758-80D4F760 000198 0008+00 1/1 0/0 0/0 .text            _delete__10daSwTime_cFv */
 bool daSwTime_c::_delete() {
