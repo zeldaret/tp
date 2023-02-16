@@ -37,7 +37,6 @@ extern "C" void isSwitch__10dSv_info_cCFii();
 //
 
 /* 80457978-804579B8 000078 0040+00 1/1 0/0 0/0 .text            Create__9daAndsw_cFv */
-#ifndef NONMATCHING
 int daAndsw_c::Create() {
     mSwNo = getSwNo();
     mSwNo2 = getSwNo2();
@@ -47,18 +46,20 @@ int daAndsw_c::Create() {
 
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAndsw_c::Create() {
-    nofralloc
-#include "asm/rel/d/a/d_a_andsw/d_a_andsw/Create__9daAndsw_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 804579B8-80457A20 0000B8 0068+00 1/1 0/0 0/0 .text            create__9daAndsw_cFv */
+#ifndef NONMATCHING
+int daAndsw_c::create() {
+    if (!fopAcM_CheckCondition(this, 8)) {
+        new (this) daAndsw_c();
+        fopAcM_OnCondition(this, 8);
+    }
+    if (!Create()) {
+        return cPhs_ERROR_e;
+    }
+    return cPhs_COMPLEATE_e;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -67,6 +68,7 @@ asm int daAndsw_c::create() {
 #include "asm/rel/d/a/d_a_andsw/d_a_andsw/func_804579B8.s"
 }
 #pragma pop
+#endif
 
 /* 80457A20-80457ABC 000120 009C+00 1/1 0/0 0/0 .text            execute__9daAndsw_cFv */
 #pragma push
