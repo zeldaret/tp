@@ -72,20 +72,9 @@ int daE_YM_TAG_c::execute() {
 }
 
 /* 80815EF8-80815F18 000178 0020+00 1/0 0/0 0/0 .text daE_YM_TAG_Execute__FP12daE_YM_TAG_c */
-#ifndef NONMATCHING
 static int daE_YM_TAG_Execute(daE_YM_TAG_c* i_this) {
     return i_this->execute();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daE_YM_TAG_Execute(daE_YM_TAG_c* i_this) {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_ym_tag/d_a_e_ym_tag/daE_YM_TAG_Execute__FP12daE_YM_TAG_c.s"
-}
-#pragma pop
-#endif
 
 /* 80815F18-80815F20 000198 0008+00 1/0 0/0 0/0 .text daE_YM_TAG_IsDelete__FP12daE_YM_TAG_c */
 static int daE_YM_TAG_IsDelete(daE_YM_TAG_c* i_this) {
@@ -98,18 +87,27 @@ static int daE_YM_TAG_Delete(daE_YM_TAG_c* i_this) {
     return 1;
 }
 
+
+
 /* 80815F28-80815F90 0001A8 0068+00 1/1 0/0 0/0 .text            create__12daE_YM_TAG_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daE_YM_TAG_c::create() {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_ym_tag/d_a_e_ym_tag/create__12daE_YM_TAG_cFv.s"
+int daE_YM_TAG_c::create() {
+    if (!fopAcM_CheckCondition(this, 8)) {
+        new (this) daE_YM_TAG_c();
+        fopAcM_OnCondition(this, 8);
+    }
+    if ((u8)fopAcM_GetParam(this) == 0xFF) {
+        return cPhs_ERROR_e;
+    }
+    return cPhs_COMPLEATE_e;
 }
-#pragma pop
 
 /* 80815F90-80815FB0 000210 0020+00 1/0 0/0 0/0 .text            daE_YM_TAG_Create__FP12daE_YM_TAG_c
  */
+#ifndef NONMATCHING
+static int daE_YM_TAG_Create(daE_YM_TAG_c* i_this) {
+    return i_this->create();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -118,6 +116,7 @@ static asm void daE_YM_TAG_Create(daE_YM_TAG_c* param_0) {
 #include "asm/rel/d/a/e/d_a_e_ym_tag/d_a_e_ym_tag/daE_YM_TAG_Create__FP12daE_YM_TAG_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80815FB8-80815FD8 -00001 0020+00 1/0 0/0 0/0 .data            l_daE_YM_TAG_Method */
