@@ -11,13 +11,23 @@ public:
         return mTagNo;
     }
 
-    /* 0x568 */ u8 field_0x568[352];
+    void setTagPos(cXyz& i_position) {
+        mTagPos = i_position;
+    }
+
+    void setTagPosP() {
+        mTagPosP = &mTagPos;
+    }
+
+    /* 0x568 */ u8 field_0x568[336];
+    /* 0x6B8 */ cXyz mTagPos;
+    /* 0x6C4 */ cXyz* mTagPosP;
     /* 0x6C8 */ u8 mTagNo;
 };
 
 class daE_YM_TAG_c : public fopAc_ac_c {
 public:
-    /* 80815E8C */ void execute();
+    /* 80815E8C */ int execute();
     /* 80815F28 */ void create();
 
 

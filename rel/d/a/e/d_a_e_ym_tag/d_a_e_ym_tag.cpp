@@ -7,6 +7,7 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "d/d_procname.h"
+#include "f_pc/f_pc_executor.h"
 
 //
 // Forward References:
@@ -45,31 +46,32 @@ static bool daE_YM_TAG_Draw(daE_YM_TAG_c* param_0) {
 }
 
 /* 80815E00-80815E8C 000080 008C+00 1/1 0/0 0/0 .text            s_e_ym__FPvPv */
-#ifndef NONMATCHING
-static fopAc_ac_c* s_e_ym(void* i_actorP1, void* i_actorP2) {
-
+static void* s_e_ym(void* i_actorP1, void* i_actorP2) {
     if (fopAcM_IsActor(i_actorP1) && fopAcM_GetName(i_actorP1) == PROC_E_YM) {
         if (fpcM_IsCreating(fopAcM_GetID(i_actorP1)) == 0) {
             if (static_cast<daE_YM_c*>(i_actorP1)->getTagNo() == (u8)fopAcM_GetParam(i_actorP2)) {
-                return static_cast<fopAc_ac_c*>(i_actorP1);
+                return i_actorP1;
             }
         }
     }
 
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void s_e_ym(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_ym_tag/d_a_e_ym_tag/s_e_ym__FPvPv.s"
-}
-#pragma pop
-#endif
 
 /* 80815E8C-80815EF8 00010C 006C+00 1/1 0/0 0/0 .text            execute__12daE_YM_TAG_cFv */
+#ifndef NONMATCHING
+int daE_YM_TAG_c::execute() {
+    daE_YM_c* shadow_insectP = (daE_YM_c*)i_fpcM_Search(s_e_ym,this);
+
+    if (shadow_insectP) {
+        shadow_insectP->setTagPos(current.pos);
+        shadow_insectP->setTagPosP();
+        fopAcM_delete(this);
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -78,6 +80,7 @@ asm void daE_YM_TAG_c::execute() {
 #include "asm/rel/d/a/e/d_a_e_ym_tag/d_a_e_ym_tag/execute__12daE_YM_TAG_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80815EF8-80815F18 000178 0020+00 1/0 0/0 0/0 .text daE_YM_TAG_Execute__FP12daE_YM_TAG_c */
 #pragma push
