@@ -1,11 +1,9 @@
 /**
  * d_a_tag_gra.cpp
- *
+ * Tag - Goron A
  */
 
 #include "rel/d/a/tag/d_a_tag_gra/d_a_tag_gra.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "d/d_procname.h"
 
 /* 80D59658-80D596E8 000078 0090+00 1/0 0/0 0/0 .text            daTagGra_Create__FP10fopAc_ac_c */

@@ -6,26 +6,7 @@
 #include "rel/d/a/d_a_swTime/d_a_swTime.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct daSwTime_c {
-    /* 80D4F638 */ void Create();
-    /* 80D4F660 */ void create();
-    /* 80D4F6C8 */ void execute();
-    /* 80D4F758 */ bool _delete();
-};
-
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
+#include "d/d_procname.h"
 
 //
 // Forward References:
@@ -49,15 +30,23 @@ extern "C" void onSwitch__10dSv_info_cFii();
 extern "C" void isSwitch__10dSv_info_cCFii();
 extern "C" void dKy_getdaytime_hour__Fv();
 extern "C" void dKy_getdaytime_minute__Fv();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
+// extern "C" extern void* g_fopAc_Method[8];
+// extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
+// extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
 // Declarations:
 //
 
 /* 80D4F638-80D4F660 000078 0028+00 1/1 0/0 0/0 .text            Create__10daSwTime_cFv */
+#ifndef NONMATCHING
+int daSwTime_c::Create() {
+    mTime = getTime();
+    mSwbit = getSwbit();
+    mSwbit2 = getSwbit2();
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -67,6 +56,7 @@ asm void daSwTime_c::Create() {
 }
 #pragma pop
 
+#endif
 /* 80D4F660-80D4F6C8 0000A0 0068+00 1/1 0/0 0/0 .text            create__10daSwTime_cFv */
 #pragma push
 #pragma optimization_level 0
