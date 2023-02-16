@@ -70,9 +70,8 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern void* __vt__12JAUSoundInfo[4 + 1 /* padding */];
-extern "C" extern u8 data_80450B4C[4];
-extern "C" extern u8 data_80450B50[4];
 extern "C" extern u8 data_80450B58[4];
+extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:

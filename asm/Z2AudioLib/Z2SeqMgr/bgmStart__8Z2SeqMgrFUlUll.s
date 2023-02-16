@@ -88,24 +88,24 @@ lbl_802AF148:
 /* 802AF148  7C 1D 00 40 */	cmplw r29, r0
 /* 802AF14C  41 82 02 A4 */	beq lbl_802AF3F0
 /* 802AF150  38 00 00 00 */	li r0, 0
-/* 802AF154  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802AF154  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802AF158  98 03 00 1C */	stb r0, 0x1c(r3)
-/* 802AF15C  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802AF15C  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802AF160  38 80 00 00 */	li r4, 0
 /* 802AF164  48 00 77 7D */	bl setSceneExist__10Z2SceneMgrFb
 /* 802AF168  7F 83 E3 78 */	mr r3, r28
 /* 802AF16C  38 80 00 01 */	li r4, 1
 /* 802AF170  48 00 4F F5 */	bl setBattleBgmOff__8Z2SeqMgrFb
-/* 802AF174  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802AF174  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802AF178  38 63 07 28 */	addi r3, r3, 0x728
 /* 802AF17C  38 80 00 00 */	li r4, 0
 /* 802AF180  4B FF 2C BD */	bl stop__9JAISeqMgrFUl
-/* 802AF184  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802AF184  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802AF188  38 63 07 9C */	addi r3, r3, 0x79c
 /* 802AF18C  38 80 00 00 */	li r4, 0
 /* 802AF190  4B FF 4E D9 */	bl stop__12JAIStreamMgrFUl
 /* 802AF194  93 A1 00 10 */	stw r29, 0x10(r1)
-/* 802AF198  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802AF198  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802AF19C  38 81 00 10 */	addi r4, r1, 0x10
 /* 802AF1A0  7F 85 E3 78 */	mr r5, r28
 /* 802AF1A4  38 C0 00 00 */	li r6, 0
@@ -152,7 +152,7 @@ lbl_802AF224:
 /* 802AF238  90 1C 00 70 */	stw r0, 0x70(r28)
 /* 802AF23C  D0 1C 00 6C */	stfs f0, 0x6c(r28)
 lbl_802AF240:
-/* 802AF240  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802AF240  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802AF244  88 03 00 2C */	lbz r0, 0x2c(r3)
 /* 802AF248  28 00 00 09 */	cmplwi r0, 9
 /* 802AF24C  40 82 00 54 */	bne lbl_802AF2A0
@@ -195,7 +195,7 @@ lbl_802AF2C4:
 /* 802AF2CC  48 00 00 30 */	b lbl_802AF2FC
 lbl_802AF2D0:
 /* 802AF2D0  93 A1 00 0C */	stw r29, 0xc(r1)
-/* 802AF2D4  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802AF2D4  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802AF2D8  38 81 00 0C */	addi r4, r1, 0xc
 /* 802AF2DC  7F 85 E3 78 */	mr r5, r28
 /* 802AF2E0  38 C0 00 00 */	li r6, 0
@@ -253,7 +253,7 @@ lbl_802AF39C:
 /* 802AF39C  88 1C 00 D0 */	lbz r0, 0xd0(r28)
 /* 802AF3A0  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 802AF3A4  41 82 00 30 */	beq lbl_802AF3D4
-/* 802AF3A8  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802AF3A8  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802AF3AC  48 00 73 89 */	bl checkDayTime__11Z2StatusMgrFv
 /* 802AF3B0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802AF3B4  40 82 00 20 */	bne lbl_802AF3D4

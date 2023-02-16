@@ -185,18 +185,15 @@ extern "C" extern u8 data_80450B74[4];
 extern "C" extern u8 data_80450B7C[4];
 extern "C" extern u8 data_80450B80[4];
 extern "C" extern u8 data_80450B84[4];
-extern "C" extern Z2SeMgr* data_80450B88;  // JASGlobalInstance<Z2SeMgr>::sInstance
 extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
+extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:
 //
 
 /* 802AB64C-802AB710 2A5F8C 00C4+00 0/0 1/1 0/0 .text            __ct__7Z2SeMgrFv */
-// almost matches, JASGlobalInstance stuff needs to be setup properly
-#ifdef NONMATCHING
-Z2SeMgr::Z2SeMgr() : field_0x60(&mSoundHandle[0], 0x18) {
-    // data_80450B88 = this;
+Z2SeMgr::Z2SeMgr() : JASGlobalInstance(this), field_0x60(mSoundHandle, 0x18) {
     field_0x3c0 = 0;
     field_0x3c1 = 0;
     field_0x3c2 = 0;
@@ -209,19 +206,9 @@ Z2SeMgr::Z2SeMgr() : field_0x60(&mSoundHandle[0], 0x18) {
     field_0x3cb = 0;
     mCrowdSize = 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Z2SeMgr::Z2SeMgr() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SeMgr/__ct__7Z2SeMgrFv.s"
-}
-#pragma pop
-#endif
 
 Z2MultiSeObj::Z2MultiSeObj() {
-    field_0x1c = 0xffffffff;
+    field_0x1c = 0xFFFFFFFF;
     field_0x20 = 0;
 }
 

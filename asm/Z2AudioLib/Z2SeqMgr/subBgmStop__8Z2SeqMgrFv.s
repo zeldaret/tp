@@ -24,7 +24,7 @@ lbl_802AF8B4:
 /* 802AF8D4  7C 09 03 A6 */	mtctr r0
 /* 802AF8D8  4E 80 04 20 */	bctr 
 /* 802AF8DC  48 00 00 E0 */	b lbl_802AF9BC
-/* 802AF8E0  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802AF8E0  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802AF8E4  3C 80 80 3A */	lis r4, Z2SeqMgr__stringBase0@ha /* 0x8039BA08@ha */
 /* 802AF8E8  38 84 BA 08 */	addi r4, r4, Z2SeqMgr__stringBase0@l /* 0x8039BA08@l */
 /* 802AF8EC  38 84 02 76 */	addi r4, r4, 0x276

@@ -227,11 +227,11 @@ lbl_802C8F80:
 /* 802C8FB0  4B FF CB 05 */	bl startEnvSeLevel__11Z2EnvSeBaseF10JAISoundIDfffffUl
 /* 802C8FB4  7C 7D 1B 78 */	mr r29, r3
 /* 802C8FB8  48 00 02 BC */	b lbl_802C9274
-/* 802C8FBC  80 8D 85 FC */	lwz r4, data_80450B7C(r13)
+/* 802C8FBC  80 8D 85 FC */	lwz r4, __OSReport_disable-0x1C(r13)
 /* 802C8FC0  80 04 00 10 */	lwz r0, 0x10(r4)
 /* 802C8FC4  28 00 00 06 */	cmplwi r0, 6
 /* 802C8FC8  40 82 00 CC */	bne lbl_802C9094
-/* 802C8FCC  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802C8FCC  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802C8FD0  80 03 00 04 */	lwz r0, 4(r3)
 /* 802C8FD4  2C 00 00 10 */	cmpwi r0, 0x10
 /* 802C8FD8  40 82 00 14 */	bne lbl_802C8FEC
@@ -266,7 +266,7 @@ lbl_802C9028:
 /* 802C903C  38 7F 01 F0 */	addi r3, r31, 0x1f0
 /* 802C9040  4B FE 5D 81 */	bl getDolbyPower__12Z2MultiSeMgrFv
 /* 802C9044  FF 80 08 90 */	fmr f28, f1
-/* 802C9048  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802C9048  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802C904C  88 03 00 1E */	lbz r0, 0x1e(r3)
 /* 802C9050  28 00 00 00 */	cmplwi r0, 0
 /* 802C9054  41 82 00 0C */	beq lbl_802C9060
@@ -287,7 +287,7 @@ lbl_802C9060:
 /* 802C908C  4B FF D0 55 */	bl startEnvSeAutoPanLevel__14Z2EnvSeAutoPanF10JAISoundIDfff
 /* 802C9090  48 00 00 1C */	b lbl_802C90AC
 lbl_802C9094:
-/* 802C9094  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802C9094  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802C9098  88 03 00 1E */	lbz r0, 0x1e(r3)
 /* 802C909C  28 00 00 00 */	cmplwi r0, 0
 /* 802C90A0  41 82 00 0C */	beq lbl_802C90AC

@@ -3069,7 +3069,6 @@ extern "C" u8 BaseZ__4cXyz[12];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u16 m_branchId__7dDemo_c[1 + 3 /* padding */];
-extern "C" extern u8 data_80450B38[4];
 extern "C" f32 mGroundY__11fopAcM_gc_c;
 extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
 extern "C" u8 m_top__12daTagHstop_c[4 + 4 /* padding */];
@@ -12428,7 +12427,7 @@ void daAlink_c::playerInit() {
     mSheathModel = mpSwASheathModel;
 
     field_0x814.Init(120, 0xFF, this);
-    field_0x306c = shape_angle.y + mBodyAngleY;
+    field_0x306c = shape_angle.y + mBodyAngle.y;
 
     for (u16 i = 0; i < 3; i++) {
         mAtCps[i].Set(*(dCcD_SrcCps*)l_atCpsSrc);
@@ -13798,7 +13797,7 @@ void daAlink_c::setCollision() {
     if (checkIronBallWaitAnime() || field_0x351c.absXZ() > lit_8782) {
         field_0x306c = field_0x351c.atan2sX_Z();
     } else {
-        field_0x306c = shape_angle.y + mBodyAngleY;
+        field_0x306c = shape_angle.y + mBodyAngle.y;
     }
 
     g_dComIfG_gameInfo.play.mCcs.Set(&field_0x850[0]);
@@ -13859,7 +13858,7 @@ asm void daAlink_c::setCollision() {
 #ifdef NONMATCHING
 f32 daAlink_c::getBaseAnimeFrame() const {
     if (mProcID == PROC_SUMOU_ACTION && mSpeedModifier > 0.0f) {
-        return mCommonCounter;
+        return field_0x300c;
     }
 
     return mUnderFrameCtrl[0].getFrame();
@@ -16290,8 +16289,8 @@ void daAlink_c::setBodyAngleXReadyAnime(int param_0) {
         angle_x >>= 1;  // divide by 2 adds extra addze?
     }
 
-    cLib_addCalcAngleS(&mBodyAngleX, angle_x, 4, 0x0C00, 0x0180);
-    field_0x310a = mBodyAngleX;
+    cLib_addCalcAngleS(&mBodyAngle.x, angle_x, 4, 0x0C00, 0x0180);
+    field_0x310a = mBodyAngle.x;
 }
 
 /* 800BB324-800BB408 0B5C64 00E4+00 2/2 0/0 0/0 .text            setMagicArmorBrk__9daAlink_cFi */
@@ -17825,7 +17824,7 @@ void daAlink_c::commonProcInit(daAlink_c::daAlink_PROC i_procID) {
             initForceRideHorse();
         }
 
-        if (mCommonCounter != 0) {
+        if (field_0x300c != 0) {
             changeWarpMaterial(1);
         }
     } else if (mProcID == PROC_GRAB_STAND) {
@@ -17973,8 +17972,8 @@ void daAlink_c::commonProcInit(daAlink_c::daAlink_PROC i_procID) {
 
     if (i_checkWolf()) {
         shape_angle.z = 0;
-        mBodyAngleX = 0;
-        mBodyAngleY = 0;
+        mBodyAngle.x = 0;
+        mBodyAngle.y = 0;
     } else if (!i_checkReinRide() && !checkBoardRide()) {
         shape_angle.x = 0;
         shape_angle.z = 0;
@@ -17994,7 +17993,7 @@ void daAlink_c::commonProcInit(daAlink_c::daAlink_PROC i_procID) {
 
     if (field_0x3190 != 0) {
         field_0x3190 = 0;
-        mBodyAngleY = 0;
+        mBodyAngle.y = 0;
     }
 
     mFishingArm1Angle = csXyz::Zero;
@@ -18315,7 +18314,7 @@ int daAlink_c::procGoronMoveInit() {
     current.angle.y = shape_angle.y + -0x4000;
     field_0x594 = daAlinkHIO_atnMove_c0::m.mMaxSpeed;
     setSingleAnimeBase(ANM_ATN_RIGHT);
-    mCommonCounter = 1;
+    field_0x300c = 1;
     field_0x300e = 0;
     return 1;
 }

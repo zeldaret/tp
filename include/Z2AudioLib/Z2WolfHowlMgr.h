@@ -1,9 +1,9 @@
 #ifndef Z2WOLFHOWLMGR_H
 #define Z2WOLFHOWLMGR_H
 
-#include "dolphin/types.h"
-#include "Z2AudioLib/Z2SoundObject.h"
 #include "JSystem/JAudio2/JASGadget.h"
+#include "Z2AudioLib/Z2SoundObject.h"
+#include "dolphin/types.h"
 
 /*
  * Z2WolfHowlData
@@ -36,7 +36,6 @@ public:
     void startWindStoneSound(s8, Vec*);
     void startGuideMelody(bool);
     void skipCorrectDemo();
-
 
 private:
     /* 0x00 */ JAISoundHandle field_0x00;

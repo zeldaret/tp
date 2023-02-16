@@ -11,7 +11,7 @@ lbl_802AE184:
 /* 802AE1A8  39 61 00 30 */	addi r11, r1, 0x30
 /* 802AE1AC  48 0B 40 29 */	bl _savegpr_27
 /* 802AE1B0  7C 7F 1B 78 */	mr r31, r3
-/* 802AE1B4  80 8D 86 00 */	lwz r4, data_80450B80(r13)
+/* 802AE1B4  80 8D 86 00 */	lwz r4, __OSReport_disable-0x18(r13)
 /* 802AE1B8  88 04 00 1D */	lbz r0, 0x1d(r4)
 /* 802AE1BC  28 00 00 00 */	cmplwi r0, 0
 /* 802AE1C0  41 82 00 44 */	beq lbl_802AE204

@@ -3,7 +3,6 @@
 
 #include "SSystem/SComponent/c_xyz.h"
 #include "Z2AudioLib/Z2SoundObject.h"
-#include "dolphin/types.h"
 
 class Z2Creature {
 public:
@@ -27,8 +26,9 @@ public:
     virtual void startCreatureExtraSoundLevel(JAISoundID, u32, s8);
     virtual void startCollisionSE(u32, u32);
 
-private:
-    /* 0x04 */ int field_0x04;
+    Vec* getCurrentPos() const { return mpPos; }
+
+    /* 0x04 */ Vec* mpPos;
     /* 0x08 */ Z2SoundObjAnime mSoundObjAnime;
     /* 0x50 */ Z2SoundObjSimple mSoundObjSimple1;
     /* 0x70 */ Z2SoundObjSimple mSoundObjSimple2;
@@ -37,12 +37,12 @@ private:
 struct Z2LinkSoundStarter : public Z2SoundStarter {
     Z2LinkSoundStarter();
 
-    virtual ~Z2LinkSoundStarter();
+    inline virtual ~Z2LinkSoundStarter();
     virtual void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*, u32, f32,
                             f32, f32, f32, f32, u32);
 };
 
-class Z2CreatureLink : public Z2Creature {
+class Z2CreatureLink : public Z2Creature, public Z2LinkSoundStarter {
 public:
     Z2CreatureLink();
     ~Z2CreatureLink();
@@ -72,14 +72,13 @@ public:
     int startHitItemSE(u32, u32, Z2SoundObjBase*, float);
     void setResumeAttack(bool);
 
-    void setInWater(bool status) {
-        mFlags = (u8)((mFlags & ~0x40) | ((status << 6) & 0x40));  // what is going on here
-    }
+    void setInWater(bool status) { mInWater = status; }
+    bool isInWater() { return mInWater; }
 
     static Z2CreatureLink* mLinkPtr;
 
 private:
-    /* 0x90 */ Z2LinkSoundStarter mLinkSoundStarter;
+    /* 0x90 Z2LinkSoundStarter */
     /* 0x94 */ Z2SoundObjSimple mKantera;
     /* 0xB4 */ cXyz field_0xb4;
     /* 0xC0 */ u8 mLinkState;
@@ -93,8 +92,22 @@ private:
     /* 0xC8 */ u8 mMoveSpeed;
     /* 0xC9 */ u8 mMovingTime;
     /* 0xCA */ s8 mSinkDepth;
-    /* 0xCB */ u8 mFlags;
-    /* 0xCC */ u8 mFlags2;
+    /* 0xCB */ bool mWolfEyeOpen : 1;
+    /* 0xCB */ bool mInWater : 1;
+    /* 0xCB */ bool mResumeAttack : 1;
+    /* 0xCB */ bool mFlag3 : 1;
+    /* 0xCB */ bool mFlag4 : 1;
+    /* 0xCB */ bool mFlag5 : 1;
+    /* 0xCB */ bool mRiding : 1;
+    /* 0xCB */ bool mMagnetized : 1;
+    /* 0xCC */ bool mFlag8 : 1;
+    /* 0xCC */ bool mUsingIronBall : 1;
+    /* 0xCC */ bool mFlag10 : 1;
+    /* 0xCC */ bool mFlag11 : 1;
+    /* 0xCC */ bool mFlag12 : 1;
+    /* 0xCC */ bool mFlag13 : 1;
+    /* 0xCC */ bool mFlag14 : 1;
+    /* 0xCC */ bool mFlag15 : 1;
 };  // Size: 0xD0
 
 inline Z2CreatureLink* Z2GetLink() {
@@ -105,7 +118,7 @@ class Z2CreatureRide;
 struct Z2RideSoundStarter : public Z2SoundStarter {
     /* 802C5234 */ Z2RideSoundStarter(Z2CreatureRide*);
 
-    /* 802C5078 */ virtual ~Z2RideSoundStarter();
+    /* 802C5078 */ inline virtual ~Z2RideSoundStarter();
     /* 802C5284 */ virtual void startSound(JAISoundID, JAISoundHandle*,
                                            JGeometry::TVec3<f32> const*, u32, f32, f32, f32, f32,
                                            f32, u32);
@@ -113,7 +126,7 @@ struct Z2RideSoundStarter : public Z2SoundStarter {
     /* 0x4 */ Z2CreatureRide* mRide;
 };
 
-class Z2CreatureRide : public Z2Creature {
+class Z2CreatureRide : public Z2Creature, public Z2RideSoundStarter {
 public:
     Z2CreatureRide();
     ~Z2CreatureRide();
@@ -123,7 +136,7 @@ public:
     virtual void deleteObject();
 
 private:
-    /* 0x90 */ Z2RideSoundStarter mSoundStarter;
+    /* 0x90 */ // Z2RideSoundStarter mSoundStarter;
     /* 0x98 */ bool mLinkRiding;
 };  // Size: 0x9C
 

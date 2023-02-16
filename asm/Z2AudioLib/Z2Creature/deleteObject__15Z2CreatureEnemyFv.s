@@ -7,7 +7,7 @@ lbl_802C0FC4:
 /* 802C0FD8  88 03 00 A0 */	lbz r0, 0xa0(r3)
 /* 802C0FDC  28 00 00 2C */	cmplwi r0, 0x2c
 /* 802C0FE0  40 82 00 5C */	bne lbl_802C103C
-/* 802C0FE4  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802C0FE4  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802C0FE8  C0 62 C2 20 */	lfs f3, lit_3669(r2)
 /* 802C0FEC  D0 63 00 34 */	stfs f3, 0x34(r3)
 /* 802C0FF0  C0 02 C2 34 */	lfs f0, lit_3717(r2)
@@ -38,7 +38,7 @@ lbl_802C103C:
 /* 802C1050  41 82 00 08 */	beq lbl_802C1058
 /* 802C1054  38 9F 00 90 */	addi r4, r31, 0x90
 lbl_802C1058:
-/* 802C1058  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802C1058  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802C105C  4B FF F1 35 */	bl func_802C0190
 lbl_802C1060:
 /* 802C1060  38 00 00 00 */	li r0, 0

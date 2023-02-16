@@ -11,7 +11,7 @@ lbl_802BD130:
 /* 802BD154  41 82 00 08 */	beq lbl_802BD15C
 /* 802BD158  38 63 FF FC */	addi r3, r3, -4
 lbl_802BD15C:
-/* 802BD15C  90 6D 85 C4 */	stw r3, data_80450B44(r13)
+/* 802BD15C  90 6D 85 C4 */	stw r3, __OSReport_disable-0x54(r13)
 /* 802BD160  3C 60 80 3D */	lis r3, __vt__10Z2Audience@ha /* 0x803CAC98@ha */
 /* 802BD164  38 03 AC 98 */	addi r0, r3, __vt__10Z2Audience@l /* 0x803CAC98@l */
 /* 802BD168  90 1F 00 00 */	stw r0, 0(r31)

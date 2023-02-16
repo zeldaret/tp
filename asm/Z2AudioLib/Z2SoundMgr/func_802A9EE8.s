@@ -10,7 +10,7 @@ lbl_802A9EE8:
 /* 802A9F08  7C DF 33 78 */	mr r31, r6
 /* 802A9F0C  80 04 00 00 */	lwz r0, 0(r4)
 /* 802A9F10  90 01 00 24 */	stw r0, 0x24(r1)
-/* 802A9F14  80 6D 85 CC */	lwz r3, data_80450B4C(r13)
+/* 802A9F14  80 6D 85 CC */	lwz r3, __OSReport_disable-0x4C(r13)
 /* 802A9F18  38 81 00 24 */	addi r4, r1, 0x24
 /* 802A9F1C  81 83 00 00 */	lwz r12, 0(r3)
 /* 802A9F20  81 8C 00 08 */	lwz r12, 8(r12)
@@ -29,12 +29,12 @@ lbl_802A9F44:
 lbl_802A9F50:
 /* 802A9F50  80 1D 00 00 */	lwz r0, 0(r29)
 /* 802A9F54  90 01 00 20 */	stw r0, 0x20(r1)
-/* 802A9F58  80 6D 85 CC */	lwz r3, data_80450B4C(r13)
+/* 802A9F58  80 6D 85 CC */	lwz r3, __OSReport_disable-0x4C(r13)
 /* 802A9F5C  38 81 00 20 */	addi r4, r1, 0x20
 /* 802A9F60  48 01 1B 69 */	bl getSwBit__11Z2SoundInfoCF10JAISoundID
 /* 802A9F64  54 60 07 39 */	rlwinm. r0, r3, 0, 0x1c, 0x1c
 /* 802A9F68  41 82 00 4C */	beq lbl_802A9FB4
-/* 802A9F6C  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802A9F6C  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802A9F70  C0 03 00 74 */	lfs f0, 0x74(r3)
 /* 802A9F74  38 00 00 03 */	li r0, 3
 /* 802A9F78  90 03 00 80 */	stw r0, 0x80(r3)
@@ -66,13 +66,13 @@ lbl_802A9FD4:
 /* 802A9FD8  3C 04 FF 00 */	addis r0, r4, 0xff00
 /* 802A9FDC  28 00 00 6A */	cmplwi r0, 0x6a
 /* 802A9FE0  40 82 00 78 */	bne lbl_802AA058
-/* 802A9FE4  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802A9FE4  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802A9FE8  3C 80 01 00 */	lis r4, 0x0100 /* 0x01000048@ha */
 /* 802A9FEC  38 84 00 48 */	addi r4, r4, 0x0048 /* 0x01000048@l */
 /* 802A9FF0  38 A0 00 00 */	li r5, 0
 /* 802A9FF4  38 C0 00 00 */	li r6, 0
 /* 802A9FF8  48 00 50 19 */	bl bgmStart__8Z2SeqMgrFUlUll
-/* 802A9FFC  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802A9FFC  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802AA000  C0 22 BE 38 */	lfs f1, lit_3688(r2)
 /* 802AA004  D0 23 00 34 */	stfs f1, 0x34(r3)
 /* 802AA008  C0 02 BE 44 */	lfs f0, lit_3905(r2)
@@ -84,7 +84,7 @@ lbl_802A9FD4:
 /* 802AA020  D0 03 00 48 */	stfs f0, 0x48(r3)
 /* 802AA024  90 03 00 50 */	stw r0, 0x50(r3)
 /* 802AA028  D0 03 00 4C */	stfs f0, 0x4c(r3)
-/* 802AA02C  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802AA02C  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802AA030  38 80 00 00 */	li r4, 0
 /* 802AA034  48 00 5F 59 */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802AA038  38 00 00 0B */	li r0, 0xb

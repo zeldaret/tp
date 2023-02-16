@@ -5,6 +5,8 @@
 
 #include "m_Do/m_Do_main.h"
 #include "DynamicLink.h"
+#include "JSystem/JAudio2/JASAudioThread.h"
+#include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JFramework/JFWSystem.h"
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JUtility/JUTAssert.h"
@@ -20,36 +22,12 @@
 #include "m_Do/m_Do_dvd_thread.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_machine.h"
-#include "JSystem/JAudio2/JASGadget.h"
-#include "JSystem/JAudio2/JASAudioThread.h"
 
 //
 // Forward References:
 //
 
 extern "C" extern char const* const m_Do_m_Do_main__stringBase0;
-extern "C" extern u8 data_80450B38[4];
-extern "C" extern u8 data_80450B3C[4];
-extern "C" extern u8 data_80450B40[4];
-extern "C" extern u8 data_80450B44[4];
-extern "C" extern u8 data_80450B48[4];
-extern "C" extern u8 data_80450B4C[4];
-extern "C" extern u8 data_80450B50[4];
-extern "C" extern u8 data_80450B54[4];
-extern "C" extern u8 data_80450B58[4];
-extern "C" extern u8 data_80450B5C[4];
-extern "C" extern u8 data_80450B64[4];
-extern "C" extern u8 data_80450B68[4];
-extern "C" extern u8 data_80450B6C[4];
-extern "C" extern u8 data_80450B70[4];
-extern "C" extern u8 data_80450B74[4];
-extern "C" extern u8 data_80450B78[4];
-extern "C" extern u8 data_80450B7C[4];
-extern "C" extern u8 data_80450B80[4];
-extern "C" extern u8 data_80450B84[4];
-extern "C" extern u8 data_80450B88[4];
-extern "C" extern u8 data_80450B8C[4];
-extern "C" extern u8 data_80450B90[4 + 4 /* padding */];
 
 //
 // External References:
@@ -153,7 +131,8 @@ void CheckHeap(u32 i_padNo) {
 
     // if L + R + Z is pressed
     if ((mDoCPd_c::getHold(i_padNo) & ~CButton::Z) == (CButton::L + CButton::R) &&
-        mDoCPd_c::getTrig(i_padNo) & CButton::Z) {
+        mDoCPd_c::getTrig(i_padNo) & CButton::Z)
+    {
         comboCheck = true;
     }
 
@@ -321,8 +300,8 @@ bool Debug_console(u32 i_padNo) {
             console_scroll_init = 1;
         }
 
-        if (mDoCPd_c::getTrig(i_padNo) & CButton::Z &&
-            !(mDoCPd_c::getHold(i_padNo) & ~CButton::Z)) {
+        if (mDoCPd_c::getTrig(i_padNo) & CButton::Z && !(mDoCPd_c::getHold(i_padNo) & ~CButton::Z))
+        {
             console->setVisible(console->isVisible() == false);
             JUTAssertion::setMessageCount(0);
         }
@@ -330,12 +309,14 @@ bool Debug_console(u32 i_padNo) {
         if (console->isVisible()) {
             u32 holdButtons = mDoCPd_c::getHold(i_padNo);
             if ((holdButtons & CButton::L && holdButtons & CButton::R) ||
-                ((mDoCPd_c::getAnalogL(i_padNo) > 0.0f && mDoCPd_c::getAnalogR(i_padNo) > 0.0f))) {
+                ((mDoCPd_c::getAnalogL(i_padNo) > 0.0f && mDoCPd_c::getAnalogR(i_padNo) > 0.0f)))
+            {
                 f32 stick_x = mDoCPd_c::getStickX(i_padNo);
                 f32 stick_y = mDoCPd_c::getStickY(i_padNo);
 
                 if (holdButtons & (CButton::Y | CButton::X) &&
-                    mDoCPd_c::getTrig(i_padNo) & CButton::START) {
+                    mDoCPd_c::getTrig(i_padNo) & CButton::START)
+                {
                     console->clear();
                 }
 
@@ -433,13 +414,15 @@ static void debug() {
         }
 
         if ((mDoCPd_c::getGamePad(PAD_3)->getButton() & ~CButton::Z) == CButton::R &&
-            mDoCPd_c::getGamePad(PAD_3)->testTrigger(CButton::Z)) {
+            mDoCPd_c::getGamePad(PAD_3)->testTrigger(CButton::Z))
+        {
             mDisplayHeapSize ^= 1;
         }
 
         if (mDisplayHeapSize) {
             if ((mDoCPd_c::getGamePad(PAD_3)->getButton() & ~CButton::Z) == CButton::L &&
-                mDoCPd_c::getGamePad(PAD_3)->testTrigger(CButton::Z)) {
+                mDoCPd_c::getGamePad(PAD_3)->testTrigger(CButton::Z))
+            {
                 mDoMain::mHeapBriefType < 5 ? mDoMain::mHeapBriefType++ :
                                               mDoMain::mHeapBriefType = 1;
             }
@@ -631,129 +614,91 @@ REGISTER_CTORS(0x800065E0, __sinit_m_Do_main_cpp);
 /* ############################################################################################## */
 /* 80450B38-80450B3C 000038 0004+00 0/0 2/2 0/0 .sbss
  * sInstance__34JASGlobalInstance<13Z2WolfHowlMgr>              */
-extern u8 data_80450B38[4];
-u8 data_80450B38[4];
+Z2WolfHowlMgr* JASGlobalInstance<Z2WolfHowlMgr>::sInstance;
 
 /* 80450B3C-80450B40 00003C 0004+00 0/0 6/6 0/0 .sbss sInstance__31JASGlobalInstance<10Z2EnvSeMgr>
  */
-extern u8 data_80450B3C[4];
-u8 data_80450B3C[4];
+Z2EnvSeMgr* JASGlobalInstance<Z2EnvSeMgr>::sInstance;
 
 /* 80450B40-80450B44 000040 0004+00 0/0 6/6 0/0 .sbss
  * sInstance__32JASGlobalInstance<11Z2FxLineMgr>                */
-extern u8 data_80450B40[4];
-u8 data_80450B40[4];
+Z2FxLineMgr* JASGlobalInstance<Z2FxLineMgr>::sInstance;
 
 /* 80450B44-80450B48 000044 0004+00 0/0 18/18 0/0 .sbss
  * sInstance__31JASGlobalInstance<10Z2Audience>                 */
-extern u8 data_80450B44[4];
-u8 data_80450B44[4];
+Z2Audience* JASGlobalInstance<Z2Audience>::sInstance;
 
 /* 80450B48-80450B4C 000048 0004+00 0/0 17/17 0/0 .sbss
  * sInstance__34JASGlobalInstance<13Z2SoundObjMgr>              */
-extern u8 data_80450B48[4];
-u8 data_80450B48[4];
+Z2SoundObjMgr* JASGlobalInstance<Z2SoundObjMgr>::sInstance;
 
 /* 80450B4C-80450B50 00004C 0004+00 0/0 10/10 0/0 .sbss
  * sInstance__32JASGlobalInstance<11Z2SoundInfo>                */
-extern u8 data_80450B4C[4];
-u8 data_80450B4C[4];
+Z2SoundInfo* JASGlobalInstance<Z2SoundInfo>::sInstance;
 
 /* 80450B50-80450B54 000050 0004+00 0/0 5/5 0/0 .sbss
  * sInstance__33JASGlobalInstance<12JAUSoundInfo>               */
-extern u8 data_80450B50[4];
-u8 data_80450B50[4];
+JAUSoundInfo* JASGlobalInstance<JAUSoundInfo>::sInstance;
 
 /* 80450B54-80450B58 000054 0004+00 0/0 2/2 0/0 .sbss
  * sInstance__38JASGlobalInstance<17JAUSoundNameTable>          */
-extern u8 data_80450B54[4];
-u8 data_80450B54[4];
+JAUSoundNameTable* JASGlobalInstance<JAUSoundNameTable>::sInstance;
 
 /* 80450B58-80450B5C 000058 0004+00 0/0 12/12 0/0 .sbss
  * sInstance__34JASGlobalInstance<13JAUSoundTable>              */
-extern u8 data_80450B58[4];
-u8 data_80450B58[4];
+JAUSoundTable* JASGlobalInstance<JAUSoundTable>::sInstance;
 
 /* 80450B5C-80450B60 00005C 0004+00 0/0 6/6 0/0 .sbss
  * sInstance__33JASGlobalInstance<12JAISoundInfo>               */
-extern u8 data_80450B5C[4];
-u8 data_80450B5C[4];
+JAISoundInfo* JASGlobalInstance<JAISoundInfo>::sInstance;
 
 /* 80450B60-80450B64 000060 0004+00 0/0 29/29 0/0 .sbss
  * sInstance__31JASGlobalInstance<10Z2SoundMgr>                 */
-// TODO: fix type
-Z2SoundMgr* data_80450B60;
+Z2SoundMgr* JASGlobalInstance<Z2SoundMgr>::sInstance;
 
 /* 80450B64-80450B68 000064 0004+00 0/0 2/2 0/0 .sbss
  * sInstance__33JASGlobalInstance<12JAIStreamMgr>               */
-extern u8 data_80450B64[4];
-u8 data_80450B64[4];
+JAIStreamMgr* JASGlobalInstance<JAIStreamMgr>::sInstance;
 
 /* 80450B68-80450B6C 000068 0004+00 0/0 3/3 0/0 .sbss sInstance__29JASGlobalInstance<9JAISeqMgr>
  */
-extern u8 data_80450B68[4];
-u8 data_80450B68[4];
+JAISeqMgr* JASGlobalInstance<JAISeqMgr>::sInstance;
 
 /* 80450B6C-80450B70 00006C 0004+00 0/0 4/4 0/0 .sbss sInstance__28JASGlobalInstance<8JAISeMgr> */
-extern u8 data_80450B6C[4];
-u8 data_80450B6C[4];
+JAISeMgr* JASGlobalInstance<JAISeMgr>::sInstance;
 
 /* 80450B70-80450B74 000070 0004+00 0/0 9/9 0/0 .sbss
  * sInstance__33JASGlobalInstance<12Z2SpeechMgr2>               */
-extern u8 data_80450B70[4];
-u8 data_80450B70[4];
+Z2SpeechMgr2* JASGlobalInstance<Z2SpeechMgr2>::sInstance;
 
 /* 80450B74-80450B78 000074 0004+00 0/0 22/22 0/0 .sbss
  * sInstance__35JASGlobalInstance<14Z2SoundStarter>             */
-extern u8 data_80450B74[4];
-u8 data_80450B74[4];
+Z2SoundStarter* JASGlobalInstance<Z2SoundStarter>::sInstance;
 
 /* 80450B78-80450B7C 000078 0004+00 0/0 2/2 0/0 .sbss
  * sInstance__36JASGlobalInstance<15JAISoundStarter>            */
-extern u8 data_80450B78[4];
-u8 data_80450B78[4];
+JAISoundStarter* JASGlobalInstance<JAISoundStarter>::sInstance;
 
 /* 80450B7C-80450B80 00007C 0004+00 0/0 34/34 0/0 .sbss
  * sInstance__32JASGlobalInstance<11Z2StatusMgr>                */
-extern u8 data_80450B7C[4];
-u8 data_80450B7C[4];
+Z2StatusMgr* JASGlobalInstance<Z2StatusMgr>::sInstance;
 
 /* 80450B80-80450B84 000080 0004+00 0/0 46/46 0/0 .sbss
  * sInstance__31JASGlobalInstance<10Z2SceneMgr>                 */
-extern u8 data_80450B80[4];
-u8 data_80450B80[4];
+Z2SceneMgr* JASGlobalInstance<Z2SceneMgr>::sInstance;
 
 /* 80450B84-80450B88 000084 0004+00 0/0 38/38 0/0 .sbss sInstance__28JASGlobalInstance<8Z2SeqMgr>
  */
-extern u8 data_80450B84[4];
-u8 data_80450B84[4];
+Z2SeqMgr* JASGlobalInstance<Z2SeqMgr>::sInstance;
 
 /* 80450B88-80450B8C 000088 0004+00 0/0 25/25 0/0 .sbss sInstance__27JASGlobalInstance<7Z2SeMgr>
  */
-extern u8 data_80450B88[4];
-u8 data_80450B88[4];
+Z2SeMgr* JASGlobalInstance<Z2SeMgr>::sInstance;
 
 /* 80450B8C-80450B90 00008C 0004+00 0/0 6/6 0/0 .sbss
  * sInstance__35JASGlobalInstance<14JASAudioThread>             */
-extern u8 data_80450B8C[4];
-u8 data_80450B8C[4];
-//JASAudioThread* JASGlobalInstance<JASAudioThread>::sInstance;
+JASAudioThread* JASGlobalInstance<JASAudioThread>::sInstance;
 
 /* 80450B90-80450B98 000090 0004+04 0/0 4/4 0/0 .sbss
  * sInstance__40JASGlobalInstance<19JASDefaultBankTable>        */
-extern u8 data_80450B90[4 + 4 /* padding */];
-u8 data_80450B90[4 + 4 /* padding */];
-
-/* 80450B98-80450B9C -00001 0004+00 0/0 6/6 0/0 .sbss            None */
-bool __OSReport_disable;
-
-bool __OSReport_Error_disable;
-
-bool __OSReport_Warning_disable;
-
-bool __OSReport_System_disable;
-
-/* 80450B9C-80450BA0 00009C 0004+00 0/0 3/3 0/0 .sbss            None */
-bool __OSReport_enable;
-
-/* 803739A0-803739A0 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+JASDefaultBankTable* JASGlobalInstance<JASDefaultBankTable>::sInstance;

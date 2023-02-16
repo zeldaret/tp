@@ -21,7 +21,7 @@ lbl_802A9B04:
 /* 802A9B0C  38 A0 00 02 */	li r5, 2
 /* 802A9B10  48 02 BD 31 */	bl mount__10JKRArchiveFPvP7JKRHeapQ210JKRArchive15EMountDirection
 /* 802A9B14  7C 7E 1B 78 */	mr r30, r3
-/* 802A9B18  80 6D 85 C0 */	lwz r3, data_80450B40(r13)
+/* 802A9B18  80 6D 85 C0 */	lwz r3, __OSReport_disable-0x58(r13)
 /* 802A9B1C  7F C4 F3 78 */	mr r4, r30
 /* 802A9B20  7F E5 FB 78 */	mr r5, r31
 /* 802A9B24  48 01 0C D9 */	bl initDataArc__11Z2FxLineMgrFP10JKRArchiveP7JKRHeap

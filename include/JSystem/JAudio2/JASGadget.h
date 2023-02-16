@@ -3,21 +3,21 @@
 
 #include "dolphin/types.h"
 
-template <class T>
+template<class T>
 class JASGlobalInstance {
 public:
-    inline T* getInstance() { return sInstance; }
+    JASGlobalInstance(T* inst) {
+        sInstance = inst;
+    }
 
-    inline JASGlobalInstance(bool param) {
-        if (param) {
-            ASSERT(sInstance == 0);
-            //if (this!=NULL) {
-                sInstance = (T*)this;
-                //We need a better way to compute the location of sInstance
-                //sInstance = (T*)((char*)this-(char*)&(((T*)NULL)->JASGlobalInstance<T>));
-            //}
+    ~JASGlobalInstance() {
+        if (this == sInstance) {
+            sInstance = NULL;
         }
     }
+
+    static T* getInstance() { return sInstance; }
+
     static T* sInstance;
 };
 

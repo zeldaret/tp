@@ -53,10 +53,10 @@ extern "C" void _savegpr_27();
 extern "C" void _restgpr_23();
 extern "C" void _restgpr_27();
 extern "C" void strcmp();
-extern "C" extern Z2SoundObjMgr* data_80450B48;
 extern "C" extern u8 data_80450B80[4];
 extern "C" extern Z2SeqMgr* data_80450B84;
 extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
+extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:
@@ -318,7 +318,7 @@ asm void Z2SoundObjMgr::searchEnemy() {
 void Z2SoundObjMgr::setGhostEnemyState(u8 p1) {
     if (p1 == 0x20) {
         if (field_0x1a >= field_0x16) {
-            data_80450B84->setBattleGhostMute(true);
+            JASGlobalInstance<Z2SeqMgr>::getInstance()->setBattleGhostMute(true);
         }
     } else {
         if (field_0x1a == false) {

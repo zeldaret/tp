@@ -1427,10 +1427,6 @@ bool dDemo_system_c::JSGFindObject(JStage::TObject** p_TObj, char const* actorNa
 /* 80451DE0-80451DE8 0003E0 0008+00 1/1 0/0 0/0 .sdata2          @5123 */
 SECTION_SDATA2 static f64 lit_5123 = 1.0 / 29.999998435378155;
 
-inline Z2SoundStarter* Z2GetSoundStarter() {
-    return data_80450B74;
-}
-
 /* 80039678-80039910 033FB8 0298+00 0/0 1/1 0/0 .text            create__7dDemo_cFv */
 #ifdef NONMATCHING
 void dDemo_c::create() {

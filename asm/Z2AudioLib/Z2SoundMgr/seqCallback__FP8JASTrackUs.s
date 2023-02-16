@@ -15,7 +15,7 @@ lbl_802A9BC8:
 /* 802A9BFC  7C 03 00 2E */	lwzx r0, r3, r0
 /* 802A9C00  7C 09 03 A6 */	mtctr r0
 /* 802A9C04  4E 80 04 20 */	bctr 
-/* 802A9C08  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802A9C08  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802A9C0C  38 83 00 04 */	addi r4, r3, 4
 /* 802A9C10  38 A0 00 03 */	li r5, 3
 /* 802A9C14  C0 22 BE 38 */	lfs f1, lit_3688(r2)
@@ -23,32 +23,32 @@ lbl_802A9BC8:
 /* 802A9C1C  C0 42 BE 3C */	lfs f2, lit_3689(r2)
 /* 802A9C20  FC 60 10 90 */	fmr f3, f2
 /* 802A9C24  48 00 A3 C9 */	bl setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff
-/* 802A9C28  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802A9C28  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802A9C2C  38 63 07 28 */	addi r3, r3, 0x728
 /* 802A9C30  4B FF 80 61 */	bl calc__9JAISeqMgrFv
-/* 802A9C34  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802A9C34  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802A9C38  38 63 07 28 */	addi r3, r3, 0x728
 /* 802A9C3C  4B FF 82 C1 */	bl mixOut__9JAISeqMgrFv
 /* 802A9C40  48 00 01 58 */	b lbl_802A9D98
-/* 802A9C44  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802A9C44  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802A9C48  48 00 BB 09 */	bl onFieldBgmJumpStart__8Z2SeqMgrFv
 /* 802A9C4C  48 00 01 4C */	b lbl_802A9D98
-/* 802A9C50  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802A9C50  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802A9C54  48 00 BB 49 */	bl onFieldBgmJumpEnd__8Z2SeqMgrFv
 /* 802A9C58  48 00 01 40 */	b lbl_802A9D98
-/* 802A9C5C  80 6D 85 F0 */	lwz r3, data_80450B70(r13)
+/* 802A9C5C  80 6D 85 F0 */	lwz r3, __OSReport_disable-0x28(r13)
 /* 802A9C60  38 80 00 01 */	li r4, 1
 /* 802A9C64  48 02 25 2D */	bl speakOneWord__12Z2SpeechMgr2Fb
 /* 802A9C68  48 00 01 30 */	b lbl_802A9D98
-/* 802A9C6C  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802A9C6C  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802A9C70  38 80 00 01 */	li r4, 1
 /* 802A9C74  48 00 8D 29 */	bl onVariantBgmJumpEnd__8Z2SeqMgrFb
 /* 802A9C78  48 00 01 20 */	b lbl_802A9D98
-/* 802A9C7C  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802A9C7C  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802A9C80  38 80 00 00 */	li r4, 0
 /* 802A9C84  48 00 8D 19 */	bl onVariantBgmJumpEnd__8Z2SeqMgrFb
 /* 802A9C88  48 00 01 10 */	b lbl_802A9D98
-/* 802A9C8C  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802A9C8C  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802A9C90  83 C3 02 8C */	lwz r30, 0x28c(r3)
 /* 802A9C94  3C 60 00 05 */	lis r3, 0x0005 /* 0x000500F7@ha */
 /* 802A9C98  3B A3 00 F7 */	addi r29, r3, 0x00F7 /* 0x000500F7@l */
@@ -86,7 +86,7 @@ lbl_802A9D04:
 /* 802A9D04  28 1E 00 00 */	cmplwi r30, 0
 /* 802A9D08  40 82 FF 98 */	bne lbl_802A9CA0
 /* 802A9D0C  48 00 00 8C */	b lbl_802A9D98
-/* 802A9D10  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802A9D10  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802A9D14  83 83 02 8C */	lwz r28, 0x28c(r3)
 /* 802A9D18  3C 60 00 05 */	lis r3, 0x0005 /* 0x000500F9@ha */
 /* 802A9D1C  3B C3 00 F9 */	addi r30, r3, 0x00F9 /* 0x000500F9@l */
@@ -115,11 +115,11 @@ lbl_802A9D68:
 /* 802A9D68  28 1C 00 00 */	cmplwi r28, 0
 /* 802A9D6C  40 82 FF BC */	bne lbl_802A9D28
 /* 802A9D70  48 00 00 28 */	b lbl_802A9D98
-/* 802A9D74  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802A9D74  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802A9D78  38 80 00 07 */	li r4, 7
 /* 802A9D7C  48 00 62 11 */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802A9D80  48 00 00 18 */	b lbl_802A9D98
-/* 802A9D84  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802A9D84  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802A9D88  38 80 00 08 */	li r4, 8
 /* 802A9D8C  48 00 62 01 */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802A9D90  48 00 00 08 */	b lbl_802A9D98
@@ -160,7 +160,7 @@ lbl_802A9E00:
 /* 802A9E0C  90 01 00 0C */	stw r0, 0xc(r1)
 /* 802A9E10  90 01 00 24 */	stw r0, 0x24(r1)
 lbl_802A9E14:
-/* 802A9E14  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802A9E14  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802A9E18  80 A3 02 F8 */	lwz r5, 0x2f8(r3)
 /* 802A9E1C  80 81 00 24 */	lwz r4, 0x24(r1)
 /* 802A9E20  48 00 00 3C */	b lbl_802A9E5C

@@ -157,6 +157,7 @@ extern "C" extern u8 data_80451320[8];
 extern "C" extern u8 data_80451328[8];
 extern "C" u8 sManager__15JKRThreadSwitch[4];
 extern "C" u8 sAramObject__7JKRAram[4];
+extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:

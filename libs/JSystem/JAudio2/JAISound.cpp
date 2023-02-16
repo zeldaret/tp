@@ -4,9 +4,10 @@
 //
 
 #include "JSystem/JAudio2/JAISound.h"
+#include "JSystem/JAudio2/JASReport.h"
+#include "JSystem/JAudio2/JASTrack.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "JSystem/JAudio2/JASReport.h"
 
 //
 // Forward References:
@@ -80,7 +81,7 @@ void JAISound::attachHandle(JAISoundHandle* handle) {
 
 /* 802A2220-802A2244 29CB60 0024+00 0/0 2/2 0/0 .text lockWhenPrepared__15JAISoundStatus_Fv */
 s32 JAISoundStatus_::lockWhenPrepared() {
-     if (state.unk == 0) {
+    if (state.unk == 0) {
         state.unk = 1;
         return 1;
     }
@@ -194,7 +195,7 @@ asm void JAISound::start_JAISound_(JAISoundID param_0, JGeometry::TVec3<f32> con
 /* 802A244C-802A2474 29CD8C 0028+00 0/0 2/2 0/0 .text            acceptsNewAudible__8JAISoundCFv */
 bool JAISound::acceptsNewAudible() const {
     bool accepts = false;
-    if (audible_ == NULL && status_.state.flags.flag2==0) {
+    if (audible_ == NULL && status_.state.flags.flag2 == 0) {
         accepts = true;
     }
     return accepts;
@@ -219,10 +220,10 @@ SECTION_SDATA2 static f64 lit_766 = 4503599627370496.0 /* cast u32 to float */;
 #ifdef NONMATCHING
 void JAISound::stop(u32 fadeCount) {
     ASSERT(status_.isAlive());
-    if (fadeCount==0) {
+    if (fadeCount == 0) {
         stop();
         return;
-    }else{
+    } else {
         fader.fadeOut(fadeCount);
         removeLifeTime_();
         status_.field_0x1.flags.flag2 = 0;
@@ -265,7 +266,7 @@ bool JAISound::asStream() {
 /* 802A25F0-802A266C 29CF30 007C+00 0/0 3/3 0/0 .text            die_JAISound___8JAISoundFv */
 #ifdef NONMATCHING
 void JAISound::die_JAISound_() {
-    if (audible_!=NULL){
+    if (audible_ != NULL) {
         audience_->deleteAudible(audible_);
         audible_ = NULL;
         audience_ = NULL;
@@ -288,8 +289,9 @@ asm void JAISound::die_JAISound_() {
 /* 802A266C-802A26B8 29CFAC 004C+00 0/0 3/3 0/0 .text increasePrepareCount_JAISound___8JAISoundFv
  */
 void JAISound::increasePrepareCount_JAISound_() {
-    if((++prepareCount&0xFF) == 0) {
-        JASReport("It cost %d steps to prepare Sound(ID:%08x, Address%08x).\n",prepareCount,(u32)soundID,this);
+    if ((++prepareCount & 0xFF) == 0) {
+        JASReport("It cost %d steps to prepare Sound(ID:%08x, Address%08x).\n", prepareCount,
+                  (u32)soundID, this);
     }
 }
 
@@ -305,39 +307,39 @@ SECTION_SDATA2 static f32 lit_887[1 + 1 /* padding */] = {
 #ifdef NONMATCHING
 bool JAISound::calc_JAISound_() {
     status_.state.flags.flag2 = 1;
-    if(isStopping()&&JAISound_tryDie_()) {
+    if (isStopping() && JAISound_tryDie_()) {
         return false;
     }
     ASSERT(status_.isAlive());
     bool isPlaying = status_.isPlaying();
-    if(isPlaying) {
+    if (isPlaying) {
         mCount++;
     }
     bool isPaused = status_.isPaused();
-    if(isPaused==false) {
+    if (isPaused == false) {
         fader.calc();
     }
-    bool playing = isPlaying&&isPaused == false;
+    bool playing = isPlaying && isPaused == false;
     if (playing) {
         params.mMove.calc();
-        if (audible_!=NULL) {
+        if (audible_ != NULL) {
             audible_->calc();
         }
-        if(status_.field_0x1.flags.flag2!=0) {
-            if(lifeTime==0) {
+        if (status_.field_0x1.flags.flag2 != 0) {
+            if (lifeTime == 0) {
                 stop_JAISound_();
-            }else{
+            } else {
                 lifeTime--;
             }
         }
     }
-    if(audience_!=NULL&&audible_!=NULL) {
+    if (audience_ != NULL && audible_ != NULL) {
         u32 priority = audience_->calcPriority(audible_);
         mPriority = priority;
-        if (priority==0xFFFFFFFF&&status_.field_0x1.flags.flag1==0) {
+        if (priority == 0xFFFFFFFF && status_.field_0x1.flags.flag1 == 0) {
             stop_JAISound_();
         }
-    }else{
+    } else {
         mPriority = 0;
     }
 
@@ -360,16 +362,16 @@ void JAISound::initTrack_JAISound_(JASTrack* track) {
     ASSERT(audience_);
     ASSERT(audible_);
     int numChannels = 0;
-    for (int i = 0; i<audience_->getMaxChannels(); i++) {
+    for (int i = 0; i < audience_->getMaxChannels(); i++) {
         JASSoundParams* currentParams = audible_->getOuterParams(i);
-        if (currentParams!=NULL) {
+        if (currentParams != NULL) {
             soundParams[numChannels] = currentParams;
             numChannels++;
-        }    
+        }
     }
     ASSERT(numChannels >= 1)
     track->setChannelMgrCount(numChannels);
-    for (size_t i = 0; i<track->getChannelMgrCount(); i++) {
-        track->assignExtBuffer(i,soundParams[i]);
+    for (size_t i = 0; i < track->getChannelMgrCount(); i++) {
+        track->assignExtBuffer(i, soundParams[i]);
     }
 }

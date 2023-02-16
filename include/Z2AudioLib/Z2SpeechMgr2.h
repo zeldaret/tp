@@ -2,10 +2,10 @@
 #define Z2SPEECHMGR2_H
 
 #include "JSystem/JAudio2/JAISoundHandles.h"
+#include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JMath/random.h"
 #include "Z2AudioLib/Z2SoundStarter.h"
 #include "dolphin/mtx/vec.h"
-#include "dolphin/types.h"
 
 struct Z2SpeechStarter : public Z2SoundStarter {
     /* 802CCFB8 */ Z2SpeechStarter();
@@ -16,7 +16,7 @@ struct Z2SpeechStarter : public Z2SoundStarter {
                                            f32, u32);
 };
 
-struct Z2SpeechMgr2 {
+struct Z2SpeechMgr2 : public JASGlobalInstance<Z2SpeechMgr2> {
     /* 802CBC60 */ Z2SpeechMgr2();
     /* 802CBD88 */ void setString(u16 const*, s16, u8, u16);
     /* 802CBF60 */ void setTextCount(s16);

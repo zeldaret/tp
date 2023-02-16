@@ -4,7 +4,7 @@ lbl_802AE5B0:
 /* 802AE5B8  90 01 00 24 */	stw r0, 0x24(r1)
 /* 802AE5BC  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 802AE5C0  7C 9F 23 78 */	mr r31, r4
-/* 802AE5C4  80 AD 86 04 */	lwz r5, data_80450B84(r13)
+/* 802AE5C4  80 AD 86 04 */	lwz r5, __OSReport_disable-0x14(r13)
 /* 802AE5C8  38 80 00 00 */	li r4, 0
 /* 802AE5CC  80 05 00 08 */	lwz r0, 8(r5)
 /* 802AE5D0  28 00 00 00 */	cmplwi r0, 0
@@ -208,7 +208,7 @@ lbl_802AE878:
 /* 802AE894  40 80 02 58 */	bge lbl_802AEAEC
 /* 802AE898  48 00 02 38 */	b lbl_802AEAD0
 lbl_802AE89C:
-/* 802AE89C  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802AE89C  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802AE8A0  88 03 00 1D */	lbz r0, 0x1d(r3)
 /* 802AE8A4  28 00 00 00 */	cmplwi r0, 0
 /* 802AE8A8  40 82 02 44 */	bne lbl_802AEAEC
@@ -294,7 +294,7 @@ lbl_802AE9A8:
 /* 802AE9A8  38 80 00 01 */	li r4, 1
 /* 802AE9AC  98 83 03 CA */	stb r4, 0x3ca(r3)
 /* 802AE9B0  90 01 00 10 */	stw r0, 0x10(r1)
-/* 802AE9B4  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802AE9B4  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802AE9B8  38 81 00 10 */	addi r4, r1, 0x10
 /* 802AE9BC  C0 22 BE A8 */	lfs f1, lit_4052(r2)
 /* 802AE9C0  4B FF C0 29 */	bl multiVolumeSoundID__10Z2SoundMgrF10JAISoundIDf
@@ -309,12 +309,12 @@ lbl_802AE9DC:
 /* 802AE9DC  38 80 00 01 */	li r4, 1
 /* 802AE9E0  98 83 03 CB */	stb r4, 0x3cb(r3)
 /* 802AE9E4  90 01 00 0C */	stw r0, 0xc(r1)
-/* 802AE9E8  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802AE9E8  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802AE9EC  38 81 00 0C */	addi r4, r1, 0xc
 /* 802AE9F0  4B FF BD ED */	bl stopSoundID__10Z2SoundMgrF10JAISoundID
 /* 802AE9F4  80 1F 00 00 */	lwz r0, 0(r31)
 /* 802AE9F8  90 01 00 08 */	stw r0, 8(r1)
-/* 802AE9FC  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802AE9FC  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802AEA00  38 81 00 08 */	addi r4, r1, 8
 /* 802AEA04  C0 22 BE A8 */	lfs f1, lit_4052(r2)
 /* 802AEA08  4B FF BF E1 */	bl multiVolumeSoundID__10Z2SoundMgrF10JAISoundIDf

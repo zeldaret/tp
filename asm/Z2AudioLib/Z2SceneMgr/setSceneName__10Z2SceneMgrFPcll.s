@@ -26,23 +26,23 @@ lbl_802B6AF8:
 /* 802B6B58  38 00 00 00 */	li r0, 0
 /* 802B6B5C  98 1B 00 1B */	stb r0, 0x1b(r27)
 /* 802B6B60  C3 E2 C0 50 */	lfs f31, lit_5341(r2)
-/* 802B6B64  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B6B64  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B6B68  4B FF D5 C1 */	bl resetBattleBgmParams__8Z2SeqMgrFv
-/* 802B6B6C  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B6B6C  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B6B70  C0 22 C0 3C */	lfs f1, lit_3512(r2)
 /* 802B6B74  38 80 00 00 */	li r4, 0
 /* 802B6B78  48 00 2F 85 */	bl setWindStoneVol__8Z2SeqMgrFfUl
-/* 802B6B7C  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B6B7C  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B6B80  C0 22 C0 3C */	lfs f1, lit_3512(r2)
 /* 802B6B84  48 00 2F 4D */	bl setTwilightGateVol__8Z2SeqMgrFf
-/* 802B6B88  80 6D 86 08 */	lwz r3, data_80450B88(r13)
+/* 802B6B88  80 6D 86 08 */	lwz r3, __OSReport_disable-0x10(r13)
 /* 802B6B8C  48 00 2F 39 */	bl resetCrowdSize__7Z2SeMgrFv
-/* 802B6B90  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B6B90  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B6B94  38 80 00 00 */	li r4, 0
 /* 802B6B98  48 00 94 55 */	bl setGhostEnemyState__13Z2SoundObjMgrFUc
-/* 802B6B9C  80 6D 86 08 */	lwz r3, data_80450B88(r13)
+/* 802B6B9C  80 6D 86 08 */	lwz r3, __OSReport_disable-0x10(r13)
 /* 802B6BA0  4B FF 4C 6D */	bl resetModY__7Z2SeMgrFv
-/* 802B6BA4  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802B6BA4  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802B6BA8  88 03 00 2C */	lbz r0, 0x2c(r3)
 /* 802B6BAC  28 00 00 08 */	cmplwi r0, 8
 /* 802B6BB0  40 82 00 14 */	bne lbl_802B6BC4
@@ -102,7 +102,7 @@ lbl_802B6C40:
 /* 802B6C74  38 61 02 3C */	addi r3, r1, 0x23c
 /* 802B6C78  48 00 2E 11 */	bl __as__10JAISoundIDFRC10JAISoundID
 /* 802B6C7C  3B E0 00 06 */	li r31, 6
-/* 802B6C80  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B6C80  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B6C84  38 80 00 00 */	li r4, 0
 /* 802B6C88  4B FF 93 05 */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802B6C8C  48 00 00 38 */	b lbl_802B6CC4
@@ -154,7 +154,7 @@ lbl_802B6D1C:
 /* 802B6D30  38 61 02 3C */	addi r3, r1, 0x23c
 /* 802B6D34  48 00 2D 55 */	bl __as__10JAISoundIDFRC10JAISoundID
 /* 802B6D38  3B E0 00 06 */	li r31, 6
-/* 802B6D3C  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B6D3C  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B6D40  38 80 00 00 */	li r4, 0
 /* 802B6D44  4B FF 92 49 */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802B6D48  48 00 29 70 */	b lbl_802B96B8
@@ -211,7 +211,7 @@ lbl_802B6DAC:
 /* 802B6E04  38 61 02 3C */	addi r3, r1, 0x23c
 /* 802B6E08  48 00 2C 81 */	bl __as__10JAISoundIDFRC10JAISoundID
 /* 802B6E0C  3B E0 00 06 */	li r31, 6
-/* 802B6E10  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B6E10  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B6E14  38 80 00 00 */	li r4, 0
 /* 802B6E18  4B FF 91 75 */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802B6E1C  48 00 28 9C */	b lbl_802B96B8
@@ -375,7 +375,7 @@ lbl_802B7058:
 /* 802B7074  38 61 02 3C */	addi r3, r1, 0x23c
 /* 802B7078  48 00 2A 11 */	bl __as__10JAISoundIDFRC10JAISoundID
 /* 802B707C  3B E0 00 06 */	li r31, 6
-/* 802B7080  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B7080  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B7084  38 80 00 01 */	li r4, 1
 /* 802B7088  4B FF 8F 05 */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802B708C  48 00 00 68 */	b lbl_802B70F4
@@ -432,7 +432,7 @@ lbl_802B70F4:
 /* 802B714C  38 61 02 3C */	addi r3, r1, 0x23c
 /* 802B7150  48 00 29 39 */	bl __as__10JAISoundIDFRC10JAISoundID
 /* 802B7154  3B E0 00 06 */	li r31, 6
-/* 802B7158  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B7158  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B715C  38 80 00 01 */	li r4, 1
 /* 802B7160  4B FF 8E 2D */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802B7164  48 00 00 84 */	b lbl_802B71E8
@@ -503,7 +503,7 @@ lbl_802B71EC:
 /* 802B7254  38 61 02 3C */	addi r3, r1, 0x23c
 /* 802B7258  48 00 28 31 */	bl __as__10JAISoundIDFRC10JAISoundID
 /* 802B725C  3B E0 00 06 */	li r31, 6
-/* 802B7260  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B7260  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B7264  38 80 00 00 */	li r4, 0
 /* 802B7268  4B FF 8D 25 */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802B726C  48 00 24 4C */	b lbl_802B96B8
@@ -682,7 +682,7 @@ lbl_802B74C8:
 /* 802B74E0  48 00 25 A9 */	bl __as__10JAISoundIDFRC10JAISoundID
 /* 802B74E4  3B E0 00 0F */	li r31, 0xf
 /* 802B74E8  3B 00 00 01 */	li r24, 1
-/* 802B74EC  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B74EC  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B74F0  38 80 00 01 */	li r4, 1
 /* 802B74F4  4B FF 8A 99 */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802B74F8  3B C0 00 32 */	li r30, 0x32
@@ -786,12 +786,12 @@ lbl_802B7640:
 /* 802B7660  3B 00 00 01 */	li r24, 1
 /* 802B7664  2C 1A 00 0E */	cmpwi r26, 0xe
 /* 802B7668  40 82 00 14 */	bne lbl_802B767C
-/* 802B766C  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B766C  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B7670  38 80 00 01 */	li r4, 1
 /* 802B7674  4B FF 89 19 */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802B7678  48 00 20 40 */	b lbl_802B96B8
 lbl_802B767C:
-/* 802B767C  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B767C  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B7680  38 80 00 00 */	li r4, 0
 /* 802B7684  4B FF 89 09 */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802B7688  48 00 20 30 */	b lbl_802B96B8
@@ -1055,7 +1055,7 @@ lbl_802B7A30:
 /* 802B7A48  48 00 20 41 */	bl __as__10JAISoundIDFRC10JAISoundID
 /* 802B7A4C  3B E0 00 30 */	li r31, 0x30
 /* 802B7A50  3B C0 00 86 */	li r30, 0x86
-/* 802B7A54  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B7A54  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B7A58  38 80 00 1E */	li r4, 0x1e
 /* 802B7A5C  C0 22 C0 54 */	lfs f1, lit_5342(r2)
 /* 802B7A60  48 00 1F C5 */	bl muteSceneBgm__8Z2SeqMgrFUlf
@@ -1095,7 +1095,7 @@ lbl_802B7ACC:
 /* 802B7AE0  38 61 02 3C */	addi r3, r1, 0x23c
 /* 802B7AE4  48 00 1F A5 */	bl __as__10JAISoundIDFRC10JAISoundID
 /* 802B7AE8  3B E0 00 30 */	li r31, 0x30
-/* 802B7AEC  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B7AEC  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B7AF0  38 80 00 1E */	li r4, 0x1e
 /* 802B7AF4  48 00 1E B9 */	bl unMuteSceneBgm__8Z2SeqMgrFUl
 /* 802B7AF8  3B 00 00 01 */	li r24, 1
@@ -1141,7 +1141,7 @@ lbl_802B7B58:
 /* 802B7B8C  48 00 1B 2C */	b lbl_802B96B8
 /* 802B7B90  2C 13 00 00 */	cmpwi r19, 0
 /* 802B7B94  40 82 00 7C */	bne lbl_802B7C10
-/* 802B7B98  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B7B98  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B7B9C  38 80 00 01 */	li r4, 1
 /* 802B7BA0  38 A0 02 BC */	li r5, 0x2bc
 /* 802B7BA4  38 C0 04 4C */	li r6, 0x44c
@@ -1175,7 +1175,7 @@ lbl_802B7C04:
 lbl_802B7C10:
 /* 802B7C10  2C 13 00 01 */	cmpwi r19, 1
 /* 802B7C14  40 82 00 14 */	bne lbl_802B7C28
-/* 802B7C18  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B7C18  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B7C1C  38 80 00 21 */	li r4, 0x21
 /* 802B7C20  38 A0 00 00 */	li r5, 0
 /* 802B7C24  4B FF 77 E5 */	bl bgmStop__8Z2SeqMgrFUll
@@ -1257,7 +1257,7 @@ lbl_802B7D08:
 /* 802B7D3C  40 82 00 2C */	bne lbl_802B7D68
 /* 802B7D40  38 00 00 01 */	li r0, 1
 /* 802B7D44  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B7D48  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B7D48  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B7D4C  38 80 00 01 */	li r4, 1
 /* 802B7D50  38 A0 27 10 */	li r5, 0x2710
 /* 802B7D54  3C E0 00 01 */	lis r7, 0x0001 /* 0x00009C40@ha */
@@ -1504,7 +1504,7 @@ lbl_802B80AC:
 /* 802B80C0  38 61 02 3C */	addi r3, r1, 0x23c
 /* 802B80C4  48 00 19 C5 */	bl __as__10JAISoundIDFRC10JAISoundID
 /* 802B80C8  3B E0 00 25 */	li r31, 0x25
-/* 802B80CC  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B80CC  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B80D0  7F 44 D3 78 */	mr r4, r26
 /* 802B80D4  4B FF 7E B9 */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802B80D8  48 00 15 E0 */	b lbl_802B96B8
@@ -1600,7 +1600,7 @@ lbl_802B820C:
 /* 802B8220  38 61 02 3C */	addi r3, r1, 0x23c
 /* 802B8224  48 00 18 65 */	bl __as__10JAISoundIDFRC10JAISoundID
 /* 802B8228  3B E0 00 37 */	li r31, 0x37
-/* 802B822C  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B822C  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B8230  38 80 00 00 */	li r4, 0
 /* 802B8234  4B FF 7D 59 */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802B8238  48 00 14 80 */	b lbl_802B96B8
@@ -1633,7 +1633,7 @@ lbl_802B8284:
 /* 802B8298  38 61 02 3C */	addi r3, r1, 0x23c
 /* 802B829C  48 00 17 ED */	bl __as__10JAISoundIDFRC10JAISoundID
 /* 802B82A0  3B E0 00 25 */	li r31, 0x25
-/* 802B82A4  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B82A4  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B82A8  38 80 00 05 */	li r4, 5
 /* 802B82AC  4B FF 7C E1 */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802B82B0  48 00 14 08 */	b lbl_802B96B8
@@ -1771,7 +1771,7 @@ lbl_802B8468:
 /* 802B8488  48 00 12 30 */	b lbl_802B96B8
 /* 802B848C  2C 1A 00 01 */	cmpwi r26, 1
 /* 802B8490  40 82 00 24 */	bne lbl_802B84B4
-/* 802B8494  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B8494  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B8498  38 80 00 01 */	li r4, 1
 /* 802B849C  38 A0 03 E8 */	li r5, 0x3e8
 /* 802B84A0  38 C0 07 D0 */	li r6, 0x7d0
@@ -1851,7 +1851,7 @@ lbl_802B8578:
 /* 802B85A0  38 00 00 01 */	li r0, 1
 /* 802B85A4  98 1B 00 1B */	stb r0, 0x1b(r27)
 /* 802B85A8  C3 E2 C0 3C */	lfs f31, lit_3512(r2)
-/* 802B85AC  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B85AC  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B85B0  38 80 00 01 */	li r4, 1
 /* 802B85B4  38 A0 02 BC */	li r5, 0x2bc
 /* 802B85B8  38 C0 04 4C */	li r6, 0x44c
@@ -1885,7 +1885,7 @@ lbl_802B8604:
 /* 802B861C  48 00 10 9C */	b lbl_802B96B8
 lbl_802B8620:
 /* 802B8620  3A 80 00 01 */	li r20, 1
-/* 802B8624  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802B8624  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802B8628  4B FF E1 0D */	bl checkDayTime__11Z2StatusMgrFv
 /* 802B862C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802B8630  41 82 00 20 */	beq lbl_802B8650
@@ -1990,7 +1990,7 @@ lbl_802B878C:
 /* 802B8798  C3 E2 C0 3C */	lfs f31, lit_3512(r2)
 lbl_802B879C:
 /* 802B879C  3A 80 00 01 */	li r20, 1
-/* 802B87A0  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802B87A0  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802B87A4  4B FF DF 91 */	bl checkDayTime__11Z2StatusMgrFv
 /* 802B87A8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802B87AC  41 82 00 20 */	beq lbl_802B87CC
@@ -2018,7 +2018,7 @@ lbl_802B87E8:
 /* 802B87FC  C3 E2 C0 3C */	lfs f31, lit_3512(r2)
 /* 802B8800  38 00 00 01 */	li r0, 1
 /* 802B8804  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B8808  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B8808  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B880C  38 80 00 01 */	li r4, 1
 /* 802B8810  38 A0 02 BC */	li r5, 0x2bc
 /* 802B8814  38 C0 04 4C */	li r6, 0x44c
@@ -2053,7 +2053,7 @@ lbl_802B8870:
 lbl_802B887C:
 /* 802B887C  C3 E2 C0 3C */	lfs f31, lit_3512(r2)
 /* 802B8880  3B C0 00 4D */	li r30, 0x4d
-/* 802B8884  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B8884  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B8888  38 80 00 01 */	li r4, 1
 /* 802B888C  38 A0 02 BC */	li r5, 0x2bc
 /* 802B8890  38 C0 04 4C */	li r6, 0x44c
@@ -2108,7 +2108,7 @@ lbl_802B8938:
 /* 802B8938  3B C0 00 5D */	li r30, 0x5d
 /* 802B893C  38 00 00 01 */	li r0, 1
 /* 802B8940  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B8944  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B8944  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B8948  38 80 00 01 */	li r4, 1
 /* 802B894C  38 A0 02 BC */	li r5, 0x2bc
 /* 802B8950  38 C0 04 4C */	li r6, 0x44c
@@ -2126,7 +2126,7 @@ lbl_802B8938:
 /* 802B8980  3B 20 00 40 */	li r25, 0x40
 /* 802B8984  3B A0 00 01 */	li r29, 1
 /* 802B8988  3B C0 00 02 */	li r30, 2
-/* 802B898C  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B898C  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B8990  7F 44 D3 78 */	mr r4, r26
 /* 802B8994  4B FF 75 F9 */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802B8998  48 00 0D 20 */	b lbl_802B96B8
@@ -2143,13 +2143,13 @@ lbl_802B8938:
 /* 802B89C4  3B C0 00 03 */	li r30, 3
 /* 802B89C8  38 00 00 01 */	li r0, 1
 /* 802B89CC  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B89D0  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B89D0  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B89D4  38 80 00 01 */	li r4, 1
 /* 802B89D8  38 A0 02 BC */	li r5, 0x2bc
 /* 802B89DC  38 C0 04 4C */	li r6, 0x44c
 /* 802B89E0  38 E0 05 DC */	li r7, 0x5dc
 /* 802B89E4  48 00 6F 9D */	bl setForceBattleArea__13Z2SoundObjMgrFbUsUsUs
-/* 802B89E8  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B89E8  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B89EC  88 8D 82 E0 */	lbz r4, struct_80450860+0x0(r13)
 /* 802B89F0  48 00 0F BD */	bl unMuteSceneBgm__8Z2SeqMgrFUl
 /* 802B89F4  48 00 0C C4 */	b lbl_802B96B8
@@ -2188,14 +2188,14 @@ lbl_802B8A6C:
 /* 802B8A70  3B C0 00 04 */	li r30, 4
 /* 802B8A74  38 00 00 01 */	li r0, 1
 /* 802B8A78  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B8A7C  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B8A7C  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B8A80  38 80 00 01 */	li r4, 1
 /* 802B8A84  38 A0 02 BC */	li r5, 0x2bc
 /* 802B8A88  38 C0 04 4C */	li r6, 0x44c
 /* 802B8A8C  38 E0 05 DC */	li r7, 0x5dc
 /* 802B8A90  48 00 6E F1 */	bl setForceBattleArea__13Z2SoundObjMgrFbUsUsUs
 lbl_802B8A94:
-/* 802B8A94  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B8A94  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B8A98  88 8D 82 E0 */	lbz r4, struct_80450860+0x0(r13)
 /* 802B8A9C  48 00 0F 11 */	bl unMuteSceneBgm__8Z2SeqMgrFUl
 /* 802B8AA0  48 00 0C 18 */	b lbl_802B96B8
@@ -2208,7 +2208,7 @@ lbl_802B8A94:
 /* 802B8ABC  48 00 0F CD */	bl __as__10JAISoundIDFRC10JAISoundID
 /* 802B8AC0  3B E0 00 13 */	li r31, 0x13
 /* 802B8AC4  3B 20 00 3C */	li r25, 0x3c
-/* 802B8AC8  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B8AC8  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B8ACC  7F 44 D3 78 */	mr r4, r26
 /* 802B8AD0  4B FF 74 BD */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802B8AD4  3B A0 00 05 */	li r29, 5
@@ -2227,7 +2227,7 @@ lbl_802B8A94:
 /* 802B8B08  3B 20 00 14 */	li r25, 0x14
 /* 802B8B0C  38 00 00 01 */	li r0, 1
 /* 802B8B10  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B8B14  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B8B14  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B8B18  38 80 00 01 */	li r4, 1
 /* 802B8B1C  38 A0 02 BC */	li r5, 0x2bc
 /* 802B8B20  38 C0 04 4C */	li r6, 0x44c
@@ -2269,7 +2269,7 @@ lbl_802B8BA4:
 /* 802B8BA8  3B C0 00 08 */	li r30, 8
 /* 802B8BAC  38 00 00 01 */	li r0, 1
 /* 802B8BB0  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B8BB4  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B8BB4  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B8BB8  38 80 00 01 */	li r4, 1
 /* 802B8BBC  38 A0 02 BC */	li r5, 0x2bc
 /* 802B8BC0  38 C0 04 4C */	li r6, 0x44c
@@ -2301,7 +2301,7 @@ lbl_802B8BA4:
 /* 802B8C28  3B C0 00 0B */	li r30, 0xb
 /* 802B8C2C  38 00 00 01 */	li r0, 1
 /* 802B8C30  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B8C34  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B8C34  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B8C38  38 80 00 01 */	li r4, 1
 /* 802B8C3C  38 A0 02 BC */	li r5, 0x2bc
 /* 802B8C40  38 C0 04 4C */	li r6, 0x44c
@@ -2343,7 +2343,7 @@ lbl_802B8CC4:
 /* 802B8CC8  3B C0 00 0C */	li r30, 0xc
 /* 802B8CCC  38 00 00 01 */	li r0, 1
 /* 802B8CD0  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B8CD4  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B8CD4  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B8CD8  38 80 00 01 */	li r4, 1
 /* 802B8CDC  38 A0 02 BC */	li r5, 0x2bc
 /* 802B8CE0  38 C0 04 4C */	li r6, 0x44c
@@ -2363,7 +2363,7 @@ lbl_802B8CC4:
 /* 802B8D18  3B C0 00 0E */	li r30, 0xe
 /* 802B8D1C  2C 1A 00 01 */	cmpwi r26, 1
 /* 802B8D20  40 82 09 98 */	bne lbl_802B96B8
-/* 802B8D24  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B8D24  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B8D28  38 80 00 01 */	li r4, 1
 /* 802B8D2C  38 A0 02 BC */	li r5, 0x2bc
 /* 802B8D30  38 C0 04 4C */	li r6, 0x44c
@@ -2383,7 +2383,7 @@ lbl_802B8CC4:
 /* 802B8D68  3B C0 00 0F */	li r30, 0xf
 /* 802B8D6C  38 00 00 01 */	li r0, 1
 /* 802B8D70  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B8D74  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B8D74  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B8D78  38 80 00 01 */	li r4, 1
 /* 802B8D7C  38 A0 02 BC */	li r5, 0x2bc
 /* 802B8D80  38 C0 04 4C */	li r6, 0x44c
@@ -2425,7 +2425,7 @@ lbl_802B8E04:
 /* 802B8E08  3B C0 00 10 */	li r30, 0x10
 /* 802B8E0C  38 00 00 01 */	li r0, 1
 /* 802B8E10  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B8E14  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B8E14  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B8E18  38 80 00 01 */	li r4, 1
 /* 802B8E1C  38 A0 02 BC */	li r5, 0x2bc
 /* 802B8E20  38 C0 04 4C */	li r6, 0x44c
@@ -2443,7 +2443,7 @@ lbl_802B8E04:
 /* 802B8E50  3B 20 00 40 */	li r25, 0x40
 /* 802B8E54  3B A0 00 11 */	li r29, 0x11
 /* 802B8E58  3B C0 00 12 */	li r30, 0x12
-/* 802B8E5C  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B8E5C  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B8E60  7F 44 D3 78 */	mr r4, r26
 /* 802B8E64  4B FF 71 29 */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802B8E68  48 00 08 50 */	b lbl_802B96B8
@@ -2460,17 +2460,17 @@ lbl_802B8E04:
 /* 802B8E94  3B C0 00 13 */	li r30, 0x13
 /* 802B8E98  38 00 00 01 */	li r0, 1
 /* 802B8E9C  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B8EA0  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B8EA0  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B8EA4  38 80 00 01 */	li r4, 1
 /* 802B8EA8  38 A0 02 BC */	li r5, 0x2bc
 /* 802B8EAC  38 C0 04 4C */	li r6, 0x44c
 /* 802B8EB0  38 E0 05 DC */	li r7, 0x5dc
 /* 802B8EB4  48 00 6A CD */	bl setForceBattleArea__13Z2SoundObjMgrFbUsUsUs
-/* 802B8EB8  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B8EB8  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B8EBC  7F 44 D3 78 */	mr r4, r26
 /* 802B8EC0  4B FF 70 CD */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802B8EC4  48 00 07 F4 */	b lbl_802B96B8
-/* 802B8EC8  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B8EC8  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B8ECC  38 80 00 3C */	li r4, 0x3c
 /* 802B8ED0  48 00 0A DD */	bl unMuteSceneBgm__8Z2SeqMgrFUl
 /* 802B8ED4  3B A0 00 11 */	li r29, 0x11
@@ -2508,7 +2508,7 @@ lbl_802B8F48:
 /* 802B8F4C  3B C0 00 14 */	li r30, 0x14
 /* 802B8F50  38 00 00 01 */	li r0, 1
 /* 802B8F54  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B8F58  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B8F58  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B8F5C  38 80 00 01 */	li r4, 1
 /* 802B8F60  38 A0 02 BC */	li r5, 0x2bc
 /* 802B8F64  38 C0 04 4C */	li r6, 0x44c
@@ -2540,7 +2540,7 @@ lbl_802B8F48:
 /* 802B8FCC  3B C0 00 17 */	li r30, 0x17
 /* 802B8FD0  38 00 00 01 */	li r0, 1
 /* 802B8FD4  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B8FD8  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B8FD8  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B8FDC  38 80 00 01 */	li r4, 1
 /* 802B8FE0  38 A0 02 BC */	li r5, 0x2bc
 /* 802B8FE4  38 C0 04 4C */	li r6, 0x44c
@@ -2582,7 +2582,7 @@ lbl_802B9068:
 /* 802B906C  3B C0 00 18 */	li r30, 0x18
 /* 802B9070  38 00 00 01 */	li r0, 1
 /* 802B9074  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B9078  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B9078  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B907C  38 80 00 01 */	li r4, 1
 /* 802B9080  38 A0 02 BC */	li r5, 0x2bc
 /* 802B9084  38 C0 04 4C */	li r6, 0x44c
@@ -2626,7 +2626,7 @@ lbl_802B90E0:
 /* 802B9114  3B C0 00 1B */	li r30, 0x1b
 /* 802B9118  38 00 00 01 */	li r0, 1
 /* 802B911C  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B9120  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B9120  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B9124  38 80 00 01 */	li r4, 1
 /* 802B9128  38 A0 02 BC */	li r5, 0x2bc
 /* 802B912C  38 C0 04 4C */	li r6, 0x44c
@@ -2668,7 +2668,7 @@ lbl_802B91B0:
 /* 802B91B4  3B C0 00 1C */	li r30, 0x1c
 /* 802B91B8  38 00 00 01 */	li r0, 1
 /* 802B91BC  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B91C0  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B91C0  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B91C4  38 80 00 01 */	li r4, 1
 /* 802B91C8  38 A0 02 BC */	li r5, 0x2bc
 /* 802B91CC  38 C0 04 4C */	li r6, 0x44c
@@ -2704,7 +2704,7 @@ lbl_802B921C:
 /* 802B9234  38 61 02 3C */	addi r3, r1, 0x23c
 /* 802B9238  48 00 08 51 */	bl __as__10JAISoundIDFRC10JAISoundID
 /* 802B923C  3B E0 00 28 */	li r31, 0x28
-/* 802B9240  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B9240  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B9244  7F 44 D3 78 */	mr r4, r26
 /* 802B9248  4B FF 6D 45 */	bl changeBgmStatus__8Z2SeqMgrFl
 lbl_802B924C:
@@ -2724,7 +2724,7 @@ lbl_802B924C:
 /* 802B9280  3B C0 00 1F */	li r30, 0x1f
 /* 802B9284  38 00 00 01 */	li r0, 1
 /* 802B9288  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B928C  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B928C  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B9290  38 80 00 01 */	li r4, 1
 /* 802B9294  38 A0 02 BC */	li r5, 0x2bc
 /* 802B9298  38 C0 04 4C */	li r6, 0x44c
@@ -2769,7 +2769,7 @@ lbl_802B9300:
 /* 802B9328  7C 64 1B 78 */	mr r4, r3
 /* 802B932C  38 61 02 3C */	addi r3, r1, 0x23c
 /* 802B9330  48 00 07 59 */	bl __as__10JAISoundIDFRC10JAISoundID
-/* 802B9334  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802B9334  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802B9338  38 63 07 F4 */	addi r3, r3, 0x7f4
 /* 802B933C  48 00 06 59 */	bl func_802B9994
 /* 802B9340  7C 70 1B 78 */	mr r16, r3
@@ -2804,7 +2804,7 @@ lbl_802B9380:
 lbl_802B93A8:
 /* 802B93A8  38 00 00 01 */	li r0, 1
 /* 802B93AC  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B93B0  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B93B0  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B93B4  38 80 00 01 */	li r4, 1
 /* 802B93B8  38 A0 02 BC */	li r5, 0x2bc
 /* 802B93BC  38 C0 04 4C */	li r6, 0x44c
@@ -2841,7 +2841,7 @@ lbl_802B9410:
 /* 802B9430  3A A0 00 01 */	li r21, 1
 /* 802B9434  48 00 00 18 */	b lbl_802B944C
 lbl_802B9438:
-/* 802B9438  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B9438  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B943C  38 80 00 2D */	li r4, 0x2d
 /* 802B9440  38 A0 00 00 */	li r5, 0
 /* 802B9444  4B FF 5F C5 */	bl bgmStop__8Z2SeqMgrFUll
@@ -2851,7 +2851,7 @@ lbl_802B944C:
 /* 802B9450  3B C0 00 22 */	li r30, 0x22
 /* 802B9454  38 00 00 01 */	li r0, 1
 /* 802B9458  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B945C  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B945C  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B9460  38 80 00 01 */	li r4, 1
 /* 802B9464  38 A0 02 BC */	li r5, 0x2bc
 /* 802B9468  38 C0 04 4C */	li r6, 0x44c
@@ -2889,7 +2889,7 @@ lbl_802B94D4:
 /* 802B94D4  3B A0 00 56 */	li r29, 0x56
 /* 802B94D8  38 00 00 01 */	li r0, 1
 /* 802B94DC  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B94E0  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B94E0  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B94E4  38 80 00 01 */	li r4, 1
 /* 802B94E8  38 A0 02 BC */	li r5, 0x2bc
 /* 802B94EC  38 C0 04 4C */	li r6, 0x44c
@@ -2901,7 +2901,7 @@ lbl_802B94D4:
 /* 802B9504  3B A0 00 8C */	li r29, 0x8c
 /* 802B9508  38 00 00 01 */	li r0, 1
 /* 802B950C  98 1B 00 1B */	stb r0, 0x1b(r27)
-/* 802B9510  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B9510  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B9514  38 80 00 01 */	li r4, 1
 /* 802B9518  38 A0 02 BC */	li r5, 0x2bc
 /* 802B951C  38 C0 04 4C */	li r6, 0x44c
@@ -3059,13 +3059,13 @@ lbl_802B9754:
 /* 802B975C  2C 17 00 19 */	cmpwi r23, 0x19
 /* 802B9760  40 82 00 18 */	bne lbl_802B9778
 lbl_802B9764:
-/* 802B9764  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B9764  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B9768  38 80 00 21 */	li r4, 0x21
 /* 802B976C  C0 22 C0 54 */	lfs f1, lit_5342(r2)
 /* 802B9770  48 00 02 B5 */	bl muteSceneBgm__8Z2SeqMgrFUlf
 /* 802B9774  48 00 00 10 */	b lbl_802B9784
 lbl_802B9778:
-/* 802B9778  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B9778  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B977C  38 80 00 21 */	li r4, 0x21
 /* 802B9780  48 00 02 2D */	bl unMuteSceneBgm__8Z2SeqMgrFUl
 lbl_802B9784:
@@ -3091,18 +3091,18 @@ lbl_802B97B4:
 /* 802B97C8  38 61 02 3C */	addi r3, r1, 0x23c
 /* 802B97CC  48 00 02 BD */	bl __as__10JAISoundIDFRC10JAISoundID
 /* 802B97D0  3B E0 00 37 */	li r31, 0x37
-/* 802B97D4  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B97D4  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B97D8  38 80 00 01 */	li r4, 1
 /* 802B97DC  4B FF 67 B1 */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802B97E0  3B 00 00 00 */	li r24, 0
 lbl_802B97E4:
-/* 802B97E4  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802B97E4  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802B97E8  38 63 07 9C */	addi r3, r3, 0x79c
 /* 802B97EC  48 00 01 8D */	bl isActive__12JAIStreamMgrCFv
 /* 802B97F0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802B97F4  41 82 00 64 */	beq lbl_802B9858
-/* 802B97F8  82 6D 85 D8 */	lwz r19, data_80450B58(r13)
-/* 802B97FC  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802B97F8  82 6D 85 D8 */	lwz r19, __OSReport_disable-0x40(r13)
+/* 802B97FC  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802B9800  38 63 07 F4 */	addi r3, r3, 0x7f4
 /* 802B9804  48 00 01 91 */	bl func_802B9994
 /* 802B9808  7C 70 1B 78 */	mr r16, r3
@@ -3130,18 +3130,18 @@ lbl_802B9850:
 /* 802B9850  28 10 00 00 */	cmplwi r16, 0
 /* 802B9854  40 82 FF C0 */	bne lbl_802B9814
 lbl_802B9858:
-/* 802B9858  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B9858  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B985C  7E A4 AB 78 */	mr r4, r21
 /* 802B9860  38 A0 00 1E */	li r5, 0x1e
 /* 802B9864  4B FF 9A B5 */	bl setHeightVolMod__8Z2SeqMgrFbUl
-/* 802B9868  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B9868  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B986C  7F 04 C3 78 */	mr r4, r24
 /* 802B9870  38 A0 00 00 */	li r5, 0
 /* 802B9874  4B FF 9B 25 */	bl setTimeProcVolMod__8Z2SeqMgrFbUl
-/* 802B9878  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B9878  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B987C  7E 84 A3 78 */	mr r4, r20
 /* 802B9880  48 00 00 E9 */	bl setFieldBgmPlay__8Z2SeqMgrFb
-/* 802B9884  80 6D 85 BC */	lwz r3, data_80450B3C(r13)
+/* 802B9884  80 6D 85 BC */	lwz r3, __OSReport_disable-0x5C(r13)
 /* 802B9888  7E E4 BB 78 */	mr r4, r23
 /* 802B988C  7F 45 07 74 */	extsb r5, r26
 /* 802B9890  FC 20 F8 90 */	fmr f1, f31

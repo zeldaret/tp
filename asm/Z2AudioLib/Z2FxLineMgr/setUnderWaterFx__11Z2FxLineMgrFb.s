@@ -18,7 +18,7 @@ lbl_802BAE48:
 /* 802BAE88  4B FF FD A1 */	bl setLineID__11Z2FxLineMgrFScbb
 /* 802BAE8C  48 00 00 10 */	b lbl_802BAE9C
 lbl_802BAE90:
-/* 802BAE90  80 8D 86 00 */	lwz r4, data_80450B80(r13)
+/* 802BAE90  80 8D 86 00 */	lwz r4, __OSReport_disable-0x18(r13)
 /* 802BAE94  80 84 00 04 */	lwz r4, 4(r4)
 /* 802BAE98  48 00 00 21 */	bl setSceneFx__11Z2FxLineMgrFl
 lbl_802BAE9C:

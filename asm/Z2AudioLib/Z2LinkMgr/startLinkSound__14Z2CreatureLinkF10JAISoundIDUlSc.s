@@ -45,7 +45,7 @@ lbl_802C3C64:
 /* 802C3C7C  41 82 00 44 */	beq lbl_802C3CC0
 /* 802C3C80  48 00 01 BC */	b lbl_802C3E3C
 lbl_802C3C84:
-/* 802C3C84  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802C3C84  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802C3C88  38 80 00 02 */	li r4, 2
 /* 802C3C8C  4B FF 0B B9 */	bl setBattleSeqState__8Z2SeqMgrFUc
 /* 802C3C90  48 00 01 AC */	b lbl_802C3E3C

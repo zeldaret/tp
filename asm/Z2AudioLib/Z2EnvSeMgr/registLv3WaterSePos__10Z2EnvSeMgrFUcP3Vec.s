@@ -30,7 +30,7 @@ lbl_802C9F58:
 /* 802C9FC8  4B FE 4B A9 */	bl registMultiSePos__12Z2MultiSeMgrFP3Vec
 /* 802C9FCC  48 00 07 B0 */	b lbl_802CA77C
 lbl_802C9FD0:
-/* 802C9FD0  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802C9FD0  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802C9FD4  88 03 00 0C */	lbz r0, 0xc(r3)
 /* 802C9FD8  7C 00 07 74 */	extsb r0, r0
 /* 802C9FDC  28 00 00 0D */	cmplwi r0, 0xd

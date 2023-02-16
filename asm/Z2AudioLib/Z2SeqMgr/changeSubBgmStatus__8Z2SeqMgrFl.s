@@ -432,7 +432,7 @@ lbl_802B23E0:
 /* 802B245C  48 00 1B 91 */	bl setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff
 /* 802B2460  48 00 05 00 */	b lbl_802B2960
 lbl_802B2464:
-/* 802B2464  80 6D 85 F4 */	lwz r3, data_80450B74(r13)
+/* 802B2464  80 6D 85 F4 */	lwz r3, __OSReport_disable-0x24(r13)
 /* 802B2468  38 9C 00 04 */	addi r4, r28, 4
 /* 802B246C  38 A0 00 09 */	li r5, 9
 /* 802B2470  38 C0 00 01 */	li r6, 1
@@ -759,7 +759,7 @@ lbl_802B27F8:
 lbl_802B2960:
 /* 802B2960  57 C0 06 3F */	clrlwi. r0, r30, 0x18
 /* 802B2964  41 82 00 1C */	beq lbl_802B2980
-/* 802B2968  80 6D 85 F4 */	lwz r3, data_80450B74(r13)
+/* 802B2968  80 6D 85 F4 */	lwz r3, __OSReport_disable-0x24(r13)
 /* 802B296C  38 9C 00 04 */	addi r4, r28, 4
 /* 802B2970  38 A0 00 09 */	li r5, 9
 /* 802B2974  57 A6 04 3E */	clrlwi r6, r29, 0x10

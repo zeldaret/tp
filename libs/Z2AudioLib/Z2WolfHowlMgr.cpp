@@ -4,8 +4,9 @@
 //
 
 #include "Z2AudioLib/Z2WolfHowlMgr.h"
+#include "Z2AudioLib/Z2Creature.h"
+#include "dolphin/os/OS.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -18,10 +19,6 @@ struct Z2SeqMgr {
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2CreatureLink {
-    static u8 mLinkPtr[4 + 4 /* padding */];
 };
 
 struct Z2Calc {
@@ -70,11 +67,8 @@ extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u32 __float_nan;
-extern "C" extern Z2WolfHowlMgr* data_80450B38;
 extern "C" extern u8 data_80450B44[4];
 extern "C" extern u8 data_80450B60[4];
-extern "C" extern u8 data_80450B74[4];
 extern "C" extern u8 data_80450B80[4];
 extern "C" extern u8 data_80450B84[4];
 extern "C" extern u8 data_80450B88[4];
@@ -194,9 +188,9 @@ SECTION_SDATA2 static u8 lit_3485[4] = {
 SECTION_SDATA2 static f32 lit_3486 = 1.0f;
 
 /* 802CAAC0-802CAB8C 2C5400 00CC+00 0/0 1/1 0/0 .text            __ct__13Z2WolfHowlMgrFv */
+// matches with literals
 #ifdef NONMATCHING
-Z2WolfHowlMgr* JASGlobalInstance<Z2WolfHowlMgr>::sInstance = reinterpret_cast<Z2WolfHowlMgr*>(data_80450B38);
-Z2WolfHowlMgr::Z2WolfHowlMgr() : JASGlobalInstance<Z2WolfHowlMgr>(true) {
+Z2WolfHowlMgr::Z2WolfHowlMgr() : JASGlobalInstance(this) {
     mpCurSong = NULL;
     mNowInputValue = 0.0f;
     field_0x18 = 1.0f;
@@ -211,13 +205,16 @@ Z2WolfHowlMgr::Z2WolfHowlMgr() : JASGlobalInstance<Z2WolfHowlMgr>(true) {
     field_0xba = 0;
     field_0xbb = 0;
     field_0xbc = 0;
-    for (u8 i = 0; i<20; i++) {
+
+    for (u8 i = 0; i < 20; i++) {
         field_0x92[i] = 0;
     }
-    for (u8 i = 0; i<10; i++) {
+
+    for (u8 i = 0; i < 10; i++) {
         field_0x38[i] = 0.0f;
         field_0x60[i] = 0.0f;
     }
+
     field_0x34 = 0.0f;
     field_0x30 = 0.0f;
     mpSongList = (Z2WolfHowlData**)&sGuideData;
@@ -234,6 +231,7 @@ asm Z2WolfHowlMgr::Z2WolfHowlMgr() {
 #endif
 
 /* 802CAB8C-802CABEC 2C54CC 0060+00 1/1 0/0 0/0 .text            resetState__13Z2WolfHowlMgrFv */
+// matches with literals
 #ifdef NONMATCHING
 void Z2WolfHowlMgr::resetState() {
     field_0x18 = 1.0f;
@@ -242,10 +240,12 @@ void Z2WolfHowlMgr::resetState() {
     mTimer = NULL;
     mReleaseTimer = 0;
     field_0xba = 0;
-    for (u8 i = 0; i<10; i++) {
+
+    for (u8 i = 0; i < 10; i++) {
         field_0x38[i] = 0.0f;
         field_0x60[i] = 0.0f;
     }
+
     field_0x34 = 0.0f;
     field_0x30 = 0.0f;
 }
@@ -495,8 +495,7 @@ asm void Z2WolfHowlMgr::skipCorrectDemo() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __sinit_Z2WolfHowlMgr_cpp() {
-    nofralloc
+asm void __sinit_Z2WolfHowlMgr_cpp(){nofralloc
 #include "asm/Z2AudioLib/Z2WolfHowlMgr/__sinit_Z2WolfHowlMgr_cpp.s"
 }
 #pragma pop

@@ -595,6 +595,7 @@ public:
     f32 getRate() const { return mRate; }
     f32 getFrame() const { return mFrame; }
     s16 getEnd() const { return mEnd; }
+    s16 getStart() const { return mStart; }
     u8 getAttribute() const { return mAttribute; }
     u8 getState() const { return mState; }
     void setAttribute(u8 attr) { mAttribute = attr; }

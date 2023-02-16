@@ -117,13 +117,13 @@ lbl_802BCA3C:
 /* 802BCA64  EC 01 00 B2 */	fmuls f0, f1, f2
 /* 802BCA68  FC 03 00 40 */	fcmpo cr0, f3, f0
 /* 802BCA6C  40 81 00 18 */	ble lbl_802BCA84
-/* 802BCA70  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802BCA70  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802BCA74  38 63 00 0C */	addi r3, r3, 0xc
 /* 802BCA78  EC 23 10 24 */	fdivs f1, f3, f2
 /* 802BCA7C  4B FF FA 55 */	bl updateVolumeDist__19Z2Audience3DSettingFf
 /* 802BCA80  48 00 00 10 */	b lbl_802BCA90
 lbl_802BCA84:
-/* 802BCA84  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802BCA84  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802BCA88  38 63 00 0C */	addi r3, r3, 0xc
 /* 802BCA8C  4B FF F8 7D */	bl initVolumeDist__19Z2Audience3DSettingFv
 lbl_802BCA90:
@@ -140,7 +140,7 @@ lbl_802BCAAC:
 /* 802BCAB4  88 1B 00 70 */	lbz r0, 0x70(r27)
 /* 802BCAB8  28 00 00 00 */	cmplwi r0, 0
 /* 802BCABC  41 82 00 DC */	beq lbl_802BCB98
-/* 802BCAC0  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802BCAC0  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802BCAC4  38 63 00 0C */	addi r3, r3, 0xc
 /* 802BCAC8  C0 3B 00 64 */	lfs f1, 0x64(r27)
 /* 802BCACC  FC 40 08 90 */	fmr f2, f1
@@ -188,7 +188,7 @@ lbl_802BCAD8:
 /* 802BCB70  88 1B 00 70 */	lbz r0, 0x70(r27)
 /* 802BCB74  28 00 00 00 */	cmplwi r0, 0
 /* 802BCB78  41 82 00 20 */	beq lbl_802BCB98
-/* 802BCB7C  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802BCB7C  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802BCB80  38 63 00 0C */	addi r3, r3, 0xc
 /* 802BCB84  C0 1B 00 60 */	lfs f0, 0x60(r27)
 /* 802BCB88  C0 5B 00 64 */	lfs f2, 0x64(r27)

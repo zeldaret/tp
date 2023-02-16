@@ -19,11 +19,11 @@ lbl_802AEBA4:
 /* 802AEBB0  38 00 00 00 */	li r0, 0
 /* 802AEBB4  98 1F 00 18 */	stb r0, 0x18(r31)
 lbl_802AEBB8:
-/* 802AEBB8  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802AEBB8  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802AEBBC  38 A1 00 08 */	addi r5, r1, 8
 /* 802AEBC0  38 C0 00 00 */	li r6, 0
 /* 802AEBC4  48 00 ED 69 */	bl convertAbsToRel__10Z2AudienceFR3VecP3Veci
-/* 802AEBC8  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802AEBC8  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802AEBCC  38 81 00 08 */	addi r4, r1, 8
 /* 802AEBD0  C0 3F 00 00 */	lfs f1, 0(r31)
 /* 802AEBD4  38 A0 00 00 */	li r5, 0
@@ -36,12 +36,12 @@ lbl_802AEBB8:
 /* 802AEBF0  88 7F 00 18 */	lbz r3, 0x18(r31)
 /* 802AEBF4  48 00 00 A4 */	b lbl_802AEC98
 lbl_802AEBF8:
-/* 802AEBF8  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802AEBF8  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802AEBFC  38 81 00 08 */	addi r4, r1, 8
 /* 802AEC00  38 A0 00 00 */	li r5, 0
 /* 802AEC04  48 00 EE 41 */	bl calcRelPosPan__10Z2AudienceFRC3Veci
 /* 802AEC08  FF E0 08 90 */	fmr f31, f1
-/* 802AEC0C  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802AEC0C  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802AEC10  38 81 00 08 */	addi r4, r1, 8
 /* 802AEC14  38 A0 00 00 */	li r5, 0
 /* 802AEC18  48 00 EF 2D */	bl calcRelPosDolby__10Z2AudienceFRC3Veci

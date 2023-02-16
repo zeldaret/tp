@@ -6,7 +6,7 @@ lbl_802A1914:
 /* 802A1924  7C 7F 1B 78 */	mr r31, r3
 /* 802A1928  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 802A192C  41 82 00 08 */	beq lbl_802A1934
-/* 802A1930  93 ED 85 E8 */	stw r31, data_80450B68(r13)
+/* 802A1930  93 ED 85 E8 */	stw r31, __OSReport_disable-0x30(r13)
 lbl_802A1934:
 /* 802A1934  3C 60 80 3D */	lis r3, __vt__14JAISeqDataUser@ha /* 0x803C9940@ha */
 /* 802A1938  38 03 99 40 */	addi r0, r3, __vt__14JAISeqDataUser@l /* 0x803C9940@l */

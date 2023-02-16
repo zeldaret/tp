@@ -1,19 +1,18 @@
 #ifndef Z2SOUNDINFO_H
 #define Z2SOUNDINFO_H
 
-#include "dolphin/types.h"
+#include "JSystem/JAudio2/JAISound.h"
+#include "JSystem/JAudio2/JASGadget.h"
 
-struct JAISeq {};
+struct JAISeq;
 
-struct JAISound {};
+struct JAISound;
 
-struct JAIStream {};
+struct JAIStream;
 
-struct JAISe {};
+struct JAISe;
 
-struct JAISoundID {};
-
-struct JAISoundInfo {
+struct JAISoundInfo : public JASGlobalInstance<JAISoundInfo> {
     virtual void getSoundType(JAISoundID) const = 0;
     virtual void getCategory(JAISoundID) const = 0;
     virtual void getPriority(JAISoundID) const = 0;
@@ -23,7 +22,7 @@ struct JAISoundInfo {
     virtual ~JAISoundInfo();
 };
 
-struct JAUSoundInfo {
+struct JAUSoundInfo : public JASGlobalInstance<JAUSoundInfo> {
     virtual void getAudibleSw(JAISoundID) const = 0;
     virtual void getBgmSeqResourceID(JAISoundID) const = 0;
 };
@@ -33,7 +32,7 @@ struct JAIStreamDataMgr {
     virtual ~JAIStreamDataMgr();
 };
 
-struct Z2SoundInfo /* : public JAISoundInfo, public JAUSoundInfo, public JAIStreamDataMgr */ {
+struct Z2SoundInfo /* : public JAISoundInfo, public JAUSoundInfo, public JAIStreamDataMgr */ : public JASGlobalInstance<Z2SoundInfo> {
     /* 802BB00C */ void getBgmSeqResourceID(JAISoundID) const;
     /* 802BB158 */ void getAudibleSwFull(JAISoundID);
     /* 802BB448 */ void getAudibleSw(JAISoundID) const;

@@ -2,9 +2,9 @@
 #define Z2STATUSMGR_H
 
 #include "dolphin/mtx/vec.h"
-#include "dolphin/types.h"
+#include "JSystem/JAudio2/JASGadget.h"
 
-struct Z2StatusMgr {
+struct Z2StatusMgr : public JASGlobalInstance<Z2StatusMgr> {
     Z2StatusMgr();
     void heartGaugeOn();
     void processHeartGaugeSound();
@@ -34,11 +34,15 @@ struct Z2StatusMgr {
     /* 0x0C */ bool mIsMenuIn;
     /* 0x10 */ u32 mCameraMapInfo;
     /* 0x14 */ u32 field_0x14;
-    /* 0x18 */ float mUnderwaterDepth;
-    /* 0x1C */ float mCameraInWaterDepthRatio;
+    /* 0x18 */ f32 mUnderwaterDepth;
+    /* 0x1C */ f32 mCameraInWaterDepthRatio;
     /* 0x20 */ Vec mPolygonPosition;
     /* 0x2C */ u8 mDemoStatus;
     /* 0x2D */ u8 mHeartGaugeOn;
 };  // Size = 0x30
+
+inline Z2StatusMgr* Z2GetStatusMgr() {
+    return JASGlobalInstance<Z2StatusMgr>::getInstance();
+}
 
 #endif /* Z2STATUSMGR_H */

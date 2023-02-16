@@ -14,11 +14,11 @@ lbl_802C3E68:
 /* 802C3E98  3C 04 FF FE */	addis r0, r4, 0xfffe
 /* 802C3E9C  28 00 00 BD */	cmplwi r0, 0xbd
 /* 802C3EA0  40 82 00 2C */	bne lbl_802C3ECC
-/* 802C3EA4  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802C3EA4  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802C3EA8  88 03 00 2C */	lbz r0, 0x2c(r3)
 /* 802C3EAC  28 00 00 02 */	cmplwi r0, 2
 /* 802C3EB0  41 82 00 14 */	beq lbl_802C3EC4
-/* 802C3EB4  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802C3EB4  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802C3EB8  88 03 00 1C */	lbz r0, 0x1c(r3)
 /* 802C3EBC  28 00 00 00 */	cmplwi r0, 0
 /* 802C3EC0  40 82 00 0C */	bne lbl_802C3ECC
@@ -224,7 +224,7 @@ lbl_802C41A0:
 /* 802C41B8  4B D7 08 05 */	bl isEventBit__11dSv_event_cCFUs
 /* 802C41BC  2C 03 00 00 */	cmpwi r3, 0
 /* 802C41C0  41 82 00 3C */	beq lbl_802C41FC
-/* 802C41C4  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802C41C4  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802C41C8  80 63 00 04 */	lwz r3, 4(r3)
 /* 802C41CC  28 03 00 00 */	cmplwi r3, 0
 /* 802C41D0  41 82 00 10 */	beq lbl_802C41E0
@@ -281,7 +281,7 @@ lbl_802C424C:
 /* 802C4288  48 00 00 44 */	b lbl_802C42CC
 lbl_802C428C:
 /* 802C428C  C0 25 00 60 */	lfs f1, 0x60(r5)
-/* 802C4290  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802C4290  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802C4294  88 03 00 2C */	lbz r0, 0x2c(r3)
 /* 802C4298  28 00 00 02 */	cmplwi r0, 2
 /* 802C429C  40 82 00 1C */	bne lbl_802C42B8

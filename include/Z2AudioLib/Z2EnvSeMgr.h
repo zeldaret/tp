@@ -1,10 +1,10 @@
 #ifndef Z2ENVSEMGR_H
 #define Z2ENVSEMGR_H
 
+#include "JSystem/JAudio2/JASGadget.h"
 #include "Z2AudioLib/Z2Calc.h"
 #include "Z2AudioLib/Z2SeMgr.h"
 #include "dolphin/mtx/mtxvec.h"
-#include "dolphin/types.h"
 
 struct Z2EnvSeBase {
     /* 802C589C */ Z2EnvSeBase(Vec*);
@@ -43,7 +43,7 @@ struct Z2EnvSeDir : public Z2EnvSeBase {
     /* 0x10 */ Vec mPanDir;
 };  // Size: 0x1C
 
-struct Z2EnvSeMgr {
+struct Z2EnvSeMgr : public JASGlobalInstance<Z2EnvSeMgr> {
     /* 802C611C */ Z2EnvSeMgr();
     /* 802C6540 */ ~Z2EnvSeMgr();
     /* 802C66B0 */ void framework();

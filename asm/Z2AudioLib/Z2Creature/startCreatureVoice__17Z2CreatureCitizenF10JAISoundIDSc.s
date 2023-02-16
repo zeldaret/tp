@@ -19,7 +19,7 @@ lbl_802C0F18:
 /* 802C0F18  88 1E 00 A2 */	lbz r0, 0xa2(r30)
 /* 802C0F1C  28 00 00 00 */	cmplwi r0, 0
 /* 802C0F20  40 82 00 14 */	bne lbl_802C0F34
-/* 802C0F24  80 6D 86 08 */	lwz r3, data_80450B88(r13)
+/* 802C0F24  80 6D 86 08 */	lwz r3, __OSReport_disable-0x10(r13)
 /* 802C0F28  4B FE AA 39 */	bl decrCrowdSize__7Z2SeMgrFv
 /* 802C0F2C  38 00 00 01 */	li r0, 1
 /* 802C0F30  98 1E 00 A2 */	stb r0, 0xa2(r30)

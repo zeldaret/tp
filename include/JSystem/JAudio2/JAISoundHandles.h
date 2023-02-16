@@ -32,7 +32,7 @@ public:
 class JAISoundHandles {
 public:
     JAISoundHandles(JAISoundHandle* pHandle, int param_1) {
-        *mSoundHandle = pHandle;
+        mSoundHandle = pHandle;
         numHandles_ = param_1;
     };
 
@@ -40,7 +40,7 @@ public:
     JAISoundHandle* getFreeHandle();
 
 private:
-    JAISoundHandle** mSoundHandle;
+    JAISoundHandle* mSoundHandle;
     int numHandles_;
 };
 

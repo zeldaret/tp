@@ -18,7 +18,7 @@ lbl_802BE4DC:
 /* 802BE4E0  40 81 00 08 */	ble lbl_802BE4E8
 /* 802BE4E4  3B C0 00 00 */	li r30, 0
 lbl_802BE4E8:
-/* 802BE4E8  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802BE4E8  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802BE4EC  83 E3 02 20 */	lwz r31, 0x220(r3)
 /* 802BE4F0  48 00 00 30 */	b lbl_802BE520
 lbl_802BE4F4:

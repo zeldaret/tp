@@ -4,7 +4,7 @@ lbl_802CBA88:
 /* 802CBA90  90 01 00 24 */	stw r0, 0x24(r1)
 /* 802CBA94  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 802CBA98  7C 7F 1B 78 */	mr r31, r3
-/* 802CBA9C  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802CBA9C  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802CBAA0  C0 02 C4 60 */	lfs f0, lit_3485(r2)
 /* 802CBAA4  D0 03 00 94 */	stfs f0, 0x94(r3)
 /* 802CBAA8  D0 03 00 98 */	stfs f0, 0x98(r3)
@@ -20,7 +20,7 @@ lbl_802CBA88:
 /* 802CBAD0  38 63 42 1C */	addi r3, r3, sWindStoneSound@l /* 0x8043421C@l */
 /* 802CBAD4  7C 03 00 2E */	lwzx r0, r3, r0
 /* 802CBAD8  90 01 00 08 */	stw r0, 8(r1)
-/* 802CBADC  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802CBADC  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802CBAE0  38 81 00 08 */	addi r4, r1, 8
 /* 802CBAE4  38 BF 00 08 */	addi r5, r31, 8
 /* 802CBAE8  38 C0 00 00 */	li r6, 0

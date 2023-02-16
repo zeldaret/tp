@@ -1,11 +1,11 @@
 #ifndef Z2SOUNDOBJMGR_H
 #define Z2SOUNDOBJMGR_H
 
+#include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "Z2AudioLib/Z2Creature.h"
-#include "dolphin/types.h"
 
-class Z2SoundObjMgr : protected JSUList<Z2CreatureEnemy> {
+class Z2SoundObjMgr : protected JSUList<Z2CreatureEnemy>, public JASGlobalInstance<Z2SoundObjMgr> {
 public:
     Z2SoundObjMgr();
     void setForceBattleArea(bool, u16, u16, u16);
@@ -35,5 +35,9 @@ private:
     /* 0x1B */ bool mTwilightBattle;
     /* 0x1C */ bool mForceBattle;
 };  // Size = 0x20
+
+inline Z2SoundObjMgr* Z2GetSoundObjMgr() {
+    return JASGlobalInstance<Z2SoundObjMgr>::getInstance();
+}
 
 #endif /* Z2SOUNDOBJMGR_H */

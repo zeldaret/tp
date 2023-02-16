@@ -164,9 +164,9 @@ extern "C" f32 DOLBY_BEHIND_DISTANCE_MAX__7Z2Param;
 extern "C" f32 DISTANCE_FX_PARAM__7Z2Param;
 extern "C" f32 SONIC_SPEED__7Z2Param;
 extern "C" extern u32 __float_epsilon;
-extern "C" extern u8 data_80450B44[4];
 extern "C" extern u8 data_80450B4C[4];
 extern "C" f32 MIN_DISTANCE_VOLUME__7Z2Param;
+extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:

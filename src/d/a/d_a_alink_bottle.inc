@@ -116,7 +116,7 @@ int daAlink_c::procBottleDrinkInit(u16 param_0) {
 
     u32 id = fopAcM_GetID(this);
     dCam_getBody()->StartEventCamera(0x12, id, "Type", 1, &field_0x3194, 0);
-    mCommonCounter = 0;
+    field_0x300c = 0;
     field_0x300e = 0;
     return 1;
 }
@@ -172,7 +172,7 @@ int daAlink_c::procBottleOpenInit(u16 param_0) {
 
     u32 id = fopAcM_GetID(this);
     dCam_getBody()->StartEventCamera(0x12, id, "Type", 1, &field_0x3194, 0);
-    mCommonCounter = 0;
+    field_0x300c = 0;
 
     field_0x27c8.initialize();
 

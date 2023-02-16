@@ -60,7 +60,7 @@ lbl_802BF708:
 /* 802BF734  48 00 01 5D */	bl func_802BF890
 /* 802BF738  7C 77 1B 78 */	mr r23, r3
 /* 802BF73C  92 E1 00 0C */	stw r23, 0xc(r1)
-/* 802BF740  80 6D 86 08 */	lwz r3, data_80450B88(r13)
+/* 802BF740  80 6D 86 08 */	lwz r3, __OSReport_disable-0x10(r13)
 /* 802BF744  38 81 00 0C */	addi r4, r1, 0xc
 /* 802BF748  4B FE EE 69 */	bl isSoundCulling__7Z2SeMgrF10JAISoundID
 /* 802BF74C  54 60 06 3F */	clrlwi. r0, r3, 0x18

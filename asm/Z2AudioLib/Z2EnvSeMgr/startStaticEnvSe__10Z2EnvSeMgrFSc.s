@@ -62,12 +62,12 @@ lbl_802C719C:
 /* 802C71B4  C0 1F 00 50 */	lfs f0, 0x50(r31)
 /* 802C71B8  FC 02 00 00 */	fcmpu cr0, f2, f0
 /* 802C71BC  41 82 00 2C */	beq lbl_802C71E8
-/* 802C71C0  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802C71C0  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802C71C4  38 9F 00 3C */	addi r4, r31, 0x3c
 /* 802C71C8  38 A1 00 78 */	addi r5, r1, 0x78
 /* 802C71CC  38 C0 00 00 */	li r6, 0
 /* 802C71D0  4B FF 67 5D */	bl convertAbsToRel__10Z2AudienceFR3VecP3Veci
-/* 802C71D4  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802C71D4  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802C71D8  38 81 00 78 */	addi r4, r1, 0x78
 /* 802C71DC  C0 3F 00 50 */	lfs f1, 0x50(r31)
 /* 802C71E0  38 A0 00 00 */	li r5, 0
@@ -80,7 +80,7 @@ lbl_802C71E8:
 /* 802C71F8  C0 1F 00 4C */	lfs f0, 0x4c(r31)
 /* 802C71FC  FF 80 00 90 */	fmr f28, f0
 /* 802C7200  FF 60 00 90 */	fmr f27, f0
-/* 802C7204  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802C7204  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802C7208  88 83 00 00 */	lbz r4, 0(r3)
 /* 802C720C  88 1F 00 38 */	lbz r0, 0x38(r31)
 /* 802C7210  28 00 00 0B */	cmplwi r0, 0xb
@@ -380,7 +380,7 @@ lbl_802C7668:
 /* 802C7684  C0 02 C3 44 */	lfs f0, lit_3502(r2)
 /* 802C7688  EC 00 08 28 */	fsubs f0, f0, f1
 /* 802C768C  EF BD 00 32 */	fmuls f29, f29, f0
-/* 802C7690  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802C7690  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802C7694  88 03 00 1E */	lbz r0, 0x1e(r3)
 /* 802C7698  28 00 00 00 */	cmplwi r0, 0
 /* 802C769C  41 82 00 10 */	beq lbl_802C76AC
@@ -440,7 +440,7 @@ lbl_802C7710:
 /* 802C7768  80 1F 00 04 */	lwz r0, 4(r31)
 /* 802C776C  28 00 00 00 */	cmplwi r0, 0
 /* 802C7770  41 82 00 1C */	beq lbl_802C778C
-/* 802C7774  80 6D 85 F4 */	lwz r3, data_80450B74(r13)
+/* 802C7774  80 6D 85 F4 */	lwz r3, __OSReport_disable-0x24(r13)
 /* 802C7778  38 A0 00 06 */	li r5, 6
 /* 802C777C  88 DF 01 41 */	lbz r6, 0x141(r31)
 /* 802C7780  7C C6 07 74 */	extsb r6, r6
@@ -450,7 +450,7 @@ lbl_802C778C:
 /* 802C778C  80 1C 00 00 */	lwz r0, 0(r28)
 /* 802C7790  28 00 00 00 */	cmplwi r0, 0
 /* 802C7794  41 82 00 20 */	beq lbl_802C77B4
-/* 802C7798  80 6D 85 F4 */	lwz r3, data_80450B74(r13)
+/* 802C7798  80 6D 85 F4 */	lwz r3, __OSReport_disable-0x24(r13)
 /* 802C779C  7F 84 E3 78 */	mr r4, r28
 /* 802C77A0  38 A0 00 06 */	li r5, 6
 /* 802C77A4  88 DF 01 41 */	lbz r6, 0x141(r31)

@@ -9,11 +9,11 @@ lbl_802A2F88:
 /* 802A2FA4  38 03 99 C8 */	addi r0, r3, __vt__15JAISoundStarter@l /* 0x803C99C8@l */
 /* 802A2FA8  90 1F 00 00 */	stw r0, 0(r31)
 /* 802A2FAC  41 82 00 18 */	beq lbl_802A2FC4
-/* 802A2FB0  80 0D 85 F8 */	lwz r0, data_80450B78(r13)
+/* 802A2FB0  80 0D 85 F8 */	lwz r0, __OSReport_disable-0x20(r13)
 /* 802A2FB4  7C 00 F8 40 */	cmplw r0, r31
 /* 802A2FB8  40 82 00 0C */	bne lbl_802A2FC4
 /* 802A2FBC  38 00 00 00 */	li r0, 0
-/* 802A2FC0  90 0D 85 F8 */	stw r0, data_80450B78(r13)
+/* 802A2FC0  90 0D 85 F8 */	stw r0, __OSReport_disable-0x20(r13)
 lbl_802A2FC4:
 /* 802A2FC4  7C 80 07 35 */	extsh. r0, r4
 /* 802A2FC8  40 81 00 0C */	ble lbl_802A2FD4

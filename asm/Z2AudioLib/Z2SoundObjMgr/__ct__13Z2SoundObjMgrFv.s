@@ -4,7 +4,7 @@ lbl_802BF920:
 /* 802BF928  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802BF92C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802BF930  7C 7F 1B 78 */	mr r31, r3
-/* 802BF934  93 ED 85 C8 */	stw r31, data_80450B48(r13)
+/* 802BF934  93 ED 85 C8 */	stw r31, __OSReport_disable-0x50(r13)
 /* 802BF938  48 01 C5 DD */	bl initiate__10JSUPtrListFv
 /* 802BF93C  38 00 00 00 */	li r0, 0
 /* 802BF940  98 1F 00 19 */	stb r0, 0x19(r31)

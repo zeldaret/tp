@@ -11,18 +11,6 @@
 #include "m_Do/m_Do_dvd_thread.h"
 
 //
-// Types:
-//
-
-struct JAIStreamDataMgr {
-    /* 802A3AD8 */ ~JAIStreamDataMgr();
-};
-
-struct JAISoundInfo {
-    /* 802A2D50 */ ~JAISoundInfo();
-};
-
-//
 // Forward References:
 //
 
@@ -87,19 +75,6 @@ extern "C" extern void* __vt__14Z2SoundStarter[5 + 1 /* padding */];
 extern "C" extern void* __vt__11Z2SoundInfo[20];
 extern "C" extern void* __vt__15Z2SpeechStarter[5];
 extern "C" extern void* __vt__10Z2AudioMgr[3];
-extern "C" extern u8 data_80450B40[4];
-extern "C" extern u8 data_80450B48[4];
-extern "C" extern u8 data_80450B4C[4];
-extern "C" extern u8 data_80450B50[4];
-extern "C" extern u8 data_80450B64[4];
-extern "C" extern u8 data_80450B68[4];
-extern "C" extern u8 data_80450B6C[4];
-extern "C" extern u8 data_80450B70[4];
-extern "C" extern u8 data_80450B74[4];
-extern "C" extern u8 data_80450B7C[4];
-extern "C" extern u8 data_80450B80[4];
-extern "C" extern u8 data_80450B84[4];
-extern "C" extern u8 data_80450B88[4];
 extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];

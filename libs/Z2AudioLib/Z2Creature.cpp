@@ -238,6 +238,7 @@ extern "C" extern u8 data_80450B84[4];
 extern "C" extern u8 data_80450B88[4];
 extern "C" extern u8 struct_80451358[8];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:

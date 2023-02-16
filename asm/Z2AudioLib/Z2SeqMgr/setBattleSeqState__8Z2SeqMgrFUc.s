@@ -9,7 +9,7 @@ lbl_802B4844:
 /* 802B4860  88 03 00 D0 */	lbz r0, 0xd0(r3)
 /* 802B4864  54 00 E7 FF */	rlwinm. r0, r0, 0x1c, 0x1f, 0x1f
 /* 802B4868  40 82 02 7C */	bne lbl_802B4AE4
-/* 802B486C  80 8D 86 00 */	lwz r4, data_80450B80(r13)
+/* 802B486C  80 8D 86 00 */	lwz r4, __OSReport_disable-0x18(r13)
 /* 802B4870  88 04 00 1D */	lbz r0, 0x1d(r4)
 /* 802B4874  28 00 00 00 */	cmplwi r0, 0
 /* 802B4878  41 82 02 6C */	beq lbl_802B4AE4
@@ -48,7 +48,7 @@ lbl_802B48E8:
 /* 802B48E8  3C 03 FF 00 */	addis r0, r3, 0xff00
 /* 802B48EC  28 00 00 00 */	cmplwi r0, 0
 /* 802B48F0  40 82 00 14 */	bne lbl_802B4904
-/* 802B48F4  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B48F4  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B48F8  48 00 B8 ED */	bl isTwilightBattle__13Z2SoundObjMgrFv
 /* 802B48FC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802B4900  41 82 01 E4 */	beq lbl_802B4AE4
@@ -64,7 +64,7 @@ lbl_802B4920:
 /* 802B4920  88 1E 00 BF */	lbz r0, 0xbf(r30)
 /* 802B4924  28 00 00 01 */	cmplwi r0, 1
 /* 802B4928  40 82 00 BC */	bne lbl_802B49E4
-/* 802B492C  80 6D 85 F4 */	lwz r3, data_80450B74(r13)
+/* 802B492C  80 6D 85 F4 */	lwz r3, __OSReport_disable-0x24(r13)
 /* 802B4930  38 9E 00 04 */	addi r4, r30, 4
 /* 802B4934  38 A0 00 09 */	li r5, 9
 /* 802B4938  38 C0 00 01 */	li r6, 1
@@ -160,7 +160,7 @@ lbl_802B4A6C:
 /* 802B4A98  88 1E 00 BF */	lbz r0, 0xbf(r30)
 /* 802B4A9C  28 00 00 01 */	cmplwi r0, 1
 /* 802B4AA0  40 82 00 20 */	bne lbl_802B4AC0
-/* 802B4AA4  80 6D 85 F4 */	lwz r3, data_80450B74(r13)
+/* 802B4AA4  80 6D 85 F4 */	lwz r3, __OSReport_disable-0x24(r13)
 /* 802B4AA8  38 9E 00 04 */	addi r4, r30, 4
 /* 802B4AAC  38 A0 00 09 */	li r5, 9
 /* 802B4AB0  38 C0 00 03 */	li r6, 3
@@ -170,7 +170,7 @@ lbl_802B4A6C:
 lbl_802B4AC0:
 /* 802B4AC0  28 00 00 02 */	cmplwi r0, 2
 /* 802B4AC4  40 82 00 1C */	bne lbl_802B4AE0
-/* 802B4AC8  80 6D 85 F4 */	lwz r3, data_80450B74(r13)
+/* 802B4AC8  80 6D 85 F4 */	lwz r3, __OSReport_disable-0x24(r13)
 /* 802B4ACC  38 9E 00 04 */	addi r4, r30, 4
 /* 802B4AD0  38 A0 00 09 */	li r5, 9
 /* 802B4AD4  38 C0 00 02 */	li r6, 2

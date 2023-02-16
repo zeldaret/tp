@@ -16,7 +16,7 @@ lbl_802BE090:
 /* 802BE0A4  41 82 00 34 */	beq lbl_802BE0D8
 /* 802BE0A8  80 03 00 18 */	lwz r0, 0x18(r3)
 /* 802BE0AC  90 01 00 08 */	stw r0, 8(r1)
-/* 802BE0B0  80 6D 85 CC */	lwz r3, data_80450B4C(r13)
+/* 802BE0B0  80 6D 85 CC */	lwz r3, __OSReport_disable-0x4C(r13)
 /* 802BE0B4  38 81 00 08 */	addi r4, r1, 8
 /* 802BE0B8  4B FF DA 11 */	bl getSwBit__11Z2SoundInfoCF10JAISoundID
 /* 802BE0BC  54 60 04 21 */	rlwinm. r0, r3, 0, 0x10, 0x10

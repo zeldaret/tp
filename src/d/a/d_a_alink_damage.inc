@@ -217,7 +217,7 @@ void daAlink_c::setLandDamagePoint(int i_dmgAmount) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getDamageVec(dCcD_GObjInf* param_0) {
+asm Vec* daAlink_c::getDamageVec(dCcD_GObjInf* param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/getDamageVec__9daAlink_cFP12dCcD_GObjInf.s"
 }
@@ -548,7 +548,7 @@ asm int daAlink_c::procDkCaught() {
 void daAlink_c::setScreamWaitAnime() {
     setSingleAnimeBase(ANM_WAIT_F);
     voiceStart(Z2SE_AL_V_TERRORED);
-    mCommonCounter = 1;
+    field_0x300c = 1;
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     dComIfGp_getVibration().StartQuake(5, 1, cXyz(tmp_0, lit_6040, tmp_0));
@@ -562,7 +562,7 @@ int daAlink_c::procScreamWaitInit() {
         setScreamWaitAnime();
     } else {
         setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed, daAlinkHIO_basic_c0::m.mAnmBlendFactor);
-        mCommonCounter = 0;
+        field_0x300c = 0;
     }
 
     current.angle.y = shape_angle.y;
@@ -576,7 +576,7 @@ int daAlink_c::procScreamWait() {
 
     if (!i_checkEndResetFlg1(ERFLG1_UNK_1)) {
         checkNextAction(0);
-    } else if (mCommonCounter == 0 && i_checkEndResetFlg1(ERFLG1_UNK_2)) {
+    } else if (field_0x300c == 0 && i_checkEndResetFlg1(ERFLG1_UNK_2)) {
         setScreamWaitAnime();
     }
 
@@ -682,7 +682,7 @@ int daAlink_c::procCoSwimFreezeReturnInit() {
 
     u32 id = fopAcM_GetID(this);
     dCam_getBody()->StartEventCamera(9, id, "Type", 1, &field_0x3194, 0);
-    mCommonCounter = 0x2D;
+    field_0x300c = 0x2D;
     return 1;
 }
 

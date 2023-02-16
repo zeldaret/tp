@@ -2,9 +2,9 @@
 #define Z2AUDIENCE_H
 
 #include "JSystem/JAudio2/JAIAudience.h"
+#include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JGeometry.h"
 #include "dolphin/mtx/mtxvec.h"
-#include "dolphin/types.h"
 
 struct Z2Audible;
 
@@ -39,6 +39,8 @@ struct Z2SpotMic {
     /* 802BCF5C */ void calcMicDist(Z2Audible*);
     /* 802BCFE4 */ void calcMicPriority(f32);
     /* 802BD03C */ void calcMicVolume(f32, int, f32);
+
+    void setPosPtr(Vec* i_posPtr) { mPosPtr = i_posPtr; }
 
     /* 0x00 */ f32 field_0x0;
     /* 0x04 */ f32 field_0x4;
@@ -101,7 +103,7 @@ struct Z2AudibleChannel {
     /* 802BBE74 */ Z2AudibleChannel();
 };
 
-struct Z2Audience : public JAIAudience {
+struct Z2Audience : public JAIAudience, public JASGlobalInstance<Z2Audience> {
     /* 802BD130 */ Z2Audience();
     /* 802BD2DC */ void setAudioCamera(f32 (*)[4], Vec&, Vec&, f32, f32, bool, int, bool);
     /* 802BD704 */ void calcOffMicSound(f32);
@@ -126,6 +128,8 @@ struct Z2Audience : public JAIAudience {
     /* 802BD5B8 */ virtual u32 calcPriority(JAIAudible*);
     /* 802BD71C */ virtual void mixChannelOut(JASSoundParams const&, JAIAudible*, int);
 
+    Z2SpotMic* getLinkMic() { return mLinkMic; }
+
     /* 0x004 */ f32 field_0x4;
     /* 0x008 */ u8 field_0x8;
     /* 0x00C */ Z2Audience3DSetting mSetting;
@@ -136,5 +140,9 @@ struct Z2Audience : public JAIAudience {
     /* 0x1D8 */ u8 field_0x1d8[4];
     /* 0x1DC */ bool mUsingOffMicVol;
 };  // Size: 0x1E0
+
+inline Z2Audience* Z2GetAudience() {
+    return JASGlobalInstance<Z2Audience>::getInstance();
+}
 
 #endif /* Z2AUDIENCE_H */

@@ -21,11 +21,11 @@ lbl_802A08FC:
 /* 802A0948  48 00 0E 2D */	bl __dt__14JAISeqDataUserFv
 /* 802A094C  28 1E 00 00 */	cmplwi r30, 0
 /* 802A0950  41 82 00 18 */	beq lbl_802A0968
-/* 802A0954  80 0D 85 EC */	lwz r0, data_80450B6C(r13)
+/* 802A0954  80 0D 85 EC */	lwz r0, __OSReport_disable-0x2C(r13)
 /* 802A0958  7C 00 F0 40 */	cmplw r0, r30
 /* 802A095C  40 82 00 0C */	bne lbl_802A0968
 /* 802A0960  38 00 00 00 */	li r0, 0
-/* 802A0964  90 0D 85 EC */	stw r0, data_80450B6C(r13)
+/* 802A0964  90 0D 85 EC */	stw r0, __OSReport_disable-0x2C(r13)
 lbl_802A0968:
 /* 802A0968  7F E0 07 35 */	extsh. r0, r31
 /* 802A096C  40 81 00 0C */	ble lbl_802A0978

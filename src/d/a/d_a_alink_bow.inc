@@ -80,14 +80,14 @@ cXyz* daAlink_c::checkBowCameraArrowPosP(s16* param_0, s16* param_1) {
         var_28 = shape_angle.y;
     }
 
-    var_28 += mBodyAngleY;
+    var_28 += mBodyAngle.y;
 
     mDoMtx_stack_c::transS(field_0x3834);
     concatMagneBootMtx();
-    mDoMtx_stack_c::ZXYrotM(mBodyAngleX, var_28, 0);
+    mDoMtx_stack_c::ZXYrotM(mBodyAngle.x, var_28, 0);
     mDoMtx_stack_c::multVec(&localPos, &field_0x37e0);
 
-    *param_0 = mBodyAngleX;
+    *param_0 = mBodyAngle.x;
     *param_1 = var_28;
     return &field_0x37e0;
 }
@@ -347,7 +347,7 @@ int daAlink_c::procBowMoveInit() {
     }
 
     setBlendAtnMoveAnime(daAlinkHIO_bow_c0::m.mStartInterpolation);
-    mCommonCounter = 0;
+    field_0x300c = 0;
     setBowOrSlingStatus();
     return 1;
 }
@@ -356,11 +356,11 @@ int daAlink_c::procBowMoveInit() {
 int daAlink_c::procBowMove() {
     cancelBowMove();
 
-    if (mFastShotTime == 0 && mCommonCounter != 0 && checkBowWaitAnime() && !itemButton()) {
+    if (mFastShotTime == 0 && field_0x300c != 0 && checkBowWaitAnime() && !itemButton()) {
         resetUpperAnime(UPPER_2, lit_6041);
     }
 
-    mCommonCounter = 1;
+    field_0x300c = 1;
     i_onEndResetFlg0(ERFLG0_UNK_8000000);
 
     if (!checkNextAction(0)) {

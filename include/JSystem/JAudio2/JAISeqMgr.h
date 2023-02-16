@@ -4,12 +4,12 @@
 #include "JSystem/JAudio2/JAIAudience.h"
 #include "JSystem/JAudio2/JAISeqDataMgr.h"
 #include "JSystem/JAudio2/JAISound.h"
+#include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "dolphin/types.h"
 
 struct JAISeq;
 
-class JAISeqMgr : public JAISeqDataUser {
+class JAISeqMgr : public JAISeqDataUser, public JASGlobalInstance<JAISeqMgr> {
 public:
     /* 802A1914 */ JAISeqMgr(bool);
     /* 802A1A08 */ void freeDeadSeq_();

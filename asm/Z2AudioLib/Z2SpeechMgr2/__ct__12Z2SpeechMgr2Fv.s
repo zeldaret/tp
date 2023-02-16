@@ -4,7 +4,7 @@ lbl_802CBC60:
 /* 802CBC68  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802CBC6C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802CBC70  7C 7F 1B 78 */	mr r31, r3
-/* 802CBC74  93 ED 85 F0 */	stw r31, data_80450B70(r13)
+/* 802CBC74  93 ED 85 F0 */	stw r31, __OSReport_disable-0x28(r13)
 /* 802CBC78  38 00 00 00 */	li r0, 0
 /* 802CBC7C  90 03 00 00 */	stw r0, 0(r3)
 /* 802CBC80  90 03 00 04 */	stw r0, 4(r3)

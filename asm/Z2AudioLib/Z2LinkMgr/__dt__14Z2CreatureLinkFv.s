@@ -41,11 +41,11 @@ lbl_802C3564:
 /* 802C3598  41 82 00 08 */	beq lbl_802C35A0
 /* 802C359C  38 63 FF FC */	addi r3, r3, -4
 lbl_802C35A0:
-/* 802C35A0  80 0D 85 F4 */	lwz r0, data_80450B74(r13)
+/* 802C35A0  80 0D 85 F4 */	lwz r0, __OSReport_disable-0x24(r13)
 /* 802C35A4  7C 00 18 40 */	cmplw r0, r3
 /* 802C35A8  40 82 00 0C */	bne lbl_802C35B4
 /* 802C35AC  38 00 00 00 */	li r0, 0
-/* 802C35B0  90 0D 85 F4 */	stw r0, data_80450B74(r13)
+/* 802C35B0  90 0D 85 F4 */	stw r0, __OSReport_disable-0x24(r13)
 lbl_802C35B4:
 /* 802C35B4  38 7F 00 90 */	addi r3, r31, 0x90
 /* 802C35B8  38 80 00 00 */	li r4, 0

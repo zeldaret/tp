@@ -43,7 +43,7 @@ lbl_802AA6B0:
 /* 802AA754  50 60 36 72 */	rlwimi r0, r3, 6, 0x19, 0x19
 /* 802AA758  98 1E 07 9C */	stb r0, 0x79c(r30)
 /* 802AA75C  41 82 00 38 */	beq lbl_802AA794
-/* 802AA760  80 6D 86 08 */	lwz r3, data_80450B88(r13)
+/* 802AA760  80 6D 86 08 */	lwz r3, __OSReport_disable-0x10(r13)
 /* 802AA764  C0 22 BE 44 */	lfs f1, lit_3905(r2)
 /* 802AA768  38 80 00 0A */	li r4, 0xa
 /* 802AA76C  48 00 32 89 */	bl seMoveVolumeAll__7Z2SeMgrFfUl
@@ -57,7 +57,7 @@ lbl_802AA6B0:
 /* 802AA78C  4B FF 86 29 */	bl moveVolume__18JAISoundParamsMoveFfUl
 /* 802AA790  48 00 00 34 */	b lbl_802AA7C4
 lbl_802AA794:
-/* 802AA794  80 6D 86 08 */	lwz r3, data_80450B88(r13)
+/* 802AA794  80 6D 86 08 */	lwz r3, __OSReport_disable-0x10(r13)
 /* 802AA798  C0 22 BE 38 */	lfs f1, lit_3688(r2)
 /* 802AA79C  38 80 00 0A */	li r4, 0xa
 /* 802AA7A0  48 00 32 55 */	bl seMoveVolumeAll__7Z2SeMgrFfUl

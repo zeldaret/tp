@@ -14,7 +14,7 @@ lbl_8029CCDC:
 /* 8029CD0C  41 82 00 08 */	beq lbl_8029CD14
 /* 8029CD10  38 63 FF 84 */	addi r3, r3, -124
 lbl_8029CD14:
-/* 8029CD14  90 6D 86 0C */	stw r3, data_80450B8C(r13)
+/* 8029CD14  90 6D 86 0C */	stw r3, __OSReport_disable-0xC(r13)
 /* 8029CD18  3C 60 80 3C */	lis r3, __vt__14JASAudioThread@ha /* 0x803C78E0@ha */
 /* 8029CD1C  38 03 78 E0 */	addi r0, r3, __vt__14JASAudioThread@l /* 0x803C78E0@l */
 /* 8029CD20  90 1F 00 00 */	stw r0, 0(r31)

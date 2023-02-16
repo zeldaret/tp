@@ -109,11 +109,11 @@ extern "C" void DSPCheckMailFromDSP();
 extern "C" void DSPReadMailFromDSP();
 extern "C" void __register_global_object();
 extern "C" extern u8 data_80431B34[16 + 4 /* padding */];
-extern "C" extern u8 data_80450B8C[4];
 extern "C" extern u8 JASDram[4];
 extern "C" extern u8 struct_80451260[8];
 extern "C" u8 sSystemHeap__7JKRHeap[4];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];
+extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:

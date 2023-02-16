@@ -9,7 +9,7 @@ lbl_802B421C:
 /* 802B4238  88 83 00 D0 */	lbz r4, 0xd0(r3)
 /* 802B423C  54 80 E7 FF */	rlwinm. r0, r4, 0x1c, 0x1f, 0x1f
 /* 802B4240  40 82 01 78 */	bne lbl_802B43B8
-/* 802B4244  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802B4244  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802B4248  88 03 00 1D */	lbz r0, 0x1d(r3)
 /* 802B424C  28 00 00 00 */	cmplwi r0, 0
 /* 802B4250  41 82 01 68 */	beq lbl_802B43B8

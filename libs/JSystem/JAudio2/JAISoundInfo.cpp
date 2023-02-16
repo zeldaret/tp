@@ -19,7 +19,7 @@ extern "C" void __dt__12JAISoundInfoFv();
 //
 
 extern "C" void __dl__FPv();
-extern "C" extern u8 data_80450B5C[4];
+extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:

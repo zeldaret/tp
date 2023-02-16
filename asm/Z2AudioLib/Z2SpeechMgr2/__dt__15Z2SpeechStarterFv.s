@@ -20,11 +20,11 @@ lbl_802CBCEC:
 /* 802CBD34  41 82 00 08 */	beq lbl_802CBD3C
 /* 802CBD38  38 63 FF FC */	addi r3, r3, -4
 lbl_802CBD3C:
-/* 802CBD3C  80 0D 85 F4 */	lwz r0, data_80450B74(r13)
+/* 802CBD3C  80 0D 85 F4 */	lwz r0, __OSReport_disable-0x24(r13)
 /* 802CBD40  7C 00 18 40 */	cmplw r0, r3
 /* 802CBD44  40 82 00 0C */	bne lbl_802CBD50
 /* 802CBD48  38 00 00 00 */	li r0, 0
-/* 802CBD4C  90 0D 85 F4 */	stw r0, data_80450B74(r13)
+/* 802CBD4C  90 0D 85 F4 */	stw r0, __OSReport_disable-0x24(r13)
 lbl_802CBD50:
 /* 802CBD50  7F C3 F3 78 */	mr r3, r30
 /* 802CBD54  38 80 00 00 */	li r4, 0

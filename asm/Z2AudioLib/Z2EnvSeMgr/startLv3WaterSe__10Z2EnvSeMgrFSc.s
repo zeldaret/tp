@@ -12,7 +12,7 @@ lbl_802CA794:
 /* 802CA7BC  93 C1 00 48 */	stw r30, 0x48(r1)
 /* 802CA7C0  7C 7E 1B 78 */	mr r30, r3
 /* 802CA7C4  7C 9F 23 78 */	mr r31, r4
-/* 802CA7C8  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802CA7C8  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802CA7CC  80 03 00 04 */	lwz r0, 4(r3)
 /* 802CA7D0  2C 00 00 2E */	cmpwi r0, 0x2e
 /* 802CA7D4  40 82 00 18 */	bne lbl_802CA7EC

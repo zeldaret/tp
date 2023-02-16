@@ -11,7 +11,7 @@ lbl_802B6788:
 /* 802B67AC  FC 02 F8 00 */	fcmpu cr0, f2, f31
 /* 802B67B0  40 82 00 18 */	bne lbl_802B67C8
 /* 802B67B4  D0 5F 00 1C */	stfs f2, 0x1c(r31)
-/* 802B67B8  80 6D 85 C0 */	lwz r3, data_80450B40(r13)
+/* 802B67B8  80 6D 85 C0 */	lwz r3, __OSReport_disable-0x58(r13)
 /* 802B67BC  38 80 00 00 */	li r4, 0
 /* 802B67C0  48 00 46 89 */	bl setUnderWaterFx__11Z2FxLineMgrFb
 /* 802B67C4  48 00 00 5C */	b lbl_802B6820
@@ -37,7 +37,7 @@ lbl_802B67FC:
 /* 802B680C  4B FF 2E E9 */	bl getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign
 /* 802B6810  D0 3F 00 1C */	stfs f1, 0x1c(r31)
 lbl_802B6814:
-/* 802B6814  80 6D 85 C0 */	lwz r3, data_80450B40(r13)
+/* 802B6814  80 6D 85 C0 */	lwz r3, __OSReport_disable-0x58(r13)
 /* 802B6818  38 80 00 01 */	li r4, 1
 /* 802B681C  48 00 46 2D */	bl setUnderWaterFx__11Z2FxLineMgrFb
 lbl_802B6820:

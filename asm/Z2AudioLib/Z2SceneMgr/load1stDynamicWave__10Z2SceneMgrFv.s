@@ -6,7 +6,7 @@ lbl_802B9D40:
 /* 802B9D50  7C 7F 1B 78 */	mr r31, r3
 /* 802B9D54  38 00 00 00 */	li r0, 0
 /* 802B9D58  90 03 00 08 */	stw r0, 8(r3)
-/* 802B9D5C  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B9D5C  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B9D60  48 00 63 DD */	bl deleteEnemyAll__13Z2SoundObjMgrFv
 /* 802B9D64  7F E3 FB 78 */	mr r3, r31
 /* 802B9D68  38 80 00 00 */	li r4, 0

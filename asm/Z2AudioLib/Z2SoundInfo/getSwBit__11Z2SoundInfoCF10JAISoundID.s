@@ -7,13 +7,13 @@ lbl_802BBAC8:
 /* 802BBADC  7C 9E 23 78 */	mr r30, r4
 /* 802BBAE0  80 04 00 00 */	lwz r0, 0(r4)
 /* 802BBAE4  90 01 00 0C */	stw r0, 0xc(r1)
-/* 802BBAE8  80 6D 85 D8 */	lwz r3, data_80450B58(r13)
+/* 802BBAE8  80 6D 85 D8 */	lwz r3, __OSReport_disable-0x40(r13)
 /* 802BBAEC  38 81 00 0C */	addi r4, r1, 0xc
 /* 802BBAF0  4B FE B7 9D */	bl getData__13JAUSoundTableCF10JAISoundID
 /* 802BBAF4  7C 7F 1B 78 */	mr r31, r3
 /* 802BBAF8  80 1E 00 00 */	lwz r0, 0(r30)
 /* 802BBAFC  90 01 00 08 */	stw r0, 8(r1)
-/* 802BBB00  80 6D 85 D8 */	lwz r3, data_80450B58(r13)
+/* 802BBB00  80 6D 85 D8 */	lwz r3, __OSReport_disable-0x40(r13)
 /* 802BBB04  38 81 00 08 */	addi r4, r1, 8
 /* 802BBB08  4B FE B6 59 */	bl getTypeID__13JAUSoundTableCF10JAISoundID
 /* 802BBB0C  28 1F 00 00 */	cmplwi r31, 0

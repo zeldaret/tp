@@ -32,11 +32,11 @@ lbl_802C5114:
 /* 802C518C  41 82 00 08 */	beq lbl_802C5194
 /* 802C5190  38 63 FF FC */	addi r3, r3, -4
 lbl_802C5194:
-/* 802C5194  80 0D 85 F4 */	lwz r0, data_80450B74(r13)
+/* 802C5194  80 0D 85 F4 */	lwz r0, __OSReport_disable-0x24(r13)
 /* 802C5198  7C 00 18 40 */	cmplw r0, r3
 /* 802C519C  40 82 00 0C */	bne lbl_802C51A8
 /* 802C51A0  38 00 00 00 */	li r0, 0
-/* 802C51A4  90 0D 85 F4 */	stw r0, data_80450B74(r13)
+/* 802C51A4  90 0D 85 F4 */	stw r0, __OSReport_disable-0x24(r13)
 lbl_802C51A8:
 /* 802C51A8  38 7E 00 90 */	addi r3, r30, 0x90
 /* 802C51AC  38 80 00 00 */	li r4, 0

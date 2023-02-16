@@ -8,13 +8,13 @@ lbl_802AD9F4:
 /* 802ADA0C  93 C1 00 08 */	stw r30, 8(r1)
 /* 802ADA10  FF E0 08 90 */	fmr f31, f1
 /* 802ADA14  7C 9E 23 78 */	mr r30, r4
-/* 802ADA18  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802ADA18  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802ADA1C  88 03 00 2C */	lbz r0, 0x2c(r3)
 /* 802ADA20  28 00 00 0D */	cmplwi r0, 0xd
 /* 802ADA24  40 82 00 08 */	bne lbl_802ADA2C
 /* 802ADA28  C3 E2 BE 78 */	lfs f31, lit_4040(r2)
 lbl_802ADA2C:
-/* 802ADA2C  83 ED 85 E0 */	lwz r31, data_80450B60(r13)
+/* 802ADA2C  83 ED 85 E0 */	lwz r31, __OSReport_disable-0x38(r13)
 /* 802ADA30  38 7F 00 8C */	addi r3, r31, 0x8c
 /* 802ADA34  C0 0D 82 7C */	lfs f0, VOL_SE_LINK_VOICE_DEFAULT__7Z2Param(r13)
 /* 802ADA38  EC 20 07 F2 */	fmuls f1, f0, f31
@@ -55,7 +55,7 @@ lbl_802ADA2C:
 /* 802ADAC4  EC 20 07 F2 */	fmuls f1, f0, f31
 /* 802ADAC8  7F C4 F3 78 */	mr r4, r30
 /* 802ADACC  4B FF 52 E9 */	bl moveVolume__18JAISoundParamsMoveFfUl
-/* 802ADAD0  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802ADAD0  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802ADAD4  88 03 00 2C */	lbz r0, 0x2c(r3)
 /* 802ADAD8  28 00 00 0C */	cmplwi r0, 0xc
 /* 802ADADC  41 82 00 18 */	beq lbl_802ADAF4

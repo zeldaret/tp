@@ -20,11 +20,11 @@ lbl_802C5078:
 /* 802C50C0  41 82 00 08 */	beq lbl_802C50C8
 /* 802C50C4  38 63 FF FC */	addi r3, r3, -4
 lbl_802C50C8:
-/* 802C50C8  80 0D 85 F4 */	lwz r0, data_80450B74(r13)
+/* 802C50C8  80 0D 85 F4 */	lwz r0, __OSReport_disable-0x24(r13)
 /* 802C50CC  7C 00 18 40 */	cmplw r0, r3
 /* 802C50D0  40 82 00 0C */	bne lbl_802C50DC
 /* 802C50D4  38 00 00 00 */	li r0, 0
-/* 802C50D8  90 0D 85 F4 */	stw r0, data_80450B74(r13)
+/* 802C50D8  90 0D 85 F4 */	stw r0, __OSReport_disable-0x24(r13)
 lbl_802C50DC:
 /* 802C50DC  7F C3 F3 78 */	mr r3, r30
 /* 802C50E0  38 80 00 00 */	li r4, 0

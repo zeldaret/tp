@@ -5,7 +5,7 @@ lbl_802AD94C:
 /* 802AD958  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802AD95C  93 C1 00 08 */	stw r30, 8(r1)
 /* 802AD960  7C 9E 23 78 */	mr r30, r4
-/* 802AD964  83 ED 85 E0 */	lwz r31, data_80450B60(r13)
+/* 802AD964  83 ED 85 E0 */	lwz r31, __OSReport_disable-0x38(r13)
 /* 802AD968  38 7F 00 18 */	addi r3, r31, 0x18
 /* 802AD96C  4B FF 24 75 */	bl stop__16JAISeCategoryMgrFUl
 /* 802AD970  38 7F 00 84 */	addi r3, r31, 0x84

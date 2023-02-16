@@ -21,11 +21,11 @@ lbl_802A2130:
 /* 802A2138  4B FF F6 3D */	bl __dt__14JAISeqDataUserFv
 /* 802A213C  28 1E 00 00 */	cmplwi r30, 0
 /* 802A2140  41 82 00 18 */	beq lbl_802A2158
-/* 802A2144  80 0D 85 E8 */	lwz r0, data_80450B68(r13)
+/* 802A2144  80 0D 85 E8 */	lwz r0, __OSReport_disable-0x30(r13)
 /* 802A2148  7C 00 F0 40 */	cmplw r0, r30
 /* 802A214C  40 82 00 0C */	bne lbl_802A2158
 /* 802A2150  38 00 00 00 */	li r0, 0
-/* 802A2154  90 0D 85 E8 */	stw r0, data_80450B68(r13)
+/* 802A2154  90 0D 85 E8 */	stw r0, __OSReport_disable-0x30(r13)
 lbl_802A2158:
 /* 802A2158  7F E0 07 35 */	extsh. r0, r31
 /* 802A215C  40 81 00 0C */	ble lbl_802A2168

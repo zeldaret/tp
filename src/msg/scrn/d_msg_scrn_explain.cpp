@@ -129,7 +129,6 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern u8 g_MsgObject_HIO_c[1040];
-extern "C" extern u8 data_80450B70[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //

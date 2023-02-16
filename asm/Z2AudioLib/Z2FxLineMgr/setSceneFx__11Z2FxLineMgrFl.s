@@ -2,7 +2,7 @@ lbl_802BAEB8:
 /* 802BAEB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802BAEBC  7C 08 02 A6 */	mflr r0
 /* 802BAEC0  90 01 00 14 */	stw r0, 0x14(r1)
-/* 802BAEC4  80 AD 86 00 */	lwz r5, data_80450B80(r13)
+/* 802BAEC4  80 AD 86 00 */	lwz r5, __OSReport_disable-0x18(r13)
 /* 802BAEC8  88 05 00 1E */	lbz r0, 0x1e(r5)
 /* 802BAECC  28 00 00 00 */	cmplwi r0, 0
 /* 802BAED0  41 82 00 18 */	beq lbl_802BAEE8

@@ -4,20 +4,20 @@ lbl_802B545C:
 /* 802B5464  90 01 00 24 */	stw r0, 0x24(r1)
 /* 802B5468  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 802B546C  7C 7F 1B 78 */	mr r31, r3
-/* 802B5470  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802B5470  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802B5474  88 03 00 1D */	lbz r0, 0x1d(r3)
 /* 802B5478  28 00 00 00 */	cmplwi r0, 0
 /* 802B547C  41 82 00 DC */	beq lbl_802B5558
 /* 802B5480  88 1F 00 D0 */	lbz r0, 0xd0(r31)
 /* 802B5484  54 00 F7 FF */	rlwinm. r0, r0, 0x1e, 0x1f, 0x1f
 /* 802B5488  41 82 00 D0 */	beq lbl_802B5558
-/* 802B548C  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802B548C  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802B5490  48 00 12 A5 */	bl checkDayTime__11Z2StatusMgrFv
 /* 802B5494  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802B5498  41 82 00 8C */	beq lbl_802B5524
 /* 802B549C  3C 00 01 00 */	lis r0, 0x100
 /* 802B54A0  90 01 00 0C */	stw r0, 0xc(r1)
-/* 802B54A4  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802B54A4  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802B54A8  38 81 00 0C */	addi r4, r1, 0xc
 /* 802B54AC  7F E5 FB 78 */	mr r5, r31
 /* 802B54B0  38 C0 00 00 */	li r6, 0
@@ -54,7 +54,7 @@ lbl_802B5524:
 /* 802B5524  3C 60 01 00 */	lis r3, 0x0100 /* 0x01000001@ha */
 /* 802B5528  38 03 00 01 */	addi r0, r3, 0x0001 /* 0x01000001@l */
 /* 802B552C  90 01 00 08 */	stw r0, 8(r1)
-/* 802B5530  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802B5530  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802B5534  38 81 00 08 */	addi r4, r1, 8
 /* 802B5538  7F E5 FB 78 */	mr r5, r31
 /* 802B553C  38 C0 00 00 */	li r6, 0

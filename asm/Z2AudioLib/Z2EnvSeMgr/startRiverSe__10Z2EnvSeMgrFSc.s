@@ -16,11 +16,11 @@ lbl_802C8300:
 /* 802C8338  48 09 9E A5 */	bl _savegpr_29
 /* 802C833C  7C 7F 1B 78 */	mr r31, r3
 /* 802C8340  7C 9D 23 78 */	mr r29, r4
-/* 802C8344  80 AD 85 FC */	lwz r5, data_80450B7C(r13)
+/* 802C8344  80 AD 85 FC */	lwz r5, __OSReport_disable-0x1C(r13)
 /* 802C8348  80 05 00 10 */	lwz r0, 0x10(r5)
 /* 802C834C  28 00 00 06 */	cmplwi r0, 6
 /* 802C8350  40 82 00 5C */	bne lbl_802C83AC
-/* 802C8354  80 8D 86 00 */	lwz r4, data_80450B80(r13)
+/* 802C8354  80 8D 86 00 */	lwz r4, __OSReport_disable-0x18(r13)
 /* 802C8358  80 64 00 04 */	lwz r3, 4(r4)
 /* 802C835C  38 03 FF FB */	addi r0, r3, -5
 /* 802C8360  28 00 00 29 */	cmplwi r0, 0x29

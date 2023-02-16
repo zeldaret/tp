@@ -3,9 +3,9 @@
 
 #include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JAISoundStarter.h"
-#include "dolphin/types.h"
+#include "JSystem/JAudio2/JASGadget.h"
 
-struct Z2SoundStarter : public JAISoundStarter {
+struct Z2SoundStarter : public JAISoundStarter, public JASGlobalInstance<Z2SoundStarter> {
     Z2SoundStarter(bool);
     void setPortData(JAISoundHandle*, u32, u16, s8);
     void getPortData(JAISoundHandle*, u32, s8);

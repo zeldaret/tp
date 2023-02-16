@@ -148,7 +148,7 @@ int daAlink_c::procSpinnerReadyInit() {
     field_0x3588 = l_waitBaseAnime;
     field_0x33b0 = field_0x3588.y;
     field_0x34d4 = l_waitBaseAnime;
-    mCommonCounter = 8;
+    field_0x300c = 8;
 
     return 1;
 }
@@ -164,11 +164,11 @@ int daAlink_c::procSpinnerReady() {
     current.pos.x = spinner->current.pos.x;
     current.pos.z = spinner->current.pos.z;
 
-    mCommonCounter--;
+    field_0x300c--;
     field_0x2f99 = 15;
 
-    if ((mCommonCounter < 0 && current.pos.y <= spinner->getModelMtx()[1][3]) ||
-        mCommonCounter < -30) {
+    if ((field_0x300c < 0 && current.pos.y <= spinner->getModelMtx()[1][3]) ||
+        field_0x300c < -30) {
         current.pos.y = spinner->getModelMtx()[1][3];
         procSpinnerWaitInit();
     }
@@ -197,7 +197,7 @@ int daAlink_c::procSpinnerWaitInit() {
     speed.y = 0.0f;
     setSpecialGravity(0.0f, mMaxFallSpeed, 0);
     mNormalSpeed = 0.0f;
-    mCommonCounter = 0;
+    field_0x300c = 0;
 
     field_0x300e = shape_angle.y;
     field_0x3010 = 0;
@@ -237,9 +237,9 @@ int daAlink_c::procSpinnerWait() {
     }
 
     int itemSetBtn = checkItemSetButton(SPINNER);
-    if (mCommonCounter == 0) {
+    if (field_0x300c == 0) {
         if (!itemButton()) {
-            mCommonCounter = 1;
+            field_0x300c = 1;
             mNormalSpeed = getSpinnerRideSpeedF();
             spinner->setMove(mNormalSpeed, getSpinnerRideMoveTime());
         } else if (checkInputOnR()) {

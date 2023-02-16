@@ -2,9 +2,9 @@
 #define Z2SCENEMGR_H
 
 #include "JSystem/JAudio2/JAISound.h"
-#include "dolphin/types.h"
+#include "JSystem/JAudio2/JASGadget.h"
 
-class Z2SceneMgr {
+class Z2SceneMgr : public JASGlobalInstance<Z2SceneMgr> {
 public:
     Z2SceneMgr();
     void setInDarkness(bool);
@@ -54,5 +54,9 @@ private:
     /* 0x1D */ bool sceneExist;
     /* 0x1E */ bool inDarkness;
 };  // Size = 0x20
+
+inline Z2SceneMgr* Z2GetSceneMgr() {
+    return JASGlobalInstance<Z2SceneMgr>::getInstance();
+}
 
 #endif /* Z2SCENEMGR_H */

@@ -12,7 +12,7 @@ lbl_802BB8E0:
 /* 802BB908  48 00 02 41 */	bl getSoundInfo___11Z2SoundInfoCF10JAISoundIDP8JAISound
 /* 802BB90C  80 1B 00 00 */	lwz r0, 0(r27)
 /* 802BB910  90 01 00 0C */	stw r0, 0xc(r1)
-/* 802BB914  80 6D 85 D8 */	lwz r3, data_80450B58(r13)
+/* 802BB914  80 6D 85 D8 */	lwz r3, __OSReport_disable-0x40(r13)
 /* 802BB918  38 81 00 0C */	addi r4, r1, 0xc
 /* 802BB91C  4B FE B8 45 */	bl getTypeID__13JAUSoundTableCF10JAISoundID
 /* 802BB920  54 60 06 36 */	rlwinm r0, r3, 0, 0x18, 0x1b
@@ -22,7 +22,7 @@ lbl_802BB8E0:
 lbl_802BB930:
 /* 802BB930  80 1B 00 00 */	lwz r0, 0(r27)
 /* 802BB934  90 01 00 08 */	stw r0, 8(r1)
-/* 802BB938  80 6D 85 D8 */	lwz r3, data_80450B58(r13)
+/* 802BB938  80 6D 85 D8 */	lwz r3, __OSReport_disable-0x40(r13)
 /* 802BB93C  38 81 00 08 */	addi r4, r1, 8
 /* 802BB940  4B FE B9 4D */	bl getData__13JAUSoundTableCF10JAISoundID
 /* 802BB944  A3 A3 00 02 */	lhz r29, 2(r3)

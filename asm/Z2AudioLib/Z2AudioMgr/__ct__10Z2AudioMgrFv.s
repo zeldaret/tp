@@ -29,7 +29,7 @@ lbl_802CD248:
 /* 802CD2B4  38 80 00 01 */	li r4, 1
 /* 802CD2B8  4B FD 5A 7D */	bl __ct__12JAISoundInfoFb
 /* 802CD2BC  38 9E 00 04 */	addi r4, r30, 4
-/* 802CD2C0  90 8D 85 D0 */	stw r4, data_80450B50(r13)
+/* 802CD2C0  90 8D 85 D0 */	stw r4, __OSReport_disable-0x48(r13)
 /* 802CD2C4  3C 60 80 3A */	lis r3, __vt__12JAUSoundInfo@ha /* 0x803A2F4C@ha */
 /* 802CD2C8  38 03 2F 4C */	addi r0, r3, __vt__12JAUSoundInfo@l /* 0x803A2F4C@l */
 /* 802CD2CC  90 1E 00 04 */	stw r0, 4(r30)
@@ -40,7 +40,7 @@ lbl_802CD248:
 /* 802CD2E0  41 82 00 08 */	beq lbl_802CD2E8
 /* 802CD2E4  38 63 FF F4 */	addi r3, r3, -12
 lbl_802CD2E8:
-/* 802CD2E8  90 6D 85 CC */	stw r3, data_80450B4C(r13)
+/* 802CD2E8  90 6D 85 CC */	stw r3, __OSReport_disable-0x4C(r13)
 /* 802CD2EC  3C 60 80 3D */	lis r3, __vt__11Z2SoundInfo@ha /* 0x803CAC48@ha */
 /* 802CD2F0  38 63 AC 48 */	addi r3, r3, __vt__11Z2SoundInfo@l /* 0x803CAC48@l */
 /* 802CD2F4  90 7E 00 00 */	stw r3, 0(r30)

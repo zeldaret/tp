@@ -57,7 +57,7 @@ lbl_8023DB9C:
 /* 8023DBAC  88 1F 00 67 */	lbz r0, 0x67(r31)
 /* 8023DBB0  28 00 00 00 */	cmplwi r0, 0
 /* 8023DBB4  41 82 00 10 */	beq lbl_8023DBC4
-/* 8023DBB8  80 6D 85 F0 */	lwz r3, data_80450B70(r13)
+/* 8023DBB8  80 6D 85 F0 */	lwz r3, __OSReport_disable-0x28(r13)
 /* 8023DBBC  38 80 00 00 */	li r4, 0
 /* 8023DBC0  48 08 E3 A1 */	bl setTextCount__12Z2SpeechMgr2Fs
 lbl_8023DBC4:

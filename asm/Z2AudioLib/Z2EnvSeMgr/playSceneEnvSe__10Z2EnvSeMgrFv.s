@@ -11,7 +11,7 @@ lbl_802C6C1C:
 /* 802C6C40  88 1F 01 B8 */	lbz r0, 0x1b8(r31)
 /* 802C6C44  2C 00 00 64 */	cmpwi r0, 0x64
 /* 802C6C48  41 82 00 20 */	beq lbl_802C6C68
-/* 802C6C4C  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802C6C4C  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802C6C50  88 63 00 0C */	lbz r3, 0xc(r3)
 /* 802C6C54  7C 63 07 74 */	extsb r3, r3
 /* 802C6C58  4B D6 64 15 */	bl dComIfGp_getReverb__Fi

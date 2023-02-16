@@ -58,8 +58,8 @@ extern "C" extern void* __vt__10JSUIosBase[3];
 extern "C" extern void* __vt__20JSURandomInputStream[9];
 extern "C" extern void* __vt__14JSUInputStream[6 + 1 /* padding */];
 extern "C" extern void* __vt__20JSUMemoryInputStream[9 + 1 /* padding */];
-extern "C" extern u8 data_80450B40[4];
 extern "C" extern u8 data_80450B80[4];
+extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:

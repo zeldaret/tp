@@ -14,7 +14,7 @@ lbl_802AAAC4:
 /* 802AAAF4  48 00 00 88 */	b lbl_802AAB7C
 lbl_802AAAF8:
 /* 802AAAF8  90 61 00 10 */	stw r3, 0x10(r1)
-/* 802AAAFC  80 6D 85 CC */	lwz r3, data_80450B4C(r13)
+/* 802AAAFC  80 6D 85 CC */	lwz r3, __OSReport_disable-0x4C(r13)
 /* 802AAB00  38 81 00 10 */	addi r4, r1, 0x10
 /* 802AAB04  81 83 00 00 */	lwz r12, 0(r3)
 /* 802AAB08  81 8C 00 08 */	lwz r12, 8(r12)
@@ -24,7 +24,7 @@ lbl_802AAAF8:
 /* 802AAB18  40 82 00 60 */	bne lbl_802AAB78
 /* 802AAB1C  80 1F 00 00 */	lwz r0, 0(r31)
 /* 802AAB20  90 01 00 0C */	stw r0, 0xc(r1)
-/* 802AAB24  80 6D 85 CC */	lwz r3, data_80450B4C(r13)
+/* 802AAB24  80 6D 85 CC */	lwz r3, __OSReport_disable-0x4C(r13)
 /* 802AAB28  38 81 00 0C */	addi r4, r1, 0xc
 /* 802AAB2C  81 83 00 00 */	lwz r12, 0(r3)
 /* 802AAB30  81 8C 00 0C */	lwz r12, 0xc(r12)

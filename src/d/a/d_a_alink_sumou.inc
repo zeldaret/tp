@@ -46,7 +46,7 @@ int daAlink_c::procSumouReadyInit() {
     field_0x34d4 = field_0x3588;
     field_0x2f99 = 4;
     mSpecialMode = 1;
-    mCommonCounter = 0;
+    field_0x300c = 0;
     field_0x300e = 0;
     deleteEquipItem(0, 1);
 
@@ -208,7 +208,7 @@ int daAlink_c::procSumouShikoInit() {
     field_0x3588 = l_waitBaseAnime;
     field_0x34d4 = field_0x3588;
     field_0x2f99 = 12;
-    mCommonCounter = 0;
+    field_0x300c = 0;
     mSpecialMode = 0;
 
     setFootEffectProcType(5);

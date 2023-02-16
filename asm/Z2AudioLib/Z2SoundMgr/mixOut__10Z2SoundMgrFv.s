@@ -8,7 +8,7 @@ lbl_802AA528:
 /* 802AA540  88 0D 8D C0 */	lbz r0, struct_80451340+0x0(r13)
 /* 802AA544  28 00 00 00 */	cmplwi r0, 0
 /* 802AA548  41 82 01 04 */	beq lbl_802AA64C
-/* 802AA54C  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802AA54C  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802AA550  88 03 00 1E */	lbz r0, 0x1e(r3)
 /* 802AA554  28 00 00 00 */	cmplwi r0, 0
 /* 802AA558  41 82 00 F4 */	beq lbl_802AA64C

@@ -7,11 +7,11 @@ lbl_802C0AF8:
 /* 802C0B0C  3C 05 FF FB */	addis r0, r5, 0xfffb
 /* 802C0B10  28 00 01 F0 */	cmplwi r0, 0x1f0
 /* 802C0B14  40 82 00 2C */	bne lbl_802C0B40
-/* 802C0B18  80 8D 85 FC */	lwz r4, data_80450B7C(r13)
+/* 802C0B18  80 8D 85 FC */	lwz r4, __OSReport_disable-0x1C(r13)
 /* 802C0B1C  88 04 00 2C */	lbz r0, 0x2c(r4)
 /* 802C0B20  28 00 00 02 */	cmplwi r0, 2
 /* 802C0B24  41 82 00 14 */	beq lbl_802C0B38
-/* 802C0B28  80 8D 86 00 */	lwz r4, data_80450B80(r13)
+/* 802C0B28  80 8D 86 00 */	lwz r4, __OSReport_disable-0x18(r13)
 /* 802C0B2C  88 04 00 1C */	lbz r0, 0x1c(r4)
 /* 802C0B30  28 00 00 00 */	cmplwi r0, 0
 /* 802C0B34  40 82 00 0C */	bne lbl_802C0B40

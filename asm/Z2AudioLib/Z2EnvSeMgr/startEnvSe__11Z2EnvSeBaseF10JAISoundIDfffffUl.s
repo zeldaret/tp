@@ -24,7 +24,7 @@ lbl_802C5908:
 /* 802C5960  FF A0 20 90 */	fmr f29, f4
 /* 802C5964  FF C0 28 90 */	fmr f30, f5
 /* 802C5968  7C BF 2B 78 */	mr r31, r5
-/* 802C596C  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802C596C  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802C5970  88 03 00 0C */	lbz r0, 0xc(r3)
 /* 802C5974  28 00 00 00 */	cmplwi r0, 0
 /* 802C5978  41 82 00 0C */	beq lbl_802C5984
@@ -56,7 +56,7 @@ lbl_802C5984:
 lbl_802C59DC:
 /* 802C59DC  80 1E 00 00 */	lwz r0, 0(r30)
 /* 802C59E0  90 01 00 08 */	stw r0, 8(r1)
-/* 802C59E4  80 6D 85 F4 */	lwz r3, data_80450B74(r13)
+/* 802C59E4  80 6D 85 F4 */	lwz r3, __OSReport_disable-0x24(r13)
 /* 802C59E8  38 81 00 08 */	addi r4, r1, 8
 /* 802C59EC  38 BD 00 04 */	addi r5, r29, 4
 /* 802C59F0  80 DD 00 00 */	lwz r6, 0(r29)
@@ -78,14 +78,14 @@ lbl_802C59DC:
 /* 802C5A30  C0 02 C3 44 */	lfs f0, lit_3502(r2)
 /* 802C5A34  FC 1F 00 40 */	fcmpo cr0, f31, f0
 /* 802C5A38  40 80 00 1C */	bge lbl_802C5A54
-/* 802C5A3C  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802C5A3C  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802C5A40  3C A0 80 3A */	lis r5, CUTOFF_TO_IIR_TABLE__7JASCalc@ha /* 0x8039ABB8@ha */
 /* 802C5A44  38 A5 AB B8 */	addi r5, r5, CUTOFF_TO_IIR_TABLE__7JASCalc@l /* 0x8039ABB8@l */
 /* 802C5A48  38 A5 02 00 */	addi r5, r5, 0x200
 /* 802C5A4C  4B FE 48 25 */	bl setIIR__10Z2SoundMgrFP8JAISoundPCs
 /* 802C5A50  48 00 00 18 */	b lbl_802C5A68
 lbl_802C5A54:
-/* 802C5A54  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802C5A54  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802C5A58  3C A0 80 3A */	lis r5, CUTOFF_TO_IIR_TABLE__7JASCalc@ha /* 0x8039ABB8@ha */
 /* 802C5A5C  38 A5 AB B8 */	addi r5, r5, CUTOFF_TO_IIR_TABLE__7JASCalc@l /* 0x8039ABB8@l */
 /* 802C5A60  38 A5 03 F8 */	addi r5, r5, 0x3f8

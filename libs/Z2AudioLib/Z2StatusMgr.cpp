@@ -4,57 +4,8 @@
 //
 
 #include "Z2AudioLib/Z2StatusMgr.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct Z2SeqMgr {
-    /* 802AF49C */ void subBgmStart(u32);
-    /* 802AF884 */ void subBgmStop();
-    /* 802AFB94 */ void bgmStreamPrepare(u32);
-    /* 802AFE18 */ void bgmStreamPlay();
-    /* 802AFEDC */ void bgmStreamStop(u32);
-    /* 802B2CA4 */ void talkInBgm();
-    /* 802B2D64 */ void talkOutBgm();
-    /* 802B2DAC */ void menuInBgm();
-    /* 802B2DF4 */ void menuOutBgm();
-    /* 802B4164 */ void setBattleBgmOff(bool);
-};
-
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-    /* 802AD9F4 */ void seMoveVolumeAll(f32, u32);
-    /* 802ADB50 */ void talkInSe();
-    /* 802ADC54 */ void talkOutSe();
-    /* 802ADD58 */ void menuInSe();
-};
-
-struct Z2SceneMgr {
-    /* 802BA294 */ void sceneBgmStart();
-};
-
-struct Z2FxLineMgr {
-    /* 802BAE48 */ void setUnderWaterFx(bool);
-};
-
-struct Z2CreatureLink {
-    static u8 mLinkPtr[4 + 4 /* padding */];
-};
-
-struct Z2Calc {
-    struct CurveSign {};
-
-    /* 802A96F4 */ void getParamByExp(f32, f32, f32, f32, f32, f32, Z2Calc::CurveSign);
-};
-
-struct JAISoundParamsMove {
-    /* 802A2DB4 */ void moveVolume(f32, u32);
-};
 
 //
 // Forward References:
@@ -102,18 +53,15 @@ extern "C" void sceneBgmStart__10Z2SceneMgrFv();
 extern "C" void setUnderWaterFx__11Z2FxLineMgrFb();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
-extern "C" void strncmp();
-extern "C" void strcmp();
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 struct_80450860[4];
 extern "C" extern u8 data_80450B40[4];
 extern "C" extern u8 data_80450B60[4];
-extern "C" extern Z2StatusMgr* data_80450B7C;
 extern "C" extern u8 data_80450B80[4];
 extern "C" extern Z2SeqMgr* data_80450B84;
 extern "C" extern Z2SeMgr* data_80450B88;
 extern "C" extern u8 pauseTimer__9dScnPly_c[4];
 extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
+extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:
@@ -132,38 +80,28 @@ SECTION_SDATA2 static u8 lit_3396[4] = {
 };
 
 /* 802B5F1C-802B5F70 2B085C 0054+00 0/0 1/1 0/0 .text            __ct__11Z2StatusMgrFv */
-// needs other functions decompiled first
-#ifdef NONMATCHING
-Z2StatusMgr::Z2StatusMgr() {
-    data_80450B7C = this;
+Z2StatusMgr::Z2StatusMgr() : JASGlobalInstance(this) {
     mHour = 0;
     mMinute = 0;
     mWeekday = 0;
     field_0x03 = 0;
     mTime = 3072;
-    mEventBit = (void*)0;
+    mEventBit = NULL;
     mIsMenuIn = false;
     mCameraMapInfo = 0;
-    float polygon_pos_init = lit_3395;
-    mPolygonPosition.x = polygon_pos_init;
-    mPolygonPosition.y = polygon_pos_init;
-    mPolygonPosition.z = polygon_pos_init;
-    float depth_init = 0.0f;
-    mUnderwaterDepth = depth_init;
-    mCameraInWaterDepthRatio = depth_init;
+
+    f32 temp_f0 = lit_3395;
+    mPolygonPosition.x = temp_f0;
+    mPolygonPosition.y = temp_f0;
+    mPolygonPosition.z = temp_f0;
+
+    f32 temp_f0_2 = FLOAT_LABEL(lit_3396);
+    mUnderwaterDepth = temp_f0_2;
+    mCameraInWaterDepthRatio = temp_f0_2;
+
     mDemoStatus = 0;
     mHeartGaugeOn = 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Z2StatusMgr::Z2StatusMgr() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2StatusMgr/__ct__11Z2StatusMgrFv.s"
-}
-#pragma pop
-#endif
 
 /* 802B5F70-802B5F7C 2B08B0 000C+00 0/0 1/1 0/0 .text            heartGaugeOn__11Z2StatusMgrFv */
 void Z2StatusMgr::heartGaugeOn() {
@@ -190,37 +128,37 @@ asm void Z2StatusMgr::processHeartGaugeSound() {
 /* 802B60CC-802B6104 2B0A0C 0038+00 0/0 1/1 0/0 .text            talkIn__11Z2StatusMgrFv */
 void Z2StatusMgr::talkIn() {
     if (!isMovieDemo()) {
-        data_80450B84->talkInBgm();
-        data_80450B88->talkInSe();
+        Z2GetSeqMgr()->talkInBgm();
+        Z2GetSeMgr()->talkInSe();
     }
 }
 
 /* 802B6104-802B613C 2B0A44 0038+00 0/0 1/1 0/0 .text            talkOut__11Z2StatusMgrFv */
 void Z2StatusMgr::talkOut() {
     if (!isMovieDemo()) {
-        data_80450B84->talkOutBgm();
-        data_80450B88->talkOutSe();
+        Z2GetSeqMgr()->talkOutBgm();
+        Z2GetSeMgr()->talkOutSe();
     }
 }
 
 /* 802B613C-802B617C 2B0A7C 0040+00 0/0 1/1 0/0 .text            menuIn__11Z2StatusMgrFv */
 void Z2StatusMgr::menuIn() {
-    data_80450B84->menuInBgm();
-    data_80450B88->menuInSe();
+    Z2GetSeqMgr()->menuInBgm();
+    Z2GetSeMgr()->menuInSe();
 
     mIsMenuIn = true;
 }
 
 /* 802B617C-802B61BC 2B0ABC 0040+00 0/0 3/3 0/0 .text            menuOut__11Z2StatusMgrFv */
 void Z2StatusMgr::menuOut() {
-    data_80450B84->menuOutBgm();
-    data_80450B88->talkOutSe();
+    Z2GetSeqMgr()->menuOutBgm();
+    Z2GetSeMgr()->talkOutSe();
 
     mIsMenuIn = false;
 }
 
 /* 802B61BC-802B61E8 2B0AFC 002C+00 2/2 1/1 0/0 .text            isMovieDemo__11Z2StatusMgrFv */
-bool Z2StatusMgr::isMovieDemo(void) {
+bool Z2StatusMgr::isMovieDemo() {
     return mDemoStatus == 2 || mDemoStatus == 8 || mDemoStatus == 9;
 }
 
@@ -396,35 +334,33 @@ asm void Z2StatusMgr::setDemoName(char* param_0) {
 
 /* 802B671C-802B6734 2B105C 0018+00 0/0 1/1 0/0 .text            processTime__11Z2StatusMgrFv */
 void Z2StatusMgr::processTime() {
-    u16 temp = mHour * 256;
-    mTime = temp + mMinute;
+    u16 processed_hour = mHour * 256;
+    mTime = processed_hour + mMinute;
 }
 
 /* 802B6734-802B6758 2B1074 0024+00 0/0 5/5 0/0 .text            checkDayTime__11Z2StatusMgrFv */
 bool Z2StatusMgr::checkDayTime() {
     if (mHour >= 6 && mHour < 19) {
         return true;
-    } else {
-        return false;
     }
+
+    return false;
 }
 
 /* 802B6758-802B6760 -00001 0008+00 0/0 0/0 0/0 .text            setEventBit__11Z2StatusMgrFPv */
-void Z2StatusMgr::setEventBit(void* pBit) {
-    mEventBit = pBit;
+void Z2StatusMgr::setEventBit(void* i_eventBit) {
+    mEventBit = i_eventBit;
 }
 
 /* 802B6760-802B6784 2B10A0 0024+00 0/0 1/1 0/0 .text setCameraPolygonPos__11Z2StatusMgrFP3Vec */
-void Z2StatusMgr::setCameraPolygonPos(Vec* pPolygonPos) {
-    if (pPolygonPos == 0) {
-        return;
-    } else {
-        mPolygonPosition = *pPolygonPos;
+void Z2StatusMgr::setCameraPolygonPos(Vec* i_polygonPos) {
+    if (i_polygonPos != NULL) {
+        mPolygonPosition = *i_polygonPos;
     }
 }
 
 /* 802B6784-802B6788 2B10C4 0004+00 0/0 1/1 0/0 .text setCameraGroupInfo__11Z2StatusMgrFUc */
-void Z2StatusMgr::setCameraGroupInfo(u8 param_0) {}
+void Z2StatusMgr::setCameraGroupInfo(u8) {}
 
 /* ############################################################################################## */
 /* 80455A30-80455A34 004030 0004+00 1/1 0/0 0/0 .sdata2          @3798 */

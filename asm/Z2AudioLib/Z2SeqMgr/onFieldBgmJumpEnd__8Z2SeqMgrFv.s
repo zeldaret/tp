@@ -91,10 +91,10 @@ lbl_802B579C:
 /* 802B5900  C0 42 BF B4 */	lfs f2, lit_4727(r2)
 /* 802B5904  FC 60 10 90 */	fmr f3, f2
 /* 802B5908  4B FF E6 E5 */	bl setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff
-/* 802B590C  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802B590C  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802B5910  38 63 07 28 */	addi r3, r3, 0x728
 /* 802B5914  4B FE C3 7D */	bl calc__9JAISeqMgrFv
-/* 802B5918  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802B5918  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802B591C  38 63 07 28 */	addi r3, r3, 0x728
 /* 802B5920  4B FE C5 DD */	bl mixOut__9JAISeqMgrFv
 /* 802B5924  88 1F 00 C3 */	lbz r0, 0xc3(r31)

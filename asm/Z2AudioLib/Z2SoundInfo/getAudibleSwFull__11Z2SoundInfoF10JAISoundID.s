@@ -8,7 +8,7 @@ lbl_802BB158:
 /* 802BB170  7C 9F 23 78 */	mr r31, r4
 /* 802BB174  80 04 00 00 */	lwz r0, 0(r4)
 /* 802BB178  90 01 00 34 */	stw r0, 0x34(r1)
-/* 802BB17C  80 6D 85 D8 */	lwz r3, data_80450B58(r13)
+/* 802BB17C  80 6D 85 D8 */	lwz r3, __OSReport_disable-0x40(r13)
 /* 802BB180  38 81 00 34 */	addi r4, r1, 0x34
 /* 802BB184  4B FE BF DD */	bl getTypeID__13JAUSoundTableCF10JAISoundID
 /* 802BB188  54 60 06 3E */	clrlwi r0, r3, 0x18

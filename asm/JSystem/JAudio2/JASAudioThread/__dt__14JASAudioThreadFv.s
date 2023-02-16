@@ -16,11 +16,11 @@ lbl_8029D028:
 /* 8029D060  41 82 00 08 */	beq lbl_8029D068
 /* 8029D064  38 63 FF 84 */	addi r3, r3, -124
 lbl_8029D068:
-/* 8029D068  80 0D 86 0C */	lwz r0, data_80450B8C(r13)
+/* 8029D068  80 0D 86 0C */	lwz r0, __OSReport_disable-0xC(r13)
 /* 8029D06C  7C 00 18 40 */	cmplw r0, r3
 /* 8029D070  40 82 00 0C */	bne lbl_8029D07C
 /* 8029D074  38 00 00 00 */	li r0, 0
-/* 8029D078  90 0D 86 0C */	stw r0, data_80450B8C(r13)
+/* 8029D078  90 0D 86 0C */	stw r0, __OSReport_disable-0xC(r13)
 lbl_8029D07C:
 /* 8029D07C  7F C3 F3 78 */	mr r3, r30
 /* 8029D080  38 80 00 00 */	li r4, 0

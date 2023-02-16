@@ -44,7 +44,7 @@ lbl_802A5C00:
 /* 802A5C20  7C 64 01 2E */	stwx r3, r4, r0
 /* 802A5C24  48 00 00 50 */	b lbl_802A5C74
 lbl_802A5C28:
-/* 802A5C28  80 8D 86 10 */	lwz r4, data_80450B90(r13)
+/* 802A5C28  80 8D 86 10 */	lwz r4, __OSReport_disable-0x8(r13)
 /* 802A5C2C  80 84 00 04 */	lwz r4, 4(r4)
 /* 802A5C30  57 C0 10 3A */	slwi r0, r30, 2
 /* 802A5C34  7C 64 01 2E */	stwx r3, r4, r0

@@ -30,7 +30,7 @@ lbl_802A3CA4:
 /* 802A3CA4  7F 23 CB 78 */	mr r3, r25
 /* 802A3CA8  48 00 04 CD */	bl newStream___12JAIStreamMgrFv
 /* 802A3CAC  7C 7D 1B 78 */	mr r29, r3
-/* 802A3CB0  83 ED 85 DC */	lwz r31, data_80450B5C(r13)
+/* 802A3CB0  83 ED 85 DC */	lwz r31, __OSReport_disable-0x3C(r13)
 /* 802A3CB4  39 00 FF FF */	li r8, -1
 /* 802A3CB8  28 1F 00 00 */	cmplwi r31, 0
 /* 802A3CBC  41 82 00 28 */	beq lbl_802A3CE4

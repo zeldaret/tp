@@ -62,7 +62,7 @@ lbl_802BE384:
 lbl_802BE3B4:
 /* 802BE3B4  80 1C 00 00 */	lwz r0, 0(r28)
 /* 802BE3B8  90 01 00 10 */	stw r0, 0x10(r1)
-/* 802BE3BC  80 6D 86 08 */	lwz r3, data_80450B88(r13)
+/* 802BE3BC  80 6D 86 08 */	lwz r3, __OSReport_disable-0x10(r13)
 /* 802BE3C0  38 81 00 10 */	addi r4, r1, 0x10
 /* 802BE3C4  4B FF 01 ED */	bl isSoundCulling__7Z2SeMgrF10JAISoundID
 /* 802BE3C8  54 60 06 3F */	clrlwi. r0, r3, 0x18

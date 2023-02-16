@@ -9,11 +9,11 @@ lbl_802A2D50:
 /* 802A2D6C  38 03 99 A0 */	addi r0, r3, __vt__12JAISoundInfo@l /* 0x803C99A0@l */
 /* 802A2D70  90 1F 00 00 */	stw r0, 0(r31)
 /* 802A2D74  41 82 00 18 */	beq lbl_802A2D8C
-/* 802A2D78  80 0D 85 DC */	lwz r0, data_80450B5C(r13)
+/* 802A2D78  80 0D 85 DC */	lwz r0, __OSReport_disable-0x3C(r13)
 /* 802A2D7C  7C 00 F8 40 */	cmplw r0, r31
 /* 802A2D80  40 82 00 0C */	bne lbl_802A2D8C
 /* 802A2D84  38 00 00 00 */	li r0, 0
-/* 802A2D88  90 0D 85 DC */	stw r0, data_80450B5C(r13)
+/* 802A2D88  90 0D 85 DC */	stw r0, __OSReport_disable-0x3C(r13)
 lbl_802A2D8C:
 /* 802A2D8C  7C 80 07 35 */	extsh. r0, r4
 /* 802A2D90  40 81 00 0C */	ble lbl_802A2D9C

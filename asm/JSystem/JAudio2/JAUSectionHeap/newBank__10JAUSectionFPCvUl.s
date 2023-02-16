@@ -39,7 +39,7 @@ lbl_802A5A90:
 /* 802A5ADC  7F E3 01 2E */	stwx r31, r3, r0
 /* 802A5AE0  48 00 00 50 */	b lbl_802A5B30
 lbl_802A5AE4:
-/* 802A5AE4  80 6D 86 10 */	lwz r3, data_80450B90(r13)
+/* 802A5AE4  80 6D 86 10 */	lwz r3, __OSReport_disable-0x8(r13)
 /* 802A5AE8  80 63 00 04 */	lwz r3, 4(r3)
 /* 802A5AEC  57 60 10 3A */	slwi r0, r27, 2
 /* 802A5AF0  7F E3 01 2E */	stwx r31, r3, r0

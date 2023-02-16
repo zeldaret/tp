@@ -63,7 +63,7 @@ lbl_802C4650:
 /* 802C4688  FC 20 F8 90 */	fmr f1, f31
 /* 802C468C  38 80 00 00 */	li r4, 0
 /* 802C4690  4B FD E7 25 */	bl moveVolume__18JAISoundParamsMoveFfUl
-/* 802C4694  80 6D 85 F4 */	lwz r3, data_80450B74(r13)
+/* 802C4694  80 6D 85 F4 */	lwz r3, __OSReport_disable-0x24(r13)
 /* 802C4698  7F C4 F3 78 */	mr r4, r30
 /* 802C469C  38 A0 00 08 */	li r5, 8
 /* 802C46A0  57 E6 06 3E */	clrlwi r6, r31, 0x18

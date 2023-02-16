@@ -40,7 +40,7 @@ lbl_802C0EA4:
 /* 802C0EA4  88 1E 00 A2 */	lbz r0, 0xa2(r30)
 /* 802C0EA8  28 00 00 00 */	cmplwi r0, 0
 /* 802C0EAC  40 82 00 14 */	bne lbl_802C0EC0
-/* 802C0EB0  80 6D 86 08 */	lwz r3, data_80450B88(r13)
+/* 802C0EB0  80 6D 86 08 */	lwz r3, __OSReport_disable-0x10(r13)
 /* 802C0EB4  4B FE AA AD */	bl decrCrowdSize__7Z2SeMgrFv
 /* 802C0EB8  38 00 00 01 */	li r0, 1
 /* 802C0EBC  98 1E 00 A2 */	stb r0, 0xa2(r30)

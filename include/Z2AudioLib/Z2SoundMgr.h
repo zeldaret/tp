@@ -5,9 +5,9 @@
 #include "JSystem/JAudio2/JAISeqMgr.h"
 #include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JAIStreamMgr.h"
-#include "dolphin/types.h"
+#include "JSystem/JAudio2/JASGadget.h"
 
-class Z2SoundMgr {
+class Z2SoundMgr : public JASGlobalInstance<Z2SoundMgr> {
 public:
     /* 802A9E80 */ Z2SoundMgr();
     /* 802AA1B0 */ void calc();
@@ -39,10 +39,8 @@ private:
 
 STATIC_ASSERT(sizeof(Z2SoundMgr) == 0x810);
 
-extern Z2SoundMgr* data_80450B60;
-
 inline Z2SoundMgr* Z2GetSoundMgr() {
-    return data_80450B60;
+    return JASGlobalInstance<Z2SoundMgr>::getInstance();
 }
 
 #endif /* Z2SOUNDMGR_H */

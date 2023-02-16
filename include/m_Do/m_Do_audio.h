@@ -1,10 +1,13 @@
 #ifndef M_DO_M_DO_AUDIO_H
 #define M_DO_M_DO_AUDIO_H
 
-#include "dolphin/types.h"
 #include "JSystem/JAudio2/JASGadget.h"
+#include "JSystem/JAudio2/JASTrack.h"
+#include "JSystem/JAudio2/JAUSoundTable.h"
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "Z2AudioLib/Z2EnvSeMgr.h"
+#include "Z2AudioLib/Z2SoundInfo.h"
+#include "Z2AudioLib/Z2WolfHowlMgr.h"
 
 class mDoAud_zelAudio_c {
 public:
@@ -80,8 +83,8 @@ inline void mDoAud_setInDarkness(bool state) {
 }
 
 inline void mDoAud_seStart(u32 i_sfxID, const Vec* i_sePos, u32 param_2, s8 i_reverb) {
-    Z2AudioMgr::getInterface()->mSeMgr.seStart(i_sfxID, i_sePos, param_2, i_reverb, 1.0f, 1.0f, -1.0f,
-                                               -1.0f, 0);
+    Z2AudioMgr::getInterface()->mSeMgr.seStart(i_sfxID, i_sePos, param_2, i_reverb, 1.0f, 1.0f,
+                                               -1.0f, -1.0f, 0);
 }
 
 inline void i_mDoAud_seStartLevel(u32 i_sfxID, const Vec* i_sePos, u32 param_2, s8 i_reverb) {

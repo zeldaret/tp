@@ -4,7 +4,7 @@ lbl_802AEEA0:
 /* 802AEEA8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802AEEAC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802AEEB0  7C 7F 1B 78 */	mr r31, r3
-/* 802AEEB4  93 ED 86 04 */	stw r31, data_80450B84(r13)
+/* 802AEEB4  93 ED 86 04 */	stw r31, __OSReport_disable-0x14(r13)
 /* 802AEEB8  38 00 00 00 */	li r0, 0
 /* 802AEEBC  90 03 00 00 */	stw r0, 0(r3)
 /* 802AEEC0  90 03 00 04 */	stw r0, 4(r3)
