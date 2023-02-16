@@ -4,7 +4,7 @@ lbl_802B594C:
 /* 802B5954  90 01 00 34 */	stw r0, 0x34(r1)
 /* 802B5958  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 802B595C  7C 7F 1B 78 */	mr r31, r3
-/* 802B5960  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802B5960  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802B5964  88 03 00 1D */	lbz r0, 0x1d(r3)
 /* 802B5968  28 00 00 00 */	cmplwi r0, 0
 /* 802B596C  41 82 05 00 */	beq lbl_802B5E6C
@@ -38,13 +38,13 @@ lbl_802B59CC:
 /* 802B59CC  3C 04 FF 00 */	addis r0, r4, 0xff00
 /* 802B59D0  28 00 00 00 */	cmplwi r0, 0
 /* 802B59D4  40 82 02 D4 */	bne lbl_802B5CA8
-/* 802B59D8  80 6D 85 F4 */	lwz r3, data_80450B74(r13)
+/* 802B59D8  80 6D 85 F4 */	lwz r3, __OSReport_disable-0x24(r13)
 /* 802B59DC  7F E4 FB 78 */	mr r4, r31
 /* 802B59E0  38 A0 00 0A */	li r5, 0xa
 /* 802B59E4  38 C0 FF FF */	li r6, -1
 /* 802B59E8  4B FF 55 8D */	bl getPortData__14Z2SoundStarterFP14JAISoundHandleUlSc
 /* 802B59EC  98 7F 00 C4 */	stb r3, 0xc4(r31)
-/* 802B59F0  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802B59F0  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802B59F4  88 03 00 0C */	lbz r0, 0xc(r3)
 /* 802B59F8  28 00 00 00 */	cmplwi r0, 0
 /* 802B59FC  41 82 00 14 */	beq lbl_802B5A10
@@ -83,7 +83,7 @@ lbl_802B5A50:
 /* 802B5A78  40 82 00 08 */	bne lbl_802B5A80
 /* 802B5A7C  48 00 03 F0 */	b lbl_802B5E6C
 lbl_802B5A80:
-/* 802B5A80  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802B5A80  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802B5A84  88 03 00 2C */	lbz r0, 0x2c(r3)
 /* 802B5A88  28 00 00 0A */	cmplwi r0, 0xa
 /* 802B5A8C  40 82 00 44 */	bne lbl_802B5AD0
@@ -168,7 +168,7 @@ lbl_802B5BA4:
 /* 802B5BA4  88 1F 00 D0 */	lbz r0, 0xd0(r31)
 /* 802B5BA8  54 00 EF FF */	rlwinm. r0, r0, 0x1d, 0x1f, 0x1f
 /* 802B5BAC  41 82 02 C0 */	beq lbl_802B5E6C
-/* 802B5BB0  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B5BB0  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B5BB4  88 03 00 17 */	lbz r0, 0x17(r3)
 /* 802B5BB8  28 00 00 00 */	cmplwi r0, 0
 /* 802B5BBC  40 82 02 B0 */	bne lbl_802B5E6C
@@ -209,7 +209,7 @@ lbl_802B5C28:
 /* 802B5C30  41 80 00 34 */	blt lbl_802B5C64
 /* 802B5C34  28 04 00 0F */	cmplwi r4, 0xf
 /* 802B5C38  41 81 00 2C */	bgt lbl_802B5C64
-/* 802B5C3C  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802B5C3C  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802B5C40  88 03 00 00 */	lbz r0, 0(r3)
 /* 802B5C44  28 00 00 14 */	cmplwi r0, 0x14
 /* 802B5C48  41 80 00 1C */	blt lbl_802B5C64
@@ -251,7 +251,7 @@ lbl_802B5CC0:
 /* 802B5CC0  3C 04 FF 00 */	addis r0, r4, 0xff00
 /* 802B5CC4  28 00 00 01 */	cmplwi r0, 1
 /* 802B5CC8  40 82 00 3C */	bne lbl_802B5D04
-/* 802B5CCC  80 8D 85 FC */	lwz r4, data_80450B7C(r13)
+/* 802B5CCC  80 8D 85 FC */	lwz r4, __OSReport_disable-0x1C(r13)
 /* 802B5CD0  88 04 00 0C */	lbz r0, 0xc(r4)
 /* 802B5CD4  28 00 00 00 */	cmplwi r0, 0
 /* 802B5CD8  40 82 01 94 */	bne lbl_802B5E6C
@@ -277,7 +277,7 @@ lbl_802B5D1C:
 /* 802B5D1C  3C 03 00 01 */	addis r0, r3, 1
 /* 802B5D20  28 00 FF FF */	cmplwi r0, 0xffff
 /* 802B5D24  40 82 01 48 */	bne lbl_802B5E6C
-/* 802B5D28  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802B5D28  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802B5D2C  88 03 00 0C */	lbz r0, 0xc(r3)
 /* 802B5D30  28 00 00 00 */	cmplwi r0, 0
 /* 802B5D34  40 82 01 38 */	bne lbl_802B5E6C
@@ -293,7 +293,7 @@ lbl_802B5D1C:
 /* 802B5D5C  41 80 00 44 */	blt lbl_802B5DA0
 /* 802B5D60  3C 00 01 00 */	lis r0, 0x100
 /* 802B5D64  90 01 00 1C */	stw r0, 0x1c(r1)
-/* 802B5D68  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802B5D68  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802B5D6C  38 81 00 1C */	addi r4, r1, 0x1c
 /* 802B5D70  7F E5 FB 78 */	mr r5, r31
 /* 802B5D74  38 C0 00 00 */	li r6, 0
@@ -310,7 +310,7 @@ lbl_802B5D1C:
 lbl_802B5DA0:
 /* 802B5DA0  3C 00 01 00 */	lis r0, 0x100
 /* 802B5DA4  90 01 00 18 */	stw r0, 0x18(r1)
-/* 802B5DA8  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802B5DA8  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802B5DAC  38 81 00 18 */	addi r4, r1, 0x18
 /* 802B5DB0  7F E5 FB 78 */	mr r5, r31
 /* 802B5DB4  38 C0 00 00 */	li r6, 0
@@ -355,7 +355,7 @@ lbl_802B5E40:
 /* 802B5E40  3C 60 01 00 */	lis r3, 0x0100 /* 0x01000001@ha */
 /* 802B5E44  38 03 00 01 */	addi r0, r3, 0x0001 /* 0x01000001@l */
 /* 802B5E48  90 01 00 14 */	stw r0, 0x14(r1)
-/* 802B5E4C  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802B5E4C  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802B5E50  38 81 00 14 */	addi r4, r1, 0x14
 /* 802B5E54  7F E5 FB 78 */	mr r5, r31
 /* 802B5E58  38 C0 00 00 */	li r6, 0

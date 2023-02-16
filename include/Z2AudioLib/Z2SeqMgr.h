@@ -2,7 +2,7 @@
 #define Z2SEQMGR_H
 
 #include "JSystem/JAudio2/JAISound.h"
-#include "dolphin/types.h"
+#include "JSystem/JAudio2/JASGadget.h"
 
 // move TTransition / Z2SoundFader ?
 struct TTransition {
@@ -21,7 +21,7 @@ struct Z2SoundFader {
     /* 0x4 */ JAISoundParamsTransition::TTransition mTransition;
 };  // Size = 0x10
 
-class Z2SeqMgr {
+class Z2SeqMgr : public JASGlobalInstance<Z2SeqMgr> {
 public:
     Z2SeqMgr();
 
@@ -124,12 +124,9 @@ private:
     /* 0xD0 */ u8 mFlags;
 };  // Size = 0xD4
 
-/**
- * this is supposed to be:
- * JASGlobalInstance<Z2SeqMgr>::sInstance
- * sInstance__28JASGlobalInstance<8Z2SeqMgr>
- */
-extern Z2SeqMgr* data_80450B84;
+inline Z2SeqMgr* Z2GetSeqMgr() {
+    return JASGlobalInstance<Z2SeqMgr>::getInstance();
+}
 
 enum Z2BgmID {
     Z2BGM_FIELD_LINK_DAY = 0x1000000,

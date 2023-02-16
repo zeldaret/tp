@@ -84,6 +84,7 @@ extern "C" extern void* __vt__6JAISeq[12 + 1 /* padding */];
 extern "C" extern void* __vt__14JAISeqDataUser[5 + 1 /* padding */];
 extern "C" extern u8 data_80450B5C[4];
 extern "C" extern u8 data_80451320[8];
+extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:

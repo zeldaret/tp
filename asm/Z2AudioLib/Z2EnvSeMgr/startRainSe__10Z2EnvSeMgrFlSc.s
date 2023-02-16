@@ -168,7 +168,7 @@ lbl_802C7980:
 /* 802C7AB0  38 60 00 01 */	li r3, 1
 /* 802C7AB4  4B FE 1C 41 */	bl getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign
 /* 802C7AB8  FE E0 08 90 */	fmr f23, f1
-/* 802C7ABC  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802C7ABC  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802C7AC0  88 03 00 1E */	lbz r0, 0x1e(r3)
 /* 802C7AC4  28 00 00 00 */	cmplwi r0, 0
 /* 802C7AC8  41 82 00 10 */	beq lbl_802C7AD8

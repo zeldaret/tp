@@ -1,8 +1,8 @@
 #ifndef JASTRACK_H
 #define JASTRACK_H
 
+#include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JAudio2/JASSoundParams.h"
-#include "dolphin/types.h"
 
 struct JASDsp {
     struct TChannel {
@@ -113,10 +113,8 @@ struct JASTrack {
     /* 0x1D0 */ int channelMgrCount;
 };
 
-struct JASDefaultBankTable {
+struct JASDefaultBankTable : public JASGlobalInstance<JASDefaultBankTable> {
     /* 802934B4 */ ~JASDefaultBankTable();
 };
-
-extern JASDefaultBankTable* data_80450B90;
 
 #endif /* JASTRACK_H */

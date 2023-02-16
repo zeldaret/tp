@@ -4,7 +4,7 @@ lbl_802AB64C:
 /* 802AB654  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802AB658  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802AB65C  7C 7F 1B 78 */	mr r31, r3
-/* 802AB660  93 ED 86 08 */	stw r31, data_80450B88(r13)
+/* 802AB660  93 ED 86 08 */	stw r31, __OSReport_disable-0x10(r13)
 /* 802AB664  3C 80 80 2A */	lis r4, __ct__14JAISoundHandleFv@ha /* 0x802A4AC4@ha */
 /* 802AB668  38 84 4A C4 */	addi r4, r4, __ct__14JAISoundHandleFv@l /* 0x802A4AC4@l */
 /* 802AB66C  3C A0 80 00 */	lis r5, __dt__14JAISoundHandleFv@ha /* 0x80007838@ha */

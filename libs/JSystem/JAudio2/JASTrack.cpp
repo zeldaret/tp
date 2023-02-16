@@ -218,6 +218,7 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern u8 struct_80451230[8];
+extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:

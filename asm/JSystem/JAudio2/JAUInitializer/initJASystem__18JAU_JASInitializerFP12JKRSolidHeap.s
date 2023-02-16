@@ -6,7 +6,7 @@ lbl_802A4B28:
 /* 802A4B38  48 0B D6 A5 */	bl _savegpr_29
 /* 802A4B3C  7C 7F 1B 78 */	mr r31, r3
 /* 802A4B40  7C 9D 23 78 */	mr r29, r4
-/* 802A4B44  80 0D 86 0C */	lwz r0, data_80450B8C(r13)
+/* 802A4B44  80 0D 86 0C */	lwz r0, __OSReport_disable-0xC(r13)
 /* 802A4B48  28 00 00 00 */	cmplwi r0, 0
 /* 802A4B4C  40 82 01 98 */	bne lbl_802A4CE4
 /* 802A4B50  4B FE B3 AD */	bl getThreadPointer__6JASDvdFv
@@ -109,7 +109,7 @@ lbl_802A4CB8:
 /* 802A4CBC  2C 05 00 00 */	cmpwi r5, 0
 /* 802A4CC0  41 80 00 10 */	blt lbl_802A4CD0
 /* 802A4CC4  7F C3 F3 78 */	mr r3, r30
-/* 802A4CC8  80 8D 86 0C */	lwz r4, data_80450B8C(r13)
+/* 802A4CC8  80 8D 86 0C */	lwz r4, __OSReport_disable-0xC(r13)
 /* 802A4CCC  48 02 CD A5 */	bl enter__15JKRThreadSwitchFP9JKRThreadi
 lbl_802A4CD0:
 /* 802A4CD0  C0 3F 00 2C */	lfs f1, 0x2c(r31)

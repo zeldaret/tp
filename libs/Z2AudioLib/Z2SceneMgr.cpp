@@ -165,6 +165,7 @@ extern "C" extern Z2SoundMgr* data_80450B60;
 extern "C" extern u8 data_80450B7C[4];
 extern "C" extern Z2SeMgr* data_80450B88;
 extern "C" extern u8 data_80450CC0[4 + 4 /* padding */];
+extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:

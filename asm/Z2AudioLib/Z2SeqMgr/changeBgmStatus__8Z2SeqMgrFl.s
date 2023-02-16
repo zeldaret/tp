@@ -282,7 +282,7 @@ lbl_802B0394:
 lbl_802B03AC:
 /* 802B03AC  3B E0 00 01 */	li r31, 1
 /* 802B03B0  48 00 00 1C */	b lbl_802B03CC
-/* 802B03B4  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B03B4  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B03B8  38 80 00 01 */	li r4, 1
 /* 802B03BC  38 A0 05 DC */	li r5, 0x5dc
 /* 802B03C0  38 C0 13 88 */	li r6, 0x1388
@@ -2019,7 +2019,7 @@ lbl_802B1D20:
 /* 802B1D98  FC 60 10 90 */	fmr f3, f2
 /* 802B1D9C  48 00 22 51 */	bl setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff
 lbl_802B1DA0:
-/* 802B1DA0  80 6D 85 F4 */	lwz r3, data_80450B74(r13)
+/* 802B1DA0  80 6D 85 F4 */	lwz r3, __OSReport_disable-0x24(r13)
 /* 802B1DA4  7F A4 EB 78 */	mr r4, r29
 /* 802B1DA8  38 A0 00 09 */	li r5, 9
 /* 802B1DAC  57 C6 04 3E */	clrlwi r6, r30, 0x10

@@ -25,7 +25,7 @@ lbl_802CCFF8:
 /* 802CD054  FF C0 20 90 */	fmr f30, f4
 /* 802CD058  FF E0 28 90 */	fmr f31, f5
 /* 802CD05C  7D 1F 43 78 */	mr r31, r8
-/* 802CD060  80 8D 86 00 */	lwz r4, data_80450B80(r13)
+/* 802CD060  80 8D 86 00 */	lwz r4, __OSReport_disable-0x18(r13)
 /* 802CD064  88 04 00 1E */	lbz r0, 0x1e(r4)
 /* 802CD068  28 00 00 00 */	cmplwi r0, 0
 /* 802CD06C  41 82 00 20 */	beq lbl_802CD08C
@@ -37,7 +37,7 @@ lbl_802CCFF8:
 /* 802CD084  C3 62 C5 34 */	lfs f27, lit_3837(r2)
 /* 802CD088  48 00 00 84 */	b lbl_802CD10C
 lbl_802CD08C:
-/* 802CD08C  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802CD08C  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802CD090  C0 03 00 1C */	lfs f0, 0x1c(r3)
 /* 802CD094  C0 42 C5 30 */	lfs f2, lit_3836(r2)
 /* 802CD098  FC 00 10 40 */	fcmpo cr0, f0, f2
@@ -63,7 +63,7 @@ lbl_802CD0E0:
 /* 802CD0E0  C3 62 C5 50 */	lfs f27, lit_4571(r2)
 /* 802CD0E4  48 00 00 28 */	b lbl_802CD10C
 lbl_802CD0E8:
-/* 802CD0E8  80 6D 85 BC */	lwz r3, data_80450B3C(r13)
+/* 802CD0E8  80 6D 85 BC */	lwz r3, __OSReport_disable-0x5C(r13)
 /* 802CD0EC  4B FF C2 F9 */	bl getFogDensity__10Z2EnvSeMgrFv
 /* 802CD0F0  C0 02 C5 54 */	lfs f0, lit_4572(r2)
 /* 802CD0F4  EC 00 00 72 */	fmuls f0, f0, f1

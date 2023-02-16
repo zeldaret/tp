@@ -6,7 +6,7 @@ lbl_802B697C:
 /* 802B698C  7C 7F 1B 78 */	mr r31, r3
 /* 802B6990  38 80 00 00 */	li r4, 0
 /* 802B6994  4B FF FF 4D */	bl setSceneExist__10Z2SceneMgrFb
-/* 802B6998  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B6998  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B699C  C0 03 00 74 */	lfs f0, 0x74(r3)
 /* 802B69A0  38 00 00 21 */	li r0, 0x21
 /* 802B69A4  90 03 00 80 */	stw r0, 0x80(r3)
@@ -22,11 +22,11 @@ lbl_802B697C:
 /* 802B69CC  EC 02 00 24 */	fdivs f0, f2, f0
 /* 802B69D0  D0 03 00 78 */	stfs f0, 0x78(r3)
 /* 802B69D4  D0 63 00 7C */	stfs f3, 0x7c(r3)
-/* 802B69D8  80 6D 86 08 */	lwz r3, data_80450B88(r13)
+/* 802B69D8  80 6D 86 08 */	lwz r3, __OSReport_disable-0x10(r13)
 /* 802B69DC  C0 22 C0 38 */	lfs f1, lit_3511(r2)
 /* 802B69E0  38 80 00 21 */	li r4, 0x21
 /* 802B69E4  4B FF 70 11 */	bl seMoveVolumeAll__7Z2SeMgrFfUl
-/* 802B69E8  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B69E8  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B69EC  38 80 00 01 */	li r4, 1
 /* 802B69F0  4B FF D7 75 */	bl setBattleBgmOff__8Z2SeqMgrFb
 /* 802B69F4  38 00 00 28 */	li r0, 0x28

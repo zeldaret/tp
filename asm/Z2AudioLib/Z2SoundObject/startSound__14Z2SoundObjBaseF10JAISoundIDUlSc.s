@@ -18,7 +18,7 @@ lbl_802BE144:
 lbl_802BE184:
 /* 802BE184  80 1E 00 00 */	lwz r0, 0(r30)
 /* 802BE188  90 01 00 18 */	stw r0, 0x18(r1)
-/* 802BE18C  80 6D 86 08 */	lwz r3, data_80450B88(r13)
+/* 802BE18C  80 6D 86 08 */	lwz r3, __OSReport_disable-0x10(r13)
 /* 802BE190  38 81 00 18 */	addi r4, r1, 0x18
 /* 802BE194  4B FF 04 1D */	bl isSoundCulling__7Z2SeMgrF10JAISoundID
 /* 802BE198  54 60 06 3F */	clrlwi. r0, r3, 0x18
@@ -53,7 +53,7 @@ lbl_802BE1C0:
 /* 802BE200  41 82 00 30 */	beq lbl_802BE230
 /* 802BE204  80 1E 00 00 */	lwz r0, 0(r30)
 /* 802BE208  90 01 00 10 */	stw r0, 0x10(r1)
-/* 802BE20C  80 6D 85 CC */	lwz r3, data_80450B4C(r13)
+/* 802BE20C  80 6D 85 CC */	lwz r3, __OSReport_disable-0x4C(r13)
 /* 802BE210  38 81 00 10 */	addi r4, r1, 0x10
 /* 802BE214  4B FF D8 B5 */	bl getSwBit__11Z2SoundInfoCF10JAISoundID
 /* 802BE218  54 60 04 63 */	rlwinm. r0, r3, 0, 0x11, 0x11

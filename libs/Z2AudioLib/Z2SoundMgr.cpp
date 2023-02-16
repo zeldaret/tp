@@ -116,6 +116,7 @@ extern "C" extern u8 data_80450B84[4];
 extern "C" extern u8 data_80450B88[4];
 extern "C" extern u8 data_80450CC0[4 + 4 /* padding */];
 extern "C" extern u8 struct_80451340[8];
+extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:

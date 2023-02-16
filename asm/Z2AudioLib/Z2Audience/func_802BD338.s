@@ -21,7 +21,7 @@ lbl_802BD338:
 lbl_802BD384:
 /* 802BD384  80 05 00 00 */	lwz r0, 0(r5)
 /* 802BD388  90 01 00 0C */	stw r0, 0xc(r1)
-/* 802BD38C  80 6D 85 CC */	lwz r3, data_80450B4C(r13)
+/* 802BD38C  80 6D 85 CC */	lwz r3, __OSReport_disable-0x4C(r13)
 /* 802BD390  38 81 00 0C */	addi r4, r1, 0xc
 /* 802BD394  4B FF DD C5 */	bl getAudibleSwFull__11Z2SoundInfoF10JAISoundID
 /* 802BD398  90 61 00 10 */	stw r3, 0x10(r1)

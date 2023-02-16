@@ -40,7 +40,7 @@ lbl_802AF51C:
 /* 802AF528  3B 80 00 00 */	li r28, 0
 /* 802AF52C  3B E0 FF FF */	li r31, -1
 /* 802AF530  48 00 01 00 */	b lbl_802AF630
-/* 802AF534  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802AF534  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802AF538  3C 80 80 3A */	lis r4, Z2SeqMgr__stringBase0@ha /* 0x8039BA08@ha */
 /* 802AF53C  38 84 BA 08 */	addi r4, r4, Z2SeqMgr__stringBase0@l /* 0x8039BA08@l */
 /* 802AF540  38 84 02 6A */	addi r4, r4, 0x26a
@@ -143,7 +143,7 @@ lbl_802AF688:
 /* 802AF69C  48 00 03 35 */	bl subBgmStopInner__8Z2SeqMgrFv
 lbl_802AF6A0:
 /* 802AF6A0  93 C1 00 10 */	stw r30, 0x10(r1)
-/* 802AF6A4  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802AF6A4  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802AF6A8  38 81 00 10 */	addi r4, r1, 0x10
 /* 802AF6AC  38 BD 00 04 */	addi r5, r29, 4
 /* 802AF6B0  38 C0 00 00 */	li r6, 0

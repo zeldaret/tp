@@ -113,6 +113,7 @@ extern "C" extern u8 JASDram[4];
 extern "C" extern u8 struct_80451260[8];
 extern "C" u8 sSystemHeap__7JKRHeap[4];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];
+extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:

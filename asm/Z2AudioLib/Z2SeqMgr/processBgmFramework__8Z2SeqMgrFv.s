@@ -113,7 +113,7 @@ lbl_802B353C:
 /* 802B353C  88 1F 00 D0 */	lbz r0, 0xd0(r31)
 /* 802B3540  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 802B3544  41 82 00 E8 */	beq lbl_802B362C
-/* 802B3548  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802B3548  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802B354C  48 00 31 E9 */	bl checkDayTime__11Z2StatusMgrFv
 /* 802B3550  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802B3554  41 82 00 68 */	beq lbl_802B35BC
@@ -145,7 +145,7 @@ lbl_802B3574:
 /* 802B35B4  D0 7F 00 AC */	stfs f3, 0xac(r31)
 /* 802B35B8  48 00 00 74 */	b lbl_802B362C
 lbl_802B35BC:
-/* 802B35BC  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802B35BC  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802B35C0  48 00 31 75 */	bl checkDayTime__11Z2StatusMgrFv
 /* 802B35C4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802B35C8  40 82 00 64 */	bne lbl_802B362C
@@ -179,7 +179,7 @@ lbl_802B362C:
 /* 802B362C  88 1F 00 D0 */	lbz r0, 0xd0(r31)
 /* 802B3630  54 00 FF FF */	rlwinm. r0, r0, 0x1f, 0x1f, 0x1f
 /* 802B3634  41 82 04 44 */	beq lbl_802B3A78
-/* 802B3638  80 CD 86 00 */	lwz r6, data_80450B80(r13)
+/* 802B3638  80 CD 86 00 */	lwz r6, __OSReport_disable-0x18(r13)
 /* 802B363C  88 06 00 1D */	lbz r0, 0x1d(r6)
 /* 802B3640  28 00 00 00 */	cmplwi r0, 0
 /* 802B3644  41 82 04 34 */	beq lbl_802B3A78
@@ -285,7 +285,7 @@ lbl_802B3780:
 /* 802B37B4  D0 1F 00 8C */	stfs f0, 0x8c(r31)
 /* 802B37B8  48 00 02 C0 */	b lbl_802B3A78
 lbl_802B37BC:
-/* 802B37BC  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802B37BC  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802B37C0  C0 23 00 18 */	lfs f1, 0x18(r3)
 /* 802B37C4  C0 4D 82 F8 */	lfs f2, sUnderWaterDepthMax(r13)
 /* 802B37C8  FC 01 10 40 */	fcmpo cr0, f1, f2

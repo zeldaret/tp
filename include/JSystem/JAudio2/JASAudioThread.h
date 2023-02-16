@@ -1,9 +1,9 @@
 #ifndef JASAUDIOTHREAD_H
 #define JASAUDIOTHREAD_H
 
-#include "dolphin/types.h"
+#include "JSystem/JAudio2/JASGadget.h"
 
-struct JASAudioThread {
+struct JASAudioThread : public JASGlobalInstance<JASAudioThread> {
     /* 8029CCDC */ JASAudioThread(int, int, u32);
     /* 8029CD4C */ void create(s32);
     /* 8029CDC0 */ void stop();
@@ -14,12 +14,5 @@ struct JASAudioThread {
 
     static u8 snIntCount[4 + 4 /* padding */];
 };
-
-/**
- * this is supposed to be:
- * JASGlobalInstance<JASAudioThread>::sInstance
- * sInstance__35JASGlobalInstance<14JASAudioThread>
- */
-extern JASAudioThread* data_80450B8C;
 
 #endif /* JASAUDIOTHREAD_H */

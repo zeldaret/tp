@@ -16,7 +16,7 @@ lbl_802CB3C0:
 /* 802CB3C0  38 60 FF FF */	li r3, -1
 /* 802CB3C4  48 00 02 74 */	b lbl_802CB638
 lbl_802CB3C8:
-/* 802CB3C8  80 AD 86 04 */	lwz r5, data_80450B84(r13)
+/* 802CB3C8  80 AD 86 04 */	lwz r5, __OSReport_disable-0x14(r13)
 /* 802CB3CC  38 80 00 00 */	li r4, 0
 /* 802CB3D0  80 05 00 08 */	lwz r0, 8(r5)
 /* 802CB3D4  28 00 00 00 */	cmplwi r0, 0
@@ -76,7 +76,7 @@ lbl_802CB45C:
 lbl_802CB490:
 /* 802CB490  38 00 00 0D */	li r0, 0xd
 /* 802CB494  90 01 00 14 */	stw r0, 0x14(r1)
-/* 802CB498  80 6D 86 08 */	lwz r3, data_80450B88(r13)
+/* 802CB498  80 6D 86 08 */	lwz r3, __OSReport_disable-0x10(r13)
 /* 802CB49C  38 81 00 14 */	addi r4, r1, 0x14
 /* 802CB4A0  38 A0 00 00 */	li r5, 0
 /* 802CB4A4  38 C0 00 00 */	li r6, 0
@@ -91,7 +91,7 @@ lbl_802CB490:
 /* 802CB4C8  7C 00 07 74 */	extsb r0, r0
 /* 802CB4CC  2C 00 00 02 */	cmpwi r0, 2
 /* 802CB4D0  40 81 00 30 */	ble lbl_802CB500
-/* 802CB4D4  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802CB4D4  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802CB4D8  80 63 00 04 */	lwz r3, 4(r3)
 /* 802CB4DC  2C 03 00 21 */	cmpwi r3, 0x21
 /* 802CB4E0  40 82 00 38 */	bne lbl_802CB518
@@ -99,7 +99,7 @@ lbl_802CB490:
 /* 802CB4E8  3C 60 80 43 */	lis r3, sCorrectDuo@ha /* 0x80434240@ha */
 /* 802CB4EC  38 63 42 40 */	addi r3, r3, sCorrectDuo@l /* 0x80434240@l */
 /* 802CB4F0  7C 83 00 2E */	lwzx r4, r3, r0
-/* 802CB4F4  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802CB4F4  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802CB4F8  4B FE 3F A5 */	bl subBgmStart__8Z2SeqMgrFUl
 /* 802CB4FC  48 00 00 1C */	b lbl_802CB518
 lbl_802CB500:
@@ -107,7 +107,7 @@ lbl_802CB500:
 /* 802CB504  3C 60 80 43 */	lis r3, sCorrectPhrase@ha /* 0x804341F8@ha */
 /* 802CB508  38 63 41 F8 */	addi r3, r3, sCorrectPhrase@l /* 0x804341F8@l */
 /* 802CB50C  7C 83 00 2E */	lwzx r4, r3, r0
-/* 802CB510  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802CB510  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802CB514  4B FE 3F 89 */	bl subBgmStart__8Z2SeqMgrFUl
 lbl_802CB518:
 /* 802CB518  38 00 FF FF */	li r0, -1

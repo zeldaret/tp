@@ -186,6 +186,7 @@ extern "C" extern u8 data_80450B7C[4];
 extern "C" extern u8 data_80450B80[4];
 extern "C" extern u8 data_80450B84[4];
 extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
+extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:

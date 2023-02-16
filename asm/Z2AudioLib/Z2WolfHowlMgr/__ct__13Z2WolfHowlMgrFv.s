@@ -1,5 +1,5 @@
 lbl_802CAAC0:
-/* 802CAAC0  90 6D 85 B8 */	stw r3, data_80450B38(r13)
+/* 802CAAC0  90 6D 85 B8 */	stw r3, __OSReport_disable-0x60(r13)
 /* 802CAAC4  38 A0 00 00 */	li r5, 0
 /* 802CAAC8  90 A3 00 00 */	stw r5, 0(r3)
 /* 802CAACC  90 A3 00 04 */	stw r5, 4(r3)

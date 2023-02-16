@@ -297,6 +297,7 @@ extern "C" extern u8 data_80450B58[4];
 extern "C" extern u8 data_80450B90[4 + 4 /* padding */];
 extern "C" extern u8 data_80450CC0[4 + 4 /* padding */];
 extern "C" extern u8 JASDram[4];
+extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:

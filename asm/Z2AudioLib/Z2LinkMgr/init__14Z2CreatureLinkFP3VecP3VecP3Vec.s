@@ -11,7 +11,7 @@ lbl_802C3638:
 /* 802C365C  39 20 00 02 */	li r9, 2
 /* 802C3660  4B FF CF 51 */	bl init__10Z2CreatureFP3VecP3VecP3VecUcUcUc
 /* 802C3664  80 1E 00 04 */	lwz r0, 4(r30)
-/* 802C3668  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802C3668  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802C366C  80 63 01 D0 */	lwz r3, 0x1d0(r3)
 /* 802C3670  90 03 00 14 */	stw r0, 0x14(r3)
 /* 802C3674  38 00 00 FF */	li r0, 0xff

@@ -31,7 +31,7 @@ lbl_802C4928:
 /* 802C499C  88 03 00 CB */	lbz r0, 0xcb(r3)
 /* 802C49A0  54 00 D7 FF */	rlwinm. r0, r0, 0x1a, 0x1f, 0x1f
 /* 802C49A4  41 82 00 E8 */	beq lbl_802C4A8C
-/* 802C49A8  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802C49A8  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802C49AC  C0 23 00 1C */	lfs f1, 0x1c(r3)
 /* 802C49B0  C0 02 C2 A0 */	lfs f0, lit_3723(r2)
 /* 802C49B4  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -346,7 +346,7 @@ lbl_802C4DD8:
 /* 802C4E10  7C 7D 1B 78 */	mr r29, r3
 /* 802C4E14  57 E0 06 3F */	clrlwi. r0, r31, 0x18
 /* 802C4E18  41 82 01 24 */	beq lbl_802C4F3C
-/* 802C4E1C  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802C4E1C  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802C4E20  88 03 00 16 */	lbz r0, 0x16(r3)
 /* 802C4E24  28 00 00 72 */	cmplwi r0, 0x72
 /* 802C4E28  41 82 01 14 */	beq lbl_802C4F3C

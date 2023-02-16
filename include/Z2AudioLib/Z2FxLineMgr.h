@@ -3,13 +3,13 @@
 
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dolphin/types.h"
+#include "JSystem/JAudio2/JASGadget.h"
 
 struct Z2FxLineEditNode {};
 
 struct Z2FxLineConfig {};
 
-struct Z2FxLineMgr {
+struct Z2FxLineMgr : public JASGlobalInstance<Z2FxLineMgr> {
     /* 802BA7DC */ Z2FxLineMgr();
     /* 802BA7FC */ void initDataArc(JKRArchive*, JKRHeap*);
     /* 802BAC28 */ void setLineID(s8, bool, bool);
@@ -26,11 +26,8 @@ struct Z2FxLineMgr {
     /* 0x18 */ Z2FxLineEditNode* mHIOEdit;
 };  // Size: 0x1C
 
-/**
- * this is supposed to be:
- * JASGlobalInstance<Z2FxLineMgr>::sInstance
- * sInstance__32JASGlobalInstance<11Z2FxLineMgr>
- */
-extern Z2FxLineMgr* data_80450B40;
+inline Z2FxLineMgr* Z2GetFxLineMgr() {
+    return JASGlobalInstance<Z2FxLineMgr>::getInstance();
+}
 
 #endif /* Z2FXLINEMGR_H */

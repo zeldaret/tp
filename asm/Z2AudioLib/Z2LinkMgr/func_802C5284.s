@@ -8,7 +8,7 @@ lbl_802C5284:
 /* 802C529C  48 09 CF 41 */	bl _savegpr_29
 /* 802C52A0  7C 7D 1B 78 */	mr r29, r3
 /* 802C52A4  FF E0 08 90 */	fmr f31, f1
-/* 802C52A8  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802C52A8  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802C52AC  88 03 00 1C */	lbz r0, 0x1c(r3)
 /* 802C52B0  28 00 00 00 */	cmplwi r0, 0
 /* 802C52B4  40 82 00 0C */	bne lbl_802C52C0

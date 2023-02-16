@@ -13,7 +13,7 @@ lbl_802AAB94:
 /* 802AABC0  41 82 00 08 */	beq lbl_802AABC8
 /* 802AABC4  38 63 FF FC */	addi r3, r3, -4
 lbl_802AABC8:
-/* 802AABC8  90 6D 85 F4 */	stw r3, data_80450B74(r13)
+/* 802AABC8  90 6D 85 F4 */	stw r3, __OSReport_disable-0x24(r13)
 lbl_802AABCC:
 /* 802AABCC  3C 60 80 3D */	lis r3, __vt__14Z2SoundStarter@ha /* 0x803C9D80@ha */
 /* 802AABD0  38 03 9D 80 */	addi r0, r3, __vt__14Z2SoundStarter@l /* 0x803C9D80@l */

@@ -16,7 +16,7 @@ lbl_802BF994:
 /* 802BF9CC  80 0D 8D E0 */	lwz r0, mLinkPtr__14Z2CreatureLink(r13)
 /* 802BF9D0  28 00 00 00 */	cmplwi r0, 0
 /* 802BF9D4  40 82 00 18 */	bne lbl_802BF9EC
-/* 802BF9D8  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802BF9D8  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802BF9DC  38 80 00 01 */	li r4, 1
 /* 802BF9E0  38 A0 00 01 */	li r5, 1
 /* 802BF9E4  4B FF 58 21 */	bl stopBattleBgm__8Z2SeqMgrFUcUc
@@ -25,7 +25,7 @@ lbl_802BF9EC:
 /* 802BF9EC  3B C0 00 00 */	li r30, 0
 /* 802BF9F0  3B A0 00 00 */	li r29, 0
 /* 802BF9F4  3B 80 00 00 */	li r28, 0
-/* 802BF9F8  80 8D 86 04 */	lwz r4, data_80450B84(r13)
+/* 802BF9F8  80 8D 86 04 */	lwz r4, __OSReport_disable-0x14(r13)
 /* 802BF9FC  80 64 00 00 */	lwz r3, 0(r4)
 /* 802BFA00  28 03 00 00 */	cmplwi r3, 0
 /* 802BFA04  41 82 00 10 */	beq lbl_802BFA14
@@ -116,12 +116,12 @@ lbl_802BFAF4:
 /* 802BFB30  7C 03 00 2E */	lwzx r0, r3, r0
 /* 802BFB34  7C 09 03 A6 */	mtctr r0
 /* 802BFB38  4E 80 04 20 */	bctr 
-/* 802BFB3C  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802BFB3C  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802BFB40  80 03 00 04 */	lwz r0, 4(r3)
 /* 802BFB44  2C 00 00 1C */	cmpwi r0, 0x1c
 /* 802BFB48  41 82 02 F8 */	beq lbl_802BFE40
 /* 802BFB4C  48 00 00 50 */	b lbl_802BFB9C
-/* 802BFB50  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802BFB50  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802BFB54  80 03 00 04 */	lwz r0, 4(r3)
 /* 802BFB58  2C 00 00 1E */	cmpwi r0, 0x1e
 /* 802BFB5C  41 82 02 E4 */	beq lbl_802BFE40
@@ -273,7 +273,7 @@ lbl_802BFD78:
 /* 802BFD84  98 17 00 1B */	stb r0, 0x1b(r23)
 /* 802BFD88  48 00 00 10 */	b lbl_802BFD98
 lbl_802BFD8C:
-/* 802BFD8C  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802BFD8C  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802BFD90  88 97 00 1B */	lbz r4, 0x1b(r23)
 /* 802BFD94  4B FF 20 61 */	bl changeSubBgmStatus__8Z2SeqMgrFl
 lbl_802BFD98:
@@ -334,12 +334,12 @@ lbl_802BFE44:
 /* 802BFE5C  88 17 00 16 */	lbz r0, 0x16(r23)
 /* 802BFE60  7C 03 00 40 */	cmplw r3, r0
 /* 802BFE64  41 80 00 14 */	blt lbl_802BFE78
-/* 802BFE68  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802BFE68  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802BFE6C  38 80 00 00 */	li r4, 0
 /* 802BFE70  4B FF 45 71 */	bl setBattleGhostMute__8Z2SeqMgrFb
 /* 802BFE74  48 00 00 34 */	b lbl_802BFEA8
 lbl_802BFE78:
-/* 802BFE78  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802BFE78  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802BFE7C  38 80 00 01 */	li r4, 1
 /* 802BFE80  4B FF 45 61 */	bl setBattleGhostMute__8Z2SeqMgrFb
 /* 802BFE84  48 00 00 24 */	b lbl_802BFEA8
@@ -359,12 +359,12 @@ lbl_802BFEA8:
 /* 802BFEB4  88 17 00 14 */	lbz r0, 0x14(r23)
 /* 802BFEB8  28 00 00 00 */	cmplwi r0, 0
 /* 802BFEBC  41 82 00 14 */	beq lbl_802BFED0
-/* 802BFEC0  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802BFEC0  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802BFEC4  38 80 00 01 */	li r4, 1
 /* 802BFEC8  4B FF 1F 2D */	bl changeSubBgmStatus__8Z2SeqMgrFl
 /* 802BFECC  48 00 00 F0 */	b lbl_802BFFBC
 lbl_802BFED0:
-/* 802BFED0  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802BFED0  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802BFED4  38 80 00 00 */	li r4, 0
 /* 802BFED8  4B FF 1F 1D */	bl changeSubBgmStatus__8Z2SeqMgrFl
 /* 802BFEDC  48 00 00 E0 */	b lbl_802BFFBC
@@ -374,12 +374,12 @@ lbl_802BFEE0:
 /* 802BFEE8  88 17 00 15 */	lbz r0, 0x15(r23)
 /* 802BFEEC  28 00 00 00 */	cmplwi r0, 0
 /* 802BFEF0  41 82 00 14 */	beq lbl_802BFF04
-/* 802BFEF4  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802BFEF4  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802BFEF8  38 80 00 01 */	li r4, 1
 /* 802BFEFC  4B FF 1E F9 */	bl changeSubBgmStatus__8Z2SeqMgrFl
 /* 802BFF00  48 00 00 BC */	b lbl_802BFFBC
 lbl_802BFF04:
-/* 802BFF04  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802BFF04  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802BFF08  38 80 00 00 */	li r4, 0
 /* 802BFF0C  4B FF 1E E9 */	bl changeSubBgmStatus__8Z2SeqMgrFl
 /* 802BFF10  48 00 00 AC */	b lbl_802BFFBC
@@ -389,25 +389,25 @@ lbl_802BFF14:
 /* 802BFF1C  88 17 00 16 */	lbz r0, 0x16(r23)
 /* 802BFF20  28 00 00 00 */	cmplwi r0, 0
 /* 802BFF24  41 82 00 14 */	beq lbl_802BFF38
-/* 802BFF28  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802BFF28  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802BFF2C  38 80 00 01 */	li r4, 1
 /* 802BFF30  4B FF 00 5D */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802BFF34  48 00 00 88 */	b lbl_802BFFBC
 lbl_802BFF38:
-/* 802BFF38  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802BFF38  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802BFF3C  38 80 00 00 */	li r4, 0
 /* 802BFF40  4B FF 00 4D */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 802BFF44  48 00 00 78 */	b lbl_802BFFBC
 lbl_802BFF48:
 /* 802BFF48  57 C0 06 3F */	clrlwi. r0, r30, 0x18
 /* 802BFF4C  40 82 00 70 */	bne lbl_802BFFBC
-/* 802BFF50  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802BFF50  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802BFF54  7F A4 EB 78 */	mr r4, r29
 /* 802BFF58  4B FF 42 C5 */	bl setBattleSearched__8Z2SeqMgrFb
 /* 802BFF5C  88 17 00 14 */	lbz r0, 0x14(r23)
 /* 802BFF60  28 00 00 00 */	cmplwi r0, 0
 /* 802BFF64  41 82 00 14 */	beq lbl_802BFF78
-/* 802BFF68  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802BFF68  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802BFF6C  38 80 00 00 */	li r4, 0
 /* 802BFF70  4B FF 45 29 */	bl setBattleDistState__8Z2SeqMgrFUc
 /* 802BFF74  48 00 00 48 */	b lbl_802BFFBC
@@ -415,7 +415,7 @@ lbl_802BFF78:
 /* 802BFF78  88 17 00 15 */	lbz r0, 0x15(r23)
 /* 802BFF7C  28 00 00 00 */	cmplwi r0, 0
 /* 802BFF80  41 82 00 14 */	beq lbl_802BFF94
-/* 802BFF84  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802BFF84  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802BFF88  38 80 00 01 */	li r4, 1
 /* 802BFF8C  4B FF 45 0D */	bl setBattleDistState__8Z2SeqMgrFUc
 /* 802BFF90  48 00 00 2C */	b lbl_802BFFBC
@@ -423,12 +423,12 @@ lbl_802BFF94:
 /* 802BFF94  88 17 00 16 */	lbz r0, 0x16(r23)
 /* 802BFF98  28 00 00 00 */	cmplwi r0, 0
 /* 802BFF9C  41 82 00 14 */	beq lbl_802BFFB0
-/* 802BFFA0  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802BFFA0  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802BFFA4  38 80 00 02 */	li r4, 2
 /* 802BFFA8  4B FF 44 F1 */	bl setBattleDistState__8Z2SeqMgrFUc
 /* 802BFFAC  48 00 00 10 */	b lbl_802BFFBC
 lbl_802BFFB0:
-/* 802BFFB0  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802BFFB0  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802BFFB4  38 80 00 03 */	li r4, 3
 /* 802BFFB8  4B FF 44 E1 */	bl setBattleDistState__8Z2SeqMgrFUc
 lbl_802BFFBC:

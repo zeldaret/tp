@@ -6,7 +6,7 @@ lbl_802A3B68:
 /* 802A3B78  7C 7F 1B 78 */	mr r31, r3
 /* 802A3B7C  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 802A3B80  41 82 00 08 */	beq lbl_802A3B88
-/* 802A3B84  93 ED 85 E4 */	stw r31, data_80450B64(r13)
+/* 802A3B84  93 ED 85 E4 */	stw r31, __OSReport_disable-0x34(r13)
 lbl_802A3B88:
 /* 802A3B88  C0 02 BE 00 */	lfs f0, lit_653(r2)
 /* 802A3B8C  D0 1F 00 04 */	stfs f0, 4(r31)

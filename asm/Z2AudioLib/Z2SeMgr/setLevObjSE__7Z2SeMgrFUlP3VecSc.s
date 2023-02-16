@@ -53,7 +53,7 @@ lbl_802ADED8:
 /* 802ADF18  D0 01 00 1C */	stfs f0, 0x1c(r1)
 /* 802ADF1C  48 00 00 2C */	b lbl_802ADF48
 lbl_802ADF20:
-/* 802ADF20  80 AD 85 C4 */	lwz r5, data_80450B44(r13)
+/* 802ADF20  80 AD 85 C4 */	lwz r5, __OSReport_disable-0x54(r13)
 /* 802ADF24  E0 05 01 70 */	psq_l f0, 368(r5), 0, 0 /* qr0 */
 /* 802ADF28  C0 25 01 78 */	lfs f1, 0x178(r5)
 /* 802ADF2C  F0 01 00 08 */	psq_st f0, 8(r1), 0, 0 /* qr0 */

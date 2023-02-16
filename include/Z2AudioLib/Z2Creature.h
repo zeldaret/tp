@@ -3,7 +3,6 @@
 
 #include "SSystem/SComponent/c_xyz.h"
 #include "Z2AudioLib/Z2SoundObject.h"
-#include "dolphin/types.h"
 
 class Z2Creature {
 public:

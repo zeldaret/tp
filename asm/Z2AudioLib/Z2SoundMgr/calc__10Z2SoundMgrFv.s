@@ -16,11 +16,11 @@ lbl_802AA1B0:
 /* 802AA1E8  48 00 08 DD */	bl isPlayingSoundID__10Z2SoundMgrF10JAISoundID
 /* 802AA1EC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802AA1F0  40 82 00 5C */	bne lbl_802AA24C
-/* 802AA1F4  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802AA1F4  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802AA1F8  88 03 00 1D */	lbz r0, 0x1d(r3)
 /* 802AA1FC  28 00 00 00 */	cmplwi r0, 0
 /* 802AA200  41 82 00 44 */	beq lbl_802AA244
-/* 802AA204  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802AA204  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802AA208  C0 03 00 74 */	lfs f0, 0x74(r3)
 /* 802AA20C  38 00 00 03 */	li r0, 3
 /* 802AA210  90 03 00 80 */	stw r0, 0x80(r3)

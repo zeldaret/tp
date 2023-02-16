@@ -3,7 +3,7 @@ lbl_8029CFBC:
 /* 8029CFC0  7C 08 02 A6 */	mflr r0
 /* 8029CFC4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8029CFC8  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 8029CFCC  83 ED 86 0C */	lwz r31, data_80450B8C(r13)
+/* 8029CFCC  83 ED 86 0C */	lwz r31, __OSReport_disable-0xC(r13)
 lbl_8029CFD0:
 /* 8029CFD0  48 0B 54 71 */	bl DSPCheckMailFromDSP
 /* 8029CFD4  28 03 00 00 */	cmplwi r3, 0

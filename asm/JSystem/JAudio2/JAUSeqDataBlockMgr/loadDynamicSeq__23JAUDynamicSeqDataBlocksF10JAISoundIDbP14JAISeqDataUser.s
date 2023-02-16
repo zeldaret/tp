@@ -14,7 +14,7 @@ lbl_802A6C18:
 /* 802A6C48  38 60 00 00 */	li r3, 0
 /* 802A6C4C  48 00 00 E4 */	b lbl_802A6D30
 lbl_802A6C50:
-/* 802A6C50  80 6D 85 D0 */	lwz r3, data_80450B50(r13)
+/* 802A6C50  80 6D 85 D0 */	lwz r3, __OSReport_disable-0x48(r13)
 /* 802A6C54  28 03 00 00 */	cmplwi r3, 0
 /* 802A6C58  40 82 00 0C */	bne lbl_802A6C64
 /* 802A6C5C  38 60 00 00 */	li r3, 0

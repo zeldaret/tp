@@ -17,7 +17,7 @@ lbl_802C1A14:
 lbl_802C1A50:
 /* 802C1A50  38 00 00 01 */	li r0, 1
 /* 802C1A54  98 1D 00 A3 */	stb r0, 0xa3(r29)
-/* 802C1A58  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802C1A58  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802C1A5C  88 8D 82 E9 */	lbz r4, struct_80450868+0x1(r13)
 /* 802C1A60  4B FF 30 9D */	bl setBattleLastHit__8Z2SeqMgrFUc
 /* 802C1A64  38 7D 00 08 */	addi r3, r29, 8
@@ -35,7 +35,7 @@ lbl_802C1A7C:
 /* 802C1A90  41 82 00 08 */	beq lbl_802C1A98
 /* 802C1A94  38 84 00 90 */	addi r4, r4, 0x90
 lbl_802C1A98:
-/* 802C1A98  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802C1A98  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802C1A9C  4B FF E6 F5 */	bl func_802C0190
 lbl_802C1AA0:
 /* 802C1AA0  38 7D 00 08 */	addi r3, r29, 8
@@ -54,7 +54,7 @@ lbl_802C1AB8:
 /* 802C1AD0  7C 03 00 2E */	lwzx r0, r3, r0
 /* 802C1AD4  7C 09 03 A6 */	mtctr r0
 /* 802C1AD8  4E 80 04 20 */	bctr 
-/* 802C1ADC  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802C1ADC  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802C1AE0  38 80 00 02 */	li r4, 2
 /* 802C1AE4  4B FF 2D 61 */	bl setBattleSeqState__8Z2SeqMgrFUc
 /* 802C1AE8  48 00 00 68 */	b lbl_802C1B50
@@ -69,21 +69,21 @@ lbl_802C1AB8:
 lbl_802C1B0C:
 /* 802C1B0C  38 80 00 14 */	li r4, 0x14
 lbl_802C1B10:
-/* 802C1B10  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802C1B10  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802C1B14  4B FF 2F E9 */	bl setBattleLastHit__8Z2SeqMgrFUc
 /* 802C1B18  48 00 00 38 */	b lbl_802C1B50
 /* 802C1B1C  28 04 00 2B */	cmplwi r4, 0x2b
 /* 802C1B20  40 82 00 1C */	bne lbl_802C1B3C
 /* 802C1B24  38 00 00 01 */	li r0, 1
 /* 802C1B28  98 1D 00 A3 */	stb r0, 0xa3(r29)
-/* 802C1B2C  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802C1B2C  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802C1B30  88 8D 82 E9 */	lbz r4, struct_80450868+0x1(r13)
 /* 802C1B34  4B FF 2F C9 */	bl setBattleLastHit__8Z2SeqMgrFUc
 /* 802C1B38  48 00 00 18 */	b lbl_802C1B50
 lbl_802C1B3C:
 /* 802C1B3C  28 04 00 16 */	cmplwi r4, 0x16
 /* 802C1B40  40 82 00 10 */	bne lbl_802C1B50
-/* 802C1B44  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802C1B44  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802C1B48  38 80 00 02 */	li r4, 2
 /* 802C1B4C  4B FF 2C F9 */	bl setBattleSeqState__8Z2SeqMgrFUc
 lbl_802C1B50:

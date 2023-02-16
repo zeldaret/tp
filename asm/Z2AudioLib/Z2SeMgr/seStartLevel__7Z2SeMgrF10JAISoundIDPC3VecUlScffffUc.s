@@ -56,11 +56,11 @@ lbl_802AC5C4:
 /* 802AC5DC  41 82 00 30 */	beq lbl_802AC60C
 /* 802AC5E0  48 00 00 44 */	b lbl_802AC624
 lbl_802AC5E4:
-/* 802AC5E4  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802AC5E4  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802AC5E8  88 03 00 2C */	lbz r0, 0x2c(r3)
 /* 802AC5EC  28 00 00 02 */	cmplwi r0, 2
 /* 802AC5F0  41 82 00 14 */	beq lbl_802AC604
-/* 802AC5F4  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802AC5F4  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802AC5F8  88 03 00 1C */	lbz r0, 0x1c(r3)
 /* 802AC5FC  28 00 00 00 */	cmplwi r0, 0
 /* 802AC600  40 82 00 0C */	bne lbl_802AC60C
@@ -908,12 +908,12 @@ lbl_802AD1D8:
 /* 802AD244  FF E0 08 90 */	fmr f31, f1
 /* 802AD248  48 00 03 34 */	b lbl_802AD57C
 lbl_802AD24C:
-/* 802AD24C  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802AD24C  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802AD250  80 03 00 04 */	lwz r0, 4(r3)
 /* 802AD254  2C 00 00 16 */	cmpwi r0, 0x16
 /* 802AD258  40 82 03 24 */	bne lbl_802AD57C
 lbl_802AD25C:
-/* 802AD25C  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802AD25C  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802AD260  88 03 00 1E */	lbz r0, 0x1e(r3)
 /* 802AD264  28 00 00 00 */	cmplwi r0, 0
 /* 802AD268  40 82 03 14 */	bne lbl_802AD57C
@@ -1010,7 +1010,7 @@ lbl_802AD390:
 /* 802AD3AC  4B FF C3 49 */	bl getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign
 /* 802AD3B0  FC C0 08 90 */	fmr f6, f1
 lbl_802AD3B4:
-/* 802AD3B4  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802AD3B4  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802AD3B8  C0 02 BE 78 */	lfs f0, lit_4040(r2)
 /* 802AD3BC  FC 06 00 40 */	fcmpo cr0, f6, f0
 /* 802AD3C0  40 80 00 08 */	bge lbl_802AD3C8
@@ -1043,7 +1043,7 @@ lbl_802AD3E4:
 /* 802AD41C  48 00 01 60 */	b lbl_802AD57C
 lbl_802AD420:
 /* 802AD420  C0 82 BE 80 */	lfs f4, lit_4042(r2)
-/* 802AD424  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802AD424  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802AD428  88 03 00 0C */	lbz r0, 0xc(r3)
 /* 802AD42C  2C 00 00 03 */	cmpwi r0, 3
 /* 802AD430  40 82 00 2C */	bne lbl_802AD45C
@@ -1058,7 +1058,7 @@ lbl_802AD420:
 /* 802AD454  4B FF C2 39 */	bl linearTransform__6Z2CalcFfffffb
 /* 802AD458  FC 80 08 90 */	fmr f4, f1
 lbl_802AD45C:
-/* 802AD45C  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802AD45C  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802AD460  88 03 00 00 */	lbz r0, 0(r3)
 /* 802AD464  28 00 00 17 */	cmplwi r0, 0x17
 /* 802AD468  41 81 00 CC */	bgt lbl_802AD534
@@ -1153,7 +1153,7 @@ lbl_802AD590:
 /* 802AD5BC  57 C0 06 3E */	clrlwi r0, r30, 0x18
 /* 802AD5C0  28 00 00 01 */	cmplwi r0, 1
 /* 802AD5C4  40 82 00 14 */	bne lbl_802AD5D8
-/* 802AD5C8  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802AD5C8  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802AD5CC  FC 20 F0 90 */	fmr f1, f30
 /* 802AD5D0  48 01 01 35 */	bl calcOffMicSound__10Z2AudienceFf
 /* 802AD5D4  FF C0 08 90 */	fmr f30, f1
@@ -1188,7 +1188,7 @@ lbl_802AD638:
 /* 802AD63C  41 82 00 20 */	beq lbl_802AD65C
 /* 802AD640  80 1F 00 60 */	lwz r0, 0x60(r31)
 /* 802AD644  7C 80 D2 14 */	add r4, r0, r26
-/* 802AD648  80 6D 85 F4 */	lwz r3, data_80450B74(r13)
+/* 802AD648  80 6D 85 F4 */	lwz r3, __OSReport_disable-0x24(r13)
 /* 802AD64C  38 A0 00 06 */	li r5, 6
 /* 802AD650  57 86 04 3E */	clrlwi r6, r28, 0x10
 /* 802AD654  38 E0 FF FF */	li r7, -1
@@ -1276,7 +1276,7 @@ lbl_802AD764:
 lbl_802AD77C:
 /* 802AD77C  80 1B 00 00 */	lwz r0, 0(r27)
 /* 802AD780  90 01 00 10 */	stw r0, 0x10(r1)
-/* 802AD784  80 6D 85 F4 */	lwz r3, data_80450B74(r13)
+/* 802AD784  80 6D 85 F4 */	lwz r3, __OSReport_disable-0x24(r13)
 /* 802AD788  38 81 00 10 */	addi r4, r1, 0x10
 /* 802AD78C  7F E5 FB 78 */	mr r5, r31
 /* 802AD790  80 C1 00 08 */	lwz r6, 8(r1)
@@ -1310,7 +1310,7 @@ lbl_802AD77C:
 /* 802AD800  3C 03 FF F8 */	addis r0, r3, 0xfff8
 /* 802AD804  28 00 01 75 */	cmplwi r0, 0x175
 /* 802AD808  40 82 00 1C */	bne lbl_802AD824
-/* 802AD80C  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802AD80C  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802AD810  3C 80 01 00 */	lis r4, 0x0100 /* 0x0100002F@ha */
 /* 802AD814  38 84 00 2F */	addi r4, r4, 0x002F /* 0x0100002F@l */
 /* 802AD818  38 A0 00 00 */	li r5, 0
@@ -1320,7 +1320,7 @@ lbl_802AD824:
 /* 802AD824  57 C0 06 3E */	clrlwi r0, r30, 0x18
 /* 802AD828  28 00 00 01 */	cmplwi r0, 1
 /* 802AD82C  40 82 00 10 */	bne lbl_802AD83C
-/* 802AD830  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802AD830  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802AD834  FC 20 F0 90 */	fmr f1, f30
 /* 802AD838  48 00 FE CD */	bl calcOffMicSound__10Z2AudienceFf
 lbl_802AD83C:

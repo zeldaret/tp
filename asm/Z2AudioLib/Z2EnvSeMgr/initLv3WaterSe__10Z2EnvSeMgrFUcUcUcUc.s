@@ -419,7 +419,7 @@ lbl_802C9ADC:
 /* 802C9AE8  D0 1B 02 8C */	stfs f0, 0x28c(r27)
 /* 802C9AEC  48 00 04 54 */	b lbl_802C9F40
 lbl_802C9AF0:
-/* 802C9AF0  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802C9AF0  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802C9AF4  80 03 00 04 */	lwz r0, 4(r3)
 /* 802C9AF8  2C 00 00 2E */	cmpwi r0, 0x2e
 /* 802C9AFC  40 82 04 44 */	bne lbl_802C9F40

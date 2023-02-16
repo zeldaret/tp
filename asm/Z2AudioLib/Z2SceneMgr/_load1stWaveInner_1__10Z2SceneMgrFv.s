@@ -4,10 +4,10 @@ lbl_802B9D98:
 /* 802B9DA0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802B9DA4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802B9DA8  7C 7F 1B 78 */	mr r31, r3
-/* 802B9DAC  80 6D 86 08 */	lwz r3, data_80450B88(r13)
+/* 802B9DAC  80 6D 86 08 */	lwz r3, __OSReport_disable-0x10(r13)
 /* 802B9DB0  38 80 00 00 */	li r4, 0
 /* 802B9DB4  4B FF 3B 99 */	bl seStopAll__7Z2SeMgrFUl
-/* 802B9DB8  80 6D 85 BC */	lwz r3, data_80450B3C(r13)
+/* 802B9DB8  80 6D 85 BC */	lwz r3, __OSReport_disable-0x5C(r13)
 /* 802B9DBC  48 00 CB E1 */	bl resetSceneInner__10Z2EnvSeMgrFv
 /* 802B9DC0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
 /* 802B9DC4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
@@ -125,7 +125,7 @@ lbl_802B9F5C:
 /* 802B9F5C  88 1F 00 1A */	lbz r0, 0x1a(r31)
 /* 802B9F60  28 00 00 00 */	cmplwi r0, 0
 /* 802B9F64  41 82 00 48 */	beq lbl_802B9FAC
-/* 802B9F68  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B9F68  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B9F6C  38 80 00 00 */	li r4, 0
 /* 802B9F70  80 03 00 00 */	lwz r0, 0(r3)
 /* 802B9F74  28 00 00 00 */	cmplwi r0, 0

@@ -12,7 +12,7 @@ lbl_802CCA18:
 /* 802CCA40  7C DF 33 78 */	mr r31, r6
 /* 802CCA44  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 802CCA48  41 82 05 20 */	beq lbl_802CCF68
-/* 802CCA4C  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802CCA4C  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802CCA50  88 63 00 0C */	lbz r3, 0xc(r3)
 /* 802CCA54  7C 63 07 74 */	extsb r3, r3
 /* 802CCA58  4B D6 06 15 */	bl dComIfGp_getReverb__Fi
@@ -197,7 +197,7 @@ lbl_802CCCC8:
 /* 802CCCC8  57 C0 04 3E */	clrlwi r0, r30, 0x10
 /* 802CCCCC  28 00 00 01 */	cmplwi r0, 1
 /* 802CCCD0  40 82 02 1C */	bne lbl_802CCEEC
-/* 802CCCD4  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802CCCD4  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802CCCD8  3C 80 01 00 */	lis r4, 0x0100 /* 0x0100000B@ha */
 /* 802CCCDC  38 84 00 0B */	addi r4, r4, 0x000B /* 0x0100000B@l */
 /* 802CCCE0  4B FE 27 BD */	bl subBgmStart__8Z2SeqMgrFUl

@@ -129,46 +129,10 @@ extern "C" void _restgpr_29();
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__14Z2SoundStarter[5 + 1 /* padding */];
 extern "C" extern void* __vt__16Z2SoundObjSimple[8];
-extern "C" extern Z2FxLineMgr* data_80450B40;
-extern "C" extern Z2Audience* data_80450B44;
-extern "C" extern Z2SoundObjMgr* data_80450B48;
-extern "C" extern Z2SoundStarter* data_80450B74;
-extern "C" extern Z2StatusMgr* data_80450B7C;
-extern "C" extern Z2SceneMgr* data_80450B80;
-extern "C" extern Z2SeqMgr* data_80450B84;
-extern "C" extern Z2SeMgr* data_80450B88;
 
 //
 // Declarations:
 //
-
-inline Z2Audience* Z2GetAudience() {
-    return data_80450B44;
-}
-
-inline Z2SeMgr* Z2GetSeMgr() {
-    return data_80450B88;
-}
-
-inline Z2SeqMgr* Z2GetSeqMgr() {
-    return data_80450B84;
-}
-
-inline Z2StatusMgr* Z2GetStatusMgr() {
-    return data_80450B7C;
-}
-
-inline Z2SceneMgr* Z2GetSceneMgr() {
-    return data_80450B80;
-}
-
-inline Z2FxLineMgr* Z2GetFxLineMgr() {
-    return data_80450B40;
-}
-
-inline Z2SoundObjMgr* Z2GetSoundObjMgr() {
-    return data_80450B48;
-}
 
 /* 802C321C-802C3220 2BDB5C 0004+00 0/0 1/1 0/0 .text setLinkGroupInfo__14Z2CreatureLinkFUc */
 void Z2CreatureLink::setLinkGroupInfo(u8) {}
@@ -212,7 +176,7 @@ void Z2CreatureLink::setLinkShieldType(s32 i_shieldType, s32 param_1) {
 void Z2CreatureLink::setLinkBootsType(s32 i_bootsType) {
     mLinkBootsType = i_bootsType;
 
-    if (data_80450B80->isSceneExist()) {
+    if (Z2GetSceneMgr()->isSceneExist()) {
         startLinkSound(Z2SE_AL_CHANGE_BOOTS, 0, -1);
     }
 }

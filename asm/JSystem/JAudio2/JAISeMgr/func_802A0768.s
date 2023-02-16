@@ -14,7 +14,7 @@ lbl_802A0768:
 /* 802A0798  41 82 00 08 */	beq lbl_802A07A0
 /* 802A079C  48 00 1D FD */	bl stop__8JAISoundFv
 lbl_802A07A0:
-/* 802A07A0  83 6D 85 DC */	lwz r27, data_80450B5C(r13)
+/* 802A07A0  83 6D 85 DC */	lwz r27, __OSReport_disable-0x3C(r13)
 /* 802A07A4  28 1B 00 00 */	cmplwi r27, 0
 /* 802A07A8  41 82 00 50 */	beq lbl_802A07F8
 /* 802A07AC  80 1D 00 00 */	lwz r0, 0(r29)

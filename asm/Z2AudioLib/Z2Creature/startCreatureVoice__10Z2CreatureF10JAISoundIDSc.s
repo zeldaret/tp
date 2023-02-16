@@ -22,7 +22,7 @@ lbl_802C0A94:
 /* 802C0A98  7C 04 00 00 */	cmpw r4, r0
 /* 802C0A9C  40 80 00 1C */	bge lbl_802C0AB8
 lbl_802C0AA0:
-/* 802C0AA0  80 6D 85 F0 */	lwz r3, data_80450B70(r13)
+/* 802C0AA0  80 6D 85 F0 */	lwz r3, __OSReport_disable-0x28(r13)
 /* 802C0AA4  48 00 C4 E5 */	bl isMidnaSpeak__12Z2SpeechMgr2Fv
 /* 802C0AA8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802C0AAC  41 82 00 0C */	beq lbl_802C0AB8

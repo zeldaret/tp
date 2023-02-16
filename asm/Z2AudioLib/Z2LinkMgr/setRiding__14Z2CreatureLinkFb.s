@@ -13,13 +13,13 @@ lbl_802C3A6C:
 /* 802C3A98  41 82 00 3C */	beq lbl_802C3AD4
 /* 802C3A9C  28 00 00 00 */	cmplwi r0, 0
 /* 802C3AA0  41 82 00 18 */	beq lbl_802C3AB8
-/* 802C3AA4  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802C3AA4  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802C3AA8  C0 22 C2 C0 */	lfs f1, lit_3743(r2)
 /* 802C3AAC  38 80 00 00 */	li r4, 0
 /* 802C3AB0  4B FF 9E 5D */	bl setTargetVolume__10Z2AudienceFfi
 /* 802C3AB4  48 00 00 14 */	b lbl_802C3AC8
 lbl_802C3AB8:
-/* 802C3AB8  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802C3AB8  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802C3ABC  C0 22 C2 A0 */	lfs f1, lit_3723(r2)
 /* 802C3AC0  38 80 00 00 */	li r4, 0
 /* 802C3AC4  4B FF 9E 49 */	bl setTargetVolume__10Z2AudienceFfi

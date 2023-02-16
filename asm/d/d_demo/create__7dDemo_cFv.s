@@ -56,7 +56,7 @@ lbl_80039738:
 /* 80039740  48 29 55 0D */	bl __nw__FUl
 /* 80039744  28 03 00 00 */	cmplwi r3, 0
 /* 80039748  41 82 00 3C */	beq lbl_80039784
-/* 8003974C  80 ED 85 F4 */	lwz r7, data_80450B74(r13)
+/* 8003974C  80 ED 85 F4 */	lwz r7, __OSReport_disable-0x24(r13)
 /* 80039750  80 CD 88 80 */	lwz r6, m_system__7dDemo_c(r13)
 /* 80039754  3C 80 80 3A */	lis r4, __vt__Q27JStudio13TCreateObject@ha /* 0x803A7934@ha */
 /* 80039758  38 04 79 34 */	addi r0, r4, __vt__Q27JStudio13TCreateObject@l /* 0x803A7934@l */

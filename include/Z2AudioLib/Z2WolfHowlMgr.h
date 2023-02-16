@@ -66,11 +66,4 @@ private:
     /* 0xBC */ s8 field_0xbc;
 };
 
-/**
- * this is supposed to be:
- * JASGlobalInstance<Z2WolfHowlMgr>::sInstance
- * sInstance__34JASGlobalInstance<13Z2WolfHowlMgr>
- */
-extern Z2WolfHowlMgr* data_80450B38;
-
 #endif /* Z2WOLFHOWLMGR_H */

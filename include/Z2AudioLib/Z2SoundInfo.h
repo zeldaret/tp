@@ -2,6 +2,7 @@
 #define Z2SOUNDINFO_H
 
 #include "JSystem/JAudio2/JAISound.h"
+#include "JSystem/JAudio2/JASGadget.h"
 
 struct JAISeq;
 
@@ -11,7 +12,7 @@ struct JAIStream;
 
 struct JAISe;
 
-struct JAISoundInfo {
+struct JAISoundInfo : public JASGlobalInstance<JAISoundInfo> {
     virtual void getSoundType(JAISoundID) const = 0;
     virtual void getCategory(JAISoundID) const = 0;
     virtual void getPriority(JAISoundID) const = 0;
@@ -21,7 +22,7 @@ struct JAISoundInfo {
     virtual ~JAISoundInfo();
 };
 
-struct JAUSoundInfo {
+struct JAUSoundInfo : public JASGlobalInstance<JAUSoundInfo> {
     virtual void getAudibleSw(JAISoundID) const = 0;
     virtual void getBgmSeqResourceID(JAISoundID) const = 0;
 };
@@ -31,7 +32,7 @@ struct JAIStreamDataMgr {
     virtual ~JAIStreamDataMgr();
 };
 
-struct Z2SoundInfo /* : public JAISoundInfo, public JAUSoundInfo, public JAIStreamDataMgr */ {
+struct Z2SoundInfo /* : public JAISoundInfo, public JAUSoundInfo, public JAIStreamDataMgr */ : public JASGlobalInstance<Z2SoundInfo> {
     /* 802BB00C */ void getBgmSeqResourceID(JAISoundID) const;
     /* 802BB158 */ void getAudibleSwFull(JAISoundID);
     /* 802BB448 */ void getAudibleSw(JAISoundID) const;
@@ -48,19 +49,5 @@ struct Z2SoundInfo /* : public JAISoundInfo, public JAUSoundInfo, public JAIStre
     /* 802BB8E0 */ void getStreamInfo(JAISoundID, JAIStream*) const;
     /* 802BBBE0 */ virtual ~Z2SoundInfo();
 };
-
-/**
- * this is supposed to be:
- * JASGlobalInstance<Z2SoundInfo>::sInstance
- * sInstance__32JASGlobalInstance<11Z2SoundInfo>
- */
-extern Z2SoundInfo* data_80450B4C;
-
-/**
- * this is supposed to be:
- * JASGlobalInstance<JAUSoundInfo>::sInstance
- * sInstance__33JASGlobalInstance<12JAUSoundInfo>
- */
-extern JAUSoundInfo* data_80450B50;
 
 #endif /* Z2SOUNDINFO_H */

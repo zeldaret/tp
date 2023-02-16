@@ -1,5 +1,5 @@
 lbl_802B5F1C:
-/* 802B5F1C  90 6D 85 FC */	stw r3, data_80450B7C(r13)
+/* 802B5F1C  90 6D 85 FC */	stw r3, __OSReport_disable-0x1C(r13)
 /* 802B5F20  38 80 00 00 */	li r4, 0
 /* 802B5F24  98 83 00 00 */	stb r4, 0(r3)
 /* 802B5F28  98 83 00 01 */	stb r4, 1(r3)

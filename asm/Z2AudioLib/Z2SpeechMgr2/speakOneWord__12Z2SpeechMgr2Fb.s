@@ -6,7 +6,7 @@ lbl_802CC190:
 /* 802CC1A0  48 09 60 3D */	bl _savegpr_29
 /* 802CC1A4  7C 7E 1B 78 */	mr r30, r3
 /* 802CC1A8  7C 9F 23 78 */	mr r31, r4
-/* 802CC1AC  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802CC1AC  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802CC1B0  88 03 00 1D */	lbz r0, 0x1d(r3)
 /* 802CC1B4  28 00 00 00 */	cmplwi r0, 0
 /* 802CC1B8  41 82 01 2C */	beq lbl_802CC2E4
@@ -39,7 +39,7 @@ lbl_802CC20C:
 lbl_802CC21C:
 /* 802CC21C  A0 7E 03 FC */	lhz r3, 0x3fc(r30)
 /* 802CC220  3F A3 00 05 */	addis r29, r3, 5
-/* 802CC224  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802CC224  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802CC228  88 63 00 0C */	lbz r3, 0xc(r3)
 /* 802CC22C  7C 63 07 74 */	extsb r3, r3
 /* 802CC230  3B BD 00 A1 */	addi r29, r29, 0xa1

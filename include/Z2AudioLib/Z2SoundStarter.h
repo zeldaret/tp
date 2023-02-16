@@ -3,9 +3,9 @@
 
 #include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JAISoundStarter.h"
-#include "dolphin/types.h"
+#include "JSystem/JAudio2/JASGadget.h"
 
-struct Z2SoundStarter : public JAISoundStarter {
+struct Z2SoundStarter : public JAISoundStarter, public JASGlobalInstance<Z2SoundStarter> {
     Z2SoundStarter(bool);
     void setPortData(JAISoundHandle*, u32, u16, s8);
     void getPortData(JAISoundHandle*, u32, s8);
@@ -15,12 +15,5 @@ struct Z2SoundStarter : public JAISoundStarter {
     virtual void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*, u32, float,
                             float, float, float, float, u32);
 };
-
-/**
- * this is supposed to be:
- * JASGlobalInstance<Z2SoundStarter>::sInstance
- * sInstance__35JASGlobalInstance<14Z2SoundStarter>
- */
-extern Z2SoundStarter* data_80450B74;
 
 #endif /* Z2SOUNDSTARTER_H */

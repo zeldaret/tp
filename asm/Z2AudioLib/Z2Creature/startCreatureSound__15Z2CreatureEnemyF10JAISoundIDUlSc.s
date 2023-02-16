@@ -41,7 +41,7 @@ lbl_802C110C:
 /* 802C11A8  41 82 00 08 */	beq lbl_802C11B0
 /* 802C11AC  38 9D 00 90 */	addi r4, r29, 0x90
 lbl_802C11B0:
-/* 802C11B0  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802C11B0  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802C11B4  48 01 AF A9 */	bl remove__10JSUPtrListFP10JSUPtrLink
 /* 802C11B8  48 00 01 3C */	b lbl_802C12F4
 lbl_802C11BC:
@@ -57,7 +57,7 @@ lbl_802C11BC:
 /* 802C11E0  41 82 00 08 */	beq lbl_802C11E8
 /* 802C11E4  38 9D 00 90 */	addi r4, r29, 0x90
 lbl_802C11E8:
-/* 802C11E8  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802C11E8  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802C11EC  48 01 AD 61 */	bl append__10JSUPtrListFP10JSUPtrLink
 /* 802C11F0  48 00 01 04 */	b lbl_802C12F4
 /* 802C11F4  28 1F 00 00 */	cmplwi r31, 0
@@ -121,7 +121,7 @@ lbl_802C11E8:
 /* 802C12DC  40 82 00 18 */	bne lbl_802C12F4
 /* 802C12E0  38 00 00 01 */	li r0, 1
 /* 802C12E4  98 1D 00 A3 */	stb r0, 0xa3(r29)
-/* 802C12E8  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802C12E8  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802C12EC  88 8D 82 E9 */	lbz r4, struct_80450868+0x1(r13)
 /* 802C12F0  4B FF 38 0D */	bl setBattleLastHit__8Z2SeqMgrFUc
 lbl_802C12F4:

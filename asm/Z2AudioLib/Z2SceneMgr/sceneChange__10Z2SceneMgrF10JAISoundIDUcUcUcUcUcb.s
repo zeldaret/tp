@@ -7,7 +7,7 @@ lbl_802B9B68:
 /* 802B9B7C  80 03 00 00 */	lwz r0, 0(r3)
 /* 802B9B80  7C 0B 00 40 */	cmplw r11, r0
 /* 802B9B84  41 82 00 44 */	beq lbl_802B9BC8
-/* 802B9B88  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B9B88  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B9B8C  80 63 00 00 */	lwz r3, 0(r3)
 /* 802B9B90  28 03 00 00 */	cmplwi r3, 0
 /* 802B9B94  41 82 00 10 */	beq lbl_802B9BA4
@@ -27,7 +27,7 @@ lbl_802B9BBC:
 /* 802B9BC0  98 0C 00 1A */	stb r0, 0x1a(r12)
 /* 802B9BC4  48 00 00 54 */	b lbl_802B9C18
 lbl_802B9BC8:
-/* 802B9BC8  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802B9BC8  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802B9BCC  80 63 00 00 */	lwz r3, 0(r3)
 /* 802B9BD0  28 03 00 00 */	cmplwi r3, 0
 /* 802B9BD4  41 82 00 10 */	beq lbl_802B9BE4
@@ -59,7 +59,7 @@ lbl_802B9C18:
 /* 802B9C28  99 2C 00 15 */	stb r9, 0x15(r12)
 /* 802B9C2C  80 04 00 00 */	lwz r0, 0(r4)
 /* 802B9C30  90 0C 00 00 */	stw r0, 0(r12)
-/* 802B9C34  80 6D 85 C0 */	lwz r3, data_80450B40(r13)
+/* 802B9C34  80 6D 85 C0 */	lwz r3, __OSReport_disable-0x58(r13)
 /* 802B9C38  80 8C 00 04 */	lwz r4, 4(r12)
 /* 802B9C3C  48 00 12 7D */	bl setSceneFx__11Z2FxLineMgrFl
 /* 802B9C40  80 01 00 14 */	lwz r0, 0x14(r1)

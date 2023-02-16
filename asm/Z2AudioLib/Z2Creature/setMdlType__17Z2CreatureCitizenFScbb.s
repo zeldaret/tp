@@ -23,7 +23,7 @@ lbl_802C0D48:
 /* 802C0D9C  7C 07 02 14 */	add r0, r7, r0
 /* 802C0DA0  98 1F 00 A0 */	stb r0, 0xa0(r31)
 /* 802C0DA4  40 82 00 0C */	bne lbl_802C0DB0
-/* 802C0DA8  80 6D 86 08 */	lwz r3, data_80450B88(r13)
+/* 802C0DA8  80 6D 86 08 */	lwz r3, __OSReport_disable-0x10(r13)
 /* 802C0DAC  4B FE AB 91 */	bl incrCrowdSize__7Z2SeMgrFv
 lbl_802C0DB0:
 /* 802C0DB0  7F C0 07 75 */	extsb. r0, r30

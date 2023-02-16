@@ -5,7 +5,7 @@ lbl_802B68E0:
 /* 802B68EC  98 83 00 1D */	stb r4, 0x1d(r3)
 /* 802B68F0  38 00 00 00 */	li r0, 0
 /* 802B68F4  90 03 00 08 */	stw r0, 8(r3)
-/* 802B68F8  80 AD 85 E0 */	lwz r5, data_80450B60(r13)
+/* 802B68F8  80 AD 85 E0 */	lwz r5, __OSReport_disable-0x38(r13)
 /* 802B68FC  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 802B6900  41 82 00 5C */	beq lbl_802B695C
 /* 802B6904  38 00 00 01 */	li r0, 1
@@ -21,7 +21,7 @@ lbl_802B68E0:
 lbl_802B692C:
 /* 802B692C  28 00 00 7F */	cmplwi r0, 0x7f
 /* 802B6930  40 82 00 18 */	bne lbl_802B6948
-/* 802B6934  80 6D 86 08 */	lwz r3, data_80450B88(r13)
+/* 802B6934  80 6D 86 08 */	lwz r3, __OSReport_disable-0x10(r13)
 /* 802B6938  C0 22 C0 38 */	lfs f1, lit_3511(r2)
 /* 802B693C  38 80 00 00 */	li r4, 0
 /* 802B6940  4B FF 70 B5 */	bl seMoveVolumeAll__7Z2SeMgrFfUl

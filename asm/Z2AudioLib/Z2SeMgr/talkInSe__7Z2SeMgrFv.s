@@ -3,11 +3,11 @@ lbl_802ADB50:
 /* 802ADB54  7C 08 02 A6 */	mflr r0
 /* 802ADB58  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802ADB5C  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 802ADB60  80 8D 86 00 */	lwz r4, data_80450B80(r13)
+/* 802ADB60  80 8D 86 00 */	lwz r4, __OSReport_disable-0x18(r13)
 /* 802ADB64  88 04 00 1C */	lbz r0, 0x1c(r4)
 /* 802ADB68  28 00 00 00 */	cmplwi r0, 0
 /* 802ADB6C  41 82 00 D4 */	beq lbl_802ADC40
-/* 802ADB70  80 8D 85 FC */	lwz r4, data_80450B7C(r13)
+/* 802ADB70  80 8D 85 FC */	lwz r4, __OSReport_disable-0x1C(r13)
 /* 802ADB74  88 04 00 2C */	lbz r0, 0x2c(r4)
 /* 802ADB78  28 00 00 0D */	cmplwi r0, 0xd
 /* 802ADB7C  40 82 00 10 */	bne lbl_802ADB8C
@@ -15,7 +15,7 @@ lbl_802ADB50:
 /* 802ADB84  38 80 00 00 */	li r4, 0
 /* 802ADB88  4B FF FE 6D */	bl seMoveVolumeAll__7Z2SeMgrFfUl
 lbl_802ADB8C:
-/* 802ADB8C  83 ED 85 E0 */	lwz r31, data_80450B60(r13)
+/* 802ADB8C  83 ED 85 E0 */	lwz r31, __OSReport_disable-0x38(r13)
 /* 802ADB90  38 7F 00 20 */	addi r3, r31, 0x20
 /* 802ADB94  C0 2D 82 9C */	lfs f1, VOL_SE_SYSTEM_TALKING__7Z2Param(r13)
 /* 802ADB98  38 80 00 02 */	li r4, 2
@@ -52,7 +52,7 @@ lbl_802ADB8C:
 /* 802ADC14  C0 2D 82 B4 */	lfs f1, VOL_SE_OBJECT_TALKING__7Z2Param(r13)
 /* 802ADC18  38 80 00 02 */	li r4, 2
 /* 802ADC1C  4B FF 51 99 */	bl moveVolume__18JAISoundParamsMoveFfUl
-/* 802ADC20  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802ADC20  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802ADC24  88 03 00 2C */	lbz r0, 0x2c(r3)
 /* 802ADC28  28 00 00 0C */	cmplwi r0, 0xc
 /* 802ADC2C  41 82 00 14 */	beq lbl_802ADC40

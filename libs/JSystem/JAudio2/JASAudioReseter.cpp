@@ -101,7 +101,7 @@ s32 JASAudioReseter::calc() {
             }
         }
         if(field_0xc!=false) {
-            data_80450B8C->stop();//JASGlobalInstance<JASAudioThread>::sInstance->stop();
+            JASGlobalInstance<JASAudioThread>::getInstance()->stop();//JASGlobalInstance<JASAudioThread>::sInstance->stop();
         }
         mIsDone = 1;
         return -1;

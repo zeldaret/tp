@@ -4,8 +4,8 @@
 #include "JSystem/JAudio2/JAIAudience.h"
 #include "JSystem/JAudio2/JAISeqDataMgr.h"
 #include "JSystem/JAudio2/JAISound.h"
+#include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "dolphin/types.h"
 
 struct JASNonCopyable {
     /* 0x0 */ int field_0x0;
@@ -48,7 +48,9 @@ public:
     /* 0x68 */ int mMaxActiveSe;
 };  // Size: 0x6C
 
-class JAISeMgr : public JAISeqDataUser, public JAISoundActivity {
+class JAISeMgr : public JAISeqDataUser,
+                 public JAISoundActivity,
+                 public JASGlobalInstance<JAISeMgr> {
 public:
     /* 802A0074 */ JAISeMgr(bool);
     /* 802A0268 */ void setCategoryArrangement(JAISeCategoryArrangement const&);
@@ -79,12 +81,5 @@ private:
 };  // Size: 0x724
 
 STATIC_ASSERT(sizeof(JAISeMgr) == 0x724);
-
-/**
- * this is supposed to be:
- * JASGlobalInstance<JAISeMgr>::sInstance
- * sInstance__28JASGlobalInstance<8JAISeMgr>
- */
-extern JAISeMgr* data_80450B6C;
 
 #endif /* JAISEMGR_H */

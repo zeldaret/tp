@@ -5,7 +5,7 @@ lbl_802B68B0:
 /* 802B68BC  98 83 00 1E */	stb r4, 0x1e(r3)
 /* 802B68C0  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 802B68C4  40 82 00 0C */	bne lbl_802B68D0
-/* 802B68C8  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802B68C8  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802B68CC  4B FF 3B 65 */	bl resetFilterAll__10Z2SoundMgrFv
 lbl_802B68D0:
 /* 802B68D0  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -65,7 +65,7 @@ lbl_80181F70:
 /* 8018206C  38 7D 01 40 */	addi r3, r29, 0x140
 /* 80182070  38 9D 01 70 */	addi r4, r29, 0x170
 /* 80182074  48 1C 45 3D */	bl PSMTXInverse
-/* 80182078  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 80182078  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 8018207C  38 9D 01 40 */	addi r4, r29, 0x140
 /* 80182080  38 BD 00 D8 */	addi r5, r29, 0xd8
 /* 80182084  38 DD 00 E4 */	addi r6, r29, 0xe4

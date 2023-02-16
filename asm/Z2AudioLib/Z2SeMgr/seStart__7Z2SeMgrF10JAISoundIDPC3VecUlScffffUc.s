@@ -226,7 +226,7 @@ lbl_802ABCA8:
 /* 802ABCB0  41 82 06 04 */	beq lbl_802AC2B4
 /* 802ABCB4  48 00 07 2C */	b lbl_802AC3E0
 lbl_802ABCB8:
-/* 802ABCB8  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802ABCB8  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802ABCBC  48 00 A4 C1 */	bl menuOut__11Z2StatusMgrFv
 /* 802ABCC0  48 00 07 20 */	b lbl_802AC3E0
 lbl_802ABCC4:
@@ -429,11 +429,11 @@ lbl_802ABF7C:
 /* 802ABF90  48 00 19 21 */	bl seStop__7Z2SeMgrF10JAISoundIDUl
 /* 802ABF94  48 00 04 4C */	b lbl_802AC3E0
 lbl_802ABF98:
-/* 802ABF98  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802ABF98  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802ABF9C  48 00 A1 A1 */	bl menuIn__11Z2StatusMgrFv
 /* 802ABFA0  48 00 04 40 */	b lbl_802AC3E0
 lbl_802ABFA4:
-/* 802ABFA4  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802ABFA4  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802ABFA8  48 00 A1 D5 */	bl menuOut__11Z2StatusMgrFv
 /* 802ABFAC  48 00 04 34 */	b lbl_802AC3E0
 lbl_802ABFB0:
@@ -449,14 +449,14 @@ lbl_802ABFC4:
 /* 802ABFD0  C3 82 BE 90 */	lfs f28, lit_4046(r2)
 /* 802ABFD4  48 00 04 0C */	b lbl_802AC3E0
 lbl_802ABFD8:
-/* 802ABFD8  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802ABFD8  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802ABFDC  88 03 00 2C */	lbz r0, 0x2c(r3)
 /* 802ABFE0  28 00 00 00 */	cmplwi r0, 0
 /* 802ABFE4  41 82 03 FC */	beq lbl_802AC3E0
 /* 802ABFE8  38 60 00 00 */	li r3, 0
 /* 802ABFEC  48 00 04 E8 */	b lbl_802AC4D4
 lbl_802ABFF0:
-/* 802ABFF0  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802ABFF0  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802ABFF4  48 00 A1 C9 */	bl isMovieDemo__11Z2StatusMgrFv
 /* 802ABFF8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802ABFFC  41 82 03 E4 */	beq lbl_802AC3E0
@@ -465,7 +465,7 @@ lbl_802ABFF0:
 /* 802AC008  90 1B 00 00 */	stw r0, 0(r27)
 /* 802AC00C  48 00 03 D4 */	b lbl_802AC3E0
 lbl_802AC010:
-/* 802AC010  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802AC010  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802AC014  88 03 00 2C */	lbz r0, 0x2c(r3)
 /* 802AC018  28 00 00 01 */	cmplwi r0, 1
 /* 802AC01C  40 82 00 14 */	bne lbl_802AC030
@@ -482,11 +482,11 @@ lbl_802AC030:
 /* 802AC044  90 1B 00 00 */	stw r0, 0(r27)
 /* 802AC048  48 00 03 98 */	b lbl_802AC3E0
 lbl_802AC04C:
-/* 802AC04C  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802AC04C  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802AC050  88 03 00 2D */	lbz r0, 0x2d(r3)
 /* 802AC054  28 00 00 00 */	cmplwi r0, 0
 /* 802AC058  41 82 00 14 */	beq lbl_802AC06C
-/* 802AC05C  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802AC05C  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802AC060  88 03 00 1D */	lbz r0, 0x1d(r3)
 /* 802AC064  28 00 00 00 */	cmplwi r0, 0
 /* 802AC068  40 82 03 78 */	bne lbl_802AC3E0
@@ -494,7 +494,7 @@ lbl_802AC06C:
 /* 802AC06C  38 60 00 00 */	li r3, 0
 /* 802AC070  48 00 04 64 */	b lbl_802AC4D4
 lbl_802AC074:
-/* 802AC074  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802AC074  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802AC078  E0 23 01 70 */	psq_l f1, 368(r3), 0, 0 /* qr0 */
 /* 802AC07C  C0 03 01 78 */	lfs f0, 0x178(r3)
 /* 802AC080  F0 21 00 88 */	psq_st f1, 136(r1), 0, 0 /* qr0 */
@@ -581,7 +581,7 @@ lbl_802AC17C:
 /* 802AC1B0  FF A0 08 90 */	fmr f29, f1
 /* 802AC1B4  48 00 02 2C */	b lbl_802AC3E0
 lbl_802AC1B8:
-/* 802AC1B8  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802AC1B8  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802AC1BC  E0 23 01 70 */	psq_l f1, 368(r3), 0, 0 /* qr0 */
 /* 802AC1C0  C0 03 01 78 */	lfs f0, 0x178(r3)
 /* 802AC1C4  F0 21 00 7C */	psq_st f1, 124(r1), 0, 0 /* qr0 */
@@ -709,7 +709,7 @@ lbl_802AC2F0:
 /* 802AC398  FF 80 08 90 */	fmr f28, f1
 /* 802AC39C  48 00 00 44 */	b lbl_802AC3E0
 lbl_802AC3A0:
-/* 802AC3A0  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802AC3A0  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802AC3A4  80 03 00 04 */	lwz r0, 4(r3)
 /* 802AC3A8  2C 00 00 03 */	cmpwi r0, 3
 /* 802AC3AC  40 82 00 14 */	bne lbl_802AC3C0
@@ -768,7 +768,7 @@ lbl_802AC458:
 lbl_802AC470:
 /* 802AC470  80 1B 00 00 */	lwz r0, 0(r27)
 /* 802AC474  90 01 00 08 */	stw r0, 8(r1)
-/* 802AC478  80 6D 85 F4 */	lwz r3, data_80450B74(r13)
+/* 802AC478  80 6D 85 F4 */	lwz r3, __OSReport_disable-0x24(r13)
 /* 802AC47C  38 81 00 08 */	addi r4, r1, 8
 /* 802AC480  7F 86 E3 78 */	mr r6, r28
 /* 802AC484  7F A7 EB 78 */	mr r7, r29

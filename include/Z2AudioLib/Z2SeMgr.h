@@ -2,8 +2,8 @@
 #define Z2SEMGR_H
 
 #include "JSystem/JAudio2/JAISound.h"
+#include "JSystem/JAudio2/JASGadget.h"
 #include "dolphin/mtx/vec.h"
-#include "dolphin/types.h"
 
 struct Z2MultiSeMgr {
     Z2MultiSeMgr();
@@ -30,7 +30,7 @@ struct Z2MultiSeObj : Z2MultiSeMgr {
     /* 0x20 */ u8 field_0x20;
 };  // Size = 0x24
 
-class Z2SeMgr {
+class Z2SeMgr : public JASGlobalInstance<Z2SeMgr> {
 public:
     /* 802AB64C */ Z2SeMgr();
     /* 802AB750 */ void initSe();
@@ -78,12 +78,9 @@ private:
     /* 0x3CC */ u8 mCrowdSize;
 };  // Size = 0x3D0
 
-/**
- * this is supposed to be:
- * JASGlobalInstance<Z2SeMgr>::sInstance
- * sInstance__27JASGlobalInstance<7Z2SeMgr>
- */
-extern Z2SeMgr* data_80450B88;
+inline Z2SeMgr* Z2GetSeMgr() {
+    return JASGlobalInstance<Z2SeMgr>::getInstance();
+}
 
 // JAISoundID's for sound effects
 enum Z2SoundID {

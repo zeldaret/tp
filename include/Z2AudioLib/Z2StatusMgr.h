@@ -2,9 +2,9 @@
 #define Z2STATUSMGR_H
 
 #include "dolphin/mtx/vec.h"
-#include "dolphin/types.h"
+#include "JSystem/JAudio2/JASGadget.h"
 
-struct Z2StatusMgr {
+struct Z2StatusMgr : public JASGlobalInstance<Z2StatusMgr> {
     Z2StatusMgr();
     void heartGaugeOn();
     void processHeartGaugeSound();
@@ -41,11 +41,8 @@ struct Z2StatusMgr {
     /* 0x2D */ u8 mHeartGaugeOn;
 };  // Size = 0x30
 
-/**
- * this is supposed to be:
- * JASGlobalInstance<Z2StatusMgr>::sInstance
- * sInstance__32JASGlobalInstance<11Z2StatusMgr>
- */
-extern Z2StatusMgr* data_80450B7C;
+inline Z2StatusMgr* Z2GetStatusMgr() {
+    return JASGlobalInstance<Z2StatusMgr>::getInstance();
+}
 
 #endif /* Z2STATUSMGR_H */

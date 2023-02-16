@@ -10,7 +10,13 @@ public:
         sInstance = inst;
     }
 
-    T* getInstance() { return sInstance; }
+    ~JASGlobalInstance() {
+        if (sInstance != NULL) {
+            sInstance = NULL;
+        }
+    }
+
+    static T* getInstance() { return sInstance; }
 
     static T* sInstance;
 };

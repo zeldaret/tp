@@ -4,8 +4,9 @@
 //
 
 #include "Z2AudioLib/Z2WolfHowlMgr.h"
+#include "Z2AudioLib/Z2Creature.h"
+#include "dolphin/os/OS.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -18,10 +19,6 @@ struct Z2SeqMgr {
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2CreatureLink {
-    static u8 mLinkPtr[4 + 4 /* padding */];
 };
 
 struct Z2Calc {
@@ -70,7 +67,6 @@ extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u32 __float_nan;
 extern "C" extern u8 data_80450B44[4];
 extern "C" extern u8 data_80450B60[4];
 extern "C" extern u8 data_80450B80[4];

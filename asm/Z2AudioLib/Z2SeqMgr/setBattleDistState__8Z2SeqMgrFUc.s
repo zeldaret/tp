@@ -9,7 +9,7 @@ lbl_802B4498:
 /* 802B44B4  88 83 00 D0 */	lbz r4, 0xd0(r3)
 /* 802B44B8  54 80 E7 FF */	rlwinm. r0, r4, 0x1c, 0x1f, 0x1f
 /* 802B44BC  40 82 03 70 */	bne lbl_802B482C
-/* 802B44C0  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802B44C0  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802B44C4  88 03 00 1D */	lbz r0, 0x1d(r3)
 /* 802B44C8  28 00 00 00 */	cmplwi r0, 0
 /* 802B44CC  41 82 03 60 */	beq lbl_802B482C
@@ -75,7 +75,7 @@ lbl_802B4544:
 /* 802B45A8  D0 1E 00 18 */	stfs f0, 0x18(r30)
 /* 802B45AC  D0 5E 00 1C */	stfs f2, 0x1c(r30)
 lbl_802B45B0:
-/* 802B45B0  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B45B0  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B45B4  48 00 BC 31 */	bl isTwilightBattle__13Z2SoundObjMgrFv
 /* 802B45B8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802B45BC  41 82 00 2C */	beq lbl_802B45E8
@@ -92,7 +92,7 @@ lbl_802B45DC:
 /* 802B45E0  28 00 00 0F */	cmplwi r0, 0xf
 /* 802B45E4  41 82 00 3C */	beq lbl_802B4620
 lbl_802B45E8:
-/* 802B45E8  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B45E8  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B45EC  48 00 BB F9 */	bl isTwilightBattle__13Z2SoundObjMgrFv
 /* 802B45F0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802B45F4  40 82 00 40 */	bne lbl_802B4634
@@ -115,7 +115,7 @@ lbl_802B4620:
 /* 802B462C  80 7E 00 04 */	lwz r3, 4(r30)
 /* 802B4630  4B FE DB 71 */	bl releaseHandle__8JAISoundFv
 lbl_802B4634:
-/* 802B4634  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B4634  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B4638  48 00 BB AD */	bl isTwilightBattle__13Z2SoundObjMgrFv
 /* 802B463C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802B4640  40 82 00 2C */	bne lbl_802B466C

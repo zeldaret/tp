@@ -198,12 +198,12 @@ lbl_800CDA84:
 lbl_800CDA94:
 /* 800CDA94  34 1F 2D 84 */	addic. r0, r31, 0x2d84
 /* 800CDA98  41 82 00 1C */	beq lbl_800CDAB4
-/* 800CDA9C  80 6D 85 B8 */	lwz r3, data_80450B38(r13)
+/* 800CDA9C  80 6D 85 B8 */	lwz r3, __OSReport_disable-0x60(r13)
 /* 800CDAA0  38 1F 2D 84 */	addi r0, r31, 0x2d84
 /* 800CDAA4  7C 03 00 40 */	cmplw r3, r0
 /* 800CDAA8  40 82 00 0C */	bne lbl_800CDAB4
 /* 800CDAAC  38 00 00 00 */	li r0, 0
-/* 800CDAB0  90 0D 85 B8 */	stw r0, data_80450B38(r13)
+/* 800CDAB0  90 0D 85 B8 */	stw r0, __OSReport_disable-0x60(r13)
 lbl_800CDAB4:
 /* 800CDAB4  38 7F 2C A8 */	addi r3, r31, 0x2ca8
 /* 800CDAB8  38 80 FF FF */	li r4, -1

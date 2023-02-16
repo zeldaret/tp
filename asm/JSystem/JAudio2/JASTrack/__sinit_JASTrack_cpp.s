@@ -25,7 +25,7 @@ lbl_80293388:
 /* 802933E4  41 82 00 08 */	beq lbl_802933EC
 /* 802933E8  38 63 FB F4 */	addi r3, r3, -1036
 lbl_802933EC:
-/* 802933EC  90 6D 86 10 */	stw r3, data_80450B90(r13)
+/* 802933EC  90 6D 86 10 */	stw r3, __OSReport_disable-0x8(r13)
 /* 802933F0  3C 60 80 3C */	lis r3, __vt__19JASDefaultBankTable@ha /* 0x803C5B68@ha */
 /* 802933F4  38 03 5B 68 */	addi r0, r3, __vt__19JASDefaultBankTable@l /* 0x803C5B68@l */
 /* 802933F8  90 1E 00 00 */	stw r0, 0(r30)

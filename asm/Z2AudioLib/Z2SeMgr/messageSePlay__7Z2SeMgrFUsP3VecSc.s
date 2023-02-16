@@ -5,7 +5,7 @@ lbl_802ADB14:
 /* 802ADB20  7C 88 23 78 */	mr r8, r4
 /* 802ADB24  7C A0 2B 78 */	mr r0, r5
 /* 802ADB28  7C C7 33 78 */	mr r7, r6
-/* 802ADB2C  80 6D 85 F0 */	lwz r3, data_80450B70(r13)
+/* 802ADB2C  80 6D 85 F0 */	lwz r3, __OSReport_disable-0x28(r13)
 /* 802ADB30  38 80 00 00 */	li r4, 0
 /* 802ADB34  7D 05 43 78 */	mr r5, r8
 /* 802ADB38  7C 06 03 78 */	mr r6, r0

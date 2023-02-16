@@ -87,6 +87,7 @@ extern "C" extern void* __vt__17JAUAudioArcLoader[17 + 1 /* padding */];
 extern "C" extern u8 data_80450B40[4];
 extern "C" extern u8 data_80450CC0[4 + 4 /* padding */];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];
+extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:

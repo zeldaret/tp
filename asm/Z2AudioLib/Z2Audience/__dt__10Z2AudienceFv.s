@@ -16,11 +16,11 @@ lbl_802BD1FC:
 /* 802BD234  41 82 00 08 */	beq lbl_802BD23C
 /* 802BD238  38 63 FF FC */	addi r3, r3, -4
 lbl_802BD23C:
-/* 802BD23C  80 0D 85 C4 */	lwz r0, data_80450B44(r13)
+/* 802BD23C  80 0D 85 C4 */	lwz r0, __OSReport_disable-0x54(r13)
 /* 802BD240  7C 00 18 40 */	cmplw r0, r3
 /* 802BD244  40 82 00 0C */	bne lbl_802BD250
 /* 802BD248  38 00 00 00 */	li r0, 0
-/* 802BD24C  90 0D 85 C4 */	stw r0, data_80450B44(r13)
+/* 802BD24C  90 0D 85 C4 */	stw r0, __OSReport_disable-0x54(r13)
 lbl_802BD250:
 /* 802BD250  7F C3 F3 78 */	mr r3, r30
 /* 802BD254  38 80 00 00 */	li r4, 0

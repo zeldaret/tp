@@ -96,6 +96,12 @@ void OSVReport(char* format, va_list list);
 void OSVAttention(char* fmt, va_list args);
 void OSReportInit(void);
 
+extern u8 __OSReport_disable;
+extern u8 __OSReport_Error_disable;
+extern u8 __OSReport_Warning_disable;
+extern u8 __OSReport_System_disable;
+extern u8 __OSReport_enable;
+
 void OSReportInit__Fv(void);  // needed for inline asm
 
 u8* OSGetStackPointer(void);

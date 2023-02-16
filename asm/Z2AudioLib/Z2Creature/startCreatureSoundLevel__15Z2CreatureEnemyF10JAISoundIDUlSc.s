@@ -15,28 +15,28 @@ lbl_802C136C:
 /* 802C13A0  3C 03 FF F9 */	addis r0, r3, 0xfff9
 /* 802C13A4  28 00 FF FF */	cmplwi r0, 0xffff
 /* 802C13A8  40 82 00 7C */	bne lbl_802C1424
-/* 802C13AC  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802C13AC  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802C13B0  80 9C 00 04 */	lwz r4, 4(r28)
 /* 802C13B4  38 A1 00 0C */	addi r5, r1, 0xc
 /* 802C13B8  38 C0 00 00 */	li r6, 0
 /* 802C13BC  4B FF C5 71 */	bl convertAbsToRel__10Z2AudienceFR3VecP3Veci
-/* 802C13C0  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802C13C0  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802C13C4  38 81 00 0C */	addi r4, r1, 0xc
 /* 802C13C8  C0 22 C2 50 */	lfs f1, lit_4187(r2)
 /* 802C13CC  38 A0 00 00 */	li r5, 0
 /* 802C13D0  4B FF C5 8D */	bl calcRelPosVolume__10Z2AudienceFRC3Vecfi
 /* 802C13D4  FF E0 08 90 */	fmr f31, f1
-/* 802C13D8  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802C13D8  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802C13DC  38 81 00 0C */	addi r4, r1, 0xc
 /* 802C13E0  38 A0 00 00 */	li r5, 0
 /* 802C13E4  4B FF C6 61 */	bl calcRelPosPan__10Z2AudienceFRC3Veci
 /* 802C13E8  FF C0 08 90 */	fmr f30, f1
-/* 802C13EC  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802C13EC  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802C13F0  38 81 00 0C */	addi r4, r1, 0xc
 /* 802C13F4  38 A0 00 00 */	li r5, 0
 /* 802C13F8  4B FF C7 4D */	bl calcRelPosDolby__10Z2AudienceFRC3Veci
 /* 802C13FC  FC 60 08 90 */	fmr f3, f1
-/* 802C1400  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802C1400  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802C1404  7C 64 1B 78 */	mr r4, r3
 /* 802C1408  38 A0 00 07 */	li r5, 7
 /* 802C140C  FC 20 F8 90 */	fmr f1, f31

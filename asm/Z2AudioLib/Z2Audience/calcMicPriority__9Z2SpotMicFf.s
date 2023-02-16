@@ -5,7 +5,7 @@ lbl_802BCFE4:
 /* 802BCFF0  C0 03 00 04 */	lfs f0, 4(r3)
 /* 802BCFF4  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 802BCFF8  40 81 00 10 */	ble lbl_802BD008
-/* 802BCFFC  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802BCFFC  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802BD000  80 63 00 70 */	lwz r3, 0x70(r3)
 /* 802BD004  48 00 00 28 */	b lbl_802BD02C
 lbl_802BD008:

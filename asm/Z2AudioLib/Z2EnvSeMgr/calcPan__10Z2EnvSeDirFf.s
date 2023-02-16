@@ -28,7 +28,7 @@ lbl_802C5D9C:
 /* 802C5E04  4B FD D1 11 */	bl moveDolby__18JAISoundParamsMoveFfUl
 /* 802C5E08  48 00 00 74 */	b lbl_802C5E7C
 lbl_802C5E0C:
-/* 802C5E0C  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802C5E0C  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802C5E10  38 9F 00 10 */	addi r4, r31, 0x10
 /* 802C5E14  7C 85 23 78 */	mr r5, r4
 /* 802C5E18  38 C0 00 00 */	li r6, 0
@@ -36,12 +36,12 @@ lbl_802C5E0C:
 /* 802C5E20  38 7F 00 10 */	addi r3, r31, 0x10
 /* 802C5E24  7C 64 1B 78 */	mr r4, r3
 /* 802C5E28  48 07 3C 09 */	bl JMAFastVECNormalize__FPC3VecP3Vec
-/* 802C5E2C  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802C5E2C  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802C5E30  38 9F 00 10 */	addi r4, r31, 0x10
 /* 802C5E34  38 A0 00 00 */	li r5, 0
 /* 802C5E38  4B FF 7C 0D */	bl calcRelPosPan__10Z2AudienceFRC3Veci
 /* 802C5E3C  D0 3F 00 08 */	stfs f1, 8(r31)
-/* 802C5E40  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802C5E40  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802C5E44  38 9F 00 10 */	addi r4, r31, 0x10
 /* 802C5E48  38 A0 00 00 */	li r5, 0
 /* 802C5E4C  4B FF 7C F9 */	bl calcRelPosDolby__10Z2AudienceFRC3Veci

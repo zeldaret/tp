@@ -2,9 +2,9 @@
 #define Z2AUDIENCE_H
 
 #include "JSystem/JAudio2/JAIAudience.h"
+#include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JGeometry.h"
 #include "dolphin/mtx/mtxvec.h"
-#include "dolphin/types.h"
 
 struct Z2Audible;
 
@@ -103,7 +103,7 @@ struct Z2AudibleChannel {
     /* 802BBE74 */ Z2AudibleChannel();
 };
 
-struct Z2Audience : public JAIAudience {
+struct Z2Audience : public JAIAudience, public JASGlobalInstance<Z2Audience> {
     /* 802BD130 */ Z2Audience();
     /* 802BD2DC */ void setAudioCamera(f32 (*)[4], Vec&, Vec&, f32, f32, bool, int, bool);
     /* 802BD704 */ void calcOffMicSound(f32);
@@ -141,11 +141,8 @@ struct Z2Audience : public JAIAudience {
     /* 0x1DC */ bool mUsingOffMicVol;
 };  // Size: 0x1E0
 
-/**
- * this is supposed to be:
- * JASGlobalInstance<Z2Audience>::sInstance
- * sInstance__31JASGlobalInstance<10Z2Audience>
- */
-extern Z2Audience* data_80450B44;
+inline Z2Audience* Z2GetAudience() {
+    return JASGlobalInstance<Z2Audience>::getInstance();
+}
 
 #endif /* Z2AUDIENCE_H */

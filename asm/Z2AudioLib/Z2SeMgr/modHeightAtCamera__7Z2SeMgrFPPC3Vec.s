@@ -52,7 +52,7 @@ lbl_802AB8C4:
 /* 802AB8DC  D0 06 03 44 */	stfs f0, 0x344(r6)
 /* 802AB8E0  C0 05 00 08 */	lfs f0, 8(r5)
 /* 802AB8E4  D0 06 03 48 */	stfs f0, 0x348(r6)
-/* 802AB8E8  80 AD 85 C4 */	lwz r5, data_80450B44(r13)
+/* 802AB8E8  80 AD 85 C4 */	lwz r5, __OSReport_disable-0x54(r13)
 /* 802AB8EC  E0 25 01 70 */	psq_l f1, 368(r5), 0, 0 /* qr0 */
 /* 802AB8F0  C0 05 01 78 */	lfs f0, 0x178(r5)
 /* 802AB8F4  F0 21 00 08 */	psq_st f1, 8(r1), 0, 0 /* qr0 */

@@ -44,11 +44,11 @@ lbl_802B4C60:
 /* 802B4C60  88 1F 00 D0 */	lbz r0, 0xd0(r31)
 /* 802B4C64  54 00 E7 FF */	rlwinm. r0, r0, 0x1c, 0x1f, 0x1f
 /* 802B4C68  40 82 02 34 */	bne lbl_802B4E9C
-/* 802B4C6C  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802B4C6C  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802B4C70  88 03 00 1D */	lbz r0, 0x1d(r3)
 /* 802B4C74  28 00 00 00 */	cmplwi r0, 0
 /* 802B4C78  41 82 02 24 */	beq lbl_802B4E9C
-/* 802B4C7C  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B4C7C  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B4C80  48 00 AD 15 */	bl searchEnemy__13Z2SoundObjMgrFv
 /* 802B4C84  80 7F 00 04 */	lwz r3, 4(r31)
 /* 802B4C88  28 03 00 00 */	cmplwi r3, 0
@@ -81,7 +81,7 @@ lbl_802B4CE0:
 /* 802B4CE0  3C 03 FF 00 */	addis r0, r3, 0xff00
 /* 802B4CE4  28 00 00 00 */	cmplwi r0, 0
 /* 802B4CE8  40 82 00 14 */	bne lbl_802B4CFC
-/* 802B4CEC  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B4CEC  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B4CF0  48 00 B4 F5 */	bl isTwilightBattle__13Z2SoundObjMgrFv
 /* 802B4CF4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802B4CF8  41 82 01 A4 */	beq lbl_802B4E9C
@@ -139,7 +139,7 @@ lbl_802B4DA8:
 /* 802B4DB4  7F E3 FB 78 */	mr r3, r31
 /* 802B4DB8  38 80 00 00 */	li r4, 0
 /* 802B4DBC  4B FF F6 15 */	bl setBattleDistIgnore__8Z2SeqMgrFb
-/* 802B4DC0  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B4DC0  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B4DC4  48 00 B3 5D */	bl checkBattleFinish__13Z2SoundObjMgrFv
 /* 802B4DC8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802B4DCC  41 82 00 14 */	beq lbl_802B4DE0

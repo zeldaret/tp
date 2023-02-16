@@ -6,7 +6,7 @@ lbl_802A0074:
 /* 802A0084  7C 7F 1B 78 */	mr r31, r3
 /* 802A0088  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 802A008C  41 82 00 08 */	beq lbl_802A0094
-/* 802A0090  93 ED 85 EC */	stw r31, data_80450B6C(r13)
+/* 802A0090  93 ED 85 EC */	stw r31, __OSReport_disable-0x2C(r13)
 lbl_802A0094:
 /* 802A0094  3C 60 80 3D */	lis r3, __vt__14JAISeqDataUser@ha /* 0x803C9940@ha */
 /* 802A0098  38 03 99 40 */	addi r0, r3, __vt__14JAISeqDataUser@l /* 0x803C9940@l */

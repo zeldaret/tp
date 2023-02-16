@@ -3,7 +3,7 @@ lbl_8029CF68:
 /* 8029CF6C  7C 08 02 A6 */	mflr r0
 /* 8029CF70  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8029CF74  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 8029CF78  83 ED 86 0C */	lwz r31, data_80450B8C(r13)
+/* 8029CF78  83 ED 86 0C */	lwz r31, __OSReport_disable-0xC(r13)
 /* 8029CF7C  38 60 00 04 */	li r3, 4
 /* 8029CF80  4B FF 3F A5 */	bl stop__8JASProbeFl
 /* 8029CF84  38 60 00 04 */	li r3, 4

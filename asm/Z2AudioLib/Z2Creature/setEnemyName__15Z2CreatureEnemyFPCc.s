@@ -15,7 +15,7 @@ lbl_802C1BB8:
 /* 802C1BC0  41 82 00 08 */	beq lbl_802C1BC8
 /* 802C1BC4  38 A5 00 90 */	addi r5, r5, 0x90
 lbl_802C1BC8:
-/* 802C1BC8  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802C1BC8  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802C1BCC  4B FF E4 A9 */	bl func_802C0074
 /* 802C1BD0  98 7F 00 A0 */	stb r3, 0xa0(r31)
 lbl_802C1BD4:

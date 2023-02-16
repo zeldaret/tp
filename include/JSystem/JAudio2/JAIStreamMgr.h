@@ -2,8 +2,8 @@
 #define JAISTREAMMGR_H
 
 #include "JSystem/JAudio2/JAISound.h"
+#include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "dolphin/types.h"
 
 class JAIStreamMgr;
 
@@ -15,7 +15,7 @@ struct JAIStream {
     /* 802A388C */ void JAIStreamMgr_calc_();
 };
 
-class JAIStreamMgr {
+class JAIStreamMgr : public JASGlobalInstance<JAIStreamMgr> {
 public:
     /* 802A3B68 */ JAIStreamMgr(bool);
     /* 802A3C3C */ void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
@@ -37,13 +37,5 @@ private:
     /* 0x68 */ int field_0x68;
     /* 0x6C */ int field_0x6c;
 };  // Size: 0x70
-
-
-/**
- * this is supposed to be:
- * JASGlobalInstance<JAIStreamMgr>::sInstance
- * sInstance__33JASGlobalInstance<12JAIStreamMgr>
- */
-extern JAIStreamMgr* data_80450B64;
 
 #endif /* JAISTREAMMGR_H */

@@ -30,7 +30,7 @@ lbl_802AFF38:
 /* 802AFF3C  28 00 00 5C */	cmplwi r0, 0x5c
 /* 802AFF40  40 82 00 18 */	bne lbl_802AFF58
 lbl_802AFF44:
-/* 802AFF44  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802AFF44  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802AFF48  3C 80 80 3A */	lis r4, Z2SeqMgr__stringBase0@ha /* 0x8039BA08@ha */
 /* 802AFF4C  38 84 BA 08 */	addi r4, r4, Z2SeqMgr__stringBase0@l /* 0x8039BA08@l */
 /* 802AFF50  38 84 02 76 */	addi r4, r4, 0x276

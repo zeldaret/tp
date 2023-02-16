@@ -105,6 +105,7 @@ extern "C" extern Z2SoundInfo* data_80450B4C;
 extern "C" extern u8 data_80450B60[4];
 extern "C" extern Z2SoundStarter* data_80450B74;
 extern "C" extern u8 data_80450B88[4];
+extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:
@@ -176,7 +177,7 @@ Z2SoundObjBase::Z2SoundObjBase() {
     //! structure layout order, indicating original code didn't use initializer list.
     mSoundPos = NULL;
     mIsInitialized = false;
-    mSoundStarter = data_80450B74;  // sInstance
+    mSoundStarter = JASGlobalInstance<Z2SoundStarter>::getInstance();  // sInstance
     field_0x1c = 0;
     field_0x1e = 0;
 }

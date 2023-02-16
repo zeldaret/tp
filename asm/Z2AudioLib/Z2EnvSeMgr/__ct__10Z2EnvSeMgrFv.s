@@ -4,7 +4,7 @@ lbl_802C611C:
 /* 802C6124  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802C6128  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802C612C  7C 7F 1B 78 */	mr r31, r3
-/* 802C6130  93 ED 85 BC */	stw r31, data_80450B3C(r13)
+/* 802C6130  93 ED 85 BC */	stw r31, __OSReport_disable-0x5C(r13)
 /* 802C6134  4B FF FD 99 */	bl __ct__14Z2EnvSeAutoPanFv
 /* 802C6138  38 7F 00 1C */	addi r3, r31, 0x1c
 /* 802C613C  4B FF FD 91 */	bl __ct__14Z2EnvSeAutoPanFv

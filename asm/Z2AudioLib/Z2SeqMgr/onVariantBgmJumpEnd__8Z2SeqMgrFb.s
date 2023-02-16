@@ -49,10 +49,10 @@ lbl_802B2A3C:
 /* 802B2A50  FC 60 10 90 */	fmr f3, f2
 /* 802B2A54  48 00 15 99 */	bl setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff
 lbl_802B2A58:
-/* 802B2A58  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802B2A58  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802B2A5C  38 63 07 28 */	addi r3, r3, 0x728
 /* 802B2A60  4B FE F2 31 */	bl calc__9JAISeqMgrFv
-/* 802B2A64  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802B2A64  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802B2A68  38 63 07 28 */	addi r3, r3, 0x728
 /* 802B2A6C  4B FE F4 91 */	bl mixOut__9JAISeqMgrFv
 /* 802B2A70  83 E1 00 0C */	lwz r31, 0xc(r1)

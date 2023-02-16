@@ -13,7 +13,7 @@ lbl_802AFB94:
 /* 802AFBC0  48 00 03 1D */	bl bgmStreamStop__8Z2SeqMgrFUl
 lbl_802AFBC4:
 /* 802AFBC4  93 C1 00 08 */	stw r30, 8(r1)
-/* 802AFBC8  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802AFBC8  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802AFBCC  38 81 00 08 */	addi r4, r1, 8
 /* 802AFBD0  38 BF 00 0C */	addi r5, r31, 0xc
 /* 802AFBD4  38 C0 00 00 */	li r6, 0
@@ -82,7 +82,7 @@ lbl_802AFCA8:
 /* 802AFCC0  D0 1F 00 7C */	stfs f0, 0x7c(r31)
 /* 802AFCC4  48 00 01 10 */	b lbl_802AFDD4
 lbl_802AFCC8:
-/* 802AFCC8  80 6D 86 00 */	lwz r3, data_80450B80(r13)
+/* 802AFCC8  80 6D 86 00 */	lwz r3, __OSReport_disable-0x18(r13)
 /* 802AFCCC  38 80 00 01 */	li r4, 1
 /* 802AFCD0  48 00 6C 11 */	bl setSceneExist__10Z2SceneMgrFb
 /* 802AFCD4  48 00 01 00 */	b lbl_802AFDD4
@@ -125,7 +125,7 @@ lbl_802AFD20:
 /* 802AFD58  D0 7F 00 6C */	stfs f3, 0x6c(r31)
 /* 802AFD5C  48 00 00 78 */	b lbl_802AFDD4
 lbl_802AFD60:
-/* 802AFD60  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
+/* 802AFD60  80 6D 85 FC */	lwz r3, __OSReport_disable-0x1C(r13)
 /* 802AFD64  3C 80 80 3A */	lis r4, Z2SeqMgr__stringBase0@ha /* 0x8039BA08@ha */
 /* 802AFD68  38 84 BA 08 */	addi r4, r4, Z2SeqMgr__stringBase0@l /* 0x8039BA08@l */
 /* 802AFD6C  38 84 02 6A */	addi r4, r4, 0x26a

@@ -16,7 +16,7 @@ lbl_802CB6EC:
 /* 802CB724  40 82 00 08 */	bne lbl_802CB72C
 /* 802CB728  48 00 03 48 */	b lbl_802CBA70
 lbl_802CB72C:
-/* 802CB72C  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802CB72C  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802CB730  E0 23 01 70 */	psq_l f1, 368(r3), 0, 0 /* qr0 */
 /* 802CB734  C0 03 01 78 */	lfs f0, 0x178(r3)
 /* 802CB738  F0 21 00 14 */	psq_st f1, 20(r1), 0, 0 /* qr0 */
@@ -117,7 +117,7 @@ lbl_802CB868:
 /* 802CB88C  38 63 42 1C */	addi r3, r3, sWindStoneSound@l /* 0x8043421C@l */
 /* 802CB890  7C 03 00 2E */	lwzx r0, r3, r0
 /* 802CB894  90 01 00 10 */	stw r0, 0x10(r1)
-/* 802CB898  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802CB898  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802CB89C  38 81 00 10 */	addi r4, r1, 0x10
 /* 802CB8A0  38 BD 00 04 */	addi r5, r29, 4
 /* 802CB8A4  7F E6 FB 78 */	mr r6, r31
@@ -229,7 +229,7 @@ lbl_802CBA08:
 /* 802CBA20  4B FD DC D5 */	bl getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign
 /* 802CBA24  FC C0 08 90 */	fmr f6, f1
 lbl_802CBA28:
-/* 802CBA28  80 6D 86 04 */	lwz r3, data_80450B84(r13)
+/* 802CBA28  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)
 /* 802CBA2C  D0 C3 00 94 */	stfs f6, 0x94(r3)
 /* 802CBA30  C0 02 C4 60 */	lfs f0, lit_3485(r2)
 /* 802CBA34  D0 03 00 98 */	stfs f0, 0x98(r3)

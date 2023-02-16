@@ -113,6 +113,7 @@ extern "C" extern Z2SeqMgr* data_80450B84;
 extern "C" extern Z2SeMgr* data_80450B88;
 extern "C" extern u8 pauseTimer__9dScnPly_c[4];
 extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
+extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:
@@ -189,31 +190,31 @@ asm void Z2StatusMgr::processHeartGaugeSound() {
 /* 802B60CC-802B6104 2B0A0C 0038+00 0/0 1/1 0/0 .text            talkIn__11Z2StatusMgrFv */
 void Z2StatusMgr::talkIn() {
     if (!isMovieDemo()) {
-        data_80450B84->talkInBgm();
-        data_80450B88->talkInSe();
+        JASGlobalInstance<Z2SeqMgr>::getInstance()->talkInBgm();
+        JASGlobalInstance<Z2SeMgr>::getInstance()->talkInSe();
     }
 }
 
 /* 802B6104-802B613C 2B0A44 0038+00 0/0 1/1 0/0 .text            talkOut__11Z2StatusMgrFv */
 void Z2StatusMgr::talkOut() {
     if (!isMovieDemo()) {
-        data_80450B84->talkOutBgm();
-        data_80450B88->talkOutSe();
+        JASGlobalInstance<Z2SeqMgr>::getInstance()->talkOutBgm();
+        JASGlobalInstance<Z2SeMgr>::getInstance()->talkOutSe();
     }
 }
 
 /* 802B613C-802B617C 2B0A7C 0040+00 0/0 1/1 0/0 .text            menuIn__11Z2StatusMgrFv */
 void Z2StatusMgr::menuIn() {
-    data_80450B84->menuInBgm();
-    data_80450B88->menuInSe();
+    JASGlobalInstance<Z2SeqMgr>::getInstance()->menuInBgm();
+    JASGlobalInstance<Z2SeMgr>::getInstance()->menuInSe();
 
     mIsMenuIn = true;
 }
 
 /* 802B617C-802B61BC 2B0ABC 0040+00 0/0 3/3 0/0 .text            menuOut__11Z2StatusMgrFv */
 void Z2StatusMgr::menuOut() {
-    data_80450B84->menuOutBgm();
-    data_80450B88->talkOutSe();
+    JASGlobalInstance<Z2SeqMgr>::getInstance()->menuOutBgm();
+    JASGlobalInstance<Z2SeMgr>::getInstance()->talkOutSe();
 
     mIsMenuIn = false;
 }

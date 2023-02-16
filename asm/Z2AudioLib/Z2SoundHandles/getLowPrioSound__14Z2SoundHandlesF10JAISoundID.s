@@ -5,7 +5,7 @@ lbl_802AB3D0:
 /* 802AB3DC  39 61 00 30 */	addi r11, r1, 0x30
 /* 802AB3E0  48 0B 6D F1 */	bl _savegpr_26
 /* 802AB3E4  7C 9A 23 78 */	mr r26, r4
-/* 802AB3E8  83 ED 85 DC */	lwz r31, data_80450B5C(r13)
+/* 802AB3E8  83 ED 85 DC */	lwz r31, __OSReport_disable-0x3C(r13)
 /* 802AB3EC  3C 80 00 01 */	lis r4, 0x0001 /* 0x0000FFFF@ha */
 /* 802AB3F0  3B A4 FF FF */	addi r29, r4, 0xFFFF /* 0x0000FFFF@l */
 /* 802AB3F4  3B 80 00 00 */	li r28, 0

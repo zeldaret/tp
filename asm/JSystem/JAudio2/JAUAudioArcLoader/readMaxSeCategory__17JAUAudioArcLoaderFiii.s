@@ -1,5 +1,5 @@
 lbl_802A49D8:
-/* 802A49D8  80 0D 85 EC */	lwz r0, data_80450B6C(r13)
+/* 802A49D8  80 0D 85 EC */	lwz r0, __OSReport_disable-0x2C(r13)
 /* 802A49DC  28 00 00 00 */	cmplwi r0, 0
 /* 802A49E0  4D 82 00 20 */	beqlr 
 /* 802A49E4  1C 64 00 6C */	mulli r3, r4, 0x6c

@@ -9,7 +9,7 @@ lbl_802B4EB0:
 /* 802B4ECC  88 63 00 D0 */	lbz r3, 0xd0(r3)
 /* 802B4ED0  54 60 E7 FF */	rlwinm. r0, r3, 0x1c, 0x1f, 0x1f
 /* 802B4ED4  40 82 03 18 */	bne lbl_802B51EC
-/* 802B4ED8  80 8D 86 00 */	lwz r4, data_80450B80(r13)
+/* 802B4ED8  80 8D 86 00 */	lwz r4, __OSReport_disable-0x18(r13)
 /* 802B4EDC  88 04 00 1D */	lbz r0, 0x1d(r4)
 /* 802B4EE0  28 00 00 00 */	cmplwi r0, 0
 /* 802B4EE4  41 82 03 08 */	beq lbl_802B51EC
@@ -28,7 +28,7 @@ lbl_802B4F08:
 /* 802B4F14  88 04 00 1E */	lbz r0, 0x1e(r4)
 /* 802B4F18  28 00 00 00 */	cmplwi r0, 0
 /* 802B4F1C  40 82 00 14 */	bne lbl_802B4F30
-/* 802B4F20  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B4F20  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B4F24  48 00 B2 C1 */	bl isTwilightBattle__13Z2SoundObjMgrFv
 /* 802B4F28  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802B4F2C  41 82 00 14 */	beq lbl_802B4F40
@@ -53,7 +53,7 @@ lbl_802B4F5C:
 /* 802B4F68  38 00 00 01 */	li r0, 1
 /* 802B4F6C  98 1C 00 BF */	stb r0, 0xbf(r28)
 /* 802B4F70  93 61 00 0C */	stw r27, 0xc(r1)
-/* 802B4F74  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
+/* 802B4F74  80 6D 85 E0 */	lwz r3, __OSReport_disable-0x38(r13)
 /* 802B4F78  38 81 00 0C */	addi r4, r1, 0xc
 /* 802B4F7C  38 BC 00 04 */	addi r5, r28, 4
 /* 802B4F80  38 C0 00 00 */	li r6, 0
@@ -63,7 +63,7 @@ lbl_802B4F5C:
 /* 802B4F90  4E 80 04 21 */	bctrl 
 /* 802B4F94  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802B4F98  41 82 02 54 */	beq lbl_802B51EC
-/* 802B4F9C  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B4F9C  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B4FA0  48 00 B1 61 */	bl setBattleInit__13Z2SoundObjMgrFv
 /* 802B4FA4  38 00 00 FF */	li r0, 0xff
 /* 802B4FA8  98 1C 00 BD */	stb r0, 0xbd(r28)
@@ -147,7 +147,7 @@ lbl_802B50A8:
 /* 802B50D0  4B FF EF 1D */	bl setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff
 /* 802B50D4  48 00 00 30 */	b lbl_802B5104
 lbl_802B50D8:
-/* 802B50D8  80 6D 85 C8 */	lwz r3, data_80450B48(r13)
+/* 802B50D8  80 6D 85 C8 */	lwz r3, __OSReport_disable-0x50(r13)
 /* 802B50DC  48 00 B1 09 */	bl isTwilightBattle__13Z2SoundObjMgrFv
 /* 802B50E0  54 64 06 3E */	clrlwi r4, r3, 0x18
 /* 802B50E4  7F 83 E3 78 */	mr r3, r28

@@ -53,7 +53,7 @@ lbl_802AE070:
 /* 802AE0B0  D0 01 00 1C */	stfs f0, 0x1c(r1)
 /* 802AE0B4  48 00 00 2C */	b lbl_802AE0E0
 lbl_802AE0B8:
-/* 802AE0B8  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802AE0B8  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802AE0BC  E0 03 01 70 */	psq_l f0, 368(r3), 0, 0 /* qr0 */
 /* 802AE0C0  C0 23 01 78 */	lfs f1, 0x178(r3)
 /* 802AE0C4  F0 01 00 08 */	psq_st f0, 8(r1), 0, 0 /* qr0 */

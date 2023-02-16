@@ -75,11 +75,11 @@ lbl_802C6540:
 /* 802C6664  4B FF F8 C5 */	bl __dt__14Z2EnvSeAutoPanFv
 /* 802C6668  28 1E 00 00 */	cmplwi r30, 0
 /* 802C666C  41 82 00 18 */	beq lbl_802C6684
-/* 802C6670  80 0D 85 BC */	lwz r0, data_80450B3C(r13)
+/* 802C6670  80 0D 85 BC */	lwz r0, __OSReport_disable-0x5C(r13)
 /* 802C6674  7C 00 F0 40 */	cmplw r0, r30
 /* 802C6678  40 82 00 0C */	bne lbl_802C6684
 /* 802C667C  38 00 00 00 */	li r0, 0
-/* 802C6680  90 0D 85 BC */	stw r0, data_80450B3C(r13)
+/* 802C6680  90 0D 85 BC */	stw r0, __OSReport_disable-0x5C(r13)
 lbl_802C6684:
 /* 802C6684  7F E0 07 35 */	extsh. r0, r31
 /* 802C6688  40 81 00 0C */	ble lbl_802C6694

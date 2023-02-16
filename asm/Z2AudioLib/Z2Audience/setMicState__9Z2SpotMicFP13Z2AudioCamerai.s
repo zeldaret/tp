@@ -39,7 +39,7 @@ lbl_802BCE8C:
 /* 802BCEA4  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 802BCEA8  38 61 00 08 */	addi r3, r1, 8
 /* 802BCEAC  48 08 A2 A5 */	bl PSVECMag
-/* 802BCEB0  80 6D 85 C4 */	lwz r3, data_80450B44(r13)
+/* 802BCEB0  80 6D 85 C4 */	lwz r3, __OSReport_disable-0x54(r13)
 /* 802BCEB4  C0 83 00 0C */	lfs f4, 0xc(r3)
 /* 802BCEB8  C0 A3 00 48 */	lfs f5, 0x48(r3)
 /* 802BCEBC  FC 01 20 40 */	fcmpo cr0, f1, f4
