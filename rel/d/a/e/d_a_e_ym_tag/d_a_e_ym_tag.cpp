@@ -59,7 +59,6 @@ static void* s_e_ym(void* i_actorP1, void* i_actorP2) {
 }
 
 /* 80815E8C-80815EF8 00010C 006C+00 1/1 0/0 0/0 .text            execute__12daE_YM_TAG_cFv */
-#ifndef NONMATCHING
 int daE_YM_TAG_c::execute() {
     daE_YM_c* shadow_insectP = (daE_YM_c*)i_fpcM_Search(s_e_ym,this);
 
@@ -71,36 +70,32 @@ int daE_YM_TAG_c::execute() {
 
     return 1;
 }
+
+/* 80815EF8-80815F18 000178 0020+00 1/0 0/0 0/0 .text daE_YM_TAG_Execute__FP12daE_YM_TAG_c */
+#ifndef NONMATCHING
+static int daE_YM_TAG_Execute(daE_YM_TAG_c* i_this) {
+    return i_this->execute();
+}
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daE_YM_TAG_c::execute() {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_ym_tag/d_a_e_ym_tag/execute__12daE_YM_TAG_cFv.s"
-}
-#pragma pop
-#endif
-
-/* 80815EF8-80815F18 000178 0020+00 1/0 0/0 0/0 .text daE_YM_TAG_Execute__FP12daE_YM_TAG_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daE_YM_TAG_Execute(daE_YM_TAG_c* param_0) {
+static asm void daE_YM_TAG_Execute(daE_YM_TAG_c* i_this) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_ym_tag/d_a_e_ym_tag/daE_YM_TAG_Execute__FP12daE_YM_TAG_c.s"
 }
 #pragma pop
+#endif
 
 /* 80815F18-80815F20 000198 0008+00 1/0 0/0 0/0 .text daE_YM_TAG_IsDelete__FP12daE_YM_TAG_c */
-static bool daE_YM_TAG_IsDelete(daE_YM_TAG_c* param_0) {
-    return true;
+static int daE_YM_TAG_IsDelete(daE_YM_TAG_c* i_this) {
+    return 1;
 }
 
 /* 80815F20-80815F28 0001A0 0008+00 1/0 0/0 0/0 .text            daE_YM_TAG_Delete__FP12daE_YM_TAG_c
  */
-static bool daE_YM_TAG_Delete(daE_YM_TAG_c* param_0) {
-    return true;
+static int daE_YM_TAG_Delete(daE_YM_TAG_c* i_this) {
+    return 1;
 }
 
 /* 80815F28-80815F90 0001A8 0068+00 1/1 0/0 0/0 .text            create__12daE_YM_TAG_cFv */
