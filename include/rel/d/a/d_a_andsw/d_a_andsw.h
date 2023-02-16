@@ -19,6 +19,10 @@ public:
         return fopAcM_GetParamBit(this,16,8);
     }
 
+    u8 getType() {
+        return fopAcM_GetParamBit(this,24,8);
+    }
+
     /* 80457978 */ int Create();
     /* 804579B8 */ int create();
     /* 80457A20 */ int execute();
@@ -26,7 +30,7 @@ public:
 
     /* 0x568 */ u8 mSwNo;
     /* 0x568 */ u8 mSwNo2;
-    /* 0x56A */ u16 mTimer;
+    /* 0x56A */ s16 mTimer;
 };
 
 
