@@ -8,26 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct daAndsw_c {
-    /* 80457978 */ void Create();
-    /* 804579B8 */ void create();
-    /* 80457A20 */ void execute();
-    /* 80457ABC */ bool _delete();
-};
-
-struct dSv_info_c {
-    /* 800352B0 */ void offSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-//
 // Forward References:
 //
 
@@ -48,15 +28,26 @@ extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAcM_delete__FP10fopAc_ac_c();
 extern "C" void offSwitch__10dSv_info_cFii();
 extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
+// extern "C" extern void* g_fopAc_Method[8];
+// extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
+// extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
 // Declarations:
 //
 
 /* 80457978-804579B8 000078 0040+00 1/1 0/0 0/0 .text            Create__9daAndsw_cFv */
+#ifndef NONMATCHING
+int daAndsw_c::Create() {
+    mSwNo = getSwNo();
+    mSwNo2 = getSwNo2();
+    u16 timer = getTimer();
+
+    timer != 0xFF ? mTimer = getTimer() * 15 : mTimer = 0;
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -65,12 +56,13 @@ asm void daAndsw_c::Create() {
 #include "asm/rel/d/a/d_a_andsw/d_a_andsw/Create__9daAndsw_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 804579B8-80457A20 0000B8 0068+00 1/1 0/0 0/0 .text            create__9daAndsw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAndsw_c::create() {
+asm int daAndsw_c::create() {
     nofralloc
 #include "asm/rel/d/a/d_a_andsw/d_a_andsw/func_804579B8.s"
 }
@@ -80,22 +72,22 @@ asm void daAndsw_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAndsw_c::execute() {
+asm int daAndsw_c::execute() {
     nofralloc
 #include "asm/rel/d/a/d_a_andsw/d_a_andsw/execute__9daAndsw_cFv.s"
 }
 #pragma pop
 
 /* 80457ABC-80457AC4 0001BC 0008+00 1/1 0/0 0/0 .text            _delete__9daAndsw_cFv */
-bool daAndsw_c::_delete() {
-    return true;
+int daAndsw_c::_delete() {
+    return 1;
 }
 
 /* 80457AC4-80457AE4 0001C4 0020+00 1/0 0/0 0/0 .text            daAndsw_Execute__FP9daAndsw_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daAndsw_Execute(daAndsw_c* param_0) {
+static asm int daAndsw_Execute(daAndsw_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_andsw/d_a_andsw/daAndsw_Execute__FP9daAndsw_c.s"
 }
@@ -105,7 +97,7 @@ static asm void daAndsw_Execute(daAndsw_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daAndsw_Delete(daAndsw_c* param_0) {
+static asm int daAndsw_Delete(daAndsw_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_andsw/d_a_andsw/daAndsw_Delete__FP9daAndsw_c.s"
 }
@@ -115,7 +107,7 @@ static asm void daAndsw_Delete(daAndsw_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daAndsw_Create(fopAc_ac_c* param_0) {
+static asm int daAndsw_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_andsw/d_a_andsw/daAndsw_Create__FP10fopAc_ac_c.s"
 }
