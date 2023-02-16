@@ -39,25 +39,26 @@ extern "C" void dKy_getdaytime_minute__Fv();
 //
 
 /* 80D4F638-80D4F660 000078 0028+00 1/1 0/0 0/0 .text            Create__10daSwTime_cFv */
-#ifndef NONMATCHING
 int daSwTime_c::Create() {
     mTime = getTime();
     mSwbit = getSwbit();
     mSwbit2 = getSwbit2();
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSwTime_c::Create() {
-    nofralloc
-#include "asm/rel/d/a/d_a_swTime/d_a_swTime/Create__10daSwTime_cFv.s"
-}
-#pragma pop
 
-#endif
 /* 80D4F660-80D4F6C8 0000A0 0068+00 1/1 0/0 0/0 .text            create__10daSwTime_cFv */
+#ifndef NONMATCHING
+int daSwTime_c::create() {
+    if (!fopAcM_CheckCondition(this, 8)) {
+        new (this) daSwTime_c();
+        fopAcM_OnCondition(this, 8);
+    }
+    if (!Create()) {
+        return cPhs_ERROR_e;
+    }
+    return cPhs_COMPLEATE_e;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -66,6 +67,7 @@ asm void daSwTime_c::create() {
 #include "asm/rel/d/a/d_a_swTime/d_a_swTime/func_80D4F660.s"
 }
 #pragma pop
+#endif
 
 /* 80D4F6C8-80D4F758 000108 0090+00 1/1 0/0 0/0 .text            execute__10daSwTime_cFv */
 #pragma push
