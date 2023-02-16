@@ -11,7 +11,7 @@ public:
     }
 
     ~JASGlobalInstance() {
-        if (sInstance != NULL) {
+        if (this == sInstance) {
             sInstance = NULL;
         }
     }

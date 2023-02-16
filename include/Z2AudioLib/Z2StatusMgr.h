@@ -34,8 +34,8 @@ struct Z2StatusMgr : public JASGlobalInstance<Z2StatusMgr> {
     /* 0x0C */ bool mIsMenuIn;
     /* 0x10 */ u32 mCameraMapInfo;
     /* 0x14 */ u32 field_0x14;
-    /* 0x18 */ float mUnderwaterDepth;
-    /* 0x1C */ float mCameraInWaterDepthRatio;
+    /* 0x18 */ f32 mUnderwaterDepth;
+    /* 0x1C */ f32 mCameraInWaterDepthRatio;
     /* 0x20 */ Vec mPolygonPosition;
     /* 0x2C */ u8 mDemoStatus;
     /* 0x2D */ u8 mHeartGaugeOn;

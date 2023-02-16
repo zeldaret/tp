@@ -669,14 +669,9 @@ asm Z2CreatureRide::~Z2CreatureRide() {
 #pragma pop
 
 /* 802C51EC-802C520C 2BFB2C 0020+00 1/0 0/0 0/0 .text            deleteObject__14Z2CreatureRideFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2CreatureRide::deleteObject() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2LinkMgr/deleteObject__14Z2CreatureRideFv.s"
+void Z2CreatureRide::deleteObject() {
+    Z2Creature::deleteObject();
 }
-#pragma pop
 
 /* 802C520C-802C522C 2BFB4C 0020+00 0/0 0/0 3/3 .text init__14Z2CreatureRideFP3VecP3VecUcUc */
 void Z2CreatureRide::init(Vec* param_0, Vec* param_1, u8 param_2, u8 param_3) {

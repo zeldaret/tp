@@ -188,6 +188,7 @@ SECTION_SDATA2 static u8 lit_3485[4] = {
 SECTION_SDATA2 static f32 lit_3486 = 1.0f;
 
 /* 802CAAC0-802CAB8C 2C5400 00CC+00 0/0 1/1 0/0 .text            __ct__13Z2WolfHowlMgrFv */
+// matches with literals
 #ifdef NONMATCHING
 Z2WolfHowlMgr::Z2WolfHowlMgr() : JASGlobalInstance(this) {
     mpCurSong = NULL;
@@ -204,13 +205,16 @@ Z2WolfHowlMgr::Z2WolfHowlMgr() : JASGlobalInstance(this) {
     field_0xba = 0;
     field_0xbb = 0;
     field_0xbc = 0;
+
     for (u8 i = 0; i < 20; i++) {
         field_0x92[i] = 0;
     }
+
     for (u8 i = 0; i < 10; i++) {
         field_0x38[i] = 0.0f;
         field_0x60[i] = 0.0f;
     }
+
     field_0x34 = 0.0f;
     field_0x30 = 0.0f;
     mpSongList = (Z2WolfHowlData**)&sGuideData;
@@ -227,6 +231,7 @@ asm Z2WolfHowlMgr::Z2WolfHowlMgr() {
 #endif
 
 /* 802CAB8C-802CABEC 2C54CC 0060+00 1/1 0/0 0/0 .text            resetState__13Z2WolfHowlMgrFv */
+// matches with literals
 #ifdef NONMATCHING
 void Z2WolfHowlMgr::resetState() {
     field_0x18 = 1.0f;
@@ -235,10 +240,12 @@ void Z2WolfHowlMgr::resetState() {
     mTimer = NULL;
     mReleaseTimer = 0;
     field_0xba = 0;
+
     for (u8 i = 0; i < 10; i++) {
         field_0x38[i] = 0.0f;
         field_0x60[i] = 0.0f;
     }
+
     field_0x34 = 0.0f;
     field_0x30 = 0.0f;
 }
