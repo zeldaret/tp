@@ -461,7 +461,8 @@ SECTION_DATA extern void* __vt__11J3DTexNoAnm[3] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DTexNoAnm::~J3DTexNoAnm() {
+// asm J3DTexNoAnm::~J3DTexNoAnm() {
+extern "C" asm void __dt__11J3DTexNoAnmFv() {
     nofralloc
 #include "asm/d/d_resorce/__dt__11J3DTexNoAnmFv.s"
 }
