@@ -22,7 +22,7 @@ public:
     /* 80D4F638 */ int Create();
     /* 80D4F660 */ int create();
     /* 80D4F6C8 */ int execute();
-    /* 80D4F758 */ bool _delete();
+    /* 80D4F758 */ int _delete();
 
     /* 0x568 */ u8 mTime;
     /* 0x569 */ u8 mSwbit;

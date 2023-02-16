@@ -72,45 +72,24 @@ int daSwTime_c::execute() {
 }
 
 /* 80D4F758-80D4F760 000198 0008+00 1/1 0/0 0/0 .text            _delete__10daSwTime_cFv */
-bool daSwTime_c::_delete() {
-    return true;
+int daSwTime_c::_delete() {
+    return 1;
 }
 
 /* 80D4F760-80D4F780 0001A0 0020+00 1/0 0/0 0/0 .text            daSwTime_Execute__FP10daSwTime_c */
-#ifndef NONMATCHING
 static int daSwTime_Execute(daSwTime_c* i_this) {
     return i_this->execute();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daSwTime_Execute(daSwTime_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_swTime/d_a_swTime/daSwTime_Execute__FP10daSwTime_c.s"
-}
-#pragma pop
-#endif
 
 /* 80D4F780-80D4F7A0 0001C0 0020+00 1/0 0/0 0/0 .text            daSwTime_Delete__FP10daSwTime_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daSwTime_Delete(daSwTime_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_swTime/d_a_swTime/daSwTime_Delete__FP10daSwTime_c.s"
+static int daSwTime_Delete(daSwTime_c* i_this) {
+    return i_this->_delete();
 }
-#pragma pop
 
 /* 80D4F7A0-80D4F7C0 0001E0 0020+00 1/0 0/0 0/0 .text            daSwTime_Create__FP10daSwTime_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daSwTime_Create(daSwTime_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_swTime/d_a_swTime/daSwTime_Create__FP10daSwTime_c.s"
+static int daSwTime_Create(daSwTime_c* i_this) {
+    return i_this->create();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D4F7C8-80D4F7E8 -00001 0020+00 1/0 0/0 0/0 .data            l_daSwTime_Method */
