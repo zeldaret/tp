@@ -349,9 +349,9 @@ RELS := \
 	$(BUILD_DIR)/rel/d/a/d_a_andsw2.plf \
 	$(BUILD_DIR)/rel/d/a/d_a_bd.plf \
 	$(BUILD_DIR)/rel/d/a/d_a_canoe.plf \
-	$(BUILD_DIR)/rel/d/a/d_a_cstaf.plf \
+	$(BUILD_DIR)/rel/d/a/d_a_cstaF.plf \
 	$(BUILD_DIR)/rel/d/a/d_a_demo_item.plf \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_bossl1.plf \
+	$(BUILD_DIR)/rel/d/a/door/d_a_door_bossL1.plf \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_dn.plf \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_fm.plf \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_ga.plf \
@@ -383,24 +383,24 @@ RELS := \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_digplace.plf \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_eff.plf \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fmobj.plf \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gptaru.plf \
+	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gpTaru.plf \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hhashi.plf \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kanban2.plf \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kbacket.plf \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kgate.plf \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_klift00.plf \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ktonfire.plf \
+	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ktOnFire.plf \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ladder.plf \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv2candle.plf \
+	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv2Candle.plf \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_magne_arm.plf \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_metalbox.plf \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mgate.plf \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_nameplate.plf \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ornament_cloth.plf \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rope_bridge.plf \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swallshutter.plf \
+	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sWallShutter.plf \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stick.plf \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stonemark.plf \
+	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stoneMark.plf \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpropeller.plf \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush5.plf \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_yobikusa.plf \
@@ -408,7 +408,7 @@ RELS := \
 	$(BUILD_DIR)/rel/d/a/d_a_shop_item.plf \
 	$(BUILD_DIR)/rel/d/a/d_a_sq.plf \
 	$(BUILD_DIR)/rel/d/a/d_a_swc00.plf \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_cstasw.plf \
+	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_CstaSw.plf \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_ajnot.plf \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_attack_item.plf \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_gstart.plf \
