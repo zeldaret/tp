@@ -47,51 +47,36 @@ JUTFader::JUTFader(int x, int y, int width, int height, JUtility::TColor pColor)
 }
 
 /* 802E55DC-802E56DC 2DFF1C 0100+00 0/0 1/1 0/0 .text            control__8JUTFaderFv */
-#ifdef NONMATCHING
 void JUTFader::control() {
-    s32 tmp = mEStatus;
-    if (mEStatus >= 0) {
-        mEStatus--;
-        if (tmp == 0) {
-            mStatus = field_0x24;
-        }
-    }
-    switch (mStatus) {
-    case 0:
-        mColor.a = -1;
-    case 1:
-        break;
-    case 2:
-        field_0xa++;
-        mColor.a = (255 - (255 / field_0x8));
-        if (field_0xa >= field_0x8) {
-            mStatus = 1;
-        }
-        break;
-    case 3:
-        field_0xa++;
-        mColor.a = (255 / field_0x8);
-        if (field_0xa >= field_0x8) {
-            mStatus = 0;
-        }
-    default:
-        draw();
-        break;
-    }
+    if (0 <= mEStatus && mEStatus-- == 0) {
+		mStatus = field_0x24;
+	}
+	if (mStatus == 1) {
+		return;
+	}
+	switch (mStatus) {
+	case 0:
+		mColor.a = 0xFF;
+		break;
+	case 2:
+		// _0A++;
+		mColor.a = 0xFF - ((++field_0xa * 0xFF) / field_0x8);
+		if (field_0xa >= field_0x8) {
+			mStatus = 1;
+		}
+		break;
+	case 3:
+		// _0A++;
+		mColor.a = ((++field_0xa * 0xFF) / field_0x8);
+		if (field_0xa >= field_0x8) {
+			mStatus = 0;
+		}
+		break;
+	}
+	draw();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTFader::control() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTFader/control__8JUTFaderFv.s"
-}
-#pragma pop
-#endif
 
 /* 802E56DC-802E576C 2E001C 0090+00 1/0 0/0 0/0 .text            draw__8JUTFaderFv */
-#ifndef NONMATCHING
 void JUTFader::draw() {
     if (mColor.a == 0) {
 		return;
@@ -100,16 +85,6 @@ void JUTFader::draw() {
 	orthograph.setColor(mColor);
 	orthograph.fillBox(mBox);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTFader::draw() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTFader/draw__8JUTFaderFv.s"
-}
-#pragma pop
-#endif
 
 /* 802E576C-802E579C 2E00AC 0030+00 1/0 0/0 0/0 .text            startFadeIn__8JUTFaderFi */
 bool JUTFader::startFadeIn(int param_0) {
