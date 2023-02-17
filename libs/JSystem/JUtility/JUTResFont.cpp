@@ -206,6 +206,33 @@ SECTION_DEAD static char const* const stringBase_8039D45C = "JUTResFont: Unknown
 #pragma pop
 
 /* 802DF248-802DF344 2D9B88 00FC+00 1/1 0/0 0/0 .text            countBlock__10JUTResFontFv */
+#ifdef NONMATCHING
+void JUTResFont::countBlock() {
+    mWidthBlockCount = 0;
+	mGlyphBlockCount = 0;
+	mMapBlockCount   = 0;
+	u8* pData        = (u8*)&mResource->mData;
+	for (u32 i = 0; i < mResource->mChunkNum; i++, pData += ((BlockHeader*)pData)->mSize) {
+		int magic = ((BlockHeader*)pData)->mMagic;
+		switch (magic) {
+		case 'WID1':
+			mWidthBlockCount++;
+			break;
+		case 'GLY1':
+			mGlyphBlockCount++;
+			break;
+		case 'MAP1':
+			mMapBlockCount++;
+			break;
+		case 'INF1':
+			// mInfoBlock;
+			break;
+		default:
+			JUTReportConsole("JUTResFont: Unknown data block\n");
+		}
+	};
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -214,6 +241,7 @@ asm void JUTResFont::countBlock() {
 #include "asm/JSystem/JUtility/JUTResFont/countBlock__10JUTResFontFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8039D390-8039D39C -00001 000C+00 1/1 1/1 0/0 .rodata          saoAboutEncoding___10JUTResFont */
