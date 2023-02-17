@@ -84,7 +84,7 @@ public:
     /* 80814AF0 */ void setHideType();
     /* 80814BA4 */ void create();
 
-    /* 0x5AC */ u8 field_0x568[268];
+    /* 0x5AC */ u8 field_0x5ac[268];
     /* 0x6B8 */ cXyz mTagPos;
     /* 0x6C4 */ cXyz* mTagPosP;
     /* 0x6C8 */ u8 mTagNo;
