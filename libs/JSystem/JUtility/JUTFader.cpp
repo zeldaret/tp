@@ -91,14 +91,14 @@ asm void JUTFader::control() {
 #endif
 
 /* 802E56DC-802E576C 2E001C 0090+00 1/0 0/0 0/0 .text            draw__8JUTFaderFv */
-#ifdef NONMATCHING
+#ifndef NONMATCHING
 void JUTFader::draw() {
-    if (mColor.a != 0) {
-        J2DOrthoGraph ortho;
-        JUtility::TColor tmp = mColor;
-        ortho.setColor(tmp, tmp, tmp, tmp);
-        ortho.fillBox(mBox);
-    }
+    if (mColor.a == 0) {
+		return;
+	}
+	J2DOrthoGraph orthograph;
+	orthograph.setColor(mColor);
+	orthograph.fillBox(mBox);
 }
 #else
 #pragma push
