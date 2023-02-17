@@ -4,7 +4,7 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
-class daE_YM_c : public fopAc_ac_c {
+class daE_YM_c : public fopEn_enemy_c {
 public:
     u8 getTagNo() {
         return mTagNo;
@@ -84,7 +84,7 @@ public:
     /* 80814AF0 */ void setHideType();
     /* 80814BA4 */ void create();
 
-    /* 0x568 */ u8 field_0x568[336];
+    /* 0x5AC */ u8 field_0x568[268];
     /* 0x6B8 */ cXyz mTagPos;
     /* 0x6C4 */ cXyz* mTagPosP;
     /* 0x6C8 */ u8 mTagNo;
