@@ -80,14 +80,9 @@ int daTagWatchGe_c::execute() {
 }
 
 /* 80D643C8-80D643E8 000168 0020+00 1/0 0/0 0/0 .text daTagWatchGe_Execute__FP14daTagWatchGe_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int daTagWatchGe_Execute(daTagWatchGe_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_watchge/d_a_tag_watchge/daTagWatchGe_Execute__FP14daTagWatchGe_c.s"
+static int daTagWatchGe_Execute(daTagWatchGe_c* i_this) {
+    return i_this->execute();
 }
-#pragma pop
 
 /* 80D643E8-80D643F0 000188 0008+00 1/0 0/0 0/0 .text daTagWatchGe_IsDelete__FP14daTagWatchGe_c */
 static int daTagWatchGe_IsDelete(daTagWatchGe_c* param_0) {
@@ -100,24 +95,35 @@ static int daTagWatchGe_Delete(daTagWatchGe_c* param_0) {
 }
 
 /* 80D643F8-80D644B0 000198 00B8+00 1/1 0/0 0/0 .text            create__14daTagWatchGe_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daTagWatchGe_c::create() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_watchge/d_a_tag_watchge/create__14daTagWatchGe_cFv.s"
+int daTagWatchGe_c::create() {
+    if (!fopAcM_CheckCondition(this, 8)) {
+        new (this) daTagWatchGe_c();
+        fopAcM_OnCondition(this, 8);
+    }
+
+    mGroupNo = fopAcM_GetParam(this);
+
+    if (mGroupNo == 0xFF) {
+        return cPhs_ERROR_e;
+    } else {
+        field_0x568 = fopAcM_GetParam(this) >> 8;
+
+        if (field_0x568 == 0xFF) {
+            return cPhs_ERROR_e;
+        }
+        if (dComIfGs_isSwitch(field_0x568,fopAcM_GetRoomNo(this)) != 0) {
+            return cPhs_ERROR_e;
+        }
+    }
+
+    field_0x56a = 0x1e;
+    return cPhs_COMPLEATE_e;
 }
-#pragma pop
 
 /* 80D644B0-80D644D0 000250 0020+00 1/0 0/0 0/0 .text daTagWatchGe_Create__FP14daTagWatchGe_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int daTagWatchGe_Create(daTagWatchGe_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_watchge/d_a_tag_watchge/daTagWatchGe_Create__FP14daTagWatchGe_c.s"
+static int daTagWatchGe_Create(daTagWatchGe_c* i_this) {
+    return i_this->create();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D644D8-80D644F8 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagWatchGe_Method */
