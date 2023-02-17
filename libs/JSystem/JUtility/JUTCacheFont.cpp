@@ -121,7 +121,7 @@ void JUTCacheFont::deleteMemBlocks_CacheFont() {
 
     delete field_0xac;
     delete mInf1Ptr;
-    delete field_0x50;
+    delete mMemBlocks;
     delete field_0x7c;
     delete field_0x80;
     delete field_0x84;
@@ -138,7 +138,7 @@ void JUTCacheFont::initialize_state() {
     field_0x7c = NULL;
     field_0x80 = NULL;
     field_0x84 = NULL;
-    field_0x50 = NULL;
+    mMemBlocks = NULL;
 
     mPagingType = PAGE_TYPE_0;
     mMaxSheetSize = 0;

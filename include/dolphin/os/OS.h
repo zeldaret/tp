@@ -30,6 +30,8 @@
 extern "C" {
 #endif
 
+#define HW_REG(reg, type) *(volatile type*)(u32)(reg)
+
 // Upper words of the masks, since UIMM is only 16 bits
 #define OS_CACHED_REGION_PREFIX 0x8000
 #define OS_UNCACHED_REGION_PREFIX 0xC000

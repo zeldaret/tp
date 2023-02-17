@@ -23,6 +23,7 @@ struct ResFONT {
         /* 0x04 */ u32 size;
         /* 0x08 */ u16 startCode;
         /* 0x0A */ u16 endCode;
+        /* 0x0C */ u8 mChunkNum[4];
     };
 
     struct MAP1 {
@@ -32,6 +33,7 @@ struct ResFONT {
         /* 0x0A */ u16 startCode;
         /* 0x0C */ u16 endCode;
         /* 0x0E */ u16 numEntries;
+        /* 0x10 */ u16 mLeading;
     };
 
     struct GLY1 {
