@@ -109,6 +109,36 @@ bool JUTFader::startFadeOut(int param_0) {
 }
 
 /* 802E57D0-802E5840 2E0110 0070+00 0/0 1/1 0/0 .text setStatus__8JUTFaderFQ28JUTFader7EStatusi */
+#ifndef NONMATCHING
+void JUTFader::setStatus(JUTFader::EStatus i_status, int param_1) {
+
+    switch (i_status) {
+        case 0: {
+            if (param_1 != 0) {
+                field_0x24 = 0;
+                mEStatus = param_1;
+                break;
+            }
+            mStatus = 0;
+            field_0x24 = 0;
+            mEStatus = 0;
+            break;
+        }
+        case 1: {
+            if (param_1 != 0) {
+                field_0x24 = 1;
+                mEStatus = param_1;
+                break;
+            }
+
+            mStatus = 1;
+            field_0x24 = 1;
+            mEStatus = 0;
+            break;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -117,6 +147,7 @@ asm void JUTFader::setStatus(JUTFader::EStatus param_0, int param_1) {
 #include "asm/JSystem/JUtility/JUTFader/setStatus__8JUTFaderFQ28JUTFader7EStatusi.s"
 }
 #pragma pop
+#endif
 
 /* 802E5840-802E5888 2E0180 0048+00 1/0 0/0 0/0 .text            __dt__8JUTFaderFv */
 JUTFader::~JUTFader() {}
