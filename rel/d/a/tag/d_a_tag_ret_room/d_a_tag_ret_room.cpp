@@ -34,14 +34,14 @@ int daTagRetRm_c::draw() {
 /* 80D5EF9C-80D5F010 00017C 0074+00 1/1 0/0 0/0 .text   execute__12daTagRetRm_cFv */
 int daTagRetRm_c::execute() {
     if (field_0x578 != 0) {
-        field_0x578 = field_0x578 - 1;
+        field_0x578--;
 
         if (field_0x578 == 0) {
             daPy_py_c::forceRestartRoom(1, 5, 0xc9);
         }
     } else {
         if (chkPlyrInTag()) {
-            field_0x578 = 0x1e;
+            field_0x578 = 30;
         }
     }
     return 1;
@@ -62,8 +62,8 @@ u8 daTagRetRm_c::chkPlyrInTag() {
         return 0;
     } else {
         pos = daPy_getPlayerActorClass()->current.pos - current.pos;
-        mDoMtx_YrotS(mDoMtx_stack_c::now, -this->current.angle.y);
-        PSMTXMultVec(mDoMtx_stack_c::now, &pos, &pos);
+        mDoMtx_stack_c::YrotS(-current.angle.y);
+        mDoMtx_stack_c::multVec(&pos, &pos);
         if ((0 < pos.y) && (field_0x570 > pos.y) && (field_0x56c > pos.x) &&
             (field_0x574 > pos.z) && (-field_0x56c < pos.x) && (-field_0x574 < pos.z))
         {
