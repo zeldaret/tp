@@ -4,37 +4,7 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_watchge/d_a_tag_watchge.h"
-#include "dol2asm.h"
 #include "d/d_procname.h"
-
-//
-// Forward References:
-//
-
-extern "C" bool draw__14daTagWatchGe_cFv();
-extern "C" static void daTagWatchGe_Draw__FP14daTagWatchGe_c();
-extern "C" static void s_watchge__FPvPv();
-extern "C" void execute__14daTagWatchGe_cFv();
-extern "C" static void daTagWatchGe_Execute__FP14daTagWatchGe_c();
-extern "C" static bool daTagWatchGe_IsDelete__FP14daTagWatchGe_c();
-extern "C" static bool daTagWatchGe_Delete__FP14daTagWatchGe_c();
-extern "C" void create__14daTagWatchGe_cFv();
-extern "C" static void daTagWatchGe_Create__FP14daTagWatchGe_c();
-extern "C" extern void* g_profile_Tag_WatchGe[12];
-
-//
-// External References:
-//
-
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void onSwitch__10dSv_info_cFii();
-extern "C" void isSwitch__10dSv_info_cCFii();
-
-//
-// Declarations:
-//
 
 /* 80D642D8-80D642E0 000078 0008+00 1/1 0/0 0/0 .text            draw__14daTagWatchGe_cFv */
 int daTagWatchGe_c::draw() {
@@ -85,12 +55,12 @@ static int daTagWatchGe_Execute(daTagWatchGe_c* i_this) {
 }
 
 /* 80D643E8-80D643F0 000188 0008+00 1/0 0/0 0/0 .text daTagWatchGe_IsDelete__FP14daTagWatchGe_c */
-static int daTagWatchGe_IsDelete(daTagWatchGe_c* param_0) {
+static int daTagWatchGe_IsDelete(daTagWatchGe_c* i_this) {
     return 1;
 }
 
 /* 80D643F0-80D643F8 000190 0008+00 1/0 0/0 0/0 .text daTagWatchGe_Delete__FP14daTagWatchGe_c */
-static int daTagWatchGe_Delete(daTagWatchGe_c* param_0) {
+static int daTagWatchGe_Delete(daTagWatchGe_c* i_this) {
     return 1;
 }
 
@@ -127,23 +97,33 @@ static int daTagWatchGe_Create(daTagWatchGe_c* i_this) {
 
 /* ############################################################################################## */
 /* 80D644D8-80D644F8 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagWatchGe_Method */
-SECTION_DATA static void* l_daTagWatchGe_Method[8] = {
-    (void*)daTagWatchGe_Create__FP14daTagWatchGe_c,
-    (void*)daTagWatchGe_Delete__FP14daTagWatchGe_c,
-    (void*)daTagWatchGe_Execute__FP14daTagWatchGe_c,
-    (void*)daTagWatchGe_IsDelete__FP14daTagWatchGe_c,
-    (void*)daTagWatchGe_Draw__FP14daTagWatchGe_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daTagWatchGe_Method = {
+    (process_method_func)daTagWatchGe_Create,
+    (process_method_func)daTagWatchGe_Delete,
+    (process_method_func)daTagWatchGe_Execute,
+    (process_method_func)daTagWatchGe_IsDelete,
+    (process_method_func)daTagWatchGe_Draw
 };
 
 /* 80D644F8-80D64528 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_WatchGe */
-SECTION_DATA extern void* g_profile_Tag_WatchGe[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x01F30000, (void*)&g_fpcLf_Method,
-    (void*)0x0000056C, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x00C10000, (void*)&l_daTagWatchGe_Method,
-    (void*)0x00044000, (void*)NULL,
+extern actor_process_profile_definition g_profile_Tag_WatchGe = {
+    -3,                      // mLayerID  
+    7,                       // mListID
+    -3,                      // mListPrio 
+    PROC_Tag_WatchGe,        // mProcName               
+    0,                       // padding 
+    &g_fpcLf_Method.mBase,   // mSubMtd                    
+    sizeof(daTagWatchGe_c),  // mSize                      
+    0,                       // mSizeOther
+    0,                       // mParameters       
+    &g_fopAc_Method.base,    // mSubMtd                   
+    0x00C1,                  // mPriority    
+    0,                       // padding
+    0,                       // padding 
+    &l_daTagWatchGe_Method,  // mSubMtd                     
+    0x00044000,              // mStatus          
+    0,                       // mActorType
+    0,                       // mCullType
+    0,                       // padding
+    0                        // padding
 };
