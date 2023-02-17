@@ -48,10 +48,10 @@ static int daTagWatchGe_Draw(daTagWatchGe_c* i_this) {
 
 /* ############################################################################################## */
 /* 80D64528-80D6452C 000000 0004+00 2/2 0/0 0/0 .bss             m_group_count */
-static u32 m_group_count;
+static s32 m_group_count;
 
 /* 80D64300-80D64338 0000A0 0038+00 1/1 0/0 0/0 .text            s_watchge__FPvPv */
-static int s_watchge(void* i_guayP, void* i_this) {
+static void* s_watchge(void* i_guayP, void* i_this) {
     u8 group_no = static_cast<daTagWatchGe_c*>(i_this)->getGroupNo();
     if (fopAcM_GetName(i_guayP) == PROC_E_GE) {
         if (static_cast<daE_GE_c*>(i_guayP)->getGroupNo() == group_no) {
@@ -63,14 +63,21 @@ static int s_watchge(void* i_guayP, void* i_this) {
 }
 
 /* 80D64338-80D643C8 0000D8 0090+00 1/1 0/0 0/0 .text            execute__14daTagWatchGe_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daTagWatchGe_c::execute() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_watchge/d_a_tag_watchge/execute__14daTagWatchGe_cFv.s"
+int daTagWatchGe_c::execute() {
+    if (field_0x56a != 0) {
+        field_0x56a--;
+    } else {
+        m_group_count = 0;
+        fopAcM_Search(s_watchge,this);
+
+        if (m_group_count == 0) {
+            dComIfGs_onSwitch(field_0x568,fopAcM_GetRoomNo(this));
+            fopAcM_delete(this);
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80D643C8-80D643E8 000168 0020+00 1/0 0/0 0/0 .text daTagWatchGe_Execute__FP14daTagWatchGe_c */
 #pragma push
