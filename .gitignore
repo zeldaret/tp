@@ -31,3 +31,5 @@ __pycache__/
 
 m2ctx.py
 ctx.c
+tpdebug.c
+tprelease.c

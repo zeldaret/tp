@@ -3,7 +3,7 @@
 // Translation Unit: d_a_obj_sWallShutter
 //
 
-#include "rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter.h"
+#include "rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -404,7 +404,7 @@ SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
 #pragma optimizewithasm off
 asm daSwShutter_HIO_c::daSwShutter_HIO_c() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/__ct__17daSwShutter_HIO_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/__ct__17daSwShutter_HIO_cFv.s"
 }
 #pragma pop
 
@@ -414,7 +414,7 @@ asm daSwShutter_HIO_c::daSwShutter_HIO_c() {
 #pragma optimizewithasm off
 asm mDoHIO_entry_c::~mDoHIO_entry_c() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/__dt__14mDoHIO_entry_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/__dt__14mDoHIO_entry_cFv.s"
 }
 #pragma pop
 
@@ -424,7 +424,7 @@ asm mDoHIO_entry_c::~mDoHIO_entry_c() {
 #pragma optimizewithasm off
 asm void daSwShutter_c::setBaseMtx() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/setBaseMtx__13daSwShutter_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/setBaseMtx__13daSwShutter_cFv.s"
 }
 #pragma pop
 
@@ -441,7 +441,7 @@ COMPILER_STRIP_GATE(0x80598F98, &l_bmdIdx);
 #pragma optimizewithasm off
 asm void daSwShutter_c::CreateHeap() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/CreateHeap__13daSwShutter_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/CreateHeap__13daSwShutter_cFv.s"
 }
 #pragma pop
 
@@ -468,7 +468,7 @@ COMPILER_STRIP_GATE(0x80598FA8, &lit_3730);
 #pragma optimizewithasm off
 asm void daSwShutter_c::create() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/create__13daSwShutter_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/create__13daSwShutter_cFv.s"
 }
 #pragma pop
 
@@ -479,7 +479,7 @@ asm void daSwShutter_c::create() {
 #pragma optimizewithasm off
 asm void daSwShutter_c::Execute(f32 (**param_0)[3][4]) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/Execute__13daSwShutter_cFPPA3_A4_f.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/Execute__13daSwShutter_cFPPA3_A4_f.s"
 }
 #pragma pop
 
@@ -503,7 +503,7 @@ static u8 data_80599120[4];
 #pragma optimizewithasm off
 asm void daSwShutter_c::moveMain() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/moveMain__13daSwShutter_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/moveMain__13daSwShutter_cFv.s"
 }
 #pragma pop
 
@@ -513,7 +513,7 @@ asm void daSwShutter_c::moveMain() {
 #pragma optimizewithasm off
 asm void daSwShutter_c::init_modeWait() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/init_modeWait__13daSwShutter_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/init_modeWait__13daSwShutter_cFv.s"
 }
 #pragma pop
 
@@ -523,7 +523,7 @@ asm void daSwShutter_c::init_modeWait() {
 #pragma optimizewithasm off
 asm void daSwShutter_c::modeWait() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/modeWait__13daSwShutter_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/modeWait__13daSwShutter_cFv.s"
 }
 #pragma pop
 
@@ -545,7 +545,7 @@ COMPILER_STRIP_GATE(0x80598FB4, &lit_3827);
 #pragma optimizewithasm off
 asm void daSwShutter_c::init_modeMoveDownInit() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/init_modeMoveDownInit__13daSwShutter_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/init_modeMoveDownInit__13daSwShutter_cFv.s"
 }
 #pragma pop
 
@@ -556,7 +556,7 @@ asm void daSwShutter_c::init_modeMoveDownInit() {
 #pragma optimizewithasm off
 asm void daSwShutter_c::modeMoveDownInit() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/modeMoveDownInit__13daSwShutter_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/modeMoveDownInit__13daSwShutter_cFv.s"
 }
 #pragma pop
 
@@ -566,7 +566,7 @@ asm void daSwShutter_c::modeMoveDownInit() {
 #pragma optimizewithasm off
 asm void daSwShutter_c::init_modeMoveDown() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/init_modeMoveDown__13daSwShutter_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/init_modeMoveDown__13daSwShutter_cFv.s"
 }
 #pragma pop
 
@@ -576,7 +576,7 @@ asm void daSwShutter_c::init_modeMoveDown() {
 #pragma optimizewithasm off
 asm void daSwShutter_c::modeMoveDown() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/modeMoveDown__13daSwShutter_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/modeMoveDown__13daSwShutter_cFv.s"
 }
 #pragma pop
 
@@ -586,7 +586,7 @@ asm void daSwShutter_c::modeMoveDown() {
 #pragma optimizewithasm off
 asm void daSwShutter_c::init_modeMoveDownEnd() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/init_modeMoveDownEnd__13daSwShutter_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/init_modeMoveDownEnd__13daSwShutter_cFv.s"
 }
 #pragma pop
 
@@ -602,7 +602,7 @@ void daSwShutter_c::modeMoveDownEnd() {
 #pragma optimizewithasm off
 asm void daSwShutter_c::Draw() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/Draw__13daSwShutter_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/Draw__13daSwShutter_cFv.s"
 }
 #pragma pop
 
@@ -612,7 +612,7 @@ asm void daSwShutter_c::Draw() {
 #pragma optimizewithasm off
 asm void daSwShutter_c::Delete() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/Delete__13daSwShutter_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/Delete__13daSwShutter_cFv.s"
 }
 #pragma pop
 
@@ -623,7 +623,7 @@ asm void daSwShutter_c::Delete() {
 #pragma optimizewithasm off
 static asm void daSwShutter_Draw(daSwShutter_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/daSwShutter_Draw__FP13daSwShutter_c.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/daSwShutter_Draw__FP13daSwShutter_c.s"
 }
 #pragma pop
 
@@ -633,7 +633,7 @@ static asm void daSwShutter_Draw(daSwShutter_c* param_0) {
 #pragma optimizewithasm off
 static asm void daSwShutter_Execute(daSwShutter_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/daSwShutter_Execute__FP13daSwShutter_c.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/daSwShutter_Execute__FP13daSwShutter_c.s"
 }
 #pragma pop
 
@@ -643,7 +643,7 @@ static asm void daSwShutter_Execute(daSwShutter_c* param_0) {
 #pragma optimizewithasm off
 static asm void daSwShutter_Delete(daSwShutter_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/daSwShutter_Delete__FP13daSwShutter_c.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/daSwShutter_Delete__FP13daSwShutter_c.s"
 }
 #pragma pop
 
@@ -654,7 +654,7 @@ static asm void daSwShutter_Delete(daSwShutter_c* param_0) {
 #pragma optimizewithasm off
 static asm void daSwShutter_Create(fopAc_ac_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/daSwShutter_Create__FP10fopAc_ac_c.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/daSwShutter_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
@@ -664,7 +664,7 @@ static asm void daSwShutter_Create(fopAc_ac_c* param_0) {
 #pragma optimizewithasm off
 asm daSwShutter_HIO_c::~daSwShutter_HIO_c() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/__dt__17daSwShutter_HIO_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/__dt__17daSwShutter_HIO_cFv.s"
 }
 #pragma pop
 
@@ -674,7 +674,7 @@ asm daSwShutter_HIO_c::~daSwShutter_HIO_c() {
 #pragma optimizewithasm off
 asm void __sinit_d_a_obj_sWallShutter_cpp() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter/__sinit_d_a_obj_sWallShutter_cpp.s"
+#include "asm/rel/d/a/obj/d_a_obj_sWallShutter/d_a_obj_sWallShutter/__sinit_d_a_obj_sWallShutter_cpp.s"
 }
 #pragma pop
 

@@ -3,7 +3,7 @@
 // Translation Unit: d_a_obj_ktOnFire
 //
 
-#include "rel/d/a/obj/d_a_obj_ktonfire/d_a_obj_ktOnFire.h"
+#include "rel/d/a/obj/d_a_obj_ktOnFire/d_a_obj_ktOnFire.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -260,7 +260,7 @@ SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
 #pragma optimizewithasm off
 asm daKtOnFire_HIO_c::daKtOnFire_HIO_c() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ktonfire/d_a_obj_ktOnFire/__ct__16daKtOnFire_HIO_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_ktOnFire/d_a_obj_ktOnFire/__ct__16daKtOnFire_HIO_cFv.s"
 }
 #pragma pop
 
@@ -270,7 +270,7 @@ asm daKtOnFire_HIO_c::daKtOnFire_HIO_c() {
 #pragma optimizewithasm off
 asm mDoHIO_entry_c::~mDoHIO_entry_c() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ktonfire/d_a_obj_ktOnFire/__dt__14mDoHIO_entry_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_ktOnFire/d_a_obj_ktOnFire/__dt__14mDoHIO_entry_cFv.s"
 }
 #pragma pop
 
@@ -280,7 +280,7 @@ asm mDoHIO_entry_c::~mDoHIO_entry_c() {
 #pragma optimizewithasm off
 asm void daKtOnFire_c::setBaseMtx() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ktonfire/d_a_obj_ktOnFire/setBaseMtx__12daKtOnFire_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_ktOnFire/d_a_obj_ktOnFire/setBaseMtx__12daKtOnFire_cFv.s"
 }
 #pragma pop
 
@@ -313,7 +313,7 @@ COMPILER_STRIP_GATE(0x8058CFC0, &lit_3712);
 #pragma optimizewithasm off
 asm void daKtOnFire_c::create() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ktonfire/d_a_obj_ktOnFire/create__12daKtOnFire_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_ktOnFire/d_a_obj_ktOnFire/create__12daKtOnFire_cFv.s"
 }
 #pragma pop
 
@@ -323,7 +323,7 @@ asm void daKtOnFire_c::create() {
 #pragma optimizewithasm off
 asm cM3dGCyl::~cM3dGCyl() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ktonfire/d_a_obj_ktOnFire/__dt__8cM3dGCylFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_ktOnFire/d_a_obj_ktOnFire/__dt__8cM3dGCylFv.s"
 }
 #pragma pop
 
@@ -333,7 +333,7 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma optimizewithasm off
 asm cM3dGAab::~cM3dGAab() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ktonfire/d_a_obj_ktOnFire/__dt__8cM3dGAabFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_ktOnFire/d_a_obj_ktOnFire/__dt__8cM3dGAabFv.s"
 }
 #pragma pop
 
@@ -358,7 +358,7 @@ COMPILER_STRIP_GATE(0x8058CFCC, &lit_3798);
 #pragma optimizewithasm off
 asm void daKtOnFire_c::lightInit() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ktonfire/d_a_obj_ktOnFire/lightInit__12daKtOnFire_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_ktOnFire/d_a_obj_ktOnFire/lightInit__12daKtOnFire_cFv.s"
 }
 #pragma pop
 
@@ -368,7 +368,7 @@ asm void daKtOnFire_c::lightInit() {
 #pragma optimizewithasm off
 asm void daKtOnFire_c::setLight() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ktonfire/d_a_obj_ktOnFire/setLight__12daKtOnFire_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_ktOnFire/d_a_obj_ktOnFire/setLight__12daKtOnFire_cFv.s"
 }
 #pragma pop
 
@@ -378,7 +378,7 @@ asm void daKtOnFire_c::setLight() {
 #pragma optimizewithasm off
 asm void daKtOnFire_c::cutLight() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ktonfire/d_a_obj_ktOnFire/cutLight__12daKtOnFire_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_ktOnFire/d_a_obj_ktOnFire/cutLight__12daKtOnFire_cFv.s"
 }
 #pragma pop
 
@@ -416,7 +416,7 @@ static u8 l_HIO[8];
 #pragma optimizewithasm off
 asm void daKtOnFire_c::Execute() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ktonfire/d_a_obj_ktOnFire/Execute__12daKtOnFire_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_ktOnFire/d_a_obj_ktOnFire/Execute__12daKtOnFire_cFv.s"
 }
 #pragma pop
 
@@ -431,7 +431,7 @@ bool daKtOnFire_c::Draw() {
 #pragma optimizewithasm off
 asm void daKtOnFire_c::Delete() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ktonfire/d_a_obj_ktOnFire/Delete__12daKtOnFire_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_ktOnFire/d_a_obj_ktOnFire/Delete__12daKtOnFire_cFv.s"
 }
 #pragma pop
 
@@ -442,7 +442,7 @@ asm void daKtOnFire_c::Delete() {
 #pragma optimizewithasm off
 static asm void daKtOnFire_Draw(daKtOnFire_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ktonfire/d_a_obj_ktOnFire/daKtOnFire_Draw__FP12daKtOnFire_c.s"
+#include "asm/rel/d/a/obj/d_a_obj_ktOnFire/d_a_obj_ktOnFire/daKtOnFire_Draw__FP12daKtOnFire_c.s"
 }
 #pragma pop
 
@@ -452,7 +452,7 @@ static asm void daKtOnFire_Draw(daKtOnFire_c* param_0) {
 #pragma optimizewithasm off
 static asm void daKtOnFire_Execute(daKtOnFire_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ktonfire/d_a_obj_ktOnFire/daKtOnFire_Execute__FP12daKtOnFire_c.s"
+#include "asm/rel/d/a/obj/d_a_obj_ktOnFire/d_a_obj_ktOnFire/daKtOnFire_Execute__FP12daKtOnFire_c.s"
 }
 #pragma pop
 
@@ -463,7 +463,7 @@ static asm void daKtOnFire_Execute(daKtOnFire_c* param_0) {
 #pragma optimizewithasm off
 static asm void daKtOnFire_Delete(daKtOnFire_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ktonfire/d_a_obj_ktOnFire/daKtOnFire_Delete__FP12daKtOnFire_c.s"
+#include "asm/rel/d/a/obj/d_a_obj_ktOnFire/d_a_obj_ktOnFire/daKtOnFire_Delete__FP12daKtOnFire_c.s"
 }
 #pragma pop
 
@@ -474,7 +474,7 @@ static asm void daKtOnFire_Delete(daKtOnFire_c* param_0) {
 #pragma optimizewithasm off
 static asm void daKtOnFire_Create(fopAc_ac_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ktonfire/d_a_obj_ktOnFire/daKtOnFire_Create__FP10fopAc_ac_c.s"
+#include "asm/rel/d/a/obj/d_a_obj_ktOnFire/d_a_obj_ktOnFire/daKtOnFire_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
@@ -484,7 +484,7 @@ static asm void daKtOnFire_Create(fopAc_ac_c* param_0) {
 #pragma optimizewithasm off
 asm daKtOnFire_HIO_c::~daKtOnFire_HIO_c() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ktonfire/d_a_obj_ktOnFire/__dt__16daKtOnFire_HIO_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_ktOnFire/d_a_obj_ktOnFire/__dt__16daKtOnFire_HIO_cFv.s"
 }
 #pragma pop
 
@@ -494,7 +494,7 @@ asm daKtOnFire_HIO_c::~daKtOnFire_HIO_c() {
 #pragma optimizewithasm off
 asm void __sinit_d_a_obj_ktOnFire_cpp() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ktonfire/d_a_obj_ktOnFire/__sinit_d_a_obj_ktOnFire_cpp.s"
+#include "asm/rel/d/a/obj/d_a_obj_ktOnFire/d_a_obj_ktOnFire/__sinit_d_a_obj_ktOnFire_cpp.s"
 }
 #pragma pop
 
