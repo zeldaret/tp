@@ -375,19 +375,19 @@ f32 JUTResFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
 
     GXPosition3f32(width_val,ascent_val,0.0f);
     GXColor1u32(mColor1);
-    GXTexCoord2u16(div_width,div_height);
+    i_GXTexCoord2u16(div_width,div_height);
 
     GXPosition3f32(sca_wid,ascent_val,0.0f);
     GXColor1u32(mColor2);
-    GXTexCoord2u16(width_ratio,div_height);
+    i_GXTexCoord2u16(width_ratio,div_height);
 
     GXPosition3f32(sca_wid,deshei,0.0f);
     GXColor1u32(mColor4);
-    GXTexCoord2u16(width_ratio,height_ratio);
+    i_GXTexCoord2u16(width_ratio,height_ratio);
 
     GXPosition3f32(width_val,deshei,0.0f);
     GXColor1u32(mColor3);
-    GXTexCoord2u16(div_width,height_ratio);
+    i_GXTexCoord2u16(div_width,height_ratio);
 
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
 
