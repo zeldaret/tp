@@ -221,36 +221,33 @@ SECTION_SDATA2 static f32 lit_2313 = 60.0f;
 SECTION_SDATA2 static f64 lit_2315 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802E5CC4-802E5E08 2E0604 0144+00 1/1 0/0 0/0 .text adjustMeterLength__10JUTProcBarFUlPfffPi */
-#ifdef NONMATCHING  // extra cror
+#ifdef NONMATCHING  // float literals
 void JUTProcBar::adjustMeterLength(u32 param_0, f32* param_1, f32 param_2, f32 param_3,
                                    int* param_4) {
-    BOOL var2 = false;
-    float var1 = *param_1;
-    while (var1 > param_2) {
-        if (param_0 * var1 * 20.0f / 16666.0f <= field_0x114.mWidth - 30.0f) {
-            break;
-        }
-        var1 -= 0.1f;
-        var2 = true;
-    }
-    if (var1 >= param_3) {
-        *param_4 = 0;
-    }
-    if (var1 > param_3 - 0.2f) {
-        var1 = param_3;
-    }
-    while (!var2 && var1 < param_3) {
-        (*param_4)++;
-        if (*param_4 < 0x1e) {
-            break;
-        }
-        if (param_0 * var1 * 20.0f / 16666.0f >= field_0x114.mWidth - 60.0f) {
-            break;
-        }
-        var1 += 0.2f;
-        break;
-    }
-    *param_1 = var1;
+    BOOL var2  = false;
+	float var1 = *param_1;
+	while (var1 > param_2) {
+		if (param_0 * var1 * FLOAT_LABEL(lit_2308) / FLOAT_LABEL(lit_2309) <= field_0x114.mWidth - FLOAT_LABEL(lit_2310))
+			break;
+
+		var1 -= FLOAT_LABEL(lit_2311);
+		var2 = true;
+	}
+
+	if (var1 >= param_3)
+		*param_4 = 0;
+	if (var1 > param_3 - FLOAT_LABEL(lit_2312))
+		var1 = param_3;
+
+	while (!var2 && var1 < param_3) {
+		(*param_4)++;
+		if (*param_4 < 0x1e)
+			break;
+		if ((param_0 * var1 * FLOAT_LABEL(lit_2308) / FLOAT_LABEL(lit_2309)) < (field_0x114.mWidth - FLOAT_LABEL(lit_2313)))
+			var1 += FLOAT_LABEL(lit_2312);
+		break;
+	}
+	*param_1 = var1;
 }
 #else
 #pragma push

@@ -3,7 +3,6 @@
 
 #include "JSystem/JGeometry.h"
 #include "JSystem/JUtility/TColor.h"
-#include "dolphin/types.h"
 
 class JUTFader {
 public:
@@ -24,7 +23,6 @@ public:
     s32 getStatus() const { return mStatus; }
     void setColor(JUtility::TColor color) { mColor.set(color); }
 
-//private:
     /* 0x04 */ s32 mStatus;
     /* 0x08 */ u16 field_0x8;
     /* 0x0A */ u16 field_0xa;
