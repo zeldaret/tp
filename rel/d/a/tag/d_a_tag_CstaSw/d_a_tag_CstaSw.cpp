@@ -3,7 +3,7 @@
 // Translation Unit: d_a_tag_CstaSw
 //
 
-#include "rel/d/a/tag/d_a_tag_cstasw/d_a_tag_CstaSw.h"
+#include "rel/d/a/tag/d_a_tag_CstaSw/d_a_tag_CstaSw.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -141,7 +141,7 @@ SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
 #pragma optimizewithasm off
 asm daTagCstaSw_HIO_c::daTagCstaSw_HIO_c() {
     nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_cstasw/d_a_tag_CstaSw/__ct__17daTagCstaSw_HIO_cFv.s"
+#include "asm/rel/d/a/tag/d_a_tag_CstaSw/d_a_tag_CstaSw/__ct__17daTagCstaSw_HIO_cFv.s"
 }
 #pragma pop
 
@@ -151,7 +151,7 @@ asm daTagCstaSw_HIO_c::daTagCstaSw_HIO_c() {
 #pragma optimizewithasm off
 asm mDoHIO_entry_c::~mDoHIO_entry_c() {
     nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_cstasw/d_a_tag_CstaSw/__dt__14mDoHIO_entry_cFv.s"
+#include "asm/rel/d/a/tag/d_a_tag_CstaSw/d_a_tag_CstaSw/__dt__14mDoHIO_entry_cFv.s"
 }
 #pragma pop
 
@@ -161,7 +161,7 @@ asm mDoHIO_entry_c::~mDoHIO_entry_c() {
 #pragma optimizewithasm off
 asm void daTagCstaSw_c::setBaseMtx() {
     nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_cstasw/d_a_tag_CstaSw/setBaseMtx__13daTagCstaSw_cFv.s"
+#include "asm/rel/d/a/tag/d_a_tag_CstaSw/d_a_tag_CstaSw/setBaseMtx__13daTagCstaSw_cFv.s"
 }
 #pragma pop
 
@@ -171,7 +171,7 @@ asm void daTagCstaSw_c::setBaseMtx() {
 #pragma optimizewithasm off
 asm void daTagCstaSw_c::create() {
     nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_cstasw/d_a_tag_CstaSw/create__13daTagCstaSw_cFv.s"
+#include "asm/rel/d/a/tag/d_a_tag_CstaSw/d_a_tag_CstaSw/create__13daTagCstaSw_cFv.s"
 }
 #pragma pop
 
@@ -181,7 +181,7 @@ asm void daTagCstaSw_c::create() {
 #pragma optimizewithasm off
 asm void daTagCstaSw_c::searchSekizoAct(void* param_0, void* param_1) {
     nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_cstasw/d_a_tag_CstaSw/searchSekizoAct__13daTagCstaSw_cFPvPv.s"
+#include "asm/rel/d/a/tag/d_a_tag_CstaSw/d_a_tag_CstaSw/searchSekizoAct__13daTagCstaSw_cFPvPv.s"
 }
 #pragma pop
 
@@ -240,7 +240,7 @@ COMPILER_STRIP_GATE(0x805A254C, &lit_3728);
 #pragma optimizewithasm off
 asm void daTagCstaSw_c::areaCheck() {
     nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_cstasw/d_a_tag_CstaSw/areaCheck__13daTagCstaSw_cFv.s"
+#include "asm/rel/d/a/tag/d_a_tag_CstaSw/d_a_tag_CstaSw/areaCheck__13daTagCstaSw_cFv.s"
 }
 #pragma pop
 
@@ -250,7 +250,7 @@ asm void daTagCstaSw_c::areaCheck() {
 #pragma optimizewithasm off
 asm void daTagCstaSw_c::Execute() {
     nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_cstasw/d_a_tag_CstaSw/Execute__13daTagCstaSw_cFv.s"
+#include "asm/rel/d/a/tag/d_a_tag_CstaSw/d_a_tag_CstaSw/Execute__13daTagCstaSw_cFv.s"
 }
 #pragma pop
 
@@ -271,7 +271,7 @@ bool daTagCstaSw_c::Delete() {
 #pragma optimizewithasm off
 static asm void daTagCstaSw_Draw(daTagCstaSw_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_cstasw/d_a_tag_CstaSw/daTagCstaSw_Draw__FP13daTagCstaSw_c.s"
+#include "asm/rel/d/a/tag/d_a_tag_CstaSw/d_a_tag_CstaSw/daTagCstaSw_Draw__FP13daTagCstaSw_c.s"
 }
 #pragma pop
 
@@ -281,7 +281,7 @@ static asm void daTagCstaSw_Draw(daTagCstaSw_c* param_0) {
 #pragma optimizewithasm off
 static asm void daTagCstaSw_Execute(daTagCstaSw_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_cstasw/d_a_tag_CstaSw/daTagCstaSw_Execute__FP13daTagCstaSw_c.s"
+#include "asm/rel/d/a/tag/d_a_tag_CstaSw/d_a_tag_CstaSw/daTagCstaSw_Execute__FP13daTagCstaSw_c.s"
 }
 #pragma pop
 
@@ -291,7 +291,7 @@ static asm void daTagCstaSw_Execute(daTagCstaSw_c* param_0) {
 #pragma optimizewithasm off
 static asm void daTagCstaSw_Delete(daTagCstaSw_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_cstasw/d_a_tag_CstaSw/daTagCstaSw_Delete__FP13daTagCstaSw_c.s"
+#include "asm/rel/d/a/tag/d_a_tag_CstaSw/d_a_tag_CstaSw/daTagCstaSw_Delete__FP13daTagCstaSw_c.s"
 }
 #pragma pop
 
@@ -302,7 +302,7 @@ static asm void daTagCstaSw_Delete(daTagCstaSw_c* param_0) {
 #pragma optimizewithasm off
 static asm void daTagCstaSw_Create(fopAc_ac_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_cstasw/d_a_tag_CstaSw/daTagCstaSw_Create__FP10fopAc_ac_c.s"
+#include "asm/rel/d/a/tag/d_a_tag_CstaSw/d_a_tag_CstaSw/daTagCstaSw_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
@@ -312,7 +312,7 @@ static asm void daTagCstaSw_Create(fopAc_ac_c* param_0) {
 #pragma optimizewithasm off
 asm daTagCstaSw_HIO_c::~daTagCstaSw_HIO_c() {
     nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_cstasw/d_a_tag_CstaSw/__dt__17daTagCstaSw_HIO_cFv.s"
+#include "asm/rel/d/a/tag/d_a_tag_CstaSw/d_a_tag_CstaSw/__dt__17daTagCstaSw_HIO_cFv.s"
 }
 #pragma pop
 
@@ -329,7 +329,7 @@ static u8 l_HIO[8];
 #pragma optimizewithasm off
 asm void __sinit_d_a_tag_CstaSw_cpp() {
     nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_cstasw/d_a_tag_CstaSw/__sinit_d_a_tag_CstaSw_cpp.s"
+#include "asm/rel/d/a/tag/d_a_tag_CstaSw/d_a_tag_CstaSw/__sinit_d_a_tag_CstaSw_cpp.s"
 }
 #pragma pop
 

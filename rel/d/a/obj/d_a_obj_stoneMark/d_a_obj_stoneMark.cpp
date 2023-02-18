@@ -3,7 +3,7 @@
 // Translation Unit: d_a_obj_stoneMark
 //
 
-#include "rel/d/a/obj/d_a_obj_stonemark/d_a_obj_stoneMark.h"
+#include "rel/d/a/obj/d_a_obj_stoneMark/d_a_obj_stoneMark.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -138,7 +138,7 @@ extern "C" extern u8 g_env_light[4880];
 #pragma optimizewithasm off
 asm void daObjSMark_c::initBaseMtx() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_stonemark/d_a_obj_stoneMark/initBaseMtx__12daObjSMark_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_stoneMark/d_a_obj_stoneMark/initBaseMtx__12daObjSMark_cFv.s"
 }
 #pragma pop
 
@@ -148,7 +148,7 @@ asm void daObjSMark_c::initBaseMtx() {
 #pragma optimizewithasm off
 asm void daObjSMark_c::setBaseMtx() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_stonemark/d_a_obj_stoneMark/setBaseMtx__12daObjSMark_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_stoneMark/d_a_obj_stoneMark/setBaseMtx__12daObjSMark_cFv.s"
 }
 #pragma pop
 
@@ -191,7 +191,7 @@ SECTION_DATA static void* l_arcName = (void*)&d_a_obj_stoneMark__stringBase0;
 #pragma optimizewithasm off
 asm void daObjSMark_c::Create() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_stonemark/d_a_obj_stoneMark/Create__12daObjSMark_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_stoneMark/d_a_obj_stoneMark/Create__12daObjSMark_cFv.s"
 }
 #pragma pop
 
@@ -237,7 +237,7 @@ SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
 #pragma optimizewithasm off
 asm void daObjSMark_c::create() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_stonemark/d_a_obj_stoneMark/func_8059A168.s"
+#include "asm/rel/d/a/obj/d_a_obj_stoneMark/d_a_obj_stoneMark/func_8059A168.s"
 }
 #pragma pop
 
@@ -247,7 +247,7 @@ asm void daObjSMark_c::create() {
 #pragma optimizewithasm off
 asm dBgS_ObjAcch::~dBgS_ObjAcch() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_stonemark/d_a_obj_stoneMark/__dt__12dBgS_ObjAcchFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_stoneMark/d_a_obj_stoneMark/__dt__12dBgS_ObjAcchFv.s"
 }
 #pragma pop
 
@@ -281,7 +281,7 @@ COMPILER_STRIP_GATE(0x8059A400, &lit_3719);
 #pragma optimizewithasm off
 asm void daObjSMark_c::draw() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_stonemark/d_a_obj_stoneMark/draw__12daObjSMark_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_stoneMark/d_a_obj_stoneMark/draw__12daObjSMark_cFv.s"
 }
 #pragma pop
 
@@ -291,7 +291,7 @@ asm void daObjSMark_c::draw() {
 #pragma optimizewithasm off
 asm void daObjSMark_c::_delete() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_stonemark/d_a_obj_stoneMark/_delete__12daObjSMark_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_stoneMark/d_a_obj_stoneMark/_delete__12daObjSMark_cFv.s"
 }
 #pragma pop
 
@@ -302,7 +302,7 @@ asm void daObjSMark_c::_delete() {
 #pragma optimizewithasm off
 static asm void daObjSMark_Draw(daObjSMark_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_stonemark/d_a_obj_stoneMark/daObjSMark_Draw__FP12daObjSMark_c.s"
+#include "asm/rel/d/a/obj/d_a_obj_stoneMark/d_a_obj_stoneMark/daObjSMark_Draw__FP12daObjSMark_c.s"
 }
 #pragma pop
 
@@ -313,7 +313,7 @@ static asm void daObjSMark_Draw(daObjSMark_c* param_0) {
 #pragma optimizewithasm off
 static asm void daObjSMark_Delete(daObjSMark_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_stonemark/d_a_obj_stoneMark/daObjSMark_Delete__FP12daObjSMark_c.s"
+#include "asm/rel/d/a/obj/d_a_obj_stoneMark/d_a_obj_stoneMark/daObjSMark_Delete__FP12daObjSMark_c.s"
 }
 #pragma pop
 
@@ -324,7 +324,7 @@ static asm void daObjSMark_Delete(daObjSMark_c* param_0) {
 #pragma optimizewithasm off
 static asm void daObjSMark_Create(fopAc_ac_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_stonemark/d_a_obj_stoneMark/daObjSMark_Create__FP10fopAc_ac_c.s"
+#include "asm/rel/d/a/obj/d_a_obj_stoneMark/d_a_obj_stoneMark/daObjSMark_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
@@ -334,7 +334,7 @@ static asm void daObjSMark_Create(fopAc_ac_c* param_0) {
 #pragma optimizewithasm off
 static asm void func_8059A3D0() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_stonemark/d_a_obj_stoneMark/func_8059A3D0.s"
+#include "asm/rel/d/a/obj/d_a_obj_stoneMark/d_a_obj_stoneMark/func_8059A3D0.s"
 }
 #pragma pop
 
@@ -344,7 +344,7 @@ static asm void func_8059A3D0() {
 #pragma optimizewithasm off
 static asm void func_8059A3D8() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_stonemark/d_a_obj_stoneMark/func_8059A3D8.s"
+#include "asm/rel/d/a/obj/d_a_obj_stoneMark/d_a_obj_stoneMark/func_8059A3D8.s"
 }
 #pragma pop
 

@@ -3,7 +3,7 @@
 // Translation Unit: d_a_obj_lv2Candle
 //
 
-#include "rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle.h"
+#include "rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -360,7 +360,7 @@ SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
 #pragma optimizewithasm off
 asm daLv2Candle_HIO_c::daLv2Candle_HIO_c() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/__ct__17daLv2Candle_HIO_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/__ct__17daLv2Candle_HIO_cFv.s"
 }
 #pragma pop
 
@@ -370,7 +370,7 @@ asm daLv2Candle_HIO_c::daLv2Candle_HIO_c() {
 #pragma optimizewithasm off
 asm mDoHIO_entry_c::~mDoHIO_entry_c() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/__dt__14mDoHIO_entry_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/__dt__14mDoHIO_entry_cFv.s"
 }
 #pragma pop
 
@@ -380,7 +380,7 @@ asm mDoHIO_entry_c::~mDoHIO_entry_c() {
 #pragma optimizewithasm off
 asm void daLv2Candle_c::setBaseMtx() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/setBaseMtx__13daLv2Candle_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/setBaseMtx__13daLv2Candle_cFv.s"
 }
 #pragma pop
 
@@ -405,7 +405,7 @@ COMPILER_STRIP_GATE(0x8058F174, &l_bmdIdx);
 #pragma optimizewithasm off
 asm void daLv2Candle_c::CreateHeap() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/CreateHeap__13daLv2Candle_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/CreateHeap__13daLv2Candle_cFv.s"
 }
 #pragma pop
 
@@ -420,7 +420,7 @@ COMPILER_STRIP_GATE(0x8058F180, &lit_3778);
 #pragma optimizewithasm off
 asm void daLv2Candle_c::create() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/create__13daLv2Candle_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/create__13daLv2Candle_cFv.s"
 }
 #pragma pop
 
@@ -430,7 +430,7 @@ asm void daLv2Candle_c::create() {
 #pragma optimizewithasm off
 asm cM3dGCyl::~cM3dGCyl() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/__dt__8cM3dGCylFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/__dt__8cM3dGCylFv.s"
 }
 #pragma pop
 
@@ -440,7 +440,7 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma optimizewithasm off
 asm cM3dGAab::~cM3dGAab() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/__dt__8cM3dGAabFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/__dt__8cM3dGAabFv.s"
 }
 #pragma pop
 
@@ -450,7 +450,7 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma optimizewithasm off
 asm void daLv2Candle_c::isSwitch() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/isSwitch__13daLv2Candle_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/isSwitch__13daLv2Candle_cFv.s"
 }
 #pragma pop
 
@@ -461,7 +461,7 @@ asm void daLv2Candle_c::isSwitch() {
 #pragma optimizewithasm off
 asm void daLv2Candle_c::createHeapCallBack(fopAc_ac_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/createHeapCallBack__13daLv2Candle_cFP10fopAc_ac_c.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/createHeapCallBack__13daLv2Candle_cFP10fopAc_ac_c.s"
 }
 #pragma pop
 
@@ -471,7 +471,7 @@ asm void daLv2Candle_c::createHeapCallBack(fopAc_ac_c* param_0) {
 #pragma optimizewithasm off
 asm void daLv2Candle_c::searchDemoTagAct(void* param_0, void* param_1) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/searchDemoTagAct__13daLv2Candle_cFPvPv.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/searchDemoTagAct__13daLv2Candle_cFPvPv.s"
 }
 #pragma pop
 
@@ -507,7 +507,7 @@ static u8 l_HIO[52];
 #pragma optimizewithasm off
 asm void daLv2Candle_c::lightInit() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/lightInit__13daLv2Candle_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/lightInit__13daLv2Candle_cFv.s"
 }
 #pragma pop
 
@@ -517,7 +517,7 @@ asm void daLv2Candle_c::lightInit() {
 #pragma optimizewithasm off
 asm void daLv2Candle_c::setLight() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/setLight__13daLv2Candle_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/setLight__13daLv2Candle_cFv.s"
 }
 #pragma pop
 
@@ -527,7 +527,7 @@ asm void daLv2Candle_c::setLight() {
 #pragma optimizewithasm off
 asm void daLv2Candle_c::cutLight() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/cutLight__13daLv2Candle_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/cutLight__13daLv2Candle_cFv.s"
 }
 #pragma pop
 
@@ -574,7 +574,7 @@ COMPILER_STRIP_GATE(0x8058F19C, &lit_3939);
 #pragma optimizewithasm off
 asm void daLv2Candle_c::pointLightProc() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/pointLightProc__13daLv2Candle_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/pointLightProc__13daLv2Candle_cFv.s"
 }
 #pragma pop
 
@@ -606,7 +606,7 @@ COMPILER_STRIP_GATE(0x8058F1A8, &lit_4099);
 #pragma optimizewithasm off
 asm void daLv2Candle_c::Execute() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/Execute__13daLv2Candle_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/Execute__13daLv2Candle_cFv.s"
 }
 #pragma pop
 
@@ -616,7 +616,7 @@ asm void daLv2Candle_c::Execute() {
 #pragma optimizewithasm off
 asm void daLv2Candle_c::Draw() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/Draw__13daLv2Candle_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/Draw__13daLv2Candle_cFv.s"
 }
 #pragma pop
 
@@ -626,7 +626,7 @@ asm void daLv2Candle_c::Draw() {
 #pragma optimizewithasm off
 asm void daLv2Candle_c::Delete() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/Delete__13daLv2Candle_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/Delete__13daLv2Candle_cFv.s"
 }
 #pragma pop
 
@@ -637,7 +637,7 @@ asm void daLv2Candle_c::Delete() {
 #pragma optimizewithasm off
 static asm void daLv2Candle_Draw(daLv2Candle_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/daLv2Candle_Draw__FP13daLv2Candle_c.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/daLv2Candle_Draw__FP13daLv2Candle_c.s"
 }
 #pragma pop
 
@@ -647,7 +647,7 @@ static asm void daLv2Candle_Draw(daLv2Candle_c* param_0) {
 #pragma optimizewithasm off
 static asm void daLv2Candle_Execute(daLv2Candle_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/daLv2Candle_Execute__FP13daLv2Candle_c.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/daLv2Candle_Execute__FP13daLv2Candle_c.s"
 }
 #pragma pop
 
@@ -657,7 +657,7 @@ static asm void daLv2Candle_Execute(daLv2Candle_c* param_0) {
 #pragma optimizewithasm off
 static asm void daLv2Candle_Delete(daLv2Candle_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/daLv2Candle_Delete__FP13daLv2Candle_c.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/daLv2Candle_Delete__FP13daLv2Candle_c.s"
 }
 #pragma pop
 
@@ -668,7 +668,7 @@ static asm void daLv2Candle_Delete(daLv2Candle_c* param_0) {
 #pragma optimizewithasm off
 static asm void daLv2Candle_Create(fopAc_ac_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/daLv2Candle_Create__FP10fopAc_ac_c.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/daLv2Candle_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
@@ -678,7 +678,7 @@ static asm void daLv2Candle_Create(fopAc_ac_c* param_0) {
 #pragma optimizewithasm off
 asm daLv2Candle_HIO_c::~daLv2Candle_HIO_c() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/__dt__17daLv2Candle_HIO_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/__dt__17daLv2Candle_HIO_cFv.s"
 }
 #pragma pop
 
@@ -688,7 +688,7 @@ asm daLv2Candle_HIO_c::~daLv2Candle_HIO_c() {
 #pragma optimizewithasm off
 asm void __sinit_d_a_obj_lv2Candle_cpp() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv2candle/d_a_obj_lv2Candle/__sinit_d_a_obj_lv2Candle_cpp.s"
+#include "asm/rel/d/a/obj/d_a_obj_lv2Candle/d_a_obj_lv2Candle/__sinit_d_a_obj_lv2Candle_cpp.s"
 }
 #pragma pop
 

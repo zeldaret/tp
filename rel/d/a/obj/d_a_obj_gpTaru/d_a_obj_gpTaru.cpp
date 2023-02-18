@@ -3,7 +3,7 @@
 // Translation Unit: d_a_obj_gpTaru
 //
 
-#include "rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru.h"
+#include "rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -690,7 +690,7 @@ SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
 #pragma optimizewithasm off
 asm daGpTaru_HIO_c::daGpTaru_HIO_c() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/__ct__14daGpTaru_HIO_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/__ct__14daGpTaru_HIO_cFv.s"
 }
 #pragma pop
 
@@ -700,7 +700,7 @@ asm daGpTaru_HIO_c::daGpTaru_HIO_c() {
 #pragma optimizewithasm off
 asm fOpAcm_HIO_entry_c::~fOpAcm_HIO_entry_c() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/__dt__18fOpAcm_HIO_entry_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/__dt__18fOpAcm_HIO_entry_cFv.s"
 }
 #pragma pop
 
@@ -710,7 +710,7 @@ asm fOpAcm_HIO_entry_c::~fOpAcm_HIO_entry_c() {
 #pragma optimizewithasm off
 asm mDoHIO_entry_c::~mDoHIO_entry_c() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/__dt__14mDoHIO_entry_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/__dt__14mDoHIO_entry_cFv.s"
 }
 #pragma pop
 
@@ -727,7 +727,7 @@ static u8 l_HIO[60];
 #pragma optimizewithasm off
 asm void daGpTaru_c::setBaseMtx() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/setBaseMtx__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/setBaseMtx__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -744,7 +744,7 @@ SECTION_DEAD static char const* const stringBase_8057F664 = "K_ktar00";
 #pragma optimizewithasm off
 asm void daGpTaru_c::CreateHeap() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/CreateHeap__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/CreateHeap__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -797,7 +797,7 @@ COMPILER_STRIP_GATE(0x8057F5C4, &lit_3807);
 #pragma optimizewithasm off
 asm void daGpTaru_c::create() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/create__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/create__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -807,7 +807,7 @@ asm void daGpTaru_c::create() {
 #pragma optimizewithasm off
 asm cM3dGCyl::~cM3dGCyl() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/__dt__8cM3dGCylFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/__dt__8cM3dGCylFv.s"
 }
 #pragma pop
 
@@ -817,7 +817,7 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma optimizewithasm off
 asm cM3dGAab::~cM3dGAab() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/__dt__8cM3dGAabFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/__dt__8cM3dGAabFv.s"
 }
 #pragma pop
 
@@ -827,7 +827,7 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma optimizewithasm off
 asm dCcD_GStts::~dCcD_GStts() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/__dt__10dCcD_GSttsFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/__dt__10dCcD_GSttsFv.s"
 }
 #pragma pop
 
@@ -837,7 +837,7 @@ asm dCcD_GStts::~dCcD_GStts() {
 #pragma optimizewithasm off
 asm dBgS_AcchCir::~dBgS_AcchCir() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/__dt__12dBgS_AcchCirFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/__dt__12dBgS_AcchCirFv.s"
 }
 #pragma pop
 
@@ -847,7 +847,7 @@ asm dBgS_AcchCir::~dBgS_AcchCir() {
 #pragma optimizewithasm off
 asm dBgS_ObjAcch::~dBgS_ObjAcch() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/__dt__12dBgS_ObjAcchFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/__dt__12dBgS_ObjAcchFv.s"
 }
 #pragma pop
 
@@ -858,7 +858,7 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 #pragma optimizewithasm off
 asm void daGpTaru_c::createHeapCallBack(fopAc_ac_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/createHeapCallBack__10daGpTaru_cFP10fopAc_ac_c.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/createHeapCallBack__10daGpTaru_cFP10fopAc_ac_c.s"
 }
 #pragma pop
 
@@ -896,7 +896,7 @@ COMPILER_STRIP_GATE(0x8057F5D8, &lit_3994);
 #pragma optimizewithasm off
 static asm void bound(cXyz* param_0, cBgS_PolyInfo const& param_1, f32 param_2) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/bound__FP4cXyzRC13cBgS_PolyInfof.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/bound__FP4cXyzRC13cBgS_PolyInfof.s"
 }
 #pragma pop
 
@@ -906,7 +906,7 @@ static asm void bound(cXyz* param_0, cBgS_PolyInfo const& param_1, f32 param_2) 
 #pragma optimizewithasm off
 asm cM3dGPla::~cM3dGPla() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/__dt__8cM3dGPlaFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/__dt__8cM3dGPlaFv.s"
 }
 #pragma pop
 
@@ -921,7 +921,7 @@ COMPILER_STRIP_GATE(0x8057F5E0, &lit_4078);
 #pragma optimizewithasm off
 asm void daGpTaru_c::chkSinkAll() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/chkSinkAll__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/chkSinkAll__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -936,7 +936,7 @@ COMPILER_STRIP_GATE(0x8057F5E4, &lit_4084);
 #pragma optimizewithasm off
 asm void daGpTaru_c::chkWaterLineIn() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/chkWaterLineIn__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/chkWaterLineIn__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -1003,7 +1003,7 @@ COMPILER_STRIP_GATE(0x8057F604, &lit_4275);
 #pragma optimizewithasm off
 asm void daGpTaru_c::bgCheck() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/bgCheck__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/bgCheck__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -1035,7 +1035,7 @@ COMPILER_STRIP_GATE(0x8057F610, &lit_4333);
 #pragma optimizewithasm off
 asm void daGpTaru_c::Execute() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/Execute__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/Execute__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -1049,7 +1049,7 @@ static u8 data_8057F920[4];
 #pragma optimizewithasm off
 asm void daGpTaru_c::mode_proc_call() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/mode_proc_call__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/mode_proc_call__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -1059,7 +1059,7 @@ asm void daGpTaru_c::mode_proc_call() {
 #pragma optimizewithasm off
 asm void daGpTaru_c::mode_init_wait() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/mode_init_wait__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/mode_init_wait__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -1069,7 +1069,7 @@ asm void daGpTaru_c::mode_init_wait() {
 #pragma optimizewithasm off
 asm void daGpTaru_c::mode_proc_wait() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/mode_proc_wait__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/mode_proc_wait__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -1079,7 +1079,7 @@ asm void daGpTaru_c::mode_proc_wait() {
 #pragma optimizewithasm off
 asm void daGpTaru_c::mode_init_carry() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/mode_init_carry__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/mode_init_carry__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -1089,7 +1089,7 @@ asm void daGpTaru_c::mode_init_carry() {
 #pragma optimizewithasm off
 asm void daGpTaru_c::mode_proc_carry() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/mode_proc_carry__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/mode_proc_carry__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -1099,7 +1099,7 @@ asm void daGpTaru_c::mode_proc_carry() {
 #pragma optimizewithasm off
 asm void daGpTaru_c::mode_init_drop() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/mode_init_drop__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/mode_init_drop__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -1109,7 +1109,7 @@ asm void daGpTaru_c::mode_init_drop() {
 #pragma optimizewithasm off
 asm void daGpTaru_c::mode_proc_drop() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/mode_proc_drop__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/mode_proc_drop__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -1119,7 +1119,7 @@ asm void daGpTaru_c::mode_proc_drop() {
 #pragma optimizewithasm off
 asm void daGpTaru_c::mode_init_roll() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/mode_init_roll__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/mode_init_roll__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -1179,7 +1179,7 @@ COMPILER_STRIP_GATE(0x8057F62C, &lit_4527);
 #pragma optimizewithasm off
 asm void daGpTaru_c::mode_proc_roll() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/mode_proc_roll__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/mode_proc_roll__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -1189,7 +1189,7 @@ asm void daGpTaru_c::mode_proc_roll() {
 #pragma optimizewithasm off
 asm dBgS_ObjGndChk::~dBgS_ObjGndChk() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/__dt__14dBgS_ObjGndChkFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/__dt__14dBgS_ObjGndChkFv.s"
 }
 #pragma pop
 
@@ -1215,7 +1215,7 @@ COMPILER_STRIP_GATE(0x8057F634, &lit_4539);
 #pragma optimizewithasm off
 asm void daGpTaru_c::mode_init_exploInit() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/mode_init_exploInit__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/mode_init_exploInit__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -1234,7 +1234,7 @@ COMPILER_STRIP_GATE(0x8057F638, &lit_4574);
 #pragma optimizewithasm off
 asm void daGpTaru_c::mode_proc_exploInit() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/mode_proc_exploInit__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/mode_proc_exploInit__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -1288,7 +1288,7 @@ COMPILER_STRIP_GATE(0x8057F650, &lit_4609);
 #pragma optimizewithasm off
 asm void daGpTaru_c::mode_init_explosion() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/mode_init_explosion__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/mode_init_explosion__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -1299,7 +1299,7 @@ asm void daGpTaru_c::mode_init_explosion() {
 #pragma optimizewithasm off
 asm void daGpTaru_c::mode_proc_explosion() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/mode_proc_explosion__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/mode_proc_explosion__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -1309,7 +1309,7 @@ asm void daGpTaru_c::mode_proc_explosion() {
 #pragma optimizewithasm off
 asm void daGpTaru_c::mode_init_sink() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/mode_init_sink__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/mode_init_sink__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -1341,7 +1341,7 @@ COMPILER_STRIP_GATE(0x8057F65C, &lit_4662);
 #pragma optimizewithasm off
 asm void daGpTaru_c::mode_proc_sink() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/mode_proc_sink__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/mode_proc_sink__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -1363,7 +1363,7 @@ SECTION_DEAD static char const* const stringBase_8057F674 = "BreakWoodBox.bmd";
 #pragma optimizewithasm off
 asm void daGpTaru_c::breakEffSet() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/breakEffSet__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/breakEffSet__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -1373,7 +1373,7 @@ asm void daGpTaru_c::breakEffSet() {
 #pragma optimizewithasm off
 asm void daGpTaru_c::Draw() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/Draw__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/Draw__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -1383,7 +1383,7 @@ asm void daGpTaru_c::Draw() {
 #pragma optimizewithasm off
 asm void daGpTaru_c::Delete() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/Delete__10daGpTaru_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/Delete__10daGpTaru_cFv.s"
 }
 #pragma pop
 
@@ -1393,7 +1393,7 @@ asm void daGpTaru_c::Delete() {
 #pragma optimizewithasm off
 static asm void daGpTaru_Draw(daGpTaru_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/daGpTaru_Draw__FP10daGpTaru_c.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/daGpTaru_Draw__FP10daGpTaru_c.s"
 }
 #pragma pop
 
@@ -1403,7 +1403,7 @@ static asm void daGpTaru_Draw(daGpTaru_c* param_0) {
 #pragma optimizewithasm off
 static asm void daGpTaru_Execute(daGpTaru_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/daGpTaru_Execute__FP10daGpTaru_c.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/daGpTaru_Execute__FP10daGpTaru_c.s"
 }
 #pragma pop
 
@@ -1413,7 +1413,7 @@ static asm void daGpTaru_Execute(daGpTaru_c* param_0) {
 #pragma optimizewithasm off
 static asm void daGpTaru_Delete(daGpTaru_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/daGpTaru_Delete__FP10daGpTaru_c.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/daGpTaru_Delete__FP10daGpTaru_c.s"
 }
 #pragma pop
 
@@ -1423,7 +1423,7 @@ static asm void daGpTaru_Delete(daGpTaru_c* param_0) {
 #pragma optimizewithasm off
 static asm void daGpTaru_Create(fopAc_ac_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/daGpTaru_Create__FP10fopAc_ac_c.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/daGpTaru_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
@@ -1433,7 +1433,7 @@ static asm void daGpTaru_Create(fopAc_ac_c* param_0) {
 #pragma optimizewithasm off
 asm cCcD_GStts::~cCcD_GStts() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/__dt__10cCcD_GSttsFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/__dt__10cCcD_GSttsFv.s"
 }
 #pragma pop
 
@@ -1443,7 +1443,7 @@ asm cCcD_GStts::~cCcD_GStts() {
 #pragma optimizewithasm off
 asm daGpTaru_HIO_c::~daGpTaru_HIO_c() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/__dt__14daGpTaru_HIO_cFv.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/__dt__14daGpTaru_HIO_cFv.s"
 }
 #pragma pop
 
@@ -1453,7 +1453,7 @@ asm daGpTaru_HIO_c::~daGpTaru_HIO_c() {
 #pragma optimizewithasm off
 asm void __sinit_d_a_obj_gpTaru_cpp() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/__sinit_d_a_obj_gpTaru_cpp.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/__sinit_d_a_obj_gpTaru_cpp.s"
 }
 #pragma pop
 
@@ -1468,7 +1468,7 @@ REGISTER_CTORS(0x8057F4C4, __sinit_d_a_obj_gpTaru_cpp);
 #pragma optimizewithasm off
 static asm void func_8057F534() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/func_8057F534.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/func_8057F534.s"
 }
 #pragma pop
 
@@ -1478,7 +1478,7 @@ static asm void func_8057F534() {
 #pragma optimizewithasm off
 static asm void func_8057F53C() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/func_8057F53C.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/func_8057F53C.s"
 }
 #pragma pop
 
@@ -1488,7 +1488,7 @@ static asm void func_8057F53C() {
 #pragma optimizewithasm off
 static asm void func_8057F544() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/func_8057F544.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/func_8057F544.s"
 }
 #pragma pop
 
@@ -1498,7 +1498,7 @@ static asm void func_8057F544() {
 #pragma optimizewithasm off
 static asm void func_8057F54C() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/func_8057F54C.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/func_8057F54C.s"
 }
 #pragma pop
 
@@ -1508,7 +1508,7 @@ static asm void func_8057F54C() {
 #pragma optimizewithasm off
 static asm void func_8057F554() {
     nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru/func_8057F554.s"
+#include "asm/rel/d/a/obj/d_a_obj_gpTaru/d_a_obj_gpTaru/func_8057F554.s"
 }
 #pragma pop
 
