@@ -111,6 +111,10 @@ inline void GXTexCoord2s8(s8 x, s8 y) {
     GFX_FIFO(s8) = y;
 }
 
+// inline void GXTexCoord2u16(u16 x, u16 y) {
+//     GFX_FIFO(u16) = x;
+//     GFX_FIFO(u16) = y;
+// }
 
 inline void GFWriteBPCmd(u32 param_1) {
   GXFIFO.u8 = 0x61;
