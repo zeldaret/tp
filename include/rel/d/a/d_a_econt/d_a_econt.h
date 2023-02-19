@@ -7,7 +7,8 @@
 
 class econt_class : public fopAc_ac_c {
 public:
-    /* 0x568 */ u8 field_0x568[88];
+    /* 0x568 */ u8 field_0x568[80];
+    /* 0x5B8 */ s16 field_0x5b8[3];
 };
 
 #endif /* D_A_ECONT_H */

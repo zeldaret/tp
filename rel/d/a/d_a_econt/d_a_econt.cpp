@@ -7,6 +7,7 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "d/d_procname.h"
+#include "d/d_timer.h"
 
 //
 // Forward References:
@@ -45,23 +46,12 @@ static int daEcont_Draw(econt_class* param_0) {
 }
 
 /* 80519520-80519578 000080 0058+00 1/1 0/0 0/0 .text            s_rd_sub__FPvPv */
-#ifndef NONMATCHING
 static void* s_rd_sub(void* i_this, void* param_1) {
     if (fopAcM_IsActor(i_this) && fopAcM_GetName(i_this) == PROC_E_RD) {
         data_805197E0[0]++;
     }
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void s_rd_sub(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/rel/d/a/d_a_econt/d_a_econt/s_rd_sub__FPvPv.s"
-}
-#pragma pop
-#endif
 
 /* 80519578-80519664 0000D8 00EC+00 1/1 0/0 0/0 .text            rider_game__FP11econt_class */
 #ifdef NONMATCHING
@@ -80,20 +70,15 @@ static asm void rider_game(econt_class* param_0) {
 #endif
 
 /* 80519664-805196B4 0001C4 0050+00 1/0 0/0 0/0 .text            daEcont_Execute__FP11econt_class */
-#ifdef NONMATCHING
 static int daEcont_Execute(econt_class* i_this) {
-    
+    for (int i = 0; i < 3; i++) {
+        if (i_this->field_0x5b8[i] != 0) {
+            i_this->field_0x5b8[i] -= 1;
+        }
+    }
+    rider_game(i_this);
+    return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daEcont_Execute(econt_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_econt/d_a_econt/daEcont_Execute__FP11econt_class.s"
-}
-#pragma pop
-#endif
 
 /* 805196B4-805196BC 000214 0008+00 1/0 0/0 0/0 .text            daEcont_IsDelete__FP11econt_class
  */
@@ -102,20 +87,10 @@ static int daEcont_IsDelete(econt_class* i_this) {
 }
 
 /* 805196BC-805196E4 00021C 0028+00 1/0 0/0 0/0 .text            daEcont_Delete__FP11econt_class */
-#ifdef NONMATCHING
 static int daEcont_Delete(econt_class* i_this) {
-    
+    dComIfG_TimerDeleteRequest(8);
+    return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daEcont_Delete(econt_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_econt/d_a_econt/daEcont_Delete__FP11econt_class.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 8051977C-80519780 000000 0004+00 1/1 0/0 0/0 .rodata          @3870 */
@@ -144,8 +119,16 @@ COMPILER_STRIP_GATE(0x80519788, &lit_3873);
 #pragma pop
 
 /* 805196E4-80519774 000244 0090+00 1/0 0/0 0/0 .text            daEcont_Create__FP10fopAc_ac_c */
-#ifdef NONMATCHING
+#ifndef NONMATCHING
 static int daEcont_Create(fopAc_ac_c* i_this) {
+    econt_class* encounter = (econt_class*)i_this;
+    if (!fopAcM_CheckCondition(encounter, 8)) {
+        new (encounter) econt_class();
+        fopAcM_OnCondition(encounter, 8);
+    }
+    dTimer_createTimer(8,0x989298,2,0,FLOAT_LABEL(lit_3870),FLOAT_LABEL(lit_3871),FLOAT_LABEL(lit_3872),FLOAT_LABEL(lit_3873));
+    encounter->field_0x5b8[0] = 0x14;
+    return cPhs_COMPLEATE_e;
     
 }
 #else

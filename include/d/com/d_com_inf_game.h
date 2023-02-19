@@ -19,6 +19,7 @@
 #include "f_op/f_op_scene_mng.h"
 
 class dTimer_c;
+
 class __d_timer_info_c {
 public:
     __d_timer_info_c() {
@@ -701,6 +702,7 @@ int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* resNa
 int dComIfG_changeOpeningScene(scene_class* scene, s16 procName);
 int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* arc_name);
 int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* resName, JKRHeap* heap);
+int dComIfG_TimerDeleteRequest(int i_mode);
 
 inline void dComIfG_setBrightness(u8 brightness) {
     g_dComIfG_gameInfo.mFadeBrightness = brightness;
