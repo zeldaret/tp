@@ -131,21 +131,10 @@ static int daKytag07_IsDelete(kytag07_class* i_this) {
 
 /* 8085A388-8085A3B0 000188 0028+00 1/0 0/0 0/0 .text            daKytag07_Delete__FP13kytag07_class
  */
-#ifndef NONMATCHING
 static int daKytag07_Delete(kytag07_class* i_this) {
     dKy_plight_cut(&i_this->mLightInfluence);
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag07_Delete(kytag07_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag07/d_a_kytag07/daKytag07_Delete__FP13kytag07_class.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 8085A4A4-8085A4A8 000020 0004+00 0/1 0/0 0/0 .rodata          @3807 */
@@ -156,6 +145,29 @@ COMPILER_STRIP_GATE(0x8085A4A4, &lit_3807);
 #pragma pop
 
 /* 8085A3B0-8085A47C 0001B0 00CC+00 1/0 0/0 0/0 .text            daKytag07_Create__FP10fopAc_ac_c */
+#ifndef NONMATCHING
+static int daKytag07_Create(fopAc_ac_c* i_this) {
+    kytag07_class* kytag07 = (kytag07_class*)i_this;
+    
+    if (!fopAcM_CheckCondition(kytag07, 8)) {
+        new (kytag07) kytag07_class();
+        fopAcM_OnCondition(kytag07, 8);
+    }
+
+    kytag07->mLightInfluence.mPosition = kytag07->current.pos;
+    kytag07->mLightInfluence.mColor.r = fopAcM_GetParam(i_this) & 0xFF;
+    kytag07->mLightInfluence.mColor.g = fopAcM_GetParam(i_this) >> 8 & 0xFF;
+    kytag07->mLightInfluence.mColor.b = fopAcM_GetParam(i_this) >> 16 & 0xFF;
+    kytag07->mLightInfluence.mPow = FLOAT_LABEL(lit_3807);
+    kytag07->mLightInfluence.mFluctuation = FLOAT_LABEL(lit_3760);
+    kytag07->field_0x588 = FLOAT_LABEL(lit_3755) * kytag07->mScale.x;
+    kytag07->field_0x58c = 0;
+
+
+    dKy_plight_priority_set(&kytag07->mLightInfluence);
+    return cPhs_COMPLEATE_e;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -164,6 +176,7 @@ static asm void daKytag07_Create(fopAc_ac_c* param_0) {
 #include "asm/rel/d/a/kytag/d_a_kytag07/d_a_kytag07/daKytag07_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8085A4A8-8085A4C8 -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag07_Method */
