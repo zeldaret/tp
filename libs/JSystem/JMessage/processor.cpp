@@ -6,8 +6,6 @@
 #include "JSystem/JMessage/processor.h"
 #include "JSystem/JMessage/control.h"
 #include "JSystem/JMessage/resource.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:
@@ -105,172 +103,70 @@ extern "C" void _restgpr_29();
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803C9B70-803C9B94 -00001 0024+00 1/1 0/0 0/0 .data            @1418 */
-SECTION_DATA static void* lit_1418[9] = {
-    (void*)(((char*)do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl) + 0x104),
-    (void*)(((char*)do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl) + 0xE0),
-    (void*)(((char*)do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl) + 0xD4),
-    (void*)(((char*)do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl) + 0xC0),
-    (void*)(((char*)do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl) + 0xAC),
-    (void*)(((char*)do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl) + 0x98),
-    (void*)(((char*)do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl) + 0x128),
-    (void*)(((char*)do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl) + 0x128),
-    (void*)(((char*)do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl) + 0x48),
-};
-
-/* 803C9B94-803C9BD4 026CB4 0040+00 2/2 0/0 0/0 .data __vt__Q28JMessage19TRenderingProcessor */
-SECTION_DATA extern void* __vt__Q28JMessage19TRenderingProcessor[16] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__Q28JMessage19TRenderingProcessorFv,
-    (void*)do_reset__Q28JMessage10TProcessorFv,
-    (void*)do_begin__Q28JMessage10TProcessorFPCvPCc,
-    (void*)do_end__Q28JMessage10TProcessorFv,
-    (void*)do_character__Q28JMessage10TProcessorFi,
-    (void*)do_tag__Q28JMessage10TProcessorFUlPCvUl,
-    (void*)do_select_begin__Q28JMessage10TProcessorFUl,
-    (void*)do_select_end__Q28JMessage10TProcessorFv,
-    (void*)do_select_separate__Q28JMessage10TProcessorFv,
-    (void*)do_resetStatus___Q28JMessage10TProcessorFPCc,
-    (void*)do_setBegin_isReady___Q28JMessage10TProcessorCFv,
-    (void*)do_begin___Q28JMessage19TRenderingProcessorFPCvPCc,
-    (void*)do_end___Q28JMessage19TRenderingProcessorFv,
-    (void*)do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl,
-};
-
-/* 803C9BD4-803C9C2C 026CF4 0058+00 2/2 0/0 0/0 .data __vt__Q28JMessage18TSequenceProcessor */
-SECTION_DATA extern void* __vt__Q28JMessage18TSequenceProcessor[22] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__Q28JMessage18TSequenceProcessorFv,
-    (void*)do_reset__Q28JMessage10TProcessorFv,
-    (void*)do_begin__Q28JMessage10TProcessorFPCvPCc,
-    (void*)do_end__Q28JMessage10TProcessorFv,
-    (void*)do_character__Q28JMessage10TProcessorFi,
-    (void*)do_tag__Q28JMessage10TProcessorFUlPCvUl,
-    (void*)do_select_begin__Q28JMessage10TProcessorFUl,
-    (void*)do_select_end__Q28JMessage10TProcessorFv,
-    (void*)do_select_separate__Q28JMessage10TProcessorFv,
-    (void*)do_resetStatus___Q28JMessage18TSequenceProcessorFPCc,
-    (void*)do_setBegin_isReady___Q28JMessage18TSequenceProcessorCFv,
-    (void*)do_begin___Q28JMessage18TSequenceProcessorFPCvPCc,
-    (void*)do_end___Q28JMessage18TSequenceProcessorFv,
-    (void*)do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl,
-    (void*)do_isReady__Q28JMessage18TSequenceProcessorFv,
-    (void*)do_jump_isReady__Q28JMessage18TSequenceProcessorFv,
-    (void*)do_jump__Q28JMessage18TSequenceProcessorFPCvPCc,
-    (void*)do_branch_query__Q28JMessage18TSequenceProcessorFUl,
-    (void*)do_branch_queryResult__Q28JMessage18TSequenceProcessorFv,
-    (void*)do_branch__Q28JMessage18TSequenceProcessorFPCvPCc,
-};
-
-/* 803C9C2C-803C9C6C 026D4C 0040+00 3/3 0/0 0/0 .data            __vt__Q28JMessage10TProcessor */
-SECTION_DATA extern void* __vt__Q28JMessage10TProcessor[16] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__Q28JMessage10TProcessorFv,
-    (void*)do_reset__Q28JMessage10TProcessorFv,
-    (void*)do_begin__Q28JMessage10TProcessorFPCvPCc,
-    (void*)do_end__Q28JMessage10TProcessorFv,
-    (void*)do_character__Q28JMessage10TProcessorFi,
-    (void*)do_tag__Q28JMessage10TProcessorFUlPCvUl,
-    (void*)do_select_begin__Q28JMessage10TProcessorFUl,
-    (void*)do_select_end__Q28JMessage10TProcessorFv,
-    (void*)do_select_separate__Q28JMessage10TProcessorFv,
-    (void*)do_resetStatus___Q28JMessage10TProcessorFPCc,
-    (void*)do_setBegin_isReady___Q28JMessage10TProcessorCFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-};
-
-/* 803C9C6C-803C9C80 026D8C 0010+04 1/1 2/2 0/0 .data            __vt__Q28JMessage10TReference */
-SECTION_DATA extern void* __vt__Q28JMessage10TReference[4 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__Q28JMessage10TReferenceFv,
-    (void*)do_word__Q28JMessage10TReferenceCFUl,
-    /* padding */
-    NULL,
-};
-
 /* 802A7AF8-802A7B40 2A2438 0048+00 1/0 2/2 0/0 .text            __dt__Q28JMessage10TReferenceFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JMessage::TReference::~TReference() {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/__dt__Q28JMessage10TReferenceFv.s"
-}
-#pragma pop
+JMessage::TReference::~TReference() {}
 
 /* 802A7B40-802A7B48 2A2480 0008+00 1/0 2/0 0/0 .text do_word__Q28JMessage10TReferenceCFUl */
-bool JMessage::TReference::do_word(u32 param_0) const {
-    return false;
+const char* JMessage::TReference::do_word(u32 param_0) const {
+    return NULL;
 }
 
 /* 802A7B48-802A7B90 2A2488 0048+00 3/2 0/0 0/0 .text            __dt__Q28JMessage10TProcessorFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm JMessage::TProcessor::~TProcessor() {
-extern "C" asm void __dt__Q28JMessage10TProcessorFv() {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/__dt__Q28JMessage10TProcessorFv.s"
-}
-#pragma pop
+JMessage::TProcessor::~TProcessor() {}
 
 /* 802A7B90-802A7BF8 2A24D0 0068+00 0/0 1/1 0/0 .text            reset__Q28JMessage10TProcessorFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TProcessor::reset() {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/reset__Q28JMessage10TProcessorFv.s"
+void JMessage::TProcessor::reset() {
+    on_resetStatus_(NULL);
+    do_reset();
 }
-#pragma pop
 
 /* 802A7BF8-802A7C30 2A2538 0038+00 1/1 8/8 0/0 .text
  * stack_pushCurrent__Q28JMessage10TProcessorFPCc               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TProcessor::stack_pushCurrent(char const* param_0) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/stack_pushCurrent__Q28JMessage10TProcessorFPCc.s"
+void JMessage::TProcessor::stack_pushCurrent(char const* string) {
+    if (string != NULL) {
+        if (!oStack_.IsPushable()) {
+            return;
+        }
+
+        stack_pushCurrent_(string);
+    }
 }
-#pragma pop
 
 /* 802A7C30-802A7C54 2A2570 0024+00 1/1 0/0 0/0 .text stack_popCurrent__Q28JMessage10TProcessorFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TProcessor::stack_popCurrent() {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/stack_popCurrent__Q28JMessage10TProcessorFv.s"
+void JMessage::TProcessor::stack_popCurrent() {
+    stack_popCurrent_();
 }
-#pragma pop
 
 /* 802A7C54-802A7CD4 2A2594 0080+00 1/1 1/1 0/0 .text
  * getResource_groupID__Q28JMessage10TProcessorCFUs             */
+#ifdef NONMATCHING
+const JMessage::TResource* JMessage::TProcessor::getResource_groupID(u16 groupID) const {
+    if (isResourceCache_groupID(groupID)) {
+        return pResourceCache_;
+    }
+
+    pResourceCache_ = getResource_groupID_uncached(groupID);
+    return pResourceCache_;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JMessage::TProcessor::getResource_groupID(u16 param_0) const {
+asm const JMessage::TResource* JMessage::TProcessor::getResource_groupID(u16 param_0) const {
     nofralloc
 #include "asm/JSystem/JMessage/processor/getResource_groupID__Q28JMessage10TProcessorCFUs.s"
 }
 #pragma pop
+#endif
 
 /* 802A7CD4-802A7E38 2A2614 0164+00 0/0 1/1 0/0 .text
  * toMessageCode_messageID__Q28JMessage10TProcessorCFUlUlPb     */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JMessage::TProcessor::toMessageCode_messageID(u32 param_0, u32 param_1,
-                                                       bool* param_2) const {
+asm u32 JMessage::TProcessor::toMessageCode_messageID(u32 param_0, u32 param_1,
+                                                      bool* param_2) const {
     nofralloc
 #include "asm/JSystem/JMessage/processor/toMessageCode_messageID__Q28JMessage10TProcessorCFUlUlPb.s"
 }
@@ -278,59 +174,53 @@ asm void JMessage::TProcessor::toMessageCode_messageID(u32 param_0, u32 param_1,
 
 /* 802A7E38-802A7EDC 2A2778 00A4+00 1/1 0/0 0/0 .text
  * on_select_begin__Q28JMessage10TProcessorFPFPQ28JMessage10TProcessor_PCcPCvPCcUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TProcessor::on_select_begin(char const* (*param_0)(JMessage::TProcessor*),
-                                               void const* param_1, char const* param_2,
-                                               u32 param_3) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/on_select_begin__Q28JMessage10TProcessorFPFPQ28JMessage10TProcessor_PCcPCvPCcUl.s"
+void JMessage::TProcessor::on_select_begin(char const* (*param_0)(JMessage::TProcessor*),
+                                           void const* param_1, char const* param_2, u32 param_3) {
+    if (stack_isPushable()) {
+        oProcess_.reset_select();
+
+        oProcess_.rData.pfn = param_0;
+        oProcess_.rData.pcBase = param_2;
+        oProcess_.rData.pOffset = param_1;
+        oProcess_.rData.uRest = param_3;
+
+        const char* psz = param_0(this);
+        stack_pushCurrent_(psz);
+        do_select_begin(param_3);
+    }
 }
-#pragma pop
 
 /* 802A7EDC-802A7F34 2A281C 0058+00 1/1 0/0 0/0 .text on_select_end__Q28JMessage10TProcessorFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TProcessor::on_select_end() {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/on_select_end__Q28JMessage10TProcessorFv.s"
+void JMessage::TProcessor::on_select_end() {
+    oProcess_.reset_normal();
+
+    stack_popCurrent_();
+    do_select_end();
 }
-#pragma pop
 
 /* 802A7F34-802A7FC0 2A2874 008C+00 1/1 0/0 0/0 .text
  * on_select_separate__Q28JMessage10TProcessorFv                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TProcessor::on_select_separate() {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/on_select_separate__Q28JMessage10TProcessorFv.s"
+void JMessage::TProcessor::on_select_separate() {
+    stack_popCurrent_();
+
+    const char* psz = oProcess_.rData.pfn(this);
+    stack_pushCurrent_(psz);
+    do_select_separate();
 }
-#pragma pop
 
 /* 802A7FC0-802A7FC4 2A2900 0004+00 3/0 2/0 0/0 .text            do_reset__Q28JMessage10TProcessorFv
  */
-void JMessage::TProcessor::do_reset() {
-    /* empty function */
-}
+void JMessage::TProcessor::do_reset() {}
 
 /* 802A7FC4-802A7FC8 2A2904 0004+00 3/0 0/0 0/0 .text do_begin__Q28JMessage10TProcessorFPCvPCc */
-void JMessage::TProcessor::do_begin(void const* param_0, char const* param_1) {
-    /* empty function */
-}
+void JMessage::TProcessor::do_begin(void const* param_0, char const* param_1) {}
 
 /* 802A7FC8-802A7FCC 2A2908 0004+00 3/0 0/0 0/0 .text            do_end__Q28JMessage10TProcessorFv
  */
-void JMessage::TProcessor::do_end() {
-    /* empty function */
-}
+void JMessage::TProcessor::do_end() {}
 
 /* 802A7FCC-802A7FD0 2A290C 0004+00 3/0 0/0 0/0 .text do_character__Q28JMessage10TProcessorFi */
-void JMessage::TProcessor::do_character(int param_0) {
-    /* empty function */
-}
+void JMessage::TProcessor::do_character(int param_0) {}
 
 /* 802A7FD0-802A7FD8 2A2910 0008+00 3/0 0/0 0/0 .text do_tag__Q28JMessage10TProcessorFUlPCvUl */
 bool JMessage::TProcessor::do_tag(u32 param_0, void const* param_1, u32 param_2) {
@@ -339,37 +229,34 @@ bool JMessage::TProcessor::do_tag(u32 param_0, void const* param_1, u32 param_2)
 
 /* 802A7FD8-802A7FDC 2A2918 0004+00 3/0 6/0 0/0 .text do_select_begin__Q28JMessage10TProcessorFUl
  */
-void JMessage::TProcessor::do_select_begin(u32 param_0) {
-    /* empty function */
-}
+void JMessage::TProcessor::do_select_begin(u32 param_0) {}
 
 /* 802A7FDC-802A7FE0 2A291C 0004+00 3/0 6/0 0/0 .text do_select_end__Q28JMessage10TProcessorFv */
-void JMessage::TProcessor::do_select_end() {
-    /* empty function */
-}
+void JMessage::TProcessor::do_select_end() {}
 
 /* 802A7FE0-802A7FE4 2A2920 0004+00 3/0 6/0 0/0 .text
  * do_select_separate__Q28JMessage10TProcessorFv                */
-void JMessage::TProcessor::do_select_separate() {
-    /* empty function */
-}
+void JMessage::TProcessor::do_select_separate() {}
 
 /* 802A7FE4-802A8084 2A2924 00A0+00 1/1 0/0 0/0 .text            on_tag___Q28JMessage10TProcessorFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TProcessor::on_tag_() {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/on_tag___Q28JMessage10TProcessorFv.s"
+void JMessage::TProcessor::on_tag_() {
+    u32 size;
+    u8* psz = (u8*)getCurrent();
+    size = *psz;
+
+    pszCurrent_ = size + (char*)psz + -1;
+
+    u32 tag = (psz[1] << 0x8) | psz[2];
+    tag <<= 8;
+    tag |= psz[3];
+
+    on_tag(tag, &psz[4], size - 5);
 }
-#pragma pop
 
 /* 802A8084-802A8088 2A29C4 0004+00 2/0 4/0 0/0 .text do_resetStatus___Q28JMessage10TProcessorFPCc
  */
-void JMessage::TProcessor::do_resetStatus_(char const* param_0) {
-    /* empty function */
-}
+void JMessage::TProcessor::do_resetStatus_(char const* param_0) {}
 
 /* 802A8088-802A8090 2A29C8 0008+00 2/0 4/0 0/0 .text
  * do_setBegin_isReady___Q28JMessage10TProcessorCFv             */
@@ -378,65 +265,115 @@ bool JMessage::TProcessor::do_setBegin_isReady_() const {
 }
 
 /* 802A8090-802A81EC 2A29D0 015C+00 2/2 0/0 0/0 .text do_tag___Q28JMessage10TProcessorFUlPCvUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TProcessor::do_tag_(u32 param_0, void const* param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/do_tag___Q28JMessage10TProcessorFUlPCvUl.s"
+void JMessage::TProcessor::do_tag_(u32 uTag, void const* data, u32 uSize) {
+    u8 group = data::getTagGroup(uTag);
+    u16 code = data::getTagCode(uTag);
+
+    switch (group) {
+    case 0xFF:
+        switch (code) {
+        case 4:
+            stack_pushCurrent(
+                on_word(JGadget::binary::TParseValue<u32, TParseValue_endian_big_>::parse(data)));
+            break;
+        case 5:
+            stack_pushCurrent(on_message(
+                JGadget::binary::TParseValue<u32, TParseValue_endian_big_>::parse(data)));
+            break;
+        }
+        break;
+    case 0xFE:
+        stack_pushCurrent(on_word(code));
+        break;
+    case 0xFD:
+        stack_pushCurrent(on_message_limited(code));
+        break;
+    case 0xF6:
+        on_select_begin(process_onSelect_limited_, data, (char*)data + uSize, code);
+        break;
+    case 0xF5:
+        on_select_begin(process_onSelect_, data, (char*)data + uSize, code);
+        break;
+    }
 }
-#pragma pop
 
 /* 802A81EC-802A828C 2A2B2C 00A0+00 2/2 0/0 0/0 .text
  * process_character___Q28JMessage10TProcessorFv                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TProcessor::process_character_() {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/process_character___Q28JMessage10TProcessorFv.s"
+bool JMessage::TProcessor::process_character_() {
+    int character = on_parseCharacter(&pszCurrent_);
+
+    switch (character) {
+    case 0:
+        if (!oProcess_.pfnProcess_CharacterEnd(this)) {
+            return false;
+        }
+        break;
+    case data::gcTagBegin:
+        on_tag_();
+        break;
+    default:
+        on_character(character);
+    }
+
+    return true;
 }
-#pragma pop
 
 /* 802A828C-802A82F4 2A2BCC 0068+00 6/6 6/6 0/0 .text
  * process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TProcessor::process_onCharacterEnd_normal_(JMessage::TProcessor* param_0) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor.s"
+bool JMessage::TProcessor::process_onCharacterEnd_normal_(JMessage::TProcessor* pThis) {
+    if (!pThis->oStack_.empty()) {
+        pThis->stack_popCurrent();
+        return true;
+    }
+
+    pThis->on_end();
+    return false;
 }
-#pragma pop
 
 /* 802A82F4-802A833C 2A2C34 0048+00 1/1 0/0 0/0 .text
  * process_onCharacterEnd_select___Q28JMessage10TProcessorFPQ28JMessage10TProcessor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TProcessor::process_onCharacterEnd_select_(JMessage::TProcessor* param_0) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/process_onCharacterEnd_select___Q28JMessage10TProcessorFPQ28JMessage10TProcessor.s"
+bool JMessage::TProcessor::process_onCharacterEnd_select_(JMessage::TProcessor* pThis) {
+    pThis->oProcess_.rData.uRest--;
+
+    if (pThis->oProcess_.rData.uRest != 0) {
+        pThis->on_select_separate();
+        return true;
+    }
+
+    pThis->on_select_end();
+    return true;
 }
-#pragma pop
 
 /* 802A833C-802A8358 2A2C7C 001C+00 1/1 0/0 0/0 .text
  * process_onSelect_limited___Q28JMessage10TProcessorFPQ28JMessage10TProcessor */
+// r4 vs r5
+#ifdef NONMATCHING
+const char* JMessage::TProcessor::process_onSelect_limited_(JMessage::TProcessor* pThis) {
+    u16* ptr = (u16*)pThis->oProcess_.rData.pOffset;
+    u16 data = *ptr;
+
+    pThis->oProcess_.rData.pOffset =
+        JGadget::binary::TParseValue<u16, TParseValue_endian_big_>::parse(ptr) + 2;
+
+    return &pThis->oProcess_.rData.pcBase[data];
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JMessage::TProcessor::process_onSelect_limited_(JMessage::TProcessor* param_0) {
+asm const char* JMessage::TProcessor::process_onSelect_limited_(JMessage::TProcessor* param_0) {
     nofralloc
 #include "asm/JSystem/JMessage/processor/process_onSelect_limited___Q28JMessage10TProcessorFPQ28JMessage10TProcessor.s"
 }
 #pragma pop
+#endif
 
 /* 802A8358-802A8374 2A2C98 001C+00 1/1 0/0 0/0 .text
  * process_onSelect___Q28JMessage10TProcessorFPQ28JMessage10TProcessor */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JMessage::TProcessor::process_onSelect_(JMessage::TProcessor* param_0) {
+asm const char* JMessage::TProcessor::process_onSelect_(JMessage::TProcessor* param_0) {
     nofralloc
 #include "asm/JSystem/JMessage/processor/process_onSelect___Q28JMessage10TProcessorFPQ28JMessage10TProcessor.s"
 }
@@ -444,129 +381,124 @@ asm void JMessage::TProcessor::process_onSelect_(JMessage::TProcessor* param_0) 
 
 /* 802A8374-802A83B8 2A2CB4 0044+00 0/0 2/2 0/0 .text
  * __ct__Q28JMessage18TSequenceProcessorFPCQ28JMessage10TReferencePQ28JMessage8TControl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JMessage::TSequenceProcessor::TSequenceProcessor(JMessage::TReference const* param_0,
-                                                     JMessage::TControl* param_1) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/__ct__Q28JMessage18TSequenceProcessorFPCQ28JMessage10TReferencePQ28JMessage8TControl.s"
-}
-#pragma pop
+JMessage::TSequenceProcessor::TSequenceProcessor(JMessage::TReference const* param_0,
+                                                 JMessage::TControl* param_1)
+    : TProcessor(param_0), pControl_(param_1), eStatus_(STATUS_READY) {}
 
 /* 802A83B8-802A8418 2A2CF8 0060+00 1/0 2/2 0/0 .text __dt__Q28JMessage18TSequenceProcessorFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm JMessage::TSequenceProcessor::~TSequenceProcessor() {
-extern "C" asm void __dt__Q28JMessage18TSequenceProcessorFv() {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/__dt__Q28JMessage18TSequenceProcessorFv.s"
-}
-#pragma pop
+JMessage::TSequenceProcessor::~TSequenceProcessor() {}
 
 /* 802A8418-802A85A4 2A2D58 018C+00 0/0 1/1 0/0 .text process__Q28JMessage18TSequenceProcessorFPCc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TSequenceProcessor::process(char const* param_0) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/process__Q28JMessage18TSequenceProcessorFPCc.s"
+const char* JMessage::TSequenceProcessor::process(char const* param_0) {
+    do {
+        switch (eStatus_) {
+        case STATUS_NORMAL:
+            break;
+        case STATUS_JUMP:
+            if (!on_jump_isReady()) {
+                return pszCurrent_;
+            }
+
+            eStatus_ = STATUS_NORMAL;
+            const void* data = oProcess2_.process.jump_process.jumpFn(this);
+            if (data != NULL) {
+                on_jump(data, pControl_->getMessageText_begin());
+            }
+            break;
+        case STATUS_BRANCH:
+            u32 tmp = on_branch_queryResult();
+            if (tmp > 0x7FFFFFFF) {
+                switch (tmp) {
+                case -1:
+                    return pszCurrent_;
+                case -2:
+                    eStatus_ = STATUS_NORMAL;
+                    break;
+                }
+            } else {
+                eStatus_ = STATUS_NORMAL;
+
+                if (tmp < oProcess2_.process.branch_process.uTarget) {
+                    const void* data = oProcess2_.process.branch_process.branchFn(this, tmp);
+                    if (data != NULL) {
+                        on_branch(data, pControl_->getMessageText_begin());
+                    }
+                }
+            }
+            break;
+        }
+
+        if (pszCurrent_ == param_0) {
+            on_end();
+            return NULL;
+        }
+
+        if (!on_isReady()) {
+            return pszCurrent_;
+        }
+    } while (process_character_());
+
+    return NULL;
 }
-#pragma pop
 
 /* 802A85A4-802A85D0 2A2EE4 002C+00 1/1 0/0 0/0 .text
  * on_isReady__Q28JMessage18TSequenceProcessorFv                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TSequenceProcessor::on_isReady() {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/on_isReady__Q28JMessage18TSequenceProcessorFv.s"
+bool JMessage::TSequenceProcessor::on_isReady() {
+    return do_isReady();
 }
-#pragma pop
 
 /* 802A85D0-802A85E4 2A2F10 0014+00 1/1 0/0 0/0 .text
  * on_jump_register__Q28JMessage18TSequenceProcessorFPFPCQ28JMessage18TSequenceProcessor_PCvUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TSequenceProcessor::on_jump_register(
-    void const* (*param_0)(JMessage::TSequenceProcessor const*), u32 param_1) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/func_802A85D0.s"
+void JMessage::TSequenceProcessor::on_jump_register(JMessage::TSequenceProcessor::jumpPfn param_0,
+                                                    u32 param_1) {
+    eStatus_ = STATUS_JUMP;
+    oProcess2_.process.jump_process.jumpFn = param_0;
+    oProcess2_.process.jump_process.u32Target = param_1;
 }
-#pragma pop
 
 /* 802A85E4-802A8610 2A2F24 002C+00 1/1 0/0 0/0 .text
  * on_jump_isReady__Q28JMessage18TSequenceProcessorFv           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TSequenceProcessor::on_jump_isReady() {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/on_jump_isReady__Q28JMessage18TSequenceProcessorFv.s"
+bool JMessage::TSequenceProcessor::on_jump_isReady() {
+    return do_jump_isReady();
 }
-#pragma pop
 
 /* 802A8610-802A8690 2A2F50 0080+00 1/1 0/0 0/0 .text
  * on_jump__Q28JMessage18TSequenceProcessorFPCvPCc              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TSequenceProcessor::on_jump(void const* param_0, char const* param_1) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/on_jump__Q28JMessage18TSequenceProcessorFPCvPCc.s"
+void JMessage::TSequenceProcessor::on_jump(void const* param_0, char const* param_1) {
+    on_resetStatus_(param_1);
+    do_jump(param_0, param_1);
 }
-#pragma pop
 
 /* 802A8690-802A86A0 2A2FD0 0010+00 1/1 0/0 0/0 .text
  * on_branch_register__Q28JMessage18TSequenceProcessorFPFPCQ28JMessage18TSequenceProcessorUl_PCvPCvUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TSequenceProcessor::on_branch_register(
-    void const* (*param_0)(JMessage::TSequenceProcessor const*, u32), void const* param_1,
-    u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/func_802A8690.s"
+void JMessage::TSequenceProcessor::on_branch_register(
+    JMessage::TSequenceProcessor::branchPfn param_0, void const* param_1, u32 param_2) {
+    oProcess2_.process.branch_process.branchFn = param_0;
+    oProcess2_.process.branch_process.pTarget = param_1;
+    oProcess2_.process.branch_process.uTarget = param_2;
 }
-#pragma pop
 
 /* 802A86A0-802A86D4 2A2FE0 0034+00 1/1 0/0 0/0 .text
  * on_branch_query__Q28JMessage18TSequenceProcessorFUl          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TSequenceProcessor::on_branch_query(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/on_branch_query__Q28JMessage18TSequenceProcessorFUl.s"
+void JMessage::TSequenceProcessor::on_branch_query(u32 param_0) {
+    eStatus_ = STATUS_BRANCH;
+    do_branch_query(param_0);
 }
-#pragma pop
 
 /* 802A86D4-802A8700 2A3014 002C+00 1/1 0/0 0/0 .text
  * on_branch_queryResult__Q28JMessage18TSequenceProcessorFv     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TSequenceProcessor::on_branch_queryResult() {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/on_branch_queryResult__Q28JMessage18TSequenceProcessorFv.s"
+u32 JMessage::TSequenceProcessor::on_branch_queryResult() {
+    return do_branch_queryResult();
 }
-#pragma pop
 
 /* 802A8700-802A8780 2A3040 0080+00 1/1 0/0 0/0 .text
  * on_branch__Q28JMessage18TSequenceProcessorFPCvPCc            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TSequenceProcessor::on_branch(void const* param_0, char const* param_1) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/on_branch__Q28JMessage18TSequenceProcessorFPCvPCc.s"
+void JMessage::TSequenceProcessor::on_branch(void const* param_0, char const* param_1) {
+    on_resetStatus_(param_1);
+    do_branch(param_0, param_1);
 }
-#pragma pop
 
 /* 802A8780-802A8788 2A30C0 0008+00 1/0 0/0 0/0 .text
  * do_isReady__Q28JMessage18TSequenceProcessorFv                */
@@ -582,15 +514,11 @@ bool JMessage::TSequenceProcessor::do_jump_isReady() {
 
 /* 802A8790-802A8794 2A30D0 0004+00 1/0 0/0 0/0 .text
  * do_jump__Q28JMessage18TSequenceProcessorFPCvPCc              */
-void JMessage::TSequenceProcessor::do_jump(void const* param_0, char const* param_1) {
-    /* empty function */
-}
+void JMessage::TSequenceProcessor::do_jump(void const* param_0, char const* param_1) {}
 
 /* 802A8794-802A8798 2A30D4 0004+00 1/0 2/0 0/0 .text
  * do_branch_query__Q28JMessage18TSequenceProcessorFUl          */
-void JMessage::TSequenceProcessor::do_branch_query(u32 param_0) {
-    /* empty function */
-}
+void JMessage::TSequenceProcessor::do_branch_query(u32 param_0) {}
 
 /* 802A8798-802A87A0 2A30D8 0008+00 1/0 2/0 0/0 .text
  * do_branch_queryResult__Q28JMessage18TSequenceProcessorFv     */
@@ -600,62 +528,97 @@ s32 JMessage::TSequenceProcessor::do_branch_queryResult() {
 
 /* 802A87A0-802A87A4 2A30E0 0004+00 1/0 2/0 0/0 .text
  * do_branch__Q28JMessage18TSequenceProcessorFPCvPCc            */
-void JMessage::TSequenceProcessor::do_branch(void const* param_0, char const* param_1) {
-    /* empty function */
-}
+void JMessage::TSequenceProcessor::do_branch(void const* param_0, char const* param_1) {}
 
 /* 802A87A4-802A87C0 2A30E4 001C+00 1/0 2/0 0/0 .text
  * do_resetStatus___Q28JMessage18TSequenceProcessorFPCc         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TSequenceProcessor::do_resetStatus_(char const* param_0) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/do_resetStatus___Q28JMessage18TSequenceProcessorFPCc.s"
+void JMessage::TSequenceProcessor::do_resetStatus_(char const* param_0) {
+    eStatus_ = STATUS_READY;
+
+    if (param_0 != NULL) {
+        eStatus_ = STATUS_NORMAL;
+    }
 }
-#pragma pop
 
 /* 802A87C0-802A87D0 2A3100 0010+00 1/0 2/0 0/0 .text
  * do_setBegin_isReady___Q28JMessage18TSequenceProcessorCFv     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TSequenceProcessor::do_setBegin_isReady_() const {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/do_setBegin_isReady___Q28JMessage18TSequenceProcessorCFv.s"
+bool JMessage::TSequenceProcessor::do_setBegin_isReady_() const {
+    return eStatus_ == STATUS_READY;
 }
-#pragma pop
 
 /* 802A87D0-802A87D4 2A3110 0004+00 1/0 2/0 0/0 .text
  * do_begin___Q28JMessage18TSequenceProcessorFPCvPCc            */
-void JMessage::TSequenceProcessor::do_begin_(void const* param_0, char const* param_1) {
-    /* empty function */
-}
+void JMessage::TSequenceProcessor::do_begin_(void const* param_0, char const* param_1) {}
 
 /* 802A87D4-802A87E0 2A3114 000C+00 1/0 2/0 0/0 .text do_end___Q28JMessage18TSequenceProcessorFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TSequenceProcessor::do_end_() {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/do_end___Q28JMessage18TSequenceProcessorFv.s"
+void JMessage::TSequenceProcessor::do_end_() {
+    eStatus_ = STATUS_ONE;
 }
-#pragma pop
 
 /* 802A87E0-802A892C 2A3120 014C+00 2/0 2/0 0/0 .text
  * do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TSequenceProcessor::do_tag_(u32 param_0, void const* param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl.s"
+void JMessage::TSequenceProcessor::do_tag_(u32 uTag, void const* data, u32 uSize) {
+    char* temp = (char*)data;
+    u8 group = data::getTagGroup(uTag);
+    u16 code = data::getTagCode(uTag);
+
+    switch (group) {
+    case 0xFF:
+        switch (code) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+            break;
+        case 6:
+            u32 tmp = JGadget::binary::TParseValue<u32, TParseValue_endian_big_>::parse(temp);
+            on_jump_register(process_onJump_, tmp);
+            break;
+        case 7:
+            break;
+        default:
+            TProcessor::do_tag_(uTag, temp, uSize);
+            break;
+        }
+        break;
+    case 0xFC:
+        on_jump_register(process_onJump_limited_, code);
+        break;
+    case 0xFB:
+        on_branch_register(process_onBranch_limited_, temp, code);
+        break;
+    case 0xFA:
+        on_branch_register(process_onBranch_, temp, code);
+        break;
+    case 0xF9:
+        on_branch_query(code);
+        break;
+    case 0xF8:
+        on_branch_register(process_onBranch_limited_, temp + 2,
+                           JGadget::binary::TParseValue<u16, TParseValue_endian_big_>::parse(temp));
+        on_branch_query(code);
+        break;
+    case 0xF7:
+        on_branch_register(process_onBranch_, temp + 2,
+                           JGadget::binary::TParseValue<u16, TParseValue_endian_big_>::parse(temp));
+        on_branch_query(code);
+        break;
+    default:
+        TProcessor::do_tag_(uTag, temp, uSize);
+        break;
+    }
 }
-#pragma pop
 
 /* 802A892C-802A8944 2A326C 0018+00 1/1 0/0 0/0 .text
  * process_setMessageIndex_reserved___Q28JMessage18TSequenceProcessorFUs */
+#ifdef NONMATCHING
+void JMessage::TSequenceProcessor::process_setMessageIndex_reserved_(u16 u16Index) {
+    if (u16Index != -1) {
+        return;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -664,117 +627,127 @@ asm void JMessage::TSequenceProcessor::process_setMessageIndex_reserved_(u16 par
 #include "asm/JSystem/JMessage/processor/process_setMessageIndex_reserved___Q28JMessage18TSequenceProcessorFUs.s"
 }
 #pragma pop
+#endif
 
 /* 802A8944-802A89B8 2A3284 0074+00 4/4 0/0 0/0 .text
  * process_setMessageCode___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUsUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void
-JMessage::TSequenceProcessor::process_setMessageCode_(JMessage::TSequenceProcessor const* param_0,
-                                                      u16 param_1, u16 param_2) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/func_802A8944.s"
+void* JMessage::TSequenceProcessor::process_setMessageCode_(
+    JMessage::TSequenceProcessor const* param_0, u16 param_1, u16 param_2) {
+    if (param_2 >= 0xFF00) {
+        process_setMessageIndex_reserved_(param_2);
+        return NULL;
+    }
+
+    TControl* pControl = param_0->getControl();
+
+    if (pControl->setMessageCode_inSequence_(param_0, param_1, param_2)) {
+        return pControl->getMessageEntry();
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 802A89B8-802A89EC 2A32F8 0034+00 1/1 0/0 0/0 .text
  * process_onJump_limited___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void
+const void*
 JMessage::TSequenceProcessor::process_onJump_limited_(JMessage::TSequenceProcessor const* param_0) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/func_802A89B8.s"
+    return process_setMessageIndex_(param_0, param_0->oProcess2_.process.jump_process.u32Target);
 }
-#pragma pop
 
 /* 802A89EC-802A8A18 2A332C 002C+00 1/1 0/0 0/0 .text
  * process_onJump___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void
+const void*
 JMessage::TSequenceProcessor::process_onJump_(JMessage::TSequenceProcessor const* param_0) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/process_onJump___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessor.s"
+    return process_setMessageCode_(param_0, param_0->oProcess2_.process.jump_process.u32Target);
 }
-#pragma pop
 
 /* 802A8A18-802A8A50 2A3358 0038+00 1/1 0/0 0/0 .text
  * process_onBranch_limited___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void
+const void*
 JMessage::TSequenceProcessor::process_onBranch_limited_(JMessage::TSequenceProcessor const* param_0,
-                                                        u32 param_1) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/func_802A8A18.s"
+                                                        u32 uTargetIndex) {
+    return process_setMessageIndex_(
+        param_0, JGadget::binary::TParseValue<u16, TParseValue_endian_big_>::parse(
+                     param_0->oProcess2_.process.branch_process.pTarget, uTargetIndex));
 }
-#pragma pop
 
 /* 802A8A50-802A8A84 2A3390 0034+00 1/1 0/0 0/0 .text
  * process_onBranch___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void
+const void*
 JMessage::TSequenceProcessor::process_onBranch_(JMessage::TSequenceProcessor const* param_0,
-                                                u32 param_1) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/process_onBranch___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl.s"
+                                                u32 uTargetIndex) {
+    return process_setMessageCode_(
+        param_0, JGadget::binary::TParseValue<u32, TParseValue_endian_big_>::parse(
+                     param_0->oProcess2_.process.branch_process.pTarget, uTargetIndex));
 }
-#pragma pop
 
 /* 802A8A84-802A8AC0 2A33C4 003C+00 0/0 4/4 0/0 .text
  * __ct__Q28JMessage19TRenderingProcessorFPCQ28JMessage10TReference */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JMessage::TRenderingProcessor::TRenderingProcessor(JMessage::TReference const* param_0) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/__ct__Q28JMessage19TRenderingProcessorFPCQ28JMessage10TReference.s"
-}
-#pragma pop
+JMessage::TRenderingProcessor::TRenderingProcessor(JMessage::TReference const* param_0)
+    : TProcessor(param_0) {}
 
 /* 802A8AC0-802A8B20 2A3400 0060+00 1/0 6/6 0/0 .text __dt__Q28JMessage19TRenderingProcessorFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-//asm JMessage::TRenderingProcessor::~TRenderingProcessor() {
-extern "C" asm void __dt__Q28JMessage19TRenderingProcessorFv() {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/__dt__Q28JMessage19TRenderingProcessorFv.s"
-}
-#pragma pop
+JMessage::TRenderingProcessor::~TRenderingProcessor() {}
 
 /* 802A8B20-802A8BA4 2A3460 0084+00 0/0 4/4 0/0 .text
  * process__Q28JMessage19TRenderingProcessorFPCc                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TRenderingProcessor::process(char const* param_0) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/process__Q28JMessage19TRenderingProcessorFPCc.s"
+int JMessage::TRenderingProcessor::process(char const* param_0) {
+    do {
+        if (pszCurrent_ == param_0) {
+            on_end();
+            return 0;
+        }
+    } while (process_character_());
+
+    return 0;
 }
-#pragma pop
 
 /* 802A8BA4-802A8BA8 2A34E4 0004+00 1/0 4/0 0/0 .text
  * do_begin___Q28JMessage19TRenderingProcessorFPCvPCc           */
-void JMessage::TRenderingProcessor::do_begin_(void const* param_0, char const* param_1) {
-    /* empty function */
-}
+void JMessage::TRenderingProcessor::do_begin_(void const* param_0, char const* param_1) {}
 
 /* 802A8BA8-802A8BAC 2A34E8 0004+00 1/0 4/0 0/0 .text do_end___Q28JMessage19TRenderingProcessorFv
  */
-void JMessage::TRenderingProcessor::do_end_() {
-    /* empty function */
-}
+void JMessage::TRenderingProcessor::do_end_() {}
 
 /* 802A8BAC-802A8C24 2A34EC 0078+00 1/0 4/0 0/0 .text
  * do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl            */
+// r0 / r7 swapped
+#ifdef NONMATCHING
+void JMessage::TRenderingProcessor::do_tag_(u32 uTag, void const* data, u32 uSize) {
+    u8 group = data::getTagGroup(uTag);
+    u16 code = data::getTagCode(uTag);
+
+    switch (group) {
+    case 0xFF:
+        switch (code) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+            break;
+        case 6:
+            break;
+        case 7:
+            break;
+        default:
+            TProcessor::do_tag_(uTag, data, uSize);
+            break;
+        }
+        break;
+    case 0xFC:
+    case 0xFB:
+    case 0xFA:
+    case 0xF9:
+    case 0xF8:
+    case 0xF7:
+        break;
+    default:
+        TProcessor::do_tag_(uTag, data, uSize);
+        break;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -783,24 +756,15 @@ asm void JMessage::TRenderingProcessor::do_tag_(u32 param_0, void const* param_1
 #include "asm/JSystem/JMessage/processor/do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl.s"
 }
 #pragma pop
+#endif
 
 /* 802A8C24-802A8C44 2A3564 0020+00 1/1 0/0 0/0 .text on_message__Q28JMessage10TProcessorCFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TProcessor::on_message(u32 param_0) const {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/on_message__Q28JMessage10TProcessorCFUl.s"
+const char* JMessage::TProcessor::on_message(u32 param_0) const {
+    return getMessageText_messageCode(param_0);
 }
-#pragma pop
 
 /* 802A8C44-802A8CDC 2A3584 0098+00 1/1 0/0 0/0 .text
  * getMessageText_messageCode__Q28JMessage10TProcessorCFUl      */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TProcessor::getMessageText_messageCode(u32 param_0) const {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/getMessageText_messageCode__Q28JMessage10TProcessorCFUl.s"
+const char* JMessage::TProcessor::getMessageText_messageCode(u32 param_0) const {
+    return getMessageText_messageCode(param_0 >> 0x10, param_0 & 0xFFFF);
 }
-#pragma pop

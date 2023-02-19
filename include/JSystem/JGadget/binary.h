@@ -30,10 +30,10 @@ template <int T>
 struct TParseData_aligned : public TParseData {
     TParseData_aligned(const void* pContent) : TParseData(pContent) {}
     void setRaw(const void* p) {
-        if ((u32)p % T != 0) {
+        /* if ((u32)p % T != 0) {
             JUTWarn w;
             w << "misaligned : " << (u32)p;
-        }
+        } */
         static_cast<TParseData*>(this)->setRaw(p);
     }
 };
@@ -49,6 +49,29 @@ struct TParse_header_block {
 
     bool parse(const void* ppData_inout, u32 a2) {
         return parse_next(&ppData_inout, a2);
+    }
+};
+
+template <typename T>
+struct TParseValue_raw_ {
+    static T parse(const void* data) { return *(T*)data; }
+};
+
+template <typename T>
+struct TParseValue_endian_big_ : public TParseValue_raw_<T> {
+    static T parse(const void* data) { return TParseValue_raw_::parse(data); }
+};
+
+template <typename T, template <class> class Parser>
+struct TParseValue : public Parser<T> {
+    static T parse(const void* data) { return Parser<T>::parse(data); }
+
+    static T parse(const void* data, s32 advanceNum) {
+        return Parser<T>::parse(advance(data, advanceNum));
+    }
+
+    static const void* advance(const void* data, s32 advanceNum) {
+        return (char*)data + (advanceNum * sizeof(T));
     }
 };
 
