@@ -5,10 +5,8 @@
 
 #include "JSystem/JMessage/resource.h"
 #include "JSystem/JGadget/binary.h"
-#include "JSystem/JMessage/data.h"
-#include "JSystem/JMessage/locale.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "MSL_C/MSL_Common/Src/mem.h"
 
 //
 // Types:
@@ -58,7 +56,6 @@ Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget1
 extern "C" void Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
-extern "C" void memcmp();
 extern "C" extern void* __vt__Q37JGadget6binary19TParse_header_block[5];
 extern "C" f32 ga4cSignature__Q28JMessage4data[1 + 1 /* padding */];
 
@@ -81,12 +78,12 @@ asm void JMessage::TResource::toMessageIndex_messageID(u32 param_0, u32 param_1,
 /* ############################################################################################## */
 /* 803C9C80-803C9C94 -00001 0014+00 1/1 0/0 0/0 .data
  * sapfnParseCharacter___Q28JMessage18TResourceContainer        */
-SECTION_DATA void* JMessage::TResourceContainer::sapfnParseCharacter_[5] = {
-    (void*)NULL,
-    (void*)parseCharacter_1Byte__Q28JMessage6localeFPPCc,
-    (void*)parseCharacter_2Byte__Q28JMessage6localeFPPCc,
-    (void*)parseCharacter_ShiftJIS__Q28JMessage6localeFPPCc,
-    (void*)parseCharacter_UTF8__Q28JMessage6localeFPPCc,
+JMessage::locale::parseCharacter_function JMessage::TResourceContainer::sapfnParseCharacter_[5] = {
+    NULL,
+    JMessage::locale::parseCharacter_1Byte,
+    JMessage::locale::parseCharacter_2Byte,
+    JMessage::locale::parseCharacter_ShiftJIS,
+    JMessage::locale::parseCharacter_UTF8,
 };
 
 /* 803C9C94-803C9CA8 026DB4 0014+00 2/2 0/0 0/0 .data            __vt__Q28JMessage6TParse */
@@ -116,6 +113,7 @@ SECTION_DATA extern void* data_803C9CBC[5] = {
 
 /* 802A8EC0-802A8EF8 2A3800 0038+00 1/1 0/0 0/0 .text
  * __ct__Q38JMessage18TResourceContainer10TCResourceFv          */
+// need to fix TLinkList_factory vtable stuff
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -127,10 +125,12 @@ asm JMessage::TResourceContainer::TCResource::TCResource() {
 
 /* 802A8EF8-802A8F6C 2A3838 0074+00 1/0 2/2 0/0 .text
  * __dt__Q38JMessage18TResourceContainer10TCResourceFv          */
+// need to fix TLinkList_factory vtable stuff
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JMessage::TResourceContainer::TCResource::~TCResource() {
+// asm JMessage::TResourceContainer::TCResource::~TCResource() {
+extern "C" asm void __dt__Q38JMessage18TResourceContainer10TCResourceFv() {
     nofralloc
 #include "asm/JSystem/JMessage/resource/__dt__Q38JMessage18TResourceContainer10TCResourceFv.s"
 }
@@ -141,7 +141,7 @@ asm JMessage::TResourceContainer::TCResource::~TCResource() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JMessage::TResourceContainer::TCResource::Get_groupID(u16 param_0) {
+asm JMessage::TResource* JMessage::TResourceContainer::TCResource::Get_groupID(u16 param_0) {
     nofralloc
 #include "asm/JSystem/JMessage/resource/Get_groupID__Q38JMessage18TResourceContainer10TCResourceFUs.s"
 }
@@ -149,74 +149,52 @@ asm void JMessage::TResourceContainer::TCResource::Get_groupID(u16 param_0) {
 
 /* 802A8FFC-802A9048 2A393C 004C+00 1/0 0/0 0/0 .text
  * Do_create__Q38JMessage18TResourceContainer10TCResourceFv     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TResourceContainer::TCResource::Do_create() {
-    nofralloc
-#include "asm/JSystem/JMessage/resource/Do_create__Q38JMessage18TResourceContainer10TCResourceFv.s"
+JMessage::TResource* JMessage::TResourceContainer::TCResource::Do_create() {
+    TResource* new_res = new TResource();
+    return new_res;
 }
-#pragma pop
 
 /* 802A9048-802A906C 2A3988 0024+00 1/0 0/0 0/0 .text
  * Do_destroy__Q38JMessage18TResourceContainer10TCResourceFPQ28JMessage9TResource */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TResourceContainer::TCResource::Do_destroy(JMessage::TResource* param_0) {
-    nofralloc
-#include "asm/JSystem/JMessage/resource/Do_destroy__Q38JMessage18TResourceContainer10TCResourceFPQ28JMessage9TResource.s"
+void JMessage::TResourceContainer::TCResource::Do_destroy(JMessage::TResource* param_0) {
+    delete param_0;
 }
-#pragma pop
 
 /* 802A906C-802A90B8 2A39AC 004C+00 0/0 2/2 0/0 .text __ct__Q28JMessage18TResourceContainerFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JMessage::TResourceContainer::TResourceContainer() {
-    nofralloc
-#include "asm/JSystem/JMessage/resource/__ct__Q28JMessage18TResourceContainerFv.s"
-}
-#pragma pop
+JMessage::TResourceContainer::TResourceContainer() : mEncodingType(0), pfnParseCharacter_(NULL) {}
 
 /* 802A90B8-802A90F0 2A39F8 0038+00 1/1 0/0 0/0 .text
  * setEncoding__Q28JMessage18TResourceContainerFUc              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TResourceContainer::setEncoding(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/JMessage/resource/setEncoding__Q28JMessage18TResourceContainerFUc.s"
+void JMessage::TResourceContainer::setEncoding(u8 e) {
+    if (e == 0) {
+        mEncodingType = e;
+        pfnParseCharacter_ = NULL;
+    } else {
+        setEncoding_(e);
+    }
 }
-#pragma pop
 
 /* 802A90F0-802A9130 2A3A30 0040+00 1/1 0/0 0/0 .text
  * setEncoding___Q28JMessage18TResourceContainerFUc             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TResourceContainer::setEncoding_(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/JMessage/resource/setEncoding___Q28JMessage18TResourceContainerFUc.s"
+void JMessage::TResourceContainer::setEncoding_(u8 e) {
+    mEncodingType = e;
+    pfnParseCharacter_ = JGadget::toValueFromIndex<JMessage::locale::parseCharacter_function>(
+        e, sapfnParseCharacter_, 5, NULL);
 }
-#pragma pop
 
 /* 802A9130-802A9158 2A3A70 0028+00 0/0 2/2 0/0 .text
  * __ct__Q28JMessage6TParseFPQ28JMessage18TResourceContainer    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JMessage::TParse::TParse(JMessage::TResourceContainer* param_0) {
-    nofralloc
-#include "asm/JSystem/JMessage/resource/__ct__Q28JMessage6TParseFPQ28JMessage18TResourceContainer.s"
+JMessage::TParse::TParse(JMessage::TResourceContainer* pContainer) {
+    pContainer_ = pContainer;
+    pResource_ = NULL;
 }
-#pragma pop
 
 /* 802A9158-802A91B8 2A3A98 0060+00 1/0 0/0 0/0 .text            __dt__Q28JMessage6TParseFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JMessage::TParse::~TParse() {
+// asm JMessage::TParse::~TParse() {
+extern "C" asm void __dt__Q28JMessage6TParseFv() {
     nofralloc
 #include "asm/JSystem/JMessage/resource/__dt__Q28JMessage6TParseFv.s"
 }
@@ -224,21 +202,66 @@ asm JMessage::TParse::~TParse() {
 
 /* 802A91B8-802A92F4 2A3AF8 013C+00 1/0 0/0 0/0 .text
  * parseHeader_next__Q28JMessage6TParseFPPCvPUlUl               */
+#ifdef NONMATCHING
+bool JMessage::TParse::parseHeader_next(void const** ppData_inout, u32* puBlock_out, u32 param_2) {
+    const void* pData = *ppData_inout;
+
+    data::TParse_THeader header(pData);
+    *ppData_inout = header.getContent();
+    *puBlock_out = header.get_blockNumber();
+
+    if (memcmp(header.get_signature(), &data::ga4cSignature, sizeof(data::ga4cSignature))) {
+        return 0;
+    }
+
+    if (header.get_type() != 'bmg1') {
+        return 0;
+    }
+
+    u8 encoding = header.get_encoding();
+    if (encoding != 0) {
+        if (!pContainer_->isEncodingSettable(encoding)) {
+            return 0;
+        }
+
+        pContainer_->setEncoding(encoding);
+    }
+
+    if (param_2 & 0x10) {
+        return 1;
+    }
+
+    pResource_ = pContainer_->resContainer_.Do_create();
+
+    if (pResource_ == NULL) {
+        if (param_2 & 0x20) {
+            return 0;
+        } else {
+            return 1;
+        }
+    } else {
+        pContainer_->resContainer_.Push_back_hack(pResource_);
+        pResource_->setData_header(header.getRaw());
+        return 1;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JMessage::TParse::parseHeader_next(void const** param_0, u32* param_1, u32 param_2) {
+asm bool JMessage::TParse::parseHeader_next(void const** param_0, u32* param_1, u32 param_2) {
     nofralloc
 #include "asm/JSystem/JMessage/resource/parseHeader_next__Q28JMessage6TParseFPPCvPUlUl.s"
 }
 #pragma pop
+#endif
 
 /* 802A92F4-802A9490 2A3C34 019C+00 1/0 0/0 0/0 .text
  * parseBlock_next__Q28JMessage6TParseFPPCvPUlUl                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JMessage::TParse::parseBlock_next(void const** param_0, u32* param_1, u32 param_2) {
+asm bool JMessage::TParse::parseBlock_next(void const** param_0, u32* param_1, u32 param_2) {
     nofralloc
 #include "asm/JSystem/JMessage/resource/parseBlock_next__Q28JMessage6TParseFPPCvPUlUl.s"
 }
@@ -246,21 +269,35 @@ asm void JMessage::TParse::parseBlock_next(void const** param_0, u32* param_1, u
 
 /* 802A9490-802A94A8 2A3DD0 0018+00 1/0 0/0 0/0 .text
  * parseCharacter_1Byte__Q28JMessage6localeFPPCc                */
+// reg swap
+#ifdef NONMATCHING
+int JMessage::locale::parseCharacter_1Byte(char const** pString) {
+    u8* c;
+    int ret;
+
+    c = (u8*)*pString;
+    ret = *c;
+
+    *pString = *pString + 1;
+    return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JMessage::locale::parseCharacter_1Byte(char const** param_0) {
+asm int JMessage::locale::parseCharacter_1Byte(char const** param_0) {
     nofralloc
 #include "asm/JSystem/JMessage/resource/parseCharacter_1Byte__Q28JMessage6localeFPPCc.s"
 }
 #pragma pop
+#endif
 
 /* 802A94A8-802A94D4 2A3DE8 002C+00 1/0 0/0 0/0 .text
  * parseCharacter_2Byte__Q28JMessage6localeFPPCc                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JMessage::locale::parseCharacter_2Byte(char const** param_0) {
+asm int JMessage::locale::parseCharacter_2Byte(char const** param_0) {
     nofralloc
 #include "asm/JSystem/JMessage/resource/parseCharacter_2Byte__Q28JMessage6localeFPPCc.s"
 }
