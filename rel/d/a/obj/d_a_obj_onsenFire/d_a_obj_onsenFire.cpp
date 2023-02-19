@@ -23,7 +23,7 @@ int daObjOnsenFire_c::execute() {
     dComIfGp_particle_setSimple(0x100,&current.pos,0xff,g_whiteColor,g_whiteColor,0,0.0f);
     dComIfGp_particle_setSimple(0x101,&current.pos,0xff,g_whiteColor,g_whiteColor,0,0.0f);
     dComIfGp_particle_setSimple(0x103,&current.pos,0xff,g_whiteColor,g_whiteColor,0,0.0f);
-    Z2AudioMgr::getInterface()->mSeMgr.seStartLevel(JAISoundID(Z2SE_OBJ_ONSEN_WARM_FIRE),&current.pos,0,0,1.0f,1.0f,-1.0f,-1.0f,0);
+    Z2AudioMgr::getInterface()->mSeMgr.seStartLevel(Z2SE_OBJ_ONSEN_WARM_FIRE,&current.pos,0,0,1.0f,1.0f,-1.0f,-1.0f,0);
     return 1;
 }
 
