@@ -11,6 +11,8 @@
 #include "dolphin/types.h"
 
 s32 dTimer_createStockTimer();
+s32 dTimer_createTimer(s32 param_0, u32 param_1, u8 param_2, u8 param_3, f32 param_4, f32 param_5,
+                       f32 param_6, f32 param_7);
 
 class dDlst_TimerScrnDraw_c : public dDlst_base_c {
 public:

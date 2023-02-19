@@ -557,6 +557,7 @@ void dKy_setLight_nowroom_actor(dKy_tevstr_c*);
 void dKy_setLight_again();
 void dKy_GxFog_tevstr_set(dKy_tevstr_c*);
 void dKy_plight_set(LIGHT_INFLUENCE* param_0);
+void dKy_plight_priority_set(LIGHT_INFLUENCE* param_0);
 void dKy_tevstr_init(dKy_tevstr_c* param_0, s8 param_1, u8 param_2);
 SND_INFLUENCE* dKy_Sound_get();
 void dKy_plight_cut(LIGHT_INFLUENCE* param_0);
