@@ -27,6 +27,7 @@ convertDefinitions = [
     }
 ]
 
+yaz0CompressFunction = libyaz0.compress
 
 def convertEntry(file, path, destPath, returnData):
     split = os.path.splitext(file)
@@ -69,7 +70,7 @@ def convertEntry(file, path, destPath, returnData):
     if mustBeCompressed == True:
         if data == None:
             data = open(path / file, "rb").read()
-        data = libyaz0.compress(data)
+        data = yaz0CompressFunction(data)
     if returnData == True:
         if data == None and returnData == True:
             data = open(path / file, "rb").read()
@@ -254,7 +255,7 @@ def copyRelFiles(gamePath, buildPath, aMemList, mMemList):
                     relSource = open(fullPath, "rb")
                     data = relSource.read()
                     relSource.close()
-                    data = libyaz0.compress(data)
+                    data = yaz0CompressFunction(data)
                     relNew = open(
                         buildPath / "dolzel2/game/files/rel/Final/Release" / file, "wb"
                     )
@@ -285,14 +286,14 @@ def copyRelFiles(gamePath, buildPath, aMemList, mMemList):
             if str(rel).find(rel2) != -1:
                 sourceRel = open(rel, "rb").read()
                 open(buildPath / "RELS.arc/rels/amem/" / rel2.lower(), "wb").write(
-                    libyaz0.compress(sourceRel)
+                    yaz0CompressFunction(sourceRel)
                 )
                 break
         for rel2 in mMemRels.splitlines():
             if str(rel).find(rel2) != -1:
                 sourceRel = open(rel, "rb").read()
                 open(buildPath / "RELS.arc/rels/mmem/" / rel2.lower(), "wb").write(
-                    libyaz0.compress(sourceRel)
+                    yaz0CompressFunction(sourceRel)
                 )
                 break
 
@@ -301,8 +302,36 @@ def copyRelFiles(gamePath, buildPath, aMemList, mMemList):
         libarc.convert_dir_to_arc(buildPath / "RELS.arc", convertEntry)
     )
 
+def postprocessMapFile(inputMapString):
+    outputMap = ""
+    textFound = False
+    for line in inputMapString.splitlines():
+        if len(line)==0:
+            continue
+        elif textFound == True and line[0:3] == "  0" and line[39] != '.':
+            split = line.split(" ")
+            outputMap += ' '.join(split[0:5])+' '+' '.join(split[6:])+'\n'
+        elif line[0]=='.':
+            if line == '.text section layout' or textFound == True:
+                textFound = True
+                outputMap += line+'\n'
+    return outputMap
 
-def main(gamePath, buildPath, copyCode):
+def copyMapFiles(buildPath):
+    open(buildPath/"dolzel2/game/files/map/Final/Release/frameworkF.map","w").write(postprocessMapFile(open(buildPath/"dolzel2/dolzel2.map","r").read()))
+    for map in (buildPath/"dolzel2/rel/").rglob("*.map"):
+        open(buildPath/"dolzel2/game/files/map/Final/Release/"/map.name,"w").write(postprocessMapFile(open(map,"r").read()))
+
+def main(gamePath, buildPath, copyCode, yaz0Encoding):
+    if yaz0Encoding == "oead":
+        try:
+            from oead import yaz0
+            global yaz0CompressFunction
+            yaz0CompressFunction = yaz0.compress
+        except:
+            print("Package: oead isn't installed, falling back to native yaz0")
+
+
     if not gamePath.exists():
         gamePath.mkdir(parents=True, exist_ok=True)
 
@@ -315,7 +344,7 @@ def main(gamePath, buildPath, copyCode):
         print("ISO is not extracted; extracting...")
         previousDir = os.getcwd()
         os.chdir(str(gamePath.absolute()))
-        extract_game_assets.extract("../" + str(iso))
+        extract_game_assets.extract("../" + str(iso),yaz0Encoding)
         os.chdir(previousDir)
 
     print("Copying game files...")
@@ -339,12 +368,12 @@ def main(gamePath, buildPath, copyCode):
         copyRelFiles(gamePath, buildPath, aMemRels.splitlines(), mMemRels.splitlines())
 
         shutil.copy(buildPath/"dolzel2/frameworkF.str",buildPath/"dolzel2/game/files/str/Final/Release/frameworkF.str")
-    
+        copyMapFiles(buildPath)
+
     now = datetime.now()
     copydate = str(now.year)+"/"+str(now.month).zfill(2)+"/"+str(now.day).zfill(2)+" "+str(now.hour).zfill(2)+":"+str(now.minute).zfill(2)+"\n"
     open(buildPath/"dolzel2/game/files/str/Final/Release/COPYDATE","w").write(copydate)
 
 
 if __name__ == "__main__":
-    pass
-    main(Path(sys.argv[1]), Path(sys.argv[2]), sys.argv[3])
+    main(Path(sys.argv[1]), Path(sys.argv[2]), sys.argv[3], sys.argv[4])

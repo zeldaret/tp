@@ -175,33 +175,51 @@ $(ELF_SHIFT): $(DOL)
 	@echo $(O_FILES) > build/o_files
 	@$(PYTHON) tools/lcf.py dol_shift --output $(LDSCRIPT)
 	$(LD) -application $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files $(LIBS)
-	@cp -v $(ELF_SHIFT) $(ELF)
 
 $(DOL_SHIFT): $(ELF_SHIFT) | tools
 	$(ELF2DOL) $< $@ $(SDATA_PDHR) $(SBSS_PDHR) $(TARGET_COL)
-	@cp -v $(DOL_SHIFT) $(DOL)
 	
 shift: dirs $(DOL_SHIFT)
 
-game: shift
-	$(MAKE) rels
+shiftedrels: shift
+	@echo generating shifted RELs from .plf
+	@echo $(RELS) > build/plf_files
+	$(PYTHON) $(MAKEREL) build --string-table $(BUILD_DIR)/frameworkF.str @build/plf_files $(ELF_SHIFT)
+
+game: shiftedrels
 	@mkdir -p game
-	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) copyCode
+	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) copyCode native
+
+game-fast: shiftedrels
+	@mkdir -p game
+	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) copyCode oead
 
 game-nocompile:
 	@mkdir -p game
-	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) noCopyCode
+	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) noCopyCode native
+
+game-nocompile-fast:
+	@mkdir -p game
+	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) noCopyCode oead
 
 rungame-nocompile: game-nocompile
 	@echo If you are playing on a shifted game make sure Hyrule Field Speed hack is disabled in dolphin!
 	dolphin-emu $(BUILD_DIR)/game/sys/main.dol
 
-iso: game
-	@$(PYTHON) tools/packageISO.py $(BUILD_DIR)/game/ $(TARGET_ISO)
+rungame-nocompile-fast: game-nocompile-fast
+	@echo If you are playing on a shifted game make sure Hyrule Field Speed hack is disabled in dolphin!
+	dolphin-emu $(BUILD_DIR)/game/sys/main.dol
+
+rungame-fast: game-fast
+	@echo If you are playing on a shifted game make sure Hyrule Field Speed hack is disabled in dolphin!
+	dolphin-emu $(BUILD_DIR)/game/sys/main.dol
 
 rungame: game
 	@echo If you are playing on a shifted game make sure Hyrule Field Speed hack is disabled in dolphin!
 	dolphin-emu $(BUILD_DIR)/game/sys/main.dol
+
+iso: game
+	@$(PYTHON) tools/packageISO.py $(BUILD_DIR)/game/ $(TARGET_ISO)
 
 #
 $(BUILD_DIR)/%.o: %.c $(BUILD_DIR)/%.d
