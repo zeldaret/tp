@@ -8,6 +8,7 @@
 #include "dolphin/types.h"
 #include "d/d_stage.h"
 #include "d/d_procname.h"
+#include "f_op/f_op_overlap_mng.h"
 
 //
 // Forward References:
@@ -118,14 +119,15 @@ static int daKytag07_Execute(kytag07_class* i_this) {
 }
 
 /* 8085A334-8085A388 000134 0054+00 1/0 0/0 0/0 .text daKytag07_IsDelete__FP13kytag07_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag07_IsDelete(kytag07_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag07/d_a_kytag07/daKytag07_IsDelete__FP13kytag07_class.s"
+static int daKytag07_IsDelete(kytag07_class* i_this) {
+    i_this->field_0x58c = 99;
+
+    if (i_this->field_0x57c <= FLOAT_LABEL(lit_3761)) {
+        return 1;
+    } else {
+        return fopOvlpM_IsDoingReq() == 1 ? 1 : 0;
+    }
 }
-#pragma pop
 
 /* 8085A388-8085A3B0 000188 0028+00 1/0 0/0 0/0 .text            daKytag07_Delete__FP13kytag07_class
  */
