@@ -394,22 +394,20 @@ JKRHeap* JKRHeap::findFromRoot(void* ptr) {
 }
 
 /* 802CE894-802CE93C 2C91D4 00A8+00 1/1 1/1 0/0 .text            find__7JKRHeapCFPv */
-JKRHeap* JKRHeap::find(void* ptr) const {
-    if (getStartAddr() <= ptr && ptr < getEndAddr()) {
-        const JSUTree<JKRHeap>& tree = mChildTree;
-        if (tree.getNumChildren() != 0) {
-            JSUTreeIterator<JKRHeap> iterator;
-            for (iterator = tree.getFirstChild(); iterator != tree.getEndChild(); iterator++) {
-                JKRHeap* child = iterator.getObject();
-                JKRHeap* result = child->find(ptr);
+JKRHeap* JKRHeap::find(void* memory) const {
+    if (mStart <= memory && memory < mEnd) {
+        if (mChildTree.getNumChildren() != 0) {
+            for (JSUTreeIterator<JKRHeap> iterator(mChildTree.getFirstChild());
+                 iterator != mChildTree.getEndChild(); ++iterator)
+            {
+                JKRHeap* result = iterator->find(memory);
                 if (result) {
                     return result;
                 }
             }
         }
 
-        // todo: not sure about this... casting away const for now.
-        return (JKRHeap*)this;
+        return const_cast<JKRHeap*>(this);
     }
 
     return NULL;
@@ -444,7 +442,8 @@ void JKRHeap::dispose_subroutine(u32 begin, u32 end) {
     JSUListIterator<JKRDisposer> next_iterator;
     JSUListIterator<JKRDisposer> iterator;
     for (iterator = mDisposerList.getFirst(); iterator != mDisposerList.getEnd();
-         iterator = next_iterator) {
+         iterator = next_iterator)
+    {
         JKRDisposer* disposer = iterator.getObject();
 
         if ((void*)begin <= disposer && disposer < (void*)end) {

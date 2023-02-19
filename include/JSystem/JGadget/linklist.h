@@ -22,7 +22,15 @@ struct TNodeLinkList {
         TLinkListNode* node;
     };
 
+    struct const_iterator {
+        const_iterator(TLinkListNode* pNode) { node = pNode; }
+        const_iterator(const const_iterator& iter) { *this = iter; }
+
+        TLinkListNode* node;
+    };
+
     TNodeLinkList() : ocObject_() { Initialize_(); }
+
     void Initialize_() {
         count = 0;
         ocObject_.mNext = &ocObject_;
@@ -31,6 +39,11 @@ struct TNodeLinkList {
 
     iterator end() {
         iterator iter(&ocObject_);
+        return iter;
+    }
+
+    iterator begin() {
+        iterator iter(ocObject_.mNext);
         return iter;
     }
 
@@ -73,11 +86,33 @@ struct TLinkList : public TNodeLinkList {
         return iter;
     }
 
+    TLinkList::iterator begin() {
+        TNodeLinkList::iterator node_iter = TNodeLinkList::begin();
+        TLinkList::iterator iter(node_iter);
+        return iter;
+    }
+
     void Push_back(T* element) {
         TLinkList::iterator iter(TLinkList::end());
         this->Insert(iter, element);
     }
 };
+
+template <typename T, int I>
+struct TLinkList_factory : public TLinkList<T, I> {
+    virtual ~TLinkList_factory() {}
+    virtual T* Do_create() = 0;
+    virtual void Do_destroy(T*) = 0;
+};
+
+template <typename T, int I>
+struct TEnumerator {
+    TLinkList<T, I> field_0x0;
+    TLinkList<T, I> field_0x4;
+};
+
+template <typename T, int I>
+struct TContainerEnumerator_const : public TEnumerator<T, I> {};
 
 };  // namespace JGadget
 

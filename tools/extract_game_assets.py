@@ -19,6 +19,8 @@ dolInfoPosition = 0x420
 
 numFileEntries = 0
 
+yaz0DecompressFunction = libyaz0.decompress
+
 """
 Returns the offset address and size of fst.bin
 """
@@ -229,7 +231,14 @@ def getDolInfo(disc):
     return dolOffset, dolSize
 
 
-def extract(path):
+def extract(path,yaz0Encoder):
+    if yaz0Encoder == "oead":
+        try:
+            from oead import yaz0
+            global yaz0DecompressFunction
+            yaz0DecompressFunction = yaz0.decompress
+        except:
+            print("Extract: oead isn't installed, falling back to native yaz0")
     with open(path, "rb") as f:
         # Seek to fst offset information and retrieve it
         f.seek(fstInfoPosition)
@@ -266,7 +275,7 @@ def extract(path):
 
 
 def main():
-    extract(sys.argv[1])
+    extract(sys.argv[1],"native")
 
 
 if __name__ == "__main__":
