@@ -4,40 +4,9 @@
  */
 
 #include "rel/d/a/kytag/d_a_kytag07/d_a_kytag07.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "d/d_stage.h"
 #include "d/d_procname.h"
 #include "f_op/f_op_overlap_mng.h"
-
-//
-// Forward References:
-//
-
-extern "C" static bool daKytag07_Draw__FP13kytag07_class();
-extern "C" static void daKytag07_Execute__FP13kytag07_class();
-extern "C" static void daKytag07_IsDelete__FP13kytag07_class();
-extern "C" static void daKytag07_Delete__FP13kytag07_class();
-extern "C" static void daKytag07_Create__FP10fopAc_ac_c();
-extern "C" extern void* g_profile_KYTAG07[12];
-
-//
-// External References:
-//
-
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopOvlpM_IsDoingReq__Fv();
-extern "C" void dKy_plight_priority_set__FP15LIGHT_INFLUENCE();
-extern "C" void dKy_plight_cut__FP15LIGHT_INFLUENCE();
-extern "C" void cLib_addCalc__FPfffff();
-// extern "C" extern void* g_fopAc_Method[8];
-// extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-// extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
-
-//
-// Declarations:
-//
 
 /* 8085A278-8085A280 000078 0008+00 1/0 0/0 0/0 .text            daKytag07_Draw__FP13kytag07_class
  */
@@ -45,72 +14,16 @@ static int daKytag07_Draw(kytag07_class* param_0) {
     return 1;
 }
 
-/* ############################################################################################## */
-/* 8085A484-8085A488 000000 0004+00 2/2 0/0 0/0 .rodata          @3754 */
-SECTION_RODATA static f32 const lit_3754 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(0x8085A484, &lit_3754);
-
-/* 8085A488-8085A48C 000004 0004+00 0/2 0/0 0/0 .rodata          @3755 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3755 = 1000.0f;
-COMPILER_STRIP_GATE(0x8085A488, &lit_3755);
-#pragma pop
-
-/* 8085A48C-8085A490 000008 0004+00 0/1 0/0 0/0 .rodata          @3756 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_3756 = 0x3A83126F;
-COMPILER_STRIP_GATE(0x8085A48C, &lit_3756);
-#pragma pop
-
-/* 8085A490-8085A494 00000C 0004+00 0/1 0/0 0/0 .rodata          @3757 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3757[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x8085A490, &lit_3757);
-#pragma pop
-
-/* 8085A494-8085A498 000010 0004+00 0/1 0/0 0/0 .rodata          @3758 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3758 = 0.25f;
-COMPILER_STRIP_GATE(0x8085A494, &lit_3758);
-#pragma pop
-
-/* 8085A498-8085A49C 000014 0004+00 0/1 0/0 0/0 .rodata          @3759 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3759 = 10000.0f;
-COMPILER_STRIP_GATE(0x8085A498, &lit_3759);
-#pragma pop
-
-/* 8085A49C-8085A4A0 000018 0004+00 0/2 0/0 0/0 .rodata          @3760 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3760 = 1.0f;
-COMPILER_STRIP_GATE(0x8085A49C, &lit_3760);
-#pragma pop
-
-/* 8085A4A0-8085A4A4 00001C 0004+00 1/2 0/0 0/0 .rodata          @3761 */
-SECTION_RODATA static f32 const lit_3761 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(0x8085A4A0, &lit_3761);
-
 /* 8085A280-8085A334 000080 00B4+00 1/0 0/0 0/0 .text daKytag07_Execute__FP13kytag07_class */
 static int daKytag07_Execute(kytag07_class* i_this) {
     if (i_this->field_0x58c != 99) {
-        cLib_addCalc(&i_this->mLightInfluence.mPow,i_this->field_0x588,FLOAT_LABEL(lit_3754),FLOAT_LABEL(lit_3755),FLOAT_LABEL(lit_3756));
+        cLib_addCalc(&i_this->mLightInfluence.mPow,i_this->field_0x588,0.1f,1000.0f,0.001f);
     } else {
         if (i_this->orig.roomNo != dStage_roomControl_c::getStayNo()) {
-            cLib_addCalc(&i_this->mLightInfluence.mPow,FLOAT_LABEL(lit_3757),FLOAT_LABEL(lit_3758),FLOAT_LABEL(lit_3759),FLOAT_LABEL(lit_3760));
+            cLib_addCalc(&i_this->mLightInfluence.mPow,0.0f,0.25f,10000.0f,1.0f);
         }
 
-        if (i_this->mLightInfluence.mPow <= FLOAT_LABEL(lit_3761)) {
+        if (i_this->mLightInfluence.mPow <= 0.01f) {
             fopAcM_delete(i_this);
         }
     }
@@ -122,7 +35,7 @@ static int daKytag07_Execute(kytag07_class* i_this) {
 static int daKytag07_IsDelete(kytag07_class* i_this) {
     i_this->field_0x58c = 99;
 
-    if (i_this->mLightInfluence.mPow <= FLOAT_LABEL(lit_3761)) {
+    if (i_this->mLightInfluence.mPow <= 0.01f) {
         return 1;
     } else {
         return fopOvlpM_IsDoingReq() == 1 ? 1 : 0;
@@ -136,16 +49,7 @@ static int daKytag07_Delete(kytag07_class* i_this) {
     return 1;
 }
 
-/* ############################################################################################## */
-/* 8085A4A4-8085A4A8 000020 0004+00 0/1 0/0 0/0 .rodata          @3807 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_3807 = 0x2EDBE6FF;
-COMPILER_STRIP_GATE(0x8085A4A4, &lit_3807);
-#pragma pop
-
 /* 8085A3B0-8085A47C 0001B0 00CC+00 1/0 0/0 0/0 .text            daKytag07_Create__FP10fopAc_ac_c */
-#ifndef NONMATCHING
 static int daKytag07_Create(fopAc_ac_c* i_this) {
     kytag07_class* kytag07 = (kytag07_class*)i_this;
     
@@ -158,45 +62,45 @@ static int daKytag07_Create(fopAc_ac_c* i_this) {
     kytag07->mLightInfluence.mColor.r = fopAcM_GetParam(i_this) & 0xFF;
     kytag07->mLightInfluence.mColor.g = fopAcM_GetParam(i_this) >> 8 & 0xFF;
     kytag07->mLightInfluence.mColor.b = fopAcM_GetParam(i_this) >> 16 & 0xFF;
-    kytag07->mLightInfluence.mPow = FLOAT_LABEL(lit_3807);
-    kytag07->mLightInfluence.mFluctuation = FLOAT_LABEL(lit_3760);
-    kytag07->field_0x588 = FLOAT_LABEL(lit_3755) * kytag07->mScale.x;
+    kytag07->mLightInfluence.mPow = 1e-10;
+    kytag07->mLightInfluence.mFluctuation = 1.0f;
+    kytag07->field_0x588 = 1000.0f * kytag07->mScale.x;
     kytag07->field_0x58c = 0;
 
 
     dKy_plight_priority_set(&kytag07->mLightInfluence);
     return cPhs_COMPLEATE_e;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag07_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag07/d_a_kytag07/daKytag07_Create__FP10fopAc_ac_c.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 8085A4A8-8085A4C8 -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag07_Method */
-SECTION_DATA static void* l_daKytag07_Method[8] = {
-    (void*)daKytag07_Create__FP10fopAc_ac_c,
-    (void*)daKytag07_Delete__FP13kytag07_class,
-    (void*)daKytag07_Execute__FP13kytag07_class,
-    (void*)daKytag07_IsDelete__FP13kytag07_class,
-    (void*)daKytag07_Draw__FP13kytag07_class,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daKytag07_Method = {
+    (process_method_func)daKytag07_Create,
+    (process_method_func)daKytag07_Delete,
+    (process_method_func)daKytag07_Execute,
+    (process_method_func)daKytag07_IsDelete,
+    (process_method_func)daKytag07_Draw
 };
 
 /* 8085A4C8-8085A4F8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_KYTAG07 */
-SECTION_DATA extern void* g_profile_KYTAG07[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x02B10000, (void*)&g_fpcLf_Method,
-    (void*)0x00000590, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x00650000, (void*)&l_daKytag07_Method,
-    (void*)0x00044000, (void*)NULL,
+extern actor_process_profile_definition g_profile_KYTAG07 = {
+    -3,                      // mLayerID  
+    7,                       // mListID
+    -3,                      // mListPrio 
+    PROC_KYTAG07,            // mProcName     
+    0,                       // padding 
+    &g_fpcLf_Method.mBase,   // mSubMtd                    
+    sizeof(kytag07_class),   // mSize                     
+    0,                       // mSizeOther
+    0,                       // mParameters       
+    &g_fopAc_Method.base,    // mSubMtd                   
+    0x0065,                  // mPriority     
+    0,                       // padding
+    0,                       // padding 
+    &l_daKytag07_Method,     // mSubMtd                  
+    0x00044000,              // mStatus          
+    0,                       // mActorType
+    0,                       // mCullType
+    0,                       // padding
+    0                        // padding
 };
