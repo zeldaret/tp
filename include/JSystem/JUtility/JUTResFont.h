@@ -5,6 +5,8 @@
 #include "JSystem/JUtility/JUTFont.h"
 #include "dolphin/types.h"
 
+typedef bool (*IsLeadByte)(int);
+
 class JUTResFont : public JUTFont {
 public:
     /* 802DF000 */ virtual ~JUTResFont();
@@ -34,7 +36,7 @@ public:
     /* 802DF248 */ void countBlock();
     /* 802DFBE8 */ void loadFont(int, _GXTexMapID, JUTFont::TWidth*);
     /* 802DFDD8 */ int getFontCode(int) const;
-    /* 802E00C4 */ void convertSjis(int, u16*) const;
+    /* 802E00C4 */ int convertSjis(int, u16*) const;
 
     inline void delete_and_initialize() {
         deleteMemBlocks_ResFont();
@@ -44,22 +46,22 @@ public:
     static void* const saoAboutEncoding_[3];
 
     // some types uncertain, may need to be fixed
-    /* 0x1C */ void* field_0x1c;
-    /* 0x20 */ void* field_0x20;
+    /* 0x1C */ int mWidth;
+    /* 0x20 */ int mHeight;
     /* 0x24 */ _GXTexObj field_0x24;
     /* 0x44 */ int field_0x44;
     /* 0x48 */ const ResFONT* mResFont;
     /* 0x4C */ ResFONT::INF1* mInf1Ptr;
-    /* 0x50 */ void* field_0x50;
-    /* 0x54 */ ResFONT::WID1* mWid1Ptr;
-    /* 0x58 */ ResFONT::GLY1* mGly1Ptr;
-    /* 0x5C */ ResFONT::MAP1* mMap1Ptr;
+    /* 0x50 */ void** mMemBlocks;
+    /* 0x54 */ ResFONT::WID1** mpWidthBlocks;
+    /* 0x58 */ ResFONT::GLY1** mpGlyphBlocks;
+    /* 0x5C */ ResFONT::MAP1** mpMapBlocks;
     /* 0x60 */ u16 mWid1BlockNum;
     /* 0x62 */ u16 mGly1BlockNum;
     /* 0x64 */ u16 mMap1BlockNum;
     /* 0x66 */ u16 field_0x66;
-    /* 0x68 */ u16 field_0x68;
-    /* 0x6C */ void* field_0x6c;
+    /* 0x68 */ u16 mMaxCode;
+    /* 0x6C */ IsLeadByte* mIsLeadByte;
 };
 
 #endif /* JUTRESFONT_H */

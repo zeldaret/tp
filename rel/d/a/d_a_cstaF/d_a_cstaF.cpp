@@ -3,7 +3,7 @@
 // Translation Unit: d_a_cstaF
 //
 
-#include "rel/d/a/d_a_cstaf/d_a_cstaF.h"
+#include "rel/d/a/d_a_cstaF/d_a_cstaF.h"
 #include "dol2asm.h"
 
 //
@@ -174,7 +174,7 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 #pragma optimizewithasm off
 static asm void daCstaF_rideCB(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2) {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/daCstaF_rideCB__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/daCstaF_rideCB__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c.s"
 }
 #pragma pop
 
@@ -262,7 +262,7 @@ COMPILER_STRIP_GATE(0x804DF900, &lit_4206);
 #pragma optimizewithasm off
 asm int daCstaF_c::CreateHeap() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/CreateHeap__9daCstaF_cFv.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/CreateHeap__9daCstaF_cFv.s"
 }
 #pragma pop
 
@@ -272,7 +272,7 @@ asm int daCstaF_c::CreateHeap() {
 #pragma optimizewithasm off
 asm void daCstaF_c::checkCoverModel() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/checkCoverModel__9daCstaF_cFv.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/checkCoverModel__9daCstaF_cFv.s"
 }
 #pragma pop
 
@@ -476,7 +476,7 @@ SECTION_DATA extern void* __vt__9daCstaF_c[10] = {
 #pragma optimizewithasm off
 asm void daCstaF_c::create() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/create__9daCstaF_cFv.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/create__9daCstaF_cFv.s"
 }
 #pragma pop
 
@@ -487,7 +487,7 @@ asm void daCstaF_c::create() {
 // asm cM3dGCyl::~cM3dGCyl() {
 extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/__dt__8cM3dGCylFv.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/__dt__8cM3dGCylFv.s"
 }
 #pragma pop
 
@@ -498,7 +498,7 @@ extern "C" asm void __dt__8cM3dGCylFv() {
 // asm cM3dGAab::~cM3dGAab() {
 extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/__dt__8cM3dGAabFv.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/__dt__8cM3dGAabFv.s"
 }
 #pragma pop
 
@@ -509,7 +509,7 @@ extern "C" asm void __dt__8cM3dGAabFv() {
 // asm dCcD_GStts::~dCcD_GStts() {
 extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/__dt__10dCcD_GSttsFv.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/__dt__10dCcD_GSttsFv.s"
 }
 #pragma pop
 
@@ -520,7 +520,7 @@ extern "C" asm void __dt__10dCcD_GSttsFv() {
 // asm dBgS_StatueAcch::~dBgS_StatueAcch() {
 extern "C" asm void __dt__15dBgS_StatueAcchFv() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/__dt__15dBgS_StatueAcchFv.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/__dt__15dBgS_StatueAcchFv.s"
 }
 #pragma pop
 
@@ -531,7 +531,7 @@ extern "C" asm void __dt__15dBgS_StatueAcchFv() {
 // asm dBgS_AcchCir::~dBgS_AcchCir() {
 extern "C" asm void __dt__12dBgS_AcchCirFv() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/__dt__12dBgS_AcchCirFv.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/__dt__12dBgS_AcchCirFv.s"
 }
 #pragma pop
 
@@ -542,7 +542,7 @@ extern "C" asm void __dt__12dBgS_AcchCirFv() {
 // asm J3DFrameCtrl::~J3DFrameCtrl() {
 extern "C" asm void __dt__12J3DFrameCtrlFv() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/__dt__12J3DFrameCtrlFv.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/__dt__12J3DFrameCtrlFv.s"
 }
 #pragma pop
 
@@ -552,7 +552,7 @@ extern "C" asm void __dt__12J3DFrameCtrlFv() {
 #pragma optimizewithasm off
 static asm void daCstaF_Create(fopAc_ac_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/daCstaF_Create__FP10fopAc_ac_c.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/daCstaF_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
@@ -562,7 +562,7 @@ static asm void daCstaF_Create(fopAc_ac_c* param_0) {
 #pragma optimizewithasm off
 asm daCstaF_c::~daCstaF_c() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/__dt__9daCstaF_cFv.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/__dt__9daCstaF_cFv.s"
 }
 #pragma pop
 
@@ -572,7 +572,7 @@ asm daCstaF_c::~daCstaF_c() {
 #pragma optimizewithasm off
 static asm void daCstaF_Delete(daCstaF_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/daCstaF_Delete__FP9daCstaF_c.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/daCstaF_Delete__FP9daCstaF_c.s"
 }
 #pragma pop
 
@@ -587,7 +587,7 @@ COMPILER_STRIP_GATE(0x804DF938, &lit_4543);
 #pragma optimizewithasm off
 asm void daCstaF_c::setRoomInfo() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/setRoomInfo__9daCstaF_cFv.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/setRoomInfo__9daCstaF_cFv.s"
 }
 #pragma pop
 
@@ -604,7 +604,7 @@ COMPILER_STRIP_GATE(0x804DF93C, &fieldLocalBallPos);
 #pragma optimizewithasm off
 asm void daCstaF_c::setMatrix() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/setMatrix__9daCstaF_cFv.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/setMatrix__9daCstaF_cFv.s"
 }
 #pragma pop
 
@@ -685,7 +685,7 @@ COMPILER_STRIP_GATE(0x804DF978, &lit_4728);
 #pragma optimizewithasm off
 asm void daCstaF_c::posMove() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/posMove__9daCstaF_cFv.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/posMove__9daCstaF_cFv.s"
 }
 #pragma pop
 
@@ -696,7 +696,7 @@ asm void daCstaF_c::posMove() {
 // asm cM3dGPla::~cM3dGPla() {
 extern "C" asm void __dt__8cM3dGPlaFv() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/__dt__8cM3dGPlaFv.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/__dt__8cM3dGPlaFv.s"
 }
 #pragma pop
 
@@ -706,7 +706,7 @@ extern "C" asm void __dt__8cM3dGPlaFv() {
 #pragma optimizewithasm off
 asm void daCstaF_c::setCollision() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/setCollision__9daCstaF_cFv.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/setCollision__9daCstaF_cFv.s"
 }
 #pragma pop
 
@@ -741,7 +741,7 @@ static u8 l_cancelOffset[4];
 #pragma optimizewithasm off
 asm void daCstaF_c::setAnime() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/setAnime__9daCstaF_cFv.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/setAnime__9daCstaF_cFv.s"
 }
 #pragma pop
 
@@ -751,7 +751,7 @@ asm void daCstaF_c::setAnime() {
 #pragma optimizewithasm off
 asm void daCstaF_c::initBrk(u16 param_0) {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/initBrk__9daCstaF_cFUs.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/initBrk__9daCstaF_cFUs.s"
 }
 #pragma pop
 
@@ -771,7 +771,7 @@ COMPILER_STRIP_GATE(0x804DF988, &brkIdx);
 #pragma optimizewithasm off
 asm void daCstaF_c::initStopBrkBtk() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/initStopBrkBtk__9daCstaF_cFv.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/initStopBrkBtk__9daCstaF_cFv.s"
 }
 #pragma pop
 
@@ -808,7 +808,7 @@ COMPILER_STRIP_GATE(0x804DF994, &lit_4957);
 #pragma optimizewithasm off
 asm void daCstaF_c::initStartBrkBtk() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/initStartBrkBtk__9daCstaF_cFv.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/initStartBrkBtk__9daCstaF_cFv.s"
 }
 #pragma pop
 
@@ -818,7 +818,7 @@ asm void daCstaF_c::initStartBrkBtk() {
 #pragma optimizewithasm off
 asm int daCstaF_c::Execute(f32 (**param_0)[3][4]) {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/Execute__9daCstaF_cFPPA3_A4_f.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/Execute__9daCstaF_cFPPA3_A4_f.s"
 }
 #pragma pop
 
@@ -828,7 +828,7 @@ asm int daCstaF_c::Execute(f32 (**param_0)[3][4]) {
 #pragma optimizewithasm off
 static asm void daCstaF_Execute(daCstaF_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/daCstaF_Execute__FP9daCstaF_c.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/daCstaF_Execute__FP9daCstaF_c.s"
 }
 #pragma pop
 
@@ -846,7 +846,7 @@ COMPILER_STRIP_GATE(0x804DF998, &lit_5082);
 #pragma optimizewithasm off
 asm int daCstaF_c::Draw() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/Draw__9daCstaF_cFv.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/Draw__9daCstaF_cFv.s"
 }
 #pragma pop
 
@@ -856,7 +856,7 @@ asm int daCstaF_c::Draw() {
 #pragma optimizewithasm off
 static asm void daCstaF_Draw(daCstaF_c* param_0) {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/daCstaF_Draw__FP9daCstaF_c.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/daCstaF_Draw__FP9daCstaF_c.s"
 }
 #pragma pop
 
@@ -867,7 +867,7 @@ static asm void daCstaF_Draw(daCstaF_c* param_0) {
 // asm cCcD_GStts::~cCcD_GStts() {
 extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/__dt__10cCcD_GSttsFv.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/__dt__10cCcD_GSttsFv.s"
 }
 #pragma pop
 
@@ -881,7 +881,7 @@ COMPILER_STRIP_GATE(0x804DF99C, &lit_5096);
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm void __sinit_d_a_cstaF_cpp(){nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/__sinit_d_a_cstaF_cpp.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/__sinit_d_a_cstaF_cpp.s"
 }
 #pragma pop
 
@@ -896,7 +896,7 @@ REGISTER_CTORS(0x804DF874, __sinit_d_a_cstaF_cpp);
 #pragma optimizewithasm off
 static asm void func_804DF89C() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/func_804DF89C.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/func_804DF89C.s"
 }
 #pragma pop
 
@@ -906,6 +906,6 @@ static asm void func_804DF89C() {
 #pragma optimizewithasm off
 static asm void func_804DF8A4() {
     nofralloc
-#include "asm/rel/d/a/d_a_cstaf/d_a_cstaF/func_804DF8A4.s"
+#include "asm/rel/d/a/d_a_cstaF/d_a_cstaF/func_804DF8A4.s"
 }
 #pragma pop
