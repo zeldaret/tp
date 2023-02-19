@@ -8,9 +8,7 @@
 
 class kytag07_class : public fopAc_ac_c {
 public:
-    /* 0x568 */ u8 field_0x568[20];
-    /* 0x57C */ f32 field_0x57c;
-    /* 0x580 */ u8 field_0x580[8];
+    /* 0x568 */ LIGHT_INFLUENCE mLightInfluence;
     /* 0x588 */ f32 field_0x588;
     /* 0x58C */ u8 field_0x58c;
 };

@@ -104,13 +104,13 @@ COMPILER_STRIP_GATE(0x8085A4A0, &lit_3761);
 /* 8085A280-8085A334 000080 00B4+00 1/0 0/0 0/0 .text daKytag07_Execute__FP13kytag07_class */
 static int daKytag07_Execute(kytag07_class* i_this) {
     if (i_this->field_0x58c != 99) {
-        cLib_addCalc(&i_this->field_0x57c,i_this->field_0x588,FLOAT_LABEL(lit_3754),FLOAT_LABEL(lit_3755),FLOAT_LABEL(lit_3756));
+        cLib_addCalc(&i_this->mLightInfluence.mPow,i_this->field_0x588,FLOAT_LABEL(lit_3754),FLOAT_LABEL(lit_3755),FLOAT_LABEL(lit_3756));
     } else {
         if (i_this->orig.roomNo != dStage_roomControl_c::getStayNo()) {
-            cLib_addCalc(&i_this->field_0x57c,FLOAT_LABEL(lit_3757),FLOAT_LABEL(lit_3758),FLOAT_LABEL(lit_3759),FLOAT_LABEL(lit_3760));
+            cLib_addCalc(&i_this->mLightInfluence.mPow,FLOAT_LABEL(lit_3757),FLOAT_LABEL(lit_3758),FLOAT_LABEL(lit_3759),FLOAT_LABEL(lit_3760));
         }
 
-        if (i_this->field_0x57c <= FLOAT_LABEL(lit_3761)) {
+        if (i_this->mLightInfluence.mPow <= FLOAT_LABEL(lit_3761)) {
             fopAcM_delete(i_this);
         }
     }
@@ -122,7 +122,7 @@ static int daKytag07_Execute(kytag07_class* i_this) {
 static int daKytag07_IsDelete(kytag07_class* i_this) {
     i_this->field_0x58c = 99;
 
-    if (i_this->field_0x57c <= FLOAT_LABEL(lit_3761)) {
+    if (i_this->mLightInfluence.mPow <= FLOAT_LABEL(lit_3761)) {
         return 1;
     } else {
         return fopOvlpM_IsDoingReq() == 1 ? 1 : 0;
@@ -131,6 +131,12 @@ static int daKytag07_IsDelete(kytag07_class* i_this) {
 
 /* 8085A388-8085A3B0 000188 0028+00 1/0 0/0 0/0 .text            daKytag07_Delete__FP13kytag07_class
  */
+#ifndef NONMATCHING
+static int daKytag07_Delete(kytag07_class* i_this) {
+    dKy_plight_cut(&i_this->mLightInfluence);
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -139,6 +145,7 @@ static asm void daKytag07_Delete(kytag07_class* param_0) {
 #include "asm/rel/d/a/kytag/d_a_kytag07/d_a_kytag07/daKytag07_Delete__FP13kytag07_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8085A4A4-8085A4A8 000020 0004+00 0/1 0/0 0/0 .rodata          @3807 */
