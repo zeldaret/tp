@@ -4,19 +4,6 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_hinit/d_a_tag_hinit.h"
-#include "d/com/d_com_inf_game.h"
-#include "dol2asm.h"
-#include "rel/d/a/d_a_horse/d_a_horse.h"
-
-//
-// Forward References:
-//
-
-extern "C" extern void* g_profile_Tag_Hinit[12];
-
-//
-// Declarations:
-//
 
 /* 805A3758-805A3800 000078 00A8+00 1/1 0/0 0/0 .text            create__12daTagHinit_cFv */
 int daTagHinit_c::create() {
@@ -60,7 +47,8 @@ int daTagHinit_c::execute() {
          i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x56c])) &&
         (field_0x56e == 0xFFFF ||
          !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x56e])) &&
-        (field_0x568 == 0xFF || i_fopAcM_isSwitch(this, field_0x568))) {
+        (field_0x568 == 0xFF || i_fopAcM_isSwitch(this, field_0x568)))
+    {
         if (field_0x569 != 0xFF) {
             i_fopAcM_onSwitch(this, field_0x569);
         }
@@ -87,23 +75,32 @@ static int daTagHinit_Draw(daTagHinit_c*) {
 
 /* ############################################################################################## */
 /* 805A39E8-805A3A08 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagHinit_Method */
-SECTION_DATA static void* l_daTagHinit_Method[8] = {
-    (void*)daTagHinit_Create,
-    (void*)daTagHinit_Delete,
-    (void*)daTagHinit_Execute,
-    (void*)NULL,
-    (void*)daTagHinit_Draw,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daTagHinit_Method = {
+    (process_method_func)daTagHinit_Create,  (process_method_func)daTagHinit_Delete,
+    (process_method_func)daTagHinit_Execute, (process_method_func)NULL,
+    (process_method_func)daTagHinit_Draw,
+
 };
 
 /* 805A3A08-805A3A38 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Hinit */
-SECTION_DATA extern void* g_profile_Tag_Hinit[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0003FFFD,
-    (void*)0x00E90000, (void*)&g_fpcLf_Method,
-    (void*)0x00000570, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x01B10000, (void*)&l_daTagHinit_Method,
-    (void*)0x00060000, (void*)0x030E0000,
+extern actor_process_profile_definition g_profile_Tag_Hinit = {
+    -3,
+    3,
+    -3,
+    PROC_Tag_Hinit,
+    0,
+    &g_fpcLf_Method.mBase,
+    sizeof(daTagHinit_c),
+    0,
+    0,
+    &g_fopAc_Method.base,
+    0x01B1,
+    0,
+    0,
+    &l_daTagHinit_Method,
+    0x00060000,
+    3,
+    0x0E,
+    0,
+    0,
 };
