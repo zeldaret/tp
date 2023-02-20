@@ -21,13 +21,6 @@ static void* s_sub(void* i_actorP, void* i_this) {
     return 0;
 }
 
-/* ############################################################################################## */
-/* 80837DE4-80837DEC 000000 0008+00 1/1 0/0 0/0 .rodata
- * mGuardDataTbl$localstatic3$getGuardParam__12daGuardMng_cFv   */
-static u32 const data_80837DE4[2] = {
-    0x00000200, 0x00000201,
-};
-
 /* 80837B9C-80837BEC 0000FC 0050+00 1/1 0/0 0/0 .text            checkMerchantNum__12daGuardMng_cFv
  */
 u8 daGuardMng_c::checkMerchantNum() {
@@ -54,7 +47,7 @@ void daGuardMng_c::checkAppearTag(daTagGuard_c* i_this) {
 
 /* 80837C6C-80837D44 0001CC 00D8+00 1/0 0/0 0/0 .text daGuardMng_Execute__FP12daGuardMng_c */
 static int daGuardMng_Execute(daGuardMng_c* i_this) {
-    return i_this->execute(data_80837DE4[0]); // this inline technically doesn't take a param. small hack to get the match
+    return i_this->execute(); // this inline technically doesn't take a param. small hack to get the match
 }
 
 /* 80837D44-80837D4C 0002A4 0008+00 1/0 0/0 0/0 .text daGuardMng_IsDelete__FP12daGuardMng_c */

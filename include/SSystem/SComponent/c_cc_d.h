@@ -266,6 +266,9 @@ struct cCcD_SrcObjTg {
 struct cCcD_SrcObjAt {
     /* 0x0 */ s32 mType;
     /* 0x4 */ u8 mAtp;
+    // /* 0x5 */ u8 padding1;
+    // /* 0x6 */ u8 padding2;
+    // /* 0x7 */ u8 padding3;
     /* 0x8 */ s32 mSPrm;
 };  // Size: 0xC
 

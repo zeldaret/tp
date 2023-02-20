@@ -5,13 +5,20 @@
 #include "rel/d/a/tag/d_a_tag_guard/d_a_tag_guard.h"
 #include "d/com/d_com_inf_game.h"
 
+/* ############################################################################################## */
+/* 80837DE4-80837DEC 000000 0008+00 1/1 0/0 0/0 .rodata
+ * mGuardDataTbl$localstatic3$getGuardParam__12daGuardMng_cFv   */
+static u32 const data_80837DE4[2] = {
+    0x00000200, 0x00000201,
+};
+
 class daGuardMng_c : public fopAc_ac_c {
 public:
     void countMerchantNum() {
         mMerchantNum++;
     }
 
-    int execute(u32 tmp) {
+    int execute() {
         if (!daPy_py_c::i_checkNowWolf() || field_0x573 >= mLimitNum) {
             return 1;
         } else {
@@ -23,7 +30,7 @@ public:
 
             if (mpTagGuard) {
                 if (field_0x571 > mMerchantNum && 3 < (field_0x571 - mMerchantNum)) {
-                    mpTagGuard->createGuard(tmp);
+                    mpTagGuard->createGuard(data_80837DE4[0]);
                     field_0x573++;
                     field_0x571 = mMerchantNum;
                     dComIfGs_onSaveDunSwitch(0x3c);
