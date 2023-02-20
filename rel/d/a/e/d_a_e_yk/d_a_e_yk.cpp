@@ -481,25 +481,53 @@ static int daE_YK_Draw(e_yk_class* i_this) {
 }
 
 /* 80804B38-80804BB0 0003F8 0078+00 1/1 0/0 0/0 .text            shot_b_sub__FPvPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void shot_b_sub(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/shot_b_sub__FPvPv.s"
+static void* shot_b_sub(void* param_0, void* param_1) {
+    if (fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_BOOMERANG &&
+                                !i_dComIfGp_checkPlayerStatus0(0,0x80000) &&
+                                daPy_py_c::checkBoomerangCharge() &&
+                                fopAcM_GetParam(param_0) == 1) {
+            return param_0;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 80804BB0-80804C88 000470 00D8+00 1/1 0/0 0/0 .text other_bg_check__FP10e_yk_classP10fopAc_ac_c
  */
+#ifdef NONMATCHING
+// regalloc. i_actorP needs to load in first
+static bool other_bg_check(e_yk_class* i_this, fopAc_ac_c* i_actorP) {
+    dBgS_LinChk lin_chk;
+    cXyz yk_pos;
+    cXyz actor_pos;
+    
+    actor_pos = i_actorP->current.pos;
+    actor_pos.y += FLOAT_LABEL(lit_3941);
+    
+    yk_pos = i_this->current.pos;
+    yk_pos.y = i_this->mEyePos.y;
+    
+    lin_chk.Set(&yk_pos,&actor_pos,i_actorP);
+
+    if (dComIfG_Bgsp().LineCross(&lin_chk)) {
+        return 1;
+    }
+
+    return 0;
+
+    // return !dComIfG_Bgsp().LineCross(&lin_chk);
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void other_bg_check(e_yk_class* param_0, fopAc_ac_c* param_1) {
+static asm int other_bg_check(e_yk_class* param_0, fopAc_ac_c* param_1) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/other_bg_check__FP10e_yk_classP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80807CDC-80807CE0 000040 0004+00 1/1 0/0 0/0 .rodata          @4103 */
@@ -507,6 +535,26 @@ SECTION_RODATA static f32 const lit_4103 = 50000.0f;
 COMPILER_STRIP_GATE(0x80807CDC, &lit_4103);
 
 /* 80804C88-80804D38 000548 00B0+00 5/5 0/0 0/0 .text            pl_check__FP10e_yk_classfs */
+#ifndef NONMATCHING
+static int pl_check(e_yk_class* i_this, f32 param_1, s16 param_2) {
+    if (param_1 >= FLOAT_LABEL(lit_4103)) {
+        return 1;
+    }
+    if (dComIfGp_getPlayer(0)->current.pos.y < i_this->current.pos.y && i_this->field_0x684 < param_1) {
+        s16 value = i_this->shape_angle.y - i_this->field_0x680;
+
+        if (param_2 == 1 || (value < param_2 && value > (s16)-param_2)){
+            if (!other_bg_check(i_this,dComIfGp_getPlayer(0))) {
+                return 1;
+            } 
+        }
+    }
+
+    return 0;
+
+    // return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -515,6 +563,7 @@ static asm void pl_check(e_yk_class* param_0, f32 param_1, s16 param_2) {
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/pl_check__FP10e_yk_classfs.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80807CE0-80807CE4 000044 0004+00 0/2 0/0 0/0 .rodata          @4151 */
