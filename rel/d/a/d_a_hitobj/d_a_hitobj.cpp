@@ -40,42 +40,18 @@ static int daHitobj_Delete(hitobj_class* i_this) {
 
 /* ############################################################################################## */
 /* 8046B5DC-8046B61C 000000 0040+00 1/1 0/0 0/0 .data            cc_sph_src$3657 */
-// 
-static u8 cc_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x13,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
+static dCcD_SrcSph cc_sph_src = {
+    {
+        {0, {{0, 0, 0x13}, {0, 3}, 0}},
+        {dCcD_SE_NONE, 0, 0, 0, {0}},
+        {dCcD_SE_NONE, 0, 0, 0, {0}},
+        {0},
+    },
+    {
+        {0.0f, 0.0f, 0.0f},
+        100.0f,
+    },
 };
-
-// appears correct but .data is too small. some weird padding issue maybe
-// static dCcD_SrcSph cc_sph_src = {
-//     0,     // mAreaFlag     // 0x00, 0x00, 0x00, 0x00
-//     0,     // mType         // 0x00, 0x00, 0x00, 0x00
-//     0,     // mAtp          // 0x00
-//     // 0,     // padding       // 0x00 
-//     // 0,     // padding       // 0x00 
-//     // 0,     // padding       // 0x00
-//     13,    // mSPrm         // 0x00, 0x00, 0x00, 0x13
-//     0,     // mType         // 0x00, 0x00, 0x00, 0x00
-//     3,     // mSPrm         // 0x00, 0x00, 0x00, 0x03
-//     0,     // mSPrm         // 0x00, 0x00, 0x00, 0x00
-//     0,     // mSe           // 0x00
-//     0,     // mHitMark      // 0x00
-//     0,     // mSpl          // 0x00
-//     0,     // mMtrl         // 0x00
-//     0,     // mGFlag        // 0x00, 0x00, 0x00, 0x00
-//     0,     // mSe           // 0x00
-//     0,     // mHitMark      // 0x00
-//     0,     // mSpl          // 0x00
-//     0,     // mMtrl         // 0x00
-//     0,     // mGFlag        // 0x00, 0x00, 0x00, 0x00
-//     0,     // mGFlag        // 0x00, 0x00, 0x00, 0x00
-//     0.0f,  // mCenter.x     // 0x00, 0x00, 0x00, 0x00
-//     0.0f,  // mCenter.y     // 0x00, 0x00, 0x00, 0x00
-//     0.0f,  // mCenter.z     // 0x00, 0x00, 0x00, 0x00
-//     100.0f // mRadius       // 0x42, 0xC8, 0x00, 0x00
-// };
 
 /* 8046B400-8046B53C 000120 013C+00 1/0 0/0 0/0 .text            daHitobj_Create__FP10fopAc_ac_c */
 static int daHitobj_Create(fopAc_ac_c* i_this) {
@@ -90,7 +66,7 @@ static int daHitobj_Create(fopAc_ac_c* i_this) {
     if (ret == cPhs_COMPLEATE_e) {
         hitobj->field_0x570 = fopAcM_GetParam(hitobj);
         hitobj->field_0x574.Init(0xff,0xff,hitobj);
-        hitobj->field_0x5b0.Set(*(dCcD_SrcSph*)&cc_sph_src);
+        hitobj->field_0x5b0.Set(cc_sph_src);
         hitobj->field_0x5b0.SetStts(&hitobj->field_0x574);
         hitobj->field_0x572 = 3;
     }
