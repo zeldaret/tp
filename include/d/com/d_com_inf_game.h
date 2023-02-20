@@ -19,6 +19,7 @@
 #include "f_op/f_op_scene_mng.h"
 
 class dTimer_c;
+
 class __d_timer_info_c {
 public:
     __d_timer_info_c() {
@@ -701,6 +702,8 @@ int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* resNa
 int dComIfG_changeOpeningScene(scene_class* scene, s16 procName);
 int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* arc_name);
 int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* resName, JKRHeap* heap);
+int dComIfG_TimerDeleteRequest(int i_mode);
+int dComIfG_TimerStart(int i_mode, s16 i_time);
 
 inline void dComIfG_setBrightness(u8 brightness) {
     g_dComIfG_gameInfo.mFadeBrightness = brightness;
@@ -2731,6 +2734,13 @@ inline JPABaseEmitter* dComIfGp_particle_setColor(u16 param_0, const cXyz* param
                                                   f32 param_5, u8 param_6) {
     return dComIfGp_particle_setColor(param_0, param_1, param_2, param_3, param_4, param_5, param_6,
                                       NULL, NULL, NULL, -1, NULL);
+}
+
+inline void dComIfGp_particle_setSimple(u16 param_0,cXyz* param_1, 
+                                        u8 param_2, _GXColor& param_3,
+                                        _GXColor& param_4, int param_5, 
+                                        float param_6) {
+    g_dComIfG_gameInfo.play.getParticle()->setSimple(param_0,param_1,0,param_2,param_3,param_4,param_5,param_6);
 }
 
 inline void dComIfGp_particle_levelEmitterOnEventMove(u32 param_0) {

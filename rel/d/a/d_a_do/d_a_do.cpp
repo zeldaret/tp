@@ -1467,7 +1467,7 @@ static void do_walk_run(do_class* i_this) {
         if (i_this->field_0x5e8 >= FLOAT_LABEL(lit_3665)) {
             i_this->mAction = ACT_RUN;
             i_this->mStayStatus = 0;
-            i_this->mSound.startSound(JAISoundID(Z2SE_DOG_BARK), 0, -1);
+            i_this->mSound.startSound(Z2SE_DOG_BARK, 0, -1);
         }
     }
     default: {
@@ -1790,7 +1790,7 @@ static void do_wait_1(do_class* i_this) {
             distance = 127.0;
         }
 
-        i_this->mSound.startLevelSound(JAISoundID(Z2SE_DOG_V_CALL_HELP), distance, -1);
+        i_this->mSound.startLevelSound(Z2SE_DOG_V_CALL_HELP, distance, -1);
     }
 }
 #else
@@ -2677,7 +2677,7 @@ static void action(do_class* i_this) {
     if (i_this->field_0x6ae != 0) {
         i_this->field_0x6ae--;
         if (i_this->field_0x6ae == 0) {
-            i_this->mSound.startSound(JAISoundID(Z2SE_M007_DOG_COME_RUNNING), 0, -1);
+            i_this->mSound.startSound(Z2SE_M007_DOG_COME_RUNNING, 0, -1);
         }
     }
 
@@ -2828,7 +2828,7 @@ static void action(do_class* i_this) {
                             (GXColor*)0, (cXyz*)0));
                     }
 
-                    i_this->mSound.startSound(JAISoundID(Z2SE_CM_BODYFALL_WATER_S), 0, -1);
+                    i_this->mSound.startSound(Z2SE_CM_BODYFALL_WATER_S, 0, -1);
                 }
             }
         }

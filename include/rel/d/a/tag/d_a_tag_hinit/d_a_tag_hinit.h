@@ -1,7 +1,9 @@
 #ifndef D_A_TAG_HINIT_H
 #define D_A_TAG_HINIT_H
 
+#include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor.h"
+#include "rel/d/a/d_a_horse/d_a_horse.h"
 
 class daTagHinit_c : public fopAc_ac_c {
 public:
