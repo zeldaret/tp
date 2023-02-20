@@ -467,14 +467,18 @@ static void anm_init(e_yk_class* i_this, int i_resIdx, f32 param_2, u8 param_3, 
 }
 
 /* 80804A90-80804B38 000350 00A8+00 1/0 0/0 0/0 .text            daE_YK_Draw__FP10e_yk_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daE_YK_Draw(e_yk_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/daE_YK_Draw__FP10e_yk_class.s"
+static int daE_YK_Draw(e_yk_class* i_this) {
+    J3DModel* model = i_this->mpMorfSO->getModel();
+
+    g_env_light.settingTevStruct(2,&i_this->current.pos,&i_this->mTevStr);
+    g_env_light.setLightTevColorType_MAJI(model,&i_this->mTevStr);
+
+    dComIfGd_setListDark();
+
+    i_this->mpMorfSO->entryDL();
+    dComIfGd_setList();
+    return 1;
 }
-#pragma pop
 
 /* 80804B38-80804BB0 0003F8 0078+00 1/1 0/0 0/0 .text            shot_b_sub__FPvPv */
 #pragma push
