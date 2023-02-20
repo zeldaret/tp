@@ -431,6 +431,25 @@ SECTION_RODATA static f32 const lit_4009 = -1.0f;
 COMPILER_STRIP_GATE(0x80807CD8, &lit_4009);
 
 /* 80804870-808049E4 000130 0174+00 2/2 0/0 0/0 .text            yk_disappear__FP10e_yk_class */
+#ifdef NONMATCHING
+// float literals inline
+static void yk_disappear(e_yk_class* i_this) {
+    // cXyz pos;
+    cXyz pos(FLOAT_LABEL(lit_4008),FLOAT_LABEL(lit_4008),FLOAT_LABEL(lit_4008));
+
+    dComIfGp_particle_set(0x826c,&i_this->current.pos,0,&pos); // float literal inline
+    dComIfGp_particle_set(0x826d,&i_this->current.pos,0,&pos); // float literal inline
+
+    fopAcM_seStart(i_this,Z2SE_DARK_VANISH,0); // float literal inline
+    fopAcM_createItemFromEnemyID(1,&i_this->current.pos,0xffffffff,0xffffffff,0,0,0,0);
+
+    u8 param = fopAcM_GetParam(i_this);
+    if (param >> 0x18 != 0xff) {
+        dComIfGs_onSwitch(param >> 0x18,fopAcM_GetRoomNo(i_this));
+    }
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -439,23 +458,13 @@ static asm void yk_disappear(e_yk_class* param_0) {
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/yk_disappear__FP10e_yk_class.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 80807D64-80807D64 0000C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80807D64 = "E_YK";
-#pragma pop
+#endif
 
 /* 808049E4-80804A90 0002A4 00AC+00 10/10 0/0 0/0 .text            anm_init__FP10e_yk_classifUcf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void anm_init(e_yk_class* param_0, int param_1, f32 param_2, u8 param_3, f32 param_4) {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/anm_init__FP10e_yk_classifUcf.s"
+static void anm_init(e_yk_class* i_this, int i_resIdx, f32 param_2, u8 param_3, f32 param_4) {
+    i_this->mpMorfSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_YK",i_resIdx),param_3,param_2,param_4,FLOAT_LABEL(lit_3942),FLOAT_LABEL(lit_4009));
+    i_this->mResIdx = i_resIdx;
 }
-#pragma pop
 
 /* 80804A90-80804B38 000350 00A8+00 1/0 0/0 0/0 .text            daE_YK_Draw__FP10e_yk_class */
 #pragma push
