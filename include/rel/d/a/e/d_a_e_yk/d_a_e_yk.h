@@ -5,9 +5,19 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
 
-struct daE_YK_HIO_c {
+class daE_YK_HIO_c {
+public:
     /* 8080482C */ daE_YK_HIO_c();
-    /* 808077E0 */ ~daE_YK_HIO_c();
+    /* 808077E0 */ virtual ~daE_YK_HIO_c();
+
+    /* 0x00 */ // vtable
+    /* 0x04 */ s8 field_0x04;
+    /* 0x05 */ u8 field_0x05[3]; // padding
+    /* 0x08 */ f32 field_0x08;
+    /* 0x0C */ f32 field_0x0c;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
 };
 
 class e_yk_class : public fopEn_enemy_c {

@@ -155,8 +155,6 @@ extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-// extern "C" extern u8 g_dComIfG_gameInfo[122384];
-// extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 extern "C" u8 m_midnaActor__9daPy_py_c[4];
 extern "C" extern u8 pauseTimer__9dScnPly_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
@@ -411,14 +409,14 @@ SECTION_DATA extern void* __vt__12daE_YK_HIO_c[3] = {
 };
 
 /* 8080482C-80804870 0000EC 0044+00 1/1 0/0 0/0 .text            __ct__12daE_YK_HIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm daE_YK_HIO_c::daE_YK_HIO_c() {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/__ct__12daE_YK_HIO_cFv.s"
+daE_YK_HIO_c::daE_YK_HIO_c() {
+    field_0x04 = -1;
+    field_0x08 = FLOAT_LABEL(lit_3943);
+    field_0x0c = FLOAT_LABEL(lit_3962);
+    field_0x10 = FLOAT_LABEL(lit_3963);
+    field_0x14 = FLOAT_LABEL(lit_3962);
+    field_0x18 = FLOAT_LABEL(lit_3964);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80807CD4-80807CD8 000038 0004+00 0/1 0/0 0/0 .rodata          @4008 */
