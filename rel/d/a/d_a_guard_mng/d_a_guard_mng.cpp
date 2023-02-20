@@ -47,7 +47,7 @@ void daGuardMng_c::checkAppearTag(daTagGuard_c* i_this) {
 
 /* 80837C6C-80837D44 0001CC 00D8+00 1/0 0/0 0/0 .text daGuardMng_Execute__FP12daGuardMng_c */
 static int daGuardMng_Execute(daGuardMng_c* i_this) {
-    return i_this->execute(); // this inline technically doesn't take a param. small hack to get the match
+    return i_this->execute();
 }
 
 /* 80837D44-80837D4C 0002A4 0008+00 1/0 0/0 0/0 .text daGuardMng_IsDelete__FP12daGuardMng_c */
