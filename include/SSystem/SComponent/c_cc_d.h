@@ -455,6 +455,8 @@ public:
     void OnTgSetBit() { mObjTg.OnSPrmBit(1); }
     void OffTgSetBit() { mObjTg.ClrSet(); }
     void OnCoSetBit() { mObjCo.OnSPrmBit(1); }
+    void OffAtVsPlayerBit() { mObjAt.OffSPrmBit(0xC); }
+    void OnAtVsPlayerBit() { mObjAt.OnSPrmBit(0xC); }
 
 };  // Size = 0x40
 

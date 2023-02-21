@@ -542,8 +542,8 @@ static int pl_check(e_yk_class* i_this, f32 param_1, s16 param_2) {
         return 1;
     }
 
-    if (dComIfGp_getPlayer(0)->current.pos.y < i_this->current.pos.y && i_this->field_0x684 < param_1) {
-        s16 value = i_this->shape_angle.y - i_this->field_0x680;
+    if (dComIfGp_getPlayer(0)->current.pos.y < i_this->current.pos.y && i_this->mDistanceXZFromPlayer < param_1) {
+        s16 value = i_this->shape_angle.y - i_this->mAngleFromPlayer;
 
         if (param_2 == 1 || value < param_2 && value > (s16)-param_2){
             if (!other_bg_check(i_this,dComIfGp_getPlayer(0))) {
@@ -588,9 +588,9 @@ static void damage_check(e_yk_class* i_this) {
         i_this->field_0x8e0.Move();
 
         // If keese Defense collider was hit
-        if (i_this->field_0x91c.ChkTgHit()) {
+        if (i_this->mCollisionSphere.ChkTgHit()) {
             // Save the collider that hit the keese dt collider
-            i_this->field_0xa54.mpCollider = i_this->field_0x91c.GetTgHitObj();
+            i_this->field_0xa54.mpCollider = i_this->mCollisionSphere.GetTgHitObj();
 
             // If keese was hit by the boomerang
             if (i_this->field_0xa54.mpCollider->ChkAtType(AT_TYPE_BOOMERANG)) {
@@ -946,6 +946,13 @@ SECTION_RODATA static f32 const lit_4676 = 1000.0f;
 COMPILER_STRIP_GATE(0x80807D40, &lit_4676);
 #pragma pop
 
+/* 80807D44-80807D48 0000A8 0004+00 0/0 0/0 0/0 .rodata          @4725 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4725 = 5.0f;
+COMPILER_STRIP_GATE(0x80807D44, &lit_4725);
+#pragma pop
+
 /* 80806740-808068E4 002000 01A4+00 1/1 0/0 0/0 .text            e_yk_wind__FP10e_yk_class */
 #pragma push
 #pragma optimization_level 0
@@ -957,6 +964,96 @@ static asm void e_yk_wind(e_yk_class* i_this) {
 #pragma pop
 
 /* 808068E4-80806B78 0021A4 0294+00 2/1 0/0 0/0 .text            action__FP10e_yk_class */
+#ifdef NONMATCHING
+// matches with literals
+static void action(e_yk_class* i_this) {
+    cXyz pos;
+    cXyz pos2;
+
+    i_this->mAngleFromPlayer = fopAcM_searchPlayerAngleY(i_this);
+    i_this->mDistanceXZFromPlayer = fopAcM_searchPlayerDistanceXZ(i_this);
+
+    damage_check(i_this);
+
+    i_this->mCollisionSphere.OffAtVsPlayerBit();
+    s8 searchForLink = 0;
+    
+    switch(i_this->mAction) {
+    case ACT_ROOF:
+        e_yk_roof(i_this);
+        break;
+    case ACT_FIGHT_FLY:
+        e_yk_fight_fly(i_this);
+        break;
+    case ACT_FIGHT:
+        e_yk_fight(i_this);
+        searchForLink = 1;
+        break;
+    case ACT_ATTACK:
+        e_yk_attack(i_this);
+        i_this->mCollisionSphere.OnAtVsPlayerBit();
+        searchForLink = 1;
+        break;
+    case ACT_RETURN:
+        e_yk_return(i_this);
+        break;
+    case ACT_FLY:
+        e_yk_fly(i_this);
+        break;
+    case ACT_PATH_FLY:
+        e_yk_path_fly(i_this);
+        break;
+    case ACT_CHANCE:
+        e_yk_chance(i_this);
+        break;
+    case ACT_WOLFBITE:
+        e_yk_wolfbite(i_this);
+        break;
+    case ACT_WIND:
+        e_yk_wind(i_this);
+    }
+
+    searchForLink ? i_this->mCreature.setLinkSearch(true) : i_this->mCreature.setLinkSearch(false);
+
+    if (i_this->field_0x694 > FLOAT_LABEL(lit_4305)) {
+        cXyz pos;
+        cXyz pos2;
+        
+        pos.x = FLOAT_LABEL(lit_3942);
+        pos.y = FLOAT_LABEL(lit_3942);
+        pos.z = -i_this->field_0x694;
+
+        mDoMtx_YrotS((MtxP)calc_mtx,i_this->field_0x698);
+        MtxPosition(&pos,&pos2);
+        i_this->current.pos += pos2;
+        cLib_addCalc0(&i_this->field_0x694,FLOAT_LABEL(lit_3943),FLOAT_LABEL(lit_4725));
+
+        if (i_this->field_0x6a0 != 0) {
+            i_this->shape_angle.y += 0x1300;
+            i_this->shape_angle.z += 0x1700;
+
+            if (i_this->field_0x694 <= FLOAT_LABEL(lit_3943) || i_this->field_0x708.ChkWallHit()) {
+                yk_disappear(i_this);
+                fopAcM_delete(i_this);
+            }
+        }
+    } else {
+        if (i_this->mAction != ACT_WIND) {
+            cLib_addCalcAngleS2(&i_this->shape_angle.y,i_this->current.angle.y,4,0x2000);
+            cLib_addCalcAngleS2(&i_this->shape_angle.x,0,4,0x2000);
+            cLib_addCalcAngleS2(&i_this->shape_angle.z,i_this->current.angle.z,4,0x2000);
+        }
+    }
+
+    i_this->current.pos.y -= FLOAT_LABEL(lit_4399); 
+    i_this->next.pos.y -= FLOAT_LABEL(lit_4399);
+
+    i_this->field_0x708.CrrPos(dComIfG_Bgsp());
+
+    i_this->current.pos.y += FLOAT_LABEL(lit_4399);
+    i_this->next.pos.y += FLOAT_LABEL(lit_4399);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -965,15 +1062,9 @@ static asm void action(e_yk_class* i_this) {
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/action__FP10e_yk_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
-/* 80807D44-80807D48 0000A8 0004+00 0/0 0/0 0/0 .rodata          @4725 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4725 = 5.0f;
-COMPILER_STRIP_GATE(0x80807D44, &lit_4725);
-#pragma pop
-
 /* 80807D48-80807D4C 0000AC 0004+00 0/1 0/0 0/0 .rodata          @4867 */
 #pragma push
 #pragma force_active on
