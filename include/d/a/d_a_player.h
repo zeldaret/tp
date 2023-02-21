@@ -770,6 +770,9 @@ public:
 
     static daMidna_c* getMidnaActor() { return m_midnaActor; }
 
+    // not sure how to define this properly
+    // static void onWolfEnemyCatch(fopAc_ac_c* i_actorP) { onWolfEnemyBiteAll(i_actorP,8);}
+
     static daMidna_c* m_midnaActor;
 };
 

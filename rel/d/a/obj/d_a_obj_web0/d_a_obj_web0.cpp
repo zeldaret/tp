@@ -411,7 +411,7 @@ static int daObj_Web0_Create(fopAc_ac_c* i_this) {
         fopAcM_SetMtx(_this, _this->mpModel->getBaseTRMtx());
         fopAcM_SetMin(_this, -1000.0f, -1000.0f, -1000.0f);
         fopAcM_SetMax(_this, 1000.0f, 1000.0f, 1000.0f);
-        _this->field_0x562 = 30;
+        _this->mHealth = 30;
         _this->field_0x560 = 30;
 
         _this->mStts.Init(250, 0, _this);

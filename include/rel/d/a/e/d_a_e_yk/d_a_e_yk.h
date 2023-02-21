@@ -4,6 +4,20 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/cc/d_cc_uty.h"
+
+enum daEYK_Action {
+    ACT_ROOF,
+    ACT_FIGHT_FLY,
+    ACT_FIGHT,
+    ACT_ATTACK,
+    ACT_RETURN,
+    ACT_FLY,
+    ACT_PATH_FLY,
+    ACT_CHANCE = 10,
+    ACT_WOLFBITE = 13,
+    ACT_WIND
+};
 
 class daE_YK_HIO_c {
 public:
@@ -22,15 +36,44 @@ public:
 
 class e_yk_class : public fopEn_enemy_c {
 public:
-    /* 0x5AC */ u8 field_0x5ac[0x5c0-0x5ac];
+    /* 0x5AC */ u8 field_0x5ac[0x5bc-0x5ac];
+    /* 0x5BC */ dPath* mpPath;
     /* 0x5C0 */ mDoExt_McaMorfSO* mpMorfSO;
-    /* 0x5C4 */ u8 field_0x5c4[0x668-0x5c4];
+    /* 0x5C4 */ Z2CreatureEnemy mCreature;
     /* 0x668 */ int mResIdx;
-    /* 0x66C */ u8 field_0x66c[0x680-0x66c];
+    /* 0x66C */ s16 field_0x66c;
+    /* 0x66E */ u16 mAction;
+    /* 0x670 */ u16 field_0x670;
+    /* 0x672 */ u8 field_0x672[2];
+    /* 0x674 */ cXyz field_0x674;
     /* 0x680 */ s16 field_0x680;
     /* 0x682 */ u8 field_0x682[2];
     /* 0x684 */ f32 field_0x684;
-    /* 0x688 */ u8 field_0x688[0xa90-0x688];
+    /* 0x688 */ u8 field_0x688[4];
+    /* 0x68C */ f32 field_0x68c;
+    /* 0x690 */ u8 field_0x690[4];
+    /* 0x694 */ f32 field_0x694;
+    /* 0x698 */ s16 field_0x698;
+    /* 0x69A */ csXyz field_0x69a;
+    /* 0x6A0 */ u8 field_0x6a0;
+    /* 0x6A1 */ u8 field_0x6a1;
+    /* 0x6A2 */ s16 field_0x6a2;
+    /* 0x6A4 */ u8 field_0x6a4[6];
+    /* 0x6AA */ s16 field_0x6aa;
+    /* 0x6AC */ s16 field_0x6ac[12];
+    // /* 0x6B8 */ f32 field_0x6b8;
+    // /* 0x6BC */ f32 field_0x6bc;
+    // /* 0x6C0 */ f32 field_0x6c0;
+    /* 0x6C4 */ s16 field_0x6c4;
+    /* 0x6C6 */ u8 field_0x6c6[2];
+    /* 0x6C8 */ dBgS_AcchCir field_0x6c8;
+    /* 0x708 */ dBgS_ObjAcch field_0x708;
+    /* 0x8E0 */ dCcD_Stts field_0x8e0;
+    /* 0x91C */ dCcD_Sph field_0x91c;
+    /* 0xA54 */ dCcU_AtInfo field_0xa54;
+    /* 0xA78 */ u8 field_0xa58[0xa80 - 0xa78];
+    /* 0xA80 */ u32 field_0xa80;
+    /* 0xA84 */ u8 field_0xa84[0xa90 - 0xa84];
 };
 
 // size: 0xA90

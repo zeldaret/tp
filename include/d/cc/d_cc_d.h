@@ -1,6 +1,11 @@
 #ifndef D_CC_D_CC_D_H
 #define D_CC_D_CC_D_H
 
+/**
+ * d_cc_d.h
+ * Actor Collision
+ */
+
 #include "SSystem/SComponent/c_cc_d.h"
 #include "dolphin/types.h"
 
@@ -134,6 +139,8 @@ public:
 class dCcD_GObjInf;
 typedef void (*dCcD_HitCallback)(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
 
+
+// Attack/Defense/Correction Collider Common Base
 class dCcD_GAtTgCoCommonBase {
 public:
     /* 0x00 */ u32 mGFlag;
@@ -171,6 +178,8 @@ public:
     dCcD_HitCallback GetHitCallback() { return mHitCallback; }
 };  // Size = 0x1C
 
+
+// Attack (At) Collider
 class dCcD_GObjAt : public dCcD_GAtTgCoCommonBase {
 public:
     /* 80083944 */ void Set(dCcD_SrcGObjAt const&);
@@ -199,6 +208,7 @@ public:
     /* 0x38 */ cXyz mRVec;
 };  // Size = 0x44
 
+// Defense (Tg) Collider
 class dCcD_GObjTg : public dCcD_GAtTgCoCommonBase {
 public:
     /* 800839A0 */ void Set(dCcD_SrcGObjTg const&);
@@ -229,11 +239,13 @@ private:
     /* 0x48 */ s16 mShieldRange;
 };  // Size = 0x4A ?
 
+// Correction (Co) Collider
 class dCcD_GObjCo : public dCcD_GAtTgCoCommonBase {
 public:
     /* 80083B8C */ virtual ~dCcD_GObjCo() {}
 };  // Size = 0x1C ?
 
+// Object Info
 class dCcD_GObjInf : public cCcD_GObjInf {
 public:
     /* 80083A28 */ dCcD_GObjInf();
@@ -343,6 +355,7 @@ protected:
     /* 0x0E8 */ dCcD_GObjCo mGObjCo;
 };  // Size = 0x104
 
+// Cylinder
 class dCcD_Cyl : public dCcD_GObjInf, public cCcD_CylAttr {
 public:
     /* 800848B4 */ void Set(dCcD_SrcCyl const&);
@@ -354,6 +367,7 @@ public:
     dCcD_Cyl() {}
 };  // Size = 0x13C
 
+// Sphere
 class dCcD_Sph : public dCcD_GObjInf, public cCcD_SphAttr {
 public:
     dCcD_Sph() {}
@@ -364,6 +378,8 @@ public:
     /* 80084BF4 */ virtual ~dCcD_Sph() {}
 };  // Size = 0x138
 
+
+// Capsule
 class dCcD_Cps : public dCcD_GObjInf, public cCcD_CpsAttr {
 public:
     /* 800847D0 */ void Set(dCcD_SrcCps const&);
@@ -374,6 +390,7 @@ public:
     dCcD_Cps() {}
 };  // Size = 0x144
 
+// Triangle
 class dCcD_Tri : public dCcD_GObjInf, public cCcD_TriAttr {
 public:
     /* 80084884 */ void Set(dCcD_SrcTri const&);

@@ -6,6 +6,8 @@
 #include "rel/d/a/e/d_a_e_yk/d_a_e_yk.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "d/s/d_s_play.h"
+#include "SSystem/SComponent/c_math.h"
 
 //
 // Forward References:
@@ -156,7 +158,7 @@ extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 pauseTimer__9dScnPly_c[4];
+// extern "C" extern u8 pauseTimer__9dScnPly_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
@@ -535,15 +537,15 @@ SECTION_RODATA static f32 const lit_4103 = 50000.0f;
 COMPILER_STRIP_GATE(0x80807CDC, &lit_4103);
 
 /* 80804C88-80804D38 000548 00B0+00 5/5 0/0 0/0 .text            pl_check__FP10e_yk_classfs */
-#ifndef NONMATCHING
 static int pl_check(e_yk_class* i_this, f32 param_1, s16 param_2) {
     if (param_1 >= FLOAT_LABEL(lit_4103)) {
         return 1;
     }
+
     if (dComIfGp_getPlayer(0)->current.pos.y < i_this->current.pos.y && i_this->field_0x684 < param_1) {
         s16 value = i_this->shape_angle.y - i_this->field_0x680;
 
-        if (param_2 == 1 || (value < param_2 && value > (s16)-param_2)){
+        if (param_2 == 1 || value < param_2 && value > (s16)-param_2){
             if (!other_bg_check(i_this,dComIfGp_getPlayer(0))) {
                 return 1;
             } 
@@ -551,19 +553,7 @@ static int pl_check(e_yk_class* i_this, f32 param_1, s16 param_2) {
     }
 
     return 0;
-
-    // return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void pl_check(e_yk_class* param_0, f32 param_1, s16 param_2) {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/pl_check__FP10e_yk_classfs.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80807CE0-80807CE4 000044 0004+00 0/2 0/0 0/0 .rodata          @4151 */
@@ -588,14 +578,86 @@ COMPILER_STRIP_GATE(0x80807CE8, &lit_4153);
 #pragma pop
 
 /* 80804D38-80804F68 0005F8 0230+00 1/1 0/0 0/0 .text            damage_check__FP10e_yk_class */
+#ifdef NONMATCHING
+// float literals
+static void damage_check(e_yk_class* i_this) {
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+
+    if (i_this->field_0x6aa == 0) {
+        // Store current AtApid and TgApid then set them to 0
+        i_this->field_0x8e0.Move();
+
+        // If keese Defense collider was hit
+        if (i_this->field_0x91c.ChkTgHit()) {
+            // Save the collider that hit the keese dt collider
+            i_this->field_0xa54.mpCollider = i_this->field_0x91c.GetTgHitObj();
+
+            // If keese was hit by the boomerang
+            if (i_this->field_0xa54.mpCollider->ChkAtType(AT_TYPE_BOOMERANG)) {
+                i_this->mAction = ACT_WIND;
+                i_this->field_0x670 = 0;
+                
+            } else {
+                // Run through the default Attack collider checks first
+                cc_at_check(i_this,&i_this->field_0xa54);
+                
+                // If keese was hit by Clawshot or Slingshot, subtract 1 from health
+                if (i_this->field_0xa54.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT) || i_this->field_0xa54.mpCollider->ChkAtType(AT_TYPE_SLINGSHOT)) {
+                    i_this->mHealth--;
+                }
+
+                // If keese was hit by shield attack, set some fields and play controller vibration
+                if (i_this->field_0xa54.mpCollider->ChkAtType(AT_TYPE_SHIELD_ATTACK)) {
+                    i_this->mAction = ACT_CHANCE;
+                    i_this->field_0x670 = 0;
+                    i_this->field_0x694 = FLOAT_LABEL(lit_4151);
+                    i_this->field_0x698 = i_this->shape_angle.y;
+                    i_this->field_0x6a0 = 0;
+
+                    dComIfGp_getVibration().StartShock(2,0x1f,cXyz(0.0f,1.0f,0.0f));
+                } else {
+                    // If keese was hit by wolf bite, set some fields, set pause timer to 0, 
+                    // play keese wolf bit sound
+                    if (i_this->field_0xa54.mpCollider->ChkAtType(AT_TYPE_WOLF_ATTACK) && (static_cast<daPy_py_c*>(player)->onWolfEnemyBiteAll(i_this,daPy_py_c::FLG2_UNK_8) != 0)) {
+                        i_this->mAction = ACT_WOLFBITE;
+                        i_this->field_0x670 = 0;
+                        i_this->field_0x6aa = 200;
+                        dScnPly_c::setPauseTimer(0);
+                        i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_BITE,-1);
+                    } else {
+                        // If it was unknown attack, set some fields
+                        if (i_this->field_0xa54.mpCollider->ChkAtType(AT_TYPE_UNK)) {
+                            i_this->field_0x6aa = 20;
+                        } else {
+                            i_this->field_0x6aa = 10;
+                        }
+
+                        i_this->field_0x694 = cM_rndF(FLOAT_LABEL(lit_4152)) + FLOAT_LABEL(lit_4151);
+                        i_this->field_0x698 = i_this->field_0xa54.mHitDirection;
+
+                        // If keese is dead, play death sound
+                        if (i_this->mHealth <= 0) {
+                            i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_DEATH,-1);
+                            i_this->mpMorfSO->setPlaySpeed(FLOAT_LABEL(lit_4153));
+                            i_this->field_0x6a0 = 1;
+                        }
+                    }
+                }
+                    
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void damage_check(e_yk_class* param_0) {
+static asm void damage_check(e_yk_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/damage_check__FP10e_yk_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80807CEC-80807CF0 000050 0004+00 0/5 0/0 0/0 .rodata          @4185 */
@@ -612,6 +674,7 @@ static u8 data_80807EF8[4];
 static u8 lit_3957[12];
 
 /* 80807F08-80807F24 000018 001C+00 9/9 0/0 0/0 .bss             l_HIO */
+// static daE_YK_HIO_c l_HIO;
 static u8 l_HIO[28];
 
 /* 80807F24-80808023 000034 00FF+00 1/1 0/0 0/0 .bss             check_index$4191 */
@@ -621,7 +684,7 @@ static u8 check_index[255];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void path_check(e_yk_class* param_0) {
+static asm void path_check(e_yk_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/path_check__FP10e_yk_class.s"
 }
@@ -646,7 +709,7 @@ COMPILER_STRIP_GATE(0x80807CF4, &lit_4272);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void fly_move(e_yk_class* param_0) {
+static asm void fly_move(e_yk_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/fly_move__FP10e_yk_class.s"
 }
@@ -678,7 +741,7 @@ COMPILER_STRIP_GATE(0x80807D00, &lit_4306);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void e_yk_roof(e_yk_class* param_0) {
+static asm void e_yk_roof(e_yk_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_roof__FP10e_yk_class.s"
 }
@@ -703,7 +766,7 @@ COMPILER_STRIP_GATE(0x80807D08, &lit_4335);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void e_yk_fight_fly(e_yk_class* param_0) {
+static asm void e_yk_fight_fly(e_yk_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_fight_fly__FP10e_yk_class.s"
 }
@@ -742,7 +805,7 @@ COMPILER_STRIP_GATE(0x80807D18, &lit_4401);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void e_yk_fight(e_yk_class* param_0) {
+static asm void e_yk_fight(e_yk_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_fight__FP10e_yk_class.s"
 }
@@ -760,7 +823,7 @@ COMPILER_STRIP_GATE(0x80807D1C, &lit_4438);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void e_yk_attack(e_yk_class* param_0) {
+static asm void e_yk_attack(e_yk_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_attack__FP10e_yk_class.s"
 }
@@ -785,7 +848,7 @@ COMPILER_STRIP_GATE(0x80807D24, &lit_4481);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void e_yk_fly(e_yk_class* param_0) {
+static asm void e_yk_fly(e_yk_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_fly__FP10e_yk_class.s"
 }
@@ -795,7 +858,7 @@ static asm void e_yk_fly(e_yk_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void e_yk_return(e_yk_class* param_0) {
+static asm void e_yk_return(e_yk_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_return__FP10e_yk_class.s"
 }
@@ -805,7 +868,7 @@ static asm void e_yk_return(e_yk_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void e_yk_path_fly(e_yk_class* param_0) {
+static asm void e_yk_path_fly(e_yk_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_path_fly__FP10e_yk_class.s"
 }
@@ -837,7 +900,7 @@ COMPILER_STRIP_GATE(0x80807D30, &lit_4610);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void e_yk_chance(e_yk_class* param_0) {
+static asm void e_yk_chance(e_yk_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_chance__FP10e_yk_class.s"
 }
@@ -862,7 +925,7 @@ COMPILER_STRIP_GATE(0x80807D38, &lit_4651);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void e_yk_wolfbite(e_yk_class* param_0) {
+static asm void e_yk_wolfbite(e_yk_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_wolfbite__FP10e_yk_class.s"
 }
@@ -887,7 +950,7 @@ COMPILER_STRIP_GATE(0x80807D40, &lit_4676);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void e_yk_wind(e_yk_class* param_0) {
+static asm void e_yk_wind(e_yk_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_wind__FP10e_yk_class.s"
 }
@@ -897,7 +960,7 @@ static asm void e_yk_wind(e_yk_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void action(e_yk_class* param_0) {
+static asm void action(e_yk_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/action__FP10e_yk_class.s"
 }
@@ -929,7 +992,7 @@ COMPILER_STRIP_GATE(0x80807D4C, &lit_4868);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daE_YK_Execute(e_yk_class* param_0) {
+static asm void daE_YK_Execute(e_yk_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/daE_YK_Execute__FP10e_yk_class.s"
 }
@@ -944,7 +1007,7 @@ static bool daE_YK_IsDelete(e_yk_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daE_YK_Delete(e_yk_class* param_0) {
+static asm void daE_YK_Delete(e_yk_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/daE_YK_Delete__FP10e_yk_class.s"
 }
@@ -1001,7 +1064,7 @@ SECTION_DEAD static char const* const stringBase_80807D69 = "E_yk";
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daE_YK_Create(fopAc_ac_c* param_0) {
+static asm void daE_YK_Create(fopAc_ac_c* i_this) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/daE_YK_Create__FP10fopAc_ac_c.s"
 }

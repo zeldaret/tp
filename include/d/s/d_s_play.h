@@ -67,7 +67,7 @@ public:
     /* 80259BFC */ void offReset();
 
     static bool isPause() { return pauseTimer == 0; }
-    static void setPauseTimer(s8 time) { nextPauseTimer = time; }
+    static void setPauseTimer(s8 time) { pauseTimer = time; }
 
     static s8 pauseTimer;
     static s8 nextPauseTimer;
