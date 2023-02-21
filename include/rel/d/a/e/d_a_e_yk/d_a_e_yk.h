@@ -36,7 +36,8 @@ public:
 
 class e_yk_class : public fopEn_enemy_c {
 public:
-    /* 0x5AC */ u8 field_0x5ac[0x5bc-0x5ac];
+    /* 0x5AC */ request_of_phase_process_class mPhase;
+    /* 0x5B4 */ u8 field_0x5b4[8];
     /* 0x5BC */ dPath* mpPath;
     /* 0x5C0 */ mDoExt_McaMorfSO* mpMorfSO;
     /* 0x5C4 */ Z2CreatureEnemy mCreature;
@@ -73,7 +74,9 @@ public:
     /* 0xA54 */ dCcU_AtInfo field_0xa54;
     /* 0xA78 */ u8 field_0xa58[0xa80 - 0xa78];
     /* 0xA80 */ u32 field_0xa80;
-    /* 0xA84 */ u8 field_0xa84[0xa90 - 0xa84];
+    /* 0xA84 */ u8 field_0xa84[8];
+    /* 0xA8C */ u8 field_0xa8c;
+    /* 0xA8D */ u8 field_0xa8d[3]; // padding
 };
 
 // size: 0xA90

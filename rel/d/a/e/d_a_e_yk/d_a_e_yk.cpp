@@ -579,7 +579,7 @@ COMPILER_STRIP_GATE(0x80807CE8, &lit_4153);
 
 /* 80804D38-80804F68 0005F8 0230+00 1/1 0/0 0/0 .text            damage_check__FP10e_yk_class */
 #ifdef NONMATCHING
-// float literals
+// matches with literals
 static void damage_check(e_yk_class* i_this) {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
@@ -668,7 +668,7 @@ COMPILER_STRIP_GATE(0x80807CEC, &lit_4185);
 #pragma pop
 
 /* 80807EF8-80807EFC 000008 0004+00 2/2 0/0 0/0 .bss             None */
-static u8 data_80807EF8[4];
+static u8 data_80807EF8;
 
 /* 80807EFC-80807F08 00000C 000C+00 1/1 0/0 0/0 .bss             @3957 */
 static u8 lit_3957[12];
@@ -1090,19 +1090,24 @@ static asm void daE_YK_Execute(e_yk_class* i_this) {
 #pragma pop
 
 /* 8080708C-80807094 00294C 0008+00 1/0 0/0 0/0 .text            daE_YK_IsDelete__FP10e_yk_class */
-static bool daE_YK_IsDelete(e_yk_class* param_0) {
-    return true;
+static int daE_YK_IsDelete(e_yk_class* param_0) {
+    return 1;
 }
 
 /* 80807094-808070FC 002954 0068+00 1/0 0/0 0/0 .text            daE_YK_Delete__FP10e_yk_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daE_YK_Delete(e_yk_class* i_this) {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/daE_YK_Delete__FP10e_yk_class.s"
+static int daE_YK_Delete(e_yk_class* i_this) {
+    dComIfG_resDelete(&i_this->mPhase,"E_YK");
+
+    if (i_this->field_0xa8c != 0) {
+        data_80807EF8 = 0;
+    }
+
+    if (i_this->mHeap) {
+        i_this->mpMorfSO->stopZelAnime();
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 808070FC-808071F4 0029BC 00F8+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push
