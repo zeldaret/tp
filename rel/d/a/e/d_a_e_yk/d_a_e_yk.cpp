@@ -886,6 +886,11 @@ COMPILER_STRIP_GATE(0x80807D08, &lit_4335);
 #pragma pop
 
 /* 808054A8-80805660 000D68 01B8+00 1/1 0/0 0/0 .text            e_yk_fight_fly__FP10e_yk_class */
+#ifdef NONMATCHING
+static void e_yk_fight_fly(e_yk_class* i_this) {
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -894,6 +899,7 @@ static asm void e_yk_fight_fly(e_yk_class* i_this) {
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_fight_fly__FP10e_yk_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80807D0C-80807D10 000070 0004+00 0/3 0/0 0/0 .rodata          @4398 */
@@ -925,6 +931,11 @@ COMPILER_STRIP_GATE(0x80807D18, &lit_4401);
 #pragma pop
 
 /* 80805660-808059BC 000F20 035C+00 1/1 0/0 0/0 .text            e_yk_fight__FP10e_yk_class */
+#ifdef NONMATCHING
+static void e_yk_fight(e_yk_class* i_this) {
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -933,6 +944,7 @@ static asm void e_yk_fight(e_yk_class* i_this) {
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_fight__FP10e_yk_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80807D1C-80807D20 000080 0004+00 0/1 0/0 0/0 .rodata          @4438 */
@@ -943,6 +955,11 @@ COMPILER_STRIP_GATE(0x80807D1C, &lit_4438);
 #pragma pop
 
 /* 808059BC-80805BB4 00127C 01F8+00 1/1 0/0 0/0 .text            e_yk_attack__FP10e_yk_class */
+#ifdef NONMATCHING
+static void e_yk_attack(e_yk_class* i_this) {
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -951,6 +968,7 @@ static asm void e_yk_attack(e_yk_class* i_this) {
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_attack__FP10e_yk_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80807D20-80807D24 000084 0004+00 0/1 0/0 0/0 .rodata          @4480 */
@@ -968,6 +986,11 @@ COMPILER_STRIP_GATE(0x80807D24, &lit_4481);
 #pragma pop
 
 /* 80805BB4-80805DE0 001474 022C+00 1/1 0/0 0/0 .text            e_yk_fly__FP10e_yk_class */
+#ifdef NONMATCHING
+static void e_yk_fly(e_yk_class* i_this) {
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -976,8 +999,14 @@ static asm void e_yk_fly(e_yk_class* i_this) {
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_fly__FP10e_yk_class.s"
 }
 #pragma pop
+#endif
 
 /* 80805DE0-80805FF0 0016A0 0210+00 1/1 0/0 0/0 .text            e_yk_return__FP10e_yk_class */
+#ifdef NONMATCHING
+static void e_yk_return(e_yk_class* i_this) {
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -986,8 +1015,14 @@ static asm void e_yk_return(e_yk_class* i_this) {
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_return__FP10e_yk_class.s"
 }
 #pragma pop
+#endif
 
 /* 80805FF0-80806308 0018B0 0318+00 1/1 0/0 0/0 .text            e_yk_path_fly__FP10e_yk_class */
+#ifdef NONMATCHING
+static void e_yk_path_fly(e_yk_class* i_this) {
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -996,6 +1031,7 @@ static asm void e_yk_path_fly(e_yk_class* i_this) {
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_path_fly__FP10e_yk_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80807D28-80807D2C 00008C 0004+00 0/1 0/0 0/0 .rodata          @4608 */
@@ -1020,6 +1056,11 @@ COMPILER_STRIP_GATE(0x80807D30, &lit_4610);
 #pragma pop
 
 /* 80806308-80806500 001BC8 01F8+00 1/1 0/0 0/0 .text            e_yk_chance__FP10e_yk_class */
+#ifdef NONMATCHING
+static void e_yk_chance(e_yk_class* i_this) {
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1028,6 +1069,7 @@ static asm void e_yk_chance(e_yk_class* i_this) {
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_chance__FP10e_yk_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80807D34-80807D38 000098 0004+00 0/1 0/0 0/0 .rodata          @4650 */
@@ -1045,6 +1087,11 @@ COMPILER_STRIP_GATE(0x80807D38, &lit_4651);
 #pragma pop
 
 /* 80806500-80806740 001DC0 0240+00 1/1 0/0 0/0 .text            e_yk_wolfbite__FP10e_yk_class */
+#ifdef NONMATCHING
+static void e_yk_wolfbite(e_yk_class* i_this) {
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1053,6 +1100,7 @@ static asm void e_yk_wolfbite(e_yk_class* i_this) {
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_wolfbite__FP10e_yk_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80807D3C-80807D40 0000A0 0004+00 0/1 0/0 0/0 .rodata          @4675 */
@@ -1077,6 +1125,11 @@ COMPILER_STRIP_GATE(0x80807D44, &lit_4725);
 #pragma pop
 
 /* 80806740-808068E4 002000 01A4+00 1/1 0/0 0/0 .text            e_yk_wind__FP10e_yk_class */
+#ifdef NONMATCHING
+static void e_yk_wind(e_yk_class* i_this) {
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1085,6 +1138,7 @@ static asm void e_yk_wind(e_yk_class* i_this) {
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_wind__FP10e_yk_class.s"
 }
 #pragma pop
+#endif
 
 /* 808068E4-80806B78 0021A4 0294+00 2/1 0/0 0/0 .text            action__FP10e_yk_class */
 #ifdef NONMATCHING
@@ -1203,6 +1257,11 @@ COMPILER_STRIP_GATE(0x80807D4C, &lit_4868);
 #pragma pop
 
 /* 80806B78-8080708C 002438 0514+00 2/1 0/0 0/0 .text            daE_YK_Execute__FP10e_yk_class */
+#ifdef NONMATCHING
+static void daE_YK_Execute(e_yk_class* i_this) {
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1211,6 +1270,7 @@ static asm void daE_YK_Execute(e_yk_class* i_this) {
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/daE_YK_Execute__FP10e_yk_class.s"
 }
 #pragma pop
+#endif
 
 /* 8080708C-80807094 00294C 0008+00 1/0 0/0 0/0 .text            daE_YK_IsDelete__FP10e_yk_class */
 static int daE_YK_IsDelete(e_yk_class* param_0) {
@@ -1233,14 +1293,28 @@ static int daE_YK_Delete(e_yk_class* i_this) {
 }
 
 /* 808070FC-808071F4 0029BC 00F8+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
+#ifndef NONMATCHING
+static int useHeapInit(fopAc_ac_c* i_this) {
+    e_yk_class* yk = (e_yk_class*)i_this;
+
+    yk->mpMorfSO = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_YK", 12), 
+        NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_YK",9), 2, FLOAT_LABEL(lit_3943), 0, -1, &yk->mCreature, 0x80000,0x11000084);
+    if (!yk->mpMorfSO || !yk->mpMorfSO->mpModel) {
+        return 0;
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void useHeapInit(fopAc_ac_c* param_0) {
+static asm void useHeapInit(fopAc_ac_c* i_this) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/useHeapInit__FP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80807D50-80807D54 0000B4 0004+00 0/1 0/0 0/0 .rodata          @5027 */
@@ -1280,6 +1354,11 @@ SECTION_DEAD static char const* const stringBase_80807D69 = "E_yk";
 #pragma pop
 
 /* 808071F4-808075CC 002AB4 03D8+00 1/0 0/0 0/0 .text            daE_YK_Create__FP10fopAc_ac_c */
+#ifdef NONMATCHING
+static void daE_YK_Create(fopAc_ac_c* i_this) {
+    
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1288,6 +1367,7 @@ static asm void daE_YK_Create(fopAc_ac_c* i_this) {
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/daE_YK_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* 808075CC-80807614 002E8C 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
 #pragma push
