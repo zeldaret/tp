@@ -5,6 +5,21 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/cc/d_cc_uty.h"
+#include "d/d_path.h"
+
+// struct dStage_dPnt_c {
+//     /* 0x0 */ int field_0x0;
+//     /* 0x4 */ cXyz m_position;
+// };  // Size: 0x10
+
+// struct dPath {
+//     /* 0x0 */ u16 m_num;
+//     /* 0x2 */ u16 m_nextID;
+//     /* 0x4 */ u8 field_0x4;
+//     /* 0x5 */ u8 m_closed;
+//     /* 0x6 */ u8 field_0x6;
+//     /* 0x8 */ dStage_dPnt_c* m_points;
+// };
 
 enum daEYK_Action {
     ACT_ROOF,
@@ -37,7 +52,13 @@ public:
 class e_yk_class : public fopEn_enemy_c {
 public:
     /* 0x5AC */ request_of_phase_process_class mPhase;
-    /* 0x5B4 */ u8 field_0x5b4[8];
+    /* 0x5B4 */ u8 field_0x5b4[2];
+    /* 0x5B6 */ u8 field_0x5b6;
+    /* 0x5B7 */ u8 field_0x5b7;
+    /* 0x5B8 */ u8 field_0x5b8;
+    /* 0x5B9 */ s8 field_0x5b9;
+    /* 0x5BA */ s8 field_0x5ba;
+    /* 0x5BB */ u8 field_0x5bb;
     /* 0x5BC */ dPath* mpPath;
     /* 0x5C0 */ mDoExt_McaMorfSO* mpMorfSO;
     /* 0x5C4 */ Z2CreatureEnemy mCreature;
@@ -52,7 +73,7 @@ public:
     /* 0x684 */ f32 mDistanceXZFromPlayer;
     /* 0x688 */ u8 field_0x688[4];
     /* 0x68C */ f32 field_0x68c;
-    /* 0x690 */ u8 field_0x690[4];
+    /* 0x690 */ f32 field_0x690;
     /* 0x694 */ f32 field_0x694;
     /* 0x698 */ s16 field_0x698;
     /* 0x69A */ csXyz field_0x69a;

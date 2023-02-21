@@ -8,6 +8,7 @@
 #include "dolphin/types.h"
 #include "d/s/d_s_play.h"
 #include "SSystem/SComponent/c_math.h"
+#include "JSystem/JMath/JMath.h"
 
 //
 // Forward References:
@@ -516,9 +517,6 @@ static bool other_bg_check(e_yk_class* i_this, fopAc_ac_c* i_actorP) {
     }
 
     return 0;
-
-    // return !dComIfG_Bgsp().LineCross(&lin_chk);
-
 }
 #else
 #pragma push
@@ -681,6 +679,85 @@ static u8 l_HIO[28];
 static u8 check_index[255];
 
 /* 80804F68-808051D0 000828 0268+00 2/3 0/0 0/0 .text            path_check__FP10e_yk_class */
+#ifdef NONMATCHING
+// matches with literals
+static int path_check(e_yk_class* i_this) {
+    if (i_this->mpPath) {
+        dBgS_LinChk lin_chk;
+
+        cXyz current_keese_pos;
+        cXyz path_point_pos;
+        current_keese_pos = i_this->current.pos;
+        current_keese_pos.y += FLOAT_LABEL(lit_3941);
+
+        dStage_dPnt_c* points = i_this->mpPath->m_points;
+
+        // Set/update check_index array based on whether or not path points
+        // were crossed
+        for (int i = 0; i < i_this->mpPath->m_num; i++, points++) {
+            path_point_pos.x = points->m_position.x;
+            path_point_pos.y = FLOAT_LABEL(lit_3941) + points->m_position.y;
+            path_point_pos.z = points->m_position.z;
+
+            lin_chk.Set(&current_keese_pos,&path_point_pos,i_this);
+
+            if (!dComIfG_Bgsp().LineCross(&lin_chk)) {
+                check_index[i] = 1;
+            } else {
+                check_index[i] = 0;
+            }
+        }
+
+        f32 f = FLOAT_LABEL(lit_3942);
+        bool tmp = false;
+        
+        for (int i = 0; i < 100; i++, f += FLOAT_LABEL(lit_4185)) {
+            points = i_this->mpPath->m_points;
+
+            for (int j = 0; j < i_this->mpPath->m_num; j++, points++) {
+                // if (tmp) break;
+
+                if (check_index[j] != 0) {
+                    f32 x = i_this->current.pos.x - points->m_position.x;
+                    f32 y = i_this->current.pos.y - points->m_position.y;
+                    f32 z = i_this->current.pos.z - points->m_position.z;
+
+                    f32 val = JMAFastSqrt(x * x + y * y + z * z); // float literal inline
+
+                    if (val < f) {
+                        i_this->field_0x5b9 = j - i_this->field_0x5ba;
+                        u16 pathNum = i_this->mpPath->m_num;
+
+                        if (i_this->field_0x5b9 >= (s8)i_this->mpPath->m_num) {
+                            i_this->field_0x5b9 = i_this->mpPath->m_num;
+                        } else {
+                            if (0 > i_this->field_0x5b9) {
+                                i_this->field_0x5b9 = 0;
+                            }
+                        }
+                        
+                        tmp = true;
+                        break;
+                    }
+                }
+            }
+
+            if (tmp) break;
+        }
+
+        if (!tmp) {
+            i_this-> field_0x5b8 = 0;
+        } else {
+            i_this->field_0x5b8 = i_this->field_0x5b7 + 1;
+            return 1;
+        }
+
+        
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -689,6 +766,7 @@ static asm void path_check(e_yk_class* i_this) {
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/path_check__FP10e_yk_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80807CF0-80807CF4 000054 0004+00 0/1 0/0 0/0 .rodata          @4271 */
@@ -706,6 +784,37 @@ COMPILER_STRIP_GATE(0x80807CF4, &lit_4272);
 #pragma pop
 
 /* 808051D0-80805360 000A90 0190+00 5/5 0/0 0/0 .text            fly_move__FP10e_yk_class */
+#ifdef NONMATCHING
+// matches with literals
+static void fly_move(e_yk_class* i_this) {
+    cXyz pos;
+
+    f32 x = i_this->field_0x674.x - i_this->current.pos.x;
+    f32 y = i_this->field_0x674.y - i_this->current.pos.y;
+    f32 z = i_this->field_0x674.z - i_this->current.pos.z;
+
+    s16 angle = cM_atan2s(x,z);
+    f32 sqrt = JMAFastSqrt(x * x + z * z); // float literal inline
+    s16 angle2 = -cM_atan2s(y,sqrt);
+
+    cLib_addCalcAngleS2(&i_this->current.angle.y,angle,10,i_this->field_0x690 * i_this->field_0x68c);
+
+    i_this->field_0x690 = FLOAT_LABEL(lit_4271);
+
+    cLib_addCalcAngleS2(&i_this->current.angle.x,angle2,10,i_this->field_0x690 * i_this->field_0x68c);
+    cLib_addCalc2(&i_this->field_0x68c,1.0f,1.0f,0.04f);
+    
+    pos.x = 0.0f;
+    pos.y = 0.0f;
+    pos.z = i_this->speedF;
+    
+    mDoMtx_YrotS((MtxP)calc_mtx,i_this->current.angle.y);
+    cMtx_XrotM((MtxP)calc_mtx,i_this->current.angle.x);
+    MtxPosition(&pos,&i_this->speed);
+
+    i_this->current.pos += i_this->speed;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -714,6 +823,7 @@ static asm void fly_move(e_yk_class* i_this) {
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/fly_move__FP10e_yk_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80807CF8-80807CFC 00005C 0004+00 0/1 0/0 0/0 .rodata          @4304 */
