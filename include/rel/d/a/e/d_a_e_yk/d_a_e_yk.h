@@ -65,13 +65,13 @@ public:
     /* 0x668 */ int mResIdx;
     /* 0x66C */ s16 field_0x66c;
     /* 0x66E */ s16 mAction;
-    /* 0x670 */ u16 field_0x670;
+    /* 0x670 */ s16 field_0x670;
     /* 0x672 */ u8 field_0x672[2];
     /* 0x674 */ cXyz field_0x674;
     /* 0x680 */ s16 mAngleFromPlayer;
     /* 0x682 */ u8 field_0x682[2];
     /* 0x684 */ f32 mDistanceXZFromPlayer;
-    /* 0x688 */ u8 field_0x688[4];
+    /* 0x688 */ f32 field_0x688;
     /* 0x68C */ f32 field_0x68c;
     /* 0x690 */ f32 field_0x690;
     /* 0x694 */ f32 field_0x694;

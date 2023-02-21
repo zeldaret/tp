@@ -435,7 +435,7 @@ COMPILER_STRIP_GATE(0x80807CD8, &lit_4009);
 
 /* 80804870-808049E4 000130 0174+00 2/2 0/0 0/0 .text            yk_disappear__FP10e_yk_class */
 #ifdef NONMATCHING
-// float literals inline
+// matches with literals
 static void yk_disappear(e_yk_class* i_this) {
     // cXyz pos;
     cXyz pos(FLOAT_LABEL(lit_4008),FLOAT_LABEL(lit_4008),FLOAT_LABEL(lit_4008));
@@ -848,14 +848,27 @@ COMPILER_STRIP_GATE(0x80807D00, &lit_4306);
 #pragma pop
 
 /* 80805360-808054A8 000C20 0148+00 1/1 0/0 0/0 .text            e_yk_roof__FP10e_yk_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void e_yk_roof(e_yk_class* i_this) {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_roof__FP10e_yk_class.s"
+static void e_yk_roof(e_yk_class* i_this) {
+    switch (i_this->field_0x670) {
+    case 0:
+        anm_init(i_this,9,FLOAT_LABEL(lit_3962),2,cM_rndF(FLOAT_LABEL(lit_4305)) + FLOAT_LABEL(lit_4304)); // random number between 0.9 and 1.0
+        i_this->field_0x670 = 1;
+        break;
+    case 1:
+        if ((i_this->field_0x66c & 0x1f) == 0 && cM_rndF(FLOAT_LABEL(lit_3943)) < FLOAT_LABEL(lit_4306)) {
+            i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_NAKU,-1);
+        }
+    }
+
+    cLib_addCalc2(&i_this->current.pos.x,i_this->orig.pos.x,FLOAT_LABEL(lit_4306),fabsf(i_this->speed.x));
+    cLib_addCalc2(&i_this->current.pos.y,i_this->orig.pos.y,FLOAT_LABEL(lit_4306),fabsf(i_this->speed.y));
+    cLib_addCalc2(&i_this->current.pos.z,i_this->orig.pos.z,FLOAT_LABEL(lit_4306),fabsf(i_this->speed.z));
+
+    if (pl_check(i_this,i_this->field_0x688,1)) {
+        i_this->mAction = ACT_FIGHT_FLY;
+        i_this->field_0x670 = 0;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80807D04-80807D08 000068 0004+00 0/6 0/0 0/0 .rodata          @4334 */
