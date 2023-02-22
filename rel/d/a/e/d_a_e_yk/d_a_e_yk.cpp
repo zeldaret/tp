@@ -669,11 +669,11 @@ COMPILER_STRIP_GATE(0x80807CEC, &lit_4185);
 static u8 data_80807EF8;
 
 /* 80807EFC-80807F08 00000C 000C+00 1/1 0/0 0/0 .bss             @3957 */
-static u8 lit_3957[12];
+static f32 lit_3957[3];
 
 /* 80807F08-80807F24 000018 001C+00 9/9 0/0 0/0 .bss             l_HIO */
-// static daE_YK_HIO_c l_HIO;
-static u8 l_HIO[28];
+static daE_YK_HIO_c l_HIO;
+// static u8 l_HIO[28];
 
 /* 80807F24-80808023 000034 00FF+00 1/1 0/0 0/0 .bss             check_index$4191 */
 static u8 check_index[255];
@@ -1003,8 +1003,34 @@ static asm void e_yk_fly(e_yk_class* i_this) {
 
 /* 80805DE0-80805FF0 0016A0 0210+00 1/1 0/0 0/0 .text            e_yk_return__FP10e_yk_class */
 #ifdef NONMATCHING
+// matches with literals
 static void e_yk_return(e_yk_class* i_this) {
-    
+    switch (i_this->field_0x670) {
+    case 0:
+        anm_init(i_this,5,FLOAT_LABEL(lit_4334),2,FLOAT_LABEL(lit_3943));
+        i_this->field_0x670 = 1;
+        i_this->field_0x68c = FLOAT_LABEL(lit_3942);
+    case 1:
+        break;
+    }
+
+    cLib_addCalc2(&i_this->speedF,l_HIO.field_0x0c,FLOAT_LABEL(lit_3943), FLOAT_LABEL(lit_4335) * l_HIO.field_0x0c);
+
+    i_this->field_0x674 = i_this->orig.pos;
+    fly_move(i_this);
+
+    cXyz pos = i_this->current.pos - i_this->field_0x674;
+
+    if (pos.abs() < FLOAT_LABEL(lit_3941)) { // multiple float literal inlines
+        i_this->mAction = ACT_ROOF;
+        i_this->field_0x670 = 0;
+        
+    } else {
+        if (pl_check(i_this,i_this->field_0x688,1)) {
+            i_this->mAction = ACT_FIGHT_FLY;
+            i_this->field_0x670 = 0;
+        }
+    }
 }
 #else
 #pragma push
@@ -1056,7 +1082,6 @@ COMPILER_STRIP_GATE(0x80807D30, &lit_4610);
 #pragma pop
 
 /* 80806308-80806500 001BC8 01F8+00 1/1 0/0 0/0 .text            e_yk_chance__FP10e_yk_class */
-#ifndef NONMATCHING
 static void e_yk_chance(e_yk_class* i_this) {
     switch (i_this->field_0x670) {
     case 0:
@@ -1101,16 +1126,6 @@ static void e_yk_chance(e_yk_class* i_this) {
     cLib_addCalcAngleS2(&i_this->current.angle.y,i_this->field_0x69a.y,2,0x1000);
     cLib_addCalcAngleS2(&i_this->current.angle.z,i_this->field_0x69a.z,2,0x1000);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void e_yk_chance(e_yk_class* i_this) {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_chance__FP10e_yk_class.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80807D34-80807D38 000098 0004+00 0/1 0/0 0/0 .rodata          @4650 */
