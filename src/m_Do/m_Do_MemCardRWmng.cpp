@@ -49,40 +49,60 @@ s32 mDoMemCdRWm_Store(CARDFileInfo* file, void* data, u32 length) {
     mDoMemCdRWm_BuildHeader((mDoMemCdRWm_HeaderData*)sTmpBuf);
 
     s32 card_state = CARDWrite(file, sTmpBuf, sizeof(sTmpBuf), 0);
-    if (card_state != CARD_ERROR_READY) {
-        if (!mDoMemCdRWm_CheckCardStat(file)) {
-            memset(sTmpBuf, 0, sizeof(sTmpBuf));
+    if (card_state != CARD_RESULT_READY) { 
+        return card_state;
+    }
 
-            card_state = CARDWrite(file, sTmpBuf, sizeof(sTmpBuf) / 2, 0x4000);
-            if (card_state == CARD_ERROR_READY) {
-                return;
-            }
+    if (!mDoMemCdRWm_CheckCardStat(file)) {
+        memset(sTmpBuf, 0, sizeof(sTmpBuf));
 
-            card_state = CARDWrite(file, sTmpBuf, sizeof(sTmpBuf) / 2, 0x6000);
-            if (card_state == CARD_ERROR_READY) {
-                return;
-            }
+        card_state = CARDWrite(file, sTmpBuf, sizeof(sTmpBuf) / 2, 0x4000);
+        if (card_state != CARD_RESULT_READY) {
+            return card_state;
         }
 
-        memset(sTmpBuf, 0, sizeof(sTmpBuf));
-        *(int*)(sTmpBuf + 4) = 6;
-        memcpy(sTmpBuf + 8, data, length);
-        *(int*)(sTmpBuf) = 0;
-        u32 checksum = mDoMemCdRWm_CalcCheckSum(sTmpBuf, 0x1FFC);
-        *(u32*)(sTmpBuf + 0x1FFC) = checksum;
-
-        if (CARDWrite(file, sTmpBuf, sizeof(sTmpBuf) / 2, 0x4000) == CARD_ERROR_READY &&
-            CARDRead(file, sTmpBuf, sizeof(sTmpBuf) / 2, 0x4000) == CARD_ERROR_READY) {
-            if (checksum == mDoMemCdRWm_CalcCheckSum(sTmpBuf, 0x1FFC)) {
-                if (CARDWrite(file, sTmpBuf, sizeof(sTmpBuf) / 2, 0x6000) == CARD_ERROR_READY &&
-                    CARDRead(file, sTmpBuf, sizeof(sTmpBuf) / 2, 0x6000) == CARD_ERROR_READY) {
-                    if (checksum == mDoMemCdRWm_CalcCheckSum(sTmpBuf, 0x1FFC)) {
-                        mDoMemCdRWm_SetCardStat(file);
-                    }
-                }
-            }
+        card_state = CARDWrite(file, sTmpBuf, sizeof(sTmpBuf) / 2, 0x6000);
+        if (card_state != CARD_RESULT_READY) {
+            return card_state;
         }
     }
+
+    memset(sTmpBuf, 0, sizeof(sTmpBuf));
+    *(int*)(sTmpBuf + 4) = 6;
+    memcpy(sTmpBuf + 8, data, length);
+    *(int*)(sTmpBuf) = 0;
+    u32 checksum = mDoMemCdRWm_CalcCheckSum(sTmpBuf, 0x1FFC);
+    *(u32*)(sTmpBuf + 0x1FFC) = checksum;
+
+    card_state = CARDWrite(file, sTmpBuf, sizeof(sTmpBuf) / 2, 0x4000);
+    if (card_state != CARD_RESULT_READY) {
+        return card_state;
+    }
+
+    card_state = CARDRead(file, sTmpBuf, sizeof(sTmpBuf) / 2, 0x4000);
+    if (card_state != CARD_RESULT_READY) {
+        return card_state;
+    }
+
+    if (checksum != mDoMemCdRWm_CalcCheckSum(sTmpBuf, 0x1FFC)) {
+        return card_state;
+    }
+
+    card_state = CARDWrite(file, sTmpBuf, sizeof(sTmpBuf) / 2, 0x6000);
+    if (card_state != CARD_RESULT_READY) {
+        return card_state;
+    }
+
+    card_state = CARDRead(file, sTmpBuf, sizeof(sTmpBuf) / 2, 0x6000);
+    if (card_state != CARD_RESULT_READY) {
+        return card_state;
+    }
+
+    if (checksum != mDoMemCdRWm_CalcCheckSum(sTmpBuf, 0x1FFC)) {
+        return card_state;
+    }
+    mDoMemCdRWm_SetCardStat(file);
+    return card_state;
 }
 #else
 #pragma push

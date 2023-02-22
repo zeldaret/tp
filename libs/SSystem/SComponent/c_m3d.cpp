@@ -314,35 +314,31 @@ bool cM3d_Cross_AabCyl(const cM3dGAab* pAab, const cM3dGCyl* pCyl) {
 
 /* 80268BB4-80268C5C 2634F4 00A8+00 0/0 2/2 0/0 .text cM3d_Cross_AabSph__FPC8cM3dGAabPC8cM3dGSph
  */
-#ifdef NONMATCHING
 bool cM3d_Cross_AabSph(const cM3dGAab* pAab, const cM3dGSph* pSph) {
     f32 radius = pSph->GetR();
-    if (pAab->GetMinX() > pSph->GetC().x + radius) {  // addition registers are flipped
+    f32 cx = pSph->GetC().x;
+    if (pAab->GetMinX() > cx + radius) {  // addition registers are flipped
         return false;
-    } else if (pAab->GetMaxX() < pSph->GetC().x - radius) {
-        return false;
-    } else if (pAab->GetMinZ() > pSph->GetC().z + radius) {
-        return false;
-    } else if (pAab->GetMaxZ() < pSph->GetC().z - radius) {
-        return false;
-    } else if (pAab->GetMinY() > pSph->GetC().y + radius) {
-        return false;
-    } else if (pAab->GetMaxY() < pSph->GetC().y - radius) {
-        return false;
-    } else {
-        return true;
     }
+    else if (pAab->GetMaxX() < cx - radius) {
+        return false;
+    }
+
+    f32 cz = pSph->GetC().z;
+    if (pAab->GetMinZ() > cz + radius) {
+        return false;
+    } else if (pAab->GetMaxZ() < cz - radius) {
+        return false;
+    }
+    
+    f32 cy = pSph->GetC().y;
+    if (pAab->GetMinY() > cy + radius) {
+        return false;
+    } else if (pAab->GetMaxY() < cy - radius) {
+        return false;
+    }
+    return true;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cM3d_Cross_AabSph(cM3dGAab const* param_0, cM3dGSph const* param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d/cM3d_Cross_AabSph__FPC8cM3dGAabPC8cM3dGSph.s"
-}
-#pragma pop
-#endif
 
 /* 80268C5C-80268ED4 26359C 0278+00 3/3 0/0 0/0 .text
  * cM3d_Check_LinLin__FPC8cM3dGLinPC8cM3dGLinPfPf               */
