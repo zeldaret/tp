@@ -1125,20 +1125,44 @@ COMPILER_STRIP_GATE(0x80807D44, &lit_4725);
 #pragma pop
 
 /* 80806740-808068E4 002000 01A4+00 1/1 0/0 0/0 .text            e_yk_wind__FP10e_yk_class */
-#ifdef NONMATCHING
 static void e_yk_wind(e_yk_class* i_this) {
+    e_yk_class* yk = (e_yk_class*)i_fpcM_Search(shot_b_sub,i_this);
+    i_this->speedF = FLOAT_LABEL(lit_3942);
+  
+    switch(i_this->field_0x670) {
+    case 0:
+        anm_init(i_this,6,FLOAT_LABEL(lit_4334),2,FLOAT_LABEL(lit_3943));
+        i_this->field_0x670 = 1;
+        i_this->field_0x6c4 = -(cM_rndFX(FLOAT_LABEL(lit_4676)) + FLOAT_LABEL(lit_4675));
+        i_this->field_0x6b8.x = cM_rndFX(FLOAT_LABEL(lit_4185));
+        i_this->field_0x6b8.y = cM_rndFX(FLOAT_LABEL(lit_4185));
+        i_this->field_0x6b8.z = cM_rndFX(FLOAT_LABEL(lit_4185));
+    case 1:
+        if (!yk) {
+            i_this->field_0x670 = 2;
+            i_this->field_0x6a2 = 0x3c;
+            break;
+            
+        } else {
+            i_this->current.pos = yk->current.pos + i_this->field_0x6b8;
+            i_this->mCreature.startCreatureVoiceLevel(Z2SE_EN_YK_V_SPIN,-1);
+            break;
+        }
+    case 2:
+        cLib_addCalcAngleS2(&i_this->field_0x6c4,0,4,0x1c2);
+
+        if (i_this->field_0x6a2 == 0) {
+            i_this->mAction = ACT_FIGHT_FLY;
+            i_this->field_0x670 = 0;
+        }
+    }
+
+    i_this->current.angle.y += i_this->field_0x6c4;
+    i_this->shape_angle.y = i_this->current.angle.y;
+    i_this->current.angle.z = 0;
+
     
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void e_yk_wind(e_yk_class* i_this) {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_wind__FP10e_yk_class.s"
-}
-#pragma pop
-#endif
 
 /* 808068E4-80806B78 0021A4 0294+00 2/1 0/0 0/0 .text            action__FP10e_yk_class */
 #ifdef NONMATCHING
@@ -1293,7 +1317,6 @@ static int daE_YK_Delete(e_yk_class* i_this) {
 }
 
 /* 808070FC-808071F4 0029BC 00F8+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-#ifndef NONMATCHING
 static int useHeapInit(fopAc_ac_c* i_this) {
     e_yk_class* yk = (e_yk_class*)i_this;
 
@@ -1305,16 +1328,6 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void useHeapInit(fopAc_ac_c* i_this) {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/useHeapInit__FP10fopAc_ac_c.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80807D50-80807D54 0000B4 0004+00 0/1 0/0 0/0 .rodata          @5027 */
