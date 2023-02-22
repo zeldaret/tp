@@ -1056,9 +1056,50 @@ COMPILER_STRIP_GATE(0x80807D30, &lit_4610);
 #pragma pop
 
 /* 80806308-80806500 001BC8 01F8+00 1/1 0/0 0/0 .text            e_yk_chance__FP10e_yk_class */
-#ifdef NONMATCHING
+#ifndef NONMATCHING
 static void e_yk_chance(e_yk_class* i_this) {
-    
+    switch (i_this->field_0x670) {
+    case 0:
+        anm_init(i_this,8,FLOAT_LABEL(lit_4398),2,FLOAT_LABEL(lit_4608));
+        i_this->field_0x670 = 1;
+        i_this->field_0x6a2 = cM_rndF(FLOAT_LABEL(lit_4399)) + FLOAT_LABEL(lit_3941);
+        i_this->speed.x = FLOAT_LABEL(lit_3942);
+        i_this->speed.y = FLOAT_LABEL(lit_3942);
+        i_this->speed.z = FLOAT_LABEL(lit_3942);
+        i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_BITE,-1);
+        break;
+    case 1:
+        if (i_this->field_0x708.ChkGroundHit()) {
+            i_this->speed.y = cM_rndF(FLOAT_LABEL(lit_4152)) + FLOAT_LABEL(lit_4152);
+            i_this->speed.x = cM_rndFX(FLOAT_LABEL(lit_4152));
+            i_this->speed.z = cM_rndFX(FLOAT_LABEL(lit_4152));
+
+            if (cM_rndF(FLOAT_LABEL(lit_3943)) < FLOAT_LABEL(lit_4306)) {
+                i_this->field_0x69a.z = 0;
+            } else {
+                i_this->field_0x69a.z = 0x8000;
+            }
+        
+            i_this->field_0x69a.y = cM_rndF(FLOAT_LABEL(lit_4609));
+            fopAcM_effSmokeSet1(&i_this->field_0xa78,&i_this->field_0xa7c,
+                                &i_this->current.pos,&i_this->shape_angle,
+                                FLOAT_LABEL(lit_4610),&i_this->mTevStr,1);
+
+            i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_FAINT,-1);
+        }
+
+        if (i_this->field_0x6a2 == 0) {
+            i_this->current.angle.z = 0;
+            i_this->mAction = ACT_FIGHT;
+            i_this->field_0x670 = 0;
+            return;
+        }
+    }
+
+    i_this->current.pos += i_this->speed;
+    i_this->speed.y -= FLOAT_LABEL(lit_4398);
+    cLib_addCalcAngleS2(&i_this->current.angle.y,i_this->field_0x69a.y,2,0x1000);
+    cLib_addCalcAngleS2(&i_this->current.angle.z,i_this->field_0x69a.z,2,0x1000);
 }
 #else
 #pragma push
