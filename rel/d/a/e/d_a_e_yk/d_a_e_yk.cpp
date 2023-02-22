@@ -986,9 +986,46 @@ COMPILER_STRIP_GATE(0x80807D24, &lit_4481);
 #pragma pop
 
 /* 80805BB4-80805DE0 001474 022C+00 1/1 0/0 0/0 .text            e_yk_fly__FP10e_yk_class */
-#ifdef NONMATCHING
+#ifndef NONMATCHING
+// matches with literals
 static void e_yk_fly(e_yk_class* i_this) {
-    
+    switch (i_this->field_0x670) {
+    case 0:
+        anm_init(i_this,5,FLOAT_LABEL(lit_4334),2,FLOAT_LABEL(lit_3943));
+        i_this->field_0x670 = 1;
+        break;
+    case 1:
+        if ((i_this->field_0x66c & 0x1f) == 0 && cM_rndF(FLOAT_LABEL(lit_3943)) < FLOAT_LABEL(lit_4306)) {
+            i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_NAKU,-1);
+        }
+
+        if (i_this->field_0x6a2 == 0) {
+            i_this->field_0x674.x = i_this->orig.pos.x + cM_rndFX(FLOAT_LABEL(lit_4480));
+            i_this->field_0x674.y = i_this->orig.pos.y + cM_rndFX(FLOAT_LABEL(lit_4481));
+            i_this->field_0x674.z = i_this->orig.pos.z + cM_rndFX(FLOAT_LABEL(lit_4480));
+
+            cXyz pos = i_this->field_0x674 - i_this->current.pos;
+
+            mDoMtx_YrotS((MtxP)calc_mtx,cM_atan2s(pos.x,pos.z));
+            cMtx_XrotM((MtxP)calc_mtx,-cM_atan2s(pos.y,JMAFastSqrt(pos.x*pos.x + pos.z*pos.z))); // float literal inline
+
+            pos.x = FLOAT_LABEL(lit_3942);
+            pos.y = FLOAT_LABEL(lit_3942);
+            pos.z = l_HIO.field_0x14;
+
+            MtxPosition(&pos,&i_this->speed);
+            i_this->field_0x6a2 = cM_rndF(FLOAT_LABEL(lit_4399)) + FLOAT_LABEL(lit_4152);
+            i_this->field_0x68c = FLOAT_LABEL(lit_3942);
+        }
+    }
+
+    cLib_addCalc2(&i_this->speedF,l_HIO.field_0x0c,FLOAT_LABEL(lit_3943),FLOAT_LABEL(lit_4335) * l_HIO.field_0x0c);
+    fly_move(i_this);
+
+    if (pl_check(i_this,i_this->field_0x688,1)) {
+        i_this->mAction = ACT_FIGHT_FLY;
+        i_this->field_0x670 = 0;
+    }
 }
 #else
 #pragma push
