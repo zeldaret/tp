@@ -1045,8 +1045,58 @@ COMPILER_STRIP_GATE(0x80807D1C, &lit_4438);
 
 /* 808059BC-80805BB4 00127C 01F8+00 1/1 0/0 0/0 .text            e_yk_attack__FP10e_yk_class */
 #ifdef NONMATCHING
+// matches with literals
 static void e_yk_attack(e_yk_class* i_this) {
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
     
+    // may need to be adjusted..
+    f32 value = FLOAT_LABEL(lit_3942);
+    i_this->field_0x68c = FLOAT_LABEL(lit_3942);
+
+    switch (i_this->mActionPhase) {
+    case 0:
+        anm_init(i_this,5,FLOAT_LABEL(lit_4334),2,FLOAT_LABEL(lit_4398));
+        i_this->mActionPhase = 1;
+        i_this->field_0x6a4 = 0x14;
+        break;
+    case 1:
+        i_this->field_0x674 = player->current.pos;
+        i_this->field_0x674.y += FLOAT_LABEL(lit_4438);
+        i_this->field_0x68c = FLOAT_LABEL(lit_4398);
+
+        if (i_this->field_0x6a4 == 0) {
+            i_this->mActionPhase = 2;
+            i_this->field_0x6a2 = 0xf;
+            i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_ATTACK,-1);
+        }
+        break;
+    case 2:
+        value = l_HIO[6];
+
+        if (i_this->mCollisionSphere.ChkAtShieldHit()) {
+            i_this->mAction = ACT_CHANCE;
+            i_this->mActionPhase = 0;
+            i_this->field_0x694 = FLOAT_LABEL(lit_4151);
+            i_this->field_0x698 = i_this->shape_angle.y;
+            i_this->field_0x6a0 = 0;
+
+            dComIfGp_getVibration().StartShock(2,0x1f,cXyz(FLOAT_LABEL(lit_3942),FLOAT_LABEL(lit_3943),FLOAT_LABEL(lit_3942)));
+            
+        } else {
+            if (i_this->field_0x6a2 == 0) {
+                i_this->mActionPhase = 3;
+            }
+        }
+        break;
+    case 3:
+        if ((i_this->speedF <= FLOAT_LABEL(lit_3943))) {
+            i_this->mAction = ACT_FIGHT;
+            i_this->mActionPhase = 0;
+        }
+    }
+
+    cLib_addCalc2(&i_this->speedF,value,FLOAT_LABEL(lit_3943),FLOAT_LABEL(lit_4153) * l_HIO[6]);
+    fly_move(i_this);
 }
 #else
 #pragma push
