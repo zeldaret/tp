@@ -669,11 +669,11 @@ COMPILER_STRIP_GATE(0x80807CEC, &lit_4185);
 static u8 data_80807EF8;
 
 /* 80807EFC-80807F08 00000C 000C+00 1/1 0/0 0/0 .bss             @3957 */
-static f32 lit_3957[3];
+static u8 lit_3957[12];
 
 /* 80807F08-80807F24 000018 001C+00 9/9 0/0 0/0 .bss             l_HIO */
-static daE_YK_HIO_c l_HIO;
-// static u8 l_HIO[28];
+// static daE_YK_HIO_c l_HIO;
+static f32 l_HIO[7];
 
 /* 80807F24-80808023 000034 00FF+00 1/1 0/0 0/0 .bss             check_index$4191 */
 static u8 check_index[255];
@@ -761,7 +761,7 @@ static int path_check(e_yk_class* i_this) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void path_check(e_yk_class* i_this) {
+static asm int path_check(e_yk_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/path_check__FP10e_yk_class.s"
 }
@@ -886,20 +886,45 @@ COMPILER_STRIP_GATE(0x80807D08, &lit_4335);
 #pragma pop
 
 /* 808054A8-80805660 000D68 01B8+00 1/1 0/0 0/0 .text            e_yk_fight_fly__FP10e_yk_class */
-#ifdef NONMATCHING
 static void e_yk_fight_fly(e_yk_class* i_this) {
-    
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+
+    switch (i_this->field_0x670) {
+    case 0:
+        anm_init(i_this,5,FLOAT_LABEL(lit_4334),2,FLOAT_LABEL(lit_3943));
+        i_this->field_0x670 = 1;
+        i_this->field_0x68c = FLOAT_LABEL(lit_3942);
+        break;
+    case 1:
+        if ((i_this->field_0x66c & 0xfU) == 0 && cM_rndF(FLOAT_LABEL(lit_3943)) < FLOAT_LABEL(lit_4306)) {
+            i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_NAKU,-1);
+        }
+    }
+
+    cLib_addCalc2(&i_this->speedF,l_HIO[3], FLOAT_LABEL(lit_3943), FLOAT_LABEL(lit_4335) * l_HIO[3]);
+    i_this->field_0x674 = player->current.pos;
+    fly_move(i_this);
+
+    if (!pl_check(i_this,FLOAT_LABEL(lit_4185) + i_this->field_0x688,1)) {
+        if (!path_check(i_this)) {
+            if (i_this->field_0x5b4 == 0) {
+                i_this->mAction = ACT_RETURN;
+                i_this->field_0x670 = 0;
+            } else {
+                i_this->mAction = ACT_FLY;
+                i_this->field_0x670 = 0;
+            }
+        } else {
+            i_this->mAction = ACT_PATH_FLY;
+            i_this->field_0x670 = 0;
+        }
+    } else {
+        if (pl_check(i_this,l_HIO[4],1)) {
+            i_this->mAction = ACT_FIGHT;
+            i_this->field_0x670 = 0;
+        }
+    }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void e_yk_fight_fly(e_yk_class* i_this) {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_fight_fly__FP10e_yk_class.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80807D0C-80807D10 000070 0004+00 0/3 0/0 0/0 .rodata          @4398 */
@@ -986,7 +1011,7 @@ COMPILER_STRIP_GATE(0x80807D24, &lit_4481);
 #pragma pop
 
 /* 80805BB4-80805DE0 001474 022C+00 1/1 0/0 0/0 .text            e_yk_fly__FP10e_yk_class */
-#ifndef NONMATCHING
+#ifdef NONMATCHING
 // matches with literals
 static void e_yk_fly(e_yk_class* i_this) {
     switch (i_this->field_0x670) {
@@ -1181,8 +1206,62 @@ COMPILER_STRIP_GATE(0x80807D38, &lit_4651);
 
 /* 80806500-80806740 001DC0 0240+00 1/1 0/0 0/0 .text            e_yk_wolfbite__FP10e_yk_class */
 #ifdef NONMATCHING
+// matches with literals
 static void e_yk_wolfbite(e_yk_class* i_this) {
-    
+    daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
+    switch(i_this->field_0x670) {
+    case 0:
+        anm_init(i_this,7,FLOAT_LABEL(lit_3942),2,FLOAT_LABEL(lit_3943));
+        i_this->field_0x670 = 1;
+        break;
+    case 1:
+        if (!player->checkWolfEnemyCatchOwn(i_this)) {
+            if (player->checkWolfEnemyLeftThrow()) {
+                i_this->current.angle.y = player->shape_angle.y + 0x4000;
+            } else {
+                i_this->current.angle.y = player->shape_angle.y - 0x4000;
+            }
+
+            i_this->speedF = FLOAT_LABEL(lit_3964);
+            i_this->speed.y = FLOAT_LABEL(lit_4650);
+            i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_DEATH,-1);
+
+            anm_init(i_this,4,FLOAT_LABEL(lit_3943),0,FLOAT_LABEL(lit_3943));
+
+            i_this->field_0x6a2 = 0x3c;
+            i_this->field_0x670 = 2;
+        }
+        break;
+    case 2:
+        if (i_this->field_0x708.ChkGroundHit()) {
+            i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_DEATH2,-1);
+            i_this->mCreature.startCreatureSound(Z2SE_CM_BODYFALL_S,0,-1);
+            i_this->field_0x670 = 3;
+        }
+        // break;
+    case 3:
+        if (i_this->field_0x6a2 == 0) {
+            yk_disappear(i_this);
+            fopAcM_delete(i_this);
+        }
+    }
+
+    cXyz pos, pos2;
+    pos.x = FLOAT_LABEL(lit_3942);
+    pos.y = FLOAT_LABEL(lit_3942); 
+    pos.z = i_this->speedF;
+
+    mDoMtx_YrotS((MtxP)calc_mtx,i_this->current.angle.y);
+    MtxPosition(&pos, &pos2);
+    i_this->speed.x = pos2.x;
+    i_this->speed.z = pos2.z;
+
+    i_this->current.pos += i_this->speed;
+    i_this->speed.y -= FLOAT_LABEL(lit_4651);
+
+    if (i_this->field_0x708.ChkGroundHit()) {
+        cLib_addCalc0(&i_this->speedF,FLOAT_LABEL(lit_3943),FLOAT_LABEL(lit_3962));
+    }
 }
 #else
 #pragma push

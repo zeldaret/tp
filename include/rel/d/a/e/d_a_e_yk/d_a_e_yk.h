@@ -21,17 +21,17 @@
 //     /* 0x8 */ dStage_dPnt_c* m_points;
 // };
 
-enum daEYK_Action {
-    ACT_ROOF,
-    ACT_FIGHT_FLY,
-    ACT_FIGHT,
-    ACT_ATTACK,
-    ACT_RETURN,
-    ACT_FLY,
-    ACT_PATH_FLY,
-    ACT_CHANCE = 10,
-    ACT_WOLFBITE = 13,
-    ACT_WIND
+enum daE_YK_Action {
+    ACT_ROOF,           // Unconfirmed: keese is on roof?
+    ACT_FIGHT_FLY,      // keese is transitioning from flying to aggro 
+    ACT_FIGHT,          // keese is aggroed
+    ACT_ATTACK,         // keese is attacking
+    ACT_RETURN,         // Unconfirmed: keese is returning to roof?
+    ACT_FLY,            // keese is flying around
+    ACT_PATH_FLY,       // Unconfirmed: keese is flying along a path?
+    ACT_CHANCE = 10,    // keese is stunned/fell down
+    ACT_WOLFBITE = 13,  // keese is being bitten by wolf
+    ACT_WIND            // keese is in the gale boomerang
 };
 
 class daE_YK_HIO_c {
@@ -52,7 +52,8 @@ public:
 class e_yk_class : public fopEn_enemy_c {
 public:
     /* 0x5AC */ request_of_phase_process_class mPhase;
-    /* 0x5B4 */ u8 field_0x5b4[2];
+    /* 0x5B4 */ u8 field_0x5b4;
+    /* 0x5B5 */ u8 field_0x5b5;
     /* 0x5B6 */ u8 field_0x5b6;
     /* 0x5B7 */ u8 field_0x5b7;
     /* 0x5B8 */ u8 field_0x5b8;
