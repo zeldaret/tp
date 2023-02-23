@@ -583,31 +583,31 @@ static void damage_check(e_yk_class* i_this) {
 
     if (i_this->field_0x6aa == 0) {
         // Store current AtApid and TgApid then set them to 0
-        i_this->field_0x8e0.Move();
+        i_this->mCollisionStatus.Move();
 
         // If keese Defense collider was hit
         if (i_this->mCollisionSphere.ChkTgHit()) {
-            // Save the collider that hit the keese dt collider
-            i_this->field_0xa54.mpCollider = i_this->mCollisionSphere.GetTgHitObj();
+            // Store the tg collider pointer as the current at collider in the info block
+            i_this->mAtColliderInfo.mpCollider = i_this->mCollisionSphere.GetTgHitObj();
 
             // If keese was hit by the boomerang
-            if (i_this->field_0xa54.mpCollider->ChkAtType(AT_TYPE_BOOMERANG)) {
+            if (i_this->mAtColliderInfo.mpCollider->ChkAtType(AT_TYPE_BOOMERANG)) {
                 i_this->mAction = ACT_WIND;
-                i_this->field_0x670 = 0;
+                i_this->mActionPhase = 0;
                 
             } else {
                 // Run through the default Attack collider checks first
-                cc_at_check(i_this,&i_this->field_0xa54);
+                cc_at_check(i_this,&i_this->mAtColliderInfo);
                 
                 // If keese was hit by Clawshot or Slingshot, subtract 1 from health
-                if (i_this->field_0xa54.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT) || i_this->field_0xa54.mpCollider->ChkAtType(AT_TYPE_SLINGSHOT)) {
+                if (i_this->mAtColliderInfo.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT) || i_this->mAtColliderInfo.mpCollider->ChkAtType(AT_TYPE_SLINGSHOT)) {
                     i_this->mHealth--;
                 }
 
                 // If keese was hit by shield attack, set some fields and play controller vibration
-                if (i_this->field_0xa54.mpCollider->ChkAtType(AT_TYPE_SHIELD_ATTACK)) {
+                if (i_this->mAtColliderInfo.mpCollider->ChkAtType(AT_TYPE_SHIELD_ATTACK)) {
                     i_this->mAction = ACT_CHANCE;
-                    i_this->field_0x670 = 0;
+                    i_this->mActionPhase = 0;
                     i_this->field_0x694 = FLOAT_LABEL(lit_4151);
                     i_this->field_0x698 = i_this->shape_angle.y;
                     i_this->field_0x6a0 = 0;
@@ -616,22 +616,22 @@ static void damage_check(e_yk_class* i_this) {
                 } else {
                     // If keese was hit by wolf bite, set some fields, set pause timer to 0, 
                     // play keese wolf bit sound
-                    if (i_this->field_0xa54.mpCollider->ChkAtType(AT_TYPE_WOLF_ATTACK) && (static_cast<daPy_py_c*>(player)->onWolfEnemyBiteAll(i_this,daPy_py_c::FLG2_UNK_8) != 0)) {
+                    if (i_this->mAtColliderInfo.mpCollider->ChkAtType(AT_TYPE_WOLF_ATTACK) && (static_cast<daPy_py_c*>(player)->onWolfEnemyBiteAll(i_this,daPy_py_c::FLG2_UNK_8) != 0)) {
                         i_this->mAction = ACT_WOLFBITE;
-                        i_this->field_0x670 = 0;
+                        i_this->mActionPhase = 0;
                         i_this->field_0x6aa = 200;
                         dScnPly_c::setPauseTimer(0);
                         i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_BITE,-1);
                     } else {
                         // If it was unknown attack, set some fields
-                        if (i_this->field_0xa54.mpCollider->ChkAtType(AT_TYPE_UNK)) {
+                        if (i_this->mAtColliderInfo.mpCollider->ChkAtType(AT_TYPE_UNK)) {
                             i_this->field_0x6aa = 20;
                         } else {
                             i_this->field_0x6aa = 10;
                         }
 
                         i_this->field_0x694 = cM_rndF(FLOAT_LABEL(lit_4152)) + FLOAT_LABEL(lit_4151);
-                        i_this->field_0x698 = i_this->field_0xa54.mHitDirection;
+                        i_this->field_0x698 = i_this->mAtColliderInfo.mHitDirection;
 
                         // If keese is dead, play death sound
                         if (i_this->mHealth <= 0) {
@@ -849,10 +849,10 @@ COMPILER_STRIP_GATE(0x80807D00, &lit_4306);
 
 /* 80805360-808054A8 000C20 0148+00 1/1 0/0 0/0 .text            e_yk_roof__FP10e_yk_class */
 static void e_yk_roof(e_yk_class* i_this) {
-    switch (i_this->field_0x670) {
+    switch (i_this->mActionPhase) {
     case 0:
         anm_init(i_this,9,FLOAT_LABEL(lit_3962),2,cM_rndF(FLOAT_LABEL(lit_4305)) + FLOAT_LABEL(lit_4304)); // random number between 0.9 and 1.0
-        i_this->field_0x670 = 1;
+        i_this->mActionPhase = 1;
         break;
     case 1:
         if ((i_this->field_0x66c & 0x1f) == 0 && cM_rndF(FLOAT_LABEL(lit_3943)) < FLOAT_LABEL(lit_4306)) {
@@ -866,7 +866,7 @@ static void e_yk_roof(e_yk_class* i_this) {
 
     if (pl_check(i_this,i_this->field_0x688,1)) {
         i_this->mAction = ACT_FIGHT_FLY;
-        i_this->field_0x670 = 0;
+        i_this->mActionPhase = 0;
     }
 }
 
@@ -889,10 +889,10 @@ COMPILER_STRIP_GATE(0x80807D08, &lit_4335);
 static void e_yk_fight_fly(e_yk_class* i_this) {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
-    switch (i_this->field_0x670) {
+    switch (i_this->mActionPhase) {
     case 0:
         anm_init(i_this,5,FLOAT_LABEL(lit_4334),2,FLOAT_LABEL(lit_3943));
-        i_this->field_0x670 = 1;
+        i_this->mActionPhase = 1;
         i_this->field_0x68c = FLOAT_LABEL(lit_3942);
         break;
     case 1:
@@ -909,19 +909,19 @@ static void e_yk_fight_fly(e_yk_class* i_this) {
         if (!path_check(i_this)) {
             if (i_this->field_0x5b4 == 0) {
                 i_this->mAction = ACT_RETURN;
-                i_this->field_0x670 = 0;
+                i_this->mActionPhase = 0;
             } else {
                 i_this->mAction = ACT_FLY;
-                i_this->field_0x670 = 0;
+                i_this->mActionPhase = 0;
             }
         } else {
             i_this->mAction = ACT_PATH_FLY;
-            i_this->field_0x670 = 0;
+            i_this->mActionPhase = 0;
         }
     } else {
         if (pl_check(i_this,l_HIO[4],1)) {
             i_this->mAction = ACT_FIGHT;
-            i_this->field_0x670 = 0;
+            i_this->mActionPhase = 0;
         }
     }
 }
@@ -957,8 +957,72 @@ COMPILER_STRIP_GATE(0x80807D18, &lit_4401);
 
 /* 80805660-808059BC 000F20 035C+00 1/1 0/0 0/0 .text            e_yk_fight__FP10e_yk_class */
 #ifdef NONMATCHING
+// matches with literals
 static void e_yk_fight(e_yk_class* i_this) {
-    
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    s16 player_shape_angle_y = player->shape_angle.y;
+
+    switch (i_this->mActionPhase) {
+    case 0:
+        anm_init(i_this,8,FLOAT_LABEL(lit_4398),2,cM_rndF(FLOAT_LABEL(lit_4305)) + FLOAT_LABEL(lit_3943));
+        i_this->mActionPhase = 1;
+        i_this->field_0x6a2 = 0;
+        i_this->field_0x6a4 = cM_rndF(FLOAT_LABEL(lit_3941)) + FLOAT_LABEL(lit_4399);
+        break;
+    case 1:
+        if (i_this->field_0x6a2 == 0) {
+            mDoMtx_YrotS((MtxP)calc_mtx,player_shape_angle_y + (s16)cM_rndFX(FLOAT_LABEL(lit_4400)));
+
+            cXyz pos;
+            pos.x = FLOAT_LABEL(lit_3942);
+            pos.y = cM_rndF(FLOAT_LABEL(lit_3941)) + FLOAT_LABEL(lit_4401);
+            pos.z = cM_rndF(FLOAT_LABEL(lit_4401)) + FLOAT_LABEL(lit_4401);
+
+            MtxPosition(&pos,&i_this->field_0x674);
+            i_this->field_0x674 += player->current.pos;
+
+            pos = i_this->field_0x674 - i_this->current.pos;
+            mDoMtx_YrotS((MtxP)calc_mtx,cM_atan2s(pos.x,pos.z));
+            cMtx_XrotM((MtxP)calc_mtx,-cM_atan2s(pos.y,JMAFastSqrt(pos.x*pos.x + pos.z*pos.z))); // float literal inline
+
+            pos.x = FLOAT_LABEL(lit_3942);
+            pos.y = FLOAT_LABEL(lit_3942);
+            pos.z = l_HIO[5];
+
+            MtxPosition(&pos,&i_this->speed);
+
+            i_this->field_0x6a2 = cM_rndF(FLOAT_LABEL(lit_4399)) + FLOAT_LABEL(lit_4152);
+            i_this->field_0x68c = FLOAT_LABEL(lit_3942);
+        }
+
+        if (i_this->field_0x6a4 == 0) {
+            i_this->field_0x6a4 = cM_rndF(FLOAT_LABEL(lit_3941)) + FLOAT_LABEL(lit_4399);
+            i_this->mAction = ACT_ATTACK;
+            i_this->mActionPhase = 0;
+        }
+    }
+
+    cLib_addCalc2(&i_this->current.pos.x,i_this->field_0x674.x,FLOAT_LABEL(lit_4153),i_this->field_0x68c * fabsf(i_this->speed.x));
+    cLib_addCalc2(&i_this->current.pos.y,i_this->field_0x674.y,FLOAT_LABEL(lit_4153),i_this->field_0x68c * fabsf(i_this->speed.y));
+    cLib_addCalc2(&i_this->current.pos.z,i_this->field_0x674.z,FLOAT_LABEL(lit_4153),i_this->field_0x68c * fabsf(i_this->speed.z));
+    cLib_addCalc2(&i_this->field_0x68c,FLOAT_LABEL(lit_3943),FLOAT_LABEL(lit_3943),FLOAT_LABEL(lit_4305));
+
+    cLib_addCalcAngleS2(&i_this->current.angle.y,i_this->mAngleFromPlayer,4,0x800);
+
+    if (!pl_check(i_this,i_this->field_0x688 + FLOAT_LABEL(lit_4185),1)) {
+        if (!path_check(i_this)) {
+            if (i_this->field_0x5b4 == 0) {
+                i_this->mAction = ACT_RETURN;
+                i_this->mActionPhase = 0;
+            } else {
+                i_this->mAction = ACT_FLY;
+                i_this->mActionPhase = 0;
+            }
+        } else {
+            i_this->mAction = ACT_PATH_FLY;
+            i_this->mActionPhase = 0;
+        }
+    }
 }
 #else
 #pragma push
@@ -1014,10 +1078,10 @@ COMPILER_STRIP_GATE(0x80807D24, &lit_4481);
 #ifdef NONMATCHING
 // matches with literals
 static void e_yk_fly(e_yk_class* i_this) {
-    switch (i_this->field_0x670) {
+    switch (i_this->mActionPhase) {
     case 0:
         anm_init(i_this,5,FLOAT_LABEL(lit_4334),2,FLOAT_LABEL(lit_3943));
-        i_this->field_0x670 = 1;
+        i_this->mActionPhase = 1;
         break;
     case 1:
         if ((i_this->field_0x66c & 0x1f) == 0 && cM_rndF(FLOAT_LABEL(lit_3943)) < FLOAT_LABEL(lit_4306)) {
@@ -1049,7 +1113,7 @@ static void e_yk_fly(e_yk_class* i_this) {
 
     if (pl_check(i_this,i_this->field_0x688,1)) {
         i_this->mAction = ACT_FIGHT_FLY;
-        i_this->field_0x670 = 0;
+        i_this->mActionPhase = 0;
     }
 }
 #else
@@ -1067,10 +1131,10 @@ static asm void e_yk_fly(e_yk_class* i_this) {
 #ifdef NONMATCHING
 // matches with literals
 static void e_yk_return(e_yk_class* i_this) {
-    switch (i_this->field_0x670) {
+    switch (i_this->mActionPhase) {
     case 0:
         anm_init(i_this,5,FLOAT_LABEL(lit_4334),2,FLOAT_LABEL(lit_3943));
-        i_this->field_0x670 = 1;
+        i_this->mActionPhase = 1;
         i_this->field_0x68c = FLOAT_LABEL(lit_3942);
     case 1:
         break;
@@ -1085,12 +1149,12 @@ static void e_yk_return(e_yk_class* i_this) {
 
     if (pos.abs() < FLOAT_LABEL(lit_3941)) { // multiple float literal inlines
         i_this->mAction = ACT_ROOF;
-        i_this->field_0x670 = 0;
+        i_this->mActionPhase = 0;
         
     } else {
         if (pl_check(i_this,i_this->field_0x688,1)) {
             i_this->mAction = ACT_FIGHT_FLY;
-            i_this->field_0x670 = 0;
+            i_this->mActionPhase = 0;
         }
     }
 }
@@ -1145,10 +1209,10 @@ COMPILER_STRIP_GATE(0x80807D30, &lit_4610);
 
 /* 80806308-80806500 001BC8 01F8+00 1/1 0/0 0/0 .text            e_yk_chance__FP10e_yk_class */
 static void e_yk_chance(e_yk_class* i_this) {
-    switch (i_this->field_0x670) {
+    switch (i_this->mActionPhase) {
     case 0:
         anm_init(i_this,8,FLOAT_LABEL(lit_4398),2,FLOAT_LABEL(lit_4608));
-        i_this->field_0x670 = 1;
+        i_this->mActionPhase = 1;
         i_this->field_0x6a2 = cM_rndF(FLOAT_LABEL(lit_4399)) + FLOAT_LABEL(lit_3941);
         i_this->speed.x = FLOAT_LABEL(lit_3942);
         i_this->speed.y = FLOAT_LABEL(lit_3942);
@@ -1178,7 +1242,7 @@ static void e_yk_chance(e_yk_class* i_this) {
         if (i_this->field_0x6a2 == 0) {
             i_this->current.angle.z = 0;
             i_this->mAction = ACT_FIGHT;
-            i_this->field_0x670 = 0;
+            i_this->mActionPhase = 0;
             return;
         }
     }
@@ -1209,10 +1273,10 @@ COMPILER_STRIP_GATE(0x80807D38, &lit_4651);
 // matches with literals
 static void e_yk_wolfbite(e_yk_class* i_this) {
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
-    switch(i_this->field_0x670) {
+    switch(i_this->mActionPhase) {
     case 0:
         anm_init(i_this,7,FLOAT_LABEL(lit_3942),2,FLOAT_LABEL(lit_3943));
-        i_this->field_0x670 = 1;
+        i_this->mActionPhase = 1;
         break;
     case 1:
         if (!player->checkWolfEnemyCatchOwn(i_this)) {
@@ -1229,14 +1293,14 @@ static void e_yk_wolfbite(e_yk_class* i_this) {
             anm_init(i_this,4,FLOAT_LABEL(lit_3943),0,FLOAT_LABEL(lit_3943));
 
             i_this->field_0x6a2 = 0x3c;
-            i_this->field_0x670 = 2;
+            i_this->mActionPhase = 2;
         }
         break;
     case 2:
         if (i_this->field_0x708.ChkGroundHit()) {
             i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_DEATH2,-1);
             i_this->mCreature.startCreatureSound(Z2SE_CM_BODYFALL_S,0,-1);
-            i_this->field_0x670 = 3;
+            i_this->mActionPhase = 3;
         }
         // break;
     case 3:
@@ -1301,35 +1365,35 @@ static void e_yk_wind(e_yk_class* i_this) {
     e_yk_class* yk = (e_yk_class*)i_fpcM_Search(shot_b_sub,i_this);
     i_this->speedF = FLOAT_LABEL(lit_3942);
   
-    switch(i_this->field_0x670) {
+    switch(i_this->mActionPhase) {
     case 0:
         anm_init(i_this,6,FLOAT_LABEL(lit_4334),2,FLOAT_LABEL(lit_3943));
-        i_this->field_0x670 = 1;
-        i_this->field_0x6c4 = -(cM_rndFX(FLOAT_LABEL(lit_4676)) + FLOAT_LABEL(lit_4675));
-        i_this->field_0x6b8.x = cM_rndFX(FLOAT_LABEL(lit_4185));
-        i_this->field_0x6b8.y = cM_rndFX(FLOAT_LABEL(lit_4185));
-        i_this->field_0x6b8.z = cM_rndFX(FLOAT_LABEL(lit_4185));
+        i_this->mActionPhase = 1;
+        i_this->mBoomrangXRotOffset = -(cM_rndFX(FLOAT_LABEL(lit_4676)) + FLOAT_LABEL(lit_4675));
+        i_this->mBoomrangPosOffset.x = cM_rndFX(FLOAT_LABEL(lit_4185));
+        i_this->mBoomrangPosOffset.y = cM_rndFX(FLOAT_LABEL(lit_4185));
+        i_this->mBoomrangPosOffset.z = cM_rndFX(FLOAT_LABEL(lit_4185));
     case 1:
         if (!yk) {
-            i_this->field_0x670 = 2;
+            i_this->mActionPhase = 2;
             i_this->field_0x6a2 = 0x3c;
             break;
             
         } else {
-            i_this->current.pos = yk->current.pos + i_this->field_0x6b8;
+            i_this->current.pos = yk->current.pos + i_this->mBoomrangPosOffset;
             i_this->mCreature.startCreatureVoiceLevel(Z2SE_EN_YK_V_SPIN,-1);
             break;
         }
     case 2:
-        cLib_addCalcAngleS2(&i_this->field_0x6c4,0,4,0x1c2);
+        cLib_addCalcAngleS2(&i_this->mBoomrangXRotOffset,0,4,0x1c2);
 
         if (i_this->field_0x6a2 == 0) {
             i_this->mAction = ACT_FIGHT_FLY;
-            i_this->field_0x670 = 0;
+            i_this->mActionPhase = 0;
         }
     }
 
-    i_this->current.angle.y += i_this->field_0x6c4;
+    i_this->current.angle.y += i_this->mBoomrangXRotOffset;
     i_this->shape_angle.y = i_this->current.angle.y;
     i_this->current.angle.z = 0;
 

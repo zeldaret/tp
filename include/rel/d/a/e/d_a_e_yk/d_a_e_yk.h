@@ -7,20 +7,6 @@
 #include "d/cc/d_cc_uty.h"
 #include "d/d_path.h"
 
-// struct dStage_dPnt_c {
-//     /* 0x0 */ int field_0x0;
-//     /* 0x4 */ cXyz m_position;
-// };  // Size: 0x10
-
-// struct dPath {
-//     /* 0x0 */ u16 m_num;
-//     /* 0x2 */ u16 m_nextID;
-//     /* 0x4 */ u8 field_0x4;
-//     /* 0x5 */ u8 m_closed;
-//     /* 0x6 */ u8 field_0x6;
-//     /* 0x8 */ dStage_dPnt_c* m_points;
-// };
-
 enum daE_YK_Action {
     ACT_ROOF,           // Unconfirmed: keese is on roof?
     ACT_FIGHT_FLY,      // keese is transitioning from flying to aggro 
@@ -60,18 +46,18 @@ public:
     /* 0x5B9 */ s8 field_0x5b9;
     /* 0x5BA */ s8 field_0x5ba;
     /* 0x5BB */ u8 field_0x5bb;
-    /* 0x5BC */ dPath* mpPath;
-    /* 0x5C0 */ mDoExt_McaMorfSO* mpMorfSO;
-    /* 0x5C4 */ Z2CreatureEnemy mCreature;
-    /* 0x668 */ int mResIdx;
+    /* 0x5BC */ dPath* mpPath;                  // flight path for keese to follow?
+    /* 0x5C0 */ mDoExt_McaMorfSO* mpMorfSO;     // last res loaded
+    /* 0x5C4 */ Z2CreatureEnemy mCreature;      // used for playing keese noises
+    /* 0x668 */ int mResIdx;                    // index number of last res loaded
     /* 0x66C */ s16 field_0x66c;
-    /* 0x66E */ s16 mAction;
-    /* 0x670 */ s16 field_0x670;
-    /* 0x672 */ u8 field_0x672[2];
+    /* 0x66E */ s16 mAction;                    // current action (see daE_YK_Action above)
+    /* 0x670 */ s16 mActionPhase;               // current phase of current action
+    /* 0x672 */ u8 field_0x672[2];              // padding
     /* 0x674 */ cXyz field_0x674;
-    /* 0x680 */ s16 mAngleFromPlayer;
-    /* 0x682 */ u8 field_0x682[2];
-    /* 0x684 */ f32 mDistanceXZFromPlayer;
+    /* 0x680 */ s16 mAngleFromPlayer;           // current keese angle from player
+    /* 0x682 */ u8 field_0x682[2];              // oadding
+    /* 0x684 */ f32 mDistanceXZFromPlayer;      // current keese distance from player
     /* 0x688 */ f32 field_0x688;
     /* 0x68C */ f32 field_0x68c;
     /* 0x690 */ f32 field_0x690;
@@ -81,23 +67,24 @@ public:
     /* 0x6A0 */ s8 field_0x6a0;
     /* 0x6A1 */ u8 field_0x6a1;
     /* 0x6A2 */ s16 field_0x6a2;
-    /* 0x6A4 */ u8 field_0x6a4[6];
+    /* 0x6A4 */ s16 field_0x6a4;
+    /* 0z6A6 */ u8 field_0x6a6[4];
     /* 0x6AA */ s16 field_0x6aa;
     /* 0x6AC */ s16 field_0x6ac[6];
-    /* 0x6B8 */ cXyz field_0x6b8;
-    /* 0x6C4 */ s16 field_0x6c4;
+    /* 0x6B8 */ cXyz mBoomrangPosOffset;        // offset position when keese caught in rang
+    /* 0x6C4 */ s16 mBoomrangXRotOffset;        // offset x rotation when keese caught in rang
     /* 0x6C6 */ u8 field_0x6c6[2];
     /* 0x6C8 */ dBgS_AcchCir field_0x6c8;
     /* 0x708 */ dBgS_ObjAcch field_0x708;
-    /* 0x8E0 */ dCcD_Stts field_0x8e0;
-    /* 0x91C */ dCcD_Sph mCollisionSphere;
-    /* 0xA54 */ dCcU_AtInfo field_0xa54;
+    /* 0x8E0 */ dCcD_Stts mCollisionStatus;     // collision status
+    /* 0x91C */ dCcD_Sph mCollisionSphere;      // collision sphere
+    /* 0xA54 */ dCcU_AtInfo mAtColliderInfo;    // attack collider info (used when keese gets hit)
     /* 0xA78 */ u32 field_0xa78;
     /* 0xA7C */ u32 field_0xa7c;
     /* 0xA80 */ u32 field_0xa80;
     /* 0xA84 */ u8 field_0xa84[8];
     /* 0xA8C */ u8 field_0xa8c;
-    /* 0xA8D */ u8 field_0xa8d[3]; // padding
+    /* 0xA8D */ u8 field_0xa8d[3];              // padding
 };
 
 // size: 0xA90
