@@ -317,7 +317,7 @@ bool cM3d_Cross_AabCyl(const cM3dGAab* pAab, const cM3dGCyl* pCyl) {
 bool cM3d_Cross_AabSph(const cM3dGAab* pAab, const cM3dGSph* pSph) {
     f32 radius = pSph->GetR();
     f32 cx = pSph->GetC().x;
-    if (pAab->GetMinX() > cx + radius) {  // addition registers are flipped
+    if (pAab->GetMinX() > cx + radius) {
         return false;
     }
     else if (pAab->GetMaxX() < cx - radius) {
