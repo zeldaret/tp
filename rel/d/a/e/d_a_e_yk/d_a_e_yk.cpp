@@ -535,15 +535,15 @@ SECTION_RODATA static f32 const lit_4103 = 50000.0f;
 COMPILER_STRIP_GATE(0x80807CDC, &lit_4103);
 
 /* 80804C88-80804D38 000548 00B0+00 5/5 0/0 0/0 .text            pl_check__FP10e_yk_classfs */
-static int pl_check(e_yk_class* i_this, f32 param_1, s16 param_2) {
-    if (param_1 >= FLOAT_LABEL(lit_4103)) {
+static int pl_check(e_yk_class* i_this, f32 i_distance, s16 i_angle) {
+    if (i_distance >= FLOAT_LABEL(lit_4103)) {
         return 1;
     }
 
-    if (dComIfGp_getPlayer(0)->current.pos.y < i_this->current.pos.y && i_this->mDistanceXZFromPlayer < param_1) {
-        s16 value = i_this->shape_angle.y - i_this->mAngleFromPlayer;
+    if (dComIfGp_getPlayer(0)->current.pos.y < i_this->current.pos.y && i_this->mDistanceXZFromPlayer < i_distance) {
+        s16 angle_delta = i_this->shape_angle.y - i_this->mAngleFromPlayer;
 
-        if (param_2 == 1 || value < param_2 && value > (s16)-param_2){
+        if (i_angle == 1 || angle_delta < i_angle && angle_delta > (s16)-i_angle){
             if (!other_bg_check(i_this,dComIfGp_getPlayer(0))) {
                 return 1;
             } 
@@ -725,14 +725,14 @@ static int path_check(e_yk_class* i_this) {
                     f32 val = JMAFastSqrt(x * x + y * y + z * z); // float literal inline
 
                     if (val < f) {
-                        i_this->field_0x5b9 = j - i_this->field_0x5ba;
+                        i_this->mPathPntIdx = j - i_this->field_0x5ba;
                         u16 pathNum = i_this->mpPath->m_num;
 
-                        if (i_this->field_0x5b9 >= (s8)i_this->mpPath->m_num) {
-                            i_this->field_0x5b9 = i_this->mpPath->m_num;
+                        if (i_this->mPathPntIdx >= (s8)i_this->mpPath->m_num) {
+                            i_this->mPathPntIdx = i_this->mpPath->m_num;
                         } else {
-                            if (0 > i_this->field_0x5b9) {
-                                i_this->field_0x5b9 = 0;
+                            if (0 > i_this->mPathPntIdx) {
+                                i_this->mPathPntIdx = 0;
                             }
                         }
                         
@@ -789,9 +789,9 @@ COMPILER_STRIP_GATE(0x80807CF4, &lit_4272);
 static void fly_move(e_yk_class* i_this) {
     cXyz pos;
 
-    f32 x = i_this->field_0x674.x - i_this->current.pos.x;
-    f32 y = i_this->field_0x674.y - i_this->current.pos.y;
-    f32 z = i_this->field_0x674.z - i_this->current.pos.z;
+    f32 x = i_this->mPathPntPos.x - i_this->current.pos.x;
+    f32 y = i_this->mPathPntPos.y - i_this->current.pos.y;
+    f32 z = i_this->mPathPntPos.z - i_this->current.pos.z;
 
     s16 angle = cM_atan2s(x,z);
     f32 sqrt = JMAFastSqrt(x * x + z * z); // float literal inline
@@ -902,7 +902,7 @@ static void e_yk_fight_fly(e_yk_class* i_this) {
     }
 
     cLib_addCalc2(&i_this->speedF,l_HIO[3], FLOAT_LABEL(lit_3943), FLOAT_LABEL(lit_4335) * l_HIO[3]);
-    i_this->field_0x674 = player->current.pos;
+    i_this->mPathPntPos = player->current.pos;
     fly_move(i_this);
 
     if (!pl_check(i_this,FLOAT_LABEL(lit_4185) + i_this->field_0x688,1)) {
@@ -978,10 +978,10 @@ static void e_yk_fight(e_yk_class* i_this) {
             pos.y = cM_rndF(FLOAT_LABEL(lit_3941)) + FLOAT_LABEL(lit_4401);
             pos.z = cM_rndF(FLOAT_LABEL(lit_4401)) + FLOAT_LABEL(lit_4401);
 
-            MtxPosition(&pos,&i_this->field_0x674);
-            i_this->field_0x674 += player->current.pos;
+            MtxPosition(&pos,&i_this->mPathPntPos);
+            i_this->mPathPntPos += player->current.pos;
 
-            pos = i_this->field_0x674 - i_this->current.pos;
+            pos = i_this->mPathPntPos - i_this->current.pos;
             mDoMtx_YrotS((MtxP)calc_mtx,cM_atan2s(pos.x,pos.z));
             cMtx_XrotM((MtxP)calc_mtx,-cM_atan2s(pos.y,JMAFastSqrt(pos.x*pos.x + pos.z*pos.z))); // float literal inline
 
@@ -1002,9 +1002,9 @@ static void e_yk_fight(e_yk_class* i_this) {
         }
     }
 
-    cLib_addCalc2(&i_this->current.pos.x,i_this->field_0x674.x,FLOAT_LABEL(lit_4153),i_this->field_0x68c * fabsf(i_this->speed.x));
-    cLib_addCalc2(&i_this->current.pos.y,i_this->field_0x674.y,FLOAT_LABEL(lit_4153),i_this->field_0x68c * fabsf(i_this->speed.y));
-    cLib_addCalc2(&i_this->current.pos.z,i_this->field_0x674.z,FLOAT_LABEL(lit_4153),i_this->field_0x68c * fabsf(i_this->speed.z));
+    cLib_addCalc2(&i_this->current.pos.x,i_this->mPathPntPos.x,FLOAT_LABEL(lit_4153),i_this->field_0x68c * fabsf(i_this->speed.x));
+    cLib_addCalc2(&i_this->current.pos.y,i_this->mPathPntPos.y,FLOAT_LABEL(lit_4153),i_this->field_0x68c * fabsf(i_this->speed.y));
+    cLib_addCalc2(&i_this->current.pos.z,i_this->mPathPntPos.z,FLOAT_LABEL(lit_4153),i_this->field_0x68c * fabsf(i_this->speed.z));
     cLib_addCalc2(&i_this->field_0x68c,FLOAT_LABEL(lit_3943),FLOAT_LABEL(lit_3943),FLOAT_LABEL(lit_4305));
 
     cLib_addCalcAngleS2(&i_this->current.angle.y,i_this->mAngleFromPlayer,4,0x800);
@@ -1060,8 +1060,8 @@ static void e_yk_attack(e_yk_class* i_this) {
         i_this->field_0x6a4 = 0x14;
         break;
     case 1:
-        i_this->field_0x674 = player->current.pos;
-        i_this->field_0x674.y += FLOAT_LABEL(lit_4438);
+        i_this->mPathPntPos = player->current.pos;
+        i_this->mPathPntPos.y += FLOAT_LABEL(lit_4438);
         i_this->field_0x68c = FLOAT_LABEL(lit_4398);
 
         if (i_this->field_0x6a4 == 0) {
@@ -1139,11 +1139,11 @@ static void e_yk_fly(e_yk_class* i_this) {
         }
 
         if (i_this->field_0x6a2 == 0) {
-            i_this->field_0x674.x = i_this->orig.pos.x + cM_rndFX(FLOAT_LABEL(lit_4480));
-            i_this->field_0x674.y = i_this->orig.pos.y + cM_rndFX(FLOAT_LABEL(lit_4481));
-            i_this->field_0x674.z = i_this->orig.pos.z + cM_rndFX(FLOAT_LABEL(lit_4480));
+            i_this->mPathPntPos.x = i_this->orig.pos.x + cM_rndFX(FLOAT_LABEL(lit_4480));
+            i_this->mPathPntPos.y = i_this->orig.pos.y + cM_rndFX(FLOAT_LABEL(lit_4481));
+            i_this->mPathPntPos.z = i_this->orig.pos.z + cM_rndFX(FLOAT_LABEL(lit_4480));
 
-            cXyz pos = i_this->field_0x674 - i_this->current.pos;
+            cXyz pos = i_this->mPathPntPos - i_this->current.pos;
 
             mDoMtx_YrotS((MtxP)calc_mtx,cM_atan2s(pos.x,pos.z));
             cMtx_XrotM((MtxP)calc_mtx,-cM_atan2s(pos.y,JMAFastSqrt(pos.x*pos.x + pos.z*pos.z))); // float literal inline
@@ -1192,10 +1192,10 @@ static void e_yk_return(e_yk_class* i_this) {
 
     cLib_addCalc2(&i_this->speedF,l_HIO.field_0x0c,FLOAT_LABEL(lit_3943), FLOAT_LABEL(lit_4335) * l_HIO.field_0x0c);
 
-    i_this->field_0x674 = i_this->orig.pos;
+    i_this->mPathPntPos = i_this->orig.pos;
     fly_move(i_this);
 
-    cXyz pos = i_this->current.pos - i_this->field_0x674;
+    cXyz pos = i_this->current.pos - i_this->mPathPntPos;
 
     if (pos.abs() < FLOAT_LABEL(lit_3941)) { // multiple float literal inlines
         i_this->mAction = ACT_ROOF;
@@ -1220,9 +1220,60 @@ static asm void e_yk_return(e_yk_class* i_this) {
 #endif
 
 /* 80805FF0-80806308 0018B0 0318+00 1/1 0/0 0/0 .text            e_yk_path_fly__FP10e_yk_class */
-#ifdef NONMATCHING
+#ifndef NONMATCHING
 static void e_yk_path_fly(e_yk_class* i_this) {
-    
+    switch (i_this->mActionPhase) {
+    case 0:
+        anm_init(i_this,5,FLOAT_LABEL(lit_4334),2,FLOAT_LABEL(lit_3943));
+        i_this->mActionPhase = 1;
+    case 1:
+        if ((i_this->field_0x66c & 0x1fU) == 0 && cM_rndF(FLOAT_LABEL(lit_3943)) < FLOAT_LABEL(lit_4306)) {
+            i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_NAKU,-1);
+        }
+
+        i_this->mPathPntIdx += i_this->field_0x5ba;
+        if (i_this->mPathPntIdx >= (s8)i_this->mpPath->m_num) {
+            if ((dPath_ChkClose(i_this->mpPath)) != 0) {
+                i_this->mPathPntIdx = 0;
+                
+            } else {
+                i_this->field_0x5ba = 0xff;
+                i_this->mPathPntIdx = i_this->mpPath->m_num - 2;
+            }
+
+            int roomNo = i_this->mpPath->m_nextID;
+
+            if (roomNo != 0xFFFF) {
+                i_this->mpPath = dPath_GetRoomPath(roomNo,fopAcM_GetRoomNo(i_this));
+            }
+        } else {
+            if (i_this->mPathPntIdx < 0) {
+                i_this->field_0x5ba = 1;
+                i_this->mPathPntIdx = 1;
+            }
+            
+        }
+    case 2:
+        i_this->mActionPhase = 3;
+
+        dStage_dPnt_c* point = i_this->mpPath->m_points;
+        point = &point[i_this->mPathPntIdx];
+
+        i_this->field_0x68c = FLOAT_LABEL(lit_3942);
+        i_this->mPathPntPos.x = point->m_position.x + cM_rndFX(FLOAT_LABEL(lit_4401));
+        i_this->mPathPntPos.y = point->m_position.y + cM_rndFX(FLOAT_LABEL(lit_4401));
+        i_this->mPathPntPos.z = point->m_position.z + cM_rndFX(FLOAT_LABEL(lit_4401));
+        break;
+    case 3:
+        cXyz pos = i_this->mPathPntPos - i_this->current.pos;
+
+        if (pos.abs() < FLOAT_LABEL(lit_4481)) { // float literal inlines
+            i_this->mActionPhase = 1;
+        }
+    }
+
+    cLib_addCalc2(&i_this->speedF,l_HIO[3],FLOAT_LABEL(lit_3943),FLOAT_LABEL(lit_4335) * l_HIO[3]);
+    fly_move(i_this);
 }
 #else
 #pragma push
