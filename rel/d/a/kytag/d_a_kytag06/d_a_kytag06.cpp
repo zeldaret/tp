@@ -4,48 +4,34 @@
 //
 
 #include "rel/d/a/kytag/d_a_kytag06/d_a_kytag06.h"
+#include "SSystem/SComponent/c_counter.h"
+#include "SSystem/SComponent/c_math.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_path.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
 //
 
-struct kytag06_class {};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dSv_event_c {
-    /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct dPa_levelEcallBack {};
-
-struct dKy_tevstr_c {};
-
-struct csXyz {};
-
-struct _GXColor {};
-
-struct cXyz {
-    /* 808589A4 */ ~cXyz();
-};
-
-struct dPa_control_c {
-    /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
-                            cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
-                            _GXColor const*, cXyz const*, f32);
-};
-
-struct dComIfG_play_c {
-    /* 8002C97C */ void getLayerNo(int);
+class kytag06_class : public fopAc_ac_c {
+public:
+    /* 0x568 */ dPath* mpPath;
+    /* 0x56C */ f32 mWindPower;
+    /* 0x570 */ f32 field_0x570;
+    /* 0x574 */ int field_0x574;
+    /* 0x578 */ int field_0x578;
+    /* 0x57C */ int field_0x57c;
+    /* 0x580 */ u32 field_0x580[4];
+    /* 0x590 */ u8 field_0x590;
+    /* 0x591 */ u8 field_0x591;
+    /* 0x592 */ u8 field_0x592;
+    /* 0x593 */ u8 mType;
+    /* 0x594 */ u8 mPathNo;
+    /* 0x595 */ u8 mSwNo;
+    /* 0x596 */ u8 field_0x596;
+    /* 0x597 */ u8 field_0x597;
+    /* 0x598 */ u8 field_0x598;
 };
 
 //
@@ -109,7 +95,6 @@ extern "C" void cM_rndF__Ff();
 extern "C" void cLib_addCalc__FPfffff();
 extern "C" void setSnowPower__10Z2EnvSeMgrFSc();
 extern "C" void __dl__FPv();
-extern "C" void PSVECSquareDistance();
 extern "C" void _savegpr_23();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_27();
@@ -120,84 +105,60 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcmp();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_mEnvSeMgr[780];
-extern "C" extern u8 g_Counter[12 + 4 /* padding */];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" void __register_global_object();
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 80859E78-80859E7C 000000 0004+00 11/11 0/0 0/0 .rodata          @3740 */
-SECTION_RODATA static f32 const lit_3740 = 360.0f;
-COMPILER_STRIP_GATE(0x80859E78, &lit_3740);
-
 /* 8085786C-80857918 0000EC 00AC+00 1/1 0/0 0/0 .text            dice_wether_init__FUcff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dice_wether_init(u8 param_0, f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/dice_wether_init__FUcff.s"
+static void dice_wether_init(u8 i_weatherMode, f32 i_weatherTime, f32 i_currentTime) {
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+
+    env_light->mDiceWeatherMode = i_weatherMode;
+    env_light->mDiceWeatherTime =
+        i_currentTime + i_weatherTime + cM_rndF(i_weatherTime) + cM_rndF(i_weatherTime);
+
+    if (env_light->mDiceWeatherTime >= 360.0f) {
+        env_light->mDiceWeatherTime -= 360.0f;
+    }
 }
-#pragma pop
 
 /* 80857918-808579EC 000198 00D4+00 1/1 0/0 0/0 .text            dice_wether_execute__FUcff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dice_wether_execute(u8 param_0, f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/dice_wether_execute__FUcff.s"
+static void dice_wether_execute(u8 i_weatherMode, f32 i_weatherTime, f32 i_currentTime) {
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    env_light->mDiceWeatherMode = i_weatherMode;
+
+    if (env_light->mDiceWeatherMode != 0xFF) {
+        env_light->mDiceWeatherTime =
+            i_currentTime + i_weatherTime + cM_rndF(i_weatherTime) + cM_rndF(i_weatherTime);
+
+        if (env_light->mDiceWeatherTime >= 360.0f) {
+            env_light->mDiceWeatherTime -= 360.0f;
+        }
+
+        env_light->mDiceWeatherCounter++;
+    } else {
+        env_light->mDiceWeatherMode = 0;
+        env_light->mDiceWeatherState++;
+    }
 }
-#pragma pop
 
 /* 808579EC-80857A50 00026C 0064+00 3/3 0/0 0/0 .text            dice_rain_minus__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dice_rain_minus() {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/dice_rain_minus__Fv.s"
+static void dice_rain_minus() {
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+
+    if ((g_Counter.mCounter0 & 3) == 0) {
+        // run block every 4 frames
+        if (env_light->mRainCount > 40) {
+            env_light->mRainCount -= 3;
+        } else if (env_light->mRainCount != 0) {
+            env_light->mRainCount--;
+        }
+
+        dKyw_rain_set(env_light->mRainCount);
+    }
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80859E7C-80859E80 000004 0004+00 0/2 0/0 0/0 .rodata          @3877 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3877 = 15.0f;
-COMPILER_STRIP_GATE(0x80859E7C, &lit_3877);
-#pragma pop
-
-/* 80859E80-80859E84 000008 0004+00 0/1 0/0 0/0 .rodata          @3878 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_3878 = 0x414FD70A;
-COMPILER_STRIP_GATE(0x80859E80, &lit_3878);
-#pragma pop
-
-/* 80859E84-80859E88 00000C 0004+00 0/1 0/0 0/0 .rodata          @3879 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3879 = 180.0f;
-COMPILER_STRIP_GATE(0x80859E84, &lit_3879);
-#pragma pop
-
-/* 80859E88-80859E8C 000010 0004+00 0/1 0/0 0/0 .rodata          @3880 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_3880 = 0x40FFAE14;
-COMPILER_STRIP_GATE(0x80859E88, &lit_3880);
-#pragma pop
 
 /* 80859FA0-80859FAC 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -205,6 +166,7 @@ SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
 };
 
 /* 80859FAC-80859FC0 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
+// unused?
 #pragma push
 #pragma force_active on
 SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
@@ -217,538 +179,552 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 };
 #pragma pop
 
-/* 80859FC0-80859FE0 000020 0020+00 0/1 0/0 0/0 .data            S_time_table$3766 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 S_time_table[32] = {
-    0x42, 0x34, 0x00, 0x00, 0x42, 0x96, 0x00, 0x00, 0x42, 0xF0, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00,
-    0x43, 0x34, 0x00, 0x00, 0x43, 0x70, 0x00, 0x00, 0x43, 0x87, 0x00, 0x00, 0x43, 0xB4, 0x00, 0x00,
-};
-#pragma pop
-
-/* 80859FE0-80859FE8 000040 0008+00 0/1 0/0 0/0 .data            S_wether_table$3767 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 S_wether_table[8] = {
-    0x00, 0x01, 0x02, 0x03, 0x04, 0x00, 0x01, 0x02,
-};
-#pragma pop
-
-/* 80859FE8-80859FEC 000048 0004+00 0/1 0/0 0/0 .data            S_wether_mode_pat01$3768 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 S_wether_mode_pat01[4] = {
-    0x01,
-    0x02,
-    0x01,
-    0xFF,
-};
-#pragma pop
-
-/* 80859FEC-80859FF8 00004C 000C+00 0/1 0/0 0/0 .data            S_wether_time_pat01$3769 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 S_wether_time_pat01[12] = {
-    0x40, 0xF0, 0x00, 0x00, 0x40, 0xF0, 0x00, 0x00, 0x40, 0xF0, 0x00, 0x00,
-};
-#pragma pop
-
-/* 80859FF8-80859FFC 000058 0004+00 0/1 0/0 0/0 .data            S_wether_mode_pat02$3770 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 S_wether_mode_pat02[4] = {
-    0x01,
-    0x04,
-    0x01,
-    0xFF,
-};
-#pragma pop
-
-/* 80859FFC-8085A008 00005C 000C+00 0/1 0/0 0/0 .data            S_wether_time_pat02$3771 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 S_wether_time_pat02[12] = {
-    0x40, 0xA0, 0x00, 0x00, 0x41, 0x70, 0x00, 0x00, 0x40, 0xA0, 0x00, 0x00,
-};
-#pragma pop
-
-/* 8085A008-8085A00C 000068 0004+00 0/1 0/0 0/0 .data            S_wether_mode_pat03$3772 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 S_wether_mode_pat03[4] = {
-    0x01,
-    0x03,
-    0x01,
-    0xFF,
-};
-#pragma pop
-
-/* 8085A00C-8085A018 00006C 000C+00 0/1 0/0 0/0 .data            S_wether_time_pat03$3773 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 S_wether_time_pat03[12] = {
-    0x40, 0xF0, 0x00, 0x00, 0x41, 0x70, 0x00, 0x00, 0x40, 0xF0, 0x00, 0x00,
-};
-#pragma pop
-
-/* 8085A018-8085A01C 000078 0002+02 0/1 0/0 0/0 .data            S_wether_mode_pat04$3774 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 S_wether_mode_pat04[2 + 2 /* padding */] = {
-    0x01,
-    0xFF,
-    /* padding */
-    0x00,
-    0x00,
-};
-#pragma pop
-
-/* 8085A01C-8085A020 00007C 0004+00 0/1 0/0 0/0 .data            S_wether_time_pat04$3775 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 S_wether_time_pat04[4] = {
-    0x41,
-    0xF0,
-    0x00,
-    0x00,
-};
-#pragma pop
-
-/* 8085A020-8085A024 000080 0004+00 0/1 0/0 0/0 .data            S_wether_mode_pat05$3776 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 S_wether_mode_pat05[4] = {
-    0x01,
-    0x05,
-    0x01,
-    0xFF,
-};
-#pragma pop
-
-/* 8085A024-8085A030 000084 000C+00 0/1 0/0 0/0 .data            S_wether_time_pat05$3777 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 S_wether_time_pat05[12] = {
-    0x40, 0x70, 0x00, 0x00, 0x40, 0xF0, 0x00, 0x00, 0x40, 0x70, 0x00, 0x00,
-};
-#pragma pop
-
-/* 8085A030-8085A04C -00001 001C+00 1/1 0/0 0/0 .data            @3883 */
-SECTION_DATA static void* lit_3883[7] = {
-    (void*)(((char*)dKy_event_proc__Fv) + 0x378), (void*)(((char*)dKy_event_proc__Fv) + 0x398),
-    (void*)(((char*)dKy_event_proc__Fv) + 0x3AC), (void*)(((char*)dKy_event_proc__Fv) + 0x3E4),
-    (void*)(((char*)dKy_event_proc__Fv) + 0x404), (void*)(((char*)dKy_event_proc__Fv) + 0x3DC),
-    (void*)(((char*)dKy_event_proc__Fv) + 0x418),
-};
-
 /* 80857A50-80857F28 0002D0 04D8+00 2/1 0/0 0/0 .text            dKy_event_proc__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_event_proc() {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/dKy_event_proc__Fv.s"
+static void dKy_event_proc() {
+    static f32 S_time_table[8] = {45.0f, 75.0f, 120.0f, 150.0f, 180.0f, 240.0f, 270.0f, 360.0f};
+    static u8 S_wether_table[8] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x00, 0x01, 0x02};
+
+    static u8 S_wether_mode_pat01[4] = {0x01, 0x02, 0x01, 0xFF};
+    static f32 S_wether_time_pat01[3] = {7.5f, 7.5f, 7.5f};
+
+    static u8 S_wether_mode_pat02[4] = {0x01, 0x04, 0x01, 0xFF};
+    static f32 S_wether_time_pat02[3] = {5.0f, 15.0f, 5.0f};
+
+    static u8 S_wether_mode_pat03[4] = {0x01, 0x03, 0x01, 0xFF};
+    static f32 S_wether_time_pat03[3] = {7.5f, 15.0f, 7.5f};
+
+    static u8 S_wether_mode_pat04[2] = {0x01, 0xFF};
+    static f32 S_wether_time_pat04[1] = {30.0f};
+
+    static u8 S_wether_mode_pat05[4] = {0x01, 0x05, 0x01, 0xFF};
+    static f32 S_wether_time_pat05[3] = {3.75f, 7.5f, 3.75f};
+
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+
+    if (!g_env_light.mCameraInWater) {
+        if (g_env_light.mInitAnmTimer == 0) {
+            f32 current_time = dComIfGs_getTime();
+
+            switch (env_light->mDiceWeatherState) {
+            case 0:
+                if (current_time > env_light->mDiceWeatherChangeTime &&
+                    current_time - env_light->mDiceWeatherChangeTime < 15.0f)
+                {
+                    env_light->mDiceWeatherState = 1;
+                }
+                break;
+            case 1:
+                u8 table_no = cM_rndF(12.99f);
+                if (table_no >= 8) {
+                    env_light->mDiceWeatherState = 3;
+                } else {
+                    env_light->mDiceWeatherCurrPattern = S_wether_table[table_no];
+                    env_light->mDiceWeatherCounter = 0;
+
+                    switch (env_light->mDiceWeatherCurrPattern) {
+                    case 0:
+                        dice_wether_init(S_wether_mode_pat01[env_light->mDiceWeatherCounter],
+                                         S_wether_time_pat01[env_light->mDiceWeatherCounter],
+                                         current_time);
+                        break;
+                    case 1:
+                        dice_wether_init(S_wether_mode_pat02[env_light->mDiceWeatherCounter],
+                                         S_wether_time_pat02[env_light->mDiceWeatherCounter],
+                                         current_time);
+                        break;
+                    case 2:
+                        dice_wether_init(S_wether_mode_pat03[env_light->mDiceWeatherCounter],
+                                         S_wether_time_pat03[env_light->mDiceWeatherCounter],
+                                         current_time);
+                        break;
+                    case 3:
+                        dice_wether_init(S_wether_mode_pat04[env_light->mDiceWeatherCounter],
+                                         S_wether_time_pat04[env_light->mDiceWeatherCounter],
+                                         current_time);
+                        break;
+                    case 4:
+                        dice_wether_init(S_wether_mode_pat05[env_light->mDiceWeatherCounter],
+                                         S_wether_time_pat05[env_light->mDiceWeatherCounter],
+                                         current_time);
+                        break;
+                    }
+
+                    env_light->mDiceWeatherCounter++;
+                    env_light->mDiceWeatherState++;
+                }
+                break;
+            case 2:
+                if (current_time > env_light->mDiceWeatherTime &&
+                    current_time - env_light->mDiceWeatherTime < 180.0f)
+                {
+                    switch (env_light->mDiceWeatherCurrPattern) {
+                    case 0:
+                        dice_wether_execute(S_wether_mode_pat01[env_light->mDiceWeatherCounter],
+                                            S_wether_time_pat01[env_light->mDiceWeatherCounter],
+                                            current_time);
+                        break;
+                    case 1:
+                        dice_wether_execute(S_wether_mode_pat02[env_light->mDiceWeatherCounter],
+                                            S_wether_time_pat02[env_light->mDiceWeatherCounter],
+                                            current_time);
+                        break;
+                    case 2:
+                        dice_wether_execute(S_wether_mode_pat03[env_light->mDiceWeatherCounter],
+                                            S_wether_time_pat03[env_light->mDiceWeatherCounter],
+                                            current_time);
+                        break;
+                    case 3:
+                        dice_wether_execute(S_wether_mode_pat04[env_light->mDiceWeatherCounter],
+                                            S_wether_time_pat04[env_light->mDiceWeatherCounter],
+                                            current_time);
+                        break;
+                    case 4:
+                        dice_wether_execute(S_wether_mode_pat05[env_light->mDiceWeatherCounter],
+                                            S_wether_time_pat05[env_light->mDiceWeatherCounter],
+                                            current_time);
+                        break;
+                    }
+                }
+                break;
+            case 3:
+                u8 tmp_ = cM_rndF(7.99f);
+                env_light->mDiceWeatherChangeTime = current_time + S_time_table[tmp_];
+
+                if (env_light->mDiceWeatherChangeTime >= 360.0f) {
+                    env_light->mDiceWeatherChangeTime -= 360.0f;
+                }
+
+                env_light->mDiceWeatherState = 0;
+                break;
+            }
+
+            if (g_env_light.field_0x130b == 1) {
+                env_light->mDiceWeatherMode = 6;
+            }
+
+            if (g_env_light.mColPatMode == 0 && g_env_light.mColPatModeGather == 0) {
+                u8 weather;
+
+                switch (env_light->mDiceWeatherMode) {
+                case 0:
+                    weather = 0;
+                    if (g_env_light.mThunderEff.mMode == 1) {
+                        g_env_light.mThunderEff.mMode = 0;
+                    }
+
+                    dice_rain_minus();
+                    break;
+                case 1:
+                    g_env_light.mThunderEff.mMode = 0;
+                    weather = 1;
+                    dice_rain_minus();
+                    break;
+                case 2:
+                    weather = 1;
+                    if (env_light->mRainCount < 40) {
+                        env_light->mRainCount++;
+                        dKyw_rain_set(env_light->mRainCount);
+                    } else {
+                        env_light->mRainCount--;
+                        dKyw_rain_set(env_light->mRainCount);
+                    }
+                    break;
+                case 5:
+                    g_env_light.mThunderEff.mMode = 1;
+                case 3:
+                    weather = 2;
+                    if (env_light->mRainCount < 250) {
+                        env_light->mRainCount++;
+                        dKyw_rain_set(env_light->mRainCount);
+                    }
+                    break;
+                case 4:
+                    weather = 1;
+                    g_env_light.mThunderEff.mMode = 1;
+                    dice_rain_minus();
+                    break;
+                case 6:
+                    weather = 0;
+                    if (g_env_light.mThunderEff.mMode == 1) {
+                        g_env_light.mThunderEff.mMode = 0;
+                    }
+
+                    if (env_light->mRainCount > 2) {
+                        env_light->mRainCount -= 2;
+                    } else {
+                        env_light->mRainCount = 0;
+                    }
+
+                    dKyw_rain_set(env_light->mRainCount);
+                }
+
+                if (env_light->mColpatWeather != weather) {
+                    g_env_light.mColpatWeather = weather;
+                    g_env_light.mColpatCurrGather = weather;
+                }
+            }
+
+            if (g_env_light.mColPatMode == 0 && g_env_light.mColPatModeGather == 0 &&
+                g_env_light.mColpatCurrGather != 0xFF &&
+                g_env_light.mColPatCurr != g_env_light.mColpatCurrGather)
+            {
+                g_env_light.mColPatBlendGather = 0.0f;
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 80857F28-80857F48 0007A8 0020+00 1/1 0/0 0/0 .text daKytag06_type_04_Execute__FP13kytag06_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag06_type_04_Execute(kytag06_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/daKytag06_type_04_Execute__FP13kytag06_class.s"
+static void daKytag06_type_04_Execute(kytag06_class*) {
+    dKy_event_proc();
 }
-#pragma pop
 
 /* 80857F48-80857F8C 0007C8 0044+00 1/1 0/0 0/0 .text            set_path_info__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void set_path_info(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/set_path_info__FP10fopAc_ac_c.s"
+static dPath* set_path_info(fopAc_ac_c* i_this) {
+    kytag06_class* this_ = (kytag06_class*)i_this;
+    dPath* room_path = NULL;
+
+    if (this_->mPathNo != 0xFF) {
+        room_path = dPath_GetRoomPath(this_->mPathNo, fopAcM_GetRoomNo(this_));
+    }
+
+    return room_path;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80859E8C-80859E90 000014 0004+00 1/7 0/0 0/0 .rodata          @3881 */
-SECTION_RODATA static u8 const lit_3881[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80859E8C, &lit_3881);
-
-/* 80859E90-80859E98 000018 0004+04 0/1 0/0 0/0 .rodata          @3939 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3939[1 + 1 /* padding */] = {
-    100000000.0f,
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x80859E90, &lit_3939);
-#pragma pop
-
-/* 80859E98-80859EA0 000020 0008+00 0/2 0/0 0/0 .rodata          @3940 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3940[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80859E98, &lit_3940);
-#pragma pop
-
-/* 80859EA0-80859EA8 000028 0008+00 0/2 0/0 0/0 .rodata          @3941 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3941[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80859EA0, &lit_3941);
-#pragma pop
-
-/* 80859EA8-80859EB0 000030 0008+00 0/2 0/0 0/0 .rodata          @3942 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3942[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80859EA8, &lit_3942);
-#pragma pop
 
 /* 80857F8C-8085811C 00080C 0190+00 1/1 0/0 0/0 .text near_rail_get__FP13kytag06_classP4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void near_rail_get(kytag06_class* param_0, cXyz* param_1) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/near_rail_get__FP13kytag06_classP4cXyz.s"
+static dStage_dPnt_c* near_rail_get(kytag06_class* i_this, cXyz* param_1) {
+    f32 tmpf = 100000000.0f;
+    dPath* path = i_this->mpPath;
+    dStage_dPnt_c* temp_r28;
+
+    for (int i = 0; i < path->m_num; i++) {
+        f32 abs_ = param_1->abs(path->m_points[i].m_position);
+
+        if (abs_ < tmpf) {
+            tmpf = abs_;
+            temp_r28 = &path->m_points[i];
+        }
+    }
+
+    return temp_r28;
 }
-#pragma pop
 
 /* 8085811C-8085814C 00099C 0030+00 1/0 0/0 0/0 .text            daKytag06_Draw__FP13kytag06_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag06_Draw(kytag06_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/daKytag06_Draw__FP13kytag06_class.s"
+static int daKytag06_Draw(kytag06_class* i_this) {
+    if (i_this->mType == 4) {
+        daKytag06_type_04_Execute(i_this);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8085814C-8085824C 0009CC 0100+00 1/1 0/0 0/0 .text
  * daKytag06_lv7_boss_wether_proc__FP13kytag06_classUc          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag06_lv7_boss_wether_proc(kytag06_class* param_0, u8 param_1) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/daKytag06_lv7_boss_wether_proc__FP13kytag06_classUc.s"
+static void daKytag06_lv7_boss_wether_proc(kytag06_class* i_this, u8 param_1) {
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    g_env_light.mThunderEff.mMode = 0;
+
+    u8 colpat = g_env_light.mColpatWeather;
+    switch (param_1) {
+    case 0:
+        colpat = 0;
+        if (env_light->mRainCount > 20) {
+            env_light->mRainCount -= 4;
+        } else if (env_light->mRainCount != 0) {
+            env_light->mRainCount--;
+        }
+        dKyw_rain_set(env_light->mRainCount);
+        break;
+    case 1:
+        colpat = 1;
+        dice_rain_minus();
+        break;
+    case 2:
+        colpat = 2;
+        if (env_light->mRainCount < 250) {
+            env_light->mRainCount++;
+            dKyw_rain_set(env_light->mRainCount);
+        }
+
+        g_env_light.mThunderEff.mMode = 1;
+        break;
+    }
+
+    if (env_light->mColpatWeather != colpat && !g_env_light.mCameraInWater) {
+        g_env_light.mColpatWeather = colpat;
+        dKy_change_colpat(colpat);
+    }
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80859EB0-80859EB4 000038 0004+00 0/2 0/0 0/0 .rodata          @4006 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4006 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80859EB0, &lit_4006);
-#pragma pop
-
-/* 80859EB4-80859EB8 00003C 0004+00 0/1 0/0 0/0 .rodata          @4007 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4007 = 0.25f;
-COMPILER_STRIP_GATE(0x80859EB4, &lit_4007);
-#pragma pop
-
-/* 80859EB8-80859EBC 000040 0004+00 0/6 0/0 0/0 .rodata          @4008 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4008 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(0x80859EB8, &lit_4008);
-#pragma pop
-
-/* 80859EBC-80859EC0 000044 0004+00 0/1 0/0 0/0 .rodata          @4009 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4009 = 0x3727C5AC;
-COMPILER_STRIP_GATE(0x80859EBC, &lit_4009);
-#pragma pop
-
-/* 80859EC0-80859EC4 000048 0004+00 0/1 0/0 0/0 .rodata          @4010 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4010 = 7.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80859EC0, &lit_4010);
-#pragma pop
-
-/* 80859EC4-80859EC8 00004C 0004+00 0/5 0/0 0/0 .rodata          @4011 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4011 = 0.5f;
-COMPILER_STRIP_GATE(0x80859EC4, &lit_4011);
-#pragma pop
-
-/* 80859EC8-80859ECC 000050 0004+00 1/7 0/0 0/0 .rodata          @4012 */
-SECTION_RODATA static f32 const lit_4012 = 1.0f;
-COMPILER_STRIP_GATE(0x80859EC8, &lit_4012);
-
-/* 80859ECC-80859ED0 000054 0004+00 0/3 0/0 0/0 .rodata          @4013 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4013 = 99.0f / 100.0f;
-COMPILER_STRIP_GATE(0x80859ECC, &lit_4013);
-#pragma pop
-
-/* 80859ED0-80859ED4 000058 0004+00 0/4 0/0 0/0 .rodata          @4014 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4014 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80859ED0, &lit_4014);
-#pragma pop
-
-/* 80859ED4-80859ED8 00005C 0004+00 0/1 0/0 0/0 .rodata          @4015 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4015 = 0x3C75C28F;
-COMPILER_STRIP_GATE(0x80859ED4, &lit_4015);
-#pragma pop
 
 /* 8085824C-808584B4 000ACC 0268+00 1/1 0/0 0/0 .text
  * daKytag06_Ganon_wether_proc__FP13kytag06_classUc             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag06_Ganon_wether_proc(kytag06_class* param_0, u8 param_1) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/daKytag06_Ganon_wether_proc__FP13kytag06_classUc.s"
-}
-#pragma pop
+static void daKytag06_Ganon_wether_proc(kytag06_class* i_this, u8 param_1) {
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
 
-/* ############################################################################################## */
-/* 8085A04C-8085A06C -00001 0020+00 1/1 0/0 0/0 .data            @4064 */
-SECTION_DATA static void* lit_4064[8] = {
-    (void*)(((char*)daKytag06_wether_proc__FP13kytag06_classUc) + 0x4C),
-    (void*)(((char*)daKytag06_wether_proc__FP13kytag06_classUc) + 0x6C),
-    (void*)(((char*)daKytag06_wether_proc__FP13kytag06_classUc) + 0x8C),
-    (void*)(((char*)daKytag06_wether_proc__FP13kytag06_classUc) + 0xE0),
-    (void*)(((char*)daKytag06_wether_proc__FP13kytag06_classUc) + 0x114),
-    (void*)(((char*)daKytag06_wether_proc__FP13kytag06_classUc) + 0x150),
-    (void*)(((char*)daKytag06_wether_proc__FP13kytag06_classUc) + 0x178),
-    (void*)(((char*)daKytag06_wether_proc__FP13kytag06_classUc) + 0x1B0),
-};
+    g_env_light.mThunderEff.mMode = 0;
+    dKyw_evt_wind_set(0, -0x4000);
+
+    switch (param_1) {
+    case 0:
+        g_env_light.mMoyaMode = 10;
+        g_env_light.mMoyaCount = 50;
+
+        cLib_addCalc(&i_this->mWindPower, 0.3f, 0.25f, 0.01f, 1e-05f);
+        dKyw_custom_windpower(i_this->mWindPower);
+        break;
+    case 1:
+        g_env_light.mThunderEff.mMode = 1;
+        g_env_light.mMoyaMode = 10;
+        g_env_light.mMoyaCount = 50;
+
+        cLib_addCalc(&i_this->mWindPower, 0.7f, 0.25f, 0.01f, 1e-05f);
+        dKyw_custom_windpower(i_this->mWindPower);
+        break;
+    case 2:
+        g_env_light.mThunderEff.mMode = 0;
+        g_env_light.mMoyaMode = 10;
+        g_env_light.mMoyaCount = 50;
+
+        cLib_addCalc(&i_this->mWindPower, 0.7f, 0.25f, 0.01f, 1e-05f);
+        dKyw_custom_windpower(i_this->mWindPower);
+        break;
+    case 3:
+        g_env_light.mMoyaCount = 50;
+
+        switch (i_this->field_0x590) {
+        case 0:
+            g_env_light.mMoyaMode = 10;
+            cLib_addCalc(&i_this->mWindPower, 0.0f, 0.5f, 0.5f, 0.01f);
+
+            if (i_this->mWindPower < 0.01f) {
+                i_this->field_0x590++;
+            }
+            break;
+        case 1:
+            g_env_light.mMoyaMode = 11;
+            cLib_addCalc(&i_this->mWindPower, 1.0f, 0.5f, 0.5f, 1e-05f);
+
+            if (i_this->mWindPower > 0.99f) {
+                i_this->field_0x590++;
+            }
+            break;
+        case 2:
+            cLib_addCalc(&i_this->mWindPower, 0.0f, 0.1f, 0.015f, 1e-05f);
+
+            if (i_this->mWindPower < 0.01f) {
+                i_this->field_0x590++;
+            }
+            break;
+        case 3:
+            i_this->field_0x590 = 0;
+            break;
+        }
+
+        dKyw_custom_windpower(i_this->mWindPower);
+        break;
+    }
+
+    if (i_dComIfGp_event_runCheck()) {
+        g_env_light.mThunderEff.mMode = 1;
+    }
+}
 
 /* 808584B4-808586C4 000D34 0210+00 3/2 0/0 0/0 .text daKytag06_wether_proc__FP13kytag06_classUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag06_wether_proc(kytag06_class* param_0, u8 param_1) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/daKytag06_wether_proc__FP13kytag06_classUc.s"
+static void daKytag06_wether_proc(kytag06_class* i_this, u8 param_1) {
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    g_env_light.mThunderEff.mMode = 0;
+
+    u8 colpat = env_light->mColpatWeather;
+    switch (param_1) {
+    case 0:
+        colpat = 0;
+        dice_rain_minus();
+
+        if (env_light->mSnowCount != 0) {
+            env_light->mSnowCount--;
+        }
+        break;
+    case 1:
+        colpat = 1;
+        dice_rain_minus();
+
+        if (env_light->mSnowCount != 0) {
+            env_light->mSnowCount--;
+        }
+        break;
+    case 2:
+        colpat = 1;
+
+        if ((g_Counter.mCounter0 & 3) == 0) {
+            // run block every 4 frames
+
+            if (env_light->mRainCount < 40) {
+                env_light->mRainCount++;
+                dKyw_rain_set(env_light->mRainCount);
+            } else {
+                env_light->mRainCount--;
+                dKyw_rain_set(env_light->mRainCount);
+            }
+        }
+
+        if (env_light->mSnowCount != 0) {
+            env_light->mSnowCount--;
+        }
+        break;
+    case 3:
+        colpat = 1;
+
+        if (env_light->mRainCount < 250) {
+            env_light->mRainCount++;
+            dKyw_rain_set(env_light->mRainCount);
+        }
+
+        if (env_light->mSnowCount != 0) {
+            env_light->mSnowCount--;
+        }
+        break;
+    case 4:
+        g_env_light.mThunderEff.mMode = 1;
+        colpat = 1;
+
+        if (env_light->mRainCount < 250) {
+            env_light->mRainCount++;
+            dKyw_rain_set(env_light->mRainCount);
+        }
+
+        if (env_light->mSnowCount != 0) {
+            env_light->mSnowCount--;
+        }
+        break;
+    case 5:
+        colpat = 1;
+        g_env_light.mThunderEff.mMode = 1;
+
+        dice_rain_minus();
+
+        if (env_light->mSnowCount != 0) {
+            env_light->mSnowCount--;
+        }
+        break;
+    case 6:
+        colpat = 1;
+
+        if (env_light->mSnowCount < 125) {
+            if ((g_Counter.mCounter0 & 3) == 0) {
+                // run block every 4 frames
+                env_light->mSnowCount++;
+            }
+        } else {
+            env_light->mSnowCount--;
+        }
+        break;
+    case 7:
+        colpat = 2;
+
+        if (env_light->mSnowCount < 500) {
+            env_light->mSnowCount++;
+        }
+        break;
+    }
+
+    if (env_light->mColpatWeather != colpat && !g_env_light.mCameraInWater) {
+        g_env_light.mColpatWeather = colpat;
+        dKy_change_colpat(colpat);
+    }
 }
-#pragma pop
 
 /* 808586C4-808586F0 000F44 002C+00 1/1 0/0 0/0 .text
  * daKytag06_type_07_wether_Execute__FP13kytag06_class          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag06_type_07_wether_Execute(kytag06_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/daKytag06_type_07_wether_Execute__FP13kytag06_class.s"
+static void daKytag06_type_07_wether_Execute(kytag06_class* i_this) {
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    daKytag06_wether_proc(i_this, env_light->field_0x12cc);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80859ED8-80859EDC 000060 0004+00 0/2 0/0 0/0 .rodata          @4114 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4114 = 285.0f;
-COMPILER_STRIP_GATE(0x80859ED8, &lit_4114);
-#pragma pop
-
-/* 80859EDC-80859EE0 000064 0004+00 0/2 0/0 0/0 .rodata          @4115 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4115 = 82.5f;
-COMPILER_STRIP_GATE(0x80859EDC, &lit_4115);
-#pragma pop
-
-/* 80859EE0-80859EE4 000068 0004+00 0/2 0/0 0/0 .rodata          @4116 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4116 = 4.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80859EE0, &lit_4116);
-#pragma pop
-
-/* 80859EE4-80859EE8 00006C 0004+00 0/3 0/0 0/0 .rodata          @4117 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4117 = 0x38D1B717;
-COMPILER_STRIP_GATE(0x80859EE4, &lit_4117);
-#pragma pop
-
-/* 80859EE8-80859EEC 000070 0004+00 0/2 0/0 0/0 .rodata          @4118 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4118 = 79.0f / 100.0f;
-COMPILER_STRIP_GATE(0x80859EE8, &lit_4118);
-#pragma pop
-
-/* 80859EEC-80859EF0 000074 0004+00 0/3 0/0 0/0 .rodata          @4119 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4119 = 3.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80859EEC, &lit_4119);
-#pragma pop
-
-/* 80859EF0-80859EF4 000078 0004+00 0/2 0/0 0/0 .rodata          @4120 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4120 = 1.5f;
-COMPILER_STRIP_GATE(0x80859EF0, &lit_4120);
-#pragma pop
-
-/* 80859EF4-80859EF8 00007C 0004+00 0/2 0/0 0/0 .rodata          @4121 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4121 = 61.0f / 100.0f;
-COMPILER_STRIP_GATE(0x80859EF4, &lit_4121);
-#pragma pop
-
-/* 80859EF8-80859EFC 000080 0004+00 0/1 0/0 0/0 .rodata          @4122 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4122 = -273.0f;
-COMPILER_STRIP_GATE(0x80859EF8, &lit_4122);
-#pragma pop
-
-/* 80859EFC-80859F00 000084 0004+00 0/1 0/0 0/0 .rodata          @4123 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4123 = 233.0f;
-COMPILER_STRIP_GATE(0x80859EFC, &lit_4123);
-#pragma pop
-
-/* 80859F00-80859F04 000088 0004+00 0/1 0/0 0/0 .rodata          @4124 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4124 = 160.0f;
-COMPILER_STRIP_GATE(0x80859F00, &lit_4124);
-#pragma pop
-
-/* 80859F04-80859F08 00008C 0004+00 0/1 0/0 0/0 .rodata          @4125 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4125 = 2.0f;
-COMPILER_STRIP_GATE(0x80859F04, &lit_4125);
-#pragma pop
-
-/* 80859F08-80859F0C 000090 0004+00 0/1 0/0 0/0 .rodata          @4126 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4126 = 25.0f;
-COMPILER_STRIP_GATE(0x80859F08, &lit_4126);
-#pragma pop
-
-/* 80859F0C-80859F10 000094 0004+00 0/1 0/0 0/0 .rodata          @4127 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4127 = 230.0f;
-COMPILER_STRIP_GATE(0x80859F0C, &lit_4127);
-#pragma pop
-
-/* 80859F10-80859F14 000098 0004+00 0/1 0/0 0/0 .rodata          @4128 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4128 = 30.0f;
-COMPILER_STRIP_GATE(0x80859F10, &lit_4128);
-#pragma pop
-
-/* 80859F14-80859F18 00009C 0004+00 0/1 0/0 0/0 .rodata          @4129 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4129 = 215.0f;
-COMPILER_STRIP_GATE(0x80859F14, &lit_4129);
-#pragma pop
-
-/* 80859F18-80859F1C 0000A0 0004+00 0/1 0/0 0/0 .rodata          @4130 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4130 = 155.0f;
-COMPILER_STRIP_GATE(0x80859F18, &lit_4130);
-#pragma pop
 
 /* 808586F0-808589A4 000F70 02B4+00 1/1 0/0 0/0 .text daKytag06_type_07_Execute__FP13kytag06_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag06_type_07_Execute(kytag06_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/daKytag06_type_07_Execute__FP13kytag06_class.s"
+static void daKytag06_type_07_Execute(kytag06_class* i_this) {
+    cXyz spX;
+    f32 current_time = dComIfGs_getTime();
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    camera_class* camera = dComIfGp_getCamera(0);
+
+    if (i_this->field_0x574 == 0) {
+        if (current_time > 285.0f || current_time < 82.5f) {
+            i_this->field_0x591 = 1;
+        } else {
+            i_this->field_0x591 = 0;
+        }
+    }
+
+    switch (i_this->field_0x590) {
+    case 0:
+        if (i_this->field_0x591 != 0) {
+            cLib_addCalc(&i_this->mWindPower, 0.8f, 0.5f, 1.0f, 0.0001f);
+
+            if (i_this->mWindPower > 0.79f) {
+                i_this->field_0x590++;
+            }
+        }
+        break;
+    case 1:
+        cLib_addCalc(&i_this->mWindPower, 0.6f, 0.5f, 1.5f, 0.0001f);
+
+        if (i_this->mWindPower < 0.61f) {
+            i_this->field_0x590++;
+        }
+        break;
+    case 2:
+        cLib_addCalc(&i_this->mWindPower, 1.0f, 0.5f, 1.5f, 0.0001f);
+
+        if (i_this->mWindPower > 0.99f) {
+            i_this->mWindPower = 1.0f;
+            i_this->field_0x590++;
+        }
+        break;
+    case 3:
+        if (i_this->field_0x591 == 0) {
+            cLib_addCalc(&i_this->mWindPower, 0.0f, 0.5f, 1.0f, 0.0001f);
+
+            if (i_this->mWindPower < 0.01f) {
+                i_this->mWindPower = 0.0f;
+                i_this->field_0x590 = 0;
+            }
+        }
+        break;
+    }
+
+    spX.x = -273.0f;
+    spX.y = 233.0f;
+    spX.z = 160.0f;
+
+    GXColor color;
+    color.r = 88;
+    color.g = 76;
+    color.b = 50;
+    color.a = 255;
+
+    daKytag06_type_07_wether_Execute(i_this);
+
+    if (camera != NULL) {
+        if (camera->mLookat.mEye.y > 0.0f) {
+            dKy_BossLight_set(&spX, &color, i_this->mWindPower * 2.0f, 0);
+            g_env_light.mTerrainAmbienceBG3_R = (u8)(i_this->mWindPower * 230.0f + 25.0f);
+            g_env_light.mTerrainAmbienceBG3_G = (u8)(i_this->mWindPower * 215.0f + 30.0f);
+            g_env_light.mTerrainAmbienceBG3_B = (u8)(i_this->mWindPower * 155.0f + 25.0f);
+        } else {
+            g_env_light.mTerrainAmbienceBG3_R = 0;
+            g_env_light.mTerrainAmbienceBG3_G = 0;
+            g_env_light.mTerrainAmbienceBG3_B = 0;
+            g_env_light.mThunderEff.mMode = 0;
+        }
+    }
 }
-#pragma pop
-
-/* 808589A4-808589E0 001224 003C+00 1/1 0/0 0/0 .text            __dt__4cXyzFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cXyz::~cXyz() {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/__dt__4cXyzFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80859F1C-80859F20 0000A4 0004+00 0/1 0/0 0/0 .rodata          @4205 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4205 = 10.0f;
-COMPILER_STRIP_GATE(0x80859F1C, &lit_4205);
-#pragma pop
-
-/* 80859F20-80859F24 0000A8 0004+00 0/1 0/0 0/0 .rodata          @4206 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4206 = 245.0f;
-COMPILER_STRIP_GATE(0x80859F20, &lit_4206);
-#pragma pop
-
-/* 80859F24-80859F28 0000AC 0004+00 0/1 0/0 0/0 .rodata          @4207 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4207 = 185.0f;
-COMPILER_STRIP_GATE(0x80859F24, &lit_4207);
-#pragma pop
-
-/* 80859F28-80859F2C 0000B0 0004+00 0/1 0/0 0/0 .rodata          @4208 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4208 = 20.0f;
-COMPILER_STRIP_GATE(0x80859F28, &lit_4208);
-#pragma pop
-
-/* 80859F2C-80859F30 0000B4 0004+00 0/1 0/0 0/0 .rodata          @4209 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4209 = 130.0f;
-COMPILER_STRIP_GATE(0x80859F2C, &lit_4209);
-#pragma pop
-
-/* 8085A06C-8085A074 0000CC 0008+00 1/1 0/0 0/0 .data            w_eff_name$4163 */
-SECTION_DATA static u8 w_eff_name[8] = {
-    0x87, 0x53, 0x87, 0x54, 0x87, 0x55, 0x87, 0x56,
-};
 
 /* 8085A130-8085A134 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
+// all of these unused?
 static u8 lit_1109[1 + 3 /* padding */];
 
 /* 8085A134-8085A138 00000C 0001+03 0/0 0/0 0/0 .bss             @1107 */
@@ -841,373 +817,634 @@ static u8 lit_1010[1 + 3 /* padding */];
 static u8 lit_1009[1 + 3 /* padding */];
 #pragma pop
 
-/* 8085A170-8085A180 000048 000C+04 0/1 0/0 0/0 .bss             @4165 */
-#pragma push
-#pragma force_active on
-static u8 lit_4165[12 + 4 /* padding */];
-#pragma pop
-
-/* 8085A180-8085A18C 000058 000C+00 0/1 0/0 0/0 .bss             c_pos$4164 */
-#pragma push
-#pragma force_active on
-static u8 c_pos[12];
-#pragma pop
-
 /* 808589E0-80858CD4 001260 02F4+00 1/1 0/0 0/0 .text daKytag06_type_06_Execute__FP13kytag06_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag06_type_06_Execute(kytag06_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/daKytag06_type_06_Execute__FP13kytag06_class.s"
+static void daKytag06_type_06_Execute(kytag06_class* i_this) {
+    static u16 w_eff_name[4] = {
+        0x8753,
+        0x8754,
+        0x8755,
+        0x8756,
+    };
+
+    dComIfGs_getTime();
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+
+    daKytag06_wether_proc(i_this, env_light->field_0x12cc);
+    cXyz spX;
+
+    f32 current_time = dComIfGs_getTime();
+    if (i_this->field_0x574 == 0) {
+        if (current_time > 285.0f || current_time < 82.5f) {
+            i_this->field_0x591 = 1;
+        } else {
+            i_this->field_0x591 = 0;
+        }
+    }
+
+    switch (i_this->field_0x590) {
+    case 0:
+        if (i_this->field_0x591 != 0) {
+            cLib_addCalc(&i_this->mWindPower, 0.8f, 0.5f, 1.0f, 0.0001f);
+
+            if (i_this->mWindPower > 0.79f) {
+                i_this->field_0x590++;
+            }
+        }
+        break;
+    case 1:
+        cLib_addCalc(&i_this->mWindPower, 0.6f, 0.5f, 1.5f, 0.0001f);
+
+        if (i_this->mWindPower < 0.61f) {
+            i_this->field_0x590++;
+        }
+        break;
+    case 2:
+        cLib_addCalc(&i_this->mWindPower, 1.0f, 0.5f, 1.5f, 0.0001f);
+
+        if (i_this->mWindPower > 0.99f) {
+            i_this->mWindPower = 1.0f;
+            i_this->field_0x590++;
+        }
+        break;
+    case 3:
+        if (i_this->field_0x591 == 0) {
+            cLib_addCalc(&i_this->mWindPower, 0.0f, 0.5f, 1.0f, 0.0001f);
+
+            if (i_this->mWindPower < 0.01f) {
+                i_this->mWindPower = 0.0f;
+                i_this->field_0x590 = 0;
+            }
+        }
+        break;
+    }
+
+    g_env_light.mTerrainAmbienceBG3_R = (u8)(i_this->mWindPower * 245.0f + 10.0f);
+    g_env_light.mTerrainAmbienceBG3_G = (u8)(i_this->mWindPower * 185.0f + 15.0f);
+    g_env_light.mTerrainAmbienceBG3_B = (u8)(i_this->mWindPower * 130.0f + 20.0f);
+
+    static cXyz c_pos(0.0f, 0.0f, 0.0f);
+
+    for (int i = 0; i < 4; i++) {
+        i_this->field_0x580[i] =
+            dComIfGp_particle_set(i_this->field_0x580[i], w_eff_name[i], &c_pos, NULL, NULL);
+    }
 }
-#pragma pop
 
 /* 80858CD4-80858D00 001554 002C+00 1/1 0/0 0/0 .text daKytag06_type_08_Execute__FP13kytag06_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag06_type_08_Execute(kytag06_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/daKytag06_type_08_Execute__FP13kytag06_class.s"
+static void daKytag06_type_08_Execute(kytag06_class* i_this) {
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    daKytag06_lv7_boss_wether_proc(i_this, env_light->field_0x12cc);
 }
-#pragma pop
 
 /* 80858D00-80858D2C 001580 002C+00 1/1 0/0 0/0 .text daKytag06_type_09_Execute__FP13kytag06_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag06_type_09_Execute(kytag06_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/daKytag06_type_09_Execute__FP13kytag06_class.s"
+static void daKytag06_type_09_Execute(kytag06_class* i_this) {
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    daKytag06_Ganon_wether_proc(i_this, env_light->field_0x12cc);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80859F30-80859F34 0000B8 0004+00 0/1 0/0 0/0 .rodata          @4336 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4336 = 2079.0f;
-COMPILER_STRIP_GATE(0x80859F30, &lit_4336);
-#pragma pop
-
-/* 80859F34-80859F38 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4337 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4337 = 3013.0f;
-COMPILER_STRIP_GATE(0x80859F34, &lit_4337);
-#pragma pop
-
-/* 80859F38-80859F3C 0000C0 0004+00 0/1 0/0 0/0 .rodata          @4338 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4338 = 864.0f;
-COMPILER_STRIP_GATE(0x80859F38, &lit_4338);
-#pragma pop
-
-/* 80859F3C-80859F40 0000C4 0004+00 0/1 0/0 0/0 .rodata          @4339 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4339 = -6000.0f;
-COMPILER_STRIP_GATE(0x80859F3C, &lit_4339);
-#pragma pop
-
-/* 80859F40-80859F44 0000C8 0004+00 0/1 0/0 0/0 .rodata          @4340 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4340 = -4145.0f;
-COMPILER_STRIP_GATE(0x80859F40, &lit_4340);
-#pragma pop
-
-/* 80859F44-80859F48 0000CC 0004+00 0/1 0/0 0/0 .rodata          @4341 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4341 = -2960.0f;
-COMPILER_STRIP_GATE(0x80859F44, &lit_4341);
-#pragma pop
-
-/* 80859F48-80859F4C 0000D0 0004+00 0/1 0/0 0/0 .rodata          @4342 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4342 = -880.0f;
-COMPILER_STRIP_GATE(0x80859F48, &lit_4342);
-#pragma pop
-
-/* 80859F4C-80859F50 0000D4 0004+00 0/1 0/0 0/0 .rodata          @4343 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4343 = -4920.0f;
-COMPILER_STRIP_GATE(0x80859F4C, &lit_4343);
-#pragma pop
-
-/* 80859F50-80859F54 0000D8 0004+00 0/1 0/0 0/0 .rodata          @4344 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4344 = -2000.0f;
-COMPILER_STRIP_GATE(0x80859F50, &lit_4344);
-#pragma pop
-
-/* 80859F54-80859F58 0000DC 0004+00 0/1 0/0 0/0 .rodata          @4345 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4345 = 0x3A83126F;
-COMPILER_STRIP_GATE(0x80859F54, &lit_4345);
-#pragma pop
-
-/* 80859F58-80859F5C 0000E0 0004+00 0/1 0/0 0/0 .rodata          @4346 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4346 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80859F58, &lit_4346);
-#pragma pop
-
-/* 80859F5C-80859F60 0000E4 0004+00 0/1 0/0 0/0 .rodata          @4347 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4347 = 7.0f / 20.0f;
-COMPILER_STRIP_GATE(0x80859F5C, &lit_4347);
-#pragma pop
-
-/* 80859F60-80859F64 0000E8 0004+00 0/2 0/0 0/0 .rodata          @4348 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4348 = 500.0f;
-COMPILER_STRIP_GATE(0x80859F60, &lit_4348);
-#pragma pop
-
-/* 80859F64-80859F68 0000EC 0004+00 0/1 0/0 0/0 .rodata          @4349 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4349 = 50.0f;
-COMPILER_STRIP_GATE(0x80859F64, &lit_4349);
-#pragma pop
-
-/* 80859F68-80859F6C 0000F0 0004+00 0/1 0/0 0/0 .rodata          @4350 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4350 = 63.0f;
-COMPILER_STRIP_GATE(0x80859F68, &lit_4350);
-#pragma pop
-
-/* 80859F6C-80859F70 0000F4 0004+00 0/2 0/0 0/0 .rodata          @4351 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4351 = 127.0f;
-COMPILER_STRIP_GATE(0x80859F6C, &lit_4351);
-#pragma pop
 
 /* 80858D2C-8085912C 0015AC 0400+00 1/1 0/0 0/0 .text daKytag06_type_10_Execute__FP13kytag06_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag06_type_10_Execute(kytag06_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/daKytag06_type_10_Execute__FP13kytag06_class.s"
+static void daKytag06_type_10_Execute(kytag06_class* i_this) {
+    u8 tmp = 0;
+    if (i_dComIfGs_isEventBit(0x2008)) {
+        // 2008: Snowpeak Ruins completed
+        tmp = 0;
+    } else if (i_dComIfGs_isEventBit(0x1420)) {
+        // 1420: Talked to Yeta after giving cheese
+        tmp = 2;
+    } else if (i_dComIfGs_isEventBit(0x1440)) {
+        // 1440: Talked to Yeta after giving pumpkin
+        tmp = 1;
+    }
+
+    switch (tmp) {
+    case 0:
+        dKy_change_colpat(0);
+        break;
+    case 1:
+        dKy_change_colpat(1);
+        break;
+    case 2:
+        dKy_change_colpat(2);
+        break;
+    default:
+        dKy_change_colpat(0);
+        break;
+    }
+
+    if (dComIfGp_roomControl_getStayNo() == 4) {
+        g_env_light.field_0xe90 = 0;
+
+        if (g_env_light.mSnowCount == 0 && g_env_light.mSnowInitialized &&
+            g_env_light.mpSnowPacket != NULL)
+        {
+            g_env_light.mpSnowPacket->field_0x6d88 = 0;
+
+            for (int i = 0; i < 500; i++) {
+                g_env_light.mpSnowPacket->mSnowEff[i].mStatus = 0;
+            }
+        }
+
+        dKyw_evt_wind_set_go();
+        camera_class* camera = dComIfGp_getCamera(0);
+
+        cXyz eye(camera->mLookat.mEye);
+
+        if (camera != NULL) {
+            if (((eye.x > 2079.0f && eye.x < 3013.0f && eye.y < 864.0f && eye.z > -6000.0f &&
+                  eye.z < -4145.0f) ||
+                 eye.x < -2960.0f) ||
+                ((eye.z > -880.0f || eye.z < -6000.0f) ||
+                 (eye.z < -4920.0f && eye.y < 864.0f && eye.x < -2000.0f)))
+            {
+                cLib_addCalc(&i_this->field_0x570, 0.0f, 0.6f, 0.5f, 0.01f);
+            } else {
+                cLib_addCalc(&i_this->field_0x570, i_this->mWindPower, 0.5f, 0.5f, 0.001f);
+            }
+
+            switch (tmp) {
+            case 0:
+                g_env_light.field_0xe92 = 0;
+                cLib_addCalc(&i_this->mWindPower, 0.0f, 0.5f, 0.1f, 0.001f);
+                dKyw_custom_windpower(0.2f);
+                break;
+            case 1:
+                g_env_light.field_0xe92 = 0;
+                cLib_addCalc(&i_this->mWindPower, 1.0f, 0.5f, 0.1f, 0.001f);
+                dKyw_custom_windpower(0.35f);
+                break;
+            case 2:
+                g_env_light.field_0xe92 = 1;
+                cLib_addCalc(&i_this->mWindPower, 1.0f, 0.5f, 0.1f, 0.001f);
+                dKyw_custom_windpower(0.5f);
+                break;
+            }
+        }
+    } else {
+        g_env_light.field_0xe92 = 0;
+        i_this->mWindPower = 0.0f;
+        i_this->field_0x570 = 0.0f;
+        dKyw_custom_windpower(0.3f);
+    }
+
+    g_env_light.mSnowCount = i_this->mWindPower * 500.0f;
+    g_env_light.mMoyaCount = i_this->field_0x570 * 50.0f;
+
+    if (!g_env_light.field_0xe92) {
+        g_mEnvSeMgr.setSnowPower(i_this->mWindPower * 63.0f);
+    } else {
+        g_mEnvSeMgr.setSnowPower(i_this->mWindPower * 127.0f);
+    }
+
+    if (dComIfGp_roomControl_getStayNo() != 0 && dComIfGp_roomControl_getStayNo() != 3 &&
+        (dComIfGp_roomControl_getStayNo() < 5 || dComIfGp_roomControl_getStayNo() > 9) &&
+        dComIfGp_roomControl_getStayNo() != 11 && dComIfGp_roomControl_getStayNo() != 13)
+    {
+        g_env_light.field_0xe90 = 0;
+    }
 }
-#pragma pop
 
 /* 8085912C-808591A4 0019AC 0078+00 1/1 0/0 0/0 .text daKytag06_type_11_Execute__FP13kytag06_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag06_type_11_Execute(kytag06_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/daKytag06_type_11_Execute__FP13kytag06_class.s"
+static void daKytag06_type_11_Execute(kytag06_class* i_this) {
+    if (dKy_darkworld_check() && dComIfG_play_c::getLayerNo(0) == 14) {
+        switch (dComIfGp_roomControl_getStayNo()) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+            dKy_change_colpat(dComIfGp_roomControl_getStayNo());
+            break;
+        case 8:
+            dKy_change_colpat(5);
+            break;
+        }
+    }
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80859F70-80859F74 0000F8 0004+00 0/1 0/0 0/0 .rodata          @4406 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4406 = 5000.0f;
-COMPILER_STRIP_GATE(0x80859F70, &lit_4406);
-#pragma pop
 
 /* 808591A4-8085931C 001A24 0178+00 1/1 0/0 0/0 .text daKytag06_type_05_Execute__FP13kytag06_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag06_type_05_Execute(kytag06_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/daKytag06_type_05_Execute__FP13kytag06_class.s"
+static void daKytag06_type_05_Execute(kytag06_class* i_this) {
+    cXyz spX;
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+
+    if (player != NULL) {
+        spX.x = player->current.pos.x;
+        spX.y = i_this->current.pos.y;
+        spX.z = player->current.pos.z;
+
+        if (i_this->current.pos.abs(spX) < i_this->mScale.x * 5000.0f) {
+            g_env_light.field_0x130b = 1;
+        }
+    }
 }
-#pragma pop
 
 /* 8085931C-80859528 001B9C 020C+00 1/1 0/0 0/0 .text daKytag06_type_03_Execute__FP13kytag06_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag06_type_03_Execute(kytag06_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/daKytag06_type_03_Execute__FP13kytag06_class.s"
+static void daKytag06_type_03_Execute(kytag06_class* i_this) {
+    if (i_this->field_0x597 == 0) {
+        switch (i_this->field_0x590) {
+        case 0:
+            // 0C01: Midna's Desperate Hour started    1E08: Midna's Desperate Hour Completed
+            if (i_dComIfGs_isEventBit(0x0C01) && !i_dComIfGs_isEventBit(0x1E08)) {
+                i_this->field_0x590 = 1;
+                i_this->field_0x578 = 450;
+                dKy_change_colpat(i_this->field_0x591);
+
+                s32 stayNo = dComIfGp_roomControl_getStayNo();
+                dComIfGs_onSwitch(i_this->mSwNo, stayNo);
+            }
+            break;
+        case 1:
+            int old = i_this->field_0x578;
+            i_this->field_0x578--;
+
+            if (old <= 0) {
+                i_this->field_0x590++;
+            }
+            break;
+        case 2:
+            if ((g_Counter.mCounter0 & 7) == 0) {
+                // run block every 8 frames
+                if (g_env_light.mRainCount < 250) {
+                    g_env_light.mRainCount++;
+                } else {
+                    i_this->field_0x590++;
+                }
+            }
+            break;
+        case 3:
+            break;
+        }
+    } else if (i_this->field_0x597 == 2 && dComIfGp_roomControl_getStayNo() != 0) {
+        switch (i_this->field_0x590) {
+        case 0:
+            if (i_this->mSwNo != 0xFF && dComIfGs_isSwitch(i_this->mSwNo, i_this->current.roomNo)) {
+                cLib_addCalc(&i_this->mWindPower, 1.0f, 0.1f, 0.01f, 0.0001f);
+
+                if (i_this->mWindPower >= 1.0f) {
+                    i_this->mWindPower = 1.0f;
+                    g_env_light.mColpatWeather = 0;
+                    i_this->field_0x590 = 1;
+                }
+
+                dKy_custom_colset(i_this->field_0x591, 0, i_this->mWindPower);
+            } else {
+                dKy_custom_colset(0, i_this->field_0x591, 1.0f);
+                g_env_light.mColpatWeather = i_this->field_0x591;
+            }
+            break;
+        case 1:
+            break;
+        }
+    }
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80859F74-80859F78 0000FC 0004+00 0/1 0/0 0/0 .rodata          @4609 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4609 = 255.0f;
-COMPILER_STRIP_GATE(0x80859F74, &lit_4609);
-#pragma pop
-
-/* 80859F78-80859F80 000100 0004+04 0/1 0/0 0/0 .rodata          @4610 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4610[1 + 1 /* padding */] = {
-    3.0f / 100.0f,
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x80859F78, &lit_4610);
-#pragma pop
-
-/* 80859F80-80859F88 000108 0008+00 0/1 0/0 0/0 .rodata          @4613 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4613[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80859F80, &lit_4613);
-#pragma pop
-
-/* 80859F90-80859F90 000118 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80859F90 = "F_SP114";
-#pragma pop
-
-/* 8085A074-8085A0A4 -00001 0030+00 1/1 0/0 0/0 .data            @4611 */
-SECTION_DATA static void* lit_4611[12] = {
-    (void*)(((char*)daKytag06_Execute__FP13kytag06_class) + 0x270),
-    (void*)(((char*)daKytag06_Execute__FP13kytag06_class) + 0x4C),
-    (void*)(((char*)daKytag06_Execute__FP13kytag06_class) + 0x1C0),
-    (void*)(((char*)daKytag06_Execute__FP13kytag06_class) + 0x208),
-    (void*)(((char*)daKytag06_Execute__FP13kytag06_class) + 0x544),
-    (void*)(((char*)daKytag06_Execute__FP13kytag06_class) + 0x210),
-    (void*)(((char*)daKytag06_Execute__FP13kytag06_class) + 0x218),
-    (void*)(((char*)daKytag06_Execute__FP13kytag06_class) + 0x220),
-    (void*)(((char*)daKytag06_Execute__FP13kytag06_class) + 0x228),
-    (void*)(((char*)daKytag06_Execute__FP13kytag06_class) + 0x230),
-    (void*)(((char*)daKytag06_Execute__FP13kytag06_class) + 0x238),
-    (void*)(((char*)daKytag06_Execute__FP13kytag06_class) + 0x268),
-};
 
 /* 80859528-80859A88 001DA8 0560+00 2/0 0/0 0/0 .text daKytag06_Execute__FP13kytag06_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag06_Execute(kytag06_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/daKytag06_Execute__FP13kytag06_class.s"
+static int daKytag06_Execute(kytag06_class* i_this) {
+    dComIfGs_getTime();
+
+    switch (i_this->mType) {
+    case 1:
+        camera_class* camera = dComIfGp_getCamera(0);
+
+        if (i_this->mpPath != NULL) {
+            int target1 = 0;
+            int target2 = 0;
+            dStage_dPnt_c* pnt = near_rail_get(i_this, &camera->mLookat.mEye);
+
+            if (pnt != NULL && pnt->field_0x3 != 0xFF) {
+                dKy_change_colpat(pnt->field_0x3);
+
+                if (pnt->field_0x3 == 0) {
+                    target1 = 250;
+                    target2 = 25;
+                } else if (pnt->field_0x3 == 1) {
+                    target1 = 500;
+                    target2 = 50;
+                } else if (pnt->field_0x3 == 2) {
+                    target1 = 125;
+                    target2 = 12;
+                }
+
+                if ((int)i_this->mWindPower > 250) {
+                    g_env_light.field_0xe92 = 1;
+                } else {
+                    g_env_light.field_0xe92 = 0;
+                }
+
+                cLib_addCalc(&i_this->mWindPower, (s16)target1, 0.5f, 1.0f, 0.01f);
+                cLib_addCalc(&i_this->field_0x570, (s16)target2, 0.5f, 1.0f, 0.01f);
+
+                g_env_light.mSnowCount = i_this->mWindPower;
+                g_env_light.mMoyaCount = i_this->field_0x570;
+                g_mEnvSeMgr.setSnowPower((i_this->mWindPower / 500.0f) * 127.0f);
+                break;
+            }
+        }
+        break;
+    case 2:
+        if (i_this->mSwNo != 0xFF) {
+            s32 stayNo = dComIfGp_roomControl_getStayNo();
+            if (dComIfGs_isSwitch(i_this->mSwNo, stayNo) && i_this->field_0x590 == 0) {
+                i_this->field_0x590 = 1;
+                dKy_change_colpat(i_this->field_0x591);
+            }
+        }
+        break;
+    case 3:
+        daKytag06_type_03_Execute(i_this);
+        break;
+    case 5:
+        daKytag06_type_05_Execute(i_this);
+        break;
+    case 6:
+        daKytag06_type_06_Execute(i_this);
+        break;
+    case 7:
+        daKytag06_type_07_Execute(i_this);
+        break;
+    case 8:
+        daKytag06_type_08_Execute(i_this);
+        break;
+    case 9:
+        daKytag06_type_09_Execute(i_this);
+        break;
+    case 10:
+        if (strcmp(dComIfGp_getStartStageName(), "F_SP114") != 0) {
+            daKytag06_type_10_Execute(i_this);
+        } else {
+            daKytag06_type_03_Execute(i_this);
+        }
+        break;
+    case 11:
+        daKytag06_type_11_Execute(i_this);
+        break;
+    default:
+        if (i_this->field_0x590 == 0) {
+            switch (i_this->field_0x591) {
+            case 0:
+                if (dComIfGs_BossLife_public_Get() != -1 && dComIfGs_BossLife_public_Get() <= 6) {
+                    dKy_change_colpat(1);
+                    i_this->field_0x591++;
+                }
+                break;
+            case 1:
+                if (i_this->field_0x578 > 600) {
+                    g_env_light.mMoyaMode = 0;
+
+                    if (g_env_light.mMoyaCount < 50) {
+                        g_env_light.mMoyaCount++;
+                    } else {
+                        i_this->field_0x591++;
+                    }
+                }
+                break;
+            case 2:
+                if (i_this->field_0x578 > 900) {
+                    if (g_env_light.mRainCount < 250) {
+                        g_env_light.mRainCount++;
+                    } else {
+                        i_this->field_0x591++;
+                    }
+                }
+                break;
+            case 3:
+                if (i_this->field_0x578 > 1100) {
+                    g_env_light.mThunderEff.mMode = 2;
+                    i_this->field_0x591++;
+                }
+                break;
+            }
+
+            if (dComIfGs_BossLife_public_Get() != -1 && dComIfGs_BossLife_public_Get() <= 3) {
+                i_this->field_0x591 = 0;
+                i_this->field_0x578 = 0;
+                i_this->field_0x590 = 1;
+            }
+        } else {
+            switch (i_this->field_0x591) {
+            case 0:
+                if (i_this->field_0x578 > 0) {
+                    g_env_light.mThunderEff.mMode = 0;
+
+                    if (g_env_light.mRainCount > 0) {
+                        g_env_light.mRainCount--;
+                    } else {
+                        i_this->field_0x591++;
+                    }
+                }
+                break;
+            case 1:
+                if (i_this->field_0x578 > 150) {
+                    g_env_light.mMoyaMode = 0;
+
+                    if (g_env_light.mMoyaCount >= 0) {
+                        g_env_light.mMoyaCount--;
+                    } else {
+                        i_this->field_0x591++;
+                    }
+                }
+                break;
+            case 2:
+                if (i_this->field_0x578 > 300) {
+                    dKy_change_colpat(6);
+                    i_this->field_0x591++;
+                }
+                break;
+            case 3:
+                if (i_this->field_0x578 > 420) {
+                    dKy_change_colpat(0);
+                    i_this->field_0x591++;
+                }
+                break;
+            case 4:
+                if (dComIfGs_BossLife_public_Get() == 0) {
+                    f32 time = dComIfGs_getTime();
+
+                    if (time < 255.0f) {
+                        time += 0.03f;
+
+                        if (i_dComIfGp_event_runCheck()) {
+                            time += 0.1f;
+                        }
+
+                        dComIfGs_setTime(time);
+                    }
+                }
+                break;
+            }
+        }
+
+        if ((i_this->field_0x590 != 0 || i_this->field_0x591 != 0) && i_this->field_0x578 < 101849)
+        {
+            i_this->field_0x578++;
+        }
+
+        if (i_this->field_0x578 < 99999) {
+            i_this->field_0x57c++;
+        }
+        break;
+    case 4:
+        break;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80859A88-80859A90 002308 0008+00 1/0 0/0 0/0 .text daKytag06_IsDelete__FP13kytag06_class */
-static bool daKytag06_IsDelete(kytag06_class* param_0) {
-    return true;
+static int daKytag06_IsDelete(kytag06_class* i_this) {
+    return 1;
 }
-
-/* ############################################################################################## */
-/* 80859F88-80859F8C 000110 0004+00 1/1 0/0 0/0 .rodata          @4638 */
-SECTION_RODATA static f32 const lit_4638 = 270.0f;
-COMPILER_STRIP_GATE(0x80859F88, &lit_4638);
 
 /* 80859A90-80859AD0 002310 0040+00 1/0 0/0 0/0 .text            daKytag06_Delete__FP13kytag06_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag06_Delete(kytag06_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/daKytag06_Delete__FP13kytag06_class.s"
+static int daKytag06_Delete(kytag06_class* i_this) {
+    if (i_this->mType == 0 && i_this->field_0x590 != 0 && i_this->field_0x591 >= 4) {
+        dComIfGs_setTime(270.0f);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80859AD0-80859AF0 002350 0020+00 1/1 0/0 0/0 .text daKytag06_type04_init__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag06_type04_init(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/daKytag06_type04_init__FP10fopAc_ac_c.s"
+static void daKytag06_type04_init(fopAc_ac_c* i_this) {
+    kytag06_class* this_ = (kytag06_class*)i_this;
+
+    this_->mSwNo = fopAcM_GetParam(this_) >> 8;
+    this_->field_0x591 = fopAcM_GetParam(this_) & 0xFF;
+    this_->field_0x590 = 0;
 }
-#pragma pop
 
 /* 80859AF0-80859B14 002370 0024+00 1/1 0/0 0/0 .text daKytag06_type06_init__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag06_type06_init(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/daKytag06_type06_init__FP10fopAc_ac_c.s"
+static void daKytag06_type06_init(fopAc_ac_c* i_this) {
+    kytag06_class* this_ = (kytag06_class*)i_this;
+
+    this_->mSwNo = fopAcM_GetParam(this_) >> 8;
+    this_->field_0x591 = fopAcM_GetParam(this_) & 0xFF;
+    this_->field_0x590 = 0;
+    this_->field_0x598 = 0;
 }
-#pragma pop
 
 /* 80859B14-80859B34 002394 0020+00 1/1 0/0 0/0 .text daKytag06_type02_init__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag06_type02_init(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/daKytag06_type02_init__FP10fopAc_ac_c.s"
+static void daKytag06_type02_init(fopAc_ac_c* i_this) {
+    kytag06_class* this_ = (kytag06_class*)i_this;
+
+    this_->mSwNo = fopAcM_GetParam(this_) >> 8;
+    this_->field_0x591 = fopAcM_GetParam(this_) & 0xFF;
+    this_->field_0x590 = 0;
 }
-#pragma pop
 
 /* 80859B34-80859C88 0023B4 0154+00 1/1 0/0 0/0 .text daKytag06_type03_init__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag06_type03_init(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/daKytag06_type03_init__FP10fopAc_ac_c.s"
+static void daKytag06_type03_init(fopAc_ac_c* i_this) {
+    kytag06_class* this_ = (kytag06_class*)i_this;
+
+    this_->mSwNo = fopAcM_GetParam(this_) >> 8;
+    this_->field_0x591 = fopAcM_GetParam(this_) & 0xFF;
+    this_->field_0x590 = 0;
+
+    if (this_->field_0x597 == 0) {
+        // 0C01: Midna's Desperate Hour started    1E08: Midna's Desperate Hour Completed
+        if (i_dComIfGs_isEventBit(0x0C01) && !i_dComIfGs_isEventBit(0x1E08) && this_->mSwNo != 0xFF)
+        {
+            s32 stayNo = dComIfGp_roomControl_getStayNo();
+
+            if (dComIfGs_isSwitch(this_->mSwNo, stayNo)) {
+                this_->field_0x590 = 9;
+                g_env_light.mRainCount = 250;
+                g_env_light.mColpatWeather = this_->field_0x591;
+                g_env_light.mColPatPrev = this_->field_0x591;
+                g_env_light.mColPatCurr = this_->field_0x591;
+            }
+        }
+    } else if (this_->field_0x597 == 2 && dComIfGp_roomControl_getStayNo() != 0) {
+        if (this_->mSwNo != 0xFF && !dComIfGs_isSwitch(this_->mSwNo, this_->current.roomNo)) {
+            dKy_custom_colset(0, this_->field_0x591, 1.0f);
+            g_env_light.mColpatWeather = this_->field_0x591;
+        } else {
+            this_->field_0x590 = 1;
+        }
+    }
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80859F8C-80859F90 000114 0004+00 1/1 0/0 0/0 .rodata          @4771 */
-SECTION_RODATA static f32 const lit_4771 = 210.0f;
-COMPILER_STRIP_GATE(0x80859F8C, &lit_4771);
-
-/* 80859F90-80859F90 000118 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80859F98 = "T_MUKAO";
-#pragma pop
-
-/* 8085A0A4-8085A0D4 -00001 0030+00 1/1 0/0 0/0 .data            @4772 */
-SECTION_DATA static void* lit_4772[12] = {
-    (void*)(((char*)daKytag06_Create__FP10fopAc_ac_c) + 0x158),
-    (void*)(((char*)daKytag06_Create__FP10fopAc_ac_c) + 0x84),
-    (void*)(((char*)daKytag06_Create__FP10fopAc_ac_c) + 0xA0),
-    (void*)(((char*)daKytag06_Create__FP10fopAc_ac_c) + 0xAC),
-    (void*)(((char*)daKytag06_Create__FP10fopAc_ac_c) + 0xB8),
-    (void*)(((char*)daKytag06_Create__FP10fopAc_ac_c) + 0x1C8),
-    (void*)(((char*)daKytag06_Create__FP10fopAc_ac_c) + 0xC4),
-    (void*)(((char*)daKytag06_Create__FP10fopAc_ac_c) + 0xD0),
-    (void*)(((char*)daKytag06_Create__FP10fopAc_ac_c) + 0xE4),
-    (void*)(((char*)daKytag06_Create__FP10fopAc_ac_c) + 0x108),
-    (void*)(((char*)daKytag06_Create__FP10fopAc_ac_c) + 0x114),
-    (void*)(((char*)daKytag06_Create__FP10fopAc_ac_c) + 0x14C),
-};
 
 /* 80859C88-80859E68 002508 01E0+00 2/0 0/0 0/0 .text            daKytag06_Create__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag06_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag06/d_a_kytag06/daKytag06_Create__FP10fopAc_ac_c.s"
+static int daKytag06_Create(fopAc_ac_c* i_this) {
+    if (!fopAcM_CheckCondition(i_this, 8)) {
+        new (i_this) kytag06_class();
+        fopAcM_OnCondition(i_this, 8);
+    }
+    kytag06_class* this_ = static_cast<kytag06_class*>(i_this);
+
+    this_->mType = (fopAcM_GetParam(this_) >> 0x18) & 0xF;
+    this_->field_0x597 = (fopAcM_GetParam(this_) >> 0x1C);
+    this_->mWindPower = 0.0f;
+    this_->field_0x570 = 0.0f;
+
+    switch (this_->mType) {
+    case 1:
+        this_->mPathNo = fopAcM_GetParam(this_) >> 0x10;
+        this_->mpPath = set_path_info(this_);
+        break;
+    case 2:
+        daKytag06_type02_init(this_);
+        break;
+    case 3:
+        daKytag06_type03_init(this_);
+        break;
+    case 4:
+        daKytag06_type04_init(this_);
+        break;
+    case 6:
+        daKytag06_type06_init(this_);
+        break;
+    case 7:
+        this_->field_0x590 = 0;
+        this_->field_0x591 = 0;
+        this_->field_0x574 = 0;
+        break;
+    case 8:
+        daKytag06_type06_init(this_);
+        g_env_light.mMoyaMode = 9;
+        g_env_light.mMoyaCount = 50;
+        break;
+    case 9:
+        daKytag06_type06_init(this_);
+        break;
+    case 10:
+        if (strcmp(dComIfGp_getStartStageName(), "F_SP114") != 0) {
+            daKytag06_type06_init(this_);
+        } else {
+            daKytag06_type03_init(this_);
+        }
+        break;
+    case 11:
+        daKytag06_type06_init(this_);
+        break;
+    default:
+        if (strcmp(dComIfGp_getStartStageName(), "T_MUKAO") != 0) {
+            g_env_light.mColpatWeather = 3;
+            g_env_light.mColPatPrev = 3;
+            g_env_light.mColPatCurr = 3;
+        } else {
+            dComIfGs_setTime(210.0f);
+        }
+
+        this_->field_0x578 = 0;
+        this_->field_0x57c = 0;
+        this_->field_0x590 = 0;
+        this_->field_0x591 = 0;
+        this_->field_0x574 = 640;
+        break;
+    case 5:
+        break;
+    }
+
+    return cPhs_COMPLEATE_e;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8085A0D4-8085A0F4 -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag06_Method */

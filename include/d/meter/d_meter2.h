@@ -5,7 +5,7 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/meter/d_meter2_draw.h"
 #include "d/meter/d_meter_map.h"
-#include "d/msg/d_msg_class.h"
+#include "f_op/f_op_msg.h"
 #include "dolphin/types.h"
 
 class dMeterMap_c;

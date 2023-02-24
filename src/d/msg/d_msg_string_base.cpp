@@ -9,31 +9,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct jmessage_string_tControl {
-    /* 8022FB5C */ jmessage_string_tControl();
-};
-
-struct COutFont_c {};
-
-struct jmessage_string_tReference {
-    /* 8022F8C0 */ jmessage_string_tReference();
-    /* 8022F9AC */ void init(J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, u8);
-    /* 8022FA38 */ void getLineLength(int);
-};
-
-struct jmessage_string_tSequenceProcessor {
-    /* 80230A08 */ jmessage_string_tSequenceProcessor(jmessage_string_tReference const*,
-                                                      jmessage_string_tControl*);
-};
-
-struct jmessage_string_tRenderingProcessor {
-    /* 80230BC8 */ jmessage_string_tRenderingProcessor(jmessage_string_tReference const*);
-};
-
-//
 // Forward References:
 //
 

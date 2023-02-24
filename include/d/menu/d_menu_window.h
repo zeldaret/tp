@@ -4,7 +4,7 @@
 #include "d/d_drawlist.h"
 #include "d/menu/d_menu_collect.h"
 #include "d/meter/d_meter2_info.h"
-#include "d/msg/d_msg_class.h"
+#include "f_op/f_op_msg.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"

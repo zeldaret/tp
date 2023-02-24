@@ -5,21 +5,8 @@
 
 #include "d/msg/d_msg_unit.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct dScnKy_env_light_c {
-    /* 8019FA08 */ void getDaytime();
-};
-
-struct dMsgUnit_c {
-    /* 80238C94 */ dMsgUnit_c();
-    /* 80238CA4 */ ~dMsgUnit_c();
-    /* 80238CEC */ void setTag(int, int, char*, bool);
-};
+#include "d/kankyo/d_kankyo.h"
+#include "d/meter/d_meter2_info.h"
 
 //
 // Forward References:
@@ -41,45 +28,16 @@ extern "C" void __dl__FPv();
 extern "C" void __register_global_object();
 extern "C" void _savegpr_26();
 extern "C" void _restgpr_26();
-extern "C" void sprintf();
-extern "C" void strcmp();
-extern "C" void strcat();
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_meter2_info[248];
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803C0BF0-803C0C00 01DD10 000C+04 2/2 0/0 0/0 .data            __vt__10dMsgUnit_c */
-SECTION_DATA extern void* __vt__10dMsgUnit_c[3 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10dMsgUnit_cFv,
-    /* padding */
-    NULL,
-};
-
 /* 80238C94-80238CA4 2335D4 0010+00 1/1 0/0 0/0 .text            __ct__10dMsgUnit_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMsgUnit_c::dMsgUnit_c() {
-    nofralloc
-#include "asm/d/msg/d_msg_unit/__ct__10dMsgUnit_cFv.s"
-}
-#pragma pop
+dMsgUnit_c::dMsgUnit_c() {}
 
 /* 80238CA4-80238CEC 2335E4 0048+00 2/1 0/0 0/0 .text            __dt__10dMsgUnit_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMsgUnit_c::~dMsgUnit_c() {
-    nofralloc
-#include "asm/d/msg/d_msg_unit/__dt__10dMsgUnit_cFv.s"
-}
-#pragma pop
+dMsgUnit_c::~dMsgUnit_c() {}
 
 /* ############################################################################################## */
 /* 803996E8-803996E8 025D48 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -121,32 +79,12 @@ asm void dMsgUnit_c::setTag(int param_0, int param_1, char* param_2, bool param_
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 804306B8-804306C8 05D3D8 000C+04 1/1 0/0 0/0 .bss             @3640 */
-static u8 lit_3640[12 + 4 /* padding */];
-
 /* 804510D0-804510D8 0005D0 0004+04 1/1 5/5 0/0 .sbss            g_msg_unit */
-extern u8 g_msg_unit[4 + 4 /* padding */];
-u8 g_msg_unit[4 + 4 /* padding */];
-
-/* 8023907C-802390B4 2339BC 0038+00 0/0 1/0 0/0 .text            __sinit_d_msg_unit_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_msg_unit_cpp() {
-    nofralloc
-#include "asm/d/msg/d_msg_unit/__sinit_d_msg_unit_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x8023907C, __sinit_d_msg_unit_cpp);
-#pragma pop
+dMsgUnit_c g_msg_unit;
 
 /* ############################################################################################## */
 /* 804510D8-804510E0 0005D8 0008+00 0/0 2/2 0/0 .sbss            None */
 extern u8 data_804510D8[8];
-u8 data_804510D8[8];
+u8 data_804510D8[8] ALIGN_DECL(8);
 
 /* 803996E8-803996E8 025D48 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

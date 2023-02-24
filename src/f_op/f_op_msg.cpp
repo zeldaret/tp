@@ -4,7 +4,6 @@
  */
 
 #include "f_op/f_op_msg.h"
-#include "d/msg/d_msg_class.h"
 #include "d/s/d_s_play.h"
 #include "f_op/f_op_msg_mng.h"
 

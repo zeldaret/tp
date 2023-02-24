@@ -5,8 +5,8 @@
 
 #include "JSystem/JMessage/resource.h"
 #include "JSystem/JGadget/binary.h"
-#include "dol2asm.h"
 #include "MSL_C/MSL_Common/Src/mem.h"
+#include "dol2asm.h"
 
 //
 // Types:
@@ -269,39 +269,27 @@ asm bool JMessage::TParse::parseBlock_next(void const** param_0, u32* param_1, u
 
 /* 802A9490-802A94A8 2A3DD0 0018+00 1/0 0/0 0/0 .text
  * parseCharacter_1Byte__Q28JMessage6localeFPPCc                */
-// reg swap
-#ifdef NONMATCHING
-int JMessage::locale::parseCharacter_1Byte(char const** pString) {
-    u8* c;
-    int ret;
+int JMessage::locale::parseCharacter_1Byte(char const** string) {
+    u8 parse_char = **string;
 
-    c = (u8*)*pString;
-    ret = *c;
-
-    *pString = *pString + 1;
-    return ret;
+    *string = *string + 1;
+    return parse_char;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int JMessage::locale::parseCharacter_1Byte(char const** param_0) {
-    nofralloc
-#include "asm/JSystem/JMessage/resource/parseCharacter_1Byte__Q28JMessage6localeFPPCc.s"
-}
-#pragma pop
-#endif
 
 /* 802A94A8-802A94D4 2A3DE8 002C+00 1/0 0/0 0/0 .text
  * parseCharacter_2Byte__Q28JMessage6localeFPPCc                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int JMessage::locale::parseCharacter_2Byte(char const** param_0) {
-    nofralloc
-#include "asm/JSystem/JMessage/resource/parseCharacter_2Byte__Q28JMessage6localeFPPCc.s"
+int JMessage::locale::parseCharacter_2Byte(char const** string) {
+    u8** tmp_str = (u8**)string;
+
+    u8 hi = **tmp_str;
+    *tmp_str = *tmp_str + 1;
+
+    u8 lo = **tmp_str;
+    int parse_char = (hi << 8) | lo;
+    *tmp_str = *tmp_str + 1;
+
+    return parse_char;
 }
-#pragma pop
 
 /* 802A94D4-802A9528 2A3E14 0054+00 1/1 0/0 0/0 .text lower_bound<PCUl,Ul>__3stdFPCUlPCUlRCUl */
 #pragma push

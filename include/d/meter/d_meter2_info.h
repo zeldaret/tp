@@ -5,28 +5,10 @@
 #include "d/d_resorce.h"
 #include "d/menu/d_menu_window.h"
 #include "d/meter/d_meter2.h"
+#include "d/msg/d_msg_class.h"
 #include "d/msg/d_msg_flow.h"
 #include "d/pane/d_pane_class.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
-
-struct JMSMesgEntry_c {
-    /* 0x00 */ u32 mStringOffset;
-    /* 0x04 */ u16 mStringId;
-    /* 0x06 */ u16 field_0x04;
-    /* 0x08 */ u8 field_0x08;
-    /* 0x09 */ u8 field_0x09;
-    /* 0x0A */ u8 field_0x0a;
-    /* 0x0B */ u8 field_0x0b;
-    /* 0x0C */ u8 field_0x0c;
-    /* 0x0D */ u8 field_0x0d;
-    /* 0x0E */ u8 field_0x0e;
-    /* 0x0F */ u8 field_0x0f;
-    /* 0x10 */ u8 field_0x10;
-    /* 0x11 */ u8 field_0x11;
-    /* 0x12 */ u8 field_0x12;
-    /* 0x13 */ u8 field_0x13;
-};  // Size: 0x14
 
 struct dMenu_LetterData {
     u16 mSubject;
@@ -89,7 +71,7 @@ public:
     void setWarpInfo(const char*, const cXyz&, s16, u8, u8, u8);
     u8 getItemType(u8);
     int readItemTexture(u8, void*, J2DPicture*, void*, J2DPicture*, void*, J2DPicture*, void*,
-                       J2DPicture*, int);
+                        J2DPicture*, int);
     void setItemColor(u8, J2DPicture*, J2DPicture*, J2DPicture*, J2DPicture*);
     s16 get2ndTexture(u8);
     s16 get3rdTexture(u8);
@@ -162,6 +144,10 @@ public:
     s16 getMsgKeyWaitTimer() { return mMsgKeyWaitTimer; }
     u8 getGameOverType() { return mGameOverType; }
     void setGameOverType(u8 i_gameoverType) { mGameOverType = i_gameoverType; }
+    void setMsgKeyWaitTimer(s16 i_waitTimer) { mMsgKeyWaitTimer = i_waitTimer; }
+    u32 getMsgTimeMs() { return mMsgTimeMs; }
+    u32 getTimeMs() { return mTimeMs; }
+    u8 getNowCount() { return mNowCount; }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -514,6 +500,22 @@ inline u8 dMeter2Info_getGameOverType() {
 
 inline void dMeter2Info_setGameOverType(u8 i_gameoverType) {
     g_meter2_info.setGameOverType(i_gameoverType);
+}
+
+inline void dMeter2Info_setMsgKeyWaitTimer(s16 i_waitTimer) {
+    g_meter2_info.setMsgKeyWaitTimer(i_waitTimer);
+}
+
+inline u32 dMeter2Info_getMsgTimeMs() {
+    return g_meter2_info.getMsgTimeMs();
+}
+
+inline u32 dMeter2Info_getTimeMs() {
+    return g_meter2_info.getTimeMs();
+}
+
+inline u8 dMeter2Info_getNowCount() {
+    return g_meter2_info.getNowCount();
 }
 
 char* dMeter2Info_getNumberTextureName(int pIndex);
