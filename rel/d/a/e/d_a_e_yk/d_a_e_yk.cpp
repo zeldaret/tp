@@ -9,6 +9,7 @@
 #include "d/s/d_s_play.h"
 #include "SSystem/SComponent/c_math.h"
 #include "JSystem/JMath/JMath.h"
+#include "c/c_damagereaction.h"
 
 //
 // Forward References:
@@ -314,16 +315,15 @@ SECTION_DATA static void* lit_4726[15] = {
 };
 
 /* 80807DE4-80807DE8 000074 0004+00 1/1 0/0 0/0 .data            e_name$4766 */
-SECTION_DATA static u8 e_name[4] = {
-    0x84,
-    0x32,
-    0x84,
-    0x33,
+SECTION_DATA static u16 e_name[2] = {
+    0x8432,
+    0x8433,
 };
 
 /* 80807DE8-80807DF0 000078 0008+00 1/1 0/0 0/0 .data            e_idx$4767 */
-SECTION_DATA static u8 e_idx[8] = {
-    0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x09,
+SECTION_DATA static u32 e_idx[2] = {
+    0x00000005, 
+    0x00000009,
 };
 
 /* 80807DF0-80807E30 000080 0040+00 1/1 0/0 0/0 .data            cc_sph_src$4930 */
@@ -412,14 +412,26 @@ SECTION_DATA extern void* __vt__12daE_YK_HIO_c[3] = {
 };
 
 /* 8080482C-80804870 0000EC 0044+00 1/1 0/0 0/0 .text            __ct__12daE_YK_HIO_cFv */
+#ifdef NONMATCHING
+// matches with literals
 daE_YK_HIO_c::daE_YK_HIO_c() {
     field_0x04 = -1;
-    field_0x08 = FLOAT_LABEL(lit_3943);
-    field_0x0c = FLOAT_LABEL(lit_3962);
-    field_0x10 = FLOAT_LABEL(lit_3963);
-    field_0x14 = FLOAT_LABEL(lit_3962);
-    field_0x18 = FLOAT_LABEL(lit_3964);
+    field_0x08 = 1.0f;
+    field_0x0c = 15.0f;
+    field_0x10 = 250.0f;
+    field_0x14 = 15.0f;
+    field_0x18 = 40.0f;   
 }
+#else
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm daE_YK_HIO_c::daE_YK_HIO_c() {
+    nofralloc
+#include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/__ct__12daE_YK_HIO_cFv.s"
+}
+#pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80807CD4-80807CD8 000038 0004+00 0/1 0/0 0/0 .rodata          @4008 */
@@ -437,8 +449,7 @@ COMPILER_STRIP_GATE(0x80807CD8, &lit_4009);
 #ifdef NONMATCHING
 // matches with literals
 static void yk_disappear(e_yk_class* i_this) {
-    // cXyz pos;
-    cXyz pos(FLOAT_LABEL(lit_4008),FLOAT_LABEL(lit_4008),FLOAT_LABEL(lit_4008));
+    cXyz pos(0.65f,0.65f,0.65f);
 
     dComIfGp_particle_set(0x826c,&i_this->current.pos,0,&pos); // float literal inline
     dComIfGp_particle_set(0x826d,&i_this->current.pos,0,&pos); // float literal inline
@@ -464,10 +475,22 @@ static asm void yk_disappear(e_yk_class* param_0) {
 #endif
 
 /* 808049E4-80804A90 0002A4 00AC+00 10/10 0/0 0/0 .text            anm_init__FP10e_yk_classifUcf */
+#ifdef NONMATCHING
+// matches with literals
 static void anm_init(e_yk_class* i_this, int i_resIdx, f32 param_2, u8 param_3, f32 param_4) {
-    i_this->mpMorfSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_YK",i_resIdx),param_3,param_2,param_4,FLOAT_LABEL(lit_3942),FLOAT_LABEL(lit_4009));
+    i_this->mpMorfSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_YK",i_resIdx),param_3,param_2,param_4,0.0f,-1.0f);
     i_this->mResIdx = i_resIdx;
 }
+#else
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+static asm void anm_init(e_yk_class* param_0, int param_1, f32 param_2, u8 param_3, f32 param_4) {
+    nofralloc
+#include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/anm_init__FP10e_yk_classifUcf.s"
+}
+#pragma pop
+#endif
 
 /* 80804A90-80804B38 000350 00A8+00 1/0 0/0 0/0 .text            daE_YK_Draw__FP10e_yk_class */
 static int daE_YK_Draw(e_yk_class* i_this) {
@@ -505,7 +528,7 @@ static bool other_bg_check(e_yk_class* i_this, fopAc_ac_c* i_actorP) {
     cXyz actor_pos;
     
     actor_pos = i_actorP->current.pos;
-    actor_pos.y += FLOAT_LABEL(lit_3941);
+    actor_pos.y += 100.0f;
     
     yk_pos = i_this->current.pos;
     yk_pos.y = i_this->mEyePos.y;
@@ -535,8 +558,10 @@ SECTION_RODATA static f32 const lit_4103 = 50000.0f;
 COMPILER_STRIP_GATE(0x80807CDC, &lit_4103);
 
 /* 80804C88-80804D38 000548 00B0+00 5/5 0/0 0/0 .text            pl_check__FP10e_yk_classfs */
+#ifdef NONMATCHING
+// matches with literals
 static int pl_check(e_yk_class* i_this, f32 i_distance, s16 i_angle) {
-    if (i_distance >= FLOAT_LABEL(lit_4103)) {
+    if (i_distance >= 50000.0f) {
         return 1;
     }
 
@@ -550,8 +575,18 @@ static int pl_check(e_yk_class* i_this, f32 i_distance, s16 i_angle) {
         }
     }
 
-    return 0;
+    return 0;   
 }
+#else
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+static asm int pl_check(e_yk_class* param_0, f32 param_1, s16 param_2) {
+    nofralloc
+#include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/pl_check__FP10e_yk_classfs.s"
+}
+#pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80807CE0-80807CE4 000044 0004+00 0/2 0/0 0/0 .rodata          @4151 */
@@ -608,7 +643,7 @@ static void damage_check(e_yk_class* i_this) {
                 if (i_this->mAtColliderInfo.mpCollider->ChkAtType(AT_TYPE_SHIELD_ATTACK)) {
                     i_this->mAction = ACT_CHANCE;
                     i_this->mActionPhase = 0;
-                    i_this->field_0x694 = FLOAT_LABEL(lit_4151);
+                    i_this->field_0x694 = 70.0f;
                     i_this->field_0x698 = i_this->shape_angle.y;
                     i_this->field_0x6a0 = 0;
 
@@ -630,13 +665,13 @@ static void damage_check(e_yk_class* i_this) {
                             i_this->field_0x6aa = 10;
                         }
 
-                        i_this->field_0x694 = cM_rndF(FLOAT_LABEL(lit_4152)) + FLOAT_LABEL(lit_4151);
+                        i_this->field_0x694 = cM_rndF(10.0f) + 70.0f;
                         i_this->field_0x698 = i_this->mAtColliderInfo.mHitDirection;
 
                         // If keese is dead, play death sound
                         if (i_this->mHealth <= 0) {
                             i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_DEATH,-1);
-                            i_this->mpMorfSO->setPlaySpeed(FLOAT_LABEL(lit_4153));
+                            i_this->mpMorfSO->setPlaySpeed(0.2f);
                             i_this->field_0x6a0 = 1;
                         }
                     }
@@ -673,7 +708,7 @@ static u8 lit_3957[12];
 
 /* 80807F08-80807F24 000018 001C+00 9/9 0/0 0/0 .bss             l_HIO */
 // static daE_YK_HIO_c l_HIO;
-static f32 l_HIO[7];
+static daE_YK_HIO_c_tmp l_HIO;
 
 /* 80807F24-80808023 000034 00FF+00 1/1 0/0 0/0 .bss             check_index$4191 */
 static u8 check_index[255];
@@ -688,7 +723,7 @@ static int path_check(e_yk_class* i_this) {
         cXyz current_keese_pos;
         cXyz path_point_pos;
         current_keese_pos = i_this->current.pos;
-        current_keese_pos.y += FLOAT_LABEL(lit_3941);
+        current_keese_pos.y += 100.0f;
 
         dStage_dPnt_c* points = i_this->mpPath->m_points;
 
@@ -696,7 +731,7 @@ static int path_check(e_yk_class* i_this) {
         // were crossed
         for (int i = 0; i < i_this->mpPath->m_num; i++, points++) {
             path_point_pos.x = points->m_position.x;
-            path_point_pos.y = FLOAT_LABEL(lit_3941) + points->m_position.y;
+            path_point_pos.y = 100.0f + points->m_position.y;
             path_point_pos.z = points->m_position.z;
 
             lin_chk.Set(&current_keese_pos,&path_point_pos,i_this);
@@ -708,10 +743,10 @@ static int path_check(e_yk_class* i_this) {
             }
         }
 
-        f32 f = FLOAT_LABEL(lit_3942);
+        f32 f = 0.0f;
         bool tmp = false;
         
-        for (int i = 0; i < 100; i++, f += FLOAT_LABEL(lit_4185)) {
+        for (int i = 0; i < 100; i++, f += 50.0f) {
             points = i_this->mpPath->m_points;
 
             for (int j = 0; j < i_this->mpPath->m_num; j++, points++) {
@@ -746,9 +781,9 @@ static int path_check(e_yk_class* i_this) {
         }
 
         if (!tmp) {
-            i_this-> field_0x5b8 = 0;
+            i_this->field_0x5b8 = 0;
         } else {
-            i_this->field_0x5b8 = i_this->field_0x5b7 + 1;
+            i_this->field_0x5b8 = i_this->mPathIdx + 1;
             return 1;
         }
 
@@ -799,7 +834,7 @@ static void fly_move(e_yk_class* i_this) {
 
     cLib_addCalcAngleS2(&i_this->current.angle.y,angle,10,i_this->field_0x690 * i_this->field_0x68c);
 
-    i_this->field_0x690 = FLOAT_LABEL(lit_4271);
+    i_this->field_0x690 = 2000.0f;
 
     cLib_addCalcAngleS2(&i_this->current.angle.x,angle2,10,i_this->field_0x690 * i_this->field_0x68c);
     cLib_addCalc2(&i_this->field_0x68c,1.0f,1.0f,0.04f);
@@ -848,27 +883,39 @@ COMPILER_STRIP_GATE(0x80807D00, &lit_4306);
 #pragma pop
 
 /* 80805360-808054A8 000C20 0148+00 1/1 0/0 0/0 .text            e_yk_roof__FP10e_yk_class */
+#ifdef NONMATCHING
+// matches with literals
 static void e_yk_roof(e_yk_class* i_this) {
     switch (i_this->mActionPhase) {
     case 0:
-        anm_init(i_this,9,FLOAT_LABEL(lit_3962),2,cM_rndF(FLOAT_LABEL(lit_4305)) + FLOAT_LABEL(lit_4304)); // random number between 0.9 and 1.0
+        anm_init(i_this,9,15.0f,2,cM_rndF(0.1f) + 0.9f); // random number between 0.9 and 1.0
         i_this->mActionPhase = 1;
         break;
     case 1:
-        if ((i_this->field_0x66c & 0x1f) == 0 && cM_rndF(FLOAT_LABEL(lit_3943)) < FLOAT_LABEL(lit_4306)) {
+        if ((i_this->field_0x66c & 0x1f) == 0 && cM_rndF(1.0f) < 0.5f) {
             i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_NAKU,-1);
         }
     }
 
-    cLib_addCalc2(&i_this->current.pos.x,i_this->orig.pos.x,FLOAT_LABEL(lit_4306),fabsf(i_this->speed.x));
-    cLib_addCalc2(&i_this->current.pos.y,i_this->orig.pos.y,FLOAT_LABEL(lit_4306),fabsf(i_this->speed.y));
-    cLib_addCalc2(&i_this->current.pos.z,i_this->orig.pos.z,FLOAT_LABEL(lit_4306),fabsf(i_this->speed.z));
+    cLib_addCalc2(&i_this->current.pos.x,i_this->orig.pos.x,0.5f,fabsf(i_this->speed.x));
+    cLib_addCalc2(&i_this->current.pos.y,i_this->orig.pos.y,0.5f,fabsf(i_this->speed.y));
+    cLib_addCalc2(&i_this->current.pos.z,i_this->orig.pos.z,0.5f,fabsf(i_this->speed.z));
 
-    if (pl_check(i_this,i_this->field_0x688,1)) {
+    if (pl_check(i_this,i_this->mPlayerTrigger,1)) {
         i_this->mAction = ACT_FIGHT_FLY;
         i_this->mActionPhase = 0;
     }
 }
+#else
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+static asm void e_yk_roof(e_yk_class* param_0) {
+    nofralloc
+#include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_roof__FP10e_yk_class.s"
+}
+#pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80807D04-80807D08 000068 0004+00 0/6 0/0 0/0 .rodata          @4334 */
@@ -886,28 +933,30 @@ COMPILER_STRIP_GATE(0x80807D08, &lit_4335);
 #pragma pop
 
 /* 808054A8-80805660 000D68 01B8+00 1/1 0/0 0/0 .text            e_yk_fight_fly__FP10e_yk_class */
+#ifdef NONMATCHING
+// matches with literals
 static void e_yk_fight_fly(e_yk_class* i_this) {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
     switch (i_this->mActionPhase) {
     case 0:
-        anm_init(i_this,5,FLOAT_LABEL(lit_4334),2,FLOAT_LABEL(lit_3943));
+        anm_init(i_this,5,FLOAT_LABEL(lit_4334),2,1.0f);
         i_this->mActionPhase = 1;
-        i_this->field_0x68c = FLOAT_LABEL(lit_3942);
+        i_this->field_0x68c = 0.0f;
         break;
     case 1:
-        if ((i_this->field_0x66c & 0xfU) == 0 && cM_rndF(FLOAT_LABEL(lit_3943)) < FLOAT_LABEL(lit_4306)) {
+        if ((i_this->field_0x66c & 0xfU) == 0 && cM_rndF(1.0f) < 0.5f) {
             i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_NAKU,-1);
         }
     }
 
-    cLib_addCalc2(&i_this->speedF,l_HIO[3], FLOAT_LABEL(lit_3943), FLOAT_LABEL(lit_4335) * l_HIO[3]);
+    cLib_addCalc2(&i_this->speedF,l_HIO.field_0x0c, 1.0f, FLOAT_LABEL(lit_4335) * l_HIO.field_0x0c);
     i_this->mPathPntPos = player->current.pos;
     fly_move(i_this);
 
-    if (!pl_check(i_this,FLOAT_LABEL(lit_4185) + i_this->field_0x688,1)) {
+    if (!pl_check(i_this,50.0f + i_this->mPlayerTrigger,1)) {
         if (!path_check(i_this)) {
-            if (i_this->field_0x5b4 == 0) {
+            if (i_this->mParam1 == 0) {
                 i_this->mAction = ACT_RETURN;
                 i_this->mActionPhase = 0;
             } else {
@@ -919,12 +968,22 @@ static void e_yk_fight_fly(e_yk_class* i_this) {
             i_this->mActionPhase = 0;
         }
     } else {
-        if (pl_check(i_this,l_HIO[4],1)) {
+        if (pl_check(i_this,l_HIO.field_0x10,1)) {
             i_this->mAction = ACT_FIGHT;
             i_this->mActionPhase = 0;
         }
     }
 }
+#else
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+static asm void e_yk_fight_fly(e_yk_class* param_0) {
+    nofralloc
+#include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_fight_fly__FP10e_yk_class.s"
+}
+#pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80807D0C-80807D10 000070 0004+00 0/3 0/0 0/0 .rodata          @4398 */
@@ -964,18 +1023,18 @@ static void e_yk_fight(e_yk_class* i_this) {
 
     switch (i_this->mActionPhase) {
     case 0:
-        anm_init(i_this,8,FLOAT_LABEL(lit_4398),2,cM_rndF(FLOAT_LABEL(lit_4305)) + FLOAT_LABEL(lit_3943));
+        anm_init(i_this,8,FLOAT_LABEL(lit_4398),2,cM_rndF(0.1f) + 1.0f);
         i_this->mActionPhase = 1;
         i_this->field_0x6a2 = 0;
-        i_this->field_0x6a4 = cM_rndF(FLOAT_LABEL(lit_3941)) + FLOAT_LABEL(lit_4399);
+        i_this->field_0x6a4 = cM_rndF(100.0f) + FLOAT_LABEL(lit_4399);
         break;
     case 1:
         if (i_this->field_0x6a2 == 0) {
             mDoMtx_YrotS((MtxP)calc_mtx,player_shape_angle_y + (s16)cM_rndFX(FLOAT_LABEL(lit_4400)));
 
             cXyz pos;
-            pos.x = FLOAT_LABEL(lit_3942);
-            pos.y = cM_rndF(FLOAT_LABEL(lit_3941)) + FLOAT_LABEL(lit_4401);
+            pos.x = 0.0f;
+            pos.y = cM_rndF(100.0f) + FLOAT_LABEL(lit_4401);
             pos.z = cM_rndF(FLOAT_LABEL(lit_4401)) + FLOAT_LABEL(lit_4401);
 
             MtxPosition(&pos,&i_this->mPathPntPos);
@@ -985,33 +1044,33 @@ static void e_yk_fight(e_yk_class* i_this) {
             mDoMtx_YrotS((MtxP)calc_mtx,cM_atan2s(pos.x,pos.z));
             cMtx_XrotM((MtxP)calc_mtx,-cM_atan2s(pos.y,JMAFastSqrt(pos.x*pos.x + pos.z*pos.z))); // float literal inline
 
-            pos.x = FLOAT_LABEL(lit_3942);
-            pos.y = FLOAT_LABEL(lit_3942);
-            pos.z = l_HIO[5];
+            pos.x = 0.0f;
+            pos.y = 0.0f;
+            pos.z = l_HIO.field_0x14;
 
             MtxPosition(&pos,&i_this->speed);
 
-            i_this->field_0x6a2 = cM_rndF(FLOAT_LABEL(lit_4399)) + FLOAT_LABEL(lit_4152);
-            i_this->field_0x68c = FLOAT_LABEL(lit_3942);
+            i_this->field_0x6a2 = cM_rndF(FLOAT_LABEL(lit_4399)) + 10.0f;
+            i_this->field_0x68c = 0.0f;
         }
 
         if (i_this->field_0x6a4 == 0) {
-            i_this->field_0x6a4 = cM_rndF(FLOAT_LABEL(lit_3941)) + FLOAT_LABEL(lit_4399);
+            i_this->field_0x6a4 = cM_rndF(100.0f) + FLOAT_LABEL(lit_4399);
             i_this->mAction = ACT_ATTACK;
             i_this->mActionPhase = 0;
         }
     }
 
-    cLib_addCalc2(&i_this->current.pos.x,i_this->mPathPntPos.x,FLOAT_LABEL(lit_4153),i_this->field_0x68c * fabsf(i_this->speed.x));
-    cLib_addCalc2(&i_this->current.pos.y,i_this->mPathPntPos.y,FLOAT_LABEL(lit_4153),i_this->field_0x68c * fabsf(i_this->speed.y));
-    cLib_addCalc2(&i_this->current.pos.z,i_this->mPathPntPos.z,FLOAT_LABEL(lit_4153),i_this->field_0x68c * fabsf(i_this->speed.z));
-    cLib_addCalc2(&i_this->field_0x68c,FLOAT_LABEL(lit_3943),FLOAT_LABEL(lit_3943),FLOAT_LABEL(lit_4305));
+    cLib_addCalc2(&i_this->current.pos.x,i_this->mPathPntPos.x,0.2f,i_this->field_0x68c * fabsf(i_this->speed.x));
+    cLib_addCalc2(&i_this->current.pos.y,i_this->mPathPntPos.y,0.2f,i_this->field_0x68c * fabsf(i_this->speed.y));
+    cLib_addCalc2(&i_this->current.pos.z,i_this->mPathPntPos.z,0.2f,i_this->field_0x68c * fabsf(i_this->speed.z));
+    cLib_addCalc2(&i_this->field_0x68c,1.0f,1.0f,0.1f);
 
     cLib_addCalcAngleS2(&i_this->current.angle.y,i_this->mAngleFromPlayer,4,0x800);
 
-    if (!pl_check(i_this,i_this->field_0x688 + FLOAT_LABEL(lit_4185),1)) {
+    if (!pl_check(i_this,i_this->mPlayerTrigger + 50.0f,1)) {
         if (!path_check(i_this)) {
-            if (i_this->field_0x5b4 == 0) {
+            if (i_this->mParam1 == 0) {
                 i_this->mAction = ACT_RETURN;
                 i_this->mActionPhase = 0;
             } else {
@@ -1050,8 +1109,8 @@ static void e_yk_attack(e_yk_class* i_this) {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     
     // may need to be adjusted..
-    f32 value = FLOAT_LABEL(lit_3942);
-    i_this->field_0x68c = FLOAT_LABEL(lit_3942);
+    f32 value = 0.0f;
+    i_this->field_0x68c = 0.0f;
 
     switch (i_this->mActionPhase) {
     case 0:
@@ -1071,16 +1130,16 @@ static void e_yk_attack(e_yk_class* i_this) {
         }
         break;
     case 2:
-        value = l_HIO[6];
+        value = l_HIO.field_0x18;
 
         if (i_this->mCollisionSphere.ChkAtShieldHit()) {
             i_this->mAction = ACT_CHANCE;
             i_this->mActionPhase = 0;
-            i_this->field_0x694 = FLOAT_LABEL(lit_4151);
+            i_this->field_0x694 = 70.0f;
             i_this->field_0x698 = i_this->shape_angle.y;
             i_this->field_0x6a0 = 0;
 
-            dComIfGp_getVibration().StartShock(2,0x1f,cXyz(FLOAT_LABEL(lit_3942),FLOAT_LABEL(lit_3943),FLOAT_LABEL(lit_3942)));
+            dComIfGp_getVibration().StartShock(2,0x1f,cXyz(0.0f,1.0f,0.0f));
             
         } else {
             if (i_this->field_0x6a2 == 0) {
@@ -1089,13 +1148,13 @@ static void e_yk_attack(e_yk_class* i_this) {
         }
         break;
     case 3:
-        if ((i_this->speedF <= FLOAT_LABEL(lit_3943))) {
+        if ((i_this->speedF <= 1.0f)) {
             i_this->mAction = ACT_FIGHT;
             i_this->mActionPhase = 0;
         }
     }
 
-    cLib_addCalc2(&i_this->speedF,value,FLOAT_LABEL(lit_3943),FLOAT_LABEL(lit_4153) * l_HIO[6]);
+    cLib_addCalc2(&i_this->speedF,value,1.0f,0.2f * l_HIO.field_0x18);
     fly_move(i_this);
 }
 #else
@@ -1130,11 +1189,11 @@ COMPILER_STRIP_GATE(0x80807D24, &lit_4481);
 static void e_yk_fly(e_yk_class* i_this) {
     switch (i_this->mActionPhase) {
     case 0:
-        anm_init(i_this,5,FLOAT_LABEL(lit_4334),2,FLOAT_LABEL(lit_3943));
+        anm_init(i_this,5,FLOAT_LABEL(lit_4334),2,1.0f);
         i_this->mActionPhase = 1;
         break;
     case 1:
-        if ((i_this->field_0x66c & 0x1f) == 0 && cM_rndF(FLOAT_LABEL(lit_3943)) < FLOAT_LABEL(lit_4306)) {
+        if ((i_this->field_0x66c & 0x1f) == 0 && cM_rndF(1.0f) < 0.5f) {
             i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_NAKU,-1);
         }
 
@@ -1148,20 +1207,20 @@ static void e_yk_fly(e_yk_class* i_this) {
             mDoMtx_YrotS((MtxP)calc_mtx,cM_atan2s(pos.x,pos.z));
             cMtx_XrotM((MtxP)calc_mtx,-cM_atan2s(pos.y,JMAFastSqrt(pos.x*pos.x + pos.z*pos.z))); // float literal inline
 
-            pos.x = FLOAT_LABEL(lit_3942);
-            pos.y = FLOAT_LABEL(lit_3942);
+            pos.x = 0.0f;
+            pos.y = 0.0f;
             pos.z = l_HIO.field_0x14;
 
             MtxPosition(&pos,&i_this->speed);
-            i_this->field_0x6a2 = cM_rndF(FLOAT_LABEL(lit_4399)) + FLOAT_LABEL(lit_4152);
-            i_this->field_0x68c = FLOAT_LABEL(lit_3942);
+            i_this->field_0x6a2 = cM_rndF(FLOAT_LABEL(lit_4399)) + 10.0f;
+            i_this->field_0x68c = 0.0f;
         }
     }
 
-    cLib_addCalc2(&i_this->speedF,l_HIO.field_0x0c,FLOAT_LABEL(lit_3943),FLOAT_LABEL(lit_4335) * l_HIO.field_0x0c);
+    cLib_addCalc2(&i_this->speedF,l_HIO.field_0x0c,1.0f,FLOAT_LABEL(lit_4335) * l_HIO.field_0x0c);
     fly_move(i_this);
 
-    if (pl_check(i_this,i_this->field_0x688,1)) {
+    if (pl_check(i_this,i_this->mPlayerTrigger,1)) {
         i_this->mAction = ACT_FIGHT_FLY;
         i_this->mActionPhase = 0;
     }
@@ -1183,26 +1242,26 @@ static asm void e_yk_fly(e_yk_class* i_this) {
 static void e_yk_return(e_yk_class* i_this) {
     switch (i_this->mActionPhase) {
     case 0:
-        anm_init(i_this,5,FLOAT_LABEL(lit_4334),2,FLOAT_LABEL(lit_3943));
+        anm_init(i_this,5,FLOAT_LABEL(lit_4334),2,1.0f);
         i_this->mActionPhase = 1;
-        i_this->field_0x68c = FLOAT_LABEL(lit_3942);
+        i_this->field_0x68c = 0.0f;
     case 1:
         break;
     }
 
-    cLib_addCalc2(&i_this->speedF,l_HIO.field_0x0c,FLOAT_LABEL(lit_3943), FLOAT_LABEL(lit_4335) * l_HIO.field_0x0c);
+    cLib_addCalc2(&i_this->speedF,l_HIO.field_0x0c,1.0f, FLOAT_LABEL(lit_4335) * l_HIO.field_0x0c);
 
     i_this->mPathPntPos = i_this->orig.pos;
     fly_move(i_this);
 
     cXyz pos = i_this->current.pos - i_this->mPathPntPos;
 
-    if (pos.abs() < FLOAT_LABEL(lit_3941)) { // multiple float literal inlines
+    if (pos.abs() < 100.0f) { // multiple float literal inlines
         i_this->mAction = ACT_ROOF;
         i_this->mActionPhase = 0;
         
     } else {
-        if (pl_check(i_this,i_this->field_0x688,1)) {
+        if (pl_check(i_this,i_this->mPlayerTrigger,1)) {
             i_this->mAction = ACT_FIGHT_FLY;
             i_this->mActionPhase = 0;
         }
@@ -1220,14 +1279,15 @@ static asm void e_yk_return(e_yk_class* i_this) {
 #endif
 
 /* 80805FF0-80806308 0018B0 0318+00 1/1 0/0 0/0 .text            e_yk_path_fly__FP10e_yk_class */
-#ifndef NONMATCHING
+#ifdef NONMATCHING
+// matches with literals
 static void e_yk_path_fly(e_yk_class* i_this) {
     switch (i_this->mActionPhase) {
     case 0:
-        anm_init(i_this,5,FLOAT_LABEL(lit_4334),2,FLOAT_LABEL(lit_3943));
+        anm_init(i_this,5,FLOAT_LABEL(lit_4334),2,1.0f);
         i_this->mActionPhase = 1;
     case 1:
-        if ((i_this->field_0x66c & 0x1fU) == 0 && cM_rndF(FLOAT_LABEL(lit_3943)) < FLOAT_LABEL(lit_4306)) {
+        if ((i_this->field_0x66c & 0x1fU) == 0 && cM_rndF(1.0f) < 0.5f) {
             i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_NAKU,-1);
         }
 
@@ -1259,7 +1319,7 @@ static void e_yk_path_fly(e_yk_class* i_this) {
         dStage_dPnt_c* point = i_this->mpPath->m_points;
         point = &point[i_this->mPathPntIdx];
 
-        i_this->field_0x68c = FLOAT_LABEL(lit_3942);
+        i_this->field_0x68c = 0.0f;
         i_this->mPathPntPos.x = point->m_position.x + cM_rndFX(FLOAT_LABEL(lit_4401));
         i_this->mPathPntPos.y = point->m_position.y + cM_rndFX(FLOAT_LABEL(lit_4401));
         i_this->mPathPntPos.z = point->m_position.z + cM_rndFX(FLOAT_LABEL(lit_4401));
@@ -1272,7 +1332,7 @@ static void e_yk_path_fly(e_yk_class* i_this) {
         }
     }
 
-    cLib_addCalc2(&i_this->speedF,l_HIO[3],FLOAT_LABEL(lit_3943),FLOAT_LABEL(lit_4335) * l_HIO[3]);
+    cLib_addCalc2(&i_this->speedF,l_HIO.field_0x0c,1.0f,FLOAT_LABEL(lit_4335) * l_HIO.field_0x0c);
     fly_move(i_this);
 }
 #else
@@ -1309,24 +1369,26 @@ COMPILER_STRIP_GATE(0x80807D30, &lit_4610);
 #pragma pop
 
 /* 80806308-80806500 001BC8 01F8+00 1/1 0/0 0/0 .text            e_yk_chance__FP10e_yk_class */
+#ifdef NONMATCHING
+// matches with literals
 static void e_yk_chance(e_yk_class* i_this) {
     switch (i_this->mActionPhase) {
     case 0:
         anm_init(i_this,8,FLOAT_LABEL(lit_4398),2,FLOAT_LABEL(lit_4608));
         i_this->mActionPhase = 1;
-        i_this->field_0x6a2 = cM_rndF(FLOAT_LABEL(lit_4399)) + FLOAT_LABEL(lit_3941);
-        i_this->speed.x = FLOAT_LABEL(lit_3942);
-        i_this->speed.y = FLOAT_LABEL(lit_3942);
-        i_this->speed.z = FLOAT_LABEL(lit_3942);
+        i_this->field_0x6a2[0] = cM_rndF(FLOAT_LABEL(lit_4399)) + 100.0f;
+        i_this->speed.x = 0.0f;
+        i_this->speed.y = 0.0f;
+        i_this->speed.z = 0.0f;
         i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_BITE,-1);
         break;
     case 1:
         if (i_this->field_0x708.ChkGroundHit()) {
-            i_this->speed.y = cM_rndF(FLOAT_LABEL(lit_4152)) + FLOAT_LABEL(lit_4152);
-            i_this->speed.x = cM_rndFX(FLOAT_LABEL(lit_4152));
-            i_this->speed.z = cM_rndFX(FLOAT_LABEL(lit_4152));
+            i_this->speed.y = cM_rndF(10.0f) + 10.0f;
+            i_this->speed.x = cM_rndFX(10.0f);
+            i_this->speed.z = cM_rndFX(10.0f);
 
-            if (cM_rndF(FLOAT_LABEL(lit_3943)) < FLOAT_LABEL(lit_4306)) {
+            if (cM_rndF(1.0f) < 0.5f) {
                 i_this->field_0x69a.z = 0;
             } else {
                 i_this->field_0x69a.z = 0x8000;
@@ -1340,7 +1402,7 @@ static void e_yk_chance(e_yk_class* i_this) {
             i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_FAINT,-1);
         }
 
-        if (i_this->field_0x6a2 == 0) {
+        if (i_this->field_0x6a2[0] == 0) {
             i_this->current.angle.z = 0;
             i_this->mAction = ACT_FIGHT;
             i_this->mActionPhase = 0;
@@ -1353,6 +1415,16 @@ static void e_yk_chance(e_yk_class* i_this) {
     cLib_addCalcAngleS2(&i_this->current.angle.y,i_this->field_0x69a.y,2,0x1000);
     cLib_addCalcAngleS2(&i_this->current.angle.z,i_this->field_0x69a.z,2,0x1000);
 }
+#else
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+static asm void e_yk_chance(e_yk_class* param_0) {
+    nofralloc
+#include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_chance__FP10e_yk_class.s"
+}
+#pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80807D34-80807D38 000098 0004+00 0/1 0/0 0/0 .rodata          @4650 */
@@ -1376,7 +1448,7 @@ static void e_yk_wolfbite(e_yk_class* i_this) {
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     switch(i_this->mActionPhase) {
     case 0:
-        anm_init(i_this,7,FLOAT_LABEL(lit_3942),2,FLOAT_LABEL(lit_3943));
+        anm_init(i_this,7,0.0f,2,1.0f);
         i_this->mActionPhase = 1;
         break;
     case 1:
@@ -1387,11 +1459,11 @@ static void e_yk_wolfbite(e_yk_class* i_this) {
                 i_this->current.angle.y = player->shape_angle.y - 0x4000;
             }
 
-            i_this->speedF = FLOAT_LABEL(lit_3964);
+            i_this->speedF = 40.0f;
             i_this->speed.y = FLOAT_LABEL(lit_4650);
             i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_DEATH,-1);
 
-            anm_init(i_this,4,FLOAT_LABEL(lit_3943),0,FLOAT_LABEL(lit_3943));
+            anm_init(i_this,4,1.0f,0,1.0f);
 
             i_this->field_0x6a2 = 0x3c;
             i_this->mActionPhase = 2;
@@ -1412,8 +1484,8 @@ static void e_yk_wolfbite(e_yk_class* i_this) {
     }
 
     cXyz pos, pos2;
-    pos.x = FLOAT_LABEL(lit_3942);
-    pos.y = FLOAT_LABEL(lit_3942); 
+    pos.x = 0.0f;
+    pos.y = 0.0f; 
     pos.z = i_this->speedF;
 
     mDoMtx_YrotS((MtxP)calc_mtx,i_this->current.angle.y);
@@ -1425,7 +1497,7 @@ static void e_yk_wolfbite(e_yk_class* i_this) {
     i_this->speed.y -= FLOAT_LABEL(lit_4651);
 
     if (i_this->field_0x708.ChkGroundHit()) {
-        cLib_addCalc0(&i_this->speedF,FLOAT_LABEL(lit_3943),FLOAT_LABEL(lit_3962));
+        cLib_addCalc0(&i_this->speedF,1.0f,15.0f);
     }
 }
 #else
@@ -1462,22 +1534,24 @@ COMPILER_STRIP_GATE(0x80807D44, &lit_4725);
 #pragma pop
 
 /* 80806740-808068E4 002000 01A4+00 1/1 0/0 0/0 .text            e_yk_wind__FP10e_yk_class */
+#ifdef NONMATCHING
+// matches with literals
 static void e_yk_wind(e_yk_class* i_this) {
     e_yk_class* yk = (e_yk_class*)i_fpcM_Search(shot_b_sub,i_this);
-    i_this->speedF = FLOAT_LABEL(lit_3942);
+    i_this->speedF = 0.0f;
   
     switch(i_this->mActionPhase) {
     case 0:
-        anm_init(i_this,6,FLOAT_LABEL(lit_4334),2,FLOAT_LABEL(lit_3943));
+        anm_init(i_this,6,FLOAT_LABEL(lit_4334),2,1.0f);
         i_this->mActionPhase = 1;
         i_this->mBoomrangXRotOffset = -(cM_rndFX(FLOAT_LABEL(lit_4676)) + FLOAT_LABEL(lit_4675));
-        i_this->mBoomrangPosOffset.x = cM_rndFX(FLOAT_LABEL(lit_4185));
-        i_this->mBoomrangPosOffset.y = cM_rndFX(FLOAT_LABEL(lit_4185));
-        i_this->mBoomrangPosOffset.z = cM_rndFX(FLOAT_LABEL(lit_4185));
+        i_this->mBoomrangPosOffset.x = cM_rndFX(50.0f);
+        i_this->mBoomrangPosOffset.y = cM_rndFX(50.0f);
+        i_this->mBoomrangPosOffset.z = cM_rndFX(50.0f);
     case 1:
         if (!yk) {
             i_this->mActionPhase = 2;
-            i_this->field_0x6a2 = 0x3c;
+            i_this->field_0x6a2[0] = 0x3c;
             break;
             
         } else {
@@ -1488,7 +1562,7 @@ static void e_yk_wind(e_yk_class* i_this) {
     case 2:
         cLib_addCalcAngleS2(&i_this->mBoomrangXRotOffset,0,4,0x1c2);
 
-        if (i_this->field_0x6a2 == 0) {
+        if (i_this->field_0x6a2[0] == 0) {
             i_this->mAction = ACT_FIGHT_FLY;
             i_this->mActionPhase = 0;
         }
@@ -1497,9 +1571,17 @@ static void e_yk_wind(e_yk_class* i_this) {
     i_this->current.angle.y += i_this->mBoomrangXRotOffset;
     i_this->shape_angle.y = i_this->current.angle.y;
     i_this->current.angle.z = 0;
-
-    
 }
+#else
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+static asm void e_yk_wind(e_yk_class* param_0) {
+    nofralloc
+#include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/e_yk_wind__FP10e_yk_class.s"
+}
+#pragma pop
+#endif
 
 /* 808068E4-80806B78 0021A4 0294+00 2/1 0/0 0/0 .text            action__FP10e_yk_class */
 #ifdef NONMATCHING
@@ -1553,24 +1635,24 @@ static void action(e_yk_class* i_this) {
 
     searchForLink ? i_this->mCreature.setLinkSearch(true) : i_this->mCreature.setLinkSearch(false);
 
-    if (i_this->field_0x694 > FLOAT_LABEL(lit_4305)) {
+    if (i_this->field_0x694 > 0.1f) {
         cXyz pos;
         cXyz pos2;
         
-        pos.x = FLOAT_LABEL(lit_3942);
-        pos.y = FLOAT_LABEL(lit_3942);
+        pos.x = 0.0f;
+        pos.y = 0.0f;
         pos.z = -i_this->field_0x694;
 
         mDoMtx_YrotS((MtxP)calc_mtx,i_this->field_0x698);
         MtxPosition(&pos,&pos2);
         i_this->current.pos += pos2;
-        cLib_addCalc0(&i_this->field_0x694,FLOAT_LABEL(lit_3943),FLOAT_LABEL(lit_4725));
+        cLib_addCalc0(&i_this->field_0x694,1.0f,FLOAT_LABEL(lit_4725));
 
         if (i_this->field_0x6a0 != 0) {
             i_this->shape_angle.y += 0x1300;
             i_this->shape_angle.z += 0x1700;
 
-            if (i_this->field_0x694 <= FLOAT_LABEL(lit_3943) || i_this->field_0x708.ChkWallHit()) {
+            if (i_this->field_0x694 <= 1.0f || i_this->field_0x708.ChkWallHit()) {
                 yk_disappear(i_this);
                 fopAcM_delete(i_this);
             }
@@ -1619,14 +1701,117 @@ COMPILER_STRIP_GATE(0x80807D4C, &lit_4868);
 
 /* 80806B78-8080708C 002438 0514+00 2/1 0/0 0/0 .text            daE_YK_Execute__FP10e_yk_class */
 #ifdef NONMATCHING
-static void daE_YK_Execute(e_yk_class* i_this) {
-    
+// float literals / regalloc
+static void setMidnaBindEffect(fopEn_enemy_c* param_0, Z2CreatureEnemy* param_1, cXyz* param_2,
+                                   cXyz* param_3);
+static int daE_YK_Execute(e_yk_class* i_this) {
+    cXyz pos, pos2;
+
+    if (cDmrNowMidnaTalk()) {
+        return 1;
+    } else {
+        fopAc_ac_c* player = dComIfGp_getPlayer(0);
+        i_this->field_0x66c++;
+
+        for (int i = 0; i < 4; i++) {
+            if (i_this->field_0x6a2[i] != 0) {
+                i_this->field_0x6a2[i]--;
+            }
+        }
+
+        if (i_this->field_0x6aa != 0) {
+            i_this->field_0x6aa--;
+        }
+
+        action(i_this);
+
+        i_this->mpMorfSO->play(0,dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
+        J3DModel* model = i_this->mpMorfSO->getModel();
+
+        if (i_this->mAction == ACT_WOLFBITE && i_this->mActionPhase < 2) {
+            fopAcM_OffStatus(i_this,0);
+            i_this->mAttentionInfo.mFlags = 0;
+
+            // need to define inline here
+            PSMTXCopy(daPy_getLinkPlayerActorClass()->getWolfMouthMatrix(),mDoMtx_stack_c::now);
+            model->i_setBaseTRMtx(mDoMtx_stack_c::get());
+            mDoMtx_stack_c::multVecZero(&i_this->current.pos);
+        } else {
+            if (i_this->mHealth > 0 && i_this->field_0x6a0 == 0 && i_this->current.pos.y < player->current.pos.y) {
+                i_this->mAttentionInfo.mFlags = 4;
+            } else {
+                fopAcM_OffStatus(i_this,0);
+                i_this->mAttentionInfo.mFlags = 0;
+            }
+
+            mDoMtx_stack_c::transS(i_this->current.pos.x,i_this->current.pos.y,i_this->current.pos.z);
+            mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
+            mDoMtx_stack_c::ZrotM(i_this->shape_angle.z);
+            mDoMtx_stack_c::scaleM(l_HIO.field_0x08,l_HIO.field_0x08,l_HIO.field_0x08);
+
+            model->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        }
+
+        i_this->mpMorfSO->modelCalc();
+        int res_idx = i_this->mResIdx;
+
+        if (res_idx == 8 || res_idx == 5) {
+            if (i_this->mpMorfSO->checkFrame(FLOAT_LABEL(lit_4651))) {
+                if (i_this->mResIdx == 8) {
+                    i_this->mCreature.startCreatureSound(Z2SE_EN_YK_WING,0,-1);
+                } else {
+                    i_this->mCreature.startCreatureSound(Z2SE_EN_YK_WING,0,-1);
+                }   
+            }
+        } else if (res_idx == 6 && i_this->mpMorfSO->checkFrame(0.0)) {
+            i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_FURA,-1);
+        }
+
+        if (i_this->mResIdx != 4) {
+            i_this->field_0xa80 = dComIfGp_particle_set(i_this->field_0xa80,0x8434,&i_this->current.pos,0,0);
+
+            if (i_this->mResIdx != 9) {
+                for (int i = 0; i < 2; i++) {
+                    i_this->mParticleEmitterIds[i] = dComIfGp_particle_set(i_this->mParticleEmitterIds[i],e_name[i],&i_this->current.pos,0,0);
+                    
+                    JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->mParticleEmitterIds[i]);
+                    if (emitter) {
+                        emitter->setGlobalRTMatrix(model->i_getAnmMtx(e_idx[i]));
+                    };
+                }
+            }
+        }
+
+        
+
+        PSMTXCopy(model->i_getAnmMtx(2),(MtxP)calc_mtx);
+        pos.set(0.0f,0.0f,0.0f);
+
+        MtxPosition(&pos,&i_this->mEyePos);
+        i_this->mAttentionInfo.mPosition = i_this->mEyePos;
+        i_this->mAttentionInfo.mPosition.y += FLOAT_LABEL(lit_4867);
+
+        pos.set(0.0f,0.0f,0.0f);
+        MtxPosition(&pos,&pos2);
+
+        if (i_this->field_0x6aa != 0) {
+            pos2.z -= FLOAT_LABEL(lit_4868);
+        }
+
+        i_this->mCollisionSphere.SetC(pos2);
+        i_this->mCollisionSphere.SetR(FLOAT_LABEL(lit_4399) * l_HIO.field_0x08);
+
+        dComIfG_Ccsp()->Set(&i_this->mCollisionSphere);
+        setMidnaBindEffect(i_this,&i_this->mCreature,&i_this->mEyePos,&cXyz(0.5f,0.5f,0.5f));
+    }
+
+    return 1;
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daE_YK_Execute(e_yk_class* i_this) {
+static asm int daE_YK_Execute(e_yk_class* i_this) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/daE_YK_Execute__FP10e_yk_class.s"
 }
@@ -1654,17 +1839,29 @@ static int daE_YK_Delete(e_yk_class* i_this) {
 }
 
 /* 808070FC-808071F4 0029BC 00F8+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
+#ifdef NONMATCHING
+// matches with literals
 static int useHeapInit(fopAc_ac_c* i_this) {
     e_yk_class* yk = (e_yk_class*)i_this;
 
     yk->mpMorfSO = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_YK", 12), 
-        NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_YK",9), 2, FLOAT_LABEL(lit_3943), 0, -1, &yk->mCreature, 0x80000,0x11000084);
+        NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_YK",9), 2, 1.0f, 0, -1, &yk->mCreature, 0x80000,0x11000084);
     if (!yk->mpMorfSO || !yk->mpMorfSO->mpModel) {
         return 0;
     }
 
     return 1;
 }
+#else
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+static asm int useHeapInit(fopAc_ac_c* param_0) {
+    nofralloc
+#include "asm/rel/d/a/e/d_a_e_yk/d_a_e_yk/useHeapInit__FP10fopAc_ac_c.s"
+}
+#pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80807D50-80807D54 0000B4 0004+00 0/1 0/0 0/0 .rodata          @5027 */
@@ -1705,8 +1902,101 @@ SECTION_DEAD static char const* const stringBase_80807D69 = "E_yk";
 
 /* 808071F4-808075CC 002AB4 03D8+00 1/0 0/0 0/0 .text            daE_YK_Create__FP10fopAc_ac_c */
 #ifdef NONMATCHING
-static void daE_YK_Create(fopAc_ac_c* i_this) {
-    
+// matches with literals
+static int daE_YK_Create(fopAc_ac_c* i_this) {
+    if (!fopAcM_CheckCondition(i_this, 8)) {
+        new (i_this) e_yk_class();
+        fopAcM_OnCondition(i_this, 8);
+    }
+
+    e_yk_class* yk = (e_yk_class*)i_this;
+
+    // missing mr instruction here
+    int phase_step = dComIfG_resLoad(&yk->mPhase,"E_YK");
+
+    if (phase_step == cPhs_COMPLEATE_e) {
+        s32 param = fopAcM_GetParam(yk) >> 24;
+
+        if (param != 0xFF && dComIfGs_isSwitch(param,fopAcM_GetRoomNo(yk))) {
+            return cPhs_ERROR_e;
+        }
+
+        yk->mParam1 = fopAcM_GetParam(yk);
+        yk->mPlayerTriggerBase = (fopAcM_GetParam(yk) >> 8) & 0xf;
+        yk->mPathIdx = fopAcM_GetParam(yk) >> 16;
+
+        if (yk->mParam1 == 0xff) {
+            yk->mParam1 = 0;
+        }
+
+        if (yk->mPlayerTriggerBase == 0xf) {
+            yk->mPlayerTriggerBase = 10;
+        }
+        
+        yk->mPlayerTrigger = 100.0f * yk->mPlayerTriggerBase; // u8 -> float conversion here?
+        
+        if (i_fopAcM_SearchByName(PROC_E_PZ)) {
+            // For phantom zant fights. Used in pl_check above
+            yk->mPlayerTrigger = FLOAT_LABEL(lit_5027); 
+        }
+
+        if (!fopAcM_entrySolidHeap(yk,useHeapInit,0x1740)) {
+            return cPhs_ERROR_e;
+        } else {
+            if (yk->mPathIdx != 0xff) {
+                yk->mpPath = dPath_GetRoomPath(yk->mPathIdx,fopAcM_GetRoomNo(yk));
+                
+                if (!yk->mpPath) {
+                    return cPhs_ERROR_e;
+                }
+
+                yk->field_0x5b8 = yk->mPathIdx + 1;
+                yk->field_0x5ba = 1;
+                yk->mAction = ACT_PATH_FLY;
+                
+            } else {
+                if (yk->mParam1 == 1) {
+                    yk->mAction = ACT_FLY;
+                }
+            }
+
+            if (data_80807EF8 == 0) {
+                yk->field_0xa8c = 1;
+                data_80807EF8 = 1;
+                l_HIO.field_0x04 = -1;
+            }
+
+            yk->mAttentionInfo.mFlags = 4;
+
+            fopAcM_SetMtx(yk,yk->mpMorfSO->getModel()->getBaseTRMtx());
+            fopAcM_SetMin(yk,FLOAT_LABEL(lit_5028),FLOAT_LABEL(lit_5028),FLOAT_LABEL(lit_5028));
+            fopAcM_SetMax(yk,FLOAT_LABEL(lit_4481),FLOAT_LABEL(lit_4481),FLOAT_LABEL(lit_4481));
+
+            yk->mHealth = 1;
+            yk->field_0x560 = 1;
+
+            yk->mCollisionStatus.Init(0x1e,0,yk);
+            yk->mCollisionSphere.Set(*(dCcD_SrcSph*)&e_idx); // something weird going on here
+            yk->mCollisionSphere.SetStts(&yk->mCollisionStatus);
+
+            yk->field_0x708.Set(&fopAcM_GetPosition_p(yk),
+                            &fopAcM_GetOldPosition_p(yk),yk,1,
+                            &yk->field_0x6c8, &fopAcM_GetSpeed_p(yk),
+                            0,0);
+
+            yk->field_0x6c8.SetWall(50.0f,50.0f);
+            yk->mCreature.init(&yk->current.pos,&yk->mEyePos,3,1);
+            yk->mCreature.setEnemyName("E_yk");
+
+            yk->mAtColliderInfo.mpSound = &yk->mCreature;
+            yk->mAtColliderInfo.mPowerType = 1;
+            yk->field_0x66c = cM_rndF(FLOAT_LABEL(lit_5029));
+
+            daE_YK_Execute(yk);
+        }
+    }
+
+    return phase_step;
 }
 #else
 #pragma push
