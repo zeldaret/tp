@@ -12,15 +12,6 @@
 // Types:
 //
 
-struct mDoMtx_stack_c {
-    /* 8000CD64 */ void transS(cXyz const&);
-    /* 8000CD9C */ void transM(f32, f32, f32);
-    /* 8000CE38 */ void scaleM(f32, f32, f32);
-    /* 8000CF7C */ void quatM(Quaternion const*);
-
-    static u8 now[48];
-};
-
 struct mDoCPd_c {
     static u8 m_cpadInfo[256];
 };
