@@ -63,10 +63,8 @@ public:
     /* 0x66C */ s16 field_0x66c;
     /* 0x66E */ s16 mAction;                          // current action (see daE_YK_Action above)
     /* 0x670 */ s16 mActionPhase;                     // current phase of current action
-    /* 0x672 */ u8 field_0x672[2];                    // padding
     /* 0x674 */ cXyz mPathPntPos;                     // tracks the position of the point the keese is along a path
     /* 0x680 */ s16 mAngleFromPlayer;                 // current keese angle from player
-    /* 0x682 */ u8 field_0x682[2];                    // padding
     /* 0x684 */ f32 mDistanceXZFromPlayer;            // current keese distance from player
     /* 0x688 */ f32 mPlayerTrigger;                   // how close to the keese the player has to be before aggro
     /* 0x68C */ f32 field_0x68c;
@@ -81,7 +79,6 @@ public:
     /* 0x6AC */ s16 field_0x6ac[6];
     /* 0x6B8 */ cXyz mBoomrangPosOffset;               // offset position when keese caught in rang
     /* 0x6C4 */ s16 mBoomrangXRotOffset;               // offset x rotation when keese caught in rang
-    /* 0x6C6 */ u8 field_0x6c6[2];                     // padding
     /* 0x6C8 */ dBgS_AcchCir field_0x6c8;
     /* 0x708 */ dBgS_ObjAcch field_0x708;
     /* 0x8E0 */ dCcD_Stts mCollisionStatus;            // collision status
@@ -92,7 +89,6 @@ public:
     /* 0xA80 */ u32 field_0xa80;
     /* 0xA84 */ u32 mParticleEmitterIds[2];
     /* 0xA8C */ u8 field_0xa8c;
-    /* 0xA8D */ u8 field_0xa8d[3];                      // padding
 };
 
 // size: 0xA90
