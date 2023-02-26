@@ -6,29 +6,17 @@
 #include "c/c_damagereaction.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "d/com/d_com_inf_game.h"
 
 //
 // Types:
 //
-
-struct fopAc_ac_c {};
-
-struct JPABaseParticle {};
-
-struct JPABaseEmitter {};
 
 struct JPTraceParticleCallBack4 {
     /* 8001817C */ void execute(JPABaseEmitter*, JPABaseParticle*);
     /* 800182A4 */ void draw(JPABaseEmitter*, JPABaseParticle*);
     /* 80018328 */ ~JPTraceParticleCallBack4();
 };
-
-struct JPAParticleCallBack {
-    /* 800183D4 */ void execute(JPABaseEmitter*, JPABaseParticle*);
-    /* 800183D8 */ void draw(JPABaseEmitter*, JPABaseParticle*);
-    /* 8027EFA4 */ ~JPAParticleCallBack();
-};
-
 //
 // Forward References:
 //
@@ -49,7 +37,7 @@ extern "C" void fopAcM_getTalkEventPartner__FPC10fopAc_ac_c();
 extern "C" void __dt__19JPAParticleCallBackFv();
 extern "C" void __dl__FPv();
 extern "C" void __register_global_object();
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
+// extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
 // Declarations:
@@ -105,14 +93,20 @@ void JPTraceParticleCallBack4::draw(JPABaseEmitter* param_0, JPABaseParticle* pa
 }
 
 /* 800182A8-80018328 012BE8 0080+00 0/0 0/0 22/22 .text            cDmrNowMidnaTalk__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL cDmrNowMidnaTalk() {
-    nofralloc
-#include "asm/c/c_damagereaction/cDmrNowMidnaTalk__Fv.s"
+BOOL cDmrNowMidnaTalk() {
+    if (i_dComIfGp_event_runCheck()) {
+        fopAc_ac_c* actor = (fopAc_ac_c*)fopAcM_getTalkEventPartner(daPy_getLinkPlayerActorClass());
+        if (actor) {
+            if (fopAcM_GetName(actor) == PROC_MIDNA || fopAcM_GetName(actor) == PROC_Tag_Mhint ||
+                     fopAcM_GetName(actor) == PROC_Tag_Mstop || fopAcM_GetName(actor) == PROC_Tag_Hstop ||
+                     fopAcM_GetName(actor) == PROC_Tag_Mwait || fopAcM_GetName(actor) == PROC_Tag_Wljump) {
+                return 1;
+            }
+        }
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803A3568-803A357C 000688 0014+00 2/2 0/0 0/0 .data            __vt__24JPTraceParticleCallBack4 */

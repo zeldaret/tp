@@ -274,6 +274,7 @@ public:
         FLG2_UNK_200 = 0x200,
         FLG2_UNK_80 = 0x80,
         FLG2_UNK_40 = 0x40,
+        FLG2_WOLF_ENEMY_LEFT_THROW = 0x20,
         FLG2_UNK_10 = 0x10,
         FLG2_UNK_8 = 8,
         FLG2_UNK_2 = 2,
@@ -762,13 +763,17 @@ public:
     inline BOOL i_checkSwordGet();
     inline bool i_checkShieldGet() const;
     inline static BOOL checkNowWolf();
-    inline static BOOL i_checkNowWolf() {
-        return dComIfGp_getLinkPlayer()->i_checkWolf();
-    }
+    inline static BOOL i_checkNowWolf() { return dComIfGp_getLinkPlayer()->i_checkWolf(); }
     inline bool checkZoraWearFlg() const;
     inline bool checkMagicArmorWearFlg() const;
 
     static daMidna_c* getMidnaActor() { return m_midnaActor; }
+
+    // not sure how to define this properly
+    // static void onWolfEnemyCatch(fopAc_ac_c* i_actorP) { onWolfEnemyBiteAll(i_actorP,8);}
+
+    bool checkWolfEnemyCatchOwn(fopAc_ac_c* i_actorP) { return checkWolfEnemyBiteAllOwn(i_actorP); }
+    bool checkWolfEnemyLeftThrow() const { return i_checkNoResetFlg2(FLG2_WOLF_ENEMY_LEFT_THROW); }
 
     static daMidna_c* m_midnaActor;
 };
