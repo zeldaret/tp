@@ -22,6 +22,9 @@ static void squal_proc();
 void dKyw_rain_set(int count);
 void dKyw_wind_set();
 cXyz dKyw_get_wind_vecpow();
+void dKyw_evt_wind_set(s16 angleX, s16 angleY);
+void dKyw_custom_windpower(f32 pow);
+void dKyw_evt_wind_set_go();
 
 class dKankyo_sun_Packet : public J3DPacket {
 public:
@@ -133,9 +136,18 @@ public:
     virtual void draw();
     virtual ~dKankyo_snow_Packet();
 
-private:
-    /* 0x10 */ u8* mpTex;
-    /* 0x14 */ SNOW_EFF mSnowEff[500];
+    /* 0x0010 */ u8* mpTex;
+    /* 0x0014 */ SNOW_EFF mSnowEff[500];
+    /* 0x6D74 */ cXyz field_0x6d74;
+    /* 0x6D80 */ f32 field_0x6d80;
+    /* 0x6D84 */ f32 field_0x6d84;
+    /* 0x6D88 */ u16 field_0x6d88;
+    /* 0x6D8A */ u16 field_0x6d8a;
+    /* 0x6D8C */ u32 field_0x6d8c;
+    /* 0x6D90 */ u8 field_0x6d90;
+    /* 0x6D91 */ u8 field_0x6d91;
+    /* 0x6D92 */ u8 field_0x6d92;
+    /* 0x6D93 */ u8 field_0x6d93;
 };
 
 struct STAR_EFF {

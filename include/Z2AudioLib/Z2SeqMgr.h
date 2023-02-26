@@ -90,6 +90,10 @@ public:
         field_0x44.move(1.0f, count);
     }
 
+    void bgmAllMute(u32 count, f32 val) {
+        mAllBgmMaster.mTransition.set(val, mAllBgmMaster.mIntensity, count);
+    }
+
 private:
     /* 0x00 */ JAISoundHandle mMainBgmHandle;
     /* 0x04 */ JAISoundHandle mSubBgmHandle;

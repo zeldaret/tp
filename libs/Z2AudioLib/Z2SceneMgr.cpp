@@ -6,6 +6,8 @@
 #include "Z2AudioLib/Z2SceneMgr.h"
 #include "Z2AudioLib/Z2SoundMgr.h"
 #include "Z2AudioLib/Z2SeqMgr.h"
+#include "Z2AudioLib/Z2SeMgr.h"
+#include "Z2AudioLib/Z2StatusMgr.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -29,23 +31,10 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct Z2StatusMgr {
-    /* 802B617C */ void menuOut();
-    /* 802B61E8 */ void setDemoName(char*);
-    /* 802B6734 */ void checkDayTime();
-};
-
 struct Z2SoundObjMgr {
     /* 802BF980 */ void setForceBattleArea(bool, u16, u16, u16);
     /* 802BFFEC */ void setGhostEnemyState(u8);
     /* 802C013C */ void deleteEnemyAll();
-};
-
-struct Z2SeMgr {
-    /* 802AB80C */ void resetModY();
-    /* 802AD94C */ void seStopAll(u32);
-    /* 802AD9F4 */ void seMoveVolumeAll(f32, u32);
-    /* 802B9AC4 */ void resetCrowdSize();
 };
 
 struct Z2FxLineMgr {
@@ -172,12 +161,10 @@ extern "C" extern u8 __OSReport_disable;
 //
 
 /* 802B6840-802B68B0 2B1180 0070+00 0/0 1/1 0/0 .text            __ct__10Z2SceneMgrFv */
-// Missing 2 instructions (beginning and end)
-#ifdef NONMATCHING
-Z2SceneMgr::Z2SceneMgr(void) {
-    data_80450B80 = this;
+Z2SceneMgr::Z2SceneMgr(void) : JASGlobalInstance<Z2SceneMgr>(this) {
+    volatile int timerx;
     sceneNum = -1;
-    timer = -1;
+    timerx = -1;
     BGM_ID = -1;
     roomNum = -1;
     SeWave_1 = 0;
@@ -198,28 +185,15 @@ Z2SceneMgr::Z2SceneMgr(void) {
     inGame = 0;
     inDarkness = false;
     field_0x17 = 0;
-    return;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Z2SceneMgr::Z2SceneMgr() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SceneMgr/__ct__10Z2SceneMgrFv.s"
-}
-#pragma pop
-#endif
 
 /* 802B68B0-802B68E0 2B11F0 0030+00 0/0 1/1 0/0 .text            setInDarkness__10Z2SceneMgrFb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2SceneMgr::setInDarkness(bool param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SceneMgr/setInDarkness__10Z2SceneMgrFb.s"
+void Z2SceneMgr::setInDarkness(bool param_0) {
+    inDarkness = param_0;
+    if (!param_0) {
+        Z2SoundMgr::getInstance()->resetFilterAll();
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80455A38-80455A3C 004038 0004+00 8/8 0/0 0/0 .sdata2          @3511 */
@@ -278,6 +252,16 @@ SECTION_SDATA2 static f32 lit_3529[1 + 1 /* padding */] = {
 SECTION_SDATA2 static f64 lit_3531 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802B697C-802B6A18 2B12BC 009C+00 0/0 1/1 0/0 .text            setFadeOutStart__10Z2SceneMgrFUc */
+#ifdef NONMATCHING
+void Z2SceneMgr::setFadeOutStart(u8 param_0) {
+    setSceneExist(false);
+    Z2SeqMgr::getInstance()->bgmAllMute(33,  3.0f / 10.0f);
+    Z2SeMgr::getInstance()->seMoveVolumeAll(FLOAT_LABEL(lit_3511), 33);
+    Z2SeqMgr::getInstance()->setBattleBgmOff(true);
+    field_0x17 = 40;
+    timer = -1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -286,8 +270,31 @@ asm void Z2SceneMgr::setFadeOutStart(u8 param_0) {
 #include "asm/Z2AudioLib/Z2SceneMgr/setFadeOutStart__10Z2SceneMgrFUc.s"
 }
 #pragma pop
+#endif
 
 /* 802B6A18-802B6AF8 2B1358 00E0+00 0/0 1/1 0/0 .text            setFadeInStart__10Z2SceneMgrFUc */
+#ifdef NONMATCHING
+void Z2SceneMgr::setFadeInStart(u8 param_0) {
+    if (SeWave_3 == 0x7f) {
+        Z2SeMgr::getInstance()->seMoveVolumeAll(FLOAT_LABEL(lit_3511), 0);
+    } else {
+        Z2SeMgr::getInstance()->seMoveVolumeAll(FLOAT_LABEL(lit_3512), 33);
+
+        if (SeWave_3 == 0x85) {
+            JAISeMgr* seMgr = Z2SoundMgr::getInstance()->getSeMgr();
+            seMgr->getCategory(9)->getParams()->moveVolume(FLOAT_LABEL(lit_3511), 0);
+        }
+    }
+    Z2SeqMgr::getInstance()->i_setTwilightGateVol(FLOAT_LABEL(lit_3512));
+    Z2StatusMgr::getInstance()->menuOut();
+
+    if (field_0x1a == 0) {
+        Z2SeqMgr::getInstance()->bgmAllMute(33,  3.0f / 10.0f);
+    }
+
+    inGame = true;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -296,6 +303,7 @@ asm void Z2SceneMgr::setFadeInStart(u8 param_0) {
 #include "asm/Z2AudioLib/Z2SceneMgr/setFadeInStart__10Z2SceneMgrFUc.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8039BFA8-8039BFA8 028608 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -712,21 +720,9 @@ extern "C" void __ct__10JAISoundIDFRC10JAISoundID(JAISoundID* this_, JAISoundID 
 }
 
 /* 802B9968-802B9978 2B42A8 0010+00 1/1 0/0 0/0 .text            setFieldBgmPlay__8Z2SeqMgrFb */
-// 1 Instruction off
-#ifdef NONMATCHING
 void Z2SeqMgr::setFieldBgmPlay(bool param_1) {
-    mFlags = (param_1 & 1U) << 2 | mFlags & 0xfb;
+    mFlags = (param_1 & 1U) << 2 | (mFlags & ~4);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2SeqMgr::setFieldBgmPlay(bool param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SceneMgr/setFieldBgmPlay__8Z2SeqMgrFb.s"
-}
-#pragma pop
-#endif
 
 /* 802B9978-802B9988 2B42B8 0010+00 1/1 0/0 0/0 .text            isActive__12JAIStreamMgrCFv */
 #pragma push

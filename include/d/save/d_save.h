@@ -385,7 +385,7 @@ public:
 
     u16 getMaxLife() { return mMaxLife; }
     u16 getLife() const { return mLife; }
-    u16 getRupee() { return mRupee; }
+    u16 getRupee() const { return mRupee; }
     u16 getOil() { return mOil; }
     u16 getMaxOil() const { return mMaxOil; }
     u8& getMagic() { return mMagic; }
@@ -678,6 +678,7 @@ class dSv_player_info_c {
 public:
     void init();
     char* getLinkName() { return mPlayerName; }
+    char* getHorseName() { return mHorseName; }
     void setPlayerName(const char* i_name) { strcpy((char*)mPlayerName, i_name); }
     void setHorseName(const char* i_name) { strcpy((char*)mHorseName, i_name); }
     void setTotalTime(s64 i_time) { mTotalTime = i_time; }
@@ -850,6 +851,9 @@ private:
 class dSv_MiniGame_c {
 public:
     void init();
+
+    u32 getRaceGameTime() const { return mRaceGameTime; }
+    u32 getBalloonScore() const { return mBalloonScore; }
 
 private:
     /* 0x00 */ u8 unk0;
@@ -1040,6 +1044,7 @@ public:
     dSv_player_c& getPlayer() { return mPlayer; }
     dSv_event_c& getEvent() { return mEvent; }
     dSv_memory_c& getSave(int i_stageNo) { return mSave[i_stageNo]; }
+    dSv_MiniGame_c& getMiniGame() { return mMiniGame; }
     void putSave(int i_stageNo, dSv_memory_c mem) { mSave[i_stageNo] = mem; }
 
     static const int STAGE_MAX = 32;
@@ -1084,6 +1089,7 @@ public:
     dSv_turnRestart_c& getTurnRestart() { return mTurnRestart; }
     dSv_event_c& getEvent() { return mSavedata.getEvent(); }
     dSv_danBit_c& getDan() { return mDan; }
+    dSv_MiniGame_c& getMiniGame() { return mSavedata.getMiniGame(); }
     s64 getStartTime() const { return mStartTime; }
     s64 getSaveTotalTime() const { return mSaveTotalTime; }
     void setStartTime(s64 time) { mStartTime = time; }

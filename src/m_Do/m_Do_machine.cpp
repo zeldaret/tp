@@ -406,6 +406,7 @@ SECTION_SDATA2 static f32 lit_3941 = 6.0f;
 
 /* 8000B95C-8000BCF4 00629C 0398+00 1/1 0/0 0/0 .text fault_callback_scroll__FUsP9OSContextUlUl */
 #ifdef NONMATCHING
+// Everything matches but there are issues with dead section
 static void fault_callback_scroll(u16, OSContext* p_context, u32, u32) {
     JUTException* manager = JUTException::getManager();
     JUTConsole* exConsole = manager->getConsole();
@@ -469,34 +470,12 @@ static void fault_callback_scroll(u16, OSContext* p_context, u32, u32) {
             }
 
             if (btnHold == CButton::DPAD_UP) {
-                int scrollAmnt;
-                if (holdUpCount < 3) {
-                    scrollAmnt = -1;
-                } else if (holdUpCount < 5) {
-                    scrollAmnt = -2;
-                } else {
-                    scrollAmnt = -8;
-                    if (holdUpCount < 7) {
-                        scrollAmnt = -4;
-                    }
-                }
-                exConsole->scroll(scrollAmnt);
+                exConsole->scroll(holdUpCount < 3 ? -1 : (holdUpCount < 5 ? -2 : (holdUpCount < 7 ? -4 : -8)));
                 waitRetrace = true;
                 holdDownCount = 0;
                 holdUpCount++;
             } else if (btnHold == CButton::DPAD_DOWN) {
-                int scrollAmnt;
-                if (holdDownCount < 3) {
-                    scrollAmnt = 1;
-                } else if (holdDownCount < 5) {
-                    scrollAmnt = 2;
-                } else {
-                    scrollAmnt = 8;
-                    if (holdDownCount < 7) {
-                        scrollAmnt = 4;
-                    }
-                }
-                exConsole->scroll(scrollAmnt);
+                exConsole->scroll(holdDownCount < 3 ? 1 : (holdDownCount < 5 ? 2 : (holdDownCount < 7 ? 4 : 8)));
                 waitRetrace = true;
                 holdUpCount = 0;
                 holdDownCount++;
@@ -537,8 +516,11 @@ static void fault_callback_scroll(u16, OSContext* p_context, u32, u32) {
             }
 
             JUTException::waitTime(3000);
-        } while ((exConsole->getUsedLine() - exConsole->getHeight()) + 1 <=
-                 exConsole->getLineOffset());
+             if ((exConsole->getUsedLine() - exConsole->getHeight()) + 1 <=
+                exConsole->getLineOffset()) {
+                break;
+            }
+        } while (true);
     } while (true);
 }
 #else

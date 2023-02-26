@@ -53,6 +53,12 @@ inline void GXPosition3f32(f32 x, f32 y, f32 z) {
     GXFIFO.f32 = z;
 }
 
+inline void GXNormal3f32(f32 x, f32 y, f32 z) {
+    GXFIFO.f32 = x;
+    GXFIFO.f32 = y;
+    GXFIFO.f32 = z;
+}
+
 inline void GXPosition2f32(f32 x, f32 z) {
     GXFIFO.f32 = x;
     GXFIFO.f32 = z;
