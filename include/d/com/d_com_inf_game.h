@@ -289,7 +289,7 @@ public:
     f32 getItemLifeCount() { return mItemLifeCount; }
     s16 getItemMaxArrowNumCount() { return mItemMaxArrowNumCount; }
     void clearNowAnimeID() { mNowAnimeID = -1; }
-    void clearMesgCamInfoID() { mMesgCamInfo = (void*)-1; }
+    void clearMesgCamInfoID() { mMesgCamInfo = -1; }
     void clearItemMaxLifeCount() { mItemMaxLifeCount = 0; }
     void clearItemLifeCount() {
         mItemLifeCount = 0.0f;
@@ -399,6 +399,10 @@ public:
         mCameraInfo[camIdx].field_0x5 = param_3;
         mCameraInfo[camIdx].field_0x6 = param_4;
         setCameraAttentionStatus(camIdx, 0);
+    }
+
+    void setMesgCamInfoID(int param_0) {
+        mMesgCamInfo = param_0;
     }
 
     void setStatus(u16 status) { mStatus = status; }
@@ -634,7 +638,7 @@ public:
     /* 0x04FAB */ u8 field_0x4fab;  // related to setWarpItemData
     /* 0x04FAC */ u8 field_0x4fac;  // related to setWarpItemData
     /* 0x04FAD */ u8 field_0x4fad[3];
-    /* 0x04FB0 */ void* mMesgCamInfo;
+    /* 0x04FB0 */ int mMesgCamInfo;
     /* 0x04FB4 */ int mMesgCamInfoBasicID;
     /* 0x04FB8 */ fopAc_ac_c* mMesgCamInfoActor1;
     /* 0x04FBC */ fopAc_ac_c* mMesgCamInfoActor2;
@@ -838,6 +842,7 @@ int dComIfGs_isItemFirstBit(u8 i_no);
 u16 dComIfGs_getRupee();
 static u16 dComIfGs_getLife();
 s8 dComIfGs_BossLife_public_Get();
+u8 dComIfGs_checkGetInsectNum();
 
 inline void dComIfGs_init() {
     g_dComIfG_gameInfo.info.init();
@@ -1379,6 +1384,18 @@ inline char* dComIfGs_getPlayerName() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().getLinkName();
 }
 
+inline char* dComIfGs_getHorseName() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().getHorseName();
+}
+
+inline u32 dComIfGs_getRaceGameTime() {
+    return g_dComIfG_gameInfo.info.getMiniGame().getRaceGameTime();
+}
+
+inline u32 dComIfGs_getBalloonScore() {
+    return g_dComIfG_gameInfo.info.getMiniGame().getBalloonScore();
+}
+
 inline u8 dComIfGs_getTransformStatus() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getTransformStatus();
 }
@@ -1467,6 +1484,10 @@ inline void dComIfGs_setTmpReg(u16 i_reg, u8 i_no) {
 
 inline int dComIfGs_getTmpReg(u16 i_reg) {
     return g_dComIfG_gameInfo.info.getTmp().getEventReg(i_reg);
+}
+
+inline u8 i_dComIfGs_getEventReg(u16 reg) {
+    return g_dComIfG_gameInfo.info.getEvent().getEventReg(reg);
 }
 
 inline void dComIfGs_setWarashibeItem(u8 i_itemNo) {
@@ -2382,6 +2403,10 @@ inline JKRArchive* dComIfGp_getFmapResArchive() {
 
 inline u8 dComIfGp_getMesgStatus() {
     return g_dComIfG_gameInfo.play.getMesgStatus();
+}
+
+inline void dComIfGp_setMesgCameraTagInfo(int param_0) {
+    g_dComIfG_gameInfo.play.setMesgCamInfoID(param_0);
 }
 
 inline s32 dComIfGp_roomControl_getStayNo() {

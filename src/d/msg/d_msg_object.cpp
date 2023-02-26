@@ -350,7 +350,6 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
-extern "C" extern void* g_fopMsg_Method[5 + 1 /* padding */];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" u8 m_control__7dDemo_c[4];
@@ -678,7 +677,7 @@ asm void dMsgObject_c::setMessageIndexDemo(u32 param_0, bool param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getMessageIndex(u32 param_0) {
+asm int dMsgObject_c::getMessageIndex(u32 param_0) {
     nofralloc
 #include "asm/d/msg/d_msg_object/getMessageIndex__12dMsgObject_cFUl.s"
 }
@@ -992,13 +991,13 @@ asm void dMsgObject_c::getStringLocal(u32 param_0, J2DTextBox* param_1, J2DTextB
 
 /* 802370A8-802370BC 2319E8 0014+00 0/0 1/1 0/0 .text            isGetItemMessage__12dMsgObject_cFv
  */
-BOOL dMsgObject_c::isGetItemMessage() {
+u8 dMsgObject_c::isGetItemMessage() {
     return mFukiKind == 9;
 }
 
 /* 802370BC-802370E8 2319FC 002C+00 4/4 2/2 0/0 .text            isKanbanMessage__12dMsgObject_cFv
  */
-BOOL dMsgObject_c::isKanbanMessage() {
+bool dMsgObject_c::isKanbanMessage() {
     if (mFukiKind == 2 || mFukiKind == 6 || mFukiKind == 15) {
         return true;
     }
@@ -1006,7 +1005,7 @@ BOOL dMsgObject_c::isKanbanMessage() {
 }
 
 /* 802370E8-802370FC 231A28 0014+00 6/6 3/3 0/0 .text            isHowlMessage__12dMsgObject_cFv */
-BOOL dMsgObject_c::isHowlMessage() {
+u8 dMsgObject_c::isHowlMessage() {
     return mFukiKind == 17;
 }
 
@@ -1025,7 +1024,7 @@ asm bool dMsgObject_c::isMidonaMessage() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::isMidonaNormalTalkWait() {
+asm bool dMsgObject_c::isMidonaNormalTalkWait() {
     nofralloc
 #include "asm/d/msg/d_msg_object/isMidonaNormalTalkWait__12dMsgObject_cFv.s"
 }
@@ -1036,7 +1035,7 @@ asm void dMsgObject_c::isMidonaNormalTalkWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::isMidonaTalkWait() {
+asm bool dMsgObject_c::isMidonaTalkWait() {
     nofralloc
 #include "asm/d/msg/d_msg_object/isMidonaTalkWait__12dMsgObject_cFv.s"
 }
@@ -1046,7 +1045,7 @@ asm void dMsgObject_c::isMidonaTalkWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::isPlaceMessage() {
+asm bool dMsgObject_c::isPlaceMessage() {
     nofralloc
 #include "asm/d/msg/d_msg_object/isPlaceMessage__12dMsgObject_cFv.s"
 }
@@ -1056,7 +1055,7 @@ asm void dMsgObject_c::isPlaceMessage() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::isBossMessage() {
+asm bool dMsgObject_c::isBossMessage() {
     nofralloc
 #include "asm/d/msg/d_msg_object/isBossMessage__12dMsgObject_cFv.s"
 }
@@ -1071,7 +1070,7 @@ bool dMsgObject_c::isBookMessage() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::isStaffMessage() {
+asm bool dMsgObject_c::isStaffMessage() {
     nofralloc
 #include "asm/d/msg/d_msg_object/isStaffMessage__12dMsgObject_cFv.s"
 }
@@ -1081,7 +1080,7 @@ asm void dMsgObject_c::isStaffMessage() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::isSaveMessage() {
+asm bool dMsgObject_c::isSaveMessage() {
     nofralloc
 #include "asm/d/msg/d_msg_object/isSaveMessage__12dMsgObject_cFv.s"
 }
@@ -1091,7 +1090,7 @@ asm void dMsgObject_c::isSaveMessage() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::isTalkMessage() {
+asm bool dMsgObject_c::isTalkMessage() {
     nofralloc
 #include "asm/d/msg/d_msg_object/isTalkMessage__12dMsgObject_cFv.s"
 }
@@ -1101,27 +1100,27 @@ asm void dMsgObject_c::isTalkMessage() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getSmellName() {
+asm const char* dMsgObject_c::getSmellName() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getSmellName__12dMsgObject_cFv.s"
 }
 #pragma pop
 
 /* 80237334-8023738C 231C74 0058+00 0/0 5/5 0/0 .text            getPortalName__12dMsgObject_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgObject_c::getPortalName() {
-    nofralloc
-#include "asm/d/msg/d_msg_object/getPortalName__12dMsgObject_cFv.s"
+const char* dMsgObject_c::getPortalName() {
+    JMSMesgHeader_c* info_header_p = (JMSMesgHeader_c*)((char*)mpMsgRes + 0x20);
+    char* data_ptr = (char*)info_header_p + info_header_p->sectionSize;
+    JMSMesgEntry_c* info_entries = (JMSMesgEntry_c*)((char*)info_header_p + 0x10);
+
+    JMSMesgEntry_c* msg_entry = &info_entries[getMessageIndex(getPortalMessageID())];
+    return data_ptr + msg_entry->mStringOffset + 8;
 }
-#pragma pop
 
 /* 8023738C-8023741C 231CCC 0090+00 0/0 5/5 0/0 .text            getBombName__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getBombName() {
+asm const char* dMsgObject_c::getBombName() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getBombName__12dMsgObject_cFv.s"
 }
@@ -1131,7 +1130,7 @@ asm void dMsgObject_c::getBombName() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getInsectName() {
+asm const char* dMsgObject_c::getInsectName() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getInsectName__12dMsgObject_cFv.s"
 }
@@ -1141,7 +1140,7 @@ asm void dMsgObject_c::getInsectName() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getLetterName() {
+asm const char* dMsgObject_c::getLetterName() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getLetterName__12dMsgObject_cFv.s"
 }
@@ -1152,7 +1151,7 @@ asm void dMsgObject_c::getLetterName() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getSelectBombNum() {
+asm u8 dMsgObject_c::getSelectBombNum() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getSelectBombNum__12dMsgObject_cFv.s"
 }
@@ -1959,7 +1958,7 @@ asm void dMsgObject_c::getMsgOutputType() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getWord() {
+asm const char* dMsgObject_c::getWord() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getWord__12dMsgObject_cFv.s"
 }

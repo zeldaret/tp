@@ -11,14 +11,6 @@
 // Types:
 //
 
-struct mDoMtx_stack_c {
-    /* 8000CD9C */ void transM(f32, f32, f32);
-    /* 8000CF44 */ void ZXYrotM(csXyz const&);
-    /* 8000CF7C */ void quatM(Quaternion const*);
-
-    static u8 now[48];
-};
-
 struct daMirror_c {
     /* 8003194C */ void entry(J3DModel*);
 };

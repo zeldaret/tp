@@ -14,10 +14,6 @@
 // Types:
 //
 
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
-
 struct dEvt_control_c {
     /* 800434D8 */ void searchMapEventData(u8);
 };

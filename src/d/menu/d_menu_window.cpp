@@ -257,7 +257,6 @@ extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopMsg_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" extern void* __vt__10CSTControl[4];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
