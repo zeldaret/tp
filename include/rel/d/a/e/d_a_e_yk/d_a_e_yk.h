@@ -7,8 +7,6 @@
 #include "d/cc/d_cc_uty.h"
 #include "d/d_path.h"
 
-// need to setup enum for anm indexes
-
 enum daE_YK_Action {
     ACT_ROOF,           // keese is on roof
     ACT_FIGHT_FLY,      // keese is transitioning from flying to aggro 
@@ -22,6 +20,7 @@ enum daE_YK_Action {
     ACT_WIND            // keese is in the gale boomerang
 };
 
+// tmp struct to get HIO to match
 struct daE_YK_HIO_c_tmp {
     void* vtable;
     /* 0x04 */ s8 field_0x04;
@@ -49,7 +48,7 @@ public:
 class e_yk_class : public fopEn_enemy_c {
 public:
     /* 0x5AC */ request_of_phase_process_class mPhase;
-    /* 0x5B4 */ u8 mParam1;
+    /* 0x5B4 */ u8 mParam1;                           // paramter - used to determine default action?
     /* 0x5B5 */ u8 mPlayerTriggerBase;                // parameter - base value used to determine mPlayerTrigger below
     /* 0x5B6 */ u8 field_0x5b6;
     /* 0x5B7 */ u8 mPathIdx;                          // parameter - used to lookup/set mpPath based on the room
