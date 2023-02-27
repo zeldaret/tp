@@ -4,56 +4,6 @@
 //
 
 #include "JSystem/JKernel/JKRAssertHeap.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__13JKRAssertHeapFPvUlP7JKRHeapb();
-extern "C" void __dt__13JKRAssertHeapFv();
-extern "C" void create__13JKRAssertHeapFP7JKRHeap();
-extern "C" void do_destroy__13JKRAssertHeapFv();
-extern "C" void getHeapType__13JKRAssertHeapFv();
-extern "C" bool check__13JKRAssertHeapFv();
-extern "C" bool dump__13JKRAssertHeapFv();
-extern "C" bool dump_sort__13JKRAssertHeapFv();
-extern "C" bool do_changeGroupID__13JKRAssertHeapFUc();
-extern "C" bool do_getCurrentGroupId__13JKRAssertHeapFv();
-extern "C" bool do_alloc__13JKRAssertHeapFUli();
-extern "C" void do_free__13JKRAssertHeapFPv();
-extern "C" void do_freeAll__13JKRAssertHeapFv();
-extern "C" void do_freeTail__13JKRAssertHeapFv();
-extern "C" void do_fillFreeArea__13JKRAssertHeapFv();
-extern "C" bool do_resize__13JKRAssertHeapFPvUl();
-extern "C" bool do_getSize__13JKRAssertHeapFPv();
-extern "C" bool do_getFreeSize__13JKRAssertHeapFv();
-extern "C" bool do_getMaxFreeBlock__13JKRAssertHeapFv();
-extern "C" bool do_getTotalFreeSize__13JKRAssertHeapFv();
-
-//
-// External References:
-//
-
-extern "C" void __ct__7JKRHeapFPvUlP7JKRHeapb();
-extern "C" void __dt__7JKRHeapFv();
-extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
-extern "C" void callAllDisposer__7JKRHeapFv();
-extern "C" void dispose__7JKRHeapFv();
-extern "C" void __dl__FPv();
-extern "C" void state_register__7JKRHeapCFPQ27JKRHeap6TStateUl();
-extern "C" void state_compare__7JKRHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState();
-extern "C" void state_dump__7JKRHeapCFRCQ27JKRHeap6TState();
-extern "C" u8 sRootHeap__7JKRHeap[4];
-
-//
-// Declarations:
-//
 
 /* 802D12C4-802D1300 2CBC04 003C+00 1/1 0/0 0/0 .text __ct__13JKRAssertHeapFPvUlP7JKRHeapb */
 JKRAssertHeap::JKRAssertHeap(void* data, unsigned long size, JKRHeap* parent, bool errorFlag)
@@ -83,17 +33,17 @@ JKRAssertHeap* JKRAssertHeap::create(JKRHeap* parent) {
 }
 
 /* 802D13D8-802D1408 2CBD18 0030+00 1/0 0/0 0/0 .text            do_destroy__13JKRAssertHeapFv */
-void JKRAssertHeap::do_destroy(void) {
+void JKRAssertHeap::do_destroy() {
     this->~JKRAssertHeap();
 }
 
 /* 802D1408-802D1414 2CBD48 000C+00 1/0 0/0 0/0 .text            getHeapType__13JKRAssertHeapFv */
-u32 JKRAssertHeap::getHeapType(void) {
+u32 JKRAssertHeap::getHeapType() {
     return 'ASTH';
 }
 
 /* 802D1414-802D141C 2CBD54 0008+00 1/0 0/0 0/0 .text            check__13JKRAssertHeapFv */
-bool JKRAssertHeap::check(void) {
+bool JKRAssertHeap::check() {
     return true;
 }
 
@@ -114,7 +64,7 @@ s32 JKRAssertHeap::do_changeGroupID(u8) {
 }
 
 /* 802D1434-802D143C 2CBD74 0008+00 1/0 0/0 0/0 .text do_getCurrentGroupId__13JKRAssertHeapFv */
-u8 JKRAssertHeap::do_getCurrentGroupId(void) {
+u8 JKRAssertHeap::do_getCurrentGroupId() {
     return 0;
 }
 
@@ -124,25 +74,17 @@ void* JKRAssertHeap::do_alloc(u32, int) {
 }
 
 /* 802D1444-802D1448 2CBD84 0004+00 1/0 0/0 0/0 .text            do_free__13JKRAssertHeapFPv */
-void JKRAssertHeap::do_free(void* param_0) {
-    /* empty function */
-}
+void JKRAssertHeap::do_free(void* param_0) {}
 
 /* 802D1448-802D144C 2CBD88 0004+00 1/0 0/0 0/0 .text            do_freeAll__13JKRAssertHeapFv */
-void JKRAssertHeap::do_freeAll() {
-    /* empty function */
-}
+void JKRAssertHeap::do_freeAll() {}
 
 /* 802D144C-802D1450 2CBD8C 0004+00 1/0 0/0 0/0 .text            do_freeTail__13JKRAssertHeapFv */
-void JKRAssertHeap::do_freeTail() {
-    /* empty function */
-}
+void JKRAssertHeap::do_freeTail() {}
 
 /* 802D1450-802D1454 2CBD90 0004+00 1/0 0/0 0/0 .text            do_fillFreeArea__13JKRAssertHeapFv
  */
-void JKRAssertHeap::do_fillFreeArea() {
-    /* empty function */
-}
+void JKRAssertHeap::do_fillFreeArea() {}
 
 /* 802D1454-802D145C 2CBD94 0008+00 1/0 0/0 0/0 .text            do_resize__13JKRAssertHeapFPvUl */
 s32 JKRAssertHeap::do_resize(void*, u32) {
@@ -156,16 +98,16 @@ s32 JKRAssertHeap::do_getSize(void*) {
 
 /* 802D1464-802D146C 2CBDA4 0008+00 1/0 0/0 0/0 .text            do_getFreeSize__13JKRAssertHeapFv
  */
-s32 JKRAssertHeap::do_getFreeSize(void) {
+s32 JKRAssertHeap::do_getFreeSize() {
     return 0;
 }
 
 /* 802D146C-802D1474 2CBDAC 0008+00 1/0 0/0 0/0 .text do_getMaxFreeBlock__13JKRAssertHeapFv */
-void* JKRAssertHeap::do_getMaxFreeBlock(void) {
+void* JKRAssertHeap::do_getMaxFreeBlock() {
     return NULL;
 }
 
 /* 802D1474-802D147C 2CBDB4 0008+00 1/0 0/0 0/0 .text do_getTotalFreeSize__13JKRAssertHeapFv */
-s32 JKRAssertHeap::do_getTotalFreeSize(void) {
+s32 JKRAssertHeap::do_getTotalFreeSize() {
     return 0;
 }

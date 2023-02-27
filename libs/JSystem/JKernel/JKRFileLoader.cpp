@@ -180,14 +180,9 @@ SECTION_DEAD static char const* const pad_8039D152 = "\0\0\0\0\0";
 SECTION_SDATA static char rootPath[2] = "/";
 
 /* 802D44C4-802D45A0 2CEE04 00DC+00 1/1 0/0 0/0 .text fetchVolumeName__13JKRFileLoaderFPclPCc */
-// matches, but lbl_804508C0 is accessed through r13
+// matches, but rootPath is accessed through r13
 #ifdef NONMATCHING
 const char* JKRFileLoader::fetchVolumeName(char* buffer, long bufferSize, const char* path) {
-    // lbl_803D2D18 = MSL_C::__lower_map
-    // lbl_8039D150 = JKernel::@stringBase0 "/"
-    // lbl_804508C0 = JKernel::rootPath$2498 "/"
-    // lbl_803D2D18 = MSL_C::__lower_map
-
     if (strcmp(path, "/") == 0) {
         strcpy(buffer, rootPath);
         return rootPath;
@@ -228,5 +223,3 @@ asm const char* JKRFileLoader::fetchVolumeName(char* param_0, s32 param_1, char 
 }
 #pragma pop
 #endif
-
-/* 8039D150-8039D150 0297B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

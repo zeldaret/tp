@@ -9,79 +9,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "MSL_C/MSL_Common/Src/ctype.h"
 #include "MSL_C/MSL_Common/Src/string.h"
-#include "dol2asm.h"
 #include "global.h"
-
-//
-// Forward References:
-//
-
-extern "C" void mount__12JKRFileCacheFPCcP7JKRHeapPCc();
-extern "C" void __ct__12JKRFileCacheFPCcPCc();
-extern "C" void __dt__12JKRFileCacheFv();
-extern "C" void becomeCurrent__12JKRFileCacheFPCc();
-extern "C" void getResource__12JKRFileCacheFPCc();
-extern "C" void getResource__12JKRFileCacheFUlPCc();
-extern "C" void readResource__12JKRFileCacheFPvUlPCc();
-extern "C" void readResource__12JKRFileCacheFPvUlUlPCc();
-extern "C" void removeResourceAll__12JKRFileCacheFv();
-extern "C" void removeResource__12JKRFileCacheFPv();
-extern "C" void detachResource__12JKRFileCacheFPv();
-extern "C" void getResSize__12JKRFileCacheCFPCv();
-extern "C" void countFile__12JKRFileCacheCFPCc();
-extern "C" void getFirstFile__12JKRFileCacheCFPCc();
-extern "C" void findCacheBlock__12JKRFileCacheCFPCv();
-extern "C" void findCacheBlock__12JKRFileCacheCFUl();
-extern "C" void findFile__12JKRFileCacheCFPcPCc();
-extern "C" void getDvdPathName__12JKRFileCacheCFPCc();
-extern "C" void convStrLower__12JKRFileCacheCFPc();
-extern "C" void __ct__Q212JKRFileCache11CCacheBlockFUlUlPCv();
-extern "C" void getFsResource__12JKRFileCacheFPCc();
-extern "C" void getNameResource__12JKRFileCacheFUlPCc();
-extern "C" void readFsResource__12JKRFileCacheFPvUlPCc();
-extern "C" void readNameResource__12JKRFileCacheFPvUlUlPCc();
-extern "C" extern char const* const JKRFileCache__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
-extern "C" void alloc__7JKRHeapFUli();
-extern "C" void free__7JKRHeapFPvP7JKRHeap();
-extern "C" void free__7JKRHeapFPv();
-extern "C" void findFromRoot__7JKRHeapFPv();
-extern "C" void* __nw__FUlP7JKRHeapi();
-extern "C" void __dl__FPv();
-extern "C" void __ct__13JKRFileLoaderFv();
-extern "C" void __dt__13JKRFileLoaderFv();
-extern "C" void unmount__13JKRFileLoaderFv();
-extern "C" void __ct__12JKRDvdFinderFPCc();
-extern "C" void read__7JKRFileFPvll();
-extern "C" void __ct__10JKRDvdFileFPCc();
-extern "C" void __dt__10JKRDvdFileFv();
-extern "C" void __ct__10JSUPtrLinkFPv();
-extern "C" void __dt__10JSUPtrLinkFv();
-extern "C" void __dt__10JSUPtrListFv();
-extern "C" void initiate__10JSUPtrListFv();
-extern "C" void append__10JSUPtrListFP10JSUPtrLink();
-extern "C" void prepend__10JSUPtrListFP10JSUPtrLink();
-extern "C" void remove__10JSUPtrListFP10JSUPtrLink();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 sVolumeList__13JKRFileLoader[12];
-extern "C" u8 sSystemHeap__7JKRHeap[4];
-extern "C" u8 sCurrentVolume__13JKRFileLoader[4 + 4 /* padding */];
-
-//
-// Declarations:
-//
 
 /* 802D49B4-802D4AB4 2CF2F4 0100+00 0/0 2/2 0/0 .text mount__12JKRFileCacheFPCcP7JKRHeapPCc */
 JKRFileCache* JKRFileCache::mount(const char* path, JKRHeap* heap, const char* param_3) {
@@ -110,16 +38,6 @@ JKRFileCache* JKRFileCache::mount(const char* path, JKRHeap* heap, const char* p
 
     return new (heap, 0) JKRFileCache(path, param_3);
 }
-
-/* ############################################################################################## */
-/* 8039D158-8039D158 0297B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DEAD static char const* const stringBase_8039D158 = "/";
-// SECTION_DEAD static char const* const stringBase_8039D15A = "dvd";
-// /* @stringBase0 padding */
-// SECTION_DEAD static char const* const pad_8039D15E = "\0";
-// #pragma pop
 
 /* 802D4AB4-802D4C70 2CF3F4 01BC+00 1/1 0/0 0/0 .text            __ct__12JKRFileCacheFPCcPCc */
 JKRFileCache::JKRFileCache(const char* path, const char* volume) : mCacheBlockList() {
@@ -181,35 +99,23 @@ JKRFileCache::~JKRFileCache() {
 
 /* 802D4D44-802D4DD8 2CF684 0094+00 1/0 0/0 0/0 .text            becomeCurrent__12JKRFileCacheFPCc
  */
-#ifdef NONMATCHING
 bool JKRFileCache::becomeCurrent(const char* path) {
-    char* name = getDvdPathName(path);
-    BOOL result = DVDChangeDir(name);
-    bool didChangeDir = (result != 0);
-    if (didChangeDir) {
-        setCurrentVolume(this);
-        JKRFreeToSysHeap(mCurrentPath);
+    char* dvdPathName = getDvdPathName(path);
 
-        mCurrentPath = name;
-        if (mCurrentPath[1]) {
+    bool result = DVDChangeDir(dvdPathName);
+    if (result) {
+        sCurrentVolume = this;
+        JKRHeap::sSystemHeap->free(mCurrentPath);
+        mCurrentPath = dvdPathName;
+        if (mCurrentPath[1] != '\0') {
             strcat(mCurrentPath, "/");
         }
     } else {
-        JKRFreeToSysHeap(name);
+        JKRHeap::sSystemHeap->free(dvdPathName);
     }
 
-    return didChangeDir;
+    return result;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool JKRFileCache::becomeCurrent(char const* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRFileCache/becomeCurrent__12JKRFileCacheFPCc.s"
-}
-#pragma pop
-#endif
 
 /* 802D4DD8-802D4EDC 2CF718 0104+00 1/0 0/0 0/0 .text            getResource__12JKRFileCacheFPCc */
 void* JKRFileCache::getResource(const char* path) {
@@ -217,11 +123,11 @@ void* JKRFileCache::getResource(const char* path) {
 
     void* buffer = NULL;
     char* name = getDvdPathName(path);
+
     JKRDvdFile dvdFile(name);
     if (dvdFile.isAvailable()) {
         CCacheBlock* cacheBlock = findCacheBlock(dvdFile.getFileID());
         if (!cacheBlock) {
-            // dvdFile.getFileSize() not inlined
             u32 fileSize = dvdFile.getFileInfo()->length;
             u32 alignedSize = ALIGN_NEXT(fileSize, 0x20);
             buffer = JKRAllocFromHeap(mParentHeap, alignedSize, 0x20);
@@ -272,7 +178,6 @@ u32 JKRFileCache::readResource(void* dst, u32 dstLength, const char* path) {
 // will would never exit the loop.
 loop:
     if (dvdFile.isAvailable()) {
-        // dvdFile.getFileSize() not inlined
         u32 fileSize = dvdFile.getFileInfo()->length;
         resourceSize = ALIGN_NEXT(fileSize, 0x20);
         dstLength = ALIGN_PREV(dstLength, 0x20);
@@ -531,5 +436,3 @@ u32 JKRFileCache::readFsResource(void* dst, u32 dstLength, const char* path) {
 u32 JKRFileCache::readNameResource(void* dst, u32 dstLength, u32 type, const char* path) {
     return readResource(dst, dstLength, type, path);
 }
-
-/* 8039D158-8039D158 0297B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

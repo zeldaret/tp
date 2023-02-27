@@ -4,13 +4,7 @@
 //
 
 #include "JSystem/JKernel/JKRFile.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "dolphin/vi/vi.h"
-
-//
-// Declarations:
-//
 
 /* 802D9518-802D9584 2D3E58 006C+00 0/0 2/2 0/0 .text            read__7JKRFileFPvll */
 s32 JKRFile::read(void* data, s32 size, long offset) {

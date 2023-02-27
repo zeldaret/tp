@@ -501,5 +501,3 @@ void JUTWarningConsole_f(const char* fmt, ...) {
 void JUTWarningConsole(const char* message) {
     JUTReportConsole_f("%s", message);
 }
-
-/* 8039D9A8-8039D9A8 02A008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

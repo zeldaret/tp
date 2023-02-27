@@ -5,12 +5,6 @@
 
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Declarations:
-//
 
 /* 802D147C-802D14E4 2CBDBC 0068+00 0/0 12/12 0/0 .text            __ct__11JKRDisposerFv */
 JKRDisposer::JKRDisposer() : mLink(this) {

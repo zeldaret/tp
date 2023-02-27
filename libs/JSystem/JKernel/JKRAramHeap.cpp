@@ -5,57 +5,26 @@
 
 #include "JSystem/JKernel/JKRAramHeap.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dol2asm.h"
-#include "global.h"
 
 //
 // Forward References:
 //
 
-extern "C" void __ct__11JKRAramHeapFUlUl();
-extern "C" void __dt__11JKRAramHeapFv();
-extern "C" void alloc__11JKRAramHeapFUlQ211JKRAramHeap10EAllocMode();
-extern "C" void allocFromHead__11JKRAramHeapFUl();
-extern "C" void allocFromTail__11JKRAramHeapFUl();
-extern "C" void getFreeSize__11JKRAramHeapFv();
-extern "C" void getTotalFreeSize__11JKRAramHeapFv();
-extern "C" void dump__11JKRAramHeapFv();
-extern "C" void __sinit_JKRAramHeap_cpp();
-extern "C" void func_802D32B0(void* _this);
 extern "C" u8 sAramList__11JKRAramHeap[12];
-
 extern "C" void* __vt__11JKRAramHeap;
 
 //
 // External References:
 //
 
-// TODO: move to JKRHeap
-void* operator new(u32 size);
-void* operator new(u32 size, int alignment);
-void* operator new(u32 size, JKRHeap* heap, int alignment);
-
-extern "C" void findFromRoot__7JKRHeapFPv();
-extern "C" void* __nw__FUlP7JKRHeapi();
 extern "C" void __dl__FPv();
-extern "C" void __ct__11JKRDisposerFv();
 extern "C" void __dt__11JKRDisposerFv();
-extern "C" void __ct__12JKRAramBlockFUlUlUlUcb();
-extern "C" void allocHead__12JKRAramBlockFUlUcP11JKRAramHeap();
-extern "C" void allocTail__12JKRAramBlockFUlUcP11JKRAramHeap();
-extern "C" void __dt__10JSUPtrListFv();
-extern "C" void initiate__10JSUPtrListFv();
-extern "C" void append__10JSUPtrListFP10JSUPtrLink();
-extern "C" void __register_global_object();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
 
 //
 // Declarations:
 //
-
-/* 80434300-8043430C 061020 000C+00 1/1 0/0 0/0 .bss             @297 */
-static u8 lit_297[12];
 
 /* 8043430C-80434318 06102C 000C+00 8/8 0/0 0/0 .bss             sAramList__11JKRAramHeap */
 JSUList<JKRAramBlock> JKRAramHeap::sAramList;
@@ -206,9 +175,7 @@ void JKRAramHeap::dump(void) {
 
     JSUList<JKRAramBlock>* list = &sAramList;
     JSUListIterator<JKRAramBlock> iterator = list;
-    for (; iterator != list->getEnd(); ++iterator) {
-        // The debug version calls OSReport
-    }
+    for (; iterator != list->getEnd(); ++iterator) {}
 
     unlock();
 }

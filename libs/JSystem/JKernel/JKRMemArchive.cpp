@@ -9,85 +9,6 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "MSL_C/MSL_Common/Src/string.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-// struct JUTException {
-//     /* 802E21FC */ void panic_f(char const*, int, char const*, ...);
-// };
-
-// struct JSUPtrLink {};
-
-// struct JSUPtrList {
-//     /* 802DBFF0 */ void prepend(JSUPtrLink*);
-//     /* 802DC15C */ void remove(JSUPtrLink*);
-// };
-
-// struct JKRMemBreakFlag {};
-
-// struct JKRArchive {
-//     struct EMountDirection {};
-
-//     struct SDIFileEntry {};
-
-//     struct EMountMode {};
-
-//     /* 802D5A38 */ void becomeCurrent(char const*);
-//     /* 802D5C64 */ void getResource(u32, char const*);
-//     /* 802D5BE8 */ void getResource(char const*);
-//     /* 802D5D8C */ void readResource(void*, u32, u32, char const*);
-//     /* 802D5E30 */ void readResource(void*, u32, char const*);
-//     /* 802D609C */ void detachResource(void*);
-//     /* 802D60D8 */ void getResSize(void const*) const;
-//     /* 802D6150 */ void countFile(char const*) const;
-//     /* 802D61B0 */ void getFirstFile(char const*) const;
-//     /* 802D6294 */ JKRArchive(s32, JKRArchive::EMountMode);
-//     /* 802D6334 */ ~JKRArchive();
-//     /* 802D6734 */ void findPtrResource(void const*) const;
-//     /* 802D693C */ void setExpandSize(JKRArchive::SDIFileEntry*, u32);
-//     /* 802D6978 */ void getExpandSize(JKRArchive::SDIFileEntry*) const;
-// };
-
-// struct JKRMemArchive {
-//     /* 802D6A6C */ JKRMemArchive(void*, u32, JKRMemBreakFlag);
-//     /* 802D69B8 */ JKRMemArchive(s32, JKRArchive::EMountDirection);
-//     /* 802D6B24 */ ~JKRMemArchive();
-//     /* 802D6BCC */ void open(s32, JKRArchive::EMountDirection);
-//     /* 802D6D30 */ void open(void*, u32, JKRMemBreakFlag);
-//     /* 802D6E10 */ void fetchResource(void*, u32, JKRArchive::SDIFileEntry*, u32*);
-//     /* 802D6DDC */ void fetchResource(JKRArchive::SDIFileEntry*, u32*);
-//     /* 802D6ED0 */ void removeResourceAll();
-//     /* 802D6F20 */ void removeResource(void*);
-//     /* 802D6F5C */ void fetchResource_subroutine(u8*, u32, u8*, u32, int);
-//     /* 802D7030 */ void getExpandedResSize(void const*) const;
-// };
-
-// struct JKRHeap {
-//     /* 802CE500 */ void free(void*, JKRHeap*);
-//     /* 802CE83C */ void findFromRoot(void*);
-// };
-
-// struct JKRFileLoader {
-//     /* 802D41D4 */ void unmount();
-
-//     static u8 sVolumeList[12];
-// };
-
-// struct JKRExpandSwitch {};
-
-// struct JKRDvdRipper {
-//     struct EAllocDirection {};
-
-//     /* 802D9C54 */ void loadToMainRAM(s32, u8*, JKRExpandSwitch, u32, JKRHeap*,
-//                                       JKRDvdRipper::EAllocDirection, u32, int*, u32*);
-// };
-
-// struct JKRDecomp {
-//     /* 802DB988 */ void orderSync(u8*, u8*, u32, u32);
-// };
 
 //
 // Forward References:
@@ -209,16 +130,16 @@ bool JKRMemArchive::open(long entryNum, JKRArchive::EMountDirection mountDirecti
     if (mMountDirection == JKRArchive::MOUNT_DIRECTION_HEAD) {
         u32 loadedSize;
         mArcHeader = (SArcHeader*)JKRDvdRipper::loadToMainRAM(
-            entryNum, NULL, EXPAND_SWITCH_UNKNOWN1, 0, mHeap, JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 0,
-            &mCompression, &loadedSize);
+            entryNum, NULL, EXPAND_SWITCH_UNKNOWN1, 0, mHeap, JKRDvdRipper::ALLOC_DIRECTION_FORWARD,
+            0, &mCompression, &loadedSize);
         if (mArcHeader) {
             DCInvalidateRange(mArcHeader, loadedSize);
         }
     } else {
         u32 loadedSize;
         mArcHeader = (SArcHeader*)JKRDvdRipper::loadToMainRAM(
-            entryNum, NULL, EXPAND_SWITCH_UNKNOWN1, 0, mHeap, JKRDvdRipper::ALLOC_DIRECTION_BACKWARD, 0,
-            &mCompression, &loadedSize);
+            entryNum, NULL, EXPAND_SWITCH_UNKNOWN1, 0, mHeap,
+            JKRDvdRipper::ALLOC_DIRECTION_BACKWARD, 0, &mCompression, &loadedSize);
         if (mArcHeader) {
             DCInvalidateRange(mArcHeader, loadedSize);
         }
@@ -354,17 +275,6 @@ bool JKRMemArchive::removeResource(void* resource) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 8039D160-8039D160 0297C0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DEAD static char const* const stringBase_8039D160 = "JKRMemArchive.cpp";
-// SECTION_DEAD static char const* const stringBase_8039D172 = "%s";
-// SECTION_DEAD static char const* const stringBase_8039D175 = "??? bad sequence\n";
-// /* @stringBase0 padding */
-// SECTION_DEAD static char const* const pad_8039D187 = "";
-// #pragma pop
-
 /* 802D6F5C-802D7030 2D189C 00D4+00 1/1 1/1 0/0 .text
  * fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUli        */
 u32 JKRMemArchive::fetchResource_subroutine(u8* src, u32 srcLength, u8* dst, u32 dstLength,
@@ -390,7 +300,7 @@ u32 JKRMemArchive::fetchResource_subroutine(u8* src, u32 srcLength, u8* dst, u32
         return srcLength;
 
     default: {
-        JUTException::panic_f("JKRMemArchive.cpp", 0x2d3, "%s", "??? bad sequence\n");
+        JUTException::panic_f(__FILE__, 723, "%s", "??? bad sequence\n");
     } break;
     }
 
@@ -409,5 +319,3 @@ u32 JKRMemArchive::getExpandedResSize(const void* resource) const {
         return JKRDecompExpandSize((SArcHeader*)resource);
     }
 }
-
-/* 8039D160-8039D160 0297C0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
