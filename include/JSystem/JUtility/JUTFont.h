@@ -55,6 +55,7 @@ struct ResFONT {
     /* 0x08 */ u32 filesize;
     /* 0x0C */ u32 numBlocks;
     /* 0x10 */ u8 padding[0x10];
+    /* 0x20 */ u8 data[];
 };
 
 class JUTFont {

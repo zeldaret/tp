@@ -8,8 +8,8 @@
 class JUTCacheFont : public JUTResFont {
 public:
     struct TGlyphCacheInfo {
-        /* 0x0 */ TGlyphCacheInfo* field_0x0;
-        /* 0x4 */ TGlyphCacheInfo** field_0x4;
+        /* 0x0 */ TGlyphCacheInfo* mPrev;
+        /* 0x4 */ TGlyphCacheInfo* mNext;
     };
 
     struct TCachePage {
@@ -64,7 +64,7 @@ private:
     /* 0x84 */ void* field_0x84;
     /* 0x88 */ u32 mMaxSheetSize;
     /* 0x8C */ EPagingType mPagingType;
-    /* 0x90 */ void** mCacheBuffer;
+    /* 0x90 */ void* mCacheBuffer;
     /* 0x94 */ int field_0x94;
     /* 0x98 */ u32 mCachePage;
     /* 0x9C */ TGlyphCacheInfo* field_0x9c;

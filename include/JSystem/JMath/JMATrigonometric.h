@@ -38,12 +38,18 @@ extern TAtanTable atanTable_;
 extern TAsinAcosTable asinAcosTable_;
 };  // namespace JMath
 
-inline f32 JMASSin(s16 s) {
-    return JMath::sincosTable_.sinShort(s);
+inline f32 JMASCosShort(s16 v) {
+    return JMath::sincosTable_.cosShort(v);
+}
+inline f32 JMASinShort(s16 v) {
+    return JMath::sincosTable_.sinShort(v);
 }
 
-inline f32 JMASCos(s16 s) {
-    return JMath::sincosTable_.cosShort(s);
+inline f32 JMASCos(s16 v) {
+    return JMASCosShort(v);
+}
+inline f32 JMASSin(s16 v) {
+    return JMASinShort(v);
 }
 
 #endif /* JMATRIGONOMETRIC_H */

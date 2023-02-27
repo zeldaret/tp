@@ -3,9 +3,13 @@
 
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTFont.h"
-#include "dolphin/types.h"
 
-typedef bool (*IsLeadByte)(int);
+typedef bool (*IsLeadByte_func)(int);
+
+struct BlockHeader {
+    u32 magic;
+    u32 size;
+};
 
 class JUTResFont : public JUTFont {
 public:
@@ -43,7 +47,7 @@ public:
         initialize_state();
     }
 
-    static void* const saoAboutEncoding_[3];
+    static IsLeadByte_func const saoAboutEncoding_[3];
 
     // some types uncertain, may need to be fixed
     /* 0x1C */ int mWidth;
@@ -61,7 +65,7 @@ public:
     /* 0x64 */ u16 mMap1BlockNum;
     /* 0x66 */ u16 field_0x66;
     /* 0x68 */ u16 mMaxCode;
-    /* 0x6C */ IsLeadByte* mIsLeadByte;
+    /* 0x6C */ IsLeadByte_func* mIsLeadByte;
 };
 
 #endif /* JUTRESFONT_H */

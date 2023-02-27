@@ -6,27 +6,30 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "dolphin/vi/vi.h"
 
-//
-// Declarations:
-//
+namespace JUTAssertion {
 
 /* 802E495C-802E4960 2DF29C 0004+00 0/0 1/1 0/0 .text            create__12JUTAssertionFv */
-void JUTAssertion::create() {
-    /* empty function */
-}
+void create() {}
 
-/* ############################################################################################## */
+namespace {
 /* 80451530-80451538 000A30 0004+04 2/2 0/0 0/0 .sbss
  * sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@      */
 static u32 sMessageLife;
 
+/* 80434870-804348B0 061590 0040+00 2/2 0/0 0/0 .bss
+ * sMessageFileLine__Q212JUTAssertion23@unnamed@JUTAssert_cpp@  */
+static char sMessageFileLine[64];
+
+/* 804348B0-804349B0 0615D0 0100+00 2/2 0/0 0/0 .bss
+ * sMessageString__Q212JUTAssertion23@unnamed@JUTAssert_cpp@    */
+static char sMessageString[256];
+};  // namespace
+
 /* 802E4960-802E499C 2DF2A0 003C+00 2/2 0/0 0/0 .text            flush_subroutine__12JUTAssertionFv
  */
-u32 JUTAssertion::flush_subroutine() {
+u32 flush_subroutine() {
     if (sMessageLife == 0) {
         return 0;
     }
@@ -38,20 +41,12 @@ u32 JUTAssertion::flush_subroutine() {
     if (sMessageLife >= 5) {
         return sMessageLife;
     }
+
     return 0;
 }
 
-/* ############################################################################################## */
-/* 80434870-804348B0 061590 0040+00 2/2 0/0 0/0 .bss
- * sMessageFileLine__Q212JUTAssertion23@unnamed@JUTAssert_cpp@  */
-static char sMessageFileLine[64];
-
-/* 804348B0-804349B0 0615D0 0100+00 2/2 0/0 0/0 .bss
- * sMessageString__Q212JUTAssertion23@unnamed@JUTAssert_cpp@    */
-static char sMessageString[256];
-
 /* 802E499C-802E4A54 2DF2DC 00B8+00 0/0 1/1 0/0 .text            flushMessage__12JUTAssertionFv */
-void JUTAssertion::flushMessage() {
+void flushMessage() {
     if (flush_subroutine() && sAssertVisible == true) {
         JUTDirectPrint* manager = JUTDirectPrint::getManager();
         JUtility::TColor color = manager->getCharColor();
@@ -63,7 +58,7 @@ void JUTAssertion::flushMessage() {
 }
 
 /* 802E4A54-802E4C34 2DF394 01E0+00 0/0 1/1 0/0 .text flushMessage_dbPrint__12JUTAssertionFv */
-void JUTAssertion::flushMessage_dbPrint() {
+void flushMessage_dbPrint() {
     if (flush_subroutine() && sAssertVisible == true && JUTDbPrint::getManager() != NULL) {
         JUTFont* font = JUTDbPrint::getManager()->getFont();
         if (font != NULL) {
@@ -77,12 +72,14 @@ void JUTAssertion::flushMessage_dbPrint() {
 }
 
 /* 802E4C34-802E4C3C 2DF574 0008+00 0/0 2/2 0/0 .text            setVisible__12JUTAssertionFb */
-void JUTAssertion::setVisible(bool visible) {
+void setVisible(bool visible) {
     sAssertVisible = visible;
 }
 
 /* 802E4C3C-802E4C54 2DF57C 0018+00 0/0 2/2 0/0 .text            setMessageCount__12JUTAssertionFi
  */
-void JUTAssertion::setMessageCount(int msg_count) {
+void setMessageCount(int msg_count) {
     sMessageLife = msg_count <= 0 ? 0 : msg_count;
 }
+
+};  // namespace JUTAssertion

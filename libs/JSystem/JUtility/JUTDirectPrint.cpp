@@ -8,7 +8,6 @@
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 //

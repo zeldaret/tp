@@ -377,7 +377,8 @@ void JUTGamePad::update() {
         }
 
         if (field_0xa8 == 0 ||
-            (mButton.mButton & C3ButtonReset::sResetMaskPattern) != C3ButtonReset::sResetPattern) {
+            (mButton.mButton & C3ButtonReset::sResetMaskPattern) != C3ButtonReset::sResetPattern)
+        {
             mButtonReset.mReset = false;
         } else if (!JUTGamePad::C3ButtonReset::sResetOccurred) {
             if (mButtonReset.mReset == true) {
@@ -488,7 +489,8 @@ void JUTGamePad::CButton::update(PADStatus const* padStatus, u32 stickStatus) {
             field_0x1c++;
 
             if (field_0x1c == field_0x28 ||
-                (field_0x1c > field_0x28 && (field_0x1c - field_0x28) % field_0x2c == 0)) {
+                (field_0x1c > field_0x28 && (field_0x1c - field_0x28) % field_0x2c == 0))
+            {
                 mRepeat = repeatButton;
             }
         } else {

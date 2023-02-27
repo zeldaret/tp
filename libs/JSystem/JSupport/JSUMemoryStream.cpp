@@ -5,12 +5,6 @@
 
 #include "JSystem/JSupport/JSUMemoryStream.h"
 #include "MSL_C/MSL_Common/Src/string.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Declarations:
-//
 
 /* 802DC520-802DC534 2D6E60 0014+00 0/0 3/3 0/0 .text setBuffer__20JSUMemoryInputStreamFPCvl */
 void JSUMemoryInputStream::setBuffer(void const* pBuffer, s32 length) {
@@ -24,10 +18,12 @@ u32 JSUMemoryInputStream::readData(void* pData, s32 length) {
     if (mPosition + length > mLength) {
         length = mLength - mPosition;
     }
+
     if (length > 0) {
         memcpy(pData, (void*)((s32)mBuffer + mPosition), length);
         mPosition += length;
     }
+
     return length;
 }
 
@@ -35,6 +31,7 @@ u32 JSUMemoryInputStream::readData(void* pData, s32 length) {
  * seekPos__20JSUMemoryInputStreamFl17JSUStreamSeekFrom         */
 s32 JSUMemoryInputStream::seekPos(s32 pos, JSUStreamSeekFrom seekFrom) {
     s32 oldPos = mPosition;
+
     switch (seekFrom) {
     case JSUStreamSeekFrom_SET:
         mPosition = pos;
@@ -46,12 +43,15 @@ s32 JSUMemoryInputStream::seekPos(s32 pos, JSUStreamSeekFrom seekFrom) {
         mPosition += pos;
         break;
     }
+
     if (mPosition < 0) {
         mPosition = 0;
     }
+
     if (mPosition > mLength) {
         mPosition = mLength;
     }
+
     return mPosition - oldPos;
 }
 
