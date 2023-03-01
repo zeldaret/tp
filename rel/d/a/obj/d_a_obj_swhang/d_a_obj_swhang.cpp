@@ -4,192 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_swhang/d_a_obj_swhang.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct request_of_phase_process_class {};
-
-struct cXyz {};
-
-struct mDoMtx_stack_c {
-    /* 8000CD64 */ void transS(cXyz const&);
-    /* 8000CD9C */ void transM(f32, f32, f32);
-
-    static u8 now[48];
-};
-
-struct fopAc_ac_c {
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct daObjSwHang_c {
-    /* 80CFB9D8 */ void initBaseMtx();
-    /* 80CFBA60 */ void setBaseMtx();
-    /* 80CFBAC8 */ void Create();
-    /* 80CFBCB8 */ void CreateHeap();
-    /* 80CFBDD0 */ void create1st();
-    /* 80CFC04C */ void calcHangPos();
-    /* 80CFC114 */ void checkDown();
-    /* 80CFC194 */ void changeOnStatus();
-    /* 80CFC1F4 */ void changeOffStatus();
-    /* 80CFC254 */ void Execute(f32 (**)[3][4]);
-    /* 80CFC4C4 */ void action();
-    /* 80CFC550 */ void checkDownSw();
-    /* 80CFC698 */ void init_modeOffWait();
-    /* 80CFC6AC */ void modeOffWait();
-    /* 80CFCA34 */ void init_modeOnWait();
-    /* 80CFCA40 */ void modeOnWait();
-    /* 80CFCCE0 */ void eventStart();
-    /* 80CFCD04 */ void Draw();
-    /* 80CFCD98 */ void Delete();
-    /* 80CFD034 */ ~daObjSwHang_c();
-};
-
-struct dVibration_c {
-    /* 8006FA24 */ void StartShock(int, int, cXyz);
-};
-
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 800352B0 */ void offSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dEvLib_callback_c {
-    /* 8004886C */ void eventUpdate();
-    /* 80048940 */ void orderEvent(int, int, int);
-    /* 80CFCFD4 */ ~dEvLib_callback_c();
-    /* 80CFD01C */ bool eventStart();
-    /* 80CFD024 */ bool eventRun();
-    /* 80CFD02C */ bool eventEnd();
-};
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80CFBFF0 */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-    /* 800844F8 */ void GetTgHitObj();
-};
-
-struct dBgW_Base {};
-
-struct dBgW {
-    /* 8007B970 */ dBgW();
-    /* 8007B9C0 */ void Move();
-};
-
-struct cBgS_PolyInfo {};
-
-struct csXyz {};
-
-struct dBgS_MoveBgActor {
-    /* 80078624 */ dBgS_MoveBgActor();
-    /* 800786B0 */ bool IsDelete();
-    /* 800786B8 */ bool ToFore();
-    /* 800786C0 */ bool ToBack();
-    /* 800787BC */ void MoveBGCreate(char const*, int,
-                                     void (*)(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*,
-                                              csXyz*, csXyz*),
-                                     u32, f32 (*)[3][4]);
-    /* 800788DC */ void MoveBGDelete();
-    /* 80078950 */ void MoveBGExecute();
-};
-
-struct dBgS {
-    /* 80074A08 */ void Regist(dBgW_Base*, fopAc_ac_c*);
-};
-
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 8026F708 */ void SetR(f32);
-    /* 80CFBF60 */ ~cM3dGSph();
-};
-
-struct cM3dGAab {
-    /* 80CFBFA8 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
-struct cCcS {
-    /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 80CFCF8C */ ~cCcD_GStts();
-};
-
-struct cBgW_BgId {
-    /* 802681D4 */ void ChkUsed() const;
-};
-
-struct cBgD_t {};
-
-struct cBgW {
-    /* 80079F38 */ void Set(cBgD_t*, u32, f32 (*)[3][4]);
-};
-
-struct cBgS {
-    /* 80074250 */ void Release(dBgW_Base*);
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JUTNameTab {
-    /* 802DEAF8 */ void getName(u16) const;
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct J3DModel {};
-
-struct J3DJoint {};
 
 //
 // Forward References:
@@ -285,17 +101,11 @@ extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
 extern "C" void getName__10JUTNameTabCFUs();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXMultVec();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcmp();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__16dBgS_MoveBgActor[10];
 extern "C" extern void* __vt__8dCcD_Sph[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
@@ -303,9 +113,6 @@ extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" extern u8 data_80CFD4D0[4];
@@ -476,7 +283,7 @@ SECTION_DATA static u8 l_sph_src2[64] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjSwHang_c::Create() {
+asm int daObjSwHang_c::Create() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swhang/d_a_obj_swhang/Create__13daObjSwHang_cFv.s"
 }
@@ -486,7 +293,8 @@ asm void daObjSwHang_c::Create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjSwHang_c::CreateHeap() {
+// asm int daObjSwHang_c::CreateHeap() {
+extern "C" asm void CreateHeap__13daObjSwHang_cFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swhang/d_a_obj_swhang/CreateHeap__13daObjSwHang_cFv.s"
 }
@@ -618,7 +426,8 @@ asm void daObjSwHang_c::create1st() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swhang/d_a_obj_swhang/__dt__8cM3dGSphFv.s"
 }
@@ -628,7 +437,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swhang/d_a_obj_swhang/__dt__8cM3dGAabFv.s"
 }
@@ -638,7 +448,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swhang/d_a_obj_swhang/__dt__10dCcD_GSttsFv.s"
 }
@@ -720,7 +531,7 @@ COMPILER_STRIP_GATE(0x80CFD250, &lit_4059);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjSwHang_c::Execute(f32 (**param_0)[3][4]) {
+asm int daObjSwHang_c::Execute(f32 (**param_0)[3][4]) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swhang/d_a_obj_swhang/Execute__13daObjSwHang_cFPPA3_A4_f.s"
 }
@@ -854,7 +665,7 @@ asm void daObjSwHang_c::eventStart() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjSwHang_c::Draw() {
+asm int daObjSwHang_c::Draw() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swhang/d_a_obj_swhang/Draw__13daObjSwHang_cFv.s"
 }
@@ -864,7 +675,7 @@ asm void daObjSwHang_c::Draw() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjSwHang_c::Delete() {
+asm int daObjSwHang_c::Delete() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swhang/d_a_obj_swhang/Delete__13daObjSwHang_cFv.s"
 }
@@ -916,7 +727,8 @@ static asm void daObjSwHang_MoveBGDraw(daObjSwHang_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swhang/d_a_obj_swhang/__dt__10cCcD_GSttsFv.s"
 }
@@ -926,7 +738,8 @@ asm cCcD_GStts::~cCcD_GStts() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dEvLib_callback_c::~dEvLib_callback_c() {
+// asm dEvLib_callback_c::~dEvLib_callback_c() {
+extern "C" asm void __dt__17dEvLib_callback_cFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swhang/d_a_obj_swhang/__dt__17dEvLib_callback_cFv.s"
 }
@@ -934,17 +747,20 @@ asm dEvLib_callback_c::~dEvLib_callback_c() {
 
 /* 80CFD01C-80CFD024 00175C 0008+00 1/0 0/0 0/0 .text            eventStart__17dEvLib_callback_cFv
  */
-bool dEvLib_callback_c::eventStart() {
+// int dEvLib_callback_c::eventStart() {
+extern "C" bool eventStart__17dEvLib_callback_cFv() {
     return true;
 }
 
 /* 80CFD024-80CFD02C 001764 0008+00 2/0 0/0 0/0 .text            eventRun__17dEvLib_callback_cFv */
-bool dEvLib_callback_c::eventRun() {
+// int dEvLib_callback_c::eventRun() {
+extern "C" bool eventRun__17dEvLib_callback_cFv() {
     return true;
 }
 
 /* 80CFD02C-80CFD034 00176C 0008+00 2/0 0/0 0/0 .text            eventEnd__17dEvLib_callback_cFv */
-bool dEvLib_callback_c::eventEnd() {
+// int dEvLib_callback_c::eventEnd() {
+extern "C" bool eventEnd__17dEvLib_callback_cFv() {
     return true;
 }
 

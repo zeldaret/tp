@@ -897,40 +897,7 @@ bool JKRExpHeap::check() {
     return ok;
 }
 
-/* ############################################################################################## */
-/* 8039CAF0-8039CAF0 029150 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039CC8D =
-    " attr  address:   size    gid aln   prev_ptr nex"
-    "t_ptr\n";
-SECTION_DEAD static char const* const stringBase_8039CCC4 = "(Used Blocks)\n";
-SECTION_DEAD static char const* const stringBase_8039CCD3 = " NONE\n";
-SECTION_DEAD static char const* const stringBase_8039CCDA =
-    "xxxxx %08x: --------  --- ---  (-------- -------"
-    "-)\nabort\n";
-SECTION_DEAD static char const* const stringBase_8039CD14 = "%s %08x: %08x  %3d %3d  (%08x %08x)\n";
-SECTION_DEAD static char const* const stringBase_8039CD39 = " temp";
-SECTION_DEAD static char const* const stringBase_8039CD3F = "alloc";
-SECTION_DEAD static char const* const stringBase_8039CD45 = "(Free Blocks)\n";
-SECTION_DEAD static char const* const stringBase_8039CD54 = " free";
-SECTION_DEAD static char const* const stringBase_8039CD5A =
-    "%d / %d bytes (%6.2f%%) used (U:%d F:%d)\n";
-#pragma pop
-
-/* 80455F98-80455FA0 004598 0004+04 2/2 0/0 0/0 .sdata2          @1121 */
-SECTION_SDATA2 static f32 lit_1121[1 + 1 /* padding */] = {
-    100.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80455FA0-80455FA8 0045A0 0008+00 2/2 0/0 0/0 .sdata2          @1123 */
-SECTION_SDATA2 static f64 lit_1123 = 4503599627370496.0 /* cast u32 to float */;
-
 /* 802D03B8-802D05CC 2CACF8 0214+00 1/0 0/0 0/0 .text            dump__10JKRExpHeapFv */
-// matches with literals
-#ifdef NONMATCHING
 bool JKRExpHeap::dump() {
     lock();
     bool result = check();
@@ -977,20 +944,8 @@ bool JKRExpHeap::dump() {
     unlock();
     return result;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool JKRExpHeap::dump() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRExpHeap/dump__10JKRExpHeapFv.s"
-}
-#pragma pop
-#endif
 
 /* 802D05CC-802D0810 2CAF0C 0244+00 1/0 0/0 0/0 .text            dump_sort__10JKRExpHeapFv */
-// using r0 instead of r4
-#ifdef NONMATCHING
 bool JKRExpHeap::dump_sort() {
     lock();
     bool result = check();
@@ -1017,7 +972,8 @@ bool JKRExpHeap::dump_sort() {
             }
 
             if (!block->isValid()) {
-                JUTReportConsole_f("xxxxx %08x: --------  --- ---  (-------- --------)\nabort\n");
+                JUTReportConsole_f("xxxxx %08x: --------  --- ---  (-------- --------)\nabort\n",
+                                   var1);
                 break;
             }
 
@@ -1050,16 +1006,6 @@ bool JKRExpHeap::dump_sort() {
     unlock();
     return result;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool JKRExpHeap::dump_sort() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRExpHeap/dump_sort__10JKRExpHeapFv.s"
-}
-#pragma pop
-#endif
 
 /* 802D0810-802D0830 2CB150 0020+00 4/4 0/0 0/0 .text
  * initiate__Q210JKRExpHeap9CMemBlockFPQ210JKRExpHeap9CMemBlockPQ210JKRExpHeap9CMemBlockUlUcUc */

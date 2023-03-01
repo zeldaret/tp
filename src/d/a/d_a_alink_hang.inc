@@ -1,4 +1,4 @@
-#include "d/a/d_a_alink.h"
+#include "rel/d/a/obj/d_a_obj_swhang/d_a_obj_swhang.h"
 
 /* 800F9FDC-800F9FFC 0F491C 0020+00 2/2 0/0 0/0 .text            getHangMoveAnmSpeed__9daAlink_cFv
  */
@@ -1414,11 +1414,15 @@ int daAlink_c::procRoofSwitchHang() {
 }
 
 /* 80101874-80101890 0FC1B4 001C+00 2/2 0/0 0/0 .text            getHangPos__13daObjSwHang_cFv */
-#pragma push
+/* #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjSwHang_c::getHangPos() {
+asm cXyz daObjSwHang_c::getHangPos() {
     nofralloc
 #include "asm/d/a/d_a_alink/getHangPos__13daObjSwHang_cFv.s"
 }
 #pragma pop
+ */
+cXyz daObjSwHang_c::getHangPos() {
+    return mHangPos;
+}
