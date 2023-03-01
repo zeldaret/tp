@@ -4,297 +4,10 @@
 //
 
 #include "d/msg/d_msg_class.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/msg/d_msg_object.h"
+#include "d/msg/d_msg_unit.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct mDoCPd_c {
-    static u8 m_cpadInfo[256];
-};
-
-struct jmessage_tControl {
-    /* 802299EC */ jmessage_tControl();
-};
-
-struct jmessage_tReference {
-    /* 80228B04 */ jmessage_tReference();
-    /* 80228CB4 */ ~jmessage_tReference();
-    /* 80228D28 */ void calcDistance();
-    /* 80228DE0 */ void getLineMax();
-    /* 80228E6C */ void isKanban();
-    /* 80228EA0 */ void isPlaceName();
-    /* 80228ED4 */ void isBossName();
-    /* 80228F08 */ void isSaveSeq();
-    /* 80228F3C */ void isBook();
-    /* 80228F70 */ void isStaffRoll();
-    /* 80228FA4 */ void isHowl();
-    /* 80228FD8 */ void isMidona();
-    /* 8022900C */ void resetReference();
-    /* 80229034 */ void pageSend();
-    /* 80229168 */ void selectMessage();
-    /* 802294A8 */ void inputNumber();
-    /* 80229730 */ void getWord(int);
-    /* 80229744 */ void resetWord();
-    /* 80229768 */ void setCharactor(u16);
-    /* 80229788 */ void addCharactor(u16);
-    /* 802297B0 */ void resetCharactor();
-    /* 802297E4 */ void shiftCharCountBuffer();
-    /* 80229810 */ void resetCharCountBuffer();
-    /* 80229848 */ void allsetCharCountBuffer();
-    /* 8022986C */ void isCharSend();
-    /* 802298DC */ void isLightSend();
-    /* 8022994C */ void isLightEnd();
-    /* 802299AC */ void decideOutFontRupeeColor(int);
-    /* 80232A20 */ void getActorPos();
-};
-
-struct jmessage_tSequenceProcessor {
-    /* 8022B558 */ jmessage_tSequenceProcessor(jmessage_tReference const*, jmessage_tControl*);
-    /* 8022B654 */ void do_reset();
-    /* 8022B658 */ void do_begin(void const*, char const*);
-    /* 8022BA3C */ void do_end();
-    /* 8022BB7C */ void do_isReady();
-    /* 8022BFE0 */ void do_character(int);
-    /* 8022C1A0 */ void do_tag(u32, void const*, u32);
-    /* 8022C8FC */ bool do_jump_isReady();
-    /* 8022C904 */ void do_name1();
-    /* 8022C908 */ void do_space(u32);
-    /* 8022CA24 */ void do_rubyset(void const*, u32);
-    /* 8022CAAC */ void push_word();
-    /* 8022CB10 */ void messageSePlay(u8, u8, cXyz*);
-    /* 8022CBE4 */ void do_jump(void const*, char const*);
-    /* 8022CBE8 */ void calcStringLength();
-    /* 8023299C */ ~jmessage_tSequenceProcessor();
-};
-
-struct jmessage_tRenderingProcessor {
-    /* 8022CCB0 */ jmessage_tRenderingProcessor(jmessage_tReference const*);
-    /* 8022CDC8 */ void do_reset();
-    /* 8022CDCC */ void do_begin(void const*, char const*);
-    /* 8022CFD8 */ void do_end();
-    /* 8022D0A0 */ void do_character(int);
-    /* 8022D74C */ void do_tag(u32, void const*, u32);
-    /* 8022E12C */ void resetRendering();
-    /* 8022E17C */ void do_widthcenter();
-    /* 8022E260 */ void do_selwidthcenter(int);
-    /* 8022E318 */ void do_heightcenter();
-    /* 8022E7CC */ void do_color(u8);
-    /* 8022E860 */ void do_scale(f32);
-    /* 8022E960 */ void do_linedown(s16);
-    /* 8022E9C0 */ void do_transY(s16, bool);
-    /* 8022EAE4 */ void do_outfont(u8, u32);
-    /* 8022ED10 */ void do_arrow2();
-    /* 8022EECC */ void getLineLength(int);
-    /* 8022EF00 */ void do_strcat(char*, bool, bool, bool);
-    /* 8022F148 */ void do_rubyset(void const*, u32);
-    /* 8022F384 */ void do_rubystrcat(char*, char*, f32, f32);
-    /* 8022F53C */ void do_name1();
-    /* 8022F540 */ void do_numset(s16);
-    /* 8022F734 */ void push_word();
-    /* 8022F784 */ void getCharInfo(f32, f32, f32, f32, f32);
-    /* 8023293C */ ~jmessage_tRenderingProcessor();
-};
-
-struct jmessage_tMeasureProcessor {
-    /* 80229A28 */ jmessage_tMeasureProcessor(jmessage_tReference const*);
-    /* 80229AC4 */ void do_begin(void const*, char const*);
-    /* 80229CB4 */ void do_end();
-    /* 80229E3C */ void do_character(int);
-    /* 8022A268 */ void do_tag(u32, void const*, u32);
-    /* 8022B0B0 */ void do_scale(f32);
-    /* 8022B18C */ void do_space(u32);
-    /* 8022B3EC */ void do_pageType(int);
-    /* 8022B454 */ void do_name1();
-    /* 8022B458 */ void do_rubyset(void const*, u32);
-    /* 8022B4E0 */ void push_word(char*);
-    /* 8022B5F4 */ ~jmessage_tMeasureProcessor();
-};
-
-struct jmessage_string_tControl {
-    /* 8022FB5C */ jmessage_string_tControl();
-    /* 802328DC */ ~jmessage_string_tControl();
-};
-
-struct J2DTextBox {
-    /* 80300658 */ void getStringPtr() const;
-};
-
-struct JUTFont {};
-
-struct COutFont_c {
-    /* 80226CF8 */ void initialize();
-};
-
-struct jmessage_string_tReference {
-    /* 8022F8C0 */ jmessage_string_tReference();
-    /* 8022F94C */ ~jmessage_string_tReference();
-    /* 8022F9AC */ void init(J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, u8);
-    /* 8022FA2C */ void setCharactor(u16);
-    /* 8022FA30 */ void addCharactor(u16);
-    /* 8022FA34 */ void resetCharactor();
-    /* 8022FA38 */ void getLineLength(int);
-    /* 8022FA6C */ void addLineLength(int, f32);
-    /* 8022FA98 */ void getOutfontLength(int);
-    /* 8022FACC */ void setOutfontLength(int, f32);
-    /* 8022FAF0 */ void clearOutfontLength(int);
-    /* 8022FB24 */ void getLineCountNowPage();
-};
-
-struct jmessage_string_tSequenceProcessor {
-    /* 80230A08 */ jmessage_string_tSequenceProcessor(jmessage_string_tReference const*,
-                                                      jmessage_string_tControl*);
-    /* 80230ABC */ void do_reset();
-    /* 80230AC0 */ void do_begin(void const*, char const*);
-    /* 80230B7C */ void do_end();
-    /* 80230B80 */ bool do_isReady();
-    /* 80230B88 */ void do_character(int);
-    /* 80230B8C */ void do_tag(u32, void const*, u32);
-    /* 80230BBC */ bool do_jump_isReady();
-    /* 80230BC4 */ void do_jump(void const*, char const*);
-    /* 80232858 */ ~jmessage_string_tSequenceProcessor();
-};
-
-struct jmessage_string_tRenderingProcessor {
-    /* 80230BC8 */ jmessage_string_tRenderingProcessor(jmessage_string_tReference const*);
-    /* 80230C20 */ void getLineCountNowPage();
-    /* 80230C5C */ void do_reset();
-    /* 80230CA0 */ void do_begin(void const*, char const*);
-    /* 80230CE8 */ void do_end();
-    /* 80230D48 */ void do_character(int);
-    /* 80231110 */ void do_tag(u32, void const*, u32);
-    /* 80231D70 */ void do_widthcenter();
-    /* 80231EF0 */ void do_heightcenter();
-    /* 80232044 */ void do_strcat(char*);
-    /* 802320B0 */ void do_rubyset(void const*, u32);
-    /* 80232260 */ void do_rubystrcat(char*);
-    /* 802322CC */ void do_outfont(u8);
-    /* 8023256C */ void do_color(u8);
-    /* 80232600 */ void do_scale(f32);
-    /* 80232690 */ void do_linedown(s16);
-    /* 802326E4 */ void do_numset(s16);
-    /* 802327BC */ void push_word(char const*);
-    /* 802327F8 */ ~jmessage_string_tRenderingProcessor();
-};
-
-struct jmessage_string_tMeasureProcessor {
-    /* 8022FB98 */ jmessage_string_tMeasureProcessor(jmessage_string_tReference const*);
-    /* 8022FBE4 */ void do_begin(void const*, char const*);
-    /* 8022FC14 */ void do_end();
-    /* 8022FC28 */ void do_character(int);
-    /* 8022FDF0 */ void do_tag(u32, void const*, u32);
-    /* 8023098C */ void do_rubyset(void const*, u32);
-    /* 80230A5C */ ~jmessage_string_tMeasureProcessor();
-};
-
-struct dSv_player_item_max_c {
-    /* 800340F8 */ void getBombNum(u8) const;
-};
-
-struct dSv_event_tmp_flag_c {
-    static u8 const tempBitLabels[370 + 2 /* padding */];
-};
-
-struct dSv_event_flag_c {
-    static u8 saveBitLabels[1644 + 4 /* padding */];
-};
-
-struct dSv_event_c {
-    /* 8003498C */ void onEventBit(u16);
-    /* 80034A04 */ void getEventReg(u16) const;
-};
-
-struct dMsgUnit_c {
-    /* 80238CEC */ void setTag(int, int, char*, bool);
-};
-
-struct dMsgObject_c {
-    /* 802360A0 */ void talkStartInit();
-    /* 802370BC */ void isKanbanMessage();
-    /* 802370E8 */ void isHowlMessage();
-    /* 802370FC */ void isMidonaMessage();
-    /* 802371E4 */ void isPlaceMessage();
-    /* 802371F8 */ void isBossMessage();
-    /* 8023720C */ bool isBookMessage();
-    /* 80237214 */ void isStaffMessage();
-    /* 80237228 */ void isSaveMessage();
-    /* 802372CC */ void getSmellName();
-    /* 80237334 */ void getPortalName();
-    /* 8023738C */ void getBombName();
-    /* 8023741C */ void getInsectName();
-    /* 80237478 */ void getLetterName();
-    /* 802374D0 */ void getSelectBombNum();
-    /* 802375E4 */ void addSelectBomBag(u8);
-    /* 80237610 */ void resetSelectBomBag();
-    /* 80238500 */ void getMsgOutputType();
-    /* 80238514 */ void getWord();
-    /* 80238528 */ void getSelectWord(int);
-    /* 80238574 */ void getSelectWordFlag();
-    /* 802385E0 */ void getSelectBombPrice();
-    /* 80238638 */ void getItemEquipButton();
-};
-
-struct STControl {
-    /* 80032044 */ STControl(s16, s16, s16, s16, f32, f32, s16, s16);
-    /* 80032088 */ void setWaitParm(s16, s16, s16, s16, f32, f32, s16, s16);
-    /* 8003219C */ void checkTrigger();
-    /* 8003242C */ void checkLeftTrigger();
-    /* 800324A8 */ void checkRightTrigger();
-    /* 80032524 */ void checkUpTrigger();
-    /* 800325A0 */ void checkDownTrigger();
-};
-
-struct JMessage {
-    struct TControl {
-        /* 802A7548 */ TControl();
-        /* 802A758C */ ~TControl();
-    };
-
-    struct TReference {
-        /* 802A7AF8 */ ~TReference();
-        /* 802A7B40 */ bool do_word(u32) const;
-    };
-
-    struct TProcessor {
-        /* 802A7BF8 */ void stack_pushCurrent(char const*);
-        /* 802A7FC0 */ void do_reset();
-        /* 802A7FD8 */ void do_select_begin(u32);
-        /* 802A7FDC */ void do_select_end();
-        /* 802A7FE0 */ void do_select_separate();
-        /* 802A8084 */ void do_resetStatus_(char const*);
-        /* 802A8088 */ bool do_setBegin_isReady_() const;
-        /* 802A828C */ void process_onCharacterEnd_normal_(JMessage::TProcessor*);
-    };
-
-    struct TSequenceProcessor {
-        /* 802A8374 */ TSequenceProcessor(JMessage::TReference const*, JMessage::TControl*);
-        /* 802A83B8 */ ~TSequenceProcessor();
-        /* 802A8794 */ void do_branch_query(u32);
-        /* 802A8798 */ s32 do_branch_queryResult();
-        /* 802A87A0 */ void do_branch(void const*, char const*);
-        /* 802A87A4 */ void do_resetStatus_(char const*);
-        /* 802A87C0 */ void do_setBegin_isReady_() const;
-        /* 802A87D0 */ void do_begin_(void const*, char const*);
-        /* 802A87D4 */ void do_end_();
-        /* 802A87E0 */ void do_tag_(u32, void const*, u32);
-    };
-
-    struct TRenderingProcessor {
-        /* 802A8A84 */ TRenderingProcessor(JMessage::TReference const*);
-        /* 802A8AC0 */ ~TRenderingProcessor();
-        /* 802A8B20 */ void process(char const*);
-        /* 802A8BA4 */ void do_begin_(void const*, char const*);
-        /* 802A8BA8 */ void do_end_();
-        /* 802A8BAC */ void do_tag_(u32, void const*, u32);
-    };
-};
-
-struct J2DPane {
-    /* 802F7100 */ void getBounds();
-    /* 802F7AFC */ void getParentPane();
-};
 
 //
 // Forward References:
@@ -542,62 +255,81 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void sprintf();
-extern "C" void snprintf();
-extern "C" void strcat();
-extern "C" void strcpy();
-extern "C" void strlen();
 extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__17jmessage_tControl[3];
 extern "C" extern void* __vt__Q28JMessage10TReference[4 + 1 /* padding */];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
-extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
-extern "C" extern u8 g_msg_unit[4 + 4 /* padding */];
+extern "C" extern dMsgObject_HIO_c g_MsgObject_HIO_c;
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+
+SECTION_DATA extern void* __vt__35jmessage_string_tRenderingProcessor[16];
+SECTION_DATA extern void* __vt__34jmessage_string_tSequenceProcessor[22];
+SECTION_DATA extern void* __vt__33jmessage_string_tMeasureProcessor[16];
+SECTION_DATA extern void* __vt__24jmessage_string_tControl[3];
+SECTION_DATA extern void* __vt__26jmessage_string_tReference[4];
+SECTION_DATA extern void* __vt__28jmessage_tRenderingProcessor[16];
+SECTION_DATA extern void* __vt__27jmessage_tSequenceProcessor[22];
+SECTION_DATA extern void* __vt__26jmessage_tMeasureProcessor[16];
+SECTION_DATA extern void* __vt__19jmessage_tReference[4 + 1 /* padding */];
 
 //
 // Declarations:
 //
 
 /* 80228578-802285CC 222EB8 0054+00 1/1 0/0 0/0 .text            checkCharInfoCharactor__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void checkCharInfoCharactor(int param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/checkCharInfoCharactor__Fi.s"
+static bool checkCharInfoCharactor(int c) {
+    if (c != 0x8140 && c != 0x8141 && c != 0x8142 && c != 0x0020 && c != 0x0022 && c != 0x0027 &&
+        c != 0x002C && c != 0x002E)
+    {
+        return true;
+    }
+
+    return false;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804510C0-804510C8 0005C0 0003+05 1/1 0/0 0/0 .sbss            mMoji$3770 */
-static u8 mMoji[3 + 5 /* padding */];
+static char mMoji[3];
 
 /* 802285CC-80228608 222F0C 003C+00 3/3 0/0 0/0 .text            changeCodeToChar__FUs */
+// r4 / r5 swap
+#ifdef NONMATCHING
+static const char* changeCodeToChar(u16 param_0) {
+    mMoji[2] = '\0';
+    mMoji[1] = '\0';
+    mMoji[0] = '\0';
+
+    mMoji[0] = param_0 >> 8;
+
+    if (mMoji[0] == '\0') {
+        mMoji[0] = (u16)param_0;
+    } else {
+        mMoji[1] = (u16)param_0;
+    }
+
+    return mMoji;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void changeCodeToChar(u16 param_0) {
+static asm char* changeCodeToChar(u16 param_0) {
     nofralloc
 #include "asm/d/msg/d_msg_class/changeCodeToChar__FUs.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803BFDF8-803BFE78 01CF18 0080+00 1/1 0/0 0/0 .data            char_table$3795 */
-SECTION_DATA static u8 char_table[128] = {
-    0x00, 0x00, 0x81, 0x42, 0x81, 0x75, 0x81, 0x76, 0x81, 0x41, 0x81, 0x45, 0x83, 0x92, 0x83, 0x40,
-    0x83, 0x42, 0x83, 0x44, 0x83, 0x46, 0x83, 0x48, 0x83, 0x83, 0x83, 0x85, 0x83, 0x87, 0x83, 0x62,
-    0x81, 0x5B, 0x83, 0x41, 0x83, 0x43, 0x83, 0x45, 0x83, 0x47, 0x83, 0x49, 0x83, 0x4A, 0x83, 0x4C,
-    0x83, 0x4E, 0x83, 0x50, 0x83, 0x52, 0x83, 0x54, 0x83, 0x56, 0x83, 0x58, 0x83, 0x5A, 0x83, 0x5C,
-    0x83, 0x5E, 0x83, 0x60, 0x83, 0x63, 0x83, 0x65, 0x83, 0x67, 0x83, 0x69, 0x83, 0x6A, 0x83, 0x6B,
-    0x83, 0x6C, 0x83, 0x6D, 0x83, 0x6E, 0x83, 0x71, 0x83, 0x74, 0x83, 0x77, 0x83, 0x7A, 0x83, 0x7D,
-    0x83, 0x7E, 0x83, 0x80, 0x83, 0x81, 0x83, 0x82, 0x83, 0x84, 0x83, 0x86, 0x83, 0x88, 0x83, 0x89,
-    0x83, 0x8A, 0x83, 0x8B, 0x83, 0x8C, 0x83, 0x8D, 0x83, 0x8F, 0x83, 0x93, 0x81, 0x4A, 0x81, 0x4B,
+SECTION_DATA static u16 char_table[64] = {
+    0x0000, 0x8142, 0x8175, 0x8176, 0x8141, 0x8145, 0x8392, 0x8340, 0x8342, 0x8344, 0x8346,
+    0x8348, 0x8383, 0x8385, 0x8387, 0x8362, 0x815B, 0x8341, 0x8343, 0x8345, 0x8347, 0x8349,
+    0x834A, 0x834C, 0x834E, 0x8350, 0x8352, 0x8354, 0x8356, 0x8358, 0x835A, 0x835C, 0x835E,
+    0x8360, 0x8363, 0x8365, 0x8367, 0x8369, 0x836A, 0x836B, 0x836C, 0x836D, 0x836E, 0x8371,
+    0x8374, 0x8377, 0x837A, 0x837D, 0x837E, 0x8380, 0x8381, 0x8382, 0x8384, 0x8386, 0x8388,
+    0x8389, 0x838A, 0x838B, 0x838C, 0x838D, 0x838F, 0x8393, 0x814A, 0x814B,
 };
 
 /* 803BFE78-803BFF78 -00001 0100+00 1/1 0/0 0/0 .data            @3831 */
@@ -679,97 +411,144 @@ static asm void change1ByteTo2Bytes(int param_0) {
 #pragma pop
 
 /* 80228838-802288A8 223178 0070+00 8/8 0/0 0/0 .text            changeKataToHira__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void changeKataToHira(int param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/changeKataToHira__Fi.s"
+static u16 changeKataToHira(int param_0) {
+    u16 var_r5 = param_0;
+
+    if (param_0 >= 0x8340 && param_0 <= 0x837E) {
+        var_r5 = param_0 - 0xA1;
+    } else if (param_0 >= 0x8380 && param_0 <= 0x8393) {
+        var_r5 = param_0 - 0xA2;
+    } else if (param_0 == 0x8394) {
+        var_r5 = 0x82D4;
+    }
+
+    return var_r5;
 }
-#pragma pop
 
 /* 802288A8-802288FC 2231E8 0054+00 4/4 0/0 0/0 .text            isOutfontKanjiCode__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void isOutfontKanjiCode(int param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/isOutfontKanjiCode__Fi.s"
+static bool isOutfontKanjiCode(int param_0) {
+    switch (param_0) {
+    case 0x5C:
+    case 0x40:
+    case 0x24:
+    case 0x81F2:
+    case 0x81F3:
+        return true;
+    default:
+        return false;
+    }
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 803995C8-803995EC 025C28 0024+00 1/1 0/0 0/0 .rodata          colorTable$3861 */
-SECTION_RODATA static u8 const colorTable_3861[36] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xF0, 0x78, 0x78, 0xFF, 0xAA, 0xDC, 0x8C, 0xFF,
-    0xA0, 0xB4, 0xDC, 0xFF, 0xDC, 0xDC, 0x82, 0xFF, 0xB4, 0xC8, 0xE6, 0xFF,
-    0xC8, 0xA0, 0xDC, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xDC, 0xAA, 0x78, 0xFF,
-};
-COMPILER_STRIP_GATE(0x803995C8, &colorTable_3861);
 
 /* 802288FC-802289A8 22323C 00AC+00 2/2 0/0 0/0 .text            getFontCCColorTable__FUcUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void getFontCCColorTable(u8 param_0, u8 param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/getFontCCColorTable__FUcUc.s"
-}
-#pragma pop
+static u32 getFontCCColorTable(u8 i_colorNo, u8 i_fukiKind) {
+    static const u32 colorTable[9] = {
+        0xFFFFFFFF, 0xF07878FF, 0xAADC8CFF, 0xA0B4DCFF, 0xDCDC82FF,
+        0xB4C8E6FF, 0xC8A0DCFF, 0xFFFFFFFF, 0xDCAA78FF,
+    };
 
-/* ############################################################################################## */
-/* 803995EC-80399610 025C4C 0024+00 1/1 0/0 0/0 .rodata          colorTable$3877 */
-SECTION_RODATA static u8 const colorTable_3877[36] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xF0, 0x78, 0x78, 0xFF, 0xAA, 0xDC, 0x8C, 0xFF,
-    0xA0, 0xB4, 0xDC, 0xFF, 0xDC, 0xDC, 0x82, 0xFF, 0xB4, 0xC8, 0xE6, 0xFF,
-    0xC8, 0xA0, 0xDC, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xDC, 0xAA, 0x78, 0xFF,
-};
-COMPILER_STRIP_GATE(0x803995EC, &colorTable_3877);
+    if (i_colorNo > 8) {
+        return 0xFFFFFFFF;
+    }
+
+    if (g_MsgObject_HIO_c.mTextColorDebug) {
+        return (g_MsgObject_HIO_c.mTextColorUpperR[i_colorNo] << 0x18) |
+               (g_MsgObject_HIO_c.mTextColorUpperG[i_colorNo] << 0x10) |
+               (g_MsgObject_HIO_c.mTextColorUpperB[i_colorNo] << 0x8) | 0xFF;
+    }
+
+    u32 color = colorTable[i_colorNo];
+
+    if (i_colorNo != 0) {
+        return color;
+    }
+
+    switch (i_fukiKind) {
+    case 13:
+        return 0x82E6E6FF;
+    case 8:
+        return 0xFFFFFFFF;
+    case 14:
+        return 0x96DC64FF;
+    default:
+        return color;
+    }
+}
 
 /* 802289A8-80228A54 2232E8 00AC+00 2/2 0/0 0/0 .text            getFontGCColorTable__FUcUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void getFontGCColorTable(u8 param_0, u8 param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/getFontGCColorTable__FUcUc.s"
-}
-#pragma pop
+static u32 getFontGCColorTable(u8 i_colorNo, u8 i_fukiKind) {
+    static const u32 colorTable[9] = {
+        0xFFFFFFFF, 0xF07878FF, 0xAADC8CFF, 0xA0B4DCFF, 0xDCDC82FF,
+        0xB4C8E6FF, 0xC8A0DCFF, 0xFFFFFFFF, 0xDCAA78FF,
+    };
 
-/* ############################################################################################## */
-/* 803BFF78-803BFFA0 -00001 0028+00 1/1 0/0 0/0 .data            @3903 */
-SECTION_DATA static void* lit_3903[10] = {
-    (void*)(((char*)getOutFontNumberType__Fi) + 0x20),
-    (void*)(((char*)getOutFontNumberType__Fi) + 0x28),
-    (void*)(((char*)getOutFontNumberType__Fi) + 0x30),
-    (void*)(((char*)getOutFontNumberType__Fi) + 0x38),
-    (void*)(((char*)getOutFontNumberType__Fi) + 0x40),
-    (void*)(((char*)getOutFontNumberType__Fi) + 0x48),
-    (void*)(((char*)getOutFontNumberType__Fi) + 0x50),
-    (void*)(((char*)getOutFontNumberType__Fi) + 0x58),
-    (void*)(((char*)getOutFontNumberType__Fi) + 0x60),
-    (void*)(((char*)getOutFontNumberType__Fi) + 0x68),
-};
+    if (i_colorNo > 8) {
+        return 0xFFFFFFFF;
+    }
+
+    if (g_MsgObject_HIO_c.mTextColorDebug) {
+        return (g_MsgObject_HIO_c.mTextColorLowerR[i_colorNo] << 0x18) |
+               (g_MsgObject_HIO_c.mTextColorLowerG[i_colorNo] << 0x10) |
+               (g_MsgObject_HIO_c.mTextColorLowerB[i_colorNo] << 0x8) | 0xFF;
+    }
+
+    u32 color = colorTable[i_colorNo];
+
+    if (i_colorNo != 0) {
+        return color;
+    }
+
+    switch (i_fukiKind) {
+    case 13:
+        return 0x82E6E6FF;
+    case 8:
+        return 0xFFFFFFFF;
+    case 14:
+        return 0x96DC64FF;
+    default:
+        return color;
+    }
+}
 
 /* 80228A54-80228ACC 223394 0078+00 3/2 0/0 0/0 .text            getOutFontNumberType__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void getOutFontNumberType(int param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/getOutFontNumberType__Fi.s"
+static int getOutFontNumberType(int param_0) {
+    switch (param_0) {
+    case 0:
+        return 0x1F;
+    case 1:
+        return 0x20;
+    case 2:
+        return 0x21;
+    case 3:
+        return 0x22;
+    case 4:
+        return 0x23;
+    case 5:
+        return 0x24;
+    case 6:
+        return 0x25;
+    case 7:
+        return 0x26;
+    case 8:
+        return 0x27;
+    case 9:
+        return 0x28;
+    default:
+        return 0x1F;
+    }
 }
-#pragma pop
 
 /* 80228ACC-80228B04 22340C 0038+00 3/3 0/0 0/0 .text            getPohNum__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void getPohNum() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/getPohNum__Fv.s"
+static u8 getPohNum() {
+    u8 num = 0;
+
+    if (dComIfGs_getPohSpiritNum() < 20) {
+        num = 20 - dComIfGs_getPohSpiritNum();
+    } else if (dComIfGs_getPohSpiritNum() < 60) {
+        num = 60 - dComIfGs_getPohSpiritNum();
+    }
+
+    return num;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803BFFA0-803BFFD0 -00001 0030+00 1/1 0/0 0/0 .data            @5158 */
@@ -960,73 +739,1711 @@ SECTION_DATA static void* lit_5735[10] = {
     (void*)(((char*)do_isReady__27jmessage_tSequenceProcessorFv) + 0x350),
 };
 
-/* 803C0230-803C0330 -00001 0100+00 1/1 0/0 0/0 .data            @6062 */
-SECTION_DATA static void* lit_6062[64] = {
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x188),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x254),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x278),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x278),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x2A8),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x2FC),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x314),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x32C),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x38C),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x3EC),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x424),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x518),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x544),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x188),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x568),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x5C4),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x2E4),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x1B0),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x1CC),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x1E8),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x5D4),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x620),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x488),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x4CC),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x198),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x2C0),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x668),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x668),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x554),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x204),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x220),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x23C),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x244),
-    (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x244),
+/* 80454A58-80454A5C 003058 0004+00 1/1 0/0 0/0 .sdata2          @4025 */
+SECTION_SDATA2 static f32 lit_4025 = 9.0f / 10.0f;
+
+/* 80454A5C-80454A60 00305C 0004+00 14/14 0/0 0/0 .sdata2          @4026 */
+SECTION_SDATA2 static f32 lit_4026 = 0.5f;
+
+/* 80454A60-80454A64 003060 0004+00 25/25 0/0 0/0 .sdata2          @4027 */
+SECTION_SDATA2 static u8 lit_4027[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
 };
+
+/* 80454A64-80454A68 003064 0004+00 23/23 0/0 0/0 .sdata2          @4028 */
+SECTION_SDATA2 static f32 lit_4028 = 1.0f;
+
+/* 80228B04-80228CB4 223444 01B0+00 0/0 1/1 0/0 .text            __ct__19jmessage_tReferenceFv */
+// matches with literals
+#ifdef NONMATCHING
+jmessage_tReference::jmessage_tReference() {
+    mpStick = new STControl(5, 2, 3, 2, 0.9f, 0.5f, 0, 0x2000);
+    mpStick->setWaitParm(5, 2, 3, 2, 0.9f, 0.5f, 0, 0x800);
+
+    mActorPos.set(0.0f, 0.0f, 0.0f);
+
+    mpSelMsgPtr = NULL;
+    mpFont = NULL;
+    mFontSizeX = 0.0f;
+    mFontSizeY = 0.0f;
+    mRubySize = 0.0f;
+    mLineSpace = 0.0f;
+    mCharSpace = 0.0f;
+    mRubyCharSpace = 0.0f;
+    mSelFontSize = 0.0f;
+    mSelRubySize = 0.0f;
+    mSelTBoxWidth = 0.0f;
+    mSelCharSpace = 0.0f;
+    mSelCharSpace = 0.0f;
+    mDistanceScale = 1.0f;
+    mAddCharAllAlphaRate = 0.0f;
+    mCharAllAlphaRate = 0.0f;
+    mAddCharAlpha = 0.0f;
+    mCharAlpha = 0.0f;
+    mStartLineCount = 0;
+    mEndLineCount = 0;
+    mLineCount = 0;
+    field_0x5d2 = 0;
+    mPageNum = 0;
+    mSendTimer = 0;
+    mDemoFrame = 0;
+    mCharCnt = 0;
+    mNowLightCount = 0;
+    mDrawLightCount = 0;
+    resetCharCountBuffer();
+    mNowColorType = 0;
+    mTopColorType = 0;
+    mButtonTagStopFlag = 0;
+    mPageEndCount = 0;
+    mSelectNum = 0;
+    mSelectType = 0;
+    mSelectPos = 0;
+    mSendFlag = 0;
+    mStopFlag = 0;
+    mpStatus = NULL;
+    mpObjectPtr = NULL;
+    mSelectRubyFlag = 0;
+    mInputFigure = 0;
+    mOutFontRupeeColor = 0;
+    mNowWordCount = 0;
+    mTopWordCount = 0;
+    resetCharactor();
+    resetWord();
+    mSelectSetCancelFlag = 0;
+    mBombNameUseFlag = 0;
+    mRevoMessageID = 0;
+    mBatchColorFlag = 0;
+    mTopTagScale = 0;
+    mNowTagScale = 0;
+}
+#else
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm jmessage_tReference::jmessage_tReference() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/__ct__19jmessage_tReferenceFv.s"
+}
+#pragma pop
+#endif
+
+/* 80228CB4-80228D28 2235F4 0074+00 1/0 0/0 0/0 .text            __dt__19jmessage_tReferenceFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+// asm jmessage_tReference::~jmessage_tReference() {
+extern "C" asm void __dt__19jmessage_tReferenceFv() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/__dt__19jmessage_tReferenceFv.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80454A68-80454A70 003068 0008+00 1/1 0/0 0/0 .sdata2          @4078 */
+SECTION_SDATA2 static u8 lit_4078[8] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+/* 80228D28-80228DE0 223668 00B8+00 1/1 0/0 0/0 .text calcDistance__19jmessage_tReferenceFv */
+// matches with literals
+#ifdef NONMATCHING
+void jmessage_tReference::calcDistance() {
+    if (mActorPos.x == 0.0f && mActorPos.y == 0.0f && mActorPos.z == 0.0f) {
+        mDistanceScale = 1.0f;
+    } else {
+        fopAc_ac_c* player = dComIfGp_getPlayer(0);
+        (mActorPos - player->mAttentionInfo.mPosition).absXZ();
+        mDistanceScale = 1.0f;
+    }
+}
+#else
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tReference::calcDistance() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/calcDistance__19jmessage_tReferenceFv.s"
+}
+#pragma pop
+#endif
+
+/* 80228DE0-80228E6C 223720 008C+00 5/5 0/0 0/0 .text            getLineMax__19jmessage_tReferenceFv
+ */
+u8 jmessage_tReference::getLineMax() {
+    int line_max;
+
+    if (isKanban()) {
+        line_max = 7;
+    } else if (isBook()) {
+        line_max = 9;
+    } else if (isStaffRoll()) {
+        line_max = 10;
+    } else if (isSaveSeq()) {
+        line_max = 6;
+    } else {
+        line_max = 4;
+    }
+
+    return line_max;
+}
+
+/* 80228E6C-80228EA0 2237AC 0034+00 2/2 0/0 0/0 .text            isKanban__19jmessage_tReferenceFv
+ */
+bool jmessage_tReference::isKanban() {
+    if (getObjectPtr() == NULL) {
+        return false;
+    }
+
+    return getObjectPtr()->isKanbanMessage();
+}
+
+/* 80228EA0-80228ED4 2237E0 0034+00 2/2 0/0 0/0 .text isPlaceName__19jmessage_tReferenceFv */
+bool jmessage_tReference::isPlaceName() {
+    if (getObjectPtr() == NULL) {
+        return false;
+    }
+
+    return getObjectPtr()->isPlaceMessage();
+}
+
+/* 80228ED4-80228F08 223814 0034+00 2/2 0/0 0/0 .text            isBossName__19jmessage_tReferenceFv
+ */
+bool jmessage_tReference::isBossName() {
+    if (getObjectPtr() == NULL) {
+        return false;
+    }
+
+    return getObjectPtr()->isBossMessage();
+}
+
+/* 80228F08-80228F3C 223848 0034+00 2/2 0/0 0/0 .text            isSaveSeq__19jmessage_tReferenceFv
+ */
+bool jmessage_tReference::isSaveSeq() {
+    if (getObjectPtr() == NULL) {
+        return false;
+    }
+
+    return getObjectPtr()->isSaveMessage();
+}
+
+/* 80228F3C-80228F70 22387C 0034+00 2/2 0/0 0/0 .text            isBook__19jmessage_tReferenceFv */
+bool jmessage_tReference::isBook() {
+    if (getObjectPtr() == NULL) {
+        return false;
+    }
+
+    return getObjectPtr()->isBookMessage();
+}
+
+/* 80228F70-80228FA4 2238B0 0034+00 3/3 0/0 0/0 .text isStaffRoll__19jmessage_tReferenceFv */
+bool jmessage_tReference::isStaffRoll() {
+    if (getObjectPtr() == NULL) {
+        return false;
+    }
+
+    return getObjectPtr()->isStaffMessage();
+}
+
+/* 80228FA4-80228FD8 2238E4 0034+00 1/1 0/0 0/0 .text            isHowl__19jmessage_tReferenceFv */
+u8 jmessage_tReference::isHowl() {
+    if (getObjectPtr() == NULL) {
+        return false;
+    }
+
+    return getObjectPtr()->isHowlMessage();
+}
+
+/* 80228FD8-8022900C 223918 0034+00 2/2 0/0 0/0 .text            isMidona__19jmessage_tReferenceFv
+ */
+bool jmessage_tReference::isMidona() {
+    if (getObjectPtr() == NULL) {
+        return false;
+    }
+
+    return getObjectPtr()->isMidonaMessage();
+}
+
+/* 8022900C-80229034 22394C 0028+00 1/1 0/0 0/0 .text resetReference__19jmessage_tReferenceFv */
+void jmessage_tReference::resetReference() {
+    mSendTimer = 0;
+    mSendFlag = 0;
+    mStartLineCount = 0;
+    mEndLineCount = 0;
+    mLineCount = 0;
+    field_0x5d2 = 0;
+    mSelectNum = 0;
+    mSelectType = 0;
+}
+
+/* ############################################################################################## */
+/* 80454A70-80454A78 003070 0008+00 16/16 0/0 0/0 .sdata2          @4198 */
+SECTION_SDATA2 static f64 lit_4198 = 4503601774854144.0 /* cast s32 to float */;
+
+/* 80229034-80229168 223974 0134+00 0/0 1/1 0/0 .text            pageSend__19jmessage_tReferenceFv
+ */
+// matches with literals
+#ifdef NONMATCHING
+void jmessage_tReference::pageSend() {
+    field_0x5d2++;
+    mLineCount = 0;
+    mStartLineCount = mEndLineCount;
+
+    mText[0] = 0;
+    mTextS[0] = 0;
+    mRuby[0] = 0;
+
+    for (int i = 0; i < 3; i++) {
+        mSelText[i][0] = 0;
+        mSelRuby[i][0] = 0;
+    }
+
+    mSendFlag = 0;
+    mSendTimer = 0;
+    mSelectNum = 0;
+    mSelectType = 0;
+    mCharCnt = 0;
+
+    if (mNowColorType != mTopColorType) {
+        mTopColorType = mNowColorType;
+    }
+
+    mTopWordCount = mNowWordCount;
+    mCharAlpha = 0.0f;
+
+    if (getForm() == 8) {
+        setAddCharAllAlphaRate(1.0f / (g_MsgObject_HIO_c.mBatchDisplayWeight_8 + 1.0f));
+        setCharAllAlphaRate(0.0f);
+    } else if (getForm() == 9) {
+        setAddCharAllAlphaRate(1.0f / (g_MsgObject_HIO_c.mBatchDisplayWeight_9 + 1.0f));
+        setCharAllAlphaRate(0.0f);
+    }
+
+    mTopTagScale = mNowTagScale;
+}
+#else
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tReference::pageSend() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/pageSend__19jmessage_tReferenceFv.s"
+}
+#pragma pop
+#endif
+
+/* ############################################################################################## */
+/* 80454A78-80454A7C 003078 0004+00 4/4 0/0 0/0 .sdata2          @4291 */
+SECTION_SDATA2 static f32 lit_4291 = -1.0f;
+
+/* 80229168-802294A8 223AA8 0340+00 0/0 2/2 0/0 .text selectMessage__19jmessage_tReferenceFv */
+// matches with literals
+#ifdef NONMATCHING
+void jmessage_tReference::selectMessage() {
+    if (mSelectNum != 0) {
+        mpStick->checkTrigger();
+
+        if (mSelectType == 0) {
+            if (mpStick->checkUpTrigger()) {
+                if (mSelectNum == 2) {
+                    if (mSelectPos == 1) {
+                        mSelectPos = 0;
+                        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f,
+                                                        -1.0f, -1.0f, 0);
+                    }
+                } else if (mSelectNum == 3 && mSelectPos != 0) {
+                    mSelectPos--;
+                    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f,
+                                                    -1.0f, -1.0f, 0);
+                }
+            } else if (mpStick->checkDownTrigger()) {
+                if (mSelectNum == 2) {
+                    if (mSelectPos == 0) {
+                        mSelectPos = 1;
+                        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f,
+                                                        -1.0f, -1.0f, 0);
+                    }
+                } else if (mSelectNum == 3 && mSelectPos < 2) {
+                    mSelectPos++;
+                    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f,
+                                                    -1.0f, -1.0f, 0);
+                }
+            }
+        } else if (mpStick->checkLeftTrigger()) {
+            if (mSelectPos == 1) {
+                mSelectPos = 0;
+                getObjectPtr()->getSequenceProcessor()->calcStringLength();
+                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                                -1.0f, 0);
+            } else if (mSelectPos == 2) {
+                mSelectPos = 1;
+                getObjectPtr()->getSequenceProcessor()->calcStringLength();
+                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                                -1.0f, 0);
+            }
+        } else if (mpStick->checkRightTrigger()) {
+            if (mSelectPos == 0) {
+                mSelectPos = 1;
+                getObjectPtr()->getSequenceProcessor()->calcStringLength();
+                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                                -1.0f, 0);
+            } else if (mSelectPos == 1 && mSelectNum == 3) {
+                mSelectPos = 2;
+                getObjectPtr()->getSequenceProcessor()->calcStringLength();
+                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                                -1.0f, 0);
+            }
+        }
+    }
+}
+#else
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tReference::selectMessage() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/selectMessage__19jmessage_tReferenceFv.s"
+}
+#pragma pop
+#endif
+
+/* 802294A8-80229730 223DE8 0288+00 0/0 1/1 0/0 .text inputNumber__19jmessage_tReferenceFv */
+// matches with literals
+#ifdef NONMATCHING
+void jmessage_tReference::inputNumber() {
+    mpStick->checkTrigger();
+
+    s16 input_val = getObjectPtr()->getInputValue();
+    s16 new_input_val = input_val;
+
+    u8 max_figure = 0;
+    if (i_dComIfGs_getRupee() >= 1000) {
+        max_figure = 3;
+    } else if (i_dComIfGs_getRupee() >= 100) {
+        max_figure = 2;
+    } else if (i_dComIfGs_getRupee() >= 10) {
+        max_figure = 1;
+    }
+
+    if (mpStick->checkUpTrigger()) {
+        switch (mInputFigure) {
+        case 0:
+            new_input_val = input_val + 1;
+            break;
+        case 1:
+            new_input_val = input_val + 10;
+            break;
+        case 2:
+            new_input_val = input_val + 100;
+            break;
+        case 3:
+            new_input_val = input_val + 1000;
+            break;
+        }
+    } else if (mpStick->checkDownTrigger()) {
+        switch (mInputFigure) {
+        case 0:
+            new_input_val = input_val - 1;
+            break;
+        case 1:
+            new_input_val = input_val - 10;
+            break;
+        case 2:
+            new_input_val = input_val - 100;
+            break;
+        case 3:
+            new_input_val = input_val - 1000;
+            break;
+        }
+    } else if (mpStick->checkLeftTrigger()) {
+        if (mInputFigure < max_figure) {
+            mInputFigure++;
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                            -1.0f, 0);
+        }
+    } else if (mpStick->checkRightTrigger()) {
+        if (mInputFigure != 0) {
+            mInputFigure--;
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                            -1.0f, 0);
+        }
+    }
+
+    if (new_input_val < 0) {
+        new_input_val = 0;
+    }
+
+    if (new_input_val > i_dComIfGs_getRupee()) {
+        new_input_val = i_dComIfGs_getRupee();
+    }
+
+    if (new_input_val != input_val) {
+        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                        0);
+    }
+
+    decideOutFontRupeeColor(new_input_val);
+    getObjectPtr()->setInputValue(new_input_val);
+}
+#else
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tReference::inputNumber() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/inputNumber__19jmessage_tReferenceFv.s"
+}
+#pragma pop
+#endif
+
+/* 80229730-80229744 224070 0014+00 5/5 0/0 0/0 .text            getWord__19jmessage_tReferenceFi */
+const char* jmessage_tReference::getWord(int i_no) {
+    return mWord[i_no];
+}
+
+/* 80229744-80229768 224084 0024+00 2/2 0/0 0/0 .text            resetWord__19jmessage_tReferenceFv
+ */
+void jmessage_tReference::resetWord() {
+    for (int i = 0; i < 10; i++) {
+        mWord[i][0] = 0;
+    }
+}
+
+/* 80229768-80229788 2240A8 0020+00 3/3 0/0 0/0 .text setCharactor__19jmessage_tReferenceFUs */
+void jmessage_tReference::setCharactor(u16 param_0) {
+    mCharactor[field_0x40c] = param_0;
+    field_0x40c++;
+}
+
+/* 80229788-802297B0 2240C8 0028+00 3/3 0/0 0/0 .text addCharactor__19jmessage_tReferenceFUs */
+void jmessage_tReference::addCharactor(u16 param_0) {
+    if (param_0 == mCharactor[field_0x40e]) {
+        field_0x40e++;
+    }
+}
+
+/* 802297B0-802297E4 2240F0 0034+00 3/3 0/0 0/0 .text resetCharactor__19jmessage_tReferenceFv */
+void jmessage_tReference::resetCharactor() {
+    for (int i = 0; i < 0x200; i++) {
+        mCharactor[i] = 0;
+    }
+
+    field_0x40c = 0;
+    field_0x40e = 0;
+    mCountBackUp = 0;
+}
+
+/* 802297E4-80229810 224124 002C+00 0/0 1/1 0/0 .text
+ * shiftCharCountBuffer__19jmessage_tReferenceFv                */
+void jmessage_tReference::shiftCharCountBuffer() {
+    for (int i = 30; i > 0; i--) {
+        mCharCountBuffer[i] = mCharCountBuffer[i - 1];
+    }
+
+    mCharCountBuffer[0] = getNowLightCount();
+}
+
+/* 80229810-80229848 224150 0038+00 1/1 5/5 0/0 .text
+ * resetCharCountBuffer__19jmessage_tReferenceFv                */
+void jmessage_tReference::resetCharCountBuffer() {
+    for (int i = 0; i < 31; i++) {
+        mCharCountBuffer[i] = 0;
+    }
+
+    mLightBatchFlag = false;
+    mBatchFlag = false;
+    resetNowLightCount();
+    resetDrawLightCount();
+}
+
+/* 80229848-8022986C 224188 0024+00 1/1 0/0 0/0 .text
+ * allsetCharCountBuffer__19jmessage_tReferenceFv               */
+void jmessage_tReference::allsetCharCountBuffer() {
+    for (int i = 0; i < 31; i++) {
+        mCharCountBuffer[i] = getNowLightCount();
+    }
+}
+
+/* 8022986C-802298DC 2241AC 0070+00 2/2 0/0 0/0 .text            isCharSend__19jmessage_tReferenceFv
+ */
+bool jmessage_tReference::isCharSend() {
+    s16 delay_frame;
+    s16 var_r5;
+
+    if (getFukiKind() == 8) {
+        delay_frame = g_MsgObject_HIO_c.mHaloDelayFrameSpirit;
+        var_r5 = delay_frame;
+    } else {
+        delay_frame = g_MsgObject_HIO_c.mHaloDelayFrame;
+        var_r5 = delay_frame;
+    }
+
+    if (var_r5 < 0) {
+        var_r5 *= -1;
+    }
+
+    if (delay_frame < 0 && getDrawLightCount() >= getCharCountBuffer(var_r5)) {
+        return false;
+    }
+
+    return true;
+}
+
+/* 802298DC-8022994C 22421C 0070+00 1/1 0/0 0/0 .text isLightSend__19jmessage_tReferenceFv */
+bool jmessage_tReference::isLightSend() {
+    s16 delay_frame;
+    s16 var_r5;
+
+    if (getFukiKind() == 8) {
+        delay_frame = g_MsgObject_HIO_c.mHaloDelayFrameSpirit;
+        var_r5 = delay_frame;
+    } else {
+        delay_frame = g_MsgObject_HIO_c.mHaloDelayFrame;
+        var_r5 = delay_frame;
+    }
+
+    if (var_r5 < 0) {
+        var_r5 *= -1;
+    }
+
+    if (delay_frame > 0 && getDrawLightCount() >= getCharCountBuffer(var_r5)) {
+        return false;
+    }
+
+    return true;
+}
+
+/* 8022994C-802299AC 22428C 0060+00 0/0 1/1 0/0 .text            isLightEnd__19jmessage_tReferenceFv
+ */
+bool jmessage_tReference::isLightEnd() {
+    s16 delay_frame;
+
+    if (getFukiKind() == 8) {
+        delay_frame = g_MsgObject_HIO_c.mHaloDelayFrameSpirit;
+    } else {
+        delay_frame = g_MsgObject_HIO_c.mHaloDelayFrame;
+    }
+
+    if (delay_frame < 0) {
+        delay_frame *= -1;
+    }
+
+    if (getCharCountBuffer(delay_frame) == getCharCountBuffer(0)) {
+        return true;
+    }
+
+    return false;
+}
+
+/* 802299AC-802299EC 2242EC 0040+00 2/2 0/0 0/0 .text
+ * decideOutFontRupeeColor__19jmessage_tReferenceFi             */
+void jmessage_tReference::decideOutFontRupeeColor(int i_inputVal) {
+    s16 payment = getObjectPtr()->getNowTotalPayment();
+    s16 price = getObjectPtr()->getNowTotalPrice();
+    int diff = price - payment;
+
+    if (diff > i_inputVal) {
+        mOutFontRupeeColor = 1;
+    } else if (diff == i_inputVal) {
+        mOutFontRupeeColor = 0;
+    } else {
+        mOutFontRupeeColor = 2;
+    }
+}
+
+/* 802299EC-80229A28 22432C 003C+00 0/0 1/1 0/0 .text            __ct__17jmessage_tControlFv */
+jmessage_tControl::jmessage_tControl() {}
+
+/* 80229A28-80229AC4 224368 009C+00 1/1 0/0 0/0 .text
+ * __ct__26jmessage_tMeasureProcessorFPC19jmessage_tReference   */
+jmessage_tMeasureProcessor::jmessage_tMeasureProcessor(jmessage_tReference const* param_0)
+    : TRenderingProcessor(param_0) {
+    jmessage_tReference* reference_p = (jmessage_tReference*)getReference();
+
+    reference_p->resetCharactor();
+    field_0x38 = lit_4028;
+    mTotalLineCnt = 0;
+    field_0x3e = 0;
+    field_0x40 = 0;
+    field_0x48 = 0;
+    field_0x44 = 0;
+    mSelectType = 0;
+    field_0x46 = 0;
+    field_0x47 = 0;
+    field_0x49 = 0;
+    mPageLineMax = reference_p->getLineMax();
+    field_0x4b = 0;
+    field_0x4c = 0;
+    field_0x4d = 0;
+}
+
+/* 80229AC4-80229CB4 224404 01F0+00 1/0 0/0 0/0 .text
+ * do_begin__26jmessage_tMeasureProcessorFPCvPCc                */
+// matches with literals
+#ifdef NONMATCHING
+void jmessage_tMeasureProcessor::do_begin(void const* param_0, char const* param_1) {
+    jmessage_tReference* reference_p = (jmessage_tReference*)getReference();
+
+    reference_p->resetCharactor();
+    reference_p->setRevoMessageID(0);
+    field_0x38 = 1.0f;
+    field_0x4c = *((u8*)param_0 + 8);
+    field_0x42 = *((u8*)param_0 + 0xE);
+
+    for (int i = 0; i < 40; i++) {
+        reference_p->setLineLength(i, 0.0f, 0.0f);
+        reference_p->setPageLine(i, 0);
+        reference_p->setPageLineMax(i, 0);
+        reference_p->setPageType(i, 0);
+        reference_p->setLineArrange(i, *((u8*)param_0 + 0xD));
+        reference_p->setLineScale(i, 100);
+
+        if (reference_p->isPlaceName() || reference_p->isStaffRoll() || reference_p->isBossName() ||
+            reference_p->getFukiKind() == 9)
+        {
+            reference_p->setLineArrange(i, 1);
+        } else {
+            if (*((u16*)param_0 + 0x2) == 0x2A5) {
+                reference_p->setLineArrange(i, 1);
+            }
+
+            if (*((u8*)param_0 + 0xD) == 0) {
+                reference_p->setLineArrange(i, 1);
+            }
+        }
+    }
+
+    for (int i = 0; i < 3; i++) {
+        reference_p->setSelLength(i, 0.0f);
+        reference_p->offSelectRubyFlag(i);
+    }
+
+    reference_p->setPageEndCount(0);
+    mTotalLineCnt = 0;
+    field_0x3e = 0;
+    field_0x40 = 0;
+    field_0x48 = 0;
+    field_0x44 = 0;
+    mSelectType = 0;
+    field_0x46 = 0;
+    field_0x47 = 0;
+    field_0x49 = 0;
+    mPageLineMax = reference_p->getLineMax();
+    reference_p->resetWord();
+    field_0x4b = 0;
+
+    dMsgObject_c* object_p = reference_p->getObjectPtr();
+    object_p->offAutoMessageFlag();
+
+    if (!reference_p->isSelectSetCancelFlag()) {
+        object_p->resetSelectBomBag();
+    }
+
+    if (reference_p->getDistanceScale() != 1.0f) {
+        do_scale(field_0x38);
+    }
+}
+#else
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tMeasureProcessor::do_begin(void const* param_0, char const* param_1) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_begin__26jmessage_tMeasureProcessorFPCvPCc.s"
+}
+#pragma pop
+#endif
+
+/* 80229CB4-80229E3C 2245F4 0188+00 1/0 0/0 0/0 .text do_end__26jmessage_tMeasureProcessorFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tMeasureProcessor::do_end() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_end__26jmessage_tMeasureProcessorFv.s"
+}
+#pragma pop
+
+/* 80229E3C-8022A268 22477C 042C+00 1/0 0/0 0/0 .text do_character__26jmessage_tMeasureProcessorFi
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tMeasureProcessor::do_character(int param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_character__26jmessage_tMeasureProcessorFi.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399610 = "'";
+SECTION_DEAD static char const* const stringBase_80399612 = "s";
+SECTION_DEAD static char const* const stringBase_80399614 = "%d";
+#pragma pop
+
+/* 80454A7C-80454A80 00307C 0004+00 5/5 0/0 0/0 .sdata2          @5151 */
+SECTION_SDATA2 static f32 lit_5151 = 100.0f;
+
+/* 80454A80-80454A88 003080 0008+00 5/5 0/0 0/0 .sdata2          @5154 */
+SECTION_SDATA2 static f64 lit_5154 = 4503599627370496.0 /* cast u32 to float */;
+
+/* 8022A268-8022B0B0 224BA8 0E48+00 5/0 0/0 0/0 .text do_tag__26jmessage_tMeasureProcessorFUlPCvUl
+ */
+#ifdef NONMATCHING
+bool jmessage_tMeasureProcessor::do_tag(u32 i_tag, void const* i_data, u32 i_size) {
+    jmessage_tReference* reference_p = (jmessage_tReference*)getReference();
+
+    switch (i_tag & 0xFF0000) {
+    case 0x10000:
+    case 0x20000:
+        return true;
+    case 0xFF0000:
+        switch (i_tag) {
+        case 0xFF0000:
+            return true;
+        case 0xFF0001:
+            u16 scale = *(u16*)i_data;
+            reference_p->setLineScale(mTotalLineCnt, scale);
+            do_scale(scale / 100.0f);
+            return true;
+        case 0xFF0002:
+        case 0xFFFF02:
+            do_rubyset(i_data, i_size);
+            if (field_0x46 != 0) {
+                if (mSelectType == 2) {
+                    if (!reference_p->isSelectRubyFlag(field_0x46 - 1)) {
+                        reference_p->onSelectRubyFlag(field_0x46 - 1);
+                    }
+                } else if (mSelectType == 3) {
+                    if (!reference_p->isSelectRubyFlag(field_0x46 - 1)) {
+                        reference_p->onSelectRubyFlag(field_0x46 - 1);
+                    }
+                }
+            }
+            return true;
+        }
+    case 0:
+        switch (i_tag) {
+        case 1:
+            reference_p->setCharAllAlphaRate(1.0f);
+            return true;
+        case 2:
+            return true;
+        case 0x3e:
+            char msg_num1[4];
+            sprintf(msg_num1, "%d", dComIfGp_getMessageCountNumber() / 100);
+            push_word(msg_num1);
+            return true;
+        case 0x3f:
+            char msg_num2[4];
+            sprintf(msg_num2, "%d", dComIfGp_getMessageCountNumber() % 100);
+            push_word(msg_num2);
+            return true;
+        case 3:
+        case 4:
+            if (*(u16*)i_data != 0) {
+                reference_p->mpObjectPtr->onAutoMessageFlag();
+            }
+            return true;
+        case 0x28:
+            reference_p->setDemoFrame(*(u32*)i_data);
+            return true;
+        case 0:
+            if (field_0x49 != 0) {
+                field_0x49 = 0;
+            }
+
+            char player_name[100];
+            strcpy(player_name, dComIfGs_getPlayerName());
+            push_word(player_name);
+            return true;
+        case 0x22:
+            if (field_0x49 != 0) {
+                field_0x49 = 0;
+            }
+
+            char horse_name[100];
+            strcpy(horse_name, dComIfGs_getHorseName());
+            push_word(horse_name);
+            return true;
+        case 0x35:
+            if (field_0x49 != 0) {
+                field_0x49 = 0;
+            }
+
+            stack_pushCurrent(dMsgObject_getWord());
+            return true;
+        case 0x29:
+            if (field_0x49 != 0) {
+                field_0x49 = 0;
+            }
+
+            stack_pushCurrent(reference_p->getObjectPtr()->getSmellName());
+            return true;
+        case 0x2b:
+            if (field_0x49 != 0) {
+                field_0x49 = 0;
+            }
+
+            stack_pushCurrent(reference_p->getObjectPtr()->getPortalName());
+            return true;
+        case 0x2d:
+            if (field_0x49 != 0) {
+                field_0x49 = 0;
+            }
+
+            dMsgObject_c* object_p = reference_p->getObjectPtr();
+            if (!reference_p->isSelectSetCancelFlag()) {
+                reference_p->onBombNameUseFlag();
+            }
+
+            stack_pushCurrent(object_p->getBombName());
+            return true;
+        case 0x3b:
+            if (field_0x49 != 0) {
+                field_0x49 = 0;
+            }
+
+            stack_pushCurrent(reference_p->getObjectPtr()->getInsectName());
+            return true;
+        case 0x3c:
+            if (field_0x49 != 0) {
+                field_0x49 = 0;
+            }
+
+            stack_pushCurrent(reference_p->getObjectPtr()->getLetterName());
+            return true;
+        case 8:
+            if (field_0x46 == 0) {
+                if (field_0x3e > 0) {
+                    reference_p->setPageLine(field_0x40, field_0x3e);
+                    reference_p->setPageLineMax(field_0x40, field_0x3e);
+                    do_pageType(field_0x3e);
+                    field_0x3e = 0;
+                    mPageLineMax = reference_p->getLineMax();
+                    field_0x49 = 0;
+                }
+
+                mSelectType = 2;
+                field_0x44 = 1;
+                field_0x46 = 1;
+            }
+
+            if (*(u8*)i_data == 1) {
+                reference_p->setSelectPos(field_0x47);
+            }
+
+            field_0x47++;
+            field_0x46++;
+            reference_p->setLineArrange(mTotalLineCnt, 1);
+            return true;
+        case 9:
+            if (field_0x46 == 0) {
+                if (field_0x3e > 0) {
+                    reference_p->setPageLine(field_0x40, field_0x3e);
+                    reference_p->setPageLineMax(field_0x40, field_0x3e);
+                    do_pageType(field_0x3e);
+                    field_0x3e = 0;
+                    mPageLineMax = reference_p->getLineMax();
+                    field_0x49 = 0;
+                }
+
+                mSelectType = 3;
+                field_0x44 = 2;
+            }
+
+            if (*(u8*)i_data == 1) {
+                reference_p->setSelectPos(field_0x47);
+            }
+
+            field_0x47++;
+            field_0x46++;
+            reference_p->setLineArrange(mTotalLineCnt, 1);
+            return true;
+        case 0x1f:
+        case 0x34:
+            reference_p->setSelectPos(field_0x47);
+        case 0x1e:
+        case 0x33:
+            field_0x47++;
+            reference_p->setLineArrange(mTotalLineCnt, 0);
+            do_space(0);
+            return true;
+        case 0x20:
+            mSelectType = 1;
+            field_0x38 = 1.0f;
+            do_character(10);
+            stack_pushCurrent(reference_p->getSelMsgPtr());
+            return true;
+        case 0x21:
+            do_name1();
+            return true;
+        case 10:
+        case 0xb:
+        case 0xc:
+        case 0xd:
+        case 0xe:
+        case 0xf:
+        case 0x10:
+        case 0x11:
+        case 0x12:
+        case 0x13:
+        case 0x14:
+        case 0x15:
+        case 0x16:
+        case 0x17:
+        case 0x18:
+        case 0x19:
+        case 0x1a:
+        case 0x1b:
+        case 0x1c:
+        case 0x1d:
+        case 0x23:
+        case 0x24:
+        case 0x27:
+        case 0x2a:
+        case 0x2c:
+        case 0x2e:
+        case 0x2f:
+        case 0x39:
+        case 0x3a:
+            do_space(i_tag);
+            return true;
+        case 0x30:
+            do_space(i_tag);
+            if (!reference_p->isSelectSetCancelFlag()) {
+                reference_p->getObjectPtr()->addSelectBomBag(*(u8*)i_data - 1);
+            }
+            return true;
+        case 0x25:
+            for (int i = 0; i < 4; i++) {
+                do_space(0);
+            }
+            return true;
+        case 0x26:
+            return true;
+        case 0x31:
+            char bomb_num_text[40];
+            u8 sel_bomb_num = reference_p->getObjectPtr()->getSelectBombNum();
+            dMsgUnit_setTag(7, sel_bomb_num, bomb_num_text);
+            push_word(bomb_num_text);
+            return true;
+        case 0x32:
+            char bomb_price_text[40];
+            s16 sel_bomb_price = reference_p->getObjectPtr()->getSelectBombPrice();
+            dMsgUnit_setTag(1, sel_bomb_price, bomb_price_text);
+            push_word(bomb_price_text);
+            return true;
+        case 0x37:
+            u8 bomb_type = NORMAL_BOMB;
+
+            if (*(u8*)i_data == 1) {
+                bomb_type = WATER_BOMB;
+            } else if (*(u8*)i_data == 2) {
+                bomb_type = POKE_BOMB;
+            }
+
+            char bomb_max_text[40];
+            u8 bomb_max = dComIfGs_getBombMax(bomb_type);
+            dMsgUnit_setTag(7, bomb_max, bomb_max_text);
+            push_word(bomb_max_text);
+            return true;
+        case 0x38:
+            char arrow_max_text[40];
+            u8 arrow_max = dComIfGs_getArrowMax();
+            dMsgUnit_setTag(0, arrow_max, arrow_max_text);
+            push_word(arrow_max_text);
+            return true;
+        }
+        return true;
+    case 0x40000:
+        switch (i_tag & 0xFF00FFFF) {
+        case 0:
+            push_word(changeCodeToChar(0x24));
+            return true;
+        case 1:
+            push_word(changeCodeToChar(0x5C));
+            return true;
+        case 2:
+            push_word(changeCodeToChar(0x40));
+            return true;
+        case 3:
+            push_word(changeCodeToChar(0x81F2));
+            return true;
+        case 4:
+            push_word(changeCodeToChar(0x81F3));
+            return true;
+        case 5:
+            push_word(changeCodeToChar(0x81E3));
+            return true;
+        case 6:
+            push_word(changeCodeToChar(0x876C));
+            return true;
+        case 7:
+            push_word(changeCodeToChar(0x8766));
+            return true;
+        case 8:
+            push_word(changeCodeToChar(0x8765));
+            return true;
+        case 9:
+            push_word(changeCodeToChar(0x8767));
+            return true;
+        case 10:
+            push_word(changeCodeToChar(0x8768));
+            return true;
+        case 11:
+            push_word(changeCodeToChar(0x8769));
+            return true;
+        case 12:
+            push_word(changeCodeToChar(0x876A));
+            return true;
+        case 13:
+            push_word(changeCodeToChar(0x876B));
+            return true;
+        }
+        return false;
+    case 0x50000:
+        char buffer_0[40];
+        switch (i_tag & 0xFF00FFFF) {
+        case 0:
+            if (*(u8*)i_data == 0) {
+                int msg_time_ms = dMeter2Info_getMsgTimeMs();
+                dMsgUnit_setTag(4, msg_time_ms, buffer_0);
+            } else if (*(u8*)i_data == 2) {
+                int race_time = dComIfGs_getRaceGameTime();
+                dMsgUnit_setTag(4, race_time, buffer_0);
+            } else {
+                int time_ms = dMeter2Info_getTimeMs();
+                dMsgUnit_setTag(4, time_ms, buffer_0);
+            }
+            break;
+        case 1:
+            u32 msg_num_ = dComIfGp_getMessageCountNumber();
+            dMsgUnit_setTag(0, msg_num_, buffer_0);
+            break;
+        case 2:
+            u32 msg_num = dComIfGp_getMessageCountNumber();
+            dMsgUnit_setTag(1, msg_num, buffer_0);
+            break;
+        case 9:
+            s16 fund_raise_val = *(u32*)i_data;
+            reference_p->getObjectPtr()->setFundRaisingValue(fund_raise_val);
+
+            int fund_raising = fund_raise_val - dMsgObject_getFundRaising();
+            dMsgUnit_setTag(10, fund_raising, buffer_0);
+            break;
+        case 10:
+            u32 letter_num = dMeter2Info_getNewLetterNum();
+            dMsgUnit_setTag(11, letter_num, buffer_0);
+            break;
+        case 11:
+            u32 poh_num = getPohNum();
+            dMsgUnit_setTag(12, poh_num, buffer_0);
+            break;
+        case 12:
+            int tmp;
+            if (*(u8*)i_data == 0) {
+                tmp = dComIfGp_getMessageCountNumber();
+            } else {
+                tmp = dComIfGs_getBalloonScore();
+            }
+
+            dMsgUnit_setTag(13, tmp, buffer_0);
+            break;
+        case 3:
+            u32 insect_num;
+            if (*(u8*)i_data == 0) {
+                insect_num = dComIfGs_checkGetInsectNum();
+            } else {
+                insect_num = 24 - dComIfGs_checkGetInsectNum();
+            }
+
+            dMsgUnit_setTag(2, insect_num, buffer_0);
+            break;
+        case 4:
+            dMsgUnit_setTag(3, 0, buffer_0);
+            break;
+        case 5:
+            dMsgUnit_setTag(0x10000, dComIfGp_getNeedLightDropNum(), buffer_0);
+            break;
+        case 6:
+            dMsgUnit_setTag(6, 20 - i_dComIfGs_getEventReg(0xFF1F), buffer_0);
+            break;
+        case 8:
+            dMsgUnit_setTag(9, (u32)dComIfGp_getMessageCountNumber(), buffer_0);
+            break;
+        case 13:
+            dMsgUnit_setTag(14, (u32)dComIfGp_getMessageCountNumber(), buffer_0);
+            break;
+        case 14:
+            dMsgUnit_setTag(0x10001, (u32)dComIfGp_getMessageCountNumber(), buffer_0);
+            break;
+        case 7:
+            int now_count = dMeter2Info_getNowCount();
+            dMsgUnit_setTag(8, now_count, buffer_0);
+            break;
+        default:
+            return false;
+        }
+        push_word(buffer_0);
+        return true;
+    case 0x60000:
+        char buffer1[40];
+        switch (i_tag & 0xFF00FFFF) {
+        case 0:
+            push_word(buffer1);
+            return true;
+        case 1:
+            push_word(buffer1);
+            return true;
+        case 2:
+            push_word(changeCodeToChar(0xB2));
+            return true;
+        case 3:
+            push_word(changeCodeToChar(0xB3));
+            return true;
+        case 4:
+            push_word(changeCodeToChar(0xB1));
+            return true;
+        case 5:
+            push_word(changeCodeToChar(0x89));
+            return true;
+        case 6:
+            push_word(changeCodeToChar(0xB9));
+            return true;
+        case 7:
+            push_word(changeCodeToChar(0xBC));
+            return true;
+        case 8:
+            push_word(changeCodeToChar(0xBD));
+            return true;
+        case 9:
+            push_word(changeCodeToChar(0xBE));
+            return true;
+        case 10:
+        case 11:
+            do_space(i_tag);
+            return true;
+        }
+    case 0x30000:
+        switch (i_tag & 0xFF00FFFF) {
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+        case 10:
+        case 11:
+        case 12:
+        case 13:
+        case 14:
+        case 15:
+        case 16:
+        case 17:
+        case 18:
+        case 19:
+        case 20:
+            do_space(i_tag);
+            return true;
+        case 0:
+            reference_p->setRevoMessageID(*(u32*)i_data);
+            return true;
+        }
+    }
+
+    return false;
+}
+#else
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm bool jmessage_tMeasureProcessor::do_tag(u32 param_0, void const* param_1, u32 param_2) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_tag__26jmessage_tMeasureProcessorFUlPCvUl.s"
+}
+#pragma pop
+#endif
+
+/* 8022B0B0-8022B18C 2259F0 00DC+00 2/2 0/0 0/0 .text do_scale__26jmessage_tMeasureProcessorFf */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tMeasureProcessor::do_scale(f32 param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_scale__26jmessage_tMeasureProcessorFf.s"
+}
+#pragma pop
+
+/* 8022B18C-8022B3EC 225ACC 0260+00 2/1 0/0 0/0 .text do_space__26jmessage_tMeasureProcessorFUl */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tMeasureProcessor::do_space(u32 param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_space__26jmessage_tMeasureProcessorFUl.s"
+}
+#pragma pop
+
+/* 8022B3EC-8022B454 225D2C 0068+00 3/3 0/0 0/0 .text do_pageType__26jmessage_tMeasureProcessorFi
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tMeasureProcessor::do_pageType(int param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_pageType__26jmessage_tMeasureProcessorFi.s"
+}
+#pragma pop
+
+/* 8022B454-8022B458 225D94 0004+00 1/1 0/0 0/0 .text do_name1__26jmessage_tMeasureProcessorFv */
+void jmessage_tMeasureProcessor::do_name1() {}
+
+/* 8022B458-8022B4E0 225D98 0088+00 1/1 0/0 0/0 .text
+ * do_rubyset__26jmessage_tMeasureProcessorFPCvUl               */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tMeasureProcessor::do_rubyset(void const* param_0, u32 param_1) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_rubyset__26jmessage_tMeasureProcessorFPCvUl.s"
+}
+#pragma pop
+
+/* 8022B4E0-8022B558 225E20 0078+00 1/1 0/0 0/0 .text push_word__26jmessage_tMeasureProcessorFPc
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tMeasureProcessor::push_word(char* param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/push_word__26jmessage_tMeasureProcessorFPc.s"
+}
+#pragma pop
+
+/* 8022B558-8022B5F4 225E98 009C+00 0/0 1/1 0/0 .text
+ * __ct__27jmessage_tSequenceProcessorFPC19jmessage_tReferenceP17jmessage_tControl */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm jmessage_tSequenceProcessor::jmessage_tSequenceProcessor(jmessage_tReference const* param_0,
+                                                             jmessage_tControl* param_1) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/__ct__27jmessage_tSequenceProcessorFPC19jmessage_tReferenceP17jmessage_tControl.s"
+}
+#pragma pop
+
+/* 8022B5F4-8022B654 225F34 0060+00 1/0 0/0 0/0 .text __dt__26jmessage_tMeasureProcessorFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+// asm jmessage_tMeasureProcessor::~jmessage_tMeasureProcessor() {
+extern "C" asm void __dt__26jmessage_tMeasureProcessorFv() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/__dt__26jmessage_tMeasureProcessorFv.s"
+}
+#pragma pop
+
+/* 8022B654-8022B658 225F94 0004+00 1/0 0/0 0/0 .text do_reset__27jmessage_tSequenceProcessorFv */
+void jmessage_tSequenceProcessor::do_reset() {}
+
+/* ############################################################################################## */
+/* 80454A88-80454A8C 003088 0004+00 1/1 0/0 0/0 .sdata2          @5490 */
+SECTION_SDATA2 static f32 lit_5490 = 10.0f;
+
+/* 80454A8C-80454A90 00308C 0004+00 2/2 0/0 0/0 .sdata2          @5491 */
+SECTION_SDATA2 static f32 lit_5491 = 255.0f;
+
+/* 8022B658-8022BA3C 225F98 03E4+00 1/0 0/0 0/0 .text
+ * do_begin__27jmessage_tSequenceProcessorFPCvPCc               */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tSequenceProcessor::do_begin(void const* param_0, char const* param_1) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_begin__27jmessage_tSequenceProcessorFPCvPCc.s"
+}
+#pragma pop
+
+/* 8022BA3C-8022BB7C 22637C 0140+00 1/0 0/0 0/0 .text do_end__27jmessage_tSequenceProcessorFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tSequenceProcessor::do_end() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_end__27jmessage_tSequenceProcessorFv.s"
+}
+#pragma pop
+
+/* 8022BB7C-8022BFE0 2264BC 0464+00 2/0 0/0 0/0 .text do_isReady__27jmessage_tSequenceProcessorFv
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm bool jmessage_tSequenceProcessor::do_isReady() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_isReady__27jmessage_tSequenceProcessorFv.s"
+}
+#pragma pop
+
+/* 8022BFE0-8022C1A0 226920 01C0+00 1/0 0/0 0/0 .text
+ * do_character__27jmessage_tSequenceProcessorFi                */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tSequenceProcessor::do_character(int param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_character__27jmessage_tSequenceProcessorFi.s"
+}
+#pragma pop
+
+/* 8022C1A0-8022C8FC 226AE0 075C+00 2/0 0/0 0/0 .text
+ * do_tag__27jmessage_tSequenceProcessorFUlPCvUl                */
+bool jmessage_tSequenceProcessor::do_tag(u32 i_tag, void const* i_data, u32 i_size) {
+    jmessage_tReference* reference_p =
+        (jmessage_tReference*)JMessage::TSequenceProcessor::getReference();
+
+    switch (i_tag & 0xFF0000) {
+    case 0x10000: {
+        cXyz pos = reference_p->getActorPos();
+        messageSePlay(field_0xb4, i_tag & 0xFF, &pos);
+        return true;
+    }
+    case 0x20000:
+        dComIfGp_setMesgCameraTagInfo(i_tag & 0xFF);
+        return true;
+    case 0xFF0000:
+        switch (i_tag) {
+        case 0xFF0000:
+            reference_p->setNowColorType(*(u8*)i_data);
+            return true;
+        case 0xFF0001:
+            reference_p->setNowTagScale(*(u16*)i_data);
+            return true;
+        case 0xFF0002:
+        case 0xFFFF02:
+            do_rubyset(i_data, i_size);
+            return true;
+        }
+    case 0:
+        switch (i_tag) {
+        case 0:
+        case 0x22:
+            push_word();
+            return true;
+        case 0x35:
+            JMessage::TSequenceProcessor::stack_pushCurrent(dMsgObject_getWord());
+            return true;
+        case 0x29:
+            JMessage::TSequenceProcessor::stack_pushCurrent(
+                reference_p->getObjectPtr()->getSmellName());
+            return true;
+        case 0x2b:
+            JMessage::TSequenceProcessor::stack_pushCurrent(
+                reference_p->getObjectPtr()->getPortalName());
+            return true;
+        case 0x2d:
+            JMessage::TSequenceProcessor::stack_pushCurrent(
+                reference_p->getObjectPtr()->getBombName());
+            return true;
+        case 0x3b:
+            JMessage::TSequenceProcessor::stack_pushCurrent(
+                reference_p->getObjectPtr()->getInsectName());
+            return true;
+        case 0x3c:
+            JMessage::TSequenceProcessor::stack_pushCurrent(
+                reference_p->getObjectPtr()->getLetterName());
+            return true;
+        case 0x3d:
+            return true;
+        case 0x3e:
+        case 0x3f:
+            push_word();
+            return true;
+        case 1:
+            field_0xb2 = 1;
+            reference_p->setBatchColorFlag(1);
+            return true;
+        case 2:
+            field_0xb2 = 0;
+            return true;
+        case 3:
+        case 4:
+            reference_p->setSendTimer(*(u16*)i_data);
+            if (reference_p->getSendTimer() == 0) {
+                reference_p->setSendFlag(3);
+            } else {
+                reference_p->setSendFlag(1);
+            }
+            return true;
+        case 5:
+            reference_p->setSendTimer(*(u16*)i_data);
+            reference_p->setSendFlag(2);
+            return true;
+        case 0x36:
+            dMeter2Info_setMsgKeyWaitTimer(*(u16*)i_data);
+            reference_p->setSendTimer(*(u16*)i_data);
+            reference_p->setSendFlag(6);
+            return true;
+        case 0x28:
+            reference_p->setDemoFrame(*(u32*)i_data);
+            reference_p->setSendFlag(4);
+            return true;
+        case 6:
+            field_0xa8 = *(u16*)i_data;
+            field_0xa4 = field_0xa8;
+            return true;
+        case 7:
+            field_0xa4 = *(u16*)i_data;
+            mMouthCheck = 0;
+            return true;
+        case 8:
+            if (reference_p->getSelectNum() == 0) {
+                reference_p->setSelectNum(2);
+                reference_p->setSelectType(0);
+                field_0xb2 = 1;
+            }
+
+            if (*(u8*)i_data == 1) {
+                reference_p->setSelectPos(field_0xad);
+            }
+
+            field_0xad++;
+            field_0xac = 1;
+            return true;
+        case 9:
+            if (reference_p->getSelectNum() == 0) {
+                reference_p->setSelectNum(3);
+                reference_p->setSelectType(0);
+                field_0xb2 = 1;
+            }
+
+            if (*(u8*)i_data == 1) {
+                reference_p->setSelectPos(field_0xad);
+            }
+
+            field_0xad++;
+            field_0xac = 1;
+            return true;
+        case 0x1e:
+            if (reference_p->getSelectNum() != 2 || reference_p->getSelectType() != 1) {
+                reference_p->setSelectNum(2);
+                reference_p->setSelectType(1);
+            }
+
+            field_0xb2 = 1;
+            return true;
+        case 0x1f:
+            if (reference_p->getSelectNum() != 2 || reference_p->getSelectType() != 1) {
+                reference_p->setSelectNum(2);
+                reference_p->setSelectType(1);
+                reference_p->setSelectPos(0);
+            } else {
+                reference_p->setSelectPos(1);
+            }
+
+            field_0xb2 = 1;
+            return true;
+        case 0x33:
+            if (reference_p->getSelectNum() != 3 || reference_p->getSelectType() != 1) {
+                reference_p->setSelectNum(3);
+                reference_p->setSelectType(1);
+            }
+
+            field_0xad++;
+            field_0xb2 = 1;
+            return true;
+        case 0x34:
+            if (reference_p->getSelectNum() != 3 || reference_p->getSelectType() != 1) {
+                reference_p->setSelectNum(3);
+                reference_p->setSelectType(1);
+            }
+
+            reference_p->setSelectPos(field_0xad);
+            field_0xb2 = 1;
+            return true;
+        case 0x20:
+            do_character(10);
+            JMessage::TSequenceProcessor::stack_pushCurrent(reference_p->getSelMsgPtr());
+            return true;
+        case 0x21:
+            do_name1();
+            return true;
+        case 10:
+        case 0xb:
+        case 0xc:
+        case 0xd:
+        case 0xe:
+        case 0xf:
+        case 0x10:
+        case 0x11:
+        case 0x12:
+        case 0x13:
+        case 0x14:
+        case 0x15:
+        case 0x16:
+        case 0x17:
+        case 0x18:
+        case 0x19:
+        case 0x1a:
+        case 0x1b:
+        case 0x1c:
+        case 0x1d:
+        case 0x23:
+        case 0x24:
+        case 0x27:
+        case 0x2a:
+        case 0x2c:
+        case 0x2e:
+        case 0x2f:
+        case 0x30:
+        case 0x39:
+        case 0x3a:
+            do_space(i_tag);
+            return true;
+        case 0x25:
+            reference_p->decideOutFontRupeeColor(0);
+            dMsgObject_c* object_p = reference_p->getObjectPtr();
+
+            object_p->setInputValue(0);
+            object_p->onInputFlag();
+            reference_p->resetInputFigure();
+            reference_p->setSendFlag(5);
+
+            if (*(u32*)i_data == 1) {
+                dComIfGs_onTmpBit(dSv_event_tmp_flag_c::tempBitLabels[80]);
+            }
+            return true;
+        case 0x26:
+            reference_p->onButtonTagStopFlag();
+            return true;
+        case 0x31:
+            char buffer1[40];
+            u8 sel_bomb_num = reference_p->getObjectPtr()->getSelectBombNum();
+            dMsgUnit_setTag(7, sel_bomb_num, buffer1);
+            strcpy((char*)reference_p->getWord(field_0xb5), buffer1);
+            push_word();
+            return true;
+        case 0x32:
+            char buffer2[40];
+            s16 sel_bomb_price = reference_p->getObjectPtr()->getSelectBombPrice();
+            dMsgUnit_setTag(1, sel_bomb_price, buffer2);
+            strcpy((char*)reference_p->getWord(field_0xb5), buffer2);
+            push_word();
+            return true;
+        case 0x37:
+        case 0x38:
+            push_word();
+            return true;
+        }
+    case 0x40000:
+        switch (i_tag & 0xFF00FFFF) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+        case 10:
+        case 11:
+        case 12:
+        case 13:
+            push_word();
+            return true;
+        }
+    case 0x50000:
+        switch (i_tag & 0xFF00FFFF) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+        case 10:
+        case 11:
+        case 12:
+        case 13:
+        case 14:
+            push_word();
+            return true;
+        }
+    case 0x60000:
+        switch (i_tag & 0xFF00FFFF) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+            push_word();
+            return true;
+        case 10:
+        case 11:
+            do_space(i_tag);
+            return true;
+        }
+    case 0x30000:
+        switch (i_tag & 0xFF00FFFF) {
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+        case 10:
+        case 11:
+        case 12:
+        case 13:
+        case 14:
+        case 15:
+        case 16:
+        case 17:
+        case 18:
+        case 19:
+        case 20:
+            do_space(i_tag);
+            return true;
+        case 0:
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/* 8022C8FC-8022C904 22723C 0008+00 1/0 0/0 0/0 .text
+ * do_jump_isReady__27jmessage_tSequenceProcessorFv             */
+bool jmessage_tSequenceProcessor::do_jump_isReady() {
+    return true;
+}
+
+/* 8022C904-8022C908 227244 0004+00 1/1 0/0 0/0 .text do_name1__27jmessage_tSequenceProcessorFv */
+void jmessage_tSequenceProcessor::do_name1() {
+    /* empty function */
+}
 
 /* 803C0330-803C03F4 -00001 00C4+00 1/1 0/0 0/0 .data            @6110 */
 SECTION_DATA static void* lit_6110[49] = {
@@ -1080,6 +2497,123 @@ SECTION_DATA static void* lit_6110[49] = {
     (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0xF4),
     (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0xFC),
 };
+
+/* 8022C908-8022CA24 227248 011C+00 2/1 0/0 0/0 .text do_space__27jmessage_tSequenceProcessorFUl
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tSequenceProcessor::do_space(u32 param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_space__27jmessage_tSequenceProcessorFUl.s"
+}
+#pragma pop
+
+/* 8022CA24-8022CAAC 227364 0088+00 1/1 0/0 0/0 .text
+ * do_rubyset__27jmessage_tSequenceProcessorFPCvUl              */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tSequenceProcessor::do_rubyset(void const* param_0, u32 param_1) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_rubyset__27jmessage_tSequenceProcessorFPCvUl.s"
+}
+#pragma pop
+
+/* 8022CAAC-8022CB10 2273EC 0064+00 1/1 0/0 0/0 .text push_word__27jmessage_tSequenceProcessorFv
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tSequenceProcessor::push_word() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/push_word__27jmessage_tSequenceProcessorFv.s"
+}
+#pragma pop
+
+/* 8022CB10-8022CBE4 227450 00D4+00 2/2 0/0 0/0 .text
+ * messageSePlay__27jmessage_tSequenceProcessorFUcUcP4cXyz      */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tSequenceProcessor::messageSePlay(u8 param_0, u8 param_1, cXyz* param_2) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/messageSePlay__27jmessage_tSequenceProcessorFUcUcP4cXyz.s"
+}
+#pragma pop
+
+/* 8022CBE4-8022CBE8 227524 0004+00 1/0 0/0 0/0 .text
+ * do_jump__27jmessage_tSequenceProcessorFPCvPCc                */
+void jmessage_tSequenceProcessor::do_jump(void const* param_0, char const* param_1) {}
+
+/* 8022CBE8-8022CCB0 227528 00C8+00 2/2 0/0 0/0 .text
+ * calcStringLength__27jmessage_tSequenceProcessorFv            */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tSequenceProcessor::calcStringLength() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/calcStringLength__27jmessage_tSequenceProcessorFv.s"
+}
+#pragma pop
+
+/* 8022CCB0-8022CDC8 2275F0 0118+00 0/0 1/1 0/0 .text
+ * __ct__28jmessage_tRenderingProcessorFPC19jmessage_tReference */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm jmessage_tRenderingProcessor::jmessage_tRenderingProcessor(jmessage_tReference const* param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/__ct__28jmessage_tRenderingProcessorFPC19jmessage_tReference.s"
+}
+#pragma pop
+
+/* 8022CDC8-8022CDCC 227708 0004+00 1/0 0/0 0/0 .text do_reset__28jmessage_tRenderingProcessorFv
+ */
+void jmessage_tRenderingProcessor::do_reset() {}
+
+/* ############################################################################################## */
+/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399617 = "";
+#pragma pop
+
+/* 8022CDCC-8022CFD8 22770C 020C+00 1/0 0/0 0/0 .text
+ * do_begin__28jmessage_tRenderingProcessorFPCvPCc              */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tRenderingProcessor::do_begin(void const* param_0, char const* param_1) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_begin__28jmessage_tRenderingProcessorFPCvPCc.s"
+}
+#pragma pop
+
+/* 8022CFD8-8022D0A0 227918 00C8+00 1/0 0/0 0/0 .text do_end__28jmessage_tRenderingProcessorFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tRenderingProcessor::do_end() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_end__28jmessage_tRenderingProcessorFv.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80454A90-80454A94 003090 0004+00 1/1 0/0 0/0 .sdata2          @6374 */
+SECTION_SDATA2 static f32 lit_6374 = 3.0f / 10.0f;
+
+/* 8022D0A0-8022D74C 2279E0 06AC+00 1/0 0/0 0/0 .text
+ * do_character__28jmessage_tRenderingProcessorFi               */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tRenderingProcessor::do_character(int param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_character__28jmessage_tRenderingProcessorFi.s"
+}
+#pragma pop
 
 /* 803C03F4-803C0448 -00001 0054+00 1/1 0/0 0/0 .data            @6572 */
 SECTION_DATA static void* lit_6572[21] = {
@@ -1174,6 +2708,68 @@ SECTION_DATA static void* lit_6571[64] = {
     (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x22C),
 };
 
+/* 8022D74C-8022E12C 22808C 09E0+00 3/0 0/0 0/0 .text
+ * do_tag__28jmessage_tRenderingProcessorFUlPCvUl               */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm bool jmessage_tRenderingProcessor::do_tag(u32 param_0, void const* param_1, u32 param_2) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_tag__28jmessage_tRenderingProcessorFUlPCvUl.s"
+}
+#pragma pop
+
+/* 8022E12C-8022E17C 228A6C 0050+00 0/0 2/2 0/0 .text
+ * resetRendering__28jmessage_tRenderingProcessorFv             */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tRenderingProcessor::resetRendering() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/resetRendering__28jmessage_tRenderingProcessorFv.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399618 = ""
+                                                            "\x1B"
+                                                            "CR[%d]";
+#pragma pop
+
+/* 8022E17C-8022E260 228ABC 00E4+00 2/2 0/0 0/0 .text
+ * do_widthcenter__28jmessage_tRenderingProcessorFv             */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tRenderingProcessor::do_widthcenter() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_widthcenter__28jmessage_tRenderingProcessorFv.s"
+}
+#pragma pop
+
+/* 8022E260-8022E318 228BA0 00B8+00 1/1 0/0 0/0 .text
+ * do_selwidthcenter__28jmessage_tRenderingProcessorFi          */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tRenderingProcessor::do_selwidthcenter(int param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_selwidthcenter__28jmessage_tRenderingProcessorFi.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399620 = ""
+                                                            "\x1B"
+                                                            "CD[%d]";
+#pragma pop
+
 /* 803C0548-803C056C -00001 0024+00 1/1 0/0 0/0 .data            @6703 */
 SECTION_DATA static void* lit_6703[9] = {
     (void*)(((char*)do_heightcenter__28jmessage_tRenderingProcessorFv) + 0xC8),
@@ -1186,6 +2782,385 @@ SECTION_DATA static void* lit_6703[9] = {
     (void*)(((char*)do_heightcenter__28jmessage_tRenderingProcessorFv) + 0x378),
     (void*)(((char*)do_heightcenter__28jmessage_tRenderingProcessorFv) + 0x3A8),
 };
+
+/* 8022E318-8022E7CC 228C58 04B4+00 3/2 0/0 0/0 .text
+ * do_heightcenter__28jmessage_tRenderingProcessorFv            */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tRenderingProcessor::do_heightcenter() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_heightcenter__28jmessage_tRenderingProcessorFv.s"
+}
+#pragma pop
+
+/* 8022E7CC-8022E860 22910C 0094+00 2/2 0/0 0/0 .text do_color__28jmessage_tRenderingProcessorFUc
+ */
+void jmessage_tRenderingProcessor::do_color(u8 i_colorNo) {
+    jmessage_tReference* reference_p = (jmessage_tReference*)getReference();
+
+    mColorNo = i_colorNo;
+    mCCColor = getFontCCColorTable(i_colorNo, reference_p->getFukiKind());
+    mGCColor = getFontGCColorTable(i_colorNo, reference_p->getFukiKind());
+
+    char buffer[40];
+    sprintf(buffer,
+            "\x1B"
+            "CC[%08x]"
+            "\x1B"
+            "GC[%08x]",
+            mCCColor, mGCColor);
+    do_strcat(buffer, false, false, false);
+}
+
+/* ############################################################################################## */
+/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039963B = ""
+                                                            "\x1B"
+                                                            "FX[%d]"
+                                                            "\x1B"
+                                                            "FY[%d]";
+#pragma pop
+
+/* 8022E860-8022E960 2291A0 0100+00 2/2 0/0 0/0 .text do_scale__28jmessage_tRenderingProcessorFf
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tRenderingProcessor::do_scale(f32 param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_scale__28jmessage_tRenderingProcessorFf.s"
+}
+#pragma pop
+
+/* 8022E960-8022E9C0 2292A0 0060+00 1/1 0/0 0/0 .text
+ * do_linedown__28jmessage_tRenderingProcessorFs                */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tRenderingProcessor::do_linedown(s16 param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_linedown__28jmessage_tRenderingProcessorFs.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039964A = ""
+                                                            "\x1B"
+                                                            "CU[%d]";
+#pragma pop
+
+/* 8022E9C0-8022EAE4 229300 0124+00 1/1 0/0 0/0 .text do_transY__28jmessage_tRenderingProcessorFsb
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tRenderingProcessor::do_transY(s16 param_0, bool param_1) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_transY__28jmessage_tRenderingProcessorFsb.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80454A94-80454A98 003094 0004+00 1/1 0/0 0/0 .sdata2          @6781 */
+SECTION_SDATA2 static f32 lit_6781 = 24.0f;
+
+/* 8022EAE4-8022ED10 229424 022C+00 2/2 0/0 0/0 .text
+ * do_outfont__28jmessage_tRenderingProcessorFUcUl              */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tRenderingProcessor::do_outfont(u8 param_0, u32 param_1) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_outfont__28jmessage_tRenderingProcessorFUcUl.s"
+}
+#pragma pop
+
+/* 8022ED10-8022EECC 229650 01BC+00 1/1 0/0 0/0 .text do_arrow2__28jmessage_tRenderingProcessorFv
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tRenderingProcessor::do_arrow2() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_arrow2__28jmessage_tRenderingProcessorFv.s"
+}
+#pragma pop
+
+/* 8022EECC-8022EF00 22980C 0034+00 1/1 0/0 0/0 .text
+ * getLineLength__28jmessage_tRenderingProcessorFi              */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tRenderingProcessor::getLineLength(int param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/getLineLength__28jmessage_tRenderingProcessorFi.s"
+}
+#pragma pop
+
+/* 8022EF00-8022F148 229840 0248+00 10/10 0/0 0/0 .text
+ * do_strcat__28jmessage_tRenderingProcessorFPcbbb              */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tRenderingProcessor::do_strcat(char* param_0, bool param_1, bool param_2,
+                                                 bool param_3) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_strcat__28jmessage_tRenderingProcessorFPcbbb.s"
+}
+#pragma pop
+
+/* 8022F148-8022F384 229A88 023C+00 1/1 0/0 0/0 .text
+ * do_rubyset__28jmessage_tRenderingProcessorFPCvUl             */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tRenderingProcessor::do_rubyset(void const* param_0, u32 param_1) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_rubyset__28jmessage_tRenderingProcessorFPCvUl.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399652 = ""
+                                                            "\x1B"
+                                                            "CL[%d]";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039965A = "\0\0\0\0\0";
+#pragma pop
+
+/* 8022F384-8022F53C 229CC4 01B8+00 3/3 0/0 0/0 .text
+ * do_rubystrcat__28jmessage_tRenderingProcessorFPcPcff         */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tRenderingProcessor::do_rubystrcat(char* param_0, char* param_1, f32 param_2,
+                                                     f32 param_3) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_rubystrcat__28jmessage_tRenderingProcessorFPcPcff.s"
+}
+#pragma pop
+
+/* 8022F53C-8022F540 229E7C 0004+00 1/1 0/0 0/0 .text do_name1__28jmessage_tRenderingProcessorFv
+ */
+void jmessage_tRenderingProcessor::do_name1() {}
+
+/* 8022F540-8022F734 229E80 01F4+00 1/1 0/0 0/0 .text do_numset__28jmessage_tRenderingProcessorFs
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tRenderingProcessor::do_numset(s16 param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_numset__28jmessage_tRenderingProcessorFs.s"
+}
+#pragma pop
+
+/* 8022F734-8022F784 22A074 0050+00 1/1 0/0 0/0 .text push_word__28jmessage_tRenderingProcessorFv
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tRenderingProcessor::push_word() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/push_word__28jmessage_tRenderingProcessorFv.s"
+}
+#pragma pop
+
+/* 8022F784-8022F8C0 22A0C4 013C+00 2/2 0/0 0/0 .text
+ * getCharInfo__28jmessage_tRenderingProcessorFfffff            */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_tRenderingProcessor::getCharInfo(f32 param_0, f32 param_1, f32 param_2,
+                                                   f32 param_3, f32 param_4) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/getCharInfo__28jmessage_tRenderingProcessorFfffff.s"
+}
+#pragma pop
+
+/* 8022F8C0-8022F94C 22A200 008C+00 0/0 1/1 0/0 .text __ct__26jmessage_string_tReferenceFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm jmessage_string_tReference::jmessage_string_tReference() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/__ct__26jmessage_string_tReferenceFv.s"
+}
+#pragma pop
+
+/* 8022F94C-8022F9AC 22A28C 0060+00 1/0 0/0 0/0 .text __dt__26jmessage_string_tReferenceFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+// asm jmessage_string_tReference::~jmessage_string_tReference() {
+extern "C" asm void __dt__26jmessage_string_tReferenceFv() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/__dt__26jmessage_string_tReferenceFv.s"
+}
+#pragma pop
+
+/* 8022F9AC-8022FA2C 22A2EC 0080+00 0/0 3/3 0/0 .text
+ * init__26jmessage_string_tReferenceFP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tReference::init(J2DTextBox* param_0, J2DTextBox* param_1,
+                                          JUTFont* param_2, COutFont_c* param_3, u8 param_4) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/init__26jmessage_string_tReferenceFP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc.s"
+}
+#pragma pop
+
+/* 8022FA2C-8022FA30 22A36C 0004+00 3/3 0/0 0/0 .text
+ * setCharactor__26jmessage_string_tReferenceFUs                */
+void jmessage_string_tReference::setCharactor(u16 param_0) {}
+
+/* 8022FA30-8022FA34 22A370 0004+00 3/3 0/0 0/0 .text
+ * addCharactor__26jmessage_string_tReferenceFUs                */
+void jmessage_string_tReference::addCharactor(u16 param_0) {}
+
+/* 8022FA34-8022FA38 22A374 0004+00 3/3 0/0 0/0 .text
+ * resetCharactor__26jmessage_string_tReferenceFv               */
+void jmessage_string_tReference::resetCharactor() {}
+
+/* 8022FA38-8022FA6C 22A378 0034+00 2/2 1/1 0/0 .text
+ * getLineLength__26jmessage_string_tReferenceFi                */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tReference::getLineLength(int param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/getLineLength__26jmessage_string_tReferenceFi.s"
+}
+#pragma pop
+
+/* 8022FA6C-8022FA98 22A3AC 002C+00 2/2 0/0 0/0 .text
+ * addLineLength__26jmessage_string_tReferenceFif               */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tReference::addLineLength(int param_0, f32 param_1) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/addLineLength__26jmessage_string_tReferenceFif.s"
+}
+#pragma pop
+
+/* 8022FA98-8022FACC 22A3D8 0034+00 1/1 0/0 0/0 .text
+ * getOutfontLength__26jmessage_string_tReferenceFi             */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tReference::getOutfontLength(int param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/getOutfontLength__26jmessage_string_tReferenceFi.s"
+}
+#pragma pop
+
+/* 8022FACC-8022FAF0 22A40C 0024+00 1/1 0/0 0/0 .text
+ * setOutfontLength__26jmessage_string_tReferenceFif            */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tReference::setOutfontLength(int param_0, f32 param_1) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/setOutfontLength__26jmessage_string_tReferenceFif.s"
+}
+#pragma pop
+
+/* 8022FAF0-8022FB24 22A430 0034+00 2/2 0/0 0/0 .text
+ * clearOutfontLength__26jmessage_string_tReferenceFi           */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tReference::clearOutfontLength(int param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/clearOutfontLength__26jmessage_string_tReferenceFi.s"
+}
+#pragma pop
+
+/* 8022FB24-8022FB5C 22A464 0038+00 4/4 0/0 0/0 .text
+ * getLineCountNowPage__26jmessage_string_tReferenceFv          */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tReference::getLineCountNowPage() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/getLineCountNowPage__26jmessage_string_tReferenceFv.s"
+}
+#pragma pop
+
+/* 8022FB5C-8022FB98 22A49C 003C+00 0/0 1/1 0/0 .text            __ct__24jmessage_string_tControlFv
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm jmessage_string_tControl::jmessage_string_tControl() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/__ct__24jmessage_string_tControlFv.s"
+}
+#pragma pop
+
+/* 8022FB98-8022FBE4 22A4D8 004C+00 1/1 0/0 0/0 .text
+ * __ct__33jmessage_string_tMeasureProcessorFPC26jmessage_string_tReference */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm jmessage_string_tMeasureProcessor::jmessage_string_tMeasureProcessor(
+    jmessage_string_tReference const* param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/__ct__33jmessage_string_tMeasureProcessorFPC26jmessage_string_tReference.s"
+}
+#pragma pop
+
+/* 8022FBE4-8022FC14 22A524 0030+00 1/0 0/0 0/0 .text
+ * do_begin__33jmessage_string_tMeasureProcessorFPCvPCc         */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tMeasureProcessor::do_begin(void const* param_0, char const* param_1) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_begin__33jmessage_string_tMeasureProcessorFPCvPCc.s"
+}
+#pragma pop
+
+/* 8022FC14-8022FC28 22A554 0014+00 1/0 0/0 0/0 .text
+ * do_end__33jmessage_string_tMeasureProcessorFv                */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tMeasureProcessor::do_end() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_end__33jmessage_string_tMeasureProcessorFv.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80454A98-80454AA0 003098 0004+04 3/3 0/0 0/0 .sdata2          @7190 */
+SECTION_SDATA2 static f32 lit_7190[1 + 1 /* padding */] = {
+    20.0f,
+    /* padding */
+    0.0f,
+};
+
+/* 8022FC28-8022FDF0 22A568 01C8+00 1/0 0/0 0/0 .text
+ * do_character__33jmessage_string_tMeasureProcessorFi          */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tMeasureProcessor::do_character(int param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_character__33jmessage_string_tMeasureProcessorFi.s"
+}
+#pragma pop
 
 /* 803C056C-803C059C -00001 0030+00 1/1 0/0 0/0 .data            @7487 */
 SECTION_DATA static void* lit_7487[12] = {
@@ -1307,6 +3282,170 @@ SECTION_DATA static void* lit_7484[64] = {
     (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x1E8),
     (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x224),
 };
+
+/* 8022FDF0-8023098C 22A730 0B9C+00 5/0 0/0 0/0 .text
+ * do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl          */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tMeasureProcessor::do_tag(u32 param_0, void const* param_1, u32 param_2) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl.s"
+}
+#pragma pop
+
+/* 8023098C-80230A08 22B2CC 007C+00 1/1 0/0 0/0 .text
+ * do_rubyset__33jmessage_string_tMeasureProcessorFPCvUl        */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tMeasureProcessor::do_rubyset(void const* param_0, u32 param_1) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_rubyset__33jmessage_string_tMeasureProcessorFPCvUl.s"
+}
+#pragma pop
+
+/* 80230A08-80230A5C 22B348 0054+00 0/0 1/1 0/0 .text
+ * __ct__34jmessage_string_tSequenceProcessorFPC26jmessage_string_tReferenceP24jmessage_string_tControl
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm jmessage_string_tSequenceProcessor::jmessage_string_tSequenceProcessor(
+    jmessage_string_tReference const* param_0, jmessage_string_tControl* param_1) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/func_80230A08.s"
+}
+#pragma pop
+
+/* 80230A5C-80230ABC 22B39C 0060+00 1/0 0/0 0/0 .text __dt__33jmessage_string_tMeasureProcessorFv
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+// asm jmessage_string_tMeasureProcessor::~jmessage_string_tMeasureProcessor() {
+extern "C" asm void __dt__33jmessage_string_tMeasureProcessorFv() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/__dt__33jmessage_string_tMeasureProcessorFv.s"
+}
+#pragma pop
+
+/* 80230ABC-80230AC0 22B3FC 0004+00 1/0 0/0 0/0 .text
+ * do_reset__34jmessage_string_tSequenceProcessorFv             */
+void jmessage_string_tSequenceProcessor::do_reset() {}
+
+/* 80230AC0-80230B7C 22B400 00BC+00 1/0 0/0 0/0 .text
+ * do_begin__34jmessage_string_tSequenceProcessorFPCvPCc        */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tSequenceProcessor::do_begin(void const* param_0, char const* param_1) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_begin__34jmessage_string_tSequenceProcessorFPCvPCc.s"
+}
+#pragma pop
+
+/* 80230B7C-80230B80 22B4BC 0004+00 1/0 0/0 0/0 .text
+ * do_end__34jmessage_string_tSequenceProcessorFv               */
+void jmessage_string_tSequenceProcessor::do_end() {}
+
+/* 80230B80-80230B88 22B4C0 0008+00 1/0 0/0 0/0 .text
+ * do_isReady__34jmessage_string_tSequenceProcessorFv           */
+bool jmessage_string_tSequenceProcessor::do_isReady() {
+    return true;
+}
+
+/* 80230B88-80230B8C 22B4C8 0004+00 1/0 0/0 0/0 .text
+ * do_character__34jmessage_string_tSequenceProcessorFi         */
+void jmessage_string_tSequenceProcessor::do_character(int param_0) {}
+
+/* 80230B8C-80230BBC 22B4CC 0030+00 1/0 0/0 0/0 .text
+ * do_tag__34jmessage_string_tSequenceProcessorFUlPCvUl         */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tSequenceProcessor::do_tag(u32 param_0, void const* param_1, u32 param_2) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_tag__34jmessage_string_tSequenceProcessorFUlPCvUl.s"
+}
+#pragma pop
+
+/* 80230BBC-80230BC4 22B4FC 0008+00 1/0 0/0 0/0 .text
+ * do_jump_isReady__34jmessage_string_tSequenceProcessorFv      */
+bool jmessage_string_tSequenceProcessor::do_jump_isReady() {
+    return true;
+}
+
+/* 80230BC4-80230BC8 22B504 0004+00 1/0 0/0 0/0 .text
+ * do_jump__34jmessage_string_tSequenceProcessorFPCvPCc         */
+void jmessage_string_tSequenceProcessor::do_jump(void const* param_0, char const* param_1) {}
+
+/* 80230BC8-80230C20 22B508 0058+00 0/0 1/1 0/0 .text
+ * __ct__35jmessage_string_tRenderingProcessorFPC26jmessage_string_tReference */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm jmessage_string_tRenderingProcessor::jmessage_string_tRenderingProcessor(
+    jmessage_string_tReference const* param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/__ct__35jmessage_string_tRenderingProcessorFPC26jmessage_string_tReference.s"
+}
+#pragma pop
+
+/* 80230C20-80230C5C 22B560 003C+00 5/5 0/0 0/0 .text
+ * getLineCountNowPage__35jmessage_string_tRenderingProcessorFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tRenderingProcessor::getLineCountNowPage() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/getLineCountNowPage__35jmessage_string_tRenderingProcessorFv.s"
+}
+#pragma pop
+
+/* 80230C5C-80230CA0 22B59C 0044+00 1/0 0/0 0/0 .text
+ * do_reset__35jmessage_string_tRenderingProcessorFv            */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tRenderingProcessor::do_reset() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_reset__35jmessage_string_tRenderingProcessorFv.s"
+}
+#pragma pop
+
+/* 80230CA0-80230CE8 22B5E0 0048+00 1/0 0/0 0/0 .text
+ * do_begin__35jmessage_string_tRenderingProcessorFPCvPCc       */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tRenderingProcessor::do_begin(void const* param_0, char const* param_1) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_begin__35jmessage_string_tRenderingProcessorFPCvPCc.s"
+}
+#pragma pop
+
+/* 80230CE8-80230D48 22B628 0060+00 1/0 0/0 0/0 .text
+ * do_end__35jmessage_string_tRenderingProcessorFv              */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tRenderingProcessor::do_end() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_end__35jmessage_string_tRenderingProcessorFv.s"
+}
+#pragma pop
+
+/* 80230D48-80231110 22B688 03C8+00 1/0 0/0 0/0 .text
+ * do_character__35jmessage_string_tRenderingProcessorFi        */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tRenderingProcessor::do_character(int param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_character__35jmessage_string_tRenderingProcessorFi.s"
+}
+#pragma pop
 
 /* 803C0710-803C0764 -00001 0054+00 1/1 0/0 0/0 .data            @7997 */
 SECTION_DATA static void* lit_7997[21] = {
@@ -1453,6 +3592,207 @@ SECTION_DATA static void* lit_7993[64] = {
     (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x204),
     (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x240),
 };
+
+/* 80231110-80231D70 22BA50 0C60+00 6/0 0/0 0/0 .text
+ * do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl        */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tRenderingProcessor::do_tag(u32 param_0, void const* param_1,
+                                                     u32 param_2) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl.s"
+}
+#pragma pop
+
+/* 80231D70-80231EF0 22C6B0 0180+00 2/2 0/0 0/0 .text
+ * do_widthcenter__35jmessage_string_tRenderingProcessorFv      */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tRenderingProcessor::do_widthcenter() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_widthcenter__35jmessage_string_tRenderingProcessorFv.s"
+}
+#pragma pop
+
+/* 80231EF0-80232044 22C830 0154+00 1/1 0/0 0/0 .text
+ * do_heightcenter__35jmessage_string_tRenderingProcessorFv     */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tRenderingProcessor::do_heightcenter() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_heightcenter__35jmessage_string_tRenderingProcessorFv.s"
+}
+#pragma pop
+
+/* 80232044-802320B0 22C984 006C+00 7/7 0/0 0/0 .text
+ * do_strcat__35jmessage_string_tRenderingProcessorFPc          */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tRenderingProcessor::do_strcat(char* param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_strcat__35jmessage_string_tRenderingProcessorFPc.s"
+}
+#pragma pop
+
+/* 802320B0-80232260 22C9F0 01B0+00 1/1 0/0 0/0 .text
+ * do_rubyset__35jmessage_string_tRenderingProcessorFPCvUl      */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tRenderingProcessor::do_rubyset(void const* param_0, u32 param_1) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_rubyset__35jmessage_string_tRenderingProcessorFPCvUl.s"
+}
+#pragma pop
+
+/* 80232260-802322CC 22CBA0 006C+00 2/2 0/0 0/0 .text
+ * do_rubystrcat__35jmessage_string_tRenderingProcessorFPc      */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tRenderingProcessor::do_rubystrcat(char* param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_rubystrcat__35jmessage_string_tRenderingProcessorFPc.s"
+}
+#pragma pop
+
+/* 802322CC-8023256C 22CC0C 02A0+00 2/2 0/0 0/0 .text
+ * do_outfont__35jmessage_string_tRenderingProcessorFUc         */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tRenderingProcessor::do_outfont(u8 param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_outfont__35jmessage_string_tRenderingProcessorFUc.s"
+}
+#pragma pop
+
+/* 8023256C-80232600 22CEAC 0094+00 1/1 0/0 0/0 .text
+ * do_color__35jmessage_string_tRenderingProcessorFUc           */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tRenderingProcessor::do_color(u8 param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_color__35jmessage_string_tRenderingProcessorFUc.s"
+}
+#pragma pop
+
+/* 80232600-80232690 22CF40 0090+00 1/1 0/0 0/0 .text
+ * do_scale__35jmessage_string_tRenderingProcessorFf            */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tRenderingProcessor::do_scale(f32 param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_scale__35jmessage_string_tRenderingProcessorFf.s"
+}
+#pragma pop
+
+/* 80232690-802326E4 22CFD0 0054+00 1/1 0/0 0/0 .text
+ * do_linedown__35jmessage_string_tRenderingProcessorFs         */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tRenderingProcessor::do_linedown(s16 param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_linedown__35jmessage_string_tRenderingProcessorFs.s"
+}
+#pragma pop
+
+/* 802326E4-802327BC 22D024 00D8+00 1/1 0/0 0/0 .text
+ * do_numset__35jmessage_string_tRenderingProcessorFs           */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tRenderingProcessor::do_numset(s16 param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/do_numset__35jmessage_string_tRenderingProcessorFs.s"
+}
+#pragma pop
+
+/* 802327BC-802327F8 22D0FC 003C+00 1/1 0/0 0/0 .text
+ * push_word__35jmessage_string_tRenderingProcessorFPCc         */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void jmessage_string_tRenderingProcessor::push_word(char const* param_0) {
+    nofralloc
+#include "asm/d/msg/d_msg_class/push_word__35jmessage_string_tRenderingProcessorFPCc.s"
+}
+#pragma pop
+
+/* 802327F8-80232858 22D138 0060+00 1/0 0/0 0/0 .text
+ * __dt__35jmessage_string_tRenderingProcessorFv                */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+// asm jmessage_string_tRenderingProcessor::~jmessage_string_tRenderingProcessor() {
+extern "C" asm void __dt__35jmessage_string_tRenderingProcessorFv() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/__dt__35jmessage_string_tRenderingProcessorFv.s"
+}
+#pragma pop
+
+/* 80232858-802328DC 22D198 0084+00 1/0 0/0 0/0 .text __dt__34jmessage_string_tSequenceProcessorFv
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+// asm jmessage_string_tSequenceProcessor::~jmessage_string_tSequenceProcessor() {
+extern "C" asm void __dt__34jmessage_string_tSequenceProcessorFv() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/__dt__34jmessage_string_tSequenceProcessorFv.s"
+}
+#pragma pop
+
+/* 802328DC-8023293C 22D21C 0060+00 1/0 0/0 0/0 .text            __dt__24jmessage_string_tControlFv
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+// asm jmessage_string_tControl::~jmessage_string_tControl() {
+extern "C" asm void __dt__24jmessage_string_tControlFv() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/__dt__24jmessage_string_tControlFv.s"
+}
+#pragma pop
+
+/* 8023293C-8023299C 22D27C 0060+00 1/0 0/0 0/0 .text __dt__28jmessage_tRenderingProcessorFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+// asm jmessage_tRenderingProcessor::~jmessage_tRenderingProcessor() {
+extern "C" asm void __dt__28jmessage_tRenderingProcessorFv() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/__dt__28jmessage_tRenderingProcessorFv.s"
+}
+#pragma pop
+
+/* 8023299C-80232A20 22D2DC 0084+00 1/0 0/0 0/0 .text __dt__27jmessage_tSequenceProcessorFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+// asm jmessage_tSequenceProcessor::~jmessage_tSequenceProcessor() {
+extern "C" asm void __dt__27jmessage_tSequenceProcessorFv() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/__dt__27jmessage_tSequenceProcessorFv.s"
+}
+#pragma pop
+
+/* 80232A20-80232A3C 22D360 001C+00 2/2 0/0 0/0 .text getActorPos__19jmessage_tReferenceFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm cXyz jmessage_tReference::getActorPos() {
+    nofralloc
+#include "asm/d/msg/d_msg_class/getActorPos__19jmessage_tReferenceFv.s"
+}
+#pragma pop
 
 /* 803C0908-803C0948 01DA28 0040+00 2/2 0/0 0/0 .data __vt__35jmessage_string_tRenderingProcessor
  */
@@ -1615,1504 +3955,5 @@ SECTION_DATA extern void* __vt__19jmessage_tReference[4 + 1 /* padding */] = {
     /* padding */
     NULL,
 };
-
-/* 80454A58-80454A5C 003058 0004+00 1/1 0/0 0/0 .sdata2          @4025 */
-SECTION_SDATA2 static f32 lit_4025 = 9.0f / 10.0f;
-
-/* 80454A5C-80454A60 00305C 0004+00 14/14 0/0 0/0 .sdata2          @4026 */
-SECTION_SDATA2 static f32 lit_4026 = 0.5f;
-
-/* 80454A60-80454A64 003060 0004+00 25/25 0/0 0/0 .sdata2          @4027 */
-SECTION_SDATA2 static u8 lit_4027[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80454A64-80454A68 003064 0004+00 23/23 0/0 0/0 .sdata2          @4028 */
-SECTION_SDATA2 static f32 lit_4028 = 1.0f;
-
-/* 80228B04-80228CB4 223444 01B0+00 0/0 1/1 0/0 .text            __ct__19jmessage_tReferenceFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm jmessage_tReference::jmessage_tReference() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/__ct__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* 80228CB4-80228D28 2235F4 0074+00 1/0 0/0 0/0 .text            __dt__19jmessage_tReferenceFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm jmessage_tReference::~jmessage_tReference() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/__dt__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80454A68-80454A70 003068 0008+00 1/1 0/0 0/0 .sdata2          @4078 */
-SECTION_SDATA2 static u8 lit_4078[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80228D28-80228DE0 223668 00B8+00 1/1 0/0 0/0 .text calcDistance__19jmessage_tReferenceFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::calcDistance() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/calcDistance__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* 80228DE0-80228E6C 223720 008C+00 5/5 0/0 0/0 .text            getLineMax__19jmessage_tReferenceFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::getLineMax() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/getLineMax__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* 80228E6C-80228EA0 2237AC 0034+00 2/2 0/0 0/0 .text            isKanban__19jmessage_tReferenceFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::isKanban() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/isKanban__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* 80228EA0-80228ED4 2237E0 0034+00 2/2 0/0 0/0 .text isPlaceName__19jmessage_tReferenceFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::isPlaceName() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/isPlaceName__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* 80228ED4-80228F08 223814 0034+00 2/2 0/0 0/0 .text            isBossName__19jmessage_tReferenceFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::isBossName() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/isBossName__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* 80228F08-80228F3C 223848 0034+00 2/2 0/0 0/0 .text            isSaveSeq__19jmessage_tReferenceFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::isSaveSeq() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/isSaveSeq__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* 80228F3C-80228F70 22387C 0034+00 2/2 0/0 0/0 .text            isBook__19jmessage_tReferenceFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::isBook() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/isBook__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* 80228F70-80228FA4 2238B0 0034+00 3/3 0/0 0/0 .text isStaffRoll__19jmessage_tReferenceFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::isStaffRoll() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/isStaffRoll__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* 80228FA4-80228FD8 2238E4 0034+00 1/1 0/0 0/0 .text            isHowl__19jmessage_tReferenceFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::isHowl() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/isHowl__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* 80228FD8-8022900C 223918 0034+00 2/2 0/0 0/0 .text            isMidona__19jmessage_tReferenceFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::isMidona() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/isMidona__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* 8022900C-80229034 22394C 0028+00 1/1 0/0 0/0 .text resetReference__19jmessage_tReferenceFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::resetReference() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/resetReference__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80454A70-80454A78 003070 0008+00 16/16 0/0 0/0 .sdata2          @4198 */
-SECTION_SDATA2 static f64 lit_4198 = 4503601774854144.0 /* cast s32 to float */;
-
-/* 80229034-80229168 223974 0134+00 0/0 1/1 0/0 .text            pageSend__19jmessage_tReferenceFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::pageSend() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/pageSend__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80454A78-80454A7C 003078 0004+00 4/4 0/0 0/0 .sdata2          @4291 */
-SECTION_SDATA2 static f32 lit_4291 = -1.0f;
-
-/* 80229168-802294A8 223AA8 0340+00 0/0 2/2 0/0 .text selectMessage__19jmessage_tReferenceFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::selectMessage() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/selectMessage__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* 802294A8-80229730 223DE8 0288+00 0/0 1/1 0/0 .text inputNumber__19jmessage_tReferenceFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::inputNumber() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/inputNumber__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* 80229730-80229744 224070 0014+00 5/5 0/0 0/0 .text            getWord__19jmessage_tReferenceFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::getWord(int param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/getWord__19jmessage_tReferenceFi.s"
-}
-#pragma pop
-
-/* 80229744-80229768 224084 0024+00 2/2 0/0 0/0 .text            resetWord__19jmessage_tReferenceFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::resetWord() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/resetWord__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* 80229768-80229788 2240A8 0020+00 3/3 0/0 0/0 .text setCharactor__19jmessage_tReferenceFUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::setCharactor(u16 param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/setCharactor__19jmessage_tReferenceFUs.s"
-}
-#pragma pop
-
-/* 80229788-802297B0 2240C8 0028+00 3/3 0/0 0/0 .text addCharactor__19jmessage_tReferenceFUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::addCharactor(u16 param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/addCharactor__19jmessage_tReferenceFUs.s"
-}
-#pragma pop
-
-/* 802297B0-802297E4 2240F0 0034+00 3/3 0/0 0/0 .text resetCharactor__19jmessage_tReferenceFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::resetCharactor() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/resetCharactor__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* 802297E4-80229810 224124 002C+00 0/0 1/1 0/0 .text
- * shiftCharCountBuffer__19jmessage_tReferenceFv                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::shiftCharCountBuffer() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/shiftCharCountBuffer__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* 80229810-80229848 224150 0038+00 1/1 5/5 0/0 .text
- * resetCharCountBuffer__19jmessage_tReferenceFv                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::resetCharCountBuffer() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/resetCharCountBuffer__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* 80229848-8022986C 224188 0024+00 1/1 0/0 0/0 .text
- * allsetCharCountBuffer__19jmessage_tReferenceFv               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::allsetCharCountBuffer() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/allsetCharCountBuffer__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* 8022986C-802298DC 2241AC 0070+00 2/2 0/0 0/0 .text            isCharSend__19jmessage_tReferenceFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::isCharSend() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/isCharSend__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* 802298DC-8022994C 22421C 0070+00 1/1 0/0 0/0 .text isLightSend__19jmessage_tReferenceFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::isLightSend() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/isLightSend__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* 8022994C-802299AC 22428C 0060+00 0/0 1/1 0/0 .text            isLightEnd__19jmessage_tReferenceFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::isLightEnd() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/isLightEnd__19jmessage_tReferenceFv.s"
-}
-#pragma pop
-
-/* 802299AC-802299EC 2242EC 0040+00 2/2 0/0 0/0 .text
- * decideOutFontRupeeColor__19jmessage_tReferenceFi             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::decideOutFontRupeeColor(int param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/decideOutFontRupeeColor__19jmessage_tReferenceFi.s"
-}
-#pragma pop
-
-/* 802299EC-80229A28 22432C 003C+00 0/0 1/1 0/0 .text            __ct__17jmessage_tControlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm jmessage_tControl::jmessage_tControl() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/__ct__17jmessage_tControlFv.s"
-}
-#pragma pop
-
-/* 80229A28-80229AC4 224368 009C+00 1/1 0/0 0/0 .text
- * __ct__26jmessage_tMeasureProcessorFPC19jmessage_tReference   */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm jmessage_tMeasureProcessor::jmessage_tMeasureProcessor(jmessage_tReference const* param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/__ct__26jmessage_tMeasureProcessorFPC19jmessage_tReference.s"
-}
-#pragma pop
-
-/* 80229AC4-80229CB4 224404 01F0+00 1/0 0/0 0/0 .text
- * do_begin__26jmessage_tMeasureProcessorFPCvPCc                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tMeasureProcessor::do_begin(void const* param_0, char const* param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_begin__26jmessage_tMeasureProcessorFPCvPCc.s"
-}
-#pragma pop
-
-/* 80229CB4-80229E3C 2245F4 0188+00 1/0 0/0 0/0 .text do_end__26jmessage_tMeasureProcessorFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tMeasureProcessor::do_end() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_end__26jmessage_tMeasureProcessorFv.s"
-}
-#pragma pop
-
-/* 80229E3C-8022A268 22477C 042C+00 1/0 0/0 0/0 .text do_character__26jmessage_tMeasureProcessorFi
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tMeasureProcessor::do_character(int param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_character__26jmessage_tMeasureProcessorFi.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80399610 = "'";
-SECTION_DEAD static char const* const stringBase_80399612 = "s";
-SECTION_DEAD static char const* const stringBase_80399614 = "%d";
-#pragma pop
-
-/* 80454A7C-80454A80 00307C 0004+00 5/5 0/0 0/0 .sdata2          @5151 */
-SECTION_SDATA2 static f32 lit_5151 = 100.0f;
-
-/* 80454A80-80454A88 003080 0008+00 5/5 0/0 0/0 .sdata2          @5154 */
-SECTION_SDATA2 static f64 lit_5154 = 4503599627370496.0 /* cast u32 to float */;
-
-/* 8022A268-8022B0B0 224BA8 0E48+00 5/0 0/0 0/0 .text do_tag__26jmessage_tMeasureProcessorFUlPCvUl
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tMeasureProcessor::do_tag(u32 param_0, void const* param_1, u32 param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_tag__26jmessage_tMeasureProcessorFUlPCvUl.s"
-}
-#pragma pop
-
-/* 8022B0B0-8022B18C 2259F0 00DC+00 2/2 0/0 0/0 .text do_scale__26jmessage_tMeasureProcessorFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tMeasureProcessor::do_scale(f32 param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_scale__26jmessage_tMeasureProcessorFf.s"
-}
-#pragma pop
-
-/* 8022B18C-8022B3EC 225ACC 0260+00 2/1 0/0 0/0 .text do_space__26jmessage_tMeasureProcessorFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tMeasureProcessor::do_space(u32 param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_space__26jmessage_tMeasureProcessorFUl.s"
-}
-#pragma pop
-
-/* 8022B3EC-8022B454 225D2C 0068+00 3/3 0/0 0/0 .text do_pageType__26jmessage_tMeasureProcessorFi
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tMeasureProcessor::do_pageType(int param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_pageType__26jmessage_tMeasureProcessorFi.s"
-}
-#pragma pop
-
-/* 8022B454-8022B458 225D94 0004+00 1/1 0/0 0/0 .text do_name1__26jmessage_tMeasureProcessorFv */
-void jmessage_tMeasureProcessor::do_name1() {
-    /* empty function */
-}
-
-/* 8022B458-8022B4E0 225D98 0088+00 1/1 0/0 0/0 .text
- * do_rubyset__26jmessage_tMeasureProcessorFPCvUl               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tMeasureProcessor::do_rubyset(void const* param_0, u32 param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_rubyset__26jmessage_tMeasureProcessorFPCvUl.s"
-}
-#pragma pop
-
-/* 8022B4E0-8022B558 225E20 0078+00 1/1 0/0 0/0 .text push_word__26jmessage_tMeasureProcessorFPc
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tMeasureProcessor::push_word(char* param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/push_word__26jmessage_tMeasureProcessorFPc.s"
-}
-#pragma pop
-
-/* 8022B558-8022B5F4 225E98 009C+00 0/0 1/1 0/0 .text
- * __ct__27jmessage_tSequenceProcessorFPC19jmessage_tReferenceP17jmessage_tControl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm jmessage_tSequenceProcessor::jmessage_tSequenceProcessor(jmessage_tReference const* param_0,
-                                                             jmessage_tControl* param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/__ct__27jmessage_tSequenceProcessorFPC19jmessage_tReferenceP17jmessage_tControl.s"
-}
-#pragma pop
-
-/* 8022B5F4-8022B654 225F34 0060+00 1/0 0/0 0/0 .text __dt__26jmessage_tMeasureProcessorFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm jmessage_tMeasureProcessor::~jmessage_tMeasureProcessor() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/__dt__26jmessage_tMeasureProcessorFv.s"
-}
-#pragma pop
-
-/* 8022B654-8022B658 225F94 0004+00 1/0 0/0 0/0 .text do_reset__27jmessage_tSequenceProcessorFv */
-void jmessage_tSequenceProcessor::do_reset() {
-    /* empty function */
-}
-
-/* ############################################################################################## */
-/* 80454A88-80454A8C 003088 0004+00 1/1 0/0 0/0 .sdata2          @5490 */
-SECTION_SDATA2 static f32 lit_5490 = 10.0f;
-
-/* 80454A8C-80454A90 00308C 0004+00 2/2 0/0 0/0 .sdata2          @5491 */
-SECTION_SDATA2 static f32 lit_5491 = 255.0f;
-
-/* 8022B658-8022BA3C 225F98 03E4+00 1/0 0/0 0/0 .text
- * do_begin__27jmessage_tSequenceProcessorFPCvPCc               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tSequenceProcessor::do_begin(void const* param_0, char const* param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_begin__27jmessage_tSequenceProcessorFPCvPCc.s"
-}
-#pragma pop
-
-/* 8022BA3C-8022BB7C 22637C 0140+00 1/0 0/0 0/0 .text do_end__27jmessage_tSequenceProcessorFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tSequenceProcessor::do_end() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_end__27jmessage_tSequenceProcessorFv.s"
-}
-#pragma pop
-
-/* 8022BB7C-8022BFE0 2264BC 0464+00 2/0 0/0 0/0 .text do_isReady__27jmessage_tSequenceProcessorFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tSequenceProcessor::do_isReady() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_isReady__27jmessage_tSequenceProcessorFv.s"
-}
-#pragma pop
-
-/* 8022BFE0-8022C1A0 226920 01C0+00 1/0 0/0 0/0 .text
- * do_character__27jmessage_tSequenceProcessorFi                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tSequenceProcessor::do_character(int param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_character__27jmessage_tSequenceProcessorFi.s"
-}
-#pragma pop
-
-/* 8022C1A0-8022C8FC 226AE0 075C+00 2/0 0/0 0/0 .text
- * do_tag__27jmessage_tSequenceProcessorFUlPCvUl                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tSequenceProcessor::do_tag(u32 param_0, void const* param_1, u32 param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_tag__27jmessage_tSequenceProcessorFUlPCvUl.s"
-}
-#pragma pop
-
-/* 8022C8FC-8022C904 22723C 0008+00 1/0 0/0 0/0 .text
- * do_jump_isReady__27jmessage_tSequenceProcessorFv             */
-bool jmessage_tSequenceProcessor::do_jump_isReady() {
-    return true;
-}
-
-/* 8022C904-8022C908 227244 0004+00 1/1 0/0 0/0 .text do_name1__27jmessage_tSequenceProcessorFv */
-void jmessage_tSequenceProcessor::do_name1() {
-    /* empty function */
-}
-
-/* 8022C908-8022CA24 227248 011C+00 2/1 0/0 0/0 .text do_space__27jmessage_tSequenceProcessorFUl
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tSequenceProcessor::do_space(u32 param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_space__27jmessage_tSequenceProcessorFUl.s"
-}
-#pragma pop
-
-/* 8022CA24-8022CAAC 227364 0088+00 1/1 0/0 0/0 .text
- * do_rubyset__27jmessage_tSequenceProcessorFPCvUl              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tSequenceProcessor::do_rubyset(void const* param_0, u32 param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_rubyset__27jmessage_tSequenceProcessorFPCvUl.s"
-}
-#pragma pop
-
-/* 8022CAAC-8022CB10 2273EC 0064+00 1/1 0/0 0/0 .text push_word__27jmessage_tSequenceProcessorFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tSequenceProcessor::push_word() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/push_word__27jmessage_tSequenceProcessorFv.s"
-}
-#pragma pop
-
-/* 8022CB10-8022CBE4 227450 00D4+00 2/2 0/0 0/0 .text
- * messageSePlay__27jmessage_tSequenceProcessorFUcUcP4cXyz      */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tSequenceProcessor::messageSePlay(u8 param_0, u8 param_1, cXyz* param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/messageSePlay__27jmessage_tSequenceProcessorFUcUcP4cXyz.s"
-}
-#pragma pop
-
-/* 8022CBE4-8022CBE8 227524 0004+00 1/0 0/0 0/0 .text
- * do_jump__27jmessage_tSequenceProcessorFPCvPCc                */
-void jmessage_tSequenceProcessor::do_jump(void const* param_0, char const* param_1) {
-    /* empty function */
-}
-
-/* 8022CBE8-8022CCB0 227528 00C8+00 2/2 0/0 0/0 .text
- * calcStringLength__27jmessage_tSequenceProcessorFv            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tSequenceProcessor::calcStringLength() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/calcStringLength__27jmessage_tSequenceProcessorFv.s"
-}
-#pragma pop
-
-/* 8022CCB0-8022CDC8 2275F0 0118+00 0/0 1/1 0/0 .text
- * __ct__28jmessage_tRenderingProcessorFPC19jmessage_tReference */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm jmessage_tRenderingProcessor::jmessage_tRenderingProcessor(jmessage_tReference const* param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/__ct__28jmessage_tRenderingProcessorFPC19jmessage_tReference.s"
-}
-#pragma pop
-
-/* 8022CDC8-8022CDCC 227708 0004+00 1/0 0/0 0/0 .text do_reset__28jmessage_tRenderingProcessorFv
- */
-void jmessage_tRenderingProcessor::do_reset() {
-    /* empty function */
-}
-
-/* ############################################################################################## */
-/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80399617 = "";
-#pragma pop
-
-/* 8022CDCC-8022CFD8 22770C 020C+00 1/0 0/0 0/0 .text
- * do_begin__28jmessage_tRenderingProcessorFPCvPCc              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tRenderingProcessor::do_begin(void const* param_0, char const* param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_begin__28jmessage_tRenderingProcessorFPCvPCc.s"
-}
-#pragma pop
-
-/* 8022CFD8-8022D0A0 227918 00C8+00 1/0 0/0 0/0 .text do_end__28jmessage_tRenderingProcessorFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tRenderingProcessor::do_end() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_end__28jmessage_tRenderingProcessorFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80454A90-80454A94 003090 0004+00 1/1 0/0 0/0 .sdata2          @6374 */
-SECTION_SDATA2 static f32 lit_6374 = 3.0f / 10.0f;
-
-/* 8022D0A0-8022D74C 2279E0 06AC+00 1/0 0/0 0/0 .text
- * do_character__28jmessage_tRenderingProcessorFi               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tRenderingProcessor::do_character(int param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_character__28jmessage_tRenderingProcessorFi.s"
-}
-#pragma pop
-
-/* 8022D74C-8022E12C 22808C 09E0+00 3/0 0/0 0/0 .text
- * do_tag__28jmessage_tRenderingProcessorFUlPCvUl               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tRenderingProcessor::do_tag(u32 param_0, void const* param_1, u32 param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_tag__28jmessage_tRenderingProcessorFUlPCvUl.s"
-}
-#pragma pop
-
-/* 8022E12C-8022E17C 228A6C 0050+00 0/0 2/2 0/0 .text
- * resetRendering__28jmessage_tRenderingProcessorFv             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tRenderingProcessor::resetRendering() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/resetRendering__28jmessage_tRenderingProcessorFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80399618 = ""
-                                                            "\x1B"
-                                                            "CR[%d]";
-#pragma pop
-
-/* 8022E17C-8022E260 228ABC 00E4+00 2/2 0/0 0/0 .text
- * do_widthcenter__28jmessage_tRenderingProcessorFv             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tRenderingProcessor::do_widthcenter() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_widthcenter__28jmessage_tRenderingProcessorFv.s"
-}
-#pragma pop
-
-/* 8022E260-8022E318 228BA0 00B8+00 1/1 0/0 0/0 .text
- * do_selwidthcenter__28jmessage_tRenderingProcessorFi          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tRenderingProcessor::do_selwidthcenter(int param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_selwidthcenter__28jmessage_tRenderingProcessorFi.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80399620 = ""
-                                                            "\x1B"
-                                                            "CD[%d]";
-#pragma pop
-
-/* 8022E318-8022E7CC 228C58 04B4+00 3/2 0/0 0/0 .text
- * do_heightcenter__28jmessage_tRenderingProcessorFv            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tRenderingProcessor::do_heightcenter() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_heightcenter__28jmessage_tRenderingProcessorFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80399628 = ""
-                                                            "\x1B"
-                                                            "CC[%08x]"
-                                                            "\x1B"
-                                                            "GC[%08x]";
-#pragma pop
-
-/* 8022E7CC-8022E860 22910C 0094+00 2/2 0/0 0/0 .text do_color__28jmessage_tRenderingProcessorFUc
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tRenderingProcessor::do_color(u8 param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_color__28jmessage_tRenderingProcessorFUc.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039963B = ""
-                                                            "\x1B"
-                                                            "FX[%d]"
-                                                            "\x1B"
-                                                            "FY[%d]";
-#pragma pop
-
-/* 8022E860-8022E960 2291A0 0100+00 2/2 0/0 0/0 .text do_scale__28jmessage_tRenderingProcessorFf
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tRenderingProcessor::do_scale(f32 param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_scale__28jmessage_tRenderingProcessorFf.s"
-}
-#pragma pop
-
-/* 8022E960-8022E9C0 2292A0 0060+00 1/1 0/0 0/0 .text
- * do_linedown__28jmessage_tRenderingProcessorFs                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tRenderingProcessor::do_linedown(s16 param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_linedown__28jmessage_tRenderingProcessorFs.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039964A = ""
-                                                            "\x1B"
-                                                            "CU[%d]";
-#pragma pop
-
-/* 8022E9C0-8022EAE4 229300 0124+00 1/1 0/0 0/0 .text do_transY__28jmessage_tRenderingProcessorFsb
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tRenderingProcessor::do_transY(s16 param_0, bool param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_transY__28jmessage_tRenderingProcessorFsb.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80454A94-80454A98 003094 0004+00 1/1 0/0 0/0 .sdata2          @6781 */
-SECTION_SDATA2 static f32 lit_6781 = 24.0f;
-
-/* 8022EAE4-8022ED10 229424 022C+00 2/2 0/0 0/0 .text
- * do_outfont__28jmessage_tRenderingProcessorFUcUl              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tRenderingProcessor::do_outfont(u8 param_0, u32 param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_outfont__28jmessage_tRenderingProcessorFUcUl.s"
-}
-#pragma pop
-
-/* 8022ED10-8022EECC 229650 01BC+00 1/1 0/0 0/0 .text do_arrow2__28jmessage_tRenderingProcessorFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tRenderingProcessor::do_arrow2() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_arrow2__28jmessage_tRenderingProcessorFv.s"
-}
-#pragma pop
-
-/* 8022EECC-8022EF00 22980C 0034+00 1/1 0/0 0/0 .text
- * getLineLength__28jmessage_tRenderingProcessorFi              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tRenderingProcessor::getLineLength(int param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/getLineLength__28jmessage_tRenderingProcessorFi.s"
-}
-#pragma pop
-
-/* 8022EF00-8022F148 229840 0248+00 10/10 0/0 0/0 .text
- * do_strcat__28jmessage_tRenderingProcessorFPcbbb              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tRenderingProcessor::do_strcat(char* param_0, bool param_1, bool param_2,
-                                                 bool param_3) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_strcat__28jmessage_tRenderingProcessorFPcbbb.s"
-}
-#pragma pop
-
-/* 8022F148-8022F384 229A88 023C+00 1/1 0/0 0/0 .text
- * do_rubyset__28jmessage_tRenderingProcessorFPCvUl             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tRenderingProcessor::do_rubyset(void const* param_0, u32 param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_rubyset__28jmessage_tRenderingProcessorFPCvUl.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80399652 = ""
-                                                            "\x1B"
-                                                            "CL[%d]";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039965A = "\0\0\0\0\0";
-#pragma pop
-
-/* 8022F384-8022F53C 229CC4 01B8+00 3/3 0/0 0/0 .text
- * do_rubystrcat__28jmessage_tRenderingProcessorFPcPcff         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tRenderingProcessor::do_rubystrcat(char* param_0, char* param_1, f32 param_2,
-                                                     f32 param_3) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_rubystrcat__28jmessage_tRenderingProcessorFPcPcff.s"
-}
-#pragma pop
-
-/* 8022F53C-8022F540 229E7C 0004+00 1/1 0/0 0/0 .text do_name1__28jmessage_tRenderingProcessorFv
- */
-void jmessage_tRenderingProcessor::do_name1() {
-    /* empty function */
-}
-
-/* 8022F540-8022F734 229E80 01F4+00 1/1 0/0 0/0 .text do_numset__28jmessage_tRenderingProcessorFs
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tRenderingProcessor::do_numset(s16 param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_numset__28jmessage_tRenderingProcessorFs.s"
-}
-#pragma pop
-
-/* 8022F734-8022F784 22A074 0050+00 1/1 0/0 0/0 .text push_word__28jmessage_tRenderingProcessorFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tRenderingProcessor::push_word() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/push_word__28jmessage_tRenderingProcessorFv.s"
-}
-#pragma pop
-
-/* 8022F784-8022F8C0 22A0C4 013C+00 2/2 0/0 0/0 .text
- * getCharInfo__28jmessage_tRenderingProcessorFfffff            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tRenderingProcessor::getCharInfo(f32 param_0, f32 param_1, f32 param_2,
-                                                   f32 param_3, f32 param_4) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/getCharInfo__28jmessage_tRenderingProcessorFfffff.s"
-}
-#pragma pop
-
-/* 8022F8C0-8022F94C 22A200 008C+00 0/0 1/1 0/0 .text __ct__26jmessage_string_tReferenceFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm jmessage_string_tReference::jmessage_string_tReference() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/__ct__26jmessage_string_tReferenceFv.s"
-}
-#pragma pop
-
-/* 8022F94C-8022F9AC 22A28C 0060+00 1/0 0/0 0/0 .text __dt__26jmessage_string_tReferenceFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm jmessage_string_tReference::~jmessage_string_tReference() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/__dt__26jmessage_string_tReferenceFv.s"
-}
-#pragma pop
-
-/* 8022F9AC-8022FA2C 22A2EC 0080+00 0/0 3/3 0/0 .text
- * init__26jmessage_string_tReferenceFP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tReference::init(J2DTextBox* param_0, J2DTextBox* param_1,
-                                          JUTFont* param_2, COutFont_c* param_3, u8 param_4) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/init__26jmessage_string_tReferenceFP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc.s"
-}
-#pragma pop
-
-/* 8022FA2C-8022FA30 22A36C 0004+00 3/3 0/0 0/0 .text
- * setCharactor__26jmessage_string_tReferenceFUs                */
-void jmessage_string_tReference::setCharactor(u16 param_0) {
-    /* empty function */
-}
-
-/* 8022FA30-8022FA34 22A370 0004+00 3/3 0/0 0/0 .text
- * addCharactor__26jmessage_string_tReferenceFUs                */
-void jmessage_string_tReference::addCharactor(u16 param_0) {
-    /* empty function */
-}
-
-/* 8022FA34-8022FA38 22A374 0004+00 3/3 0/0 0/0 .text
- * resetCharactor__26jmessage_string_tReferenceFv               */
-void jmessage_string_tReference::resetCharactor() {
-    /* empty function */
-}
-
-/* 8022FA38-8022FA6C 22A378 0034+00 2/2 1/1 0/0 .text
- * getLineLength__26jmessage_string_tReferenceFi                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tReference::getLineLength(int param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/getLineLength__26jmessage_string_tReferenceFi.s"
-}
-#pragma pop
-
-/* 8022FA6C-8022FA98 22A3AC 002C+00 2/2 0/0 0/0 .text
- * addLineLength__26jmessage_string_tReferenceFif               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tReference::addLineLength(int param_0, f32 param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/addLineLength__26jmessage_string_tReferenceFif.s"
-}
-#pragma pop
-
-/* 8022FA98-8022FACC 22A3D8 0034+00 1/1 0/0 0/0 .text
- * getOutfontLength__26jmessage_string_tReferenceFi             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tReference::getOutfontLength(int param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/getOutfontLength__26jmessage_string_tReferenceFi.s"
-}
-#pragma pop
-
-/* 8022FACC-8022FAF0 22A40C 0024+00 1/1 0/0 0/0 .text
- * setOutfontLength__26jmessage_string_tReferenceFif            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tReference::setOutfontLength(int param_0, f32 param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/setOutfontLength__26jmessage_string_tReferenceFif.s"
-}
-#pragma pop
-
-/* 8022FAF0-8022FB24 22A430 0034+00 2/2 0/0 0/0 .text
- * clearOutfontLength__26jmessage_string_tReferenceFi           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tReference::clearOutfontLength(int param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/clearOutfontLength__26jmessage_string_tReferenceFi.s"
-}
-#pragma pop
-
-/* 8022FB24-8022FB5C 22A464 0038+00 4/4 0/0 0/0 .text
- * getLineCountNowPage__26jmessage_string_tReferenceFv          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tReference::getLineCountNowPage() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/getLineCountNowPage__26jmessage_string_tReferenceFv.s"
-}
-#pragma pop
-
-/* 8022FB5C-8022FB98 22A49C 003C+00 0/0 1/1 0/0 .text            __ct__24jmessage_string_tControlFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm jmessage_string_tControl::jmessage_string_tControl() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/__ct__24jmessage_string_tControlFv.s"
-}
-#pragma pop
-
-/* 8022FB98-8022FBE4 22A4D8 004C+00 1/1 0/0 0/0 .text
- * __ct__33jmessage_string_tMeasureProcessorFPC26jmessage_string_tReference */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm jmessage_string_tMeasureProcessor::jmessage_string_tMeasureProcessor(
-    jmessage_string_tReference const* param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/__ct__33jmessage_string_tMeasureProcessorFPC26jmessage_string_tReference.s"
-}
-#pragma pop
-
-/* 8022FBE4-8022FC14 22A524 0030+00 1/0 0/0 0/0 .text
- * do_begin__33jmessage_string_tMeasureProcessorFPCvPCc         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tMeasureProcessor::do_begin(void const* param_0, char const* param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_begin__33jmessage_string_tMeasureProcessorFPCvPCc.s"
-}
-#pragma pop
-
-/* 8022FC14-8022FC28 22A554 0014+00 1/0 0/0 0/0 .text
- * do_end__33jmessage_string_tMeasureProcessorFv                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tMeasureProcessor::do_end() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_end__33jmessage_string_tMeasureProcessorFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80454A98-80454AA0 003098 0004+04 3/3 0/0 0/0 .sdata2          @7190 */
-SECTION_SDATA2 static f32 lit_7190[1 + 1 /* padding */] = {
-    20.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 8022FC28-8022FDF0 22A568 01C8+00 1/0 0/0 0/0 .text
- * do_character__33jmessage_string_tMeasureProcessorFi          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tMeasureProcessor::do_character(int param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_character__33jmessage_string_tMeasureProcessorFi.s"
-}
-#pragma pop
-
-/* 8022FDF0-8023098C 22A730 0B9C+00 5/0 0/0 0/0 .text
- * do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tMeasureProcessor::do_tag(u32 param_0, void const* param_1, u32 param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl.s"
-}
-#pragma pop
-
-/* 8023098C-80230A08 22B2CC 007C+00 1/1 0/0 0/0 .text
- * do_rubyset__33jmessage_string_tMeasureProcessorFPCvUl        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tMeasureProcessor::do_rubyset(void const* param_0, u32 param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_rubyset__33jmessage_string_tMeasureProcessorFPCvUl.s"
-}
-#pragma pop
-
-/* 80230A08-80230A5C 22B348 0054+00 0/0 1/1 0/0 .text
- * __ct__34jmessage_string_tSequenceProcessorFPC26jmessage_string_tReferenceP24jmessage_string_tControl
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm jmessage_string_tSequenceProcessor::jmessage_string_tSequenceProcessor(
-    jmessage_string_tReference const* param_0, jmessage_string_tControl* param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/func_80230A08.s"
-}
-#pragma pop
-
-/* 80230A5C-80230ABC 22B39C 0060+00 1/0 0/0 0/0 .text __dt__33jmessage_string_tMeasureProcessorFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm jmessage_string_tMeasureProcessor::~jmessage_string_tMeasureProcessor() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/__dt__33jmessage_string_tMeasureProcessorFv.s"
-}
-#pragma pop
-
-/* 80230ABC-80230AC0 22B3FC 0004+00 1/0 0/0 0/0 .text
- * do_reset__34jmessage_string_tSequenceProcessorFv             */
-void jmessage_string_tSequenceProcessor::do_reset() {
-    /* empty function */
-}
-
-/* 80230AC0-80230B7C 22B400 00BC+00 1/0 0/0 0/0 .text
- * do_begin__34jmessage_string_tSequenceProcessorFPCvPCc        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tSequenceProcessor::do_begin(void const* param_0, char const* param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_begin__34jmessage_string_tSequenceProcessorFPCvPCc.s"
-}
-#pragma pop
-
-/* 80230B7C-80230B80 22B4BC 0004+00 1/0 0/0 0/0 .text
- * do_end__34jmessage_string_tSequenceProcessorFv               */
-void jmessage_string_tSequenceProcessor::do_end() {
-    /* empty function */
-}
-
-/* 80230B80-80230B88 22B4C0 0008+00 1/0 0/0 0/0 .text
- * do_isReady__34jmessage_string_tSequenceProcessorFv           */
-bool jmessage_string_tSequenceProcessor::do_isReady() {
-    return true;
-}
-
-/* 80230B88-80230B8C 22B4C8 0004+00 1/0 0/0 0/0 .text
- * do_character__34jmessage_string_tSequenceProcessorFi         */
-void jmessage_string_tSequenceProcessor::do_character(int param_0) {
-    /* empty function */
-}
-
-/* 80230B8C-80230BBC 22B4CC 0030+00 1/0 0/0 0/0 .text
- * do_tag__34jmessage_string_tSequenceProcessorFUlPCvUl         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tSequenceProcessor::do_tag(u32 param_0, void const* param_1, u32 param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_tag__34jmessage_string_tSequenceProcessorFUlPCvUl.s"
-}
-#pragma pop
-
-/* 80230BBC-80230BC4 22B4FC 0008+00 1/0 0/0 0/0 .text
- * do_jump_isReady__34jmessage_string_tSequenceProcessorFv      */
-bool jmessage_string_tSequenceProcessor::do_jump_isReady() {
-    return true;
-}
-
-/* 80230BC4-80230BC8 22B504 0004+00 1/0 0/0 0/0 .text
- * do_jump__34jmessage_string_tSequenceProcessorFPCvPCc         */
-void jmessage_string_tSequenceProcessor::do_jump(void const* param_0, char const* param_1) {
-    /* empty function */
-}
-
-/* 80230BC8-80230C20 22B508 0058+00 0/0 1/1 0/0 .text
- * __ct__35jmessage_string_tRenderingProcessorFPC26jmessage_string_tReference */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm jmessage_string_tRenderingProcessor::jmessage_string_tRenderingProcessor(
-    jmessage_string_tReference const* param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/__ct__35jmessage_string_tRenderingProcessorFPC26jmessage_string_tReference.s"
-}
-#pragma pop
-
-/* 80230C20-80230C5C 22B560 003C+00 5/5 0/0 0/0 .text
- * getLineCountNowPage__35jmessage_string_tRenderingProcessorFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tRenderingProcessor::getLineCountNowPage() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/getLineCountNowPage__35jmessage_string_tRenderingProcessorFv.s"
-}
-#pragma pop
-
-/* 80230C5C-80230CA0 22B59C 0044+00 1/0 0/0 0/0 .text
- * do_reset__35jmessage_string_tRenderingProcessorFv            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tRenderingProcessor::do_reset() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_reset__35jmessage_string_tRenderingProcessorFv.s"
-}
-#pragma pop
-
-/* 80230CA0-80230CE8 22B5E0 0048+00 1/0 0/0 0/0 .text
- * do_begin__35jmessage_string_tRenderingProcessorFPCvPCc       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tRenderingProcessor::do_begin(void const* param_0, char const* param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_begin__35jmessage_string_tRenderingProcessorFPCvPCc.s"
-}
-#pragma pop
-
-/* 80230CE8-80230D48 22B628 0060+00 1/0 0/0 0/0 .text
- * do_end__35jmessage_string_tRenderingProcessorFv              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tRenderingProcessor::do_end() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_end__35jmessage_string_tRenderingProcessorFv.s"
-}
-#pragma pop
-
-/* 80230D48-80231110 22B688 03C8+00 1/0 0/0 0/0 .text
- * do_character__35jmessage_string_tRenderingProcessorFi        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tRenderingProcessor::do_character(int param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_character__35jmessage_string_tRenderingProcessorFi.s"
-}
-#pragma pop
-
-/* 80231110-80231D70 22BA50 0C60+00 6/0 0/0 0/0 .text
- * do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tRenderingProcessor::do_tag(u32 param_0, void const* param_1,
-                                                     u32 param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl.s"
-}
-#pragma pop
-
-/* 80231D70-80231EF0 22C6B0 0180+00 2/2 0/0 0/0 .text
- * do_widthcenter__35jmessage_string_tRenderingProcessorFv      */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tRenderingProcessor::do_widthcenter() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_widthcenter__35jmessage_string_tRenderingProcessorFv.s"
-}
-#pragma pop
-
-/* 80231EF0-80232044 22C830 0154+00 1/1 0/0 0/0 .text
- * do_heightcenter__35jmessage_string_tRenderingProcessorFv     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tRenderingProcessor::do_heightcenter() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_heightcenter__35jmessage_string_tRenderingProcessorFv.s"
-}
-#pragma pop
-
-/* 80232044-802320B0 22C984 006C+00 7/7 0/0 0/0 .text
- * do_strcat__35jmessage_string_tRenderingProcessorFPc          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tRenderingProcessor::do_strcat(char* param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_strcat__35jmessage_string_tRenderingProcessorFPc.s"
-}
-#pragma pop
-
-/* 802320B0-80232260 22C9F0 01B0+00 1/1 0/0 0/0 .text
- * do_rubyset__35jmessage_string_tRenderingProcessorFPCvUl      */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tRenderingProcessor::do_rubyset(void const* param_0, u32 param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_rubyset__35jmessage_string_tRenderingProcessorFPCvUl.s"
-}
-#pragma pop
-
-/* 80232260-802322CC 22CBA0 006C+00 2/2 0/0 0/0 .text
- * do_rubystrcat__35jmessage_string_tRenderingProcessorFPc      */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tRenderingProcessor::do_rubystrcat(char* param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_rubystrcat__35jmessage_string_tRenderingProcessorFPc.s"
-}
-#pragma pop
-
-/* 802322CC-8023256C 22CC0C 02A0+00 2/2 0/0 0/0 .text
- * do_outfont__35jmessage_string_tRenderingProcessorFUc         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tRenderingProcessor::do_outfont(u8 param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_outfont__35jmessage_string_tRenderingProcessorFUc.s"
-}
-#pragma pop
-
-/* 8023256C-80232600 22CEAC 0094+00 1/1 0/0 0/0 .text
- * do_color__35jmessage_string_tRenderingProcessorFUc           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tRenderingProcessor::do_color(u8 param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_color__35jmessage_string_tRenderingProcessorFUc.s"
-}
-#pragma pop
-
-/* 80232600-80232690 22CF40 0090+00 1/1 0/0 0/0 .text
- * do_scale__35jmessage_string_tRenderingProcessorFf            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tRenderingProcessor::do_scale(f32 param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_scale__35jmessage_string_tRenderingProcessorFf.s"
-}
-#pragma pop
-
-/* 80232690-802326E4 22CFD0 0054+00 1/1 0/0 0/0 .text
- * do_linedown__35jmessage_string_tRenderingProcessorFs         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tRenderingProcessor::do_linedown(s16 param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_linedown__35jmessage_string_tRenderingProcessorFs.s"
-}
-#pragma pop
-
-/* 802326E4-802327BC 22D024 00D8+00 1/1 0/0 0/0 .text
- * do_numset__35jmessage_string_tRenderingProcessorFs           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tRenderingProcessor::do_numset(s16 param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/do_numset__35jmessage_string_tRenderingProcessorFs.s"
-}
-#pragma pop
-
-/* 802327BC-802327F8 22D0FC 003C+00 1/1 0/0 0/0 .text
- * push_word__35jmessage_string_tRenderingProcessorFPCc         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_string_tRenderingProcessor::push_word(char const* param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_class/push_word__35jmessage_string_tRenderingProcessorFPCc.s"
-}
-#pragma pop
-
-/* 802327F8-80232858 22D138 0060+00 1/0 0/0 0/0 .text
- * __dt__35jmessage_string_tRenderingProcessorFv                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm jmessage_string_tRenderingProcessor::~jmessage_string_tRenderingProcessor() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/__dt__35jmessage_string_tRenderingProcessorFv.s"
-}
-#pragma pop
-
-/* 80232858-802328DC 22D198 0084+00 1/0 0/0 0/0 .text __dt__34jmessage_string_tSequenceProcessorFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm jmessage_string_tSequenceProcessor::~jmessage_string_tSequenceProcessor() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/__dt__34jmessage_string_tSequenceProcessorFv.s"
-}
-#pragma pop
-
-/* 802328DC-8023293C 22D21C 0060+00 1/0 0/0 0/0 .text            __dt__24jmessage_string_tControlFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm jmessage_string_tControl::~jmessage_string_tControl() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/__dt__24jmessage_string_tControlFv.s"
-}
-#pragma pop
-
-/* 8023293C-8023299C 22D27C 0060+00 1/0 0/0 0/0 .text __dt__28jmessage_tRenderingProcessorFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm jmessage_tRenderingProcessor::~jmessage_tRenderingProcessor() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/__dt__28jmessage_tRenderingProcessorFv.s"
-}
-#pragma pop
-
-/* 8023299C-80232A20 22D2DC 0084+00 1/0 0/0 0/0 .text __dt__27jmessage_tSequenceProcessorFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm jmessage_tSequenceProcessor::~jmessage_tSequenceProcessor() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/__dt__27jmessage_tSequenceProcessorFv.s"
-}
-#pragma pop
-
-/* 80232A20-80232A3C 22D360 001C+00 2/2 0/0 0/0 .text getActorPos__19jmessage_tReferenceFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void jmessage_tReference::getActorPos() {
-    nofralloc
-#include "asm/d/msg/d_msg_class/getActorPos__19jmessage_tReferenceFv.s"
-}
-#pragma pop
 
 /* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

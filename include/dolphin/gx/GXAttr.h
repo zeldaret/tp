@@ -29,8 +29,14 @@ void GXSetVtxAttrFmtv(GXVtxFmt fmt, GXVtxAttrFmtList* list);
 void __GXSetVAT(void);
 void GXSetArray(GXAttr attr, void* base, u8);
 void GXInvalidateVtxCache(void);
-void GXSetTexCoordGen2(GXTexCoordID dst, GXTexGenType type, GXTexGenSrc src, u32 mtx, GXBool renormalize, u32 pt_mtx);
+void GXSetTexCoordGen2(GXTexCoordID dst, GXTexGenType type, GXTexGenSrc src, u32 mtx,
+                       GXBool renormalize, u32 pt_mtx);
 void GXSetNumTexGens(u8 numTexGens);
+
+void GXGetVtxAttrFmtv(GXVtxFmt param_0, GXVtxAttrFmtList* param_1);
+void GXGetVtxAttrFmt(GXVtxFmt param_0, int param_1, GXCompCnt* param_2, GXCompType* param_3,
+                     u8* param_4);
+void GXGetVtxDescv(GXVtxDescList* attrPtr);
 
 #ifdef __cplusplus
 };

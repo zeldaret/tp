@@ -8,6 +8,7 @@
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "global.h"
 #include "m_Do/m_Do_audio.h"
+#include "m_Do/m_Do_mtx.h"
 
 class mDoExt_baseAnm {
 public:
@@ -260,6 +261,7 @@ public:
     u8 getPlayMode() { return mFrameCtrl.getAttribute(); }
     bool isLoop() { return mFrameCtrl.checkState(2); }
     f32 getEndFrame() { return mFrameCtrl.getEnd(); }
+    BOOL checkFrame(f32 frame) { return mFrameCtrl.checkPass(frame); }
 
     bool isStop() {
         bool stopped = true;
@@ -479,6 +481,44 @@ private:
     /* 0x14 */ u16 field_0x14;
     /* 0x16 */ u8 field_0x16;
     /* 0x18 */ mDoExt_3Dline_c* field_0x18;
+};
+
+class mDoExt_cubePacket : public J3DPacket {
+public:
+    mDoExt_cubePacket(cXyz& i_position, cXyz& i_size, csXyz& i_angle, const GXColor& i_color) {
+        mPosition = i_position;
+        mSize = i_size;
+        mAngle = i_angle;
+        mColor = i_color;
+    }
+
+    virtual void draw();
+    virtual ~mDoExt_cubePacket() {}
+
+    /* 0x10 */ cXyz mPosition;
+    /* 0x1C */ cXyz mSize;
+    /* 0x28 */ csXyz mAngle;
+    /* 0x2E */ GXColor mColor;
+};
+
+class mDoExt_cylinderPacket : public J3DPacket {
+public:
+    mDoExt_cylinderPacket(cXyz& i_position, f32 i_radius, f32 i_height, const GXColor& i_color, u8 param_4) {
+        mPosition = i_position;
+        mRadius = i_radius;
+        mHeight = i_height;
+        mColor = i_color;
+        field_0x28 = param_4;
+    }
+
+    virtual void draw();
+    virtual ~mDoExt_cylinderPacket() {}
+
+    /* 0x10 */ cXyz mPosition;
+    /* 0x1C */ f32 mRadius;
+    /* 0x20 */ f32 mHeight;
+    /* 0x24 */ GXColor mColor;
+    /* 0x28 */ u8 field_0x28;
 };
 
 JKRSolidHeap* mDoExt_createSolidHeapFromGame(u32 i_size, u32 i_alignment);

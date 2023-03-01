@@ -1857,7 +1857,7 @@ JKRExpHeap* dComIfGp_getSubHeap2D(int flag) {
     return NULL;
 }
 
-int dComIfGs_checkGetInsectNum() {
+u8 dComIfGs_checkGetInsectNum() {
     static u8 l_itemno[24] = {
         M_BEETLE,      F_BEETLE,      M_BUTTERFLY, F_BUTTERFLY, M_STAG_BEETLE, F_STAG_BEETLE,
         M_GRASSHOPPER, F_GRASSHOPPER, M_NANAFUSHI, F_NANAFUSHI, M_DANGOMUSHI,  F_DANGOMUSHI,
@@ -1865,7 +1865,7 @@ int dComIfGs_checkGetInsectNum() {
         M_DRAGONFLY,   F_DRAGONFLY,   M_ANT,       F_ANT,       M_MAYFLY,      F_MAYFLY,
     };
 
-    int insectCount = 0;
+    u8 insectCount = 0;
     u8* insectList = l_itemno;
 
     for (int i = 0; i < ARRAY_SIZE(l_itemno); i++) {

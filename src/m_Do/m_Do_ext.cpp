@@ -16,6 +16,7 @@
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
+#include "dolphin/gx/GXDraw.h"
 #include "d/kankyo/d_kankyo.h"
 #include "m_Do/m_Do_mtx.h"
 
@@ -3277,6 +3278,102 @@ extern "C" asm void draw__26mDoExt_3DlineMatSortPacketFv() {
 #include "asm/m_Do/m_Do_ext/draw__26mDoExt_3DlineMatSortPacketFv.s"
 }
 #pragma pop
+
+void drawCube(MtxP mtx, cXyz* pos, const GXColor& color) {
+    GXSetArray(GX_VA_POS, pos, sizeof(cXyz));
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
+    GXSetNumChans(1);
+    GXSetChanCtrl(GX_COLOR0, GX_DISABLE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_CLAMP, GX_AF_NONE);
+    GXSetNumTexGens(0);
+    GXSetNumTevStages(1);
+    GXSetTevColor(GX_TEVREG0, color);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+    GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, GX_CC_C0);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_ENABLE, GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_A0);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_ENABLE, GX_TEVPREV);
+    GXSetZMode(GX_ENABLE, GX_LEQUAL, GX_ENABLE);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_CLEAR);
+    GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
+    GXSetCullMode(GX_CULL_BACK);
+    GXSetClipMode(GX_CLIP_ENABLE);
+    GXLoadPosMtxImm(mtx, 0);
+    GXSetCurrentMtx(0);
+
+    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 14);
+    GXPosition1x8(4);
+    GXPosition1x8(6);
+    GXPosition1x8(5);
+    GXPosition1x8(7);
+    GXPosition1x8(3);
+    GXPosition1x8(6);
+    GXPosition1x8(2);
+    GXPosition1x8(4);
+    GXPosition1x8(0);
+    GXPosition1x8(5);
+    GXPosition1x8(1);
+    GXPosition1x8(3);
+    GXPosition1x8(0);
+    GXPosition1x8(2);
+    i_GXEnd();
+}
+
+void mDoExt_cubePacket::draw() {
+    static cXyz l_pos[8] = {
+        cXyz(-1.0f, 1.0f, -1.0f),
+        cXyz(1.0f, 1.0f, -1.0f),
+        cXyz(-1.0f, 1.0f, 1.0f),
+        cXyz(1.0f, 1.0f, 1.0f),
+        cXyz(-1.0f, -1.0f, -1.0f),
+        cXyz(1.0f, -1.0f, -1.0f),
+        cXyz(-1.0f, -1.0f, 1.0f),
+        cXyz(1.0f, -1.0f, 1.0f),
+    };
+
+    mDoMtx_stack_c::transS(mPosition.x, mPosition.y, mPosition.z);
+    mDoMtx_stack_c::XYZrotM(mAngle.x, mAngle.y, mAngle.z);
+    mDoMtx_stack_c::scaleM(mSize.x, mSize.y, mSize.z);
+    mDoMtx_stack_c::revConcat(j3dSys.getViewMtx());
+    drawCube(mDoMtx_stack_c::get(), l_pos, mColor);
+}
+
+void mDoExt_cylinderPacket::draw() {
+    GXSetNumChans(1);
+    GXSetChanCtrl(GX_COLOR0, GX_ENABLE, GX_SRC_REG, GX_SRC_REG, 1, GX_DF_CLAMP, GX_AF_NONE);
+    GXSetNumTexGens(0);
+    GXSetNumTevStages(1);
+    GXSetTevColor(GX_TEVREG0, mColor);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+    GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_RASC, GX_CC_C0, GX_CC_ZERO);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_A0);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+
+    if (field_0x28) {
+        GXSetZMode(GX_ENABLE, GX_LEQUAL, GX_ENABLE);
+    } else {
+        GXSetZMode(GX_DISABLE, GX_LEQUAL, GX_DISABLE);
+    }
+
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_CLEAR);
+    GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
+    GXSetCullMode(GX_CULL_BACK);
+    GXSetClipMode(GX_CLIP_ENABLE);
+
+    mDoMtx_stack_c::copy(j3dSys.getViewMtx());
+    mDoMtx_stack_c::transM(mPosition.x, mPosition.y + mHeight * 0.5f, mPosition.z);
+    mDoMtx_stack_c::scaleM(mRadius, mRadius * 0.5f, mRadius);
+    mDoMtx_stack_c::XrotM(0x4000);
+    
+    GXLoadPosMtxImm(mDoMtx_stack_c::get(), 0);
+    mDoMtx_stack_c::inverseTranspose();
+
+    GXLoadNrmMtxImm(mDoMtx_stack_c::get(), 0);
+    GXSetCurrentMtx(0);
+    GXDrawCylinder(8);
+}
 
 /* ############################################################################################## */
 /* 803740FC-803740FC 00075C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

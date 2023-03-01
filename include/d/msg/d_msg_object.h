@@ -7,7 +7,6 @@
 #include "JSystem/JMessage/resource.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/msg/d_msg_class.h"
-#include "dolphin/types.h"
 
 class COutFont_c;
 class dMsgScrnBase_c;
@@ -20,7 +19,7 @@ public:
     /* 80233AE8 */ void _delete();
     /* 80233D04 */ void setMessageIndex(u32, u32, bool);
     /* 80233E70 */ void setMessageIndexDemo(u32, bool);
-    /* 80233F84 */ void getMessageIndex(u32);
+    /* 80233F84 */ int getMessageIndex(u32);
     /* 80233FD8 */ void getRevoMessageIndex(u32);
     /* 802340D4 */ void getMessageIndexAlways(u32);
     /* 80234128 */ void getMessageIDAlways(u32);
@@ -51,24 +50,24 @@ public:
     /* 80236D0C */ void changeGroupLocal(s16);
     /* 80236DE4 */ void getStringLocal(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, char*,
                                        char*, char*, s16*);
-    /* 802370A8 */ BOOL isGetItemMessage();
-    /* 802370BC */ BOOL isKanbanMessage();
-    /* 802370E8 */ BOOL isHowlMessage();
+    /* 802370A8 */ u8 isGetItemMessage();
+    /* 802370BC */ bool isKanbanMessage();
+    /* 802370E8 */ u8 isHowlMessage();
     /* 802370FC */ bool isMidonaMessage();
-    /* 80237138 */ void isMidonaNormalTalkWait();
-    /* 802371B0 */ void isMidonaTalkWait();
-    /* 802371E4 */ void isPlaceMessage();
-    /* 802371F8 */ void isBossMessage();
+    /* 80237138 */ bool isMidonaNormalTalkWait();
+    /* 802371B0 */ bool isMidonaTalkWait();
+    /* 802371E4 */ bool isPlaceMessage();
+    /* 802371F8 */ bool isBossMessage();
     /* 8023720C */ bool isBookMessage();
-    /* 80237214 */ void isStaffMessage();
-    /* 80237228 */ void isSaveMessage();
-    /* 8023723C */ void isTalkMessage();
-    /* 802372CC */ void getSmellName();
-    /* 80237334 */ void getPortalName();
-    /* 8023738C */ void getBombName();
-    /* 8023741C */ void getInsectName();
-    /* 80237478 */ void getLetterName();
-    /* 802374D0 */ void getSelectBombNum();
+    /* 80237214 */ bool isStaffMessage();
+    /* 80237228 */ bool isSaveMessage();
+    /* 8023723C */ bool isTalkMessage();
+    /* 802372CC */ const char* getSmellName();
+    /* 80237334 */ const char* getPortalName();
+    /* 8023738C */ const char* getBombName();
+    /* 8023741C */ const char* getInsectName();
+    /* 80237478 */ const char* getLetterName();
+    /* 802374D0 */ u8 getSelectBombNum();
     /* 80237520 */ void onMsgSendControlLocal();
     /* 80237530 */ void offMsgSendControlLocal();
     /* 80237550 */ void isMsgSendControlLocal();
@@ -145,7 +144,7 @@ public:
     /* 802384D8 */ static void setArrowNum(u8);
     /* 802384EC */ void setMsgOutputType(u8);
     /* 80238500 */ void getMsgOutputType();
-    /* 80238514 */ void getWord();
+    /* 80238514 */ static const char* getWord();
     /* 80238528 */ void getSelectWord(int);
     /* 80238544 */ void setSelectWordFlag(u8);
     /* 80238574 */ void getSelectWordFlag();
@@ -159,8 +158,29 @@ public:
     void setShopWaitTimerLocal(u8 timer) { mShopWaitTimer = timer; }
     void setSelectCancelPosLocal(u8 pos) { mSelectCancelPos = pos; }
     u8 getItemEquipButtonLocal() { return mItemEquipButton; }
+    s16 getInputValueLocal() { return mInputValue; }
+    void setInputValueLocal(s16 i_inputValue) { mInputValue = i_inputValue; }
+    s16 getNowTotalPriceLocal() { return mNowTotalPrice; }
+    s16 getNowTotalPaymentLocal() { return mNowTotalPayment; }
+    void onInputFlagLocal() { mInputFlag = 1; }
+    void offAutoMessageFlagLocal() { mAutoMessageFlag = 0; }
+    void onAutoMessageFlagLocal() { mAutoMessageFlag = 1; }
+    void setFundRaisingValueLocal(s16 i_value) { mFundRaisingValue = i_value; }
+    u16 getPortalMessageIDLocal() { return mPortalMessageID; }
+
     u8 getSelectPushFlag() { return mSelectPushFlag; }
     u8 getSelectCancelPos() { return mSelectCancelPos; }
+    s16 getInputValue() { return getInputValueLocal(); }
+    void setInputValue(s16 i_inputValue) { setInputValueLocal(i_inputValue); }
+    s16 getNowTotalPrice() { return getNowTotalPriceLocal(); }
+    s16 getNowTotalPayment() { return getNowTotalPaymentLocal(); }
+    void onInputFlag() { onInputFlagLocal(); }
+    void offAutoMessageFlag() { offAutoMessageFlagLocal(); }
+    void onAutoMessageFlag() { onAutoMessageFlagLocal(); }
+    void setFundRaisingValue(s16 i_value) { setFundRaisingValueLocal(i_value); }
+    u16 getPortalMessageID() { return getPortalMessageIDLocal(); }
+
+    jmessage_tSequenceProcessor* getSequenceProcessor() { return mpSeqProc; }
 
     /* 0x0FC */ int field_0xfc;
     /* 0x100 */ msg_class* field_0x100;
@@ -195,11 +215,11 @@ public:
     /* 0x16E */ u16 field_0x16e;
     /* 0x170 */ u16 mNowTalkFlowNo;
     /* 0x172 */ u16 field_0x172;
-    /* 0x174 */ u16 mInputValue;
+    /* 0x174 */ s16 mInputValue;
     /* 0x176 */ u16 mFundRaisingValue;
     /* 0x178 */ u16 field_0x178;
-    /* 0x17A */ u16 mNowTotalPrice;
-    /* 0x17C */ u16 mNowTotalPayment;
+    /* 0x17A */ s16 mNowTotalPrice;
+    /* 0x17C */ s16 mNowTotalPayment;
     /* 0x17E */ u16 field_0x17e;
     /* 0x180 */ u16 mPortalMessageID;
     /* 0x182 */ u16 mBombMessageID[3];
@@ -276,6 +296,10 @@ inline void dMsgObject_readMessageGroup(mDoDvdThd_mountXArchive_c** param_0) {
 
 inline void dMsgObject_setDemoMessage(u32 param_0) {
     dMsgObject_getMsgObjectClass()->setDemoMessage(param_0);
+}
+
+inline const char* dMsgObject_getWord() {
+    return dMsgObject_c::getWord();
 }
 
 inline void dMsgObject_setShopWaitTimer(u8 timer) {
@@ -478,13 +502,12 @@ public:
     /* 0x310 */ u16 mBossNameDisplayTime;
     /* 0x312 */ u16 mBatchDisplayWeight_3;
     /* 0x314 */ u16 mCharDisplayWeight_5;
-    /* 0x316 */ u16 mBatchDisplayWeight_8;
-    /* 0x318 */ u16 mBatchDisplayWeight_9;
-    /* 0x31A */ u16 mHaloDelayFrame;
-    /* 0x31C */ u16 mHaloDelayFrameSpirit;
+    /* 0x316 */ s16 mBatchDisplayWeight_8;
+    /* 0x318 */ s16 mBatchDisplayWeight_9;
+    /* 0x31A */ s16 mHaloDelayFrame;
+    /* 0x31C */ s16 mHaloDelayFrameSpirit;
     /* 0x31E */ bool mSaveSeqMsgDebug;
     /* 0x31F */ bool mMsgDebug;
-    /* 0x320 */ u8 field_0x320;
     /* 0x320 */ bool mTextColorDebug;
     /* 0x321 */ u8 mTextColorUpperR[9];  // Default, Red, Green, Blue, Yellow, L.Blue, Purple, Grey, Orange, 
     /* 0x32A */ u8 mTextColorUpperG[9];

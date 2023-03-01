@@ -14,6 +14,7 @@ LIBGX_A_CPP_FILES := \
 	libs/dolphin/gx/GXBump.c \
 	libs/dolphin/gx/GXTev.c \
 	libs/dolphin/gx/GXPixel.c \
+	libs/dolphin/gx/GXDraw.c \
 	libs/dolphin/gx/GXDisplayList.c \
 	libs/dolphin/gx/GXTransform.c \
 	libs/dolphin/gx/GXPerf.c \
@@ -30,6 +31,7 @@ LIBGX_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/gx/GXBump.o \
 	$(BUILD_DIR)/libs/dolphin/gx/GXTev.o \
 	$(BUILD_DIR)/libs/dolphin/gx/GXPixel.o \
+	$(BUILD_DIR)/libs/dolphin/gx/GXDraw.o \
 	$(BUILD_DIR)/libs/dolphin/gx/GXDisplayList.o \
 	$(BUILD_DIR)/libs/dolphin/gx/GXTransform.o \
 	$(BUILD_DIR)/libs/dolphin/gx/GXPerf.o \

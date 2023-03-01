@@ -1,9 +1,7 @@
 #ifndef D_MSG_D_MSG_FLOW_H
 #define D_MSG_D_MSG_FLOW_H
 
-#include "d/msg/d_msg_class.h"
-#include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
+#include "f_op/f_op_msg.h"
 
 // all mesg_flow_node structs members might be wrong
 struct mesg_flow_node {

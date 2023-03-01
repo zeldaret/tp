@@ -3,7 +3,7 @@
 
 #include "SSystem/SComponent/c_phase.h"
 #include "d/menu/d_menu_save.h"
-#include "d/msg/d_msg_class.h"
+#include "f_op/f_op_msg.h"
 #include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_hostIO.h"
 
@@ -23,7 +23,7 @@ public:
 class dDlst_Gameover_CAPTURE_c : public dDlst_base_c {
 public:
     /* 8019ACF8 */ virtual void draw();
-    /* 8019C2CC */ virtual ~dDlst_Gameover_CAPTURE_c();    
+    /* 8019C2CC */ virtual ~dDlst_Gameover_CAPTURE_c();
 };
 
 class dMsgScrnLight_c;

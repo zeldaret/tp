@@ -29,4 +29,6 @@ struct dCcU_AtInfo {
     /* 0x20 */ u8 mHitType;
 };
 
+fopAc_ac_c* cc_at_check(fopAc_ac_c*,dCcU_AtInfo*);
+
 #endif /* D_CC_D_CC_UTY_H */
