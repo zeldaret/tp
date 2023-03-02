@@ -641,6 +641,8 @@ public:
     };
 
     enum daAlink_FTANM {
+        FTANM_UNK_3 = 3,
+        FTANM_UNK_4 = 4,
         FTANM_UNK_8 = 8,
         FTANM_UNK_13 = 0x13,
         FTANM_UNK_14 = 0x14,
@@ -2239,7 +2241,7 @@ public:
     /* 800FC2F4 */ int procHangLeverDownInit();
     /* 800FC390 */ int procHangLeverDown();
     /* 800FC5A4 */ void setDragonHangPos();
-    /* 800FC6B4 */ void setOctaIealHangPos();
+    /* 800FC6B4 */ int setOctaIealHangPos();
     /* 800FC748 */ void setBossBodyHangPos();
     /* 800FC77C */ int procBossBodyHangInit(fopAc_ac_c*);
     /* 800FC870 */ int procBossBodyHang();

@@ -31,6 +31,8 @@ public:
     /* 80CFCD04 */ virtual int Draw();
     /* 80CFCD98 */ virtual int Delete();
 
+    void setHangPlayer() { mHangPlayer = 1; }
+
     /* 0x5A0 */ dEvLib_callback_c field_0x5a0;
     /* 0x5B0 */ request_of_phase_process_class mPhase;
     /* 0x5B8 */ J3DModel* mpModel;

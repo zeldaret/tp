@@ -1,3 +1,4 @@
+#include "rel/d/a/b/d_a_b_ob/d_a_b_ob.h"
 #include "rel/d/a/obj/d_a_obj_swhang/d_a_obj_swhang.h"
 
 /* 800F9FDC-800F9FFC 0F491C 0020+00 2/2 0/0 0/0 .text            getHangMoveAnmSpeed__9daAlink_cFv
@@ -475,14 +476,18 @@ asm void daAlink_c::setDragonHangPos() {
 #pragma pop
 
 /* 800FC6B4-800FC748 0F6FF4 0094+00 1/1 0/0 0/0 .text            setOctaIealHangPos__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setOctaIealHangPos() {
-    nofralloc
-#include "asm/d/a/d_a_alink/setOctaIealHangPos__9daAlink_cFv.s"
+int daAlink_c::setOctaIealHangPos() {
+    b_ob_class* ob_p = (b_ob_class*)field_0x280c.getActor();
+    if (ob_p == NULL) {
+        return 0;
+    }
+
+    mDoMtx_stack_c::copy(ob_p->mParts[0].field_0x0->getModel()->i_getAnmMtx(0));
+    mDoMtx_stack_c::transM(FLOAT_LABEL(lit_6108), lit_24400, lit_24401);
+    mDoMtx_stack_c::multVecZero(&current.pos);
+    mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &shape_angle);
+    return 1;
 }
-#pragma pop
 
 /* 800FC748-800FC77C 0F7088 0034+00 2/2 0/0 0/0 .text            setBossBodyHangPos__9daAlink_cFv */
 void daAlink_c::setBossBodyHangPos() {
@@ -1332,14 +1337,44 @@ int daAlink_c::procRoofHangSideMove() {
 
 /* 801013B8-80101534 0FBCF8 017C+00 1/1 0/0 0/0 .text            procRoofHangTurnInit__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daAlink_c::procRoofHangTurnInit() {
-    nofralloc
-#include "asm/d/a/d_a_alink/procRoofHangTurnInit__9daAlink_cFv.s"
+int daAlink_c::procRoofHangTurnInit() {
+    commonProcInit(PROC_ROOF_HANG_TURN);
+
+    f32 anm_speed;
+    if ((s16)(field_0x2fe2 - shape_angle.y) < 0) {
+        anm_speed = -daAlinkHIO_roofHang_c0::m.field_0x44;
+        field_0x3008 = 1;
+        shape_angle.y += 0x8000;
+        setOldRootQuaternion(0, -0x8000, 0);
+        field_0x2060->getOldFrameTransInfo(0)->mTranslate.z = lit_26275;
+        field_0x300c = field_0x2fe2;
+        field_0x3478 = FLOAT_LABEL(lit_6108);
+        field_0x347c = lit_7625;
+    } else {
+        anm_speed = daAlinkHIO_roofHang_c0::m.field_0x44;
+        field_0x3008 = 0;
+        field_0x300c = field_0x2fe2 + 0x8000;
+        field_0x3478 = lit_7625;
+        field_0x347c = lit_26276;
+    }
+
+    current.angle.y = shape_angle.y;
+    setSingleAnimeBaseSpeed(ANM_ROOF_HANG_TURN, anm_speed, daAlinkHIO_roofHang_c0::m.field_0x48);
+
+    if (field_0x3008 != 0) {
+        setFaceBasicTexture(FTANM_UNK_4);
+    } else {
+        setFaceBasicTexture(FTANM_UNK_3);
+    }
+
+    field_0x2f98 = 4;
+    setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
+    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = tmp_0;
+    speed.y = tmp_0;
+    dComIfGp_setPlayerStatus1(0, 0x100000);
+    return 1;
 }
-#pragma pop
 
 /* 80101534-8010163C 0FBE74 0108+00 1/0 0/0 0/0 .text            procRoofHangTurn__9daAlink_cFv */
 int daAlink_c::procRoofHangTurn() {
@@ -1370,25 +1405,40 @@ int daAlink_c::procRoofHangTurn() {
 }
 
 /* 8010163C-801016AC 0FBF7C 0070+00 2/2 0/0 0/0 .text            setRoofHangSwitch__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setRoofHangSwitch() {
-    nofralloc
-#include "asm/d/a/d_a_alink/setRoofHangSwitch__9daAlink_cFv.s"
+void daAlink_c::setRoofHangSwitch() {
+    daObjSwHang_c* swhang_p = (daObjSwHang_c*)field_0x280c.getActor();
+    current.pos = swhang_p->getHangPos();
+    current.pos.y -= lit_25916;
+    swhang_p->setHangPlayer();
 }
-#pragma pop
 
 /* 801016AC-801017AC 0FBFEC 0100+00 1/1 0/0 0/0 .text
  * procRoofSwitchHangInit__9daAlink_cFP10fopAc_ac_c             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daAlink_c::procRoofSwitchHangInit(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/procRoofSwitchHangInit__9daAlink_cFP10fopAc_ac_c.s"
+int daAlink_c::procRoofSwitchHangInit(fopAc_ac_c* param_0) {
+    commonProcInit(PROC_ROOF_SWITCH_HANG);
+    deleteEquipItem(TRUE, FALSE);
+    setSingleAnimeParam(ANM_ROOF_HANG, &daAlinkHIO_roofHang_c0::m.field_0x0);
+
+    setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
+    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    speed.y = tmp_0;
+    mNormalSpeed = tmp_0;
+
+    field_0x280c.setData(param_0);
+    setRoofHangSwitch();
+
+    if (cLib_distanceAngleS(param_0->shape_angle.y, shape_angle.y) > 0x4000) {
+        current.angle.y = param_0->shape_angle.y + 0x8000;
+    } else {
+        current.angle.y = param_0->shape_angle.y;
+    }
+
+    setOldRootQuaternion(0, current.angle.y - shape_angle.y, 0);
+    shape_angle.y = current.angle.y;
+    field_0x2f99 = 0x50;
+    field_0x300c = 0;
+    return 1;
 }
-#pragma pop
 
 /* 801017AC-80101874 0FC0EC 00C8+00 1/0 0/0 0/0 .text            procRoofSwitchHang__9daAlink_cFv */
 int daAlink_c::procRoofSwitchHang() {
@@ -1414,15 +1464,6 @@ int daAlink_c::procRoofSwitchHang() {
 }
 
 /* 80101874-80101890 0FC1B4 001C+00 2/2 0/0 0/0 .text            getHangPos__13daObjSwHang_cFv */
-/* #pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cXyz daObjSwHang_c::getHangPos() {
-    nofralloc
-#include "asm/d/a/d_a_alink/getHangPos__13daObjSwHang_cFv.s"
-}
-#pragma pop
- */
 cXyz daObjSwHang_c::getHangPos() {
     return mHangPos;
 }
