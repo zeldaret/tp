@@ -7,12 +7,6 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "MSL_C/MSL_Common/Src/ctype.h"
 #include "MSL_C/MSL_Common/Src/string.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Declarations:
-//
 
 /* ############################################################################################## */
 /* 80451420-80451428 000920 0004+04 1/1 5/5 0/0 .sbss            sCurrentDirID__10JKRArchive */
@@ -78,7 +72,6 @@ JKRArchive::SDIDirEntry* JKRArchive::findDirectory(const char* name, u32 directo
     SDIFileEntry* fileEntry = mFiles + dirEntry->first_file_index;
 
     for (int i = 0; i < dirEntry->num_entries; fileEntry++, i++) {
-        // regalloc doesn't like fileEntry->getNameHash()
         if (isSameName(arcName, fileEntry->getNameOffset(), fileEntry->name_hash)) {
             if (fileEntry->isDirectory()) {
                 return findDirectory(name, fileEntry->data_offset);
@@ -95,6 +88,7 @@ JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(u32 type, const char* nam
     if (type) {
         CArcName arcName(name);
         SDIDirEntry* dirEntry = findResType(type);
+
         if (dirEntry) {
             SDIFileEntry* fileEntry = mFiles + dirEntry->first_file_index;
             for (int i = 0; i < dirEntry->num_entries; fileEntry++, i++) {
@@ -115,8 +109,8 @@ JKRArchive::SDIFileEntry* JKRArchive::findFsResource(const char* name, u32 direc
         CArcName arcName(&name, '/');
         SDIDirEntry* dirEntry = mNodes + directoryId;
         SDIFileEntry* fileEntry = mFiles + dirEntry->first_file_index;
+
         for (int i = 0; i < dirEntry->num_entries; fileEntry++, i++) {
-            // regalloc doesn't like fileEntry->getNameHash()
             if (isSameName(arcName, fileEntry->getNameOffset(), fileEntry->name_hash)) {
                 if (fileEntry->isDirectory()) {
                     return findFsResource(name, fileEntry->data_offset);

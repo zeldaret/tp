@@ -5,37 +5,19 @@
 
 #include "JSystem/JSupport/JSUInputStream.h"
 #include "JSystem/JSupport/JSURandomInputStream.h"
-#include "dol2asm.h"
-#include "global.h"
-
-//
-// Types:
-//
 
 //
 // Forward References:
 //
 
-extern "C" void __dt__14JSUInputStreamFv();
-extern "C" void read__14JSUInputStreamFPvl();
-extern "C" void skip__14JSUInputStreamFl();
-extern "C" void align__20JSURandomInputStreamFl();
 extern "C" void skip__20JSURandomInputStreamFl();
-extern "C" void peek__20JSURandomInputStreamFPvl();
-extern "C" void seek__20JSURandomInputStreamFl17JSUStreamSeekFrom();
 
 //
 // External References:
 //
 
 extern "C" void __dt__20JSURandomInputStreamFv();
-extern "C" void __dl__FPv();
 extern "C" void getAvailable__20JSURandomInputStreamCFv();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__10JSUIosBase[3];
 
 //
 // Declarations:
@@ -43,7 +25,7 @@ extern "C" extern void* __vt__10JSUIosBase[3];
 
 /* ############################################################################################## */
 /* 803CC4B0-803CC4D4 0295D0 0024+00 0/0 7/7 0/0 .data            __vt__20JSURandomInputStream */
-SECTION_DATA extern void* __vt__20JSURandomInputStream[9] = {
+extern void* __vt__20JSURandomInputStream[9] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__20JSURandomInputStreamFv,
@@ -55,26 +37,14 @@ SECTION_DATA extern void* __vt__20JSURandomInputStream[9] = {
     (void*)NULL,
 };
 
-/* 803CC4D4-803CC4F0 0295F4 0018+04 1/1 4/4 0/0 .data            __vt__14JSUInputStream */
-SECTION_DATA extern void* __vt__14JSUInputStream[6 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14JSUInputStreamFv,
-    (void*)NULL,
-    (void*)skip__14JSUInputStreamFl,
-    (void*)NULL,
-    /* padding */
-    NULL,
-};
-
 /* 802DC23C-802DC298 2D6B7C 005C+00 1/0 6/6 0/0 .text            __dt__14JSUInputStreamFv */
 JSUInputStream::~JSUInputStream() {}
 
 /* 802DC298-802DC2F0 2D6BD8 0058+00 1/1 20/20 0/0 .text            read__14JSUInputStreamFPvl */
 s32 JSUInputStream::read(void* buffer, s32 numBytes) {
-    s32 bytesRead = this->readData(buffer, numBytes);
+    s32 bytesRead = readData(buffer, numBytes);
     if (bytesRead != numBytes) {
-        this->setState(IOS_STATE_1);
+        setState(IOS_STATE_1);
     }
     return bytesRead;
 }
@@ -84,7 +54,7 @@ s32 JSUInputStream::skip(s32 count) {
     s32 skipCount = 0;
     u8 buffer[1];
     while (count > skipCount) {
-        if (this->readData(&buffer, 1) != 1) {
+        if (readData(&buffer, 1) != 1) {
             setState(IOS_STATE_1);
             break;
         }
@@ -95,15 +65,15 @@ s32 JSUInputStream::skip(s32 count) {
 
 /* 802DC370-802DC3FC 2D6CB0 008C+00 0/0 1/1 0/0 .text            align__20JSURandomInputStreamFl */
 s32 JSURandomInputStream::align(s32 alignment) {
-    s32 currentPos = this->getPosition();
+    s32 currentPos = getPosition();
     s32 offset = (alignment + currentPos);
     offset -= 1;
     offset &= ~(alignment - 1);
     s32 alignmentOffset = offset - currentPos;
     if (alignmentOffset != 0) {
-        s32 seekLen = this->seekPos(offset, JSUStreamSeekFrom_SET);
+        s32 seekLen = seekPos(offset, JSUStreamSeekFrom_SET);
         if (seekLen != alignmentOffset) {
-            this->setState(IOS_STATE_1);
+            setState(IOS_STATE_1);
         }
     }
     return alignmentOffset;
@@ -111,19 +81,19 @@ s32 JSURandomInputStream::align(s32 alignment) {
 
 /* 802DC3FC-802DC458 2D6D3C 005C+00 1/0 2/0 0/0 .text            skip__20JSURandomInputStreamFl */
 s32 JSURandomInputStream::skip(s32 param_0) {
-    s32 val = this->seekPos(param_0, JSUStreamSeekFrom_CUR);
+    s32 val = seekPos(param_0, JSUStreamSeekFrom_CUR);
     if (val != param_0) {
-        this->setState(IOS_STATE_1);
+        setState(IOS_STATE_1);
     }
     return val;
 }
 
 /* 802DC458-802DC4DC 2D6D98 0084+00 0/0 8/8 0/0 .text            peek__20JSURandomInputStreamFPvl */
 s32 JSURandomInputStream::peek(void* buffer, s32 numBytes) {
-    s32 oldPos = this->getPosition();
-    s32 bytesRead = this->read(buffer, numBytes);
+    s32 oldPos = getPosition();
+    s32 bytesRead = read(buffer, numBytes);
     if (bytesRead != 0) {
-        this->seekPos(oldPos, JSUStreamSeekFrom_SET);
+        seekPos(oldPos, JSUStreamSeekFrom_SET);
     }
     return bytesRead;
 }
@@ -131,7 +101,7 @@ s32 JSURandomInputStream::peek(void* buffer, s32 numBytes) {
 /* 802DC4DC-802DC520 2D6E1C 0044+00 0/0 16/16 0/0 .text
  * seek__20JSURandomInputStreamFl17JSUStreamSeekFrom            */
 s32 JSURandomInputStream::seek(s32 param_0, JSUStreamSeekFrom param_1) {
-    s32 seekResult = this->seekPos(param_0, param_1);
-    this->clrState(IOS_STATE_1);
+    s32 seekResult = seekPos(param_0, param_1);
+    clrState(IOS_STATE_1);
     return seekResult;
 }

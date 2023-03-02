@@ -12,12 +12,6 @@
 #include "JSystem/JKernel/JKRFileLoader.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Declarations:
-//
 
 /* 802D5778-802D57E4 2D00B8 006C+00 2/2 0/0 0/0 .text check_mount_already__10JKRArchiveFlP7JKRHeap
  */
@@ -283,7 +277,7 @@ u32 JKRArchive::readResource(void* buffer, u32 bufferSize, u16 id) {
 
 /* 802D5FB4-802D603C 2D08F4 0088+00 1/0 2/0 0/0 .text            removeResourceAll__10JKRArchiveFv
  */
-void JKRArchive::removeResourceAll(void) {
+void JKRArchive::removeResourceAll() {
     if (mArcInfoBlock && mMountMode != MOUNT_MEM) {
         SDIFileEntry* fileEntry = mFiles;
         for (int i = 0; i < mArcInfoBlock->num_file_entries; fileEntry++, i++) {
@@ -326,7 +320,7 @@ u32 JKRArchive::getResSize(const void* resource) const {
 }
 
 /* 802D610C-802D6150 2D0A4C 0044+00 0/0 1/1 0/0 .text            countResource__10JKRArchiveCFv */
-u32 JKRArchive::countResource(void) const {
+u32 JKRArchive::countResource() const {
     u32 count = 0;
     for (int i = 0; i < mArcInfoBlock->num_file_entries; i++) {
         if (mFiles[i].isUnknownFlag1()) {

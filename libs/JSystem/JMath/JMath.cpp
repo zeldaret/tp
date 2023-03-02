@@ -4,8 +4,8 @@
 //
 
 #include "JSystem/JMath/JMath.h"
+#include "JSystem/JMath/JMATrigonometric.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:
@@ -29,6 +29,21 @@ extern "C" u8 sincosTable___5JMath[65536];
 
 /* 80339878-80339938 3341B8 00C0+00 0/0 11/11 2/2 .text            JMAEulerToQuat__FsssP10Quaternion
  */
+#ifdef NONMATCHING
+void JMAEulerToQuat(s16 x, s16 y, s16 z, Quaternion* quat) {
+    f32 cosX = JMASCos(x / 2);
+    f32 cosY = JMASCos(y / 2);
+    f32 cosZ = JMASCos(z / 2);
+    f32 sinX = JMASSin(x / 2);
+    f32 sinY = JMASSin(y / 2);
+    f32 sinZ = JMASSin(z / 2);
+
+    quat->w = cosX * (cosY * cosZ) + sinX * (sinY * sinZ);
+    quat->x = sinX * (cosY * cosZ) - cosX * (sinY * sinZ);
+    quat->y = cosZ * (cosX * sinY) + sinZ * (sinX * cosY);
+    quat->z = sinZ * (cosX * cosY) - cosZ * (sinX * sinY);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -37,24 +52,40 @@ asm void JMAEulerToQuat(s16 param_0, s16 param_1, s16 param_2, Quaternion* param
 #include "asm/JSystem/JMath/JMath/JMAEulerToQuat__FsssP10Quaternion.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 804564C8-804564D0 004AC8 0008+00 1/1 0/0 0/0 .sdata2          @376 */
-SECTION_SDATA2 static u8 lit_376[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+#endif
 
 /* 80339938-80339A30 334278 00F8+00 0/0 5/5 0/0 .text
  * JMAQuatLerp__FPC10QuaternionPC10QuaternionfP10Quaternion     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMAQuatLerp(Quaternion const* param_0, Quaternion const* param_1, f32 param_2,
-                     Quaternion* param_3) {
-    nofralloc
-#include "asm/JSystem/JMath/JMath/JMAQuatLerp__FPC10QuaternionPC10QuaternionfP10Quaternion.s"
+void JMAQuatLerp(register const Quaternion* p, register const Quaternion* q, f32 t,
+                 Quaternion* dst) {
+    register f32 pxy, pzw, qxy, qzw;
+    register f32 dp;
+    __asm  // compute dot product
+    {
+        psq_l       pxy, 0(p), 0, 0
+        psq_l       qxy, 0(q), 0, 0
+        ps_mul      dp, pxy, qxy
+        
+        psq_l       pzw, 8(p), 0, 0
+        psq_l       qzw, 8(q), 0, 0
+        ps_madd     dp, pzw, qzw, dp
+        
+        ps_sum0     dp, dp, dp, dp
+    }
+
+    if (dp < 0.0) {
+        dst->x = -t * (p->x + q->x) + p->x;
+        dst->y = -t * (p->y + q->y) + p->y;
+        dst->z = -t * (p->z + q->z) + p->z;
+        dst->w = -t * (p->w + q->w) + p->w;
+    }
+    else {
+        dst->x = -t * (p->x - q->x) + p->x;
+        dst->y = -t * (p->y - q->y) + p->y;
+        dst->z = -t * (p->z - q->z) + p->z;
+        dst->w = -t * (p->w - q->w) + p->w;
+    }
 }
-#pragma pop
 
 /* 80339A30-80339A5C 334370 002C+00 0/0 1/1 0/0 .text            JMAFastVECNormalize__FPC3VecP3Vec
  */

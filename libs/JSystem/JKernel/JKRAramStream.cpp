@@ -9,57 +9,6 @@
 #include "JSystem/JSupport/JSUFileStream.h"
 #include "JSystem/JSupport/JSURandomInputStream.h"
 #include "JSystem/JUtility/JUTException.h"
-#include "dol2asm.h"
-#include "global.h"
-
-//
-// Forward References:
-//
-
-extern "C" void create__13JKRAramStreamFl();
-extern "C" void __ct__13JKRAramStreamFl();
-extern "C" void __dt__13JKRAramStreamFv();
-extern "C" void run__13JKRAramStreamFv();
-extern "C" bool readFromAram__13JKRAramStreamFv();
-extern "C" void writeToAram__13JKRAramStreamFP20JKRAramStreamCommand();
-extern "C" void write_StreamToAram_Async__13JKRAramStreamFP18JSUFileInputStreamUlUlUlPUl();
-extern "C" void sync__13JKRAramStreamFP20JKRAramStreamCommandi();
-extern "C" void setTransBuffer__13JKRAramStreamFPUcUlP7JKRHeap();
-extern "C" void __ct__20JKRAramStreamCommandFv();
-extern "C" s32 getAvailable__20JSURandomInputStreamCFv(JSURandomInputStream*);
-extern "C" extern char const* const JKRAramStream__stringBase0;
-extern "C" u8 sMessageBuffer__13JKRAramStream[16];
-extern "C" u8 sMessageQueue__13JKRAramStream[32];
-extern "C" u8 sAramStreamObject__13JKRAramStream[4];
-extern "C" u8 transBuffer__13JKRAramStream[4];
-extern "C" u8 transSize__13JKRAramStream[4];
-extern "C" u8 transHeap__13JKRAramStream[4];
-
-//
-// External References:
-//
-
-extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
-extern "C" void alloc__7JKRHeapFUli();
-extern "C" void free__7JKRHeapFPvP7JKRHeap();
-extern "C" void* __nw__FUlP7JKRHeapi();
-extern "C" void __dl__FPv();
-extern "C" void __ct__9JKRThreadFUlii();
-extern "C" void __dt__9JKRThreadFv();
-extern "C" void orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock();
-extern "C" void read__14JSUInputStreamFPvl();
-extern "C" void seek__20JSURandomInputStreamFl17JSUStreamSeekFrom();
-extern "C" void panic_f__12JUTExceptionFPCciPCce();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_26();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_26();
-extern "C" u8 sSystemHeap__7JKRHeap[4];
-extern "C" u8 sCurrentHeap__7JKRHeap[4];
-
-//
-// Declarations:
-//
 
 /* ############################################################################################## */
 /* 80451408-8045140C 000908 0004+00 1/1 0/0 0/0 .sbss            sAramStreamObject__13JKRAramStream
@@ -97,7 +46,7 @@ JKRAramStream::JKRAramStream(long priority) : JKRThread(0xc00, 0x10, priority) {
 JKRAramStream::~JKRAramStream() {}
 
 /* 802D3C68-802D3CD8 2CE5A8 0070+00 1/0 0/0 0/0 .text            run__13JKRAramStreamFv */
-void* JKRAramStream::run(void) {
+void* JKRAramStream::run() {
     OSInitMessageQueue(&sMessageQueue, sMessageBuffer, ARRAY_SIZE(sMessageBuffer));
 
     for (;;) {
@@ -117,16 +66,13 @@ void* JKRAramStream::run(void) {
 }
 
 /* 802D3CD8-802D3CE0 2CE618 0008+00 1/1 0/0 0/0 .text            readFromAram__13JKRAramStreamFv */
-s32 JKRAramStream::readFromAram(void) {
+s32 JKRAramStream::readFromAram() {
     return 1;
 }
 
 /* ############################################################################################## */
 /* 8039D120-8039D120 029780 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-// regalloc problems
-#ifdef NONMATCHING
 s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command) {
-    u32 size;
     u32 dstSize = command->mSize;
     u32 offset = command->mOffset;
     u32 writtenLength = 0;
@@ -134,31 +80,24 @@ s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command) {
     u8* buffer = command->mTransferBuffer;
     u32 bufferSize = command->mTransferBufferSize;
     JKRHeap* heap = command->mHeap;
-    if (buffer) {
-        if (bufferSize) {
-            size = bufferSize;
-        } else {
-            size = 0x8000;
-        }
 
-        command->mTransferBufferSize = size;
+    if (buffer) {
+        bufferSize = (bufferSize) ? bufferSize : 0x8000;
+
+        command->mTransferBufferSize = bufferSize;
         command->mAllocatedTransferBuffer = false;
     } else {
-        if (bufferSize) {
-            size = bufferSize;
-        } else {
-            size = 0x8000;
-        }
+        bufferSize = (bufferSize) ? bufferSize : 0x8000;
 
         if (heap) {
-            buffer = (u8*)JKRAllocFromHeap(heap, size, -0x20);
+            buffer = (u8*)JKRAllocFromHeap(heap, bufferSize, -0x20);
             command->mTransferBuffer = buffer;
         } else {
-            buffer = (u8*)JKRAllocFromSysHeap(size, -0x20);
+            buffer = (u8*)JKRAllocFromSysHeap(bufferSize, -0x20);
             command->mTransferBuffer = buffer;
         }
 
-        command->mTransferBufferSize = size;
+        command->mTransferBufferSize = bufferSize;
         command->mAllocatedTransferBuffer = true;
     }
 
@@ -169,20 +108,15 @@ s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command) {
             heap->dump();
         }
 
-        JUTException::panic_f("JKRAramStream.cpp", 0xac, "%s", ":::Cannot alloc memory\n");
+        JUTException::panic_f(__FILE__, 172, "%s", ":::Cannot alloc memory\n");
     }
 
     if (buffer) {
-        ((JSURandomInputStream*)command->mStream)->seek(offset, JSUStreamSeekFrom_SET);
+        command->mStream->seek(offset, JSUStreamSeekFrom_SET);
         while (dstSize != 0) {
-            u32 length;
-            if (dstSize > size) {
-                length = size;
-            } else {
-                length = dstSize;
-            }
+            u32 length = (dstSize > bufferSize) ? bufferSize : dstSize;
 
-            s32 readLength = ((JSURandomInputStream*)command->mStream)->read(buffer, length);
+            s32 readLength = command->mStream->read(buffer, length);
             if (readLength == 0) {
                 writtenLength = 0;
                 break;
@@ -190,7 +124,7 @@ s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command) {
 
             JKRAramPcs(0, (u32)buffer, destination, length, NULL);
             dstSize -= length;
-            writtenLength += writtenLength;
+            writtenLength += length;
             destination += length;
 
             if (command->mReturnSize) {
@@ -204,30 +138,9 @@ s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command) {
         }
     }
 
-    OSSendMessage(&command->mMessageQueue, (OSMessage)writtenLength, OS_MESSAGE_NON_BLOCKING);
+    OSSendMessage(&command->mMessageQueue, (OSMessage)writtenLength, OS_MESSAGE_NOBLOCK);
     return writtenLength;
 }
-#else
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D120 = "JKRAramStream.cpp";
-SECTION_DEAD static char const* const stringBase_8039D132 = "%s";
-SECTION_DEAD static char const* const stringBase_8039D135 = ":::Cannot alloc memory\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039D14D = "\0\0";
-#pragma pop
-
-/* 802D3CE0-802D3ED0 2CE620 01F0+00 1/1 0/0 0/0 .text
- * writeToAram__13JKRAramStreamFP20JKRAramStreamCommand         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 JKRAramStream::writeToAram(JKRAramStreamCommand* param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAramStream/writeToAram__13JKRAramStreamFP20JKRAramStreamCommand.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 8045140C-80451410 00090C 0004+00 2/2 0/0 0/0 .sbss            transBuffer__13JKRAramStream */
@@ -322,5 +235,3 @@ JKRAramStreamCommand::JKRAramStreamCommand() {
 extern "C" s32 getAvailable__20JSURandomInputStreamCFv(JSURandomInputStream* self) {
     return self->getLength() - self->getPosition();
 }
-
-/* 8039D120-8039D120 029780 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -1,20 +1,7 @@
 #ifndef D_A_B_OH2_H
 #define D_A_B_OH2_H
 
-#include "d/com/d_com_inf_game.h"
-
-// fix/move to d_a_b_ob later
-class b_ob_class : public fopEn_enemy_c {
-public:
-    /* 0x05AC */ u8 field_0x5ac[0x5c0 - 0x5ac];
-    /* 0x05C0 */ mDoExt_McaMorf* field_0x5c0;
-    /* 0x05C4 */ u8 field_0x5c4[0x4752 - 0x5c4];
-    /* 0x4752 */ s16 field_0x4752;
-    /* 0x4754 */ u8 field_0x4754[0x47a0 - 0x4754];
-    /* 0x47A0 */ f32 field_0x47a0;
-    /* 0x47A4 */ u8 field_0x47a4[0x5d04 - 0x47a4];
-    /* 0x5D04 */ f32 field_0x5d04;
-};
+#include "rel/d/a/b/d_a_b_ob/d_a_b_ob.h"
 
 class b_oh2_class : public fopEn_enemy_c {
 public:

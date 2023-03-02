@@ -9,10 +9,6 @@
 #include "dol2asm.h"
 #include "global.h"
 
-//
-// Declarations:
-//
-
 /* 8043436C-80434378 06108C 000C+00 4/4 0/0 0/0 .bss             sDvdList__10JKRDvdFile */
 JSUList<JKRDvdFile> JKRDvdFile::sDvdList;
 
@@ -94,7 +90,7 @@ void JKRDvdFile::close() {
             mIsAvailable = false;
             getDvdList().remove(&mDvdLink);
         } else {
-            JUTException::panic_f("JKRDvdFile.cpp", 0xd5, "%s", "cannot close DVD file\n");
+            JUTException::panic_f(__FILE__, 213, "%s", "cannot close DVD file\n");
         }
     }
 }
@@ -105,7 +101,7 @@ s32 JKRDvdFile::readData(void* param_1, long length, long param_3) {
     // The assert condition gets stringified as "( length & 0x1f ) == 0", 
     // with out disabling clang-format the spaces in the condition will  
     // get removed and the string will be incorrect.
-    JUT_ASSERT("JKRDvdFile.cpp", 0xee, ( length & 0x1f ) == 0);
+    JUT_ASSERT(__FILE__, 238, ( length & 0x1f ) == 0);
     /* clang-format on */
 
     OSLockMutex(&mMutex1);
@@ -155,5 +151,3 @@ void JKRDvdFile::doneProcess(long id, DVDFileInfo* fileInfo) {
 s32 JKRDvdFile::getFileSize(void) const {
     return mFileInfo.length;
 }
-
-/* 8039D260-8039D260 0298C0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

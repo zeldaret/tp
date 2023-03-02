@@ -6,7 +6,6 @@
 #include "JSystem/JKernel/JKRFileFinder.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

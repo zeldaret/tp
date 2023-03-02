@@ -149,8 +149,8 @@ void* JKRSolidHeap::do_alloc(u32 size, int alignment) {
     // TODO(Julgodis): JUTAssertion::setConfirmMessage
     if (alignment != 0) {
         int u = abs(alignment);
-        JUT_ASSERT("JKRSolidHeap.cpp", 0xdb, u < 0x80);
-        JUT_ASSERT("JKRSolidHeap.cpp", 0xdc, JGadget::binary::isPower2(u));
+        JUT_ASSERT(__FILE__, 0xdb, u < 0x80);
+        JUT_ASSERT(__FILE__, 0xdc, JGadget::binary::isPower2(u));
     }
 #endif
 
@@ -318,8 +318,8 @@ bool JKRSolidHeap::dump(void) {
 // full match expect using the wrong register
 #ifdef NONMATCHING
 void JKRSolidHeap::state_register(JKRHeap::TState* p, u32 id) const {
-    JUT_ASSERT("JKRSolidHeap.cpp", 0x25c, p != 0);
-    JUT_ASSERT("JKRSolidHeap.cpp", 0x25d, p->getHeap() == this);
+    JUT_ASSERT(__FILE__, 0x25c, p != 0);
+    JUT_ASSERT(__FILE__, 0x25d, p->getHeap() == this);
 
     getState_(p);
     setState_u32ID_(p, id);
@@ -340,7 +340,7 @@ asm void JKRSolidHeap::state_register(JKRHeap::TState* param_0, u32 param_1) con
 /* 802D1258-802D1288 2CBB98 0030+00 1/0 0/0 0/0 .text
  * state_compare__12JKRSolidHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState */
 bool JKRSolidHeap::state_compare(JKRHeap::TState const& r1, JKRHeap::TState const& r2) const {
-    JUT_ASSERT("JKRSolidHeap.cpp", 0x278, r1.getHeap() == r2.getHeap());
+    JUT_ASSERT(__FILE__, 632, r1.getHeap() == r2.getHeap());
 
     bool result = true;
     if (r1.getCheckCode() != r2.getCheckCode()) {
@@ -373,5 +373,3 @@ void* JKRSolidHeap::do_getMaxFreeBlock(void) {
 s32 JKRSolidHeap::do_getTotalFreeSize(void) {
     return getFreeSize();
 }
-
-/* 8039CE50-8039CE50 0294B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

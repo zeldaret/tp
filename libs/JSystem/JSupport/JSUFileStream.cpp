@@ -4,12 +4,6 @@
 //
 
 #include "JSystem/JSupport/JSUFileStream.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Declarations:
-//
 
 /* 802DC638-802DC67C 2D6F78 0044+00 0/0 1/1 0/0 .text __ct__18JSUFileInputStreamFP7JKRFile */
 JSUFileInputStream::JSUFileInputStream(JKRFile* pFile) {
@@ -22,11 +16,10 @@ JSUFileInputStream::JSUFileInputStream(JKRFile* pFile) {
 u32 JSUFileInputStream::readData(void* pBuffer, s32 length) {
     s32 lenRead = 0;
     if (mFile->isAvailable()) {
-        // TODO: the function probably returns u32
-        // there are probably more functions that return u32 instead of s32
         if (mPosition + length > (u32)mFile->getFileSize()) {
             length = mFile->getFileSize() - mPosition;
         }
+
         if (length > 0) {
             lenRead = mFile->readData(pBuffer, length, mPosition);
             if (lenRead < 0) {
@@ -36,6 +29,7 @@ u32 JSUFileInputStream::readData(void* pBuffer, s32 length) {
             }
         }
     }
+
     return lenRead;
 }
 
@@ -43,6 +37,7 @@ u32 JSUFileInputStream::readData(void* pBuffer, s32 length) {
  * seekPos__18JSUFileInputStreamFl17JSUStreamSeekFrom           */
 s32 JSUFileInputStream::seekPos(s32 pos, JSUStreamSeekFrom seekFrom) {
     s32 oldPos = mPosition;
+
     switch (seekFrom) {
     case JSUStreamSeekFrom_SET:
         mPosition = pos;
@@ -54,12 +49,15 @@ s32 JSUFileInputStream::seekPos(s32 pos, JSUStreamSeekFrom seekFrom) {
         mPosition += pos;
         break;
     }
+
     if (mPosition < 0) {
         mPosition = 0;
     }
+
     if (mPosition > mFile->getFileSize()) {
         mPosition = mFile->getFileSize();
     }
+
     return mPosition - oldPos;
 }
 

@@ -5,13 +5,12 @@
 
 #include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JUtility/JUTConsole.h"
-#include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTDirectFile.h"
+#include "JSystem/JUtility/JUTDirectPrint.h"
 #include "MSL_C/MSL_Common/Src/float.h"
 #include "MSL_C/MSL_Common/Src/printf.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:
@@ -110,7 +109,7 @@ OSErrorHandler JUTException::sPostUserCallback;
 
 /* 802E1D5C-802E1E40 2DC69C 00E4+00 1/1 0/0 0/0 .text __ct__12JUTExceptionFP14JUTDirectPrint */
 JUTException::JUTException(JUTDirectPrint* directPrint)
-    : JKRThread(0x1C00 /* 0x4000 in DEBUG */, 0x10, 0), mDirectPrint(directPrint) {
+    : JKRThread(0x1C00, 0x10, 0), mDirectPrint(directPrint) {
     OSSetErrorHandler(EXCEPTION_DSI, errorHandler);
     OSSetErrorHandler(EXCEPTION_ISI, errorHandler);
     OSSetErrorHandler(EXCEPTION_PROGRAM, errorHandler);
@@ -945,13 +944,15 @@ bool JUTException::queryMapAddress(char* mapPath, u32 address, s32 section_id, u
         strcpy(buffer, mapPath);
         strcat(buffer, ".map");
         if (queryMapAddress_single(buffer, address, section_id, out_addr, out_size, out_line,
-                                   line_length, print, begin_with_newline) == true) {
+                                   line_length, print, begin_with_newline) == true)
+        {
             return true;
         }
     } else if (sMapFileList.getFirst() != sMapFileList.getEnd()) {
         if (queryMapAddress_single(sMapFileList.getFirst()->getObject()->mPath, address, -1,
                                    out_addr, out_size, out_line, line_length, print,
-                                   begin_with_newline) == true) {
+                                   begin_with_newline) == true)
+        {
             return true;
         }
     }
@@ -1147,5 +1148,3 @@ JUTException::~JUTException() {}
  */
 /* 804508F8-80450900 000378 0008+00 0/0 3/3 0/0 .sdata           None */
 SECTION_SDATA extern bool sAssertVisible = true;
-
-/* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

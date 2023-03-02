@@ -124,7 +124,7 @@ JKRAram::JKRAram(u32 audio_buffer_size, u32 audio_graph_size, long priority)
     u32 aramSize = ARGetSize();
 
     mAudioMemorySize = audio_buffer_size;
-    if (audio_graph_size == 0xffffffff) {
+    if (audio_graph_size == 0xFFFFFFFF) {
         mGraphMemorySize = (aramSize - audio_buffer_size) - aramBase;
         mAramMemorySize = 0;
     } else {
@@ -171,24 +171,15 @@ void* JKRAram::run(void) {
     } while (true);
 }
 
-/* ############################################################################################## */
-/* 8039D078-8039D078 0296D8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DEAD static char const* const stringBase_8039D078 = "JKRAram.cpp";
-// SECTION_DEAD static char const* const stringBase_8039D084 = "%s";
-// SECTION_DEAD static char const* const stringBase_8039D087 = ":::address not 32Byte aligned.";
-// #pragma pop
-
 /* 802D2248-802D22DC 2CCB88 0094+00 2/2 0/0 0/0 .text
  * checkOkAddress__7JKRAramFPUcUlP12JKRAramBlockUl              */
 void JKRAram::checkOkAddress(u8* addr, u32 size, JKRAramBlock* block, u32 param_4) {
     if (!IS_ALIGNED((u32)addr, 0x20) && !IS_ALIGNED(size, 0x20)) {
-        JUTException::panic_f("JKRAram.cpp", 0xdb, "%s", ":::address not 32Byte aligned.");
+        JUTException::panic_f(__FILE__, 219, "%s", ":::address not 32Byte aligned.");
     }
 
     if (block && !IS_ALIGNED((u32)block->getAddress() + param_4, 0x20)) {
-        JUTException::panic_f("JKRAram.cpp", 0xe3, "%s", ":::address not 32Byte aligned.");
+        JUTException::panic_f(__FILE__, 227, "%s", ":::address not 32Byte aligned.");
     }
 }
 
@@ -445,5 +436,3 @@ SECTION_DEAD static char const* const stringBase_8039D0A6 = "bad aramSync\n";
 /* @stringBase0 padding */
 SECTION_DEAD static char const* const pad_8039D0B4 = "\0\0\0";
 #pragma pop
-
-/* 8039D078-8039D078 0296D8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

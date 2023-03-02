@@ -44,10 +44,6 @@ struct daObj_Sekizoa_c {
     /* 801312C8 */ void setWolfHowling();
 };
 
-struct daObjSwHang_c {
-    /* 80101874 */ void getHangPos();
-};
-
 struct daObjMovebox {
     struct Act_c {
         struct Prm_e {};

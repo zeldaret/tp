@@ -6,19 +6,7 @@
 #include "JSystem/JUtility/JUTVideo.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTXfb.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "dolphin/vi/vi.h"
-
-//
-// External References:
-//
-
-extern "C" void GXSetDrawDone();
-
-//
-// Declarations:
-//
 
 /* 80451538-8045153C 000A38 0004+00 4/4 18/18 1/1 .sbss            sManager__8JUTVideo */
 JUTVideo* JUTVideo::sManager;
@@ -31,12 +19,6 @@ OSTick JUTVideo::sVideoInterval;
 
 /* 80451544-80451548 000A44 0004+00 4/4 0/0 0/0 .sbss            None */
 static bool data_80451544;
-
-/* 80451548-8045154C 000A48 0004+00 1/1 0/0 0/0 .sbss            frameBuffer$2222 */
-static void* frameBuffer;
-
-/* 8045154C-80451550 000A4C 0004+00 1/1 0/0 0/0 .sbss            None */
-static s8 data_8045154C;
 
 /* 802E4C54-802E4CAC 2DF594 0058+00 0/0 1/1 0/0 .text
  * createManager__8JUTVideoFPC16_GXRenderModeObj                */
@@ -105,10 +87,7 @@ void JUTVideo::preRetraceProc(u32 retrace_count) {
         return;
     }
 
-    if (!data_8045154C) {
-        frameBuffer = NULL;
-        data_8045154C = true;
-    }
+    static void* frameBuffer = NULL;
 
     if (frameBuffer) {
         JUTVideo* videoManager = JUTGetVideoManager();
@@ -234,6 +213,4 @@ void JUTVideo::setRenderMode(GXRenderModeObj const* pObj) {
 }
 
 /* 802E5210-802E5214 2DFB50 0004+00 0/0 1/1 0/0 .text            waitRetraceIfNeed__8JUTVideoFv */
-void JUTVideo::waitRetraceIfNeed() {
-    /* empty function */
-}
+void JUTVideo::waitRetraceIfNeed() {}

@@ -8,19 +8,11 @@
 #include "JSystem/JKernel/JKRDvdAramRipper.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "JSystem/JKernel/JKRFile.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "MSL_C/MSL_Common/Src/string.h"
 #include "MSL_C/math.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JUTException {
-    /* 802E21FC */ static void panic_f(char const*, int, char const*, ...);
-};
 
 //
 // Forward References:
@@ -112,9 +104,11 @@ SECTION_DATA extern void* __vt__7JKRFile[8] = {
 JKRAramArchive::JKRAramArchive(s32 param_0, JKRArchive::EMountDirection mountDirection)
     : JKRArchive(param_0, MOUNT_ARAM) {
     mMountDirection = mountDirection;
+
     if (!this->open(param_0)) {
         return;
     }
+
     mVolumeType = 'RARC';
     mVolumeName = mStringTable + mNodes->name_offset;
     JKRFileLoader::sVolumeList.prepend(&mFileLoaderLink);
@@ -131,19 +125,24 @@ JKRAramArchive::~JKRAramArchive() {
                     JKRHeap::free(entry->data, mHeap);
                 }
             }
+
             JKRHeap::free(mArcInfoBlock, mHeap);
             mArcInfoBlock = NULL;
         }
+
         if (mExpandedSize != NULL) {
             JKRHeap::free(mExpandedSize, NULL);
             mExpandedSize = NULL;
         }
+
         if (mDvdFile != NULL) {
             delete mDvdFile;
         }
+
         if (mBlock != NULL) {
             delete mBlock;
         }
+
         JKRFileLoader::sVolumeList.remove(&mFileLoaderLink);
         mIsMounted = false;
     }
@@ -174,6 +173,7 @@ bool JKRAramArchive::open(s32 entryNum) {
         mMountMode = UNKNOWN_MOUNT_MODE;
         return false;
     }
+
     SArcHeader* header = static_cast<SArcHeader*>(JKRAllocFromSysHeap(0x20, -0x20));
     if (header == NULL) {
         mMountMode = UNKNOWN_MOUNT_MODE;
@@ -263,15 +263,18 @@ void* JKRAramArchive::fetchResource(JKRArchive::SDIFileEntry* pEntry, u32* pOutS
     if (pOutSize == NULL) {
         pOutSize = &outSize;
     }
+
     JKRCompression compression = JKRConvertAttrToCompressionType(pEntry->getFlags());
     if (pEntry->data == NULL) {
         u32 size = JKRAramArchive::fetchResource_subroutine(
             pEntry->data_offset + mBlock->getAddress(), pEntry->data_size, mHeap, compression,
             &outBuf);
+
         *pOutSize = size;
         if (size == NULL) {
             return NULL;
         }
+
         pEntry->data = outBuf;
         if (compression == COMPRESSION_YAZ0) {
             this->setExpandSize(pEntry, *pOutSize);
@@ -283,6 +286,7 @@ void* JKRAramArchive::fetchResource(JKRArchive::SDIFileEntry* pEntry, u32* pOutS
             *pOutSize = pEntry->data_size;
         }
     }
+
     return pEntry->data;
 }
 
@@ -352,6 +356,7 @@ u32 JKRAramArchive::fetchResource_subroutine(u32 src, u32 srcLength, u8* dst, u3
     u32 outLen;
     u32 srcSize = ALIGN_NEXT(srcLength, 0x20);
     u32 dstSize = ALIGN_PREV(dstLength, 0x20);
+
     switch (compression) {
     case COMPRESSION_NONE:
         if (srcSize > dstSize) {
@@ -366,7 +371,7 @@ u32 JKRAramArchive::fetchResource_subroutine(u32 src, u32 srcLength, u8* dst, u3
                                &outLen);
         return outLen;
     default:
-        JUTException::panic_f("JKRAramArchive.cpp", 0x28F, "%s", "??? bad sequence\n");
+        JUTException::panic_f(__FILE__, 655, "%s", "??? bad sequence\n");
         return 0;
     }
 }
@@ -400,7 +405,7 @@ u32 JKRAramArchive::fetchResource_subroutine(u32 entryNum, u32 length, JKRHeap* 
         *out = tmpBufAligned;
         return readLen;
     default:
-        JUTException::panic_f("JKRAramArchive.cpp", 0x2c9, "%s", "??? bad sequence\n");
+        JUTException::panic_f(__FILE__, 0x2c9, "%s", "??? bad sequence\n");
         return 0;
     }
 }
@@ -420,29 +425,30 @@ asm u32 JKRAramArchive::fetchResource_subroutine(u32 param_0, u32 param_1, JKRHe
 u32 JKRAramArchive::getExpandedResSize(void const* ptr) const {
     if (mExpandedSize == NULL) {
         return this->getResSize(ptr);
-    } else {
-        JKRArchive::SDIFileEntry* entry = this->findPtrResource(ptr);
-        if (entry == NULL) {
-            return 0xFFFFFFFF;
-        } else {
-            if (entry->getCompressFlag() == 0) {
-                return this->getResSize(ptr);
-            } else {
-                u32 expandSize = this->getExpandSize(entry);
-                if (expandSize != 0) {
-                    return expandSize;
-                }
-                u8 tmpBuf[0x40];
-                SArcHeader* buf = (SArcHeader*)ALIGN_PREV((s32)&tmpBuf[0x1F], 0x20);
-                JKRAramToMainRam(entry->data_offset + mBlock->getAddress(), (u8*)buf, 0x20,
-                                 EXPAND_SWITCH_UNKNOWN0, 0, NULL, -1, NULL);
-                expandSize = JKRDecompExpandSize(buf);
-                // ??? casting away const?
-                ((JKRArchive*)this)->setExpandSize(entry, expandSize);
-                return expandSize;
-            }
-        }
     }
+
+    JKRArchive::SDIFileEntry* entry = this->findPtrResource(ptr);
+    if (entry == NULL) {
+        return 0xFFFFFFFF;
+    }
+
+    if (entry->getCompressFlag() == 0) {
+        return this->getResSize(ptr);
+    }
+
+    u32 expandSize = this->getExpandSize(entry);
+    if (expandSize != 0) {
+        return expandSize;
+    }
+
+    u8 tmpBuf[0x40];
+    SArcHeader* buf = (SArcHeader*)ALIGN_PREV((s32)&tmpBuf[0x1F], 0x20);
+    JKRAramToMainRam(entry->data_offset + mBlock->getAddress(), (u8*)buf, 0x20,
+                     EXPAND_SWITCH_UNKNOWN0, 0, NULL, -1, NULL);
+    expandSize = JKRDecompExpandSize(buf);
+    // ??? casting away const?
+    ((JKRArchive*)this)->setExpandSize(entry, expandSize);
+    return expandSize;
 }
 
 /* 802D7B90-802D7BF0 2D24D0 0060+00 1/0 0/0 0/0 .text            __dt__7JKRFileFv */
@@ -455,5 +461,3 @@ extern "C" asm void __dt__7JKRFileFv() {
 #include "asm/JSystem/JKernel/JKRAramArchive/__dt__7JKRFileFv.s"
 }
 #pragma pop
-
-/* 8039D188-8039D188 0297E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

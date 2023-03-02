@@ -4,16 +4,8 @@
 //
 
 #include "JSystem/JUtility/JUTCacheFont.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JUTException {
-    /* 802E21FC */ void panic_f(char const*, int, char const*, ...);
-};
 
 //
 // Forward References:
@@ -164,8 +156,8 @@ struct BlockHeader {
 };
 
 int JUTCacheFont::getMemorySize(ResFONT const* p_font, u16* o_widCount, u32* o_widSize,
-                                     u16* o_glyCount, u32* o_glySize, u16* o_mapCount, u32* o_mapSize,
-                                     u32* o_glyTexSize) {
+                                u16* o_glyCount, u32* o_glySize, u16* o_mapCount, u32* o_mapSize,
+                                u32* o_glyTexSize) {
     if (p_font == NULL) {
         return 0;
     }
@@ -235,7 +227,7 @@ int JUTCacheFont::getMemorySize(ResFONT const* p_font, u16* o_widCount, u32* o_w
     if (o_glyTexSize != NULL) {
         *o_glyTexSize = maxGlyTexSize;
     }
-    
+
     return 1;
 }
 #else
@@ -243,8 +235,8 @@ int JUTCacheFont::getMemorySize(ResFONT const* p_font, u16* o_widCount, u32* o_w
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm int JUTCacheFont::getMemorySize(ResFONT const* param_0, u16* param_1, u32* param_2,
-                                     u16* param_3, u32* param_4, u16* param_5, u32* param_6,
-                                     u32* param_7) {
+                                    u16* param_3, u32* param_4, u16* param_5, u32* param_6,
+                                    u32* param_7) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTCacheFont/getMemorySize__12JUTCacheFontFPC7ResFONTPUsPUlPUsPUlPUsPUlPUl.s"
 }
@@ -253,8 +245,7 @@ asm int JUTCacheFont::getMemorySize(ResFONT const* param_0, u16* param_1, u32* p
 
 /* 802DD4EC-802DD54C 2D7E2C 0060+00 1/1 0/0 0/0 .text
  * initiate__12JUTCacheFontFPC7ResFONTPvUlP7JKRHeap             */
-int JUTCacheFont::initiate(ResFONT const* p_fontRes, void* param_1, u32 param_2,
-                                JKRHeap* p_heap) {
+int JUTCacheFont::initiate(ResFONT const* p_fontRes, void* param_1, u32 param_2, JKRHeap* p_heap) {
     if (!internal_initiate(p_fontRes, param_1, param_2, p_heap)) {
         deleteMemBlocks_CacheFont();
         deleteMemBlocks_ResFont();
@@ -269,20 +260,21 @@ int JUTCacheFont::initiate(ResFONT const* p_fontRes, void* param_1, u32 param_2,
 /* 802DD54C-802DD650 2D7E8C 0104+00 1/1 0/0 0/0 .text
  * internal_initiate__12JUTCacheFontFPC7ResFONTPvUlP7JKRHeap    */
 bool JUTCacheFont::internal_initiate(ResFONT const* p_fontRes, void* param_1, u32 param_2,
-                                         JKRHeap* param_3) {
+                                     JKRHeap* param_3) {
     deleteMemBlocks_CacheFont();
     initialize_state();
     deleteMemBlocks_ResFont();
     JUTResFont::initialize_state();
     JUTFont::initialize_state();
-    
+
     if (p_fontRes == NULL) {
         return false;
     }
 
     mResFont = p_fontRes;
     mValid = true;
-    getMemorySize(p_fontRes, &mWid1BlockNum, &mTotalWidSize, &mGly1BlockNum, &mTotalGlySize, &mMap1BlockNum, &mTotalMapSize, &mMaxSheetSize);
+    getMemorySize(p_fontRes, &mWid1BlockNum, &mTotalWidSize, &mGly1BlockNum, &mTotalGlySize,
+                  &mMap1BlockNum, &mTotalMapSize, &mMaxSheetSize);
 
     if (!allocArea(param_1, param_2, param_3)) {
         return false;
@@ -295,14 +287,60 @@ bool JUTCacheFont::internal_initiate(ResFONT const* p_fontRes, void* param_1, u3
 }
 
 /* 802DD650-802DD804 2D7F90 01B4+00 1/1 0/0 0/0 .text allocArea__12JUTCacheFontFPvUlP7JKRHeap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool JUTCacheFont::allocArea(void* param_0, u32 param_1, JKRHeap* param_2) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTCacheFont/allocArea__12JUTCacheFontFPvUlP7JKRHeap.s"
+bool JUTCacheFont::allocArea(void* param_0, u32 param_1, JKRHeap* heap) {
+    mInf1Ptr = (ResFONT::INF1*)new (heap, 0) ResFONT();
+    if (mInf1Ptr == NULL) {
+        return false;
+    }
+
+    if (mTotalWidSize != 0) {
+        field_0x7c = new (heap, 0) u8[mTotalWidSize];
+        if (field_0x7c == NULL) {
+            return false;
+        }
+    }
+
+    if (mGly1BlockNum != 0) {
+        field_0x80 = new (heap, 0) ResFONT::GLY1[mGly1BlockNum];
+        if (field_0x80 == NULL) {
+            return false;
+        }
+
+        field_0xac = JKRAram::getManager()->mAramHeap->alloc(
+            mTotalGlySize - (mGly1BlockNum * sizeof(ResFONT::GLY1)), JKRAramHeap::HEAD);
+        if (field_0xac == NULL) {
+            return false;
+        }
+    }
+
+    if (mTotalMapSize != 0) {
+        field_0x84 = new (heap, 0) u8[mTotalMapSize];
+        if (field_0x84 == NULL) {
+            return false;
+        }
+    }
+
+    field_0x94 = mMaxSheetSize + 0x40;
+    mCachePage = param_1 / field_0x94;
+    u32 v1 = field_0x94 * mCachePage;
+    if (mCachePage == 0) {
+        return false;
+    }
+
+    if (param_0 != NULL) {
+        mCacheBuffer = param_0;
+        field_0xb0 = 0;
+    } else {
+        mCacheBuffer = new (heap, 0x20) u8[v1];
+        if (mCacheBuffer == NULL) {
+            return false;
+        }
+        field_0xb0 = 1;
+    }
+
+    invalidiateAllCache();
+    return true;
 }
-#pragma pop
 
 /* 802DD804-802DD8EC 2D8144 00E8+00 1/1 0/0 0/0 .text allocArray__12JUTCacheFontFP7JKRHeap */
 #pragma push
@@ -399,25 +437,34 @@ asm void JUTCacheFont::invalidiateAllCache() {
 
 /* 802DDF68-802DDFAC 2D88A8 0044+00 2/2 0/0 0/0 .text
  * unlink__12JUTCacheFontFPQ212JUTCacheFont15TGlyphCacheInfo    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTCacheFont::unlink(JUTCacheFont::TGlyphCacheInfo* param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTCacheFont/unlink__12JUTCacheFontFPQ212JUTCacheFont15TGlyphCacheInfo.s"
+void JUTCacheFont::unlink(JUTCacheFont::TGlyphCacheInfo* cacheInfo) {
+    if (cacheInfo->mPrev == NULL) {
+        field_0x9c = cacheInfo->mNext;
+    } else {
+        cacheInfo->mPrev->mNext = cacheInfo->mNext;
+    }
+
+    if (cacheInfo->mNext == NULL) {
+        field_0xa0 = cacheInfo->mPrev;
+    } else {
+        cacheInfo->mNext->mPrev = cacheInfo->mPrev;
+    }
 }
-#pragma pop
 
 /* 802DDFAC-802DDFD8 2D88EC 002C+00 2/2 0/0 0/0 .text
  * prepend__12JUTCacheFontFPQ212JUTCacheFont15TGlyphCacheInfo   */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTCacheFont::prepend(JUTCacheFont::TGlyphCacheInfo* param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTCacheFont/prepend__12JUTCacheFontFPQ212JUTCacheFont15TGlyphCacheInfo.s"
+void JUTCacheFont::prepend(JUTCacheFont::TGlyphCacheInfo* cacheInfo) {
+    TGlyphCacheInfo* oldHead = field_0x9c;
+    field_0x9c = cacheInfo;
+    cacheInfo->mPrev = NULL;
+    cacheInfo->mNext = oldHead;
+
+    if (oldHead == NULL) {
+        field_0xa0 = cacheInfo;
+    } else {
+        oldHead->mPrev = cacheInfo;
+    }
 }
-#pragma pop
 
 /* 802DDFD8-802DDFE0 2D8918 0008+00 1/0 1/0 0/0 .text            getResFont__10JUTResFontCFv */
 #pragma push
@@ -488,5 +535,3 @@ asm s32 JUTResFont::getHeight() const {
 #include "asm/JSystem/JUtility/JUTCacheFont/getHeight__10JUTResFontCFv.s"
 }
 #pragma pop
-
-/* 8039D2F0-8039D2F0 029950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -6,12 +6,6 @@
 #include "JSystem/JKernel/JKRAramBlock.h"
 #include "JSystem/JKernel/JKRAramHeap.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Declarations:
-//
 
 /* 802D3304-802D3378 2CDC44 0074+00 2/2 1/1 0/0 .text            __ct__12JKRAramBlockFUlUlUlUcb */
 JKRAramBlock::JKRAramBlock(u32 address, u32 size, u32 freeSize, u8 groupId, bool isTempMemory)
@@ -27,6 +21,7 @@ JKRAramBlock::JKRAramBlock(u32 address, u32 size, u32 freeSize, u8 groupId, bool
 JKRAramBlock::~JKRAramBlock() {
     JSUList<JKRAramBlock>* list = mBlockLink.getSupervisor();
     JSULink<JKRAramBlock>* prev = mBlockLink.getPrev();
+
     if (prev) {
         JKRAramBlock* block = prev->getObject();
         block->mFreeSize = mSize + mFreeSize + block->mFreeSize;

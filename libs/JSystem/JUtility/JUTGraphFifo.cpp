@@ -5,12 +5,6 @@
 
 #include "JSystem/JUtility/JUTGraphFifo.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Declarations:
-//
 
 /* 804514B8-804514BC 0009B8 0004+00 1/1 0/0 0/0 .sbss            None */
 static bool data_804514B8;

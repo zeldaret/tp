@@ -22,7 +22,7 @@ public:
     u32 getGraphMemory() const { return mGraphMemoryPtr; }
     u32 getGraphMemSize() const { return mGraphMemorySize; }
 
-private:
+//private:
     /* 0x00 */  // vtable
     /* 0x04 */  // JKRThread
     /* 0x7C */ u32 mAudioMemoryPtr;
