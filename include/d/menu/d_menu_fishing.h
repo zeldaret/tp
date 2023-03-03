@@ -5,9 +5,12 @@
 #include "d/d_lib.h"
 #include "d/d_select_cursor.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_graphic.h"
+#include "m_Do/m_Do_dvd_thread.h"
+#include "m_Do/m_Do_controller_pad.h"
+#include "d/msg/d_msg_string.h"
 
-class mDoDvdThd_mountArchive_c;
-class dMsgString_c;
+
 
 class dMenu_Fishing_c : public dDlst_base_c {
 public:
@@ -25,7 +28,7 @@ public:
     /* 801C5D3C */ void screenSetDoIcon();
     /* 801C5EB8 */ void setAButtonString(u16);
     /* 801C5F68 */ void setBButtonString(u16);
-    /* 801C6018 */ void getFigure(int);
+    /* 801C6018 */ int getFigure(int);
     /* 801C605C */ void setFishParam(int, u16, u8);
     /* 801C6210 */ void setHIO(bool);
 
