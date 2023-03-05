@@ -5,9 +5,7 @@
 #include "d/d_lib.h"
 #include "d/d_select_cursor.h"
 #include "dolphin/types.h"
-#include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_dvd_thread.h"
-#include "m_Do/m_Do_controller_pad.h"
 #include "d/msg/d_msg_string.h"
 
 

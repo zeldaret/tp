@@ -6,6 +6,8 @@
 #include "d/menu/d_menu_fishing.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_controller_pad.h"
+#include "m_Do/m_Do_graphic.h"
 
 
 //
@@ -135,9 +137,8 @@ SECTION_DATA extern void* __vt__15dMenu_Fishing_c[4 + 3 /* padding */] = {
 
 /* 801C4D54-801C4D98 1BF694 0044+00 0/0 2/2 0/0 .text
  * __ct__15dMenu_Fishing_cFP10JKRExpHeapP9STControlP10CSTControl */
-#ifdef NONMATCHING
 dMenu_Fishing_c::dMenu_Fishing_c(JKRExpHeap* heap, STControl* stControl, CSTControl* cstControl) {
-    heap = mpHeap;
+    mpHeap = heap;
     field_0x8 = 0;
     field_0x14 = 0;
     mpStick = stControl;
@@ -147,16 +148,6 @@ dMenu_Fishing_c::dMenu_Fishing_c(JKRExpHeap* heap, STControl* stControl, CSTCont
     field_0x1f8 = 0;
 
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMenu_Fishing_c::dMenu_Fishing_c(JKRExpHeap* param_0, STControl* param_1, CSTControl* param_2) {
-    nofralloc
-#include "asm/d/menu/d_menu_fishing/__ct__15dMenu_Fishing_cFP10JKRExpHeapP9STControlP10CSTControl.s"
-}
-#pragma pop
-#endif
 
 /* 801C4D98-801C504C 1BF6D8 02B4+00 1/0 0/0 0/0 .text            __dt__15dMenu_Fishing_cFv */
 #pragma push
@@ -170,8 +161,7 @@ asm dMenu_Fishing_c::~dMenu_Fishing_c() {
 
 /* 801C504C-801C50B4 1BF98C 0068+00 1/1 0/0 0/0 .text            _create__15dMenu_Fishing_cFv */
 void dMenu_Fishing_c::_create() {
-    dMsgString_c* dMsgString_c_ptr = new dMsgString_c;
-    mpString = dMsgString_c_ptr;
+    mpString = new dMsgString_c();
     screenSetBase();
     screenSetDoIcon();
     setHIO(true);
@@ -205,12 +195,12 @@ SECTION_SDATA2 static f32 lit_3906 = 448.0f;
 
 /* 801C514C-801C5204 1BFA8C 00B8+00 1/1 1/1 0/0 .text            _draw__15dMenu_Fishing_cFv */
 #ifdef NONMATCHING
-// matches without literals
+// u8 lit_3904
 void dMenu_Fishing_c::_draw() {
     if (field_0x8) {
-        J2DGrafContext* pJVar1 = g_dComIfG_gameInfo.play.mCurrentGrafPort;
+        J2DGrafContext* pJVar1 = dComIfGp_getCurrentGrafPort();
         mpBlackTex->setAlpha(0xff);
-        mpBlackTex->draw(0,0,0x4083000000000000,0x407c000000000000,0,0,0);
+        mpBlackTex->draw(0,0,lit_3905,lit_3906,0,0,0);
         mpScreen->draw(0,0,pJVar1);
         mpIconScreen->draw(0,0,pJVar1);
     }
@@ -516,18 +506,18 @@ asm void dMenu_Fishing_c::setBButtonString(u16 param_0) {
 #pragma pop
 
 /* 801C6018-801C605C 1C0958 0044+00 1/1 0/0 0/0 .text            getFigure__15dMenu_Fishing_cFi */
-int dMenu_Fishing_c::getFigure(int i_this) {
+int dMenu_Fishing_c::getFigure(int param_0) {
     
-    if (i_this < 0) {
-        i_this *= -1;
+    if (param_0 < 0) {
+        param_0 *= -1;
     }
-    if (1000 <= i_this) {
-        i_this = 999;
+    if (1000 <= param_0) {
+        param_0 = 999;
     }
-    if (100 <= i_this) {
+    if (100 <= param_0) {
         return 3;
     }
-    return (i_this >= 10) ? 2 : 1;
+    return (param_0 >= 10) ? 2 : 1;
 }
 
 /* 801C605C-801C6210 1C099C 01B4+00 1/1 0/0 0/0 .text setFishParam__15dMenu_Fishing_cFiUsUc */
