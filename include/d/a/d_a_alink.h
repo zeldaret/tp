@@ -153,6 +153,9 @@ public:
     /* 8009D90C */ virtual void calc(J3DMaterial*) const;
 
     static void decMorfFrame() {}
+    static void setMorfFrame(u8 i_frame) { m_morf_frame = i_frame; }
+
+    static u8 m_morf_frame;
 
 private:
     /* 0x0F4 */ f32 field_0xf4;
@@ -164,15 +167,20 @@ private:
 
 struct daAlink_BckData {
     /* 0x0 */ u16 m_underID;
-    /* 0x0 */ u16 m_upperID;
+    /* 0x2 */ u16 m_upperID;
+};
+
+struct daAlink_FaceTexData {
+    /* 0x0 */ u16 m_btpID;
+    /* 0x2 */ u16 m_btkID;
 };
 
 struct daAlink_AnmData {
     /* 0x0 */ daAlink_BckData field_0x0;
     /* 0x4 */ u8 field_0x4;
     /* 0x5 */ u8 field_0x5;
-    /* 0x6 */ u16 field_0x6;
-    /* 0x8 */ u16 field_0x8;
+    /* 0x6 */ u16 m_faceTexID;
+    /* 0x8 */ u16 m_faceBckID;
     /* 0xA */ u16 field_0xa;
 };  // Size: 0xC
 
@@ -649,9 +657,13 @@ public:
         FTANM_UNK_27 = 0x27,
         FTANM_UNK_2D = 0x2D,
         FTANM_UNK_48 = 0x48,
+        FTANM_UNK_75 = 0x75,
+        FTANM_UNK_76 = 0x76,
+        FTANM_UNK_77 = 0x77,
         FTANM_UNK_7A = 0x7A,
         FTANM_UNK_7B = 0x7B,
         FTANM_UNK_7C = 0x7C,
+        FTANM_UNK_8A = 0x8A,
         FTANM_UNK_90 = 0x90,
         FTANM_UNK_96 = 0x96,
         FTANM_UNK_9F = 0x9F,
@@ -1247,7 +1259,7 @@ public:
     /* 8009EB18 */ void resetRootMtx();
     /* 8009EB58 */ bool modelCallBack(int);
     /* 8009ECA0 */ void headModelCallBack(int);
-    /* 8009EF7C */ void wolfModelCallBack(int);
+    /* 8009EF7C */ int wolfModelCallBack(int);
     /* 8009F034 */ void setHatAngle();
     /* 8009FFF8 */ void calcHairAngle(s16*);
     /* 800A002C */ void setHairAngle(cXyz*, f32, f32);
@@ -1290,8 +1302,8 @@ public:
     /* 800A6DCC */ void iceSlipBgCheck();
     /* 800A7050 */ void setIceSlipSpeed();
     /* 800A7358 */ void setPolygonSpeed();
-    /* 800A7950 */ void checkWindSpeedOnAngle() const;
-    /* 800A79EC */ void checkWindSpeedOnAngleAnime(int) const;
+    /* 800A7950 */ bool checkWindSpeedOnAngle() const;
+    /* 800A79EC */ bool checkWindSpeedOnAngleAnime(int) const;
     /* 800A7A5C */ bool checkDashAnime() const;
     /* 800A7ABC */ void checkWindWallRate(cXyz const&);
     /* 800A7CB0 */ void setWindSpeed();
@@ -1346,7 +1358,7 @@ public:
     /* 800AD8F4 */ void setUnderAnimeMorf(f32);
     /* 800AD964 */ int setUnderAnime(u16, daAlink_c::daAlink_UNDER, f32, f32, s16, f32);
     /* 800ADAB8 */ int setUnderAnimeParam(u16, daAlink_c::daAlink_UNDER, daAlinkHIO_anm_c const*);
-    /* 800ADAEC */ void resetUnderAnime(daAlink_c::daAlink_UNDER, f32);
+    /* 800ADAEC */ int resetUnderAnime(daAlink_c::daAlink_UNDER, f32);
     /* 800ADB78 */ void setOldRootQuaternion(s16, s16, s16);
     /* 800ADC50 */ BOOL checkAtnLeftAnime();
     /* 800ADCEC */ BOOL checkAtnRightAnime();
@@ -1368,7 +1380,7 @@ public:
     /* 800AFCBC */ void resetFacePriAnime();
     /* 800AFCF0 */ void playFaceTextureAnime();
     /* 800B0098 */ s16 getGroundAngle(cBgS_PolyInfo*, s16);
-    /* 800B0150 */ void getRoofAngle(cBgS_PolyInfo*, s16);
+    /* 800B0150 */ s16 getRoofAngle(cBgS_PolyInfo*, s16);
     /* 800B01FC */ void getWallEdgePos(cXyz const&, cM3dGPla*, cM3dGPla*, cXyz*, int);
     /* 800B02BC */ void setFrontWallType();
     /* 800B1488 */ BOOL checkWaterPolygonUnder();
@@ -1402,7 +1414,7 @@ public:
     /* 800B3298 */ void setBStatus(u8);
     /* 800B32B0 */ BOOL checkAtnWaitAnime();
     /* 800B3358 */ void setTiredVoice(daPy_frameCtrl_c*);
-    /* 800B33E4 */ void checkRestHPAnime();
+    /* 800B33E4 */ BOOL checkRestHPAnime();
     /* 800B3494 */ static int getDirectionFromAngle(s16 angle);
     /* 800B3500 */ bool checkAttentionState();
     /* 800B3630 */ s16 getShapeAngleYAtnActor();
@@ -1410,7 +1422,7 @@ public:
     /* 800B3844 */ void initServiceWaitTime();
     /* 800B3904 */ bool checkZeroSpeedF() const;
     /* 800B3924 */ void setNormalSpeedF(f32, f32);
-    /* 800B3F2C */ void getStickAngleDistanceRate();
+    /* 800B3F2C */ f32 getStickAngleDistanceRate();
     /* 800B3FD4 */ void setSpeedAndAngleNormal();
     /* 800B444C */ void setSpeedAndAngleAtn();
     /* 800B477C */ int checkRequestTalkActor(dAttList_c*, fopAc_ac_c*);
@@ -1472,7 +1484,7 @@ public:
     /* 800BA0D0 */ int checkNextAction(int);
     /* 800BA6A0 */ void commonChangeItem();
     /* 800BA914 */ void setItemAction();
-    /* 800BAF08 */ bool checkNextActionFromCrouch(int);
+    /* 800BAF08 */ BOOL checkNextActionFromCrouch(int);
     /* 800BAF80 */ int checkUpperReadyThrowAnime() const;
     /* 800BB020 */ void getBodyAngleXBasePos(cXyz*);
     /* 800BB084 */ s16 getBodyAngleXAtnActor(int);
@@ -1749,7 +1761,7 @@ public:
     /* 800D7768 */ static bool checkIcePolygonDamage(cBgS_PolyInfo*);
     /* 800D77C8 */ BOOL checkMagicArmorNoDamage();
     /* 800D7820 */ void checkPolyDamage();
-    /* 800D7A98 */ void checkElecReturnDamage(dCcD_GObjInf&, fopAc_ac_c**);
+    /* 800D7A98 */ bool checkElecReturnDamage(dCcD_GObjInf&, fopAc_ac_c**);
     /* 800D7B18 */ void damageTimerCount();
     /* 800D7BE8 */ bool checkHugeAttack(int) const;
     /* 800D7C14 */ bool checkLargeAttack(int) const;
@@ -2191,16 +2203,16 @@ public:
     /* 800F7814 */ int procFishingCast();
     /* 800F7988 */ int procFishingFoodInit();
     /* 800F7AA8 */ int procFishingFood();
-    /* 800F7C50 */ void getCrawlMoveAnmSpeed();
-    /* 800F7C74 */ void getCrawlMoveSpeed();
+    /* 800F7C50 */ f32 getCrawlMoveAnmSpeed();
+    /* 800F7C74 */ f32 getCrawlMoveSpeed();
     /* 800F7CE8 */ void setCrawlMoveDirectionArrow();
     /* 800F7E48 */ void changeCrawlAutoMoveProc(cXyz*);
-    /* 800F81C0 */ void getCrawlMoveVec(cXyz*, cXyz*, cXyz*, int, int, u8*);
+    /* 800F81C0 */ int getCrawlMoveVec(cXyz*, cXyz*, cXyz*, int, int, u8*);
     /* 800F85C0 */ void crawlBgCheck(cXyz*, cXyz*, int);
     /* 800F8700 */ void checkCrawlSideWall(cXyz*, cXyz*, cXyz*, cXyz*, s16*, s16*);
     /* 800F88F8 */ void decideCrawlDoStatus();
-    /* 800F89E0 */ void checkNotCrawlStand(cXyz*);
-    /* 800F8A50 */ void checkNotCrawlStand(cXyz*, cXyz*);
+    /* 800F89E0 */ BOOL checkNotCrawlStand(cXyz*);
+    /* 800F8A50 */ BOOL checkNotCrawlStand(cXyz*, cXyz*);
     /* 800F8B00 */ void checkCrawlInHoll(cXyz*, cXyz*, cXyz*, int);
     /* 800F8D04 */ void setCrawlMoveHoll();
     /* 800F8DBC */ void setCrawlMoveAngle();
@@ -2524,14 +2536,14 @@ public:
     /* 80118170 */ BOOL checkFlyAtnWait();
     /* 801181A0 */ void setGetItemFace(u16);
     /* 801182D4 */ BOOL checkGrabTalkActor(fopAc_ac_c*);
-    /* 80118308 */ void setTalkStartBack(cXyz*);
+    /* 80118308 */ int setTalkStartBack(cXyz*);
     /* 8011856C */ void setShapeAngleToTalkActor();
     /* 80118654 */ void setTalkAnime();
-    /* 801186D4 */ void setTradeItemAnime();
+    /* 801186D4 */ u8 setTradeItemAnime();
     /* 80118778 */ void setTradeItemOutHand();
     /* 801187B4 */ BOOL checkEndMessage(u32);
-    /* 80118840 */ void setDemoRightHandIndex(u16);
-    /* 801188B0 */ void setDemoLeftHandIndex(u16);
+    /* 80118840 */ u8 setDemoRightHandIndex(u16);
+    /* 801188B0 */ u8 setDemoLeftHandIndex(u16);
     /* 8011894C */ void setDemoRide(u16);
     /* 801189F8 */ void setDemoBodyBck(dDemo_actor_c*, u16);
     /* 80118AD0 */ static BOOL checkFinalBattle();
@@ -2603,7 +2615,7 @@ public:
     /* 8011DED8 */ int procLookAroundTurn();
     /* 8011DF68 */ int procTradeItemOutInit();
     /* 8011E060 */ int procTradeItemOut();
-    /* 8011E3D8 */ void checkLetterItem(int);
+    /* 8011E3D8 */ static BOOL checkLetterItem(int);
     /* 8011E448 */ int procNotUseItemInit(int);
     /* 8011E57C */ int procNotUseItem();
     /* 8011E6E0 */ int procSwordReadyInit();
@@ -2612,7 +2624,7 @@ public:
     /* 8011E8E0 */ int procSwordPushInit();
     /* 8011E960 */ int procSwordPush();
     /* 8011E9F8 */ int procGanonFinishInit();
-    /* 8011EA78 */ bool procGanonFinish();
+    /* 8011EA78 */ int procGanonFinish();
     /* 8011EAE8 */ int procCutFastReadyInit();
     /* 8011EB8C */ int procCutFastReady();
     /* 8011EBDC */ int procMasterSwordStickInit();
@@ -3183,8 +3195,11 @@ public:
         return mNowAnmPackUpper[param_0].getAnmTransform();
     }
     void setFacePriBck(u16 param_0) { setFaceBck(param_0, 1, 0xFFFF); }
+    void setFacePriBtp(u16 param_0) { setFaceBtp(param_0, 1, 0xFFFF); }
+    void setFacePriBtk(u16 param_0) { setFaceBtk(param_0, 1, 0xFFFF); }
     void setFaceBasicBck(u16 param_0) { setFaceBck(param_0, 0, 0xFFFF); }
     void setFaceBasicBtp(u16 param_0) { setFaceBtp(param_0, 0, 0xFFFF); }
+    void setFaceBasicBtk(u16 param_0) { setFaceBtk(param_0, 0, 0xFFFF); }
     void cancelFmChainGrabFromOut() {
         field_0x2fa3 = 0;
         field_0x2844.clearData();
@@ -3193,6 +3208,7 @@ public:
     u16 getMidnaMsgNum() const { return mMidnaMsgNum; }
     u32 getStartEvent() { return fopAcM_GetParam(this) >> 0x18; }
     const daAlink_AnmData* getAnmData(daAlink_ANM anmID) const { return &m_anmDataTable[anmID]; }
+    const daAlink_FaceTexData* getFaceTexData(daAlink_FTANM i_anmID) const { return &m_faceTexDataTable[i_anmID]; }
 
     BOOL i_checkReinRide() const { return mRideStatus == 1 || mRideStatus == 2; }
     int getGrassHowlEventActor() const { return field_0x3198; }
@@ -3316,7 +3332,7 @@ public:
     static daAlink_BckData const m_mainBckFishing[28];
     static daAlink_AnmData const m_anmDataTable[414];
     static daAlink_WlAnmData const m_wlAnmDataTable[147];
-    static u8 const m_faceTexDataTable[652];
+    static daAlink_FaceTexData const m_faceTexDataTable[];
     static u8 const m_handLeftOutSidePos[12];
     static u8 const m_handRightOutSidePos[12];
     static u8 const m_handLeftInSidePos[12];
@@ -3449,11 +3465,11 @@ private:
     /* 0x02064 */ daAlink_sight_c mSight;
     /* 0x020F0 */ daPy_anmHeap_c mAnmHeap3;
     /* 0x02104 */ daPy_anmHeap_c mAnmHeap4;
-    /* 0x02118 */ daPy_anmHeap_c mAnmHeap5;
-    /* 0x0212C */ daPy_anmHeap_c mAnmHeap6;
-    /* 0x02140 */ daPy_anmHeap_c mAnmHeap7;
+    /* 0x02118 */ daPy_anmHeap_c mFaceBtpHeap;
+    /* 0x0212C */ daPy_anmHeap_c mFaceBtkHeap;
+    /* 0x02140 */ daPy_anmHeap_c mFaceBckHeap;
     /* 0x02154 */ J3DAnmTexPattern* field_0x2154;
-    /* 0x02158 */ J3DAnmTextureSRTKey* field_0x2158;
+    /* 0x02158 */ J3DAnmTextureSRTKey* mpFaceBtk;
     /* 0x0215C */ daPy_frameCtrl_c* field_0x215c;
     /* 0x02160 */ s8* field_0x2160;
     /* 0x02164 */ mDoExt_bckAnm field_0x2164;
@@ -3952,7 +3968,7 @@ private:
     /* 0x03848 */ void* field_0x3848;
     /* 0x0384C */ cXyz* field_0x384c;
     /* 0x03850 */ daAlink_procFunc mpProcFunc;
-};  // Size: 0x38BC
+};  // Size: 0x385C
 
 static bool daAlink_checkLightBallA(fopAc_ac_c* p_actor);
 static bool daAlink_checkLightBallB(fopAc_ac_c* p_actor);

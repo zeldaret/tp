@@ -25,6 +25,7 @@ void mDoMtx_lookAt(f32 (*param_0)[4], Vec const* param_1, Vec const* param_2, Ve
 void mDoMtx_concatProjView(f32 const (*param_0)[4], f32 const (*param_1)[4], f32 (*param_2)[4]);
 void mDoMtx_ZrotM(Mtx mtx, s16 z);
 void mDoMtx_inverseTranspose(f32 const (*param_0)[4], f32 (*param_1)[4]);
+void mDoMtx_QuatConcat(Quaternion const* param_0, Quaternion const* param_1, Quaternion* param_2);
 
 inline void mDoMtx_multVecSR(Mtx m, const Vec* src, Vec* dst) {
     PSMTXMultVecSR(m, src, dst);
@@ -96,6 +97,7 @@ public:
     static void ZXYrotM(s16 x, s16 y, s16 z) { mDoMtx_ZXYrotM(now, x, y, z); }
     static void YrotM(s16 y) { mDoMtx_YrotM(now, y); }
     static void YrotS(s16 y) { mDoMtx_YrotS(now, y); }
+    static void XrotS(s16 x) { mDoMtx_XrotS(now, x); }
     static void XrotM(s16 x) { mDoMtx_XrotM(now, x); }
     static void ZrotM(s16 z) { mDoMtx_ZrotM(now, z); }
     static void inverse() { PSMTXInverse(now, now); }

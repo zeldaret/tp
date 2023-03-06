@@ -1613,7 +1613,7 @@ static dAttCatch_c* dComIfGp_att_getCatghTarget();
 static void dComIfGp_setBottleStatus(u8 param_0, u8 param_1);
 bool dComIfGp_getMapTrans(int i_roomNo, f32* o_transX, f32* o_transY, s16* o_angle);
 
-inline bool i_dComIfGp_checkPlayerStatus0(int param_0, u32 flag) {
+inline BOOL i_dComIfGp_checkPlayerStatus0(int param_0, u32 flag) {
     return g_dComIfG_gameInfo.play.checkPlayerStatus(param_0, 0, flag);
 }
 
@@ -2526,6 +2526,10 @@ inline BOOL dComIfGp_evmng_endCheck(const char* event) {
 
 inline BOOL dComIfGp_evmng_endCheck(s16 eventID) {
     return g_dComIfG_gameInfo.play.getEvtManager().endCheck(eventID);
+}
+
+inline u8 dComIfGp_event_getPreItemNo() {
+    return g_dComIfG_gameInfo.play.getEvent().getPreItemNo();
 }
 
 inline void dComIfGp_event_setItemPartnerId(unsigned int id) {

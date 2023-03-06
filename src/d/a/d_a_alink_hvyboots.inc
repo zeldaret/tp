@@ -1,24 +1,3 @@
-#include "dolphin/types.h"
-#include "d/a/d_a_alink.h"
-#include "JSystem/J2DGraph/J2DAnmLoader.h"
-#include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
-#include "JSystem/JMath/JMath.h"
-#include "SSystem/SComponent/c_math.h"
-#include "Z2AudioLib/Z2AudioMgr.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/msg/d_msg_object.h"
-#include "f_op/f_op_actor_mng.h"
-#include "m_Do/m_Do_audio.h"
-#include "m_Do/m_Do_ext.h"
-#include "m_Do/m_Do_mtx.h"
-#include "rel/d/a/d_a_crod/d_a_crod.h"
-#include "rel/d/a/d_a_horse/d_a_horse.h"
-#include "rel/d/a/d_a_scene_exit/d_a_scene_exit.h"
-#include "rel/d/a/d_a_mg_rod/d_a_mg_rod.h"
-#include "rel/d/a/d_a_spinner/d_a_spinner.h"
-#include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
-#include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"
-
 /* 800E23FC-800E243C 0DCD3C 0040+00 6/6 0/0 0/0 .text            concatMagneBootMtx__9daAlink_cFv */
 void daAlink_c::concatMagneBootMtx() {
     if (i_checkMagneBootsOn()) {
