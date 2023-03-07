@@ -6242,6 +6242,7 @@ public:
     enum daMidna_FLG1 {
         FLG1_FORCE_NORMAL_COL = 8,
         FLG1_FORCE_TIRED_COL = 4,
+        FLG1_SHADOW_MODEL_DRAW_DEMO_FORCE = 2,
     };
 
     enum daMidna_ANM {};
@@ -6309,6 +6310,48 @@ public:
     BOOL checkNoDraw() const { return checkStateFlg0(FLG0_NO_DRAW); }
     BOOL checkNoInput() const { return checkStateFlg0(FLG0_NO_INPUT); }
     int checkMetamorphoseEnable() { return (this->*mpFunc)(); }
+    int checkShadowModelDrawDemoForce() const { return checkStateFlg1(FLG1_SHADOW_MODEL_DRAW_DEMO_FORCE); }
+
+    bool checkShadowModelDrawSmode() const {
+        if (field_0x84e != 3 && field_0x84e != 4) {
+            if (field_0x84e == 2) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    int checkShadowModelDraw() const {
+        int ret = 0;
+
+        if (checkShadowModelDrawDemoForce() == 0) {
+            if (checkShadowModelDrawSmode() != 0) {
+                ret = 0;
+            }
+        }  
+
+        return ret;
+    }
+
+    int checkShadowReturnEnd() const {
+        if (field_0x5e4[0].getIdx() == 0x21c && !field_0x578->isStop()) {
+            return 1;
+        }
+
+        return 0;
+    }
+
+    int checkShadowModeTalkWait() const {
+        if (mDemoType != 2 && mDemoType != 1) {
+            return 0;
+        }
+
+        return 1;
+    }
+
+    void setShadowReturn() { mDemoType = 4; }
+
 
     bool checkPortalObjRide() const {
         return checkStateFlg0(FLG0_UNK_8000000) && checkStateFlg0(FLG0_UNK_200);
@@ -6324,7 +6367,7 @@ private:
     /* 0x0570 */ J3DModel* field_0x570;
     /* 0x0574 */ J3DModel* field_0x574;
     /* 0x0578 */ mDoExt_McaMorfSO* field_0x578;
-    /* 0x057C */ mDoExt_McaMorfCallBack1_c* field_0x57c;
+    /* 0x057C */ mDoExt_McaMorfCallBack1_c* field_0x57c; // this is really daMidna_McaMorfCB1_c. fix later
     /* 0x0580 */ cXyz* field_0x580;
     /* 0x0584 */ mDoExt_bckAnm field_0x584;
     /* 0x05A0 */ mDoExt_bckAnm field_0x5a0;
@@ -6377,7 +6420,7 @@ private:
     /* 0x06DC */ mDoExt_bckAnm* mpDemoHDTmpBck;
     /* 0x06E0 */ J3DGXColorS10 field_0x6e0;
     /* 0x06E8 */ J3DGXColor field_0x6e8;
-    /* 0x06EC */ u8 field_0x6ec;
+    /* 0x06EC */ u8 field_0x6ec; // this is probably J3DGXColor. fix later
     /* 0x06ED */ u8 field_0x6ed;
     /* 0x06EE */ u8 field_0x6ee;
     /* 0x06EF */ u8 field_0x6ef;
@@ -6396,7 +6439,7 @@ private:
     /* 0x085A */ s16 field_0x85a;
     /* 0x085C */ u8 field_0x85c[0x22];
     /* 0x087E */ s16 field_0x87e;
-    /* 0x0880 */ u8 field_0x880[0xC];
+    /* 0x0880 */ u8 field_0x880[0xC]; // csXyz in here, fix later
     /* 0x088C */ int mStaffID;
     /* 0x0890 */ u32 mStateFlg0;
     /* 0x0894 */ u32 mStateFlg1;
@@ -6408,7 +6451,7 @@ private:
     /* 0x08CC */ u8 field_0x8cc[0x14];
     /* 0x08E0 */ cXyz field_0x8e0[5];
     /* 0x091C */ cXyz field_0x91c[5];
-    /* 0x0958 */ u8 field_0x958[0xC];
+    /* 0x0958 */ u8 field_0x958[0xC]; // cXyz here, fix later
     /* 0x0964 */ cXyz field_0x964[5];
     /* 0x09A0 */ u8 field_0x9a0[0x14];
     /* 0x09C4 */ cXyz field_0x9c4;

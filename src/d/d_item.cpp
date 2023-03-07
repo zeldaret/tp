@@ -989,9 +989,11 @@ inline s32 getCheckItemFunc(u8 i_no) {
 
 s32 checkItemGet(u8 item_id, int param_2) {
     s32 checkItem = getCheckItemFunc(item_id);
+
     if (checkItem == -1) {
         checkItem = param_2;
     }
+    
     return checkItem;
 }
 

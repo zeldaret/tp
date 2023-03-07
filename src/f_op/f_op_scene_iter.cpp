@@ -1,6 +1,6 @@
 /**
  * f_op_scene_iter.cpp
- * Scene Process Iterator
+ * Framework - Scene Process Iteration
  */
 
 #include "f_op/f_op_scene_iter.h"

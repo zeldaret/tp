@@ -54,7 +54,9 @@ static s32 fopScn_Create(void* i_this) {
 /* ############################################################################################## */
 /* 803A38B0-803A38C8 -00001 0014+04 0/0 9/0 0/0 .data            g_fopScn_Method */
 leafdraw_method_class g_fopScn_Method = {
-    (process_method_func)fopScn_Create,  (process_method_func)fopScn_Delete,
-    (process_method_func)fopScn_Execute, (process_method_func)fopScn_IsDelete,
-    (process_method_func)fopScn_Draw,
+    (process_method_func)fopScn_Create,  
+    (process_method_func)fopScn_Delete,
+    (process_method_func)fopScn_Execute, 
+    (process_method_func)fopScn_IsDelete,
+    (process_method_func)fopScn_Draw
 };

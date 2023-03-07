@@ -573,6 +573,11 @@ inline void fopAcM_seStartLevel(const fopAc_ac_c* actor, u32 sfxID, u32 param_2)
     i_mDoAud_seStartLevel(sfxID, &actor->mEyePos, param_2, dComIfGp_getReverb(roomNo));
 }
 
+inline void fopAcM_seStartCurrentLevel(const fopAc_ac_c* actor, u32 sfxID, u32 param_2) {
+    s8 roomNo = fopAcM_GetRoomNo(actor);
+    i_mDoAud_seStartLevel(sfxID, &actor->current.pos, param_2, dComIfGp_getReverb(roomNo));
+}
+
 extern "C" {
 void fopAcM_initManager__Fv(void);
 void fopAcM_CreateAppend__Fv(void);

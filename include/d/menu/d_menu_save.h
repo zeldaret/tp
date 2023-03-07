@@ -6,6 +6,7 @@
 #include "d/d_select_cursor.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_dvd_thread.h"
+#include "d/save/d_save.h"
 
 class dMsgString_c;
 class dFile_warning_c;
@@ -368,7 +369,7 @@ private:
     /* 0x01BF */ u8 field_0x1bf;
     /* 0x01C0 */ u8 field_0x1c0;
     /* 0x01CC */ void (dMenu_save_c::*mpErrFunc)();
-    /* 0x01D0 */ u8 mSaveBuffer[0xA94 * 3];
+    /* 0x01D0 */ u8 mSaveBuffer[QUEST_LOG_SIZE * 3];
     /* 0x218C */ dMsgScrnExplain_c* mpScrnExplain;
     /* 0x2190 */ u8 field_0x2190;
     /* 0x2192 */ u16 field_0x2192;

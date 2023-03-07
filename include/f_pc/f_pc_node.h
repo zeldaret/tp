@@ -34,5 +34,6 @@ s32 fpcNd_Delete(process_node_class* pProcNode);
 s32 fpcNd_Create(process_node_class* pProcNode);
 
 extern int g_fpcNd_type;
+extern nodedraw_method_class g_fpcNd_Method;
 
 #endif

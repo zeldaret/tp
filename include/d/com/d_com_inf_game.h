@@ -815,6 +815,9 @@ const char* dComIfGs_getWarpStageName();
 s16 dComIfGs_getWarpPlayerAngleY();
 s8 dComIfGs_getWarpRoomNo();
 BOOL dComIfGs_isOneZoneSwitch(int i_swBit, int i_roomNo);
+BOOL dComIfGs_isOneZoneItem(int i_swBit, int i_roomNo);
+BOOL dComIfGs_isZoneSwitch(int,int);
+BOOL dComIfGs_isZoneItem(int,int);
 void dComIfGs_setLastWarpMarkItemData(const char* stage, cXyz pos, s16 angle, s8 roomNo, u8, u8);
 u16 dComIfGs_getMaxLifeGauge();
 void dComIfGs_setWarpMarkFlag(u8);
@@ -1128,12 +1131,20 @@ inline BOOL dComIfGs_isTbox(int i_no) {
     return g_dComIfG_gameInfo.info.getMemory().getBit().isTbox(i_no);
 }
 
+inline BOOL dComIfGs_isSaveItem(int i_no) {
+    return g_dComIfG_gameInfo.info.getMemory().getBit().isItem(i_no);
+}
+
 inline BOOL dComIfGs_isSaveTbox(int i_stageNo, int i_no) {
     return g_dComIfG_gameInfo.info.getSavedata().getSave(i_stageNo).getBit().isTbox(i_no);
 }
 
 inline BOOL dComIfGs_isSaveDunSwitch(int i_no) {
     return g_dComIfG_gameInfo.info.getDan().isSwitch(i_no);
+}
+
+inline BOOL dComIfGs_isSaveDunItem(int i_no) {
+    return g_dComIfG_gameInfo.info.getDan().isItem(i_no);
 }
 
 inline void dComIfGs_onSaveSwitch(int i_stageNo, int i_no) {

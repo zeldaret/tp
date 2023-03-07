@@ -1591,7 +1591,7 @@ asm void dComIfGs_offZoneSwitch(int param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dComIfGs_isZoneSwitch(int param_0, int param_1) {
+asm BOOL dComIfGs_isZoneSwitch(int param_0, int param_1) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/dComIfGs_isZoneSwitch__Fii.s"
 }
@@ -1631,7 +1631,7 @@ asm BOOL dComIfGs_isOneZoneSwitch(int param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dComIfGs_isZoneItem(int param_0, int param_1) {
+asm BOOL dComIfGs_isZoneItem(int param_0, int param_1) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/dComIfGs_isZoneItem__Fii.s"
 }
@@ -1641,7 +1641,7 @@ asm void dComIfGs_isZoneItem(int param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dComIfGs_isOneZoneItem(int param_0, int param_1) {
+asm BOOL dComIfGs_isOneZoneItem(int param_0, int param_1) {
     nofralloc
 #include "asm/d/com/d_com_inf_game/dComIfGs_isOneZoneItem__Fii.s"
 }

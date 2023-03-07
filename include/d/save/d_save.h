@@ -24,6 +24,7 @@
 #define SWITCH_ONE_ZONE_MAX 0x10
 #define ITEM_ZONE_MAX 0x20
 #define ITEM_ONE_ZONE_MAX 0x10
+#define QUEST_LOG_SIZE 0xA94
 
 enum Wallets {
     /* 0x0 */ WALLET,
@@ -1134,11 +1135,19 @@ private:
 
 class dSv_event_flag_c {
 public:
+    enum {
+        #include "d/save/d_save_bit_labels.inc"
+    };
+
     static u16 saveBitLabels[822];
 };
 
 class dSv_event_tmp_flag_c {
 public:
+    enum {
+        #include "d/save/d_save_temp_bit_labels.inc"
+    };
+    
     static u16 const tempBitLabels[185];
 };
 
