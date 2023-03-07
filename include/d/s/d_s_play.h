@@ -78,4 +78,6 @@ public:
     /* 0x1D4 */ u8 field_0x1d4;
 };
 
+extern u8 g_envHIO[68];
+
 #endif /* D_S_D_S_PLAY_H */
