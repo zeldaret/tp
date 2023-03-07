@@ -5,7 +5,6 @@
 
 #include "JSystem/JUtility/JUTFontData_Ascfont_fix12.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

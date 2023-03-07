@@ -306,6 +306,10 @@ inline bool i_fopAcM_isSwitch(const fopAc_ac_c* item, int sw) {
     return dComIfGs_isSwitch(sw, fopAcM_GetHomeRoomNo(item));
 }
 
+inline fopAc_ac_c* i_fopAcM_SearchByName(s16 proc_id) {
+    return (fopAc_ac_c*)fopAcIt_Judge(fpcSch_JudgeForPName, &proc_id);
+}
+
 inline void dComIfGs_onItem(int bitNo, int roomNo);
 inline void fopAcM_onItem(const fopAc_ac_c* item, int bitNo) {
     dComIfGs_onItem(bitNo, fopAcM_GetHomeRoomNo(item));

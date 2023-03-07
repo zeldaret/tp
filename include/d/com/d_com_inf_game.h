@@ -833,6 +833,7 @@ void dComIfGs_gameStart();
 bool dComIfGs_wolfeye_effect_check();
 BOOL dComIfGs_Wolf_Change_Check();
 void dComIfGs_onVisitedRoom(int param_0);
+void dComIfGs_offVisitedRoom(int param_0);
 void dComIfGs_setWarpItemData(char const* stage, cXyz pos, s16 angle, s8 roomNo, u8 param_4,
                               u8 param_5);
 BOOL dComIfGs_isStageSwitch(int i_stageNo, int i_no);

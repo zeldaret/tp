@@ -4,32 +4,30 @@
 //
 
 #include "JSystem/JSupport/JSUList.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 
 JSUPtrLink::JSUPtrLink(void* object) {
-    this->mList = NULL;
-    this->mObject = object;
-    this->mPrev = NULL;
-    this->mNext = NULL;
+    mList = NULL;
+    mObject = object;
+    mPrev = NULL;
+    mNext = NULL;
 }
 
 JSUPtrLink::~JSUPtrLink() {
-    if (this->mList != NULL) {
-        this->mList->remove(this);
+    if (mList != NULL) {
+        mList->remove(this);
     }
 }
 
 JSUPtrList::JSUPtrList(bool init) {
     if (init) {
-        this->initiate();
+        initiate();
     }
 }
 
 JSUPtrList::~JSUPtrList() {
-    JSUPtrLink* node = this->mHead;
+    JSUPtrLink* node = mHead;
     s32 removed = 0;
-    while (this->mLength > removed) {
+    while (mLength > removed) {
         node->mList = NULL;
         node = node->getNext();
         removed += 1;
@@ -37,18 +35,18 @@ JSUPtrList::~JSUPtrList() {
 }
 
 void JSUPtrList::initiate() {
-    this->mHead = NULL;
-    this->mTail = NULL;
-    this->mLength = 0;
+    mHead = NULL;
+    mTail = NULL;
+    mLength = 0;
 }
 
 void JSUPtrList::setFirst(JSUPtrLink* first) {
     first->mList = this;
     first->mPrev = NULL;
     first->mNext = NULL;
-    this->mTail = first;
-    this->mHead = first;
-    this->mLength = 1;
+    mTail = first;
+    mHead = first;
+    mLength = 1;
 }
 
 bool JSUPtrList::append(JSUPtrLink* ptr) {
@@ -59,15 +57,15 @@ bool JSUPtrList::append(JSUPtrLink* ptr) {
     }
 
     if (result) {
-        if (this->mLength == 0) {
-            this->setFirst(ptr);
+        if (mLength == 0) {
+            setFirst(ptr);
         } else {
             ptr->mList = this;
-            ptr->mPrev = this->mTail;
+            ptr->mPrev = mTail;
             ptr->mNext = NULL;
-            this->mTail->mNext = ptr;
-            this->mTail = ptr;
-            this->mLength++;
+            mTail->mNext = ptr;
+            mTail = ptr;
+            mLength++;
         }
     }
 
@@ -82,15 +80,15 @@ bool JSUPtrList::prepend(JSUPtrLink* ptr) {
     }
 
     if (result) {
-        if (this->mLength == 0) {
-            this->setFirst(ptr);
+        if (mLength == 0) {
+            setFirst(ptr);
         } else {
             ptr->mList = this;
             ptr->mPrev = NULL;
-            ptr->mNext = this->mHead;
-            this->mHead->mPrev = ptr;
-            this->mHead = ptr;
-            this->mLength++;
+            ptr->mNext = mHead;
+            mHead->mPrev = ptr;
+            mHead = ptr;
+            mLength++;
         }
     }
 
@@ -98,10 +96,10 @@ bool JSUPtrList::prepend(JSUPtrLink* ptr) {
 }
 
 bool JSUPtrList::insert(JSUPtrLink* before, JSUPtrLink* ptr) {
-    if (before == this->mHead) {
-        return this->prepend(ptr);
+    if (before == mHead) {
+        return prepend(ptr);
     } else if (before == NULL) {
-        return this->append(ptr);
+        return append(ptr);
     }
 
     if (before->mList != this) {
@@ -120,7 +118,7 @@ bool JSUPtrList::insert(JSUPtrLink* before, JSUPtrLink* ptr) {
         ptr->mNext = before;
         prev->mNext = ptr;
         before->mPrev = ptr;
-        this->mLength++;
+        mLength++;
     }
 
     return result;
@@ -129,33 +127,33 @@ bool JSUPtrList::insert(JSUPtrLink* before, JSUPtrLink* ptr) {
 bool JSUPtrList::remove(JSUPtrLink* ptr) {
     bool is_parent = (ptr->mList == this);
     if (is_parent) {
-        if (this->mLength == 1) {
-            this->mHead = NULL;
-            this->mTail = NULL;
-        } else if (ptr == this->mHead) {
+        if (mLength == 1) {
+            mHead = NULL;
+            mTail = NULL;
+        } else if (ptr == mHead) {
             ptr->mNext->mPrev = NULL;
-            this->mHead = ptr->mNext;
-        } else if (ptr == this->mTail) {
+            mHead = ptr->mNext;
+        } else if (ptr == mTail) {
             ptr->mPrev->mNext = NULL;
-            this->mTail = ptr->mPrev;
+            mTail = ptr->mPrev;
         } else {
             ptr->mPrev->mNext = ptr->mNext;
             ptr->mNext->mPrev = ptr->mPrev;
         }
 
         ptr->mList = NULL;
-        this->mLength--;
+        mLength--;
     }
 
     return is_parent;
 }
 
 JSUPtrLink* JSUPtrList::getNthLink(u32 index) const {
-    if (index >= this->mLength) {
+    if (index >= mLength) {
         return NULL;
     }
 
-    JSUPtrLink* node = this->mHead;
+    JSUPtrLink* node = mHead;
     for (u32 i = 0; i < index; i++) {
         node = node->getNext();
     }

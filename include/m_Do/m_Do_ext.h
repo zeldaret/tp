@@ -261,6 +261,7 @@ public:
     u8 getPlayMode() { return mFrameCtrl.getAttribute(); }
     bool isLoop() { return mFrameCtrl.checkState(2); }
     f32 getEndFrame() { return mFrameCtrl.getEnd(); }
+    BOOL checkFrame(f32 frame) { return mFrameCtrl.checkPass(frame); }
 
     bool isStop() {
         bool stopped = true;

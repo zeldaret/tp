@@ -11,6 +11,7 @@
 #include "MSL_C/math.h"
 #include "MSL_C/string.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
 #include "global.h"
 
 //
@@ -73,11 +74,6 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" u8 sVolumeList__13JKRFileLoader[12];
 extern "C" u8 sSystemHeap__7JKRHeap[4];
-
-extern "C" {
-void DCInvalidateRange(void*, u32);
-void DCStoreRange(void*, u32);
-}
 
 //
 // Declarations:
@@ -226,6 +222,7 @@ void* JKRDvdArchive::fetchResource(SDIFileEntry* fileEntry, u32* returnSize) {
         if (resourceSize == 0) {
             return NULL;
         }
+
         fileEntry->data = resourcePtr;
         if (fileCompression == COMPRESSION_YAZ0) {
             setExpandSize(fileEntry, *returnSize);
@@ -346,12 +343,11 @@ u32 JKRDvdArchive::fetchResource_subroutine(s32 entryNum, u32 offset, u32 size, 
     }
 
     case COMPRESSION_YAY0: {
-        JUTException::panic_f("JKRDvdArchive.cpp", 0x289, "%s",
-                              "Sorry, not applied for SZP archive.\n");
+        JUTException::panic_f(__FILE__, 649, "%s", "Sorry, not applied for SZP archive.\n");
     }
 
     default: {
-        JUTException::panic_f("JKRDvdArchive.cpp", 0x28d, "%s", "??? bad sequence\n");
+        JUTException::panic_f(__FILE__, 653, "%s", "??? bad sequence\n");
         return 0;
     }
     }
@@ -414,12 +410,11 @@ u32 JKRDvdArchive::fetchResource_subroutine(s32 entryNum, u32 offset, u32 size, 
     }
 
     case COMPRESSION_YAY0: {
-        JUTException::panic_f("JKRDvdArchive.cpp", 0x2f2, "%s",
-                              "Sorry, not applied SZP archive.\n");
+        JUTException::panic_f(__FILE__, 754, "%s", "Sorry, not applied SZP archive.\n");
     }
 
     default: {
-        JUTException::panic_f("JKRDvdArchive.cpp", 0x2f6, "%s", "??? bad sequence\n");
+        JUTException::panic_f(__FILE__, 758, "%s", "??? bad sequence\n");
         return 0;
     }
     }
@@ -461,5 +456,3 @@ u32 JKRDvdArchive::getExpandedResSize(const void* resource) const {
 
     return resourceSize;
 }
-
-/* 8039D1B0-8039D1B0 029810 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

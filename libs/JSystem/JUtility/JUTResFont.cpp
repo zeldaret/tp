@@ -4,8 +4,8 @@
 //
 
 #include "JSystem/JUtility/JUTResFont.h"
+#include "JSystem/JUtility/JUTConsole.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "dolphin/gx/GX.h"
 
 //
@@ -54,7 +54,6 @@ extern "C" void getDescent__10JUTResFontCFv();
 extern "C" void getHeight__10JUTResFontCFv();
 extern "C" void __ct__7JUTFontFv();
 extern "C" void initialize_state__7JUTFontFv();
-extern "C" void JUTReportConsole();
 extern "C" void GXClearVtxDesc();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_27();
@@ -158,7 +157,6 @@ bool JUTResFont::protected_initiate(ResFONT const* param_0, JKRHeap* param_1) {
 
     if (!param_0) {
         return false;
-    
     }
     mResFont = param_0;
     mValid = true;
@@ -186,59 +184,40 @@ bool JUTResFont::protected_initiate(ResFONT const* param_0, JKRHeap* param_1) {
     }
 }
 
-/* ############################################################################################## */
-/* 8039D45C-8039D45C 029ABC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D45C = "JUTResFont: Unknown data block\n";
-#pragma pop
-
 /* 802DF248-802DF344 2D9B88 00FC+00 1/1 0/0 0/0 .text            countBlock__10JUTResFontFv */
-#ifdef NONMATCHING
 void JUTResFont::countBlock() {
-    mWidthBlockCount = 0;
-	mGlyphBlockCount = 0;
-	mMapBlockCount   = 0;
-	u8* pData        = (u8*)&mResource->mData;
-	for (u32 i = 0; i < mResource->mChunkNum; i++, pData += ((BlockHeader*)pData)->mSize) {
-		int magic = ((BlockHeader*)pData)->mMagic;
-		switch (magic) {
-		case 'WID1':
-			mWidthBlockCount++;
-			break;
-		case 'GLY1':
-			mGlyphBlockCount++;
-			break;
-		case 'MAP1':
-			mMapBlockCount++;
-			break;
-		case 'INF1':
-			// mInf1Ptr;
-			break;
-		default:
-			JUTReportConsole("JUTResFont: Unknown data block\n");
-		}
-	};
+    mWid1BlockNum = 0;
+    mGly1BlockNum = 0;
+    mMap1BlockNum = 0;
+
+    u8* pData = (u8*)&mResFont->data;
+    for (u32 i = 0; i < mResFont->numBlocks; i++, pData += ((BlockHeader*)pData)->size) {
+        int magic = ((BlockHeader*)pData)->magic;
+        switch (magic) {
+        case 'WID1':
+            mWid1BlockNum++;
+            break;
+        case 'GLY1':
+            mGly1BlockNum++;
+            break;
+        case 'MAP1':
+            mMap1BlockNum++;
+            break;
+        case 'INF1':
+            break;
+        default:
+            JUTReportConsole("JUTResFont: Unknown data block\n");
+        }
+    }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTResFont::countBlock() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTResFont/countBlock__10JUTResFontFv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 8039D390-8039D39C -00001 000C+00 1/1 1/1 0/0 .rodata          saoAboutEncoding___10JUTResFont */
-SECTION_RODATA void* const JUTResFont::saoAboutEncoding_[3] = {
-    (void*)isLeadByte_1Byte__7JUTFontFi,
-    (void*)isLeadByte_2Byte__7JUTFontFi,
-    (void*)isLeadByte_ShiftJIS__7JUTFontFi,
+IsLeadByte_func const JUTResFont::saoAboutEncoding_[3] = {
+    JUTFont::isLeadByte_1Byte,
+    JUTFont::isLeadByte_2Byte,
+    JUTFont::isLeadByte_ShiftJIS,
 };
-COMPILER_STRIP_GATE(0x8039D390, &JUTResFont::saoAboutEncoding_);
 
 /* 8039D45C-8039D45C 029ABC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
@@ -328,70 +307,70 @@ SECTION_SDATA2 static f64 lit_651 = 4503599627370496.0 /* cast u32 to float */;
 #ifdef NONMATCHING
 // still missing a bunch of stuff
 f32 JUTResFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, int str_int,
-                                   bool flag) {
+                               bool flag) {
     JUTFont::TWidth width;
-	f32 width_val;
-	f32 pos_height, ascent, ascent_val, scaled_height;
-	f32 sca_wid;
+    f32 width_val;
+    f32 pos_height, ascent, ascent_val, scaled_height;
+    f32 sca_wid;
 
-	loadFont(str_int, GX_TEXMAP0, &width);
+    loadFont(str_int, GX_TEXMAP0, &width);
 
-	if ((mFixed) || (!flag)) {
-		width_val = pos_x;
-	} else {
-		width_val = (pos_x - width.field_0x0 * (scale_x / getCellWidth()));
-	}
-	f32 retval = mFixedWidth * (scale_x / getCellWidth());
-	if (mFixed == false) {
-		if (!flag) {
-			retval = (width.field_0x1 + width.field_0x0) * (scale_x / getCellWidth());
-		} else {
-			retval = width.field_0x1 * (scale_x / getCellWidth());
-		}
-	}
-	sca_wid = width_val + scale_x;
-	ascent_val      = pos_y - getAscent() * (scale_y / getHeight());
-	scaled_height   = scale_y / getHeight();
-	f32 descent     = getDescent();
-	f32 ascent_calc = descent * ascent_val;
-	f32 deshei      = descent * scaled_height + pos_y;
+    if ((mFixed) || (!flag)) {
+        width_val = pos_x;
+    } else {
+        width_val = (pos_x - width.field_0x0 * (scale_x / getCellWidth()));
+    }
+    f32 retval = mFixedWidth * (scale_x / getCellWidth());
+    if (mFixed == false) {
+        if (!flag) {
+            retval = (width.field_0x1 + width.field_0x0) * (scale_x / getCellWidth());
+        } else {
+            retval = width.field_0x1 * (scale_x / getCellWidth());
+        }
+    }
+    sca_wid = width_val + scale_x;
+    ascent_val = pos_y - getAscent() * (scale_y / getHeight());
+    scaled_height = scale_y / getHeight();
+    f32 descent = getDescent();
+    f32 ascent_calc = descent * ascent_val;
+    f32 deshei = descent * scaled_height + pos_y;
 
-	ResFONT::GLY1* used_glyphs = mpGlyphBlocks[field_0x66];
-	u16 tex_width              = used_glyphs->textureWidth;
-	u16 tex_height             = used_glyphs->textureHeight;
-	int t_width                = mWidth;
-	int t_height               = mHeight;
-	int shift_width            = (t_width + used_glyphs->cellHeight) << 15;
-	int div_width              = (t_width << 15) / tex_width;
-	int div_height             = (t_height << 15) / tex_height;
-	u16 sumWidth               = t_width + used_glyphs->cellWidth;
-	int shift_height           = t_height + used_glyphs->cellHeight << 15;
-	u16 sumHeight              = t_height + used_glyphs->cellHeight;
-	s32 width_ratio            = shift_width / tex_width;
-	s32 height_ratio           = shift_height / tex_height;
+    ResFONT::GLY1* used_glyphs = mpGlyphBlocks[field_0x66];
+    u16 tex_width = used_glyphs->textureWidth;
+    u16 tex_height = used_glyphs->textureHeight;
+    int t_width = mWidth;
+    int t_height = mHeight;
+    int shift_width = (t_width + used_glyphs->cellHeight) << 15;
+    int div_width = (t_width << 15) / tex_width;
+    int div_height = (t_height << 15) / tex_height;
+    u16 sumWidth = t_width + used_glyphs->cellWidth;
+    int shift_height = t_height + used_glyphs->cellHeight << 15;
+    u16 sumHeight = t_height + used_glyphs->cellHeight;
+    s32 width_ratio = shift_width / tex_width;
+    s32 height_ratio = shift_height / tex_height;
 
-	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
-	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+    GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 
-    GXPosition3f32(width_val,ascent_val,0.0f);
+    GXPosition3f32(width_val, ascent_val, 0.0f);
     GXColor1u32(mColor1);
-    i_GXTexCoord2u16(div_width,div_height);
+    i_GXTexCoord2u16(div_width, div_height);
 
-    GXPosition3f32(sca_wid,ascent_val,0.0f);
+    GXPosition3f32(sca_wid, ascent_val, 0.0f);
     GXColor1u32(mColor2);
-    i_GXTexCoord2u16(width_ratio,div_height);
+    i_GXTexCoord2u16(width_ratio, div_height);
 
-    GXPosition3f32(sca_wid,deshei,0.0f);
+    GXPosition3f32(sca_wid, deshei, 0.0f);
     GXColor1u32(mColor4);
-    i_GXTexCoord2u16(width_ratio,height_ratio);
+    i_GXTexCoord2u16(width_ratio, height_ratio);
 
-    GXPosition3f32(width_val,deshei,0.0f);
+    GXPosition3f32(width_val, deshei, 0.0f);
     GXColor1u32(mColor3);
-    i_GXTexCoord2u16(div_width,height_ratio);
+    i_GXTexCoord2u16(div_width, height_ratio);
 
-	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
 
-	return retval;
+    return retval;
 }
 #else
 #pragma push
@@ -425,10 +404,10 @@ void JUTResFont::getWidthEntry(int param_0, JUTFont::TWidth* i_width) const {
 
     for (int i = 0; i < mWid1BlockNum; i++) {
         if (mpWidthBlocks[i]->startCode <= code && code <= mpWidthBlocks[i]->endCode) {
-            u8* ptr   = &mpWidthBlocks[i]->mChunkNum[(code - mpWidthBlocks[i]->startCode) * 2];
-			i_width->field_0x0 = ptr[0];
-			i_width->field_0x1 = ptr[1];
-			break;
+            u8* ptr = &mpWidthBlocks[i]->mChunkNum[(code - mpWidthBlocks[i]->startCode) * 2];
+            i_width->field_0x0 = ptr[0];
+            i_width->field_0x1 = ptr[1];
+            break;
         }
     }
 }
@@ -443,7 +422,6 @@ int JUTResFont::getCellWidth() const {
         if (glyphBlock) {
             return glyphBlock->cellWidth;
         }
-        
     }
 
     return getWidth();
@@ -460,7 +438,6 @@ int JUTResFont::getCellHeight() const {
         if (glyphBlock) {
             return glyphBlock->cellHeight;
         }
-        
     }
 
     return getHeight();
@@ -476,8 +453,6 @@ asm u16 JUTResFont::getCellHeight() const {
 #pragma pop
 #endif
 
-
-
 /* 802DFDA4-802DFDD8 2DA6E4 0034+00 1/0 1/0 0/0 .text            isLeadByte__10JUTResFontCFi */
 bool JUTResFont::isLeadByte(int param_0) const {
     return (*mIsLeadByte)(param_0);
@@ -486,22 +461,14 @@ bool JUTResFont::isLeadByte(int param_0) const {
 /* ############################################################################################## */
 /* 8039D39C-8039D45C 0299FC 00BE+02 1/1 0/0 0/0 .rodata          halftofull$726 */
 static const u16 halftofull[95] = {
-    0x8140, 0x8149, 0x8168, 0x8194, 0x8190, 0x8193, 
-    0x8195, 0x8166, 0x8169, 0x816A, 0x8196, 0x817B, 
-    0x8143, 0x817C, 0x8144, 0x815E, 0x824F, 0x8250, 
-    0x8251, 0x8252, 0x8253, 0x8254, 0x8255, 0x8256, 
-    0x8257, 0x8258, 0x8146, 0x8147, 0x8183, 0x8181, 
-    0x8184, 0x8148, 0x8197, 0x8260, 0x8261, 0x8262, 
-    0x8263, 0x8264, 0x8265, 0x8266, 0x8267, 0x8268, 
-    0x8269, 0x826A, 0x826B, 0x826C, 0x826D, 0x826E,
-    0x826F, 0x8270, 0x8271, 0x8272, 0x8273, 0x8274, 
-    0x8275, 0x8276, 0x8277, 0x8278, 0x8279, 0x816D, 
-    0x818F, 0x816E, 0x814F, 0x8151, 0x8165, 0x8281, 
-    0x8282, 0x8283, 0x8284, 0x8285, 0x8286, 0x8287, 
-    0x8288, 0x8289, 0x828A, 0x828B, 0x828C, 0x828D, 
-    0x828E, 0x828F, 0x8290, 0x8291, 0x8292, 0x8293, 
-    0x8294, 0x8295, 0x8296, 0x8297, 0x8298, 0x8299, 
-    0x829A, 0x816F, 0x8162, 0x8170, 0x8160,
+    0x8140, 0x8149, 0x8168, 0x8194, 0x8190, 0x8193, 0x8195, 0x8166, 0x8169, 0x816A, 0x8196, 0x817B,
+    0x8143, 0x817C, 0x8144, 0x815E, 0x824F, 0x8250, 0x8251, 0x8252, 0x8253, 0x8254, 0x8255, 0x8256,
+    0x8257, 0x8258, 0x8146, 0x8147, 0x8183, 0x8181, 0x8184, 0x8148, 0x8197, 0x8260, 0x8261, 0x8262,
+    0x8263, 0x8264, 0x8265, 0x8266, 0x8267, 0x8268, 0x8269, 0x826A, 0x826B, 0x826C, 0x826D, 0x826E,
+    0x826F, 0x8270, 0x8271, 0x8272, 0x8273, 0x8274, 0x8275, 0x8276, 0x8277, 0x8278, 0x8279, 0x816D,
+    0x818F, 0x816E, 0x814F, 0x8151, 0x8165, 0x8281, 0x8282, 0x8283, 0x8284, 0x8285, 0x8286, 0x8287,
+    0x8288, 0x8289, 0x828A, 0x828B, 0x828C, 0x828D, 0x828E, 0x828F, 0x8290, 0x8291, 0x8292, 0x8293,
+    0x8294, 0x8295, 0x8296, 0x8297, 0x8298, 0x8299, 0x829A, 0x816F, 0x8162, 0x8170, 0x8160,
 };
 
 /* 802DFDD8-802DFF60 2DA718 0188+00 2/2 0/0 0/0 .text            getFontCode__10JUTResFontCFi */
@@ -509,54 +476,53 @@ static const u16 halftofull[95] = {
 // still many issues
 int JUTResFont::getFontCode(int param_0) const {
     int ret = mInf1Ptr->width;
-	if ((getFontType() == 2) && (mMaxCode >= 0x8000U) && (param_0 >= 0x20) && (param_0 < 0x7FU)) {
-		param_0 = halftofull[param_0 - 32];
-	}
-	int j = 0;
-	for (int i = mMap1BlockNum; i > 0; j++, i--) {
-		if ((mpMapBlocks[j]->endCode <= param_0) && (param_0 <= mpMapBlocks[j]->numEntries)) {
-			ResFONT::MAP1* temp_r4 = mpMapBlocks[j];
-			if (temp_r4->startCode == 0) {
-				ret = param_0 - temp_r4->endCode;
-				break;
-			} else if (temp_r4->startCode == 2) {
-				ret = *(&mpMapBlocks[j]->mLeading + ((param_0 - mpMapBlocks[j]->endCode)));
-				break;
-			} else if (temp_r4->startCode == 3) {
-				u16* leading_temp = &temp_r4->mLeading;
-				int phi_r5        = 0;
-				int phi_r6_2      = temp_r4->numEntries - 1;
+    if ((getFontType() == 2) && (mMaxCode >= 0x8000U) && (param_0 >= 0x20) && (param_0 < 0x7FU)) {
+        param_0 = halftofull[param_0 - 32];
+    }
+    int j = 0;
+    for (int i = mMap1BlockNum; i > 0; j++, i--) {
+        if ((mpMapBlocks[j]->endCode <= param_0) && (param_0 <= mpMapBlocks[j]->numEntries)) {
+            ResFONT::MAP1* temp_r4 = mpMapBlocks[j];
+            if (temp_r4->startCode == 0) {
+                ret = param_0 - temp_r4->endCode;
+                break;
+            } else if (temp_r4->startCode == 2) {
+                ret = *(&mpMapBlocks[j]->mLeading + ((param_0 - mpMapBlocks[j]->endCode)));
+                break;
+            } else if (temp_r4->startCode == 3) {
+                u16* leading_temp = &temp_r4->mLeading;
+                int phi_r5 = 0;
+                int phi_r6_2 = temp_r4->numEntries - 1;
 
-				while (phi_r6_2 >= phi_r5) {
+                while (phi_r6_2 >= phi_r5) {
+                    u32 temp_r3 = phi_r6_2 + phi_r5;
+                    int temp_r7 = (int)((temp_r3 >> 0x1FU) + phi_r6_2 + phi_r5) >> 1;
 
-					u32 temp_r3 = phi_r6_2 + phi_r5;
-					int temp_r7 = (int)((temp_r3 >> 0x1FU) + phi_r6_2 + phi_r5) >> 1;
+                    if (param_0 < leading_temp[temp_r7 * 2]) {
+                        phi_r6_2 = temp_r7 - 1;
+                        continue;
+                    }
 
-					if (param_0 < leading_temp[temp_r7 * 2]) {
-						phi_r6_2 = temp_r7 - 1;
-						continue;
-					}
+                    if (param_0 > leading_temp[temp_r7 * 2]) {
+                        phi_r5 = temp_r7 + 1;
+                        continue;
+                    }
 
-					if (param_0 > leading_temp[temp_r7 * 2]) {
-						phi_r5 = temp_r7 + 1;
-						continue;
-					}
-
-					ret = leading_temp[temp_r7 * 2 + 1];
-					break;
-				}
-			} else if (temp_r4->startCode == 1) {
-				u16* phi_r5_2 = NULL;
-				if (temp_r4->numEntries == 1) {
-					phi_r5_2 = &temp_r4->mLeading;
-				}
-				ret = convertSjis(param_0, phi_r5_2);
-				break;
-			}
-			break;
-		}
-	}
-	return ret;
+                    ret = leading_temp[temp_r7 * 2 + 1];
+                    break;
+                }
+            } else if (temp_r4->startCode == 1) {
+                u16* phi_r5_2 = NULL;
+                if (temp_r4->numEntries == 1) {
+                    phi_r5_2 = &temp_r4->mLeading;
+                }
+                ret = convertSjis(param_0, phi_r5_2);
+                break;
+            }
+            break;
+        }
+    }
+    return ret;
 }
 #else
 #pragma push
@@ -571,9 +537,7 @@ asm int JUTResFont::getFontCode(int param_0) const {
 
 /* 802DFF60-802E00C4 2DA8A0 0164+00 1/0 0/0 0/0 .text loadImage__10JUTResFontFi11_GXTexMapID */
 #ifdef NONMATCHING
-asm void JUTResFont::loadImage(int param_0, _GXTexMapID param_1) {
-    
-}
+asm void JUTResFont::loadImage(int param_0, _GXTexMapID param_1) {}
 #else
 #pragma push
 #pragma optimization_level 0
@@ -590,17 +554,17 @@ int JUTResFont::convertSjis(int inChr, u16* inLead) const {
     int tmp = inChr >> 8 & 0xFF;
     int tmp2 = (u8)inChr - 0x40;
 
-	if (0x40 <= tmp2) {
-		tmp2--;
-	}
+    if (0x40 <= tmp2) {
+        tmp2--;
+    }
 
-	u16 lead = 0x31c;
+    u16 lead = 0x31c;
 
-	if (inLead) {
-		lead = *inLead;
-	}
+    if (inLead) {
+        lead = *inLead;
+    }
 
-	return tmp2 + (tmp - 0x88) * 0xbc + -0x5e + lead;
+    return tmp2 + (tmp - 0x88) * 0xbc + -0x5e + lead;
 }
 
 /* 802E0108-802E0110 2DAA48 0008+00 1/0 0/0 0/0 .text            isLeadByte_1Byte__7JUTFontFi */

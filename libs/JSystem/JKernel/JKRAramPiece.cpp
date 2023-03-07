@@ -8,13 +8,7 @@
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTException.h"
-#include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
-#include "dolphin/types.h"
-
-//
-// Declarations:
-//
 
 /* 802D3574-802D35F4 2CDEB4 0080+00 1/1 0/0 0/0 .text
  * prepareCommand__12JKRAramPieceFiUlUlUlP12JKRAramBlockPFUl_v  */
@@ -49,12 +43,12 @@ OSMutex JKRAramPiece::mMutex;
 JKRAMCommand* JKRAramPiece::orderAsync(int direction, u32 source, u32 destination, u32 length,
                                        JKRAramBlock* block, JKRAMCommand::AsyncCallback callback) {
     lock();
-    if (((source & 0x1f) != 0) || ((destination & 0x1f) != 0)) {
+    if ((source & 0x1f) != 0 || (destination & 0x1f) != 0) {
         OSReport("direction = %x\n", direction);
         OSReport("source = %x\n", source);
         OSReport("destination = %x\n", destination);
         OSReport("length = %x\n", length);
-        JUTException::panic_f("JKRAramPiece.cpp", 0x6c, "%s", "illegal address. abort.");
+        JUTException::panic_f(__FILE__, 108, "%s", "illegal address. abort.");
     }
 
     Message* message = new (JKRHeap::getSystemHeap(), -4) Message();
@@ -167,5 +161,3 @@ JKRAMCommand::~JKRAMCommand() {
     if (field_0x94)
         JKRHeap::free(field_0x94, NULL);
 }
-
-/* 8039D0B8-8039D0B8 029718 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

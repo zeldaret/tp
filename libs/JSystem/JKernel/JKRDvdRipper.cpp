@@ -9,7 +9,6 @@
 #include "MSL_C/MSL_Common/Src/string.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 //
@@ -107,7 +106,7 @@ void* JKRDvdRipper::loadToMainRAM(s32 entryNumber, u8* dst, JKRExpandSwitch expa
 /* 8039D290-8039D290 0298F0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
 #pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D290 = "JKRDvdRipper.cpp";
+SECTION_DEAD static char const* const stringBase_8039D290 = __FILE__;
 SECTION_DEAD static char const* const stringBase_8039D2A1 = "%s";
 SECTION_DEAD static char const* const stringBase_8039D2A4 = "Sorry, not applied for SZP archive.";
 SECTION_DEAD static char const* const stringBase_8039D2C8 = "Not support SZP with offset read";
@@ -151,21 +150,26 @@ void* JKRDvdRipper::loadToMainRAM(JKRDvdFile* dvdFile, u8* dst, JKRExpandSwitch 
         }
         r26 = (bufPtr[4] << 0x18) | (bufPtr[5] << 0x10) | (bufPtr[6] << 0x08) | (bufPtr[7]);
     }
+
     if (pCompression) {
         *pCompression = compression;
     }
+
     if (expandSwitch == EXPAND_SWITCH_UNKNOWN1 && compression) {
         if (dstLength != 0 && r26 > dstLength) {
             r26 = dstLength;
         }
+
         if (!dst) {
             dst = (u8*)JKRHeap::alloc(r26, allocDirection == ALLOC_DIRECTION_FORWARD ? 0x20 : -0x20,
                                       heap);
             did_alloc = true;
         }
+
         if (!dst) {
             return NULL;
         }
+
         if (compression == 1) {
             mem = (u8*)JKRHeap::alloc(fileSizeAligned, 0x20, heap);
             if (mem == NULL && did_alloc == true) {
@@ -183,10 +187,12 @@ void* JKRDvdRipper::loadToMainRAM(JKRDvdFile* dvdFile, u8* dst, JKRExpandSwitch 
                 var2, allocDirection == ALLOC_DIRECTION_FORWARD ? 0x20 : -0x20, heap);
             did_alloc = true;
         }
+
         if (!dst) {
             return NULL;
         }
     }
+
     if (compression == 0) {
         int count = 0;
         if (offset != 0) {
@@ -197,31 +203,38 @@ void* JKRDvdRipper::loadToMainRAM(JKRDvdFile* dvdFile, u8* dst, JKRExpandSwitch 
                 if (count >= 0) {
                     break;
                 }
+
                 if (count == -3 || !data_804508C8) {
                     if (did_alloc == true) {
                         JKRHeap::free(dst, NULL);
                     }
                     return NULL;
                 }
+
                 VIWaitForRetrace();
             }
+
             DCInvalidateRange(bufPtr, 0x20);
             count = JKRDecomp::checkCompressed(bufPtr);
             if (count == 3) {
                 count = 0;
             }
         }
+
         if (count == 0 || expandSwitch == EXPAND_SWITCH_UNKNOWN2 ||
-            expandSwitch == EXPAND_SWITCH_UNKNOWN0) {
+            expandSwitch == EXPAND_SWITCH_UNKNOWN0)
+        {
             fileSizeAligned -= offset;
             if (dstLength != 0 && dstLength < fileSizeAligned) {
                 fileSizeAligned = dstLength;
             }
+
             while (true) {
                 count = DVDReadPrio(dvdFile->getFileInfo(), dst, fileSizeAligned, offset, 2);
                 if (count >= 0) {
                     break;
                 }
+
                 if (count == -3 || !data_804508C8) {
                     if (did_alloc == true) {
                         JKRHeap::free(dst, NULL);
@@ -230,6 +243,7 @@ void* JKRDvdRipper::loadToMainRAM(JKRDvdFile* dvdFile, u8* dst, JKRExpandSwitch 
                 }
                 VIWaitForRetrace();
             }
+
             if (param_8) {
                 *param_8 = fileSizeAligned;
             }
@@ -237,24 +251,25 @@ void* JKRDvdRipper::loadToMainRAM(JKRDvdFile* dvdFile, u8* dst, JKRExpandSwitch 
         } else if (count == 2) {
             JKRDecompressFromDVD(dvdFile, dst, fileSizeAligned, dstLength, 0, offset, param_8);
         } else {
-            JUTException::panic_f("JKRDvdRipper.cpp", 0x143, "%s",
-                                  "Sorry, not applied for SZP archive.");
+            JUTException::panic_f(__FILE__, 0x143, "%s", "Sorry, not applied for SZP archive.");
         }
         return dst;
     } else if (compression == 1) {
         if (offset) {
-            JUTException::panic_f("JKRDvdRipper.cpp", 0x14d, "%s",
-                                  "Not support SZP with offset read");
+            JUTException::panic_f(__FILE__, 0x14d, "%s", "Not support SZP with offset read");
         }
+
         while (true) {
             int count = DVDReadPrio(dvdFile->getFileInfo(), mem, fileSizeAligned, 0, 2);
             if (count >= 0) {
                 break;
             }
+
             if (count == -3 || !data_804508C8) {
                 if (did_alloc == true) {
                     JKRHeap::free(dst, NULL);
                 }
+
                 JKRHeap::free(mem, NULL);
                 return NULL;
             }
@@ -356,6 +371,7 @@ static u32 tsArea;
 
 /* 802DA1E4-802DA35C 2D4B24 0178+00 1/1 0/0 0/0 .text
  * JKRDecompressFromDVD__FP10JKRDvdFilePvUlUlUlUlPUl            */
+// wrong reg at the end
 #ifdef NONMATCHING
 static int JKRDecompressFromDVD(JKRDvdFile* dvdFile, void* dst, u32 fileSize, u32 param_3,
                                 u32 param_4, u32 param_5, u32* param_6) {
@@ -364,11 +380,13 @@ static int JKRDecompressFromDVD(JKRDvdFile* dvdFile, void* dst, u32 fileSize, u3
         OSInitMutex(&decompMutex);
         data_80451458 = true;
     }
+
     OSRestoreInterrupts(level);
     OSLockMutex(&decompMutex);
     u32 bufferSize = JKRDvdRipper::sSZSBufferSize;
     szpBuf = (u8*)JKRHeap::sSystemHeap->alloc(bufferSize, -0x20);
     szpEnd = szpBuf + bufferSize;
+
     if (param_4) {
         refBuf = (u8*)JKRHeap::sSystemHeap->alloc(0x1120, -4);
         refEnd = refBuf + 0x1120;
@@ -376,24 +394,29 @@ static int JKRDecompressFromDVD(JKRDvdFile* dvdFile, void* dst, u32 fileSize, u3
     } else {
         refBuf = NULL;
     }
+
     srcFile = dvdFile;
     srcOffset = param_5;
     transLeft = fileSize - param_5;
     fileOffset = param_4;
     readCount = 0;
     maxDest = param_3;
+
     if (!param_6) {
         tsPtr = &tsArea;
     } else {
         tsPtr = param_6;
     }
+
     *tsPtr = 0;
     u8* first = firstSrcData();
     int result = first ? decompSZS_subroutine(first, (u8*)dst) : -1;
-    JKRHeap::free(szpBuf, 0);
+    i_JKRFree(szpBuf);
+
     if (refBuf) {
-        JKRHeap::free(refBuf, 0);
+        i_JKRFree(refBuf);
     }
+
     DCStoreRangeNoSync(dst, *tsPtr);
     OSUnlockMutex(&decompMutex);
     return result;
@@ -542,16 +565,19 @@ static u8* firstSrcData() {
     u8* buffer = szpBuf;
     u32 bufSize = szpEnd - buffer;
     u32 length = transLeft < bufSize ? transLeft : bufSize;
+
     while (true) {
         int result = DVDReadPrio(srcFile->getFileInfo(), buffer, length, srcOffset, 2);
         if (result >= 0) {
             break;
         }
+
         if (result == -3 || !data_804508C8) {
             return NULL;
         }
         VIWaitForRetrace();
     }
+
     DCInvalidateRange(buffer, length);
     srcOffset += length;
     transLeft -= length;
@@ -566,9 +592,11 @@ static u8* nextSrcData(u8* param_0) {
     memcpy(dest, param_0, size);
     u8* end = dest + size;
     u32 transSize = szpEnd - end;
+
     if (transSize > transLeft) {
         transSize = transLeft;
     }
+
     while (true) {
         s32 result = DVDReadPrio(srcFile->getFileInfo(), end, transSize, srcOffset, 2);
         if (result >= 0) {
@@ -580,12 +608,15 @@ static u8* nextSrcData(u8* param_0) {
         }
         VIWaitForRetrace();
     }
+
     DCInvalidateRange(end, transSize);
     srcOffset += transSize;
     transLeft -= transSize;
+
     if (transLeft == 0) {
         srcLimit = end + transSize;
     }
+
     return dest;
 }
 #else
@@ -608,8 +639,7 @@ u8 JKRDvdRipper::isErrorRetry() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __sinit_JKRDvdRipper_cpp() {
-    nofralloc
+asm void __sinit_JKRDvdRipper_cpp(){nofralloc
 #include "asm/JSystem/JKernel/JKRDvdRipper/__sinit_JKRDvdRipper_cpp.s"
 }
 #pragma pop
@@ -629,5 +659,3 @@ extern "C" asm void func_802DA820(void* _this) {
 #include "asm/JSystem/JKernel/JKRDvdRipper/func_802DA820.s"
 }
 #pragma pop
-
-/* 8039D290-8039D290 0298F0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

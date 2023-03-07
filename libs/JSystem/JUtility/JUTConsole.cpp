@@ -10,7 +10,6 @@
 #include "JSystem/JUtility/JUTVideo.h"
 #include "MSL_C/MSL_Common/Src/printf.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:
@@ -315,10 +314,12 @@ void JUTConsole::scroll(int scrollAmnt) {
             }
         }
     }
+
     field_0x30 += scrollAmnt;
     if (field_0x30 < 0) {
         field_0x30 += mMaxLines;
     }
+
     if (field_0x30 >= mMaxLines) {
         field_0x30 -= mMaxLines;
     }
@@ -346,6 +347,7 @@ JUTConsoleManager* JUTConsoleManager::createManager(JKRHeap* pHeap) {
     if (pHeap == NULL) {
         pHeap = JKRHeap::sCurrentHeap;
     }
+
     JUTConsoleManager* manager = new (pHeap, 0) JUTConsoleManager();
     sManager = manager;
     return manager;
@@ -457,7 +459,8 @@ extern "C" void JUTReportConsole_f_va(const char* fmt, va_list args) {
     if (JUTGetReportConsole() == NULL) {
         vsnprintf(buf, sizeof(buf), fmt, args);
     } else if (JUTGetReportConsole()->getOutput() &
-               (JUTConsole::OUTPUT_CONSOLE | JUTConsole::OUTPUT_OSREPORT)) {
+               (JUTConsole::OUTPUT_CONSOLE | JUTConsole::OUTPUT_OSREPORT))
+    {
         vsnprintf(buf, sizeof(buf), fmt, args);
         JUTGetReportConsole()->print(buf);
     }
@@ -501,5 +504,3 @@ void JUTWarningConsole_f(const char* fmt, ...) {
 void JUTWarningConsole(const char* message) {
     JUTReportConsole_f("%s", message);
 }
-
-/* 8039D9A8-8039D9A8 02A008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

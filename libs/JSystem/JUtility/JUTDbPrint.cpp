@@ -8,8 +8,6 @@
 #include "JSystem/JUtility/JUTVideo.h"
 #include "MSL_C/MSL_Common/Src/printf.h"
 #include "MSL_C/MSL_Common/Src/string.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 
 /* 802E0148-802E0190 2DAA88 0048+00 1/1 0/0 0/0 .text __ct__10JUTDbPrintFP7JUTFontP7JKRHeap */
 JUTDbPrint::JUTDbPrint(JUTFont* pFont, JKRHeap* pHeap) {
@@ -32,6 +30,7 @@ JUTDbPrint* JUTDbPrint::start(JUTFont* pFont, JKRHeap* pHeap) {
         }
         sDebugPrint = new JUTDbPrint(pFont, pHeap);
     }
+
     return sDebugPrint;
 }
 
@@ -81,6 +80,7 @@ void JUTDbPrint::flush(int param_0, int param_1, int param_2, int param_3) {
             if (mVisible) {
                 this->drawString(cur->unk_0x04, cur->unk_0x06, cur->unk_0x0A, (u8*)cur->unk_0x0C);
             }
+
             if (--cur->unk_0x08 <= 0) {
                 unk_print* next = cur->mNext;
                 JKRFreeToHeap(mHeap, cur);
@@ -105,9 +105,11 @@ void JUTDbPrint::drawString(int param_0, int param_1, int param_2, u8 const* par
 void JUTReport(int param_0, int param_1, char const* fmt, ...) {
     va_list args;
     va_start(args, fmt);
+
     char buf[0x100];
     int ret = vsnprintf(buf, 0x100, fmt, args);
     va_end(args);
+
     if (ret < 0) {
         return;
     }
@@ -118,9 +120,11 @@ void JUTReport(int param_0, int param_1, char const* fmt, ...) {
 void JUTReport(int param_0, int param_1, int param_2, char const* fmt, ...) {
     va_list args;
     va_start(args, fmt);
+
     char buf[0x100];
     int ret = vsnprintf(buf, 0x100, fmt, args);
     va_end(args);
+
     if (ret < 0) {
         return;
     }

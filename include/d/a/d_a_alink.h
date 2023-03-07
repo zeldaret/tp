@@ -641,6 +641,8 @@ public:
     };
 
     enum daAlink_FTANM {
+        FTANM_UNK_3 = 3,
+        FTANM_UNK_4 = 4,
         FTANM_UNK_8 = 8,
         FTANM_UNK_13 = 0x13,
         FTANM_UNK_14 = 0x14,
@@ -2212,13 +2214,13 @@ public:
     /* 800F9ABC */ int procCrawlAutoMove();
     /* 800F9D7C */ int procCrawlEndInit(int, s16, s16);
     /* 800F9F30 */ int procCrawlEnd();
-    /* 800F9FDC */ void getHangMoveAnmSpeed();
-    /* 800F9FFC */ void getHangDirectionFromAngle();
+    /* 800F9FDC */ f32 getHangMoveAnmSpeed();
+    /* 800F9FFC */ int getHangDirectionFromAngle();
     /* 800FA070 */ BOOL hangMoveBgCheck(s16, cXyz*);
-    /* 800FA338 */ void changeHangMoveProc(int);
-    /* 800FA5C8 */ void checkHangFootWall();
+    /* 800FA338 */ BOOL changeHangMoveProc(int);
+    /* 800FA5C8 */ bool checkHangFootWall();
     /* 800FA6E4 */ void setHangGroundY();
-    /* 800FA78C */ void changeHangEndProc();
+    /* 800FA78C */ int changeHangEndProc();
     /* 800FA85C */ void checkHangStartSideWall(s16);
     /* 800FAA7C */ int procHangStartInit();
     /* 800FAE14 */ int procHangStart();
@@ -2239,18 +2241,18 @@ public:
     /* 800FC2F4 */ int procHangLeverDownInit();
     /* 800FC390 */ int procHangLeverDown();
     /* 800FC5A4 */ void setDragonHangPos();
-    /* 800FC6B4 */ void setOctaIealHangPos();
+    /* 800FC6B4 */ int setOctaIealHangPos();
     /* 800FC748 */ void setBossBodyHangPos();
     /* 800FC77C */ int procBossBodyHangInit(fopAc_ac_c*);
     /* 800FC870 */ int procBossBodyHang();
-    /* 800FCF58 */ void getLadderUnitCount() const;
-    /* 800FCF84 */ void setLadderInit();
+    /* 800FCF58 */ int getLadderUnitCount() const;
+    /* 800FCF84 */ int setLadderInit();
     /* 800FD048 */ void setLadderPosInit();
     /* 800FD1F0 */ void setLadderPos(int);
-    /* 800FD288 */ void getLadderMoveAnmSpeed();
+    /* 800FD288 */ f32 getLadderMoveAnmSpeed();
     /* 800FD2AC */ void changeLadderMoveProc(int);
-    /* 800FD4A8 */ void setMoveBGLadderCorrect();
-    /* 800FD5E4 */ void checkLadderFall();
+    /* 800FD4A8 */ int setMoveBGLadderCorrect();
+    /* 800FD5E4 */ int checkLadderFall();
     /* 800FD648 */ int procLadderUpStartInit();
     /* 800FD7B0 */ int procLadderUpStart();
     /* 800FD824 */ int procLadderUpEndInit(int);
@@ -2261,17 +2263,17 @@ public:
     /* 800FDCCC */ int procLadderDownEnd();
     /* 800FDD90 */ int procLadderMoveInit(int, int, cXyz*);
     /* 800FDF50 */ int procLadderMove();
-    /* 800FE010 */ void getClimbMoveUpDownAnmSpeed();
-    /* 800FE034 */ void getClimbMoveSideAnmSpeed();
-    /* 800FE058 */ void checkClimbCode(cBgS_PolyInfo&);
+    /* 800FE010 */ f32 getClimbMoveUpDownAnmSpeed();
+    /* 800FE034 */ f32 getClimbMoveSideAnmSpeed();
+    /* 800FE058 */ BOOL checkClimbCode(cBgS_PolyInfo&);
     /* 800FE114 */ void setClimbInit();
     /* 800FE174 */ void setClimbShapeOffset();
-    /* 800FE3C4 */ void getClimbDirectionFromAngle();
+    /* 800FE3C4 */ int getClimbDirectionFromAngle();
     /* 800FE438 */ void changeClimbMoveProc(int);
     /* 800FE5A0 */ void checkClimbMoveUpDownProc(int);
     /* 800FE6E8 */ void checkClimbMoveSideProc(int);
     /* 800FE868 */ void setMoveBGClimbCorrect();
-    /* 800FEB90 */ void checkBgCorrectClimbMove(cXyz*, cXyz*);
+    /* 800FEB90 */ int checkBgCorrectClimbMove(cXyz*, cXyz*);
     /* 800FEC70 */ void checkClimbRoof(f32);
     /* 800FED50 */ void checkClimbGround(cXyz*, f32);
     /* 800FEEC0 */ void checkBgClimbMove(int);
@@ -2288,11 +2290,11 @@ public:
     /* 80100258 */ int procClimbWait();
     /* 801003E4 */ int procClimbToRoofInit();
     /* 80100464 */ int procClimbToRoof();
-    /* 801005CC */ void getRoofHangFMoveAnmSpeed() const;
-    /* 801005F0 */ void getRoofHangSMoveAnmSpeed() const;
+    /* 801005CC */ f32 getRoofHangFMoveAnmSpeed() const;
+    /* 801005F0 */ f32 getRoofHangSMoveAnmSpeed() const;
     /* 80100614 */ void setRoofHangHandOnSE(cBgS_PolyInfo*);
-    /* 80100668 */ void checkRoofHangMovePos();
-    /* 80100770 */ void commonRoofHangProc();
+    /* 80100668 */ int checkRoofHangMovePos();
+    /* 80100770 */ int commonRoofHangProc();
     /* 801008EC */ void checkNextActionRoofHang();
     /* 80100A10 */ int procRoofHangStartInit(cBgS_PolyInfo const&, cXyz const&, int);
     /* 80100AE4 */ int procRoofHangStart();

@@ -5,10 +5,9 @@
 
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRAramPiece.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:
@@ -80,7 +79,7 @@ JKRDecomp::JKRDecomp(long priority) : JKRThread(0x800, 0x10, priority) {
 JKRDecomp::~JKRDecomp() {}
 
 /* 802DB790-802DB858 2D60D0 00C8+00 1/0 0/0 0/0 .text            run__9JKRDecompFv */
-void* JKRDecomp::run(void) {
+void* JKRDecomp::run() {
     OSInitMessageQueue(&sMessageQueue, sMessageBuffer, 8);
     for (;;) {
         OSMessage message;
@@ -172,26 +171,23 @@ void JKRDecomp::decode(u8* srcBuffer, u8* dstBuffer, u32 srcLength, u32 dstLengt
 }
 
 /* 802DBA58-802DBC14 2D6398 01BC+00 1/1 0/0 0/0 .text            decodeSZP__9JKRDecompFPUcPUcUlUl */
-// All instructions match. Wrong registers are used.
+// 2 extra mr instructions
 #ifdef NONMATCHING
 void JKRDecomp::decodeSZP(u8* src, u8* dst, u32 srcLength, u32 dstLength) {
-    u32 decodedSize;
+    // s32 decodedSize;
     s32 srcChunkOffset;
-    s32 count;
+    u32 count;
     s32 dstOffset;
     u32 length;
-    u32 counter;
-    u32 srcDataOffset;
-    u32 linkTableOffset;
+    s32 linkInfo;
     s32 offset;
     s32 i;
-
-    decodedSize = read_big_endian_u32(src + 4);
-    linkTableOffset = read_big_endian_u32(src + 8);
-    srcDataOffset = read_big_endian_u32(src + 12);
+    s32 decodedSize = read_big_endian_u32(src + 4);
+    s32 linkTableOffset = read_big_endian_u32(src + 8);
+    s32 srcDataOffset = read_big_endian_u32(src + 12);
 
     dstOffset = 0;
-    counter = 0;
+    u32 counter = 0;
     srcChunkOffset = 16;
 
     u32 chunkBits;
@@ -204,55 +200,50 @@ void JKRDecomp::decodeSZP(u8* src, u8* dst, u32 srcLength, u32 dstLength) {
     do {
         if (counter == 0) {
             chunkBits = read_big_endian_u32(src + srcChunkOffset);
-            srcChunkOffset += 4;
-            counter = 32;
+            srcChunkOffset += sizeof(u32);
+            counter = sizeof(u32) * 8;
         }
 
         if (chunkBits & 0x80000000) {
             if (dstLength == 0) {
                 dst[dstOffset] = src[srcDataOffset];
                 length--;
-                if (length == 0) {
+                if (length == 0)
                     return;
-                }
             } else {
                 dstLength--;
             }
             dstOffset++;
             srcDataOffset++;
         } else {
-            u32 linkInfo = read_big_endian_u16(src + linkTableOffset);
-            linkTableOffset += 2;
+            linkInfo = src[linkTableOffset] << 8 | src[linkTableOffset + 1];
+            linkTableOffset += sizeof(u16);
 
             offset = dstOffset - (linkInfo & 0xFFF);
-            count = ((s32)linkInfo) >> 12;
+            count = (linkInfo >> 12);
             if (count == 0) {
                 count = (u32)src[srcDataOffset] + 0x12;
                 srcDataOffset++;
-            } else {
+            } else
                 count += 2;
-            }
 
-            if (count > decodedSize - dstOffset) {
+            if ((s32)count > decodedSize - dstOffset)
                 count = decodedSize - dstOffset;
-            }
 
-            for (i = 0; i < count; i++, dstOffset++, offset++) {
+            for (i = 0; i < (s32)count; i++, dstOffset++, offset++) {
                 if (dstLength == 0) {
                     dst[dstOffset] = dst[offset - 1];
                     length--;
-                    if (length == 0) {
+                    if (length == 0)
                         return;
-                    }
-                } else {
+                } else
                     dstLength--;
-                }
             }
         }
 
         chunkBits <<= 1;
         counter--;
-    } while ((s32)dstLength < decodedSize);
+    } while (dstOffset < decodedSize);
 }
 #else
 #pragma push
@@ -267,19 +258,20 @@ asm void JKRDecomp::decodeSZP(u8* param_0, u8* param_1, u32 param_2, u32 param_3
 
 /* 802DBC14-802DBCF8 2D6554 00E4+00 1/1 0/0 0/0 .text            decodeSZS__9JKRDecompFPUcPUcUlUl */
 #ifdef NONMATCHING
-void JKRDecomp::decodeSZS(u8* src_buffer, u8* dst_buffer, u32 param_3, u32 param_4) {
-    int copyByteCount;
+void JKRDecomp::decodeSZS(u8* src_buffer, u8* dst_buffer, u32 srcSize, u32 dstSize) {
     u8* decompEnd;
     u8* copyStart;
-    int chunkBitsLeft = 0;
-    int chunkBits;
-    decompEnd = dst_buffer + *(int*)(src_buffer + 4) - param_4;
-    if (param_3 == 0) {
+    s32 copyByteCount;
+    s32 chunkBitsLeft = 0;
+    s32 chunkBits;
+
+    decompEnd = dst_buffer + *(int*)(src_buffer + 4) - dstSize;
+
+    if (srcSize == 0)
         return;
-    }
-    if (param_4 > *(u32*)src_buffer) {
+    if (dstSize > *(u32*)src_buffer)
         return;
-    }
+
     u8* curSrcPos = src_buffer + 0x10;
     do {
         if (chunkBitsLeft == 0) {
@@ -288,19 +280,18 @@ void JKRDecomp::decodeSZS(u8* src_buffer, u8* dst_buffer, u32 param_3, u32 param
             curSrcPos++;
         }
         if ((chunkBits & 0x80) != 0) {
-            if (param_4 == 0) {
+            if (dstSize == 0) {
                 *dst_buffer = *curSrcPos;
-                param_3--;
+                srcSize--;
                 dst_buffer++;
-                if (param_3 == 0) {
+                if (srcSize == 0)
                     return;
-                }
             } else {
-                param_4--;
+                dstSize--;
             }
             curSrcPos++;
         } else {
-            int curVal = *curSrcPos;
+            u8 curVal = *curSrcPos;
             // load is inversed
             copyStart = dst_buffer - ((curVal & 0xF) << 8 | curSrcPos[1]);
             // copyByteCount = ;
@@ -313,15 +304,14 @@ void JKRDecomp::decodeSZS(u8* src_buffer, u8* dst_buffer, u32 param_3, u32 param
                 copyByteCount = (curVal >> 4) + 2;
             }
             do {
-                if (param_4 == 0) {
+                if (dstSize == 0) {
                     *dst_buffer = *(copyStart - 1);
-                    param_3--;
+                    srcSize--;
                     dst_buffer++;
-                    if (param_3 == 0) {
+                    if (srcSize == 0)
                         return;
-                    }
                 } else {
-                    param_4--;
+                    dstSize--;
                 }
                 copyByteCount--;
                 copyStart++;
@@ -348,13 +338,16 @@ JKRCompression JKRDecomp::checkCompressed(u8* src) {
         if (src[2] == 'y') {
             return COMPRESSION_YAY0;
         }
+
         if (src[2] == 'z') {
             return COMPRESSION_YAZ0;
         }
     }
+
     if ((src[0] == 'A') && (src[1] == 'S') && (src[2] == 'R')) {
         return COMPRESSION_ASR;
     }
+
     return COMPRESSION_NONE;
 }
 

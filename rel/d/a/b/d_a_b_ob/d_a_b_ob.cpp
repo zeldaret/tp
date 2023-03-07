@@ -5,7 +5,6 @@
 
 #include "rel/d/a/b/d_a_b_ob/d_a_b_ob.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -15,344 +14,13 @@ namespace std {
 /* 8061AACC */ void fabsf(f32);
 };
 
-struct request_of_phase_process_class {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 80611408 */ ~cXyz();
-    /* 8061AD60 */ cXyz(f32, f32, f32);
-    /* 8061AA8C */ cXyz(cXyz const&);
-    /* 8061A654 */ cXyz();
-    /* 8061A95C */ void operator+=(Vec const&);
-    /* 8061A9AC */ void operator=(cXyz const&);
-    /* 8061ABF4 */ void set(f32, f32, f32);
-    /* 8061AC0C */ void abs() const;
-};
-
 struct obj_ystone_class {
     /* 8061AA70 */ void setCurrentPos(cXyz);
-};
-
-struct ob_part_s {
-    /* 8061A658 */ ~ob_part_s();
-    /* 8061A72C */ ob_part_s();
-};
-
-struct ob_ke_s {
-    /* 8061A3A0 */ ~ob_ke_s();
-    /* 8061A41C */ ob_ke_s();
-};
-
-struct mDoMtx_stack_c {
-    /* 8000CCC8 */ void push();
-    /* 8000CD14 */ void pop();
-    /* 8000CD9C */ void transM(f32, f32, f32);
-    /* 8000CE38 */ void scaleM(f32, f32, f32);
-    /* 8061A924 */ void multVecZero(Vec*);
-
-    static u8 now[48];
-};
-
-struct mDoGph_gInf_c {
-    /* 80008078 */ void onBlure();
-};
-
-struct mDoExt_morf_c {
-    /* 8061AB4C */ void setPlaySpeed(f32);
-    /* 8061AD20 */ void isStop();
-};
-
-struct J3DMaterialTable {};
-
-struct J3DAnmTextureSRTKey {};
-
-struct mDoExt_btkAnm {
-    /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
-    /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct J3DAnmTevRegKey {};
-
-struct mDoExt_brkAnm {
-    /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
-    /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct mDoExt_baseAnm {
-    /* 8000D428 */ void play();
-};
-
-struct mDoExt_McaMorfCallBack2_c {};
-
-struct mDoExt_McaMorfCallBack1_c {};
-
-struct J3DAnmTransform {};
-
-struct J3DModelData {};
-
-struct Z2Creature {
-    /* 802C06F4 */ void stopAnime();
-};
-
-struct mDoExt_McaMorfSO {
-    /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
-                                    mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int,
-                                    int, Z2Creature*, u32, u32);
-    /* 800111C0 */ void entryDL();
-    /* 800111EC */ void modelCalc();
-};
-
-struct mDoExt_McaMorf {
-    /* 8000FC4C */ mDoExt_McaMorf(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
-                                  mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int, int,
-                                  int, void*, u32, u32);
-    /* 8001037C */ void setAnm(J3DAnmTransform*, int, f32, f32, f32, f32, void*);
-    /* 800105C8 */ void play(Vec*, u32, s8);
-    /* 80010680 */ void entryDL();
-    /* 800106AC */ void modelCalc();
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct daPy_py_c {
-    /* 8061A89C */ void cancelOriginalDemo();
-    /* 8061A9C8 */ void changeDemoMode(u32, int, int, s16);
-    /* 8061A9DC */ void changeOriginalDemo();
 };
 
 struct daB_OB_HIO_c {
     /* 8061056C */ daB_OB_HIO_c();
     /* 8061A808 */ ~daB_OB_HIO_c();
-};
-
-struct dVibration_c {
-    /* 8006FA24 */ void StartShock(int, int, cXyz);
-    /* 8006FB10 */ void StartQuake(int, int, cXyz);
-    /* 8006FD94 */ void StopQuake(int);
-};
-
-struct dSv_memBit_c {
-    /* 80034918 */ void onDungeonItem(int);
-    /* 80034934 */ void isDungeonItem(int) const;
-};
-
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dKy_tevstr_c {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dPa_levelEcallBack {};
-
-struct csXyz {
-    /* 8061AAB8 */ csXyz(csXyz const&);
-    /* 8061A650 */ csXyz();
-    /* 802673F4 */ csXyz(s16, s16, s16);
-    /* 80611EF8 */ ~csXyz();
-    /* 8061A990 */ void operator=(csXyz const&);
-};
-
-struct _GXColor {};
-
-struct dPa_control_c {
-    struct level_c {
-        /* 8004B918 */ void getEmitter(u32);
-    };
-
-    /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
-                            u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
-                            cXyz const*, f32);
-    /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
-                            cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
-                            _GXColor const*, cXyz const*, f32);
-};
-
-struct dEvt_info_c {
-    /* 8061AA00 */ void onCondition(u16);
-    /* 8061AA10 */ void checkCommandDemoAccrpt();
-};
-
-struct dEvt_control_c {
-    /* 80042468 */ void reset();
-    /* 80042914 */ void setSkipProc(void*, int (*)(void*, int), int);
-    /* 806185F4 */ void checkSkipEdge();
-    /* 8061AB54 */ void startCheckSkipEdge(void*);
-};
-
-struct dDlst_shadowControl_c {
-    static u8 mSimpleTexObj[32];
-};
-
-struct dCcU_AtInfo {};
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80083830 */ void Move();
-    /* 8061A5F4 */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-    /* 800844F8 */ void GetTgHitObj();
-};
-
-struct dCamera_c {
-    /* 801614AC */ void Start();
-    /* 801614D0 */ void Stop();
-    /* 8016300C */ void SetTrimSize(s32);
-    /* 80180B40 */ void Set(cXyz, cXyz, s16, f32);
-    /* 80180C18 */ void Reset(cXyz, cXyz);
-};
-
-struct dBgS_PolyPassChk {
-    /* 80078E68 */ void SetObj();
-};
-
-struct dBgS_ObjAcch {
-    /* 8061A484 */ ~dBgS_ObjAcch();
-};
-
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-    /* 80075F58 */ void SetWall(f32, f32);
-    /* 8061A4F4 */ ~dBgS_AcchCir();
-};
-
-struct dBgS {};
-
-struct dBgS_Acch {
-    /* 80075F94 */ ~dBgS_Acch();
-    /* 800760A0 */ dBgS_Acch();
-    /* 80076248 */ void Set(cXyz*, cXyz*, fopAc_ac_c*, int, dBgS_AcchCir*, cXyz*, csXyz*, csXyz*);
-    /* 80076AAC */ void CrrPos(dBgS&);
-};
-
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 8026F708 */ void SetR(f32);
-    /* 8061A564 */ ~cM3dGSph();
-};
-
-struct cM3dGCir {
-    /* 8026EF18 */ ~cM3dGCir();
-};
-
-struct cM3dGAab {
-    /* 8061A5AC */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
-struct cCcS {
-    /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 8061A7C0 */ ~cCcD_GStts();
-};
-
-struct cBgS_PolyInfo {
-    /* 802680B0 */ ~cBgS_PolyInfo();
-};
-
-struct b_ob_class {
-    /* 8061A0C0 */ b_ob_class();
-};
-
-struct _GXTexObj {};
-
-struct Z2SeqMgr {
-    /* 802AF010 */ void bgmStart(u32, u32, s32);
-    /* 802AF408 */ void bgmStop(u32, s32);
-    /* 802AF49C */ void subBgmStart(u32);
-    /* 802AFB94 */ void bgmStreamPrepare(u32);
-    /* 802AFE18 */ void bgmStreamPlay();
-    /* 802AFF8C */ void changeBgmStatus(s32);
-};
-
-struct JAISoundID {
-    /* 8061AC04 */ JAISoundID(u32);
-};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2CreatureOI {
-    /* 802C2578 */ Z2CreatureOI();
-    /* 802C2670 */ void init(Vec*, Vec*, Vec*, Vec*, Vec*, Vec*, Vec*, Vec*, Vec*, Vec*, Vec*, Vec*,
-                             Vec*);
-    /* 802C2CD4 */ void startTentacleSoundLevel(JAISoundID, u8, f32, u32, s8);
-};
-
-struct Z2CreatureEnemy {
-    /* 802C0F64 */ Z2CreatureEnemy();
-    /* 802C1094 */ void init(Vec*, Vec*, u8, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JPABaseEmitter {
-    /* 8061AAA8 */ void becomeDeleteEmitter();
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
-struct J3DSys {
-    static u8 mCurrentMtx[48];
-};
-
-struct J3DModel {
-    /* 8061A948 */ void getAnmMtx(int);
-};
-
-struct J3DJoint {};
-
-struct J3DFrameCtrl {
-    /* 803283FC */ void init(s16);
-    /* 8032842C */ void checkPass(f32);
-    /* 80619C14 */ ~J3DFrameCtrl();
 };
 
 //
@@ -448,7 +116,7 @@ extern "C" void startCheckSkipEdge__14dEvt_control_cFPv();
 extern "C" static void dComIfGp_getEvent__Fv();
 extern "C" static void mDoAud_seStart__FUlPC3VecUlSc();
 extern "C" void set__4cXyzFfff();
-extern "C" void __ct__10JAISoundIDFUl();
+extern "C" void __ct__10JAISoundIDFUl(JAISoundID* this_, u32 param_0);
 extern "C" void abs__4cXyzCFv();
 extern "C" void isStop__13mDoExt_morf_cFv();
 extern "C" static void dComIfGp_getVibration__Fv();
@@ -593,11 +261,6 @@ extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
 extern "C" void init__12J3DFrameCtrlFs();
 extern "C" void checkPass__12J3DFrameCtrlFf();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSquareMag();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void __cvt_fp2unsigned();
@@ -620,23 +283,15 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern void* __vt__19mDoExt_3DlineMat0_c[5];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mBlureFlag__13mDoGph_gInf_c[4];
 extern "C" extern u8 struct_80450C98[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
@@ -1289,7 +944,8 @@ static asm void daB_OB_Draw(b_ob_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/__dt__4cXyzFv.s"
 }
@@ -1443,7 +1099,8 @@ static asm void bombfishset(b_ob_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm csXyz::~csXyz() {
+// asm csXyz::~csXyz() {
+extern "C" asm void __dt__5csXyzFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/__dt__5csXyzFv.s"
 }
@@ -2157,7 +1814,8 @@ static asm void demo_camera(b_ob_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_particle_getEmitter(u32 param_0) {
+// static asm void dComIfGp_particle_getEmitter(u32 param_0) {
+extern "C" asm void dComIfGp_particle_getEmitter__FUl() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/dComIfGp_particle_getEmitter__FUl.s"
 }
@@ -2168,8 +1826,9 @@ static asm void dComIfGp_particle_getEmitter(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_particle_set(u32 param_0, u16 param_1, cXyz const* param_2,
-                                      csXyz const* param_3, cXyz const* param_4) {
+/* static asm void dComIfGp_particle_set(u32 param_0, u16 param_1, cXyz const* param_2,
+                                      csXyz const* param_3, cXyz const* param_4) { */
+extern "C" asm void dComIfGp_particle_set__FUlUsPC4cXyzPC5csXyzPC4cXyz() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/dComIfGp_particle_set__FUlUsPC4cXyzPC5csXyzPC4cXyz.s"
 }
@@ -2907,7 +2566,8 @@ static asm void useHeapInit(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DFrameCtrl::~J3DFrameCtrl() {
+// asm J3DFrameCtrl::~J3DFrameCtrl() {
+extern "C" asm void __dt__12J3DFrameCtrlFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/__dt__12J3DFrameCtrlFv.s"
 }
@@ -2986,7 +2646,8 @@ asm ob_ke_s::ob_ke_s() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+// asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+extern "C" asm void __dt__12dBgS_ObjAcchFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/__dt__12dBgS_ObjAcchFv.s"
 }
@@ -2996,7 +2657,8 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_AcchCir::~dBgS_AcchCir() {
+// asm dBgS_AcchCir::~dBgS_AcchCir() {
+extern "C" asm void __dt__12dBgS_AcchCirFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/__dt__12dBgS_AcchCirFv.s"
 }
@@ -3006,7 +2668,8 @@ asm dBgS_AcchCir::~dBgS_AcchCir() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/__dt__8cM3dGSphFv.s"
 }
@@ -3016,7 +2679,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/__dt__8cM3dGAabFv.s"
 }
@@ -3026,19 +2690,22 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/__dt__10dCcD_GSttsFv.s"
 }
 #pragma pop
 
 /* 8061A650-8061A654 00A1D0 0004+00 1/1 0/0 0/0 .text            __ct__5csXyzFv */
-csXyz::csXyz() {
+// csXyz::csXyz() {
+extern "C" void __ct__5csXyzFv() {
     /* empty function */
 }
 
 /* 8061A654-8061A658 00A1D4 0004+00 2/2 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+// cXyz::cXyz() {
+extern "C" void __ct__4cXyzFv() {
     /* empty function */
 }
 
@@ -3066,7 +2733,8 @@ asm ob_part_s::ob_part_s() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/__dt__10cCcD_GSttsFv.s"
 }
@@ -3141,7 +2809,8 @@ static asm void dComIfGp_event_reset() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGs_onStageBossEnemy() {
+// static asm void dComIfGs_onStageBossEnemy() {
+extern "C" asm void dComIfGs_onStageBossEnemy__Fv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/dComIfGs_onStageBossEnemy__Fv.s"
 }
@@ -3152,7 +2821,8 @@ static asm void dComIfGs_onStageBossEnemy() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoMtx_stack_c::multVecZero(Vec* param_0) {
+// asm void mDoMtx_stack_c::multVecZero(Vec* param_0) {
+extern "C" asm void multVecZero__14mDoMtx_stack_cFP3Vec() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/multVecZero__14mDoMtx_stack_cFP3Vec.s"
 }
@@ -3162,7 +2832,8 @@ asm void mDoMtx_stack_c::multVecZero(Vec* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DModel::getAnmMtx(int param_0) {
+// asm void J3DModel::getAnmMtx(int param_0) {
+extern "C" asm void getAnmMtx__8J3DModelFi() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/getAnmMtx__8J3DModelFi.s"
 }
@@ -3172,7 +2843,8 @@ asm void J3DModel::getAnmMtx(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cXyz::operator+=(Vec const& param_0) {
+// asm void cXyz::operator+=(Vec const& param_0) {
+extern "C" asm void __apl__4cXyzFRC3Vec() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/__apl__4cXyzFRC3Vec.s"
 }
@@ -3182,7 +2854,8 @@ asm void cXyz::operator+=(Vec const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void csXyz::operator=(csXyz const& param_0) {
+// asm void csXyz::operator=(csXyz const& param_0) {
+extern "C" asm void __as__5csXyzFRC5csXyz() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/__as__5csXyzFRC5csXyz.s"
 }
@@ -3192,7 +2865,8 @@ asm void csXyz::operator=(csXyz const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cXyz::operator=(cXyz const& param_0) {
+// asm void cXyz::operator=(cXyz const& param_0) {
+extern "C" asm void __as__4cXyzFRC4cXyz() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/__as__4cXyzFRC4cXyz.s"
 }
@@ -3222,7 +2896,8 @@ asm void daPy_py_c::changeOriginalDemo() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daPy_getPlayerActorClass() {
+// static asm void daPy_getPlayerActorClass() {
+extern "C" asm void daPy_getPlayerActorClass__Fv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/daPy_getPlayerActorClass__Fv.s"
 }
@@ -3242,7 +2917,8 @@ asm void dEvt_info_c::onCondition(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_info_c::checkCommandDemoAccrpt() {
+// asm void dEvt_info_c::checkCommandDemoAccrpt() {
+extern "C" asm void checkCommandDemoAccrpt__11dEvt_info_cFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/checkCommandDemoAccrpt__11dEvt_info_cFv.s"
 }
@@ -3252,7 +2928,8 @@ asm void dEvt_info_c::checkCommandDemoAccrpt() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_getCamera(int param_0) {
+// static asm void dComIfGp_getCamera(int param_0) {
+extern "C" asm void dComIfGp_getCamera__Fi() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/dComIfGp_getCamera__Fi.s"
 }
@@ -3262,7 +2939,8 @@ static asm void dComIfGp_getCamera(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_getPlayerCameraID(int param_0) {
+// static asm void dComIfGp_getPlayerCameraID(int param_0) {
+extern "C" asm void dComIfGp_getPlayerCameraID__Fi() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/dComIfGp_getPlayerCameraID__Fi.s"
 }
@@ -3272,7 +2950,8 @@ static asm void dComIfGp_getPlayerCameraID(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_getPlayer(int param_0) {
+// static asm void dComIfGp_getPlayer(int param_0) {
+extern "C" asm void dComIfGp_getPlayer__Fi() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/dComIfGp_getPlayer__Fi.s"
 }
@@ -3292,7 +2971,8 @@ asm void obj_ystone_class::setCurrentPos(cXyz param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::cXyz(cXyz const& param_0) {
+// asm cXyz::cXyz(cXyz const& param_0) {
+extern "C" asm void __ct__4cXyzFRC4cXyz() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/__ct__4cXyzFRC4cXyz.s"
 }
@@ -3302,7 +2982,8 @@ asm cXyz::cXyz(cXyz const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JPABaseEmitter::becomeDeleteEmitter() {
+// asm void JPABaseEmitter::becomeDeleteEmitter() {
+extern "C" asm void becomeDeleteEmitter__14JPABaseEmitterFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/becomeDeleteEmitter__14JPABaseEmitterFv.s"
 }
@@ -3312,7 +2993,8 @@ asm void JPABaseEmitter::becomeDeleteEmitter() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm csXyz::csXyz(csXyz const& param_0) {
+// asm csXyz::csXyz(csXyz const& param_0) {
+extern "C" asm void __ct__5csXyzFRC5csXyz() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/__ct__5csXyzFRC5csXyz.s"
 }
@@ -3322,7 +3004,8 @@ asm csXyz::csXyz(csXyz const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void std::fabsf(f32 param_0) {
+// asm void std::fabsf(f32 param_0) {
+extern "C" asm void fabsf__3stdFf() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/fabsf__3stdFf.s"
 }
@@ -3333,8 +3016,9 @@ asm void std::fabsf(f32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_particle_set(u16 param_0, cXyz const* param_1, csXyz const* param_2,
-                                      cXyz const* param_3) {
+/* static asm void dComIfGp_particle_set(u16 param_0, cXyz const* param_1, csXyz const* param_2,
+                                      cXyz const* param_3) { */
+extern "C" asm void dComIfGp_particle_set__FUsPC4cXyzPC5csXyzPC4cXyz() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/dComIfGp_particle_set__FUsPC4cXyzPC5csXyzPC4cXyz.s"
 }
@@ -3344,7 +3028,8 @@ static asm void dComIfGp_particle_set(u16 param_0, cXyz const* param_1, csXyz co
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoExt_morf_c::setPlaySpeed(f32 param_0) {
+// asm void mDoExt_morf_c::setPlaySpeed(f32 param_0) {
+extern "C" asm void setPlaySpeed__13mDoExt_morf_cFf() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/setPlaySpeed__13mDoExt_morf_cFf.s"
 }
@@ -3354,7 +3039,8 @@ asm void mDoExt_morf_c::setPlaySpeed(f32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_control_c::startCheckSkipEdge(void* param_0) {
+// asm void dEvt_control_c::startCheckSkipEdge(void* param_0) {
+extern "C" asm void startCheckSkipEdge__14dEvt_control_cFPv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/startCheckSkipEdge__14dEvt_control_cFPv.s"
 }
@@ -3364,7 +3050,8 @@ asm void dEvt_control_c::startCheckSkipEdge(void* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_getEvent() {
+// static asm void dComIfGp_getEvent() {
+extern "C" asm void dComIfGp_getEvent__Fv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/dComIfGp_getEvent__Fv.s"
 }
@@ -3374,7 +3061,8 @@ static asm void dComIfGp_getEvent() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void mDoAud_seStart(u32 param_0, Vec const* param_1, u32 param_2, s8 param_3) {
+// static asm void mDoAud_seStart(u32 param_0, Vec const* param_1, u32 param_2, s8 param_3) {
+extern "C" asm void mDoAud_seStart__FUlPC3VecUlSc() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/mDoAud_seStart__FUlPC3VecUlSc.s"
 }
@@ -3384,22 +3072,25 @@ static asm void mDoAud_seStart(u32 param_0, Vec const* param_1, u32 param_2, s8 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cXyz::set(f32 param_0, f32 param_1, f32 param_2) {
+// asm void cXyz::set(f32 param_0, f32 param_1, f32 param_2) {
+extern "C" asm void set__4cXyzFfff() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/set__4cXyzFfff.s"
 }
 #pragma pop
 
 /* 8061AC04-8061AC0C -00001 0008+00 0/0 0/0 0/0 .text            __ct__10JAISoundIDFUl */
-JAISoundID::JAISoundID(u32 param_0) {
-    *(u32*)this = (u32)(param_0);
+// JAISoundID::JAISoundID(u32 param_0) {
+extern "C" void __ct__10JAISoundIDFUl(JAISoundID* this_, u32 param_0) {
+    *(u32*)this_ = (u32)(param_0);
 }
 
 /* 8061AC0C-8061AD20 00A78C 0114+00 1/1 0/0 0/0 .text            abs__4cXyzCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cXyz::abs() const {
+// asm void cXyz::abs() const {
+extern "C" asm void abs__4cXyzCFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/abs__4cXyzCFv.s"
 }
@@ -3409,7 +3100,8 @@ asm void cXyz::abs() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoExt_morf_c::isStop() {
+// asm void mDoExt_morf_c::isStop() {
+extern "C" asm void isStop__13mDoExt_morf_cFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/isStop__13mDoExt_morf_cFv.s"
 }
@@ -3419,7 +3111,8 @@ asm void mDoExt_morf_c::isStop() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_getVibration() {
+// static asm void dComIfGp_getVibration() {
+extern "C" asm void dComIfGp_getVibration__Fv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/dComIfGp_getVibration__Fv.s"
 }
@@ -3429,7 +3122,8 @@ static asm void dComIfGp_getVibration() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::cXyz(f32 param_0, f32 param_1, f32 param_2) {
+// asm cXyz::cXyz(f32 param_0, f32 param_1, f32 param_2) {
+extern "C" asm void __ct__4cXyzFfff() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/__ct__4cXyzFfff.s"
 }

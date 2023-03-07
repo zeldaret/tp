@@ -6,29 +6,9 @@
 #include "JSystem/JKernel/JKRThread.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JUtility/JUTAssert.h"
+#include "JSystem/JUtility/JUTConsole.h"
 #include "MSL_C/MSL_Common/Src/printf.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JUTConsole {
-    /* 802E75EC */ void clear();
-    /* 802E7BB8 */ void print_f(char const*, ...);
-    /* 802E7C38 */ void print(char const*);
-};
-
-//
-// External References:
-//
-
-extern "C" void JUTWarningConsole(const char*);
-
-//
-// Declarations:
-//
 
 /* 8043428C-80434298 060FAC 000C+00 5/6 0/0 0/0 .bss             sThreadList__9JKRThread */
 JSUList<JKRThread> JKRThread::sThreadList(0);
@@ -164,7 +144,7 @@ JKRThreadSwitch::JKRThreadSwitch(JKRHeap* param_0) {
 /* 802D1A14-802D1A70 2CC354 005C+00 0/0 1/1 0/0 .text createManager__15JKRThreadSwitchFP7JKRHeap
  */
 JKRThreadSwitch* JKRThreadSwitch::createManager(JKRHeap* heap) {
-    JUT_ASSERT("JKRThread.cpp", 0x157, sManager == 0);
+    JUT_ASSERT(__FILE__, 343, sManager == 0);
 
     if (!heap) {
         heap = JKRGetCurrentHeap();
@@ -245,8 +225,7 @@ void JKRThreadSwitch::callback(OSThread* current, OSThread* next) {
                 } else {
                     switch (thread->getCurrentHeapError()) {
                     case 0:
-                        JUT_PANIC("JKRThread.cpp", 0x1fc,
-                                  "JKRThreadSwitch: currentHeap destroyed.");
+                        JUT_PANIC(__FILE__, 508, "JKRThreadSwitch: currentHeap destroyed.");
                         break;
                     case 1:
                         JUTWarningConsole("JKRThreadSwitch: currentHeap destroyed.\n");
@@ -345,13 +324,6 @@ void JKRThreadSwitch::draw(JKRThreadName_* thread_name_list) {
 /* 802D1E4C-802D1E94 2CC78C 0048+00 1/0 0/0 0/0 .text            __dt__15JKRThreadSwitchFv */
 JKRThreadSwitch::~JKRThreadSwitch() {}
 
-/* ############################################################################################## */
-/* 80434298-804342A4 060FB8 000C+00 0/1 0/0 0/0 .bss             @989 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_989[12];
-// #pragma pop
-
 /* 804342A4-804342B0 060FC4 000C+00 0/1 0/0 0/0 .bss             sTaskList__7JKRTask */
 #pragma push
 #pragma force_active on
@@ -364,5 +336,3 @@ JSUList<JKRTask> JKRTask::sTaskList;
 #pragma force_active on
 u8 JKRTask::sEndMesgQueue[32];
 #pragma pop
-
-/* 8039CFA8-8039CFA8 029608 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -139,10 +139,10 @@ static void action(b_oh2_class* i_this) {
         break;
     }
 
-    PSMTXCopy(boss->field_0x5c0->getModel()->i_getAnmMtx(i_this->field_0x5c8 + 8),
+    PSMTXCopy(boss->mParts[0].field_0x0->getModel()->i_getAnmMtx(i_this->field_0x5c8 + 8),
               mDoMtx_stack_c::get());
     mDoMtx_stack_c::multVecZero(&i_this->current.pos);
-    PSMTXCopy(boss->field_0x5c0->getModel()->i_getAnmMtx(0), mDoMtx_stack_c::get());
+    PSMTXCopy(boss->mParts[0].field_0x0->getModel()->i_getAnmMtx(0), mDoMtx_stack_c::get());
 
     local_20.set(0.0f, 0.0f, i_this->field_0x5c8 * 20.0f + 650.0f);
     mDoMtx_stack_c::multVec(&local_20, &vstack_2C);

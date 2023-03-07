@@ -37,9 +37,9 @@ struct dEvLib_callback_c {
     virtual BOOL eventRun() { return TRUE; }
     virtual BOOL eventEnd() { return TRUE; }
 
-    fopAc_ac_c* mActor;
-    action_class<dEvLib_callback_c>* mAction;
-    u16 _C;
+    /* 0x4 */ fopAc_ac_c* mActor;
+    /* 0x8 */ action_class<dEvLib_callback_c>* mAction;
+    /* 0xC */ u16 _C;
 };
 
 #endif /* D_EVENT_D_EVENT_LIB_H */

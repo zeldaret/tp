@@ -6,7 +6,6 @@
 #include "JSystem/JUtility/JUTXfb.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GX.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:
@@ -76,8 +75,8 @@ JUTXfb::JUTXfb(_GXRenderModeObj const* pObj, JKRHeap* pHeap, JUTXfb::EXfbNumber 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JUTXfb::JUTXfb(_GXRenderModeObj const* param_0, JKRHeap* param_1, JUTXfb::EXfbNumber param_2) {
-    nofralloc
+asm JUTXfb::JUTXfb(_GXRenderModeObj const* param_0, JKRHeap* param_1,
+                   JUTXfb::EXfbNumber param_2){nofralloc
 #include "asm/JSystem/JUtility/JUTXfb/__ct__6JUTXfbFPC16_GXRenderModeObjP7JKRHeapQ26JUTXfb10EXfbNumber.s"
 }
 #pragma pop

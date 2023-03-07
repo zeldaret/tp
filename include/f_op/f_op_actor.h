@@ -137,7 +137,7 @@ public:
     /* 0x538 */ cXyz mEyePos;
     /* 0x544 */ actor_attention_types mAttentionInfo;
     /* 0x560 */ s16 field_0x560;
-    /* 0x562 */ s16 field_0x562;
+    /* 0x562 */ s16 mHealth;
     /* 0x564 */ u8 field_0x564[0x4];
 
     fopAc_ac_c();
