@@ -4,7 +4,7 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_spring/d_a_tag_spring.h"
-#include "dol2asm.h"
+#include "d/d_procname.h"
 
 /* 805A6A58-805A6A78 000078 0020+00 1/1 0/0 0/0 .text            initBaseMtx__13daTagSpring_cFv */
 void daTagSpring_c::initBaseMtx() {
@@ -13,8 +13,8 @@ void daTagSpring_c::initBaseMtx() {
 
 /* 805A6A78-805A6AD0 000098 0058+00 1/1 0/0 0/0 .text            setBaseMtx__13daTagSpring_cFv */
 void daTagSpring_c::setBaseMtx() {
-    PSMTXTrans(mDoMtx_stack_c::now, current.pos.x, current.pos.y, current.pos.z);
-    mDoMtx_ZXYrotM(mDoMtx_stack_c::now, shape_angle.x, shape_angle.y, shape_angle.z);
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
 }
 
 /* 805A6AD0-805A6AF4 0000F0 0024+00 1/1 0/0 0/0 .text            Create__13daTagSpring_cFv */
@@ -30,50 +30,50 @@ int daTagSpring_c::create() {
         fopAcM_OnCondition(this, 8);
     }
 
-    if (Create() == NULL) {
+    if (!Create()) {
         return cPhs_ERROR_e;
-    } else {
-        fopAcM_GetParam(this);
-        return cPhs_COMPLEATE_e;
     }
+
+    fopAcM_GetParam(this);
+    return cPhs_COMPLEATE_e;
 }
 
 /* 805A6B5C-805A6C84 00017C 0128+00 1/1 0/0 0/0 .text            execute__13daTagSpring_cFv */
 int daTagSpring_c::execute() {
-    if (getSwbit() != 0xff) {
+    if (getSwbit() != 0xFF) {
         if (!i_fopAcM_isSwitch(this, getSwbit())) {
             return 1;
         }
     }
+
     if (i_dComIfGp_event_runCheck()) {
         return 1;
-
-    } else {
-        fopAc_ac_c& link = *daPy_getPlayerActorClass();
-        if ((checkArea()) && ((fopAcM_wt_c::waterCheck(&link.current.pos) & 0xff) != NULL) &&
-            (!(i_dComIfGp_checkPlayerStatus0(0, daPy_py_c::FLG0_UNK_100000)) &&
-                 (fopAcM_wt_c::mWaterY[0] > link.current.pos.y) ||
-             (i_dComIfGp_checkPlayerStatus0(0, daPy_py_c::FLG0_UNK_100000)) != NULL))
-        {
-            if (mTimer != NULL) {
-                mTimer--;
-
-            } else {
-                mTimer = 0x1e;
-                g_dComIfG_gameInfo.play.mItemLifeCount++;
-                g_dComIfG_gameInfo.play.mItemLifeCountType = 1;
-            }
-        } else {
-            mTimer = 0x1e;
-        }
     }
+
+    fopAc_ac_c* player_p = daPy_getPlayerActorClass();
+
+    if (checkArea() && fopAcM_wt_c::waterCheck(&player_p->current.pos) &&
+        (!i_dComIfGp_checkPlayerStatus0(0, 0x100000) &&
+             fopAcM_wt_c::mWaterY[0] > player_p->current.pos.y ||
+         i_dComIfGp_checkPlayerStatus0(0, 0x100000)))
+    {
+        if (mTimer != 0) {
+            mTimer--;
+        } else {
+            mTimer = 30;
+            i_dComIfGp_setItemLifeCount(1.0f, 1);
+        }
+    } else {
+        mTimer = 30;
+    }
+
     return 1;
 }
 
 /* 805A6C84-805A6DFC 0002A4 0178+00 1/1 0/0 0/0 .text            checkArea__13daTagSpring_cFv */
 u8 daTagSpring_c::checkArea() {
-    fopAc_ac_c& player = *daPy_getPlayerActorClass();
-    return player.current.pos.absXZ(current.pos) < (mScale.x * 1000);
+    fopAc_ac_c* player_p = daPy_getPlayerActorClass();
+    return player_p->current.pos.absXZ(current.pos) < (mScale.x * 1000);
 }
 
 /* 805A6DFC-805A6E04 00041C 0008+00 1/1 0/0 0/0 .text            _delete__13daTagSpring_cFv */

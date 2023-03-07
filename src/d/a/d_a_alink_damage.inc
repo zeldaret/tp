@@ -57,6 +57,25 @@ void daAlink_c::onPressedDamage(cXyz const& param_0, s16 param_1) {
 
 /* 800D6F2C-800D6FE0 0D186C 00B4+00 3/3 0/0 0/0 .text checkNoLandDamageSlidePolygon__9daAlink_cFv
  */
+// matches with cM3dGPla vtable
+#ifdef NONMATCHING
+BOOL daAlink_c::checkNoLandDamageSlidePolygon() {
+    if (field_0x2fbb == 3) {
+        return true;
+    }
+
+    if (dComIfG_Bgsp().ChkPolySafe(mLinkAcch.m_gnd)) {
+        cM3dGPla poly;
+        dComIfG_Bgsp().GetTriPla(mLinkAcch.m_gnd, &poly);
+
+        if (poly.mNormal.y < field_0x3470) {
+            return true;
+        }
+    }
+
+    return false;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -65,13 +84,15 @@ asm BOOL daAlink_c::checkNoLandDamageSlidePolygon() {
 #include "asm/d/a/d_a_alink/checkNoLandDamageSlidePolygon__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 800D6FE0-800D70A0 0D1920 00C0+00 6/6 0/0 0/0 .text            checkCutLandDamage__9daAlink_cFv */
 void daAlink_c::checkCutLandDamage() {
     if (!checkEventRun()) {
         f32 var_f31 = (mFallHeight - current.pos.y) * lit_8782;
 
-        if (var_f31 >= daAlinkHIO_damFall_c0::m.mSmallDmgHeight && !checkNoLandDamageSlidePolygon()) {
+        if (var_f31 >= daAlinkHIO_damFall_c0::m.mSmallDmgHeight && !checkNoLandDamageSlidePolygon())
+        {
             if (var_f31 >= daAlinkHIO_damFall_c0::m.mBigDmgHeight) {
                 setLandDamagePoint(8);
             } else {
@@ -85,7 +106,9 @@ void daAlink_c::checkCutLandDamage() {
 
 /* 800D70A0-800D7160 0D19E0 00C0+00 2/2 0/0 0/0 .text checkCaughtEscapeCutTurn__9daAlink_cFv */
 BOOL daAlink_c::checkCaughtEscapeCutTurn() {
-    if (mLinkAcch.ChkGroundHit() && (i_checkSwordGet() || i_checkWolf()) && checkCutTurnInputTrigger()) {
+    if (mLinkAcch.ChkGroundHit() && (i_checkSwordGet() || i_checkWolf()) &&
+        checkCutTurnInputTrigger())
+    {
         if (i_checkWolf()) {
             return procWolfRollAttackInit(2, 0);
         }
@@ -104,7 +127,7 @@ BOOL daAlink_c::checkCaughtEscapeCutTurn() {
 /* 800D7160-800D7208 0D1AA0 00A8+00 1/0 0/0 0/0 .text            setThrowDamage__9daAlink_cFsffiii
  */
 bool daAlink_c::setThrowDamage(s16 param_0, f32 param_1, f32 param_2, int param_3, int param_4,
-                                   int param_5) {
+                               int param_5) {
     field_0x3408 = param_1;
     field_0x340c = param_2;
     field_0x318c = param_3;
@@ -134,10 +157,12 @@ bool daAlink_c::setThrowDamage(s16 param_0, f32 param_1, f32 param_2, int param_
 f32 daAlink_c::damageMagnification(int i_checkZoraMag, int param_1) {
     f32 base_mag;
 
-    if (param_1 == 0 && i_checkNoResetFlg3(FLG3_UNK_40000000) && !i_checkEndResetFlg2(ERFLG2_UNK_40)) {
-        base_mag = lit_7624;  /* 1.5 */
+    if (param_1 == 0 && i_checkNoResetFlg3(FLG3_UNK_40000000) &&
+        !i_checkEndResetFlg2(ERFLG2_UNK_40))
+    {
+        base_mag = lit_7624; /* 1.5 */
     } else {
-        base_mag = lit_6040;  /* 1.0 */
+        base_mag = lit_6040; /* 1.0 */
     }
 
     if (i_checkWolf() && !checkCargoCarry() && param_1 == 0) {
@@ -260,14 +285,18 @@ asm void daAlink_c::checkPolyDamage() {
 
 /* 800D7A98-800D7B18 0D23D8 0080+00 1/1 0/0 0/0 .text
  * checkElecReturnDamage__9daAlink_cFR12dCcD_GObjInfPP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::checkElecReturnDamage(dCcD_GObjInf& param_0, fopAc_ac_c** param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkElecReturnDamage__9daAlink_cFR12dCcD_GObjInfPP10fopAc_ac_c.s"
+bool daAlink_c::checkElecReturnDamage(dCcD_GObjInf& param_0, fopAc_ac_c** param_1) {
+    if (param_0.ChkAtHit() && param_0.GetAtHitGObj() != NULL) {
+        dCcD_GObjInf* gobj_p = (dCcD_GObjInf*)param_0.GetAtHitGObj();
+
+        if (gobj_p->GetTgSpl() == dCcG_Tg_Spl_UNK_1) {
+            *param_1 = param_0.GetAtHitAc();
+            return true;
+        }
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 800D7B18-800D7BE8 0D2458 00D0+00 1/1 0/0 0/0 .text            damageTimerCount__9daAlink_cFv */
 void daAlink_c::damageTimerCount() {
@@ -340,7 +369,7 @@ asm int daAlink_c::procDamage() {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm int daAlink_c::procCoLargeDamageInit(int param_0, int param_1, s16 param_2, s16 param_3,
-                                          dCcD_GObjInf* param_4, int param_5) {
+                                         dCcD_GObjInf* param_4, int param_5) {
     nofralloc
 #include "asm/d/a/d_a_alink/procCoLargeDamageInit__9daAlink_cFiissP12dCcD_GObjInfi.s"
 }
@@ -453,15 +482,15 @@ asm int daAlink_c::procLandDamageInit(int param_0) {
 /* 800DB060-800DB140 0D59A0 00E0+00 1/0 0/0 0/0 .text            procLandDamage__9daAlink_cFv */
 int daAlink_c::procLandDamage() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
-    
+
     if (field_0x3198 != 0) {
         if (frameCtrl->checkAnmEnd()) {
             checkNextAction(0);
         } else if (frameCtrl->getFrame() > daAlinkHIO_damFall_c0::m.mStandAnm.mCheckFrame) {
             onModeFlg(4);
             checkNextAction(1);
-        } 
-    }  else {
+        }
+    } else {
         if (frameCtrl->checkAnmEnd()) {
             if (field_0x3008 > 0) {
                 field_0x3008--;
@@ -561,7 +590,8 @@ int daAlink_c::procScreamWaitInit() {
     if (i_checkEndResetFlg1(ERFLG1_UNK_2)) {
         setScreamWaitAnime();
     } else {
-        setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed, daAlinkHIO_basic_c0::m.mAnmBlendFactor);
+        setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed,
+                                daAlinkHIO_basic_c0::m.mAnmBlendFactor);
         field_0x300c = 0;
     }
 
@@ -655,14 +685,16 @@ int daAlink_c::procCoSwimFreezeReturnInit() {
 
     f32 var_f31;
     if (i_checkWolf()) {
-        setSingleAnimeWolfBaseSpeed(WANM_SWIM_WAIT, daAlinkHIO_wlDamNormal_c0::m.field_0x5C, lit_7625);
+        setSingleAnimeWolfBaseSpeed(WANM_SWIM_WAIT, daAlinkHIO_wlDamNormal_c0::m.field_0x5C,
+                                    lit_7625);
         mUnderFrameCtrl[0].setEnd(3);
         mUnderFrameCtrl[0].setAttribute(0);
         setFaceBasicTexture(FTANM_UNK_90);
         field_0x2f9b = 1;
         var_f31 = daAlinkHIO_wlSwim_c0::m.field_0x48;
     } else {
-        setSingleAnime(ANM_SWIM_DMG_FREEZE, daAlinkHIO_damNormal_c0::m.field_0x60, FLOAT_LABEL(lit_6108), 5, lit_7625);
+        setSingleAnime(ANM_SWIM_DMG_FREEZE, daAlinkHIO_damNormal_c0::m.field_0x60,
+                       FLOAT_LABEL(lit_6108), 5, lit_7625);
         voiceStart(Z2SE_AL_V_DAMAGE_FREEZE);
         var_f31 = daAlinkHIO_swim_c0::m.mInitHeight;
     }
@@ -687,6 +719,25 @@ int daAlink_c::procCoSwimFreezeReturnInit() {
 }
 
 /* 800DC474-800DC548 0D6DB4 00D4+00 1/0 0/0 0/0 .text procCoSwimFreezeReturn__9daAlink_cFv */
+// matches with literals
+#ifdef NONMATCHING
+int daAlink_c::procCoSwimFreezeReturn() {
+    if (field_0x300c == 0) {
+        if (checkRestartDead(4, 1)) {
+            i_onNoResetFlg1(FLG1_UNK_40000000);
+        } else {
+            u32 mode = 4;
+            setLastSceneDamage(4, &mode);
+            seStartSystem(Z2SE_FORCE_BACK);
+            dStage_changeScene(3, 0.0f, mode, fopAcM_GetRoomNo(this), shape_angle.y, -1);
+        }
+    } else {
+        field_0x300c--;
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -695,3 +746,4 @@ asm int daAlink_c::procCoSwimFreezeReturn() {
 #include "asm/d/a/d_a_alink/procCoSwimFreezeReturn__9daAlink_cFv.s"
 }
 #pragma pop
+#endif

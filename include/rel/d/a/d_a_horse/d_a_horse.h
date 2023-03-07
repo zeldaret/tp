@@ -160,6 +160,7 @@ public:
     void i_changeOriginalDemo() { field_0x16b8 = 3; field_0x1728 = 0; }
     void i_setHorsePosAndAngle(cXyz const* i_pos, s16 i_angle) { (this->*mpSetHorsePosAngleFn)(i_pos, i_angle); }
     void onRideFlg() { (this->*mpOnRideFlgFn)(); }
+    void offRideFlg() { (this->*mpOffRideFlgFn)(); }
     void onStateFlg0(daHorse_FLG0 flag) { mStateFlg0 |= flag; }
     void offStateFlg0(daHorse_FLG0 flag) { mStateFlg0 &= ~flag; }
     void offNoDrawWait() { offStateFlg0(NO_DRAW_WAIT); }

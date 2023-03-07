@@ -85,6 +85,7 @@ public:
     void setBuffer(u8* buf) { mBuffer = buf; }
     u8* getBuffer() { return mBuffer; }
     bool checkNoSetIdx() const { return mIdx == 0xFFFF; }
+    bool checkNoSetPriIdx() const { return mPriIdx == 0xFFFF; }
 
 private:
     /* 0x00 */ u16 mIdx;
@@ -248,6 +249,7 @@ public:
         FLG1_UNK_10000 = 0x10000,
         FLG1_UNK_8000 = 0x8000,
         FLG1_THROW_DAMAGE = 0x4000,
+        FLG1_UNK_2000 = 0x2000,
         FLG1_UNK_80 = 0x80,
         FLG1_UNK_40 = 0x40,
         FLG1_UNK_20 = 0x20,
@@ -335,6 +337,7 @@ public:
     enum daPy_ERFLG1 {
         ERFLG1_GANON_FINISH = 0x80000000,
         ERFLG1_UNK_40000000 = 0x40000000,
+        ERFLG1_UNK_20000000 = 0x20000000,
         ERFLG1_UNK_10000000 = 0x10000000,
         ERFLG1_UNK_4000000 = 0x4000000,
         ERFLG1_UNK_40000 = 0x40000,
