@@ -145,6 +145,43 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
+// This probably will need to be moved once actual debug rom decomp begins
+#if DEBUG
+static dEvDb_bit_c dEvDb_bit_table[799] = {
+    #include "src/d/event/d_event_debug_bit_table.inc"
+};
+
+static dEvDb_reg_c dEvDb_reg_table[21] = {
+    #include "src/d/event/d_event_debug_reg_table.inc"
+};
+
+static dEvDb_bit_c dEvDb_bit_table_tmp[169] = {
+    #include "src/d/event/d_event_debug_bit_table_tmp.inc"
+};
+
+static dEvDb_reg_c dEvDb_reg_table_tmp[14] = {
+    #include "src/d/event/d_event_debug_reg_table_tmp.inc"
+};
+
+static dEvDb_flag_base_c dEvDb_flag_base_table = {
+    dEvDb_bit_table, // mBitTable
+    dEvDb_reg_table, // mRegTable
+    799,             // mBitNum
+    21,              // mRegNum
+    22,              // field_0x10
+    4                // field_0x1
+};
+
+static dEvDb_flag_base_c dEvDb_flag_base_table_tmp = {
+    dEvDb_bit_table_tmp, // mBitTable
+    dEvDb_reg_table_tmp, // mRegTable
+    169,                 // mBitNum
+    14,                  // mRegNum
+    43,                  // field_0x10
+    6                    // field_0x14
+};
+#endif
+
 /* 80041480-80041488 03BDC0 0008+00 1/1 0/0 0/0 .text event_debug_evnt__21@unnamed@d_event_cpp@Fv
  */
 namespace {
