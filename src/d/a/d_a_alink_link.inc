@@ -3003,23 +3003,23 @@ asm daAlink_c::~daAlink_c() {
 /* 800CE208-800CE294 0C8B48 008C+00 1/0 0/0 0/0 .text            daAlink_Delete__FP9daAlink_c */
 // destructor issue
 #ifdef NONMATCHING
-static bool daAlink_Delete(daAlink_c* p_link) {
-    if (p_link->getClothesChangeWaitTimer() != 0) {
-        p_link->loadModelDVD();
-        return false;
-    } else if (p_link->getShieldChangeWaitTimer() != 0) {
-        p_link->loadShieldModelDVD();
-        return false;
+static int daAlink_Delete(daAlink_c* i_this) {
+    if (i_this->getClothesChangeWaitTimer() != 0) {
+        i_this->loadModelDVD();
+        return 0;
+    } else if (i_this->getShieldChangeWaitTimer() != 0) {
+        i_this->loadShieldModelDVD();
+        return 0;
     } else {
-        delete p_link;
-        return true;
+        delete i_this;
+        return 1;
     }
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm bool daAlink_Delete(daAlink_c* param_0) {
+static asm int daAlink_Delete(daAlink_c* i_this) {
     nofralloc
 #include "asm/d/a/d_a_alink/daAlink_Delete__FP9daAlink_c.s"
 }

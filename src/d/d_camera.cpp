@@ -1711,7 +1711,7 @@ asm void dCamera_c::Stay() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::ChangeModeOK(s32 param_0) {
+asm u8 dCamera_c::ChangeModeOK(s32 param_0) {
     nofralloc
 #include "asm/d/d_camera/ChangeModeOK__9dCamera_cFl.s"
 }

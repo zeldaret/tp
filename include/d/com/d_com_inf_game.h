@@ -2528,6 +2528,10 @@ inline BOOL dComIfGp_evmng_endCheck(s16 eventID) {
     return g_dComIfG_gameInfo.play.getEvtManager().endCheck(eventID);
 }
 
+inline u8 dComIfGp_event_getPreItemNo() {
+    return g_dComIfG_gameInfo.play.getEvent().getPreItemNo();
+}
+
 inline void dComIfGp_event_setItemPartnerId(unsigned int id) {
     g_dComIfG_gameInfo.play.getEvent().setPtI_Id(id);
 }

@@ -378,6 +378,8 @@ public:
 
     f32 getOldFrameRate() { return mOldFrameRate; }
     J3DTransformInfo* getOldFrameTransInfo(int i) { return &mOldFrameTransInfo[i]; }
+    u16 getOldFrameStartJoint() { return mOldFrameStartJoint; }
+    Quaternion* getOldFrameQuaternion(int i_no) { return &mOldFrameQuaternion[i_no]; }
 
 private:
     /* 0x00 */ bool mOldFrameFlg;

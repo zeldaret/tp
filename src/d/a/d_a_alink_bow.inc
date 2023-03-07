@@ -129,7 +129,8 @@ void daAlink_c::deleteArrow() {
 
     if (arrow != NULL && fopAcM_GetName(arrow) == PROC_ARROW) {
         if (arrow->checkBombArrow() &&
-            (mDamageTimer == daAlinkHIO_damage_c0::m.mInvincibleTime || i_checkModeFlg(8))) {
+            (mDamageTimer == daAlinkHIO_damage_c0::m.mInvincibleTime || i_checkModeFlg(8)))
+        {
             arrow->setBombArrowExplode();
             dComIfGp_addSelectItemNum(mSelectItemId, -1);
             dComIfGp_setItemArrowNumCount(-1);
@@ -173,7 +174,8 @@ BOOL daAlink_c::cancelBowMoveRideNotAtn() {
 #pragma optimization_level 2
 BOOL daAlink_c::cancelBowMove() {
     if (mTargetedActor == NULL && !i_checkAttentionLock() && mFastShotTime == 0 &&
-        !checkBowReadyAnime() && (!checkBowShootAnime() || mUpperFrameCtrl[2].checkAnmEnd())) {
+        !checkBowReadyAnime() && (!checkBowShootAnime() || mUpperFrameCtrl[2].checkAnmEnd()))
+    {
         resetUpperAnime(UPPER_2, lit_6041);
         return true;
     }
@@ -266,6 +268,21 @@ asm int daAlink_c::checkNextActionBow() {
 #pragma pop
 
 /* 800DFAE8-800DFBC8 0DA428 00E0+00 1/1 0/0 0/0 .text            setBowModel__9daAlink_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void daAlink_c::setBowModel() {
+    J3DAnmTransform* bck = (J3DAnmTransform*)mAnmHeap9.loadDataIdx(0x59);
+    JKRHeap* old_heap = setItemHeap();
+
+    mHeldItemModel = initModel(loadAramBmd(0x314, 0x4C00), 0);
+    field_0x730.init(bck, FALSE, 2, 1.0f, 0, -1, false);
+
+    mDoExt_setCurrentHeap(old_heap);
+    field_0x33dc = field_0x730.getBckAnm()->getFrameMax() - 0.001f;
+    field_0x2f95 = 5;
+    field_0x2f94 = 0x67;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -274,6 +291,7 @@ asm void daAlink_c::setBowModel() {
 #include "asm/d/a/d_a_alink/setBowModel__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 800DFBC8-800DFC28 0DA508 0060+00 4/4 0/0 0/0 .text            checkBowGrabLeftHand__9daAlink_cCFv
  */

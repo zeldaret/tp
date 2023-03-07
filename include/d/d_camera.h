@@ -216,7 +216,7 @@ public:
     /* 801614C4 */ void QuickStart();
     /* 801614D0 */ void Stop();
     /* 801614E8 */ void Stay();
-    /* 801614F4 */ void ChangeModeOK(s32);
+    /* 801614F4 */ u8 ChangeModeOK(s32);
     /* 80161550 */ void initPad();
     /* 801617B0 */ void updatePad();
     /* 80161D84 */ void initMonitor();

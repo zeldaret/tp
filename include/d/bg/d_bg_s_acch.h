@@ -156,6 +156,7 @@ public:
     void ClrGrndNone() { m_flags &= ~GRND_NONE; }
     bool ChkMoveBGOnly() const { return m_flags & MOVE_BG_ONLY; }
     void SetWallHit() { m_flags |= WALL_HIT; }
+    void ClrWallNone() { m_flags &= ~WALL_NONE; }
 
     // inline dupe
     void i_ClrGroundHit() { m_flags &= ~GROUND_HIT; }

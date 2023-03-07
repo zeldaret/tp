@@ -125,6 +125,7 @@ public:
     void* getPt2() { return convPId(mPt2); }
     void* getPtT() { return convPId(mPtT); }
     bool isChangeOK(void* param_0) { return mChangeOK == param_0; }
+    u8 getPreItemNo() { return mPreItemNo; }
 
 public:
     /* 0x000 */ u8 field_0x0[4];
