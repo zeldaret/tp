@@ -8,90 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct mDoRst {
-    static u8 mResetData[4 + 4 /* padding */];
-};
-
-struct mDoGph_gInf_c {
-    /* 80007F90 */ void beginRender();
-
-    static u8 mFrameBufferTexObj[32];
-    static u8 mFrameBufferTimg[4];
-    static u8 mFrameBufferTex[4];
-};
-
-struct dShutdownErrorMsg_c {
-    /* 8009D790 */ void execute();
-};
-
-struct dDvdErrorMsg_c {
-    /* 8009D194 */ void draw(s32);
-    /* 8009D354 */ void execute();
-};
-
-struct Z2AudioMgr {
-    /* 802CD974 */ void resetProcess(u32, bool);
-
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct ResTLUT {};
-
-struct ResTIMG {};
-
-struct ResFONT {};
-
-struct JKRHeap {};
-
-struct JUTResFont {
-    /* 802DEF94 */ JUTResFont(ResFONT const*, JKRHeap*);
-    /* 802DF000 */ ~JUTResFont();
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TBox2 {};
-    /* TBox2<f32> */
-    struct TBox2__template0 {};
-};
-
-struct JFWDisplay {
-    static u8 sManager[4];
-};
-
-struct J3DSys {
-    /* 803100BC */ void drawInit();
-};
-
-struct J2DTextBoxVBinding {};
-
-struct J2DTextBoxHBinding {};
-
-struct J2DTextBox {
-    /* 802FFBC4 */ J2DTextBox(u64, JGeometry::TBox2<f32> const&, ResFONT const*, char const*, s16,
-                              J2DTextBoxHBinding, J2DTextBoxVBinding);
-    /* 802FFC58 */ void initiate(ResFONT const*, char const*, s16, J2DTextBoxHBinding,
-                                 J2DTextBoxVBinding);
-    /* 803001E0 */ ~J2DTextBox();
-    /* 80300490 */ void draw(f32, f32, f32, J2DTextBoxHBinding);
-};
-
-struct J2DPicture {
-    /* 802FC800 */ J2DPicture(u64, JGeometry::TBox2<f32> const&, ResTIMG const*, ResTLUT const*);
-    /* 802FCFF0 */ ~J2DPicture();
-    /* 802FDC70 */ void draw(f32, f32, f32, f32, bool, bool, bool);
-};
-
-struct J2DOrthoGraph {
-    /* 802E96D0 */ J2DOrthoGraph(f32, f32, f32, f32, f32, f32);
-    /* 802E97B4 */ void setPort();
-    /* 802E980C */ void setOrtho(JGeometry::TBox2<f32> const&, f32, f32);
-};
-
-//
 // Forward References:
 //
 
@@ -106,7 +22,7 @@ extern "C" extern char const* const d_d_error_msg__stringBase0;
 // External References:
 //
 
-extern "C" void OSReport_Error();
+// extern "C" void OSReport_Error();
 extern "C" void mDoAud_resetRecover__Fv();
 extern "C" void beginRender__13mDoGph_gInf_cFv();
 extern "C" void mDoGph_drawFilterQuad__FScSc();
@@ -126,49 +42,12 @@ extern "C" void initiate__10J2DTextBoxFPC7ResFONTPCcs18J2DTextBoxHBinding18J2DTe
 extern "C" void __dt__10J2DTextBoxFv();
 extern "C" void draw__10J2DTextBoxFfff18J2DTextBoxHBinding();
 extern "C" void drawInit__6J3DSysFv();
-extern "C" void C_MTXOrtho();
-extern "C" void DVDGetDriveStatus();
-extern "C" void GXSetVtxDesc();
 extern "C" void GXClearVtxDesc();
-extern "C" void GXSetVtxAttrFmt();
-extern "C" void GXSetTexCoordGen2();
-extern "C" void GXSetNumTexGens();
-extern "C" void GXSetCullMode();
-extern "C" void GXSetTexCopySrc();
-extern "C" void GXSetTexCopyDst();
-extern "C" void GXCopyTex();
-extern "C" void GXSetNumChans();
-extern "C" void GXInitTexObj();
-extern "C" void GXInitTexObjLOD();
-extern "C" void GXLoadTexObj();
-extern "C" void GXSetNumIndStages();
-extern "C" void GXSetTevColorIn();
-extern "C" void GXSetTevAlphaIn();
-extern "C" void GXSetTevColorOp();
-extern "C" void GXSetTevAlphaOp();
-extern "C" void GXSetTevColor();
-extern "C" void GXSetAlphaCompare();
-extern "C" void GXSetTevOrder();
-extern "C" void GXSetNumTevStages();
-extern "C" void GXSetFog();
-extern "C" void GXSetFogRangeAdj();
-extern "C" void GXSetBlendMode();
-extern "C" void GXSetAlphaUpdate();
-extern "C" void GXSetZMode();
-extern "C" void GXSetZCompLoc();
-extern "C" void GXSetDither();
-extern "C" void GXSetProjection();
-extern "C" void GXLoadPosMtxImm();
-extern "C" void GXSetCurrentMtx();
 extern "C" void _savegpr_27();
 extern "C" void _restgpr_27();
-extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
 extern "C" extern void* __vt__14J2DGrafContext[10];
 extern "C" extern void* __vt__13J2DOrthoGraph[10];
 extern "C" u8 mFrameBufferTexObj__13mDoGph_gInf_c[32];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 g_clearColor[4];
 extern "C" extern u8 data_80450688[8];
 extern "C" extern u8 mInitFlag__17mDoAud_zelAudio_c[4];
 extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
@@ -4965,7 +4844,7 @@ SECTION_DEAD static char const* const pad_8038D653 = "\0\0\0\0";
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dDvdErrorMsg_c::execute() {
+asm u8 dDvdErrorMsg_c::execute() {
     nofralloc
 #include "asm/d/d_error_msg/execute__14dDvdErrorMsg_cFv.s"
 }
@@ -4989,7 +4868,7 @@ static asm void drawCapture(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dShutdownErrorMsg_c::execute() {
+asm bool dShutdownErrorMsg_c::execute() {
     nofralloc
 #include "asm/d/d_error_msg/execute__19dShutdownErrorMsg_cFv.s"
 }

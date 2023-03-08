@@ -35,7 +35,7 @@ typedef struct base_process_class {
     /* 0xB4 */ u32 mSubType;
 } base_process_class;  // Size: 0xB8
 
-BOOL fpcBs_Is_JustOfType(int pType1, int pType2);
+s32 fpcBs_Is_JustOfType(int pType1, int pType2);
 s32 fpcBs_MakeOfType(int* pType);
 s32 fpcBs_MakeOfId(void);
 s32 fpcBs_Execute(base_process_class* pProc);

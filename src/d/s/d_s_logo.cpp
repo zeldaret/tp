@@ -132,8 +132,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopScn_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcNd_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__10dDlst_2D_c[3];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];

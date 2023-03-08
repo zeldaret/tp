@@ -1,6 +1,6 @@
 /**
  * f_op_scene_mng.cpp
- * Scene Process Manager
+ * Framework - Scene Process Manager
  */
 
 #include "f_op/f_op_scene_mng.h"

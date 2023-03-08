@@ -805,13 +805,13 @@ static void daKytag06_type_09_Execute(kytag06_class* i_this) {
  */
 static void daKytag06_type_10_Execute(kytag06_class* i_this) {
     u8 tmp = 0;
-    if (i_dComIfGs_isEventBit(0x2008)) {
+    if (i_dComIfGs_isEventBit(dSv_event_flag_c::F_0266)) {
         // 2008: Snowpeak Ruins completed
         tmp = 0;
-    } else if (i_dComIfGs_isEventBit(0x1420)) {
+    } else if (i_dComIfGs_isEventBit(dSv_event_flag_c::F_0065)) {
         // 1420: Talked to Yeta after giving cheese
         tmp = 2;
-    } else if (i_dComIfGs_isEventBit(0x1440)) {
+    } else if (i_dComIfGs_isEventBit(dSv_event_flag_c::F_0064)) {
         // 1440: Talked to Yeta after giving pumpkin
         tmp = 1;
     }
@@ -946,7 +946,7 @@ static void daKytag06_type_03_Execute(kytag06_class* i_this) {
         switch (i_this->mMode) {
         case 0:
             // 0C01: Midna's Desperate Hour started    1E08: Midna's Desperate Hour Completed
-            if (i_dComIfGs_isEventBit(0x0C01) && !i_dComIfGs_isEventBit(0x1E08)) {
+            if (i_dComIfGs_isEventBit(dSv_event_flag_c::M_071) && !i_dComIfGs_isEventBit(dSv_event_flag_c::F_0250)) {
                 i_this->mMode = 1;
                 i_this->field_0x578 = 450;
                 dKy_change_colpat(i_this->field_0x591);

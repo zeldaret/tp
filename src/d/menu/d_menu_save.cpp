@@ -1929,7 +1929,7 @@ void dMenu_save_c::dataWrite() {
     u8* save = mSaveBuffer;
     for (int i = 0; i < 3; i++) {
         mDoMemCdRWm_TestCheckSumGameData(save);
-        save += 0xA94;
+        save += QUEST_LOG_SIZE;
     }
 
     dataSave();
@@ -2509,7 +2509,7 @@ void dMenu_save_c::saveSelectStart() {
         u8* saveData = mSaveBuffer;
         for (int i = 0; i < 3; i++) {
             mDoMemCdRWm_TestCheckSumGameData(saveData);
-            saveData += 0xA94;
+            saveData += QUEST_LOG_SIZE;
         }
         headerTxtSet(0x3A);  // Saving...
         mWarning->openInit();
@@ -3804,7 +3804,7 @@ void dMenu_save_c::setSaveData() {
             field_0x1aa[i] = 1;
         }
 
-        save += 0xA94;
+        save += QUEST_LOG_SIZE;
     }
 }
 
