@@ -8,6 +8,40 @@
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
 
+#if DEBUG
+class dEvDb_bit_c {
+public:
+    /* 0x00 */ char* mFlagName;
+    /* 0x04 */ char* mFlagDescription;
+    /* 0x08 */ char* mFlagAuthor;
+    /* 0x0C */ u16 mFlagValue;
+    /* 0x10 */ char* mArea; // Area in the game where flag is used
+    /* 0x14 */ u8 field_0x14;
+    /* 0x15 */ u8 field_0x15;
+};
+
+class dEvDb_reg_c {
+public:
+    /* 0x00 */ char* mFlagName;
+    /* 0x04 */ char* mFlagDescription;
+    /* 0x08 */ char* mFlagAuthor;
+    /* 0x0C */ u16 mFlagValue;
+    /* 0x10 */ char* mArea; // Area in the game where flag is used
+    /* 0x14 */ u8 field_0x14;
+    /* 0x15 */ u8 field_0x15;
+};
+
+class dEvDb_flag_base_c {
+public:
+    /* 0x00 */ dEvDb_bit_c* mBitTable;
+    /* 0x04 */ dEvDb_reg_c* mRegTable;
+    /* 0x08 */ int mBitNum;
+    /* 0x0C */ int mRegNum;
+    /* 0x10 */ field_0x10;
+    /* 0x14 */ field_0x14;
+}
+#endif
+
 class dEvt_order_c {
 public:
     ~dEvt_order_c() {}

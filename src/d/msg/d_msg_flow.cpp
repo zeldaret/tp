@@ -883,8 +883,7 @@ int dMsgFlow_c::getParam(u8* params) {
 /* 8024B138-8024B180 245A78 0048+00 1/0 0/0 0/0 .text
  * query001__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
 int dMsgFlow_c::query001(mesg_flow_node_branch* flow_node, fopAc_ac_c*, int) {
-    u16 prm0 = *(u16*)flow_node->params & 0xFFFF;
-    return i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[prm0]) == false;
+    return i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[flow_node->params[0] & 0xFFFF]) == false;
 }
 
 BOOL daPy_py_c::checkNowWolf() {
@@ -919,7 +918,7 @@ int dMsgFlow_c::query003(mesg_flow_node_branch* flow_node, fopAc_ac_c*, int) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int dMsgFlow_c::query003(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
+asm int dMsgFlow_c::query003(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
     nofralloc
 #include "asm/d/msg/d_msg_flow/query003__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
 }
@@ -928,14 +927,23 @@ asm int dMsgFlow_c::query003(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1
 
 /* 8024B250-8024B2C0 245B90 0070+00 1/0 0/0 0/0 .text
  * query004__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query004(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query004__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query004(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
+    u16 uVar1 = flow_node->params[0];
+    u16 uVar2;
+    int p0 = flow_node->params[0];
+    BOOL ret;
+
+    if ( uVar1 == 0 ) {
+        uVar2 = dComIfGs_getRupeeMax();
+        uVar1 = i_dComIfGs_getRupee();
+        ret = uVar1 < uVar2;
+        
+    } else {
+        ret = i_dComIfGs_getRupee() < (u16)p0;
+    }
+
+    return ret;    
 }
-#pragma pop
 
 /* 8024B2C0-8024B2F8 245C00 0038+00 2/1 1/1 1/1 .text
  * query005__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
@@ -954,7 +962,7 @@ int dMsgFlow_c::query006(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int dMsgFlow_c::query007(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
+asm int dMsgFlow_c::query007(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
     nofralloc
 #include "asm/d/msg/d_msg_flow/query007__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
 }
@@ -973,7 +981,7 @@ int dMsgFlow_c::query008(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int dMsgFlow_c::query009(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
+asm int dMsgFlow_c::query009(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
     nofralloc
 #include "asm/d/msg/d_msg_flow/query009__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
 }
@@ -984,7 +992,7 @@ asm int dMsgFlow_c::query009(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int dMsgFlow_c::query010(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
+asm int dMsgFlow_c::query010(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
     nofralloc
 #include "asm/d/msg/d_msg_flow/query010__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
 }
@@ -992,120 +1000,98 @@ asm int dMsgFlow_c::query010(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1
 
 /* 8024B504-8024B54C 245E44 0048+00 1/0 0/0 0/0 .text
  * query011__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query011(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query011__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query011(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
+    return dComIfGs_isTmpBit(dSv_event_tmp_flag_c::tempBitLabels[flow_node->params[0] & 0xFFFF]) == 0;
 }
-#pragma pop
 
 /* 8024B54C-8024B584 245E8C 0038+00 1/0 0/0 0/0 .text
  * query012__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query012(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query012__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query012(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
+    return dComIfGs_isTbox(flow_node->params[0]) == 0;
 }
-#pragma pop
 
 /* 8024B584-8024B5BC 245EC4 0038+00 1/0 0/0 0/0 .text
  * query013__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query013(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query013__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query013(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
+    return dComIfGs_isSaveSwitch(flow_node->params[0]) == 0;
 }
-#pragma pop
 
 /* 8024B5BC-8024B5F4 245EFC 0038+00 1/0 0/0 0/0 .text
  * query014__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query014(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query014__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query014(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
+    return dComIfGs_isSaveItem(flow_node->params[0]) == 0;
 }
-#pragma pop
 
 /* 8024B5F4-8024B62C 245F34 0038+00 1/0 0/0 0/0 .text
  * query015__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query015(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query015__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query015(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
+    return dComIfGs_isSaveDunSwitch(flow_node->params[0]) == 0;
 }
-#pragma pop
 
 /* 8024B62C-8024B664 245F6C 0038+00 1/0 0/0 0/0 .text
  * query016__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query016(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query016__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query016(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
+    return dComIfGs_isSaveDunItem(flow_node->params[0]) == 0;
 }
-#pragma pop
 
 /* 8024B664-8024B6A8 245FA4 0044+00 1/0 0/0 0/0 .text
  * query017__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query017(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query017__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query017(mesg_flow_node_branch* flow_node, fopAc_ac_c* actor, int param_2) {
+    int zone = flow_node->params[0];
+    int roomNo = -1;
+    
+    if (actor != NULL) {
+        roomNo = fopAcM_GetRoomNo(actor);
+    }
+    
+    return dComIfGs_isZoneSwitch(zone, roomNo) == 0;
 }
-#pragma pop
 
 /* 8024B6A8-8024B6EC 245FE8 0044+00 1/0 0/0 0/0 .text
  * query018__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query018(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query018__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query018(mesg_flow_node_branch* flow_node, fopAc_ac_c* actor, int param_2) {
+    int zone = flow_node->params[0];
+    int roomNo = -1;
+    
+    if (actor != NULL) {
+        roomNo = fopAcM_GetRoomNo(actor);
+    }
+    
+    return dComIfGs_isZoneItem(zone, roomNo) == 0;
 }
-#pragma pop
 
 /* 8024B6EC-8024B730 24602C 0044+00 1/0 0/0 0/0 .text
  * query019__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query019(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query019__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query019(mesg_flow_node_branch* flow_node, fopAc_ac_c* actor, int param_2) {
+    int zone = flow_node->params[0];
+    int roomNo = -1;
+    
+    if (actor != NULL) {
+        roomNo = fopAcM_GetRoomNo(actor);
+    }
+    
+    return dComIfGs_isOneZoneSwitch(zone, roomNo) == 0;
 }
-#pragma pop
 
 /* 8024B730-8024B774 246070 0044+00 1/0 0/0 0/0 .text
  * query020__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query020(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query020__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query020(mesg_flow_node_branch* flow_node, fopAc_ac_c* actor, int param_2) {
+    int zone = flow_node->params[0];
+    int roomNo = -1;
+    
+    if (actor != NULL) {
+        roomNo = fopAcM_GetRoomNo(actor);
+    }
+    
+    return dComIfGs_isOneZoneItem(zone, roomNo) == 0;
 }
-#pragma pop
 
 /* 8024B774-8024B8E4 2460B4 0170+00 1/0 0/0 0/0 .text
  * query021__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int dMsgFlow_c::query021(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
+asm int dMsgFlow_c::query021(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
     nofralloc
 #include "asm/d/msg/d_msg_flow/query021__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
 }
@@ -1115,13 +1101,13 @@ asm int dMsgFlow_c::query021(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1
  * query022__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
 #ifdef NONMATCHING
 int dMsgFlow_c::query022(mesg_flow_node_branch* flow_node, fopAc_ac_c*, int) {
-    return checkItemGet(flow_node->params[0], 1) == false;
+    return checkItemGet(flow_node->params[0], 1) == 0;
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int dMsgFlow_c::query022(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
+asm int dMsgFlow_c::query022(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
     nofralloc
 #include "asm/d/msg/d_msg_flow/query022__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
 }
@@ -1130,7 +1116,7 @@ asm int dMsgFlow_c::query022(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1
 
 /* 8024B918-8024B954 246258 003C+00 1/0 0/0 0/0 .text
  * query023__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-int dMsgFlow_c::query023(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
+int dMsgFlow_c::query023(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
     return (u16)(3 - dComIfGs_checkBombBag(NO_ITEM));
 }
 
@@ -1139,7 +1125,7 @@ int dMsgFlow_c::query023(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, in
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int dMsgFlow_c::query024(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
+asm int dMsgFlow_c::query024(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
     nofralloc
 #include "asm/d/msg/d_msg_flow/query024__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
 }
@@ -1150,7 +1136,7 @@ asm int dMsgFlow_c::query024(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int dMsgFlow_c::query025(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
+asm int dMsgFlow_c::query025(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
     nofralloc
 #include "asm/d/msg/d_msg_flow/query025__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
 }
@@ -1168,7 +1154,7 @@ int dMsgFlow_c::query026(mesg_flow_node_branch*, fopAc_ac_c* actor, int) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int dMsgFlow_c::query027(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
+asm int dMsgFlow_c::query027(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
     nofralloc
 #include "asm/d/msg/d_msg_flow/query027__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
 }
@@ -1179,7 +1165,7 @@ asm int dMsgFlow_c::query027(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int dMsgFlow_c::query028(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
+asm int dMsgFlow_c::query028(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
     nofralloc
 #include "asm/d/msg/d_msg_flow/query028__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
 }
@@ -1190,7 +1176,7 @@ asm int dMsgFlow_c::query028(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int dMsgFlow_c::query029(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
+asm int dMsgFlow_c::query029(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
     nofralloc
 #include "asm/d/msg/d_msg_flow/query029__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
 }
@@ -1207,7 +1193,7 @@ int dMsgFlow_c::query030(mesg_flow_node_branch*, fopAc_ac_c*, int) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int dMsgFlow_c::query031(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
+asm int dMsgFlow_c::query031(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
     nofralloc
 #include "asm/d/msg/d_msg_flow/query031__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
 }
@@ -1218,7 +1204,7 @@ asm int dMsgFlow_c::query031(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int dMsgFlow_c::query032(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
+asm int dMsgFlow_c::query032(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
     nofralloc
 #include "asm/d/msg/d_msg_flow/query032__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
 }
@@ -1403,34 +1389,24 @@ int dMsgFlow_c::query048(mesg_flow_node_branch*, fopAc_ac_c*, int) {
 
 /* 8024C2A0-8024C2FC 246BE0 005C+00 1/0 0/0 0/0 .text
  * query049__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-// missing clrlwi
-#ifdef NONMATCHING
 int dMsgFlow_c::query049(mesg_flow_node_branch*, fopAc_ac_c*, int) {
-    u8 ret;
-    if (dComIfGs_getPohSpiritNum() == 0) {
-        ret = 0;
-    } else if (dComIfGs_getPohSpiritNum() <= 19) {
-        ret = 1;
-    } else if (dComIfGs_getPohSpiritNum() <= 39) {
-        ret = 2;
-    } else if (dComIfGs_getPohSpiritNum() <= 59) {
-        ret = 3;
+    u8 uVar1;
+    u32 num = dComIfGs_getPohSpiritNum();
+
+    if (num == 0) {
+        uVar1 = 0;
+    } else if ((u8)num <= 19)  {
+        uVar1 = 1;
+    } else if ((u8)num <= 39) {
+        uVar1 = 2;
+    } else if ((u8)num <= 59) {
+        uVar1 = 3;
     } else {
-        ret = 4;
+        uVar1 = 4;
     }
 
-    return ret;
+    return uVar1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query049(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query049__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
-}
-#pragma pop
-#endif
 
 /* 8024C2FC-8024C340 246C3C 0044+00 1/0 0/0 0/0 .text
  * query050__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */

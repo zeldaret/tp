@@ -160,6 +160,10 @@ public:
     s16 getMoveAngle() const { return mDemoMoveAngle; }
     f32 getStick() { return mStick; }
     int getParam0() const { return mParam0; }
+    void setParam0(int value) { mParam0 = value;}
+    void setParam1(int value) { mParam1 = value;}
+    void setParam2(int value) { mParam2 = value;}
+    void setPos0(const cXyz* pos) { mDemoPos0 = *pos;}
 
 private:
     /* 0x00 */ u16 mDemoType;
@@ -760,6 +764,20 @@ public:
     void i_offPlayerNoDraw() { i_offNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
 
     u32 i_checkBoarSingleBattle() const { return i_checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
+
+    void i_changeOriginalDemo() {
+        mDemo.setOriginalDemoType();
+        mDemo.setParam0(0);
+    }
+
+    void i_changeDemoMode(u32 i_demoMode,int i_param0,int i_param1,s16 i_param2) {
+        mDemo.setDemoMode(i_demoMode);
+        mDemo.setParam0(i_param0);
+        mDemo.setParam1(i_param1);
+        mDemo.setParam2(i_param2);
+    }
+
+    void i_changeDemoPos0(const cXyz* i_posP) { mDemo.setPos0(i_posP); }
 
     inline static u32 i_getLastSceneMode();
     inline static u32 getLastSceneMode();

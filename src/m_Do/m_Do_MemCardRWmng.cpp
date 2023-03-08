@@ -216,7 +216,7 @@ BOOL mDoMemCdRWm_TestCheckSumGameData(void* data) {
 
 /* 80017D38-80017D7C 012678 0044+00 0/0 4/4 0/0 .text mDoMemCdRWm_SetCheckSumGameData__FPUcUc */
 void mDoMemCdRWm_SetCheckSumGameData(u8* data, u8 dataNum) {
-    u8* file_ptr = data + (dataNum * 0xA94);
+    u8* file_ptr = data + (dataNum * QUEST_LOG_SIZE);
 
     *(u64*)(file_ptr + 0xA8C) = mDoMemCdRWm_CalcCheckSumGameData(file_ptr, 0xA8C);
 }
