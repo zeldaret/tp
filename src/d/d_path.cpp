@@ -1,6 +1,6 @@
 /**
  * d_path.cpp
- * dolze2 - Room Path & Point Management
+ * dolzel2 - Room Path & Point Management
  */
 
 #include "d/d_path.h"
