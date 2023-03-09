@@ -1,6 +1,4 @@
 #include "d/d_select_icon.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 
 dSi_HIO_c::dSi_HIO_c() {}
 

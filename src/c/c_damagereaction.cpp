@@ -9,15 +9,6 @@
 #include "d/com/d_com_inf_game.h"
 
 //
-// Types:
-//
-
-struct JPTraceParticleCallBack4 {
-    /* 8001817C */ void execute(JPABaseEmitter*, JPABaseParticle*);
-    /* 800182A4 */ void draw(JPABaseEmitter*, JPABaseParticle*);
-    /* 80018328 */ ~JPTraceParticleCallBack4();
-};
-//
 // Forward References:
 //
 
@@ -77,6 +68,20 @@ SECTION_SDATA2 static f64 lit_3736 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8001817C-800182A4 012ABC 0128+00 1/0 0/0 0/0 .text
  * execute__24JPTraceParticleCallBack4FP14JPABaseEmitterP15JPABaseParticle */
+#ifdef NONMATCHING
+void JPTraceParticleCallBack4::execute(JPABaseEmitter* param_0, JPABaseParticle* param_1) {
+    int age = param_1->getAge();
+    if (age != 0) {
+        JGeometry::TVec3<f32> vec1;
+        JGeometry::TVec3<f32> vec2;
+        JGeometry::TVec3<f32> vec3;
+
+        void* user_work = param_0->getUserWork();
+        user_work[age*0x0C];
+        param_1->setOffsetPosition(param_1->getOffsetPosition() + )
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -85,6 +90,7 @@ asm void JPTraceParticleCallBack4::execute(JPABaseEmitter* param_0, JPABaseParti
 #include "asm/c/c_damagereaction/execute__24JPTraceParticleCallBack4FP14JPABaseEmitterP15JPABaseParticle.s"
 }
 #pragma pop
+#endif
 
 /* 800182A4-800182A8 012BE4 0004+00 1/0 0/0 0/0 .text
  * draw__24JPTraceParticleCallBack4FP14JPABaseEmitterP15JPABaseParticle */
