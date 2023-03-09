@@ -831,8 +831,7 @@ static u8 lit_4050[12];
 #pragma pop
 
 /* 8043079C-804307E0 05D4BC 0044+00 1/2 3/3 0/0 .bss             g_envHIO */
-extern s8 g_envHIO[68];
-s8 g_envHIO[68];
+u8 g_envHIO[68];
 
 /* 80454F30-80454F34 003530 0004+00 1/1 0/0 0/0 .sdata2          @4804 */
 SECTION_SDATA2 static f32 lit_4804 = 608.0f;

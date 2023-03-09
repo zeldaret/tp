@@ -260,6 +260,8 @@ public:
     void playCalcEmitter() { clearStatus(JPAEmtrStts_StopCalc); }
     void stopDrawParticle() { setStatus(JPAEmtrStts_StopDraw); }
 
+    void* getUserWork() { return mpUserWork; }
+
 public:
     /* 0x00 */ Vec mLocalScl;
     /* 0x0C */ Vec mLocalTrs;
@@ -329,6 +331,7 @@ public:
     /* 802804C8 */ void canCreateChild(JPAEmitterWorkData*);
     /* 80280548 */ f32 getWidth(JPABaseEmitter const*) const;
     /* 80280568 */ f32 getHeight(JPABaseEmitter const*) const;
+    int getAge() { return mAge; }
 
 public:
     /* 0x00 */ Vec mPosition;

@@ -3,7 +3,6 @@
 
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "d/pane/d_pane_class.h"
-#include "dolphin/types.h"
 
 class dSi_HIO_c {
 public:

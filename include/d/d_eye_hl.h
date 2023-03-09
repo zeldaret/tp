@@ -4,7 +4,6 @@
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "JSystem/JUtility/JUTTexture.h"
-#include "dolphin/types.h"
 
 class dEyeHL_c;
 

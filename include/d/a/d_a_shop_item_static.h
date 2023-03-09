@@ -2,7 +2,6 @@
 #define D_A_D_A_SHOP_ITEM_STATIC_H
 
 #include "d/a/d_a_itembase.h"
-#include "dolphin/types.h"
 
 struct ResourceData {
     char* get_arcName() const { return mArcName; }
