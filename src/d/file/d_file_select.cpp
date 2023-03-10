@@ -442,13 +442,17 @@ SECTION_DATA static u8 SelEndFrameTbl[12] = {
 };
 
 /* 803BA86C-803BA878 01798C 000C+00 7/7 0/0 0/0 .data            SelOpenStartFrameTbl */
-SECTION_DATA static u8 SelOpenStartFrameTbl[12] = {
-    0x00, 0x00, 0x00, 0xF8, 0x00, 0x00, 0x01, 0xC0, 0x00, 0x00, 0x02, 0x88,
+SECTION_DATA static u32 SelOpenStartFrameTbl[3] = {
+    0x000000F8,
+    0x000001C0, 
+    0x00000288,
 };
 
 /* 803BA878-803BA884 017998 000C+00 7/7 0/0 0/0 .data            SelOpenEndFrameTbl */
-SECTION_DATA static u8 SelOpenEndFrameTbl[12] = {
-    0x00, 0x00, 0x01, 0x03, 0x00, 0x00, 0x01, 0xCC, 0x00, 0x00, 0x02, 0x93,
+SECTION_DATA static u32 SelOpenEndFrameTbl[3] = {
+    0x00000103,
+    0x000001CC, 
+    0x00000293,
 };
 
 /* 803BA884-803BA890 0179A4 000C+00 5/5 0/0 0/0 .data            MenuSelStartFrameTbl */
@@ -1777,6 +1781,30 @@ SECTION_DATA extern void* __vt__9dFs_HIO_c[3 + 1 /* padding */] = {
 SECTION_SDATA2 static f32 lit_3812 = 111.0f / 100.0f;
 
 /* 801835F8-8018366C 17DF38 0074+00 1/1 0/0 0/0 .text            __ct__9dFs_HIO_cFv */
+#ifdef NONMATCHING
+// matches with literals
+dFs_HIO_c::dFs_HIO_c() {
+    field_0x0006 = 5;
+    field_0x0007 = 5;
+    field_0x000a = 60;
+    field_0x0008 = 5;
+    field_0x0009 = 15;
+    field_0x0005 = 5;
+    field_0x000b = 15;
+    field_0x000d = 15;
+    field_0x000c = 90;
+    field_0x0010 = 1.11f;
+    field_0x0014 = 1.11f;
+    field_0x0018 = 1.11f;
+    field_0x001c = 0;
+    field_0x001d = 0;
+    field_0x001e = 0;
+    field_0x001f = 0;
+    field_0x0020 = 0;
+    field_0x0021 = 0;
+    field_0x0022 = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1785,8 +1813,17 @@ asm dFs_HIO_c::dFs_HIO_c() {
 #include "asm/d/file/d_file_select/__ct__9dFs_HIO_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018366C-8018375C 17DFAC 00F0+00 0/0 1/1 0/0 .text __ct__14dFile_select_cFP10JKRArchive */
+#ifdef NONMATCHING
+// inheritance/vtable mess needs to be fixed first
+dFile_select_c::dFile_select_c(JKRArchive* i_archiveP) {
+    mpArchive = i_archiveP;
+    mpMessageFont = mDoExt_getMesgFont();
+    mpSubFont = mDoExt_getSubFont();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1795,6 +1832,7 @@ asm dFile_select_c::dFile_select_c(JKRArchive* param_0) {
 #include "asm/d/file/d_file_select/__ct__14dFile_select_cFP10JKRArchive.s"
 }
 #pragma pop
+#endif
 
 /* 8018375C-801841EC 17E09C 0A90+00 1/0 0/0 0/0 .text            __dt__14dFile_select_cFv */
 #pragma push
@@ -1855,7 +1893,7 @@ extern "C" asm void __dt__15J2DAnmTransformFv() {
 static u8 lit_3807[12];
 
 /* 8042C9EC-8042CA10 05970C 0024+00 35/35 0/0 0/0 .bss             g_fsHIO */
-static u8 g_fsHIO[36];
+static dFs_HIO_c_tmp g_fsHIO;
 
 /* 8045392C-80453930 001F2C 0004+00 1/1 0/0 0/0 .sdata2          @4165 */
 SECTION_SDATA2 static f32 lit_4165 = 9.0f / 10.0f;
@@ -1868,6 +1906,13 @@ SECTION_SDATA2 static f32 lit_4166[1 + 1 /* padding */] = {
 };
 
 /* 801843CC-801844FC 17ED0C 0130+00 0/0 1/1 0/0 .text            _create__14dFile_select_cFv */
+#ifdef NONMATCHING
+void dFile_select_c::_create() {
+    mDoGph_gInf_c::setFadeColor(static_cast<JUtility::TColor&>(g_blackColor));
+    mStick = new STControl();
+    g_fsHIO.field_0x0004 = -1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1876,6 +1921,7 @@ asm void dFile_select_c::_create() {
 #include "asm/d/file/d_file_select/_create__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801844FC-80184664 17EE3C 0168+00 0/0 1/1 0/0 .text            _move__14dFile_select_cFv */
 #pragma push
@@ -2172,16 +2218,16 @@ asm void dFile_select_c::menuSelectStart() {
 
 /* 80186A80-80186B48 1813C0 00C8+00 1/1 0/0 0/0 .text menuSelectCansel__14dFile_select_cFv */
 #ifdef NONMATCHING
+// matches with literals
 void dFile_select_c::menuSelectCansel() {
     mDoAud_seStart(0x6e,0,0,0);
-    selectDataMoveAnmInitSet
-            (this,*(int *)(&d_file_select::SelOpenEndFrameTbl + (uint)(byte)this[0x265] * 4),
-             *(int *)(&d_file_select::SelOpenStartFrameTbl + (uint)(byte)this[0x265] * 4));
-  menuMoveAnmInitSet(this,0x329,799);
-  modoruTxtDispAnmInit(this,'\0');
-  headerTxtSet(this,0x43,'\x01','\0');
-  dSelect_cursor_c::setAlphaRate(*(dSelect_cursor_c **)(this + 0x60),0.0);
-  this[0x26f] = (dFile_select_c)0xd;
+    int idx = field_0x0265;
+    selectDataMoveAnmInitSet(SelOpenEndFrameTbl[idx],SelOpenStartFrameTbl[idx]);
+    menuMoveAnmInitSet(0x329,799);
+    modoruTxtDispAnmInit(0);
+    headerTxtSet(0x43,1,0);
+    mpCursor1->setAlphaRate(0.0);
+    field_0x026f = 0xd;
 }
 #else
 #pragma push

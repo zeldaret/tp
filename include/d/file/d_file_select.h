@@ -307,7 +307,7 @@ public:
     /* 0x024A */ bool field_0x024a;
     /* 0x024B */ u8 field_0x024B[0x0250 - 0x024B];
     /* 0x0250 */ char* field_0x0250;
-    /* 0x0254 */ STControl* field_0x0254;
+    /* 0x0254 */ STControl* mStick;
     /* 0x0258 */ u8 field_0x0258[0x0264 - 0x0258];
     /* 0x0264 */ u8 field_0x0264;
     /* 0x0265 */ u8 field_0x0265;
@@ -354,10 +354,61 @@ public:
 };
 STATIC_ASSERT(sizeof(dFile_select_c) == 0x237C);
 
+class dFs_HIO_c_tmp {
+public:
+    /* 0x0000 */ void* vtable;
+    /* 0x0004 */ s8 field_0x0004;
+    /* 0x0005 */ u8 field_0x0005;
+    /* 0x0006 */ u8 field_0x0006;
+    /* 0x0007 */ u8 field_0x0007;
+    /* 0x0008 */ u8 field_0x0008;
+    /* 0x0009 */ u8 field_0x0009;
+    /* 0x000A */ u8 field_0x000a;
+    /* 0x000B */ u8 field_0x000b;
+    /* 0x000C */ u8 field_0x000c;
+    /* 0x000D */ u8 field_0x000d;
+    /* 0x000E */ u8 field_0x000e[2];
+    /* 0x0010 */ float field_0x0010;
+    /* 0x0014 */ float field_0x0014;
+    /* 0x0018 */ float field_0x0018;
+    /* 0x001C */ u8 field_0x001c;
+    /* 0x001D */ u8 field_0x001d;
+    /* 0x001E */ u8 field_0x001e;
+    /* 0x001F */ u8 field_0x001f;
+    /* 0x0020 */ u8 field_0x0020;
+    /* 0x0021 */ u8 field_0x0021;
+    /* 0x0022 */ u8 field_0x0022;
+    /* 0x0023 */ u8 field_0x0023;
+};
+
 class dFs_HIO_c {
 public:
     /* 801835F8 */ dFs_HIO_c();
     /* 801913E0 */ virtual ~dFs_HIO_c();
+
+    /* 0x0000 */ void* vtable;
+    /* 0x0004 */ s8 field_0x0004;
+    /* 0x0005 */ u8 field_0x0005;
+    /* 0x0006 */ u8 field_0x0006;
+    /* 0x0007 */ u8 field_0x0007;
+    /* 0x0008 */ u8 field_0x0008;
+    /* 0x0009 */ u8 field_0x0009;
+    /* 0x000A */ u8 field_0x000a;
+    /* 0x000B */ u8 field_0x000b;
+    /* 0x000C */ u8 field_0x000c;
+    /* 0x000D */ u8 field_0x000d;
+    /* 0x000E */ u8 field_0x000e[2];
+    /* 0x0010 */ float field_0x0010;
+    /* 0x0014 */ float field_0x0014;
+    /* 0x0018 */ float field_0x0018;
+    /* 0x001C */ u8 field_0x001c;
+    /* 0x001D */ u8 field_0x001d;
+    /* 0x001E */ u8 field_0x001e;
+    /* 0x001F */ u8 field_0x001f;
+    /* 0x0020 */ u8 field_0x0020;
+    /* 0x0021 */ u8 field_0x0021;
+    /* 0x0022 */ u8 field_0x0022;
+    /* 0x0023 */ u8 field_0x0023;
 };
 
 #endif /* D_FILE_D_FILE_SELECT_H */
