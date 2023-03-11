@@ -21,12 +21,16 @@ inline float __frsqrtes(register double f) {
     return out;
 }
 
-inline f32 JMAFastSqrt(f32 input) {
+inline f32 JMAFastSqrt(register f32 input) {
     if (input > 0.0f) {
-        f32 tmp = __frsqrtes(input);
-        return tmp * input;
+        register f32 out;
+        asm {
+            frsqrte out, input
+        }
+        return out * input;
+    } else {
+        return input;
     }
-    return input;
 }
 
 namespace JMath {

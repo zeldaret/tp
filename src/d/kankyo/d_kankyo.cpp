@@ -4097,12 +4097,3 @@ extern "C" asm void __dt__18dScnKy_env_light_cFv() {
 #include "asm/d/kankyo/d_kankyo/__dt__18dScnKy_env_light_cFv.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 80451070-80451078 -00001 0008+00 0/0 1/1 0/0 .sbss            None */
-/* 80451070 0001+00 data_80451070 None */
-/* 80451071 0007+00 data_80451071 None */
-extern u8 struct_80451070[8];
-u8 struct_80451070[8];
-
-/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

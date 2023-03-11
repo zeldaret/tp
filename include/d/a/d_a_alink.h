@@ -6334,10 +6334,9 @@ public:
         if (field_0x84e != 3 && field_0x84e != 4) {
             if (field_0x84e == 2) {
                 return false;
-            } else {
-                return true;
             }
         }
+        return true;
     }
 
     int checkShadowModelDraw() const {

@@ -856,8 +856,8 @@ s32 J3DAnmColorFull::getKind() const {
 }
 
 /* 8032BF44-8032BF4C 326884 0008+00 1/0 0/0 0/0 .text            getKind__11J3DAnmColorCFv */
-bool J3DAnmColor::getKind() const {
-    return true;
+s32 J3DAnmColor::getKind() const {
+    return 1;
 }
 
 /* 8032BF4C-8032BF50 32688C 0004+00 1/0 0/0 0/0 .text getColor__11J3DAnmColorCFUsP8_GXColor */

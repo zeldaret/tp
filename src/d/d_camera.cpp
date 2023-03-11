@@ -56,11 +56,11 @@ struct dBgS_CamSphChk {
 // Forward References:
 //
 
-extern "C" static void func_8015FA2C();
-extern "C" static void func_8015FA4C();
-extern "C" static void func_8015FADC();
-extern "C" static void func_8015FB28();
-extern "C" static void func_8015FBF8();
+extern "C" static void func_8015FA2C(f32 param_0, f32 param_1, f32 param_2);
+extern "C" static void func_8015FA4C(fopAc_ac_c* param_0);
+extern "C" static void func_8015FADC(f32 param_0, f32 param_1, f32 param_2);
+extern "C" static void func_8015FB28(cXyz* param_0, cXyz* param_1, cXyz* param_2);
+extern "C" static void func_8015FBF8(fopAc_ac_c* param_0, fopAc_ac_c* param_1, cXyz* param_2, f32 param_3, cSAngle param_4);
 extern "C" void Set__15dCamMapToolDataFllP10fopAc_ac_cUsUc();
 extern "C" void __ct__9dCamera_cFP12camera_class();
 extern "C" void func_801602C4();
@@ -125,21 +125,21 @@ extern "C" void bumpCheck__9dCamera_cFUl();
 extern "C" void __dt__Q214cCcD_ShapeAttr5ShapeFv();
 extern "C" void lineBGCheckBoth__9dCamera_cFP4cXyzP4cXyzP11dBgS_LinChkUl();
 extern "C" void radiusActorInSight__9dCamera_cFP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_c();
-extern "C" static void func_80167CB8();
+extern "C" static void func_80167CB8(fopAc_ac_c* param_0);
 extern "C" void jutOutCheck__9dCamera_cFP4cXyzf();
 extern "C" void tooNearEscape__9dCamera_cFP4cXyz();
 extern "C" void getWaterSurfaceHeight__9dCamera_cFP4cXyz();
 extern "C" void checkGroundInfo__9dCamera_cFv();
 extern "C" void chaseCamera__9dCamera_cFl();
-extern "C" static void func_8016C25C();
+extern "C" static void func_8016C25C(daAlink_c* param_0);
 extern "C" void Val__7cSAngleCFv();
-extern "C" static void func_8016C2D4();
+extern "C" static void func_8016C2D4(cXyz& param_0);
 extern "C" void getHoldA__8mDoCPd_cFUl();
-extern "C" static void func_8016C330();
-extern "C" static void func_8016C34C();
-extern "C" static void func_8016C368();
+extern "C" static void func_8016C330(u32 param_0, u32 param_1);
+extern "C" static void func_8016C34C(u32 param_0);
+extern "C" static void func_8016C368(u32 param_0, u32 param_1);
 extern "C" void lockonCamera__9dCamera_cFl();
-extern "C" static void func_8016E410();
+extern "C" static void func_8016E410(f32 param_0, f32 param_1, f32 param_2);
 extern "C" void __ct__7cSGlobeFv();
 extern "C" void LockEdge__12dAttention_cFv();
 extern "C" void getMsgCmdSpeaker__9dCamera_cFv();
@@ -147,7 +147,7 @@ extern "C" void getMsgCmdCut__9dCamera_cFl();
 extern "C" void talktoCamera__9dCamera_cFl();
 extern "C" void talkBasePos__9dCamera_cFP10fopAc_ac_c();
 extern "C" void talkEyePos__9dCamera_cFP10fopAc_ac_c();
-extern "C" static void func_80174E50();
+extern "C" static void func_80174E50(cXyz param_0, cXyz param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3, fopAc_ac_c* param_4);
 extern "C" bool CalcSubjectAngle__9dCamera_cFPsPs();
 extern "C" void SaveZoomRatio__9dCamera_cFv();
 extern "C" void subjectCamera__9dCamera_cFl();
@@ -160,7 +160,7 @@ extern "C" void hookshotCamera__9dCamera_cFl();
 extern "C" void railCamera__9dCamera_cFl();
 extern "C" void paraRailCamera__9dCamera_cFl();
 extern "C" void rideCamera__9dCamera_cFl();
-extern "C" static void func_8017D934();
+extern "C" static void func_8017D934(cXyz& param_0);
 extern "C" bool manualCamera__9dCamera_cFl();
 extern "C" void observeCamera__9dCamera_cFl();
 extern "C" void fixedFrameCamera__9dCamera_cFl();
@@ -601,7 +601,7 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void func_8015FA2C() {
+static asm void func_8015FA2C(f32 param_0, f32 param_1, f32 param_2) {
     nofralloc
 #include "asm/d/d_camera/func_8015FA2C.s"
 }
@@ -612,7 +612,7 @@ static asm void func_8015FA2C() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void func_8015FA4C() {
+static asm void func_8015FA4C(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/d/d_camera/func_8015FA4C.s"
 }
@@ -623,7 +623,7 @@ static asm void func_8015FA4C() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void func_8015FADC() {
+static asm void func_8015FADC(f32 param_0, f32 param_1, f32 param_2) {
     nofralloc
 #include "asm/d/d_camera/func_8015FADC.s"
 }
@@ -634,7 +634,7 @@ static asm void func_8015FADC() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void func_8015FB28() {
+static asm void func_8015FB28(cXyz* param_0, cXyz* param_1, cXyz* param_2) {
     nofralloc
 #include "asm/d/d_camera/func_8015FB28.s"
 }
@@ -656,7 +656,7 @@ SECTION_SDATA2 static f64 lit_4448 = 4503601774854144.0 /* cast s32 to float */;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void func_8015FBF8() {
+static asm void func_8015FBF8(fopAc_ac_c* param_0, fopAc_ac_c* param_1, cXyz* param_2, f32 param_3, cSAngle param_4) {
     nofralloc
 #include "asm/d/d_camera/func_8015FBF8.s"
 }
@@ -2409,7 +2409,7 @@ asm void dCamera_c::radiusActorInSight(fopAc_ac_c* param_0, fopAc_ac_c* param_1,
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void func_80167CB8() {
+static asm void func_80167CB8(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/d/d_camera/func_80167CB8.s"
 }
@@ -2590,7 +2590,7 @@ asm void dCamera_c::chaseCamera(s32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void func_8016C25C() {
+static asm void func_8016C25C(daAlink_c* param_0) {
     nofralloc
 #include "asm/d/d_camera/func_8016C25C.s"
 }
@@ -2611,7 +2611,7 @@ extern "C" asm void Val__7cSAngleCFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void func_8016C2D4() {
+static asm void func_8016C2D4(cXyz& param_0) {
     nofralloc
 #include "asm/d/d_camera/func_8016C2D4.s"
 }
@@ -2633,7 +2633,7 @@ extern "C" asm void getHoldA__8mDoCPd_cFUl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void func_8016C330() {
+static asm void func_8016C330(u32 param_0, u32 param_1) {
     nofralloc
 #include "asm/d/d_camera/func_8016C330.s"
 }
@@ -2644,7 +2644,7 @@ static asm void func_8016C330() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void func_8016C34C() {
+static asm void func_8016C34C(u32 param_0) {
     nofralloc
 #include "asm/d/d_camera/func_8016C34C.s"
 }
@@ -2655,7 +2655,7 @@ static asm void func_8016C34C() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void func_8016C368() {
+static asm void func_8016C368(u32 param_0, u32 param_1) {
     nofralloc
 #include "asm/d/d_camera/func_8016C368.s"
 }
@@ -2703,7 +2703,7 @@ asm void dCamera_c::lockonCamera(s32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void func_8016E410() {
+static asm void func_8016E410(f32 param_0, f32 param_1, f32 param_2) {
     nofralloc
 #include "asm/d/d_camera/func_8016E410.s"
 }
@@ -2871,7 +2871,7 @@ asm void dCamera_c::talkEyePos(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void func_80174E50() {
+static asm void func_80174E50(cXyz param_0, cXyz param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3, fopAc_ac_c* param_4) {
     nofralloc
 #include "asm/d/d_camera/func_80174E50.s"
 }
@@ -3118,7 +3118,7 @@ asm void dCamera_c::rideCamera(s32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void func_8017D934() {
+static asm void func_8017D934(cXyz& param_0) {
     nofralloc
 #include "asm/d/d_camera/func_8017D934.s"
 }

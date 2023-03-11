@@ -39,5 +39,6 @@ void dKyr_star_init();
 void dKyr_shstar_init();
 void dKyr_star_move();
 void dKyr_shstar_move();
+void dKyr_get_vectle_calc(cXyz* param_0, cXyz* param_1, cXyz* param_2);
 
 #endif /* D_KANKYO_D_KANKYO_RAIN_H */
