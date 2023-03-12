@@ -8,76 +8,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct request_of_phase_process_class {};
-
-struct csXyz {};
-
-struct cXyz {};
-
-struct mDoMtx_stack_c {
-    /* 8000CD64 */ void transS(cXyz const&);
-    /* 8000CF44 */ void ZXYrotM(csXyz const&);
-
-    static u8 now[48];
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct daObjSMark_c {
-    /* 8059A018 */ void initBaseMtx();
-    /* 8059A038 */ void setBaseMtx();
-    /* 8059A080 */ void Create();
-    /* 8059A168 */ void create();
-    /* 8059A2CC */ void draw();
-    /* 8059A33C */ void _delete();
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dBgS_PolyPassChk {
-    /* 80078E68 */ void SetObj();
-};
-
-struct dBgS_ObjAcch {
-    /* 8059A25C */ ~dBgS_ObjAcch();
-};
-
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-    /* 80075F58 */ void SetWall(f32, f32);
-};
-
-struct dBgS {};
-
-struct dBgS_Acch {
-    /* 80075F94 */ ~dBgS_Acch();
-    /* 800760A0 */ dBgS_Acch();
-    /* 80076248 */ void Set(cXyz*, cXyz*, fopAc_ac_c*, int, dBgS_AcchCir*, cXyz*, csXyz*, csXyz*);
-    /* 80076AAC */ void CrrPos(dBgS&);
-};
-
-struct cBgS_PolyInfo {};
-
-struct _GXTlutObj {};
-
-struct _GXTexObj {};
-
-struct ResTIMG {};
-
-//
 // Forward References:
 //
 
@@ -117,17 +47,11 @@ extern "C" void CrrPos__9dBgS_AcchFR4dBgS();
 extern "C" void SetObj__16dBgS_PolyPassChkFv();
 extern "C" void __ct__10dCcD_GSttsFv();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-
 //
 // Declarations:
 //
@@ -197,25 +121,35 @@ asm void daObjSMark_c::Create() {
 
 /* ############################################################################################## */
 /* 8059A414-8059A434 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjSMark_Method */
-SECTION_DATA static void* l_daObjSMark_Method[8] = {
-    (void*)daObjSMark_Create__FP10fopAc_ac_c,
-    (void*)daObjSMark_Delete__FP12daObjSMark_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)daObjSMark_Draw__FP12daObjSMark_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daObjSMark_Method = {
+    (process_method_func)daObjSMark_Create__FP10fopAc_ac_c,
+    (process_method_func)daObjSMark_Delete__FP12daObjSMark_c,
+    (process_method_func)0,
+    (process_method_func)0,
+    (process_method_func)daObjSMark_Draw__FP12daObjSMark_c
 };
 
 /* 8059A434-8059A464 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_StoneMark */
-SECTION_DATA extern void* g_profile_Obj_StoneMark[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x01710000, (void*)&g_fpcLf_Method,
-    (void*)0x00000814, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x02160000, (void*)&l_daObjSMark_Method,
-    (void*)0x00040100, (void*)0x00170000,
+extern actor_process_profile_definition g_profile_Obj_StoneMark = {
+    -3,                     // mLayerID   
+    7,                      // mListID 
+    -3,                     // mListPrio  
+    PROC_Obj_StoneMark,     // mProcName      
+    0,                      // padding  
+    &g_fpcLf_Method.mBase,  // mSubMtd                     
+    sizeof(daObjSMark_c),   // mSize                     
+    0,                      // mSizeOther 
+    0,                      // mParameters        
+    &g_fopAc_Method.base,   // mSubMtd                    
+    0x0216,                 // mPriority      
+    0,                      // padding 
+    0,                      // padding  
+    &l_daObjSMark_Method,   // mSubMtd                    
+    0x00040100,             // mStatus           
+    0,                      // mActorType 
+    17,                     // mCullType  
+    0,                      // padding 
+    0                       // padding
 };
 
 /* 8059A464-8059A488 000054 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
@@ -245,7 +179,8 @@ asm void daObjSMark_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+// asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+extern "C" asm void __dt__12dBgS_ObjAcchFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_stoneMark/d_a_obj_stoneMark/__dt__12dBgS_ObjAcchFv.s"
 }
