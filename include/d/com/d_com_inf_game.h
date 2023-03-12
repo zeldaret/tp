@@ -267,6 +267,11 @@ public:
         mASetFlagForce = flag;
     }
 
+    void setRStatusForce(u8 status, u8 flag) {
+        mRStatusForce = status;
+        mRSetFlagForce = flag;
+    }
+
     void setItemRupeeCount(s32 rupees) { mItemRupeeCount += rupees; }
     void setItemMagicCount(s16 magic) { mItemMagicCount += magic; }
     void setItemMaxMagicCount(s16 max) { mItemMaxMagicCount += max; }
@@ -1954,6 +1959,10 @@ inline void dComIfGp_setDoStatusForce(u8 status, u8 flag) {
 
 inline void dComIfGp_setAStatusForce(u8 status, u8 flag) {
     g_dComIfG_gameInfo.play.setAStatusForce(status, flag);
+}
+
+inline void dComIfGp_setRStatusForce(u8 status, u8 flag) {
+    g_dComIfG_gameInfo.play.setRStatusForce(status, flag);
 }
 
 inline u8 dComIfGp_getAStatus() {

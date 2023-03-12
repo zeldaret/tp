@@ -12,12 +12,20 @@ class dMeterMap_c;
 
 class dMeterSub_c : public dDlst_base_c {
 public:
+    // these seem to be inlined, but generates in the wrong order in d_scope.cpp
+    /* 8019412C */ //virtual void draw() {}
+    /* 801940D4 */ //virtual ~dMeterSub_c() {}
+    /* 8019411C */ //virtual int _create() { return 0; }
+    /* 80194130 */ //virtual int _execute(u32) { return 0; }
+    /* 80194124 */ //virtual int _delete() { return 0; }
+    /* 80194138 */ //virtual int isDead() { return 0; }
+
     /* 8019412C */ virtual void draw();
-    /* 801940D4 */ virtual ~dMeterSub_c();
-    /* 8019411C */ virtual bool _create();
-    /* 80194130 */ virtual bool _execute(u32);
-    /* 80194124 */ virtual bool _delete();
-    /* 80194138 */ virtual bool isDead();
+    /* 801940D4 */ virtual ~dMeterSub_c() {}
+    /* 8019411C */ virtual int _create();
+    /* 80194130 */ virtual int _execute(u32);
+    /* 80194124 */ virtual int _delete();
+    /* 80194138 */ virtual int isDead();
 };
 
 class dMeterButton_c : public dDlst_base_c {
@@ -130,9 +138,9 @@ public:
 
     /* 8020F1B0 */ virtual void draw();
     /* 8020EDF4 */ virtual ~dMeterString_c();
-    /* 8020EE70 */ virtual bool _create();
-    /* 8020F150 */ virtual bool _execute(u32);
-    /* 8020F49C */ virtual bool _delete();
+    /* 8020EE70 */ virtual int _create();
+    /* 8020F150 */ virtual int _execute(u32);
+    /* 8020F49C */ virtual int _delete();
 };
 
 class dMeterHaihai_c : public dMeterSub_c {
@@ -153,9 +161,9 @@ public:
 
     /* 8020B140 */ virtual void draw();
     /* 8020AEF0 */ virtual ~dMeterHaihai_c();
-    /* 8020AF6C */ virtual bool _create();
-    /* 8020B0F4 */ virtual bool _execute(u32);
-    /* 8020BDAC */ virtual bool _delete();
+    /* 8020AF6C */ virtual int _create();
+    /* 8020B0F4 */ virtual int _execute(u32);
+    /* 8020BDAC */ virtual int _delete();
 };
 
 class dMeter2_c : public msg_class {

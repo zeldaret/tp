@@ -148,6 +148,7 @@ public:
     u32 getMsgTimeMs() { return mMsgTimeMs; }
     u32 getTimeMs() { return mTimeMs; }
     u8 getNowCount() { return mNowCount; }
+    void setScopeZoomPointer(u8 param_0) { mScopeZoomPointer = param_0; }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -224,7 +225,7 @@ public:
     /* 0xE2 */ u8 mGoldWolfMapType;
     /* 0xE3 */ u8 mLightDropGetFlag[3];
     /* 0xE6 */ u8 mLifeGaugeSE;
-    /* 0xE7 */ u8 unk231;
+    /* 0xE7 */ u8 mScopeZoomPointer;
     /* 0xE8 */ u8 mItemExplainWindowStatus;
     /* 0xE9 */ char mSaveStageName[8];
     /* 0xF1 */ bool mFloatingMessageWakuVisible;
@@ -516,6 +517,10 @@ inline u32 dMeter2Info_getTimeMs() {
 
 inline u8 dMeter2Info_getNowCount() {
     return g_meter2_info.getNowCount();
+}
+
+inline void dMeter2Info_setScopeZoomPointer(u8 param_0) {
+    g_meter2_info.setScopeZoomPointer(param_0);
 }
 
 char* dMeter2Info_getNumberTextureName(int pIndex);
