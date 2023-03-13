@@ -82,6 +82,10 @@ public:
         mFrameRate = 0;
     }
 
+    void setDrawDoneMethod(EDrawDone drawDone) { mDrawDoneMethod = drawDone; }
+    void setFader(JUTFader* fader) { mFader = fader; }
+    void setClearColor(JUtility::TColor color) { mClearColor = color; }
+
     static JFWDisplay* sManager;
 
 private:

@@ -24,6 +24,13 @@ public:
     /* 0x18 */ cXyz mUp;
 };
 
+struct scissor_class {
+    /* 0x0 */ f32 mXOrig;
+    /* 0x4 */ f32 mYOrig;
+    /* 0x8 */ f32 mWidth;
+    /* 0xC */ f32 mHeight;
+};
+
 struct view_port_class {
     /* 0x00 */ f32 mXOrig;
     /* 0x04 */ f32 mYOrig;
@@ -31,10 +38,7 @@ struct view_port_class {
     /* 0x0C */ f32 mHeight;
     /* 0x10 */ f32 mNearZ;
     /* 0x14 */ f32 mFarZ;
-    /* 0x18 */ f32 mScissorXOrig;
-    /* 0x1C */ f32 mScissorYOrig;
-    /* 0x20 */ f32 mScissorWidth;
-    /* 0x24 */ f32 mScissorHeight;
+    /* 0x18 */ scissor_class mScissor;
 };
 
 struct view_class : public leafdraw_class {
