@@ -120,4 +120,8 @@ inline void mDoAud_mEnvse_framework() {
     g_mEnvSeMgr.framework();
 }
 
+inline void mDoAud_mEnvSe_startFarThunderSe(const Vec* param_0) {
+    g_mEnvSeMgr.startFarThunderSe((Vec*)param_0, 0);
+}
+
 #endif /* M_DO_M_DO_AUDIO_H */

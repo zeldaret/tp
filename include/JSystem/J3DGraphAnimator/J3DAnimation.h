@@ -469,7 +469,7 @@ public:
     /* 8032A8A4 */ void searchUpdateMaterialID(J3DMaterialTable*);
 
     /* 8032BCAC */ virtual ~J3DAnmColor();
-    /* 8032BF44 */ virtual bool getKind() const;
+    /* 8032BF44 */ virtual s32 getKind() const;
     /* 8032BF4C */ virtual void getColor(u16, _GXColor*) const;
 
     u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }

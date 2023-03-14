@@ -4,46 +4,59 @@
 //
 
 #include "d/d_scope.h"
+#include "JSystem/J2DGraph/J2DOrthoGraph.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
 //
 
-struct dScope_c {
+class dScope_c : public dMeterSub_c {
+public:
+    enum {
+        /* 0 */ PROC_OPEN,
+        /* 1 */ PROC_MOVE,
+        /* 2 */ PROC_CLOSE,
+    };
+
     /* 80193690 */ dScope_c(u8);
-    /* 8019396C */ ~dScope_c();
-    /* 80193B90 */ void _execute(u32);
-    /* 80193C68 */ void draw();
-    /* 80193FA0 */ void isDead();
     /* 80193FB4 */ void open_init();
     /* 80193FD0 */ void open_proc();
     /* 80194048 */ void move_init();
     /* 8019404C */ void move_proc();
     /* 80194050 */ void close_init();
     /* 80194054 */ void close_proc();
-};
 
-struct dMeterSub_c {
-    /* 801940D4 */ ~dMeterSub_c();
-    /* 8019411C */ bool _create();
-    /* 80194124 */ bool _delete();
-    /* 8019412C */ void draw();
-    /* 80194130 */ bool _execute(u32);
-    /* 80194138 */ bool isDead();
-};
+    /* 80193C68 */ virtual void draw();
+    /* 8019396C */ virtual ~dScope_c();
+    /* 80193B90 */ virtual int _execute(u32);
+    /* 80193FA0 */ virtual int isDead();
 
-struct ResTIMG {};
-
-struct JUtility {
-    struct TColor {
-        /* 80193960 */ TColor();
-    };
-};
-
-struct J2DPicture {
-    /* 802FC708 */ J2DPicture(ResTIMG const*);
+    /* 0x04 */ J2DScreen* mHawkEyeScrn;
+    /* 0x08 */ J2DScreen* mZoomInOutScrn;
+    /* 0x0C */ CPaneMgr* mHawkEyeRootPane;
+    /* 0x10 */ CPaneMgr* mZoomInOutRootPane;
+    /* 0x14 */ CPaneMgr* mHawkEyePanes[3];
+    /* 0x20 */ CPaneMgr* mZoomInOutPanes[3][2];
+    /* 0x38 */ J2DPicture* mpWipeTex;
+    /* 0x3C */ J2DPicture* mpBlackTex;
+    /* 0x40 */ u8 field_0x40[0x48 - 0x40];
+    /* 0x48 */ JUtility::TColor field_0x48[2];
+    /* 0x50 */ JUtility::TColor field_0x50[2];
+    /* 0x58 */ u32 field_0x58;
+    /* 0x5C */ u32 field_0x5c;
+    /* 0x60 */ u8 field_0x60[0x78 - 0x60];
+    /* 0x78 */ f32 mWidth;
+    /* 0x7C */ f32 mHeight;
+    /* 0x80 */ f32 mScale;
+    /* 0x84 */ f32 mAlpha;
+    /* 0x88 */ s16 mOpenTimer;
+    /* 0x8A */ s16 field_0x8a;
+    /* 0x8C */ u8 mProcess;
+    /* 0x8D */ u8 field_0x8d;
+    /* 0x8E */ u8 mIsDead;
+    /* 0x8F */ u8 field_0x8f;
 };
 
 //
@@ -63,11 +76,11 @@ extern "C" void move_proc__8dScope_cFv();
 extern "C" void close_init__8dScope_cFv();
 extern "C" void close_proc__8dScope_cFv();
 extern "C" void __dt__11dMeterSub_cFv();
-extern "C" bool _create__11dMeterSub_cFv();
-extern "C" bool _delete__11dMeterSub_cFv();
+extern "C" int _create__11dMeterSub_cFv();
+extern "C" int _delete__11dMeterSub_cFv();
 extern "C" void draw__11dMeterSub_cFv();
-extern "C" bool _execute__11dMeterSub_cFUl();
-extern "C" bool isDead__11dMeterSub_cFv();
+extern "C" int _execute__11dMeterSub_cFUl();
+extern "C" int isDead__11dMeterSub_cFv();
 extern "C" void __sinit_d_scope_cpp();
 extern "C" extern char const* const d_d_scope__stringBase0;
 
@@ -86,101 +99,81 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_23();
 extern "C" void _restgpr_29();
 extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
 
 //
 // Declarations:
 //
-
-/* ############################################################################################## */
-/* 803949F0-803949F0 021050 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803949F0 = "wipe_00.bti";
-SECTION_DEAD static char const* const stringBase_803949FC = "tt_block8x8.bti";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80394A0C = "\0\0\0";
-#pragma pop
 
 /* 803BB618-803BB624 018738 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803BB624-803BB630 -00001 000C+00 0/1 0/0 0/0 .data            @3693 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3693[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)open_init__8dScope_cFv,
-};
-#pragma pop
-
-/* 803BB630-803BB63C -00001 000C+00 0/1 0/0 0/0 .data            @3694 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3694[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)move_init__8dScope_cFv,
-};
-#pragma pop
-
-/* 803BB63C-803BB648 -00001 000C+00 0/1 0/0 0/0 .data            @3695 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3695[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)close_init__8dScope_cFv,
-};
-#pragma pop
-
 /* 803BB648-803BB66C 018768 0024+00 2/3 0/0 0/0 .data            init_process */
-SECTION_DATA static u8 init_process[36] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+typedef void (dScope_c::*initFunc)();
+SECTION_DATA initFunc init_process[] = {
+    &dScope_c::open_init,
+    &dScope_c::move_init,
+    &dScope_c::close_init,
 };
-
-/* 803BB66C-803BB678 -00001 000C+00 0/1 0/0 0/0 .data            @3696 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3696[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)open_proc__8dScope_cFv,
-};
-#pragma pop
-
-/* 803BB678-803BB684 -00001 000C+00 0/1 0/0 0/0 .data            @3697 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3697[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)move_proc__8dScope_cFv,
-};
-#pragma pop
-
-/* 803BB684-803BB690 -00001 000C+00 0/1 0/0 0/0 .data            @3698 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3698[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)close_proc__8dScope_cFv,
-};
-#pragma pop
 
 /* 803BB690-803BB6B4 0187B0 0024+00 1/2 0/0 0/0 .data            move_process */
-SECTION_DATA static u8 move_process[36] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+typedef void (dScope_c::*moveFunc)();
+SECTION_DATA moveFunc move_process[] = {
+    &dScope_c::open_proc,
+    &dScope_c::move_proc,
+    &dScope_c::close_proc,
 };
+
+/* 80453A10-80453A14 002010 0004+00 4/4 0/0 0/0 .sdata2          @3756 */
+SECTION_SDATA2 static f32 lit_3756 = 3.0f;
+
+/* 80453A14-80453A18 002014 0004+00 4/4 0/0 0/0 .sdata2          @3757 */
+SECTION_SDATA2 static u8 lit_3757[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+
+extern void* __vt__11dMeterSub_c[8 + 3 /* padding */];
+
+/* 80193690-80193960 18DFD0 02D0+00 0/0 1/1 0/0 .text            __ct__8dScope_cFUc */
+dScope_c::dScope_c(u8 param_0) : field_0x58(-1), field_0x5c(-1) {
+    field_0x8d = param_0;
+    ResTIMG* mp_image = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "wipe_00.bti");
+
+    mHawkEyeScrn = NULL;
+    mHawkEyeRootPane = NULL;
+    mZoomInOutScrn = NULL;
+    mZoomInOutRootPane = NULL;
+
+    for (int i = 0; i < 3; i++) {
+        mHawkEyePanes[i] = NULL;
+    }
+
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 2; j++) {
+            mZoomInOutPanes[i][j] = NULL;
+        }
+    }
+
+    mpWipeTex = new J2DPicture(mp_image);
+    mpWipeTex->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
+    mWidth = mp_image->width;
+    mHeight = mp_image->height;
+
+    mp_image = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "tt_block8x8.bti");
+    mpBlackTex = new J2DPicture(mp_image);
+    mpBlackTex->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
+    mScale = lit_3756;
+    mAlpha = FLOAT_LABEL(lit_3757);
+    mOpenTimer = 0;
+    field_0x8a = 0;
+    mProcess = PROC_OPEN;
+    mIsDead = false;
+    (this->*init_process[mProcess])();
+}
 
 /* 803BB6B4-803BB6D4 0187D4 0020+00 2/2 0/0 0/0 .data            __vt__8dScope_c */
 SECTION_DATA extern void* __vt__8dScope_c[8] = {
@@ -206,59 +199,76 @@ SECTION_DATA extern void* __vt__11dMeterSub_c[8 + 3 /* padding */] = {
     NULL,
 };
 
-/* 80453A10-80453A14 002010 0004+00 4/4 0/0 0/0 .sdata2          @3756 */
-SECTION_SDATA2 static f32 lit_3756 = 3.0f;
-
-/* 80453A14-80453A18 002014 0004+00 4/4 0/0 0/0 .sdata2          @3757 */
-SECTION_SDATA2 static u8 lit_3757[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80453A18-80453A20 002018 0008+00 1/1 0/0 0/0 .sdata2          @3759 */
-SECTION_SDATA2 static f64 lit_3759 = 4503599627370496.0 /* cast u32 to float */;
-
-/* 80193690-80193960 18DFD0 02D0+00 0/0 1/1 0/0 .text            __ct__8dScope_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dScope_c::dScope_c(u8 param_0) {
-    nofralloc
-#include "asm/d/d_scope/__ct__8dScope_cFUc.s"
-}
-#pragma pop
-
-/* 80193960-8019396C 18E2A0 000C+00 1/1 20/20 0/0 .text            __ct__Q28JUtility6TColorFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUtility::TColor::TColor() {
-    nofralloc
-#include "asm/d/d_scope/__ct__Q28JUtility6TColorFv.s"
-}
-#pragma pop
-
 /* 8019396C-80193B90 18E2AC 0224+00 1/0 0/0 0/0 .text            __dt__8dScope_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dScope_c::~dScope_c() {
-    nofralloc
-#include "asm/d/d_scope/__dt__8dScope_cFv.s"
+dScope_c::~dScope_c() {
+    if (mHawkEyeScrn != NULL) {
+        delete mHawkEyeScrn;
+        mHawkEyeScrn = NULL;
+    }
+
+    if (mHawkEyeRootPane != NULL) {
+        delete mHawkEyeRootPane;
+        mHawkEyeRootPane = NULL;
+    }
+
+    for (int i = 0; i < 3; i++) {
+        if (mHawkEyePanes[i] != NULL) {
+            delete mHawkEyePanes[i];
+            mHawkEyePanes[i] = NULL;
+        }
+    }
+
+    if (mZoomInOutScrn != NULL) {
+        delete mZoomInOutScrn;
+        mZoomInOutScrn = NULL;
+    }
+
+    if (mZoomInOutRootPane != NULL) {
+        delete mZoomInOutRootPane;
+        mZoomInOutRootPane = NULL;
+    }
+
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 2; j++) {
+            if (mZoomInOutPanes[i][j] != NULL) {
+                delete mZoomInOutPanes[i][j];
+                mZoomInOutPanes[i][j] = NULL;
+            }
+        }
+    }
+
+    delete mpWipeTex;
+    mpWipeTex = NULL;
+
+    delete mpBlackTex;
+    mpBlackTex = NULL;
+
+    dMeter2Info_setScopeZoomPointer(0);
 }
-#pragma pop
 
 /* 80193B90-80193C68 18E4D0 00D8+00 1/0 0/0 0/0 .text            _execute__8dScope_cFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dScope_c::_execute(u32 param_0) {
-    nofralloc
-#include "asm/d/d_scope/_execute__8dScope_cFUl.s"
+int dScope_c::_execute(u32) {
+    u8 old_proc = mProcess;
+    (this->*move_process[mProcess])();
+
+    if (!dComIfGp_checkCameraAttentionStatus(0, 8)) {
+        mProcess = PROC_CLOSE;
+    }
+
+    if (mProcess != old_proc) {
+        (this->*init_process[mProcess])();
+    }
+
+    if (mProcess != PROC_CLOSE) {
+        dComIfGp_setCStickStatusForce(61, 10, 3);
+
+        if (i_dComIfGp_checkPlayerStatus0(0, 0x1000)) {
+            dComIfGp_setRStatusForce(0x11, 3);
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80453A20-80453A24 002020 0004+00 1/1 0/0 0/0 .sdata2          @3879 */
@@ -277,34 +287,68 @@ SECTION_SDATA2 static f32 lit_3882 = 224.0f;
 SECTION_SDATA2 static f32 lit_3883 = 608.0f;
 
 /* 80193C68-80193FA0 18E5A8 0338+00 1/0 0/0 0/0 .text            draw__8dScope_cFv */
+// matches with literals and when vtables in this TU are fixed
+#ifdef NONMATCHING
+void dScope_c::draw() {
+    dComIfGp_getCurrentGrafPort()->setup2D();
+    f32 temp_f1 = mScale;
+    f32 temp_f31 = mWidth * temp_f1;
+    f32 temp_f30 = mHeight * temp_f1;
+    u8 alpha = mAlpha * 255.0f;
+
+    if (i_dComIfGp_checkPlayerStatus0(0, 0x1000)) {
+        J2DDrawLine(304.0f, mDoGph_gInf_c::getMinYF(), 304.0f, mDoGph_gInf_c::getMaxYF(),
+                    JUtility::TColor(255, 0, 0, alpha), 6);
+        J2DDrawLine(mDoGph_gInf_c::getMinXF(), 224.0f, mDoGph_gInf_c::getMaxXF(), 224.0f,
+                    JUtility::TColor(255, 0, 0, alpha), 6);
+    }
+
+    mpWipeTex->setAlpha(alpha);
+    mpBlackTex->setAlpha(alpha);
+
+    f32 temp_f29 = 304.0f - temp_f31;
+    f32 temp_f28 = 304.0f + temp_f31;
+    f32 temp_f27 = 224.0f - temp_f30;
+    f32 temp_f26 = 224.0f + temp_f30;
+
+    mpWipeTex->draw(temp_f29, temp_f27, temp_f31, temp_f30, false, false, false);
+    mpWipeTex->draw(304.0f, temp_f27, temp_f31, temp_f30, true, false, false);
+    mpWipeTex->draw(temp_f29, 224.0f, temp_f31, temp_f30, false, true, false);
+    mpWipeTex->draw(304.0f, 224.0f, temp_f31, temp_f30, true, true, false);
+
+    mpBlackTex->draw(mDoGph_gInf_c::getMinXF(), mDoGph_gInf_c::getMinYF(),
+                     mDoGph_gInf_c::getWidthF(), temp_f27 - mDoGph_gInf_c::getMinYF(), false, false,
+                     false);
+    mpBlackTex->draw(mDoGph_gInf_c::getMinXF(), temp_f26, mDoGph_gInf_c::getWidthF(),
+                     mDoGph_gInf_c::getMaxYF() - temp_f26, false, false, false);
+    mpBlackTex->draw(mDoGph_gInf_c::getMinXF(), temp_f27, temp_f29 - mDoGph_gInf_c::getMinXF(),
+                     temp_f26 - temp_f27, false, false, false);
+    mpBlackTex->draw(temp_f28, temp_f27, mDoGph_gInf_c::getMaxXF() - temp_f28, temp_f26 - temp_f27,
+                     false, false, false);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dScope_c::draw() {
+// asm void dScope_c::draw() {
+extern "C" asm void draw__8dScope_cFv() {
     nofralloc
 #include "asm/d/d_scope/draw__8dScope_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80193FA0-80193FB4 18E8E0 0014+00 1/0 0/0 0/0 .text            isDead__8dScope_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dScope_c::isDead() {
-    nofralloc
-#include "asm/d/d_scope/isDead__8dScope_cFv.s"
+int dScope_c::isDead() {
+    return mIsDead != false;
 }
-#pragma pop
 
 /* 80193FB4-80193FD0 18E8F4 001C+00 1/0 0/0 0/0 .text            open_init__8dScope_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dScope_c::open_init() {
-    nofralloc
-#include "asm/d/d_scope/open_init__8dScope_cFv.s"
+void dScope_c::open_init() {
+    mScale = lit_3756;
+    mAlpha = FLOAT_LABEL(lit_3757);
+    mOpenTimer = 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80453A34-80453A38 002034 0004+00 2/2 0/0 0/0 .sdata2          @3902 */
@@ -320,6 +364,20 @@ SECTION_SDATA2 static f32 lit_3904 = 1.0f;
 SECTION_SDATA2 static f64 lit_3906 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80193FD0-80194048 18E910 0078+00 1/0 0/0 0/0 .text            open_proc__8dScope_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dScope_c::open_proc() {
+    mOpenTimer++;
+    mScale = 3.0f - (mOpenTimer / 5.0f) * 1.5f;
+    mAlpha = 1.0f;
+
+    if (mOpenTimer >= 5) {
+        mScale = 1.5f;
+        mAlpha = 1.0f;
+        mProcess = PROC_MOVE;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -328,23 +386,32 @@ asm void dScope_c::open_proc() {
 #include "asm/d/d_scope/open_proc__8dScope_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80194048-8019404C 18E988 0004+00 1/0 0/0 0/0 .text            move_init__8dScope_cFv */
-void dScope_c::move_init() {
-    /* empty function */
-}
+void dScope_c::move_init() {}
 
 /* 8019404C-80194050 18E98C 0004+00 1/0 0/0 0/0 .text            move_proc__8dScope_cFv */
-void dScope_c::move_proc() {
-    /* empty function */
-}
+void dScope_c::move_proc() {}
 
 /* 80194050-80194054 18E990 0004+00 1/0 0/0 0/0 .text            close_init__8dScope_cFv */
-void dScope_c::close_init() {
-    /* empty function */
-}
+void dScope_c::close_init() {}
 
 /* 80194054-801940D4 18E994 0080+00 1/0 0/0 0/0 .text            close_proc__8dScope_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dScope_c::close_proc() {
+    if (mOpenTimer > 0) {
+        mOpenTimer--;
+        mScale = 3.0f - (mOpenTimer / 5.0f) * 1.5f;
+        mAlpha = 1.0f;
+    } else {
+        mScale = 3.0f;
+        mAlpha = 0.0f;
+        mIsDead = true;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -353,55 +420,45 @@ asm void dScope_c::close_proc() {
 #include "asm/d/d_scope/close_proc__8dScope_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801940D4-8019411C 18EA14 0048+00 1/0 0/0 0/0 .text            __dt__11dMeterSub_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMeterSub_c::~dMeterSub_c() {
+// asm dMeterSub_c::~dMeterSub_c() {
+extern "C" asm void __dt__11dMeterSub_cFv() {
     nofralloc
 #include "asm/d/d_scope/__dt__11dMeterSub_cFv.s"
 }
 #pragma pop
 
 /* 8019411C-80194124 18EA5C 0008+00 2/0 0/0 0/0 .text            _create__11dMeterSub_cFv */
-bool dMeterSub_c::_create() {
+// int dMeterSub_c::_create() {
+extern "C" int _create__11dMeterSub_cFv() {
     return false;
 }
 
 /* 80194124-8019412C 18EA64 0008+00 2/0 0/0 0/0 .text            _delete__11dMeterSub_cFv */
-bool dMeterSub_c::_delete() {
+// int dMeterSub_c::_delete() {
+extern "C" int _delete__11dMeterSub_cFv() {
     return false;
 }
 
 /* 8019412C-80194130 18EA6C 0004+00 1/0 0/0 0/0 .text            draw__11dMeterSub_cFv */
-void dMeterSub_c::draw() {
+// void dMeterSub_c::draw() {
+extern "C" void draw__11dMeterSub_cFv() {
     /* empty function */
 }
 
 /* 80194130-80194138 18EA70 0008+00 1/0 0/0 0/0 .text            _execute__11dMeterSub_cFUl */
-bool dMeterSub_c::_execute(u32 param_0) {
+// int dMeterSub_c::_execute(u32 param_0) {
+extern "C" int _execute__11dMeterSub_cFUl() {
     return false;
 }
 
 /* 80194138-80194140 18EA78 0008+00 1/0 3/0 0/0 .text            isDead__11dMeterSub_cFv */
-bool dMeterSub_c::isDead() {
+// int dMeterSub_c::isDead() {
+extern "C" int isDead__11dMeterSub_cFv() {
     return false;
 }
-
-/* 80194140-801941E4 18EA80 00A4+00 0/0 1/0 0/0 .text            __sinit_d_scope_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_scope_cpp() {
-    nofralloc
-#include "asm/d/d_scope/__sinit_d_scope_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80194140, __sinit_d_scope_cpp);
-#pragma pop
-
-/* 803949F0-803949F0 021050 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

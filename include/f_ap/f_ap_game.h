@@ -43,7 +43,7 @@ public:
 
 extern fapGm_HIO_c g_HIO;
 
-inline bool fapGmHIO_isMenu() {
+inline BOOL fapGmHIO_isMenu() {
     return g_HIO.mDisplayPrint & 2;
 }
 

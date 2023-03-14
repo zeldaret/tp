@@ -921,27 +921,27 @@ asm J3DPEBlock::~J3DPEBlock() {
 #pragma pop
 
 /* 803172FC-80317304 311C3C 0008+00 1/0 1/0 0/0 .text            countDLSize__14J3DTexGenBlockFv */
-bool J3DTexGenBlock::countDLSize() {
+s32 J3DTexGenBlock::countDLSize() {
     return false;
 }
 
 /* 80317304-8031730C 311C44 0008+00 1/0 1/0 0/0 .text            countDLSize__13J3DColorBlockFv */
-bool J3DColorBlock::countDLSize() {
+s32 J3DColorBlock::countDLSize() {
     return false;
 }
 
 /* 8031730C-80317314 311C4C 0008+00 0/0 2/0 0/0 .text            countDLSize__11J3DTevBlockFv */
-bool J3DTevBlock::countDLSize() {
+s32 J3DTevBlock::countDLSize() {
     return false;
 }
 
 /* 80317314-8031731C 311C54 0008+00 2/0 0/0 0/0 .text            countDLSize__11J3DIndBlockFv */
-bool J3DIndBlock::countDLSize() {
+s32 J3DIndBlock::countDLSize() {
     return false;
 }
 
 /* 8031731C-80317324 311C5C 0008+00 1/0 1/0 0/0 .text            countDLSize__10J3DPEBlockFv */
-bool J3DPEBlock::countDLSize() {
+s32 J3DPEBlock::countDLSize() {
     return false;
 }
 

@@ -578,7 +578,7 @@ public:
     virtual bool exchangeGrabActor(fopAc_ac_c*);
     virtual bool setForceGrab(fopAc_ac_c*, int, int);
     virtual void setForcePutPos(cXyz const&);
-    virtual bool checkPlayerNoDraw();
+    virtual BOOL checkPlayerNoDraw();
     virtual bool checkRopeTag();
     virtual void voiceStart(u32);
     virtual void seStartOnlyReverb(u32);
@@ -601,7 +601,7 @@ public:
     virtual void setPlayerPosAndAngle(float (*)[4]);
     virtual bool setThrowDamage(short, float, float, int, int, int);
     virtual bool checkSetNpcTks(cXyz*, int, int);
-    virtual bool setRollJump(float, float, short);
+    virtual int setRollJump(float, float, short);
     virtual void playerStartCollisionSE(u32, u32);
     virtual void changeTextureAnime(u16, u16, int);
     virtual void cancelChangeTextureAnime();

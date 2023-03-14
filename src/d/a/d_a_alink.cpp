@@ -19628,7 +19628,7 @@ void daPy_py_c::setForcePutPos(cXyz const& param_0) {
 }
 
 /* 801416CC-801416D4 13C00C 0008+00 1/0 0/0 0/0 .text            checkPlayerNoDraw__9daPy_py_cFv */
-bool daPy_py_c::checkPlayerNoDraw() {
+BOOL daPy_py_c::checkPlayerNoDraw() {
     return false;
 }
 
@@ -19742,8 +19742,8 @@ bool daPy_py_c::checkSetNpcTks(cXyz* param_0, int param_1, int param_2) {
 }
 
 /* 8014174C-80141754 13C08C 0008+00 1/0 0/0 0/0 .text            setRollJump__9daPy_py_cFffs */
-bool daPy_py_c::setRollJump(f32 param_0, f32 param_1, s16 param_2) {
-    return false;
+int daPy_py_c::setRollJump(f32 param_0, f32 param_1, s16 param_2) {
+    return 0;
 }
 
 /* 80141754-80141758 13C094 0004+00 1/0 0/0 0/0 .text playerStartCollisionSE__9daPy_py_cFUlUl */
