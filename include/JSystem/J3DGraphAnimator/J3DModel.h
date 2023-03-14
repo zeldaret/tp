@@ -11,8 +11,14 @@
 #include "dolphin/types.h"
 
 enum J3DMdlFlag {
-    /* 0x4 */ J3DMdlFlag_SkinPosCpu = 0x4,
-    /* 0x8 */ J3DMdlFlag_SkinNrmCpu = 0x8,
+    /* 0x00001 */ J3DMdlFlag_Unk00001 = 0x1,
+    /* 0x00002 */ J3DMdlFlag_Unk00002 = 0x2,
+    /* 0x00004 */ J3DMdlFlag_SkinPosCpu = 0x4,
+    /* 0x00008 */ J3DMdlFlag_SkinNrmCpu = 0x8,
+    /* 0x00010 */ J3DMdlFlag_Unk00010 = 0x10, 
+    /* 0x20000 */ J3DMdlFlag_Unk20000 = 0x20000,
+    /* 0x40000 */ J3DMdlFlag_Unk40000 = 0x40000,
+    /* 0x80000 */ J3DMdlFlag_Unk80000 = 0x80000,
 };
 
 struct J3DUnkCalc1 {

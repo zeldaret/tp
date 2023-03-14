@@ -121,6 +121,7 @@ public:
     void SetLin() { m_lin.SetStartEnd(*pm_old_pos, *pm_pos); }
     bool ChkGroundFind() { return m_flags & GROUND_FIND; }
     bool ChkGroundHit() { return m_flags & GROUND_HIT; }
+    bool ChkGroundLanding() { return m_flags & GROUND_LANDING; }
     void ClrGroundLanding() { m_flags &= ~GROUND_LANDING; }
     void ClrGroundAway() { m_flags &= ~GROUND_AWAY; }
     void ClrWallHit() { m_flags &= ~WALL_HIT; }

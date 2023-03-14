@@ -8,14 +8,11 @@
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRAramStream.h"
 #include "JSystem/JKernel/JKRDvdAramRipper.h"
-#include "JSystem/JUtility/JUTAssert.h"
-#include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "SSystem/SComponent/c_API_controller_pad.h"
 #include "SSystem/SComponent/c_malloc.h"
 #include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "m_Do/m_Do_DVDError.h"
 #include "m_Do/m_Do_MemCard.h"
 #include "m_Do/m_Do_dvd_thread.h"
@@ -46,8 +43,6 @@ extern "C" void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];
 // External References:
 //
 
-extern "C" void OSReportDisable();
-extern "C" void OSReportEnable();
 extern "C" void mDoExt_createAssertHeap__FP7JKRHeap();
 extern "C" void mDoExt_createDbPrintHeap__FUlP7JKRHeap();
 extern "C" void mDoExt_getDbPrintHeap__Fv();
@@ -65,9 +60,7 @@ extern "C" void mDoRst_reset__FiUli();
 extern "C" void create__9mDoDvdThdFl();
 extern "C" void mDoDvdErr_ThdInit__Fv();
 extern "C" void ThdInit__15mDoMemCd_Ctrl_cFv();
-extern "C" void exception_addition__FP10JUTConsole();
 extern "C" void init__3cMlFP7JKRHeap();
-extern "C" void cAPICPad_recalibrate__Fv();
 extern "C" void cM_initRnd__Fiii();
 extern "C" void firstInit__9JFWSystemFv();
 extern "C" void init__9JFWSystemFv();
@@ -124,10 +117,6 @@ extern "C" u8 systemConsole__9JFWSystem[4];
 extern "C" u8 sSystemHeap__7JKRHeap[4];
 extern "C" u8 sRootHeap__7JKRHeap[4];
 extern "C" u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
-extern "C" extern bool sResetSwitchPushing__Q210JUTGamePad13C3ButtonReset;
-extern "C" u8 sErrorManager__12JUTException[4];
-extern "C" u8 sConsole__12JUTException[4];
-extern "C" u8 sManager__17JUTConsoleManager[4];
 
 //
 // Declarations:
@@ -387,26 +376,7 @@ void myExceptionCallback(u16, OSContext*, u32, u32) {
     VIFlush();
 }
 
-/* ############################################################################################## */
-/* 80373DE8-80373DE8 000448 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80373F89 = "(SRR0-3):%08X %08X %08X %08X\n";
-SECTION_DEAD static char const* const stringBase_80373FA7 =
-    "PUSH START BUTTON TO ADDITIONAL INFOMATION\n";
-SECTION_DEAD static char const* const stringBase_80373FD3 =
-    "--------------------------------------\n";
-#pragma pop
-
-/* 80451B00-80451B04 000100 0004+00 1/1 0/0 0/0 .sdata2          @3940 */
-SECTION_SDATA2 static f32 lit_3940 = 8.0f;
-
-/* 80451B04-80451B08 000104 0004+00 1/1 0/0 0/0 .sdata2          @3941 */
-SECTION_SDATA2 static f32 lit_3941 = 6.0f;
-
 /* 8000B95C-8000BCF4 00629C 0398+00 1/1 0/0 0/0 .text fault_callback_scroll__FUsP9OSContextUlUl */
-#ifdef NONMATCHING
-// Everything matches but there are issues with dead section
 static void fault_callback_scroll(u16, OSContext* p_context, u32, u32) {
     JUTException* manager = JUTException::getManager();
     JUTConsole* exConsole = manager->getConsole();
@@ -523,41 +493,17 @@ static void fault_callback_scroll(u16, OSContext* p_context, u32, u32) {
         } while (true);
     } while (true);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fault_callback_scroll(u16 param_0, OSContext* param_1, u32 param_2, u32 param_3) {
-    nofralloc
-#include "asm/m_Do/m_Do_machine/fault_callback_scroll__FUsP9OSContextUlUl.s"
-}
-#pragma pop
-#endif
+
+// originally used in my_PrintHeap, but the function body was removed in retail
+const char* my_PrintHeapSring = "\x1B[32m%-24s = size=%d KB\n\x1B[m";
 
 /* 8000BCF4-8000BCF8 006634 0004+00 1/1 0/0 0/0 .text            my_PrintHeap__FPCcUl */
 static void my_PrintHeap(char const* heapName, u32 heapSize) {
-    /* empty function */
+    return;
 }
-
-/* ############################################################################################## */
-/* 80373DE8-80373DE8 000448 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80373FFB = ""
-                                                            "\x1B"
-                                                            "[32m%-24s = size=%d KB\n"
-                                                            "\x1B"
-                                                            "[m";
-SECTION_DEAD static char const* const stringBase_80374017 = ""
-                                                            "\x1B"
-                                                            "[32m%-24s = %08x-%08x size=%d KB\n"
-                                                            "\x1B"
-                                                            "[m";
-#pragma pop
 
 /* 8000BCF8-8000BD44 006638 004C+00 1/1 0/0 0/0 .text            my_SysPrintHeap__FPCcPvUl */
 void my_SysPrintHeap(char const* message, void* start, u32 size) {
-    // "32m%-24s = %08x-%08x size=%d KB\n"
     OSReport_System("\x1b[32m%-24s = %08x-%08x size=%d KB\n\x1b[m", message, start,
                     (u32)start + size, size / 1024);
 }
@@ -577,7 +523,7 @@ SECTION_DEAD static char const* const stringBase_8037409E = "/map/Final/Release/
 #pragma pop
 
 /* 803A2F60-803A2F9C 000080 003C+00 1/0 0/0 0/0 .data            g_ntscZeldaIntDf */
-SECTION_DATA static _GXRenderModeObj g_ntscZeldaIntDf = {
+static _GXRenderModeObj g_ntscZeldaIntDf = {
     0,
     608,
     448,
@@ -605,7 +551,7 @@ SECTION_DATA static _GXRenderModeObj g_ntscZeldaIntDf = {
 };
 
 /* 803A2F9C-803A2FD8 0000BC 003C+00 1/1 1/1 0/0 .data            g_ntscZeldaProg */
-SECTION_DATA extern _GXRenderModeObj g_ntscZeldaProg = {
+extern _GXRenderModeObj g_ntscZeldaProg = {
     2,
     608,
     448,
@@ -634,7 +580,7 @@ SECTION_DATA extern _GXRenderModeObj g_ntscZeldaProg = {
 
 /* 804505A0-804505A8 -00001 0004+04 1/1 3/3 0/0 .sdata           mRenderModeObj__15mDoMch_render_c
  */
-SECTION_SDATA GXRenderModeObj* mDoMch_render_c::mRenderModeObj = &g_ntscZeldaIntDf;
+GXRenderModeObj* mDoMch_render_c::mRenderModeObj = &g_ntscZeldaIntDf;
 
 /* 8000BD44-8000C0CC 006684 0388+00 0/0 2/1 0/0 .text            mDoMch_Create__Fv */
 // reg alloc r30 - r31

@@ -236,4 +236,8 @@ inline s32 JKRResizeMemBlock(JKRHeap* heap, void* ptr, u32 size) {
     return JKRHeap::resize(ptr, size, heap);
 }
 
+inline JKRHeap* JKRGetRootHeap() {
+    return JKRHeap::getRootHeap();
+}
+
 #endif /* JKRHEAP_H */

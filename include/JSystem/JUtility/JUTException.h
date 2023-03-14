@@ -98,6 +98,10 @@ public:
         mGamePadPort = JUTGamePad::Port_Unknown;
     }
 
+    static void setMapFile(const char* map) {
+        appendMapFile(map);
+    }
+
 private:
     static OSMessageQueue sMessageQueue;
     static const char* sCpuExpName[17];

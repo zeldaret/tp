@@ -65,6 +65,10 @@ inline void mDoMtx_multVecZero(MtxP param_0, Vec* param_1) {
     param_1->z = param_0[2][3];
 }
 
+inline void mDoMtx_quatMultiply(Quaternion const * a, Quaternion const * b, Quaternion *ab) {
+    PSQUATMultiply(a,b,ab);
+}
+
 class mDoMtx_stack_c {
 public:
     /* 8000CCC8 */ static bool push();
