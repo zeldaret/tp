@@ -4,11 +4,11 @@
  */
 
 #include "d/save/d_save.h"
+#include "d/save/d_save_init.h"
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/meter/d_meter2_info.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 
 //
@@ -28,7 +28,6 @@ extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 // External References:
 //
 
-extern "C" void setInitEventBit__Fv();
 extern "C" void _savegpr_22();
 extern "C" void _restgpr_22();
 extern "C" void __div2i();
@@ -377,26 +376,24 @@ u8 dSv_player_item_c::getItem(int i_slotNo, bool i_checkCombo) const {
     return NO_ITEM;
 }
 
-/* ############################################################################################## */
-/* 803A7270-803A7288 004390 0017+01 1/1 0/0 0/0 .data            i_item_lst$4006 */
-static u8 i_item_lst[23] = {
-    0x0A, 0x08, 0x06, 0x02, 0x09, 0x04, 0x03, 0x00, 0x01, 0x17, 0x14, 0x05,
-    0x0F, 0x10, 0x11, 0x0B, 0x0C, 0x0D, 0x0E, 0x13, 0x12, 0x16, 0x15,
-};
-
 /* 800332F8-80033354 02DC38 005C+00 2/2 0/0 0/0 .text setLineUpItem__17dSv_player_item_cFv */
 void dSv_player_item_c::setLineUpItem() {
-    int i2 = 0;
+    static u8 i_item_lst[23] = {
+        0x0A, 0x08, 0x06, 0x02, 0x09, 0x04, 0x03, 0x00, 0x01, 0x17, 0x14, 0x05,
+        0x0F, 0x10, 0x11, 0x0B, 0x0C, 0x0D, 0x0E, 0x13, 0x12, 0x16, 0x15,
+    };
 
-    for (int i1 = 0; i1 < 24; i1++) {
-        mItemSlots[i1] = NO_ITEM;
+    int slot_idx = 0;
+
+    for (int i = 0; i < 24; i++) {
+        mItemSlots[i] = NO_ITEM;
     }
 
-    for (int i1 = 0; i1 < 23; i1++) {
-        u32 current = i_item_lst[i1];
+    for (int i = 0; i < 23; i++) {
+        u32 current = i_item_lst[i];
         if (mItems[current] != NO_ITEM) {
-            mItemSlots[i2] = current;
-            i2++;
+            mItemSlots[slot_idx] = current;
+            slot_idx++;
         }
     }
 }
@@ -1198,24 +1195,24 @@ void dSv_event_c::init() {
     for (int i = 0; i < MAX_EVENTS; i++) {
         mEvent[i] = 0;
     }
-    setInitEventBit__Fv();
+    setInitEventBit();
 }
 
 /* 8003498C-800349A4 02F2CC 0018+00 1/1 27/27 58/58 .text            onEventBit__11dSv_event_cFUs */
 void dSv_event_c::onEventBit(u16 i_no) {
-    mEvent[(i_no >> 8)] |= (u8)i_no;
+    mEvent[i_no >> 8] |= (u8)i_no;
 }
 
 /* 800349A4-800349BC 02F2E4 0018+00 1/1 14/14 23/23 .text            offEventBit__11dSv_event_cFUs
  */
 void dSv_event_c::offEventBit(u16 i_no) {
-    mEvent[(i_no >> 8)] &= ~(u8)i_no;
+    mEvent[i_no >> 8] &= ~(u8)i_no;
 }
 
 /* 800349BC-800349E0 02F2FC 0024+00 3/3 77/77 153/153 .text            isEventBit__11dSv_event_cCFUs
  */
 BOOL dSv_event_c::isEventBit(u16 i_no) const {
-    return mEvent[(i_no >> 8)] & (i_no & 0xFF) ? TRUE : FALSE;
+    return mEvent[i_no >> 8] & (i_no & 0xFF) ? TRUE : FALSE;
 }
 
 /* 800349E0-80034A04 02F320 0024+00 0/0 12/12 17/17 .text            setEventReg__11dSv_event_cFUsUc
@@ -1693,18 +1690,20 @@ SECTION_DEAD static char const* const stringBase_8037926C = "SAVE size:%d\n";
 int dSv_info_c::memory_to_card(char* card_ptr, int dataNum) {
     BOOL lantern_stolen;
     BOOL lantern_dropped;
+
+    OSTime start;
+    OSTime time;
     OSTime play_time;
     
     bool lantern_not_recovered = false;
     bool tmp_lantern_check = false;
     u16 current_lantern_oil = 0;
     
-    
     // If haven't gotten then lantern back from the monkey
     if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[226])) {
         // Store whether or not it's stolen and dropped
-        lantern_stolen = i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[224]);
-        lantern_dropped = i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[225]);
+        lantern_dropped = i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[224]);
+        lantern_stolen = i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[225]);
 
         // Then turn those events off
         dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[224]);
@@ -1730,9 +1729,10 @@ int dSv_info_c::memory_to_card(char* card_ptr, int dataNum) {
     card_ptr += dataNum * QUEST_LOG_SIZE;
     dSv_save_c* savedata = dComIfGs_getSaveData();
 
-    play_time = OSGetTime() - dComIfGs_getSaveStartTime();
-    play_time += dComIfGs_getSaveTotalTime();
-    // play_time += ();
+    start = dComIfGs_getSaveStartTime();
+    time = OSGetTime();
+
+    play_time = (time - start) + dComIfGs_getSaveTotalTime();
 
     // 3599940 = 999:59 in seconds
     if (dComIfGs_getSaveTotalTime() / OS_TIMER_CLOCK < 3599940) {
@@ -1740,15 +1740,16 @@ int dSv_info_c::memory_to_card(char* card_ptr, int dataNum) {
     }
 
     savedata->getPlayer().getPlayerStatusB().setDateIpl(OSGetTime());
+
     memcpy(card_ptr, savedata, sizeof(dSv_save_c));
     printf("Write size:%d\n", sizeof(dSv_save_c));
 
     // Now that we've saved, reset events if needed
     if (lantern_not_recovered == true) {
-        if (lantern_stolen) {
+        if (lantern_dropped) {
             dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[224]);
         }
-        if (lantern_dropped) {
+        if (lantern_stolen) {
             dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[225]);
         }
     }
@@ -1774,9 +1775,9 @@ asm int dSv_info_c::memory_to_card(char* card_ptr, int dataNum) {
 #endif
 
 /* 80035A04-80035BD0 030344 01CC+00 0/0 2/2 0/0 .text            card_to_memory__10dSv_info_cFPci */
-int dSv_info_c::card_to_memory(char* card_ptr, int dataNum) {
-    card_ptr = card_ptr + dataNum * QUEST_LOG_SIZE;
-    memcpy(dComIfGs_getSaveData(), card_ptr, sizeof(dSv_save_c));
+int dSv_info_c::card_to_memory(char* i_cardPtr, int i_dataNum) {
+    i_cardPtr = i_cardPtr + i_dataNum * QUEST_LOG_SIZE;
+    memcpy(dComIfGs_getSaveData(), i_cardPtr, sizeof(dSv_save_c));
 
     if (OSGetSoundMode() == OS_SOUND_MODE_MONO) {
         g_dComIfG_gameInfo.info.getPlayer().getConfig().setSound(OS_SOUND_MODE_MONO);
@@ -1795,12 +1796,12 @@ int dSv_info_c::card_to_memory(char* card_ptr, int dataNum) {
 
     dComIfGs_setKeyNum(6, 0);
 
-    if (dComIfGs_getItem(SLOT_9, 1) == W_HOOKSHOT) {
+    if (dComIfGs_getItem(SLOT_9, true) == W_HOOKSHOT) {
         dComIfGs_setItem(SLOT_10, W_HOOKSHOT);
         dComIfGs_setItem(SLOT_9, NO_ITEM);
     }
 
-    if (dComIfGs_getItem(SLOT_9, 1) == HOOKSHOT && dComIfGs_getItem(SLOT_10, true) == W_HOOKSHOT) {
+    if (dComIfGs_getItem(SLOT_9, true) == HOOKSHOT && dComIfGs_getItem(SLOT_10, true) == W_HOOKSHOT) {
         dComIfGs_setItem(SLOT_9, NO_ITEM);
     }
 
@@ -1818,15 +1819,15 @@ int dSv_info_c::card_to_memory(char* card_ptr, int dataNum) {
 
 /* 80035BD0-80035C88 030510 00B8+00 0/0 3/3 0/0 .text            initdata_to_card__10dSv_info_cFPci
  */
-int dSv_info_c::initdata_to_card(char* card_ptr, int dataNum) {
-    card_ptr = card_ptr + (dataNum * QUEST_LOG_SIZE);
-    dSv_save_c tmp;
+int dSv_info_c::initdata_to_card(char* i_cardPtr, int i_dataNum) {
+    i_cardPtr = i_cardPtr + (i_dataNum * QUEST_LOG_SIZE);
+    dSv_save_c save;
 
-    tmp.init();
-    tmp.getPlayer().getPlayerInfo().setPlayerName("");
-    tmp.getPlayer().getPlayerInfo().setHorseName("");
-    memcpy(card_ptr, &tmp, 0x958);
-    printf("INIT size:%d\n", 0x958);
+    save.init();
+    save.getPlayer().getPlayerInfo().setPlayerName("");
+    save.getPlayer().getPlayerInfo().setHorseName("");
+    memcpy(i_cardPtr, &save, sizeof(dSv_save_c));
+    printf("INIT size:%d\n", sizeof(dSv_save_c));
     return 0;
 }
 

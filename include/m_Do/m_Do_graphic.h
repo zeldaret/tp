@@ -22,6 +22,9 @@ public:
         /* 800095F8 */ void remove();
         /* 80009650 */ void draw();
 
+        u8 getEnable() { return mEnable; }
+        GXColor* getMonoColor() { return &mMonoColor; }
+
         /* 0x00 */ GXColor mBlendColor;
         /* 0x04 */ GXColor mMonoColor;
         /* 0x08 */ u8 mEnable;
@@ -43,9 +46,16 @@ public:
     /* 80008330 */ static void calcFade();
 
     static JUTFader* getFader() { return mFader; }
+    static void setFader(JUTFader* fader) {
+        JFWDisplay::getManager()->setFader(fader);
+        mFader = fader;
+    }
+
     static int startFadeOut(int param_0) { return JFWDisplay::getManager()->startFadeOut(param_0); }
     static int startFadeIn(int param_0) { return JFWDisplay::getManager()->startFadeIn(param_0); }
     static void setFadeColor(JUtility::TColor& color) { mFader->setColor(color); }
+    static void setClearColor(JUtility::TColor color) { JFWDisplay::getManager()->setClearColor(color); }
+    static void setBackColor(GXColor& color) { mBackColor = color; }
     static void endFrame() { JFWDisplay::getManager()->endFrame(); }
     static void offFade() { mFade = 0; }
     static u8 isFade() { return mFade; }
@@ -59,6 +69,8 @@ public:
     static f32 getHeight() { return 448.0f; }
     static f32 getMinYF() { return 0.0f; }
     static f32 getMinXF() { return 0.0f; }
+    static f32 getMaxYF() { return 448.0f; }
+    static f32 getMaxXF() { return 608.0f; }
     static int getMinY() { return 0; }
     static int getMinX() { return 0; }
     static int getMaxY() { return 448; }
@@ -69,6 +81,8 @@ public:
     static f32 getFadeRate() { return mFadeRate; }
     static bloom_c* getBloom() { return &m_bloom; }
     static GXColor& getFadeColor() { return mFadeColor; }
+    static GXColor& getBackColor() { return mBackColor; }
+    static void endRender() { JFWDisplay::getManager()->endRender(); }
 
     static GXTexObj mFrameBufferTexObj;
     static GXTexObj mZbufferTexObj;

@@ -218,7 +218,7 @@ private:
     /* 0x15EF4 */ void* field_0x15ef4;
 };
 
-class dDlst_window_c : public view_port_class {
+class dDlst_window_c {
 public:
     dDlst_window_c() {}
     ~dDlst_window_c() {}
@@ -228,9 +228,10 @@ public:
     void setCameraID(int id) { mCameraID = id; }
     s8 getCameraID() { return mCameraID; }
     void setMode(int mode) { mMode = mode; }
-    f32 getViewPort() { return mXOrig; }
+    view_port_class* getViewPort() { return &mViewport; }
 
 private:
+    /* 0x00 */ view_port_class mViewport;
     /* 0x28 */ s8 mCameraID;
     /* 0x29 */ s8 mMode;
 };
@@ -257,7 +258,7 @@ public:
     /* 800567C4 */ void draw(dDlst_base_c**, dDlst_base_c**);
     /* 8005681C */ static void wipeIn(f32 i_wipeSpeed, GXColor& i_wipeColor);
     /* 800568D8 */ static void wipeIn(f32 i_wipeSpeed);
-    /* 80056900 */ void calcWipe();
+    /* 80056900 */ static void calcWipe();
 
     enum DrawBuffer {
         /* 0x00 */ DB_OPA_LIST_SKY,
@@ -331,9 +332,34 @@ public:
         mPeekZ.newData(param_0, param_1, param_2);
     }
 
-    view_port_class* getViewport() {
-        return mViewport;
-    }
+    view_port_class* getViewport() { return mViewport; }
+
+    void drawCopy2D() { draw(mpCopy2DDraw[0], mpCopy2DSet[0]); }
+    void drawOpaListSky() { drawOpaDrawList(mDrawBuffers[DB_OPA_LIST_SKY]); }
+    void drawXluListSky() { drawXluDrawList(mDrawBuffers[DB_XLU_LIST_SKY]); }
+    void drawOpaListBG() { drawOpaDrawList(mDrawBuffers[DB_OPA_LIST_BG]); }
+    void drawOpaListDarkBG() { drawOpaDrawList(mDrawBuffers[DB_OPA_LIST_DARK_BG]); }
+    void drawOpaListMiddle() { drawOpaDrawList(mDrawBuffers[DB_LIST_MIDDLE]); }
+    void drawOpaList() { drawOpaDrawList(mDrawBuffers[DB_OPA_LIST]); }
+    void drawOpaListDark() { drawOpaDrawList(mDrawBuffers[DB_OPA_LIST_DARK]); }
+    void drawOpaListPacket() { drawOpaDrawList(mDrawBuffers[DB_OPA_LIST_PACKET]); }
+    void drawXluListBG() { drawXluDrawList(mDrawBuffers[DB_XLU_LIST_BG]); }
+    void drawXluListDarkBG() { drawXluDrawList(mDrawBuffers[DB_XLU_LIST_DARK_BG]); }
+    void drawXluList() { drawXluDrawList(mDrawBuffers[DB_XLU_LIST]); }
+    void drawXluListDark() { drawXluDrawList(mDrawBuffers[DB_XLU_LIST_DARK]); }
+    void drawXluListInvisible() { drawXluDrawList(mDrawBuffers[DB_XLU_LIST_INVISIBLE]); }
+    void drawOpaListInvisible() { drawOpaDrawList(mDrawBuffers[DB_OPA_LIST_INVISIBLE]); }
+    void drawXluListZxlu() { drawXluDrawList(mDrawBuffers[DB_LIST_Z_XLU]); }
+    void drawXluList2DScreen() { drawXluDrawList(mDrawBuffers[DB_LIST_2D_SCREEN]); }
+    void drawOpaList3Dlast() { drawOpaDrawList(mDrawBuffers[DB_LIST_3D_LAST]); }
+    void drawOpaListFilter() { drawOpaDrawList(mDrawBuffers[DB_LIST_FILTER]); }
+    void drawOpaListP0() { drawOpaDrawList(mDrawBuffers[DB_LIST_P0]); }
+    void draw2DOpa() { draw(mp2DOpaDraw[0], mp2DOpaSet[0]); }
+    void draw2DOpaTop() { draw(mp2DOpaTopDraw[0], mp2DOpaTopSet[0]); }
+    void draw2DXlu() { draw(mp2DXluDraw[0], mp2DXluSet[0]); }
+
+    void imageDrawShadow(Mtx param_0) { mShadowControl.imageDraw(param_0); }
+    void drawShadow(Mtx param_0) { mShadowControl.draw(param_0); }
 
     static void offWipe() { mWipe = 0; }
     static f32 getWipeRate() { return mWipeRate; }

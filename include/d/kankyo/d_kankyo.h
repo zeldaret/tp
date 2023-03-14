@@ -41,6 +41,7 @@ void dKy_bg_MAxx_proc(void* param_0);
 void dKy_change_colpat(u8 colpat);
 void dKy_BossLight_set(cXyz* param_0, _GXColor* param_1, f32 param_2, u8 param_3);
 void dKy_custom_colset(u8 prevGather, u8 curGather, f32 blend);
+void dKy_setLight();
 
 struct LIGHT_INFLUENCE {
     /* 800CFC7C */ ~LIGHT_INFLUENCE() {}

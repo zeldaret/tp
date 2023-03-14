@@ -230,21 +230,21 @@ extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 
 /* 80051AC0-80051ADC 04C400 001C+00 0/0 3/3 0/0 .text setViewPort__14dDlst_window_cFffffff */
 void dDlst_window_c::setViewPort(f32 xOrig, f32 yOrig, f32 width, f32 height, f32 nearZ, f32 farZ) {
-    mXOrig = xOrig;
-    mYOrig = yOrig;
-    mWidth = width;
-    mHeight = height;
-    mNearZ = nearZ;
-    mFarZ = farZ;
+    mViewport.mXOrig = xOrig;
+    mViewport.mYOrig = yOrig;
+    mViewport.mWidth = width;
+    mViewport.mHeight = height;
+    mViewport.mNearZ = nearZ;
+    mViewport.mFarZ = farZ;
 }
 
 /* 80051ADC-80051AF0 04C41C 0014+00 0/0 4/4 0/0 .text            setScissor__14dDlst_window_cFffff
  */
 void dDlst_window_c::setScissor(f32 xOrig, f32 yOrig, f32 width, f32 height) {
-    mScissorXOrig = xOrig;
-    mScissorYOrig = yOrig;
-    mScissorWidth = width;
-    mScissorHeight = height;
+    mViewport.mScissor.mXOrig = xOrig;
+    mViewport.mScissor.mYOrig = yOrig;
+    mViewport.mScissor.mWidth = width;
+    mViewport.mScissor.mHeight = height;
 }
 
 /* 80051AF0-80051CF0 04C430 0200+00 1/0 0/0 0/0 .text            draw__13dDlst_2DTri_cFv */
