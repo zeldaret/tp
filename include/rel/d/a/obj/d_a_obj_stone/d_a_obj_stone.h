@@ -9,15 +9,12 @@ enum {
     OBJ_STONE_TYPE_BIG = 1
 };
 
-enum {
-    OBJ_STONE_MODE_WAIT
-};
-
 class daObjStone_c : public fopAc_ac_c {
 public:
-    u8 getType() {
-        return fopAcM_GetParamBit(this,0,4);
-    }
+    u8 getType() { return fopAcM_GetParamBit(this,0,4); }
+    u8 getItemType() { return fopAcM_GetParamBit(this,4,2); }
+    u8 getItemNo() { return fopAcM_GetParamBit(this,8,8); }
+    u8 getItemBit() { return fopAcM_GetParamBit(this,16,8); }
 
     /* 80CE93C4 */ void initBaseMtx();
     /* 80CE9468 */ void setBaseMtx();
@@ -60,7 +57,7 @@ public:
     /* 0x0906 */ u8 mStoneType;                 // 0: small rock, 1: big rock
     /* 0x0907 */ u8 field_0x0907;
     /* 0x0908 */ u8 field_0x0908;
-    /* 0x090C */ u32 mMode;
+    /* 0x090C */ u32 mMode; // maybe a better name for this
     /* 0x0910 */ cXyz field_0x0910;
     /* 0x091C */ u16 field_0x091c;
     /* 0x091E */ u8 field_0x091E[0x0920 - 0x091E];
@@ -71,7 +68,7 @@ public:
     /* 0x0948 */ f32 mLastSpeedY; // maybe a better name for this
     /* 0x094C */ u8 field_0x094c;
     /* 0x094C */ u8 field_0x094d;
-    /* 0x094E */ u8 field_0x094e;
+    /* 0x094E */ bool mIsInWater;
     /* 0x094F */ u8 field_0x094f;
     /* 0x0950 */ u8 field_0x0950;
     /* 0x0951 */ u8 field_0x0951[0x0960 - 0x0951];

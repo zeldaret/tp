@@ -19,9 +19,9 @@ TARGET_COL := wii
 
 TARGET := dolzel2
 
-BUILD_PATH := build
-BUILD_DIR := $(BUILD_PATH)/$(TARGET)
-TARGET_ISO := $(BUILD_DIR)/dolzel2.iso
+BUILD_PATH 	:= build
+BUILD_DIR 	:= $(BUILD_PATH)/$(TARGET)
+TARGET_ISO 	:= $(BUILD_DIR)/dolzel2.iso
 
 SRC_DIRS := $(shell find src/ libs/ -type f -name '*.cpp')
 ASM_DIRS := $(shell find asm/ -type f -name '*.s')
@@ -30,11 +30,11 @@ ASM_DIRS := $(shell find asm/ -type f -name '*.s')
 LDSCRIPT := $(BUILD_DIR)/ldscript.lcf
 
 # Outputs
-DOL     := $(BUILD_DIR)/main.dol
-DOL_SHIFT := $(BUILD_DIR)/main_shift.dol
-ELF     := $(DOL:.dol=.elf)
-ELF_SHIFT     := $(DOL_SHIFT:.dol=.elf)
-MAP     := $(BUILD_DIR)/dolzel2.map
+DOL     	:= $(BUILD_DIR)/main.dol
+DOL_SHIFT 	:= $(BUILD_DIR)/main_shift.dol
+ELF     	:= $(DOL:.dol=.elf)
+ELF_SHIFT   := $(DOL_SHIFT:.dol=.elf)
+MAP     	:= $(BUILD_DIR)/dolzel2.map
 
 # include list of object files 
 include obj_files.mk
@@ -67,21 +67,21 @@ else
 	SHA1SUM := sha1sum
 endif
 
-AS        := $(DEVKITPPC)/bin/powerpc-eabi-as
-OBJCOPY   := $(DEVKITPPC)/bin/powerpc-eabi-objcopy
-STRIP     := $(DEVKITPPC)/bin/powerpc-eabi-strip
-CC        := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc_modded.exe
-DOLPHIN_LIB_CC := $(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe
-FRANK_CC  := $(WINE) tools/mwcc_compiler/1.2.5e/mwcceppc.exe
-LD        := $(WINE_LD) tools/mwcc_compiler/$(MWCC_VERSION)/mwldeppc.exe
-ELF2DOL   := $(BUILD_PATH)/elf2dol
-YAZ0   := $(BUILD_PATH)/yaz0.so
-PYTHON    := python3
-ICONV     := iconv
-DOXYGEN   := doxygen
-MAKEREL   := tools/makerel.py
-FRANK     := tools/frank.py
-IMAGENAME := gz2e01.iso
+AS        		:= $(DEVKITPPC)/bin/powerpc-eabi-as
+OBJCOPY   		:= $(DEVKITPPC)/bin/powerpc-eabi-objcopy
+STRIP     		:= $(DEVKITPPC)/bin/powerpc-eabi-strip
+CC        		:= $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc_modded.exe
+DOLPHIN_LIB_CC 	:= $(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe
+FRANK_CC  		:= $(WINE) tools/mwcc_compiler/1.2.5e/mwcceppc.exe
+LD        		:= $(WINE_LD) tools/mwcc_compiler/$(MWCC_VERSION)/mwldeppc.exe
+ELF2DOL   		:= $(BUILD_PATH)/elf2dol
+YAZ0   			:= $(BUILD_PATH)/yaz0.so
+PYTHON    		:= python3
+ICONV     		:= iconv
+DOXYGEN   		:= doxygen
+MAKEREL   		:= tools/makerel.py
+FRANK     		:= tools/frank.py
+IMAGENAME 		:= gz2e01.iso
 
 # Options
 INCLUDES := -i include -i include/dolphin/ -i src
@@ -101,13 +101,13 @@ DEPFLAGS := $(if $(DISABLE_DEPS),,-MD)
 $(BUILD_DIR)/src/init.o: CFLAGS := -Cpp_exceptions off -proc gekko -fp hard -O4,p -nodefaults -str pool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
 
 # __start.c needs mwcc 1.2.5 and O4,p
-$(BUILD_DIR)/src/__start.o: CFLAGS := -Cpp_exceptions off -proc gekko -fp hard -O4,p -nodefaults -str pool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
-$(BUILD_DIR)/src/__start.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/__start.o: CC := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc.exe
+$(BUILD_DIR)/src/__start.o: CFLAGS 			:= -Cpp_exceptions off -proc gekko -fp hard -O4,p -nodefaults -str pool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
+$(BUILD_DIR)/src/__start.o: MWCC_VERSION 	:= 1.2.5
+$(BUILD_DIR)/src/__start.o: CC 				:= $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc.exe
 
 # elf2dol needs to know these in order to calculate sbss correctly.
-SDATA_PDHR := 9
-SBSS_PDHR := 10
+SDATA_PDHR 	:= 9
+SBSS_PDHR 	:= 10
 
 #-------------------------------------------------------------------------------
 # Recipes
@@ -221,7 +221,7 @@ rungame: game
 iso: game
 	@$(PYTHON) tools/packageISO.py $(BUILD_DIR)/game/ $(TARGET_ISO)
 
-#
+
 $(BUILD_DIR)/%.o: %.c $(BUILD_DIR)/%.d
 	@mkdir -p $(@D)
 	@echo building... $<

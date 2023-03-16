@@ -3142,7 +3142,7 @@ public:
         return checkHookshotReadyAnime() || checkHookshotShootAnime();
     }
     BOOL checkBoomerangReadyAnime() const {
-        return (mEquipItem == BOOMERANG || mEquipItem == 0x102) && checkUpperAnime(0x54);
+        return (mEquipItem == BOOMERANG || mEquipItem == noentry71) && checkUpperAnime(0x54);
     }
     bool checkDkCaught2Anime() const { return checkUpperAnime(0x262); }
     BOOL checkCopyRodThrowAnime() const { return mEquipItem == COPY_ROD && checkUpperAnime(0x53); }
@@ -3181,7 +3181,7 @@ public:
     bool swordButton() { return itemButtonCheck(8); }
     daPy_actorKeep_c* getThrowBoomerangAcKeep() { return &mThrowBoomerangAcKeep; }
     s32 getStartRoomNo() { return fopAcM_GetParam(this) & 0x3F; }
-    bool checkFisingRodLure() const { return mEquipItem == 0x105; }
+    bool checkFisingRodLure() const { return mEquipItem == noentry73; }
     bool doTrigger() const { return mItemTrigger & BTN_A; }
     bool swordTrigger() { return itemTriggerCheck(BTN_B); }
     bool peepSubjectCancelTrigger() { return itemTriggerCheck(0x8); }

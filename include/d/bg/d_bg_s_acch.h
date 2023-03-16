@@ -137,6 +137,8 @@ public:
     void SetWaterHit() { m_flags |= WATER_HIT; }
     void ClrWaterIn() { m_flags &= ~WATER_IN; }
     void SetWaterIn() { m_flags |= WATER_IN; }
+    const u32 MaskWaterIn() { return m_flags & WATER_IN; }
+    const bool ChkWaterIn() { return MaskWaterIn();}
     void ClrGroundFind() { m_flags &= ~GROUND_FIND; }
     u32 MaskRoofHit() { return m_flags & ROOF_HIT; }
     bool ChkRoofHit() { return MaskRoofHit(); }

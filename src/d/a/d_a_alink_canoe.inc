@@ -109,7 +109,7 @@ BOOL daAlink_c::checkFishingRodGrab(fopAc_ac_c* param_0) const {
 /* 800F3EB8-800F3F38 0EE7F8 0080+00 0/0 0/0 2/2 .text
  * checkCanoePaddleGrab__9daAlink_cCFP10fopAc_ac_c              */
 BOOL daAlink_c::checkCanoePaddleGrab(fopAc_ac_c* param_0) const {
-    return mEquipItem == 0x10B && checkCanoeRideOwn(param_0);
+    return mEquipItem == noentry79 && checkCanoeRideOwn(param_0);
 }
 
 /* 800F3F38-800F3FC4 0EE878 008C+00 0/0 0/0 1/1 .text checkCanoeFishingRodGrabOrPut__9daAlink_cCFv
