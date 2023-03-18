@@ -81,6 +81,64 @@ struct dFile_info_c {
     /* 80192D60 */ void _draw();
 };
 
+// temp struct in order to get matches
+class dFs_HIO_c_tmp {
+public:
+    /* 0x0000 */ void* vtable;
+    /* 0x0004 */ s8 field_0x0004;
+    /* 0x0005 */ u8 field_0x0005;
+    /* 0x0006 */ u8 field_0x0006;
+    /* 0x0007 */ u8 field_0x0007;
+    /* 0x0008 */ u8 field_0x0008;
+    /* 0x0009 */ u8 field_0x0009;
+    /* 0x000A */ u8 field_0x000a;
+    /* 0x000B */ u8 field_0x000b;
+    /* 0x000C */ u8 field_0x000c;
+    /* 0x000D */ u8 field_0x000d;
+    /* 0x000E */ u8 field_0x000e[2];
+    /* 0x0010 */ float field_0x0010;
+    /* 0x0014 */ float field_0x0014;
+    /* 0x0018 */ float field_0x0018;
+    /* 0x001C */ u8 field_0x001c;
+    /* 0x001D */ u8 field_0x001d;
+    /* 0x001E */ u8 field_0x001e;
+    /* 0x001F */ u8 field_0x001f;
+    /* 0x0020 */ u8 field_0x0020;
+    /* 0x0021 */ u8 field_0x0021;
+    /* 0x0022 */ u8 field_0x0022;
+    /* 0x0023 */ u8 field_0x0023;
+};
+
+class dFs_HIO_c {
+public:
+    /* 801835F8 */ dFs_HIO_c();
+    /* 801913E0 */ virtual ~dFs_HIO_c();
+
+    /* 0x0000 */ // void* vtable;
+    /* 0x0004 */ s8 field_0x0004;
+    /* 0x0005 */ u8 field_0x0005;
+    /* 0x0006 */ u8 field_0x0006;
+    /* 0x0007 */ u8 field_0x0007;
+    /* 0x0008 */ u8 field_0x0008;
+    /* 0x0009 */ u8 field_0x0009;
+    /* 0x000A */ u8 field_0x000a;
+    /* 0x000B */ u8 field_0x000b;
+    /* 0x000C */ u8 field_0x000c;
+    /* 0x000D */ u8 field_0x000d;
+    /* 0x000E */ u8 field_0x000e[2];
+    /* 0x0010 */ float field_0x0010;
+    /* 0x0014 */ float field_0x0014;
+    /* 0x0018 */ float field_0x0018;
+    /* 0x001C */ u8 field_0x001c;
+    /* 0x001D */ u8 field_0x001d;
+    /* 0x001E */ u8 field_0x001e;
+    /* 0x001F */ u8 field_0x001f;
+    /* 0x0020 */ u8 field_0x0020;
+    /* 0x0021 */ u8 field_0x0021;
+    /* 0x0022 */ u8 field_0x0022;
+    /* 0x0023 */ u8 field_0x0023;
+};
+
 class dFile_select_c {
 public:
     /* 8018366C */ dFile_select_c(JKRArchive*);
@@ -112,7 +170,7 @@ public:
     /* 801868EC */ void menuSelectStart();
     /* 80186A80 */ void menuSelectCansel();
     /* 80186B48 */ void menuMoveAnmInitSet(int, int);
-    /* 80186CAC */ void menuMoveAnm();
+    /* 80186CAC */ bool menuMoveAnm();
     /* 80186E14 */ void menuSelectAnmSet();
     /* 80186F98 */ void menuSelectMoveAnm();
     /* 8018721C */ void ToNameMove();
@@ -141,7 +199,7 @@ public:
     /* 80188994 */ void copyToSelBack();
     /* 80188B54 */ void copyToSelPaneMove();
     /* 80188BBC */ void yesnoMenuMoveAnmInitSet(int, int);
-    /* 80188D38 */ void yesnoMenuMoveAnm();
+    /* 80188D38 */ bool yesnoMenuMoveAnm();
     /* 80188ED0 */ void yesnoSelectMoveAnm();
     /* 8018912C */ void yesnoCursorShow();
     /* 8018929C */ void YesNoSelect();
@@ -176,12 +234,12 @@ public:
     /* 8018CF50 */ void displayInit();
     /* 8018D044 */ void setSaveData();
     /* 8018D0E4 */ void headerTxtSet(u16, u8, u8);
-    /* 8018D25C */ void headerTxtChangeAnm();
+    /* 8018D25C */ bool headerTxtChangeAnm();
     /* 8018D344 */ void modoruTxtChange(u8);
     /* 8018D3A0 */ void modoruTxtDispAnmInit(u8);
-    /* 8018D41C */ void modoruTxtDispAnm();
+    /* 8018D41C */ bool modoruTxtDispAnm();
     /* 8018D4F8 */ void ketteiTxtDispAnmInit(u8);
-    /* 8018D574 */ void ketteiTxtDispAnm();
+    /* 8018D574 */ bool ketteiTxtDispAnm();
     /* 8018D650 */ void selectWakuAlpahAnmInit(u8, u8, u8, u8);
     /* 8018D68C */ void selectWakuAlpahAnm(u8);
     /* 8018D764 */ void selFileCursorShow();
@@ -192,7 +250,7 @@ public:
     /* 8018DBCC */ void yesnoWakuAlpahAnm(u8);
     /* 8018DD38 */ void _draw();
     /* 8018E130 */ void errorMoveAnmInitSet(int, int);
-    /* 8018E1C0 */ void errorMoveAnm();
+    /* 8018E1C0 */ bool errorMoveAnm();
     /* 8018E2B4 */ void errDispInitSet(int, int);
     /* 8018E4CC */ void MemCardCheckMain();
     /* 8018E504 */ void MemCardStatCheck();
@@ -231,15 +289,21 @@ public:
     /* 8018FBF8 */ void MemCardErrYesNoCursorMoveAnm();
     /* 8018FC64 */ void errorTxtSet(u16);
     /* 8018FD30 */ void errorTxtChangeAnm();
-    /* 8018FE18 */ void fileRecScaleAnm();
+    /* 8018FE18 */ bool fileRecScaleAnm();
     /* 8018FE64 */ void fileRecScaleAnmInitSet2(f32, f32);
     /* 8018FEF4 */ void fileRecScaleAnm2();
-    /* 8018FF9C */ void fileInfoScaleAnm();
+    /* 8018FF9C */ bool fileInfoScaleAnm();
     /* 80190074 */ void nameMoveAnmInitSet(int, int);
-    /* 80190124 */ void nameMoveAnm();
+    /* 80190124 */ bool nameMoveAnm();
     /* 80190208 */ void MemCardSaveDataClear();
     /* 80190254 */ void setInitSaveData();
     /* 801902B8 */ void dataSave();
+
+    bool getFadeFlag() { return mFadeFlag; }
+    int isDataNew(u8 i) { return mDataNew[i]; }
+    int isSelectEnd() { return mSelectEnd; }
+    u8 getSelectNum() { return mSelectNum; }
+    void setUseType(u8 type) { mUseType = type; }
 
     /* 0x0000 */ void* vtable;                           
     /* 0x0004 */ u8 field_0x04[4];                       
@@ -262,22 +326,28 @@ public:
     /* 0x007C */ dFile_info_c* mpFileInfo[2];            
     /* 0x0084 */ J2DAnmBase* mpAnmBase[7];               
     /* 0x00A0 */ u8 field_0xa0[4];                       
-    /* 0x00A4 */ CPaneMgr* mpPaneMgr;                    
+    /* 0x00A4 */ CPaneMgr* mpPaneMgr1;                    
     /* 0x00A8 */ u8 field_0xa8[0xbc-0xa8];               
-    /* 0x00BC */ CPaneMgr* mpPaneMgrs[4];                
-    /* 0x00CC */ u8 field_0xbc[0x108 - 0xcc];            
+    /* 0x00BC */ CPaneMgr* mpPaneMgrs[4];
+    /* 0x00CC */ u8 field_0x00cc[8];
+    /* 0x00D4 */ float field_0x00d4;
+    /* 0x00D8 */ u8 field_0xd8[0x108 - 0xd8];
     /* 0x0108 */ bool field_0x108;                       
     /* 0x0109 */ bool field_0x109;                       
     /* 0x010A */ u8 field_0x10a[2];                      
     /* 0x010C */ J2DPane* mpPane;                        
-    /* 0x0110 */ u8 field_0x0110[0x0118 - 0x0110];
+    /* 0x0110 */ int field_0x0110;
+    /* 0x0110 */ int field_0x0114;
     /* 0x0118 */ J2DPane* field_0x0118;
     /* 0x011C */ J2DPane* field_0x011c;
-    /* 0x0120 */ u8 field_0x0120[0x0128 - 0x0120];
+    /* 0x0120 */ int field_0x0120;
+    /* 0x0124 */ int field_0x0124;
     /* 0x0128 */ bool field_0x0128;
     /* 0x0129 */ u8 field_0x0129[0x012C - 0x0129];
     /* 0x012C */ J2DPane* field_0x012c;
-    /* 0x0130 */ u8 field_0x0130[0x014A - 0x0130];
+    /* 0x0130 */ int field_0x0130;
+    /* 0x0134 */ int field_0x0134;
+    /* 0x0138 */ u8 field_0x0138[0x014A - 0x0138];
     /* 0x014A */ bool field_0x014a;
     /* 0x014B */ bool field_0x014b;
     /* 0x014C */ u8 field_0x014C[0x0188 - 0x014C];
@@ -298,7 +368,12 @@ public:
     /* 0x01F8 */ J2DAnmBase* field_0x01f8;
     /* 0x01FC */ u8 field_0x01FC[0x0200 - 0x01FC];
     /* 0x0200 */ J2DAnmBase* field_0x0200;
-    /* 0x0204 */ u8 field_0x0204[0x0238 - 0x0204];
+    /* 0x0204 */ u8 field_0x0204[8];
+    /* 0x020C */ CPaneMgrAlpha* field_0x020c;
+    /* 0x0210 */ u8 field_0x0210[0x021C - 0x0210];
+    /* 0x021C */ u8 field_0x021c;
+    /* 0x021D */ u8 field_0x021d;
+    /* 0x021E */ u8 field_0x021e[0x0238 - 0x021E];
     /* 0x0238 */ CPaneMgrAlpha* field_0x0238;
     /* 0x023C */ CPaneMgrAlpha* field_0x023c;
     /* 0x0240 */ CPaneMgrAlpha* field_0x0240;
@@ -308,12 +383,20 @@ public:
     /* 0x024B */ u8 field_0x024B[0x0250 - 0x024B];
     /* 0x0250 */ char* field_0x0250;
     /* 0x0254 */ STControl* mStick;
-    /* 0x0258 */ u8 field_0x0258[0x0264 - 0x0258];
+    /* 0x0258 */ u8 mDataNew[3];
+    /* 0x025B */ u8 field_0x025b;
+    /* 0x025C */ u8 field_0x025c[0x0264 - 0x025C];
     /* 0x0264 */ u8 field_0x0264;
-    /* 0x0265 */ u8 field_0x0265;
-    /* 0x0266 */ u8 field_0x0266[0x026F - 0x0266];
+    /* 0x0265 */ u8 mSelectNum;
+    /* 0x0266 */ u8 field_0x0266;
+    /* 0x0267 */ u8 field_0x0267;
+    /* 0x0268 */ u8 field_0x0268[0x026A - 0x0268];
+    /* 0x026A */ u8 field_0x026a;
+    /* 0x026B */ u8 field_0x026b[0x026e - 0x026b];
+    /* 0x026E */ u8 field_0x026e;
     /* 0x026F */ u8 field_0x026f;
-    /* 0x0270 */ u8 field_0x0270[0x0283 - 0x0270];
+    /* 0x0270 */ bool mSelectEnd;
+    /* 0x0271 */ u8 field_0x0271[0x0283 - 0x0271];
     /* 0x0283 */ bool field_0x0283;
     /* 0x0284 */ u8 field_0x0284[0x029C - 0x0284];
     /* 0x029C */ J2DAnmBase* field_0x029c;
@@ -335,80 +418,52 @@ public:
     /* 0x031C */ J2DAnmBase* field_0x031c;
     /* 0x0320 */ J2DAnmBase* field_0x0320;
     /* 0x0324 */ u8 field_0x0324[0x0328 - 0x0324];
-    /* 0x0328 */ J2DAnmBase* field_0x0328;
-    /* 0x032C */ J2DAnmBase* field_0x032c;
+    /* 0x0328 */ J2DAnmTransform* field_0x0328; // actually J2DAnmVtxColor?
+    /* 0x032C */ J2DAnmTransform* field_0x032c;
     /* 0x0330 */ J2DAnmBase* field_0x0330;
     /* 0x0334 */ u8 field_0x0334[0x0338 - 0x0334];
     /* 0x0338 */ J2DAnmBase* field_0x0338;
-    /* 0x033C */ u8 field_0x033C[0x0360 - 0x033C];
+    /* 0x033C */ u8 field_0x033c[4];
+    /* 0x0340 */ CPaneMgrAlpha* field_0x0340;
+    /* 0x0344 */ u8 field_0x0344[8];
+    /* 0x034C */ s32 field_0x034c;
+    /* 0x0350 */ u8 field_0x0350[8];
+    /* 0x0358 */ int field_0x0358;
+    /* 0x035C */ int field_0x035c;
     /* 0x0360 */ bool field_0x0360;
-    /* 0x0361 */ u8 field_0x0361[0x03A0 - 0x0361];
+    /* 0x0361 */ u8 field_0x0361[3];
+    /* 0x0364 */ CPaneMgrAlpha* mpPaneAlpha1;
+    /* 0x0368 */ u8 field_0x0368[8];
+    /* 0x0370 */ CPaneMgrAlpha* mpPaneAlpha2;
+    /* 0x0374 */ u8 field_0x0374[8];
+    /* 0x037C */ CPaneMgrAlpha* mpPaneAlpha3;
+    /* 0x0380 */ u8 field_0x0380[8];
+    /* 0x0388 */ u8 field_0x0388;
+    /* 0x0389 */ u8 field_0x0389;
+    /* 0x038A */ u8 field_0x038a;
+    /* 0x038B */ u8 field_0x038b;
+    /* 0x038C */ u8 field_0x038c;
+    /* 0x038D */ u8 field_0x038d;
+    /* 0x038E */ u8 field_0x038e;
+    /* 0x038F */ u8 field_0x038f;
+    /* 0x0390 */ u8 field_0x0390[4];
+    /* 0x0394 */ CPaneMgr* mpPaneMgr2;
+    /* 0x0398 */ u8 field_0x0398[0x03A0 - 0x0398];
     /* 0x03A0 */ J2DAnmBase* field_0x03a0;
     /* 0x03A4 */ u8 field_0x03A4[0x03A8 - 0x03A4];
     /* 0x03A8 */ CPaneMgr* field_0x03a8;
     /* 0x03AC */ s16 field_0x03ac;
-    /* 0x03AE */ u8 field_0x03AE[0x2375 - 0x03AE];
-    /* 0x2375 */ bool has_drawn;
+    /* 0x03AE */ u8 field_0x03AE[0x03B0 - 0x03AE];
+    /* 0x03B0 */ u8 mUseType;
+    /* 0x03B1 */ u8 field_0x03b1[7];
+    /* 0x03B8 */ char mpMemCard;
+    /* 0x03B9 */ u8 field_0x03b9[3];
+    /* 0x03BC */ u8 field_0x03bc[0x2374 - 0x3BC];
+    /* 0x2374 */ bool mFadeFlag;
+    /* 0x2375 */ bool mHasDrawn;
     /* 0x2376 */ u8 field_0x2376[0x2378 - 0x2376];
     /* 0x2378 */ J2DPicture* field_0x2378;
 };
 STATIC_ASSERT(sizeof(dFile_select_c) == 0x237C);
-
-class dFs_HIO_c_tmp {
-public:
-    /* 0x0000 */ void* vtable;
-    /* 0x0004 */ s8 field_0x0004;
-    /* 0x0005 */ u8 field_0x0005;
-    /* 0x0006 */ u8 field_0x0006;
-    /* 0x0007 */ u8 field_0x0007;
-    /* 0x0008 */ u8 field_0x0008;
-    /* 0x0009 */ u8 field_0x0009;
-    /* 0x000A */ u8 field_0x000a;
-    /* 0x000B */ u8 field_0x000b;
-    /* 0x000C */ u8 field_0x000c;
-    /* 0x000D */ u8 field_0x000d;
-    /* 0x000E */ u8 field_0x000e[2];
-    /* 0x0010 */ float field_0x0010;
-    /* 0x0014 */ float field_0x0014;
-    /* 0x0018 */ float field_0x0018;
-    /* 0x001C */ u8 field_0x001c;
-    /* 0x001D */ u8 field_0x001d;
-    /* 0x001E */ u8 field_0x001e;
-    /* 0x001F */ u8 field_0x001f;
-    /* 0x0020 */ u8 field_0x0020;
-    /* 0x0021 */ u8 field_0x0021;
-    /* 0x0022 */ u8 field_0x0022;
-    /* 0x0023 */ u8 field_0x0023;
-};
-
-class dFs_HIO_c {
-public:
-    /* 801835F8 */ dFs_HIO_c();
-    /* 801913E0 */ virtual ~dFs_HIO_c();
-
-    /* 0x0000 */ void* vtable;
-    /* 0x0004 */ s8 field_0x0004;
-    /* 0x0005 */ u8 field_0x0005;
-    /* 0x0006 */ u8 field_0x0006;
-    /* 0x0007 */ u8 field_0x0007;
-    /* 0x0008 */ u8 field_0x0008;
-    /* 0x0009 */ u8 field_0x0009;
-    /* 0x000A */ u8 field_0x000a;
-    /* 0x000B */ u8 field_0x000b;
-    /* 0x000C */ u8 field_0x000c;
-    /* 0x000D */ u8 field_0x000d;
-    /* 0x000E */ u8 field_0x000e[2];
-    /* 0x0010 */ float field_0x0010;
-    /* 0x0014 */ float field_0x0014;
-    /* 0x0018 */ float field_0x0018;
-    /* 0x001C */ u8 field_0x001c;
-    /* 0x001D */ u8 field_0x001d;
-    /* 0x001E */ u8 field_0x001e;
-    /* 0x001F */ u8 field_0x001f;
-    /* 0x0020 */ u8 field_0x0020;
-    /* 0x0021 */ u8 field_0x0021;
-    /* 0x0022 */ u8 field_0x0022;
-    /* 0x0023 */ u8 field_0x0023;
-};
 
 #endif /* D_FILE_D_FILE_SELECT_H */

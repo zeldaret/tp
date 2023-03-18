@@ -937,6 +937,10 @@ inline void dComIfGs_setCollectClothes(u8 i_clothesNo) {
     g_dComIfG_gameInfo.info.getPlayer().getCollect().setCollect(COLLECT_CLOTHING, i_clothesNo);
 }
 
+inline void dComIfGs_setCardToMemory(char* card_ptr,int dataNum) {
+    g_dComIfG_gameInfo.info.card_to_memory(card_ptr,dataNum);
+}
+
 inline void dComIfGs_setRodTypeLevelUp() {
     g_dComIfG_gameInfo.info.getPlayer().getItem().setRodTypeLevelUp();
 }

@@ -2,7 +2,7 @@
  * d_a_obj_stone.cpp
  * Actor - Object Stone
  * 
- * Small and large rocks used in Death Mountain
+ * Small and large rocks
  * 
  */
 

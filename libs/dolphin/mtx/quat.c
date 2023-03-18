@@ -93,37 +93,32 @@ SECTION_SDATA2 static f32 lit_261 = 0.9999899864196777f;
 #ifdef NONMATCHING
 // matches with literals
 void C_QUATSlerp(const Quaternion* p, const Quaternion* q, Quaternion* r, f32 t) {
-    f32 value2, tmp1, tmp2;
+    f32 ratioA, ratioB;
 
     f32 value = 1.0f;
-    f32 result =  p->x*q->x + p->y*q->y + p->z*q->z + p->w*q->w;
+    f32 cosHalfTheta =  p->x*q->x + p->y*q->y + p->z*q->z + p->w*q->w;
 
-    if (result < 0.0f) {
-        result = -result;
+    if (cosHalfTheta < 0.0f) {
+        cosHalfTheta = -cosHalfTheta;
         value = -value;
     }
 
-    if (result <= 0.9999899864196777f) {
-        result = acosf(result);
-        tmp1 = result;
+    if (cosHalfTheta <= 0.9999899864196777f) {
+        f32 halfTheta = acosf(cosHalfTheta);
+        f32 sinHalfTheta = sinf(halfTheta);
 
-        result = sinf(result);
-        tmp2 = result;
-
-        result = sinf((1.0f - t) * tmp1);
-        value2 = result / tmp2;
-        
-        result = sinf(t * tmp1);
-        value *= result / tmp2;
+        ratioA = sinf((1.0f - t) * halfTheta) / sinHalfTheta;
+        ratioB = sinf(t * halfTheta) / sinHalfTheta;
+        value *= ratioB;
     } else {
+        ratioA = 1.0f - t;
         value *= t;
-        value2 = 1.0f - t;
     }
     
-    r->x = (value2 * p->x) + value * q->x;
-    r->y = (value2 * p->y) + value * q->y;
-    r->z = (value2 * p->z) + value * q->z;
-    r->w = (value2 * p->w) + value * q->w;
+    r->x = (ratioA * p->x) + (value * q->x);
+    r->y = (ratioA * p->y) + (value * q->y);
+    r->z = (ratioA * p->z) + (value * q->z);
+    r->w = (ratioA * p->w) + (value * q->w);
 }
 #else
 #pragma push

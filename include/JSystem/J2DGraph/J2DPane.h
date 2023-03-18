@@ -94,8 +94,7 @@ public:
     /* vt 0x70 */ virtual void setAnimation(J2DAnmTevRegKey* anm) {}
     /* vt 0x74 */ virtual void setAnimation(J2DAnmVisibilityFull* anm) {}
     /* vt 0x78 */ virtual void setAnimation(J2DAnmVtxColor* anm) {}
-    /* vt 0x7C */ virtual const J2DAnmTransform*
-    animationTransform(const J2DAnmTransform* transform);
+    /* vt 0x7C */ virtual const J2DAnmTransform* animationTransform(const J2DAnmTransform* transform);
     /* vt 0x80 */ virtual void setVisibileAnimation(J2DAnmVisibilityFull* visibility);
     /* vt 0x84 */ virtual void setAnimationVF(J2DAnmVisibilityFull* visibility);
     /* vt 0x88 */ virtual void setVtxColorAnimation(J2DAnmVtxColor* vtx_color);
