@@ -52,7 +52,7 @@ public:
     void init(void);
     int setFloatingMessage(u16, s16, bool);
     int setFloatingFlow(u16, s16, bool);
-    int isFloatingMessageVisible(void);
+    bool isFloatingMessageVisible(void);
     int decFloatingMessageTimer(void);
     void resetFloatingMessage(void);
     void decMsgKeyWaitTimer(void);
@@ -149,6 +149,8 @@ public:
     u32 getTimeMs() { return mTimeMs; }
     u8 getNowCount() { return mNowCount; }
     void setScopeZoomPointer(u8 param_0) { mScopeZoomPointer = param_0; }
+    u8 getItemExplainWindowStatus() { return mItemExplainWindowStatus; }
+    void resetDirectUseItem() { mDirectUseItem = 0; }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -242,6 +244,7 @@ void dMeter2Info_set2DVibration();
 void dMeter2Info_set2DVibrationM();
 static void dMeter2Info_setFloatingMessage(u16 pMessageID, s16 pMessageTimer, bool pWakuVisible);
 static void dMeter2Info_offUseButton(int pButton);
+bool dMeter2Info_is2DActiveTouchArea();
 
 inline void dMeter2Info_Initialize() {
     g_meter2_info.init();
@@ -521,6 +524,18 @@ inline u8 dMeter2Info_getNowCount() {
 
 inline void dMeter2Info_setScopeZoomPointer(u8 param_0) {
     g_meter2_info.setScopeZoomPointer(param_0);
+}
+
+inline bool dMeter2Info_isFloatingMessageVisible() {
+    return g_meter2_info.isFloatingMessageVisible();
+}
+
+inline u8 dMeter2Info_getItemExplainWindowStatus() {
+    return g_meter2_info.getItemExplainWindowStatus();
+}
+
+inline void dMeter2Info_resetDirectUseItem() {
+    g_meter2_info.resetDirectUseItem();
 }
 
 char* dMeter2Info_getNumberTextureName(int pIndex);

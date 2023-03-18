@@ -326,7 +326,7 @@ int dMeter2Info_c::setFloatingFlow(u16 flowID, s16 msgTimer, bool wakuVisible) {
 
 /* 8021C1DC-8021C1F0 216B1C 0014+00 0/0 4/4 0/0 .text isFloatingMessageVisible__13dMeter2Info_cFv
  */
-int dMeter2Info_c::isFloatingMessageVisible() {
+bool dMeter2Info_c::isFloatingMessageVisible() {
     return mFloatingMessageTimer > 0;
 }
 

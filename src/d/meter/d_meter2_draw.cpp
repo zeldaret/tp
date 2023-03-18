@@ -2105,7 +2105,7 @@ asm void dMeter2Draw_c::drawButtonXY(int param_0, u8 param_1, u8 param_2, bool p
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Draw_c::getButtonCrossParentInitTransY() {
+asm f32 dMeter2Draw_c::getButtonCrossParentInitTransY() {
     nofralloc
 #include "asm/d/meter/d_meter2_draw/getButtonCrossParentInitTransY__13dMeter2Draw_cFv.s"
 }
@@ -2332,7 +2332,7 @@ static u8 i_text_buf[32];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Draw_c::getActionString(u8 param_0, u8 param_1, u8* param_2) {
+asm char* dMeter2Draw_c::getActionString(u8 param_0, u8 param_1, u8* param_2) {
     nofralloc
 #include "asm/d/meter/d_meter2_draw/getActionString__13dMeter2Draw_cFUcUcPUc.s"
 }
@@ -2687,7 +2687,7 @@ bool dMeter2Draw_c::getCanoeFishing() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Draw_c::getCameraSubject() {
+asm bool dMeter2Draw_c::getCameraSubject() {
     nofralloc
 #include "asm/d/meter/d_meter2_draw/getCameraSubject__13dMeter2Draw_cFv.s"
 }
@@ -2698,7 +2698,7 @@ asm void dMeter2Draw_c::getCameraSubject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Draw_c::getItemSubject() {
+asm bool dMeter2Draw_c::getItemSubject() {
     nofralloc
 #include "asm/d/meter/d_meter2_draw/getItemSubject__13dMeter2Draw_cFv.s"
 }
@@ -2714,7 +2714,7 @@ bool dMeter2Draw_c::getPlayerSubject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Draw_c::isBButtonShow(bool param_0) {
+asm bool dMeter2Draw_c::isBButtonShow(bool param_0) {
     nofralloc
 #include "asm/d/meter/d_meter2_draw/isBButtonShow__13dMeter2Draw_cFb.s"
 }

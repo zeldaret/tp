@@ -209,7 +209,7 @@ public:
     /* 802179C0 */ void drawButtonS(u8);
     /* 80217A10 */ void drawButtonBin(u8);
     /* 80217AB4 */ void drawButtonXY(int, u8, u8, bool, bool);
-    /* 80218238 */ void getButtonCrossParentInitTransY();
+    /* 80218238 */ f32 getButtonCrossParentInitTransY();
     /* 80218254 */ void drawButtonCross(f32, f32);
     /* 80218338 */ void setAlphaButtonCrossAnimeMin();
     /* 802183A8 */ void setAlphaButtonCrossAnimeMax();
@@ -229,7 +229,7 @@ public:
     /* 80219A84 */ void setButtonIconMidonaAlpha(u32);
     /* 80219E98 */ void setButtonIconAlpha(int, u8, u32, bool);
     /* 8021A29C */ ResTIMG* getNumberTexture(int);
-    /* 8021A2F4 */ void getActionString(u8, u8, u8*);
+    /* 8021A2F4 */ char* getActionString(u8, u8, u8*);
     /* 8021A468 */ void changeTextureItemB(u8);
     /* 8021A71C */ void changeTextureItemXY(int, u8);
     /* 8021A9C8 */ void setAlphaAnimeMin(CPaneMgrAlpha*, s16);
@@ -244,16 +244,28 @@ public:
     /* 8021B810 */ void setItemParamB(u8);
     /* 8021BB6C */ bool getFishingType();
     /* 8021BBB4 */ bool getCanoeFishing();
-    /* 8021BC24 */ void getCameraSubject();
-    /* 8021BC54 */ void getItemSubject();
+    /* 8021BC24 */ bool getCameraSubject();
+    /* 8021BC54 */ bool getItemSubject();
     /* 8021BCAC */ bool getPlayerSubject();
-    /* 8021BCC0 */ void isBButtonShow(bool);
+    /* 8021BCC0 */ bool isBButtonShow(bool);
     /* 8021BDD0 */ s16 getButtonTimer();
 
     /* 802102F8 */ virtual ~dMeter2Draw_c();
 
     J2DScreen* getMainScreenPtr() { return mpScreen; }
     bool isEmphasisC() { return field_0x766 == 7 ? true : false; }
+    f32 getMeterGaugeAlphaRate(u8 i_no) { return mMeterAlphaRate[i_no]; }
+    bool isEmphasisA() { return field_0x761 == 7 ? true : false; }
+    bool isEmphasisB() { return field_0x762 == 7 ? true : false; }
+    bool isEmphasisBin() { return field_0x763 == 7 ? true : false; }
+    bool isEmphasisZ() { return field_0x764 == 7 ? true : false; }
+    bool isEmphasis3D() { return field_0x765 == 7 ? true : false; }
+    bool isEmphasisS() { return field_0x767 == 7 ? true : false; }
+    bool isEmphasisX() { return field_0x768[0] == 7 ? true : false; }
+    bool isEmphasisY() { return field_0x768[1] == 7 ? true : false; }
+    bool isEmphasisR() { return field_0x768[2] == 7 ? true : false; }
+    void setEmphasisA(u8 param_0) { field_0x761 = param_0; }
+    void setEmphasisB(u8 param_0) { field_0x762 = param_0; }
 
 private:
     /* 0x004 */ f32 field_0x4;

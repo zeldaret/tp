@@ -1031,6 +1031,10 @@ inline int dStage_stagInfo_GetRangeDown(stage_stag_info_class* pstag) {
     return pstag->mRangeDown;
 }
 
+inline u32 dStage_stagInfo_ChkKeyDisp(stage_stag_info_class* pstag) {
+    return pstag->field_0x09 & 1;
+}
+
 inline u32 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {
     return p_info->field_0xb & 0xF;
 }
