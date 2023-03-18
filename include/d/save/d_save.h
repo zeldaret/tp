@@ -392,15 +392,16 @@ public:
     u16 getRupeeMax() const;
     int isMagicFlag(u8 i_magic) const;
 
-    u16 getMaxLife() { return mMaxLife; }
+    u16 getMaxLife() const { return mMaxLife; }
     u16 getLife() const { return mLife; }
     u16 getRupee() const { return mRupee; }
-    u16 getOil() { return mOil; }
+    u16 getOil() const { return mOil; }
     u16 getMaxOil() const { return mMaxOil; }
-    u8& getMagic() { return mMagic; }
-    u8& getMaxMagic() { return mMaxMagic; }
+    u8 getMagic() const { return mMagic; }
+    u8 getMaxMagic() const { return mMaxMagic; }
     u8 getSelectEquip(int item) const { return mSelectEquip[item]; }
     u8 getTransformStatus() const { return mTransformStatus; }
+    u8 getWalletSize() const { return mWalletSize; }
     void setOil(u16 i_oil) { mOil = i_oil; }
     void setMaxOil(u16 i_maxOil) { mMaxOil = i_maxOil; }
     void setWalletSize(u8 i_size) { mWalletSize = i_size; }
@@ -608,7 +609,7 @@ public:
     u8 getBombNum(u8 i_bombType) const;
 
     void setArrowNum(u8 i_maxNum) { mItemMax[ARROW_MAX] = i_maxNum; }
-    u8 getArrowNum() { return mItemMax[ARROW_MAX]; }
+    u8 getArrowNum() const { return mItemMax[ARROW_MAX]; }
 
 private:
     /* 0x0 */ u8 mItemMax[8];

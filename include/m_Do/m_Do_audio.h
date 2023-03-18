@@ -116,6 +116,10 @@ inline void mDoAud_rainPlay(s32 enable) {
     g_mEnvSeMgr.startRainSe(enable, 0);
 }
 
+inline void mDoAud_heartGaugeOn() {
+    Z2AudioMgr::getInterface()->mStatusMgr.heartGaugeOn();
+}
+
 inline void mDoAud_mEnvse_framework() {
     g_mEnvSeMgr.framework();
 }

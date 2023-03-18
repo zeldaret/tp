@@ -25,7 +25,7 @@ public:
     /* 8019411C */ virtual int _create();
     /* 80194130 */ virtual int _execute(u32);
     /* 80194124 */ virtual int _delete();
-    /* 80194138 */ virtual int isDead();
+    /* 80194138 */ virtual bool isDead();
 };
 
 class dMeterButton_c : public dDlst_base_c {
@@ -113,7 +113,7 @@ public:
     /* 802092C0 */ void setAlphaButtonOAnimeMax(int);
     /* 80209368 */ void setAlphaIconAnimeMin();
     /* 802093D8 */ void setAlphaIconAnimeMax();
-    /* 80209474 */ void isClose();
+    /* 80209474 */ bool isClose();
     /* 802095C0 */ void setString(char*, u8, u8, u8);
     /* 80209CEC */ void hideAll();
     /* 80209D7C */ void getCenterPosCalc(u8, char*, int);
@@ -125,7 +125,11 @@ public:
     /* 80202240 */ virtual void draw();
     /* 80201370 */ virtual ~dMeterButton_c();
 
-    /* 0x004 */ u8 field_0x4[0x630 - 0x4];
+    bool isSetButton(u8 i_no) { return field_0x484[i_no] <= 0; }
+
+    /* 0x004 */ u8 field_0x4[0x484 - 0x4];
+    /* 0x48C */ s16 field_0x484[21];
+    /* 0x4AE */ u8 field_0x4ae[0x630 - 0x4ae];
 };
 
 class dMeterString_c : public dMeterSub_c {
@@ -141,6 +145,8 @@ public:
     /* 8020EE70 */ virtual int _create();
     /* 8020F150 */ virtual int _execute(u32);
     /* 8020F49C */ virtual int _delete();
+
+    /* 0x04 */ u8 field_0x4[0x40 - 0x4];
 };
 
 class dMeterHaihai_c : public dMeterSub_c {
@@ -164,6 +170,8 @@ public:
     /* 8020AF6C */ virtual int _create();
     /* 8020B0F4 */ virtual int _execute(u32);
     /* 8020BDAC */ virtual int _delete();
+
+    u8 field_0x4[0x2c - 0x4];
 };
 
 class dMeter2_c : public msg_class {
@@ -221,38 +229,40 @@ public:
     /* 802254C0 */ void alphaAnimeButtonCross();
     /* 802256DC */ bool isShowLightDrop();
     /* 802258A0 */ void killSubContents(u8);
-    /* 80225960 */ void isKeyVisible();
+    /* 80225960 */ BOOL isKeyVisible();
     /* 802259F8 */ int isArrowEquip();
     /* 80225A64 */ int isPachinkoEquip();
 
     void setNowLifeGauge(s16 life) { mNowLifeGauge = life; }
     void onArrowSoundBit(int bit) { mArrowSound |= (1 << bit); }
     void offArrowSoundBit(int bit) { mArrowSound &= ~(1 << bit); }
-    bool isArrowSoundBit(int bit) { return mArrowSound & (1 << bit); }
+    bool isArrowSoundBit(int bit) { return mArrowSound & (1 << bit) ? true : false; }
     void onRupeeSoundBit(int bit) { mRupeeSound |= (1 << bit); }
     void offRupeeSoundBit(int bit) { mRupeeSound &= ~(1 << bit); }
     bool isRupeeSoundBit(int bit) { return mRupeeSound & (1 << bit); }
     s16 getNowLifeGauge() { return mNowLifeGauge; }
-    u8 getSubContents() { return mSubContents; }
+    u8 getSubContents() { return mSubContentType; }
     u16 getSubContentsStringType() { return mSubContentsStringType; }
+    bool isShowFlag(int i_no) { return field_0x1e6 & (1 << i_no); }
+    void onShowFlag(int i_no) { field_0x1e6 |= (1 << i_no); }
 
 private:
     /* 0x0FC */ int field_0xfc;
     /* 0x100 */ JKRExpHeap* mpHeap;
     /* 0x104 */ JKRExpHeap* mpSubHeap;
-    /* 0x108 */ void* field_0x108;
+    /* 0x108 */ JKRHeap* field_0x108;
     /* 0x10C */ dMeter2Draw_c* mpMeterDraw;
-    /* 0x110 */ dMeterSub_c* mpMeterSub;
-    /* 0x114 */ dMeterString_c* mpMeterString;
-    /* 0x118 */ dMeterButton_c* mpMeterButton;
+    /* 0x110 */ dMeterSub_c* mpSubContents;
+    /* 0x114 */ dMeterString_c* mpSubSubContents;
+    /* 0x118 */ dMeterButton_c* mpEmpButton;
     /* 0x11C */ dMeterHaihai_c* field_0x11c;  // type is a guess for now
     /* 0x120 */ dMeterMap_c* mpMap;
-    /* 0x124 */ u32 field_0x124;
+    /* 0x124 */ u32 mStatus;
     /* 0x128 */ u32 field_0x128;
     /* 0x12C */ int field_0x12c;
     /* 0x130 */ f32 field_0x130;
-    /* 0x134 */ f32 field_0x134[2];
-    /* 0x13C */ f32 field_0x13c[2];
+    /* 0x134 */ f32 mAButtonTalkPosX[2];
+    /* 0x13C */ f32 mAButtonTalkPosY[2];
     /* 0x144 */ f32 field_0x144;
     /* 0x148 */ f32 field_0x148[2];
     /* 0x150 */ f32 field_0x150[2];
@@ -275,9 +285,9 @@ private:
     /* 0x1A4 */ int mNowOxygen;
     /* 0x1A8 */ int mMaxOxygen;
     /* 0x1AC */ int field_0x1ac;
-    /* 0x1B0 */ u16 mRupeeNum;
-    /* 0x1B2 */ u16 mKeyNum;
-    /* 0x1B4 */ u16 field_0x1b4;
+    /* 0x1B0 */ s16 mRupeeNum;
+    /* 0x1B2 */ s16 mKeyNum;
+    /* 0x1B4 */ s16 field_0x1b4;
     /* 0x1B6 */ u16 mSubContentsStringType;
     /* 0x1B8 */ u16 field_0x1b8[5];
     /* 0x1C2 */ u8 mLightDropNum;
@@ -310,7 +320,7 @@ private:
     /* 0x1E2 */ u8 mEquipSword;
     /* 0x1E3 */ u8 field_0x1e3;
     /* 0x1E4 */ u8 field_0x1e4;
-    /* 0x1E5 */ u8 mSubContents;
+    /* 0x1E5 */ u8 mSubContentType;
     /* 0x1E6 */ u8 field_0x1e6;
     /* 0x1E7 */ u8 field_0x1e7;
     /* 0x1E8 */ u8 field_0x1e8;
@@ -319,7 +329,7 @@ private:
     /* 0x1EB */ u8 mArrowSound;
     /* 0x1EC */ u8 field_0x1ec;
     /* 0x1ED */ u8 field_0x1ed;
-    /* 0x1EE */ u8 field_0x1ee;
+    /* 0x1EE */ u8 mLifeCountType;
     /* 0x1EF */ u8 mBottleNum[4];
     /* 0x1F3 */ u8 mBombNum[3];
     /* 0x1F6 */ u8 mBombMax[3];
@@ -329,11 +339,113 @@ private:
     /* 0x1FF */ u8 field_0x1ff;
     /* 0x200 */ u8 field_0x200;
     /* 0x201 */ u8 field_0x201;
-    /* 0x204 */ f32 field_0x204;
-    /* 0x208 */ f32 field_0x208;
-    /* 0x20C */ f32 field_0x20c;
-    /* 0x210 */ f32 field_0x210;
-    /* 0x214 */ f32 field_0x214;
+    /* 0x204 */ f32 mLifeGaugePosX;
+    /* 0x208 */ f32 mLifeGaugePosY;
+    /* 0x20C */ f32 mLifeGaugeScale;
+    /* 0x210 */ f32 mHeartScale;
+    /* 0x214 */ f32 mLargeHeartScale;
+    /* 0x218 */ u8 field_0x218[0x22C - 0x218];
+    /* 0x22C */ f32 mLanternMeterScale;
+    /* 0x230 */ f32 mLanternMeterPosX;
+    /* 0x234 */ f32 mLanternMeterPosY;
+    /* 0x238 */ f32 mOxygenMeterScale;
+    /* 0x23C */ f32 mOxygenMeterPosX;
+    /* 0x240 */ f32 mOxygenMeterPosY;
+    /* 0x244 */ u8 field_0x244[0x246 - 0x244];
+    /* 0x246 */ s16 field_0x246;
+    /* 0x248 */ s16 field_0x248;
+    /* 0x24A */ u8 field_0x24a[0x268 - 0x24a];
+    /* 0x268 */ f32 mRupeeKeyScale;
+    /* 0x26C */ f32 mRupeeKeyPosX;
+    /* 0x270 */ f32 mRupeeKeyPosY;
+    /* 0x274 */ f32 mRupeeScale;
+    /* 0x278 */ f32 mRupeePosX;
+    /* 0x27C */ f32 mRupeePosY;
+    /* 0x280 */ f32 mRupeeFramePosY;
+    /* 0x284 */ f32 mRupeeFrameScale;
+    /* 0x288 */ f32 mRupeeFramePosX;
+    /* 0x28C */ f32 mRupeeCountScale;
+    /* 0x290 */ f32 mRupeeCountPosX;
+    /* 0x294 */ f32 mRupeeCountPosY;
+    /* 0x298 */ u8 mWalletSize;
+    /* 0x29C */ f32 mKeyScale;
+    /* 0x2A0 */ f32 mKeyPosX;
+    /* 0x2A4 */ f32 mKeyPosY;
+    /* 0x2A8 */ f32 mKeyNumScale;
+    /* 0x2AC */ f32 mKeyNumPosX;
+    /* 0x2B0 */ f32 mKeyNumPosY;
+    /* 0x2B4 */ f32 mAButtonScale;
+    /* 0x2B8 */ f32 mAButtonPosX;
+    /* 0x2BC */ f32 mAButtonPosY;
+    /* 0x2C0 */ f32 mAButtonFontScale;
+    /* 0x2C4 */ f32 mAButtonFontPosX;
+    /* 0x2C8 */ f32 mAButtonFontPosY;
+    /* 0x2CC */ f32 field_0x2cc;
+    /* 0x2D0 */ f32 mBButtonPosX;
+    /* 0x2D4 */ f32 mBButtonPosY;
+    /* 0x2D8 */ u8 field_0x2d8[0x2e4 - 0x2d8];
+    /* 0x2E4 */ f32 mAButtonTalkScale[2];
+    /* 0x2EC */ f32 field_0x2ec[2];
+    /* 0x2F4 */ f32 mBItemBaseScale[2];
+    /* 0x2FC */ f32 mBItemBasePosX[2];
+    /* 0x304 */ f32 mBItemBasePosY[2];
+    /* 0x30C */ f32 mBButtonFontScale;
+    /* 0x310 */ f32 mBButtonFontPosX;
+    /* 0x314 */ f32 mBButtonFontPosY;
+    /* 0x318 */ u8 field_0x318[0x324 - 0x318];
+    /* 0x324 */ f32 field_0x324;
+    /* 0x328 */ f32 field_0x328;
+    /* 0x32C */ f32 field_0x32c;
+    /* 0x330 */ f32 field_0x330;
+    /* 0x334 */ f32 field_0x334;
+    /* 0x338 */ f32 field_0x338;
+    /* 0x33C */ f32 field_0x33c;
+    /* 0x340 */ f32 field_0x340;
+    /* 0x344 */ f32 field_0x344;
+    /* 0x348 */ f32 field_0x348;
+    /* 0x34C */ f32 field_0x34c;
+    /* 0x350 */ f32 field_0x350;
+    /* 0x354 */ u8 field_0x354[0x360 - 0x354];
+    /* 0x360 */ f32 field_0x360;
+    /* 0x364 */ f32 field_0x364;
+    /* 0x368 */ f32 field_0x368;
+    /* 0x36C */ f32 field_0x36c;
+    /* 0x370 */ f32 field_0x370;
+    /* 0x374 */ f32 field_0x374;
+    /* 0x378 */ u8 field_0x378[0x384 - 0x378];
+    /* 0x384 */ f32 field_0x384;
+    /* 0x388 */ f32 field_0x388;
+    /* 0x38C */ f32 field_0x38c;
+    /* 0x390 */ f32 field_0x390[3];
+    /* 0x39C */ f32 field_0x39c[2];
+    /* 0x3A4 */ f32 field_0x3a4[2];
+    /* 0x3AC */ f32 field_0x3ac[2];
+    /* 0x3B4 */ f32 field_0x3b4[2];
+    /* 0x3BC */ f32 field_0x3bc[2];
+    /* 0x3C4 */ f32 field_0x3c4[2];
+    /* 0x3CC */ u8 field_0x3cc[0x3e4 - 0x3CC];
+    /* 0x3E4 */ f32 field_0x3e4;
+    /* 0x3E8 */ f32 field_0x3e8;
+    /* 0x3EC */ f32 field_0x3ec;
+    /* 0x3F0 */ f32 field_0x3f0;
+    /* 0x3F4 */ f32 field_0x3f4;
+    /* 0x3F8 */ f32 field_0x3f8;
+    /* 0x3FC */ u8 field_0x3fc[0x420 - 0x3fc];
+    /* 0x420 */ f32 mVesselPosX;
+    /* 0x424 */ f32 mVesselPosY;
+    /* 0x428 */ f32 mVesselScale;
+    /* 0x42C */ f32 mVesselAlpha;
+    /* 0x430 */ f32 field_0x430;
+    /* 0x434 */ u8 field_0x434[0x448 - 0x434];
+    /* 0x448 */ f32 mDPadButtonOFFPosX;
+    /* 0x44C */ f32 mDPadButtonOFFPosY;
+    /* 0x450 */ f32 mDPadButtonScale;
+    /* 0x454 */ f32 mDPadButtonONPosX;
+    /* 0x458 */ f32 mDPadButtonONPosY;
+    /* 0x45C */ f32 mDPadButtonLetterSpacing;
+    /* 0x460 */ u8 field_0x460[0x4bc - 0x460];
+    /* 0x4BC */ u8 field_0x4bc;
+    /* 0x4BC */ u8 field_0x4bd;
 };
 
 #endif /* D_METER_D_METER2_H */

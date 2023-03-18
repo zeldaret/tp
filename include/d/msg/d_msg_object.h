@@ -167,6 +167,7 @@ public:
     void onAutoMessageFlagLocal() { mAutoMessageFlag = 1; }
     void setFundRaisingValueLocal(s16 i_value) { mFundRaisingValue = i_value; }
     u16 getPortalMessageIDLocal() { return mPortalMessageID; }
+    bool isAutoMessageFlagLocal() { return mAutoMessageFlag; }
 
     u8 getSelectPushFlag() { return mSelectPushFlag; }
     u8 getSelectCancelPos() { return mSelectCancelPos; }
@@ -179,6 +180,7 @@ public:
     void onAutoMessageFlag() { onAutoMessageFlagLocal(); }
     void setFundRaisingValue(s16 i_value) { setFundRaisingValueLocal(i_value); }
     u16 getPortalMessageID() { return getPortalMessageIDLocal(); }
+    bool isAutoMessageFlag() { return isAutoMessageFlagLocal(); }
 
     jmessage_tSequenceProcessor* getSequenceProcessor() { return mpSeqProc; }
 
