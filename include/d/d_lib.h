@@ -3,6 +3,7 @@
 
 #include "dolphin/types.h"
 #include "dolphin/os/OS.h"
+#include "dolphin/mtx/quat.h"
 
 struct JKRAramArchive;
 u32 dLib_getExpandSizeFromAramArchive(JKRAramArchive* arc, char const* resName);
@@ -80,5 +81,7 @@ struct dLib_time_c {
     static OSTime m_stopTime;
     static bool m_timeStopped;
 };
+
+extern Quaternion ZeroQuat;
 
 #endif /* D_D_LIB_H */

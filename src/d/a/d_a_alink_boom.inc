@@ -141,7 +141,7 @@ BOOL daAlink_c::checkBoomerangAnime() const {
 
 /* 800E04AC-800E04E8 0DADEC 003C+00 13/13 0/0 0/0 .text checkBoomerangThrowAnime__9daAlink_cCFv */
 BOOL daAlink_c::checkBoomerangThrowAnime() const {
-    return (mEquipItem == BOOMERANG || i_checkNoResetFlg1(FLG1_UNK_2) || mEquipItem == 0x102) &&
+    return (mEquipItem == BOOMERANG || i_checkNoResetFlg1(FLG1_UNK_2) || mEquipItem == noentry71) &&
            checkUpperAnime(0x53);
 }
 

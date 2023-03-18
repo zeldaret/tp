@@ -12285,12 +12285,12 @@ void daAlink_c::setSelectEquipItem(int param_0) {
             }
 
             if (checkWoodSwordEquip()) {
-                if (mEquipItem == 0x103 || param_0 != 0) {
+                if (mEquipItem == EQUIP_SWORD || param_0 != 0) {
                     mSwordModel->getModelData()->getMaterialNodePointer(1)->getShape()->hide();
                 } else {
                     mSwordModel->getModelData()->getMaterialNodePointer(1)->getShape()->show();
                 }
-            } else if (mEquipItem == 0x103 || param_0 != 0) {
+            } else if (mEquipItem == EQUIP_SWORD || param_0 != 0) {
                 mSwordModel->getModelData()->getMaterialNodePointer(0)->getShape()->show();
             } else {
                 mSwordModel->getModelData()->getMaterialNodePointer(0)->getShape()->hide();
@@ -13911,7 +13911,7 @@ const daAlink_BckData* daAlink_c::getMainBckData(daAlink_c::daAlink_ANM i_anmID)
         return &m_mainBckShield[i_anmID];
     }
 
-    if ((mEquipItem == 0x103 && i_anmID < 0x15 && i_anmID >= 0x10) ||
+    if ((mEquipItem == EQUIP_SWORD && i_anmID < 0x15 && i_anmID >= 0x10) ||
         (i_anmID == ANM_SWIM_WAIT && mEquipItem != NO_ITEM))
     {
         return &m_mainBckSword[i_anmID - 0x10];
@@ -15569,7 +15569,7 @@ asm int daAlink_c::checkItemActionInitStart() {
 /* 800B7090-800B7168 0B19D0 00D8+00 1/1 0/0 0/0 .text checkItemChangeAutoAction__9daAlink_cFv */
 int daAlink_c::checkItemChangeAutoAction() {
     if (i_checkResetFlg0(RFLG0_UNK_80)) {
-        if (mEquipItem == 0x103) {
+        if (mEquipItem == EQUIP_SWORD) {
             if (i_checkModeFlg(0x40000)) {
                 return 0;
             }
@@ -16030,9 +16030,9 @@ void daAlink_c::allUnequip(int param_0) {
         itemEquip(KANTERA);
         i_onNoResetFlg1(FLG1_UNK_40);
         return;
-    } else if (mEquipItem == 0x103) {
+    } else if (mEquipItem == EQUIP_SWORD) {
         swordUnequip();
-    } else if (mEquipItem == 0x102) {
+    } else if (mEquipItem == noentry71) {
         deleteEquipItem(0, 0);
         field_0x2060->initOldFrameMorf(lit_7808, 0, 35);
     } else {
@@ -16072,7 +16072,7 @@ BOOL daAlink_c::checkItemChangeFromButton() {
             if (doTrigger() && i_dComIfGp_getDoStatus() == 4) {
                 if (mEquipItem != KANTERA && i_checkNoResetFlg2(FLG2_UNK_1)) {
                     offKandelaarModel();
-                } else if (mSwordFlourishTimer != 0 && mEquipItem == 0x103 &&
+                } else if (mSwordFlourishTimer != 0 && mEquipItem == EQUIP_SWORD &&
                            !checkWoodSwordEquip() && !i_checkModeFlg(0x402))
                 {
                     return procSwordUnequipSpInit();
@@ -16246,7 +16246,7 @@ int daAlink_c::checkNextAction(int param_0) {
             setSpeedAndAngleAtn();
         } else if (((!checkUpperReadyThrowAnime() || mFastShotTime != 0) ||
                     (checkBoomerangThrowAnime() &&
-                     (mThrowBoomerangAcKeep.getActor() != NULL || mEquipItem == 0x102 ||
+                     (mThrowBoomerangAcKeep.getActor() != NULL || mEquipItem == noentry71 ||
                       i_checkNoResetFlg1(FLG1_UNK_2)))) ||
                    (checkCopyRodThrowAnime() &&
                     (mCopyRodAcKeep.getActor() != NULL || i_checkNoResetFlg1(FLG1_UNK_10000))))
@@ -17059,7 +17059,7 @@ void daAlink_c::setLastSceneMode(u32* o_mode) {
         *o_mode |= 0x200000;
     }
 
-    if (mEquipItem == 0x103) {
+    if (mEquipItem == EQUIP_SWORD) {
         *o_mode |= 0x28000000;
     } else if (mEquipItem < NO_ITEM) {
         *o_mode |= mEquipItem << 0x18;
@@ -17531,7 +17531,7 @@ BOOL daAlink_c::setItemModel() {
         return 1;
     }
 
-    if (mEquipItem == 0x103) {
+    if (mEquipItem == EQUIP_SWORD) {
         setSwordModel();
         return 1;
     }
@@ -18300,7 +18300,7 @@ void daAlink_c::commonProcInit(daAlink_c::daAlink_PROC i_procID) {
     i_dComIfGp_clearPlayerStatus1(0,0x7fb7b78);
 
     cancelHookshotShot();
-    if (mEquipItem == 0x109) {
+    if (mEquipItem == noentry77) {
         deleteEquipItem(0, 0);
     }
 

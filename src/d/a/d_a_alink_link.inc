@@ -972,7 +972,7 @@ int daAlink_c::procBackJump() {
         offModeFlg(0x2000);
     }
 
-    if (checkCutTurnInput() && mEquipItem == 0x103) {
+    if (checkCutTurnInput() && mEquipItem == EQUIP_SWORD) {
         field_0x3198 = getCutTurnDirection();
     }
 
@@ -1031,7 +1031,7 @@ int daAlink_c::procBackJumpLand() {
             checkNextAction(0);
         }
     } else if (frameCtrl->getFrame() > daAlinkHIO_backJump_c0::m.mLandAnm.mCheckFrame) {
-        if (mEquipItem == 0x103 && (field_0x3198 != 2 || checkCutTurnInput())) {
+        if (mEquipItem == EQUIP_SWORD && (field_0x3198 != 2 || checkCutTurnInput())) {
             return procCutTurnInit(1, field_0x3198);
         }
 
@@ -1795,7 +1795,7 @@ int daAlink_c::execute() {
     if (dComIfGp_event_runCheck()) {
         field_0x3184 = dComIfGp_evmng_getMyStaffId("Alink", this, 0);
 
-        if (mEvtInfo.checkCommandDoor() && !dComIfGp_event_chkEventFlag(4) && mEquipItem == 0x102) {
+        if (mEvtInfo.checkCommandDoor() && !dComIfGp_event_chkEventFlag(4) && mEquipItem == noentry71) {
             deleteEquipItem(FALSE, FALSE);
         }
     }
@@ -1870,7 +1870,7 @@ int daAlink_c::execute() {
     field_0x2f9d = 0;
     field_0x2fc1 = 6;
 
-    if (!checkSwordGet() && mEquipItem == 0x103) {
+    if (!checkSwordGet() && mEquipItem == EQUIP_SWORD) {
         deleteEquipItem(FALSE, FALSE);
     }
 
@@ -2068,7 +2068,7 @@ int daAlink_c::execute() {
         }
     }
 
-    if (checkEndResetFlg0(ERFLG0_UNK_1000000) && mEquipItem == 0x103) {
+    if (checkEndResetFlg0(ERFLG0_UNK_1000000) && mEquipItem == EQUIP_SWORD) {
         mSwordFlourishTimer = daAlinkHIO_cut_c0::m.mFlourishTime;
     }
 
@@ -3648,7 +3648,7 @@ s32 daAlink_c::getItemID() const {
 
 /* 800D0370-800D038C 0CACB0 001C+00 1/0 0/0 0/0 .text            getGrabActorID__9daAlink_cCFv */
 s32 daAlink_c::getGrabActorID() const {
-    if (mEquipItem == 0x102) {
+    if (mEquipItem == noentry71) {
         return mItemAcKeep.getID();
     } else {
         return mGrabItemAcKeep.getID();

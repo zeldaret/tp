@@ -130,7 +130,13 @@ def expected_copy(debug: bool, build_path: Path, expected_path: Path):
     default=DEFAULT_TOOLS_PATH,
     required=True,
 )
-def setup(debug: bool, game_path: Path, tools_path: Path):
+@click.option(
+    "--yaz0-encoder",
+    type=str,
+    default="native",
+    required=False,
+)
+def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str):
     """Setup project"""
 
     if debug:
@@ -326,7 +332,7 @@ def setup(debug: bool, game_path: Path, tools_path: Path):
         import extract_game_assets
         previous_dir = os.getcwd()
         os.chdir(str(game_path.absolute()))
-        extract_game_assets.extract("../" + str(iso))
+        extract_game_assets.extract("../" + str(iso),yaz0_encoder)
         os.chdir(previous_dir)
     except ImportError as ex:
         _handle_import_error(ex)

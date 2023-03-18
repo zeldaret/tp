@@ -121,6 +121,7 @@ public:
     void SetLin() { m_lin.SetStartEnd(*pm_old_pos, *pm_pos); }
     bool ChkGroundFind() { return m_flags & GROUND_FIND; }
     bool ChkGroundHit() { return m_flags & GROUND_HIT; }
+    bool ChkGroundLanding() { return m_flags & GROUND_LANDING; }
     void ClrGroundLanding() { m_flags &= ~GROUND_LANDING; }
     void ClrGroundAway() { m_flags &= ~GROUND_AWAY; }
     void ClrWallHit() { m_flags &= ~WALL_HIT; }
@@ -136,6 +137,8 @@ public:
     void SetWaterHit() { m_flags |= WATER_HIT; }
     void ClrWaterIn() { m_flags &= ~WATER_IN; }
     void SetWaterIn() { m_flags |= WATER_IN; }
+    const u32 MaskWaterIn() { return m_flags & WATER_IN; }
+    const bool ChkWaterIn() { return MaskWaterIn();}
     void ClrGroundFind() { m_flags &= ~GROUND_FIND; }
     u32 MaskRoofHit() { return m_flags & ROOF_HIT; }
     bool ChkRoofHit() { return MaskRoofHit(); }

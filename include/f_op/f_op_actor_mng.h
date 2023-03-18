@@ -80,8 +80,13 @@ class fopAcM_gc_c {
 public:
     static dBgS_GndChk* getGroundCheck() { return (dBgS_GndChk*)&mGndCheck; }
     static bool gndCheck(const cXyz*);
-    static u8 mGndCheck[84];
+    static u8 mGndCheck[84]; // this is dBgS_GndChk but all static data in the TU probably needs to be setup first (otherwise causes a reordering problem with the __sinit function)
     static f32 mGroundY;
+
+    // strange issue where f_op_actor_mng.h can't find the dComIfG_Bgsp() inline even when you include the header
+    // static bool getTriPla(cM3dGPla* pPlane) {
+    //     return dComIfG_Bgsp().GetTriPla(mGndCheck,pPlane);
+    // }
 
     static f32 getGroundY() { return mGroundY; }
 };
@@ -129,13 +134,15 @@ inline u32 fopAcM_checkCarryNow(fopAc_ac_c* pActor) {
 }
 
 enum fopAcM_CARRY {
-    fopAcM_CARRY_HEAVY = 2,
-    fopAcM_CARRY_SIDE = 4,
-    fopAcM_CARRY_TYPE_8 = 8,
+    /* 0x01 */ fopAcM_CARRY_TYPE_1 = 1,
+    /* 0x02 */ fopAcM_CARRY_HEAVY = 2,
+    /* 0x04 */ fopAcM_CARRY_SIDE = 4,
+    /* 0x08 */ fopAcM_CARRY_TYPE_8 = 8,
+    /* 0x10 */ fopAcM_CARRY_LIGHT = 16, // guess based on context
 };
 
 inline u32 fopAcM_CheckCarryType(fopAc_ac_c* actor, fopAcM_CARRY type) {
-    return actor->field_0x49a & type;
+    return actor->mCarryType & type;
 }
 
 inline u32 fopAcM_checkHookCarryNow(fopAc_ac_c* pActor) {
@@ -242,6 +249,10 @@ inline void fopAcM_SetGravity(fopAc_ac_c* actor, f32 gravity) {
     actor->mGravity = gravity;
 }
 
+inline void fopAcM_SetMaxFallSpeed(fopAc_ac_c* actor, f32 speed) {
+    actor->mMaxFallSpeed = speed;
+}
+
 inline void fopAcM_SetMtx(fopAc_ac_c* actor, MtxP m) {
     actor->mCullMtx = m;
 }
@@ -256,6 +267,10 @@ inline void fopAcM_SetSpeedF(fopAc_ac_c* actor, f32 f) {
 
 inline void fopAcM_SetStatus(fopAc_ac_c* actor, u32 status) {
     actor->mStatus = status;
+}
+
+inline void fopAcM_SetModel(fopAc_ac_c* actor, J3DModel* model) {
+    actor->model = model;
 }
 
 inline fopAcM_prm_class* fopAcM_GetAppend(void* actor) {
@@ -293,6 +308,7 @@ inline dJntCol_c* fopAcM_GetJntCol(fopAc_ac_c* i_actor) {
 inline void dComIfGs_onSwitch(int i_no, int i_roomNo);
 inline void dComIfGs_offSwitch(int i_no, int i_roomNo);
 inline BOOL dComIfGs_isSwitch(int i_no, int i_roomNo);
+inline void dComIfGs_offActor(int i_no, int i_roomNo);
 
 inline void i_fopAcM_onSwitch(const fopAc_ac_c* pActor, int sw) {
     return dComIfGs_onSwitch(sw, fopAcM_GetHomeRoomNo(pActor));
@@ -580,6 +596,14 @@ inline void fopAcM_seStartLevel(const fopAc_ac_c* actor, u32 sfxID, u32 param_2)
 inline void fopAcM_seStartCurrentLevel(const fopAc_ac_c* actor, u32 sfxID, u32 param_2) {
     s8 roomNo = fopAcM_GetRoomNo(actor);
     i_mDoAud_seStartLevel(sfxID, &actor->current.pos, param_2, dComIfGp_getReverb(roomNo));
+}
+
+inline void fopAcM_offActor(fopAc_ac_c* pActor, u32 flag) {
+    dComIfGs_offActor(flag,fopAcM_GetHomeRoomNo(pActor));
+}
+
+inline void fopAcM_OnCarryType(fopAc_ac_c* pActor, fopAcM_CARRY param_2) {
+    pActor->mCarryType |= param_2;
 }
 
 extern "C" {

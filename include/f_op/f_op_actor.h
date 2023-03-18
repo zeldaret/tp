@@ -107,7 +107,7 @@ public:
     /* 0x497 */ u8 mCullType;
     /* 0x498 */ u8 mDemoActorId;
     /* 0x499 */ s8 mSubtype;
-    /* 0x49A */ u8 field_0x49a;
+    /* 0x49A */ u8 mCarryType;
     /* 0x49C */ u32 mStatus;
     /* 0x4A0 */ u32 mCondition;
     /* 0x4A4 */ u32 mParentPcId;

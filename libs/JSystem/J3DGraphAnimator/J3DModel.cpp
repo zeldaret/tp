@@ -155,7 +155,7 @@ SECTION_DATA extern void* __vt__12J3DMtxBuffer[3] = {
 
 /* 80327184-80327300 321AC4 017C+00 0/0 3/3 0/0 .text
  * entryModelData__8J3DModelFP12J3DModelDataUlUl                */
-s32 J3DModel::entryModelData(J3DModelData* p_modelData, u32 param_1, u32 param_2) {
+s32 J3DModel::entryModelData(J3DModelData* p_modelData, u32 modelFlag, u32 mtxBufferFlag) {
     mModelData = p_modelData;
     mMtxBuffer = new J3DMtxBuffer();
 
@@ -163,37 +163,37 @@ s32 J3DModel::entryModelData(J3DModelData* p_modelData, u32 param_1, u32 param_2
         return 4;
     }
 
-    switch (mMtxBuffer->create(p_modelData, param_2)) {
+    switch (mMtxBuffer->create(p_modelData, mtxBufferFlag)) {
     case 0:
         switch (createShapePacket(p_modelData)) {
         case 0:
-            switch (createMatPacket(p_modelData, param_1)) {
+            switch (createMatPacket(p_modelData, modelFlag)) {
             case 0:
                 mVertexBuffer.setVertexData(&p_modelData->getVertexData());
                 prepareShapePackets();
 
-                if (param_1 & 0x1) {
-                    onFlag(0x1);
+                if (modelFlag & J3DMdlFlag_Unk00001) {
+                    onFlag(J3DMdlFlag_Unk00001);
                 }
-                if (param_1 & 0x2) {
-                    onFlag(0x2);
+                if (modelFlag & J3DMdlFlag_Unk00002) {
+                    onFlag(J3DMdlFlag_Unk00002);
                 }
-                if (param_1 & 0x10) {
-                    onFlag(0x10);
+                if (modelFlag & J3DMdlFlag_Unk00010) {
+                    onFlag(J3DMdlFlag_Unk00010);
                 }
-                if (param_1 & 0x20000) {
-                    onFlag(0x20000);
+                if (modelFlag & J3DMdlFlag_Unk20000) {
+                    onFlag(J3DMdlFlag_Unk20000);
                 }
-                if (param_1 & 0x40000) {
-                    onFlag(0x40000);
+                if (modelFlag & J3DMdlFlag_Unk40000) {
+                    onFlag(J3DMdlFlag_Unk40000);
                 }
-                if (param_1 & 0x80000) {
-                    onFlag(0x80000);
+                if (modelFlag & J3DMdlFlag_Unk80000) {
+                    onFlag(J3DMdlFlag_Unk80000);
                 }
-                if (param_1 & J3DMdlFlag_SkinPosCpu) {
+                if (modelFlag & J3DMdlFlag_SkinPosCpu) {
                     onFlag(J3DMdlFlag_SkinPosCpu);
                 }
-                if (param_1 & J3DMdlFlag_SkinNrmCpu) {
+                if (modelFlag & J3DMdlFlag_SkinNrmCpu) {
                     onFlag(J3DMdlFlag_SkinNrmCpu);
                 }
                 return 0;

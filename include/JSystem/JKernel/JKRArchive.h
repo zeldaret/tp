@@ -84,6 +84,7 @@ public:
         // was needed for open__14JKRAramArchiveFl
         u8 getCompressFlag() const { return (getFlags() & 0x04); }
         bool isYAZ0Compressed() const { return (getFlags() & 0x80) != 0; }
+        u32 getSize() const { return data_size; }
     };
 
     enum EMountMode {

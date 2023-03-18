@@ -326,7 +326,7 @@ J3DShapePacket::~J3DShapePacket() {}
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u32 J3DShapePacket::calcDifferedBufferSize(u32 param_0) {
+asm u32 J3DShapePacket::calcDifferedBufferSize(u32 flag) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DPacket/calcDifferedBufferSize__14J3DShapePacketFUl.s"
 }

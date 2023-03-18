@@ -346,6 +346,7 @@ public:
     void SetAtRVec(cXyz& vec) { mGObjAt.SetRVec(vec); }
     void SetTgHitPos(cXyz& pos) { mGObjTg.SetHitPos(pos); }
     void SetAtHitPos(cXyz& pos) { mGObjAt.SetHitPos(pos); }
+    u32 GetTgHitObjHitSeID(int i_soundID) { return getHitSeID(GetTgHitObjSe(),i_soundID); }
     
     static u32 const m_hitSeID[24];
 

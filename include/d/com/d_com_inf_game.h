@@ -937,6 +937,10 @@ inline void dComIfGs_setCollectClothes(u8 i_clothesNo) {
     g_dComIfG_gameInfo.info.getPlayer().getCollect().setCollect(COLLECT_CLOTHING, i_clothesNo);
 }
 
+inline void dComIfGs_setCardToMemory(char* card_ptr,int dataNum) {
+    g_dComIfG_gameInfo.info.card_to_memory(card_ptr,dataNum);
+}
+
 inline void dComIfGs_setRodTypeLevelUp() {
     g_dComIfG_gameInfo.info.getPlayer().getItem().setRodTypeLevelUp();
 }
@@ -1007,6 +1011,7 @@ inline void dComIfGs_onSwitch(int i_no, int i_roomNo) {
 inline void dComIfGs_offSwitch(int i_no, int i_roomNo) {
     g_dComIfG_gameInfo.info.offSwitch(i_no, i_roomNo);
 }
+
 
 inline BOOL dComIfGs_isSwitch(int i_no, int i_roomNo) {
     return g_dComIfG_gameInfo.info.isSwitch(i_no, i_roomNo);
@@ -1477,6 +1482,10 @@ inline s16 dComIfGs_getRestartRoomAngleY() {
 
 inline BOOL dComIfGs_isActor(int i_no, int i_roomNo) {
     return g_dComIfG_gameInfo.info.isActor(i_no, i_roomNo);
+}
+
+inline void dComIfGs_offActor(int i_no, int i_roomNo) {
+    g_dComIfG_gameInfo.info.offActor(i_no,i_roomNo);
 }
 
 inline void dComIfGs_putSave(int i_stageNo) {
