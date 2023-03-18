@@ -7,7 +7,7 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_alink.h"
 #include "dol2asm.h"
-#include "rel/d/a/d_a_cstaf/d_a_cstaF.h"
+#include "rel/d/a/d_a_cstaF/d_a_cstaF.h"
 #include "rel/d/a/d_a_cstatue/d_a_cstatue.h"
 
 #define RES_CROD_BALL_BMD 0x22
