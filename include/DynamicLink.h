@@ -71,4 +71,6 @@ struct DynamicModuleControl : DynamicModuleControlBase {
     static JKRFileCache* sFileCache;
 };
 
+// void DynamicModuleControlBase::dump();
+
 #endif /* DYNAMICLINK_H */

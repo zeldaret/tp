@@ -523,6 +523,11 @@ inline void dMeter2Info_setScopeZoomPointer(u8 param_0) {
     g_meter2_info.setScopeZoomPointer(param_0);
 }
 
+inline void dMeter2Info_decMsgKeyWaitTimer() {
+    g_meter2_info.decMsgKeyWaitTimer();
+}
+
+
 char* dMeter2Info_getNumberTextureName(int pIndex);
 void dMeter2Info_recieveLetter();
 u8 dMeter2Info_getNewLetterNum();

@@ -1937,6 +1937,47 @@ asm void dFile_select_c::_create() {
 #endif
 
 /* 801844FC-80184664 17EE3C 0168+00 0/0 1/1 0/0 .text            _move__14dFile_select_cFv */
+#ifdef NONMATCHING
+void dFile_select_c::_move() {
+    dMeter2Info_decMsgKeyWaitTimer();
+
+    s32 drive_status = DVDGetDriveStatus();
+
+    if (drive_status != DVD_STATE_END && drive_status != DVD_STATE_BUSY && field_0x03b1 != 0) {
+        field_0x03b1 = 0;
+    }
+
+    if (mDoMemCd_getProbeStat() == 0 || mDoMemCd_getProbeStat() == 1 && 
+            mDoRst::isReset() == 0 && field_0x03b1 == 0) {
+        if (field_0x2378->getAlpha() != 0) {
+            field_0x2378->setAlpha(0);
+        }
+        field_0x026f = 0;
+        field_0x0271 = 0;
+    }
+
+    /* missing __ptmf_scall via DataSelProc here. Need to setup structure*/
+
+    selFileWakuAnm();
+    bookIconAnm();
+    dataDelEffAnm();
+    dataCopyEffAnm();
+    mFileSelectDlst.mpScreen->animation();
+    mFileSelYesNoDlst.mpScreen->animation();
+    mFileSel3mDlst.mpScreen->animation();
+    mFileSelDeleteDlst.mpScreen->animation();
+
+    if (mFileSelCopyDlst.field_0x08) {
+        selCopyFileWakuAnm();
+        copyBookIconAnm();
+        mFileSelCopyDlst.mpScreen->animation();
+    }
+
+    mpFileWarning->_move();
+    mpFileSelect3d->_move();
+    mDoMemCd_clearProbeStat();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1945,6 +1986,7 @@ asm void dFile_select_c::_move() {
 #include "asm/d/file/d_file_select/_move__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80453938-80453940 001F38 0008+00 34/34 0/0 0/0 .sdata2          @4342 */

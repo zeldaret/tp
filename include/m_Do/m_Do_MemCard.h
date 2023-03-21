@@ -40,6 +40,8 @@ public:
     /* 80017360 */ void setCardState(s32);
 
     bool isCardCommNone() { return mCardCommand == CARD_NO_COMMAND; }
+    u8 getProbeStat() { return mProbeStat; }
+    void clearProbeStat() { mProbeStat = 2; }
 
     /* 0x0000 */ u8 mData[0x1FBC];
     /* 0x1FBC */ u8 mChannel;
@@ -67,6 +69,14 @@ inline bool mDoMemCd_isCardCommNone() {
 
 inline void mDoMemCd_ThdInit() {
     g_mDoMemCd_control.ThdInit();
+}
+
+inline u8 mDoMemCd_getProbeStat() {
+    return g_mDoMemCd_control.getProbeStat();
+}
+
+inline void mDoMemCd_clearProbeStat() {
+    g_mDoMemCd_control.clearProbeStat();
 }
 
 #endif /* M_DO_M_DO_MEMCARD_H */
