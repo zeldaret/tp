@@ -11,61 +11,51 @@
 // Types:
 //
 
-struct mDoCPd_c {
-    static u8 m_cpadInfo[256];
-};
+// struct mDoCPd_c {
+//     static u8 m_cpadInfo[256];
+// };
 
 struct dMsgString_c {
     /* 80249C20 */ dMsgString_c();
     /* 80249D28 */ ~dMsgString_c();
 };
 
-struct dDlst_base_c {};
+// struct dDlst_base_c {};
 
-struct dDlst_list_c {
-    /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
-};
+// struct dDlst_list_c {
+//     /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
+// };
 
 struct dDlst_BrightCheck_c {
     /* 801935D0 */ void draw();
     /* 80193648 */ ~dDlst_BrightCheck_c();
 };
 
-struct JKRArchive {};
+// struct JKRArchive {};
 
-struct dBrightCheck_c {
-    /* 80192F10 */ dBrightCheck_c(JKRArchive*);
-    /* 80192F98 */ ~dBrightCheck_c();
-    /* 80193030 */ void screenSet();
-    /* 801934D0 */ void _move();
-    /* 80193508 */ void modeWait();
-    /* 8019350C */ void modeMove();
-    /* 80193594 */ void _draw();
-};
+// struct JAISoundID {};
 
-struct JAISoundID {};
+// struct Vec {};
 
-struct Vec {};
+// struct Z2SeMgr {
+//     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+// };
 
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
+// struct Z2AudioMgr {
+//     static u8 mAudioMgrPtr[4 + 4 /* padding */];
+// };
 
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
+// struct J2DTextBox {
+//     /* 8030074C */ void setString(s16, char const*, ...);
+// };
 
-struct J2DTextBox {
-    /* 8030074C */ void setString(s16, char const*, ...);
-};
+// struct J2DGrafContext {};
 
-struct J2DGrafContext {};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-};
+// struct J2DScreen {
+//     /* 802F8498 */ J2DScreen();
+//     /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
+//     /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
+// };
 
 //
 // Forward References:
@@ -104,7 +94,7 @@ extern "C" void _savegpr_22();
 extern "C" void _restgpr_22();
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
+// extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //

@@ -8,7 +8,8 @@
 struct JKRAramArchive;
 u32 dLib_getExpandSizeFromAramArchive(JKRAramArchive* arc, char const* resName);
 
-struct STControl {
+class STControl {
+public:
     STControl() {
         setWaitParm(15, 15, 0, 0, 0.9f, 0.5f, 0, 0x2000);
         init();

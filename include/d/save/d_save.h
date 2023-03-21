@@ -1108,9 +1108,12 @@ public:
     u8 getDataNum() const { return mDataNum; }
     void setDataNum(u8 num) { mDataNum = num; }
     void removeZone(int zoneNo) { mZone[zoneNo].reset(); }
+    u8 getNoFile() const { return mNoFile; }
     void setNoFile(u8 file) { mNoFile = file; }
     u8 getNewFile() const { return mNewFile; }
-    void setNewFile(u8 file) { mNewFile |= file; }
+    void setNewFile(u8 file) { mNewFile = file; }
+    void i_setNewFile(u8 file) { mNewFile |= file; } // appears to work differently than above function?
+
 
     static const int MEMORY_SWITCH = 0x80;
     static const int DAN_SWITCH = 0x40;

@@ -1873,7 +1873,8 @@ void dMenu_save_c::memCardMakeGameFileWait() {
         errorTxtSet(0x3C6);  // An error might have occurred when creating a save file.
         mMenuProc = PROC_MEMCARD_COMMAND_END;
     } else if (mCmdState == 1) {
-        dComIfGs_setNewFile(1);
+        dComIfGs_i_setNewFile(1);
+
         errorTxtSet(0x3C7);  // A save file has been created.
         mMenuProc = PROC_MEMCARD_COMMAND_END;
     }

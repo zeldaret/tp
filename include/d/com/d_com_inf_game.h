@@ -865,6 +865,10 @@ inline void dComIfGs_init() {
     g_dComIfG_gameInfo.info.init();
 }
 
+inline void dComIfGp_itemDataInit() {
+    g_dComIfG_gameInfo.play.itemInit();
+}
+
 inline int i_dComIfGs_isItemFirstBit(u8 i_no) {
     return g_dComIfG_gameInfo.info.getPlayer().getGetItem().isFirstBit(i_no);
 }
@@ -1410,6 +1414,10 @@ inline void dComIfGs_setNewFile(u8 i_fileNo) {
     return g_dComIfG_gameInfo.info.setNewFile(i_fileNo);
 }
 
+inline void dComIfGs_i_setNewFile(u8 i_fileNo) {
+    return g_dComIfG_gameInfo.info.i_setNewFile(i_fileNo);
+}
+
 inline char* dComIfGs_getPlayerName() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().getLinkName();
 }
@@ -1438,6 +1446,14 @@ inline void dComIfGs_setPlayerFieldLastStayInfo(const char* i_stage, cXyz& i_pos
                                                 s8 i_point, u8 i_region) {
     g_dComIfG_gameInfo.info.getPlayer().getPlayerFieldLastStayInfo().set(i_stage, i_pos, i_angle,
                                                                          i_point, i_region);
+}
+
+inline void dComIfGs_setPlayerName(const char* i_name) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().setPlayerName(i_name);
+}
+
+inline void dComIfGs_setHorseName(const char* i_name) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().setHorseName(i_name);
 }
 
 inline void dComIfGs_setStartPoint(s16 i_point) {
@@ -1582,6 +1598,10 @@ inline void dComIfGs_setOptPointer(u8 i_pointer) {
 
 inline u8 dComIfGs_getNewFile() {
     return g_dComIfG_gameInfo.info.getNewFile();
+}
+
+inline u8 dComIfGs_getNoFile() {
+    return g_dComIfG_gameInfo.info.getNoFile();
 }
 
 inline void dComIfGs_setInitDataToCard(u8* i_saveData, int i_dataNum) {

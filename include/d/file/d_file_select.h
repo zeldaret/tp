@@ -19,7 +19,8 @@ public:
     /* 0x04 */ J2DScreen* mpScreen;
 };
 
-struct dFile_select3D_c {
+class dFile_select3D_c {
+public:
     /* 801902F0 */ dFile_select3D_c();
     /* 80190380 */ ~dFile_select3D_c();
     /* 801903DC */ void _create(u8, u8);
@@ -35,9 +36,33 @@ struct dFile_select3D_c {
     /* 80190D68 */ void createMirrorModel();
     /* 80190FE8 */ void toItem3Dpos(f32, f32, f32, cXyz*);
     /* 801910D4 */ void calcViewMtx(f32 (*)[4]);
+
+    void drawOff() { mpModel = 0; }
+
+    /* 0x0000 */ void* vtable;
+    /* 0x0004 */ JKRSolidHeap* mpHeap;
+    /* 0x0008 */ J3DModel* mpModel;
+    /* 0x000C */ mDoExt_bckAnm* mBckAnm;
+    /* 0x0010 */ mDoExt_brkAnm* mBrkAnm;
+    /* 0x0014 */ J3DLightInfo mLightInfo;
+    /* 0x0048 */ u8 field_0x0048[0x0088 - 0x0048];
+    /* 0x0088 */ J3DLightObj mLightObjects[6];
+    /* 0x0340 */ u8 field_0x0340[0x039C - 0x0340];
+    /* 0x039C */ J2DPane* pane;
+    /* 0x03A0 */ u8 field_0x03A0[0x03A4 - 0x03A0];
+    /* 0x03A4 */ cXyz field_0x03a4;
+    /* 0x03B0 */ csXyz field_0x03b0;
+    /* 0x03B6 */ u8 padding[2];
+    /* 0x03B8 */ cXyz field_0x03b8;
+    /* 0x03C4 */ float field_0x03c4;
+    /* 0x03C8 */ float field_0x03c8;
+    /* 0x03CC */ u8 field_0x03CC[0x03CE - 0x03CC];
+    /* 0x03CE */ u8 mMirrorIdx;
+    /* 0x03CF */ u8 mMaskIdx;
 };
 
-struct dDlst_FileSelYn_c {
+class dDlst_FileSelYn_c {
+public:
     /* 8018E0C0 */ void draw();
     /* 801911F4 */ ~dDlst_FileSelYn_c();
 
@@ -46,7 +71,8 @@ struct dDlst_FileSelYn_c {
     /* 0x08 */ u8 field_0x08[4];
 };
 
-struct dDlst_FileSelDt_c {
+class dDlst_FileSelDt_c {
+public:
     /* 8018DEF4 */ void draw();
     /* 801912E4 */ ~dDlst_FileSelDt_c();
 
@@ -56,7 +82,8 @@ struct dDlst_FileSelDt_c {
     /* 0x0C */ u8 field_0x0c[4];
 };
 
-struct dDlst_FileSelCp_c {
+class dDlst_FileSelCp_c {
+public:
     /* 8018DFFC */ void draw();
     /* 8019126C */ ~dDlst_FileSelCp_c();
 
@@ -67,7 +94,8 @@ struct dDlst_FileSelCp_c {
     /* 0x10 */ J2DPane* mpPane2;
 };
 
-struct dDlst_FileSel3m_c {
+class dDlst_FileSel3m_c {
+public:
     /* 8018E0F8 */ void draw();
     /* 8019117C */ ~dDlst_FileSel3m_c();
 
@@ -75,7 +103,8 @@ struct dDlst_FileSel3m_c {
     /* 0x04 */ J2DScreen* mpScreen;
 };
 
-struct dFile_info_c {
+class dFile_info_c {
+public:
     /* 80192434 */ dFile_info_c(JKRArchive*, u8);
     /* 80192954 */ void setSaveData(dSv_save_c*, int, u8);
     /* 80192D60 */ void _draw();
@@ -159,7 +188,7 @@ public:
     /* 801853C4 */ void dataSelect();
     /* 80185508 */ void dataSelectStart();
     /* 80185994 */ void selectDataMoveAnmInitSet(int, int);
-    /* 80185AAC */ void selectDataMoveAnm();
+    /* 80185AAC */ bool selectDataMoveAnm();
     /* 80185C2C */ void dataSelectAnmSet();
     /* 80185DE0 */ void dataSelectMoveAnime();
     /* 80186088 */ void makeRecInfo(u8);
@@ -194,7 +223,7 @@ public:
     /* 8018832C */ void copyDataToSelectMoveAnmSet();
     /* 801884D0 */ void copyDataToSelectMoveAnm();
     /* 80188834 */ void copySelectWakuAlpahAnmInit(u8, u8, u8, u8);
-    /* 80188878 */ void copySelectWakuAlpahAnm(u8);
+    /* 80188878 */ bool copySelectWakuAlpahAnm(u8);
     /* 80188950 */ void getCptoNum(u8);
     /* 80188994 */ void copyToSelBack();
     /* 80188B54 */ void copyToSelPaneMove();
@@ -241,10 +270,10 @@ public:
     /* 8018D4F8 */ void ketteiTxtDispAnmInit(u8);
     /* 8018D574 */ bool ketteiTxtDispAnm();
     /* 8018D650 */ void selectWakuAlpahAnmInit(u8, u8, u8, u8);
-    /* 8018D68C */ void selectWakuAlpahAnm(u8);
+    /* 8018D68C */ bool selectWakuAlpahAnm(u8);
     /* 8018D764 */ void selFileCursorShow();
     /* 8018D884 */ void menuWakuAlpahAnmInit(u8, u8, u8, u8);
-    /* 8018D8C8 */ void menuWakuAlpahAnm(u8);
+    /* 8018D8C8 */ bool menuWakuAlpahAnm(u8);
     /* 8018DA10 */ void menuCursorShow();
     /* 8018DB80 */ void yesnoWakuAlpahAnmInit(u8, u8, u8, u8);
     /* 8018DBCC */ void yesnoWakuAlpahAnm(u8);
@@ -291,7 +320,7 @@ public:
     /* 8018FD30 */ void errorTxtChangeAnm();
     /* 8018FE18 */ bool fileRecScaleAnm();
     /* 8018FE64 */ void fileRecScaleAnmInitSet2(f32, f32);
-    /* 8018FEF4 */ void fileRecScaleAnm2();
+    /* 8018FEF4 */ bool fileRecScaleAnm2();
     /* 8018FF9C */ bool fileInfoScaleAnm();
     /* 80190074 */ void nameMoveAnmInitSet(int, int);
     /* 80190124 */ bool nameMoveAnm();
@@ -325,13 +354,20 @@ public:
     /* 0x0070 */ u8 field_0x70[0xc];                     
     /* 0x007C */ dFile_info_c* mpFileInfo[2];            
     /* 0x0084 */ J2DAnmBase* mpAnmBase[7];               
-    /* 0x00A0 */ u8 field_0xa0[4];                       
+    /* 0x00A0 */ u8 field_0x00a0[4];                       
     /* 0x00A4 */ CPaneMgr* mpPaneMgr1;                    
-    /* 0x00A8 */ u8 field_0xa8[0xbc-0xa8];               
-    /* 0x00BC */ CPaneMgr* mpPaneMgrs[4];
+    /* 0x00A8 */ u8 field_0x00a8[0xbc-0xa8];               
+    /* 0x00BC */ CPaneMgr* field_0x00bc;
+    /* 0x00C0 */ u8 field_0x00c0[4];
+    /* 0x00C4 */ u8 field_0x00c4[4];
+    /* 0x00C8 */ f32 field_0x00c8;
     /* 0x00CC */ u8 field_0x00cc[8];
     /* 0x00D4 */ float field_0x00d4;
-    /* 0x00D8 */ u8 field_0xd8[0x108 - 0xd8];
+    /* 0x00D8 */ u8 field_0x00d8[8];
+    /* 0x00E0 */ s32* field_0x00e0;
+    /* 0x00E4 */ u8 field_0x00e4[0xec - 0xe4];
+    /* 0x00EC */ s32* field_0x00ec;
+    /* 0x00F0 */ u8 field_0x00f0[0x108 - 0xf0];
     /* 0x0108 */ bool field_0x108;                       
     /* 0x0109 */ bool field_0x109;                       
     /* 0x010A */ u8 field_0x10a[2];                      
@@ -368,24 +404,29 @@ public:
     /* 0x01F8 */ J2DAnmBase* field_0x01f8;
     /* 0x01FC */ u8 field_0x01FC[0x0200 - 0x01FC];
     /* 0x0200 */ J2DAnmBase* field_0x0200;
-    /* 0x0204 */ u8 field_0x0204[8];
+    /* 0x0204 */ u8 field_0x0204[6];
+    /* 0x020A */ u8 field_0x020a;
+    /* 0x020B */ u8 field_0x020b;
     /* 0x020C */ CPaneMgrAlpha* field_0x020c;
     /* 0x0210 */ u8 field_0x0210[0x021C - 0x0210];
     /* 0x021C */ u8 field_0x021c;
     /* 0x021D */ u8 field_0x021d;
-    /* 0x021E */ u8 field_0x021e[0x0238 - 0x021E];
+    /* 0x021E */ u8 field_0x021e;
+    /* 0x021F */ u8 field_0x021f[0x0238 - 0x021F];
     /* 0x0238 */ CPaneMgrAlpha* field_0x0238;
     /* 0x023C */ CPaneMgrAlpha* field_0x023c;
     /* 0x0240 */ CPaneMgrAlpha* field_0x0240;
     /* 0x0244 */ CPaneMgrAlpha* field_0x0244;
     /* 0x0248 */ u8 field_0x0248[0x024A - 0x0248];
     /* 0x024A */ bool field_0x024a;
-    /* 0x024B */ u8 field_0x024B[0x0250 - 0x024B];
+    /* 0x024B */ u8 field_0x024b;
+    /* 0x024C */ u8 field_0x024c;
+    /* 0x024B */ u8 field_0x024d[3];
     /* 0x0250 */ char* field_0x0250;
     /* 0x0254 */ STControl* mStick;
     /* 0x0258 */ u8 mDataNew[3];
-    /* 0x025B */ u8 field_0x025b;
-    /* 0x025C */ u8 field_0x025c[0x0264 - 0x025C];
+    /* 0x025B */ u8 field_0x025b[3];
+    /* 0x025C */ u8 field_0x025e[0x0264 - 0x025e];
     /* 0x0264 */ u8 field_0x0264;
     /* 0x0265 */ u8 mSelectNum;
     /* 0x0266 */ u8 field_0x0266;
@@ -396,7 +437,8 @@ public:
     /* 0x026E */ u8 field_0x026e;
     /* 0x026F */ u8 field_0x026f;
     /* 0x0270 */ bool mSelectEnd;
-    /* 0x0271 */ u8 field_0x0271[0x0283 - 0x0271];
+    /* 0x0271 */ u8 field_0x0271;
+    /* 0x0272 */ u8 field_0x0272[0x0283 - 0x0272];
     /* 0x0283 */ bool field_0x0283;
     /* 0x0284 */ u8 field_0x0284[0x029C - 0x0284];
     /* 0x029C */ J2DAnmBase* field_0x029c;
@@ -426,8 +468,8 @@ public:
     /* 0x033C */ u8 field_0x033c[4];
     /* 0x0340 */ CPaneMgrAlpha* field_0x0340;
     /* 0x0344 */ u8 field_0x0344[8];
-    /* 0x034C */ s32 field_0x034c;
-    /* 0x0350 */ u8 field_0x0350[8];
+    /* 0x034C */ s32 field_0x034c[3];
+    // /* 0x0350 */ u8 field_0x0350[8];
     /* 0x0358 */ int field_0x0358;
     /* 0x035C */ int field_0x035c;
     /* 0x0360 */ bool field_0x0360;
