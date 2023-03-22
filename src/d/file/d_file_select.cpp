@@ -2212,6 +2212,17 @@ asm void dFile_select_c::dataCopyEffAnm() {
 
 /* 80184CB4-80184D4C 17F5F4 0098+00 2/2 0/0 0/0 .text
  * selectDataBaseMoveAnmInitSet__14dFile_select_cFii            */
+#ifdef NONMATCHING
+// matches with literals
+void dFile_select_c::selectDataBaseMoveAnmInitSet(int param_0, int param_1) {
+    field_0x00a4->getPanePtr()->setAnimation((J2DAnmTransform*)mpAnmBase[0]);
+    field_0x00b0 = param_0;
+    field_0x00b4 = param_1;
+    mpAnmBase[0]->setFrame(field_0x00b0);
+    field_0x00a4->getPanePtr()->animationTransform();
+    field_0x00b9 = 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2220,16 +2231,48 @@ asm void dFile_select_c::selectDataBaseMoveAnmInitSet(int param_0, int param_1) 
 #include "asm/d/file/d_file_select/selectDataBaseMoveAnmInitSet__14dFile_select_cFii.s"
 }
 #pragma pop
+#endif
 
 /* 80184D4C-80184E38 17F68C 00EC+00 2/2 0/0 0/0 .text selectDataBaseMoveAnm__14dFile_select_cFv */
+#ifdef NONMATCHING
+// matches with literals
+bool dFile_select_c::selectDataBaseMoveAnm() {
+    if (field_0x00b0 != field_0x00b4) {
+        if (field_0x00b0 < field_0x00b4) {
+            field_0x00b0 += 2;
+
+            if (field_0x00b0 > field_0x00b4)
+                field_0x00b0 = field_0x00b4;
+
+        } else {
+            field_0x00b0 -= 2;
+
+            if (field_0x00b0 < field_0x00b4)
+                field_0x00b0 = field_0x00b4;
+
+        }
+
+        mpAnmBase[0]->setFrame(field_0x00b0);
+        field_0x00a4->getPanePtr()->animationTransform();
+        return false;
+    } else {
+        field_0x00b0 == 0x21 ? field_0x00b8 = 1 : field_0x00b8 = 0;
+        field_0x00b9 = 0;
+
+        field_0x00a4->getPanePtr()->setAnimation((J2DAnmTransform*)0);
+        return true;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dFile_select_c::selectDataBaseMoveAnm() {
+asm bool dFile_select_c::selectDataBaseMoveAnm() {
     nofralloc
 #include "asm/d/file/d_file_select/selectDataBaseMoveAnm__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80453940-80453944 001F40 0004+00 38/38 0/0 0/0 .sdata2          @4611 */

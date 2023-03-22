@@ -181,7 +181,7 @@ public:
     /* 80184B44 */ void dataDelEffAnm();
     /* 80184BFC */ void dataCopyEffAnm();
     /* 80184CB4 */ void selectDataBaseMoveAnmInitSet(int, int);
-    /* 80184D4C */ void selectDataBaseMoveAnm();
+    /* 80184D4C */ bool selectDataBaseMoveAnm();
     /* 80184E38 */ void dataSelectInAnmSet();
     /* 80185040 */ void dataSelectIn();
     /* 80185230 */ void dataSelectInit();
@@ -355,8 +355,14 @@ public:
     /* 0x007C */ dFile_info_c* mpFileInfo[2];            
     /* 0x0084 */ J2DAnmBase* mpAnmBase[7];               
     /* 0x00A0 */ u8 field_0x00a0[4];                       
-    /* 0x00A4 */ CPaneMgr* mpPaneMgr1;                    
-    /* 0x00A8 */ u8 field_0x00a8[0xbc-0xa8];               
+    /* 0x00A4 */ CPaneMgr* field_0x00a4;                    
+    /* 0x00A8 */ u8 field_0x00a8[0xb0-0xa8];               
+    /* 0x00B0 */ s32 field_0x00b0;
+    /* 0x00B4 */ s32 field_0x00b4;
+    /* 0x00B8 */ u8 field_0x00b8;
+    /* 0x00B9 */ u8 field_0x00b9;
+    /* 0x00BA */ u8 field_0x00ba;
+    /* 0x00BB */ u8 field_0x00bb;
     /* 0x00BC */ CPaneMgr* field_0x00bc;
     /* 0x00C0 */ u8 field_0x00c0[4];
     /* 0x00C4 */ u8 field_0x00c4[4];
