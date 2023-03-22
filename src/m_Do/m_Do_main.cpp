@@ -32,13 +32,11 @@ void HeapCheck::CheckHeap1() {
     s32 totalUsedSize = mHeap->getTotalUsedSize();
     s32 freeSize = mHeap->getFreeSize();
 
-    if (mMaxTotalUsedSize < totalUsedSize) {
+    if (mMaxTotalUsedSize < totalUsedSize)
         mMaxTotalUsedSize = totalUsedSize;
-    }
 
-    if (mMaxTotalFreeSize > freeSize) {
+    if (mMaxTotalFreeSize > freeSize)
         mMaxTotalFreeSize = freeSize;
-    }
 }
 
 /* 803A2EE0-803A2EF4 000000 0012+02 2/2 1/1 0/0 .data            COPYDATE_STRING__7mDoMain */
@@ -406,8 +404,13 @@ static void debug() {
 void main01(void) {
     static u32 frame;
 
+    // Setup heaps, setup exception manager, set RNG seed, setup DVDError Thread, setup Memory card Thread
     mDoMch_Create();
+
+    // setup FrameBuffer and ZBuffer, init display lists
     mDoGph_Create();
+
+    // Setup control pad
     mDoCPd_c::create();
 
     RootHeapCheck.setHeap((JKRExpHeap*)JKRHeap::getRootHeap());
@@ -456,10 +459,10 @@ void main01(void) {
     console->setPosition(32, 42);
 
     mDoDvdThd_callback_c::create((mDoDvdThd_callback_func)LOAD_COPYDATE, NULL);
-    fapGm_Create();
+    fapGm_Create(); // init framework
     fopAcM_initManager();
     mDisplayHeapSize = 0;
-    cDyl_InitAsync();
+    cDyl_InitAsync(); // init RELs
 
     g_mDoAud_audioHeap = JKRSolidHeap::create(0x14D800, JKRHeap::getCurrentHeap(), false);
 
@@ -473,10 +476,10 @@ void main01(void) {
             g_mDoMemCd_control.update();
         }
 
-        mDoCPd_c::read();
-        fapGm_Execute();
-        mDoAud_Execute();
-        debug();
+        mDoCPd_c::read();   // read controller input
+        fapGm_Execute();    // handle game execution
+        mDoAud_Execute();   // handle audio execution
+        debug();            // run debugger
     } while (true);
 }
 
@@ -531,8 +534,7 @@ void main() {
     }
 
     s32 priority = OSGetThreadPriority(current_thread);
-    OSCreateThread(&mainThread, main01, 0, stack + sizeof(mainThreadStack), sizeof(mainThreadStack),
-                   priority, 0);
+    OSCreateThread(&mainThread, main01, 0, stack + sizeof(mainThreadStack), sizeof(mainThreadStack), priority, 0);
     OSResumeThread(&mainThread);
     OSSetThreadPriority(current_thread, 0x1F);
     OSSuspendThread(current_thread);

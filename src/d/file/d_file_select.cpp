@@ -1956,7 +1956,7 @@ void dFile_select_c::_move() {
         field_0x0271 = 0;
     }
 
-    /* missing __ptmf_scall via DataSelProc here. Need to setup structure*/
+    /* missing __ptmf_scall via DataSelProc here. Need to setup structure */
 
     selFileWakuAnm();
     bookIconAnm();
@@ -1994,6 +1994,53 @@ SECTION_SDATA2 static f64 lit_4342 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80184664-801848A0 17EFA4 023C+00 1/1 0/0 0/0 .text            selFileWakuAnm__14dFile_select_cFv
  */
+#ifdef NONMATCHING
+// matches with literals
+void dFile_select_c::selFileWakuAnm() {
+    field_0x01cc += 2;
+
+    if (field_0x01cc >= field_0x01c8->getFrameMax())
+        field_0x01cc -= field_0x01c8->getFrameMax();
+
+    field_0x01c8->setFrame(field_0x01cc);
+    field_0x01D4 += 2;
+
+    if (field_0x01D4 >= field_0x01d0->getFrameMax())
+        field_0x01D4 -= field_0x01d0->getFrameMax();
+
+    field_0x01d0->setFrame(field_0x01D4);
+    field_0x031c += 2;
+
+    if (field_0x031c >= field_0x0318->getFrameMax())
+        field_0x031c -= field_0x0318->getFrameMax();
+
+    field_0x0318->setFrame(field_0x031c);
+    field_0x0324 += 2;
+
+    if (field_0x0324 >= field_0x0320->getFrameMax())
+        field_0x0324 -= field_0x0320->getFrameMax();
+
+    field_0x0320->setFrame(field_0x0324);
+    field_0x0334 += 2;
+
+    if (field_0x0334 >= field_0x0330->getFrameMax())
+        field_0x0334 -= field_0x0330->getFrameMax();
+
+    field_0x0330->setFrame(field_0x0334);
+    field_0x033c += 2;
+
+    if (field_0x033c >= field_0x0338->getFrameMax())
+        field_0x033c -= field_0x0338->getFrameMax();
+
+    field_0x0338->setFrame(field_0x033c);
+    field_0x03a4 += 2;
+
+    if (field_0x03a4 >= field_0x03a0->getFrameMax())
+        field_0x03a4 -= field_0x03a0->getFrameMax();
+
+    field_0x03a0->setFrame(field_0x03a4);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2002,8 +2049,32 @@ asm void dFile_select_c::selFileWakuAnm() {
 #include "asm/d/file/d_file_select/selFileWakuAnm__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801848A0-8018499C 17F1E0 00FC+00 1/1 0/0 0/0 .text            bookIconAnm__14dFile_select_cFv */
+#ifdef NONMATCHING
+// matches with literals
+void dFile_select_c::bookIconAnm() {
+    field_0x01dc += 2;
+
+    if (field_0x01dc >= field_0x01d8->getFrameMax())
+        field_0x01dc -= field_0x01d8->getFrameMax();
+
+    field_0x01d8->setFrame(field_0x01dc);
+    field_0x01e4 += 2;
+
+    if (field_0x01e4 >= field_0x01e0->getFrameMax())
+        field_0x01e4 -= field_0x01e0->getFrameMax();
+
+    field_0x01e0->setFrame(field_0x01e4);
+    field_0x01ec += 2;
+
+    if (field_0x01ec >= field_0x01e8->getFrameMax())
+        field_0x01ec -= field_0x01e8->getFrameMax();
+
+    field_0x01e8->setFrame(field_0x01ec);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2012,6 +2083,7 @@ asm void dFile_select_c::bookIconAnm() {
 #include "asm/d/file/d_file_select/bookIconAnm__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018499C-80184A48 17F2DC 00AC+00 1/1 0/0 0/0 .text selCopyFileWakuAnm__14dFile_select_cFv */
 #pragma push
