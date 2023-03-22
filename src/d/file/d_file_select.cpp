@@ -439,7 +439,7 @@ SECTION_DATA static u32 SelStartFrameTbl[3] = {
 };
 
 /* 803BA860-803BA86C 017980 000C+00 3/3 0/0 0/0 .data            SelEndFrameTbl */
-SECTION_DATA static u32 SelEndFrameTbl[3] = {
+SECTION_DATA static s32 SelEndFrameTbl[3] = {
     0x00000045,
     0x0000006D,
     0x00000095,
@@ -953,44 +953,8 @@ SECTION_DATA static void* lit_4213[3] = {
 #pragma pop
 
 /* 803BAAEC-803BAD20 017C0C 0234+00 1/2 0/0 0/0 .data            DataSelProc */
-SECTION_DATA static u8 DataSelProc[564] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00,
-};
+typedef void (dFile_select_c::*DataSelProcFunc)(void);
+SECTION_DATA static DataSelProcFunc DataSelProc[47] = {};
 
 /* 803BAD20-803BAD30 017E40 0010+00 1/1 0/0 0/0 .data            l_tagName101$5620 */
 SECTION_DATA static u8 l_tagName101[16] = {
@@ -1937,7 +1901,6 @@ asm void dFile_select_c::_create() {
 #endif
 
 /* 801844FC-80184664 17EE3C 0168+00 0/0 1/1 0/0 .text            _move__14dFile_select_cFv */
-#ifdef NONMATCHING
 void dFile_select_c::_move() {
     dMeter2Info_decMsgKeyWaitTimer();
 
@@ -1947,21 +1910,24 @@ void dFile_select_c::_move() {
         field_0x03b1 = 0;
     }
 
-    if (mDoMemCd_getProbeStat() == 0 || mDoMemCd_getProbeStat() == 1 && 
-            mDoRst::isReset() == 0 && field_0x03b1 == 0) {
+    if ((mDoMemCd_getProbeStat() == 0 || mDoMemCd_getProbeStat() == 1) && (mDoRst::isReset() == 0 && field_0x03b1 == 0)) {
         if (field_0x2378->getAlpha() != 0) {
             field_0x2378->setAlpha(0);
         }
+        
         field_0x026f = 0;
         field_0x0271 = 0;
+        
     }
 
+    (this->*DataSelProc[field_0x026f])();
     /* missing __ptmf_scall via DataSelProc here. Need to setup structure */
 
     selFileWakuAnm();
     bookIconAnm();
     dataDelEffAnm();
     dataCopyEffAnm();
+
     mFileSelectDlst.mpScreen->animation();
     mFileSelYesNoDlst.mpScreen->animation();
     mFileSel3mDlst.mpScreen->animation();
@@ -1975,18 +1941,9 @@ void dFile_select_c::_move() {
 
     mpFileWarning->_move();
     mpFileSelect3d->_move();
+
     mDoMemCd_clearProbeStat();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::_move() {
-    nofralloc
-#include "asm/d/file/d_file_select/_move__14dFile_select_cFv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80453938-80453940 001F38 0008+00 34/34 0/0 0/0 .sdata2          @4342 */
@@ -2380,9 +2337,9 @@ void dFile_select_c::dataSelectIn() {
         }
 
         headerTxtSet(0x43,1,0);
-        field_0x0264 = mSelectNum;
+        mLastSelectNum = mSelectNum;
         field_0x00bc[mSelectNum]->getPanePtr()->setAnimation((J2DAnmTransform*)mpAnmBase[0]);
-        field_0x00bc[mSelectNum + 9] = (CPaneMgr*)SelStartFrameTbl[(int)mSelectNum];
+        field_0x00e0[mSelectNum] = SelStartFrameTbl[mSelectNum];
         field_0x0188[mSelectNum]->alphaAnimeStart(0);
         ketteiTxtDispAnmInit(1);
         field_0x026f = 2;
@@ -2391,6 +2348,40 @@ void dFile_select_c::dataSelectIn() {
 
 /* 80185230-801853C4 17FB70 0194+00 1/0 0/0 0/0 .text            dataSelectInit__14dFile_select_cFv
  */
+#ifdef NONMATCHING
+// matches with literals
+void dFile_select_c::dataSelectInit() {
+    bool headerTxtChange = headerTxtChangeAnm();
+    bool alphaAnime = true;
+    bool ketteiTxtDisp = true;
+    bool check = true;
+
+    if (mSelectNum != 0xFF) {
+        alphaAnime = field_0x0188[mSelectNum]->alphaAnime(g_fsHIO.field_0x0006,0,0xFF,1);
+        ketteiTxtDisp = ketteiTxtDispAnm();
+
+        if (field_0x00e0[mSelectNum] != SelEndFrameTbl[mSelectNum]) {
+            field_0x00e0[mSelectNum] += 2;
+
+            if (field_0x00e0[mSelectNum] > SelEndFrameTbl[mSelectNum])
+                field_0x00e0[mSelectNum] = SelEndFrameTbl[mSelectNum];
+             
+            mpAnmBase[0]->setFrame(field_0x00e0[mSelectNum]);
+            field_0x00bc[mSelectNum]->getPanePtr()->animationTransform();
+            check = false;
+        }
+    }
+
+    if (headerTxtChange == true && alphaAnime == true && ketteiTxtDisp == true && check == true) {
+        if (mSelectNum != 0xFF) {
+            field_0x00bc[mSelectNum]->getPanePtr()->setAnimation((J2DAnmTransform*)0);
+            selFileCursorShow();    
+        }
+
+        field_0x026f = 3;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2399,8 +2390,41 @@ asm void dFile_select_c::dataSelectInit() {
 #include "asm/d/file/d_file_select/dataSelectInit__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801853C4-80185508 17FD04 0144+00 1/0 0/0 0/0 .text            dataSelect__14dFile_select_cFv */
+// handles switching between quest logs
+#ifdef NONMATCHING
+// matches with literals
+void dFile_select_c::dataSelect() {
+    mStick->checkTrigger();
+
+    // If A or Start was pressed
+    if (mDoCPd_c::getTrigA(PAD_1) || mDoCPd_c::getTrigStart(PAD_1)) {
+        dataSelectStart(); // run the quest log open process
+    } else {
+        if (mStick->checkUpTrigger()) {
+            // if we're not on the top quest log
+            if (mSelectNum != 0) {
+                mDoAud_seStart(Z2SE_FILE_SELECT_CURSOR,0,0,0);
+                mLastSelectNum = mSelectNum;
+                mSelectNum--;
+                dataSelectAnmSet(); // run the quest log selection animation
+                field_0x026f = 4;
+            }
+        } else if (mStick->checkDownTrigger()) {
+            // if we're not on the bottom quest log
+            if (mSelectNum != 2) {
+                mDoAud_seStart(Z2SE_FILE_SELECT_CURSOR,0,0,0);
+                mLastSelectNum = mSelectNum;
+                mSelectNum++;
+                dataSelectAnmSet(); // run the quest log selection animation
+                field_0x026f = 4;
+            }
+        } 
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2409,6 +2433,7 @@ asm void dFile_select_c::dataSelect() {
 #include "asm/d/file/d_file_select/dataSelect__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804506B0-804506B8 000130 0008+00 2/2 0/0 0/0 .sdata           YnSelStartFrameTbl */
@@ -2464,9 +2489,9 @@ void dFile_select_c::selectDataMoveAnmInitSet(int param_0, int param_1) {
     field_0x00bc[1]->getPanePtr()->setAnimation((J2DAnmTransform*)mpAnmBase[0]);
     field_0x00bc[2]->getPanePtr()->setAnimation((J2DAnmTransform*)mpAnmBase[0]);
     mpPane->setAnimation((J2DAnmTransform*)mpAnmBase[0]);
-    field_0x00bc[mSelectNum+9] = (CPaneMgr*)param_0;
-    field_0x00ec = param_1;
-    mpAnmBase[0]->setFrame((s32)(field_0x00bc[mSelectNum+9]));
+    field_0x00e0[mSelectNum] = param_0;
+    field_0x00ec = (s32*)param_1;
+    mpAnmBase[0]->setFrame(field_0x00e0[mSelectNum]);
     field_0x00bc[0]->getPanePtr()->animationTransform();
     field_0x00bc[1]->getPanePtr()->animationTransform();
     field_0x00bc[2]->getPanePtr()->animationTransform();
@@ -2591,32 +2616,37 @@ asm void dFile_select_c::selectDataOpenEraseMove() {
 #pragma pop
 
 /* 80186774-801868EC 1810B4 0178+00 1/0 0/0 0/0 .text            menuSelect__14dFile_select_cFv */
+// Handles selecting between copy / start / delete menus in quest log
 #ifdef NONMATCHING
 // matches with literals
 void dFile_select_c::menuSelect() {
     mStick->checkTrigger();
 
+    // if a was pressed, do the menu selection process
     if (mDoCPd_c::getTrigA(PAD_1)) {
         menuSelectStart();
     } else {
+        // if b was pressed, do the menu cancel process
         if (mDoCPd_c::getTrigB(PAD_1)) {
             menuSelectCansel();
         } else {
             if (mStick->checkRightTrigger()) {
-                if (field_0x0258[mSelectNum] == 0 && field_0x0267 != 0) {
+                if (field_0x0258[mSelectNum] == 0 && mSelectMenuNum != 0) {
                     mDoAud_seStart(Z2SE_SY_MENU_CURSOR_COMMON,0,0,0);
-                    field_0x0266 = field_0x0267;
-                    field_0x0267--;
-                    menuSelectAnmSet();
+                    mLastSelectMenuNum = mSelectMenuNum;
+                    mSelectMenuNum--;
+                    menuSelectAnmSet(); // run the menu selection animation
                     field_0x026f = 9;
                 }
-            } else if (mStick->checkLeftTrigger() && field_0x0258[mSelectNum] == 0 && field_0x0267 != 2) {
-                mDoAud_seStart(Z2SE_SY_MENU_CURSOR_COMMON,0,0,0);
-                field_0x0266 = field_0x0267;
-                field_0x0267++;
-                menuSelectAnmSet();
-                field_0x026f = 9;
-            }
+            } else if (mStick->checkLeftTrigger()) {
+                if (field_0x0258[mSelectNum] == 0 && mSelectMenuNum != 2) {
+                    mDoAud_seStart(Z2SE_SY_MENU_CURSOR_COMMON,0,0,0);
+                    mLastSelectMenuNum = mSelectMenuNum;
+                    mSelectMenuNum++;
+                    menuSelectAnmSet(); // run the menu selection animation
+                    field_0x026f = 9;
+                }
+            } 
         }
     }
 }
@@ -2638,20 +2668,20 @@ asm void dFile_select_c::menuSelect() {
 void dFile_select_c::menuSelectStart() {
     mDoAud_seStart(Z2SE_SY_CURSOR_OK,0,0,0);
 
-    if (field_0x0267 == 1) {
+    if (mSelectMenuNum == 1) {
         dComIfGs_setCardToMemory(&mpMemCard,mSelectNum);
         field_0x0270 = 1;
         field_0x026f = 0x2e;
         dComIfGs_setDataNum(mSelectNum);
     }
-    else if (field_0x0267 == 0) {
+    else if (mSelectMenuNum == 0) {
         mpCursor1->setAlphaRate(0.0f);
         yesnoMenuMoveAnmInitSet(0x473,0x47d);
         headerTxtSet(0x49, 0,0);
         field_0x026e = 1;
         field_0x026f = 12;
     }
-    else if (field_0x0267 == 2) {
+    else if (mSelectMenuNum == 2) {
         field_0x026a = mSelectNum;
         menuMoveAnmInitSet(0x329,799);
         headerTxtSet(0x44,0,0);
@@ -2706,7 +2736,7 @@ void dFile_select_c::menuMoveAnmInitSet(int param_0, int param_1) {
         field_0x0283 = true;
 
         for (int i = 0; i < 3; i++) {
-            if (i == field_0x0267) {
+            if (i == mSelectMenuNum) {
                 static_cast<J2DTextBox*>((&mpPaneMgr2)[i]->getPanePtr())->setWhite(JUtility::TColor(255,255,255,255));
             } else {
                 static_cast<J2DTextBox*>((&mpPaneMgr2)[i]->getPanePtr())->setWhite(JUtility::TColor(150,150,150,255));
@@ -2770,10 +2800,10 @@ bool dFile_select_c::menuMoveAnm() {
         } else {
             field_0x0360 = false;
 
-            if (field_0x0267 != 0xFF) {
-                (&mpPaneAlpha1)[field_0x0267]->setAlpha(0);
-                (&mpPaneAlpha2)[field_0x0267]->setAlpha(0);
-                (&mpPaneAlpha3)[field_0x0267]->setAlpha(0);
+            if (mSelectMenuNum != 0xFF) {
+                (&mpPaneAlpha1)[mSelectMenuNum]->setAlpha(0);
+                (&mpPaneAlpha2)[mSelectMenuNum]->setAlpha(0);
+                (&mpPaneAlpha3)[mSelectMenuNum]->setAlpha(0);
             }
         }
 
@@ -2795,19 +2825,19 @@ asm bool dFile_select_c::menuMoveAnm() {
 #ifdef NONMATCHING
 // matches with literals
 void dFile_select_c::menuSelectAnmSet() {
-    if (field_0x0267 != 0xFF) {
-        (&field_0x0340)[field_0x0267]->getPanePtr()->setAnimation(field_0x0328);
-        field_0x034c[field_0x0267] = MenuSelEndFrameTbl[field_0x0267];
-        field_0x0328->setFrame(field_0x034c[field_0x0267]);
-        (&field_0x0340)[field_0x0267]->getPanePtr()->animationTransform();
+    if (mSelectMenuNum != 0xFF) {
+        (&field_0x0340)[mSelectMenuNum]->getPanePtr()->setAnimation(field_0x0328);
+        field_0x034c[mSelectMenuNum] = MenuSelEndFrameTbl[mSelectMenuNum];
+        field_0x0328->setFrame(field_0x034c[mSelectMenuNum]);
+        (&field_0x0340)[mSelectMenuNum]->getPanePtr()->animationTransform();
     }
 
-    if (field_0x0266 != 0xFF) {
-        (&field_0x0340)[field_0x0266]->getPanePtr()->setAnimation(field_0x032c);
-        field_0x034c[field_0x0266] = MenuSelStartFrameTbl[field_0x0266];
-        field_0x032c->setFrame(field_0x034c[field_0x0266]);
-        (&field_0x0340)[field_0x0266]->getPanePtr()->animationTransform();
-        menuWakuAlpahAnmInit(field_0x0266,0xFF,0,g_fsHIO.field_0x0008);
+    if (mLastSelectMenuNum != 0xFF) {
+        (&field_0x0340)[mLastSelectMenuNum]->getPanePtr()->setAnimation(field_0x032c);
+        field_0x034c[mLastSelectMenuNum] = MenuSelStartFrameTbl[mLastSelectMenuNum];
+        field_0x032c->setFrame(field_0x034c[mLastSelectMenuNum]);
+        (&field_0x0340)[mLastSelectMenuNum]->getPanePtr()->animationTransform();
+        menuWakuAlpahAnmInit(mLastSelectMenuNum,0xFF,0,g_fsHIO.field_0x0008);
         mpCursor1->setAlphaRate(0.0f);
     }
 }
@@ -2827,57 +2857,57 @@ asm void dFile_select_c::menuSelectAnmSet() {
 // matches with literals
 void dFile_select_c::menuSelectMoveAnm() {
     bool tmp1 = true;
-    if (field_0x0267 != 0xFF && field_0x034c[field_0x0267] != MenuSelStartFrameTbl[field_0x0267]) {
-        if (field_0x034c[field_0x0267] > MenuSelStartFrameTbl[field_0x0267]) {
-            field_0x034c[field_0x0267] -= 2;
+    if (mSelectMenuNum != 0xFF && field_0x034c[mSelectMenuNum] != MenuSelStartFrameTbl[mSelectMenuNum]) {
+        if (field_0x034c[mSelectMenuNum] > MenuSelStartFrameTbl[mSelectMenuNum]) {
+            field_0x034c[mSelectMenuNum] -= 2;
             
-            if (field_0x034c[field_0x0267] < MenuSelStartFrameTbl[field_0x0267])
-                field_0x034c[field_0x0267] = MenuSelStartFrameTbl[field_0x0267];
+            if (field_0x034c[mSelectMenuNum] < MenuSelStartFrameTbl[mSelectMenuNum])
+                field_0x034c[mSelectMenuNum] = MenuSelStartFrameTbl[mSelectMenuNum];
         } else {
-            field_0x034c[field_0x0267] += 2;
+            field_0x034c[mSelectMenuNum] += 2;
 
-            if (field_0x034c[field_0x0267] > MenuSelStartFrameTbl[field_0x0267])
-                field_0x034c[field_0x0267] = MenuSelStartFrameTbl[field_0x0267];
+            if (field_0x034c[mSelectMenuNum] > MenuSelStartFrameTbl[mSelectMenuNum])
+                field_0x034c[mSelectMenuNum] = MenuSelStartFrameTbl[mSelectMenuNum];
         }
 
-        field_0x0328->setFrame(field_0x034c[field_0x0267]);
-        (&field_0x0340)[field_0x0267]->getPanePtr()->animationTransform();
+        field_0x0328->setFrame(field_0x034c[mSelectMenuNum]);
+        (&field_0x0340)[mSelectMenuNum]->getPanePtr()->animationTransform();
         tmp1 = false;
     }   
 
   bool tmp2 = true;
   bool tmp3 = true;
 
-  if (field_0x0266 != 0xFF) {
-    if (field_0x034c[field_0x0266] != MenuSelEndFrameTbl[field_0x0266]) {
-      if (field_0x034c[field_0x0266] < MenuSelEndFrameTbl[field_0x0266]) {
-        field_0x034c[field_0x0266] += 2;
+  if (mLastSelectMenuNum != 0xFF) {
+    if (field_0x034c[mLastSelectMenuNum] != MenuSelEndFrameTbl[mLastSelectMenuNum]) {
+      if (field_0x034c[mLastSelectMenuNum] < MenuSelEndFrameTbl[mLastSelectMenuNum]) {
+        field_0x034c[mLastSelectMenuNum] += 2;
              
-        if (field_0x034c[field_0x0266] > MenuSelEndFrameTbl[field_0x0266])
-            field_0x034c[field_0x0266] = MenuSelEndFrameTbl[field_0x0266];
+        if (field_0x034c[mLastSelectMenuNum] > MenuSelEndFrameTbl[mLastSelectMenuNum])
+            field_0x034c[mLastSelectMenuNum] = MenuSelEndFrameTbl[mLastSelectMenuNum];
 
       } else {
-        field_0x034c[field_0x0266] -= 2;
+        field_0x034c[mLastSelectMenuNum] -= 2;
         
-        if (field_0x034c[field_0x0266] < MenuSelEndFrameTbl[field_0x0266])
-            field_0x034c[field_0x0266] = MenuSelEndFrameTbl[field_0x0266];
+        if (field_0x034c[mLastSelectMenuNum] < MenuSelEndFrameTbl[mLastSelectMenuNum])
+            field_0x034c[mLastSelectMenuNum] = MenuSelEndFrameTbl[mLastSelectMenuNum];
       }
-      field_0x032c->setFrame(field_0x034c[field_0x0266]);
-      (&field_0x0340)[field_0x0266]->getPanePtr()->animationTransform();
+      field_0x032c->setFrame(field_0x034c[mLastSelectMenuNum]);
+      (&field_0x0340)[mLastSelectMenuNum]->getPanePtr()->animationTransform();
       tmp2 = false;
     }
 
-    tmp3 = menuWakuAlpahAnm(field_0x0266);
+    tmp3 = menuWakuAlpahAnm(mLastSelectMenuNum);
   }
 
   if (tmp1 == true && tmp2 == true && tmp3 == true) {
-    if (field_0x0267 != 0xFF) {
-      (&field_0x0340)[field_0x0267]->getPanePtr()->setAnimation((J2DAnmTransform*)0);
+    if (mSelectMenuNum != 0xFF) {
+      (&field_0x0340)[mSelectMenuNum]->getPanePtr()->setAnimation((J2DAnmTransform*)0);
       menuCursorShow();
     }
 
-    if (field_0x0266 != 0xFF) {
-      (&field_0x0340)[field_0x0266]->getPanePtr()->setAnimation((J2DAnmTransform*)0);
+    if (mLastSelectMenuNum != 0xFF) {
+      (&field_0x0340)[mLastSelectMenuNum]->getPanePtr()->setAnimation((J2DAnmTransform*)0);
     }
 
     field_0x026f = 8;

@@ -368,8 +368,7 @@ public:
     /* 0x00CC */ u8 field_0x00cc[8];
     /* 0x00D4 */ float field_0x00d4;
     /* 0x00D8 */ u8 field_0x00d8[8];
-    /* 0x00E0 */ s32* field_0x00e0;
-    /* 0x00E4 */ u8 field_0x00e4[0xec - 0xe4];
+    /* 0x00E0 */ s32 field_0x00e0[3];
     /* 0x00EC */ s32* field_0x00ec;
     /* 0x00F0 */ u8 field_0x00f0[0x108 - 0xf0];
     /* 0x0108 */ bool field_0x0108;                       
@@ -435,10 +434,10 @@ public:
     /* 0x0258 */ u8 mDataNew[3];
     /* 0x025B */ u8 field_0x025b[3];
     /* 0x025C */ u8 field_0x025e[0x0264 - 0x025e];
-    /* 0x0264 */ u8 field_0x0264;
-    /* 0x0265 */ u8 mSelectNum;
-    /* 0x0266 */ u8 field_0x0266;
-    /* 0x0267 */ u8 field_0x0267;
+    /* 0x0264 */ u8 mLastSelectNum; // previously selected quest log
+    /* 0x0265 */ u8 mSelectNum; // currently selected quest log
+    /* 0x0266 */ u8 mLastSelectMenuNum; // previously select menu number (for copy / start / delete)
+    /* 0x0267 */ u8 mSelectMenuNum; // currently selected menu number  (for copy / start / delete)
     /* 0x0268 */ u8 field_0x0268[0x026A - 0x0268];
     /* 0x026A */ u8 field_0x026a;
     /* 0x026B */ u8 field_0x026b[0x026e - 0x026b];
