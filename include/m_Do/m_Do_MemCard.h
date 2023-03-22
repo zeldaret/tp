@@ -79,4 +79,15 @@ inline void mDoMemCd_clearProbeStat() {
     g_mDoMemCd_control.clearProbeStat();
 }
 
+inline void mDoMemCd_save(void* i_data, u32 param_1, u32 param_2) {
+    g_mDoMemCd_control.save(i_data,param_1,param_2);
+}
+
+// This is probably debug only
+#if DEBUG
+inline void mDoMemCd_saveNAND(void* i_data, u32 param_1, u32 param_2) {
+    g_mDoMemCd_control.saveNAND(i_data,param_1,param_2);
+}
+#endif
+
 #endif /* M_DO_M_DO_MEMCARD_H */

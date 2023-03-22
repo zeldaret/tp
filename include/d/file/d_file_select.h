@@ -369,7 +369,7 @@ public:
     /* 0x00D4 */ float field_0x00d4;
     /* 0x00D8 */ u8 field_0x00d8[8];
     /* 0x00E0 */ s32 field_0x00e0[3];
-    /* 0x00EC */ s32* field_0x00ec;
+    /* 0x00EC */ s32 field_0x00ec;
     /* 0x00F0 */ u8 field_0x00f0[0x108 - 0xf0];
     /* 0x0108 */ bool field_0x0108;                       
     /* 0x0109 */ bool field_0x0109;                       
@@ -452,7 +452,7 @@ public:
     /* 0x0284 */ u8 field_0x0284[0x029C - 0x0284];
     /* 0x029C */ J2DAnmBase* field_0x029c;
     /* 0x02A0 */ J2DAnmBase* field_0x02a0;
-    /* 0x02A4 */ u8 field_0x02A4[0x02E8 - 0x02A4];
+    /* 0x02A4 */ J2DPane* field_0x01a4[17]; // maybe too many
     /* 0x02E8 */ J2DAnmBase* field_0x02e8;
     /* 0x02EC */ s32 field_0x02ec;
     /* 0x02F0 */ J2DAnmBase* field_0x02f0;
