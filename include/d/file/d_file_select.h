@@ -363,9 +363,7 @@ public:
     /* 0x00B9 */ u8 field_0x00b9;
     /* 0x00BA */ u8 field_0x00ba;
     /* 0x00BB */ u8 field_0x00bb;
-    /* 0x00BC */ CPaneMgr* field_0x00bc;
-    /* 0x00C0 */ u8 field_0x00c0[4];
-    /* 0x00C4 */ u8 field_0x00c4[4];
+    /* 0x00BC */ CPaneMgr* field_0x00bc[3];
     /* 0x00C8 */ f32 field_0x00c8;
     /* 0x00CC */ u8 field_0x00cc[8];
     /* 0x00D4 */ float field_0x00d4;
@@ -374,8 +372,8 @@ public:
     /* 0x00E4 */ u8 field_0x00e4[0xec - 0xe4];
     /* 0x00EC */ s32* field_0x00ec;
     /* 0x00F0 */ u8 field_0x00f0[0x108 - 0xf0];
-    /* 0x0108 */ bool field_0x108;                       
-    /* 0x0109 */ bool field_0x109;                       
+    /* 0x0108 */ bool field_0x0108;                       
+    /* 0x0109 */ bool field_0x0109;                       
     /* 0x010A */ u8 field_0x10a[2];                      
     /* 0x010C */ J2DPane* mpPane;                        
     /* 0x0110 */ int field_0x0110;
@@ -420,7 +418,9 @@ public:
     /* 0x021C */ u8 field_0x021c;
     /* 0x021D */ u8 field_0x021d;
     /* 0x021E */ u8 field_0x021e;
-    /* 0x021F */ u8 field_0x021f[0x0238 - 0x021F];
+    /* 0x021F */ u8 field_0x021f;
+    /* 0x0220 */ CPaneMgrAlpha* field_0x0220[3];
+    /* 0x022C */ CPaneMgrAlpha* field_0x022c[3];
     /* 0x0238 */ CPaneMgrAlpha* field_0x0238;
     /* 0x023C */ CPaneMgrAlpha* field_0x023c;
     /* 0x0240 */ CPaneMgrAlpha* field_0x0240;
@@ -446,7 +446,9 @@ public:
     /* 0x026F */ u8 field_0x026f;
     /* 0x0270 */ bool mSelectEnd;
     /* 0x0271 */ u8 field_0x0271;
-    /* 0x0272 */ u8 field_0x0272[0x0283 - 0x0272];
+    /* 0x0272 */ u8 field_0x0272[0x0281 - 0x0272];
+    /* 0x0281 */ bool field_0x0281;
+    /* 0x0282 */ bool field_0x0282;
     /* 0x0283 */ bool field_0x0283;
     /* 0x0284 */ u8 field_0x0284[0x029C - 0x0284];
     /* 0x029C */ J2DAnmBase* field_0x029c;
@@ -477,7 +479,6 @@ public:
     /* 0x0340 */ CPaneMgrAlpha* field_0x0340;
     /* 0x0344 */ u8 field_0x0344[8];
     /* 0x034C */ s32 field_0x034c[3];
-    // /* 0x0350 */ u8 field_0x0350[8];
     /* 0x0358 */ int field_0x0358;
     /* 0x035C */ int field_0x035c;
     /* 0x0360 */ bool field_0x0360;
@@ -509,7 +510,10 @@ public:
     /* 0x03B2 */ u8 field_0x03b2[6];
     /* 0x03B8 */ char mpMemCard;
     /* 0x03B9 */ u8 field_0x03b9[3];
-    /* 0x03BC */ u8 field_0x03bc[0x2374 - 0x3BC];
+    /* 0x03BC */ u8 field_0x03bc[0x3E0 - 0x3BC];
+    /* 0x03E0 */ dSv_save_c* mpSave;
+    /* 0x03E4 */ u8 field_0x03e4[4];
+    /* 0x03E8 */ u8 field_0x03e8[0x2374 - 0x3E8];
     /* 0x2374 */ bool mFadeFlag;
     /* 0x2375 */ bool mHasDrawn;
     /* 0x2376 */ u8 field_0x2376[0x2378 - 0x2376];

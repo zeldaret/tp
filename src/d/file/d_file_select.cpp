@@ -2282,6 +2282,58 @@ SECTION_SDATA2 static f32 lit_4611 = 1.0f;
 SECTION_SDATA2 static f32 lit_4612 = -1.0f;
 
 /* 80184E38-80185040 17F778 0208+00 1/1 0/0 0/0 .text dataSelectInAnmSet__14dFile_select_cFv */
+#ifdef NONMATCHING
+void dFile_select_c::dataSelectInAnmSet() {
+    setSaveData();
+    char* card_ptr = &mpMemCard;
+    OSTime date_ipl = mpSave->getPlayer().getPlayerStatusB().getDateIpl(); // guess
+
+    // pdVar1 = (dSv_player_c *)dSv_save_c::getPlayer((dSv_save_c *)this_00);
+    // pdVar2 = (dSv_player_status_b_c *)dSv_player_c::getPlayerStatusB(pdVar1);
+    // uVar4 = dSv_player_status_b_c::getDateIpl(pdVar2);
+    mSelectNum = 0;
+    for (int i = 0; i < 3; i++) {
+        if (field_0x025b[i] == 0) {
+            // pdVar1 = (dSv_player_c *)dSv_save_c::getPlayer((dSv_save_c *)this_00);
+            // pdVar2 = (dSv_player_status_b_c *)dSv_player_c::getPlayerStatusB(pdVar1);
+            // uVar5 = dSv_player_status_b_c::getDateIpl(pdVar2);
+
+            OSTime date_ipl2 = mpSave->getPlayer().getPlayerStatusB().getDateIpl();
+            OSTime div_res = date_ipl2 / date_ipl;
+
+            // wrong, fix
+            if (div_res < date_ipl) {
+                date_ipl = date_ipl2;
+                mSelectNum = i;
+            }
+            // uVar6 = Runtime.PPCEABI.H::__div2i
+            //                     ((int)((ulonglong)uVar5 >> 0x20),(int)uVar5,0,DAT_800000f8 >> 2);
+            // uVar7 = Runtime.PPCEABI.H::__div2i
+            //                     ((int)((ulonglong)uVar4 >> 0x20),(int)uVar4,0,DAT_800000f8 >> 2);
+            // if (((uint)((ulonglong)uVar7 >> 0x20) ^ 0x80000000) <
+            //     (uint)((uint)uVar7 < (uint)uVar6) + ((uint)((ulonglong)uVar6 >> 0x20) ^ 0x80000000)) {
+            //     mSelectNum = (byte)iVar3;
+            //     uVar4 = uVar5;
+            // }
+        }
+
+        card_ptr += 0xa94;
+
+        if (field_0x025b[i] == 0 && mDataNew[i] != 0) {
+            field_0x0220[i]->setAlpha(0);
+            field_0x022c[i]->setAlpha(0xFF);
+        } else {
+            field_0x0220[i]->setAlpha(0xFF);
+            field_0x022c[i]->setAlpha(0);
+        }
+
+        field_0x0188[i]->setAlpha(0);
+    }
+    mpFileWarning->init();
+    selectDataBaseMoveAnmInitSet(1,0x21);
+    mDoAud_seStart(Z2SE_SY_FILE_MENU_SLIDE_IN,0,0,0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2290,16 +2342,52 @@ asm void dFile_select_c::dataSelectInAnmSet() {
 #include "asm/d/file/d_file_select/dataSelectInAnmSet__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80185040-80185230 17F980 01F0+00 1/0 0/0 0/0 .text            dataSelectIn__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::dataSelectIn() {
-    nofralloc
-#include "asm/d/file/d_file_select/dataSelectIn__14dFile_select_cFv.s"
+void dFile_select_c::dataSelectIn() {
+    bool headerTxtChange = headerTxtChangeAnm();
+    bool selectDataBaseMove = selectDataBaseMoveAnm();
+
+    bool errorMove = true;
+    if (field_0x014a || field_0x014b) {
+        errorMove = errorMoveAnm();
+    }
+
+    bool yesnoMenuMove = true;
+    if (field_0x0108 || field_0x0281) {
+        yesnoMenuMove = yesnoMenuMoveAnm();
+    }
+
+    bool nameMove = true;
+    if (field_0x0128 || mFileSelCopyDlst.field_0x08) {
+        nameMove = nameMoveAnm();
+    }
+
+    bool menuMove = true;
+    if (field_0x0360 || field_0x0283) {
+        menuMove = menuMoveAnm();
+    }
+
+    bool modoruTxtDisp = modoruTxtDispAnm();
+
+    if (headerTxtChange == true && selectDataBaseMove == true && 
+                                   errorMove == true && yesnoMenuMove == true && 
+                                   nameMove == true && menuMove == true && 
+                                   modoruTxtDisp == true) {
+        for (int i = 0; i < 3; i++) {
+            field_0x00bc[i]->reinit();
+        }
+
+        headerTxtSet(0x43,1,0);
+        field_0x0264 = mSelectNum;
+        field_0x00bc[mSelectNum]->getPanePtr()->setAnimation((J2DAnmTransform*)mpAnmBase[0]);
+        field_0x00bc[mSelectNum + 9] = (CPaneMgr*)SelStartFrameTbl[(int)mSelectNum];
+        field_0x0188[mSelectNum]->alphaAnimeStart(0);
+        ketteiTxtDispAnmInit(1);
+        field_0x026f = 2;
+    }
 }
-#pragma pop
 
 /* 80185230-801853C4 17FB70 0194+00 1/0 0/0 0/0 .text            dataSelectInit__14dFile_select_cFv
  */
@@ -4420,7 +4508,7 @@ asm void dFile_select_c::errorTxtChangeAnm() {
 /* 8018FE18-8018FE64 18A758 004C+00 1/1 0/0 0/0 .text            fileRecScaleAnm__14dFile_select_cFv
  */
 bool dFile_select_c::fileRecScaleAnm() {
-    return (&field_0x00bc)[mSelectNum]->scaleAnime(g_fsHIO.field_0x0005,field_0x00c8,field_0x00d4,0);
+    return field_0x00bc[mSelectNum]->scaleAnime(g_fsHIO.field_0x0005,field_0x00c8,field_0x00d4,0);
 }
 
 /* 8018FE64-8018FEF4 18A7A4 0090+00 2/2 0/0 0/0 .text fileRecScaleAnmInitSet2__14dFile_select_cFff
