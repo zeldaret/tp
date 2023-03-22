@@ -2086,6 +2086,23 @@ asm void dFile_select_c::bookIconAnm() {
 #endif
 
 /* 8018499C-80184A48 17F2DC 00AC+00 1/1 0/0 0/0 .text selCopyFileWakuAnm__14dFile_select_cFv */
+#ifdef NONMATCHING
+// matches with literals
+void dFile_select_c::selCopyFileWakuAnm() {
+    field_0x02ec += 2;
+
+    if (field_0x02ec >= field_0x02e8->getFrameMax())
+        field_0x02ec -= field_0x02e8->getFrameMax();
+
+    field_0x02e8->setFrame(field_0x02ec);
+    field_0x02f4 += 2;
+
+    if (field_0x02f4 >= field_0x02f0->getFrameMax())
+        field_0x02f4 -= field_0x02f0->getFrameMax();
+
+    field_0x02f0->setFrame(field_0x02f4);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2094,9 +2111,33 @@ asm void dFile_select_c::selCopyFileWakuAnm() {
 #include "asm/d/file/d_file_select/selCopyFileWakuAnm__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80184A48-80184B44 17F388 00FC+00 1/1 0/0 0/0 .text            copyBookIconAnm__14dFile_select_cFv
  */
+#ifdef NONMATCHING
+// matches with literals
+void dFile_select_c::copyBookIconAnm() {
+    field_0x02fc += 2;
+
+    if (field_0x02fc >= field_0x02f8->getFrameMax())
+        field_0x02fc -= field_0x02f8->getFrameMax();
+
+    field_0x02f8->setFrame(field_0x02fc);
+    field_0x0304 += 2;
+
+    if (field_0x0304 >= field_0x0300->getFrameMax())
+        field_0x0304 -= field_0x0300->getFrameMax();
+
+    field_0x0300->setFrame(field_0x0304);
+    field_0x030c += 2;
+
+    if (field_0x030c >= field_0x0308->getFrameMax())
+        field_0x030c -= field_0x0308->getFrameMax();
+    
+    field_0x0308->setFrame(field_0x030c);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2105,6 +2146,7 @@ asm void dFile_select_c::copyBookIconAnm() {
 #include "asm/d/file/d_file_select/copyBookIconAnm__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80184B44-80184BFC 17F484 00B8+00 1/1 0/0 0/0 .text            dataDelEffAnm__14dFile_select_cFv
  */
