@@ -402,9 +402,11 @@ public:
     /* 0x01F0 */ J2DAnmBase* field_0x01f0;
     /* 0x01F4 */ s32 field_0x01f4;
     /* 0x01F8 */ J2DAnmBase* field_0x01f8;
-    /* 0x01FC */ s32 field_0x01fC;
+    /* 0x01FC */ s32 field_0x01fc;
     /* 0x0200 */ J2DAnmBase* field_0x0200;
-    /* 0x0204 */ u8 field_0x0204[6];
+    /* 0x0204 */ s32 field_0x0204;
+    /* 0x0208 */ u8 field_0x0208;
+    /* 0x0209 */ u8 field_0x0209;
     /* 0x020A */ u8 field_0x020a;
     /* 0x020B */ u8 field_0x020b;
     /* 0x020C */ CPaneMgrAlpha* field_0x020c;
