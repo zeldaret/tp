@@ -452,7 +452,7 @@ public:
     /* 0x0284 */ u8 field_0x0284[0x029C - 0x0284];
     /* 0x029C */ J2DAnmBase* field_0x029c;
     /* 0x02A0 */ J2DAnmBase* field_0x02a0;
-    /* 0x02A4 */ J2DPane* field_0x01a4[17]; // maybe too many
+    /* 0x02A4 */ J2DPane* field_0x01a4[17]; // too many here, fix later
     /* 0x02E8 */ J2DAnmBase* field_0x02e8;
     /* 0x02EC */ s32 field_0x02ec;
     /* 0x02F0 */ J2DAnmBase* field_0x02f0;
