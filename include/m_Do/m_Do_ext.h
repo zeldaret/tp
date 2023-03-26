@@ -435,7 +435,9 @@ public:
 
 class mDoExt_3DlineMatSortPacket : public J3DPacket {
 public:
-    mDoExt_3DlineMatSortPacket();
+    mDoExt_3DlineMatSortPacket() { mp3DlineMat = NULL; }
+
+    void reset() { mp3DlineMat = NULL; }
 
     /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
     virtual void draw();
@@ -505,7 +507,8 @@ public:
 
 class mDoExt_cylinderPacket : public J3DPacket {
 public:
-    mDoExt_cylinderPacket(cXyz& i_position, f32 i_radius, f32 i_height, const GXColor& i_color, u8 param_4) {
+    mDoExt_cylinderPacket(cXyz& i_position, f32 i_radius, f32 i_height, const GXColor& i_color,
+                          u8 param_4) {
         mPosition = i_position;
         mRadius = i_radius;
         mHeight = i_height;

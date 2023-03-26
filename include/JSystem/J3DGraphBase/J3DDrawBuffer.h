@@ -5,6 +5,30 @@
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 
+// matches debug
+inline f32 J3DCalcZValue(register MtxP m, register Vec v) {
+    register f32 temp_f4;
+    register f32 out;
+    register f32 temp_f0;
+    register f32 temp_f2;
+    register f32 temp_f1 = 1.0f;
+
+    // clang-format off
+    asm {
+        psq_l temp_f0, 0(v), 0, 0 /* qr0 */
+        lfs temp_f2, 8(v)
+        psq_l temp_f4, 32(m), 0, 0 /* qr0 */
+        psq_l out, 40(m), 0, 0 /* qr0 */
+        ps_merge00 temp_f2, temp_f2, temp_f1
+        ps_mul temp_f4, temp_f0, temp_f4
+        ps_madd out, temp_f2, out, temp_f4
+        ps_sum0 out, out, out, out
+    }
+    // clang-format on
+
+    return out;
+}
+
 class J3DDrawBuffer;
 class J3DPacket;
 class J3DDrawPacket;
@@ -45,6 +69,8 @@ public:
     void draw() const;
     void drawHead() const;
     void drawTail() const;
+
+    u32 getEntryTableSize() { return mBufSize; }
 
     inline void calcZRatio();
     void setNonSort() { mSortType = 5; }
