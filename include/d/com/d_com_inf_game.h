@@ -1665,6 +1665,14 @@ inline u8 dComIfGs_getWalletSize() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getWalletSize();
 }
 
+inline void dComIfGs_setOptCalValue(s8 i_calValue) {
+    g_dComIfG_gameInfo.info.getPlayer().getConfig().setCalValue(i_calValue);
+}
+
+inline void dComIfGs_setOptCalibrateDist(u16 i_calibrateDist) {
+    g_dComIfG_gameInfo.info.getPlayer().getConfig().setCalibrateDist(i_calibrateDist);
+}
+
 void dComIfGp_setSelectItem(int index);
 s32 dComIfGp_offHeapLockFlag(int flag);
 void dComIfGp_createSubExpHeap2D();
