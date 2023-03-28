@@ -21,6 +21,7 @@ public:
     void setBasePane(J2DPane* pane) { mFileInfo.mBasePane = pane; }
     CPaneMgrAlpha* getDatBase() { return mDatBase; }
     CPaneMgrAlpha* getNoDatBase() { return mNoDatBase; }
+    void draw() { _draw(); }
 
 private:
     /* 0x04 */ JKRArchive* mArchive;

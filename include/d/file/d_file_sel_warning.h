@@ -22,6 +22,7 @@ public:
     /* 80191C18 */ virtual ~dFile_warning_c();
 
     u8 getStatus() { return mStatus; }
+    void draw() { _draw(); }
 
     u8 field_0x4[0x3D - 0x4];
     /* 0x3D */ u8 mStatus;

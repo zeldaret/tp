@@ -111,6 +111,7 @@ public:
     char* getInputStrPtr() { return mInputStr; }
     void hideIcon() { mSelIcon->setAlphaRate(0.0f); }
     void setNextNameStr(char* i_name) { strcpy(mNextNameStr,i_name); }
+    void draw() { _draw(); }
 
 private:
     /* 0x004 */ STControl* stick;

@@ -1850,6 +1850,7 @@ static u8 lit_3807[12];
 
 /* 8042C9EC-8042CA10 05970C 0024+00 35/35 0/0 0/0 .bss             g_fsHIO */
 static dFs_HIO_c_tmp g_fsHIO;
+// static dFs_HIO_c g_fsHIO;
 
 /* 8045392C-80453930 001F2C 0004+00 1/1 0/0 0/0 .sdata2          @4165 */
 SECTION_SDATA2 static f32 lit_4165 = 9.0f / 10.0f;
@@ -1921,7 +1922,6 @@ void dFile_select_c::_move() {
     }
 
     (this->*DataSelProc[field_0x026f])();
-    /* missing __ptmf_scall via DataSelProc here. Need to setup structure */
 
     selFileWakuAnm();
     bookIconAnm();
@@ -4034,15 +4034,48 @@ asm void dFile_select_c::yesnoWakuAlpahAnm(u8 param_0) {
 #pragma pop
 
 /* 8018DD38-8018DEBC 188678 0184+00 0/0 1/1 0/0 .text            _draw__14dFile_select_cFv */
+#ifdef NONMATCHING
+void dFile_select_c::_draw() {
+    if (!mHasDrawn) {
+        dComIfGd_set2DOpa(&mFileSelectDlst);
+
+        for (int i = 0; i < 3; i++) {
+            mpFileInfo[i]->draw();
+        }
+
+        dComIfGd_set2DOpa(&mFileSelDeleteDlst);
+        mpFileSelect3d.draw();
+
+        if (mFileSelCopyDlst.field_0x08 != false) {
+            dComIfGd_set2DOpa(&mFileSelCopyDlst);
+
+            for (int i = 0; i < 2; i++) {
+                mpFileInfo[i]->draw();
+            }
+        }
+
+        if (field137_0x128 != false) {
+            mpName.draw();
+        }
+
+        dComIfGd_set2DOpa(&mFileSel3mDlst);
+        dComIfGd_set2DOpa(&mFileSelYesNoDlst);
+        mpFileWarning.draw();
+        dComIfGd_set2DOpa(mpCursor1);
+        dComIfGd_set2DOpa(mpCursor2);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-// asm void dFile_select_c::_draw() {
-extern "C" asm void _draw__14dFile_select_cFv() {
+asm void dFile_select_c::_draw() {
+// extern "C" asm void _draw__14dFile_select_cFv() {
     nofralloc
 #include "asm/d/file/d_file_select/_draw__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018DEBC-8018DEF4 1887FC 0038+00 1/0 0/0 0/0 .text            draw__15dDlst_FileSel_cFv */
 #pragma push

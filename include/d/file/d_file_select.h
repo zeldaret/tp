@@ -10,6 +10,10 @@
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 
+// class dDlst_FileSel_c : public dDlst_base_c {
+// public:
+//     /* 8018DEBC */ virtual void draw();
+//     /* 8019135C */ virtual ~dDlst_FileSel_c();
 class dDlst_FileSel_c {
 public:
     /* 8018DEBC */ void draw();
@@ -60,7 +64,10 @@ public:
     /* 0x03CE */ u8 mMirrorIdx;
     /* 0x03CF */ u8 mMaskIdx;
 };
-
+// class dDlst_FileSelYn_c : public dDlst_base_c {
+// public:
+//     /* 8018E0C0 */ virtual void draw();
+//     /* 801911F4 */ virtual ~dDlst_FileSelYn_c();
 class dDlst_FileSelYn_c {
 public:
     /* 8018E0C0 */ void draw();
@@ -71,6 +78,10 @@ public:
     /* 0x08 */ u8 field_0x08[4];
 };
 
+// class dDlst_FileSelDt_c : public dDlst_base_c {
+// public:
+//     /* 8018DEF4 */ virtual void draw();
+//     /* 801912E4 */ virtual ~dDlst_FileSelDt_c();
 class dDlst_FileSelDt_c {
 public:
     /* 8018DEF4 */ void draw();
@@ -82,6 +93,10 @@ public:
     /* 0x0C */ u8 field_0x0c[4];
 };
 
+// class dDlst_FileSelCp_c : public dDlst_base_c {
+// public:
+//     /* 8018DFFC */ virtual void draw();
+//     /* 8019126C */ virtual ~dDlst_FileSelCp_c();
 class dDlst_FileSelCp_c {
 public:
     /* 8018DFFC */ void draw();
@@ -94,6 +109,10 @@ public:
     /* 0x10 */ J2DPane* mpPane2;
 };
 
+// class dDlst_FileSel3m_c : public dDlst_base_c {
+// public:
+//     /* 8018E0F8 */ virtual void draw();
+//     /* 8019117C */ virtual ~dDlst_FileSel3m_c();
 class dDlst_FileSel3m_c {
 public:
     /* 8018E0F8 */ void draw();
@@ -108,6 +127,8 @@ public:
     /* 80192434 */ dFile_info_c(JKRArchive*, u8);
     /* 80192954 */ void setSaveData(dSv_save_c*, int, u8);
     /* 80192D60 */ void _draw();
+
+    void draw() { _draw(); }
 };
 
 // temp struct in order to get matches
