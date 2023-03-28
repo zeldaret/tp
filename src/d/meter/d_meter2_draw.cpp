@@ -948,7 +948,7 @@ void dMeter2Draw_c::init() {
 }
 
 /* 8021135C-8021151C 20BC9C 01C0+00 0/0 1/1 0/0 .text            exec__13dMeter2Draw_cFUl */
-void dMeter2Draw_c::exec(u32 param_0) {
+void dMeter2Draw_c::exec(u32 i_status) {
     if (mHUDScale != g_drawHIO.mHUDScale) {
         mHUDScale = g_drawHIO.mHUDScale;
         mpParent->scale(g_drawHIO.mHUDScale, g_drawHIO.mHUDScale);
@@ -959,7 +959,7 @@ void dMeter2Draw_c::exec(u32 param_0) {
         mpParent->setAlphaRate(g_drawHIO.mHUDAlpha);
     }
 
-    if (param_0 & 0x1000000) {
+    if (i_status & 0x1000000) {
         if (mButtonsPosX != g_drawHIO.mRingHUDButtonsPosX ||
             mButtonsPosY != g_drawHIO.mRingHUDButtonsPosY)
         {

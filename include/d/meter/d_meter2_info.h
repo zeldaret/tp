@@ -266,6 +266,10 @@ inline void dMeter2Info_getString(u32 param_0, char* param_1, JMSMesgEntry_c* pa
     g_meter2_info.getString(param_0, param_1, param_2);
 }
 
+inline void dMeter2Info_getStringKanji(u32 param_0, char* param_1, JMSMesgEntry_c* param_2) {
+    g_meter2_info.getStringKanji(param_0, param_1, param_2);
+}
+
 inline void dMeter2Info_setHotSpringTimer(u8 time) {
     g_meter2_info.setHotSpringTimer(time);
 }

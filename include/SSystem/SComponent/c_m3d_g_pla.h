@@ -26,6 +26,7 @@ public:
 
     f32 getPlaneFunc(const Vec* pPoint) const { return mD + PSVECDotProduct(&mNormal, pPoint); }
     const cXyz& GetNP() const { return mNormal; }
+    const cXyz& i_GetNP() const { return mNormal; }
     f32 GetD() const { return mD; }
     void SetupFrom3Vtx(const Vec* v1, const Vec* v2, const Vec* v3) {
         cM3d_CalcPla(v1, v2, v3, &mNormal, &mD);

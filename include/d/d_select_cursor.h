@@ -1,11 +1,10 @@
 #ifndef D_D_SELECT_CURSOR_H
 #define D_D_SELECT_CURSOR_H
 
+#include "JSystem/J2DGraph/J2DPane.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
 #include "d/d_drawlist.h"
 #include "d/d_select_icon.h"
-#include "dolphin/types.h"
-#include "JSystem/J2DGraph/J2DScreen.h"
-#include "JSystem/J2DGraph/J2DPane.h"
 
 class dSelect_cursorHIO_c {
 public:
@@ -49,17 +48,14 @@ public:
         mPositionY = y;
     }
 
-    void onUpdateFlag() {
-        mUpdateFlag = true;
-    }
+    void onUpdateFlag() { mUpdateFlag = true; }
 
-    void resetUpdateFlag() {
-        mUpdateFlag = false;
-    }
+    void resetUpdateFlag() { mUpdateFlag = false; }
 
-    bool getUpdateFlag() {
-        return mUpdateFlag;
-    }
+    bool getUpdateFlag() { return mUpdateFlag; }
+
+    void onPlayAnime(int i_flag) { field_0xb4 |= (1 << i_flag); }
+    void offPlayAnime(int i_flag) { field_0xb4 &= ~(1 << i_flag); }
 
 private:
     /* 0x04 */ J2DScreen* mpScreen;
