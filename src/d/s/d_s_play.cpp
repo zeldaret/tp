@@ -978,20 +978,9 @@ static int phase_compleate(void* param_0) {
 }
 
 /* 8025AB94-8025ABC4 2554D4 0030+00 1/0 0/0 0/0 .text            dScnPly_Create__FP11scene_class */
-#ifndef NONMATCHING
 static void dScnPly_Create(scene_class* i_this) {
     dComLbG_PhaseHandler(&static_cast<dScnPly_c*>(i_this)->field_0x1c4, l_method, i_this);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dScnPly_Create(scene_class* param_0) {
-    nofralloc
-#include "asm/d/s/d_s_play/dScnPly_Create__FP11scene_class.s"
-}
-#pragma pop
-#endif
 
 /* 8025ABC4-8025AC0C 255504 0048+00 1/0 0/0 0/0 .text            __dt__22dScnPly_env_debugHIO_cFv */
 #pragma push
