@@ -521,4 +521,6 @@ public:
     /* 0x35C */ dMsgObject_HowlHIO_c mHowlHIO;
 };
 
+// extern dMsgObject_HIO_c g_MsgObject_HIO_c;
+
 #endif /* D_MSG_D_MSG_OBJECT_H */
