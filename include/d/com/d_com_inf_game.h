@@ -709,7 +709,7 @@ extern GXColor g_blackColor;
 extern GXColor g_clearColor;
 extern GXColor g_whiteColor;
 
-int dComLbG_PhaseHandler(request_of_phase_process_class*, request_of_phase_process_fn, void*);
+int dComLbG_PhaseHandler(request_of_phase_process_class*, request_of_phase_process_fn*, void*);
 BOOL dComIfG_resetToOpening(scene_class* scene);
 char* dComIfG_getRoomArcName(int roomNo);
 void* dComIfG_getStageRes(char const* resName);

@@ -978,8 +978,11 @@ int cDylPhs::phase_03(void* param_0) {
 /* 8001884C-80018890 01318C 0044+00 0/0 2/2 0/0 .text
  * Link__7cDylPhsFP30request_of_phase_process_classs            */
 int cDylPhs::Link(request_of_phase_process_class* i_phase, s16 param_1) {
-    static int (*l_method[3])(void*) = {cDylPhs::phase_01, (int (*)(void*))cDylPhs::phase_02,
-                                        cDylPhs::phase_03};
+    static request_of_phase_process_fn l_method[3] = {
+        (request_of_phase_process_fn)cDylPhs::phase_01, 
+        (request_of_phase_process_fn)cDylPhs::phase_02,
+        (request_of_phase_process_fn)cDylPhs::phase_03
+    };
 
     if (i_phase->id == cPhs_TWO_e) {
         return cPhs_COMPLEATE_e;

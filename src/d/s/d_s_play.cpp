@@ -978,9 +978,9 @@ static int phase_compleate(void* param_0) {
 }
 
 /* 8025AB94-8025ABC4 2554D4 0030+00 1/0 0/0 0/0 .text            dScnPly_Create__FP11scene_class */
-#ifdef NONMATCHING
-static void dScnPly_Create(scene_class* scn) {
-    dComLbG_PhaseHandler(&scn->field_0x1c4, l_method[0], scn);
+#ifndef NONMATCHING
+static void dScnPly_Create(scene_class* i_this) {
+    dComLbG_PhaseHandler(&static_cast<dScnPly_c*>(i_this)->field_0x1c4, l_method, i_this);
 }
 #else
 #pragma push

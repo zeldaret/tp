@@ -181,9 +181,12 @@ static s32 phase_2(char* resName) {
 /* 80258878-802588A0 2531B8 0028+00 1/1 0/0 0/0 .text
  * resLoad__FP30request_of_phase_process_classPc                */
 static s32 resLoad(request_of_phase_process_class* i_phase, char* param_1) {
-    static s32 (*l_method[2])(char*) = {phase_1, phase_2};
+    static request_of_phase_process_fn l_method[2] = {
+        (request_of_phase_process_fn)phase_1, 
+        (request_of_phase_process_fn)phase_2
+    };
 
-    return dComLbG_PhaseHandler(i_phase, (request_of_phase_process_fn)l_method, param_1);
+    return dComLbG_PhaseHandler(i_phase, l_method, param_1);
 }
 
 /* ############################################################################################## */
