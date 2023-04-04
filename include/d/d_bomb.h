@@ -38,7 +38,7 @@ public:
 class dBomb_c : public daNbomb_c {
 public:
     bool checkStateCarry();
-    bool checkFlowerBombWait(fopAc_ac_c*);
+    static bool checkFlowerBombWait(fopAc_ac_c*);
     bool checkWaterBomb(fopAc_ac_c*);
     bool checkInsectBombMove(fopAc_ac_c*);
 
@@ -48,6 +48,10 @@ public:
 
     static fopAc_ac_c* createWaterBombPlayer(cXyz* p_pos) {
         return (fopAc_ac_c*)fopAcM_fastCreate(0x221, 9, p_pos, -1, NULL, NULL, -1, NULL, NULL);
+    }
+
+    static fopAc_ac_c* createFlowerBomb(cXyz* i_pos, csXyz* i_angle, int param_2) {
+        return (fopAc_ac_c*)fopAcM_fastCreate(0x221, 4, i_pos, param_2, i_angle, NULL, -1, NULL, NULL);
     }
 };
 
