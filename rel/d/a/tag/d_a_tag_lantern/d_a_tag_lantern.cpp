@@ -27,7 +27,7 @@ int daTag_Lantern_c::Delete() {
 /* 8048EDDC-8048EF6C 00021C 0190+00 2/2 0/0 0/0 .text            Execute__15daTag_Lantern_cFv */
 int daTag_Lantern_c::Execute() {
     s32 sVar;
-    dComIfG_play_c& play = g_dComIfG_gameInfo.getPlay();
+    dComIfG_play_c& play = g_dComIfG_gameInfo.getPlay(); // fake match
     if (i_dComIfGp_event_runCheck()) {
         if (mEvtInfo.mCommand == 1) {
             if (!field_0x604) {
