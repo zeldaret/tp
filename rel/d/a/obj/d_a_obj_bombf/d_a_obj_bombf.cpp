@@ -129,23 +129,23 @@ static actor_method_class l_daObjBombf_Method = {
 
 /* 80BBAEC8-80BBAEF8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Bombf */
 extern actor_process_profile_definition g_profile_Obj_Bombf = {
-    -3,
-    7,
-    -3,
-    PROC_Obj_Bombf,
-    0,
-    &g_fpcLf_Method.mBase,
-    sizeof(daObjBombf_c),
-    0,
-    0,
-    &g_fopAc_Method.base,
-    0x00FB,
-    0,
-    0,
-    &l_daObjBombf_Method,
-    0x00040100,
-    3,
-    14,
-    0,
-    0,
+    -3,                     // mLayerID
+    7,                      // mListID
+    -3,                     // mListPrio
+    PROC_Obj_Bombf,         // mProcName
+    0,                      // Padding
+    &g_fpcLf_Method.mBase,  // mSubMtd
+    sizeof(daObjBombf_c),   // mSize
+    0,                      // mSizeOther
+    0,                      // mParameters
+    &g_fopAc_Method.base,   // mSubMtd
+    0x00FB,                 //  mPriority
+    0,                      // Padding
+    0,                      // Padding
+    &l_daObjBombf_Method,   // mSubMtd
+    0x00040100,             // mStatus
+    3,                      // mActorType
+    14,                     // mCullType
+    0,                      // Padding
+    0,                      // Padding
 };
