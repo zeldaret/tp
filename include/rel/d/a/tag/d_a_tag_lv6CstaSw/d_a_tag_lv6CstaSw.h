@@ -26,7 +26,6 @@ public:
     /* 80D5B2EC */ daLv6CstaSw_HIO_c();
     /* 80D5B740 */ virtual ~daLv6CstaSw_HIO_c();
 
-    /* 0x04 */ s8 field_0x4;
 };
 
 #endif /* D_A_TAG_LV6CSTASW_H */
