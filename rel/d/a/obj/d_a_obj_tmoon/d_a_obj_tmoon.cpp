@@ -33,11 +33,11 @@ int daObjTMoon_c::Create() {
 }
 
 /* 80D12FA0-80D12FA4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
-static const char* l_arcName[] = {"A_TMoon"};
+static const char* l_arcName = "A_TMoon";
 
 /* 80D12C9C-80D12D0C 00017C 0070+00 1/1 0/0 0/0 .text            CreateHeap__12daObjTMoon_cFv */
 bool daObjTMoon_c::CreateHeap() {
-    field_0x570 = mDoExt_J3DModel__create((J3DModelData*)dComIfG_getObjectRes(l_arcName[0], 3),
+    field_0x570 = mDoExt_J3DModel__create((J3DModelData*)dComIfG_getObjectRes(l_arcName, 3),
                                           0x80000, 0x11000084);
     return field_0x570 != NULL;
 }
@@ -48,7 +48,7 @@ int daObjTMoon_c::create() {
         new (this) daObjTMoon_c();
         fopAcM_OnCondition(this, 8);
     }
-    int phase = dComIfG_resLoad(&field_0x568, l_arcName[0]);
+    int phase = dComIfG_resLoad(&field_0x568, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, (heapCallbackFunc)CheckCreateHeap, 0x880)) {
             return cPhs_ERROR_e;
@@ -85,7 +85,7 @@ int daObjTMoon_c::draw() {
 
 /* 80D12EDC-80D12F10 0003BC 0034+00 1/1 0/0 0/0 .text            _delete__12daObjTMoon_cFv */
 int daObjTMoon_c::_delete() {
-    dComIfG_resDelete(&field_0x568, l_arcName[0]);
+    dComIfG_resDelete(&field_0x568, l_arcName);
     return 1;
 }
 

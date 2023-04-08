@@ -23,20 +23,20 @@ int daCowdoor_c::Create() {
 }
 
 /* 80BCCBDC-80BCCBE0 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
-static const char* l_arcName[] = {"A_UHDoor"};
+static const char* l_arcName = "A_UHDoor";
 
 /* 80BCCBE0-80BCCBE4 -00001 0004+00 1/1 0/0 0/0 .data            l_bmdName */
-static const char* l_bmdName[] = {"A_UHDoor.bmd"};
+static const char* l_bmdName = "A_UHDoor.bmd";
 
 /* 80BCC8C4-80BCC93C 000144 0078+00 1/0 0/0 0/0 .text            CreateHeap__11daCowdoor_cFv */
 int daCowdoor_c::CreateHeap() {
     field_0x5a8 = mDoExt_J3DModel__create(
-        (J3DModelData*)dComIfG_getObjectRes(l_arcName[0], l_bmdName[0]), 0x80000, 0x11000084);
+        (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmdName), 0x80000, 0x11000084);
     return (field_0x5a8 != NULL) ? 1 : 0;
 }
 
 /* 80BCCBE4-80BCCBE8 -00001 0004+00 1/1 0/0 0/0 .data            l_dzbName */
-static const char* l_dzbName[] = {"A_UHDoor.dzb"};
+static const char* l_dzbName = "A_UHDoor.dzb";
 
 /* 80BCC93C-80BCCA1C 0001BC 00E0+00 1/1 0/0 0/0 .text            create__11daCowdoor_cFv */
 int daCowdoor_c::create() {
@@ -44,10 +44,10 @@ int daCowdoor_c::create() {
         new (this) daCowdoor_c();
         fopAcM_OnCondition(this, 8);
     }
-    int phase = dComIfG_resLoad(&field_0x5a0, l_arcName[0]);
+    int phase = dComIfG_resLoad(&field_0x5a0, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {
         phase =
-            MoveBGCreate(l_arcName[0], dComIfG_getObjctResName2Index(l_arcName[0], l_dzbName[0]),
+            MoveBGCreate(l_arcName, dComIfG_getObjctResName2Index(l_arcName, l_dzbName),
                          dBgS_MoveBGProc_TypicalRotY, 0x4000, NULL);
         if (phase == cPhs_ERROR_e) {
             return phase;
@@ -75,7 +75,7 @@ int daCowdoor_c::Draw() {
 
 /* 80BCCAEC-80BCCB20 00036C 0034+00 1/0 0/0 0/0 .text            Delete__11daCowdoor_cFv */
 int daCowdoor_c::Delete() {
-    dComIfG_resDelete(&field_0x5a0, l_arcName[0]);
+    dComIfG_resDelete(&field_0x5a0, l_arcName);
     return 1;
 }
 

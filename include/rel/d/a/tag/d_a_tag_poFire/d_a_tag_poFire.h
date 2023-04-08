@@ -15,7 +15,7 @@ public:
 
     /* 0x568 */ u8 field_0x568;
     /* 0x569 */ u8 field_0x569;
-    /* 0x56B */ u16 field_0x56b;
+    /* 0x56A */ u16 field_0x56a;
 };
 
 class daTagPoFire_HIO_c : public mDoHIO_entry_c {
