@@ -12,7 +12,6 @@ public:
     /* 8019AFE0 */ dGov_HIO_c();
     /* 8019C06C */ virtual ~dGov_HIO_c();
 
-    /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 mScale;
     /* 0x0C */ f32 mAlpha;
     /* 0x10 */ f32 mAnimSpeed;
