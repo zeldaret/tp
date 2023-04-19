@@ -4,6 +4,7 @@
 //
 
 #include "d/com/d_com_static.h"
+#include "MSL_C/stdio.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_demo.h"
 #include "dol2asm.h"

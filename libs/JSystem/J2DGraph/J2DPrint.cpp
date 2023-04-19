@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/J2DGraph/J2DPrint.h"
+#include "MSL_C/stdio.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

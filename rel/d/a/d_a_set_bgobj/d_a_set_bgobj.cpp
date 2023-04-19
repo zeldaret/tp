@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/d_a_set_bgobj/d_a_set_bgobj.h"
+#include "MSL_C/stdio.h"
 #include "d/d_procname.h"
 
 /* 80485F00-80485F0C 000000 0009+03 1/1 0/0 0/0 .rodata          l_specName */

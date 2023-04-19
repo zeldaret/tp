@@ -4,6 +4,7 @@
 //
 
 #include "d/msg/d_msg_class.h"
+#include "MSL_C/stdio.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/msg/d_msg_object.h"
 #include "d/msg/d_msg_unit.h"

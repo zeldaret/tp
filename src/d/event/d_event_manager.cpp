@@ -5,6 +5,7 @@
 
 #include "d/event/d_event_manager.h"
 #include "SSystem/SComponent/c_math.h"
+#include "MSL_C/stdio.h"
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_camera.h"

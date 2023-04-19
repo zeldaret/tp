@@ -47,7 +47,7 @@ extern files __files = {
         __write_console,
         __close_console,
         NULL,
-        &__files.stdout,
+        &__files._stdout,
     },
     {
         1,
@@ -79,7 +79,7 @@ extern files __files = {
         __write_console,
         __close_console,
         NULL,
-        &__files.stderr,
+        &__files._stderr,
     },
     {
         2,
@@ -121,7 +121,7 @@ extern files __files = {
 
 /* 8036307C-80363124 35D9BC 00A8+00 0/0 1/1 0/0 .text            __close_all */
 void __close_all(void) {
-    FILE* file = &__files.stdin;
+    FILE* file = &__files._stdin;
     FILE* last_file;
 
     __begin_critical_region(2);
@@ -150,7 +150,7 @@ void __close_all(void) {
 /* 8036300C-8036307C 35D94C 0070+00 0/0 2/2 0/0 .text            __flush_all */
 unsigned int __flush_all(void) {
     unsigned int ret = 0;
-    FILE* file = &__files.stdin;
+    FILE* file = &__files._stdin;
 
     while (file) {
         if (file->file_mode.file_kind != 0 && fflush(file)) {
