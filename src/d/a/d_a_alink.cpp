@@ -8,6 +8,7 @@
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 #include "JSystem/JMath/JMath.h"
 #include "JSystem/JStudio/JStudio/stb.h"
+#include "MSL_C/float.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_horse_static.h"
 #include "d/com/d_com_inf_game.h"

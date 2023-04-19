@@ -1,5 +1,5 @@
 #include "JSystem/JStage/JSGFog.h"
-#include "MSL_C/math.h"
+#include "MSL_C/float.h"
 
 /* 80280C80-80280CE0 27B5C0 0060+00 0/0 1/1 0/0 .text            __dt__Q26JStage4TFogFv */
 JStage::TFog::~TFog() {}
@@ -28,7 +28,7 @@ void JStage::TFog::JSGSetStartZ(f32) {}
 
 /* 80280D00-80280D0C 27B640 000C+00 1/0 1/0 0/0 .text            JSGGetEndZ__Q26JStage4TFogCFv */
 f32 JStage::TFog::JSGGetEndZ() const {
-    return __float_max[0];
+    return FLT_MAX;
 }
 
 /* 80280D0C-80280D10 27B64C 0004+00 1/0 0/0 0/0 .text            JSGSetEndZ__Q26JStage4TFogFf */

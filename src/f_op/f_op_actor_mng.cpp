@@ -843,9 +843,9 @@ inline f32 local_sqrtf(f32 mag) {
         tmpd = DOUBLE_LABEL(lit_4745) * tmpd * (DOUBLE_LABEL(lit_4746) - tmpd * tmpd * mag);
         return DOUBLE_LABEL(lit_4745) * tmpd * (DOUBLE_LABEL(lit_4746) - tmpd * tmpd * mag) * mag;
     } else if (mag < DOUBLE_LABEL(lit_4747)) {
-        return __float_nan[0];
+        return NAN;
     } else if (fpclassify(mag) == 1) {
-        return __float_nan[0];
+        return NAN;
     } else {
         return mag;
     }
