@@ -4,6 +4,7 @@
 //
 
 #include "d/d_demo.h"
+#include "MSL_C/float.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
@@ -605,8 +606,8 @@ dDemo_actor_c::dDemo_actor_c() {
     mScale.set(1.0f, 1.0f, 1.0f);
     mRotate.set(0, 0, 0);
     mModel = NULL;
-    mAnmFrameMax = __float_max[0];
-    mTexAnmFrameMax = __float_max[0];
+    mAnmFrameMax = FLT_MAX;
+    mTexAnmFrameMax = FLT_MAX;
 }
 #else
 #pragma push
@@ -924,7 +925,7 @@ void dDemo_actor_c::JSGSetShape(u32 i_shape) {
  */
 void dDemo_actor_c::JSGSetAnimation(u32 i_anmID) {
     mAnmId = i_anmID;
-    mAnmFrameMax = __float_max[0];
+    mAnmFrameMax = FLT_MAX;
     onEnable(0x20);
 }
 

@@ -21,6 +21,11 @@
 // TODO: OK?
 #define __signbitd(x) ((*(unsigned char*)&(x)) & 0x80)
 
+extern unsigned long __float_nan[];
+extern unsigned long __float_huge[];
+extern unsigned long __float_max[];
+extern unsigned long __float_epsilon[];
+
 inline int __fpclassifyf(float __value) {
     unsigned long integer = *(unsigned long*)&__value;
 

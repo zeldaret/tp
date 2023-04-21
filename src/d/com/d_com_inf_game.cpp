@@ -4,6 +4,7 @@
 //
 
 #include "d/com/d_com_inf_game.h"
+#include "MSL_C/stdio.h"
 #include "d/d_item.h"
 #include "d/d_procname.h"
 #include "d/d_timer.h"

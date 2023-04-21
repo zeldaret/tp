@@ -6,7 +6,7 @@
 #include "DynamicLink.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "JSystem/JUtility/JUTConsole.h"
-#include "MSL_C/MSL_Common/Src/printf.h"
+#include "MSL_C/stdio.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"

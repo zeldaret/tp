@@ -6,6 +6,7 @@
 #include "d/msg/d_msg_object.h"
 #include "d/msg/d_msg_out_font.h"
 #include "JSystem/JGadget/binary.h"
+#include "MSL_C/stdio.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

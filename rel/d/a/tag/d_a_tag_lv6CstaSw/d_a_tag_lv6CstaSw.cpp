@@ -7,7 +7,7 @@
 
 /* 80D5B2EC-80D5B310 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__17daLv6CstaSw_HIO_cFv */
 daLv6CstaSw_HIO_c::daLv6CstaSw_HIO_c() {
-    field_0x4 = 0;
+    unk_0x4 = 0;
 }
 
 /* 80D5B358-80D5B3B0 000158 0058+00 1/1 0/0 0/0 .text            setBaseMtx__13daLv6CstaSw_cFv */

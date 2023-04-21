@@ -4,6 +4,7 @@
 //
 
 #include "msg/scrn/d_msg_scrn_light.h"
+#include "MSL_C/stdio.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

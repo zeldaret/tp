@@ -53,7 +53,7 @@ bool daAlink_c::checkHookshotShootReturnMode() const {
 void daAlink_c::resetHookshotMode() {
     mItemMode = 0;
     initLockAt();
-    mSearchBallScale = __float_max[0];
+    mSearchBallScale = FLT_MAX;
 }
 
 /* 8010871C-80108784 10305C 0068+00 0/0 0/0 1/1 .text
@@ -367,7 +367,7 @@ void daAlink_c::setHookshotReadyAnime() {
 #ifdef NONMATCHING
 int daAlink_c::checkUpperItemActionHookshot() {
     if (checkHookshotWait()) {
-        mSearchBallScale = __float_max[0];
+        mSearchBallScale = FLT_MAX;
     }
 
     if (mItemMode == 1) {

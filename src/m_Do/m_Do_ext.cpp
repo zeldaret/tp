@@ -10,6 +10,7 @@
 #include "JSystem/JKernel/JKRAssertHeap.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JMath/JMath.h"
+#include "MSL_C/stdio.h"
 #include "MSL_C/string.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "SSystem/SComponent/c_lib.h"

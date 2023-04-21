@@ -4,13 +4,13 @@
  */
 
 #include "m_Do/m_Do_printf.h"
+#include "MSL_C/stdio.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
 #include "dolphin/base/PPCArch.h"
-#include "MSL_C/MSL_Common/Src/file_io.h"
 
 /* 80450B98-80450B9C -00001 0004+00 0/0 6/6 0/0 .sbss            None */
 u8 __OSReport_disable;
@@ -37,7 +37,7 @@ asm void OSSwitchFiberEx(u32 param_0, u32 param_1, u32 param_2, u32 param_3, u32
 
 /* 800067C8-800067F4 001108 002C+00 3/3 0/0 0/0 .text            my_PutString__FPCc */
 void my_PutString(const char* string) {
-    fputs(string, &__files.stdout);
+    fputs(string, stdout);
 }
 
 /* 800067F4-80006814 001134 0020+00 3/3 0/0 0/0 .text OSVAttention__FPCcP16__va_list_struct */
@@ -178,7 +178,7 @@ void OSReport_FatalError(char* fmt, ...) {
     OSVAttention(fmt, args);
     my_PutString("***** FATAL ERROR *****\n\x1B[m");
     OSReportForceEnableOff();
-    fflush(&__files.stdout);
+    fflush(stdout);
     print_errors++;
 
     va_end(args);
@@ -195,7 +195,7 @@ void OSReport_Error(char* fmt, ...) {
         OSVReport(fmt, args);
         my_PutString("\x1B[m");
         OSReportForceEnableOff();
-        fflush(&__files.stdout);
+        fflush(stdout);
         va_end(args);
     }
 }
@@ -211,7 +211,7 @@ void OSReport_Warning(char* fmt, ...) {
         OSVAttention(fmt, args);
         my_PutString("\x1B[m");
         OSReportForceEnableOff();
-        fflush(&__files.stdout);
+        fflush(stdout);
         va_end(args);
     }
 }
