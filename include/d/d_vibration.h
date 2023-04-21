@@ -13,7 +13,7 @@ public:
     /* 8006FB10 */ bool StartQuake(int, int, cXyz);
     /* 8006FD94 */ int StopQuake(int);
     /* 8006FE00 */ void Kill();
-    /* 8006FE5C */ int CheckQuake();
+    /* 8006FE5C */ bool CheckQuake();
     /* 8006FE84 */ void setDefault();
     /* 8006FF04 */ void Init();
     /* 8006FF38 */ void Pause();

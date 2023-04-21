@@ -651,7 +651,7 @@ f32 daPy_py_c::getAttentionOffsetY() {
 
 /* 8015F424-8015F438 159D64 0014+00 0/0 17/17 33/33 .text            checkNowWolfEyeUp__9daPy_py_cFv
  */
-s16 daPy_py_c::checkNowWolfEyeUp() {
+int daPy_py_c::checkNowWolfEyeUp() {
     return daAlink_getAlinkActorClass()->checkWolfEyeUp();
 }
 

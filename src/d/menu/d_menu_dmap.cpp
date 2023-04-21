@@ -24,8 +24,6 @@ struct mDoCPd_c {
     static u8 m_cpadInfo[256];
 };
 
-struct fopAc_ac_c {};
-
 struct dTres_c {
     /* 8009C27C */ void getBossIconFloorNo(int*);
 };
