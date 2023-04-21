@@ -20,6 +20,8 @@ public:
     /* 800788DC */ int MoveBGDelete();
     /* 80078950 */ int MoveBGExecute();
 
+    int MoveBGDraw() { return Draw(); }
+
     /* 80078688 */ virtual int CreateHeap();
     /* 80078690 */ virtual int Create();
     /* 80078698 */ virtual int Execute(f32 (**)[3][4]);

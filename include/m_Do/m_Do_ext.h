@@ -262,6 +262,7 @@ public:
     bool isLoop() { return mFrameCtrl.checkState(2); }
     f32 getEndFrame() { return mFrameCtrl.getEnd(); }
     BOOL checkFrame(f32 frame) { return mFrameCtrl.checkPass(frame); }
+    J3DAnmTransform* getAnm() { return mpAnm; }
 
     bool isStop() {
         bool stopped = true;

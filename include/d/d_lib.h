@@ -1,12 +1,14 @@
 #ifndef D_D_LIB_H
 #define D_D_LIB_H
 
-#include "dolphin/types.h"
-#include "dolphin/os/OS.h"
 #include "dolphin/mtx/quat.h"
+#include "dolphin/os/OS.h"
+#include "f_op/f_op_actor.h"
 
 struct JKRAramArchive;
 u32 dLib_getExpandSizeFromAramArchive(JKRAramArchive* arc, char const* resName);
+BOOL dLib_checkActorInRectangle(fopAc_ac_c* param_0, fopAc_ac_c* param_1, cXyz const* param_2,
+                                cXyz const* param_3);
 
 struct STControl {
     STControl() {
