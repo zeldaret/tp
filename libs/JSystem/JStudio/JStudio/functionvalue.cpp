@@ -449,7 +449,7 @@ asm f64 extrapolateParameter_turn(f64 param_0, f64 param_1) {
 }  // namespace functionvalue
 
 void TFunctionValueAttribute_range::range_initialize() {
-    fBegin_ = __float_nan[0];  // NaN
+    fBegin_ = NAN;  // NaN
     fEnd_ = fBegin_;
     fDifference_ = fBegin_;
 
@@ -541,7 +541,7 @@ asm f64 TFunctionValueAttribute_range::range_getParameter(f64 param_0, f64 param
 #endif
 
 TFunctionValueAttribute_range::TFunctionValueAttribute_range()
-    : fBegin_(__float_nan[0]), fEnd_(fBegin_), fDifference_(fBegin_),
+    : fBegin_(NAN), fEnd_(fBegin_), fDifference_(fBegin_),
       mProgress(TFunctionValue::PROG_INIT), mAdjust(TFunctionValue::ADJ_INIT), _20(fBegin_),
       _28(fBegin_), mBegin(TFunctionValue::OUT_INIT), mEnd(TFunctionValue::OUT_INIT) {}
 
@@ -676,7 +676,7 @@ asm void TFunctionValue_composite::composite_divide(TVector_pointer<TFunctionVal
 }
 #pragma pop
 
-TFunctionValue_constant::TFunctionValue_constant() : fValue_(__float_nan[0]) {}
+TFunctionValue_constant::TFunctionValue_constant() : fValue_(NAN) {}
 
 u32 TFunctionValue_constant::getType() const {
     return 2;
@@ -687,7 +687,7 @@ TFunctionValueAttributeSet TFunctionValue_constant::getAttributeSet() {
 }
 
 void TFunctionValue_constant::initialize() {
-    fValue_ = __float_nan[0];
+    fValue_ = NAN;
 }
 
 void TFunctionValue_constant::prepare() {
@@ -698,7 +698,7 @@ f64 TFunctionValue_constant::getValue(f64 arg1) {
     return fValue_;
 }
 
-TFunctionValue_transition::TFunctionValue_transition() : _48(__float_nan[0]), _50(_48) {}
+TFunctionValue_transition::TFunctionValue_transition() : _48(NAN), _50(_48) {}
 
 u32 TFunctionValue_transition::getType() const {
     return 3;
@@ -712,7 +712,7 @@ void TFunctionValue_transition::initialize() {
     range_initialize();
     interpolate_initialize();
 
-    _48 = __float_nan[0];
+    _48 = NAN;
     _50 = _48;
 }
 
@@ -732,7 +732,7 @@ asm f64 TFunctionValue_transition::getValue(f64 param_0) {
 }
 #pragma pop
 
-TFunctionValue_list::TFunctionValue_list() : _44(NULL), _48(0), _50(__float_nan[0]), _58(NULL) {}
+TFunctionValue_list::TFunctionValue_list() : _44(NULL), _48(0), _50(NAN), _58(NULL) {}
 
 u32 TFunctionValue_list::getType() const {
     return 4;
@@ -748,7 +748,7 @@ void TFunctionValue_list::initialize() {
 
     _44 = NULL;
     _48 = 0;
-    _50 = __float_nan[0];
+    _50 = NAN;
     _58 = NULL;
 }
 

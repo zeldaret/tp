@@ -4,7 +4,7 @@
 //
 
 #include "SSystem/SComponent/c_m3d.h"
-#include "MSL_C/math.h"
+#include "MSL_C/float.h"
 #include "SSystem/SComponent/c_m3d_g_aab.h"
 #include "SSystem/SComponent/c_m3d_g_cps.h"
 #include "SSystem/SComponent/c_m3d_g_cyl.h"
@@ -113,7 +113,7 @@ extern "C" extern void* __vt__8cM3dGSph[3];
 // Declarations:
 //
 
-f32 G_CM3D_F_ABS_MIN = 32 * __float_epsilon[0];
+f32 G_CM3D_F_ABS_MIN = 32 * FLT_EPSILON;
 
 /* 80268560-802685B0 262EA0 0050+00 2/2 0/0 0/0 .text            cM3d_InDivPos1__FPC3VecPC3VecfP3Vec
  */
