@@ -13,6 +13,7 @@
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "MSL_C/MSL_Common/Src/extras.h"
+#include "MSL_C/stdio.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx.h"

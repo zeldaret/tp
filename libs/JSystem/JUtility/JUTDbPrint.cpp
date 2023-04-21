@@ -6,8 +6,7 @@
 #include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "JSystem/JUtility/JUTVideo.h"
-#include "MSL_C/MSL_Common/Src/printf.h"
-#include "MSL_C/MSL_Common/Src/string.h"
+#include "MSL_C/stdio.h"
 
 /* 802E0148-802E0190 2DAA88 0048+00 1/1 0/0 0/0 .text __ct__10JUTDbPrintFP7JUTFontP7JKRHeap */
 JUTDbPrint::JUTDbPrint(JUTFont* pFont, JKRHeap* pHeap) {
