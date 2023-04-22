@@ -4,6 +4,7 @@
 #include "d/d_stage.h"
 #include "f_op/f_op_msg.h"
 #include "d/save/d_save.h"
+#include "global.h"
 
 struct event_binary_data_header {
     /* 0x00 */ u32 eventTop;  // offset to Event chunk

@@ -8,6 +8,7 @@
 #include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "global.h"
 #include "m_Do/m_Do_mtx.h"
 #include "rel/d/a/npc/d_a_npc_tk/d_a_npc_tk.h"
 #include "SSystem/SComponent/c_math.h"

@@ -7,6 +7,7 @@
 #include "dolphin/gx/GX.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 class J2DScreen;
 

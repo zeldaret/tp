@@ -3,7 +3,6 @@
 
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "global.h"
 
 #include "dolphin/os/OSMutex.h"
 

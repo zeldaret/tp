@@ -7,6 +7,7 @@
 #include "d/d_path.h"
 #include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
+#include "global.h"
 
 //
 // Types:

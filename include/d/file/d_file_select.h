@@ -7,6 +7,7 @@
 #include "d/file/d_file_sel_warning.h"
 #include "d/d_name.h"
 #include "d/msg/d_msg_string.h"
+#include "global.h"
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 

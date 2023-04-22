@@ -7,6 +7,7 @@
 #include "d/bg/d_bg_w.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
+#include "global.h"
 
 class cBgS_ChkElm {
 public:

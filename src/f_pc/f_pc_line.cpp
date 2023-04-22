@@ -5,8 +5,7 @@
 
 #include "f_pc/f_pc_line.h"
 #include "f_pc/f_pc_node.h"
-
-#define ARRAY_SIZE(o) (sizeof((o)) / sizeof(*(o)))
+#include "global.h"
 
 /* ############################################################################################## */
 /* 803F4CF0-803F4DB0 00C0+00 s=2 e=0 z=0  None .bss       l_fpcLn_Line */

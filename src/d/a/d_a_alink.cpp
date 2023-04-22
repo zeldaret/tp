@@ -19,6 +19,7 @@
 #include "d/d_procname.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
+#include "global.h"
 #include "rel/d/a/d_a_crod/d_a_crod.h"
 #include "rel/d/a/d_a_horse/d_a_horse.h"
 #include "rel/d/a/d_a_mg_rod/d_a_mg_rod.h"

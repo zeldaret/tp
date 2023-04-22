@@ -6,6 +6,7 @@
 #include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JSupport/JSUList.h"
+#include "global.h"
 
 struct JASNonCopyable {
     /* 0x0 */ int field_0x0;

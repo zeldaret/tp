@@ -12,6 +12,7 @@
 #include "MSL_C/stdlib.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
+#include "global.h"
 
 //
 // Forward References:

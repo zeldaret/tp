@@ -16,6 +16,7 @@
 #include "Z2AudioLib/Z2SpeechMgr2.h"
 #include "Z2AudioLib/Z2StatusMgr.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 class Z2AudioMgr {
 public:

@@ -10,6 +10,7 @@
 #include "d/kankyo/d_kankyo_wether.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
+#include "global.h"
 #include "m_Do/m_Do_ext.h"
 
 class cBgS_PolyInfo;

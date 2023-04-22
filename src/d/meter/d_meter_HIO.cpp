@@ -7,6 +7,7 @@
 #include "d/save/d_save.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 //
 // Forward References:

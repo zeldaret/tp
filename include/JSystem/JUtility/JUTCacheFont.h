@@ -4,6 +4,7 @@
 #include "dolphin/types.h"
 #include "JSystem/JUtility/JUTResFont.h"
 #include "JSystem/JKernel/JKRAram.h"
+#include "global.h"
 
 class JUTCacheFont : public JUTResFont {
 public:

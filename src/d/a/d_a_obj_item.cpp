@@ -10,6 +10,7 @@
 #include "d/d_item_data.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "global.h"
 #include "m_Do/m_Do_mtx.h"
 
 //

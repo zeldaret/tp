@@ -6,7 +6,6 @@
 #include "f_pc/f_pc_delete_tag.h"
 #include "global.h"
 
-
 /* ############################################################################################## */
 /* 803A39A0-803A39B0 000C+04 s=2 e=1 z=0  None .data      g_fpcDtTg_Queue */
 node_list_class g_fpcDtTg_Queue = {NULL, NULL, 0};

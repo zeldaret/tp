@@ -7,6 +7,7 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
+#include "global.h"
 
 extern "C" static void damage_check__FP14obj_web0_class();
 

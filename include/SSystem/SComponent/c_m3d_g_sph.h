@@ -5,6 +5,7 @@
 #include "SSystem/SComponent/c_m3d_g_cyl.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 struct cM3dGSphS {
     /* 0x0 */ Vec mCenter;

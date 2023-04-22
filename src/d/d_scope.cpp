@@ -7,6 +7,7 @@
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
+#include "global.h"
 
 //
 // Forward References:

@@ -19,6 +19,7 @@
 #include "dolphin/types.h"
 #include "dolphin/gx/GXDraw.h"
 #include "d/kankyo/d_kankyo.h"
+#include "global.h"
 #include "m_Do/m_Do_mtx.h"
 
 //

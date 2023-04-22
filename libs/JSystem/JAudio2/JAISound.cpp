@@ -8,6 +8,7 @@
 #include "JSystem/JAudio2/JASTrack.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 //
 // Forward References:

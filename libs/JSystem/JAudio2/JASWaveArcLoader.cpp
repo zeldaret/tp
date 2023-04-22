@@ -5,6 +5,7 @@
 
 #include "JSystem/JAudio2/JASWaveArcLoader.h"
 #include "MSL_C/string.h"
+#include "global.h"
 
 //
 // Forward References:

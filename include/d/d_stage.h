@@ -8,6 +8,7 @@
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
+#include "global.h"
 
 struct stage_vrboxcol_info_class {
     // VRB

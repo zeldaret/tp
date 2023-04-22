@@ -12,6 +12,7 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 #include "f_op/f_op_actor_mng.h"
+#include "global.h"
 
 extern const char* l_arcName;
 static int createSolidHeap(fopAc_ac_c* i_this);

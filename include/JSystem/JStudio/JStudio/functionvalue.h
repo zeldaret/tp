@@ -4,6 +4,7 @@
 #include "JSystem/JGadget/search.h"
 #include "JSystem/JGadget/vector.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 extern u8 lit_652[];
 

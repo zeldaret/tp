@@ -19,6 +19,7 @@
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/os/OSCache.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 //
 // Types:

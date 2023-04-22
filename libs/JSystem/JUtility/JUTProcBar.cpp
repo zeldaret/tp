@@ -8,6 +8,7 @@
 #include "JSystem/JUtility/JUTVideo.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 //
 // Forward References:

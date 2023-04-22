@@ -11,6 +11,7 @@
 #include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 #include "d/d_item_data.h"
+#include "global.h"
 
 //
 // Forward References:

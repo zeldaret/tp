@@ -7,6 +7,7 @@
 #include "d/event/d_event_manager.h"
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 #if DEBUG
 class dEvDb_bit_c {

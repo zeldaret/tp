@@ -14,6 +14,7 @@
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_view.h"
+#include "global.h"
 
 class cM_rnd_c {
 public:

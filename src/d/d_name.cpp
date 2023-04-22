@@ -9,6 +9,7 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_msg_mng.h"
+#include "global.h"
 #include "m_Do/m_Do_audio.h"
 
 //

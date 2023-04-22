@@ -5,6 +5,7 @@
 #include "d/a/d_a_player.h"
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
+#include "global.h"
 #include "m_Do/m_Do_ext.h"
 
 class dAttHint_c {

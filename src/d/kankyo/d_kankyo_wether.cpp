@@ -11,6 +11,7 @@
 #include "d/kankyo/d_kankyo_rain.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "global.h"
 #include "m_Do/m_Do_audio.h"
 
 //

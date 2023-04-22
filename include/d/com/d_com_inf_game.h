@@ -17,6 +17,7 @@
 #include "d/save/d_save.h"
 #include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_scene_mng.h"
+#include "global.h"
 
 class dTimer_c;
 

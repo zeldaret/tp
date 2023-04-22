@@ -9,6 +9,7 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "MSL_C/string.h"
 #include "dol2asm.h"
+#include "global.h"
 
 //
 // Forward References:

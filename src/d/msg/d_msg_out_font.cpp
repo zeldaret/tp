@@ -8,6 +8,7 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "d/com/d_com_inf_game.h"
+#include "global.h"
 
 //
 // Forward References:

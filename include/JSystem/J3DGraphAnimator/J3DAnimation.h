@@ -5,6 +5,7 @@
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 struct J3DAnmKeyTableBase {
     /* 0x00 */ u16 mMaxFrame;

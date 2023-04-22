@@ -1,6 +1,7 @@
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 //
 // Forward References:

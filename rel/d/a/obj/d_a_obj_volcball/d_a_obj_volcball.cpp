@@ -8,6 +8,7 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/event/d_event_lib.h"
 #include "dol2asm.h"
+#include "global.h"
 
 //
 // Types:

@@ -5,6 +5,7 @@
 #include "d/cc/d_cc_d.h"
 #include "d/cc/d_cc_mass_s.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 class dCcS : public cCcS {
 public:

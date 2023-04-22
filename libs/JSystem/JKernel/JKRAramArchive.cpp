@@ -13,6 +13,7 @@
 #include "MSL_C/string.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
+#include "global.h"
 
 //
 // Forward References:
