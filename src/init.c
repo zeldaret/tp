@@ -4,6 +4,7 @@
 //
 
 #include "init.h"
+#include "MSL_C/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

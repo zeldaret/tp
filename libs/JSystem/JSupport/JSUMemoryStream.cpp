@@ -4,7 +4,7 @@
 //
 
 #include "JSystem/JSupport/JSUMemoryStream.h"
-#include "MSL_C/MSL_Common/Src/string.h"
+#include "MSL_C/string.h"
 
 /* 802DC520-802DC534 2D6E60 0014+00 0/0 3/3 0/0 .text setBuffer__20JSUMemoryInputStreamFPCvl */
 void JSUMemoryInputStream::setBuffer(void const* pBuffer, s32 length) {

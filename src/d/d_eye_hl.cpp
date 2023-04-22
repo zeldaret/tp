@@ -4,7 +4,7 @@
  */
 
 #include "d/d_eye_hl.h"
-#include "MSL_C/MSL_Common/Src/string.h"
+#include "MSL_C/string.h"
 #include "d/com/d_com_inf_game.h"
 #include "dolphin/os/OS.h"
 #include "dol2asm.h"

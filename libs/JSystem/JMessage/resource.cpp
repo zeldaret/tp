@@ -5,7 +5,7 @@
 
 #include "JSystem/JMessage/resource.h"
 #include "JSystem/JGadget/binary.h"
-#include "MSL_C/MSL_Common/Src/mem.h"
+#include "MSL_C/string.h"
 #include "dol2asm.h"
 
 //

@@ -4,7 +4,7 @@
 //
 
 #include "rel/d/a/d_a_bg/d_a_bg.h"
-#include "MSL_C/MSL_Common/Src/mem.h"
+#include "MSL_C/string.h"
 #include "d/bg/d_bg_w_kcol.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/com/d_com_static.h"
