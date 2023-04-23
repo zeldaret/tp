@@ -4,6 +4,7 @@
 //
 
 #include "init.h"
+#include "MSL_C/stdlib.h"
 #include "MSL_C/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
@@ -40,7 +41,6 @@ void __OSCacheInit();
 void OSResetSystem(s32, s32, s32);
 void __init_user();
 void DBInit();
-void exit();
 void TRK_fill_mem(void* dst, int val, size_t n);
 void InitMetroTRK();
 void InitMetroTRK_BBA();

@@ -6,6 +6,7 @@
 #include "JSystem/JStudio/JStudio/functionvalue.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "MSL_C/math.h"
+#include "MSL_C/stdlib.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -179,7 +180,6 @@ extern "C" void _savefpr_29();
 extern "C" void _restfpr_29();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
-extern "C" void div();
 
 /* ############################################################################################## */
 /* 803C48E0-803C4900 021A00 0020+00 2/2 1/1 0/0 .data __vt__Q27JStudio22TFunctionValue_hermite */
