@@ -8,7 +8,7 @@
 #include "JSystem/JKernel/JKRFileFinder.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "MSL_C/MSL_Common/Src/ctype.h"
-#include "MSL_C/MSL_Common/Src/string.h"
+#include "MSL_C/string.h"
 #include "global.h"
 
 /* 802D49B4-802D4AB4 2CF2F4 0100+00 0/0 2/2 0/0 .text mount__12JKRFileCacheFPCcP7JKRHeapPCc */

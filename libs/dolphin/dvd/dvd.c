@@ -4,8 +4,7 @@
 //
 
 #include "dolphin/dvd/dvd.h"
-#include "MSL_C/MSL_Common/Src/mem.h"
-#include "MSL_C/MSL_Common/Src/string.h"
+#include "MSL_C/string.h"
 #include "dol2asm.h"
 #include "dolphin/dvd/dvdlow.h"
 #include "dolphin/os/OS.h"

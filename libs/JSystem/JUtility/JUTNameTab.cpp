@@ -4,7 +4,7 @@
 //
 
 #include "JSystem/JUtility/JUTNameTab.h"
-#include "MSL_C/MSL_Common/Src/string.h"
+#include "MSL_C/string.h"
 
 JUTNameTab::JUTNameTab() {
     setResource(NULL);

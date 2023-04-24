@@ -5,6 +5,7 @@
 
 #include "d/s/d_s_room.h"
 #include "MSL_C/stdio.h"
+#include "MSL_C/string.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "d/s/d_s_play.h"
@@ -104,7 +105,6 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strnicmp();
 // extern "C" extern void* g_fopScn_Method[5 + 1 /* padding */];
 // extern "C" extern void* g_fpcNd_Method[5 + 1 /* padding */];
 extern "C" u8 mStatus__20dStage_roomControl_c[65792];
