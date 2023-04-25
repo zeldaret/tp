@@ -5,7 +5,6 @@
 #include "dolphin/types.h"
 #include "global.h"
 
-#include "MSL_C/MSL_Common/Src/string.h"
 #include "dolphin/os/OSMutex.h"
 
 #include "JSystem/JAudio2/JASDvdThread.h"

@@ -394,7 +394,7 @@ private:
     /* 0x54 */ int field_0x54;
     /* 0x58 */ int field_0x58;
     /* 0x5C */ u8 field_0x5c[4];
-    /* 0x60 */ u16 field_0x60[2];
+    /* 0x60 */ u16* field_0x60;
     /* 0x64 */ JUTNameTab field_0x64;
     /* 0x74 */ u8 field_0x74[4];
     /* 0x78 */ u32 mTexMtxCalcType;
@@ -415,7 +415,7 @@ private:
     /* 0x10 */ void* mAnmTable;
     /* 0x14 */ u16 field_0x14;
     /* 0x16 */ u16 mUpdateMaterialNum;
-    /* 0x18 */ void* field_0x18;
+    /* 0x18 */ u16* field_0x18;
     /* 0x1C */ JUTNameTab field_0x1c;
 };  // Size: 0x2C
 
@@ -448,9 +448,9 @@ private:
     /* 0x1C */ u16 field_0x1c;
     /* 0x1E */ u16 field_0x1e;
     /* 0x20 */ u16* mCRegUpdateMaterialID;
-    /* 0x24 */ u8 field_0x24[0x34 - 0x24];
+    /* 0x24 */ JUTNameTab field_0x24;
     /* 0x34 */ u16* mKRegUpdateMaterialID;
-    /* 0x38 */ u8 field_0x38[0x48 - 0x38];
+    /* 0x38 */ JUTNameTab field_0x38;
     /* 0x48 */ void* field_0x48;
     /* 0x4C */ void* field_0x4c;
     /* 0x50 */ int field_0x50;

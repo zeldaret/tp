@@ -1,3 +1,4 @@
+#include "MSL_C/stdlib.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "init.h"
@@ -20,7 +21,6 @@ void OSInit();
 void OSResetSystem(s32, s32, s32);
 void __init_user();
 void DBInit();
-void exit();
 void InitMetroTRK();
 void InitMetroTRK_BBA();
 extern u8 data_804516D0;

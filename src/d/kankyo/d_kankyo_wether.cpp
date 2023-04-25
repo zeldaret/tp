@@ -4,6 +4,7 @@
 //
 
 #include "d/kankyo/d_kankyo_wether.h"
+#include "MSL_C/string.h"
 #include "Z2AudioLib/Z2EnvSeMgr.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/kankyo/d_kankyo.h"
@@ -210,7 +211,6 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void memcmp();
 extern "C" extern void* __vt__9J3DPacket[5];
 extern "C" extern dScnKy_env_light_c g_env_light;
 extern "C" extern Z2EnvSeMgr g_mEnvSeMgr;

@@ -4,7 +4,7 @@
 //
 
 #include "dolphin/card/CARDDir.h"
-#include "MSL_C/MSL_Common/Src/string.h"
+#include "MSL_C/string.h"
 #include "dol2asm.h"
 #include "dolphin/card/card.h"
 #include "dolphin/dsp/dsp.h"
