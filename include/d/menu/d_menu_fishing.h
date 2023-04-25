@@ -43,8 +43,8 @@ private:
     /* 0x014 */ mDoDvdThd_mountArchive_c* field_0x14;
     /* 0x018 */ J2DScreen* mpScreen;
     /* 0x01C */ J2DScreen* mpIconScreen;
-    /* 0x020 */ J2DTextBox* field_0x20[5];
-    /* 0x034 */ J2DTextBox* field_0x34[5];
+    /* 0x020 */ J2DTextBox* mpAButtonString[5];
+    /* 0x034 */ J2DTextBox* mpBButtonString[5];
     /* 0x048 */ CPaneMgr* mpParent;
     /* 0x04C */ CPaneMgr* mpFishParent[6];
     /* 0x064 */ CPaneMgr* mpFishParts[6][6];
