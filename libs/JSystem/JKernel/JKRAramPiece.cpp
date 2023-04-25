@@ -57,7 +57,7 @@ JKRAMCommand* JKRAramPiece::orderAsync(int direction, u32 source, u32 destinatio
     message->field_0x00 = 1;
     message->command = command;
 
-    OSSendMessage(&JKRAram::sMessageQueue, message, OS_MESSAGE_BLOCKING);
+    OSSendMessage(&JKRAram::sMessageQueue, message, OS_MESSAGE_BLOCK);
     if (command->mCallback != NULL) {
         sAramPieceCommandList.append(&command->mPieceLink);
     }
@@ -72,13 +72,13 @@ BOOL JKRAramPiece::sync(JKRAMCommand* command, int is_non_blocking) {
 
     lock();
     if (is_non_blocking == 0) {
-        OSReceiveMessage(&command->mMessageQueue, &message, OS_MESSAGE_BLOCKING);
+        OSReceiveMessage(&command->mMessageQueue, &message, OS_MESSAGE_BLOCK);
         sAramPieceCommandList.remove(&command->mPieceLink);
         unlock();
         return TRUE;
     }
 
-    BOOL result = OSReceiveMessage(&command->mMessageQueue, &message, OS_MESSAGE_NON_BLOCKING);
+    BOOL result = OSReceiveMessage(&command->mMessageQueue, &message, OS_MESSAGE_NOBLOCK);
     if (!result) {
         unlock();
         return FALSE;
@@ -134,9 +134,9 @@ void JKRAramPiece::doneDMA(u32 requestAddress) {
     if (command->mCallback) {
         (*command->mCallback)(requestAddress);
     } else if (command->field_0x5C) {
-        OSSendMessage(command->field_0x5C, command, OS_MESSAGE_NON_BLOCKING);
+        OSSendMessage(command->field_0x5C, command, OS_MESSAGE_NOBLOCK);
     } else {
-        OSSendMessage(&command->mMessageQueue, command, OS_MESSAGE_NON_BLOCKING);
+        OSSendMessage(&command->mMessageQueue, command, OS_MESSAGE_NOBLOCK);
     }
 }
 
