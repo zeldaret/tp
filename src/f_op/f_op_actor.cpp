@@ -84,8 +84,8 @@ static int fopAc_Execute(void* i_this) {
                 fopAcM_delete(_this);
             }
 
-            if (_this->current.pos.y < FLOAT_MIN) {
-                _this->current.pos.y = FLOAT_MIN;
+            if (_this->current.pos.y < -1e31f) {
+                _this->current.pos.y = -1e31f;
             }
 
             dKy_depth_dist_set(_this);
