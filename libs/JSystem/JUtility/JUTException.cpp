@@ -216,7 +216,7 @@ void JUTException::errorHandler(OSError error, OSContext* context, u32 param_3, 
     exCallbackObject.param_3 = param_3;
     exCallbackObject.param_4 = param_4;
 
-    OSSendMessage(&sMessageQueue, &exCallbackObject, OS_MESSAGE_BLOCKING);
+    OSSendMessage(&sMessageQueue, &exCallbackObject, OS_MESSAGE_BLOCK);
     OSEnableScheduler();
     OSYieldThread();
 }

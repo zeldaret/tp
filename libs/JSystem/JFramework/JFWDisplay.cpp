@@ -520,7 +520,7 @@ static void waitForTick(u32 param_0, u16 param_1) {
         OSMessage msg;
         do {
             if (!OSReceiveMessage(JUTVideo::getManager()->getMessageQueue(), &msg,
-                                  OS_MESSAGE_BLOCKING)) {
+                                  OS_MESSAGE_BLOCK)) {
                 msg = NULL;
             }
         } while ((int)msg - nextCount > 0);

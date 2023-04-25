@@ -158,7 +158,7 @@ void* JKRAram::run(void) {
     JKRAramPiece::Message* message;
     OSInitMessageQueue(&sMessageQueue, sMessageBuffer, 4);
     do {
-        OSReceiveMessage(&sMessageQueue, (OSMessage*)&message, OS_MESSAGE_BLOCKING);
+        OSReceiveMessage(&sMessageQueue, (OSMessage*)&message, OS_MESSAGE_BLOCK);
         result = message->field_0x00;
         command = message->command;
         delete message;

@@ -192,7 +192,7 @@ void JUTVideo::postRetraceProc(u32 retrace_count) {
     }
 
     OSMessage message = (OSMessage*)VIGetRetraceCount();
-    OSSendMessage(&sManager->mMessageQueue, message, OS_MESSAGE_NON_BLOCKING);
+    OSSendMessage(&sManager->mMessageQueue, message, OS_MESSAGE_NOBLOCK);
 }
 
 /* 802E5198-802E5210 2DFAD8 0078+00 1/1 2/2 0/0 .text

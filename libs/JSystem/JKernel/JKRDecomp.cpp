@@ -83,7 +83,7 @@ void* JKRDecomp::run() {
     OSInitMessageQueue(&sMessageQueue, sMessageBuffer, 8);
     for (;;) {
         OSMessage message;
-        OSReceiveMessage(&sMessageQueue, &message, OS_MESSAGE_BLOCKING);
+        OSReceiveMessage(&sMessageQueue, &message, OS_MESSAGE_BLOCK);
 
         JKRDecompCommand* command = (JKRDecompCommand*)message;
         decode(command->mSrcBuffer, command->mDstBuffer, command->mSrcLength, command->mDstLength);
@@ -101,9 +101,9 @@ void* JKRDecomp::run() {
         }
 
         if (command->field_0x1c) {
-            OSSendMessage(command->field_0x1c, (OSMessage)1, OS_MESSAGE_NON_BLOCKING);
+            OSSendMessage(command->field_0x1c, (OSMessage)1, OS_MESSAGE_NOBLOCK);
         } else {
-            OSSendMessage(&command->mMessageQueue, (OSMessage)1, OS_MESSAGE_NON_BLOCKING);
+            OSSendMessage(&command->mMessageQueue, (OSMessage)1, OS_MESSAGE_NOBLOCK);
         }
     }
 }
@@ -125,7 +125,7 @@ JKRDecompCommand* JKRDecomp::prepareCommand(u8* srcBuffer, u8* dstBuffer, u32 sr
 /* 802DB8D0-802DB900 2D6210 0030+00 1/1 1/1 0/0 .text sendCommand__9JKRDecompFP16JKRDecompCommand
  */
 void JKRDecomp::sendCommand(JKRDecompCommand* command) {
-    OSSendMessage(&sMessageQueue, command, OS_MESSAGE_NON_BLOCKING);
+    OSSendMessage(&sMessageQueue, command, OS_MESSAGE_NOBLOCK);
 }
 
 /* 802DB900-802DB934 2D6240 0034+00 1/1 0/0 0/0 .text orderAsync__9JKRDecompFPUcPUcUlUlPFUl_v */
@@ -142,11 +142,11 @@ bool JKRDecomp::sync(JKRDecompCommand* command, int isNonBlocking) {
     OSMessage message;
     bool result;
     if (isNonBlocking == JKRDECOMP_SYNC_BLOCKING) {
-        OSReceiveMessage(&command->mMessageQueue, &message, OS_MESSAGE_BLOCKING);
+        OSReceiveMessage(&command->mMessageQueue, &message, OS_MESSAGE_BLOCK);
         result = true;
     } else {
         result =
-            OSReceiveMessage(&command->mMessageQueue, &message, OS_MESSAGE_NON_BLOCKING) != FALSE;
+            OSReceiveMessage(&command->mMessageQueue, &message, OS_MESSAGE_NOBLOCK) != FALSE;
     }
 
     return result;
