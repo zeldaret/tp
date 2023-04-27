@@ -4,7 +4,7 @@
 #include "d/a/d_a_itembase.h"
 
 struct ResourceData {
-    char* get_arcName() const { return mArcName; }
+    const char* get_arcName() const { return mArcName; }
     s16 get_bmdName() const { return mBmdName; }
     s16 get_btk1Name() const { return mBtkName; }
     s16 get_bpk1Name() const { return mBpkName; }
@@ -13,7 +13,7 @@ struct ResourceData {
     s16 get_brk1Name() const { return mBrkName; }
     s16 get_btp1Name() const { return mBtpName; }
 
-    /* 0x00 */ char* mArcName;
+    /* 0x00 */ const char* mArcName;
     /* 0x04 */ s16 mBmdName;
     /* 0x06 */ s16 mBtkName;
     /* 0x08 */ s16 mBpkName;

@@ -542,7 +542,7 @@ inline void dMeter2Info_resetDirectUseItem() {
     g_meter2_info.resetDirectUseItem();
 }
 
-char* dMeter2Info_getNumberTextureName(int pIndex);
+const char* dMeter2Info_getNumberTextureName(int pIndex);
 void dMeter2Info_recieveLetter();
 u8 dMeter2Info_getNewLetterNum();
 int dMeter2Info_setNewLetterSender();

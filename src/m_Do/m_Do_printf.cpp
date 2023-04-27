@@ -41,12 +41,12 @@ void my_PutString(const char* string) {
 }
 
 /* 800067F4-80006814 001134 0020+00 3/3 0/0 0/0 .text OSVAttention__FPCcP16__va_list_struct */
-void OSVAttention(char* fmt, va_list args) {
+void OSVAttention(const char* fmt, va_list args) {
     mDoPrintf_vprintf(fmt, args);
 }
 
 /* 80006814-80006894 001154 0080+00 1/1 1/1 0/0 .text            OSAttention */
-void OSAttention(char* fmt, ...) {
+void OSAttention(const char* fmt, ...) {
     va_list args;
     va_start(args, fmt);
     mDoPrintf_vprintf(fmt, args);
@@ -156,12 +156,12 @@ void mDoPrintf_VReport(const char* fmt, va_list args) {
 }
 
 /* 80006A9C-80006ABC 0013DC 0020+00 2/2 0/0 0/0 .text            OSVReport */
-void OSVReport(char* fmt, va_list args) {
+void OSVReport(const char* fmt, va_list args) {
     mDoPrintf_VReport(fmt, args);
 }
 
 /* 80006ABC-80006B3C 0013FC 0080+00 0/0 97/97 10/10 .text            OSReport */
-void OSReport(char* fmt, ...) {
+void OSReport(const char* fmt, ...) {
     va_list args;
     va_start(args, fmt);
     OSVReport(fmt, args);
@@ -169,7 +169,7 @@ void OSReport(char* fmt, ...) {
 }
 
 /* 80006B3C-80006C0C 00147C 00D0+00 0/0 2/2 0/0 .text            OSReport_FatalError */
-void OSReport_FatalError(char* fmt, ...) {
+void OSReport_FatalError(const char* fmt, ...) {
     va_list args;
     va_start(args, fmt);
 
@@ -185,7 +185,7 @@ void OSReport_FatalError(char* fmt, ...) {
 }
 
 /* 80006C0C-80006CEC 00154C 00E0+00 0/0 31/31 10/10 .text            OSReport_Error */
-void OSReport_Error(char* fmt, ...) {
+void OSReport_Error(const char* fmt, ...) {
     print_errors++;
     if (!__OSReport_Error_disable) {
         va_list args;
@@ -201,7 +201,7 @@ void OSReport_Error(char* fmt, ...) {
 }
 
 /* 80006CEC-80006DCC 00162C 00E0+00 0/0 6/6 0/0 .text            OSReport_Warning */
-void OSReport_Warning(char* fmt, ...) {
+void OSReport_Warning(const char* fmt, ...) {
     print_warings++;
     if (!__OSReport_Warning_disable) {
         va_list args;
@@ -217,7 +217,7 @@ void OSReport_Warning(char* fmt, ...) {
 }
 
 /* 80006DCC-80006E7C 00170C 00B0+00 0/0 1/1 0/0 .text            OSReport_System */
-void OSReport_System(char* fmt, ...) {
+void OSReport_System(const char* fmt, ...) {
     print_systems++;
     if (!__OSReport_System_disable) {
         va_list args;
@@ -230,7 +230,7 @@ void OSReport_System(char* fmt, ...) {
 }
 
 /* 80006E7C-80006FB4 0017BC 0138+00 0/0 9/9 0/0 .text            OSPanic */
-void OSPanic(char* file, s32 line, char* fmt, ...) {
+void OSPanic(const char* file, s32 line, const char* fmt, ...) {
     va_list args;
     u32 i;
     u32* p;

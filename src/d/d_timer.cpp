@@ -545,7 +545,7 @@ asm void dDlst_TimerScrnDraw_c::changeNumberTexture(J2DPane* param_0, int param_
 #pragma pop
 
 /* 8025EECC-8025EEF0 25980C 0024+00 1/1 0/0 0/0 .text getNumber__21dDlst_TimerScrnDraw_cFi */
-char* dDlst_TimerScrnDraw_c::getNumber(int pIndex) {
+const char* dDlst_TimerScrnDraw_c::getNumber(int pIndex) {
     return dMeter2Info_getNumberTextureName(pIndex);
 }
 
