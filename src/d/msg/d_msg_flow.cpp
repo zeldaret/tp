@@ -954,7 +954,9 @@ int dMsgFlow_c::query005(mesg_flow_node_branch*, fopAc_ac_c*, int) {
 /* 8024B2F8-8024B32C 245C38 0034+00 1/0 0/0 0/0 .text
  * query006__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
 int dMsgFlow_c::query006(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int) {
-    mChoiceNo = query005(flow_node, param_1, 0);
+    int r3 = query005(flow_node, param_1, 0);
+    mChoiceNo = r3;
+    return r3;
 }
 
 /* 8024B32C-8024B45C 245C6C 0130+00 1/0 0/0 0/0 .text

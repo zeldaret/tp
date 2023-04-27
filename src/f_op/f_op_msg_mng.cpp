@@ -291,7 +291,7 @@ void fopMsgM_setMessageID(unsigned int msg_id) {
 
 /* 80020108-80020158 01AA48 0050+00 0/0 2/2 0/0 .text            fopMsgM_Create__FsPFPv_iPv */
 u32 fopMsgM_Create(s16 i_procName, FastCreateReqFunc i_createFunc, void* i_process) {
-    fpcM_Create(i_procName, i_createFunc, i_process);
+    return fpcM_Create(i_procName, i_createFunc, i_process);
 }
 
 /* 80020158-80020160 -00001 0008+00 0/0 0/0 0/0 .text            setAlpha__7J2DPaneFUc */
