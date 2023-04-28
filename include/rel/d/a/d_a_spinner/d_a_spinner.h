@@ -48,6 +48,17 @@ public:
         mCyl.OnAtSetBit();
     }
 
+    void clearPathMove() { mpPathMove = NULL; }
+
+    void setSpinnerTag(const cXyz& param_0) {
+        if (!mSpinnerTag) {
+            mSpinnerTag = 1;
+        }
+
+        clearPathMove();
+        field_0xaa4 = param_0;
+    }
+
     bool reflectAccept() {
         bool accept = false;
         if (!mBck.isStop() && mSpinnerTag == 0) {
