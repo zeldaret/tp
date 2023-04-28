@@ -270,6 +270,77 @@ asm int J3DFrameCtrl::checkPass(f32 pass_frame) {
 #endif
 
 /* 803289CC-80328E40 32330C 0474+00 0/0 3/3 0/0 .text            update__12J3DFrameCtrlFv */
+// matches with literals
+#ifdef NONMATCHING
+void J3DFrameCtrl::update() {
+    mState = 0;
+    mFrame += mRate;
+    switch (mAttribute) {
+    case 0:
+        if (mFrame < mStart) {
+            mFrame = mStart;
+            mRate = 0.0f;
+            mState |= 1;
+        }
+        if (mFrame >= mEnd) {
+            mFrame = mEnd - 0.001f;
+            mRate = 0.0f;
+            mState |= 1;
+        }
+        break;
+    case 1:
+        if (mFrame < mStart) {
+            mFrame = mStart;
+            mRate = 0.0f;
+            mState |= 1;
+        }
+        if (mFrame >= mEnd) {
+            mFrame = mStart;
+            mRate = 0.0f;
+            mState |= 1;
+        }
+        break;
+    case 2:
+        while (mFrame < mStart) {
+            mState |= 2;
+            if (mLoop - mStart <= 0.0f) {
+                break;
+            }
+            mFrame += mLoop - mStart;
+        }
+        while (mFrame >= mEnd) {
+            mState |= 2;
+            if (mEnd - mLoop <= 0.0f) {
+                break;
+            }
+            mFrame -= mEnd - mLoop;
+        }
+        break;
+    case 3:
+        if (mFrame >= mEnd) {
+            mFrame = mEnd - (mFrame - mEnd);
+            mRate = -mRate;
+        }
+        if (mFrame < mStart) {
+            mFrame = mStart - (mFrame - mStart);
+            mRate = 0.0f;
+            mState |= 1;
+        }
+        break;
+    case 4:
+        if (mFrame >= mEnd - 1.0f) {
+            mFrame = (mEnd - 1.0f) - (mFrame - (mEnd - 1.0f));
+            mRate = -mRate;
+        }
+        if (mFrame < mStart) {
+            mFrame = mStart - (mFrame - mStart);
+            mRate = -mRate;
+            mState |= 2;
+        }
+        break;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -278,6 +349,7 @@ asm void J3DFrameCtrl::update() {
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/update__12J3DFrameCtrlFv.s"
 }
 #pragma pop
+#endif
 
 /* 80328E40-80328E90 323780 0050+00 0/0 3/3 0/0 .text            __ct__15J3DAnmTransformFsPfPsPf */
 // matches with literals
@@ -456,6 +528,29 @@ SECTION_DATA extern void* __vt__19J3DAnmTextureSRTKey[4] = {
 };
 
 /* 80329E5C-80329F14 32479C 00B8+00 0/0 2/2 0/0 .text            __ct__19J3DAnmTextureSRTKeyFv */
+// matches with literals
+#ifdef NONMATCHING
+J3DAnmTextureSRTKey::J3DAnmTextureSRTKey() : J3DAnmBase(0) {
+    field_0xc = 0;
+    field_0x1a = 0;
+    field_0x18 = 0;
+    field_0x16 = 0;
+    field_0x14 = 0;
+    field_0x10 = 0;
+    field_0x24 = 0;
+    field_0x1c = 0;
+    field_0x20 = 0;
+    field_0x48 = 0;
+    field_0x46 = 0;
+    field_0x44 = 0;
+    field_0x4a = 0;
+    field_0x58 = 0;
+    field_0x54 = 0;
+    field_0x4c = 0;
+    field_0x50 = 0;
+    mTexMtxCalcType = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -464,6 +559,7 @@ asm J3DAnmTextureSRTKey::J3DAnmTextureSRTKey() {
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__ct__19J3DAnmTextureSRTKeyFv.s"
 }
 #pragma pop
+#endif
 
 /* 80329F14-8032A184 324854 0270+00 0/0 1/1 0/0 .text
  * calcTransform__19J3DAnmTextureSRTKeyCFfUsP17J3DTextureSRTInfo */
@@ -500,6 +596,17 @@ asm f32 J3DAnmClusterKey::getWeight(u16 param_0) const {
 #pragma pop
 
 /* 8032A29C-8032A30C 324BDC 0070+00 2/2 0/0 0/0 .text            __ct__14J3DAnmVtxColorFv */
+// matches with literals
+#ifdef NONMATCHING
+J3DAnmVtxColor::J3DAnmVtxColor() : J3DAnmBase(0) {
+    for (int i = 0; i < 2; i++) {
+        mAnmTableNum[i] = 0;
+    }
+    for (int i = 0; i < 2; i++) {
+        mAnmVtxColorIndexData[i] = 0;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -508,16 +615,14 @@ asm J3DAnmVtxColor::J3DAnmVtxColor() {
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__ct__14J3DAnmVtxColorFv.s"
 }
 #pragma pop
+#endif
 
 /* 8032A30C-8032A368 324C4C 005C+00 0/0 1/1 0/0 .text            __ct__18J3DAnmVtxColorFullFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DAnmVtxColorFull::J3DAnmVtxColorFull() {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__ct__18J3DAnmVtxColorFullFv.s"
+J3DAnmVtxColorFull::J3DAnmVtxColorFull() {
+    for (int i = 0; i < 2; i++) {
+        field_0x18[i] = 0;
+    }
 }
-#pragma pop
 
 /* 8032A368-8032A4E0 324CA8 0178+00 1/0 0/0 0/0 .text
  * getColor__18J3DAnmVtxColorFullCFUcUsP8_GXColor               */
@@ -531,14 +636,11 @@ asm void J3DAnmVtxColorFull::getColor(u8 param_0, u16 param_1, _GXColor* param_2
 #pragma pop
 
 /* 8032A4E0-8032A53C 324E20 005C+00 0/0 1/1 0/0 .text            __ct__17J3DAnmVtxColorKeyFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DAnmVtxColorKey::J3DAnmVtxColorKey() {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__ct__17J3DAnmVtxColorKeyFv.s"
+J3DAnmVtxColorKey::J3DAnmVtxColorKey() {
+    for (int i = 0; i < 2; i++) {
+        field_0x18[i] = 0;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80456458-8045645C 004A58 0004+00 3/3 0/0 0/0 .sdata2          @1499 */
@@ -556,6 +658,10 @@ asm void J3DAnmVtxColorKey::getColor(u8 param_0, u16 param_1, _GXColor* param_2)
 #pragma pop
 
 /* 8032A828-8032A8A4 325168 007C+00 2/2 0/0 0/0 .text            __ct__11J3DAnmColorFv */
+// matches with literals
+#ifdef NONMATCHING
+J3DAnmColor::J3DAnmColor() : J3DAnmBase(0), field_0xc(0), field_0xe(0), field_0x10(0), field_0x12(0), mUpdateMaterialNum(0), mUpdateMaterialID(NULL) {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -564,6 +670,7 @@ asm J3DAnmColor::J3DAnmColor() {
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__ct__11J3DAnmColorFv.s"
 }
 #pragma pop
+#endif
 
 /* 8032A8A4-8032A93C 3251E4 0098+00 0/0 1/1 0/0 .text
  * searchUpdateMaterialID__11J3DAnmColorFP16J3DMaterialTable    */
@@ -577,14 +684,13 @@ asm void J3DAnmColor::searchUpdateMaterialID(J3DMaterialTable* param_0) {
 #pragma pop
 
 /* 8032A93C-8032A990 32527C 0054+00 0/0 1/1 0/0 .text            __ct__15J3DAnmColorFullFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DAnmColorFull::J3DAnmColorFull() {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__ct__15J3DAnmColorFullFv.s"
+J3DAnmColorFull::J3DAnmColorFull() {
+    field_0x2c = 0;
+    field_0x30 = 0;
+    field_0x34 = 0;
+    field_0x38 = 0;
+    field_0x3c = 0;
 }
-#pragma pop
 
 /* 8032A990-8032AB00 3252D0 0170+00 1/0 0/0 0/0 .text getColor__15J3DAnmColorFullCFUsP8_GXColor */
 #pragma push
@@ -597,14 +703,13 @@ asm void J3DAnmColorFull::getColor(u16 param_0, _GXColor* param_1) const {
 #pragma pop
 
 /* 8032AB00-8032AB54 325440 0054+00 0/0 1/1 0/0 .text            __ct__14J3DAnmColorKeyFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DAnmColorKey::J3DAnmColorKey() {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__ct__14J3DAnmColorKeyFv.s"
+J3DAnmColorKey::J3DAnmColorKey() {
+    field_0x2c = 0;
+    field_0x30 = 0;
+    field_0x34 = 0;
+    field_0x38 = 0;
+    field_0x3c = 0;
 }
-#pragma pop
 
 /* 8032AB54-8032AE18 325494 02C4+00 1/0 0/0 0/0 .text getColor__14J3DAnmColorKeyCFUsP8_GXColor */
 #pragma push
@@ -617,6 +722,31 @@ asm void J3DAnmColorKey::getColor(u16 param_0, _GXColor* param_1) const {
 #pragma pop
 
 /* 8032AE18-8032AED8 325758 00C0+00 0/0 1/1 0/0 .text            __ct__15J3DAnmTevRegKeyFv */
+// matches with literals
+#ifdef NONMATCHING
+J3DAnmTevRegKey::J3DAnmTevRegKey() : J3DAnmBase(0) {
+    mKRegUpdateMaterialNum = 0;
+    mCRegUpdateMaterialNum = 0;
+    field_0x16 = 0;
+    field_0x14 = 0;
+    field_0x12 = 0;
+    field_0x10 = 0;
+    field_0x1e = 0;
+    field_0x1c = 0;
+    field_0x1a = 0;
+    field_0x18 = 0;
+    mKRegUpdateMaterialID = 0;
+    mCRegUpdateMaterialID = 0;
+    field_0x5c = 0;
+    field_0x58 = 0;
+    field_0x54 = 0;
+    field_0x50 = 0;
+    field_0x6c = 0;
+    field_0x68 = 0;
+    field_0x64 = 0;
+    field_0x60 = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -625,8 +755,13 @@ asm J3DAnmTevRegKey::J3DAnmTevRegKey() {
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__ct__15J3DAnmTevRegKeyFv.s"
 }
 #pragma pop
+#endif
 
 /* 8032AED8-8032AF50 325818 0078+00 0/0 2/2 0/0 .text            __ct__16J3DAnmTexPatternFv */
+// matches with literals
+#if NONMATCHING
+J3DAnmTexPattern::J3DAnmTexPattern() : J3DAnmBase(0), field_0xc(NULL), mAnmTable(NULL), field_0x14(0), mUpdateMaterialNum(0), field_0x18(NULL) {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -635,6 +770,7 @@ asm J3DAnmTexPattern::J3DAnmTexPattern() {
 #include "asm/JSystem/J3DGraphAnimator/J3DAnimation/__ct__16J3DAnmTexPatternFv.s"
 }
 #pragma pop
+#endif
 
 /* 8032AF50-8032B004 325890 00B4+00 0/0 1/1 72/72 .text getTexNo__16J3DAnmTexPatternCFUsPUs */
 #pragma push
@@ -648,47 +784,49 @@ asm void J3DAnmTexPattern::getTexNo(u16 param_0, u16* param_1) const {
 
 /* 8032B004-8032B09C 325944 0098+00 1/1 1/1 0/0 .text
  * searchUpdateMaterialID__16J3DAnmTexPatternFP16J3DMaterialTable */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DAnmTexPattern::searchUpdateMaterialID(J3DMaterialTable* param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DAnimation/searchUpdateMaterialID__16J3DAnmTexPatternFP16J3DMaterialTable.s"
+void J3DAnmTexPattern::searchUpdateMaterialID(J3DMaterialTable* param_0) {
+    for (u16 i = 0; i < mUpdateMaterialNum; i++) {
+        s32 r3 = param_0->getMaterialName()->getIndex(field_0x1c.getName(i));
+        if (r3 != -1) {
+            field_0x18[i] = r3;
+        } else {
+            field_0x18[i] = -1;
+        }
+    }
 }
-#pragma pop
 
 /* 8032B09C-8032B0C0 3259DC 0024+00 0/0 4/4 1/1 .text
  * searchUpdateMaterialID__16J3DAnmTexPatternFP12J3DModelData   */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DAnmTexPattern::searchUpdateMaterialID(J3DModelData* param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DAnimation/searchUpdateMaterialID__16J3DAnmTexPatternFP12J3DModelData.s"
+void J3DAnmTexPattern::searchUpdateMaterialID(J3DModelData* param_0) {
+    searchUpdateMaterialID(&param_0->getMaterialTable());
 }
-#pragma pop
 
 /* 8032B0C0-8032B1D4 325A00 0114+00 1/1 1/1 0/0 .text
  * searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP16J3DMaterialTable */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DMaterialTable* param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DAnimation/searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP16J3DMaterialTable.s"
+void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DMaterialTable* param_0) {
+    for (u16 i = 0; i < u16(field_0x14 / 3); i++) {
+        s32 r3 = param_0->getMaterialName()->getIndex(field_0x30.getName(i));
+        if (r3 != -1) {
+            mUpdateMaterialID[i] = r3;
+        } else {
+            mUpdateMaterialID[i] = -1;
+        }
+    }
+    for (u16 i = 0; i < u16(field_0x4a / 3); i++) {
+        s32 r3 = param_0->getMaterialName()->getIndex(field_0x64.getName(i));
+        if (r3 != -1) {
+            field_0x60[i] = r3;
+        } else {
+            field_0x60[i] = -1;
+        }
+    }
 }
-#pragma pop
 
 /* 8032B1D4-8032B1F8 325B14 0024+00 0/0 8/8 6/6 .text
  * searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP12J3DModelData */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DModelData* param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DAnimation/searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP12J3DModelData.s"
+void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DModelData* param_0) {
+    searchUpdateMaterialID(&param_0->getMaterialTable());
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8045645C-80456460 004A5C 0004+00 1/1 0/0 0/0 .sdata2          @1817 */
@@ -736,14 +874,9 @@ asm void J3DAnmTevRegKey::searchUpdateMaterialID(J3DMaterialTable* param_0) {
 
 /* 8032B87C-8032B8A0 3261BC 0024+00 0/0 9/9 4/4 .text
  * searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DAnimation/searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData.s"
+void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* param_0) {
+    searchUpdateMaterialID(&param_0->getMaterialTable());
 }
-#pragma pop
 
 /* 8032B8A0-8032BAD4 3261E0 0234+00 6/6 0/0 0/0 .text
  * J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs    */

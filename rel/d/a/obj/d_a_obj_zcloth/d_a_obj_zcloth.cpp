@@ -5,88 +5,29 @@
 
 #include "rel/d/a/obj/d_a_obj_zcloth/d_a_obj_zcloth.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_item_data.h"
+#include "d/a/d_a_itembase_static.h"
 
 //
 // Types:
 //
 
-struct request_of_phase_process_class {};
 
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
 
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct daObjZCloth_c {
+class daObjZCloth_c : public daItemBase_c {
+public:
     /* 80D3EE18 */ void initBaseMtx();
     /* 80D3EE54 */ void setBaseMtx();
-    /* 80D3EEC0 */ void Create();
-    /* 80D3EF0C */ void create();
-    /* 80D3F1AC */ void execute();
-    /* 80D3F1D0 */ void draw();
-    /* 80D3F200 */ void _delete();
-};
+    /* 80D3EEC0 */ int Create();
+    /* 80D3EF0C */ int create();
+    /* 80D3F1AC */ int execute();
+    /* 80D3F1D0 */ int draw();
+    /* 80D3F200 */ int _delete();
+};  // Size: 0x92C
 
-struct daItemBase_c {
-    /* 8014474C */ bool clothCreate();
-    /* 80144754 */ bool __CreateHeap();
-    /* 80144B94 */ void DrawBase();
-    /* 80144C30 */ void RotateYBase();
-    /* 80144C7C */ void setListStart();
-    /* 80144CC4 */ void settingBeforeDraw();
-    /* 80144D18 */ void setTevStr();
-    /* 80144D70 */ void setShadow();
-    /* 80144EDC */ void animEntry();
-    /* 80145144 */ void chkFlag(int);
-    /* 80145164 */ void getTevFrm();
-    /* 80145180 */ void getBtpFrm();
-    /* 8014519C */ void getShadowSize();
-    /* 801451B4 */ void getCollisionH();
-    /* 801451D0 */ void getCollisionR();
-};
 
-struct dItem_data {
-    static void* field_item_res[1020];
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-};
-
-struct dBgS_PolyPassChk {
-    /* 80078E68 */ void SetObj();
-};
-
-struct dBgS_ObjAcch {
-    /* 80D3F13C */ ~dBgS_ObjAcch();
-};
-
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-};
-
-struct dBgS_Acch {
-    /* 80075F94 */ ~dBgS_Acch();
-    /* 800760A0 */ dBgS_Acch();
-};
-
-struct cM3dGCyl {
-    /* 80D3F0AC */ ~cM3dGCyl();
-};
-
-struct cM3dGAab {
-    /* 80D3F0F4 */ ~cM3dGAab();
-};
-
-struct J3DModelData {};
 
 //
 // Forward References:
@@ -142,12 +83,8 @@ extern "C" void getShadowSize__12daItemBase_cFv();
 extern "C" void getCollisionH__12daItemBase_cFv();
 extern "C" void getCollisionR__12daItemBase_cFv();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" void* field_item_res__10dItem_data[1020];
@@ -162,34 +99,25 @@ extern "C" u8 now__14mDoMtx_stack_c[48];
 //
 
 /* 80D3EE18-80D3EE54 000078 003C+00 1/1 0/0 0/0 .text            initBaseMtx__13daObjZCloth_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjZCloth_c::initBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_zcloth/d_a_obj_zcloth/initBaseMtx__13daObjZCloth_cFv.s"
+void daObjZCloth_c::initBaseMtx() {
+    mpModel->mBaseScale = mScale;
+    setBaseMtx();
 }
-#pragma pop
 
 /* 80D3EE54-80D3EEC0 0000B4 006C+00 2/2 0/0 0/0 .text            setBaseMtx__13daObjZCloth_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjZCloth_c::setBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_zcloth/d_a_obj_zcloth/setBaseMtx__13daObjZCloth_cFv.s"
+void daObjZCloth_c::setBaseMtx() {
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
+    PSMTXCopy(mDoMtx_stack_c::now, mpModel->mBaseTransformMtx);
 }
-#pragma pop
 
 /* 80D3EEC0-80D3EF0C 000120 004C+00 1/1 0/0 0/0 .text            Create__13daObjZCloth_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjZCloth_c::Create() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_zcloth/d_a_obj_zcloth/Create__13daObjZCloth_cFv.s"
+int daObjZCloth_c::Create() {
+    initBaseMtx();
+    fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+    fopAcM_setCullSizeBox2(this, mpModel->getModelData());
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D3F2D4-80D3F2F4 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjZCloth_Method */
@@ -263,20 +191,42 @@ SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
 };
 
 /* 80D3EF0C-80D3F0AC 00016C 01A0+00 1/1 0/0 0/0 .text            create__13daObjZCloth_cFv */
+#ifdef NONMATCHING
+// Matches but weird vtable
+int daObjZCloth_c::create() {
+    if (!fopAcM_CheckCondition(this, 8)) {
+        new (this) daObjZCloth_c();
+        fopAcM_OnCondition(this, 8);
+    }
+    m_itemNo = 0x31;
+    int phase = dComIfG_resLoad(&mPhase, dItem_data::getFieldArc(m_itemNo));
+    if (phase == cPhs_COMPLEATE_e) {
+        if (!fopAcM_entrySolidHeap(this, (heapCallbackFunc)CheckFieldItemCreateHeap, 0x2fb0)) {
+            return cPhs_ERROR_e;
+        }
+        else if (!Create()) {
+            return cPhs_ERROR_e;
+        } 
+    }
+    return phase;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjZCloth_c::create() {
+asm int daObjZCloth_c::create() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zcloth/d_a_obj_zcloth/func_80D3EF0C.s"
 }
 #pragma pop
+#endif
 
 /* 80D3F0AC-80D3F0F4 00030C 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// cM3dGCyl::~cM3dGCyl()
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zcloth/d_a_obj_zcloth/__dt__8cM3dGCylFv.s"
 }
@@ -286,7 +236,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// cM3dGAab::~cM3dGAab()
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zcloth/d_a_obj_zcloth/__dt__8cM3dGAabFv.s"
 }
@@ -296,83 +247,50 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+// dBgS_ObjAcch::~dBgS_ObjAcch()
+extern "C" asm void __dt__12dBgS_ObjAcchFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zcloth/d_a_obj_zcloth/__dt__12dBgS_ObjAcchFv.s"
 }
 #pragma pop
 
 /* 80D3F1AC-80D3F1D0 00040C 0024+00 1/1 0/0 0/0 .text            execute__13daObjZCloth_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjZCloth_c::execute() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_zcloth/d_a_obj_zcloth/execute__13daObjZCloth_cFv.s"
+int daObjZCloth_c::execute() {
+    setBaseMtx();
+    return 1;
 }
-#pragma pop
 
 /* 80D3F1D0-80D3F200 000430 0030+00 1/1 0/0 0/0 .text            draw__13daObjZCloth_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjZCloth_c::draw() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_zcloth/d_a_obj_zcloth/draw__13daObjZCloth_cFv.s"
+int daObjZCloth_c::draw() {
+    DrawBase();
+    return 1;
 }
-#pragma pop
 
 /* 80D3F200-80D3F23C 000460 003C+00 1/1 0/0 0/0 .text            _delete__13daObjZCloth_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjZCloth_c::_delete() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_zcloth/d_a_obj_zcloth/_delete__13daObjZCloth_cFv.s"
-}
-#pragma pop
+int daObjZCloth_c::_delete() {
+    dComIfG_resDelete(&mPhase, dItem_data::getFieldArc(m_itemNo)); 
+    return 1;
+}  
 
-/* 80D3F23C-80D3F25C 00049C 0020+00 1/0 0/0 0/0 .text            daObjZCloth_Draw__FP13daObjZCloth_c
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjZCloth_Draw(daObjZCloth_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_zcloth/d_a_obj_zcloth/daObjZCloth_Draw__FP13daObjZCloth_c.s"
+/* 80D3F23C-80D3F25C 00049C 0020+00 1/0 0/0 0/0 .text            daObjZCloth_Draw__FP13daObjZCloth_c */
+static int daObjZCloth_Draw(daObjZCloth_c* i_this) {
+    return i_this->draw();
 }
-#pragma pop
 
 /* 80D3F25C-80D3F27C 0004BC 0020+00 1/0 0/0 0/0 .text daObjZCloth_Execute__FP13daObjZCloth_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjZCloth_Execute(daObjZCloth_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_zcloth/d_a_obj_zcloth/daObjZCloth_Execute__FP13daObjZCloth_c.s"
+static int daObjZCloth_Execute(daObjZCloth_c* i_this) {
+    return i_this->execute();
 }
-#pragma pop
 
 /* 80D3F27C-80D3F29C 0004DC 0020+00 1/0 0/0 0/0 .text daObjZCloth_Delete__FP13daObjZCloth_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjZCloth_Delete(daObjZCloth_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_zcloth/d_a_obj_zcloth/daObjZCloth_Delete__FP13daObjZCloth_c.s"
+static int daObjZCloth_Delete(daObjZCloth_c* i_this) {
+    return i_this->_delete();
 }
-#pragma pop
 
-/* 80D3F29C-80D3F2BC 0004FC 0020+00 1/0 0/0 0/0 .text            daObjZCloth_Create__FP10fopAc_ac_c
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjZCloth_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_zcloth/d_a_obj_zcloth/daObjZCloth_Create__FP10fopAc_ac_c.s"
+/* 80D3F29C-80D3F2BC 0004FC 0020+00 1/0 0/0 0/0 .text            daObjZCloth_Create__FP10fopAc_ac_c */
+static int daObjZCloth_Create(fopAc_ac_c* i_this) {
+    return static_cast<daObjZCloth_c*>(i_this)->create();
 }
-#pragma pop
 
 /* 80D3F2BC-80D3F2C4 00051C 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
 #pragma push

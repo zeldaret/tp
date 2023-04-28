@@ -7,8 +7,9 @@
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTDirectFile.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
-#include "MSL_C/MSL_Common/Src/float.h"
+#include "MSL_C/float.h"
 #include "MSL_C/stdio.h"
+#include "MSL_C/stdlib.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
 
@@ -61,7 +62,6 @@ extern "C" void fopen__13JUTDirectFileFPCc();
 extern "C" void fclose__13JUTDirectFileFv();
 extern "C" void fgets__13JUTDirectFileFPvi();
 extern "C" void print__10JUTConsoleFPCc();
-extern "C" long int strtol(const char* str, char** endptr, int base);
 extern "C" void __ct__13JUTDirectFileFv();
 extern "C" void __dt__13JUTDirectFileFv();
 extern "C" void _savegpr_16();
@@ -216,7 +216,7 @@ void JUTException::errorHandler(OSError error, OSContext* context, u32 param_3, 
     exCallbackObject.param_3 = param_3;
     exCallbackObject.param_4 = param_4;
 
-    OSSendMessage(&sMessageQueue, &exCallbackObject, OS_MESSAGE_BLOCKING);
+    OSSendMessage(&sMessageQueue, &exCallbackObject, OS_MESSAGE_BLOCK);
     OSEnableScheduler();
     OSYieldThread();
 }

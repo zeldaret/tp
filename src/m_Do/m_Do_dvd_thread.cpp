@@ -68,13 +68,13 @@ mDoDvdThd_param_c::mDoDvdThd_param_c() {
 
 /* 8001598C-800159B4 0102CC 0028+00 2/2 0/0 0/0 .text            kick__17mDoDvdThd_param_cFv */
 void mDoDvdThd_param_c::kick() {
-    OSSendMessage(&mMessageQueue, NULL, OS_MESSAGE_NON_BLOCKING);
+    OSSendMessage(&mMessageQueue, NULL, OS_MESSAGE_NOBLOCK);
 }
 
 /* 800159B4-800159DC 0102F4 0028+00 1/1 0/0 0/0 .text            waitForKick__17mDoDvdThd_param_cFv
  */
 s32 mDoDvdThd_param_c::waitForKick() {
-    return OSReceiveMessage(&mMessageQueue, NULL, OS_MESSAGE_BLOCKING);
+    return OSReceiveMessage(&mMessageQueue, NULL, OS_MESSAGE_BLOCK);
 }
 
 /* 800159DC-800159E4 01031C 0008+00 1/1 0/0 0/0 .text getFirstCommand__17mDoDvdThd_param_cFv */

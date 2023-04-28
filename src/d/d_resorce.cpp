@@ -12,8 +12,8 @@
 #include "JSystem/J3DGraphLoader/J3DClusterLoader.h"
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
-#include "MSL_C/MSL_Common/Src/extras.h"
 #include "MSL_C/stdio.h"
+#include "MSL_C/string.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx.h"
@@ -149,7 +149,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void memcmp();
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];

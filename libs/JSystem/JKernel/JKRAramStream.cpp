@@ -51,7 +51,7 @@ void* JKRAramStream::run() {
 
     for (;;) {
         OSMessage message;
-        OSReceiveMessage(&sMessageQueue, &message, OS_MESSAGE_BLOCKING);
+        OSReceiveMessage(&sMessageQueue, &message, OS_MESSAGE_BLOCK);
         JKRAramStreamCommand* command = (JKRAramStreamCommand*)message;
 
         switch (command->mType) {
@@ -173,7 +173,7 @@ JKRAramStreamCommand* JKRAramStream::write_StreamToAram_Async(JSUFileInputStream
     }
 
     OSInitMessageQueue(&command->mMessageQueue, &command->mMessage, 1);
-    OSSendMessage(&sMessageQueue, command, OS_MESSAGE_BLOCKING);
+    OSSendMessage(&sMessageQueue, command, OS_MESSAGE_BLOCK);
     return command;
 }
 
@@ -182,7 +182,7 @@ JKRAramStreamCommand* JKRAramStream::write_StreamToAram_Async(JSUFileInputStream
 JKRAramStreamCommand* JKRAramStream::sync(JKRAramStreamCommand* command, BOOL isNonBlocking) {
     OSMessage message;
     if (isNonBlocking == 0) {
-        OSReceiveMessage(&command->mMessageQueue, &message, OS_MESSAGE_BLOCKING);
+        OSReceiveMessage(&command->mMessageQueue, &message, OS_MESSAGE_BLOCK);
         if (message == NULL) {
             command = NULL;
             return command;
@@ -191,7 +191,7 @@ JKRAramStreamCommand* JKRAramStream::sync(JKRAramStreamCommand* command, BOOL is
         }
     } else {
         BOOL receiveResult =
-            OSReceiveMessage(&command->mMessageQueue, &message, OS_MESSAGE_NON_BLOCKING);
+            OSReceiveMessage(&command->mMessageQueue, &message, OS_MESSAGE_NOBLOCK);
         if (receiveResult == FALSE) {
             command = NULL;
             return command;

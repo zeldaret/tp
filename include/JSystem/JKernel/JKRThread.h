@@ -81,23 +81,23 @@ public:
 protected:
     void resume() { OSResumeThread(mThreadRecord); }
     void sendMessage(OSMessage message) {
-        OSSendMessage(&mMessageQueue, message, OS_MESSAGE_NON_BLOCKING);
+        OSSendMessage(&mMessageQueue, message, OS_MESSAGE_NOBLOCK);
     }
     void sendMessageBlock(OSMessage message) {
-        OSSendMessage(&mMessageQueue, message, OS_MESSAGE_BLOCKING);
+        OSSendMessage(&mMessageQueue, message, OS_MESSAGE_BLOCK);
     }
     OSMessage waitMessage() {
         OSMessage message;
-        OSReceiveMessage(&mMessageQueue, &message, OS_MESSAGE_NON_BLOCKING);
+        OSReceiveMessage(&mMessageQueue, &message, OS_MESSAGE_NOBLOCK);
         return message;
     }
     OSMessage waitMessageBlock() {
         OSMessage message;
-        OSReceiveMessage(&mMessageQueue, &message, OS_MESSAGE_BLOCKING);
+        OSReceiveMessage(&mMessageQueue, &message, OS_MESSAGE_BLOCK);
         return message;
     }
     void jamMessageBlock(OSMessage message) {
-        OSJamMessage(&mMessageQueue, message, OS_MESSAGE_BLOCKING);
+        OSJamMessage(&mMessageQueue, message, OS_MESSAGE_BLOCK);
     }
 
 private:
