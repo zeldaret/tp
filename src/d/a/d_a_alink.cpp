@@ -19117,14 +19117,9 @@ asm BOOL dEvt_control_c::isOrderOK() {
 #pragma pop
 
 /* 801412F8-80141308 13BC38 0010+00 1/1 0/0 0/0 .text            dComIfGp_getEvent__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm dEvt_control_c& dComIfGp_getEvent() {
-    nofralloc
-#include "asm/d/a/d_a_alink/dComIfGp_getEvent__Fv.s"
+static dEvt_control_c& dComIfGp_getEvent() {
+    return g_dComIfG_gameInfo.play.getEvent();
 }
-#pragma pop
 
 /* 80141308-80141324 13BC48 001C+00 1/1 0/0 0/0 .text            dComIfGp_checkPlayerStatus0__FiUl
  */
