@@ -54,7 +54,7 @@ struct DynamicModuleControl : DynamicModuleControlBase {
     /* 80262660 */ DynamicModuleControl(char const*);
     /* 802626D0 */ static JKRArchive* mountCallback(void*);
     /* 8026275C */ static bool initialize();
-    /* 80262794 */ static void* callback(void*);
+    /* 80262794 */ static bool callback(void*);
 
     /* 0x10 */ OSModuleInfo* mModule;
     /* 0x14 */ void* mBss;

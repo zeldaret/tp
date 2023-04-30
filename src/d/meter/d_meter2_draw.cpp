@@ -273,7 +273,7 @@ SECTION_DEAD static char const* const stringBase_803989BF = "";
 #pragma pop
 
 /* 803BF328-803BF350 -00001 0028+00 1/1 0/0 0/0 .data            bmg_filename$3954 */
-SECTION_DATA static char* bmg_filename[10] = {
+SECTION_DATA static const char* bmg_filename[10] = {
     "zel_00.bmg", "zel_01.bmg", "zel_02.bmg", "zel_03.bmg", "zel_04.bmg",
     "zel_05.bmg", "zel_06.bmg", "zel_07.bmg", "zel_08.bmg", "zel_99.bmg",
 };

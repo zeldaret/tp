@@ -164,7 +164,7 @@ s32 dEvent_exception_c::setStartDemo(int mapToolID) {
 
 /* 80046480-800465E8 040DC0 0168+00 1/1 0/0 0/0 .text getEventName__18dEvent_exception_cFv */
 const char* dEvent_exception_c::getEventName() {
-    static char* soecial_names[14] = {
+    static const char* soecial_names[14] = {
         "NORMAL_COMEBACK",  "DEFAULT_START",      "SHUTTER_START",  "SHUTTER_START_STOP",
         "BS_SHUTTER_START", "BS_SHUTTER_START_B", "KNOB_START",     "KNOB_START_B",
         "FMASTER_START",    "FALL_START",         "CRAWLOUT_START", "BOSSWARP_START",
@@ -424,7 +424,7 @@ void dEvent_manager_c::endProc(s16 eventID, int close) {
         }
 
         if (event->mEventState == 2) {
-            char* param = "ALL";
+            const char* param = "ALL";
             fopAcM_Search((fopAcIt_JudgeFunc)allOffObjectCallBack, (void*)param);
             mCameraPlay = 2;
             event->mEventState = 0;
@@ -1221,7 +1221,7 @@ static int dEv_talkman_get_action(int param_0) {
         return -1;
     } else {
         /* 803A82A8-803A82B8 -00001 000C+04 1/1 0/0 0/0 .data            action_table$5100 */
-        static char* action_table[] = {
+        static const char* action_table[] = {
             "WAIT",
             "TALK0",
             "TALK1",

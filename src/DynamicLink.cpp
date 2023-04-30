@@ -194,9 +194,9 @@ bool DynamicModuleControl::initialize() {
 
 /* 80262794-802627C0 25D0D4 002C+00 1/1 0/0 0/0 .text            callback__20DynamicModuleControlFPv
  */
-void* DynamicModuleControl::callback(void* moduleControlPtr) {
+bool DynamicModuleControl::callback(void* moduleControlPtr) {
     DynamicModuleControl* moduleControl = (DynamicModuleControl*)moduleControlPtr;
-    moduleControl->do_load();
+    return moduleControl->do_load();
 }
 
 /* 802627C0-802627E8 25D100 0028+00 1/1 0/0 0/0 .text            calcSum2__FPCUsUl */
@@ -317,7 +317,7 @@ BOOL DynamicModuleControl::do_load_async() {
         if (mModule != NULL) {
             return true;
         }
-        mAsyncLoadCallback = mDoDvdThd_callback_c::create(DynamicModuleControl::callback, this);
+        mAsyncLoadCallback = mDoDvdThd_callback_c::create((mDoDvdThd_callback_func)DynamicModuleControl::callback, this);
         if (mAsyncLoadCallback == NULL) {
             OSReport_Error(
                 // "DynamicModuleControl::do_load_async() async load callback entry failure [%s]\n"

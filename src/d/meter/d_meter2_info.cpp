@@ -1348,8 +1348,8 @@ s16 dMeter2Info_getNowLifeGauge() {
 }
 
 /* 8021E2C8-8021E2DC 218C08 0014+00 0/0 11/11 3/3 .text dMeter2Info_getNumberTextureName__Fi */
-char* dMeter2Info_getNumberTextureName(int nameIdx) {
-    static char* tex_name[10] = {
+const char* dMeter2Info_getNumberTextureName(int nameIdx) {
+    static const char* tex_name[10] = {
         "im_font_number_32_32_ganshinkyo_0_02.bti",
         "im_font_number_32_32_ganshinkyo_1_02.bti",
         "im_font_number_32_32_ganshinkyo_2_02.bti",
@@ -1365,8 +1365,8 @@ char* dMeter2Info_getNumberTextureName(int nameIdx) {
     return tex_name[nameIdx];
 }
 
-char* dMeter2Info_getPlusTextureName() {
-    static char* tex_name;
+const char* dMeter2Info_getPlusTextureName() {
+    static const char* tex_name;
     static s8 initTexName;
 
     if (!initTexName) {

@@ -500,7 +500,7 @@ static int dScnPly_IsDelete(dScnPly_c scnPly) {
 extern "C" char const* const stringBase_8039A2DF;
 
 /* 80450760-80450764 -00001 0004+00 1/0 0/0 0/0 .sdata           T_JOINT_resName */
-extern "C" char* T_JOINT_resName;
+extern "C" const char* T_JOINT_resName;
 
 /* 80454F18-80454F1C 003518 0002+02 1/0 0/0 0/0 .sdata2          T_JOINT_dylKeyTbl */
 extern "C" u16 T_JOINT_dylKeyTbl;
@@ -522,7 +522,7 @@ SECTION_DEAD static char const* const stringBase_8039A2DF = "T_JOINT";
 #pragma pop
 
 /* 80450760-80450764 -00001 0004+00 1/0 0/0 0/0 .sdata           T_JOINT_resName */
-SECTION_SDATA static char* T_JOINT_resName = "Always";
+SECTION_SDATA static const char* T_JOINT_resName = "Always";
 
 /* 80450764-80450768 -00001 0004+00 4/4 0/0 0/0 .sdata           None */
 SECTION_SDATA static s8 preLoadNo = 0xFF;

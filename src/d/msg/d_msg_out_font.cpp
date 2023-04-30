@@ -800,7 +800,7 @@ asm void COutFont_c::setBlendAnime(J2DPicture* param_0, s16 param_1) {
 
 /* 80228530-80228578 222E70 0048+00 1/1 0/0 0/0 .text            getBtiName__10COutFont_cFi */
 const char* COutFont_c::getBtiName(int nameIdx) {
-    static char* mpIconName[70] = {
+    static const char* mpIconName[70] = {
         "font_00.bti",
         "font_01.bti",
         "font_09.bti",

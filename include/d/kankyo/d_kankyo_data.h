@@ -21,13 +21,13 @@ enum dKyd_DARKLV {
 
 class dKydata_darkworldInfo_c {
 public:
-    /* 0x0 */ char* stageName;
+    /* 0x0 */ const char* stageName;
     /* 0x4 */ u8 darkLv;
 };  // Size: 0x8
 
 class dKydata_lightsizeInfo_c {
 public:
-    /* 0x0 */ char* stageName;
+    /* 0x0 */ const char* stageName;
     /* 0x4 */ u8 size;
 };  // Size: 0x8
 
