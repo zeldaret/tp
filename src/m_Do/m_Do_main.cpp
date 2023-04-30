@@ -217,11 +217,11 @@ static bool mCheckHeap;
 
 /* 80005AD8-80005D4C 000418 0274+00 1/1 0/0 0/0 .text            debugDisplay__Fv */
 void debugDisplay() {
-    static char* desc1[5] = {
+    static const char* desc1[5] = {
         "", "TotalFree", "MaxUsed  ", "Used     ", "RelUsed  ",
     };
 
-    static char* desc2[5] = {
+    static const char* desc2[5] = {
         "", "/ MaxFree", "/HeapSize", "Blk/Bytes", "Blk/Bytes",
     };
 

@@ -14,7 +14,7 @@ struct cDylPhs {
 
 struct DynamicNameTableEntry {
     s16 mKey;
-    char* name;
+    const char* name;
 };
 
 int cDyl_InitAsyncIsDone();

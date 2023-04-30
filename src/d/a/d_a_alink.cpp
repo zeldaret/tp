@@ -11642,14 +11642,14 @@ SECTION_DATA static u8 rodTopOffset[12] = {
 };
 
 /* 803B2D94-803B2DA0 -00001 000C+00 1/1 0/0 0/0 .data            bodyBrkName$69118 */
-SECTION_DATA static char* bodyBrkName[3] = {
+SECTION_DATA static const char* bodyBrkName[3] = {
     "ml_body_power_down.brk",
     "ml_body_power_up_a.brk",
     "ml_body_power_up_b.brk",
 };
 
 /* 803B2DA0-803B2DAC -00001 000C+00 1/1 0/0 0/0 .data            headBrkName$69119 */
-SECTION_DATA static char* headBrkName[3] = {
+SECTION_DATA static const char* headBrkName[3] = {
     "ml_head_power_down.brk",
     "ml_head_power_up_a.brk",
     "ml_head_power_up_b.brk",
