@@ -2128,7 +2128,7 @@ asm void J3DPEBlockFull::setFog(J3DFog param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DPEBlockFull::getFog() {
+asm J3DFog* J3DPEBlockFull::getFog() {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getFog__14J3DPEBlockFullFv.s"
 }

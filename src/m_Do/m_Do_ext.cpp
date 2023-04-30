@@ -1620,8 +1620,8 @@ bool J3DPEBlock::getAlphaComp() {
 }
 
 /* 8000DF5C-8000DF64 00889C 0008+00 0/0 6/0 0/0 .text            getFog__10J3DPEBlockFv */
-bool J3DPEBlock::getFog() {
-    return false;
+J3DFog* J3DPEBlock::getFog() {
+    return NULL;
 }
 
 /* 8000DF64-8000DF6C 0088A4 0008+00 0/0 2/0 0/0 .text getIndTexCoordScale__11J3DIndBlockFUl */

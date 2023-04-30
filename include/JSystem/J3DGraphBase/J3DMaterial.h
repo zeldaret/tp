@@ -62,10 +62,12 @@ public:
     J3DNBTScale* getNBTScale() const { return mTexGenBlock->getNBTScale(); }
     u32 getTexNo(u32 idx) const { return mTevBlock->getTexNo(idx); }
     GXColor* getTevKColor(u32 param_0) { return mTevBlock->getTevKColor(param_0); }
+    J3DFog* getFog() { return mPEBlock->getFog(); }
 
     void setTevColor(u32 i, const J3DGXColorS10* i_color) { mTevBlock->setTevColor(i, i_color); }
     void setTevKColor(u32 i, const J3DGXColor* i_color) { mTevBlock->setTevKColor(i, i_color); }
     void setMaterialAnm(J3DMaterialAnm* i_anm) { mMaterialAnm = i_anm; }
+    void setCullMode(u8 i_mode) { mColorBlock->setCullMode(i_mode); }
 
 public:
     /* 0x04 */ J3DMaterial* mNext;

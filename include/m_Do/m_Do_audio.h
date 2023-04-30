@@ -128,4 +128,20 @@ inline void mDoAud_mEnvSe_startFarThunderSe(const Vec* param_0) {
     g_mEnvSeMgr.startFarThunderSe((Vec*)param_0, 0);
 }
 
+inline void mDoAud_mEnvse_initStrongWind() {
+    g_mEnvSeMgr.initStrongWindSe();
+}
+
+inline void mDoAud_mEnvse_setWindDirection(Vec* i_direction) {
+    g_mEnvSeMgr.setWindDirection(i_direction);
+}
+
+inline void mDoAud_mEnvse_startStrongWindSe(s8 i_reverb) {
+    g_mEnvSeMgr.startStrongWindSe(i_reverb);
+}
+
+inline void mDoAud_mEnvse_setWindType(u8 i_type) {
+    g_mEnvSeMgr.setWindType(i_type);
+}
+
 #endif /* M_DO_M_DO_AUDIO_H */

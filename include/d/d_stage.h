@@ -1063,6 +1063,10 @@ inline int dStage_FileList_dt_GetBitSw(dStage_FileList_dt_c* p_fList) {
     return p_fList->mBitSw;
 }
 
+inline f32 dStage_FileList_dt_SeaLevel(dStage_FileList_dt_c* p_fList) {
+    return p_fList->mSeaLevel;
+}
+
 inline f32 dStage_FileList2_dt_GetLeftRmX(dStage_FileList2_dt_c* p_fList2) {
     return p_fList2->mLeftRmX;
 }

@@ -1603,8 +1603,8 @@ asm void dKyw_wind_set() {
 #pragma pop
 
 /* 8005AAE0-8005AAF0 055420 0010+00 1/1 6/6 7/7 .text            dKyw_get_wind_vec__Fv */
-cXyz& dKyw_get_wind_vec() {
-    return g_env_light.mWind.vec;
+cXyz* dKyw_get_wind_vec() {
+    return &g_env_light.mWind.vec;
 }
 
 /* 8005AAF0-8005AB00 055430 0010+00 1/1 6/6 8/8 .text            dKyw_get_wind_pow__Fv */
