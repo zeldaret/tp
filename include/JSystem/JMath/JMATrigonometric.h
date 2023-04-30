@@ -2,24 +2,13 @@
 #define JMATRIGONOMETRIC_H
 
 #include "dolphin/types.h"
-
-namespace std {
-template <typename A1, typename B1>
-struct pair {
-    A1 a1;
-    B1 b1;
-    pair() {
-        a1 = A1();
-        b1 = B1();
-    }
-};
-}  // namespace std
+#include "MSL_C/utility.h"
 
 struct TSinCosTable {
     std::pair<f32, f32> table[0x2000];
 
-    f32 sinShort(s16 v) const { return table[static_cast<u16>(v) >> 3].a1; }
-    f32 cosShort(s16 v) const { return table[static_cast<u16>(v) >> 3].b1; }
+    f32 sinShort(s16 v) const { return table[static_cast<u16>(v) >> 3].first; }
+    f32 cosShort(s16 v) const { return table[static_cast<u16>(v) >> 3].second; }
 };
 
 struct TAtanTable {
