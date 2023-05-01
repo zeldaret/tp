@@ -9,6 +9,7 @@
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J3DGraphBase/J3DTransform.h"
 #include "JSystem/JUtility/JUTResource.h"
+#include "MSL_C/math.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

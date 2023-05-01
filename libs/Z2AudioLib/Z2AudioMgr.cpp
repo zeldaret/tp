@@ -5,6 +5,7 @@
 
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "JSystem/JAudio2/JASDriverIF.h"
+#include "MSL_C/stdio.h"
 #include "MSL_C/stdlib.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
@@ -213,7 +214,6 @@ extern "C" void _restgpr_24();
 extern "C" void _restgpr_25();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void fprintf();
 extern "C" extern void* __vt__12JAUSoundInfo[4 + 1 /* padding */];
 extern "C" extern void* __vt__16JAIStreamAramMgr[5];
 extern "C" extern void* __vt__16JAIStreamDataMgr[4 + 1 /* padding */];

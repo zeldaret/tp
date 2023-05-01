@@ -6,6 +6,7 @@
 #include "d/d_name.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "MSL_C/stdio.h"
+#include "MSL_C/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_msg_mng.h"
