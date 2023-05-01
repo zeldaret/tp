@@ -8,6 +8,7 @@
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
+#include "dolphin/gx/GX.h"
 #include "dolphin/mtx/mtx44.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "m_Do/m_Do_graphic.h"

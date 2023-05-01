@@ -1,7 +1,7 @@
 #ifndef M_DO_M_DO_MEMCARD_H
 #define M_DO_M_DO_MEMCARD_H
 
-#include "dolphin/os/OS.h"
+#include "dolphin/os/OSMutex.h"
 #include "dolphin/types.h"
 #include "global.h"
 #include "m_Do/m_Do_MemCardRWmng.h"

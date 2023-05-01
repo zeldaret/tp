@@ -8,6 +8,7 @@
 #include "dolphin/dsp/dsp.h"
 #include "dolphin/dvd/dvd.h"
 #include "dolphin/exi/EXIBios.h"
+#include "dolphin/os/OS.h"
 
 #include "dolphin/card/CARDPriv.h"
 

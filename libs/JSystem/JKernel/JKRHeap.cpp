@@ -6,6 +6,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTException.h"
+#include "dolphin/os/OS.h"
 #include "global.h"
 
 //

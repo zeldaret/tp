@@ -7,8 +7,11 @@
 #include "JSystem/JUtility/JUTProcBar.h"
 #include "JSystem/JUtility/JUTXfb.h"
 #include "JSystem/JUtility/TColor.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/os/OSAlarm.h"
 #include "dolphin/types.h"
+
+typedef struct _GXColor GXColor;
+typedef struct _GXRenderModeObj GXRenderModeObj;
 
 typedef void (*JFWDisplayUnkFunc)(void);
 

@@ -1,7 +1,6 @@
 #ifndef OSMEMORY_H
 #define OSMEMORY_H
 
-#include "dolphin/types.h"
 #include "dolphin/os/OSInterrupt.h"
 
 #ifdef __cplusplus

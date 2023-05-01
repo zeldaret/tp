@@ -11,6 +11,7 @@
 #include "JSystem/JSupport/JSUList.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
+#include "dolphin/os/OSInterrupt.h"
 #include "dolphin/vi/vi.h"
 #include "global.h"
 

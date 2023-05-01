@@ -3,6 +3,7 @@
 
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/TColor.h"
+#include "dolphin/os/OSTime.h"
 #include "dolphin/types.h"
 
 class JUTProcBar {

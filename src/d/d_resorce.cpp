@@ -17,7 +17,7 @@
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx.h"
-#include "dolphin/os/OSCache.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 #include "global.h"
 

@@ -17,6 +17,7 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_procname.h"
 #include "d/d_stage.h"
+#include "dolphin/os/OS.h"
 #include "f_op/f_op_actor.h"
 #include "global.h"
 #include "m_Do/m_Do_ext.h"

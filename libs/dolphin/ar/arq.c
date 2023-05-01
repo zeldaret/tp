@@ -4,7 +4,9 @@
 //
 
 #include "dolphin/ar/arq.h"
+#include "dolphin/ar/ar.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 
 //
@@ -15,16 +17,6 @@ void __ARQServiceQueueLo();
 void __ARQCallbackHack();
 void __ARQInterruptServiceRoutine();
 void ARQInit();
-
-//
-// External References:
-//
-
-void OSRegisterVersion();
-BOOL OSDisableInterrupts();
-void OSRestoreInterrupts();
-void ARRegisterDMACallback();
-void ARStartDMA();
 
 //
 // Declarations:

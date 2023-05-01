@@ -4,7 +4,9 @@
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os/OSMessage.h"
+#include "dolphin/os/OSThread.h"
+#include "dolphin/os/OSTime.h"
 #include "dolphin/types.h"
 
 struct JKRThreadName_ {

@@ -3,7 +3,8 @@
 
 #include "JSystem/JFramework/JFWDisplay.h"
 #include "JSystem/JUtility/JUTFader.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx/GXStruct.h"
+#include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 
 int mDoGph_Create();

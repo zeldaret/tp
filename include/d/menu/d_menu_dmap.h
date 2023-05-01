@@ -4,6 +4,7 @@
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "d/d_lib.h"
 #include "d/d_select_cursor.h"
+#include "dolphin/mtx/vec.h"
 #include "dolphin/types.h"
 
 class dMenu_DmapMapCtrl_c;

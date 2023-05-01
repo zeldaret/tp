@@ -12,6 +12,7 @@
 #include "MSL_C/math.h"
 #include "MSL_C/string.h"
 #include "dol2asm.h"
+#include "dolphin/os/OSCache.h"
 
 //
 // Forward References:

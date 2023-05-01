@@ -8,6 +8,7 @@
 #include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
 #include "dol2asm.h"
+#include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
 //

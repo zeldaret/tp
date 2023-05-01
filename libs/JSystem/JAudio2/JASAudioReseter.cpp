@@ -5,7 +5,6 @@
 
 #include "JSystem/JAudio2/JASAudioReseter.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 #include "JSystem/JAudio2/JAISoundHandles.h"
 #include "JSystem/JAudio2/JASGadget.h"

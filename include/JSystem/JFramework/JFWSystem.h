@@ -8,6 +8,8 @@
 #include "JSystem/JUtility/JUTResFont.h"
 #include "dolphin/types.h"
 
+typedef struct _GXRenderModeObj GXRenderModeObj;
+
 struct JFWSystem {
     struct CSetUpParam {
         static s32 maxStdHeaps;

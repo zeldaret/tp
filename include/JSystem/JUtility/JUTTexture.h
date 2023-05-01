@@ -2,6 +2,8 @@
 #define JUTTEXTURE_H
 
 #include "JSystem/JUtility/JUTPalette.h"
+#include "dolphin/gx/GXEnum.h"
+#include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
 
 /*

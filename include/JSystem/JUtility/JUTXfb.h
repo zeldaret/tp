@@ -5,6 +5,8 @@
 #include "JSystem/JUtility/JUTVideo.h"
 #include "dolphin/types.h"
 
+typedef struct _GXRenderModeObj GXRenderModeObj;
+
 class JUTXfb {
 public:
     enum EXfbNumber {  // TODO: placeholder

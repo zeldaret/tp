@@ -3,6 +3,7 @@
 
 #include "JSystem/J2DGraph/J2DMaterial.h"
 #include "JSystem/J2DGraph/J2DPicture.h"
+#include "dolphin/gx/GXEnum.h"
 #include "dolphin/types.h"
 
 class J2DPictureEx : public J2DPicture {

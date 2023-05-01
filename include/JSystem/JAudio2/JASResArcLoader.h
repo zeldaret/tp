@@ -3,6 +3,8 @@
 
 #include "JSystem/JKernel/JKRArchive.h"
 
+typedef struct OSMessageQueue OSMessageQueue;
+
 namespace JASResArcLoader {
     /* 80290BD0 */ size_t getResSize(JKRArchive const*, u16);
     /* 80290C04 */ size_t getResMaxSize(JKRArchive const*);

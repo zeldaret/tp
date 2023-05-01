@@ -11,6 +11,7 @@
 #include "d/com/d_com_static.h"
 #include "d/save/d_save_HIO.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
 #include "f_op/f_op_kankyo_mng.h"
 #include "f_op/f_op_msg_mng.h"
 #include "global.h"

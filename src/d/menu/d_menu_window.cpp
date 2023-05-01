@@ -20,6 +20,7 @@
 #include "d/meter/d_meter_HIO.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_msg_mng.h"
 #include "global.h"

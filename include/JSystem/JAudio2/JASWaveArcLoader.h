@@ -2,9 +2,8 @@
 #define JASWAVEARCLOADER_H
 
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
 #include "dolphin/os/OSMutex.h"
+#include "dolphin/types.h"
 
 #include "JSystem/JAudio2/JASDvdThread.h"
 #include "JSystem/JAudio2/JASHeapCtrl.h"

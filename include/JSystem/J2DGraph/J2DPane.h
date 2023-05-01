@@ -10,6 +10,7 @@
 #include "JSystem/JUtility/JUTFont.h"
 #include "JSystem/JUtility/JUTResFont.h"
 #include "JSystem/JUtility/JUTTexture.h"
+#include "dolphin/gx/GXEnum.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 

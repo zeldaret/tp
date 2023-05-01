@@ -2,7 +2,7 @@
 #define M_DO_M_DO_MAIN_H
 
 #include "JSystem/JKernel/JKRExpHeap.h"
-#include "dolphin/dvd/dvd.h"
+#include "dolphin/os/OSTime.h"
 #include "dolphin/types.h"
 
 void version_check();

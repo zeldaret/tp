@@ -3,7 +3,7 @@
 
 #include "MSL_C/string.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os/OSTime.h"
 #include "dolphin/types.h"
 #include "global.h"
 

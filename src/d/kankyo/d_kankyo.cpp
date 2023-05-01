@@ -11,6 +11,7 @@
 #include "d/kankyo/d_kankyo_data.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 #include "global.h"
 #include "m_Do/m_Do_audio.h"

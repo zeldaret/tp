@@ -2,7 +2,7 @@
 #define D_D_LIB_H
 
 #include "dolphin/mtx/quat.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os/OSTime.h"
 #include "f_op/f_op_actor.h"
 
 struct JKRAramArchive;

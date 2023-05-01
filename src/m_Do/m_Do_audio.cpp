@@ -6,6 +6,7 @@
 #include "m_Do/m_Do_audio.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_dvd_thread.h"

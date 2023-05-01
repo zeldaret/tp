@@ -6,6 +6,7 @@
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "MSL_C/math.h"
 #include "dol2asm.h"
+#include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
 //

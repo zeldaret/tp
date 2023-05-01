@@ -4,9 +4,12 @@
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTGamePad.h"
 #include "JSystem/JUtility/JUTVideo.h"
+#include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_main.h"
+
+typedef struct OSContext OSContext;
 
 void myHeapCheckRecursive(JKRHeap*);
 BOOL mDoMch_IsProgressiveMode();

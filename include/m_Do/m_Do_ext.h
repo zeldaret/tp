@@ -6,6 +6,7 @@
 #include "JSystem/JKernel/JKRAssertHeap.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
+#include "dolphin/gx/GXStruct.h"
 #include "global.h"
 #include "m_Do/m_Do_audio.h"
 #include "m_Do/m_Do_mtx.h"

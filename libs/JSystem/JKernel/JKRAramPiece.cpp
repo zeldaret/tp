@@ -8,7 +8,7 @@
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTException.h"
-#include "dolphin/os/OSCache.h"
+#include "dolphin/os/OS.h"
 
 /* 802D3574-802D35F4 2CDEB4 0080+00 1/1 0/0 0/0 .text
  * prepareCommand__12JKRAramPieceFiUlUlUlP12JKRAramBlockPFUl_v  */

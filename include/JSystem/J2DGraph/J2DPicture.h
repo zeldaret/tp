@@ -4,6 +4,7 @@
 #include "JSystem/J2DGraph/J2DPane.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/JUtility/JUTTexture.h"
+#include "dolphin/gx/GXEnum.h"
 #include "dolphin/types.h"
 
 enum J2DMirror {

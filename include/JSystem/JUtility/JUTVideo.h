@@ -1,8 +1,9 @@
 #ifndef JUTVIDEO_H
 #define JUTVIDEO_H
 
-#include "dolphin/gx/GX.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/gx/GXStruct.h"
+#include "dolphin/os/OSMessage.h"
+#include "dolphin/os/OSTime.h"
 #include "dolphin/types.h"
 #include "dolphin/vi/vi.h"
 

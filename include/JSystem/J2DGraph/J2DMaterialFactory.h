@@ -4,10 +4,13 @@
 #include "JSystem/J2DGraph/J2DManage.h"
 #include "JSystem/J2DGraph/J2DMaterial.h"
 #include "JSystem/JKernel/JKRArchive.h"
+#include "dolphin/gx/GXEnum.h"
 #include "dolphin/types.h"
 
 struct J2DMaterialBlock {};
 
+typedef struct _GXColor GXColor;
+typedef struct _GXColorS10 GXColorS10;
 struct J2DMaterialInitData;
 struct J2DIndInitData;
 struct J2DTevSwapModeTableInfo;

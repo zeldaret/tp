@@ -8,6 +8,7 @@
 #include "d/msg/d_msg_object.h"
 #include "d/save/d_save.h"
 #include "dol2asm.h"
+#include "dolphin/os/OSCache.h"
 #include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 #include "d/d_item_data.h"

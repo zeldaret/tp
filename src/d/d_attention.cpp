@@ -8,6 +8,7 @@
 #include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtxvec.h"
+#include "dolphin/os/OSCache.h"
 #include "dolphin/types.h"
 
 //

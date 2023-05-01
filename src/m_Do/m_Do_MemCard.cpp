@@ -8,6 +8,7 @@
 #include "JSystem/JGadget/binary.h"
 #include "MSL_C/string.h"
 #include "dol2asm.h"
+#include "dolphin/card/card.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_Reset.h"

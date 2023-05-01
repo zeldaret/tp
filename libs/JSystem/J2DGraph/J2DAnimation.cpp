@@ -8,6 +8,7 @@
 #include "JSystem/J3DGraphBase/J3DTransform.h"
 #include "JSystem/JUtility/JUTResource.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 
 f32 J2DGetKeyFrameInterpolationf(f32 param_0, J3DAnmKeyTableBase* param_1, f32* param_2);

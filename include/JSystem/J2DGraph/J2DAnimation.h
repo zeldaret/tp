@@ -4,11 +4,11 @@
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 #include "JSystem/JUtility/JUTNameTab.h"
 #include "JSystem/JUtility/JUTTexture.h"
-#include "dolphin/gx/GX.h"
-#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 #include "global.h"
 
+typedef struct _GXColor GXColor;
+typedef struct _GXColorS10 GXColorS10;
 class J2DScreen;
 
 enum J2DAnmKind {

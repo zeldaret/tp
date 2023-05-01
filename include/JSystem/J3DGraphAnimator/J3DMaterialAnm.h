@@ -4,6 +4,9 @@
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 #include "dolphin/types.h"
 
+typedef struct _GXColor GXColor;
+typedef struct _GXColorS10 GXColorS10;
+
 class J3DMatColorAnm {
 public:
     /* 8003B2B8 */ ~J3DMatColorAnm();

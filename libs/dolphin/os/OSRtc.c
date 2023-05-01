@@ -6,7 +6,8 @@
 #include "dolphin/os/OSRtc.h"
 #include "dol2asm.h"
 #include "dolphin/exi/EXIBios.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os/OSCache.h"
+#include "dolphin/os/OSInterrupt.h"
 
 static void WriteSramCallback(s32 chan, OSContext* context);
 static BOOL WriteSram(void* buffer, u32 offset, u32 size);

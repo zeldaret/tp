@@ -10,6 +10,7 @@
 #include "d/bg/d_bg_s_grp_pass_chk.h"
 #include "d/bg/d_bg_s_poly_pass_chk.h"
 #include "d/bg/d_bg_w_base.h"
+#include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 

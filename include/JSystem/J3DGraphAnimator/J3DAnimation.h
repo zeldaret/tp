@@ -3,9 +3,11 @@
 
 #include "JSystem/J3DGraphAnimator/J3DMaterialAttach.h"
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
-#include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 #include "global.h"
+
+typedef struct _GXColor GXColor;
+typedef struct _GXColorS10 GXColorS10;
 
 struct J3DAnmKeyTableBase {
     /* 0x00 */ u16 mMaxFrame;

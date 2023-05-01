@@ -3,6 +3,8 @@
 
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTFont.h"
+#include "dolphin/gx/GXEnum.h"
+#include "dolphin/gx/GXStruct.h"
 
 typedef bool (*IsLeadByte_func)(int);
 

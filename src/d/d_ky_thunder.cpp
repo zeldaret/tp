@@ -7,6 +7,7 @@
 #include "JSystem/JMath/JMath.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "SSystem/SComponent/c_math.h"
+#include "dolphin/os/OSCache.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/kankyo/d_kankyo_rain.h"
 

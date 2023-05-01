@@ -2,9 +2,10 @@
 #define DYNAMICLINK_H
 
 #include "JSystem/JKernel/JKRFileCache.h"
-#include "dolphin/os/OSLink.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_dvd_thread.h"
+
+typedef struct OSModuleInfo OSModuleInfo;
 
 struct DynamicModuleControlBase {
     /* 0x00 */ u16 mLinkCount;

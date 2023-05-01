@@ -5,6 +5,7 @@
 #include "JSystem/JUtility/JUTResFont.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "JSystem/JUtility/TColor.h"
+#include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
 
 struct J2DGXColorS10 : public GXColorS10 {

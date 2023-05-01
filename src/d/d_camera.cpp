@@ -5,6 +5,7 @@
 
 #include "d/d_camera.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "d/com/d_com_inf_game.h"

@@ -7,7 +7,7 @@
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/J3DGraphBase/J3DTransform.h"
 #include "dol2asm.h"
-#include "dolphin/os/OSCache.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 
 //

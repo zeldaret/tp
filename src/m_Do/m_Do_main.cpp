@@ -14,6 +14,8 @@
 #include "c/c_dylink.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
+#include "dolphin/dvd/dvd.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 #include "f_ap/f_ap_game.h"
 #include "m_Do/m_Do_MemCard.h"

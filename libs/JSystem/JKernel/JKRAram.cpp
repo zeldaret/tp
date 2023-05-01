@@ -13,6 +13,8 @@
 #include "MSL_C/string.h"
 #include "dol2asm.h"
 #include "dolphin/ar/ar.h"
+#include "dolphin/os/OSCache.h"
+#include "dolphin/os/OSInterrupt.h"
 #include "global.h"
 
 //

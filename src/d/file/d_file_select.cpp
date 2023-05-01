@@ -8,6 +8,7 @@
 
 #include "d/file/d_file_select.h"
 #include "dol2asm.h"
+#include "dolphin/dvd/dvd.h"
 #include "dolphin/types.h"
 
 

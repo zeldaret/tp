@@ -5,6 +5,9 @@
 
 #include "m_Do/m_Do_DVDError.h"
 #include "dol2asm.h"
+#include "dolphin/dvd/dvd.h"
+#include "dolphin/os/OSAlarm.h"
+#include "dolphin/os/OSThread.h"
 #include "m_Do/m_Do_dvd_thread.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_Reset.h"

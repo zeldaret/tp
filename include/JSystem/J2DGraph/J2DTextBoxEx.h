@@ -4,6 +4,7 @@
 #include "JSystem/J2DGraph/J2DMaterial.h"
 #include "JSystem/J2DGraph/J2DPrint.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
+#include "dolphin/gx/GXEnum.h"
 #include "dolphin/types.h"
 
 class J2DTextBoxEx : public J2DTextBox {

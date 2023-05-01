@@ -6,6 +6,7 @@
 #include "JSystem/JStudio/JStudio/stb.h"
 #include "JSystem/JStudio/JStudio/ctb.h"
 #include "dolphin/gx/GX.h"
+#include "dolphin/mtx/vec.h"
 
 namespace JStudio {
 struct TCreateObject {

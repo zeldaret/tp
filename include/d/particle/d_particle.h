@@ -3,6 +3,7 @@
 
 #include "JSystem/JParticle/JPAParticle.h"
 #include "d/particle/d_particle_name.h"
+#include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 

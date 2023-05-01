@@ -3,6 +3,9 @@
 
 #include "JSystem/JKernel/JKRThread.h"
 
+typedef struct OSAlarm OSAlarm;
+typedef struct OSContext OSContext;
+
 void mDoDvdErr_ThdCleanup();
 static void mDoDvdErr_Watch(void*);
 static void AlarmHandler(OSAlarm*, OSContext*);
