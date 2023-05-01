@@ -5,6 +5,7 @@
 
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/J2DGraph/J2DPrint.h"
+#include "JSystem/JSupport/JSURandomInputStream.h"
 #include "MSL_C/string.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"

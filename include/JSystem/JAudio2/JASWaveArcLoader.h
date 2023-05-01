@@ -1,6 +1,7 @@
 #ifndef JASWAVEARCLOADER_H
 #define JASWAVEARCLOADER_H
 
+#include "JSystem/JSupport/JSUList.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSMutex.h"
 #include "dolphin/types.h"

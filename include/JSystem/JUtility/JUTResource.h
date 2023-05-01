@@ -2,8 +2,9 @@
 #define JUTRESOURCE_H
 
 #include "JSystem/JKernel/JKRArchive.h"
-#include "JSystem/JSupport/JSUInputStream.h"
 #include "dolphin/types.h"
+
+class JSUInputStream;
 
 class JUTResReference {
 private:

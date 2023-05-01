@@ -2,6 +2,7 @@
 #define JFWDISPLAY_H
 
 #include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTFader.h"
 #include "JSystem/JUtility/JUTProcBar.h"
