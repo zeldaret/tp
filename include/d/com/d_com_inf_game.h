@@ -19,6 +19,7 @@
 #include "f_op/f_op_scene_mng.h"
 #include "global.h"
 
+class JKRAramArchive;
 class dTimer_c;
 
 class __d_timer_info_c {

@@ -7,6 +7,7 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_stoneMark/d_a_obj_stoneMark.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_lib.h"

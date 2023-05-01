@@ -5,6 +5,7 @@
 
 #include "d/s/d_s_logo.h"
 #include "JSystem/JKernel/JKRAram.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "c/c_dylink.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"

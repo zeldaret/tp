@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/d_a_skip_2D/d_a_skip_2D.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
 /* 80D4D478-80D4D498 000078 0020+00 1/1 0/0 0/0 .text            daSkip2D_createHeap__FP10fopAc_ac_c
  */

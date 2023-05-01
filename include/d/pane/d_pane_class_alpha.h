@@ -3,8 +3,9 @@
 
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J2DGraph/J2DWindow.h"
-#include "JSystem/JKernel/JKRExpHeap.h"
 #include "dolphin/types.h"
+
+class JKRExpHeap;
 
 class CPaneMgrAlpha {
 public:

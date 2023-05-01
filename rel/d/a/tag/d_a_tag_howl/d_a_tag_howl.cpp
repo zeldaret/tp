@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_howl/d_a_tag_howl.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
 /* 8048D958-8048D9BC 000078 0064+00 1/1 0/0 0/0 .text            create__12daTag_Howl_cFv */
 int daTag_Howl_c::create() {

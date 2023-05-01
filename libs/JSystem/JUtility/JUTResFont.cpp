@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/JUtility/JUTResFont.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GX.h"

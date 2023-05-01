@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/JKernel/JKRMemArchive.h"
+#include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTException.h"

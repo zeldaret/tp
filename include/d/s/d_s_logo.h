@@ -5,6 +5,9 @@
 #include "dolphin/types.h"
 #include "SSystem/SComponent/c_lib.h"
 
+class JKRExpHeap;
+class JKRHeap;
+
 class dLog_HIO_c {
 public:
     /* 802560A4 */ dLog_HIO_c();

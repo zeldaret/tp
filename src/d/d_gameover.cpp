@@ -4,6 +4,7 @@
 //
 
 #include "d/d_gameover.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "d/menu/d_menu_save.h"

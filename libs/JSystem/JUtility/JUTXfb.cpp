@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/JUtility/JUTXfb.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GX.h"
 

@@ -11,6 +11,8 @@
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 
+class JKRArchive;
+
 class dDlst_FileSel_c {
 public:
     /* 8018DEBC */ void draw();

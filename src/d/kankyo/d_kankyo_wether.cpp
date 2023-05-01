@@ -4,6 +4,7 @@
 //
 
 #include "d/kankyo/d_kankyo_wether.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "MSL_C/string.h"
 #include "Z2AudioLib/Z2EnvSeMgr.h"
 #include "d/com/d_com_inf_game.h"

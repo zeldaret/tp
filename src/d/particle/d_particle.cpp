@@ -4,6 +4,7 @@
 //
 
 #include "d/particle/d_particle.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "MSL_C/stdio.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"

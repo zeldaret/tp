@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_hstop/d_a_tag_hstop.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "rel/d/a/d_a_horse/d_a_horse.h"
 

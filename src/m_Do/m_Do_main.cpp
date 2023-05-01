@@ -9,6 +9,7 @@
 #include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JFramework/JFWSystem.h"
 #include "JSystem/JKernel/JKRAram.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTReport.h"
 #include "c/c_dylink.h"

@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_hinit/d_a_tag_hinit.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
 /* 805A3758-805A3800 000078 00A8+00 1/1 0/0 0/0 .text            create__12daTagHinit_cFv */
 int daTagHinit_c::create() {

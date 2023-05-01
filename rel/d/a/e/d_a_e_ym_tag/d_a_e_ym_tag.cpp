@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/e/d_a_e_ym_tag/d_a_e_ym_tag.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 #include "f_pc/f_pc_executor.h"
 

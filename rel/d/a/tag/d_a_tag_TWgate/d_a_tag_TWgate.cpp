@@ -4,6 +4,7 @@
 //
 
 #include "rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"

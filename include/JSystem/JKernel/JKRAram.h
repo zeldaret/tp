@@ -7,6 +7,7 @@
 #include "dolphin/types.h"
 
 class JKRHeap;
+class JKRAMCommand;
 class JKRAramBlock;
 class JKRAram : public JKRThread {
 private:

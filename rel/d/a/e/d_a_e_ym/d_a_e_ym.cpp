@@ -5,6 +5,7 @@
 
 #include "rel/d/a/e/d_a_e_ym/d_a_e_ym.h"
 #include "d/d_path.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
 #include "global.h"

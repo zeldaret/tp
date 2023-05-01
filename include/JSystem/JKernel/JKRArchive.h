@@ -2,11 +2,10 @@
 #define JKRARCHIVE_H
 
 #include "JSystem/JKernel/JKRCompression.h"
-#include "JSystem/JKernel/JKRDecomp.h"
-#include "JSystem/JKernel/JKRDvdFile.h"
 #include "JSystem/JKernel/JKRFileLoader.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "global.h"
+
+class JKRHeap;
 
 struct SArcHeader {
     /* 0x00 */ u32 signature;

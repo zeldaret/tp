@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/e/d_a_e_yk/d_a_e_yk.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "d/s/d_s_play.h"

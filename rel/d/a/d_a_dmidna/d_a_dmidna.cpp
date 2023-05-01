@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/d_a_dmidna/d_a_dmidna.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
 /* 8045D290-8045D298 000000 0007+01 3/3 0/0 0/0 .rodata          l_arcName */
 static const char l_arcName[] = "Dmidna";

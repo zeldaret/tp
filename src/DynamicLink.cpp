@@ -4,7 +4,10 @@
  */
 
 #include "DynamicLink.h"
+#include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JKernel/JKRFileCache.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "MSL_C/stdio.h"
 #include "dol2asm.h"

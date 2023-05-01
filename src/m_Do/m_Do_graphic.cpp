@@ -5,6 +5,7 @@
 
 #include "m_Do/m_Do_graphic.h"
 #include "JSystem/JFramework/JFWSystem.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "SSystem/SComponent/c_lib.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"

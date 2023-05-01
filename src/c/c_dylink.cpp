@@ -5,6 +5,8 @@
 #include "c/c_dylink.h"
 #include "DynamicLink.h"
 #include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JKernel/JKRFileCache.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "MSL_C/string.h"
 #include "d/com/d_com_inf_game.h"

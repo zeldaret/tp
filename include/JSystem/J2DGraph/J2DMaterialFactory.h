@@ -3,7 +3,6 @@
 
 #include "JSystem/J2DGraph/J2DManage.h"
 #include "JSystem/J2DGraph/J2DMaterial.h"
-#include "JSystem/JKernel/JKRArchive.h"
 #include "dolphin/gx/GXEnum.h"
 #include "dolphin/types.h"
 
@@ -15,6 +14,7 @@ struct J2DMaterialInitData;
 struct J2DIndInitData;
 struct J2DTevSwapModeTableInfo;
 struct J2DAlphaCompInfo;
+class JKRArchive;
 
 class J2DMaterialFactory {
 public:

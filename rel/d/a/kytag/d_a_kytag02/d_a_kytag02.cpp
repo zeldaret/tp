@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/kytag/d_a_kytag02/d_a_kytag02.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
 /* -80855AC0 000078 0008+00 1/0 0/0 0/0 .text            daKytag02_Draw__FP13kytag02_class
  */

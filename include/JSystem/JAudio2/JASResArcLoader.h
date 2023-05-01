@@ -1,9 +1,10 @@
 #ifndef JASRESARCLOADER_H
 #define JASRESARCLOADER_H
 
-#include "JSystem/JKernel/JKRArchive.h"
+#include "dolphin/types.h"
 
 typedef struct OSMessageQueue OSMessageQueue;
+class JKRArchive;
 
 namespace JASResArcLoader {
     /* 80290BD0 */ size_t getResSize(JKRArchive const*, u16);

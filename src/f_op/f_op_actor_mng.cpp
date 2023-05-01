@@ -6,7 +6,7 @@
 #include "f_op/f_op_actor_mng.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "JSystem/J3DU/J3DUClipper.h"
-#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "MSL_C/math.h"
 #include "SSystem/SComponent/c_lib.h"

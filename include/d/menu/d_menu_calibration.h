@@ -4,6 +4,8 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/msg/d_msg_string.h"
 
+class JKRExpHeap;
+
 class dMenu_Calibration_c {
 public:
     enum {

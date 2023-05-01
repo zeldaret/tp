@@ -4,6 +4,7 @@
 //
 
 #include "d/s/d_s_name.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 // #include "d/file/d_file_select.h"

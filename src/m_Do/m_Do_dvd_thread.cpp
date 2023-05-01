@@ -4,7 +4,10 @@
 */
 
 #include "m_Do/m_Do_dvd_thread.h"
+#include "JSystem/JKernel/JKRAssertHeap.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JKernel/JKRMemArchive.h"
 #include "JSystem/JKernel/JKRThread.h"
 #include "SSystem/SComponent/c_list.h"
 #include "SSystem/SComponent/c_node.h"

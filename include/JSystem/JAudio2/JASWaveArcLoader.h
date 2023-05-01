@@ -8,8 +8,9 @@
 
 #include "JSystem/JAudio2/JASDvdThread.h"
 #include "JSystem/JAudio2/JASHeapCtrl.h"
-#include "JSystem/JKernel/JKRDvdAramRipper.h"
-#include "JSystem/JKernel/JKRSolidHeap.h"
+
+class JKRHeap;
+class JKRSolidHeap;
 
 struct JASDisposer {
     JASDisposer() {}

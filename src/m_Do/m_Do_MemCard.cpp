@@ -4,6 +4,7 @@
  */
 
 #include "m_Do/m_Do_MemCard.h"
+#include "JSystem/JKernel/JKRAssertHeap.h"
 #include "JSystem/JKernel/JKRThread.h"
 #include "JSystem/JGadget/binary.h"
 #include "MSL_C/string.h"

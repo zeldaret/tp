@@ -3,8 +3,6 @@
 
 #include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JASAudioReseter.h"
-#include "JSystem/JKernel/JKRArchive.h"
-#include "JSystem/JKernel/JKRSolidHeap.h"
 #include "Z2AudioLib/Z2Audience.h"
 #include "Z2AudioLib/Z2FxLineMgr.h"
 #include "Z2AudioLib/Z2SceneMgr.h"
@@ -17,6 +15,9 @@
 #include "Z2AudioLib/Z2StatusMgr.h"
 #include "dolphin/types.h"
 #include "global.h"
+
+class JKRArchive;
+class JKRSolidHeap;
 
 class Z2AudioMgr {
 public:

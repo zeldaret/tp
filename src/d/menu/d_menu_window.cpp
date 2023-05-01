@@ -4,6 +4,7 @@
 //
 
 #include "d/menu/d_menu_window.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/menu/d_menu_collect.h"

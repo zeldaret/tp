@@ -5,6 +5,8 @@
 
 #include "d/menu/d_menu_save.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JKernel/JKRMemArchive.h"
 #include "MSL_C/stdio.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/file/d_file_sel_info.h"

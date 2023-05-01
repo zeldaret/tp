@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_smoke/d_a_obj_smoke.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
 /* 80CDCE78-80CDCE98 000078 0020+00 1/1 0/0 0/0 .text            initBaseMtx__12daObjSmoke_cFv */
 void daObjSmoke_c::initBaseMtx() {

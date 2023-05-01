@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/b/d_a_b_oh2/d_a_b_oh2.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JMath/JMath.h"
 #include "SSystem/SComponent/c_math.h"
 #include "c/c_damagereaction.h"

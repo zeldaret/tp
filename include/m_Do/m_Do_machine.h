@@ -10,6 +10,7 @@
 #include "m_Do/m_Do_main.h"
 
 typedef struct OSContext OSContext;
+class JKRHeap;
 
 void myHeapCheckRecursive(JKRHeap*);
 BOOL mDoMch_IsProgressiveMode();

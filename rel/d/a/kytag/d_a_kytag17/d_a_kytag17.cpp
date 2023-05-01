@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/kytag/d_a_kytag17/d_a_kytag17.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "d/kankyo/d_kankyo.h"

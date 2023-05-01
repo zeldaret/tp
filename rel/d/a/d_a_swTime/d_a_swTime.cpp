@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/d_a_swTime/d_a_swTime.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 

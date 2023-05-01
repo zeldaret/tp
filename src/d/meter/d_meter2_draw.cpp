@@ -5,6 +5,7 @@
 
 #include "d/meter/d_meter2_draw.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_kantera_icon_meter.h"
 #include "d/meter/d_meter_HIO.h"

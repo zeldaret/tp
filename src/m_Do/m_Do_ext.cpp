@@ -9,6 +9,7 @@
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRAssertHeap.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 #include "JSystem/JMath/JMath.h"
 #include "MSL_C/stdio.h"
 #include "MSL_C/string.h"

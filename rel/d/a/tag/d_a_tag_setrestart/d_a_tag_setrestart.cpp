@@ -5,6 +5,7 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_setrestart/d_a_tag_setrestart.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
 
 /* 80D603F8-80D6048C 000078 0094+00 1/1 0/0 0/0 .text            Create__14daTagRestart_cFv */

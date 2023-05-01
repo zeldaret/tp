@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/d_a_tboxSw/d_a_tboxSw.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
 
 /* 80D66858-80D66860 000078 0008+00 1/1 0/0 0/0 .text            Create__10daTboxSw_cFv */

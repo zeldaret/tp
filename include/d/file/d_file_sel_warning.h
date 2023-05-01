@@ -3,6 +3,8 @@
 
 #include "d/com/d_com_inf_game.h"
 
+class JKRArchive;
+
 class dFile_warning_c {
 public:
     /* 80191BAC */ dFile_warning_c(JKRArchive*, u8);

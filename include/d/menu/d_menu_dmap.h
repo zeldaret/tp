@@ -7,6 +7,8 @@
 #include "dolphin/mtx/vec.h"
 #include "dolphin/types.h"
 
+class JKRArchive;
+class JKRExpHeap;
 class dMenu_DmapMapCtrl_c;
 class dMenu_DmapBg_c;
 class mDoDvdThd_mountArchive_c;

@@ -4,6 +4,7 @@
 //
 
 #include "d/menu/d_menu_fmap.h"
+#include "JSystem/JKernel/JKRArchive.h"
 #include "MSL_C/stdio.h"
 #include "MSL_C/string.h"
 #include "dol2asm.h"

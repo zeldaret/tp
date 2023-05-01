@@ -4,6 +4,7 @@
 //
 
 #include "rel/d/a/d_a_bg/d_a_bg.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "MSL_C/string.h"
 #include "d/bg/d_bg_w_kcol.h"
 #include "d/com/d_com_inf_game.h"

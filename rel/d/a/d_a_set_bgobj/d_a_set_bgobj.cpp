@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/d_a_set_bgobj/d_a_set_bgobj.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "MSL_C/stdio.h"
 #include "d/d_procname.h"
 

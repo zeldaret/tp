@@ -7,6 +7,9 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
+class JKRExpHeap;
+class JKRSolidHeap;
+
 class dPa_levelEcallBack : public JPAEmitterCallBack {
 public:
     /* 8004FB18 */ virtual ~dPa_levelEcallBack();

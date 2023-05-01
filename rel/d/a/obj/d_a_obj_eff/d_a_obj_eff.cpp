@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_eff/d_a_obj_eff.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
 
 struct daObj {

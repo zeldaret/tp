@@ -15,7 +15,6 @@ struct JKRThreadName_ {
 };
 
 class JUTConsole;
-class JKRHeap;
 class JKRThread : JKRDisposer {
 public:
     class TLoad {

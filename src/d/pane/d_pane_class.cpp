@@ -10,6 +10,8 @@
 #include "m_Do/m_Do_graphic.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "JSystem/J2DGraph/J2DPicture.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JSupport/JSUMemoryStream.h"
 #include "d/d_lib.h"
 

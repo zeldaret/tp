@@ -4,6 +4,7 @@
  */
 
 #include "d/d_ky_thunder.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 #include "JSystem/JMath/JMath.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "SSystem/SComponent/c_math.h"

@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_gstart/d_a_tag_gstart.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
 
 /* 805A3478-805A34F4 000078 007C+00 1/1 0/0 0/0 .text            create__13daTagGstart_cFv */

@@ -4,6 +4,7 @@
  */
 
 #include "m_Do/m_Do_audio.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"

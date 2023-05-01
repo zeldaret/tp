@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_ret_room/d_a_tag_ret_room.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
 /* 80D5EE98-80D5EED4 000078 003C+00 2/2 0/0 0/0 .text   __ct__12daTagRetRm_cFv */
 daTagRetRm_c::daTagRetRm_c() {}

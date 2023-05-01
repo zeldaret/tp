@@ -4,6 +4,7 @@
 //
 
 #include "d/pane/d_pane_class_alpha.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"

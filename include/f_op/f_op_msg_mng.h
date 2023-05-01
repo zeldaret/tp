@@ -3,6 +3,9 @@
 
 #include "f_op/f_op_msg.h"
 
+class JKRExpHeap;
+class JKRHeap;
+
 struct msg_process_profile_definition {
     /* 0x00 */ leaf_process_profile_definition mBase;
     /* 0x24 */ leafdraw_method_class* mSubMtd;  // Subclass methods

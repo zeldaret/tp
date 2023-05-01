@@ -4,6 +4,7 @@
 //
 
 #include "d/s/d_s_room.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "MSL_C/stdio.h"
 #include "MSL_C/string.h"
 #include "d/com/d_com_inf_game.h"

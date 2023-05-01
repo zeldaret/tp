@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_enemy_create/d_a_obj_enemy_create.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 80BE3178-80BE3198 000078 0020+00 1/0 0/0 0/0 .text daObjE_CREATE_Create__FP10fopAc_ac_c */

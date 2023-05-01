@@ -1,11 +1,12 @@
 #ifndef DYNAMICLINK_H
 #define DYNAMICLINK_H
 
-#include "JSystem/JKernel/JKRFileCache.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_dvd_thread.h"
 
 typedef struct OSModuleInfo OSModuleInfo;
+class JKRArchive;
+class JKRFileCache;
 
 struct DynamicModuleControlBase {
     /* 0x00 */ u16 mLinkCount;

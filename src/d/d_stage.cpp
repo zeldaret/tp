@@ -5,6 +5,7 @@
 
 #include "d/d_stage.h"
 #include "JSystem/JKernel/JKRAramArchive.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "MSL_C/stdio.h"
 #include "SSystem/SComponent/c_malloc.h"
 #include "d/com/d_com_inf_game.h"

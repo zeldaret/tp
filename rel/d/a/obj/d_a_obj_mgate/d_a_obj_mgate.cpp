@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_mgate/d_a_obj_mgate.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_math.h"
 
 /* ############################################################################################## */

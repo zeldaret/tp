@@ -7,6 +7,7 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_stone/d_a_obj_stone.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "global.h"

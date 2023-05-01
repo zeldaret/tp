@@ -8,6 +8,7 @@
 #include "JSystem/JKernel/JKRAramHeap.h"
 #include "JSystem/JKernel/JKRAramPiece.h"
 #include "JSystem/JKernel/JKRAramStream.h"
+#include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "MSL_C/string.h"

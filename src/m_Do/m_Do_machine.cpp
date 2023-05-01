@@ -8,6 +8,7 @@
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRAramStream.h"
 #include "JSystem/JKernel/JKRDvdAramRipper.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "SSystem/SComponent/c_API_controller_pad.h"
 #include "SSystem/SComponent/c_malloc.h"

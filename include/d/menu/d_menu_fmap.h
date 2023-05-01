@@ -7,6 +7,9 @@
 #include "d/pane/d_pane_class.h"
 #include "dolphin/types.h"
 
+class JKRArchive;
+class JKRExpHeap;
+class JKRHeap;
 class dMenu_Fmap_stage_data_c;
 class dMenu_Fmap_world_data_c;
 class dMenu_Fmap_region_data_c;

@@ -1,13 +1,14 @@
 #ifndef D_METER_D_METER_HIO_H
 #define D_METER_D_METER_HIO_H
 
-#include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JUtility/TColor.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
 #include "global.h"
 #include "m_Do/m_Do_ext.h"
+
+class JKRArchive;
 
 class dMeter_menuHIO_c {
 public:

@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_web0/d_a_obj_web0.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"

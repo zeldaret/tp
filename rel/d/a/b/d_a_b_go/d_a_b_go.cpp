@@ -4,6 +4,7 @@
 //
 
 #include "rel/d/a/b/d_a_b_go/d_a_b_go.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_lib.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"

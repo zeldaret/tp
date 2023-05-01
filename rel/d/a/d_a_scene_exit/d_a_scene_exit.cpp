@@ -4,6 +4,7 @@
 //
 
 #include "rel/d/a/d_a_scene_exit/d_a_scene_exit.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "d/com/d_com_inf_game.h"

@@ -4,7 +4,6 @@
 #include "JSystem/J2DGraph/J2DAnimation.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/JGeometry.h"
-#include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JUtility/JUTFont.h"
 #include "JSystem/JUtility/JUTResFont.h"
@@ -14,6 +13,7 @@
 #include "dolphin/types.h"
 
 class J2DScreen;
+class JKRArchive;
 class JSURandomInputStream;
 
 enum J2DRotateAxis {
