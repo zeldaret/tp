@@ -4,6 +4,8 @@
 //
 
 #include "d/file/d_file_sel_info.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
+#include "JSystem/J2DGraph/J2DTextBox.h"
 #include "MSL_C/stdio.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"

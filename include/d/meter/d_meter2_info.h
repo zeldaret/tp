@@ -9,6 +9,7 @@
 #include "d/pane/d_pane_class.h"
 #include "f_op/f_op_actor.h"
 
+class J2DTextBox;
 class JUTFont;
 
 struct dMenu_LetterData {

@@ -6,6 +6,7 @@
 #include "d/msg/d_msg_out_font.h"
 #include "f_op/f_op_msg.h"
 
+class J2DTextBox;
 class JUTFont;
 
 struct JMSMesgEntry_c {

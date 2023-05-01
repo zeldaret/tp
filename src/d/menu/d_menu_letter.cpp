@@ -4,6 +4,7 @@
 //
 
 #include "d/menu/d_menu_letter.h"
+#include "JSystem/J2DGraph/J2DTextBox.h"
 #include "MSL_C/stdio.h"
 #include "MSL_C/string.h"
 #include "dol2asm.h"

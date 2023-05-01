@@ -9,6 +9,11 @@
 #include "d/msg/d_msg_string.h"
 #include "global.h"
 
+class J2DAnmBase;
+class J2DAnmTransform;
+class J2DPane;
+class J2DPicture;
+class J2DScreen;
 class JKRArchive;
 class JUTFont;
 

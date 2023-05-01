@@ -1,11 +1,11 @@
 #ifndef D_MENU_D_MENU_LETTER_H
 #define D_MENU_D_MENU_LETTER_H
 
-#include "JSystem/J2DGraph/J2DPicture.h"
 #include "d/d_lib.h"
 #include "d/d_select_cursor.h"
 #include "dolphin/types.h"
 
+class J2DTextBox;
 class mDoDvdThd_mountArchive_c;
 class dMsgString_c;
 class dMsgScrnArrow_c;

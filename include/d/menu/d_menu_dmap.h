@@ -1,12 +1,14 @@
 #ifndef D_MENU_D_MENU_DMAP_H
 #define D_MENU_D_MENU_DMAP_H
 
-#include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "d/d_lib.h"
 #include "d/d_select_cursor.h"
 #include "dolphin/mtx/vec.h"
 #include "dolphin/types.h"
 
+class J2DOrthoGraph;
+class J2DPicture;
+class J2DScreen;
 class JKRArchive;
 class JKRExpHeap;
 class dMenu_DmapMapCtrl_c;

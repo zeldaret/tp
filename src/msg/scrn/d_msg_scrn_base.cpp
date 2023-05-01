@@ -4,6 +4,8 @@
 //
 
 #include "msg/scrn/d_msg_scrn_base.h"
+#include "JSystem/J2DGraph/J2DGrafContext.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "d/msg/d_msg_object.h"

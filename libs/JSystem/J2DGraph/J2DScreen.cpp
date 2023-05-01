@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/J2DGraph/J2DScreen.h"
+#include "JSystem/J2DGraph/J2DMaterial.h"
 #include "JSystem/J2DGraph/J2DMaterialFactory.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "JSystem/J2DGraph/J2DPictureEx.h"

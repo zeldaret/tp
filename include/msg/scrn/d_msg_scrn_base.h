@@ -1,6 +1,7 @@
 #ifndef MSG_SCRN_D_MSG_SCRN_BASE_H
 #define MSG_SCRN_D_MSG_SCRN_BASE_H
 
+#include "JSystem/J2DGraph/J2DTextBox.h"
 #include "d/msg/d_msg_out_font.h"
 #include "d/com/d_com_inf_game.h"
 

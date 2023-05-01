@@ -5,6 +5,7 @@
 
 #include "d/d_name.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
+#include "JSystem/J2DGraph/J2DTextBox.h"
 #include "MSL_C/stdio.h"
 #include "MSL_C/string.h"
 #include "dol2asm.h"

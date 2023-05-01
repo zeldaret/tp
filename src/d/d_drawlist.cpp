@@ -4,6 +4,7 @@
 //
 
 #include "d/d_drawlist.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "JSystem/J3DGraphBase/J3DShape.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"

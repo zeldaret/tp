@@ -2,7 +2,6 @@
 #define D_D_DRAWLIST_H
 
 #include "JSystem/J2DGraph/J2DPicture.h"
-#include "JSystem/J2DGraph/J2DScreen.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "d/kankyo/d_kankyo.h"

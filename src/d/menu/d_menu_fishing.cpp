@@ -4,6 +4,7 @@
  */
 
 #include "d/menu/d_menu_fishing.h"
+#include "JSystem/J2DGraph/J2DTextBox.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_controller_pad.h"

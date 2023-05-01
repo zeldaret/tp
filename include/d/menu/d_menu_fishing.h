@@ -1,14 +1,13 @@
 #ifndef D_MENU_D_MENU_FISHING_H
 #define D_MENU_D_MENU_FISHING_H
 
-#include "JSystem/J2DGraph/J2DPicture.h"
 #include "d/d_lib.h"
 #include "d/d_select_cursor.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_dvd_thread.h"
 #include "d/msg/d_msg_string.h"
 
-
+class J2DTextBox;
 
 class dMenu_Fishing_c : public dDlst_base_c {
 public:

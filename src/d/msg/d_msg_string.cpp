@@ -4,6 +4,7 @@
 //
 
 #include "d/msg/d_msg_string.h"
+#include "JSystem/J2DGraph/J2DTextBox.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "JSystem/JGeometry.h"

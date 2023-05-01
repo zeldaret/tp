@@ -1,13 +1,13 @@
 #ifndef D_METER_D_METER2_DRAW_H
 #define D_METER_D_METER2_DRAW_H
 
-#include "JSystem/J2DGraph/J2DAnimation.h"
-#include "JSystem/J2DGraph/J2DPicture.h"
 #include "JSystem/JUtility/TColor.h"
 #include "d/d_drawlist.h"
 #include "d/pane/d_pane_class.h"
 #include "dolphin/types.h"
 
+class J2DAnmColorKey;
+class J2DAnmTransformKey;
 class JKRExpHeap;
 class JKRHeap;
 

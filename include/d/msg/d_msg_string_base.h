@@ -3,6 +3,7 @@
 
 #include "d/msg/d_msg_object.h"
 
+class J2DTextBox;
 class JUTFont;
 struct jmessage_string_tControl;
 struct jmessage_string_tReference;

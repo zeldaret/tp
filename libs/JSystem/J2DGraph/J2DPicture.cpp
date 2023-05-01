@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/J2DGraph/J2DPicture.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GX.h"

@@ -4,6 +4,7 @@
 //
 
 #include "Z2AudioLib/Z2LinkMgr.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"

@@ -1,10 +1,11 @@
 #ifndef D_PANE_D_PANE_CLASS_ALPHA_H
 #define D_PANE_D_PANE_CLASS_ALPHA_H
 
-#include "JSystem/J2DGraph/J2DScreen.h"
-#include "JSystem/J2DGraph/J2DWindow.h"
+#include "JSystem/J2DGraph/J2DPane.h"
 #include "dolphin/types.h"
 
+class J2DPane;
+class J2DScreen;
 class JKRExpHeap;
 
 class CPaneMgrAlpha {

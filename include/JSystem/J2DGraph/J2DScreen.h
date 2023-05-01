@@ -2,11 +2,11 @@
 #define J2DSCREEN_H
 
 #include "JSystem/J2DGraph/J2DManage.h"
-#include "JSystem/J2DGraph/J2DMaterial.h"
 #include "JSystem/J2DGraph/J2DPane.h"
 #include "JSystem/JUtility/TColor.h"
 #include "dolphin/types.h"
 
+class J2DMaterial;
 class JUTNameTab;
 
 struct J2DScrnHeader {

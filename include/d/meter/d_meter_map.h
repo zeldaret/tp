@@ -1,10 +1,10 @@
 #ifndef D_METER_D_METER_MAP_H
 #define D_METER_D_METER_MAP_H
 
-#include "JSystem/J2DGraph/J2DPicture.h"
-#include "JSystem/J2DGraph/J2DScreen.h"
 #include "d/map/d_map_path_dmap.h"
 #include "dolphin/types.h"
+
+class J2DPicture;
 
 // move renderingAmap_c + dMap_c later
 class renderingAmap_c : public renderingPlusDoorAndCursor_c {

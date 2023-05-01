@@ -7,6 +7,7 @@
 #include "d/pane/d_pane_class.h"
 #include "dolphin/types.h"
 
+class J2DAnmTextureSRTKey;
 class JKRArchive;
 class JKRExpHeap;
 class JKRHeap;

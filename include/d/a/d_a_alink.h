@@ -29,6 +29,8 @@ class fopEn_enemy_c;
 class daAlinkHIO_anm_c;
 class dDemo_actor_c;
 class daScex_c;
+class J2DAnmColorKey;
+class J2DAnmTransformKey;
 class J2DScreen;
 class J2DPane;
 class J2DAnmBase;

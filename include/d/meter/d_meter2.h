@@ -7,6 +7,9 @@
 #include "f_op/f_op_msg.h"
 #include "dolphin/types.h"
 
+class J2DAnmColor;
+class J2DAnmTextureSRTKey;
+class J2DAnmTransformKey;
 class JKRExpHeap;
 class JKRHeap;
 class dMeterMap_c;

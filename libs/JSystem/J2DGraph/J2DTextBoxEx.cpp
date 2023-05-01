@@ -4,6 +4,8 @@
 //
 
 #include "JSystem/J2DGraph/J2DTextBoxEx.h"
+#include "JSystem/J2DGraph/J2DMaterial.h"
+#include "JSystem/J2DGraph/J2DPrint.h"
 #include "JSystem/JSupport/JSURandomInputStream.h"
 #include "JSystem/JUtility/JUTResFont.h"
 #include "dol2asm.h"

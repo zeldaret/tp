@@ -1,12 +1,12 @@
 #ifndef D_MENU_D_MENU_RING_H
 #define D_MENU_D_MENU_RING_H
 
-#include "JSystem/J2DGraph/J2DPicture.h"
 #include "d/d_lib.h"
 #include "d/d_select_cursor.h"
 #include "dolphin/types.h"
 
 class dMsgString_c;
+class J2DTextBox;
 class dKantera_icon_c;
 class dMenu_ItemExplain_c;
 

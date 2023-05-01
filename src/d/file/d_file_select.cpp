@@ -7,6 +7,8 @@
 #define __dt__15J2DAnmTransformFv_DEFINED
 
 #include "d/file/d_file_select.h"
+#include "JSystem/J2DGraph/J2DAnimation.h"
+#include "JSystem/J2DGraph/J2DTextBox.h"
 #include "dol2asm.h"
 #include "dolphin/dvd/dvd.h"
 #include "dolphin/types.h"

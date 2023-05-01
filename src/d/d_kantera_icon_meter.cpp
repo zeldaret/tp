@@ -4,6 +4,8 @@
 //
 
 #include "d/d_kantera_icon_meter.h"
+#include "JSystem/J2DGraph/J2DGrafContext.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "d/meter/d_meter_HIO.h"

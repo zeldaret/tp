@@ -4,6 +4,7 @@
 //
 
 #include "d/meter/d_meter_map.h"
+#include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/menu/d_menu_window.h"

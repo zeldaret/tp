@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/J2DGraph/J2DMaterialFactory.h"
+#include "JSystem/J2DGraph/J2DMaterial.h"
 #include "MSL_C/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"

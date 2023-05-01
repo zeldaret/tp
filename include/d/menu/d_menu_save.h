@@ -1,13 +1,14 @@
 #ifndef D_MENU_D_MENU_SAVE_H
 #define D_MENU_D_MENU_SAVE_H
 
-#include "JSystem/J2DGraph/J2DScreen.h"
 #include "d/d_lib.h"
 #include "d/d_select_cursor.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_dvd_thread.h"
 #include "d/save/d_save.h"
 
+class J2DAnmColorKey;
+class J2DAnmTransformKey;
 class JUTFont;
 class dMsgString_c;
 class dFile_warning_c;
