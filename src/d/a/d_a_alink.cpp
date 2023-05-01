@@ -5,6 +5,7 @@
 
 #include "d/a/d_a_alink.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JMath/JMath.h"

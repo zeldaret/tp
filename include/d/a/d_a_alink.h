@@ -27,12 +27,12 @@
 
 class fopEn_enemy_c;
 class daAlinkHIO_anm_c;
-class J3DAnmTevRegKey;
 class dDemo_actor_c;
 class daScex_c;
 class J2DScreen;
 class J2DPane;
 class J2DAnmBase;
+class J3DAnmTevRegKey;
 
 class daAlink_lockCursor_c : public dDlst_base_c {
 public:

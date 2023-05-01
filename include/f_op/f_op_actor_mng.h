@@ -1,7 +1,6 @@
 #ifndef F_OP_ACTOR_MNG_H_
 #define F_OP_ACTOR_MNG_H_
 
-#include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"

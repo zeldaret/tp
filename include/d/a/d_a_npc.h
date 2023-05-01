@@ -1,6 +1,7 @@
 #ifndef D_A_D_A_NPC_H
 #define D_A_D_A_NPC_H
 
+#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_path.h"
 #include "d/msg/d_msg_object.h"

@@ -4,6 +4,7 @@
 //
 
 #include "d/d_attention.h"
+#include "JSystem/J3DGraphBase/J3DMatBlock.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"

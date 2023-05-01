@@ -1,7 +1,6 @@
 #ifndef D_A_D_A_PLAYER_H
 #define D_A_D_A_PLAYER_H
 
-#include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 #include "SSystem/SComponent/c_bg_s_poly_info.h"
 #include "d/d_drawlist.h"
 #include "d/d_resorce.h"

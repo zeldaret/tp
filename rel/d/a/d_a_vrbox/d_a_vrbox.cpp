@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/d_a_vrbox/d_a_vrbox.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/JKernel/JKRHeap.h"
 
 static int daVrbox_color_set(vrbox_class* i_this);

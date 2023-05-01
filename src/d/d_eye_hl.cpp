@@ -4,6 +4,7 @@
  */
 
 #include "d/d_eye_hl.h"
+#include "JSystem/J3DGraphBase/J3DTexture.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "MSL_C/string.h"
 #include "d/com/d_com_inf_game.h"

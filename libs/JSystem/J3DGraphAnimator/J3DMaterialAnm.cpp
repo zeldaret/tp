@@ -1,4 +1,5 @@
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "global.h"

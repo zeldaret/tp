@@ -1,7 +1,6 @@
 #ifndef D_KANKYO_D_KANKYO_H
 #define D_KANKYO_D_KANKYO_H
 
-#include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/J3DGraphBase/J3DStruct.h"
 #include "JSystem/JParticle/JPAParticle.h"
 #include "SSystem/SComponent/c_sxyz.h"

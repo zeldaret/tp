@@ -1,11 +1,12 @@
 #ifndef J3DJOINT_H
 #define J3DJOINT_H
 
-#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/J3DGraphBase/J3DTransform.h"
 #include "dolphin/types.h"
 
 class J3DAnmTransform;
+class J3DJoint;
+class J3DMaterial;
 class J3DMtxBuffer;
 
 class J3DMtxCalc {

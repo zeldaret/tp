@@ -7,6 +7,9 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
+class J3DAnmTexPattern;
+class J3DModel;
+class J3DModelData;
 class JKRExpHeap;
 class JKRSolidHeap;
 

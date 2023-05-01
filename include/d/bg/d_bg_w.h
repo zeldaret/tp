@@ -1,7 +1,6 @@
 #ifndef D_BG_D_BG_W_H
 #define D_BG_D_BG_W_H
 
-#include "JSystem/J3DGraphBase/J3DVertex.h"
 #include "SSystem/SComponent/c_bg_s_gnd_chk.h"
 #include "SSystem/SComponent/c_bg_s_lin_chk.h"
 #include "SSystem/SComponent/c_bg_s_poly_info.h"

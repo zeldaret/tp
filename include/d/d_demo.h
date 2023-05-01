@@ -15,6 +15,7 @@
 #include "dolphin/gx/GXStruct.h"
 #include "f_op/f_op_actor.h"
 
+class J3DModel;
 class dDemo_actor_c;
 class dDemo_camera_c;
 class dDemo_ambient_c;

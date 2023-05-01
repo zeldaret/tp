@@ -3,9 +3,6 @@
 
 #include "JSystem/J2DGraph/J2DPicture.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
-#include "JSystem/J3DGraphAnimator/J3DModel.h"
-#include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
-#include "JSystem/J3DGraphBase/J3DPacket.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "d/kankyo/d_kankyo.h"
@@ -16,6 +13,9 @@
 #include "f_op/f_op_view.h"
 #include "global.h"
 
+class J3DDrawBuffer;
+class J3DModel;
+class J3DPacket;
 class JUTFont;
 
 class cM_rnd_c {
