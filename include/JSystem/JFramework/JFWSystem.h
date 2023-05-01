@@ -1,14 +1,16 @@
 #ifndef JFWSYSTEM_H
 #define JFWSYSTEM_H
 
-#include "JSystem/JUtility/JUTConsole.h"
-#include "JSystem/JUtility/JUTDbPrint.h"
-#include "JSystem/JUtility/JUTResFont.h"
 #include "dolphin/types.h"
 
 typedef struct _GXRenderModeObj GXRenderModeObj;
 class JKRExpHeap;
 class JKRThread;
+class JUTConsole;
+class JUTConsoleManager;
+class JUTDbPrint;
+class JUTResFont;
+struct ResFONT;
 
 struct JFWSystem {
     struct CSetUpParam {

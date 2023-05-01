@@ -6,6 +6,7 @@
 #include "JSystem/J2DGraph/J2DAnimation.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J3DGraphBase/J3DTransform.h"
+#include "JSystem/JUtility/JUTPalette.h"
 #include "JSystem/JUtility/JUTResource.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"

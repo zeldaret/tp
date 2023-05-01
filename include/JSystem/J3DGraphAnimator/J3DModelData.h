@@ -9,6 +9,7 @@
 #include "dolphin/types.h"
 
 typedef struct _GXColor GXColor;
+class JUTNameTab;
 
 class J3DModelData {
 public:

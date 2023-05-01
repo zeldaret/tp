@@ -4,6 +4,8 @@
 #include "d/msg/d_msg_string_base.h"
 #include "d/msg/d_msg_out_font.h"
 
+class JUTFont;
+
 class dMsgString_c : public dMsgStringBase_c {
 public:
     /* 80249C20 */ dMsgString_c();

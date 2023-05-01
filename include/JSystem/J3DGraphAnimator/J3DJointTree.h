@@ -2,9 +2,10 @@
 #define J3DJOINTTREE_H
 
 #include "JSystem/J3DGraphAnimator/J3DJoint.h"
-#include "JSystem/JUtility/JUTNameTab.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
+
+class JUTNameTab;
 
 struct J3DModelHierarchy {
     /* 0x0 */ u16 mType;

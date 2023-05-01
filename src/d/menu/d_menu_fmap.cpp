@@ -11,6 +11,8 @@
 #include "dolphin/os/OSCache.h"
 #include "dolphin/types.h"
 
+struct ResTIMG;
+
 //
 // Types:
 //

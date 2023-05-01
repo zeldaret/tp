@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/JUtility/JUTTexture.h"
+#include "JSystem/JUtility/JUTPalette.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/types.h"

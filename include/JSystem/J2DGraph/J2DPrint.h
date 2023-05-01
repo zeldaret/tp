@@ -6,6 +6,8 @@
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dolphin/types.h"
 
+class JUTFont;
+
 class J2DPrint {
 public:
     struct TSize {

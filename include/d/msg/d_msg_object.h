@@ -9,6 +9,7 @@
 #include "d/msg/d_msg_class.h"
 
 class COutFont_c;
+class JUTFont;
 class dMsgScrnBase_c;
 
 class dMsgObject_c : public msg_class {

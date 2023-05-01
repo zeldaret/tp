@@ -13,6 +13,7 @@ class JKRAssertHeap;
 class JKRExpHeap;
 class JKRHeap;
 class JKRSolidHeap;
+struct ResTIMG;
 
 class mDoExt_baseAnm {
 public:

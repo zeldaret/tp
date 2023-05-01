@@ -8,6 +8,7 @@
 #include "m_Do/m_Do_dvd_thread.h"
 #include "d/save/d_save.h"
 
+class JUTFont;
 class dMsgString_c;
 class dFile_warning_c;
 class dFile_info_c;

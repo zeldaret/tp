@@ -16,6 +16,8 @@
 #include "f_op/f_op_view.h"
 #include "global.h"
 
+class JUTFont;
+
 class cM_rnd_c {
 public:
     /* 80053CDC */ void init(int, int, int);

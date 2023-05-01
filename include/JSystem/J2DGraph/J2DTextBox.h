@@ -5,6 +5,8 @@
 #include "JSystem/J2DGraph/J2DPane.h"
 #include "dolphin/types.h"
 
+class JUTFont;
+
 enum J2DTextBoxVBinding {
     /* 0x0 */ VBIND_CENTER,
     /* 0x1 */ VBIND_BOTTOM,

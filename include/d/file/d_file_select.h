@@ -12,6 +12,7 @@
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 
 class JKRArchive;
+class JUTFont;
 
 class dDlst_FileSel_c {
 public:

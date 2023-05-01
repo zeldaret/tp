@@ -2,7 +2,6 @@
 #define JMESSAGE_PROCESSOR_H
 
 #include "JSystem/JMessage/resource.h"
-#include "JSystem/JUtility/JUTFont.h"
 #include "init.h"
 
 namespace JMessage {

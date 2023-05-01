@@ -2,7 +2,6 @@
 #define D_A_D_A_PLAYER_H
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
-#include "JSystem/JUtility/JUTTexture.h"
 #include "SSystem/SComponent/c_bg_s_poly_info.h"
 #include "d/d_drawlist.h"
 #include "d/d_resorce.h"
@@ -10,6 +9,8 @@
 #include "d/save/d_save.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
+
+struct ResTIMG;
 
 class daPy_sightPacket_c : public dDlst_base_c {
 public:

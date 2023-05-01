@@ -4,6 +4,8 @@
 #include "d/com/d_com_inf_game.h"
 #include "dolphin/types.h"
 
+class JUTFont;
+
 class dNm_HIO_c {
 public:
     /* 8024E3E0 */ dNm_HIO_c();

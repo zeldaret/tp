@@ -1,7 +1,6 @@
 #ifndef D_METER_D_METER2_INFO_H
 #define D_METER_D_METER2_INFO_H
 
-#include "JSystem/JUtility/JUTTexture.h"
 #include "d/d_resorce.h"
 #include "d/menu/d_menu_window.h"
 #include "d/meter/d_meter2.h"
@@ -9,6 +8,8 @@
 #include "d/msg/d_msg_flow.h"
 #include "d/pane/d_pane_class.h"
 #include "f_op/f_op_actor.h"
+
+class JUTFont;
 
 struct dMenu_LetterData {
     u16 mSubject;

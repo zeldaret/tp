@@ -1,9 +1,6 @@
 #ifndef M_DO_M_DO_MACHINE_H
 #define M_DO_M_DO_MACHINE_H
 
-#include "JSystem/JUtility/JUTConsole.h"
-#include "JSystem/JUtility/JUTGamePad.h"
-#include "JSystem/JUtility/JUTVideo.h"
 #include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_Reset.h"

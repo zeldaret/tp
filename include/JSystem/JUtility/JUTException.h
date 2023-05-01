@@ -3,7 +3,6 @@
 
 #include "JSystem/JKernel/JKRThread.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTGamePad.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dolphin/gx/GXEnum.h"
@@ -14,6 +13,7 @@
 
 typedef struct _GXRenderModeObj GXRenderModeObj;
 typedef struct OSContext OSContext;
+class JUTDirectPrint;
 
 class JUTExternalFB {
 public:

@@ -4,8 +4,10 @@
 #include "JSystem/J2DGraph/J2DManage.h"
 #include "JSystem/J2DGraph/J2DMaterial.h"
 #include "JSystem/J2DGraph/J2DPane.h"
-#include "JSystem/JUtility/JUTNameTab.h"
+#include "JSystem/JUtility/TColor.h"
 #include "dolphin/types.h"
+
+class JUTNameTab;
 
 struct J2DScrnHeader {
     /* 0x00 */ u32 mTag;

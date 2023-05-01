@@ -5,6 +5,7 @@
 
 #include "JSystem/J2DGraph/J2DTextBoxEx.h"
 #include "JSystem/JSupport/JSURandomInputStream.h"
+#include "JSystem/JUtility/JUTResFont.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

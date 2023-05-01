@@ -3,13 +3,14 @@
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 #include "JSystem/JUtility/JUTNameTab.h"
-#include "JSystem/JUtility/JUTTexture.h"
 #include "dolphin/types.h"
 #include "global.h"
 
 typedef struct _GXColor GXColor;
 typedef struct _GXColorS10 GXColorS10;
 class J2DScreen;
+class JUTPalette;
+struct ResTIMG;
 
 enum J2DAnmKind {
     KIND_TRANSFORM = 0,

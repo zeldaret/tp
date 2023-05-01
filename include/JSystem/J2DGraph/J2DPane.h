@@ -5,9 +5,6 @@
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "JSystem/JUtility/JUTFont.h"
-#include "JSystem/JUtility/JUTResFont.h"
-#include "JSystem/JUtility/JUTTexture.h"
 #include "dolphin/gx/GXEnum.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
@@ -15,6 +12,8 @@
 class J2DScreen;
 class JKRArchive;
 class JSURandomInputStream;
+struct ResFONT;
+struct ResTIMG;
 
 enum J2DRotateAxis {
     /* 0x78 */ ROTATE_X = 'x',

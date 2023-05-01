@@ -1,10 +1,11 @@
 #ifndef JUTTEXTURE_H
 #define JUTTEXTURE_H
 
-#include "JSystem/JUtility/JUTPalette.h"
 #include "dolphin/gx/GXEnum.h"
 #include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
+
+class JUTPalette;
 
 /*
  * Acts as the header to image data. Usually texture data immediately follows it,

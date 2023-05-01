@@ -7,6 +7,7 @@
 
 class JKRExpHeap;
 class JKRHeap;
+struct ResTIMG;
 
 class dLog_HIO_c {
 public:

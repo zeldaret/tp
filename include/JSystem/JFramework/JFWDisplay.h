@@ -4,7 +4,6 @@
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTFader.h"
-#include "JSystem/JUtility/JUTProcBar.h"
 #include "JSystem/JUtility/JUTXfb.h"
 #include "JSystem/JUtility/TColor.h"
 #include "dolphin/os/OSAlarm.h"

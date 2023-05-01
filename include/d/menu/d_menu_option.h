@@ -6,6 +6,7 @@
 #include "d/d_select_cursor.h"
 #include "dolphin/types.h"
 
+class JUTFont;
 class dFile_warning_c;
 class dMenu_Calibration_c;
 class mDoDvdThd_mountArchive_c;

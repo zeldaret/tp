@@ -5,6 +5,7 @@
 
 #include "d/s/d_s_play.h"
 #include "JSystem/JUtility/JUTConsole.h"
+#include "JSystem/JUtility/JUTGamePad.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "d/d_item.h"
 #include "d/msg/d_msg_object.h"

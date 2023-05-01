@@ -3,8 +3,8 @@
 
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
-#include "JSystem/JUtility/JUTTexture.h"
 
+struct ResTIMG;
 class dEyeHL_c;
 
 class dEyeHL_mng_c {

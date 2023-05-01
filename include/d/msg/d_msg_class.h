@@ -6,6 +6,8 @@
 #include "d/msg/d_msg_out_font.h"
 #include "f_op/f_op_msg.h"
 
+class JUTFont;
+
 struct JMSMesgEntry_c {
     /* 0x00 */ u32 mStringOffset;
     /* 0x04 */ u16 mStringId;

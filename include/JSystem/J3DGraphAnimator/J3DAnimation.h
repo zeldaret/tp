@@ -3,6 +3,7 @@
 
 #include "JSystem/J3DGraphAnimator/J3DMaterialAttach.h"
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
+#include "JSystem/JUtility/JUTNameTab.h"
 #include "dolphin/types.h"
 #include "global.h"
 

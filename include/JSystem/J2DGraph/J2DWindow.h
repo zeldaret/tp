@@ -6,6 +6,7 @@
 #include "dolphin/types.h"
 
 class JSURandomInputStream;
+class JUTTexture;
 
 class J2DWindow : public J2DPane {
 public:
