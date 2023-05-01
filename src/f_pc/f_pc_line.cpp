@@ -13,7 +13,7 @@
 static node_list_class l_fpcLn_Line[16];
 
 /* 80021F64-80021FB8 0054+00 s=0 e=1 z=0  None .text      fpcLn_Create__Fv */
-void fpcLn_Create(void) {
+void fpcLn_Create() {
     s32 i = ARRAY_SIZE(l_fpcLn_Line);
     node_list_class* pLine = l_fpcLn_Line;
     while (i-- > 0)

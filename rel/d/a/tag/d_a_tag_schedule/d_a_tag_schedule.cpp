@@ -33,19 +33,14 @@ extern actor_process_profile_definition g_profile_Tag_Schedule = {
     0x0007,                     // mListID
     0xFFFD,                     // mListPrio
     PROC_Tag_Schedule,          // mProcName
-    0,                          // padding
     &g_fpcLf_Method.mBase,      // mSubMtd
     sizeof(daTagSchedule_c),    // mSize
     0,                          // mSizeOther
     0,                          // mParameters
     &g_fopAc_Method.base,       // mSubMtd
     0x018C,                     // mPriority
-    0,                          // padding
-    0,                          // padding
     &l_daTagSchedule_Method,    // mSubMtd
     0x00040000,                 // mStatus
     0x00,                       // mActorType
     0x0E,                       // mCullType
-    0,                          // padding
-    0,                          // padding
 };

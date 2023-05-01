@@ -114,19 +114,14 @@ extern actor_process_profile_definition g_profile_Obj_Cowdoor = {
     3,                      // mListID
     -3,                     // mListPrio
     PROC_Obj_Cowdoor,       // mProcName
-    0,                      // Padding
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daCowdoor_c),    // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
     0x01BF,                 // mPriority
-    0,                      // Padding
-    0,                      // Padding
     &l_daCowdoor_Method,    // mSubMtd
     0x00040100,             // mStatus
     0,                      // mActorType
     14,                     // mCullType
-    0,                      // Padding
-    0,                      // Padding
 };

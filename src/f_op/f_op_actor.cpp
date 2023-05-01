@@ -190,14 +190,14 @@ static int fopAc_Create(void* i_this) {
             if (!dStage_FileList_dt_GetEnemyAppear1Flag(filelist)) {
                 u32 sw = dStage_FileList_dt_GetBitSw(filelist);
                 if (sw != 0xFF && dComIfGs_isSwitch(sw, _this->orig.roomNo) &&
-                    profile->mActorType == 2)
+                    profile->mActorType == ACTOR_TYPE_ENEMY)
                 {
                     return cPhs_ERROR_e;
                 }
             } else {
                 u32 sw = dStage_FileList_dt_GetBitSw(filelist);
                 if (sw != 0xFF && !dComIfGs_isSwitch(sw, _this->orig.roomNo) &&
-                    profile->mActorType == 2)
+                    profile->mActorType == ACTOR_TYPE_ENEMY)
                 {
                     return cPhs_ERROR_e;
                 }

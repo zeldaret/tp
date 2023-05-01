@@ -17,7 +17,6 @@ extern scene_process_profile_definition g_profile_MENU_SCENE = {
     1,                      // mListID
     -3,                     // mListPrio
     PROC_MENU_SCENE,        // mProcName
-    0,                      // padding
     &g_fpcNd_Method.mBase,  // mSubMtd
     0,                      // mSize
     0,                      // mSizeOther      

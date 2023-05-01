@@ -18,7 +18,10 @@ struct actor_process_profile_definition {
     /* 0x28 */ u32 mStatus;
     /* 0x2C */ u8 mActorType;
     /* 0x2D */ u8 mCullType;
-    /* 0x2E */ u8 field_0x2e[2]; // Likely padding
+};
+
+enum {
+    ACTOR_TYPE_ENEMY = 2,
 };
 
 struct JKRSolidHeap;

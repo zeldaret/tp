@@ -133,19 +133,14 @@ extern actor_process_profile_definition g_profile_Obj_Bombf = {
     7,                      // mListID
     -3,                     // mListPrio
     PROC_Obj_Bombf,         // mProcName
-    0,                      // Padding
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daObjBombf_c),   // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
     0x00FB,                 //  mPriority
-    0,                      // Padding
-    0,                      // Padding
     &l_daObjBombf_Method,   // mSubMtd
     0x00040100,             // mStatus
     3,                      // mActorType
     14,                     // mCullType
-    0,                      // Padding
-    0,                      // Padding
 };

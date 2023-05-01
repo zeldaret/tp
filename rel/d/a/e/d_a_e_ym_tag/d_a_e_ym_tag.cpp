@@ -89,19 +89,14 @@ extern actor_process_profile_definition g_profile_E_YM_TAG = {
     7,                      // mListID
     -3,                     // mListPrio
     PROC_E_YM_TAG,          // mProcName
-    0,                      // padding
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daE_YM_TAG_c),   // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
     0x00C3,                 // mPriority
-    0,                      // padding
-    0,                      // padding
     &l_daE_YM_TAG_Method,   // mSubMtd
     0x00044000,             // mStatus
     0,                      // mActorType
     0,                      // mCullType
-    0,                      // padding
-    0                       // padding
 };

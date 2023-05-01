@@ -15,7 +15,6 @@ extern scene_process_profile_definition g_profile_WARNING_SCENE = {
     1,                      // mListID
     -3,                     // mListPrio
     PROC_WARNING_SCENE,     // mProcName               
-    0,                      // padding
     &g_fpcNd_Method.mBase,  // mSubMtd                  
     0x00000204,             // mSize        
     0,                      // mSizeOther              
@@ -31,7 +30,6 @@ extern scene_process_profile_definition g_profile_WARNING2_SCENE = {
     1,                      // mListID   
     -3,                     // mListPrio    
     PROC_WARNING2_SCENE,    // mProcName                     
-    0,                      // padding    
     &g_fpcNd_Method.mBase,  // mSubMtd                       
     0x00000204,             // mSize             
     0,                      // mSizeOther                
