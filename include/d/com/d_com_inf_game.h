@@ -2864,6 +2864,10 @@ inline BOOL i_dComIfGp_event_runCheck() {
     return g_dComIfG_gameInfo.play.getEvent().runCheck();
 }
 
+inline f32 dComIfGp_event_getCullRate() {
+    return g_dComIfG_gameInfo.play.getEvent().getCullRate();
+}
+
 inline u16 dComIfGp_event_checkHind(u16 flag) {
     if (!i_dComIfGp_event_runCheck()) {
         return false;
