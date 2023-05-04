@@ -1,6 +1,7 @@
 #ifndef D_A_B_OB_H
 #define D_A_B_OB_H
 
+#include "Z2AudioLib/Z2Creature.h"
 #include "d/cc/d_cc_uty.h"
 #include "d/com/d_com_inf_game.h"
 

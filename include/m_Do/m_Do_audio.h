@@ -3,8 +3,6 @@
 
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "Z2AudioLib/Z2EnvSeMgr.h"
-#include "Z2AudioLib/Z2SoundInfo.h"
-#include "Z2AudioLib/Z2WolfHowlMgr.h"
 
 class mDoAud_zelAudio_c {
 public:

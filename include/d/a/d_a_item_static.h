@@ -2,6 +2,7 @@
 #define D_A_D_A_ITEM_STATIC_H
 
 #include "SSystem/SComponent/c_lib.h"
+#include "Z2AudioLib/Z2SoundObject.h"
 #include "dolphin/types.h"
 #include "d/a/d_a_itembase.h"
 #include "d/a/d_a_itembase_static.h"

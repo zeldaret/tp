@@ -5,6 +5,7 @@
 
 #include "d/cc/d_cc_uty.h"
 #include "SSystem/SComponent/c_math.h"
+#include "Z2AudioLib/Z2Creature.h"
 #include "d/d_procname.h"
 #include "d/s/d_s_play.h"
 #include "dol2asm.h"

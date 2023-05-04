@@ -15,6 +15,8 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTReport.h"
+#include "Z2AudioLib/Z2SoundInfo.h"
+#include "Z2AudioLib/Z2WolfHowlMgr.h"
 #include "c/c_dylink.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"

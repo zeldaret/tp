@@ -16,6 +16,7 @@
 #include "MSL_C/string.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "SSystem/SComponent/c_lib.h"
+#include "Z2AudioLib/Z2Creature.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GXDraw.h"
 #include "dolphin/mtx/mtx.h"
