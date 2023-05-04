@@ -3,9 +3,9 @@
 
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "d/bg/d_bg_s_acch.h"
 #include "dolphin/types.h"
 
+class dBgS_Acch;
 struct dKy_tevstr_c;
 
 class dPaPo_c {

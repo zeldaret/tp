@@ -4,12 +4,13 @@
 #include "JSystem/JMessage/control.h"
 #include "JSystem/JMessage/resource.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/msg/d_msg_class.h"
+#include "f_op/f_op_msg.h"
 
 class COutFont_c;
 class J2DTextBox;
 class JUTFont;
 class dMsgScrnBase_c;
+class dMsgString_c;
 struct jmessage_tReference;
 struct jmessage_tRenderingProcessor;
 struct jmessage_tSequenceProcessor;

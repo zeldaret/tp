@@ -5,14 +5,20 @@
 
 #include "d/shop/d_shop_system.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/a/d_a_shop_item_static.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_item.h"
+#include "d/d_lib.h"
 #include "d/d_procname.h"
+#include "d/d_select_cursor.h"
+#include "d/meter/d_meter2_info.h"
 #include "d/meter/d_meter_HIO.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_audio.h"
+#include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_lib.h"
 
 //

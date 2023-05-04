@@ -5,10 +5,12 @@
 
 #include "rel/d/a/tag/d_a_tag_mmsg/d_a_tag_mmsg.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 
 /* ############################################################################################## */
 /* 80D5B918-80D5BA94 000078 017C+00 1/1 0/0 0/0 .text            create__11daTagMmsg_cFv */

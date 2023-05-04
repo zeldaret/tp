@@ -2,7 +2,8 @@
 #define F_PC_LAYER_ITER_H_
 
 #include "dolphin/types.h"
-#include "f_pc/f_pc_layer.h"
+
+typedef struct layer_class layer_class;
 
 typedef struct layer_iter {
     void* mpFunc;

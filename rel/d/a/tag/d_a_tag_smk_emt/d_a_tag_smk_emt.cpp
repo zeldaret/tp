@@ -5,6 +5,7 @@
 
 #include "rel/d/a/tag/d_a_tag_smk_emt/d_a_tag_smk_emt.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "d/d_procname.h"
 
 /* 80D612D8-80D61324 000078 004C+00 2/2 0/0 0/0 .text            __ct__13daTagSmkEmt_cFv */
 daTagSmkEmt_c::daTagSmkEmt_c() {

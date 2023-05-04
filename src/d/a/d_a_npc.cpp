@@ -9,6 +9,7 @@
 #include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 #include "global.h"
 #include "m_Do/m_Do_mtx.h"
 #include "rel/d/a/npc/d_a_npc_tk/d_a_npc_tk.h"

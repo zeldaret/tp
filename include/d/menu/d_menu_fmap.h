@@ -2,16 +2,15 @@
 #define D_MENU_D_MENU_FMAP_H
 
 #include "SSystem/SComponent/c_xyz.h"
-#include "d/d_drawlist.h"
-#include "d/d_lib.h"
 #include "d/msg/d_msg_flow.h"
-#include "d/pane/d_pane_class.h"
 #include "dolphin/types.h"
 
+struct CSTControl;
 class J2DAnmTextureSRTKey;
 class JKRArchive;
 class JKRExpHeap;
 class JKRHeap;
+struct STControl;
 class dMenu_Fmap_stage_data_c;
 class dMenu_Fmap_world_data_c;
 class dMenu_Fmap_region_data_c;

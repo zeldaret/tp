@@ -6,11 +6,8 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 #include "f_op/f_op_actor_iter.h"
-#include "f_pc/f_pc_executor.h"
-#include "f_pc/f_pc_fstcreate_req.h"
 #include "f_pc/f_pc_manager.h"
 #include "f_pc/f_pc_searcher.h"
-#include "f_pc/f_pc_stdcreate_req.h"
 
 class J3DModelData;  // placeholder
 class JKRHeap;

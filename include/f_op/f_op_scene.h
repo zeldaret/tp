@@ -3,9 +3,7 @@
 
 #include "dolphin/types.h"
 #include "f_op/f_op_scene_tag.h"
-#include "f_pc/f_pc_base.h"
 #include "f_pc/f_pc_node.h"
-#include "m_Do/m_Do_dvd_thread.h"
 
 struct request_of_phase_process_class;
 class mDoDvdThd_command_c;

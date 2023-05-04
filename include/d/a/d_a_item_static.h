@@ -5,7 +5,7 @@
 #include "Z2AudioLib/Z2SoundObject.h"
 #include "dolphin/types.h"
 #include "d/a/d_a_itembase.h"
-#include "d/a/d_a_itembase_static.h"
+#include "d/cc/d_cc_d.h"
 #include "d/particle/d_particle.h"
 
 class daItem_c;

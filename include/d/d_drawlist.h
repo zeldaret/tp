@@ -4,18 +4,19 @@
 #include "JSystem/J2DGraph/J2DPicture.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "d/kankyo/d_kankyo.h"
 #include "dolphin/gx/GXStruct.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/mtx/mtx44.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_view.h"
+#include "m_Do/m_Do_ext.h"
 #include "global.h"
 
 class J3DDrawBuffer;
 class J3DModel;
 class J3DPacket;
 class JUTFont;
+class dKy_tevstr_c;
 
 class cM_rnd_c {
 public:

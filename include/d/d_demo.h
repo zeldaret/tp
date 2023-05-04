@@ -14,7 +14,6 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/gx/GXEnum.h"
 #include "dolphin/gx/GXStruct.h"
-#include "f_op/f_op_actor.h"
 
 class J3DModel;
 class dDemo_actor_c;
@@ -22,6 +21,7 @@ class dDemo_camera_c;
 class dDemo_ambient_c;
 class dDemo_light_c;
 class dDemo_fog_c;
+class fopAc_ac_c;
 struct jmessage_tControl;
 
 class dDemo_object_c {

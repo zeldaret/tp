@@ -7,6 +7,7 @@
 #include "JSystem/JKernel/JKRArchive.h"
 #include "MSL_C/stdio.h"
 #include "MSL_C/string.h"
+#include "d/d_lib.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
 #include "dolphin/types.h"

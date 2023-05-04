@@ -6,6 +6,7 @@
 #include "f_pc/f_pc_base.h"
 #include "f_pc/f_pc_draw_priority.h"
 #include "f_pc/f_pc_method.h"
+#include "f_pc/f_pc_profile.h"
 
 typedef struct leafdraw_method_class {
     /* 0x00 */ process_method_class mBase;

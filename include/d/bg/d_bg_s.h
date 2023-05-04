@@ -4,10 +4,12 @@
 #include "SSystem/SComponent/c_bg_s_gnd_chk.h"
 #include "SSystem/SComponent/c_bg_s_lin_chk.h"
 #include "SSystem/SComponent/c_bg_s_poly_info.h"
-#include "d/bg/d_bg_w.h"
+#include "d/bg/d_bg_w_base.h"
 #include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
 #include "global.h"
+
+class dBgW;
+class fopAc_ac_c;
 
 class cBgS_ChkElm {
 public:

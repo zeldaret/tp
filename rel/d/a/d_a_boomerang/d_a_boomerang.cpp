@@ -5,7 +5,9 @@
 
 #include "rel/d/a/d_a_boomerang/d_a_boomerang.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
+#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_lib.h"
 
 //

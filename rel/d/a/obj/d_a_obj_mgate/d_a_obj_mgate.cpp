@@ -6,6 +6,9 @@
 #include "rel/d/a/obj/d_a_obj_mgate/d_a_obj_mgate.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/a/d_a_player.h"
+#include "d/d_lib.h"
+#include "d/d_procname.h"
 
 /* ############################################################################################## */
 /* 80593E48-80593E60 000000 0018+00 2/2 0/0 0/0 .rodata          l_key_offset */

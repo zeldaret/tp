@@ -7,7 +7,7 @@
 #include "d/save/d_save.h"
 #include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
+#include "f_pc/f_pc_priority.h"
 #include "global.h"
 
 class JKRExpHeap;

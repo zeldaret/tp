@@ -1,19 +1,23 @@
 #ifndef D_MENU_D_MENU_SAVE_H
 #define D_MENU_D_MENU_SAVE_H
 
-#include "d/d_lib.h"
-#include "d/d_select_cursor.h"
+#include "d/d_drawlist.h"
 #include "dolphin/types.h"
-#include "m_Do/m_Do_dvd_thread.h"
 #include "d/save/d_save.h"
 
+class CPaneMgr;
+class CPaneMgrAlpha;
+struct CSTControl;
 class J2DAnmColorKey;
 class J2DAnmTransformKey;
 class JUTFont;
+struct STControl;
 class dMsgString_c;
 class dFile_warning_c;
 class dFile_info_c;
 class dMsgScrnExplain_c;
+class dSelect_cursor_c;
+class mDoDvdThd_mountArchive_c;
 
 class dDlst_MenuSaveExplain_c : public dDlst_base_c {
 public:

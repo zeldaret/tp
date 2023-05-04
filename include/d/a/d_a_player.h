@@ -2,9 +2,6 @@
 #define D_A_D_A_PLAYER_H
 
 #include "d/d_drawlist.h"
-#include "d/d_resorce.h"
-#include "d/d_stage.h"
-#include "d/save/d_save.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 

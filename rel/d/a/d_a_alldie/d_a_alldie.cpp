@@ -6,6 +6,8 @@
 #include "rel/d/a/d_a_alldie/d_a_alldie.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 
 /* 804D5818-804D5824 000078 000C+00 2/2 0/0 0/0 .text            getEventNo__10daAlldie_cFv */
 u8 daAlldie_c::getEventNo() {

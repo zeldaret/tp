@@ -3,8 +3,8 @@
 
 #include "SSystem/SComponent/c_phase.h"
 #include "dolphin/types.h"
-#include "f_pc/f_pc_layer.h"
 
+typedef struct layer_class layer_class;
 struct request_base_class;
 
 class overlap_request_class {

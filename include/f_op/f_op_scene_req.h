@@ -3,8 +3,9 @@
 
 #include "SSystem/SComponent/c_phase.h"
 #include "dolphin/types.h"
-#include "f_op/f_op_scene_pause.h"
 #include "f_pc/f_pc_node_req.h"
+
+class scene_class;
 
 extern "C" {
 void fopScnRq_Handler__Fv(void);

@@ -3,8 +3,6 @@
 
 #include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
-#include "m_Do/m_Do_Reset.h"
-#include "m_Do/m_Do_main.h"
 
 typedef struct OSContext OSContext;
 class JKRHeap;

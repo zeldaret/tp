@@ -24,6 +24,7 @@
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 #include "f_ap/f_ap_game.h"
+#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_MemCard.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_controller_pad.h"

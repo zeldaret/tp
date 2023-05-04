@@ -7,6 +7,7 @@
 #include "SSystem/SComponent/c_node_iter.h"
 #include "SSystem/SComponent/c_tag_iter.h"
 #include "SSystem/SComponent/c_tree_iter.h"
+#include "f_pc/f_pc_layer.h"
 
 /* 80021B88-80021BC0 0038+00 s=1 e=4 z=0  None .text fpcLyIt_OnlyHere__FP11layer_classPFPvPv_iPv
  */

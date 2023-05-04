@@ -2,9 +2,10 @@
 #define F_PC_FSTCREATE_REQ_H_
 
 #include "dolphin/types.h"
-#include "f_pc/f_pc_base.h"
 #include "f_pc/f_pc_create_req.h"
-#include "f_pc/f_pc_layer.h"
+
+typedef struct base_process_class base_process_class;
+typedef struct layer_class layer_class;
 
 typedef int (*fstCreateFunc)(void*, void*);
 

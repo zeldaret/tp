@@ -4,11 +4,12 @@
  */
 
 #include "m_Do/m_Do_controller_pad.h"
-#include "m_Do/m_Do_main.h"
 #include "SSystem/SComponent/c_lib.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_ap/f_ap_game.h"
+#include "m_Do/m_Do_Reset.h"
+#include "m_Do/m_Do_main.h"
 
 /* 803DD2D8-803DD2E8 009FF8 0010+00 2/2 6/6 0/0 .bss             m_gamePad__8mDoCPd_c */
 JUTGamePad* mDoCPd_c::m_gamePad[4];

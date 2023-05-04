@@ -2,9 +2,10 @@
 #define D_A_GUARD_MNG_H
 
 #include "JSystem/JKernel/JKRHeap.h"
+#include "d/a/d_a_player.h"
+#include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 #include "rel/d/a/tag/d_a_tag_guard/d_a_tag_guard.h"
-#include "d/com/d_com_inf_game.h"
 
 class daGuardMng_c : public fopAc_ac_c {
 public:

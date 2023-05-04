@@ -5,6 +5,7 @@
 
 #include "d/map/d_map_path_dmap.h"
 #include "MSL_C/float.h"
+#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/map/d_map_path.h"
 #include "d/meter/d_meter_HIO.h"

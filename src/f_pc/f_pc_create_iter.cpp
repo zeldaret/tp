@@ -7,6 +7,7 @@
 #include "SSystem/SComponent/c_tag_iter.h"
 #include "f_pc/f_pc_create_iter.h"
 #include "f_pc/f_pc_create_req.h"
+#include "f_pc/f_pc_layer.h"
 
 /* 800209C8-80020A04 003C+00 s=0 e=1 z=0  None .text      fpcCtIt_Method__FPFPvPv_iPv */
 s32 fpcCtIt_Method(fpcCtIt_MethodFunc i_judgeFunc, void* i_data) {

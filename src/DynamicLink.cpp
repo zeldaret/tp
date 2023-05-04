@@ -14,6 +14,7 @@
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 #include "global.h"
+#include "m_Do/m_Do_dvd_thread.h"
 #include "m_Do/m_Do_ext.h"
 
 /* 80451138-8045113C 000638 0004+00 3/3 0/0 0/0 .sbss            mFirst__24DynamicModuleControlBase

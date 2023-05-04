@@ -4,16 +4,16 @@
 #include "JSystem/JParticle/JPAParticle.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "d/particle/d_particle_name.h"
 #include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
 
 class J3DAnmTexPattern;
 class J3DModel;
 class J3DModelData;
 class JKRExpHeap;
 class JKRSolidHeap;
+class dKy_tevstr_c;
+class fopAc_ac_c;
 
 class dPa_levelEcallBack : public JPAEmitterCallBack {
 public:

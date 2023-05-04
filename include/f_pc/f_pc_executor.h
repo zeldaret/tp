@@ -2,9 +2,10 @@
 #ifndef F_PC_EXECUTOR_H_
 #define F_PC_EXECUTOR_H_
 
-#include "f_pc/f_pc_base.h"
 #include "f_pc/f_pc_layer_iter.h"
 #include "f_pc/f_pc_line_iter.h"
+
+typedef struct base_process_class base_process_class;
 
 base_process_class* fpcEx_Search(fpcLyIt_JudgeFunc pFunc, void* pUserData);
 base_process_class* fpcEx_SearchByID(unsigned int id);

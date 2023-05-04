@@ -2,11 +2,11 @@
 #define DYNAMICLINK_H
 
 #include "dolphin/types.h"
-#include "m_Do/m_Do_dvd_thread.h"
 
 typedef struct OSModuleInfo OSModuleInfo;
 class JKRArchive;
 class JKRFileCache;
+class mDoDvdThd_callback_c;
 
 struct DynamicModuleControlBase {
     /* 0x00 */ u16 mLinkCount;

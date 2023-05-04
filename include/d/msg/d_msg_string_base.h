@@ -2,8 +2,8 @@
 #define D_MSG_D_MSG_STRING_BASE_H
 
 #include "JSystem/JMessage/resource.h"
-#include "d/msg/d_msg_object.h"
 
+class COutFont_c;
 class J2DTextBox;
 class JUTFont;
 struct jmessage_string_tControl;

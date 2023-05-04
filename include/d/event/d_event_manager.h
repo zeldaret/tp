@@ -5,6 +5,8 @@
 #include "d/event/d_event_data.h"
 #include "dolphin/types.h"
 
+class fopAc_ac_c;
+
 class dEvent_exception_c {
 public:
     dEvent_exception_c() { mEventInfoIdx = -1; }

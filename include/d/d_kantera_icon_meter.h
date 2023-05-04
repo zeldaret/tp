@@ -1,10 +1,10 @@
 #ifndef D_D_KANTERA_ICON_METER_H
 #define D_D_KANTERA_ICON_METER_H
 
-#include "d/com/d_com_inf_game.h"
 #include "d/d_drawlist.h"
-#include "d/pane/d_pane_class.h"
 #include "dolphin/types.h"
+
+class CPaneMgr;
 
 class dDlst_KanteraIcon_c : public dDlst_base_c {
 public:

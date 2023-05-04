@@ -3,9 +3,10 @@
 
 #include "JSystem/JUtility/TColor.h"
 #include "d/d_drawlist.h"
-#include "d/pane/d_pane_class.h"
 #include "dolphin/types.h"
 
+class CPaneMgr;
+class CPaneMgrAlpha;
 class J2DAnmColorKey;
 class J2DAnmTransformKey;
 class JKRExpHeap;

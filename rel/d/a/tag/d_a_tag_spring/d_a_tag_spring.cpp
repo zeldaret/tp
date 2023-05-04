@@ -5,6 +5,7 @@
 
 #include "rel/d/a/tag/d_a_tag_spring/d_a_tag_spring.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "d/a/d_a_player.h"
 #include "d/d_procname.h"
 
 /* 805A6A58-805A6A78 000078 0020+00 1/1 0/0 0/0 .text            initBaseMtx__13daTagSpring_cFv */

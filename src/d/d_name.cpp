@@ -8,10 +8,15 @@
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "MSL_C/stdio.h"
 #include "MSL_C/string.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_lib.h"
+#include "d/d_select_cursor.h"
+#include "d/pane/d_pane_class.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_msg_mng.h"
 #include "global.h"
+#include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_audio.h"
 
 //

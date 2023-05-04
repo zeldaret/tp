@@ -1,13 +1,17 @@
 #ifndef D_D_NAME_H
 #define D_D_NAME_H
 
-#include "d/com/d_com_inf_game.h"
+#include "d/d_drawlist.h"
 #include "dolphin/types.h"
 
+class CPaneMgr;
+class CPaneMgrAlpha;
 class J2DAnmColorKey;
 class J2DAnmTextureSRTKey;
 class J2DTextBox;
 class JUTFont;
+struct STControl;
+class dSelect_cursor_c;
 
 class dNm_HIO_c {
 public:

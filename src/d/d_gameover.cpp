@@ -10,9 +10,12 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "d/menu/d_menu_save.h"
+#include "d/meter/d_meter2_info.h"
 #include "d/meter/d_meter_HIO.h"
 #include "dol2asm.h"
 #include "f_op/f_op_msg_mng.h"
+#include "m_Do/m_Do_graphic.h"
+#include "m_Do/m_Do_Reset.h"
 
 //
 // Types:

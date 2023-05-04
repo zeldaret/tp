@@ -1,17 +1,20 @@
 #ifndef D_MENU_D_MENU_OPTION_H
 #define D_MENU_D_MENU_OPTION_H
 
-#include "d/d_lib.h"
-#include "d/d_select_cursor.h"
+#include "d/d_drawlist.h"
 #include "dolphin/types.h"
 
+class CPaneMgr;
+struct CSTControl;
 class J2DTextBox;
 class JUTFont;
+struct STControl;
 class dFile_warning_c;
 class dMenu_Calibration_c;
 class mDoDvdThd_mountArchive_c;
 class dMsgString_c;
 class dMeterHaihai_c;
+class dSelect_cursor_c;
 
 class dMenu_Option_c : public dDlst_base_c {
 public:

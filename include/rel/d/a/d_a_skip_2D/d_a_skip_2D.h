@@ -3,6 +3,8 @@
 
 #include "d/com/d_com_inf_game.h"
 
+class dMeterButton_c;
+
 class daSkip2D_c : public fopAc_ac_c {
 public:
     daSkip2D_c() {

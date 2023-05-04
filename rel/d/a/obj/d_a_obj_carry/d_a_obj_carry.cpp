@@ -5,6 +5,7 @@
 
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 #include "MSL_C/string.h"
+#include "d/d_stage.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"

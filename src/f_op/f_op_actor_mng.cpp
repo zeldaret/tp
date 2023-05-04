@@ -13,18 +13,20 @@
 #include "SSystem/SComponent/c_malloc.h"
 #include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
+#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "JSystem/JMath/JMath.h"
+#include "d/d_path.h"
 #include "d/d_procname.h"
 #include "d/d_stage.h"
 #include "dolphin/os/OS.h"
 #include "f_op/f_op_actor.h"
+#include "f_op/f_op_scene_mng.h"
 #include "global.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_lib.h"
 #include "m_Do/m_Do_mtx.h"
 #include "rel/d/a/tag/d_a_tag_stream/d_a_tag_stream.h"
-#include "d/d_path.h"
 
 //
 // Types:

@@ -7,6 +7,8 @@
 #include "rel/d/a/kytag/d_a_kytag14/d_a_kytag14.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 
 /* 80529998-805299A0 000078 0008+00 1/0 0/0 0/0 .text            daKytag14_Draw__FP13kytag14_class
  */

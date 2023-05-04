@@ -6,6 +6,7 @@
 #include "rel/d/a/tag/d_a_tag_stream/d_a_tag_stream.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/d_procname.h"
 
 /* 80D638F8-80D63A78 000078 0180+00 1/1 0/0 0/0 .text            create__13daTagStream_cFv */
 int daTagStream_c::create() {

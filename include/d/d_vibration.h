@@ -2,7 +2,6 @@
 #define D_D_VIBRATION_H
 
 #include "SSystem/SComponent/c_xyz.h"
-#include "d/save/d_save.h"
 #include "d/d_vib_pattern.h"
 #include "dolphin/types.h"
 

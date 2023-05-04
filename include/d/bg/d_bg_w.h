@@ -3,16 +3,13 @@
 
 #include "SSystem/SComponent/c_m3d_g_aab.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
-#include "d/bg/d_bg_s_acch.h"
-#include "d/bg/d_bg_s_grp_pass_chk.h"
-#include "d/bg/d_bg_s_poly_pass_chk.h"
 #include "d/bg/d_bg_w_base.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
 
 class cBgS_GrpPassChk;
 class cBgS_PolyPassChk;
+class fopAc_ac_c;
 
 struct dBgS_CaptPoly {};
 

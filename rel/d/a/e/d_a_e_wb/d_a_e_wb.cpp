@@ -7,6 +7,7 @@
 #include "rel/d/a/e/d_a_e_wb/d_a_e_wb.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_graphic.h"
 
 //
 // Types:

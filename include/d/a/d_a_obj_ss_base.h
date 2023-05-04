@@ -1,7 +1,7 @@
 #ifndef A_OBJ_D_A_OBJ_SS_BASE_H
 #define A_OBJ_D_A_OBJ_SS_BASE_H
 
-#include "f_op/f_op_actor_mng.h"
+#include "f_op/f_op_actor.h"
 
 class daObj_SSBase_c : public fopAc_ac_c {
 public:

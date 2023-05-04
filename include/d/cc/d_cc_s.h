@@ -2,10 +2,12 @@
 #define D_CC_D_CC_S_H
 
 #include "SSystem/SComponent/c_cc_s.h"
-#include "d/cc/d_cc_d.h"
 #include "d/cc/d_cc_mass_s.h"
 #include "dolphin/types.h"
 #include "global.h"
+
+class dCcD_GObjInf;
+class dCcD_GStts;
 
 class dCcS : public cCcS {
 public:

@@ -5,11 +5,11 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include "d/bg/d_bg_s_lin_chk.h"
 #include "d/bg/d_bg_s_gnd_chk.h"
+#include "d/d_cam_param.h"
+#include "d/d_drawlist.h"
 #include "d/d_stage.h"
 #include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
-#include "d/d_drawlist.h"
-#include "d/d_cam_param.h"
 
 class fopAc_ac_c;
 

@@ -7,6 +7,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "MSL_C/stdio.h"
 #include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 
 /* 80485F00-80485F0C 000000 0009+03 1/1 0/0 0/0 .rodata          l_specName */
 static const char l_specName[] = "spec.dat";

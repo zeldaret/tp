@@ -3,7 +3,8 @@
 
 #include "SSystem/SComponent/c_xyz.h"
 #include "f_pc/f_pc_leaf.h"
-#include "f_op/f_op_actor.h"
+
+class fopAc_ac_c;
 
 class msg_class : public leafdraw_class {
 public:

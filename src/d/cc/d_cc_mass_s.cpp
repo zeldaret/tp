@@ -6,6 +6,7 @@
 #include "d/cc/d_cc_mass_s.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/cc/d_cc_d.h"
+#include "f_op/f_op_actor.h"
 #include "global.h"
 
 /* 800852E0-800852F0 07FC20 0010+00 1/1 0/0 0/0 .text

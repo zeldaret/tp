@@ -6,7 +6,8 @@
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
+
+class fopAc_ac_c;
 
 class dJntColData_c {
 public:

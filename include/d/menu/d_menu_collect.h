@@ -1,10 +1,13 @@
 #ifndef D_MENU_D_MENU_COLLECT_H
 #define D_MENU_D_MENU_COLLECT_H
 
-#include "d/d_lib.h"
-#include "d/d_select_cursor.h"
+#include "d/d_drawlist.h"
+#include "d/kankyo/d_kankyo.h"
 #include "dolphin/types.h"
 
+class CPaneMgr;
+struct CSTControl;
+struct STControl;
 class dMsgString_c;
 class dMenu_save_c;
 class dMenu_Option_c;
@@ -12,6 +15,7 @@ class dMenu_Letter_c;
 class dMenu_Fishing_c;
 class dMenu_Skill_c;
 class dMenu_Insect_c;
+class dSelect_cursor_c;
 
 class dMenu_Collect2D_c;
 class dMenu_Collect2DTop_c : public dDlst_base_c {

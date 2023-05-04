@@ -4,15 +4,17 @@
 #include "SSystem/SComponent/c_bg_s_poly_info.h"
 #include "SSystem/SComponent/c_bg_w.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
-#include "d/bg/d_bg_s_acch.h"
-#include "d/bg/d_bg_s_sph_chk.h"
 #include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
 
 class cBgS_GndChk;
 class cBgS_LinChk;
 class cBgS_ShdwDraw;
+class dBgS_Acch;
 struct dBgS_CaptPoly;
+class dBgS_RoofChk;
+class dBgS_SphChk;
+class dBgS_SplGrpChk;
+class fopAc_ac_c;
 
 class dBgW_Base : public cBgW_BgId {
 public:

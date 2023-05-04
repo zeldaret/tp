@@ -6,6 +6,7 @@
 #include "f_pc/f_pc_draw.h"
 #include "SSystem/SComponent/c_API_graphic.h"
 #include "f_pc/f_pc_leaf.h"
+#include "f_pc/f_pc_node.h"
 #include "f_pc/f_pc_pause.h"
 
 /* 80023954-800239F4 00A0+00 s=0 e=1 z=0  None .text      fpcDw_Execute__FP18base_process_class */

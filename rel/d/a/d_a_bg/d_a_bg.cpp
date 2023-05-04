@@ -7,11 +7,13 @@
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "MSL_C/string.h"
+#include "d/bg/d_bg_w.h"
 #include "d/bg/d_bg_w_kcol.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/com/d_com_static.h"
 #include "d/d_demo.h"
 #include "dol2asm.h"
+#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_lib.h"
 
 //

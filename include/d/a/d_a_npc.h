@@ -5,7 +5,8 @@
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_path.h"
-#include "d/msg/d_msg_object.h"
+#include "d/msg/d_msg_flow.h"
+#include "d/particle/d_particle_copoly.h"
 #include "dolphin/types.h"
 #include "global.h"
 

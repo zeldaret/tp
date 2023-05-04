@@ -2,7 +2,6 @@
 #define D_FILE_D_FILE_SEL_WARNING_H
 
 #include "JSystem/JUtility/TColor.h"
-#include "d/com/d_com_inf_game.h"
 
 class JKRArchive;
 

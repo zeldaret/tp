@@ -2,11 +2,11 @@
 #define D_D_ATTENTION_H
 
 #include "SSystem/SComponent/c_angle.h"
-#include "d/a/d_a_player.h"
-#include "d/save/d_save.h"
 #include "dolphin/types.h"
 #include "global.h"
 #include "m_Do/m_Do_ext.h"
+
+class fopAc_ac_c;
 
 class dAttHint_c {
 public:

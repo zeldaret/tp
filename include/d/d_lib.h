@@ -4,7 +4,8 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/mtx/quat.h"
 #include "dolphin/os/OSTime.h"
-#include "f_op/f_op_actor.h"
+
+class fopAc_ac_c;
 
 struct JKRAramArchive;
 u32 dLib_getExpandSizeFromAramArchive(JKRAramArchive* arc, char const* resName);

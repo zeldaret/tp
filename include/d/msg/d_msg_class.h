@@ -4,9 +4,8 @@
 #include "JSystem/JMessage/control.h"
 #include "JSystem/JMessage/processor.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "d/msg/d_msg_out_font.h"
-#include "f_op/f_op_msg.h"
 
+class COutFont_c;
 class J2DTextBox;
 class JUTFont;
 

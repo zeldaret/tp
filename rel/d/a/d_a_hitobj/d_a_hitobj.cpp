@@ -5,6 +5,8 @@
 
 #include "rel/d/a/d_a_hitobj/d_a_hitobj.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_kankyo_mng.h"
 
 /* 8046B358-8046B360 000078 0008+00 1/0 0/0 0/0 .text            daHitobj_Draw__FP12hitobj_class */

@@ -3,10 +3,10 @@
 #define F_PC_PROFILE_H_
 
 #include "dolphin/types.h"
-#include "f_pc/f_pc_method.h"
 
-struct nodedraw_method_class;
-struct leafdraw_method_class;
+typedef struct nodedraw_method_class nodedraw_method_class;
+typedef struct leafdraw_method_class leafdraw_method_class;
+typedef struct process_method_class process_method_class;
 
 typedef struct process_profile_definition {
     /* 0x00 */ s32 mLayerID;

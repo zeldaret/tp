@@ -9,6 +9,7 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "d/com/d_com_inf_game.h"
+#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_mtx.h"
 #include "JSystem/JMath/JMath.h"
 

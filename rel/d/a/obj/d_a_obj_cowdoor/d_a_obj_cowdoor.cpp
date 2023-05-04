@@ -5,6 +5,7 @@
 
 #include "rel/d/a/obj/d_a_obj_cowdoor/d_a_obj_cowdoor.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "d/d_procname.h"
 
 /* 80BCC7F8-80BCC86C 000078 0074+00 2/2 0/0 0/0 .text            setBaseMtx__11daCowdoor_cFv */
 void daCowdoor_c::setBaseMtx() {

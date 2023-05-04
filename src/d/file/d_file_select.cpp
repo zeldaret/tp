@@ -9,9 +9,16 @@
 #include "d/file/d_file_select.h"
 #include "JSystem/J2DGraph/J2DAnimation.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_lib.h"
+#include "d/meter/d_meter2_info.h"
+#include "d/msg/d_msg_string.h"
+#include "d/pane/d_pane_class.h"
 #include "dol2asm.h"
 #include "dolphin/dvd/dvd.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_MemCard.h"
+#include "m_Do/m_Do_controller_pad.h"
 
 
 //

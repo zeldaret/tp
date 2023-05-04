@@ -6,6 +6,8 @@
 #include "f_pc/f_pc_fstcreate_req.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_pc/f_pc_base.h"
+#include "f_pc/f_pc_layer.h"
 #include "f_pc/f_pc_load.h"
 
 /* 80023A48-80023A98 0050+00 s=1 e=3 z=52  None .text      fpcFCtRq_Do__FP19fast_create_request */

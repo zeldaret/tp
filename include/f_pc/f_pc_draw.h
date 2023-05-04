@@ -2,7 +2,8 @@
 #define F_PC_DRAW_H_
 
 #include "dolphin/types.h"
-#include "f_pc/f_pc_base.h"
+
+typedef struct base_process_class base_process_class;
 
 typedef int (*fpcDw_HandlerFunc)(void*, void*);
 typedef int (*fpcDw_HandlerFuncFunc)(fpcDw_HandlerFunc);

@@ -8,6 +8,7 @@
 
 class cBgS_GrpPassChk;
 class cBgS_PolyPassChk;
+struct dBgPc;
 struct dBgS_CaptPoly;
 
 struct KC_PrismData {

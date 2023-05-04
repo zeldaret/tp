@@ -12,7 +12,10 @@
 #include "d/s/d_s_play.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
+#include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_scene.h"
+#include "f_op/f_op_scene_mng.h"
+#include "m_Do/m_Do_Reset.h"
 
 static bool resetArchiveBank(int param_0);
 static bool setArchiveBank(int param_0);

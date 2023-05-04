@@ -5,6 +5,8 @@
 
 #include "rel/d/a/obj/d_a_obj_cboard/d_a_obj_cboard.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "d/bg/d_bg_w.h"
+#include "d/d_procname.h"
 
 /* 8057B958-8057B978 000078 0020+00 1/1 0/0 0/0 .text            initBaseMtx__12daObjBoard_cFv */
 void daObjBoard_c::initBaseMtx() {

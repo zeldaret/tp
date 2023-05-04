@@ -4,6 +4,7 @@
  */
 
 #include "f_op/f_op_scene_pause.h"
+#include "f_op/f_op_scene.h"
 #include "f_pc/f_pc_executor.h"
 #include "f_pc/f_pc_manager.h"
 

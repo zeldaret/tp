@@ -3,7 +3,8 @@
 #define F_PC_CREATE_ITER_H_
 
 #include "dolphin/types.h"
-#include "f_pc/f_pc_create_tag.h"
+
+typedef struct create_tag create_tag;
 
 typedef int (*fpcCtIt_MethodFunc)(void*, void*);
 typedef void* (*fpcCtIt_JudgeFunc)(void*, void*);

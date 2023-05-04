@@ -4,11 +4,13 @@
 #include "JSystem/J2DGraph/J2DPane.h"
 #include "SSystem/SComponent/c_phase.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "f_op/f_op_msg.h"
+#include "d/d_drawlist.h"
 #include "d/msg/d_msg_object.h"
 #include "dolphin/os/OSTime.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_msg.h"
 
+class CPaneMgr;
 class JKRArchive;
 class JKRExpHeap;
 

@@ -9,6 +9,8 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "d/msg/d_msg_object.h"
+#include "d/msg/d_msg_out_font.h"
+#include "d/pane/d_pane_class.h"
 
 /* 8023C0DC-8023C124 236A1C 0048+00 0/0 9/9 0/0 .text            __ct__14dMsgScrnBase_cFv */
 dMsgScrnBase_c::dMsgScrnBase_c() {

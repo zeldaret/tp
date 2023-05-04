@@ -4,6 +4,7 @@
 //
 
 #include "d/event/d_event.h"
+#include "d/a/d_a_alink.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_camera.h"
 #include "d/d_demo.h"
@@ -14,6 +15,8 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_iter.h"
 #include "f_op/f_op_actor_mng.h"
+#include "m_Do/m_Do_controller_pad.h"
+#include "m_Do/m_Do_graphic.h"
 #include "rel/d/a/tag/d_a_tag_mhint/d_a_tag_mhint.h"
 #include "rel/d/a/tag/d_a_tag_mstop/d_a_tag_mstop.h"
 

@@ -4,6 +4,7 @@
 //
 
 #include "d/a/d_a_itembase_static.h"
+#include "d/a/d_a_itembase.h"
 #include "SSystem/SComponent/c_lib.h"
 #include "d/d_item_data.h"
 #include "dol2asm.h"

@@ -2,10 +2,12 @@
 #define F_F_OP_MSG_MNG_H_
 
 #include "SSystem/SComponent/c_xyz.h"
-#include "f_op/f_op_msg.h"
+#include "f_pc/f_pc_leaf.h"
 
 class JKRExpHeap;
 class JKRHeap;
+class fopAc_ac_c;
+class msg_class;
 
 struct msg_process_profile_definition {
     /* 0x00 */ leaf_process_profile_definition mBase;

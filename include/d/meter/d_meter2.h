@@ -1,17 +1,17 @@
 #ifndef D_METER_D_METER2_H
 #define D_METER_D_METER2_H
 
-#include "d/com/d_com_inf_game.h"
-#include "d/meter/d_meter2_draw.h"
-#include "d/meter/d_meter_map.h"
+#include "d/d_drawlist.h"
 #include "f_op/f_op_msg.h"
 #include "dolphin/types.h"
 
+class CPaneMgr;
 class J2DAnmColor;
 class J2DAnmTextureSRTKey;
 class J2DAnmTransformKey;
 class JKRExpHeap;
 class JKRHeap;
+class dMeter2Draw_c;
 class dMeterMap_c;
 
 class dMeterSub_c : public dDlst_base_c {
