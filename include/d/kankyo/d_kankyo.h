@@ -2,7 +2,6 @@
 #define D_KANKYO_D_KANKYO_H
 
 #include "JSystem/J3DGraphBase/J3DStruct.h"
-#include "JSystem/JParticle/JPAParticle.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "d/kankyo/d_kankyo_wether.h"
@@ -11,6 +10,7 @@
 #include "global.h"
 #include "m_Do/m_Do_ext.h"
 
+class JPABaseEmitter;
 class cBgS_PolyInfo;
 
 void dKankyo_DayProc();

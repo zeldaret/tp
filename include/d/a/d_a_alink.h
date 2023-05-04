@@ -3,6 +3,7 @@
 
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
+#include "JSystem/JParticle/JPAParticle.h"
 #include "Z2AudioLib/Z2Creature.h"
 #include "Z2AudioLib/Z2WolfHowlMgr.h"
 #include "d/a/d_a_player.h"
