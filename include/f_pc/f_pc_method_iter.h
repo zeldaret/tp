@@ -2,8 +2,9 @@
 #ifndef F_PC_METHOD_ITER_H_
 #define F_PC_METHOD_ITER_H_
 
-#include "SSystem/SComponent/c_list_iter.h"
 #include "dolphin/types.h"
+
+typedef struct node_list_class node_list_class;
 
 typedef int (*fpcMtdIt_MethodFunc)(void*);
 

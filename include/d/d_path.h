@@ -3,6 +3,8 @@
 
 #include "d/d_stage.h"
 
+class cBgS_PolyInfo;
+struct cXyz;
 class dStage_dPnt_c;
 
 struct dPath {

@@ -1,6 +1,7 @@
 #ifndef D_MENU_D_MENU_FMAP_H
 #define D_MENU_D_MENU_FMAP_H
 
+#include "SSystem/SComponent/c_xyz.h"
 #include "d/d_drawlist.h"
 #include "d/d_lib.h"
 #include "d/msg/d_msg_flow.h"

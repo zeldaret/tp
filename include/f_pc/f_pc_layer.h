@@ -2,11 +2,12 @@
 #ifndef F_PC_LAYER_H_
 #define F_PC_LAYER_H_
 
+#include "SSystem/SComponent/c_list.h"
 #include "SSystem/SComponent/c_node.h"
-#include "SSystem/SComponent/c_tag.h"
 #include "SSystem/SComponent/c_tree.h"
 #include "dolphin/types.h"
 
+typedef struct create_tag_class create_tag_class;
 struct process_method_tag_class;
 typedef struct process_node_class process_node_class;
 

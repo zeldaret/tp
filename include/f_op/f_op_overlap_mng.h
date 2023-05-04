@@ -1,8 +1,9 @@
 #ifndef F_F_OP_OVERLAP_MNG_H_
 #define F_F_OP_OVERLAP_MNG_H_
 
-#include "SSystem/SComponent/c_request.h"
 #include "f_pc/f_pc_leaf.h"
+
+struct request_base_class;
 
 class overlap_task_class : public leafdraw_class {
 public:

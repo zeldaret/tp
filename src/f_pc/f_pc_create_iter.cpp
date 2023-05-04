@@ -3,6 +3,8 @@
  * Framework - Process Create Iteration
  */
 
+#include "SSystem/SComponent/c_list_iter.h"
+#include "SSystem/SComponent/c_tag_iter.h"
 #include "f_pc/f_pc_create_iter.h"
 #include "f_pc/f_pc_create_req.h"
 

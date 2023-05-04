@@ -4,6 +4,7 @@
  */
 
 #include "f_op/f_op_actor_tag.h"
+#include "SSystem/SComponent/c_list.h"
 
 /* ############################################################################################## */
 /* 803A35E0-803A35F0 000700 000C+04 1/1 2/2 0/0 .data            g_fopAcTg_Queue */

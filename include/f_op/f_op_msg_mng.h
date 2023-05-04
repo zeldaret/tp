@@ -1,6 +1,7 @@
 #ifndef F_F_OP_MSG_MNG_H_
 #define F_F_OP_MSG_MNG_H_
 
+#include "SSystem/SComponent/c_xyz.h"
 #include "f_op/f_op_msg.h"
 
 class JKRExpHeap;

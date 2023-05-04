@@ -3,6 +3,8 @@
 
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "SSystem/SComponent/c_m3d_g_lin.h"
+#include "SSystem/SComponent/c_sxyz.h"
+#include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 

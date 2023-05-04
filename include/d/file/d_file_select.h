@@ -16,6 +16,7 @@ class J2DPicture;
 class J2DScreen;
 class JKRArchive;
 class JUTFont;
+struct cXyz;
 
 class dDlst_FileSel_c {
 public:

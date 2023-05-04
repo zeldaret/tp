@@ -1,6 +1,8 @@
 #ifndef D_PARTICLE_D_PARTICLE_COPOLY_H
 #define D_PARTICLE_D_PARTICLE_COPOLY_H
 
+#include "SSystem/SComponent/c_sxyz.h"
+#include "SSystem/SComponent/c_xyz.h"
 #include "d/bg/d_bg_s_acch.h"
 #include "dolphin/types.h"
 

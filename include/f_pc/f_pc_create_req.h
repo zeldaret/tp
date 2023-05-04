@@ -3,7 +3,6 @@
 #define F_PC_CREATE_REQ_H_
 
 #include "SSystem/SComponent/c_phase.h"
-#include "SSystem/SComponent/c_tag.h"
 #include "dolphin/types.h"
 #include "f_pc/f_pc_create_tag.h"
 #include "f_pc/f_pc_layer.h"

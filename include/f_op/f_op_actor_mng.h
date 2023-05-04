@@ -1,7 +1,6 @@
 #ifndef F_OP_ACTOR_MNG_H_
 #define F_OP_ACTOR_MNG_H_
 
-#include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
@@ -15,6 +14,7 @@
 
 class J3DModelData;  // placeholder
 class JKRHeap;
+class cM3dGPla;
 
 struct fopAcM_prmBase_class {
     /* 0x00 */ u32 field_0x00;

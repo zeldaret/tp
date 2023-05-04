@@ -3,6 +3,7 @@
  * Framework - Process Delete Tag
  */
 
+#include "SSystem/SComponent/c_list.h"
 #include "f_pc/f_pc_delete_tag.h"
 #include "global.h"
 

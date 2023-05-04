@@ -1,9 +1,9 @@
 #ifndef D_S_D_S_LOGO_H
 #define D_S_D_S_LOGO_H
 
+#include "SSystem/SComponent/c_phase.h"
 #include "d/com/d_com_inf_game.h"
 #include "dolphin/types.h"
-#include "SSystem/SComponent/c_lib.h"
 
 class JKRExpHeap;
 class JKRHeap;

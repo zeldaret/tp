@@ -2,8 +2,6 @@
 #ifndef F_PC_CREATE_ITER_H_
 #define F_PC_CREATE_ITER_H_
 
-#include "SSystem/SComponent/c_list_iter.h"
-#include "SSystem/SComponent/c_tag_iter.h"
 #include "dolphin/types.h"
 #include "f_pc/f_pc_create_tag.h"
 

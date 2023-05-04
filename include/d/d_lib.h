@@ -1,6 +1,7 @@
 #ifndef D_D_LIB_H
 #define D_D_LIB_H
 
+#include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/mtx/quat.h"
 #include "dolphin/os/OSTime.h"
 #include "f_op/f_op_actor.h"

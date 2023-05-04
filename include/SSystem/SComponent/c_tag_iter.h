@@ -2,8 +2,9 @@
 #define C_TAG_ITER_H
 
 #include "SSystem/SComponent/c_node_iter.h"
-#include "SSystem/SComponent/c_tag.h"
 #include "dolphin/types.h"
+
+typedef struct create_tag_class create_tag_class;
 
 typedef struct method_filter {
     cNdIt_MethodFunc mpMethodFunc;

@@ -1,6 +1,7 @@
 #ifndef D_SHOP_D_SHOP_ITEM_CTRL_H
 #define D_SHOP_D_SHOP_ITEM_CTRL_H
 
+#include "SSystem/SComponent/c_xyz.h"
 #include "d/a/d_a_shop_item_static.h"
 #include "dolphin/types.h"
 

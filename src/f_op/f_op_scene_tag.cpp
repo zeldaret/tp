@@ -3,6 +3,7 @@
  * Scene Process Tag
  */
 
+#include "SSystem/SComponent/c_tag.h"
 #include "f_op/f_op_scene_tag.h"
 
 /* 8001F13C-8001F15C 019A7C 0020+00 0/0 1/1 0/0 .text fopScnTg_QueueTo__FP15scene_tag_class */

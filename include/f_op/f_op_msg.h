@@ -1,6 +1,7 @@
 #ifndef F_OP_F_OP_MSG_H
 #define F_OP_F_OP_MSG_H
 
+#include "SSystem/SComponent/c_xyz.h"
 #include "f_pc/f_pc_leaf.h"
 #include "f_op/f_op_actor.h"
 

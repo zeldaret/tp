@@ -3,11 +3,11 @@
 
 #include "SSystem/SComponent/c_bg_s_chk.h"
 #include "SSystem/SComponent/c_m3d_g_aab.h"
-#include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
 
 struct cBgD_Vtx_t;
+class cM3dGPla;
 
 typedef int (*cBgS_ShdwDraw_Callback)(class cBgS_ShdwDraw*, cBgD_Vtx_t*, int, int, int, cM3dGPla*);
 

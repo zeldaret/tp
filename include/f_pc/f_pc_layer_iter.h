@@ -1,7 +1,6 @@
 #ifndef F_PC_LAYER_ITER_H_
 #define F_PC_LAYER_ITER_H_
 
-#include "SSystem/SComponent/c_node_iter.h"
 #include "dolphin/types.h"
 #include "f_pc/f_pc_layer.h"
 

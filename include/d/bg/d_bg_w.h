@@ -1,10 +1,8 @@
 #ifndef D_BG_D_BG_W_H
 #define D_BG_D_BG_W_H
 
-#include "SSystem/SComponent/c_bg_s_gnd_chk.h"
-#include "SSystem/SComponent/c_bg_s_lin_chk.h"
-#include "SSystem/SComponent/c_bg_s_poly_info.h"
-#include "SSystem/SComponent/c_m3d_g_tri.h"
+#include "SSystem/SComponent/c_m3d_g_aab.h"
+#include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "d/bg/d_bg_s_acch.h"
 #include "d/bg/d_bg_s_grp_pass_chk.h"
 #include "d/bg/d_bg_s_poly_pass_chk.h"
@@ -12,6 +10,9 @@
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
+
+class cBgS_GrpPassChk;
+class cBgS_PolyPassChk;
 
 struct dBgS_CaptPoly {};
 

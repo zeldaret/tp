@@ -2,6 +2,8 @@
 #define D_PARTICLE_D_PARTICLE_H
 
 #include "JSystem/JParticle/JPAParticle.h"
+#include "SSystem/SComponent/c_sxyz.h"
+#include "SSystem/SComponent/c_xyz.h"
 #include "d/particle/d_particle_name.h"
 #include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"

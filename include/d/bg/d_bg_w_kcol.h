@@ -1,10 +1,13 @@
 #ifndef D_BG_D_BG_W_KCOL_H
 #define D_BG_D_BG_W_KCOL_H
 
+#include "SSystem/SComponent/c_m3d_g_aab.h"
 #include "d/bg/d_bg_plc.h"
 #include "d/bg/d_bg_w_base.h"
 #include "dolphin/types.h"
 
+class cBgS_GrpPassChk;
+class cBgS_PolyPassChk;
 struct dBgS_CaptPoly;
 
 struct KC_PrismData {

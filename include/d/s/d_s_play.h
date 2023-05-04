@@ -1,6 +1,8 @@
 #ifndef D_S_D_S_PLAY_H
 #define D_S_D_S_PLAY_H
 
+#include "SSystem/SComponent/c_phase.h"
+#include "SSystem/SComponent/c_xyz.h"
 #include "d/com/d_com_inf_game.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_scene.h"

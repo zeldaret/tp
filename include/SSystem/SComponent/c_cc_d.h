@@ -1,7 +1,6 @@
 #ifndef C_CC_D_H
 #define C_CC_D_H
 
-#include "SSystem/SComponent/c_m3d.h"
 #include "SSystem/SComponent/c_m3d_g_aab.h"
 #include "SSystem/SComponent/c_m3d_g_cps.h"
 #include "SSystem/SComponent/c_m3d_g_cyl.h"

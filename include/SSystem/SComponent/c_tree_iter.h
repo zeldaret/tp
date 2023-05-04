@@ -2,8 +2,9 @@
 #define C_TREE_ITER_H
 
 #include "SSystem/SComponent/c_node_iter.h"
-#include "SSystem/SComponent/c_tree.h"
 #include "dolphin/types.h"
+
+typedef struct node_lists_tree_class node_lists_tree_class;
 
 int cTrIt_Method(node_lists_tree_class* pTree, cNdIt_MethodFunc pJudgeFunc, void* pUserData);
 void* cTrIt_Judge(node_lists_tree_class* pTree, cNdIt_JudgeFunc pJudgeFunc, void* pUserData);
