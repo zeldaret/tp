@@ -2,7 +2,6 @@
 #define D_MSG_D_MSG_OBJECT_H
 
 #include "JSystem/JMessage/control.h"
-#include "JSystem/JMessage/processor.h"
 #include "JSystem/JMessage/resource.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/msg/d_msg_class.h"
@@ -11,6 +10,9 @@ class COutFont_c;
 class J2DTextBox;
 class JUTFont;
 class dMsgScrnBase_c;
+struct jmessage_tReference;
+struct jmessage_tRenderingProcessor;
+struct jmessage_tSequenceProcessor;
 
 class dMsgObject_c : public msg_class {
 public:

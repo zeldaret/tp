@@ -2,7 +2,6 @@
 #define D_D_DEMO_H
 
 #include "JSystem/JGadget/binary.h"
-#include "JSystem/JMessage/control.h"
 #include "JSystem/JStage/JSGAmbientLight.h"
 #include "JSystem/JStage/JSGCamera.h"
 #include "JSystem/JStage/JSGFog.h"
@@ -21,6 +20,8 @@ class dDemo_camera_c;
 class dDemo_ambient_c;
 class dDemo_light_c;
 class dDemo_fog_c;
+struct jmessage_tControl;
+
 class dDemo_object_c {
 public:
     /* 80038F54 */ dDemo_object_c();

@@ -1,6 +1,7 @@
 #ifndef D_MSG_D_MSG_STRING_BASE_H
 #define D_MSG_D_MSG_STRING_BASE_H
 
+#include "JSystem/JMessage/resource.h"
 #include "d/msg/d_msg_object.h"
 
 class J2DTextBox;
