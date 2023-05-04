@@ -5,6 +5,7 @@
 
 #include "JSystem/JAudio2/JASResArcLoader.h"
 #include "JSystem/JAudio2/JASDvdThread.h"
+#include "JSystem/JAudio2/JASTaskThread.h"
 #include "JSystem/JKernel/JKRArchive.h"
 
 

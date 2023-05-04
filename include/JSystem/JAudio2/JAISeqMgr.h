@@ -1,12 +1,13 @@
 #ifndef JAISEQMGR_H
 #define JAISEQMGR_H
 
-#include "JSystem/JAudio2/JAIAudience.h"
 #include "JSystem/JAudio2/JAISeqDataMgr.h"
 #include "JSystem/JAudio2/JAISound.h"
+#include "JSystem/JAudio2/JAISoundParams.h"
 #include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JSupport/JSUList.h"
 
+struct JAIAudience;
 struct JAISeq;
 
 class JAISeqMgr : public JAISeqDataUser, public JASGlobalInstance<JAISeqMgr> {

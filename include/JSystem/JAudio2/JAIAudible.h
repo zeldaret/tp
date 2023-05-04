@@ -2,7 +2,8 @@
 #define JAIAUDIBLE_H
 
 #include "dolphin/types.h"
-#include "JSystem/JAudio2/JASSoundParams.h"
+
+struct JASSoundParams;
 
 struct JAIAudible {
     virtual ~JAIAudible();

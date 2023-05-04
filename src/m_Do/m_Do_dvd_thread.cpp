@@ -4,6 +4,8 @@
 */
 
 #include "m_Do/m_Do_dvd_thread.h"
+#include "JSystem/JAudio2/JASDvdThread.h"
+#include "JSystem/JAudio2/JASTaskThread.h"
 #include "JSystem/JKernel/JKRAssertHeap.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
@@ -17,8 +19,6 @@
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_Reset.h"
-#include "JSystem/JAudio2/JASDvdThread.h"
-#include "JSystem/JAudio2/JASTaskThread.h"
 
 /* 800157FC-80015858 01013C 005C+00 1/1 0/1 0/0 .text            main__9mDoDvdThdFPv */
 s32 mDoDvdThd::main(void* param_0) {

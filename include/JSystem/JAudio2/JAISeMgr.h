@@ -1,12 +1,15 @@
 #ifndef JAISEMGR_H
 #define JAISEMGR_H
 
-#include "JSystem/JAudio2/JAIAudience.h"
 #include "JSystem/JAudio2/JAISeqDataMgr.h"
 #include "JSystem/JAudio2/JAISound.h"
+#include "JSystem/JAudio2/JAISoundParams.h"
 #include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "global.h"
+
+struct JAIAudience;
+struct JASSoundParams;
 
 struct JASNonCopyable {
     /* 0x0 */ int field_0x0;

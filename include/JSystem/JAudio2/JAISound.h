@@ -1,8 +1,6 @@
 #ifndef JAISOUND_H
 #define JAISOUND_H
 
-#include "JSystem/JAudio2/JAIAudience.h"
-#include "JSystem/JAudio2/JAISoundHandles.h"
 #include "JSystem/JAudio2/JAISoundParams.h"
 #include "JSystem/JGeometry.h"
 #include "dolphin/types.h"

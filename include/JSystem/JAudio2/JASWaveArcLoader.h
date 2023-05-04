@@ -6,9 +6,6 @@
 #include "dolphin/os/OSMutex.h"
 #include "dolphin/types.h"
 
-#include "JSystem/JAudio2/JASDvdThread.h"
-#include "JSystem/JAudio2/JASHeapCtrl.h"
-
 class JKRHeap;
 class JKRSolidHeap;
 
