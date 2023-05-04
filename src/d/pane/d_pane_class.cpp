@@ -4,8 +4,6 @@
 //
 
 #include "d/pane/d_pane_class.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "JSystem/J2DGraph/J2DPicture.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
@@ -15,6 +13,8 @@
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JSupport/JSUMemoryStream.h"
 #include "d/d_lib.h"
+#include "dol2asm.h"
+#include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_graphic.h"
 

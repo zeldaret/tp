@@ -5,14 +5,14 @@
 
 #include "rel/d/a/e/d_a_e_yk/d_a_e_yk.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
-#include "SSystem/SComponent/c_math.h"
 #include "JSystem/JMath/JMath.h"
+#include "SSystem/SComponent/c_math.h"
 #include "c/c_damagereaction.h"
 #include "d/a/d_a_player.h"
 #include "d/d_procname.h"
 #include "d/s/d_s_play.h"
+#include "dol2asm.h"
+#include "dolphin/types.h"
 
 //
 // Forward References:
