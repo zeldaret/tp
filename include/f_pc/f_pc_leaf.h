@@ -24,7 +24,6 @@ typedef struct leaf_process_profile_definition {
     /* 0x00 */ process_profile_definition mBase;
     /* 0x1C */ leafdraw_method_class* mSubMtd; // Subclass methods
     /* 0x20 */ s16 mPriority; // mDrawPriority
-    /* 0x22 */ u8 unk22[2];   // Likely padding...
 } leaf_process_profile_definition;
 
 s16 fpcLf_GetPriority(const leafdraw_class* pLeaf);

@@ -80,6 +80,8 @@ struct Z2EnvSeMgr : public JASGlobalInstance<Z2EnvSeMgr> {
     /* 802C9F58 */ void registLv3WaterSePos(u8, Vec*);
     /* 802CA794 */ void startLv3WaterSe(s8);
 
+    void setWindType(u8 i_type) { mWindType = i_type; }
+
     /* 0x000 */ Z2EnvSeAutoPan field_0x0;
     /* 0x01C */ Z2EnvSeAutoPan field_0x1c;
     /* 0x038 */ u8 field_0x38;
@@ -112,7 +114,7 @@ struct Z2EnvSeMgr : public JASGlobalInstance<Z2EnvSeMgr> {
     /* 0x140 */ u8 field_0x140;
     /* 0x141 */ u8 field_0x141;
     /* 0x144 */ Z2EnvSeDir field_0x144;
-    /* 0x160 */ u8 field_0x160;
+    /* 0x160 */ u8 mWindType;
     /* 0x164 */ Z2MultiSeMgr field_0x164;
     /* 0x180 */ Z2EnvSeBase field_0x180;
     /* 0x188 */ u8 field_0x188;

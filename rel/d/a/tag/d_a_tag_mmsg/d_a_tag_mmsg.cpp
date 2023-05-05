@@ -121,19 +121,14 @@ extern actor_process_profile_definition g_profile_Tag_Mmsg = {
     7,                      // mListID
     0xFFFD,                 // mListPrio
     PROC_Tag_Mmsg,          // mProcName
-    0,                      // unkA
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daTagMmsg_c),    // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
     0x00FF,                 // mPriority
-    0,                      // unk22[0]
-    0,                      // unk22[1]
     &l_daTagMmsg_Method,    // mSubMtd
     0x00044000,             // mStatus
     0x03,                   // mActorType
     0x0E,                   // mCullType
-    0,                      // field_0x2e[0]
-    0                       // field_0x2e[1]
 };

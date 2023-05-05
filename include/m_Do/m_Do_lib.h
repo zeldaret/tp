@@ -17,6 +17,17 @@ struct mDoLib_clipper {
         return mClipper.clip(m, (Vec*)param_1, (Vec*)param_2);
     }
 
+    static u32 clip(const Mtx m, Vec param_1, f32 param_2) {
+        return mClipper.clip(m, param_1, param_2);
+    }
+
+    static f32 getFar() { return mSystemFar; }
+    
+    static void resetFar() {
+        mClipper.setFar(mSystemFar);
+        mClipper.calcViewFrustum();
+    }
+
     static J3DUClipper mClipper;
     static f32 mSystemFar;
     static f32 mFovyRate;

@@ -18,7 +18,10 @@ struct actor_process_profile_definition {
     /* 0x28 */ u32 mStatus;
     /* 0x2C */ u8 mActorType;
     /* 0x2D */ u8 mCullType;
-    /* 0x2E */ u8 field_0x2e[2]; // Likely padding
+};
+
+enum {
+    ACTOR_TYPE_ENEMY = 2,
 };
 
 struct JKRSolidHeap;
@@ -93,6 +96,16 @@ struct actor_attention_types {
 
 class dJntCol_c;
 
+struct cull_sphere {
+    /* 0x0 */ Vec mCenter;
+    /* 0xC */ f32 mRadius;
+};
+
+struct cull_box {
+    /* 0x0 */ Vec mMin;
+    /* 0xC */ Vec mMax;
+};
+
 class fopAc_ac_c : public leafdraw_class {
 public:
     /* 0x0C0 */ int mAcType;
@@ -119,14 +132,8 @@ public:
     /* 0x4F8 */ cXyz speed;
     /* 0x504 */ MtxP mCullMtx;
     union {
-        struct {
-            /* 0x508 */ cXyz mMin;
-            /* 0x514 */ cXyz mMax;
-        } mBox;
-        struct {
-            /* 0x508 */ cXyz mCenter;
-            /* 0x514 */ f32 mRadius;
-        } mSphere;
+        /* 0x508 */ cull_box mBox;
+        /* 0x508 */ cull_sphere mSphere;
     } mCull;
     /* 0x520 */ f32 mCullSizeFar;
     /* 0x524 */ J3DModel* model;

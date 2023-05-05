@@ -31,19 +31,14 @@ extern actor_process_profile_definition g_profile_TAG_GRA = {
     3,                      // mListID
     -3,                     // mListPrio
     PROC_TAG_GRA,           // mProcName
-    0,                      // padding
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daTagGra_c),     // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
     0x0014,                 // mPriority
-    0,                      // padding
-    0,                      // padding
     &l_daTagGra_Method,     // mSubMtd
     0x00040000,             // mStatus
     0,                      // mActorType
     0x0E,                   // mCullType
-    0,                      // padding
-    0                       // padding
 };

@@ -20,7 +20,7 @@ u32 fopAcTg_ActorQTo(create_tag_class* i_createTag) {
 }
 
 /* 80019880-800198A4 0141C0 0024+00 0/0 1/1 0/0 .text fopAcTg_Init__FP16create_tag_classPv */
-u32 fopAcTg_Init(create_tag_class* i_createTag, void* data) {
-    cTg_Create(i_createTag, data);
+u32 fopAcTg_Init(create_tag_class* i_createTag, void* i_data) {
+    cTg_Create(i_createTag, i_data);
     return 1;
 }

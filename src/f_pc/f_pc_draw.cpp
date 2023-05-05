@@ -9,19 +9,19 @@
 #include "f_pc/f_pc_pause.h"
 
 /* 80023954-800239F4 00A0+00 s=0 e=1 z=0  None .text      fpcDw_Execute__FP18base_process_class */
-s32 fpcDw_Execute(base_process_class* pProc) {
-    if (!fpcPause_IsEnable(pProc, 2)) {
+s32 fpcDw_Execute(base_process_class* i_proc) {
+    if (!fpcPause_IsEnable(i_proc, 2)) {
         layer_class* curLay;
         s32 ret;
-        process_method_func func;
+        process_method_func draw_func;
         curLay = fpcLy_CurrentLayer();
-        if (fpcBs_Is_JustOfType(g_fpcLf_type, pProc->mSubType)) {
-            func = ((leafdraw_method_class*)pProc->mpPcMtd)->mpDrawFunc;
+        if (fpcBs_Is_JustOfType(g_fpcLf_type, i_proc->mSubType)) {
+            draw_func = ((leafdraw_method_class*)i_proc->mpPcMtd)->mpDrawFunc;
         } else {
-            func = ((nodedraw_method_class*)pProc->mpPcMtd)->mpDrawFunc;
+            draw_func = ((nodedraw_method_class*)i_proc->mpPcMtd)->mpDrawFunc;
         }
-        fpcLy_SetCurrentLayer(pProc->mLyTg.mpLayer);
-        ret = func(pProc);
+        fpcLy_SetCurrentLayer(i_proc->mLyTg.mpLayer);
+        ret = draw_func(i_proc);
         fpcLy_SetCurrentLayer(curLay);
         return ret;
     } else {

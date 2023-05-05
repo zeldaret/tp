@@ -305,6 +305,26 @@ inline dJntCol_c* fopAcM_GetJntCol(fopAc_ac_c* i_actor) {
     return i_actor->mJntCol;
 }
 
+inline f32 fopAcM_getCullSizeFar(const fopAc_ac_c* i_actor) {
+    return i_actor->mCullSizeFar;
+}
+
+inline int fopAcM_GetCullSize(const fopAc_ac_c* i_actor) {
+    return i_actor->mCullType;
+}
+
+inline BOOL fopAcM_CULLSIZE_IS_BOX(int i_culltype) {
+    return (i_culltype >= 0 && i_culltype < 14) || i_culltype == 14;
+}
+
+inline Vec fopAcM_getCullSizeSphereCenter(const fopAc_ac_c* i_actor) {
+    return i_actor->mCull.mSphere.mCenter;
+}
+
+inline f32 fopAcM_getCullSizeSphereR(const fopAc_ac_c* i_actor) {
+    return i_actor->mCull.mSphere.mRadius;
+}
+
 inline void dComIfGs_onSwitch(int i_no, int i_roomNo);
 inline void dComIfGs_offSwitch(int i_no, int i_roomNo);
 inline BOOL dComIfGs_isSwitch(int i_no, int i_roomNo);

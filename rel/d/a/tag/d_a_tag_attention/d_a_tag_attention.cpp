@@ -176,16 +176,14 @@ extern actor_process_profile_definition g_profile_Tag_Attp = {
     7,                      // mListID
     -3,                     // mListPrio
     PROC_Tag_Attp,          // mProcName
-    0,                      // padding
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daAttp_c),       // mSize
     0,                      // mSizeOther
     0,                      // mParameter
     &g_fopAc_Method.base,   // mSubMtd
     0x01B8,                 // mPriority
-    0,                      // padding
-    0,                      // padding
     &l_daAttp_Method,       // mSubMtd
     0x00040100,             // mStatus
     0,                      // mActorType
+    0,                      // mCullType
 };

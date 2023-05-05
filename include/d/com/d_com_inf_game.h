@@ -321,6 +321,8 @@ public:
         mZSetFlagForce = flag;
     }
 
+    void onStatus(u16 i_status) { mStatus |= i_status; }
+
     void setItemRupeeCount(s32 rupees) { mItemRupeeCount += rupees; }
     void setItemMagicCount(s16 magic) { mItemMagicCount += magic; }
     void setItemMaxMagicCount(s16 max) { mItemMaxMagicCount += max; }
@@ -2207,6 +2209,10 @@ inline u8 dComIfGp_get3DSetFlagForce() {
     return g_dComIfG_gameInfo.play.get3DSetFlagForce();
 }
 
+inline void dComIfGp_onStatus(u16 i_status) {
+    g_dComIfG_gameInfo.play.onStatus(i_status);
+}
+
 inline void dComIfGp_setItemMagicCount(s16 count) {
     g_dComIfG_gameInfo.play.setItemMagicCount(count);
 }
@@ -2858,6 +2864,10 @@ inline BOOL i_dComIfGp_event_runCheck() {
     return g_dComIfG_gameInfo.play.getEvent().runCheck();
 }
 
+inline f32 dComIfGp_event_getCullRate() {
+    return g_dComIfG_gameInfo.play.getEvent().getCullRate();
+}
+
 inline u16 dComIfGp_event_checkHind(u16 flag) {
     if (!i_dComIfGp_event_runCheck()) {
         return false;
@@ -3256,6 +3266,10 @@ inline view_class* dComIfGd_getView() {
 
 inline Mtx44* dComIfGd_getProjViewMtx() {
     return &(g_dComIfG_gameInfo.drawlist.getView()->mProjViewMtx);
+}
+
+inline MtxP dComIfGd_getInvViewMtx() {
+    return g_dComIfG_gameInfo.drawlist.getView()->mInvViewMtx;
 }
 
 inline view_port_class* dComIfGd_getViewport() {

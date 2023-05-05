@@ -127,19 +127,14 @@ extern actor_process_profile_definition g_profile_TAG_LANTERN = {
     7,                           // mListID
     -3,                          // mListPrio
     PROC_TAG_LANTERN,            // mProcName
-    0,                           // Padding
     &g_fpcLf_Method.mBase,       // mSubMtd
     sizeof(daTag_Lantern_c),     // mSize
     0,                           // mSizeOther
     0,                           // mParameters
     &g_fopAc_Method.base,        // mSubMtd
     0x011E,                      // mPriority
-    0,                           // Padding
-    0,                           // Padding
     &daTag_Lantern_MethodTable,  // mSubMtd
     0x00040000,                  // mStatus
     0,                           // mActorType
     14,                          // mCullType
-    0,                           // Padding
-    0,                           // Padding
 };

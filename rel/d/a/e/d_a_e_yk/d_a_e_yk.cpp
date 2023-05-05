@@ -349,21 +349,16 @@ extern actor_process_profile_definition g_profile_E_YK = {
     7,                       // mListID
     -3,                      // mListPrio 
     PROC_E_YK,               // mProcName        
-    0,                       // padding 
     &g_fpcLf_Method.mBase,   // mSubMtd                    
     sizeof(e_yk_class),      // mSize                 
     0,                       // mSizeOther
     0,                       // mParameters       
     &g_fopAc_Method.base,    // mSubMtd                   
     0x00BC,                  // mPriority     
-    0,                       // padding
-    0,                       // padding 
     &l_daE_YK_Method,        // mSubMtd               
     0x10050100,              // mStatus          
-    0x02,                    // mActorType   
+    ACTOR_TYPE_ENEMY,        // mActorType   
     0x0E,                    // mCullType   
-    0,                       // padding
-    0,                       // padding
 };
 
 /* 80807E80-80807E8C 000110 000C+00 1/1 0/0 0/0 .data            __vt__12dBgS_AcchCir */
