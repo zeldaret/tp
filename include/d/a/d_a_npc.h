@@ -164,7 +164,7 @@ public:
     /* 80146188 */ int chkPassed1(cXyz, int);
     /* 801464D8 */ int chkPassed2(cXyz, cXyz*, int, int);
 
-    inline cXyz& getPntPos(u16 i_idx) {
+    inline cXyz& getPntPos(int i_idx) {
         return mpRoomPath->m_points[i_idx].m_position;
     }
 

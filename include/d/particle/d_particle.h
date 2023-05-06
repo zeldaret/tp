@@ -319,7 +319,7 @@ public:
                                   _GXColor const&, int, f32);
     /* 8004D23C */ void getSimple(u16);
     /* 8004D770 */ void setStopContinue(u32);
-    /* 8004D7C4 */ void setSimpleFoot(u32, u32*, cBgS_PolyInfo&, cXyz const*, dKy_tevstr_c const*,
+    /* 8004D7C4 */ u32 setSimpleFoot(u32, u32*, cBgS_PolyInfo&, cXyz const*, dKy_tevstr_c const*,
                                       int, csXyz const*, cXyz const*, dPa_levelEcallBack*, s8,
                                       cXyz const*);
     /* 8004D988 */ void setCommonPoly(u32*, cBgS_PolyInfo*, cXyz const*, cXyz const*,

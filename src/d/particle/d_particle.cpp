@@ -1970,7 +1970,7 @@ asm void dPa_control_c::setStopContinue(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dPa_control_c::setSimpleFoot(u32 param_0, u32* param_1, cBgS_PolyInfo& param_2,
+asm u32 dPa_control_c::setSimpleFoot(u32 param_0, u32* param_1, cBgS_PolyInfo& param_2,
                                       cXyz const* param_3, dKy_tevstr_c const* param_4, int param_5,
                                       csXyz const* param_6, cXyz const* param_7,
                                       dPa_levelEcallBack* param_8, s8 param_9,
