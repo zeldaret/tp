@@ -2249,6 +2249,39 @@ COMPILER_STRIP_GATE(0x80378898, &mtx_adj);
 
 /* 8001D42C-8001D5A4 017D6C 0178+00 0/0 3/3 40/40 .text
  * fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData         */
+// branch issue
+#ifdef NONMATCHING
+void fopAcM_setEffectMtx(const fopAc_ac_c* i_actor, const J3DModelData* modelData) {
+    const cXyz* pEyePos = &i_actor->mEyePos;
+    dCamera_c* camera = dCam_getCamera();
+    cXyz v1 = *pEyePos - camera->field_0xd8;
+    cXyz v2;
+    get_vectle_calc(&i_actor->mTevStr.field_0x32c, pEyePos, &v2);
+    Vec half;
+    C_VECHalfAngle(&v1, &v2, &half);
+    Mtx mtx;
+    C_MTXLookAt(mtx, &cXyz::Zero, &cXyz::BaseY, &half);
+    mDoMtx_stack_c::scaleS(1.0, 1.0, 1.0);
+    mDoMtx_stack_c::concat(mtx_adj);
+    mDoMtx_stack_c::concat(mtx);
+    MtxP currentMtx = mDoMtx_stack_c::get();
+    currentMtx[0][3] = 0.0;
+    currentMtx[1][3] = 0.0;
+    currentMtx[2][3] = 0.0;
+
+    Mtx mtx2;
+    mDoMtx_copy(currentMtx, mtx2);
+    for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
+        J3DMaterial* material = modelData->getMaterialNodePointer(i);
+        for (u32 j = 0; j < 8; j++) {
+            J3DTexMtx* texMtx = material->getTexMtx(j);
+            if (texMtx != NULL && texMtx->getTexMtxInfo().mInfo == 6) {
+                texMtx->setEffectMtx(mtx2);
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2257,6 +2290,7 @@ asm void fopAcM_setEffectMtx(fopAc_ac_c const* param_0, J3DModelData const* para
 #include "asm/f_op/f_op_actor_mng/fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData.s"
 }
 #pragma pop
+#endif
 
 /* 8001D5A4-8001D5EC 017EE4 0048+00 1/1 0/0 0/0 .text fopAcM_getProcNameString__FPC10fopAc_ac_c */
 static const char* fopAcM_getProcNameString(const fopAc_ac_c* i_actor) {
