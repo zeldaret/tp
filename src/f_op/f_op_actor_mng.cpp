@@ -2249,7 +2249,7 @@ COMPILER_STRIP_GATE(0x80378898, &mtx_adj);
 
 /* 8001D42C-8001D5A4 017D6C 0178+00 0/0 3/3 40/40 .text
  * fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData         */
-// branch issue
+// matches with literals
 #ifdef NONMATCHING
 void fopAcM_setEffectMtx(const fopAc_ac_c* i_actor, const J3DModelData* modelData) {
     const cXyz* pEyePos = &i_actor->mEyePos;
@@ -2275,8 +2275,12 @@ void fopAcM_setEffectMtx(const fopAc_ac_c* i_actor, const J3DModelData* modelDat
         J3DMaterial* material = modelData->getMaterialNodePointer(i);
         for (u32 j = 0; j < 8; j++) {
             J3DTexMtx* texMtx = material->getTexMtx(j);
-            if (texMtx != NULL && texMtx->getTexMtxInfo().mInfo == 6) {
-                texMtx->setEffectMtx(mtx2);
+            if (texMtx != NULL) {
+                switch (texMtx->getTexMtxInfo().mInfo) {
+                case 6:
+                    texMtx->setEffectMtx(mtx2);
+                    break;
+                }
             }
         }
     }
