@@ -19,7 +19,7 @@ public:
     void setNear(f32 near) { mNear = near; }
     void setFar(f32 far) { mFar = far; }
 
-    inline f32 getFar() { return mFar; }
+    f32 getFar() { return mFar; }
 
 private:
     Vec _04;

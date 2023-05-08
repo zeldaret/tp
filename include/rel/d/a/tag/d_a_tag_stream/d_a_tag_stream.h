@@ -11,23 +11,23 @@ public:
         return mPriority;
     }
 
-    inline static daTagStream_c* getTop() {
+    static daTagStream_c* getTop() {
         return m_top;
     }
 
-    inline daTagStream_c* getNext() {
+    daTagStream_c* getNext() {
         return mNext;
     }
 
-    inline u8 checkStreamOn() {
+    u8 checkStreamOn() {
         return mStreamOn;
     }
 
-    inline s32 checkCanoeOn() {
+    s32 checkCanoeOn() {
         return mParameters;
     }
 
-    inline u8 getPower() {
+    u8 getPower() {
         return mPower;
     }
 
