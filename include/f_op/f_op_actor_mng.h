@@ -537,7 +537,7 @@ s32 fopAcM_otoCheck(const fopAc_ac_c*, f32);
 s32 fopAcM_otherBgCheck(const fopAc_ac_c*, const fopAc_ac_c*);
 s32 fopAcM_wayBgCheck(const fopAc_ac_c*, f32, f32);
 s32 fopAcM_plAngleCheck(const fopAc_ac_c*, s16);
-s32 fopAcM_effSmokeSet1(u32*, u32*, const cXyz*, const csXyz*, f32, const dKy_tevstr_c*, int);
+void fopAcM_effSmokeSet1(u32*, u32*, const cXyz*, const csXyz*, f32, const dKy_tevstr_c*, int);
 void fopAcM_effHamonSet(u32*, const cXyz*, f32, f32);
 s32 fopAcM_riverStream(cXyz*, s16*, f32*, f32);
 s32 fopAcM_carryOffRevise(fopAc_ac_c*);

@@ -3205,6 +3205,15 @@ inline JPABaseEmitter* dComIfGp_particle_getEmitter(u32 param_0) {
     return g_dComIfG_gameInfo.play.getParticle()->getEmitter(param_0);
 }
 
+inline u32 dComIfGp_particle_setSimpleFoot(u32 param_0, u32* param_1, cBgS_PolyInfo& param_2,
+                                      cXyz const* param_3, dKy_tevstr_c const* param_4, int param_5,
+                                      csXyz const* param_6, cXyz const* param_7,
+                                      dPa_levelEcallBack* param_8, s8 param_9,
+                                      cXyz const* param_10) {
+    return g_dComIfG_gameInfo.play.getParticle()->setSimpleFoot(param_0, param_1, param_2, param_3, param_4, param_5,
+                                                         param_6, param_7, param_8, param_9, param_10);
+}
+
 inline u32 dComIfGp_particle_setPolyColor(u32 param_0, u16 param_1, cBgS_PolyInfo& param_2,
                                           const cXyz* param_3, const dKy_tevstr_c* param_4,
                                           const csXyz* param_5, const cXyz* param_6, int param_7,
