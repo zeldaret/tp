@@ -5,54 +5,7 @@
 
 #include "rel/d/a/e/d_a_e_db_leaf/d_a_e_db_leaf.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct request_of_phase_process_class {};
-
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
-
-struct mDoExt_McaMorfCallBack2_c {};
-
-struct mDoExt_McaMorfCallBack1_c {};
-
-struct J3DModelData {};
-
-struct J3DAnmTransform {};
-
-struct mDoExt_McaMorf {
-    /* 8000FC4C */ mDoExt_McaMorf(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
-                                  mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int, int,
-                                  int, void*, u32, u32);
-    /* 80010680 */ void entryDL();
-    /* 800106AC */ void modelCalc();
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct e_db_leaf_class {};
-
-struct dKy_tevstr_c {};
-
-struct cXyz {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
+#include "d/d_resorce.h"
 
 //
 // Forward References:
@@ -85,21 +38,20 @@ extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
 extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
 extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
 extern "C" void* __nw__FUl();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
 
 //
 // Declarations:
 //
 
 /* 806A1E38-806A1EA0 000078 0068+00 1/0 0/0 0/0 .text daE_DB_LEAF_Draw__FP15e_db_leaf_class */
+#ifdef NONMATCHING
+static void daE_DB_LEAF_Draw(e_db_leaf_class* leaf) {
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -108,16 +60,17 @@ static asm void daE_DB_LEAF_Draw(e_db_leaf_class* param_0) {
 #include "asm/rel/d/a/e/d_a_e_db_leaf/d_a_e_db_leaf/daE_DB_LEAF_Draw__FP15e_db_leaf_class.s"
 }
 #pragma pop
+#endif
 
 /* 806A1EA0-806A1F24 0000E0 0084+00 2/1 0/0 0/0 .text daE_DB_LEAF_Execute__FP15e_db_leaf_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daE_DB_LEAF_Execute(e_db_leaf_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_db_leaf/d_a_e_db_leaf/daE_DB_LEAF_Execute__FP15e_db_leaf_class.s"
+int daE_DB_LEAF_Execute(e_db_leaf_class* leaf) {
+    PSMTXTrans(mDoMtx_stack_c::now, leaf->current.pos.x, leaf->current.pos.y, leaf->current.pos.z);
+    mDoMtx_YrotM(mDoMtx_stack_c::now, leaf->shape_angle.y);
+    mDoMtx_XrotM(mDoMtx_stack_c::now, leaf->shape_angle.x);
+    PSMTXCopy(mDoMtx_stack_c::now,(leaf->morf->getModel()->mBaseTransformMtx));
+    leaf->morf->modelCalc();
+    return 1;
 }
-#pragma pop
 
 /* 806A1F24-806A1F2C 000164 0008+00 1/0 0/0 0/0 .text daE_DB_LEAF_IsDelete__FP15e_db_leaf_class */
 static bool daE_DB_LEAF_IsDelete(e_db_leaf_class* param_0) {
