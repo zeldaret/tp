@@ -5,7 +5,6 @@
 
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/com/d_com_inf_game.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_mtx.h"
 
@@ -13,44 +12,9 @@
 // Forward References:
 //
 
-extern "C" void __ct__16dBgS_MoveBgActorFv();
-extern "C" static void CheckCreateHeap__FP10fopAc_ac_c();
-extern "C" bool CreateHeap__16dBgS_MoveBgActorFv();
-extern "C" bool Create__16dBgS_MoveBgActorFv();
-extern "C" bool Execute__16dBgS_MoveBgActorFPPA3_A4_f();
-extern "C" bool Draw__16dBgS_MoveBgActorFv();
-extern "C" bool Delete__16dBgS_MoveBgActorFv();
-extern "C" bool IsDelete__16dBgS_MoveBgActorFv();
-extern "C" bool ToFore__16dBgS_MoveBgActorFv();
-extern "C" bool ToBack__16dBgS_MoveBgActorFv();
-extern "C" void MoveBGCreateHeap__16dBgS_MoveBgActorFv();
-extern "C" void
-MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f();
-extern "C" void MoveBGDelete__16dBgS_MoveBgActorFv();
-extern "C" void MoveBGExecute__16dBgS_MoveBgActorFv();
-extern "C" u8 m_name__16dBgS_MoveBgActor[4];
-extern "C" u8 m_dzb_id__16dBgS_MoveBgActor[4];
-extern "C" u8 m_set_func__16dBgS_MoveBgActor[4 + 4 /* padding */];
-
 //
 // External References:
 //
-
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void scaleM__14mDoMtx_stack_cFfff();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void Release__4cBgSFP9dBgW_Base();
-extern "C" void Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c();
-extern "C" void Set__4cBgWFP6cBgD_tUlPA3_A4_f();
-extern "C" void __ct__4dBgWFv();
-extern "C" void Move__4dBgWFv();
-extern "C" void ChkUsed__9cBgW_BgIdCFv();
-extern "C" void* __nw__FUl();
-extern "C" void _savegpr_27();
-extern "C" void _restgpr_27();
-extern "C" u8 now__14mDoMtx_stack_c[48];
 
 //
 // Declarations:
@@ -150,7 +114,6 @@ int dBgS_MoveBgActor::MoveBGCreateHeap() {
  * MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f
  */
 // close
-#ifdef NONMATCHING
 int dBgS_MoveBgActor::MoveBGCreate(char const* p_name, int dzb_id, MoveBGActor_SetFunc set_func,
                                    u32 param_3, Mtx* param_4) {
     if (param_4 == NULL) {
@@ -169,24 +132,13 @@ int dBgS_MoveBgActor::MoveBGCreate(char const* p_name, int dzb_id, MoveBGActor_S
     if (!fopAcM_entrySolidHeap(this, CheckCreateHeap, param_3)) {
         return 5;
     } else {
-        if (field_0x568 == NULL || dComIfG_Bgsp().Regist(field_0x568, this)) {
+        if (field_0x568 != NULL && dComIfG_Bgsp().Regist(field_0x568, this)) {
             return 5;
         } else {
-            return Create() + 5;
+            return Create() ? 4 : 5;
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dBgS_MoveBgActor::MoveBGCreate(char const* param_0, int param_1, MoveBGActor_SetFunc,
-                                       u32 param_3, Mtx* param_4) {
-    nofralloc
-#include "asm/d/bg/d_bg_s_movebg_actor/func_800787BC.s"
-}
-#pragma pop
-#endif
 
 /* 800788DC-80078950 07321C 0074+00 0/0 0/0 169/169 .text MoveBGDelete__16dBgS_MoveBgActorFv */
 int dBgS_MoveBgActor::MoveBGDelete() {
