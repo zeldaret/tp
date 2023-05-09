@@ -75,6 +75,7 @@ public:
     inline void calcZRatio();
     void setNonSort() { mSortType = 5; }
     void setZSort() { mSortType = 2; }
+    void setZMtx(MtxP mtx) { mpZMtx = mtx; }
 
 public:
     /* 0x00 */ J3DPacket** mpBuf;

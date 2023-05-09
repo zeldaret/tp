@@ -102,6 +102,7 @@ public:
     void lock() { onFlag(LOCKED); }
     void unlock() { offFlag(LOCKED); }
     J3DTexMtxObj* getTexMtxObj() const { return mpTexMtxObj; }
+    bool isLocked() const { return checkFlag(1); }
 
 public:
     /* 0x10 */ u32 mFlags;
@@ -150,6 +151,7 @@ public:
     J3DShapePacket* getShapePacket() const { return mpShapePacket; }
     void setShapePacket(J3DShapePacket* packet) { mpShapePacket = packet; }
     void setInitShapePacket(J3DShapePacket* packet) { mpInitShapePacket = packet; }
+    void setMaterialAnmID(J3DMaterialAnm* materialAnm) { mpMaterialAnm = materialAnm; }
     bool isChanged() const { return mDiffFlag & 0x80000000; }
 
     virtual ~J3DMatPacket();
