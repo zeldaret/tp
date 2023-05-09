@@ -4,11 +4,7 @@
  */
 
 #include "JSystem/JAudio2/JASSeqReader.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
-
-
-extern "C" void loopEnd__12JASSeqReaderFv();
 
 /* 80296108-80296148 290A48 0040+00 0/0 2/2 0/0 .text            init__12JASSeqReaderFv */
 void JASSeqReader::init() {
@@ -17,7 +13,7 @@ void JASSeqReader::init() {
     field_0x08 = 0;
 
     for (int i = 0; i < 8; i++) {
-        field_0x0c[i] = 0;
+        field_0x0c[i] = NULL;
         field_0x2c[i] = 0;
     }
 }
@@ -29,7 +25,7 @@ void JASSeqReader::init(void* param_0) {
     field_0x08 = 0;
 
     for (int i = 0; i < 8; i++) {
-        field_0x0c[i] = 0;
+        field_0x0c[i] = NULL;
         field_0x2c[i] = 0;
     }
     
@@ -37,15 +33,11 @@ void JASSeqReader::init(void* param_0) {
 
 /* 8029618C-802961CC 290ACC 0040+00 0/0 3/3 0/0 .text            call__12JASSeqReaderFUl */
 bool JASSeqReader::call(u32 param_0) {
-    if (8 <= field_0x08) {
+    if (field_0x08 >= 8) {
         return false;
     }
 
-    u16* tmp2 = (u16*)field_0x04;
-    u32 tmp = field_0x08;
-
-    field_0x08++;
-    field_0x0c[tmp] = tmp2;
+    field_0x0c[field_0x08++] = (u16*)field_0x04;
     field_0x04 = (u8*)((int)field_0x00 + param_0);
 
     return true;
@@ -58,24 +50,19 @@ bool JASSeqReader::loopStart(u32 param_0) {
     }
 
     field_0x0c[field_0x08] = (u16*)field_0x04;
-    
-    u32 tmp = field_0x08;
-    field_0x08 = tmp+1;
-    field_0x2c[tmp] = param_0;
+    field_0x2c[field_0x08++] = param_0;
 
     return true;
 }
 
 
 /* 80296210-8029627C 290B50 006C+00 0/0 1/1 0/0 .text            loopEnd__12JASSeqReaderFv */
-#ifdef NONMATCHING
-// not sure. field_0x0c is typed wrong maybe?
-int JASSeqReader::loopEnd() {
+bool JASSeqReader::loopEnd() {
     if (field_0x08 == 0) {
         return false;
     }
 
-    u16 tmp = (u16)field_0x0c[field_0x08];
+    u16 tmp = field_0x2c[field_0x08 - 1];
 
     if (tmp != 0) {
         tmp--;
@@ -86,32 +73,18 @@ int JASSeqReader::loopEnd() {
         return true;
     }
 
-    field_0x0c[field_0x08] = (u16*)tmp;
-    field_0x04 = (u8*)field_0x0c[field_0x08-1];
+    field_0x2c[field_0x08 - 1] = tmp;
+    field_0x04 = (u8*)field_0x0c[field_0x08 - 1];
     return true;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool JASSeqReader::loopEnd() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASSeqReader/loopEnd__12JASSeqReaderFv.s"
-}
-#pragma pop
-#endif
 
 /* 8029627C-802962B0 290BBC 0034+00 0/0 2/2 0/0 .text            ret__12JASSeqReaderFv */
 bool JASSeqReader::ret() {
-    u32 tmp = field_0x08;
-
-    if (tmp == 0) {
+    if (field_0x08 == 0) {
         return false;
     }
 
-    tmp--;
-    field_0x08 = tmp;
-    field_0x04 = (u8*)field_0x0c[tmp];
+    field_0x04 = (u8*)field_0x0c[--field_0x08];
 
     return true;
 }
