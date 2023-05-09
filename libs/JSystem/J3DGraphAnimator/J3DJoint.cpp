@@ -200,6 +200,7 @@ J3DJoint::J3DJoint() {
     mJntNo = 0;
     mKind = 1;
     mScaleCompensate = false;
+    // This line is probably a fake match but the normal = works nothing like this.
     *(copyhelper*)&mTransformInfo = *(copyhelper*)&j3dDefaultTransformInfo;
     mBoundingSphereRadius = 0.0f;
     mMtxCalc = NULL;
