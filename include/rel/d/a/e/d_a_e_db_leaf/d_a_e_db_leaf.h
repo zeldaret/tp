@@ -3,15 +3,15 @@
 
 #include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/kankyo/d_kankyo.h"
+#include "d/d_resorce.h"
 #include "dolphin/types.h"
 
 class e_db_leaf_class : public fopAc_ac_c {
 public:
     /* 0x568 */ u8 field_0x568[68];
     /* 0x5AC */ request_of_phase_process_class mPhase;
-    /* 0x5B4 */ mDoExt_McaMorf* morf;
-
-    int useHeapInit();
+    /* 0x5B4 */ mDoExt_McaMorf* mpMorf;
 }; // Size: 0x5B8
 
 
