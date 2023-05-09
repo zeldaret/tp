@@ -117,7 +117,7 @@ public:
     /* 0x10C */ dKy_tevstr_c mTevStr;
     /* 0x494 */ u16 mSetID;
     /* 0x496 */ u8 mGroup;
-    /* 0x497 */ u8 mCullType;
+    /* 0x497 */ s8 mCullType;
     /* 0x498 */ u8 mDemoActorId;
     /* 0x499 */ s8 mSubtype;
     /* 0x49A */ u8 mCarryType;

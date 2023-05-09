@@ -4,53 +4,28 @@
 //
 
 #include "JSystem/J3DGraphAnimator/J3DJoint.h"
+#include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "JSystem/J3DGraphAnimator/J3DMtxBuffer.h"
+#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
+#include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/JMath/JMath.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_mtx.h"
 
 //
 // Types:
 //
 
-struct J3DDrawBuffer {
-    static u8 entryNum[4 + 4 /* padding */];
-};
-
 //
 // Forward References:
 //
 
-extern "C" void init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf();
-extern "C" void init__24J3DMtxCalcJ3DSysInitMayaFRC3VecRA3_A4_Cf();
-extern "C" void calcTransform__28J3DMtxCalcCalcTransformBasicFRC16J3DTransformInfo();
-extern "C" void calcTransform__32J3DMtxCalcCalcTransformSoftimageFRC16J3DTransformInfo();
-extern "C" void calcTransform__27J3DMtxCalcCalcTransformMayaFRC16J3DTransformInfo();
-extern "C" void appendChild__8J3DJointFP8J3DJoint();
-extern "C" void __ct__8J3DJointFv();
-extern "C" void entryIn__8J3DJointFv();
-extern "C" void recursiveCalc__8J3DJointFv();
-extern "C" u8 mMtxBuffer__10J3DMtxCalc[4];
-extern "C" u8 mJoint__10J3DMtxCalc[4];
-extern "C" u8 mCurrentMtxCalc__8J3DJoint[4 + 4 /* padding */];
-
 //
 // External References:
 //
-
-extern "C" void
-J3DGetTranslateRotateMtx__FRC16J3DTransformInfoPA4_f(J3DTransformInfo const& param_0,
-                                                     f32 (*param_1)[4]);
-extern "C" void J3DGetTranslateRotateMtx__FsssfffPA4_f();
-extern "C" void setCurrentMtx__11J3DMaterialFv();
-extern "C" void JMAMTXApplyScale__FPA4_CfPA4_ffff(const Mtx*, Mtx*, f32, f32, f32);
-extern "C" void _savegpr_27();
-extern "C" void _restgpr_27();
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" f32 mCurrentS__6J3DSys[3];
-extern "C" f32 mParentS__6J3DSys[3];
-extern "C" u8 entryNum__13J3DDrawBuffer[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -204,28 +179,18 @@ void J3DJoint::appendChild(J3DJoint* pChild) {
 }
 
 /* ############################################################################################## */
-/* 803A2080-803A208C 02E6E0 000C+00 1/1 0/0 0/0 .rodata          @1257 */
-SECTION_RODATA static u8 const lit_1257[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A2080, &lit_1257);
 
-/* 803A208C-803A2098 02E6EC 000C+00 1/1 0/0 0/0 .rodata          @1259 */
-SECTION_RODATA static u8 const lit_1259[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A208C, &lit_1259);
+#pragma push
+#pragma force_active on
+/* dead data */
+SECTION_DEAD static u32 const pad_803A2080[2] = {0,0};
+#pragma pop
 
-/* 804564A4-804564A8 004AA4 0004+00 1/1 0/0 0/0 .sdata2          @1220 */
-SECTION_SDATA2 static u8 lit_1220[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+struct copyhelper {
+    u32 x[8];
 };
 
 /* 8032F170-8032F254 329AB0 00E4+00 0/0 1/1 0/0 .text            __ct__8J3DJointFv */
-#ifdef NONMATCHING
 J3DJoint::J3DJoint() {
     mCallBackUserData = NULL;
     mCallBack = NULL;
@@ -235,46 +200,105 @@ J3DJoint::J3DJoint() {
     mJntNo = 0;
     mKind = 1;
     mScaleCompensate = false;
-    mTransformInfo = j3dDefaultTransformInfo;
+    *(copyhelper*)&mTransformInfo = *(copyhelper*)&j3dDefaultTransformInfo;
     mBoundingSphereRadius = 0.0f;
     mMtxCalc = NULL;
     mMesh = NULL;
 
     Vec init = {0.0f, 0.0f, 0.0f};
     mMin = init;
-    mMax = init;
+    Vec init2 = {0.0f, 0.0f, 0.0f};
+    mMax = init2;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DJoint::J3DJoint() {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DJoint/__ct__8J3DJointFv.s"
-}
-#pragma pop
-#endif
 
 /* 8032F254-8032F3F8 329B94 01A4+00 0/0 1/1 0/0 .text            entryIn__8J3DJointFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DJoint::entryIn() {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DJoint/entryIn__8J3DJointFv.s"
+void J3DJoint::entryIn() {
+    MtxP anmMtx = j3dSys.getModel()->i_getAnmMtx(mJntNo);
+    j3dSys.getDrawBuffer(0)->setZMtx(anmMtx);
+    j3dSys.getDrawBuffer(1)->setZMtx(anmMtx);
+    for  (J3DMaterial* mesh = mMesh; mesh != NULL; ) {
+        if (mesh->getShape()->checkFlag(1)) {
+            mesh = mesh->getNext();
+        } else {
+            J3DMatPacket* matPacket = j3dSys.getModel()->getMatPacket(mesh->getIndex());
+            J3DShapePacket* shapePacket = j3dSys.getModel()->getShapePacket(mesh->getShape()->getIndex());
+            if (!matPacket->isLocked()) {
+                if (mesh->getMaterialAnm()) {
+                    J3DMaterialAnm* piVar8 = mesh->getMaterialAnm();
+                    piVar8->calc(mesh);
+                }
+                mesh->calc(anmMtx);
+            }
+            mesh->setCurrentMtx();
+            matPacket->setMaterialAnmID(mesh->getMaterialAnm());
+            matPacket->setShapePacket(shapePacket);
+            J3DDrawBuffer* drawBuffer = j3dSys.getDrawBuffer(mesh->isDrawModeOpaTexEdge());
+            if ((u8)matPacket->entry(drawBuffer)) {
+                j3dSys.setMatPacket(matPacket);
+                J3DDrawBuffer::entryNum++;
+                mesh->makeDisplayList();
+            }
+            mesh = mesh->getNext();
+        }
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804515F8-80451600 000AF8 0004+04 1/1 1/1 0/0 .sbss            mCurrentMtxCalc__8J3DJoint */
 J3DMtxCalc* J3DJoint::mCurrentMtxCalc;
 
 /* 8032F3F8-8032F5A8 329D38 01B0+00 0/0 1/1 0/0 .text            recursiveCalc__8J3DJointFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DJoint::recursiveCalc() {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DJoint/recursiveCalc__8J3DJointFv.s"
+void J3DJoint::recursiveCalc() {
+    J3DMtxCalc* prevMtxCalc = NULL;
+    Mtx prevCurrentMtx;
+    mDoMtx_copy(J3DSys::mCurrentMtx, prevCurrentMtx);
+    f32 currentX = J3DSys::mCurrentS.x;
+    f32 currentY = J3DSys::mCurrentS.y;
+    f32 currentZ = J3DSys::mCurrentS.z;
+    f32 parentX = J3DSys::mParentS.x;
+    f32 parentY = J3DSys::mParentS.y;
+    f32 parentZ = J3DSys::mParentS.z;
+    if (getMtxCalc() != NULL) {
+        prevMtxCalc = getCurrentMtxCalc();
+        J3DMtxCalc* piVar2 = this->getMtxCalc();
+        setCurrentMtxCalc(piVar2);
+        J3DMtxCalc::setJoint(this);
+        piVar2->calc();
+    } else {
+        if (getCurrentMtxCalc() != NULL) {
+            J3DMtxCalc* uVar6 = getCurrentMtxCalc();
+            J3DMtxCalc::setJoint(this);
+            uVar6->calc();
+        }
+    }
+
+    J3DJointCallBack jointCallback = getCallBack();
+    if (jointCallback != NULL) {
+        (*jointCallback)(this, 0);
+    }
+
+    J3DJoint* child = getChild();
+    if (child != NULL) {
+        child->recursiveCalc();
+    }
+    mDoMtx_copy(prevCurrentMtx, J3DSys::mCurrentMtx);
+    
+    J3DSys::mCurrentS.x = currentX;
+    J3DSys::mCurrentS.y = currentY;
+    J3DSys::mCurrentS.z = currentZ;
+    J3DSys::mParentS.x = parentX;
+    J3DSys::mParentS.y = parentY;
+    J3DSys::mParentS.z = parentZ;
+
+    if (prevMtxCalc != NULL) {
+        setCurrentMtxCalc(prevMtxCalc);
+    }
+    if (jointCallback != NULL) {
+        (*jointCallback)(this, 1);
+    }
+
+    J3DJoint* younger = getYounger();
+    if (younger != NULL) {
+        younger->recursiveCalc();
+    }
 }
-#pragma pop

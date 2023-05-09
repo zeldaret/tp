@@ -11,16 +11,20 @@
 #include "MSL_C/math.h"
 #include "SSystem/SComponent/c_lib.h"
 #include "SSystem/SComponent/c_malloc.h"
-#include "SSystem/SComponent/c_math.h"
+#include "dol2asm.h"
+#include "global.h"
 #include "d/com/d_com_inf_game.h"
+#include "JSystem/JMath/JMath.h"
+#include "SSystem/SComponent/c_math.h"
 #include "d/d_procname.h"
 #include "d/d_stage.h"
-#include "dol2asm.h"
 #include "f_op/f_op_actor.h"
 #include "global.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_lib.h"
 #include "m_Do/m_Do_mtx.h"
+#include "rel/d/a/tag/d_a_tag_stream/d_a_tag_stream.h"
+#include "d/d_path.h"
 
 //
 // Types:
@@ -28,12 +32,6 @@
 
 struct l_HIO {
     /* 8001E098 */ ~l_HIO();
-};
-
-struct daTagStream_c {
-    /* 800318B4 */ void checkArea(cXyz const*);
-
-    static u8 m_top[4];
 };
 
 class dEnemyItem_c {
@@ -797,31 +795,25 @@ SECTION_SDATA2 static u8 lit_4645[4] = {
     0x00,
 };
 
-inline f32 JMAFastSqrt__Ff(f32 f) {
-    if (f > /* 0.0f */ FLOAT_LABEL(lit_4645)) {
-        f *= __frsqrte(f);  // generates a useless frsp
-    }
-    return f;
-}
-
 inline f32 square(f32 f) {
     return f * f;
 }
 
 /* 8001A738-8001A79C 015078 0064+00 0/0 0/0 13/13 .text
  * fopAcM_searchActorAngleX__FPC10fopAc_ac_cPC10fopAc_ac_c      */
+// matches with literals
 #ifdef NONMATCHING
 s16 fopAcM_searchActorAngleX(const fopAc_ac_c* i_actorA, const fopAc_ac_c* i_actorB) {
     const cXyz& posA = fopAcM_GetPosition_p(i_actorA);
     const cXyz& posB = fopAcM_GetPosition_p(i_actorB);
     return cM_atan2s(posB.y - posA.y,
-                     JMAFastSqrt__Ff(square(posB.x - posA.x) + square(posB.z - posA.z)));
+                     JMAFastSqrt(square(posB.x - posA.x) + square(posB.z - posA.z)));
 }
 #else
 #pragma push
 #pragma optimization_level 0
-#pragma optimizewithasm off
-asm s16 fopAcM_searchActorAngleX(const fopAc_ac_c* i_actorA, const fopAc_ac_c* i_actorB) {
+#pragma optimizewithasm off 
+asm s16 fopAcM_searchActorAngleX(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_searchActorAngleX__FPC10fopAc_ac_cPC10fopAc_ac_c.s"
 }
@@ -1187,8 +1179,6 @@ s32 fopAcM_orderTalkItemBtnEvent(u16 eventType, fopAc_ac_c* actorA, fopAc_ac_c* 
 
 /* 8001B19C-8001B244 015ADC 00A8+00 0/0 3/3 16/16 .text fopAcM_orderSpeakEvent__FP10fopAc_ac_cUsUs
  */
-// wrong load order
-#ifdef NONMATCHING
 s32 fopAcM_orderSpeakEvent(fopAc_ac_c* actor, u16 priority, u16 flag) {
     if (!i_dComIfGp_getEvent().i_isOrderOK() &&
         (!(flag & 0x400) || !i_dComIfGp_getEvent().isChangeOK(actor)))
@@ -1203,16 +1193,6 @@ s32 fopAcM_orderSpeakEvent(fopAc_ac_c* actor, u16 priority, u16 flag) {
     return dComIfGp_event_order(EVT_TYPE_TALK, priority, flag, 0x14F, dComIfGp_getPlayer(0), actor,
                                 -1, -1);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_orderSpeakEvent(fopAc_ac_c* param_0, u16 param_1, u16 param_2) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_orderSpeakEvent__FP10fopAc_ac_cUsUs.s"
-}
-#pragma pop
-#endif
 
 /* 8001B244-8001B334 015B84 00F0+00 0/0 2/2 0/0 .text
  * fopAcM_orderDoorEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs       */
@@ -1420,8 +1400,6 @@ s32 fopAcM_orderPotentialEvent(fopAc_ac_c* actor, u16 flag, u16 param_2, u16 pri
 
 /* 8001B9D0-8001BA7C 016310 00AC+00 0/0 3/3 12/12 .text fopAcM_orderItemEvent__FP10fopAc_ac_cUsUs
  */
-// load order
-#ifdef NONMATCHING
 s32 fopAcM_orderItemEvent(fopAc_ac_c* actor, u16 priority, u16 flag) {
     if (!i_dComIfGp_getEvent().i_isOrderOK() &&
         (!(flag & 0x400) || !i_dComIfGp_getEvent().isChangeOK(actor)))
@@ -1436,16 +1414,6 @@ s32 fopAcM_orderItemEvent(fopAc_ac_c* actor, u16 priority, u16 flag) {
     return dComIfGp_event_order(EVT_TYPE_ITEM, priority, flag, -1, dComIfGp_getPlayer(0), actor, -1,
                                 -1);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_orderItemEvent(fopAc_ac_c* param_0, u16 param_1, u16 param_2) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_orderItemEvent__FP10fopAc_ac_cUsUs.s"
-}
-#pragma pop
-#endif
 
 /* 8001BA7C-8001BB14 0163BC 0098+00 0/0 1/1 0/0 .text
  * fopAcM_orderTreasureEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs   */
@@ -1951,7 +1919,6 @@ void* enemySearchJugge(void* i_actor, void* i_data) {
 }
 
 /* 8001CA1C-8001CAD8 01735C 00BC+00 0/0 0/0 6/6 .text            fopAcM_myRoomSearchEnemy__FSc */
-#ifdef NONMATCHING
 fopAc_ac_c* fopAcM_myRoomSearchEnemy(s8 i_roomNo) {
     int procID = dStage_roomControl_c::getStatusProcID(i_roomNo);
     scene_class* roomProc = fopScnM_SearchByID(procID);
@@ -1959,22 +1926,12 @@ fopAc_ac_c* fopAcM_myRoomSearchEnemy(s8 i_roomNo) {
     u32 actorID = ((daPy_py_c*)dComIfGp_getPlayer(0))->getGrabActorID();
     fopAc_ac_c* actor = fopAcM_SearchByID(actorID);
 
-    if (actor != NULL && fopAcM_GetGroup(actor) != 2) {
-        return;
+    if (actor != NULL && fopAcM_GetGroup(actor) == 2) {
+        return actor;
     }
 
-    fpcM_JudgeInLayer(fpcM_LayerID(roomProc), enemySearchJugge, NULL);
+    return (fopAc_ac_c*) fpcM_JudgeInLayer(fpcM_LayerID(roomProc), enemySearchJugge, NULL);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm fopAc_ac_c* fopAcM_myRoomSearchEnemy(s8 param_0) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_myRoomSearchEnemy__FSc.s"
-}
-#pragma pop
-#endif
 
 /* 8001CAD8-8001CB48 017418 0070+00 0/0 0/0 81/81 .text
  * fopAcM_createDisappear__FPC10fopAc_ac_cPC4cXyzUcUcUc         */
@@ -2166,15 +2123,23 @@ f32 fopAcM_gc_c::mGroundY;
 
 /* 8001D020-8001D10C 017960 00EC+00 0/0 0/0 96/96 .text
  * fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_effSmokeSet1(u32* param_0, u32* param_1, cXyz const* param_2, csXyz const* param_3,
-                            f32 param_4, dKy_tevstr_c const* param_5, int param_6) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci.s"
+void fopAcM_effSmokeSet1(u32* param_0, u32* param_1, cXyz const* param_2, csXyz const* param_3,
+                        f32 param_4, dKy_tevstr_c const* param_5, int param_6) {
+    cXyz p2;
+    float z = param_2->z;
+    float y = FLOAT_LABEL(lit_6035) + param_2->y;
+    p2.x = param_2->x;
+    p2.y = y;
+    p2.z = z;
+    if (fopAcM_gc_c::gndCheck(&p2)) {
+        p2.y = fopAcM_gc_c::getGroundY();
+        cXyz stack_18;
+        stack_18.x = param_4;
+        stack_18.y = param_4;
+        stack_18.z = param_4;
+        *param_0 = dComIfGp_particle_setSimpleFoot(*param_0, param_1, *fopAcM_gc_c::getGroundCheck(), &p2, param_5, param_6, param_3, &stack_18, NULL, 0xff, NULL);
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451C50-80451C54 000250 0004+00 1/1 0/0 0/0 .sdata2          hamon_name$6107 */
@@ -2284,6 +2249,43 @@ COMPILER_STRIP_GATE(0x80378898, &mtx_adj);
 
 /* 8001D42C-8001D5A4 017D6C 0178+00 0/0 3/3 40/40 .text
  * fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData         */
+// matches with literals
+#ifdef NONMATCHING
+void fopAcM_setEffectMtx(const fopAc_ac_c* i_actor, const J3DModelData* modelData) {
+    const cXyz* pEyePos = &i_actor->mEyePos;
+    dCamera_c* camera = dCam_getCamera();
+    cXyz v1 = *pEyePos - camera->field_0xd8;
+    cXyz v2;
+    get_vectle_calc(&i_actor->mTevStr.field_0x32c, pEyePos, &v2);
+    Vec half;
+    C_VECHalfAngle(&v1, &v2, &half);
+    Mtx mtx;
+    C_MTXLookAt(mtx, &cXyz::Zero, &cXyz::BaseY, &half);
+    mDoMtx_stack_c::scaleS(1.0, 1.0, 1.0);
+    mDoMtx_stack_c::concat(mtx_adj);
+    mDoMtx_stack_c::concat(mtx);
+    MtxP currentMtx = mDoMtx_stack_c::get();
+    currentMtx[0][3] = 0.0;
+    currentMtx[1][3] = 0.0;
+    currentMtx[2][3] = 0.0;
+
+    Mtx mtx2;
+    mDoMtx_copy(currentMtx, mtx2);
+    for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
+        J3DMaterial* material = modelData->getMaterialNodePointer(i);
+        for (u32 j = 0; j < 8; j++) {
+            J3DTexMtx* texMtx = material->getTexMtx(j);
+            if (texMtx != NULL) {
+                switch (texMtx->getTexMtxInfo().mInfo) {
+                case 6:
+                    texMtx->setEffectMtx(mtx2);
+                    break;
+                }
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2292,6 +2294,7 @@ asm void fopAcM_setEffectMtx(fopAc_ac_c const* param_0, J3DModelData const* para
 #include "asm/f_op/f_op_actor_mng/fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData.s"
 }
 #pragma pop
+#endif
 
 /* 8001D5A4-8001D5EC 017EE4 0048+00 1/1 0/0 0/0 .text fopAcM_getProcNameString__FPC10fopAc_ac_c */
 static const char* fopAcM_getProcNameString(const fopAc_ac_c* i_actor) {
@@ -2352,7 +2355,6 @@ fopAc_ac_c* fopAcM_findObject4EventCB(fopAc_ac_c* i_actor, void* i_data) {
 
 /* 8001D7A0-8001D890 0180E0 00F0+00 0/0 7/7 0/0 .text            fopAcM_searchFromName4Event__FPCcs
  */
-#ifdef NONMATCHING
 fopAc_ac_c* fopAcM_searchFromName4Event(char const* name, s16 eventID) {
     fopAcM_search4ev_prm prm;
     prm.mEventID = eventID;
@@ -2369,7 +2371,7 @@ fopAc_ac_c* fopAcM_searchFromName4Event(char const* name, s16 eventID) {
                 prm.mEventID = 0xFFFF;
                 break;
             }
-            prm.mEventID += chr[0] - 0x30;  // ?
+            prm.mEventID = prm.mEventID * 10 + (chr[0] - 0x30);
         }
     }
 
@@ -2382,16 +2384,6 @@ fopAc_ac_c* fopAcM_searchFromName4Event(char const* name, s16 eventID) {
     prm.mSubType = objInf->mSubtype;
     return fopAcM_Search((fopAcIt_JudgeFunc)fopAcM_findObject4EventCB, &prm);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm fopAc_ac_c* fopAcM_searchFromName4Event(char const* name, s16 eventID) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_searchFromName4Event__FPCcs.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 803F1D18-803F1D24 01EA38 000C+00 0/1 0/0 0/0 .bss             @6509 */
@@ -2444,15 +2436,37 @@ void fpoAcM_relativePos(fopAc_ac_c const* actor, cXyz const* p_inPos, cXyz* p_ou
 
 /* 8001D9A8-8001DAE4 0182E8 013C+00 0/0 1/1 9/9 .text
  * fopAcM_getWaterStream__FPC4cXyzRC13cBgS_PolyInfoP4cXyzPii    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 fopAcM_getWaterStream(cXyz const* param_0, cBgS_PolyInfo const& param_1, cXyz* param_2,
-                              int* param_3, int param_4) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_getWaterStream__FPC4cXyzRC13cBgS_PolyInfoP4cXyzPii.s"
+s32 fopAcM_getWaterStream(cXyz const* param_0, cBgS_PolyInfo const& param_1, cXyz* speed,
+                          int* param_3, int param_4) {
+    daTagStream_c* stream = daTagStream_c::getTop();
+    if (stream != NULL) {
+        for (stream = daTagStream_c::getTop(); stream != NULL; stream = stream->getNext()) {
+            if (stream->checkStreamOn() &&
+                (param_4 == 0 || stream->checkCanoeOn()) &&
+                  stream->checkArea(param_0)) {
+                *speed = stream->speed;
+                *param_3 = stream->getPower() & 0xff;
+                return 1;
+            }
+        }
+    }
+
+    if (param_4) {
+        return 0;
+    }
+
+    if (dComIfG_Bgsp().ChkPolySafe(param_1)) {
+        if (dPath_GetPolyRoomPathVec(param_1, speed, param_3)) {
+            speed->normalizeZP();
+            return 1;
+        }
+    } else {
+        *speed = cXyz::Zero;
+        *param_3 = 0;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803A37C0-803A37CC 0008E0 000C+00 2/2 93/93 0/0 .data            __vt__8cM3dGPla */
@@ -2500,7 +2514,7 @@ extern "C" asm void __dt__8cM3dGPlaFv() {
 #pragma pop
 
 /* 8001DBD8-8001DC68 018518 0090+00 1/1 5/5 18/18 .text fopAcM_getPolygonAngle__FPC8cM3dGPlas */
-// sqrt issues
+// matches with literals
 #ifdef NONMATCHING
 s16 fopAcM_getPolygonAngle(cM3dGPla const* p_plane, s16 param_1) {
     if (p_plane == NULL) {
@@ -2509,7 +2523,9 @@ s16 fopAcM_getPolygonAngle(cM3dGPla const* p_plane, s16 param_1) {
 
     s16 atan = p_plane->mNormal.atan2sX_Z() - param_1;
     f32 cos = cM_scos(atan);
-    f32 sqrt = JMAFastSqrt__Ff(square(p_plane->mNormal.x) + square(p_plane->mNormal.z));
+    f32 x2 = square(p_plane->mNormal.x);
+    f32 z2 = square(p_plane->mNormal.z);
+    f32 sqrt = JMAFastSqrt(x2 + z2);
     return cM_atan2s(sqrt * cos, p_plane->mNormal.y);
 }
 #else

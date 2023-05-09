@@ -14,7 +14,7 @@ int daTagStream_c::create() {
     }
 
     mPriority = fopAcM_GetParam(this) >> 8;
-    field_0x56a = fopAcM_GetParam(this);
+    mPower = fopAcM_GetParam(this);
     field_0x56b = fopAcM_GetParam(this) >> 16;
 
     fopAcM_GetParam(this) >> 24 != 0 ? mParameters = 0 : mParameters = 1;
@@ -27,7 +27,7 @@ int daTagStream_c::create() {
         daTagStream_c* top = m_top;
         daTagStream_c* top_loop = m_top;
 
-        for (; top; top = top->field_0x574) {
+        for (; top; top = top->mNext) {
             if (top->getPriority() > this->getPriority()) {
                 break;
             }
@@ -35,16 +35,16 @@ int daTagStream_c::create() {
         }
 
         if (top_loop == top) {
-            field_0x574 = m_top;
+            mNext = m_top;
             m_top->field_0x570 = this;
             m_top = this;
         } else {
-            top_loop->field_0x574 = this;
+            top_loop->mNext = this;
             field_0x570 = top_loop;
 
             if (top) {
                 top->field_0x570 = this;
-                field_0x574 = top;
+                mNext = top;
             }
         }
     } else {
@@ -69,15 +69,15 @@ static int daTagStream_Create(fopAc_ac_c* i_this) {
 /* 80D63A98-80D63B30 000218 0098+00 1/1 0/0 0/0 .text            __dt__13daTagStream_cFv */
 daTagStream_c::~daTagStream_c() {
     if (field_0x570) {
-        field_0x570->field_0x574 = field_0x574;
+        field_0x570->mNext = mNext;
     }
 
-    if (field_0x574) {
-        field_0x574->field_0x570 = field_0x570;
+    if (mNext) {
+        mNext->field_0x570 = field_0x570;
     }
 
     if (m_top == this) {
-        m_top = field_0x574;
+        m_top = mNext;
     }
 };
 
@@ -90,9 +90,9 @@ static int daTagStream_Delete(daTagStream_c* i_this) {
 /* 80D63B58-80D63BC0 0002D8 0068+00 1/1 0/0 0/0 .text            execute__13daTagStream_cFv */
 int daTagStream_c::execute() {
     if (field_0x56b == 0xFF || i_fopAcM_isSwitch(this,field_0x56b)) {
-        field_0x569 = 1;
+        mStreamOn = 1;
     } else {
-        field_0x569 = 0;
+        mStreamOn = 0;
     }
 
     return 1;
