@@ -7,9 +7,11 @@
 
 class e_db_leaf_class : public fopAc_ac_c {
 public:
-    /* 0x568 */ u8 field_0x568[76];
+    /* 0x568 */ u8 field_0x568[68];
+    /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ mDoExt_McaMorf* morf;
-    void Draw();
+
+    int useHeapInit();
 }; // Size: 0x5B8
 
 

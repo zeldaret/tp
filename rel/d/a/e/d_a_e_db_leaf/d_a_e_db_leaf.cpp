@@ -63,7 +63,7 @@ static asm void daE_DB_LEAF_Draw(e_db_leaf_class* param_0) {
 #endif
 
 /* 806A1EA0-806A1F24 0000E0 0084+00 2/1 0/0 0/0 .text daE_DB_LEAF_Execute__FP15e_db_leaf_class */
-int daE_DB_LEAF_Execute(e_db_leaf_class* leaf) {
+static int daE_DB_LEAF_Execute(e_db_leaf_class* leaf) {
     PSMTXTrans(mDoMtx_stack_c::now, leaf->current.pos.x, leaf->current.pos.y, leaf->current.pos.z);
     mDoMtx_YrotM(mDoMtx_stack_c::now, leaf->shape_angle.y);
     mDoMtx_XrotM(mDoMtx_stack_c::now, leaf->shape_angle.x);
@@ -77,22 +77,11 @@ static bool daE_DB_LEAF_IsDelete(e_db_leaf_class* param_0) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 806A2118-806A2118 000004 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_806A2118 = "E_DB";
-#pragma pop
-
 /* 806A1F2C-806A1F5C 00016C 0030+00 1/0 0/0 0/0 .text daE_DB_LEAF_Delete__FP15e_db_leaf_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daE_DB_LEAF_Delete(e_db_leaf_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_db_leaf/d_a_e_db_leaf/daE_DB_LEAF_Delete__FP15e_db_leaf_class.s"
+static int daE_DB_LEAF_Delete(e_db_leaf_class* leaf) {
+    dComIfG_resDelete(&leaf->mPhase, "E_DB");
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 806A2114-806A2118 000000 0004+00 1/1 0/0 0/0 .rodata          @3699 */
@@ -103,22 +92,31 @@ COMPILER_STRIP_GATE(0x806A2114, &lit_3699);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void useHeapInit(fopAc_ac_c* param_0) {
+static asm int useHeapInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_db_leaf/d_a_e_db_leaf/useHeapInit__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 806A205C-806A210C 00029C 00B0+00 1/0 0/0 0/0 .text            daE_DB_LEAF_Create__FP10fopAc_ac_c
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daE_DB_LEAF_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_db_leaf/d_a_e_db_leaf/daE_DB_LEAF_Create__FP10fopAc_ac_c.s"
+/* 806A205C-806A210C 00029C 00B0+00 1/0 0/0 0/0 .text   daE_DB_LEAF_Create__FP10fopAc_ac_c */
+static int daE_DB_LEAF_Create(fopAc_ac_c* i_this) {
+    e_db_leaf_class* leaf = (e_db_leaf_class*)i_this;
+    if (!fopAcM_CheckCondition(leaf, 8)) {
+        new (leaf) e_db_leaf_class();
+        fopAcM_OnCondition(leaf, 8);
+    }
+
+    int ret = dComIfG_resLoad(&leaf->mPhase, "E_DB");
+    if (ret == cPhs_COMPLEATE_e) {
+        if(!fopAcM_entrySolidHeap(leaf,useHeapInit,0xA80)) {
+            return cPhs_ERROR_e;
+        } else {
+            fopAcM_SetMtx(leaf, leaf->morf->getModel()->getBaseTRMtx());
+            daE_DB_LEAF_Execute(leaf);
+        }
+    }
+    return ret;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 806A2120-806A2140 -00001 0020+00 1/0 0/0 0/0 .data            l_daE_DB_LEAF_Method */
