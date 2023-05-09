@@ -3,31 +3,31 @@
 #include "rel/d/a/e/d_a_e_db_leaf/d_a_e_db_leaf.h"
 
 /* 806A1E38-806A1EA0 000078 0068+00 1/0 0/0 0/0 .text daE_DB_LEAF_Draw__FP15e_db_leaf_class */
-static int daE_DB_LEAF_Draw(e_db_leaf_class* leaf) {
-    g_env_light.settingTevStruct(0,&leaf->current.pos,&leaf->mTevStr);
-    g_env_light.setLightTevColorType_MAJI(leaf->mpMorf->getModel(),&leaf->mTevStr);
-    leaf->mpMorf->entryDL();
+static int daE_DB_LEAF_Draw(e_db_leaf_class* i_this) {
+    g_env_light.settingTevStruct(0,&i_this->current.pos,&i_this->mTevStr);
+    g_env_light.setLightTevColorType_MAJI(i_this->mpMorf->getModel(),&i_this->mTevStr);
+    i_this->mpMorf->entryDL();
     return 1;
 }
 
 /* 806A1EA0-806A1F24 0000E0 0084+00 2/1 0/0 0/0 .text daE_DB_LEAF_Execute__FP15e_db_leaf_class */
-static int daE_DB_LEAF_Execute(e_db_leaf_class* leaf) {
-    PSMTXTrans(mDoMtx_stack_c::now, leaf->current.pos.x, leaf->current.pos.y, leaf->current.pos.z);
-    mDoMtx_YrotM(mDoMtx_stack_c::now, leaf->shape_angle.y);
-    mDoMtx_XrotM(mDoMtx_stack_c::now, leaf->shape_angle.x);
-    PSMTXCopy(mDoMtx_stack_c::now,(leaf->mpMorf->getModel()->mBaseTransformMtx));
-    leaf->mpMorf->modelCalc();
+static int daE_DB_LEAF_Execute(e_db_leaf_class* i_this) {
+    mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
+    mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
+    mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
+    mDoMtx_stack_c::copy(i_this->mpMorf->getModel()->mBaseTransformMtx);
+    i_this->mpMorf->modelCalc();
     return 1;
 }
 
 /* 806A1F24-806A1F2C 000164 0008+00 1/0 0/0 0/0 .text daE_DB_LEAF_IsDelete__FP15e_db_leaf_class */
-static bool daE_DB_LEAF_IsDelete(e_db_leaf_class* leaf) {
-    return true;
+static int daE_DB_LEAF_IsDelete(e_db_leaf_class* i_this) {
+    return 1;
 }
 
 /* 806A1F2C-806A1F5C 00016C 0030+00 1/0 0/0 0/0 .text daE_DB_LEAF_Delete__FP15e_db_leaf_class */
-static int daE_DB_LEAF_Delete(e_db_leaf_class* leaf) {
-    dComIfG_resDelete(&leaf->mPhase, "E_DB");
+static int daE_DB_LEAF_Delete(e_db_leaf_class* i_this) {
+    dComIfG_resDelete(&i_this->mPhase, "E_DB");
     return 1;
 }
 
