@@ -4,12 +4,15 @@
 //
 
 #include "rel/d/a/b/d_a_b_go/d_a_b_go.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_lib.h"
 #include "SSystem/SComponent/c_math.h"
+#include "Z2AudioLib/Z2Creature.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Types:

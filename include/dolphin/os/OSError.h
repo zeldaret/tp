@@ -1,11 +1,13 @@
 #ifndef OSERROR_H
 #define OSERROR_H
 
-#include "dolphin/os/OSContext.h"
+#include "dolphin/types.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+typedef struct OSContext OSContext;
 
 extern u32 __OSFpscrEnableBits;
 typedef u16 OSError;

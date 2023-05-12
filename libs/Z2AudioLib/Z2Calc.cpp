@@ -7,7 +7,6 @@
 #include "JSystem/JMath/random.h"
 #include "MSL_C/math.h"
 #include "dol2asm.h"
-#include "global.h"
 
 //
 // Declarations:

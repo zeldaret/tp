@@ -3,7 +3,8 @@
 
 #include "JSystem/JSupport/JSUList.h"
 #include "dolphin/ar/arq.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os/OSMessage.h"
+#include "dolphin/os/OSMutex.h"
 #include "dolphin/types.h"
 
 class JKRAramBlock;

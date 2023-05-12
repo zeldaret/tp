@@ -1,12 +1,13 @@
 #ifndef VI_H
 #define VI_H
 
-#include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+typedef struct _GXRenderModeObj GXRenderModeObj;
 
 #define VI_TVMODE(format, interlace) (((format) << 2) + (interlace))
 

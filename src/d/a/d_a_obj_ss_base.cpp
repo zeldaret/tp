@@ -6,6 +6,7 @@
 #include "d/a/d_a_obj_ss_base.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Declarations:

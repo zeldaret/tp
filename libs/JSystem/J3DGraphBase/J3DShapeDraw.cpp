@@ -10,6 +10,7 @@
 #include "dolphin/gx/GX.h"
 #include "dolphin/os/OSCache.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 //
 // External References:

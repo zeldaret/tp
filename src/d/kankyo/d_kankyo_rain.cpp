@@ -6,10 +6,12 @@
 #include "d/kankyo/d_kankyo_rain.h"
 #include "MSL_C/math.h"
 #include "MSL_C/string.h"
+#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_demo.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Forward References:

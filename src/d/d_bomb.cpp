@@ -5,6 +5,7 @@
 
 #include "d/d_bomb.h"
 #include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 
 bool dBomb_c::checkStateCarry() {
     return (fopAcM_checkCarryNow(&mActor) || fopAcM_checkHookCarryNow(&mActor) ||

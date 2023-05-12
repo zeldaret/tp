@@ -1,7 +1,7 @@
 #ifndef D_D_TRESURE_H
 #define D_D_TRESURE_H
 
-#include "dolphin/mtx/mtxvec.h"
+#include "dolphin/mtx/vec.h"
 #include "dolphin/types.h"
 
 class dTres_c {

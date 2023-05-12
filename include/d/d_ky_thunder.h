@@ -1,9 +1,10 @@
 #ifndef D_D_KY_THUNDER_H
 #define D_D_KY_THUNDER_H
 
-#include "JSystem/JKernel/JKRSolidHeap.h"
 #include "f_op/f_op_kankyo.h"
 #include "m_Do/m_Do_ext.h"
+
+class JKRSolidHeap;
 
 class dThunder_modelInfo_c {
 public:

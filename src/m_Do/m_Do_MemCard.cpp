@@ -4,12 +4,15 @@
  */
 
 #include "m_Do/m_Do_MemCard.h"
+#include "JSystem/JKernel/JKRAssertHeap.h"
 #include "JSystem/JKernel/JKRThread.h"
 #include "JSystem/JGadget/binary.h"
 #include "MSL_C/string.h"
 #include "dol2asm.h"
+#include "dolphin/card/card.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
+#include "m_Do/m_Do_MemCardRWmng.h"
 #include "m_Do/m_Do_Reset.h"
 
 /* 8001672C-80016730 01106C 0004+00 1/1 0/0 0/0 .text            __ct__15mDoMemCd_Ctrl_cFv */

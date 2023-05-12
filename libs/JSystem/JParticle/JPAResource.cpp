@@ -8,6 +8,7 @@
 #include "JSystem/JParticle/JPAMath.h"
 #include "JSystem/JParticle/JPAParticle.h"
 #include "dol2asm.h"
+#include "dolphin/gx/GX.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"

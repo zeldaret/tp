@@ -3,7 +3,11 @@
 
 #include "JSystem/J3DU/J3DUClipper.h"
 #include "dolphin/types.h"
-#include "JSystem/JUtility/JUTTexture.h"
+
+typedef struct _GXTexObj GXTexObj;
+typedef struct _GXTlutObj GXTlutObj;
+typedef struct Vec Vec;
+struct ResTIMG;
 
 struct mDoLib_clipper {
     /* 8001528C */ void setup(f32, f32, f32, f32);

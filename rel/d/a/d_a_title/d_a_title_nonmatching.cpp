@@ -4,10 +4,12 @@
 //
 
 #include "rel/d/a/d_a_title/d_a_title.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JStudio/JStudio/stb.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "d/com/d_com_inf_game.h"
+#include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_overlap_mng.h"
 #include "f_op/f_op_msg_mng.h"
 

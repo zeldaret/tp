@@ -1,10 +1,12 @@
 #ifndef D_MAP_D_MAP_PATH_DMAP_H
 #define D_MAP_D_MAP_PATH_DMAP_H
 
-#include "d/d_stage.h"
 #include "d/d_tresure.h"
 #include "d/map/d_map_path.h"
 #include "dolphin/types.h"
+
+class dStage_FileList2_dt_c;
+struct stage_tgsc_data_class;
 
 class dMpath_c {
 public:

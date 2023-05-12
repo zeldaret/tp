@@ -4,6 +4,7 @@
 //
 
 #include "SSystem/SComponent/c_tag.h"
+#include "SSystem/SComponent/c_list.h"
 #include "SSystem/SComponent/c_tree.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"

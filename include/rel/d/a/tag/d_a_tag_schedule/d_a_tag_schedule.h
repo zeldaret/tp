@@ -1,6 +1,7 @@
 #ifndef D_A_TAG_SCHEDULE_H
 #define D_A_TAG_SCHEDULE_H
 
+#include "JSystem/JKernel/JKRHeap.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 

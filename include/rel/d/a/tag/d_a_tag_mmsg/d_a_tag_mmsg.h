@@ -1,9 +1,8 @@
 #ifndef D_A_TAG_MMSG_H
 #define D_A_TAG_MMSG_H
 
-#include "d/a/d_a_player.h"
 #include "dolphin/types.h"
-#include "f_op/f_op_actor_mng.h"
+#include "f_op/f_op_actor.h"
 
 class daTagMmsg_c : public fopAc_ac_c {
 public:

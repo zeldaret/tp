@@ -2,8 +2,10 @@
 #define M_DO_M_DO_MAIN_H
 
 #include "JSystem/JKernel/JKRExpHeap.h"
-#include "dolphin/dvd/dvd.h"
+#include "dolphin/os/OSTime.h"
 #include "dolphin/types.h"
+
+class JKRExpHeap;
 
 void version_check();
 s32 LOAD_COPYDATE(void*);

@@ -8,9 +8,10 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "dolphin/os/OSAlarm.h"
-#include "dolphin/os/OSTime.h"
 #include "dolphin/os/OSContext.h"
+#include "dolphin/os/OSInterrupt.h"
 #include "dolphin/os/OSReset.h"
+#include "dolphin/os/OSTime.h"
 
 //
 // Forward References:
@@ -41,15 +42,6 @@ BOOL __DVDLowTestAlarm(OSAlarm* alarm);
 //
 // External References:
 //
-
-void OSInitAlarm();
-void OSCreateAlarm();
-void OSSetAlarm();
-void OSCancelAlarm();
-BOOL OSDisableInterrupts();
-void OSRestoreInterrupts(BOOL enabled);
-void __OSMaskInterrupts();
-OSTime __OSGetSystemTime();
 
 //
 // Declarations:

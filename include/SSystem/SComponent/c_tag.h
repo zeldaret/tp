@@ -1,10 +1,11 @@
 #ifndef C_TAG_H
 #define C_TAG_H
 
-#include "SSystem/SComponent/c_list.h"
 #include "SSystem/SComponent/c_node.h"
-#include "SSystem/SComponent/c_tree.h"
 #include "dolphin/types.h"
+
+typedef struct node_list_class node_list_class;
+typedef struct node_lists_tree_class node_lists_tree_class;
 
 typedef struct create_tag_class {
     node_class mpNode;

@@ -4,15 +4,26 @@
 //
 
 #include "d/com/d_com_inf_game.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "MSL_C/stdio.h"
+#include "d/a/d_a_alink.h"
 #include "d/d_item.h"
 #include "d/d_procname.h"
+#include "d/d_simple_model.h"
 #include "d/d_timer.h"
 #include "d/kankyo/d_kankyo.h"
+#include "d/map/d_map_path_dmap.h"
 #include "d/meter/d_meter2_info.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
+#include "f_op/f_op_scene_mng.h"
+#include "global.h"
+#include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_audio.h"
+#include "m_Do/m_Do_controller_pad.h"
+#include "m_Do/m_Do_graphic.h"
 
 //
 // Forward References:

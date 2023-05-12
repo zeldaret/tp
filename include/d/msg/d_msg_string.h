@@ -2,7 +2,9 @@
 #define D_MSG_D_MSG_STRING_H
 
 #include "d/msg/d_msg_string_base.h"
-#include "d/msg/d_msg_out_font.h"
+
+class COutFont_c;
+class JUTFont;
 
 class dMsgString_c : public dMsgStringBase_c {
 public:

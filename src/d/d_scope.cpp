@@ -5,8 +5,12 @@
 
 #include "d/d_scope.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
+#include "JSystem/JUtility/JUTTexture.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/meter/d_meter2_info.h"
 #include "dol2asm.h"
+#include "global.h"
 
 //
 // Forward References:

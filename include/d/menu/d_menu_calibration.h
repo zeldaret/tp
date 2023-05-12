@@ -1,8 +1,12 @@
 #ifndef D_MENU_D_MENU_CALIBRATION_H
 #define D_MENU_D_MENU_CALIBRATION_H
 
-#include "d/com/d_com_inf_game.h"
-#include "d/msg/d_msg_string.h"
+#include "JSystem/J2DGraph/J2DTextBox.h"
+
+class CPaneMgr;
+class JKRExpHeap;
+class dMsgString_c;
+class dSelect_cursor_c;
 
 class dMenu_Calibration_c {
 public:

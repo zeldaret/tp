@@ -7,6 +7,7 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "d/com/d_com_inf_game.h"
+#include "m_Do/m_Do_controller_pad.h"
 
 //
 // Forward References:

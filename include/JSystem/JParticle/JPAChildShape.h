@@ -1,7 +1,7 @@
 #ifndef JPACHILDSHAPE_H
 #define JPACHILDSHAPE_H
 
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
 
 struct JPAChildShapeData {

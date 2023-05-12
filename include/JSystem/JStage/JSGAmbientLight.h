@@ -2,7 +2,7 @@
 #define JSGAMBIENTLIGHT_H
 
 #include "JSystem/JStage/JSGObject.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx/GXStruct.h"
 
 namespace JStage {
     struct TAmbientLight : public TObject {

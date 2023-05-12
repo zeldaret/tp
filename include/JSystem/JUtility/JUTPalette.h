@@ -1,7 +1,8 @@
 #ifndef JUTPALETTE_H
 #define JUTPALETTE_H
 
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx/GXEnum.h"
+#include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
 
 enum JUTTransparency { UNK0, UNK1 };

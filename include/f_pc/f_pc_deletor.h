@@ -2,9 +2,9 @@
 #ifndef F_PC_DELETOR_H_
 #define F_PC_DELETOR_H_
 
-#include "f_pc/f_pc_base.h"
+#include "dolphin/types.h"
 
-struct base_process_class;
+typedef struct base_process_class base_process_class;
 
 BOOL fpcDt_IsComplete(void);
 s32 fpcDt_ToDeleteQ(base_process_class* pProc);

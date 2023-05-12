@@ -1,16 +1,14 @@
 #ifndef F_PC_MANAGER_H_
 #define F_PC_MANAGER_H_
 
-#include "SSystem/SComponent/c_node_iter.h"
-#include "SSystem/SComponent/c_tag.h"
 #include "dolphin/types.h"
 #include "f_pc/f_pc_base.h"
 #include "f_pc/f_pc_create_iter.h"
-#include "f_pc/f_pc_node_req.h"
-#include "f_pc/f_pc_stdcreate_req.h"
 #include "f_pc/f_pc_executor.h"
 #include "f_pc/f_pc_leaf.h"
 #include "f_pc/f_pc_layer_iter.h"
+#include "f_pc/f_pc_node.h"
+#include "f_pc/f_pc_stdcreate_req.h"
 
 enum {
     fpcM_ERROR_PROCESS_ID_e = -1,

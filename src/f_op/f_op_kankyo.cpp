@@ -7,6 +7,8 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "d/s/d_s_play.h"
+#include "f_op/f_op_draw_tag.h"
+#include "f_op/f_op_kankyo_mng.h"
 #include "f_pc/f_pc_manager.h"
 
 /* 8001F284-8001F2C0 019BC4 003C+00 1/0 0/0 0/0 .text            fopKy_Draw__FPv */

@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/kytag/d_a_kytag07/d_a_kytag07.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_stage.h"
 #include "d/d_procname.h"
 #include "f_op/f_op_overlap_mng.h"

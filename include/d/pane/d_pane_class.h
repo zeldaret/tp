@@ -1,7 +1,7 @@
 #ifndef D_PANE_D_PANE_CLASS_H
 #define D_PANE_D_PANE_CLASS_H
 
-#include "JSystem/J2DGraph/J2DTextBox.h"
+#include "JSystem/JUtility/TColor.h"
 #include "d/pane/d_pane_class_alpha.h"
 #include "dolphin/types.h"
 

@@ -4,6 +4,7 @@
 //
 
 #include "Z2AudioLib/Z2Audience.h"
+#include "JSystem/JAudio2/JAISound.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

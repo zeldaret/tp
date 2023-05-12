@@ -4,10 +4,13 @@
 //
 
 #include "d/bg/d_bg_s.h"
+#include "d/bg/d_bg_s_sph_chk.h"
+#include "d/bg/d_bg_w.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Forward References:

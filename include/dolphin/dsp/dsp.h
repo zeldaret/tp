@@ -1,7 +1,7 @@
 #ifndef DSP_H
 #define DSP_H
 
-#include "dolphin/os/OS.h"
+#include "dolphin/os/OSTime.h"
 
 volatile u16 __DSPRegs[32] : 0xCC005000;
 volatile u32 __AIRegs[8] : 0xCC006C00;

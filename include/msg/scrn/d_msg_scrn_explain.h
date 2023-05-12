@@ -2,10 +2,12 @@
 #define MSG_SCRN_D_MSG_SCRN_EXPLAIN_H
 
 #include "msg/scrn/d_msg_scrn_base.h"
-#include "JSystem/J2DGraph/J2DOrthoGraph.h"
 
+class J2DOrthoGraph;
+struct STControl;
 class dMsgScrnArrow_c;
 class dMsgScrn3Select_c;
+class dMsgString_c;
 
 class dMsgScrnExplain_c {
 public:

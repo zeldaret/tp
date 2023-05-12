@@ -1,4 +1,5 @@
 #include "JSystem/JUtility/JUTPalette.h"
+#include "dolphin/gx/GX.h"
 #include "dolphin/os/OS.h"
 
 void JUTPalette::storeTLUT(_GXTlut param_0, ResTLUT* tlut) {

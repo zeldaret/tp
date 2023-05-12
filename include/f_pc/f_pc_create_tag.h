@@ -2,6 +2,7 @@
 #ifndef F_PC_CREATE_TAG_H_
 #define F_PC_CREATE_TAG_H_
 
+#include "SSystem/SComponent/c_list.h"
 #include "SSystem/SComponent/c_tag.h"
 #include "dolphin/types.h"
 

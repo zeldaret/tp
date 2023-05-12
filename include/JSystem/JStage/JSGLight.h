@@ -2,7 +2,9 @@
 #define JSGLIGHT_H
 
 #include "JSystem/JStage/JSGObject.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx/GXEnum.h"
+#include "dolphin/gx/GXStruct.h"
+#include "dolphin/mtx/vec.h"
 
 namespace JStage {
     enum TELight {};

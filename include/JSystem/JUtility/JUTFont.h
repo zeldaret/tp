@@ -3,7 +3,6 @@
 
 #include "JSystem/JUtility/TColor.h"
 #include "MSL_C/string.h"
-#include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
 struct ResFONT {

@@ -4,6 +4,7 @@
  */
 
 #include "f_pc/f_pc_layer_tag.h"
+#include "f_pc/f_pc_layer.h"
 
 /* 80021CD4-80021DCC 00F8+00 s=1 e=1 z=0  None .text
  * fpcLyTg_ToQueue__FP26layer_management_tag_classUiUsUs        */

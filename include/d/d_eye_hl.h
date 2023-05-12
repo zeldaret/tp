@@ -1,10 +1,10 @@
 #ifndef D_D_EYE_HL_H
 #define D_D_EYE_HL_H
 
-#include "JSystem/J3DGraphAnimator/J3DModelData.h"
-#include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
-#include "JSystem/JUtility/JUTTexture.h"
+#include "dolphin/types.h"
 
+class J3DModelData;
+struct ResTIMG;
 class dEyeHL_c;
 
 class dEyeHL_mng_c {

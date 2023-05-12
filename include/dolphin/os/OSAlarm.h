@@ -1,8 +1,8 @@
 #ifndef OSALARM_H
 #define OSALARM_H
 
-#include "dolphin/os/OSTime.h"
 #include "dolphin/os/OSError.h"
+#include "dolphin/os/OSTime.h"
 
 #ifdef __cplusplus
 extern "C" {

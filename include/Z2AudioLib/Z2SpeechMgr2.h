@@ -6,6 +6,7 @@
 #include "JSystem/JMath/random.h"
 #include "Z2AudioLib/Z2SoundStarter.h"
 #include "dolphin/mtx/vec.h"
+#include "global.h"
 
 struct Z2SpeechStarter : public Z2SoundStarter {
     /* 802CCFB8 */ Z2SpeechStarter();

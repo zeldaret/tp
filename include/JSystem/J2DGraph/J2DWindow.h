@@ -3,8 +3,10 @@
 
 #include "JSystem/J2DGraph/J2DMaterial.h"
 #include "JSystem/J2DGraph/J2DPane.h"
-#include "JSystem/JSupport/JSURandomInputStream.h"
 #include "dolphin/types.h"
+
+class JSURandomInputStream;
+class JUTTexture;
 
 class J2DWindow : public J2DPane {
 public:

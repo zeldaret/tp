@@ -1,7 +1,7 @@
 #ifndef JKRDVDRIPPER_H
 #define JKRDVDRIPPER_H
 
-#include "JSystem/JKernel/JKRDecomp.h"
+#include "JSystem/JKernel/JKRCompression.h"
 #include "dolphin/types.h"
 
 enum JKRExpandSwitch {

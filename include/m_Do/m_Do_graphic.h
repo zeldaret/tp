@@ -2,9 +2,11 @@
 #define M_DO_M_DO_GRAPHIC_H
 
 #include "JSystem/JFramework/JFWDisplay.h"
-#include "JSystem/JUtility/JUTFader.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx/GXStruct.h"
+#include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
+
+class JUTFader;
 
 int mDoGph_Create();
 

@@ -3,7 +3,8 @@
 
 #include "d/com/d_com_inf_game.h"
 #include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
+
+class fopAc_ac_c;
 
 enum dCcU_AtType {
     /* 0x01 */ HIT_TYPE_LINK_NORMAL_ATTACK = 1,

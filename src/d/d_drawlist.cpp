@@ -4,10 +4,14 @@
 //
 
 #include "d/d_drawlist.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
+#include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "JSystem/J3DGraphBase/J3DShape.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
+#include "SSystem/SComponent/c_bg_s_shdw_draw.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
+#include "dolphin/gx/GX.h"
 #include "dolphin/mtx/mtx44.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "m_Do/m_Do_graphic.h"

@@ -6,6 +6,7 @@
 #include "f_pc/f_pc_manager.h"
 #include "SSystem/SComponent/c_API_graphic.h"
 #include "d/d_error_msg.h"
+#include "d/d_lib.h"
 #include "f_pc/f_pc_base.h"
 #include "f_pc/f_pc_create_iter.h"
 #include "f_pc/f_pc_creator.h"
@@ -25,6 +26,7 @@
 #include "f_pc/f_pc_pause.h"
 #include "f_pc/f_pc_priority.h"
 #include "f_pc/f_pc_profile.h"
+#include "m_Do/m_Do_controller_pad.h"
 
 /* 800220A0-800220C0 0020+00 s=1 e=1 z=0  None .text      fpcM_Draw__FPv */
 void fpcM_Draw(void* i_proc) {

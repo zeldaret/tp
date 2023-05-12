@@ -1,7 +1,7 @@
 #ifndef D_D_VIBRATION_H
 #define D_D_VIBRATION_H
 
-#include "d/save/d_save.h"
+#include "SSystem/SComponent/c_xyz.h"
 #include "d/d_vib_pattern.h"
 #include "dolphin/types.h"
 

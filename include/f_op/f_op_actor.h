@@ -6,6 +6,7 @@
 #include "d/kankyo/d_kankyo.h"
 #include "dolphin/mtx/mtx.h"
 #include "f_pc/f_pc_leaf.h"
+#include "global.h"
 
 struct actor_method_class {
     /* 0x00 */ leafdraw_method_class base;

@@ -4,7 +4,8 @@
 
 #include "SSystem/SComponent/c_tag.h"
 #include "dolphin/types.h"
-#include "f_pc/f_pc_layer.h"
+
+typedef struct layer_class layer_class;
 
 typedef struct layer_management_tag_class {
     create_tag_class mCreateTag;

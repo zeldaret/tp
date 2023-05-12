@@ -2,13 +2,24 @@
 #define D_FILE_D_FILE_SELECT_H
 
 #include "dolphin/types.h"
-#include "d/com/d_com_inf_game.h"
-#include "m_Do/m_Do_MemCard.h"
-#include "d/file/d_file_sel_warning.h"
-#include "d/d_name.h"
-#include "d/msg/d_msg_string.h"
-#include "JSystem/J3DGraphLoader/J3DModelLoader.h"
-#include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
+#include "global.h"
+
+class CPaneMgr;
+class CPaneMgrAlpha;
+class J2DAnmBase;
+class J2DAnmTransform;
+class J2DPane;
+class J2DPicture;
+class J2DScreen;
+class JKRArchive;
+class JUTFont;
+struct STControl;
+struct cXyz;
+class dFile_warning_c;
+class dMsgString_c;
+class dName_c;
+class dSelect_cursor_c;
+class dSv_save_c;
 
 class dDlst_FileSel_c {
 public:

@@ -1,8 +1,10 @@
 #ifndef D_D_SPLINE_PATH_H
 #define D_D_SPLINE_PATH_H
 
+#include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
-#include "d/d_path.h"
+
+struct dPath;
 
 struct dPathCurve {
     /* 80097C5C */ void Init(dPath*);

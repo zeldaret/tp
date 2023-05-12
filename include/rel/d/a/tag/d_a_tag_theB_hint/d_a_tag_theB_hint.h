@@ -2,7 +2,10 @@
 #define D_A_TAG_THEB_HINT_H
 
 // #include "rel/d/a/npc/d_a_npc_theB/d_a_npc_theB.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 
 // needs to be pulled from d_a_npc_theB.h eventually
 struct daNpcTheB_c {

@@ -1,19 +1,26 @@
 #ifndef J2DPANE_H
 #define J2DPANE_H
 
-#include "JSystem/J2DGraph/J2DAnimation.h"
-#include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/JGeometry.h"
-#include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "JSystem/JSupport/JSURandomInputStream.h"
-#include "JSystem/JUtility/JUTFont.h"
-#include "JSystem/JUtility/JUTResFont.h"
-#include "JSystem/JUtility/JUTTexture.h"
+#include "dolphin/gx/GXEnum.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 
+class J2DAnmBase;
+class J2DAnmColor;
+class J2DAnmTransform;
+class J2DAnmTevRegKey;
+class J2DAnmTextureSRTKey;
+class J2DAnmVisibilityFull;
+class J2DAnmVtxColor;
+class J2DGrafContext;
 class J2DScreen;
+class J2DAnmTexPattern;
+class JKRArchive;
+class JSURandomInputStream;
+struct ResFONT;
+struct ResTIMG;
 
 enum J2DRotateAxis {
     /* 0x78 */ ROTATE_X = 'x',

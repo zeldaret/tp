@@ -1,8 +1,11 @@
 #ifndef D_FILE_D_FILE_SEL_INFO_H
 #define D_FILE_D_FILE_SEL_INFO_H
 
-#include "d/com/d_com_inf_game.h"
+#include "d/d_drawlist.h"
 #include "dolphin/types.h"
+
+class CPaneMgrAlpha;
+class dSv_save_c;
 
 class dFile_info_c {
 public:

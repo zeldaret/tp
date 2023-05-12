@@ -2,10 +2,14 @@
 #define M_DO_M_DO_DVD_THREAD_H
 
 #include "JSystem/JKernel/JKRArchive.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JKernel/JKRMemArchive.h"
+#include "dolphin/os/OSMessage.h"
+#include "dolphin/os/OSMutex.h"
+#include "dolphin/os/OSThread.h"
 #include "dolphin/types.h"
 #include "f_pc/f_pc_node.h"
+
+class JKRHeap;
+class JKRMemArchive;
 
 typedef void* (*mDoDvdThd_callback_func)(void*);
 

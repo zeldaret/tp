@@ -1,15 +1,15 @@
 #ifndef C_CC_D_H
 #define C_CC_D_H
 
-#include "SSystem/SComponent/c_m3d.h"
 #include "SSystem/SComponent/c_m3d_g_aab.h"
 #include "SSystem/SComponent/c_m3d_g_cps.h"
 #include "SSystem/SComponent/c_m3d_g_cyl.h"
 #include "SSystem/SComponent/c_m3d_g_sph.h"
 #include "SSystem/SComponent/c_m3d_g_tri.h"
-#include "dolphin/gx/GX.h"
-#include "f_op/f_op_actor.h"
 #include "global.h"
+
+typedef struct _GXColor GXColor;
+class fopAc_ac_c;
 
 enum CcG_Tg_HitMark {
     CcG_Tg_UNK_MARK_6 = 6,

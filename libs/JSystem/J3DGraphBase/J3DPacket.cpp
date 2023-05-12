@@ -16,6 +16,7 @@
 #include "dol2asm.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/os/OSCache.h"
+#include "dolphin/os/OSInterrupt.h"
 #include "dolphin/types.h"
 #include "global.h"
 

@@ -3,6 +3,7 @@
 
 #include "SSystem/SComponent/c_cc_d.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 enum WeightType {
     WeightType_0 = 0,

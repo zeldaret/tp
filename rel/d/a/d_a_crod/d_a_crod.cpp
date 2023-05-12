@@ -4,9 +4,12 @@
  */
 
 #include "rel/d/a/d_a_crod/d_a_crod.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_alink.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
+#include "f_op/f_op_actor_mng.h"
 #include "rel/d/a/d_a_cstaF/d_a_cstaF.h"
 #include "rel/d/a/d_a_cstatue/d_a_cstatue.h"
 

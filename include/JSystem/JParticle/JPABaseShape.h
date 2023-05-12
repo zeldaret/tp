@@ -1,7 +1,8 @@
 #ifndef JPABASESHAPE_H
 #define JPABASESHAPE_H
 
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx/GXEnum.h"
+#include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
 
 class JPAEmitterWorkData;

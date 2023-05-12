@@ -4,6 +4,7 @@
 //
 
 #include "SSystem/SComponent/c_node_iter.h"
+#include "SSystem/SComponent/c_node.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

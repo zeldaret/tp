@@ -4,6 +4,9 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_attention/d_a_tag_attention.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/a/d_a_player.h"
+#include "d/d_procname.h"
 
 /* ############################################################################################## */
 /* 804D5724-804D5728 000000 0002+02 1/1 0/0 0/0 .rodata          l_dist_tbl$3641 */

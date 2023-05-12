@@ -3,8 +3,9 @@
 
 #include "JSystem/J3DGraphBase/J3DShape.h"
 #include "JSystem/J3DGraphBase/J3DVertex.h"
-#include "JSystem/JUtility/JUTNameTab.h"
 #include "dolphin/types.h"
+
+class JUTNameTab;
 
 class J3DShapeTable {
 public:

@@ -4,7 +4,11 @@
 //
 
 #include "JSystem/J2DGraph/J2DMatBlock.h"
+#include "JSystem/JUtility/JUTPalette.h"
+#include "JSystem/JUtility/JUTResFont.h"
+#include "JSystem/JUtility/JUTTexture.h"
 #include "dol2asm.h"
+#include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
 //

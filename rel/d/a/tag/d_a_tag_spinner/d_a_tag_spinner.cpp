@@ -4,6 +4,8 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_spinner/d_a_tag_spinner.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/d_procname.h"
 
 /* 80D616F8-80D61718 000078 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
 static int CheckCreateHeap(fopAc_ac_c* param_0) {
