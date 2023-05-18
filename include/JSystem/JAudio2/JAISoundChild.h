@@ -2,8 +2,9 @@
 #define JAISOUNDCHILD_H
 
 #include "JSystem/JAudio2/JAISoundParams.h"
-#include "JSystem/JAudio2/JASTrack.h"
 #include "dolphin/types.h"
+
+struct JASTrack;
 
 struct JAISoundChild {
     /* 802A2AB0 */ void init();

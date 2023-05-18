@@ -1,8 +1,9 @@
 #ifndef C_LIST_H
 #define C_LIST_H
 
-#include "SSystem/SComponent/c_node.h"
 #include "dolphin/types.h"
+
+typedef struct node_class node_class;
 
 typedef struct node_list_class {
     node_class* mpHead;

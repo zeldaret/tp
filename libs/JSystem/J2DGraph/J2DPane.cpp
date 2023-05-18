@@ -4,12 +4,17 @@
 //
 
 #include "JSystem/J2DGraph/J2DPane.h"
+#include "JSystem/J2DGraph/J2DAnimation.h"
+#include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DManage.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J3DGraphBase/J3DTransform.h"
+#include "JSystem/JSupport/JSURandomInputStream.h"
 #include "JSystem/JUtility/JUTResource.h"
+#include "MSL_C/math.h"
 #include "dol2asm.h"
+#include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
 /* 802F5BF8-802F5CB8 2F0538 00C0+00 0/0 10/10 0/0 .text            __ct__7J2DPaneFv */

@@ -1,8 +1,11 @@
 #ifndef D_MSG_D_MSG_STRING_BASE_H
 #define D_MSG_D_MSG_STRING_BASE_H
 
-#include "d/msg/d_msg_object.h"
+#include "JSystem/JMessage/resource.h"
 
+class COutFont_c;
+class J2DTextBox;
+class JUTFont;
 struct jmessage_string_tControl;
 struct jmessage_string_tReference;
 struct jmessage_string_tSequenceProcessor;

@@ -5,6 +5,7 @@
 
 #include "dolphin/vi/vi.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 
 //

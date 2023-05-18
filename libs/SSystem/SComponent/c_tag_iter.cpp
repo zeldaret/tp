@@ -4,6 +4,7 @@
 //
 
 #include "SSystem/SComponent/c_tag_iter.h"
+#include "SSystem/SComponent/c_tag.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

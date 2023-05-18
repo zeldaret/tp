@@ -1,14 +1,17 @@
 #ifndef JFWDISPLAY_H
 #define JFWDISPLAY_H
 
-#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTFader.h"
-#include "JSystem/JUtility/JUTProcBar.h"
 #include "JSystem/JUtility/JUTXfb.h"
 #include "JSystem/JUtility/TColor.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/os/OSAlarm.h"
 #include "dolphin/types.h"
+
+typedef struct _GXColor GXColor;
+typedef struct _GXRenderModeObj GXRenderModeObj;
+class JKRHeap;
 
 typedef void (*JFWDisplayUnkFunc)(void);
 

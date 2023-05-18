@@ -7,7 +7,10 @@
 #include "SSystem/SComponent/c_malloc.h"
 #include "SSystem/SComponent/c_phase.h"
 #include "SSystem/SStandard/s_basic.h"
+#include "f_pc/f_pc_layer.h"
+#include "f_pc/f_pc_method.h"
 #include "f_pc/f_pc_pause.h"
+#include "f_pc/f_pc_profile.h"
 #include "global.h"
 
 /* 8002064C-8002065C 0010+00 s=0 e=14 z=0  None .text      fpcBs_Is_JustOfType__Fii */

@@ -3,12 +3,21 @@
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
-#include "JSystem/JKernel/JKRAssertHeap.h"
-#include "JSystem/JKernel/JKRExpHeap.h"
-#include "JSystem/JKernel/JKRSolidHeap.h"
+#include "SSystem/SComponent/c_sxyz.h"
+#include "SSystem/SComponent/c_xyz.h"
+#include "Z2AudioLib/Z2SoundObject.h"
+#include "dolphin/gx/GXStruct.h"
 #include "global.h"
 #include "m_Do/m_Do_audio.h"
 #include "m_Do/m_Do_mtx.h"
+
+class JKRArchive;
+class JKRAssertHeap;
+class JKRExpHeap;
+class JKRHeap;
+class JKRSolidHeap;
+struct ResTIMG;
+class Z2Creature;
 
 class mDoExt_baseAnm {
 public:

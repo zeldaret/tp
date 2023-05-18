@@ -1,7 +1,6 @@
 #ifndef J3DMATERIALATTACH_H
 #define J3DMATERIALATTACH_H
 
-#include "JSystem/JUtility/JUTNameTab.h"
 #include "dolphin/types.h"
 
 struct J3DMaterial;
@@ -10,6 +9,7 @@ struct J3DAnmColor;
 struct J3DAnmTexPattern;
 struct J3DAnmTextureSRTKey;
 struct J3DAnmTevRegKey;
+class JUTNameTab;
 
 class J3DMaterialTable {
 public:

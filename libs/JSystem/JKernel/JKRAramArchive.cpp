@@ -7,12 +7,13 @@
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRDvdAramRipper.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
-#include "JSystem/JKernel/JKRFile.h"
+#include "JSystem/JKernel/JKRDvdFile.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "MSL_C/math.h"
 #include "MSL_C/string.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
+#include "global.h"
 
 //
 // Forward References:

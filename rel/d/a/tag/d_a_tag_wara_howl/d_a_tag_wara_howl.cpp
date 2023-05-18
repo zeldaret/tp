@@ -4,7 +4,10 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_wara_howl/d_a_tag_wara_howl.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
 
 /* 80D63F38-80D63F74 000078 003C+00 2/2 0/0 0/0 .text            __ct__13daTagWrHowl_cFv */
 daTagWrHowl_c::daTagWrHowl_c() {}

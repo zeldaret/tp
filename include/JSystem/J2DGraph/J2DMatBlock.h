@@ -2,10 +2,17 @@
 #define J2DMATBLOCK_H
 
 #include "JSystem/J2DGraph/J2DTevs.h"
-#include "JSystem/JUtility/JUTResFont.h"
-#include "JSystem/JUtility/JUTTexture.h"
 #include "JSystem/JUtility/TColor.h"
+#include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
+
+class JUTFont;
+class JUTPalette;
+class JUTResFont;
+class JUTTexture;
+struct ResFONT;
+struct ResTIMG;
+struct ResTLUT;
 
 struct J2DGXColorS10 : public GXColorS10 {
     /* 802F1B90 */ J2DGXColorS10();

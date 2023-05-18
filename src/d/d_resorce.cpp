@@ -11,14 +11,16 @@
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 #include "JSystem/J3DGraphLoader/J3DClusterLoader.h"
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
+#include "JSystem/JKernel/JKRMemArchive.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "MSL_C/stdio.h"
 #include "MSL_C/string.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx.h"
-#include "dolphin/os/OSCache.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 //
 // Types:

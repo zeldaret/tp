@@ -4,6 +4,9 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_ajnot/d_a_tag_ajnot.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/a/d_a_player.h"
+#include "d/d_procname.h"
 
 /* 805A2658-805A26A8 000078 0050+00 1/1 0/0 0/0 .text            create__12daTagAJnot_cFv */
 int daTagAJnot_c::create() {

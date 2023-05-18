@@ -5,9 +5,12 @@
 
 #include "d/d_timer.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_lib.h"
 #include "d/d_procname.h"
+#include "d/meter/d_meter2_info.h"
 #include "dol2asm.h"
 #include "f_op/f_op_msg_mng.h"
+#include "global.h"
 #include "m_Do/m_Do_lib.h"
 
 //

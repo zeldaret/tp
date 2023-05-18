@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_setBall/d_a_tag_setBall.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 80D601F8-80D60218 000078 0020+00 1/1 0/0 0/0 .text            initBaseMtx__14daTagSetBall_cFv */

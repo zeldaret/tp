@@ -2,17 +2,22 @@
 #define D_MENU_D_MENU_WINDOW_H
 
 #include "d/d_drawlist.h"
-#include "d/menu/d_menu_collect.h"
-#include "d/meter/d_meter2_info.h"
 #include "f_op/f_op_msg.h"
 #include "dolphin/types.h"
-#include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
-#include "m_Do/m_Do_mtx.h"
 
-class dMenu_Ring_c;
+struct CSTControl;
+struct STControl;
+class dMenu_Collect_c;
 class dMenu_Dmap_c;
+class dMenu_Fishing_c;
 class dMenu_Fmap_c;
+class dMenu_Insect_c;
+class dMenu_Letter_c;
+class dMenu_Option_c;
+class dMenu_Ring_c;
+class dMenu_Skill_c;
+class dMenu_save_c;
 
 class dDlst_MENU_CAPTURE_c : public dDlst_base_c {
 public:

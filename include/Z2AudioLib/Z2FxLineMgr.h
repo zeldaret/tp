@@ -1,9 +1,10 @@
 #ifndef Z2FXLINEMGR_H
 #define Z2FXLINEMGR_H
 
-#include "JSystem/JKernel/JKRArchive.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JAudio2/JASGadget.h"
+
+class JKRArchive;
+class JKRHeap;
 
 struct Z2FxLineEditNode {};
 

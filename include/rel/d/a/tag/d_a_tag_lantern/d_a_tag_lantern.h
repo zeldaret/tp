@@ -3,6 +3,8 @@
 
 #include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/msg/d_msg_flow.h"
+
 class daTag_Lantern_c : public fopAc_ac_c {
 public:
     /* 8048ED28 */ int create();

@@ -5,14 +5,23 @@
 
 #include "d/d_stage.h"
 #include "JSystem/JKernel/JKRAramArchive.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "MSL_C/stdio.h"
 #include "SSystem/SComponent/c_malloc.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/com/d_com_static.h"
+#include "d/d_lib.h"
+#include "d/d_procname.h"
+#include "d/d_tresure.h"
 #include "d/save/d_save_HIO.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
+#include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_kankyo_mng.h"
 #include "f_op/f_op_msg_mng.h"
+#include "f_op/f_op_scene_mng.h"
+#include "global.h"
+#include "m_Do/m_Do_Reset.h"
 
 //
 // Forward References:

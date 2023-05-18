@@ -4,9 +4,15 @@
 //
 
 #include "d/menu/d_menu_fmap.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "MSL_C/stdio.h"
 #include "MSL_C/string.h"
+#include "d/d_lib.h"
 #include "dol2asm.h"
+#include "dolphin/os/OSCache.h"
 #include "dolphin/types.h"
+
+struct ResTIMG;
 
 //
 // Types:
@@ -442,7 +448,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void sprintf();
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__19dMenuFmapIconDisp_c[3];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];

@@ -4,6 +4,7 @@
  */
 
 #include "f_pc/f_pc_pause.h"
+#include "f_pc/f_pc_node.h"
 #include "f_pc/f_pc_layer_iter.h"
 
 /* 80023844-80023868 0024+00 s=0 e=3 z=0  None .text      fpcPause_IsEnable__FPvUc */

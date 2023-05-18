@@ -8,6 +8,7 @@
 #include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
 #include "dol2asm.h"
+#include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
 /* 8027B040-8027B13C 275980 00FC+00 0/0 1/1 0/0 .text JPALoadExTex__FP18JPAEmitterWorkData */

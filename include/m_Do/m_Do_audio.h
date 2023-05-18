@@ -1,13 +1,8 @@
 #ifndef M_DO_M_DO_AUDIO_H
 #define M_DO_M_DO_AUDIO_H
 
-#include "JSystem/JAudio2/JASGadget.h"
-#include "JSystem/JAudio2/JASTrack.h"
-#include "JSystem/JAudio2/JAUSoundTable.h"
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "Z2AudioLib/Z2EnvSeMgr.h"
-#include "Z2AudioLib/Z2SoundInfo.h"
-#include "Z2AudioLib/Z2WolfHowlMgr.h"
 
 class mDoAud_zelAudio_c {
 public:

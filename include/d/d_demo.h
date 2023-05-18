@@ -2,7 +2,6 @@
 #define D_D_DEMO_H
 
 #include "JSystem/JGadget/binary.h"
-#include "JSystem/JMessage/control.h"
 #include "JSystem/JStage/JSGAmbientLight.h"
 #include "JSystem/JStage/JSGCamera.h"
 #include "JSystem/JStage/JSGFog.h"
@@ -11,13 +10,20 @@
 #include "JSystem/JStudio/JStudio_JAudio2/control.h"
 #include "JSystem/JStudio/JStudio_JParticle/object-particle.h"
 #include "JSystem/JStudio/JStudio_JStage/object.h"
-#include "f_op/f_op_actor.h"
+#include "SSystem/SComponent/c_sxyz.h"
+#include "SSystem/SComponent/c_xyz.h"
+#include "dolphin/gx/GXEnum.h"
+#include "dolphin/gx/GXStruct.h"
 
+class J3DModel;
 class dDemo_actor_c;
 class dDemo_camera_c;
 class dDemo_ambient_c;
 class dDemo_light_c;
 class dDemo_fog_c;
+class fopAc_ac_c;
+struct jmessage_tControl;
+
 class dDemo_object_c {
 public:
     /* 80038F54 */ dDemo_object_c();

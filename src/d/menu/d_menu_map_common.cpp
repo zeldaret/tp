@@ -12,6 +12,7 @@
 #include "d/meter/d_meter_HIO.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 struct dMenuMapCommon_c {
     /* 801C2718 */ dMenuMapCommon_c();

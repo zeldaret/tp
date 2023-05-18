@@ -3,6 +3,7 @@
  * Overlap Process Framework
  */
 
+#include "SSystem/SComponent/c_request.h"
 #include "f_op/f_op_overlap.h"
 #include "f_op/f_op_overlap_mng.h"
 #include "f_pc/f_pc_manager.h"

@@ -1,14 +1,11 @@
 #ifndef D_COM_D_COM_INF_GAME_H
 #define D_COM_D_COM_INF_GAME_H
 
-#include "d/a/d_a_alink.h"
 #include "d/bg/d_bg_s.h"
 #include "d/cc/d_cc_s.h"
 #include "d/d_attention.h"
 #include "d/d_drawlist.h"
-#include "d/d_procname.h"
 #include "d/d_resorce.h"
-#include "d/d_simple_model.h"
 #include "d/d_stage.h"
 #include "d/d_vibration.h"
 #include "d/event/d_event.h"
@@ -16,9 +13,13 @@
 #include "d/particle/d_particle.h"
 #include "d/save/d_save.h"
 #include "f_op/f_op_camera_mng.h"
-#include "f_op/f_op_scene_mng.h"
+#include "global.h"
 
+class JKRAramArchive;
+class dSmplMdl_draw_c;
 class dTimer_c;
+class daPy_py_c;
+class scene_class;
 
 class __d_timer_info_c {
 public:

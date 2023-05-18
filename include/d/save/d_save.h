@@ -3,8 +3,9 @@
 
 #include "MSL_C/string.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os/OSTime.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 #define DEFAULT_SELECT_ITEM_INDEX 0
 #define MAX_SELECT_ITEM 4

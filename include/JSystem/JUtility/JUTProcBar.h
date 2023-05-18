@@ -1,9 +1,11 @@
 #ifndef JUTPROCBAR_H
 #define JUTPROCBAR_H
 
-#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/TColor.h"
+#include "dolphin/os/OSTime.h"
 #include "dolphin/types.h"
+
+class JKRHeap;
 
 class JUTProcBar {
 public:

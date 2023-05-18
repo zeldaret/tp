@@ -4,7 +4,13 @@
  */
 
 #include "d/menu/d_menu_calibration.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_select_cursor.h"
+#include "d/meter/d_meter2_info.h"
 #include "d/meter/d_meter_HIO.h"
+#include "d/msg/d_msg_string.h"
+#include "d/pane/d_pane_class.h"
+#include "m_Do/m_Do_controller_pad.h"
 
 /* 803BC238-803BC244 019358 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {

@@ -5,11 +5,13 @@
 
 #include "d/save/d_save.h"
 #include "d/save/d_save_init.h"
+#include "JSystem/JUtility/JUTGamePad.h"
 #include "MSL_C/stdio.h"
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/meter/d_meter2_info.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 
 //

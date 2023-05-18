@@ -1,7 +1,9 @@
 #ifndef D_D_DOOR_PARAM2_H
 #define D_D_DOOR_PARAM2_H
 
-#include "f_op/f_op_actor_mng.h"
+#include "dolphin/types.h"
+
+class fopAc_ac_c;
 
 class door_param2_c {
 public:

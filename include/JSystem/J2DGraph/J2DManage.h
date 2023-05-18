@@ -1,8 +1,9 @@
 #ifndef J2DMANAGE_H
 #define J2DMANAGE_H
 
-#include "JSystem/JSupport/JSUInputStream.h"
 #include "dolphin/types.h"
+
+class JSUInputStream;
 
 struct J2DResReference {
     /* 0x00 */ u16 mCount;

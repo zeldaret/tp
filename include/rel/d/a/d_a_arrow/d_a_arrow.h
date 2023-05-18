@@ -1,12 +1,13 @@
 #ifndef D_A_ARROW_H
 #define D_A_ARROW_H
 
-#include "f_op/f_op_actor_mng.h"
+#include "d/a/d_a_player.h"
 #include "d/d_procname.h"
 #include "d/cc/d_cc_d.h"
 #include "d/bg/d_bg_s_acch.h"
 #include "d/bg/d_bg_s_lin_chk.h"
 #include "d/particle/d_particle.h"
+#include "f_op/f_op_actor_mng.h"
 
 class daArrow_c : public fopAc_ac_c {
 public:

@@ -6,7 +6,9 @@
 #include "d/cc/d_cc_s.h"
 #include "JSystem/JMath/JMath.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_jnt_col.h"
 #include "dol2asm.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Forward References:

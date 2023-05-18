@@ -10,6 +10,7 @@
 #include "Z2AudioLib/Z2StatusMgr.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 //
 // Types:

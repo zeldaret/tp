@@ -1,9 +1,8 @@
 #ifndef JASAUDIORESETER_H
 #define JASAUDIORESETER_H
 
-#include "JSystem/JAudio2/JASDriverIF.h"
 #include "dolphin/types.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os/OSInterrupt.h"
 
 struct JASCriticalSection {
     inline JASCriticalSection() {mInterruptState = OSDisableInterrupts();};

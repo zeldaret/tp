@@ -2,16 +2,26 @@
 #define J2DMATERIALFACTORY_H
 
 #include "JSystem/J2DGraph/J2DManage.h"
-#include "JSystem/J2DGraph/J2DMaterial.h"
-#include "JSystem/JKernel/JKRArchive.h"
+#include "dolphin/gx/GXEnum.h"
 #include "dolphin/types.h"
 
 struct J2DMaterialBlock {};
 
-struct J2DMaterialInitData;
-struct J2DIndInitData;
-struct J2DTevSwapModeTableInfo;
+typedef struct _GXColor GXColor;
+typedef struct _GXColorS10 GXColorS10;
 struct J2DAlphaCompInfo;
+struct J2DBlendInfo;
+struct J2DColorChanInfo;
+struct J2DIndInitData;
+class J2DMaterial;
+struct J2DMaterialInitData;
+struct J2DTevStageInfo;
+struct J2DTevSwapModeTableInfo;
+struct J2DTevSwapModeInfo;
+struct J2DTevOrderInfo;
+struct J2DTexCoordInfo;
+struct J2DTexMtxInfo;
+class JKRArchive;
 
 class J2DMaterialFactory {
 public:

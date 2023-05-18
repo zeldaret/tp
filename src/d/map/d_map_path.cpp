@@ -4,6 +4,8 @@
 //
 
 #include "d/map/d_map_path.h"
+#include "JSystem/J2DGraph/J2DGrafContext.h"
+#include "JSystem/JUtility/JUTTexture.h"
 #include "d/com/d_com_inf_game.h"
 #include "m_Do/m_Do_lib.h"
 

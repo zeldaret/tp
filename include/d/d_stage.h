@@ -1,13 +1,16 @@
 #ifndef D_D_STAGE_H
 #define D_D_STAGE_H
 
-#include "JSystem/JKernel/JKRExpHeap.h"
 #include "SSystem/SComponent/c_lib.h"
 #include "d/kankyo/d_kankyo.h"
 #include "d/kankyo/d_kankyo_data.h"
 #include "d/save/d_save.h"
+#include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
+#include "f_pc/f_pc_priority.h"
+#include "global.h"
+
+class JKRExpHeap;
 
 struct stage_vrboxcol_info_class {
     // VRB

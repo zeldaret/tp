@@ -4,8 +4,12 @@
 //
 
 #include "JSystem/J2DGraph/J2DTextBox.h"
+#include "JSystem/J2DGraph/J2DMaterial.h"
 #include "JSystem/J2DGraph/J2DPrint.h"
+#include "JSystem/JSupport/JSURandomInputStream.h"
+#include "JSystem/JUtility/JUTResFont.h"
 #include "MSL_C/string.h"
+#include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

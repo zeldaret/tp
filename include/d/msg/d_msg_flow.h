@@ -1,7 +1,10 @@
 #ifndef D_MSG_D_MSG_FLOW_H
 #define D_MSG_D_MSG_FLOW_H
 
-#include "f_op/f_op_msg.h"
+#include "dolphin/types.h"
+
+class fopAc_ac_c;
+class msg_class;
 
 // all mesg_flow_node structs members might be wrong
 struct mesg_flow_node {

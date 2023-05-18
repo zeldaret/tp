@@ -1,7 +1,7 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
-#include "global.h"
+#include "dolphin/types.h"
 
 extern u8 data_804511E0;
 extern u8 lit_569[];

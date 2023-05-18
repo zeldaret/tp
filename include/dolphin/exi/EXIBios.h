@@ -1,11 +1,13 @@
 #ifndef EXIBIOS_H
 #define EXIBIOS_H
 
-#include "dolphin/os/OS.h"
+#include "dolphin/types.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+typedef struct OSContext OSContext;
 
 vu32 __EXIRegs[16] : 0xCC006800;
 

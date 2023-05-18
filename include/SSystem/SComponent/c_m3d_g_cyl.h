@@ -4,6 +4,7 @@
 #include "SSystem/SComponent/c_m3d.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 // Cylinder
 struct cM3dGCylS {

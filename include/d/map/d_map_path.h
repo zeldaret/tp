@@ -3,6 +3,7 @@
 
 #include "d/d_drawlist.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 class dDrawPath_c : public dDlst_base_c {
 public:

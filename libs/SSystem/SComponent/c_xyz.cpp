@@ -7,7 +7,6 @@
 #include "MSL_C/float.h"
 #include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
-#include "global.h"
 
 //
 // Declarations:

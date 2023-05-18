@@ -5,7 +5,9 @@
 
 #include "f_op/f_op_msg.h"
 #include "d/s/d_s_play.h"
+#include "f_op/f_op_draw_tag.h"
 #include "f_op/f_op_msg_mng.h"
+#include "f_pc/f_pc_manager.h"
 
 /* 8001F488-8001F4B0 019DC8 0028+00 1/0 0/0 0/0 .text            fopMsg_Draw__FPv */
 static int fopMsg_Draw(void* i_this) {

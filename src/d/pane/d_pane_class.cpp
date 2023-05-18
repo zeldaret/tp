@@ -4,14 +4,19 @@
 //
 
 #include "d/pane/d_pane_class.h"
+#include "JSystem/J2DGraph/J2DOrthoGraph.h"
+#include "JSystem/J2DGraph/J2DPicture.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
+#include "JSystem/J2DGraph/J2DTextBox.h"
+#include "JSystem/J2DGraph/J2DWindow.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JSupport/JSUMemoryStream.h"
+#include "d/d_lib.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_graphic.h"
-#include "JSystem/J2DGraph/J2DOrthoGraph.h"
-#include "JSystem/J2DGraph/J2DPicture.h"
-#include "JSystem/JSupport/JSUMemoryStream.h"
-#include "d/d_lib.h"
 
 /* 80253930-80253984 24E270 0054+00 0/0 11/11 0/0 .text            __ct__8CPaneMgrFv */
 CPaneMgr::CPaneMgr() {

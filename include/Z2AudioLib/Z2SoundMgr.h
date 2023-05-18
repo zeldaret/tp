@@ -6,6 +6,7 @@
 #include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JAIStreamMgr.h"
 #include "JSystem/JAudio2/JASGadget.h"
+#include "global.h"
 
 class Z2SoundMgr : public JASGlobalInstance<Z2SoundMgr> {
 public:

@@ -1,9 +1,16 @@
 #ifndef D_S_D_S_LOGO_H
 #define D_S_D_S_LOGO_H
 
-#include "d/com/d_com_inf_game.h"
+#include "SSystem/SComponent/c_phase.h"
 #include "dolphin/types.h"
-#include "SSystem/SComponent/c_lib.h"
+#include "f_op/f_op_scene.h"
+
+class JKRExpHeap;
+class JKRHeap;
+struct ResTIMG;
+class dDlst_2D_c;
+class mDoDvdThd_mountXArchive_c;
+class mDoDvdThd_toMainRam_c;
 
 class dLog_HIO_c {
 public:

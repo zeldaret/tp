@@ -3,7 +3,8 @@
 
 #include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "Z2AudioLib/Z2Creature.h"
+
+class Z2CreatureEnemy;
 
 class Z2SoundObjMgr : protected JSUList<Z2CreatureEnemy>, public JASGlobalInstance<Z2SoundObjMgr> {
 public:

@@ -2,11 +2,11 @@
 #define D_EVENT_D_EVENT_H
 
 #include "d/a/d_a_itembase.h"
-#include "d/a/d_a_player.h"
-#include "d/d_stage.h"
-#include "d/event/d_event_manager.h"
-#include "d/save/d_save.h"
 #include "dolphin/types.h"
+#include "global.h"
+
+struct dStage_MapEvent_dt_c;
+class fopAc_ac_c;
 
 #if DEBUG
 class dEvDb_bit_c {

@@ -7,7 +7,9 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/d_item_data.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // External References:

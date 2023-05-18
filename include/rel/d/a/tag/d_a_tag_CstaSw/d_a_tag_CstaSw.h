@@ -2,6 +2,7 @@
 #define D_A_TAG_CSTASW_H
 
 #include "d/com/d_com_inf_game.h"
+#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_hostIO.h"
 
 class daTagCstaSw_c : public fopAc_ac_c {

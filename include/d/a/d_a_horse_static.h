@@ -2,7 +2,7 @@
 #define D_A_D_A_HORSE_STATIC_H
 
 #include "dolphin/types.h"
-#include "rel/d/a/e/d_a_e_wb/d_a_e_wb.h"
+#include "f_op/f_op_actor.h"
 
 class daTagHstop_c : public fopAc_ac_c {
 public:

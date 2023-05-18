@@ -4,6 +4,8 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_lv6CstaSw/d_a_tag_lv6CstaSw.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/d_procname.h"
 
 /* 80D5B2EC-80D5B310 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__17daLv6CstaSw_HIO_cFv */
 daLv6CstaSw_HIO_c::daLv6CstaSw_HIO_c() {

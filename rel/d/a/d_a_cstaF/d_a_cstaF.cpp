@@ -5,6 +5,7 @@
 
 #include "rel/d/a/d_a_cstaF/d_a_cstaF.h"
 #include "dol2asm.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Forward References:

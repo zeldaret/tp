@@ -4,6 +4,7 @@
  */
 
 #include "d/d_door_param2.h"
+#include "f_op/f_op_actor_mng.h"
 
 /* 8003A188-8003A194 034AC8 000C+00 0/0 0/0 17/17 .text getKind__13door_param2_cFP10fopAc_ac_c */
 u8 door_param2_c::getKind(fopAc_ac_c* i_actor) {

@@ -1,6 +1,8 @@
 #ifndef CARDPRIV_H
 #define CARDPRIV_H
 
+#include "dolphin/os/OSAlarm.h"
+#include "dolphin/os/OSThread.h"
 #include "dolphin/types.h"
 
 #ifdef __cplusplus
@@ -21,6 +23,8 @@ extern "C" {
 #define CARD_SYSTEM_BLOCK_SIZE (8 * 1024u)
 
 #define CARD_MAX_MOUNT_STEP (CARD_NUM_SYSTEM_BLOCK + 2)
+
+typedef struct DVDDiskID DVDDiskID;
 
 typedef struct CARDDir {
     u8 gameName[4];

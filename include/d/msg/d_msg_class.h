@@ -3,8 +3,11 @@
 
 #include "JSystem/JMessage/control.h"
 #include "JSystem/JMessage/processor.h"
-#include "d/msg/d_msg_out_font.h"
-#include "f_op/f_op_msg.h"
+#include "SSystem/SComponent/c_xyz.h"
+
+class COutFont_c;
+class J2DTextBox;
+class JUTFont;
 
 struct JMSMesgEntry_c {
     /* 0x00 */ u32 mStringOffset;

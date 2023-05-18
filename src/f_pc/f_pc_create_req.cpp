@@ -5,10 +5,12 @@
 
 #include "f_pc/f_pc_create_req.h"
 #include "SSystem/SComponent/c_malloc.h"
+#include "f_pc/f_pc_base.h"
 #include "f_pc/f_pc_create_iter.h"
 #include "f_pc/f_pc_create_tag.h"
 #include "f_pc/f_pc_deletor.h"
 #include "f_pc/f_pc_executor.h"
+#include "f_pc/f_pc_layer.h"
 #include "f_pc/f_pc_layer_iter.h"
 
 /* 80020ACC-80020AE8 001C+00 s=1 e=0 z=0  None .text      fpcCtRq_isCreatingByID__FP10create_tagPUi

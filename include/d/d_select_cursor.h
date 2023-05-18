@@ -6,6 +6,8 @@
 #include "d/d_drawlist.h"
 #include "d/d_select_icon.h"
 
+class J2DAnmTransformKey;
+
 class dSelect_cursorHIO_c {
 public:
     /* 801941E4 */ dSelect_cursorHIO_c();

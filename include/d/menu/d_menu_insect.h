@@ -1,13 +1,16 @@
 #ifndef D_MENU_D_MENU_INSECT_H
 #define D_MENU_D_MENU_INSECT_H
 
-#include "JSystem/J2DGraph/J2DPicture.h"
-#include "d/d_lib.h"
-#include "d/d_select_cursor.h"
+#include "d/d_drawlist.h"
 #include "dolphin/types.h"
 
+class CPaneMgr;
+struct CSTControl;
+class J2DTextBox;
+struct STControl;
 class dMsgScrn3Select_c;
 class dMsgString_c;
+class dSelect_cursor_c;
 
 class dMenu_Insect_c : public dDlst_base_c {
 public:

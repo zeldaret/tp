@@ -4,6 +4,7 @@
 //
 
 #include "rel/d/a/d_a_suspend/d_a_suspend.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 #include "f_op/f_op_actor_mng.h"
 

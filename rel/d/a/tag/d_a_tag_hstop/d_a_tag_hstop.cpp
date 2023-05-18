@@ -4,7 +4,11 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_hstop/d_a_tag_hstop.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
+#include "d/meter/d_meter2_info.h"
+#include "f_op/f_op_actor_mng.h"
 #include "rel/d/a/d_a_horse/d_a_horse.h"
 
 /* 805A43EC-805A45D8 0000EC 01EC+00 1/1 0/0 0/0 .text            create__12daTagHstop_cFv */

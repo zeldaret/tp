@@ -4,6 +4,8 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_CstaSw/d_a_tag_CstaSw.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/d_procname.h"
 
 /* 805A202C-805A2050 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__17daTagCstaSw_HIO_cFv */
 daTagCstaSw_HIO_c::daTagCstaSw_HIO_c() {

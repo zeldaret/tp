@@ -1,8 +1,11 @@
 #ifndef D_D_MODEL_H
 #define D_D_MODEL_H
 
-#include "d/com/d_com_inf_game.h"
+#include "JSystem/J3DGraphBase/J3DPacket.h"
 #include "dolphin/types.h"
+
+class J3DModelData;
+class dKy_tevstr_c;
 
 class dMdl_obj_c {
 public:

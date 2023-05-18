@@ -1,7 +1,8 @@
 #ifndef SIBIOS_H
 #define SIBIOS_H
 
-#include "dolphin/os/OS.h"
+#include "dolphin/os/OSInterrupt.h"
+#include "dolphin/os/OSTime.h"
 
 #ifdef __cplusplus
 extern "C" {

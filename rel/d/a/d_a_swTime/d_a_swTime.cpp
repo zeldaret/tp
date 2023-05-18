@@ -4,7 +4,9 @@
  */
 
 #include "rel/d/a/d_a_swTime/d_a_swTime.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 
 
 /* 80D4F638-80D4F660 000078 0028+00 1/1 0/0 0/0 .text            Create__10daSwTime_cFv */

@@ -1,8 +1,11 @@
 #ifndef JUTRESFONT_H
 #define JUTRESFONT_H
 
-#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTFont.h"
+#include "dolphin/gx/GXEnum.h"
+#include "dolphin/gx/GXStruct.h"
+
+class JKRHeap;
 
 typedef bool (*IsLeadByte_func)(int);
 

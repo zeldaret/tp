@@ -5,13 +5,17 @@
 
 #include "d/msg/d_msg_flow.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/a/d_a_alink.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/com/d_com_static.h"
 #include "d/d_item.h"
+#include "d/d_procname.h"
+#include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_object.h"
 #include "d/shop/d_shop_system.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_audio.h"
 

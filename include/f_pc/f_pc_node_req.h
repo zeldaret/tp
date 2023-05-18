@@ -2,10 +2,13 @@
 #define F_PC_NODE_REQ_H_
 
 #include "SSystem/SComponent/c_phase.h"
+#include "SSystem/SComponent/c_tag.h"
 #include "dolphin/types.h"
 #include "f_pc/f_pc_method.h"
 #include "f_pc/f_pc_method_tag.h"
-#include "f_pc/f_pc_node.h"
+
+typedef struct layer_class layer_class;
+typedef struct process_node_class process_node_class;
 
 typedef struct node_create_request_method_class {
     process_method_func mpExecuteFunc;
@@ -53,15 +56,15 @@ s32 fpcNdRq_Execute(node_create_request* pNodeCreateReq);
 s32 fpcNdRq_Delete(node_create_request* pNodeCreateReq);
 s32 fpcNdRq_Cancel(node_create_request* pNodeCreateReq);
 s32 fpcNdRq_Handler(void);
-s32 fpcNdRq_IsPossibleTarget(struct process_node_class* pProcNode);
-s32 fpcNdRq_IsIng(struct process_node_class* pProcNode);
+s32 fpcNdRq_IsPossibleTarget(process_node_class* pProcNode);
+s32 fpcNdRq_IsIng(process_node_class* pProcNode);
 node_create_request* fpcNdRq_Create(u32 pRequestSize);
-node_create_request* fpcNdRq_ChangeNode(u32 pRequestSize, struct process_node_class* pProcNode,
+node_create_request* fpcNdRq_ChangeNode(u32 pRequestSize, process_node_class* pProcNode,
                                         s16 param_3, void* param_4);
-node_create_request* fpcNdRq_DeleteNode(u32 pRequestSize, struct process_node_class* pProcNode);
+node_create_request* fpcNdRq_DeleteNode(u32 pRequestSize, process_node_class* pProcNode);
 node_create_request* fpcNdRq_CreateNode(u32 pRequestSize, s16 param_2, void* param_3);
 node_create_request*
-fpcNdRq_Request(u32 param_1, int param_2, struct process_node_class* param_3, s16 param_4,
+fpcNdRq_Request(u32 param_1, int param_2, process_node_class* param_3, s16 param_4,
                 void* param_5, node_create_request_method_class* pNodeCreateRequestMethodClass);
 s32 fpcNdRq_ReChangeNode(unsigned int pRequestId, s16 param_2, void* param_3);
 s32 fpcNdRq_ReRequest(unsigned int pRequestId, s16 param_2, void* param_3);

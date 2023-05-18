@@ -6,6 +6,8 @@
 #include "rel/d/a/d_a_canoe/d_a_canoe.h"
 #include "dol2asm.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/meter/d_meter2_info.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Types:

@@ -12,6 +12,7 @@
 #include "f_pc/f_pc_deletor.h"
 #include "f_pc/f_pc_executor.h"
 #include "f_pc/f_pc_layer.h"
+#include "f_pc/f_pc_node.h"
 #include "f_pc/f_pc_stdcreate_req.h"
 
 /* 800227C4-80022804 0040+00 s=1 e=0 z=0  None .text fpcNdRq_RequestQTo__FP19node_create_request

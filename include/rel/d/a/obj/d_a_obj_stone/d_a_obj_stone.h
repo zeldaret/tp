@@ -3,6 +3,7 @@
 
 #include "dolphin/types.h"
 #include "d/com/d_com_inf_game.h"
+#include "f_op/f_op_actor_mng.h"
 
 enum {
     OBJ_STONE_TYPE_SMALL = 0,

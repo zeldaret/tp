@@ -1,8 +1,9 @@
 #ifndef D_BG_D_BG_PLC_H
 #define D_BG_D_BG_PLC_H
 
-#include "d/bg/d_bg_pc.h"
 #include "dolphin/types.h"
+
+struct sBgPc;
 
 enum {
     /* 0x14 */ ZELDA_CODE_SIZE = 0x14

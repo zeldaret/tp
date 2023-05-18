@@ -6,6 +6,8 @@
 #include "f_op/f_op_camera.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/s/d_s_play.h"
+#include "f_op/f_op_draw_tag.h"
+#include "f_pc/f_pc_manager.h"
 
 /* 8001E140-8001E180 018A80 0040+00 1/0 0/0 0/0 .text            fopCam_Draw__FP12camera_class */
 static s32 fopCam_Draw(camera_class* i_this) {

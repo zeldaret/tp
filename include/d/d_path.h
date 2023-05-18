@@ -1,9 +1,11 @@
 #ifndef D_D_PATH_H
 #define D_D_PATH_H
 
-#include "d/d_stage.h"
+#include "dolphin/types.h"
 
-class dStage_dPnt_c;
+class cBgS_PolyInfo;
+struct cXyz;
+struct dStage_dPnt_c;
 
 struct dPath {
     /* 0x0 */ u16 m_num;

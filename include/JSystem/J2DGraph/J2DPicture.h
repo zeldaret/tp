@@ -2,9 +2,15 @@
 #define J2DPICTURE_H
 
 #include "JSystem/J2DGraph/J2DPane.h"
-#include "JSystem/J2DGraph/J2DScreen.h"
-#include "JSystem/JUtility/JUTTexture.h"
+#include "JSystem/JUtility/TColor.h"
+#include "dolphin/gx/GXEnum.h"
 #include "dolphin/types.h"
+
+class J2DMaterial;
+class JUTPalette;
+class JUTTexture;
+struct ResTIMG;
+struct ResTLUT;
 
 enum J2DMirror {
     /* 0x0 */ MIRROR0,  // temp, figure out later

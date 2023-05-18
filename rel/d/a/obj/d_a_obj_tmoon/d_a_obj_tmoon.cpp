@@ -4,6 +4,9 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_tmoon/d_a_obj_tmoon.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/d_procname.h"
+#include "f_op/f_op_draw_tag.h"
 
 /* 80D12B98-80D12BB8 000078 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
 static bool CheckCreateHeap(fopAc_ac_c* i_this) {

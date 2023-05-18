@@ -4,7 +4,12 @@
 //
 
 #include "JSystem/JAudio2/JASWaveArcLoader.h"
+#include "JSystem/JAudio2/JASDvdThread.h"
+#include "JSystem/JAudio2/JASTaskThread.h"
+#include "JSystem/JKernel/JKRDvdAramRipper.h"
 #include "MSL_C/string.h"
+#include "dolphin/dvd/dvd.h"
+#include "global.h"
 
 //
 // Forward References:

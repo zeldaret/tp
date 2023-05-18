@@ -2,8 +2,9 @@
 #define D_MSG_D_MSG_OUT_FONT_H
 
 #include "dolphin/types.h"
-#include "JSystem/J2DGraph/J2DTextBox.h"
-#include "JSystem/J2DGraph/J2DPicture.h"
+
+class J2DPicture;
+class J2DTextBox;
 
 class COutFontSet_c {
 public:

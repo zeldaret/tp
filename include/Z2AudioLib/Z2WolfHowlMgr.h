@@ -2,7 +2,7 @@
 #define Z2WOLFHOWLMGR_H
 
 #include "JSystem/JAudio2/JASGadget.h"
-#include "Z2AudioLib/Z2SoundObject.h"
+#include "JSystem/JAudio2/JAISoundHandles.h"
 #include "dolphin/types.h"
 
 /*

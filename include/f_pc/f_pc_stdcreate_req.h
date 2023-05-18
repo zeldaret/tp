@@ -3,7 +3,8 @@
 
 #include "dolphin/types.h"
 #include "f_pc/f_pc_create_req.h"
-#include "f_pc/f_pc_layer.h"
+
+typedef struct layer_class layer_class;
 
 typedef int (*stdCreateFunc)(void*, void*);
 

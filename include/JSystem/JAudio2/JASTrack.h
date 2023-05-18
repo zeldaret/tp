@@ -2,7 +2,8 @@
 #define JASTRACK_H
 
 #include "JSystem/JAudio2/JASGadget.h"
-#include "JSystem/JAudio2/JASSoundParams.h"
+
+struct JASSoundParams;
 
 struct JASDsp {
     struct TChannel {

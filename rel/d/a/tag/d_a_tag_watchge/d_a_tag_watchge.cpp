@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_watchge/d_a_tag_watchge.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 80D642D8-80D642E0 000078 0008+00 1/1 0/0 0/0 .text            draw__14daTagWatchGe_cFv */

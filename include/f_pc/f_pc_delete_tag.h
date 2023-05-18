@@ -4,7 +4,8 @@
 
 #include "SSystem/SComponent/c_tag.h"
 #include "dolphin/types.h"
-#include "f_pc/f_pc_layer.h"
+
+typedef struct layer_class layer_class;
 
 typedef int (*delete_tag_func)(void*);
 
