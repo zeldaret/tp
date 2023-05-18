@@ -257,7 +257,7 @@ extern "C" void _restgpr_29();
 extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern dScnKy_env_light_c g_env_light;
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
+extern "C" extern dMsgObject_HIO_c g_MsgObject_HIO_c;
 extern "C" extern u32 g_saftyWhiteColor;
 extern "C" u8 m_midnaActor__9daPy_py_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
@@ -443,25 +443,123 @@ SECTION_DEAD static char const* const stringBase_80399CB5 = "FLI1";
 
 /* 80249F90-8024A13C 2448D0 01AC+00 0/0 10/10 86/86 .text
  * init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgFlow_c::init(fopAc_ac_c* param_0, int param_1, int param_2, fopAc_ac_c** param_3) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c.s"
+void dMsgFlow_c::init(fopAc_ac_c* param_0, int param_1, int param_2, fopAc_ac_c** param_3) {
+    u16 uVar4;
+    u16 flow_val;
+
+    if (!dMsgObject_isTalkNowCheck()) {
+        if (param_3 == NULL) {
+            dComIfGp_setMesgCameraInfoActor(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+                                            NULL);
+        }
+
+        if (param_2 == 0 && g_MsgObject_HIO_c.mMsgDebug == 2) {
+            param_1 = g_MsgObject_HIO_c.mFlowIndex;
+        }
+        flow_val = param_1;
+
+        dMsgObject_changeFlowGroup(param_1);
+        if (param_2 == 0) {
+            setInitValue(1);
+            mFlow_p = getMsgDataBlock("FLW1");
+            mLabelInfo_p = getMsgDataBlock("FLI1");
+            mFlowNodeTBL = (mesg_flow_node*)(mFlow_p + 0x10);
+            field_0x14 = (u16*)(mFlowNodeTBL + (*(u16*)(mFlow_p + 8)));
+            field_0x18 = field_0x14 + *(u16*)(mFlow_p + 8);
+
+            mFlow = flow_val;
+            if (param_0 != NULL) {
+                dMsgObject_setTalkPartner(param_0);
+            }
+            setNodeIndex(getInitNodeIndex(mFlow), param_3);
+        } else {
+            uVar4 = field_0x10;
+            setInitValue(0);
+            if (param_0 != NULL) {
+                dMsgObject_setTalkPartner(param_0);
+            }
+            setNodeIndex(uVar4, param_3);
+        }
+        dMsgObject_setSelectWordFlag(0);
+    }
 }
-#pragma pop
 
 /* 8024A13C-8024A2D8 244A7C 019C+00 2/0 0/0 2/2 .text checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi
  */
+// regalloc, instruction issues
+#ifdef NONMATCHING
+int dMsgFlow_c::checkOpenDoor(fopAc_ac_c *param_1,int *param_2) {
+  if (dMsgObject_isTalkNowCheck()) {
+    return 0;
+  } else {
+    int iVar3 = 0;
+    int iVar7 = 0;
+    s32 bVar2 = 0;
+    mesg_flow_node* iVar8;
+    u16 uVar5 = getInitNodeIndex(mFlow);
+    while (((uVar5 != 0xffff && (!iVar3)) && (!bVar2))) {
+      iVar8 = &mFlowNodeTBL[uVar5];
+      switch(iVar8->type) {
+      case 0:
+      default:
+          break;
+      case 1:
+          uVar5 = *(u16*)iVar8->params;
+          iVar7 = iVar7 + 1;
+          break;
+      case 2:
+        mesg_flow_node_branch* nodeBranch = (mesg_flow_node_branch*)iVar8;
+        switch(iVar8->msg_index) {
+        case 0:
+        case 4:
+        case 7:
+        case 8:
+        case 9:
+        case 0x19:
+          bVar2 = 1;
+          break;
+        }
+        u32 sVar6 = (this->*mQueryList[iVar8->msg_index])(nodeBranch, param_1, 0);
+        uVar5 = field_0x14[(*(u16*)(iVar8->params + 2)) + sVar6];
+        break;
+      
+      case 3:    
+        switch(iVar8->field_0x1) {
+        case 8:
+        case 9:
+        case 0xd:
+        case 0x10:
+        case 0x13:
+        case 0x1d:
+          bVar2 = 1;
+          break;
+        case 0xc:
+          iVar3 = 1;
+          break;
+        default:
+          uVar5 = field_0x14[iVar8->msg_index];
+          break;
+        }
+        break;
+      }
+    }
+    if (param_2 != NULL) {
+      *param_2 = iVar7;
+    }
+  return iVar3;
+  }
+  
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgFlow_c::checkOpenDoor(fopAc_ac_c* param_0, int* param_1) {
+asm int dMsgFlow_c::checkOpenDoor(fopAc_ac_c* param_0, int* param_1) {
     nofralloc
 #include "asm/d/msg/d_msg_flow/checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi.s"
 }
 #pragma pop
+#endif
 
 /* 8024A2D8-8024A424 244C18 014C+00 0/0 21/21 78/78 .text
  * doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci            */
@@ -629,32 +727,36 @@ void dMsgFlow_c::setInitValue(int param_0) {
 
 /* 8024A618-8024A6EC 244F58 00D4+00 1/1 0/0 0/0 .text
  * setInitValueGroupChange__10dMsgFlow_cFiPP10fopAc_ac_c        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgFlow_c::setInitValueGroupChange(int param_0, fopAc_ac_c** param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/setInitValueGroupChange__10dMsgFlow_cFiPP10fopAc_ac_c.s"
+void dMsgFlow_c::setInitValueGroupChange(int param_1, fopAc_ac_c** param_2) {
+    u8* pJVar1;
+    u32 uVar2;
+    s32 unaff_r13;
+
+    dMsgObject_changeFlowGroup(param_1);
+    setInitValue(0);
+    mFlow_p = getMsgDataBlock("FLW1");
+    mLabelInfo_p = getMsgDataBlock("FLI1");
+    mFlowNodeTBL = (mesg_flow_node*)(mFlow_p + 0x10);
+    field_0x14 = (u16*)(mFlowNodeTBL + *(u16*)(mFlow_p + 8));
+    field_0x18 = field_0x14 + *(u16*)(mFlow_p + 8);
+    mFlow = param_1;
+    setNodeIndex(getInitNodeIndex(mFlow), param_2);
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 80456BA0-80456BA4 000040 0004+00 1/1 0/0 0/0 .sbss2           @4765 */
-SECTION_SBSS2 static u8 lit_4765[4];
-
-/* 80456BA4-80456BA8 000044 0004+00 1/1 0/0 0/0 .sbss2           None */
-SECTION_SBSS2 static u8 data_80456BA4[4];
 
 /* 8024A6EC-8024A784 24502C 0098+00 4/4 0/0 0/0 .text            getMsgDataBlock__10dMsgFlow_cFPCc
  */
-#ifdef NONMATCHING
 u8* dMsgFlow_c::getMsgDataBlock(char const* block_tag) {
-    char tag[4];
+    char tag[5] = {0};
     u8* dt_p = dMsgObject_c::getMsgDtPtr();
-    u32 num = *(dt_p + 0xC);
+    u8* block;
+    u32 num;
+    u32 i;
 
-    u32 i = 0;
-    u8* block = dt_p + 0x20;
+    num = *(u32*)(dt_p + 0xC);
+    i = 0;
+    block = dt_p + 0x20;
 
     for (; i < num; i++) {
         memcpy(tag, block, 4);
@@ -667,38 +769,78 @@ u8* dMsgFlow_c::getMsgDataBlock(char const* block_tag) {
 
     return NULL;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u8* dMsgFlow_c::getMsgDataBlock(char const* param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/getMsgDataBlock__10dMsgFlow_cFPCc.s"
-}
-#pragma pop
-#endif
 
 /* 8024A784-8024A7CC 2450C4 0048+00 5/5 0/0 0/0 .text            getInitNodeIndex__10dMsgFlow_cFUs
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u16 dMsgFlow_c::getInitNodeIndex(u16 param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/getInitNodeIndex__10dMsgFlow_cFUs.s"
+u16 dMsgFlow_c::getInitNodeIndex(u16 param_1) {
+    u8* puVar4;
+    u16 uVar2;
+    uVar2 = -1;
+    puVar4 = mLabelInfo_p + 0x10;
+    for (int i = 0; i < *(u16*)(mLabelInfo_p + 8); i++) {
+        if (*(u32*)puVar4 >> 16 == param_1) {
+            uVar2 = *(u16*)(puVar4 + 4);
+        }
+        puVar4 += 8;
+    }
+    return uVar2;
 }
-#pragma pop
 
 /* 8024A7CC-8024A95C 24510C 0190+00 6/6 0/0 0/0 .text setNodeIndex__10dMsgFlow_cFUsPP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgFlow_c::setNodeIndex(u16 param_0, fopAc_ac_c** param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/setNodeIndex__10dMsgFlow_cFUsPP10fopAc_ac_c.s"
+void dMsgFlow_c::setNodeIndex(u16 param_1, fopAc_ac_c** param_2) {
+    msg_class* msg = NULL;
+    if (mMsg != -1) {
+        msg = fopMsgM_SearchByID(mMsg);
+    }
+
+    if (param_1 == 0xffff) {
+        if (msg != NULL) {
+            msg->mMode = 0x10;
+        }
+        dMsgObject_endFlowGroup();
+        field_0x26 = 0x1;
+    } else {
+        switch (mFlowNodeTBL[param_1].type) {
+        case 0:
+            break;
+        case 1:
+            field_0x25 = 0x1;
+            break;
+        case 2:
+            break;
+        case 3:
+            mesg_flow_node* node = &mFlowNodeTBL[param_1];
+            if (node->field_0x1 == 21 || node->field_0x1 == 32 ||
+                node->field_0x1 == 33) {
+                if (node->field_0x1 == 21) {
+                    field_0x3c = getParam(node->params);
+                } else {
+                    u16 local_22[3];
+                    getParam(local_22, local_22 + 1, node->params);
+                    field_0x3c = local_22[1] + 1;
+                }
+                if (msg != NULL) {
+                    msg->mMode = 0x10;
+                    dMsgObject_endFlowGroup();
+                }
+                field_0x27 = 1;
+            }
+            if (node->field_0x1 == 9) {
+                field_0x27 = 1;
+            } else if (node->field_0x1 == 19) {
+                u16 local_26;
+                u16 local_28;
+                getParam(&local_28, &local_26, node->params);
+                field_0x38 = local_26;
+                if (param_2 != NULL) {
+                    dMsgObject_setTalkPartner(param_2[field_0x38]);
+                }
+            }
+        }
+    }
+    field_0x10 = param_1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80399CB0-80399CB0 026310 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -710,29 +852,140 @@ SECTION_DEAD static char const* const stringBase_80399CBB = "INF1";
 
 /* 8024A95C-8024AA50 24529C 00F4+00 1/1 0/0 0/0 .text
  * setSelectMsg__10dMsgFlow_cFP14mesg_flow_nodeP14mesg_flow_nodeP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgFlow_c::setSelectMsg(mesg_flow_node* param_0, mesg_flow_node* param_1,
-                                  fopAc_ac_c* param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/setSelectMsg__10dMsgFlow_cFP14mesg_flow_nodeP14mesg_flow_nodeP10fopAc_ac_c.s"
+int dMsgFlow_c::setSelectMsg(mesg_flow_node* param_1, mesg_flow_node* param_2,
+                             fopAc_ac_c* param_3) {
+    u32 uVar1;
+    u32 uVar2;
+    u16* iVar3;
+
+    iVar3 = (u16*) getMsgDataBlock("INF1");
+    uVar1 = ((iVar3 + (param_2->msg_index) * 10))[10];
+    uVar2 = ((iVar3 + (param_1->msg_index) * 10))[10];
+    
+    if (mMsg != -1) {
+        msg_class* iVar3 = fopMsgM_SearchByID(mMsg);
+        iVar3->mMode = 0xf;
+        fopMsgM_messageSet(uVar2, uVar1);
+    } else {
+        if (dMeter2Info_getFloatingFlowID() == 0xffff) {
+            mMsg = fopMsgM_messageSet(uVar2, param_3, uVar1);
+            if (mMsg == -1) {
+                return 0;
+            }
+            dMsgObject_setNowTalkFlowNo(mFlow);
+        }
+    }
+    mMsgNo = uVar2;
+    field_0x41 = 1;
+    return 1;
 }
-#pragma pop
 
 /* 8024AA50-8024AB30 245390 00E0+00 1/1 0/0 0/0 .text
  * setNormalMsg__10dMsgFlow_cFP14mesg_flow_nodeP10fopAc_ac_c    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgFlow_c::setNormalMsg(mesg_flow_node* param_0, fopAc_ac_c* param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/setNormalMsg__10dMsgFlow_cFP14mesg_flow_nodeP10fopAc_ac_c.s"
+int dMsgFlow_c::setNormalMsg(mesg_flow_node* param_1, fopAc_ac_c* param_2) {
+    u32 uVar2;
+    u16* iVar3;
+
+    iVar3 = (u16*) getMsgDataBlock("INF1");
+    uVar2 = ((iVar3 + (param_1->msg_index) * 10))[10];
+    
+    if (mMsg != -1) {
+        msg_class* iVar3 = fopMsgM_SearchByID(mMsg);
+        iVar3->mMode = 0xf;
+        fopMsgM_messageSet(uVar2, 1000);
+    } else {
+        if (dMeter2Info_getFloatingFlowID() == 0xffff) {
+            mMsg = fopMsgM_messageSet(uVar2, param_2, 1000);
+            if (mMsg == -1) {
+                return 0;
+            }
+            dMsgObject_setNowTalkFlowNo(mFlow);
+        }
+    }
+    mMsgNo = uVar2;
+    field_0x41 = 1;
+    return 1;
 }
-#pragma pop
 
 /* 8024AB30-8024AD54 245470 0224+00 2/1 0/0 0/0 .text
  * messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c    */
+// Matches with literals (switch table)
+#ifdef NONMATCHING
+int dMsgFlow_c::messageNodeProc(fopAc_ac_c* param_1, fopAc_ac_c** param_2) {
+    mesg_flow_node* uVar1;
+
+    uVar1 = &mFlowNodeTBL[field_0x10];
+    if (field_0x25 != 0) {
+        if (field_0x46 != 0) {
+            u16 pars = *(u16*)uVar1->params;
+            if ((field_0x46 == 1) &&
+                (mFlowNodeTBL[pars].type == 1)) {
+                if (setSelectMsg(mFlowNodeTBL + field_0x10,
+                    mFlowNodeTBL + pars, param_1)) {
+                    field_0x10 = pars;
+                    field_0x46 = 0;
+                    field_0x25 = 0;
+                }
+            } else if ((field_0x46 == 2) &&
+                    (mFlowNodeTBL[pars].type == 2)) {
+                if (setNormalMsg(mFlowNodeTBL + field_0x10,param_1)) {
+                    field_0x46 = 0;
+                    field_0x25 = 0;
+                }
+            }
+        } else {
+            if (setNormalMsg(mFlowNodeTBL + field_0x10, param_1)) {
+                field_0x25 = 0;
+            }
+        }
+        return 0;
+    } else {
+        msg_class* msg = fopMsgM_SearchByID(mMsg);
+        if (msg == NULL) {
+            field_0x25 = 1;
+        } else {
+            int mesgCamInfo = dComIfGp_getMesgCameraInfo();
+            if (mesgCamInfo != field_0x34) {
+                field_0x34 = mesgCamInfo;
+            }
+            switch (msg->mMode) {
+            case 2:
+                field_0x41 = 1;
+                mNowMsgNo = msg->mMsgID;
+                break;
+            case 6:
+                field_0x40 = field_0x41;
+                int mesgAnimeAttrInfo = -1;
+                int mesgFaceAnimeAttrInfo = -1;
+                if (field_0x41 != 0) {
+                    mesgAnimeAttrInfo = dComIfGp_getMesgAnimeAttrInfo();
+                    mesgFaceAnimeAttrInfo = dComIfGp_getMesgFaceAnimeAttrInfo();
+                }
+                if (mesgAnimeAttrInfo >= 0x1f) {
+                    daPy_py_c::setMidnaMotionNum(mesgAnimeAttrInfo);
+                }
+                if (mesgFaceAnimeAttrInfo >= 0x1f) {
+                    daPy_py_c::setMidnaFaceNum(mesgFaceAnimeAttrInfo);
+                }
+                field_0x41 = 0;
+                mNowMsgNo = msg->mMsgID;
+                break;
+            case 0xe:
+            case 0x12:
+                setNodeIndex(*(u16*)uVar1->params, param_2);
+                mesg_flow_node* iVar4 = &mFlowNodeTBL[*(u16*)uVar1->params];
+                if (iVar4->field_0x1 == 0x15 || iVar4->field_0x1 == 0x20 ||
+                    iVar4->field_0x1 == 0x21) {
+                return 0;
+                }
+                return 1;
+            }
+        }
+        
+    }
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -741,6 +994,7 @@ asm int dMsgFlow_c::messageNodeProc(fopAc_ac_c* param_0, fopAc_ac_c** param_1) {
 #include "asm/d/msg/d_msg_flow/messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* 8024AD54-8024ADEC 245694 0098+00 1/1 0/0 0/0 .text
  * branchNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c     */
@@ -754,7 +1008,6 @@ int dMsgFlow_c::branchNodeProc(fopAc_ac_c* param_0, fopAc_ac_c** param_1) {
 
 /* 8024ADEC-8024AFF8 24572C 020C+00 1/1 0/0 0/0 .text
  * eventNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c      */
-#ifdef NONMATCHING
 int dMsgFlow_c::eventNodeProc(fopAc_ac_c* param_0, fopAc_ac_c** param_1) {
     mesg_flow_node_event* node = (mesg_flow_node_event*)&mFlowNodeTBL[field_0x10];
     int proc_status = (this->*mEventList[node->field_0x1])(node, param_0);
@@ -776,12 +1029,13 @@ int dMsgFlow_c::eventNodeProc(fopAc_ac_c* param_0, fopAc_ac_c** param_1) {
 
     case 9:
         if (getParam(node->params) == 0) {
-            int msgNum = daAlink_getAlinkActorClass()->getMidnaMsgNum();
-            if (msgNum == 0xFFFF) {
-                int stayNo = dComIfGp_roomControl_getStayNo();
+            int msgNum;
+            if (daAlink_getAlinkActorClass()->getMidnaMsgNum() == 0xFFFF) {
+                s32 stayNo = dComIfGp_roomControl_getStayNo();
                 msgNum =
                     dComIfGp_roomControl_getStatusRoomDt(stayNo)->mRoomDt.getFileListInfo()->mMsg;
             } else {
+                msgNum = daAlink_getAlinkActorClass()->getMidnaMsgNum();
                 daAlink_getAlinkActorClass()->setMidnaMsg();
             }
 
@@ -804,24 +1058,17 @@ int dMsgFlow_c::eventNodeProc(fopAc_ac_c* param_0, fopAc_ac_c** param_1) {
         return 0;
 
     case 21:
+    case 32:
+    case 33:
         if (field_0x3c != 0) {
             return 0;
         }
+    default:
         setNodeIndex(field_0x14[node->msg_index], param_1);
     }
 
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::eventNodeProc(fopAc_ac_c* param_0, fopAc_ac_c** param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/eventNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c.s"
-}
-#pragma pop
-#endif
 
 /* 8024AFF8-8024B0F0 245938 00F8+00 1/1 0/0 0/0 .text
  * nodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c           */
@@ -961,6 +1208,28 @@ int dMsgFlow_c::query006(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, 
 
 /* 8024B32C-8024B45C 245C6C 0130+00 1/0 0/0 0/0 .text
  * query007__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
+// instruction order and u16 issue
+#ifdef NONMATCHING
+int dMsgFlow_c::query007(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
+    u32 uVar3 = *(u16*)(flow_node->params);
+    cXyz this_00 = daPy_getPlayerActorClass()->mAttentionInfo.mPosition;
+    this_00.y -= daPy_getPlayerActorClass()->getAttentionOffsetY();
+    s16 uVar8 = (cSGlobe(param_1->mAttentionInfo.mPosition - this_00).U() - daPy_getPlayerActorClass()->shape_angle.GetY());
+    u8 attentionId = param_1->mAttentionInfo.field_0x0[3];
+    f32 fVar1 = dAttention_c::getDistTable(attentionId).field_0x4;
+    u16 x = uVar3;
+    if (x != 0) {
+        fVar1 = x;
+    }
+
+    return (u16) dComIfGp_getAttention().checkDistance(
+        &this_00, uVar8, &param_1->mAttentionInfo.mPosition, fVar1,
+        dAttention_c::getDistTable(attentionId).field_0x8,
+        dAttention_c::getDistTable(attentionId).field_0xc,
+        dAttention_c::getDistTable(attentionId).field_0x10);
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -969,6 +1238,7 @@ asm int dMsgFlow_c::query007(mesg_flow_node_branch* flow_node, fopAc_ac_c* param
 #include "asm/d/msg/d_msg_flow/query007__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
 }
 #pragma pop
+#endif
 
 /* 8024B45C-8024B4A4 245D9C 0048+00 1/0 0/0 0/0 .text
  * query008__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
@@ -980,25 +1250,15 @@ int dMsgFlow_c::query008(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, 
 
 /* 8024B4A4-8024B4D0 245DE4 002C+00 1/0 0/0 0/0 .text
  * query009__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query009(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query009__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query009(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
+    return daNpcKakashi_getSwdTutorialResult() == 0;
 }
-#pragma pop
 
 /* 8024B4D0-8024B504 245E10 0034+00 1/0 0/0 0/0 .text
  * query010__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query010(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query010__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query010(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
+    return ((u8)daNpcKakashi_getSuccessCount()) != 1;
 }
-#pragma pop
 
 /* 8024B504-8024B54C 245E44 0048+00 1/0 0/0 0/0 .text
  * query011__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
@@ -1099,10 +1359,12 @@ asm int dMsgFlow_c::query021(mesg_flow_node_branch* flow_node, fopAc_ac_c* param
 }
 #pragma pop
 
+#ifdef NONMATCHING
 /* 8024B8E4-8024B918 246224 0034+00 1/0 0/0 0/0 .text
  * query022__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#ifdef NONMATCHING
 int dMsgFlow_c::query022(mesg_flow_node_branch* flow_node, fopAc_ac_c*, int) {
+    // fake match but 0 comparison zeroes out 24 bits while this function zeroes out 16
+    // return (__cntlzw(checkItemGet(flow_node->params[0], 1)) >> 5) & 0xffff;
     return checkItemGet(flow_node->params[0], 1) == 0;
 }
 #else
@@ -1124,25 +1386,16 @@ int dMsgFlow_c::query023(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, 
 
 /* 8024B954-8024B974 246294 0020+00 1/0 0/0 0/0 .text
  * query024__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query024(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query024__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query024(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
+    return dComIfGs_getArrowNum() - (u8)*(u16*)flow_node->params < 0;
 }
-#pragma pop
 
 /* 8024B974-8024B9BC 2462B4 0048+00 1/0 0/0 0/0 .text
  * query025__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query025(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query025__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query025(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
+    u8 par = (u8)*(u16*)flow_node->params;
+    return dComIfGs_checkEmptyBottle() - par < 0;
 }
-#pragma pop
 
 /* 8024B9BC-8024B9E8 2462FC 002C+00 1/0 0/0 0/0 .text
  * query026__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
@@ -1153,6 +1406,15 @@ int dMsgFlow_c::query026(mesg_flow_node_branch*, fopAc_ac_c* actor, int) {
 
 /* 8024B9E8-8024BA4C 246328 0064+00 1/0 0/0 0/0 .text
  * query027__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
+#ifdef NONMATCHING
+int dMsgFlow_c::query027(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
+    u8 uVar1 = *(u16*)flow_node->params;
+    if (uVar1 == 0) {
+        uVar1 = dComIfGp_getNeedLightDropNum();
+    }
+    return dComIfGs_getLightDropNum(dComIfGp_getStartStageDarkArea()) < uVar1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1161,28 +1423,30 @@ asm int dMsgFlow_c::query027(mesg_flow_node_branch* flow_node, fopAc_ac_c* param
 #include "asm/d/msg/d_msg_flow/query027__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
 }
 #pragma pop
+#endif
 
 /* 8024BA4C-8024BAA0 24638C 0054+00 1/0 0/0 0/0 .text
  * query028__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query028(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query028__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query028(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
+    int timeSec = *(u16*)flow_node->params;
+    int iVar3 = dMeter2Info_getTimeMs();
+    int val2 = timeSec * 1000 + 999;
+    int rv = val2 < iVar3;
+    dMeter2Info_setMsgTimeMs(iVar3 <= val2 ? val2 - iVar3 : (iVar3 - timeSec * 1000) + 999);
+    return rv;
 }
-#pragma pop
 
 /* 8024BAA0-8024BAE0 2463E0 0040+00 1/0 0/0 0/0 .text
  * query029__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query029(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query029__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query029(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
+    u8 rv = 1;
+    if (dComIfGs_getOil() == 0 || dComIfGs_getMaxOil() == 0) {
+        rv = 2;
+    } else if (dComIfGs_getOil() == dComIfGs_getMaxOil()) {
+        rv = 0;
+    }
+    return rv;
 }
-#pragma pop
 
 /* 8024BAE0-8024BB18 246420 0038+00 1/0 0/0 0/0 .text
  * query030__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
@@ -1192,25 +1456,22 @@ int dMsgFlow_c::query030(mesg_flow_node_branch*, fopAc_ac_c*, int) {
 
 /* 8024BB18-8024BB74 246458 005C+00 1/0 0/0 0/0 .text
  * query031__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query031(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query031__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query031(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
+    u16 uVar3 = *(u16*)(flow_node->params);
+    return (0x14 - i_dComIfGs_getEventReg(0xff1f)) < uVar3;
 }
-#pragma pop
 
 /* 8024BB74-8024BB9C 2464B4 0028+00 1/0 0/0 0/0 .text
  * query032__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query032(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query032__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query032(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
+    u8 rv = 1;
+    u16 uVar1 = *(u16*)flow_node->params;
+    if (i_dComIfGs_getLife() >= (int)uVar1) {
+        rv = 0;
+    }
+
+    return rv;
 }
-#pragma pop
 
 /* 8024BB9C-8024BBE4 2464DC 0048+00 1/0 0/0 0/0 .text
  * query033__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
@@ -1262,14 +1523,35 @@ int dMsgFlow_c::query037(mesg_flow_node_branch*, fopAc_ac_c*, int) {
 
 /* 8024BCC4-8024BDB0 246604 00EC+00 1/0 0/0 0/0 .text
  * query038__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query038(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query038__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
-}
-#pragma pop
+int dMsgFlow_c::query038(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
+    int uVar5 = *(u16*)param_0->params;
+    u8 val;
+    if (uVar5 >= 1 && uVar5 < 4) {
+        val = uVar5 - 1;
+    } else if (uVar5 == 4) {
+        u8 rentalBombBag = dMeter2Info_getRentalBombBag();
+        if (rentalBombBag != 0xff) {
+            val = rentalBombBag;
+        }
+    } else {
+        val = dComIfGs_getTmpReg(0xfbff) - 1;
+    }
+
+    u8 uVar4 = 0;
+    switch(dComIfGs_getItem((u8)(val + 0xf), 0)) {
+        case 0x70:
+            uVar4 = 1;
+            break;
+        case 0x71:
+            uVar4 = 2;
+            break;
+        case 0x72:
+            uVar4 = 3;
+            break;
+    }
+    dMsgObject_setEquipBombInfo();
+    return uVar4;
+} 
 
 /* 8024BDB0-8024BE4C 2466F0 009C+00 1/0 0/0 0/0 .text
  * query039__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
@@ -1325,7 +1607,6 @@ int dMsgFlow_c::query042(mesg_flow_node_branch*, fopAc_ac_c*, int) {
 
 /* 8024C0A8-8024C144 2469E8 009C+00 1/0 0/0 0/0 .text
  * query043__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#ifdef NONMATCHING
 int dMsgFlow_c::query043(mesg_flow_node_branch* flow_node, fopAc_ac_c*, int) {
     u16 prm0 = flow_node->params[0];
     u8 bomb_num = dComIfGs_getBombNum(dComIfGs_getTmpReg(0xFBFF) - 1);
@@ -1333,16 +1614,6 @@ int dMsgFlow_c::query043(mesg_flow_node_branch* flow_node, fopAc_ac_c*, int) {
 
     return bomb_max >= bomb_num + prm0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query043(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query043__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
-}
-#pragma pop
-#endif
 
 /* 8024C144-8024C18C 246A84 0048+00 1/0 0/0 0/0 .text
  * query044__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */

@@ -204,7 +204,7 @@ public:
     /* 8016E424 */ void LockEdge();
     /* 80182994 */ void GetCheckObjectCount();
     /* 80182AD0 */ void keepLock(int);
-    /* 8014B010 */ void getDistTable(int);
+    /* 8014B010 */ static dist_entry& getDistTable(int);
 
     dAttCatch_c& getCatghTarget() { return mCatghTarget; }
     u8 getCatchChgItem() { return mCatghTarget.getChangeItem(); }

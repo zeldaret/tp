@@ -146,11 +146,13 @@ public:
     void setGameOverType(u8 i_gameoverType) { mGameOverType = i_gameoverType; }
     void setMsgKeyWaitTimer(s16 i_waitTimer) { mMsgKeyWaitTimer = i_waitTimer; }
     u32 getMsgTimeMs() { return mMsgTimeMs; }
+    void setMsgTimeMs(u32 msgTime) { mMsgTimeMs = msgTime; }
     u32 getTimeMs() { return mTimeMs; }
     u8 getNowCount() { return mNowCount; }
     void setScopeZoomPointer(u8 param_0) { mScopeZoomPointer = param_0; }
     u8 getItemExplainWindowStatus() { return mItemExplainWindowStatus; }
     void resetDirectUseItem() { mDirectUseItem = 0; }
+    u16 getFloatingFlowID() { return mFloatingFlowID; }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -522,6 +524,10 @@ inline u32 dMeter2Info_getTimeMs() {
     return g_meter2_info.getTimeMs();
 }
 
+inline void dMeter2Info_setMsgTimeMs(u32 msgTime) {
+    g_meter2_info.setMsgTimeMs(msgTime);
+}
+
 inline u8 dMeter2Info_getNowCount() {
     return g_meter2_info.getNowCount();
 }
@@ -540,6 +546,10 @@ inline u8 dMeter2Info_getItemExplainWindowStatus() {
 
 inline void dMeter2Info_resetDirectUseItem() {
     g_meter2_info.resetDirectUseItem();
+}
+
+inline u16 dMeter2Info_getFloatingFlowID() {
+    return g_meter2_info.getFloatingFlowID();
 }
 
 const char* dMeter2Info_getNumberTextureName(int pIndex);

@@ -2421,7 +2421,7 @@ asm void daNpcT_c::chkFindActor(fopAc_ac_c* param_0, int param_1, s16 param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dAttention_c::getDistTable(int param_0) {
+asm dist_entry& dAttention_c::getDistTable(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_npc/getDistTable__12dAttention_cFi.s"
 }
