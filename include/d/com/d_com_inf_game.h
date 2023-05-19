@@ -437,6 +437,24 @@ public:
     void setMsgDtArchive(int i, JKRArchive* arc) { mMsgDtArchive[i] = arc; }
     void setMsgCommonArchive(JKRArchive* arc) { mMsgCommonArchive = arc; }
     void setMsgArchive(int i, JKRArchive* arc) { mMsgArchive[i] = arc; }
+    void setMesgCamInfoActor(fopAc_ac_c* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3,
+                             fopAc_ac_c* param_4, fopAc_ac_c* param_5, fopAc_ac_c* param_6,
+                             fopAc_ac_c* param_7, fopAc_ac_c* param_8, fopAc_ac_c* param_9,
+                             fopAc_ac_c* param_10) {
+        mMesgCamInfoActor1 = param_1;
+        mMesgCamInfoActor2 = param_2;
+        mMesgCamInfoActor3 = param_3;
+        mMesgCamInfoActor4 = param_4;
+        mMesgCamInfoActor5 = param_5;
+        mMesgCamInfoActor6 = param_6;
+        mMesgCamInfoActor7 = param_7;
+        mMesgCamInfoActor8 = param_8;
+        mMesgCamInfoActor9 = param_9;
+        mMesgCamInfoActor10 = param_10;
+    }
+    int getMesgCamInfo() {
+        return mMesgCamInfoBasicID;
+    }
     void setFontArchive(JKRArchive* arc) { mFontArchive = arc; }
     void setRubyArchive(JKRArchive* arc) { mRubyArchive = arc; }
     void setMain2DArchive(JKRArchive* arc) { mMain2DArchive = arc; }
@@ -1378,6 +1396,10 @@ inline u8 dComIfGs_getArrowNum() {
     return g_dComIfG_gameInfo.info.getPlayer().getItemRecord().getArrowNum();
 }
 
+inline u8 dComIfGs_checkEmptyBottle() {
+    return g_dComIfG_gameInfo.info.getPlayer().getItem().checkEmptyBottle();
+}
+
 inline void dComIfGs_initZone() {
     g_dComIfG_gameInfo.info.initZone();
 }
@@ -1580,7 +1602,7 @@ inline void dComIfGs_setTmpReg(u16 i_reg, u8 i_no) {
     g_dComIfG_gameInfo.info.getTmp().setEventReg(i_reg, i_no);
 }
 
-inline int dComIfGs_getTmpReg(u16 i_reg) {
+inline u8 dComIfGs_getTmpReg(u16 i_reg) {
     return g_dComIfG_gameInfo.info.getTmp().getEventReg(i_reg);
 }
 
@@ -2689,6 +2711,21 @@ inline u8 dComIfGp_getMesgStatus() {
 
 inline void dComIfGp_setMesgCameraTagInfo(int param_0) {
     g_dComIfG_gameInfo.play.setMesgCamInfoID(param_0);
+}
+
+inline void dComIfGp_setMesgCameraInfoActor(fopAc_ac_c* param_1, fopAc_ac_c* param_2,
+                                            fopAc_ac_c* param_3, fopAc_ac_c* param_4,
+                                            fopAc_ac_c* param_5, fopAc_ac_c* param_6,
+                                            fopAc_ac_c* param_7, fopAc_ac_c* param_8,
+                                            fopAc_ac_c* param_9, fopAc_ac_c* param_10)
+
+{
+    g_dComIfG_gameInfo.play.setMesgCamInfoActor(param_1, param_2, param_3, param_4, param_5,
+                                                param_6, param_7, param_8, param_9, param_10);
+}
+
+inline int dComIfGp_getMesgCameraInfo() {
+    return g_dComIfG_gameInfo.play.getMesgCamInfo();
 }
 
 inline s32 dComIfGp_roomControl_getStayNo() {

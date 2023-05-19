@@ -339,7 +339,7 @@ SECTION_SDATA2 static f64 lit_4303 = 4503601774854144.0 /* cast s32 to float */;
 /* 80020160-800202CC 01AAA0 016C+00 1/0 4/4 2/2 .text            fopMsgM_valueIncrease__FiiUc */
 #ifdef NONMATCHING
 // regalloc + something up with case 2
-f64 fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
+f32 fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
     f32 ret;
 
     if (param_0 <= 0) {
@@ -395,7 +395,7 @@ f64 fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
+asm f32 fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
     nofralloc
 #include "asm/f_op/f_op_msg_mng/fopMsgM_valueIncrease__FiiUc.s"
 }
