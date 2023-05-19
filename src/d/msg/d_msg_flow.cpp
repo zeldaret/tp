@@ -262,7 +262,7 @@ extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */]
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern dScnKy_env_light_c g_env_light;
 extern "C" extern dMsgObject_HIO_c g_MsgObject_HIO_c;
-extern "C" extern u32 g_saftyWhiteColor;
+extern "C" extern GXColor g_saftyWhiteColor;
 extern "C" u8 m_midnaActor__9daPy_py_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
@@ -2400,6 +2400,29 @@ SECTION_SDATA2 static f32 lit_6613 = 1.0f;
 
 /* 8024D5EC-8024D6BC 247F2C 00D0+00 1/0 0/0 0/0 .text
  * event032__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
+#ifdef NONMATCHING
+// Matches with literals and cLib_calcTimer implementation in the end
+int dMsgFlow_c::event032(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
+    u16 uVar1;
+    u16 uVar2;
+    GXColor color;
+
+    getParam(&uVar2, &uVar1, param_0->params);
+    if (uVar1 + 1 == field_0x3c) {
+        if (uVar2 == 0) {
+            color.r = 0;
+            color.g = 0;
+            color.b = 0;
+            color.a = 0;
+        } else {
+            color = g_saftyWhiteColor;
+        }
+        mDoGph_gInf_c::fadeOut( -(1.0f / uVar1), color);
+    }
+    cLib_calcTimer(&field_0x3c);
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2408,6 +2431,7 @@ asm int dMsgFlow_c::event032(mesg_flow_node_event* param_0, fopAc_ac_c* param_1)
 #include "asm/d/msg/d_msg_flow/event032__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* 8024D6BC-8024D788 247FFC 00CC+00 1/0 0/0 0/0 .text
  * event033__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
