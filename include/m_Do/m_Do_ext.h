@@ -26,6 +26,8 @@ public:
                                 s16 i_endF);
     /* 8000D428 */ int play();
 
+    J3DFrameCtrl* getFrameCtrl() { return &mFrameCtrl; }
+    f32 getPlaySpeed() { return mFrameCtrl.getRate(); }
     void setPlaySpeed(f32 speed) { mFrameCtrl.setRate(speed); }
     f32 getFrame() { return mFrameCtrl.getFrame(); }
     f32 getEndFrame() { return mFrameCtrl.getEnd(); }
@@ -272,6 +274,7 @@ public:
     f32 getEndFrame() { return mFrameCtrl.getEnd(); }
     BOOL checkFrame(f32 frame) { return mFrameCtrl.checkPass(frame); }
     J3DAnmTransform* getAnm() { return mpAnm; }
+    void changeAnm(J3DAnmTransform* anm) { mpAnm = anm; }
 
     bool isStop() {
         bool stopped = true;
@@ -299,7 +302,7 @@ public:
                                     int, Z2Creature*, u32, u32);
     /* 800108F0 */ int create(J3DModelData*, mDoExt_McaMorfCallBack1_c*, mDoExt_McaMorfCallBack2_c*,
                               J3DAnmTransform*, int, f32, int, int, Z2Creature*, u32, u32);
-    /* 80010E70 */ void setAnm(J3DAnmTransform*, int, f32, f32, f32, f32);
+    /* 80010E70 */ void setAnm(J3DAnmTransform* i_anm, int i_attr, f32 i_morf, f32 i_rate, f32 i_start, f32 i_end);
     /* 800110B0 */ int play(u32, s8);
     /* 80011154 */ void updateDL();
     /* 800111C0 */ void entryDL();

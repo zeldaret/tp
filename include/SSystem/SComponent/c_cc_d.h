@@ -458,6 +458,7 @@ public:
     void OffAtVsPlayerBit() { mObjAt.OffSPrmBit(0xC); }
     void OnAtVsPlayerBit() { mObjAt.OnSPrmBit(0xC); }
     void OnCoSPrmBit(u32 flag) { mObjCo.OnSPrmBit(flag); }
+    void SetTgSPrm(u32 prm) { mObjTg.SetSPrm(prm); }
     void SetCoSPrm(u32 prm) { mObjCo.SetSPrm(prm); }
 
 };  // Size = 0x40

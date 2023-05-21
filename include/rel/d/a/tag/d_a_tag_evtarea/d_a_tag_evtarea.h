@@ -1,6 +1,30 @@
 #ifndef D_A_TAG_EVTAREA_H
 #define D_A_TAG_EVTAREA_H
 
-#include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
+
+class daTag_EvtArea_c : public fopAc_ac_c {
+public:
+    /* 8048C4F8 */ cPhs__Step create();
+    /* 8048C728 */ bool Delete();
+    /* 8048C730 */ bool Execute();
+    /* 8048C894 */ bool Draw();
+    /* 8048C89C */ BOOL isDelete();
+    /* 8048C94C */ BOOL chkPointInArea(cXyz, cXyz);
+    /* 8048CD08 */ BOOL chkPointInArea(cXyz);
+    /* 8048CD68 */ virtual ~daTag_EvtArea_c();
+
+    inline s32 getType();
+    inline u32 getOnEvtBit();
+    inline u32 getOffEvtBit();
+    inline u8 getBitSW();
+    inline u8 getBitSW2();
+
+private:
+    /* 0x568 vtable */
+    /* 0x56C */ u8 field_0x56c;
+};
+
+STATIC_ASSERT(sizeof(daTag_EvtArea_c) == 0x570);
 
 #endif /* D_A_TAG_EVTAREA_H */

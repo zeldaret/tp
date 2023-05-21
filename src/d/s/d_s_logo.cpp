@@ -889,15 +889,6 @@ void dScnLogo_c::setRenderMode() {
 /* 8025855C-802585A4 252E9C 0048+00 2/1 0/0 0/0 .text            __dt__10dLog_HIO_cFv */
 dLog_HIO_c::~dLog_HIO_c() {}
 
-/* 802585A4-802585C0 252EE4 001C+00 1/1 0/0 0/0 .text            cLib_calcTimer<Us>__FPUs */
-template <typename T>
-T cLib_calcTimer(T* value) {
-    if (*value != 0) {
-        *value = *value - 1;
-    }
-    return *value;
-}
-
 /* 803C2FD0-803C2FE4 -00001 0014+00 1/0 0/0 0/0 .data            l_dScnLogo_Method */
 SECTION_DATA static void* l_dScnLogo_Method[5] = {
     (void*)dScnLogo_Create__FP11scene_class, (void*)dScnLogo_Delete__FP10dScnLogo_c,

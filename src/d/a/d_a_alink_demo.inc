@@ -128,11 +128,11 @@ asm void daAlink_c::endDemoMode() {
 #ifdef NONMATCHING
 fopAc_ac_c* daAlink_c::getDemoLookActor() {
     if (mDemo.getParam0() == 1) {
-        return (fopAc_ac_c*)dComIfGp_event_getPt1();
+        return dComIfGp_event_getPt1();
     } else if (mDemo.getParam0() == 2) {
-        return (fopAc_ac_c*)dComIfGp_event_getPt2();
+        return dComIfGp_event_getPt2();
     } else if (mDemo.getParam0() == 3) {
-        return (fopAc_ac_c*)fopAcM_getTalkEventPartner(this);
+        return fopAcM_getTalkEventPartner(this);
     } else if (mDemo.getParam0() == 4) {
         return getMidnaActor();
     }

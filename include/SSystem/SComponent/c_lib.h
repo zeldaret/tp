@@ -87,7 +87,17 @@ inline T cLib_maxLimit(T val, T max) {
 }
 
 template <typename T>
-T cLib_calcTimer(T* val);
+T cLib_calcTimer(T* value) {
+    if (*value != 0) {
+        *value = *value - 1;
+    }
+    return *value;
+}
+
+template <typename T>
+T cLib_getRndValue(T min, T range) {
+    return (T)(min + cM_rndF((f32)range));
+}
 
 void MtxInit(void);
 void MtxTrans(f32, f32, f32, u8);

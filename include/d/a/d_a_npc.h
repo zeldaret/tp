@@ -4,6 +4,7 @@
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/a/d_a_player.h"
 #include "d/d_path.h"
 #include "d/msg/d_msg_flow.h"
 #include "d/particle/d_particle_copoly.h"
@@ -407,11 +408,16 @@ public:
 
 STATIC_ASSERT(sizeof(daNpcT_c) == 0xE40);
 
+BOOL daNpcT_chkEvtBit(u32 i_idx);
+BOOL daNpcT_chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 param_3, int param_4);
+
 class daNpcF_ActorMngr_c {
 private:
     /* 0x0 */ u32 mActorID;
 
 public:
+    daNpcF_ActorMngr_c() { initialize(); }
+
     /* 801506B0 */ void initialize();
     /* 801506D8 */ void entry(unsigned int);
     /* 801506BC */ void entry(fopAc_ac_c*);
@@ -422,19 +428,19 @@ public:
 };
 
 class daNpcF_c : public fopAc_ac_c {
-private:
+protected:
     /* 0x568 */ mDoExt_McaMorfSO* mMcaMorf;
     /* 0x56C */ mDoExt_bckAnm mBckAnm;
     /* 0x588 */ mDoExt_btpAnm mBtpAnm;
     /* 0x5A0 */ mDoExt_btkAnm mBtkAnm;
     /* 0x5B8 */ mDoExt_brkAnm mBrkAnm;
-    /* 0x5D0 */ dBgS_ObjAcch field_0x5d0;
-    /* 0x7A8 */ dCcD_Stts field_0x7a8;
-    /* 0x7E4 */ dBgS_AcchCir field_0x7e4;
+    /* 0x5D0 */ dBgS_ObjAcch mAcch;
+    /* 0x7A8 */ dCcD_Stts mStts;
+    /* 0x7E4 */ dBgS_AcchCir mAcchCir;
     /* 0x824 */ daNpcF_ActorMngr_c field_0x824;
     /* 0x82C */ daNpcF_ActorMngr_c field_0x82c[5];
-    /* 0x854 */ cXyz field_0x854[3];
-    /* 0x878 */ cXyz field_0x878;
+    /* 0x854 */ cXyz mLookatPos[3];
+    /* 0x878 */ cXyz mLookPos;
     /* 0x884 */ cXyz field_0x884;
     /* 0x890 */ cXyz field_0x890;
     /* 0x89C */ cXyz field_0x89c;
@@ -443,20 +449,20 @@ private:
     /* 0x8C0 */ cXyz field_0x8c0;
     /* 0x8CC */ cXyz field_0x8cc;
     /* 0x8D8 */ cXyz field_0x8d8;
-    /* 0x8E4 */ cXyz field_0x8e4;
+    /* 0x8E4 */ cXyz mHeadPos;
     /* 0x8F0 */ csXyz field_0x8f0;
     /* 0x8F6 */ csXyz field_0x8f6;
     /* 0x8FC */ csXyz field_0x8fc;
     /* 0x902 */ csXyz field_0x902;
     /* 0x908 */ csXyz field_0x908[3];
     /* 0x91A */ csXyz field_0x91a[3];
-    /* 0x92C */ int field_0x92c;
+    /* 0x92C */ int mCutIndex;
     /* 0x930 */ u32 field_0x930;
-    /* 0x934 */ u32 field_0x934;
-    /* 0x938 */ u32 field_0x938;
-    /* 0x93C */ u32 field_0x93c[5];
+    /* 0x934 */ int field_0x934; // index in 0x93c to not decrement timer (if 0x938 is nonzero)
+    /* 0x938 */ int field_0x938; // controls whether to use field 0x934
+    /* 0x93C */ int field_0x93c[5]; // timers for removing actors from 0x82c
     /* 0x950 */ int field_0x950;
-    /* 0x954 */ int field_0x954;
+    /* 0x954 */ int field_0x954; // a timer
     /* 0x958 */ int field_0x958;
     /* 0x95C */ int field_0x95c;
     /* 0x960 */ int field_0x960;
@@ -464,19 +470,19 @@ private:
     /* 0x968 */ int field_0x968;
     /* 0x96C */ int field_0x96c;
     /* 0x970 */ f32 field_0x970;
-    /* 0x974 */ f32 field_0x974;
-    /* 0x978 */ f32 field_0x978;
-    /* 0x97C */ f32 field_0x97c;
+    /* 0x974 */ f32 mExpressionMorfOverride;
+    /* 0x978 */ f32 mExpressionMorf;
+    /* 0x97C */ f32 mMotionMorfOverride;
     /* 0x980 */ f32 field_0x980;
     /* 0x984 */ f32 field_0x984[3];
     /* 0x990 */ u16 field_0x990;
-    /* 0x990 */ u16 field_0x992;
-    /* 0x990 */ u16 field_0x994;
-    /* 0x990 */ u16 field_0x996;
+    /* 0x992 */ u16 field_0x992;
+    /* 0x994 */ u16 field_0x994;
+    /* 0x996 */ s16 field_0x996;
     /* 0x998 */ u16 field_0x998;
-    /* 0x99C */ u32 field_0x99c;
+    /* 0x99C */ u32 mAnmFlags;
     /* 0x9A0 */ u32 field_0x9a0;
-    /* 0x9A4 */ int field_0x9a4;
+    /* 0x9A4 */ profile_method_class* field_0x9a4;
     /* 0x9A8 */ int field_0x9a8;
     /* 0x9AC */ int field_0x9ac;
     /* 0x9B0 */ u32 field_0x9b0;
@@ -485,17 +491,17 @@ private:
     /* 0x9C4 */ cXyz field_0x9c4;
     /* 0x9D0 */ u16 field_0x9d0;
     /* 0x9D2 */ u16 field_0x9d2;
-    /* 0x9D4 */ u16 field_0x9d4;
-    /* 0x9D6 */ u16 field_0x9d6;
-    /* 0x9D8 */ u16 field_0x9d8;
-    /* 0x9DA */ u16 field_0x9da;
-    /* 0x9DC */ u16 field_0x9dc;
-    /* 0x9DE */ u16 field_0x9de;
-    /* 0x9E0 */ u16 field_0x9e0;
-    /* 0x9E2 */ u16 field_0x9e2;
-    /* 0x9E4 */ u16 field_0x9e4;
-    /* 0x9E6 */ u16 field_0x9e6;
-    /* 0x9E8 */ u8 field_0x9e8;
+    /* 0x9D4 */ s16 field_0x9d4;
+    /* 0x9D6 */ s16 mExpressionPhase;
+    /* 0x9D8 */ s16 mExpressionPrevPhase;
+    /* 0x9DA */ s16 mMotionPhase;
+    /* 0x9DC */ s16 mMotionPrevPhase;
+    /* 0x9DE */ s16 mExpression;
+    /* 0x9E0 */ s16 mMotion;
+    /* 0x9E2 */ u16 mMotionLoops;
+    /* 0x9E4 */ u16 mExpressionLoops;
+    /* 0x9E6 */ u16 mOrderEvtNo;
+    /* 0x9E8 */ s8 field_0x9e8;
     /* 0x9E9 */ u8 field_0x9e9;
     /* 0x9EA */ u8 field_0x9ea;
     /* 0x9EB */ u8 field_0x9eb;
@@ -507,7 +513,7 @@ private:
     /* 0x9F1 */ u8 field_0x9f1;
     /* 0x9F2 */ bool mHide;
     /* 0x9f3 */ u8 field_0x9f3;
-    /* 0x9F4 */ u8 field_0x9f4;
+    /* 0x9F4 */ bool field_0x9f4; // controls whether setHitodamaPrtcl is called
     /* 0x9F5 */ u8 field_0x9f5;
     /* 0x9F6 */ u8 field_0x9f6;
     /* 0x9F8 */ dMsgFlow_c mFlow;
@@ -516,50 +522,73 @@ private:
     /* 0xAD4 */ dBgS_LinChk field_0xad4;
 
 public:
-    struct daNpcF_anmPlayData {};
+    struct daNpcF_anmPlayData {
+        u16 idx;
+        f32 morf;
+        s32 numLoops;
+    };
 
-    /* 80152014 */ void execute();
-    /* 801522AC */ void draw(int, int, f32, _GXColorS10*, int);
+    enum AnmFlags {
+        ANM_PAUSE_MORF       = 0x0001,
+        ANM_PAUSE_BTK        = 0x0002,
+        ANM_PAUSE_BRK        = 0x0004,
+        ANM_PLAY_MORF        = 0x0008,
+        ANM_PLAY_BTK         = 0x0010,
+        ANM_PLAY_BRK         = 0x0020,
+        ANM_PAUSE_BCK        = 0x0040,
+        ANM_PAUSE_BTP        = 0x0080,
+        ANM_PLAY_BCK         = 0x0100,
+        ANM_PLAY_BTP         = 0x0200,
+        ANM_FLAG_400         = 0x0400,
+        ANM_FLAG_800         = 0x0800,
+        ANM_PAUSE_EXPRESSION = 0x1000,
+        ANM_MOTION_FLAGS = ANM_PAUSE_MORF | ANM_PAUSE_BTK | ANM_PAUSE_BRK | ANM_PLAY_MORF | ANM_PLAY_BTK | ANM_PLAY_BRK,
+        ANM_EXPRESSION_FLAGS = ANM_PAUSE_BCK | ANM_PAUSE_BTP | ANM_PLAY_BCK | ANM_PLAY_BTP | ANM_FLAG_400 | ANM_FLAG_800 | ANM_PAUSE_EXPRESSION,
+        ANM_PAUSE_ALL = ANM_PAUSE_MORF | ANM_PAUSE_BTK | ANM_PAUSE_BRK | ANM_PAUSE_BCK | ANM_PAUSE_BTP | ANM_PAUSE_EXPRESSION,
+    };
+
+    /* 80152014 */ BOOL execute();
+    /* 801522AC */ BOOL draw(int, int, f32, _GXColorS10*, int);
     /* 80152614 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
     /* 80152654 */ void srchAttnActor1(void*, void*);
     /* 801526E8 */ void* srchActor(void*, void*);
 
     /* 801528C8 */ void initialize();
-    /* 80152B2C */ void getTrnsfrmKeyAnmP(char*, int);
-    /* 80152B68 */ void getTexPtrnAnmP(char*, int);
-    /* 80152BA4 */ void getTexSRTKeyAnmP(char*, int);
-    /* 80152BE0 */ void getTevRegKeyAnmP(char*, int);
-    /* 80152C1C */ void setMcaMorfAnm(J3DAnmTransformKey*, f32, f32, int, int, int);
-    /* 80152C80 */ void setBckAnm(J3DAnmTransform*, f32, int, int, int, bool);
-    /* 80152CC4 */ void setBtpAnm(J3DAnmTexPattern*, J3DModelData*, f32, int);
-    /* 80152D04 */ void setBtkAnm(J3DAnmTextureSRTKey*, J3DModelData*, f32, int);
-    /* 80152D44 */ void setBrkAnm(J3DAnmTevRegKey*, J3DModelData*, f32, int);
+    /* 80152B2C */ J3DAnmTransformKey* getTrnsfrmKeyAnmP(char*, int);
+    /* 80152B68 */ J3DAnmTexPattern* getTexPtrnAnmP(char*, int);
+    /* 80152BA4 */ J3DAnmTextureSRTKey* getTexSRTKeyAnmP(char*, int);
+    /* 80152BE0 */ J3DAnmTevRegKey* getTevRegKeyAnmP(char*, int);
+    /* 80152C1C */ BOOL setMcaMorfAnm(J3DAnmTransformKey* i_anm, f32 i_rate, f32 i_morf, int i_attr, int i_start, int i_end);
+    /* 80152C80 */ BOOL setBckAnm(J3DAnmTransform* i_bck, f32 i_rate, int i_attr, int i_start, int i_end, bool i_modify);
+    /* 80152CC4 */ BOOL setBtpAnm(J3DAnmTexPattern* i_btp, J3DModelData* i_modelData, f32 i_rate, int i_attr);
+    /* 80152D04 */ BOOL setBtkAnm(J3DAnmTextureSRTKey* i_btk, J3DModelData* i_modelData, f32 i_rate, int i_attr);
+    /* 80152D44 */ BOOL setBrkAnm(J3DAnmTevRegKey* i_brk, J3DModelData* i_modelData, f32 i_rate, int i_attr);
     /* 80152D84 */ void setEnvTevColor();
     /* 80152DE0 */ void setRoomNo();
-    /* 80152E24 */ void chkEndAnm(f32);
-    /* 80152EC4 */ void chkEndAnm(J3DFrameCtrl*, f32);
-    /* 80152F40 */ void playAllAnm();
+    /* 80152E24 */ BOOL chkEndAnm(f32);
+    /* 80152EC4 */ BOOL chkEndAnm(J3DFrameCtrl*, f32);
+    /* 80152F40 */ BOOL playAllAnm();
     /* 80153150 */ void playExpressionAnm(daNpcF_c::daNpcF_anmPlayData***);
     /* 80153264 */ void playMotionAnm(daNpcF_c::daNpcF_anmPlayData***);
     /* 8015337C */ void setLookatMtx(int, int*, f32);
     /* 80153578 */ void hitChk2(dCcD_Cyl*, int, int);
     /* 80153658 */ void setDamage(int, int, int);
-    /* 80153718 */ void ctrlMsgAnm(int&, int&, fopAc_ac_c*, int);
+    /* 80153718 */ int ctrlMsgAnm(int&, int&, fopAc_ac_c*, int);
     /* 8015387C */ void orderEvent(int, char*, u16, u16, u8, u16);
     /* 80153954 */ void changeEvent(char*, char*, u16, u16);
-    /* 801539F0 */ void chkActorInSight(fopAc_ac_c*, f32);
-    /* 80153A78 */ void chkActorInArea(fopAc_ac_c*, cXyz, cXyz, s16);
-    /* 80153BDC */ void chkActorInAttnArea(fopAc_ac_c*, fopAc_ac_c*, int);
+    /* 801539F0 */ BOOL chkActorInSight(fopAc_ac_c*, f32);
+    /* 80153A78 */ BOOL chkActorInArea(fopAc_ac_c*, cXyz, cXyz, s16);
+    /* 80153BDC */ BOOL chkActorInAttnArea(fopAc_ac_c*, fopAc_ac_c*, int);
     /* 80153D1C */ int initTalk(int, fopAc_ac_c**);
-    /* 80153D84 */ void talkProc(int*, int, fopAc_ac_c**);
-    /* 80153EF4 */ void turn(s16, f32, int);
+    /* 80153D84 */ BOOL talkProc(int*, int, fopAc_ac_c**);
+    /* 80153EF4 */ BOOL turn(s16, f32, int);
     /* 801540A4 */ void step(s16, int, int, int);
     /* 80154250 */ void setAngle(s16);
-    /* 80154278 */ void getDistTableIdx(int, int);
-    /* 801542A0 */ int getEvtAreaTagP(int, int);
+    /* 80154278 */ u8 getDistTableIdx(int, int);
+    /* 801542A0 */ fopAc_ac_c* getEvtAreaTagP(int, int);
     /* 8015436C */ void getAttnActorP(int, void* (*)(void*, void*), f32, f32, f32, f32, s16, int,
                                       int);
-    /* 80154730 */ void chkActorInSight2(fopAc_ac_c*, f32, s16);
+    /* 80154730 */ BOOL chkActorInSight2(fopAc_ac_c*, f32, s16);
     /* 80154834 */ bool chkPointInArea(cXyz, cXyz, f32, f32, f32, s16);
     /* 801548F4 */ bool chkPointInArea(cXyz, cXyz, cXyz, s16);
     /* 8015496C */ cXyz getAttentionPos(fopAc_ac_c*);
@@ -568,8 +597,8 @@ public:
 
     /* 80155BF4 */ virtual ~daNpcF_c();
     /* 80155BC8 */ virtual void setParam();
-    /* 80155BC0 */ virtual bool main();
-    /* 80155BD8 */ virtual bool ctrlBtk();
+    /* 80155BC0 */ virtual BOOL main();
+    /* 80155BD8 */ virtual BOOL ctrlBtk();
     /* 80155BBC */ virtual void adjustShapeAngle();
     /* 8015276C */ virtual void setMtx();
     /* 801527FC */ virtual void setMtx2();
@@ -578,13 +607,19 @@ public:
     /* 80155BE0 */ virtual bool setExpressionAnm(int, bool);
     /* 80155EC8 */ virtual bool setExpressionBtp(int);
     /* 80155BF0 */ virtual void setExpression(int, f32);
-    /* 80155BE8 */ virtual void setMotionAnm(int, f32);
+    /* 80155BE8 */ virtual void setMotionAnm(int i_idx, f32 i_morf);
     /* 80155BEC */ virtual void setMotion(int, f32, int);
-    /* 80155BD0 */ virtual bool drawDbgInfo();
+    /* 80155BD0 */ virtual BOOL drawDbgInfo();
     /* 80155BCC */ virtual void drawOtherMdls();
 
+    BOOL chkActorInSpeakArea(fopAc_ac_c* param_1, fopAc_ac_c* param_2) { return chkActorInAttnArea(param_1, param_2, mAttentionInfo.field_0x0[3]); }
+    BOOL chkPlayerInSpeakArea(fopAc_ac_c* i_actor) { return chkActorInSpeakArea(daPy_getPlayerActorClass(), i_actor); }
+    BOOL chkActorInTalkArea(fopAc_ac_c* param_1, fopAc_ac_c* param_2) { return chkActorInAttnArea(param_1, param_2, mAttentionInfo.field_0x0[1]); }
+    BOOL chkPlayerInTalkArea(fopAc_ac_c* i_actor) { return chkActorInTalkArea(daPy_getPlayerActorClass(), i_actor); }
+    BOOL checkHide() { return mHide || (field_0x9f4 && !dComIfGs_wolfeye_effect_check()); }
+
     static u8 const mCcDObjInfo[48];
-    static u8 mCcDCyl[68];
+    static dCcD_SrcCyl mCcDCyl;
     static u8 mCcDSph[64];
     static u8 mFindActorPList[400];
     static s32 mFindCount;
@@ -593,8 +628,12 @@ public:
 
 STATIC_ASSERT(sizeof(daNpcF_c) == 0xB48);
 
+BOOL daNpcF_chkEvtBit(u32 i_idx);
+BOOL daNpcF_chkTmpBit(u32 i_idx);
+void daNpcF_offTmpBit(u32 i_idx);
 int daNpcF_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz& param_2,
                                             csXyz& param_3);
+int daNpcF_getGroundAngle(cBgS_PolyInfo*, s16);
 
 struct daBaseNpc_matAnm_c {
     /* 8014D884 */ void calc(J3DMaterial*) const;
@@ -765,20 +804,26 @@ public:
     static u8 m_set_func[4];
 };
 
+// should inherit J3DMaterialAnm but this breaks matching
 class daNpcF_MatAnm_c {
+public:
+    /* 0x000 */ J3DMaterialAnm mBase;
 private:
-    /* 0x000 */ J3DMaterialAnm mMaterialAnm;
     /* 0x0F4 */ mutable f32 field_0xF4;
     /* 0x0F8 */ mutable f32 field_0xF8;
-    /* 0x0FC */ f32 mTranslationX;
-    /* 0x100 */ f32 mTranslationY;
-    /* 0x104 */ u8 field_0x104;
+    /* 0x0FC */ f32 mNowOffsetX;
+    /* 0x100 */ f32 mNowOffsetY;
+    /* 0x104 */ u8 mEyeMoveFlag;
     /* 0x105 */ u8 field_0x105;
 
 public:
+    daNpcF_MatAnm_c() { initialize(); }
     /* 80150738 */ void initialize();
     /* 8015075C */ void calc(J3DMaterial*) const;
     /* 80155ED0 */ ~daNpcF_MatAnm_c();
+    void setNowOffsetX(float i_nowOffsetX) { mNowOffsetX = i_nowOffsetX; }
+    void setNowOffsetY(float i_nowOffsetY) { mNowOffsetY = i_nowOffsetY; }
+    void onEyeMoveFlag() { mEyeMoveFlag = 1; }
 };
 
 class daNpcF_SPCurve_c {
@@ -824,6 +869,33 @@ public:
     cXyz* getPntPos(); // finish
 };
 
+class daNpcF_Lookat_c {
+private:
+    /* 0x00 */ cXyz field_0x00[4];
+    /* 0x30 */ cXyz* mAttnPos;
+    /* 0x34 */ csXyz field_0x34[4];
+    /* 0x4C */ csXyz field_0x4c[4];
+    /* 0x64 */ csXyz field_0x64[4];
+    /* 0x7C */ csXyz mRotAngle[4];
+    /* 0x94 */ u8 field_0x94[4];
+    /* 0x98 vtable */
+
+public:
+    /* 80151038 */ void initialize();
+    /* 801510B8 */ void setParam(f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s16,
+                                 cXyz*);
+    /* 80151350 */ void calc(fopAc_ac_c*, f32 (*)[4], csXyz**, int, int, int);
+    /* 801515D4 */ void adjustMoveDisAngle(s16&, s16, s16, s16);
+    /* 80151648 */ void initCalc(fopAc_ac_c*, f32 (*)[4], cXyz*, csXyz*, f32*, cXyz&, int);
+    /* 80151A54 */ void update(cXyz*, csXyz*, f32*);
+    /* 80151B68 */ void calcMoveDisAngle(int, cXyz*, csXyz*, cXyz, int, int);
+    /* 80151F54 */ void setRotAngle();
+    /* 80151FE0 */ void clrRotAngle();
+    virtual ~daNpcF_Lookat_c() {}
+    cXyz* getAttnPos() { return mAttnPos; }
+    void setAttnPos(cXyz* i_attnPos) { mAttnPos = i_attnPos; }
+};
+
 class daNpcF_MoveBgActor_c {
 private:
 
@@ -838,30 +910,5 @@ public:
     /* 80155EB8 */ bool ToFore();
     /* 80155EC0 */ bool ToBack();
 };
-
-class daNpcF_Lookat_c {
-private:
-    /* 0x00 */ cXyz field_0x00[4];
-    /* 0x30 */ int field_0x30;
-    /* 0x34 */ csXyz field_0x34[4];
-    /* 0x4C */ csXyz field_0x4c[4];
-    /* 0x64 */ csXyz field_0x64[4];
-    /* 0x7C */ csXyz mRotAngle[4];
-    /* 0x94 */ u8 field_0x94[4];
-    /* 0x98 */ void* vtable;
-
-public:
-    /* 80151038 */ void initialize();
-    /* 801510B8 */ void setParam(f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s16,
-                                 cXyz*);
-    /* 80151350 */ void calc(fopAc_ac_c*, f32 (*)[4], csXyz**, int, int, int);
-    /* 801515D4 */ void adjustMoveDisAngle(s16&, s16, s16, s16);
-    /* 80151648 */ void initCalc(fopAc_ac_c*, f32 (*)[4], cXyz*, csXyz*, f32*, cXyz&, int);
-    /* 80151A54 */ void update(cXyz*, csXyz*, f32*);
-    /* 80151B68 */ void calcMoveDisAngle(int, cXyz*, csXyz*, cXyz, int, int);
-    /* 80151F54 */ void setRotAngle();
-    /* 80151FE0 */ void clrRotAngle();
-};
-
 
 #endif /* D_A_D_A_NPC_H */
