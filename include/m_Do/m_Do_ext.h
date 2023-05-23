@@ -568,6 +568,7 @@ JKRSolidHeap* mDoExt_createSolidHeapFromGameToCurrent(JKRHeap** o_heap, u32 i_si
 u32 mDoExt_adjustSolidHeapToSystem(JKRSolidHeap* i_heap);
 JKRHeap* mDoExt_getCurrentHeap();
 void mDoExt_removeMesgFont();
+void mDoExt_modelUpdate(J3DModel* i_model);
 void mDoExt_modelUpdateDL(J3DModel* i_model);
 J3DModel* mDoExt_J3DModel__create(J3DModelData* i_modelData, u32 param_1, u32 param_2);
 void mDoExt_setAraCacheSize(u32 size);
