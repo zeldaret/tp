@@ -8,16 +8,7 @@
 #include "d/a/d_a_player.h"
 #include "d/d_procname.h"
 
-/* ############################################################################################## */
-/* 804D5724-804D5728 000000 0002+02 1/1 0/0 0/0 .rodata          l_dist_tbl$3641 */
-SECTION_RODATA static u8 const l_dist_tbl[2 + 2 /* padding */] = {
-    0x23,
-    0x24,
-    /* padding */
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x804D5724, &l_dist_tbl);
+static const u8 l_dist_tbl[] = { 0x23, 0x24 };
 
 /* 804D5318-804D5354 000078 003C+00 1/1 0/0 0/0 .text            Create__8daAttp_cFv */
 int daAttp_c::Create() {
