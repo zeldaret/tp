@@ -1,6 +1,13 @@
 // Translation Unit: msg/scrn/d_msg_scrn_arrow
 
 #include "msg/scrn/d_msg_scrn_arrow.h"
+#include "JSystem/J2DGraph/J2DAnmLoader.h"
+#include "JSystem/J2DGraph/J2DGrafContext.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/pane/d_pane_class.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 
 /* 8023B9B4-8023BC78 2362F4 02C4+00 0/0 4/4 0/0 .text __ct__15dMsgScrnArrow_cFv */
@@ -8,6 +15,7 @@ dMsgScrnArrow_c::dMsgScrnArrow_c() {
     mScreen = new J2DScreen();
     mScreen->setPriority("zelda_window_yajirushi.blo", 0x20000, dComIfGp_getMsgArchive(0));
     dPaneClass_showNullPane(mScreen);
+    i_OSInitFastCast();
 
     mAnmBck = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(
         JKRFileLoader::getGlbResource("zelda_window_yajirushi.bck", dComIfGp_getMsgArchive(0)));

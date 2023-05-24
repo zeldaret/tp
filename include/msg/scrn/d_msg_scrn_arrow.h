@@ -1,13 +1,13 @@
 #ifndef MSG_SCRN_D_MSG_SCRN_ARROW_H
 #define MSG_SCRN_D_MSG_SCRN_ARROW_H
 
-#include "JSystem/J2DGraph/J2DScreen.h"
-#include "JSystem/J2DGraph/J2DAnmLoader.h"
-#include "JSystem/J2DGraph/J2DGrafContext.h"
-#include "JSystem/JKernel/JKRExpHeap.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/pane/d_pane_class.h"
 #include "dolphin/types.h"
+
+class J2DScreen;
+class J2DAnmTransform;
+class J2DAnmColor;
+class J2DScreen;
+class CPaneMgr;
 
 class dMsgScrnArrow_c {
 public:
