@@ -4167,7 +4167,8 @@ void daNpcF_MatAnm_c::calc(J3DMaterial* param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpcF_MatAnm_c::calc(J3DMaterial* param_0) const {
+// asm void daNpcF_MatAnm_c::calc(J3DMaterial* param_0) const {
+asm void calc__15daNpcF_MatAnm_cCFP11J3DMaterial() {
     nofralloc
 #include "asm/d/a/d_a_npc/calc__15daNpcF_MatAnm_cCFP11J3DMaterial.s"
 }
@@ -6129,7 +6130,8 @@ bool daNpcF_c::setExpressionBtp(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm daNpcF_MatAnm_c::~daNpcF_MatAnm_c() {
+// asm daNpcF_MatAnm_c::~daNpcF_MatAnm_c() {
+asm void __dt__15daNpcF_MatAnm_cFv() {
     nofralloc
 #include "asm/d/a/d_a_npc/__dt__15daNpcF_MatAnm_cFv.s"
 }

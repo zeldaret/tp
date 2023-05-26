@@ -11,6 +11,24 @@
 #include "dolphin/types.h"
 #include "global.h"
 
+struct bckGetParam {
+    /* 0x00 */ int bckIdx;
+    /* 0x04 */ int bckAttr;
+    /* 0x08 */ int arcIdx;
+};
+
+struct btpGetParam {
+    /* 0x00 */ int btpIdx;
+    /* 0x04 */ int btpAttr;
+    /* 0x08 */ int arcIdx;
+};
+
+struct btkGetParam {
+    /* 0x00 */ int btkIdx;
+    /* 0x04 */ int btkAttr;
+    /* 0x08 */ int arcIdx;
+};
+
 struct dPnt {};
 
 class daNpcT_ActorMngr_c {
@@ -604,17 +622,17 @@ public:
     /* 801527FC */ virtual void setMtx2();
     /* 80155BB8 */ virtual void setAttnPos();
     /* 80155BB4 */ virtual void setCollisions();
-    /* 80155BE0 */ virtual bool setExpressionAnm(int, bool);
-    /* 80155EC8 */ virtual bool setExpressionBtp(int);
-    /* 80155BF0 */ virtual void setExpression(int, f32);
+    /* 80155BE0 */ virtual bool setExpressionAnm(int i_idx, bool i_modify);
+    /* 80155EC8 */ virtual bool setExpressionBtp(int i_idx);
+    /* 80155BF0 */ virtual void setExpression(int i_expression, f32 i_morf);
     /* 80155BE8 */ virtual void setMotionAnm(int i_idx, f32 i_morf);
-    /* 80155BEC */ virtual void setMotion(int, f32, int);
+    /* 80155BEC */ virtual void setMotion(int i_motion, f32 i_morf, int i_restart);
     /* 80155BD0 */ virtual BOOL drawDbgInfo();
     /* 80155BCC */ virtual void drawOtherMdls();
 
-    BOOL chkActorInSpeakArea(fopAc_ac_c* param_1, fopAc_ac_c* param_2) { return chkActorInAttnArea(param_1, param_2, mAttentionInfo.field_0x0[3]); }
+    BOOL chkActorInSpeakArea(fopAc_ac_c* i_actorCheck, fopAc_ac_c* i_actorArea) { return chkActorInAttnArea(i_actorCheck, i_actorArea, mAttentionInfo.field_0x0[3]); }
     BOOL chkPlayerInSpeakArea(fopAc_ac_c* i_actor) { return chkActorInSpeakArea(daPy_getPlayerActorClass(), i_actor); }
-    BOOL chkActorInTalkArea(fopAc_ac_c* param_1, fopAc_ac_c* param_2) { return chkActorInAttnArea(param_1, param_2, mAttentionInfo.field_0x0[1]); }
+    BOOL chkActorInTalkArea(fopAc_ac_c* i_actorCheck, fopAc_ac_c* i_actorArea) { return chkActorInAttnArea(i_actorCheck, i_actorArea, mAttentionInfo.field_0x0[1]); }
     BOOL chkPlayerInTalkArea(fopAc_ac_c* i_actor) { return chkActorInTalkArea(daPy_getPlayerActorClass(), i_actor); }
     BOOL checkHide() { return mHide || (field_0x9f4 && !dComIfGs_wolfeye_effect_check()); }
 
@@ -804,10 +822,7 @@ public:
     static u8 m_set_func[4];
 };
 
-// should inherit J3DMaterialAnm but this breaks matching
-class daNpcF_MatAnm_c {
-public:
-    /* 0x000 */ J3DMaterialAnm mBase;
+class daNpcF_MatAnm_c : public J3DMaterialAnm {
 private:
     /* 0x0F4 */ mutable f32 field_0xF4;
     /* 0x0F8 */ mutable f32 field_0xF8;
