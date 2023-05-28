@@ -30,7 +30,7 @@ int daObjDigholl_c::create() {
     fopAcM_SetMax(this, 60.0f, 10.0f, 100.0f);
     mAttentionInfo.mPosition = current.pos;
     mEyePos = mAttentionInfo.mPosition;
-    mAttentionInfo.field_0x4[3] = ' ';
+    mAttentionInfo.field_0x4[3] = 0x20;
     return cPhs_COMPLEATE_e;
 }
 
@@ -51,9 +51,9 @@ static int daObjDigholl_Delete(daObjDigholl_c* i_this) {
 /* 80BDC7D8-80BDCAEC 000238 0314+00 1/1 0/0 0/0 .text            execute__14daObjDigholl_cFv */
 int daObjDigholl_c::execute() {
     daPy_py_c* player = daPy_getLinkPlayerActorClass();
-    if (dComIfGp_getLinkPlayer()->i_checkNoResetFlg1(daPy_py_c::FLG1_IS_WOLF) &&
+    if (player->i_checkNowWolf() &&
         (field_0x56a == 0xff || i_fopAcM_isSwitch(this, field_0x56a)) &&
-        (f32)fabs(current.pos.y - player->current.pos.y) < 40.0f)
+        (f32)fabsf(current.pos.y - player->current.pos.y) < 40.0f)
     {
         mAttentionInfo.mFlags = 0x80;
     } else {
@@ -82,7 +82,7 @@ int daObjDigholl_c::execute() {
         }
     }
 
-    if (sqrtf(PSVECSquareDistance((Vec*)&player->current, (Vec*)&current)) < 1000.0f) {
+    if (player->current.pos.abs(current.pos) < 1000.0f) {
         dComIfGp_particle_setSimple(0x70f, &current.pos, 0xff, g_whiteColor, g_whiteColor, NULL,
                                     0.0f);
         dComIfGp_particle_setSimple(0x73d, &current.pos, 0xff, g_whiteColor, g_whiteColor, NULL,
