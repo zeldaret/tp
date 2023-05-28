@@ -56,8 +56,8 @@ SECTION_RODATA static char const lit_154[] = "Initialize NUB\n";
 COMPILER_STRIP_GATE(0x803A26A4, &lit_154);
 
 /* 8044D8B8-8044D8C0 07A5D8 0004+04 1/1 4/4 0/0 .bss             gTRKBigEndian */
-SECTION_BSS extern s32 gTRKBigEndian[1 + 1 /* padding */];
-SECTION_BSS s32 gTRKBigEndian[1 + 1 /* padding */];
+SECTION_BSS extern BOOL gTRKBigEndian;
+SECTION_BSS BOOL gTRKBigEndian;
 
 /* 8036CE8C-8036CFD8 3677CC 014C+00 0/0 1/1 0/0 .text            TRKInitializeNub */
 #pragma push

@@ -268,7 +268,7 @@ asm s32 TRKDoReset(TRKBuffer*) {
 
 /* ############################################################################################## */
 /* 8044F288-8044F290 07BFA8 0004+04 4/4 0/0 0/0 .bss             IsTRKConnected */
-SECTION_BSS static BOOL IsTRKConnected[1 + 1 /* padding */];
+SECTION_BSS static BOOL IsTRKConnected;
 
 /* 8036EBE4-8036EC5C 369524 0078+00 0/0 1/1 0/0 .text            TRKDoDisconnect */
 #pragma push
@@ -292,12 +292,12 @@ asm s32 TRKDoConnect(TRKBuffer*) {
 
 /* 8036ECC0-8036ECCC 369600 000C+00 0/0 1/1 0/0 .text            SetTRKConnected */
 void SetTRKConnected(BOOL isTRKConnected) {
-    *IsTRKConnected = isTRKConnected;
+    IsTRKConnected = isTRKConnected;
 }
 
 /* 8036ECCC-8036ECDC 36960C 0010+00 0/0 3/3 0/0 .text            GetTRKConnected */
 BOOL GetTRKConnected(void) {
-    return *IsTRKConnected;
+    return IsTRKConnected;
 }
 
 /* ############################################################################################## */

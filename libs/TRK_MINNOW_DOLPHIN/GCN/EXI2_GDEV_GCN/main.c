@@ -101,7 +101,7 @@ COMPILER_STRIP_GATE(0x803A2E30, &lit_320);
 #pragma pop
 
 /* 804519C8-804519D0 000EC8 0004+04 3/3 0/0 0/0 .sbss            gIsInitialized */
-static s32 gIsInitialized[1 + 1 /* padding */];
+static BOOL gIsInitialized;
 
 /* 803729E4-80372AA4 36D324 00C0+00 0/0 1/1 0/0 .text            gdev_cc_write */
 #pragma push
@@ -139,10 +139,10 @@ u8 gdev_cc_close() {
 
 /* 80372BA0-80372BC4 36D4E0 0024+00 0/0 1/1 0/0 .text            gdev_cc_open */
 s32 gdev_cc_open() {
-    if (gIsInitialized[0] != 0) {
+    if (gIsInitialized != FALSE) {
         return -10005;
     }
-    gIsInitialized[0] = 1;
+    gIsInitialized = TRUE;
     return 0;
 }
 

@@ -90,7 +90,7 @@ COMPILER_STRIP_GATE(0x803A2D50, &lit_320);
 #pragma pop
 
 /* 804519C0-804519C8 000EC0 0004+04 3/3 0/0 0/0 .sbss            gIsInitialized */
-static BOOL gIsInitialized[1 + 1 /* padding */];
+static BOOL gIsInitialized;
 
 /* 80372438-803724F8 36CD78 00C0+00 0/0 1/1 0/0 .text            ddh_cc_write */
 #pragma push
@@ -128,10 +128,10 @@ u8 ddh_cc_close() {
 
 /* 803725EC-80372610 36CF2C 0024+00 0/0 1/1 0/0 .text            ddh_cc_open */
 s32 ddh_cc_open() {
-    if (*gIsInitialized != FALSE) {
+    if (gIsInitialized != FALSE) {
         return -10005;
     }
-    *gIsInitialized = TRUE;
+    gIsInitialized = TRUE;
     return 0;
 }
 
