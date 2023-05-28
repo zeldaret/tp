@@ -1111,7 +1111,7 @@ public:
     void removeZone(int zoneNo) { mZone[zoneNo].reset(); }
     void setNoFile(u8 file) { mNoFile = file; }
     u8 getNewFile() const { return mNewFile; }
-    void setNewFile(u8 file) { mNewFile |= file; }
+    void setNewFile(u8 file) { mNewFile = file; }
 
     static const int MEMORY_SWITCH = 0x80;
     static const int DAN_SWITCH = 0x40;
