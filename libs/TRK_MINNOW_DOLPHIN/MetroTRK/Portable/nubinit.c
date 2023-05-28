@@ -20,7 +20,7 @@ u8 TRKInitializeDispatcher();
 void TRKTargetSetInputPendingPtr();
 void TRKInitializeTarget();
 void InitializeProgramEndTrap();
-void TRK_board_display();
+void TRK_board_display(const char*);
 void TRKInitializeIntDrivenUART();
 void MWTRACE();
 extern u8 gTRKInputPendingPtr[4 + 4 /* padding */];
@@ -45,14 +45,10 @@ asm void TRKNubWelcome(void) {
 #pragma pop
 
 /* 8036CE68-8036CE8C 3677A8 0024+00 0/0 1/1 0/0 .text            TRKTerminateNub */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 TRKTerminateNub(void) {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubinit/TRKTerminateNub.s"
+s32 TRKTerminateNub(void) {
+    TRKTerminateSerialHandler();
+    return 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803A26A4-803A26B8 02ED04 0010+04 1/1 0/0 0/0 .rodata          @154 */
@@ -60,8 +56,8 @@ SECTION_RODATA static char const lit_154[] = "Initialize NUB\n";
 COMPILER_STRIP_GATE(0x803A26A4, &lit_154);
 
 /* 8044D8B8-8044D8C0 07A5D8 0004+04 1/1 4/4 0/0 .bss             gTRKBigEndian */
-SECTION_BSS extern u8 gTRKBigEndian[4 + 4 /* padding */];
-SECTION_BSS u8 gTRKBigEndian[4 + 4 /* padding */];
+SECTION_BSS extern s32 gTRKBigEndian[1 + 1 /* padding */];
+SECTION_BSS s32 gTRKBigEndian[1 + 1 /* padding */];
 
 /* 8036CE8C-8036CFD8 3677CC 014C+00 0/0 1/1 0/0 .text            TRKInitializeNub */
 #pragma push

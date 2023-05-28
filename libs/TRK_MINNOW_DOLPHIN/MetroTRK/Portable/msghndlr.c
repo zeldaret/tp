@@ -268,7 +268,7 @@ asm s32 TRKDoReset(TRKBuffer*) {
 
 /* ############################################################################################## */
 /* 8044F288-8044F290 07BFA8 0004+04 4/4 0/0 0/0 .bss             IsTRKConnected */
-SECTION_BSS static u8 IsTRKConnected[4 + 4 /* padding */];
+SECTION_BSS static BOOL IsTRKConnected[1 + 1 /* padding */];
 
 /* 8036EBE4-8036EC5C 369524 0078+00 0/0 1/1 0/0 .text            TRKDoDisconnect */
 #pragma push
@@ -291,24 +291,14 @@ asm s32 TRKDoConnect(TRKBuffer*) {
 #pragma pop
 
 /* 8036ECC0-8036ECCC 369600 000C+00 0/0 1/1 0/0 .text            SetTRKConnected */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void SetTRKConnected(BOOL) {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msghndlr/SetTRKConnected.s"
+void SetTRKConnected(BOOL isTRKConnected) {
+    *IsTRKConnected = isTRKConnected;
 }
-#pragma pop
 
 /* 8036ECCC-8036ECDC 36960C 0010+00 0/0 3/3 0/0 .text            GetTRKConnected */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL GetTRKConnected(void) {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msghndlr/GetTRKConnected.s"
+BOOL GetTRKConnected(void) {
+    return *IsTRKConnected;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803A2AAC-803A2AB4 02F10C 0006+02 1/1 0/0 0/0 .rodata          @573 */
