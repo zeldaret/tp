@@ -52,6 +52,7 @@ void* VIGetNextFrameBuffer();
 void* VIGetCurrentFrameBuffer();
 void VISetBlack(BOOL);
 u32 VIGetRetraceCount();
+u32 VIGetDTVStatus();
 
 vu16 __VIRegs[59] : 0xCC002000;
 
