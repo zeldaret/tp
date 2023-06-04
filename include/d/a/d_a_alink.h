@@ -3,35 +3,38 @@
 
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
+#include "JSystem/JParticle/JPAParticle.h"
 #include "Z2AudioLib/Z2Creature.h"
 #include "Z2AudioLib/Z2WolfHowlMgr.h"
 #include "d/a/d_a_player.h"
-#include "d/bg/d_bg_s.h"
+#include "d/bg/d_bg_s_acch.h"
+#include "d/bg/d_bg_s_lin_chk.h"
+#include "d/bg/d_bg_w_base.h"
 #include "d/cc/d_cc_d.h"
-#include "d/cc/d_cc_mass_s.h"
 #include "d/d_attention.h"
-#include "d/d_drawlist.h"
 #include "d/d_eye_hl.h"
 #include "d/d_jnt_col.h"
-#include "d/kankyo/d_kankyo.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_flow.h"
 #include "d/particle/d_particle.h"
 #include "d/particle/d_particle_copoly.h"
+#include "d/save/d_save.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
-#include "f_op/f_op_scene.h"
+#include "global.h"
 #include "rel/d/a/kytag/d_a_kytag05/d_a_kytag05.h"
 #include "rel/d/a/tag/d_a_tag_mmsg/d_a_tag_mmsg.h"
 
-class fopEn_enemy_c;
-class daAlinkHIO_anm_c;
-class J3DAnmTevRegKey;
-class dDemo_actor_c;
-class daScex_c;
+class J2DAnmColorKey;
+class J2DAnmTransformKey;
 class J2DScreen;
 class J2DPane;
 class J2DAnmBase;
+class J3DAnmTevRegKey;
+class dDemo_actor_c;
+class daAlinkHIO_anm_c;
+class daScex_c;
+class fopEn_enemy_c;
 
 class daAlink_lockCursor_c : public dDlst_base_c {
 public:

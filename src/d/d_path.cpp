@@ -67,7 +67,7 @@ dPath* dPath_GetNextRoomPath(dPath const* p_path, int room_no) {
 
 /* 8005195C-80051AC0 04C29C 0164+00 0/0 1/1 4/4 .text
  * dPath_GetPolyRoomPathVec__FRC13cBgS_PolyInfoP4cXyzPi         */
-int dPath_GetPolyRoomPathVec(cBgS_PolyInfo const& poly, cXyz* p_pathVec, int* param_2) {
+u8 dPath_GetPolyRoomPathVec(cBgS_PolyInfo const& poly, cXyz* p_pathVec, int* param_2) {
     int roomId = dComIfG_Bgsp().GetRoomId(poly);
     int roomPathId = dComIfG_Bgsp().GetRoomPathId(poly);
 

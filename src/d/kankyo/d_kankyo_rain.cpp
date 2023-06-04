@@ -5,10 +5,13 @@
 
 #include "d/kankyo/d_kankyo_rain.h"
 #include "MSL_C/math.h"
+#include "MSL_C/string.h"
+#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_demo.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Forward References:
@@ -169,7 +172,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void memcmp();
 extern "C" extern void* __vt__14dBgS_ObjGndChk[12 + 1 /* padding */];
 extern "C" extern void* __vt__19dKankyo_star_Packet[5];
 extern "C" extern void* __vt__19dKankyo_snow_Packet[5];

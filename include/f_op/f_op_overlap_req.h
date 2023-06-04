@@ -2,9 +2,10 @@
 #define F_F_OP_OVERLAP_REQ_H_
 
 #include "SSystem/SComponent/c_phase.h"
-#include "SSystem/SComponent/c_request.h"
 #include "dolphin/types.h"
-#include "f_pc/f_pc_layer.h"
+
+typedef struct layer_class layer_class;
+struct request_base_class;
 
 class overlap_request_class {
 public:

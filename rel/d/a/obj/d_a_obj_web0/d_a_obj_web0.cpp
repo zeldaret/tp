@@ -4,9 +4,13 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_web0/d_a_obj_web0.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/bg/d_bg_w.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
+#include "f_op/f_op_actor_mng.h"
+#include "global.h"
 
 extern "C" static void damage_check__FP14obj_web0_class();
 
@@ -444,19 +448,14 @@ extern actor_process_profile_definition g_profile_OBJ_WEB0 = {
     3,
     -3,
     PROC_OBJ_WEB0,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(obj_web0_class),
     0,
     0,
     &g_fopAc_Method.base,
     0x002F,
-    0,
-    0,
     &l_daObj_Web0_Method,
     0x00040100,
     0,
     14,
-    0,
-    0,
 };

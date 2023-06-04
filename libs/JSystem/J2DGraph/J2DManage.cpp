@@ -4,7 +4,8 @@
 //
 
 #include "JSystem/J2DGraph/J2DManage.h"
-#include "MSL_C/MSL_Common/Src/string.h"
+#include "JSystem/JSupport/JSUInputStream.h"
+#include "MSL_C/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

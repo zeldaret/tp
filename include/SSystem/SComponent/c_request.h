@@ -2,7 +2,6 @@
 #define C_REQUEST_H
 
 #include "dolphin/types.h"
-#include "f_pc/f_pc_base.h"
 
 struct request_base_class {
     u8 field_0x0;

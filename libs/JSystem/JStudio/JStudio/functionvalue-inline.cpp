@@ -1,5 +1,4 @@
 #include "JSystem/JStudio/JStudio/functionvalue.h"
-#include "global.h"
 
 namespace std {
 template <typename A1>

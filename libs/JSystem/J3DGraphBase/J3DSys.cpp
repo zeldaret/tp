@@ -9,6 +9,7 @@
 #include "dolphin/gx/GXPixel.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 #include "JSystem/J3DGraphBase/J3DTevs.h"
 

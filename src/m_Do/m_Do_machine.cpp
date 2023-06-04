@@ -9,15 +9,18 @@
 #include "JSystem/JKernel/JKRAramStream.h"
 #include "JSystem/JKernel/JKRDvdAramRipper.h"
 #include "JSystem/JUtility/JUTException.h"
+#include "JSystem/JUtility/JUTVideo.h"
 #include "SSystem/SComponent/c_API_controller_pad.h"
 #include "SSystem/SComponent/c_malloc.h"
 #include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
 #include "m_Do/m_Do_DVDError.h"
 #include "m_Do/m_Do_MemCard.h"
+#include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_dvd_thread.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_machine_exception.h"
+#include "m_Do/m_Do_main.h"
 
 //
 // Forward References:
@@ -148,7 +151,7 @@ static u32 heapErrors;
 
 /* 8000B1EC-8000B3EC 005B2C 0200+00 2/2 0/0 0/0 .text            myGetHeapTypeByString__FP7JKRHeap
  */
-static char* myGetHeapTypeByString(JKRHeap* p_heap) {
+static const char* myGetHeapTypeByString(JKRHeap* p_heap) {
     static char tmpString[5];
 
     if (p_heap == JKRHeap::getSystemHeap()) {
@@ -254,7 +257,7 @@ static void myMemoryErrorRoutine(void* p_heap, u32 size, int alignment) {
 /* 8000B5C8-8000B668 005F08 00A0+00 1/1 0/0 0/0 .text            myHeapCheckRecursive__FP7JKRHeap */
 void myHeapCheckRecursive(JKRHeap* p_heap) {
     if (!p_heap->check()) {
-        char* type = myGetHeapTypeByString(p_heap);
+        const char* type = myGetHeapTypeByString(p_heap);
         OSReport_Error("error in %08x(%s)\n", p_heap, type);
     }
 

@@ -4,6 +4,8 @@
 //
 
 #include "d/menu/d_menu_collect.h"
+#include "d/d_lib.h"
+#include "MSL_C/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

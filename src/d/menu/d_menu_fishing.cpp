@@ -4,6 +4,11 @@
  */
 
 #include "d/menu/d_menu_fishing.h"
+#include "JSystem/J2DGraph/J2DTextBox.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_lib.h"
+#include "d/meter/d_meter2_info.h"
+#include "d/msg/d_msg_string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_controller_pad.h"
@@ -486,24 +491,30 @@ asm void dMenu_Fishing_c::screenSetDoIcon() {
 #pragma pop
 
 /* 801C5EB8-801C5F68 1C07F8 00B0+00 1/1 0/0 0/0 .text setAButtonString__15dMenu_Fishing_cFUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fishing_c::setAButtonString(u16 param_0) {
-    nofralloc
-#include "asm/d/menu/d_menu_fishing/setAButtonString__15dMenu_Fishing_cFUs.s"
+void dMenu_Fishing_c::setAButtonString(u16 i_stringID) {
+    if (i_stringID == 0) {
+        for (int i = 0; i < 5; i++) {
+            strcpy(mpAButtonString[i]->getStringPtr(), "");
+        }
+    } else {
+        for (int i = 0; i < 5; i++) {
+            dMeter2Info_getStringKanji(i_stringID, mpAButtonString[i]->getStringPtr(), NULL);
+        }
+    }
 }
-#pragma pop
 
 /* 801C5F68-801C6018 1C08A8 00B0+00 1/1 0/0 0/0 .text setBButtonString__15dMenu_Fishing_cFUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fishing_c::setBButtonString(u16 param_0) {
-    nofralloc
-#include "asm/d/menu/d_menu_fishing/setBButtonString__15dMenu_Fishing_cFUs.s"
+void dMenu_Fishing_c::setBButtonString(u16 i_stringID) {
+    if (i_stringID == 0) {
+        for (int i = 0; i < 5; i++) {
+            strcpy(mpBButtonString[i]->getStringPtr(), "");
+        }
+    } else {
+        for (int i = 0; i < 5; i++) {
+            dMeter2Info_getStringKanji(i_stringID, mpBButtonString[i]->getStringPtr(), NULL);
+        }
+    }
 }
-#pragma pop
 
 /* 801C6018-801C605C 1C0958 0044+00 1/1 0/0 0/0 .text            getFigure__15dMenu_Fishing_cFi */
 int dMenu_Fishing_c::getFigure(int param_0) {

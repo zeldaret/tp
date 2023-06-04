@@ -5,7 +5,9 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_setrestart/d_a_tag_setrestart.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
 
 /* 80D603F8-80D6048C 000078 0094+00 1/1 0/0 0/0 .text            Create__14daTagRestart_cFv */
 int daTagRestart_c::Create() {
@@ -123,19 +125,14 @@ extern actor_process_profile_definition g_profile_Tag_Restart = {
     7,
     0xFFFD,
     PROC_Tag_Restart,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(daTagRestart_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x0250,
-    0,
-    0,
     &l_daTagRestart_Method,
     0x00040000,
     0,
     14,
-    0,
-    0,
 };

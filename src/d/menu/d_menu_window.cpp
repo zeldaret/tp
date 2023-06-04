@@ -4,8 +4,11 @@
 //
 
 #include "d/menu/d_menu_window.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "Z2AudioLib/Z2AudioMgr.h"
+#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_lib.h"
 #include "d/menu/d_menu_collect.h"
 #include "d/menu/d_menu_dmap.h"
 #include "d/menu/d_menu_fishing.h"
@@ -17,11 +20,16 @@
 #include "d/menu/d_menu_save.h"
 #include "d/menu/d_menu_skill.h"
 #include "d/menu/d_menu_window_HIO.h"
+#include "d/meter/d_meter2_info.h"
 #include "d/meter/d_meter_HIO.h"
+#include "d/meter/d_meter_map.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_msg_mng.h"
+#include "global.h"
+#include "m_Do/m_Do_controller_pad.h"
 
 //
 // Forward References:
@@ -2428,39 +2436,16 @@ bool dMw_c::isPauseReady() {
 }
 
 /* 801FCE08-801FCE78 1F7748 0070+00 10/10 3/3 0/0 .text            dMw_fade_out__5dMw_cFv */
-// instructions switched
-#ifdef NONMATCHING
 void dMw_c::dMw_fade_out() {
     mDoGph_gInf_c::startFadeOut(13);
     mDoGph_gInf_c::setFadeColor(static_cast<JUtility::TColor&>(g_blackColor));
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMw_c::dMw_fade_out() {
-    nofralloc
-#include "asm/d/menu/d_menu_window/dMw_fade_out__5dMw_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 801FCE78-801FCEE8 1F77B8 0070+00 9/9 4/4 0/0 .text            dMw_fade_in__5dMw_cFv */
-#ifdef NONMATCHING
 void dMw_c::dMw_fade_in() {
     mDoGph_gInf_c::startFadeIn(13);
     mDoGph_gInf_c::setFadeColor(static_cast<JUtility::TColor&>(g_blackColor));
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMw_c::dMw_fade_in() {
-    nofralloc
-#include "asm/d/menu/d_menu_window/dMw_fade_in__5dMw_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 801FCEE8-801FCF84 1F7828 009C+00 1/1 0/0 0/0 .text            checkCStickTrigger__5dMw_cFv */
 int dMw_c::checkCStickTrigger() {

@@ -4,8 +4,10 @@
 //
 
 #include "JSystem/JUtility/JUTCacheFont.h"
+#include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "dol2asm.h"
+#include "dolphin/gx/GX.h"
 
 //
 // Forward References:

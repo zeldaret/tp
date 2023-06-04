@@ -8,6 +8,9 @@
 #include "JSystem/J3DGraphBase/J3DVertex.h"
 #include "dolphin/types.h"
 
+typedef struct _GXColor GXColor;
+class JUTNameTab;
+
 class J3DModelData {
 public:
     /* 80325D88 */ void clear();

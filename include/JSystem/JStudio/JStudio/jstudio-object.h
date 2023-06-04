@@ -5,7 +5,8 @@
 #include "JSystem/JStudio/JStudio/stb.h"
 #include "JSystem/JStudio/JStudio/ctb.h"
 #include "JSystem/JStudio/JStudio/jstudio-control.h"
-#include "dolphin/gx/GX.h"
+
+typedef struct _GXColor GXColor;
 
 namespace JStudio {
 namespace data {

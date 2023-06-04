@@ -5,9 +5,12 @@
 
 #include "d/d_timer.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_lib.h"
 #include "d/d_procname.h"
+#include "d/meter/d_meter2_info.h"
 #include "dol2asm.h"
 #include "f_op/f_op_msg_mng.h"
+#include "global.h"
 #include "m_Do/m_Do_lib.h"
 
 //
@@ -545,7 +548,7 @@ asm void dDlst_TimerScrnDraw_c::changeNumberTexture(J2DPane* param_0, int param_
 #pragma pop
 
 /* 8025EECC-8025EEF0 25980C 0024+00 1/1 0/0 0/0 .text getNumber__21dDlst_TimerScrnDraw_cFi */
-char* dDlst_TimerScrnDraw_c::getNumber(int pIndex) {
+const char* dDlst_TimerScrnDraw_c::getNumber(int pIndex) {
     return dMeter2Info_getNumberTextureName(pIndex);
 }
 

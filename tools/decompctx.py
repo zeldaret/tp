@@ -14,7 +14,7 @@ guard_pattern = re.compile(r'^#ifndef\s+(.*)$')
 
 defines = set()
 
-def import_h_file(in_file, r_path) -> str:
+def import_h_file(in_file: str, r_path: str) -> str:
     rel_path = os.path.join(root_dir, r_path, in_file)
     inc_path = os.path.join(include_dir, in_file)
     if os.path.exists(rel_path):
@@ -29,22 +29,31 @@ def import_c_file(in_file) -> str:
     in_file = os.path.relpath(in_file, root_dir)
     out_text = ''
 
-    with open(in_file, encoding="shift-jis") as file:
-      for idx, line in enumerate(file):
-        guard_match = guard_pattern.match(line.strip())
-        if idx == 0:
-          if guard_match:
-            if guard_match[1] in defines:
-              break
-            defines.add(guard_match[1])
-          print("Processing file", in_file)
-        include_match = include_pattern.match(line.strip())
-        if include_match and not include_match[1].endswith(".s"):
-          out_text += f"/* \"{in_file}\" line {idx} \"{include_match[1]}\" */\n"
-          out_text += import_h_file(include_match[1], os.path.dirname(in_file))
-          out_text += f"/* end \"{include_match[1]}\" */\n"
-        else:
-          out_text += line
+    try:
+      with open(in_file, encoding="shift-jis") as file:
+        out_text += process_file(in_file, list(file))
+    except Exception:
+      with open(in_file) as file:
+        out_text += process_file(in_file, list(file))
+    return out_text
+
+def process_file(in_file: str, lines) -> str:
+    out_text = ''
+    for idx, line in enumerate(lines):
+      guard_match = guard_pattern.match(line.strip())
+      if idx == 0:
+        if guard_match:
+          if guard_match[1] in defines:
+            break
+          defines.add(guard_match[1])
+        print("Processing file", in_file)
+      include_match = include_pattern.match(line.strip())
+      if include_match and not include_match[1].endswith(".s"):
+        out_text += f"/* \"{in_file}\" line {idx} \"{include_match[1]}\" */\n"
+        out_text += import_h_file(include_match[1], os.path.dirname(in_file))
+        out_text += f"/* end \"{include_match[1]}\" */\n"
+      else:
+        out_text += line
 
     return out_text
 
@@ -60,7 +69,7 @@ def main():
 
     output = import_c_file(args.c_file)
 
-    with open(os.path.join(root_dir, "ctx.c"), "w", encoding="shift-jis") as f:
+    with open(os.path.join(root_dir, "ctx.c"), "w", encoding="utf-8") as f:
         f.write(output)
 
 

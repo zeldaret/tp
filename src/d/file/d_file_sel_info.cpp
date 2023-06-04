@@ -4,6 +4,12 @@
 //
 
 #include "d/file/d_file_sel_info.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
+#include "JSystem/J2DGraph/J2DTextBox.h"
+#include "MSL_C/stdio.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/meter/d_meter2_info.h"
+#include "d/pane/d_pane_class.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -96,7 +102,7 @@ SECTION_DATA static u64 l_htag[20] = {
 };
 
 /* 803BB548-803BB558 -00001 0010+00 1/1 0/0 0/0 .data            amariheartTex$3880 */
-SECTION_DATA static char* amariheartTex[4] = {
+SECTION_DATA static const char* amariheartTex[4] = {
     "tt_heart_00.bti",
     "tt_heart_00.bti",
     "tt_heart_00.bti",

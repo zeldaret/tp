@@ -4,6 +4,9 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_ajnot/d_a_tag_ajnot.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/a/d_a_player.h"
+#include "d/d_procname.h"
 
 /* 805A2658-805A26A8 000078 0050+00 1/1 0/0 0/0 .text            create__12daTagAJnot_cFv */
 int daTagAJnot_c::create() {
@@ -80,19 +83,14 @@ extern actor_process_profile_definition g_profile_Tag_AJnot = {
     3,
     0xFFFD,
     PROC_Tag_AJnot,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(daTagAJnot_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x01B4,
-    0,
-    0,
     &l_daTagAJnot_Method,
     0x00044000,
     3,
     14,
-    0,
-    0,
 };

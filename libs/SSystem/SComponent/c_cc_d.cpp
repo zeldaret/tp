@@ -257,7 +257,7 @@ void cCcD_ObjCommonBase::ct() {
 void cCcD_ObjHitInf::Set(cCcD_SrcObjHitInf const& src) {
     mObjAt.Set(src.mObjAt);
     mObjTg.Set(src.mObjTg);
-    mObjCo.setSPrm(src.mSPrm);
+    mObjCo.SetSPrm(src.mSPrm);
 }
 
 /* 80263A10-80263A1C 25E350 000C+00 0/0 1/1 0/0 .text            ct__8cCcD_ObjFv */

@@ -4,6 +4,9 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_ret_room/d_a_tag_ret_room.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/a/d_a_player.h"
+#include "d/d_procname.h"
 
 /* 80D5EE98-80D5EED4 000078 003C+00 2/2 0/0 0/0 .text   __ct__12daTagRetRm_cFv */
 daTagRetRm_c::daTagRetRm_c() {}
@@ -113,19 +116,14 @@ extern actor_process_profile_definition g_profile_Tag_RetRoom = {
     7,                      // mListID
     -3,                     // mListPrio
     PROC_Tag_RetRoom,       // mProcName
-    0,                      // padding
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daTagRetRm_c),   // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
     0x02DB,                 // mPriority
-    0,                      // padding
-    0,                      // padding
     &daTagRetRm_METHODS,    // mSubMtd
     0x00040000,             // mStatus
     0x00,                   // mActorType
     0x0E,                   // mCullType
-    0,                      // padding
-    0,                      // padding
 };

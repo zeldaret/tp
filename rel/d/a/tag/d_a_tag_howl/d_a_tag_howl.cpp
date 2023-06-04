@@ -4,6 +4,11 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_howl/d_a_tag_howl.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/a/d_a_player.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 
 /* 8048D958-8048D9BC 000078 0064+00 1/1 0/0 0/0 .text            create__12daTag_Howl_cFv */
 int daTag_Howl_c::create() {
@@ -107,19 +112,14 @@ extern actor_process_profile_definition g_profile_TAG_HOWL = {
     7,                        // mListID
     -3,                       // mListPrio
     PROC_TAG_HOWL,            // mProcName
-    0,                        // unkA
     &g_fpcLf_Method.mBase,    // mSubMtd
     sizeof(daTag_Howl_c),     // mSize
     0,                        // mSizeOther
     0,                        // mParameters
     &g_fopAc_Method.base,     // mSubMtd
     0x011B,                   // mPriority
-    0,                        // unk22[0]
-    0,                        // unk22[1]
     &daTag_Howl_MethodTable,  // mSubMtd
     0x00040000,               // mStatus
     0x00,                     // mActorType
     0x0E,                     // mCullType
-    0,                        // field_0x2e[0]
-    0,                        // field_0x2e[1]
 };

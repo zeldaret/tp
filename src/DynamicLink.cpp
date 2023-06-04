@@ -4,12 +4,17 @@
  */
 
 #include "DynamicLink.h"
+#include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JKernel/JKRFileCache.h"
 #include "JSystem/JUtility/JUTConsole.h"
-#include "MSL_C/MSL_Common/Src/printf.h"
+#include "MSL_C/stdio.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
+#include "global.h"
+#include "m_Do/m_Do_dvd_thread.h"
 #include "m_Do/m_Do_ext.h"
 
 /* 80451138-8045113C 000638 0004+00 3/3 0/0 0/0 .sbss            mFirst__24DynamicModuleControlBase
@@ -194,9 +199,9 @@ bool DynamicModuleControl::initialize() {
 
 /* 80262794-802627C0 25D0D4 002C+00 1/1 0/0 0/0 .text            callback__20DynamicModuleControlFPv
  */
-void* DynamicModuleControl::callback(void* moduleControlPtr) {
+bool DynamicModuleControl::callback(void* moduleControlPtr) {
     DynamicModuleControl* moduleControl = (DynamicModuleControl*)moduleControlPtr;
-    moduleControl->do_load();
+    return moduleControl->do_load();
 }
 
 /* 802627C0-802627E8 25D100 0028+00 1/1 0/0 0/0 .text            calcSum2__FPCUsUl */
@@ -317,7 +322,7 @@ BOOL DynamicModuleControl::do_load_async() {
         if (mModule != NULL) {
             return true;
         }
-        mAsyncLoadCallback = mDoDvdThd_callback_c::create(DynamicModuleControl::callback, this);
+        mAsyncLoadCallback = mDoDvdThd_callback_c::create((mDoDvdThd_callback_func)DynamicModuleControl::callback, this);
         if (mAsyncLoadCallback == NULL) {
             OSReport_Error(
                 // "DynamicModuleControl::do_load_async() async load callback entry failure [%s]\n"

@@ -4,7 +4,7 @@
 #include "JSystem/J3DGraphBase/J3DStruct.h"
 #include "JSystem/J3DGraphBase/J3DTevs.h"
 #include "JSystem/J3DGraphBase/J3DTexture.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx/GXStruct.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 
@@ -538,7 +538,9 @@ struct J3DFogInfo {
     /* 0x18 */ u16 field_0x18[10];
 };  // Size: 0x2C
 
-struct J3DFog : public J3DFogInfo {};
+struct J3DFog : public J3DFogInfo {
+    J3DFogInfo* getFogInfo() { return (J3DFogInfo*)this; }
+};
 
 struct J3DAlphaComp {
     /* 0x0 */ u16 field_0x0;
@@ -558,7 +560,7 @@ public:
     virtual u32 getType() = 0;
     /* 80317368 */ virtual void setFog(J3DFog);
     /* 80317364 */ virtual void setFog(J3DFog*);
-    /* 8000DF5C */ virtual bool getFog();
+    /* 8000DF5C */ virtual J3DFog* getFog();
     /* 8031736C */ virtual void setAlphaComp(J3DAlphaComp const*);
     /* 8000E01C */ virtual void setAlphaComp(J3DAlphaComp const&);
     /* 8000DF54 */ virtual bool getAlphaComp();
@@ -617,7 +619,7 @@ public:
     /* 8032194C */ virtual u32 getType();
     /* 8032197C */ virtual void setFog(J3DFog);
     /* 80321958 */ virtual void setFog(J3DFog*);
-    /* 803219A0 */ virtual bool getFog();
+    /* 803219A0 */ virtual J3DFog* getFog();
     /* 803219C4 */ virtual void setAlphaComp(J3DAlphaComp const*);
     /* 803219A8 */ virtual void setAlphaComp(J3DAlphaComp const&);
     /* 803219E0 */ virtual bool getAlphaComp();

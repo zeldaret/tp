@@ -7,6 +7,7 @@
 #include "d/save/d_save.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 //
 // Forward References:
@@ -877,19 +878,19 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
     mAButtonAlpha = 1.0f;
     mAButtonPosX = 0.0f;
     mAButtonPosY = 0.0f;
-    mAButtonTalkScale = 1.0f;
-    mAButtonTalkPosX = 0.0f;
-    mAButtonTalkPosY = -63.0f;
+    mAButtonTalkScale[0] = 1.0f;
+    mAButtonTalkPosX[0] = 0.0f;
+    mAButtonTalkPosY[0] = -63.0f;
     mAButtonTalkAScale = 1.0f;
-    mAButtonTalkAPosX = 0.0f;
-    mAButtonTalkAPosY = -49.0f;
+    mAButtonTalkAPosX[0] = 0.0f;
+    mAButtonTalkAPosY[0] = -49.0f;
 
-    mAButtonFontTalkScale = 1.0f;
-    mAButtonFontTalkPosX = -20.0f;
-    mAButtonFontTalkPosY = -62.0f;
+    mAButtonTalkScale[1] = 1.0f;
+    mAButtonTalkPosX[1] = -20.0f;
+    mAButtonTalkPosY[1] = -62.0f;
     mAButtonFontTalkAScale = 1.0f;
-    mAButtonFontTalkAPosX = -20.0f;
-    mAButtonFontTalkAPosY = -48.0f;
+    mAButtonTalkAPosX[1] = -20.0f;
+    mAButtonTalkAPosY[1] = -48.0f;
 
     mAButtonVesselPosX = 0.0f;
     mAButtonVesselPosY = 0.0f;
@@ -898,13 +899,13 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
     mBButtonAlpha = 1.0f;
     mBButtonPosX = -2.2f;
     mBButtonPosY = -1.3f;
-    mBButtonTalkScale = 1.0f;
-    mBButtonTalkPosX = 0.0f;
-    mBButtonTalkPosY = -62.0f;
+    mBButtonTalkScale[0] = 1.0f;
+    mBButtonTalkPosX[0] = 0.0f;
+    mBButtonTalkPosY[0] = -62.0f;
 
-    mBButtonFontTalkScale = 1.0f;
-    mBButtonFontTalkPosX = -9.2f;
-    mBButtonFontTalkPosY = -65.0f;
+    mBButtonTalkScale[1] = 1.0f;
+    mBButtonTalkPosX[1] = -9.2f;
+    mBButtonTalkPosY[1] = -65.0f;
 
     mBButtonWolfPosX = 0.0f;
     mBButtonWolfPosY = 0.0f;
@@ -1014,24 +1015,24 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
     mBItemBaseAlpha[0] = 0.5f;
     mBItemBaseAlpha[1] = 0.5f;
 
-    mXButtonItemBaseScale = 1.5f;
-    mXButtonItemBasePosX = 14.0f;
-    mXButtonItemBasePosY = -12.0f;
+    mXButtonItemBaseScale[0] = 1.5f;
+    mXButtonItemBasePosX[0] = 14.0f;
+    mXButtonItemBasePosY[0] = -12.0f;
     mXButtonItemBaseAlpha[0] = 0.5f;
 
-    mXButtonItemBaseNoItemScale = 1.5f;
-    mXButtonItemBaseNoItemPosX = 0.0f;
-    mXButtonItemBaseNoItemPosY = 0.0f;
+    mXButtonItemBaseScale[1] = 1.5f;
+    mXButtonItemBasePosX[1] = 0.0f;
+    mXButtonItemBasePosY[1] = 0.0f;
     mXButtonItemBaseAlpha[1] = 1.0f;
 
-    mYButtonItemBaseScale = 1.5f;
-    mYButtonItemBasePosX = -15.0f;
-    mYButtonItemBasePosY = -12.0f;
+    mYButtonItemBaseScale[0] = 1.5f;
+    mYButtonItemBasePosX[0] = -15.0f;
+    mYButtonItemBasePosY[0] = -12.0f;
     mYButtonItemBaseAlpha[0] = 0.5f;
 
-    mYButtonItemBaseNoItemScale = 1.5f;
-    mYButtonItemBaseNoItemPosX = 0.0f;
-    mYButtonItemBaseNoItemPosY = 0.0f;
+    mYButtonItemBaseScale[1] = 1.5f;
+    mYButtonItemBasePosX[1] = 0.0f;
+    mYButtonItemBasePosY[1] = 0.0f;
     mYButtonItemBaseAlpha[1] = 0.5f;
 
     field_0x280 = 1.5f;

@@ -1,9 +1,12 @@
 #ifndef D_A_D_A_NPC_H
 #define D_A_D_A_NPC_H
 
+#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
+#include "Z2AudioLib/Z2Creature.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_path.h"
-#include "d/msg/d_msg_object.h"
+#include "d/msg/d_msg_flow.h"
+#include "d/particle/d_particle_copoly.h"
 #include "dolphin/types.h"
 #include "global.h"
 
@@ -164,7 +167,7 @@ public:
     /* 80146188 */ int chkPassed1(cXyz, int);
     /* 801464D8 */ int chkPassed2(cXyz, cXyz*, int, int);
 
-    inline cXyz& getPntPos(u16 i_idx) {
+    inline cXyz& getPntPos(int i_idx) {
         return mpRoomPath->m_points[i_idx].m_position;
     }
 

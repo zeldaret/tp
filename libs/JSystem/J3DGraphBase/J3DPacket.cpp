@@ -12,10 +12,11 @@
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "JSystem/J3DGraphBase/J3DVertex.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "MSL_C/MSL_Common/Src/string.h"
+#include "MSL_C/string.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/os/OSCache.h"
+#include "dolphin/os/OSInterrupt.h"
 #include "dolphin/types.h"
 #include "global.h"
 

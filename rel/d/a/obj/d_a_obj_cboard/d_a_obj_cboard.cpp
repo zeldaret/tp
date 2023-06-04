@@ -4,6 +4,9 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_cboard/d_a_obj_cboard.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/bg/d_bg_w.h"
+#include "d/d_procname.h"
 
 /* 8057B958-8057B978 000078 0020+00 1/1 0/0 0/0 .text            initBaseMtx__12daObjBoard_cFv */
 void daObjBoard_c::initBaseMtx() {
@@ -180,19 +183,14 @@ extern actor_process_profile_definition g_profile_Obj_Cboard = {
     3,
     -3,
     PROC_Obj_Cboard,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(daObjBoard_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x01C5,
-    0,
-    0,
     &daObjBoard_METHODS,
     0x00040000,
     0,
     14,
-    0,
-    0,
 };

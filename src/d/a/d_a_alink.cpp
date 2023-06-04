@@ -5,9 +5,12 @@
 
 #include "d/a/d_a_alink.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JMath/JMath.h"
 #include "JSystem/JStudio/JStudio/stb.h"
+#include "MSL_C/float.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_horse_static.h"
 #include "d/com/d_com_inf_game.h"
@@ -16,13 +19,20 @@
 #include "d/d_item.h"
 #include "d/d_path.h"
 #include "d/d_procname.h"
+#include "d/meter/d_meter2_draw.h"
 #include "d/msg/d_msg_object.h"
+#include "d/pane/d_pane_class.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
+#include "f_op/f_op_actor_mng.h"
+#include "global.h"
+#include "m_Do/m_Do_controller_pad.h"
 #include "rel/d/a/d_a_crod/d_a_crod.h"
 #include "rel/d/a/d_a_horse/d_a_horse.h"
 #include "rel/d/a/d_a_mg_rod/d_a_mg_rod.h"
 #include "rel/d/a/d_a_scene_exit/d_a_scene_exit.h"
 #include "rel/d/a/d_a_spinner/d_a_spinner.h"
+#include "rel/d/a/e/d_a_e_wb/d_a_e_wb.h"
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 #include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"
 
@@ -11641,14 +11651,14 @@ SECTION_DATA static u8 rodTopOffset[12] = {
 };
 
 /* 803B2D94-803B2DA0 -00001 000C+00 1/1 0/0 0/0 .data            bodyBrkName$69118 */
-SECTION_DATA static char* bodyBrkName[3] = {
+SECTION_DATA static const char* bodyBrkName[3] = {
     "ml_body_power_down.brk",
     "ml_body_power_up_a.brk",
     "ml_body_power_up_b.brk",
 };
 
 /* 803B2DA0-803B2DAC -00001 000C+00 1/1 0/0 0/0 .data            headBrkName$69119 */
-SECTION_DATA static char* headBrkName[3] = {
+SECTION_DATA static const char* headBrkName[3] = {
     "ml_head_power_down.brk",
     "ml_head_power_up_a.brk",
     "ml_head_power_up_b.brk",
@@ -11673,20 +11683,15 @@ extern actor_process_profile_definition g_profile_ALINK = {
     5,
     -3,
     PROC_ALINK,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(daAlink_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x5B,
-    0,
-    0,
     &l_daAlink_Method,
     0x00060400,
     1,
-    0,
-    0,
     0,
 };
 

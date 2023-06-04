@@ -1,14 +1,12 @@
 #ifndef D_METER_D_METER2_INFO_H
 #define D_METER_D_METER2_INFO_H
 
-#include "JSystem/JUtility/JUTTexture.h"
-#include "d/d_resorce.h"
-#include "d/menu/d_menu_window.h"
-#include "d/meter/d_meter2.h"
-#include "d/msg/d_msg_class.h"
-#include "d/msg/d_msg_flow.h"
-#include "d/pane/d_pane_class.h"
-#include "f_op/f_op_actor.h"
+#include "SSystem/SComponent/c_xyz.h"
+
+class CPaneMgr;
+class J2DTextBox;
+class JMSMesgEntry_c;
+class JUTFont;
 
 struct dMenu_LetterData {
     u16 mSubject;
@@ -52,7 +50,7 @@ public:
     void init(void);
     int setFloatingMessage(u16, s16, bool);
     int setFloatingFlow(u16, s16, bool);
-    int isFloatingMessageVisible(void);
+    bool isFloatingMessageVisible(void);
     int decFloatingMessageTimer(void);
     void resetFloatingMessage(void);
     void decMsgKeyWaitTimer(void);
@@ -146,9 +144,13 @@ public:
     void setGameOverType(u8 i_gameoverType) { mGameOverType = i_gameoverType; }
     void setMsgKeyWaitTimer(s16 i_waitTimer) { mMsgKeyWaitTimer = i_waitTimer; }
     u32 getMsgTimeMs() { return mMsgTimeMs; }
+    void setMsgTimeMs(u32 msgTime) { mMsgTimeMs = msgTime; }
     u32 getTimeMs() { return mTimeMs; }
     u8 getNowCount() { return mNowCount; }
     void setScopeZoomPointer(u8 param_0) { mScopeZoomPointer = param_0; }
+    u8 getItemExplainWindowStatus() { return mItemExplainWindowStatus; }
+    void resetDirectUseItem() { mDirectUseItem = 0; }
+    u16 getFloatingFlowID() { return mFloatingFlowID; }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -242,6 +244,7 @@ void dMeter2Info_set2DVibration();
 void dMeter2Info_set2DVibrationM();
 static void dMeter2Info_setFloatingMessage(u16 pMessageID, s16 pMessageTimer, bool pWakuVisible);
 static void dMeter2Info_offUseButton(int pButton);
+bool dMeter2Info_is2DActiveTouchArea();
 
 inline void dMeter2Info_Initialize() {
     g_meter2_info.init();
@@ -261,6 +264,10 @@ inline void dMeter2Info_setWindowStatus(u8 status) {
 
 inline void dMeter2Info_getString(u32 param_0, char* param_1, JMSMesgEntry_c* param_2) {
     g_meter2_info.getString(param_0, param_1, param_2);
+}
+
+inline void dMeter2Info_getStringKanji(u32 param_0, char* param_1, JMSMesgEntry_c* param_2) {
+    g_meter2_info.getStringKanji(param_0, param_1, param_2);
 }
 
 inline void dMeter2Info_setHotSpringTimer(u8 time) {
@@ -515,6 +522,10 @@ inline u32 dMeter2Info_getTimeMs() {
     return g_meter2_info.getTimeMs();
 }
 
+inline void dMeter2Info_setMsgTimeMs(u32 msgTime) {
+    g_meter2_info.setMsgTimeMs(msgTime);
+}
+
 inline u8 dMeter2Info_getNowCount() {
     return g_meter2_info.getNowCount();
 }
@@ -527,8 +538,24 @@ inline void dMeter2Info_decMsgKeyWaitTimer() {
     g_meter2_info.decMsgKeyWaitTimer();
 }
 
-
 char* dMeter2Info_getNumberTextureName(int pIndex);
+inline bool dMeter2Info_isFloatingMessageVisible() {
+    return g_meter2_info.isFloatingMessageVisible();
+}
+
+inline u8 dMeter2Info_getItemExplainWindowStatus() {
+    return g_meter2_info.getItemExplainWindowStatus();
+}
+
+inline void dMeter2Info_resetDirectUseItem() {
+    g_meter2_info.resetDirectUseItem();
+}
+
+inline u16 dMeter2Info_getFloatingFlowID() {
+    return g_meter2_info.getFloatingFlowID();
+}
+
+const char* dMeter2Info_getNumberTextureName(int pIndex);
 void dMeter2Info_recieveLetter();
 u8 dMeter2Info_getNewLetterNum();
 int dMeter2Info_setNewLetterSender();

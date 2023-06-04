@@ -2,10 +2,11 @@
 #define D_D_ATTENTION_H
 
 #include "SSystem/SComponent/c_angle.h"
-#include "d/a/d_a_player.h"
-#include "d/save/d_save.h"
 #include "dolphin/types.h"
+#include "global.h"
 #include "m_Do/m_Do_ext.h"
+
+class fopAc_ac_c;
 
 class dAttHint_c {
 public:
@@ -204,7 +205,7 @@ public:
     /* 8016E424 */ void LockEdge();
     /* 80182994 */ void GetCheckObjectCount();
     /* 80182AD0 */ void keepLock(int);
-    /* 8014B010 */ void getDistTable(int);
+    /* 8014B010 */ static dist_entry& getDistTable(int);
 
     dAttCatch_c& getCatghTarget() { return mCatghTarget; }
     u8 getCatchChgItem() { return mCatghTarget.getChangeItem(); }

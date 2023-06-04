@@ -4,9 +4,12 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_mstop/d_a_tag_mstop.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/a/d_a_npc.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Forward References:
@@ -317,19 +320,14 @@ extern actor_process_profile_definition g_profile_Tag_Mstop = {
     7,                      // mListID
     -3,                     // mListPrio
     PROC_Tag_Mstop,         // mProcName
-    0,                      // padding
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daTagMstop_c),   // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
     0x0101,                 // mPriority
-    0,                      // padding
-    0,                      // padding
     &l_daTagMstop_Method,   // mSubMtd
     0x00044000,             // mStatus
     3,                      // mActorType
     0x0E,                   // mCullType
-    0,                      // padding
-    0                       // padding
 };

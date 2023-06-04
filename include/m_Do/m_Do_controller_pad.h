@@ -4,7 +4,6 @@
 #include "JSystem/JUtility/JUTGamePad.h"
 #include "SSystem/SComponent/c_API_controller_pad.h"
 #include "dolphin/types.h"
-#include "m_Do/m_Do_Reset.h"
 
 // Controller Ports 1 - 4
 enum { PAD_1, PAD_2, PAD_3, PAD_4 };

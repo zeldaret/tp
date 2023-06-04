@@ -2,6 +2,9 @@
 #define C_BG_S_CHK_H
 
 #include "dolphin/types.h"
+#include "dolphin/mtx/vec.h"
+
+struct cBgD_Vtx_t : public Vec {};
 
 class cBgS_GrpPassChk {
 public:

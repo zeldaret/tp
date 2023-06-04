@@ -1,17 +1,16 @@
 #ifndef D_KANKYO_D_KANKYO_H
 #define D_KANKYO_D_KANKYO_H
 
-#include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/J3DGraphBase/J3DStruct.h"
-#include "JSystem/JParticle/JPAParticle.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "Z2AudioLib/Z2EnvSeMgr.h"
 #include "d/kankyo/d_kankyo_wether.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
+#include "global.h"
 #include "m_Do/m_Do_ext.h"
 
+class JPABaseEmitter;
 class cBgS_PolyInfo;
 
 void dKankyo_DayProc();
@@ -42,6 +41,7 @@ void dKy_change_colpat(u8 colpat);
 void dKy_BossLight_set(cXyz* param_0, _GXColor* param_1, f32 param_2, u8 param_3);
 void dKy_custom_colset(u8 prevGather, u8 curGather, f32 blend);
 void dKy_setLight();
+cXyz dKy_plight_near_pos();
 
 struct LIGHT_INFLUENCE {
     /* 800CFC7C */ ~LIGHT_INFLUENCE() {}

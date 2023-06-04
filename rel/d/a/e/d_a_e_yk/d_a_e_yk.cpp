@@ -4,12 +4,15 @@
  */
 
 #include "rel/d/a/e/d_a_e_yk/d_a_e_yk.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JMath/JMath.h"
+#include "SSystem/SComponent/c_math.h"
+#include "c/c_damagereaction.h"
+#include "d/a/d_a_player.h"
+#include "d/d_procname.h"
+#include "d/s/d_s_play.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "d/s/d_s_play.h"
-#include "SSystem/SComponent/c_math.h"
-#include "JSystem/JMath/JMath.h"
-#include "c/c_damagereaction.h"
 
 //
 // Forward References:
@@ -349,21 +352,16 @@ extern actor_process_profile_definition g_profile_E_YK = {
     7,                       // mListID
     -3,                      // mListPrio 
     PROC_E_YK,               // mProcName        
-    0,                       // padding 
     &g_fpcLf_Method.mBase,   // mSubMtd                    
     sizeof(e_yk_class),      // mSize                 
     0,                       // mSizeOther
     0,                       // mParameters       
     &g_fopAc_Method.base,    // mSubMtd                   
     0x00BC,                  // mPriority     
-    0,                       // padding
-    0,                       // padding 
     &l_daE_YK_Method,        // mSubMtd               
     0x10050100,              // mStatus          
-    0x02,                    // mActorType   
+    ACTOR_TYPE_ENEMY,        // mActorType   
     0x0E,                    // mCullType   
-    0,                       // padding
-    0,                       // padding
 };
 
 /* 80807E80-80807E8C 000110 000C+00 1/1 0/0 0/0 .data            __vt__12dBgS_AcchCir */

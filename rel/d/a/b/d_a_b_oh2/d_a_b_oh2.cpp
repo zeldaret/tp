@@ -4,10 +4,13 @@
  */
 
 #include "rel/d/a/b/d_a_b_oh2/d_a_b_oh2.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JMath/JMath.h"
 #include "SSystem/SComponent/c_math.h"
 #include "c/c_damagereaction.h"
 #include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
+#include "m_Do/m_Do_graphic.h"
 
 /* 8061DCB8-8061DDB0 000078 00F8+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
 static int nodeCallBack(J3DJoint* i_joint, int param_1) {
@@ -317,19 +320,14 @@ extern actor_process_profile_definition g_profile_B_OH2 = {
     7,
     0xFFFD,
     PROC_B_OH2,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(b_oh2_class),
     0,
     0,
     &g_fopAc_Method.base,
     0x00DB,
-    0,
-    0,
     &l_daB_OH2_Method,
     0x00044000,
-    2,
+    ACTOR_TYPE_ENEMY,
     14,
-    0,
-    0,
 };

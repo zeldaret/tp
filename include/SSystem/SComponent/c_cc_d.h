@@ -1,15 +1,15 @@
 #ifndef C_CC_D_H
 #define C_CC_D_H
 
-#include "SSystem/SComponent/c_m3d.h"
 #include "SSystem/SComponent/c_m3d_g_aab.h"
 #include "SSystem/SComponent/c_m3d_g_cps.h"
 #include "SSystem/SComponent/c_m3d_g_cyl.h"
 #include "SSystem/SComponent/c_m3d_g_sph.h"
 #include "SSystem/SComponent/c_m3d_g_tri.h"
-#include "dolphin/gx/GX.h"
-#include "f_op/f_op_actor.h"
 #include "global.h"
+
+typedef struct _GXColor GXColor;
+class fopAc_ac_c;
 
 enum CcG_Tg_HitMark {
     CcG_Tg_UNK_MARK_6 = 6,
@@ -335,7 +335,7 @@ public:
     cCcD_ObjCommonBase() { ct(); }
     /* 8008409C */ virtual ~cCcD_ObjCommonBase() {}
     /* 802639B0 */ void ct();
-    void setSPrm(s32 sprm) { mSPrm = sprm; }
+    void SetSPrm(u32 sprm) { mSPrm = sprm; }
     s32 getSPrm() const { return mSPrm; }
     void setRPrm(s32 rprm) { mRPrm = rprm; }
     s32 getRPrm() const { return mRPrm; }
@@ -458,6 +458,7 @@ public:
     void OffAtVsPlayerBit() { mObjAt.OffSPrmBit(0xC); }
     void OnAtVsPlayerBit() { mObjAt.OnSPrmBit(0xC); }
     void OnCoSPrmBit(u32 flag) { mObjCo.OnSPrmBit(flag); }
+    void SetCoSPrm(u32 prm) { mObjCo.SetSPrm(prm); }
 
 };  // Size = 0x40
 

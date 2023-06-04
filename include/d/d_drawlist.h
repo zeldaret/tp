@@ -2,18 +2,21 @@
 #define D_D_DRAWLIST_H
 
 #include "JSystem/J2DGraph/J2DPicture.h"
-#include "JSystem/J2DGraph/J2DScreen.h"
-#include "JSystem/J3DGraphAnimator/J3DModel.h"
-#include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
-#include "JSystem/J3DGraphBase/J3DPacket.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "d/kankyo/d_kankyo.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx/GXStruct.h"
+#include "dolphin/mtx/mtx.h"
 #include "dolphin/mtx/mtx44.h"
-#include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_view.h"
+#include "m_Do/m_Do_ext.h"
+#include "global.h"
+
+class J3DDrawBuffer;
+class J3DModel;
+class J3DPacket;
+class JUTFont;
+class dKy_tevstr_c;
 
 class cM_rnd_c {
 public:
@@ -131,31 +134,37 @@ public:
     /* 0x38 */ Mtx mMtx;
 };  // Size: 0x68
 
-struct cBgD_Vtx_t {};
+struct cBgD_Vtx_t;
+
+class dDlst_shadowTri_c {
+public:
+    /* 80056270 */ ~dDlst_shadowTri_c() {}
+    /* 80056344 */ dDlst_shadowTri_c() {}
+
+    /* 0x0 */ cXyz mPos[3];
+};
 
 class dDlst_shadowPoly_c {
 public:
-    /* 80054288 */ void set(cBgD_Vtx_t*, u16, u16, u16, cM3dGPla*);
+    dDlst_shadowPoly_c() {
+        reset();
+    }
+
+    void reset() { mCount = 0; }
+
+    /* 80054288 */ int set(cBgD_Vtx_t*, u16, u16, u16, cM3dGPla*);
     /* 800543B4 */ void draw();
 
-    virtual void getTri() = 0;
+    virtual dDlst_shadowTri_c* getTri() = 0;
     virtual s32 getTriMax() = 0;
 
     /* 0x4 */ u16 mCount;
     /* 0x6 */ u8 field_0x6[2];
 };
 
-class dDlst_shadowTri_c {
-public:
-    /* 80056270 */ ~dDlst_shadowTri_c();
-    /* 80056344 */ dDlst_shadowTri_c();
-
-    /* 0x0 */ cXyz mPos[3];
-};
-
 class dDlst_shadowRealPoly_c : public dDlst_shadowPoly_c {
 public:
-    /* 800569A0 */ virtual void getTri();
+    /* 800569A0 */ virtual dDlst_shadowTri_c* getTri();
     /* 800569A8 */ virtual s32 getTriMax();
 
     /* 0x8 */ dDlst_shadowTri_c mShadowTri[256];
@@ -166,11 +175,16 @@ public:
     /* 800544F0 */ void reset();
     /* 80054500 */ void imageDraw(f32 (*)[4]);
     /* 800545D4 */ void draw();
-    /* 80054BD0 */ void setShadowRealMtx(cXyz*, cXyz*, f32, f32, f32, dKy_tevstr_c*);
-    /* 80055028 */ void set(u32, J3DModel*, cXyz*, f32, f32, dKy_tevstr_c*, f32, f32);
+    /* 80054BD0 */ u8 setShadowRealMtx(cXyz*, cXyz*, f32, f32, f32, dKy_tevstr_c*);
+    /* 80055028 */ u32 set(u32, J3DModel*, cXyz*, f32, f32, dKy_tevstr_c*, f32, f32);
     /* 800551D4 */ bool add(J3DModel*);
     /* 800561F8 */ ~dDlst_shadowReal_c() {}
-    /* 800562D0 */ dDlst_shadowReal_c();
+    /* 800562D0 */ dDlst_shadowReal_c() { mState = 0; }
+
+    dDlst_shadowReal_c* getZsortNext() { return mZsortNext; }
+    bool isNoUse() { return mState == 0; }
+    bool isUse() { return mState == 1; }
+    bool checkKey(u32 i_key) { return mKey == i_key; }
 
 private:
     /* 0x0000 */ u8 mState;
@@ -196,7 +210,7 @@ public:
     /* 800557C8 */ void imageDraw(f32 (*)[4]);
     /* 80055A14 */ void draw(f32 (*)[4]);
     /* 80055C74 */ int setReal(u32, s8, J3DModel*, cXyz*, f32, f32, dKy_tevstr_c*);
-    /* 80055F1C */ void addReal(u32, J3DModel*);
+    /* 80055F1C */ bool addReal(u32, J3DModel*);
     /* 80055F84 */ int setSimple(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
     /* 80055FE8 */ static void setSimpleTex(ResTIMG const*);
 
@@ -214,8 +228,7 @@ private:
     /* 0x0340C */ int mNextID;
     /* 0x03410 */ dDlst_shadowReal_c mReal[8];
     /* 0x15EB0 */ _GXTexObj field_0x15eb0[2];
-    /* 0x15EF0 */ void* field_0x15ef0;
-    /* 0x15EF4 */ void* field_0x15ef4;
+    /* 0x15EF0 */ void* field_0x15ef0[2];
 };
 
 class dDlst_window_c {
@@ -284,10 +297,10 @@ public:
         /* 0x14 */ DB_LIST_3D_LAST,
     };
 
-    void set2DOpa(dDlst_base_c* dlst) { set(mp2DOpaSet[0], mp2DOpaSet[1], dlst); }
-    void set2DOpaTop(dDlst_base_c* dlst) { set(mp2DOpaTopSet[0], mp2DOpaTopSet[1], dlst); }
-    void set2DXlu(dDlst_base_c* dlst) { set(mp2DXluSet[0], mp2DXluSet[1], dlst); }
-    void setCopy2D(dDlst_base_c* dlst) { set(mpCopy2DSet[0], mpCopy2DSet[1], dlst); }
+    void set2DOpa(dDlst_base_c* dlst) { set(mp2DOpaStart, mp2DOpaEnd, dlst); }
+    void set2DOpaTop(dDlst_base_c* dlst) { set(mp2DOpaTopStart, mp2DOpaTopEnd, dlst); }
+    void set2DXlu(dDlst_base_c* dlst) { set(mp2DXluStart, mp2DXluEnd, dlst); }
+    void setCopy2D(dDlst_base_c* dlst) { set(mpCopy2DStart, mpCopy2DEnd, dlst); }
     view_class* getView() { return mView; }
     void setView(view_class* view) { mView = view; }
     void setWindow(dDlst_window_c* window) { mWindow = window; }
@@ -334,7 +347,7 @@ public:
 
     view_port_class* getViewport() { return mViewport; }
 
-    void drawCopy2D() { draw(mpCopy2DDraw[0], mpCopy2DSet[0]); }
+    void drawCopy2D() { draw(mpCopy2DDrawLists, mpCopy2DStart); }
     void drawOpaListSky() { drawOpaDrawList(mDrawBuffers[DB_OPA_LIST_SKY]); }
     void drawXluListSky() { drawXluDrawList(mDrawBuffers[DB_XLU_LIST_SKY]); }
     void drawOpaListBG() { drawOpaDrawList(mDrawBuffers[DB_OPA_LIST_BG]); }
@@ -354,9 +367,9 @@ public:
     void drawOpaList3Dlast() { drawOpaDrawList(mDrawBuffers[DB_LIST_3D_LAST]); }
     void drawOpaListFilter() { drawOpaDrawList(mDrawBuffers[DB_LIST_FILTER]); }
     void drawOpaListP0() { drawOpaDrawList(mDrawBuffers[DB_LIST_P0]); }
-    void draw2DOpa() { draw(mp2DOpaDraw[0], mp2DOpaSet[0]); }
-    void draw2DOpaTop() { draw(mp2DOpaTopDraw[0], mp2DOpaTopSet[0]); }
-    void draw2DXlu() { draw(mp2DXluDraw[0], mp2DXluSet[0]); }
+    void draw2DOpa() { draw(mp2DOpaDrawLists, mp2DOpaStart); }
+    void draw2DOpaTop() { draw(mp2DOpaTopDrawLists, mp2DOpaTopStart); }
+    void draw2DXlu() { draw(mp2DXluDrawLists, mp2DXluStart); }
 
     void imageDrawShadow(Mtx param_0) { mShadowControl.imageDraw(param_0); }
     void drawShadow(Mtx param_0) { mShadowControl.draw(param_0); }
@@ -372,14 +385,18 @@ public:
 
 private:
     /* 0x00000 */ J3DDrawBuffer* mDrawBuffers[21];
-    /* 0x00054 */ dDlst_base_c** mpCopy2DDraw[4];
-    /* 0x00064 */ dDlst_base_c** mpCopy2DSet[2];
-    /* 0x0006C */ dDlst_base_c** mp2DOpaTopDraw[16];
-    /* 0x000AC */ dDlst_base_c** mp2DOpaTopSet[2];
-    /* 0x000B4 */ dDlst_base_c** mp2DOpaDraw[64];
-    /* 0x001B4 */ dDlst_base_c** mp2DOpaSet[2];
-    /* 0x001BC */ dDlst_base_c** mp2DXluDraw[32];
-    /* 0x0023C */ dDlst_base_c** mp2DXluSet[2];
+    /* 0x00054 */ dDlst_base_c* mpCopy2DDrawLists[4];
+    /* 0x00064 */ dDlst_base_c** mpCopy2DStart;
+    /* 0x00068 */ dDlst_base_c** mpCopy2DEnd;
+    /* 0x0006C */ dDlst_base_c* mp2DOpaTopDrawLists[16];
+    /* 0x000AC */ dDlst_base_c** mp2DOpaTopStart;
+    /* 0x000B0 */ dDlst_base_c** mp2DOpaTopEnd;
+    /* 0x000B4 */ dDlst_base_c* mp2DOpaDrawLists[64];
+    /* 0x001B4 */ dDlst_base_c** mp2DOpaStart;
+    /* 0x001B8 */ dDlst_base_c** mp2DOpaEnd;
+    /* 0x001BC */ dDlst_base_c* mp2DXluDrawLists[32];
+    /* 0x0023C */ dDlst_base_c** mp2DXluStart;
+    /* 0x00240 */ dDlst_base_c** mp2DXluEnd;
     /* 0x00244 */ dDlst_window_c* mWindow;
     /* 0x00248 */ view_port_class* mViewport;
     /* 0x0024C */ view_class* mView;

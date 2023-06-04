@@ -1,7 +1,13 @@
 #ifndef F_F_OP_MSG_MNG_H_
 #define F_F_OP_MSG_MNG_H_
 
-#include "f_op/f_op_msg.h"
+#include "SSystem/SComponent/c_xyz.h"
+#include "f_pc/f_pc_leaf.h"
+
+class JKRExpHeap;
+class JKRHeap;
+class fopAc_ac_c;
+class msg_class;
 
 struct msg_process_profile_definition {
     /* 0x00 */ leaf_process_profile_definition mBase;
@@ -42,7 +48,9 @@ void fopMsgM_Delete(void* process);
 fopMsg_prm_class* fopMsgM_GetAppend(void* msg);
 void fopMsgM_setMessageID(unsigned int);
 void fopMsgM_destroyExpHeap(JKRExpHeap*);
+f32 fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2);
 s32 fopMsgM_setStageLayer(void*);
+int fopMsgM_messageSet(u32 i_msgIdx, fopAc_ac_c* i_actorP, u32 param_2);
 int fopMsgM_messageSet(u32 param_0, u32 param_1);
 int fopMsgM_messageSetDemo(u32 param_0);
 msg_class* fopMsgM_SearchByID(unsigned int param_0);

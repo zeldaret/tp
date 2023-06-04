@@ -4,6 +4,8 @@
 //
 
 #include "d/msg/d_msg_unit.h"
+#include "MSL_C/stdio.h"
+#include "MSL_C/string.h"
 #include "dol2asm.h"
 #include "d/kankyo/d_kankyo.h"
 #include "d/meter/d_meter2_info.h"

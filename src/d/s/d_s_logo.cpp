@@ -5,12 +5,21 @@
 
 #include "d/s/d_s_logo.h"
 #include "JSystem/JKernel/JKRAram.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "c/c_dylink.h"
+#include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
+#include "d/d_tresure.h"
+#include "d/map/d_map_path_dmap.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_audio.h"
+#include "m_Do/m_Do_controller_pad.h"
+#include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_machine.h"
+#include "dolphin/os/OSRtc.h"
+#include "dolphin/vi/vi.h"
 
 //
 // Types:
@@ -27,123 +36,10 @@ public:
 // Forward References:
 //
 
-extern "C" void __ct__10dLog_HIO_cFv();
-extern "C" void preLoad_dyl_create__10dScnLogo_cFv();
-extern "C" void preLoad_dyl_remove__10dScnLogo_cFv();
-extern "C" void preLoad_dyl__10dScnLogo_cFv();
-extern "C" void checkProgSelect__10dScnLogo_cFv();
-extern "C" void draw__10dScnLogo_cFv();
-extern "C" void progInDraw__10dScnLogo_cFv();
-extern "C" void progSelDraw__10dScnLogo_cFv();
-extern "C" void progOutDraw__10dScnLogo_cFv();
-extern "C" void progSetDraw__10dScnLogo_cFv();
-extern "C" void progSet2Draw__10dScnLogo_cFv();
-extern "C" void progChangeDraw__10dScnLogo_cFv();
-extern "C" void warningInDraw__10dScnLogo_cFv();
-extern "C" void warningDispDraw__10dScnLogo_cFv();
-extern "C" void warningOutDraw__10dScnLogo_cFv();
-extern "C" void nintendoInDraw__10dScnLogo_cFv();
-extern "C" void nintendoOutDraw__10dScnLogo_cFv();
-extern "C" void dolbyInDraw__10dScnLogo_cFv();
-extern "C" void dolbyOutDraw__10dScnLogo_cFv();
-extern "C" void dolbyOutDraw2__10dScnLogo_cFv();
-extern "C" void dvdWaitDraw__10dScnLogo_cFv();
-extern "C" void nextSceneChange__10dScnLogo_cFv();
-extern "C" void __dt__10dScnLogo_cFv();
-extern "C" static void phase_0__FP10dScnLogo_c();
-extern "C" static void phase_1__FP10dScnLogo_c();
-extern "C" static void phase_2__FP10dScnLogo_c();
-extern "C" static void resLoad__FP30request_of_phase_process_classP10dScnLogo_c();
-extern "C" void create__10dScnLogo_cFv();
-extern "C" void logoInitGC__10dScnLogo_cFv();
-extern "C" void dvdDataLoad__10dScnLogo_cFv();
-extern "C" static void dScnLogo_Create__FP11scene_class();
-extern "C" static void dScnLogo_Execute__FP10dScnLogo_c();
-extern "C" static void dScnLogo_Draw__FP10dScnLogo_c();
-extern "C" static void dScnLogo_Delete__FP10dScnLogo_c();
-extern "C" static bool dScnLogo_IsDelete__FP10dScnLogo_c();
-extern "C" void setProgressiveMode__10dScnLogo_cFUc();
-extern "C" void getProgressiveMode__10dScnLogo_cFv();
-extern "C" void isProgressiveMode__10dScnLogo_cFv();
-extern "C" void setRenderMode__10dScnLogo_cFv();
-extern "C" void __dt__10dLog_HIO_cFv();
-extern "C" void func_802585A4(u16*);
-extern "C" void __sinit_d_s_logo_cpp();
-extern "C" extern char const* const d_s_d_s_logo__stringBase0;
-
 //
 // External References:
 //
 
-extern "C" void mDoExt_getGameHeap__Fv();
-extern "C" void mDoExt_getJ2dHeap__Fv();
-extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
-extern "C" void mDoExt_getMesgFont__Fv();
-extern "C" void mDoExt_getRubyFont__Fv();
-extern "C" void mDoExt_getSubFont__Fv();
-extern "C" void mDoExt_setAraCacheSize__FUl();
-extern "C" void mDoRst_reset__FiUli();
-extern "C" void mDoRst_resetCallBack__FiPv();
-extern "C" void create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap();
-extern "C" void create__21mDoDvdThd_toMainRam_cFPCcUcP7JKRHeap();
-extern "C" void cDyl_InitAsyncIsDone__Fv();
-extern "C" void Link__7cDylPhsFP30request_of_phase_process_classs();
-extern "C" void fopScnM_ChangeReq__FP11scene_classssUs();
-extern "C" void createParticle__14dComIfG_play_cFv();
-extern "C" void dComIfG_changeOpeningScene__FP11scene_classs();
-extern "C" void dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv();
-extern "C" void setRes__14dRes_control_cFPCcP11dRes_info_ciPCcUcP7JKRHeap();
-extern "C" void deleteRes__14dRes_control_cFPCcP11dRes_info_ci();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void syncAllRes__14dRes_control_cFP11dRes_info_ci();
-extern "C" void createWork__8dMpath_cFv();
-extern "C" void createCommon__13dPa_control_cFPCv();
-extern "C" void __ct__10dDlst_2D_cFP7ResTIMGssssUc();
-extern "C" void setSimpleTex__21dDlst_shadowControl_cFPC7ResTIMG();
-extern "C" void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c();
-extern "C" void createWork__7dTres_cFv();
-extern "C" void waitBlanking__10JFWDisplayFi();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void loadStaticWaves__10Z2SceneMgrFv();
-extern "C" bool checkFirstWaves__10Z2SceneMgrFv();
-extern "C" void resetProcess__10Z2AudioMgrFUlb();
-extern "C" void becomeCurrentHeap__7JKRHeapFv();
-extern "C" void destroy__7JKRHeapFv();
-extern "C" void alloc__7JKRHeapFUli();
-extern "C" void free__7JKRHeapFPvP7JKRHeap();
-extern "C" void* __nw__FUl();
-extern "C" void* __nwa__FUl();
-extern "C" void __dl__FPv();
-extern "C" void __dla__FPv();
-extern "C" void create__10JKRExpHeapFUlP7JKRHeapb();
-extern "C" void create__10JKRExpHeapFPvUlP7JKRHeapb();
-extern "C" void getTotalFreeSize__11JKRAramHeapFv();
-extern "C" void __dt__10J2DPictureFv();
-extern "C" u32 OSGetProgressiveMode();
-extern "C" void OSSetProgressiveMode(u32);
-extern "C" u32 VIGetDTVStatus();
-extern "C" void __register_global_object();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__10dDlst_2D_c[3];
-extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];
-extern "C" extern u8 mInitFlag__17mDoAud_zelAudio_c[4];
-extern "C" u8 mFader__13mDoGph_gInf_c[4];
-extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" u8 mData__12dEnemyItem_c[4 + 4 /* padding */];
-extern "C" u8 sManager__10JFWDisplay[4];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" u8 sAramObject__7JKRAram[4];
-extern "C" u8 sCallback__Q210JUTGamePad13C3ButtonReset[4];
-extern "C" u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -151,7 +47,7 @@ extern "C" u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 803C2E38-803C2E44 01FF58 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
@@ -159,7 +55,7 @@ SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
 static dLog_HIO_c g_LogHIO;
 
 typedef void (dScnLogo_c::*execFunc)();
-SECTION_DATA static execFunc l_execFunc[16] = {
+static execFunc l_execFunc[16] = {
     &dScnLogo_c::warningInDraw,   &dScnLogo_c::warningDispDraw, &dScnLogo_c::warningOutDraw,
     &dScnLogo_c::nintendoInDraw,  &dScnLogo_c::nintendoOutDraw, &dScnLogo_c::dolbyInDraw,
     &dScnLogo_c::dolbyOutDraw,    &dScnLogo_c::dolbyOutDraw2,   &dScnLogo_c::progInDraw,
@@ -625,8 +521,6 @@ dScnLogo_c::~dScnLogo_c() {
 }
 
 /* 80257910-802579BC 252250 00AC+00 1/0 0/0 0/0 .text            phase_0__FP10dScnLogo_c */
-// setFadeColor instruction reordering
-#ifdef NONMATCHING
 static int phase_0(dScnLogo_c* logo) {
     mDoGph_gInf_c::setFadeColor(*(JUtility::TColor*)&g_blackColor);
     dComIfGp_particle_create();
@@ -637,16 +531,6 @@ static int phase_0(dScnLogo_c* logo) {
 
     return 2;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int phase_0(dScnLogo_c* param_0) {
-    nofralloc
-#include "asm/d/s/d_s_logo/phase_0__FP10dScnLogo_c.s"
-}
-#pragma pop
-#endif
 
 /* 802579BC-80257A70 2522FC 00B4+00 1/0 0/0 0/0 .text            phase_1__FP10dScnLogo_c */
 static int phase_1(dScnLogo_c* logo) {
@@ -815,20 +699,9 @@ void dScnLogo_c::dvdDataLoad() {
 }
 
 /* 80258420-80258444 252D60 0024+00 1/0 0/0 0/0 .text            dScnLogo_Create__FP11scene_class */
-#ifdef NONMATCHING
 static int dScnLogo_Create(scene_class* scn) {
-    return static_cast<dScnLogo_c*>(scn)->create();
+    return (new (scn) dScnLogo_c())->create();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dScnLogo_Create(scene_class* param_0) {
-    nofralloc
-#include "asm/d/s/d_s_logo/dScnLogo_Create__FP11scene_class.s"
-}
-#pragma pop
-#endif
 
 /* 80258444-80258484 252D84 0040+00 1/0 0/0 0/0 .text            dScnLogo_Execute__FP10dScnLogo_c */
 static int dScnLogo_Execute(dScnLogo_c* logo) {
@@ -882,34 +755,26 @@ void dScnLogo_c::setRenderMode() {
 /* 8025855C-802585A4 252E9C 0048+00 2/1 0/0 0/0 .text            __dt__10dLog_HIO_cFv */
 dLog_HIO_c::~dLog_HIO_c() {}
 
-/* 802585A4-802585C0 252EE4 001C+00 1/1 0/0 0/0 .text            cLib_calcTimer<Us>__FPUs */
-template <typename T>
-T cLib_calcTimer(T* value) {
-    if (*value != 0) {
-        *value = *value - 1;
-    }
-    return *value;
-}
-
 /* 803C2FD0-803C2FE4 -00001 0014+00 1/0 0/0 0/0 .data            l_dScnLogo_Method */
-SECTION_DATA static void* l_dScnLogo_Method[5] = {
-    (void*)dScnLogo_Create__FP11scene_class, (void*)dScnLogo_Delete__FP10dScnLogo_c,
-    (void*)dScnLogo_Execute__FP10dScnLogo_c, (void*)dScnLogo_IsDelete__FP10dScnLogo_c,
-    (void*)dScnLogo_Draw__FP10dScnLogo_c,
+static dScnLogo_Method l_dScnLogo_Method[5] = {
+    (dScnLogo_Method) dScnLogo_Create, dScnLogo_Delete,
+    dScnLogo_Execute, dScnLogo_IsDelete,
+    dScnLogo_Draw,
 };
 
 /* 803C2FE4-803C300C -00001 0028+00 0/0 0/0 1/0 .data            g_profile_LOGO_SCENE */
-SECTION_DATA extern void* g_profile_LOGO_SCENE[10] = {
-    (void*)NULL,
-    (void*)0x0001FFFD,
-    (void*)0x00090000,
-    (void*)&g_fpcNd_Method,
-    (void*)0x000002A8,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)&g_fopScn_Method,
-    (void*)&l_dScnLogo_Method,
-    (void*)NULL,
+extern scene_process_profile_definition g_profile_LOGO_SCENE = {
+    0,
+    1,
+    -3,
+    PROC_LOGO_SCENE,
+    &g_fpcNd_Method.mBase,
+    sizeof(dScnLogo_c),
+    0,
+    0,
+    &g_fopScn_Method.mBase,
+    (process_method_class*)&l_dScnLogo_Method,
+    NULL,
 };
 
 /* 80399FFC-80399FFC 02665C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

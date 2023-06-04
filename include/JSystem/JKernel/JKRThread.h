@@ -4,7 +4,9 @@
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os/OSMessage.h"
+#include "dolphin/os/OSThread.h"
+#include "dolphin/os/OSTime.h"
 #include "dolphin/types.h"
 
 struct JKRThreadName_ {
@@ -13,7 +15,6 @@ struct JKRThreadName_ {
 };
 
 class JUTConsole;
-class JKRHeap;
 class JKRThread : JKRDisposer {
 public:
     class TLoad {
@@ -81,23 +82,23 @@ public:
 protected:
     void resume() { OSResumeThread(mThreadRecord); }
     void sendMessage(OSMessage message) {
-        OSSendMessage(&mMessageQueue, message, OS_MESSAGE_NON_BLOCKING);
+        OSSendMessage(&mMessageQueue, message, OS_MESSAGE_NOBLOCK);
     }
     void sendMessageBlock(OSMessage message) {
-        OSSendMessage(&mMessageQueue, message, OS_MESSAGE_BLOCKING);
+        OSSendMessage(&mMessageQueue, message, OS_MESSAGE_BLOCK);
     }
     OSMessage waitMessage() {
         OSMessage message;
-        OSReceiveMessage(&mMessageQueue, &message, OS_MESSAGE_NON_BLOCKING);
+        OSReceiveMessage(&mMessageQueue, &message, OS_MESSAGE_NOBLOCK);
         return message;
     }
     OSMessage waitMessageBlock() {
         OSMessage message;
-        OSReceiveMessage(&mMessageQueue, &message, OS_MESSAGE_BLOCKING);
+        OSReceiveMessage(&mMessageQueue, &message, OS_MESSAGE_BLOCK);
         return message;
     }
     void jamMessageBlock(OSMessage message) {
-        OSJamMessage(&mMessageQueue, message, OS_MESSAGE_BLOCKING);
+        OSJamMessage(&mMessageQueue, message, OS_MESSAGE_BLOCK);
     }
 
 private:

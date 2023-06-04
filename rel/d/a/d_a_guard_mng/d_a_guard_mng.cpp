@@ -4,6 +4,8 @@
  */
 
 #include "rel/d/a/d_a_guard_mng/d_a_guard_mng.h"
+#include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 #include "f_pc/f_pc_executor.h"
 
 /* 80837B18-80837B9C 000078 0084+00 1/1 0/0 0/0 .text            s_sub__FPvPv */
@@ -83,19 +85,14 @@ extern actor_process_profile_definition g_profile_GUARD_MNG = {
     7,                      // mListID    
     -3,                     // mListPrio     
     PROC_GUARD_MNG,         // mProcName                 
-    0,                      // padding     
     &g_fpcLf_Method.mBase,  // mSubMtd                        
     sizeof(daGuardMng_c),   // mSize                        
     0,                      // mSizeOther    
     0,                      // mParameters           
     &g_fopAc_Method.base,   // mSubMtd                       
-    0x0197,                 // mPriority         
-    0,                      // padding    
-    0,                      // padding     
+    0x0197,                 // mPriority          
     &l_daGuardMng_Method,   // mSubMtd                       
     0x00040100,             // mStatus              
     0,                      // mActorType    
-    0,                      // mCullType    
-    0,                      // padding    
-    0                       // padding   
+    0,                      // mCullType   
 };

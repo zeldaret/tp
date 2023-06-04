@@ -4,8 +4,13 @@
 //
 
 #include "JSystem/J2DGraph/J2DPrint.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "MSL_C/stdio.h"
+#include "MSL_C/stdlib.h"
+#include "MSL_C/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 //
 // Forward References:
@@ -48,8 +53,6 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strtol();
-extern "C" void strtoul();
 extern "C" u8 sSystemHeap__7JKRHeap[4];
 
 //

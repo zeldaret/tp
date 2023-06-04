@@ -5,6 +5,7 @@
 
 #include "JSystem/JAudio2/JASDvdThread.h"
 #include "dol2asm.h"
+#include "dolphin/os/OSThread.h"
 #include "dolphin/types.h"
 
 //

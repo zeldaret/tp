@@ -4,6 +4,9 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_hinit/d_a_tag_hinit.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 
 /* 805A3758-805A3800 000078 00A8+00 1/1 0/0 0/0 .text            create__12daTagHinit_cFv */
 int daTagHinit_c::create() {
@@ -88,19 +91,14 @@ extern actor_process_profile_definition g_profile_Tag_Hinit = {
     3,
     -3,
     PROC_Tag_Hinit,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(daTagHinit_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x01B1,
-    0,
-    0,
     &l_daTagHinit_Method,
     0x00060000,
     3,
     0x0E,
-    0,
-    0,
 };

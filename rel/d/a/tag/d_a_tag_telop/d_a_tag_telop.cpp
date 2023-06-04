@@ -4,6 +4,9 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_telop/d_a_tag_telop.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_msg_mng.h"
 
 /* 80490A58-80490AF8 000078 00A0+00 1/1 0/0 0/0 .text            create__13daTag_Telop_cFv */
@@ -83,19 +86,14 @@ extern actor_process_profile_definition g_profile_TAG_TELOP = {
     7,
     0xFFFD,
     PROC_TAG_TELOP,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(daTag_Telop_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x011A,
-    0,
-    0,
     &l_daTag_Telop_Method,
     0x00044000,
     0,
     6,
-    0,
-    0,
 };

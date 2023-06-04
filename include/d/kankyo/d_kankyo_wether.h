@@ -4,6 +4,7 @@
 #include "JSystem/J3DGraphBase/J3DPacket.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
+#include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
 
 void dKyw_wether_draw();
@@ -21,6 +22,7 @@ f32 dKyw_get_wind_pow();
 static void squal_proc();
 void dKyw_rain_set(int count);
 void dKyw_wind_set();
+cXyz* dKyw_get_wind_vec();
 cXyz dKyw_get_wind_vecpow();
 void dKyw_evt_wind_set(s16 angleX, s16 angleY);
 void dKyw_custom_windpower(f32 pow);

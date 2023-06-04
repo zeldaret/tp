@@ -1,10 +1,12 @@
 #ifndef DYNAMICLINK_H
 #define DYNAMICLINK_H
 
-#include "JSystem/JKernel/JKRFileCache.h"
-#include "dolphin/os/OSLink.h"
 #include "dolphin/types.h"
-#include "m_Do/m_Do_dvd_thread.h"
+
+typedef struct OSModuleInfo OSModuleInfo;
+class JKRArchive;
+class JKRFileCache;
+class mDoDvdThd_callback_c;
 
 struct DynamicModuleControlBase {
     /* 0x00 */ u16 mLinkCount;
@@ -54,7 +56,7 @@ struct DynamicModuleControl : DynamicModuleControlBase {
     /* 80262660 */ DynamicModuleControl(char const*);
     /* 802626D0 */ static JKRArchive* mountCallback(void*);
     /* 8026275C */ static bool initialize();
-    /* 80262794 */ static void* callback(void*);
+    /* 80262794 */ static bool callback(void*);
 
     /* 0x10 */ OSModuleInfo* mModule;
     /* 0x14 */ void* mBss;

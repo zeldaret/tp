@@ -5,19 +5,25 @@
 
 #include "m_Do/m_Do_ext.h"
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/J3DGraphBase/J3DTevs.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRAssertHeap.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 #include "JSystem/JMath/JMath.h"
+#include "MSL_C/stdio.h"
 #include "MSL_C/string.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "SSystem/SComponent/c_lib.h"
+#include "Z2AudioLib/Z2Creature.h"
 #include "dol2asm.h"
-#include "dolphin/mtx/mtx.h"
-#include "dolphin/types.h"
 #include "dolphin/gx/GXDraw.h"
+#include "dolphin/mtx/mtx.h"
+#include "dolphin/os/OS.h"
+#include "dolphin/types.h"
 #include "d/kankyo/d_kankyo.h"
+#include "global.h"
 #include "m_Do/m_Do_mtx.h"
 
 //
@@ -1619,8 +1625,8 @@ bool J3DPEBlock::getAlphaComp() {
 }
 
 /* 8000DF5C-8000DF64 00889C 0008+00 0/0 6/0 0/0 .text            getFog__10J3DPEBlockFv */
-bool J3DPEBlock::getFog() {
-    return false;
+J3DFog* J3DPEBlock::getFog() {
+    return NULL;
 }
 
 /* 8000DF64-8000DF6C 0088A4 0008+00 0/0 2/0 0/0 .text getIndTexCoordScale__11J3DIndBlockFUl */

@@ -3,6 +3,7 @@
 
 #include "SSystem/SComponent/c_phase.h"
 #include "d/menu/d_menu_save.h"
+#include "dolphin/gx/GXStruct.h"
 #include "f_op/f_op_msg.h"
 #include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_hostIO.h"
@@ -12,7 +13,6 @@ public:
     /* 8019AFE0 */ dGov_HIO_c();
     /* 8019C06C */ virtual ~dGov_HIO_c();
 
-    /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 mScale;
     /* 0x0C */ f32 mAlpha;
     /* 0x10 */ f32 mAnimSpeed;

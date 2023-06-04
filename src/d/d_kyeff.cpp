@@ -6,6 +6,7 @@
 #include "d/d_kyeff.h"
 #include "Z2AudioLib/Z2EnvSeMgr.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
 #include "d/kankyo/d_kankyo.h"
 #include "d/kankyo/d_kankyo_wether.h"
 #include "dol2asm.h"
@@ -110,14 +111,11 @@ extern kankyo_process_profile_definition g_profile_KYEFF = {
     12,
     0xFFFD,
     PROC_KYEFF,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(dKyeff_c),
     0,
     0,
     &g_fopKy_Method,
     0x0005,
-    0,
-    0,
     &l_dKyeff_Method,
 };

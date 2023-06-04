@@ -4,7 +4,9 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_guard/d_a_tag_guard.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
+#include "d/d_stage.h"
 
 /* 80D597F8-80D5985C 000078 0064+00 0/0 0/0 1/1 .text getAppearPoint__12daTagGuard_cFP3Vec */
 int daTagGuard_c::getAppearPoint(Vec* i_appearPnt) {
@@ -77,19 +79,14 @@ extern actor_process_profile_definition g_profile_TAG_GUARD = {
     7,
     -3,
     PROC_TAG_GUARD,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(daTagGuard_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x0198,
-    0,
-    0,
     &l_daTagGuard_Method,
     0x00040000,
     0x00,
     0x0E,
-    0,
-    0,
 };

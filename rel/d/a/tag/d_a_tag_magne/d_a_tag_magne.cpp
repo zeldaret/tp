@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 805A5498-805A54DC 000078 0044+00 1/1 0/0 0/0 .text            Create__12daTagMagne_cFv */
@@ -72,19 +73,14 @@ extern actor_process_profile_definition g_profile_Tag_Magne = {
     7,
     0xFFFD,
     PROC_Tag_Magne,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(daTagMagne_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x024E,
-    0,
-    0,
     &l_daTagMagne_Method,
     0x00040000,
     0,
     14,
-    0,
-    0,
 };

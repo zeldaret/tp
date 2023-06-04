@@ -5,10 +5,13 @@
 
 #include "d/cc/d_cc_uty.h"
 #include "SSystem/SComponent/c_math.h"
+#include "Z2AudioLib/Z2Creature.h"
+#include "d/a/d_a_player.h"
 #include "d/d_procname.h"
 #include "d/s/d_s_play.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Forward References:
@@ -439,12 +442,14 @@ SECTION_SDATA2 static f32 lit_4218[1 + 1 /* padding */] = {
 
 /* 80087C04-80088134 082544 0530+00 0/0 0/0 84/84 .text cc_at_check__FP10fopAc_ac_cP11dCcU_AtInfo
  */
-// just float reg issues
+// data padding issues (?)
 #ifdef NONMATCHING
 fopAc_ac_c* cc_at_check(fopAc_ac_c* p_enemy, dCcU_AtInfo* p_info) {
     daPy_py_c* link = (daPy_py_c*)dComIfGp_getPlayer(0);
     p_info->mpActor = at_power_check(p_info);
 
+    f32 x_diff;
+    f32 z_diff;
     if (p_info->mpActor != NULL) {
         cXyz tmp = p_info->mpActor->speed;
         tmp.y = 0.0f;
@@ -454,12 +459,12 @@ fopAc_ac_c* cc_at_check(fopAc_ac_c* p_enemy, dCcU_AtInfo* p_info) {
             p_info->mHitDirection = cM_atan2s(-x, -z) + (s16)cM_rndFX(4000.0f);
         } else {
             if (fopAcM_GetName(p_info->mpActor) == PROC_BOOMERANG) {
-                f32 x_diff = p_enemy->current.pos.x - link->current.pos.x;
-                f32 z_diff = p_enemy->current.pos.z - link->current.pos.z;
+                x_diff = p_enemy->current.pos.x - link->current.pos.x;
+                z_diff = p_enemy->current.pos.z - link->current.pos.z;
                 p_info->mHitDirection = cM_atan2s(-x_diff, -z_diff) + (s16)cM_rndFX(10000.0f);
             } else {
-                f32 x_diff = p_enemy->current.pos.x - p_info->mpActor->current.pos.x;
-                f32 z_diff = p_enemy->current.pos.z - p_info->mpActor->current.pos.z;
+                x_diff = p_enemy->current.pos.x - p_info->mpActor->current.pos.x;
+                z_diff = p_enemy->current.pos.z - p_info->mpActor->current.pos.z;
                 p_info->mHitDirection = cM_atan2s(-x_diff, -z_diff);
             }
         }
@@ -500,13 +505,13 @@ fopAc_ac_c* cc_at_check(fopAc_ac_c* p_enemy, dCcU_AtInfo* p_info) {
         }
 
         if (p_info->mAttackPower != 0) {
-            p_enemy->field_0x562 -= p_info->mAttackPower;
+            p_enemy->mHealth -= p_info->mAttackPower;
         }
 
         s8 pause_time = 0;
-        if (p_info->mAttackPower != 0 && p_enemy->field_0x562 <= 0) {
+        if (p_info->mAttackPower != 0 && p_enemy->mHealth <= 0) {
             p_info->mHitStatus = 2;
-            p_enemy->field_0x562 = 0;
+            p_enemy->mHealth = 0;
         }
 
         int uvar8;
@@ -539,7 +544,7 @@ fopAc_ac_c* cc_at_check(fopAc_ac_c* p_enemy, dCcU_AtInfo* p_info) {
             ((daPy_py_c*)dComIfGp_getPlayer(0))->checkHorseRide()) {
             // actor is Bulblin or Horseback Ganon
             if ((fopAcM_GetName(p_enemy) == PROC_E_RD &&
-                 static_cast<e_rd_class*>(p_enemy)->field_0x129a != 0) ||
+                 ((s8*)p_enemy)[0x129a] != 0) ||
                 fopAcM_GetName(p_enemy) == PROC_B_GND) {
                 pause_time = 3;
             } else {

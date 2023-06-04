@@ -1,7 +1,6 @@
 #ifndef D_D_ITEM_H
 #define D_D_ITEM_H
 
-#include "d/com/d_com_inf_game.h"
 #include "dolphin/types.h"
 
 void execItemGet(u8 item_id);

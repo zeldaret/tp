@@ -116,7 +116,7 @@ double __ieee754_sqrt(x) double x;
 			return x; /* sqrt(+-0) = +-0 */
 		else if (ix0 < 0) {
 			errno = 33;
-			return *__float_nan;
+			return NAN;
 		} /* sqrt(-ve) = sNaN */
 	}
 	/* normalize x */

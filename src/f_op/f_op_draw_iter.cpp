@@ -4,6 +4,8 @@
  */
 
 #include "f_op/f_op_draw_iter.h"
+#include "SSystem/SComponent/c_list.h"
+#include "SSystem/SComponent/c_tag.h"
 #include "f_op/f_op_draw_tag.h"
 
 /* ############################################################################################## */

@@ -7,6 +7,8 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_stoneMark/d_a_obj_stoneMark.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_lib.h"
@@ -284,21 +286,16 @@ extern actor_process_profile_definition g_profile_Obj_StoneMark = {
     7,                      // mListID 
     -3,                     // mListPrio  
     PROC_Obj_StoneMark,     // mProcName      
-    0,                      // padding  
     &g_fpcLf_Method.mBase,  // mSubMtd                     
     sizeof(daObjSMark_c),   // mSize                     
     0,                      // mSizeOther 
     0,                      // mParameters        
     &g_fopAc_Method.base,   // mSubMtd                    
     0x0216,                 // mPriority      
-    0,                      // padding 
-    0,                      // padding  
     &l_daObjSMark_Method,   // mSubMtd                    
     0x00040100,             // mStatus           
     0,                      // mActorType 
     23,                     // mCullType  
-    0,                      // padding 
-    0                       // padding
 };
 
 /* 8059A464-8059A488 000054 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */

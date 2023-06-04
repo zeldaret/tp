@@ -38,9 +38,6 @@ extern "C" {
 #define OS_BASE_CACHED (OS_CACHED_REGION_PREFIX << 16)
 #define OS_BASE_UNCACHED (OS_UNCACHED_REGION_PREFIX << 16)
 
-#define OS_MESSAGE_NON_BLOCKING 0
-#define OS_MESSAGE_BLOCKING 1
-
 #define OS_CONSOLE_MASK 0xf0000000
 #define OS_CONSOLE_RETAIL 0x00000000
 #define OS_CONSOLE_DEVELOPMENT 0x10000000
@@ -81,19 +78,19 @@ BOOL OSIsThreadSuspended(OSThread* thread);
 
 u32 OSGetConsoleType(void);
 
-void OSAttention(char* msg, ...);
-void OSPanic(char* file, s32 line, char* fmt, ...);
-void OSReport(char* fmt, ...);
-void OSReport_Error(char* fmt, ...);
-void OSReport_FatalError(char* fmt, ...);
-void OSReport_System(char* fmt, ...);
-void OSReport_Warning(char* fmt, ...);
+void OSAttention(const char* msg, ...);
+void OSPanic(const char* file, s32 line, const char* fmt, ...);
+void OSReport(const char* fmt, ...);
+void OSReport_Error(const char* fmt, ...);
+void OSReport_FatalError(const char* fmt, ...);
+void OSReport_System(const char* fmt, ...);
+void OSReport_Warning(const char* fmt, ...);
 void OSReportDisable(void);
 void OSReportEnable(void);
 void OSReportForceEnableOff(void);
 void OSReportForceEnableOn(void);
-void OSVReport(char* format, va_list list);
-void OSVAttention(char* fmt, va_list args);
+void OSVReport(const char* format, va_list list);
+void OSVAttention(const char* fmt, va_list args);
 void OSReportInit(void);
 
 extern u8 __OSReport_disable;

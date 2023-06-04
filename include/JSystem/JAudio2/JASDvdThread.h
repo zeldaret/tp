@@ -1,8 +1,9 @@
 #ifndef JASDVDTHREAD_H
 #define JASDVDTHREAD_H
 
-#include "JSystem/JAudio2/JASTaskThread.h"
 #include "dolphin/types.h"
+
+class JASTaskThread;
 
 class JASDvd {
 public:

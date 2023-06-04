@@ -4,6 +4,7 @@
  */
 
 #include "f_op/f_op_actor_tag.h"
+#include "SSystem/SComponent/c_list.h"
 
 /* ############################################################################################## */
 /* 803A35E0-803A35F0 000700 000C+04 1/1 2/2 0/0 .data            g_fopAcTg_Queue */
@@ -20,7 +21,7 @@ u32 fopAcTg_ActorQTo(create_tag_class* i_createTag) {
 }
 
 /* 80019880-800198A4 0141C0 0024+00 0/0 1/1 0/0 .text fopAcTg_Init__FP16create_tag_classPv */
-u32 fopAcTg_Init(create_tag_class* i_createTag, void* data) {
-    cTg_Create(i_createTag, data);
+u32 fopAcTg_Init(create_tag_class* i_createTag, void* i_data) {
+    cTg_Create(i_createTag, i_data);
     return 1;
 }

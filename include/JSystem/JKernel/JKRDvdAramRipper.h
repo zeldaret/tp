@@ -2,6 +2,7 @@
 #define JKRDVDARAMRIPPER_H
 
 #include "JSystem/JKernel/JKRDvdRipper.h"
+#include "JSystem/JSupport/JSUList.h"
 #include "dolphin/types.h"
 
 class JKRAramBlock;

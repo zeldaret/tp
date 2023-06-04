@@ -3,6 +3,7 @@
  *
  */
 
+#include "SSystem/SComponent/c_phase.h"
 #include "d/d_kyeff2.h"
 #include "d/d_procname.h"
 #include "d/kankyo/d_kankyo_wether.h"
@@ -49,14 +50,11 @@ extern kankyo_process_profile_definition g_profile_KYEFF2 = {
     12,
     0xFFFD,
     PROC_KYEFF2,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(dKyeff2_c),
     0,
     0,
     &g_fopKy_Method,
     0x0003,
-    0,
-    0,
     &l_dKyeff2_Method,
 };

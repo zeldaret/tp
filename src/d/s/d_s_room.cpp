@@ -4,11 +4,18 @@
 //
 
 #include "d/s/d_s_room.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "MSL_C/stdio.h"
+#include "MSL_C/string.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "d/s/d_s_play.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
+#include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_scene.h"
+#include "f_op/f_op_scene_mng.h"
+#include "m_Do/m_Do_Reset.h"
 
 static bool resetArchiveBank(int param_0);
 static bool setArchiveBank(int param_0);
@@ -103,7 +110,6 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strnicmp();
 // extern "C" extern void* g_fopScn_Method[5 + 1 /* padding */];
 // extern "C" extern void* g_fpcNd_Method[5 + 1 /* padding */];
 extern "C" u8 mStatus__20dStage_roomControl_c[65792];

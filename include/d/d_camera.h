@@ -5,10 +5,11 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include "d/bg/d_bg_s_lin_chk.h"
 #include "d/bg/d_bg_s_gnd_chk.h"
-#include "d/d_stage.h"
-#include "dolphin/types.h"
-#include "d/d_drawlist.h"
 #include "d/d_cam_param.h"
+#include "d/d_drawlist.h"
+#include "d/d_stage.h"
+#include "dolphin/gx/GXStruct.h"
+#include "dolphin/types.h"
 
 class fopAc_ac_c;
 
@@ -368,7 +369,10 @@ public:
     /* 0x0A8 */ int field_0xa8;
     /* 0x0AC */ u32 field_0xac;
     /* 0x0B0 */ dCamInfo_c field_0xb0;
-    /* 0x0D0 */ dCamInfo_c field_0xd0[2];
+    /* 0x0D0 */ u8 field_0xd0[0x8];
+    /* 0x0D8 */ cXyz field_0xd8;
+    /* 0x0E4 */ u8 field_0xe4[0xc];
+    /* 0x0F0 */ dCamInfo_c field_0xf0;
     class {
     public:
         /* 0x00 */ int field_0x0;

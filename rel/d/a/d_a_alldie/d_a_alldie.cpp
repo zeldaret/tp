@@ -4,7 +4,10 @@
 */
 
 #include "rel/d/a/d_a_alldie/d_a_alldie.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 
 /* 804D5818-804D5824 000078 000C+00 2/2 0/0 0/0 .text            getEventNo__10daAlldie_cFv */
 u8 daAlldie_c::getEventNo() {
@@ -214,19 +217,14 @@ extern actor_process_profile_definition g_profile_ALLDIE = {
     2,
     0xFFFD,
     PROC_ALLDIE,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(daAlldie_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x0116,
-    0,
-    0,
     &l_daAlldie_Method,
     0x00044000,
     0,
     6,
-    0,
-    0,
 };

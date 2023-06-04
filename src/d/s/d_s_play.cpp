@@ -5,20 +5,26 @@
 
 #include "d/s/d_s_play.h"
 #include "JSystem/JUtility/JUTConsole.h"
+#include "JSystem/JUtility/JUTGamePad.h"
 #include "SSystem/SComponent/c_counter.h"
-#include "d/d_item.h"
-#include "d/msg/d_msg_object.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
-#include "f_op/f_op_draw_iter.h"
-#include "f_op/f_op_overlap_mng.h"
-#include "f_op/f_op_scene_mng.h"
-#include "m_Do/m_Do_audio.h"
+#include "d/a/d_a_player.h"
 #include "d/d_demo.h"
+#include "d/d_item.h"
 #include "d/d_model.h"
 #include "d/d_procname.h"
-#include "f_op/f_op_msg_mng.h"
+#include "d/msg/d_msg_object.h"
 #include "d/save/d_save_HIO.h"
+#include "dol2asm.h"
+#include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
+#include "f_op/f_op_draw_iter.h"
+#include "f_op/f_op_msg_mng.h"
+#include "f_op/f_op_overlap_mng.h"
+#include "f_op/f_op_scene_mng.h"
+#include "m_Do/m_Do_Reset.h"
+#include "m_Do/m_Do_audio.h"
+#include "m_Do/m_Do_graphic.h"
+#include "d/d_eye_hl.h"
 
 //
 // Types:
@@ -382,7 +388,7 @@ asm dScnPly_env_debugHIO_c::dScnPly_env_debugHIO_c() {
 SECTION_SDATA2 static u32 lit_4100 = 0x2A1E46FF;
 
 /* 802594AC-802597B8 253DEC 030C+00 1/0 0/0 0/0 .text            dScnPly_Draw__FP9dScnPly_c */
-// some small issues like instruction reordering
+// bool comparison issues
 #ifdef NONMATCHING
 static int dScnPly_Draw(dScnPly_c* scn) {
     dComIfG_Ccsp()->Move();
@@ -420,7 +426,7 @@ static int dScnPly_Draw(dScnPly_c* scn) {
     }
     dMdl_mng_c::reset();
 
-    if (!dComIfGp_isPauseFlag() && pauseTimer == 0) {
+    if (!dComIfGp_isPauseFlag() && dScnPly_c::pauseTimer == 0) {
         if (fpcM_GetName(scn) == PROC_PLAY_SCENE) {
             dComIfGp_getVibration().Run();
         }
@@ -431,9 +437,9 @@ static int dScnPly_Draw(dScnPly_c* scn) {
         cCt_execCounter();
     } else {
         dPa_control_c::onStatus(1);
-        if (pauseTimer == 0) {
+        if (dScnPly_c::pauseTimer == 0) {
             dPa_control_c::onStatus(2);
-            if (pauseTimer == 0) {
+            if (dScnPly_c::pauseTimer == 0) {
                 dComIfGp_getVibration().Pause();
             }
         }
@@ -500,7 +506,7 @@ static int dScnPly_IsDelete(dScnPly_c scnPly) {
 extern "C" char const* const stringBase_8039A2DF;
 
 /* 80450760-80450764 -00001 0004+00 1/0 0/0 0/0 .sdata           T_JOINT_resName */
-extern "C" char* T_JOINT_resName;
+extern "C" const char* T_JOINT_resName;
 
 /* 80454F18-80454F1C 003518 0002+02 1/0 0/0 0/0 .sdata2          T_JOINT_dylKeyTbl */
 extern "C" u16 T_JOINT_dylKeyTbl;
@@ -522,7 +528,7 @@ SECTION_DEAD static char const* const stringBase_8039A2DF = "T_JOINT";
 #pragma pop
 
 /* 80450760-80450764 -00001 0004+00 1/0 0/0 0/0 .sdata           T_JOINT_resName */
-SECTION_SDATA static char* T_JOINT_resName = "Always";
+SECTION_SDATA static const char* T_JOINT_resName = "Always";
 
 /* 80450764-80450768 -00001 0004+00 4/4 0/0 0/0 .sdata           None */
 SECTION_SDATA static s8 preLoadNo = 0xFF;

@@ -1,11 +1,13 @@
 #ifndef PAD_H
 #define PAD_H
 
-#include "dolphin/os/OS.h"
+#include "dolphin/types.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+typedef struct OSContext OSContext;
 
 typedef enum PADMask {
     PAD_CHAN3_BIT = (1 << 28),

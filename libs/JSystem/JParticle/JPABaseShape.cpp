@@ -9,6 +9,7 @@
 #include "JSystem/JParticle/JPAResourceManager.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dol2asm.h"
+#include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
 //

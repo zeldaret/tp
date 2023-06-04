@@ -5,13 +5,18 @@
 
 #include "f_op/f_op_msg_mng.h"
 #include "JSystem/J2DGraph/J2DPane.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JMath/JMath.h"
 #include "SSystem/SComponent/c_malloc.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/meter/d_meter2.h"
+#include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_scene_mng.h"
+#include "global.h"
 
 extern dMsgObject_HIO_c g_MsgObject_HIO_c;
 
@@ -267,7 +272,7 @@ void fopMsgM_setMessageID(unsigned int msg_id) {
 
 /* 80020108-80020158 01AA48 0050+00 0/0 2/2 0/0 .text            fopMsgM_Create__FsPFPv_iPv */
 u32 fopMsgM_Create(s16 i_procName, FastCreateReqFunc i_createFunc, void* i_process) {
-    fpcM_Create(i_procName, i_createFunc, i_process);
+    return fpcM_Create(i_procName, i_createFunc, i_process);
 }
 
 /* 80020158-80020160 -00001 0008+00 0/0 0/0 0/0 .text            setAlpha__7J2DPaneFUc */
@@ -331,7 +336,7 @@ f32 fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
+asm f32 fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
     nofralloc
 #include "asm/f_op/f_op_msg_mng/fopMsgM_valueIncrease__FiiUc.s"
 }

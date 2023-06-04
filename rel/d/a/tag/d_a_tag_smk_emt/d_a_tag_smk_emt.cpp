@@ -4,6 +4,8 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_smk_emt/d_a_tag_smk_emt.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/d_procname.h"
 
 /* 80D612D8-80D61324 000078 004C+00 2/2 0/0 0/0 .text            __ct__13daTagSmkEmt_cFv */
 daTagSmkEmt_c::daTagSmkEmt_c() {
@@ -109,19 +111,14 @@ extern actor_process_profile_definition g_profile_Tag_SmkEmt = {
     7,                       // mListID  
     -3,                      // mListPrio   
     PROC_Tag_SmkEmt,         // mProcName                
-    0,                       // padding   
     &g_fpcLf_Method.mBase,   // mSubMtd                      
     sizeof(daTagSmkEmt_c),   // mSize                       
     0,                       // mSizeOther  
     0,                       // mParameters         
     &g_fopAc_Method.base,    // mSubMtd                     
     0x02E7,                  // mPriority       
-    0,                       // padding  
-    0,                       // padding   
     &daTagSmkEmt_METHODS,    // mSubMtd                     
     0x00040000,              // mStatus            
     0,                       // mActorType  
     0x0E,                    // mCullType     
-    0,                       // padding  
-    0                        // padding 
 };

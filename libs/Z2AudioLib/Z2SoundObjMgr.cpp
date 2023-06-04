@@ -4,6 +4,7 @@
 //
 
 #include "Z2AudioLib/Z2SoundObjMgr.h"
+#include "Z2AudioLib/Z2Creature.h"
 #include "Z2AudioLib/Z2SeqMgr.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"

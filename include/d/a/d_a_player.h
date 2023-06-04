@@ -1,15 +1,11 @@
 #ifndef D_A_D_A_PLAYER_H
 #define D_A_D_A_PLAYER_H
 
-#include "JSystem/J3DGraphAnimator/J3DAnimation.h"
-#include "JSystem/JUtility/JUTTexture.h"
-#include "SSystem/SComponent/c_bg_s_poly_info.h"
 #include "d/d_drawlist.h"
-#include "d/d_resorce.h"
-#include "d/d_stage.h"
-#include "d/save/d_save.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
+
+struct ResTIMG;
 
 class daPy_sightPacket_c : public dDlst_base_c {
 public:
@@ -377,6 +373,7 @@ public:
     enum daPy_RFLG1 {
         RFLG1_UNK_30 = 0x30,
         RFLG1_UNK_2 = 0x2,
+        RFLG1_WOLF_ATTACK_REVERSE = 0x1,
     };
 
     enum {
@@ -450,7 +447,7 @@ public:
     static BOOL checkMasterSwordEquip();
     static BOOL checkWoodShieldEquip();
     static f32 getAttentionOffsetY();
-    s16 checkNowWolfEyeUp();
+    static int checkNowWolfEyeUp();
     static void forceRestartRoom(int, u32, int);
     static void setFmChainPos(fopAc_ac_c*, cXyz*, int);
     static void cancelFmChainGrab();
@@ -709,6 +706,7 @@ public:
     bool checkWaterInMove() const { return i_checkNoResetFlg0(FLG0_UNDERWATER); }
     bool checkSceneChangeAreaStart() const { return i_checkNoResetFlg2(FLG2_SCN_CHG_START); }
     bool checkFrontRollCrash() const { return i_checkResetFlg0(RFLG0_FRONT_ROLL_CRASH); }
+    bool checkWolfAttackReverse() const { return checkResetFlg1(RFLG1_WOLF_ATTACK_REVERSE); }
     
     void onForceAutoJump() { i_onEndResetFlg0(ERFLG0_FORCE_AUTO_JUMP); }
     void onNotAutoJump() { i_onEndResetFlg0(ERFLG0_NOT_AUTO_JUMP); }
@@ -749,6 +747,7 @@ public:
     void i_offEndResetFlg2(daPy_ERFLG2 flag) { mEndResetFlg2 &= ~flag; }
     
     int i_checkResetFlg0(daPy_py_c::daPy_RFLG0 flag) const { return mResetFlg0 & flag; }
+    int checkResetFlg1(daPy_py_c::daPy_RFLG1 flag) const { return mResetFlg1 & flag; }
     
     int i_checkEndResetFlg0(daPy_py_c::daPy_ERFLG0 flag) const { return mEndResetFlg0 & flag; }
     int i_checkEndResetFlg1(daPy_py_c::daPy_ERFLG1 flag) const { return mEndResetFlg1 & flag; }

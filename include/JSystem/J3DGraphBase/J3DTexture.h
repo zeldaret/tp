@@ -2,6 +2,7 @@
 #define J3DTEXTURE_H
 
 #include "JSystem/JUtility/JUTTexture.h"
+#include "dolphin/gx/GXEnum.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/mtx/mtx44.h"
 #include "dolphin/types.h"
@@ -36,12 +37,13 @@ struct J3DTextureSRTInfo {
 
 struct J3DTexMtxInfo {
     /* 80325718 */ void operator=(J3DTexMtxInfo const&);
+    /* 80325794 */ void setEffectMtx(Mtx);
 
     /* 0x00 */ u8 mProjection;
-    /* 0x01 */ u8 mInfo;
+    /* 0x01 */ s8 mInfo;
     /* 0x04 */ Vec mCenter;
     /* 0x10 */ J3DTextureSRTInfo mSRT;
-    /* 0x24 */ Mtx44 mEffectMtx;
+    /* 0x24 */ Mtx44 mEffectMtx;    
 };  // Size: 0x64
 
 class J3DTexMtx {
@@ -55,6 +57,7 @@ public:
 
     J3DTexMtxInfo& getTexMtxInfo() { return mTexMtxInfo; }
     Mtx& getMtx() { return mMtx; }
+    void setEffectMtx(Mtx effectMtx) { mTexMtxInfo.setEffectMtx(effectMtx); }
 
 private:
     /* 0x00 */ J3DTexMtxInfo mTexMtxInfo;

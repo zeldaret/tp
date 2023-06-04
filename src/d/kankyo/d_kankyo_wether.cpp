@@ -4,12 +4,16 @@
 //
 
 #include "d/kankyo/d_kankyo_wether.h"
+#include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "MSL_C/string.h"
 #include "Z2AudioLib/Z2EnvSeMgr.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/kankyo/d_kankyo.h"
 #include "d/kankyo/d_kankyo_rain.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "global.h"
 #include "m_Do/m_Do_audio.h"
 
 //
@@ -210,7 +214,6 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void memcmp();
 extern "C" extern void* __vt__9J3DPacket[5];
 extern "C" extern dScnKy_env_light_c g_env_light;
 extern "C" extern Z2EnvSeMgr g_mEnvSeMgr;
@@ -1603,8 +1606,8 @@ asm void dKyw_wind_set() {
 #pragma pop
 
 /* 8005AAE0-8005AAF0 055420 0010+00 1/1 6/6 7/7 .text            dKyw_get_wind_vec__Fv */
-cXyz& dKyw_get_wind_vec() {
-    return g_env_light.mWind.vec;
+cXyz* dKyw_get_wind_vec() {
+    return &g_env_light.mWind.vec;
 }
 
 /* 8005AAF0-8005AB00 055430 0010+00 1/1 6/6 8/8 .text            dKyw_get_wind_pow__Fv */

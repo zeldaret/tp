@@ -6,6 +6,7 @@
 #include "dolphin/exi/EXIUart.h"
 #include "dol2asm.h"
 #include "dolphin/exi/EXIBios.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 
 //

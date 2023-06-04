@@ -4,9 +4,13 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_web1/d_a_obj_web1.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JMath/JMath.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/a/d_a_player.h"
+#include "d/bg/d_bg_w.h"
 #include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 
 /* 80D353AC-80D353C4 0000EC 0018+00 1/1 0/0 0/0 .text            __ct__16daObj_Web1_HIO_cFv */
 daObj_Web1_HIO_c::daObj_Web1_HIO_c() {
@@ -334,19 +338,14 @@ extern actor_process_profile_definition g_profile_OBJ_WEB1 = {
     3,
     -3,
     PROC_OBJ_WEB1,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(obj_web1_class),
     0,
     0,
     &g_fopAc_Method.base,
     0x0030,
-    0,
-    0,
     &l_daObj_Web1_Method,
     0x00040100,
     0,
     14,
-    0,
-    0,
 };

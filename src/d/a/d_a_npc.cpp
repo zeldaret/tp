@@ -4,13 +4,15 @@
 //
 
 #include "d/a/d_a_npc.h"
+#include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_player.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
+#include "global.h"
 #include "m_Do/m_Do_mtx.h"
 #include "rel/d/a/npc/d_a_npc_tk/d_a_npc_tk.h"
-#include "SSystem/SComponent/c_math.h"
 #include "m_Do/m_Do_lib.h"
 
 //
@@ -813,8 +815,8 @@ static int daNpcT_subIdx(int param_0, int param_1, u16& param_2, int param_3) {
 }
 
 /* 80145AC4-80145B20 140404 005C+00 5/5 0/0 0/0 .text            daNpcT_incIdx__FiRUsii */
-static void daNpcT_incIdx(int param_0, u16& param_1, int param_2, int param_3) {
-    param_3 ? daNpcT_subIdx(1,param_0,param_1,param_2) : daNpcT_addIdx(1,param_0,param_1,param_2);
+static int daNpcT_incIdx(int param_0, u16& param_1, int param_2, int param_3) {
+    return param_3 ? daNpcT_subIdx(1,param_0,param_1,param_2) : daNpcT_addIdx(1,param_0,param_1,param_2);
 }
 
 /* 80145B20-80145B7C 140460 005C+00 3/3 0/0 0/0 .text            daNpcT_decIdx__FiRUsii */
@@ -926,11 +928,10 @@ int daNpcT_Path_c::setNextIdx(int param_0) {
     u16 numPnts = getNumPnts();
 
     if (chkClose() != 0 && numPnts == param_0) {
-        daNpcT_incIdx(param_0,mIdx,1,mDirection);
-        return;
+        return daNpcT_incIdx(param_0,mIdx,1,mDirection);
     }
 
-    daNpcT_incIdx(param_0,mIdx,0,mDirection);
+    return daNpcT_incIdx(param_0,mIdx,0,mDirection);
 }
 
 /* 80145E38-80145FB4 140778 017C+00 0/0 0/0 1/1 .text getDstPos__13daNpcT_Path_cF4cXyzP4cXyzi */
@@ -2422,7 +2423,7 @@ asm void daNpcT_c::chkFindActor(fopAc_ac_c* param_0, int param_1, s16 param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dAttention_c::getDistTable(int param_0) {
+asm dist_entry& dAttention_c::getDistTable(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_npc/getDistTable__12dAttention_cFi.s"
 }

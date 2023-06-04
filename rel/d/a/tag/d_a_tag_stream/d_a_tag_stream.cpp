@@ -4,7 +4,9 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_stream/d_a_tag_stream.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/d_procname.h"
 
 /* 80D638F8-80D63A78 000078 0180+00 1/1 0/0 0/0 .text            create__13daTagStream_cFv */
 int daTagStream_c::create() {
@@ -14,7 +16,7 @@ int daTagStream_c::create() {
     }
 
     mPriority = fopAcM_GetParam(this) >> 8;
-    field_0x56a = fopAcM_GetParam(this);
+    mPower = fopAcM_GetParam(this);
     field_0x56b = fopAcM_GetParam(this) >> 16;
 
     fopAcM_GetParam(this) >> 24 != 0 ? mParameters = 0 : mParameters = 1;
@@ -27,7 +29,7 @@ int daTagStream_c::create() {
         daTagStream_c* top = m_top;
         daTagStream_c* top_loop = m_top;
 
-        for (; top; top = top->field_0x574) {
+        for (; top; top = top->mNext) {
             if (top->getPriority() > this->getPriority()) {
                 break;
             }
@@ -35,16 +37,16 @@ int daTagStream_c::create() {
         }
 
         if (top_loop == top) {
-            field_0x574 = m_top;
+            mNext = m_top;
             m_top->field_0x570 = this;
             m_top = this;
         } else {
-            top_loop->field_0x574 = this;
+            top_loop->mNext = this;
             field_0x570 = top_loop;
 
             if (top) {
                 top->field_0x570 = this;
-                field_0x574 = top;
+                mNext = top;
             }
         }
     } else {
@@ -69,15 +71,15 @@ static int daTagStream_Create(fopAc_ac_c* i_this) {
 /* 80D63A98-80D63B30 000218 0098+00 1/1 0/0 0/0 .text            __dt__13daTagStream_cFv */
 daTagStream_c::~daTagStream_c() {
     if (field_0x570) {
-        field_0x570->field_0x574 = field_0x574;
+        field_0x570->mNext = mNext;
     }
 
-    if (field_0x574) {
-        field_0x574->field_0x570 = field_0x570;
+    if (mNext) {
+        mNext->field_0x570 = field_0x570;
     }
 
     if (m_top == this) {
-        m_top = field_0x574;
+        m_top = mNext;
     }
 };
 
@@ -90,9 +92,9 @@ static int daTagStream_Delete(daTagStream_c* i_this) {
 /* 80D63B58-80D63BC0 0002D8 0068+00 1/1 0/0 0/0 .text            execute__13daTagStream_cFv */
 int daTagStream_c::execute() {
     if (field_0x56b == 0xFF || i_fopAcM_isSwitch(this,field_0x56b)) {
-        field_0x569 = 1;
+        mStreamOn = 1;
     } else {
-        field_0x569 = 0;
+        mStreamOn = 0;
     }
 
     return 1;
@@ -125,19 +127,14 @@ extern actor_process_profile_definition g_profile_Tag_Stream = {
     7,                      // mListID
     -3,                     // mListPrio
     PROC_Tag_Stream,        // mProcName
-    0,                      // padding
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daTagStream_c),  // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
     0x0103,                 // mPriority
-    0,                      // padding
-    0,                      // padding
     &l_daTagStream_Method,  // mSubMtd
     0x00044000,             // mStatus
     3,                      // mActorType
     0x0E,                   // mCullType
-    0,                      // padding
-    0                       // padding
 };

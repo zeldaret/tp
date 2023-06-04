@@ -1,7 +1,9 @@
 #ifndef D_FILE_D_FILE_SEL_WARNING_H
 #define D_FILE_D_FILE_SEL_WARNING_H
 
-#include "d/com/d_com_inf_game.h"
+#include "JSystem/JUtility/TColor.h"
+
+class JKRArchive;
 
 class dFile_warning_c {
 public:

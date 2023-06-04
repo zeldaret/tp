@@ -1,9 +1,9 @@
 #ifndef D_EVENT_D_EVENT_DATA_H
 #define D_EVENT_D_EVENT_DATA_H
 
-#include "d/d_stage.h"
-#include "f_op/f_op_msg.h"
-#include "d/save/d_save.h"
+#include "global.h"
+
+class msg_class;
 
 struct event_binary_data_header {
     /* 0x00 */ u32 eventTop;  // offset to Event chunk

@@ -257,7 +257,7 @@ double __ieee754_pow(x, y) double x, y;
 
 	if (((((int)hx >> 31) + 1) | yisint) == 0) {
 		errno = 33;
-		return (double)*__float_nan;
+		return (double)NAN;
 	};
 
 	/* |y| is huge */

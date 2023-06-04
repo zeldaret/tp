@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/JAudio2/JAUSectionHeap.h"
+#include "MSL_C/stdlib.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -282,7 +283,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void abort();
 extern "C" void fprintf();
 extern "C" extern void* __vt__11JASBankList[3 + 1 /* padding */];
 extern "C" extern void* __vt__7JASBank[5];
@@ -290,7 +290,6 @@ extern "C" extern void* __vt__12JASVoiceBank[5 + 1 /* padding */];
 extern "C" extern void* __vt__13JAISeqDataMgr[6];
 extern "C" extern void* __vt__16JAIStreamDataMgr[4 + 1 /* padding */];
 extern "C" extern void* __vt__32JAUStreamDataMgr_StreamFileTable[4];
-extern "C" extern void* __files[80];
 extern "C" extern u8 data_80450B50[4];
 extern "C" extern u8 data_80450B54[4];
 extern "C" extern u8 data_80450B58[4];

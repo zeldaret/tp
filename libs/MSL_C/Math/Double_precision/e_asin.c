@@ -80,7 +80,7 @@ double __ieee754_asin(x) double x;
 		if (((ix - 0x3ff00000) | __LO(x)) == 0)
 			/* asin(1)=+-pi/2 with inexact */
 			return x * pio2_hi + x * pio2_lo;
-		return *__float_nan;       /* asin(|x|>1) is NaN */
+		return NAN;       /* asin(|x|>1) is NaN */
 	} else if (ix < 0x3fe00000) { /* |x|<0.5 */
 		if (ix < 0x3e400000) {    /* if |x| < 2**-27 */
 			if (huge + x > one)

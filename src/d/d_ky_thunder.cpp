@@ -4,11 +4,15 @@
  */
 
 #include "d/d_ky_thunder.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 #include "JSystem/JMath/JMath.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "SSystem/SComponent/c_math.h"
+#include "dolphin/os/OSCache.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
 #include "d/kankyo/d_kankyo_rain.h"
+#include "f_op/f_op_kankyo_mng.h"
 
 #define EF_THUNDER01_BMD 0x1E
 #define EF_THUNDER02_BMD 0x1F
@@ -280,14 +284,11 @@ extern kankyo_process_profile_definition g_profile_KY_THUNDER = {
     7,
     -3,
     PROC_KY_THUNDER,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(dThunder_c),
     0,
     0,
     &g_fopKy_Method,
     6,
-    0,
-    0,
     &l_dThunder_Method,
 };

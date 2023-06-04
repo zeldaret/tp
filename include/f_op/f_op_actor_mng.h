@@ -1,21 +1,17 @@
 #ifndef F_OP_ACTOR_MNG_H_
 #define F_OP_ACTOR_MNG_H_
 
-#include "JSystem/J3DGraphAnimator/J3DModelData.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 #include "f_op/f_op_actor_iter.h"
-#include "f_pc/f_pc_executor.h"
-#include "f_pc/f_pc_fstcreate_req.h"
 #include "f_pc/f_pc_manager.h"
 #include "f_pc/f_pc_searcher.h"
-#include "f_pc/f_pc_stdcreate_req.h"
 
 class J3DModelData;  // placeholder
+class JKRHeap;
+class cM3dGPla;
 
 struct fopAcM_prmBase_class {
     /* 0x00 */ u32 field_0x00;
@@ -153,7 +149,7 @@ inline u32 fopAcM_GetParam(const void* pActor) {
     return fpcM_GetParam(pActor);
 }
 
-inline u8 fopAcM_GetParamBit(void* ac, u8 shift, u8 bit) {
+inline u32 fopAcM_GetParamBit(void* ac, u8 shift, u8 bit) {
     return (fopAcM_GetParam(ac) >> shift) & ((1 << bit) - 1);
 }
 
@@ -303,6 +299,26 @@ inline const cXyz& fopAcM_GetPosition_p(const fopAc_ac_c* p_actor) {
 
 inline dJntCol_c* fopAcM_GetJntCol(fopAc_ac_c* i_actor) {
     return i_actor->mJntCol;
+}
+
+inline f32 fopAcM_getCullSizeFar(const fopAc_ac_c* i_actor) {
+    return i_actor->mCullSizeFar;
+}
+
+inline int fopAcM_GetCullSize(const fopAc_ac_c* i_actor) {
+    return i_actor->mCullType;
+}
+
+inline BOOL fopAcM_CULLSIZE_IS_BOX(int i_culltype) {
+    return (i_culltype >= 0 && i_culltype < 14) || i_culltype == 14;
+}
+
+inline Vec fopAcM_getCullSizeSphereCenter(const fopAc_ac_c* i_actor) {
+    return i_actor->mCull.mSphere.mCenter;
+}
+
+inline f32 fopAcM_getCullSizeSphereR(const fopAc_ac_c* i_actor) {
+    return i_actor->mCull.mSphere.mRadius;
 }
 
 inline void dComIfGs_onSwitch(int i_no, int i_roomNo);
@@ -517,7 +533,7 @@ s32 fopAcM_otoCheck(const fopAc_ac_c*, f32);
 s32 fopAcM_otherBgCheck(const fopAc_ac_c*, const fopAc_ac_c*);
 s32 fopAcM_wayBgCheck(const fopAc_ac_c*, f32, f32);
 s32 fopAcM_plAngleCheck(const fopAc_ac_c*, s16);
-s32 fopAcM_effSmokeSet1(u32*, u32*, const cXyz*, const csXyz*, f32, const dKy_tevstr_c*, int);
+void fopAcM_effSmokeSet1(u32*, u32*, const cXyz*, const csXyz*, f32, const dKy_tevstr_c*, int);
 void fopAcM_effHamonSet(u32*, const cXyz*, f32, f32);
 s32 fopAcM_riverStream(cXyz*, s16*, f32*, f32);
 s32 fopAcM_carryOffRevise(fopAc_ac_c*);

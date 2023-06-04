@@ -7,6 +7,7 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "d/com/d_com_inf_game.h"
+#include "m_Do/m_Do_controller_pad.h"
 
 //
 // Forward References:
@@ -205,12 +206,8 @@ void dVibration_c::Kill() {
 }   
 
 /* 8006FE5C-8006FE84 06A79C 0028+00 0/0 0/0 10/10 .text            CheckQuake__12dVibration_cFv */
-int dVibration_c::CheckQuake() {
-    int ret = 0;
-    if (field_0x0.mQuake.field_0x4 != -1 || field_0x70 != -1) {
-        ret  = 1;
-    }
-    return ret;
+bool dVibration_c::CheckQuake() {
+    return field_0x0.mQuake.field_0x4 != -1 || field_0x70 != -1;
 }
 
 /* 8006FE84-8006FF04 06A7C4 0080+00 2/2 0/0 0/0 .text            setDefault__12dVibration_cFv */

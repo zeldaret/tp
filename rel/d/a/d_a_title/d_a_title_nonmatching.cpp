@@ -4,12 +4,22 @@
 //
 
 #include "rel/d/a/d_a_title/d_a_title.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
+#include "JSystem/J2DGraph/J2DTextBox.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRMemArchive.h"
 #include "JSystem/JStudio/JStudio/stb.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "d/com/d_com_inf_game.h"
+#include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_overlap_mng.h"
 #include "f_op/f_op_msg_mng.h"
+#include "d/pane/d_pane_class_alpha.h"
+#include "d/menu/d_menu_collect.h"
+#include "m_Do/m_Do_Reset.h"
+#include "m_Do/m_Do_controller_pad.h"
 
 //
 // Types:
@@ -184,7 +194,6 @@ extern "C" void _savegpr_26();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" f32 mViewOffsetY__17dMenu_Collect3D_c[1 + 1 /* padding */];
 extern "C" u8 mFader__13mDoGph_gInf_c[4];
@@ -466,8 +475,6 @@ void daTitle_c::nextScene_init() {
 }
 
 /* 80D67550-80D675EC 000B30 009C+00 1/0 0/0 0/0 .text            nextScene_proc__9daTitle_cFv */
-// setFadeColor store order issue
-#ifdef NONMATCHING
 void daTitle_c::nextScene_proc() {
     if (!fopOvlpM_IsPeek() && !mDoRst::isReset()) {
         scene_class* playScene = fopScnM_SearchByID(dStage_roomControl_c::getProcID());
@@ -475,16 +482,6 @@ void daTitle_c::nextScene_proc() {
         mDoGph_gInf_c::setFadeColor(*(JUtility::TColor*)&g_blackColor);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTitle_c::nextScene_proc() {
-    nofralloc
-#include "asm/rel/d/a/d_a_title/d_a_title/nextScene_proc__9daTitle_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80D675EC-80D676AC 000BCC 00C0+00 1/1 0/0 0/0 .text            fastLogoDispInit__9daTitle_cFv */
 void daTitle_c::fastLogoDispInit() {

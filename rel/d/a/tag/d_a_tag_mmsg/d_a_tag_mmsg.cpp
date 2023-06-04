@@ -4,10 +4,13 @@
 //
 
 #include "rel/d/a/tag/d_a_tag_mmsg/d_a_tag_mmsg.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 
 /* ############################################################################################## */
 /* 80D5B918-80D5BA94 000078 017C+00 1/1 0/0 0/0 .text            create__11daTagMmsg_cFv */
@@ -121,19 +124,14 @@ extern actor_process_profile_definition g_profile_Tag_Mmsg = {
     7,                      // mListID
     0xFFFD,                 // mListPrio
     PROC_Tag_Mmsg,          // mProcName
-    0,                      // unkA
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daTagMmsg_c),    // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
     0x00FF,                 // mPriority
-    0,                      // unk22[0]
-    0,                      // unk22[1]
     &l_daTagMmsg_Method,    // mSubMtd
     0x00044000,             // mStatus
     0x03,                   // mActorType
     0x0E,                   // mCullType
-    0,                      // field_0x2e[0]
-    0                       // field_0x2e[1]
 };

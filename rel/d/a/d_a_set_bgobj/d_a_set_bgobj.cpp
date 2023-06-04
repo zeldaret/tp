@@ -4,7 +4,10 @@
  */
 
 #include "rel/d/a/d_a_set_bgobj/d_a_set_bgobj.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "MSL_C/stdio.h"
 #include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 
 /* 80485F00-80485F0C 000000 0009+03 1/1 0/0 0/0 .rodata          l_specName */
 static const char l_specName[] = "spec.dat";
@@ -71,19 +74,14 @@ extern actor_process_profile_definition g_profile_SET_BG_OBJ = {
     7,
     -3,
     PROC_SET_BG_OBJ,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(daSetBgObj_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x02F2,
-    0,
-    0,
     &l_daSetBgObj_Method,
     0x00040100,
     0,
     14,
-    0,
-    0,
 };

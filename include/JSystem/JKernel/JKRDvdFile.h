@@ -3,8 +3,11 @@
 
 #include "JSystem/JKernel/JKRFile.h"
 #include "dolphin/dvd/dvd.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os/OSMessage.h"
+#include "dolphin/os/OSMutex.h"
 #include "dolphin/types.h"
+
+struct OSThread;
 
 class JKRADCommand;
 class JKRAramBlock;

@@ -1,13 +1,16 @@
 #ifndef D_D_STAGE_H
 #define D_D_STAGE_H
 
-#include "JSystem/JKernel/JKRExpHeap.h"
 #include "SSystem/SComponent/c_lib.h"
 #include "d/kankyo/d_kankyo.h"
 #include "d/kankyo/d_kankyo_data.h"
 #include "d/save/d_save.h"
+#include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
+#include "f_pc/f_pc_priority.h"
+#include "global.h"
+
+class JKRExpHeap;
 
 struct stage_vrboxcol_info_class {
     // VRB
@@ -1031,6 +1034,10 @@ inline int dStage_stagInfo_GetRangeDown(stage_stag_info_class* pstag) {
     return pstag->mRangeDown;
 }
 
+inline u32 dStage_stagInfo_ChkKeyDisp(stage_stag_info_class* pstag) {
+    return pstag->field_0x09 & 1;
+}
+
 inline u32 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {
     return p_info->field_0xb & 0xF;
 }
@@ -1057,6 +1064,10 @@ inline u32 dStage_FileList_dt_GetEnemyAppear1Flag(dStage_FileList_dt_c* p_fList)
 
 inline int dStage_FileList_dt_GetBitSw(dStage_FileList_dt_c* p_fList) {
     return p_fList->mBitSw;
+}
+
+inline f32 dStage_FileList_dt_SeaLevel(dStage_FileList_dt_c* p_fList) {
+    return p_fList->mSeaLevel;
 }
 
 inline f32 dStage_FileList2_dt_GetLeftRmX(dStage_FileList2_dt_c* p_fList2) {

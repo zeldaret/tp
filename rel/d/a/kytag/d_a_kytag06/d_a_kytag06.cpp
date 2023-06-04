@@ -4,9 +4,11 @@
  */
 
 #include "rel/d/a/kytag/d_a_kytag06/d_a_kytag06.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
 
 /* 8085786C-80857918 0000EC 00AC+00 1/1 0/0 0/0 .text            dice_wether_init__FUcff */
 static void dice_wether_init(u8 i_weatherMode, f32 i_weatherTime, f32 i_currentTime) {
@@ -1355,19 +1357,14 @@ extern actor_process_profile_definition g_profile_KYTAG06 = {
     7,
     -3,
     PROC_KYTAG06,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(kytag06_class),
     0,
     0,
     &g_fopAc_Method.base,
     0x64,
-    0,
-    0,
     &l_daKytag06_Method,
     0x00060000,
-    0,
-    0,
     0,
     0,
 };

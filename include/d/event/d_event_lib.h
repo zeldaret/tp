@@ -2,7 +2,8 @@
 #define D_EVENT_D_EVENT_LIB_H
 
 #include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
+
+class fopAc_ac_c;
 
 template <typename A0>
 struct action_class {
@@ -21,6 +22,11 @@ struct action_class {
 };
 
 struct dEvLib_callback_c {
+    dEvLib_callback_c(fopAc_ac_c* param_0) {
+        mActor = param_0;
+        mAction = NULL;
+    }
+
     /* 8004886C */ BOOL eventUpdate();
     /* 800488A4 */ BOOL setEvent(int, int, int);
     /* 80048940 */ void orderEvent(int, int, int);

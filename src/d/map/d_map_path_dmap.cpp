@@ -4,7 +4,8 @@
  */
 
 #include "d/map/d_map_path_dmap.h"
-#include "MSL_C/math.h"
+#include "MSL_C/float.h"
+#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/map/d_map_path.h"
 #include "d/meter/d_meter_HIO.h"
@@ -532,16 +533,16 @@ dDrawPath_c::room_class** dMpath_c::mLayerList;
 
 /* 80450E68-80450E6C 000368 0004+00 3/3 1/1 0/0 .sbss            mMinX__8dMpath_c */
 // these are needed for sinit, but its got reversed reg alloc?
-f32 dMpath_c::mMinX /* = __float_max[0] */;
+f32 dMpath_c::mMinX /* = FLT_MAX */;
 
 /* 80450E6C-80450E70 00036C 0004+00 3/3 1/1 0/0 .sbss            mMaxX__8dMpath_c */
-f32 dMpath_c::mMaxX /* = -__float_max[0] */;
+f32 dMpath_c::mMaxX /* = -FLT_MAX */;
 
 /* 80450E70-80450E74 000370 0004+00 3/3 2/2 0/0 .sbss            mMinZ__8dMpath_c */
-f32 dMpath_c::mMinZ /* = __float_max[0] */;
+f32 dMpath_c::mMinZ /* = FLT_MAX */;
 
 /* 80450E74-80450E78 000374 0004+00 3/3 1/1 0/0 .sbss            mMaxZ__8dMpath_c */
-f32 dMpath_c::mMaxZ /* = -__float_max[0] */;
+f32 dMpath_c::mMaxZ /* = -FLT_MAX */;
 
 /* 80450E78-80450E7C 000378 0004+00 1/1 2/2 0/0 .sbss            mAllCenterX__8dMpath_c */
 f32 dMpath_c::mAllCenterX;

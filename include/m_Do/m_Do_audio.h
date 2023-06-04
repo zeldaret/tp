@@ -1,13 +1,8 @@
 #ifndef M_DO_M_DO_AUDIO_H
 #define M_DO_M_DO_AUDIO_H
 
-#include "JSystem/JAudio2/JASGadget.h"
-#include "JSystem/JAudio2/JASTrack.h"
-#include "JSystem/JAudio2/JAUSoundTable.h"
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "Z2AudioLib/Z2EnvSeMgr.h"
-#include "Z2AudioLib/Z2SoundInfo.h"
-#include "Z2AudioLib/Z2WolfHowlMgr.h"
 
 class mDoAud_zelAudio_c {
 public:
@@ -116,12 +111,32 @@ inline void mDoAud_rainPlay(s32 enable) {
     g_mEnvSeMgr.startRainSe(enable, 0);
 }
 
+inline void mDoAud_heartGaugeOn() {
+    Z2AudioMgr::getInterface()->mStatusMgr.heartGaugeOn();
+}
+
 inline void mDoAud_mEnvse_framework() {
     g_mEnvSeMgr.framework();
 }
 
 inline void mDoAud_mEnvSe_startFarThunderSe(const Vec* param_0) {
     g_mEnvSeMgr.startFarThunderSe((Vec*)param_0, 0);
+}
+
+inline void mDoAud_mEnvse_initStrongWind() {
+    g_mEnvSeMgr.initStrongWindSe();
+}
+
+inline void mDoAud_mEnvse_setWindDirection(Vec* i_direction) {
+    g_mEnvSeMgr.setWindDirection(i_direction);
+}
+
+inline void mDoAud_mEnvse_startStrongWindSe(s8 i_reverb) {
+    g_mEnvSeMgr.startStrongWindSe(i_reverb);
+}
+
+inline void mDoAud_mEnvse_setWindType(u8 i_type) {
+    g_mEnvSeMgr.setWindType(i_type);
 }
 
 #endif /* M_DO_M_DO_AUDIO_H */

@@ -3,6 +3,7 @@
 
 #include "SSystem/SComponent/c_xyz.h"
 #include "Z2AudioLib/Z2SoundObject.h"
+#include "Z2AudioLib/Z2SoundStarter.h"
 
 class Z2Creature {
 public:

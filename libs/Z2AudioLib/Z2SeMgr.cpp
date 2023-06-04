@@ -6,6 +6,7 @@
 #include "Z2AudioLib/Z2SeMgr.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 //
 // Types:

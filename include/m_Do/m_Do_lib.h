@@ -3,7 +3,11 @@
 
 #include "JSystem/J3DU/J3DUClipper.h"
 #include "dolphin/types.h"
-#include "JSystem/JUtility/JUTTexture.h"
+
+typedef struct _GXTexObj GXTexObj;
+typedef struct _GXTlutObj GXTlutObj;
+typedef struct Vec Vec;
+struct ResTIMG;
 
 struct mDoLib_clipper {
     /* 8001528C */ void setup(f32, f32, f32, f32);
@@ -15,6 +19,17 @@ struct mDoLib_clipper {
 
     static u32 clip(const Mtx m, const Vec* param_1, const Vec* param_2) {
         return mClipper.clip(m, (Vec*)param_1, (Vec*)param_2);
+    }
+
+    static u32 clip(const Mtx m, Vec param_1, f32 param_2) {
+        return mClipper.clip(m, param_1, param_2);
+    }
+
+    static f32 getFar() { return mSystemFar; }
+    
+    static void resetFar() {
+        mClipper.setFar(mSystemFar);
+        mClipper.calcViewFrustum();
     }
 
     static J3DUClipper mClipper;

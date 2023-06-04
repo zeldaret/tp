@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/kytag/d_a_kytag07/d_a_kytag07.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_stage.h"
 #include "d/d_procname.h"
 #include "f_op/f_op_overlap_mng.h"
@@ -88,19 +89,14 @@ extern actor_process_profile_definition g_profile_KYTAG07 = {
     7,                       // mListID
     -3,                      // mListPrio 
     PROC_KYTAG07,            // mProcName     
-    0,                       // padding 
     &g_fpcLf_Method.mBase,   // mSubMtd                    
     sizeof(kytag07_class),   // mSize                     
     0,                       // mSizeOther
     0,                       // mParameters       
     &g_fopAc_Method.base,    // mSubMtd                   
     0x0065,                  // mPriority     
-    0,                       // padding
-    0,                       // padding 
     &l_daKytag07_Method,     // mSubMtd                  
     0x00044000,              // mStatus          
     0,                       // mActorType
     0,                       // mCullType
-    0,                       // padding
-    0                        // padding
 };

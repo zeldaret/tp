@@ -2,6 +2,7 @@
 #define D_A_SPINNER_H
 
 #include "d/com/d_com_inf_game.h"
+#include "d/particle/d_particle_copoly.h"
 #include "dolphin/types.h"
 
 class daSpinner_c : public fopAc_ac_c {
@@ -46,6 +47,17 @@ public:
         speedF = speedF;
         field_0xa7a = param_1;
         mCyl.OnAtSetBit();
+    }
+
+    void clearPathMove() { mpPathMove = NULL; }
+
+    void setSpinnerTag(const cXyz& param_0) {
+        if (!mSpinnerTag) {
+            mSpinnerTag = 1;
+        }
+
+        clearPathMove();
+        field_0xaa4 = param_0;
     }
 
     bool reflectAccept() {

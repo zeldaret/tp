@@ -21,7 +21,7 @@ public:
 };
 
 namespace daTagSpinner_prm {
-u32 getSwNo(daTagSpinner_c* pActor) {
+inline u8 getSwNo(daTagSpinner_c* pActor) {
     return fopAcM_GetParam(pActor);
 }
 }  // namespace daTagSpinner_prm

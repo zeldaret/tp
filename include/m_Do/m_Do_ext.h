@@ -3,12 +3,21 @@
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
-#include "JSystem/JKernel/JKRAssertHeap.h"
-#include "JSystem/JKernel/JKRExpHeap.h"
-#include "JSystem/JKernel/JKRSolidHeap.h"
+#include "SSystem/SComponent/c_sxyz.h"
+#include "SSystem/SComponent/c_xyz.h"
+#include "Z2AudioLib/Z2SoundObject.h"
+#include "dolphin/gx/GXStruct.h"
 #include "global.h"
 #include "m_Do/m_Do_audio.h"
 #include "m_Do/m_Do_mtx.h"
+
+class JKRArchive;
+class JKRAssertHeap;
+class JKRExpHeap;
+class JKRHeap;
+class JKRSolidHeap;
+struct ResTIMG;
+class Z2Creature;
 
 class mDoExt_baseAnm {
 public:
@@ -262,6 +271,7 @@ public:
     bool isLoop() { return mFrameCtrl.checkState(2); }
     f32 getEndFrame() { return mFrameCtrl.getEnd(); }
     BOOL checkFrame(f32 frame) { return mFrameCtrl.checkPass(frame); }
+    J3DAnmTransform* getAnm() { return mpAnm; }
 
     bool isStop() {
         bool stopped = true;
@@ -435,7 +445,9 @@ public:
 
 class mDoExt_3DlineMatSortPacket : public J3DPacket {
 public:
-    mDoExt_3DlineMatSortPacket();
+    mDoExt_3DlineMatSortPacket() { mp3DlineMat = NULL; }
+
+    void reset() { mp3DlineMat = NULL; }
 
     /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
     virtual void draw();
@@ -505,7 +517,8 @@ public:
 
 class mDoExt_cylinderPacket : public J3DPacket {
 public:
-    mDoExt_cylinderPacket(cXyz& i_position, f32 i_radius, f32 i_height, const GXColor& i_color, u8 param_4) {
+    mDoExt_cylinderPacket(cXyz& i_position, f32 i_radius, f32 i_height, const GXColor& i_color,
+                          u8 param_4) {
         mPosition = i_position;
         mRadius = i_radius;
         mHeight = i_height;
@@ -555,6 +568,7 @@ JKRSolidHeap* mDoExt_createSolidHeapFromGameToCurrent(JKRHeap** o_heap, u32 i_si
 u32 mDoExt_adjustSolidHeapToSystem(JKRSolidHeap* i_heap);
 JKRHeap* mDoExt_getCurrentHeap();
 void mDoExt_removeMesgFont();
+void mDoExt_modelUpdate(J3DModel* i_model);
 void mDoExt_modelUpdateDL(J3DModel* i_model);
 J3DModel* mDoExt_J3DModel__create(J3DModelData* i_modelData, u32 param_1, u32 param_2);
 void mDoExt_setAraCacheSize(u32 size);

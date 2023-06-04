@@ -4,14 +4,18 @@
 //
 
 #include "d/kankyo/d_kankyo.h"
-#include "MSL_C/MSL_Common/Src/mem.h"
+#include "MSL_C/string.h"
+#include "JSystem/J3DGraphBase/J3DMatBlock.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/kankyo/d_kankyo_data.h"
+#include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
+#include "global.h"
 #include "m_Do/m_Do_audio.h"
 
 //

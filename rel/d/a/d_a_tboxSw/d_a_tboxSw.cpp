@@ -4,7 +4,10 @@
  */
 
 #include "rel/d/a/d_a_tboxSw/d_a_tboxSw.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 
 /* 80D66858-80D66860 000078 0008+00 1/1 0/0 0/0 .text            Create__10daTboxSw_cFv */
 int daTboxSw_c::Create() {
@@ -79,19 +82,14 @@ extern actor_process_profile_definition g_profile_TBOX_SW = {
     7,
     0xFFFD,
     PROC_TBOX_SW,
-    0000,
     &g_fpcLf_Method.mBase,
     sizeof(daTboxSw_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x020E,
-    0,
-    0,
     &l_daTboxSw_Method,
     0x00040100,
     0,
     14,
-    0,
-    0,
 };

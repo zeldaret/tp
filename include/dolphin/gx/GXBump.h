@@ -2,7 +2,6 @@
 #define GXBUMP_H
 
 #include "dolphin/gx/GXEnum.h"
-#include "dolphin/mtx/mtx.h"
 
 #ifdef __cplusplus
 extern "C" {

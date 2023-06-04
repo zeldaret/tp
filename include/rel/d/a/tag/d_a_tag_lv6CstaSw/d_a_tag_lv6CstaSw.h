@@ -2,6 +2,7 @@
 #define D_A_TAG_LV6CSTASW_H
 
 #include "d/com/d_com_inf_game.h"
+#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_hostIO.h"
 
 class daLv6CstaSw_c : public fopAc_ac_c {
@@ -26,7 +27,6 @@ public:
     /* 80D5B2EC */ daLv6CstaSw_HIO_c();
     /* 80D5B740 */ virtual ~daLv6CstaSw_HIO_c();
 
-    /* 0x04 */ s8 field_0x4;
 };
 
 #endif /* D_A_TAG_LV6CSTASW_H */

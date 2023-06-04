@@ -4,11 +4,11 @@
 #include "SSystem/SComponent/c_phase.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/types.h"
-#include "f_op/f_op_draw_tag.h"
-#include "f_op/f_op_view.h"
-#include "f_pc/f_pc_leaf.h"
 #include "d/d_camera.h"
+#include "dolphin/types.h"
+#include "f_op/f_op_view.h"
+
+typedef struct leafdraw_method_class leafdraw_method_class;
 
 class camera_process_class : public view_class {
 public:

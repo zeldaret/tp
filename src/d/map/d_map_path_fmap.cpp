@@ -4,7 +4,10 @@
 //
 
 #include "d/map/d_map_path_fmap.h"
+#include "MSL_C/float.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/map/d_map_path.h"
+#include "d/d_tresure.h"
 #include "dol2asm.h"
 
 //
@@ -336,10 +339,10 @@ SECTION_SDATA2 static f32 lit_3894[1 + 1 /* padding */] = {
  * buildFmapStageData__23dMenu_Fmap_stage_data_cFiff            */
 int dMenu_Fmap_stage_data_c::buildFmapStageData(int param_0, f32 param_1, f32 param_2) {
     dMenu_Fmap_room_data_c* room = mp_roomTop;
-    f32 fvar3 = __float_max[0];
-    f32 fvar4 = __float_max[0];
-    f32 fvar5 = -__float_max[0];
-    f32 fvar6 = -__float_max[0];
+    f32 fvar3 = FLT_MAX;
+    f32 fvar4 = FLT_MAX;
+    f32 fvar5 = -FLT_MAX;
+    f32 fvar6 = -FLT_MAX;
     int ivar = 0;
 
     for (; room != NULL; room = room->getNextData()) {

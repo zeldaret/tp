@@ -8,8 +8,11 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTDbPrint.h"
+#include "JSystem/JUtility/JUTProcBar.h"
 #include "dol2asm.h"
+#include "dolphin/gx/GX.h"
 #include "dolphin/mtx/mtx44.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 
 //
@@ -520,7 +523,7 @@ static void waitForTick(u32 param_0, u16 param_1) {
         OSMessage msg;
         do {
             if (!OSReceiveMessage(JUTVideo::getManager()->getMessageQueue(), &msg,
-                                  OS_MESSAGE_BLOCKING)) {
+                                  OS_MESSAGE_BLOCK)) {
                 msg = NULL;
             }
         } while ((int)msg - nextCount > 0);

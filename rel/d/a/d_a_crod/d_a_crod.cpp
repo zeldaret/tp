@@ -4,10 +4,13 @@
  */
 
 #include "rel/d/a/d_a_crod/d_a_crod.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_alink.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
-#include "rel/d/a/d_a_cstaf/d_a_cstaF.h"
+#include "f_op/f_op_actor_mng.h"
+#include "rel/d/a/d_a_cstaF/d_a_cstaF.h"
 #include "rel/d/a/d_a_cstatue/d_a_cstatue.h"
 
 #define RES_CROD_BALL_BMD 0x22
@@ -425,19 +428,14 @@ extern actor_process_profile_definition g_profile_CROD = {
     8,
     0xFFFD,
     PROC_CROD,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(daCrod_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x02B0,
-    0,
-    0,
     &l_daCrod_Method,
     0x00060000,
     5,
-    0,
-    0,
     0,
 };

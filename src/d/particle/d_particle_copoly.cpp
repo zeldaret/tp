@@ -3,6 +3,7 @@
 // Translation Unit: d/particle/d_particle_copoly
 //
 
+#include "SSystem/SComponent/c_bg_s_poly_info.h"
 #include "d/particle/d_particle_copoly.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"

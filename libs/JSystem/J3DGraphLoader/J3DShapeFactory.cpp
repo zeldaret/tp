@@ -7,27 +7,13 @@
 #include "JSystem/J3DGraphBase/J3DShape.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSupport.h"
-#include "dol2asm.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 //
 // Forward References:
 //
-
-extern "C" void __ct__15J3DShapeFactoryFRC13J3DShapeBlock();
-extern "C" void create__15J3DShapeFactoryFiUlP14_GXVtxDescList();
-extern "C" void newShapeMtx__15J3DShapeFactoryCFUlii();
-extern "C" void newShapeDraw__15J3DShapeFactoryCFii();
-extern "C" void allocVcdVatCmdBuffer__15J3DShapeFactoryFUl();
-extern "C" void calcSize__15J3DShapeFactoryFiUl();
-extern "C" void calcSizeVcdVatCmdBuffer__15J3DShapeFactoryFUl();
-extern "C" void calcSizeShapeMtx__15J3DShapeFactoryCFUlii();
-extern "C" void func_80337AE0(void* _this, void const*, u32);
-extern "C" void func_80337AF8(void* _this, void const*, u32);
-extern "C" void func_80337B10(void* _this, void const*, u32);
-extern "C" void func_80337B28(void* _this, void const*, u32);
-extern "C" extern char const* const J3DShapeFactory__stringBase0;
 
 //
 // External References:
@@ -36,23 +22,6 @@ extern "C" extern char const* const J3DShapeFactory__stringBase0;
 extern "C" J3DShapeInitData* func_80336764(const void*,
                                            const void*);  // JSUConvertOffsetToPtr<J3DShapeInitData>
 extern "C" u16* func_8033677C(const void*, const void*);  // JSUConvertOffsetToPtr<u16>
-
-extern "C" void* __nw__FUl();
-extern "C" void* __nwa__FUl();
-extern "C" void* __nwa__FUli();
-extern "C" void __ct__12J3DShapeDrawFPCUcUl();
-extern "C" void initialize__8J3DShapeFv();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__28J3DShapeMtxYBBoardConcatView[10];
-extern "C" extern void* __vt__27J3DShapeMtxBBoardConcatView[10];
-extern "C" extern void* __vt__26J3DShapeMtxMultiConcatView[10];
-extern "C" extern void* __vt__16J3DShapeMtxMulti[8];
-extern "C" extern void* __vt__21J3DShapeMtxConcatView[10];
-extern "C" extern void* __vt__11J3DShapeMtx[8 + 1 /* padding */];
-extern "C" extern void* __vt__8J3DShape[6];
 
 //
 // Declarations:
@@ -180,12 +149,10 @@ void J3DShapeFactory::allocVcdVatCmdBuffer(u32 count) {
 }
 
 /* 80337944-803379D8 332284 0094+00 0/0 1/1 0/0 .text            calcSize__15J3DShapeFactoryFiUl */
-#ifdef NONMATCHING
 s32 J3DShapeFactory::calcSize(int shapeNo, u32 flag) {
     s32 size = 0x68;
 
-    // regalloc
-    u32 mtxGroupNo = getMtxGroupNum(shapeNo);
+    s32 mtxGroupNo = getMtxGroupNum(shapeNo);
     size += mtxGroupNo * 4;
     size += mtxGroupNo * 4;
 
@@ -197,16 +164,6 @@ s32 J3DShapeFactory::calcSize(int shapeNo, u32 flag) {
 
     return size;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 J3DShapeFactory::calcSize(int param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/J3DGraphLoader/J3DShapeFactory/calcSize__15J3DShapeFactoryFiUl.s"
-}
-#pragma pop
-#endif
 
 /* 803379D8-803379E8 332318 0010+00 0/0 1/1 0/0 .text
  * calcSizeVcdVatCmdBuffer__15J3DShapeFactoryFUl                */

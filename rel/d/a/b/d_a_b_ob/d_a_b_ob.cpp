@@ -4,7 +4,9 @@
 //
 
 #include "rel/d/a/b/d_a_b_ob/d_a_b_ob.h"
+#include "d/a/d_a_player.h"
 #include "dol2asm.h"
+#include "m_Do/m_Do_graphic.h"
 
 //
 // Types:

@@ -1,9 +1,12 @@
 #ifndef JUTCACHEFONT_H
 #define JUTCACHEFONT_H
 
-#include "dolphin/types.h"
 #include "JSystem/JUtility/JUTResFont.h"
-#include "JSystem/JKernel/JKRAram.h"
+#include "dolphin/gx/GXEnum.h"
+#include "dolphin/types.h"
+#include "global.h"
+
+class JKRAramBlock;
 
 class JUTCacheFont : public JUTResFont {
 public:

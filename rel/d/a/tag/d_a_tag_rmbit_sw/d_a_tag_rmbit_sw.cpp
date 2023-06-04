@@ -4,6 +4,8 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_rmbit_sw/d_a_tag_rmbit_sw.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/d_procname.h"
 
 /* 80D5FAF8-80D5FB34 000078 003C+00 2/2 0/0 0/0 .text            __ct__14daTagRmbitSw_cFv */
 daTagRmbitSw_c::daTagRmbitSw_c() {}
@@ -144,19 +146,14 @@ extern actor_process_profile_definition g_profile_Tag_RmbitSw = {
     7,
     -3,
     PROC_Tag_RmbitSw,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(daTagRmbitSw_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x02EC,
-    0,
-    0,
     &daTagRmbitSw_METHODS,
     0x00040000,
     0,
     0x0E,
-    0,
-    0,
 };

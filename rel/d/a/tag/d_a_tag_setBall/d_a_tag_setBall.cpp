@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_setBall/d_a_tag_setBall.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 80D601F8-80D60218 000078 0020+00 1/1 0/0 0/0 .text            initBaseMtx__14daTagSetBall_cFv */
@@ -76,19 +77,14 @@ extern actor_process_profile_definition g_profile_Tag_SetBall = {
     7,
     0xFFFD,
     PROC_Tag_SetBall,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(daTagSetBall_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x023F,
-    0,
-    0,
     &l_daTagSetBall_Method,
     0x00040100,
     0,
     14,
-    0,
-    0,
 };

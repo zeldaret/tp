@@ -4,13 +4,19 @@
 //
 
 #include "d/meter/d_meter2_info.h"
+#include "JSystem/J2DGraph/J2DTextBox.h"
+#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/meter/d_meter2.h"
+#include "d/meter/d_meter_map.h"
 #include "d/msg/d_msg_object.h"
 #include "d/save/d_save.h"
 #include "dol2asm.h"
+#include "dolphin/os/OSCache.h"
 #include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 #include "d/d_item_data.h"
+#include "global.h"
 
 //
 // Forward References:
@@ -326,7 +332,7 @@ int dMeter2Info_c::setFloatingFlow(u16 flowID, s16 msgTimer, bool wakuVisible) {
 
 /* 8021C1DC-8021C1F0 216B1C 0014+00 0/0 4/4 0/0 .text isFloatingMessageVisible__13dMeter2Info_cFv
  */
-int dMeter2Info_c::isFloatingMessageVisible() {
+bool dMeter2Info_c::isFloatingMessageVisible() {
     return mFloatingMessageTimer > 0;
 }
 
@@ -1348,8 +1354,8 @@ s16 dMeter2Info_getNowLifeGauge() {
 }
 
 /* 8021E2C8-8021E2DC 218C08 0014+00 0/0 11/11 3/3 .text dMeter2Info_getNumberTextureName__Fi */
-char* dMeter2Info_getNumberTextureName(int nameIdx) {
-    static char* tex_name[10] = {
+const char* dMeter2Info_getNumberTextureName(int nameIdx) {
+    static const char* tex_name[10] = {
         "im_font_number_32_32_ganshinkyo_0_02.bti",
         "im_font_number_32_32_ganshinkyo_1_02.bti",
         "im_font_number_32_32_ganshinkyo_2_02.bti",
@@ -1365,8 +1371,8 @@ char* dMeter2Info_getNumberTextureName(int nameIdx) {
     return tex_name[nameIdx];
 }
 
-char* dMeter2Info_getPlusTextureName() {
-    static char* tex_name;
+const char* dMeter2Info_getPlusTextureName() {
+    static const char* tex_name;
     static s8 initTexName;
 
     if (!initTexName) {

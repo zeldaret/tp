@@ -1,7 +1,9 @@
 #ifndef F_F_OP_DRAW_TAG
 #define F_F_OP_DRAW_TAG
 
-#include "SSystem/SComponent/c_tag.h"
+#include "SSystem/SComponent/c_tree.h"
+
+typedef struct create_tag_class create_tag_class;
 
 extern node_lists_tree_class g_fopDwTg_Queue;
 

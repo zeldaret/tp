@@ -1,17 +1,13 @@
 #ifndef JASWAVEARCLOADER_H
 #define JASWAVEARCLOADER_H
 
+#include "JSystem/JSupport/JSUList.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-#include "global.h"
-
-#include "MSL_C/MSL_Common/Src/string.h"
 #include "dolphin/os/OSMutex.h"
+#include "dolphin/types.h"
 
-#include "JSystem/JAudio2/JASDvdThread.h"
-#include "JSystem/JAudio2/JASHeapCtrl.h"
-#include "JSystem/JKernel/JKRDvdAramRipper.h"
-#include "JSystem/JKernel/JKRSolidHeap.h"
+class JKRHeap;
+class JKRSolidHeap;
 
 struct JASDisposer {
     JASDisposer() {}

@@ -2,11 +2,11 @@
 #define D_EVENT_D_EVENT_H
 
 #include "d/a/d_a_itembase.h"
-#include "d/a/d_a_player.h"
-#include "d/d_stage.h"
-#include "d/event/d_event_manager.h"
-#include "d/save/d_save.h"
 #include "dolphin/types.h"
+#include "global.h"
+
+struct dStage_MapEvent_dt_c;
+class fopAc_ac_c;
 
 #if DEBUG
 class dEvDb_bit_c {
@@ -143,6 +143,7 @@ public:
 
     u16 chkFlag2(u16 flag) { return flag & mFlag2; }
     bool runCheck() { return mEventStatus != 0; }
+    f32 getCullRate() { return mCullRate; }
     u16 chkEventFlag(u16 flag) { return flag & mEventFlag; }
     void onEventFlag(u16 flag) { mEventFlag |= flag; }
     void offEventFlag(u16 flag) { mEventFlag &= ~flag; }

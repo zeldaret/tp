@@ -4,17 +4,21 @@
 */
 
 #include "m_Do/m_Do_dvd_thread.h"
+#include "JSystem/JAudio2/JASDvdThread.h"
+#include "JSystem/JAudio2/JASTaskThread.h"
+#include "JSystem/JKernel/JKRAssertHeap.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JKernel/JKRMemArchive.h"
 #include "JSystem/JKernel/JKRThread.h"
 #include "SSystem/SComponent/c_list.h"
 #include "SSystem/SComponent/c_node.h"
 #include "dol2asm.h"
 #include "dolphin/dvd/dvd.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
-#include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_Reset.h"
-#include "JSystem/JAudio2/JASDvdThread.h"
-#include "JSystem/JAudio2/JASTaskThread.h"
+#include "m_Do/m_Do_ext.h"
 
 /* 800157FC-80015858 01013C 005C+00 1/1 0/1 0/0 .text            main__9mDoDvdThdFPv */
 s32 mDoDvdThd::main(void* param_0) {
@@ -68,13 +72,13 @@ mDoDvdThd_param_c::mDoDvdThd_param_c() {
 
 /* 8001598C-800159B4 0102CC 0028+00 2/2 0/0 0/0 .text            kick__17mDoDvdThd_param_cFv */
 void mDoDvdThd_param_c::kick() {
-    OSSendMessage(&mMessageQueue, NULL, OS_MESSAGE_NON_BLOCKING);
+    OSSendMessage(&mMessageQueue, NULL, OS_MESSAGE_NOBLOCK);
 }
 
 /* 800159B4-800159DC 0102F4 0028+00 1/1 0/0 0/0 .text            waitForKick__17mDoDvdThd_param_cFv
  */
 s32 mDoDvdThd_param_c::waitForKick() {
-    return OSReceiveMessage(&mMessageQueue, NULL, OS_MESSAGE_BLOCKING);
+    return OSReceiveMessage(&mMessageQueue, NULL, OS_MESSAGE_BLOCK);
 }
 
 /* 800159DC-800159E4 01031C 0008+00 1/1 0/0 0/0 .text getFirstCommand__17mDoDvdThd_param_cFv */

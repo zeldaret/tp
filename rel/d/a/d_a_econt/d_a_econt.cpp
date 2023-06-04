@@ -4,8 +4,11 @@
  */
 
 #include "rel/d/a/d_a_econt/d_a_econt.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 #include "d/d_timer.h"
+#include "d/meter/d_meter2_info.h"
+#include "f_op/f_op_actor_mng.h"
 #include "f_pc/f_pc_executor.h"
 
 extern "C" extern u8 data_805197E0[4];
@@ -96,19 +99,14 @@ extern actor_process_profile_definition g_profile_ECONT = {
     8,                      // mListID 
     -3,                     // mListPrio  
     PROC_ECONT,             // mProcName          
-    0,                      // padding  
     &g_fpcLf_Method.mBase,  // mSubMtd                     
     sizeof(econt_class),    // mSize                    
     0,                      // mSizeOther 
     0,                      // mParameters        
     &g_fopAc_Method.base,   // mSubMtd                    
     0x009B,                 // mPriority      
-    0,                      // padding 
-    0,                      // padding  
     &l_daEcont_Method,      // mSubMtd                 
     0x00044000,             // mStatus           
     0,                      // mActorType 
-    0,                      // mCullType 
-    0,                      // padding 
-    0                       // padding
+    0,                      // mCullType
 };

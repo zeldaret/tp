@@ -1,11 +1,13 @@
 #ifndef OSINTERRUPT_H
 #define OSINTERRUPT_H
 
-#include "dolphin/os/OSContext.h"
+#include "dolphin/types.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+typedef struct OSContext OSContext;
 
 typedef enum {
     OS_INTR_MEM_0,

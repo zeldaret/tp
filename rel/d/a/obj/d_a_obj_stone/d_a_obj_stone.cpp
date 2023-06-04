@@ -7,10 +7,14 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_stone/d_a_obj_stone.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JMath/JMath.h"
+#include "SSystem/SComponent/c_math.h"
+#include "d/d_lib.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "SSystem/SComponent/c_math.h"
-#include "JSystem/JMath/JMath.h"
+#include "global.h"
 
 //
 // Forward References:
@@ -564,21 +568,16 @@ extern actor_process_profile_definition g_profile_Obj_Stone = {
     8,                       // mListID
     -3,                      // mListPrio 
     PROC_Obj_Stone,          // mProcName             
-    0,                       // padding 
     &g_fpcLf_Method.mBase,   // mSubMtd                    
     sizeof(daObjStone_c),    // mSize                    
     0,                       // mSizeOther
     0,                       // mParameters       
     &g_fopAc_Method.base,    // mSubMtd                   
     0x01FF,                  // mPriority     
-    0,                       // padding
-    0,                       // padding 
     &l_daObjStone_Method,    // mSubMtd                   
     0x00040100,              // mStatus          
     0,                       // mActorType
     23,                      // mCullType 
-    0,                       // padding
-    0,                       // padding
 };
 
 /* 80CECD74-80CECDA4 000120 0030+00 2/2 0/0 0/0 .data            __vt__14dBgS_ObjGndChk */

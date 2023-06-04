@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/kytag/d_a_kytag05/d_a_kytag05.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 #include "f_op/f_op_actor_mng.h"
 
@@ -62,19 +63,14 @@ extern actor_process_profile_definition g_profile_KYTAG05 = {
     7,
     0xFFFD,
     PROC_KYTAG05,
-    0000,
     &g_fpcLf_Method.mBase,
     sizeof(kytag05_class),
     0,
     0,
     &g_fopAc_Method.base,
     0x0063,
-    0,
-    0,
     &l_daKytag05_Method,
     0x00044000,
-    0,
-    0,
     0,
     0,
 };

@@ -2,9 +2,11 @@
 #define C_M3D_G_SPH_H_
 
 #include "SSystem/SComponent/c_m3d.h"
-#include "SSystem/SComponent/c_m3d_g_cyl.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
+#include "global.h"
+
+class cM3dGCyl;
 
 struct cM3dGSphS {
     /* 0x0 */ Vec mCenter;

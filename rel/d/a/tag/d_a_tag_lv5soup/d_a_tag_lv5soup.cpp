@@ -4,6 +4,8 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_lv5soup/d_a_tag_lv5soup.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 
 /* 80D5AD58-80D5ADEC 000078 0094+00 1/1 0/0 0/0 .text            create__15daTag_Lv5Soup_cFv */
@@ -100,19 +102,14 @@ extern actor_process_profile_definition g_profile_TAG_LV5SOUP = {
     7,
     0xFFFD,
     0x122,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(daTag_Lv5Soup_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x0046,
-    0,
-    0,
     &daTag_Lv5Soup_MethodTable,
     0x00064100,
     5,
     14,
-    0,
-    0,
 };

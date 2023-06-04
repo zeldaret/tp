@@ -1,8 +1,11 @@
 #ifndef D_D_MODEL_H
 #define D_D_MODEL_H
 
-#include "d/com/d_com_inf_game.h"
+#include "JSystem/J3DGraphBase/J3DPacket.h"
 #include "dolphin/types.h"
+
+class J3DModelData;
+class dKy_tevstr_c;
 
 class dMdl_obj_c {
 public:
@@ -43,7 +46,7 @@ public:
     /* 8009C8D8 */ dMdl_c* entry(J3DModelData*, u16, int);
     /* 8009C7AC */ static void create();
     /* 8009C864 */ void remove();
-    /* 8009C8C0 */ void reset();
+    /* 8009C8C0 */ static void reset();
 
     static dMdl_mng_c* m_myObj;
 

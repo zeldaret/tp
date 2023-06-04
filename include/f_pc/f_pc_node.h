@@ -5,6 +5,7 @@
 #include "f_pc/f_pc_base.h"
 #include "f_pc/f_pc_layer.h"
 #include "f_pc/f_pc_method.h"
+#include "f_pc/f_pc_profile.h"
 
 typedef struct nodedraw_method_class {
     process_method_class mBase;

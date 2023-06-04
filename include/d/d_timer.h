@@ -2,13 +2,17 @@
 #define D_D_TIMER_H
 
 #include "JSystem/J2DGraph/J2DPane.h"
-#include "JSystem/JKernel/JKRExpHeap.h"
 #include "SSystem/SComponent/c_phase.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "f_op/f_op_msg.h"
+#include "d/d_drawlist.h"
 #include "d/msg/d_msg_object.h"
 #include "dolphin/os/OSTime.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_msg.h"
+
+class CPaneMgr;
+class JKRArchive;
+class JKRExpHeap;
 
 s32 dTimer_createStockTimer();
 s32 dTimer_createTimer(s32 param_0, u32 param_1, u8 param_2, u8 param_3, f32 param_4, f32 param_5,
@@ -34,7 +38,7 @@ public:
     /* 8025EB20 */ void hideDenominator();
     /* 8025EC5C */ void deleteScreen();
     /* 8025EE24 */ void changeNumberTexture(J2DPane*, int);
-    /* 8025EECC */ char* getNumber(int);
+    /* 8025EECC */ const char* getNumber(int);
     /* 8025EEF0 */ void setTimer(int);
     /* 8025F180 */ void setCounter(u8, u8);
     /* 8025FA00 */ void setParentPos(f32, f32);

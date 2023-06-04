@@ -5,12 +5,18 @@
 
 #include "d/meter/d_meter2_draw.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "d/a/d_a_alink.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_kantera_icon_meter.h"
+#include "d/meter/d_meter2_info.h"
 #include "d/meter/d_meter_HIO.h"
 #include "d/msg/d_msg_object.h"
+#include "d/pane/d_pane_class.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "global.h"
 
 //
 // Forward References:
@@ -273,7 +279,7 @@ SECTION_DEAD static char const* const stringBase_803989BF = "";
 #pragma pop
 
 /* 803BF328-803BF350 -00001 0028+00 1/1 0/0 0/0 .data            bmg_filename$3954 */
-SECTION_DATA static char* bmg_filename[10] = {
+SECTION_DATA static const char* bmg_filename[10] = {
     "zel_00.bmg", "zel_01.bmg", "zel_02.bmg", "zel_03.bmg", "zel_04.bmg",
     "zel_05.bmg", "zel_06.bmg", "zel_07.bmg", "zel_08.bmg", "zel_99.bmg",
 };
@@ -948,7 +954,7 @@ void dMeter2Draw_c::init() {
 }
 
 /* 8021135C-8021151C 20BC9C 01C0+00 0/0 1/1 0/0 .text            exec__13dMeter2Draw_cFUl */
-void dMeter2Draw_c::exec(u32 param_0) {
+void dMeter2Draw_c::exec(u32 i_status) {
     if (mHUDScale != g_drawHIO.mHUDScale) {
         mHUDScale = g_drawHIO.mHUDScale;
         mpParent->scale(g_drawHIO.mHUDScale, g_drawHIO.mHUDScale);
@@ -959,7 +965,7 @@ void dMeter2Draw_c::exec(u32 param_0) {
         mpParent->setAlphaRate(g_drawHIO.mHUDAlpha);
     }
 
-    if (param_0 & 0x1000000) {
+    if (i_status & 0x1000000) {
         if (mButtonsPosX != g_drawHIO.mRingHUDButtonsPosX ||
             mButtonsPosY != g_drawHIO.mRingHUDButtonsPosY)
         {
@@ -2105,7 +2111,7 @@ asm void dMeter2Draw_c::drawButtonXY(int param_0, u8 param_1, u8 param_2, bool p
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Draw_c::getButtonCrossParentInitTransY() {
+asm f32 dMeter2Draw_c::getButtonCrossParentInitTransY() {
     nofralloc
 #include "asm/d/meter/d_meter2_draw/getButtonCrossParentInitTransY__13dMeter2Draw_cFv.s"
 }
@@ -2332,7 +2338,7 @@ static u8 i_text_buf[32];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Draw_c::getActionString(u8 param_0, u8 param_1, u8* param_2) {
+asm char* dMeter2Draw_c::getActionString(u8 param_0, u8 param_1, u8* param_2) {
     nofralloc
 #include "asm/d/meter/d_meter2_draw/getActionString__13dMeter2Draw_cFUcUcPUc.s"
 }
@@ -2687,7 +2693,7 @@ bool dMeter2Draw_c::getCanoeFishing() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Draw_c::getCameraSubject() {
+asm bool dMeter2Draw_c::getCameraSubject() {
     nofralloc
 #include "asm/d/meter/d_meter2_draw/getCameraSubject__13dMeter2Draw_cFv.s"
 }
@@ -2698,7 +2704,7 @@ asm void dMeter2Draw_c::getCameraSubject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Draw_c::getItemSubject() {
+asm bool dMeter2Draw_c::getItemSubject() {
     nofralloc
 #include "asm/d/meter/d_meter2_draw/getItemSubject__13dMeter2Draw_cFv.s"
 }
@@ -2714,7 +2720,7 @@ bool dMeter2Draw_c::getPlayerSubject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Draw_c::isBButtonShow(bool param_0) {
+asm bool dMeter2Draw_c::isBButtonShow(bool param_0) {
     nofralloc
 #include "asm/d/meter/d_meter2_draw/isBButtonShow__13dMeter2Draw_cFb.s"
 }

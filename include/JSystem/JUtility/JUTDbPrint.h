@@ -1,9 +1,10 @@
 #ifndef JUTDBPRINT_H
 #define JUTDBPRINT_H
 
-#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTFont.h"
 #include "dolphin/types.h"
+
+class JKRHeap;
 
 // TODO: fix struct
 struct unk_print {

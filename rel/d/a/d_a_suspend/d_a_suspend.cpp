@@ -4,66 +4,23 @@
 //
 
 #include "rel/d/a/d_a_suspend/d_a_suspend.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Forward References:
-//
-
-extern "C" void create__7daSus_cFv();
-extern "C" static void daSus_create__FP7daSus_c();
-extern "C" extern void* g_profile_SUSPEND[12];
-
-//
-// External References:
-//
-
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void newData__7daSus_cFScRC4cXyzRC4cXyzUcUcUc();
-
-/* ############################################################################################## */
-/* 804D523C-804D5240 000000 0004+00 1/1 0/0 0/0 .rodata          @3640 */
-SECTION_RODATA static f32 const lit_3640 = 1250.0f;
-COMPILER_STRIP_GATE(0x804D523C, &lit_3640);
-
-/* 804D5240-804D5244 000004 0004+00 0/1 0/0 0/0 .rodata          @3641 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3641 = 2500.0f;
-COMPILER_STRIP_GATE(0x804D5240, &lit_3641);
-#pragma pop
-
-/* 804D5244-804D5248 000008 0004+00 0/1 0/0 0/0 .rodata          @3642 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3642 = 125.0f;
-COMPILER_STRIP_GATE(0x804D5244, &lit_3642);
-#pragma pop
-
-/* 804D5248-804D524C 00000C 0004+00 0/1 0/0 0/0 .rodata          @3643 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3643 = 250.0f;
-COMPILER_STRIP_GATE(0x804D5248, &lit_3643);
-#pragma pop
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 
 /* 804D5118-804D51E0 000078 00C8+00 1/1 0/0 0/0 .text            create__7daSus_cFv */
-#ifdef NONMATCHING
-// missing mr instruction
 int daSus_c::create() {
-    daSus_c* suspend = static_cast<daSus_c*>(this);
-    s8 roomNo = fopAcM_GetRoomNo(suspend);
+    s8 roomNo = fopAcM_GetRoomNo(this);
 
     if (roomNo < 0) {
-        roomNo = suspend->getRoom();
+        roomNo = getRoom();
     }
 
-    u8 sw = suspend->getSw();
-    u8 arg0 = suspend->getArg0();
-    u8 arg1 = suspend->getArg1();
+    u8 sw = getSw();
+    u8 arg0 = getArg0();
+    u8 arg1 = getArg1();
 
-    if (suspend->getScale() != 0) {
+    if (getScale() != 0) {
         mScale.x *= 1250.0f;
         mScale.y *= 2500.0f;
         mScale.z *= 1250.0f;
@@ -73,19 +30,9 @@ int daSus_c::create() {
         mScale.z *= 125.0f;
     }
 
-    newData(roomNo,current.pos,mScale,sw,arg0,arg1);
+    newData(roomNo, current.pos, mScale, sw, arg0, arg1);
     return cPhs_COMPLEATE_e;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daSus_c::create() {
-    nofralloc
-#include "asm/rel/d/a/d_a_suspend/d_a_suspend/create__7daSus_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 804D51E0-804D5234 000140 0054+00 1/0 0/0 0/0 .text            daSus_create__FP7daSus_c */
 static int daSus_create(daSus_c* i_this) {
@@ -93,24 +40,29 @@ static int daSus_create(daSus_c* i_this) {
         new (i_this) daSus_c();
         fopAcM_OnCondition(i_this, 8);
     }
+
     return i_this->create();
 }
 /* ############################################################################################## */
 /* 804D524C-804D526C -00001 0020+00 1/0 0/0 0/0 .data            daSus_METHODS */
-SECTION_DATA static void* daSus_METHODS[8] = {
-    (void*)daSus_create__FP7daSus_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class daSus_METHODS = {
+    (process_method_func)daSus_create, NULL, NULL, NULL, NULL,
 };
 
 /* 804D526C-804D529C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_SUSPEND */
-SECTION_DATA extern void* g_profile_SUSPEND[12] = {
-    (void*)0xFFFFFFFD, (void*)0x000BFFFD,     (void*)0x030F0000, (void*)&g_fpcLf_Method,
-    (void*)0x00000568, (void*)NULL,           (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x02FB0000, (void*)&daSus_METHODS, (void*)0x00060000, (void*)0x05000000,
+extern actor_process_profile_definition g_profile_SUSPEND = {
+    -3,
+    11,
+    -3,
+    PROC_SUSPEND,
+    &g_fpcLf_Method.mBase,
+    sizeof(daSus_c),
+    0,
+    0,
+    &g_fopAc_Method.base,
+    763,
+    &daSus_METHODS,
+    0x00060000,
+    5,
+    0,
 };

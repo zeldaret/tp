@@ -1,10 +1,11 @@
 #ifndef J2DTEXTBOXEX_H
 #define J2DTEXTBOXEX_H
 
-#include "JSystem/J2DGraph/J2DMaterial.h"
-#include "JSystem/J2DGraph/J2DPrint.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
+#include "dolphin/gx/GXEnum.h"
 #include "dolphin/types.h"
+
+class J2DMaterial;
 
 class J2DTextBoxEx : public J2DTextBox {
 public:

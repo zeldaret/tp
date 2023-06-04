@@ -1,9 +1,10 @@
 #ifndef JSUFILESTREAM_H
 #define JSUFILESTREAM_H
 
-#include "JSystem/JKernel/JKRFile.h"
 #include "JSystem/JSupport/JSURandomInputStream.h"
 #include "dolphin/types.h"
+
+class JKRFile;
 
 class JSUFileInputStream : public JSURandomInputStream {
 public:

@@ -4,11 +4,19 @@
 //
 
 #include "d/s/d_s_name.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
+#include "d/meter/d_meter2_info.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_overlap_mng.h"
+#include "f_op/f_op_scene.h"
+#include "f_pc/f_pc_manager.h"
+#include "global.h"
+#include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_audio.h"
+#include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_machine.h"
 #include "m_Do/m_Do_mtx.h"
 #include "f_op/f_op_overlap_mng.h"
@@ -378,31 +386,19 @@ void dScnName_c::FileSelectMain() {
 }
 
 /* 80258E78-80258F20 2537B8 00A8+00 1/1 0/0 0/0 .text FileSelectMainNormal__10dScnName_cFv */
-#ifdef NONMATCHING
-// Instructions in wrong order
 void dScnName_c::FileSelectMainNormal() {
     switch(dFs_c->isSelectEnd()) {
-    case true:
+    case 1:
         field_0x41e = 15;
         mDoGph_gInf_c::setFadeColor(*(JUtility::TColor*)&g_blackColor);
         mDoGph_gInf_c::startFadeOut(15);
         field_0x41d = 2;
         field_0x420 = 1;
+        break;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dScnName_c::FileSelectMainNormal() {
-    nofralloc
-#include "asm/d/s/d_s_name/FileSelectMainNormal__10dScnName_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80258F20-80258FD4 253860 00B4+00 1/0 0/0 0/0 .text            FileSelectClose__10dScnName_cFv */
-#ifdef NONMATCHING
 void dScnName_c::FileSelectClose() {
     field_0x41e--;
 
@@ -415,16 +411,6 @@ void dScnName_c::FileSelectClose() {
         field_0x420 = 0;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dScnName_c::FileSelectClose() {
-    nofralloc
-#include "asm/d/s/d_s_name/FileSelectClose__10dScnName_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80258FD4-80259008 253914 0034+00 1/0 0/0 0/0 .text            brightCheckOpen__10dScnName_cFv */
 void dScnName_c::brightCheckOpen() {

@@ -1,15 +1,19 @@
 #ifndef D_MSG_D_MSG_OBJECT_H
 #define D_MSG_D_MSG_OBJECT_H
 
-#include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JMessage/control.h"
-#include "JSystem/JMessage/processor.h"
 #include "JSystem/JMessage/resource.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/msg/d_msg_class.h"
+#include "f_op/f_op_msg.h"
 
 class COutFont_c;
+class J2DTextBox;
+class JUTFont;
 class dMsgScrnBase_c;
+class dMsgString_c;
+struct jmessage_tReference;
+struct jmessage_tRenderingProcessor;
+struct jmessage_tSequenceProcessor;
 
 class dMsgObject_c : public msg_class {
 public:
@@ -93,7 +97,7 @@ public:
     /* 802379AC */ static void setKillMessageFlag();
     /* 802379D8 */ void setKillMessageFlagLocal();
     /* 80237A74 */ static void setTalkPartner(fopAc_ac_c*);
-    /* 80237A88 */ void setNowTalkFlowNo(s16);
+    /* 80237A88 */ static void setNowTalkFlowNo(s16);
     /* 80237A9C */ void getNowTalkFlowNo();
     /* 80237AB0 */ void setDemoMessage(u32);
     /* 80237AE0 */ void setTalkHeap(void*);
@@ -146,12 +150,12 @@ public:
     /* 80238500 */ void getMsgOutputType();
     /* 80238514 */ static const char* getWord();
     /* 80238528 */ void getSelectWord(int);
-    /* 80238544 */ void setSelectWordFlag(u8);
+    /* 80238544 */ static void setSelectWordFlag(u8);
     /* 80238574 */ void getSelectWordFlag();
     /* 80238588 */ bool isHowlHearingMode();
     /* 802385B4 */ static u8 getSelectBombBagID();
     /* 802385E0 */ static s16 getSelectBombPrice();
-    /* 8023860C */ void setEquipBombInfo();
+    /* 8023860C */ static void setEquipBombInfo();
     /* 80238638 */ u8 getItemEquipButton();
     /* 8023864C */ static void setSelectCancelPos(u8);
 
@@ -167,6 +171,7 @@ public:
     void onAutoMessageFlagLocal() { mAutoMessageFlag = 1; }
     void setFundRaisingValueLocal(s16 i_value) { mFundRaisingValue = i_value; }
     u16 getPortalMessageIDLocal() { return mPortalMessageID; }
+    bool isAutoMessageFlagLocal() { return mAutoMessageFlag; }
 
     u8 getSelectPushFlag() { return mSelectPushFlag; }
     u8 getSelectCancelPos() { return mSelectCancelPos; }
@@ -179,6 +184,7 @@ public:
     void onAutoMessageFlag() { onAutoMessageFlagLocal(); }
     void setFundRaisingValue(s16 i_value) { setFundRaisingValueLocal(i_value); }
     u16 getPortalMessageID() { return getPortalMessageIDLocal(); }
+    bool isAutoMessageFlag() { return isAutoMessageFlagLocal(); }
 
     jmessage_tSequenceProcessor* getSequenceProcessor() { return mpSeqProc; }
 
@@ -332,6 +338,21 @@ inline void dMsgObject_setSmellType(u8 type) {
     dMsgObject_c::setSmellType(type);
 }
 
+inline void dMsgObject_setTalkPartner(fopAc_ac_c *actor) {
+    dMsgObject_getMsgObjectClass()->setTalkPartner(actor);
+}
+
+inline void dMsgObject_setSelectWordFlag(u8 flag) {
+    dMsgObject_getMsgObjectClass()->setSelectWordFlag(flag);
+}
+
+inline void dMsgObject_setNowTalkFlowNo(s16 nowTalkFlowNo) {
+    dMsgObject_c::setNowTalkFlowNo(nowTalkFlowNo);
+}
+
+inline void dMsgObject_setEquipBombInfo() {
+    dMsgObject_c::setEquipBombInfo();
+}
 
 class dMsgObject_HowlHIO_c {
 public:
@@ -486,7 +507,7 @@ public:
     /* 0x2F0 */ u16 mPikariHaloDelay_spirit;
     /* 0x2F2 */ u8 mStageTitleDisplayType;
     /* 0x2F4 */ s16 mMsgIndex;
-    /* 0x2F6 */ u16 mFlowIndex;
+    /* 0x2F6 */ s16 mFlowIndex;
     /* 0x2F8 */ u16 mSaveSeqMsgIndex;
     /* 0x2FA */ u16 mSelWeightFrame;
     /* 0x2FC */ u16 mBoxAppearBound;

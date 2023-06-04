@@ -4,7 +4,10 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_enemy_create/d_a_obj_enemy_create.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/a/d_a_player.h"
 #include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 
 /* 80BE3178-80BE3198 000078 0020+00 1/0 0/0 0/0 .text daObjE_CREATE_Create__FP10fopAc_ac_c */
 static int daObjE_CREATE_Create(fopAc_ac_c* i_this) {
@@ -277,19 +280,14 @@ extern actor_process_profile_definition g_profile_Obj_E_CREATE = {
     3,
     0xFFFD,
     PROC_Obj_E_CREATE,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(daObjE_CREATE_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x01CA,
-    0,
-    0,
     &l_daObjE_CREATE_Method,
     0x00040000,
     0x0,
     0xE,
-    0,
-    0,
 };

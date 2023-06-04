@@ -1,12 +1,14 @@
 #ifndef GDGEOMETRY_H
 #define GDGEOMETRY_H
 
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx/GXEnum.h"
 #include "dolphin/types.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+typedef struct _GXVtxDescList GXVtxDescList;
 
 void GDSetVtxDescv(GXVtxDescList*);
 void GDSetArray(GXAttr attr, const void* data, u8 stride);

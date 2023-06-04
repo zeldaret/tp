@@ -1,7 +1,8 @@
 #ifndef J3DSHAPEFACTORY_H
 #define J3DSHAPEFACTORY_H
 
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx/GXAttr.h"
+#include "dolphin/mtx/vec.h"
 #include "dolphin/types.h"
 
 struct J3DShape;

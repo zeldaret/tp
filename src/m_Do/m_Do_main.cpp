@@ -9,9 +9,12 @@
 #include "JSystem/JFramework/JFWSystem.h"
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JUtility/JUTReport.h"
+#include "Z2AudioLib/Z2SoundInfo.h"
+#include "Z2AudioLib/Z2WolfHowlMgr.h"
 #include "c/c_dylink.h"
 #include "d/com/d_com_inf_game.h"
 #include "f_ap/f_ap_game.h"
+#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_MemCard.h"
 #include "m_Do/m_Do_machine.h"
 
@@ -181,11 +184,11 @@ static bool mCheckHeap;
 
 /* 80005AD8-80005D4C 000418 0274+00 1/1 0/0 0/0 .text            debugDisplay__Fv */
 void debugDisplay() {
-    static char* desc1[5] = {
+    static const char* desc1[5] = {
         "", "TotalFree", "MaxUsed  ", "Used     ", "RelUsed  ",
     };
 
-    static char* desc2[5] = {
+    static const char* desc2[5] = {
         "", "/ MaxFree", "/HeapSize", "Blk/Bytes", "Blk/Bytes",
     };
 

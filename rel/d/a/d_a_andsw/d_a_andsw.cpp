@@ -4,7 +4,9 @@
  */
 
 #include "rel/d/a/d_a_andsw/d_a_andsw.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 
 /* 80457978-804579B8 000078 0040+00 1/1 0/0 0/0 .text            Create__9daAndsw_cFv */
 int daAndsw_c::Create() {
@@ -82,19 +84,14 @@ extern actor_process_profile_definition g_profile_ANDSW = {
     7,                      // mListID
     -3,                     // mListPrio
     PROC_ANDSW,             // mProcName
-    0,                      // padding
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daAndsw_c),      // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
     0x012E,                 // mPriority
-    0,                      // padding
-    0,                      // padding
     &l_daAndsw_Method,      // mSubMtd
     0x00040000,             // mStatus
     0,                      // mActorType
     0x0E,                   // mCullType
-    0,                      // padding
-    0                       // padding
 };

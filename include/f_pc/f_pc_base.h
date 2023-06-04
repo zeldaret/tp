@@ -2,17 +2,16 @@
 #ifndef F_PC_BASE_H_
 #define F_PC_BASE_H_
 
-#include "SSystem/SComponent/c_tag.h"
 #include "dolphin/types.h"
-// #include "f/f_pc/f_pc_method.h"
 #include "f_pc/f_pc_delete_tag.h"
 #include "f_pc/f_pc_layer_tag.h"
 #include "f_pc/f_pc_line_tag.h"
 #include "f_pc/f_pc_priority.h"
-#include "f_pc/f_pc_profile.h"
 
-struct create_request;
-struct profile_method_class;
+typedef struct create_request create_request;
+typedef struct process_method_class process_method_class; 
+typedef struct process_profile_definition process_profile_definition;
+typedef struct profile_method_class profile_method_class;
 
 typedef struct base_process_class {
     /* 0x00 */ u32 mBsType;

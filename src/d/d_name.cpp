@@ -5,9 +5,18 @@
 
 #include "d/d_name.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
+#include "JSystem/J2DGraph/J2DTextBox.h"
+#include "MSL_C/stdio.h"
+#include "MSL_C/string.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_lib.h"
+#include "d/d_select_cursor.h"
+#include "d/pane/d_pane_class.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_msg_mng.h"
+#include "global.h"
+#include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_audio.h"
 
 //
@@ -126,7 +135,7 @@ SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
 };
 
 /* 803C1F5C-803C2060 -00001 0104+00 0/3 0/0 0/0 .data            l_mojiHira */
-SECTION_DATA static char* l_mojiHira[65] = {
+SECTION_DATA static const char* l_mojiHira[65] = {
     "あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ", "さ", "し", "す",
     "せ", "そ", "た", "ち", "つ", "て", "と", "な", "に", "ぬ", "ね", "の", "は",
     "ひ", "ふ", "へ", "ほ", "ま", "み", "む", "め", "も", "や", "　", "ゆ", "　",
@@ -135,7 +144,7 @@ SECTION_DATA static char* l_mojiHira[65] = {
 };
 
 /* 803C2060-803C2164 -00001 0104+00 0/1 0/0 0/0 .data            l_mojiHira2 */
-SECTION_DATA static char* l_mojiHira2[65] = {
+SECTION_DATA static const char* l_mojiHira2[65] = {
     "￥", "￥", "￥", "￥", "￥", "が", "ぎ", "ぐ", "げ", "ご", "ざ", "じ", "ず",
     "ぜ", "ぞ", "だ", "ぢ", "づ", "で", "ど", "￥", "￥", "￥", "￥", "￥", "ば",
     "び", "ぶ", "べ", "ぼ", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
@@ -144,7 +153,7 @@ SECTION_DATA static char* l_mojiHira2[65] = {
 };
 
 /* 803C2164-803C2268 -00001 0104+00 0/1 0/0 0/0 .data            l_mojiHira3 */
-SECTION_DATA static char* l_mojiHira3[65] = {
+SECTION_DATA static const char* l_mojiHira3[65] = {
     "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
     "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "ぱ",
     "ぴ", "ぷ", "ぺ", "ぽ", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
@@ -153,7 +162,7 @@ SECTION_DATA static char* l_mojiHira3[65] = {
 };
 
 /* 803C2268-803C236C -00001 0104+00 0/3 0/0 0/0 .data            l_mojikata */
-SECTION_DATA static char* l_mojikata[65] = {
+SECTION_DATA static const char* l_mojikata[65] = {
     "ア", "イ",       "ウ", "エ", "オ", "カ", "キ", "ク", "ケ", "コ", "サ", "シ", "ス",
     "セ", "\x83\x5C", "タ", "チ", "ツ", "テ", "ト", "ナ", "ニ", "ヌ", "ネ", "ノ", "ハ",
     "ヒ", "フ",       "ヘ", "ホ", "マ", "ミ", "ム", "メ", "モ", "ヤ", "　", "ユ", "　",
@@ -162,7 +171,7 @@ SECTION_DATA static char* l_mojikata[65] = {
 };
 
 /* 803C236C-803C2470 -00001 0104+00 0/1 0/0 0/0 .data            l_mojikata2 */
-SECTION_DATA static char* l_mojikata2[65] = {
+SECTION_DATA static const char* l_mojikata2[65] = {
     "￥", "￥", "ヴ", "￥", "￥", "ガ", "ギ", "グ", "ゲ", "ゴ", "ザ", "ジ", "ズ",
     "ゼ", "ゾ", "ダ", "ヂ", "ヅ", "デ", "ド", "￥", "￥", "￥", "￥", "￥", "バ",
     "ビ", "ブ", "ベ", "ボ", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
@@ -171,7 +180,7 @@ SECTION_DATA static char* l_mojikata2[65] = {
 };
 
 /* 803C2470-803C2574 -00001 0104+00 0/1 0/0 0/0 .data            l_mojikata3 */
-SECTION_DATA static char* l_mojikata3[65] = {
+SECTION_DATA static const char* l_mojikata3[65] = {
     "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
     "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "パ",
     "ピ", "プ", "ペ", "ポ", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
@@ -180,7 +189,7 @@ SECTION_DATA static char* l_mojikata3[65] = {
 };
 
 /* 803C2574-803C2678 -00001 0104+00 0/3 0/0 0/0 .data            l_mojiEisu */
-SECTION_DATA static char* l_mojiEisu[65] = {
+SECTION_DATA static const char* l_mojiEisu[65] = {
     "A", "N", "a", "n", "1", "B", "O", "b", "o", "2", "C", "P", "c", "p", "3", "D", "Q",
     "d", "q", "4", "E", "R", "e", "r", "5", "F", "S", "f", "s", "6", "G", "T", "g", "t",
     "7", "H", "U", "h", "u", "8", "I", "V", "i", "v", "9", "J", "W", "j", "w", "0", "K",
@@ -798,7 +807,7 @@ void dName_c::selectMojiSet() {
 
 /* 8024F59C-8024F634 249EDC 0098+00 1/1 0/0 0/0 .text            getMoji__7dName_cFv */
 int dName_c::getMoji() {
-    char* moji;
+    const char* moji;
 
     switch (mMojiSet) {
     case MOJI_HIRA:
@@ -1108,7 +1117,7 @@ asm void dName_c::backSpace() {
 
 /* 802501B0-80250284 24AAF0 00D4+00 2/2 0/0 0/0 .text            mojiListChange__7dName_cFv */
 void dName_c::mojiListChange() {
-    char** mojiSet;
+    const char** mojiSet;
 
     switch (mMojiSet) {
     case MOJI_HIRA:

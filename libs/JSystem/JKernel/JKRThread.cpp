@@ -7,7 +7,7 @@
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTConsole.h"
-#include "MSL_C/MSL_Common/Src/printf.h"
+#include "MSL_C/stdio.h"
 #include "dol2asm.h"
 
 /* 8043428C-80434298 060FAC 000C+00 5/6 0/0 0/0 .bss             sThreadList__9JKRThread */

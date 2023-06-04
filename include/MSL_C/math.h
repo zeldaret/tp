@@ -3,6 +3,9 @@
 
 #include "MSL_C/MSL_Common/Src/float.h"
 
+#define NAN (*(float*) __float_nan)
+#define HUGE_VALF (*(float*) __float_huge)
+
 #define M_PI 3.14159265358979323846f
 
 #define DEG_TO_RAD(degrees) (degrees * (M_PI / 180.0f))
@@ -50,10 +53,6 @@ double sqrt(double);
 double tan(double);
 float tanf(float);
 
-extern float __float_nan[4];
-extern float __float_epsilon[4];
-extern float __float_max[4];
-
 inline double sqrt_step(double tmpd, float mag) {
     return tmpd * 0.5 * (3.0 - mag * (tmpd * tmpd));
 }
@@ -66,9 +65,9 @@ inline float sqrtf(float mag) {
         tmpd = sqrt_step(tmpd, mag);
         return mag * tmpd;
     } else if (mag < 0.0) {
-        return __float_nan[0];
+        return NAN;
     } else if (fpclassify(mag) == 1) {
-        return __float_nan[0];
+        return NAN;
     } else {
         return mag;
     }

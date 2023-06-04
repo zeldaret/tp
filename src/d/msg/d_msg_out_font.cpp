@@ -4,10 +4,14 @@
 //
 
 #include "d/msg/d_msg_out_font.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "global.h"
 #include "d/com/d_com_inf_game.h"
+#include "f_op/f_op_msg_mng.h"
 
 //
 // Forward References:
@@ -789,6 +793,20 @@ void COutFont_c::reset(J2DTextBox* p_textBox) {
 
 /* 80228490-80228530 222DD0 00A0+00 1/1 0/0 0/0 .text setBlendAnime__10COutFont_cFP10J2DPictures
  */
+// regalloc
+#ifdef NONMATCHING
+void COutFont_c::setBlendAnime(J2DPicture* param_0, s16 param_1) {
+    s32 iVar5 = param_1;
+    iVar5 = 0x14 - iVar5 / 0x14 * 0x14;
+    if (iVar5 < 10) {
+        f32 dVar6 = fopMsgM_valueIncrease(10, iVar5, 0);
+        param_0->setBlendRatio(1.0f - dVar6, dVar6);
+    } else {
+        f32 dVar6 = fopMsgM_valueIncrease(10, iVar5 - 10, 0);
+        param_0->setBlendRatio(dVar6, 1.0f - dVar6);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -797,10 +815,11 @@ asm void COutFont_c::setBlendAnime(J2DPicture* param_0, s16 param_1) {
 #include "asm/d/msg/d_msg_out_font/setBlendAnime__10COutFont_cFP10J2DPictures.s"
 }
 #pragma pop
+#endif
 
 /* 80228530-80228578 222E70 0048+00 1/1 0/0 0/0 .text            getBtiName__10COutFont_cFi */
 const char* COutFont_c::getBtiName(int nameIdx) {
-    static char* mpIconName[70] = {
+    static const char* mpIconName[70] = {
         "font_00.bti",
         "font_01.bti",
         "font_09.bti",

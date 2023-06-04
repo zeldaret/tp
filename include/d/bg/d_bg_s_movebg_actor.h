@@ -2,8 +2,8 @@
 #define D_BG_D_BG_S_MOVEBG_ACTOR_H
 
 #include "SSystem/SComponent/c_bg_s_poly_info.h"
-#include "d/bg/d_bg_w.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor.h"
 
 class dBgW;
 typedef void (*MoveBGActor_SetFunc)(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*,
@@ -19,6 +19,8 @@ public:
     /* 800787BC */ int MoveBGCreate(char const*, int, MoveBGActor_SetFunc, u32, Mtx*);
     /* 800788DC */ int MoveBGDelete();
     /* 80078950 */ int MoveBGExecute();
+
+    int MoveBGDraw() { return Draw(); }
 
     /* 80078688 */ virtual int CreateHeap();
     /* 80078690 */ virtual int Create();

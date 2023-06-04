@@ -5,6 +5,7 @@
 
 #include "JSystem/J3DGraphLoader/J3DClusterLoader.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 
 //
@@ -58,7 +59,6 @@ extern "C" extern char const* const J3DClusterLoader__stringBase0;
 //
 
 SECTION_INIT void memcpy();
-extern "C" void OSReport();
 extern "C" void* __nw__FUl();
 extern "C" void* __nwa__FUl();
 extern "C" void* __nwa__FUli();
@@ -69,7 +69,6 @@ extern "C" void func_8030A530(void* _this, void const*, void const*);
 extern "C" void func_8030A560(void* _this, void const*, void const*);
 extern "C" void __ct__13J3DDeformDataFv();
 extern "C" void __ct__11J3DDeformerFP13J3DDeformData();
-extern "C" void DCStoreRange();
 extern "C" void _savegpr_23();
 extern "C" void _savegpr_26();
 extern "C" void _restgpr_23();

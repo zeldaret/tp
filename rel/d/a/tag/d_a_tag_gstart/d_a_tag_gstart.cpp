@@ -4,7 +4,11 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_gstart/d_a_tag_gstart.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 
 /* 805A3478-805A34F4 000078 007C+00 1/1 0/0 0/0 .text            create__13daTagGstart_cFv */
 int daTagGstart_c::create() {
@@ -74,19 +78,14 @@ extern actor_process_profile_definition g_profile_Tag_Gstart = {
     2,
     0xFFFD,
     PROC_Tag_Gstart,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(daTagGstart_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x01B5,
-    0,
-    0,
     &l_daTagGstart_Method,
     0x00060000,
     3,
     14,
-    0,
-    0,
 };

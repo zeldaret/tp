@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/JSupport/JSUFileStream.h"
+#include "JSystem/JKernel/JKRFile.h"
 
 /* 802DC638-802DC67C 2D6F78 0044+00 0/0 1/1 0/0 .text __ct__18JSUFileInputStreamFP7JKRFile */
 JSUFileInputStream::JSUFileInputStream(JKRFile* pFile) {

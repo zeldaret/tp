@@ -4,6 +4,9 @@
  */
 
 #include "rel/d/a/d_a_hitobj/d_a_hitobj.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_kankyo_mng.h"
 
 /* 8046B358-8046B360 000078 0008+00 1/0 0/0 0/0 .text            daHitobj_Draw__FP12hitobj_class */
@@ -89,19 +92,14 @@ extern actor_process_profile_definition g_profile_HITOBJ = {
     7,                      // mListID  
     -3,                     // mListPrio   
     PROC_HITOBJ,            // mProcName            
-    0,                      // padding   
     &g_fpcLf_Method.mBase,  // mSubMtd                      
     sizeof(hitobj_class),   // mSize                      
     0,                      // mSizeOther  
     0,                      // mParameters         
     &g_fopAc_Method.base,   // mSubMtd                     
     0x02B2,                 // mPriority       
-    0,                      // padding  
-    0,                      // padding   
     &l_daHitobj_Method,     // mSubMtd                   
     0x00040000,             // mStatus            
     0,                      // mActorType  
     0,                      // mCullType  
-    0,                      // padding  
-    0                       // padding 
 };

@@ -5,9 +5,10 @@
 
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/J3DGraphBase/J3DTransform.h"
 #include "dol2asm.h"
-#include "dolphin/os/OSCache.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 
 //
@@ -202,6 +203,43 @@ s32 J3DModel::entryModelData(J3DModelData* p_modelData, u32 modelFlag, u32 mtxBu
         }
         break;
     }
+    ret = createShapePacket(p_modelData);
+    if (ret) {
+        return ret;
+    }
+    ret = createMatPacket(p_modelData, modelFlag);
+    if (ret) {
+        return ret;
+    }
+
+    mVertexBuffer.setVertexData(&p_modelData->getVertexData());
+    prepareShapePackets();
+
+    if (modelFlag & J3DMdlFlag_Unk00001) {
+        onFlag(J3DMdlFlag_Unk00001);
+    }
+    if (modelFlag & J3DMdlFlag_Unk00002) {
+        onFlag(J3DMdlFlag_Unk00002);
+    }
+    if (modelFlag & J3DMdlFlag_Unk00010) {
+        onFlag(J3DMdlFlag_Unk00010);
+    }
+    if (modelFlag & J3DMdlFlag_Unk20000) {
+        onFlag(J3DMdlFlag_Unk20000);
+    }
+    if (modelFlag & J3DMdlFlag_Unk40000) {
+        onFlag(J3DMdlFlag_Unk40000);
+    }
+    if (modelFlag & J3DMdlFlag_Unk80000) {
+        onFlag(J3DMdlFlag_Unk80000);
+    }
+    if (modelFlag & J3DMdlFlag_SkinPosCpu) {
+        onFlag(J3DMdlFlag_SkinPosCpu);
+    }
+    if (modelFlag & J3DMdlFlag_SkinNrmCpu) {
+        onFlag(J3DMdlFlag_SkinNrmCpu);
+    }
+    return 0;
 }
 
 /* 80327300-803273CC 321C40 00CC+00 1/1 0/0 0/0 .text createShapePacket__8J3DModelFP12J3DModelData
@@ -437,13 +475,14 @@ s32 J3DModel::setDeformData(J3DDeformData* p_deformData, u32 param_1) {
         return 0;
     }
 
-    switch (mVertexBuffer.copyLocalVtxArray(param_1)) {
-    case 0:
-        if (param_1 & 4) {
-            p_deformData->offAllFlag(1);
-        }
-        return 0;
+    s32 ret = mVertexBuffer.copyLocalVtxArray(param_1);
+    if (ret) {
+        return ret;
     }
+    if (param_1 & 4) {
+        p_deformData->offAllFlag(1);
+    }
+    return 0;
 }
 
 /* 80327AA0-80327BD4 3223E0 0134+00 0/0 0/0 2/2 .text setSkinDeform__8J3DModelFP13J3DSkinDeformUl

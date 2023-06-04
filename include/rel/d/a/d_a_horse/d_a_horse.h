@@ -2,7 +2,10 @@
 #define D_A_HORSE_H
 
 #include "Z2AudioLib/Z2Creature.h"
+#include "d/a/d_a_player.h"
 #include "d/bg/d_bg_s.h"
+#include "d/bg/d_bg_s_acch.h"
+#include "d/bg/d_bg_s_lin_chk.h"
 #include "d/cc/d_cc_d.h"
 #include "d/msg/d_msg_flow.h"
 #include "dolphin/types.h"
@@ -152,7 +155,7 @@ public:
     bool checkNoBombProc() const { return field_0x16b4 == 0 || field_0x16b4 == 1; }
     bool checkResetStateFlg0(daHorse_RFLG0 flag) const { return mResetStateFlg0 & flag; }
     bool checkEndResetStateFlg0(daHorse_ERFLG0 flag) { return mEndResetStateFlg0 & flag; }
-    bool checkStateFlg0(daHorse_FLG0 flag) { return mStateFlg0 & flag; }
+    bool checkStateFlg0(daHorse_FLG0 flag) const { return mStateFlg0 & flag; }
     f32 getNormalMaxSpeedF() { return mNormalMaxSpeedF; }
     void changeDemoMoveAngle(s16 angle) { mDemoMoveAngle = angle; }
     void setDemoStickR(f32 stick) { mDemoStickR = stick; }
@@ -168,6 +171,7 @@ public:
 
     bool checkTurnStandCamera() const { return checkResetStateFlg0(TURN_STAND_CAMERA); }
     bool checkTurnStand() const { return checkResetStateFlg0(TURN_STAND); }
+    bool checkRodeoMode() const { return checkStateFlg0(RODEO_MODE); }
 
     static u8 const m_footJointTable[8];
     static f32 const m_callLimitDistance2;

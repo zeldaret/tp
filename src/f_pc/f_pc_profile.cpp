@@ -10,6 +10,6 @@
 process_profile_definition** g_fpcPf_ProfileList_p;
 
 /* 80023564-80023578 0014+00 s=0 e=1 z=0  None .text      fpcPf_Get__Fs */
-process_profile_definition* fpcPf_Get(s16 profileID) {
-    return g_fpcPf_ProfileList_p[profileID];
+process_profile_definition* fpcPf_Get(s16 i_profName) {
+    return g_fpcPf_ProfileList_p[i_profName];
 }

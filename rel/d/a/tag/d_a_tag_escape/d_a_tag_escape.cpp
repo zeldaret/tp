@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_escape/d_a_tag_escape.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 80D587D8-80D58828 000078 0050+00 1/0 0/0 0/0 .text            daTagEscape_Create__FP10fopAc_ac_c
@@ -39,19 +40,14 @@ extern actor_process_profile_definition g_profile_Tag_Escape = {
     07,
     0xFFFD,
     PROC_Tag_Escape,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(daTagEscape_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x018D,
-    0,
-    0,
     &l_daTagEscape_Method,
     0x00040000,
     0,
     14,
-    0,
-    0,
 };

@@ -5,6 +5,7 @@
 
 #include "JSystem/JKernel/JKRAramHeap.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "global.h"
 
 //
 // Forward References:

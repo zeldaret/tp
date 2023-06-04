@@ -11,7 +11,7 @@ struct dItem_itemInfo {
 };
 
 struct dItem_itemResource {
-    /* 0x00 */ char* mArcName;
+    /* 0x00 */ const char* mArcName;
     /* 0x04 */ s16 mBmdName;
     /* 0x06 */ s16 mBtkName;
     /* 0x08 */ s16 mBckName;
@@ -25,7 +25,7 @@ struct dItem_itemResource {
 };  // Size: 0x18
 
 struct dItem_fieldItemResource {
-    /* 0x0 */ char* mFieldArc;
+    /* 0x0 */ const char* mFieldArc;
     /* 0x4 */ s16 mItemBmdName;
     /* 0x6 */ s16 mItemBckName;
     /* 0x8 */ s16 mItemBrkName;
@@ -34,7 +34,7 @@ struct dItem_fieldItemResource {
 };  // Size: 0x10
 
 struct dItem_data {
-    static char* getArcName(u8 index) { return item_resource[index].mArcName; }
+    static const char* getArcName(u8 index) { return item_resource[index].mArcName; }
 
     static s16 getBtpName(u8 index) { return item_resource[index].mBtpName; }
 
@@ -56,7 +56,7 @@ struct dItem_data {
 
     static s16 getTexture(u8 index) { return item_resource[index].mTexture; }
 
-    static char* getFieldArc(u8 index) { return field_item_res[index].mFieldArc; }
+    static const char* getFieldArc(u8 index) { return field_item_res[index].mFieldArc; }
 
     static s16 getItemBmdName(u8 index) { return field_item_res[index].mItemBmdName; }
 

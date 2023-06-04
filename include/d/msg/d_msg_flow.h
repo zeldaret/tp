@@ -1,7 +1,10 @@
 #ifndef D_MSG_D_MSG_FLOW_H
 #define D_MSG_D_MSG_FLOW_H
 
-#include "f_op/f_op_msg.h"
+#include "dolphin/types.h"
+
+class fopAc_ac_c;
+class msg_class;
 
 // all mesg_flow_node structs members might be wrong
 struct mesg_flow_node {
@@ -35,7 +38,7 @@ public:
     /* 80249F48 */ virtual ~dMsgFlow_c();
 
     /* 80249F90 */ void init(fopAc_ac_c*, int, int, fopAc_ac_c**);
-    /* 8024A13C */ void checkOpenDoor(fopAc_ac_c*, int*);
+    /* 8024A13C */ int checkOpenDoor(fopAc_ac_c*, int*);
     /* 8024A2D8 */ int doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
     /* 8024A424 */ int checkEventRender(int*, int*, int*, int*);
     /* 8024A4C4 */ void remove();
@@ -48,8 +51,8 @@ public:
     /* 8024A6EC */ u8* getMsgDataBlock(char const*);
     /* 8024A784 */ u16 getInitNodeIndex(u16);
     /* 8024A7CC */ void setNodeIndex(u16, fopAc_ac_c**);
-    /* 8024A95C */ void setSelectMsg(mesg_flow_node*, mesg_flow_node*, fopAc_ac_c*);
-    /* 8024AA50 */ void setNormalMsg(mesg_flow_node*, fopAc_ac_c*);
+    /* 8024A95C */ int setSelectMsg(mesg_flow_node*, mesg_flow_node*, fopAc_ac_c*);
+    /* 8024AA50 */ int setNormalMsg(mesg_flow_node*, fopAc_ac_c*);
     /* 8024AB30 */ int messageNodeProc(fopAc_ac_c*, fopAc_ac_c**);
     /* 8024AD54 */ int branchNodeProc(fopAc_ac_c*, fopAc_ac_c**);
     /* 8024ADEC */ int eventNodeProc(fopAc_ac_c*, fopAc_ac_c**);
@@ -170,7 +173,7 @@ private:
     /* 0x10 */ u16 field_0x10;
     /* 0x12 */ u16 field_0x12;
     /* 0x14 */ u16* field_0x14;
-    /* 0x18 */ int field_0x18;
+    /* 0x18 */ u16* field_0x18;
     /* 0x1C */ u16 mFlow;
     /* 0x1E */ u8 field_0x1e[2];
     /* 0x20 */ u32 mMsg;
@@ -185,7 +188,7 @@ private:
     /* 0x34 */ int field_0x34;
     /* 0x38 */ u16 field_0x38;
     /* 0x3A */ u16 mChoiceNo;
-    /* 0x3C */ int field_0x3c;
+    /* 0x3C */ s32 field_0x3c;
     /* 0x40 */ u8 field_0x40;
     /* 0x41 */ u8 field_0x41;
     /* 0x42 */ u8 field_0x42;

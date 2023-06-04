@@ -2,9 +2,11 @@
 #define M_DO_M_DO_GRAPHIC_H
 
 #include "JSystem/JFramework/JFWDisplay.h"
-#include "JSystem/JUtility/JUTFader.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx/GXStruct.h"
+#include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
+
+class JUTFader;
 
 int mDoGph_Create();
 
@@ -53,7 +55,7 @@ public:
 
     static int startFadeOut(int param_0) { return JFWDisplay::getManager()->startFadeOut(param_0); }
     static int startFadeIn(int param_0) { return JFWDisplay::getManager()->startFadeIn(param_0); }
-    static void setFadeColor(JUtility::TColor& color) { mFader->setColor(color); }
+    static void setFadeColor(JUtility::TColor color) { mFader->mColor.set(color); }
     static void setClearColor(JUtility::TColor color) { JFWDisplay::getManager()->setClearColor(color); }
     static void setBackColor(GXColor& color) { mBackColor = color; }
     static void endFrame() { JFWDisplay::getManager()->endFrame(); }

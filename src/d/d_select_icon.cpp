@@ -1,4 +1,5 @@
 #include "d/d_select_icon.h"
+#include "JSystem/J2DGraph/J2DAnimation.h"
 
 dSi_HIO_c::dSi_HIO_c() {}
 

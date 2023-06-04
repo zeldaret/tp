@@ -4,6 +4,10 @@
  */
 
 #include "rel/d/a/d_a_skip_2D/d_a_skip_2D.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/d_procname.h"
+#include "d/meter/d_meter2.h"
+#include "f_op/f_op_actor_mng.h"
 
 /* 80D4D478-80D4D498 000078 0020+00 1/1 0/0 0/0 .text            daSkip2D_createHeap__FP10fopAc_ac_c
  */
@@ -98,19 +102,14 @@ extern actor_process_profile_definition g_profile_SKIP2D = {
     3,
     0xFFFD,
     PROC_SKIP2D,
-    0000,
     &g_fpcLf_Method.mBase,
     sizeof(daSkip2D_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x0304,
-    0,
-    0,
     &daSkip2D_MethodTable,
     0x00040000,
-    0,
-    0,
     0,
     0,
 };

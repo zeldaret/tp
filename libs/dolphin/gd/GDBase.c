@@ -4,7 +4,7 @@
  */
 
 #include "dolphin/gd/GDBase.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os/OSCache.h"
 
 /* 80360F98-80360FB0 35B8D8 0018+00 0/0 6/6 0/0 .text            GDInitGDLObj */
 void GDInitGDLObj(GDLObj* obj, u8* start, u32 len) {

@@ -1,5 +1,5 @@
 #include "JSystem/JStage/JSGCamera.h"
-#include "MSL_C/math.h"
+#include "MSL_C/float.h"
 
 /* 80280BA0-80280C00 27B4E0 0060+00 0/0 1/1 0/0 .text            __dt__Q26JStage7TCameraFv */
 JStage::TCamera::~TCamera() {}
@@ -31,7 +31,7 @@ void JStage::TCamera::JSGSetProjectionNear(f32) {}
 
 /* 80280C20-80280C2C 27B560 000C+00 1/0 0/0 0/0 .text JSGGetProjectionFar__Q26JStage7TCameraCFv */
 f32 JStage::TCamera::JSGGetProjectionFar() const {
-    return __float_max[0];
+    return FLT_MAX;
 }
 
 /* 80280C2C-80280C30 27B56C 0004+00 1/0 0/0 0/0 .text JSGSetProjectionFar__Q26JStage7TCameraFf */

@@ -1,11 +1,12 @@
 #ifndef J3DJOINT_H
 #define J3DJOINT_H
 
-#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/J3DGraphBase/J3DTransform.h"
 #include "dolphin/types.h"
 
 class J3DAnmTransform;
+class J3DJoint;
+class J3DMaterial;
 class J3DMtxBuffer;
 
 class J3DMtxCalc {
@@ -24,6 +25,7 @@ public:
 
     static J3DMtxBuffer* getMtxBuffer() { return mMtxBuffer; }
     static J3DJoint* getJoint() { return mJoint; }
+    static void setJoint(J3DJoint* joint) { mJoint = joint; }
 
     static J3DMtxBuffer* mMtxBuffer;
     static J3DJoint* mJoint;
@@ -63,7 +65,11 @@ public:
     Vec* getMax() { return &mMax; }
     Vec* getMin() { return &mMin; }
     void setCallBack(J3DJointCallBack callback) { mCallBack = callback; }
+    J3DJointCallBack getCallBack() { return mCallBack; }
     void setMtxCalc(J3DMtxCalc* i_mtxCalc) { mMtxCalc = i_mtxCalc; }
+    J3DMtxCalc* getMtxCalc() { return mMtxCalc; }
+    J3DMtxCalc* getCurrentMtxCalc() { return mCurrentMtxCalc; };
+    J3DJoint* getChild() { return mChild; }
 
     static J3DMtxCalc* mCurrentMtxCalc;
 

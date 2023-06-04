@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_instruction/d_a_tag_instruction.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 80D59AF8-80D59B48 000078 0050+00 1/0 0/0 0/0 .text            daTagInst_Create__FP10fopAc_ac_c */
@@ -39,19 +40,14 @@ extern actor_process_profile_definition g_profile_Tag_Instruction = {
     7,
     0xFFFD,
     PROC_Tag_Instruction,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(daTagInst_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x014E,
-    0,
-    0,
     &l_daTagInst_Method,
     0x00040000,
     0,
     14,
-    0,
-    0,
 };

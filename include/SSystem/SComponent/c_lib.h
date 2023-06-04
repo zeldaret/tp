@@ -72,7 +72,27 @@ inline T cLib_minMaxLimit(T val, T min, T max) {
 }
 
 template <typename T>
-T cLib_calcTimer(T* val);
+inline T cLib_maxLimit(T val, T max) {
+    T ret;
+    T var_r30;
+
+    if (val > max) {
+        var_r30 = max;
+    } else {
+        var_r30 = val;
+    }
+
+    ret = var_r30;
+    return (T)ret;
+}
+
+template <typename T>
+T cLib_calcTimer(T* value) {
+    if (*value != 0) {
+        *value = *value - 1;
+    }
+    return *value;
+}
 
 void MtxInit(void);
 void MtxTrans(f32, f32, f32, u8);

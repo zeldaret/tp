@@ -104,9 +104,9 @@ typedef struct _FILE {
 } FILE;
 
 typedef struct _files {
-    FILE stdin;
-    FILE stdout;
-    FILE stderr;
+    FILE _stdin;
+    FILE _stdout;
+    FILE _stderr;
     FILE empty;
 } files;
 

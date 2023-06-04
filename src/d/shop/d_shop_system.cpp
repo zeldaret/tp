@@ -5,14 +5,20 @@
 
 #include "d/shop/d_shop_system.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/a/d_a_shop_item_static.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_item.h"
+#include "d/d_lib.h"
 #include "d/d_procname.h"
+#include "d/d_select_cursor.h"
+#include "d/meter/d_meter2_info.h"
 #include "d/meter/d_meter_HIO.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_audio.h"
+#include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_lib.h"
 
 //
@@ -267,14 +273,29 @@ SECTION_SDATA static fopAc_ac_c* dShopSystem_cameraActor[2] = {NULL, NULL};
 static int dShopSystem_camera_count;
 
 /* 80197270-80197338 191BB0 00C8+00 1/1 0/0 0/0 .text dShopSystem_searchCameraActor__FPvPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dShopSystem_searchCameraActor(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/dShopSystem_searchCameraActor__FPvPv.s"
+static int dShopSystem_searchCameraActor(void* param_0, void* param_1) {
+    if (fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_TAG_SHOPCAM) {
+        if ((fopAcM_GetParam(param_1) & 0xf0000000) == (fopAcM_GetParam(param_0) & 0xf0000000) && dShopSystem_camera_count < 2) {
+            switch (fopAcM_GetParam(param_0) & 0xf) {
+                case 0:
+                    if (dShopSystem_cameraActor[0] == NULL) {
+                        dShopSystem_cameraActor[0] = (fopAc_ac_c*)param_0;
+                        dShopSystem_camera_count++;
+                    }
+                    break;
+                case 1:
+                    if (dShopSystem_cameraActor[1] == NULL) {
+                        dShopSystem_cameraActor[1] = (fopAc_ac_c*)param_0;
+                        dShopSystem_camera_count++;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    return 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80453B00-80453B04 002100 0004+00 1/1 0/0 0/0 .sdata2          @4097 */

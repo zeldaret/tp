@@ -1,13 +1,13 @@
 #ifndef JKRARAM_H
 #define JKRARAM_H
 
-#include "dolphin/types.h"
-
 #include "JSystem/JKernel/JKRAramHeap.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "JSystem/JKernel/JKRThread.h"
+#include "dolphin/types.h"
 
 class JKRHeap;
+class JKRAMCommand;
 class JKRAramBlock;
 class JKRAram : public JKRThread {
 private:

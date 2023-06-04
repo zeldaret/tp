@@ -8,8 +8,9 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTVideo.h"
-#include "MSL_C/MSL_Common/Src/printf.h"
+#include "MSL_C/stdio.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
 
 //
 // Forward References:

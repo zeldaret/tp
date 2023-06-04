@@ -8,12 +8,10 @@ M675_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_volcball.map
 
 M675_CPP_FILES := \
 	rel/executor.cpp \
-	rel/d/a/obj/d_a_obj_volcball/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_volcball/d_a_obj_volcball.cpp \
 
 M675_O_FILES := \
 	$(BUILD_DIR)/rel/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_volcball/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_volcball/d_a_obj_volcball.o \
 
 M675_LIBS := \

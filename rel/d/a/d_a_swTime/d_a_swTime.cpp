@@ -4,7 +4,9 @@
  */
 
 #include "rel/d/a/d_a_swTime/d_a_swTime.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 
 
 /* 80D4F638-80D4F660 000078 0028+00 1/1 0/0 0/0 .text            Create__10daSwTime_cFv */
@@ -74,19 +76,14 @@ extern actor_process_profile_definition g_profile_SwTime = {
     7,                      // mListID
     -3,                     // mListPrio
     PROC_SwTime,            // mProcName
-    0,                      // padding
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daSwTime_c),     // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
     0x0240,                 // mPriority
-    0,                      // padding
-    0,                      // padding
     &l_daSwTime_Method,     // mSubMtd
     0x00040100,             // mStatus
     0,                      // mActorType
     0x0E,                   // mCullType
-    0,                      // padding
-    0                       // padding
 };

@@ -5,7 +5,10 @@
 
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "JSystem/JAudio2/JASDriverIF.h"
+#include "MSL_C/stdio.h"
+#include "MSL_C/stdlib.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 
 //
@@ -212,15 +215,12 @@ extern "C" void _restgpr_24();
 extern "C" void _restgpr_25();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void abort();
-extern "C" void fprintf();
 extern "C" extern void* __vt__12JAUSoundInfo[4 + 1 /* padding */];
 extern "C" extern void* __vt__16JAIStreamAramMgr[5];
 extern "C" extern void* __vt__16JAIStreamDataMgr[4 + 1 /* padding */];
 extern "C" extern void* __vt__17JAUAudioArcLoader[17 + 1 /* padding */];
 extern "C" extern void* __vt__16Z2AudioArcLoader[17 + 1 /* padding */];
 extern "C" extern void* __vt__11Z2SoundInfo[20];
-extern "C" extern void* __files[80];
 extern "C" extern u8 data_804341C4[16 + 4 /* padding */];
 extern "C" extern u8 data_804341E4[16 + 4 /* padding */];
 extern "C" f32 VOL_BGM_DEFAULT__7Z2Param;

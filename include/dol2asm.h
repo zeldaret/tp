@@ -80,10 +80,8 @@
 #define _HUGE_ENUF 1e+300
 #define INFINITY ((float)(_HUGE_ENUF * _HUGE_ENUF))
 #define HUGE_VAL ((double)INFINITY)
-#define HUGE_VALF ((float)INFINITY)
 #define HUGE_VALL ((long double)INFINITY)
 
-#define FLOAT_INF HUGE_VALF
 #define DOUBLE_INF HUGE_VAL
 
 #pragma section ".dead"

@@ -4,6 +4,9 @@
 #include "JSystem/JKernel/JKRArchive.h"
 #include "dolphin/types.h"
 
+class JKRAramBlock;
+class JKRDvdFile;
+
 class JKRCompArchive : public JKRArchive {
 public:
     JKRCompArchive(long, JKRArchive::EMountDirection);

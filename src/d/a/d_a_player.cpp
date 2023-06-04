@@ -5,7 +5,9 @@
 
 #include "d/a/d_a_player.h"
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/a/d_a_alink.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx.h"
@@ -651,7 +653,7 @@ f32 daPy_py_c::getAttentionOffsetY() {
 
 /* 8015F424-8015F438 159D64 0014+00 0/0 17/17 33/33 .text            checkNowWolfEyeUp__9daPy_py_cFv
  */
-s16 daPy_py_c::checkNowWolfEyeUp() {
+int daPy_py_c::checkNowWolfEyeUp() {
     return daAlink_getAlinkActorClass()->checkWolfEyeUp();
 }
 

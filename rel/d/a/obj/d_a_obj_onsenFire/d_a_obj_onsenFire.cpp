@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_onsenFire/d_a_obj_onsenFire.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 80CA8278-80CA82F4 000078 007C+00 1/1 0/0 0/0 .text            create__16daObjOnsenFire_cFv */
@@ -58,20 +59,15 @@ extern actor_process_profile_definition g_profile_OBJ_ONSEN_FIRE = {
     -3,                        // mLayerID         
     3,                         // mListID       
     -3,                        // mListPrio        
-    PROC_OBJ_ONSEN_FIRE,       // mProcName                         
-    0,                         // padding        
+    PROC_OBJ_ONSEN_FIRE,       // mProcName                           
     &g_fpcLf_Method.mBase,     // mSubMtd                           
     sizeof(daObjOnsenFire_c),  // mSize                               
     0,                         // mSizeOther       
     0,                         // mParameters              
     &g_fopAc_Method.base,      // mSubMtd                          
-    0x0264,                    // mPriority            
-    0,                         // padding       
-    0,                         // padding        
+    0x0264,                    // mPriority                 
     &l_daObjOnsenFire_Method,  // mSubMtd                              
     0x00044000,                // mStatus                 
     0,                         // mActorType       
-    0x0E,                      // mCullType          
-    0,                         // padding       
-    0,                         // padding       
+    0x0E,                      // mCullType        
 };

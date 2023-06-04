@@ -7,6 +7,7 @@
 // #include "JSystem/JMath/JMATrigonometric.h"
 #include "MSL_C/math.h"
 #include "dol2asm.h"
+#include "dolphin/types.h"
 #include "global.h"
 
 namespace std {

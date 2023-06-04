@@ -2,9 +2,18 @@
 #define D_PARTICLE_D_PARTICLE_H
 
 #include "JSystem/JParticle/JPAParticle.h"
-#include "d/particle/d_particle_name.h"
+#include "SSystem/SComponent/c_sxyz.h"
+#include "SSystem/SComponent/c_xyz.h"
+#include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
+
+class J3DAnmTexPattern;
+class J3DModel;
+class J3DModelData;
+class JKRExpHeap;
+class JKRSolidHeap;
+class dKy_tevstr_c;
+class fopAc_ac_c;
 
 class dPa_levelEcallBack : public JPAEmitterCallBack {
 public:
@@ -58,6 +67,7 @@ public:
 class dPa_followEcallBack : public dPa_levelEcallBack {
 public:
     /* 80049580 */ dPa_followEcallBack(u8, u8);
+    /* 80D22230 */ void __defctor();  // compiler generated
 
     /* 80050200 */ virtual ~dPa_followEcallBack();
     /* 800495BC */ virtual void execute(JPABaseEmitter*);
@@ -318,7 +328,7 @@ public:
                                   _GXColor const&, int, f32);
     /* 8004D23C */ void getSimple(u16);
     /* 8004D770 */ void setStopContinue(u32);
-    /* 8004D7C4 */ void setSimpleFoot(u32, u32*, cBgS_PolyInfo&, cXyz const*, dKy_tevstr_c const*,
+    /* 8004D7C4 */ u32 setSimpleFoot(u32, u32*, cBgS_PolyInfo&, cXyz const*, dKy_tevstr_c const*,
                                       int, csXyz const*, cXyz const*, dPa_levelEcallBack*, s8,
                                       cXyz const*);
     /* 8004D988 */ void setCommonPoly(u32*, cBgS_PolyInfo*, cXyz const*, cXyz const*,

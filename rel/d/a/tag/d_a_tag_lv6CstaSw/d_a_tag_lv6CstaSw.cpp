@@ -4,10 +4,12 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_lv6CstaSw/d_a_tag_lv6CstaSw.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/d_procname.h"
 
 /* 80D5B2EC-80D5B310 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__17daLv6CstaSw_HIO_cFv */
 daLv6CstaSw_HIO_c::daLv6CstaSw_HIO_c() {
-    field_0x4 = 0;
+    unk_0x4 = 0;
 }
 
 /* 80D5B358-80D5B3B0 000158 0058+00 1/1 0/0 0/0 .text            setBaseMtx__13daLv6CstaSw_cFv */
@@ -121,19 +123,14 @@ extern actor_process_profile_definition g_profile_Tag_Lv6CstaSw = {
     7,
     0xFFFD,
     PROC_Tag_Lv6CstaSw,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(daLv6CstaSw_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x0292,
-    0,
-    0,
     &l_daLv6CstaSw_Method,
     0x00044000,
     0,
     14,
-    0,
-    0,
 };

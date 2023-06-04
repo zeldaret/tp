@@ -4,10 +4,9 @@
 //
 
 #include "SSystem/SComponent/c_xyz.h"
-#include "MSL_C/math.h"
+#include "MSL_C/float.h"
 #include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
-#include "global.h"
 
 //
 // Declarations:
@@ -144,9 +143,9 @@ bool cXyz::operator!=(const Vec& vec) const {
 
 /* 802670AC-80267128 007C+00 s=0 e=4 z=7  None .text      isZero__4cXyzCFv */
 bool cXyz::isZero(void) const {
-    return fabsf(this->x) < 32.0f * __float_epsilon[0] &&
-           fabsf(this->y) < 32.0f * __float_epsilon[0] &&
-           fabsf(this->z) < 32.0f * __float_epsilon[0];
+    return fabsf(this->x) < 32.0f * FLT_EPSILON &&
+           fabsf(this->y) < 32.0f * FLT_EPSILON &&
+           fabsf(this->z) < 32.0f * FLT_EPSILON;
 }
 
 /* 80267128-80267150 0028+00 s=0 e=81 z=85  None .text      atan2sX_Z__4cXyzCFv */

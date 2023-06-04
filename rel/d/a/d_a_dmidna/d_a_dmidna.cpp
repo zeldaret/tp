@@ -4,6 +4,9 @@
  */
 
 #include "rel/d/a/d_a_dmidna/d_a_dmidna.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 
 /* 8045D290-8045D298 000000 0007+01 3/3 0/0 0/0 .rodata          l_arcName */
 static const char l_arcName[] = "Dmidna";
@@ -109,19 +112,14 @@ extern actor_process_profile_definition g_profile_DMIDNA = {
     7,
     0xFFFD,
     PROC_DMIDNA,
-    0,
     &g_fpcLf_Method.mBase,
     sizeof(daDmidna_c),
     0,
     0,
     &g_fopAc_Method.base,
     0x005D,
-    0,
-    0,
     &l_daDmidna_Method,
     0x00060000,
     3,
-    0,
-    0,
     0,
 };

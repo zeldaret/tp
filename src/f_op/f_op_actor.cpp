@@ -4,12 +4,16 @@
  */
 
 #include "f_op/f_op_actor.h"
+#include "d/a/d_a_alink.h"
 #include "d/com/d_com_inf_actor.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/com/d_com_static.h"
 #include "d/d_demo.h"
 #include "d/s/d_s_play.h"
+#include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_actor_tag.h"
+#include "f_op/f_op_draw_tag.h"
+#include "f_pc/f_pc_manager.h"
 
 /* 80018B64-80018BD0 0134A4 006C+00 0/0 7/7 562/562 .text            __ct__10fopAc_ac_cFv */
 fopAc_ac_c::fopAc_ac_c() {}
@@ -84,8 +88,8 @@ static int fopAc_Execute(void* i_this) {
                 fopAcM_delete(_this);
             }
 
-            if (_this->current.pos.y < FLOAT_MIN) {
-                _this->current.pos.y = FLOAT_MIN;
+            if (_this->current.pos.y < -1e31f) {
+                _this->current.pos.y = -1e31f;
             }
 
             dKy_depth_dist_set(_this);
@@ -190,14 +194,14 @@ static int fopAc_Create(void* i_this) {
             if (!dStage_FileList_dt_GetEnemyAppear1Flag(filelist)) {
                 u32 sw = dStage_FileList_dt_GetBitSw(filelist);
                 if (sw != 0xFF && dComIfGs_isSwitch(sw, _this->orig.roomNo) &&
-                    profile->mActorType == 2)
+                    profile->mActorType == ACTOR_TYPE_ENEMY)
                 {
                     return cPhs_ERROR_e;
                 }
             } else {
                 u32 sw = dStage_FileList_dt_GetBitSw(filelist);
                 if (sw != 0xFF && !dComIfGs_isSwitch(sw, _this->orig.roomNo) &&
-                    profile->mActorType == 2)
+                    profile->mActorType == ACTOR_TYPE_ENEMY)
                 {
                     return cPhs_ERROR_e;
                 }

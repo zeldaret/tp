@@ -1,12 +1,13 @@
 #ifndef VI_H
 #define VI_H
 
-#include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+typedef struct _GXRenderModeObj GXRenderModeObj;
 
 #define VI_TVMODE(format, interlace) (((format) << 2) + (interlace))
 
@@ -51,6 +52,7 @@ void* VIGetNextFrameBuffer();
 void* VIGetCurrentFrameBuffer();
 void VISetBlack(BOOL);
 u32 VIGetRetraceCount();
+u32 VIGetDTVStatus();
 
 vu16 __VIRegs[59] : 0xCC002000;
 

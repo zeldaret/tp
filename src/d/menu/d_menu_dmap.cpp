@@ -4,6 +4,9 @@
 //
 
 #include "d/menu/d_menu_dmap.h"
+#include "JSystem/J2DGraph/J2DPicture.h"
+#include "MSL_C/string.h"
+#include "d/d_lib.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -23,8 +26,6 @@ struct mDoDvdThd_mountArchive_c {
 struct mDoCPd_c {
     static u8 m_cpadInfo[256];
 };
-
-struct fopAc_ac_c {};
 
 struct dTres_c {
     /* 8009C27C */ void getBossIconFloorNo(int*);

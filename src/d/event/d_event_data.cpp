@@ -11,7 +11,10 @@
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_msg_mng.h"
+#include "m_Do/m_Do_graphic.h"
+#include "global.h"
 
 //
 // Forward References:

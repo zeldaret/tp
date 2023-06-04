@@ -3,8 +3,10 @@
 
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JUtility/TColor.h"
-#include "MSL_C/MSL_Common/Src/printf.h"
+#include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dolphin/types.h"
+
+class JUTFont;
 
 class J2DPrint {
 public:

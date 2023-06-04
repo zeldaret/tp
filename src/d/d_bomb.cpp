@@ -5,6 +5,7 @@
 
 #include "d/d_bomb.h"
 #include "d/d_procname.h"
+#include "f_op/f_op_actor_mng.h"
 
 bool dBomb_c::checkStateCarry() {
     return (fopAcM_checkCarryNow(&mActor) || fopAcM_checkHookCarryNow(&mActor) ||
@@ -12,7 +13,7 @@ bool dBomb_c::checkStateCarry() {
 }
 
 bool dBomb_c::checkFlowerBombWait(fopAc_ac_c* param_1) {
-    return (fopAcM_GetName(&mActor) == PROC_NBOMB && fopAcM_GetParam(&mActor) == 4);
+    return (fopAcM_GetName(param_1) == PROC_NBOMB && fopAcM_GetParam(param_1) == 4);
 }
 
 bool dBomb_c::checkWaterBomb(fopAc_ac_c* param_1) {

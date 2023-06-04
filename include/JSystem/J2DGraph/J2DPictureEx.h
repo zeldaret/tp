@@ -1,9 +1,12 @@
 #ifndef J2DPICTUREEX_H
 #define J2DPICTUREEX_H
 
-#include "JSystem/J2DGraph/J2DMaterial.h"
 #include "JSystem/J2DGraph/J2DPicture.h"
+#include "JSystem/J2DGraph/J2DTevs.h"
+#include "dolphin/gx/GXEnum.h"
 #include "dolphin/types.h"
+
+class J2DMaterial;
 
 class J2DPictureEx : public J2DPicture {
 public:
