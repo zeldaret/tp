@@ -947,9 +947,9 @@ inline void dComIfGs_init() {
     g_dComIfG_gameInfo.info.init();
 }
 
-inline void dComIfGp_itemDataInit() {
-    g_dComIfG_gameInfo.play.itemInit();
-}
+// inline void dComIfGp_itemDataInit() {
+//     g_dComIfG_gameInfo.play.itemInit();
+// }
 
 inline int i_dComIfGs_isItemFirstBit(u8 i_no) {
     return g_dComIfG_gameInfo.info.getPlayer().getGetItem().isFirstBit(i_no);
@@ -1501,7 +1501,7 @@ inline void dComIfGs_setNewFile(u8 i_fileNo) {
 }
 
 inline void dComIfGs_i_setNewFile(u8 i_fileNo) {
-    return g_dComIfG_gameInfo.info.i_setNewFile(i_fileNo);
+    return g_dComIfG_gameInfo.info.setNewFile(i_fileNo);
 }
 
 inline char* dComIfGs_getPlayerName() {

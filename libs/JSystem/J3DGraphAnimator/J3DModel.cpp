@@ -203,7 +203,7 @@ s32 J3DModel::entryModelData(J3DModelData* p_modelData, u32 modelFlag, u32 mtxBu
         }
         break;
     }
-    ret = createShapePacket(p_modelData);
+    s32 ret = createShapePacket(p_modelData);
     if (ret) {
         return ret;
     }
