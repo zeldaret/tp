@@ -25,7 +25,7 @@ from pathlib import Path
 
 def _handle_import_error(ex: ImportError):
     MISSING_PREREQUISITES = (
-        f"Missing prerequisite python module {e}.\n"
+        f"Missing prerequisite python module {ex}.\n"
         f"Run `python3 -m pip install --user -r tools/requirements.txt` to install prerequisites."
     )
 

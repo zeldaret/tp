@@ -19,6 +19,7 @@
 #include "dolphin/types.h"
 #include "m_Do/m_Do_MemCard.h"
 #include "m_Do/m_Do_controller_pad.h"
+#include "m_Do/m_Do_graphic.h"
 
 
 //
@@ -1904,11 +1905,28 @@ SECTION_SDATA2 static f32 lit_4166[1 + 1 /* padding */] = {
 };
 
 /* 801843CC-801844FC 17ED0C 0130+00 0/0 1/1 0/0 .text            _create__14dFile_select_cFv */
+// Matches with literals
 #ifdef NONMATCHING
 void dFile_select_c::_create() {
     mDoGph_gInf_c::setFadeColor(static_cast<JUtility::TColor&>(g_blackColor));
-    mStick = new STControl();
+    mStick = new STControl(2, 2, 1, 1, 0.9f, 0.5f, 0, 0x2000);
     g_fsHIO.field_0x0004 = -1;
+    for (int iVar2 = 0; iVar2 < 3; iVar2++) {
+        mDataNew[iVar2] = 0;
+        field_0x025b[iVar2] = 0;
+    }
+
+    mSelectNum = 0;
+    dComIfGs_init();
+    dComIfGp_itemDataInit();
+    dComIfGs_setNewFile(0);
+    mHasDrawn = 0;
+    screenSet();
+    screenSetCopySel();
+    screenSet3Menu();
+    screenSetYesNo();
+    screenSetDetail();
+    displayInit();
 }
 #else
 #pragma push

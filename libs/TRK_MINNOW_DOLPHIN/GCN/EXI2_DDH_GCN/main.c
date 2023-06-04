@@ -4,6 +4,9 @@
 //
 
 #include "TRK_MINNOW_DOLPHIN/GCN/EXI2_DDH_GCN/main.h"
+#include "TRK_MINNOW_DOLPHIN/utils/common/CircleBuffer.h"
+#include "TRK_MINNOW_DOLPHIN/utils/common/MWTrace.h"
+#include "amcstubs/AmcExi2Stubs.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -11,33 +14,16 @@
 // Forward References:
 //
 
-void ddh_cc_initinterrupts();
+int ddh_cc_initinterrupts();
 void ddh_cc_peek();
-void ddh_cc_post_stop();
-void ddh_cc_pre_continue();
+int ddh_cc_post_stop();
+int ddh_cc_pre_continue();
 void ddh_cc_write();
 void ddh_cc_read();
 u8 ddh_cc_close();
-void ddh_cc_open();
+s32 ddh_cc_open();
 u8 ddh_cc_shutdown();
 void ddh_cc_initialize();
-
-//
-// External References:
-//
-
-void CircleBufferReadBytes();
-void CircleBufferWriteBytes();
-void CircleBufferInitialize();
-void CBGetBytesAvailableForRead();
-void MWTRACE();
-void EXI2_Init();
-void EXI2_EnableInterrupts();
-u8 EXI2_Poll();
-u8 EXI2_ReadN();
-u8 EXI2_WriteN();
-void EXI2_Reserve();
-void EXI2_Unreserve();
 
 //
 // Declarations:
@@ -48,23 +34,19 @@ void EXI2_Unreserve();
 static u8 gRecvBuf[2048];
 
 /* 80450030-80450050 07CD50 001C+04 3/3 0/0 0/0 .bss             gRecvCB */
-static u8 gRecvCB[28 + 4 /* padding */];
+static CircleBuffer gRecvCB;
 
 // copied from pikmin2. should try to find a real fix
 static makeMainBSSOrderingWork() {
-	u8 buff[0x500];
-	memcpy(buff, gRecvBuf, 0x500);
+    u8 buff[0x500];
+    memcpy(buff, gRecvBuf, 0x500);
 }
 
 /* 8037235C-80372380 36CC9C 0024+00 0/0 1/1 0/0 .text            ddh_cc_initinterrupts */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void ddh_cc_initinterrupts() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/GCN/EXI2_DDH_GCN/main/ddh_cc_initinterrupts.s"
+int ddh_cc_initinterrupts() {
+    EXI2_EnableInterrupts();
+    return 0;
 }
-#pragma pop
 
 /* 80372380-803723F0 36CCC0 0070+00 0/0 1/1 0/0 .text            ddh_cc_peek */
 #pragma push
@@ -77,24 +59,16 @@ asm void ddh_cc_peek() {
 #pragma pop
 
 /* 803723F0-80372414 36CD30 0024+00 0/0 1/1 0/0 .text            ddh_cc_post_stop */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void ddh_cc_post_stop() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/GCN/EXI2_DDH_GCN/main/ddh_cc_post_stop.s"
+int ddh_cc_post_stop() {
+    EXI2_Reserve();
+    return 0;
 }
-#pragma pop
 
 /* 80372414-80372438 36CD54 0024+00 0/0 1/1 0/0 .text            ddh_cc_pre_continue */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void ddh_cc_pre_continue() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/GCN/EXI2_DDH_GCN/main/ddh_cc_pre_continue.s"
+int ddh_cc_pre_continue() {
+    EXI2_Unreserve();
+    return 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803A2D10-803A2D24 02F370 0014+00 1/1 0/0 0/0 .rodata          @318 */
@@ -116,7 +90,7 @@ COMPILER_STRIP_GATE(0x803A2D50, &lit_320);
 #pragma pop
 
 /* 804519C0-804519C8 000EC0 0004+04 3/3 0/0 0/0 .sbss            gIsInitialized */
-static u8 gIsInitialized[4 + 4 /* padding */];
+static BOOL gIsInitialized;
 
 /* 80372438-803724F8 36CD78 00C0+00 0/0 1/1 0/0 .text            ddh_cc_write */
 #pragma push
@@ -153,14 +127,13 @@ u8 ddh_cc_close() {
 }
 
 /* 803725EC-80372610 36CF2C 0024+00 0/0 1/1 0/0 .text            ddh_cc_open */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void ddh_cc_open() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/GCN/EXI2_DDH_GCN/main/ddh_cc_open.s"
+s32 ddh_cc_open() {
+    if (gIsInitialized != FALSE) {
+        return -10005;
+    }
+    gIsInitialized = TRUE;
+    return 0;
 }
-#pragma pop
 
 /* 80372610-80372618 36CF50 0008+00 0/0 1/1 0/0 .text            ddh_cc_shutdown */
 u8 ddh_cc_shutdown() {
