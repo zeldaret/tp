@@ -164,46 +164,11 @@ s32 J3DModel::entryModelData(J3DModelData* p_modelData, u32 modelFlag, u32 mtxBu
         return 4;
     }
 
-    switch (mMtxBuffer->create(p_modelData, mtxBufferFlag)) {
-    case 0:
-        switch (createShapePacket(p_modelData)) {
-        case 0:
-            switch (createMatPacket(p_modelData, modelFlag)) {
-            case 0:
-                mVertexBuffer.setVertexData(&p_modelData->getVertexData());
-                prepareShapePackets();
-
-                if (modelFlag & J3DMdlFlag_Unk00001) {
-                    onFlag(J3DMdlFlag_Unk00001);
-                }
-                if (modelFlag & J3DMdlFlag_Unk00002) {
-                    onFlag(J3DMdlFlag_Unk00002);
-                }
-                if (modelFlag & J3DMdlFlag_Unk00010) {
-                    onFlag(J3DMdlFlag_Unk00010);
-                }
-                if (modelFlag & J3DMdlFlag_Unk20000) {
-                    onFlag(J3DMdlFlag_Unk20000);
-                }
-                if (modelFlag & J3DMdlFlag_Unk40000) {
-                    onFlag(J3DMdlFlag_Unk40000);
-                }
-                if (modelFlag & J3DMdlFlag_Unk80000) {
-                    onFlag(J3DMdlFlag_Unk80000);
-                }
-                if (modelFlag & J3DMdlFlag_SkinPosCpu) {
-                    onFlag(J3DMdlFlag_SkinPosCpu);
-                }
-                if (modelFlag & J3DMdlFlag_SkinNrmCpu) {
-                    onFlag(J3DMdlFlag_SkinNrmCpu);
-                }
-                return 0;
-            }
-            break;
-        }
-        break;
+    s32 ret = mMtxBuffer->create(p_modelData, mtxBufferFlag);
+    if (ret) {
+        return ret;
     }
-    s32 ret = createShapePacket(p_modelData);
+    ret = createShapePacket(p_modelData);
     if (ret) {
         return ret;
     }

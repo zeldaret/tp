@@ -18,7 +18,22 @@
 #include "f_op/f_op_scene_mng.h"
 #include "global.h"
 
-extern dMsgObject_HIO_c g_MsgObject_HIO_c;
+//
+// Forward References:
+//
+
+extern "C" void fopMsgM_valueIncrease__FiiUc();
+extern "C" extern dMsgObject_HIO_c g_MsgObject_HIO_c;
+
+//
+// External References:
+//
+
+extern "C" u8 sincosTable___5JMath[65536];
+
+//
+// Declarations:
+//
 
 /* 8001F9B4-8001FA24 01A2F4 0070+00 0/0 3/3 0/0 .text            fopMsgM_setStageLayer__FPv */
 s32 fopMsgM_setStageLayer(void* param_0) {
@@ -43,6 +58,15 @@ fopMsg_prm_class* fopMsgM_GetAppend(void* i_msg) {
 void fopMsgM_Delete(void* i_this) {
     fpcM_Delete(i_this);
 }
+
+/* ############################################################################################## */
+/* 80451C70-80451C74 000270 0004+00 6/6 0/0 0/0 .sdata2          @3902 */
+SECTION_SDATA2 static u8 lit_3902[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
 
 /* 8001FA6C-8001FB50 01A3AC 00E4+00 1/1 0/0 0/0 .text createAppend__FP10fopAc_ac_cP4cXyzPUlPUlUi
  */
@@ -69,9 +93,9 @@ static fopMsg_prm_class* createAppend(fopAc_ac_c* i_actor, cXyz* i_pos, u32* i_m
     if (i_pos != NULL) {
         params->mPos = *i_pos;
     } else {
-        // f32 tmp_0 = 0.0f;
-        // cXyz tmp(tmp_0, tmp_0, tmp_0);
-        params->mPos = cXyz(0.0f,0.0f,0.0f);
+        f32 tmp_0 = FLOAT_LABEL(lit_3902);
+        cXyz tmp(tmp_0, tmp_0, tmp_0);
+        params->mPos = tmp;
     }
 
     params->field_0x18 = param_4;
@@ -92,7 +116,7 @@ static fopMsg_prm_timer* createTimerAppend(int param_0, u32 param_1, u8 param_2,
         timer->field_0x0 = 0;
         timer->field_0x10 = 0;
         timer->field_0x14 = 0;
-        cXyz pos(0.0f, 0.0f, 0.0f);
+        cXyz pos(FLOAT_LABEL(lit_3902), FLOAT_LABEL(lit_3902), FLOAT_LABEL(lit_3902));
         timer->field_0x4 = pos;
         timer->field_0x18 = param_8;
         timer->field_0x1c = param_0;
@@ -159,7 +183,7 @@ int fopMsgM_messageSet(u32 i_msgIdx, fopAc_ac_c* i_actorP, u32 param_2) {
         if (i_actorP) {
             pos = i_actorP->mEyePos;
         } else {
-            pos.set(0.0f, 0.0f, 0.0f);
+            pos.set(FLOAT_LABEL(lit_3902), FLOAT_LABEL(lit_3902), FLOAT_LABEL(lit_3902));
         }
 
         if (g_MsgObject_HIO_c.mMsgDebug == true) {
@@ -195,9 +219,9 @@ int fopMsgM_messageSet(u32 msgIdx, u32 param_1) {
 
     } else {
         cXyz pos;
-        pos.z = 0.0f;
-        pos.y = 0.0f;
-        pos.x = 0.0f;
+        pos.z = FLOAT_LABEL(lit_3902);
+        pos.y = FLOAT_LABEL(lit_3902);
+        pos.x = FLOAT_LABEL(lit_3902);
 
         dMsgObject_c* msg = (dMsgObject_c*)fopMsgM_SearchByID(i_msgID);
 
@@ -240,9 +264,9 @@ int fopMsgM_messageSetDemo(u32 param_0) {
 
     } else {
         cXyz pos;
-        pos.z = 0.0f;
-        pos.y = 0.0f;
-        pos.x = 0.0f;
+        pos.z = FLOAT_LABEL(lit_3902);
+        pos.y = FLOAT_LABEL(lit_3902);
+        pos.x = FLOAT_LABEL(lit_3902);
 
         dMsgObject_c* msg = (dMsgObject_c*)fopMsgM_SearchByID(i_msgID);
 
@@ -280,14 +304,46 @@ void J2DPane::setAlpha(u8 alpha) {
     mAlpha = alpha;
 }
 
+/* ############################################################################################## */
+/* 803A3970-803A3990 -00001 001C+04 1/1 0/0 0/0 .data            @4305 */
+SECTION_DATA static void* lit_4305[7 + 1 /* padding */] = {
+    (void*)(((char*)fopMsgM_valueIncrease__FiiUc) + 0x88),
+    (void*)(((char*)fopMsgM_valueIncrease__FiiUc) + 0x90),
+    (void*)(((char*)fopMsgM_valueIncrease__FiiUc) + 0xB4),
+    (void*)(((char*)fopMsgM_valueIncrease__FiiUc) + 0xBC),
+    (void*)(((char*)fopMsgM_valueIncrease__FiiUc) + 0xD8),
+    (void*)(((char*)fopMsgM_valueIncrease__FiiUc) + 0x10C),
+    (void*)(((char*)fopMsgM_valueIncrease__FiiUc) + 0x140),
+    /* padding */
+    NULL,
+};
+
+/* 80451C74-80451C78 000274 0004+00 1/1 0/0 0/0 .sdata2          @4167 */
+SECTION_SDATA2 static f32 lit_4167 = 0.5f;
+
+/* 80451C78-80451C7C 000278 0004+00 1/1 0/0 0/0 .sdata2          @4298 */
+SECTION_SDATA2 static f32 lit_4298 = 1.0f;
+
+/* 80451C7C-80451C80 00027C 0004+00 1/1 0/0 0/0 .sdata2          @4299 */
+SECTION_SDATA2 static f32 lit_4299 = 2.0f;
+
+/* 80451C80-80451C84 000280 0004+00 1/1 0/0 0/0 .sdata2          @4300 */
+SECTION_SDATA2 static f32 lit_4300 = 32768.0f;
+
+/* 80451C84-80451C88 000284 0004+00 1/1 0/0 0/0 .sdata2          @4301 */
+SECTION_SDATA2 static f32 lit_4301 = 65535.0f;
+
+/* 80451C88-80451C90 000288 0008+00 1/1 0/0 0/0 .sdata2          @4303 */
+SECTION_SDATA2 static f64 lit_4303 = 4503601774854144.0 /* cast s32 to float */;
+
 /* 80020160-800202CC 01AAA0 016C+00 1/0 4/4 2/2 .text            fopMsgM_valueIncrease__FiiUc */
-#ifndef NONMATCHING
- // float literals
+#ifdef NONMATCHING
+// regalloc + something up with case 2
 f32 fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
     f32 ret;
 
     if (param_0 <= 0) {
-        ret = 1.0f;
+        return FLOAT_LABEL(lit_4298);
     } else {
         if (param_1 < 0) {
             param_1 = 0;
@@ -295,37 +351,40 @@ f32 fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
             param_1 = param_0;
         }
 
-        f32 tmp = (f32)param_1 / (f32)param_0;
-        
+        ret = param_1;
+        f32 out_tmp = ret / param_0;
+
         switch (param_2) {
         case 0: {
-            ret = tmp * tmp;
+            ret = out_tmp * out_tmp;
             break;
         }
         case 1: {
-            ret = JMAFastSqrt(tmp);
+            ret = JMAFastSqrt(out_tmp);
             break;
         }
-        default: {
-            ret = tmp;
+        case 2: {  // seems like this should be default case, but it causes other issues
+            ret = out_tmp;
             break;
         }
         case 3: {
-            ret = (((tmp * 2.0f) - 1.0f) * 2.0f - 1.0f);
+            f32 tmp = (FLOAT_LABEL(lit_4299) * out_tmp) - FLOAT_LABEL(lit_4298);
+            tmp = out_tmp * tmp;
+            ret = tmp - FLOAT_LABEL(lit_4298);
             break;
         }
         case 4: {
-            tmp = cM_ssin((tmp * 32768.0f) * 0.5f);
+            f32 tmp = cM_ssin(FLOAT_LABEL(lit_4167) * (FLOAT_LABEL(lit_4300) * out_tmp));
             ret = tmp * tmp;
             break;
         }
         case 5: {
-            tmp = cM_ssin((tmp * 65535.0f) * 0.5f);
+            f32 tmp = cM_ssin(FLOAT_LABEL(lit_4167) * (FLOAT_LABEL(lit_4301) * out_tmp));
             ret = tmp * tmp;
             break;
         }
         case 6: {
-            ret = cM_ssin(tmp * 32768.0f);
+            ret = cM_ssin(FLOAT_LABEL(lit_4300) * out_tmp);
         }
         }
     }

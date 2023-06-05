@@ -12,6 +12,7 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_overlap_mng.h"
 #include "f_op/f_op_scene.h"
+#include "f_op/f_op_scene_mng.h"
 #include "f_pc/f_pc_manager.h"
 #include "global.h"
 #include "m_Do/m_Do_Reset.h"

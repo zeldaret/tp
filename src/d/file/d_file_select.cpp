@@ -20,6 +20,7 @@
 #include "m_Do/m_Do_MemCard.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
+#include "m_Do/m_Do_Reset.h"
 
 
 //
@@ -2873,7 +2874,6 @@ asm void dFile_select_c::menuSelectAnmSet() {
 #pragma pop
 #endif
 
-#endif
 /* 80186F98-8018721C 1818D8 0284+00 1/0 0/0 0/0 .text menuSelectMoveAnm__14dFile_select_cFv */
 #ifdef NONMATCHING
 // matches with literals

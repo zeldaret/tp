@@ -538,7 +538,7 @@ inline void dMeter2Info_decMsgKeyWaitTimer() {
     g_meter2_info.decMsgKeyWaitTimer();
 }
 
-char* dMeter2Info_getNumberTextureName(int pIndex);
+const char* dMeter2Info_getNumberTextureName(int pIndex);
 inline bool dMeter2Info_isFloatingMessageVisible() {
     return g_meter2_info.isFloatingMessageVisible();
 }

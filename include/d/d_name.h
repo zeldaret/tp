@@ -3,6 +3,8 @@
 
 #include "d/d_drawlist.h"
 #include "dolphin/types.h"
+#include "d/d_select_cursor.h"
+#include "MSL_C/string.h"
 
 class CPaneMgr;
 class CPaneMgrAlpha;
@@ -11,7 +13,7 @@ class J2DAnmTextureSRTKey;
 class J2DTextBox;
 class JUTFont;
 struct STControl;
-class dSelect_cursor_c;
+// class dSelect_cursor_c;
 
 class dNm_HIO_c {
 public:

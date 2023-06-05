@@ -202,14 +202,14 @@ public:
     /* 80184B44 */ void dataDelEffAnm();
     /* 80184BFC */ void dataCopyEffAnm();
     /* 80184CB4 */ void selectDataBaseMoveAnmInitSet(int, int);
-    /* 80184D4C */ void selectDataBaseMoveAnm();
+    /* 80184D4C */ bool selectDataBaseMoveAnm();
     /* 80184E38 */ void dataSelectInAnmSet();
     /* 80185040 */ void dataSelectIn();
     /* 80185230 */ void dataSelectInit();
     /* 801853C4 */ void dataSelect();
     /* 80185508 */ void dataSelectStart();
     /* 80185994 */ void selectDataMoveAnmInitSet(int, int);
-    /* 80185AAC */ void selectDataMoveAnm();
+    /* 80185AAC */ bool selectDataMoveAnm();
     /* 80185C2C */ void dataSelectAnmSet();
     /* 80185DE0 */ void dataSelectMoveAnime();
     /* 80186088 */ void makeRecInfo(u8);
@@ -244,7 +244,7 @@ public:
     /* 8018832C */ void copyDataToSelectMoveAnmSet();
     /* 801884D0 */ void copyDataToSelectMoveAnm();
     /* 80188834 */ void copySelectWakuAlpahAnmInit(u8, u8, u8, u8);
-    /* 80188878 */ void copySelectWakuAlpahAnm(u8);
+    /* 80188878 */ bool copySelectWakuAlpahAnm(u8);
     /* 80188950 */ void getCptoNum(u8);
     /* 80188994 */ void copyToSelBack();
     /* 80188B54 */ void copyToSelPaneMove();
@@ -291,10 +291,10 @@ public:
     /* 8018D4F8 */ void ketteiTxtDispAnmInit(u8);
     /* 8018D574 */ bool ketteiTxtDispAnm();
     /* 8018D650 */ void selectWakuAlpahAnmInit(u8, u8, u8, u8);
-    /* 8018D68C */ void selectWakuAlpahAnm(u8);
+    /* 8018D68C */ bool selectWakuAlpahAnm(u8);
     /* 8018D764 */ void selFileCursorShow();
     /* 8018D884 */ void menuWakuAlpahAnmInit(u8, u8, u8, u8);
-    /* 8018D8C8 */ void menuWakuAlpahAnm(u8);
+    /* 8018D8C8 */ bool menuWakuAlpahAnm(u8);
     /* 8018DA10 */ void menuCursorShow();
     /* 8018DB80 */ void yesnoWakuAlpahAnmInit(u8, u8, u8, u8);
     /* 8018DBCC */ void yesnoWakuAlpahAnm(u8);
@@ -341,7 +341,7 @@ public:
     /* 8018FD30 */ void errorTxtChangeAnm();
     /* 8018FE18 */ bool fileRecScaleAnm();
     /* 8018FE64 */ void fileRecScaleAnmInitSet2(f32, f32);
-    /* 8018FEF4 */ void fileRecScaleAnm2();
+    /* 8018FEF4 */ bool fileRecScaleAnm2();
     /* 8018FF9C */ bool fileInfoScaleAnm();
     /* 80190074 */ void nameMoveAnmInitSet(int, int);
     /* 80190124 */ bool nameMoveAnm();
