@@ -96,5 +96,4 @@ private:
     /* 0x420 */ u8 field_0x420;
 };
 
-
 #endif /* D_S_D_S_NAME_H */
