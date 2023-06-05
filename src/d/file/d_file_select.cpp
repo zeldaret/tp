@@ -2568,6 +2568,28 @@ asm bool dFile_select_c::selectDataMoveAnm() {
 #endif
 
 /* 80185C2C-80185DE0 18056C 01B4+00 1/1 0/0 0/0 .text dataSelectAnmSet__14dFile_select_cFv */
+#ifdef NONMATCHING
+// matches with literals
+void dFile_select_c::dataSelectAnmSet() {
+    if (mSelectNum != 0xff) {
+        field_0x00bc[mSelectNum]->getPanePtr()->setAnimation((J2DAnmTransform*)mpAnmBase[0]);
+        field_0x00e0[mSelectNum] = SelStartFrameTbl[mSelectNum];
+        mpAnmBase[0]->setFrame(field_0x00e0[mSelectNum]);
+        field_0x00bc[mSelectNum]->getPanePtr()->animationTransform();
+        field_0x0188[mSelectNum]->alphaAnimeStart(0);
+    }
+
+    if (mLastSelectNum != 0xff) {
+        selectWakuAlpahAnmInit(mLastSelectNum,0xff,0,g_fsHIO.field_0x0008);
+        field_0x00bc[mLastSelectNum]->getPanePtr()->setAnimation((J2DAnmTransform*)mpAnmBase[1]); // wrong?
+        field_0x00e0[mLastSelectNum] = SelEndFrameTbl[mLastSelectNum];
+        mpAnmBase[1]->setFrame(field_0x00e0[mLastSelectNum]);
+        field_0x00bc[mLastSelectNum]->getPanePtr()->animationTransform();
+        field_0x0188[mLastSelectNum]->alphaAnimeStart(0);
+        mpCursor1->setAlphaRate(0.0f);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2576,6 +2598,7 @@ asm void dFile_select_c::dataSelectAnmSet() {
 #include "asm/d/file/d_file_select/dataSelectAnmSet__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80185DE0-80186088 180720 02A8+00 1/0 0/0 0/0 .text dataSelectMoveAnime__14dFile_select_cFv */
 #pragma push
