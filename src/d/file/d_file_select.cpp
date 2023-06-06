@@ -3312,6 +3312,7 @@ asm void dFile_select_c::backNameInputMove() {
 /* 801879B8-80187ADC 1822F8 0124+00 1/0 0/0 0/0 .text            ToCopyPaneMove__14dFile_select_cFv
  */
 #ifdef NONMATCHING
+// unfinished
 void dFile_select_c::ToCopyPaneMove() {
     cPaneMgr* pPane;
     
@@ -3374,6 +3375,38 @@ SECTION_SDATA2 static f32 lit_5615 = 109.0f;
 
 /* 80187BE8-80187DB8 182528 01D0+00 6/6 0/0 0/0 .text copySelMoveAnmInitSet__14dFile_select_cFii
  */
+#ifdef NONMATCHING
+// matches with literals
+void dFile_select_c::copySelMoveAnmInitSet(int param_0, int param_1) {
+    if (param_0 == 0xd1f) {
+        field_0x02c0->setAlpha(0xff);
+        field_0x02c8->setAlpha(0xff);
+        field_0x02d0->setAlpha(0xff);
+        field_0x02c4->setAlpha(0);
+        field_0x02cc->setAlpha(0);
+        field_0x02d4->setAlpha(0);
+
+        field_0x02a4[0]->getPanePtr()->setAnimation(field_0x029c);
+        field_0x029c->setFrame(99.0f);
+        field_0x02a4[0]->getPanePtr()->animationTransform();
+        field_0x02a4[0]->getPanePtr()->setAnimation((J2DAnmTransform*)0);
+
+        field_0x02a4[1]->getPanePtr()->setAnimation(field_0x02a0);
+        field_0x02a0->setFrame(109.0f);
+        field_0x02a4[1]->getPanePtr()->animationTransform();
+        field_0x02a4[1]->getPanePtr()->setAnimation((J2DAnmTransform*)0);
+        
+        setSaveDataForCopySel();
+        mFileSelCopyDlst.field_0x08 = true;
+    }
+
+    field_0x011c->setAnimation(mpAnmBase[4]);
+    field_0x0120 = param_0;
+    field_0x0124 = param_1;
+    mpAnmBase[4]->setFrame(field_0x0120);
+    field_0x011c->animationTransform();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3382,6 +3415,7 @@ asm void dFile_select_c::copySelMoveAnmInitSet(int param_0, int param_1) {
 #include "asm/d/file/d_file_select/copySelMoveAnmInitSet__14dFile_select_cFii.s"
 }
 #pragma pop
+#endif
 
 /* 80187DB8-80187ED4 1826F8 011C+00 1/1 0/0 0/0 .text setSaveDataForCopySel__14dFile_select_cFv */
 #pragma push

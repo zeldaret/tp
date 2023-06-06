@@ -367,14 +367,14 @@ public:
     /* 0x0034 */ dDlst_FileSelCp_c mFileSelCopyDlst;     
     /* 0x0048 */ dDlst_FileSelYn_c mFileSelYesNoDlst;    
     /* 0x0054 */ dDlst_FileSel3m_c mFileSel3mDlst;       
-    /* 0x005C */ u8 field_0x00[4];                       
+    /* 0x005C */ u8 field_0x005c[4];                       
     /* 0x0060 */ dSelect_cursor_c* mpCursor1;            
     /* 0x0064 */ dSelect_cursor_c* mpCursor2;            
     /* 0x0068 */ dName_c* mpName;                        
     /* 0x006C */ dFile_warning_c* mpFileWarning;         
     /* 0x0070 */ u8 field_0x70[0xc];                     
     /* 0x007C */ dFile_info_c* mpFileInfo[2];            
-    /* 0x0084 */ J2DAnmBase* mpAnmBase[7];               
+    /* 0x0084 */ J2DAnmTransform* mpAnmBase[7]; // this might be 7 individual pointers and not an array              
     /* 0x00A0 */ u8 field_0x00a0[4];                       
     /* 0x00A4 */ CPaneMgr* field_0x00a4;                    
     /* 0x00A8 */ u8 field_0x00a8[0xb0-0xa8];               
@@ -471,9 +471,17 @@ public:
     /* 0x0282 */ bool field_0x0282;
     /* 0x0283 */ bool field_0x0283;
     /* 0x0284 */ u8 field_0x0284[0x029C - 0x0284];
-    /* 0x029C */ J2DAnmBase* field_0x029c;
-    /* 0x02A0 */ J2DAnmBase* field_0x02a0;
-    /* 0x02A4 */ J2DPane* field_0x01a4[17]; // too many here, fix later
+    /* 0x029C */ J2DAnmTransform* field_0x029c;
+    /* 0x02A0 */ J2DAnmTransform* field_0x02a0;
+    /* 0x02A4 */ CPaneMgr* field_0x02a4[3];
+    /* 0x02B0 */ u8 field_0x02b0[0x2c0-0x2b0];
+    /* 0x02C0 */ CPaneMgr* field_0x02c0;
+    /* 0x02C4 */ CPaneMgr* field_0x02c4;
+    /* 0x02C8 */ CPaneMgr* field_0x02c8;
+    /* 0x02CC */ CPaneMgr* field_0x02cc;
+    /* 0x02D0 */ CPaneMgr* field_0x02d0;
+    /* 0x02D4 */ CPaneMgr* field_0x02d4;
+    /* 0x02D8 */ u8 field_0x02d8[0x2e8-0x2d8];
     /* 0x02E8 */ J2DAnmBase* field_0x02e8;
     /* 0x02EC */ s32 field_0x02ec;
     /* 0x02F0 */ J2DAnmBase* field_0x02f0;
@@ -487,17 +495,16 @@ public:
     /* 0x0310 */ J2DAnmBase* field_0x0310;
     /* 0x0314 */ J2DAnmBase* field_0x0314;
     /* 0x0318 */ J2DAnmBase* field_0x0318;
-    /* 0x031C */ s32 field_0x031c; // J2DAnmBase*?
+    /* 0x031C */ s32 field_0x031c; // J2DAnmTransform*?
     /* 0x0320 */ J2DAnmBase* field_0x0320;
     /* 0x0324 */ s32 field_0x0324;
-    /* 0x0328 */ J2DAnmTransform* field_0x0328; // actually J2DAnmVtxColor?
+    /* 0x0328 */ J2DAnmTransform* field_0x0328;
     /* 0x032C */ J2DAnmTransform* field_0x032c;
     /* 0x0330 */ J2DAnmBase* field_0x0330;
     /* 0x0334 */ s32 field_0x0334;
     /* 0x0338 */ J2DAnmBase* field_0x0338;
     /* 0x033C */ s32 field_0x033c;
     /* 0x0340 */ CPaneMgr* field_0x0340[3];
-    // /* 0x0344 */ u8 field_0x0344[8];
     /* 0x034C */ s32 field_0x034c[3];
     /* 0x0358 */ int field_0x0358;
     /* 0x035C */ int field_0x035c;
