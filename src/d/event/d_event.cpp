@@ -489,12 +489,12 @@ int dEvt_control_c::catchCheck(dEvt_order_c* p_order) {
 
 /* 80041D34-80041DDC 03C674 00A8+00 1/1 0/0 0/0 .text            talkEnd__14dEvt_control_cFv */
 int dEvt_control_c::talkEnd() {
-    fopAc_ac_c* actor = (fopAc_ac_c*)getPt1();
+    fopAc_ac_c* actor = getPt1();
     if (actor != NULL) {
         actor->mEvtInfo.setCommand(0);
     }
 
-    actor = (fopAc_ac_c*)getPt2();
+    actor = getPt2();
     if (actor != NULL) {
         actor->mEvtInfo.setCommand(0);
     }
@@ -560,12 +560,12 @@ int dEvt_control_c::demoCheck(dEvt_order_c* p_order) {
 
 /* 80041F18-80041FA0 03C858 0088+00 1/1 0/0 0/0 .text            demoEnd__14dEvt_control_cFv */
 int dEvt_control_c::demoEnd() {
-    fopAc_ac_c* actor = (fopAc_ac_c*)getPt1();
+    fopAc_ac_c* actor = getPt1();
     if (actor != NULL) {
         actor->mEvtInfo.setCommand(0);
     }
 
-    actor = (fopAc_ac_c*)getPt2();
+    actor = getPt2();
     if (actor != NULL) {
         actor->mEvtInfo.setCommand(0);
     }
@@ -597,7 +597,7 @@ int dEvt_control_c::doorCheck(dEvt_order_c* p_order) {
     if (commonCheck(p_order, 4, 3)) {
         mMode = EVT_MODE_DEMO;
 
-        fopAc_ac_c* actor2 = (fopAc_ac_c*)getPt2();
+        fopAc_ac_c* actor2 = getPt2();
         if (actor2 != NULL) {
             i_dComIfGp_getEventManager().setObjectArchive(actor2->mEvtInfo.getArchiveName());
         }
@@ -754,9 +754,9 @@ int dEvt_control_c::entry() {
 /* 80042468-80042518 03CDA8 00B0+00 1/1 8/8 388/388 .text            reset__14dEvt_control_cFv */
 void dEvt_control_c::reset() {
     if (field_0xec != 0xFF) {
-        void* pt1 = getPt1();
+        fopAc_ac_c* pt1 = getPt1();
         s16 eventIdx = i_dComIfGp_getEventManager().getEventIdx(NULL, field_0xec, -1);
-        void* pt2 = getPt2();
+        fopAc_ac_c* pt2 = getPt2();
 
         order(EVT_TYPE_OTHER, 3, 0x201, mHindFlag, pt1, pt2, eventIdx, field_0xec);
         mChangeOK = pt1;
@@ -769,7 +769,7 @@ void dEvt_control_c::reset() {
 void dEvt_control_c::reset(void* param_0) {
     if (field_0xec != 0xFF) {
         s16 eventIdx = i_dComIfGp_getEventManager().getEventIdx((fopAc_ac_c*)param_0, field_0xec);
-        void* pt2 = getPt2();
+        fopAc_ac_c* pt2 = getPt2();
         order(EVT_TYPE_OTHER, 3, 0x201, mHindFlag, param_0, pt2, eventIdx, field_0xec);
     }
 
@@ -970,7 +970,7 @@ bool dEvt_control_c::skipper() {
         if (startSkip) {
             dMsgObject_onKillMessageFlag();
 
-            void* ptr = convPId(field_0x104);
+            fopAc_ac_c* ptr = convPId(field_0x104);
             if (ptr == NULL) {
                 ptr = dComIfGp_getPlayer(0);
             }
@@ -1240,8 +1240,8 @@ u32 dEvt_control_c::getPId(void* actor) {
 }
 
 /* 800432EC-8004331C 03DC2C 0030+00 7/7 13/13 16/16 .text            convPId__14dEvt_control_cFUi */
-void* dEvt_control_c::convPId(unsigned int id) {
-    return fopAcIt_Judge(fpcSch_JudgeByID, &id);
+fopAc_ac_c* dEvt_control_c::convPId(unsigned int id) {
+    return (fopAc_ac_c*)fopAcIt_Judge(fpcSch_JudgeByID, &id);
 }
 
 /* 8004331C-800433F0 03DC5C 00D4+00 0/0 1/1 0/0 .text            getStbDemoData__14dEvt_control_cFPc
