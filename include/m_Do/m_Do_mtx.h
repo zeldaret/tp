@@ -59,6 +59,10 @@ inline void cMtx_multVec(Mtx mtx, const Vec* src, Vec* dst) {
     mDoMtx_multVec(mtx, src, dst);
 }
 
+inline void cMtx_copy(const Mtx src, Mtx dst) {
+    mDoMtx_copy(src, dst);
+}
+
 inline void mDoMtx_multVecZero(MtxP param_0, Vec* param_1) {
     param_1->x = param_0[0][3];
     param_1->y = param_0[1][3];

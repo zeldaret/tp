@@ -2828,8 +2828,8 @@ asm void mDoExt_McaMorfSO::calc() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoExt_McaMorfSO::setAnm(J3DAnmTransform* param_0, int param_1, f32 param_2, f32 param_3,
-                                  f32 param_4, f32 param_5) {
+asm void mDoExt_McaMorfSO::setAnm(J3DAnmTransform* i_anm, int i_attr, f32 i_morf, f32 i_rate,
+                                  f32 i_start, f32 i_end) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff.s"
 }

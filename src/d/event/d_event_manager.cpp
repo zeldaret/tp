@@ -464,7 +464,7 @@ void dEvent_manager_c::Sequencer() {
                         evtControl.onSkipFade();
                     }
 
-                    void* actor = evtControl.getPt1();
+                    fopAc_ac_c* actor = evtControl.getPt1();
                     if (actor == NULL) {
                         actor = evtControl.getPt2();
                     }
