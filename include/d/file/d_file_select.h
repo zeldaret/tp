@@ -496,8 +496,8 @@ public:
     /* 0x0334 */ s32 field_0x0334;
     /* 0x0338 */ J2DAnmBase* field_0x0338;
     /* 0x033C */ s32 field_0x033c;
-    /* 0x0340 */ CPaneMgrAlpha* field_0x0340;
-    /* 0x0344 */ u8 field_0x0344[8];
+    /* 0x0340 */ CPaneMgr* field_0x0340[3];
+    // /* 0x0344 */ u8 field_0x0344[8];
     /* 0x034C */ s32 field_0x034c[3];
     /* 0x0358 */ int field_0x0358;
     /* 0x035C */ int field_0x035c;

@@ -2601,6 +2601,60 @@ asm void dFile_select_c::dataSelectAnmSet() {
 #endif
 
 /* 80185DE0-80186088 180720 02A8+00 1/0 0/0 0/0 .text dataSelectMoveAnime__14dFile_select_cFv */
+#ifdef NONMATCHING
+// still alot wrong
+void dFile_select_c::dataSelectMoveAnime() {
+    int iVar7 = 1;
+    int iVar6 = 1;
+    bool bVar1 = true;
+    if (mLastSelectNum != 0xff) {
+        field_0x0188[mLastSelectNum]->alphaAnime(g_fsHIO.field_0x0006,0xff,0,1);
+        selectWakuAlpahAnm(mLastSelectNum);
+
+        if (field_0x00e0[mLastSelectNum] != SelStartFrameTbl[mLastSelectNum]) {
+            field_0x00e0[mLastSelectNum] = field_0x00e0[mLastSelectNum] - 2;
+            
+            if (field_0x00e0[mLastSelectNum] < SelStartFrameTbl[mLastSelectNum])
+                field_0x00e0[mLastSelectNum] = SelStartFrameTbl[mLastSelectNum];
+        
+            mpAnmBase[1]->setFrame(field_0x00e0[mLastSelectNum]);
+            field_0x00bc[mLastSelectNum]->getPanePtr()->animationTransform();
+            bVar1 = false;
+        }
+    }
+
+    int iVar5 = 1;
+    bool bVar2 = true;
+
+    if (mSelectNum != 0xff) {
+        field_0x0188[mSelectNum]->alphaAnime(g_fsHIO.field_0x0006,0,0xff,1);
+
+        if (field_0x00e0[mSelectNum] != SelEndFrameTbl[mSelectNum]) {
+            field_0x00e0[mSelectNum] = field_0x00e0[mSelectNum] + 2;
+
+            if (SelEndFrameTbl[mSelectNum] < field_0x00e0[mSelectNum])
+                field_0x00e0[mSelectNum] = SelEndFrameTbl[mSelectNum];
+
+            mpAnmBase[0]->setFrame(field_0x00e0[mSelectNum]);
+            field_0x00bc[mSelectNum]->getPanePtr()->animationTransform();
+            bVar2 = false;
+        }
+    }
+
+    if (iVar7 == 1 && iVar6 == 1 && bVar1 && (iVar5 == 1 && !bVar2)) {
+        if (mSelectNum != 0xff) {
+            field_0x00bc[mSelectNum]->getPanePtr()->setAnimation((J2DAnmTransform*)0);
+            selFileCursorShow();
+        }
+
+        if (mLastSelectNum != 0xff) {
+            field_0x00bc[mLastSelectNum]->getPanePtr()->setAnimation((J2DAnmTransform*)0);
+        }
+
+        field_0x026f = 3;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2609,6 +2663,7 @@ asm void dFile_select_c::dataSelectMoveAnime() {
 #include "asm/d/file/d_file_select/dataSelectMoveAnime__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80186088-801864DC 1809C8 0454+00 2/2 0/0 0/0 .text            makeRecInfo__14dFile_select_cFUc */
 #pragma push
@@ -2621,6 +2676,27 @@ asm void dFile_select_c::makeRecInfo(u8 param_0) {
 #pragma pop
 
 /* 801864DC-80186638 180E1C 015C+00 1/0 0/0 0/0 .text selectDataOpenMove__14dFile_select_cFv */
+#ifdef NONMATCHING
+// matches with literals (s32 -> float cast)
+void dFile_select_c::selectDataOpenMove() {
+    bool headerTxtChange = headerTxtChangeAnm();
+    bool selectDataMove = selectDataMoveAnm();
+    bool menuMove = menuMoveAnm();
+    bool modoruTxtDisp = modoruTxtDispAnm();
+    bool selectWakuAlpah = selectWakuAlpahAnm(mSelectNum);
+
+    if (headerTxtChange == true && selectDataMove == true && menuMove == true && 
+        modoruTxtDisp == true && selectWakuAlpah == true) {
+        mSelectMenuNum = 1;
+        field_0x0340[mSelectMenuNum]->getPanePtr()->setAnimation(field_0x0328);
+        field_0x0328->setFrame(MenuSelStartFrameTbl[mSelectMenuNum]);
+        field_0x0340[mSelectMenuNum]->getPanePtr()->animationTransform();
+        field_0x0340[mSelectMenuNum]->getPanePtr()->setAnimation((J2DAnmTransform*)0);
+        menuCursorShow();
+        field_0x026f = 8;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2629,6 +2705,7 @@ asm void dFile_select_c::selectDataOpenMove() {
 #include "asm/d/file/d_file_select/selectDataOpenMove__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80186638-801866C8 180F78 0090+00 1/0 0/0 0/0 .text selectDataNameMove__14dFile_select_cFv */
 void dFile_select_c::selectDataNameMove() {
