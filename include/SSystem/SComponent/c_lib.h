@@ -94,6 +94,11 @@ T cLib_calcTimer(T* value) {
     return *value;
 }
 
+template <typename T>
+T cLib_getRndValue(T min, T range) {
+    return (T)(min + cM_rndF((f32)range));
+}
+
 void MtxInit(void);
 void MtxTrans(f32, f32, f32, u8);
 void MtxScale(f32, f32, f32, u8);
