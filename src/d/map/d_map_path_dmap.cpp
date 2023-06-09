@@ -301,23 +301,21 @@ Vec dMapInfo_n::getMapRestartPos() {
 
 /* 8003F0F8-8003F19C 039A38 00A4+00 1/1 1/1 0/0 .text            getMapRestartAngleY__10dMapInfo_nFv
  */
-// small regalloc
-#ifdef NONMATCHING
 s16 dMapInfo_n::getMapRestartAngleY() {
     int angle = dComIfGs_getRestartRoomAngleY();
 
     const dTres_c::typeGroupData_c* icon_data = getConstRestartIconPointer();
     if (icon_data != NULL) {
-        int icon_angle = icon_data->getAngleY();
-        bool tmp = icon_angle > 0;
+        angle = icon_data->getAngleY();
+        bool tmp = angle > 0;
 
         if (tmp) {
-            icon_angle = -icon_angle;
+            angle = -angle;
         }
 
-        angle = icon_angle * 0x0100;
+        angle = angle * 0x0100;
         if (tmp) {
-            angle = icon_angle * -0x0100;
+            angle = -angle;
         }
     }
 
@@ -329,16 +327,6 @@ s16 dMapInfo_n::getMapRestartAngleY() {
 
     return angle;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s16 dMapInfo_n::getMapRestartAngleY() {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/getMapRestartAngleY__10dMapInfo_nFv.s"
-}
-#pragma pop
-#endif
 
 /* 8003F19C-8003F1F4 039ADC 0058+00 0/0 1/1 0/0 .text            getRoomCenter__10dMapInfo_nFiPfPf
  */
@@ -896,24 +884,49 @@ asm int renderingDAmap_c::getNextDrawRoomNo(int param_0) {
 #endif
 
 /* 80040134-800401E8 03AA74 00B4+00 3/0 3/0 0/0 .text getFirstRoomPointer__16renderingDAmap_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dDrawPath_c::room_class* renderingDAmap_c::getFirstRoomPointer() {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/getFirstRoomPointer__16renderingDAmap_cFv.s"
+dDrawPath_c::room_class* renderingDAmap_c::getFirstRoomPointer() {
+    dDrawPath_c::room_class* pRoomClass = NULL;
+    mRoomNo = getFirstDrawRoomNo();
+    if (mRoomNo >= 0) {
+        field_0x28 = getFirstDrawLayerNo();
+
+        pRoomClass = dMpath_c::getRoomPointer(field_0x28, mRoomNo);
+        if (pRoomClass == NULL) {
+            pRoomClass = getNextRoomPointer();
+        }
+    }
+
+    if(pRoomClass != NULL) {
+        setSingleRoomSetting();
+    }
+    return pRoomClass;
 }
-#pragma pop
 
 /* 800401E8-800402C0 03AB28 00D8+00 3/0 3/0 0/0 .text getNextRoomPointer__16renderingDAmap_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dDrawPath_c::room_class* renderingDAmap_c::getNextRoomPointer() {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/getNextRoomPointer__16renderingDAmap_cFv.s"
+dDrawPath_c::room_class* renderingDAmap_c::getNextRoomPointer() {
+    dDrawPath_c::room_class* pRoomClass = NULL;
+    bool bVar1 = false;
+    do  {
+        mRoomNo = getNextDrawRoomNo(mRoomNo);
+        if (mRoomNo < 0) {
+            field_0x28 = getNextDrawLayerNo(field_0x28);
+            if (field_0x28 < 0) {
+                bVar1 = true;
+            } else {
+                mRoomNo = getFirstDrawRoomNo();
+            }
+        }
+
+        if (!bVar1) {
+            pRoomClass = dMpath_c::getRoomPointer(field_0x28, mRoomNo);
+        }
+    } while(pRoomClass == NULL && !bVar1);
+
+    if (pRoomClass != NULL) {
+        setSingleRoomSetting();
+    } 
+    return pRoomClass;
 }
-#pragma pop
 
 /* 800402C0-800402E0 03AC00 0020+00 3/0 3/0 0/0 .text            isDrawPath__16renderingDAmap_cFv */
 bool renderingDAmap_c::isDrawPath() {
@@ -921,8 +934,8 @@ bool renderingDAmap_c::isDrawPath() {
 }
 
 /* 800402E0-800402E8 03AC20 0008+00 3/0 3/0 0/0 .text getFirstDrawLayerNo__16renderingDAmap_cFv */
-bool renderingDAmap_c::getFirstDrawLayerNo() {
-    return false;
+int renderingDAmap_c::getFirstDrawLayerNo() {
+    return 0;
 }
 
 /* 800402E8-800402FC 03AC28 0014+00 3/0 3/0 0/0 .text getNextDrawLayerNo__16renderingDAmap_cFi */
@@ -1232,8 +1245,9 @@ void renderingPlusDoorAndCursor_c::drawTreasure() {
     setTevSettingIntensityTextureToCI();
 
     for (int i = 0; i < 4; i++) {
+        dTres_c::typeGroupData_c* typeGroupData_p;
         u8 tmp = l_treasureDispList_4524[i].field_0x0;
-        dTres_c::typeGroupData_c* typeGroupData_p = getFirstData(tmp);
+        typeGroupData_p = getFirstData(tmp);
         int group_num = getIconGroupNumber(tmp);
 
         if (group_num != 0) {
@@ -1256,7 +1270,7 @@ void renderingPlusDoorAndCursor_c::drawTreasure() {
             GXSetTevColor(GX_TEVREG2, sp18);
 
             for (int j = 0; j < group_num && typeGroupData_p != NULL; j++) {
-                Vec* icon_pos = getIconPosition(typeGroupData_p);
+                const Vec* icon_pos = getIconPosition(typeGroupData_p);
 
                 if (tmp == 0) {
                     if (mRoomNoSingle != typeGroupData_p->getRoomNo()) {

@@ -10,8 +10,12 @@ public:
         sInstance = inst;
     }
 
+    JASGlobalInstance(bool param_1) {
+        sInstance = (T*)this;
+    }
+
     ~JASGlobalInstance() {
-        if (this == sInstance) {
+        if (sInstance == (T*)this) {
             sInstance = NULL;
         }
     }

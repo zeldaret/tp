@@ -1042,7 +1042,6 @@ int dEvent_manager_c::getMySubstanceNum(int index, char const* name) {
 
 /* 8004817C-800481F4 042ABC 0078+00 1/1 78/78 182/182 .text            cutEnd__16dEvent_manager_cFi
  */
-#ifdef NONMATCHING
 void dEvent_manager_c::cutEnd(int cutIndex) {
     if (i_dComIfGp_getEvent().getMode() == EVT_MODE_NONE) {
         return;
@@ -1052,19 +1051,10 @@ void dEvent_manager_c::cutEnd(int cutIndex) {
         return;
     } else {
         // instruction swap
-        mFlags.flagSet(getBase().getCutStaffCurrentCutP(cutIndex)->getFlagId());
+        dEvDtCut_c* cut = getBase().getCutStaffCurrentCutP(cutIndex);
+        mFlags.flagSet(cut->getFlagId());
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvent_manager_c::cutEnd(int param_0) {
-    nofralloc
-#include "asm/d/event/d_event_manager/cutEnd__16dEvent_manager_cFi.s"
-}
-#pragma pop
-#endif
 
 /* 800481F4-800482CC 042B34 00D8+00 0/0 4/4 0/0 .text
  * getEventPrio__16dEvent_manager_cFP10fopAc_ac_cs              */

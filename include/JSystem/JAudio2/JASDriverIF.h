@@ -19,6 +19,13 @@ struct JASDriver {
     /* 8029E2D0 */ void DSPSyncCallback();
     /* 8029E2F8 */ void updateDacCallback();
     /* 8029C9F0 */ static u32 getSubFrames();
+    static void initAI(void (*)());
+    static void startDMA();
+    static void stopDMA();
+    static void updateDac();
+    static void updateDacCallback();
+    static void finishDSPFrame();
+    static void updateDSP();
 
     static u8 sDspSyncCallback[256];
     static u8 sSubFrameCallback[256];
