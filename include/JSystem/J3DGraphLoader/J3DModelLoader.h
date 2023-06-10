@@ -5,7 +5,7 @@
 
 class J3DModelLoaderDataBase {
 public:
-    /* 803346BC */ void load(void const*, u32);
+    /* 803346BC */ static void* load(void const*, u32);
 };
 
 #endif /* J3DMODELLOADER_H */

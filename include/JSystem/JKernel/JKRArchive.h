@@ -133,7 +133,6 @@ public:
     u32 countResource(void) const;
     u32 getFileAttribute(u32) const;
 
-    u32 getMountMode() const { return mMountMode; }
     SDIFileEntry* findNameResource(const char*) const;
     bool isSameName(CArcName&, u32, u16) const;
     SDIDirEntry* findResType(u32) const;
@@ -164,6 +163,10 @@ public:
 
     u32 countFile() const { return mArcInfoBlock->num_file_entries; }
     s32 countDirectory() const { return mArcInfoBlock->num_nodes; }
+    u8 getMountMode() const { return mMountMode; }
+    bool isFileEntry(u32 param_0) {
+        return getFileAttribute(param_0) & 1;
+    }
 
 public:
     /* 0x00 */  // vtable
@@ -175,10 +178,10 @@ public:
     /* 0x44 */ SArcDataInfo* mArcInfoBlock;
     /* 0x48 */ SDIDirEntry* mNodes;
     /* 0x4C */ SDIFileEntry* mFiles;
-
-protected:
     /* 0x50 */ s32* mExpandedSize;
     /* 0x54 */ char* mStringTable;
+
+protected:
     /* 0x58 */ u32 field_0x58;
 
 public:

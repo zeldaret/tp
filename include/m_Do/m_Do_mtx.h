@@ -31,6 +31,10 @@ inline void mDoMtx_multVecSR(Mtx m, const Vec* src, Vec* dst) {
     PSMTXMultVecSR(m, src, dst);
 }
 
+inline void cMtx_concat(const Mtx a, const Mtx b, Mtx ab) {
+    PSMTXConcat(a, b, ab);
+}
+
 inline void mDoMtx_multVec(Mtx m, const Vec* src, Vec* dst) {
     PSMTXMultVec(m, src, dst);
 }

@@ -48,6 +48,7 @@ public:
     GXColor* getVtxColorArray(u8 idx) const { return mVertexData.getVtxColorArray(idx); }
     bool checkFlag(u32 flag) const { return (mFlags & flag) ? true : false; }
     u32 getFlag() const { return mFlags; }
+    void* getRawData() const { return mpRawData; }
     u16 checkBumpFlag() const { return mbHasBumpArray; }
     void setBumpFlag(u32 flag) { mbHasBumpArray = flag; }
     bool checkBBoardFlag() const { return mbHasBillboard == 1; }
