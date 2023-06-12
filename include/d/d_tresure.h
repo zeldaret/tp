@@ -18,31 +18,36 @@ public:
         /* 0x13 */ s8 mAngleY;
     };
 
-    class typeGroupData_c {
+    class typeGroupData_c : public data_s {
     public:
-        data_s* getDataPointer() { return &mData; }
-        const data_s* getConstDataPointer() const { return &mData; }
+        data_s* getDataPointer() { return (data_s*)this; }
+        const data_s* getConstDataPointer() const { return (data_s*)this; }
         typeGroupData_c* getNextDataPointer() const { return mNextData; }
         void setNextDataPointer(typeGroupData_c* data) { mNextData = data; }
         void setTypeGroupNo(u8 no) { mTypeGroupNo = no; }
-        u8 getNo() const { return mData.mNo; }
-        u8 getStatus() const { return mData.mStatus; }
-        void setStatus(u8 status) { mData.mStatus = status; }
-        void setRoomNo(s8 roomNo) { mData.mRoomNo = roomNo; }
-        s8 getRoomNo() const { return mData.mRoomNo; }
-        void setPos(const Vec& pos) { mData.mPos = pos; }
-        u8 getSwBit() const { return mData.mSwBit; }
-        const Vec* getPos() const { return &mData.mPos; }
-        int getAngleY() const { return mData.mAngleY; }
+        u8 getNo() const { return mNo; }
+        u8 getStatus() const { return mStatus; }
+        void setStatus(u8 status) { mStatus = status; }
+        void setRoomNo(s8 roomNo) { mRoomNo = roomNo; }
+        s8 getRoomNo() const { return mRoomNo; }
+        void setPos(const Vec& pos) { mPos = pos; }
+        u8 getSwBit() const { return mSwBit; }
+        const Vec* getPos() const { return &mPos; }
+        int getAngleY() const { return mAngleY; }
 
-        /* 0x00 */ data_s mData;
         /* 0x14 */ typeGroupData_c* mNextData;
         /* 0x18 */ u8 mTypeGroupNo;
     };  // Size: 0x1C
 
     struct list_class {
         /* 0x0 */ int field_0x0;
-        /* 0x4 */ data_s* field_0x4;
+        /* 0x4 */ typeGroupData_c* field_0x4;
+        /* 0x8 */ u8 mNumber;
+    };
+
+    struct type_group_list {
+        /* 0x0 */ typeGroupData_c* field_0x0;
+        /* 0x4 */ typeGroupData_c* field_0x4;
         /* 0x8 */ u8 mNumber;
     };
 
@@ -67,7 +72,7 @@ public:
     }
 
     static u8 const typeToTypeGroup[17][2];
-    static list_class mTypeGroupListAll[17];
+    static type_group_list mTypeGroupListAll[17];
     static typeGroupData_c* mTypeGroupData;
     static u16 mNum;
 };
