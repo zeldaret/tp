@@ -18,6 +18,9 @@ public:
     /* 8003FB70 */ static void create();
     /* 8003FBD0 */ static void reset();
     /* 8003FC70 */ static void remove();
+    static dDrawPath_c::room_class* getRoomPointer(int layerNo, int roomNo) {
+        return (mLayerList + 0x40*layerNo)[roomNo];
+    }
 
     static dDrawPath_c::room_class** mLayerList;  // this doesn't seem right, but can't figure it out atm
     static f32 mMinX;
@@ -92,7 +95,7 @@ public:
     /* 8003FFC4 */ virtual void postDrawPath();
     /* 800402C0 */ virtual bool isDrawPath();
     /* 8003FE4C */ virtual GXColor* getBackColor() const;
-    /* 800402E0 */ virtual bool getFirstDrawLayerNo();
+    /* 800402E0 */ virtual int getFirstDrawLayerNo();
     /* 800402E8 */ virtual int getNextDrawLayerNo(int);
     /* 800409E0 */ virtual bool isDrawIconSingle(dTres_c::data_s const*, int, int, bool, bool,
                                                  Vec const*) const;
