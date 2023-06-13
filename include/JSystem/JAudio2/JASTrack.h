@@ -70,7 +70,7 @@ struct JASTrack {
     /* 80291F38 */ void noteOn(u32, u32, u32);
     /* 80292008 */ void gateOn(u32, u32, f32, u32);
     /* 80292198 */ void noteOff(u32, u16);
-    /* 80292220 */ void checkNoteStop(u32) const;
+    /* 80292220 */ bool checkNoteStop(u32) const;
     /* 8029226C */ void overwriteOsc(JASChannel*);
     /* 802922D8 */ void updateTimedParam();
     /* 80292348 */ void updateTrack(f32);

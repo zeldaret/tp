@@ -1170,17 +1170,11 @@ int daNpcAsh_c::Draw() {
 }
 
 /* ############################################################################################## */
-/* 8095D6C4-8095D6D0 000084 000C+00 1/1 0/0 0/0 .rodata          @4385 */
-SECTION_RODATA static u8 const lit_4385[12] = {
-    0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04,
-};
-COMPILER_STRIP_GATE(0x8095D6C4, &lit_4385);
 
 /* 80959238-80959458 001038 0220+00 1/1 0/0 0/0 .text ctrlJoint__10daNpcAsh_cFP8J3DJointP8J3DModel
  */
-#ifdef NONMATCHING
 bool daNpcAsh_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
-    s32 jointNo = i_joint->getJntNo();
+    int jointNo = i_joint->getJntNo();
     int lookatJoints[3] = {1, 3, 4};
     if (jointNo == 0) {
         mDoMtx_stack_c::copy(mMcaMorf->getModel()->i_getAnmMtx(1));
@@ -1214,16 +1208,6 @@ bool daNpcAsh_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     }
     return true;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool daNpcAsh_c::ctrlJoint(J3DJoint* param_0, J3DModel* param_1) {
-    nofralloc
-#include "asm/rel/d/a/npc/d_a_npc_ash/d_a_npc_ash/ctrlJoint__10daNpcAsh_cFP8J3DJointP8J3DModel.s"
-}
-#pragma pop
-#endif
 
 /* 80959458-80959478 001258 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__10daNpcAsh_cFP10fopAc_ac_c               */
