@@ -39,6 +39,10 @@ inline void mDoMtx_multVec(Mtx m, const Vec* src, Vec* dst) {
     PSMTXMultVec(m, src, dst);
 }
 
+inline void mDoMtx_multVecArray(Mtx m, const Vec* src, Vec* dst, u32 count) {
+    PSMTXMultVecArray(m, src, dst, count);
+}
+
 inline void mDoMtx_copy(const Mtx src, Mtx dst) {
     PSMTXCopy(src, dst);
 }
@@ -65,6 +69,10 @@ inline void cMtx_multVec(Mtx mtx, const Vec* src, Vec* dst) {
 
 inline void cMtx_copy(const Mtx src, Mtx dst) {
     mDoMtx_copy(src, dst);
+}
+
+inline void cMtx_multVecArray(Mtx mtx, const Vec* src, Vec* dst, u32 count) {
+    mDoMtx_multVecArray(mtx, src, dst, count);
 }
 
 inline void mDoMtx_multVecZero(MtxP param_0, Vec* param_1) {
