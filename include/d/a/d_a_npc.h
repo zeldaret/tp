@@ -199,6 +199,8 @@ public:
         return roomPath;
     }
 
+    bool chkReverse() { return mDirection == 1; }
+
     u16 getNumPnts() { 
         dPath* path = mpRoomPath;
         return path->m_num; 
@@ -332,7 +334,7 @@ public:
     /* 80148C70 */ void setEnvTevColor();
     /* 80148CCC */ void setRoomNo();
     /* 80148D10 */ int checkEndAnm(f32);
-    /* 80148DD0 */ void checkEndAnm(J3DFrameCtrl*, f32);
+    /* 80148DD0 */ int checkEndAnm(J3DFrameCtrl*, f32);
     /* 80148E4C */ void playAllAnm();
     /* 80149190 */ void setMtx();
     /* 8014924C */ void ctrlFaceMotion();
@@ -878,13 +880,18 @@ public:
     /* 80150BE0 */ int setNextIdx();
     /* 80150C18 */ u16 getNextIdx();
     /* 80150C60 */ u16 getBeforeIdx();
-    /* 80150CA8 */ void getBeforePos(cXyz&);
-    /* 80150D44 */ void getNextPos(cXyz&);
+    /* 80150CA8 */ int getBeforePos(cXyz&);
+    /* 80150D44 */ int getNextPos(cXyz&);
     /* 80150DE0 */ int getDstPos(cXyz, cXyz&);
     /* 80150EB4 */ void setNextIdxDst(cXyz);
 
     u16& getIdx() { return mIdx; };
-    cXyz* getPntPos(); // finish
+    inline Vec getPntPos(int i_idx) {
+        return mpRoomPath->m_points[i_idx].m_position;
+    }
+    int chkClose() {
+        return dPath_ChkClose(mpRoomPath);
+    }
 };
 
 class daNpcF_Lookat_c {
