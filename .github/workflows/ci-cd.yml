@@ -1,0 +1,46 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+    types: [synchronize]
+
+jobs:
+  build:
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/pheenoh/zeldaret-tp:latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Copy in dol and compilers
+      run: cp /tmp/baserom.dol ./baserom.dol && cp -r /tmp/mwcc_compiler/ tools/mwcc_compiler && cp tools/mwcc_compiler/2.7/mwcceppc.exe tools/mwcc_compiler/2.7/mwcceppc_modded.exe  && chown root /github/home/
+    - name: Run Make (OK)
+      run: make all rels && ./tp check --rels
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: artifact-${{ github.event.pull_request.number }}
+        path: ./progress-${{ github.event.pull_request.number }}.json
+  release:
+    if: ${{ github.event_name == 'push' }}
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Download artifact
+      uses: actions/download-artifact@v3
+      with:
+          name: artifact-${{ github.event.pull_request.number }}
+    - name: Upload Progress to Frogress
+      env: 
+        PROGRESS_API_KEY: ${{ secrets.FROGRESS_API_KEY }}
+      run: ./tools/upload-progress.py -b https://progress.deco.mp/ -p twilightprincess -v gcn_usa \
+            progress-${{ github.event.pull_request.number }}.json 
+  
