@@ -1,0 +1,13 @@
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Test
+      run: echo "{blah}" > ./progress-${{ github.run_id }}.json 
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: artifact-${{ github.run_id }}
+        path: ./progress-${{ github.run_id }}.json

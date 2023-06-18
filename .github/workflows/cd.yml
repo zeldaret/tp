@@ -1,0 +1,29 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Get latest workflow run ID
+        id: get_run_id
+        run: |
+          RUN_ID=$(curl --request GET \
+            --url https://api.github.com/repos/${{ github.repository }}/actions/workflows/CI_CD.yml/runs \
+            --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+            --header 'content-type: application/json' | jq '.workflow_runs[0].id')
+          echo "::set-output name=run_id::$RUN_ID"
+      
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2.14.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          run_id: ${{ steps.get_run_id.outputs.run_id }}
+          name: artifact-${{ steps.get_run_id.outputs.run_id }}
