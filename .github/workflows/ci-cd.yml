@@ -7,21 +7,18 @@ on:
   pull_request:
     branches:
       - master
-    types: [synchronize]
+  pull_request_target:
+    types: [closed]
 
 jobs:
   build:
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && github.event.action != 'closed'
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/pheenoh/zeldaret-tp:latest
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-    # - name: Copy in dol and compilers
-    #   run: cp /tmp/baserom.dol ./baserom.dol && cp -r /tmp/mwcc_compiler/ tools/mwcc_compiler && cp tools/mwcc_compiler/2.7/mwcceppc.exe tools/mwcc_compiler/2.7/mwcceppc_modded.exe  && chown root /github/home/
-    # - name: Run Make (OK)
-    #   run: make all rels && ./tp check --rels
     - name: test
       run: echo "{blah}" > ./progress-${{ github.event.pull_request.number }}.json 
     - name: Upload artifact
@@ -30,7 +27,7 @@ jobs:
         name: artifact-${{ github.event.pull_request.number }}
         path: ./progress-${{ github.event.pull_request.number }}.json
   release:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+    if: github.event_name == 'pull_request_target' && github.event.action == 'closed' && github.event.pull_request.merged == true
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -39,11 +36,6 @@ jobs:
     - name: Download artifact
       uses: actions/download-artifact@v3
       with:
-          name: artifact-${{ github.event.pull_request.number }}
+        name: artifact-${{ github.event.pull_request.number }}
     - name: test2
       run: ls -lah
-    # - name: Upload Progress to Frogress
-    #   env: 
-    #     PROGRESS_API_KEY: ${{ secrets.FROGRESS_API_KEY }}
-    #   run: ./tools/upload-progress.py -b https://progress.deco.mp/ -p twilightprincess -v gcn_usa \
-    #         progress-${{ github.event.pull_request.number }}.json 
