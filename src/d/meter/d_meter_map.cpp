@@ -107,11 +107,9 @@ bool dMeterMap_c::isEnableDispMap() {
 }
 
 /* 8020D528-8020D650 207E68 0128+00 3/3 0/0 0/0 .text getMapDispSizeTypeNo__11dMeterMap_cFv */
-// stayNo load block in wrong order
-#ifdef NONMATCHING
 int dMeterMap_c::getMapDispSizeTypeNo() {
     int uvar6 = 7;
-    int stayNo = dComIfGp_roomControl_getStayNo();
+    s32 stayNo = dComIfGp_roomControl_getStayNo();
 
     dStage_FileList_dt_c* fList =
         dComIfGp_roomControl_getStatusRoomDt(stayNo)->mRoomDt.getFileListInfo();
@@ -155,16 +153,6 @@ int dMeterMap_c::getMapDispSizeTypeNo() {
 
     return mapDispSizeType;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMeterMap_c::getMapDispSizeTypeNo() {
-    nofralloc
-#include "asm/d/meter/d_meter_map/getMapDispSizeTypeNo__11dMeterMap_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8020D650-8020D690 207F90 0040+00 5/5 3/3 0/0 .text
  * isEnableDispMapAndMapDispSizeTypeNo__11dMeterMap_cFv         */
@@ -277,17 +265,17 @@ SECTION_SDATA2 static f32 lit_4159 = -36.0f;
 
 /* 8020D7EC-8020D874 20812C 0088+00 2/2 0/0 0/0 .text getDispPosOutSide_OffsetX__11dMeterMap_cFv
  */
-// calculation order is wrong
+// matches with literals
 #ifdef NONMATCHING
 s16 dMeterMap_c::getDispPosOutSide_OffsetX() {
     f32 dvar3 = -36.0f - mSizeW;
-    f32 tmp = 0.0f;
+    f32 offset = 0.0f;
     if (mMap != NULL) {
-        tmp = (mMap->getTexelPerCm() * mMap->getPackX()) +
-              (mMap->getRightEdgePlus() + (mMap->getTexelPerCm() * mMap->getPackPlusZ()));
-        tmp += dvar3;
+        offset = mMap->getTexelPerCm() * mMap->getPackX();
+        offset +=(mMap->getRightEdgePlus() + (mMap->getTexelPerCm() * mMap->getPackPlusZ()));
     }
-    return tmp - getMapDispEdgeLeftX_Layout();
+    dvar3 += offset;
+    return dvar3 - getMapDispEdgeLeftX_Layout();
 }
 #else
 #pragma push
@@ -474,7 +462,7 @@ SECTION_DEAD static char const* const stringBase_80398208 = "F_SP115";
 #pragma pop
 
 /* 8020DCE4-8020DF1C 208624 0238+00 0/0 1/1 0/0 .text            _move__11dMeterMap_cFUl */
-// just regalloc
+// matches with literals
 #ifdef NONMATCHING
 void dMeterMap_c::_move(u32 param_0) {
     if (!field_0x2b && i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[118])) {
@@ -485,7 +473,7 @@ void dMeterMap_c::_move(u32 param_0) {
             dMeter2Info_setPauseStatus(2);
         }
     }
-    int stayNo = dComIfGp_roomControl_getStayNo();
+    s32 stayNo = dComIfGp_roomControl_getStayNo();
 
     field_0x14 = param_0;
     field_0x2a = checkMoveStatus();
@@ -654,30 +642,23 @@ asm void dMeterMap_c::ctrlShowMap() {
 #endif
 
 /* 8020E45C-8020E4C8 208D9C 006C+00 1/1 0/0 0/0 .text            checkMoveStatus__11dMeterMap_cFv */
-// field_0x2d compare is weird
-#ifdef NONMATCHING
 u8 dMeterMap_c::checkMoveStatus() {
+    u8 rv;
     if (isShow(field_0x14)) {
         if (isEnableDispMapAndMapDispSizeTypeNo()) {
             if (isDispPosInsideFlg()) {
-                return 1;
+                rv = 1;
+            } else {
+                rv = 2;
             }
-            return 2;
+        } else {
+            rv = 3;
         }
-        return 3;
+    } else {
+        rv = 0;
     }
-    return 0;
+    return rv;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u8 dMeterMap_c::checkMoveStatus() {
-    nofralloc
-#include "asm/d/meter/d_meter_map/checkMoveStatus__11dMeterMap_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8020E4C8-8020E620 208E08 0158+00 2/2 0/0 0/0 .text            isShow__11dMeterMap_cFUl */
 // extra gameinfo label load for dComIfGp_event_checkHind

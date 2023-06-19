@@ -827,6 +827,10 @@ inline int dComIfG_setObjectRes(const char* name, u8 param_1, JKRHeap* heap) {
     return g_dComIfG_gameInfo.mResControl.setObjectRes(name, param_1, heap);
 }
 
+inline int dComIfG_setObjectRes(const char* name, void* param_1, u32 param_2) {
+    return g_dComIfG_gameInfo.mResControl.setObjectRes(name, param_1, param_2, NULL);
+}
+
 inline int dComIfG_setStageRes(const char* name, JKRHeap* heap) {
     return g_dComIfG_gameInfo.mResControl.setStageRes(name, heap);
 }

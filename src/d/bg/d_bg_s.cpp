@@ -305,32 +305,36 @@ struct cBgS_dzb_strgroup {
 
 /* 80074578-80074618 06EEB8 00A0+00 0/0 1/1 0/0 .text            ConvDzb__4cBgSFPv */
 #ifdef NONMATCHING
-void cBgS::ConvDzb(void* p_dzb) {
+void* cBgS::ConvDzb(void* p_dzb) {
     cBgS_dzb_data* pbgd = (cBgS_dzb_data*)p_dzb;
 
-    if (!(pbgd->field_0x30 & 0x80000000)) {
-        pbgd->field_0x30 |= 0x80000000;
-
-        if (pbgd->m_v_tbl != 0) {
-            pbgd->m_v_tbl += (u32)p_dzb;
-        }
-
-        pbgd->m_t_tbl += (u32)p_dzb;
-        pbgd->m_b_tbl += (u32)p_dzb;
-        pbgd->m_tree_tbl += (u32)p_dzb;
-        pbgd->m_g_tbl += (u32)p_dzb;
-        pbgd->m_ti_tbl += (u32)p_dzb;
-
-        for (int i = 0; i < pbgd->m_g_num; i++) {
-            ((cBgS_dzb_strgroup*)pbgd->m_g_tbl)[i].strOffset += (u32)p_dzb;
-        }
+    if ((pbgd->field_0x30 & 0x80000000)) {
+        return;
     }
+
+    pbgd->field_0x30 |= 0x80000000;
+
+    if (pbgd->m_v_tbl != 0) {
+        pbgd->m_v_tbl += (u32)p_dzb;
+    }
+
+    pbgd->m_t_tbl += (u32)p_dzb;
+    pbgd->m_b_tbl += (u32)p_dzb;
+    pbgd->m_tree_tbl += (u32)p_dzb;
+    pbgd->m_g_tbl += (u32)p_dzb;
+    pbgd->m_ti_tbl += (u32)p_dzb;
+
+    for (int i = 0; i < pbgd->m_g_num; i++) {
+        ((cBgS_dzb_strgroup*)pbgd->m_g_tbl)[i].strOffset = (u32)p_dzb + ((cBgS_dzb_strgroup*)pbgd->m_g_tbl)[i].strOffset;
+    }
+
+    return p_dzb;
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cBgS::ConvDzb(void* param_0) {
+asm void* cBgS::ConvDzb(void* param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_s/ConvDzb__4cBgSFPv.s"
 }

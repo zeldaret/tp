@@ -9,7 +9,7 @@ struct J3DAnmBase;
 
 struct J3DAnmLoaderDataBase {
     /* 80337B40 */ static void* load(void const*, J3DAnmLoaderDataBaseFlag);
-    /* 80338134 */ void setResource(J3DAnmBase*, void const*);
+    /* 80338134 */ static void setResource(J3DAnmBase*, void const*);
 };
 
 #endif /* J3DANMLOADER_H */

@@ -169,7 +169,7 @@ extern "C" void __dt__18daNpcT_ActorMngr_cFv();
 extern "C" void __dt__15daNpcT_JntAnm_cFv();
 extern "C" void __dt__15daNpcT_MatAnm_cFv();
 extern "C" void func_8014D32C(void* _this, s16*);
-extern "C" void func_8014D348(void* _this, int*);
+extern "C" void func_8014D348(void* _this);
 extern "C" void func_8014D364(void* _this, int, int);
 extern "C" void __sinit_d_a_npc_cpp();
 extern "C" static void daBaseNpc_addIdx__FiiPUsi();
@@ -386,6 +386,9 @@ extern "C" u8 m_set_func__23daBaseNpc_moveBgActor_c[4];
 extern "C" u8 mFindCount__8daNpcF_c[4];
 extern "C" u8 mSrchActorName__8daNpcF_c[2 + 2 /* padding */];
 extern "C" extern u8 data_80450FF8[8];
+static asm s32 daBaseNpc_chkPnt(cXyz param_0, dPnt* param_1, u16 param_2, u16 param_3, int param_4,
+                                 int param_5);
+static u16 daNpcF_putNurbs(dPnt* param_0, int param_1, int param_2, dPnt* param_3, int param_4);
 
 //
 // External References:
@@ -666,7 +669,7 @@ SECTION_SDATA2 static f64 lit_4142 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80145788-80145898 1400C8 0110+00 1/0 0/0 0/0 .text calc__15daNpcT_MatAnm_cCFP11J3DMaterial */
 #ifdef NONMATCHING
-// 1 instruction in wrong place + float literals
+// float literals
 void daNpcT_MatAnm_c::calc(J3DMaterial* param_0) const {
     J3DMaterialAnm::calc(param_0);
 
@@ -681,10 +684,9 @@ void daNpcT_MatAnm_c::calc(J3DMaterial* param_0) const {
 
             if (field_0x105 != 0) {
                 f32 tmp8 = 1.0f / (field_0x105 + 1);
-                f32 tmp9 = (1.0f - tmp8);
 
-                curr_mtx_info->mSRT.mTranslationX = field_0xF4 * tmp9 + curr_mtx_info->mSRT.mTranslationX * tmp8;
-                curr_mtx_info->mSRT.mTranslationY = field_0xF8 * tmp9 + curr_mtx_info->mSRT.mTranslationY * tmp8;
+                curr_mtx_info->mSRT.mTranslationX = field_0xF4 * (1.0f - tmp8) + curr_mtx_info->mSRT.mTranslationX * tmp8;
+                curr_mtx_info->mSRT.mTranslationY = field_0xF8 * (1.0f - tmp8) + curr_mtx_info->mSRT.mTranslationY * tmp8;
                 
             }
 
@@ -866,8 +868,6 @@ void daNpcT_Path_c::initialize() {
 }
 
 /* 80145C74-80145D2C 1405B4 00B8+00 0/0 0/0 18/18 .text setPathInfo__13daNpcT_Path_cFUcScUc */
-#ifdef NONMATCHING
-// something wrong with the getPntPos inline
 int daNpcT_Path_c::setPathInfo(u8 i_pathIdx, s8 i_roomNo, u8 i_direction) {
     mpRoomPath = 0;
     mIdx = 0;
@@ -879,22 +879,12 @@ int daNpcT_Path_c::setPathInfo(u8 i_pathIdx, s8 i_roomNo, u8 i_direction) {
             return 0;
         }
 
-        mIsClosed = mpRoomPath->m_closed & 1;
-        int tmpidx = getIdx();
-        mPosition = *getPntPos(tmpidx);
+        mIsClosed = dPath_ChkClose(mpRoomPath);
+        u16 idx;
+        mPosition = getPntPos(idx = getIdx());
     }
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daNpcT_Path_c::setPathInfo(u8 param_0, s8 param_1, u8 param_2) {
-    nofralloc
-#include "asm/d/a/d_a_npc/setPathInfo__13daNpcT_Path_cFUcScUc.s"
-}
-#pragma pop
-#endif
 
 /* 80145D2C-80145DA0 14066C 0074+00 0/0 0/0 1/1 .text setNextPathInfo__13daNpcT_Path_cFScUc */
 int daNpcT_Path_c::setNextPathInfo(s8 param_0, u8 i_direction) {
@@ -937,87 +927,63 @@ int daNpcT_Path_c::setNextIdx(int param_0) {
 }
 
 /* 80145E38-80145FB4 140778 017C+00 0/0 0/0 1/1 .text getDstPos__13daNpcT_Path_cF4cXyzP4cXyzi */
-#ifdef NONMATCHING
 int daNpcT_Path_c::getDstPos(cXyz param_0, cXyz* param_1, int i_idx) {
-    cXyz* curr_room_pos = &mpRoomPath->m_points[mIdx].m_position;
-
     if (i_idx == mIdx) {
-        mIdx--;
+        *param_1 = getPntPos(getIdx() - 1);
+        return 1;
+    } 
 
-        param_1 = curr_room_pos;
-
-    } else {
-        do {
-            int ret = chkPassed1(param_0,i_idx);
-
-            if (ret == 0) {
-                param_1 = curr_room_pos;
-                break;
-            }
-
-            field_0x1E = 1;
-
-        } while (setNextIdx(i_idx) == 0);
-        
-        mIdx = i_idx;
-        mIdx--;
-
-        param_1 = curr_room_pos;
+    while(true) {
+        if (!chkPassed1(param_0,i_idx)) {
+            break;
+        }
+        field_0x1E = 1;
+        if (setNextIdx(i_idx)) {
+            mIdx = i_idx;
+            *param_1 = getPntPos(getIdx() - 1);
+            return 1;
+        }
     }
-    return 1;
+    int i_idx2;
+    *param_1 = getPntPos(i_idx2 = getIdx());
+    
+    return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daNpcT_Path_c::getDstPos(cXyz param_0, cXyz* param_1, int param_2) {
-    nofralloc
-#include "asm/d/a/d_a_npc/getDstPos__13daNpcT_Path_cF4cXyzP4cXyzi.s"
-}
-#pragma pop
-#endif
 
 /* 80145FB4-80146188 1408F4 01D4+00 0/0 0/0 10/10 .text getDstPosH__13daNpcT_Path_cF4cXyzP4cXyzii
  */
-#ifdef NONMATCHING
-int daNpcT_Path_c::getDstPosH(cXyz param_0, cXyz* param_1, int param_2, int param_3) {
-    cXyz* curr_room_pos = &mpRoomPath->m_points[mIdx].m_position;
-
+int daNpcT_Path_c::getDstPosH(cXyz param_0, cXyz* param_1, int i_idx, int param_3) {
     if (i_idx == mIdx) {
-        mIdx--;
+        *param_1 = getPntPos(getIdx() - 1);
+        return 1;
+    } 
 
-        param_1 = curr_room_pos;
-
-    } else {
-        do {
-            int ret = chkPassed1(param_0,i_idx);
-
-            if (ret == 0) {
-                param_1 = curr_room_pos;
-                break;
-            }
-
-            field_0x1E = 1;
-
-        } while (setNextIdx(i_idx) == 0);
-        
-        mIdx = i_idx;
-        mIdx--;
-
-        param_1 = curr_room_pos;
+    while(true) {
+        if (!chkPassed1(param_0,i_idx)) {
+            break;
+        }
+        field_0x1E = 1;
+        if (setNextIdx(i_idx)) {
+            mIdx = i_idx;
+            *param_1 = getPntPos(getIdx() - 1);
+            return 1;
+        }
     }
-    return 1;
+    
+    while(true) {
+        if (field_0x1E < param_3) {
+            if (chkPassed2(param_0, param_1, i_idx, param_3)) {
+                field_0x1E++;
+                continue;
+            }
+        } else {
+            int i_idx2;
+            *param_1 = getPntPos(i_idx2 = getIdx());
+        }
+        return 0;
+    }
+    
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daNpcT_Path_c::getDstPosH(cXyz param_0, cXyz* param_1, int param_2, int param_3) {
-    nofralloc
-#include "asm/d/a/d_a_npc/getDstPosH__13daNpcT_Path_cF4cXyzP4cXyzii.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 804533EC-804533F0 0019EC 0004+00 1/1 0/0 0/0 .sdata2          @4513 */
@@ -1052,24 +1018,20 @@ int daNpcT_Path_c::chkPassed1(cXyz param_0, int param_1) {
     
 
     if ((mpRoomPath->m_closed & 1) == 0 || param_1 == mpRoomPath->m_num) {
-        tmp = mDirection == 1;
-        daNpcT_decIdx(param_1,tmpIdx2,1,tmp);
+        daNpcT_decIdx(param_1,tmpIdx2,1, chkReverse());
 
-        tmp = mDirection == 1;
-        daNpcT_incIdx(param_1,tmpIdx1,0,tmp);
+        daNpcT_incIdx(mpRoomPath->m_num,tmpIdx1,1,chkReverse());
     } else {
-        tmp = mDirection == 1;
-        daNpcT_decIdx(tmp,tmpIdx1,0,tmp);
+        daNpcT_decIdx(param_1,tmpIdx1,0,chkReverse());
 
-        tmp = mDirection == 1;
-        daNpcT_incIdx(mpRoomPath->m_num,tmpIdx2,1,tmp);
+        daNpcT_incIdx(param_1,tmpIdx2,0,chkReverse());
     }
 
     tmp = tmpIdx2;
 
-    l_pos5 = mpRoomPath->m_points[idx].m_position;
-    l_pos6 = mpRoomPath->m_points[mIdx].m_position;
-    l_pos7 = mpRoomPath->m_points[mIdx].m_position;
+    l_pos5 = getPntPos(idx);
+    l_pos6 = getPntPos(mIdx);
+    l_pos7 = getPntPos(mIdx);
 
     l_pos1 = l_pos7;
     l_pos2 = l_pos6;
@@ -1941,36 +1903,29 @@ void daNpcT_c::setRoomNo() {
 }
 
 /* 80148D10-80148DD0 143650 00C0+00 1/1 0/0 0/0 .text            checkEndAnm__8daNpcT_cFf */
+// weird mr assignments
 #ifdef NONMATCHING
 int daNpcT_c::checkEndAnm(f32 param_0) {
-    bool ret;
-    u8 play_mode = mMcaMorfAnm[0]->getPlayMode();
-    int tmp = 2;
-
-    if (play_mode == tmp || play_mode < tmp) {
-        tmp = 0;
-        if (play_mode < tmp) {
-            ret = 0;
-        } else {
+    switch(mMcaMorfAnm[0]->getPlayMode()) {
+        case 2:
             return mMcaMorfAnm[0]->isLoop();
-        }
+        case 0:
+        case 1:
+            bool ret;
+            bool ret2;
+            ret2 = ret = 0;
+            if (mMcaMorfAnm[0]->isStop() && cM3d_IsZero(mMcaMorfAnm[0]->getPlaySpeed()) != false) {
+                ret2 = 1;
+            }
+            if (ret2 && cM3d_IsZero_inverted(param_0)) {
+                ret = 1;
+            }
+            return ret;
+        case 3:
+            break;
     }
 
-    if (ret == 0 && cM3d_IsZero_inverted(mMcaMorfAnm[0]->getPlaySpeed())) {
-        if (cM3d_IsZero_inverted(param_0)) {
-            play_mode = 1;
-        }
-    }
-
-    if (!mMcaMorfAnm[0]->mFrameCtrl.checkState(1) && mMcaMorfAnm[0]->mFrameCtrl.getRate() != 0.0f) {
-        ret = 1;
-    }
-    
-    if (play_mode = 1 && cM3d_IsZero_inverted(param_0)) {
-        ret = 1;
-    }
-
-    return ret;
+    return 0;
 }
 #else
 #pragma push
@@ -1984,14 +1939,40 @@ asm int daNpcT_c::checkEndAnm(f32 param_0) {
 #endif
 
 /* 80148DD0-80148E4C 143710 007C+00 1/1 0/0 0/0 .text checkEndAnm__8daNpcT_cFP12J3DFrameCtrlf */
+// weird mr
+#ifdef NONMATCHING
+int daNpcT_c::checkEndAnm(J3DFrameCtrl* param_0, f32 param_1) {
+    switch(param_0->getAttribute()) {
+        case 2:
+            return (param_0->getState() >> 1) & 1;
+        case 0:
+        case 1:
+            bool ret;
+            bool ret2;
+            ret2 = ret = 0;
+            if ((param_0->getState() & 1) && param_0->getRate() == 0.0f) {
+                ret2 = 1;
+            }
+            if (ret2 && param_1 != 0.0f) {
+                ret = 1;
+            }
+            return ret;
+        case 3:
+            break;
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpcT_c::checkEndAnm(J3DFrameCtrl* param_0, f32 param_1) {
+asm int daNpcT_c::checkEndAnm(J3DFrameCtrl* param_0, f32 param_1) {
     nofralloc
 #include "asm/d/a/d_a_npc/checkEndAnm__8daNpcT_cFP12J3DFrameCtrlf.s"
 }
 #pragma pop
+#endif
 
 /* 80148E4C-801490D4 14378C 0288+00 1/1 0/0 0/0 .text            playAllAnm__8daNpcT_cFv */
 #pragma push
@@ -2065,7 +2046,7 @@ void daNpcT_c::ctrlFaceMotion() {
 
 /* 80149300-801493B8 143C40 00B8+00 1/1 0/0 0/0 .text            ctrlMotion__8daNpcT_cFv */
 #ifdef NONMATCHING
-// 1 instruction in the wrong place + 1 register wrong
+// matches with literals
 void daNpcT_c::ctrlMotion() {
     int l_int;
     int l_int2;
@@ -2074,27 +2055,21 @@ void daNpcT_c::ctrlMotion() {
     if (field_0xb74.play(field_0xe1e,&l_int,&l_float)) {
         l_int2 = 0;
 
-        if (l_float < FLOAT_LABEL(lit_4148)) {
+        if (l_float < 0.5f) {
             l_int2 = 1;
         }
         
-        int l_int3 = l_int;
+        setMotionAnm(l_int,l_float < 0.0f ? field_0xa84 : l_float,l_int2);
 
-        if (l_float < FLOAT_LABEL(lit_4116)) {
-            setMotionAnm(l_int3,field_0xa84,l_int2);
-        }
-
-        f32 tmp = FLOAT_LABEL(lit_4116);
-        field_0xdfc = tmp;
+        field_0xdfc = 0.0f;
 
         if (field_0xa88) {
-            mMcaMorfAnm[0]->setMorf(tmp);
+            mMcaMorfAnm[0]->setMorf(0.0f);
 
-            f32 tmp2 = FLOAT_LABEL(lit_4116);
-            field_0xdfc = tmp2;
+            field_0xdfc = 0.0f;
 
             if (mMcaMorfAnm[1]) {
-                mMcaMorfAnm[1]->setMorf(tmp2);
+                mMcaMorfAnm[1]->setMorf(0.0f);
             }
         }
     }
@@ -2111,34 +2086,28 @@ asm void daNpcT_c::ctrlMotion() {
 #endif
 
 /* 801493B8-8014951C 143CF8 0164+00 1/1 0/0 2/2 .text ctrlMsgAnm__8daNpcT_cFPiPiP10fopAc_ac_ci */
-#ifdef NONMATCHING
-// few extra mr instructions + regalloc nightmare
 int daNpcT_c::ctrlMsgAnm(int* param_0, int* param_1, fopAc_ac_c* param_2, int param_3) {
-    int* tmp0 = param_0;
-    int* tmp1 = param_1;
-    fopAc_ac_c* tmp2 = param_2;
-    int tmp3 = param_3;
-
     *param_0 = -1;
     *param_1 = -1;
 
-    if (tmp3 != 0 || mEvtInfo.checkCommandTalk() || field_0xdac != -1) {
+    if (param_3 != 0 || mEvtInfo.checkCommandTalk() || field_0xdac != -1) {
         fopAc_ac_c* talk_partner = dComIfGp_event_getTalkPartner();
         dMsgObject_c* talk_partner_conv = (dMsgObject_c*)talk_partner;
 
-        if (tmp2 == talk_partner) {
-            u16 actor_command = talk_partner_conv->getActor()->mEvtInfo.mCommand;
+        if (talk_partner == param_2) {
+            fopAc_ac_c* conv_actor = talk_partner_conv->getActor();
+            u16 actor_command = conv_actor->mEvtInfo.mCommand;
 
             if (actor_command == 2 || actor_command == 3) {
                 mSubMtd = (profile_method_class*)-1;
             } else if (actor_command == 6) {
-                if (talk_partner->mSubMtd != mSubMtd) {
-                    *tmp0 = dComIfGp_getMesgFaceAnimeAttrInfo();
-                    *tmp1 = dComIfGp_getMesgAnimeAttrInfo();
-                    mSubMtd = talk_partner->mSubMtd;
+                if (conv_actor->mSubMtd != mSubMtd) {
+                    *param_0 = dComIfGp_getMesgFaceAnimeAttrInfo();
+                    *param_1 = dComIfGp_getMesgAnimeAttrInfo();
+                    mSubMtd = conv_actor->mSubMtd;
                 }
 
-                if (talk_partner_conv->isMouthCheck()) {
+                if (dMsgObject_c::isMouthCheck()) {
                     field_0xd98 &= ~0x4000;
                 } else {
                     field_0xd98 |= 0x4000;
@@ -2157,24 +2126,15 @@ int daNpcT_c::ctrlMsgAnm(int* param_0, int* param_1, fopAc_ac_c* param_2, int pa
                 field_0xdb4 = 1;
             }
         }
-
-        if (tmp3 == 0) {
-            cLib_calcTimer(&field_0xdb4);
-        }
-
-        return field_0xdb4;
     }
+
+    if (param_3 == 0) {
+        // cLib_calcTimer
+        func_8014D348(&field_0xdb4);
+    }
+
+    return field_0xdb4;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daNpcT_c::ctrlMsgAnm(int* param_0, int* param_1, fopAc_ac_c* param_2, int param_3) {
-    nofralloc
-#include "asm/d/a/d_a_npc/ctrlMsgAnm__8daNpcT_cFPiPiP10fopAc_ac_ci.s"
-}
-#pragma pop
-#endif
 
 /* 8014951C-8014997C 143E5C 0460+00 1/0 1/0 59/0 .text ctrlJoint__8daNpcT_cFP8J3DJointP8J3DModel
  */
@@ -2558,14 +2518,33 @@ asm void daNpcT_c::talkProc(int* param_0, int param_1, fopAc_ac_c** param_2, int
 SECTION_SDATA2 static f32 lit_7337 = 1000000000.0f;
 
 /* 8014BE2C-8014BEE4 14676C 00B8+00 0/0 0/0 25/25 .text            getNearestActorP__8daNpcT_cFs */
+// Matches with literals
+#ifdef NONMATCHING
+fopAc_ac_c* daNpcT_c::getNearestActorP(s16 param_0) {
+    fopAc_ac_c* actor = NULL;
+    f32 minDistance = 1000000000.0f;
+    mFindCount = 0;
+    mSrchName = param_0;
+    fpcEx_Search((fpcLyIt_JudgeFunc)srchActor, this);
+    for (s32 i = 0; i < mFindCount; i++) {
+        f32 dist = fopAcM_searchActorDistance(this, mFindActorPtrs[i]);
+        if (dist < minDistance) {
+            minDistance = fopAcM_searchActorDistance(this, mFindActorPtrs[i]);
+            actor = mFindActorPtrs[i];
+        }
+    }
+    return actor;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpcT_c::getNearestActorP(s16 param_0) {
+asm fopAc_ac_c* daNpcT_c::getNearestActorP(s16 param_0) {
     nofralloc
 #include "asm/d/a/d_a_npc/getNearestActorP__8daNpcT_cFs.s"
 }
 #pragma pop
+#endif
 
 /* 8014BEE4-8014BFB0 146824 00CC+00 0/0 0/0 12/12 .text            getEvtAreaTagP__8daNpcT_cFii */
 #pragma push
@@ -2578,42 +2557,19 @@ asm void daNpcT_c::getEvtAreaTagP(int param_0, int param_1) {
 #pragma pop
 
 /* 8014BFB0-8014C030 1468F0 0080+00 0/0 0/0 5/5 .text            getShopItemTagP__8daNpcT_cFv */
-#ifdef NONMATCHING
-// few instructions off + regalloc
-u32 daNpcT_c::getShopItemTagP() {
+fopAc_ac_c* daNpcT_c::getShopItemTagP() {
     mFindCount = 0;
     mSrchName = 0x127;
-    fpcM_Search((fopAcIt_JudgeFunc)srchActor,(void*)this);
-    
-    int i = 0;
+    i_fpcM_Search((fopAcIt_JudgeFunc)srchActor,(void*)this);
 
-    for (;;) {
-
-        if (0 >= mFindCount) {
-            break;
-        }
-
-        u16 param = fopAcM_GetParam(mFindActorPtrs[i]);
-
-        if (param == 0xf0000000) {
-                return param;
+    for (s32 i = 0; i < mFindCount; i++) {
+        if ((fopAcM_GetParam(mFindActorPtrs[i]) & 0xf0000000) == 0xf0000000) {
+            return mFindActorPtrs[i];
         } 
-
-        i++;
     }
     
-    return 0;
+    return NULL;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 daNpcT_c::getShopItemTagP() {
-    nofralloc
-#include "asm/d/a/d_a_npc/getShopItemTagP__8daNpcT_cFv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80453480-80453484 001A80 0004+00 1/1 0/0 0/0 .sdata2          id$7388 */
@@ -2646,47 +2602,43 @@ SECTION_SDATA2 static f32 lit_7551 = 448.0f;
 
 /* 8014C200-8014C384 146B40 0184+00 0/0 0/0 2/2 .text
  * daNpcT_chkActorInScreen__FP10fopAc_ac_cfffffffi              */
+// matches with literals
 #ifdef NONMATCHING
 bool daNpcT_chkActorInScreen(fopAc_ac_c* i_ActorP, f32 param_1, f32 param_2, f32 param_3,
                                  f32 param_4, f32 param_5, f32 param_6, f32 param_7, int param_8) {
-    bool ret = false;
-    cXyz pos_array[4];
-    cXyz pos1;
-    cXyz pos2;
-    cXyz pos3;
-    cXyz pos4;
+    cXyz proj;
+    cXyz pos_array[8];
 
     if (fopAcM_GetMtx(i_ActorP)) {
-        ret = false;
-    } else {
-        pos_array[0].set(param_1,param_4,param_2);
-        pos_array[1].set(param_3,param_4,param_2);
-        pos_array[2].set(param_1,param_4,param_6);
-        pos_array[3].set(param_3,param_4,param_5);
+        pos_array[0].set(param_1,param_5,param_3);
+        pos_array[1].set(param_4,param_5,param_3);
+        pos_array[2].set(param_1,param_5,param_6);
+        pos_array[3].set(param_4,param_5,param_6);
+        pos_array[4].set(param_1,param_2,param_3);
+        pos_array[5].set(param_4,param_2,param_3);
+        pos_array[6].set(param_1,param_2,param_6);
+        pos_array[7].set(param_4,param_2,param_6);
 
-        pos1.set(param_1,param_2,param_3);
-        pos2.set(param_3,param_1,param_2);
-        pos3.set(param_1,param_2,param_6);
-        pos4.set(param_3,param_1,param_6);
 
         mDoMtx_stack_c::copy(fopAcM_GetMtx(i_ActorP));
-        mDoMtx_stack_c::transM(FLOAT_LABEL(lit_4116),param_6,FLOAT_LABEL(lit_4116));
-        PSMTXMultVec((MtxP)&mDoMtx_stack_c::now,&pos_array[0],&pos_array[0]);
+        mDoMtx_stack_c::transM(0.0f, param_7, 0.0f);
+        cMtx_multVecArray((MtxP)&mDoMtx_stack_c::now, pos_array, pos_array, 8);
 
         if (param_8) {
-            for (int i = 0; i < 8; i++) {
-                mDoLib_project(&pos_array[i],&pos4);
-                if (true) {
-                    ret = false;
-                }
+            return false;
+        } 
+        for (int i = 0; i < 8; i++) {
+            mDoLib_project(&pos_array[i],&proj);
+            if (0.0f < proj.x && proj.x < 608.0f && 0.0f < proj.y && proj.y < 448.0f) {
+                continue;
             }
-            ret = true;
-        } else {
-            ret = false;
+            return false;
         }
+    
+        return true;
     }
 
-    return ret;
+    return false;
 }
 #else
 #pragma push
@@ -2701,10 +2653,10 @@ asm void daNpcT_chkActorInScreen(fopAc_ac_c* param_0, f32 param_1, f32 param_2, 
 #endif
 
 /* 8014C384-8014C500 146CC4 017C+00 1/1 0/0 3/3 .text daNpcT_chkPointInArea__F4cXyz4cXyz4cXyzsi */
-#ifdef NONMATCHING
-bool daNpcT_chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 param_3, int param_4) {
-    bool ret;
+BOOL daNpcT_chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 param_3, int param_4) {
+    BOOL ret;
     cXyz l_pos;
+    cXyz diff;
 
     mDoMtx_stack_c::YrotS(-param_3);
     mDoMtx_stack_c::transM(-param_1.x,-param_1.y,-param_1.z);
@@ -2715,28 +2667,16 @@ bool daNpcT_chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 param_3
     f32 l_float3 = fabsf(l_pos.x);
     f32 l_float4 = fabsf(l_pos.z);
 
-    
-    l_pos = param_0 - param_1;
-    if (param_4 != 0 || (FLOAT_LABEL(lit_4116) <= l_pos.y && l_pos.y > param_2.y)) { 
-        ret = false;  
+    if (param_4 != 0 && (!(FLOAT_LABEL(lit_4116) <= (diff = param_0 - param_1).y) || !(diff.y < param_2.y))) { 
+        ret = FALSE;  
     } else {
         f32 tmp1 = (l_float3 * l_float3) / (l_float1 * l_float1);
         f32 tmp2 = (l_float4 * l_float4) / (l_float2 * l_float2);
-        tmp1 + tmp2 <= FLOAT_LABEL(lit_4140) ? ret = true : ret = false;
+        tmp1 + tmp2 <= FLOAT_LABEL(lit_4140) ? ret = TRUE : ret = FALSE;
     }
 
     return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL daNpcT_chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 param_3, int param_4) {
-    nofralloc
-#include "asm/d/a/d_a_npc/daNpcT_chkPointInArea__F4cXyz4cXyz4cXyzsi.s"
-}
-#pragma pop
-#endif
 
 /* 8014C500-8014C5E0 146E40 00E0+00 0/0 0/0 29/29 .text
  * daNpcT_getPlayerInfoFromPlayerList__FiiP4cXyzP5csXyz         */
@@ -2980,7 +2920,7 @@ void daNpcT_c::changeBck(int* param_0, int* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpcT_c::getFaceMotionAnm(daNpcT_faceMotionAnmData_c param_0) {
+asm daNpcT_faceMotionAnmData_c daNpcT_c::getFaceMotionAnm(daNpcT_faceMotionAnmData_c param_0) {
     nofralloc
 #include "asm/d/a/d_a_npc/getFaceMotionAnm__8daNpcT_cF26daNpcT_faceMotionAnmData_c.s"
 }
@@ -3004,14 +2944,21 @@ void daNpcT_c::changeAnm(int* param_0, int* param_1) {
 
 /* 8014CCF0-8014CD20 147630 0030+00 1/0 1/0 0/0 .text
  * getMotionAnm__8daNpcT_cF22daNpcT_motionAnmData_c             */
+// probably inline
+#ifdef NONMATCHING
+daNpcT_motionAnmData_c daNpcT_c::getMotionAnm(daNpcT_motionAnmData_c param_0) {
+    return param_0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpcT_c::getMotionAnm(daNpcT_motionAnmData_c param_0) {
+asm daNpcT_motionAnmData_c daNpcT_c::getMotionAnm(daNpcT_motionAnmData_c param_0) {
     nofralloc
 #include "asm/d/a/d_a_npc/getMotionAnm__8daNpcT_cF22daNpcT_motionAnmData_c.s"
 }
 #pragma pop
+#endif
 
 /* 8014CD20-8014D0A8 147660 0388+00 1/0 1/1 0/0 .text            __dt__8daNpcT_cFv */
 #pragma push
@@ -3031,7 +2978,7 @@ bool daNpcT_c::getEyeballLMaterialNo() {
 }
 
 /* 8014D0B0-8014D0B8 1479F0 0008+00 1/0 1/0 0/0 .text            getEyeballRMaterialNo__8daNpcT_cFv
- */
+ */\
 bool daNpcT_c::getEyeballRMaterialNo() {
     return false;
 }
@@ -3110,7 +3057,7 @@ extern "C" asm void func_8014D32C(void* _this, s16* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8014D348(void* _this, int* param_0) {
+extern "C" asm void func_8014D348(void* _this) {
     nofralloc
 #include "asm/d/a/d_a_npc/func_8014D348.s"
 }
@@ -3151,20 +3098,19 @@ REGISTER_CTORS(0x8014D3D8, __sinit_d_a_npc_cpp);
 #pragma pop
 
 /* 8014D538-8014D584 147E78 004C+00 2/2 0/0 0/0 .text            daBaseNpc_addIdx__FiiPUsi */
-#ifdef NONMATCHING
 static int daBaseNpc_addIdx(int param_0, int param_1, u16* param_2, int param_3) {
-    int tmp;
+    int tmp = *param_2;
     int ret;
     
     ret = 0;
-    tmp = *param_2 - param_0;
+    tmp += param_0;
 
-    if (0 >= tmp) {
+    if (param_1 <= tmp) {
         if (param_3 != 0) {
-            tmp += param_1 * (tmp / param_1 + 1);
+            tmp -= param_1 * (tmp / param_1);
         }
         else {
-            tmp = 0;
+            tmp = param_1 != 0 ? param_1 - 1 : 0;
             ret = 1;
         }
     }
@@ -3172,27 +3118,16 @@ static int daBaseNpc_addIdx(int param_0, int param_1, u16* param_2, int param_3)
     *param_2 = (u16)tmp;
     return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBaseNpc_addIdx(int param_0, int param_1, u16* param_2, int param_3) {
-    nofralloc
-#include "asm/d/a/d_a_npc/daBaseNpc_addIdx__FiiPUsi.s"
-}
-#pragma pop
-#endif
 
 /* 8014D584-8014D5C4 147EC4 0040+00 2/2 0/0 0/0 .text            daBaseNpc_subIdx__FiiPUsi */
-#ifdef NONMATCHING
 static int daBaseNpc_subIdx(int param_0, int param_1, u16* param_2, int param_3) {
-    int tmp;
+    int tmp = *param_2;
     int ret;
     
     ret = 0;
-    tmp = *param_2 - param_0;
+    tmp -= param_0;
 
-    if (0 >= tmp) {
+    if (tmp <= 0) {
         if (param_3 != 0) {
             tmp += param_1 * (tmp / param_1 + 1);
         }
@@ -3205,16 +3140,6 @@ static int daBaseNpc_subIdx(int param_0, int param_1, u16* param_2, int param_3)
     *param_2 = (u16)tmp;
     return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBaseNpc_subIdx(int param_0, int param_1, u16* param_2, int param_3) {
-    nofralloc
-#include "asm/d/a/d_a_npc/daBaseNpc_subIdx__FiiPUsi.s"
-}
-#pragma pop
-#endif
 
 /* 8014D5C4-8014D620 147F04 005C+00 2/2 0/0 0/0 .text            daBaseNpc_incIdx__FiPUsii */
 static void daBaseNpc_incIdx(int i_pathNo, u16* i_pathIdx, int i_pathClosed, int i_pathDirection) {
@@ -3255,44 +3180,18 @@ asm daBaseNpc_acMngr_c::daBaseNpc_acMngr_c() {
 #pragma pop
 
 /* 8014D81C-8014D838 14815C 001C+00 0/0 0/0 9/9 .text entry__18daBaseNpc_acMngr_cFP10fopAc_ac_c */
-#ifndef NONMATCHING
 void daBaseNpc_acMngr_c::entry(fopAc_ac_c* i_ActorP) {
     mActorId = fopAcM_GetID(i_ActorP);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBaseNpc_acMngr_c::entry(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/a/d_a_npc/entry__18daBaseNpc_acMngr_cFP10fopAc_ac_c.s"
-}
-#pragma pop
-#endif
 
 /* 8014D838-8014D884 148178 004C+00 0/0 0/0 6/6 .text            getActor__18daBaseNpc_acMngr_cFv */
-#ifdef NONMATCHING
-// finish
 fopAc_ac_c* daBaseNpc_acMngr_c::getActor() {
-    fopAc_ac_c* ret[4];
-    ret[0] = 0;
-    u32 searched_actor_id = fopAcM_SearchByID(mActorId,ret);
-    if (!searched_actor_id || ret[0]) {
-        ret[0] = 0;
-    } 
-
-    return ret[0];
+    fopAc_ac_c* ret = NULL;
+    if (fopAcM_SearchByID(mActorId, &ret) && ret != NULL) {
+        return ret;
+    }
+    return NULL;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm fopAc_ac_c* daBaseNpc_acMngr_c::getActor() {
-    nofralloc
-#include "asm/d/a/d_a_npc/getActor__18daBaseNpc_acMngr_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8014D884-8014D998 1481C4 0114+00 1/0 0/0 0/0 .text calc__18daBaseNpc_matAnm_cCFP11J3DMaterial
  */
@@ -3321,40 +3220,27 @@ BOOL daBaseNpc_path_c::isPath() {
 }
 
 /* 8014D9BC-8014DA48 1482FC 008C+00 0/0 0/0 1/1 .text setPathInfo__16daBaseNpc_path_cFUcScSc */
-#ifdef NONMATCHING
-
-typedef dStage_dPnt_c dPnt;
 static asm int daBaseNpc_putNurbs(dPnt* param_0, int param_1, int param_2, dPnt* param_3,
                                    int param_4);
 
 int daBaseNpc_path_c::setPathInfo(u8 i_pathIdx, s8 i_roomNo, s8 i_direction) {
     dPath* room_path;
     
-    mRoomPath = 0;
+    mpRoomPath = 0;
     mIdx = 0;
     mDirection = i_direction;
 
     if (i_pathIdx != 0xFF) {
-        mRoomPath = dPath_GetRoomPath(i_pathIdx,i_roomNo);
-        room_path = mRoomPath;
+        mpRoomPath = dPath_GetRoomPath(i_pathIdx,i_roomNo);
+        room_path = mpRoomPath;
         if (!room_path) {
             return 0;
         }
-
-        field_0xa0e = daBaseNpc_putNurbs(room_path->m_points,room_path->m_num,0xA0,field_0xc,room_path->m_closed & 1);
+        int isClosed = dPath_ChkClose(room_path);
+        field_0xa0e = daBaseNpc_putNurbs((dPnt*)room_path->m_points,room_path->m_num,0xA0, (dPnt*)field_0xc, isClosed);
     }
     return isPath();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daBaseNpc_path_c::setPathInfo(u8 param_0, s8 param_1, s8 param_2) {
-    nofralloc
-#include "asm/d/a/d_a_npc/setPathInfo__16daBaseNpc_path_cFUcScSc.s"
-}
-#pragma pop
-#endif
 
 /* 8014DA48-8014DA64 148388 001C+00 0/0 0/0 1/1 .text            reverseDir__16daBaseNpc_path_cFv */
 void daBaseNpc_path_c::reverseDir() {
@@ -3364,45 +3250,14 @@ void daBaseNpc_path_c::reverseDir() {
 }
 
 /* 8014DA64-8014DAC4 1483A4 0060+00 0/0 0/0 3/3 .text            chkPnt__16daBaseNpc_path_cF4cXyz */
-#ifdef NONMATCHING
-void daBaseNpc_path_c::chkPnt(cXyz i_pos) {
-    int curr_path = mRoomPath;
-    daBaseNpc_chkPnt(i_pos,(dPnt*)curr_path,mIdx,curr_path,(curr_path+5)&1,(int)mDirection);
+s32 daBaseNpc_path_c::chkPnt(cXyz i_pos) {
+    return daBaseNpc_chkPnt(i_pos, (dPnt*)mpRoomPath->m_points, mIdx, mpRoomPath->m_num, dPath_ChkClose(mpRoomPath), mDirection);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBaseNpc_path_c::chkPnt(cXyz param_0) {
-    nofralloc
-#include "asm/d/a/d_a_npc/chkPnt__16daBaseNpc_path_cF4cXyz.s"
-}
-#pragma pop
-#endif
 
 /* 8014DAC4-8014DB04 148404 0040+00 0/0 0/0 3/3 .text            setNextPnt__16daBaseNpc_path_cFv */
-#ifdef NONMATCHING
-// some instructions switched around
 void daBaseNpc_path_c::setNextPnt() {
-    
-    u16 arg1 = mpRoomPath->m_num;    
-    u16* arg2 = &mIdx;
-    u8 arg3 = mpRoomPath->m_closed & 1;
-    s8 arg4 = mDirection;
-
-    
-    daBaseNpc_incIdx(arg1,arg2,arg3,arg4);
+    daBaseNpc_incIdx(mpRoomPath->m_num, &mIdx, dPath_ChkClose(mpRoomPath), mDirection);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBaseNpc_path_c::setNextPnt() {
-    nofralloc
-#include "asm/d/a/d_a_npc/setNextPnt__16daBaseNpc_path_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8014DB04-8014DB0C 148444 0008+00 0/0 0/0 3/3 .text            getIdx__16daBaseNpc_path_cFv */
 u16 daBaseNpc_path_c::getIdx() {
@@ -3415,25 +3270,9 @@ void daBaseNpc_path_c::setIdx(u16 i_idx) {
 }
 
 /* 8014DB14-8014DB40 148454 002C+00 0/0 0/0 4/4 .text            getPntPos__16daBaseNpc_path_cFUs */
-#ifdef NONMATCHING
-void daBaseNpc_path_c::getPntPos(u16 param_0) {
-    dStage_dPnt_c* pnt = mpRoomPath->m_points; // get the points on the path
-    dStage_dPnt_c pnt2 = pnt[param_0*16]; // probably a cast (& 0xFFFF0);
-
-    field_0x0 = pnt2.m_position.x;
-    mpRoomPath = 0;
-    field_0x8 = pnt2.m_position.z;
+Vec daBaseNpc_path_c::getPntPos(u16 i_idx) {
+    return mpRoomPath->m_points[i_idx].m_position;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBaseNpc_path_c::getPntPos(u16 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_npc/getPntPos__16daBaseNpc_path_cFUs.s"
-}
-#pragma pop
-#endif
 
 /* 8014DB40-8014DBB4 148480 0074+00 1/1 0/0 0/0 .text limitter__18daBaseNpc_lookat_cFsPsss */
 void daBaseNpc_lookat_c::limitter(s16 param_1, s16* param_2, s16 param_3, s16 param_4) {
@@ -3512,33 +3351,9 @@ int daBaseNpc_lookat_c::setAttnPos(cXyz* i_pos) {
 }
 
 /* 8014E6AC-8014E6C8 148FEC 001C+00 0/0 0/0 1/1 .text            getRot__18daBaseNpc_lookat_cFi */
-#ifdef NONMATCHING
-
-// 2 instructions off
-
-struct someType {
-    u8 unk[0x7c];
-    int someMember;
-    u16 someMember2;
-};
-
-void daBaseNpc_lookat_c::getRot(int param_0) {
-    someType* tmp = (someType*)(this + param_0);
-
-    field_0x00 = tmp->someMember;
-    mMaxJntLmt[0].x = tmp->someMember2;
-
+csXyz daBaseNpc_lookat_c::getRot(int param_0) {
+    return mRotation[param_0];
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBaseNpc_lookat_c::getRot(int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_npc/getRot__18daBaseNpc_lookat_cFi.s"
-}
-#pragma pop
-#endif
 
 /* 8014E6C8-8014E89C 149008 01D4+00 1/1 0/0 0/0 .text            __ct__11daBaseNpc_cFv */
 #pragma push
@@ -3682,25 +3497,25 @@ bool daBaseNpc_c::btkCtrl() {
 }
 
 /* 8014F148-8014F1C8 149A88 0080+00 1/1 0/0 0/0 .text            checkEndAnm__11daBaseNpc_cFf */
+// weird condition mr
 #ifdef NONMATCHING
 int daBaseNpc_c::checkEndAnm(f32 param_0) {
-    u32 state;
-    u8 play_mode = mpMorf->getPlayMode();
+    switch(mMcaMorfAnm[0]->getPlayMode()) {
+        case 2:
+            return mMcaMorfAnm[0]->isLoop();
+        case 0:
+        case 1:
+            bool state = false;
 
-    if (play_mode != 2) {
-        state = mpMorf->isLoop();
-    } else if (play_mode < 2) {
-        state = 0;
-
-        if (!mpMorf->isStop() && param_0 != mpMorf->getPlaySpeed()) {
-            state = 1;
-        }
-
-    } else {
-        state = 0;
+            if (mMcaMorfAnm[0]->isStop() && param_0 != mMcaMorfAnm[0]->getPlaySpeed()) {
+                state = true;
+            }
+            return state;
+        case 3:
+            break;
     }
 
-    return state;
+    return 0;
 }
 #else
 #pragma push
@@ -3715,23 +3530,25 @@ asm int daBaseNpc_c::checkEndAnm(f32 param_0) {
 
 /* 8014F1C8-8014F228 149B08 0060+00 1/1 0/0 0/0 .text checkEndAnm__11daBaseNpc_cFP12J3DFrameCtrl
  */
+// matches with literals
 #ifdef NONMATCHING
 int daBaseNpc_c::checkEndAnm(J3DFrameCtrl* param_0) {
-    int tmp;
-    int tmp_attr = param_0->getAttribute();
-
-    if (tmp_attr == 2) {
-        tmp_attr = param_0->checkState(2);
-    } else if (2 > tmp_attr) {
-        tmp = 1;
+    switch (param_0->getAttribute()) {
+    case 2:
+        return param_0->checkState(2);
+    case 0:
+    case 1:
+        bool rv = true;
         if (((param_0->checkState(1) == 0) && (param_0->getRate() != 0.0f))) {
-            tmp = 0;
+            rv = false;
         }
-    } else {
-        tmp = 0;
+        return rv;
+        break;
+    case 3:
+        break;
     }
 
-    return tmp;
+    return 0;
 
 }
 #else
@@ -3919,7 +3736,7 @@ static asm int daBaseNpc_putNurbs(dPnt* param_0, int param_1, int param_2, dPnt*
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daBaseNpc_chkPnt(cXyz param_0, dPnt* param_1, u16 param_2, u16 param_3, int param_4,
+static asm s32 daBaseNpc_chkPnt(cXyz param_0, dPnt* param_1, u16 param_2, u16 param_3, int param_4,
                                  int param_5) {
     nofralloc
 #include "asm/d/a/d_a_npc/daBaseNpc_chkPnt__F4cXyzP4dPntUsUsii.s"
@@ -4074,13 +3891,13 @@ static int daNpcF_subIdx(int param_0, int param_1, u16& param_2, int param_3) {
 }
 
 /* 801505F8-80150654 14AF38 005C+00 4/4 0/0 0/0 .text            daNpcF_incIdx__FiRUsii */
-static void daNpcF_incIdx(int param_0, u16& param_1, int param_2, int param_3) {
-   param_3 ? daNpcF_subIdx(1,param_0,param_1,param_2) : daNpcF_addIdx(1,param_0,param_1,param_2);
+static int daNpcF_incIdx(int param_0, u16& param_1, int param_2, int param_3) {
+   return param_3 ? daNpcF_subIdx(1,param_0,param_1,param_2) : daNpcF_addIdx(1,param_0,param_1,param_2);
 }
 
 /* 80150654-801506B0 14AF94 005C+00 3/3 0/0 0/0 .text            daNpcF_decIdx__FiRUsii */
-static void daNpcF_decIdx(int param_0, u16& param_1, int param_2, int param_3) {
-   param_3 ? daNpcF_addIdx(1,param_0,param_1,param_2) : daNpcF_subIdx(1,param_0,param_1,param_2);
+static int daNpcF_decIdx(int param_0, u16& param_1, int param_2, int param_3) {
+   return param_3 ? daNpcF_addIdx(1,param_0,param_1,param_2) : daNpcF_subIdx(1,param_0,param_1,param_2);
 }
 
 /* 801506B0-801506BC 14AFF0 000C+00 0/0 0/0 130/130 .text initialize__18daNpcF_ActorMngr_cFv */
@@ -4132,10 +3949,8 @@ void daNpcF_MatAnm_c::initialize() {
 }
 
 /* 8015075C-80150870 14B09C 0114+00 1/0 0/0 0/0 .text calc__15daNpcF_MatAnm_cCFP11J3DMaterial */
+// matches with literals
 #ifdef NONMATCHING
-// matches if you make daNpcF_MatAnm_c inherit J3DMaterialAnm
-// But doing so causes the dol overall to not match
-// something obvious here i'm missing
 void daNpcF_MatAnm_c::calc(J3DMaterial* param_0) const {
     J3DMaterialAnm::calc(param_0);
 
@@ -4176,9 +3991,8 @@ asm void calc__15daNpcF_MatAnm_cCFP11J3DMaterial() {
 #endif
 
 /* 80150870-80150900 14B1B0 0090+00 2/2 0/0 8/8 .text initialize__16daNpcF_SPCurve_cFP5dPathi */
+// matches with literals
 #ifdef NONMATCHING
-static u16 daNpcF_putNurbs(dPnt* param_0, int param_1, int param_2, dPnt* param_3, int param_4);
-
 void daNpcF_SPCurve_c::initialize(dPath* i_path, int param_1) {
     mNurbs = 0;
     field_0x02 = 0;
@@ -4194,7 +4008,7 @@ void daNpcF_SPCurve_c::initialize(dPath* i_path, int param_1) {
 
     if (i_path) {
         mIsClosed = i_path->m_closed & 1;
-        mNurbs = daNpcF_putNurbs(i_path->m_points,i_path->m_num, 0x60, mPoints,mIsClosed);
+        mNurbs = daNpcF_putNurbs((dPnt*)i_path->m_points,i_path->m_num, 0x60, (dPnt*)mPoints,mIsClosed);
     }
 }
 #else
@@ -4224,11 +4038,9 @@ void daNpcF_Path_c::initialize() {
 }
 
 /* 8015095C-80150A24 14B29C 00C8+00 0/0 0/0 12/12 .text setPathInfo__13daNpcF_Path_cFUcScUc */
-#ifdef NONMATCHING
-// bunch of regalloc issues. There is an inline function at the end that needs to be defined
 int daNpcF_Path_c::setPathInfo(u8 param_0, s8 param_1, u8 param_2) {
     mpRoomPath = 0;
-    field_0x00 = 0;
+    mIdx = 0;
     field_0x02 = param_2;
     dStage_dPnt_c point;
 
@@ -4239,30 +4051,11 @@ int daNpcF_Path_c::setPathInfo(u8 param_0, s8 param_1, u8 param_2) {
         }
         mSPCurve.initialize(mpRoomPath,field_0x02);
         mIsClosed = mpRoomPath->m_closed & 1;
-
-        int idx = field_0x00;
-        point = mpRoomPath->m_points[idx];
-
-        f32 x = point.m_position.x;
-        f32 y = point.m_position.y;
-        f32 z = point.m_position.z;
-
-        mPosition.x = x;
-        mPosition.y = y;
-        mPosition.z = z;
+        u16 idx;
+        mPosition = getPntPos(idx = mIdx);
     }
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daNpcF_Path_c::setPathInfo(u8 param_0, s8 param_1, u8 param_2) {
-    nofralloc
-#include "asm/d/a/d_a_npc/setPathInfo__13daNpcF_Path_cFUcScUc.s"
-}
-#pragma pop
-#endif
 
 /* 80150A24-80150A7C 14B364 0058+00 1/1 0/0 1/1 .text            chkPassed__13daNpcF_Path_cF4cXyz */
 // forward decleration
@@ -4295,170 +4088,63 @@ void daNpcF_Path_c::reverse() {
 }
 
 /* 80150BE0-80150C18 14B520 0038+00 2/2 0/0 6/6 .text            setNextIdx__13daNpcF_Path_cFv */
-#ifdef NONMATCHING
-// 1 instruction off, params being loaded out of order?
-void daNpcF_Path_c::setNextIdx() {
-    int a = mpRoomPath->m_num;
-    int c = mpRoomPath->m_closed & 1;
-    u16& b = field_0x00;
-    u8 d = field_0x02;
-
-    daNpcF_incIdx(a,b,c,d);
+int daNpcF_Path_c::setNextIdx() {
+    return daNpcF_incIdx(mpRoomPath->m_num, mIdx, chkClose(), field_0x02);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daNpcF_Path_c::setNextIdx() {
-    nofralloc
-#include "asm/d/a/d_a_npc/setNextIdx__13daNpcF_Path_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80150C18-80150C60 14B558 0048+00 0/0 0/0 9/9 .text            getNextIdx__13daNpcF_Path_cFv */
-#ifdef NONMATCHING
-// same problem as above
 u16 daNpcF_Path_c::getNextIdx() {
     u16 ret = mIdx;
 
-    daNpcF_incIdx(mpRoomPath->m_num,ret,mpRoomPath->m_closed & 1, field_0x02);
+    daNpcF_incIdx(mpRoomPath->m_num, ret, chkClose(), field_0x02);
     return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u16 daNpcF_Path_c::getNextIdx() {
-    nofralloc
-#include "asm/d/a/d_a_npc/getNextIdx__13daNpcF_Path_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80150C60-80150CA8 14B5A0 0048+00 0/0 0/0 3/3 .text            getBeforeIdx__13daNpcF_Path_cFv */
-#ifdef NONMATCHING
-// same problem as above
 u16 daNpcF_Path_c::getBeforeIdx() {
     u16 ret = mIdx;
 
-    daNpcF_decIdx(mpRoomPath->m_num,ret,mpRoomPath->m_closed & 1, field_0x02);
+    daNpcF_decIdx(mpRoomPath->m_num, ret, chkClose(), field_0x02);
     return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u16 daNpcF_Path_c::getBeforeIdx() {
-    nofralloc
-#include "asm/d/a/d_a_npc/getBeforeIdx__13daNpcF_Path_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80150CA8-80150D44 14B5E8 009C+00 0/0 0/0 1/1 .text getBeforePos__13daNpcF_Path_cFR4cXyz */
-#ifdef NONMATCHING
-// many regalloc issues
-void daNpcF_Path_c::getBeforePos(cXyz& param_0) {
-    u16 ret = mIdx;
-    dStage_dPnt_c* points;
+int daNpcF_Path_c::getBeforePos(cXyz& param_0) {
+    u16 idx = mIdx;
 
-    daNpcF_decIdx(mpRoomPath->m_num,ret,mpRoomPath->m_closed & 1, field_0x02);
+    int ret = daNpcF_decIdx(mpRoomPath->m_num, idx, chkClose(), field_0x02);
 
-    int idx = mIdx;
-    points = mpRoomPath->m_points;
-
-    f32 x = points[mIdx].m_position.x;
-    f32 y = points[mIdx].m_position.y;
-    f32 z = points[mIdx].m_position.z;
-
-    mPosition.x = x;
-    mPosition.y = y;
-    mPosition.z = z;
+    param_0 = getPntPos(idx);
+    return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcF_Path_c::getBeforePos(cXyz& param_0) {
-    nofralloc
-#include "asm/d/a/d_a_npc/getBeforePos__13daNpcF_Path_cFR4cXyz.s"
-}
-#pragma pop
-#endif
 
 /* 80150D44-80150DE0 14B684 009C+00 0/0 0/0 1/1 .text            getNextPos__13daNpcF_Path_cFR4cXyz
  */
-// many regalloc issues
-#ifdef NONMATCHING
-void daNpcF_Path_c::getNextPos(cXyz& param_0) {
-    u16 ret = mIdx;
-    dStage_dPnt_c* points;
+int daNpcF_Path_c::getNextPos(cXyz& param_0) {
+    u16 idx = mIdx;
 
-    daNpcF_incIdx(mpRoomPath->m_num,ret,mpRoomPath->m_closed & 1, field_0x02);
+    int ret = daNpcF_incIdx(mpRoomPath->m_num, idx, chkClose(), field_0x02);
 
-    int idx = mIdx;
-    points = mpRoomPath->m_points;
-
-    f32 x = points[mIdx].m_position.x;
-    f32 y = points[mIdx].m_position.y;
-    f32 z = points[mIdx].m_position.z;
-
-    mPosition.x = x;
-    mPosition.y = y;
-    mPosition.z = z;
+    param_0 = getPntPos(idx);
+    return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcF_Path_c::getNextPos(cXyz& param_0) {
-    nofralloc
-#include "asm/d/a/d_a_npc/getNextPos__13daNpcF_Path_cFR4cXyz.s"
-}
-#pragma pop
-#endif
 
 /* 80150DE0-80150EB4 14B720 00D4+00 0/0 0/0 16/16 .text getDstPos__13daNpcF_Path_cF4cXyzR4cXyz */
-#ifdef NONMATCHING
 int daNpcF_Path_c::getDstPos(cXyz i_pos1, cXyz& i_pos2) {
     int ret = 0;
 
-    while (true) {
-        int curr_index = getIdx();
-        cXyz* curr_room_pos = &mpRoomPath->m_points[curr_index].m_position;
-
-        i_pos2.x = curr_room_pos->x;
-        i_pos2.y = curr_room_pos->y;
-        i_pos2.z = curr_room_pos->x;
-
-        cXyz local_pos;
-        local_pos.x = i_pos1.x;
-        local_pos.y = i_pos1.y;
-        local_pos.z = i_pos1.z;
+    while (ret == 0) {
+        int curr_index;
+        i_pos2 = getPntPos(curr_index = getIdx());
         
-        if (!chkPassed(local_pos)) { break; };
+        if (!chkPassed(i_pos1)) { break; };
 
         if (setNextIdx()) {
             ret = 1;
         }
-
-        if (ret != 0) {
-            return ret;
-        }
     }
-    return 0;
+    return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daNpcF_Path_c::getDstPos(cXyz param_0, cXyz& param_1) {
-    nofralloc
-#include "asm/d/a/d_a_npc/getDstPos__13daNpcF_Path_cF4cXyzR4cXyz.s"
-}
-#pragma pop
-#endif
 
 /* 80150EB4-80151038 14B7F4 0184+00 0/0 0/0 2/2 .text setNextIdxDst__13daNpcF_Path_cF4cXyz */
 #pragma push
@@ -4919,7 +4605,7 @@ asm void daNpcF_c::tgHitCallBack(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, fop
 
 /* ############################################################################################## */
 /* 804257E8-80425978 052508 0190+00 4/4 0/0 0/0 .bss             mFindActorPList__8daNpcF_c */
-u8 daNpcF_c::mFindActorPList[400];
+fopAc_ac_c* daNpcF_c::mFindActorPList[100];
 
 /* 80450FF0-80450FF4 0004F0 0004+00 4/4 0/0 0/0 .sbss            mFindCount__8daNpcF_c */
 s32 daNpcF_c::mFindCount;
@@ -5660,16 +5346,94 @@ SECTION_SDATA2 static f32 lit_11605 = 450.0f;
 
 /* 8015436C-80154730 14ECAC 03C4+00 0/0 0/0 12/12 .text getAttnActorP__8daNpcF_cFiPFPvPv_Pvffffsii
  */
+#ifdef NONMATCHING
+fopAc_ac_c* daNpcF_c::getAttnActorP(int param_0, void* (*param_1)(void*, void*), f32 param_2,
+                                 f32 param_3, f32 param_4, f32 param_5, s16 param_6, int param_7,
+                                 int param_8) {
+    fopAc_ac_c* actor = NULL;
+    int rnd = 450 + (int)((cM_rnd() - 0.5f) * 450.0f);
+    int rnd2 = param_7 + (int)((cM_rnd() - 0.5f) * param_7);
+    int r28 = 0;
+    f32 minDistance = 1000000000.0f;
+    if (field_0x938) {
+        daPy_py_c* player = daPy_getPlayerActorClass();
+        fopAcM_SearchByID(player->getGrabActorID(), &actor);
+        if (field_0x82c[field_0x934].getActorP() != actor) {
+            func_8014D348(&field_0x938);
+        }
+        actor = field_0x82c[field_0x934].getActorP();
+    }
+    if (actor == NULL) {
+        field_0x938 = 0;
+        if (param_0) {
+            param_2 = fopAcM_searchActorDistanceXZ(this, daPy_getPlayerActorClass());
+        }
+        mFindCount = 0;
+        fpcEx_Search((fpcLyIt_JudgeFunc)param_1, this);
+        for (int i = 0; i < mFindCount; i++) {
+            if (chkPointInArea(getAttentionPos(mFindActorPList[i]), mAttentionInfo.mPosition, param_2, param_3, param_4, 0) && 
+                chkActorInSight2(mFindActorPList[i], param_5, param_6)) {
+                    int j;
+                    for (j = 0; j < 5; j++) {
+                        // !@Bug I think field_0x93c index should be j 
+                        if (mFindActorPList[i] == field_0x82c[j].getActorP() && field_0x93c[i] != 0) {
+                            break;
+                        }
+                    }
+
+                    if (j == 5) {
+                        f32 dist2 = fopAcM_searchActorDistanceXZ(this, mFindActorPList[i]);
+                        if (dist2 < minDistance) {
+                            actor = mFindActorPList[i];
+                            minDistance = dist2;
+                        }
+                    }
+            }
+        }
+
+        if (actor == NULL && param_0) {
+            daPy_py_c* player = daPy_getPlayerActorClass();
+            fopAcM_SearchByID(player->getGrabActorID(), &actor);
+            r28 = 1;
+        }
+        if (actor != NULL) {
+            int minInd, j;;
+            int dist3 = 900;
+            minInd = 0;
+            for (j = 0; j < 5; j++) {
+                if (field_0x93c[j] < dist3) {
+                    dist3 = field_0x93c[j];
+                    minInd = j;
+                }
+            }
+            field_0x82c[minInd].entry(actor);
+            if (param_8) {
+                field_0x93c[minInd] = r28 != 1 ? 0 : rnd;
+            } else {
+                field_0x93c[minInd] = 0;
+            }
+
+            field_0x938 = (r28 != 1) ? rnd2 : 30;
+            field_0x934 = minInd;
+        }
+    }
+    if (actor == NULL) {
+        field_0x938 = 0;
+    }
+    return actor;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpcF_c::getAttnActorP(int param_0, void* (*param_1)(void*, void*), f32 param_2,
+asm fopAc_ac_c* daNpcF_c::getAttnActorP(int param_0, void* (*param_1)(void*, void*), f32 param_2,
                                  f32 param_3, f32 param_4, f32 param_5, s16 param_6, int param_7,
                                  int param_8) {
     nofralloc
 #include "asm/d/a/d_a_npc/getAttnActorP__8daNpcF_cFiPFPvPv_Pvffffsii.s"
 }
 #pragma pop
+#endif
 
 /* 80154730-80154834 14F070 0104+00 2/2 0/0 0/0 .text chkActorInSight2__8daNpcF_cFP10fopAc_ac_cfs
  */
@@ -5683,36 +5447,38 @@ asm BOOL daNpcF_c::chkActorInSight2(fopAc_ac_c* param_0, f32 param_1, s16 param_
 #pragma pop
 
 /* 80154834-801548F4 14F174 00C0+00 2/2 0/0 0/0 .text chkPointInArea__8daNpcF_cF4cXyz4cXyzfffs */
+// literal load order 
 #ifdef NONMATCHING
-bool daNpcF_c::chkPointInArea(cXyz param_0, cXyz param_1, f32 param_2, f32 param_3, f32 param_4,
+BOOL daNpcF_c::chkPointInArea(cXyz param_0, cXyz param_1, f32 param_2, f32 param_3, f32 param_4,
                                   s16 param_5) {
     cXyz tmp_pos1;
     cXyz tmp_pos2;
-    cXyz tmp_pos3;
 
-    f32 tmp_float1 = param_3;
+    f32 tmp_float1 = param_4;
 
     if (param_3 < param_4) {
-        tmp_float1 = param_4;
-        param_4 = param_3;
+        tmp_float1 = param_3;
+        param_3 = param_4;
     }
 
-    f32 result1 = fabsf(tmp_float1 - param_4);
-    f32 result = FLOAT_LABEL(lit_11253) * result1;
-    tmp_pos1.set(param_2,result,param_2);
+    f32 res  = fabsf(param_3 - tmp_float1) * 0.5f;
+    tmp_pos1.x = param_2;
+    tmp_pos1.y = res;
+    tmp_pos1.z = param_2;
 
-    f32 result2 = param_1.y + param_4 + tmp_pos1.y;
-    tmp_pos2.set(param_1.x,result2,param_1.z);
+    tmp_pos2.x = param_1.x;
+    tmp_pos2.y = param_1.y;
+    tmp_pos2.z = param_1.z;
+    tmp_pos2.y += tmp_float1;
+    tmp_pos2.y += tmp_pos1.y;
 
-    tmp_pos3 = param_0;
-
-    return chkPointInArea(tmp_pos3,tmp_pos2,tmp_pos1,param_5);
+    return chkPointInArea(param_0,tmp_pos2,tmp_pos1,param_5);
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool daNpcF_c::chkPointInArea(cXyz param_0, cXyz param_1, f32 param_2, f32 param_3, f32 param_4,
+asm BOOL daNpcF_c::chkPointInArea(cXyz param_0, cXyz param_1, f32 param_2, f32 param_3, f32 param_4,
                                   s16 param_5) {
     nofralloc
 #include "asm/d/a/d_a_npc/chkPointInArea__8daNpcF_cF4cXyz4cXyzfffs.s"
@@ -5722,9 +5488,9 @@ asm bool daNpcF_c::chkPointInArea(cXyz param_0, cXyz param_1, f32 param_2, f32 p
 
 /* 801548F4-8015496C 14F234 0078+00 1/1 0/0 0/0 .text chkPointInArea__8daNpcF_cF4cXyz4cXyz4cXyzs
  */
-bool daNpcF_chkPointInArea(cXyz,cXyz,cXyz,s16); // fwd reference
+BOOL daNpcF_chkPointInArea(cXyz,cXyz,cXyz,s16); // fwd reference
 
-bool daNpcF_c::chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 param_3) {
+BOOL daNpcF_c::chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 param_3) {
     return daNpcF_chkPointInArea(param_0,param_1,param_2,param_3);
 }
 
@@ -5751,14 +5517,44 @@ asm void daNpcF_c::chkFindPlayer2(int param_0, s16 param_1) {
 
 /* ############################################################################################## */
 /* 804534B4-804534B8 001AB4 0004+00 1/1 0/0 0/0 .sdata2          id$11798 */
-SECTION_SDATA2 static u8 id_11798[4] = {
-    0x84,
-    0x97,
-    0x84,
-    0x98,
+SECTION_SDATA2 static u16 id_11798[2] = {
+    0x8497,
+    0x8498,
 };
 
 /* 80154BD8-80154DA8 14F518 01D0+00 1/1 0/0 0/0 .text            setHitodamaPrtcl__8daNpcF_cFv */
+// field_0x9d2 is weird
+#ifdef NONMATCHING
+void daNpcF_c::setHitodamaPrtcl() {
+    u8 uVar3;
+    cXyz local_20;
+
+    field_0x9d0 = (2 * ((u16)field_0x9d2));
+    field_0x9b8.x = cM_ssin(((u16)field_0x9d2)) * 8.0f;
+    field_0x9b8.y = cM_ssin(field_0x9d0) * 4.0f;
+    field_0x9b8.z = field_0x9b8.x * -cM_ssin(shape_angle.y);
+
+    field_0x9b8.x *= cM_scos(shape_angle.y);
+    field_0x9d2 += 0x400;
+    local_20.x = mEyePos.x + field_0x9b8.x + field_0x9c4.x;
+    local_20.y = mEyePos.y + field_0x9b8.y + field_0x9c4.y;
+    local_20.z = mEyePos.z + field_0x9b8.z + field_0x9c4.z;
+
+    for (int i = 0; i < 2; i++) {
+        field_0x9a8[i] = dComIfGp_particle_set(field_0x9a8[i], id_11798[i], &local_20, &field_0x8f0, NULL);
+        JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(field_0x9a8[i]);
+        if (emitter != NULL) {
+            if (dComIfGs_wolfeye_effect_check() == 0) {
+                uVar3 = 0xff;
+            } else {
+                uVar3 = 0;
+            }
+            emitter->setGlobalTranslation(local_20.x, local_20.y, local_20.z);
+            emitter->setGlobalAlpha(uVar3);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5767,6 +5563,7 @@ asm void daNpcF_c::setHitodamaPrtcl() {
 #include "asm/d/a/d_a_npc/setHitodamaPrtcl__8daNpcF_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80154DA8-80154E54 14F6E8 00AC+00 1/1 0/0 1/1 .text
  * daNpcF_pntVsLineSegmentLengthSquare2D__FffffffPfPfPf         */
@@ -5804,7 +5601,7 @@ int daNpcF_pntVsLineSegmentLengthSquare2D(f32 param_0, f32 param_1, f32 param_2,
 
 /* 80154E54-80154E5C 14F794 0008+00 1/1 0/0 0/0 .text            daNpcF_putNurbs__FP4dPntiiP4dPnti
  */
-static bool daNpcF_putNurbs(dPnt* param_0, int param_1, int param_2, dPnt* param_3, int param_4) {
+static u16 daNpcF_putNurbs(dPnt* param_0, int param_1, int param_2, dPnt* param_3, int param_4) {
     return false;
 }
 
@@ -5820,34 +5617,19 @@ asm int daNpcF_chkPassed(cXyz param_0, dPnt* param_1, u16 param_2, u16 param_3, 
 #pragma pop
 
 /* 8015556C-80155634 14FEAC 00C8+00 1/1 0/0 8/8 .text daNpcF_getGroundAngle__FP13cBgS_PolyInfos */
-#ifdef NONMATCHING
-int daNpcF_getGroundAngle(cBgS_PolyInfo* param_0, s16 param_1) {
+s16 daNpcF_getGroundAngle(cBgS_PolyInfo* param_0, s16 param_1) {
     cM3dGPla tmp;
-    f32 l_float;
-    int ret;
 
     if (dComIfG_Bgsp().ChkPolySafe(*param_0)) {
-        if (dComIfG_Bgsp().GetTriPla(*param_0,&tmp) && !cBgW_CheckBGround(l_float)) {
-            ret = fopAcM_getPolygonAngle(&tmp,(int)param_1);
+        if (!dComIfG_Bgsp().GetTriPla(*param_0, &tmp) || !cBgW_CheckBGround(tmp.mNormal.y)) {
+            return 0;
         } else {
-            ret = 0;
+            return fopAcM_getPolygonAngle(&tmp, param_1);
         }
     } else {
-        ret = 0;
+        return 0;
     }
-
-    return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daNpcF_getGroundAngle(cBgS_PolyInfo* param_0, s16 param_1) {
-    nofralloc
-#include "asm/d/a/d_a_npc/daNpcF_getGroundAngle__FP13cBgS_PolyInfos.s"
-}
-#pragma pop
-#endif
 
 /* 80155634-80155674 14FF74 0040+00 0/0 0/0 69/69 .text            daNpcF_chkEvtBit__FUl */
 BOOL daNpcF_chkEvtBit(u32 i_idx) {
@@ -5876,41 +5658,23 @@ void daNpcF_offTmpBit(u32 i_idx) {
 
 /* 80155774-80155854 1500B4 00E0+00 0/0 2/2 5/5 .text
  * daNpcF_getPlayerInfoFromPlayerList__FiiR4cXyzR5csXyz         */
-#ifdef NONMATCHING
 int daNpcF_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz& param_2, csXyz& param_3) {
-    int i = 0;
+    int rv = 0;
     
     dStage_roomStatus_c* roomP = dComIfGp_roomControl_getStatusRoomDt(i_roomNo);
     stage_actor_data_class* entries = roomP->mRoomDt.getPlayer()->mEntries;
     
-    while (true) {
-        if (param_0 == entries->mEnemyNo) {
+    for (int i = 0; i < roomP->mRoomDt.getPlayerNum(); entries++, i++) {
+        if (param_0 == (u8)entries->mAngle.z) {
+            param_2 = entries->mSpawnPos;
+            param_3 = entries->mAngle;
+            rv = 1;
             break;
         }
     }
 
-    param_2 = entries->mSpawnPos;
-    param_3 = entries->mAngle;
-
-    i++;
-
-    if (roomP->mRoomDt.getPlayerNum() >= i) {
-        return 0;
-    }
-
-    return 1;
+    return rv;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daNpcF_getPlayerInfoFromPlayerList(int param_0, int param_1, cXyz& param_2,
-                                            csXyz& param_3) {
-    nofralloc
-#include "asm/d/a/d_a_npc/daNpcF_getPlayerInfoFromPlayerList__FiiR4cXyzR5csXyz.s"
-}
-#pragma pop
-#endif
 
 /* 80155854-80155968 150194 0114+00 0/0 0/0 1/1 .text daNpcF_chkDoBtnEqSpeak__FP10fopAc_ac_c */
 bool daNpcF_chkDoBtnEqSpeak(fopAc_ac_c* i_ActorP) {
@@ -5937,8 +5701,8 @@ bool daNpcF_chkDoBtnEqSpeak(fopAc_ac_c* i_ActorP) {
 }
 
 /* 80155968-80155AD4 1502A8 016C+00 1/1 0/0 2/2 .text daNpcF_chkPointInArea__F4cXyz4cXyz4cXyzs */
-bool daNpcF_chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 param_3) {
-    bool ret = 0;
+BOOL daNpcF_chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 param_3) {
+    BOOL ret;
     Vec l_vec;
     f32 l_float1;
     f32 l_float2;
@@ -5958,15 +5722,13 @@ bool daNpcF_chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 param_3
     l_pos = param_1 - param_0;
 
     if (l_pos.y <= -param_2.y || param_2.y <= l_pos.y) {
-        ret = 0;
+        return FALSE;
     } else {
         f32 tmp_float1 = (l_float3 * l_float3) / (l_float1 * l_float1);
         f32 tmp_float2 = (l_float4 * l_float4) / (l_float2 * l_float2);
         f32 tmp_float3 = tmp_float1 + tmp_float2;
-        ret = tmp_float3 <= FLOAT_LABEL(lit_4140);
+        return tmp_float3 <= FLOAT_LABEL(lit_4140);
     }
-
-    return ret;
 }
 
 /* 80155AD4-80155AE8 150414 0014+00 1/1 0/0 1/1 .text            daNpcF_getDistTableIdx__Fii */

@@ -277,7 +277,7 @@ void dMenu_Fmap_room_data_c::buildTresTypeGroup(int param_0, int param_1, int pa
     dTres_c::list_class* tresure_p = mp_fmapData->getTresure();
     if (tresure_p != NULL) {
         int num = tresure_p->field_0x0;
-        dTres_c::data_s* data_p = tresure_p->field_0x4;
+        dTres_c::data_s* data_p = tresure_p->field_0x4->getDataPointer();
 
         if (mp_fmpTresTypeGroupDataListAll == NULL) {
             mp_fmpTresTypeGroupDataListAll = new fmpTresTypeGroupDataListAll_c();

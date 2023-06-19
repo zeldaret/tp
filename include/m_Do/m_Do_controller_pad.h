@@ -59,6 +59,11 @@ public:
     static f32 getAnalogR(u32 pad) { return getCpadInfo(pad).mTriggerRight; }
     static f32 getAnalogL(u32 pad) { return getCpadInfo(pad).mTriggerLeft; }
     static BOOL isConnect(u32 pad) { return JUTGamePad::getPortStatus(pad) == 0; }
+    static void startMotorWave(u32 pad, void* param_2, JUTGamePad::CRumble::ERumble param_3, u32 param_4) {
+        m_gamePad[pad]->startMotorWave(param_2, param_3, param_4);
+    }
+    static void stopMotor(u32 pad) { m_gamePad[pad]->stopMotor(); }
+    static void stopMotorWave(u32 pad) { m_gamePad[pad]->stopMotorWave(); }
     static void stopMotorHard(u32 pad) { return m_gamePad[pad]->stopMotorHard(); }
     static void stopMotorWaveHard(u32 pad) { return m_gamePad[pad]->stopMotorWaveHard(); }
 

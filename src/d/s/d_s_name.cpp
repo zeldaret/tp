@@ -109,7 +109,7 @@ dSn_HIO_c::dSn_HIO_c() {
 /* 802587A4-80258820 2530E4 007C+00 1/0 0/0 0/0 .text            phase_1__FPc */
 static s32 phase_1(char* resName) {
     mDoAud_bgmStart(-1);
-    if (dComIfG_setObjectRes(resName, 0, NULL) == 0) {
+    if (dComIfG_setObjectRes(resName, (u8)0, NULL) == 0) {
         return 5;
     }
 

@@ -43,7 +43,7 @@ public:
     int Release(dBgW_Base*);
     bool LineCross(cBgS_LinChk*);
     f32 GroundCross(cBgS_GndChk*);
-    static void ConvDzb(void*);
+    static void* ConvDzb(void*);
     fopAc_ac_c* GetActorPointer(int) const;
     dBgW_Base* GetBgWBasePointer(cBgS_PolyInfo const&) const;
     bool ChkPolySafe(cBgS_PolyInfo const&);

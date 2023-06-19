@@ -78,6 +78,7 @@ public:
     static int getMaxY() { return 448; }
     static int getMaxX() { return 608; }
     static ResTIMG* getFrameBufferTimg() { return mFrameBufferTimg; }
+    static ResTIMG* getZbufferTimg() { return mZbufferTimg; }
     static void* getFrameBufferTex() { return mFrameBufferTex; }
     static void setFadeRate(f32 rate) { mFadeRate = rate; }
     static f32 getFadeRate() { return mFadeRate; }

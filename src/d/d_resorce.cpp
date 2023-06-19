@@ -13,6 +13,7 @@
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
+#include "m_Do/m_Do_graphic.h"
 #include "MSL_C/stdio.h"
 #include "MSL_C/string.h"
 #include "d/com/d_com_inf_game.h"
@@ -27,7 +28,7 @@
 //
 
 struct dBgWKCol {
-    /* 8007E7D0 */ void initKCollision(void*);
+    /* 8007E7D0 */ static void* initKCollision(void*);
 };
 
 //
@@ -222,23 +223,31 @@ static void setAlpha(J3DMaterialTable* pMatTable) {
 }
 
 /* ############################################################################################## */
-/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803798C1 = "fbtex_dummy";
-SECTION_DEAD static char const* const stringBase_803798CD = "dummy";
-SECTION_DEAD static char const* const stringBase_803798D3 = "Zbuffer";
-#pragma pop
 
 /* 8003A490-8003A81C 034DD0 038C+00 1/1 0/0 0/0 .text            setIndirectTex__FP12J3DModelData */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void setIndirectTex(J3DModelData* param_0) {
-    nofralloc
-#include "asm/d/d_resorce/setIndirectTex__FP12J3DModelData.s"
+static void setIndirectTex(J3DModelData* param_0) {
+    const char* textureName;
+    J3DMaterialTable& materialTable = param_0->getMaterialTable();
+    J3DTexture* texture = materialTable.getTexture();
+    if (texture == NULL)
+        return;
+    JUTNameTab* nameTab = materialTable.getTextureName();
+    if (nameTab == NULL)
+        return;
+
+    for (u16 i = 0; i < texture->getNum(); i++) {
+        textureName = nameTab->getName(i);
+        if (memcmp(textureName, "fbtex_dummy", 0xc) == 0) {
+            texture->setResTIMG(i, *mDoGph_gInf_c::getFrameBufferTimg());
+        }
+        if (memcmp(textureName, "dummy", 6) == 0) {
+            texture->setResTIMG(i, *mDoGph_gInf_c::getFrameBufferTimg());
+        }
+        if (memcmp(textureName, "Zbuffer", 8) == 0) {
+            texture->setResTIMG(i, *mDoGph_gInf_c::getZbufferTimg());
+        }
+    }
 }
-#pragma pop
 
 /* 8003A81C-8003A840 03515C 0024+00 1/1 0/0 0/0 .text            setAlpha__FP12J3DModelData */
 static void setAlpha(J3DModelData* pModelData) {
@@ -247,16 +256,18 @@ static void setAlpha(J3DModelData* pModelData) {
 
 /* ############################################################################################## */
 /* 80379840-803798A4 005EA0 0064+00 2/2 0/0 0/0 .rodata          l_texMtxInfo */
-SECTION_RODATA static u8 const l_texMtxInfo[100] = {
-    0x00, 0x08, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x3D, 0xCC, 0xCC, 0xCD, 0x3D, 0xCC, 0xCC, 0xCD, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
+SECTION_RODATA static const J3DTexMtxInfo l_texMtxInfo = {
+    0x00, 
+    0x08, 
+    {0.5f, 0.5f, 0.0f},
+    { 0.1f, 0.1f, 0, 0.0f, 0.0f},
+    {
+        { 0.5f, 0.0f, 0.0f, 0.5f }, 
+        { 0.0f, 0.5f, 0.0f, 0.5f }, 
+        { 0.0f, 0.0f, 0.0f, 1.0f }, 
+        { 0.0f, 0.0f, 0.0f, 1.0f },
+    },
 };
-COMPILER_STRIP_GATE(0x80379840, &l_texMtxInfo);
 
 /* 803798A4-803798B8 005F04 0014+00 1/1 0/0 0/0 .rodata          l_tevStageInfo$3774 */
 SECTION_RODATA static u8 const l_tevStageInfo[20] = {
@@ -265,22 +276,15 @@ SECTION_RODATA static u8 const l_tevStageInfo[20] = {
 };
 COMPILER_STRIP_GATE(0x803798A4, &l_tevStageInfo);
 
-/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803798DB = "Always";
-#pragma pop
-
 /* 80450628-8045062C 0000A8 0004+00 1/1 0/0 0/0 .sdata           l_texCoordInfo$3772 */
-SECTION_SDATA static u8 l_texCoordInfo[4] = {
+SECTION_SDATA static J3DTexCoordInfo l_texCoordInfo = {
     0x00,
     0x00,
     0x27,
-    0x00,
 };
 
 /* 8045062C-80450630 0000AC 0004+00 1/1 0/0 0/0 .sdata           l_tevOrderInfo$3773 */
-SECTION_SDATA static u8 l_tevOrderInfo[4] = {
+SECTION_SDATA static J3DTevOrderInfo l_tevOrderInfo = {
     0x00,
     0x03,
     0xFF,
@@ -288,20 +292,46 @@ SECTION_SDATA static u8 l_tevOrderInfo[4] = {
 };
 
 /* 80451DF0-80451DF8 0003F0 0008+00 1/1 0/0 0/0 .sdata2          l_alphaCompInfo$3775 */
-SECTION_SDATA2 static u8 l_alphaCompInfo[8] = {
-    0x04, 0x80, 0x00, 0x03, 0xFF, 0x00, 0x00, 0x00,
+SECTION_SDATA2 static J3DAlphaCompInfo l_alphaCompInfo = {
+    0x04, 0x80, 0x00, 0x03, 0xFF,
 };
 
 /* 8003A840-8003AACC 035180 028C+00 1/1 0/0 0/0 .text            addWarpMaterial__FP12J3DModelData
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void addWarpMaterial(J3DModelData* param_0) {
-    nofralloc
-#include "asm/d/d_resorce/addWarpMaterial__FP12J3DModelData.s"
+static void addWarpMaterial(J3DModelData* param_1) {
+    ResTIMG* objectRes = (ResTIMG*)dComIfG_getObjectRes("Always", 0x5d);
+    J3DTexture* texture = param_1->getTexture();
+    u16 textureNum = texture->getNum();
+    texture->addResTIMG(1, objectRes - textureNum);
+    J3DTexMtx* texMtxInfo = new J3DTexMtx(l_texMtxInfo);
+
+    for (u16 i = 0; i < param_1->getMaterialNum(); i++) {
+        J3DMaterial* pMaterial = param_1->getMaterialNodePointer(i);
+        J3DTexGenBlock* texGenBlock = pMaterial->getTexGenBlock();
+        u32 texGenNum = texGenBlock->getTexGenNum();
+        J3DTexCoord* coord = texGenBlock->getTexCoord(texGenNum);
+        l_texCoordInfo.mTexGenMtx = texGenNum * 3 + 0x1e;
+        coord->setTexCoordInfo(&l_texCoordInfo);
+        coord->resetTexMtxReg();
+        texGenBlock->setTexGenNum(texGenNum + 1);
+        texGenBlock->setTexMtx(texGenNum, texMtxInfo);
+        J3DTevBlock* tevBlock = pMaterial->getTevBlock();
+        u8 tevStageNum = tevBlock->getTevStageNum();
+        l_tevOrderInfo.field_0x0 = texGenNum;
+        tevBlock->setTexNo(3, textureNum);
+        tevBlock->setTevOrder(tevStageNum, l_tevOrderInfo);
+        tevBlock->setTevStage(tevStageNum, J3DTevStage(*(J3DTevStageInfo*)l_tevStageInfo));
+        tevBlock->setTevStageNum(tevStageNum + 1);
+        J3DShape* pShape = pMaterial->getShape();
+        GXAttr attr = (GXAttr)(texGenNum + 1);
+        pShape->addTexMtxIndexInDL(attr, 0);
+        pShape->addTexMtxIndexInVcd(attr);
+        J3DPEBlock* peBlock = pMaterial->getPEBlock();
+        J3DAlphaComp* alphaComp = peBlock->getAlphaComp();
+        alphaComp->setAlphaCompInfo(&l_alphaCompInfo);
+        peBlock->setZCompLoc((u8)0);
+    }
 }
-#pragma pop
 
 /* 8003AACC-8003AB2C 03540C 0060+00 1/1 2/2 0/0 .text __ct__11J3DTevStageFRC15J3DTevStageInfo */
 #pragma push
@@ -320,37 +350,54 @@ void J3DTexGenBlock::setTexMtx(u32 param_0, J3DTexMtx* param_1) {
 
 /* 8003AB30-8003AC1C 035470 00EC+00 0/0 2/1 0/0 .text
  * onWarpMaterial__11dRes_info_cFP12J3DModelData                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dRes_info_c::onWarpMaterial(J3DModelData* param_0) {
-    nofralloc
-#include "asm/d/d_resorce/onWarpMaterial__11dRes_info_cFP12J3DModelData.s"
+void dRes_info_c::onWarpMaterial(J3DModelData* param_0) {
+    for (u16 i = 0; i < param_0->getMaterialNum(); i++) {
+        J3DMaterial* pMaterial = param_0->getMaterialNodePointer(i);
+        J3DTevBlock* tevBlock = pMaterial->getTevBlock();
+        u8 tevStageNum = tevBlock->getTevStageNum();
+        J3DTevOrder* tevorder = tevBlock->getTevOrder(tevStageNum - 1);
+        if (tevorder->getTexMap() == 3) {
+            break;
+        }
+        tevBlock->setTevStageNum(tevStageNum + 1);
+        J3DTexGenBlock* texGenBlock = pMaterial->getTexGenBlock();
+        texGenBlock->setTexGenNum(texGenBlock->getTexGenNum() + 1);
+    }
 }
-#pragma pop
 
 /* 8003AC1C-8003AD08 03555C 00EC+00 0/0 2/1 0/0 .text
  * offWarpMaterial__11dRes_info_cFP12J3DModelData               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dRes_info_c::offWarpMaterial(J3DModelData* param_0) {
-    nofralloc
-#include "asm/d/d_resorce/offWarpMaterial__11dRes_info_cFP12J3DModelData.s"
+void dRes_info_c::offWarpMaterial(J3DModelData* modelData) {
+    for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
+        J3DMaterial* pMaterial = modelData->getMaterialNodePointer(i);
+        J3DTevBlock* tevBlock = pMaterial->getTevBlock();
+        u8 tevStageNum = tevBlock->getTevStageNum();
+        J3DTevOrder* tevorder = tevBlock->getTevOrder(tevStageNum - 1);
+        if (tevorder->getTexMap() != 3) {
+            break;
+        }
+        tevBlock->setTevStageNum(tevStageNum - 1);
+        J3DTexGenBlock* texGenBlock = pMaterial->getTexGenBlock();
+        texGenBlock->setTexGenNum(texGenBlock->getTexGenNum() - 1);
+    }
 }
-#pragma pop
 
 /* 8003AD08-8003AE14 035648 010C+00 0/0 1/1 0/0 .text
  * setWarpSRT__11dRes_info_cFP12J3DModelDataRC4cXyzff           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dRes_info_c::setWarpSRT(J3DModelData* param_0, cXyz const& param_1, f32 param_2,
-                                 f32 param_3) {
-    nofralloc
-#include "asm/d/d_resorce/setWarpSRT__11dRes_info_cFP12J3DModelDataRC4cXyzff.s"
+void dRes_info_c::setWarpSRT(J3DModelData* modelData, cXyz const& param_1, f32 translationX, f32 translationY) {
+    J3DMaterial* pMaterial = modelData->getMaterialNodePointer(0);
+    J3DTexGenBlock* texGenBlock = pMaterial->getTexGenBlock();
+    u32 texGenNum = texGenBlock->getTexGenNum();
+    J3DTexMtx* texMtx = texGenBlock->getTexMtx(texGenNum - 1);
+    J3DTexMtxInfo& texMtxInfo = texMtx->getTexMtxInfo();
+    texMtxInfo.mSRT.mTranslationX = translationX;
+    texMtxInfo.mSRT.mTranslationY = translationY;
+    mDoMtx_stack_c::transS(-param_1.x, -param_1.y, -param_1.z);
+    s16 angleY = fopCamM_GetAngleY(dComIfGp_getCamera(i_dComIfGp_getPlayerCameraID(0)));
+    mDoMtx_stack_c::YrotM(angleY);
+    MtxP stackMtx = mDoMtx_stack_c::get();
+    cMtx_concat(l_texMtxInfo.mEffectMtx, stackMtx, texMtxInfo.mEffectMtx);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803A7C18-803A7C38 -00001 0020+00 1/1 0/0 0/0 .data            @4017 */
@@ -367,6 +414,77 @@ SECTION_DATA static void* lit_4017[8] = {
 
 /* 8003AE14-8003B150 035754 033C+00 2/1 1/1 0/0 .text            loaderBasicBmd__11dRes_info_cFUlPv
  */
+// regalloc
+#ifdef NONMATCHING
+J3DModelData* dRes_info_c::loaderBasicBmd(u32 param_1, void* param_2) {
+    u32 pvVar5 = 0x59020010;
+    J3DMaterial* pMaterial;
+    J3DModelData* modelData; 
+    u8 lightMask;
+    if (param_1 == 'BMDE' || param_1 == 'BMDV') {
+        pvVar5 |= 0x20;
+    } else if (param_1 == 'BMWR' || param_1 == 'BMWE') {
+        pvVar5 ^= 0x60020;
+    }
+    modelData = (J3DModelData*)J3DModelLoaderDataBase::load(param_2, pvVar5);
+    if (modelData == NULL) {
+        return NULL;
+    }
+
+    if ((param_1 == 'BMDE' || param_1 == 'BMDV') || param_1 == 'BMWE') {
+        for (u16 i = 0; i < modelData->getShapeNum(); i++) {
+            modelData->getShapeNodePointer(i)->setTexMtxLoadType(0x2000);
+        }
+    }
+    for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
+        pMaterial = modelData->getMaterialNodePointer(i);
+        lightMask = pMaterial->getColorBlock()->getColorChan(0)->getLightMask();
+        switch (g_env_light.field_0x1308) {
+        case 1:
+            lightMask &= 4;
+            break;
+        case 2:
+            lightMask &= 0xc;
+            break;
+        case 3:
+            lightMask &= 0xd;
+            break;
+        case 4:
+            lightMask &= 0xf;
+            break;
+        case 5:
+            lightMask &= 0x1f;
+            break;
+        case 6:
+            lightMask &= 0x3f;
+            break;
+        case 7:
+            lightMask &= 0x7f;
+        }
+        pMaterial->getColorBlock()->getColorChan(0)->setLightMask(lightMask);
+        pMaterial->change();
+        J3DMaterialAnm* local_38 = new J3DMaterialAnm();
+        if (local_38 == NULL) {
+            return NULL;
+        }
+        pMaterial->setMaterialAnm(local_38);
+    }
+    setIndirectTex(modelData);
+    if ((param_1 == 'BMWR') || (param_1 == 'BMWE')) {
+        addWarpMaterial(modelData);
+    }
+    if ((param_1 == 'BMDR') || (param_1 == 'BMWR')) {
+        if (modelData->newSharedDisplayList(0x40000) == 0) {
+            modelData->simpleCalcMaterial(0, (float (*)[4])j3dDefaultMtx);
+            modelData->makeSharedDL();
+        } else {
+            modelData = NULL;
+        }
+    }
+    
+    return modelData;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -375,6 +493,7 @@ asm J3DModelData* dRes_info_c::loaderBasicBmd(u32 param_0, void* param_1) {
 #include "asm/d/d_resorce/loaderBasicBmd__11dRes_info_cFUlPv.s"
 }
 #pragma pop
+#endif
 
 /* 8003B150-8003B18C 035A90 003C+00 2/2 8/8 0/0 .text            __dt__15J3DTevKColorAnmFv */
 #pragma push
@@ -539,6 +658,142 @@ SECTION_DEAD static char const* const stringBase_80379912 = "<%s> res == NULL !!
 #pragma pop
 
 /* 8003B30C-8003B8D0 035C4C 05C4+00 2/2 0/0 0/0 .text            loadResource__11dRes_info_cFv */
+// J3DXXX ctor/dtor inlines
+#ifdef NONMATCHING
+int dRes_info_c::loadResource() {
+    s32 pJVar4 = mArchive->countFile();
+    mRes = new void*[pJVar4];
+    if (mRes == NULL) {
+        OSReport_Error("<%s.arc> setRes: res pointer buffer nothing !!\n", this);
+        return -1;
+    }
+
+    for (int i = 0; i < pJVar4; i++) {
+        mRes[i] = NULL;
+    }
+    JKRArchive::SDIDirEntry* node = mArchive->mNodes;
+
+    for (int i = 0; i < mArchive->countDirectory(); i++) {
+        u32 nodeType = node->type;
+        u32 firstFileIndex = node->first_file_index;
+        J3DModelData* modelData;
+        void* result;
+        for (int j = 0; j < node->num_entries; j++) {
+            if (mArchive->isFileEntry(firstFileIndex)) {
+                result = mArchive->getIdxResource(firstFileIndex);
+                if (result == NULL) {
+                    OSReport_Error("<%s> res == NULL !!\n", mArchive->mStringTable + (mArchive->findIdxResource(firstFileIndex)->type_flags_and_name_offset & 0xFFFFFF));
+                } 
+                else if (nodeType == 'ARC ') {
+                    JKRArchive::SDIFileEntry* fileEntry = mArchive->findIdxResource(firstFileIndex);
+                    const char* __s = mArchive->mStringTable + fileEntry->getNameOffset();
+                    size_t len = strlen(__s) - 4;
+                    char aJStack_24[9];
+                    strncpy(aJStack_24, __s, len);
+                    aJStack_24[len] = '\0';
+                    JKRHeap* local_58 = JKRHeap::findFromRoot(JKRHeap::getCurrentHeap());
+                    JKRHeap* pJVar3 = local_58;
+                    
+                    if (local_58 == (JKRHeap*)mDoExt_getGameHeap()) {
+                        local_58 = NULL;
+                    }
+                    dComIfG_setObjectRes(aJStack_24, result, fileEntry->data_size);
+                } else if (nodeType == 'BMDP') {
+                    result = (J3DModelData*) J3DModelLoaderDataBase::load(result, 0x59020030);
+                    if (result == NULL) {
+                        return -1;
+                    }
+                    modelData = (J3DModelData*)result;
+                    for (u16 k = 0; k < modelData->getMaterialNum(); k++) {
+                        J3DMaterial* pMaterial = modelData->getMaterialNodePointer(k);
+                        pMaterial->change();
+                        J3DMaterialAnm* materialAnm = new J3DMaterialAnm();
+                        if (materialAnm == (J3DMaterialAnm*)0x0) {
+                            return -1;
+                        }
+                        pMaterial->setMaterialAnm(materialAnm);
+                    }
+                    setAlpha(modelData);
+                    if (modelData->newSharedDisplayList(0x40000) != 0) {
+                        return -1;
+                    }
+                    modelData->simpleCalcMaterial(0, (float (*)[4])j3dDefaultMtx);
+                    modelData->makeSharedDL();
+                } else if ((((nodeType == 'BMDR') ||
+                             (nodeType == 'BMDV')) ||
+                            (nodeType == 'BMDE')) ||
+                           ((nodeType == 'BMWR' ||
+                             (nodeType == 'BMWE'))))
+                {
+                    result = loaderBasicBmd(nodeType, result);
+                    if (result == NULL) {
+                        return -1;
+                    }
+                } else if (nodeType == 'BMDG') {
+                    result = (J3DModelData*)J3DModelLoaderDataBase::load(result, 0x59020010);
+                    if (result == NULL) {
+                        return -1;
+                    }
+                    modelData = (J3DModelData*)result;
+                    if (modelData->newSharedDisplayList(0x40000) != 0) {
+                        return -1;
+                    }
+                    modelData->simpleCalcMaterial(0, (float (*)[4])j3dDefaultMtx);
+                    modelData->makeSharedDL();
+                } else if (nodeType == 'BMDA') {
+                    result = (J3DModelData*)J3DModelLoaderDataBase::load(result, 0x59020010);
+                    if (result == NULL) {
+                        return -1;
+                    }
+                    modelData = (J3DModelData*)result;
+                    if (modelData->newSharedDisplayList(0x40000) != 0) {
+                        return -1;
+                    }
+                    modelData->simpleCalcMaterial(0, (float (*)[4])j3dDefaultMtx);
+                    modelData->makeSharedDL();
+                } else if (nodeType == 'BLS ') {
+                    result = J3DClusterLoaderDataBase::load(result);
+                    if (result == NULL) {
+                        return -1;
+                    }
+                } else if ((nodeType == 'BCKS') ||
+                           (nodeType == 'BCK '))
+                {
+                    int sVar1 = *(int*)((int)result + 0x1c);
+                    void* local_9c = sVar1 != 0xffffffff ? (void*)(sVar1 + (u32)result) : NULL;
+                    mDoExt_transAnmBas* transAnmBas = new mDoExt_transAnmBas(local_9c);
+                    if (transAnmBas == NULL) {
+                        return -1;
+                    }
+                    J3DAnmLoaderDataBase::setResource(transAnmBas, result);
+                    result = transAnmBas;
+                } else if ((((nodeType == 'BTP ') ||
+                             (nodeType == 'BTK ')) ||
+                            (nodeType == 'BPK ')) ||
+                           (((nodeType == 'BRK ' ||
+                              (nodeType == 'BLK ')) ||
+                             ((nodeType == 'BVA ' ||
+                               (nodeType == 'BXA '))))))
+                {
+                    result = J3DAnmLoaderDataBase::load(result, J3DLOADER_UNK_FLAG0);
+                    if (result == NULL) {
+                        return -1;
+                    }
+                } else if (nodeType == 'DZB ') {
+                    result = ((cBgS*)result)->ConvDzb(result);
+                } else if (nodeType == 'KCL ') {
+                    result = dBgWKCol::initKCollision(result);
+                }
+                mRes[firstFileIndex] = result;
+            }
+            firstFileIndex++;
+        }
+        node++;
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -547,6 +802,7 @@ asm int dRes_info_c::loadResource() {
 #include "asm/d/d_resorce/loadResource__11dRes_info_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8003B8D0-8003B93C 036210 006C+00 1/0 0/0 0/0 .text            __dt__18J3DAnmTransformKeyFv */
 #pragma push
@@ -572,24 +828,39 @@ extern "C" asm void __dt__15J3DAnmTransformFv() {
 
 /* 8003B998-8003BA9C 0362D8 0104+00 1/1 0/0 0/0 .text            deleteArchiveRes__11dRes_info_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dRes_info_c::deleteArchiveRes() {
-    nofralloc
-#include "asm/d/d_resorce/deleteArchiveRes__11dRes_info_cFv.s"
+void dRes_info_c::deleteArchiveRes() {
+    JKRArchive::SDIDirEntry* nodes = mArchive->mNodes;
+    for (int i = 0; i < mArchive->countDirectory(); nodes++, i++) {
+        if (nodes->type == 0x41524320) {
+            u32 firstFileIndex = nodes->first_file_index;
+            for (int j = 0; j < nodes->num_entries; j++) {
+                if (mArchive->isFileEntry(firstFileIndex)) {
+                    JKRArchive::SDIFileEntry* fileEntry = mArchive->findIdxResource(firstFileIndex);
+                    u32 nameOffset = fileEntry->getNameOffset();
+                    char* fileName = mArchive->mStringTable + nameOffset;
+                    size_t nameLen = strlen(fileName) - 4;
+                    char nameBuffer[12];
+                    strncpy(nameBuffer, fileName, nameLen);
+                    nameBuffer[nameLen] = '\0';
+                    dComIfG_deleteObjectResMain(nameBuffer);
+                }
+                firstFileIndex++;
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 8003BA9C-8003BAC4 0363DC 0028+00 2/2 0/0 0/0 .text            getArcHeader__FP10JKRArchive */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void* getArcHeader(JKRArchive* param_0) {
-    nofralloc
-#include "asm/d/d_resorce/getArcHeader__FP10JKRArchive.s"
+static SArcHeader* getArcHeader(JKRArchive* param_0) {
+    if (param_0 != NULL) {
+        switch(param_0->getMountMode()) {
+            case JKRArchive::MOUNT_MEM:
+                return ((JKRMemArchive*)param_0)->getArcHeader();
+        }
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 8003BAC4-8003BAF8 036404 0034+00 1/1 0/0 0/0 .text setRes__11dRes_info_cFP10JKRArchiveP7JKRHeap
  */
@@ -679,28 +950,24 @@ static s32 myGetMemBlockSize0(void* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_DEAD static char const* const stringBase_8037997F = "%5.1f %5x %5.1f %5x %3d %s\n";
-SECTION_DEAD static char const* const stringBase_8037999B = "dRes_info_c::dump_long %08x %d\n";
-SECTION_DEAD static char const* const stringBase_803799BB =
-    "No Command Archive  ArcHeader(size) SolidHeap(si"
-    "ze) Resource Cnt ArchiveName\n";
-SECTION_DEAD static char const* const stringBase_80379A09 =
-    "%2d %08x %08x %08x(%6x) %08x(%5x) %08x %3d %s\n";
 #pragma pop
 
 /* 8003BD2C-8003BE38 03666C 010C+00 1/1 0/0 0/0 .text dump_long__11dRes_info_cFP11dRes_info_ci */
-#ifdef NONMATCHING
 void dRes_info_c::dump_long(dRes_info_c* param_0, int param_1) {
+    int i;
     void* header;
     int blockSize1;
     int blockSize2;
+    JKRArchive* archive;
+    JKRSolidHeap* dataHeap;
 
     JUTReportConsole_f("dRes_info_c::dump_long %08x %d\n", param_0, param_1);
     JUTReportConsole_f(
         "No Command Archive  ArcHeader(size) SolidHeap(size) Resource Cnt ArchiveName\n");
 
-    for (int i = 0; i < param_1; i++) {
+    for (i = 0; i < param_1; i++) {
         if (param_0->getCount() != 0) {
-            JKRArchive* archive = param_0->getArchive();
+            archive = param_0->getArchive();
             header = NULL;
             blockSize1 = 0;
 
@@ -709,7 +976,7 @@ void dRes_info_c::dump_long(dRes_info_c* param_0, int param_1) {
                 blockSize1 = myGetMemBlockSize0(header);
             }
 
-            JKRSolidHeap* dataHeap = param_0->mDataHeap;
+            dataHeap = param_0->mDataHeap;
             blockSize2 = 0;
             if (dataHeap != NULL) {
                 blockSize2 = myGetMemBlockSize0((void*)dataHeap);
@@ -717,22 +984,12 @@ void dRes_info_c::dump_long(dRes_info_c* param_0, int param_1) {
 
             JUTReportConsole_f("%2d %08x %08x %08x(%6x) %08x(%5x) %08x %3d %s\n", i,
                                param_0->getDMCommand(), archive, header, blockSize1,
-                               &param_0->mDataHeap, blockSize2, param_0->mRes,
+                               dataHeap, blockSize2, param_0->mRes, param_0->getCount(),
                                param_0->getArchiveName());
         }
         param_0++;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dRes_info_c::dump_long(dRes_info_c* param_0, int param_1) {
-    nofralloc
-#include "asm/d/d_resorce/dump_long__11dRes_info_cFP11dRes_info_ci.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -760,6 +1017,33 @@ SECTION_SDATA2 static f32 lit_4333[1 + 1 /* padding */] = {
 
 /* 8003BE38-8003BFB0 036778 0178+00 1/1 0/0 0/0 .text            dump__11dRes_info_cFP11dRes_info_ci
  */
+// float literal order
+#ifdef NONMATCHING
+void dRes_info_c::dump(dRes_info_c* param_0, int param_1) {
+    int totalArcHeaderSize;
+    int totalHeapSize;
+    int arcHeaderSize;
+    int heapSize;
+    char* archiveName;
+    JUTReportConsole_f("dRes_info_c::dump %08x %d\n", param_0, param_1);
+    JUTReportConsole_f("No ArchiveSize(KB) SolidHeapSize(KB) Cnt ArchiveName\n");
+    totalArcHeaderSize = 0;
+    totalHeapSize = 0;
+    for (int i = 0; i < param_1; i++) {
+        if (param_0->getCount()) {
+            arcHeaderSize = JKRGetMemBlockSize(NULL, getArcHeader(param_0->getArchive()));
+            heapSize = JKRGetMemBlockSize(NULL, param_0->mDataHeap);
+            archiveName = param_0->getArchiveName();
+            JUTReportConsole_f("%2d %6.1f %6x %6.1f %6x %3d %s\n", i, arcHeaderSize / 1024.0f, arcHeaderSize, heapSize / 1024.0f, heapSize, param_0->getCount(), archiveName);
+            totalArcHeaderSize += arcHeaderSize;
+            totalHeapSize += heapSize;
+        }
+        param_0++;
+    }
+    JUTReportConsole_f(
+        "----------------------------------------------\n   %6.1f %6x %6.1f %6x   Total\n\n",  totalArcHeaderSize / 1024.0f, totalArcHeaderSize,  totalHeapSize / 1024.0f, totalHeapSize);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -768,37 +1052,23 @@ asm void dRes_info_c::dump(dRes_info_c* param_0, int param_1) {
 #include "asm/d/d_resorce/dump__11dRes_info_cFP11dRes_info_ci.s"
 }
 #pragma pop
+#endif
 
 /* 8003BFB0-8003C078 0368F0 00C8+00 0/0 1/1 0/0 .text            __dt__14dRes_control_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dRes_control_c::~dRes_control_c() {
-    nofralloc
-#include "asm/d/d_resorce/__dt__14dRes_control_cFv.s"
+dRes_control_c::~dRes_control_c() {
+    for (int i = 0; i < (int)ARRAY_SIZE(mObjectInfo); i++) {
+        mObjectInfo[i].~dRes_info_c();
+    }
+
+    for (int i = 0; i < (int)ARRAY_SIZE(mStageInfo); i++) {
+        mStageInfo[i].~dRes_info_c();
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-// MWCC ignores mapping of some japanese characters using the
-// byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
-SECTION_DEAD static char const* const stringBase_80379AF9 =
-    "\x3C\x25\x73\x2E\x61\x72\x63\x3E\x20\x64\x52\x65\x73\x5F\x63\x6F\x6E\x74\x72\x6F\x6C\x5F\x63"
-    "\x3A\x3A\x73\x65\x74\x52\x65\x73\x3A\x20\x8B\xF3\x82\xAB\x83\x8A\x83\x5C\x81\x5B\x83\x58\x8F"
-    "\xEE\x95"
-    "\xF1\x83\x7C\x83\x43\x83\x93\x83\x5E\x82\xAA\x82\xA0\x82\xE8\x82\xDC\x82\xB9\x82\xF1\x0A";
-SECTION_DEAD static char const* const stringBase_80379B40 =
-    "<%s.arc> dRes_control_c::setRes: res info set er"
-    "ror !!\n";
-#pragma pop
 
 /* 8003C078-8003C160 0369B8 00E8+00 2/2 8/8 0/0 .text
  * setRes__14dRes_control_cFPCcP11dRes_info_ciPCcUcP7JKRHeap    */
-// matches except resInfo destructor issues?
-#ifdef NONMATCHING
 int dRes_control_c::setRes(char const* arcName, dRes_info_c* pInfo, int infoSize,
                            char const* arcPath, u8 param_4, JKRHeap* pHeap) {
     dRes_info_c* resInfo = getResInfo(arcName, pInfo, infoSize);
@@ -807,6 +1077,8 @@ int dRes_control_c::setRes(char const* arcName, dRes_info_c* pInfo, int infoSize
         resInfo = newResInfo(pInfo, infoSize);
 
         if (resInfo == NULL) {
+            // MWCC ignores mapping of some japanese characters using the
+            // byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
             // "<%s.arc> dRes_control_c::setRes: 空きリソース情報ポインタがありません\n"
             // "<%s.arc> dRes_control_c::setRes: There isn't a free Resource Info pointer\n"
             OSReport_Error(
@@ -815,31 +1087,20 @@ int dRes_control_c::setRes(char const* arcName, dRes_info_c* pInfo, int infoSize
                 "\x5C\x81\x5B\x83\x58\x8F\xEE\x95\xF1\x83\x7C\x83\x43\x83\x93\x83\x5E\x82\xAA\x82"
                 "\xA0\x82\xE8\x82\xDC\x82\xB9\x82\xF1\x0A",
                 arcName);
-            delete resInfo;
+            resInfo->~dRes_info_c();
             return 0;
         }
 
         int resStatus = resInfo->set(arcName, arcPath, param_4, pHeap);
         if (resStatus == 0) {
             OSReport_Error("<%s.arc> dRes_control_c::setRes: res info set error !!\n", arcName);
-            delete resInfo;
+            resInfo->~dRes_info_c();
             return 0;
         }
     }
     resInfo->incCount();
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dRes_control_c::setRes(char const* param_0, dRes_info_c* param_1, int param_2,
-                               char const* param_3, u8 param_4, JKRHeap* param_5) {
-    nofralloc
-#include "asm/d/d_resorce/setRes__14dRes_control_cFPCcP11dRes_info_ciPCcUcP7JKRHeap.s"
-}
-#pragma pop
-#endif
 
 /* 8003C160-8003C194 036AA0 0034+00 0/0 10/10 1/1 .text
  * syncRes__14dRes_control_cFPCcP11dRes_info_ci                 */
@@ -855,7 +1116,6 @@ int dRes_control_c::syncRes(char const* arcName, dRes_info_c* pInfo, int infoSiz
 
 /* 8003C194-8003C1E4 036AD4 0050+00 1/1 7/7 0/0 .text
  * deleteRes__14dRes_control_cFPCcP11dRes_info_ci               */
-#ifdef NONMATCHING
 int dRes_control_c::deleteRes(char const* arcName, dRes_info_c* pInfo, int infoSize) {
     dRes_info_c* resInfo = getResInfo(arcName, pInfo, infoSize);
 
@@ -863,21 +1123,11 @@ int dRes_control_c::deleteRes(char const* arcName, dRes_info_c* pInfo, int infoS
         return 0;
     } else {
         if (resInfo->decCount() == 0) {
-            delete resInfo;
+            resInfo->~dRes_info_c();
         }
         return 1;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dRes_control_c::deleteRes(char const* param_0, dRes_info_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/d_resorce/deleteRes__14dRes_control_cFPCcP11dRes_info_ci.s"
-}
-#pragma pop
-#endif
 
 /* 8003C1E4-8003C260 036B24 007C+00 5/5 5/5 3/3 .text
  * getResInfo__14dRes_control_cFPCcP11dRes_info_ci              */
@@ -921,87 +1171,64 @@ dRes_info_c* dRes_control_c::getResInfoLoaded(char const* arcName, dRes_info_c* 
 }
 
 /* ############################################################################################## */
-/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80379BA0 =
-    "<%s.arc> getRes: res index over !! index=%d coun"
-    "t=%d\n";
-#pragma pop
 
 /* 8003C2EC-8003C37C 036C2C 0090+00 1/1 54/54 894/894 .text
  * getRes__14dRes_control_cFPCclP11dRes_info_ci                 */
-// weird branching
-#ifdef NONMATCHING
 void* dRes_control_c::getRes(char const* arcName, s32 resIdx, dRes_info_c* pInfo, int infoSize) {
     dRes_info_c* resInfo = getResInfoLoaded(arcName, pInfo, infoSize);
 
     if (resInfo == NULL) {
-        JKRArchive* archive = resInfo->getArchive();
-        u32 fileCount = archive->countFile();
+        return resInfo;
+    }
+    JKRArchive* archive = resInfo->getArchive();
+    u32 fileCount = archive->countFile();
 
-        if (resIdx >= (int)fileCount) {
-            OSReport_Error("<%s.arc> getRes: res index over !! index=%d count=%d\n", arcName,
-                           resIdx, fileCount);
-            return NULL;
-        }
+    if (resIdx >= (int)fileCount) {
+        OSReport_Error("<%s.arc> getRes: res index over !! index=%d count=%d\n", arcName,
+                        resIdx, fileCount);
+        return NULL;
     }
     return resInfo->getRes(resIdx);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* dRes_control_c::getRes(char const* param_0, s32 param_1, dRes_info_c* param_2,
-                                 int param_3) {
-    nofralloc
-#include "asm/d/d_resorce/getRes__14dRes_control_cFPCclP11dRes_info_ci.s"
-}
-#pragma pop
-#endif
 
 /* 8003C37C-8003C400 036CBC 0084+00 0/0 18/18 109/109 .text
  * getRes__14dRes_control_cFPCcPCcP11dRes_info_ci               */
-// same weird branch issue
-#ifdef NONMATCHING
 void* dRes_control_c::getRes(char const* arcName, char const* resName, dRes_info_c* pInfo,
                              int infoSize) {
     dRes_info_c* resInfo = getResInfoLoaded(arcName, pInfo, infoSize);
 
     if (resInfo == NULL) {
-        JKRArchive* archive = resInfo->getArchive();
-        JKRArchive::SDIFileEntry* entry = archive->findNameResource(resName);
+        return resInfo;
+    }
 
-        if (entry != NULL) {
-            return resInfo->getRes(entry - archive->mFiles);
-        } else {
-            return NULL;
-        }
+    JKRArchive* archive = resInfo->getArchive();
+    JKRArchive::SDIFileEntry* entry = archive->findNameResource(resName);
+
+    if (entry != NULL) {
+        return resInfo->getRes(entry - archive->mFiles);
+    } else {
+        return NULL;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* dRes_control_c::getRes(char const* param_0, char const* param_1, dRes_info_c* param_2,
-                                 int param_3) {
-    nofralloc
-#include "asm/d/d_resorce/getRes__14dRes_control_cFPCcPCcP11dRes_info_ci.s"
-}
-#pragma pop
-#endif
 
 /* 8003C400-8003C470 036D40 0070+00 0/0 7/7 4/4 .text
  * getIDRes__14dRes_control_cFPCcUsP11dRes_info_ci              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* dRes_control_c::getIDRes(char const* param_0, u16 param_1, dRes_info_c* param_2,
-                                   int param_3) {
-    nofralloc
-#include "asm/d/d_resorce/getIDRes__14dRes_control_cFPCcUsP11dRes_info_ci.s"
+void* dRes_control_c::getIDRes(char const* arcName, u16 param_1, dRes_info_c* pInfo, int infoSize) {
+    dRes_info_c* resInfo = getResInfoLoaded(arcName, pInfo, infoSize);
+
+    if (resInfo == NULL) {
+        return resInfo;
+    }
+
+    JKRArchive* archive = resInfo->getArchive();
+    int index = mDoExt_resIDToIndex(archive, param_1);
+
+    if (index < 0) {
+        return 0;
+    }
+
+    return resInfo->getRes(index);
 }
-#pragma pop
 
 /* 8003C470-8003C4E4 036DB0 0074+00 0/0 3/3 0/0 .text syncAllRes__14dRes_control_cFP11dRes_info_ci
  */
