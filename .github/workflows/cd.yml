@@ -1,0 +1,36 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  WORKFLOW: "ci.yml"
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Get latest workflow run ID
+        id: get_run_id
+        run: |
+          RUN_ID=$(curl --request GET \
+            --url https://api.github.com/repos/${{ github.repository }}/actions/workflows/${{ env.WORKFLOW }}/runs \
+            --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+            --header 'content-type: application/json' | jq '.workflow_runs[0].id')        
+          echo "run_id=$RUN_ID" >> $GITHUB_OUTPUT
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2.27.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          run_id: ${{ steps.get_run_id.outputs.run_id }}
+          name: artifact-${{ steps.get_run_id.outputs.run_id }}
+          workflow: ${{ env.WORKFLOW }}
+      - name: Upload Progress to Frogress
+        env: 
+          PROGRESS_API_KEY: ${{ secrets.FROGRESS_API_KEY }}
+        run: ./tools/upload-progress.py -b https://progress.deco.mp/ -p twilightprincess -v gcn_usa \
+              progress-${{ steps.get_run_id.outputs.run_id }}.json
