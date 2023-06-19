@@ -717,6 +717,7 @@ def calculate_progress(build_path: Path, matching: bool, format: str, print_rels
             )
         )
     elif format == "JSON":
+        # TODO: add dol sections instead of total dol.
         data = {
             "code": decompiled_size,
             "code/total": total_size,
