@@ -5447,30 +5447,32 @@ asm BOOL daNpcF_c::chkActorInSight2(fopAc_ac_c* param_0, f32 param_1, s16 param_
 #pragma pop
 
 /* 80154834-801548F4 14F174 00C0+00 2/2 0/0 0/0 .text chkPointInArea__8daNpcF_cF4cXyz4cXyzfffs */
+// literal load order 
 #ifdef NONMATCHING
 BOOL daNpcF_c::chkPointInArea(cXyz param_0, cXyz param_1, f32 param_2, f32 param_3, f32 param_4,
                                   s16 param_5) {
     cXyz tmp_pos1;
     cXyz tmp_pos2;
-    cXyz tmp_pos3;
 
-    f32 tmp_float1 = param_3;
+    f32 tmp_float1 = param_4;
 
     if (param_3 < param_4) {
-        tmp_float1 = param_4;
-        param_4 = param_3;
+        tmp_float1 = param_3;
+        param_3 = param_4;
     }
 
-    f32 result1 = fabsf(tmp_float1 - param_4);
-    f32 result = FLOAT_LABEL(lit_11253) * result1;
-    tmp_pos1.set(param_2,result,param_2);
+    f32 res  = fabsf(param_3 - tmp_float1) * 0.5f;
+    tmp_pos1.x = param_2;
+    tmp_pos1.y = res;
+    tmp_pos1.z = param_2;
 
-    f32 result2 = param_1.y + param_4 + tmp_pos1.y;
-    tmp_pos2.set(param_1.x,result2,param_1.z);
+    tmp_pos2.x = param_1.x;
+    tmp_pos2.y = param_1.y;
+    tmp_pos2.z = param_1.z;
+    tmp_pos2.y += tmp_float1;
+    tmp_pos2.y += tmp_pos1.y;
 
-    tmp_pos3 = param_0;
-
-    return chkPointInArea(tmp_pos3,tmp_pos2,tmp_pos1,param_5);
+    return chkPointInArea(param_0,tmp_pos2,tmp_pos1,param_5);
 }
 #else
 #pragma push
@@ -5515,14 +5517,44 @@ asm void daNpcF_c::chkFindPlayer2(int param_0, s16 param_1) {
 
 /* ############################################################################################## */
 /* 804534B4-804534B8 001AB4 0004+00 1/1 0/0 0/0 .sdata2          id$11798 */
-SECTION_SDATA2 static u8 id_11798[4] = {
-    0x84,
-    0x97,
-    0x84,
-    0x98,
+SECTION_SDATA2 static u16 id_11798[2] = {
+    0x8497,
+    0x8498,
 };
 
 /* 80154BD8-80154DA8 14F518 01D0+00 1/1 0/0 0/0 .text            setHitodamaPrtcl__8daNpcF_cFv */
+// field_0x9d2 is weird
+#ifdef NONMATCHING
+void daNpcF_c::setHitodamaPrtcl() {
+    u8 uVar3;
+    cXyz local_20;
+
+    field_0x9d0 = (2 * ((u16)field_0x9d2));
+    field_0x9b8.x = cM_ssin(((u16)field_0x9d2)) * 8.0f;
+    field_0x9b8.y = cM_ssin(field_0x9d0) * 4.0f;
+    field_0x9b8.z = field_0x9b8.x * -cM_ssin(shape_angle.y);
+
+    field_0x9b8.x *= cM_scos(shape_angle.y);
+    field_0x9d2 += 0x400;
+    local_20.x = mEyePos.x + field_0x9b8.x + field_0x9c4.x;
+    local_20.y = mEyePos.y + field_0x9b8.y + field_0x9c4.y;
+    local_20.z = mEyePos.z + field_0x9b8.z + field_0x9c4.z;
+
+    for (int i = 0; i < 2; i++) {
+        field_0x9a8[i] = dComIfGp_particle_set(field_0x9a8[i], id_11798[i], &local_20, &field_0x8f0, NULL);
+        JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(field_0x9a8[i]);
+        if (emitter != NULL) {
+            if (dComIfGs_wolfeye_effect_check() == 0) {
+                uVar3 = 0xff;
+            } else {
+                uVar3 = 0;
+            }
+            emitter->setGlobalTranslation(local_20.x, local_20.y, local_20.z);
+            emitter->setGlobalAlpha(uVar3);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5531,6 +5563,7 @@ asm void daNpcF_c::setHitodamaPrtcl() {
 #include "asm/d/a/d_a_npc/setHitodamaPrtcl__8daNpcF_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80154DA8-80154E54 14F6E8 00AC+00 1/1 0/0 1/1 .text
  * daNpcF_pntVsLineSegmentLengthSquare2D__FffffffPfPfPf         */
@@ -5584,34 +5617,19 @@ asm int daNpcF_chkPassed(cXyz param_0, dPnt* param_1, u16 param_2, u16 param_3, 
 #pragma pop
 
 /* 8015556C-80155634 14FEAC 00C8+00 1/1 0/0 8/8 .text daNpcF_getGroundAngle__FP13cBgS_PolyInfos */
-#ifdef NONMATCHING
-int daNpcF_getGroundAngle(cBgS_PolyInfo* param_0, s16 param_1) {
+s16 daNpcF_getGroundAngle(cBgS_PolyInfo* param_0, s16 param_1) {
     cM3dGPla tmp;
-    f32 l_float;
-    int ret;
 
     if (dComIfG_Bgsp().ChkPolySafe(*param_0)) {
-        if (dComIfG_Bgsp().GetTriPla(*param_0,&tmp) && !cBgW_CheckBGround(l_float)) {
-            ret = fopAcM_getPolygonAngle(&tmp,(int)param_1);
+        if (!dComIfG_Bgsp().GetTriPla(*param_0, &tmp) || !cBgW_CheckBGround(tmp.mNormal.y)) {
+            return 0;
         } else {
-            ret = 0;
+            return fopAcM_getPolygonAngle(&tmp, param_1);
         }
     } else {
-        ret = 0;
+        return 0;
     }
-
-    return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daNpcF_getGroundAngle(cBgS_PolyInfo* param_0, s16 param_1) {
-    nofralloc
-#include "asm/d/a/d_a_npc/daNpcF_getGroundAngle__FP13cBgS_PolyInfos.s"
-}
-#pragma pop
-#endif
 
 /* 80155634-80155674 14FF74 0040+00 0/0 0/0 69/69 .text            daNpcF_chkEvtBit__FUl */
 BOOL daNpcF_chkEvtBit(u32 i_idx) {
@@ -5640,41 +5658,23 @@ void daNpcF_offTmpBit(u32 i_idx) {
 
 /* 80155774-80155854 1500B4 00E0+00 0/0 2/2 5/5 .text
  * daNpcF_getPlayerInfoFromPlayerList__FiiR4cXyzR5csXyz         */
-#ifdef NONMATCHING
 int daNpcF_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz& param_2, csXyz& param_3) {
-    int i = 0;
+    int rv = 0;
     
     dStage_roomStatus_c* roomP = dComIfGp_roomControl_getStatusRoomDt(i_roomNo);
     stage_actor_data_class* entries = roomP->mRoomDt.getPlayer()->mEntries;
     
-    while (true) {
-        if (param_0 == entries->mEnemyNo) {
+    for (int i = 0; i < roomP->mRoomDt.getPlayerNum(); entries++, i++) {
+        if (param_0 == (u8)entries->mAngle.z) {
+            param_2 = entries->mSpawnPos;
+            param_3 = entries->mAngle;
+            rv = 1;
             break;
         }
     }
 
-    param_2 = entries->mSpawnPos;
-    param_3 = entries->mAngle;
-
-    i++;
-
-    if (roomP->mRoomDt.getPlayerNum() >= i) {
-        return 0;
-    }
-
-    return 1;
+    return rv;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daNpcF_getPlayerInfoFromPlayerList(int param_0, int param_1, cXyz& param_2,
-                                            csXyz& param_3) {
-    nofralloc
-#include "asm/d/a/d_a_npc/daNpcF_getPlayerInfoFromPlayerList__FiiR4cXyzR5csXyz.s"
-}
-#pragma pop
-#endif
 
 /* 80155854-80155968 150194 0114+00 0/0 0/0 1/1 .text daNpcF_chkDoBtnEqSpeak__FP10fopAc_ac_c */
 bool daNpcF_chkDoBtnEqSpeak(fopAc_ac_c* i_ActorP) {

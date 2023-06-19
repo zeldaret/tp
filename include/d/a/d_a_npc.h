@@ -507,14 +507,13 @@ protected:
     /* 0x99C */ u32 mAnmFlags;
     /* 0x9A0 */ u32 field_0x9a0;
     /* 0x9A4 */ profile_method_class* field_0x9a4;
-    /* 0x9A8 */ int field_0x9a8;
-    /* 0x9AC */ int field_0x9ac;
+    /* 0x9A8 */ int field_0x9a8[2];
     /* 0x9B0 */ u32 field_0x9b0;
     /* 0x9B4 */ int mFlowNodeNo;
     /* 0x9B8 */ cXyz field_0x9b8;
     /* 0x9C4 */ cXyz field_0x9c4;
-    /* 0x9D0 */ u16 field_0x9d0;
-    /* 0x9D2 */ u16 field_0x9d2;
+    /* 0x9D0 */ s16 field_0x9d0;
+    /* 0x9D2 */ s16 field_0x9d2;
     /* 0x9D4 */ s16 field_0x9d4;
     /* 0x9D6 */ s16 mExpressionPhase;
     /* 0x9D8 */ s16 mExpressionPrevPhase;
@@ -657,7 +656,7 @@ BOOL daNpcF_chkTmpBit(u32 i_idx);
 void daNpcF_offTmpBit(u32 i_idx);
 int daNpcF_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz& param_2,
                                             csXyz& param_3);
-int daNpcF_getGroundAngle(cBgS_PolyInfo*, s16);
+s16 daNpcF_getGroundAngle(cBgS_PolyInfo*, s16);
 
 struct daBaseNpc_matAnm_c {
     /* 8014D884 */ void calc(J3DMaterial*) const;
