@@ -22,8 +22,8 @@ public:
     ResTIMG* getResTIMG(u16 entry) const { return &mpRes[entry]; }
     void setResTIMG(u16 entry, const ResTIMG& timg) {
         mpRes[entry] = timg;
-        mpRes[entry].imageOffset = ((mpRes[entry].imageOffset - (u32)(mpRes + entry))) + (u32)&timg;
-        mpRes[entry].paletteOffset = ((mpRes[entry].paletteOffset - (u32)(mpRes + entry))) + (u32)&timg;
+        mpRes[entry].imageOffset = ((mpRes[entry].imageOffset + (u32)&timg - (u32)(mpRes + entry)));
+        mpRes[entry].paletteOffset = ((mpRes[entry].paletteOffset + (u32)&timg - (u32)(mpRes + entry)));
     }
 };
 
@@ -48,6 +48,9 @@ struct J3DTexMtxInfo {
 
 class J3DTexMtx {
 public:
+    J3DTexMtx(const J3DTexMtxInfo& info) {
+        mTexMtxInfo = info;
+    }
     /* 803238C4 */ void load(u32) const;
     /* 80323900 */ void calc(f32 const (*)[4]);
     /* 80323920 */ void calcTexMtx(f32 const (*)[4]);
@@ -68,10 +71,20 @@ struct J3DTexCoordInfo {
     /* 0x0 */ u8 mTexGenType;
     /* 0x1 */ u8 mTexGenSrc;
     /* 0x2 */ u8 mTexGenMtx;
+    void operator=(J3DTexCoordInfo const& other) {
+        *(u32*) this = *(u32*)&other;
+    }
 };
 
 struct J3DTexCoord : public J3DTexCoordInfo {
     /* 8000E464 */ J3DTexCoord();
+    void setTexCoordInfo(J3DTexCoordInfo *param_1) {
+        *(J3DTexCoordInfo*)this = *param_1;
+    }
+
+    void resetTexMtxReg() {
+        mTexMtxReg = mTexGenMtx;
+    }
 
     /* 0x4 */ u16 mTexMtxReg;
 };  // Size: 0x6

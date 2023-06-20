@@ -793,11 +793,10 @@ void COutFont_c::reset(J2DTextBox* p_textBox) {
 
 /* 80228490-80228530 222DD0 00A0+00 1/1 0/0 0/0 .text setBlendAnime__10COutFont_cFP10J2DPictures
  */
-// regalloc
+// matches with literals
 #ifdef NONMATCHING
 void COutFont_c::setBlendAnime(J2DPicture* param_0, s16 param_1) {
-    s32 iVar5 = param_1;
-    iVar5 = 0x14 - iVar5 / 0x14 * 0x14;
+    int iVar5 = param_1 % 0x14;
     if (iVar5 < 10) {
         f32 dVar6 = fopMsgM_valueIncrease(10, iVar5, 0);
         param_0->setBlendRatio(1.0f - dVar6, dVar6);

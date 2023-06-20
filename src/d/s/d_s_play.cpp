@@ -771,9 +771,9 @@ static int phase_1_0(dScnPly_c* param_0) {
         return cPhs_ZERO_e;
     } else {
         dStage_infoCreate();
-        dComIfG_setObjectRes("Event", 0, NULL);
+        dComIfG_setObjectRes("Event", (u8)0, NULL);
         dComIfGp_setCameraParamFileName(0, camparamarc);
-        dComIfG_setObjectRes("CamParam", 0, NULL);
+        dComIfG_setObjectRes("CamParam", (u8)0, NULL);
         return cPhs_TWO_e;
     }
 }

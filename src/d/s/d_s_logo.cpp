@@ -543,7 +543,7 @@ static int phase_1(dScnLogo_c* logo) {
         return 0;
     }
 
-    dComIfG_setObjectRes("LogoUs", 0, logo->field_0x1d0);
+    dComIfG_setObjectRes("LogoUs", (u8)0, logo->field_0x1d0);
     mDoRst::setLogoScnFlag(1);
     archiveHeap->dump_sort();
     return 2;
@@ -638,10 +638,10 @@ void dScnLogo_c::logoInitGC() {
 
 /* 80257FEC-80258420 25292C 0434+00 1/1 0/0 0/0 .text            dvdDataLoad__10dScnLogo_cFv */
 void dScnLogo_c::dvdDataLoad() {
-    dComIfG_setObjectRes("Always", 0, NULL);
+    dComIfG_setObjectRes("Always", (u8)0, NULL);
     archiveHeap->dump_sort();
 
-    dComIfG_setObjectRes("Alink", 0, NULL);
+    dComIfG_setObjectRes("Alink", (u8)0, NULL);
 
     mpField0Command = mDoDvdThd_mountXArchive_c::create(
         "/res/FieldMap/Field0.arc", 0, JKRArchive::MOUNT_ARAM, mDoExt_getJ2dHeap());

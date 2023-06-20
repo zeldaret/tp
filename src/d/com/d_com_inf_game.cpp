@@ -1270,7 +1270,7 @@ BOOL dComIfG_resetToOpening(scene_class* i_scene) {
 }
 
 static int phase_1(char* i_arcName) {
-    if (!dComIfG_setObjectRes(i_arcName, 0, NULL)) {
+    if (!dComIfG_setObjectRes(i_arcName, (u8)0, NULL)) {
         OSReport_Error("%s.arc Read Error !!\n", i_arcName);
         return cPhs_ERROR_e;
     }
@@ -1310,7 +1310,7 @@ int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_arcNa
 
 /* 8002CEFC-8002CF5C 02783C 0060+00 1/0 0/0 0/0 .text            phase_01__FP12phaseParam_c */
 static int phase_01(phaseParam_c* i_phasePrm) {
-    if (dComIfG_setObjectRes(i_phasePrm->mResName, 0, i_phasePrm->mpHeap) == 0) {
+    if (dComIfG_setObjectRes(i_phasePrm->mResName, (u8)0, i_phasePrm->mpHeap) == 0) {
         return 5;
     }
 
