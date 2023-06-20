@@ -9,8 +9,8 @@ typedef struct _GXColorS10 GXColorS10;
 
 class J3DMatColorAnm {
 public:
-    /* 8003B2B8 */ ~J3DMatColorAnm();
-    /* 8003B2F4 */ J3DMatColorAnm();
+    /* 8003B2B8 */ ~J3DMatColorAnm() {};
+    /* 8003B2F4 */ J3DMatColorAnm() {};
 
     void operator=(J3DMatColorAnm const& other) {
         mAnmColor = other.mAnmColor;
@@ -30,9 +30,9 @@ private:
 
 class J3DTexNoAnm {
 public:
-    /* 8003B1F8 */ ~J3DTexNoAnm();
-    /* 8003B240 */ J3DTexNoAnm();
-    /* 8003C82C */ virtual void calc(u16*) const;
+    /* 8003B1F8 */ ~J3DTexNoAnm() {};
+    /* 8003B240 */ J3DTexNoAnm() {};
+    /* 8003C82C */ virtual void calc(u16* param_0) const { mAnmTexPattern->getTexNo(field_0x4, param_0); }
 
     void operator=(J3DTexNoAnm const& other) {
         mAnmTexPattern = other.mAnmTexPattern;
@@ -52,8 +52,8 @@ private:
 
 class J3DTexMtxAnm {
 public:
-    /* 8003B264 */ ~J3DTexMtxAnm();
-    /* 8003B2A0 */ J3DTexMtxAnm();
+    /* 8003B264 */ ~J3DTexMtxAnm() {};
+    /* 8003B2A0 */ J3DTexMtxAnm() {};
 
     void operator=(J3DTexMtxAnm const& other) {
         mAnmTransform = other.mAnmTransform;
@@ -75,8 +75,8 @@ private:
 
 class J3DTevKColorAnm {
 public:
-    /* 8003B150 */ ~J3DTevKColorAnm();
-    /* 8003B18C */ J3DTevKColorAnm();
+    /* 8003B150 */ ~J3DTevKColorAnm() {};
+    /* 8003B18C */ J3DTevKColorAnm() {};
 
     void operator=(J3DTevKColorAnm const& other) {
         mAnmTevReg = other.mAnmTevReg;
@@ -96,8 +96,8 @@ private:
 
 class J3DTevColorAnm {
 public:
-    /* 8003B1A4 */ ~J3DTevColorAnm();
-    /* 8003B1E0 */ J3DTevColorAnm();
+    /* 8003B1A4 */ ~J3DTevColorAnm() {};
+    /* 8003B1E0 */ J3DTevColorAnm() {};
 
     void operator=(J3DTevColorAnm const& other) {
         mAnmTevReg = other.mAnmTevReg;
@@ -126,7 +126,7 @@ public:
     /* 8032C664 */ void setTevColorAnm(int, J3DTevColorAnm*);
     /* 8032C6A4 */ void setTevKColorAnm(int, J3DTevKColorAnm*);
 
-    /* 800A4820 */ virtual ~J3DMaterialAnm();
+    /* 800A4820 */ virtual ~J3DMaterialAnm() {};
     /* 8032C3C4 */ virtual void calc(J3DMaterial*) const;
 
     const J3DTexMtxAnm& getTexMtxAnm(int i) const { return mTexMtxAnm[i]; }

@@ -13,6 +13,21 @@ public:
     /* 8029627C */ bool ret();
     /* 802962B0 */ int readMidiValue();
 
+    void jump(u32 param_1) {
+        field_0x04 = (u8*)field_0x00 + param_1;
+    }
+
+    void jump(void* param_1) {
+        field_0x04 = (u8*)param_1;
+    }
+
+    u32 get24(int param_0) {
+        return (*(u32*)((int)field_0x00 + param_0 - 1)) & 0xffffff;
+    }
+
+    u32* getBase() { return field_0x00; }
+    u8* getCur() { return field_0x04; }
+
     u8 readByte() {
         u8* tmp = field_0x04;
         field_0x04 += 1;

@@ -717,43 +717,16 @@ def calculate_progress(build_path: Path, matching: bool, format: str, print_rels
             )
         )
     elif format == "JSON":
-        matching = {}
-        non_matching = {}
-
-        matching["main.dol"] = {
-            "decompiled": dol_progress.decompiled,
-            "total": dol_progress.size,
-            "sections": [
-                {
-                    name: {
-                        "decompiled": sec.decompiled,
-                        "total": sec.size,
-                    }
-                }
-                for name, sec in dol_progress.sections.items()
-            ],
-        }
-
-        if rels_progress:
-            matching["rels"] = {
-                "decompiled": rel_decompiled,
-                "total": rel_size,
-            }
-
-            for rel in rels_progress:
-                matching[rel.name] = {
-                    "decompiled": rel.decompiled,
-                    "total": rel.size,
-                }
-
-        print(
-            json.dumps(
-                {
-                    "matching": matching,
-                    "non-matchgin": non_matching,
-                }
-            )
-        )
+        # TODO: add dol sections instead of total dol.
+        data = {
+            "code": decompiled_size,
+            "code/total": total_size,
+            "dol": dol_progress.decompiled,
+            "dol/total": dol_progress.size,
+            "rels": rel_decompiled,
+            "rels/total": rel_size,
+        }   
+        print(json.dumps(data))
     else:
         print(dol_progress.percentage)
         print(100 * (rel_decompiled / rel_size))

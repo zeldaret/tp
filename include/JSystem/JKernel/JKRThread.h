@@ -72,11 +72,7 @@ public:
     s32 getCurrentHeapError() const { return mCurrentHeapError; }
 
     void setCurrentHeap(JKRHeap* heap) {
-        if (!heap) {
-            heap = JKRHeap::getCurrentHeap();
-        }
-
-        mCurrentHeap = heap;
+        mCurrentHeap = heap ? heap : JKRHeap::getCurrentHeap();
     }
 
 protected:

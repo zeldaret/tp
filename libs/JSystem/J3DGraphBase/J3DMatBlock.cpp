@@ -2161,7 +2161,7 @@ asm void J3DPEBlockFull::setAlphaComp(J3DAlphaComp const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DPEBlockFull::getAlphaComp() {
+asm J3DAlphaComp* J3DPEBlockFull::getAlphaComp() {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getAlphaComp__14J3DPEBlockFullFv.s"
 }
@@ -2383,7 +2383,7 @@ asm void J3DPEBlockFogOff::setAlphaComp(J3DAlphaComp const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DPEBlockFogOff::getAlphaComp() {
+asm J3DAlphaComp* J3DPEBlockFogOff::getAlphaComp() {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getAlphaComp__16J3DPEBlockFogOffFv.s"
 }
@@ -2619,7 +2619,7 @@ asm void J3DTevBlock16::setTevOrder(u32 param_0, J3DTevOrder const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DTevBlock16::getTevOrder(u32 param_0) {
+asm J3DTevOrder* J3DTevBlock16::getTevOrder(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getTevOrder__13J3DTevBlock16FUl.s"
 }
@@ -3672,7 +3672,7 @@ asm void J3DTevBlock4::setTevOrder(u32 param_0, J3DTevOrder const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DTevBlock4::getTevOrder(u32 param_0) {
+asm J3DTevOrder* J3DTevBlock4::getTevOrder(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getTevOrder__12J3DTevBlock4FUl.s"
 }
@@ -4065,7 +4065,7 @@ asm void J3DTevBlock2::setTevOrder(u32 param_0, J3DTevOrder const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DTevBlock2::getTevOrder(u32 param_0) {
+asm J3DTevOrder* J3DTevBlock2::getTevOrder(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getTevOrder__12J3DTevBlock2FUl.s"
 }
@@ -4458,7 +4458,7 @@ asm void J3DTevBlock1::setTevOrder(u32 param_0, J3DTevOrder const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DTevBlock1::getTevOrder(u32 param_0) {
+asm J3DTevOrder* J3DTevBlock1::getTevOrder(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getTevOrder__12J3DTevBlock1FUl.s"
 }
@@ -4712,7 +4712,7 @@ asm void J3DTevBlockPatched::setTevOrder(u32 param_0, J3DTevOrder const* param_1
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DTevBlockPatched::getTevOrder(u32 param_0) {
+asm J3DTevOrder* J3DTevBlockPatched::getTevOrder(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getTevOrder__18J3DTevBlockPatchedFUl.s"
 }
@@ -4980,7 +4980,7 @@ asm void J3DTexGenBlockPatched::setTexGenNum(u32 const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DTexGenBlockPatched::getTexGenNum() const {
+asm u32 J3DTexGenBlockPatched::getTexGenNum() const {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getTexGenNum__21J3DTexGenBlockPatchedCFv.s"
 }
@@ -5001,7 +5001,7 @@ asm void J3DTexGenBlockPatched::setTexCoord(u32 param_0, J3DTexCoord const* para
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DTexGenBlockPatched::getTexCoord(u32 param_0) {
+asm J3DTexCoord* J3DTexGenBlockPatched::getTexCoord(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getTexCoord__21J3DTexGenBlockPatchedFUl.s"
 }
@@ -5227,7 +5227,7 @@ asm void J3DColorBlockLightOn::setColorChan(u32 param_0, J3DColorChan const& par
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DColorBlockLightOn::getColorChan(u32 param_0) {
+asm J3DColorChan* J3DColorBlockLightOn::getColorChan(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getColorChan__20J3DColorBlockLightOnFUl.s"
 }
@@ -5501,7 +5501,7 @@ asm void J3DColorBlockLightOff::setColorChan(u32 param_0, J3DColorChan const& pa
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DColorBlockLightOff::getColorChan(u32 param_0) {
+asm J3DColorChan* J3DColorBlockLightOff::getColorChan(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getColorChan__21J3DColorBlockLightOffFUl.s"
 }

@@ -126,6 +126,7 @@ public:
     void ClrWallHit() { m_flags &= ~WALL_HIT; }
     void SetRoofNone() { m_flags |= ROOF_NONE; }
     void SetRoofHit() { m_flags |= ROOF_HIT; }
+    void SetWaterNone() { m_flags |= WATER_NONE; }
     bool ChkWallHit() { return m_flags & WALL_HIT; }
     void OffLineCheckHit() { m_flags &= ~LINE_CHECK_HIT; }
     void OffLineCheck() { m_flags &= ~LINE_CHECK; }

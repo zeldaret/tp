@@ -128,6 +128,8 @@ public:
         return isPushingReset;
     }
 
+    inline void stopMotorWave() { mRumble.stopPatternedRumbleAtThePeriod(); }
+    void stopMotor() { mRumble.stopMotor(mPortNum, false); }
     void stopMotorHard() { mRumble.stopMotorHard(mPortNum); }
 
     static s8 getPortStatus(u32 port) { return mPadStatus[port].error; }
@@ -226,6 +228,10 @@ public:
         /* 0x0C */ u32 field_0xc;
         /* 0x10 */ u8* field_0x10;
     };  // Size: 0x14
+
+    void startMotorWave(void* param_2, CRumble::ERumble rumble, u32 param_4) {
+        mRumble.startPatternedRumble(param_2, rumble, param_4);
+    }
 
     /* 0x18 */ CButton mButton;
     /* 0x48 */ CStick mMainStick;

@@ -1,20 +1,27 @@
-name: OK Check
+name: CI
 
-on: pull_request
+on:
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/pheenoh/zeldaret-tp:latest
-
     steps:
     - name: Checkout
-      uses: actions/checkout@v1
-      with:
-        token: ${{secrets.MY_REPO_PAT}}
+      uses: actions/checkout@v3
     - name: Copy in dol and compilers
       run: cp /tmp/baserom.dol ./baserom.dol && cp -r /tmp/mwcc_compiler/ tools/mwcc_compiler && cp tools/mwcc_compiler/2.7/mwcceppc.exe tools/mwcc_compiler/2.7/mwcceppc_modded.exe  && chown root /github/home/
     - name: Run Make (OK)
       run: make all rels && ./tp check --rels
+    - name: Create JSON for Progress
+      run: ./tp progress -f JSON > progress-${{ github.run_id }}.json
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: artifact-${{ github.run_id }}
+        path: ./progress-${{ github.run_id }}.json
+    

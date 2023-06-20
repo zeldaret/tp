@@ -31,8 +31,16 @@ inline void mDoMtx_multVecSR(Mtx m, const Vec* src, Vec* dst) {
     PSMTXMultVecSR(m, src, dst);
 }
 
+inline void cMtx_concat(const Mtx a, const Mtx b, Mtx ab) {
+    PSMTXConcat(a, b, ab);
+}
+
 inline void mDoMtx_multVec(Mtx m, const Vec* src, Vec* dst) {
     PSMTXMultVec(m, src, dst);
+}
+
+inline void mDoMtx_multVecArray(Mtx m, const Vec* src, Vec* dst, u32 count) {
+    PSMTXMultVecArray(m, src, dst, count);
 }
 
 inline void mDoMtx_copy(const Mtx src, Mtx dst) {
@@ -61,6 +69,14 @@ inline void cMtx_multVec(Mtx mtx, const Vec* src, Vec* dst) {
 
 inline void cMtx_lookAt(f32 (*param_0)[4],Vec const* param_1, Vec const* param_2,Vec const* param_3, s16 param_4) {
     mDoMtx_lookAt(param_0,param_1,param_2,param_3,param_4);
+}
+
+inline void cMtx_copy(const Mtx src, Mtx dst) {
+    mDoMtx_copy(src, dst);
+}
+
+inline void cMtx_multVecArray(Mtx mtx, const Vec* src, Vec* dst, u32 count) {
+    mDoMtx_multVecArray(mtx, src, dst, count);
 }
 
 inline void mDoMtx_multVecZero(MtxP param_0, Vec* param_1) {

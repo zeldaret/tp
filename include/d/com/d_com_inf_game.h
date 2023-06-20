@@ -827,6 +827,10 @@ inline int dComIfG_setObjectRes(const char* name, u8 param_1, JKRHeap* heap) {
     return g_dComIfG_gameInfo.mResControl.setObjectRes(name, param_1, heap);
 }
 
+inline int dComIfG_setObjectRes(const char* name, void* param_1, u32 param_2) {
+    return g_dComIfG_gameInfo.mResControl.setObjectRes(name, param_1, param_2, NULL);
+}
+
 inline int dComIfG_setStageRes(const char* name, JKRHeap* heap) {
     return g_dComIfG_gameInfo.mResControl.setStageRes(name, heap);
 }
@@ -924,7 +928,7 @@ void dComIfGs_offZoneSwitch(int i_swBit, int i_roomNo);
 void dComIfGs_offOneZoneSwitch(int i_swBit, int i_roomNo);
 s8 dComIfGp_getReverb(int i_roomNo);
 void dComIfGs_gameStart();
-bool dComIfGs_wolfeye_effect_check();
+BOOL dComIfGs_wolfeye_effect_check();
 BOOL dComIfGs_Wolf_Change_Check();
 void dComIfGs_onVisitedRoom(int param_0);
 void dComIfGs_offVisitedRoom(int param_0);
@@ -2903,22 +2907,22 @@ inline int dComIfGp_evmng_startDemo(int param_0) {
     return dComIfGp_getPEvtManager()->setStartDemo(param_0);
 }
 
-inline void* dComIfGp_event_getTalkPartner() {
+inline fopAc_ac_c* dComIfGp_event_getTalkPartner() {
     u32 t = g_dComIfG_gameInfo.play.getEvent().mPtT;
     return g_dComIfG_gameInfo.play.getEvent().convPId(t);
 }
 
-inline void* dComIfGp_event_getItemPartner() {
+inline fopAc_ac_c* dComIfGp_event_getItemPartner() {
     u32 i = g_dComIfG_gameInfo.play.getEvent().mPtI;
     return g_dComIfG_gameInfo.play.getEvent().convPId(i);
 }
 
-inline void* dComIfGp_event_getPt1() {
+inline fopAc_ac_c* dComIfGp_event_getPt1() {
     u32 pt1 = g_dComIfG_gameInfo.play.getEvent().mPt1;
     return g_dComIfG_gameInfo.play.getEvent().convPId(pt1);
 }
 
-inline void* dComIfGp_event_getPt2() {
+inline fopAc_ac_c* dComIfGp_event_getPt2() {
     u32 pt2 = g_dComIfG_gameInfo.play.getEvent().mPt2;
     return g_dComIfG_gameInfo.play.getEvent().convPId(pt2);
 }
@@ -2940,6 +2944,10 @@ inline u16 dComIfGp_event_checkHind(u16 flag) {
 
 inline u16 i_dComIfGp_event_chkEventFlag(u16 flag) {
     return g_dComIfG_gameInfo.play.getEvent().chkEventFlag(flag);
+}
+
+inline BOOL dComIfGp_event_chkTalkXY() {
+    return g_dComIfG_gameInfo.play.getEvent().chkTalkXY();
 }
 
 inline void dComIfGp_event_setCullRate(f32 f) {
@@ -2972,6 +2980,10 @@ inline cXyz* dComIfGp_evmng_getMyXyzP(int index, char* name) {
 
 inline int dComIfGp_evmng_getMySubstanceNum(int index, char* name) {
     return dComIfGp_getPEvtManager()->getMySubstanceNum(index, name);
+}
+
+inline BOOL dComIfGp_evmng_ChkPresentEnd() {
+    return dComIfGp_getPEvtManager()->ChkPresentEnd();
 }
 
 inline int dComIfGp_evmng_checkStartDemo() {

@@ -7,6 +7,7 @@
 #include "dolphin/gx/GXStruct.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_lib.h"
 
 struct J3DGXColorS10 {
     /* 8000E460 */ J3DGXColorS10();
@@ -45,9 +46,9 @@ public:
     virtual u32 getType() = 0;
     /* 8031741C */ virtual void setTexGenNum(u32 const*);
     /* 8000E0D0 */ virtual void setTexGenNum(u32);
-    /* 8000DFE8 */ virtual bool getTexGenNum() const;
+    /* 8000DFE8 */ virtual u32 getTexGenNum() const;
     /* 8000E0CC */ virtual void setTexCoord(u32, J3DTexCoord const*);
-    /* 8000DFE0 */ virtual bool getTexCoord(u32);
+    /* 8000DFE0 */ virtual J3DTexCoord* getTexCoord(u32);
     /* 8003AB2C */ virtual void setTexMtx(u32, J3DTexMtx*);
     /* 8000DFD8 */ virtual J3DTexMtx* getTexMtx(u32);
     /* 80317424 */ virtual void setNBTScale(J3DNBTScale const*);
@@ -76,9 +77,9 @@ public:
     /* 80322E74 */ virtual u32 getType();
     /* 80322D3C */ virtual void setTexGenNum(u32 const*);
     /* 80322D34 */ virtual void setTexGenNum(u32);
-    /* 80322D48 */ virtual bool getTexGenNum() const;
+    /* 80322D48 */ virtual u32 getTexGenNum() const;
     /* 80322D50 */ virtual void setTexCoord(u32, J3DTexCoord const*);
-    /* 80322D64 */ virtual bool getTexCoord(u32);
+    /* 80322D64 */ virtual J3DTexCoord* getTexCoord(u32);
     /* 80322D78 */ virtual void setTexMtx(u32, J3DTexMtx*);
     /* 80322D88 */ virtual J3DTexMtx* getTexMtx(u32);
     /* 80322D98 */ virtual bool getTexMtxOffset() const;
@@ -151,7 +152,7 @@ public:
     /* 8000DF94 */ virtual u32 getTexNo(u32) const;
     /* 80323548 */ virtual void setTevOrder(u32, J3DTevOrder const*);
     /* 8000E0BC */ virtual void setTevOrder(u32, J3DTevOrder);
-    /* 8000DFB8 */ virtual bool getTevOrder(u32);
+    /* 8000DFB8 */ virtual J3DTevOrder* getTevOrder(u32);
     /* 80110E80 */ virtual void setTevColor(u32, J3DGXColorS10 const*);
     /* 8000E0C4 */ virtual void setTevColor(u32, J3DGXColorS10);
     /* 8000DFC8 */ virtual _GXColorS10* getTevColor(u32);
@@ -214,7 +215,7 @@ public:
     /* 803229E4 */ virtual u32 getTexNo(u32) const;
     /* 80322A08 */ virtual void setTevOrder(u32, J3DTevOrder const*);
     /* 803229F4 */ virtual void setTevOrder(u32, J3DTevOrder);
-    /* 80322A1C */ virtual bool getTevOrder(u32);
+    /* 80322A1C */ virtual J3DTevOrder* getTevOrder(u32);
     /* 80322B24 */ virtual void setTevColor(u32, J3DGXColorS10 const*);
     /* 80322AF8 */ virtual void setTevColor(u32, J3DGXColorS10);
     /* 80322B50 */ virtual GXColorS10* getTevColor(u32);
@@ -278,7 +279,7 @@ public:
     /* 80322040 */ virtual u32 getTexNo(u32) const;
     /* 80322064 */ virtual void setTevOrder(u32, J3DTevOrder const*);
     /* 80322050 */ virtual void setTevOrder(u32, J3DTevOrder);
-    /* 80322078 */ virtual bool getTevOrder(u32);
+    /* 80322078 */ virtual J3DTevOrder* getTevOrder(u32);
     /* 803220B8 */ virtual void setTevColor(u32, J3DGXColorS10 const*);
     /* 8032208C */ virtual void setTevColor(u32, J3DGXColorS10);
     /* 803220E4 */ virtual GXColorS10* getTevColor(u32);
@@ -348,7 +349,7 @@ public:
     /* 80322404 */ virtual u32 getTexNo(u32) const;
     /* 80322428 */ virtual void setTevOrder(u32, J3DTevOrder const*);
     /* 80322414 */ virtual void setTevOrder(u32, J3DTevOrder);
-    /* 8032243C */ virtual bool getTevOrder(u32);
+    /* 8032243C */ virtual J3DTevOrder* getTevOrder(u32);
     /* 8032247C */ virtual void setTevColor(u32, J3DGXColorS10 const*);
     /* 80322450 */ virtual void setTevColor(u32, J3DGXColorS10);
     /* 803224A8 */ virtual GXColorS10* getTevColor(u32);
@@ -418,7 +419,7 @@ public:
     /* 80321C74 */ virtual u32 getTexNo(u32) const;
     /* 80321C98 */ virtual void setTevOrder(u32, J3DTevOrder const*);
     /* 80321C84 */ virtual void setTevOrder(u32, J3DTevOrder);
-    /* 80321CAC */ virtual bool getTevOrder(u32);
+    /* 80321CAC */ virtual J3DTevOrder* getTevOrder(u32);
     /* 80321CEC */ virtual void setTevColor(u32, J3DGXColorS10 const*);
     /* 80321CC0 */ virtual void setTevColor(u32, J3DGXColorS10);
     /* 80321D18 */ virtual GXColorS10* getTevColor(u32);
@@ -488,7 +489,7 @@ public:
     /* 803227C8 */ virtual u32 getTexNo(u32) const;
     /* 803227EC */ virtual void setTevOrder(u32, J3DTevOrder const*);
     /* 803227D8 */ virtual void setTevOrder(u32, J3DTevOrder);
-    /* 80322800 */ virtual bool getTevOrder(u32);
+    /* 80322800 */ virtual J3DTevOrder* getTevOrder(u32);
     /* 80322818 */ virtual void setTevStageNum(u8 const*);
     /* 80322814 */ virtual void setTevStageNum(u8);
     /* 8032281C */ virtual u8 getTevStageNum() const;
@@ -542,10 +543,21 @@ struct J3DFog : public J3DFogInfo {
     J3DFogInfo* getFogInfo() { return (J3DFogInfo*)this; }
 };
 
-struct J3DAlphaComp {
-    /* 0x0 */ u16 field_0x0;
+struct J3DAlphaCompInfo {
+    /* 0x0 */ u8 field_0x0;
+    /* 0x1 */ u8 field_0x1;
     /* 0x2 */ u8 mRef0;
     /* 0x3 */ u8 mRef1;
+    /* 0x4 */ u8 field_0x4;
+};
+
+struct J3DAlphaComp: public J3DAlphaCompInfo {
+    void setAlphaCompInfo(J3DAlphaCompInfo *param_1) {
+        mRef0 = param_1->field_0x1;
+        mRef1 = param_1->field_0x4;
+        u32 p1_mref1 = param_1->mRef1;
+        *(u16*)&field_0x0 = calcAlphaCmpID(param_1->field_0x0, param_1->mRef0, p1_mref1);
+    }
 };  // Size: 0x4
 
 class J3DPEBlock {
@@ -563,7 +575,7 @@ public:
     /* 8000DF5C */ virtual J3DFog* getFog();
     /* 8031736C */ virtual void setAlphaComp(J3DAlphaComp const*);
     /* 8000E01C */ virtual void setAlphaComp(J3DAlphaComp const&);
-    /* 8000DF54 */ virtual bool getAlphaComp();
+    /* 8000DF54 */ virtual J3DAlphaComp* getAlphaComp();
     /* 80317370 */ virtual void setBlend(J3DBlend const*);
     /* 8000E018 */ virtual void setBlend(J3DBlend const&);
     /* 8000DF4C */ virtual bool getBlend();
@@ -622,7 +634,7 @@ public:
     /* 803219A0 */ virtual J3DFog* getFog();
     /* 803219C4 */ virtual void setAlphaComp(J3DAlphaComp const*);
     /* 803219A8 */ virtual void setAlphaComp(J3DAlphaComp const&);
-    /* 803219E0 */ virtual bool getAlphaComp();
+    /* 803219E0 */ virtual J3DAlphaComp* getAlphaComp();
     /* 803219F4 */ virtual void setBlend(J3DBlend const*);
     /* 803219E8 */ virtual void setBlend(J3DBlend const&);
     /* 80321A00 */ virtual bool getBlend();
@@ -661,7 +673,7 @@ public:
     /* 80321B00 */ virtual u32 getType();
     /* 80321B28 */ virtual void setAlphaComp(J3DAlphaComp const*);
     /* 80321B0C */ virtual void setAlphaComp(J3DAlphaComp const&);
-    /* 80321B44 */ virtual bool getAlphaComp();
+    /* 80321B44 */ virtual J3DAlphaComp* getAlphaComp();
     /* 80321B58 */ virtual void setBlend(J3DBlend const*);
     /* 80321B4C */ virtual void setBlend(J3DBlend const&);
     /* 80321B64 */ virtual bool getBlend();
@@ -777,6 +789,11 @@ struct J3DColorChanInfo {
 
 struct J3DColorChan {
     /* 8000E47C */ J3DColorChan();
+    u8 getLightMask() { return (((mColorChanID & 0x7800) >> 7) | (mColorChanID & 0x3c) >> 2); }
+    void setLightMask(u8 param_1) {
+        mColorChanID = (mColorChanID & ~0x3c) | ((param_1 & 0xf) << 2);
+        mColorChanID = (mColorChanID & ~0x7800) | ((param_1 & 0xf0) << 7);
+    }
 
     /* 0x0 */ u16 mColorChanID;
 };
@@ -806,7 +823,7 @@ public:
     /* 8000E008 */ virtual bool getColorChanNum() const;
     /* 8000E0D8 */ virtual void setColorChan(u32, J3DColorChan const&);
     /* 80317450 */ virtual void setColorChan(u32, J3DColorChan const*);
-    /* 8000DFF8 */ virtual bool getColorChan(u32);
+    /* 8000DFF8 */ virtual J3DColorChan* getColorChan(u32);
     /* 801A4C08 */ virtual void setLight(u32, J3DLightObj*);
     /* 80317454 */ virtual bool getLight(u32);
     /* 80317460 */ virtual void setCullMode(u8 const*);
@@ -846,7 +863,7 @@ public:
     /* 80322F78 */ virtual bool getColorChanNum() const;
     /* 80322F94 */ virtual void setColorChan(u32, J3DColorChan const&);
     /* 80322F80 */ virtual void setColorChan(u32, J3DColorChan const*);
-    /* 80322FA8 */ virtual bool getColorChan(u32);
+    /* 80322FA8 */ virtual J3DColorChan* getColorChan(u32);
     /* 80322FBC */ virtual void setLight(u32, J3DLightObj*);
     /* 80322FCC */ virtual bool getLight(u32);
     /* 80322FE4 */ virtual void setCullMode(u8 const*);
@@ -891,7 +908,7 @@ public:
     /* 803231D8 */ virtual bool getColorChanNum() const;
     /* 803231F4 */ virtual void setColorChan(u32, J3DColorChan const&);
     /* 803231E0 */ virtual void setColorChan(u32, J3DColorChan const*);
-    /* 80323208 */ virtual bool getColorChan(u32);
+    /* 80323208 */ virtual J3DColorChan* getColorChan(u32);
     /* 80323224 */ virtual void setCullMode(u8 const*);
     /* 8032321C */ virtual void setCullMode(u8);
     /* 80323230 */ virtual s32 getCullMode() const;

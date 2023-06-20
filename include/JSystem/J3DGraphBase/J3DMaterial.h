@@ -66,6 +66,8 @@ public:
     J3DTexMtx* getTexMtx(u32 idx) { return mTexGenBlock->getTexMtx(idx); }
     u16 getIndex() { return mIndex; }
     bool isDrawModeOpaTexEdge() { return (mMaterialMode & 3) == 0; }
+    J3DPEBlock* getPEBlock() { return mPEBlock; }
+    void onInvalid() { mInvalid = 1; }
 
     void setTevColor(u32 i, const J3DGXColorS10* i_color) { mTevBlock->setTevColor(i, i_color); }
     void setTevKColor(u32 i, const J3DGXColor* i_color) { mTevBlock->setTevKColor(i, i_color); }

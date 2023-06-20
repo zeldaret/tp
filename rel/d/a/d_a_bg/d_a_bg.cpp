@@ -208,7 +208,8 @@ static asm int createMatAnm(J3DModelData* param_0, u16 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DTevKColorAnm::~J3DTevKColorAnm() {
+// asm J3DTevKColorAnm::~J3DTevKColorAnm() {
+extern "C" asm void __dt__15J3DTevKColorAnmFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_bg/d_a_bg/__dt__15J3DTevKColorAnmFv.s"
 }
@@ -218,7 +219,8 @@ asm J3DTevKColorAnm::~J3DTevKColorAnm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DTevKColorAnm::J3DTevKColorAnm() {
+// asm J3DTevKColorAnm::J3DTevKColorAnm() {
+extern "C" asm void __ct__15J3DTevKColorAnmFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_bg/d_a_bg/__ct__15J3DTevKColorAnmFv.s"
 }
@@ -228,7 +230,8 @@ asm J3DTevKColorAnm::J3DTevKColorAnm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DTevColorAnm::~J3DTevColorAnm() {
+// asm J3DTevColorAnm::~J3DTevColorAnm() {
+extern "C" asm void __dt__14J3DTevColorAnmFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_bg/d_a_bg/__dt__14J3DTevColorAnmFv.s"
 }
@@ -238,7 +241,8 @@ asm J3DTevColorAnm::~J3DTevColorAnm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DTevColorAnm::J3DTevColorAnm() {
+// asm J3DTevColorAnm::J3DTevColorAnm() {
+extern "C" asm void __ct__14J3DTevColorAnmFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_bg/d_a_bg/__ct__14J3DTevColorAnmFv.s"
 }
@@ -323,7 +327,8 @@ extern "C" asm void __dt__11J3DTexNoAnmFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DTexNoAnm::J3DTexNoAnm() {
+// asm J3DTexNoAnm::J3DTexNoAnm() {
+extern "C" asm void __ct__11J3DTexNoAnmFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_bg/d_a_bg/__ct__11J3DTexNoAnmFv.s"
 }
@@ -333,7 +338,8 @@ asm J3DTexNoAnm::J3DTexNoAnm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DTexMtxAnm::~J3DTexMtxAnm() {
+// asm J3DTexMtxAnm::~J3DTexMtxAnm() {
+extern "C" asm void __dt__12J3DTexMtxAnmFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_bg/d_a_bg/__dt__12J3DTexMtxAnmFv.s"
 }
@@ -343,7 +349,8 @@ asm J3DTexMtxAnm::~J3DTexMtxAnm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DTexMtxAnm::J3DTexMtxAnm() {
+// asm J3DTexMtxAnm::J3DTexMtxAnm() {
+extern "C" asm void __ct__12J3DTexMtxAnmFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_bg/d_a_bg/__ct__12J3DTexMtxAnmFv.s"
 }
@@ -353,7 +360,8 @@ asm J3DTexMtxAnm::J3DTexMtxAnm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DMatColorAnm::~J3DMatColorAnm() {
+// asm J3DMatColorAnm::~J3DMatColorAnm() {
+extern "C" asm void __dt__14J3DMatColorAnmFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_bg/d_a_bg/__dt__14J3DMatColorAnmFv.s"
 }
@@ -363,7 +371,8 @@ asm J3DMatColorAnm::~J3DMatColorAnm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DMatColorAnm::J3DMatColorAnm() {
+// asm J3DMatColorAnm::J3DMatColorAnm() {
+extern "C" asm void __ct__14J3DMatColorAnmFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_bg/d_a_bg/__ct__14J3DMatColorAnmFv.s"
 }
@@ -1091,7 +1100,8 @@ asm int daBg_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DTexNoAnm::calc(u16* param_0) const {
+// asm void J3DTexNoAnm::calc(u16* param_0) const {
+extern "C" asm void calc__11J3DTexNoAnmCFPUs() {
     nofralloc
 #include "asm/rel/d/a/d_a_bg/d_a_bg/calc__11J3DTexNoAnmCFPUs.s"
 }
