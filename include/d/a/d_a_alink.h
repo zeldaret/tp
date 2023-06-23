@@ -6243,6 +6243,9 @@ public:
 
 class mDoExt_morf_c;
 
+inline BOOL dComIfGs_isTransformLV(int i_no);
+inline BOOL i_dComIfGs_isEventBit(const u16);
+
 typedef int (daMidna_c::*daMidna_func)();
 class daMidna_c : public fopAc_ac_c {
 public:
@@ -6257,6 +6260,7 @@ public:
         FLG0_NPC_FAR = 0x40000,
         FLG0_NO_INPUT = 0x4000,
         FLG0_NO_DRAW = 0x2000,
+        FLG0_UNK_800 = 0x800,
         FLG0_UNK_200 = 0x200,
     };
 
@@ -6272,6 +6276,9 @@ public:
     u32 checkForceNormalColor() const;
     u32 checkForceTiredColor() const;
     bool checkMidnaTired();
+    bool i_checkMidnaTired() {
+        return dComIfGs_isTransformLV(3) && !i_dComIfGs_isEventBit(0x1e08);
+    }
     void onNoServiceWait();
     /* 804BC3E0 */ void modelCallBack(int);
     /* 804BC5C4 */ void changeUpperBck();
@@ -6330,6 +6337,7 @@ public:
     BOOL checkNpcFar() { return checkStateFlg0(FLG0_NPC_FAR); }
     BOOL checkNoDraw() const { return checkStateFlg0(FLG0_NO_DRAW); }
     BOOL checkNoInput() const { return checkStateFlg0(FLG0_NO_INPUT); }
+    BOOL checkWolfNoPos() const { return checkStateFlg0(FLG0_UNK_800); }
     int checkMetamorphoseEnable() { return (this->*mpFunc)(); }
     int checkShadowModelDrawDemoForce() const { return checkStateFlg1(FLG1_SHADOW_MODEL_DRAW_DEMO_FORCE); }
 
@@ -6362,12 +6370,8 @@ public:
         return 0;
     }
 
-    int checkShadowModeTalkWait() const {
-        if (mDemoType != 2 && mDemoType != 1) {
-            return 0;
-        }
-
-        return 1;
+    bool checkShadowModeTalkWait() const {
+        return (field_0x84e == 2 || field_0x84e == 1) ;
     }
 
     void setShadowReturn() { mDemoType = 4; }

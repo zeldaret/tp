@@ -215,6 +215,9 @@ public:
     int GetActionCount() { return mActionCount; }
     int GetLockonCount() { return mLockonCount; }
     bool Lockon() { return LockonTruth() || chkFlag(0x20000000); }  // only matches with -O2?
+    int ZHintRequest(fopAc_ac_c *param_1, int param_2) {
+        return mZHintTarget.request(param_1, param_2);
+    }
 
     static type_tbl_entry loc_type_tbl[3];
     static type_tbl_entry act_type_tbl[5];

@@ -176,6 +176,7 @@ private:
 class daMidna_c;
 class daPy_py_c;
 inline daPy_py_c* dComIfGp_getLinkPlayer();
+inline BOOL i_dComIfGs_isEventBit(const u16);
 
 class daPy_py_c : public fopAc_ac_c {
 public:
@@ -788,6 +789,7 @@ public:
     inline static BOOL i_checkNowWolf() { return dComIfGp_getLinkPlayer()->i_checkWolf(); }
     inline bool checkZoraWearFlg() const;
     inline bool checkMagicArmorWearFlg() const;
+    inline static BOOL i_checkFirstMidnaDemo() { return i_dComIfGs_isEventBit(0xc10); }
 
     static daMidna_c* getMidnaActor() { return m_midnaActor; }
 
