@@ -6,66 +6,15 @@
 #include "rel/d/a/tag/d_a_tag_wljump/d_a_tag_wljump.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
+#include "d/d_path.h"
+#include "d/a/d_a_alink.h"
+#include "d/d_procname.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
 //
 // Types:
 //
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct daTagWljump_c {
-    /* 80D64EB8 */ void create();
-    /* 80D65004 */ ~daTagWljump_c();
-    /* 80D65090 */ void execute();
-    /* 80D6589C */ bool draw();
-};
-
-struct daPy_py_c {
-    static u8 m_midnaActor[4];
-};
-
-struct dSv_player_status_b_c {
-    /* 80032BEC */ void isTransformLV(int) const;
-};
-
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dSv_event_c {
-    /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct dMsgFlow_c {
-    /* 80249F00 */ dMsgFlow_c();
-    /* 80249F48 */ ~dMsgFlow_c();
-    /* 80249F90 */ void init(fopAc_ac_c*, int, int, fopAc_ac_c**);
-    /* 8024A2D8 */ void doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
-};
-
-struct dEvt_control_c {
-    /* 80042468 */ void reset();
-};
-
-struct dAttHint_c {
-    /* 800738FC */ void request(fopAc_ac_c*, int);
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
 
 //
 // Forward References:
@@ -79,7 +28,6 @@ extern "C" void execute__13daTagWljump_cFv();
 extern "C" static void daTagWljump_Execute__FP13daTagWljump_c();
 extern "C" bool draw__13daTagWljump_cFv();
 extern "C" static void daTagWljump_Draw__FP13daTagWljump_c();
-extern "C" extern void* g_profile_Tag_Wljump[12];
 
 //
 // External References:
@@ -100,13 +48,8 @@ extern "C" void init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c();
 extern "C" void doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci();
 extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void __dl__FPv();
-extern "C" void PSVECSquareDistance();
 extern "C" void _savegpr_26();
 extern "C" void _restgpr_26();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_nan;
 extern "C" u8 m_midnaActor__9daPy_py_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
@@ -115,47 +58,215 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* 80D64EB8-80D64FE4 000078 012C+00 1/1 0/0 0/0 .text            create__13daTagWljump_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagWljump_c::create() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_wljump/d_a_tag_wljump/create__13daTagWljump_cFv.s"
+int daTagWljump_c::create() {
+    if (!fopAcM_CheckCondition(this, 8)) {
+        new (this) daTagWljump_c();
+        fopAcM_OnCondition(this, 8);
+    }
+    u32 param = (fopAcM_GetParam(this) >> 8) & 0xff;
+    field_0x571 = (u8)param;
+    s32 uVar2 = fopAcM_GetParam(this);
+    if ((uVar2 & 0xff) == 0xff) {
+        return 5;
+    }
+
+    field_0x5c4 = dPath_GetRoomPath(uVar2 & 0xff, fopAcM_GetRoomNo(this));
+    if (field_0x5c4 == NULL || field_0x5c4->m_num < 2) {
+        return 5;
+    }
+
+    mAttentionInfo.field_0x0[0] = 0x32;
+    mAttentionInfo.field_0x4[3] = 0x32;
+    shape_angle.z = 0;
+    field_0x568 = -1;
+    field_0x56c[0] = (fopAcM_GetParam(this) >> 16) & 0xf;
+    if (field_0x56c[0] != 1) {
+        field_0x56c[0] = 0;
+    }
+    if (field_0x56c[0] == 0 && field_0x571 != 0xff) {
+        if (dComIfGs_isSwitch(field_0x571, fopAcM_GetHomeRoomNo(this)) == 0) {
+            field_0x573 = 1;
+        }
+    }
+    return 4;
 }
-#pragma pop
 
 /* 80D64FE4-80D65004 0001A4 0020+00 1/0 0/0 0/0 .text            daTagWljump_Create__FP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagWljump_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_wljump/d_a_tag_wljump/daTagWljump_Create__FP10fopAc_ac_c.s"
+static int daTagWljump_Create(fopAc_ac_c* param_0) {
+    return ((daTagWljump_c*)param_0)->create();
 }
-#pragma pop
 
 /* 80D65004-80D65068 0001C4 0064+00 1/1 0/0 0/0 .text            __dt__13daTagWljump_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm daTagWljump_c::~daTagWljump_c() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_wljump/d_a_tag_wljump/__dt__13daTagWljump_cFv.s"
+daTagWljump_c::~daTagWljump_c() {
 }
-#pragma pop
 
 /* 80D65068-80D65090 000228 0028+00 1/0 0/0 0/0 .text daTagWljump_Delete__FP13daTagWljump_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagWljump_Delete(daTagWljump_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_wljump/d_a_tag_wljump/daTagWljump_Delete__FP13daTagWljump_c.s"
+static int daTagWljump_Delete(daTagWljump_c* param_0) {
+    param_0->~daTagWljump_c();
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
+
+/* 80D65090-80D6587C 000250 07EC+00 1/1 0/0 0/0 .text            execute__13daTagWljump_cFv */
+// reg swap
+#ifdef NONMATCHING
+int daTagWljump_c::execute() {
+    mAttentionInfo.mFlags = 0;
+    if (field_0x56c[1]) {
+        field_0x56c[1]--;
+    }
+
+    daPy_py_c* linkPlayer = daPy_getLinkPlayerActorClass();
+    daMidna_c* midnaActor = daPy_py_c::getMidnaActor();
+    
+    if (midnaActor == NULL) {
+        return 1;
+    }
+
+    if (mEvtInfo.checkCommandTalk()) {
+        s32 bVar2 = 1;
+        if (!midnaActor->checkShadowModeTalkWait()) {
+            if (shape_angle.x != 0 &&
+                (field_0x571 == 0xff ||
+                !i_fopAcM_isSwitch(this, field_0x571)))
+            {
+                if (field_0x56c[3] == 0) {
+                    mMsgFlow.init(this, shape_angle.x & 0xffff, 0, NULL);
+                    field_0x56c[3] = 1;
+                    mDoAud_seStart(0x10, 0, 0, 0);
+                } else {
+                    ;
+                    if (mMsgFlow.doFlow(this, NULL, 0)) {
+                        mDoAud_seStart(0x11, 0, 0, 0);
+                        shape_angle.x = 0;
+                    }
+                }
+            } else {
+                field_0x568 = field_0x570;
+                if (midnaActor->current.pos.abs(mEyePos) < 5.0f) {
+                    bVar2 = 0;
+                }
+            } 
+        }
+        if (bVar2) {
+            return 1;
+        }
+        field_0x56c[3] = 0;
+        i_dComIfGp_event_reset();
+        field_0x56c[0] = 0;
+        field_0x572 = 1;
+        if (field_0x571 != 0xff) {
+            i_fopAcM_onSwitch(this, field_0x571);
+        }
+    } else if (!i_dComIfGp_getEvent().i_isOrderOK()) {
+        field_0x572 = 0;
+    } else {
+        if (!midnaActor->checkWolfNoPos()) {
+            field_0x574++;
+            if (field_0x574 >= 5) {
+                field_0x572 = 0;
+            }
+        } else {
+            field_0x574 = 0;
+        }
+    }
+
+    if (!linkPlayer->i_checkNowWolf() ||
+            !daPy_py_c::i_checkFirstMidnaDemo() ||
+        midnaActor->i_checkMidnaTired()) {
+        return 1;
+    } 
+    if (field_0x571 != 0xff && i_fopAcM_isSwitch(this, field_0x571)) {
+        field_0x56c[0] = 0;
+        if (field_0x573) {
+            field_0x573 = 0;
+            field_0x572 = 1;
+            field_0x574 = 0;
+        }
+    }
+    if (field_0x56c[0] != 0 || field_0x572 != 0 || field_0x571 == 0xff ||
+        i_fopAcM_isSwitch(this, field_0x571))
+    {
+        s32 uVar6;
+        dStage_dPnt_c* pbVar7 = field_0x5c4->m_points;
+        if (linkPlayer->checkWolfTagLockJumpLand() == 0) {
+            if (linkPlayer->checkWolfTagLockJump() == 0) {
+                for (uVar6 = 0; uVar6 < field_0x5c4->m_num; uVar6++, pbVar7++) {
+                    if (linkPlayer->current.pos.abs2(pbVar7->m_position) < pbVar7->field_0x0 * pbVar7->field_0x0 * 10.0f * 10.0f) {
+                        field_0x56a = uVar6;
+                        if (uVar6 == 0) {
+                            field_0x568 = 1;
+                        } else if (uVar6 == field_0x5c4->m_num - 1) {
+                            field_0x568 = uVar6 - 1;
+                        } else {
+                            field_0x568 = uVar6 + 1;
+                        }
+                        break;
+                    }
+                }
+                if (uVar6 == field_0x5c4->m_num) {
+                    field_0x568 = -1;
+                }
+            } else if (field_0x56b) {
+                field_0x56b = 0;
+                if (field_0x56a < field_0x568) {
+                    field_0x568++;
+                    if (field_0x5c4->m_num == field_0x568) {
+                        field_0x568 = 0xff;
+                    }
+                } else {
+                    field_0x568--;
+                }
+            }
+        }
+        if (field_0x568 >= 0) {
+            dStage_dPnt_c* pPoint = &field_0x5c4->m_points[field_0x568];
+            mEyePos.set(pPoint->m_position.x, pPoint->m_position.y, pPoint->m_position.z);
+            mAttentionInfo.mPosition = mEyePos;
+            mAttentionInfo.mPosition.y += 220.0f;
+            field_0x5c8 = pPoint->field_0x3 * 10.0f;
+            if (pPoint->field_0x1 == 1) {
+                shape_angle.z = 1;
+            } else {
+                shape_angle.z = 0;
+            }
+            if (field_0x572 == 0) {
+                if (!g_dComIfG_gameInfo.play.getEvent().runCheck()) {
+                    mEvtInfo.i_onCondition(1);
+                    if (!linkPlayer->checkPlayerFly() &&
+                        linkPlayer->mEvtInfo.chkCondition(1)) {
+                        dComIfGp_att_ZHintRequest(this, 0x1ff);
+                        if (field_0x56c[2] == 0)  {
+                            field_0x56c[2] = 1;
+                            if (field_0x56c[1] == 0) {
+                                mDoAud_seStart(0xe, 0, 0, 0);
+                            }
+                            field_0x56c[1] = 0x3c;
+                        }
+                    }
+                }
+                field_0x570 = field_0x568;
+                field_0x568 = -1;
+            } else {
+                mAttentionInfo.mFlags |= 0x81;
+            }
+        } else {
+            field_0x572 = 0;
+        }
+    } else {
+        field_0x572 = 0;
+        field_0x568 = -1;
+    }
+    current.pos = mAttentionInfo.mPosition;
+    if (!mEvtInfo.chkCondition(1)) {
+        field_0x56c[2] = 0;
+    }
+    
+    return 1;
+}
+#else
 /* 80D658CC-80D658D0 000000 0004+00 1/1 0/0 0/0 .rodata          @4044 */
 SECTION_RODATA static f32 const lit_4044 = 1.0f;
 COMPILER_STRIP_GATE(0x80D658CC, &lit_4044);
@@ -254,61 +365,56 @@ SECTION_RODATA static u8 const lit_4055[8] = {
 COMPILER_STRIP_GATE(0x80D6590C, &lit_4055);
 #pragma pop
 
-/* 80D65090-80D6587C 000250 07EC+00 1/1 0/0 0/0 .text            execute__13daTagWljump_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTagWljump_c::execute() {
+asm int daTagWljump_c::execute() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_wljump/d_a_tag_wljump/execute__13daTagWljump_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80D6587C-80D6589C 000A3C 0020+00 1/0 0/0 0/0 .text daTagWljump_Execute__FP13daTagWljump_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagWljump_Execute(daTagWljump_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_wljump/d_a_tag_wljump/daTagWljump_Execute__FP13daTagWljump_c.s"
+static int daTagWljump_Execute(daTagWljump_c* param_0) {
+    return param_0->execute();
 }
-#pragma pop
 
 /* 80D6589C-80D658A4 000A5C 0008+00 1/1 0/0 0/0 .text            draw__13daTagWljump_cFv */
-bool daTagWljump_c::draw() {
-    return true;
+int daTagWljump_c::draw() {
+    return 1;
 }
 
 /* 80D658A4-80D658C4 000A64 0020+00 1/0 0/0 0/0 .text            daTagWljump_Draw__FP13daTagWljump_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagWljump_Draw(daTagWljump_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_wljump/d_a_tag_wljump/daTagWljump_Draw__FP13daTagWljump_c.s"
+static int daTagWljump_Draw(daTagWljump_c* param_0) {
+    return param_0->draw();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D65914-80D65934 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagWljump_Method */
-SECTION_DATA static void* l_daTagWljump_Method[8] = {
-    (void*)daTagWljump_Create__FP10fopAc_ac_c,
-    (void*)daTagWljump_Delete__FP13daTagWljump_c,
-    (void*)daTagWljump_Execute__FP13daTagWljump_c,
-    (void*)NULL,
-    (void*)daTagWljump_Draw__FP13daTagWljump_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daTagWljump_Method = {
+    (process_method_func)daTagWljump_Create,
+    (process_method_func)daTagWljump_Delete,
+    (process_method_func)daTagWljump_Execute,
+    NULL,
+    (process_method_func)daTagWljump_Draw,
 };
 
 /* 80D65934-80D65964 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Wljump */
-SECTION_DATA extern void* g_profile_Tag_Wljump[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x02C70000, (void*)&g_fpcLf_Method,
-    (void*)0x000005CC, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x01040000, (void*)&l_daTagWljump_Method,
-    (void*)0x00044000, (void*)0x030E0000,
+extern actor_process_profile_definition g_profile_Tag_Wljump = {
+    -3,
+    7,
+    -3,
+    PROC_Tag_Wljump,
+    &g_fpcLf_Method.mBase,
+    sizeof(daTagWljump_c),
+    0,
+    0,
+    &g_fopAc_Method.base,
+    0x0104,
+    &l_daTagWljump_Method,
+    0x00044000,
+    3,
+    0x0E,
 };
