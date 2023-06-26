@@ -276,8 +276,6 @@ void daSus_c::data_c::execute() {
 }
 
 /* 80031190-800311FC 02BAD0 006C+00 1/1 0/0 0/0 .text add__Q27daSus_c6room_cFPQ27daSus_c6data_c */
-// instruction reorder
-#ifdef NONMATCHING
 void daSus_c::room_c::add(daSus_c::data_c* i_data) {
     if (mpData == NULL) {
         mpData = i_data;
@@ -293,7 +291,8 @@ void daSus_c::room_c::add(daSus_c::data_c* i_data) {
 
     daSus_c::data_c* data1 = mpData;
     daSus_c::data_c* data2 = data1->getNext();
-    while (data1->getType() == 0 && data2 != NULL) {
+    while (data2 != NULL) {
+        if (data1->getType() != 0) break;
         data1 = data2;
         data2 = data2->getNext();
     }
@@ -301,16 +300,6 @@ void daSus_c::room_c::add(daSus_c::data_c* i_data) {
     i_data->setNext(data1->getNext());
     data1->setNext(i_data);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSus_c::room_c::add(daSus_c::data_c* param_0) {
-    nofralloc
-#include "asm/d/com/d_com_static/add__Q27daSus_c6room_cFPQ27daSus_c6data_c.s"
-}
-#pragma pop
-#endif
 
 /* 800311FC-80031248 02BB3C 004C+00 0/0 0/0 1/1 .text            reset__Q27daSus_c6room_cFv */
 void daSus_c::room_c::reset() {
