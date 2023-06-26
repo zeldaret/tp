@@ -4,18 +4,35 @@
 //
 
 #include "d/menu/d_menu_collect.h"
-#include "d/d_lib.h"
+#include "JSystem/J2DGraph/J2DAnimation.h"
+#include "JSystem/J2DGraph/J2DAnmLoader.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
+#include "JSystem/J2DGraph/J2DTextBox.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "MSL_C/string.h"
+#include "d/a/d_a_player.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_lib.h"
+#include "d/d_select_cursor.h"
+#include "d/meter/d_meter_HIO.h"
+#include "d/meter/d_meter2_info.h"
+#include "d/menu/d_menu_fishing.h"
+#include "d/menu/d_menu_insect.h"
+#include "d/menu/d_menu_letter.h"
+#include "d/menu/d_menu_option.h"
+#include "d/menu/d_menu_save.h"
+#include "d/menu/d_menu_skill.h"
+#include "d/msg/d_msg_string.h"
+#include "d/pane/d_pane_class.h"
 #include "dol2asm.h"
+#include "dolphin/os/OS.h"
 #include "dolphin/types.h"
+#include "m_Do/m_Do_graphic.h"
+#include "m_Do/m_Do_mtx.h"
 
 //
 // Types:
 //
-
-struct mDoGph_gInf_c {
-    static u8 mFader[4];
-};
 
 struct daAlink_c {
     /* 80140064 */ void setShieldChange();
@@ -25,95 +42,11 @@ struct daAlink_c {
     /* 80140AC8 */ void resetStatusWindow();
 };
 
-struct dSv_player_status_a_c {
-    /* 80032AA8 */ void getRupeeMax() const;
-};
-
-struct dSv_player_get_item_c {
-    /* 80033EC8 */ void isFirstBit(u8) const;
-};
-
-struct dSv_player_collect_c {
-    /* 8003424C */ void isCollectCrystal(u8) const;
-    /* 80034290 */ void isCollectMirror(u8) const;
-};
-
-struct dSv_event_flag_c {
-    static u8 saveBitLabels[1644 + 4 /* padding */];
-};
-
-struct dSv_event_c {
-    /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct dMsgString_c {
-    /* 80249C20 */ dMsgString_c();
-    /* 80249D28 */ ~dMsgString_c();
-};
-
 struct dMsgObject_c {
     /* 802383E4 */ void getSmellTypeMessageID();
 };
 
 struct JMSMesgEntry_c {};
-
-struct dMeter2Info_c {
-    /* 8021C544 */ void getStringKanji(u32, char*, JMSMesgEntry_c*);
-};
-
-struct dMenu_save_c {
-    /* 801EF6A0 */ dMenu_save_c();
-    /* 801EF7AC */ void _create();
-    /* 801F0938 */ void initialize();
-    /* 801F09AC */ void _open();
-    /* 801F0B10 */ void _close();
-    /* 801F0B28 */ void _delete();
-    /* 801F1048 */ void _move();
-    /* 801F69B8 */ void _draw();
-};
-
-struct dMenu_Skill_c {
-    /* 801F7224 */ dMenu_Skill_c(JKRExpHeap*, STControl*, CSTControl*);
-    /* 801F7718 */ void _move();
-    /* 801F77B0 */ void _draw();
-    /* 801F7A40 */ void _open();
-    /* 801F7C1C */ void _close();
-};
-
-struct dMenu_Option_c {
-    /* 801E1F10 */ dMenu_Option_c(JKRArchive*, STControl*);
-    /* 801E2C1C */ void _delete();
-    /* 801E3408 */ void _move();
-    /* 801E36CC */ void _draw();
-    /* 801E3B98 */ void _open();
-    /* 801E3DE0 */ void _close();
-    /* 801E8210 */ void initialize();
-};
-
-struct dMenu_Letter_c {
-    /* 801DCDC0 */ dMenu_Letter_c(JKRExpHeap*, STControl*, CSTControl*);
-    /* 801DD474 */ void _move();
-    /* 801DD50C */ void _draw();
-    /* 801DDA74 */ void _open();
-    /* 801DDC98 */ void _close();
-};
-
-struct dMenu_Insect_c {
-    /* 801D8114 */ dMenu_Insect_c(JKRExpHeap*, STControl*, CSTControl*, u8);
-    /* 801D86C8 */ void _move();
-    /* 801D8760 */ void _draw();
-    /* 801D894C */ void _open();
-    /* 801D8B2C */ void _close();
-    /* 801D9D4C */ void getGetInsectNum();
-};
-
-struct dMenu_Fishing_c {
-    /* 801C4D54 */ dMenu_Fishing_c(JKRExpHeap*, STControl*, CSTControl*);
-    /* 801C50B4 */ void _move();
-    /* 801C514C */ void _draw();
-    /* 801C52E4 */ void _open();
-    /* 801C5470 */ void _close();
-};
 
 struct J3DTexNoAnm {
     /* 8003B1F8 */ ~J3DTexNoAnm();
@@ -152,10 +85,6 @@ struct J3DAnmLoaderDataBaseFlag {};
 
 struct J3DAnmLoaderDataBase {
     /* 80337B40 */ void load(void const*, J3DAnmLoaderDataBaseFlag);
-};
-
-struct J2DAnmLoaderDataBase {
-    /* 80308A6C */ void load(void const*);
 };
 
 //
@@ -424,9 +353,6 @@ extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__8J3DModel[9];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_drawHIO[3880];
-extern "C" extern u8 g_meter2_info[248];
 extern "C" f32 Zero__4cXyz[3];
 extern "C" u8 mFader__13mDoGph_gInf_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
@@ -980,6 +906,32 @@ SECTION_SDATA2 static f32 lit_4482 = 1.0f;
 
 /* 801AFD48-801AFE34 1AA688 00EC+00 1/1 0/0 0/0 .text
  * __ct__17dMenu_Collect2D_cFP10JKRExpHeapP9STControlP10CSTControl */
+// matches with literals
+#ifdef NONMATCHING
+dMenu_Collect2D_c::dMenu_Collect2D_c(JKRExpHeap* param_0, STControl* param_1, CSTControl* param_2) {
+    mpHeap = param_0;
+    field_0x10 = param_1;
+    field_0x14 = param_2;
+    field_0xc = NULL;
+    field_0x40 = daPy_py_c::i_checkNowWolf();
+    field_0x7c.set(0.0f, 0.0f, 0.0f);
+    for (int i = 0; i < 2; i++) {
+        field_0x44[i] = 1.0f;
+        field_0x4c[i] = 1.0f;
+    }
+    field_0x54 = 0.0f;
+    field_0x58 = 0.0f;
+    field_0x5c = 1.0f;
+    field_0x60 = 1.0f;
+    field_0x64 = 0.0f;
+    field_0x68 = 0.0f;
+    field_0x6c = 1.0f;
+    field_0x70 = 0.0f;
+    field_0x74 = 0.0f;
+    field_0x78 = 1.0f;
+    mpSubHeap = JKRCreateExpHeap(0x00046000, mpHeap, 0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -989,36 +941,131 @@ asm dMenu_Collect2D_c::dMenu_Collect2D_c(JKRExpHeap* param_0, STControl* param_1
 #include "asm/d/menu/d_menu_collect/__ct__17dMenu_Collect2D_cFP10JKRExpHeapP9STControlP10CSTControl.s"
 }
 #pragma pop
+#endif
 
 /* 801AFE34-801AFEA4 1AA774 0070+00 1/0 0/0 0/0 .text            __dt__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMenu_Collect2D_c::~dMenu_Collect2D_c() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/__dt__17dMenu_Collect2D_cFv.s"
+dMenu_Collect2D_c::~dMenu_Collect2D_c() {
+    if (mpSubHeap) {
+        mDoExt_destroyExpHeap(mpSubHeap);
+        mpSubHeap = NULL;
+    }
 }
-#pragma pop
 
 /* 801AFEA4-801B0100 1AA7E4 025C+00 1/1 0/0 0/0 .text            _create__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::_create() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/_create__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::_create() {
+    mpHeap->getTotalFreeSize();
+    mpScreen = new J2DScreen();
+    mpScreen->setPriority("zelda_collect_soubi_screen.blo", 0x1020000, dComIfGp_getCollectResArchive());
+    dPaneClass_showNullPane(mpScreen);
+    mpScreenIcon = new J2DScreen();
+    mpScreenIcon->setPriority("zelda_collect_soubi_do_icon_parts.blo", 0x20000, dComIfGp_getCollectResArchive());
+    for (int i = 0; i < 2; i++) {
+        mpButtonAB[i] = NULL;
+        mpButtonText[i] = NULL;
+    }
+    dPaneClass_showNullPane(mpScreenIcon);
+    mpDraw2DTop = new dMenu_Collect2DTop_c(this);
+    ResTIMG* image = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "tt_block8x8.bti");
+    mpBlackTex = new J2DPicture(image);
+    mpBlackTex->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
+    mpBlackTex->setAlpha(0);
+    mpDrawCursor = new dSelect_cursor_c(2, lit_4482, NULL);
+    mpString = new dMsgString_c();
+    mpSaveScrn = NULL;
+    mpOptionScrn = NULL;
+    mpLetterScrn = NULL;
+    mpFishingScrn = NULL;
+    mpSkillScrn = NULL;
+    mpInsectScrn = NULL;
+    field_0x22c = 0;
+    animationSet();
+    screenSet();
+    initialize();
+    setHIO(true);
 }
-#pragma pop
 
 /* 801B0100-801B0570 1AAA40 0470+00 1/1 0/0 0/0 .text            _delete__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::_delete() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/_delete__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::_delete() {
+    mpHeap->getTotalFreeSize();
+    dMeter2Info_setCollectCursorPosXY(mCursorX, mCursorY);
+    delete mpScreen;
+    mpScreen = NULL;
+    delete mpScreenIcon;
+    mpScreenIcon = NULL;
+    for (int i = 0; i < 2; i++) {
+        if (mpButtonAB[i]) {
+            delete mpButtonAB[i];
+            mpButtonAB[i] = NULL;
+        }
+        if (mpButtonText[i]) {
+            delete mpButtonText[i];
+            mpButtonText[i] = NULL;
+        }
+    }
+    delete mpDraw2DTop;
+    mpDraw2DTop = NULL;
+    delete mpBlackTex;
+    mpBlackTex = NULL;
+    delete mpDrawCursor;
+    mpDrawCursor = NULL;
+    delete mpString;
+    mpString = NULL;
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (mpSaveScrn) {
+        mpSaveScrn->_delete();
+        delete mpSaveScrn;
+        mpSaveScrn = NULL;
+        mpSubHeap->freeAll();
+    }
+    if (mpOptionScrn) {
+        mpOptionScrn->_delete();
+        delete mpOptionScrn;
+        mpOptionScrn = NULL;
+        mpSubHeap->freeAll();
+    }
+    if (mpLetterScrn) {
+        delete mpLetterScrn;
+        mpLetterScrn = NULL;
+        mpSubHeap->freeAll();
+    }
+    if (mpFishingScrn) {
+        delete mpFishingScrn;
+        mpFishingScrn = NULL;
+        mpSubHeap->freeAll();
+    }
+    if (mpSkillScrn) {
+        delete mpSkillScrn;
+        mpSkillScrn = NULL;
+        mpSubHeap->freeAll();
+    }
+    if (mpInsectScrn) {
+        delete mpInsectScrn;
+        mpInsectScrn = NULL;
+        mpSubHeap->freeAll();
+    }
+    mDoExt_setCurrentHeap(heap);
+    delete field_0x2c;
+    field_0x2c = NULL;
+    for (int i = 0; i < 7; i++) {
+        for (int j = 0; j < 6; j++) {
+            if (mpSelPm[i][j]) {
+                delete mpSelPm[i][j];
+                mpSelPm[i][j] = NULL;
+            }
+        }
+    }
+    delete mpLinkPm;
+    mpLinkPm = NULL;
+    delete mpMaskPm;
+    mpMaskPm = NULL;
+    delete mpModelBg;
+    mpModelBg = NULL;
+    delete mpHeartParent;
+    mpHeartParent = NULL;
+    delete mpHeartPiece;
+    mpHeartPiece = NULL;
+    dComIfGp_getCollectResArchive()->removeResourceAll();
 }
-#pragma pop
 
 /* 801B0570-801B05A8 1AAEB0 0038+00 1/1 0/0 0/0 .text            initialize__17dMenu_Collect2D_cFv
  */
@@ -1032,35 +1079,40 @@ asm void dMenu_Collect2D_c::initialize() {
 #pragma pop
 
 /* 801B05A8-801B061C 1AAEE8 0074+00 2/2 0/0 0/0 .text isFishIconVisible__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::isFishIconVisible() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/isFishIconVisible__17dMenu_Collect2D_cFv.s"
+bool dMenu_Collect2D_c::isFishIconVisible() {
+    if (dComIfGs_getFishNum(0) ||
+        dComIfGs_getFishNum(1) ||
+        dComIfGs_getFishNum(2) ||
+        dComIfGs_getFishNum(3) ||
+        dComIfGs_getFishNum(4) ||
+        dComIfGs_getFishNum(5) ||
+        g_drawHIO.mFishListScreen.mDebug)
+    {
+        return true;
+    }
+    return false;
 }
-#pragma pop
 
 /* 801B061C-801B071C 1AAF5C 0100+00 2/2 0/0 0/0 .text isSkillIconVisible__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::isSkillIconVisible() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/isSkillIconVisible__17dMenu_Collect2D_cFv.s"
+bool dMenu_Collect2D_c::isSkillIconVisible() {
+    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[338]) || 
+        i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[339]) ||
+        i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[340]) ||
+        i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[341]) ||
+        i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[342]) ||
+        i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[343]) ||
+        i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[344]))
+    {
+        return true;
+    }
+    return false;
 }
-#pragma pop
 
 /* 801B071C-801B074C 1AB05C 0030+00 2/2 0/0 0/0 .text isInsectIconVisible__17dMenu_Collect2D_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::isInsectIconVisible() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/isInsectIconVisible__17dMenu_Collect2D_cFv.s"
+bool dMenu_Collect2D_c::isInsectIconVisible() {
+    return dMenu_Insect_c::getGetInsectNum();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80394F78-80394F88 0215D8 000C+04 3/3 0/0 0/0 .rodata          @3778 */
@@ -1165,6 +1217,18 @@ asm void dMenu_Collect2D_c::screenSet() {
 
 /* 801B1C3C-801B1CE0 1AC57C 00A4+00 1/1 0/0 0/0 .text            animationSet__17dMenu_Collect2D_cFv
  */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_Collect2D_c::animationSet() {
+    i_OSInitFastCast();
+    void* resource = JKRGetNameResource("zelda_collect_soubi_screen_revo.btk", dComIfGp_getCollectResArchive());
+    field_0x2c = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(resource);
+    field_0x2c->searchUpdateMaterialID(mpScreen);
+    field_0x34 = 0.0f;
+    field_0x38 = 0.0f;
+    field_0x3c = 0.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1173,6 +1237,7 @@ asm void dMenu_Collect2D_c::animationSet() {
 #include "asm/d/menu/d_menu_collect/animationSet__17dMenu_Collect2D_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80453F38-80453F40 002538 0008+00 2/2 0/0 0/0 .sdata2          @5199 */
@@ -1340,24 +1405,51 @@ asm void dMenu_Collect2D_c::changeClothe() {
 #pragma pop
 
 /* 801B30C8-801B3340 1ADA08 0278+00 1/1 0/0 0/0 .text setArrowMaxNum__17dMenu_Collect2D_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::setArrowMaxNum(u8 param_0) {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/setArrowMaxNum__17dMenu_Collect2D_cFUc.s"
+void dMenu_Collect2D_c::setArrowMaxNum(u8 param_0) {
+    switch (param_0) {
+    case 0:
+        mpScreen->search('item_0_0')->hide();
+        mpScreen->search('item_0_1')->hide();
+        mpScreen->search('item_0_2')->hide();
+        break;
+    case 30:
+        mpScreen->search('item_0_0')->show();
+        mpScreen->search('item_0_1')->hide();
+        mpScreen->search('item_0_2')->hide();
+        break;
+    case 60:
+        mpScreen->search('item_0_0')->hide();
+        mpScreen->search('item_0_1')->show();
+        mpScreen->search('item_0_2')->hide();
+        break;
+    case 100:
+        mpScreen->search('item_0_0')->hide();
+        mpScreen->search('item_0_1')->hide();
+        mpScreen->search('item_0_2')->show();
+        break;
+    }
 }
-#pragma pop
 
 /* 801B3340-801B3524 1ADC80 01E4+00 1/1 0/0 0/0 .text setWalletMaxNum__17dMenu_Collect2D_cFUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::setWalletMaxNum(u16 param_0) {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/setWalletMaxNum__17dMenu_Collect2D_cFUs.s"
+void dMenu_Collect2D_c::setWalletMaxNum(u16 param_0) {
+    switch (param_0) {
+    case 300:
+        mpScreen->search('item_1_0')->show();
+        mpScreen->search('item_1_1')->hide();
+        mpScreen->search('item_1_2')->hide();
+        break;
+    case 600:
+        mpScreen->search('item_1_0')->hide();
+        mpScreen->search('item_1_1')->show();
+        mpScreen->search('item_1_2')->hide();
+        break;
+    case 1000:
+        mpScreen->search('item_1_0')->hide();
+        mpScreen->search('item_1_1')->hide();
+        mpScreen->search('item_1_2')->show();
+        break;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80395050-80395078 0216B0 0028+00 1/1 0/0 0/0 .rodata          smell_tag$5891 */
@@ -1542,364 +1634,375 @@ asm void dMenu_Collect2D_c::wait_proc() {
 #pragma pop
 
 /* 801B4E14-801B4EC0 1AF754 00AC+00 1/0 0/0 0/0 .text save_open_init__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::save_open_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/save_open_init__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::save_open_init() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (!mpSaveScrn) {
+        mpSaveScrn = new dMenu_save_c();
+    }
+    mpSaveScrn->setUseType(1);
+    mpSaveScrn->_create();
+    mpSaveScrn->initialize();
+    setAButtonString(0);
+    setBButtonString(0);
+    mpDrawCursor->offPlayAllAnime();
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B4EC0-801B4F30 1AF800 0070+00 1/0 0/0 0/0 .text save_open_proc__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::save_open_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/save_open_proc__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::save_open_proc() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (mpSaveScrn->getSaveStatus() == 1) {
+        mpSaveScrn->_open();
+    }
+    if (mpSaveScrn->getSaveStatus() == 2) {
+        field_0x22c = 2;
+    }
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B4F30-801B4F6C 1AF870 003C+00 1/0 0/0 0/0 .text save_move_init__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::save_move_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/save_move_init__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::save_move_init() {
+    setAButtonString(0x040c);
+    setBButtonString(0);
 }
-#pragma pop
 
 /* 801B4F6C-801B4FDC 1AF8AC 0070+00 1/0 0/0 0/0 .text save_move_proc__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::save_move_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/save_move_proc__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::save_move_proc() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (mpSaveScrn->getSaveStatus() == 2) {
+        mpSaveScrn->_move();
+    }
+    if (mpSaveScrn->getSaveStatus() == 3) {
+        field_0x22c = 3;
+    }
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B4FDC-801B5018 1AF91C 003C+00 1/0 0/0 0/0 .text save_close_init__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::save_close_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/save_close_init__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::save_close_init() {
+    setAButtonString(0);
+    setBButtonString(0);
 }
-#pragma pop
 
 /* 801B5018-801B5094 1AF958 007C+00 1/0 0/0 0/0 .text save_close_proc__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::save_close_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/save_close_proc__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::save_close_proc() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (mpSaveScrn->getSaveStatus() == 3) {
+        mpSaveScrn->_close();
+    }
+    if (mpSaveScrn->getSaveStatus() == 0) {
+        field_0x22c = 0;
+        mpDrawCursor->onPlayAllAnime();
+    }
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B5094-801B513C 1AF9D4 00A8+00 1/0 0/0 0/0 .text option_open_init__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::option_open_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/option_open_init__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::option_open_init() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (!mpOptionScrn) {
+        mpOptionScrn = new dMenu_Option_c(dComIfGp_getCollectResArchive(), field_0x10);
+    }
+    mpOptionScrn->initialize();
+    setAButtonString(0);
+    setBButtonString(0);
+    mpDrawCursor->offPlayAllAnime();
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B513C-801B51AC 1AFA7C 0070+00 1/0 0/0 0/0 .text option_open_proc__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::option_open_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/option_open_proc__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::option_open_proc() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (mpOptionScrn->getQuitStatus() == 1) {
+        mpOptionScrn->_open();
+    }
+    if (mpOptionScrn->getQuitStatus() == 2) {
+        field_0x22c = 5;
+    }
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B51AC-801B51E8 1AFAEC 003C+00 1/0 0/0 0/0 .text option_move_init__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::option_move_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/option_move_init__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::option_move_init() {
+    setAButtonString(0x040c);
+    setBButtonString(0x03f9);
 }
-#pragma pop
 
 /* 801B51E8-801B5258 1AFB28 0070+00 1/0 0/0 0/0 .text option_move_proc__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::option_move_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/option_move_proc__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::option_move_proc() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (mpOptionScrn->getQuitStatus() == 2) {
+        mpOptionScrn->_move();
+    }
+    if (mpOptionScrn->getQuitStatus() == 3) {
+        field_0x22c = 6;
+    }
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B5258-801B5294 1AFB98 003C+00 1/0 0/0 0/0 .text option_close_init__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::option_close_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/option_close_init__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::option_close_init() {
+    setAButtonString(0);
+    setBButtonString(0);
 }
-#pragma pop
 
 /* 801B5294-801B5310 1AFBD4 007C+00 1/0 0/0 0/0 .text option_close_proc__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::option_close_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/option_close_proc__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::option_close_proc() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (mpOptionScrn->getQuitStatus() == 3) {
+        mpOptionScrn->_close();
+    }
+    if (mpOptionScrn->getQuitStatus() == 0) {
+        field_0x22c = 0;
+        mpDrawCursor->onPlayAllAnime();
+    }
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B5310-801B53AC 1AFC50 009C+00 1/0 0/0 0/0 .text letter_open_init__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::letter_open_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/letter_open_init__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::letter_open_init() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (!mpLetterScrn) {
+        mpLetterScrn = new dMenu_Letter_c(mpSubHeap, field_0x10, field_0x14);
+    }
+    setAButtonString(0);
+    setBButtonString(0);
+    mpDrawCursor->offPlayAllAnime();
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B53AC-801B541C 1AFCEC 0070+00 1/0 0/0 0/0 .text letter_open_proc__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::letter_open_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/letter_open_proc__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::letter_open_proc() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (mpLetterScrn->getStatus() == 1) {
+        mpLetterScrn->_open();
+    }
+    if (mpLetterScrn->getStatus() == 2) {
+        field_0x22c = 8;
+    }
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B541C-801B5458 1AFD5C 003C+00 1/0 0/0 0/0 .text letter_move_init__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::letter_move_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/letter_move_init__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::letter_move_init() {
+    setAButtonString(0x040c);
+    setBButtonString(0x03f9);
 }
-#pragma pop
 
 /* 801B5458-801B54C8 1AFD98 0070+00 1/0 0/0 0/0 .text letter_move_proc__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::letter_move_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/letter_move_proc__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::letter_move_proc() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (mpLetterScrn->getStatus() == 2) {
+        mpLetterScrn->_move();
+    }
+    if (mpLetterScrn->getStatus() == 3) {
+        field_0x22c = 9;
+    }
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B54C8-801B5504 1AFE08 003C+00 1/0 0/0 0/0 .text letter_close_init__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::letter_close_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/letter_close_init__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::letter_close_init() {
+    setAButtonString(0);
+    setBButtonString(0);
 }
-#pragma pop
 
 /* 801B5504-801B5580 1AFE44 007C+00 1/0 0/0 0/0 .text letter_close_proc__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::letter_close_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/letter_close_proc__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::letter_close_proc() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (mpLetterScrn->getStatus() == 3) {
+        mpLetterScrn->_close();
+    }
+    if (mpLetterScrn->getStatus() == 0) {
+        field_0x22c = 0;
+        mpDrawCursor->onPlayAllAnime();
+    }
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B5580-801B561C 1AFEC0 009C+00 1/0 0/0 0/0 .text fishing_open_init__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::fishing_open_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/fishing_open_init__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::fishing_open_init() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (!mpFishingScrn) {
+        mpFishingScrn = new dMenu_Fishing_c(mpSubHeap, field_0x10, field_0x14);
+    }
+    setAButtonString(0);
+    setBButtonString(0);
+    mpDrawCursor->offPlayAllAnime();
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B561C-801B568C 1AFF5C 0070+00 1/0 0/0 0/0 .text fishing_open_proc__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::fishing_open_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/fishing_open_proc__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::fishing_open_proc() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (mpFishingScrn->getStatus() == 1) {
+        mpFishingScrn->_open();
+    }
+    if (mpFishingScrn->getStatus() == 2) {
+        field_0x22c = 11;
+    }
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B568C-801B56C8 1AFFCC 003C+00 1/0 0/0 0/0 .text fishing_move_init__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::fishing_move_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/fishing_move_init__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::fishing_move_init() {
+    setAButtonString(0x040c);
+    setBButtonString(0x03f9);
 }
-#pragma pop
 
 /* 801B56C8-801B5738 1B0008 0070+00 1/0 0/0 0/0 .text fishing_move_proc__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::fishing_move_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/fishing_move_proc__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::fishing_move_proc() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (mpFishingScrn->getStatus() == 2) {
+        mpFishingScrn->_move();
+    }
+    if (mpFishingScrn->getStatus() == 3) {
+        field_0x22c = 12;
+    }
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
+
 
 /* 801B5738-801B5774 1B0078 003C+00 1/0 0/0 0/0 .text fishing_close_init__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::fishing_close_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/fishing_close_init__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::fishing_close_init() {
+    setAButtonString(0);
+    setBButtonString(0);
 }
-#pragma pop
 
 /* 801B5774-801B57F0 1B00B4 007C+00 1/0 0/0 0/0 .text fishing_close_proc__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::fishing_close_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/fishing_close_proc__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::fishing_close_proc() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (mpFishingScrn->getStatus() == 3) {
+        mpFishingScrn->_close();
+    }
+    if (mpFishingScrn->getStatus() == 0) {
+        field_0x22c = 0;
+        mpDrawCursor->onPlayAllAnime();
+    }
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B57F0-801B588C 1B0130 009C+00 1/0 0/0 0/0 .text skill_open_init__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::skill_open_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/skill_open_init__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::skill_open_init() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (!mpSkillScrn) {
+        mpSkillScrn = new dMenu_Skill_c(mpSubHeap, field_0x10, field_0x14);
+    }
+    setAButtonString(0);
+    setBButtonString(0);
+    mpDrawCursor->offPlayAllAnime();
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B588C-801B58FC 1B01CC 0070+00 1/0 0/0 0/0 .text skill_open_proc__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::skill_open_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/skill_open_proc__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::skill_open_proc() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (mpSkillScrn->getStatus() == 1) {
+        mpSkillScrn->_open();
+    }
+    if (mpSkillScrn->getStatus() == 2) {
+        field_0x22c = 14;
+    }
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B58FC-801B5938 1B023C 003C+00 1/0 0/0 0/0 .text skill_move_init__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::skill_move_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/skill_move_init__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::skill_move_init() {
+    setAButtonString(0x040c);
+    setBButtonString(0x03f9);
 }
-#pragma pop
 
 /* 801B5938-801B59A8 1B0278 0070+00 1/0 0/0 0/0 .text skill_move_proc__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::skill_move_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/skill_move_proc__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::skill_move_proc() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (mpSkillScrn->getStatus() == 2) {
+        mpSkillScrn->_move();
+    }
+    if (mpSkillScrn->getStatus() == 3) {
+        field_0x22c = 15;
+    }
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B59A8-801B59E4 1B02E8 003C+00 1/0 0/0 0/0 .text skill_close_init__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::skill_close_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/skill_close_init__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::skill_close_init() {
+    setAButtonString(0);
+    setBButtonString(0);
 }
-#pragma pop
 
 /* 801B59E4-801B5A60 1B0324 007C+00 1/0 0/0 0/0 .text skill_close_proc__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::skill_close_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/skill_close_proc__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::skill_close_proc() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (mpSkillScrn->getStatus() == 3) {
+        mpSkillScrn->_close();
+    }
+    if (mpSkillScrn->getStatus() == 0) {
+        field_0x22c = 0;
+        mpDrawCursor->onPlayAllAnime();
+    }
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B5A60-801B5B00 1B03A0 00A0+00 1/0 0/0 0/0 .text insect_open_init__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::insect_open_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/insect_open_init__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::insect_open_init() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (!mpInsectScrn) {
+        mpInsectScrn = new dMenu_Insect_c(mpSubHeap, field_0x10, field_0x14, 0);
+    }
+    setAButtonString(0);
+    setBButtonString(0);
+    mpDrawCursor->offPlayAllAnime();
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B5B00-801B5B70 1B0440 0070+00 1/0 0/0 0/0 .text insect_open_proc__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::insect_open_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/insect_open_proc__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::insect_open_proc() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (mpInsectScrn->getStatus() == 1) {
+        mpInsectScrn->_open();
+    }
+    if (mpInsectScrn->getStatus() == 2) {
+        field_0x22c = 17;
+    }
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B5B70-801B5BAC 1B04B0 003C+00 1/0 0/0 0/0 .text insect_move_init__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::insect_move_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/insect_move_init__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::insect_move_init() {
+    setAButtonString(0x040c);
+    setBButtonString(0x03f9);
 }
-#pragma pop
 
 /* 801B5BAC-801B5C1C 1B04EC 0070+00 1/0 0/0 0/0 .text insect_move_proc__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::insect_move_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/insect_move_proc__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::insect_move_proc() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (mpInsectScrn->getStatus() == 2) {
+        mpInsectScrn->_move();
+    }
+    if (mpInsectScrn->getStatus() == 3) {
+        field_0x22c = 18;
+    }
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B5C1C-801B5C58 1B055C 003C+00 1/0 0/0 0/0 .text insect_close_init__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::insect_close_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/insect_close_init__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::insect_close_init() {
+    setAButtonString(0);
+    setBButtonString(0);
 }
-#pragma pop
 
 /* 801B5C58-801B5CD4 1B0598 007C+00 1/0 0/0 0/0 .text insect_close_proc__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::insect_close_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/insect_close_proc__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::insect_close_proc() {
+    JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
+    if (mpInsectScrn->getStatus() == 3) {
+        mpInsectScrn->_close();
+    }
+    if (mpInsectScrn->getStatus() == 0) {
+        field_0x22c = 0;
+        mpDrawCursor->onPlayAllAnime();
+    }
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* 801B5CD4-801B5D70 1B0614 009C+00 1/1 0/0 0/0 .text            _move__17dMenu_Collect2D_cFv */
 #pragma push
@@ -1922,25 +2025,18 @@ asm void dMenu_Collect2D_c::_draw() {
 #pragma pop
 
 /* 801B5F48-801B5F84 1B0888 003C+00 1/1 0/0 0/0 .text            drawTop__17dMenu_Collect2D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::drawTop() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/drawTop__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::drawTop() {
+    dComIfGd_set2DOpaTop(mpDraw2DTop);
 }
-#pragma pop
 
 /* 801B5F84-801B5FAC 1B08C4 0028+00 0/0 1/1 0/0 .text            isKeyCheck__17dMenu_Collect2D_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dMenu_Collect2D_c::isKeyCheck() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/isKeyCheck__17dMenu_Collect2D_cFv.s"
+bool dMenu_Collect2D_c::isKeyCheck() {
+    if (field_0x22c || field_0x25f) {
+        return true;
+    }
+    return false;
 }
-#pragma pop
 
 /* 801B5FAC-801B5FB4 1B08EC 0008+00 0/0 1/1 0/0 .text            isOutCheck__17dMenu_Collect2D_cFv
  */
@@ -2001,17 +2097,41 @@ asm void dMenu_Collect2D_c::setItemNameString(u8 param_0, u8 param_1) {
 
 /* 801B6344-801B6454 1B0C84 0110+00 1/1 0/0 0/0 .text setItemNameStringNull__17dMenu_Collect2D_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect2D_c::setItemNameStringNull() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/setItemNameStringNull__17dMenu_Collect2D_cFv.s"
+void dMenu_Collect2D_c::setItemNameStringNull() {
+    field_0x182 = 0;
+    J2DTextBox* textBox = (J2DTextBox*)mpScreen->search('item_n04');
+    strcpy(textBox->getStringPtr(), "");
+    textBox = (J2DTextBox*)mpScreen->search('item_n05');
+    strcpy(textBox->getStringPtr(), "");
+    textBox = (J2DTextBox*)mpScreen->search('item_n06');
+    strcpy(textBox->getStringPtr(), "");
+    textBox = (J2DTextBox*)mpScreen->search('item_n07');
+    strcpy(textBox->getStringPtr(), "");
 }
-#pragma pop
 
 /* 801B6454-801B6538 1B0D94 00E4+00 1/1 0/0 0/0 .text
  * __ct__17dMenu_Collect3D_cFP10JKRExpHeapP17dMenu_Collect2D_cP10CSTControl */
+// matches with literals
+#ifdef NONMATCHING
+dMenu_Collect3D_c::dMenu_Collect3D_c(JKRExpHeap* param_0, dMenu_Collect2D_c* param_1,
+                                     CSTControl* param_2) {
+    field_0x24 = daPy_py_c::i_checkNowWolf();
+    mpHeap = param_0;
+    mpSolidHeap = NULL;
+    field_0x14 = param_2;
+    mpCollect2D = param_1;
+    if (field_0x24) {
+        field_0x3d8 = -20748;
+    } else {
+        field_0x3d8 = -23324;
+    }
+    field_0x3d0 = 0.0f;
+    field_0x3d4 = 0.0f;
+    field_0x3c8 = 0.0f;
+    field_0x3c4 = 0.0f;
+    field_0x3cc = 1.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2021,8 +2141,18 @@ asm dMenu_Collect3D_c::dMenu_Collect3D_c(JKRExpHeap* param_0, dMenu_Collect2D_c*
 #include "asm/d/menu/d_menu_collect/__ct__17dMenu_Collect3D_cFP10JKRExpHeapP17dMenu_Collect2D_cP10CSTControl.s"
 }
 #pragma pop
+#endif
 
 /* 801B6538-801B65A8 1B0E78 0070+00 1/0 0/0 0/0 .text            __dt__17dMenu_Collect3D_cFv */
+// matches with vtable data
+#ifdef NONMATCHING
+dMenu_Collect3D_c::~dMenu_Collect3D_c() {
+    if (mpSolidHeap) {
+        mDoExt_destroySolidHeap(mpSolidHeap);
+        mpSolidHeap = NULL;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2032,6 +2162,7 @@ extern "C" asm void __dt__17dMenu_Collect3D_cFv() {
 #include "asm/d/menu/d_menu_collect/__dt__17dMenu_Collect3D_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801B65A8-801B6694 1B0EE8 00EC+00 1/1 0/0 0/0 .text            _create__17dMenu_Collect3D_cFv */
 #pragma push
@@ -2044,14 +2175,11 @@ asm void dMenu_Collect3D_c::_create() {
 #pragma pop
 
 /* 801B6694-801B66C8 1B0FD4 0034+00 1/1 0/0 0/0 .text            _delete__17dMenu_Collect3D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect3D_c::_delete() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/_delete__17dMenu_Collect3D_cFv.s"
+void dMenu_Collect3D_c::_delete() {
+    if (daAlink_getAlinkActorClass()) {
+        daAlink_getAlinkActorClass()->resetStatusWindow();
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80453F80-80453F84 002580 0004+00 1/1 0/0 0/0 .sdata2          @7324 */
@@ -2104,14 +2232,19 @@ asm void dMenu_Collect3D_c::_move(u8 param_0, u8 param_1) {
 #pragma pop
 
 /* 801B696C-801B6A30 1B12AC 00C4+00 1/1 0/0 0/0 .text            draw__17dMenu_Collect3D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect3D_c::draw() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/draw__17dMenu_Collect3D_cFv.s"
+void dMenu_Collect3D_c::draw() {
+    dComIfGd_setListItem3D();
+    if (daAlink_getAlinkActorClass()) {
+        daAlink_getAlinkActorClass()->statusWindowDraw();
+    }
+    if (mpModel) {
+        g_env_light.settingTevStruct(13, &field_0x3b0, &field_0x28);
+        g_env_light.setLightTevColorType_MAJI(mpModel, &field_0x28);
+        animeEntry();
+        mDoExt_modelUpdateDL(mpModel);
+    }
+    dComIfGd_setList();
 }
-#pragma pop
 
 /* 801B6A30-801B6D30 1B1370 0300+00 2/2 0/0 0/0 .text setJ3D__17dMenu_Collect3D_cFPCcPCcPCc */
 #pragma push
@@ -2258,25 +2391,29 @@ asm void dMenu_Collect3D_c::createMirrorModel() {
 #pragma pop
 
 /* 801B7434-801B749C 1B1D74 0068+00 5/5 0/0 0/0 .text getCrystalNum__17dMenu_Collect3D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect3D_c::getCrystalNum() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/getCrystalNum__17dMenu_Collect3D_cFv.s"
+int dMenu_Collect3D_c::getCrystalNum() {
+    int count = 0;
+    for (int i = 0; i < 4; i++) {
+        if (!dComIfGs_isCollectCrystal(i)) {
+            break;
+        }
+        count++;
+    }
+    return count;
 }
-#pragma pop
 
 /* 801B749C-801B7504 1B1DDC 0068+00 5/5 0/0 0/0 .text            getMirrorNum__17dMenu_Collect3D_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect3D_c::getMirrorNum() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/getMirrorNum__17dMenu_Collect3D_cFv.s"
+int dMenu_Collect3D_c::getMirrorNum() {
+    int count = 0;
+    for (int i = 0; i < 4; i++) {
+        if (!dComIfGs_isCollectMirror(i)) {
+            break;
+        }
+        count++;
+    }
+    return count;
 }
-#pragma pop
 
 /* 801B7504-801B75E8 1B1E44 00E4+00 4/4 0/0 0/0 .text getMaskMdlVisible__17dMenu_Collect3D_cFv */
 #pragma push
@@ -2316,14 +2453,26 @@ SECTION_SDATA2 static f32 lit_7949[1 + 1 /* padding */] = {
 };
 
 /* 801B75E8-801B7660 1B1F28 0078+00 0/0 1/1 0/0 .text setupItem3D__17dMenu_Collect3D_cFPA4_f */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_Collect3D_c::setupItem3D(Mtx param_0) {
+    GXSetViewport(0.0, mViewOffsetY, 608.0, 448.0, 0.0, 1.0);
+    mViewOffsetY = -100.0;
+    Mtx44 projection;
+    C_MTXPerspective(projection, 45.0, mDoGph_gInf_c::getAspect(), 1.0, 100000.0);
+    GXSetProjection(projection, GX_PERSPECTIVE);
+    calcViewMtx(param_0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Collect3D_c::setupItem3D(f32 (*param_0)[4]) {
+asm void dMenu_Collect3D_c::setupItem3D(Mtx param_0) {
     nofralloc
 #include "asm/d/menu/d_menu_collect/setupItem3D__17dMenu_Collect3D_cFPA4_f.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80453FE0-80453FE8 0025E0 0008+00 1/1 0/0 0/0 .sdata2          @7963 */
@@ -2341,14 +2490,21 @@ asm void dMenu_Collect3D_c::toItem3Dpos(f32 param_0, f32 param_1, f32 param_2, c
 #pragma pop
 
 /* 801B774C-801B77A4 1B208C 0058+00 2/2 0/0 0/0 .text calcViewMtx__17dMenu_Collect3D_cFPA4_f */
+// matches with literals
+#ifdef NONMATCHING
+void dMenu_Collect3D_c::calcViewMtx(Mtx param_0) {
+    mDoMtx_lookAt(param_0, &cXyz(0.0f, 0.0f, -1000.0f), &cXyz::Zero, &cXyz(0.0f, 1.0f, 0.0f), 0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Collect3D_c::calcViewMtx(f32 (*param_0)[4]) {
+asm void dMenu_Collect3D_c::calcViewMtx(Mtx param_0) {
     nofralloc
 #include "asm/d/menu/d_menu_collect/calcViewMtx__17dMenu_Collect3D_cFPA4_f.s"
 }
 #pragma pop
+#endif
 
 /* 801B77A4-801B78C0 1B20E4 011C+00 1/0 0/0 0/0 .text            draw__20dMenu_Collect2DTop_cFv */
 #pragma push
@@ -2363,16 +2519,25 @@ extern "C" asm void draw__20dMenu_Collect2DTop_cFv() {
 
 /* 801B78C0-801B795C 1B2200 009C+00 0/0 1/1 0/0 .text
  * __ct__15dMenu_Collect_cFP10JKRExpHeapP9STControlP10CSTControl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMenu_Collect_c::dMenu_Collect_c(JKRExpHeap* param_0, STControl* param_1, CSTControl* param_2) {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/__ct__15dMenu_Collect_cFP10JKRExpHeapP9STControlP10CSTControl.s"
+dMenu_Collect_c::dMenu_Collect_c(JKRExpHeap* param_0, STControl* param_1, CSTControl* param_2) {
+    mpCollect2D = new dMenu_Collect2D_c(param_0, param_1, param_2);
+    mpCollect3D = new dMenu_Collect3D_c(param_0, mpCollect2D, param_2);
 }
-#pragma pop
 
 /* 801B795C-801B7A0C 1B229C 00B0+00 1/0 0/0 0/0 .text            __dt__15dMenu_Collect_cFv */
+// matches with vtable data
+#ifdef NONMATCHING
+dMenu_Collect_c::~dMenu_Collect_c() {
+    if (mpCollect2D) {
+        delete mpCollect2D;
+        mpCollect2D = NULL;
+    }
+    if (mpCollect3D) {
+        delete mpCollect3D;
+        mpCollect3D = NULL;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2382,46 +2547,32 @@ extern "C" asm void __dt__15dMenu_Collect_cFv() {
 #include "asm/d/menu/d_menu_collect/__dt__15dMenu_Collect_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801B7A0C-801B7A44 1B234C 0038+00 0/0 1/1 0/0 .text            _create__15dMenu_Collect_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect_c::_create() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/_create__15dMenu_Collect_cFv.s"
+void dMenu_Collect_c::_create() {
+    mpCollect2D->_create();
+    mpCollect3D->_create();
 }
-#pragma pop
 
 /* 801B7A44-801B7A7C 1B2384 0038+00 0/0 1/1 0/0 .text            _delete__15dMenu_Collect_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect_c::_delete() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/_delete__15dMenu_Collect_cFv.s"
+void dMenu_Collect_c::_delete() {
+    mpCollect2D->_delete();
+    mpCollect3D->_delete();
 }
-#pragma pop
 
 /* 801B7A7C-801B7AC0 1B23BC 0044+00 0/0 1/1 0/0 .text            _move__15dMenu_Collect_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect_c::_move() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/_move__15dMenu_Collect_cFv.s"
+void dMenu_Collect_c::_move() {
+    mpCollect2D->_move();
+    mpCollect3D->_move(mpCollect2D->getCursorX(), mpCollect2D->getCursorY());
 }
-#pragma pop
 
 /* 801B7AC0-801B7B14 1B2400 0054+00 0/0 1/1 0/0 .text            draw__15dMenu_Collect_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect_c::draw() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/draw__15dMenu_Collect_cFv.s"
+void dMenu_Collect_c::draw() {
+    dComIfGd_set2DOpa(mpCollect2D);
+    mpCollect3D->draw();
+    mpCollect2D->drawTop();
 }
-#pragma pop
 
 /* 801B7B14-801B7EB8 1B2454 03A4+00 0/0 1/0 0/0 .text            __sinit_d_menu_collect_cpp */
 #pragma push
