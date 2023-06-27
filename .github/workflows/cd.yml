@@ -32,4 +32,4 @@ jobs:
       - name: Upload Progress to Frogress
         env: 
           PROGRESS_API_KEY: ${{ secrets.FROGRESS_API_KEY }}
-        run: ./tools/upload-progress.py -b https://progress.deco.mp/ -p twilightprincess -v gcn_usa progress-${{ steps.get_run_id.outputs.run_id }}.json
+        run: ./tp upload-progress -b https://progress.deco.mp/ -p twilightprincess -v gcn_usa progress-${{ steps.get_run_id.outputs.run_id }}.json

@@ -37,6 +37,8 @@ try:
     import libdol
     import libarc
     import requests
+    import glob
+    import git
 
     from rich.logging import RichHandler
     from rich.console import Console
@@ -1195,6 +1197,177 @@ def check_sha1(game_path: Path, build_path: Path, include_rels: bool):
         raise CheckException("NO MATCH!")
 
     return True
+
+def copy_progress_script():
+    file_path = './tools/tp.py'
+    destination_path = './tools/tp_copy.py'
+
+    if not os.path.exists(destination_path):
+        shutil.copyfile(file_path, destination_path)
+
+def make_progress_dir():
+    progress_dir = './progress'
+
+    if not os.path.exists(progress_dir):
+        os.mkdir(progress_dir)
+
+def generate_progress(repo, commit):
+    git_show_output = subprocess.check_output(['git', 'show', '-s', '--format=%ct', commit]).decode('ascii').strip()
+    commit_timestamp = git_show_output
+
+    commit_string = f'progress/{commit_timestamp}_{commit}.json'
+
+    if os.path.exists(commit_string):
+        print(f"File {commit_string} already exists, skipping.")
+        return
+
+    process = subprocess.Popen(["make", "clean_all"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    stdout, stderr = process.communicate()
+    if process.returncode != 0:
+        print(f"Error during make clean_all: {stderr.decode()}")
+        return
+
+    print(stdout.decode())
+
+    process = subprocess.Popen(["make", "all", "rels", f"-j{os.cpu_count()}", "WINE=~/wibo/build/wibo"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    stdout, stderr = process.communicate()
+    if process.returncode != 0:
+        print(f"Error during make all rels: {stderr.decode()}")
+        return
+
+    print(stdout.decode())
+
+    command = ["python", "./tools/tp_copy.py", "progress", "-f", "JSON"]
+
+    with open(commit_string, 'w') as outfile:
+        process = subprocess.Popen(command, stdout=outfile, stderr=subprocess.PIPE)
+        _, stderr = process.communicate()
+
+        if process.returncode != 0:
+            print(f"Error: {stderr.decode()}")
+
+def checkout_and_run(repo_path, start_commit_hash):
+    repo = git.Repo(repo_path)
+    head_commit = repo.head.commit
+
+    copy_progress_script()
+    make_progress_dir()
+
+    try:
+        commits = list(repo.iter_commits(f'{start_commit_hash}..{head_commit.hexsha}'))
+        commits.append(repo.commit(start_commit_hash))
+
+        for commit in commits[::-1]:  
+            print(f"Checking out commit {commit.hexsha}")
+            repo.git.checkout(commit.hexsha)
+            generate_progress(repo, commit.hexsha)
+    except Exception as e:
+        print(f"Error occurred: {e}")
+    finally:
+        repo.git.checkout(head_commit.hexsha)
+
+@tp.command(name="progress-history")
+@click.option("--debug/--no-debug", default=False)
+@click.option("--repo-path", default=".", required=False, help="Path to your git repository. Defaults to current directory.")
+@click.option("--start-commit", default="bc428f7f65b97cc9035aed1dc1b71c54ff2e6c3d", required=False, help="Start commit hash. If none supplied, will start at the commit where Julgodis added the progress script.")
+def progress_history(debug, repo_path, start_commit):
+    if debug:
+        LOG.setLevel(logging.DEBUG)
+
+    LOG.warning(f"This command will generate the progress for every commit since {start_commit}. This could take many hours to complete. Are you sure you want to do this? (y/n)")
+    confirmation = input().lower()
+
+    if confirmation == 'y':
+        checkout_and_run(repo_path, start_commit)
+    else:
+        sys.exit(0)
+
+def get_git_commit_timestamp() -> int:
+    return int(subprocess.check_output(['git', 'show', '-s', '--format=%ct']).decode('ascii').rstrip())
+
+def get_git_commit_sha() -> str:
+    return subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('ascii').strip()
+
+def generate_url(base_url: str, project: str, version: str) -> str:
+    url_components = [base_url.rstrip('/'), 'data']
+
+    for arg in [project, version.replace('.', '-')]:
+        if arg != "":
+            url_components.append(arg)
+
+    return str.join('/', url_components) + '/'
+
+@tp.command(name="upload-progress")
+@click.option("--debug/--no-debug")
+@click.option('-b', '--base_url', required=True, help='API base URL')
+@click.option('-a', '--api_key', required=False, default=os.environ.get('PROGRESS_API_KEY'), help='API key (env var PROGRESS_API_KEY)')
+@click.option('-p', '--project', required=True, help='Project slug')
+@click.option('-v', '--version', required=True, help='Version slug')
+@click.argument('input', type=click.Path(exists=True))
+def upload_progress(debug, base_url, api_key, project, version, input):
+    if debug:
+        LOG.setLevel(logging.DEBUG)
+    
+    if not api_key:
+        raise click.UsageError("API key required")
+
+    url = generate_url(base_url, project, version)
+
+    entries = []
+
+    # Check if input is a directory
+    if os.path.isdir(input):
+        LOG.debug(f'Loading all JSON files in directory {input}')
+
+        # Read all JSON files in the directory
+        json_files = glob.glob(os.path.join(input, "*.json"))
+
+        for json_file in json_files:
+            # Extract timestamp and commit SHA from filename
+            filename = Path(json_file).stem
+            parts = filename.split('_')
+            
+            if len(parts) != 2 or not parts[0].isdigit() or len(parts[1]) != 40:
+                LOG.error(f"Filename '{filename}' is not in the correct format. When supplying an entire directory with JSON files in it, the filenames need to be in the format: '<unix_timestamp>_<git_sha>.json' in order for Frogress to properly understand the data.")
+                sys.exit(1)
+            
+            timestamp, git_hash = parts
+
+            with open(json_file, "r") as f:
+                data = json.load(f)
+                entries.append({
+                    "timestamp": int(timestamp),
+                    "git_hash": git_hash,
+                    "categories": {
+                        "default": data,
+                    },
+                })
+    else:
+        # Process a single JSON file
+        with open(input, "r") as f:
+            LOG.debug(f'Loading single JSON file {f.name}')
+            data = json.load(f)
+            entries.append({
+                "timestamp": get_git_commit_timestamp(),
+                "git_hash": get_git_commit_sha(),
+                "categories": {
+                    "default": data,
+                },
+            })
+
+    for entry in entries:
+        LOG.info(f"Publishing entry to {url}")
+        LOG.debug(f"Entry: {entry}")
+        data = {
+            "api_key": api_key,
+            "entries": [entry],  # only send current entry
+        }
+        try:
+            r = requests.post(url, json=data)
+            r.raise_for_status()
+        except requests.exceptions.HTTPError as err:
+            LOG.error(f"HTTP request failed: {err}")
+            exit(1)
 
 
 if __name__ == "__main__":
