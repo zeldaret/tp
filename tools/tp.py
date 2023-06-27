@@ -1226,21 +1226,27 @@ def generate_progress(commit: str) -> None:
     if process.returncode != 0:
         LOG.error(f"Error during make clean_all: {stderr.decode()}")
         return
+    
+    LOG.debug(f"stdout: {stdout.decode()}")
 
     process = subprocess.Popen(["make", "all", "rels", f"-j{os.cpu_count()}", "WINE=~/wibo/build/wibo"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
+
     if process.returncode != 0:
         LOG.error(f"Error during make all rels: {stderr.decode()}")
         return
 
+    LOG.debug(f"stdout: {stdout.decode()}")
     command = ["python", "./tools/tp_copy.py", "progress", "-f", "JSON"]
 
     with open(commit_string, 'w') as outfile:
         process = subprocess.Popen(command, stdout=outfile, stderr=subprocess.PIPE)
-        _, stderr = process.communicate()
+        stdout, stderr = process.communicate()
 
         if process.returncode != 0:
             LOG.error(f"Error: {stderr.decode()}")
+        
+        LOG.debug(f"stdout: {stdout.decode()}")
 
 def checkout_and_run(repo_path: str, start_commit_hash: str) -> None:
     repo = git.Repo(repo_path)
@@ -1256,10 +1262,11 @@ def checkout_and_run(repo_path: str, start_commit_hash: str) -> None:
         for commit in commits[::-1]:  
             LOG.info(f"Checking out commit {commit.hexsha}")
             repo.git.checkout(commit.hexsha)
-            generate_progress(repo, commit.hexsha)
+            generate_progress(commit.hexsha)
     except Exception as e:
         LOG.error(f"Error occurred: {e}")
     finally:
+        LOG.debug(f"Checking out origin head commit: {head_commit.hexsha}")
         repo.git.checkout(head_commit.hexsha)
 
 @tp.command(name="progress-history")
