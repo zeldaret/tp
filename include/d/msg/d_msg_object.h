@@ -136,7 +136,7 @@ public:
     /* 80238320 */ static void onMsgSend();
     /* 8023834C */ void offMsgSend();
     /* 80238378 */ void isMsgSend();
-    /* 802383A4 */ bool isMouthCheck();
+    /* 802383A4 */ static bool isMouthCheck();
     /* 802383D0 */ static u32 getMessageID();
     /* 802383E4 */ void getSmellTypeMessageID();
     /* 80238410 */ static void setSmellType(u8);

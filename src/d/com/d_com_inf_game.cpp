@@ -1270,7 +1270,7 @@ BOOL dComIfG_resetToOpening(scene_class* i_scene) {
 }
 
 static int phase_1(char* i_arcName) {
-    if (!dComIfG_setObjectRes(i_arcName, 0, NULL)) {
+    if (!dComIfG_setObjectRes(i_arcName, (u8)0, NULL)) {
         OSReport_Error("%s.arc Read Error !!\n", i_arcName);
         return cPhs_ERROR_e;
     }
@@ -1310,7 +1310,7 @@ int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_arcNa
 
 /* 8002CEFC-8002CF5C 02783C 0060+00 1/0 0/0 0/0 .text            phase_01__FP12phaseParam_c */
 static int phase_01(phaseParam_c* i_phasePrm) {
-    if (dComIfG_setObjectRes(i_phasePrm->mResName, 0, i_phasePrm->mpHeap) == 0) {
+    if (dComIfG_setObjectRes(i_phasePrm->mResName, (u8)0, i_phasePrm->mpHeap) == 0) {
         return 5;
     }
 
@@ -2388,10 +2388,14 @@ bool dComIfGs_shake_kandelaar_check() {
 
 /* 8002FA54-8002FA84 02A394 0030+00 0/0 4/4 96/96 .text            dComIfGs_wolfeye_effect_check__Fv
  */
-bool dComIfGs_wolfeye_effect_check() {
+BOOL dComIfGs_wolfeye_effect_check() {
     dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    BOOL ret = false;
 
-    return env_light->field_0xf3d == 1 && env_light->field_0xf40 > 0.6;
+    if (env_light->field_0xf3d == 1 && env_light->field_0xf40 > 0.6) {
+        ret = true;
+    }
+    return ret;
 }
 
 void dComIfGs_Grass_hide_Set(s8 param_0) {

@@ -1620,8 +1620,8 @@ bool J3DPEBlock::getBlend() {
 }
 
 /* 8000DF54-8000DF5C 008894 0008+00 0/0 5/0 0/0 .text            getAlphaComp__10J3DPEBlockFv */
-bool J3DPEBlock::getAlphaComp() {
-    return false;
+J3DAlphaComp* J3DPEBlock::getAlphaComp() {
+    return NULL;
 }
 
 /* 8000DF5C-8000DF64 00889C 0008+00 0/0 6/0 0/0 .text            getFog__10J3DPEBlockFv */
@@ -1688,8 +1688,8 @@ bool J3DTevBlock::getTevKColorSel(u32 param_0) {
 }
 
 /* 8000DFB8-8000DFC0 0088F8 0008+00 0/0 2/0 0/0 .text            getTevOrder__11J3DTevBlockFUl */
-bool J3DTevBlock::getTevOrder(u32 param_0) {
-    return false;
+J3DTevOrder* J3DTevBlock::getTevOrder(u32 param_0) {
+    return NULL;
 }
 
 /* 8000DFC0-8000DFC8 008900 0008+00 0/0 3/0 0/0 .text            getTevKColor__11J3DTevBlockFUl */
@@ -1713,14 +1713,14 @@ J3DTexMtx* J3DTexGenBlock::getTexMtx(u32 param_0) {
 }
 
 /* 8000DFE0-8000DFE8 008920 0008+00 0/0 2/0 0/0 .text            getTexCoord__14J3DTexGenBlockFUl */
-bool J3DTexGenBlock::getTexCoord(u32 param_0) {
-    return false;
+J3DTexCoord* J3DTexGenBlock::getTexCoord(u32 param_0) {
+    return NULL;
 }
 
 /* 8000DFE8-8000DFF0 008928 0008+00 0/0 2/0 0/0 .text            getTexGenNum__14J3DTexGenBlockCFv
  */
-bool J3DTexGenBlock::getTexGenNum() const {
-    return false;
+u32 J3DTexGenBlock::getTexGenNum() const {
+    return 0;
 }
 
 /* 8000DFF0-8000DFF8 008930 0008+00 0/0 3/0 0/0 .text            getAmbColor__13J3DColorBlockFUl */
@@ -1729,8 +1729,8 @@ bool J3DColorBlock::getAmbColor(u32 param_0) {
 }
 
 /* 8000DFF8-8000E000 008938 0008+00 0/0 2/0 0/0 .text            getColorChan__13J3DColorBlockFUl */
-bool J3DColorBlock::getColorChan(u32 param_0) {
-    return false;
+J3DColorChan* J3DColorBlock::getColorChan(u32 param_0) {
+    return NULL;
 }
 
 /* 8000E000-8000E008 008940 0008+00 0/0 2/0 0/0 .text            getMatColor__13J3DColorBlockFUl */
@@ -2828,8 +2828,8 @@ asm void mDoExt_McaMorfSO::calc() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoExt_McaMorfSO::setAnm(J3DAnmTransform* param_0, int param_1, f32 param_2, f32 param_3,
-                                  f32 param_4, f32 param_5) {
+asm void mDoExt_McaMorfSO::setAnm(J3DAnmTransform* i_anm, int i_attr, f32 i_morf, f32 i_rate,
+                                  f32 i_start, f32 i_end) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff.s"
 }

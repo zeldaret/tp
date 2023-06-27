@@ -522,7 +522,7 @@ asm void JASTrack::noteOff(u32 param_0, u16 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASTrack::checkNoteStop(u32 param_0) const {
+asm bool JASTrack::checkNoteStop(u32 param_0) const {
     nofralloc
 #include "asm/JSystem/JAudio2/JASTrack/checkNoteStop__8JASTrackCFUl.s"
 }

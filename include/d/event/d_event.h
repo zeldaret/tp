@@ -125,7 +125,7 @@ public:
     dStage_MapEvent_dt_c* getStageEventDt();
     void sceneChange(int exitId);
     u32 getPId(void*);
-    void* convPId(unsigned int);
+    fopAc_ac_c* convPId(unsigned int);
     void* getStbDemoData(char* resName);
     static dStage_MapEvent_dt_c* searchMapEventData(u8 mapToolID, s32 roomNo);
     static dStage_MapEvent_dt_c* searchMapEventData(u8 mapToolID);
@@ -154,11 +154,12 @@ public:
     void onFlag2(u16 flag) { mFlag2 |= flag; }
     void offFlag2(u16 flag) { mFlag2 &= ~flag; }
     void setCullRate(f32 f) { mCullRate = f; }
+    BOOL chkTalkXY() { return field_0xed == 1 || field_0xed == 2; }
 
     bool i_isOrderOK() { return mEventStatus == 0 || mEventStatus == 2; }
-    void* getPt1() { return convPId(mPt1); }
-    void* getPt2() { return convPId(mPt2); }
-    void* getPtT() { return convPId(mPtT); }
+    fopAc_ac_c* getPt1() { return convPId(mPt1); }
+    fopAc_ac_c* getPt2() { return convPId(mPt2); }
+    fopAc_ac_c* getPtT() { return convPId(mPtT); }
     bool isChangeOK(void* param_0) { return mChangeOK == param_0; }
     u8 getPreItemNo() { return mPreItemNo; }
 

@@ -22,10 +22,6 @@ namespace std {
 /* 80182D10 */ void fabs(f32);
 };  // namespace std
 
-struct mDoLib_clipper {
-    /* 8001528C */ void setup(f32, f32, f32, f32);
-};
-
 struct daTagMwait_c {
     /* 80182D9C */ void checkEndMessage();
 };

@@ -18,7 +18,7 @@ public:
     /* 8003A348 */ int set(char const*, char const*, u8, JKRHeap*);
     /* 8003AB30 */ static void onWarpMaterial(J3DModelData*);
     /* 8003AC1C */ static void offWarpMaterial(J3DModelData*);
-    /* 8003AD08 */ void setWarpSRT(J3DModelData*, cXyz const&, f32, f32);
+    /* 8003AD08 */ static void setWarpSRT(J3DModelData*, cXyz const&, f32, f32);
     /* 8003AE14 */ static J3DModelData* loaderBasicBmd(u32, void*);
     /* 8003B30C */ int loadResource();
     /* 8003B998 */ void deleteArchiveRes();
@@ -34,8 +34,7 @@ public:
     JKRArchive* getArchive() { return mArchive; }
     void incCount() { mCount++; }
     u16 decCount() {
-        mCount--;
-        return mCount;
+        return --mCount;
     }
 
 private:

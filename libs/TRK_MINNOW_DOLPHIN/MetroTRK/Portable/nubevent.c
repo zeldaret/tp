@@ -4,6 +4,8 @@
 //
 
 #include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubevent.h"
+#include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf.h"
+#include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/mutex_TRK.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -15,7 +17,7 @@ void TRKDestructEvent();
 void TRKConstructEvent();
 void TRKPostEvent();
 void TRKGetNextEvent();
-void TRKInitializeEventQueue();
+u8 TRKInitializeEventQueue();
 
 //
 // External References:
@@ -23,23 +25,15 @@ void TRKInitializeEventQueue();
 
 SECTION_INIT void TRK_memcpy();
 void TRKReleaseBuffer();
-u8 TRKReleaseMutex();
-u8 TRKAcquireMutex();
-u8 TRKInitializeMutex();
 
 //
 // Declarations:
 //
 
 /* 8036CC18-8036CC3C 367558 0024+00 0/0 1/1 0/0 .text            TRKDestructEvent */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void TRKDestructEvent() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubevent/TRKDestructEvent.s"
+void TRKDestructEvent(TRKBuffer* buf) {
+    TRKReleaseBuffer(buf->_08);
 }
-#pragma pop
 
 /* 8036CC3C-8036CC54 36757C 0018+00 0/0 5/5 0/0 .text            TRKConstructEvent */
 #pragma push
@@ -53,7 +47,7 @@ asm void TRKConstructEvent() {
 
 /* ############################################################################################## */
 /* 8044D890-8044D8B8 07A5B0 0028+00 3/3 0/0 0/0 .bss             gTRKEventQueue */
-static u8 gTRKEventQueue[40];
+static s32 gTRKEventQueue[10];
 
 /* 8036CC54-8036CD34 367594 00E0+00 0/0 5/5 0/0 .text            TRKPostEvent */
 #pragma push
@@ -76,11 +70,12 @@ asm void TRKGetNextEvent() {
 #pragma pop
 
 /* 8036CDE8-8036CE40 367728 0058+00 0/0 1/1 0/0 .text            TRKInitializeEventQueue */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void TRKInitializeEventQueue() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubevent/TRKInitializeEventQueue.s"
+u8 TRKInitializeEventQueue() {
+    TRKInitializeMutex(&gTRKEventQueue);
+    TRKAcquireMutex(&gTRKEventQueue);
+    gTRKEventQueue[1] = 0;
+    gTRKEventQueue[2] = 0;
+    gTRKEventQueue[9] = 0x100;
+    TRKReleaseMutex();
+    return 0;
 }
-#pragma pop

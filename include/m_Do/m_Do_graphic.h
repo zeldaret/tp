@@ -55,7 +55,7 @@ public:
 
     static int startFadeOut(int param_0) { return JFWDisplay::getManager()->startFadeOut(param_0); }
     static int startFadeIn(int param_0) { return JFWDisplay::getManager()->startFadeIn(param_0); }
-    static void setFadeColor(JUtility::TColor& color) { mFader->setColor(color); }
+    static void setFadeColor(JUtility::TColor color) { mFader->mColor.set(color); }
     static void setClearColor(JUtility::TColor color) { JFWDisplay::getManager()->setClearColor(color); }
     static void setBackColor(GXColor& color) { mBackColor = color; }
     static void endFrame() { JFWDisplay::getManager()->endFrame(); }
@@ -73,11 +73,13 @@ public:
     static f32 getMinXF() { return 0.0f; }
     static f32 getMaxYF() { return 448.0f; }
     static f32 getMaxXF() { return 608.0f; }
+    static f32 getAspect() { return 1.3571428f; }
     static int getMinY() { return 0; }
     static int getMinX() { return 0; }
     static int getMaxY() { return 448; }
     static int getMaxX() { return 608; }
     static ResTIMG* getFrameBufferTimg() { return mFrameBufferTimg; }
+    static ResTIMG* getZbufferTimg() { return mZbufferTimg; }
     static void* getFrameBufferTex() { return mFrameBufferTex; }
     static void setFadeRate(f32 rate) { mFadeRate = rate; }
     static f32 getFadeRate() { return mFadeRate; }

@@ -18,7 +18,7 @@ public:
     /* 0x22C */ s8 mPrm1;
     /* 0x22D */ s8 mPrm2;
     /* 0x22E */ s8 mPrm3;
-    /* 0x22F */ u8 field_0x22f;
+    /* 0x22F */ s8 field_0x22f;
     /* 0x230 */ csXyz mAngle;
     /* 0x238 */ int field_0x238;
 };

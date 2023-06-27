@@ -18,11 +18,11 @@ float cM_rndF2(float);
 float cM_rndFX2(float);
 
 inline f32 cM_scos(s16 s) {
-    return JMath::sincosTable_.table[static_cast<u16>(s) >> 3].second;
+    return JMASCos(s);
 }
 
 inline f32 cM_ssin(s16 s) {
-    return JMath::sincosTable_.table[static_cast<u16>(s) >> 3].first;
+    return JMASSin(s);
 }
 
 inline s16 cM_deg2s(f32 val) {
