@@ -76,7 +76,7 @@ int daTagWljump_c::create() {
     }
 
     mAttentionInfo.field_0x0[0] = 0x32;
-    mAttentionInfo.field_0x4[3] = 0x32;
+    mAttentionInfo.field_0x0[7] = 0x32;
     shape_angle.z = 0;
     field_0x568 = -1;
     field_0x56c[0] = (fopAcM_GetParam(this) >> 16) & 0xf;
