@@ -1198,20 +1198,20 @@ def check_sha1(game_path: Path, build_path: Path, include_rels: bool):
 
     return True
 
-def copy_progress_script():
+def copy_progress_script() -> None:
     file_path = './tools/tp.py'
     destination_path = './tools/tp_copy.py'
 
     if not os.path.exists(destination_path):
         shutil.copyfile(file_path, destination_path)
 
-def make_progress_dir():
+def make_progress_dir() -> None:
     progress_dir = './progress'
 
     if not os.path.exists(progress_dir):
         os.mkdir(progress_dir)
 
-def generate_progress(repo, commit):
+def generate_progress(commit: str) -> None:
     git_show_output = subprocess.check_output(['git', 'show', '-s', '--format=%ct', commit]).decode('ascii').strip()
     commit_timestamp = git_show_output
 
@@ -1246,7 +1246,7 @@ def generate_progress(repo, commit):
         if process.returncode != 0:
             print(f"Error: {stderr.decode()}")
 
-def checkout_and_run(repo_path, start_commit_hash):
+def checkout_and_run(repo_path: str, start_commit_hash: str) -> None:
     repo = git.Repo(repo_path)
     head_commit = repo.head.commit
 
@@ -1270,7 +1270,7 @@ def checkout_and_run(repo_path, start_commit_hash):
 @click.option("--debug/--no-debug", default=False)
 @click.option("--repo-path", default=".", required=False, help="Path to your git repository. Defaults to current directory.")
 @click.option("--start-commit", default="bc428f7f65b97cc9035aed1dc1b71c54ff2e6c3d", required=False, help="Start commit hash. If none supplied, will start at the commit where Julgodis added the progress script.")
-def progress_history(debug, repo_path, start_commit):
+def progress_history(debug: bool, repo_path: str, start_commit: str) -> None:
     if debug:
         LOG.setLevel(logging.DEBUG)
 
@@ -1304,7 +1304,7 @@ def generate_url(base_url: str, project: str, version: str) -> str:
 @click.option('-p', '--project', required=True, help='Project slug')
 @click.option('-v', '--version', required=True, help='Version slug')
 @click.argument('input', type=click.Path(exists=True))
-def upload_progress(debug, base_url, api_key, project, version, input):
+def upload_progress(debug: bool, base_url: str, api_key: str, project: str, version: str, input: str) -> None:
     if debug:
         LOG.setLevel(logging.DEBUG)
     
