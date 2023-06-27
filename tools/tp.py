@@ -45,6 +45,7 @@ try:
     from rich.progress import Progress
     from rich.text import Text
     from rich.table import Table
+    from typing import Optional
 except ImportError as ex:
     _handle_import_error(ex)
 
@@ -1198,55 +1199,60 @@ def check_sha1(game_path: Path, build_path: Path, include_rels: bool):
 
     return True
 
-def copy_progress_script():
+def copy_progress_script() -> None:
     file_path = './tools/tp.py'
     destination_path = './tools/tp_copy.py'
 
     if not os.path.exists(destination_path):
         shutil.copyfile(file_path, destination_path)
 
-def make_progress_dir():
+def make_progress_dir() -> None:
     progress_dir = './progress'
 
     if not os.path.exists(progress_dir):
         os.mkdir(progress_dir)
 
-def generate_progress(repo, commit):
+def generate_progress(commit: str, wibo_path: Optional[str] = None) -> None:
     git_show_output = subprocess.check_output(['git', 'show', '-s', '--format=%ct', commit]).decode('ascii').strip()
     commit_timestamp = git_show_output
 
     commit_string = f'progress/{commit_timestamp}_{commit}.json'
 
     if os.path.exists(commit_string):
-        print(f"File {commit_string} already exists, skipping.")
+        LOG.info(f"File {commit_string} already exists, skipping.")
         return
 
     process = subprocess.Popen(["make", "clean_all"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
     if process.returncode != 0:
-        print(f"Error during make clean_all: {stderr.decode()}")
+        LOG.error(f"Error during make clean_all: {stderr.decode()}")
         return
+    
+    LOG.debug(f"stdout: {stdout.decode()}")
 
-    print(stdout.decode())
-
-    process = subprocess.Popen(["make", "all", "rels", f"-j{os.cpu_count()}", "WINE=~/wibo/build/wibo"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    make_command = ["make", "all", "rels", f"-j{os.cpu_count()}"]
+    if wibo_path:
+        make_command.append(f"WINE={wibo_path}")
+    process = subprocess.Popen(make_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
+
     if process.returncode != 0:
-        print(f"Error during make all rels: {stderr.decode()}")
+        LOG.error(f"Error during make all rels: {stderr.decode()}")
         return
 
-    print(stdout.decode())
-
+    LOG.debug(f"stdout: {stdout.decode()}")
     command = ["python", "./tools/tp_copy.py", "progress", "-f", "JSON"]
 
     with open(commit_string, 'w') as outfile:
         process = subprocess.Popen(command, stdout=outfile, stderr=subprocess.PIPE)
-        _, stderr = process.communicate()
+        stdout, stderr = process.communicate()
 
         if process.returncode != 0:
-            print(f"Error: {stderr.decode()}")
+            LOG.error(f"Error: {stderr.decode()}")
+        
+        LOG.debug(f"stdout: {stdout.decode()}")
 
-def checkout_and_run(repo_path, start_commit_hash):
+def checkout_and_run(repo_path: str, start_commit_hash: str, wibo_path: Optional[str] = None) -> None:
     repo = git.Repo(repo_path)
     head_commit = repo.head.commit
 
@@ -1258,19 +1264,21 @@ def checkout_and_run(repo_path, start_commit_hash):
         commits.append(repo.commit(start_commit_hash))
 
         for commit in commits[::-1]:  
-            print(f"Checking out commit {commit.hexsha}")
+            LOG.info(f"Checking out commit {commit.hexsha}")
             repo.git.checkout(commit.hexsha)
-            generate_progress(repo, commit.hexsha)
+            generate_progress(commit.hexsha, wibo_path)
     except Exception as e:
-        print(f"Error occurred: {e}")
+        LOG.error(f"Error occurred: {e}")
     finally:
+        LOG.debug(f"Checking out origin head commit: {head_commit.hexsha}")
         repo.git.checkout(head_commit.hexsha)
 
 @tp.command(name="progress-history")
 @click.option("--debug/--no-debug", default=False)
 @click.option("--repo-path", default=".", required=False, help="Path to your git repository. Defaults to current directory.")
 @click.option("--start-commit", default="bc428f7f65b97cc9035aed1dc1b71c54ff2e6c3d", required=False, help="Start commit hash. If none supplied, will start at the commit where Julgodis added the progress script.")
-def progress_history(debug, repo_path, start_commit):
+@click.option("--wibo-path", default=None, required=False, help="Path to wibo build. If none supplied, the default Wine will be used.")
+def progress_history(debug, repo_path, start_commit, wibo_path):
     if debug:
         LOG.setLevel(logging.DEBUG)
 
@@ -1278,7 +1286,7 @@ def progress_history(debug, repo_path, start_commit):
     confirmation = input().lower()
 
     if confirmation == 'y':
-        checkout_and_run(repo_path, start_commit)
+        checkout_and_run(repo_path, start_commit, wibo_path)
     else:
         sys.exit(0)
 
@@ -1304,7 +1312,7 @@ def generate_url(base_url: str, project: str, version: str) -> str:
 @click.option('-p', '--project', required=True, help='Project slug')
 @click.option('-v', '--version', required=True, help='Version slug')
 @click.argument('input', type=click.Path(exists=True))
-def upload_progress(debug, base_url, api_key, project, version, input):
+def upload_progress(debug: bool, base_url: str, api_key: str, project: str, version: str, input: str) -> None:
     if debug:
         LOG.setLevel(logging.DEBUG)
     
