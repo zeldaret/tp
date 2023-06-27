@@ -9,3 +9,5 @@ python-Levenshtein
 cxxfilt
 pyelftools
 requests
+glob
+git
