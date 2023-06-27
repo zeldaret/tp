@@ -2218,7 +2218,7 @@ int daE_YM_c::create() {
                 mpPath = dPath_GetRoomPath(tmp0, fopAcM_GetRoomNo(this));
 
                 if (mpPath != NULL) {
-                    mAttentionInfo.field_0x4[3] = 31;
+                    mAttentionInfo.field_0x0[7] = 31;
                     field_0x6a6 = 4;
                     field_0x670 = current.pos;
                     setActionMode(ACT_WAIT);

@@ -31,7 +31,7 @@ int daTag_Howl_c::execute() {
     this->mAttentionInfo.mFlags = 0;
     if (isAreaCheck() != NULL) {
         this->mAttentionInfo.mFlags |= 0x80;
-        this->mAttentionInfo.field_0x4[3] = 0x41;
+        this->mAttentionInfo.field_0x0[7] = 0x41;
     }
     return 1;
 }

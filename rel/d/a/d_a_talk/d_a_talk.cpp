@@ -4,51 +4,12 @@
 //
 
 #include "rel/d/a/d_a_talk/d_a_talk.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
+#include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct daTalk_c {
-    /* 80D66378 */ ~daTalk_c();
-    /* 80D663E4 */ void create();
-    /* 80D664AC */ void execute();
-    /* 80D6665C */ bool draw();
-    /* 80D66664 */ void setStatus(u16);
-    /* 80D66688 */ void getStatus();
-    /* 80D666A8 */ void messageSet();
-};
-
-struct dMsgObject_c {
-    /* 80238188 */ void setProcessID(unsigned int);
-    /* 802381C0 */ void getpTalkActor();
-    /* 802381D4 */ void getIdx();
-    /* 802381E8 */ void getNodeIdx();
-    /* 802381FC */ void setStatus(u16);
-    /* 8023822C */ void getStatus();
-};
-
-struct dMsgFlow_c {
-    /* 80249F00 */ dMsgFlow_c();
-    /* 80249F48 */ ~dMsgFlow_c();
-    /* 80249F90 */ void init(fopAc_ac_c*, int, int, fopAc_ac_c**);
-    /* 8024A2D8 */ void doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
-};
-
-struct dEvt_control_c {
-    /* 80042468 */ void reset();
-};
-
-struct dAttention_c {
-    static u8 dist_table[6552];
-};
+#include "f_op/f_op_msg_mng.h"
 
 //
 // Forward References:
@@ -65,7 +26,6 @@ extern "C" static void daTalk_Create__FP10fopAc_ac_c();
 extern "C" static void daTalk_Delete__FP8daTalk_c();
 extern "C" static void daTalk_Execute__FP8daTalk_c();
 extern "C" static void daTalk_Draw__FP8daTalk_c();
-extern "C" extern void* g_profile_TALK[12];
 
 //
 // External References:
@@ -91,139 +51,151 @@ extern "C" void __dl__FPv();
 extern "C" void __copy();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 dist_table__12dAttention_c[6552];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
 // Declarations:
 //
 
 /* 80D66378-80D663E4 000078 006C+00 1/1 0/0 0/0 .text            __dt__8daTalk_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm daTalk_c::~daTalk_c() {
-    nofralloc
-#include "asm/rel/d/a/d_a_talk/d_a_talk/__dt__8daTalk_cFv.s"
+daTalk_c::~daTalk_c() {
+    dMsgObject_getMsgObjectClass()->setProcessID(-1);
 }
-#pragma pop
 
 /* 80D663E4-80D664AC 0000E4 00C8+00 1/1 0/0 0/0 .text            create__8daTalk_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTalk_c::create() {
-    nofralloc
-#include "asm/rel/d/a/d_a_talk/d_a_talk/create__8daTalk_cFv.s"
+int daTalk_c::create() {
+    if (!fopAcM_CheckCondition(this, 8)) {
+        new (this) daTalk_c();
+        fopAcM_OnCondition(this, 8);
+    }
+
+    if (getStatus() != 1) {
+        return cPhs_ERROR_e;
+    }
+
+    mAttentionInfo = dMsgObject_getMsgObjectClass()->getpTalkActor()->mAttentionInfo;
+    mMessageID = -1;
+    return cPhs_COMPLEATE_e;
 }
-#pragma pop
 
 /* 80D664AC-80D6665C 0001AC 01B0+00 1/1 0/0 0/0 .text            execute__8daTalk_cFv */
+// g_dComIfG_gameInfo.play.mEvent being reloaded when it shouldnt be
+#ifdef NONMATCHING
+int daTalk_c::execute() {
+    if (i_dComIfGp_event_runCheck()) {
+        if (!mEvtInfo.checkCommandTalk()) {
+            fopAcM_delete(this);
+        }
+    } else {
+        if (fopAcM_searchPlayerDistanceXZ(this) >
+            dAttention_c::i_getDistTable(mAttentionInfo.field_0x0[1]).field_0x4)
+        {
+            mMessageID = -1;
+            fopAcM_delete(this);
+        } else {
+            mEvtInfo.i_onCondition(1);
+        }
+    }
+
+    if (mEvtInfo.checkCommandTalk()) {
+        if (dMsgObject_getMsgObjectClass()->getNodeIdx() == 0xFF) {
+            if (mMessageID == -1) {
+                mMessageID = messageSet();
+            } else if (getStatus() == 14) {
+                setStatus(16);
+            } else if (getStatus() == 18) {
+                i_dComIfGp_event_reset();
+                setStatus(19);
+                mMessageID = -1;
+                fopAcM_delete(this);
+            }
+        } else if (mMessageID == -1) {
+            mMsgFlow.init(this, dMsgObject_getMsgObjectClass()->getNodeIdx(), 0, NULL);
+            mMessageID = 2;
+        } else if (mMsgFlow.doFlow(dMsgObject_getMsgObjectClass()->getpTalkActor(), NULL, 0)) {
+            i_dComIfGp_event_reset();
+            mMessageID = -1;
+            fopAcM_delete(this);
+        }
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTalk_c::execute() {
+asm int daTalk_c::execute() {
     nofralloc
 #include "asm/rel/d/a/d_a_talk/d_a_talk/execute__8daTalk_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80D6665C-80D66664 00035C 0008+00 1/1 0/0 0/0 .text            draw__8daTalk_cFv */
-bool daTalk_c::draw() {
-    return true;
+int daTalk_c::draw() {
+    return 1;
 }
 
 /* 80D66664-80D66688 000364 0024+00 1/1 0/0 0/0 .text            setStatus__8daTalk_cFUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTalk_c::setStatus(u16 param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_talk/d_a_talk/setStatus__8daTalk_cFUs.s"
+void daTalk_c::setStatus(u16 i_status) {
+    dMsgObject_getMsgObjectClass()->setStatus(i_status);
 }
-#pragma pop
 
 /* 80D66688-80D666A8 000388 0020+00 2/2 0/0 0/0 .text            getStatus__8daTalk_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTalk_c::getStatus() {
-    nofralloc
-#include "asm/rel/d/a/d_a_talk/d_a_talk/getStatus__8daTalk_cFv.s"
+u16 daTalk_c::getStatus() {
+    return dMsgObject_getMsgObjectClass()->getStatus();
 }
-#pragma pop
 
 /* 80D666A8-80D666E4 0003A8 003C+00 1/1 0/0 0/0 .text            messageSet__8daTalk_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTalk_c::messageSet() {
-    nofralloc
-#include "asm/rel/d/a/d_a_talk/d_a_talk/messageSet__8daTalk_cFv.s"
+u32 daTalk_c::messageSet() {
+    return fopMsgM_messageSet(dMsgObject_getMsgObjectClass()->getIdx(),
+                              dMsgObject_getMsgObjectClass()->getpTalkActor(), 1000);
 }
-#pragma pop
 
 /* 80D666E4-80D66704 0003E4 0020+00 1/0 0/0 0/0 .text            daTalk_Create__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTalk_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_talk/d_a_talk/daTalk_Create__FP10fopAc_ac_c.s"
+static int daTalk_Create(fopAc_ac_c* i_this) {
+    return static_cast<daTalk_c*>(i_this)->create();
 }
-#pragma pop
 
 /* 80D66704-80D6672C 000404 0028+00 1/0 0/0 0/0 .text            daTalk_Delete__FP8daTalk_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTalk_Delete(daTalk_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_talk/d_a_talk/daTalk_Delete__FP8daTalk_c.s"
+static int daTalk_Delete(daTalk_c* i_this) {
+    i_this->~daTalk_c();
+    return 1;
 }
-#pragma pop
 
 /* 80D6672C-80D6674C 00042C 0020+00 1/0 0/0 0/0 .text            daTalk_Execute__FP8daTalk_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTalk_Execute(daTalk_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_talk/d_a_talk/daTalk_Execute__FP8daTalk_c.s"
+static int daTalk_Execute(daTalk_c* i_this) {
+    return i_this->execute();
 }
-#pragma pop
 
 /* 80D6674C-80D6676C 00044C 0020+00 1/0 0/0 0/0 .text            daTalk_Draw__FP8daTalk_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTalk_Draw(daTalk_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_talk/d_a_talk/daTalk_Draw__FP8daTalk_c.s"
+static int daTalk_Draw(daTalk_c* i_this) {
+    return i_this->draw();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D66774-80D66794 -00001 0020+00 1/0 0/0 0/0 .data            l_daTalk_Method */
-SECTION_DATA static void* l_daTalk_Method[8] = {
-    (void*)daTalk_Create__FP10fopAc_ac_c,
-    (void*)daTalk_Delete__FP8daTalk_c,
-    (void*)daTalk_Execute__FP8daTalk_c,
-    (void*)NULL,
-    (void*)daTalk_Draw__FP8daTalk_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daTalk_Method = {
+    (process_method_func)daTalk_Create,  (process_method_func)daTalk_Delete,
+    (process_method_func)daTalk_Execute, (process_method_func)NULL,
+    (process_method_func)daTalk_Draw,
 };
 
 /* 80D66794-80D667C4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TALK */
-SECTION_DATA extern void* g_profile_TALK[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x02BD0000, (void*)&g_fpcLf_Method,
-    (void*)0x000005B8, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x02FE0000, (void*)&l_daTalk_Method,
-    (void*)0x00044000, (void*)0x00060000,
+extern actor_process_profile_definition g_profile_TALK = {
+    -3,
+    7,
+    -3,
+    PROC_TALK,
+    &g_fpcLf_Method.mBase,
+    sizeof(daTalk_c),
+    0,
+    0,
+    &g_fopAc_Method.base,
+    766,
+    &l_daTalk_Method,
+    0x44000,
+    0,
+    6,
 };

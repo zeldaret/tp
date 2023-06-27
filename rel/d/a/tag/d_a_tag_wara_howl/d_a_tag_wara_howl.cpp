@@ -42,7 +42,7 @@ int daTagWrHowl_c::execute() {
 
     if (chkWlfInTag()) {
         mAttentionInfo.mFlags |= 0x80;
-        mAttentionInfo.field_0x4[3] = 65;
+        mAttentionInfo.field_0x0[7] = 65;
     }
 
     return 1;
