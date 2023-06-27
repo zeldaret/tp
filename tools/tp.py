@@ -45,6 +45,7 @@ try:
     from rich.progress import Progress
     from rich.text import Text
     from rich.table import Table
+    from typing import Optional
 except ImportError as ex:
     _handle_import_error(ex)
 
@@ -1211,7 +1212,7 @@ def make_progress_dir() -> None:
     if not os.path.exists(progress_dir):
         os.mkdir(progress_dir)
 
-def generate_progress(commit: str) -> None:
+def generate_progress(commit: str, wibo_path: Optional[str] = None) -> None:
     git_show_output = subprocess.check_output(['git', 'show', '-s', '--format=%ct', commit]).decode('ascii').strip()
     commit_timestamp = git_show_output
 
@@ -1229,7 +1230,10 @@ def generate_progress(commit: str) -> None:
     
     LOG.debug(f"stdout: {stdout.decode()}")
 
-    process = subprocess.Popen(["make", "all", "rels", f"-j{os.cpu_count()}", "WINE=~/wibo/build/wibo"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    make_command = ["make", "all", "rels", f"-j{os.cpu_count()}"]
+    if wibo_path:
+        make_command.append(f"WINE={wibo_path}")
+    process = subprocess.Popen(make_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
 
     if process.returncode != 0:
@@ -1248,7 +1252,7 @@ def generate_progress(commit: str) -> None:
         
         LOG.debug(f"stdout: {stdout.decode()}")
 
-def checkout_and_run(repo_path: str, start_commit_hash: str) -> None:
+def checkout_and_run(repo_path: str, start_commit_hash: str, wibo_path: Optional[str] = None) -> None:
     repo = git.Repo(repo_path)
     head_commit = repo.head.commit
 
@@ -1262,7 +1266,7 @@ def checkout_and_run(repo_path: str, start_commit_hash: str) -> None:
         for commit in commits[::-1]:  
             LOG.info(f"Checking out commit {commit.hexsha}")
             repo.git.checkout(commit.hexsha)
-            generate_progress(commit.hexsha)
+            generate_progress(commit.hexsha, wibo_path)
     except Exception as e:
         LOG.error(f"Error occurred: {e}")
     finally:
@@ -1273,7 +1277,8 @@ def checkout_and_run(repo_path: str, start_commit_hash: str) -> None:
 @click.option("--debug/--no-debug", default=False)
 @click.option("--repo-path", default=".", required=False, help="Path to your git repository. Defaults to current directory.")
 @click.option("--start-commit", default="bc428f7f65b97cc9035aed1dc1b71c54ff2e6c3d", required=False, help="Start commit hash. If none supplied, will start at the commit where Julgodis added the progress script.")
-def progress_history(debug: bool, repo_path: str, start_commit: str) -> None:
+@click.option("--wibo-path", default=None, required=False, help="Path to wibo build. If none supplied, the default Wine will be used.")
+def progress_history(debug, repo_path, start_commit, wibo_path):
     if debug:
         LOG.setLevel(logging.DEBUG)
 
@@ -1281,7 +1286,7 @@ def progress_history(debug: bool, repo_path: str, start_commit: str) -> None:
     confirmation = input().lower()
 
     if confirmation == 'y':
-        checkout_and_run(repo_path, start_commit)
+        checkout_and_run(repo_path, start_commit, wibo_path)
     else:
         sys.exit(0)
 
