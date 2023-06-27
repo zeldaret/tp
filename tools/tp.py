@@ -1218,24 +1218,20 @@ def generate_progress(repo, commit):
     commit_string = f'progress/{commit_timestamp}_{commit}.json'
 
     if os.path.exists(commit_string):
-        print(f"File {commit_string} already exists, skipping.")
+        LOG.info(f"File {commit_string} already exists, skipping.")
         return
 
     process = subprocess.Popen(["make", "clean_all"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
     if process.returncode != 0:
-        print(f"Error during make clean_all: {stderr.decode()}")
+        LOG.error(f"Error during make clean_all: {stderr.decode()}")
         return
-
-    print(stdout.decode())
 
     process = subprocess.Popen(["make", "all", "rels", f"-j{os.cpu_count()}", "WINE=~/wibo/build/wibo"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
     if process.returncode != 0:
-        print(f"Error during make all rels: {stderr.decode()}")
+        LOG.error(f"Error during make all rels: {stderr.decode()}")
         return
-
-    print(stdout.decode())
 
     command = ["python", "./tools/tp_copy.py", "progress", "-f", "JSON"]
 
@@ -1244,7 +1240,7 @@ def generate_progress(repo, commit):
         _, stderr = process.communicate()
 
         if process.returncode != 0:
-            print(f"Error: {stderr.decode()}")
+            LOG.error(f"Error: {stderr.decode()}")
 
 def checkout_and_run(repo_path, start_commit_hash):
     repo = git.Repo(repo_path)
@@ -1258,11 +1254,11 @@ def checkout_and_run(repo_path, start_commit_hash):
         commits.append(repo.commit(start_commit_hash))
 
         for commit in commits[::-1]:  
-            print(f"Checking out commit {commit.hexsha}")
+            LOG.info(f"Checking out commit {commit.hexsha}")
             repo.git.checkout(commit.hexsha)
             generate_progress(repo, commit.hexsha)
     except Exception as e:
-        print(f"Error occurred: {e}")
+        LOG.error(f"Error occurred: {e}")
     finally:
         repo.git.checkout(head_commit.hexsha)
 
