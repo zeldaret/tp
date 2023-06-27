@@ -45,7 +45,6 @@ try:
     from rich.progress import Progress
     from rich.text import Text
     from rich.table import Table
-    from pprint import pprint
 except ImportError as ex:
     _handle_import_error(ex)
 
