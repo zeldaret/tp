@@ -31,7 +31,7 @@ jobs:
           workflow: ${{ env.WORKFLOW }}
       - name: Install Python Deps
         run: |
-          pip install GitPython
+          pip install GitPython rich
       - name: Upload Progress to Frogress
         env: 
           PROGRESS_API_KEY: ${{ secrets.FROGRESS_API_KEY }}
