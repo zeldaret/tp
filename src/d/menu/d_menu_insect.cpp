@@ -717,7 +717,7 @@ asm void dMenu_Insect_c::screenSetDoIcon() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Insect_c::getGetInsectNum() {
+asm u8 dMenu_Insect_c::getGetInsectNum() {
     nofralloc
 #include "asm/d/menu/d_menu_insect/getGetInsectNum__14dMenu_Insect_cFv.s"
 }

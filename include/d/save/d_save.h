@@ -678,6 +678,7 @@ class dSv_fishing_info_c {
 public:
     void init();
     void addFishCount(u8 i_fishIndex);
+    u16 getFishCount(u8 i_fishIndex) { return mFishCount[i_fishIndex]; }
 
 private:
     /* 0x00 */ u16 mFishCount[16];
@@ -768,6 +769,7 @@ public:
     dSv_player_get_item_c& getGetItem() { return mGetItem; }
     dSv_player_config_c& getConfig() { return mConfig; }
     dSv_letter_info_c& getLetterInfo() { return mLetterInfo; }
+    dSv_fishing_info_c& getFishingInfo() { return mFishingInfo; }
     dSv_player_field_last_stay_info_c& getPlayerFieldLastStayInfo() {
         return mPlayerFieldLastStayInfo;
     }

@@ -73,6 +73,7 @@ public:
     static f32 getMinXF() { return 0.0f; }
     static f32 getMaxYF() { return 448.0f; }
     static f32 getMaxXF() { return 608.0f; }
+    static f32 getAspect() { return 1.3571428f; }
     static int getMinY() { return 0; }
     static int getMinX() { return 0; }
     static int getMaxY() { return 448; }
