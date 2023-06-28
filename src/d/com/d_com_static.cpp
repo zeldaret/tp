@@ -13,6 +13,7 @@
 #include "rel/d/a/d_a_movie_player/d_a_movie_player.h"
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 #include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"
+#include "rel/d/a/tag/d_a_tag_stream/d_a_tag_stream.h"
 
 //
 // Types:
@@ -22,12 +23,6 @@ struct daYkgr_c {
     static u8 m_aim_rate[4];
     static u8 m_path[4];
     static u8 m_emitter[4];
-};
-
-struct daTagStream_c {
-    /* 800318B4 */ void checkArea(cXyz const*);
-
-    static u8 m_top[4];
 };
 
 struct daTagMist_c {
@@ -46,21 +41,35 @@ struct daObjMovebox {
     };
 };
 
-struct daMirror_c {
-    /* 8003194C */ void entry(J3DModel*);
-    /* 80031990 */ void remove();
+struct dMirror_packet_c {
+};
 
-    static u8 m_entryModel[12];
-    static u8 m_myObj[4];
+struct daMirror_c: fopAc_ac_c {
+    /* 8003194C */ static int entry(J3DModel*);
+    /* 80031990 */ static int remove();
+
+    typedef int (daMirror_c::*entryModelFunc)(J3DModel*);
+    static entryModelFunc m_entryModel;
+    static daMirror_c* m_myObj;
+};
+
+struct dFlower_packet_c {
+    typedef void (dFlower_packet_c::*DeleteRoomFunc)(int);
+    static DeleteRoomFunc m_deleteRoom;
+};
+
+struct dGrass_packet_c {
+    typedef void (dGrass_packet_c::*DeleteRoomFunc)(int);
+    static DeleteRoomFunc m_deleteRoom;
 };
 
 struct daGrass_c {
-    /* 800319C8 */ void deleteRoomGrass(int);
-    /* 80031A20 */ void deleteRoomFlower(int);
+    /* 800319C8 */ static void deleteRoomGrass(int);
+    /* 80031A20 */ static void deleteRoomFlower(int);
 
     static u8 m_myObj[4];
-    static u8 m_grass[4];
-    static u8 m_flower[4];
+    static dGrass_packet_c* m_grass;
+    static dFlower_packet_c* m_flower;
 };
 
 struct daDsh_c {
@@ -73,14 +82,6 @@ struct daDsh_c {
     static f32 CLOSE_SPEED;
     static f32 CLOSE_BOUND_SPEED;
     static f32 CLOSE_BOUND_RATIO;
-};
-
-struct dGrass_packet_c {
-    static u8 m_deleteRoom[12];
-};
-
-struct dFlower_packet_c {
-    static u8 m_deleteRoom[12];
 };
 
 //
@@ -327,55 +328,102 @@ s16 m_count__9daArrow_c;
 s16 daSus_c::mSetTop;
 
 /* 80031248-800313BC 02BB88 0174+00 0/0 0/0 1/1 .text newData__7daSus_cFScRC4cXyzRC4cXyzUcUcUc */
+// Issues with mSetTop and m_count__9daArrow_c relocation
+#ifdef NONMATCHING
+int daSus_c::newData(s8 i_roomNo, cXyz const& param_1, cXyz const& param_2, u8 param_3,
+                          u8 param_4, u8 i_type) {
+    s16 setTop = mSetTop;
+    daSus_c::data_c* pData = ((daSus_c::data_c*)mData) + setTop;
+    for (s16 i = setTop; i < 32; pData++, i++) {
+        if (pData->isUsed()) {
+            pData->set(i_roomNo, param_1, param_2, param_3, param_4, i_type);
+            daSus_c::room_c* pRoom = ((daSus_c::room_c*)mRoom) + i_roomNo;
+            pRoom->add(pData);
+            mSetTop = (i + 1) % 32;
+            return 1;
+        }
+    }
+
+    pData = ((daSus_c::data_c*)mData);
+    for (s16 i = 0; i < setTop; pData++, i++) {
+        if (pData->isUsed()) {
+            pData->set(i_roomNo, param_1, param_2, param_3, param_4, i_type);
+            ((daSus_c::room_c*)mRoom)[i_roomNo].add(pData);
+            mSetTop = (i + 1) % 32;
+            return 1;
+        }
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daSus_c::newData(s8 param_0, cXyz const& param_1, cXyz const& param_2, u8 param_3,
+asm int daSus_c::newData(s8 param_0, cXyz const& param_1, cXyz const& param_2, u8 param_3,
                           u8 param_4, u8 param_5) {
     nofralloc
 #include "asm/d/com/d_com_static/newData__7daSus_cFScRC4cXyzRC4cXyzUcUcUc.s"
 }
 #pragma pop
+#endif
 
 /* 800313BC-80031434 02BCFC 0078+00 0/0 1/1 0/0 .text            reset__7daSus_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSus_c::reset() {
-    nofralloc
-#include "asm/d/com/d_com_static/reset__7daSus_cFv.s"
+void daSus_c::reset() {
+    daSus_c::data_c* pData = (daSus_c::data_c*)mData;
+    for (int i = 0; i < 0x20; i++, pData++) {
+        pData->reset();
+    }
+
+    daSus_c::room_c* pRoom = (daSus_c::room_c*)mRoom;
+    for (int i = 0; i < 0x40; i++, pRoom++) {
+        pRoom->init();
+    }
 }
-#pragma pop
 
 /* 80031434-800314D4 02BD74 00A0+00 0/0 4/4 0/0 .text            check__7daSus_cFScRC4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool daSus_c::check(s8 i_roomNo, cXyz const& i_pos) {
-    nofralloc
-#include "asm/d/com/d_com_static/check__7daSus_cFScRC4cXyz.s"
+bool daSus_c::check(s8 i_roomNo, cXyz const& i_pos) {
+    daSus_c::data_c* pData = (daSus_c::data_c*)mData;
+    for (s16 i = 0; i < 0x20; pData++, i++) {
+        if (!pData->isUsed() && i_roomNo == pData->getRoomNo() && pData->getType()) {
+            if (pData->check(i_pos)) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
-#pragma pop
 
 /* 800314D4-800315A4 02BE14 00D0+00 0/0 1/1 0/0 .text            check__7daSus_cFP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSus_c::check(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/com/d_com_static/check__7daSus_cFP10fopAc_ac_c.s"
+void daSus_c::check(fopAc_ac_c* i_actor) {
+    if (fopAcM_GetGroup(i_actor) != 1 && fopAcM_GetGroup(i_actor) != 5) {
+        daSus_c::data_c* pData = (daSus_c::data_c*)mData;
+        u8 res = 0;
+        for (s16 i = 0; i < 0x20; pData++, i++) {
+            if (!pData->isUsed() && pData->getType() == 0) {
+                res |= pData->check(i_actor);
+            }
+        }
+
+        if ((res & 0x80) != 0) {
+            if ((res & 3) == 3) {
+                fopAcM_OnStatus(i_actor, 0x20000000);
+            } else {
+                fopAcM_OffStatus(i_actor, 0x20000000);
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 800315A4-8003160C 02BEE4 0068+00 0/0 2/2 0/0 .text            execute__7daSus_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSus_c::execute() {
-    nofralloc
-#include "asm/d/com/d_com_static/execute__7daSus_cFv.s"
+void daSus_c::execute() {
+    daSus_c::data_c* pData = (daSus_c::data_c*)mData;
+    for (s16 i = 0; i < 0x20; pData++, i++) {
+        if (!pData->isUsed()) {
+            pData->execute();
+        }
+    }
 }
-#pragma pop
 
 /* 8003160C-80031648 02BF4C 003C+00 0/0 0/0 1/1 .text            daNpcMsg_setEvtNum__FUc */
 int daNpcMsg_setEvtNum(u8 iEvtNum) {
@@ -503,91 +551,80 @@ SECTION_SDATA2 f32 daDsh_c::CLOSE_BOUND_SPEED = 30.0f;
 /* 80451D50-80451D54 000350 0004+00 0/0 0/0 1/1 .sdata2          CLOSE_BOUND_RATIO__7daDsh_c */
 SECTION_SDATA2 f32 daDsh_c::CLOSE_BOUND_RATIO = -0.4f;
 
-/* 80451D54-80451D58 000354 0004+00 1/1 0/0 0/0 .sdata2          @4338 */
-SECTION_SDATA2 static u8 lit_4338[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
 /* 800318B4-8003194C 02C1F4 0098+00 0/0 1/1 0/0 .text            checkArea__13daTagStream_cFPC4cXyz
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagStream_c::checkArea(cXyz const* param_0) {
-    nofralloc
-#include "asm/d/com/d_com_static/checkArea__13daTagStream_cFPC4cXyz.s"
+int daTagStream_c::checkArea(cXyz const* param_0) {
+    cXyz relativePos;
+    fpoAcM_relativePos(this, param_0, &relativePos);
+    if (relativePos.y >= 0.0f && relativePos.y <= mScale.y &&
+         fabsf(relativePos.x) <= mScale.x &&
+        fabsf(relativePos.z) <= mScale.z)
+    {
+        return 1;
+    } 
+    return 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8042457C-80424588 05129C 000C+00 1/2 0/0 1/1 .bss             m_entryModel__10daMirror_c */
-u8 daMirror_c::m_entryModel[12];
+daMirror_c::entryModelFunc daMirror_c::m_entryModel;
 
 /* 80450DA4-80450DA8 0002A4 0004+00 0/0 1/1 2/2 .sbss            m_top__13daTagStream_c */
-u8 daTagStream_c::m_top[4];
+daTagStream_c* daTagStream_c::m_top;
 
 /* 80450DA8-80450DAC 0002A8 0004+00 2/2 0/0 4/4 .sbss            m_myObj__10daMirror_c */
-u8 daMirror_c::m_myObj[4];
+daMirror_c* daMirror_c::m_myObj;
 
 /* 8003194C-80031990 02C28C 0044+00 0/0 1/1 9/9 .text            entry__10daMirror_cFP8J3DModel */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMirror_c::entry(J3DModel* param_0) {
-    nofralloc
-#include "asm/d/com/d_com_static/entry__10daMirror_cFP8J3DModel.s"
+int daMirror_c::entry(J3DModel* param_0) {
+    if (m_myObj == NULL) {
+        return 0;
+    }
+    return (m_myObj->*(daMirror_c::m_entryModel))(param_0);
 }
-#pragma pop
 
 /* 80031990-800319C8 02C2D0 0038+00 0/0 0/0 2/2 .text            remove__10daMirror_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMirror_c::remove() {
-    nofralloc
-#include "asm/d/com/d_com_static/remove__10daMirror_cFv.s"
+int daMirror_c::remove() {
+    if (m_myObj == NULL) {
+        return 0;
+    }
+
+    fopAcM_delete(m_myObj);
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80424588-80424594 0512A8 000C+00 1/2 0/0 1/1 .bss             m_deleteRoom__15dGrass_packet_c */
-u8 dGrass_packet_c::m_deleteRoom[12];
+dGrass_packet_c::DeleteRoomFunc dGrass_packet_c::m_deleteRoom;
 
 /* 80450DAC-80450DB0 0002AC 0004+00 0/0 0/0 2/2 .sbss            m_myObj__9daGrass_c */
 u8 daGrass_c::m_myObj[4];
 
 /* 80450DB0-80450DB4 0002B0 0004+00 1/1 0/0 11/11 .sbss            m_grass__9daGrass_c */
-u8 daGrass_c::m_grass[4];
+dGrass_packet_c* daGrass_c::m_grass;
 
 /* 800319C8-80031A20 02C308 0058+00 0/0 0/0 1/1 .text            deleteRoomGrass__9daGrass_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daGrass_c::deleteRoomGrass(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_static/deleteRoomGrass__9daGrass_cFi.s"
+void daGrass_c::deleteRoomGrass(int param_0) {
+    if (m_grass) {
+        dGrass_packet_c::DeleteRoomFunc func = dGrass_packet_c::m_deleteRoom;
+        (m_grass->*(func))(param_0);
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80424594-804245A0 0512B4 000C+00 1/2 0/0 1/1 .bss             m_deleteRoom__16dFlower_packet_c */
-u8 dFlower_packet_c::m_deleteRoom[12];
+dFlower_packet_c::DeleteRoomFunc dFlower_packet_c::m_deleteRoom;
 
 /* 80450DB4-80450DB8 0002B4 0004+00 1/1 0/0 9/9 .sbss            m_flower__9daGrass_c */
-u8 daGrass_c::m_flower[4];
+dFlower_packet_c* daGrass_c::m_flower;
 
 /* 80031A20-80031A78 02C360 0058+00 0/0 0/0 1/1 .text            deleteRoomFlower__9daGrass_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daGrass_c::deleteRoomFlower(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_static/deleteRoomFlower__9daGrass_cFi.s"
+void daGrass_c::deleteRoomFlower(int param_0) {
+    if (m_flower) {
+        dFlower_packet_c::DeleteRoomFunc func = dFlower_packet_c::m_deleteRoom;
+        (m_flower->*(func))(param_0);
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450DB8-80450DBC 0002B8 0004+00 4/4 0/0 2/2 .sbss            m_myObj__6daMP_c */
@@ -702,27 +739,19 @@ static u8 lit_4480[12];
 #pragma pop
 
 /* 804245AC-804245E8 0512CC 003C+00 3/4 0/0 0/0 .bss             mPos__12daObjCarry_c */
-u8 daObjCarry_c::mPos[60];
+Vec daObjCarry_c::mPos[5];
 
 /* 80031D24-80031D38 02C664 0014+00 0/0 0/0 1/1 .text            getPos__12daObjCarry_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::getPos(int param_0) {
-    nofralloc
-#include "asm/d/com/d_com_static/getPos__12daObjCarry_cFi.s"
+const cXyz& daObjCarry_c::getPos(int param_0) {
+    return *(cXyz*)&mPos[param_0];
 }
-#pragma pop
 
 /* 80031D38-80031D64 02C678 002C+00 0/0 0/0 2/2 .text            savePos__12daObjCarry_cFi4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::savePos(int param_0, cXyz param_1) {
-    nofralloc
-#include "asm/d/com/d_com_static/savePos__12daObjCarry_cFi4cXyz.s"
+void daObjCarry_c::savePos(int param_0, cXyz param_1) {
+    mPos[param_0].x = param_1.x;
+    mPos[param_0].y = param_1.y;
+    mPos[param_0].z = param_1.z;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450DC4-80450DCC 0002C4 0005+03 3/3 0/0 0/0 .sbss            mSttsFlag__12daObjCarry_c */
