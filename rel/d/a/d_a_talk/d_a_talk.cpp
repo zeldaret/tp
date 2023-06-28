@@ -8,50 +8,15 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "d/msg/d_msg_object.h"
-#include "dol2asm.h"
 #include "f_op/f_op_msg_mng.h"
 
 //
 // Forward References:
 //
 
-extern "C" void __dt__8daTalk_cFv();
-extern "C" void create__8daTalk_cFv();
-extern "C" void execute__8daTalk_cFv();
-extern "C" bool draw__8daTalk_cFv();
-extern "C" void setStatus__8daTalk_cFUs();
-extern "C" void getStatus__8daTalk_cFv();
-extern "C" void messageSet__8daTalk_cFv();
-extern "C" static void daTalk_Create__FP10fopAc_ac_c();
-extern "C" static void daTalk_Delete__FP8daTalk_c();
-extern "C" static void daTalk_Execute__FP8daTalk_c();
-extern "C" static void daTalk_Draw__FP8daTalk_c();
-
 //
 // External References:
 //
-
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopMsgM_messageSet__FUlP10fopAc_ac_cUl();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void setProcessID__12dMsgObject_cFUi();
-extern "C" void getpTalkActor__12dMsgObject_cFv();
-extern "C" void getIdx__12dMsgObject_cFv();
-extern "C" void getNodeIdx__12dMsgObject_cFv();
-extern "C" void setStatus__12dMsgObject_cFUs();
-extern "C" void getStatus__12dMsgObject_cFv();
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void __dt__10dMsgFlow_cFv();
-extern "C" void init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c();
-extern "C" void doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci();
-extern "C" void __dl__FPv();
-extern "C" void __copy();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-extern "C" u8 dist_table__12dAttention_c[6552];
 
 //
 // Declarations:
@@ -79,10 +44,9 @@ int daTalk_c::create() {
 }
 
 /* 80D664AC-80D6665C 0001AC 01B0+00 1/1 0/0 0/0 .text            execute__8daTalk_cFv */
-// g_dComIfG_gameInfo.play.mEvent being reloaded when it shouldnt be
-#ifdef NONMATCHING
 int daTalk_c::execute() {
-    if (i_dComIfGp_event_runCheck()) {
+    dComIfG_inf_c& dcomif = g_dComIfG_gameInfo;
+    if (dcomif.play.getEvent().runCheck()) {
         if (!mEvtInfo.checkCommandTalk()) {
             fopAcM_delete(this);
         }
@@ -104,7 +68,7 @@ int daTalk_c::execute() {
             } else if (getStatus() == 14) {
                 setStatus(16);
             } else if (getStatus() == 18) {
-                i_dComIfGp_event_reset();
+                dcomif.play.getEvent().reset();
                 setStatus(19);
                 mMessageID = -1;
                 fopAcM_delete(this);
@@ -113,7 +77,7 @@ int daTalk_c::execute() {
             mMsgFlow.init(this, dMsgObject_getMsgObjectClass()->getNodeIdx(), 0, NULL);
             mMessageID = 2;
         } else if (mMsgFlow.doFlow(dMsgObject_getMsgObjectClass()->getpTalkActor(), NULL, 0)) {
-            i_dComIfGp_event_reset();
+            dcomif.play.getEvent().reset();
             mMessageID = -1;
             fopAcM_delete(this);
         }
@@ -121,16 +85,6 @@ int daTalk_c::execute() {
 
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daTalk_c::execute() {
-    nofralloc
-#include "asm/rel/d/a/d_a_talk/d_a_talk/execute__8daTalk_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80D6665C-80D66664 00035C 0008+00 1/1 0/0 0/0 .text            draw__8daTalk_cFv */
 int daTalk_c::draw() {
