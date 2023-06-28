@@ -121,12 +121,12 @@ public:
     /* 802380F4 */ void getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, char*,
                                   char*, char*, s16*);
     /* 80238174 */ static u8* getMsgDtPtr();
-    /* 80238188 */ void setProcessID(unsigned int);
+    /* 80238188 */ static void setProcessID(unsigned int);
     /* 8023819C */ static fopAc_ac_c* getActor();
-    /* 802381C0 */ void getpTalkActor();
-    /* 802381D4 */ void getIdx();
-    /* 802381E8 */ void getNodeIdx();
-    /* 802381FC */ void setStatus(u16);
+    /* 802381C0 */ static fopAc_ac_c* getpTalkActor();
+    /* 802381D4 */ static u32 getIdx();
+    /* 802381E8 */ static u16 getNodeIdx();
+    /* 802381FC */ static void setStatus(u16);
     /* 8023822C */ static u16 getStatus();
     /* 80238258 */ void getScrnDrawPtr();
     /* 8023826C */ static void setTalkActor(fopAc_ac_c*);

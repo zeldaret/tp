@@ -30,7 +30,7 @@ int daObjDigholl_c::create() {
     fopAcM_SetMax(this, 60.0f, 10.0f, 100.0f);
     mAttentionInfo.mPosition = current.pos;
     mEyePos = mAttentionInfo.mPosition;
-    mAttentionInfo.field_0x4[3] = 0x20;
+    mAttentionInfo.field_0x0[7] = 0x20;
     return cPhs_COMPLEATE_e;
 }
 
