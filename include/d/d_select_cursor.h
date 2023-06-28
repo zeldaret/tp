@@ -58,6 +58,8 @@ public:
     void onPlayAnime(int i_flag) { field_0xb4 |= (1 << i_flag); }
     void offPlayAnime(int i_flag) { field_0xb4 &= ~(1 << i_flag); }
     bool chkPlayAnime(int i_flag) { return field_0xb4 & (1 << i_flag); }
+    void onPlayAllAnime() { field_0xb4 = 0xff; }
+    void offPlayAllAnime() { field_0xb4 = 0; }
 
 private:
     /* 0x04 */ J2DScreen* mpScreen;

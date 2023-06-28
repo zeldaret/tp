@@ -35,7 +35,7 @@ public:
     /* 801D9644 */ void screenSetBase();
     /* 801D98F0 */ void screenSetExplain();
     /* 801D9BD0 */ void screenSetDoIcon();
-    /* 801D9D4C */ void getGetInsectNum();
+    /* 801D9D4C */ static u8 getGetInsectNum();
     /* 801D9DCC */ void getInsectItemID(int, int);
     /* 801D9DE4 */ void isGetInsect(int, int);
     /* 801D9E20 */ void isGiveInsect(int, int);

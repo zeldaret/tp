@@ -1702,6 +1702,10 @@ inline void dComIfGs_setOptCalibrateDist(u16 i_calibrateDist) {
     g_dComIfG_gameInfo.info.getPlayer().getConfig().setCalibrateDist(i_calibrateDist);
 }
 
+inline u16 dComIfGs_getFishNum(u8 param_0) {
+    return g_dComIfG_gameInfo.info.getPlayer().getFishingInfo().getFishCount(param_0);
+}
+
 void dComIfGp_setSelectItem(int index);
 s32 dComIfGp_offHeapLockFlag(int flag);
 void dComIfGp_createSubExpHeap2D();

@@ -29,7 +29,10 @@ jobs:
           run_id: ${{ steps.get_run_id.outputs.run_id }}
           name: artifact-${{ steps.get_run_id.outputs.run_id }}
           workflow: ${{ env.WORKFLOW }}
+      - name: Install Python Deps
+        run: |
+          pip install GitPython rich
       - name: Upload Progress to Frogress
         env: 
           PROGRESS_API_KEY: ${{ secrets.FROGRESS_API_KEY }}
-        run: ./tools/upload-progress.py -b https://progress.deco.mp/ -p twilightprincess -v gcn_usa progress-${{ steps.get_run_id.outputs.run_id }}.json
+        run: ./tp upload-progress progress-${{ steps.get_run_id.outputs.run_id }}.json -b https://progress.deco.mp/ -p twilightprincess -v gcn_usa

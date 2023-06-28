@@ -219,6 +219,8 @@ public:
         return mZHintTarget.request(param_1, param_2);
     }
 
+    static dist_entry& i_getDistTable(int i_no) { return dist_table[i_no]; }
+
     static type_tbl_entry loc_type_tbl[3];
     static type_tbl_entry act_type_tbl[5];
     static dist_entry dist_table[234];
