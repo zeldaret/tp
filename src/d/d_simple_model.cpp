@@ -4,16 +4,14 @@
 //
 
 #include "d/d_simple_model.h"
+#include "d/kankyo/d_kankyo.h"
 #include "d/com/d_com_inf_game.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_mtx.h"
 
 //
 // External References:
 //
-
-extern "C" extern dScnKy_env_light_c g_env_light;
 
 //
 // Declarations:

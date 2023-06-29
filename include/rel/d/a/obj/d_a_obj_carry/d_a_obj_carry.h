@@ -29,8 +29,8 @@ public:
     /* 80031CF8 */ static void clrSaveFlag();
     /* 80031D04 */ static void setSaveFlag();
     /* 80031D10 */ static bool chkSaveFlag();
-    /* 80031D24 */ void getPos(int);
-    /* 80031D38 */ void savePos(int, cXyz);
+    /* 80031D24 */ static const cXyz& getPos(int);
+    /* 80031D38 */ static void savePos(int, cXyz);
     /* 80031D64 */ static void onSttsFlag(int, u8);
     /* 80031D78 */ static void offSttsFlag(int, u8);
     /* 80031D8C */ static u8 chkSttsFlag(int, u8);
@@ -185,7 +185,7 @@ public:
     s32 getType() { return mType; }
 
     static u8 const mData[2072];
-    static u8 mPos[60];
+    static Vec mPos[5];
     static u8 mSttsFlag[5];
     static s8 mRoomNo[5];
     static bool mSaveFlag;
