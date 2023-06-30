@@ -308,6 +308,7 @@ public:
     J3DDrawBuffer* getOpaListFilter() { return mDrawBuffers[DB_LIST_FILTER]; }
     J3DDrawBuffer* getOpaListP0() { return mDrawBuffers[DB_LIST_P0]; }
     J3DDrawBuffer* getOpaListPacket() { return mDrawBuffers[DB_OPA_LIST_PACKET]; }
+    J3DDrawBuffer* getOpaListBG() { return mDrawBuffers[DB_OPA_LIST_BG]; }
     void setXluDrawList(J3DDrawBuffer* buffer) { j3dSys.setDrawBuffer(buffer, XLU_BUFFER); }
     void setOpaDrawList(J3DDrawBuffer* buffer) { j3dSys.setDrawBuffer(buffer, OPA_BUFFER); }
     void setXluListSky() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_SKY]); }

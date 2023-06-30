@@ -727,7 +727,7 @@ public:
     /* 80317314 */ virtual s32 countDLSize();
     virtual u32 getType() = 0;
     /* 8000E0A0 */ virtual void setIndTexStageNum(u8);
-    /* 8000DF7C */ virtual bool getIndTexStageNum() const;
+    /* 8000DF7C */ virtual u8 getIndTexStageNum() const;
     /* 80317410 */ virtual void setIndTexOrder(u32, J3DIndTexOrder);
     /* 8031740C */ virtual void setIndTexOrder(u32, J3DIndTexOrder const*);
     /* 8000DF74 */ virtual bool getIndTexOrder(u32);
@@ -750,7 +750,7 @@ public:
     /* 80317BDC */ virtual s32 countDLSize();
     /* 80323390 */ virtual u32 getType();
     /* 8032339C */ virtual void setIndTexStageNum(u8);
-    /* 803233A4 */ virtual bool getIndTexStageNum() const;
+    /* 803233A4 */ virtual u8 getIndTexStageNum() const;
     /* 803233AC */ virtual void setIndTexOrder(u32, J3DIndTexOrder);
     /* 803233C0 */ virtual void setIndTexOrder(u32, J3DIndTexOrder const*);
     /* 803233D4 */ virtual bool getIndTexOrder(u32);
@@ -820,7 +820,7 @@ public:
     /* 8000DFF0 */ virtual bool getAmbColor(u32);
     /* 8000E0E0 */ virtual void setColorChanNum(u8);
     /* 8031744C */ virtual void setColorChanNum(u8 const*);
-    /* 8000E008 */ virtual bool getColorChanNum() const;
+    /* 8000E008 */ virtual u8 getColorChanNum() const;
     /* 8000E0D8 */ virtual void setColorChan(u32, J3DColorChan const&);
     /* 80317450 */ virtual void setColorChan(u32, J3DColorChan const*);
     /* 8000DFF8 */ virtual J3DColorChan* getColorChan(u32);
@@ -860,7 +860,7 @@ public:
     /* 80322F50 */ virtual bool getAmbColor(u32);
     /* 80322F70 */ virtual void setColorChanNum(u8);
     /* 80322F64 */ virtual void setColorChanNum(u8 const*);
-    /* 80322F78 */ virtual bool getColorChanNum() const;
+    /* 80322F78 */ virtual u8 getColorChanNum() const;
     /* 80322F94 */ virtual void setColorChan(u32, J3DColorChan const&);
     /* 80322F80 */ virtual void setColorChan(u32, J3DColorChan const*);
     /* 80322FA8 */ virtual J3DColorChan* getColorChan(u32);
@@ -905,7 +905,7 @@ public:
     /* 803231B0 */ virtual GXColor* getMatColor(u32);
     /* 803231D0 */ virtual void setColorChanNum(u8);
     /* 803231C4 */ virtual void setColorChanNum(u8 const*);
-    /* 803231D8 */ virtual bool getColorChanNum() const;
+    /* 803231D8 */ virtual u8 getColorChanNum() const;
     /* 803231F4 */ virtual void setColorChan(u32, J3DColorChan const&);
     /* 803231E0 */ virtual void setColorChan(u32, J3DColorChan const*);
     /* 80323208 */ virtual J3DColorChan* getColorChan(u32);

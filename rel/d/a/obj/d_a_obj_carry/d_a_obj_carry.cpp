@@ -4,6 +4,7 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
+#include "rel/d/a/d_a_mirror/d_a_mirror.h"
 #include "MSL_C/string.h"
 #include "d/d_stage.h"
 #include "dol2asm.h"
@@ -13,10 +14,6 @@
 //
 // Types:
 //
-
-struct daMirror_c {
-    /* 8003194C */ void entry(J3DModel*);
-};
 
 struct dTres_c {
     /* 8009C3CC */ void setPosition(int, u8, Vec const*, int);
