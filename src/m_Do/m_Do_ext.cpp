@@ -1646,8 +1646,8 @@ bool J3DIndBlock::getIndTexOrder(u32 param_0) {
 
 /* 8000DF7C-8000DF84 0088BC 0008+00 0/0 2/0 0/0 .text            getIndTexStageNum__11J3DIndBlockCFv
  */
-bool J3DIndBlock::getIndTexStageNum() const {
-    return false;
+u8 J3DIndBlock::getIndTexStageNum() const {
+    return 0;
 }
 
 /* 8000DF84-8000DF8C 0088C4 0008+00 0/0 2/0 0/0 .text            getIndTevStage__11J3DTevBlockFUl */
@@ -1740,8 +1740,8 @@ GXColor* J3DColorBlock::getMatColor(u32 param_0) {
 
 /* 8000E008-8000E010 008948 0008+00 0/0 2/0 0/0 .text            getColorChanNum__13J3DColorBlockCFv
  */
-bool J3DColorBlock::getColorChanNum() const {
-    return false;
+u8 J3DColorBlock::getColorChanNum() const {
+    return 0;
 }
 
 /* 8000E010-8000E014 008950 0004+00 0/0 5/0 0/0 .text            setZCompLoc__10J3DPEBlockFUc */

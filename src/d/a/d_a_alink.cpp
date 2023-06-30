@@ -35,6 +35,7 @@
 #include "rel/d/a/e/d_a_e_wb/d_a_e_wb.h"
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 #include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"
+#include "rel/d/a/d_a_mirror/d_a_mirror.h"
 
 //
 // Types:
@@ -64,10 +65,6 @@ struct daObj {
 
 struct daNpcT_ActorMngr_c {
     /* 80145708 */ void getActorP();
-};
-
-struct daMirror_c {
-    /* 8003194C */ static void entry(J3DModel*);
 };
 
 struct dPaPoF_c {

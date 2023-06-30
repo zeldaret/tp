@@ -14,6 +14,7 @@
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 #include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"
 #include "rel/d/a/tag/d_a_tag_stream/d_a_tag_stream.h"
+#include "rel/d/a/d_a_mirror/d_a_mirror.h"
 
 //
 // Types:
@@ -39,18 +40,6 @@ struct daObjMovebox {
     struct Act_c {
         static void* M_dir_base[2];
     };
-};
-
-struct dMirror_packet_c {
-};
-
-struct daMirror_c: fopAc_ac_c {
-    /* 8003194C */ static int entry(J3DModel*);
-    /* 80031990 */ static int remove();
-
-    typedef int (daMirror_c::*entryModelFunc)(J3DModel*);
-    static entryModelFunc m_entryModel;
-    static daMirror_c* m_myObj;
 };
 
 struct dFlower_packet_c {

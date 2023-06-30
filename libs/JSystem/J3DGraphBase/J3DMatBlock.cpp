@@ -5195,7 +5195,7 @@ void J3DColorBlockLightOn::setColorChanNum(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DColorBlockLightOn::getColorChanNum() const {
+asm u8 J3DColorBlockLightOn::getColorChanNum() const {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getColorChanNum__20J3DColorBlockLightOnCFv.s"
 }
@@ -5469,7 +5469,7 @@ void J3DColorBlockLightOff::setColorChanNum(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DColorBlockLightOff::getColorChanNum() const {
+asm u8 J3DColorBlockLightOff::getColorChanNum() const {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getColorChanNum__21J3DColorBlockLightOffCFv.s"
 }
@@ -5625,7 +5625,7 @@ void J3DIndBlockFull::setIndTexStageNum(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DIndBlockFull::getIndTexStageNum() const {
+asm u8 J3DIndBlockFull::getIndTexStageNum() const {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getIndTexStageNum__15J3DIndBlockFullCFv.s"
 }

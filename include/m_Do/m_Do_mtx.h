@@ -138,6 +138,10 @@ public:
 
 extern Mtx g_mDoMtx_identity;
 
+inline MtxP mDoMtx_getIdentity() {
+    return g_mDoMtx_identity;
+}
+
 class mDoMtx_quatStack_c {
 public:
     ~mDoMtx_quatStack_c();  // inline

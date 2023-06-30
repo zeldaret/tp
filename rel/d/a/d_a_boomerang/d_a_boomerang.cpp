@@ -4,6 +4,7 @@
 //
 
 #include "rel/d/a/d_a_boomerang/d_a_boomerang.h"
+#include "rel/d/a/d_a_mirror/d_a_mirror.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
@@ -13,10 +14,6 @@
 //
 // Types:
 //
-
-struct daMirror_c {
-    /* 8003194C */ void entry(J3DModel*);
-};
 
 struct daBoomerang_HIO_c0 {
     static u16 const m_lockWaitTime;
