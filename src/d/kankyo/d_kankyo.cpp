@@ -2979,7 +2979,7 @@ static void dKy_Sound_init() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dKy_Sound_set(cXyz param_0, int param_1, unsigned int param_2, int param_3) {
+asm void dKy_Sound_set(cXyz i_pos, int param_1, unsigned int i_actorID, int param_3) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_Sound_set__F4cXyziUii.s"
 }
