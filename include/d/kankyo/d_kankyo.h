@@ -35,13 +35,15 @@ void dKy_GxFog_set();
 static void GxFog_set();
 static void GxXFog_set();
 u8 dKy_pol_argument_get(cBgS_PolyInfo const* i_poly);
-void dKy_Sound_set(cXyz param_0, int param_1, unsigned int param_2, int param_3);
+void dKy_Sound_set(cXyz i_pos, int param_1, unsigned int i_actorID, int param_3);
 void dKy_bg_MAxx_proc(void* param_0);
 void dKy_change_colpat(u8 colpat);
 void dKy_BossLight_set(cXyz* param_0, _GXColor* param_1, f32 param_2, u8 param_3);
 void dKy_custom_colset(u8 prevGather, u8 curGather, f32 blend);
 void dKy_setLight();
 cXyz dKy_plight_near_pos();
+void dKy_BossSpotLight_set(cXyz* param_0, f32 param_1, f32 param_2, f32 param_3, _GXColor* param_4,
+                           f32 param_5, u8 param_6, u8 param_7);
 
 struct LIGHT_INFLUENCE {
     /* 800CFC7C */ ~LIGHT_INFLUENCE() {}
@@ -168,12 +170,12 @@ struct LightStatus {
     /* 0x4C */ f32 mRefDist;
     /* 0x50 */ f32 mRefBrightness;
     /* 0x54 */ GXDistAttnFn mDistFn;
-    /* 0x58 */ u32 field_0x58[2][6]; //?
+    /* 0x58 */ u32 field_0x58[2][6];  //?
     /* 0x88 */ f32 field_0x88;
     /* 0x8C */ f32 field_0x8c;
     /* 0x90 */ f32 field_0x90;
     /* 0x94 */ f32 field_0x94;
-    /* 0x98 */ u32 field_0x98[2][8]; //?
+    /* 0x98 */ u32 field_0x98[2][8];  //?
     /* 0xD8 */ f32 field_0xd8;
     /* 0xDC */ f32 field_0xdc;
     /* 0xE0 */ f32 field_0xe0;
