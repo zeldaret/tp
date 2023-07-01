@@ -13,13 +13,13 @@ public:
     /* 8048EF6C */ int Draw();
     /* 8048EF74 */ void initialize();
 
-    /* 0x568 */ dMsgFlow_c field_0x568;
-    /* 0x5B4 */ cBgS_GndChk field_0x5b4;
+    /* 0x568 */ dMsgFlow_c mMsgFlow;
+    /* 0x5B4 */ cBgS_GndChk mGndChk;
     /* 0x5F0 */ u32 field_0x5f0;
-    /* 0x5F4 */ f32 field_0x5f4;
+    /* 0x5F4 */ f32 mGroundCross;
     /* 0x5F8 */ s32 field_0x5f8;
     /* 0x5FC */ u32 field_0x5fc;
-    /* 0x600 */ s32 field_0x600;
+    /* 0x600 */ int mFlowIndex;
     /* 0x604 */ u8 field_0x604;
     
     /* 8048ECAC */ virtual ~daTag_Lantern_c();
