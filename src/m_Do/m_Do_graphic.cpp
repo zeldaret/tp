@@ -166,13 +166,12 @@ extern "C" u8 sManager__10JUTProcBar[4];
 //
 
 /* 80007D9C-80007E44 0026DC 00A8+00 1/1 0/0 0/0 .text            createTimg__FUsUsUl */
-// extra mr optimized out?
-#ifdef NONMATCHING
 static ResTIMG* createTimg(u16 width, u16 height, u32 format) {
     u32 bufferSize = GXGetTexBufferSize(width, height, format, GX_FALSE, 0) + 0x20;
     ResTIMG* timg;
 
-    timg = (ResTIMG*)JKRHeap::alloc(bufferSize, 0x20, NULL);
+    void* alloc_res = JKRHeap::alloc(bufferSize, 0x20, NULL);
+    timg = (ResTIMG*) alloc_res;
 
     if (timg == NULL) {
         return NULL;
@@ -189,16 +188,6 @@ static ResTIMG* createTimg(u16 width, u16 height, u32 format) {
     timg->imageOffset = 0x20;
     return timg;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm ResTIMG* createTimg(u16 param_0, u16 param_1, u32 param_2) {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/createTimg__FUsUsUl.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80450590-80450594 000010 0004+00 2/2 1/1 0/0 .sdata           mBackColor__13mDoGph_gInf_c */
