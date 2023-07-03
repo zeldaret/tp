@@ -198,9 +198,11 @@ const static dCcD_SrcSph l_sph_src = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        50.0f,
-    },
+        {
+            {0.0f, 0.0f, 0.0f},
+            50.0f,
+        },
+    }
 };
 COMPILER_STRIP_GATE(0x80CECABC, &l_sph_src);
 #pragma pop
