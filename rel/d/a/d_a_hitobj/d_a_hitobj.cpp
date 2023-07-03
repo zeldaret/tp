@@ -51,9 +51,11 @@ static dCcD_SrcSph cc_sph_src = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        100.0f,
-    },
+        {
+            {0.0f, 0.0f, 0.0f},
+            100.0f,
+        },
+    }
 };
 
 /* 8046B400-8046B53C 000120 013C+00 1/0 0/0 0/0 .text            daHitobj_Create__FP10fopAc_ac_c */

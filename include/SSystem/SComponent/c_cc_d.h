@@ -124,9 +124,20 @@ public:
     cCcD_TriAttr() {}
 };
 
+struct cCcD_SrcCpsAttr {
+    cM3dGCpsS mCps;
+};
+
 class cCcD_CpsAttr : public cCcD_ShapeAttr, public cM3dGCps {
 public:
     cCcD_CpsAttr() {}
+    void Set(const cCcD_SrcCpsAttr& pSrc) {
+        cM3dGCps::Set(pSrc.mCps);
+    }
+    void Set(const cXyz& pStart, const cXyz& pEnd, float radius) {
+        cM3dGCps::Set(pStart, pEnd, radius);
+    }
+
     /* 80085450 */ virtual ~cCcD_CpsAttr() {}
     /* 80263DC0 */ virtual bool CrossAtTg(cCcD_SphAttr const&, cXyz*) const;
     /* 80263E04 */ virtual bool CrossAtTg(cCcD_TriAttr const&, cXyz*) const;
@@ -152,13 +163,15 @@ public:
 
 STATIC_ASSERT(0x40 == sizeof(cCcD_CpsAttr));
 
-class cCcD_SrcSphAttr : public cM3dGSphS {};
+struct cCcD_SrcSphAttr {
+    cM3dGSphS mSph;
+};
 
 class cCcD_SphAttr : public cCcD_ShapeAttr, public cM3dGSph {
 public:
     cCcD_SphAttr() {}
     void Set(const cCcD_SrcSphAttr& src) {
-        cM3dGSph::Set(src);
+        cM3dGSph::Set(src.mSph);
     }
 
     /* 8008721C */ virtual ~cCcD_SphAttr() {}
@@ -339,8 +352,9 @@ public:
     s32 getSPrm() const { return mSPrm; }
     void setRPrm(s32 rprm) { mRPrm = rprm; }
     s32 getRPrm() const { return mRPrm; }
-    cCcD_Obj* getHitObj() { return mHitObj; }
+    cCcD_Obj* GetHitObj() { return mHitObj; }
     u32 MskSPrm(u32 mask) const { return mSPrm & mask; }
+    u32 MskRPrm(u32 mask) { return mRPrm & mask; }
     void OnSPrmBit(u32 flag) { mSPrm |= flag; }
     void OffSPrmBit(u32 flag) { mSPrm &= ~flag; }
 };
@@ -362,6 +376,7 @@ public:
     void SetType(u32 type) { mType = type; }
     void SetAtp(int atp) { mAtp = atp; }
     void ClrSet() { OffSPrmBit(1); }
+    u32 ChkHit() { return MskRPrm(1); }
 
 protected:
     /* 0x10 */ int mType;
@@ -383,6 +398,7 @@ public:
     u32 GetGrp() const { return MskSPrm(0x1E); }
     bool ChkSet() const { return MskSPrm(1); }
     void ClrSet() { OffSPrmBit(1); }
+    u32 ChkHit() { return MskRPrm(1); }
 
 private:
     /* 0x10 */ int mType;
@@ -404,6 +420,7 @@ public:
     u32 ChkNoCrr() const { return MskSPrm(0x100); }
     u32 ChkSph3DCrr() const { return MskSPrm(0x80); }
     void ClrSet() { OffSPrmBit(1); }
+    u32 ChkHit() { return MskRPrm(1); }
 };
 
 STATIC_ASSERT(0x10 == sizeof(cCcD_ObjCo));
@@ -460,6 +477,15 @@ public:
     void OnCoSPrmBit(u32 flag) { mObjCo.OnSPrmBit(flag); }
     void SetTgSPrm(u32 prm) { mObjTg.SetSPrm(prm); }
     void SetCoSPrm(u32 prm) { mObjCo.SetSPrm(prm); }
+    void ClrAtHit() { mObjAt.ClrHit(); }
+    void ClrTgHit() { mObjTg.ClrHit(); }
+    void ClrCoHit() { mObjCo.ClrHit(); }
+    u32 ChkAtHit() { return mObjAt.ChkHit(); }
+    u32 ChkTgHit() { return mObjTg.ChkHit(); }
+    u32 ChkCoHit() { return mObjCo.ChkHit(); }
+    cCcD_Obj* GetAtHitObj() { return mObjAt.GetHitObj(); }
+    cCcD_Obj* GetTgHitObj() { return mObjTg.GetHitObj(); }
+    cCcD_Obj* GetCoHitObj() { return mObjCo.GetHitObj(); }
 
 };  // Size = 0x40
 

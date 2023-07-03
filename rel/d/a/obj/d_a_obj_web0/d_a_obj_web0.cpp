@@ -378,9 +378,11 @@ static int daObj_Web0_Create(fopAc_ac_c* i_this) {
             {0},
         },
         {
-            {0.0f, 0.0f, 0.0f},
-            40.0f,
-        },
+            {
+                {0.0f, 0.0f, 0.0f},
+                40.0f,
+            },
+        }
     };
 
     int phase = dComIfG_resLoad(&_this->mPhase, "Obj_web0");
