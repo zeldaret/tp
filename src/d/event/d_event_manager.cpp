@@ -11,7 +11,6 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/d_camera.h"
 #include "d/d_stage.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 #include "global.h"
@@ -21,122 +20,9 @@
 // Forward References:
 //
 
-extern "C" void init__18dEvent_exception_cFv();
-extern "C" void setStartDemo__18dEvent_exception_cFi();
-extern "C" void getEventName__18dEvent_exception_cFv();
-extern "C" void getSubstance__16dEvent_manager_cFP11dEvDtData_ci();
-extern "C" void __ct__16dEvent_manager_cFv();
-extern "C" void __ct__11dEvDtBase_cFv();
-extern "C" void create__16dEvent_manager_cFv();
-extern "C" void setObjectArchive__16dEvent_manager_cFPc();
-extern "C" void demoInit__16dEvent_manager_cFv();
-extern "C" void roomInit__16dEvent_manager_cFi();
-extern "C" void roomFinish__16dEvent_manager_cFi();
-extern "C" void orderStartDemo__16dEvent_manager_cFv();
-extern "C" void remove__16dEvent_manager_cFv();
-extern "C" static void extraOnObjectCallBack__FP10fopAc_ac_cPv();
-extern "C" static void extraOffObjectCallBack__FP10fopAc_ac_cPv();
-extern "C" static void allOffObjectCallBack__FP10fopAc_ac_cPv();
-extern "C" void startProc__16dEvent_manager_cFP12dEvDtEvent_c();
-extern "C" void closeProc__16dEvent_manager_cFP12dEvDtEvent_c();
-extern "C" void endProc__16dEvent_manager_cFsi();
-extern "C" void Sequencer__16dEvent_manager_cFv();
-extern "C" void Experts__16dEvent_manager_cFv();
-extern "C" void getEventData__16dEvent_manager_cFsi();
-extern "C" void getEventData__16dEvent_manager_cFs();
-extern "C" void getEventIdx__16dEvent_manager_cFPCcUcl();
-extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc();
-extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc();
-extern "C" void isMapToolCamera__16dEvent_manager_cFUcl();
-extern "C" void order__16dEvent_manager_cFs();
-extern "C" void startCheck__16dEvent_manager_cFs();
-extern "C" void startCheckOld__16dEvent_manager_cFPCc();
-extern "C" void endCheck__16dEvent_manager_cFs();
-extern "C" void endCheckOld__16dEvent_manager_cFPCc();
-extern "C" void getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci();
-extern "C" void getIsAddvance__16dEvent_manager_cFi();
-extern "C" static void dEvmng_strcmp__FPCcPc();
-extern "C" void getMyActIdx__16dEvent_manager_cFiPCPCciii();
-extern "C" void getMyNowCutName__16dEvent_manager_cFi();
-extern "C" void getMyDataP__16dEvent_manager_cFiPCci();
-extern "C" void getMySubstanceP__16dEvent_manager_cFiPCci();
-extern "C" void getMySubstanceNum__16dEvent_manager_cFiPCc();
-extern "C" void cutEnd__16dEvent_manager_cFi();
-extern "C" void getEventPrio__16dEvent_manager_cFP10fopAc_ac_cs();
-extern "C" void issueStaff__16dEvent_manager_cFPCc();
-extern "C" void cancelStaff__16dEvent_manager_cFPCc();
-extern "C" void setGoal__16dEvent_manager_cFP4cXyz();
-extern "C" void getGoal__16dEvent_manager_cFv();
-extern "C" void getRunEventName__16dEvent_manager_cFv();
-extern "C" static void findShutterCallBack__FP10fopAc_ac_cPv();
-extern "C" void specialCast_Shutter__16dEvent_manager_cFsi();
-extern "C" void specialCast__16dEvent_manager_cFPCci();
-extern "C" static void dEv_talkman_get_action__Fi();
-extern "C" void ChkPresentEnd__16dEvent_manager_cFv();
-extern "C" void checkStartDemo__16dEvent_manager_cFv();
-extern "C" extern char const* const d_event_d_event_manager__stringBase0;
-
 //
 // External References:
 //
-
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs();
-extern "C" void fopAcM_orderMapToolAutoNextEvent__FP10fopAc_ac_cUcsUsUsUs();
-extern "C" void fopAcM_searchFromName4Event__FPCcs();
-extern "C" void getStatusRoomDt__20dStage_roomControl_cFi();
-extern "C" void dComIfG_getStageRes__FPCc();
-extern "C" void dComIfG_getRoomArcName__Fi();
-extern "C" void dComIfGp_SelectWarpPt_get__Fv();
-extern "C" void __dt__11dEvDtBase_cFv();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void getRes__14dRes_control_cFPCcPCcP11dRes_info_ci();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void dEv_defaultSkipProc__FPvi();
-extern "C" void dEv_defaultSkipZev__FPvi();
-extern "C" void dEv_defaultSkipStb__FPvi();
-extern "C" void setSkipProc__14dEvt_control_cFPvPFPvi_ii();
-extern "C" void onSkipFade__14dEvt_control_cFv();
-extern "C" void getStageEventDt__14dEvt_control_cFv();
-extern "C" void sceneChange__14dEvt_control_cFi();
-extern "C" void convPId__14dEvt_control_cFUi();
-extern "C" void searchMapEventData__14dEvt_control_cFUcl();
-extern "C" void runningEventID__14dEvt_control_cFs();
-extern "C" void setPt2__14dEvt_control_cFPv();
-extern "C" void setPtI__14dEvt_control_cFPv();
-extern "C" void setPtD__14dEvt_control_cFPv();
-extern "C" void flagSet__11dEvDtFlag_cFi();
-extern "C" void init__11dEvDtFlag_cFv();
-extern "C" void finishCheck__12dEvDtEvent_cFv();
-extern "C" void specialStaffProc__12dEvDtEvent_cFP12dEvDtStaff_c();
-extern "C" void init__12dEvDtStaff_cFv();
-extern "C" void init__11dEvDtBase_cFv();
-extern "C" void init__11dEvDtBase_cFPci();
-extern "C" void advanceCut__11dEvDtBase_cFP12dEvDtEvent_c();
-extern "C" void EventRecoverNotime__9dCamera_cFv();
-extern "C" void dCam_getBody__Fv();
-extern "C" void Center__9dCamera_cFv();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void setDemoName__11Z2StatusMgrFPc();
-extern "C" void __construct_array();
-extern "C" void _savegpr_20();
-extern "C" void _savegpr_22();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_20();
-extern "C" void _restgpr_22();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 BOOL daPy_py_c::checkNowWolf() {
     return dComIfGp_getLinkPlayer()->i_checkWolf();
@@ -629,26 +515,14 @@ dEvDtEvent_c* dEvent_manager_c::getEventData(s16 param_0, int idx) {
 
 /* 800474BC-80047514 041DFC 0058+00 9/9 3/3 4/4 .text            getEventData__16dEvent_manager_cFs
  */
-#ifdef NONMATCHING
 dEvDtEvent_c* dEvent_manager_c::getEventData(s16 eventCompositId) {
     if (eventCompositId == -1) {
         return NULL;
     } else {
-        // extsh instead of mr here
         return getEventData(getIndexCompositId(eventCompositId),
                             getTypeCompositId(eventCompositId));
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dEvDtEvent_c* dEvent_manager_c::getEventData(s16 eventCompositId) {
-    nofralloc
-#include "asm/d/event/d_event_manager/getEventData__16dEvent_manager_cFs.s"
-}
-#pragma pop
-#endif
 
 /* 80047514-80047698 041E54 0184+00 3/3 8/8 3/3 .text getEventIdx__16dEvent_manager_cFPCcUcl */
 s16 dEvent_manager_c::getEventIdx(char const* eventName, u8 mapToolID, s32 roomNo) {

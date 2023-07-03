@@ -841,11 +841,11 @@ static void wether_move_sun() {
                     } else {
                         g_env_light.mpSunPacket->field_0x6c = tmp0;
                     }
-                    g_env_light.mpSunPacket->field_0x44 = 0;
-                    g_env_light.mpSunPacket->field_0x48 = 0;
-                    g_env_light.mpSunPacket->field_0x4c = 0;
-                    g_env_light.mpSunPacket->field_0x50 = 0;
-                    g_env_light.mpSunPacket->field_0x54 = 0;
+                    g_env_light.mpSunPacket->field_0x44[0] = 0;
+                    g_env_light.mpSunPacket->field_0x44[1] = 0;
+                    g_env_light.mpSunPacket->field_0x44[2] = 0;
+                    g_env_light.mpSunPacket->field_0x44[3] = 0;
+                    g_env_light.mpSunPacket->field_0x44[4] = 0;
                     g_env_light.mpSunPacket->field_0x58 = 0;
 
                     g_env_light.mpSunLenzPacket->mpResBall =

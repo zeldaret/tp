@@ -261,11 +261,9 @@ int dFile_info_c::setSaveData(dSv_save_c* save, int checksumValid, u8 data_num) 
 }
 
 /* 80192AA0-80192C08 18D3E0 0168+00 1/1 0/0 0/0 .text setHeartCnt__12dFile_info_cFP10dSv_save_c */
-// close
-#ifdef NONMATCHING
 void dFile_info_c::setHeartCnt(dSv_save_c* save) {
     u16 life = save->getPlayer().getPlayerStatusA().getLife();
-    s32 count = (u8)(life) / 5;
+    s32 count = (life & 0xffff) / 5;
     s32 quarter_count = life % 5;
     if (quarter_count != 0) {
         count++;
@@ -278,7 +276,7 @@ void dFile_info_c::setHeartCnt(dSv_save_c* save) {
         if (i < save->getPlayer().getPlayerStatusA().getMaxLife() / 5) {
             heartP[i]->show();
             if (i < count) {
-                if (quarter_count != 0 && i == --count) {
+                if (quarter_count != 0 && i == count - 1) {
                     heartP[i]->changeTexture(amariheartTex[quarter_count - 1], 0);
                 } else {
                     heartP[i]->changeTexture("tt_heart_00.bti", 0);
@@ -291,16 +289,6 @@ void dFile_info_c::setHeartCnt(dSv_save_c* save) {
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_info_c::setHeartCnt(dSv_save_c* param_0) {
-    nofralloc
-#include "asm/d/file/d_file_sel_info/setHeartCnt__12dFile_info_cFP10dSv_save_c.s"
-}
-#pragma pop
-#endif
 
 /* 80192C08-80192C70 18D548 0068+00 1/1 0/0 0/0 .text setSaveDate__12dFile_info_cFP10dSv_save_c */
 void dFile_info_c::setSaveDate(dSv_save_c* save) {
@@ -352,14 +340,16 @@ SECTION_SDATA2 static u8 lit_4001[4] = {
 };
 
 /* 80192D9C-80192E88 18D6DC 00EC+00 1/0 0/0 0/0 .text            draw__16dDlst_FileInfo_cFv */
-// close
+// vtable order issue
 #ifdef NONMATCHING
 void dDlst_FileInfo_c::draw() {
     Mtx m;
     J2DGrafContext* ctx = dComIfGp_getCurrentGrafPort();
 
     if (mBasePane != NULL) {
-        MtxP glbMtx = mBasePane->getGlbMtx();
+        MtxP glbMtx2 = mBasePane->getGlbMtx();
+        // Fake match
+        MtxP glbMtx = (MtxP)&glbMtx2[0][0];
         PSMTXScale(m, mBasePane->getWidth() / field_0x10->getWidth(),
                    mBasePane->getHeight() / field_0x10->getHeight(), 1.0f);
         PSMTXConcat(glbMtx, m, glbMtx);

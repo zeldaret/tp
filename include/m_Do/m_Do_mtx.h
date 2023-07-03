@@ -35,6 +35,10 @@ inline void cMtx_concat(const Mtx a, const Mtx b, Mtx ab) {
     PSMTXConcat(a, b, ab);
 }
 
+inline void cMtx_scale(Mtx m, f32 x, f32 y, f32 z) {
+    PSMTXScale(m, x, y, z);
+}
+
 inline void mDoMtx_multVec(Mtx m, const Vec* src, Vec* dst) {
     PSMTXMultVec(m, src, dst);
 }
