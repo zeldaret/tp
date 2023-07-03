@@ -81,7 +81,7 @@ public:
     bool dataLoaded() { return mDataLoaded; }
     int flagCheck(int flag) { return mFlags.flagCheck(flag); }
 
-    static int getIndexCompositId(s16 param_0) { return param_0 != -1 ? (u8)param_0 : -1; }
+    inline static s16 getIndexCompositId(s16 param_0) { return param_0 != -1 ? (s16)(param_0 & 0xff) : (s16)-1; }
     static int getTypeCompositId(s16 param_0) { return param_0 == -1 ? 0 : param_0 >> 8; }
 
     static s16 makeCompositId(s16 a, int b) { return a | (b << 8); }

@@ -567,5 +567,11 @@ void dKy_plight_priority_set(LIGHT_INFLUENCE* param_0);
 void dKy_tevstr_init(dKy_tevstr_c* param_0, s8 param_1, u8 param_2);
 SND_INFLUENCE* dKy_Sound_get();
 void dKy_plight_cut(LIGHT_INFLUENCE* param_0);
+int dKy_rain_check();
+void dKy_set_actcol_ratio(f32 ratio);
+void dKy_set_bgcol_ratio(f32 ratio);
+void dKy_set_fogcol_ratio(f32 ratio);
+void dKy_set_vrboxcol_ratio(f32 ratio);
+f32 dKy_get_parcent(f32 param_0, f32 param_1, f32 param_2);
 
 #endif /* D_KANKYO_D_KANKYO_H */

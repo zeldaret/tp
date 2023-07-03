@@ -23,20 +23,6 @@ struct dKyd_l_vr_box_data_struct {
 // Forward References:
 //
 
-extern "C" void dKyd_dmpalet_getp__Fv();
-extern "C" void dKyd_dmpselect_getp__Fv();
-extern "C" void dKyd_dmenvr_getp__Fv();
-extern "C" void dKyd_dmvrbox_getp__Fv();
-extern "C" void dKyd_schejule_getp__Fv();
-extern "C" void dKyd_schejule_boss_getp__Fv();
-extern "C" void dKyd_xfog_table_set__FUc();
-extern "C" void dKyd_maple_col_getp__Fv();
-extern "C" void dKyd_darkworld_tbl_getp__Fv();
-extern "C" void dKyd_light_size_tbl_getp__Fv();
-extern "C" void dKyd_light_tw_size_tbl_getp__Fv();
-extern "C" void dKyd_BloomInf_tbl_getp__Fi();
-extern "C" extern char const* const d_kankyo_d_kankyo_data__stringBase0;
-
 //
 // Declarations:
 //
