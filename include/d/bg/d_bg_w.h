@@ -208,6 +208,7 @@ public:
     MtxP GetBaseMtxP() { return pm_base; }
     bool ChkNoCalcVtx() { return field_0x88 & 2; }
     bool ChkFlush() { return field_0x91 & 8; }
+    void SetLock() { field_0x88 |= 0x80; }
 
 public:
     /* 0x18 */ MtxP pm_base;

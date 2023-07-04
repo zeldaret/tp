@@ -301,6 +301,10 @@ inline dJntCol_c* fopAcM_GetJntCol(fopAc_ac_c* i_actor) {
     return i_actor->mJntCol;
 }
 
+inline void fopAcM_setCullSizeFar(fopAc_ac_c* i_actor, f32 i_far) {
+    i_actor->mCullSizeFar = i_far;
+}
+
 inline f32 fopAcM_getCullSizeFar(const fopAc_ac_c* i_actor) {
     return i_actor->mCullSizeFar;
 }

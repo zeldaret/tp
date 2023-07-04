@@ -2936,6 +2936,11 @@ inline int i_dComIfGp_evmng_getMyStaffId(const char* pName, fopAc_ac_c* pActor, 
     return dComIfGp_getPEvtManager()->getMyStaffId(pName, pActor, param_2);
 }
 
+inline int dComIfGp_evmng_getMyActIdx(int i_staffIdx, char** param_1, int param_2, int param_3,
+                                      int param_4) {
+    return dComIfGp_getPEvtManager()->getMyActIdx(i_staffIdx, param_1, param_2, param_3, param_4);
+}
+
 inline int dComIfGp_evmng_getIsAddvance(int param_0) {
     return dComIfGp_getPEvtManager()->getIsAddvance(param_0);
 }
