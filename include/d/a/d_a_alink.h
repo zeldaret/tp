@@ -6252,14 +6252,17 @@ public:
     enum daMidna_ERFLG0 {
         ERFLG0_NO_SERVICE_WAIT = 0x80,
         ERFLG0_FORCE_PANIC = 8,
+        ERFLG0_UNK_2 = 2,
     };
 
     enum daMidna_FLG0 {
+        FLG0_UNK_80000000 = 0x80000000,
         FLG0_UNK_8000000 = 0x8000000,
         FLG0_NPC_NEAR = 0x100000,
         FLG0_NPC_FAR = 0x40000,
         FLG0_NO_INPUT = 0x4000,
         FLG0_NO_DRAW = 0x2000,
+        FLG0_UNK_400 = 0x400,
         FLG0_UNK_800 = 0x800,
         FLG0_UNK_200 = 0x200,
     };
@@ -6276,10 +6279,8 @@ public:
     u32 checkForceNormalColor() const;
     u32 checkForceTiredColor() const;
     bool checkMidnaTired();
-    bool i_checkMidnaTired() {
-        return dComIfGs_isTransformLV(3) && !i_dComIfGs_isEventBit(0x1e08);
-    }
     void onNoServiceWait();
+
     /* 804BC3E0 */ void modelCallBack(int);
     /* 804BC5C4 */ void changeUpperBck();
     /* 804BC614 */ void changeFaceBck();
@@ -6326,6 +6327,8 @@ public:
     /* 804C61A4 */ ~daMidna_c();
 
     void onEndResetStateFlg0(daMidna_ERFLG0 pFlg) { mEndResetStateFlg0 |= pFlg; }
+    void onStateFlg0(daMidna_FLG0 i_flag) { mStateFlg0 |= i_flag; }
+    void offStateFlg0(daMidna_FLG0 i_flag) { mStateFlg0 &= ~i_flag; }
     u32 checkStateFlg0(daMidna_FLG0 flag) const { return mStateFlg0 & flag; }
     u32 checkStateFlg1(daMidna_FLG1 flag) const { return mStateFlg1 & flag; }
     void setFaceNum(int num) { mFaceNum = num; }
@@ -6340,6 +6343,29 @@ public:
     BOOL checkWolfNoPos() const { return checkStateFlg0(FLG0_UNK_800); }
     int checkMetamorphoseEnable() { return (this->*mpFunc)(); }
     int checkShadowModelDrawDemoForce() const { return checkStateFlg1(FLG1_SHADOW_MODEL_DRAW_DEMO_FORCE); }
+
+    void onTagWaitPosWarp(const cXyz* param_0) {
+        field_0x9ac = *param_0;
+        onStateFlg0(FLG0_UNK_400);
+        onEndResetStateFlg0(ERFLG0_UNK_2);
+    }
+
+    void onTagWaitPos(const cXyz* param_0) {
+        field_0x9ac = *param_0;
+        onStateFlg0(FLG0_UNK_400);
+    }
+
+    void offTagWaitPos() {
+        offStateFlg0((daMidna_FLG0)(FLG0_UNK_80000000 | FLG0_UNK_8000000 | FLG0_UNK_400));
+    }
+
+    void onTagNoHairLead() {
+        onStateFlg0(FLG0_UNK_80000000);
+    }
+
+    bool checkReturnAnime() const {
+        return field_0x5e4[0].getIdx() == 0x1CA;
+    }
 
     bool checkShadowModelDrawSmode() const {
         if (field_0x84e != 3 && field_0x84e != 4) {
@@ -6363,7 +6389,7 @@ public:
     }
 
     int checkShadowReturnEnd() const {
-        if (field_0x5e4[0].getIdx() == 0x21c && !field_0x578->isStop()) {
+        if (field_0x5e4[0].getIdx() == 0x21C && !field_0x578->isStop()) {
             return 1;
         }
 
@@ -6382,6 +6408,10 @@ public:
     }
 
     inline static BOOL checkMidnaRealBody();
+
+    bool i_checkMidnaTired() {
+        return dComIfGs_isTransformLV(3) && !i_dComIfGs_isEventBit(0x1E08);
+    }
 
     static u8 const m_texDataTable[84];
     static u8 const m_anmDataTable[636];
@@ -6477,7 +6507,9 @@ private:
     /* 0x091C */ cXyz field_0x91c[5];
     /* 0x0958 */ u8 field_0x958[0xC]; // cXyz here, fix later
     /* 0x0964 */ cXyz field_0x964[5];
-    /* 0x09A0 */ u8 field_0x9a0[0x14];
+    /* 0x09A0 */ u8 field_0x9a0[0xC];
+    /* 0x09AC */ cXyz field_0x9ac;
+    /* 0x09B8 */ u8 field_0x9b8[0x9C4 - 0x9B8];
     /* 0x09C4 */ cXyz field_0x9c4;
     /* 0x09D0 */ u8 field_0x9d0[4];
     /* 0x09D4 */ daMidna_func mpFunc;
