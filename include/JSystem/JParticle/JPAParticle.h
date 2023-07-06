@@ -250,6 +250,13 @@ public:
     void setGlobalRTMatrix(const Mtx m) { JPASetRMtxTVecfromMtx(m, mGlobalRot, &mGlobalTrs); }
     void setGlobalTranslation(f32 x, f32 y, f32 z) { mGlobalTrs.set(x, y, z); }
     void setGlobalAlpha(u8 alpha) { mGlobalPrmClr.a = alpha; }
+    void setVolumeSize(u16 size) { mVolumeSize = size; }
+    void setLifeTime(s16 lifetime) { mLifeTime = lifetime; }
+
+    void setGlobalParticleScale(const JGeometry::TVec3<f32>& scale) {
+        mGlobalPScl.set(scale.x, scale.y);
+    }
+
     // void setGlobalScale(const JGeometry::TVec3<f32>& scale) {
     //     mGlobalScl = scale;
     //     mGlobalPScl = scale;
