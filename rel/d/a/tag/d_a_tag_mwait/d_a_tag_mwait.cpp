@@ -106,8 +106,9 @@ int daTagMwait_c::execute() {
     } else {
         mInitMsgFlow = false;
 
-        if (daPy_py_c::i_checkNowWolf() && midna_p != NULL && i_fopAcM_isSwitch(this, mOnSw)) {
-            if (mWarpToPos) {
+        if (daPy_py_c::i_checkNowWolf() && midna_p != NULL && i_fopAcM_isSwitch(this, mOnSw))
+        {
+            if (mWarpToPos == 1) {
                 midna_p->onTagWaitPosWarp(&mWaitPosition);
             } else {
                 midna_p->onTagWaitPos(&mWaitPosition);
