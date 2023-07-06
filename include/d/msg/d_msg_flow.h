@@ -37,9 +37,9 @@ public:
     /* 80249F00 */ dMsgFlow_c();
     /* 80249F48 */ virtual ~dMsgFlow_c();
 
-    /* 80249F90 */ void init(fopAc_ac_c*, int, int, fopAc_ac_c**);
+    /* 80249F90 */ void init(fopAc_ac_c* i_partner, int i_flowID, int, fopAc_ac_c**);
     /* 8024A13C */ int checkOpenDoor(fopAc_ac_c*, int*);
-    /* 8024A2D8 */ int doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
+    /* 8024A2D8 */ int doFlow(fopAc_ac_c*, fopAc_ac_c**, int i_flow);
     /* 8024A424 */ int checkEventRender(int*, int*, int*, int*);
     /* 8024A4C4 */ void remove();
     /* 8024A528 */ u16 getEventId(int*);
