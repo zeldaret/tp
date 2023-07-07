@@ -315,6 +315,8 @@ public:
     void setOpaListSky() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST_SKY]); }
     void setXluListDark() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_DARK]); }
     void setOpaListDark() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST_DARK]); }
+    void setXluListDarkBG() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_DARK_BG]); }
+    void setOpaListDarkBG() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST_DARK_BG]); }
     void setOpaList() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST]); }
     void setXluList() { setXluDrawList(mDrawBuffers[DB_XLU_LIST]); }
     void setOpaListItem3D() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST_ITEM3D]); }

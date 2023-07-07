@@ -31,11 +31,32 @@ struct TVec3<s16> {
     }
 };
 
+inline void setTVec3f(const f32* vec_a, f32* vec_b) {
+    const register f32* v_a = vec_a;
+    register f32* v_b = vec_b;
+
+    register f32 a_x;
+    register f32 b_x;
+
+    asm {
+        psq_l a_x, 0(v_a), 0, 0 /* qr0 */
+        lfs b_x, 8(v_a)
+        psq_st a_x, 0(v_b), 0, 0 /* qr0 */
+        stfs b_x, 8(v_b)
+    };
+}
+
 template <>
 struct TVec3<f32> {
     f32 x;
     f32 y;
     f32 z;
+
+    /* TVec3(const Vec& i_vec) {
+        setTVec3f(&i_vec.x, &x);
+    } */
+
+    /* TVec3() {} */
 
     operator Vec*() { return (Vec*)&x; }
     operator const Vec*() const { return (Vec*)&x; }

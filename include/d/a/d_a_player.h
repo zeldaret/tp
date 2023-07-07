@@ -722,6 +722,8 @@ public:
     s16 getBodyAngleX() const { return mBodyAngle.x; }
     s16 getBodyAngleY() const { return mBodyAngle.y; }
 
+    BOOL checkMidnaWarp() const { return 0; }
+
     // some functions use these function as an inline
     // is there a better way to handle this?
     int i_checkNoResetFlg0(daPy_FLG0 pFlag) const { return mNoResetFlg0 & pFlag; }
