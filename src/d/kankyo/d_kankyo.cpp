@@ -1474,7 +1474,7 @@ static void envcolor_init() {
     undwater_init();
     dComIfGs_PolyDamageOff_Set(0);
     g_env_light.field_0x98c = dComIfGp_roomControl_getStayNo();
-    g_env_light.field_0x12fa = 0;
+    g_env_light.mIsBlure = 0;
     g_env_light.field_0x12fb = 0;
     g_env_light.field_0x1300 = -1;
     g_env_light.field_0x1302 = -1;

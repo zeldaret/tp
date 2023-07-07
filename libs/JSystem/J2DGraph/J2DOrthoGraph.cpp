@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
-#include "dol2asm.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/mtx/mtx44.h"
 #include "dolphin/types.h"
@@ -13,39 +12,9 @@
 // Forward References:
 //
 
-extern "C" void __ct__13J2DOrthoGraphFv();
-extern "C" void __ct__13J2DOrthoGraphFffffff();
-extern "C" void setPort__13J2DOrthoGraphFv();
-extern "C" void func_802E980C();
-extern "C" void setLookat__13J2DOrthoGraphFv();
-extern "C" void func_802E987C();
-extern "C" void J2DDrawLine__FffffQ28JUtility6TColori();
-extern "C" void J2DFillBox__FffffQ28JUtility6TColor();
-extern "C" void func_802E9B0C();
-extern "C" void J2DDrawFrame__FffffQ28JUtility6TColorUc();
-extern "C" void func_802E9BE8();
-extern "C" bool getGrafType__13J2DOrthoGraphCFv();
-
 //
 // External References:
 //
-
-extern "C" void __dt__13J2DOrthoGraphFv();
-extern "C" void __ct__14J2DGrafContextFffff();
-extern "C" void setPort__14J2DGrafContextFv();
-extern "C" void setup2D__14J2DGrafContextFv();
-extern "C" void setScissor__14J2DGrafContextFv();
-extern "C" void func_802E90E4();
-extern "C" void
-setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor();
-extern "C" void setLineWidth__14J2DGrafContextFUc();
-extern "C" void func_802E9260();
-extern "C" void func_802E9368();
-extern "C" void func_802E9564();
-extern "C" void place__14J2DGrafContextFffff();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__14J2DGrafContext[10];
 
 //
 // Declarations:
