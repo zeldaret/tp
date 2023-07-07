@@ -42,7 +42,6 @@ extern "C" void init_c__15JPABaseParticleFP18JPAEmitterWorkDataP15JPABaseParticl
 extern "C" void __dl__FPv();
 extern "C" void load__10JUTTextureF11_GXTexMapID();
 extern "C" extern void* __vt__18JPAEmitterCallBack[7];
-extern "C" extern u32 __float_epsilon;
 
 //
 // Declarations:

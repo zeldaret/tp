@@ -22,10 +22,6 @@ struct JKRHeap {
     /* 802CE474 */ void alloc(u32, int, JKRHeap*);
 };
 
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
 //
 // Forward References:
 //
@@ -125,7 +121,6 @@ extern "C" void _restgpr_24();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_epsilon;
 
 //
 // Declarations:
