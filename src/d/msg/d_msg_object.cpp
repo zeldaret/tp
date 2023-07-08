@@ -1704,7 +1704,7 @@ asm fopAc_ac_c* dMsgObject_c::getActor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getpTalkActor() {
+asm fopAc_ac_c* dMsgObject_c::getpTalkActor() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getpTalkActor__12dMsgObject_cFv.s"
 }
@@ -1714,7 +1714,7 @@ asm void dMsgObject_c::getpTalkActor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getIdx() {
+asm u32 dMsgObject_c::getIdx() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getIdx__12dMsgObject_cFv.s"
 }
@@ -1724,7 +1724,7 @@ asm void dMsgObject_c::getIdx() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getNodeIdx() {
+asm u16 dMsgObject_c::getNodeIdx() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getNodeIdx__12dMsgObject_cFv.s"
 }

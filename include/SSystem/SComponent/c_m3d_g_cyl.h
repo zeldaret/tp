@@ -31,7 +31,7 @@ public:
     bool cross(const cM3dGSph*, cXyz*) const;
     bool cross(const cM3dGCyl*, cXyz*) const;
     void calcMinMax(cXyz*, cXyz*);
-    const cXyz& GetCP(void) const { return mCenter; }
+    const cXyz* GetCP(void) const { return &mCenter; }
     f32 GetR(void) const { return mRadius; }
     f32 GetH(void) const { return mHeight; }
     cXyz& GetC() { return mCenter; }

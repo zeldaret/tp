@@ -8,12 +8,10 @@ M117_MAP := $(BUILD_DIR)/rel/d/a/d_a_scene_exit2.map
 
 M117_CPP_FILES := \
 	rel/executor.cpp \
-	rel/d/a/d_a_scene_exit2/unknown_translation_unit_bss.cpp \
 	rel/d/a/d_a_scene_exit2/d_a_scene_exit2.cpp \
 
 M117_O_FILES := \
 	$(BUILD_DIR)/rel/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_scene_exit2/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/d_a_scene_exit2/d_a_scene_exit2.o \
 
 M117_LIBS := \

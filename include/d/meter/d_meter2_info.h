@@ -151,6 +151,10 @@ public:
     u8 getItemExplainWindowStatus() { return mItemExplainWindowStatus; }
     void resetDirectUseItem() { mDirectUseItem = 0; }
     u16 getFloatingFlowID() { return mFloatingFlowID; }
+    void setCollectCursorPosXY(u8 x, u8 y) {
+        mCollectCursorPosX = x;
+        mCollectCursorPosY = y;
+    }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -548,6 +552,10 @@ inline void dMeter2Info_resetDirectUseItem() {
 
 inline u16 dMeter2Info_getFloatingFlowID() {
     return g_meter2_info.getFloatingFlowID();
+}
+
+inline void dMeter2Info_setCollectCursorPosXY(u8 x, u8 y) {
+    g_meter2_info.setCollectCursorPosXY(x, y);
 }
 
 const char* dMeter2Info_getNumberTextureName(int pIndex);

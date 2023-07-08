@@ -3,6 +3,8 @@
 
 #include "dolphin/mtx/vec.h"
 #include "dolphin/types.h"
+#include "MSL_C/float.h"
+#include "MSL_C/math.h"
 
 namespace JGeometry {
 
@@ -31,11 +33,37 @@ struct TVec3<s16> {
     }
 };
 
+inline void setTVec3f(const f32* vec_a, f32* vec_b) {
+    const register f32* v_a = vec_a;
+    register f32* v_b = vec_b;
+
+    register f32 a_x;
+    register f32 b_x;
+
+    asm {
+        psq_l a_x, 0(v_a), 0, 0 /* qr0 */
+        lfs b_x, 8(v_a)
+        psq_st a_x, 0(v_b), 0, 0 /* qr0 */
+        stfs b_x, 8(v_b)
+    };
+}
+
+inline float fsqrt_step(float mag) {
+    f32 root = __frsqrte(mag);
+    return 0.5f * root * (3.0f - mag * (root * root));
+}
+
 template <>
 struct TVec3<f32> {
     f32 x;
     f32 y;
     f32 z;
+
+    /* TVec3(const Vec& i_vec) {
+        setTVec3f(&i_vec.x, &x);
+    } */
+
+    /* TVec3() {} */
 
     operator Vec*() { return (Vec*)&x; }
     operator const Vec*() const { return (Vec*)&x; }
@@ -88,6 +116,38 @@ struct TVec3<f32> {
             stfs   z,   8(dst)
         };
         return *this;
+    }
+
+    f32 squared() {
+        return C_VECSquareMag((Vec*)&x);
+    }
+
+    void normalize() {
+        f32 sq = squared();
+        if (sq <= FLT_EPSILON * 32.0f) {
+            return;
+        }
+        f32 norm;
+        if (sq <= 0.0f) {
+            norm = sq;
+        } else {
+            norm = fsqrt_step(sq);
+        }
+        scale(norm);
+    }
+
+    void scale(register f32 sc) {
+        register f32 z;
+        register f32 x_y;
+        register f32* dst = &x;
+        asm {
+            psq_l    x_y, 0(dst),  0, 0
+            psq_l    z,   8(dst),  1, 0
+            ps_muls0 x_y,    x_y, sc
+            psq_st   x_y, 0(dst),  0, 0
+            ps_muls0 x_y,       z, sc
+            psq_st   x_y,  8(dst),  1, 0
+        };
     }
 };
 

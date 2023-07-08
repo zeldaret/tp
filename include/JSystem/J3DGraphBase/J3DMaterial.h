@@ -50,6 +50,7 @@ public:
     J3DColorBlock* getColorBlock() const { return mColorBlock; }
     J3DTexGenBlock* getTexGenBlock() const { return mTexGenBlock; }
     J3DDisplayListObj* getSharedDisplayListObj() const { return mSharedDLObj; }
+    J3DIndBlock* getIndBlock() const { return mIndBlock; }
     J3DShape* getShape() { return mShape; }
     J3DJoint* getJoint() { return mJoint; }
     J3DMaterialAnm* getMaterialAnm() const {
@@ -62,6 +63,7 @@ public:
     J3DNBTScale* getNBTScale() const { return mTexGenBlock->getNBTScale(); }
     u32 getTexNo(u32 idx) const { return mTevBlock->getTexNo(idx); }
     GXColor* getTevKColor(u32 param_0) { return mTevBlock->getTevKColor(param_0); }
+    GXColorS10* getTevColor(u32 param_0) { return mTevBlock->getTevColor(param_0); }
     J3DFog* getFog() { return mPEBlock->getFog(); }
     J3DTexMtx* getTexMtx(u32 idx) { return mTexGenBlock->getTexMtx(idx); }
     u16 getIndex() { return mIndex; }

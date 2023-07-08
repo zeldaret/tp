@@ -39,6 +39,7 @@ private:
 class daHorse_c : public fopAc_ac_c {
 public:
     enum daHorse_ERFLG0 {
+        /* 0x001 */ ERFLG0_UNK_1 = 0x1,
         /* 0x010 */ MOVE_ACCEPT = 0x10,
         /* 0x080 */ RIDE_RUN_FLG = 0x80,
         /* 0x100 */ CUT_TURN_CANCEL = 0x100,
@@ -157,6 +158,7 @@ public:
     bool checkEndResetStateFlg0(daHorse_ERFLG0 flag) { return mEndResetStateFlg0 & flag; }
     bool checkStateFlg0(daHorse_FLG0 flag) const { return mStateFlg0 & flag; }
     f32 getNormalMaxSpeedF() { return mNormalMaxSpeedF; }
+    f32 getLashMaxSpeedF() { return mLashMaxSpeedF; }
     void changeDemoMoveAngle(s16 angle) { mDemoMoveAngle = angle; }
     void setDemoStickR(f32 stick) { mDemoStickR = stick; }
     void i_changeDemoMode(u32 param_0, int param_1) { field_0x1740 = param_0; field_0x1728 = param_1; }
@@ -166,12 +168,20 @@ public:
     void offRideFlg() { (this->*mpOffRideFlgFn)(); }
     void onStateFlg0(daHorse_FLG0 flag) { mStateFlg0 |= flag; }
     void offStateFlg0(daHorse_FLG0 flag) { mStateFlg0 &= ~flag; }
+    void onEndResetStateFlg0(daHorse_ERFLG0 i_flag) { mEndResetStateFlg0 |= i_flag;}
     void offNoDrawWait() { offStateFlg0(NO_DRAW_WAIT); }
     int checkSpecialWallHit(const cXyz& param_0) { return (this->*mpCheckSpecialWallHitFn)(param_0); }
 
     bool checkTurnStandCamera() const { return checkResetStateFlg0(TURN_STAND_CAMERA); }
     bool checkTurnStand() const { return checkResetStateFlg0(TURN_STAND); }
     bool checkRodeoMode() const { return checkStateFlg0(RODEO_MODE); }
+
+    void onTagJump(f32 param_0, f32 param_1, f32 param_2) {
+        field_0x1768 = param_0;
+        field_0x176c = param_1;
+        field_0x1770 = param_2;
+        onEndResetStateFlg0(ERFLG0_UNK_1);
+    }
 
     static u8 const m_footJointTable[8];
     static f32 const m_callLimitDistance2;

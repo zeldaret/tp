@@ -17,8 +17,13 @@ public:
     /* 80195A3C */ void animation();
     /* 80195B40 */ void setAlpha(u8);
     /* 80195B70 */ void setPos(J2DPane*, f32, f32);
+    virtual ~dSelect_icon_c() {}
 
-    /* 0x00 */ u8 field_0x0[8];
+    void drawSelf() {
+        // Not sure what field_0x4 is
+    }
+
+    /* 0x04 */ u8 field_0x4[4];
     /* 0x08 */ J2DScreen* field_0x8;
     /* 0x0C */ CPaneMgrAlpha* field_0xc;
     /* 0x10 */ CPaneMgr* field_0x10;

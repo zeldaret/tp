@@ -436,9 +436,11 @@ dCcD_SrcSph E_YM_n::cc_sph_src = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        40.0f,
-    },
+        {
+            {0.0f, 0.0f, 0.0f},
+            40.0f,
+        },
+    }
 };
 
 /* 80815B7C-80815B84 000078 0008+00 0/0 0/0 0/0 .data            w_eff_id$5427 */
@@ -2218,7 +2220,7 @@ int daE_YM_c::create() {
                 mpPath = dPath_GetRoomPath(tmp0, fopAcM_GetRoomNo(this));
 
                 if (mpPath != NULL) {
-                    mAttentionInfo.field_0x4[3] = 31;
+                    mAttentionInfo.field_0x0[7] = 31;
                     field_0x6a6 = 4;
                     field_0x670 = current.pos;
                     setActionMode(ACT_WAIT);

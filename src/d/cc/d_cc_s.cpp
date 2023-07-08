@@ -700,8 +700,8 @@ bool dCcS::chkCameraPoint(cXyz const& param_0, cCcD_ShapeAttr::Shape* param_1, f
     cCcD_SphAttr sp48;
     cCcD_SrcSphAttr sp1C;
 
-    sp1C.mCenter = param_0;
-    sp1C.mRadius = 1.0f;
+    sp1C.mSph.mCenter = param_0;
+    sp1C.mSph.mRadius = 1.0f;
     sp48.Set(sp1C);
     sp48.CalcAabBox();
 

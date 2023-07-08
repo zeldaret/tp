@@ -57,7 +57,6 @@ private:
     /* 0xC8 */ cXyz field_0xc8[6];
 };  // Size: 0x110
 
-struct daMirror_c;
 class daAlink_c;
 
 class daBoomerang_c : public fopAc_ac_c {

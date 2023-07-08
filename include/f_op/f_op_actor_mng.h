@@ -301,6 +301,10 @@ inline dJntCol_c* fopAcM_GetJntCol(fopAc_ac_c* i_actor) {
     return i_actor->mJntCol;
 }
 
+inline void fopAcM_setCullSizeFar(fopAc_ac_c* i_actor, f32 i_far) {
+    i_actor->mCullSizeFar = i_far;
+}
+
 inline f32 fopAcM_getCullSizeFar(const fopAc_ac_c* i_actor) {
     return i_actor->mCullSizeFar;
 }
@@ -460,7 +464,7 @@ s32 fopAcM_cullingCheck(const fopAc_ac_c*);
 void* event_second_actor(u16);
 s32 fopAcM_orderTalkEvent(fopAc_ac_c*, fopAc_ac_c*, u16, u16);
 s32 fopAcM_orderTalkItemBtnEvent(u16, fopAc_ac_c*, fopAc_ac_c*, u16, u16);
-s32 fopAcM_orderSpeakEvent(fopAc_ac_c*, u16, u16);
+s32 fopAcM_orderSpeakEvent(fopAc_ac_c* i_actor, u16 i_priority, u16 i_flag);
 s32 fopAcM_orderDoorEvent(fopAc_ac_c*, fopAc_ac_c*, u16, u16);
 s32 fopAcM_orderCatchEvent(fopAc_ac_c*, fopAc_ac_c*, u16, u16);
 s32 fopAcM_orderOtherEvent(fopAc_ac_c*, const char*, u16, u16, u16);

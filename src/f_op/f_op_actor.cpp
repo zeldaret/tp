@@ -170,11 +170,11 @@ static int fopAc_Create(void* i_this) {
         _this->mAttentionInfo.field_0x0[1] = 2;
         _this->mAttentionInfo.field_0x0[2] = 3;
         _this->mAttentionInfo.field_0x0[3] = 5;
-        _this->mAttentionInfo.field_0x4[0] = 6;
-        _this->mAttentionInfo.field_0x4[3] = 14;
-        _this->mAttentionInfo.field_0x4[1] = 15;
-        _this->mAttentionInfo.field_0x4[2] = 15;
-        _this->mAttentionInfo.field_0x8[0] = 51;
+        _this->mAttentionInfo.field_0x0[4] = 6;
+        _this->mAttentionInfo.field_0x0[7] = 14;
+        _this->mAttentionInfo.field_0x0[5] = 15;
+        _this->mAttentionInfo.field_0x0[6] = 15;
+        _this->mAttentionInfo.field_0x0[8] = 51;
         _this->mAttentionInfo.mPosition = _this->orig.pos;
         _this->mAttentionInfo.field_0xa = 30;
         dKy_tevstr_init(&_this->mTevStr, _this->orig.roomNo, -1);

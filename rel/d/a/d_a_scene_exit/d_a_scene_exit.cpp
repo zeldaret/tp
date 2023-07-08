@@ -144,6 +144,7 @@ COMPILER_STRIP_GATE(0x80485CA8, &lit_3842);
 
 /* 80485A50-80485C90 000290 0240+00 1/1 0/0 0/0 .text            execute__8daScex_cFv */
 // regalloc
+// this matches debug but not retail :/
 #ifdef NONMATCHING
 int daScex_c::execute() {
     daPy_py_c* player = daPy_getPlayerActorClass();

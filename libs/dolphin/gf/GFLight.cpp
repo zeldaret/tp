@@ -5,8 +5,6 @@
 
 #include "dolphin/gf/GFLight.h"
 #include "dolphin/types.h"
-#include "dolphin/gx/GXEnum.h"
-#include "dolphin/gx/GXStruct.h"
 #include "dolphin/gx/GX.h"
 
 //

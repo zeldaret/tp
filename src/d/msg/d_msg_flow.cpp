@@ -448,7 +448,7 @@ SECTION_DEAD static char const* const stringBase_80399CB5 = "FLI1";
 
 /* 80249F90-8024A13C 2448D0 01AC+00 0/0 10/10 86/86 .text
  * init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c             */
-void dMsgFlow_c::init(fopAc_ac_c* param_0, int param_1, int param_2, fopAc_ac_c** param_3) {
+void dMsgFlow_c::init(fopAc_ac_c* i_partner, int i_flowID, int param_2, fopAc_ac_c** param_3) {
     u16 uVar4;
     u16 flow_val;
 
@@ -459,11 +459,11 @@ void dMsgFlow_c::init(fopAc_ac_c* param_0, int param_1, int param_2, fopAc_ac_c*
         }
 
         if (param_2 == 0 && g_MsgObject_HIO_c.mMsgDebug == 2) {
-            param_1 = g_MsgObject_HIO_c.mFlowIndex;
+            i_flowID = g_MsgObject_HIO_c.mFlowIndex;
         }
-        flow_val = param_1;
+        flow_val = i_flowID;
 
-        dMsgObject_changeFlowGroup(param_1);
+        dMsgObject_changeFlowGroup(i_flowID);
         if (param_2 == 0) {
             setInitValue(1);
             mFlow_p = getMsgDataBlock("FLW1");
@@ -473,15 +473,15 @@ void dMsgFlow_c::init(fopAc_ac_c* param_0, int param_1, int param_2, fopAc_ac_c*
             field_0x18 = field_0x14 + *(u16*)(mFlow_p + 8);
 
             mFlow = flow_val;
-            if (param_0 != NULL) {
-                dMsgObject_setTalkPartner(param_0);
+            if (i_partner != NULL) {
+                dMsgObject_setTalkPartner(i_partner);
             }
             setNodeIndex(getInitNodeIndex(mFlow), param_3);
         } else {
             uVar4 = field_0x10;
             setInitValue(0);
-            if (param_0 != NULL) {
-                dMsgObject_setTalkPartner(param_0);
+            if (i_partner != NULL) {
+                dMsgObject_setTalkPartner(i_partner);
             }
             setNodeIndex(uVar4, param_3);
         }
@@ -568,9 +568,9 @@ asm int dMsgFlow_c::checkOpenDoor(fopAc_ac_c* param_0, int* param_1) {
 
 /* 8024A2D8-8024A424 244C18 014C+00 0/0 21/21 78/78 .text
  * doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci            */
-int dMsgFlow_c::doFlow(fopAc_ac_c* param_0, fopAc_ac_c** param_1, int flow) {
+int dMsgFlow_c::doFlow(fopAc_ac_c* param_0, fopAc_ac_c** param_1, int i_flow) {
     int check = false;
-    u16 set_flow = flow;
+    u16 set_flow = i_flow;
     dMsgObject_changeFlowGroup(mFlow);
 
     if (dMsgObject_isKillMessageFlag()) {

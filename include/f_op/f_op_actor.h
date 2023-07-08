@@ -87,10 +87,8 @@ struct actor_place {
 struct actor_attention_types {
     void setFlag(u32 flags) { mFlags |= flags; }
 
-    /* 0x00 */ u8 field_0x0[4];
-    /* 0x04 */ u8 field_0x4[4];
-    /* 0x08 */ u8 field_0x8[2];
-    /* 0x0A */ u16 field_0xa;
+    /* 0x00 */ u8 field_0x0[9];
+    /* 0x0A */ s16 field_0xa;
     /* 0x0C */ cXyz mPosition;
     /* 0x18 */ u32 mFlags;
 };  // Size = 0x1C
@@ -146,7 +144,10 @@ public:
     /* 0x544 */ actor_attention_types mAttentionInfo;
     /* 0x560 */ s16 field_0x560;
     /* 0x562 */ s16 mHealth;
-    /* 0x564 */ u8 field_0x564[0x4];
+    /* 0x564 */ u8 field_0x564;
+    /* 0x565 */ u8 field_0x565;
+    /* 0x566 */ u8 field_0x566;
+    /* 0x567 */ s8 field_0x567;
 
     fopAc_ac_c();
     ~fopAc_ac_c();

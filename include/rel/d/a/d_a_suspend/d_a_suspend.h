@@ -19,6 +19,8 @@ public:
         void setNext(data_c* i_next) { mpNext = i_next; }
         data_c* getNext() { return mpNext; }
         u8 getType() { return mType; }
+        bool isUsed() { return mRoomNo < 0; }
+        s8 getRoomNo() { return mRoomNo; }
 
         /* 0x00 */ s8 mRoomNo;
         /* 0x01 */ bool field_0x1;
@@ -35,11 +37,12 @@ public:
         /* 80031190 */ void add(daSus_c::data_c*);
         /* 800311FC */ void reset();
         /* 80031EE4 */ room_c();
+        void init() { mpData = NULL; }
 
         /* 0x0 */ data_c* mpData;
     };  // Size: 0x4
 
-    /* 80031248 */ static void newData(s8, cXyz const&, cXyz const&, u8, u8, u8);
+    /* 80031248 */ static int newData(s8, cXyz const&, cXyz const&, u8, u8, u8);
     /* 800313BC */ void reset();
     /* 800314D4 */ static void check(fopAc_ac_c*);
     /* 80031434 */ static bool check(s8 i_roomNo, cXyz const& i_pos);
