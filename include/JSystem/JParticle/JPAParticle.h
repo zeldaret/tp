@@ -75,6 +75,11 @@ public:
 
 template <class T>
 struct JPANode {
+    JPANode() {
+        mpPrev = NULL;
+        mpNext = NULL;
+    }
+    ~JPANode() {}
     JPANode<T>* mpPrev;
     JPANode<T>* mpNext;
     T mData;

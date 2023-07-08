@@ -62,6 +62,10 @@ inline s16 fopCamM_GetAngleY(camera_class* i_camera) {
     return i_camera->mAngle.y;
 }
 
+inline f32 fopCamM_GetFovy(camera_class* i_camera) {
+    return i_camera->mFovy;
+}
+
 u32 fopCamM_Create(int i_cameraIdx, s16 pProcName, void* param_3);
 void fopCamM_Management(void);
 u32 fopCamM_GetParam(camera_class* pCamera);

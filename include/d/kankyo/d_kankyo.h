@@ -525,7 +525,7 @@ public:
     /* 0x12F4 */ dKy_color_data_struct* mResColorDataTbl;
     /* 0x12F8 */ s8 mFogDensity;
     /* 0x12F9 */ u8 field_0x12f9;
-    /* 0x12FA */ u8 field_0x12fa;
+    /* 0x12FA */ u8 mIsBlure;
     /* 0x12FB */ u8 field_0x12fb;
     /* 0x12FC */ s8 field_0x12fc;
     /* 0x12FD */ u8 mDarktimeWeek;

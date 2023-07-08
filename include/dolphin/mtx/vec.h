@@ -33,6 +33,20 @@ f32 PSVECDistance(const Vec* a, const Vec* b);
 void C_VECHalfAngle(const Vec* a, const Vec* b, Vec* half);
 void C_VECReflect(const Vec* src, const Vec* normal, Vec* dst);
 
+inline f32 C_VECSquareMag(const Vec* v) {
+    register f32 x_y;
+    register f32 z;
+    register const f32* src = &v->x;
+    asm {
+        psq_l   x_y, 0(src), 0, 0
+        ps_mul  x_y, x_y, x_y
+        lfs     z,   8(src)
+        ps_madd z, z, z, x_y
+        ps_sum0 z, z, x_y, x_y
+    };
+    return z;
+}
+
 #ifdef __cplusplus
 };
 #endif
