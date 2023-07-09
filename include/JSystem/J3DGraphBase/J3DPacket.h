@@ -18,6 +18,48 @@ class J3DTexMtx;
 class J3DTexMtxObj;
 class J3DTexture;
 
+inline u32 getDiffFlag_LightObjNum(u32 param_1) {
+    return (param_1 & 0xf0) >> 4;
+}
+
+inline u32 getDiffFlag_TexGenNum(u32 param_1) {
+    return (param_1 & 0xf00) >> 8;
+}
+
+inline int calcDifferedBufferSize_TexMtxSize(int param_1) {
+  return param_1 * 0x35;
+}
+
+inline int calcDifferedBufferSize_TexGenSize(int param_1) {
+    return param_1 * 0x3d + 10;
+}
+
+inline u32 getDiffFlag_TexNoNum(u32 param_1) {
+    return (param_1 & 0xf0000) >> 0x10;
+}
+
+inline int calcDifferedBufferSize_TexNoSize(int param_1) {
+    return param_1 * 0x37;
+}
+
+inline u32 calcDifferedBufferSize_TexNoAndTexCoordScaleSize(u32 param_1) {
+    u32 res = param_1 * 0x37;
+    res += ((param_1 + 1) >> 1) * 0x37;
+    return res;
+}
+
+inline u32 getDiffFlag_TevStageNum(u32 param_1) {
+    return (param_1 & 0xf00000) >> 0x14;
+}
+
+inline int calcDifferedBufferSize_TevStageSize(int param_1) {
+    return param_1 * 10;
+}
+
+inline int calcDifferedBufferSize_TevStageDirectSize(int param_1) {
+    return param_1 * 5;
+}
+
 class J3DDisplayListObj {
 public:
     J3DDisplayListObj() {

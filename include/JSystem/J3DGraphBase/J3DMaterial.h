@@ -70,6 +70,8 @@ public:
     bool isDrawModeOpaTexEdge() { return (mMaterialMode & 3) == 0; }
     J3DPEBlock* getPEBlock() { return mPEBlock; }
     void onInvalid() { mInvalid = 1; }
+    u32 getTexGenNum() const { return mTexGenBlock->getTexGenNum(); }
+    u8 getTevStageNum() const { return mTevBlock->getTevStageNum(); }
 
     void setTevColor(u32 i, const J3DGXColorS10* i_color) { mTevBlock->setTevColor(i, i_color); }
     void setTevKColor(u32 i, const J3DGXColor* i_color) { mTevBlock->setTevKColor(i, i_color); }
