@@ -20,6 +20,10 @@ inline void GDSetCurrent(GDLObj* obj) {
     __GDCurrentDL = obj;
 }
 
+inline void __GDWrite(u8 data) {
+    *__GDCurrentDL->ptr++ = data;
+}
+
 inline u32 GDGetGDLObjOffset(GDLObj* obj) {
     return (u32)(obj->ptr - obj->start);
 }

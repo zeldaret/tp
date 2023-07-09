@@ -90,6 +90,7 @@ struct J3DSys {
     void setModel(J3DModel* pModel) { mModel = pModel; }
     void setShapePacket(J3DShapePacket* pPacket) { mShapePacket = pPacket; }
     void setMatPacket(J3DMatPacket* pPacket) { mMatPacket = pPacket; }
+    J3DMatPacket* getMatPacket() { return mMatPacket; }
     void setMaterialMode(u32 mode) { mMaterialMode = mode; }
 
     void setTexture(J3DTexture* pTex) { mTexture = pTex; }

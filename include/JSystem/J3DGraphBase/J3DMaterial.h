@@ -14,16 +14,16 @@ class J3DMaterialAnm;
 
 class J3DMaterial {
 public:
-    /* 803157A0 */ void createColorBlock(u32);
-    /* 803159A0 */ void createTexGenBlock(u32);
-    /* 80315B04 */ void createTevBlock(int);
-    /* 80315E78 */ void createIndBlock(int);
-    /* 80315F60 */ void createPEBlock(u32, u32);
-    /* 80316100 */ void calcSizeColorBlock(u32);
-    /* 80316150 */ void calcSizeTexGenBlock(u32);
-    /* 8031617C */ void calcSizeTevBlock(int);
-    /* 803161C4 */ void calcSizeIndBlock(int);
-    /* 803161D8 */ void calcSizePEBlock(u32, u32);
+    /* 803157A0 */ static J3DColorBlock* createColorBlock(u32);
+    /* 803159A0 */ static J3DTexGenBlock* createTexGenBlock(u32);
+    /* 80315B04 */ static J3DTevBlock* createTevBlock(int);
+    /* 80315E78 */ static J3DIndBlock* createIndBlock(int);
+    /* 80315F60 */ static J3DPEBlock* createPEBlock(u32, u32);
+    /* 80316100 */ static u32 calcSizeColorBlock(u32);
+    /* 80316150 */ static u32 calcSizeTexGenBlock(u32);
+    /* 8031617C */ static u32 calcSizeTevBlock(int);
+    /* 803161C4 */ static u32 calcSizeIndBlock(int);
+    /* 803161D8 */ static u32 calcSizePEBlock(u32, u32);
     /* 80316240 */ void initialize();
     /* 80316290 */ u32 countDLSize();
     /* 80316344 */ void makeDisplayList_private(J3DDisplayListObj*);
