@@ -90,6 +90,9 @@ public:
     J3DDisplayListObj* getDisplayListObj() const { return mpDisplayListObj; }
     void setDisplayListObj(J3DDisplayListObj* pObj) { mpDisplayListObj = pObj; }
 
+    void beginPatch() { mpDisplayListObj->beginPatch(); }
+    void endPatch() { mpDisplayListObj->endPatch(); }
+
     void callDL() const { getDisplayListObj()->callDL(); }
 
     enum {
@@ -153,6 +156,7 @@ public:
     void setInitShapePacket(J3DShapePacket* packet) { mpInitShapePacket = packet; }
     void setMaterialAnmID(J3DMaterialAnm* materialAnm) { mpMaterialAnm = materialAnm; }
     bool isChanged() const { return mDiffFlag & 0x80000000; }
+    bool isEnabled_Diff() const { return mpInitShapePacket->getDisplayListObj() != NULL; }
 
     virtual ~J3DMatPacket();
     virtual int entry(J3DDrawBuffer*);

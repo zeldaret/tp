@@ -292,8 +292,8 @@ SECTION_SDATA static J3DTevOrderInfo l_tevOrderInfo = {
 };
 
 /* 80451DF0-80451DF8 0003F0 0008+00 1/1 0/0 0/0 .sdata2          l_alphaCompInfo$3775 */
-SECTION_SDATA2 static J3DAlphaCompInfo l_alphaCompInfo = {
-    0x04, 0x80, 0x00, 0x03, 0xFF,
+SECTION_SDATA2 static J3DAlphaCompInfo l_alphaCompInfo[2] = {
+    {0x04, 0x80, 0x00, 0x03}, {0xFF, 0, 0, 0},
 };
 
 /* 8003A840-8003AACC 035180 028C+00 1/1 0/0 0/0 .text            addWarpMaterial__FP12J3DModelData
@@ -328,7 +328,7 @@ static void addWarpMaterial(J3DModelData* param_1) {
         pShape->addTexMtxIndexInVcd(attr);
         J3DPEBlock* peBlock = pMaterial->getPEBlock();
         J3DAlphaComp* alphaComp = peBlock->getAlphaComp();
-        alphaComp->setAlphaCompInfo(&l_alphaCompInfo);
+        alphaComp->setAlphaCompInfo(l_alphaCompInfo);
         peBlock->setZCompLoc((u8)0);
     }
 }
