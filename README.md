@@ -1,6 +1,6 @@
 # The Legend of Zelda: Twilight Princess ![Code Progress] ![Dol Progress] ![Rels Progress]
 [Code Progress]: https://img.shields.io/endpoint?label=Code&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Ftwilightprincess%2Fgcn_usa%2Fdefault%2F%3Fmode%3Dshield%26measure%3Dcode
-[Dol Progress]: https://img.shields.io/endpoint?label=Data&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Ftwilightprincess%2Fgcn_usa%2Fdefault%2F%3Fmode%3Dshield%26measure%3Ddol
+[Dol Progress]: https://img.shields.io/endpoint?label=Dol&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Ftwilightprincess%2Fgcn_usa%2Fdefault%2F%3Fmode%3Dshield%26measure%3Ddol
 [Rels Progress]: https://img.shields.io/endpoint?label=Rels&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Ftwilightprincess%2Fgcn_usa%2Fdefault%2F%3Fmode%3Dshield%26measure%3Drels
 This repo contains a WIP decompilation of The Legend of Zelda: Twilight Princess (GCN USA).
 
