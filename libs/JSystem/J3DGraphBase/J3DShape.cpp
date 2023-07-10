@@ -17,26 +17,6 @@
 // Forward References:
 //
 
-extern "C" void initialize__8J3DShapeFv();
-extern "C" void addTexMtxIndexInDL__8J3DShapeF7_GXAttrUl();
-extern "C" void addTexMtxIndexInVcd__8J3DShapeF7_GXAttr();
-extern "C" void calcNBTScale__8J3DShapeFRC3VecPA3_A3_fPA3_A3_f();
-extern "C" void countBumpMtxNum__8J3DShapeCFv();
-extern "C" static void J3DLoadCPCmd__FUcUl();
-extern "C" static void J3DLoadArrayBasePtr__F7_GXAttrPv();
-extern "C" void loadVtxArray__8J3DShapeCFv();
-extern "C" void isSameVcdVatCmd__8J3DShapeFP8J3DShape();
-extern "C" void makeVtxArrayCmd__8J3DShapeFv();
-extern "C" void makeVcdVatCmd__8J3DShapeFv();
-extern "C" void loadPreDrawSetting__8J3DShapeCFv();
-extern "C" void setArrayAndBindPipeline__8J3DShapeCFv();
-extern "C" void drawFast__8J3DShapeCFv();
-extern "C" void draw__8J3DShapeCFv();
-extern "C" void simpleDraw__8J3DShapeCFv();
-extern "C" void simpleDrawCache__8J3DShapeCFv();
-extern "C" extern void* __vt__8J3DShape[6];
-extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
-
 //
 // External References:
 //
@@ -44,25 +24,6 @@ extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 void J3DGDSetVtxAttrFmtv(_GXVtxFmt, GXVtxAttrFmtList const*, bool);
 void J3DFifoLoadPosMtxImm(Mtx, u32);
 void J3DFifoLoadNrmMtxImm(Mtx, u32);
-
-extern "C" void* __nwa__FUl();
-extern "C" void J3DGDSetVtxAttrFmtv__F9_GXVtxFmtPC17_GXVtxAttrFmtListb();
-extern "C" void J3DFifoLoadPosMtxImm__FPA4_fUl();
-extern "C" void J3DFifoLoadNrmMtxImm__FPA4_fUl();
-extern "C" void resetMtxLoadCache__11J3DShapeMtxFv();
-extern "C" void addTexMtxIndexInDL__12J3DShapeDrawFUlUlUl();
-extern "C" void draw__12J3DShapeDrawCFv();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern u32 j3dDefaultViewNo;
-extern "C" u32 sCurrentPipeline__11J3DShapeMtx;
-extern "C" u32 sCurrentScaleFlag__11J3DShapeMtx;
-extern "C" extern u8 struct_804515B0[4];
-extern "C" u32 sTexMtxLoadType__11J3DShapeMtx;
 
 //
 // Declarations:
@@ -340,13 +301,12 @@ void J3DShape::setArrayAndBindPipeline() const {
     J3DShapeMtx::sCurrentScaleFlag = mScaleFlagArray;
     // The below struct_804515B0 is actually a continuation of sCurrentScaleFlag, I believe?
     // Also, there seems to be an extra entry in the array that's only there in DEBUG builds.
-    struct_804515B0[0] = mHasNBT;
+    struct_804515B0 = mHasNBT;
     data_804515D4[0] = mHasPNMTXIdx;
     J3DShapeMtx::sTexMtxLoadType = getTexMtxLoadType();
 }
 
 /* 8031544C-803155E0 30FD8C 0194+00 1/0 0/0 0/0 .text            drawFast__8J3DShapeCFv */
-#ifdef NONMATCHING
 void J3DShape::drawFast() const {
     if (sOldVcdVatCmd != mVcdVatCmd) {
         GXCallDisplayList(mVcdVatCmd, kVcdVatDLSize);
@@ -376,18 +336,6 @@ void J3DShape::drawFast() const {
                 getShapeDraw(i)->draw();
     }
 }
-#else
-
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DShape::drawFast() const {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DShape/drawFast__8J3DShapeCFv.s"
-}
-#pragma pop
-
-#endif
 
 /* 803155E0-80315628 30FF20 0048+00 1/0 0/0 0/0 .text            draw__8J3DShapeCFv */
 void J3DShape::draw() const {
