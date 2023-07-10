@@ -9,23 +9,23 @@
 
 class J2DGrafContext {
 public:
-    /* 802E8B08 */ J2DGrafContext(f32, f32, f32, f32);
-    /* 802E90C0 */ void scissor(JGeometry::TBox2<f32> const&);
+    /* 802E8B08 */ J2DGrafContext(f32 x, f32 y, f32 width, f32 height);
+    /* 802E90C0 */ void scissor(JGeometry::TBox2<f32> const& bounds);
     void setColor(JUtility::TColor c) { this->setColor(c, c, c, c); }
-    /* 802E9118 */ void setColor(JUtility::TColor, JUtility::TColor, JUtility::TColor,
-                                 JUtility::TColor);
+    /* 802E9118 */ void setColor(JUtility::TColor colorTL, JUtility::TColor colorTR,
+                                 JUtility::TColor colorBR, JUtility::TColor colorBL);
     /* 802E9234 */ void setLineWidth(u8);
-    /* 802E9260 */ void fillBox(JGeometry::TBox2<f32> const&);
-    /* 802E9368 */ void drawFrame(JGeometry::TBox2<f32> const&);
-    /* 802E9488 */ void line(JGeometry::TVec2<f32>, JGeometry::TVec2<f32>);
-    /* 802E9564 */ void lineTo(JGeometry::TVec2<f32>);
+    /* 802E9260 */ void fillBox(JGeometry::TBox2<f32> const& box);
+    /* 802E9368 */ void drawFrame(JGeometry::TBox2<f32> const& box);
+    /* 802E9488 */ void line(JGeometry::TVec2<f32> start, JGeometry::TVec2<f32> end);
+    /* 802E9564 */ void lineTo(JGeometry::TVec2<f32> pos);
     void lineTo(f32 x, f32 y) { this->lineTo(JGeometry::TVec2<f32>(x, y)); }
     void moveTo(f32 x, f32 y) { this->moveTo(JGeometry::TVec2<f32>(x, y)); }
 
     void moveTo(JGeometry::TVec2<f32> pos) { mPrevPos = pos; }
 
     /* 802E95D4 */ virtual ~J2DGrafContext() {}
-    /* 802E90E4 */ virtual void place(JGeometry::TBox2<f32> const&);
+    /* 802E90E4 */ virtual void place(JGeometry::TBox2<f32> const& bounds);
     /* 802E961C */ virtual void place(f32 x, f32 y, f32 width, f32 height) {
         JGeometry::TBox2<f32> box(x, y, x + width, y + height);
         this->place(box);
