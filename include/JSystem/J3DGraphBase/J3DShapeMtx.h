@@ -28,7 +28,10 @@ public:
     static J3DTexMtxObj* sTexMtxObj;
 };
 
-extern u8 struct_804515B0[4];
+extern u8 struct_804515B0;
+extern u8 struct_804515B1;
+extern u8 struct_804515B2;
+extern u8 struct_804515B3;
 
 class J3DShapeMtx {
 public:
@@ -57,8 +60,8 @@ public:
     static u32 sTexMtxLoadType;
 
     static void setCurrentPipeline(u32 pipeline) { sCurrentPipeline = pipeline; }
-    static void setLODFlag(u8 flag) { struct_804515B0[1] = flag; }
-    static u8 getLODFlag() { return struct_804515B0[1]; }
+    static void setLODFlag(u8 flag) { struct_804515B1 = flag; }
+    static u8 getLODFlag() { return struct_804515B1; }
     static void resetMtxLoadCache();
 
 private:

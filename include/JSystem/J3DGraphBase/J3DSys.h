@@ -135,6 +135,7 @@ struct J3DSys {
     static u16 sTexCoordScaleTable[32];
 };
 
+extern u32 j3dDefaultViewNo;
 extern J3DSys j3dSys;
 
 #endif /* J3DSYS_H */
