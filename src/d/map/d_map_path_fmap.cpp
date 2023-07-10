@@ -255,21 +255,10 @@ void fmpTresTypeGroupDataList_c::addTypeGroupData(u8 i_typeGroupNo,
 }
 
 /* 8003D818-8003D868 038158 0050+00 1/1 1/1 0/0 .text isArrival__22dMenu_Fmap_room_data_cFv */
-#ifdef NONMATCHING
 bool dMenu_Fmap_room_data_c::isArrival() {
-    u8 table_no = mp_parentStage->getStageArc()->getVisitedRoomSaveTableNo();
+    u8 table_no = mp_parentStage->getStageArc()->mVisitedRoomSaveTableNo;
     return dComIfGs_isSaveVisitedRoom(table_no, m_roomNo) != false;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dMenu_Fmap_room_data_c::isArrival() {
-    nofralloc
-#include "asm/d/map/d_map_path_fmap/isArrival__22dMenu_Fmap_room_data_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8003D868-8003D92C 0381A8 00C4+00 1/1 0/0 0/0 .text
  * buildTresTypeGroup__22dMenu_Fmap_room_data_cFiii             */

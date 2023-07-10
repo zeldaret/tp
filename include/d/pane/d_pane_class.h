@@ -64,6 +64,9 @@ public:
     JUtility::TColor getInitBlack() { return mInitBlack; }
     JUtility::TColor getInitWhite() { return mInitWhite; }
 
+    f32 getInitGlobalPosX() { return mGlobalPos.x; }
+    f32 getInitGlobalPosY() { return mGlobalPos.y; }
+
 private:
     /* 0x1C */ void* mpFirstStackSize;
     /* 0x20 */ s16* field_0x20;

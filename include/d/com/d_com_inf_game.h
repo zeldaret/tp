@@ -3372,6 +3372,11 @@ inline void dComIfGd_setListDark() {
     g_dComIfG_gameInfo.drawlist.setXluListDark();
 }
 
+inline void dComIfGd_setListInvisible() {
+    g_dComIfG_gameInfo.drawlist.setOpaListInvisible();
+    g_dComIfG_gameInfo.drawlist.setXluListInvisible();
+}
+
 inline void dComIfGd_setListDarkBG() {
     g_dComIfG_gameInfo.drawlist.setOpaListDarkBG();
     g_dComIfG_gameInfo.drawlist.setXluListDarkBG();
