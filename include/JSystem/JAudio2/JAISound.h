@@ -17,8 +17,16 @@ public:
 
     JAISoundID() {}
 
+    bool isAnonymous() { return mId.mFullId == 0xffffffff; }
+
     union {
         u32 mFullId;
+        struct {
+            u8 b0;
+            u8 b1;
+            u8 b2;
+            u8 b3;
+        } mBytes;
         struct {
             u16 mSoundType;
             u16 mShortId;
@@ -41,6 +49,7 @@ struct JAISoundStatus_ {
     }
 
     bool isAlive();  // used in assert
+    bool isDead() { return state.unk == 6;}
 
     inline bool isPlaying() { return state.unk == 5; }
 
@@ -177,6 +186,10 @@ public:
             isStopping = status_.state.flags.flag5 ? fader.isOut() : true;
         }
         return isStopping;
+    }
+
+    void pause(bool param_0) {
+        status_.field_0x0.flags.paused = param_0;
     }
 
     /* 0x04 */ JAISoundHandle* handle_;

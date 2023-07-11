@@ -105,11 +105,6 @@ struct JASHeap {
     /* 802A4A5C */ void __defctor();
 };
 
-struct JASGenericMemPool {
-    /* 80290848 */ JASGenericMemPool();
-    /* 802908C8 */ void newMemPool(u32, int);
-};
-
 struct JASAramStream {
     static u8 sBlockSize[4];
 };
