@@ -25,7 +25,7 @@ public:
 
     /* 802A20F0 */ virtual ~JAISeqMgr();  // inline?
     /* 802A1804 */ virtual bool isUsingSeqData(JAISeqDataRegion const&);
-    /* 802A1870 */ virtual void releaseSeqData(JAISeqDataRegion const&);
+    /* 802A1870 */ virtual int releaseSeqData(JAISeqDataRegion const&);
 
 private:
     /* 0x04 */ JAISoundActivity mActivity;

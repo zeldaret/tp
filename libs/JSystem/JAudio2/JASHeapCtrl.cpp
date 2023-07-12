@@ -63,14 +63,6 @@ struct JASHeap {
     /* 80290B54 */ ~JASHeap();
 };
 
-struct JASGenericMemPool {
-    /* 80290848 */ JASGenericMemPool();
-    /* 80290860 */ ~JASGenericMemPool();
-    /* 802908C8 */ void newMemPool(u32, int);
-    /* 80290948 */ void alloc(u32);
-    /* 80290994 */ void free(void*, u32);
-};
-
 //
 // Forward References:
 //

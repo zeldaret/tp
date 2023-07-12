@@ -2,10 +2,22 @@
 #define JAISOUNDINFO_H
 
 #include "dolphin/types.h"
+#include "JSystem/JAudio2/JAISound.h"
+#include "JSystem/JAudio2/JASGadget.h"
 
-struct JAISoundInfo {
+struct JAISe;
+struct JAISeq;
+struct JAIStream;
+
+struct JAISoundInfo : public JASGlobalInstance<JAISoundInfo> {
     /* 802A2D34 */ JAISoundInfo(bool);
-    /* 802A2D50 */ ~JAISoundInfo();
+    virtual u32 getSoundType(JAISoundID) const = 0;
+    virtual int getCategory(JAISoundID) const = 0;
+    virtual u32 getPriority(JAISoundID) const = 0;
+    virtual void getSeInfo(JAISoundID, JAISe*) const = 0;
+    virtual void getSeqInfo(JAISoundID, JAISeq*) const = 0;
+    virtual void getStreamInfo(JAISoundID, JAIStream*) const = 0;
+    /* 802A2D50 */ virtual ~JAISoundInfo();
 };
 
 #endif /* JAISOUNDINFO_H */

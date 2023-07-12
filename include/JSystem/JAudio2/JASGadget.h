@@ -11,7 +11,9 @@ public:
     }
 
     JASGlobalInstance(bool param_1) {
-        sInstance = (T*)this;
+        if (param_1) {
+            sInstance = (T*)this;
+        }
     }
 
     ~JASGlobalInstance() {
