@@ -59,11 +59,15 @@ struct TVec3<f32> {
     f32 y;
     f32 z;
 
-    /* TVec3(const Vec& i_vec) {
-        setTVec3f(&i_vec.x, &x);
-    } */
+    // inline TVec3(const Vec& i_vec) {
+    //     setTVec3f(&i_vec.x, &x);
+    // }
 
-    /* TVec3() {} */
+    // inline TVec3(const TVec3<f32>& i_vec) {
+    //     setTVec3f(&i_vec.x, &x);
+    // }
+
+    // TVec3() {}
 
     operator Vec*() { return (Vec*)&x; }
     operator const Vec*() const { return (Vec*)&x; }
@@ -78,6 +82,10 @@ struct TVec3<f32> {
         x = x_;
         y = y_;
         z = z_;
+    }
+
+    inline void add(const TVec3<f32>& b) {
+        C_VECAdd((Vec*)&x, (Vec*)&b.x, (Vec*)&x);
     }
 
     void zero() { x = y = z = 0.0f; }
@@ -103,6 +111,17 @@ struct TVec3<f32> {
             stfs   z,   8(dst)
         };
     }
+
+    inline TVec3<f32>& operator+=(const TVec3<f32>& b) {
+        add(b);
+        return *this;
+    }
+
+    // inline TVec3<f32> operator+(const TVec3<f32>& b) {
+    //     TVec3<f32> res(*(Vec*)this);
+    //     res += b;
+    //     return res;
+    // }
 
     inline TVec3<f32>& operator=(const TVec3<f32>& b) {
         register f32* dst = &x;
@@ -140,13 +159,14 @@ struct TVec3<f32> {
         register f32 z;
         register f32 x_y;
         register f32* dst = &x;
+        register f32 zres;
         asm {
             psq_l    x_y, 0(dst),  0, 0
             psq_l    z,   8(dst),  1, 0
             ps_muls0 x_y,    x_y, sc
             psq_st   x_y, 0(dst),  0, 0
-            ps_muls0 x_y,       z, sc
-            psq_st   x_y,  8(dst),  1, 0
+            ps_muls0 zres,       z, sc
+            psq_st   zres,  8(dst),  1, 0
         };
     }
 };
