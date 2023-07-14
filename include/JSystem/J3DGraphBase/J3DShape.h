@@ -107,6 +107,7 @@ public:
     void setTexMtxLoadType(u32 type) { mFlags = (mFlags & 0xFFFF0FFF) | type; }
     bool getNBTFlag() const { return mHasNBT; }
     u32 getBumpMtxOffset() const { return mBumpMtxOffset; }
+    GXVtxDescList* getVtxDesc() const { return mVtxDesc; }
 
     J3DMaterial* getMaterial() const { return mMaterial; }
     u32 getIndex() const { return mIndex; }

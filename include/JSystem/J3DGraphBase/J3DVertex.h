@@ -9,9 +9,11 @@
 typedef struct _GXColor GXColor;
 class J3DModel;
 struct J3DAnmVtxColor;
+struct J3DVertexBuffer;
 
 struct J3DVtxColorCalc {
     /* 8032E180 */ void calc(J3DModel*);
+    virtual void calc(J3DVertexBuffer*);
 
     /* 0x0 */ void* vtable;  // inlined vtable?
     /* 0x4 */ u32 mFlags;
@@ -30,6 +32,10 @@ public:
     u32 getNrmNum() const { return mNrmNum; }
     u32 getVtxNum() const { return mVtxNum; }
     GXVtxAttrFmtList* getVtxAttrFmtList() { return mVtxAttrFmtList; }
+    u8 getVtxPosFrac() { return mVtxPosFrac; }
+    u8 getVtxNrmFrac() { return mVtxNrmFrac; }
+    int getVtxPosType() { return mVtxPosType; }
+    int getVtxNrmType() { return mVtxNrmType; }
 
     void setVtxPosFrac(u8 frac) { mVtxPosFrac = frac; }
     void setVtxPosType(GXCompType type) { mVtxPosType = type; }
@@ -69,8 +75,10 @@ public:
     /* 8031152C */ s32 allocTransformedVtxNrmArray();
 
     void setCurrentVtxPos(void* pVtxPos) { mCurrentVtxPos = pVtxPos; }
+    void* getCurrentVtxPos() { return mCurrentVtxPos; }
 
     void setCurrentVtxNrm(void* pVtxNrm) { mCurrentVtxNrm = pVtxNrm; }
+    void* getCurrentVtxNrm() { return mCurrentVtxNrm; }
 
     void setCurrentVtxCol(GXColor* pVtxCol) { mCurrentVtxCol = pVtxCol; }
 
@@ -78,6 +86,22 @@ public:
         setCurrentVtxPos(mVtxPosArray[0]);
         setCurrentVtxNrm(mVtxNrmArray[0]);
         setCurrentVtxCol(mVtxColArray[0]);
+    }
+
+    void* getTransformedVtxPos(int idx) { return mTransformedVtxPosArray[idx]; }
+    void* getTransformedVtxNrm(int idx) { return mTransformedVtxNrmArray[idx]; }
+    J3DVertexData* getVertexData() { return mVtxData; }
+
+    void swapTransformedVtxPos() {
+        void* tmp = mTransformedVtxPosArray[0];
+        mTransformedVtxPosArray[0] = mTransformedVtxPosArray[1];
+        mTransformedVtxPosArray[1] = tmp;
+    }
+
+    void swapTransformedVtxNrm() {
+        void* tmp = mTransformedVtxNrmArray[0];
+        mTransformedVtxNrmArray[0] = mTransformedVtxNrmArray[1];
+        mTransformedVtxNrmArray[1] = tmp;
     }
 
 private:

@@ -34,6 +34,10 @@ public:
     J3DMaterial* getMaterialNodePointer(u16 idx) const {
         return mMaterialTable.getMaterialNodePointer(idx);
     }
+    u32 getVtxNum() const { return mVertexData.getVtxNum(); }
+    u32 getNrmNum() const { return mVertexData.getNrmNum(); }
+    u8 getDrawMtxFlag(u16 idx) const { return mJointTree.getDrawMtxFlag(idx); }
+    u16 getDrawMtxIndex(u16 idx) const { return mJointTree.getDrawMtxIndex(idx); }
     J3DShape* getShapeNodePointer(u16 idx) const { return mShapeTable.getShapeNodePointer(idx); }
     J3DJoint* getJointNodePointer(u16 idx) const { return mJointTree.getJointNodePointer(idx); }
     J3DJointTree& getJointTree() { return mJointTree; }
@@ -42,6 +46,9 @@ public:
     J3DTexture* getTexture() const { return mMaterialTable.getTexture(); }
     JUTNameTab* getTextureName() const { return mMaterialTable.getTextureName(); }
     u16 getWEvlpMtxNum() const { return mJointTree.getWEvlpMtxNum(); }
+    u16* getWEvlpMixMtxIndex() const { return mJointTree.getWEvlpMixIndex(); }
+    f32* getWEvlpMixWeight() const { return mJointTree.getWEvlpMixWeight(); }
+    u8 getWEvlpMixMtxNum(u16 idx) const { return mJointTree.getWEvlpMixMtxNum(idx); }
     u32 getModelDataType() const { return mJointTree.getModelDataType(); }
     void* getVtxPosArray() const { return mVertexData.getVtxPosArray(); }
     void* getVtxNrmArray() const { return mVertexData.getVtxNrmArray(); }
