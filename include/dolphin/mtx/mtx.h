@@ -14,6 +14,7 @@ typedef f32 Mtx[3][4];
 typedef f32 Mtx33[3][3];
 typedef f32 Mtx23[2][3];
 typedef f32 (*MtxP)[4];
+typedef f32 (*Mtx3P)[3];
 typedef const f32 (*CMtxP)[4];  // Change name later?
 
 void PSMTXIdentity(Mtx m);

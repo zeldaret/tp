@@ -45,13 +45,14 @@ public:
     u16 getJointNum() const { return mJointNum; }
     u16 getDrawMtxNum() const { return mDrawMtxData.mEntryNum; }
     u8 getDrawMtxFlag(u16 idx) const { return mDrawMtxData.mDrawMtxFlag[idx]; }
-    u8 getDrawMtxIndex(u16 idx) const { return mDrawMtxData.mDrawMtxIndex[idx]; }
+    u16 getDrawMtxIndex(u16 idx) const { return mDrawMtxData.mDrawMtxIndex[idx]; }
     JUTNameTab* getJointName() const { return mJointName; }
     J3DJoint* getRootNode() { return mRootNode; }
     J3DJoint* getJointNodePointer(u16 idx) const { return mJointNodePointer[idx]; }
     J3DMtxCalc* getBasicMtxCalc() const { return mBasicMtxCalc; }
     Mtx& getInvJointMtx(s32 idx) const { return mInvJointMtx[idx]; }
     u32 getModelDataType() const { return mModelDataType; }
+    bool checkFlag(u32 flag) { return mFlags & flag; }
 
 private:
     /* 0x04 */ J3DModelHierarchy* mHierarchy;
