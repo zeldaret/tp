@@ -9,6 +9,13 @@
 
 class J2DGrafContext {
 public:
+    struct Blend {
+        /* 0x0 */ u8 mType;
+        /* 0x1 */ u8 mSrcFactor;
+        /* 0x2 */ u8 mDstFactor;
+    };
+
+
     /* 802E8B08 */ J2DGrafContext(f32 x, f32 y, f32 width, f32 height);
     /* 802E90C0 */ void scissor(JGeometry::TBox2<f32> const& bounds);
     void setColor(JUtility::TColor c) { this->setColor(c, c, c, c); }
@@ -47,9 +54,9 @@ public:
     /* 0x38 */ JGeometry::TVec2<f32> mPrevPos;
     /* 0x40 */ Mtx44 mMtx44;
     /* 0x80 */ Mtx mPosMtx;
-    /* 0xB0 */ J2DBlendInfo field_0xb0;
-    /* 0xB3 */ J2DBlendInfo mLinePart;
-    /* 0xB6 */ J2DBlendInfo mBoxPart;
+    /* 0xB0 */ Blend field_0xb0;
+    /* 0xB3 */ Blend mLinePart;
+    /* 0xB6 */ Blend mBoxPart;
 };
 
 #endif /* J2DGRAFCONTEXT_H */

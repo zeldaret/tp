@@ -422,6 +422,11 @@ struct J2DAlphaComp {
         mRef0 = 0;
         mRef1 = 0;
     }
+    u8 getComp0() { return mAlphaCmp >> 5 & 7; }
+    u8 getRef0() { return mRef0; }
+    u8 getOp() { return mAlphaCmp >> 3 & 3; }
+    u8 getComp1() { return mAlphaCmp & 7; }
+    u8 getRef1() { return mRef1; }
 
     /* 0x0 */ u16 mAlphaCmp;
     /* 0x2 */ u8 mRef0;
@@ -433,21 +438,26 @@ struct J2DBlendInfo {
         mType = other.mType;
         mSrcFactor = other.mSrcFactor;
         mDstFactor = other.mDstFactor;
-        // mOp = other.mOp;
+        mOp = other.mOp;
     }
 
     /* 0x0 */ u8 mType;
     /* 0x1 */ u8 mSrcFactor;
     /* 0x2 */ u8 mDstFactor;
+    /* 0x3 */ u8 mOp;
 };
 
 extern J2DBlendInfo j2dDefaultBlendInfo;
 
 struct J2DBlend {
     J2DBlend() { mBlendInfo = j2dDefaultBlendInfo; }
+    void setBlendInfo(const J2DBlendInfo& info) { mBlendInfo = info; }
+    u8 getType() { return mBlendInfo.mType; }
+    u8 getSrcFactor() { return mBlendInfo.mSrcFactor; }
+    u8 getDstFactor() { return mBlendInfo.mDstFactor; }
+    u8 getOp() { return mBlendInfo.mOp; }
 
     /* 0x0 */ J2DBlendInfo mBlendInfo;
-    /* 0x3 */ u8 mOp;
 };
 
 class J2DPEBlock {
@@ -532,17 +542,23 @@ public:
 };  // Size: 0x48
 
 struct J2DColorChanInfo {
-    /* 0x0 */ u16 field_0x0;
+    /* 0x0 */ u8 field_0x0;
+    /* 0x0 */ u8 field_0x1;
 };
+
+inline u8 J2DCalcColorChanID(u8 param_1) { return param_1; }
 
 class J2DColorChan {
 public:
     /* 802EB280 */ J2DColorChan();
 
-    u16 getMatSrc() const { return mColorChanInfo.field_0x0 & 1; }
+    void setColorChanInfo(const J2DColorChanInfo& info) {
+        mColorChan = J2DCalcColorChanID(info.field_0x1);
+    }
+    u16 getMatSrc() const { return mColorChan & 1; }
 
 private:
-    /* 0x0 */ J2DColorChanInfo mColorChanInfo;
+    /* 0x0 */ u16 mColorChan;
 };
 
 class J2DColorBlock {
