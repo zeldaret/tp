@@ -97,6 +97,7 @@ public:
     void offUseButton(int pButton) { mUseButton &= ~(u16)pButton; }
     u16 getOilGaugeBackUp() { return mOilGaugeBackUp; }
     u8 getWarpStatus() { return mWarpStatus; }
+    void setWarpStatus(u8 status) { mWarpStatus = status; }
     u8 getWarpRoomNo() { return mWarpInfo.mRoomNo; }
     u8 getWarpPlayerNo() { return mWarpInfo.mWarpPlayerNo; }
     cXyz& getWarpPos() { return mWarpInfo.mPosition; }
@@ -274,6 +275,10 @@ inline void dMeter2Info_getStringKanji(u32 param_0, char* param_1, JMSMesgEntry_
     g_meter2_info.getStringKanji(param_0, param_1, param_2);
 }
 
+inline f32 dMeter2Info_getStringLength(JUTFont* param_0, f32 param_1, f32 param_2, char* param_3) {
+    return g_meter2_info.getStringLength(param_0, param_1, param_2, param_3);
+}
+
 inline void dMeter2Info_setHotSpringTimer(u8 time) {
     g_meter2_info.setHotSpringTimer(time);
 }
@@ -288,6 +293,10 @@ inline void dMeter2Info_setSaveStageName(const char* name) {
 
 inline u8 dMeter2Info_getWarpStatus() {
     return g_meter2_info.getWarpStatus();
+}
+
+inline void dMeter2Info_setWarpStatus(u8 status) {
+    return g_meter2_info.setWarpStatus(status);
 }
 
 inline u8 dMeter2Info_getWarpRoomNo() {
