@@ -46,7 +46,7 @@ public:
     /* 0x48 */ dDlst_base_c* field_0x48;
     /* 0x4C */ u32 field_0x4c;
     /* 0x50 */ CharInfo_c* mCharInfoPtr;
-    /* 0x54 */ u32 field_0x54;
+    /* 0x54 */ JUTFont* field_0x54;
     /* 0x58 */ J2DTextBox::TFontSize mFontSize;
     /* 0x60 */ f32 mRubySize;
     /* 0x64 */ f32 mTextBoxPosX;
