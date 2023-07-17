@@ -15,7 +15,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
     - name: Project Setup
-      run: ./tp setup --skip-iso
+      run: |
+        python3 -m pip install --user -r tools/requirements.txt
+        ./tp setup --skip-iso
     - name: Download WiBo
       run: wget https://github.com/decompals/wibo/releases/download/0.4.2/wibo
     - name: Run Make (OK)
