@@ -16,19 +16,19 @@ jobs:
       uses: actions/checkout@v3
     - name: Project Setup
       run: |
+        # Install deps & setup
         python3 -m pip install --user -r tools/requirements.txt
         ./tp setup --skip-iso
-    - name: Download WiBo
-      run: |
+
+        # Download WiBo
         wget https://github.com/decompals/wibo/releases/download/0.4.2/wibo
         chmod +x wibo
     - name: Run Make (OK)
       run: make all rels -j$(nproc) WINE=./wibo
-    - name: Create JSON for Progress
-      if: github.event_name != 'pull_request'
-      run: ./tp progress -f JSON > progress-${{ github.run_id }}.json
-    - name: Upload Progress to Frogress
+    - name: Create JSON for Progress & Upload
       if: github.event_name != 'pull_request'
       env: 
         PROGRESS_API_KEY: ${{ secrets.FROGRESS_API_KEY }}
-      run: ./tp upload-progress progress-${{ github.run_id }}.json -b https://progress.deco.mp/ -p twilightprincess -v gcn_usa
+      run: |
+        ./tp progress -f JSON > progress-${{ github.run_id }}.json
+        ./tp upload-progress progress-${{ github.run_id }}.json -b https://progress.deco.mp/ -p twilightprincess -v gcn_usa
