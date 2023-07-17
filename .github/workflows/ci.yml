@@ -19,7 +19,9 @@ jobs:
         python3 -m pip install --user -r tools/requirements.txt
         ./tp setup --skip-iso
     - name: Download WiBo
-      run: wget https://github.com/decompals/wibo/releases/download/0.4.2/wibo
+      run: |
+        wget https://github.com/decompals/wibo/releases/download/0.4.2/wibo
+        chmod +x wibo
     - name: Run Make (OK)
       run: make all rels -j$(nproc) WINE=./wibo
     - name: Create JSON for Progress
