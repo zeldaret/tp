@@ -140,7 +140,8 @@ def expected_copy(debug: bool, build_path: Path, expected_path: Path):
     required=False,
 )
 @click.option("--force-download/--no-force-download")
-def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str, force_download: bool):
+@click.option("--skip-iso/--no-skip-iso", default=False)
+def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str, force_download: bool, skip_iso: bool):
     """Setup project"""
 
     if debug:
@@ -319,33 +320,33 @@ def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str, for
         LOG.error("An error occurred while running 'make tools'")
         exit(1)
 
-    #
-    text = Text("--- Extracting game assets")
-    text.stylize("bold magenta")
-    CONSOLE.print(text)
+    if skip_iso is False:
+        text = Text("--- Extracting game assets")
+        text.stylize("bold magenta")
+        CONSOLE.print(text)
 
-    iso = Path("gz2e01.iso")
-    if not iso.exists() or not iso.is_file():
-        LOG.error(
-            (
-                f"Missing file '{iso}'.\n"
-                f"Did you forget to copy the NTSC-U version in the root directory?"
+        iso = Path("gz2e01.iso")
+        if not iso.exists() or not iso.is_file():
+            LOG.error(
+                (
+                    f"Missing file '{iso}'.\n"
+                    f"Did you forget to copy the NTSC-U version in the root directory?"
+                )
             )
-        )
-        sys.exit(1)
+            sys.exit(1)
 
-    try:
-        import extract_game_assets
-        previous_dir = os.getcwd()
-        os.chdir(str(game_path.absolute()))
-        extract_game_assets.extract("../" + str(iso),yaz0_encoder)
-        os.chdir(previous_dir)
-    except ImportError as ex:
-        _handle_import_error(ex)
-    except Exception as e:
-        LOG.error(f"failure:")
-        LOG.error(e)
-        sys.exit(1)
+        try:
+            import extract_game_assets
+            previous_dir = os.getcwd()
+            os.chdir(str(game_path.absolute()))
+            extract_game_assets.extract("../" + str(iso),yaz0_encoder)
+            os.chdir(previous_dir)
+        except ImportError as ex:
+            _handle_import_error(ex)
+        except Exception as e:
+            LOG.error(f"failure:")
+            LOG.error(e)
+            sys.exit(1)
 
     text = Text("--- Complete")
     text.stylize("bold magenta")
