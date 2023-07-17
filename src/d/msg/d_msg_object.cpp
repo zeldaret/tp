@@ -1662,7 +1662,7 @@ asm void dMsgObject_c::changeGroup(s16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getString(u32 param_0, J2DTextBox* param_1, J2DTextBox* param_2,
+asm bool dMsgObject_c::getString(u32 param_0, J2DTextBox* param_1, J2DTextBox* param_2,
                                  JUTFont* param_3, COutFont_c* param_4, char* param_5,
                                  char* param_6, char* param_7, s16* param_8) {
     nofralloc

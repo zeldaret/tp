@@ -139,7 +139,9 @@ def expected_copy(debug: bool, build_path: Path, expected_path: Path):
     default="native",
     required=False,
 )
-def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str):
+@click.option("--force-download/--no-force-download")
+@click.option("--skip-iso/--no-skip-iso", default=False)
+def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str, force_download: bool, skip_iso: bool):
     """Setup project"""
 
     if debug:
@@ -162,9 +164,11 @@ def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str):
     CONSOLE.print(text)
 
     compilers = tools_path.joinpath("mwcc_compiler")
+    if force_download:
+        shutil.rmtree(compilers)
     if not compilers.exists() or not compilers.is_dir():
         os.mkdir(compilers)
-        r = requests.get('https://cdn.discordapp.com/attachments/727918646525165659/917185027656286218/GC_WII_COMPILERS.zip')
+        r = requests.get('https://cdn.discordapp.com/attachments/727918646525165659/1129759991696457728/GC_WII_COMPILERS.zip')
         z = zipfile.ZipFile(io.BytesIO(r.content))
         z.extractall(compilers)
         gc_path = compilers.joinpath("GC")
@@ -201,11 +205,11 @@ def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str):
         )
         sys.exit(1)
 
-    c125e = compilers.joinpath("1.2.5e")
-    if not c125e.exists() or not c125e.is_dir():
+    c125n = compilers.joinpath("1.2.5n")
+    if not c125n.exists() or not c125n.is_dir():
         LOG.error(
             (
-                f"Unable to find patched MWCC compiler version 1.2.5e: missing directory '{c125e}'\n"
+                f"Unable to find patched MWCC compiler version 1.2.5n: missing directory '{c125n}'\n"
                 f"Check the README for instructions on how to obtain the compilers"
             )
         )
@@ -233,7 +237,7 @@ def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str):
 
     copy_lmgr326b(c27)
     copy_lmgr326b(c125)
-    copy_lmgr326b(c125e)
+    copy_lmgr326b(c125n)
 
     c27_mwcceppc = c27.joinpath("mwcceppc.exe")
     if not c27_mwcceppc.exists() or not c27_mwcceppc.is_file():
@@ -316,33 +320,33 @@ def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str):
         LOG.error("An error occurred while running 'make tools'")
         exit(1)
 
-    #
-    text = Text("--- Extracting game assets")
-    text.stylize("bold magenta")
-    CONSOLE.print(text)
+    if skip_iso is False:
+        text = Text("--- Extracting game assets")
+        text.stylize("bold magenta")
+        CONSOLE.print(text)
 
-    iso = Path("gz2e01.iso")
-    if not iso.exists() or not iso.is_file():
-        LOG.error(
-            (
-                f"Missing file '{iso}'.\n"
-                f"Did you forget to copy the NTSC-U version in the root directory?"
+        iso = Path("gz2e01.iso")
+        if not iso.exists() or not iso.is_file():
+            LOG.error(
+                (
+                    f"Missing file '{iso}'.\n"
+                    f"Did you forget to copy the NTSC-U version in the root directory?"
+                )
             )
-        )
-        sys.exit(1)
+            sys.exit(1)
 
-    try:
-        import extract_game_assets
-        previous_dir = os.getcwd()
-        os.chdir(str(game_path.absolute()))
-        extract_game_assets.extract("../" + str(iso),yaz0_encoder)
-        os.chdir(previous_dir)
-    except ImportError as ex:
-        _handle_import_error(ex)
-    except Exception as e:
-        LOG.error(f"failure:")
-        LOG.error(e)
-        sys.exit(1)
+        try:
+            import extract_game_assets
+            previous_dir = os.getcwd()
+            os.chdir(str(game_path.absolute()))
+            extract_game_assets.extract("../" + str(iso),yaz0_encoder)
+            os.chdir(previous_dir)
+        except ImportError as ex:
+            _handle_import_error(ex)
+        except Exception as e:
+            LOG.error(f"failure:")
+            LOG.error(e)
+            sys.exit(1)
 
     text = Text("--- Complete")
     text.stylize("bold magenta")
