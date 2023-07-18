@@ -429,9 +429,7 @@ int JUTResFont::getCellWidth() const {
 }
 
 /* 802DFD58-802DFDA4 2DA698 004C+00 1/0 1/0 0/0 .text            getCellHeight__10JUTResFontCFv */
-#ifdef NONMATCHING
-// casting issue on the return
-int JUTResFont::getCellHeight() const {
+s32 JUTResFont::getCellHeight() const {
     u16 height;
 
     if (mpGlyphBlocks) {
@@ -443,16 +441,6 @@ int JUTResFont::getCellHeight() const {
 
     return getHeight();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u16 JUTResFont::getCellHeight() const {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTResFont/getCellHeight__10JUTResFontCFv.s"
-}
-#pragma pop
-#endif
 
 /* 802DFDA4-802DFDD8 2DA6E4 0034+00 1/0 1/0 0/0 .text            isLeadByte__10JUTResFontCFi */
 bool JUTResFont::isLeadByte(int param_0) const {

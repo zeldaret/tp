@@ -71,13 +71,13 @@ public:
     /* 0x10 */ virtual void setGX(JUtility::TColor col1, JUtility::TColor col2);
     /* 0x14 */ virtual f32 drawChar_scale(f32 a1, f32 a2, f32 a3, f32 a4, int a5, bool a6) = 0;
     /* 0x18 */ virtual int getLeading() const = 0;
-    /* 0x1C */ virtual u16 getAscent() const = 0;
-    /* 0x20 */ virtual u16 getDescent() const = 0;
+    /* 0x1C */ virtual s32 getAscent() const = 0;
+    /* 0x20 */ virtual s32 getDescent() const = 0;
     /* 0x24 */ virtual s32 getHeight() const = 0;
     /* 0x28 */ virtual s32 getWidth() const = 0;
     /* 0x2C */ virtual void getWidthEntry(int i_no, TWidth* width) const = 0;
     /* 0x30 */ virtual int getCellWidth() const;
-    /* 0x34 */ virtual u16 getCellHeight() const;
+    /* 0x34 */ virtual s32 getCellHeight() const;
     /* 0x38 */ virtual u16 getFontType() const = 0;
     /* 0x3C */ virtual ResFONT* getResFont() const = 0;
     /* 0x40 */ virtual bool isLeadByte(int a1) const = 0;
@@ -112,6 +112,8 @@ public:
     }
 
     bool isValid() const { return mValid; }
+    bool isFixed() const { return mFixed; }
+    int getFixedWidth() const { return mFixedWidth; }
 
     /* 0x04 */ bool mValid;
     /* 0x05 */ bool mFixed;
