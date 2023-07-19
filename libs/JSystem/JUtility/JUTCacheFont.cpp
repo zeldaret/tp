@@ -512,7 +512,7 @@ asm s32 JUTResFont::getWidth() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u16 JUTResFont::getAscent() const {
+asm s32 JUTResFont::getAscent() const {
     nofralloc
 #include "asm/JSystem/JUtility/JUTCacheFont/getAscent__10JUTResFontCFv.s"
 }
@@ -522,7 +522,7 @@ asm u16 JUTResFont::getAscent() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u16 JUTResFont::getDescent() const {
+asm s32 JUTResFont::getDescent() const {
     nofralloc
 #include "asm/JSystem/JUtility/JUTCacheFont/getDescent__10JUTResFontCFv.s"
 }

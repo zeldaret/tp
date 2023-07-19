@@ -123,7 +123,7 @@ SECTION_DATA extern void* __vt__15dMenu_Fishing_c[4 + 3 /* padding */] = {
 dMenu_Fishing_c::dMenu_Fishing_c(JKRExpHeap* heap, STControl* stControl, CSTControl* cstControl) {
     mpHeap = heap;
     mpArchive = 0;
-    dvd_command_ptr = 0;
+    mpMount = 0;
     mpStick = stControl;
     mpCStick = cstControl;
     mStatus = 1;
@@ -174,10 +174,10 @@ dMenu_Fishing_c::~dMenu_Fishing_c() {
         }
     }
 
-    if (dvd_command_ptr) {
-        dvd_command_ptr->getArchive()->unmount();
-        dvd_command_ptr->destroy();
-        dvd_command_ptr = NULL;
+    if (mpMount) {
+        mpMount->getArchive()->unmount();
+        mpMount->destroy();
+        mpMount = NULL;
     }
 
     if (mpArchive) {
@@ -220,7 +220,7 @@ void dMenu_Fishing_c::_draw() {
 
 /* 801C5204-801C522C 1BFB44 0028+00 0/0 2/2 0/0 .text            isSync__15dMenu_Fishing_cFv */
 bool dMenu_Fishing_c::isSync() {
-    if (dvd_command_ptr && !dvd_command_ptr->sync()) {
+    if (mpMount && !mpMount->sync()) {
         return false;
     }
     return true;
@@ -241,15 +241,15 @@ void dMenu_Fishing_c::init() {
 
 /* 801C52E4-801C5470 1BFC24 018C+00 0/0 2/2 0/0 .text            _open__15dMenu_Fishing_cFv */
 int dMenu_Fishing_c::_open() {
-    if (!dvd_command_ptr) {
-        dvd_command_ptr = mDoDvdThd_mountArchive_c::create("/res/Layout/fishres.arc", 0, NULL);
+    if (!mpMount) {
+        mpMount = mDoDvdThd_mountArchive_c::create("/res/Layout/fishres.arc", 0, NULL);
     }
     if (!mpArchive) {
-        if (dvd_command_ptr->sync() != 0) {
+        if (mpMount->sync() != 0) {
             if (!mpArchive) {
-                mpArchive = (JKRArchive*)dvd_command_ptr->getArchive();
-                delete dvd_command_ptr;
-                dvd_command_ptr = NULL;
+                mpArchive = (JKRArchive*)mpMount->getArchive();
+                delete mpMount;
+                mpMount = NULL;
                 _create();
             }
         } else {
@@ -641,10 +641,10 @@ void dMenu_Fishing_c::setHIO(bool param_0) {
                                      g_drawHIO.mFishListScreen.mFishCountSizeScale[i]);
         }
         for (int i = 0; i < 2; i++) {
-            mpFishInfoParent[i]->paneTrans(g_drawHIO.mFishListScreen.mMaxSizePosX[i],
-                                           g_drawHIO.mFishListScreen.mMaxSizePosY[i]);
-            mpFishInfoParent[i]->scale(g_drawHIO.mFishListScreen.mMaxSizeScale[i],
-                                       g_drawHIO.mFishListScreen.mMaxSizeScale[i]);
+            mpFishInfoParent[i]->paneTrans(g_drawHIO.mFishListScreen.mPosX[i],
+                                           g_drawHIO.mFishListScreen.mPosY[i]);
+            mpFishInfoParent[i]->scale(g_drawHIO.mFishListScreen.mScale[i],
+                                       g_drawHIO.mFishListScreen.mScale[i]);
         }
     }
     if (g_drawHIO.mCollectScreen.mButtonDebugON != false || param_0) {

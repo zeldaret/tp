@@ -41,7 +41,7 @@ private:
     /* 0x008 */ JKRArchive* mpArchive;
     /* 0x00C */ STControl* mpStick;
     /* 0x010 */ CSTControl* mpCStick;
-    /* 0x014 */ mDoDvdThd_mountArchive_c* dvd_command_ptr;
+    /* 0x014 */ mDoDvdThd_mountArchive_c* mpMount;
     /* 0x018 */ J2DScreen* mpScreen;
     /* 0x01C */ J2DScreen* mpIconScreen;
     /* 0x020 */ J2DTextBox* mpAButtonString[5];
