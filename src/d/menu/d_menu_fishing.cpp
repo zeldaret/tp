@@ -5,20 +5,18 @@
 
 #include "d/menu/d_menu_fishing.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
+#include "JSystem/JKernel/JKRMemArchive.h"
+#include "JSystem/JUtility/TColor.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_lib.h"
+#include "d/menu/d_menu_dmap.h"
 #include "d/meter/d_meter2_info.h"
+#include "d/meter/d_meter_HIO.h"
 #include "d/msg/d_msg_string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
-#include "d/menu/d_menu_dmap.h"
-#include "d/meter/d_meter_HIO.h"
-#include "JSystem/JKernel/JKRMemArchive.h"
-#include "d/meter/d_meter2_info.h"
-#include "JSystem/JUtility/TColor.h"
-
 
 //
 // Forward References:
@@ -89,8 +87,6 @@ extern "C" void _restgpr_29();
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 
-
-
 extern "C" u8 mFader__13mDoGph_gInf_c[4];
 
 /* 803BD038-803BD044 01A158 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -133,45 +129,40 @@ dMenu_Fishing_c::dMenu_Fishing_c(JKRExpHeap* heap, STControl* stControl, CSTCont
     mStatus = 1;
     field_0x1fb = 0;
     field_0x1f8 = 0;
-
 }
 
 /* 801C4D98-801C504C 1BF6D8 02B4+00 1/0 0/0 0/0 .text            __dt__15dMenu_Fishing_cFv */
 dMenu_Fishing_c::~dMenu_Fishing_c() {
     delete mpString;
     mpString = NULL;
-    
+
     delete mpBlackTex;
     mpBlackTex = NULL;
-    
-    
+
     delete mpScreen;
     mpScreen = NULL;
-    
-    
+
     delete mpParent;
     mpParent = NULL;
 
-    for (int i = 0; i < 6; i++) {  
+    for (int i = 0; i < 6; i++) {
         delete mpFishParent[i];
         mpFishParent[i] = NULL;
-        
-        for (int j = 0; j < 6; j++) {   
+
+        for (int j = 0; j < 6; j++) {
             delete mpFishParts[j][i];
             mpFishParts[j][i] = NULL;
-             
         }
     }
 
-    for (int i = 0; i < 2; i++) {    
+    for (int i = 0; i < 2; i++) {
         delete mpFishInfoParent[i];
         mpFishInfoParent[i] = NULL;
-        
     }
-    
+
     delete mpIconScreen;
     mpIconScreen = NULL;
-    
+
     for (int i = 0; i < 2; i++) {
         if (mpButtonAB[i]) {
             delete mpButtonAB[i];
@@ -206,7 +197,7 @@ void dMenu_Fishing_c::_create() {
 
 /* 801C50B4-801C514C 1BF9F4 0098+00 0/0 2/2 0/0 .text            _move__15dMenu_Fishing_cFv */
 void dMenu_Fishing_c::_move() {
-    JKRHeap * heap = mDoExt_setCurrentHeap((JKRHeap*)mpHeap);
+    JKRHeap* heap = mDoExt_setCurrentHeap((JKRHeap*)mpHeap);
     u8 uVar = field_0x1fb;
     (this->*map_move_process[field_0x1fb])();
     if (uVar != field_0x1fb) {
@@ -241,14 +232,12 @@ void dMenu_Fishing_c::init() {
         if (dComIfGs_getFishNum(i) != 0) {
             setFishParam(i, dComIfGs_getFishNum(i), dComIfGs_getFishSize(i));
             mpFishParent[i]->show();
-        }
-        else {
+        } else {
             mpFishParent[i]->hide();
         }
     }
     (this->*map_init_process[field_0x1fb])();
 }
-
 
 /* 801C52E4-801C5470 1BFC24 018C+00 0/0 2/2 0/0 .text            _open__15dMenu_Fishing_cFv */
 int dMenu_Fishing_c::_open() {
@@ -256,15 +245,14 @@ int dMenu_Fishing_c::_open() {
         dvd_command_ptr = mDoDvdThd_mountArchive_c::create("/res/Layout/fishres.arc", 0, NULL);
     }
     if (!mpArchive) {
-        if (dvd_command_ptr->sync() != 0) {   
-            if (!mpArchive) { 
-            mpArchive = (JKRArchive*)dvd_command_ptr->getArchive();
-            delete dvd_command_ptr;
-            dvd_command_ptr = NULL;   
-            _create();
+        if (dvd_command_ptr->sync() != 0) {
+            if (!mpArchive) {
+                mpArchive = (JKRArchive*)dvd_command_ptr->getArchive();
+                delete dvd_command_ptr;
+                dvd_command_ptr = NULL;
+                _create();
             }
-        }
-        else {
+        } else {
             return 0;
         }
     }
@@ -280,8 +268,7 @@ int dMenu_Fishing_c::_open() {
         pane->calcMtx();
         mpParent->setAlphaRate(1.0f);
         return 1;
-    }
-    else {
+    } else {
         f32 div = field_0x1f8 / (f32)openFrames;
         J2DPane* pane = mpParent->getPanePtr();
         pane->mScaleX = div;
@@ -290,7 +277,6 @@ int dMenu_Fishing_c::_open() {
         mpParent->setAlphaRate(div);
         return 0;
     }
-
 }
 
 /* 801C5470-801C556C 1BFDB0 00FC+00 0/0 1/1 0/0 .text            _close__15dMenu_Fishing_cFv */
@@ -306,8 +292,7 @@ int dMenu_Fishing_c::_close() {
         pane->calcMtx();
         mpParent->setAlphaRate(0.0f);
         return 1;
-    }
-    else {
+    } else {
         f32 div = field_0x1f8 / (f32)closeFrames;
         J2DPane* pane = mpParent->getPanePtr();
         pane->mScaleX = div;
@@ -334,18 +319,14 @@ void dMenu_Fishing_c::wait_move() {
 
 /* 80395D90-80395DC0 0223F0 0030+00 1/1 0/0 0/0 .rodata          fish_n$4060 */
 static const u64 fish_n[6] = {
-    'fish_n_6', 'fish_n_5',
-    'fish_n_3', 'fish_n_1',
-    'fish_n_2', 'fish_n_4',
+    'fish_n_6', 'fish_n_5', 'fish_n_3', 'fish_n_1', 'fish_n_2', 'fish_n_4',
 };
 
 /* 80395DC0-80395DF0 022420 0030+00 0/1 0/0 0/0 .rodata          fish_p0$4061 */
 #pragma push
 #pragma force_active on
 static const u64 fish_p0[6] = {
-    'fi_pa_6n', 'fi_pa_5n',
-    'fi_pa_3n', 'fi_pa_1n',
-    'fi_pa_2n', 'fi_pa_4n',
+    'fi_pa_6n', 'fi_pa_5n', 'fi_pa_3n', 'fi_pa_1n', 'fi_pa_2n', 'fi_pa_4n',
 };
 #pragma pop
 
@@ -353,29 +334,22 @@ static const u64 fish_p0[6] = {
 #pragma push
 #pragma force_active on
 static const u64 fish_p1[6] = {
-    'fi_na_6n', 'fi_na_5n',
-    'fi_na_3n', 'fi_na_1n',
-    'fi_na_2n', 'fi_na_4n',
+    'fi_na_6n', 'fi_na_5n', 'fi_na_3n', 'fi_na_1n', 'fi_na_2n', 'fi_na_4n',
 };
 #pragma pop
 
 /* 80395E20-80395E50 022480 0030+00 0/1 0/0 0/0 .rodata          fish_p2$4063 */
 #pragma push
 #pragma force_active on
-static const u64 fish_p2[6] = {
-    'fi_li_6n', 'fi_li_5n',
-    'fi_li_3n', 'fi_li_1n',
-    'fi_li_2n', 'fi_li_4n'
-};
+static const u64 fish_p2[6] = {'fi_li_6n', 'fi_li_5n', 'fi_li_3n',
+                               'fi_li_1n', 'fi_li_2n', 'fi_li_4n'};
 #pragma pop
 
 /* 80395E50-80395E80 0224B0 0030+00 0/1 0/0 0/0 .rodata          fish_p3$4064 */
 #pragma push
 #pragma force_active on
 static const u64 fish_p3[6] = {
-    'b_box_6n', 'b_box_5n',
-    'b_box_3n', 'b_box_1n',
-    'b_box_2n', 'b_box_4n',
+    'b_box_6n', 'b_box_5n', 'b_box_3n', 'b_box_1n', 'b_box_2n', 'b_box_4n',
 };
 #pragma pop
 
@@ -383,9 +357,7 @@ static const u64 fish_p3[6] = {
 #pragma push
 #pragma force_active on
 static const u64 fish_p4[6] = {
-    'r_box_6n', 'r_box_5n',
-    'r_box_3n', 'r_box_1n',
-    'r_box_2n', 'r_box_4n',
+    'r_box_6n', 'r_box_5n', 'r_box_3n', 'r_box_1n', 'r_box_2n', 'r_box_4n',
 };
 #pragma pop
 
@@ -393,9 +365,7 @@ static const u64 fish_p4[6] = {
 #pragma push
 #pragma force_active on
 static const u64 fish_p5[6] = {
-    'info_6_n', 'info_5_n',
-    'info_3_n', 'info_1_n',
-    'info_2_n', 'info_4_n',
+    'info_6_n', 'info_5_n', 'info_3_n', 'info_1_n', 'info_2_n', 'info_4_n',
 };
 #pragma pop
 
@@ -403,9 +373,7 @@ static const u64 fish_p5[6] = {
 #pragma push
 #pragma force_active on
 static const u64 size_1[6] = {
-    'size_t_6', 'size_t_5',
-    'size_t_3', 'size_t_1',
-    'size_t_2', 'size_t_4',
+    'size_t_6', 'size_t_5', 'size_t_3', 'size_t_1', 'size_t_2', 'size_t_4',
 };
 #pragma pop
 
@@ -413,9 +381,7 @@ static const u64 size_1[6] = {
 #pragma push
 #pragma force_active on
 static const u64 size_unit_1[6] = {
-    'cm_t_6', 'cm_t_5',
-    'cm_t_3', 'cm_t_1',
-    'cm_t_2', 'cm_t_4',
+    'cm_t_6', 'cm_t_5', 'cm_t_3', 'cm_t_1', 'cm_t_2', 'cm_t_4',
 };
 #pragma pop
 
@@ -423,9 +389,7 @@ static const u64 size_unit_1[6] = {
 #pragma push
 #pragma force_active on
 static const u64 count_1[6] = {
-    'count_t6', 'count_t5',
-    'count_t3', 'count_t1',
-    'count_t2', 'count_t4',
+    'count_t6', 'count_t5', 'count_t3', 'count_t1', 'count_t2', 'count_t4',
 };
 #pragma pop
 
@@ -433,9 +397,7 @@ static const u64 count_1[6] = {
 #pragma push
 #pragma force_active on
 static const u64 count_unit_1[6] = {
-    'cou_t_6', 'cou_t_5',
-    'cou_t_3', 'cou_t_1',
-    'cou_t_2', 'cou_t_4',
+    'cou_t_6', 'cou_t_5', 'cou_t_3', 'cou_t_1', 'cou_t_2', 'cou_t_4',
 };
 #pragma pop
 
@@ -443,9 +405,7 @@ static const u64 count_unit_1[6] = {
 #pragma push
 #pragma force_active on
 static const u64 name_0[6] = {
-    'name_6', 'name_5',
-    'name_3', 'name_1',
-    'name_2', 'name_4',
+    'name_6', 'name_5', 'name_3', 'name_1', 'name_2', 'name_4',
 };
 #pragma pop
 
@@ -453,9 +413,7 @@ static const u64 name_0[6] = {
 #pragma push
 #pragma force_active on
 static const u64 fname_0[6] = {
-    'f_name_6', 'f_name_5',
-    'f_name_3', 'f_name_1',
-    'f_name_2', 'f_name_4',
+    'f_name_6', 'f_name_5', 'f_name_3', 'f_name_1', 'f_name_2', 'f_name_4',
 };
 #pragma pop
 
@@ -468,11 +426,11 @@ static const u32 name_id[6] = {
 #pragma pop
 
 /* 801C55D8-801C5D3C 1BFF18 0764+00 1/1 0/0 0/0 .text            screenSetBase__15dMenu_Fishing_cFv
-*/
+ */
 void dMenu_Fishing_c::screenSetBase() {
     ResTIMG* TIMG = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "tt_block8x8.bti");
     mpBlackTex = new J2DPicture(TIMG);
-    
+
     mpBlackTex->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 0xff));
     mpScreen = new J2DScreen();
     mpScreen->setPriority("zelda_fish_window.blo", 0x20000, mpArchive);
@@ -481,12 +439,12 @@ void dMenu_Fishing_c::screenSetBase() {
     mpParent->setAlphaRate(0.0f);
     for (int i = 0; i < 6; i++) {
         mpFishParent[i] = new CPaneMgr(mpScreen, fish_n[i], 0, NULL);
-        mpFishParts[0][i] = new CPaneMgr(mpScreen, fish_p0[i], 0, NULL);        
+        mpFishParts[0][i] = new CPaneMgr(mpScreen, fish_p0[i], 0, NULL);
         mpFishParts[1][i] = new CPaneMgr(mpScreen, fish_p1[i], 0, NULL);
         mpFishParts[2][i] = new CPaneMgr(mpScreen, fish_p2[i], 0, NULL);
         mpFishParts[3][i] = new CPaneMgr(mpScreen, fish_p3[i], 0, NULL);
         mpFishParts[4][i] = new CPaneMgr(mpScreen, fish_p4[i], 0, NULL);
-        mpFishParts[5][i] = new CPaneMgr(mpScreen, fish_p5[i], 0, NULL);        
+        mpFishParts[5][i] = new CPaneMgr(mpScreen, fish_p5[i], 0, NULL);
     }
     mpFishInfoParent[0] = new CPaneMgr(mpScreen, 'info_blu', 0, NULL);
     mpFishInfoParent[1] = new CPaneMgr(mpScreen, 'info_red', 0, NULL);
@@ -529,10 +487,10 @@ void dMenu_Fishing_c::screenSetBase() {
 }
 
 /* 80396018-80396040 022678 0028+00 1/1 0/0 0/0 .rodata          text_a_tag$4167 */
-static const u64 text_a_tag[5] = { 'atext1_1', 'atext1_2', 'atext1_3', 'atext1_4', 'atext1_5' };
+static const u64 text_a_tag[5] = {'atext1_1', 'atext1_2', 'atext1_3', 'atext1_4', 'atext1_5'};
 
 /* 80396040-80396068 0226A0 0028+00 1/1 0/0 0/0 .rodata          text_b_tag$4168 */
-static const u64 text_b_tag[5] = { 'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5' };
+static const u64 text_b_tag[5] = {'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5'};
 
 /* 801C5D3C-801C5EB8 1C067C 017C+00 1/1 0/0 0/0 .text screenSetDoIcon__15dMenu_Fishing_cFv */
 void dMenu_Fishing_c::screenSetDoIcon() {
@@ -581,7 +539,6 @@ void dMenu_Fishing_c::setBButtonString(u16 i_stringID) {
 
 /* 801C6018-801C605C 1C0958 0044+00 1/1 0/0 0/0 .text            getFigure__15dMenu_Fishing_cFi */
 u8 dMenu_Fishing_c::getFigure(int param_0) {
-    
     if (param_0 < 0) {
         param_0 *= -1;
     }
@@ -605,7 +562,7 @@ void dMenu_Fishing_c::setFishParam(int param_0, u16 param_1, u8 param_2) {
     u8 figure2 = getFigure(param_2);
     char strBuff1[32];
     char strBuff2[32];
-    for (int j = 1; j < 2; j++) { 
+    for (int j = 1; j < 2; j++) {
         // part one, param_2
         dComIfGp_setMessageCountNumber(param_2);
         mpString->getString(0x597, field_0x124[param_0], NULL, NULL, NULL, 0);
@@ -613,7 +570,7 @@ void dMenu_Fishing_c::setFishParam(int param_0, u16 param_1, u8 param_2) {
         int i;
         for (i = 0; strBuff1[i + figure2] != 0; i++) {
             strBuff2[i] = strBuff1[i + figure2];
-        } 
+        }
         strBuff2[i] = 0;
         strBuff1[figure2] = 0;
         strcpy(field_0x124[param_0]->getStringPtr(), strBuff1);
@@ -625,7 +582,7 @@ void dMenu_Fishing_c::setFishParam(int param_0, u16 param_1, u8 param_2) {
         strcpy(strBuff1, field_0x154[param_0]->getStringPtr());
         int k;
         for (k = 0; strBuff1[k + figure1] != 0; k++) {
-            strBuff2[k] = strBuff1[k + figure1]; 
+            strBuff2[k] = strBuff1[k + figure1];
         }
         strBuff2[k] = 0;
         strBuff1[figure1] = 0;
@@ -648,48 +605,72 @@ asm void dMenu_Fishing_c::setFishParam(int param_0, u16 param_1, u8 param_2) {
 void dMenu_Fishing_c::setHIO(bool param_0) {
     if (param_0 || g_drawHIO.mFishListScreen.mDebug != 0) {
         for (int i = 0; i < 6; i++) {
-            mpFishParent[i]->paneTrans(g_drawHIO.mFishListScreen.mFishInfoPosX[i], g_drawHIO.mFishListScreen.mFishInfoPosY[i]);
-            mpFishParent[i]->scale(g_drawHIO.mFishListScreen.mFishInfoScale[i], g_drawHIO.mFishListScreen.mFishInfoScale[i]);
+            mpFishParent[i]->paneTrans(g_drawHIO.mFishListScreen.mFishInfoPosX[i],
+                                       g_drawHIO.mFishListScreen.mFishInfoPosY[i]);
+            mpFishParent[i]->scale(g_drawHIO.mFishListScreen.mFishInfoScale[i],
+                                   g_drawHIO.mFishListScreen.mFishInfoScale[i]);
 
-            mpFishParts[0][i]->paneTrans(g_drawHIO.mFishListScreen.mFishIconPosX[i], g_drawHIO.mFishListScreen.mFishIconPosY[i]);
-            mpFishParts[0][i]->scale(g_drawHIO.mFishListScreen.mFishIconScale[i], g_drawHIO.mFishListScreen.mFishIconScale[i]);
-            
-            mpFishParts[1][i]->paneTrans(g_drawHIO.mFishListScreen.mFishNamePosX[i], g_drawHIO.mFishListScreen.mFishNamePosY[i]);
-            mpFishParts[1][i]->scale(g_drawHIO.mFishListScreen.mFishNameScale[i], g_drawHIO.mFishListScreen.mFishNameScale[i]);
+            mpFishParts[0][i]->paneTrans(g_drawHIO.mFishListScreen.mFishIconPosX[i],
+                                         g_drawHIO.mFishListScreen.mFishIconPosY[i]);
+            mpFishParts[0][i]->scale(g_drawHIO.mFishListScreen.mFishIconScale[i],
+                                     g_drawHIO.mFishListScreen.mFishIconScale[i]);
 
-            mpFishParts[2][i]->paneTrans(g_drawHIO.mFishListScreen.mFishLinePosX[i], g_drawHIO.mFishListScreen.mFishLinePosY[i]);
-            mpFishParts[2][i]->scale(g_drawHIO.mFishListScreen.mFishLineScale[i], g_drawHIO.mFishListScreen.mFishLineScale[i]);
+            mpFishParts[1][i]->paneTrans(g_drawHIO.mFishListScreen.mFishNamePosX[i],
+                                         g_drawHIO.mFishListScreen.mFishNamePosY[i]);
+            mpFishParts[1][i]->scale(g_drawHIO.mFishListScreen.mFishNameScale[i],
+                                     g_drawHIO.mFishListScreen.mFishNameScale[i]);
 
-            mpFishParts[3][i]->paneTrans(g_drawHIO.mFishListScreen.mFishSizePosX[i], g_drawHIO.mFishListScreen.mFishSizePosY[i]);
-            mpFishParts[3][i]->scale(g_drawHIO.mFishListScreen.mFishSizeScale[i], g_drawHIO.mFishListScreen.mFishSizeScale[i]);
+            mpFishParts[2][i]->paneTrans(g_drawHIO.mFishListScreen.mFishLinePosX[i],
+                                         g_drawHIO.mFishListScreen.mFishLinePosY[i]);
+            mpFishParts[2][i]->scale(g_drawHIO.mFishListScreen.mFishLineScale[i],
+                                     g_drawHIO.mFishListScreen.mFishLineScale[i]);
 
-            mpFishParts[4][i]->paneTrans(g_drawHIO.mFishListScreen.mFishCountPosX[i], g_drawHIO.mFishListScreen.mFishCountPosY[i]);
-            mpFishParts[4][i]->scale(g_drawHIO.mFishListScreen.mFishCountScale[i], g_drawHIO.mFishListScreen.mFishCountScale[i]);
+            mpFishParts[3][i]->paneTrans(g_drawHIO.mFishListScreen.mFishSizePosX[i],
+                                         g_drawHIO.mFishListScreen.mFishSizePosY[i]);
+            mpFishParts[3][i]->scale(g_drawHIO.mFishListScreen.mFishSizeScale[i],
+                                     g_drawHIO.mFishListScreen.mFishSizeScale[i]);
 
-            mpFishParts[5][i]->paneTrans(g_drawHIO.mFishListScreen.mFishCountSizePosX[i], g_drawHIO.mFishListScreen.mFishCountSizePosY[i]);
-            mpFishParts[5][i]->scale(g_drawHIO.mFishListScreen.mFishCountSizeScale[i], g_drawHIO.mFishListScreen.mFishCountSizeScale[i]);
+            mpFishParts[4][i]->paneTrans(g_drawHIO.mFishListScreen.mFishCountPosX[i],
+                                         g_drawHIO.mFishListScreen.mFishCountPosY[i]);
+            mpFishParts[4][i]->scale(g_drawHIO.mFishListScreen.mFishCountScale[i],
+                                     g_drawHIO.mFishListScreen.mFishCountScale[i]);
+
+            mpFishParts[5][i]->paneTrans(g_drawHIO.mFishListScreen.mFishCountSizePosX[i],
+                                         g_drawHIO.mFishListScreen.mFishCountSizePosY[i]);
+            mpFishParts[5][i]->scale(g_drawHIO.mFishListScreen.mFishCountSizeScale[i],
+                                     g_drawHIO.mFishListScreen.mFishCountSizeScale[i]);
         }
         for (int i = 0; i < 2; i++) {
-            mpFishInfoParent[i]->paneTrans(g_drawHIO.mFishListScreen.mMaxSizePosX[i], g_drawHIO.mFishListScreen.mMaxSizePosY[i]);
-            mpFishInfoParent[i]->scale(g_drawHIO.mFishListScreen.mMaxSizeScale[i], g_drawHIO.mFishListScreen.mMaxSizeScale[i]);
+            mpFishInfoParent[i]->paneTrans(g_drawHIO.mFishListScreen.mMaxSizePosX[i],
+                                           g_drawHIO.mFishListScreen.mMaxSizePosY[i]);
+            mpFishInfoParent[i]->scale(g_drawHIO.mFishListScreen.mMaxSizeScale[i],
+                                       g_drawHIO.mFishListScreen.mMaxSizeScale[i]);
         }
     }
     if (g_drawHIO.mCollectScreen.mButtonDebugON != false || param_0) {
         if (mpButtonAB[0] != NULL) {
-            mpButtonAB[0]->paneTrans(g_drawHIO.mCollectScreen.mAButtonPosX, g_drawHIO.mCollectScreen.mAButtonPosY);
-            mpButtonAB[0]->scale(g_drawHIO.mCollectScreen.mAButtonScale, g_drawHIO.mCollectScreen.mAButtonScale);
+            mpButtonAB[0]->paneTrans(g_drawHIO.mCollectScreen.mAButtonPosX,
+                                     g_drawHIO.mCollectScreen.mAButtonPosY);
+            mpButtonAB[0]->scale(g_drawHIO.mCollectScreen.mAButtonScale,
+                                 g_drawHIO.mCollectScreen.mAButtonScale);
         }
         if (mpButtonAB[1] != NULL) {
-            mpButtonAB[1]->paneTrans(g_drawHIO.mCollectScreen.mBButtonPosX, g_drawHIO.mCollectScreen.mBButtonPosY);
-            mpButtonAB[1]->scale(g_drawHIO.mCollectScreen.mBButtonScale, g_drawHIO.mCollectScreen.mBButtonScale);
+            mpButtonAB[1]->paneTrans(g_drawHIO.mCollectScreen.mBButtonPosX,
+                                     g_drawHIO.mCollectScreen.mBButtonPosY);
+            mpButtonAB[1]->scale(g_drawHIO.mCollectScreen.mBButtonScale,
+                                 g_drawHIO.mCollectScreen.mBButtonScale);
         }
         if (mpButtonText[0] != NULL) {
-            mpButtonText[0]->paneTrans(g_drawHIO.mCollectScreen.mAButtonTextPosX, g_drawHIO.mCollectScreen.mAButtonTextPosY);
-            mpButtonText[0]->scale(g_drawHIO.mCollectScreen.mAButtonTextScale, g_drawHIO.mCollectScreen.mAButtonTextScale);
+            mpButtonText[0]->paneTrans(g_drawHIO.mCollectScreen.mAButtonTextPosX,
+                                       g_drawHIO.mCollectScreen.mAButtonTextPosY);
+            mpButtonText[0]->scale(g_drawHIO.mCollectScreen.mAButtonTextScale,
+                                   g_drawHIO.mCollectScreen.mAButtonTextScale);
         }
         if (mpButtonText[1] != NULL) {
-            mpButtonText[1]->paneTrans(g_drawHIO.mCollectScreen.mBButtonTextPosX, g_drawHIO.mCollectScreen.mBButtonTextPosY);
-            mpButtonText[1]->scale(g_drawHIO.mCollectScreen.mBButtonTextScale, g_drawHIO.mCollectScreen.mBButtonTextScale);
+            mpButtonText[1]->paneTrans(g_drawHIO.mCollectScreen.mBButtonTextPosX,
+                                       g_drawHIO.mCollectScreen.mBButtonTextPosY);
+            mpButtonText[1]->scale(g_drawHIO.mCollectScreen.mBButtonTextScale,
+                                   g_drawHIO.mCollectScreen.mBButtonTextScale);
         }
     }
 }
@@ -697,7 +678,7 @@ void dMenu_Fishing_c::setHIO(bool param_0) {
 /* 801C659C-801C65BC 1C0EDC 0020+00 1/0 0/0 0/0 .text            draw__15dMenu_Fishing_cFv */
 #ifdef NONMATCHING
 // Matches but TU has to be finished and
-// cleaned up with every other function  
+// cleaned up with every other function
 void dMenu_Fishing_c::draw() {
     _draw();
 }
@@ -712,5 +693,3 @@ extern "C" asm void draw__15dMenu_Fishing_cFv() {
 }
 #pragma pop
 #endif
-
-
