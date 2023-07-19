@@ -597,6 +597,82 @@ asm void dMpath_c::createWork() {
 
 /* 8003F810-8003FA40 03A150 0230+00 1/1 1/1 0/0 .text
  * setPointer__8dMpath_cFPQ211dDrawPath_c10room_classPScPSc     */
+// close
+#ifdef NONMATCHING
+int dMpath_c::setPointer(dDrawPath_c::room_class* i_room, s8* param_1, s8* param_2) {
+    int var_r6 = 0;
+    if ((u32)i_room->mpFloor >= 0x80000000) {
+        dDrawPath_c::floor_class* floor_p = i_room->mpFloor;
+        for (int i = 0; i < i_room->field_0x0; i++) {
+            if (floor_p->field_0x0 < *param_1) {
+                *param_1 = floor_p->field_0x0;
+            }
+
+            if (floor_p->field_0x0 > *param_2) {
+                *param_2 = floor_p->field_0x0;
+            }
+
+            floor_p++;
+        }
+
+        dDrawPath_c::floor_class* floor_e = &i_room->mpFloor[i_room->field_0x0 - 1];
+        dDrawPath_c::group_class* group_e = &floor_e->mpGroup[floor_e->field_0x1 - 1];
+
+        if (group_e->field_0x4 != 0) {
+            dDrawPath_c::poly_class* poly_e = &group_e->mpPoly[group_e->field_0x4 - 1];
+            return (u32)(poly_e->field_0x4 + poly_e->field_0x1) - (u32)i_room;
+        }
+
+        dDrawPath_c::line_class* line_e = &group_e->mpLine[group_e->field_0x2 - 1];
+        return (u32)(line_e->unk4 + line_e->unk2) - (u32)i_room;
+    }
+    
+    i_room->mpFloor = (dDrawPath_c::floor_class*)((u32)i_room + (u32)i_room->mpFloor);
+    i_room->field_0x8 = (f32*)((u32)i_room + (u32)i_room->field_0x8);
+
+    dDrawPath_c::floor_class* floor_p = i_room->mpFloor;
+    for (int i = 0; i < i_room->field_0x0; i++) {
+        int room = (int)i_room;
+        floor_p->mpGroup = (dDrawPath_c::group_class*)(room + (u32)floor_p->mpGroup);
+
+        dDrawPath_c::group_class* group_p = floor_p->mpGroup;
+        for (int j = 0; j < floor_p->field_0x1; j++) {
+            var_r6 = (u32)group_p->mpPoly;
+            group_p->mpLine = (dDrawPath_c::line_class*)(room + (u32)group_p->mpLine);
+
+            dDrawPath_c::line_class* line_p = group_p->mpLine;
+            for (int k = 0; k < group_p->field_0x2; k++) {
+                var_r6 = (u32)(line_p->unk4 + line_p->unk2);
+                line_p->unk4 += room;
+                line_p++;
+            }
+
+            group_p->mpPoly = (dDrawPath_c::poly_class*)(room + (u32)group_p->mpPoly);
+            
+            dDrawPath_c::poly_class* poly_p = group_p->mpPoly;
+            for (int l = 0; l < group_p->field_0x4; l++) {
+                var_r6 = (u32)(poly_p->field_0x4 + poly_p->field_0x1);
+                poly_p->field_0x4 += room;
+                poly_p++;
+            }
+
+            group_p++;
+        }
+        
+        if (floor_p->field_0x0 < *param_1) {
+            *param_1 = floor_p->field_0x0;
+        }
+
+        if (floor_p->field_0x0 > *param_2) {
+            *param_2 = floor_p->field_0x0;
+        }
+
+        floor_p++;
+    }
+
+    return var_r6;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -605,6 +681,7 @@ asm void dMpath_c::setPointer(dDrawPath_c::room_class* param_0, s8* param_1, s8*
 #include "asm/d/map/d_map_path_dmap/setPointer__8dMpath_cFPQ211dDrawPath_c10room_classPScPSc.s"
 }
 #pragma pop
+#endif
 
 struct map_path_class {
     int field_0x0;

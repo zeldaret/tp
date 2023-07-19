@@ -91,6 +91,8 @@ class dBgS_WtrChk;
 class fopAcM_wt_c {
 public:
     static dBgS_WtrChk* getWaterCheck() { return (dBgS_WtrChk*)&mWaterCheck; }
+    static f32 getWaterY() { return mWaterY[0]; }
+
     static bool waterCheck(const cXyz*);
     static u8 mWaterCheck[84 + 4 /* padding */];
     static f32 mWaterY[1 + 1 /* padding */];
