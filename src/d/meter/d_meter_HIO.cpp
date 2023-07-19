@@ -375,13 +375,13 @@ dMeter_drawFishingHIO_c::dMeter_drawFishingHIO_c() {
         mFishInfoPosX[i] = fishnPosX[i];
         mFishInfoPosY[i] = fishnPosY[i];
     }
-    mMaxSizeScale = 0.83f;
-    mMaxSizePosX = 5.0f;
-    mMaxSizePosY = -22.2f;
+    mMaxSizeScale[0] = 0.83f;
+    mMaxSizePosX[0] = 5.0f;
+    mMaxSizePosY[0] = -22.2f;
 
-    mCaughtNumScale = 0.83f;
-    mCaughtNumPosX = -189.5f;
-    mCaughtNumPosY = -3.95f;
+    mMaxSizeScale[1] = 0.83f;
+    mMaxSizePosX[1] = -189.5f;
+    mMaxSizePosY[1] = -3.95f;
     mCaughtNumPosX_4x3 = -188.0f;
 }
 

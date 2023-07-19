@@ -184,13 +184,10 @@ public:
     /* 0x1B8 */ f32 mFishInfoScale[6];
     /* 0x1D0 */ f32 mFishInfoPosX[6];
     /* 0x1E8 */ f32 mFishInfoPosY[6];
-    /* 0x200 */ f32 mMaxSizeScale;
-    /* 0x204 */ f32 mCaughtNumScale;
-    /* 0x208 */ f32 mMaxSizePosX;
-    /* 0x20C */ f32 mCaughtNumPosX;
+    /* 0x200 */ f32 mMaxSizeScale[2]; // Probably a different name originally
+    /* 0x208 */ f32 mMaxSizePosX[2];  // Probably a different name originally
     /* 0x210 */ f32 mCaughtNumPosX_4x3;
-    /* 0x214 */ f32 mMaxSizePosY;
-    /* 0x218 */ f32 mCaughtNumPosY;
+    /* 0x214 */ f32 mMaxSizePosY[2]; // Probably a different name originally
     /* 0x21C */ s16 mOpenFrames;
     /* 0x21E */ s16 mCloseFrames;
     /* 0x220 */ s16 mFishNum[6];

@@ -511,6 +511,7 @@ public:
     void setMesgCancelButton(u8 button) { mMesgCancelButton = button; }
     void setMesgBgm(u8 param_0) { mMesgBgm = param_0; }
     int getMessageCountNumber() { return mMessageCountNum; }
+    void setMessageCountNumber(u32 number) { mMessageCountNum = number; }
 
     void setWindowNum(u8 num) { mWindowNum = num; }
     int getWindowNum() { return mWindowNum; }
@@ -1701,6 +1702,10 @@ inline u16 dComIfGs_getFishNum(u8 param_0) {
     return g_dComIfG_gameInfo.info.getPlayer().getFishingInfo().getFishCount(param_0);
 }
 
+inline u8 dComIfGs_getFishSize(u8 param_0) {
+    return g_dComIfG_gameInfo.info.getPlayer().getFishingInfo().getMaxSize(param_0);
+}
+
 void dComIfGp_setSelectItem(int index);
 s32 dComIfGp_offHeapLockFlag(int flag);
 void dComIfGp_createSubExpHeap2D();
@@ -2510,6 +2515,10 @@ inline void dComIfGp_setMesgCancelButton(u8 button) {
 
 inline void dComIfGp_setMesgBgmOn() {
     g_dComIfG_gameInfo.play.setMesgBgm(1);
+}
+
+inline void dComIfGp_setMessageCountNumber(u32 number) {
+    g_dComIfG_gameInfo.play.setMessageCountNumber(number);
 }
 
 inline s32 dComIfGp_checkStatus(u16 flags) {
