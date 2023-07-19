@@ -46,4 +46,8 @@ struct Z2SpeechMgr2 : public JASGlobalInstance<Z2SpeechMgr2> {
 
 STATIC_ASSERT(sizeof(Z2SpeechMgr2) == 0x444);
 
+inline Z2SpeechMgr2* Z2GetSpeechMgr2() {
+    return Z2SpeechMgr2::getInstance();
+}
+
 #endif /* Z2SPEECHMGR2_H */

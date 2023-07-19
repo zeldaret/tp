@@ -27,14 +27,25 @@ struct J2DTexMtxInfo {
     /* 0x10 */ J2DTextureSRTInfo mTexSRTInfo;
 
     GXTexMtxType getTexMtxType() const { return (GXTexMtxType)mTexMtxType; }
+    J2DTexMtxInfo& operator=(const J2DTexMtxInfo& other) {
+        mCenter = other.mCenter;
+        mTexMtxType = other.mTexMtxType;
+        mTexMtxDCC = other.mTexMtxDCC;
+        mTexSRTInfo = other.mTexSRTInfo;
+        return *this;
+    }
+
 };  // Size: 0x24
 
 class J2DTexMtx {
 public:
+    J2DTexMtx(const J2DTexMtxInfo& info) { mInfo = info; }
     /* 802E9C90 */ void load(u32);
     /* 802E9CC4 */ void calc();
     /* 802E9D2C */ void getTextureMtx(J2DTextureSRTInfo const&, Vec, f32 (*)[4]);
     /* 802E9EBC */ void getTextureMtxMaya(J2DTextureSRTInfo const&, f32 (*)[4]);
+    J2DTexMtxInfo& getTexMtxInfo() { return mInfo; }
+    void setTexMtxInfo(J2DTexMtxInfo info) { mInfo = info; }
 
 private:
     /* 0x00 */ J2DTexMtxInfo mInfo;
@@ -45,6 +56,11 @@ struct J2DIndTexOrderInfo {
     /* 0x0 */ u8 mTexCoordID;
     /* 0x1 */ u8 mTexMapID;
 
+    J2DIndTexOrderInfo& operator=(const J2DIndTexOrderInfo& other) {
+        mTexCoordID = other.mTexCoordID;
+        mTexMapID = other.mTexMapID;
+        return *this;
+    }
     GXTexCoordID getTexCoordID() const { return (GXTexCoordID)mTexCoordID; }
     GXTexMapID getTexMapID() const { return (GXTexMapID)mTexMapID; }
 };
@@ -61,6 +77,16 @@ private:
 struct J2DIndTexMtxInfo {
     /* 0x00 */ Mtx23 mMtx;
     /* 0x18 */ s8 mScaleExp;
+
+    J2DIndTexMtxInfo& operator=(const J2DIndTexMtxInfo& other) {
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 3; j++) {
+                mMtx[i][j] = other.mMtx[i][j];
+            }
+        }
+        mScaleExp = other.mScaleExp;
+        return *this;
+    }
 };
 
 class J2DIndTexMtx {
@@ -77,8 +103,13 @@ private:
 
 struct J2DIndTexCoordScaleInfo {
     /* 0x0 */ u8 mScaleS;
-    /* 0x0 */ u8 mScaleT;
+    /* 0x1 */ u8 mScaleT;
 
+    J2DIndTexCoordScaleInfo& operator=(const J2DIndTexCoordScaleInfo& other) {
+        mScaleS = other.mScaleS;
+        mScaleT = other.mScaleT;
+        return *this;
+    }
     GXIndTexScale getScaleS() const { return (GXIndTexScale)mScaleS; }
     GXIndTexScale getScaleT() const { return (GXIndTexScale)mScaleT; }
 };
@@ -135,11 +166,22 @@ struct J2DTexCoordInfo {
     /* 0x1 */ u8 mTexGenSrc;
     /* 0x2 */ u8 mTexGenMtx;
     u8 padding;  // ?
+
+    J2DTexCoordInfo& operator=(const J2DTexCoordInfo& other) {
+        this->mTexGenType = other.mTexGenType;
+        this->mTexGenSrc = other.mTexGenSrc;
+        this->mTexGenMtx = other.mTexGenMtx;
+        return *this;
+    }
 };
 
 class J2DTexCoord {
 public:
     /* 802EB260 */ J2DTexCoord();
+    void setTexCoordInfo(const J2DTexCoordInfo& info) { mTexCoordInfo = info; }
+    s32 getTexGenType() { return mTexCoordInfo.mTexGenType; }
+    s32 getTexGenSrc() { return mTexCoordInfo.mTexGenSrc; }
+    s32 getTexGenMtx() { return mTexCoordInfo.mTexGenMtx; }
 
 private:
     /* 0x0 */ J2DTexCoordInfo mTexCoordInfo;
@@ -204,12 +246,97 @@ public:
     }
 
     void setTexSel(u8 param_0) {
-        field_0x7 = (field_0x7 & ~12) | (param_0 * 4);
+        field_0x7 = (field_0x7 & ~0x0c) | (param_0 * 4);
     }
 
     void setRasSel(u8 param_0) {
-        field_0x7 = (field_0x7 & ~3) | param_0;
+        field_0x7 = (field_0x7 & ~0x03) | param_0;
     }
+
+    void setColorABCD(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
+        setTevColorAB(param_0, param_1);
+        setTevColorCD(param_2, param_3);
+    }
+
+    void setTevColorAB(u8 param_0, u8 param_1) { field_0x2 = param_0 << 4 | param_1; }
+    void setTevColorCD(u8 param_0, u8 param_1) { field_0x3 = param_0 << 4 | param_1; }
+
+    void setTevColorOp(u8 param_0, u8 param_1, u8 param_2, u8 param_3, u8 param_4) {
+        field_0x1 = field_0x1 & ~0x04 | param_0 << 2;
+        if (param_0 <= 1) {
+            field_0x1 = field_0x1 & ~0x30 | param_2 << 4;
+            field_0x1 = field_0x1 & ~0x03 | param_1;
+        } else {
+            field_0x1 = field_0x1 & ~0x30 | (param_0 >> 1 & 3) << 4;
+            field_0x1 = field_0x1 & ~0x03 | 3;
+        }
+        field_0x1 = field_0x1 & ~0x08 | param_3 << 3;
+        field_0x1 = field_0x1 & ~0xc0 | param_4 << 6;
+    }
+
+    void setAlphaABCD(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
+        setAlphaA(param_0);
+        setAlphaB(param_1);
+        setAlphaC(param_2);
+        setAlphaD(param_3);
+    }
+
+    void setAlphaA(u8 param_0) {
+        field_0x6 = field_0x6 & ~0xe0 | param_0 << 5;
+    }
+    void setAlphaB(u8 param_0) {
+        field_0x6 = field_0x6 & ~0x1c | param_0 << 2;
+    }
+    void setAlphaC(u8 param_0) {
+        field_0x6 = field_0x6 & ~0x03 | param_0 >> 1;
+        field_0x7 = field_0x7 & ~0x80 | param_0 << 7;
+    }
+    void setAlphaD(u8 param_0) {
+        field_0x7 = field_0x7 & ~0x70 | param_0 << 4;
+    }
+    void setTevAlphaOp(u8 param_0, u8 param_1, u8 param_2, u8 param_3, u8 param_4) {
+        field_0x5 = field_0x5 & ~0x04 | param_0 << 2;
+        if (param_0 <= 1) {
+            field_0x5 = field_0x5 & ~0x03 | param_1;
+            field_0x5 = field_0x5 & ~0x30 | param_2 << 4;
+        } else {
+            field_0x5 = field_0x5 & ~0x30 | (param_0 >> 1 & 3) << 4;
+            field_0x5 = field_0x5 & ~0x03 | 3;
+        }
+        field_0x5 = field_0x5 & ~0x08 | param_3 << 3;
+        field_0x5 = field_0x5 & ~0xc0 | param_4 << 6;
+    }
+
+    u8 getColorA() { return (field_0x2 & 0xf0) >> 4; }
+    u8 getColorB() { return field_0x2 & 0x0f; }
+    u8 getColorC() { return (field_0x3 & 0xf0) >> 4; }
+    u8 getColorD() { return field_0x3 & 0x0f; }
+    u8 getAlphaA() { return (field_0x6 & 0xe0) >> 5; }
+    u8 getAlphaB() { return (field_0x6 & 0x1c) >> 2; }
+    u8 getAlphaC() { return (field_0x6 & 0x03) << 1 | (field_0x7 & 0x80) >> 7; }
+    u8 getAlphaD() { return (field_0x7 & 0x70) >> 4; }
+    u8 getCOp() {
+        if (getCBias() != 3) {
+            return (field_0x1 & 4) >> 2;
+        }
+        return ((field_0x1 & 4) >> 2) + 8 + ((field_0x1 & 0x30) >> 3);
+    }
+    u8 getCBias() { return field_0x1 & 0x03; }
+    u8 getCScale() { return (field_0x1 & 0x30) >> 4; }
+    u8 getCClamp() { return (field_0x1 & 0x08) >> 3; }
+    u8 getCReg() { return (field_0x1 & 0xc0) >> 6; }
+    u8 getAOp() {
+        if (getABias() != 3) {
+            return (field_0x5 & 4) >> 2;
+        }
+        return ((field_0x5 & 4) >> 2) + 8 + ((field_0x5 & 0x30) >> 3);
+    }
+    u8 getABias() { return field_0x5 & 0x03; }
+    u8 getAScale() { return (field_0x5 & 0x30) >> 4; }
+    u8 getAClamp() { return (field_0x5 & 0x08) >> 3; }
+    u8 getAReg() { return (field_0x5 & 0xc0) >> 6; }
+    u8 getRasSel() { return field_0x7 & 3; }
+    u8 getTexSel() { return (field_0x7 & 0x0c) >> 2; }
 
     void operator=(J2DTevStage const& other) {
         field_0x1 = other.field_0x1;
@@ -234,6 +361,11 @@ private:
 class J2DTevSwapModeTable {
 public:
     /* 802F1934 */ J2DTevSwapModeTable();
+
+    u8 getR() { return field_0x0 >> 6 & 3; }
+    u8 getG() { return field_0x0 >> 4 & 3; }
+    u8 getB() { return field_0x0 >> 2 & 3; }
+    u8 getA() { return field_0x0 & 3; }
 
 private:
     /* 0x0 */ u8 field_0x0;

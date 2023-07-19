@@ -413,6 +413,7 @@ public:
 
     JKRArchive* getMsgDtArchive(int idx) { return mMsgDtArchive[idx]; }
     JKRArchive* getMsgArchive(int idx) { return mMsgArchive[idx]; }
+    JKRArchive* getMsgCommonArchive() { return mMsgCommonArchive; }
     JKRArchive* getMain2DArchive() { return mMain2DArchive; }
     JKRArchive* getAnmArchive() { return mAnmArchive; }
     JKRArchive* getCollectResArchive() { return mCollectResArchive; }
@@ -1846,6 +1847,10 @@ inline JKRArchive* dComIfGp_getMsgDtArchive(int idx) {
 
 inline JKRArchive* dComIfGp_getMsgArchive(int idx) {
     return g_dComIfG_gameInfo.play.getMsgArchive(idx);
+}
+
+inline JKRArchive* dComIfGp_getMsgCommonArchive() {
+    return g_dComIfG_gameInfo.play.getMsgCommonArchive();
 }
 
 inline void dComIfGp_setFieldMapArchive2(JKRArchive* arc) {
