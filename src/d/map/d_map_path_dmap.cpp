@@ -597,74 +597,72 @@ asm void dMpath_c::createWork() {
 
 /* 8003F810-8003FA40 03A150 0230+00 1/1 1/1 0/0 .text
  * setPointer__8dMpath_cFPQ211dDrawPath_c10room_classPScPSc     */
-// close
-#ifdef NONMATCHING
 int dMpath_c::setPointer(dDrawPath_c::room_class* i_room, s8* param_1, s8* param_2) {
     int var_r6 = 0;
     if ((u32)i_room->mpFloor >= 0x80000000) {
         dDrawPath_c::floor_class* floor_p = i_room->mpFloor;
-        for (int i = 0; i < i_room->field_0x0; i++) {
-            if (floor_p->field_0x0 < *param_1) {
-                *param_1 = floor_p->field_0x0;
+        for (int i = 0; i < i_room->mFloorNum; i++) {
+            if (floor_p->mFloorNo < *param_1) {
+                *param_1 = floor_p->mFloorNo;
             }
 
-            if (floor_p->field_0x0 > *param_2) {
-                *param_2 = floor_p->field_0x0;
+            if (floor_p->mFloorNo > *param_2) {
+                *param_2 = floor_p->mFloorNo;
             }
 
             floor_p++;
         }
 
-        dDrawPath_c::floor_class* floor_e = &i_room->mpFloor[i_room->field_0x0 - 1];
-        dDrawPath_c::group_class* group_e = &floor_e->mpGroup[floor_e->field_0x1 - 1];
+        dDrawPath_c::floor_class* floor_e = &i_room->mpFloor[i_room->mFloorNum - 1];
+        dDrawPath_c::group_class* group_e = &floor_e->mpGroup[floor_e->mGroupNum - 1];
 
-        if (group_e->field_0x4 != 0) {
-            dDrawPath_c::poly_class* poly_e = &group_e->mpPoly[group_e->field_0x4 - 1];
-            return (u32)(poly_e->field_0x4 + poly_e->field_0x1) - (u32)i_room;
+        if (group_e->mPolyNum != 0) {
+            dDrawPath_c::poly_class* poly_e = &group_e->mpPoly[group_e->mPolyNum - 1];
+            return (u32)(poly_e->mpData + poly_e->mDataNum) - (u32)i_room;
         }
 
-        dDrawPath_c::line_class* line_e = &group_e->mpLine[group_e->field_0x2 - 1];
-        return (u32)(line_e->unk4 + line_e->unk2) - (u32)i_room;
+        dDrawPath_c::line_class* line_e = &group_e->mpLine[group_e->mLineNum - 1];
+        return (u32)(line_e->mpData + line_e->mDataNum) - (u32)i_room;
     }
     
     i_room->mpFloor = (dDrawPath_c::floor_class*)((u32)i_room + (u32)i_room->mpFloor);
-    i_room->field_0x8 = (f32*)((u32)i_room + (u32)i_room->field_0x8);
+    i_room->mpFloatData = (f32*)((u32)i_room + (u32)i_room->mpFloatData);
 
     dDrawPath_c::floor_class* floor_p = i_room->mpFloor;
-    for (int i = 0; i < i_room->field_0x0; i++) {
-        int room = (int)i_room;
+    int room = (int)i_room;
+    for (int i = 0; i < i_room->mFloorNum; i++) {
         floor_p->mpGroup = (dDrawPath_c::group_class*)(room + (u32)floor_p->mpGroup);
 
         dDrawPath_c::group_class* group_p = floor_p->mpGroup;
-        for (int j = 0; j < floor_p->field_0x1; j++) {
+        for (int j = 0; j < floor_p->mGroupNum; j++) {
             var_r6 = (u32)group_p->mpPoly;
             group_p->mpLine = (dDrawPath_c::line_class*)(room + (u32)group_p->mpLine);
 
             dDrawPath_c::line_class* line_p = group_p->mpLine;
-            for (int k = 0; k < group_p->field_0x2; k++) {
-                var_r6 = (u32)(line_p->unk4 + line_p->unk2);
-                line_p->unk4 += room;
+            for (int k = 0; k < group_p->mLineNum; k++) {
+                var_r6 = (u32)(line_p->mpData + line_p->mDataNum);
+                line_p->mpData = (u16*)(room + (u32)line_p->mpData);
                 line_p++;
             }
 
             group_p->mpPoly = (dDrawPath_c::poly_class*)(room + (u32)group_p->mpPoly);
             
             dDrawPath_c::poly_class* poly_p = group_p->mpPoly;
-            for (int l = 0; l < group_p->field_0x4; l++) {
-                var_r6 = (u32)(poly_p->field_0x4 + poly_p->field_0x1);
-                poly_p->field_0x4 += room;
+            for (int l = 0; l < group_p->mPolyNum; l++) {
+                var_r6 = (u32)(poly_p->mpData + poly_p->mDataNum);
+                poly_p->mpData = (u16*)(room + (u32)poly_p->mpData);
                 poly_p++;
             }
 
             group_p++;
         }
         
-        if (floor_p->field_0x0 < *param_1) {
-            *param_1 = floor_p->field_0x0;
+        if (floor_p->mFloorNo < *param_1) {
+            *param_1 = floor_p->mFloorNo;
         }
 
-        if (floor_p->field_0x0 > *param_2) {
-            *param_2 = floor_p->field_0x0;
+        if (floor_p->mFloorNo > *param_2) {
+            *param_2 = floor_p->mFloorNo;
         }
 
         floor_p++;
@@ -672,16 +670,6 @@ int dMpath_c::setPointer(dDrawPath_c::room_class* i_room, s8* param_1, s8* param
 
     return var_r6;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMpath_c::setPointer(dDrawPath_c::room_class* param_0, s8* param_1, s8* param_2) {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/setPointer__8dMpath_cFPQ211dDrawPath_c10room_classPScPSc.s"
-}
-#pragma pop
-#endif
 
 struct map_path_class {
     int field_0x0;
@@ -842,36 +830,13 @@ void renderingDAmap_c::setSingleRoomSetting() {}
 
 /* 8003FE70-8003FF14 03A7B0 00A4+00 3/0 3/1 0/0 .text            isDrawRoom__16renderingDAmap_cCFii
  */
-// regalloc. probably supposed to be a one liner or some kind of ternary
-#ifdef NONMATCHING
 bool renderingDAmap_c::isDrawRoom(int param_0, int param_1) const {
-    bool var_r31;
-    bool var_r30 = false;
-    if (hasMap() || param_0 == param_1) {
-        var_r30 = true;
-    }
-
+    bool rv = hasMap() || param_0 == param_1;
     if (isRendAllRoom()) {
-        var_r31 = false;
-        if (var_r30 || dMapInfo_n::isVisitedRoom(param_1)) {
-            var_r31 = true;
-        }
-
-        var_r30 = var_r31;
+        rv = rv || dMapInfo_n::isVisitedRoom(param_0);
     }
-
-    return var_r30;
+    return rv;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool renderingDAmap_c::isDrawRoom(int param_0, int param_1) const {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/isDrawRoom__16renderingDAmap_cCFii.s"
-}
-#pragma pop
-#endif
 
 /* 8003FF14-8003FFC4 03A854 00B0+00 3/0 3/0 0/0 .text            preDrawPath__16renderingDAmap_cFv
  */
@@ -928,8 +893,6 @@ int renderingDAmap_c::getFirstDrawRoomNo() {
 }
 
 /* 80040094-80040134 03A9D4 00A0+00 2/2 0/0 0/0 .text getNextDrawRoomNo__16renderingDAmap_cFi */
-// weird loop
-#ifdef NONMATCHING
 int renderingDAmap_c::getNextDrawRoomNo(int param_0) {
     int i = param_0 + 1;
 
@@ -937,11 +900,13 @@ int renderingDAmap_c::getNextDrawRoomNo(int param_0) {
         if (i >= 64) {
             i = -1;
         } else {
-            for (; i < 64; ++i) {
-                if (isDrawRoom(i, mRoomNoSingle)) {
-                    return i;
+            while (!isDrawRoom(i, mRoomNoSingle)) {
+                i++;
+                if (i >= 64) {
+                    i = -1;
+                    break;
                 }
-            }
+            } 
         }
     } else {
         i = -1;
@@ -949,16 +914,6 @@ int renderingDAmap_c::getNextDrawRoomNo(int param_0) {
 
     return i;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int renderingDAmap_c::getNextDrawRoomNo(int param_0) {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/getNextDrawRoomNo__16renderingDAmap_cFi.s"
-}
-#pragma pop
-#endif
 
 /* 80040134-800401E8 03AA74 00B4+00 3/0 3/0 0/0 .text getFirstRoomPointer__16renderingDAmap_cFv */
 dDrawPath_c::room_class* renderingDAmap_c::getFirstRoomPointer() {
