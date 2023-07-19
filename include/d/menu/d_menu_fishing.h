@@ -19,15 +19,15 @@ public:
     /* 801C514C */ void _draw();
     /* 801C5204 */ bool isSync();
     /* 801C522C */ void init();
-    /* 801C52E4 */ void _open();
-    /* 801C5470 */ void _close();
+    /* 801C52E4 */ int _open();
+    /* 801C5470 */ int _close();
     /* 801C556C */ void wait_init();
     /* 801C55A8 */ void wait_move();
     /* 801C55D8 */ void screenSetBase();
     /* 801C5D3C */ void screenSetDoIcon();
     /* 801C5EB8 */ void setAButtonString(u16);
     /* 801C5F68 */ void setBButtonString(u16);
-    /* 801C6018 */ int getFigure(int);
+    /* 801C6018 */ u8 getFigure(int);
     /* 801C605C */ void setFishParam(int, u16, u8);
     /* 801C6210 */ void setHIO(bool);
 
@@ -38,10 +38,10 @@ public:
 
 private:
     /* 0x004 */ JKRExpHeap* mpHeap;
-    /* 0x008 */ JKRArchive* field_0x8;
+    /* 0x008 */ JKRArchive* mpArchive;
     /* 0x00C */ STControl* mpStick;
     /* 0x010 */ CSTControl* mpCStick;
-    /* 0x014 */ mDoDvdThd_mountArchive_c* field_0x14;
+    /* 0x014 */ mDoDvdThd_mountArchive_c* mpMount;
     /* 0x018 */ J2DScreen* mpScreen;
     /* 0x01C */ J2DScreen* mpIconScreen;
     /* 0x020 */ J2DTextBox* mpAButtonString[5];
@@ -66,7 +66,7 @@ private:
     /* 0x1EC */ J2DTextBox* field_0x1ec;
     /* 0x1F0 */ J2DPicture* mpBlackTex;
     /* 0x1F4 */ dMsgString_c* mpString;
-    /* 0x1F8 */ u16 field_0x1f8;
+    /* 0x1F8 */ s16 field_0x1f8;
     /* 0x1FA */ u8 mStatus;
     /* 0x1FB */ u8 field_0x1fb;
 };
