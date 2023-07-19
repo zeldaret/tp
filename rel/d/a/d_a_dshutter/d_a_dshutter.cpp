@@ -13,12 +13,6 @@
 // Forward References:
 //
 
-extern "C" void __dt__7daDsh_cFv();
-extern "C" void CreateHeap__7daDsh_cFv();
-extern "C" void Draw__7daDsh_cFv();
-extern "C" void Execute__7daDsh_cFPPA3_A4_f();
-extern "C" void setMtx__7daDsh_cFv();
-extern "C" void setAction__7daDsh_cFPQ27daDsh_c8action_c();
 extern "C" void callInit__7daDsh_cFv();
 extern "C" void callExecute__7daDsh_cFv();
 extern "C" void initOpenWait__7daDsh_cFv();
@@ -29,82 +23,17 @@ extern "C" void initCloseWait__7daDsh_cFv();
 extern "C" void executeCloseWait__7daDsh_cFv();
 extern "C" void initClose__7daDsh_cFv();
 extern "C" void executeClose__7daDsh_cFv();
-extern "C" static void daDsh_Draw__FP7daDsh_c();
-extern "C" static void daDsh_Execute__FP7daDsh_c();
-extern "C" static bool daDsh_IsDelete__FP7daDsh_c();
-extern "C" static void daDsh_Delete__FP7daDsh_c();
-extern "C" static void daDsh_Create__FP10fopAc_ac_c();
 extern "C" s16 func_80467DF8(s16*);
-extern "C" void __sinit_d_a_dshutter_cpp();
-extern "C" extern char const* const d_a_dshutter__stringBase0;
 
 //
 // External References:
 //
-
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void gndCheck__11fopAcM_gc_cFPC4cXyz();
-extern "C" void waterCheck__11fopAcM_wt_cFPC4cXyz();
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void __ct__19dComIfG_resLoader_cFv();
-extern "C" void __dt__19dComIfG_resLoader_cFv();
-extern "C" void load__19dComIfG_resLoader_cFPPCcP7JKRHeap();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void dBgS_MoveBGProc_Typical__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz();
-extern "C" void __ct__16dBgS_MoveBgActorFv();
-extern "C" bool Create__16dBgS_MoveBgActorFv();
-extern "C" bool Delete__16dBgS_MoveBgActorFv();
-extern "C" bool IsDelete__16dBgS_MoveBgActorFv();
-extern "C" bool ToFore__16dBgS_MoveBgActorFv();
-extern "C" bool ToBack__16dBgS_MoveBgActorFv();
-extern "C" void
-MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f();
-extern "C" void MoveBGDelete__16dBgS_MoveBgActorFv();
-extern "C" void MoveBGExecute__16dBgS_MoveBgActorFv();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void cM_rndFX__Ff();
-extern "C" void cLib_chaseF__FPfff();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void __dl__FPv();
-extern "C" void __ptmf_test();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__16dBgS_MoveBgActor[10];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" f32 mGroundY__11fopAcM_gc_c;
-extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" u32 OPEN_SIZE__7daDsh_c;
-extern "C" f32 OPEN_ACCEL__7daDsh_c;
-extern "C" f32 OPEN_SPEED__7daDsh_c;
-extern "C" f32 OPEN_BOUND_SPEED__7daDsh_c;
-extern "C" f32 OPEN_BOUND_RATIO__7daDsh_c;
-extern "C" f32 CLOSE_ACCEL__7daDsh_c;
-extern "C" f32 CLOSE_SPEED__7daDsh_c;
-extern "C" f32 CLOSE_BOUND_SPEED__7daDsh_c;
-extern "C" f32 CLOSE_BOUND_RATIO__7daDsh_c;
-
-SECTION_DATA extern void* __vt__7daDsh_c[10];
 
 //
 // Declarations:
 //
 
 /* ############################################################################################## */
-/* 80467F40-80467F40 00003C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80467F40 = "K_tetd";
-SECTION_DEAD static char const* const stringBase_80467F47 = "S_bsaku00";
-SECTION_DEAD static char const* const stringBase_80467F51 = "S_lv7saku";
-SECTION_DEAD static char const* const stringBase_80467F5B = "";
-#pragma pop
 
 /* 80467F5C-80467F68 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -707,14 +636,7 @@ static u8 data_80468170[4];
 /* 80468174-80468178 000104 0004+00 1/1 0/0 0/0 .bss             None */
 static s8 data_80468174[4];
 
-/* 80467FE8-80467FF0 -00001 0008+00 1/1 0/0 0/0 .data l_resName$localstatic3$create__7daDsh_cFv */
-SECTION_DATA static void* data_80467FE8[2] = {
-    (void*)NULL,
-    (void*)(((char*)&d_a_dshutter__stringBase0) + 0x1B),
-};
-
 /* 80467C7C-80467DF8 00085C 017C+00 1/0 0/0 0/0 .text            daDsh_Create__FP10fopAc_ac_c */
-#ifdef NONMATCHING
 int daDsh_c::create() {
     if (!fopAcM_CheckCondition(this, 8)) {
         new (this) daDsh_c();
@@ -734,9 +656,9 @@ int daDsh_c::create() {
         } else {
             mSw = getSw();
 
-            setAction(i_fopAcM_isSwitch(this, mSw) ? &l_openWaitAction : &l_closeWaitAction);
+            setAction(dComIfGs_isSwitch(mSw, fopAcM_GetHomeRoomNo(this)) ? &l_closeWaitAction : &l_openWaitAction);
             setMtx();
-            fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+            fopAcM_SetMtx(this, model->getBaseTRMtx());
         }
     }
 
@@ -746,16 +668,6 @@ int daDsh_c::create() {
 static int daDsh_Create(fopAc_ac_c* i_this) {
     return static_cast<daDsh_c*>(i_this)->create();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int daDsh_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_dshutter/d_a_dshutter/daDsh_Create__FP10fopAc_ac_c.s"
-}
-#pragma pop
-#endif
 
 /* 80467DF8-80467E14 0009D8 001C+00 1/1 0/0 0/0 .text            cLib_calcTimer<s>__FPs */
 #pragma push
@@ -789,12 +701,23 @@ static actor_method_class l_daDsh_Method = {
 };
 
 /* 80468010-80468044 -00001 0034+00 0/0 0/0 1/0 .data            g_profile_DSHUTTER */
-SECTION_DATA extern void* g_profile_DSHUTTER[13] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x022C0000, (void*)&g_fpcLf_Method,
-    (void*)0x000005BC, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x01280000, (void*)&l_daDsh_Method,
-    (void*)0x00044000, (void*)NULL,
-    (void*)NULL,
+extern actor_process_profile_definition2 g_profile_DSHUTTER = {
+    {
+        -3,                     // mLayerID
+        7,                      // mListID
+        -3,                     // mListPrio
+        PROC_DSHUTTER,          // mProcName
+        &g_fpcLf_Method.mBase,  // mSubMtd
+        sizeof(daDsh_c),        // mSize
+        0,                      // mSizeOther
+        0,                      // mParameters
+        &g_fopAc_Method.base,   // mSubMtd
+        0x0128,                 // mPriority
+        &l_daDsh_Method,        // mSubMtd
+        0x00044000,             // mStatus
+        0,                      // mActorType
+        0,                      // mCullType
+    },
+    0,
 };
+
