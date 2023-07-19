@@ -253,18 +253,18 @@ void JAISound::stop() {
 }
 
 /* 802A25D8-802A25E0 29CF18 0008+00 1/0 2/0 0/0 .text            asSe__8JAISoundFv */
-bool JAISound::asSe() {
-    return false;
+JAISe* JAISound::asSe() {
+    return NULL;
 }
 
 /* 802A25E0-802A25E8 29CF20 0008+00 1/0 2/0 0/0 .text            asSeq__8JAISoundFv */
-bool JAISound::asSeq() {
-    return false;
+JAISeq* JAISound::asSeq() {
+    return NULL;
 }
 
 /* 802A25E8-802A25F0 29CF28 0008+00 1/0 2/0 0/0 .text            asStream__8JAISoundFv */
-bool JAISound::asStream() {
-    return false;
+JAIStream* JAISound::asStream() {
+    return NULL;
 }
 
 /* 802A25F0-802A266C 29CF30 007C+00 0/0 3/3 0/0 .text            die_JAISound___8JAISoundFv */
