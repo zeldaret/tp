@@ -185,6 +185,7 @@ class JAIAudible;
 class JAIAudience;
 class JAISe;
 class JAISeq;
+class JAISoundChild;
 class JAIStream;
 class JAITempoMgr;
 class JAISound {
@@ -203,14 +204,14 @@ public:
     /* 802A26B8 */ bool calc_JAISound_();
     /* 802A29DC */ void initTrack_JAISound_(JASTrack*);
 
-    virtual void getNumChild() = 0;
-    virtual void getChild() = 0;
-    virtual void releaseChild() = 0;
+    virtual s32 getNumChild() const = 0;
+    virtual JAISoundChild* getChild(int) = 0;
+    virtual void releaseChild(int) = 0;
     /* 802A25D8 */ virtual JAISe* asSe();
     /* 802A25E0 */ virtual JAISeq* asSeq();
     /* 802A25E8 */ virtual JAIStream* asStream();
     virtual JASTrack* getTrack() = 0;
-    virtual JASTrack* getChildTrack() = 0;
+    virtual JASTrack* getChildTrack(int) = 0;
     virtual JAITempoMgr* getTempoMgr() = 0;
     virtual bool JAISound_tryDie_() = 0;
 

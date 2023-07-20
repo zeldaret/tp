@@ -125,7 +125,10 @@ struct JASTrack {
 
     int getChannelMgrCount() { return channelMgrCount; }
     u8 getStatus() const { return mStatus; }
-    JASTrack* getChild(int index) { return field_0x130[index]; }
+    JASTrack* getChild(u32 index) { return field_0x130[index]; }
+    void setAutoDelete(bool param_0) {
+        field_0x216 = (param_0 << 4) | field_0x216 & ~0x10;
+    }
 
     /* 0x000 */ u8 field_0x0[0x5c]; // JASSeqCtrl
     /* 0x05C */ u8 field_0x5c[0x24]; // JASTrackPort
