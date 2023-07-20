@@ -10,6 +10,7 @@ class JKRHeap;
 typedef bool (*IsLeadByte_func)(int);
 
 struct BlockHeader {
+    const BlockHeader* getNext() const { return reinterpret_cast<const BlockHeader*>(reinterpret_cast<const u8*>(this) + size); }
     u32 magic;
     u32 size;
 };

@@ -48,6 +48,8 @@ struct ResFONT {
         /* 0x18 */ u16 numColumns;
         /* 0x1A */ u16 textureWidth;
         /* 0x1C */ u16 textureHeight;
+        /* 0x1E */ u16 padding;
+        /* 0x20 */ u8 data[];
     };
 
     /* 0x00 */ u64 magic;
