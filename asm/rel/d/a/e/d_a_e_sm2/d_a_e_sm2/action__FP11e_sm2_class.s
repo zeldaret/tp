@@ -5,7 +5,7 @@ lbl_8079AF94:
 /* 8079AFA0  DB E1 01 A0 */	stfd f31, 0x1a0(r1)
 /* 8079AFA4  F3 E1 01 A8 */	psq_st f31, 424(r1), 0, 0 /* qr0 */
 /* 8079AFA8  39 61 01 A0 */	addi r11, r1, 0x1a0
-/* 8079AFAC  4B BC 71 F5 */	bl __save_gpr
+/* 8079AFAC  4B BC 71 F5 */	bl _savegpr_14
 /* 8079AFB0  7C 7F 1B 78 */	mr r31, r3
 /* 8079AFB4  3C 80 80 7A */	lis r4, cNullVec__6Z2Calc@ha /* 0x8079D734@ha */
 /* 8079AFB8  3B A4 D7 34 */	addi r29, r4, cNullVec__6Z2Calc@l /* 0x8079D734@l */
@@ -876,7 +876,7 @@ lbl_8079BC7C:
 /* 8079BC7C  E3 E1 01 A8 */	psq_l f31, 424(r1), 0, 0 /* qr0 */
 /* 8079BC80  CB E1 01 A0 */	lfd f31, 0x1a0(r1)
 /* 8079BC84  39 61 01 A0 */	addi r11, r1, 0x1a0
-/* 8079BC88  4B BC 65 65 */	bl __restore_gpr
+/* 8079BC88  4B BC 65 65 */	bl _restgpr_14
 /* 8079BC8C  80 01 01 B4 */	lwz r0, 0x1b4(r1)
 /* 8079BC90  7C 08 03 A6 */	mtlr r0
 /* 8079BC94  38 21 01 B0 */	addi r1, r1, 0x1b0

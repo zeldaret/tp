@@ -7,7 +7,7 @@ lbl_804F72D0:
 /* 804F72E4  DB C1 01 30 */	stfd f30, 0x130(r1)
 /* 804F72E8  F3 C1 01 38 */	psq_st f30, 312(r1), 0, 0 /* qr0 */
 /* 804F72EC  39 61 01 30 */	addi r11, r1, 0x130
-/* 804F72F0  4B E6 AE B1 */	bl __save_gpr
+/* 804F72F0  4B E6 AE B1 */	bl _savegpr_14
 /* 804F72F4  7C 72 1B 78 */	mr r18, r3
 /* 804F72F8  3C 60 80 50 */	lis r3, cNullVec__6Z2Calc@ha /* 0x804FA950@ha */
 /* 804F72FC  3B 23 A9 50 */	addi r25, r3, cNullVec__6Z2Calc@l /* 0x804FA950@l */
@@ -1734,7 +1734,7 @@ lbl_804F8C38:
 /* 804F8C40  E3 C1 01 38 */	psq_l f30, 312(r1), 0, 0 /* qr0 */
 /* 804F8C44  CB C1 01 30 */	lfd f30, 0x130(r1)
 /* 804F8C48  39 61 01 30 */	addi r11, r1, 0x130
-/* 804F8C4C  4B E6 95 A1 */	bl __restore_gpr
+/* 804F8C4C  4B E6 95 A1 */	bl _restgpr_14
 /* 804F8C50  80 01 01 54 */	lwz r0, 0x154(r1)
 /* 804F8C54  7C 08 03 A6 */	mtlr r0
 /* 804F8C58  38 21 01 50 */	addi r1, r1, 0x150

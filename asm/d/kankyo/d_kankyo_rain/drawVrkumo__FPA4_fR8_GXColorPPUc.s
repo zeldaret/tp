@@ -25,7 +25,7 @@ lbl_8006A090:
 /* 8006A0EC  DA A1 01 F0 */	stfd f21, 0x1f0(r1)
 /* 8006A0F0  F2 A1 01 F8 */	psq_st f21, 504(r1), 0, 0 /* qr0 */
 /* 8006A0F4  39 61 01 F0 */	addi r11, r1, 0x1f0
-/* 8006A0F8  48 2F 80 A9 */	bl __save_gpr
+/* 8006A0F8  48 2F 80 A9 */	bl _savegpr_14
 /* 8006A0FC  7C 7C 1B 78 */	mr r28, r3
 /* 8006A100  7C 9D 23 78 */	mr r29, r4
 /* 8006A104  7C AE 2B 78 */	mr r14, r5
@@ -1129,7 +1129,7 @@ lbl_8006B120:
 /* 8006B170  E2 A1 01 F8 */	psq_l f21, 504(r1), 0, 0 /* qr0 */
 /* 8006B174  CA A1 01 F0 */	lfd f21, 0x1f0(r1)
 /* 8006B178  39 61 01 F0 */	addi r11, r1, 0x1f0
-/* 8006B17C  48 2F 70 71 */	bl __restore_gpr
+/* 8006B17C  48 2F 70 71 */	bl _restgpr_14
 /* 8006B180  80 01 02 A4 */	lwz r0, 0x2a4(r1)
 /* 8006B184  7C 08 03 A6 */	mtlr r0
 /* 8006B188  38 21 02 A0 */	addi r1, r1, 0x2a0

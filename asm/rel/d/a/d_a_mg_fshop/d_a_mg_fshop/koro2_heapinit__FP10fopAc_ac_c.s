@@ -11,7 +11,7 @@ lbl_8086E7F0:
 /* 8086E814  DB 81 00 60 */	stfd f28, 0x60(r1)
 /* 8086E818  F3 81 00 68 */	psq_st f28, 104(r1), 0, 0 /* qr0 */
 /* 8086E81C  39 61 00 60 */	addi r11, r1, 0x60
-/* 8086E820  4B AF 39 81 */	bl __save_gpr
+/* 8086E820  4B AF 39 81 */	bl _savegpr_14
 /* 8086E824  7C 7F 1B 78 */	mr r31, r3
 /* 8086E828  3C 60 80 87 */	lis r3, lit_1109@ha /* 0x80870958@ha */
 /* 8086E82C  3A A3 09 58 */	addi r21, r3, lit_1109@l /* 0x80870958@l */
@@ -335,7 +335,7 @@ lbl_8086EC90:
 /* 8086ECA8  E3 81 00 68 */	psq_l f28, 104(r1), 0, 0 /* qr0 */
 /* 8086ECAC  CB 81 00 60 */	lfd f28, 0x60(r1)
 /* 8086ECB0  39 61 00 60 */	addi r11, r1, 0x60
-/* 8086ECB4  4B AF 35 39 */	bl __restore_gpr
+/* 8086ECB4  4B AF 35 39 */	bl _restgpr_14
 /* 8086ECB8  80 01 00 A4 */	lwz r0, 0xa4(r1)
 /* 8086ECBC  7C 08 03 A6 */	mtlr r0
 /* 8086ECC0  38 21 00 A0 */	addi r1, r1, 0xa0

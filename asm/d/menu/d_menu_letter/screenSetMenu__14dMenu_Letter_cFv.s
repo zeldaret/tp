@@ -3,7 +3,7 @@ lbl_801DF010:
 /* 801DF014  7C 08 02 A6 */	mflr r0
 /* 801DF018  90 01 00 84 */	stw r0, 0x84(r1)
 /* 801DF01C  39 61 00 80 */	addi r11, r1, 0x80
-/* 801DF020  48 18 31 81 */	bl __save_gpr
+/* 801DF020  48 18 31 81 */	bl _savegpr_14
 /* 801DF024  7C 7E 1B 78 */	mr r30, r3
 /* 801DF028  3C 60 80 39 */	lis r3, tag_sub0@ha /* 0x803969C8@ha */
 /* 801DF02C  3B E3 69 C8 */	addi r31, r3, tag_sub0@l /* 0x803969C8@l */
@@ -658,7 +658,7 @@ lbl_801DF944:
 /* 801DFA08  39 EF 00 08 */	addi r15, r15, 8
 /* 801DFA0C  41 80 FF 38 */	blt lbl_801DF944
 /* 801DFA10  39 61 00 80 */	addi r11, r1, 0x80
-/* 801DFA14  48 18 27 D9 */	bl __restore_gpr
+/* 801DFA14  48 18 27 D9 */	bl _restgpr_14
 /* 801DFA18  80 01 00 84 */	lwz r0, 0x84(r1)
 /* 801DFA1C  7C 08 03 A6 */	mtlr r0
 /* 801DFA20  38 21 00 80 */	addi r1, r1, 0x80

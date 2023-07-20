@@ -19,7 +19,7 @@ lbl_8047C034:
 /* 8047C078  DB 01 02 90 */	stfd f24, 0x290(r1)
 /* 8047C07C  F3 01 02 98 */	psq_st f24, 664(r1), 0, 0 /* qr0 */
 /* 8047C080  39 61 02 90 */	addi r11, r1, 0x290
-/* 8047C084  4B EE 61 1D */	bl __save_gpr
+/* 8047C084  4B EE 61 1D */	bl _savegpr_14
 /* 8047C088  7C 76 1B 78 */	mr r22, r3
 /* 8047C08C  3C 60 80 48 */	lis r3, lit_3770@ha /* 0x8047D810@ha */
 /* 8047C090  3B 03 D8 10 */	addi r24, r3, lit_3770@l /* 0x8047D810@l */
@@ -989,7 +989,7 @@ lbl_8047CE8C:
 /* 8047CEC4  E3 01 02 98 */	psq_l f24, 664(r1), 0, 0 /* qr0 */
 /* 8047CEC8  CB 01 02 90 */	lfd f24, 0x290(r1)
 /* 8047CECC  39 61 02 90 */	addi r11, r1, 0x290
-/* 8047CED0  4B EE 53 1D */	bl __restore_gpr
+/* 8047CED0  4B EE 53 1D */	bl _restgpr_14
 /* 8047CED4  80 01 03 14 */	lwz r0, 0x314(r1)
 /* 8047CED8  7C 08 03 A6 */	mtlr r0
 /* 8047CEDC  38 21 03 10 */	addi r1, r1, 0x310

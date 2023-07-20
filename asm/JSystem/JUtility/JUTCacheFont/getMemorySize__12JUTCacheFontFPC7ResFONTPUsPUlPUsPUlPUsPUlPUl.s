@@ -3,7 +3,7 @@ lbl_802DD35C:
 /* 802DD360  7C 08 02 A6 */	mflr r0
 /* 802DD364  90 01 00 54 */	stw r0, 0x54(r1)
 /* 802DD368  39 61 00 50 */	addi r11, r1, 0x50
-/* 802DD36C  48 08 4E 35 */	bl __save_gpr
+/* 802DD36C  48 08 4E 35 */	bl _savegpr_14
 /* 802DD370  7C 99 23 79 */	or. r25, r4, r4
 /* 802DD374  7C BA 2B 78 */	mr r26, r5
 /* 802DD378  7C DB 33 78 */	mr r27, r6
@@ -111,7 +111,7 @@ lbl_802DD4D0:
 /* 802DD4D0  38 60 00 01 */	li r3, 1
 lbl_802DD4D4:
 /* 802DD4D4  39 61 00 50 */	addi r11, r1, 0x50
-/* 802DD4D8  48 08 4D 15 */	bl __restore_gpr
+/* 802DD4D8  48 08 4D 15 */	bl _restgpr_14
 /* 802DD4DC  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 802DD4E0  7C 08 03 A6 */	mtlr r0
 /* 802DD4E4  38 21 00 50 */	addi r1, r1, 0x50
