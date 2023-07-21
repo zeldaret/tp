@@ -11,26 +11,6 @@
 // Types:
 //
 
-struct JSUPtrLink {
-    /* 802DBDFC */ JSUPtrLink(void*);
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
-struct JASSoundParams {};
-
-template <typename A0>
-struct JASMemPool {};
-/* JASMemPool<JAISoundChild> */
-struct JASMemPool__template1 {
-    /* 802A1268 */ void func_802A1268(void* _this);
-};
-
 struct JASGenericMemPool {
     /* 80290848 */ JASGenericMemPool();
     /* 80290948 */ void alloc(u32);
@@ -49,16 +29,7 @@ struct JASAramStream {
 
 struct JAIStreamMgr {};
 
-struct JAISoundActivity {};
-
-template <typename A0>
-struct JAISoundStrategyMgr {};
-/* JAISoundStrategyMgr<JAIStream> */
-struct JAISoundStrategyMgr__template2 {};
-
 struct JAIAudience {};
-
-struct JAISoundID {};
 
 struct JAIStream {
     /* 802A3104 */ JAIStream(JAIStreamMgr*, JAISoundStrategyMgr<JAIStream>*);
@@ -74,29 +45,15 @@ struct JAIStream {
     /* 802A3948 */ s32 getNumChild() const;
     /* 802A3950 */ void getChild(int);
     /* 802A3A24 */ void releaseChild(int);
-    /* 802A3ABC */ bool getTrack();
-    /* 802A3AC4 */ bool getChildTrack(int);
-    /* 802A3ACC */ void asStream();
-    /* 802A3AD0 */ bool getTempoMgr();
-};
-
-struct JAISoundParams {
-    /* 802A2280 */ void mixOutAll(JASSoundParams const&, JASSoundParams*, f32);
+    /* 802A3ABC */ JASTrack* getTrack();
+    /* 802A3AC4 */ JASTrack* getChildTrack(int);
+    /* 802A3ACC */ JAIStream* asStream();
+    /* 802A3AD0 */ JAITempoMgr* getTempoMgr();
 };
 
 struct JAISoundChild {
     /* 802A2AB0 */ void init();
     /* 802A2B7C */ void calc();
-};
-
-struct JAISound {
-    /* 802A22F8 */ JAISound();
-    /* 802A2328 */ void start_JAISound_(JAISoundID, JGeometry::TVec3<f32> const*, JAIAudience*);
-    /* 802A25D8 */ bool asSe();
-    /* 802A25E0 */ bool asSeq();
-    /* 802A25F0 */ void die_JAISound_();
-    /* 802A266C */ void increasePrepareCount_JAISound_();
-    /* 802A26B8 */ void calc_JAISound_();
 };
 
 //
@@ -333,21 +290,21 @@ asm void JAIStream::releaseChild(int param_0) {
 #pragma pop
 
 /* 802A3ABC-802A3AC4 29E3FC 0008+00 1/0 0/0 0/0 .text            getTrack__9JAIStreamFv */
-bool JAIStream::getTrack() {
-    return false;
+JASTrack* JAIStream::getTrack() {
+    return NULL;
 }
 
 /* 802A3AC4-802A3ACC 29E404 0008+00 1/0 0/0 0/0 .text            getChildTrack__9JAIStreamFi */
-bool JAIStream::getChildTrack(int param_0) {
-    return false;
+JASTrack* JAIStream::getChildTrack(int param_0) {
+    return NULL;
 }
 
 /* 802A3ACC-802A3AD0 29E40C 0004+00 1/0 0/0 0/0 .text            asStream__9JAIStreamFv */
-void JAIStream::asStream() {
-    /* empty function */
+JAIStream* JAIStream::asStream() {
+    return this;
 }
 
 /* 802A3AD0-802A3AD8 29E410 0008+00 1/0 0/0 0/0 .text            getTempoMgr__9JAIStreamFv */
-bool JAIStream::getTempoMgr() {
-    return false;
+JAITempoMgr* JAIStream::getTempoMgr() {
+    return NULL;
 }

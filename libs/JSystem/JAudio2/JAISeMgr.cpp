@@ -11,17 +11,6 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-template <typename A0>
-struct JASMemPool {};
-/* JASMemPool<JAISe> */
-struct JASMemPool__template0 {
-    /* 8029FC34 */ void func_8029FC34(void* _this);
-};
-
-//
 // Forward References:
 //
 

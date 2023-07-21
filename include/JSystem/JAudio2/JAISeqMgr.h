@@ -27,11 +27,13 @@ public:
     /* 802A1804 */ virtual bool isUsingSeqData(JAISeqDataRegion const&);
     /* 802A1870 */ virtual int releaseSeqData(JAISeqDataRegion const&);
 
+    JAISeqDataMgr* getSeqDataMgr() { return seqDataMgr_; }
+
 private:
     /* 0x04 */ JAISoundActivity mActivity;
-    /* 0x08 */ void* field_0x8;
-    /* 0x0C */ JAIAudience* mAudience;
-    /* 0x10 */ JAISeqDataMgr* seqDataMgr_;
+    /* 0x08 */ JAIAudience* mAudience;
+    /* 0x0C */ JAISeqDataMgr* seqDataMgr_;
+    /* 0x10 */ void* field_0x10;
     /* 0x14 */ JAISoundParamsMove mMove;
     /* 0x64 */ JSUList<JAISeq> mSeqList;
     /* 0x70 */ int field_0x70;
