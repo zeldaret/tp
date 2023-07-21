@@ -8,7 +8,7 @@
 class dVibration_c {
 public:
     /* 8006F268 */ int Run();
-    /* 8006FA24 */ bool StartShock(int, int, cXyz);
+    /* 8006FA24 */ bool StartShock(int i_strength, int, cXyz);
     /* 8006FC0C */ bool StartQuake(u8 const*, int, int, cXyz);
     /* 8006FB10 */ bool StartQuake(int, int, cXyz);
     /* 8006FD94 */ int StopQuake(int);

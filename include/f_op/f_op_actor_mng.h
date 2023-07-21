@@ -340,7 +340,7 @@ inline void i_fopAcM_offSwitch(const fopAc_ac_c* pActor, int sw) {
     return dComIfGs_offSwitch(sw, fopAcM_GetHomeRoomNo(pActor));
 }
 
-inline bool i_fopAcM_isSwitch(const fopAc_ac_c* item, int sw) {
+inline BOOL i_fopAcM_isSwitch(const fopAc_ac_c* item, int sw) {
     return dComIfGs_isSwitch(sw, fopAcM_GetHomeRoomNo(item));
 }
 
