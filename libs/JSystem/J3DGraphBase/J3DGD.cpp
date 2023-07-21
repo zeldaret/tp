@@ -51,13 +51,13 @@ extern "C" void J3DFifoLoadTexCached__F11_GXTexMapIDUl15_GXTexCacheSizeUl15_GXTe
 
 extern "C" void GDOverflowed();
 extern "C" void __cvt_fp2unsigned();
-extern "C" void __save_gpr();
+extern "C" void _savegpr_14();
 extern "C" void _savegpr_23();
 extern "C" void _savegpr_24();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_29();
-extern "C" void __restore_gpr();
+extern "C" void _restgpr_14();
 extern "C" void _restgpr_23();
 extern "C" void _restgpr_24();
 extern "C" void _restgpr_25();

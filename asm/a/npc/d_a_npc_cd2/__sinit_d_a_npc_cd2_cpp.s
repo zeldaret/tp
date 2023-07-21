@@ -3,7 +3,7 @@ lbl_8015A90C:
 /* 8015A910  7C 08 02 A6 */	mflr r0
 /* 8015A914  90 01 00 E4 */	stw r0, 0xe4(r1)
 /* 8015A918  39 61 00 E0 */	addi r11, r1, 0xe0
-/* 8015A91C  48 20 78 85 */	bl __save_gpr
+/* 8015A91C  48 20 78 85 */	bl _savegpr_14
 /* 8015A920  3C 60 80 39 */	lis r3, l_resMANa@ha /* 0x80393250@ha */
 /* 8015A924  38 C3 32 50 */	addi r6, r3, l_resMANa@l /* 0x80393250@l */
 /* 8015A928  3C 60 80 3B */	lis r3, cNullVec__6Z2Calc@ha /* 0x803B61C0@ha */
@@ -298,7 +298,7 @@ lbl_8015A90C:
 /* 8015ADAC  38 A5 86 10 */	addi r5, r5, lit_3982@l /* 0x80428610@l */
 /* 8015ADB0  48 20 6E 75 */	bl __register_global_object
 /* 8015ADB4  39 61 00 E0 */	addi r11, r1, 0xe0
-/* 8015ADB8  48 20 74 35 */	bl __restore_gpr
+/* 8015ADB8  48 20 74 35 */	bl _restgpr_14
 /* 8015ADBC  80 01 00 E4 */	lwz r0, 0xe4(r1)
 /* 8015ADC0  7C 08 03 A6 */	mtlr r0
 /* 8015ADC4  38 21 00 E0 */	addi r1, r1, 0xe0

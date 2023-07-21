@@ -5,43 +5,16 @@
 
 #include "JSystem/JKernel/JKRFileLoader.h"
 #include "MSL_C/string.h"
-#include "dol2asm.h"
+#include "MSL_C/MSL_Common/Src/ctype.h"
 #include "global.h"
 
 //
 // Forward References:
 //
 
-extern "C" void __ct__13JKRFileLoaderFv();
-extern "C" void __dt__13JKRFileLoaderFv();
-extern "C" void unmount__13JKRFileLoaderFv();
-extern "C" void getGlbResource__13JKRFileLoaderFPCc();
-extern "C" void getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader();
-extern "C" void removeResource__13JKRFileLoaderFPvP13JKRFileLoader();
-extern "C" void detachResource__13JKRFileLoaderFPvP13JKRFileLoader();
-extern "C" void findVolume__13JKRFileLoaderFPPCc();
-extern "C" void fetchVolumeName__13JKRFileLoaderFPclPCc();
-extern "C" void __sinit_JKRFileLoader_cpp();
-extern "C" void func_802D45E4(void* _this);
-extern "C" extern char const* const JKRFileLoader__stringBase0;
-extern "C" u8 sVolumeList__13JKRFileLoader[12];
-extern "C" u8 sCurrentVolume__13JKRFileLoader[4 + 4 /* padding */];
-
 //
 // External References:
 //
-
-extern "C" void __dl__FPv();
-extern "C" void __ct__11JKRDisposerFv();
-extern "C" void __dt__11JKRDisposerFv();
-extern "C" void __ct__10JSUPtrLinkFPv();
-extern "C" void __dt__10JSUPtrLinkFv();
-extern "C" void __dt__10JSUPtrListFv();
-extern "C" void initiate__10JSUPtrListFv();
-extern "C" void __register_global_object();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-extern "C" extern u8 __lower_map[256];
 
 //
 // Declarations:
@@ -168,20 +141,11 @@ JKRFileLoader* JKRFileLoader::findVolume(const char** volumeName) {
 }
 
 /* ############################################################################################## */
-/* 8039D150-8039D150 0297B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D150 = "/";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039D152 = "\0\0\0\0\0";
-#pragma pop
 
 /* 804508C0-804508C8 000340 0002+06 1/1 0/0 0/0 .sdata           rootPath$2498 */
-SECTION_SDATA static char rootPath[2] = "/";
+static char rootPath[2] = "/";
 
 /* 802D44C4-802D45A0 2CEE04 00DC+00 1/1 0/0 0/0 .text fetchVolumeName__13JKRFileLoaderFPclPCc */
-// matches, but rootPath is accessed through r13
-#ifdef NONMATCHING
 const char* JKRFileLoader::fetchVolumeName(char* buffer, long bufferSize, const char* path) {
     if (strcmp(path, "/") == 0) {
         strcpy(buffer, rootPath);
@@ -191,7 +155,7 @@ const char* JKRFileLoader::fetchVolumeName(char* buffer, long bufferSize, const 
     path++;
     while (*path != 0 && *path != '/') {
         if (1 < bufferSize) {
-            u8 lower_char;
+            int lower_char;
             int ch = (int)*path;
             if (ch == -1) {
                 lower_char = -1;
@@ -213,13 +177,3 @@ const char* JKRFileLoader::fetchVolumeName(char* buffer, long bufferSize, const 
 
     return path;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm const char* JKRFileLoader::fetchVolumeName(char* param_0, s32 param_1, char const* param_2) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRFileLoader/fetchVolumeName__13JKRFileLoaderFPclPCc.s"
-}
-#pragma pop
-#endif
