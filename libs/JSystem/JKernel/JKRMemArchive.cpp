@@ -293,7 +293,7 @@ u32 JKRMemArchive::fetchResource_subroutine(u8* src, u32 srcLength, u8* dst, u32
 
     case COMPRESSION_YAY0:
     case COMPRESSION_YAZ0:
-        u32 expendedSize = JKRDecompExpandSize((SArcHeader*)src);
+        u32 expendedSize = JKRDecompExpandSize(src);
         srcLength = expendedSize;
         if (expendedSize > dstLength) {
             srcLength = dstLength;
@@ -319,6 +319,6 @@ u32 JKRMemArchive::getExpandedResSize(const void* resource) const {
     if (fileEntry->isCompressed() == false) {
         return getResSize(resource);
     } else {
-        return JKRDecompExpandSize((SArcHeader*)resource);
+        return JKRDecompExpandSize((u8*)resource);
     }
 }
