@@ -11,17 +11,9 @@
 // Forward References:
 //
 
-extern "C" u8 sAramList__11JKRAramHeap[12];
-extern "C" void* __vt__11JKRAramHeap;
-
 //
 // External References:
 //
-
-extern "C" void __dl__FPv();
-extern "C" void __dt__11JKRDisposerFv();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
 
 //
 // Declarations:
@@ -45,28 +37,13 @@ JKRAramHeap::JKRAramHeap(u32 startAddress, u32 size) {
 }
 
 /* 802D2F14-802D2FBC 2CD854 00A8+00 1/0 0/0 0/0 .text            __dt__11JKRAramHeapFv */
-// close match, regalloc problem in the beginning of the while loop
-#ifdef NONMATCHING
 JKRAramHeap::~JKRAramHeap() {
-    JSUList<JKRAramBlock>* list = &sAramList;
-    JSUListIterator<JKRAramBlock> iterator = list;
-
-    while (iterator != list->getEnd()) {
-        JSUListIterator<JKRAramBlock> prev = iterator;
-        JKRAramBlock* block = prev.getObject();
-        delete block;
+    JSUListIterator<JKRAramBlock> iterator(sAramList.getFirst());
+    while (iterator != sAramList.getEnd())
+    {
+        delete (iterator++).getObject();
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRAramHeap::~JKRAramHeap() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAramHeap/__dt__11JKRAramHeapFv.s"
-}
-#pragma pop
-#endif
 
 /* 802D2FBC-802D3034 2CD8FC 0078+00 0/0 5/5 0/0 .text
  * alloc__11JKRAramHeapFUlQ211JKRAramHeap10EAllocMode           */
