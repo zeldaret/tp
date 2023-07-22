@@ -65,10 +65,10 @@ public:
 
 struct TParse_TParagraph_data : public TParseData_aligned<4> {
     struct TData {
-        /* 0x00 */ u8 _0;
-        /* 0x04 */ u32 _4;
+        /* 0x00 */ u8 status;
+        /* 0x04 */ u32 dataSize;
         /* 0x08 */ u32 _8;
-        /* 0x0C */ const void* _c;
+        /* 0x0C */ const void* fileCount;
         /* 0x10 */ const void* _10;
     };
 

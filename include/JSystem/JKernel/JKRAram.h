@@ -21,7 +21,6 @@ public:
     u32 getAudioMemSize() const { return mAudioMemorySize; }
     u32 getGraphMemory() const { return mGraphMemoryPtr; }
     u32 getGraphMemSize() const { return mGraphMemorySize; }
-
 //private:
     /* 0x00 */  // vtable
     /* 0x04 */  // JKRThread
@@ -38,8 +37,8 @@ public:
     static JKRAram* create(u32, u32, long, long, long);
     static void checkOkAddress(u8*, u32, JKRAramBlock*, u32);
     static void changeGroupIdIfNeed(u8*, int);
-    static void mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
-    static void aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
+    static JKRAramBlock* mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
+    static u8* aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
     static void dump(void);
 
     static JKRAram* getManager() { return sAramObject; }
@@ -73,9 +72,17 @@ inline void* JKRAllocFromAram(u32 size, JKRAramHeap::EAllocMode allocMode) {
     return JKRAram::getAramHeap()->alloc(size, allocMode);
 }
 
+inline void JKRFreeToAram(JKRAramBlock* block) {
+    JKRAram::getAramHeap()->free(block);
+}
+
 inline void JKRAramToMainRam(u32 p1, u8* p2, u32 p3, JKRExpandSwitch p4, u32 p5, JKRHeap* p6,
                              int p7, u32* p8) {
     JKRAram::aramToMainRam(p1, p2, p3, p4, p5, p6, p7, p8);
+}
+
+inline JKRAramBlock *JKRMainRamToAram(u8 *buf, u32 bufSize, u32 alignedSize, JKRExpandSwitch expandSwitch, u32 fileSize, JKRHeap *heap, int id, u32 *pSize) {
+    return JKRAram::mainRamToAram(buf, bufSize, alignedSize, expandSwitch, fileSize, heap, id, pSize);
 }
 
 // void JKRDecompressFromAramToMainRam(u32, void*, u32, u32, u32, u32*);
