@@ -231,7 +231,7 @@ def getDolInfo(disc):
     return dolOffset, dolSize
 
 
-def extract(path,yaz0Encoder):
+def extract(isoPath: Path, gamePath: Path, yaz0Encoder):
     if yaz0Encoder == "oead":
         try:
             from oead import yaz0
@@ -239,7 +239,10 @@ def extract(path,yaz0Encoder):
             yaz0DecompressFunction = yaz0.decompress
         except:
             print("Extract: oead isn't installed, falling back to native yaz0")
-    with open(path, "rb") as f:
+    isoPath = isoPath.absolute()
+    cwd = os.getcwd()
+    os.chdir(gamePath)
+    with open(isoPath, "rb") as f:
         # Seek to fst offset information and retrieve it
         f.seek(fstInfoPosition)
         fstOffset, fstSize = getFstInfo(f, fstInfoPosition)
@@ -272,10 +275,11 @@ def extract(path,yaz0Encoder):
 
         # Write assets to file
         writeAssets(parsedFstBin, f)
+    os.chdir(cwd)
 
 
 def main():
-    extract(sys.argv[1],"native")
+    extract(Path(sys.argv[1]), Path(sys.argv[2]), "native")
 
 
 if __name__ == "__main__":

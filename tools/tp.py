@@ -337,10 +337,7 @@ def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str, for
 
         try:
             import extract_game_assets
-            previous_dir = os.getcwd()
-            os.chdir(str(game_path.absolute()))
-            extract_game_assets.extract("../" + str(iso),yaz0_encoder)
-            os.chdir(previous_dir)
+            extract_game_assets.extract(iso, game_path, yaz0_encoder)
         except ImportError as ex:
             _handle_import_error(ex)
         except Exception as e:
