@@ -154,7 +154,7 @@ tools: dirs $(ELF2DOL) $(YAZ0)
 
 assets:
 	@mkdir -p game
-	@cd game; $(PYTHON) ../tools/extract_game_assets.py ../$(IMAGENAME)
+	$(PYTHON) tools/extract_game_assets.py $(IMAGENAME) game
 
 docs:
 	$(DOXYGEN) Doxyfile
