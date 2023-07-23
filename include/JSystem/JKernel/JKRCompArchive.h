@@ -25,12 +25,12 @@ public:
 private:
     /* 0x00 */  // vtable
     /* 0x04 */  // JKRArchive
-    /* 0x5C */ int field_0x5c;
+    /* 0x5C */ int mCompression;
     /* 0x60 */ EMountDirection mMountDirection;
     /* 0x64 */ int field_0x64;
-    /* 0x68 */ JKRAramBlock* field_0x68;
+    /* 0x68 */ JKRAramBlock* mAramPart;
     /* 0x6C */ int field_0x6c;
-    /* 0x70 */ JKRDvdFile* field_0x70;
+    /* 0x70 */ JKRDvdFile* mDvdFile;
     /* 0x74 */ u32 mSizeOfMemPart;
     /* 0x78 */ u32 mSizeOfAramPart;
     /* 0x7C */ int field_0x7c;
