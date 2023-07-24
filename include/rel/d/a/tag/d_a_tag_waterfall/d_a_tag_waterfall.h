@@ -8,12 +8,12 @@ class daTagWaterFall_c : public fopAc_ac_c {
 public:
     daTagWaterFall_c() {}
 
-    /* 80D64680 */ bool draw();
+    /* 80D64680 */ int draw();
     /* 80D64724 */ f32 getEllipseY(f32);
     /* 80D64768 */ bool checkHitWaterFall(cXyz);
     /* 80D6486C */ bool checkHitWaterFallCamera();
-    /* 80D648B4 */ bool execute();
-    /* 80D64AE0 */ bool _delete();
+    /* 80D648B4 */ int execute();
+    /* 80D64AE0 */ int _delete();
     /* 80D64B20 */ cPhs__Step create();
 
 private:

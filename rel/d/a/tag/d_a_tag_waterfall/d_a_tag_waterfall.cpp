@@ -14,12 +14,12 @@
 // Forward References:
 //
 
-static void daTagWaterFall_Draw(daTagWaterFall_c*);
+static int daTagWaterFall_Draw(daTagWaterFall_c*);
 static void* s_waterfall(void*, void*);
-static void daTagWaterFall_Execute(daTagWaterFall_c*);
-static bool daTagWaterFall_IsDelete(daTagWaterFall_c*);
-static void daTagWaterFall_Delete(daTagWaterFall_c*);
-static void daTagWaterFall_Create(daTagWaterFall_c*);
+static int daTagWaterFall_Execute(daTagWaterFall_c*);
+static int daTagWaterFall_IsDelete(daTagWaterFall_c*);
+static int daTagWaterFall_Delete(daTagWaterFall_c*);
+static int daTagWaterFall_Create(daTagWaterFall_c*);
 
 /* 80D64D94-80D64D98 000000 0004+00 2/2 0/0 0/0 .data            m_master_id */
 static u32 m_master_id = static_cast<u32>(0xFFFFFFFF);
@@ -51,25 +51,25 @@ extern actor_process_profile_definition g_profile_Tag_WaterFall = {
 
 /* 80D6462C-80D64680 0000EC 0054+00 1/1 0/0 0/0 .text            __ct__20daTagWaterFall_HIO_cFv */
 daTagWaterFall_HIO_c::daTagWaterFall_HIO_c() {
-    this->field_0x04 = -1;
-    this->mBaseFogNear = 0.0f;
-    this->mBaseFogFar = 10000.0f;
-    this->mColorBlendStepDivisor = 3.0f;
-    this->mShouldModifyFog = false;
-    this->field_0x14 = 0;
-    this->field_0x15 = 0;
-    this->field_0x18 = 0.0f;
-    this->field_0x1C = 0.0f;
-    this->field_0x20 = 0.0f;
+    field_0x04 = -1;
+    mBaseFogNear = 0.0f;
+    mBaseFogFar = 10000.0f;
+    mColorBlendStepDivisor = 3.0f;
+    mShouldModifyFog = false;
+    field_0x14 = 0;
+    field_0x15 = 0;
+    field_0x18 = 0.0f;
+    field_0x1C = 0.0f;
+    field_0x20 = 0.0f;
 }
 
 /* 80D64680-80D64688 000140 0008+00 1/1 0/0 0/0 .text            draw__16daTagWaterFall_cFv */
-bool daTagWaterFall_c::draw() {
-    return true;
+int daTagWaterFall_c::draw() {
+    return 1;
 }
 
 /* 80D64688-80D646A8 000148 0020+00 1/0 0/0 0/0 .text daTagWaterFall_Draw__FP16daTagWaterFall_c */
-static void daTagWaterFall_Draw(daTagWaterFall_c* i_this) {
+static int daTagWaterFall_Draw(daTagWaterFall_c* i_this) {
     i_this->draw();
 }
 
@@ -97,8 +97,8 @@ f32 daTagWaterFall_c::getEllipseY(f32 x) {
     // Ellipse is in standard form;
     // x,y-plane of ellipse is the horizontal world plane
 
-    f32 ellipseRadiusB = this->mCylinderRadiusB;
-    f32 ellipseRadiusA = this->mCylinderRadiusA;
+    f32 ellipseRadiusB = mCylinderRadiusB;
+    f32 ellipseRadiusA = mCylinderRadiusA;
     f32 ellipseRadiusBSquared = ellipseRadiusB * ellipseRadiusB;
     f32 ellipseRadiusASquared = ellipseRadiusA * ellipseRadiusA;
 
@@ -113,9 +113,8 @@ f32 daTagWaterFall_c::getEllipseY(f32 x) {
 bool daTagWaterFall_c::checkHitWaterFall(cXyz objPos) {
     Vec dst;
 
-    f32 ellipseRadiusA = this->mCylinderRadiusA;
+    f32 ellipseRadiusA = mCylinderRadiusA;
 
-    // Instructions are reordered if GetY() is used
     mDoMtx_stack_c::YrotS(-fopAcM_GetShapeAngle_p(this).y);
 
     const cXyz& waterfallTagPos = fopAcM_GetPosition(this);
@@ -124,11 +123,11 @@ bool daTagWaterFall_c::checkHitWaterFall(cXyz objPos) {
     mDoMtx_stack_c::multVec(&objPos, &dst);
 
     if (fabsf(dst.x) < ellipseRadiusA) {
-        const f32 absEllipseY = fabsf(this->getEllipseY(dst.x));
+        const f32 absEllipseY = fabsf(getEllipseY(dst.x));
         if (fabsf(dst.z) < absEllipseY) {
             if (waterfallTagPos.y < objPos.y) {
                 // Instruction reordering occurs when mCylinderHeight == 0.0f is used
-                if (!this->mCylinderHeight || (waterfallTagPos.y + this->mCylinderHeight) > objPos.y)
+                if (!mCylinderHeight || (waterfallTagPos.y + mCylinderHeight) > objPos.y)
                 {
                     return true;
                 }
@@ -143,7 +142,7 @@ bool daTagWaterFall_c::checkHitWaterFall(cXyz objPos) {
  * checkHitWaterFallCamera__16daTagWaterFall_cFv                */
 bool daTagWaterFall_c::checkHitWaterFallCamera() {
     const camera_class* camera = dComIfGp_getCamera(0);
-    return this->checkHitWaterFall(camera->mLookat.mEye);
+    return checkHitWaterFall(camera->mLookat.mEye);
 }
 
 /* ############################################################################################## */
@@ -154,18 +153,18 @@ static bool masterWaterfallTagExists;
 static daTagWaterFall_HIO_c l_HIO;
 
 /* 80D648B4-80D64AB8 000374 0204+00 1/1 0/0 0/0 .text            execute__16daTagWaterFall_cFv */
-bool daTagWaterFall_c::execute() {
+int daTagWaterFall_c::execute() {
     u32 masterId = m_master_id;
     u32 waterfallId = fpcM_GetID(this);
 
     if (masterId == waterfallId) {
-        if (this->mFrameCountdown) {
+        if (mFrameCountdown) {
             const dScnKy_env_light_c* const envLight = i_dKy_getEnvlight();
-            this->mFogNear = envLight->mFogNear;
-            this->mFogFar = envLight->mFogFar;
-            this->mFrameCountdown--;
-            this->mColpat = envLight->mColpatWeather;
-            this->mColorBlend = 1.0f;
+            mFogNear = envLight->mFogNear;
+            mFogFar = envLight->mFogFar;
+            mFrameCountdown--;
+            mColpat = envLight->mColpatWeather;
+            mColorBlend = 1.0f;
         } else {
             bool currCameraInWaterfall = false;
             if (fpcEx_Search(s_waterfall, this)) {
@@ -173,71 +172,71 @@ bool daTagWaterFall_c::execute() {
             }
 
             if (!currCameraInWaterfall) {
-                if (!this->mPrevCameraInWaterfall && this->mColorBlend == 1.0f) {
-                    return true;
+                if (!mPrevCameraInWaterfall && mColorBlend == 1.0f) {
+                    return 1;
                 }
             }
 
-            if ((!this->mPrevCameraInWaterfall && currCameraInWaterfall) || (this->mPrevCameraInWaterfall && !currCameraInWaterfall)) {
-                this->mColorBlend = 1.0f - this->mColorBlend;
-                this->mPrevCameraInWaterfall = currCameraInWaterfall;
+            if ((!mPrevCameraInWaterfall && currCameraInWaterfall) || (mPrevCameraInWaterfall && !currCameraInWaterfall)) {
+                mColorBlend = 1.0f - mColorBlend;
+                mPrevCameraInWaterfall = currCameraInWaterfall;
             }
 
-            cLib_chaseF(&this->mColorBlend, 1.0f, 1.0f / l_HIO.mColorBlendStepDivisor);
+            cLib_chaseF(&mColorBlend, 1.0f, 1.0f / l_HIO.mColorBlendStepDivisor);
 
-            if (!this->mPrevCameraInWaterfall) {
-                dKy_custom_colset(7, this->mColpat, this->mColorBlend);
+            if (!mPrevCameraInWaterfall) {
+                dKy_custom_colset(7, mColpat, mColorBlend);
             } else {
-                dKy_custom_colset(this->mColpat, 7, this->mColorBlend);
+                dKy_custom_colset(mColpat, 7, mColorBlend);
             }
 
             f32 instanceFogMultiplier;
             f32 HIOFogMultiplier;
 
             if (l_HIO.mShouldModifyFog) {
-                if (this->mPrevCameraInWaterfall) {
-                    instanceFogMultiplier = 1.0f - this->mColorBlend;
-                    HIOFogMultiplier = this->mColorBlend;
+                if (mPrevCameraInWaterfall) {
+                    instanceFogMultiplier = 1.0f - mColorBlend;
+                    HIOFogMultiplier = mColorBlend;
                 } else {
-                    instanceFogMultiplier = this->mColorBlend;
-                    HIOFogMultiplier = 1.0f - this->mColorBlend;
+                    instanceFogMultiplier = mColorBlend;
+                    HIOFogMultiplier = 1.0f - mColorBlend;
                 };
 
-                f32 fogParam0 = (this->mFogNear * instanceFogMultiplier) + (l_HIO.mBaseFogNear * HIOFogMultiplier);
-                f32 fogParam1 = (this->mFogFar * instanceFogMultiplier) + (l_HIO.mBaseFogFar * HIOFogMultiplier);
+                f32 fogParam0 = (mFogNear * instanceFogMultiplier) + (l_HIO.mBaseFogNear * HIOFogMultiplier);
+                f32 fogParam1 = (mFogFar * instanceFogMultiplier) + (l_HIO.mBaseFogFar * HIOFogMultiplier);
 
                 dKy_fog_startendz_set(fogParam0, fogParam1, 1.0f);
             }
         }
     }
 
-    return true;
+    return 1;
 }
 
 /* 80D64AB8-80D64AD8 000578 0020+00 1/0 0/0 0/0 .text daTagWaterFall_Execute__FP16daTagWaterFall_c
  */
 
-static void daTagWaterFall_Execute(daTagWaterFall_c* i_this) {
+static int daTagWaterFall_Execute(daTagWaterFall_c* i_this) {
     i_this->execute();
 }
 
 /* 80D64AD8-80D64AE0 000598 0008+00 1/0 0/0 0/0 .text
  * daTagWaterFall_IsDelete__FP16daTagWaterFall_c                */
-static bool daTagWaterFall_IsDelete(daTagWaterFall_c* i_this) {
-    return true;
+static int daTagWaterFall_IsDelete(daTagWaterFall_c* i_this) {
+    return 1;
 }
 
 /* 80D64AE0-80D64B00 0005A0 0020+00 1/1 0/0 0/0 .text            _delete__16daTagWaterFall_cFv */
-bool daTagWaterFall_c::_delete() {
-    if (this->mIsMasterWaterfallTag) {
+int daTagWaterFall_c::_delete() {
+    if (mIsMasterWaterfallTag) {
         masterWaterfallTagExists = false;
     }
-    return true;
+    return 1;
 }
 
 /* 80D64B00-80D64B20 0005C0 0020+00 1/0 0/0 0/0 .text daTagWaterFall_Delete__FP16daTagWaterFall_c
  */
-static void daTagWaterFall_Delete(daTagWaterFall_c* i_this) {
+static int daTagWaterFall_Delete(daTagWaterFall_c* i_this) {
     i_this->_delete();
 }
 
@@ -250,26 +249,26 @@ cPhs__Step daTagWaterFall_c::create() {
 
     if (masterWaterfallTagExists == false) {
         masterWaterfallTagExists = true;
-        this->mIsMasterWaterfallTag = 1;
+        mIsMasterWaterfallTag = 1;
         l_HIO.field_0x04 = -1;
     }
 
-    this->mCylinderRadiusA = static_cast<f32>(fpcM_GetParam(this) & 0x0000FFFF);
+    mCylinderRadiusA = static_cast<f32>(fpcM_GetParam(this) & 0x0000FFFF);
 
-    if (this->mCylinderRadiusA < 0.0f) {
-        this->mCylinderRadiusB = 0.0f;
+    if (mCylinderRadiusA < 0.0f) {
+        mCylinderRadiusB = 0.0f;
     }
 
-    this->mCylinderHeight = static_cast<f32>((fpcM_GetParam(this) & 0xFFFF0000) >> 16);
+    mCylinderHeight = static_cast<f32>((fpcM_GetParam(this) & 0xFFFF0000) >> 16);
 
-    if (this->mCylinderHeight < 0.0f) {
-        this->mCylinderHeight = 0.0f;
+    if (mCylinderHeight < 0.0f) {
+        mCylinderHeight = 0.0f;
     }
 
-    this->mCylinderRadiusB = static_cast<f32>((fopAcM_GetAngle_p(this).GetX() & 0x0000FFFF));
+    mCylinderRadiusB = static_cast<f32>((fopAcM_GetAngle_p(this).x & 0x0000FFFF));
 
-    if (this->mCylinderRadiusB <= 0.0f) {
-        this->mCylinderRadiusB = this->mCylinderRadiusA;
+    if (mCylinderRadiusB <= 0.0f) {
+        mCylinderRadiusB = mCylinderRadiusA;
     }
 
     fopAcM_GetShapeAngle_p(this).x = 0;
@@ -280,8 +279,8 @@ cPhs__Step daTagWaterFall_c::create() {
 
         m_master_id = id;
 
-        this->mColorBlend = 0.0f;
-        this->mFrameCountdown = 30;
+        mColorBlend = 0.0f;
+        mFrameCountdown = 30;
     }
 
     return cPhs_COMPLEATE_e;
@@ -289,7 +288,7 @@ cPhs__Step daTagWaterFall_c::create() {
 
 /* 80D64CBC-80D64CDC 00077C 0020+00 1/0 0/0 0/0 .text daTagWaterFall_Create__FP16daTagWaterFall_c
  */
-static void daTagWaterFall_Create(daTagWaterFall_c* i_this) {
+static int daTagWaterFall_Create(daTagWaterFall_c* i_this) {
     i_this->create();
 }
 
