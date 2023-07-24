@@ -14,7 +14,7 @@ public:
     /* 8003F760 */ static int getTopBottomFloorNo(s8*, s8*);
     /* 8003F7E8 */ static void createWork();
     /* 8003FA40 */ static void setPointer(s8, void*, int);
-    /* 8003F810 */ static void setPointer(dDrawPath_c::room_class*, s8*, s8*);
+    /* 8003F810 */ static int setPointer(dDrawPath_c::room_class*, s8*, s8*);
     /* 8003FB70 */ static void create();
     /* 8003FBD0 */ static void reset();
     /* 8003FC70 */ static void remove();

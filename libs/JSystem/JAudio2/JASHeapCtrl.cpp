@@ -11,18 +11,6 @@
 // Types:
 //
 
-struct JSUPtrLink {
-    /* 802DBDFC */ JSUPtrLink(void*);
-    /* 802DBE14 */ ~JSUPtrLink();
-};
-
-struct JSUPtrList {
-    /* 802DBEAC */ ~JSUPtrList();
-    /* 802DBF14 */ void initiate();
-    /* 802DC094 */ void insert(JSUPtrLink*, JSUPtrLink*);
-    /* 802DC15C */ void remove(JSUPtrLink*);
-};
-
 struct JKRSolidHeap {};
 
 struct JKRHeap {
@@ -48,19 +36,6 @@ struct JASKernel {
 
 struct JASDisposer {
     /* 80290BCC */ void onDispose();
-};
-
-struct JASHeap {
-    /* 80290140 */ JASHeap(JASDisposer*);
-    /* 802901AC */ void initRootHeap(void*, u32);
-    /* 8029021C */ void alloc(JASHeap*, u32);
-    /* 802903F4 */ void allocTail(JASHeap*, u32);
-    /* 802904E4 */ void free();
-    /* 80290608 */ void insertChild(JASHeap*, JASHeap*, void*, u32, bool);
-    /* 802906F0 */ void getTailHeap();
-    /* 8029077C */ void getTailOffset();
-    /* 802907E0 */ void getCurOffset();
-    /* 80290B54 */ ~JASHeap();
 };
 
 //
@@ -109,9 +84,6 @@ extern "C" void __dt__10JSUPtrListFv();
 extern "C" void initiate__10JSUPtrListFv();
 extern "C" void insert__10JSUPtrListFP10JSUPtrLinkP10JSUPtrLink();
 extern "C" void remove__10JSUPtrListFP10JSUPtrLink();
-extern "C" void OSInitMutex();
-extern "C" void OSLockMutex();
-extern "C" void OSUnlockMutex();
 extern "C" void __register_global_object();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_27();
@@ -131,7 +103,7 @@ extern "C" u8 sSystemHeap__7JKRHeap[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JASHeap::JASHeap(JASDisposer* param_0) {
+asm JASHeap::JASHeap(JASDisposer* param_0) : mTree(this) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASHeapCtrl/__ct__7JASHeapFP11JASDisposer.s"
 }
@@ -259,7 +231,7 @@ asm void JASGenericMemPool::newMemPool(u32 param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASGenericMemPool::alloc(u32 param_0) {
+asm void* JASGenericMemPool::alloc(u32 param_0) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASHeapCtrl/alloc__17JASGenericMemPoolFUl.s"
 }

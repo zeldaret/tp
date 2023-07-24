@@ -65,13 +65,13 @@ extern "C" void getCellHeight__10JUTResFontCFv();
 extern "C" void isLeadByte__10JUTResFontCFi();
 extern "C" void panic_f__12JUTExceptionFPCciPCce();
 extern "C" void JUTReportConsole(const char*);
-extern "C" void __save_gpr();
+extern "C" void _savegpr_14();
 extern "C" void _savegpr_14();
 extern "C" void _savegpr_21();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
-extern "C" void __restore_gpr();
+extern "C" void _restgpr_14();
 extern "C" void _restgpr_21();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
@@ -151,12 +151,6 @@ SECTION_DEAD static char const* const stringBase_8039D2F0 = "JUTCacheFont: Unkno
 
 /* 802DD35C-802DD4EC 2D7C9C 0190+00 1/1 0/0 0/0 .text
  * getMemorySize__12JUTCacheFontFPC7ResFONTPUsPUlPUsPUlPUsPUlPUl */
-#ifdef NONMATCHING
-struct BlockHeader {
-    u32 magic;
-    u32 size;
-};
-
 int JUTCacheFont::getMemorySize(ResFONT const* p_font, u16* o_widCount, u32* o_widSize,
                                 u16* o_glyCount, u32* o_glySize, u16* o_mapCount, u32* o_mapSize,
                                 u32* o_glyTexSize) {
@@ -173,7 +167,7 @@ int JUTCacheFont::getMemorySize(ResFONT const* p_font, u16* o_widCount, u32* o_w
     u32 maxGlyTexSize = 0;
     u32 glyTexSize;
 
-    u8* fontInf = (u8*)&p_font + 0x20;
+    u8* fontInf = (u8*)p_font->data;
     for (int i = 0; i < p_font->numBlocks; i++) {
         switch (((BlockHeader*)fontInf)->magic) {
         case 'INF1':
@@ -232,18 +226,6 @@ int JUTCacheFont::getMemorySize(ResFONT const* p_font, u16* o_widCount, u32* o_w
 
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int JUTCacheFont::getMemorySize(ResFONT const* param_0, u16* param_1, u32* param_2,
-                                    u16* param_3, u32* param_4, u16* param_5, u32* param_6,
-                                    u32* param_7) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTCacheFont/getMemorySize__12JUTCacheFontFPC7ResFONTPUsPUlPUsPUlPUsPUlPUl.s"
-}
-#pragma pop
-#endif
 
 /* 802DD4EC-802DD54C 2D7E2C 0060+00 1/1 0/0 0/0 .text
  * initiate__12JUTCacheFontFPC7ResFONTPvUlP7JKRHeap             */
@@ -345,14 +327,29 @@ bool JUTCacheFont::allocArea(void* param_0, u32 param_1, JKRHeap* heap) {
 }
 
 /* 802DD804-802DD8EC 2D8144 00E8+00 1/1 0/0 0/0 .text allocArray__12JUTCacheFontFP7JKRHeap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool JUTCacheFont::allocArray(JKRHeap* param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTCacheFont/allocArray__12JUTCacheFontFP7JKRHeap.s"
+bool JUTCacheFont::allocArray(JKRHeap* param_0) {
+    mMemBlocks = (void**)new (param_0, 0) u32[mWid1BlockNum + mGly1BlockNum + mMap1BlockNum];
+    if (mMemBlocks == NULL) {
+        return false;
+    }
+
+    void** blocks = mMemBlocks;
+    if (mWid1BlockNum) {
+        mpWidthBlocks = (ResFONT::WID1**)blocks;
+        blocks = blocks + mWid1BlockNum;
+    }
+    if (mGly1BlockNum) {
+        mpGlyphBlocks = (ResFONT::GLY1**)blocks;
+        blocks = blocks + mGly1BlockNum;
+        for (int i = 0; i < mGly1BlockNum; i++) {
+            mpGlyphBlocks[i] = (ResFONT::GLY1*)((u8*)mCacheBuffer + (field_0x94 * i));
+        }
+    } 
+    if (mMap1BlockNum) {
+        mpMapBlocks = (ResFONT::MAP1**)blocks;
+    }
+    return true;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039D2F0-8039D2F0 029950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -512,7 +509,7 @@ asm s32 JUTResFont::getWidth() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u16 JUTResFont::getAscent() const {
+asm s32 JUTResFont::getAscent() const {
     nofralloc
 #include "asm/JSystem/JUtility/JUTCacheFont/getAscent__10JUTResFontCFv.s"
 }
@@ -522,7 +519,7 @@ asm u16 JUTResFont::getAscent() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u16 JUTResFont::getDescent() const {
+asm s32 JUTResFont::getDescent() const {
     nofralloc
 #include "asm/JSystem/JUtility/JUTCacheFont/getDescent__10JUTResFontCFv.s"
 }

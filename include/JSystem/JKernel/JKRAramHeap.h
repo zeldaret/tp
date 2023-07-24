@@ -27,6 +27,9 @@ public:
     u32 getTotalFreeSize(void);
     // u32 getUsedSize(void);
     void dump(void);
+    void free(JKRAramBlock *block) {
+        delete block;
+    }
 
     u8 getCurrentGroupID() const { return mGroupId; }
 

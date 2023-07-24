@@ -358,11 +358,11 @@ extern "C" extern void* __vt__11J2DIndBlock[14];
 extern "C" extern GXColor j2dDefaultColInfo;
 extern "C" extern J2DTevOrderInfo j2dDefaultTevOrderInfoNull;
 extern "C" extern u16 j2dDefaultIndTexOrderNull[1 + 1 /* padding */];
-extern "C" extern u8 j2dDefaultTevColor[8];
+extern "C" extern J2DGXColorS10 j2dDefaultTevColor;
 extern "C" extern u8 j2dDefaultIndTexCoordScaleInfo[2 + 2 /* padding */];
-extern "C" extern u32 j2dDefaultTevKColor;
+extern "C" extern GXColor j2dDefaultTevKColor;
 extern "C" extern J2DTevSwapModeInfo j2dDefaultTevSwapMode;
-extern "C" extern u32 j2dDefaultTevSwapModeTable;
+extern "C" extern J2DTevSwapModeTableInfo j2dDefaultTevSwapModeTable;
 extern "C" extern u8 data_804561A4;
 extern "C" extern J2DColorChanInfo j2dDefaultColorChanInfo;
 extern "C" extern u8 data_804561AC;
@@ -771,6 +771,29 @@ J2DTevBlock1::~J2DTevBlock1() {
 }
 
 /* 802EBA50-802EBC0C 2E6390 01BC+00 1/0 0/0 0/0 .text            initialize__12J2DTevBlock1Fv */
+// inlines
+#ifdef NONMATCHING
+void J2DTevBlock1::initialize() {
+    mTexNo[0] = -1;
+    mFontNo = -1;
+    mTevOrder[0].setTevOrderInfo(j2dDefaultTevOrderInfoNull);
+    for (int i = 0; i < 4; i++) {
+        mTevColor[i] = j2dDefaultTevColor;
+    }
+    mTevStage[0].setStageNo(0);
+    for (int i = 0; i < 4; i++) {
+        mTevKColor[i] = j2dDefaultTevKColor;
+    }
+    mTevKColorSel[0] = -1;
+    mTevKAlphaSel[0] = -1;
+    for (int i = 0; i < 4; i++) {
+        mTevSwapModeTable[i].setTevSwapModeTableInfo(j2dDefaultTevSwapModeTable);
+    }
+    mIndTevStage[0].setIndTevStageInfo(j2dDefaultIndTevStageInfo);
+    mPalette[0] = NULL;
+    mFont = NULL;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -780,6 +803,7 @@ extern "C" asm void initialize__12J2DTevBlock1Fv() {
 #include "asm/JSystem/J2DGraph/J2DMatBlock/initialize__12J2DTevBlock1Fv.s"
 }
 #pragma pop
+#endif
 
 /* 802EBC0C-802EBCC0 2E654C 00B4+00 1/0 0/0 0/0 .text            prepareTexture__12J2DTevBlock1FUc
  */
@@ -1526,6 +1550,42 @@ J2DTevBlock4::~J2DTevBlock4() {
 }
 
 /* 802EDAC4-802EDD34 2E8404 0270+00 1/0 0/0 0/0 .text            initialize__12J2DTevBlock4Fv */
+// inlines
+#ifdef NONMATCHING
+void J2DTevBlock4::initialize() {
+    for (int i = 0; i < 4; i++) {
+        mTexNo[i] = -1;
+    }
+    mFontNo = -1;
+    for (int i = 0; i < 4; i++) {
+        mTevOrder[i].setTevOrderInfo(j2dDefaultTevOrderInfoNull);
+    }
+    for (int i = 0; i < 4; i++) {
+        mTevColor[i] = j2dDefaultTevColor;
+    }
+    mTevStageNum = 1;
+    for (int i = 0; i < 4; i++) {
+        mTevStage[i].setStageNo(i);
+    }
+    for (int i = 0; i < 4; i++) {
+        mTevKColor[i] = j2dDefaultTevKColor;
+    }
+    for (int i = 0; i < 4; i++) {
+        mTevKColorSel[i] = -1;
+        mTevKAlphaSel[i] = -1;
+    }
+    for (int i = 0; i < 4; i++) {
+        mTevSwapModeTable[i].setTevSwapModeTableInfo(j2dDefaultTevSwapModeTable);
+    }
+    for (int i = 0; i < 4; i++) {
+        mIndTevStage[i].setIndTevStageInfo(j2dDefaultIndTevStageInfo);
+    }
+    for (int i = 0; i < 4; i++) {
+        mPalette[i] = NULL;
+    }
+    mFont = NULL;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1535,6 +1595,7 @@ extern "C" asm void initialize__12J2DTevBlock4Fv() {
 #include "asm/JSystem/J2DGraph/J2DMatBlock/initialize__12J2DTevBlock4Fv.s"
 }
 #pragma pop
+#endif
 
 /* 802EDD34-802EDE04 2E8674 00D0+00 1/0 0/0 0/0 .text            prepareTexture__12J2DTevBlock4FUc
  */

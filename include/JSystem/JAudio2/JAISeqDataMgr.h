@@ -5,16 +5,21 @@
 #include "dolphin/types.h"
 
 struct JAISeqData {
-    /* 0x00 */ u32 field_0x0;
+    JAISeqData(void* param_0, u32 param_1) {
+        field_0x0 = param_0;
+        field_0x4 = param_1;
+    }
+
+    /* 0x00 */ void* field_0x0;
     /* 0x04 */ u32 field_0x4;
 };
 
 struct JAISeqDataRegion {
     bool intersects(JAISeqData& seqData) const {
-        if (field_0x0 + field_0x4 < seqData.field_0x0) {
+        if (field_0x0 + field_0x4 < (u32)seqData.field_0x0) {
             return false;
         }
-        if (seqData.field_0x0 + seqData.field_0x4 < field_0x0) {
+        if ((u32)seqData.field_0x0 + seqData.field_0x4 < field_0x0) {
             return false;
         }
         return true;
@@ -33,7 +38,7 @@ struct JAISeqDataUser {
 
 struct JAISeqDataMgr {
     virtual ~JAISeqDataMgr();
-    virtual void getSeqData(JAISoundID, JAISeqData*) = 0;
+    virtual int getSeqData(JAISoundID, JAISeqData*) = 0;
     virtual int releaseSeqData() = 0;
     virtual void setSeqDataUser(JAISeqDataUser*) = 0;
 };

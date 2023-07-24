@@ -13,7 +13,7 @@ lbl_805FEC58:
 /* 805FEC84  DB 61 01 60 */	stfd f27, 0x160(r1)
 /* 805FEC88  F3 61 01 68 */	psq_st f27, 360(r1), 0, 0 /* qr0 */
 /* 805FEC8C  39 61 01 60 */	addi r11, r1, 0x160
-/* 805FEC90  4B D6 35 11 */	bl __save_gpr
+/* 805FEC90  4B D6 35 11 */	bl _savegpr_14
 /* 805FEC94  7C 7F 1B 78 */	mr r31, r3
 /* 805FEC98  3C 60 80 60 */	lis r3, cNullVec__6Z2Calc@ha /* 0x806029D0@ha */
 /* 805FEC9C  3A E3 29 D0 */	addi r23, r3, cNullVec__6Z2Calc@l /* 0x806029D0@l */
@@ -1988,7 +1988,7 @@ lbl_806009B8:
 /* 806009D8  E3 61 01 68 */	psq_l f27, 360(r1), 0, 0 /* qr0 */
 /* 806009DC  CB 61 01 60 */	lfd f27, 0x160(r1)
 /* 806009E0  39 61 01 60 */	addi r11, r1, 0x160
-/* 806009E4  4B D6 18 09 */	bl __restore_gpr
+/* 806009E4  4B D6 18 09 */	bl _restgpr_14
 /* 806009E8  80 01 01 B4 */	lwz r0, 0x1b4(r1)
 /* 806009EC  7C 08 03 A6 */	mtlr r0
 /* 806009F0  38 21 01 B0 */	addi r1, r1, 0x1b0

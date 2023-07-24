@@ -16,6 +16,16 @@ struct ResTLUT;
 
 struct J2DGXColorS10 : public GXColorS10 {
     /* 802F1B90 */ J2DGXColorS10();
+
+    /*
+    J2DGXColorS10& operator=(const GXColorS10& other) {
+        r = other.r;
+        g = other.g;
+        b = other.b;
+        a = other.a;
+        return *this;
+    }
+    */
 };
 
 struct J2DTevSwapModeInfo;

@@ -223,7 +223,10 @@ public:
     /* 0x1C */ s16 field_0x1c;
 };  // Size: 0x20
 
-struct dStage_MemoryMap_c {};
+struct dStage_MemoryMap_c {
+    /* 0x0 */ int m_num;
+    /* 0x4 */ u32* field_0x4;
+};
 
 struct dPath;
 struct dStage_dPath_c {
@@ -300,7 +303,15 @@ struct dStage_Elst_c {
     /* 0x4 */ unkData* field_0x4;
 };
 
-struct dStage_MemoryConfig_c {};
+struct dStage_MemoryConfig_data {
+    /* 0x0 */ u8 m_roomNo;
+    /* 0x1 */ u8 m_blockID;
+};  // Size: 0x2
+
+struct dStage_MemoryConfig_c {
+    /* 0x0 */ int m_num;
+    /* 0x4 */ dStage_MemoryConfig_data* field_0x4;
+};
 
 struct dStage_DMap_c {
     // DMAP
@@ -791,6 +802,11 @@ public:
     static u32 getProcID() { return mProcID; }
     static void setStatusProcID(int i_roomNo, unsigned int i_id) { mStatus[i_roomNo].mProcID = i_id; }
     static int getStatusProcID(int i_roomNo) { return mStatus[i_roomNo].mProcID; }
+
+    static void setMemoryBlockID(int i_roomNo, int i_blockID) {
+        mStatus[i_roomNo].mMemBlockID = i_blockID;
+    }
+
     static void setFileList2(int i_roomNo, dStage_FileList2_dt_c* list) {
         mStatus[i_roomNo].mRoomDt.mFileList2Info = list;
     }

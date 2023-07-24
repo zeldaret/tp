@@ -51,8 +51,6 @@ struct JAUSoundTable {
     /* 802A7160 */ void getTypeID(JAISoundID) const;
 };
 
-struct JASHeap {};
-
 struct JASWaveArc {
     /* 8029A4C0 */ void load(JASHeap*);
     /* 8029A580 */ void loadTail(JASHeap*);

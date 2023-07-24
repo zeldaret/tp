@@ -30,12 +30,23 @@ struct JASChannel {
 };
 
 struct JASTrack {
+    enum Status {
+        STATUS_FREE,
+        STATUS_RUN,
+    };
+
     struct TChannelMgr {
         /* 802930DC */ TChannelMgr(JASTrack*);
         /* 80293148 */ void init();
         /* 802931B0 */ void releaseAll();
         /* 80293220 */ void noteOff(u32, u16);
         /* 802932A0 */ void setPauseFlag(bool);
+
+        /* 0x00 */ JASChannel* field_0x0[8];
+        /* 0x20 */ u8 field_0x20[0x18];  // JASChannelParams
+        /* 0x38 */ short field_0x38[8];
+        /* 0x48 */ JASSoundParams* field_0x48;
+        /* 0x4c */ JASTrack* field_0x4c;
     };
 
     struct TList {
@@ -47,6 +58,10 @@ struct JASTrack {
 
     struct MoveParam_ {
         /* 802932C8 */ MoveParam_();
+
+        /* 0x00 */ f32 field_0x0;
+        /* 0x04 */ f32 field_0x4;
+        /* 0x08 */ int field_0x8;
     };
 
     /* 80291228 */ JASTrack();
@@ -109,9 +124,53 @@ struct JASTrack {
     static u8 sTrackList[16];
 
     int getChannelMgrCount() { return channelMgrCount; }
+    u8 getStatus() const { return mStatus; }
+    JASTrack* getChild(u32 index) { return field_0x130[index]; }
+    void setAutoDelete(bool param_0) {
+        field_0x216 = (param_0 << 4) | field_0x216 & ~0x10;
+    }
 
-    /* 0x000 */ u8 field_0x0[0x1d0];
+    /* 0x000 */ u8 field_0x0[0x5c]; // JASSeqCtrl
+    /* 0x05C */ u8 field_0x5c[0x24]; // JASTrackPort
+    /* 0x080 */ u8 field_0x80[0x1c]; // JASRegisterParam
+    /* 0x09C */ MoveParam_ field_0x9c[6];
+    /* 0x0e4 */ u8 mOscParam[0x30]; // JASOscillator::Data[2]
+    /* 0x114 */ u8 field_0x114[0x18]; // JASOscillator::Point[4]
+    /* 0x12C */ JASTrack* mParent;
+    /* 0x130 */ JASTrack* field_0x130[16];
+    /* 0x170 */ TChannelMgr* field_0x170[4];
+    /* 0x180 */ TChannelMgr field_0x180;
     /* 0x1D0 */ int channelMgrCount;
+    /* 0x1D4 */ void* field_0x1d4;
+    /* 0x1D8 */ f32 field_0x1d8;
+    /* 0x1DC */ f32 field_0x1dc;
+    /* 0x1E0 */ f32 field_0x1e0;
+    /* 0x1E4 */ f32 field_0x1e4;
+    /* 0x1E8 */ f32 field_0x1e8;
+    /* 0x1EC */ f32 field_0x1ec;
+    /* 0x1F0 */ u16 field_0x1f0;
+    /* 0x1F2 */ u16 field_0x1f2;
+    /* 0x1F4 */ short field_0x1f4[8];
+    /* 0x204 */ short field_0x204[8];
+    /* 0x214 */ char field_0x214;
+    /* 0x215 */ u8 mStatus;
+    /* 0x216 */ u8 field_0x216;
+    /* 0x218 */ f32 field_0x218;
+    /* 0x21C */ f32 field_0x21c;
+    /* 0x220 */ u32 field_0x220;
+    /* 0x224 */ short field_0x224;
+    /* 0x226 */ u16 field_0x226;
+    /* 0x228 */ u16 field_0x228;
+    /* 0x22A */ s8 field_0x22a;
+    /* 0x22B */ char field_0x22b;
+    /* 0x22C */ short field_0x22c;
+    /* 0x22E */ short field_0x22e;
+    /* 0x230 */ char field_0x230;
+    /* 0x231 */ char field_0x231;
+    /* 0x232 */ char field_0x232;
+    /* 0x233 */ char field_0x233;
+    /* 0x234 */ u16 field_0x234[6];
+    /* 0x240 */ u8 field_0x240[0x08]; // TLinkListNode
 };
 
 struct JASDefaultBankTable : public JASGlobalInstance<JASDefaultBankTable> {

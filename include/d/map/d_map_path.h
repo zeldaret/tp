@@ -8,40 +8,40 @@
 class dDrawPath_c : public dDlst_base_c {
 public:
     struct line_class {
-        /* 0x00 */ u8 unk0;
-        /* 0x01 */ u8 unk1;
-        /* 0x02 */ u8 unk2;
-        /* 0x03 */ u8 unk3;
-        /* 0x04 */ u16* unk4;
+        /* 0x00 */ u8 field_0x0;
+        /* 0x01 */ u8 field_0x1;
+        /* 0x02 */ u8 mDataNum;
+        /* 0x03 */ u8 field_0x3;
+        /* 0x04 */ u16* mpData;
     };  // Size: 0x8
 
     struct poly_class {
         /* 0x00 */ u8 field_0x0;
-        /* 0x01 */ u8 field_0x1;
-        /* 0x04 */ u16* field_0x4;
+        /* 0x01 */ u8 mDataNum;
+        /* 0x04 */ u16* mpData;
     };  // Size: 0x8
 
     struct group_class {
         /* 0x00 */ u8 field_0x0;
         /* 0x01 */ u8 field_0x1;
-        /* 0x02 */ u8 field_0x2;
+        /* 0x02 */ u8 mLineNum;
         /* 0x03 */ u8 field_0x3;
-        /* 0x04 */ u8 field_0x4;
+        /* 0x04 */ u8 mPolyNum;
         /* 0x08 */ dDrawPath_c::line_class* mpLine;
         /* 0x0C */ u8 field_0xc[4];
         /* 0x10 */ dDrawPath_c::poly_class* mpPoly;
     };  // Size: 0x14
 
     struct floor_class {
-        /* 0x0 */ s8 field_0x0;
-        /* 0x1 */ u8 field_0x1;
+        /* 0x0 */ s8 mFloorNo;
+        /* 0x1 */ u8 mGroupNum;
         /* 0x4 */ dDrawPath_c::group_class* mpGroup;
     };  // Size: 0x8
 
     struct room_class {
-        /* 0x0 */ u8 field_0x0;
+        /* 0x0 */ u8 mFloorNum;
         /* 0x4 */ dDrawPath_c::floor_class* mpFloor;
-        /* 0x8 */ void* field_0x8;
+        /* 0x8 */ f32* mpFloatData;  // might be Vec or cXyz instead
     };
 
     /* 8003CB00 */ void rendering(dDrawPath_c::group_class const*);

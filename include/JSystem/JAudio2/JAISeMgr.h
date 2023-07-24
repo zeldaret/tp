@@ -1,6 +1,7 @@
 #ifndef JAISEMGR_H
 #define JAISEMGR_H
 
+#include "JSystem/JAudio2/JAISe.h"
 #include "JSystem/JAudio2/JAISeqDataMgr.h"
 #include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JAISoundParams.h"
@@ -26,28 +27,6 @@ struct JAISeCategoryArrangement {
 };
 
 class JAISeMgr;
-
-struct JAISePlaceHolder {
-    u8 field_0x0[0x10];
-};
-
-struct JAISe : public JAISePlaceHolder, public JAISound {
-    /* 8029F03C */ JAISe(JAISeMgr*, JAISoundStrategyMgr<JAISe>*, u32);
-    /* 8029F304 */ void JAISeCategoryMgr_mixOut_(bool, JASSoundParams const&, JAISoundActivity);
-    /* 8029F4CC */ void JAISeCategoryMgr_calc_();
-    /* 8029F650 */ void JAISeMgr_startID_(JAISoundID, JGeometry::TVec3<f32> const*, JAIAudience*);
-
-    JAISeqData* getSeqData() { return &mSeqData; }
-    u32 JAISeCategoryMgr_getProperPriority_() const { return mProperPriority; }
-    u32 JAISeCategoryMgr_getPriority_() const { return mPriority;}
-    bool isFarAway() const { return mPriority == -1; }
-
-    /* 0x0aa */ u8 field_0x0[2];
-    /* 0x0ac */ u32 mProperPriority;
-    /* 0x0b0 */ u32 mPriority;
-    /* 0x0b4 */ u8 field_0xb4[0x25c];
-    /* 0x310 */ JAISeqData mSeqData;
-};
 
 class JAISeCategoryMgr : public JAISeqDataUser {
 public:
@@ -117,6 +96,7 @@ public:
         }
         return mAudience;
     }
+    JAISeqDataMgr* getSeqDataMgr() { return mSeqDataMgr; }
 
 private:
     /* 0x008 */ JAIAudience* mAudience;

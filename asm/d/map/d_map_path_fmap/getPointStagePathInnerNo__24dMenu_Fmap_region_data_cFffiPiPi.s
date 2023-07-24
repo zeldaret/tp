@@ -13,7 +13,7 @@ lbl_8003DB70:
 /* 8003DB9C  DB 61 00 B0 */	stfd f27, 0xb0(r1)
 /* 8003DBA0  F3 61 00 B8 */	psq_st f27, 184(r1), 0, 0 /* qr0 */
 /* 8003DBA4  39 61 00 B0 */	addi r11, r1, 0xb0
-/* 8003DBA8  48 32 45 F9 */	bl __save_gpr
+/* 8003DBA8  48 32 45 F9 */	bl _savegpr_14
 /* 8003DBAC  7C 6F 1B 78 */	mr r15, r3
 /* 8003DBB0  FF A0 08 90 */	fmr f29, f1
 /* 8003DBB4  FF C0 10 90 */	fmr f30, f2
@@ -237,7 +237,7 @@ lbl_8003DE9C:
 /* 8003DEC0  E3 61 00 B8 */	psq_l f27, 184(r1), 0, 0 /* qr0 */
 /* 8003DEC4  CB 61 00 B0 */	lfd f27, 0xb0(r1)
 /* 8003DEC8  39 61 00 B0 */	addi r11, r1, 0xb0
-/* 8003DECC  48 32 43 21 */	bl __restore_gpr
+/* 8003DECC  48 32 43 21 */	bl _restgpr_14
 /* 8003DED0  80 01 01 04 */	lwz r0, 0x104(r1)
 /* 8003DED4  7C 08 03 A6 */	mtlr r0
 /* 8003DED8  38 21 01 00 */	addi r1, r1, 0x100

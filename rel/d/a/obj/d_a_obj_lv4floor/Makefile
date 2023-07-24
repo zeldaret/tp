@@ -8,12 +8,10 @@ M534_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4floor.map
 
 M534_CPP_FILES := \
 	rel/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv4floor/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_lv4floor/d_a_obj_lv4floor.cpp \
 
 M534_O_FILES := \
 	$(BUILD_DIR)/rel/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4floor/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4floor/d_a_obj_lv4floor.o \
 
 M534_LIBS := \
