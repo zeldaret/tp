@@ -21,10 +21,10 @@ static void ReadFPSCR();
 static void WriteFPSCR();
 void TRKTargetAccessARAM();
 void TRKTargetSetInputPendingPtr();
-void TRKTargetStop();
-void TRKTargetStopped();
+u32 TRKTargetStop();
+s32 TRKTargetStopped();
 void TRKTargetSupportRequest();
-void TRKTargetGetPC();
+u32 TRKTargetGetPC();
 void TRKTargetStepOutOfRange();
 void TRKTargetSingleStep();
 void TRKTargetAddExceptionInfo();
@@ -123,14 +123,6 @@ SECTION_DATA static u8 gTRKExceptionStatus[16] = {
 /* 8044F290-8044F294 07BFB0 0002+02 1/1 0/0 0/0 .bss             TRK_saved_exceptionID */
 SECTION_BSS static s32 TRK_saved_exceptionID = 0;
 
-/* 8044F294-8044F338 07BFB4 00A4+00 11/11 1/1 0/0 .bss             gTRKState */
-extern u8 gTRKState[164];
-u8 gTRKState[164];
-
-/* 8044F338-8044F768 07C058 0430+00 12/12 6/6 0/0 .bss             gTRKCPUState */
-extern u8 gTRKCPUState[1072];
-u8 gTRKCPUState[1072];
-
 /* 8044F768-8044F7FC 07C488 0094+00 1/1 0/0 0/0 .bss             gTRKSaveState */
 static u8 gTRKSaveState[148];
 
@@ -206,44 +198,25 @@ asm void TRKTargetAccessARAM() {
 #pragma pop
 
 /* 8036FAD8-8036FAE8 36A418 0010+00 0/0 1/1 0/0 .text            TRKTargetSetInputPendingPtr */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void TRKTargetSetInputPendingPtr() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/ppc/Generic/targimpl/TRKTargetSetInputPendingPtr.s"
+void TRKTargetSetInputPendingPtr(void* ptr) {
+    gTRKState.inputPendingPtr = ptr;
 }
-#pragma pop
 
 /* 8036FAE8-8036FB00 36A428 0018+00 0/0 1/1 0/0 .text            TRKTargetStop */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void TRKTargetStop() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/ppc/Generic/targimpl/TRKTargetStop.s"
+u32 TRKTargetStop() {
+    gTRKState.target = 1;
+    return 0;
 }
-#pragma pop
 
 /* 8036FB00-8036FB10 36A440 0010+00 0/0 1/1 0/0 .text            TRKTargetSetStopped */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void TRKTargetSetStopped(s32) {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/ppc/Generic/targimpl/TRKTargetSetStopped.s"
+void TRKTargetSetStopped(s32 tgt) {
+    gTRKState.target = tgt;
 }
-#pragma pop
 
 /* 8036FB10-8036FB20 36A450 0010+00 0/0 3/3 0/0 .text            TRKTargetStopped */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void TRKTargetStopped() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/ppc/Generic/targimpl/TRKTargetStopped.s"
+s32 TRKTargetStopped() {
+    return gTRKState.target;
 }
-#pragma pop
 
 /* 8036FB20-8036FD20 36A460 0200+00 0/0 1/1 0/0 .text            TRKTargetSupportRequest */
 #pragma push
@@ -256,14 +229,9 @@ asm void TRKTargetSupportRequest() {
 #pragma pop
 
 /* 8036FD20-8036FD30 36A660 0010+00 0/0 1/1 0/0 .text            TRKTargetGetPC */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void TRKTargetGetPC() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/ppc/Generic/targimpl/TRKTargetGetPC.s"
+u32 TRKTargetGetPC() {
+    return gTRKCPUState.pc;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803A2B60-803A2B70 02F1C0 0010+00 1/1 0/0 0/0 .rodata          gTRKMemMap */
