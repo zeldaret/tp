@@ -13,7 +13,7 @@ More information about the project can be found here: https://zsrtp.link
 * [Building The Game](https://zsrtp.link/contribute/installation#building)
 * [Cleanup](https://zsrtp.link/contribute/installation#cleanup)
 * [Contributing](https://zsrtp.link/contribute)
-* [FAQ](https://zsrtp.link/aboutp)
+* [FAQ](https://zsrtp.link/about)
         
 <!--te-->
 
