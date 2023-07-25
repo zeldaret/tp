@@ -36,8 +36,6 @@ void TRKSaveExtended1Block();
 void TRK_main();
 void EnableEXI2Interrupts();
 void InitMetroTRKCommTable();
-extern u32 gTRKState[41];
-extern u32 gTRKCPUState[268];
 void regist__9daBgObj_cFP4dBgW();
 
 //
@@ -90,8 +88,8 @@ SECTION_BSS static u32 lc_base[1 + 1 /*padding*/];
 
 /* 803719AC-803719F8 36C2EC 004C+00 0/0 1/1 0/0 .text TRKInitializeTarget */
 int TRKInitializeTarget() {
-    gTRKState[38] = 1;
-    gTRKState[35] = __TRK_get_MSR();
+    gTRKState.target = 1;
+    gTRKState.msr = __TRK_get_MSR();
     *lc_base = 0xE0000000;
     return 0;
 }
@@ -179,7 +177,7 @@ asm void __TRK_copy_vectors() {
 /* 80371B24-80371B7C 36C464 0058+00 0/0 1/1 0/0 .text            TRKTargetTranslate */
 u32 TRKTargetTranslate(u32 param_0) {
     if (param_0 >= *lc_base) {
-        if ((param_0 < *lc_base + 0x4000) && ((gTRKCPUState[142] & 3) != 0)) {
+        if ((param_0 < *lc_base + 0x4000) && ((gTRKCPUState.field_0x84[109] & 3) != 0)) {
             return param_0;
         }
     }
