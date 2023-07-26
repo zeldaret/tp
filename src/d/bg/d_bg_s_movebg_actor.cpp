@@ -43,7 +43,7 @@ int dBgS_MoveBgActor::Create() {
 }
 
 /* 80078698-800786A0 072FD8 0008+00 1/0 0/0 3/0 .text Execute__16dBgS_MoveBgActorFPPA3_A4_f */
-int dBgS_MoveBgActor::Execute(f32 (**param_0)[3][4]) {
+int dBgS_MoveBgActor::Execute(Mtx**) {
     return 1;
 }
 
