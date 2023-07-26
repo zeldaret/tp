@@ -44,22 +44,22 @@ int daObjVGnd_c::CreateHeap() {
     mpModel = mDoExt_J3DModel__create(mpObjectRes, 0x80000, 0x11000284);
     if (!mpModel) {
         return 0;
-    } else {
-        J3DAnmTextureSRTKey* mpTextureSRTKey =
-            (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 0xb);
-        mpBtk = new mDoExt_btkAnm();
-        if ((!mpBtk) || (!mpBtk->init(mpObjectRes, mpTextureSRTKey, 1, NULL, 1.0f, NULL, -1))) {
-            return 0;
-        } else {
-            J3DAnmTevRegKey* mpTevReqKey = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, 8);
-            mpBrk = new mDoExt_brkAnm();
-            if ((!mpBrk) || (!mpBrk->init(mpObjectRes, mpTevReqKey, 1, NULL, 1.0f, NULL, -1))) {
-                return 0;
-            }
-            return 1;
-        }
     }
-    return 0;
+
+    J3DAnmTextureSRTKey* mpTextureSRTKey =
+        (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 0xb);
+    mpBtk = new mDoExt_btkAnm();
+    if ((!mpBtk) || (!mpBtk->init(mpObjectRes, mpTextureSRTKey, 1, NULL, 1.0f, NULL, -1))) {
+        return 0;
+    }
+
+    J3DAnmTevRegKey* mpTevReqKey = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, 8);
+    mpBrk = new mDoExt_brkAnm();
+    if ((!mpBrk) || (!mpBrk->init(mpObjectRes, mpTevReqKey, 1, NULL, 1.0f, NULL, -1))) {
+        return 0;
+    }
+
+    return 1;
 }
 
 /* 80D216F4-80D217A8 000394 00B4+00 1/1 0/0 0/0 .text            create__11daObjVGnd_cFv */

@@ -9,7 +9,7 @@ To the best of my knowledge and belief, my contribution is either originally cre
 I understand that this project and its maintainers are not responsible for enforcing the CC0 license, and I release them from any potential liability related to my contribution.
 -->
 
-- [X] I agree to the terms of the CC0 License.
+- [ ] I agree to the terms of the CC0 License.
 
 <!--
 Please check the checkbox above to indicate your agreement.
