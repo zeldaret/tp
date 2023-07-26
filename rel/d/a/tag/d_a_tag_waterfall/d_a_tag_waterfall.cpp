@@ -1,6 +1,6 @@
 /**
-/* Translation Unit: d_a_tag_waterfall
-/*
+ * d_a_tag_waterfall.cpp
+ *
  */
 
 #include "rel/d/a/tag/d_a_tag_waterfall/d_a_tag_waterfall.h"
@@ -28,7 +28,7 @@ static u32 m_master_id = static_cast<u32>(0xFFFFFFFF);
 static actor_method_class l_daTagWaterFall_Method = {
     (process_method_func)daTagWaterFall_Create,  (process_method_func)daTagWaterFall_Delete,
     (process_method_func)daTagWaterFall_Execute, (process_method_func)daTagWaterFall_IsDelete,
-    (process_method_func)daTagWaterFall_Draw
+    (process_method_func)daTagWaterFall_Draw,
 };
 
 /* 80D64DB8-80D64DE8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_WaterFall */
@@ -46,7 +46,7 @@ extern actor_process_profile_definition g_profile_Tag_WaterFall = {
     &l_daTagWaterFall_Method,
     0x00044000,
     0,
-    0
+    0,
 };
 
 /* 80D6462C-80D64680 0000EC 0054+00 1/1 0/0 0/0 .text            __ct__20daTagWaterFall_HIO_cFv */
@@ -70,7 +70,7 @@ int daTagWaterFall_c::draw() {
 
 /* 80D64688-80D646A8 000148 0020+00 1/0 0/0 0/0 .text daTagWaterFall_Draw__FP16daTagWaterFall_c */
 static int daTagWaterFall_Draw(daTagWaterFall_c* i_this) {
-    i_this->draw();
+    return i_this->draw();
 }
 
 /* 80D646A8-80D64724 000168 007C+00 1/1 0/0 0/0 .text            s_waterfall__FPvPv */
@@ -127,8 +127,7 @@ bool daTagWaterFall_c::checkHitWaterFall(cXyz objPos) {
         if (fabsf(dst.z) < absEllipseY) {
             if (waterfallTagPos.y < objPos.y) {
                 // Instruction reordering occurs when mCylinderHeight == 0.0f is used
-                if (!mCylinderHeight || (waterfallTagPos.y + mCylinderHeight) > objPos.y)
-                {
+                if (!mCylinderHeight || (waterfallTagPos.y + mCylinderHeight) > objPos.y) {
                     return true;
                 }
             }
@@ -177,7 +176,9 @@ int daTagWaterFall_c::execute() {
                 }
             }
 
-            if ((!mPrevCameraInWaterfall && currCameraInWaterfall) || (mPrevCameraInWaterfall && !currCameraInWaterfall)) {
+            if ((!mPrevCameraInWaterfall && currCameraInWaterfall) ||
+                (mPrevCameraInWaterfall && !currCameraInWaterfall))
+            {
                 mColorBlend = 1.0f - mColorBlend;
                 mPrevCameraInWaterfall = currCameraInWaterfall;
             }
@@ -200,10 +201,12 @@ int daTagWaterFall_c::execute() {
                 } else {
                     instanceFogMultiplier = mColorBlend;
                     HIOFogMultiplier = 1.0f - mColorBlend;
-                };
+                }
 
-                f32 fogParam0 = (mFogNear * instanceFogMultiplier) + (l_HIO.mBaseFogNear * HIOFogMultiplier);
-                f32 fogParam1 = (mFogFar * instanceFogMultiplier) + (l_HIO.mBaseFogFar * HIOFogMultiplier);
+                f32 fogParam0 =
+                    (mFogNear * instanceFogMultiplier) + (l_HIO.mBaseFogNear * HIOFogMultiplier);
+                f32 fogParam1 =
+                    (mFogFar * instanceFogMultiplier) + (l_HIO.mBaseFogFar * HIOFogMultiplier);
 
                 dKy_fog_startendz_set(fogParam0, fogParam1, 1.0f);
             }
@@ -217,7 +220,7 @@ int daTagWaterFall_c::execute() {
  */
 
 static int daTagWaterFall_Execute(daTagWaterFall_c* i_this) {
-    i_this->execute();
+    return i_this->execute();
 }
 
 /* 80D64AD8-80D64AE0 000598 0008+00 1/0 0/0 0/0 .text
@@ -237,7 +240,7 @@ int daTagWaterFall_c::_delete() {
 /* 80D64B00-80D64B20 0005C0 0020+00 1/0 0/0 0/0 .text daTagWaterFall_Delete__FP16daTagWaterFall_c
  */
 static int daTagWaterFall_Delete(daTagWaterFall_c* i_this) {
-    i_this->_delete();
+    return i_this->_delete();
 }
 
 /* 80D64B20-80D64CBC 0005E0 019C+00 1/1 0/0 0/0 .text            create__16daTagWaterFall_cFv */
@@ -289,7 +292,7 @@ cPhs__Step daTagWaterFall_c::create() {
 /* 80D64CBC-80D64CDC 00077C 0020+00 1/0 0/0 0/0 .text daTagWaterFall_Create__FP16daTagWaterFall_c
  */
 static int daTagWaterFall_Create(daTagWaterFall_c* i_this) {
-    i_this->create();
+    return i_this->create();
 }
 
 /* 80D64CDC-80D64D24 00079C 0048+00 2/1 0/0 0/0 .text            __dt__20daTagWaterFall_HIO_cFv */
