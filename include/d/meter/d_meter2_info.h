@@ -96,6 +96,8 @@ public:
     dMw_c* getMenuWindowClass() { return mMenuWindowClass; }
     void offUseButton(int pButton) { mUseButton &= ~(u16)pButton; }
     u16 getOilGaugeBackUp() { return mOilGaugeBackUp; }
+    u8 getInsectSelectType() { return mInsectSelectType; }
+    void setInsectSelectType(u8 i_type) { mInsectSelectType = i_type; }
     u8 getWarpStatus() { return mWarpStatus; }
     void setWarpStatus(u8 status) { mWarpStatus = status; }
     u8 getWarpRoomNo() { return mWarpInfo.mRoomNo; }
@@ -291,12 +293,28 @@ inline void dMeter2Info_setSaveStageName(const char* name) {
     g_meter2_info.setSaveStageName(name);
 }
 
+inline u8 dMeter2Info_getInsectSelectType() {
+    return g_meter2_info.getInsectSelectType();
+}
+
+inline void dMeter2Info_setInsectSelectType(u8 i_type) {
+    g_meter2_info.setInsectSelectType(i_type);
+}
+
 inline u8 dMeter2Info_getWarpStatus() {
     return g_meter2_info.getWarpStatus();
 }
 
 inline void dMeter2Info_setWarpStatus(u8 status) {
     return g_meter2_info.setWarpStatus(status);
+}
+
+inline int dMeter2Info_readItemTexture(u8 i_itemNo, void* param_1, J2DPicture* param_2,
+                                       void* param_3, J2DPicture* param_4, void* param_5,
+                                       J2DPicture* param_6, void* param_7, J2DPicture* param_8,
+                                       int param_9) {
+    return g_meter2_info.readItemTexture(i_itemNo, param_1, param_2, param_3, param_4, param_5,
+                                         param_6, param_7, param_8, param_9);
 }
 
 inline u8 dMeter2Info_getWarpRoomNo() {
