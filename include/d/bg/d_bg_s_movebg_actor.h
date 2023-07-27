@@ -24,7 +24,7 @@ public:
 
     /* 80078688 */ virtual int CreateHeap();
     /* 80078690 */ virtual int Create();
-    /* 80078698 */ virtual int Execute(f32 (**)[3][4]);
+    /* 80078698 */ virtual int Execute(Mtx**);
     /* 800786A0 */ virtual int Draw();
     /* 800786A8 */ virtual int Delete();
     /* 800786B0 */ virtual int IsDelete();
