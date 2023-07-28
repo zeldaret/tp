@@ -1,29 +1,28 @@
 /**
  * d_menu_insect.cpp
- *  Menu - Insect List
-*/
+ * Menu - Insect List
+ */
 
 #include "d/menu/d_menu_insect.h"
+#include "JSystem/J2DGraph/J2DTextBox.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRMemArchive.h"
+#include "JSystem/JUtility/TColor.h"
 #include "MSL_C/stdio.h"
 #include "MSL_C/string.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_lib.h"
+#include "d/d_select_cursor.h"
+#include "d/meter/d_meter2_info.h"
+#include "d/meter/d_meter_HIO.h"
+#include "d/msg/d_msg_class.h"
+#include "d/msg/d_msg_string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
-#include "JSystem/J2DGraph/J2DTextBox.h"
-#include "d/msg/d_msg_string.h"
-#include "JSystem/JKernel/JKRMemArchive.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JKernel/JKRExpHeap.h"
-#include "d/meter/d_meter_HIO.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/meter/d_meter2_info.h"
 #include "msg/scrn/d_msg_scrn_3select.h"
-#include "d/msg/d_msg_class.h"
-#include "JSystem/JUtility/TColor.h"
-#include "d/d_select_cursor.h"
-#include "d/d_lib.h"
-
 
 //
 // Forward References:
@@ -163,19 +162,15 @@ static u8 cNullVec__6Z2Calc[12] = {
 
 typedef void (dMenu_Insect_c::*initFunc)();
 static initFunc map_init_process[] = {
-    &dMenu_Insect_c::wait_init,
-    &dMenu_Insect_c::explain_open_init,
-    &dMenu_Insect_c::explain_move_init,
-    &dMenu_Insect_c::select_move_init,
+    &dMenu_Insect_c::wait_init,          &dMenu_Insect_c::explain_open_init,
+    &dMenu_Insect_c::explain_move_init,  &dMenu_Insect_c::select_move_init,
     &dMenu_Insect_c::explain_close_init,
 };
 
 typedef void (dMenu_Insect_c::*moveFunc)();
 static moveFunc map_move_process[] = {
-    &dMenu_Insect_c::wait_move,
-    &dMenu_Insect_c::explain_open_move,
-    &dMenu_Insect_c::explain_move_move,
-    &dMenu_Insect_c::select_move_move,
+    &dMenu_Insect_c::wait_move,          &dMenu_Insect_c::explain_open_move,
+    &dMenu_Insect_c::explain_move_move,  &dMenu_Insect_c::select_move_move,
     &dMenu_Insect_c::explain_close_move,
 };
 
@@ -224,7 +219,8 @@ SECTION_SDATA2 static u8 lit_3837[4] = {
  * __ct__14dMenu_Insect_cFP10JKRExpHeapP9STControlP10CSTControlUc */
 #ifdef NONMATCHING
 // Matches with literals
-dMenu_Insect_c::dMenu_Insect_c(JKRExpHeap* i_heap, STControl* i_stick, CSTControl* i_cstick, u8 param_3) {
+dMenu_Insect_c::dMenu_Insect_c(JKRExpHeap* i_heap, STControl* i_stick, CSTControl* i_cstick,
+                               u8 param_3) {
     mpHeap = i_heap;
     mpArchive = NULL;
     mpMount = NULL;
@@ -459,7 +455,6 @@ int dMenu_Insect_c::_open() {
         mpDrawCursor->setScale(div);
         return 0;
     }
-
 }
 #else
 #pragma push
@@ -577,8 +572,7 @@ void dMenu_Insect_c::explain_open_move() {
     if (mpExpParent->alphaAnime(10, 0, 0xff, 1)) {
         if (field_0xf6 == 1 && isGiveInsect(field_0xf4, field_0xf5) == 0) {
             field_0xf3 = 3;
-        }
-        else {
+        } else {
             field_0xf3 = 2;
         }
     }
@@ -643,9 +637,8 @@ void dMenu_Insect_c::explain_close_move() {
     bool alphaAnime = mpExpParent->alphaAnime(10, 0xff, 0, 1);
     bool cVar2;
     if (field_0xf6 == 1 && isGiveInsect(field_0xf4, field_0xf5) == 0) {
-        cVar2 = mpSelect_c->selAnimeEnd();    
-    }
-    else {
+        cVar2 = mpSelect_c->selAnimeEnd();
+    } else {
         cVar2 = 1;
     }
     if (alphaAnime && cVar2 != 0) {
@@ -655,34 +648,16 @@ void dMenu_Insect_c::explain_close_move() {
 
 /* 80396690-80396750 022CF0 00C0+00 1/1 0/0 0/0 .rodata          insect_tag$4249 */
 static const u64 insect_tag[24] = {
-    'ari_os', 'ari_ms',
-    'kag_os', 'kag_ms',
-    'kab_os', 'kab_ms',
-    'kam_os', 'kam_mes',
-    'kuwa_os', 'kuwa_mes',
-    'dan_os', 'dan_mes',
-    'cho_os', 'cho_ms',
-    'tent_os', 'tent_mes',
-    'kata_os', 'kata_mes',
-    'nana_os', 'nana_mes',
-    'bat_os', 'bat_mes',
-    'tonb_os', 'tonb_mes',
+    'ari_os',  'ari_ms',   'kag_os',  'kag_ms',   'kab_os', 'kab_ms',  'kam_os',  'kam_mes',
+    'kuwa_os', 'kuwa_mes', 'dan_os',  'dan_mes',  'cho_os', 'cho_ms',  'tent_os', 'tent_mes',
+    'kata_os', 'kata_mes', 'nana_os', 'nana_mes', 'bat_os', 'bat_mes', 'tonb_os', 'tonb_mes',
 };
 
 /* 80396750-80396810 022DB0 00C0+00 1/1 0/0 0/0 .rodata          ageha_tag$4250 */
 static const u64 ageha_tag[24] = {
-    'ageha00', 'ageha01',
-    'ageha02', 'ageha03',
-    'ageha04', 'ageha05',
-    'ageha06', 'ageha07',
-    'ageha08', 'ageha09',
-    'ageha10', 'ageha11',
-    'ageha12', 'ageha13',
-    'ageha14', 'ageha15',
-    'ageha16', 'ageha17',
-    'ageha18', 'ageha19',
-    'ageha20', 'ageha21',
-    'ageha22', 'ageha23',
+    'ageha00', 'ageha01', 'ageha02', 'ageha03', 'ageha04', 'ageha05', 'ageha06', 'ageha07',
+    'ageha08', 'ageha09', 'ageha10', 'ageha11', 'ageha12', 'ageha13', 'ageha14', 'ageha15',
+    'ageha16', 'ageha17', 'ageha18', 'ageha19', 'ageha20', 'ageha21', 'ageha22', 'ageha23',
 };
 
 /* 803968C0-803968C0 022F20 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -709,14 +684,12 @@ void dMenu_Insect_c::screenSetBase() {
             int iterateSum = i + j * 6;
             if (isGetInsect(i, j) != 0) {
                 mpINSParent[iterateSum]->show();
-            }
-            else {
+            } else {
                 mpINSParent[iterateSum]->hide();
             }
             if (isGiveInsect(i, j) != 0) {
                 mpScreen->search(ageha_tag[iterateSum])->show();
-            }
-            else {
+            } else {
                 mpScreen->search(ageha_tag[iterateSum])->hide();
             }
         }
@@ -822,7 +795,7 @@ u8 dMenu_Insect_c::getGetInsectNum() {
     for (u32 i = 0; i < 24; i++) {
         u8 insectId = *insectList;
         insectList++;
-        
+
         if (i_dComIfGs_isItemFirstBit(insectId) != 0) {
             insectNum++;
         }
@@ -843,18 +816,15 @@ bool dMenu_Insect_c::isGetInsect(int param_0, int param_1) {
 
 /* 80396860-803968C0 022EC0 0060+00 1/1 0/0 0/0 .rodata          i_evtID$4383 */
 static const u32 i_evtID[24] = {
-    0x1A5, 0x1A6, 0x1A7, 0x1A8,
-    0x191, 0x192, 0x19D, 0x19E,
-    0x195, 0x196, 0x19B, 0x19C,
-    0x193, 0x194, 0x19F, 0x1A0,
-    0x1A1, 0x1A2, 0x199, 0x19A,
-    0x197, 0x198, 0x1A3, 0x1A4,
+    0x1A5, 0x1A6, 0x1A7, 0x1A8, 0x191, 0x192, 0x19D, 0x19E, 0x195, 0x196, 0x19B, 0x19C,
+    0x193, 0x194, 0x19F, 0x1A0, 0x1A1, 0x1A2, 0x199, 0x19A, 0x197, 0x198, 0x1A3, 0x1A4,
 };
 
 /* 801D9E20-801D9E7C 1D4760 005C+00 4/4 0/0 0/0 .text            isGiveInsect__14dMenu_Insect_cFii
  */
 bool dMenu_Insect_c::isGiveInsect(int param_0, int param_1) {
-    return i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[i_evtID[param_0 + param_1 * 6]]) != 0;
+    return i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[i_evtID[param_0 + param_1 * 6]]) !=
+           0;
 }
 
 /* 801D9E7C-801D9ED4 1D47BC 0058+00 1/1 0/0 0/0 .text            isCatchInsect__14dMenu_Insect_cFUc
@@ -905,8 +875,7 @@ void dMenu_Insect_c::cursorMove() {
         if (field_0xf4 < 5) {
             field_0xf4++;
         }
-    }
-    else if (mpStick->checkLeftTrigger()) {
+    } else if (mpStick->checkLeftTrigger()) {
         if (field_0xf4 != 0) {
             field_0xf4--;
         }
@@ -915,8 +884,7 @@ void dMenu_Insect_c::cursorMove() {
         if (field_0xf5 != 0) {
             field_0xf5--;
         }
-    }
-    else if (mpStick->checkDownTrigger()) {
+    } else if (mpStick->checkDownTrigger()) {
         if (field_0xf5 < 3) {
             field_0xf5++;
         }
@@ -944,16 +912,16 @@ void dMenu_Insect_c::cursorMove() {
     setCursorPos();
     if (isGetInsect(field_0xf4, field_0xf5) != 0) {
         setAButtonString(0x368);
-    }
-    else {
+    } else {
         setAButtonString(0);
     }
     if (dpd != 0) {
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_ITEM, NULL, 1, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_ITEM, NULL, 1, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                        0);
         dMeter2Info_set2DVibration();
-    }
-    else {
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    } else {
+        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                        0);
     }
 }
 #else
@@ -974,10 +942,11 @@ void dMenu_Insect_c::setCursorPos() {
     mpDrawCursor->setPos(pos.x, pos.y, mpINSParent[index]->getPanePtr(), false);
     for (int i = 0; i < 24; i++) {
         if (i == index) {
-            mpINSParent[i]->scale(g_drawHIO.mInsectListScreen.mSelectInsectScale, g_drawHIO.mInsectListScreen.mSelectInsectScale);
-        }
-        else {
-            mpINSParent[i]->scale(g_drawHIO.mInsectListScreen.mUnselectInsectScale, g_drawHIO.mInsectListScreen.mUnselectInsectScale);
+            mpINSParent[i]->scale(g_drawHIO.mInsectListScreen.mSelectInsectScale,
+                                  g_drawHIO.mInsectListScreen.mSelectInsectScale);
+        } else {
+            mpINSParent[i]->scale(g_drawHIO.mInsectListScreen.mUnselectInsectScale,
+                                  g_drawHIO.mInsectListScreen.mUnselectInsectScale);
         }
     }
 }
@@ -1016,8 +985,10 @@ void dMenu_Insect_c::setBButtonString(u16 i_stringID) {
 /* 801DA464-801DA630 1D4DA4 01CC+00 2/2 0/0 0/0 .text            setHIO__14dMenu_Insect_cFb */
 void dMenu_Insect_c::setHIO(bool i_useHIO) {
     if (i_useHIO || g_drawHIO.mInsectListScreen.mDebugON) {
-        mpExpSubWin[0]->paneTrans(g_drawHIO.mInsectListScreen.mDescWindowPosX, g_drawHIO.mInsectListScreen.mDescWindowPosY);
-        mpExpSubWin[1]->paneTrans(g_drawHIO.mInsectListScreen.mGiveOptionPosX_4x3, g_drawHIO.mInsectListScreen.mGiveOptionPosY_4x3);
+        mpExpSubWin[0]->paneTrans(g_drawHIO.mInsectListScreen.mDescWindowPosX,
+                                  g_drawHIO.mInsectListScreen.mDescWindowPosY);
+        mpExpSubWin[1]->paneTrans(g_drawHIO.mInsectListScreen.mGiveOptionPosX_4x3,
+                                  g_drawHIO.mInsectListScreen.mGiveOptionPosY_4x3);
     }
     if (g_drawHIO.mCollectScreen.mButtonDebugON != false || i_useHIO) {
         if (mpButtonAB[0]) {
