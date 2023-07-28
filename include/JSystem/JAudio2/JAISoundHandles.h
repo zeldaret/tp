@@ -36,7 +36,7 @@ public:
         numHandles_ = param_1;
     };
 
-    void getHandleSoundID(JAISoundID);
+    JAISoundHandle* getHandleSoundID(JAISoundID);
     JAISoundHandle* getFreeHandle();
 
 private:
