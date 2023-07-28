@@ -598,23 +598,31 @@ struct J3DAlphaCompInfo {
     /* 0x1 */ u8 field_0x1;
     /* 0x2 */ u8 mRef0;
     /* 0x3 */ u8 mRef1;
+    /* 0x4 */ u8 field_0x4;
+    /* 0x5 */ u8 field_0x5;
+    /* 0x6 */ u8 field_0x6;
+    /* 0x7 */ u8 field_0x7;
 };
 
-extern const J3DAlphaCompInfo j3dDefaultAlphaCmpID;
+extern const u16 j3dDefaultAlphaCmpID;
 
-struct J3DAlphaComp: public J3DAlphaCompInfo {
+struct J3DAlphaComp {
     J3DAlphaComp() {
-        *(u16*)&field_0x0 = *(u16*)&j3dDefaultAlphaCmpID.field_0x0;
+        field_0x0 = j3dDefaultAlphaCmpID;
         mRef0 = 0;
         mRef1 = 0;
     }
 
-    void setAlphaCompInfo(J3DAlphaCompInfo *param_1) {
-        mRef0 = param_1[0].field_0x1;
-        mRef1 = param_1[1].field_0x0;
-        u32 p1_mref1 = param_1[0].mRef1;
-        *(u16*)&field_0x0 = calcAlphaCmpID(param_1[0].field_0x0, param_1[0].mRef0, p1_mref1);
+    void setAlphaCompInfo(const J3DAlphaCompInfo& param_1) {
+        mRef0 = param_1.field_0x1;
+        mRef1 = param_1.field_0x4;
+        u32 p1_mref1 = param_1.mRef1;
+        field_0x0 = calcAlphaCmpID(param_1.field_0x0, param_1.mRef0, p1_mref1);
     }
+
+    /* 0x00 */ u16 field_0x0;
+    /* 0x02 */ u8 mRef0;
+    /* 0x03 */ u8 mRef1;
 };  // Size: 0x4
 
 class J3DPEBlock {

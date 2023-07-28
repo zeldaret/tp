@@ -65,9 +65,16 @@ struct J2DIndTexOrderInfo {
     GXTexMapID getTexMapID() const { return (GXTexMapID)mTexMapID; }
 };
 
+extern const J2DIndTexOrderInfo j2dDefaultIndTexOrderNull;
+
 class J2DIndTexOrder {
 public:
-    /* 802EB378 */ J2DIndTexOrder();
+    /* 802EB378 */ J2DIndTexOrder() {
+        mInfo = j2dDefaultIndTexOrderNull;
+    }
+    J2DIndTexOrder(const J2DIndTexOrderInfo& info) {
+        mInfo = info;
+    }
     /* 802EA0FC */ void load(u8);
 
 private:
@@ -89,10 +96,17 @@ struct J2DIndTexMtxInfo {
     }
 };
 
+extern J2DIndTexMtxInfo const j2dDefaultIndTexMtxInfo;
+
 class J2DIndTexMtx {
 public:
-    /* 802EB2E4 */ ~J2DIndTexMtx();
-    /* 802EB320 */ J2DIndTexMtx();
+    /* 802EB2E4 */ ~J2DIndTexMtx() {}
+    /* 802EB320 */ J2DIndTexMtx() {
+        mIndTexMtxInfo = j2dDefaultIndTexMtxInfo;
+    }
+    J2DIndTexMtx(const J2DIndTexMtxInfo& info) {
+        mIndTexMtxInfo = info;
+    }
     /* 802EA098 */ void load(u8);
     /* 802E9C90 */ void load(u32);
     /* 802E9CC4 */ void calc();
@@ -114,10 +128,17 @@ struct J2DIndTexCoordScaleInfo {
     GXIndTexScale getScaleT() const { return (GXIndTexScale)mScaleT; }
 };
 
+extern const J2DIndTexCoordScaleInfo j2dDefaultIndTexCoordScaleInfo;
+
 class J2DIndTexCoordScale {
 public:
-    /* 802EB290 */ ~J2DIndTexCoordScale();
-    /* 802EB2CC */ J2DIndTexCoordScale();
+    /* 802EB290 */ ~J2DIndTexCoordScale() {}
+    /* 802EB2CC */ J2DIndTexCoordScale() {
+        mInfo = j2dDefaultIndTexCoordScaleInfo;
+    }
+    J2DIndTexCoordScale(const J2DIndTexCoordScaleInfo& info) {
+        mInfo = info;
+    }
     /* 802EA0CC */ void load(u8);
 
 private:
@@ -133,19 +154,29 @@ struct J2DIndTevStageInfo {
     /* 0x5 */ u8 field_0x5;
     /* 0x6 */ u8 field_0x6;
     /* 0x7 */ u8 field_0x7;
-    /* 0x8 */ int field_0x8;
+    /* 0x8 */ u8 field_0x8;
+    /* 0x9 */ u8 field_0x9;
+    /* 0xa */ u8 field_0xa;
+    /* 0xb */ u8 field_0xb;
 };
 
 inline u32 J2DCalcIndTevStage(J2DIndTevStageInfo info) {
     return (info.field_0x8 << 22) | (info.field_0x7 << 21) | (info.field_0x6 << 20) |
            (info.field_0x3 << 16) | (info.field_0x5 << 11) | (info.field_0x4 << 8) |
-           (info.field_0x2 << 4)  | (info.field_0x1 << 2)  | info.field_0x0;
+           (info.field_0x2 << 4)  | (info.field_0x1 << 2)  | (info.field_0x0);
 }
+
+extern const J2DIndTevStageInfo j2dDefaultIndTevStageInfo;
 
 class J2DIndTevStage {
 public:
     /* 802EA044 */ void load(u8);
-    /* 802F18A0 */ J2DIndTevStage();
+    /* 802F18A0 */ J2DIndTevStage() {
+        mFlags = J2DCalcIndTevStage(j2dDefaultIndTevStageInfo);
+    }
+    J2DIndTevStage(const J2DIndTevStageInfo& info) {
+        mFlags = J2DCalcIndTevStage(info);
+    }
 
     void setIndTevStageInfo(const J2DIndTevStageInfo& info) { mFlags = J2DCalcIndTevStage(info); }
 
@@ -177,9 +208,17 @@ struct J2DTexCoordInfo {
     }
 };
 
+extern J2DTexCoordInfo const j2dDefaultTexCoordInfo[8];
+
 class J2DTexCoord {
 public:
-    /* 802EB260 */ J2DTexCoord();
+    /* 802EB260 */ inline J2DTexCoord() {
+        *(J2DTexCoordInfo*)this = j2dDefaultTexCoordInfo[0];
+    }
+
+    J2DTexCoord(const J2DTexCoordInfo& info) {
+        *(J2DTexCoordInfo*)this = info;
+    }
     void setTexCoordInfo(const J2DTexCoordInfo& info) { mTexCoordInfo = info; }
     s32 getTexGenType() { return mTexCoordInfo.mTexGenType; }
     s32 getTexGenSrc() { return mTexCoordInfo.mTexGenSrc; }
@@ -203,9 +242,17 @@ struct J2DTevOrderInfo {
     }
 };
 
+extern J2DTevOrderInfo j2dDefaultTevOrderInfoNull;
+
 class J2DTevOrder {
 public:
-    /* 802F1B70 */ J2DTevOrder();
+    /* 802F1B70 */ J2DTevOrder() {
+        mTevOrderInfo = j2dDefaultTevOrderInfoNull;
+    }
+
+    J2DTevOrder(const J2DTevOrderInfo& info) {
+        *(J2DTevOrderInfo*)this = info;
+    }
 
     void setTevOrderInfo(const J2DTevOrderInfo& info) {mTevOrderInfo = info; }
     GXChannelID getColor() const { return (GXChannelID)mTevOrderInfo.mColor; }
@@ -235,6 +282,7 @@ struct J2DTevStageInfo {
     /* 0x10 */ u8 field_0x10;
     /* 0x11 */ u8 field_0x11;
     /* 0x12 */ u8 field_0x12;
+    /* 0x13 */ u8 field_0x13;
 };
 
 struct J2DTevSwapModeInfo {
@@ -384,9 +432,14 @@ inline u8 J2DCalcTevSwapTable(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
     return (param_0 << 6) + (param_1 << 4) + (param_2 << 2) + param_3;
 }
 
+extern const J2DTevSwapModeTableInfo j2dDefaultTevSwapModeTable;
+
 class J2DTevSwapModeTable {
 public:
     /* 802F1934 */ J2DTevSwapModeTable();
+    J2DTevSwapModeTable(const J2DTevSwapModeTableInfo& info) {
+        field_0x0 = J2DCalcTevSwapTable(info.field_0x0, info.field_0x1, info.field_0x2, info.field_0x3);
+    }
 
     void setTevSwapModeTableInfo(const J2DTevSwapModeTableInfo& info) {
         field_0x0 = J2DCalcTevSwapTable(info.field_0x0, info.field_0x1, info.field_0x2, info.field_0x3);

@@ -20,7 +20,7 @@ struct J2DTevBlock {
     /* 802EA14C */ bool getTevKAlphaSel(u32);
     /* 802EA154 */ bool getTevKColorSel(u32);
     /* 802EA15C */ bool getTevKColor(u32);
-    /* 802EA164 */ u32 getFontNo() const;
+    /* 802EA164 */ u16 getFontNo() const;
     /* 802EA170 */ u32 getTexNo(u32) const;
     /* 802EA17C */ bool getTevStageNum() const;
     /* 802EA184 */ bool getIndTevStage(u32);
@@ -64,20 +64,14 @@ extern "C" extern J2DTexCoordInfo const j2dDefaultTexCoordInfo[8];
 extern "C" extern J2DTexMtxInfo const j2dDefaultTexMtxInfo;
 extern "C" extern J2DIndTexMtxInfo const j2dDefaultIndTexMtxInfo;
 extern "C" extern J2DTevStageInfo const j2dDefaultTevStageInfo;
-extern "C" extern u8 const j2dDefaultIndTevStageInfo[12];
 extern "C" extern u32 j2dDefaultColInfo;
-extern "C" extern u32 j2dDefaultTevOrderInfoNull;
-extern "C" extern u16 j2dDefaultIndTexOrderNull[1 + 1 /* padding */];
 extern "C" extern u8 j2dDefaultTevColor[8];
-extern "C" extern u8 j2dDefaultIndTexCoordScaleInfo[2 + 2 /* padding */];
 extern "C" extern u32 j2dDefaultTevKColor;
 extern "C" extern u8 j2dDefaultTevSwapMode[4];
-extern "C" extern u32 j2dDefaultTevSwapModeTable;
 extern "C" extern u32 j2dDefaultBlendInfo;
 extern "C" extern u8 data_804561A4[4];
 extern "C" extern u32 j2dDefaultColorChanInfo;
 extern "C" extern u16 data_804561AC;
-extern "C" extern u16 j2dDefaultAlphaCmp;
 
 //
 // External References:
@@ -211,7 +205,7 @@ bool J2DTevBlock::getTevKColor(u32 param_0) {
 }
 
 /* 802EA164-802EA170 2E4AA4 000C+00 0/0 1/0 0/0 .text            getFontNo__11J2DTevBlockCFv */
-u32 J2DTevBlock::getFontNo() const {
+u16 J2DTevBlock::getFontNo() const {
     return 0xFFFF;
 }
 
@@ -270,8 +264,8 @@ extern J2DTevStageInfo const j2dDefaultTevStageInfo = {4, 10, 15, 15, 0, 0, 0, 0
                                                        0, 5,  7,  7,  0, 0, 0, 0, 1};
 
 /* 803A1BF4-803A1C00 02E254 000C+00 0/0 7/7 0/0 .rodata          j2dDefaultIndTevStageInfo */
-SECTION_RODATA extern u8 const j2dDefaultIndTevStageInfo[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_RODATA extern const J2DIndTevStageInfo j2dDefaultIndTevStageInfo = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 COMPILER_STRIP_GATE(0x803A1BF4, &j2dDefaultIndTevStageInfo);
 
@@ -279,14 +273,10 @@ COMPILER_STRIP_GATE(0x803A1BF4, &j2dDefaultIndTevStageInfo);
 SECTION_SDATA2 extern u32 j2dDefaultColInfo = 0xFFFFFFFF;
 
 /* 80456180-80456184 004780 0004+00 0/0 7/7 0/0 .sdata2          j2dDefaultTevOrderInfoNull */
-SECTION_SDATA2 extern u32 j2dDefaultTevOrderInfoNull = 0xFFFFFF00;
+SECTION_SDATA2 extern J2DTevOrderInfo j2dDefaultTevOrderInfoNull = {0xFF, 0xFF, 0xFF, 0x00};
 
 /* 80456184-80456188 004784 0002+02 0/0 3/3 0/0 .sdata2          j2dDefaultIndTexOrderNull */
-SECTION_SDATA2 extern u16 j2dDefaultIndTexOrderNull[1 + 1 /* padding */] = {
-    0xFFFF,
-    /* padding */
-    0x0000,
-};
+SECTION_SDATA2 extern const J2DIndTexOrderInfo j2dDefaultIndTexOrderNull = { 0xFF, 0xFF, };
 
 /* 80456188-80456190 004788 0008+00 0/0 5/5 0/0 .sdata2          j2dDefaultTevColor */
 SECTION_SDATA2 extern u8 j2dDefaultTevColor[8] = {
@@ -294,10 +284,7 @@ SECTION_SDATA2 extern u8 j2dDefaultTevColor[8] = {
 };
 
 /* 80456190-80456194 004790 0002+02 0/0 3/3 0/0 .sdata2          j2dDefaultIndTexCoordScaleInfo */
-SECTION_SDATA2 extern u8 j2dDefaultIndTexCoordScaleInfo[2 + 2 /* padding */] = {
-    0x00,
-    0x00,
-    /* padding */
+SECTION_SDATA2 extern const J2DIndTexCoordScaleInfo j2dDefaultIndTexCoordScaleInfo = {
     0x00,
     0x00,
 };
@@ -314,7 +301,7 @@ SECTION_SDATA2 extern u8 j2dDefaultTevSwapMode[4] = {
 };
 
 /* 8045619C-804561A0 00479C 0004+00 0/0 6/6 0/0 .sdata2          j2dDefaultTevSwapModeTable */
-SECTION_SDATA2 extern u32 j2dDefaultTevSwapModeTable = 0x00010203;
+SECTION_SDATA2 extern const J2DTevSwapModeTableInfo j2dDefaultTevSwapModeTable = {0x00, 0x01, 0x02, 0x03};
 
 /* 804561A0-804561A4 0047A0 0004+00 0/0 3/3 0/0 .sdata2          j2dDefaultBlendInfo */
 SECTION_SDATA2 extern u32 j2dDefaultBlendInfo = 0x01040505;
