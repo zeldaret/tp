@@ -93,7 +93,8 @@ struct SND_INFLUENCE {
 };
 
 struct DALKMIST_INFLUENCE {
-    /* 0x00 */ u8 field_0x0[0x10];
+    /* 0x00 */ cXyz mPos;
+    /* 0x0C */ f32 field_0xc;
 };
 
 struct DUNGEON_LIGHT {
@@ -567,6 +568,8 @@ void dKy_plight_priority_set(LIGHT_INFLUENCE* param_0);
 void dKy_tevstr_init(dKy_tevstr_c* param_0, s8 param_1, u8 param_2);
 SND_INFLUENCE* dKy_Sound_get();
 void dKy_plight_cut(LIGHT_INFLUENCE* param_0);
+void dKy_dalkmist_inf_set(DALKMIST_INFLUENCE*);
+void dKy_dalkmist_inf_cut(DALKMIST_INFLUENCE*);
 int dKy_rain_check();
 void dKy_set_actcol_ratio(f32 ratio);
 void dKy_set_bgcol_ratio(f32 ratio);
