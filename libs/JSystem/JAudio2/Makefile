@@ -150,6 +150,8 @@ LIBJAUDIO2_A_LDFLAGS := \
 	-proc gekko \
 	-linkmode moreram \
 
+$(BUILD_DIR)/libs/JSystem/JAudio2/dspproc.o: CFLAGS := -Cpp_exceptions off -proc gekko -fp hard -O4,p -nodefaults -str pool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
+
 $(BUILD_DIR)/libJAudio2.a: $(LIBJAUDIO2_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libJAudio2.a
 	@echo $(LIBJAUDIO2_A_O_FILES) > build/LIBJAUDIO2_A_ofiles
