@@ -2640,7 +2640,9 @@ asm void __ct__11J2DTevOrderFv() {
 #endif
 
 /* 802F1B90-802F1B94 2EC4D0 0004+00 5/5 0/0 0/0 .text            __ct__13J2DGXColorS10Fv */
-J2DGXColorS10::J2DGXColorS10() {
+// Most likely inlined
+//J2DGXColorS10::J2DGXColorS10() {
+void __ct__13J2DGXColorS10Fv() {
     /* empty function */
 }
 
@@ -2702,7 +2704,7 @@ u32 J2DTevBlock16::getType() {
 }
 
 /* 802F1D24-802F1D2C 2EC664 0008+00 1/0 0/0 0/0 .text            getMaxStage__13J2DTevBlock16Fv */
-s32 J2DTevBlock16::getMaxStage() {
+u8 J2DTevBlock16::getMaxStage() {
     return 16;
 }
 
@@ -2884,7 +2886,7 @@ u32 J2DTevBlock8::getType() {
 }
 
 /* 802F1FC4-802F1FCC 2EC904 0008+00 1/0 0/0 0/0 .text            getMaxStage__12J2DTevBlock8Fv */
-s32 J2DTevBlock8::getMaxStage() {
+u8 J2DTevBlock8::getMaxStage() {
     return 8;
 }
 
@@ -3066,7 +3068,7 @@ u32 J2DTevBlock4::getType() {
 }
 
 /* 802F2264-802F226C 2ECBA4 0008+00 1/0 0/0 0/0 .text            getMaxStage__12J2DTevBlock4Fv */
-s32 J2DTevBlock4::getMaxStage() {
+u8 J2DTevBlock4::getMaxStage() {
     return 4;
 }
 
@@ -3248,7 +3250,7 @@ u32 J2DTevBlock2::getType() {
 }
 
 /* 802F2508-802F2510 2ECE48 0008+00 1/0 0/0 0/0 .text            getMaxStage__12J2DTevBlock2Fv */
-s32 J2DTevBlock2::getMaxStage() {
+u8 J2DTevBlock2::getMaxStage() {
     return 2;
 }
 
@@ -3430,7 +3432,7 @@ u32 J2DTevBlock1::getType() {
 }
 
 /* 802F27AC-802F27B4 2ED0EC 0008+00 1/0 0/0 0/0 .text            getMaxStage__12J2DTevBlock1Fv */
-s32 J2DTevBlock1::getMaxStage() {
+u8 J2DTevBlock1::getMaxStage() {
     return 1;
 }
 

@@ -372,6 +372,28 @@ JUTFont* J2DTextBoxEx::getFont() const {
 }
 
 /* 80307E0C-80307EF0 30274C 00E4+00 1/1 0/0 0/0 .text            setTevOrder__12J2DTextBoxExFb */
+// Stack issue
+#ifdef NONMATCHING
+void J2DTextBoxEx::setTevOrder(bool param_0) {
+    u16 local_18[2];
+    if (!param_0) {
+        local_18[0] = 4;
+        local_18[1] = 0xffff;
+    } else {
+        local_18[0] = 0xff;
+        local_18[1] = 0xff04;
+    }
+    for (u8 i = 0; i < 2; i++) {
+        if (mMaterial->getTevBlock()->getMaxStage() > i) {
+            J2DTevOrderInfo info;
+            info.mTexCoord = (local_18[i]) >> 8;
+            info.mTexMap = (local_18[i]) >> 8;
+            info.mColor = local_18[i] & 0xff;
+            mMaterial->getTevBlock()->setTevOrder(i, J2DTevOrder(info));
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -380,6 +402,7 @@ asm void J2DTextBoxEx::setTevOrder(bool param_0) {
 #include "asm/JSystem/J2DGraph/J2DTextBoxEx/setTevOrder__12J2DTextBoxExFb.s"
 }
 #pragma pop
+#endif
 
 /* 80307EF0-80307F94 302830 00A4+00 1/1 0/0 0/0 .text            setTevStage__12J2DTextBoxExFb */
 void J2DTextBoxEx::setTevStage(bool param_0) {
@@ -498,7 +521,6 @@ bool J2DTextBoxEx::setWhite(JUtility::TColor white) {
 
 /* 8030834C-803084CC 302C8C 0180+00 1/0 0/0 0/0 .text
  * setBlackWhite__12J2DTextBoxExFQ28JUtility6TColorQ28JUtility6TColor */
-#ifdef NONMATCHING
 bool J2DTextBoxEx::setBlackWhite(JUtility::TColor param_0, JUtility::TColor param_1) {
     if (mMaterial == NULL) {
         return false;
@@ -522,36 +544,48 @@ bool J2DTextBoxEx::setBlackWhite(JUtility::TColor param_0, JUtility::TColor para
     setTevStage(bvar);
 
     if (bvar) {
-        J2DGXColorS10 color0;
-        color0.r = param_0.r;
-        color0.g = param_0.g;
-        color0.b = param_0.b;
-        color0.a = param_0.a;
-        mMaterial->getTevBlock()->setTevColor(0, color0);
+        J2DGXColorS10 color;
+        color.r = param_0.r;
+        color.g = param_0.g;
+        color.b = param_0.b;
+        color.a = param_0.a;
+        mMaterial->getTevBlock()->setTevColor(0, color);
 
-        J2DGXColorS10 color1;
-        color1.r = param_1.r;
-        color1.g = param_1.g;
-        color1.b = param_1.b;
-        color1.a = param_1.a;
-        mMaterial->getTevBlock()->setTevColor(1, color1); 
+        color.r = param_1.r;
+        color.g = param_1.g;
+        color.b = param_1.b;
+        color.a = param_1.a;
+        mMaterial->getTevBlock()->setTevColor(1, color); 
     }
 
     return true;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTextBoxEx::setBlackWhite(JUtility::TColor param_0, JUtility::TColor param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTextBoxEx/setBlackWhite__12J2DTextBoxExFQ28JUtility6TColorQ28JUtility6TColor.s"
-}
-#pragma pop
-#endif
 
 /* 803084CC-80308668 302E0C 019C+00 4/4 0/0 0/0 .text
  * getBlackWhite__12J2DTextBoxExCFPQ28JUtility6TColorPQ28JUtility6TColor */
+// regalloc
+#ifdef NONMATCHING
+bool J2DTextBoxEx::getBlackWhite(JUtility::TColor* param_0, JUtility::TColor* param_1) const {
+    if (mMaterial == NULL) {
+        return false;
+    }
+
+    if (mMaterial->getTevBlock() == NULL) {
+        return false;
+    }
+
+    bool tevStageNum = mMaterial->getTevBlock()->getTevStageNum() != 1;
+    *param_0 = JUtility::TColor(0);
+    *param_1 = JUtility::TColor(0xffffffff);
+    if (tevStageNum) {
+        J2DGXColorS10 local_30(*mMaterial->getTevBlock()->getTevColor(0));
+        J2DGXColorS10 local_38(*mMaterial->getTevBlock()->getTevColor(1));
+        *param_0 = JUtility::TColor((((u8)local_30.r) << 24) | (((u8)local_30.g) << 16) | (((u8)local_30.b) << 8) | ((u8)local_30.a));
+        *param_1 = JUtility::TColor((((u8)local_38.r) << 24) | (((u8)local_38.g) << 16) | (((u8)local_38.b) << 8) | ((u8)local_38.a));
+    }
+    return true;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -560,37 +594,40 @@ asm bool J2DTextBoxEx::getBlackWhite(JUtility::TColor* param_0, JUtility::TColor
 #include "asm/JSystem/J2DGraph/J2DTextBoxEx/getBlackWhite__12J2DTextBoxExCFPQ28JUtility6TColorPQ28JUtility6TColor.s"
 }
 #pragma pop
+#endif
 
 /* 80308668-803086FC 302FA8 0094+00 1/1 0/0 0/0 .text
  * isSetBlackWhite__12J2DTextBoxExCFQ28JUtility6TColorQ28JUtility6TColor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTextBoxEx::isSetBlackWhite(JUtility::TColor param_0, JUtility::TColor param_1) const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTextBoxEx/isSetBlackWhite__12J2DTextBoxExCFQ28JUtility6TColorQ28JUtility6TColor.s"
+bool J2DTextBoxEx::isSetBlackWhite(JUtility::TColor param_0, JUtility::TColor param_1) const {
+    if ((u32)param_0 == 0 && (u32)param_1 == 0xffffffff) {
+        return 1;
+    }
+    mMaterial->getTevBlock()->getTevStageNum();
+    if (mMaterial->getTevBlock()->getMaxStage() == 1) {
+        return 0;
+    } 
+    return 1;
 }
-#pragma pop
 
 /* 803086FC-8030875C 30303C 0060+00 1/0 0/0 0/0 .text            getBlack__12J2DTextBoxExCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUtility::TColor J2DTextBoxEx::getBlack() const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTextBoxEx/getBlack__12J2DTextBoxExCFv.s"
+JUtility::TColor J2DTextBoxEx::getBlack() const {
+    JUtility::TColor black;
+    JUtility::TColor white;
+    if (getBlackWhite(&black, &white) == 0) {
+        return JUtility::TColor(0);
+    }
+    return black;
 }
-#pragma pop
 
 /* 8030875C-803087BC 30309C 0060+00 1/0 0/0 0/0 .text            getWhite__12J2DTextBoxExCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUtility::TColor J2DTextBoxEx::getWhite() const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTextBoxEx/getWhite__12J2DTextBoxExCFv.s"
+JUtility::TColor J2DTextBoxEx::getWhite() const {
+    JUtility::TColor black;
+    JUtility::TColor white;
+    if (getBlackWhite(&black, &white) == 0) {
+        return JUtility::TColor(0xffffffff);
+    }
+    return white;
 }
-#pragma pop
 
 /* 803087BC-803087DC 3030FC 0020+00 1/0 0/0 0/0 .text            setAlpha__12J2DTextBoxExFUc */
 void J2DTextBoxEx::setAlpha(u8 alpha) {
@@ -677,24 +714,23 @@ void J2DTextBoxEx::setAnimation(J2DAnmVisibilityFull* anm) {
 
 /* 8030896C-803089EC 3032AC 0080+00 1/0 0/0 0/0 .text
  * animationPane__12J2DTextBoxExFPC15J2DAnmTransform            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm const J2DAnmTransform* J2DTextBoxEx::animationPane(J2DAnmTransform const* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTextBoxEx/animationPane__12J2DTextBoxExFPC15J2DAnmTransform.s"
+const J2DAnmTransform* J2DTextBoxEx::animationPane(J2DAnmTransform const* param_0) {
+    if (mVisibilityAnm != NULL && field_0x13c != 0xffff) {
+        u8 visibility;
+        mVisibilityAnm->getVisibility(field_0x13c, &visibility);
+        if (visibility != 0) {
+            show();
+        } else {
+            hide();
+        }
+    }
+    return J2DPane::animationPane(param_0);
 }
-#pragma pop
 
 /* 803089EC-80308A28 30332C 003C+00 1/0 0/0 0/0 .text            setCullBack__12J2DTextBoxExFb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DTextBoxEx::setCullBack(bool param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTextBoxEx/setCullBack__12J2DTextBoxExFb.s"
+void J2DTextBoxEx::setCullBack(bool param_0) {
+    setCullBack(param_0 ? GX_CULL_BACK : GX_CULL_NONE);
 }
-#pragma pop
 
 /* 80308A28-80308A48 303368 0020+00 1/0 0/0 0/0 .text            isUsed__12J2DTextBoxExFPC7ResTIMG
  */

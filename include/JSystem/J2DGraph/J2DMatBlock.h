@@ -15,7 +15,7 @@ struct ResTIMG;
 struct ResTLUT;
 
 struct J2DGXColorS10 : public GXColorS10 {
-    /* 802F1B90 */ J2DGXColorS10();
+    /* 802F1B90 */ J2DGXColorS10() {}
     J2DGXColorS10(const J2DGXColorS10& other) {
         r = other.r;
         g = other.g;
@@ -46,7 +46,7 @@ public:
     /* 802EB1D0 */ virtual void setGX();
     /* 802F2A44 */ virtual void loadTexture(_GXTexMapID, u32);
     virtual u32 getType() = 0;
-    virtual s32 getMaxStage() = 0;
+    virtual u8 getMaxStage() = 0;
     /* 802EB1DC */ virtual void setTexNo(u32, u16);
     /* 802EA170 */ virtual u32 getTexNo(u32) const;
     /* 802F2A48 */ virtual void setFontNo(u16);
@@ -97,7 +97,7 @@ public:
     /* 802EC328 */ virtual void setGX();
     /* 802EC570 */ virtual void loadTexture(_GXTexMapID, u32);
     /* 802F27A0 */ virtual u32 getType();
-    /* 802F27AC */ virtual s32 getMaxStage();
+    /* 802F27AC */ virtual u8 getMaxStage();
     /* 802F27B4 */ virtual void setTexNo(u32, u16);
     /* 802F27C4 */ virtual u32 getTexNo(u32) const;
     /* 802F27D4 */ virtual void setFontNo(u16);
@@ -164,7 +164,7 @@ public:
     /* 802ED584 */ virtual void setGX();
     /* 802ED874 */ virtual void loadTexture(_GXTexMapID, u32);
     /* 802F24FC */ virtual u32 getType();
-    /* 802F2508 */ virtual s32 getMaxStage();
+    /* 802F2508 */ virtual u8 getMaxStage();
     /* 802F2510 */ virtual void setTexNo(u32, u16);
     /* 802F2520 */ virtual u32 getTexNo(u32) const;
     /* 802F2530 */ virtual void setFontNo(u16);
@@ -233,7 +233,7 @@ public:
     /* 802EEA2C */ virtual void setGX();
     /* 802EED1C */ virtual void loadTexture(_GXTexMapID, u32);
     /* 802F2258 */ virtual u32 getType();
-    /* 802F2264 */ virtual s32 getMaxStage();
+    /* 802F2264 */ virtual u8 getMaxStage();
     /* 802F226C */ virtual void setTexNo(u32, u16);
     /* 802F227C */ virtual u32 getTexNo(u32) const;
     /* 802F228C */ virtual void setFontNo(u16);
@@ -302,7 +302,7 @@ public:
     /* 802EFEAC */ virtual void setGX();
     /* 802F019C */ virtual void loadTexture(_GXTexMapID, u32);
     /* 802F1FB8 */ virtual u32 getType();
-    /* 802F1FC4 */ virtual s32 getMaxStage();
+    /* 802F1FC4 */ virtual u8 getMaxStage();
     /* 802F1FCC */ virtual void setTexNo(u32, u16);
     /* 802F1FDC */ virtual u32 getTexNo(u32) const;
     /* 802F1FEC */ virtual void setFontNo(u16);
@@ -372,7 +372,7 @@ public:
     /* 802F132C */ virtual void setGX();
     /* 802F161C */ virtual void loadTexture(_GXTexMapID, u32);
     /* 802F1D18 */ virtual u32 getType();
-    /* 802F1D24 */ virtual s32 getMaxStage();
+    /* 802F1D24 */ virtual u8 getMaxStage();
     /* 802F1D2C */ virtual void setTexNo(u32, u16);
     /* 802F1D3C */ virtual u32 getTexNo(u32) const;
     /* 802F1D4C */ virtual void setFontNo(u16);
