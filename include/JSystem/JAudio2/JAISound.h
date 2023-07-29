@@ -119,10 +119,7 @@ struct JAISoundFader {
         }
     }
     bool isOut() {
-        if (mTransition.mCount != 0 || mIntensity < 0.01f) {
-            return true;
-        }
-        return false;
+        return (mTransition.mCount == 0 && mIntensity < 0.01f);
     }
     inline void calc() { mIntensity = mTransition.apply(mIntensity); }
     f32 getIntensity() { return mIntensity; }
@@ -231,7 +228,7 @@ public:
     bool isStopping() {
         bool isStopping = false;
         if (status_.state.flags.flag1) {
-            isStopping = status_.state.flags.flag5 ? fader.isOut() : true;
+            isStopping = !status_.state.flags.flag5 || fader.isOut();
         }
         return isStopping;
     }

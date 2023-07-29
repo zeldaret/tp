@@ -47,11 +47,7 @@ public:
 
     JAISoundParamsMove* getParams() { return &mParams; }
     int getMaxSe() const {
-        if (mMaxActiveSe == 0) {
-            return 0;
-        }
-
-        return mMaxActiveSe + mMaxInactiveSe;
+        return (mMaxActiveSe == 0) ? 0 : mMaxActiveSe + mMaxInactiveSe;
     }
     int getMaxActiveSe() const { return mMaxActiveSe; }
     void setMaxActiveSe(int se) { mMaxActiveSe = se; }
