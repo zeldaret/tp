@@ -6,6 +6,7 @@
 #include "JSystem/JAudio2/osdsp_task.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "dolphin/dsp/dsp.h"
 
 //
 // Forward References:
@@ -30,10 +31,6 @@ extern "C" void DsyncFrame2ch__FUlUlUl();
 extern "C" void DsyncFrame4ch__FUlUlUlUlUl();
 extern "C" void OSSetCurrentContext();
 extern "C" void OSClearContext();
-extern "C" void DSPCheckMailToDSP();
-extern "C" void DSPCheckMailFromDSP();
-extern "C" void DSPReadMailFromDSP();
-extern "C" void DSPSendMailToDSP();
 extern "C" void __DSP_exec_task();
 extern "C" void __DSP_remove_task();
 extern "C" extern u8 __DSP_first_task[4];
@@ -50,8 +47,7 @@ extern "C" extern u8 __DSP_curr_task[4];
 static u8 struct_80451308[4];
 
 /* 8045130C-80451310 00080C 0004+00 1/1 2/2 0/0 .sbss            DSP_prior_task */
-extern u8 DSP_prior_task[4];
-u8 DSP_prior_task[4];
+DSPTaskInfo* DSP_prior_task;
 
 /* 8029EB20-8029EE24 299460 0304+00 0/0 1/1 0/0 .text            __DSPHandler */
 #pragma push

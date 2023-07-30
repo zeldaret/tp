@@ -18,10 +18,6 @@
 // Declarations:
 //
 
-// Compiled with O4,p
-
-#pragma function_align 32
-
 /* 8029E4E0-8029E528 298E20 0048+00 0/0 1/1 0/0 .text            DSPReleaseHalt2__FUl */
 void DSPReleaseHalt2(u32 msg) {
     u32 msgs[2];
