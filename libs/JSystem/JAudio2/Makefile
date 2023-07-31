@@ -155,6 +155,7 @@ DSP_CFLAGS := -pragma "function_align 32" -Cpp_exceptions off -proc gekko -fp ha
 $(BUILD_DIR)/libs/JSystem/JAudio2/dspproc.o: CFLAGS := $(DSP_CFLAGS)
 $(BUILD_DIR)/libs/JSystem/JAudio2/osdsp.o: CFLAGS := $(DSP_CFLAGS)
 $(BUILD_DIR)/libs/JSystem/JAudio2/osdsp_task.o: CFLAGS := $(DSP_CFLAGS)
+$(BUILD_DIR)/libs/JSystem/JAudio2/dsptask.o: CFLAGS := $(DSP_CFLAGS)
 
 $(BUILD_DIR)/libJAudio2.a: $(LIBJAUDIO2_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libJAudio2.a
