@@ -4,129 +4,83 @@
 //
 
 #include "JSystem/JAudio2/JASLfo.h"
-#include "dol2asm.h"
+#include "SSystem/SComponent/c_math.h"
 #include "dolphin/types.h"
 
 //
 // Types:
 //
 
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct JASLfo {
-    /* 8029BD14 */ JASLfo();
-    /* 8029BD44 */ void getValue() const;
-    /* 8029BDD8 */ void incCounter(f32);
-    /* 8029BE2C */ void resetCounter();
-
-    static u8 sFreeRunLfo[24];
-};
-
 //
 // Forward References:
 //
 
-extern "C" void __ct__6JASLfoFv();
-extern "C" void getValue__6JASLfoCFv();
-extern "C" void incCounter__6JASLfoFf();
-extern "C" void resetCounter__6JASLfoFv();
-extern "C" void __sinit_JASLfo_cpp();
-extern "C" u8 sFreeRunLfo__6JASLfo[24];
-
 //
 // External References:
 //
-
-extern "C" u8 sincosTable___5JMath[65536];
 
 //
 // Declarations:
 //
 
 /* ############################################################################################## */
-/* 804556E0-804556E4 003CE0 0004+00 3/3 0/0 0/0 .sdata2          @341 */
-SECTION_SDATA2 static u8 lit_341[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 804556E4-804556E8 003CE4 0004+00 2/2 0/0 0/0 .sdata2          @342 */
-SECTION_SDATA2 static f32 lit_342 = 1.0f;
 
 /* 8029BD14-8029BD44 296654 0030+00 1/1 1/1 0/0 .text            __ct__6JASLfoFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JASLfo::JASLfo() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASLfo/__ct__6JASLfoFv.s"
+JASLfo::JASLfo() {
+    field_0x0 = 0;
+    field_0x4 = 1;
+    field_0x8 = 0.0f;
+    field_0xC = 0.0f;
+    field_0x10 = 1.0f;
+    field_0x14 = 0;
+    field_0x16 = 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 804556E8-804556EC 003CE8 0004+00 1/1 0/0 0/0 .sdata2          @363 */
-SECTION_SDATA2 static f32 lit_363 = -8192.0f;
-
-/* 804556EC-804556F0 003CEC 0004+00 1/1 0/0 0/0 .sdata2          @364 */
-SECTION_SDATA2 static f32 lit_364 = 8192.0f;
 
 /* 8029BD44-8029BDD8 296684 0094+00 0/0 3/3 0/0 .text            getValue__6JASLfoCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASLfo::getValue() const {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASLfo/getValue__6JASLfoCFv.s"
+f32 JASLfo::getValue() const {
+    if (field_0x16) {
+        return 0.0f;
+    }
+
+    if (field_0xC == 0.0f) {
+        return 0.0f;
+    }
+
+    return field_0xC * JMASinLap(field_0x8);
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 804556F0-804556F8 003CF0 0004+04 1/1 0/0 0/0 .sdata2          @376 */
-SECTION_SDATA2 static f32 lit_376[1 + 1 /* padding */] = {
-    1.0f / 72.0f,
-    /* padding */
-    0.0f,
-};
 
 /* 8029BDD8-8029BE2C 296718 0054+00 0/0 2/2 0/0 .text            incCounter__6JASLfoFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASLfo::incCounter(f32 param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASLfo/incCounter__6JASLfoFf.s"
+void JASLfo::incCounter(f32 param_0) {
+    if (field_0x16) {
+        field_0x16--;
+        return;
+    }
+
+    field_0x8 += param_0 * ((1.0f / 72.0f) * field_0x10);
+    if (field_0x8 >= 1.0f) {
+        field_0x8 -= 1.0f; 
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80431C40-80431C58 05E960 0018+00 2/2 1/1 0/0 .bss             sFreeRunLfo__6JASLfo */
-u8 JASLfo::sFreeRunLfo[24];
+JASLfo JASLfo::sFreeRunLfo;
 
 /* 8029BE2C-8029BE6C 29676C 0040+00 0/0 1/1 0/0 .text            resetCounter__6JASLfoFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASLfo::resetCounter() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASLfo/resetCounter__6JASLfoFv.s"
+void JASLfo::resetCounter() {
+    field_0x16 = field_0x14;
+    switch (field_0x4) {
+    case 0:
+        field_0x8 = sFreeRunLfo.field_0x8;
+        break;
+    case 1:
+        field_0x8 = 0.0f;
+        break;
+    }
 }
-#pragma pop
 
 /* 8029BE6C-8029BE94 2967AC 0028+00 0/0 1/0 0/0 .text            __sinit_JASLfo_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_JASLfo_cpp() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASLfo/__sinit_JASLfo_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x8029BE6C, __sinit_JASLfo_cpp);
-#pragma pop
