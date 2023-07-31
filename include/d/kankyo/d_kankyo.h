@@ -12,6 +12,7 @@
 
 class JPABaseEmitter;
 class cBgS_PolyInfo;
+class color_RGB_class;
 
 void dKankyo_DayProc();
 void dKy_set_nexttime(f32);
@@ -44,6 +45,11 @@ void dKy_setLight();
 cXyz dKy_plight_near_pos();
 void dKy_BossSpotLight_set(cXyz* param_0, f32 param_1, f32 param_2, f32 param_3, _GXColor* param_4,
                            f32 param_5, u8 param_6, u8 param_7);
+static void dKy_calc_color_set(_GXColorS10* param_0, color_RGB_class* param_1,
+                               color_RGB_class* param_2, color_RGB_class* param_3,
+                               color_RGB_class* param_4, f32 param_5, f32 param_6,
+                               _GXColorS10 param_7, f32 param_8);
+static void dKy_twilight_camelight_set();
 
 struct LIGHT_INFLUENCE {
     /* 800CFC7C */ ~LIGHT_INFLUENCE() {}
@@ -203,7 +209,7 @@ public:
     /* 0x367 */ u8 field_0x367;
     /* 0x368 */ f32 mFogStartZ;
     /* 0x36C */ f32 mFogEndZ;
-    /* 0x370 */ f32 field_0x370;
+    /* 0x370 */ f32 mColpatBlend;
     /* 0x374 */ f32 field_0x374;
     /* 0x378 */ u16 field_0x378;
     /* 0x37A */ u8 field_0x37a;
@@ -379,9 +385,7 @@ public:
     /* 0x1058 */ dKankyo_evil_Packet* mpEvilPacket;
     /* 0x105C */ mDoExt_btkAnm* field_0x105c;
     /* 0x1060 */ fopAc_ac_c* field_0x1060;
-    /* 0x1064 */ f32 field_0x1064;
-    /* 0x1068 */ f32 field_0x1068;
-    /* 0x106C */ f32 field_0x106c;
+    /* 0x1064 */ Vec field_0x1064;
     /* 0x1070 */ cXyz mSunPos2;
     /* 0x107C */ cXyz mPLightNearPos;
     /* 0x1088 */ cXyz mSunPos;
@@ -394,10 +398,7 @@ public:
     /* 0x10D8 */ GXColorS10 mUnderCloudShadowColor;
     /* 0x10E0 */ GXColorS10 mCloudOuterHazeColor;
     /* 0x10E8 */ GXColorS10 mCloudInnerHazeColor;
-    /* 0x10F0 */ s16 field_0x10f0;
-    /* 0x10F2 */ s16 field_0x10f2;
-    /* 0x10F4 */ s16 field_0x10f4;
-    /* 0x10F6 */ s16 field_0x10f6;
+    /* 0x10F0 */ GXColorS10 field_0x10f0;
     /* 0x10F8 */ s16 field_0x10f8;
     /* 0x10FA */ s16 field_0x10fa;
     /* 0x10FC */ s16 field_0x10fc;
@@ -493,7 +494,7 @@ public:
     /* 0x12B8 */ u8 field_0x12b8[4];
     /* 0x12BC */ u16 mFogAdjCenter;
     /* 0x12BE */ u16 mDate;
-    /* 0x12C0 */ u16 mActorLightEffect;
+    /* 0x12C0 */ s16 mActorLightEffect;
     /* 0x12C2 */ u8 mColPatPrev;
     /* 0x12C3 */ u8 mColPatCurr;
     /* 0x12C4 */ u8 mColpatPrevGather;

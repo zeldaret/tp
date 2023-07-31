@@ -257,17 +257,17 @@ void cCcD_ObjCommonBase::ct() {
 void cCcD_ObjHitInf::Set(cCcD_SrcObjHitInf const& src) {
     mObjAt.Set(src.mObjAt);
     mObjTg.Set(src.mObjTg);
-    mObjCo.SetSPrm(src.mSPrm);
+    mObjCo.Set(src.mObjCo);
 }
 
 /* 80263A10-80263A1C 25E350 000C+00 0/0 1/1 0/0 .text            ct__8cCcD_ObjFv */
 void cCcD_Obj::ct() {
-    field_0x40 = 0;
+    mFlags = 0;
 }
 
 /* 80263A1C-80263A48 25E35C 002C+00 0/0 1/1 0/0 .text            Set__8cCcD_ObjFRC11cCcD_SrcObj */
 void cCcD_Obj::Set(cCcD_SrcObj const& src) {
-    field_0x40 = src.field_0x0;
+    mFlags = src.mFlags;
     cCcD_ObjHitInf::Set(src.mSrcObjHitInf);
 }
 
@@ -725,7 +725,7 @@ void cCcD_ObjAt::SetHit(cCcD_Obj* pObj) {
 /* 8026484C-80264868 25F18C 001C+00 1/1 0/0 0/0 .text            Set__10cCcD_ObjAtFRC13cCcD_SrcObjAt
  */
 void cCcD_ObjAt::Set(cCcD_SrcObjAt const& src) {
-    mSPrm = src.mSPrm;
+    cCcD_ObjCommonBase::Set(src.mBase);
     mType = src.mType;
     mAtp = src.mAtp;
 }
@@ -739,7 +739,7 @@ void cCcD_ObjAt::ClrHit() {
 /* 80264880-80264894 25F1C0 0014+00 1/1 0/0 0/0 .text            Set__10cCcD_ObjTgFRC13cCcD_SrcObjTg
  */
 void cCcD_ObjTg::Set(cCcD_SrcObjTg const& src) {
-    mSPrm = src.mSPrm;
+    cCcD_ObjCommonBase::Set(src.mBase);
     mType = src.mType;
 }
 

@@ -10,13 +10,13 @@
 #include "m_Do/m_Do_lib.h"
 
 struct J3DGXColorS10 {
-    /* 8000E460 */ J3DGXColorS10();
+    /* 8000E460 */ J3DGXColorS10() {}
 
     _GXColorS10 mColor;
 };
 
 struct J3DGXColor : public _GXColor {
-    /* 8000E538 */ J3DGXColor();
+    /* 8000E538 */ J3DGXColor() {}
 };
 
 struct J3DNBTScaleInfo {

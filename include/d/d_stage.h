@@ -782,7 +782,7 @@ public:
     /* 80024954 */ static bool resetArchiveBank(int);
     /* 80024DB0 */ static void SetTimePass(int);
     /* 8025BAAC */ static void setZoneNo(int, int);
-    static s32 GetTimePass();
+    static s8 GetTimePass();
 
     static s8 getStayNo() { return mStayNo; }
     static u8 getRegionNo(int i_roomNo) { return mStatus[i_roomNo].mRegionNo; }
@@ -1031,7 +1031,7 @@ inline s32 i_dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
 }
 
 inline s8 dStage_stagInfo_GetTimeH(stage_stag_info_class* p_info) {
-    return p_info->field_0x0c >> 8;
+    return (p_info->field_0x0c >> 8) & 0xFF;
 }
 
 inline BOOL dStage_staginfo_GetArchiveHeap(stage_stag_info_class* p_info) {

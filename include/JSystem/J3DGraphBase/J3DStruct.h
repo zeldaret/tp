@@ -23,6 +23,8 @@ class J3DLightObj {
 public:
     /* 80018C0C */ J3DLightObj() : mInfo(j3dDefaultLightInfo) {}
 
+    J3DLightInfo& getLightInfo() { return mInfo; }
+
     /* 0x00 */ J3DLightInfo mInfo;
     /* 0x34 */ u8 field_0x34[64];
 };  // Size = 0x74

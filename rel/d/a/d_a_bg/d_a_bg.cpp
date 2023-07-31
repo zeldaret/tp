@@ -15,6 +15,7 @@
 #include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_lib.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 
 //
 // Types:
@@ -618,11 +619,11 @@ int daBg_c::createHeap() {
                 const char* name = modelData->getMaterialName()->getName(j);
 
                 if (name[3] == 'M' && name[4] == 'A') {
-                    if (!memcmp(&name[5], &"00", 2)) {
+                    if (!memcmp(&name[5], "00", 2)) {
                         modelFlags |= 0x1200;
-                    } else if (!memcmp(&name[5], &"01", 2)) {
+                    } else if (!memcmp(&name[5], "01", 2)) {
                         modelFlags |= 0x20000000;
-                    } else if (!memcmp(&name[5], &"12", 2) || !memcmp(&name[5], &"18", 2)) {
+                    } else if (!memcmp(&name[5], "12", 2) || !memcmp(&name[5], "18", 2)) {
                         field_0x5f0 = 1;
                     }
                 }
