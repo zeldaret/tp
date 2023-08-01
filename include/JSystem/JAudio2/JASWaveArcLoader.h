@@ -3,8 +3,8 @@
 
 #include "JSystem/JSupport/JSUList.h"
 #include "dol2asm.h"
-#include "dolphin/os/OSMutex.h"
 #include "dolphin/types.h"
+#include "dolphin/os/OSMutex.h"
 
 class JKRHeap;
 class JKRSolidHeap;
@@ -91,16 +91,6 @@ struct JASWaveArc : JASDisposer {
     /* 0x58 */ u16 _58;
     /* 0x5A */ u16 _5a;
     /* 0x5C */ OSMutex mMutex;
-};
-
-struct JASMutexLock {
-    JASMutexLock(OSMutex* mutex) {
-        mMutex = mutex;
-        OSLockMutex(mMutex);
-    }
-    ~JASMutexLock() { OSUnlockMutex(mMutex); }
-
-    /* 0x0 */ OSMutex* mMutex;
 };
 
 #endif /* JASWAVEARCLOADER_H */
