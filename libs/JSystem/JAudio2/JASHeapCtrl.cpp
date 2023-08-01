@@ -213,8 +213,7 @@ asm JASGenericMemPool::~JASGenericMemPool() {
 
 /* ############################################################################################## */
 /* 80451210-80451214 000710 0004+00 2/2 15/15 0/0 .sbss            JASDram */
-extern u8 JASDram[4];
-u8 JASDram[4];
+JKRSolidHeap* JASDram;
 
 /* 802908C8-80290948 28B208 0080+00 0/0 4/4 0/0 .text            newMemPool__17JASGenericMemPoolFUli
  */
