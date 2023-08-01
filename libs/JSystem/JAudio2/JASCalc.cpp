@@ -6,99 +6,151 @@
 #include "JSystem/JAudio2/JASCalc.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "dolphin/os/OSCache.h"
+#include "MSL_C/math.h"
 
 //
 // Types:
 //
 
-struct JASCalc {
-    /* 8028F2E8 */ void imixcopy(s16 const*, s16 const*, s16*, u32);
-    /* 8028F318 */ void bcopyfast(void const*, void*, u32);
-    /* 8028F354 */ void bcopy(void const*, void*, u32);
-    /* 8028F454 */ void bzerofast(void*, u32);
-    /* 8028F480 */ void bzero(void*, u32);
-    /* 8028F578 */ void pow2(f32);
-    template <typename A1, typename B1>
-    void clamp(/* ... */);
-    /* 8028F69C */ /* JASCalc::clamp<s16, s32> */
-    void func_8028F69C(void* _this, s32);
-
-    static u8 const CUTOFF_TO_IIR_TABLE[1024];
-};
-
 //
 // Forward References:
 //
 
-extern "C" void imixcopy__7JASCalcFPCsPCsPsUl();
-extern "C" void bcopyfast__7JASCalcFPCvPvUl();
-extern "C" void bcopy__7JASCalcFPCvPvUl();
-extern "C" void bzerofast__7JASCalcFPvUl();
-extern "C" void bzero__7JASCalcFPvUl();
-extern "C" void pow2__7JASCalcFf();
-extern "C" void func_8028F69C(void* _this, s32);
-extern "C" u8 const CUTOFF_TO_IIR_TABLE__7JASCalc[1024];
-
 //
 // External References:
 //
-
-extern "C" void DCZeroRange();
-extern "C" extern u32 __float_huge;
 
 //
 // Declarations:
 //
 
 /* 8028F2E8-8028F318 289C28 0030+00 0/0 1/1 0/0 .text            imixcopy__7JASCalcFPCsPCsPsUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASCalc::imixcopy(s16 const* param_0, s16 const* param_1, s16* param_2, u32 param_3) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASCalc/imixcopy__7JASCalcFPCsPCsPsUl.s"
+void JASCalc::imixcopy(const s16 *s1, const s16 *s2, s16 *dst, u32 n) {
+    for (n; n != 0; n--) {
+        *dst++ = *((s16 *)s1)++;
+        *dst++ = *((s16 *)s2)++;
+    }
 }
-#pragma pop
 
 /* 8028F318-8028F354 289C58 003C+00 1/1 0/0 0/0 .text            bcopyfast__7JASCalcFPCvPvUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASCalc::bcopyfast(void const* param_0, void* param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASCalc/bcopyfast__7JASCalcFPCvPvUl.s"
+void JASCalc::bcopyfast(const void *src, void *dest, u32 size) {
+    u32 copy1, copy2, copy3, copy4;
+
+    u32 *usrc = (u32 *)src;
+    u32 *udest = (u32 *)dest;
+
+    for (size = size / (4 * sizeof(u32)); size != 0; size--) {
+        copy1 = *((u32 *)usrc)++;
+        copy2 = *((u32 *)usrc)++;
+        copy3 = *((u32 *)usrc)++;
+        copy4 = *((u32 *)usrc)++;
+
+        *udest++ = copy1;
+        *udest++ = copy2;
+        *udest++ = copy3;
+        *udest++ = copy4;
+    }
 }
-#pragma pop
 
 /* 8028F354-8028F454 289C94 0100+00 0/0 3/3 0/0 .text            bcopy__7JASCalcFPCvPvUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASCalc::bcopy(void const* param_0, void* param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASCalc/bcopy__7JASCalcFPCvPvUl.s"
+void JASCalc::bcopy(const void *src, void *dest, u32 size) {
+    u32 *usrc;
+    u32 *udest;
+
+    u8 *bsrc = (u8 *)src;
+    u8 *bdest = (u8 *)dest;
+
+    u8 endbitsSrc = (reinterpret_cast<u32>(bsrc) & 0x03);
+    u8 enbitsDst = (reinterpret_cast<u32>(bdest) & 0x03);
+    if ((endbitsSrc) == (enbitsDst) && (size & 0x0f) == 0) {
+        bcopyfast(src, dest, size);
+    }
+    else if ((endbitsSrc == enbitsDst) && (size >= 16)) {
+        if (endbitsSrc != 0) {
+            for (endbitsSrc = 4 - endbitsSrc; endbitsSrc != 0; endbitsSrc--) {
+                *bdest++ = (u32)*bsrc++;
+                size--;
+            }
+        }
+
+        udest = (u32 *)bdest;
+        usrc = (u32 *)bsrc;
+
+        for (; size >= 4; size -= 4) {
+            *udest++ = *usrc++;
+        }
+
+        if (size != 0) {
+            bdest = (u8 *)udest;
+            bsrc = (u8 *)usrc;
+
+            for (; size != 0; size--) {
+                *bdest++ = (u32)*bsrc++;
+            }
+        }
+    }
+    else {
+        for (; size != 0; size--) {
+            *bdest++ = (u32)*bsrc++;
+        }
+    }
 }
-#pragma pop
 
 /* 8028F454-8028F480 289D94 002C+00 1/1 0/0 0/0 .text            bzerofast__7JASCalcFPvUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASCalc::bzerofast(void* param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASCalc/bzerofast__7JASCalcFPvUl.s"
+void JASCalc::bzerofast(void *dest, u32 size) {
+    u32 *udest = (u32 *)dest;
+
+    for (size = size / (4 * sizeof(u32)); size != 0; size--) {
+        *udest++ = 0;
+        *udest++ = 0;
+        *udest++ = 0;
+        *udest++ = 0;
+    }
 }
-#pragma pop
 
 /* 8028F480-8028F578 289DC0 00F8+00 0/0 6/6 0/0 .text            bzero__7JASCalcFPvUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASCalc::bzero(void* param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASCalc/bzero__7JASCalcFPvUl.s"
+void JASCalc::bzero(void *dest, u32 size) {
+    u32 *udest;
+    u8 *bdest = (u8 *)dest;
+    if ((size & 0x1f) == 0 && (reinterpret_cast<u32>(dest) & 0x1f) == 0) {
+        DCZeroRange(dest, size);
+        return;
+    }
+
+    u8 alignedbitsDst = reinterpret_cast<u32>(bdest) & 0x3;
+
+    if ((size & 0xf) == 0 && alignedbitsDst == 0) {
+        bzerofast(dest, size);
+        return;
+    }
+
+    if (size >= 16) {
+        if (alignedbitsDst != 0) {
+            for (alignedbitsDst = 4 - alignedbitsDst; alignedbitsDst != 0; alignedbitsDst--) {
+                *bdest++ = 0;
+                size--;
+            }
+        }
+
+        udest = (u32 *)bdest;
+        for (; size >= 4; size -= 4) {
+            *udest++ = 0;
+        }
+
+        if (size != 0) {
+            bdest = (u8 *)udest;
+            for (; size != 0; size--) {
+                *bdest++ = 0;
+            }
+        }
+    }
+    else {
+        for (; size != 0; size--) {
+            *bdest++ = 0;
+        }
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039ABB8-8039AFB8 027218 0400+00 0/0 4/4 0/0 .rodata          CUTOFF_TO_IIR_TABLE__7JASCalc */
@@ -170,62 +222,63 @@ SECTION_RODATA u8 const JASCalc::CUTOFF_TO_IIR_TABLE[1024] = {
 };
 COMPILER_STRIP_GATE(0x8039ABB8, &JASCalc::CUTOFF_TO_IIR_TABLE);
 
-/* 8039AFB8-8039AFD0 027618 0018+00 1/1 0/0 0/0 .rodata          __two_to_x$982 */
-SECTION_RODATA static f32 const __two_to_x[6] = {
-    0.6931471824645996f,   0.240226611495018f,     0.055502913892269135f,
-    0.009625022299587727f, 0.0013131053419783711f, 0.0001830080582294613f,
-};
-COMPILER_STRIP_GATE(0x8039AFB8, &__two_to_x);
-
-/* 80455558-80455560 003B58 0004+04 1/1 0/0 0/0 .sdata2          @847 */
-SECTION_SDATA2 static f32 lit_847[1 + 1 /* padding */] = {
-    0.5f,
-    /* padding */
-    0.0f,
-};
-
-/* 80455560-80455568 003B60 0008+00 1/1 0/0 0/0 .sdata2          @850 */
-SECTION_SDATA2 static f64 lit_850 = 4503601774854144.0 /* cast s32 to float */;
-
-/* 80455568-8045556C 003B68 0004+00 1/1 0/0 0/0 .sdata2          @969 */
-SECTION_SDATA2 static u8 lit_969[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 8045556C-80455574 003B6C 0008+00 1/1 0/0 0/0 .sdata2          scale_frac$980 */
-SECTION_SDATA2 static u8 scale_frac[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00,
-};
-
-/* 80455574-8045557C 003B74 0008+00 1/1 0/0 0/0 .sdata2          two_to_frac$981 */
-SECTION_SDATA2 static u8 two_to_frac[8] = {
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x35, 0x04, 0xF3,
-};
-
-/* 8045557C-80455580 003B7C 0004+00 1/1 0/0 0/0 .sdata2          @994 */
-SECTION_SDATA2 static f32 lit_994 = 0.75f;
-
-/* 80455580-80455588 003B80 0004+04 1/1 0/0 0/0 .sdata2          @995 */
-SECTION_SDATA2 static f32 lit_995[1 + 1 /* padding */] = {
-    0.25f,
-    /* padding */
-    0.0f,
-};
+// currently required because of missing functions
+// JASCalc::hannWindow(short *, unsigned long)
+// JASCalc::hammWindow(short *, unsigned long)
+// JASCalc::fft(float *, float *, unsigned long, long)
+f32 JASCalc::fake1() { return 0.5f; }
+f32 JASCalc::fake2(long x) { return JASCalc::clamp<s16, long>(x); }
+f32 JASCalc::fake3() { return 0.0f; }
 
 /* 8028F578-8028F69C 289EB8 0124+00 0/0 2/2 0/0 .text            pow2__7JASCalcFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASCalc::pow2(f32 param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASCalc/pow2__7JASCalcFf.s"
+f32 JASCalc::pow2(f32 x) {
+    s32 frac_index = 0;
+    union {
+        s32 l;
+        f32 f;
+    } exponent;
+    exponent.l = (x >= 0.0f ? (s32)(x - 0.5f) : (s32)(x + 0.5f)); // Shift towards 0 and round
+    f32 pannedval = x - exponent.l; // strictly between 1.5 and -1.5
+
+    // 2^x will not fit in an IEEE-754 float
+    if(exponent.l > 128) {
+        return HUGE_VALF;
+    }
+
+    // convert to exponent of IEEE-754 float
+    exponent.l += 127;
+    exponent.l <<= 23;
+
+    // Calculate the mantissa
+
+    static const f32 scale_frac[] = { 0.0f, 0.5f };
+    // { 1 , 1/sqrt2 }
+    static const f32 two_to_frac[] = {1.0f, 0.70710677f};
+    // coefficients of Taylor polynomial of 2^x - 1 at 0:
+    // 2^x - 1 = (log2) * x + (log2)^2 / 2! * x^2 + ...
+    static const f32 __two_to_x[] = {
+        0.6931472f, 0.24022661,
+        0.055502914f, 0.009625022f,
+        0.0013131053f, 1.8300806E-4f        
+    };
+
+    if (pannedval < 0.0f) {
+        frac_index += 1;
+    }
+    
+    f32 ret = pannedval + scale_frac[frac_index];
+
+    // Evaluate Taylor polynomial using Horner's method
+    ret = ret * (ret * (ret * (ret * (ret * (ret * __two_to_x[5] + __two_to_x[4]) +
+        __two_to_x[3]) + __two_to_x[2]) + __two_to_x[1]) + __two_to_x[0]);
+    // 2^n * (corrected mantissa)
+    ret = exponent.f * (0.75f * two_to_frac[frac_index] + ((0.25f + ret) * two_to_frac[frac_index]));
+
+    return ret;
 }
-#pragma pop
 
 /* 8028F69C-8028F6C4 289FDC 0028+00 0/0 4/4 0/0 .text            clamp<s,l>__7JASCalcFl */
+// Could not make clamp not inline
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

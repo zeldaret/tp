@@ -351,22 +351,17 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern J2DTexCoordInfo const j2dDefaultTexCoordInfo[8];
-extern "C" extern u8 const j2dDefaultIndTexMtxInfo[28];
 extern "C" extern J2DTevStageInfo const j2dDefaultTevStageInfo;
 extern "C" extern J2DIndTevStageInfo const j2dDefaultIndTevStageInfo;
 extern "C" extern void* __vt__11J2DIndBlock[14];
 extern "C" extern GXColor j2dDefaultColInfo;
 extern "C" extern J2DTevOrderInfo j2dDefaultTevOrderInfoNull;
-extern "C" extern u16 j2dDefaultIndTexOrderNull[1 + 1 /* padding */];
 extern "C" extern J2DGXColorS10 j2dDefaultTevColor;
-extern "C" extern u8 j2dDefaultIndTexCoordScaleInfo[2 + 2 /* padding */];
 extern "C" extern GXColor j2dDefaultTevKColor;
 extern "C" extern J2DTevSwapModeInfo j2dDefaultTevSwapMode;
-extern "C" extern J2DTevSwapModeTableInfo j2dDefaultTevSwapModeTable;
 extern "C" extern u8 data_804561A4;
 extern "C" extern J2DColorChanInfo j2dDefaultColorChanInfo;
 extern "C" extern u8 data_804561AC;
-extern "C" extern u16 j2dDefaultAlphaCmp;
 
 //
 // Declarations:
@@ -2583,7 +2578,7 @@ void J2DPEBlock::setGX() {
 }
 
 /* 802F18A0-802F1934 2EC1E0 0094+00 5/5 0/0 0/0 .text            __ct__14J2DIndTevStageFv */
-// missing instruction
+// should be inline
 #ifdef NONMATCHING
 J2DIndTevStage::J2DIndTevStage() {
     mFlags = J2DCalcIndTevStage(j2dDefaultIndTevStageInfo);
@@ -2592,7 +2587,7 @@ J2DIndTevStage::J2DIndTevStage() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DIndTevStage::J2DIndTevStage() {
+asm void __ct__14J2DIndTevStageFv() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMatBlock/__ct__14J2DIndTevStageFv.s"
 }
@@ -2600,9 +2595,16 @@ asm J2DIndTevStage::J2DIndTevStage() {
 #endif
 
 /* 802F1934-802F1940 2EC274 000C+00 5/5 0/0 0/0 .text            __ct__19J2DTevSwapModeTableFv */
+// Should be inline
+#ifdef NONMATCHING
 J2DTevSwapModeTable::J2DTevSwapModeTable() {
     field_0x0 = data_804561AC;
 }
+#else
+asm void __ct__19J2DTevSwapModeTableFv() {
+    #include "asm/JSystem/J2DGraph/J2DMatBlock/__ct__19J2DTevSwapModeTableFv.s"
+}
+#endif
 
 /* 802F1940-802F19A8 2EC280 0068+00 5/5 1/1 0/0 .text            __ct__11J2DTevStageFv */
 J2DTevStage::J2DTevStage() {
@@ -2620,12 +2622,27 @@ void J2DTevStage::setTevStageInfo(J2DTevStageInfo const& info) {
 }
 
 /* 802F1B70-802F1B90 2EC4B0 0020+00 5/5 0/0 0/0 .text            __ct__11J2DTevOrderFv */
+// Matching but should be inline
+#ifdef NONMATCHING
 J2DTevOrder::J2DTevOrder() {
     mTevOrderInfo = j2dDefaultTevOrderInfoNull;
 }
+#else
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+// J2DTevOrder::J2DTevOrder() {
+asm void __ct__11J2DTevOrderFv() {
+    nofralloc
+#include "asm/JSystem/J2DGraph/J2DMatBlock/__ct__11J2DTevOrderFv.s"
+}
+#pragma pop
+#endif
 
 /* 802F1B90-802F1B94 2EC4D0 0004+00 5/5 0/0 0/0 .text            __ct__13J2DGXColorS10Fv */
-J2DGXColorS10::J2DGXColorS10() {
+// Most likely inlined
+//J2DGXColorS10::J2DGXColorS10() {
+void __ct__13J2DGXColorS10Fv() {
     /* empty function */
 }
 
@@ -2687,7 +2704,7 @@ u32 J2DTevBlock16::getType() {
 }
 
 /* 802F1D24-802F1D2C 2EC664 0008+00 1/0 0/0 0/0 .text            getMaxStage__13J2DTevBlock16Fv */
-s32 J2DTevBlock16::getMaxStage() {
+u8 J2DTevBlock16::getMaxStage() {
     return 16;
 }
 
@@ -2707,7 +2724,7 @@ void J2DTevBlock16::setFontNo(u16 fontNo) {
 }
 
 /* 802F1D54-802F1D5C 2EC694 0008+00 1/0 0/0 0/0 .text            getFontNo__13J2DTevBlock16CFv */
-u32 J2DTevBlock16::getFontNo() const {
+u16 J2DTevBlock16::getFontNo() const {
     return mFontNo;
 }
 
@@ -2869,7 +2886,7 @@ u32 J2DTevBlock8::getType() {
 }
 
 /* 802F1FC4-802F1FCC 2EC904 0008+00 1/0 0/0 0/0 .text            getMaxStage__12J2DTevBlock8Fv */
-s32 J2DTevBlock8::getMaxStage() {
+u8 J2DTevBlock8::getMaxStage() {
     return 8;
 }
 
@@ -2889,7 +2906,7 @@ void J2DTevBlock8::setFontNo(u16 fontNo) {
 }
 
 /* 802F1FF4-802F1FFC 2EC934 0008+00 1/0 0/0 0/0 .text            getFontNo__12J2DTevBlock8CFv */
-u32 J2DTevBlock8::getFontNo() const {
+u16 J2DTevBlock8::getFontNo() const {
     return mFontNo;
 }
 
@@ -3051,7 +3068,7 @@ u32 J2DTevBlock4::getType() {
 }
 
 /* 802F2264-802F226C 2ECBA4 0008+00 1/0 0/0 0/0 .text            getMaxStage__12J2DTevBlock4Fv */
-s32 J2DTevBlock4::getMaxStage() {
+u8 J2DTevBlock4::getMaxStage() {
     return 4;
 }
 
@@ -3071,7 +3088,7 @@ void J2DTevBlock4::setFontNo(u16 fontNo) {
 }
 
 /* 802F2294-802F229C 2ECBD4 0008+00 1/0 0/0 0/0 .text            getFontNo__12J2DTevBlock4CFv */
-u32 J2DTevBlock4::getFontNo() const {
+u16 J2DTevBlock4::getFontNo() const {
     return mFontNo;
 }
 
@@ -3233,7 +3250,7 @@ u32 J2DTevBlock2::getType() {
 }
 
 /* 802F2508-802F2510 2ECE48 0008+00 1/0 0/0 0/0 .text            getMaxStage__12J2DTevBlock2Fv */
-s32 J2DTevBlock2::getMaxStage() {
+u8 J2DTevBlock2::getMaxStage() {
     return 2;
 }
 
@@ -3253,7 +3270,7 @@ void J2DTevBlock2::setFontNo(u16 fontNo) {
 }
 
 /* 802F2538-802F2540 2ECE78 0008+00 1/0 0/0 0/0 .text            getFontNo__12J2DTevBlock2CFv */
-u32 J2DTevBlock2::getFontNo() const {
+u16 J2DTevBlock2::getFontNo() const {
     return mFontNo;
 }
 
@@ -3415,7 +3432,7 @@ u32 J2DTevBlock1::getType() {
 }
 
 /* 802F27AC-802F27B4 2ED0EC 0008+00 1/0 0/0 0/0 .text            getMaxStage__12J2DTevBlock1Fv */
-s32 J2DTevBlock1::getMaxStage() {
+u8 J2DTevBlock1::getMaxStage() {
     return 1;
 }
 
@@ -3435,7 +3452,7 @@ void J2DTevBlock1::setFontNo(u16 fontNo) {
 }
 
 /* 802F27DC-802F27E4 2ED11C 0008+00 1/0 0/0 0/0 .text            getFontNo__12J2DTevBlock1CFv */
-u32 J2DTevBlock1::getFontNo() const {
+u16 J2DTevBlock1::getFontNo() const {
     return mFontNo;
 }
 

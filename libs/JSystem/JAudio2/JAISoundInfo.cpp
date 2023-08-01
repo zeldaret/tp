@@ -4,59 +4,26 @@
 //
 
 #include "JSystem/JAudio2/JAISoundInfo.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //
 // Forward References:
 //
 
-extern "C" void __ct__12JAISoundInfoFb();
-extern "C" void __dt__12JAISoundInfoFv();
-
 //
 // External References:
 //
-
-extern "C" void __dl__FPv();
-extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:
 //
 
 /* ############################################################################################## */
-/* 803C99A0-803C99C8 026AC0 0024+04 2/2 0/0 0/0 .data            __vt__12JAISoundInfo */
-SECTION_DATA extern void* __vt__12JAISoundInfo[9 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)__dt__12JAISoundInfoFv,
-    /* padding */
-    NULL,
-};
 
 /* 802A2D34-802A2D50 29D674 001C+00 0/0 1/1 0/0 .text            __ct__12JAISoundInfoFb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JAISoundInfo::JAISoundInfo(bool param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISoundInfo/__ct__12JAISoundInfoFb.s"
+JAISoundInfo::JAISoundInfo(bool param_0) : JASGlobalInstance<JAISoundInfo>(param_0) {
 }
-#pragma pop
 
 /* 802A2D50-802A2DB4 29D690 0064+00 1/0 2/2 0/0 .text            __dt__12JAISoundInfoFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JAISoundInfo::~JAISoundInfo() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISoundInfo/__dt__12JAISoundInfoFv.s"
+JAISoundInfo::~JAISoundInfo() {
 }
-#pragma pop

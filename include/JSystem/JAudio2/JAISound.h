@@ -2,6 +2,7 @@
 #define JAISOUND_H
 
 #include "JSystem/JAudio2/JAISoundParams.h"
+#include "JSystem/JAudio2/JAIAudible.h"
 #include "JSystem/JGeometry.h"
 #include "dolphin/types.h"
 #include "global.h"
@@ -55,6 +56,9 @@ struct JAISoundStatus_ {
 
     inline bool isMute() { return field_0x0.flags.mute; }
     inline bool isPaused() { return field_0x0.flags.paused; }
+    void pauseWhenOut() {
+        field_0x1.flags.flag6 = 1;
+    }
 
     /* 0x0 */ union {
         u8 value;
@@ -115,10 +119,7 @@ struct JAISoundFader {
         }
     }
     bool isOut() {
-        if (mTransition.mCount != 0 || mIntensity < 0.01f) {
-            return true;
-        }
-        return false;
+        return (mTransition.mCount == 0 && mIntensity < 0.01f);
     }
     inline void calc() { mIntensity = mTransition.apply(mIntensity); }
     f32 getIntensity() { return mIntensity; }
@@ -227,13 +228,39 @@ public:
     bool isStopping() {
         bool isStopping = false;
         if (status_.state.flags.flag1) {
-            isStopping = status_.state.flags.flag5 ? fader.isOut() : true;
+            isStopping = !status_.state.flags.flag5 || fader.isOut();
         }
         return isStopping;
     }
 
     void pause(bool param_0) {
         status_.field_0x0.flags.paused = param_0;
+    }
+
+    void updateLifeTime(u32 param_0) {
+        if (lifeTime < param_0) {
+            lifeTime = param_0;
+        }
+    }
+
+    void setLifeTime(u32 param_0, bool param_1) {
+        lifeTime = param_0;
+        setComesBack(param_1);
+        status_.field_0x1.flags.flag2 = 1;
+    }
+
+    void setComesBack(bool param_0) {
+        status_.field_0x1.flags.flag1 = 1;
+        if (param_0) {
+            status_.pauseWhenOut();
+        }
+    }
+
+    bool setPos(const JGeometry::TVec3<f32>& param_1) {
+        if (audible_ != NULL) {
+            audible_->setPos(param_1);
+        }
+        return audible_ != NULL;
     }
 
     /* 0x04 */ JAISoundHandle* handle_;

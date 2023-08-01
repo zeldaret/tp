@@ -182,41 +182,26 @@ extern "C" asm void func_8029FC34(void* _this) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455788-8045578C 003D88 0004+00 1/1 0/0 0/0 .sdata2          @822 */
-SECTION_SDATA2 static f32 lit_822 = 1.0f / 100.0f;
 
 /* 8029FC88-8029FD40 29A5C8 00B8+00 1/1 0/0 0/0 .text
  * JAISeMgr_acceptsNewSe___16JAISeCategoryMgrCFUl               */
-// isStopping issues
-#ifdef NONMATCHING
 u32 JAISeCategoryMgr::JAISeMgr_acceptsNewSe_(u32 param_0) const {
-    s32 rv;
-    int maxSe = getMaxSe();
+    s32 maxSe = getMaxSe();
     if (maxSe <= 0) {
         return 1;
     } 
 
-    int stopCount = 0;
+    s32 stopCount = 0;
     for (JSULink<JAISe>* link = mSeList.getFirst(); link != NULL; link = link->getNext()) {
         if (param_0 < link->getObject()->JAISeCategoryMgr_getProperPriority_()) {
             return 1;
         }
-        if (link->getObject()->isStopping() == 0) {
+        if (!link->getObject()->isStopping()) {
             stopCount++;
         }
     }
     return stopCount < maxSe;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 JAISeCategoryMgr::JAISeMgr_acceptsNewSe_(u32 param_0) const {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISeMgr/JAISeMgr_acceptsNewSe___16JAISeCategoryMgrCFUl.s"
-}
-#pragma pop
-#endif
 
 /* 8029FD40-8029FDE0 29A680 00A0+00 1/1 0/0 0/0 .text sortByPriority___16JAISeCategoryMgrFv */
 void JAISeCategoryMgr::sortByPriority_() {

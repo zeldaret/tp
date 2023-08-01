@@ -9,6 +9,13 @@ struct TSinCosTable {
 
     f32 sinShort(s16 v) const { return table[static_cast<u16>(v) >> 3].first; }
     f32 cosShort(s16 v) const { return table[static_cast<u16>(v) >> 3].second; }
+
+    inline f32 sinLap(f32 v) {
+        if (v < 0.0f) {
+            return -table[(u16)(-8192.0f * v) & 0x1fff].first;
+        }
+        return table[(u16)(8192.0f * v) & 0x1fff].first;
+    }
 };
 
 struct TAtanTable {
@@ -39,6 +46,10 @@ inline f32 JMASCos(s16 v) {
 }
 inline f32 JMASSin(s16 v) {
     return JMASinShort(v);
+}
+
+inline f32 JMASinLap(f32 v) {
+    return JMath::sincosTable_.sinLap(v);
 }
 
 #endif /* JMATRIGONOMETRIC_H */

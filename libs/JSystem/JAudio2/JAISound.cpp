@@ -300,15 +300,8 @@ void JAISound::increasePrepareCount_JAISound_() {
 }
 
 /* ############################################################################################## */
-/* 804557D0-804557D8 003DD0 0004+04 1/1 0/0 0/0 .sdata2          @887 */
-SECTION_SDATA2 static f32 lit_887[1 + 1 /* padding */] = {
-    1.0f / 100.0f,
-    /* padding */
-    0.0f,
-};
 
 /* 802A26B8-802A29DC 29CFF8 0324+00 0/0 3/3 0/0 .text            calc_JAISound___8JAISoundFv */
-#ifdef NONMATCHING
 bool JAISound::calc_JAISound_() {
     status_.state.flags.flag2 = 1;
     if (isStopping() && JAISound_tryDie_()) {
@@ -349,16 +342,6 @@ bool JAISound::calc_JAISound_() {
 
     return playing;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool JAISound::calc_JAISound_() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISound/calc_JAISound___8JAISoundFv.s"
-}
-#pragma pop
-#endif
 
 /* 802A29DC-802A2AB0 29D31C 00D4+00 0/0 2/2 0/0 .text initTrack_JAISound___8JAISoundFP8JASTrack */
 void JAISound::initTrack_JAISound_(JASTrack* track) {

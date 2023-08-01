@@ -253,7 +253,7 @@ SECTION_SDATA2 static f32 lit_736 = 1.0f / 100.0f;
 
 /* 8029F304-8029F4CC 299C44 01C8+00 0/0 1/1 0/0 .text
  * JAISeCategoryMgr_mixOut___5JAISeFbRC14JASSoundParams16JAISoundActivity */
-// isStopping inline
+// Matches with literals
 #ifdef NONMATCHING
 void JAISe::JAISeCategoryMgr_mixOut_(bool param_0, JASSoundParams const& param_1, JAISoundActivity param_2) {
     mixOut_(param_1);
@@ -302,7 +302,7 @@ asm void JAISe::JAISeCategoryMgr_mixOut_(bool param_0, JASSoundParams const& par
 #endif
 
 /* 8029F4CC-8029F5C8 299E0C 00FC+00 0/0 1/1 0/0 .text            JAISeCategoryMgr_calc___5JAISeFv */
-// isStopping inline
+// Matches with literals
 #ifdef NONMATCHING
 void JAISe::JAISeCategoryMgr_calc_() {
     prepare_();

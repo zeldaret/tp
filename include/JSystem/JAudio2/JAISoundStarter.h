@@ -6,9 +6,9 @@
 
 struct JAISoundStarter : public JASGlobalInstance<JAISoundStarter> {
     /* 802A2F6C */ JAISoundStarter(bool);
-    /* 802A2FEC */ void startLevelSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
 
     virtual ~JAISoundStarter();
+    /* 802A2FEC */ bool startLevelSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
 };
 
 #endif /* JAISOUNDSTARTER_H */
