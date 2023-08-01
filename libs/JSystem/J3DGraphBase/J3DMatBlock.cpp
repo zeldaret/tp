@@ -2221,7 +2221,7 @@ asm void J3DPEBlockFull::setZMode(J3DZMode const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DPEBlockFull::getZMode() {
+asm J3DZMode* J3DPEBlockFull::getZMode() {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getZMode__14J3DPEBlockFullFv.s"
 }
@@ -2443,7 +2443,7 @@ asm void J3DPEBlockFogOff::setZMode(J3DZMode const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DPEBlockFogOff::getZMode() {
+asm J3DZMode* J3DPEBlockFogOff::getZMode() {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getZMode__16J3DPEBlockFogOffFv.s"
 }

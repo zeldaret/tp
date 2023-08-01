@@ -20,7 +20,7 @@ static int daKytag15_Draw(kytag15_class* i_this) {
     scale.z = 0.00524f;
 
     if (i_this->mpModel != NULL && i_this->field_0x590 > 0.0f) {
-        GXColorS10 color;
+        J3DGXColorS10 color;
         J3DMaterial* mat_p = i_this->mpModel->getModelData()->getMaterialNodePointer(0);
         color.b = 0;
         color.g = 0;
@@ -33,7 +33,7 @@ static int daKytag15_Draw(kytag15_class* i_this) {
 
         color.a = (color.a + 255.0f) * i_this->field_0x590 + -255.0f;
 
-        mat_p->setTevColor(0, (J3DGXColorS10*)&color);
+        mat_p->setTevColor(0, &color);
         i_this->mpModel->setBaseScale(scale);
         i_this->mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 

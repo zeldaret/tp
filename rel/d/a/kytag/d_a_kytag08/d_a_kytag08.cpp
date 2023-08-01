@@ -5,59 +5,13 @@
 
 #include "rel/d/a/kytag/d_a_kytag08/d_a_kytag08.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
 
 //
 // Types:
 //
-
-struct request_of_phase_process_class {};
-
-struct kytag08_class {};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dPa_levelEcallBack {};
-
-struct dKy_tevstr_c {};
-
-struct csXyz {};
-
-struct _GXColor {};
-
-struct cXyz {};
-
-struct dPa_control_c {
-    /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
-                            u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
-                            cXyz const*, f32);
-};
-
-struct Vec {};
-
-struct Z2EnvSeMgr {
-    /* 802C92EC */ void startFogWipeTrigger(Vec*);
-    /* 802C93A0 */ void setFogWipeWidth(f32);
-};
-
-struct JPABaseEmitter {
-    /* 8027EC60 */ void deleteAllParticle();
-};
-
-struct J3DModelData {};
-
-struct J3DFrameCtrl {
-    /* 803283FC */ void init(s16);
-    /* 8085B23C */ ~J3DFrameCtrl();
-};
 
 //
 // Forward References:
@@ -94,17 +48,10 @@ extern "C" void startFogWipeTrigger__10Z2EnvSeMgrFP3Vec();
 extern "C" void setFogWipeWidth__10Z2EnvSeMgrFf();
 extern "C" void __dl__FPv();
 extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void PSVECSquareDistance();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_mEnvSeMgr[780];
-extern "C" extern u32 __float_nan;
 
 //
 // Declarations:
@@ -422,7 +369,8 @@ static asm void daKytag08_Create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DFrameCtrl::~J3DFrameCtrl() {
+// asm J3DFrameCtrl::~J3DFrameCtrl() {
+extern "C" asm void __dt__12J3DFrameCtrlFv() {
     nofralloc
 #include "asm/rel/d/a/kytag/d_a_kytag08/d_a_kytag08/__dt__12J3DFrameCtrlFv.s"
 }

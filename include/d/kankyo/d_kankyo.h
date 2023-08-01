@@ -235,6 +235,7 @@ class stage_pselect_info_class;
 class stage_envr_info_class;
 class stage_vrbox_info_class;
 class stage_plight_info_class;
+class kytag08_class;
 
 struct dKy_pol_arg_struct {
     u8 data[8];
@@ -384,7 +385,7 @@ public:
     /* 0x1054 */ int field_0x1054;
     /* 0x1058 */ dKankyo_evil_Packet* mpEvilPacket;
     /* 0x105C */ mDoExt_btkAnm* field_0x105c;
-    /* 0x1060 */ fopAc_ac_c* field_0x1060;
+    /* 0x1060 */ kytag08_class* field_0x1060;
     /* 0x1064 */ Vec field_0x1064;
     /* 0x1070 */ cXyz mSunPos2;
     /* 0x107C */ cXyz mPLightNearPos;
@@ -403,20 +404,11 @@ public:
     /* 0x10FA */ s16 field_0x10fa;
     /* 0x10FC */ s16 field_0x10fc;
     /* 0x10FE */ s16 field_0x10fe;
-    /* 0x1100 */ _GXColorS10 mActorAmbience;
-    /* 0x1108 */ _GXColorS10 mTerrainAmbienceBG0;
-    /* 0x1110 */ s16 mTerrainAmbienceBG1_R;
-    /* 0x1112 */ s16 mTerrainAmbienceBG1_G;
-    /* 0x1114 */ s16 mTerrainAmbienceBG1_B;
-    /* 0x1116 */ s16 mWaterSurfaceAlphaA;
-    /* 0x1118 */ s16 mTerrainAmbienceBG2_R;
-    /* 0x111A */ s16 mTerrainAmbienceBG2_G;
-    /* 0x111C */ s16 mTerrainAmbienceBG2_B;
-    /* 0x111E */ s16 mAuxAlphaA2;
-    /* 0x1120 */ s16 mTerrainAmbienceBG3_R;
-    /* 0x1122 */ s16 mTerrainAmbienceBG3_G;
-    /* 0x1124 */ s16 mTerrainAmbienceBG3_B;
-    /* 0x1126 */ s16 mFakeFogA;
+    /* 0x1100 */ GXColorS10 mActorAmbience;
+    /* 0x1108 */ GXColorS10 mTerrainAmbienceBG0;
+    /* 0x1110 */ GXColorS10 mTerrainAmbienceBG1;
+    /* 0x1118 */ GXColorS10 mTerrainAmbienceBG2;
+    /* 0x1120 */ GXColorS10 mTerrainAmbienceBG3;
     /* 0x1128 */ GXColorS10 field_0x1128;
     /* 0x1130 */ u8 field_0x1130[0x28];
     /* 0x1158 */ GXColorS10 mFogColor;

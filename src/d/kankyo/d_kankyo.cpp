@@ -19,6 +19,7 @@
 #include "dolphin/types.h"
 #include "global.h"
 #include "m_Do/m_Do_audio.h"
+#include "rel/d/a/kytag/d_a_kytag08/d_a_kytag08.h"
 
 //
 // Types:
@@ -5027,19 +5028,21 @@ SECTION_DEAD static char const* const pad_80394F35 = "\0\0";
 #pragma pop
 
 /* 80450708-8045070C 000188 0004+00 1/1 0/0 0/0 .sdata           l_zmodeUpEnable */
-SECTION_SDATA static u32 l_zmodeUpEnable = 0x01030100;
+SECTION_SDATA static J3DZModeInfo l_zmodeUpEnable = {1, 3, 1};
 
 /* 8045070C-80450710 00018C 0004+00 1/1 0/0 0/0 .sdata           l_zmodeUpDisable */
-SECTION_SDATA static u32 l_zmodeUpDisable = 0x01030000;
+SECTION_SDATA static J3DZModeInfo l_zmodeUpDisable = {1, 3, 0};
 
 /* 80450710-80450718 000190 0008+00 1/1 0/0 0/0 .sdata           l_alphaCompInfoOPA */
-SECTION_SDATA static u8 l_alphaCompInfoOPA[8] = {
-    0x07, 0x00, 0x01, 0x07, 0x00, 0x00, 0x00, 0x00,
+SECTION_SDATA static J3DAlphaCompInfo l_alphaCompInfoOPA[2] = {
+    {0x07, 0x00, 0x01, 0x07},
+    {0x00, 0x00, 0x00, 0x00},
 };
 
 /* 80450718-80450720 000198 0008+00 1/1 0/0 0/0 .sdata           l_alphaCompInfo */
-SECTION_SDATA static u8 l_alphaCompInfo[8] = {
-    0x04, 0x80, 0x00, 0x03, 0xFF, 0x00, 0x00, 0x00,
+SECTION_SDATA static J3DAlphaCompInfo l_alphaCompInfo[2] = {
+    {0x04, 0x80, 0x00, 0x03},
+    {0xFF, 0x00, 0x00, 0x00},
 };
 
 /* 80453E10-80453E14 002410 0004+00 1/1 0/0 0/0 .sdata2          @10916 */
@@ -5098,6 +5101,338 @@ SECTION_SDATA2 static f32 lit_10932[1 + 1 /* padding */] = {
 };
 
 /* 801ACD24-801ADBBC 1A7664 0E98+00 0/0 0/0 7/7 .text            dKy_bg_MAxx_proc__FPv */
+// stack / couple instructions at the end
+#ifdef NONMATCHING
+void dKy_bg_MAxx_proc(void* param_0) {
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    s8 cam_id = dComIfGp_getWindow(0)->getCameraID();
+    camera_class* camera_p = dComIfGp_getCamera(cam_id);
+    fopAc_ac_c* player_p = dComIfGp_getPlayer(0);
+
+    if (param_0 != NULL && player_p != NULL) {
+        J3DModelData* modelData = static_cast<J3DModel*>(param_0)->getModelData();
+
+        for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
+            J3DMaterial* mat_p = modelData->getMaterialNodePointer(i);
+            const char* mat_name = modelData->getMaterialName()->getName(i);
+
+            if (mat_name[3] == 'M' && mat_name[4] == 'A') {
+                if (memcmp(&mat_name[3], "MA06", 4) == 0) {
+                    dKy_murky_set(mat_p);
+                }
+
+                if (memcmp(&mat_name[3], "MA03", 4) == 0 || memcmp(&mat_name[3], "MA09", 4) == 0 ||
+                    memcmp(&mat_name[3], "MA17", 4) == 0 || memcmp(&mat_name[3], "MA19", 4) == 0)
+                {
+                    if (mat_name[5] != '1') {
+                        dComIfGd_setListDarkBG();
+                    } else if (mat_name[6] == '9') {
+                        dComIfGd_setListInvisisble();
+                    }
+
+                    if (mat_p->getFog() != NULL) {
+                        J3DFogInfo* fog_info_p = mat_p->getFog()->getFogInfo();
+
+                        if (fog_info_p != NULL) {
+                            if (mat_name[5] == '0' && mat_name[6] == '9') {
+                                fog_info_p->field_0x0 = 6;
+
+                                J3DGXColor k_color;
+                                k_color.r = 245.0f - g_env_light.mWaterSurfaceShineRate * 45.0f;
+                                k_color.g = 245.0f - g_env_light.mWaterSurfaceShineRate * 45.0f;
+                                k_color.b = 245.0f - g_env_light.mWaterSurfaceShineRate * 35.0f;
+                                k_color.a = 255;
+                                mat_p->setTevKColor(1, &k_color);
+                            } else {
+                                fog_info_p->field_0x0 = 7;
+
+                                J3DGXColorS10 color;
+                                J3DGXColor k_color;
+                                color.r = g_env_light.mTerrainAmbienceBG2.r;
+                                color.g = g_env_light.mTerrainAmbienceBG2.g;
+                                color.b = g_env_light.mTerrainAmbienceBG2.b;
+                                color.a = g_env_light.mTerrainAmbienceBG2.a;
+
+                                k_color.a = g_env_light.mTerrainAmbienceBG1.a;
+                                k_color.r = 0;
+                                k_color.g = 0;
+                                k_color.b = 0;
+
+                                mat_p->setTevColor(1, &color);
+                                mat_p->setTevKColor(3, &k_color);
+                            }
+                        }
+                    }
+                }
+
+                if (memcmp(&mat_name[3], "MA07", 4) == 0) {
+                    J3DGXColorS10 color;
+                    color.r = (u8)(g_env_light.mThunderEff.field_0x8 * 100.0f);
+                    color.g = (u8)(g_env_light.mThunderEff.field_0x8 * 100.0f);
+                    color.b = (u8)(g_env_light.mThunderEff.field_0x8 * 100.0f);
+                    color.a = 255;
+
+                    mat_p->setTevColor(0, &color);
+                }
+
+                if (memcmp(&mat_name[3], "MA10", 4) == 0 || memcmp(&mat_name[3], "MA02", 4) == 0) {
+                    dComIfGd_setListInvisisble();
+
+                    if (mat_p->getTexGenBlock()->getTexMtx(0) != NULL) {
+                        J3DTexMtxInfo* tex_mtx_inf =
+                            &mat_p->getTexGenBlock()->getTexMtx(0)->getTexMtxInfo();
+                        if (tex_mtx_inf != NULL) {
+                            dKyw_get_wind_vec();
+
+                            Mtx sp170;
+                            if (mat_name[6] == '2') {
+                                C_MTXLightPerspective(sp170, dComIfGd_getView()->mFovy,
+                                                      camera_p->mAspect, 1.0f, 1.0f, -0.01f, 0.0f);
+                            } else {
+                                C_MTXLightPerspective(sp170, dComIfGd_getView()->mFovy,
+                                                      camera_p->mAspect, 0.49f, -0.49f, 0.5f, 0.5f);
+                            }
+                            tex_mtx_inf->setEffectMtx(sp170);
+                            modelData->simpleCalcMaterial(0, (MtxP)j3dDefaultMtx);
+                        }
+                    }
+                }
+
+                if (memcmp(&mat_name[3], "MA00", 4) == 0 || memcmp(&mat_name[3], "MA01", 4) == 0 ||
+                    memcmp(&mat_name[3], "MA04", 4) == 0 || memcmp(&mat_name[3], "MA16", 4) == 0)
+                {
+                    J3DGXColor k_color;
+                    k_color.r = g_env_light.mFogDensity;
+                    k_color.g = 0;
+                    k_color.b = 0;
+                    if (mat_name[6] == '1') {
+                        J3DPEBlock* peblock_p = mat_p->getPEBlock();
+                        mat_p->change();
+
+                        if (dKy_camera_water_in_status_check()) {
+                            k_color.a = 255;
+                            peblock_p->getAlphaComp()->setAlphaCompInfo(l_alphaCompInfo);
+                            peblock_p->getZMode()->setZModeInfo(l_zmodeUpEnable);
+                        } else {
+                            k_color.a = 0;
+                            peblock_p->getAlphaComp()->setAlphaCompInfo(l_alphaCompInfoOPA);
+                            peblock_p->getZMode()->setZModeInfo(l_zmodeUpDisable);
+                        }
+                    } else {
+                        k_color.a = 0;
+                    }
+
+                    mat_p->setTevKColor(1, &k_color);
+                }
+
+                if (memcmp(&mat_name[3], "MA11", 4) == 0) {
+                    if (dKy_darkworld_check()) {
+                        dComIfGd_setListDarkBG();
+
+                        J3DGXColorS10 color;
+                        color.r = 170;
+                        color.g = 160;
+                        color.b = 255;
+                        color.a = 255;
+                        mat_p->setTevColor(1, &color);
+
+                        color.r = 50;
+                        color.g = 20;
+                        color.b = 90;
+                        color.a = 255;
+                        mat_p->setTevColor(2, &color);
+                    } else {
+                        cXyz spA4;
+                        cXyz sp98;
+                        J3DGXColorS10 color;
+                        color.r = 120;
+                        color.g = 90;
+                        color.b = 180;
+                        color.a = 255;
+
+                        if (dComIfG_play_c::getLayerNo(0) == 1) {
+                            color.a = 0;
+                        }
+
+                        mat_p->setTevColor(1, &color);
+
+                        color.r = 40;
+                        color.g = 30;
+                        color.b = 65;
+                        color.a = 255;
+                        mat_p->setTevColor(2, &color);
+
+                        if (env_light->field_0x1060 != NULL) {
+                            sp98 = env_light->field_0x1060->field_0x5b8;
+                            f32 var_f29 = env_light->field_0x1060->field_0x5ac.x *
+                                          env_light->field_0x1060->field_0x5d0;
+                            if (var_f29 < 0.1f) {
+                                var_f29 = 0.1f;
+                            }
+
+                            if (mat_p->getTexGenBlock()->getTexMtx(0) != NULL) {
+                                J3DTexMtxInfo* tex_mtx_inf =
+                                    &mat_p->getTexGenBlock()->getTexMtx(0)->getTexMtxInfo();
+
+                                if (tex_mtx_inf != NULL) {
+                                    Mtx sp140;
+                                    Mtx sp110;
+                                    C_MTXLightPerspective(sp140, var_f29 * 2.8f, 1.0f, 0.5f, 0.5f,
+                                                          0.0f, 0.0f);
+                                    spA4.x = sp98.x;
+                                    spA4.y = 100.0f;
+                                    spA4.z = sp98.z;
+
+                                    cXyz sp8C(sp98.x, -1000.0f, sp98.z);
+                                    mDoMtx_lookAt(sp110, &sp8C, &spA4, 0);
+                                    cMtx_concat(sp140, sp110, sp110);
+                                    tex_mtx_inf->setEffectMtx(sp110);
+                                }
+                            }
+                        }
+                    }
+                } else if (memcmp(&mat_name[3], "MA20", 4) == 0) {
+                    cXyz sp80;
+                    if (mat_p->getFog() != NULL) {
+                        J3DFogInfo* fog_inf = mat_p->getFog()->getFogInfo();
+                        if (fog_inf != NULL) {
+                            fog_inf->field_0x0 = 7;
+                        }
+
+                        J3DGXColorS10 sp3C;
+                        sp3C.r = g_env_light.mTerrainAmbienceBG3.r;
+                        sp3C.g = g_env_light.mTerrainAmbienceBG3.g;
+                        sp3C.b = g_env_light.mTerrainAmbienceBG3.b;
+                        sp3C.a = 255;
+
+                        mat_p->setTevColor(1, &sp3C);
+
+                        if (mat_p->getTexGenBlock()->getTexMtx(2) != NULL) {
+                            J3DTexMtxInfo* tex_mtx_inf =
+                                &mat_p->getTexGenBlock()->getTexMtx(2)->getTexMtxInfo();
+
+                            if (tex_mtx_inf != NULL) {
+                                Mtx spE0;
+                                Mtx spB0;
+                                C_MTXLightPerspective(spE0, 170.0f, 1.0f, 1.5f, 1.5f, 0.0f, 0.0f);
+                                sp80.x = player_p->current.pos.x;
+                                sp80.y = -14770.0f;
+                                sp80.z = player_p->current.pos.z;
+
+                                cXyz sp74(player_p->current.pos.x, -14570.0f,
+                                          player_p->current.pos.z);
+                                mDoMtx_lookAt(spB0, &sp74, &sp80, 0);
+                                cMtx_concat(spE0, spB0, spB0);
+                                tex_mtx_inf->setEffectMtx(spB0);
+                            }
+                        }
+                    }
+                } else if (memcmp(&mat_name[3], "MA13", 4) == 0) {
+                    J3DGXColorS10 color;
+                    color.r = g_env_light.mTerrainAmbienceBG3.r;
+                    color.g = g_env_light.mTerrainAmbienceBG3.g;
+                    color.b = g_env_light.mTerrainAmbienceBG3.b;
+                    color.a = g_env_light.mTerrainAmbienceBG3.a;
+                    mat_p->setTevColor(1, &color);
+                } else if (memcmp(&mat_name[3], "MA14", 4) == 0) {
+                    J3DGXColorS10 color;
+                    J3DGXColor k_color;
+                    color.r = g_env_light.mFogColor.r;
+                    color.g = g_env_light.mFogColor.g;
+                    color.b = g_env_light.mFogColor.b;
+                    color.a = g_env_light.mFogColor.a;
+                    mat_p->setTevColor(1, &color);
+
+                    k_color.r = 0;
+                    k_color.g = 0;
+                    k_color.b = 0;
+                    k_color.a = g_env_light.mTerrainAmbienceBG3.a;
+                    mat_p->setTevKColor(3, &k_color);
+                } else if (memcmp(&mat_name[3], "MA16", 4) == 0) {
+                    J3DGXColorS10 color;
+                    J3DGXColor k_color;
+                    color.r = g_env_light.mTerrainAmbienceBG1.r;
+                    color.g = g_env_light.mTerrainAmbienceBG1.g;
+                    color.b = g_env_light.mTerrainAmbienceBG1.b;
+                    color.a = g_env_light.mTerrainAmbienceBG1.a;
+                    mat_p->setTevColor(1, &color);
+
+                    k_color.r = 0;
+                    k_color.g = 0;
+                    k_color.b = 0;
+                    k_color.a = g_env_light.mTerrainAmbienceBG3.a;
+                    mat_p->setTevKColor(3, &k_color);
+                }
+            }
+
+            if (memcmp(&mat_name[3], "Rainbow", 7) == 0) {
+                f32 temp_f31 = g_env_light.getDaytime();
+                cXyz sp68;
+                camera_class* temp_r16_2 = dComIfGp_getCamera(0);
+                J3DGXColor color;
+
+                cXyz sp5C;
+                sp5C.x = -5853.0f;
+                sp5C.y = temp_r16_2->mLookat.mEye.y;
+                sp5C.z = -879.0f;
+
+                f32 var_f1 = sp5C.abs(temp_r16_2->mLookat.mEye);
+                f32 var_f29_2 = -0.2f + (var_f1 / 4500.0f);
+                if (var_f29_2 > 1.0f) {
+                    var_f29_2 = 1.0f;
+                } else if (var_f29_2 < 0.0f) {
+                    var_f29_2 = 0.0f;
+                }
+
+                color.b = 255;
+                color.g = 255;
+                color.r = 255;
+                color.a = 255;
+
+                f32 var_f30 = 0.0f;
+                if (temp_f31 >= 270.0f) {
+                    if (temp_f31 < 285.0f) {
+                        var_f30 = (285.0f - temp_f31) / 15.0f;
+                    }
+                } else if (temp_f31 < 75.0f) {
+                    if (temp_f31 >= 60.0f) {
+                        var_f30 = 1.0f - ((75.0f - temp_f31) / 15.0f);
+                    }
+                } else {
+                    var_f30 = 1.0f;
+                }
+
+                if (g_env_light.mColpatWeather != 0) {
+                    var_f30 = 0.0f;
+                }
+
+                color.b = 255;
+                color.g = 255;
+                color.r = 255;
+
+                sp5C = temp_r16_2->mLookat.mCenter;
+                sp5C.y = temp_r16_2->mLookat.mEye.y;
+                dKyr_get_vectle_calc(&temp_r16_2->mLookat.mEye, &sp5C, &sp68);
+
+                f32 temp_f1_2 = cM3d_VectorProduct2d(0.0f, 0.0f, -0.81f, 0.583f, sp68.x, sp68.z);
+                f32 var_f0;
+                if (temp_f1_2 < 0.2f) {
+                    color.a = 0;
+                } else {
+                    if (temp_f1_2 > 0.6f) {
+                        var_f0 = 1.0f;
+                    } else {
+                        var_f0 = (temp_f1_2 - 0.2f) / 0.4f;
+                    }
+                    color.a = 1.0f * (var_f29_2 * (115.0f * var_f0 * var_f30));
+                }
+
+                mat_p->setTevKColor(3, &color);
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5106,6 +5441,7 @@ asm void dKy_bg_MAxx_proc(void* param_0) {
 #include "asm/d/kankyo/d_kankyo/dKy_bg_MAxx_proc__FPv.s"
 }
 #pragma pop
+#endif
 
 /* 801ADBBC-801ADCA4 1A84FC 00E8+00 2/1 0/0 0/0 .text            __dt__18dScnKy_env_light_cFv */
 #pragma push

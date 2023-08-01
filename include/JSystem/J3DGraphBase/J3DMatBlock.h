@@ -9,13 +9,11 @@
 #include "dolphin/types.h"
 #include "m_Do/m_Do_lib.h"
 
-struct J3DGXColorS10 {
+struct J3DGXColorS10 : public GXColorS10 {
     /* 8000E460 */ J3DGXColorS10() {}
-
-    _GXColorS10 mColor;
 };
 
-struct J3DGXColor : public _GXColor {
+struct J3DGXColor : public GXColor {
     /* 8000E538 */ J3DGXColor() {}
 };
 
@@ -542,10 +540,25 @@ private:
 
 extern const u16 j3dDefaultZModeID;
 
+inline u16 calcZModeID(u8 param_0, u8 param_1, u8 param_2) {
+    return param_0 * 0x10 + param_2 + param_1 * 2;
+}
+
+struct J3DZModeInfo {
+    /* 0x0 */ u8 field_0x0;
+    /* 0x1 */ u8 field_0x1;
+    /* 0x2 */ u8 field_0x2;
+};
+
 struct J3DZMode {
     J3DZMode() {
         mZModeID = j3dDefaultZModeID;
     }
+
+    void setZModeInfo(const J3DZModeInfo& info) {
+        mZModeID = calcZModeID(info.field_0x0, info.field_0x1, info.field_0x2);
+    }
+
     /* 0x0 */ u16 mZModeID;
 };
 
@@ -646,7 +659,7 @@ public:
     /* 8000DF4C */ virtual bool getBlend();
     /* 80317374 */ virtual void setZMode(J3DZMode const*);
     /* 8000E014 */ virtual void setZMode(J3DZMode);
-    /* 8000DF44 */ virtual bool getZMode();
+    /* 8000DF44 */ virtual J3DZMode* getZMode();
     /* 80317378 */ virtual void setZCompLoc(u8 const*);
     /* 8000E010 */ virtual void setZCompLoc(u8);
     /* 8000DF3C */ virtual bool getZCompLoc() const;
@@ -708,7 +721,7 @@ public:
     /* 80321A00 */ virtual bool getBlend();
     /* 80321A14 */ virtual void setZMode(J3DZMode const*);
     /* 80321A08 */ virtual void setZMode(J3DZMode);
-    /* 80321A20 */ virtual bool getZMode();
+    /* 80321A20 */ virtual J3DZMode* getZMode();
     /* 80321A30 */ virtual void setZCompLoc(u8 const*);
     /* 80321A28 */ virtual void setZCompLoc(u8);
     /* 80321A3C */ virtual bool getZCompLoc() const;
@@ -750,7 +763,7 @@ public:
     /* 80321B64 */ virtual bool getBlend();
     /* 80321B78 */ virtual void setZMode(J3DZMode const*);
     /* 80321B6C */ virtual void setZMode(J3DZMode);
-    /* 80321B84 */ virtual bool getZMode();
+    /* 80321B84 */ virtual J3DZMode* getZMode();
     /* 80321B94 */ virtual void setZCompLoc(u8 const*);
     /* 80321B8C */ virtual void setZCompLoc(u8);
     /* 80321BA0 */ virtual bool getZCompLoc() const;

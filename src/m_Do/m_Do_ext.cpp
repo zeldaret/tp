@@ -1604,8 +1604,8 @@ bool J3DPEBlock::getZCompLoc() const {
 }
 
 /* 8000DF44-8000DF4C 008884 0008+00 0/0 5/0 0/0 .text            getZMode__10J3DPEBlockFv */
-bool J3DPEBlock::getZMode() {
-    return false;
+J3DZMode* J3DPEBlock::getZMode() {
+    return NULL;
 }
 
 /* 8000DF4C-8000DF54 00888C 0008+00 0/0 5/0 0/0 .text            getBlend__10J3DPEBlockFv */
