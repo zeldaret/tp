@@ -4,43 +4,14 @@
 //
 
 #include "JSystem/JAudio2/JASBasicInst.h"
+#include "JSystem/JAudio2/JASCalc.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
 //
 // Types:
 //
-
-struct JKRHeap {};
-
-struct JASOscillator {
-    struct Data {};
-};
-
-struct JASInstParam {};
-
-struct JASInst {
-    /* 8029828C */ ~JASInst();
-};
-
-struct JASCalc {
-    /* 8028F480 */ void bzero(void*, u32);
-};
-
-struct JASBasicInst {
-    struct TKeymap {
-        /* 80298250 */ ~TKeymap();
-        /* 802982D4 */ TKeymap();
-    };
-
-    /* 80298014 */ JASBasicInst();
-    /* 8029807C */ ~JASBasicInst();
-    /* 802980F8 */ void getParam(int, int, JASInstParam*) const;
-    /* 8029819C */ void setKeyRegionCount(u32, JKRHeap*);
-    /* 8029821C */ void setOsc(int, JASOscillator::Data const*);
-    /* 8029822C */ void getKeyRegion(int);
-    /* 802982E0 */ void getType() const;
-};
 
 //
 // Forward References:
@@ -74,126 +45,93 @@ extern "C" void _restgpr_29();
 //
 
 /* ############################################################################################## */
-/* 803C76E8-803C76FC 024808 0014+00 2/2 0/0 0/0 .data            __vt__12JASBasicInst */
-SECTION_DATA extern void* __vt__12JASBasicInst[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12JASBasicInstFv,
-    (void*)getParam__12JASBasicInstCFiiP12JASInstParam,
-    (void*)getType__12JASBasicInstCFv,
-};
 
-/* 803C76FC-803C7710 02481C 0014+00 3/3 2/2 0/0 .data            __vt__7JASInst */
-SECTION_DATA extern void* __vt__7JASInst[5] = {
-    (void*)NULL /* RTTI */, (void*)NULL, (void*)__dt__7JASInstFv, (void*)NULL, (void*)NULL,
-};
-
-/* 80455640-80455648 003C40 0004+04 1/1 0/0 0/0 .sdata2          @187 */
-SECTION_SDATA2 static f32 lit_187[1 + 1 /* padding */] = {
-    1.0f,
-    /* padding */
-    0.0f,
-};
+// /* 803C76FC-803C7710 02481C 0014+00 3/3 2/2 0/0 .data            __vt__7JASInst */
+SECTION_DATA extern void* __vt__7JASInst[5];
 
 /* 80298014-8029807C 292954 0068+00 0/0 2/2 0/0 .text            __ct__12JASBasicInstFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JASBasicInst::JASBasicInst() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASBasicInst/__ct__12JASBasicInstFv.s"
+JASBasicInst::JASBasicInst() {
+    field_0x4 = 1.0;
+    field_0x8 = 1.0;
+    mKeymapCount = 0;
+    mKeymap = NULL;
+    JASCalc::bzero(field_0xc, sizeof(field_0xc));
 }
-#pragma pop
 
 /* 8029807C-802980F8 2929BC 007C+00 1/0 0/0 0/0 .text            __dt__12JASBasicInstFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JASBasicInst::~JASBasicInst() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASBasicInst/__dt__12JASBasicInstFv.s"
+JASBasicInst::~JASBasicInst() {
+    delete[] mKeymap;
 }
-#pragma pop
 
 /* 802980F8-8029819C 292A38 00A4+00 1/0 0/0 0/0 .text getParam__12JASBasicInstCFiiP12JASInstParam
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASBasicInst::getParam(int param_0, int param_1, JASInstParam* param_2) const {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASBasicInst/getParam__12JASBasicInstCFiiP12JASInstParam.s"
+bool JASBasicInst::getParam(int param_0, int param_1, JASInstParam* param_2) const {
+    param_2->field_0x1c = 0;
+    param_2->field_0x1e = 0;
+    param_2->field_0x14 = &field_0xc;
+    param_2->field_0x1d = 2;
+    param_2->field_0x0 = field_0x4;
+    param_2->field_0x8 = field_0x8;
+
+    TKeymap* keyMap = NULL;
+    for (int i = 0; i < mKeymapCount; i++) {
+        if (param_0 <= mKeymap[i].field_0x0) {
+            keyMap = &mKeymap[i];
+            break;
+        }
+    }
+
+    if (keyMap == NULL) {
+        return false;
+    }
+
+    param_2->field_0x0 *= keyMap->field_0x8;
+    param_2->field_0x8 *= keyMap->field_0xc;
+    param_2->field_0x1a = keyMap->field_0x4;
+    return true;
 }
-#pragma pop
 
 /* 8029819C-8029821C 292ADC 0080+00 0/0 2/2 0/0 .text
  * setKeyRegionCount__12JASBasicInstFUlP7JKRHeap                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASBasicInst::setKeyRegionCount(u32 param_0, JKRHeap* param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASBasicInst/setKeyRegionCount__12JASBasicInstFUlP7JKRHeap.s"
+void JASBasicInst::setKeyRegionCount(u32 count, JKRHeap* param_1) {
+    delete [] mKeymap;
+    mKeymap      = new (param_1, 0) TKeymap[count];
+	mKeymapCount = count;
 }
-#pragma pop
 
 /* 8029821C-8029822C 292B5C 0010+00 0/0 2/2 0/0 .text
  * setOsc__12JASBasicInstFiPCQ213JASOscillator4Data             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASBasicInst::setOsc(int param_0, JASOscillator::Data const* param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASBasicInst/setOsc__12JASBasicInstFiPCQ213JASOscillator4Data.s"
+void JASBasicInst::setOsc(int param_0, JASOscillator::Data const* param_1) {
+    field_0xc[param_0] = param_1;
 }
-#pragma pop
 
 /* 8029822C-80298250 292B6C 0024+00 0/0 2/2 0/0 .text            getKeyRegion__12JASBasicInstFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASBasicInst::getKeyRegion(int param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASBasicInst/getKeyRegion__12JASBasicInstFi.s"
+JASBasicInst::TKeymap* JASBasicInst::getKeyRegion(int param_0) {
+    if (param_0 >= mKeymapCount) {
+        return NULL;
+    }
+
+    return mKeymap + param_0;
 }
-#pragma pop
 
 /* 80298250-8029828C 292B90 003C+00 2/2 0/0 0/0 .text            __dt__Q212JASBasicInst7TKeymapFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JASBasicInst::TKeymap::~TKeymap() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASBasicInst/__dt__Q212JASBasicInst7TKeymapFv.s"
+JASBasicInst::TKeymap::~TKeymap() {
 }
-#pragma pop
 
 /* 8029828C-802982D4 292BCC 0048+00 1/0 0/0 0/0 .text            __dt__7JASInstFv */
+// If not here, default placement is after JASBasicInst::JASBasicInst
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JASInst::~JASInst() {
+//asm JASInst::~JASInst() {
+asm void __dt__7JASInstFv() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASBasicInst/__dt__7JASInstFv.s"
 }
 #pragma pop
 
 /* 802982D4-802982E0 292C14 000C+00 1/1 0/0 0/0 .text            __ct__Q212JASBasicInst7TKeymapFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JASBasicInst::TKeymap::TKeymap() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASBasicInst/__ct__Q212JASBasicInst7TKeymapFv.s"
+JASBasicInst::TKeymap::TKeymap() {
+    field_0x0 = -1;
 }
-#pragma pop
 
-/* 802982E0-802982EC 292C20 000C+00 1/0 0/0 0/0 .text            getType__12JASBasicInstCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASBasicInst::getType() const {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASBasicInst/getType__12JASBasicInstCFv.s"
-}
-#pragma pop
