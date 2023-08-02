@@ -105,7 +105,7 @@ int daObjOnsen_c::Draw() {
     dKy_bg_MAxx_proc(mpModel[0]);
     mDoExt_modelUpdateDL(mpModel[0]);
     mpBtk->entry(mpModel[1]->getModelData());
-    dComIfGd_setListInvisible();
+    dComIfGd_setListInvisisble();
     dKy_bg_MAxx_proc(mpModel[1]);
     mDoExt_modelUpdateDL(mpModel[1]);
     dComIfGd_setList();

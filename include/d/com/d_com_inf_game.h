@@ -1789,6 +1789,12 @@ inline u8 dComIfGp_att_getCatchChgItem() {
     return dComIfGp_getAttention().getCatchChgItem();
 }
 
+inline void dComIfGp_att_LookRequest(fopAc_ac_c* param_0, f32 i_horizontalDist, f32 i_upDist,
+                                     f32 i_downDist, s16 i_angle, int param_5) {
+    dComIfGp_getAttention().LookRequest(param_0, i_horizontalDist, i_upDist, i_downDist, i_angle,
+                                        param_5);
+}
+
 inline J2DGrafContext* dComIfGp_getCurrentGrafPort() {
     return g_dComIfG_gameInfo.play.getCurrentGrafPort();
 }
@@ -3386,7 +3392,7 @@ inline void dComIfGd_setListDark() {
     g_dComIfG_gameInfo.drawlist.setXluListDark();
 }
 
-inline void dComIfGd_setListInvisible() {
+inline void dComIfGd_setListInvisisble() {
     g_dComIfG_gameInfo.drawlist.setOpaListInvisible();
     g_dComIfG_gameInfo.drawlist.setXluListInvisible();
 }

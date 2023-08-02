@@ -712,6 +712,7 @@ public:
     void onForceAutoJump() { i_onEndResetFlg0(ERFLG0_FORCE_AUTO_JUMP); }
     void onNotAutoJump() { i_onEndResetFlg0(ERFLG0_NOT_AUTO_JUMP); }
     void onNotHang() { i_onEndResetFlg0(ERFLG0_NOT_HANG); }
+    void onFogFade() { i_onNoResetFlg2(FLG2_UNK_4000); }
     
     void offGoronSideMove() {
         if (i_checkGoronSideMove()) {

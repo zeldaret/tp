@@ -12,6 +12,7 @@
 
 class JPABaseEmitter;
 class cBgS_PolyInfo;
+class color_RGB_class;
 
 void dKankyo_DayProc();
 void dKy_set_nexttime(f32);
@@ -44,6 +45,14 @@ void dKy_setLight();
 cXyz dKy_plight_near_pos();
 void dKy_BossSpotLight_set(cXyz* param_0, f32 param_1, f32 param_2, f32 param_3, _GXColor* param_4,
                            f32 param_5, u8 param_6, u8 param_7);
+static void dKy_calc_color_set(_GXColorS10* param_0, color_RGB_class* param_1,
+                               color_RGB_class* param_2, color_RGB_class* param_3,
+                               color_RGB_class* param_4, f32 param_5, f32 param_6,
+                               _GXColorS10 param_7, f32 param_8);
+static void dKy_twilight_camelight_set();
+u8 dKy_shadow_mode_check(u8 mode);
+void dKy_shadow_mode_set(u8 mode);
+void dKy_shadow_mode_reset(u8 mode);
 
 struct LIGHT_INFLUENCE {
     /* 800CFC7C */ ~LIGHT_INFLUENCE() {}
@@ -95,6 +104,7 @@ struct SND_INFLUENCE {
 struct DALKMIST_INFLUENCE {
     /* 0x00 */ cXyz mPos;
     /* 0x0C */ f32 field_0xc;
+    /* 0x10 */ s8 mIndex;
 };
 
 struct DUNGEON_LIGHT {
@@ -203,7 +213,7 @@ public:
     /* 0x367 */ u8 field_0x367;
     /* 0x368 */ f32 mFogStartZ;
     /* 0x36C */ f32 mFogEndZ;
-    /* 0x370 */ f32 field_0x370;
+    /* 0x370 */ f32 mColpatBlend;
     /* 0x374 */ f32 field_0x374;
     /* 0x378 */ u16 field_0x378;
     /* 0x37A */ u8 field_0x37a;
@@ -229,6 +239,7 @@ class stage_pselect_info_class;
 class stage_envr_info_class;
 class stage_vrbox_info_class;
 class stage_plight_info_class;
+class kytag08_class;
 
 struct dKy_pol_arg_struct {
     u8 data[8];
@@ -378,10 +389,8 @@ public:
     /* 0x1054 */ int field_0x1054;
     /* 0x1058 */ dKankyo_evil_Packet* mpEvilPacket;
     /* 0x105C */ mDoExt_btkAnm* field_0x105c;
-    /* 0x1060 */ fopAc_ac_c* field_0x1060;
-    /* 0x1064 */ f32 field_0x1064;
-    /* 0x1068 */ f32 field_0x1068;
-    /* 0x106C */ f32 field_0x106c;
+    /* 0x1060 */ kytag08_class* field_0x1060;
+    /* 0x1064 */ Vec field_0x1064;
     /* 0x1070 */ cXyz mSunPos2;
     /* 0x107C */ cXyz mPLightNearPos;
     /* 0x1088 */ cXyz mSunPos;
@@ -394,28 +403,16 @@ public:
     /* 0x10D8 */ GXColorS10 mUnderCloudShadowColor;
     /* 0x10E0 */ GXColorS10 mCloudOuterHazeColor;
     /* 0x10E8 */ GXColorS10 mCloudInnerHazeColor;
-    /* 0x10F0 */ s16 field_0x10f0;
-    /* 0x10F2 */ s16 field_0x10f2;
-    /* 0x10F4 */ s16 field_0x10f4;
-    /* 0x10F6 */ s16 field_0x10f6;
+    /* 0x10F0 */ GXColorS10 field_0x10f0;
     /* 0x10F8 */ s16 field_0x10f8;
     /* 0x10FA */ s16 field_0x10fa;
     /* 0x10FC */ s16 field_0x10fc;
     /* 0x10FE */ s16 field_0x10fe;
-    /* 0x1100 */ _GXColorS10 mActorAmbience;
-    /* 0x1108 */ _GXColorS10 mTerrainAmbienceBG0;
-    /* 0x1110 */ s16 mTerrainAmbienceBG1_R;
-    /* 0x1112 */ s16 mTerrainAmbienceBG1_G;
-    /* 0x1114 */ s16 mTerrainAmbienceBG1_B;
-    /* 0x1116 */ s16 mWaterSurfaceAlphaA;
-    /* 0x1118 */ s16 mTerrainAmbienceBG2_R;
-    /* 0x111A */ s16 mTerrainAmbienceBG2_G;
-    /* 0x111C */ s16 mTerrainAmbienceBG2_B;
-    /* 0x111E */ s16 mAuxAlphaA2;
-    /* 0x1120 */ s16 mTerrainAmbienceBG3_R;
-    /* 0x1122 */ s16 mTerrainAmbienceBG3_G;
-    /* 0x1124 */ s16 mTerrainAmbienceBG3_B;
-    /* 0x1126 */ s16 mFakeFogA;
+    /* 0x1100 */ GXColorS10 mActorAmbience;
+    /* 0x1108 */ GXColorS10 mTerrainAmbienceBG0;
+    /* 0x1110 */ GXColorS10 mTerrainAmbienceBG1;
+    /* 0x1118 */ GXColorS10 mTerrainAmbienceBG2;
+    /* 0x1120 */ GXColorS10 mTerrainAmbienceBG3;
     /* 0x1128 */ GXColorS10 field_0x1128;
     /* 0x1130 */ u8 field_0x1130[0x28];
     /* 0x1158 */ GXColorS10 mFogColor;
@@ -493,7 +490,7 @@ public:
     /* 0x12B8 */ u8 field_0x12b8[4];
     /* 0x12BC */ u16 mFogAdjCenter;
     /* 0x12BE */ u16 mDate;
-    /* 0x12C0 */ u16 mActorLightEffect;
+    /* 0x12C0 */ s16 mActorLightEffect;
     /* 0x12C2 */ u8 mColPatPrev;
     /* 0x12C3 */ u8 mColPatCurr;
     /* 0x12C4 */ u8 mColpatPrevGather;

@@ -78,7 +78,7 @@ static int daVrbox_color_set(vrbox_class* i_this) {
     g_env_light.mVrboxInvisible = false;
 
     J3DModelData* modelData = i_this->mpSoraModel->getModelData();
-    GXColorS10 color;
+    J3DGXColorS10 color;
 
     J3DMaterial* material_0 = modelData->getMaterialNodePointer(0);
     if (material_0 != NULL) {
@@ -89,7 +89,7 @@ static int daVrbox_color_set(vrbox_class* i_this) {
         color.g = g_env_light.mSkyColor.g;
         color.b = g_env_light.mSkyColor.b;
         color.a = 255;
-        material_0->setTevColor(0, (J3DGXColorS10*)&color);
+        material_0->setTevColor(0, &color);
     }
 
     J3DMaterial* material_1 = modelData->getMaterialNodePointer(1);
@@ -101,7 +101,7 @@ static int daVrbox_color_set(vrbox_class* i_this) {
         color.g = g_env_light.mCloudInnerHazeColor.g;
         color.b = g_env_light.mCloudInnerHazeColor.b;
         color.a = g_env_light.mCloudInnerHazeColor.a;
-        material_1->setTevColor(0, (J3DGXColorS10*)&color);
+        material_1->setTevColor(0, &color);
     }
 
     return 1;

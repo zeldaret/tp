@@ -4,12 +4,15 @@
 //
 
 #include "d/kankyo/d_kankyo.h"
-#include "MSL_C/string.h"
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "MSL_C/string.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/kankyo/d_kankyo_data.h"
+#include "d/kankyo/d_kankyo_rain.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
@@ -17,6 +20,7 @@
 #include "dolphin/types.h"
 #include "global.h"
 #include "m_Do/m_Do_audio.h"
+#include "rel/d/a/kytag/d_a_kytag08/d_a_kytag08.h"
 
 //
 // Types:
@@ -374,7 +378,8 @@ static s32 dKy_sense_pat_get() {
 
         // Room is Lake
         if (dComIfGp_roomControl_getStayNo() == 0 && dComIfGs_isSaveSwitch(0x11) &&
-            !dComIfGs_isSaveSwitch(0x75)) {
+            !dComIfGs_isSaveSwitch(0x75))
+        {
             pat = 2;
         }
 
@@ -383,7 +388,8 @@ static s32 dKy_sense_pat_get() {
         }
     }
     // Stage is Zora's Domain
-    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP113")) {
+    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP113"))
+    {
         if (dComIfGs_sense_type_change_Get() > 0) {
             pat = 13;
         } else {
@@ -391,19 +397,23 @@ static s32 dKy_sense_pat_get() {
         }
     }
     // Stage is Faron Woods Cave
-    else if (!strcmp(dComIfGp_getStartStageName(), "D_SB10")) {
+    else if (!strcmp(dComIfGp_getStartStageName(), "D_SB10"))
+    {
         pat = 1;
     }
     // Stage is Zora's River
-    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP112")) {
+    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP112"))
+    {
         pat = 3;
     }
     // Stage is Upper Zora's River
-    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP126")) {
+    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP126"))
+    {
         pat = 6;
     }
     // Stage is Snowpeak
-    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP114")) {
+    else if (!strcmp(dComIfGp_getStartStageName(), "F_SP114"))
+    {
         pat = 4;
     }
     // Stage is Forest Temple or Goron Mines or Goron Stockcave or Grotto
@@ -414,20 +424,24 @@ static s32 dKy_sense_pat_get() {
              !memcmp(dComIfGp_getStartStageName(), "D_SB06", 6) ||
              !memcmp(dComIfGp_getStartStageName(), "D_SB07", 6) ||
              !memcmp(dComIfGp_getStartStageName(), "D_SB08", 6) ||
-             !memcmp(dComIfGp_getStartStageName(), "D_SB09", 6)) {
+             !memcmp(dComIfGp_getStartStageName(), "D_SB09", 6))
+    {
         pat = 5;
     }
     // Stage is Stallord arena or Argorok arena
     else if (!strcmp(dComIfGp_getStartStageName(), "D_MN10A") ||
-             !strcmp(dComIfGp_getStartStageName(), "D_MN07A")) {
+             !strcmp(dComIfGp_getStartStageName(), "D_MN07A"))
+    {
         pat = 14;
     }
     // Stage is Death Sword arena
-    else if (!strcmp(dComIfGp_getStartStageName(), "D_MN10B")) {
+    else if (!strcmp(dComIfGp_getStartStageName(), "D_MN10B"))
+    {
         pat = 15;
     }
     // Stage is Arbiter's Grounds
-    else if (!strcmp(dComIfGp_getStartStageName(), "D_MN10")) {
+    else if (!strcmp(dComIfGp_getStartStageName(), "D_MN10"))
+    {
         pat = 8;
         // Room is Central Poe room
         if (dComIfGp_roomControl_getStayNo() == 2) {
@@ -438,25 +452,29 @@ static s32 dKy_sense_pat_get() {
         }
     }
     // Stage is Blizzeta arena
-    else if (!strcmp(dComIfGp_getStartStageName(), "D_MN11A")) {
+    else if (!strcmp(dComIfGp_getStartStageName(), "D_MN11A"))
+    {
         pat = 4;
     }
     // Stage is Snowpeak Ruins or Darkhammer or Ice Puzzle cave
     else if (!strcmp(dComIfGp_getStartStageName(), "D_MN11") ||
              !strcmp(dComIfGp_getStartStageName(), "D_MN11B") ||
-             !memcmp(dComIfGp_getStartStageName(), "D_SB00", 6)) {
+             !memcmp(dComIfGp_getStartStageName(), "D_SB00", 6))
+    {
         pat = 7;
 
         // Stage is Snowpeak Ruins and Room is Courtyard
         if (!strcmp(dComIfGp_getStartStageName(), "D_MN11") &&
-            dComIfGp_roomControl_getStayNo() == 4) {
+            dComIfGp_roomControl_getStayNo() == 4)
+        {
             pat = 4;
         }
     }
     // Stage is Ganondorf Field or Ganondorf Defeated or Castle Town
     else if (!strcmp(dComIfGp_getStartStageName(), "D_MN09B") ||
              !strcmp(dComIfGp_getStartStageName(), "D_MN09C") ||
-             !strcmp(dComIfGp_getStartStageName(), "F_SP116")) {
+             !strcmp(dComIfGp_getStartStageName(), "F_SP116"))
+    {
         pat = 1;
     }
     // Stage is Temple of Time or City in the Sky or Hyrule Castle Throne Room or
@@ -468,20 +486,24 @@ static s32 dKy_sense_pat_get() {
              !strcmp(dComIfGp_getStartStageName(), "R_SP300") ||
              !strcmp(dComIfGp_getStartStageName(), "R_SP301") ||
              !strcmp(dComIfGp_getStartStageName(), "D_MN01") ||
-             !strcmp(dComIfGp_getStartStageName(), "D_MN01B")) {
+             !strcmp(dComIfGp_getStartStageName(), "D_MN01B"))
+    {
         pat = 8;
     }
     // Stage is Morpheel arena
-    else if (!strcmp(dComIfGp_getStartStageName(), "D_MN01A")) {
+    else if (!strcmp(dComIfGp_getStartStageName(), "D_MN01A"))
+    {
         pat = 14;
     }
     // Stage is Palace of Twilight
-    else if (!memcmp(dComIfGp_getStartStageName(), "D_MN08", 6)) {
+    else if (!memcmp(dComIfGp_getStartStageName(), "D_MN08", 6))
+    {
         pat = 9;
     }
     // Stage is Gorge Cave or Lake Hylia Cave
     else if (!memcmp(dComIfGp_getStartStageName(), "D_SB02", 6) ||
-             !memcmp(dComIfGp_getStartStageName(), "D_SB03", 6)) {
+             !memcmp(dComIfGp_getStartStageName(), "D_SB03", 6))
+    {
         pat = 10;
     }
     // Stage is Ordon Village Interiors or Faron Woods Interiors or
@@ -493,23 +515,27 @@ static s32 dKy_sense_pat_get() {
              !strcmp(dComIfGp_getStartStageName(), "R_SP116") ||
              !strcmp(dComIfGp_getStartStageName(), "R_SP161") ||
              !strcmp(dComIfGp_getStartStageName(), "F_SP110") ||
-             !strcmp(dComIfGp_getStartStageName(), "R_SP107")) {
+             !strcmp(dComIfGp_getStartStageName(), "R_SP107"))
+    {
         pat = 11;
 
         // Stage is Ordon Village and Room is Sera's Shop
         if (!strcmp(dComIfGp_getStartStageName(), "R_SP01") &&
-            dComIfGp_roomControl_getStayNo() == 1) {
+            dComIfGp_roomControl_getStayNo() == 1)
+        {
             pat = 12;
         }
     }
     // Stage is Hidden Village interiors or Castle Town interiors or Fishing Pond interiors
     else if (!strcmp(dComIfGp_getStartStageName(), "R_SP128") ||
              !strcmp(dComIfGp_getStartStageName(), "R_SP160") ||
-             !strcmp(dComIfGp_getStartStageName(), "R_SP127")) {
+             !strcmp(dComIfGp_getStartStageName(), "R_SP127"))
+    {
         pat = 12;
     }
     // Stage is Kakariko Village interiors
-    else if (!strcmp(dComIfGp_getStartStageName(), "R_SP109")) {
+    else if (!strcmp(dComIfGp_getStartStageName(), "R_SP109"))
+    {
         pat = 12;
 
         // Room is Sanctuary or Inn
@@ -707,6 +733,73 @@ SECTION_SDATA2 static f32 lit_4363 = 4750.0f;
 
 /* 8019CCDC-8019CE5C 19761C 0180+00 4/3 0/0 0/0 .text            dKy_WolfPowerup_FogNearFar__FPfPf
  */
+// matches with literals
+#ifdef NONMATCHING
+static void dKy_WolfPowerup_FogNearFar(f32* near_p, f32* far_p) {
+    switch (dKy_sense_pat_get()) {
+    case 1:
+        *near_p = 750.0f;
+        *far_p = 1750.0f;
+        break;
+    case 2:
+        *near_p = 5000.0f;
+        *far_p = 40000.0f;
+        break;
+    case 3:
+        *near_p = 4000.0f;
+        *far_p = 12000.0f;
+        break;
+    case 4:
+        *near_p = 500.0f;
+        *far_p = 2250.0f;
+        break;
+    case 5:
+        *near_p = 1000.0f;
+        *far_p = 1800.0f;
+        break;
+    case 6:
+        *near_p = 1000.0f;
+        *far_p = 2750.0f;
+        break;
+    case 7:
+        *near_p = 750.0f;
+        *far_p = 1750.0f;
+        break;
+    case 8:
+        *near_p = 750.0f;
+        *far_p = 1750.0f;
+        break;
+    case 9:
+        *near_p = 2000.0f;
+        *far_p = 3000.0f;
+        break;
+    case 10:
+        *near_p = 300.0f;
+        *far_p = 700.0f;
+        break;
+    case 11:
+        *near_p = 750.0f;
+        *far_p = 1500.0f;
+        break;
+    case 12:
+        *near_p = 500.0f;
+        *far_p = 1250.0f;
+        break;
+    case 13:
+        *near_p = 1000.0f;
+        *far_p = 80000.0f;
+        break;
+    case 14:
+        *near_p = 1250.0f;
+        *far_p = 3000.0f;
+        break;
+    case 15:
+        *near_p = 1000.0f;
+        *far_p = 4750.0f;
+        break;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -715,6 +808,7 @@ static asm void dKy_WolfPowerup_FogNearFar(f32* param_0, f32* param_1) {
 #include "asm/d/kankyo/d_kankyo/dKy_WolfPowerup_FogNearFar__FPfPf.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80453C0C-80453C10 00220C 0004+00 46/46 0/0 0/0 .sdata2          @4409 */
@@ -737,6 +831,16 @@ SECTION_SDATA2 static u8 lit_4412[8] = {
 };
 
 /* 8019CE5C-8019CFE4 19779C 0188+00 1/1 0/0 0/0 .text dKy_pos2_get_angle__FP4cXyzP4cXyzPsPs */
+// matches with literals
+#ifdef NONMATCHING
+static void dKy_pos2_get_angle(cXyz* param_0, cXyz* param_1, s16* param_2, s16* param_3) {
+    cXyz sp28;
+    sp28 = *param_0 - *param_1;
+
+    *param_2 = cM_atan2s(-sp28.y, sp28.absXZ());
+    *param_3 = cM_atan2s(sp28.x, sp28.z);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -745,6 +849,7 @@ static asm void dKy_pos2_get_angle(cXyz* param_0, cXyz* param_1, s16* param_2, s
 #include "asm/d/kankyo/d_kankyo/dKy_pos2_get_angle__FP4cXyzP4cXyzPsPs.s"
 }
 #pragma pop
+#endif
 
 /* 8042CA54-8042DD64 059774 1310+00 116/118 128/128 649/649 .bss             g_env_light */
 dScnKy_env_light_c g_env_light;
@@ -1075,7 +1180,7 @@ SECTION_SDATA2 static f32 lit_4852[1 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dKy_light_influence_id(cXyz param_0, int param_1) {
+static asm int dKy_light_influence_id(cXyz param_0, int param_1) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_light_influence_id__F4cXyzi.s"
 }
@@ -1086,7 +1191,7 @@ static asm void dKy_light_influence_id(cXyz param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dKy_eflight_influence_id(cXyz param_0, int param_1) {
+static asm int dKy_eflight_influence_id(cXyz param_0, int param_1) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_eflight_influence_id__F4cXyzi.s"
 }
@@ -1307,6 +1412,7 @@ SECTION_SDATA2 static f32 lit_5348 = 360.0f;
 SECTION_SDATA2 static f32 lit_5349 = 0.012000000104308128f;
 
 /* 8019EC98-8019F264 1995D8 05CC+00 1/1 0/0 0/0 .text            envcolor_init__Fv */
+// matches with literals
 #ifdef NONMATCHING
 static void envcolor_init() {
     stage_palette_info_class* palette = dComIfGp_getStagePaletteInfo();
@@ -1396,7 +1502,8 @@ static void envcolor_init() {
     g_env_light.field_0xecc = 0.0f;
 
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") ||
-        !strcmp(dComIfGp_getStartStageName(), "R_SP127")) {
+        !strcmp(dComIfGp_getStartStageName(), "R_SP127"))
+    {
         if (g_env_light.field_0x12cc >= 7) {
             g_env_light.mColpatWeather = 2;
         } else if (g_env_light.field_0x12cc != 0) {
@@ -1854,7 +1961,8 @@ void dScnKy_env_light_c::setDaytime() {
 
                     // Stage is Fishing Pond or Hena's Hut
                     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") ||
-                        !strcmp(dComIfGp_getStartStageName(), "R_SP127")) {
+                        !strcmp(dComIfGp_getStartStageName(), "R_SP127"))
+                    {
                         f32 current_time = mDaytime;
                         if (current_time >= 300.0f || current_time <= 60.0f) {
                             mDaytime += mTimeSpeed;
@@ -1904,14 +2012,9 @@ asm void dScnKy_env_light_c::setDaytime() {
 #endif
 
 /* 8019F780-8019F788 19A0C0 0008+00 1/1 0/0 0/0 .text GetTimePass__20dStage_roomControl_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 dStage_roomControl_c::GetTimePass() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/GetTimePass__20dStage_roomControl_cFv.s"
+s8 dStage_roomControl_c::GetTimePass() {
+    return m_time_pass;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -1938,8 +2041,83 @@ SECTION_SDATA2 static f32 lit_5617 = 0.01745329238474369f;
 /* 80453CDC-80453CE0 0022DC 0004+00 1/1 0/0 0/0 .sdata2          @5618 */
 SECTION_SDATA2 static f32 lit_5618 = -48000.0f;
 
+// setSunpos calls these functions as inlines somehow
+// these need to be moved to MSL_C once an appropriate solution is found
+inline float sinf(float x) {
+    return sin(x);
+}
+
+inline float cosf(float x) {
+    return cos(x);
+}
+
 /* 8019F788-8019FA08 19A0C8 0280+00 1/1 0/0 0/0 .text            setSunpos__18dScnKy_env_light_cFv
  */
+// matches with literals
+#ifdef NONMATCHING
+void dScnKy_env_light_c::setSunpos() {
+    camera_class* camera_p = dComIfGp_getCamera(0);
+    cXyz sp8;
+
+    if (camera_p != NULL && strcmp(dComIfGp_getStartStageName(), "F_SP200") != 0) {
+        f32 var_f3 = g_env_light.mDaytime;
+        f32 var_f31;
+        f32 var_f3_2;
+        f32 var_f30;
+
+        if (var_f3 >= 90.0f && var_f3 <= 270.0f) {
+            f32 percent = get_parcent(270.0f, 90.0f, var_f3);
+            var_f31 = (percent * 150.0f) + 105.0f;
+        } else {
+            if (var_f3 < 90.0f) {
+                var_f3 += 360.0f;
+            }
+
+            f32 percent = get_parcent(450.0f, 270.0f, var_f3);
+            var_f31 = (percent * 210.0f) + 255.0f;
+            if (var_f31 > 360.0f) {
+                var_f31 -= 360.0f;
+            }
+        }
+
+        var_f3_2 = 180.0f + g_env_light.mDaytime;
+        if (var_f3_2 >= 360.0f) {
+            var_f3_2 -= 360.0f;
+        }
+
+        if (var_f3_2 >= 90.0f && var_f3_2 <= 270.0f) {
+            f32 percent = get_parcent(270.0f, 90.0f, var_f3_2);
+            var_f30 = (percent * 150.0f) + 105.0f;
+        } else {
+            if (var_f3_2 < 90.0f) {
+                var_f3_2 += 360.0f;
+            }
+
+            f32 percent = get_parcent(450.0f, 270.0f, var_f3_2);
+            var_f30 = (percent * 210.0f) + 255.0f;
+            if (var_f30 > 360.0f) {
+                var_f30 -= 360.0f;
+            }
+        }
+
+        sp8.x = sinf(var_f31 * 0.01745329238474369f) * 80000.0f;
+        sp8.y = cosf(var_f31 * 0.01745329238474369f) * 80000.0f;
+        sp8.z = cosf(var_f31 * 0.01745329238474369f) * -48000.0f;
+
+        mSunPos.x = camera_p->mLookat.mEye.x + sp8.x;
+        mSunPos.y = camera_p->mLookat.mEye.y - sp8.y;
+        mSunPos.z = camera_p->mLookat.mEye.z + sp8.z;
+
+        sp8.x = sinf(var_f30 * 0.01745329238474369f) * 80000.0f;
+        sp8.y = cosf(var_f30 * 0.01745329238474369f) * 80000.0f;
+        sp8.z = cosf(var_f30 * 0.01745329238474369f) * -48000.0f;
+
+        mMoonPos.x = sp8.x;
+        mMoonPos.y = -sp8.y;
+        mMoonPos.z = sp8.z;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1948,6 +2126,7 @@ asm void dScnKy_env_light_c::setSunpos() {
 #include "asm/d/kankyo/d_kankyo/setSunpos__18dScnKy_env_light_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8019FA08-8019FA10 19A348 0008+00 3/3 5/5 1/1 .text            getDaytime__18dScnKy_env_light_cFv
  */
@@ -1961,11 +2140,11 @@ s32 dKy_getdaytime_hour() {
 }
 
 /* 8019FA3C-8019FAB8 19A37C 007C+00 1/1 1/1 26/26 .text            dKy_getdaytime_minute__Fv */
-// just small regalloc
+// matches with literals
 #ifdef NONMATCHING
 s32 dKy_getdaytime_minute() {
-    f32 tmp = ((s32)(dComIfGs_getTime() * lit_4850) % 15000000);
-    return tmp / lit_4850 / lit_5347 * lit_5554;
+    f32 tmp = ((s32)(dComIfGs_getTime() * 1000000.0f) % 15000000);
+    return tmp / 1000000.0f / 15.0f * 60.0f;
 }
 #else
 #pragma push
@@ -1995,14 +2174,21 @@ s32 dKy_getDarktime_hour() {
 }
 
 /* 8019FB30-8019FBBC 19A470 008C+00 0/0 0/0 19/19 .text            dKy_getDarktime_minute__Fv */
+#ifdef NONMATCHING
+s32 dKy_getDarktime_minute() {
+    f32 tmp = ((s32)(g_env_light.getDarkDaytime() * 1000000.0f) % 15000000);
+    return tmp / 1000000.0f / 15.0f * 60.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dKy_getDarktime_minute() {
+asm s32 dKy_getDarktime_minute() {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_getDarktime_minute__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 8019FBBC-8019FBCC 19A4FC 0010+00 0/0 0/0 8/8 .text            dKy_getDarktime_week__Fv */
 s32 dKy_getDarktime_week() {
@@ -2030,6 +2216,278 @@ SECTION_SDATA2 static f32 lit_5840 = 1.0f / 15.0f;
 
 /* 8019FBD4-801A0340 19A514 076C+00 5/3 0/0 0/0 .text
  * setLight_palno_get__18dScnKy_env_light_cFPUcPUcPUcPUcPUcPUcPUcPUcPfPiPiPfPUc */
+// lots of issues
+#ifdef NONMATCHING
+void dScnKy_env_light_c::setLight_palno_get(u8* param_0, u8* param_1, u8* param_2, u8* param_3,
+                                            u8* param_4, u8* param_5, u8* param_6, u8* param_7,
+                                            f32* param_8, int* param_9, int* param_10,
+                                            f32* param_11, u8* param_12) {
+    u8 uvar3 = 0;
+
+    if (*param_12 != 0) {
+        *param_12 += 1;
+
+        if (*param_12 > 20) {
+            *param_12 = 0;
+        }
+
+        if (g_env_light.mColPatMode == 0 && g_env_light.mColPatModeGather == 0) {
+            *param_11 = g_env_light.mColPatBlend;
+
+            if (*param_11 >= 1.0f) {
+                *param_0 = *param_1;
+                *param_2 = *param_3;
+            }
+        }
+    }
+
+    for (int i = 0; i < 11; i++) {
+        // dKyd_lightSchejule* schedule_p = &mpSchedule[i];
+
+        if (mDaytime >= mpSchedule->startTime && mDaytime <= mpSchedule->endTime) {
+            *param_9 = mpSchedule->startTimeLight;
+            *param_10 = mpSchedule->endTimeLight;
+            *param_8 = get_parcent(mpSchedule->endTime, mpSchedule->startTime, mDaytime);
+
+            stage_envr_info_class* envr_p = &g_env_light.mpDmEnvr[*param_0];
+            u32 tmp = *param_2;
+            switch (tmp) {
+            case 0:
+                uvar3 = envr_p->field_0x0[0];
+                break;
+            case 1:
+                uvar3 = envr_p->field_0x0[1];
+                break;
+            case 2:
+                uvar3 = envr_p->field_0x0[2];
+                break;
+            case 3:
+                uvar3 = envr_p->field_0x0[3];
+                break;
+            case 4:
+                uvar3 = envr_p->field_0x0[4];
+                break;
+            case 5:
+                uvar3 = envr_p->field_0x0[5];
+                break;
+            case 6:
+                uvar3 = envr_p->field_0x0[6];
+                break;
+            case 7:
+                uvar3 = envr_p->field_0x0[7];
+                break;
+            default:
+                if (tmp > 7 && tmp < 64) {
+                    uvar3 = envr_p->field_0x0[tmp];
+                }
+                break;
+            }
+
+            if (g_env_light.mCameraInWater != 0 &&
+                strcmp(dComIfGp_getStartStageName(), "D_MN08D") != 0 &&
+                strcmp(dComIfGp_getStartStageName(), "D_MN01A") != 0)
+            {
+                if (g_env_light.mColPatCurr == 0) {
+                    uvar3 = envr_p->field_0x0[8];
+                } else {
+                    uvar3 = envr_p->field_0x0[9];
+                }
+            } else if (strcmp(dComIfGp_getStartStageName(), "R_SP127") == 0) {
+                camera_class* camera_p = dComIfGp_getCamera(0);
+
+                if (camera_p != NULL && camera_p->mLookat.mEye.y < 0.0f) {
+                    uvar3 = envr_p->field_0x0[10];
+                }
+            }
+
+            if (uvar3 > 250) {
+                uvar3 = 0;
+            }
+
+            stage_pselect_info_class* pselect_p = &g_env_light.mpDmPselect[uvar3];
+            switch (*param_9) {
+            case 0:
+                *param_4 = pselect_p->mPalIdx[0];
+                break;
+            case 1:
+                *param_4 = pselect_p->mPalIdx[1];
+                break;
+            case 2:
+                *param_4 = pselect_p->mPalIdx[2];
+                break;
+            case 3:
+                *param_4 = pselect_p->mPalIdx[3];
+                break;
+            case 4:
+                *param_4 = pselect_p->mPalIdx[4];
+                break;
+            case 5:
+                *param_4 = pselect_p->mPalIdx[5];
+                break;
+            }
+
+            switch (*param_10) {
+            case 0:
+                *param_5 = pselect_p->mPalIdx[0];
+                break;
+            case 1:
+                *param_5 = pselect_p->mPalIdx[1];
+                break;
+            case 2:
+                *param_5 = pselect_p->mPalIdx[2];
+                break;
+            case 3:
+                *param_5 = pselect_p->mPalIdx[3];
+                break;
+            case 4:
+                *param_5 = pselect_p->mPalIdx[4];
+                break;
+            case 5:
+                *param_5 = pselect_p->mPalIdx[5];
+                break;
+            }
+
+            stage_envr_info_class* envr_p2 = &g_env_light.mpDmEnvr[*param_1];
+            u32 tmp_2 = *param_2;
+            switch (tmp_2) {
+            case 0:
+                uvar3 = envr_p2->field_0x0[0];
+                break;
+            case 1:
+                uvar3 = envr_p2->field_0x0[1];
+                break;
+            case 2:
+                uvar3 = envr_p2->field_0x0[2];
+                break;
+            case 3:
+                uvar3 = envr_p2->field_0x0[3];
+                break;
+            case 4:
+                uvar3 = envr_p2->field_0x0[4];
+                break;
+            case 5:
+                uvar3 = envr_p2->field_0x0[5];
+                break;
+            case 6:
+                uvar3 = envr_p2->field_0x0[6];
+                break;
+            case 7:
+                uvar3 = envr_p2->field_0x0[7];
+                break;
+            default:
+                if (tmp_2 > 7 && tmp_2 < 64) {
+                    uvar3 = envr_p2->field_0x0[tmp_2];
+                }
+                break;
+            }
+
+            if (uvar3 > 250) {
+                uvar3 = 0;
+            }
+
+            stage_pselect_info_class* pselect_p2 = &g_env_light.mpDmPselect[uvar3];
+            if (*param_0 != *param_1 || *param_2 != tmp_2) {
+                if (pselect_p2->mChangeRate < 0.033333335f) {
+                    pselect_p2->mChangeRate = 0.033333335f;
+                }
+
+                if (g_env_light.mColPatMode == 0) {
+                    if (pselect_p2->mChangeRate > 0.0f) {
+                        *param_11 += 0.033333335f / pselect_p2->mChangeRate;
+                    }
+
+                    if (strcmp(dComIfGp_getStartStageName(), "F_SP121") == 0 &&
+                        *param_2 == *param_3)
+                    {
+                        *param_11 += 0.06666667f;
+                    }
+
+                    if (*param_11 >= 1.0f) {
+                        *param_0 = *param_1;
+                        *param_2 = *param_3;
+                        *param_11 = 1.0f;
+                    }
+                }
+            }
+
+            if (g_env_light.mCameraInWater != 0 &&
+                strcmp(dComIfGp_getStartStageName(), "D_MN08D") != 0 &&
+                strcmp(dComIfGp_getStartStageName(), "D_MN01A") != 0)
+            {
+                if (g_env_light.mColPatCurr == 0) {
+                    uvar3 = envr_p2->field_0x0[8];
+                } else {
+                    uvar3 = envr_p2->field_0x0[9];
+                }
+            } else if (strcmp(dComIfGp_getStartStageName(), "R_SP127") == 0) {
+                camera_class* camera_p = dComIfGp_getCamera(0);
+
+                if (camera_p != NULL && camera_p->mLookat.mEye.y < 0.0f) {
+                    uvar3 = envr_p2->field_0x0[10];
+                }
+            }
+
+            switch (*param_9) {
+            case 0:
+                *param_6 = pselect_p2->mPalIdx[0];
+                break;
+            case 1:
+                *param_6 = pselect_p2->mPalIdx[1];
+                break;
+            case 2:
+                *param_6 = pselect_p2->mPalIdx[2];
+                break;
+            case 3:
+                *param_6 = pselect_p2->mPalIdx[3];
+                break;
+            case 4:
+                *param_6 = pselect_p2->mPalIdx[4];
+                break;
+            case 5:
+                *param_6 = pselect_p2->mPalIdx[5];
+                break;
+            }
+
+            switch (*param_10) {
+            case 0:
+                *param_7 = pselect_p->mPalIdx[0];
+                break;
+            case 1:
+                *param_7 = pselect_p->mPalIdx[1];
+                break;
+            case 2:
+                *param_7 = pselect_p->mPalIdx[2];
+                break;
+            case 3:
+                *param_7 = pselect_p->mPalIdx[3];
+                break;
+            case 4:
+                *param_7 = pselect_p->mPalIdx[4];
+                break;
+            case 5:
+                *param_7 = pselect_p->mPalIdx[5];
+                break;
+            }
+        }
+    }
+
+    if (*param_4 > 250) {
+        *param_4 = 0;
+    }
+
+    if (*param_6 > 250) {
+        *param_6 = 0;
+    }
+
+    if (*param_5 > 250) {
+        *param_5 = 0;
+    }
+
+    if (*param_7 > 250) {
+        *param_7 = 0;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2041,6 +2499,7 @@ asm void dScnKy_env_light_c::setLight_palno_get(u8* param_0, u8* param_1, u8* pa
 #include "asm/d/kankyo/d_kankyo/setLight_palno_get__18dScnKy_env_light_cFPUcPUcPUcPUcPUcPUcPUcPUcPfPiPiPfPUc.s"
 }
 #pragma pop
+#endif
 
 /* 801A0340-801A040C 19AC80 00CC+00 3/3 0/0 0/0 .text
  * dKy_calc_color_set__FP11_GXColorS10P15color_RGB_classP15color_RGB_classP15color_RGB_classP15color_RGB_classff11_GXColorS10f
@@ -2118,6 +2577,66 @@ asm void dScnKy_env_light_c::setLight_bg(dKy_tevstr_c* param_0, _GXColorS10* par
 #include "asm/d/kankyo/d_kankyo/setLight_bg__18dScnKy_env_light_cFP12dKy_tevstr_cP11_GXColorS10P11_GXColorS10PfPf.s"
 }
 #pragma pop
+
+/* void dScnKy_env_light_c::setLight_bg(dKy_tevstr_c* i_tevstr, _GXColorS10* param_1,
+                                     _GXColorS10* param_2, f32* param_3, f32* param_4) {
+    i_tevstr->mColpatPrev = g_env_light.mColPatPrev;
+    i_tevstr->mColpatCurr = g_env_light.mColPatCurr;
+
+    if (i_tevstr->mColpatPrev != i_tevstr->mColpatCurr) {
+        i_tevstr->mColpatBlend = g_env_light.mColPatBlend;
+    }
+
+    u8 sp9D;
+    u8 sp9F;
+    u8 sp9E;
+    u8 spA0;
+    f32 sp8C;
+    int sp90;
+    int sp94;
+    setLight_palno_get(&i_tevstr->mEnvrIdxPrev, &i_tevstr->mEnvrIdxCurr, &i_tevstr->mColpatPrev,
+                       &i_tevstr->mColpatCurr, &sp9D, &sp9F, &sp9E, &spA0, &sp8C, &sp90, &sp94,
+                       &i_tevstr->mColpatBlend, &i_tevstr->mInitTimer);
+
+    stage_palette_info_class* palette_p = g_env_light.mpDmPalet;
+
+    if (sp9D == 0xFF) {
+        for (int i = 0; i < 4; i++) {
+            param_1[i].r = 255;
+            param_1[i].g = 0;
+            param_1[i].b = 0;
+        }
+    } else {
+        for (int i = 0; i < 4; i++) {
+            GXColorS10 sp78;
+            sp78.r = mBgAddColAmb.r;
+            sp78.b = mBgAddColAmb.b;
+
+            dKy_calc_color_set(&param_1, &palette_p[sp9D].mK0Color[i], &palette_p[sp9E].mK0Color[i],
+                               &palette_p[sp9F].mK0Color[i], &palette_p[spA0].mK0Color[i], sp8C,
+                               i_tevstr->mColpatBlend, sp78, g_env_light.mColBgColRatio);
+        }
+
+        if (daPy_py_c::checkNowWolfPowerUp()) {
+            dKy_WolfPowerup_BgAmbCol(param_1);
+        }
+
+        param_1[3].a = 255;
+        param_1[2].a = 255;
+        param_1[1].a = 255;
+        param_1[0].a = 255;
+
+        for (int i = 0; i < 4; i++) {
+            GXColorS10 sp80;
+            sp80.r = mBgAddColAmb.r;
+            sp80.b = mBgAddColAmb.b;
+
+            dKy_calc_color_set(&param_1, &palette_p[sp9D].mK0Color[i], &palette_p[sp9E].mK0Color[i],
+                               &palette_p[sp9F].mK0Color[i], &palette_p[spA0].mK0Color[i], sp8C,
+                               i_tevstr->mColpatBlend, sp80, g_env_light.mColBgColRatio);
+        }
+    }
+} */
 
 /* 801A16C0-801A1D64 19C000 06A4+00 1/1 0/0 0/0 .text
  * setLight_actor__18dScnKy_env_light_cFP12dKy_tevstr_cP11_GXColorS10PfPf */
@@ -2283,6 +2802,427 @@ SECTION_SDATA2 static f32 lit_7027 = 6.0f / 5.0f;
 
 /* 801A37C4-801A441C 19E104 0C58+00 2/1 14/14 515/515 .text
  * settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c */
+// almost, just some regalloc + literals
+#ifdef NONMATCHING
+void dScnKy_env_light_c::settingTevStruct(int i_tevstrType, cXyz* param_1, dKy_tevstr_c* i_tevstr) {
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    u8 var_r30 = i_tevstr->mInitTimer;
+
+    GXColorS10 sp30;
+    GXColorS10 K0_color;
+
+    f32 fog_z_start;
+    f32 fog_z_end;
+
+    cXyz spA4;
+    if (i_tevstr->mRoomNo < 0) {
+        i_tevstr->mRoomNo = dComIfGp_roomControl_getStayNo();
+    }
+
+    if (param_1 != NULL) {
+        spA4 = *param_1;
+    } else {
+        spA4.set(0.0f, 0.0f, 0.0f);
+    }
+
+    if (i_tevstr != NULL && g_env_light.mActorLightEffect != 100) {
+        i_tevstr->field_0x374 = g_env_light.mActorLightEffect / 100.0f;
+    }
+
+    i_tevstr->field_0x37a = i_tevstrType;
+
+    if (i_tevstr->mInitType != 123 && i_tevstr->mInitType != 124) {
+        dKy_tevstr_init(i_tevstr, dComIfGp_roomControl_getStayNo(), 0xFF);
+    }
+
+    i_tevstr->mInitType = 124;
+    mActorAmbience.a = 255;
+
+    if (i_tevstrType == 14) {
+        camera_class* temp_r30 = dComIfGp_getCamera(0);
+        cXyz sp98;
+        i_tevstr->mLightMode = 0;
+
+        if (i_tevstr->mRoomNo >= 0x80) {
+            i_tevstr->mEnvrIdxCurr = 0;
+        } else {
+            i_tevstr->mEnvrIdxCurr = i_tevstr->mRoomNo;
+        }
+
+        if (!dKy_darkworld_check()) {
+            field_0x10f0.r = 24;
+            field_0x10f0.g = 24;
+            field_0x10f0.b = 24;
+            field_0x10f0.a = 255;
+        } else {
+            field_0x10f0.r = 55;
+            field_0x10f0.g = 55;
+            field_0x10f0.b = 77;
+        }
+
+        K0_color.r = 255;
+        K0_color.g = 255;
+        K0_color.b = 255;
+
+        fog_z_start = 30000.0f;
+        fog_z_end = 30000.0f;
+        dKyr_get_vectle_calc(&spA4, &temp_r30->mLookat.mEye, &sp98);
+
+        for (int i = 0; i < 6; i++) {
+            J3DLightInfo& light_info = i_tevstr->field_0x074[i].getLightInfo();
+
+            if (i == 0) {
+                if (!dKy_darkworld_check()) {
+                    light_info.mColor.r = 126;
+                    light_info.mColor.g = 110;
+                    light_info.mColor.b = 89;
+                } else {
+                    light_info.mColor.r = 0;
+                    light_info.mColor.g = 0;
+                    light_info.mColor.b = 0;
+                }
+            } else if (i == 1) {
+                if (!dKy_darkworld_check()) {
+                    light_info.mColor.r = 24;
+                    light_info.mColor.g = 41;
+                    light_info.mColor.b = 50;
+                } else {
+                    light_info.mColor.r = 0;
+                    light_info.mColor.g = 0;
+                    light_info.mColor.b = 0;
+                }
+            } else {
+                light_info.mColor.r = 0;
+                light_info.mColor.g = 0;
+                light_info.mColor.b = 0;
+            }
+
+            dKy_GXInitLightSpot(&light_info, 90.0f, 0);
+            dKy_GXInitLightDistAttn(&light_info, 100000.0f, 0.99999f, 3);
+
+            light_info.mLightPosition.x = 0.0f;
+            light_info.mLightPosition.y = 0.0f;
+            light_info.mLightPosition.z = 0.0f;
+
+            if (i == 0) {
+                light_info.mLightPosition.x = 500.0f;
+                light_info.mLightPosition.y = 500.0f;
+                light_info.mLightPosition.z = 500.0f;
+            } else {
+                light_info.mLightPosition.x = -500.0f;
+                light_info.mLightPosition.y = -500.0f;
+                light_info.mLightPosition.z = -500.0f;
+            }
+
+            dKy_lightdir_set(0.0f, 0.0f, &light_info.mLightDirection);
+
+            light_info.mLightDirection.x = -light_info.mLightDirection.x;
+            light_info.mLightDirection.y = -light_info.mLightDirection.y;
+            light_info.mLightDirection.z = -light_info.mLightDirection.z;
+        }
+
+        MtxP view_mtx = j3dSys.getViewMtx();
+        Vec sp8C;
+        Vec sp80;
+
+        sp80.x = temp_r30->mLookat.mEye.x;
+        sp80.y = temp_r30->mLookat.mEye.y;
+        sp80.z = temp_r30->mLookat.mEye.z;
+        cMtx_multVec(view_mtx, &sp80, &sp8C);
+
+        J3DLightInfo& light_info = i_tevstr->mLightObj.getLightInfo();
+        light_info.mLightPosition = sp8C;
+        i_tevstr->field_0x32c = sp80;
+        i_tevstr->mLightPosWorld = sp80;
+        light_info.mLightDirection = g_env_light.field_0x1064;
+
+        light_info.mColor.r = 0;
+        light_info.mColor.g = 0;
+        light_info.mColor.b = 0;
+
+        light_info.mCosAtten.x = 1.0f;
+        light_info.mCosAtten.y = 0.0f;
+        light_info.mCosAtten.z = 0.0f;
+
+        light_info.mDistAtten.x = 1.0f;
+        light_info.mDistAtten.y = 0.0f;
+        light_info.mDistAtten.z = 0.0f;
+    } else if (i_tevstrType == 12 || i_tevstrType == 13) {
+        camera_class* temp_r30_2 = dComIfGp_getCamera(0);
+
+        i_tevstr->mFogColor.r = 0;
+        i_tevstr->mFogColor.g = 0;
+        i_tevstr->mFogColor.b = 0;
+        i_tevstr->mFogColor.a = 0;
+
+        i_tevstr->field_0x360 = 0;
+        i_tevstr->field_0x361 = 0;
+        i_tevstr->field_0x362 = 0;
+        i_tevstr->field_0x363 = 0;
+        i_tevstr->mLightMode = 0;
+
+        if (i_tevstr->mRoomNo >= 128) {
+            i_tevstr->mEnvrIdxCurr = 0;
+        } else {
+            i_tevstr->mEnvrIdxCurr = i_tevstr->mRoomNo;
+        }
+
+        if (i_tevstrType == 12) {
+            field_0x10f0.r = 25;
+            field_0x10f0.g = 20;
+            field_0x10f0.b = 25;
+        } else {
+            field_0x10f0.r = 40;
+            field_0x10f0.g = 35;
+            field_0x10f0.b = 30;
+        }
+
+        field_0x10f0.a = 0xFF;
+
+        K0_color.r = 255;
+        K0_color.g = 255;
+        K0_color.b = 255;
+
+        fog_z_start = 30000.0f;
+        fog_z_end = 30000.0f;
+
+        for (int i = 0; i < 6; i++) {
+            J3DLightInfo& temp_r31 = i_tevstr->field_0x074[i].getLightInfo();
+
+            if (i == 0) {
+                if (i_tevstrType == 12) {
+                    temp_r31.mLightPosition.x = -30000.0f;
+                    temp_r31.mLightPosition.y = 18800.0f;
+                    temp_r31.mLightPosition.z = 29000.0f;
+                    temp_r31.mColor.r = 120;
+                    temp_r31.mColor.g = 110;
+                    temp_r31.mColor.b = 100;
+                } else {
+                    temp_r31.mLightPosition.x = -37000.0f;
+                    temp_r31.mLightPosition.y = 18800.0f;
+                    temp_r31.mLightPosition.z = 500.0f;
+                    temp_r31.mColor.r = 85;
+                    temp_r31.mColor.g = 90;
+                    temp_r31.mColor.b = 100;
+                }
+            } else if (i == 1) {
+                if (i_tevstrType == 12) {
+                    temp_r31.mLightPosition.x = 14400.0f;
+                    temp_r31.mLightPosition.y = 7500.0f;
+                    temp_r31.mLightPosition.z = 3900.0f;
+                    temp_r31.mColor.r = 30;
+                    temp_r31.mColor.g = 45;
+                    temp_r31.mColor.b = 30;
+                } else {
+                    temp_r31.mLightPosition.x = 18000.0f;
+                    temp_r31.mLightPosition.y = -6500.0f;
+                    temp_r31.mLightPosition.z = -10000.0f;
+                    temp_r31.mColor.r = 100;
+                    temp_r31.mColor.g = 65;
+                    temp_r31.mColor.b = 40;
+                }
+            } else {
+                temp_r31.mColor.r = 0;
+                temp_r31.mColor.g = 0;
+                temp_r31.mColor.b = 0;
+            }
+
+            dKy_GXInitLightSpot(&temp_r31, 90.0f, 0);
+            dKy_GXInitLightDistAttn(&temp_r31, 100000.0f, 0.99999f, 3);
+            dKy_lightdir_set(0.0f, 0.0f, &temp_r31.mLightDirection);
+
+            temp_r31.mLightDirection.x = -temp_r31.mLightDirection.x;
+            temp_r31.mLightDirection.y = -temp_r31.mLightDirection.y;
+            temp_r31.mLightDirection.z = -temp_r31.mLightDirection.z;
+        }
+
+        MtxP view_mtx = j3dSys.getViewMtx();
+        Vec sp74;
+        Vec sp68;
+
+        sp68.x = temp_r30_2->mLookat.mEye.x;
+        sp68.y = temp_r30_2->mLookat.mEye.y;
+        sp68.z = temp_r30_2->mLookat.mEye.z;
+
+        J3DLightInfo& light_info = i_tevstr->mLightObj.getLightInfo();
+        cMtx_multVec(view_mtx, &sp68, &sp74);
+
+        light_info.mLightPosition = sp74;
+        if (i_tevstrType == 13) {
+            i_tevstr->field_0x32c = sp68;
+            i_tevstr->mLightPosWorld = sp68;
+        }
+
+        light_info.mLightDirection = g_env_light.field_0x1064;
+
+        light_info.mColor.r = 0;
+        light_info.mColor.g = 0;
+        light_info.mColor.b = 0;
+
+        light_info.mCosAtten.x = 1.0f;
+        light_info.mCosAtten.y = 0.0f;
+        light_info.mCosAtten.z = 0.0f;
+
+        light_info.mDistAtten.x = 1.0f;
+        light_info.mDistAtten.y = 0.0f;
+        light_info.mDistAtten.z = 0.0f;
+    } else if (!(i_tevstrType & 0xF0)) {
+        i_tevstr->mLightMode = 1;
+
+        sp30 = mActorAmbience;
+        K0_color = mFogColor;
+
+        fog_z_start = mFogNear;
+        fog_z_end = mFogFar;
+
+        if (i_tevstrType == 0 || i_tevstrType == 0 || i_tevstrType == 8 || i_tevstrType == 7 ||
+            i_tevstrType == 1 || i_tevstrType == 2 || i_tevstrType == 3 || i_tevstrType == 5 ||
+            i_tevstrType == 4 || i_tevstrType == 11)
+        {
+            settingTevStruct_colget_actor(param_1, i_tevstr, &sp30, &K0_color, &fog_z_start,
+                                          &fog_z_end);
+        } else if (i_tevstrType == 10 || i_tevstrType == 9) {
+            if (g_env_light.field_0x98c != (u8)dComIfGp_roomControl_getStayNo()) {
+                g_env_light.field_0x98c = dComIfGp_roomControl_getStayNo();
+                mDoAud_setSceneName(
+                    dComIfGp_getStartStageName(), dComIfGp_roomControl_getStayNo(),
+                    dComIfG_play_c::getLayerNo_common(dComIfGp_getStartStageName(),
+                                                      dComIfGp_roomControl_getStayNo(),
+                                                      dComIfGp_getStartStageLayer()));
+
+                if (strcmp(dComIfGp_getStartStageName(), "F_SP121") == 0) {
+                    mDoAud_load2ndDynamicWave();
+                }
+            }
+            var_r30 = g_env_light.mInitAnmTimer;
+            settingTevStruct_colget_player(i_tevstr);
+            settingTevStruct_colget_actor(param_1, i_tevstr, &sp30, &K0_color, &fog_z_start,
+                                          &fog_z_end);
+        }
+
+        field_0x10f0.r = sp30.r;
+        field_0x10f0.g = sp30.g;
+        field_0x10f0.b = sp30.b;
+        field_0x10f0.a = 255;
+
+        if (i_tevstrType != 11) {
+            settingTevStruct_plightcol_plus(param_1, i_tevstr, sp30, sp30, var_r30);
+        }
+
+        if (i_tevstrType == 10 || i_tevstrType == 9) {
+            g_env_light.mPLightNearPos = i_tevstr->mLightPosWorld;
+        }
+    } else {
+        i_tevstr->mLightMode = 0;
+        if (i_tevstr->field_0x37a != 20) {
+            i_tevstr->field_0x374 = g_env_light.mPaletteTerrainLightEffect;
+        } else {
+            switch (i_tevstr->field_0x364) {
+            case 0:
+                i_tevstr->field_0x374 = 0.2f;
+                break;
+            case 1:
+                i_tevstr->field_0x374 = 0.3f;
+                break;
+            case 2:
+                i_tevstr->field_0x374 = 0.4f;
+                break;
+            case 3:
+                i_tevstr->field_0x374 = 0.6f;
+                break;
+            case 4:
+                i_tevstr->field_0x374 = 0.8f;
+                break;
+            case 5:
+                i_tevstr->field_0x374 = 0.9f;
+                break;
+            case 6:
+                i_tevstr->field_0x374 = 1.0f;
+                break;
+            case 7:
+                i_tevstr->field_0x374 = 1.2f;
+                break;
+            default:
+                i_tevstr->field_0x374 = 1.0f;
+                break;
+            }
+        }
+
+        if (i_tevstr->mRoomNo >= 128) {
+            i_tevstr->mEnvrIdxCurr = 0;
+        } else {
+            i_tevstr->mEnvrIdxCurr = i_tevstr->mRoomNo;
+        }
+
+        GXColorS10 spB0[4];
+        setLight_bg(i_tevstr, spB0, &K0_color, &fog_z_start, &fog_z_end);
+
+        field_0x10f0 = spB0[i_tevstrType & 3];
+
+        MtxP view_mtx = j3dSys.getViewMtx();
+        Vec sp5C;
+        cXyz sp58;
+        bool var_r25_3 = 0;
+        sp58.z = 0.0f;
+        sp58.y = 0.0f;
+        sp58.x = 0.0f;
+
+        int temp_r3_2 = dKy_light_influence_id(sp58, 0);
+        if (temp_r3_2 >= 0 && g_env_light.mPointLight[temp_r3_2]->mIndex < 0) {
+            var_r25_3 = 1;
+        }
+
+        if (var_r25_3 == 1) {
+            sp58 = g_env_light.mPointLight[temp_r3_2]->mPosition;
+            J3DLightInfo& light_info = i_tevstr->mLightObj.getLightInfo();
+
+            cMtx_multVec(view_mtx, &sp58, &sp5C);
+
+            light_info.mLightPosition = sp5C;
+            i_tevstr->field_0x32c = sp58;
+            light_info.mLightDirection = g_env_light.field_0x1064;
+
+            light_info.mColor.a = g_env_light.mPointLight[temp_r3_2]->mColor.a;
+            light_info.mColor.r = g_env_light.mPointLight[temp_r3_2]->mColor.r;
+            light_info.mColor.g = g_env_light.mPointLight[temp_r3_2]->mColor.g;
+            light_info.mColor.b = g_env_light.mPointLight[temp_r3_2]->mColor.b;
+            dKy_GXInitLightSpot(&light_info, 90.0f, 0);
+            dKy_GXInitLightDistAttn(&light_info, g_env_light.mPointLight[temp_r3_2]->mPow * 0.001f,
+                                    0.99999f, 3);
+        } else {
+            MtxP view_mtx = j3dSys.getViewMtx();
+            J3DLightInfo& light_info = i_tevstr->mLightObj.getLightInfo();
+            Vec sp44;
+            cMtx_multVec(view_mtx, &lightStatusData[0].field_0x0, &sp44);
+
+            light_info.mLightPosition = sp44;
+            i_tevstr->field_0x32c = lightStatusData[0].field_0x0;
+            light_info.mLightDirection = g_env_light.field_0x1064;
+
+            light_info.mColor.r = 0;
+            light_info.mColor.g = 0;
+            light_info.mColor.b = 0;
+
+            light_info.mCosAtten.x = 0.0f;
+            light_info.mCosAtten.y = 0.0f;
+            light_info.mCosAtten.z = 0.0f;
+
+            light_info.mDistAtten.x = 0.0f;
+            light_info.mDistAtten.y = 0.0f;
+            light_info.mDistAtten.z = 0.0f;
+        }
+
+        i_tevstr->mLightPosWorld = g_env_light.mBaseLightInfluence.mPosition;
+        // i_tevstr->mLightPosWorld = env_light->mBaseLightInfluence.mPosition;
+    }
+
+    field_0x10f0.a = 255;
+    i_tevstr->mColorC0 = field_0x10f0;
+    i_tevstr->mColorK0 = K0_color;
+    i_tevstr->mFogStartZ = fog_z_start;
+    i_tevstr->mFogEndZ = fog_z_end;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2291,12 +3231,11 @@ asm void dScnKy_env_light_c::settingTevStruct(int param_0, cXyz* param_1, dKy_te
 #include "asm/d/kankyo/d_kankyo/settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c.s"
 }
 #pragma pop
+#endif
 
 /* 801A441C-801A4420 19ED5C 0004+00 0/0 0/0 2/2 .text
  * setLightTevColorType__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c */
-void dScnKy_env_light_c::setLightTevColorType(J3DModelData* param_0, dKy_tevstr_c* param_1) {
-    /* empty function */
-}
+void dScnKy_env_light_c::setLightTevColorType(J3DModelData* param_0, dKy_tevstr_c* param_1) {}
 
 /* ############################################################################################## */
 /* 80453D90-80453D94 002390 0004+00 1/1 0/0 0/0 .sdata2          @7186 */
@@ -2331,36 +3270,85 @@ void J3DColorBlock::setAmbColor(u32 param_0, J3DGXColor const* param_1) {
 
 /* 801A4C10-801A4DA0 19F550 0190+00 1/1 0/0 0/0 .text
  * dKy_cloudshadow_scroll__FP12J3DModelDataP12dKy_tevstr_ci     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_cloudshadow_scroll(J3DModelData* param_0, dKy_tevstr_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_cloudshadow_scroll__FP12J3DModelDataP12dKy_tevstr_ci.s"
+static void dKy_cloudshadow_scroll(J3DModelData* i_modelData, dKy_tevstr_c* i_tevstr, int param_2) {
+    JUTNameTab* mat_nametbl = i_modelData->getMaterialName();
+
+    for (int i = i_modelData->getMaterialNum() - 1; i >= 0; i--) {
+        J3DMaterial* mat_p = i_modelData->getMaterialNodePointer(i);
+
+        int tmp = param_2;
+        if (i_tevstr->field_0x378 != 0 && i_tevstr->field_0x378 == i) {
+            tmp = 2;
+        }
+
+        setLightTevColorType_MAJI_sub(mat_p, i_tevstr, tmp);
+
+        const char* mat_name = mat_nametbl->getName(i);
+        if ((mat_name[3] == 'M' && mat_name[4] == 'A' && mat_name[5] == '0' &&
+             (mat_name[6] == '0' || mat_name[6] == '1')) ||
+            (mat_name[5] == '1' && mat_name[6] == '6'))
+        {
+            if (mat_name[6] == '0') {
+                J3DGXColor k_color;
+                k_color.r = g_env_light.mFogDensity;
+                k_color.g = 0;
+                k_color.b = 0;
+                k_color.a = 0;
+                mat_p->setTevKColor(1, &k_color);
+            }
+
+            if (mat_p->getTexGenBlock()->getTexMtx(1) != NULL) {
+                J3DTexMtxInfo* tex_mtx_inf =
+                    &mat_p->getTexGenBlock()->getTexMtx(1)->getTexMtxInfo();
+
+                if (tex_mtx_inf != NULL && g_env_light.mpVrkumoPacket != NULL) {
+                    tex_mtx_inf->mSRT.mTranslationX = g_env_light.mpVrkumoPacket->field_0x1150;
+                    tex_mtx_inf->mSRT.mTranslationY = g_env_light.mpVrkumoPacket->field_0x1154;
+                }
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 801A4DA0-801A4E90 19F6E0 00F0+00 0/0 18/18 536/536 .text
  * setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dScnKy_env_light_c::setLightTevColorType_MAJI(J3DModelData* param_0,
-                                                       dKy_tevstr_c* param_1) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c.s"
+void dScnKy_env_light_c::setLightTevColorType_MAJI(J3DModelData* i_modelData,
+                                                   dKy_tevstr_c* i_tevstr) {
+    if (i_tevstr->mInitType != 124) {
+        if (i_tevstr->mInitType != 123) {
+            dKy_tevstr_init(i_tevstr, dComIfGp_roomControl_getStayNo(), 0xFF);
+        }
+
+        settingTevStruct(11, NULL, i_tevstr);
+    }
+
+    dKy_setLight_nowroom_actor(i_tevstr);
+
+    int tmp;
+    if (i_tevstr->field_0x37a > 10 && i_tevstr->field_0x37a != 12 && i_tevstr->field_0x37a != 13) {
+        tmp = 0;
+    } else {
+        tmp = 1;
+    }
+
+    if (i_tevstr->field_0x37a & 0x20) {
+        dKy_cloudshadow_scroll(i_modelData, i_tevstr, tmp);
+    } else {
+        for (int i = i_modelData->getMaterialNum() - 1; i >= 0; i--) {
+            setLightTevColorType_MAJI_sub(i_modelData->getMaterialNodePointer(i), i_tevstr, tmp);
+        }
+    }
 }
-#pragma pop
 
 /* 801A4E90-801A4F24 19F7D0 0094+00 1/1 0/0 0/0 .text CalcTevColor__18dScnKy_env_light_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dScnKy_env_light_c::CalcTevColor() {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/CalcTevColor__18dScnKy_env_light_cFv.s"
+void dScnKy_env_light_c::CalcTevColor() {
+    fopAc_ac_c* player_p = dComIfGp_getPlayer(0);
+
+    if (player_p != NULL) {
+        mPlayerEfLightIdx = dKy_eflight_influence_id(player_p->current.pos, 0);
+        mPlayerPLightIdx = dKy_light_influence_id(player_p->current.pos, 0);
+    }
 }
-#pragma pop
 
 /* 801A4F24-801A4F64 19F864 0040+00 1/1 0/0 0/0 .text            Sndpos__18dScnKy_env_light_cFv */
 void dScnKy_env_light_c::Sndpos() {
@@ -2385,14 +3373,10 @@ asm void dScnKy_env_light_c::Eflight_flush_proc() {
 
 /* ############################################################################################## */
 /* 80450700-80450704 000180 0002+02 2/2 0/0 0/0 .sdata           lightMask */
-SECTION_SDATA static u16 lightMask[1 + 1 /* padding */] = {
-    0x0001,
-    /* padding */
-    0x0000,
-};
+SECTION_SDATA static u16 lightMask = 0x0001;
 
 /* 80450704-80450708 -00001 0004+00 3/3 0/0 0/0 .sdata           lightStatusPt */
-SECTION_SDATA static void* lightStatusPt = (void*)&lightStatusData;
+SECTION_SDATA static LightStatus* lightStatusPt = lightStatusData;
 
 /* 80453D98-80453D9C 002398 0004+00 1/1 0/0 0/0 .sdata2          @7365 */
 SECTION_SDATA2 static f32 lit_7365 = 67.5f;
@@ -2412,6 +3396,129 @@ asm void dScnKy_env_light_c::SetBaseLight() {
 
 /* 801A5288-801A56DC 19FBC8 0454+00 1/1 0/0 0/0 .text            exeKankyo__18dScnKy_env_light_cFv
  */
+// regalloc
+#ifdef NONMATCHING
+void dScnKy_env_light_c::exeKankyo() {
+    for (int i = 0; i < 6; i++) {
+        field_0x0c18[i].field_0x26 = 0;
+
+        if (field_0x0d58[i].field_0x26 != 0) {
+            field_0x0d58[i].field_0x26 = 0;
+            dKy_BossLight_set(&field_0x0d58[i].mPos, &field_0x0d58[i].mColor,
+                              field_0x0d58[i].field_0x10, 0);
+        }
+    }
+
+    g_env_light.mColPatMode = g_env_light.mColPatModeGather;
+
+    if (!i_dComIfGp_event_runCheck() && g_env_light.mColPatModeGather != 0) {
+        if (g_env_light.mColPatModeGather >= 3) {
+            g_env_light.mColPatModeGather = 0;
+        } else {
+            g_env_light.mColPatModeGather++;
+        }
+    }
+
+    if (g_env_light.mColPatMode != 0) {
+        if (g_env_light.mColpatPrevGather != 0xFF) {
+            g_env_light.mColPatPrev = g_env_light.mColpatPrevGather;
+
+            if (g_env_light.mColPatModeGather == 0) {
+                g_env_light.mColpatPrevGather = 0xFF;
+            }
+        }
+
+        if (g_env_light.mColpatCurrGather != 0xFF) {
+            g_env_light.mColPatCurr = g_env_light.mColpatCurrGather;
+
+            if (g_env_light.mColPatModeGather == 0) {
+                g_env_light.mColpatCurrGather = 0xFF;
+            }
+        }
+
+        if (g_env_light.mColPatBlendGather >= 0.0f) {
+            g_env_light.mColPatBlend = g_env_light.mColPatBlendGather;
+
+            if (g_env_light.mColPatModeGather == 0) {
+                g_env_light.mColPatBlendGather = -1.0f;
+            }
+        }
+    } else if (g_env_light.mColPatPrev == g_env_light.mColPatCurr) {
+        if (g_env_light.mColpatPrevGather != 0xFF) {
+            g_env_light.mColPatPrev = g_env_light.mColpatPrevGather;
+            g_env_light.mColpatPrevGather = 0xFF;
+        }
+
+        if (g_env_light.mColpatCurrGather != 0xFF) {
+            g_env_light.mColPatCurr = g_env_light.mColpatCurrGather;
+            g_env_light.mColpatCurrGather = 0xFF;
+            g_env_light.mColpatWeather = g_env_light.mColpatCurrGather;
+        }
+
+        if (g_env_light.mColPatBlendGather >= 0.0f) {
+            g_env_light.mColPatBlend = g_env_light.mColPatBlendGather;
+            g_env_light.mColPatBlendGather = -1.0f;
+        }
+    }
+
+    g_env_light.field_0x1210 = g_env_light.field_0x122c;
+
+    cLib_addCalc(&g_env_light.mColAllcolRatio, g_env_light.mAllcolRatio, 0.5f, 0.25f, 0.01f);
+    cLib_addCalc(&g_env_light.mColActColRatio, g_env_light.mActcolRatio, 0.5f, 0.25f, 0.01f);
+    cLib_addCalc(&g_env_light.mColBgColRatio, g_env_light.mBgcolRatio * g_env_light.field_0x1210,
+                 0.5f, 0.25f, 0.01f);
+    cLib_addCalc(&g_env_light.mColFogColRatio, g_env_light.mFogcolRatio * g_env_light.field_0x1210,
+                 0.5f, 0.25f, 0.01f);
+    cLib_addCalc(&g_env_light.mColVrboxSoraColRatio,
+                 g_env_light.mVrboxSoracolRatio * g_env_light.field_0x1210, 0.5f, 0.25f, 0.01f);
+    cLib_addCalc(&g_env_light.mColVrboxKumocolRatio,
+                 g_env_light.mVrboxKumocolRatio * g_env_light.field_0x1210, 0.5f, 0.25f, 0.01f);
+
+    g_env_light.mAllcolRatio = 1.0f;
+    g_env_light.mActcolRatio = 1.0f;
+    g_env_light.mBgcolRatio = 1.0f;
+    g_env_light.mFogcolRatio = 1.0f;
+    g_env_light.mVrboxSoracolRatio = 1.0f;
+    g_env_light.mVrboxKumocolRatio = 1.0f;
+    g_env_light.field_0x122c = 1.0f;
+    g_env_light.field_0x126c = g_env_light.field_0x1268;
+    g_env_light.field_0x1268 = 999999.9f;
+
+    for (int i = 50; i < 100; i++) {
+        g_env_light.mPointLight[i] = NULL;
+    }
+
+    g_env_light.field_0x130b = 0;
+
+    setDaytime();
+    dKyw_wether_proc();
+    CalcTevColor();
+    Sndpos();
+    Eflight_flush_proc();
+
+    daPy_py_c* player_p = (daPy_py_c*)dComIfGp_getPlayer(0);
+    if (player_p != NULL) {
+        cXyz* flame_pos_p = player_p->getKandelaarFlamePos();
+
+        if (flame_pos_p != NULL) {
+            g_env_light.field_0x10a0 = *flame_pos_p;
+            dKy_shadow_mode_set(2);
+        } else if (dKy_shadow_mode_check(2)) {
+            dKy_shadow_mode_reset(2);
+        }
+    }
+
+    if (strcmp(dComIfGp_getStartStageName(), "R_SP127") == 0) {
+        if ((dCam_getBody()->mCurMode == 4 || dCam_getBody()->mCurMode == 7) &&
+            i_dComIfGp_event_runCheck())
+        {
+            cLib_addCalc(&g_env_light.mDemoAttentionPoint, 0.0f, 0.5f, 0.1f, 1E-05f);
+        } else {
+            cLib_addCalc(&g_env_light.mDemoAttentionPoint, 0.11f, 0.5f, 0.1f, 1E-05f);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2420,6 +3527,7 @@ asm void dScnKy_env_light_c::exeKankyo() {
 #include "asm/d/kankyo/d_kankyo/exeKankyo__18dScnKy_env_light_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801A56DC-801A572C 1A001C 0050+00 1/1 0/0 0/0 .text            drawKankyo__18dScnKy_env_light_cFv
  */
@@ -2472,42 +3580,38 @@ asm void dKy_undwater_filter_draw() {
 #pragma pop
 
 /* 801A5B6C-801A5B98 1A04AC 002C+00 1/0 0/0 0/0 .text            dKy_Draw__FP17sub_kankyo__class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_Draw(sub_kankyo__class* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_Draw__FP17sub_kankyo__class.s"
+static int dKy_Draw(sub_kankyo__class* i_this) {
+    g_env_light.drawKankyo();
+    return 1;
 }
-#pragma pop
 
 /* 801A5B98-801A5BCC 1A04D8 0034+00 1/0 0/0 0/0 .text            dKy_Execute__FP17sub_kankyo__class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_Execute(sub_kankyo__class* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_Execute__FP17sub_kankyo__class.s"
+static int dKy_Execute(sub_kankyo__class* i_this) {
+    g_env_light.exeKankyo();
+    dKyw_wind_set();
+    dKy_twilight_camelight_set();
+    return 1;
 }
-#pragma pop
 
 /* 801A5BCC-801A5BD4 1A050C 0008+00 1/0 0/0 0/0 .text            dKy_IsDelete__FP17sub_kankyo__class
  */
-static bool dKy_IsDelete(sub_kankyo__class* param_0) {
-    return true;
+static int dKy_IsDelete(sub_kankyo__class* i_this) {
+    return 1;
 }
 
 /* 801A5BD4-801A5C1C 1A0514 0048+00 1/0 0/0 0/0 .text            dKy_Delete__FP17sub_kankyo__class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_Delete(sub_kankyo__class* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_Delete__FP17sub_kankyo__class.s"
+static int dKy_Delete(sub_kankyo__class* i_this) {
+    plight_init();
+    mDoAud_mEnvse_resetScene();
+
+    if (g_env_light.field_0xf38 != NULL) {
+        mDoExt_destroySolidHeap(g_env_light.field_0xf38);
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -2525,7 +3629,7 @@ SECTION_DEAD static char const* const stringBase_80394E5E = "colordata_tbl.dat";
 /* 801A5C1C-801A5E54 1A055C 0238+00 1/0 0/0 0/0 .text            dKy_Create__FPv */
 // matches with literals
 #ifdef NONMATCHING
-static int dKy_Create(void*) {
+static int dKy_Create(void* i_this) {
     BOOL setNextTime = false;
     stage_envr_info_class* envr = dComIfGp_getStageEnvrInfo();
     if (envr != NULL && dComIfGp_getStartStageRoomNo() != -1) {
@@ -2604,6 +3708,34 @@ void dKy_setLight() {
 }
 
 /* 801A60E0-801A61F4 1A0A20 0114+00 2/2 0/0 0/0 .text            dKy_GlobalLight_set__Fv */
+// matches with literals
+#ifdef NONMATCHING
+static void dKy_GlobalLight_set() {
+    MtxP view_mtx = j3dSys.getViewMtx();
+
+    for (int i = 0; i < 8; i++) {
+        LightStatus* light_status = &lightStatusData[i];
+
+        Vec light_pos;
+        cMtx_multVec(view_mtx, &light_status->field_0x0, &light_pos);
+
+        GXLightObj light_obj;
+        GXInitLightPos(&light_obj, light_pos.x, light_pos.y, light_pos.z);
+        GXInitLightDir(&light_obj, light_status->mLightDir.x, light_status->mLightDir.y,
+                       light_status->mLightDir.z);
+        GXInitLightColor(&light_obj, light_status->field_0x18);
+
+        if (light_status->mRefDist <= 0.0f) {
+            light_status->mRefDist = 1.0E-6f;
+        }
+
+        GXInitLightDistAttn(&light_obj, light_status->mRefDist, light_status->mRefBrightness,
+                            light_status->mDistFn);
+        GXInitLightSpot(&light_obj, light_status->mCutoff, light_status->mSpotFn);
+        GXLoadLightObjImm(&light_obj, (GXLightID)lightMaskData[i]);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2612,17 +3744,28 @@ static asm void dKy_GlobalLight_set() {
 #include "asm/d/kankyo/d_kankyo/dKy_GlobalLight_set__Fv.s"
 }
 #pragma pop
+#endif
+
+inline u8 dLVI_getSWLight(stage_pure_lightvec_info_class* i_info) {
+    return i_info->field_0x1e & 0x80;
+}
 
 /* 801A61F4-801A6278 1A0B34 0084+00 3/3 0/0 0/0 .text
  * dKy_lightswitch_check__FP30stage_pure_lightvec_info_classc   */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_lightswitch_check(stage_pure_lightvec_info_class* param_0, char param_1) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_lightswitch_check__FP30stage_pure_lightvec_info_classc.s"
+static bool dKy_lightswitch_check(stage_pure_lightvec_info_class* param_0, char i_roomNo) {
+    bool var_r31 = 1;
+    if (param_0->field_0x1f != 0xFF) {
+        if (!dLVI_getSWLight(param_0)) {
+            if (dComIfGs_isSwitch(param_0->field_0x1f, i_roomNo)) {
+                var_r31 = 0;
+            }
+        } else if (!dComIfGs_isSwitch(param_0->field_0x1f, i_roomNo)) {
+            var_r31 = 0;
+        }
+    }
+
+    return var_r31;
 }
-#pragma pop
 
 /* 801A6278-801A6C20 1A0BB8 09A8+00 2/2 0/0 0/0 .text            dKy_setLight_nowroom_common__Fcf */
 #pragma push
@@ -2685,14 +3828,38 @@ void dKy_setLight_again() {
 }
 
 /* 801A75E0-801A76D8 1A1F20 00F8+00 0/0 3/3 5/5 .text dKy_Global_amb_set__FP12dKy_tevstr_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_Global_amb_set(dKy_tevstr_c* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_Global_amb_set__FP12dKy_tevstr_c.s"
+void dKy_Global_amb_set(dKy_tevstr_c* i_tevstr) {
+    GXColor color;
+    color.r = i_tevstr->mColorC0.r;
+    color.g = i_tevstr->mColorC0.g;
+    color.b = i_tevstr->mColorC0.b;
+    color.a = i_tevstr->mColorC0.a;
+
+    if (i_tevstr->field_0x37a == 2 || i_tevstr->field_0x37a == 3) {
+        if (dKy_darkworld_check()) {
+            if (i_tevstr->field_0x37a == 2) {
+                color.r = 18;
+                color.g = 18;
+                color.b = 18;
+                color.a = 0;
+            } else {
+                color.r = 12;
+                color.g = 12;
+                color.b = 12;
+                color.a = 0;
+            }
+        }
+    } else if ((i_tevstr->field_0x37a >= 1 && i_tevstr->field_0x37a <= 7) ||
+               (i_tevstr->field_0x37a == 9 && dKy_darkworld_check()))
+    {
+        color.r = 0;
+        color.g = 0;
+        color.b = 0;
+        color.a = 0;
+    }
+
+    GXSetChanAmbColor(GX_COLOR0A0, color);
 }
-#pragma pop
 
 /* 801A76D8-801A7714 1A2018 003C+00 1/1 0/0 0/0 .text            dKy_light_influence_pos__Fi */
 static cXyz dKy_light_influence_pos(int param_0) {
@@ -2711,117 +3878,141 @@ cXyz dKy_plight_near_pos() {
 
 /* 801A7738-801A7790 1A2078 0058+00 0/0 0/0 1/1 .text
  * dKy_mock_light_every_set__FP15LIGHT_INFLUENCE                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_mock_light_every_set(LIGHT_INFLUENCE* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_mock_light_every_set__FP15LIGHT_INFLUENCE.s"
+void dKy_mock_light_every_set(LIGHT_INFLUENCE* param_0) {
+    for (int i = 50; i < 100; i++) {
+        if (g_env_light.mPointLight[i] == NULL) {
+            g_env_light.mPointLight[i] = param_0;
+            g_env_light.mPointLight[i]->mIndex = i + 1;
+            break;
+        }
+    }
 }
-#pragma pop
 
 /* 801A7790-801A7814 1A20D0 0084+00 1/1 1/1 18/18 .text dKy_plight_set__FP15LIGHT_INFLUENCE */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_plight_set(LIGHT_INFLUENCE* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_plight_set__FP15LIGHT_INFLUENCE.s"
+void dKy_plight_set(LIGHT_INFLUENCE* param_0) {
+    for (int i = 0; i < 100; i++) {
+        if (g_env_light.mPointLight[i] == param_0) {
+            return;
+        }
+    }
+
+    for (int i = 0; i < 50; i++) {
+        if (g_env_light.mPointLight[i] == NULL) {
+            g_env_light.mPointLight[i] = param_0;
+            g_env_light.mPointLight[i]->mIndex = i + 1;
+            break;
+        }
+    }
 }
-#pragma pop
 
 /* 801A7814-801A7868 1A2154 0054+00 0/0 0/0 4/4 .text dKy_dalkmist_inf_set__FP18DALKMIST_INFLUENCE
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_dalkmist_inf_set(DALKMIST_INFLUENCE* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_dalkmist_inf_set__FP18DALKMIST_INFLUENCE.s"
+void dKy_dalkmist_inf_set(DALKMIST_INFLUENCE* param_0) {
+    for (int i = 0; i < 10; i++) {
+        if (g_env_light.mDalkmistInf[i] == NULL) {
+            g_env_light.mDalkmistInf[i] = param_0;
+            g_env_light.mDalkmistInf[i]->mIndex = i;
+            break;
+        }
+    }
 }
-#pragma pop
 
 /* 801A7868-801A789C 1A21A8 0034+00 0/0 0/0 4/4 .text dKy_dalkmist_inf_cut__FP18DALKMIST_INFLUENCE
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_dalkmist_inf_cut(DALKMIST_INFLUENCE* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_dalkmist_inf_cut__FP18DALKMIST_INFLUENCE.s"
+void dKy_dalkmist_inf_cut(DALKMIST_INFLUENCE* param_0) {
+    if (param_0 != NULL) {
+        if (param_0->mIndex < 10) {
+            g_env_light.mDalkmistInf[param_0->mIndex] = NULL;
+        }
+    }
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80394E75 = "\nPOINTLIGHT COUNT OVER!!!\n";
-#pragma pop
 
 /* 801A789C-801A792C 1A21DC 0090+00 0/0 0/0 1/1 .text dKy_plight_priority_set__FP15LIGHT_INFLUENCE
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_plight_priority_set(LIGHT_INFLUENCE* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_plight_priority_set__FP15LIGHT_INFLUENCE.s"
+void dKy_plight_priority_set(LIGHT_INFLUENCE* param_0) {
+    int i = 0;
+
+    for (; i < 50; i++) {
+        if (g_env_light.mPointLight[i] == NULL) {
+            g_env_light.mPointLight[i] = param_0;
+            g_env_light.mPointLight[i]->mIndex = -(i + 1);
+            break;
+        }
+    }
+
+    if (i >= 50) {
+        OSReport_Warning("\nPOINTLIGHT COUNT OVER!!!\n");
+    }
 }
-#pragma pop
 
 /* 801A792C-801A797C 1A226C 0050+00 0/0 1/1 32/32 .text dKy_plight_cut__FP15LIGHT_INFLUENCE */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_plight_cut(LIGHT_INFLUENCE* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_plight_cut__FP15LIGHT_INFLUENCE.s"
+void dKy_plight_cut(LIGHT_INFLUENCE* param_0) {
+    if (param_0 != NULL) {
+        if (param_0->mIndex != 0) {
+            if (param_0->mIndex < 0) {
+                param_0->mIndex *= -1;
+            }
+
+            int idx = (param_0->mIndex & 0xFFF) - 1;
+            if (idx < 50) {
+                g_env_light.mPointLight[idx] = NULL;
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 801A797C-801A7A00 1A22BC 0084+00 1/1 1/1 3/3 .text dKy_efplight_set__FP15LIGHT_INFLUENCE */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_efplight_set(LIGHT_INFLUENCE* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_efplight_set__FP15LIGHT_INFLUENCE.s"
+void dKy_efplight_set(LIGHT_INFLUENCE* param_0) {
+    for (int i = 0; i < 5; i++) {
+        if (g_env_light.mEfPLight[i] == param_0) {
+            return;
+        }
+    }
+
+    for (int i = 0; i < 5; i++) {
+        if (g_env_light.mEfPLight[i] == NULL) {
+            g_env_light.mEfPLight[i] = param_0;
+            g_env_light.mEfPLight[i]->mIndex = i + 1;
+            break;
+        }
+    }
 }
-#pragma pop
 
 /* 801A7A00-801A7A40 1A2340 0040+00 1/1 1/1 3/3 .text dKy_efplight_cut__FP15LIGHT_INFLUENCE */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_efplight_cut(LIGHT_INFLUENCE* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_efplight_cut__FP15LIGHT_INFLUENCE.s"
+void dKy_efplight_cut(LIGHT_INFLUENCE* param_0) {
+    if (param_0 != NULL) {
+        if (param_0->mIndex != 0) {
+            int idx = param_0->mIndex - 1;
+            if (idx >= 0 && idx < 5) {
+                g_env_light.mEfPLight[idx] = NULL;
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 801A7A40-801A7AAC 1A2380 006C+00 1/1 0/0 0/0 .text
  * dKy_bgparts_activelight_set__FP15LIGHT_INFLUENCEi            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_bgparts_activelight_set(LIGHT_INFLUENCE* param_0, int param_1) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_bgparts_activelight_set__FP15LIGHT_INFLUENCEi.s"
+static void dKy_bgparts_activelight_set(LIGHT_INFLUENCE* influence_p, int param_1) {
+    if (influence_p != NULL) {
+        memcpy(&g_env_light.mBGpartsActiveLight[param_1], influence_p, sizeof(LIGHT_INFLUENCE));
+        g_env_light.mBGpartsActiveLight[param_1].mIndex = param_1 + 1;
+    }
 }
-#pragma pop
 
 /* 801A7AAC-801A7AC8 1A23EC 001C+00 1/1 0/0 0/0 .text            dKy_bgparts_activelight_cut__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dKy_bgparts_activelight_cut(int param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_bgparts_activelight_cut__Fi.s"
+static void dKy_bgparts_activelight_cut(int param_0) {
+    g_env_light.mBGpartsActiveLight[param_0].mIndex = 0;
 }
-#pragma pop
 
 /* 801A7AC8-801A7B68 1A2408 00A0+00 1/1 1/1 1/1 .text            dKy_actor_addcol_amb_set__Fsssf */
+// matches with literals
+#ifdef NONMATCHING
+void dKy_actor_addcol_amb_set(s16 r, s16 g, s16 b, f32 factor) {
+    g_env_light.mActorAddColAmb.r = r * factor;
+    g_env_light.mActorAddColAmb.g = g * factor;
+    g_env_light.mActorAddColAmb.b = b * factor;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2830,8 +4021,17 @@ asm void dKy_actor_addcol_amb_set(s16 param_0, s16 param_1, s16 param_2, f32 par
 #include "asm/d/kankyo/d_kankyo/dKy_actor_addcol_amb_set__Fsssf.s"
 }
 #pragma pop
+#endif
 
 /* 801A7B68-801A7C08 1A24A8 00A0+00 1/1 1/1 1/1 .text            dKy_bg_addcol_amb_set__Fsssf */
+// matches with literals
+#ifdef NONMATCHING
+void dKy_bg_addcol_amb_set(s16 r, s16 g, s16 b, f32 factor) {
+    g_env_light.mBgAddColAmb.r = r * factor;
+    g_env_light.mBgAddColAmb.g = g * factor;
+    g_env_light.mBgAddColAmb.b = b * factor;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2840,8 +4040,17 @@ asm void dKy_bg_addcol_amb_set(s16 param_0, s16 param_1, s16 param_2, f32 param_
 #include "asm/d/kankyo/d_kankyo/dKy_bg_addcol_amb_set__Fsssf.s"
 }
 #pragma pop
+#endif
 
 /* 801A7C08-801A7CA8 1A2548 00A0+00 1/1 1/1 0/0 .text            dKy_bg1_addcol_amb_set__Fsssf */
+// matches with literals
+#ifdef NONMATCHING
+void dKy_bg1_addcol_amb_set(s16 r, s16 g, s16 b, f32 factor) {
+    g_env_light.mBg1AddColAmb.r = r * factor;
+    g_env_light.mBg1AddColAmb.g = g * factor;
+    g_env_light.mBg1AddColAmb.b = b * factor;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2850,8 +4059,17 @@ asm void dKy_bg1_addcol_amb_set(s16 param_0, s16 param_1, s16 param_2, f32 param
 #include "asm/d/kankyo/d_kankyo/dKy_bg1_addcol_amb_set__Fsssf.s"
 }
 #pragma pop
+#endif
 
 /* 801A7CA8-801A7D48 1A25E8 00A0+00 1/1 0/0 0/0 .text            dKy_bg2_addcol_amb_set__Fsssf */
+// matches with literals
+#ifdef NONMATCHING
+static void dKy_bg2_addcol_amb_set(s16 r, s16 g, s16 b, f32 factor) {
+    g_env_light.mBg2AddColAmb.r = r * factor;
+    g_env_light.mBg2AddColAmb.g = g * factor;
+    g_env_light.mBg2AddColAmb.b = b * factor;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2860,8 +4078,17 @@ static asm void dKy_bg2_addcol_amb_set(s16 param_0, s16 param_1, s16 param_2, f3
 #include "asm/d/kankyo/d_kankyo/dKy_bg2_addcol_amb_set__Fsssf.s"
 }
 #pragma pop
+#endif
 
 /* 801A7D48-801A7DE8 1A2688 00A0+00 1/1 0/0 0/0 .text            dKy_bg3_addcol_amb_set__Fsssf */
+// matches with literals
+#ifdef NONMATCHING
+static void dKy_bg3_addcol_amb_set(s16 r, s16 g, s16 b, f32 factor) {
+    g_env_light.mBg3AddColAmb.r = r * factor;
+    g_env_light.mBg3AddColAmb.g = g * factor;
+    g_env_light.mBg3AddColAmb.b = b * factor;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2870,8 +4097,17 @@ static asm void dKy_bg3_addcol_amb_set(s16 param_0, s16 param_1, s16 param_2, f3
 #include "asm/d/kankyo/d_kankyo/dKy_bg3_addcol_amb_set__Fsssf.s"
 }
 #pragma pop
+#endif
 
 /* 801A7DE8-801A7E88 1A2728 00A0+00 1/1 1/1 0/0 .text            dKy_addcol_fog_set__Fsssf */
+// matches with literals
+#ifdef NONMATCHING
+void dKy_addcol_fog_set(s16 r, s16 g, s16 b, f32 factor) {
+    g_env_light.mFogAddCol.r = r * factor;
+    g_env_light.mFogAddCol.g = g * factor;
+    g_env_light.mFogAddCol.b = b * factor;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2880,18 +4116,26 @@ asm void dKy_addcol_fog_set(s16 param_0, s16 param_1, s16 param_2, f32 param_3) 
 #include "asm/d/kankyo/d_kankyo/dKy_addcol_fog_set__Fsssf.s"
 }
 #pragma pop
+#endif
 
 /* 801A7E88-801A7F20 1A27C8 0098+00 2/2 0/0 2/2 .text            dKy_actor_addcol_set__Fsssf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKy_actor_addcol_set(s16 param_0, s16 param_1, s16 param_2, f32 param_3) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo/dKy_actor_addcol_set__Fsssf.s"
+void dKy_actor_addcol_set(s16 r, s16 g, s16 b, f32 factor) {
+    dKy_actor_addcol_amb_set(r, g, b, factor);
+    dKy_bg_addcol_amb_set(r, g, b, factor);
+    dKy_bg1_addcol_amb_set(r, g, b, factor);
+    dKy_bg2_addcol_amb_set(r, g, b, factor);
+    dKy_bg3_addcol_amb_set(r, g, b, factor);
 }
-#pragma pop
 
 /* 801A7F20-801A7FC0 1A2860 00A0+00 1/1 1/1 0/0 .text            dKy_vrbox_addcol_sky0_set__Fsssf */
+// matches with literals
+#ifdef NONMATCHING
+void dKy_vrbox_addcol_sky0_set(s16 r, s16 g, s16 b, f32 factor) {
+    g_env_light.mVrboxAddcolSky0.r = r * factor;
+    g_env_light.mVrboxAddcolSky0.g = g * factor;
+    g_env_light.mVrboxAddcolSky0.b = b * factor;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2900,9 +4144,18 @@ asm void dKy_vrbox_addcol_sky0_set(s16 param_0, s16 param_1, s16 param_2, f32 pa
 #include "asm/d/kankyo/d_kankyo/dKy_vrbox_addcol_sky0_set__Fsssf.s"
 }
 #pragma pop
+#endif
 
 /* 801A7FC0-801A8060 1A2900 00A0+00 1/1 1/1 0/0 .text            dKy_vrbox_addcol_kasumi_set__Fsssf
  */
+// matches with literals
+#ifdef NONMATCHING
+void dKy_vrbox_addcol_kasumi_set(s16 r, s16 g, s16 b, f32 factor) {
+    g_env_light.mVrboxAddcolKasumi.r = r * factor;
+    g_env_light.mVrboxAddcolKasumi.g = g * factor;
+    g_env_light.mVrboxAddcolKasumi.b = b * factor;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2911,6 +4164,7 @@ asm void dKy_vrbox_addcol_kasumi_set(s16 param_0, s16 param_1, s16 param_2, f32 
 #include "asm/d/kankyo/d_kankyo/dKy_vrbox_addcol_kasumi_set__Fsssf.s"
 }
 #pragma pop
+#endif
 
 /* 801A8060-801A80D0 1A29A0 0070+00 1/1 0/0 0/0 .text            dKy_vrbox_addcol_set__Fsssf */
 static void dKy_vrbox_addcol_set(s16 param_0, s16 param_1, s16 param_2, f32 param_3) {
@@ -2997,7 +4251,8 @@ void dKy_SordFlush_set(cXyz param_0, int param_1) {
     dScnKy_env_light_c* light = i_dKy_getEnvlight();
 
     if (!dKy_darkworld_check() &&
-        (light->mThunderEff.mStateTimer >= 10 || light->mThunderEff.field_0x8 <= 0.0f)) {
+        (light->mThunderEff.mStateTimer >= 10 || light->mThunderEff.field_0x8 <= 0.0f))
+    {
         if (g_env_light.mSwordLight.mState == 0) {
             g_env_light.mSwordLight.mState = 1;
             g_env_light.mSwordLight.mLightType = param_1;
@@ -3120,7 +4375,7 @@ void dKy_setLight_mine(dKy_tevstr_c* p_tevstr) {
 }
 
 /* 801A88EC-801A8A34 1A322C 0148+00 2/2 5/5 11/11 .text dKy_tevstr_init__FP12dKy_tevstr_cScUc */
-// almost
+// matches with literals
 #ifdef NONMATCHING
 void dKy_tevstr_init(dKy_tevstr_c* p_tevstr, s8 roomNo, u8 param_2) {
     memset(p_tevstr, 0, sizeof(dKy_tevstr_c));
@@ -3153,16 +4408,17 @@ void dKy_tevstr_init(dKy_tevstr_c* p_tevstr, s8 roomNo, u8 param_2) {
     p_tevstr->mLightObj.mInfo.mDistAtten.z = 0.0f;
 
     for (int i = 0; i < 6; i++) {
-        J3DLightObj* light = &p_tevstr->field_0x074[i];
+        J3DLightObj* tev_light_p = &p_tevstr->field_0x074[i];
+        LightStatus* light_data_p = &lightStatusData[i];
 
-        lightStatusData[i].field_0x0 = light->mInfo.mLightPosition;
-        lightStatusData[i].field_0x18 = light->mInfo.mColor;
-        lightStatusData[i].field_0x1c.x = 1.0f;
-        lightStatusData[i].field_0x1c.y = 0.0f;
-        lightStatusData[i].field_0x1c.z = 0.0f;
-        lightStatusData[i].field_0x28.x = 1.0f;
-        lightStatusData[i].field_0x28.y = 0.0f;
-        lightStatusData[i].field_0x28.z = 0.0f;
+        tev_light_p->mInfo.mLightPosition = light_data_p->field_0x0;
+        tev_light_p->mInfo.mColor = light_data_p->field_0x18;
+        tev_light_p->mInfo.mCosAtten.x = 1.0f;
+        tev_light_p->mInfo.mCosAtten.y = 0.0f;
+        tev_light_p->mInfo.mCosAtten.z = 0.0f;
+        tev_light_p->mInfo.mDistAtten.x = 1.0f;
+        tev_light_p->mInfo.mDistAtten.y = 0.0f;
+        tev_light_p->mInfo.mDistAtten.z = 0.0f;
     }
 }
 #else
@@ -3548,7 +4804,8 @@ u8 dKy_pol_sound_get(cBgS_PolyInfo const* p_poly) {
 
     int att0 = dComIfG_Bgsp().GetPolyAtt0(*p_poly);
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") && g_env_light.field_0x12fe == 4 &&
-        att0 == 4) {
+        att0 == 4)
+    {
         att0 = 13;
     }
 
@@ -3577,7 +4834,8 @@ u8 dKy_pol_argument_get(cBgS_PolyInfo const* p_poly) {
 
     int att0 = dComIfG_Bgsp().GetPolyAtt0(*p_poly);
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") && g_env_light.field_0x12fe == 4 &&
-        att0 == 4) {
+        att0 == 4)
+    {
         att0 = 13;
     }
 
@@ -3718,7 +4976,8 @@ bool dKy_SunMoon_Light_Check() {
         // stage is not City in the Sky, Hyrule Castle, or Hidden Skill area
         if (memcmp(dComIfGp_getStartStageName(), "D_MN07", 6) &&
             memcmp(dComIfGp_getStartStageName(), "D_MN09", 6) &&
-            strcmp(dComIfGp_getStartStageName(), "F_SP200")) {
+            strcmp(dComIfGp_getStartStageName(), "F_SP200"))
+        {
             check = true;
         }
     }
@@ -3828,7 +5087,8 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, i
         // - Lanayru Field / Great Bridge of Hylia Path North (11) and South (12)
         // - Faron Field / Great Bridge of Hylia Path North (14)
         // - Lanayru Field / Outside Hidden Village Path (9)
-        else if (roomNo >= 9 && roomNo <= 14) {
+        else if (roomNo >= 9 && roomNo <= 14)
+        {
             if (out_darkLv != NULL) {
                 *out_darkLv = LANAYRU;
             }
@@ -3839,13 +5099,15 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, i
         // - Faron Field (6)
         // - Faron Field / Kakariko Gorge Path South (1)
         // - Faron Field / Great Bridge of Hylia Path South (15)
-        else {
+        else
+        {
             result = -1;
         }
     }
 
     // Faron Spring; No twilight during Rusl cutscene at very beginning of game.
-    else if (!strcmp(stageName, "F_SP108") && roomNo == 1 && dComIfGp_getStartStageLayer() == 13) {
+    else if (!strcmp(stageName, "F_SP108") && roomNo == 1 && dComIfGp_getStartStageLayer() == 13)
+    {
         result = -1;
     }
 
@@ -3918,7 +5180,8 @@ BOOL dKy_darkworld_spot_check(char const* stageName, int roomNo) {
 
     for (int i = 0; i < 34; i++) {
         if (!strcmp(stageName, darkworldTblPtr->stageName) &&
-            dKy_F_SP121Check(stageName, roomNo, NULL, i) >= 0) {
+            dKy_F_SP121Check(stageName, roomNo, NULL, i) >= 0)
+        {
             result = TRUE;
             break;
         }
@@ -3961,6 +5224,75 @@ SECTION_SDATA2 static f32 lit_10485 = 1550.0f;
 SECTION_SDATA2 static f32 lit_10486 = 140.0f;
 
 /* 801AC918-801ACCDC 1A7258 03C4+00 1/1 0/0 0/0 .text            dKy_murky_set__FP11J3DMaterial */
+#ifdef NONMATCHING
+static void dKy_murky_set(J3DMaterial* material_p) {
+    dKankyo_sunlenz_Packet* sunlenzPkt_p = g_env_light.mpSunLenzPacket;
+    dKankyo_sun_Packet* sunPkt_p = g_env_light.mpSunPacket;
+
+    camera_class* camera_p = dComIfGp_getCamera(0);
+    J3DGXColorS10 sp54;
+    J3DGXColor sp58;
+
+    sp54.r = g_env_light.mTerrainAmbienceBG1.r;
+    sp54.g = g_env_light.mTerrainAmbienceBG1.g;
+    sp54.b = g_env_light.mTerrainAmbienceBG1.b;
+    sp54.a = g_env_light.mTerrainAmbienceBG2.a;
+
+    sp58.a = g_env_light.mTerrainAmbienceBG1.a;
+
+    if (g_env_light.field_0x1300 != -1) {
+        sp58.a = g_env_light.field_0x1300 * 1.0f;
+    }
+
+    if (g_env_light.field_0x1302 != -1) {
+        sp54.a = (u8)(g_env_light.field_0x1302 * 1.0f);
+    }
+
+    if (sunlenzPkt_p != NULL && sunPkt_p->field_0x5c > 1E-06f) {
+        sp54.a *= 1.0f - sunPkt_p->field_0x5c *
+                             (1.0f - sunlenzPkt_p->field_0x98 * sunlenzPkt_p->field_0x98 *
+                                         sunlenzPkt_p->field_0x98);
+    }
+
+    // Diababa room handling
+    if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0) {
+        f32 var_f31;
+        if (g_env_light.mpMudPacket != NULL) {
+            var_f31 = 1.0f - g_env_light.mpMudPacket->field_0x1c3c;
+        }
+
+        sp54.r = 20;
+        sp54.g = 6;
+        sp54.b = 15;
+
+        sp54.r = (var_f31 * -0.0f) + 20;
+        sp54.g = (var_f31 * 36.0f) + 6;
+        sp54.b = (var_f31 * 29.0f) + 15;
+
+        f32 var_f0;
+        if (camera_p != NULL && camera_p->mLookat.mEye.z < 1800.0f) {
+            if (camera_p->mLookat.mEye.z < 1550.0f) {
+                var_f0 = 1.0f;
+            } else {
+                var_f0 = 1.0f - ((camera_p->mLookat.mEye.z - 1550.0f) / 250.0f);
+            }
+            sp54.a = 255.0f * var_f0;
+        } else {
+            sp54.a = 0;
+        }
+
+        sp54.a += -sp54.a * var_f31;
+        sp58.a = (var_f31 * 140.0f) + 255;
+    }
+
+    sp58.r = 0;
+    sp58.g = 0;
+    sp58.b = 0;
+
+    material_p->setTevColor(1, &sp54);
+    material_p->setTevKColor(3, &sp58);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3969,6 +5301,7 @@ static asm void dKy_murky_set(J3DMaterial* param_0) {
 #include "asm/d/kankyo/d_kankyo/dKy_murky_set__FP11J3DMaterial.s"
 }
 #pragma pop
+#endif
 
 /* 801ACCDC-801ACCF4 1A761C 0018+00 2/2 1/1 0/0 .text            dKy_shadow_mode_set__FUc */
 void dKy_shadow_mode_set(u8 mode) {
@@ -4011,18 +5344,18 @@ SECTION_DEAD static char const* const pad_80394F35 = "\0\0";
 #pragma pop
 
 /* 80450708-8045070C 000188 0004+00 1/1 0/0 0/0 .sdata           l_zmodeUpEnable */
-SECTION_SDATA static u32 l_zmodeUpEnable = 0x01030100;
+SECTION_SDATA static J3DZModeInfo l_zmodeUpEnable = {1, 3, 1};
 
 /* 8045070C-80450710 00018C 0004+00 1/1 0/0 0/0 .sdata           l_zmodeUpDisable */
-SECTION_SDATA static u32 l_zmodeUpDisable = 0x01030000;
+SECTION_SDATA static J3DZModeInfo l_zmodeUpDisable = {1, 3, 0};
 
 /* 80450710-80450718 000190 0008+00 1/1 0/0 0/0 .sdata           l_alphaCompInfoOPA */
-SECTION_SDATA static u8 l_alphaCompInfoOPA[8] = {
+SECTION_SDATA static J3DAlphaCompInfo l_alphaCompInfoOPA = {
     0x07, 0x00, 0x01, 0x07, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 80450718-80450720 000198 0008+00 1/1 0/0 0/0 .sdata           l_alphaCompInfo */
-SECTION_SDATA static u8 l_alphaCompInfo[8] = {
+SECTION_SDATA static J3DAlphaCompInfo l_alphaCompInfo = {
     0x04, 0x80, 0x00, 0x03, 0xFF, 0x00, 0x00, 0x00,
 };
 
@@ -4082,6 +5415,338 @@ SECTION_SDATA2 static f32 lit_10932[1 + 1 /* padding */] = {
 };
 
 /* 801ACD24-801ADBBC 1A7664 0E98+00 0/0 0/0 7/7 .text            dKy_bg_MAxx_proc__FPv */
+// stack / couple instructions at the end
+#ifdef NONMATCHING
+void dKy_bg_MAxx_proc(void* param_0) {
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    s8 cam_id = dComIfGp_getWindow(0)->getCameraID();
+    camera_class* camera_p = dComIfGp_getCamera(cam_id);
+    fopAc_ac_c* player_p = dComIfGp_getPlayer(0);
+
+    if (param_0 != NULL && player_p != NULL) {
+        J3DModelData* modelData = static_cast<J3DModel*>(param_0)->getModelData();
+
+        for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
+            J3DMaterial* mat_p = modelData->getMaterialNodePointer(i);
+            const char* mat_name = modelData->getMaterialName()->getName(i);
+
+            if (mat_name[3] == 'M' && mat_name[4] == 'A') {
+                if (memcmp(&mat_name[3], "MA06", 4) == 0) {
+                    dKy_murky_set(mat_p);
+                }
+
+                if (memcmp(&mat_name[3], "MA03", 4) == 0 || memcmp(&mat_name[3], "MA09", 4) == 0 ||
+                    memcmp(&mat_name[3], "MA17", 4) == 0 || memcmp(&mat_name[3], "MA19", 4) == 0)
+                {
+                    if (mat_name[5] != '1') {
+                        dComIfGd_setListDarkBG();
+                    } else if (mat_name[6] == '9') {
+                        dComIfGd_setListInvisisble();
+                    }
+
+                    if (mat_p->getFog() != NULL) {
+                        J3DFogInfo* fog_info_p = mat_p->getFog()->getFogInfo();
+
+                        if (fog_info_p != NULL) {
+                            if (mat_name[5] == '0' && mat_name[6] == '9') {
+                                fog_info_p->field_0x0 = 6;
+
+                                J3DGXColor k_color;
+                                k_color.r = 245.0f - g_env_light.mWaterSurfaceShineRate * 45.0f;
+                                k_color.g = 245.0f - g_env_light.mWaterSurfaceShineRate * 45.0f;
+                                k_color.b = 245.0f - g_env_light.mWaterSurfaceShineRate * 35.0f;
+                                k_color.a = 255;
+                                mat_p->setTevKColor(1, &k_color);
+                            } else {
+                                fog_info_p->field_0x0 = 7;
+
+                                J3DGXColorS10 color;
+                                J3DGXColor k_color;
+                                color.r = g_env_light.mTerrainAmbienceBG2.r;
+                                color.g = g_env_light.mTerrainAmbienceBG2.g;
+                                color.b = g_env_light.mTerrainAmbienceBG2.b;
+                                color.a = g_env_light.mTerrainAmbienceBG2.a;
+
+                                k_color.a = g_env_light.mTerrainAmbienceBG1.a;
+                                k_color.r = 0;
+                                k_color.g = 0;
+                                k_color.b = 0;
+
+                                mat_p->setTevColor(1, &color);
+                                mat_p->setTevKColor(3, &k_color);
+                            }
+                        }
+                    }
+                }
+
+                if (memcmp(&mat_name[3], "MA07", 4) == 0) {
+                    J3DGXColorS10 color;
+                    color.r = (u8)(g_env_light.mThunderEff.field_0x8 * 100.0f);
+                    color.g = (u8)(g_env_light.mThunderEff.field_0x8 * 100.0f);
+                    color.b = (u8)(g_env_light.mThunderEff.field_0x8 * 100.0f);
+                    color.a = 255;
+
+                    mat_p->setTevColor(0, &color);
+                }
+
+                if (memcmp(&mat_name[3], "MA10", 4) == 0 || memcmp(&mat_name[3], "MA02", 4) == 0) {
+                    dComIfGd_setListInvisisble();
+
+                    if (mat_p->getTexGenBlock()->getTexMtx(0) != NULL) {
+                        J3DTexMtxInfo* tex_mtx_inf =
+                            &mat_p->getTexGenBlock()->getTexMtx(0)->getTexMtxInfo();
+                        if (tex_mtx_inf != NULL) {
+                            dKyw_get_wind_vec();
+
+                            Mtx sp170;
+                            if (mat_name[6] == '2') {
+                                C_MTXLightPerspective(sp170, dComIfGd_getView()->mFovy,
+                                                      camera_p->mAspect, 1.0f, 1.0f, -0.01f, 0.0f);
+                            } else {
+                                C_MTXLightPerspective(sp170, dComIfGd_getView()->mFovy,
+                                                      camera_p->mAspect, 0.49f, -0.49f, 0.5f, 0.5f);
+                            }
+                            tex_mtx_inf->setEffectMtx(sp170);
+                            modelData->simpleCalcMaterial(0, (MtxP)j3dDefaultMtx);
+                        }
+                    }
+                }
+
+                if (memcmp(&mat_name[3], "MA00", 4) == 0 || memcmp(&mat_name[3], "MA01", 4) == 0 ||
+                    memcmp(&mat_name[3], "MA04", 4) == 0 || memcmp(&mat_name[3], "MA16", 4) == 0)
+                {
+                    J3DGXColor k_color;
+                    k_color.r = g_env_light.mFogDensity;
+                    k_color.g = 0;
+                    k_color.b = 0;
+                    if (mat_name[6] == '1') {
+                        J3DPEBlock* peblock_p = mat_p->getPEBlock();
+                        mat_p->change();
+
+                        if (dKy_camera_water_in_status_check()) {
+                            k_color.a = 255;
+                            peblock_p->getAlphaComp()->setAlphaCompInfo(l_alphaCompInfo);
+                            peblock_p->getZMode()->setZModeInfo(l_zmodeUpEnable);
+                        } else {
+                            k_color.a = 0;
+                            peblock_p->getAlphaComp()->setAlphaCompInfo(l_alphaCompInfoOPA);
+                            peblock_p->getZMode()->setZModeInfo(l_zmodeUpDisable);
+                        }
+                    } else {
+                        k_color.a = 0;
+                    }
+
+                    mat_p->setTevKColor(1, &k_color);
+                }
+
+                if (memcmp(&mat_name[3], "MA11", 4) == 0) {
+                    if (dKy_darkworld_check()) {
+                        dComIfGd_setListDarkBG();
+
+                        J3DGXColorS10 color;
+                        color.r = 170;
+                        color.g = 160;
+                        color.b = 255;
+                        color.a = 255;
+                        mat_p->setTevColor(1, &color);
+
+                        color.r = 50;
+                        color.g = 20;
+                        color.b = 90;
+                        color.a = 255;
+                        mat_p->setTevColor(2, &color);
+                    } else {
+                        cXyz spA4;
+                        cXyz sp98;
+                        J3DGXColorS10 color;
+                        color.r = 120;
+                        color.g = 90;
+                        color.b = 180;
+                        color.a = 255;
+
+                        if (dComIfG_play_c::getLayerNo(0) == 1) {
+                            color.a = 0;
+                        }
+
+                        mat_p->setTevColor(1, &color);
+
+                        color.r = 40;
+                        color.g = 30;
+                        color.b = 65;
+                        color.a = 255;
+                        mat_p->setTevColor(2, &color);
+
+                        if (env_light->field_0x1060 != NULL) {
+                            sp98 = env_light->field_0x1060->field_0x5b8;
+                            f32 var_f29 = env_light->field_0x1060->field_0x5ac.x *
+                                          env_light->field_0x1060->field_0x5d0;
+                            if (var_f29 < 0.1f) {
+                                var_f29 = 0.1f;
+                            }
+
+                            if (mat_p->getTexGenBlock()->getTexMtx(0) != NULL) {
+                                J3DTexMtxInfo* tex_mtx_inf =
+                                    &mat_p->getTexGenBlock()->getTexMtx(0)->getTexMtxInfo();
+
+                                if (tex_mtx_inf != NULL) {
+                                    Mtx sp140;
+                                    Mtx sp110;
+                                    C_MTXLightPerspective(sp140, var_f29 * 2.8f, 1.0f, 0.5f, 0.5f,
+                                                          0.0f, 0.0f);
+                                    spA4.x = sp98.x;
+                                    spA4.y = 100.0f;
+                                    spA4.z = sp98.z;
+
+                                    cXyz sp8C(sp98.x, -1000.0f, sp98.z);
+                                    mDoMtx_lookAt(sp110, &sp8C, &spA4, 0);
+                                    cMtx_concat(sp140, sp110, sp110);
+                                    tex_mtx_inf->setEffectMtx(sp110);
+                                }
+                            }
+                        }
+                    }
+                } else if (memcmp(&mat_name[3], "MA20", 4) == 0) {
+                    cXyz sp80;
+                    if (mat_p->getFog() != NULL) {
+                        J3DFogInfo* fog_inf = mat_p->getFog()->getFogInfo();
+                        if (fog_inf != NULL) {
+                            fog_inf->field_0x0 = 7;
+                        }
+
+                        J3DGXColorS10 sp3C;
+                        sp3C.r = g_env_light.mTerrainAmbienceBG3.r;
+                        sp3C.g = g_env_light.mTerrainAmbienceBG3.g;
+                        sp3C.b = g_env_light.mTerrainAmbienceBG3.b;
+                        sp3C.a = 255;
+
+                        mat_p->setTevColor(1, &sp3C);
+
+                        if (mat_p->getTexGenBlock()->getTexMtx(2) != NULL) {
+                            J3DTexMtxInfo* tex_mtx_inf =
+                                &mat_p->getTexGenBlock()->getTexMtx(2)->getTexMtxInfo();
+
+                            if (tex_mtx_inf != NULL) {
+                                Mtx spE0;
+                                Mtx spB0;
+                                C_MTXLightPerspective(spE0, 170.0f, 1.0f, 1.5f, 1.5f, 0.0f, 0.0f);
+                                sp80.x = player_p->current.pos.x;
+                                sp80.y = -14770.0f;
+                                sp80.z = player_p->current.pos.z;
+
+                                cXyz sp74(player_p->current.pos.x, -14570.0f,
+                                          player_p->current.pos.z);
+                                mDoMtx_lookAt(spB0, &sp74, &sp80, 0);
+                                cMtx_concat(spE0, spB0, spB0);
+                                tex_mtx_inf->setEffectMtx(spB0);
+                            }
+                        }
+                    }
+                } else if (memcmp(&mat_name[3], "MA13", 4) == 0) {
+                    J3DGXColorS10 color;
+                    color.r = g_env_light.mTerrainAmbienceBG3.r;
+                    color.g = g_env_light.mTerrainAmbienceBG3.g;
+                    color.b = g_env_light.mTerrainAmbienceBG3.b;
+                    color.a = g_env_light.mTerrainAmbienceBG3.a;
+                    mat_p->setTevColor(1, &color);
+                } else if (memcmp(&mat_name[3], "MA14", 4) == 0) {
+                    J3DGXColorS10 color;
+                    J3DGXColor k_color;
+                    color.r = g_env_light.mFogColor.r;
+                    color.g = g_env_light.mFogColor.g;
+                    color.b = g_env_light.mFogColor.b;
+                    color.a = g_env_light.mFogColor.a;
+                    mat_p->setTevColor(1, &color);
+
+                    k_color.r = 0;
+                    k_color.g = 0;
+                    k_color.b = 0;
+                    k_color.a = g_env_light.mTerrainAmbienceBG3.a;
+                    mat_p->setTevKColor(3, &k_color);
+                } else if (memcmp(&mat_name[3], "MA16", 4) == 0) {
+                    J3DGXColorS10 color;
+                    J3DGXColor k_color;
+                    color.r = g_env_light.mTerrainAmbienceBG1.r;
+                    color.g = g_env_light.mTerrainAmbienceBG1.g;
+                    color.b = g_env_light.mTerrainAmbienceBG1.b;
+                    color.a = g_env_light.mTerrainAmbienceBG1.a;
+                    mat_p->setTevColor(1, &color);
+
+                    k_color.r = 0;
+                    k_color.g = 0;
+                    k_color.b = 0;
+                    k_color.a = g_env_light.mTerrainAmbienceBG3.a;
+                    mat_p->setTevKColor(3, &k_color);
+                }
+            }
+
+            if (memcmp(&mat_name[3], "Rainbow", 7) == 0) {
+                f32 temp_f31 = g_env_light.getDaytime();
+                cXyz sp68;
+                camera_class* temp_r16_2 = dComIfGp_getCamera(0);
+                J3DGXColor color;
+
+                cXyz sp5C;
+                sp5C.x = -5853.0f;
+                sp5C.y = temp_r16_2->mLookat.mEye.y;
+                sp5C.z = -879.0f;
+
+                f32 var_f1 = sp5C.abs(temp_r16_2->mLookat.mEye);
+                f32 var_f29_2 = -0.2f + (var_f1 / 4500.0f);
+                if (var_f29_2 > 1.0f) {
+                    var_f29_2 = 1.0f;
+                } else if (var_f29_2 < 0.0f) {
+                    var_f29_2 = 0.0f;
+                }
+
+                color.b = 255;
+                color.g = 255;
+                color.r = 255;
+                color.a = 255;
+
+                f32 var_f30 = 0.0f;
+                if (temp_f31 >= 270.0f) {
+                    if (temp_f31 < 285.0f) {
+                        var_f30 = (285.0f - temp_f31) / 15.0f;
+                    }
+                } else if (temp_f31 < 75.0f) {
+                    if (temp_f31 >= 60.0f) {
+                        var_f30 = 1.0f - ((75.0f - temp_f31) / 15.0f);
+                    }
+                } else {
+                    var_f30 = 1.0f;
+                }
+
+                if (g_env_light.mColpatWeather != 0) {
+                    var_f30 = 0.0f;
+                }
+
+                color.b = 255;
+                color.g = 255;
+                color.r = 255;
+
+                sp5C = temp_r16_2->mLookat.mCenter;
+                sp5C.y = temp_r16_2->mLookat.mEye.y;
+                dKyr_get_vectle_calc(&temp_r16_2->mLookat.mEye, &sp5C, &sp68);
+
+                f32 temp_f1_2 = cM3d_VectorProduct2d(0.0f, 0.0f, -0.81f, 0.583f, sp68.x, sp68.z);
+                f32 var_f0;
+                if (temp_f1_2 < 0.2f) {
+                    color.a = 0;
+                } else {
+                    if (temp_f1_2 > 0.6f) {
+                        var_f0 = 1.0f;
+                    } else {
+                        var_f0 = (temp_f1_2 - 0.2f) / 0.4f;
+                    }
+                    color.a = 1.0f * (var_f29_2 * (115.0f * var_f0 * var_f30));
+                }
+
+                mat_p->setTevKColor(3, &color);
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4090,6 +5755,7 @@ asm void dKy_bg_MAxx_proc(void* param_0) {
 #include "asm/d/kankyo/d_kankyo/dKy_bg_MAxx_proc__FPv.s"
 }
 #pragma pop
+#endif
 
 /* 801ADBBC-801ADCA4 1A84FC 00E8+00 2/1 0/0 0/0 .text            __dt__18dScnKy_env_light_cFv */
 #pragma push
