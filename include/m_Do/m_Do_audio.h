@@ -115,6 +115,14 @@ inline void mDoAud_heartGaugeOn() {
     Z2AudioMgr::getInterface()->mStatusMgr.heartGaugeOn();
 }
 
+inline void mDoAud_setFogWipeWidth(f32 i_width) {
+    g_mEnvSeMgr.setFogWipeWidth(i_width);
+}
+
+inline void mDoAud_startFogWipeTrigger(const Vec* param_0) {
+    g_mEnvSeMgr.startFogWipeTrigger((Vec*)param_0);
+}
+
 inline void mDoAud_mEnvse_framework() {
     g_mEnvSeMgr.framework();
 }

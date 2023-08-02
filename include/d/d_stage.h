@@ -88,7 +88,10 @@ struct stage_scls_info_dummy_class {
 
 struct stage_pure_lightvec_info_class {
     // LGT
-};
+    /* 0x00 */ u8 field_0x0[0x1E - 0x0];
+    /* 0x1E */ u8 field_0x1e;
+    /* 0x1F */ u8 field_0x1f;
+};  // Size: 0x20
 
 // Col
 struct stage_pselect_info_class {

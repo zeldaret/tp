@@ -4,10 +4,11 @@
 //
 
 #include "rel/d/a/kytag/d_a_kytag08/d_a_kytag08.h"
-#include "dol2asm.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
+#include "dol2asm.h"
 
 //
 // Types:
@@ -59,8 +60,8 @@ extern "C" void _restgpr_28();
 
 /* 8085A578-8085A580 000078 0008+00 1/0 0/0 0/0 .text            daKytag08_Draw__FP13kytag08_class
  */
-static bool daKytag08_Draw(kytag08_class* param_0) {
-    return true;
+static int daKytag08_Draw(kytag08_class* i_this) {
+    return 1;
 }
 
 /* ############################################################################################## */
@@ -283,47 +284,240 @@ COMPILER_STRIP_GATE(0x8085B30C, &lit_4041);
 #pragma pop
 
 /* 8085A580-8085AEA0 000080 0920+00 1/0 0/0 0/0 .text daKytag08_Execute__FP13kytag08_class */
+// matches with literals
+#ifdef NONMATCHING
+static int daKytag08_Execute(kytag08_class* i_this) {
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    daPy_py_c* player_p = daPy_getPlayerActorClass();
+    JGeometry::TVec3<f32> particle_scale;
+
+    i_this->field_0x5d8 = 1;
+    if (i_this->field_0x5d8 == 0) {
+        i_this->current.pos.x = player_p->current.pos.x;
+        i_this->current.pos.y = 100.0f;
+        i_this->current.pos.z = player_p->current.pos.z;
+    } else if (env_light->field_0x0c18[0].field_0x26 == 1) {
+        i_this->current.pos.x = env_light->field_0x0c18[0].mPos.x;
+        i_this->current.pos.y = 100.0f;
+        i_this->current.pos.z = env_light->field_0x0c18[0].mPos.z;
+    }
+
+    if (i_this->field_0x5b8.abs(i_this->current.pos) < 2000.0f && !i_dComIfGp_event_runCheck()) {
+        if (i_this->field_0x5d4 > 100) {
+            f32 var_f30;
+            f32 var_f31;
+            if (i_this->field_0x5d8 != 0) {
+                var_f30 = 20.0f;
+                var_f31 = 0.1f;
+            } else {
+                var_f30 = 10.0f;
+                var_f31 = 0.2f;
+            }
+
+            cLib_addCalc(&i_this->field_0x5b8.x, i_this->field_0x5c4.x, var_f31, var_f30, 1.0E-5f);
+            cLib_addCalc(&i_this->field_0x5b8.z, i_this->field_0x5c4.z, var_f31, var_f30, 1.0E-5f);
+        } else {
+            f32 var_f30;
+            f32 var_f31;
+            if (i_this->field_0x5d8 != 0) {
+                var_f30 = 20.0f;
+                var_f31 = 0.1f;
+            } else {
+                var_f30 = 10.0f;
+                var_f31 = 0.2f;
+            }
+
+            cLib_addCalc(&i_this->field_0x5b8.x, i_this->field_0x5c4.x, var_f31, var_f30, 1.0E-5f);
+            cLib_addCalc(&i_this->field_0x5b8.z, i_this->field_0x5c4.z, var_f31, var_f30, 1.0E-5f);
+        }
+    } else {
+        i_this->field_0x5b8.x = i_this->current.pos.x;
+        i_this->field_0x5b8.z = i_this->current.pos.z;
+    }
+
+    if (!dKy_shadow_mode_check(2)) {
+        if (!i_dComIfGp_event_runCheck()) {
+            cLib_addCalc(&i_this->field_0x5d0, 0.0f, 0.2f, 0.005f, 0.001f);
+        }
+    } else if (i_this->field_0x5d4 != 0) {
+        cLib_addCalc(&i_this->field_0x5d0, 1.0f, 0.5f, 0.01f, 0.001f);
+    } else if (!i_dComIfGp_event_runCheck()) {
+        cLib_addCalc(&i_this->field_0x5d0, 0.25f, 0.01f, 0.002f, 0.001f);
+    }
+
+    mDoAud_setFogWipeWidth(i_this->field_0x5d0);
+
+    if (i_this->field_0x5d8 != 0) {
+        f32 tmp2 = 37.5f;
+        if (i_this->field_0x5b8.abs(i_this->current.pos) >
+            i_this->field_0x5d0 * tmp2 * i_this->field_0x5ac.x)
+        {
+            dComIfGs_BossLife_public_Set(2);
+        }
+    }
+
+    if ((daPy_getPlayerActorClass()->checkKandelaarSwing(1) && i_this->field_0x5d4 < 100) ||
+        dComIfGs_BossLife_public_Get() == 1)
+    {
+        dComIfGs_BossLife_public_Set(0);
+        i_this->field_0x5c4 = i_this->current.pos;
+        i_this->field_0x5d4 = 180;
+        mDoAud_startFogWipeTrigger(&i_this->current.pos);
+    } else {
+        f32 var_f30_3;
+        f32 var_f31_3;
+        if (i_this->field_0x5d8 != 0) {
+            var_f30_3 = 4000.0f;
+            var_f31_3 = 0.5f;
+        } else {
+            var_f30_3 = 4.0f;
+            var_f31_3 = 0.025f;
+        }
+
+        cLib_addCalc(&i_this->field_0x5c4.x, i_this->current.pos.x, var_f31_3, var_f30_3, 0.01f);
+        cLib_addCalc(&i_this->field_0x5c4.z, i_this->current.pos.z, var_f31_3, var_f30_3, 0.01f);
+    }
+
+    if (i_this->field_0x5d4 != 0) {
+        i_this->field_0x5d4--;
+    }
+
+    if (i_this->mpEmitter1 != NULL) {
+        i_this->mpEmitter1->setGlobalTranslation(i_this->field_0x5b8.x, i_this->field_0x5b8.y,
+                                                  i_this->field_0x5b8.z);
+        i_this->mpEmitter1->setVolumeSize(i_this->field_0x5ac.x * 50.0f * i_this->field_0x5d0);
+
+        f32 temp_f0_7 = 1.0f - i_this->field_0x5d0;
+        particle_scale.x = 1.0f - (temp_f0_7 * temp_f0_7);
+        particle_scale.y = 1.0f - (temp_f0_7 * temp_f0_7);
+        particle_scale.z = 1.0f - (temp_f0_7 * temp_f0_7);
+        i_this->mpEmitter1->setGlobalParticleScale(particle_scale);
+    }
+
+    if (i_this->field_0x5d0 <= 0.001f) {
+        i_this->field_0x5b8.x = i_this->current.pos.x;
+        i_this->field_0x5b8.z = i_this->current.pos.z;
+
+        i_this->field_0x5c4 = i_this->field_0x5b8;
+    }
+
+    f32 var_f30_4 = 20.0f;
+    if (dKy_darkworld_check()) {
+        var_f30_4 = 56.0f;
+    }
+
+    f32 var_f0;
+    if (player_p->getSpinnerActor()) {
+        var_f0 = player_p->getSpinnerActor()->current.pos.y;
+    } else {
+        var_f0 = player_p->current.pos.y;
+    }
+
+    if (var_f0 < var_f30_4) {
+        cXyz sp24(player_p->current.pos);
+        sp24.y = 100.0f;
+
+        if (i_this->field_0x5b8.abs(sp24) > i_this->field_0x5ac.x * 45.0f * i_this->field_0x5d0 ||
+            i_this->field_0x5d0 <= 0.01f)
+        {
+            player_p->onFogFade();
+        }
+    }
+
+    if (player_p != NULL && i_this->mpEmitter2 != NULL) {
+        i_this->mpEmitter2->setGlobalTranslation(player_p->current.pos.x, 100.0f,
+                                                  player_p->current.pos.z);
+
+        particle_scale.z = 0.0f;
+        particle_scale.y = 0.0f;
+        particle_scale.x = 0.0f;
+
+        if (player_p->current.pos.y < 100.0f) {
+            cXyz sp18(player_p->current.pos);
+            sp18.y = 100.0f;
+
+            if (i_this->field_0x5b8.abs(sp18) > i_this->field_0x5ac.x * 45.0f * i_this->field_0x5d0)
+            {
+                f32 scale_factor = (100.0f - player_p->current.pos.y) / 30.0f;
+
+                if (scale_factor > 1.0f) {
+                    scale_factor = 1.0f;
+                }
+
+                particle_scale.z = scale_factor;
+                particle_scale.y = scale_factor;
+                particle_scale.x = scale_factor;
+            }
+        }
+
+        i_this->mpEmitter2->setGlobalParticleScale(particle_scale);
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daKytag08_Execute(kytag08_class* param_0) {
+static asm int daKytag08_Execute(kytag08_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/kytag/d_a_kytag08/d_a_kytag08/daKytag08_Execute__FP13kytag08_class.s"
 }
 #pragma pop
+#endif
 
 /* 8085AEA0-8085AEA8 0009A0 0008+00 1/0 0/0 0/0 .text daKytag08_IsDelete__FP13kytag08_class */
-static bool daKytag08_IsDelete(kytag08_class* param_0) {
-    return true;
+static int daKytag08_IsDelete(kytag08_class* i_this) {
+    return 1;
 }
-
-/* ############################################################################################## */
-/* 8085B310-8085B310 000084 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8085B310 = "Kytag08";
-#pragma pop
 
 /* 8085AEA8-8085AF74 0009A8 00CC+00 1/0 0/0 0/0 .text            daKytag08_Delete__FP13kytag08_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daKytag08_Delete(kytag08_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag08/d_a_kytag08/daKytag08_Delete__FP13kytag08_class.s"
+static int daKytag08_Delete(kytag08_class* i_this) {
+    if (i_this->mpEmitter1 != NULL) {
+        i_this->mpEmitter1->deleteAllParticle();
+        i_this->mpEmitter1->becomeInvalidEmitter();
+        i_this->mpEmitter1->quitImmortalEmitter();
+        i_this->mpEmitter1->setEmitterCallBackPtr(NULL);
+        i_this->mpEmitter1 = NULL;
+    }
+
+    if (i_this->mpEmitter2 != NULL) {
+        i_this->mpEmitter2->deleteAllParticle();
+        i_this->mpEmitter2->becomeInvalidEmitter();
+        i_this->mpEmitter2->quitImmortalEmitter();
+        i_this->mpEmitter2->setEmitterCallBackPtr(NULL);
+        i_this->mpEmitter2 = NULL;
+    }
+
+    dComIfG_resDelete(&i_this->mPhase, "Kytag08");
+    return 1;
 }
-#pragma pop
 
 /* 8085AF74-8085AFEC 000A74 0078+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
+// getting optimized when it shouldnt be?
+#ifdef NONMATCHING
+static int useHeapInit(fopAc_ac_c* i_this) {
+    kytag08_class* this_ = (kytag08_class*)i_this;
+
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Kytag08", 3);
+    this_->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11020202);
+    if (this_->mpModel == NULL) {
+        return 0;
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void useHeapInit(fopAc_ac_c* param_0) {
+static asm int useHeapInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/kytag/d_a_kytag08/d_a_kytag08/useHeapInit__FP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8085B318-8085B338 -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag08_Method */
@@ -356,14 +550,57 @@ SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
 };
 
 /* 8085AFEC-8085B23C 000AEC 0250+00 1/0 0/0 0/0 .text            daKytag08_Create__FP10fopAc_ac_c */
+// regswap
+#ifdef NONMATCHING
+static int daKytag08_Create(fopAc_ac_c* i_this) {
+    cXyz sp(1.0f, 1.0f, 1.0f);
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    
+    if (!fopAcM_CheckCondition(i_this, 8)) {
+        new (i_this) kytag08_class();
+        fopAcM_OnCondition(i_this, 8);
+    }
+    
+    kytag08_class* this_ = (kytag08_class*)i_this;
+
+    int phase = dComIfG_resLoad(&this_->mPhase, "Kytag08");
+    if (phase == cPhs_COMPLEATE_e) {
+        if (!fopAcM_entrySolidHeap(this_, useHeapInit, 0x550)) {
+            return cPhs_ERROR_e;
+        }
+
+        this_->field_0x5ac.x = 20.0f;
+        this_->field_0x5ac.y = 20.0f;
+        this_->field_0x5ac.z = 20.0f;
+        this_->field_0x5d0 = 0.0f;
+
+        this_->mpEmitter1 = dComIfGp_particle_set(0x84A0, &this_->current.pos, NULL, &sp);
+
+        if (!dKy_darkworld_check()) {
+            this_->mpEmitter2 = dComIfGp_particle_set(0x84A1, &this_->current.pos, NULL, &sp);
+        } else {
+            this_->mpEmitter2 = dComIfGp_particle_set(0x84A2, &this_->current.pos, NULL, &sp);
+        }
+
+        this_->field_0x5b8 = this_->current.pos;
+        this_->field_0x5b8.y = 100.0f;
+        this_->field_0x5c4 = this_->field_0x5b8;
+
+        env_light->field_0x1060 = this_;
+    }
+
+    return phase;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daKytag08_Create(fopAc_ac_c* param_0) {
+static asm int daKytag08_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/kytag/d_a_kytag08/d_a_kytag08/daKytag08_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* 8085B23C-8085B284 000D3C 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
 #pragma push

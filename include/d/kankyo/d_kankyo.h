@@ -50,6 +50,9 @@ static void dKy_calc_color_set(_GXColorS10* param_0, color_RGB_class* param_1,
                                color_RGB_class* param_4, f32 param_5, f32 param_6,
                                _GXColorS10 param_7, f32 param_8);
 static void dKy_twilight_camelight_set();
+u8 dKy_shadow_mode_check(u8 mode);
+void dKy_shadow_mode_set(u8 mode);
+void dKy_shadow_mode_reset(u8 mode);
 
 struct LIGHT_INFLUENCE {
     /* 800CFC7C */ ~LIGHT_INFLUENCE() {}
@@ -101,6 +104,7 @@ struct SND_INFLUENCE {
 struct DALKMIST_INFLUENCE {
     /* 0x00 */ cXyz mPos;
     /* 0x0C */ f32 field_0xc;
+    /* 0x10 */ s8 mIndex;
 };
 
 struct DUNGEON_LIGHT {

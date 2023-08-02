@@ -6,10 +6,10 @@
 class kytag08_class : public fopAc_ac_c {
 public:
     /* 0x568 */ J3DModel* mpModel;
-    /* 0x56C */ mDoExt_btkAnm field_0x56c;
-    /* 0x584 */ mDoExt_brkAnm field_0x584;
-    /* 0x59C */ JPABaseEmitter* field_0x59c;
-    /* 0x5A0 */ JPABaseEmitter* field_0x5a0;
+    /* 0x56C */ mDoExt_btkAnm mBtk;
+    /* 0x584 */ mDoExt_brkAnm mBrk;
+    /* 0x59C */ JPABaseEmitter* mpEmitter1;
+    /* 0x5A0 */ JPABaseEmitter* mpEmitter2;
     /* 0x5A4 */ request_of_phase_process_class mPhase;
     /* 0x5AC */ cXyz field_0x5ac;
     /* 0x5B8 */ cXyz field_0x5b8;

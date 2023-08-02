@@ -27,6 +27,7 @@ cXyz dKyw_get_wind_vecpow();
 void dKyw_evt_wind_set(s16 angleX, s16 angleY);
 void dKyw_custom_windpower(f32 pow);
 void dKyw_evt_wind_set_go();
+void dKyw_wether_proc();
 
 class dKankyo_sun_Packet : public J3DPacket {
 public:

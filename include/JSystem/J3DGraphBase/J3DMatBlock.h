@@ -541,7 +541,7 @@ private:
 extern const u16 j3dDefaultZModeID;
 
 inline u16 calcZModeID(u8 param_0, u8 param_1, u8 param_2) {
-    return param_0 * 0x10 + param_2 + param_1 * 2;
+    return ((param_1 * 2) & 0x1FE) + (param_0 * 0x10) + param_2;
 }
 
 struct J3DZModeInfo {
@@ -631,6 +631,10 @@ struct J3DAlphaComp {
         mRef1 = param_1.field_0x4;
         u32 p1_mref1 = param_1.mRef1;
         field_0x0 = calcAlphaCmpID(param_1.field_0x0, param_1.mRef0, p1_mref1);
+
+        // this matches for `dKy_bg_MAxx_proc` but causes `addWarpMaterial` to fail,
+        // while the above matches for `addWarpMaterial` but causes `dKy_bg_MAxx_proc` to fail?
+        // field_0x0 = calcAlphaCmpID(param_1.field_0x0, param_1.mRef0, param_1.mRef1);
     }
 
     /* 0x00 */ u16 field_0x0;
