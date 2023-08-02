@@ -122,4 +122,7 @@ private:
     }
 };
 
+struct JKRSolidHeap;
+extern JKRSolidHeap* JASDram;
+
 #endif /* JASHEAPCTRL_H */
