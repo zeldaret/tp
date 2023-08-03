@@ -204,18 +204,18 @@ void TRKTargetSetInputPendingPtr(void* ptr) {
 
 /* 8036FAE8-8036FB00 36A428 0018+00 0/0 1/1 0/0 .text            TRKTargetStop */
 u32 TRKTargetStop() {
-    gTRKState.target = 1;
+    gTRKState.stopped = TRUE;
     return 0;
 }
 
 /* 8036FB00-8036FB10 36A440 0010+00 0/0 1/1 0/0 .text            TRKTargetSetStopped */
-void TRKTargetSetStopped(s32 tgt) {
-    gTRKState.target = tgt;
+void TRKTargetSetStopped(s32 isStopped) {
+    gTRKState.stopped = isStopped;
 }
 
 /* 8036FB10-8036FB20 36A450 0010+00 0/0 3/3 0/0 .text            TRKTargetStopped */
 s32 TRKTargetStopped() {
-    return gTRKState.target;
+    return gTRKState.stopped;
 }
 
 /* 8036FB20-8036FD20 36A460 0200+00 0/0 1/1 0/0 .text            TRKTargetSupportRequest */
@@ -230,7 +230,7 @@ asm void TRKTargetSupportRequest() {
 
 /* 8036FD20-8036FD30 36A660 0010+00 0/0 1/1 0/0 .text            TRKTargetGetPC */
 u32 TRKTargetGetPC() {
-    return gTRKCPUState.pc;
+    return gTRKCPUState.Default.PC;
 }
 
 /* ############################################################################################## */

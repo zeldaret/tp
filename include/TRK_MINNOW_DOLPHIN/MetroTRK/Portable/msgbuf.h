@@ -3,6 +3,8 @@
 
 #include "dolphin/types.h"
 
+typedef int MessageBufferID;
+
 typedef struct TRKBuffer {
 	u32 _00;
 	u32 _04;
