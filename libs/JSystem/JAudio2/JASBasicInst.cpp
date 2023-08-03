@@ -68,7 +68,7 @@ JASBasicInst::~JASBasicInst() {
 bool JASBasicInst::getParam(int param_0, int param_1, JASInstParam* param_2) const {
     param_2->field_0x1c = 0;
     param_2->field_0x1e = 0;
-    param_2->field_0x14 = &field_0xc;
+    param_2->field_0x14 = (JASOscillator::Data**)&field_0xc;
     param_2->field_0x1d = 2;
     param_2->field_0x0 = field_0x4;
     param_2->field_0x8 = field_0x8;

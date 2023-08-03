@@ -9,8 +9,9 @@ struct JASInstParam {
     f32 field_0x0;
     f32 field_0x4;
     f32 field_0x8;
-    u8 field_0xc[8];
-    const void* field_0x14;
+    f32 field_0xc;
+    u8 field_0x10[4];
+    JASOscillator::Data** field_0x14;
     u16 field_0x18;
     u16 field_0x1a;
     u8 field_0x1c;
