@@ -1205,25 +1205,25 @@ void daBoomerang_c::checkBgHit(cXyz* i_start, cXyz* i_end) {
         shape_angle.y = current.angle.y;
         resetLockActor();
         return;
-    } 
+    }
     if (field_0x962 != 0) {
         return;
     }
-        field_0xc8c.Set(i_start, i_end, this);
-        if (dComIfG_Bgsp().LineCross(&field_0xc8c) == 0)
-            return;
-        if (checkStateFlg0(FLG0_0x200) != 0) {
-            return;
-        }
-        if (field_0x718[field_0x951] != 0) {
-            if (mLockActorsPositions[field_0x951].abs2(field_0xc8c.i_GetCross()) < 2500.0f) {
-                if (field_0x951 < mLockCnt - 1) {
-                    field_0x718[field_0x951] = 0;
-                    field_0x951++;
-                    return;
-                }
+    field_0xc8c.Set(i_start, i_end, this);
+    if (dComIfG_Bgsp().LineCross(&field_0xc8c) == 0)
+        return;
+    if (checkStateFlg0(FLG0_0x200) != 0) {
+        return;
+    }
+    if (field_0x718[field_0x951] != 0) {
+        if (mLockActorsPositions[field_0x951].abs2(field_0xc8c.i_GetCross()) < 2500.0f) {
+            if (field_0x951 < mLockCnt - 1) {
+                field_0x718[field_0x951] = 0;
+                field_0x951++;
+                return;
             }
         }
+    }
     if (field_0x957 == 0) {
         if (checkStateFlg0(FLG0_10) == 0 && mLockCnt > field_0x951) {
             return;
