@@ -33,6 +33,10 @@ inline s16 i_cM_deg2s(f32 deg) {
     return deg;
 }
 
+inline f32 cM_fcos(f32 x) {
+    return JMASCos(cM_rad2s(x));
+}
+
 inline f32 cM_fsin(f32 x) {
     return JMASSin(cM_rad2s(x));
 }

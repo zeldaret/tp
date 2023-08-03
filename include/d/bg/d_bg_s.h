@@ -111,6 +111,7 @@ public:
 };  // Size: 0x1404
 
 bool dBgS_CheckBGroundPoly(cBgS_PolyInfo const&);
+bool dBgS_CheckBRoofPoly(cBgS_PolyInfo const&);
 bool dBgS_CheckBWallPoly(cBgS_PolyInfo const&);
 void dBgS_MoveBGProc_Typical(dBgW* param_0, void* param_1, cBgS_PolyInfo const& param_2,
                              bool param_3, cXyz* param_4, csXyz* param_5, csXyz* param_6);
