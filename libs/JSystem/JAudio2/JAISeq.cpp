@@ -197,7 +197,7 @@ void JAISeq::playSeqData_(JASSoundParams const& param_0, JAISoundActivity param_
 static u8 lit_716[12];
 
 /* 802A0CA4-802A0E48 29B5E4 01A4+00 1/1 0/0 0/0 .text            reserveChildTracks___6JAISeqFi */
-// setAutoDelete inline, operator new?
+// operator new?
 #ifdef NONMATCHING
 void JAISeq::reserveChildTracks_(int param_0) {
     for (int i = 0; i < 2; i++) {
