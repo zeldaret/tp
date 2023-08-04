@@ -5,6 +5,8 @@
 
 
 struct JASOscillator {
+	struct Point {};
+	
 	struct Data {
 		/* 0x00 */ u32 _00;
 		/* 0x04 */ f32 _04;

@@ -2,6 +2,7 @@
 #define JASTRACK_H
 
 #include "JSystem/JAudio2/JASGadget.h"
+#include "JSystem/JAudio2/JASOscillator.h"
 
 struct JASSoundParams;
 
@@ -13,12 +14,6 @@ struct JASDsp {
     };
 
     static u32 FILTER_MODE_IIR;
-};
-
-struct JASOscillator {
-    struct Point {};
-
-    struct Data {};
 };
 
 struct JASChannel {

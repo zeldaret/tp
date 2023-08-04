@@ -51,8 +51,8 @@ SECTION_DATA extern void* __vt__7JASInst[5];
 
 /* 80298014-8029807C 292954 0068+00 0/0 2/2 0/0 .text            __ct__12JASBasicInstFv */
 JASBasicInst::JASBasicInst() {
-    field_0x4 = 1.0;
-    field_0x8 = 1.0;
+    mVolume = 1.0;
+    mPitch = 1.0;
     mKeymapCount = 0;
     mKeymap = NULL;
     JASCalc::bzero(field_0xc, sizeof(field_0xc));
@@ -70,8 +70,8 @@ bool JASBasicInst::getParam(int param_0, int param_1, JASInstParam* param_2) con
     param_2->field_0x1e = 0;
     param_2->field_0x14 = (JASOscillator::Data**)&field_0xc;
     param_2->field_0x1d = 2;
-    param_2->field_0x0 = field_0x4;
-    param_2->field_0x8 = field_0x8;
+    param_2->mVolume = mVolume;
+    param_2->mPitch = mPitch;
 
     TKeymap* keyMap = NULL;
     for (int i = 0; i < mKeymapCount; i++) {
@@ -85,8 +85,8 @@ bool JASBasicInst::getParam(int param_0, int param_1, JASInstParam* param_2) con
         return false;
     }
 
-    param_2->field_0x0 *= keyMap->field_0x8;
-    param_2->field_0x8 *= keyMap->field_0xc;
+    param_2->mVolume *= keyMap->field_0x8;
+    param_2->mPitch *= keyMap->field_0xc;
     param_2->field_0x1a = keyMap->field_0x4;
     return true;
 }

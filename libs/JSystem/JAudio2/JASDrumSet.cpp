@@ -72,9 +72,9 @@ bool JASDrumSet::getParam(int param_0, int param_1, JASInstParam* param_2) const
 
     param_2->field_0x1c = 0;
     param_2->field_0x1e = 1;
-    param_2->field_0x0 = perc->field_0x0;
-    param_2->field_0x8 = perc->field_0x4;
-    param_2->field_0xc = perc->field_0x8;
+    param_2->mVolume = perc->mVolume;
+    param_2->mPitch = perc->mPitch;
+    param_2->mPan = perc->mPan;
     param_2->field_0x18 = perc->field_0xc;
     osc._00 = 0;
     osc._04 = 1.0f;
@@ -90,8 +90,8 @@ bool JASDrumSet::getParam(int param_0, int param_1, JASInstParam* param_2) const
 
     param_2->field_0x14 = &oscp;
     param_2->field_0x1d = 1;
-    param_2->field_0x0 *= perc->field_0x10;
-    param_2->field_0x8 *= perc->field_0x14;
+    param_2->mVolume *= perc->field_0x10;
+    param_2->mPitch *= perc->field_0x14;
     param_2->field_0x1a = perc->field_0xe;
     return true;
 }
@@ -106,9 +106,9 @@ void JASDrumSet::setPerc(int param_0, JASDrumSet::TPerc* param_1) {
 
 /* 802984C4-802984E4 292E04 0020+00 0/0 2/2 0/0 .text            __ct__Q210JASDrumSet5TPercFv */
 JASDrumSet::TPerc::TPerc() {
-    field_0x0 = 1.0f;
-    field_0x4 = 1.0f;
-    field_0x8 = 0.5f;
+    mVolume = 1.0f;
+    mPitch = 1.0f;
+    mPan = 0.5f;
     field_0xc = 1000;
 }
 

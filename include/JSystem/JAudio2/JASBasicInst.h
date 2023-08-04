@@ -3,14 +3,19 @@
 
 #include "dolphin/types.h"
 #include "JSystem/JAudio2/JASOscillator.h"
+#include "JSystem/JAudio2/JASSoundParams.h"
 
 struct JKRHeap;
-struct JASInstParam {
-    f32 field_0x0;
-    f32 field_0x4;
-    f32 field_0x8;
-    f32 field_0xc;
-    u8 field_0x10[4];
+struct JASInstParam : public JASSoundParams {
+    JASInstParam() {
+        field_0x14 = NULL;
+        field_0x18 = 0;
+        field_0x1a = 0;
+        field_0x1c = 0;
+        field_0x1d = 0;
+        field_0x1e = 0;
+    }
+
     JASOscillator::Data** field_0x14;
     u16 field_0x18;
     u16 field_0x1a;
@@ -46,8 +51,8 @@ struct JASBasicInst : public JASInst {
     /* 802980F8 */ virtual bool getParam(int, int, JASInstParam*) const;
     /* 802982E0 */ virtual u32 getType() const { return 'BSIC'; };
 
-    f32 field_0x4;
-    f32 field_0x8;
+    f32 mVolume;
+    f32 mPitch;
     JASOscillator::Data const* field_0xc[2];
     u32 mKeymapCount;
     TKeymap* mKeymap;
