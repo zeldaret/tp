@@ -26,8 +26,8 @@ public:
         /* 0x27c */ JAITempoMgr mTempoMgr;
     };
 
-    /* 8029F6D8 */ virtual bool getNumChild() const;
-    /* 8029F6E0 */ virtual bool getChild(int);
+    /* 8029F6D8 */ virtual s32 getNumChild() const;
+    /* 8029F6E0 */ virtual JAISoundChild* getChild(int);
     /* 8029F6E8 */ virtual void releaseChild(int);
     /* 8029F84C */ virtual JASTrack* getTrack();
     /* 8029F854 */ virtual JASTrack* getChildTrack(int);
