@@ -29,7 +29,7 @@ public:
     /* 802DFC64 */ virtual void getWidthEntry(int, JUTFont::TWidth*) const;
     /* 802DFD0C */ virtual int getCellWidth() const;
     /* 802DFD58 */ virtual s32 getCellHeight() const;
-    /* 802DDFE0 */ virtual u16 getFontType() const;
+    /* 802DDFE0 */ virtual int getFontType() const;
     /* 802DDFD8 */ virtual ResFONT* getResFont() const;
     /* 802DFDA4 */ virtual bool isLeadByte(int) const;
     /* 802DFF60 */ virtual void loadImage(int, _GXTexMapID);

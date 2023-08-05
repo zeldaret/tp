@@ -493,30 +493,27 @@ static const u16 halftofull[95] = {
 
 /* 802DFDD8-802DFF60 2DA718 0188+00 2/2 0/0 0/0 .text            getFontCode__10JUTResFontCFi */
 #ifdef NONMATCHING
-// still many issues
+// regalloc
 int JUTResFont::getFontCode(int param_0) const {
-    int ret = mInf1Ptr->width;
+    int ret = mInf1Ptr->defaultCode;
     if ((getFontType() == 2) && (mMaxCode >= 0x8000U) && (param_0 >= 0x20) && (param_0 < 0x7FU)) {
         param_0 = halftofull[param_0 - 32];
     }
-    int j = 0;
-    for (int i = mMap1BlockNum; i > 0; j++, i--) {
-        if ((mpMapBlocks[j]->endCode <= param_0) && (param_0 <= mpMapBlocks[j]->numEntries)) {
-            ResFONT::MAP1* temp_r4 = mpMapBlocks[j];
-            if (temp_r4->startCode == 0) {
-                ret = param_0 - temp_r4->endCode;
+    for (int i = 0; i < mMap1BlockNum; i++) {
+        if ((mpMapBlocks[i]->startCode <= param_0) && (param_0 <= mpMapBlocks[i]->endCode)) {
+            if (mpMapBlocks[i]->mappingMethod == 0) {
+                ret = param_0 - mpMapBlocks[i]->endCode;
                 break;
-            } else if (temp_r4->startCode == 2) {
-                ret = *(&mpMapBlocks[j]->mLeading + ((param_0 - mpMapBlocks[j]->endCode)));
+            } else if (mpMapBlocks[i]->mappingMethod == 2) {
+                ret = *(&mpMapBlocks[i]->mLeading + ((param_0 - mpMapBlocks[i]->endCode)));
                 break;
-            } else if (temp_r4->startCode == 3) {
-                u16* leading_temp = &temp_r4->mLeading;
+            } else if (mpMapBlocks[i]->mappingMethod == 3) {
+                u16* leading_temp = &mpMapBlocks[i]->mLeading;
                 int phi_r5 = 0;
-                int phi_r6_2 = temp_r4->numEntries - 1;
+                int phi_r6_2 = mpMapBlocks[i]->numEntries - 1;
 
                 while (phi_r6_2 >= phi_r5) {
-                    u32 temp_r3 = phi_r6_2 + phi_r5;
-                    int temp_r7 = (int)((temp_r3 >> 0x1FU) + phi_r6_2 + phi_r5) >> 1;
+                    int temp_r7 = (phi_r6_2 + phi_r5) / 2;
 
                     if (param_0 < leading_temp[temp_r7 * 2]) {
                         phi_r6_2 = temp_r7 - 1;
@@ -531,10 +528,10 @@ int JUTResFont::getFontCode(int param_0) const {
                     ret = leading_temp[temp_r7 * 2 + 1];
                     break;
                 }
-            } else if (temp_r4->startCode == 1) {
+            } else if (mpMapBlocks[i]->mappingMethod == 1) {
                 u16* phi_r5_2 = NULL;
-                if (temp_r4->numEntries == 1) {
-                    phi_r5_2 = &temp_r4->mLeading;
+                if (mpMapBlocks[i]->numEntries == 1) {
+                    phi_r5_2 = &mpMapBlocks[i]->mLeading;
                 }
                 ret = convertSjis(param_0, phi_r5_2);
                 break;
