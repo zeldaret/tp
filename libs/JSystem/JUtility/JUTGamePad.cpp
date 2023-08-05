@@ -227,11 +227,11 @@ u32 JUTGamePad::read() {
             u32 m_stick = mPadMStick[i].update(mPadStatus[i].stick_x, mPadStatus[i].stick_y,
                                                sStickMode, WS_MAIN_STICK, mPadButton[i].mButton)
                           << 0x18;
-            u32 s_stick = mPadSStick[i].update(mPadStatus[i].substick_x, mPadStatus[i].substick_y,
+            u32 s_stick = (mPadSStick[i].update(mPadStatus[i].substick_x, mPadStatus[i].substick_y,
                                                sStickMode, WS_SUB_STICK, mPadButton[i].mButton)
-                          << 0x10;
-            u32 tmp = m_stick | s_stick;
-            mPadButton[i].update(&mPadStatus[i], tmp);
+                          << 0x10);
+            m_stick |= s_stick;
+            mPadButton[i].update(&mPadStatus[i], m_stick);
         } else if (mPadStatus[i].error == -1) {
             u32 m_stick = mPadMStick[i].update(0, 0, sStickMode, WS_MAIN_STICK, 0);
             u32 s_stick = mPadSStick[i].update(0, 0, sStickMode, WS_SUB_STICK, 0);
@@ -258,7 +258,8 @@ u32 JUTGamePad::read() {
             u32 s_stick = pad->mSubStick.update(status.substick_x, status.substick_y, sStickMode,
                                                 WS_SUB_STICK, pad->mButton.mButton)
                           << 0x10;
-            pad->mButton.update(&status, m_stick | s_stick);
+            m_stick |= s_stick;
+            pad->mButton.update(&status, m_stick);
         } else {
             if (pad->mPortNum == -1) {
                 pad->assign();
@@ -639,24 +640,56 @@ void JUTGamePad::CRumble::stopMotor(int portNo, bool stop) {
 }
 
 /* 802E16F8-802E1720 2DC038 0028+00 1/1 0/0 0/0 .text            getNumBit__FPUci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm u8 getNumBit(u8* param_0, int param_1) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTGamePad/getNumBit__FPUci.s"
+static bool getNumBit(u8* arr, int bitNo) {
+    u8 bit = (arr[bitNo >> 3] & (0x80 >> (bitNo & 7)));
+    return bit != 0;
 }
-#pragma pop
 
 /* 802E1720-802E18A4 2DC060 0184+00 1/1 0/0 0/0 .text            update__Q210JUTGamePad7CRumbleFs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTGamePad::CRumble::update(s16 param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTGamePad/update__Q210JUTGamePad7CRumbleFs.s"
+void JUTGamePad::CRumble::update(s16 portNo) {
+    if (isEnabledPort(portNo) == false) {
+        field_0x0 = 0;
+        field_0x4 = 0;
+        field_0x8 = NULL;
+        field_0xc = 0;
+        field_0x10 = NULL;
+    }
+
+    if (field_0x4 == 0) {
+        return;
+    }
+
+    if (field_0x0 >= field_0x4) {
+        stopMotor(portNo, true);
+        field_0x4 = 0;
+    } else if (field_0xc == 0) {
+        if (mStatus[portNo] == 0) {
+            startMotor(portNo);
+        }
+        return;
+    } else {
+        u32 temp = (field_0x0 / field_0xc);
+        bool numBit = getNumBit(field_0x8, field_0x0 - temp * field_0xc);
+        u8 status = mStatus[portNo] != false;
+        if (numBit && !status) {
+            startMotor(portNo);
+        } else if (!numBit) {
+            bool bit = false;
+            if (field_0x10) {
+                u32 temp = (field_0x0 / field_0xc);
+                bit = getNumBit(field_0x10, field_0x0 - temp * field_0xc);
+            }
+
+            if (status) {
+                stopMotor(portNo, bit);
+            } else if (bit) {
+                stopMotor(portNo, 1);
+            }
+        }
+    }
+
+    field_0x0++;
 }
-#pragma pop
 
 /* 802E18A4-802E18CC 2DC1E4 0028+00 1/1 0/0 0/0 .text
  * triggerPatternedRumble__Q210JUTGamePad7CRumbleFUl            */
@@ -669,16 +702,22 @@ void JUTGamePad::CRumble::triggerPatternedRumble(u32 param_0) {
 
 /* 802E18CC-802E1948 2DC20C 007C+00 0/0 2/2 0/0 .text
  * startPatternedRumble__Q210JUTGamePad7CRumbleFPvQ310JUTGamePad7CRumble7ERumbleUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTGamePad::CRumble::startPatternedRumble(void* param_0,
-                                                   JUTGamePad::CRumble::ERumble param_1,
-                                                   u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTGamePad/startPatternedRumble__Q210JUTGamePad7CRumbleFPvQ310JUTGamePad7CRumble7ERumbleUl.s"
+void JUTGamePad::CRumble::startPatternedRumble(void* param_0, JUTGamePad::CRumble::ERumble param_1,
+                                               u32 param_2) {
+    field_0xc = ((*(u8*)param_0) << 8) + *((u8*)param_0 + 1);
+    field_0x8 = (u8*)param_0 + 2;
+    switch (param_1) {
+    case JUTGamePad::CRumble::VAL_0:
+        triggerPatternedRumble(field_0xc);
+        break;
+    case JUTGamePad::CRumble::VAL_1:
+        triggerPatternedRumble(-1);
+        break;
+    case JUTGamePad::CRumble::VAL_2:
+        triggerPatternedRumble(param_2);
+        break;
+    }
 }
-#pragma pop
 
 /* 802E1948-802E1978 2DC288 0030+00 1/1 3/3 0/0 .text
  * stopPatternedRumble__Q210JUTGamePad7CRumbleFs                */
@@ -689,6 +728,16 @@ void JUTGamePad::CRumble::stopPatternedRumble(s16 port) {
 
 /* 802E1978-802E199C 2DC2B8 0024+00 0/0 1/1 0/0 .text
  * stopPatternedRumbleAtThePeriod__Q210JUTGamePad7CRumbleFv     */
+// r4 += (r5 - 1) is broken to r4 += r5 and r4 += 1
+#ifdef NONMATCHING
+void JUTGamePad::CRumble::stopPatternedRumbleAtThePeriod() {
+    u32 r5 = field_0xc;
+    u32 r4 = field_0x0;
+    r4 += (r5 - 1);
+    u32 temp = r4 / r5;
+    field_0x4 = r4 - temp * r5;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -697,6 +746,7 @@ asm void JUTGamePad::CRumble::stopPatternedRumbleAtThePeriod() {
 #include "asm/JSystem/JUtility/JUTGamePad/stopPatternedRumbleAtThePeriod__Q210JUTGamePad7CRumbleFv.s"
 }
 #pragma pop
+#endif
 
 /* 802E199C-802E19D8 2DC2DC 003C+00 1/1 1/1 0/0 .text            getGamePad__10JUTGamePadFi */
 JUTGamePad* JUTGamePad::getGamePad(int padNo) {
