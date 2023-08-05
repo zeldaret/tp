@@ -5,7 +5,6 @@
 
 #include "JSystem/JUtility/JUTTexture.h"
 #include "JSystem/JUtility/JUTPalette.h"
-#include "dol2asm.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
@@ -13,27 +12,9 @@
 // Forward References:
 //
 
-extern "C" void __dt__10JUTTextureFv();
-extern "C" void storeTIMG__10JUTTextureFPC7ResTIMGUc();
-extern "C" void storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette();
-extern "C" void storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette7_GXTlut();
-extern "C" void attachPalette__10JUTTextureFP10JUTPalette();
-extern "C" void init__10JUTTextureFv();
-extern "C" void initTexObj__10JUTTextureFv();
-extern "C" void initTexObj__10JUTTextureF7_GXTlut();
-extern "C" void load__10JUTTextureF11_GXTexMapID();
-
 //
 // External References:
 //
-
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void __dla__FPv();
-extern "C" void storeTLUT__10JUTPaletteF7_GXTlut10_GXTlutFmt15JUTTransparencyUsPv();
-extern "C" void load__10JUTPaletteFv();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
 
 //
 // Declarations:
@@ -50,7 +31,6 @@ JUTTexture::~JUTTexture() {
 }
 
 /* 802DE2A8-802DE44C 2D8BE8 01A4+00 0/0 18/18 0/0 .text storeTIMG__10JUTTextureFPC7ResTIMGUc */
-#ifdef NONMATCHING
 void JUTTexture::storeTIMG(ResTIMG const* param_0, u8 param_1) {
     _GXTlut tlut;
 
@@ -72,41 +52,29 @@ void JUTTexture::storeTIMG(ResTIMG const* param_0, u8 param_1) {
         mMaxLOD = (s8)mTexInfo->maxLOD;
         mLODBias = mTexInfo->LODBias;
 
-        ResTIMG* tmp = (ResTIMG*)mTexInfo;
-
         if (mTexInfo->numColors == 0) {
             initTexObj();
         } else {
             if (mTexInfo->numColors > 0x100) {
-                tlut = (_GXTlut)param_1;
+                tlut = (_GXTlut)((param_1 % 4) + GX_BIGTLUT0);
             } else {
-                tlut = (_GXTlut)((param_1 & 3) + GX_BIGTLUT0);
+                tlut = (_GXTlut)param_1;
             }
 
             if (mEmbPalette == NULL || !getEmbPaletteDelFlag()) {
-                mEmbPalette = new JUTPalette(tlut, (_GXTlutFmt)tmp->colorFormat,
-                                             (JUTTransparency)tmp->alphaEnabled, tmp->numColors,
-                                             (void*)(tmp->format + tmp->paletteOffset));
+                mEmbPalette = new JUTPalette(tlut, (_GXTlutFmt)mTexInfo->colorFormat,
+                                             (JUTTransparency)mTexInfo->alphaEnabled, mTexInfo->numColors,
+                                             (void*)(&mTexInfo->format + mTexInfo->paletteOffset));
                 mFlags = mFlags & 1 | 2;
             } else {
-                mEmbPalette->storeTLUT(tlut, (_GXTlutFmt)tmp->colorFormat,
-                                       (JUTTransparency)tmp->alphaEnabled, tmp->numColors,
-                                       (void*)(tmp->format + tmp->paletteOffset));
+                mEmbPalette->storeTLUT(tlut, (_GXTlutFmt)mTexInfo->colorFormat,
+                                       (JUTTransparency)mTexInfo->alphaEnabled, mTexInfo->numColors,
+                                       (void*)(&mTexInfo->format + mTexInfo->paletteOffset));
             }
             attachPalette(mEmbPalette);
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTTexture::storeTIMG(ResTIMG const* param_0, u8 param_1) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTTexture/storeTIMG__10JUTTextureFPC7ResTIMGUc.s"
-}
-#pragma pop
-#endif
 
 /* 802DE44C-802DE480 2D8D8C 0034+00 0/0 6/6 0/0 .text
  * storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette              */
@@ -123,14 +91,45 @@ void JUTTexture::storeTIMG(ResTIMG const* param_0, JUTPalette* param_1) {
 
 /* 802DE480-802DE5B0 2D8DC0 0130+00 1/1 3/3 0/0 .text
  * storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette7_GXTlut      */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTTexture::storeTIMG(ResTIMG const* param_0, JUTPalette* param_1, _GXTlut param_2) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTTexture/storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette7_GXTlut.s"
+void JUTTexture::storeTIMG(ResTIMG const* param_0, JUTPalette* param_1, _GXTlut param_2) {
+    _GXTlut type;
+
+    if (param_0 == NULL) {
+        return;
+    }
+    mTexInfo = param_0;
+    mTexData = ((u8*)mTexInfo) + mTexInfo->imageOffset;
+    if (mTexInfo->imageOffset == 0) {
+        mTexData = ((u8*)mTexInfo) + sizeof(ResTIMG);
+    }
+    if (getEmbPaletteDelFlag()) {
+            delete mEmbPalette;
+    }
+    mEmbPalette = param_1;
+    setEmbPaletteDelFlag(false);
+    field_0x2c = NULL;
+    if (param_1 != NULL) {
+        mTlutName = param_2;
+        if (param_2 != param_1->getTlutName()) {
+            u8 format = param_1->getFormat();
+            u8 transperancy = param_1->getTransparency();
+            u16 numColors = param_1->getNumColors();
+            ResTLUT* colorTable = param_1->getColorTable();
+            param_1->storeTLUT(param_2, (_GXTlutFmt)format,
+                            (JUTTransparency)transperancy,
+                            numColors, colorTable);
+        }
+    }
+
+    mWrapS = mTexInfo->wrapS;
+    mWrapT = mTexInfo->wrapT;
+    mMinFilter = mTexInfo->minFilter;
+    mMagFilter = mTexInfo->magFilter;
+    mMinLOD = mTexInfo->minLOD;
+    mMaxLOD = mTexInfo->maxLOD;
+    mLODBias = mTexInfo->LODBias;
+    init();
 }
-#pragma pop
 
 /* 802DE5B0-802DE608 2D8EF0 0058+00 1/1 7/7 0/0 .text attachPalette__10JUTTextureFP10JUTPalette */
 void JUTTexture::attachPalette(JUTPalette* param_0) {
@@ -159,58 +158,43 @@ void JUTTexture::init() {
     }
 }
 
-/* ############################################################################################## */
-/* 80455FD8-80455FDC 0045D8 0004+00 2/2 0/0 0/0 .sdata2          @453 */
-SECTION_SDATA2 static f32 lit_453 = 0.125f;
-
-/* 80455FDC-80455FE0 0045DC 0004+00 2/2 0/0 0/0 .sdata2          @454 */
-SECTION_SDATA2 static f32 lit_454 = 100.0f;
-
-/* 80455FE0-80455FE8 0045E0 0008+00 2/2 0/0 0/0 .sdata2          @456 */
-SECTION_SDATA2 static f64 lit_456 = 4503599627370496.0 /* cast u32 to float */;
-
-/* 80455FE8-80455FF0 0045E8 0008+00 2/2 0/0 0/0 .sdata2          @459 */
-SECTION_SDATA2 static f64 lit_459 = 4503601774854144.0 /* cast s32 to float */;
-
 /* 802DE658-802DE744 2D8F98 00EC+00 2/2 0/0 0/0 .text            initTexObj__10JUTTextureFv */
-#ifdef NONMATCHING
 void JUTTexture::initTexObj() {
-    int offset;
-
-    if (mTexInfo->mipmapEnabled) {
-        offset = mTexInfo->imageOffset;
+    GXBool mipmapEnabled;
+    if (mTexInfo->mipmapEnabled != 0) {
+        mipmapEnabled = 1;
     } else {
-        offset = 0x20;
+        mipmapEnabled = 0;
     }
-
-    GXInitTexObj(&mTexObj, &mTexInfo + offset, mTexInfo->width, mTexInfo->height,
-                 (GXTexFmt)mTexInfo->format, (GXTexWrapMode)mTexInfo->wrapS,
-                 (GXTexWrapMode)mTexInfo->wrapT, mTexInfo->mipmapEnabled);
-    GXInitTexObjLOD(&mTexObj, (GXTexFilter)mTexInfo->minFilter, (GXTexFilter)mTexInfo->magFilter,
-                    mTexInfo->minLOD, mTexInfo->maxLOD, mTexInfo->LODBias, mTexInfo->biasClamp,
+    u8* image = ((u8*)mTexInfo);
+    image += (mTexInfo->imageOffset ? mTexInfo->imageOffset : 0x20);
+    GXInitTexObj(&mTexObj, image, mTexInfo->width, mTexInfo->height,
+                 (GXTexFmt)mTexInfo->format, (GXTexWrapMode)mWrapS,
+                 (GXTexWrapMode)mWrapT, mipmapEnabled);
+    GXInitTexObjLOD(&mTexObj, (GXTexFilter)mMinFilter, (GXTexFilter)mMagFilter,
+                    mMinLOD / 8.0f, mMaxLOD / 8.0f, mLODBias / 100.0f, mTexInfo->biasClamp,
                     mTexInfo->doEdgeLOD, (GXAnisotropy)mTexInfo->maxAnisotropy);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTTexture::initTexObj() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTTexture/initTexObj__10JUTTextureFv.s"
-}
-#pragma pop
-#endif
 
 /* 802DE744-802DE840 2D9084 00FC+00 2/2 0/0 0/0 .text            initTexObj__10JUTTextureF7_GXTlut
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTTexture::initTexObj(_GXTlut param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTTexture/initTexObj__10JUTTextureF7_GXTlut.s"
+void JUTTexture::initTexObj(_GXTlut param_0) {
+    GXBool mipmapEnabled;
+    if (mTexInfo->mipmapEnabled != 0) {
+        mipmapEnabled = 1;
+    } else {
+        mipmapEnabled = 0;
+    }
+    mTlutName = param_0;
+    u8* image = ((u8*)mTexInfo);
+    image += (mTexInfo->imageOffset ? mTexInfo->imageOffset : 0x20);
+    GXInitTexObjCI(&mTexObj, image, mTexInfo->width, mTexInfo->height,
+                 (GXCITexFmt)mTexInfo->format, (GXTexWrapMode)mWrapS,
+                 (GXTexWrapMode)mWrapT, mipmapEnabled, param_0);
+    GXInitTexObjLOD(&mTexObj, (GXTexFilter)mMinFilter, (GXTexFilter)mMagFilter,
+                    mMinLOD / 8.0f, mMaxLOD / 8.0f, mLODBias / 100.0f, mTexInfo->biasClamp,
+                    mTexInfo->doEdgeLOD, (GXAnisotropy)mTexInfo->maxAnisotropy);
 }
-#pragma pop
 
 /* 802DE840-802DE890 2D9180 0050+00 0/0 14/14 0/0 .text            load__10JUTTextureF11_GXTexMapID
  */

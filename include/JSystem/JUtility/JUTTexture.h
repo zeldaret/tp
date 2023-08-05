@@ -65,6 +65,7 @@ public:
     void setCaptureFlag(bool flag) { mFlags &= 2 | flag; }
     u8 getCaptureFlag() const { return mFlags & 1; }
     u8 getEmbPaletteDelFlag() const { return mFlags & 2; }
+    void setEmbPaletteDelFlag(bool flag) { mFlags = (mFlags & 1) | (flag << 1);}
     u8 getTlutName() const { return mTlutName; }
 
 private:
@@ -77,8 +78,8 @@ private:
     /* 0x31 */ u8 mWrapT;
     /* 0x32 */ u8 mMinFilter;
     /* 0x33 */ u8 mMagFilter;
-    /* 0x34 */ s16 mMinLOD;
-    /* 0x36 */ s16 mMaxLOD;
+    /* 0x34 */ u16 mMinLOD;
+    /* 0x36 */ u16 mMaxLOD;
     /* 0x38 */ s16 mLODBias;
     /* 0x3A */ u8 mTlutName;
     /* 0x3B */ u8 mFlags;
