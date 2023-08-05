@@ -4,31 +4,33 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/particle/d_particle_copoly.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
+#include "d/d_path.h"
 
 class daSpinner_c : public fopAc_ac_c {
 public:
-    /* 804D198C */ void createHeap();
-    /* 804D1A70 */ void create();
+    /* 804D198C */ int createHeap();
+    /* 804D1A70 */ int create();
     /* 804D1FD0 */ ~daSpinner_c();
     /* 804D21E0 */ void setRoomInfo();
     /* 804D2278 */ void setMatrix();
     /* 804D2320 */ void setEffect();
-    /* 804D25F4 */ void posMove();
+    /* 804D25F4 */ int posMove();
     /* 804D3090 */ void setReflectAngle();
     /* 804D3174 */ void setWallHit(s16, u32);
     /* 804D34B0 */ void setAnm();
-    /* 804D3618 */ void setNextPathNum();
-    /* 804D3694 */ void getPathNextPos();
-    /* 804D36F4 */ void checkLineWallHit(cXyz*, cXyz*);
-    /* 804D3774 */ void checkPathMove();
+    /* 804D3618 */ int setNextPathNum();
+    /* 804D3694 */ cXyz* getPathNextPos();
+    /* 804D36F4 */ int checkLineWallHit(cXyz*, cXyz*);
+    /* 804D3774 */ int checkPathMove();
     /* 804D3D60 */ void setSpreadEffect();
     /* 804D3F14 */ void clearSpreadEffect();
-    /* 804D3F8C */ void execute();
-    /* 804D4BB4 */ void draw();
+    /* 804D3F8C */ int execute();
+    /* 804D4BB4 */ int draw();
 
     void onPathForceRemove() { mPathForceRemove = true; }
 
-    void* checkPathMoveNow() { return mpPathMove; }
+    dPath* checkPathMoveNow() { return mpPathMove; }
 
     static u32 getWaitArg() { return 0; }
 
@@ -82,16 +84,16 @@ private:
     /* 0x8CC */ Z2SoundObjSimple field_0x8cc;
     /* 0x8EC */ dCcD_Stts mStts;
     /* 0x928 */ dCcD_Cyl mCyl;
-    /* 0xA64 */ void* mpPathMove;
-    /* 0xA68 */ void* field_0xa68;
+    /* 0xA64 */ dPath* mpPathMove;
+    /* 0xA68 */ dPath* field_0xa68;
     /* 0xA6C */ u8 field_0xa6c;
     /* 0xA6D */ u8 mJumpFlg;
-    /* 0xA6E */ u8 field_0xa6e;
+    /* 0xA6E */ s8 field_0xa6e;
     /* 0xA6F */ u8 mSpinnerTag;
     /* 0xA70 */ u8 mButtonJump;
     /* 0xA71 */ u8 mDeleteFlg;
     /* 0xA72 */ u8 field_0xa72;
-    /* 0xA73 */ u8 field_0xa73;
+    /* 0xA73 */ s8 field_0xa73;
     /* 0xA74 */ u8 field_0xa74;
     /* 0xA75 */ u8 field_0xa75;
     /* 0xA76 */ u8 field_0xa76;
