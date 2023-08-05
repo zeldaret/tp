@@ -8,10 +8,19 @@ class JSUInputStream;
 
 class JUTResReference {
 private:
-    u8 unk_0x0[0x101];
+    /* 0x001 */ u8 mType;
+    /* 0x002 */ u8 mNameLength;
+    /* 0x003 */ char mName[0x100];
 
 public:
-    JUTResReference() { unk_0x0[0] = 0; }
+    enum ResType {
+        RESTYPE_Null = 0,
+        RESTYPE_Unk1 = 1,
+        RESTYPE_Unk2 = 2,
+        RESTYPE_Unk3 = 3,
+        RESTYPE_Unk4 = 4,
+    };
+    JUTResReference() { mType = 0; }
     /* 802DE078 */ void* getResource(JSUInputStream*, u32, JKRArchive*);
     /* 802DE120 */ void* getResource(void const*, u32, JKRArchive*);
     /* 802DE1BC */ void* getResource(u32, JKRArchive*);
