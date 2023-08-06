@@ -342,6 +342,12 @@ void* JKRExpHeap::allocFromHead(u32 size, int align) {
             } else {
                 CMemBlock* prev = foundBlock->mPrev;
                 CMemBlock* next = foundBlock->mNext;
+                // Works but very fake match
+                /*size = (u32)foundBlock->allocFore(size, mCurrentGroupId, 0, 0, 0);
+                removeFreeBlock(foundBlock);
+                if (size) {
+                    setFreeBlock((CMemBlock*)size, prev, next);
+                }*/
                 newFreeBlock = foundBlock->allocFore(size, mCurrentGroupId, 0, 0, 0);
                 removeFreeBlock(foundBlock);
                 if (newFreeBlock) {

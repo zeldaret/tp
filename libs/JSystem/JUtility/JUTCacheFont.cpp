@@ -479,7 +479,7 @@ asm ResFONT* JUTResFont::getResFont() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u16 JUTResFont::getFontType() const {
+asm int JUTResFont::getFontType() const {
     nofralloc
 #include "asm/JSystem/JUtility/JUTCacheFont/getFontType__10JUTResFontCFv.s"
 }

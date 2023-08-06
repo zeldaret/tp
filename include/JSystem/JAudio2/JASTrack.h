@@ -2,6 +2,7 @@
 #define JASTRACK_H
 
 #include "JSystem/JAudio2/JASGadget.h"
+#include "JSystem/JAudio2/JASOscillator.h"
 
 struct JASSoundParams;
 
@@ -13,12 +14,6 @@ struct JASDsp {
     };
 
     static u32 FILTER_MODE_IIR;
-};
-
-struct JASOscillator {
-    struct Point {};
-
-    struct Data {};
 };
 
 struct JASChannel {
@@ -126,8 +121,8 @@ struct JASTrack {
     int getChannelMgrCount() { return channelMgrCount; }
     u8 getStatus() const { return mStatus; }
     JASTrack* getChild(u32 index) { return field_0x130[index]; }
-    void setAutoDelete(bool param_0) {
-        field_0x216 = (param_0 << 4) | field_0x216 & ~0x10;
+    inline void setAutoDelete(u8 param_0) {
+        field_0x216.autoDelete = param_0;
     }
 
     /* 0x000 */ u8 field_0x0[0x5c]; // JASSeqCtrl
@@ -154,7 +149,16 @@ struct JASTrack {
     /* 0x204 */ short field_0x204[8];
     /* 0x214 */ char field_0x214;
     /* 0x215 */ u8 mStatus;
-    /* 0x216 */ u8 field_0x216;
+    /* 0x216 */ struct {
+        u8 flag0 : 1;
+        u8 flag1 : 1;
+        u8 flag2 : 1;
+        u8 autoDelete : 1;
+        u8 flag4 : 1;
+        u8 flag5 : 1;
+        u8 flag6 : 1;
+        u8 flag7 : 1;
+    } field_0x216;
     /* 0x218 */ f32 field_0x218;
     /* 0x21C */ f32 field_0x21c;
     /* 0x220 */ u32 field_0x220;
