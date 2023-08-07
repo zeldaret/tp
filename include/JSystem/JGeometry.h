@@ -155,6 +155,10 @@ struct TVec3<f32> {
         scale(norm);
     }
 
+    f32 length() {
+        return PSVECMag((Vec*)this);
+    }
+
     void scale(register f32 sc) {
         register f32 z;
         register f32 x_y;
