@@ -4,11 +4,12 @@
 //
 
 #include "JSystem/JParticle/JPAEmitter.h"
+#include "JSystem/JParticle/JPAEmitterManager.h"
 #include "JSystem/JParticle/JPADynamicsBlock.h"
 #include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
-#include "dol2asm.h"
+#include "JSystem/JParticle/JPABaseShape.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
@@ -21,77 +22,66 @@
 // Forward References:
 //
 
-extern "C" void __dt__18JPAEmitterCallBackFv();
-extern "C" void init__14JPABaseEmitterFP17JPAEmitterManagerP11JPAResource();
-extern "C" void createParticle__14JPABaseEmitterFv();
-extern "C" void createChild__14JPABaseEmitterFP15JPABaseParticle();
-extern "C" void deleteAllParticle__14JPABaseEmitterFv();
-extern "C" void processTillStartFrame__14JPABaseEmitterFv();
-extern "C" void processTermination__14JPABaseEmitterFv();
-extern "C" void func_8027EEB0();
-extern "C" void getCurrentCreateNumber__14JPABaseEmitterCFv();
-extern "C" void getDrawCount__14JPABaseEmitterCFv();
-extern "C" void loadTexture__14JPABaseEmitterFUc11_GXTexMapID();
-
 //
 // External References:
 //
-
-extern "C" void init_p__15JPABaseParticleFP18JPAEmitterWorkData();
-extern "C" void init_c__15JPABaseParticleFP18JPAEmitterWorkDataP15JPABaseParticle();
-extern "C" void __dl__FPv();
-extern "C" void load__10JUTTextureF11_GXTexMapID();
-extern "C" extern void* __vt__18JPAEmitterCallBack[7];
 
 //
 // Declarations:
 //
 
 /* 8027E6A4-8027E6EC 278FE4 0048+00 0/0 14/14 16/16 .text            __dt__18JPAEmitterCallBackFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JPAEmitterCallBack::~JPAEmitterCallBack() {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAEmitter/__dt__18JPAEmitterCallBackFv.s"
+JPAEmitterCallBack::~JPAEmitterCallBack() {
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80455370-80455374 003970 0004+00 1/1 0/0 0/0 .sdata2          @2440 */
-SECTION_SDATA2 static f32 lit_2440 = 32.0f;
-
-/* 80455374-80455378 003974 0004+00 1/1 0/0 0/0 .sdata2          @2441 */
-SECTION_SDATA2 static u8 lit_2441[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80455378-8045537C 003978 0004+00 1/1 0/0 0/0 .sdata2          @2442 */
-SECTION_SDATA2 static f32 lit_2442 = 0.5f;
-
-/* 8045537C-80455380 00397C 0004+00 1/1 0/0 0/0 .sdata2          @2443 */
-SECTION_SDATA2 static f32 lit_2443 = 3.0f;
-
-/* 80455380-80455388 003980 0004+04 1/1 0/0 0/0 .sdata2          @2444 */
-SECTION_SDATA2 static f32 lit_2444[1 + 1 /* padding */] = {
-    1.0f,
-    /* padding */
-    0.0f,
-};
 
 /* 8027E6EC-8027EA40 27902C 0354+00 0/0 1/1 0/0 .text
  * init__14JPABaseEmitterFP17JPAEmitterManagerP11JPAResource    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPABaseEmitter::init(JPAEmitterManager* param_0, JPAResource* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAEmitter/init__14JPABaseEmitterFP17JPAEmitterManagerP11JPAResource.s"
+void JPABaseEmitter::init(JPAEmitterManager* param_0, JPAResource* param_1) {
+    mpEmtrMgr = param_0;
+    mpRes = param_1;
+    mpRes->getDyn()->getEmitterScl(&mLocalScl);
+    mpRes->getDyn()->getEmitterTrs(&mLocalTrs);
+    mpRes->getDyn()->getEmitterDir(&mLocalDir);
+    mLocalDir.normalize();
+    mpRes->getDyn()->getEmitterRot(&mLocalRot);
+    mMaxFrame = mpRes->getDyn()->getMaxFrame();
+    mLifeTime = mpRes->getDyn()->getLifetime();
+    mVolumeSize = mpRes->getDyn()->getVolumeSize();
+    mRate = mpRes->getDyn()->getRate();
+    mRateStep = mpRes->getDyn()->getRateStep();
+    mVolumeSweep = mpRes->getDyn()->getVolumeSweep();
+    mVolumeMinRad = mpRes->getDyn()->getVolumeMinRad();
+    mAwayFromCenterSpeed = mpRes->getDyn()->getInitVelOmni();
+    mAwayFromAxisSpeed = mpRes->getDyn()->getInitVelAxis();
+    mDirSpeed = mpRes->getDyn()->getInitVelDir();
+    mSpread = mpRes->getDyn()->getInitVelDirSp();
+    mRndmDirSpeed = mpRes->getDyn()->getInitVelRndm();
+    mAirResist = mpRes->getDyn()->getAirRes();
+    mRndm.set_seed(mpEmtrMgr->mpWorkData->mRndm.get_rndm_u());
+    PSMTXIdentity(mGlobalRot);
+    mGlobalScl.set(1.0f, 1.0f, 1.0f);
+    mGlobalTrs.zero();
+    mGlobalPScl.set(1.0f, 1.0f);
+    mGlobalEnvClr.a = 0xff;
+    mGlobalEnvClr.b = 0xff;
+    mGlobalEnvClr.g = 0xff;
+    mGlobalEnvClr.r = 0xff;
+    mGlobalPrmClr.a = 0xff;
+    mGlobalPrmClr.b = 0xff;
+    mGlobalPrmClr.g = 0xff;
+    mGlobalPrmClr.r = 0xff;
+    param_1->getBsp()->getPrmClr(&mPrmClr);
+    param_1->getBsp()->getEnvClr(&mEnvClr);
+    mpUserWork = NULL;
+    mScaleOut = 1.0f;
+    mEmitCount = 0.0f;
+    initStatus(0x30);
+    mDrawTimes = 1;
+    mTick = 0;
+    mWaitTime = 0;
+    mRateStepTimer = 0;
+    mTexAnmIdx = 0;
 }
-#pragma pop
 
 /* 8027EA40-8027EB60 279380 0120+00 0/0 3/3 0/0 .text            createParticle__14JPABaseEmitterFv
  */
@@ -143,14 +133,27 @@ bool JPABaseEmitter::processTillStartFrame() {
 }
 
 /* 8027EE14-8027EEB0 279754 009C+00 0/0 1/1 0/0 .text processTermination__14JPABaseEmitterFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPABaseEmitter::processTermination() {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAEmitter/processTermination__14JPABaseEmitterFv.s"
+bool JPABaseEmitter::processTermination() {
+    if (checkStatus(0x100)) {
+        return true;
+    }
+
+    if (mMaxFrame == 0) {
+        return false;
+    }
+    if (mMaxFrame < 0) {
+        setStatus(8);
+        return getParticleNumber() == 0;
+    } 
+    if (mTick >= mMaxFrame) {
+        setStatus(8);
+        if (checkStatus(0x40)) {
+            return 0;
+        }
+        return getParticleNumber() == 0;
+    }
+    return false;
 }
-#pragma pop
 
 /* 8027EEB0-8027EF30 2797F0 0080+00 0/0 1/1 0/0 .text
  * calcEmitterGlobalPosition__14JPABaseEmitterCFPQ29JGeometry8TVec3<f> */
@@ -161,7 +164,7 @@ void JPABaseEmitter::calcEmitterGlobalPosition(JGeometry::TVec3<f32>* dst) const
     mtx[0][3] = mGlobalTrs.x;
     mtx[1][3] = mGlobalTrs.y;
     mtx[2][3] = mGlobalTrs.z;
-    PSMTXMultVec(mtx, &mLocalTrs, *dst);
+    PSMTXMultVec(mtx, mLocalTrs, *dst);
 }
 
 /* 8027EF30-8027EF40 279870 0010+00 0/0 1/1 0/0 .text getCurrentCreateNumber__14JPABaseEmitterCFv

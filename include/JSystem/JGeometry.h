@@ -31,6 +31,12 @@ struct TVec3<s16> {
         z = b.z;
         return *this;
     }
+
+    void set(s16 x_, s16 y_, s16 z_) {
+        x = x_;
+        y = y_;
+        z = z_;
+    }
 };
 
 inline void setTVec3f(const f32* vec_a, f32* vec_b) {

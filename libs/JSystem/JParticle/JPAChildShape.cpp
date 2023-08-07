@@ -5,6 +5,7 @@
 
 #include "JSystem/JParticle/JPAChildShape.h"
 #include "JSystem/JParticle/JPAParticle.h"
+#include "JSystem/JParticle/JPAEmitter.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/os/OS.h"

@@ -54,15 +54,16 @@ inline void C_VECAdd(register const Vec* a, register const Vec* b, register Vec*
 inline f32 C_VECSquareMag(const Vec* v) {
     register f32 x_y;
     register f32 z;
+    register f32 res;
     register const f32* src = &v->x;
     asm {
         psq_l   x_y, 0(src), 0, 0
         ps_mul  x_y, x_y, x_y
         lfs     z,   8(src)
-        ps_madd z, z, z, x_y
-        ps_sum0 z, z, x_y, x_y
+        ps_madd res, z, z, x_y
+        ps_sum0 res, res, x_y, x_y
     };
-    return z;
+    return res;
 }
 
 #ifdef __cplusplus
