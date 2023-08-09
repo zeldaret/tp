@@ -1,0 +1,243 @@
+# This file controls what projects, issues and labels will be created in Github
+#
+#
+#
+# title       - Title of the project. Titles are also used as labels on issues
+# views       - Not supported yet (thanks github)
+# dirs        - Includes any TUs inside the listed dirs, recursively
+# not_dirs    - Excludes specific dirs from the dirs selection
+# files       - Includes any TUs manually specified
+# not_files   - Excludes any TUs manually specified
+# sub_labels  - Additional labels used for sub categorization on large projects
+#               so that views can be built later, and also so identically named TUs can 
+#               be distinguished
+
+- project:
+    title: tp_TRK_MINNOW_DOLPHIN
+  dirs:
+  - path: libs/TRK_MINNOW_DOLPHIN/GCN/EXI2_DDH_GCN
+    sub_labels: ["TRK_MINNOW_DOLPHIN/EXI2_DDH_GCN"]
+  - path: libs/TRK_MINNOW_DOLPHIN/GCN/EXI2_GDEV_GCN
+    sub_labels: ["TRK_MINNOW_DOLPHIN/EXI2_GDEV_GCN"]
+  - path: libs/TRK_MINNOW_DOLPHIN/MetroTRK
+    sub_labels: ["TRK_MINNOW_DOLPHIN/MetroTRK"]
+  - path: libs/TRK_MINNOW_DOLPHIN/ppc
+    sub_labels: ["TRK_MINNOW_DOLPHIN/ppc"]
+  - path: libs/TRK_MINNOW_DOLPHIN/Os
+    sub_labels: ["TRK_MINNOW_DOLPHIN/dolphin"]
+  - path: libs/TRK_MINNOW_DOLPHIN/utils
+    sub_labels: ["TRK_MINNOW_DOLPHIN/utils"]
+
+- project:
+    title: tp_Actors
+  dirs:
+  - path: rel/d/a/d_a_alldie
+  - path: rel/d/a/d_a_andsw
+  - path: rel/d/a/d_a_andsw2
+  - path: rel/d/a/d_a_arrow
+  - path: rel/d/a/d_a_balloon_2D
+  - path: rel/d/a/d_a_bd
+  - path: rel/d/a/d_a_bg
+  - path: rel/d/a/d_a_bg_obj
+  - path: rel/d/a/d_a_boomerang
+  - path: rel/d/a/d_a_bullet
+  - path: rel/d/a/d_a_canoe
+  - path: rel/d/a/d_a_coach_2D
+  - path: rel/d/a/d_a_coach_fire
+  - path: rel/d/a/d_a_cow
+  - path: rel/d/a/d_a_crod
+  - path: rel/d/a/d_a_cstaF
+  - path: rel/d/a/d_a_cstatue
+  - path: rel/d/a/d_a_demo00
+  - path: rel/d/a/d_a_demo_item
+  - path: rel/d/a/d_a_disappear
+  - path: rel/d/a/d_a_dmidna
+  - path: rel/d/a/d_a_do
+  - path: rel/d/a/d_a_dshutter
+  - path: rel/d/a/d_a_econt
+  - path: rel/d/a/d_a_ep
+  - path: rel/d/a/d_a_formation_mng
+  - path: rel/d/a/d_a_fr
+  - path: rel/d/a/d_a_grass
+  - path: rel/d/a/d_a_guard_mng
+  - path: rel/d/a/d_a_hitobj
+  - path: rel/d/a/d_a_horse
+  - path: rel/d/a/d_a_hozelda
+  - path: rel/d/a/d_a_izumi_gate
+  - path: rel/d/a/d_a_kago
+  - path: rel/d/a/d_a_L7demo_dr
+  - path: rel/d/a/d_a_L7low_dr
+  - path: rel/d/a/d_a_L7op_demo_dr
+  - path: rel/d/a/d_a_mant
+  - path: rel/d/a/d_a_mg_fish
+  - path: rel/d/a/d_a_mg_fshop
+  - path: rel/d/a/d_a_mg_rod
+  - path: rel/d/a/d_a_midna
+  - path: rel/d/a/d_a_mirror
+  - path: rel/d/a/d_a_movie_player
+  - path: rel/d/a/d_a_myna
+  - path: rel/d/a/d_a_nbomb
+  - path: rel/d/a/d_a_ni
+  - path: rel/d/a/d_a_passer_mng
+  - path: rel/d/a/d_a_path_line
+  - path: rel/d/a/d_a_peru
+  - path: rel/d/a/d_a_ppolamp
+  - path: rel/d/a/d_a_scene_exit
+  - path: rel/d/a/d_a_scene_exit2
+  - path: rel/d/a/d_a_set_bgobj
+  - path: rel/d/a/d_a_shop_item
+  - path: rel/d/a/d_a_skip_2D
+  - path: rel/d/a/d_a_spinner
+  - path: rel/d/a/d_a_sq
+  - path: rel/d/a/d_a_startAndGoal
+  - path: rel/d/a/d_a_suspend
+  - path: rel/d/a/d_a_swBall
+  - path: rel/d/a/d_a_swc00
+  - path: rel/d/a/d_a_swhit0
+  - path: rel/d/a/d_a_swLBall
+  - path: rel/d/a/d_a_swTime
+  - path: rel/d/a/d_a_talk
+  - path: rel/d/a/d_a_tbox
+  - path: rel/d/a/d_a_tbox2
+  - path: rel/d/a/d_a_tboxSw
+  - path: rel/d/a/d_a_title
+  - path: rel/d/a/d_a_vrbox
+  - path: rel/d/a/d_a_vrbox2
+  - path: rel/d/a/d_a_warp_bug
+  - path: rel/d/a/d_a_ykgr
+  - path: rel/d/a/door
+    sub_labels: ["Actors/Door"]
+  - path: rel/d/a/e
+    sub_labels: ["Actors/Enemy"]
+  - path: rel/d/a/b
+    sub_labels: ["Actors/Boss"]
+  - path: rel/d/a/kytag
+    sub_labels: ["Actors/Kytag"]
+  - path: rel/d/a/npc
+    sub_labels: ["Actors/NPC"]
+  - path: rel/d/a/obj
+    sub_labels: ["Actors/Object"]
+  - path: rel/d/a/tag
+    sub_labels: ["Actors/Tag"]
+  files:
+  - path: src/d/a/d_a_alink.cpp
+  - path: src/d/a/d_a_horse_static.cpp
+  - path: src/d/a/d_a_item_static.cpp
+  - path: src/d/a/d_a_itembase.cpp
+  - path: src/d/a/d_a_itembase_static.cpp
+  - path: src/d/a/d_a_player.cpp
+  - path: src/d/a/d_a_no_chg_room.cpp
+  - path: src/d/a/d_a_shop_item_static.cpp
+  - path: src/d/a/d_a_npc.cpp
+    sub_labels: ["Actors/NPC"]
+  - path: src/d/a/d_a_npc_cd.cpp
+    sub_labels: ["Actors/NPC"]
+  - path: src/d/a/d_a_npc_cd2.cpp
+    sub_labels: ["Actors/NPC"]
+  - path: src/d/a/d_a_obj.cpp
+    sub_labels: ["Actors/Object"]
+  - path: src/d/a/d_a_obj_item.cpp
+    sub_labels: ["Actors/Object"]
+  - path: src/d/a/d_a_obj_ss_base.cpp
+    sub_labels: ["Actors/Object"]
+
+- project:
+    title: tp_dolphin
+  dirs:
+  - path: libs/dolphin
+
+- project:
+    title: tp_dolzel
+  dirs:
+  - path: src/d
+  - path: src/msg
+  notDirs:
+  - path: src/d/a
+  files:
+  - path: src/c/c_damagereaction.cpp
+
+- project:
+    title: tp_Framework
+  dirs:
+  - path: src/f_ap
+  - path: src/f_op
+  - path: src/f_pc
+
+- project:
+    title: tp_JSystem
+  dirs:
+  - path: libs/JSystem/J2DGraph
+    sub_labels: ["JSystem/J2DGraph"]
+  - path: libs/JSystem/J3DGraphAnimator
+    sub_labels: ["JSystem/J3DGraphAnimator"]
+  - path: libs/JSystem/J3DGraphBase
+    sub_labels: ["JSystem/J3DGraphBase"]
+  - path: libs/JSystem/J3DGraphLoader
+    sub_labels: ["JSystem/J3DGraphLoader"]
+  - path: libs/JSystem/J3DU
+    sub_labels: ["JSystem/J3DU"]
+  - path: libs/JSystem/JAudio2
+    sub_labels: ["JSystem/JAudio2"]
+  - path: libs/JSystem/JFramework
+    sub_labels: ["JSystem/JFramework"]
+  - path: libs/JSystem/JGadget
+    sub_labels: ["JSystem/JGadget"]
+  - path: libs/JSystem/JKernel
+    sub_labels: ["JSystem/JKernel"]
+  - path: libs/JSystem/JMath
+    sub_labels: ["JSystem/JMath"]
+  - path: libs/JSystem/JMessage
+    sub_labels: ["JSystem/JMessage"]
+  - path: libs/JSystem/JParticle
+    sub_labels: ["JSystem/JParticle"]
+  - path: libs/JSystem/JStage
+    sub_labels: ["JSystem/JStage"]
+  - path: libs/JSystem/JStudio/JStudio_JAudio2
+    sub_labels: ["JSystem/JStudio_JAudio2"]
+  - path: libs/JSystem/JStudio/JStudio_JStage
+    sub_labels: ["JSystem/JStudio_JStage"]
+  - path: libs/JSystem/JStudio/JStudio_JParticle
+    sub_labels: ["JSystem/JStudio_JParticle"]
+  - path: libs/JSystem/JStudio/JStudio
+    sub_labels: ["JSystem/JStudio"]
+  - path: libs/JSystem/JSupport
+    sub_labels: ["JSystem/JSupport"]
+  - path: libs/JSystem/JUtility
+    sub_labels: ["JSystem/JUtility"]
+
+- project:
+    title: tp_m_Do
+  dirs:
+  - path: src/m_Do
+
+- project:
+    title: tp_Misc
+  dirs:
+  - path: libs/odenotstub
+  - path: libs/odemuexi2
+  - path: libs/amcstubs
+  files:
+  - path: src/init.c
+  - path: src/__start.c
+  - path: src/DynamicLink.cpp
+  - path: src/c/c_dylink.cpp
+
+- project:
+    title: tp_MSL_C
+  dirs:
+  - path: libs/MSL_C
+
+- project:
+    title: tp_Runtime.PPCEABI.H
+  dirs:
+  - path: libs/Runtime.PPCEABI.H
+
+- project:
+    title: tp_SSystem
+  dirs:
+  - path: libs/SSystem
+
+- project:
+    title: tp_Z2AudioLib
+  dirs:
+  - path: libs/Z2AudioLib
