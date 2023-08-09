@@ -13,7 +13,7 @@
 #               be distinguished
 
 - project:
-    title: TRK_MINNOW_DOLPHIN
+    title: tp_TRK_MINNOW_DOLPHIN
   dirs:
   - path: libs/TRK_MINNOW_DOLPHIN/GCN/EXI2_DDH_GCN
     sub_labels: ["TRK_MINNOW_DOLPHIN/EXI2_DDH_GCN"]
@@ -29,7 +29,7 @@
     sub_labels: ["TRK_MINNOW_DOLPHIN/utils"]
 
 - project:
-    title: Actors
+    title: tp_Actors
   dirs:
   - path: rel/d/a/d_a_alldie
   - path: rel/d/a/d_a_andsw
@@ -142,12 +142,12 @@
     sub_labels: ["Actors/Object"]
 
 - project:
-    title: dolphin
+    title: tp_dolphin
   dirs:
   - path: libs/dolphin
 
 - project:
-    title: dolzel
+    title: tp_dolzel
   dirs:
   - path: src/d
   - path: src/msg
@@ -157,14 +157,14 @@
   - path: src/c/c_damagereaction.cpp
 
 - project:
-    title: Framework
+    title: tp_Framework
   dirs:
   - path: src/f_ap
   - path: src/f_op
   - path: src/f_pc
 
 - project:
-    title: JSystem
+    title: tp_JSystem
   dirs:
   - path: libs/JSystem/J2DGraph
     sub_labels: ["JSystem/J2DGraph"]
@@ -206,12 +206,12 @@
     sub_labels: ["JSystem/JUtility"]
 
 - project:
-    title: m_Do
+    title: tp_m_Do
   dirs:
   - path: src/m_Do
 
 - project:
-    title: Misc
+    title: tp_Misc
   dirs:
   - path: libs/odenotstub
   - path: libs/odemuexi2
@@ -223,21 +223,21 @@
   - path: src/c/c_dylink.cpp
 
 - project:
-    title: MSL_C
+    title: tp_MSL_C
   dirs:
   - path: libs/MSL_C
 
 - project:
-    title: Runtime.PPCEABI.H
+    title: tp_Runtime.PPCEABI.H
   dirs:
   - path: libs/Runtime.PPCEABI.H
 
 - project:
-    title: SSystem
+    title: tp_SSystem
   dirs:
   - path: libs/SSystem
 
 - project:
-    title: Z2AudioLib
+    title: tp_Z2AudioLib
   dirs:
   - path: libs/Z2AudioLib
