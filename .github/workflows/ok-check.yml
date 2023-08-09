@@ -32,3 +32,33 @@ jobs:
       run: |
         ./tp progress -f JSON > progress-${{ github.run_id }}.json
         ./tp upload-progress progress-${{ github.run_id }}.json -b https://progress.deco.mp/ -p twilightprincess -v gcn_usa
+    - name: Get changed .c, .cpp, .inc files
+      if: github.event_name != 'pull_request'
+      id: changed-files-specific
+      uses: tj-actions/changed-files@v36
+      with:
+        files: |
+          **/*.{c,cpp,inc}
+    - name: Update Status
+      if: github.event_name != 'pull_request' && steps.changed-files-specific.outputs.any_changed == 'true'
+      run: |
+        # Install libclang-16-dev for FunctionChecker
+        wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+        sudo add-apt-repository "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-16 main"
+        sudo apt update
+        sudo apt install -y libclang-16-dev
+
+        FILENAMES="${{ steps.changed-files-specific.outputs.all_changed_files }}"
+        CMD="./tp github-check-update-status --personal-access-token ${{ secrets.PAT_TOKEN }} --debug"
+
+        # If .inc files are found, assume it's for d_a_alink.cpp for now. 
+        # We can come up something better here later if needed.
+        if echo "$FILENAMES" | grep -q ".inc"; then
+            CMD="$CMD --filename src/d/a/d_a_alink.cpp"
+        else
+            for FILE in $FILENAMES; do
+                CMD="$CMD --filename $FILE"
+            done
+        fi
+
+        $CMD

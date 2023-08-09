@@ -35,10 +35,9 @@ def _handle_import_error(ex: ImportError):
 try:
     import click
     import libdol
-    import libarc
+    import libgithub
     import requests
     import glob
-    import git
 
     from rich.logging import RichHandler
     from rich.console import Console
@@ -738,7 +737,6 @@ def calculate_progress(build_path: Path, matching: bool, format: str, print_rels
         LOG.error("unknown format: '{format}'")
 
 
-
 def find_function_range(asm: Path) -> Tuple[int, int]:
     with asm.open("r", encoding="utf-8") as file:
         lines = file.readlines()
@@ -1030,7 +1028,6 @@ def find_includes(lines: List[str], non_matching: bool, ext: str = ".s") -> Set[
 
 
 def find_used_asm_files(non_matching: bool, use_progress_bar: bool = True) -> Set[Path]:
-
     cpp_files = find_all_files()
     includes = set()
 
@@ -1200,6 +1197,250 @@ def check_sha1(game_path: Path, build_path: Path, include_rels: bool):
 
     return True
 
+#
+# Github Command Helpers
+#
+
+import functools
+
+def common_github_options(func):
+    @click.option("--debug/--no-debug")
+    @click.option(
+        "--personal-access-token",
+        help="Github Personal Access Token for authorizing API calls.",
+        required=False,
+        default=os.environ.get('GITHUB_TOKEN')
+    )
+    @click.option(
+        "--owner",
+        help="Github repo owner",
+        required=False,
+        default="zeldaret"
+    )
+    @click.option(
+        "--repo",
+        help="Github repository name",
+        required=False,
+        default="tp"
+    )
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        return func(*args, **kwargs)
+    return wrapper
+
+def prereqs(owner: str, repo: str, personal_access_token: str):
+    # Setup GraphQL client singleton
+    libgithub.GraphQLClient.setup(personal_access_token)
+
+    # Setup RepoInfo classvars
+    libgithub.RepoInfo.owner = libgithub.OwnerInfo()
+    libgithub.RepoInfo.owner.name = owner
+    libgithub.RepoInfo.name = repo
+    libgithub.RepoInfo.set_ids()
+
+    # Load in the project state
+    libgithub.StateFile.load("tools/pjstate.yml")
+
+def load_from_yaml(type: str) -> any:
+    with open("./tools/projects.yml", 'r') as stream:
+        try:
+            import yaml
+
+            projects_data = yaml.safe_load(stream)
+            LOG.debug(f"Loaded projects.yml data: {projects_data}")
+
+            match type:
+                case "labels":
+                    ret_data = libgithub.Label.get_all_from_yaml(projects_data)
+                case "issues":
+                    ret_data = libgithub.Issue.get_all_from_yaml(projects_data)
+                case "projects":
+                    ret_data = libgithub.Project.get_all_from_yaml(projects_data)
+                case _:
+                    LOG.error(f"Invalid type: {type}")
+                    sys.exit(1)
+            
+            return ret_data
+        except ImportError:
+            LOG.error("Can't import yaml, exiting.")
+            sys.exit(1)
+        except yaml.YAMLError as error:
+            LOG.error(f"Error loading YAML: {error}")
+            sys.exit(1)
+
+#
+# Github Sync Commands
+#
+
+@tp.command(name="github-sync-labels", help="Creates all labels based on tools/projects.yml")
+@common_github_options
+def github_sync_labels(debug: bool, personal_access_token: str, owner: str, repo: str):
+    if debug:
+        LOG.setLevel(logging.DEBUG)
+
+    prereqs(owner, repo, personal_access_token)
+    yaml_labels = load_from_yaml("labels")
+
+    LOG.info("Syncing up labels")
+    for label in yaml_labels:
+        label.check_and_create()
+
+@tp.command(name="github-sync-issues", help="Creates all issues and labels based on tools/projects.yml")
+@common_github_options
+def github_sync_issues(debug: bool, personal_access_token: str, owner: str, repo: str):
+    if debug:
+        LOG.setLevel(logging.DEBUG)
+
+    prereqs(owner,repo,personal_access_token)
+    yaml_issues = load_from_yaml("issues")
+
+    LOG.info("Syncing up issues")
+    for issue in yaml_issues:
+        issue.check_and_create()
+
+@tp.command(name="github-sync-projects", help="Creates all projects, issues and labels based on tools/projects.yml")
+@common_github_options
+def github_sync_projects(debug: bool, personal_access_token: str, owner: str, repo: str):
+    if debug:
+        LOG.setLevel(logging.DEBUG)
+
+    prereqs(owner, repo, personal_access_token)
+    yaml_projects = load_from_yaml("projects")
+
+    LOG.info("Syncing up projects")
+    for project in yaml_projects:
+        project.check_and_create()
+
+@tp.command(name="github-check-update-status", help="Checks all issues and updates their status based on their local file path.")
+@common_github_options
+@click.option(
+    '--filename','filenames',
+    multiple=True, 
+    type=click.Path(exists=True)
+)
+@click.option(
+    '--all',
+    help="Check all items in every project and update their status.",
+    is_flag=True,
+    default=False
+)
+@click.option(
+    '--clang-lib-path',
+    help="Path to libclang.so",
+    default="/usr/lib/x86_64-linux-gnu/libclang-16.so"
+)
+def github_check_update_status(debug: bool, personal_access_token: str, owner: str, repo: str, filenames: Tuple[click.Path], all: bool, clang_lib_path: str):
+    if debug:
+        LOG.setLevel("DEBUG")
+
+    prereqs(owner, repo, personal_access_token)
+
+    issues = libgithub.StateFile.data.get('issues')
+    projects = libgithub.StateFile.data.get('projects')
+
+    filenames_list = list(filenames)
+
+    # If all flag is set, check all issue file paths in state file
+    if all:
+        for issue in issues:
+            filenames_list.append(issue["file_path"])
+
+    import classify_tu, clang
+
+    # Set the clang library file
+    clang.cindex.Config.set_library_file(clang_lib_path)
+
+    for filename in filenames_list:
+        LOG.info(f"Classifying TU {filename}")
+        status = classify_tu.run(filename)
+
+        LOG.debug(f"Classification result: {status}")
+        if status == "error":
+            LOG.error(f"Error classifying TU {filename}")
+            sys.exit(1)
+
+        # Find the matching issue_id for the filename
+        issue_id = None
+        for issue in issues:
+            if issue["file_path"] == filename:
+                issue_id = issue["id"]
+                break
+
+        if issue_id is None:
+            LOG.error(f"Couldn't find issue_id for {filename}. Run github-sync-issues first.")
+            sys.exit(1)
+
+        # Find the matching project_id, item_id and status_field for the issue_id
+        project_id = None
+        for project in projects:
+            for item in project["items"]:
+                if item["issue_id"] == issue_id:
+                    project_id = project["id"]
+                    item_id = item["item_id"]
+                    status_field = project["status_field"]
+                    break
+
+        if project_id is None:
+            LOG.error(f"Couldn't find project_id associated with {filename}. Run github-sync-projects first.")
+            sys.exit(1)            
+
+        libgithub.Project(id=project_id,status_field=status_field).set_status_for_item(item_id, status)
+        if status == "done":
+            libgithub.Issue(id=issue_id).set_closed()
+
+#
+# Github Clean Commands
+#
+
+@tp.command(name="github-clean-labels", help="Delete all labels for a given owner/repository.")
+@common_github_options
+def github_clean_labels(debug: bool, personal_access_token: str, owner: str, repo: str) -> None:
+    if debug:
+        LOG.setLevel("DEBUG")
+
+    LOG.warning(f"This command will completely delete all labels for {owner}/{repo}. Are you sure you want to do this? (y/n)")
+    confirmation = input().lower()
+
+    if confirmation == 'y':
+        prereqs(owner,repo,personal_access_token)
+        libgithub.Label.delete_all()
+    else:
+        sys.exit(0)
+
+@tp.command(name="github-clean-issues", help="Delete all issues for a given owner/repository.")
+@common_github_options
+def github_clean_issues(debug: bool, personal_access_token: str, owner: str, repo: str):
+    if debug:
+        LOG.setLevel("DEBUG")
+
+    LOG.warning(f"This command will completely delete all issues for {owner}/{repo}. Are you sure you want to do this? (y/n)")
+    confirmation = input().lower()
+
+    if confirmation == 'y':
+        prereqs(owner,repo,personal_access_token)
+        libgithub.Issue.delete_all()
+    else:
+        sys.exit(0)
+
+@tp.command(name="github-clean-projects", help="Delete all projects for a given owner/repository.")
+@common_github_options
+def github_clean_projects(debug: bool, personal_access_token: str, owner: str, repo: str):
+    if debug:
+        LOG.setLevel("DEBUG")
+
+    LOG.warning(f"This command will completely delete all projects for {owner}/{repo}. Are you sure you want to do this? (y/n)")
+    confirmation = input().lower()
+
+    if confirmation == 'y':
+        prereqs(owner,repo,personal_access_token)
+        libgithub.Project.delete_all()
+    else:
+        sys.exit(0)
+
+#
+# Progress Command Helpers
+#
+
 def copy_progress_script() -> None:
     file_path = './tools/tp.py'
     destination_path = './tools/tp_copy.py'
@@ -1254,8 +1495,14 @@ def generate_progress(commit: str, wibo_path: Optional[str] = None) -> None:
         LOG.debug(f"stdout: {stdout.decode()}")
 
 def checkout_and_run(repo_path: str, start_commit_hash: str, wibo_path: Optional[str] = None) -> None:
-    repo = git.Repo(repo_path)
-    head_commit = repo.head.commit
+    try:
+        import git
+
+        repo = git.Repo(repo_path)
+        head_commit = repo.head.commit
+    except ImportError:
+        LOG.error("Can't import git, exiting.")
+        sys.exit(1)
 
     copy_progress_script()
     make_progress_dir()
@@ -1273,6 +1520,10 @@ def checkout_and_run(repo_path: str, start_commit_hash: str, wibo_path: Optional
     finally:
         LOG.debug(f"Checking out origin head commit: {head_commit.hexsha}")
         repo.git.checkout(head_commit.hexsha)
+
+#
+# Progress Commands
+#
 
 @tp.command(name="progress-history")
 @click.option("--debug/--no-debug", default=False)

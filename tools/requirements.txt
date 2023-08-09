@@ -10,3 +10,4 @@ cxxfilt
 pyelftools
 requests
 GitPython
+clang
