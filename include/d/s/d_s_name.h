@@ -4,8 +4,6 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_scene.h"
-// #include "d/d_bright_check.h"
-// #inlcude "d/file/d_file_select.h"
 
 class dSn_HIO_c {
 public:

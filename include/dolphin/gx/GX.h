@@ -64,11 +64,6 @@ inline void GXPosition2f32(f32 x, f32 z) {
     GXFIFO.f32 = z;
 }
 
-// inline void GXTexCoord2s16(s16 s, s16 t) {
-//     GFX_FIFO(s16) = s;
-//     GFX_FIFO(s16) = t;
-// }
-
 inline void GXColor1u32(u32 c) {
     GFX_FIFO(u32) = c;
 }

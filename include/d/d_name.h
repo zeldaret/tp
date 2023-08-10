@@ -13,7 +13,6 @@ class J2DAnmTextureSRTKey;
 class J2DTextBox;
 class JUTFont;
 struct STControl;
-// class dSelect_cursor_c;
 
 class dNm_HIO_c {
 public:

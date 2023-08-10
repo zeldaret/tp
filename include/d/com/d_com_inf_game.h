@@ -949,10 +949,6 @@ inline void dComIfGs_init() {
     g_dComIfG_gameInfo.info.init();
 }
 
-// inline void dComIfGp_itemDataInit() {
-//     g_dComIfG_gameInfo.play.itemInit();
-// }
-
 inline int i_dComIfGs_isItemFirstBit(u8 i_no) {
     return g_dComIfG_gameInfo.info.getPlayer().getGetItem().isFirstBit(i_no);
 }
