@@ -18,6 +18,7 @@ public:
 
     /* 0x7C */ OSThreadQueue* mpThreadQueue;
     /* 0x84 */ bool field_0x84;
+    /* 0x88 */ u32 field_0x88;
 };
 
 #endif /* JASTASKTHREAD_H */

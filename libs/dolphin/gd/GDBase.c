@@ -27,10 +27,6 @@ void GDFlushCurrToMem(void) {
     DCFlushRange(__GDCurrentDL->start, __GDCurrentDL->length);
 }
 
-static inline void __GDWrite(u8 data) {
-    *__GDCurrentDL->ptr++ = data;
-}
-
 /* 80360FDC-803610D4 35B91C 00F8+00 0/0 2/2 0/0 .text            GDPadCurr32 */
 void GDPadCurr32(void) {
     u32 i = ((u32)__GDCurrentDL->ptr & 31);

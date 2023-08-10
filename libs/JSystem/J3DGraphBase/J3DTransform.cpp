@@ -11,10 +11,6 @@
 // Types:
 //
 
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
 struct J3DTextureSRTInfo {};
 
 //
@@ -36,7 +32,7 @@ extern "C" void J3DScaleNrmMtx__FPA4_fRC3Vec();
 extern "C" void J3DScaleNrmMtx33__FPA3_fRC3Vec();
 extern "C" void J3DMtxProjConcat__FPA4_fPA4_fPA4_f();
 extern "C" void J3DPSMtxArrayConcat__FPA4_fPA4_fPA4_fUl();
-extern "C" extern u8 PSMulUnit01[8];
+extern "C" extern f32 PSMulUnit01[2];
 
 //
 // External References:
@@ -252,6 +248,6 @@ asm void J3DPSMtxArrayConcat(f32 (*param_0)[4], f32 (*param_1)[4], f32 (*param_2
 
 /* ############################################################################################## */
 /* 803CD8F8-803CD900 02AA18 0008+00 0/0 2/2 0/0 .data            PSMulUnit01 */
-SECTION_DATA extern u8 PSMulUnit01[8] = {
-    0x00, 0x00, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00,
+SECTION_DATA extern f32 PSMulUnit01[2] = {
+    0.0f, -1.0f,
 };

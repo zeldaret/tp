@@ -37,7 +37,6 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_29();
 extern "C" extern void* __vt__19JPAParticleCallBack[5];
-extern "C" extern u32 __float_epsilon;
 
 //
 // Declarations:

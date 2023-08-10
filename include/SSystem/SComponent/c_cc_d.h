@@ -29,6 +29,7 @@ enum cCcD_ObjAtType {
     /* 0x00000008 */ AT_TYPE_THROW_OBJ = (1 << 3),
     /* 0x00000010 */ AT_TYPE_SHIELD_ATTACK = (1 << 4),
     /* 0x00000020 */ AT_TYPE_BOMB = (1 << 5),
+    /* 0x00000040 */ AT_TYPE_40 = (1 << 6),
     /* 0x00000080 */ AT_TYPE_SLINGSHOT = (1 << 7),
     /* 0x00000200 */ AT_TYPE_LANTERN_SWING = (1 << 9),
     /* 0x00000400 */ AT_TYPE_CSTATUE_SWING = (1 << 10),
@@ -37,7 +38,8 @@ enum cCcD_ObjAtType {
     /* 0x00002000 */ AT_TYPE_ARROW = (1 << 13),
     /* 0x00004000 */ AT_TYPE_HOOKSHOT = (1 << 14),
     /* 0x00010000 */ AT_TYPE_BOOMERANG = (1 << 16),
-    /* 0x00040000 */ AT_TYPE_SPINNER = (1 << 18),
+    /* 0x00040000 */ AT_TYPE_40000 = (1 << 18),
+    /* 0x00080000 */ AT_TYPE_SPINNER = (1 << 19),
     /* 0x00100000 */ AT_TYPE_CSTATUE_BOSS_SWING = (1 << 20),
     /* 0x00200000 */ AT_TYPE_HEAVY_BOOTS = (1 << 21),
     /* 0x00400000 */ AT_TYPE_IRON_BALL = (1 << 22),
@@ -124,9 +126,20 @@ public:
     cCcD_TriAttr() {}
 };
 
+struct cCcD_SrcCpsAttr {
+    cM3dGCpsS mCps;
+};
+
 class cCcD_CpsAttr : public cCcD_ShapeAttr, public cM3dGCps {
 public:
     cCcD_CpsAttr() {}
+    void Set(const cCcD_SrcCpsAttr& pSrc) {
+        cM3dGCps::Set(pSrc.mCps);
+    }
+    void Set(const cXyz& pStart, const cXyz& pEnd, float radius) {
+        cM3dGCps::Set(pStart, pEnd, radius);
+    }
+
     /* 80085450 */ virtual ~cCcD_CpsAttr() {}
     /* 80263DC0 */ virtual bool CrossAtTg(cCcD_SphAttr const&, cXyz*) const;
     /* 80263E04 */ virtual bool CrossAtTg(cCcD_TriAttr const&, cXyz*) const;
@@ -152,13 +165,15 @@ public:
 
 STATIC_ASSERT(0x40 == sizeof(cCcD_CpsAttr));
 
-class cCcD_SrcSphAttr : public cM3dGSphS {};
+struct cCcD_SrcSphAttr {
+    cM3dGSphS mSph;
+};
 
 class cCcD_SphAttr : public cCcD_ShapeAttr, public cM3dGSph {
 public:
     cCcD_SphAttr() {}
     void Set(const cCcD_SrcSphAttr& src) {
-        cM3dGSph::Set(src);
+        cM3dGSph::Set(src.mSph);
     }
 
     /* 8008721C */ virtual ~cCcD_SphAttr() {}
@@ -259,25 +274,33 @@ public:
 
 STATIC_ASSERT(0x40 == sizeof(cCcD_DivideArea));
 
+struct cCcD_SrcObjCommonBase {
+    /* 0x0 */ s32 mSPrm;
+};
+
 struct cCcD_SrcObjTg {
     /* 0x0 */ s32 mType;
-    /* 0x4 */ s32 mSPrm;
+    /* 0x4 */ cCcD_SrcObjCommonBase mBase;
 };  // Size: 0x8
 
 struct cCcD_SrcObjAt {
     /* 0x0 */ s32 mType;
     /* 0x4 */ u8 mAtp;
-    /* 0x8 */ s32 mSPrm;
+    /* 0x8 */ cCcD_SrcObjCommonBase mBase;
 };  // Size: 0xC
+
+struct cCcD_SrcObjCo {
+    /* 0x0 */ cCcD_SrcObjCommonBase mBase;
+};  // Size: 0x4
 
 struct cCcD_SrcObjHitInf {
     /* 0x00 */ cCcD_SrcObjAt mObjAt;
     /* 0x0C */ cCcD_SrcObjTg mObjTg;
-    /* 0x14 */ s32 mSPrm;
+    /* 0x14 */ cCcD_SrcObjCo mObjCo;
 };  // Size: 0x18
 
 struct cCcD_SrcObj {
-    /* 0x0 */ int field_0x0;
+    /* 0x0 */ int mFlags;
     /* 0x4 */ cCcD_SrcObjHitInf mSrcObjHitInf;
 };  // Size: 0x1C
 
@@ -332,6 +355,13 @@ protected:
     /* 0x08 */ cCcD_Obj* mHitObj;
     /* 0x0C vtable */
 public:
+    enum CoSPrm_e {
+        CO_SPRM_SET = 1,
+        CO_SPRM_NO_CRR = 0x100,
+        CO_SPRM_NO_CO_HIT_INF_SET = 0x200,
+        CO_SPRM_SAME_ACTOR_HIT = 0x400,
+    };
+
     cCcD_ObjCommonBase() { ct(); }
     /* 8008409C */ virtual ~cCcD_ObjCommonBase() {}
     /* 802639B0 */ void ct();
@@ -339,10 +369,15 @@ public:
     s32 getSPrm() const { return mSPrm; }
     void setRPrm(s32 rprm) { mRPrm = rprm; }
     s32 getRPrm() const { return mRPrm; }
-    cCcD_Obj* getHitObj() { return mHitObj; }
+    cCcD_Obj* GetHitObj() { return mHitObj; }
     u32 MskSPrm(u32 mask) const { return mSPrm & mask; }
+    u32 MskRPrm(u32 mask) { return mRPrm & mask; }
     void OnSPrmBit(u32 flag) { mSPrm |= flag; }
     void OffSPrmBit(u32 flag) { mSPrm &= ~flag; }
+
+    void Set(cCcD_SrcObjCommonBase const& src) {
+        mSPrm = src.mSPrm;
+    }
 };
 
 STATIC_ASSERT(0x10 == sizeof(cCcD_ObjCommonBase));
@@ -362,6 +397,7 @@ public:
     void SetType(u32 type) { mType = type; }
     void SetAtp(int atp) { mAtp = atp; }
     void ClrSet() { OffSPrmBit(1); }
+    u32 ChkHit() { return MskRPrm(1); }
 
 protected:
     /* 0x10 */ int mType;
@@ -383,6 +419,7 @@ public:
     u32 GetGrp() const { return MskSPrm(0x1E); }
     bool ChkSet() const { return MskSPrm(1); }
     void ClrSet() { OffSPrmBit(1); }
+    u32 ChkHit() { return MskRPrm(1); }
 
 private:
     /* 0x10 */ int mType;
@@ -404,6 +441,11 @@ public:
     u32 ChkNoCrr() const { return MskSPrm(0x100); }
     u32 ChkSph3DCrr() const { return MskSPrm(0x80); }
     void ClrSet() { OffSPrmBit(1); }
+    u32 ChkHit() { return MskRPrm(1); }
+
+    void Set(cCcD_SrcObjCo const& src) {
+        cCcD_ObjCommonBase::Set(src.mBase);
+    }
 };
 
 STATIC_ASSERT(0x10 == sizeof(cCcD_ObjCo));
@@ -460,6 +502,15 @@ public:
     void OnCoSPrmBit(u32 flag) { mObjCo.OnSPrmBit(flag); }
     void SetTgSPrm(u32 prm) { mObjTg.SetSPrm(prm); }
     void SetCoSPrm(u32 prm) { mObjCo.SetSPrm(prm); }
+    void ClrAtHit() { mObjAt.ClrHit(); }
+    void ClrTgHit() { mObjTg.ClrHit(); }
+    void ClrCoHit() { mObjCo.ClrHit(); }
+    u32 ChkAtHit() { return mObjAt.ChkHit(); }
+    u32 ChkTgHit() { return mObjTg.ChkHit(); }
+    u32 ChkCoHit() { return mObjCo.ChkHit(); }
+    cCcD_Obj* GetAtHitObj() { return mObjAt.GetHitObj(); }
+    cCcD_Obj* GetTgHitObj() { return mObjTg.GetHitObj(); }
+    cCcD_Obj* GetCoHitObj() { return mObjCo.GetHitObj(); }
 
 };  // Size = 0x40
 
@@ -484,10 +535,10 @@ public:
     void SetStts(cCcD_Stts* stts) { mStts = stts; }
     cCcD_DivideInfo& GetDivideInfo() { return mDivideInfo; }
     cCcD_DivideInfo* GetPDivideInfo() { return &mDivideInfo; }
-    int ChkBsRevHit() const { return field_0x40 & 2; }
+    int ChkBsRevHit() const { return mFlags & 2; }
 
 private:
-    /* 0x040 */ int field_0x40;
+    /* 0x040 */ int mFlags;
     /* 0x044 */ cCcD_Stts* mStts;
     /* 0x048 */ cCcD_DivideInfo mDivideInfo;
 };  // Size = 0x58

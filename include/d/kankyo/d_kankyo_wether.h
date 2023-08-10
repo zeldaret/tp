@@ -27,6 +27,7 @@ cXyz dKyw_get_wind_vecpow();
 void dKyw_evt_wind_set(s16 angleX, s16 angleY);
 void dKyw_custom_windpower(f32 pow);
 void dKyw_evt_wind_set_go();
+void dKyw_wether_proc();
 
 class dKankyo_sun_Packet : public J3DPacket {
 public:
@@ -42,11 +43,7 @@ public:
     /* 0x38 */ u8* mpResMoon_A_A01;
     /* 0x3C */ u8* mpResMoon_A_A02;
     /* 0x40 */ u8* mpResMoon_A_A03;
-    /* 0x44 */ int field_0x44;
-    /* 0x48 */ int field_0x48;
-    /* 0x4C */ int field_0x4c;
-    /* 0x50 */ int field_0x50;
-    /* 0x54 */ int field_0x54;
+    /* 0x44 */ u32 field_0x44[5];
     /* 0x58 */ int field_0x58;
     /* 0x5C */ f32 field_0x5c;
     /* 0x60 */ f32 field_0x60;
@@ -54,7 +51,7 @@ public:
     /* 0x68 */ f32 field_0x68;
     /* 0x6C */ f32 field_0x6c;
     /* 0x70 */ GXColor mColor;
-    /* 0x74 */ u8 field_0x74[4];
+    /* 0x74 */ GXColor field_0x74;
 };  // Size: 0x78
 
 class dKankyo_sunlenz_Packet : public J3DPacket {
@@ -68,10 +65,11 @@ public:
     /* 0x1C */ u8* mpResRing_A;
     /* 0x20 */ u8* mpResLenz;
     /* 0x24 */ cXyz mPositions[8];
-    /* 0x84 */ u8 field_0x84[8];
+    /* 0x84 */ f32 field_0x84;
+    /* 0x88 */ f32 field_0x88;
     /* 0x8C */ f32 field_0x8c;
     /* 0x90 */ f32 field_0x90;
-    /* 0x94 */ u8 field_0x94[4];
+    /* 0x94 */ f32 field_0x94;
     /* 0x98 */ f32 field_0x98;
     /* 0x9C */ u8 field_0x9c[2];
     /* 0x9E */ bool mDrawLenzInSky;
@@ -240,7 +238,6 @@ public:
     virtual void draw();
     virtual ~dKankyo_vrkumo_Packet();
 
-private:
     /* 0x0010 */ GXColor mColor;
     /* 0x0014 */ u8* mpResCloudtx_01;
     /* 0x0018 */ u8* mpResCloudtx_02;

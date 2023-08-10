@@ -212,7 +212,7 @@ extern "C" void getOpenSection__14JAUSectionHeapFv();
 extern "C" void setSeqDataUser__14JAUSectionHeapFP14JAISeqDataUser();
 extern "C" void newDynamicSeqBlock__14JAUSectionHeapFUl();
 extern "C" void getSeqData__14JAUSectionHeapF10JAISoundIDP10JAISeqData();
-extern "C" bool releaseSeqData__14JAUSectionHeapFv();
+extern "C" int releaseSeqData__14JAUSectionHeapFv();
 extern "C" void __dt__14JAUSectionHeapFv();
 extern "C" static void func_802A6440();
 extern "C" void __dt__10JAUSectionFv();

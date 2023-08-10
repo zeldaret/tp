@@ -8,12 +8,10 @@ M128_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv2prchk.map
 
 M128_CPP_FILES := \
 	rel/executor.cpp \
-	rel/d/a/tag/d_a_tag_lv2prchk/unknown_translation_unit_bss.cpp \
 	rel/d/a/tag/d_a_tag_lv2prchk/d_a_tag_lv2prchk.cpp \
 
 M128_O_FILES := \
 	$(BUILD_DIR)/rel/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv2prchk/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv2prchk/d_a_tag_lv2prchk.o \
 
 M128_LIBS := \

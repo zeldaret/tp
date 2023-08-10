@@ -7,7 +7,7 @@ lbl_80CE14DC:
 /* 80CE14F0  DB C1 01 80 */	stfd f30, 0x180(r1)
 /* 80CE14F4  F3 C1 01 88 */	psq_st f30, 392(r1), 0, 0 /* qr0 */
 /* 80CE14F8  39 61 01 80 */	addi r11, r1, 0x180
-/* 80CE14FC  4B 68 0C A5 */	bl __save_gpr
+/* 80CE14FC  4B 68 0C A5 */	bl _savegpr_14
 /* 80CE1500  7C 6F 1B 78 */	mr r15, r3
 /* 80CE1504  3C 60 80 CE */	lis r3, lit_3779@ha /* 0x80CE39E8@ha */
 /* 80CE1508  3B 03 39 E8 */	addi r24, r3, lit_3779@l /* 0x80CE39E8@l */
@@ -1460,7 +1460,7 @@ lbl_80CE2A0C:
 /* 80CE2A44  E3 C1 01 88 */	psq_l f30, 392(r1), 0, 0 /* qr0 */
 /* 80CE2A48  CB C1 01 80 */	lfd f30, 0x180(r1)
 /* 80CE2A4C  39 61 01 80 */	addi r11, r1, 0x180
-/* 80CE2A50  4B 67 F7 9D */	bl __restore_gpr
+/* 80CE2A50  4B 67 F7 9D */	bl _restgpr_14
 /* 80CE2A54  80 01 01 A4 */	lwz r0, 0x1a4(r1)
 /* 80CE2A58  7C 08 03 A6 */	mtlr r0
 /* 80CE2A5C  38 21 01 A0 */	addi r1, r1, 0x1a0

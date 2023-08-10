@@ -5,7 +5,9 @@
 
 #include "rel/d/a/e/d_a_e_ym/d_a_e_ym.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/a/d_a_player.h"
 #include "d/d_path.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
@@ -436,9 +438,11 @@ dCcD_SrcSph E_YM_n::cc_sph_src = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        40.0f,
-    },
+        {
+            {0.0f, 0.0f, 0.0f},
+            40.0f,
+        },
+    }
 };
 
 /* 80815B7C-80815B84 000078 0008+00 0/0 0/0 0/0 .data            w_eff_id$5427 */
@@ -849,6 +853,25 @@ COMPILER_STRIP_GATE(0x808159F0, &lit_4215);
 #pragma pop
 
 /* 80808884-808089DC 000844 0158+00 8/8 0/0 0/0 .text            setElecEffect1__8daE_YM_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void daE_YM_c::setElecEffect1() {
+    f32 fVar3 = (field_0x68c * 10.0f) / 6.0f;
+    cXyz cStack_2c(fVar3, fVar3, fVar3);
+    MtxP iVar5;
+    if (mFlyType == true) {
+        iVar5 = field_0x5b4->getModel()->i_getAnmMtx(8);
+    } else {
+        iVar5 = field_0x5b4->getModel()->i_getAnmMtx(0);
+    }
+
+    cXyz cStack_38(iVar5[0][3], iVar5[1][3], iVar5[2][3]);
+    field_0xad8 = dComIfGp_particle_set(field_0xad8, 0x8393, &cStack_38, &mTevStr, &shape_angle, &cStack_2c,
+                                        0xff, 0, 0xffffffff, 0, 0, 0);
+    field_0xadc = dComIfGp_particle_set(field_0xadc, 0x8394, &cStack_38, &mTevStr, &shape_angle, &cStack_2c,
+                                        0xff, 0, 0xffffffff, 0, 0, 0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -857,8 +880,28 @@ asm void daE_YM_c::setElecEffect1() {
 #include "asm/rel/d/a/e/d_a_e_ym/d_a_e_ym/setElecEffect1__8daE_YM_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 808089DC-80808B3C 00099C 0160+00 9/9 0/0 0/0 .text            setElecEffect2__8daE_YM_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daE_YM_c::setElecEffect2() {
+    f32 fVar3 = (field_0x68c * 10.0f) / 6.0f;
+    cXyz cStack_2c(fVar3, fVar3, fVar3);
+    MtxP iVar5;
+    if (mFlyType == true) {
+        iVar5 = field_0x5b4->getModel()->i_getAnmMtx(8);
+    } else {
+        iVar5 = field_0x5b4->getModel()->i_getAnmMtx(0);
+    }
+    cXyz cStack_38(iVar5[0][3], iVar5[1][3], iVar5[2][3]);
+    setElecEffect1();
+    field_0xae0 = dComIfGp_particle_set(field_0xae0, 0x8395, &cStack_38, &mTevStr, &shape_angle, &cStack_2c,
+                                        0xff, 0, 0xffffffff, 0, 0, 0);
+    field_0xae4 = dComIfGp_particle_set(field_0xae4, 0x8396, &cStack_38, &mTevStr, &shape_angle, &cStack_2c,
+                                        0xff, 0, 0xffffffff, 0, 0, 0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -867,6 +910,7 @@ asm void daE_YM_c::setElecEffect2() {
 #include "asm/rel/d/a/e/d_a_e_ym/d_a_e_ym/setElecEffect2__8daE_YM_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80808B3C-80808E34 000AFC 02F8+00 1/1 0/0 0/0 .text            setFireEffect__8daE_YM_cFv */
 #pragma push
@@ -2218,7 +2262,7 @@ int daE_YM_c::create() {
                 mpPath = dPath_GetRoomPath(tmp0, fopAcM_GetRoomNo(this));
 
                 if (mpPath != NULL) {
-                    mAttentionInfo.field_0x4[3] = 31;
+                    mAttentionInfo.field_0x0[7] = 31;
                     field_0x6a6 = 4;
                     field_0x670 = current.pos;
                     setActionMode(ACT_WAIT);

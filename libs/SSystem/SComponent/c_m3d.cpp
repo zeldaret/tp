@@ -296,17 +296,17 @@ bool cM3d_Cross_AabAab(const cM3dGAab* pAabA, const cM3dGAab* pAabB) {
 /* 80268B0C-80268BB4 26344C 00A8+00 0/0 4/4 0/0 .text cM3d_Cross_AabCyl__FPC8cM3dGAabPC8cM3dGCyl
  */
 bool cM3d_Cross_AabCyl(const cM3dGAab* pAab, const cM3dGCyl* pCyl) {
-    if (pAab->getMinP().x > pCyl->GetCP().x + pCyl->GetR()) {
+    if (pAab->getMinP().x > pCyl->GetCP()->x + pCyl->GetR()) {
         return false;
-    } else if (pAab->getMaxP().x < pCyl->GetCP().x - pCyl->GetR()) {
+    } else if (pAab->getMaxP().x < pCyl->GetCP()->x - pCyl->GetR()) {
         return false;
-    } else if (pAab->getMinP().z > pCyl->GetCP().z + pCyl->GetR()) {
+    } else if (pAab->getMinP().z > pCyl->GetCP()->z + pCyl->GetR()) {
         return false;
-    } else if (pAab->getMaxP().z < pCyl->GetCP().z - pCyl->GetR()) {
+    } else if (pAab->getMaxP().z < pCyl->GetCP()->z - pCyl->GetR()) {
         return false;
-    } else if (pAab->getMinP().y > pCyl->GetCP().y + pCyl->GetH()) {
+    } else if (pAab->getMinP().y > pCyl->GetCP()->y + pCyl->GetH()) {
         return false;
-    } else if (pAab->getMaxP().y < pCyl->GetCP().y) {
+    } else if (pAab->getMaxP().y < pCyl->GetCP()->y) {
         return false;
     } else {
         return true;
@@ -1002,11 +1002,11 @@ static int cM3d_Cross_CylPntPnt(const cM3dGCyl* pCylinder, const Vec* pVecStart,
 
 /* 8026D0B0-8026D114 2679F0 0064+00 2/2 0/0 0/0 .text cM3d_Cross_CylPnt__FPC8cM3dGCylPC3Vec */
 bool cM3d_Cross_CylPnt(const cM3dGCyl* pCylinder, const Vec* pPoint) {
-    f32 dX = pCylinder->GetCP().getXDiff(pPoint);
-    f32 dZ = pCylinder->GetCP().getZDiff(pPoint);
-    f32 maxY = pCylinder->GetCP().y + pCylinder->GetH();
+    f32 dX = pCylinder->GetCP()->getXDiff(pPoint);
+    f32 dZ = pCylinder->GetCP()->getZDiff(pPoint);
+    f32 maxY = pCylinder->GetCP()->y + pCylinder->GetH();
     if (dX * dX + dZ * dZ < pCylinder->GetR() * pCylinder->GetR() &&
-        pCylinder->GetCP().y < pPoint->y && maxY > pPoint->y) {
+        pCylinder->GetCP()->y < pPoint->y && maxY > pPoint->y) {
         return true;
     } else {
         return false;

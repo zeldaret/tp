@@ -10,6 +10,7 @@ class JKRHeap;
 typedef bool (*IsLeadByte_func)(int);
 
 struct BlockHeader {
+    const BlockHeader* getNext() const { return reinterpret_cast<const BlockHeader*>(reinterpret_cast<const u8*>(this) + size); }
     u32 magic;
     u32 size;
 };
@@ -21,14 +22,14 @@ public:
     /* 802DF584 */ virtual void setGX(JUtility::TColor, JUtility::TColor);
     /* 802DF7C4 */ virtual f32 drawChar_scale(f32, f32, f32, f32, int, bool);
     /* 802DDFEC */ virtual int getLeading() const;
-    /* 802DE004 */ virtual u16 getAscent() const;
-    /* 802DE010 */ virtual u16 getDescent() const;
+    /* 802DE004 */ virtual s32 getAscent() const;
+    /* 802DE010 */ virtual s32 getDescent() const;
     /* 802DE01C */ virtual s32 getHeight() const;
     /* 802DDFF8 */ virtual s32 getWidth() const;
     /* 802DFC64 */ virtual void getWidthEntry(int, JUTFont::TWidth*) const;
     /* 802DFD0C */ virtual int getCellWidth() const;
-    /* 802DFD58 */ virtual u16 getCellHeight() const;
-    /* 802DDFE0 */ virtual u16 getFontType() const;
+    /* 802DFD58 */ virtual s32 getCellHeight() const;
+    /* 802DDFE0 */ virtual int getFontType() const;
     /* 802DDFD8 */ virtual ResFONT* getResFont() const;
     /* 802DFDA4 */ virtual bool isLeadByte(int) const;
     /* 802DFF60 */ virtual void loadImage(int, _GXTexMapID);

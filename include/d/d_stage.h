@@ -88,7 +88,10 @@ struct stage_scls_info_dummy_class {
 
 struct stage_pure_lightvec_info_class {
     // LGT
-};
+    /* 0x00 */ u8 field_0x0[0x1E - 0x0];
+    /* 0x1E */ u8 field_0x1e;
+    /* 0x1F */ u8 field_0x1f;
+};  // Size: 0x20
 
 // Col
 struct stage_pselect_info_class {
@@ -223,7 +226,10 @@ public:
     /* 0x1C */ s16 field_0x1c;
 };  // Size: 0x20
 
-struct dStage_MemoryMap_c {};
+struct dStage_MemoryMap_c {
+    /* 0x0 */ int m_num;
+    /* 0x4 */ u32* field_0x4;
+};
 
 struct dPath;
 struct dStage_dPath_c {
@@ -300,7 +306,15 @@ struct dStage_Elst_c {
     /* 0x4 */ unkData* field_0x4;
 };
 
-struct dStage_MemoryConfig_c {};
+struct dStage_MemoryConfig_data {
+    /* 0x0 */ u8 m_roomNo;
+    /* 0x1 */ u8 m_blockID;
+};  // Size: 0x2
+
+struct dStage_MemoryConfig_c {
+    /* 0x0 */ int m_num;
+    /* 0x4 */ dStage_MemoryConfig_data* field_0x4;
+};
 
 struct dStage_DMap_c {
     // DMAP
@@ -771,7 +785,7 @@ public:
     /* 80024954 */ static bool resetArchiveBank(int);
     /* 80024DB0 */ static void SetTimePass(int);
     /* 8025BAAC */ static void setZoneNo(int, int);
-    static s32 GetTimePass();
+    static s8 GetTimePass();
 
     static s8 getStayNo() { return mStayNo; }
     static u8 getRegionNo(int i_roomNo) { return mStatus[i_roomNo].mRegionNo; }
@@ -791,6 +805,11 @@ public:
     static u32 getProcID() { return mProcID; }
     static void setStatusProcID(int i_roomNo, unsigned int i_id) { mStatus[i_roomNo].mProcID = i_id; }
     static int getStatusProcID(int i_roomNo) { return mStatus[i_roomNo].mProcID; }
+
+    static void setMemoryBlockID(int i_roomNo, int i_blockID) {
+        mStatus[i_roomNo].mMemBlockID = i_blockID;
+    }
+
     static void setFileList2(int i_roomNo, dStage_FileList2_dt_c* list) {
         mStatus[i_roomNo].mRoomDt.mFileList2Info = list;
     }
@@ -1015,7 +1034,7 @@ inline s32 i_dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
 }
 
 inline s8 dStage_stagInfo_GetTimeH(stage_stag_info_class* p_info) {
-    return p_info->field_0x0c >> 8;
+    return (p_info->field_0x0c >> 8) & 0xFF;
 }
 
 inline BOOL dStage_staginfo_GetArchiveHeap(stage_stag_info_class* p_info) {

@@ -148,6 +148,7 @@ extern "C" JUTConsole* JUTGetWarningConsole();
 extern "C" void JUTReportConsole_f_va(const char*, va_list);
 extern "C" void JUTReportConsole_f(const char*, ...);
 extern "C" void JUTWarningConsole(const char* message);
+extern "C" void JUTWarningConsole_f(const char* message, ...);
 extern "C" void JUTReportConsole(const char* message);
 
 #endif /* JUTCONSOLE_H */

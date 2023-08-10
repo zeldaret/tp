@@ -4,19 +4,24 @@
 //
 
 #include "rel/d/a/d_a_boomerang/d_a_boomerang.h"
+#include "JSystem/J2DGraph/J2DAnimation.h"
+#include "JSystem/J2DGraph/J2DAnmLoader.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JParticle/JPAParticle.h"
+#include "SSystem/SComponent/c_math.h"
+#include "d/a/d_a_alink.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
+#include "d/pane/d_pane_class.h"
 #include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_lib.h"
+#include "rel/d/a/d_a_mirror/d_a_mirror.h"
 
 //
 // Types:
 //
-
-struct daMirror_c {
-    /* 8003194C */ void entry(J3DModel*);
-};
 
 struct daBoomerang_HIO_c0 {
     static u16 const m_lockWaitTime;
@@ -252,33 +257,75 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 804A2990-804A2990 000140 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_804A2990 = "zelda_v_cursor_new_yellow.blo";
-SECTION_DEAD static char const* const stringBase_804A29AE = "zelda_v_cursor_new_yellow.bpk";
-SECTION_DEAD static char const* const stringBase_804A29CC = "zelda_v_cursor_new_yellow.bck";
-SECTION_DEAD static char const* const stringBase_804A29EA = "zelda_v_cursor_new_yellow_02.brk";
-SECTION_DEAD static char const* const stringBase_804A2A0B = "zelda_v_cursor_new_yellow.brk";
-SECTION_DEAD static char const* const stringBase_804A2A29 = "zelda_v_cursor_new_red.blo";
-SECTION_DEAD static char const* const stringBase_804A2A44 = "zelda_v_cursor_new_red_02.brk";
-SECTION_DEAD static char const* const stringBase_804A2A62 = "zelda_v_cursor_new_red.brk";
-SECTION_DEAD static char const* const stringBase_804A2A7D = "zelda_v_cursor_new_orange.blo";
-SECTION_DEAD static char const* const stringBase_804A2A9B = "zelda_v_cursor_new_orange_02.brk";
-SECTION_DEAD static char const* const stringBase_804A2ABC = "zelda_v_cursor_new_orange.brk";
-#pragma pop
-
 /* 8049E0B8-8049E36C 000078 02B4+00 1/1 0/0 0/0 .text            createHeap__19daBoomerang_sight_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBoomerang_sight_c::createHeap() {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/createHeap__19daBoomerang_sight_cFv.s"
+int daBoomerang_sight_c::createHeap() {
+    void* resource;
+    char* arcName = daAlink_c::getAlinkArcName();
+    JKRArchive* loader = dComIfG_getObjectResInfo(arcName)->getArchive();
+
+    field_0x4 = new J2DScreen();
+    if (field_0x4 == NULL) {
+        return 0;
+    }
+    field_0x4->setPriority("zelda_v_cursor_new_yellow.blo", 0x100000, loader);
+    dPaneClass_showNullPane(field_0x4);
+    resource = JKRFileLoader::getGlbResource("zelda_v_cursor_new_yellow.bpk", loader);
+    field_0x58 = (J2DAnmColor*)J2DAnmLoaderDataBase::load(resource);
+    if (field_0x58 == NULL) {
+        return 0;
+    }
+    resource = JKRFileLoader::getGlbResource("zelda_v_cursor_new_yellow.bck", loader);
+    field_0x5c = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(resource);
+    if (field_0x5c == NULL) {
+        return 0;
+    }
+    resource = JKRFileLoader::getGlbResource("zelda_v_cursor_new_yellow_02.brk", loader);
+    field_0x18 = (J2DAnmTevRegKey*)J2DAnmLoaderDataBase::load(resource);
+    if (field_0x18 == NULL) {
+        return 0;
+    }
+    resource = JKRFileLoader::getGlbResource("zelda_v_cursor_new_yellow.brk", loader);
+    field_0x1c = (J2DAnmTevRegKey*)J2DAnmLoaderDataBase::load(resource);
+    if (field_0x1c == NULL) {
+        return 0;
+    }
+
+    field_0x20 = new J2DScreen();
+    if (field_0x20 == NULL) {
+        return 0;
+    }
+    field_0x20->setPriority("zelda_v_cursor_new_red.blo", 0x100000, loader);
+    dPaneClass_showNullPane(field_0x20);
+    resource = JKRFileLoader::getGlbResource("zelda_v_cursor_new_red_02.brk", loader);
+    field_0x34 = (J2DAnmTevRegKey*)J2DAnmLoaderDataBase::load(resource);
+    if (field_0x34 == NULL) {
+        return 0;
+    }
+    resource = JKRFileLoader::getGlbResource("zelda_v_cursor_new_red.brk", loader);
+    field_0x38 = (J2DAnmTevRegKey*)J2DAnmLoaderDataBase::load(resource);
+    if (field_0x38 == NULL) {
+        return 0;
+    }
+
+    field_0x3c = new J2DScreen();
+    if (field_0x3c == NULL) {
+        return 0;
+    }
+    field_0x3c->setPriority("zelda_v_cursor_new_orange.blo", 0x100000, loader);
+    dPaneClass_showNullPane(field_0x3c);
+    resource = JKRFileLoader::getGlbResource("zelda_v_cursor_new_orange_02.brk", loader);
+    field_0x50 = (J2DAnmTevRegKey*)J2DAnmLoaderDataBase::load(resource);
+    if (field_0x50 == NULL) {
+        return 0;
+    }
+    resource = JKRFileLoader::getGlbResource("zelda_v_cursor_new_orange.brk", loader);
+    field_0x54 = (J2DAnmTevRegKey*)J2DAnmLoaderDataBase::load(resource);
+    if (field_0x54 == NULL) {
+        return 0;
+    }
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804A2850-804A285C 000000 000C+00 7/7 0/0 0/0 .rodata          @4078 */
@@ -368,14 +415,9 @@ COMPILER_STRIP_GATE(0x804A288C, &daBoomerang_HIO_c0::m_lockWindScale);
 #pragma pop
 
 /* 804A2890-804A28A4 000040 0014+00 0/1 0/0 0/0 .rodata          l_lockSeFlg */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const l_lockSeFlg[20] = {
-    0x00, 0x00, 0x00, 0x68, 0x00, 0x00, 0x00, 0x69, 0x00, 0x00,
-    0x00, 0x6A, 0x00, 0x00, 0x00, 0x6B, 0x00, 0x00, 0x00, 0x6C,
+static const u32 l_lockSeFlg[5] = {
+    104, 105, 106, 107, 108,
 };
-COMPILER_STRIP_GATE(0x804A2890, &l_lockSeFlg);
-#pragma pop
 
 /* 804A28A4-804A28A8 000054 0004+00 2/6 0/0 0/0 .rodata          @4432 */
 SECTION_RODATA static u8 const lit_4432[4] = {
@@ -388,6 +430,100 @@ COMPILER_STRIP_GATE(0x804A28A4, &lit_4432);
 
 /* 8049E36C-8049EB64 00032C 07F8+00 1/1 0/0 0/0 .text            initialize__19daBoomerang_sight_cFv
  */
+#ifdef NONMATCHING
+// Matches with literals
+void daBoomerang_sight_c::initialize() {
+    field_0x8 = field_0x4->search('n_all');
+    field_0xc = field_0x4->search('cursor0');
+    field_0x10 = field_0x4->search('cursor1');
+    field_0x14 = field_0x4->search('cursor2');
+
+    field_0x5c->searchUpdateMaterialID(field_0x4);
+    field_0x8->setAnimation(field_0x5c);
+    field_0xc->setAnimation(field_0x5c);
+    field_0x10->setAnimation(field_0x5c);
+    field_0x14->setAnimation(field_0x5c);
+    field_0x5c->setFrame(0.0f);
+
+    field_0x58->searchUpdateMaterialID(field_0x4);
+    field_0xc->setAnimation(field_0x58);
+    field_0x10->setAnimation(field_0x58);
+    field_0x14->setAnimation(field_0x58);
+    field_0x4->search('flash')->setAnimation(field_0x58);
+    field_0x58->setFrame(0.0f);
+
+    field_0x18->searchUpdateMaterialID(field_0x4);
+    field_0x1c->searchUpdateMaterialID(field_0x4);
+    field_0xc->setAnimation(field_0x18);
+    field_0x10->setAnimation(field_0x18);
+    field_0x14->setAnimation(field_0x18);
+    field_0xc->setAnimation(field_0x1c);
+    field_0x10->setAnimation(field_0x1c);
+    field_0x14->setAnimation(field_0x1c);
+    field_0x18->setFrame(0.0f);
+    field_0x1c->setFrame(0.0f);
+
+    field_0x4->animation();
+    field_0x4->setUserInfo('n_43');
+    field_0x8->setUserInfo(' ');
+    field_0x24 = field_0x20->search('n_all');
+    field_0x28 = field_0x20->search('cursor0');
+    field_0x2c = field_0x20->search('cursor1');
+    field_0x30 = field_0x20->search('cursor2');
+
+    field_0x24->setAnimation(field_0x5c);
+    field_0x28->setAnimation(field_0x5c);
+    field_0x2c->setAnimation(field_0x5c);
+    field_0x30->setAnimation(field_0x5c);
+    field_0x28->setAnimation(field_0x58);
+    field_0x2c->setAnimation(field_0x58);
+    field_0x30->setAnimation(field_0x58);
+    field_0x20->search('flash')->setAnimation(field_0x58);
+
+    field_0x34->searchUpdateMaterialID(field_0x20);
+    field_0x38->searchUpdateMaterialID(field_0x20);
+    field_0x28->setAnimation(field_0x34);
+    field_0x2c->setAnimation(field_0x34);
+    field_0x30->setAnimation(field_0x34);
+    field_0x28->setAnimation(field_0x38);
+    field_0x2c->setAnimation(field_0x38);
+    field_0x30->setAnimation(field_0x38);
+    field_0x34->setFrame(0.0f);
+    field_0x38->setFrame(0.0f);
+
+    field_0x20->animation();
+    field_0x20->setUserInfo('n_43');
+    field_0x24->setUserInfo(' ');
+    field_0x40 = field_0x3c->search('n_all');
+    field_0x44 = field_0x3c->search('cursor0');
+    field_0x48 = field_0x3c->search('cursor1');
+    field_0x4c = field_0x3c->search('cursor2');
+
+    field_0x40->setAnimation(field_0x5c);
+    field_0x44->setAnimation(field_0x5c);
+    field_0x48->setAnimation(field_0x5c);
+    field_0x4c->setAnimation(field_0x5c);
+    field_0x44->setAnimation(field_0x58);
+    field_0x48->setAnimation(field_0x58);
+    field_0x4c->setAnimation(field_0x58);
+    field_0x3c->search('flash')->setAnimation(field_0x58);
+
+    field_0x50->searchUpdateMaterialID(field_0x3c);
+    field_0x54->searchUpdateMaterialID(field_0x3c);
+    field_0x44->setAnimation(field_0x50);
+    field_0x48->setAnimation(field_0x50);
+    field_0x4c->setAnimation(field_0x50);
+    field_0x44->setAnimation(field_0x54);
+    field_0x48->setAnimation(field_0x54);
+    field_0x4c->setAnimation(field_0x54);
+    field_0x50->setFrame(0.0f);
+    field_0x54->setFrame(0.0f);
+
+    field_0x3c->animation();
+    field_0x3c->setUserInfo('n_43');
+    field_0x40->setUserInfo(' ');
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -396,6 +532,7 @@ asm void daBoomerang_sight_c::initialize() {
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/initialize__19daBoomerang_sight_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804A28A8-804A28AC 000058 0004+00 0/1 0/0 0/0 .rodata          @4481 */
@@ -445,14 +582,58 @@ COMPILER_STRIP_GATE(0x804A28C0, &lit_4487);
 
 /* 8049EB64-8049EDA8 000B24 0244+00 1/1 0/0 0/0 .text            playAnime__19daBoomerang_sight_cFii
  */
+#ifdef NONMATCHING
+// Matches with literals
+int daBoomerang_sight_c::playAnime(int param_0, int param_1) {
+    int i;
+    f32* pfVar3 = field_0x98;
+    f32* pfVar6 = field_0xb0;
+    u8* alphaPtr = mAlpha;
+
+    for (i = 0; i < 5; i++, pfVar3++, pfVar6++, alphaPtr++) {
+        *pfVar3 += 1.1f;
+        if (*pfVar3 >= 50.0f) {
+            *pfVar3 += 29.0f;
+        }
+        *pfVar6 += 1.1f;
+        if (*pfVar6 >= (f32)field_0x18->getFrameMax()) {
+            *pfVar6 -= (f32)field_0x18->getFrameMax();
+        }
+        if (param_0 <= i && param_1 > i) {
+            cLib_chaseUC(alphaPtr, 0xff, 0x1e);
+        } else {
+            cLib_chaseUC(alphaPtr, 0, 0x1e);
+            if (*alphaPtr == 0 && i == 0) {
+                mRedSight = false;
+            }
+        }
+    }
+    if (*pfVar3 < 21.0f) {
+        *pfVar3 = 21.0f;
+    }
+    *pfVar3 += 0.9f;
+    if (*pfVar3 >= 50.0f) {
+        *pfVar3 += 29.0f;
+    }
+    *pfVar6 += 0.9f;
+    if (*pfVar6 >= field_0x18->getFrameMax()) {
+        *pfVar6 -= (f32)field_0x18->getFrameMax();
+    }
+    if (mReserve != 0) {
+        return cLib_chaseUC(alphaPtr, 0x80, 0x1e);
+    }
+    return cLib_chaseUC(alphaPtr, 0, 0x1e);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daBoomerang_sight_c::playAnime(int param_0, int param_1) {
+asm int daBoomerang_sight_c::playAnime(int param_0, int param_1) {
     nofralloc
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/playAnime__19daBoomerang_sight_cFii.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804A28C8-804A28CC 000078 0004+00 1/2 0/0 0/0 .rodata          @4495 */
@@ -461,6 +642,17 @@ COMPILER_STRIP_GATE(0x804A28C8, &lit_4495);
 
 /* 8049EDA8-8049EDE8 000D68 0040+00 2/2 0/0 0/0 .text            initFrame__19daBoomerang_sight_cFi
  */
+#ifdef NONMATCHING
+// Matches with literals
+void daBoomerang_sight_c::initFrame(int i_idx) {
+    mAlpha[i_idx] = 0;
+    field_0x98[i_idx] = 4.0f;
+    field_0xb0[i_idx] = 0.0f;
+    if (i_idx == 0) {
+        mRedSight = true;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -469,6 +661,7 @@ asm void daBoomerang_sight_c::initFrame(int param_0) {
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/initFrame__19daBoomerang_sight_cFi.s"
 }
 #pragma pop
+#endif
 
 /* 8049EDE8-8049EE8C 000DA8 00A4+00 1/1 0/0 0/0 .text copyNumData__19daBoomerang_sight_cFi */
 void daBoomerang_sight_c::copyNumData(int i_idx) {
@@ -590,6 +783,70 @@ COMPILER_STRIP_GATE(0x804A28F8, &lit_4654);
 #pragma pop
 
 /* 8049EF60-8049F280 000F20 0320+00 1/0 0/0 0/0 .text            draw__19daBoomerang_sight_cFv */
+#ifdef NONMATCHING
+// Matches with literals
+void daBoomerang_sight_c::draw() {
+    J2DGrafContext* ctx = dComIfGp_getCurrentGrafPort();
+    u8* puVar = mAlpha;
+    J2DPane* pJVar5;
+    J2DPane* pJVar9;
+    J2DPane* pJVar8;
+    J2DScreen* screen;
+    J2DPane* pJVar4;
+    f32 f30;
+    f32 f31;
+
+    for (int i = 0; i < 6; i++, puVar++) {
+        if (*puVar != 0) {
+            field_0x5c->setFrame(field_0x98[i]);
+            field_0x58->setFrame(field_0x98[i] > 21.0f ? 21.0f : field_0x98[i]);
+            if (i == 5) {
+                field_0x18->setFrame(field_0xb0[i]);
+                pJVar5 = field_0xc;
+                pJVar9 = field_0x10;
+                pJVar8 = field_0x14;
+                screen = field_0x4;
+                pJVar4 = field_0x8;
+                f31 = 80.0f;
+            } else if (i == 0 && mRedSight != false) {
+                field_0x34->setFrame(field_0xb0[i]);
+                pJVar5 = field_0x28;
+                pJVar9 = field_0x2c;
+                pJVar8 = field_0x30;
+                screen = field_0x20;
+                pJVar4 = field_0x24;
+                f31 = 35.0f;
+            } else {
+                field_0x50->setFrame(field_0xb0[i]);
+                pJVar5 = field_0x44;
+                pJVar9 = field_0x48;
+                pJVar8 = field_0x4c;
+                screen = field_0x3c;
+                pJVar4 = field_0x40;
+                f31 = 35.0f;
+            }
+            screen->animation();
+            pJVar4->scale(0.6f, 0.6f);
+            pJVar4->translate(field_0x68[i], field_0x80[i]);
+            field_0x98[i] = field_0x98[i];
+            if (!(field_0x98[i] < 15.0f)) {
+                if (field_0x98[i] < 21.0f) {
+                    f30 = f31 * (field_0x98[i] - 15.0f) * 0.1666667f;
+                } else if (i == 5) {
+                    f30 = f31 * (*puVar * 0.00390625f + 0.5f);
+                } else {
+                    f30 = f31 * (*puVar * 0.001960784f + 0.5f);
+                }
+
+                pJVar5->translate(0.0f, -f30);
+                pJVar9->translate(f30 * cM_fcos(2.617994f), f30 * cM_fsin(2.617994f));
+                pJVar8->translate(f30 * cM_fcos(0.5235988f), f30 * cM_fsin(0.5235988f));
+            }
+            screen->draw(0.0f, 0.0f, ctx);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -598,6 +855,7 @@ asm void daBoomerang_sight_c::draw() {
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/draw__19daBoomerang_sight_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8049F280-8049F360 001240 00E0+00 1/1 0/0 0/0 .text windModelCallBack__13daBoomerang_cFv */
 void daBoomerang_c::windModelCallBack() {
@@ -631,14 +889,56 @@ static int daBoomeang_windModelCallBack(J3DJoint* param_0, int param_1) {
 }
 
 /* 8049F39C-8049F5D4 00135C 0238+00 1/1 0/0 0/0 .text            draw__13daBoomerang_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daBoomerang_c::draw() {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/draw__13daBoomerang_cFv.s"
+int daBoomerang_c::draw() {
+    if (checkStateFlg0(FLG0_UNK) == 0) {
+        for (int i = 0; i < 5; i++) {
+            if (mSight.getAlpha(i) != 0) {
+                if (mLockActors[i] != NULL) {
+                    mLockActors[i] = fopAcM_SearchByID(field_0x6ac[i]);
+                    if (mLockActors[i] == NULL) {
+                        pushLockList(i);
+                        i--;
+                    } else {
+                        mSight.setSight(&mLockActors[i]->mEyePos, i);
+                    }
+
+                } else {
+                    if (field_0x718[i] != 0) {
+                        mSight.setSight(&mLockActorsPositions[i], i);
+                    } else {
+                        mSight.setSight(NULL, i);
+                    }
+                }
+            }
+        }
+        if (mSight.getAlpha(5) != 0) {
+            if (field_0x6d8 != NULL) {
+                field_0x6d8 = fopAcM_SearchByID(field_0x6d4);
+            }
+            if (field_0x6d8 != 0) {
+                mSight.setSight(&field_0x6d8->mEyePos, 5);
+            } else {
+                mSight.setSight(NULL, 5);
+            }
+        }
+        if (i_dComIfGp_event_runCheck() == 0) {
+            dComIfGd_set2DXlu((dDlst_base_c*)&mSight);
+        }
+    }
+    g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
+    g_env_light.setLightTevColorType_MAJI(field_0x568, &mTevStr);
+    mDoExt_modelUpdateDL(field_0x568);
+    daMirror_c::entry(field_0x568);
+    if (fopAcM_GetParam(this) != 0) {
+        g_env_light.setLightTevColorType_MAJI(field_0x56c, &mTevStr);
+        mDoExt_modelEntryDL(field_0x56c);
+        daMirror_c::entry(field_0x56c);
+    } else if (i_dComIfGp_checkPlayerStatus0(0, 0x80000) != 0) {
+        g_env_light.setLightTevColorType_MAJI(field_0x590, &mTevStr);
+        mDoExt_modelUpdateDL(field_0x590);
+    }
+    return 1;
 }
-#pragma pop
 
 /* 8049F5D4-8049F5F4 001594 0020+00 1/0 0/0 0/0 .text            daBoomerang_Draw__FP13daBoomerang_c
  */
@@ -692,14 +992,29 @@ static void daBoomerang_moveLineCallback(fopAc_ac_c* i_actorP1, dCcD_GObjInf* pa
 }
 
 /* 8049F710-8049F818 0016D0 0108+00 3/3 0/0 0/0 .text            pushLockList__13daBoomerang_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBoomerang_c::pushLockList(int param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/pushLockList__13daBoomerang_cFi.s"
+void daBoomerang_c::pushLockList(int param_0) {
+    if (param_0 == 0) {
+        mSight.offRedSight();
+    }
+    if (fopAcM_GetParam(this) == 1 && param_0 < field_0x951) {
+        field_0x951--;
+    }
+
+    int i;
+    for (i = param_0; i < mLockCnt - 1; i++) {
+        field_0x6ac[i] = field_0x6ac[i + 1];
+        mLockActors[i] = mLockActors[i + 1];
+        mLockActorsPositions[i] = mLockActorsPositions[i + 1];
+        field_0x718[i] = field_0x718[i + 1];
+        mSight.copyNumData(i);
+    }
+    field_0x6ac[i] = -1;
+    mLockActors[i] = NULL;
+    field_0x718[i] = 0;
+    if (mLockCnt != 0) {
+        mLockCnt--;
+    }
 }
-#pragma pop
 
 /* 8049F818-8049F874 0017D8 005C+00 1/0 0/0 0/0 .text
  * cancelLockActorBase__13daBoomerang_cFP10fopAc_ac_c           */
@@ -723,14 +1038,31 @@ void daBoomerang_c::setAimActorBase(fopAc_ac_c* i_actorP) {
 
 /* 8049F8B0-8049F9A4 001870 00F4+00 2/2 0/0 0/0 .text setLockActor__13daBoomerang_cFP10fopAc_ac_ci
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBoomerang_c::setLockActor(fopAc_ac_c* param_0, int param_1) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/setLockActor__13daBoomerang_cFP10fopAc_ac_ci.s"
+int daBoomerang_c::setLockActor(fopAc_ac_c* param_0, int param_1) {
+    if (mLockCnt >= 5) {
+        return 0;
+    }
+    u32 Id = fopAcM_GetID(param_0);
+    for (int i = 0; i < mLockCnt; i++) {
+        if (field_0x6ac[i] == Id) {
+            return 0;
+        }
+    }
+    if (param_1 != 0) {
+        f32 squareDistance = param_0->mEyePos.abs2(current.pos);
+        if (squareDistance > field_0x984) {
+            return 0;
+        }
+        field_0x984 = squareDistance;
+        field_0x6a8 = Id;
+    } else {
+        field_0x6ac[mLockCnt] = Id;
+        mLockActors[mLockCnt] = param_0;
+        mSight.initFrame(mLockCnt);
+        mLockCnt++;
+    }
+    return 1;
 }
-#pragma pop
 
 /* 8049F9A4-8049F9F0 001964 004C+00 3/3 0/0 0/0 .text            resetLockActor__13daBoomerang_cFv
  */
@@ -745,52 +1077,35 @@ void daBoomerang_c::resetLockActor() {
     field_0x951 = 0;
 }
 
-/* ############################################################################################## */
-/* 804A2900-804A2904 0000B0 0004+00 1/1 0/0 0/0 .rodata          @4886 */
-SECTION_RODATA static f32 const lit_4886 = -1000000000.0f;
-COMPILER_STRIP_GATE(0x804A2900, &lit_4886);
-
 /* 8049F9F0-8049FAA4 0019B0 00B4+00 2/2 0/0 0/0 .text            setRoomInfo__13daBoomerang_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBoomerang_c::setRoomInfo() {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/setRoomInfo__13daBoomerang_cFv.s"
+void daBoomerang_c::setRoomInfo() {
+    field_0xd6c.SetPos(&current.pos);
+    field_0x980 = dComIfG_Bgsp().GroundCross(&field_0xd6c);
+    int roomNo;
+    if (field_0x980 != -1000000000.0f) {
+        roomNo = dComIfG_Bgsp().GetRoomId(field_0xd6c);
+        mTevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(field_0xd6c);
+    } else {
+        roomNo = dComIfGp_roomControl_getStayNo();
+    }
+    mTevStr.mRoomNo = roomNo;
+    field_0x953 = dComIfGp_getReverb(roomNo);
+    field_0x9d0.SetRoomId(roomNo);
+    fopAcM_SetRoomNo(this, roomNo);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804A2904-804A2908 0000B4 0004+00 0/1 0/0 0/0 .rodata          @4910 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4910 = 32.0f;
-COMPILER_STRIP_GATE(0x804A2904, &lit_4910);
-#pragma pop
-
-/* 804A2908-804A290C 0000B8 0004+00 0/1 0/0 0/0 .rodata          @4911 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4911 = -5.0f;
-COMPILER_STRIP_GATE(0x804A2908, &lit_4911);
-#pragma pop
-
-/* 804A290C-804A2910 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4912 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4912 = -6.0f;
-COMPILER_STRIP_GATE(0x804A290C, &lit_4912);
-#pragma pop
 
 /* 8049FAA4-8049FBAC 001A64 0108+00 2/2 0/0 0/0 .text            setKeepMatrix__13daBoomerang_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBoomerang_c::setKeepMatrix() {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/setKeepMatrix__13daBoomerang_cFv.s"
+void daBoomerang_c::setKeepMatrix() {
+    daAlink_c* link = daAlink_getAlinkActorClass();
+    PSMTXCopy(link->getLeftItemMatrix(), mDoMtx_stack_c::now);
+    mDoMtx_stack_c::transM(32.0f, -5.0f, -6.0f);
+    mDoMtx_stack_c::XYZrotM(0xfd28, 0x1bbb, 0xf99a);
+    PSMTXCopy(mDoMtx_stack_c::now, field_0x568->mBaseTransformMtx);
+    PSMTXCopy(link->getLeftItemMatrix(), field_0x56c->mBaseTransformMtx);
+    mDoMtx_stack_c::multVecZero(&current.pos);
+    daAlink_c::simpleAnmPlay(m_waitEffBtk);
+    PSMTXCopy(link->getLeftItemMatrix(), field_0x590->mBaseTransformMtx);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804A2910-804A2914 0000C0 0004+00 5/8 0/0 0/0 .rodata          @4945 */
@@ -798,6 +1113,27 @@ SECTION_RODATA static f32 const lit_4945 = 1.0f;
 COMPILER_STRIP_GATE(0x804A2910, &lit_4945);
 
 /* 8049FBAC-8049FCD0 001B6C 0124+00 1/1 0/0 0/0 .text            setMoveMatrix__13daBoomerang_cFv */
+#ifdef NONMATCHING
+// Matches with literals
+void daBoomerang_c::setMoveMatrix() {
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::ZXYrotM(shape_angle);
+    PSMTXCopy(mDoMtx_stack_c::now, field_0x56c->mBaseTransformMtx);
+    daAlink_c::simpleAnmPlay(m_windBtk);
+    field_0x98c += 1.0f;
+    s32 maxFrame = mBck.getBckAnm()->getFrameMax();
+    if (field_0x98c >= maxFrame) {
+        field_0x98c -= maxFrame;
+    }
+    mBck.entry(field_0x56c->getModelData(), field_0x98c);
+    field_0x56c->calc();
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::ZXYrotM(shape_angle);
+    mDoMtx_stack_c::YrotM(field_0x95a);
+    mDoMtx_stack_c::XrotM(0x7fff);
+    PSMTXCopy(mDoMtx_stack_c::now, field_0x568->mBaseTransformMtx);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -806,6 +1142,7 @@ asm void daBoomerang_c::setMoveMatrix() {
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/setMoveMatrix__13daBoomerang_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804A2914-804A2918 0000C4 0004+00 1/2 0/0 0/0 .rodata          @4961 */
@@ -813,6 +1150,16 @@ SECTION_RODATA static f32 const lit_4961 = -1.0f;
 COMPILER_STRIP_GATE(0x804A2914, &lit_4961);
 
 /* 8049FCD0-8049FD6C 001C90 009C+00 1/1 0/0 0/0 .text            setRotAngle__13daBoomerang_cFv */
+#ifdef NONMATCHING
+// Matches with literals
+void daBoomerang_c::setRotAngle() {
+    s16 sVar = field_0x95a;
+    field_0x95a -= 0x1f00;
+    if (sVar >= 0 && field_0x95a < 0) {
+        fopAcM_seStart(this, JA_SE_LK_BOOM_FLY, 0);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -821,46 +1168,101 @@ asm void daBoomerang_c::setRotAngle() {
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/setRotAngle__13daBoomerang_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8049FD6C-8049FE6C 001D2C 0100+00 2/2 0/0 0/0 .text            setAimPos__13daBoomerang_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBoomerang_c::setAimPos() {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/setAimPos__13daBoomerang_cFv.s"
+void daBoomerang_c::setAimPos() {
+    if (checkStateFlg0(FLG0_1) != 0) {
+        if (fopAcM_GetParam(this) != 1)
+            return;
+        field_0x990 = daAlink_getAlinkActorClass()->getBoomerangCatchPos();
+        return;
+    }
+    if (field_0x957 != 0) {
+        field_0x990 = field_0x9ac;
+        return;
+    }
+    for (int i = field_0x951; i < mLockCnt; i++, field_0x951++) {
+        if (mLockActors[i] != NULL) {
+            field_0x990 = mLockActors[i]->mEyePos;
+            return;
+        }
+        if (field_0x718[i] != 0) {
+            field_0x990 = mLockActorsPositions[i];
+            return;
+        }
+    }
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804A2918-804A291C 0000C8 0004+00 1/1 0/0 0/0 .rodata          @5044 */
-SECTION_RODATA static f32 const lit_5044 = 2500.0f;
-COMPILER_STRIP_GATE(0x804A2918, &lit_5044);
-
-/* 804A291C-804A2920 0000CC 0004+00 1/2 0/0 0/0 .rodata          @5045 */
-SECTION_RODATA static f32 const lit_5045 = 30.0f;
-COMPILER_STRIP_GATE(0x804A291C, &lit_5045);
 
 /* 8049FE6C-804A006C 001E2C 0200+00 2/2 0/0 0/0 .text checkBgHit__13daBoomerang_cFP4cXyzP4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBoomerang_c::checkBgHit(cXyz* param_0, cXyz* param_1) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/checkBgHit__13daBoomerang_cFP4cXyzP4cXyz.s"
+void daBoomerang_c::checkBgHit(cXyz* i_start, cXyz* i_end) {
+    field_0xcfc.Set(i_start, i_end, this);
+    if (dComIfG_Bgsp().LineCross(&field_0xcfc) != 0) {
+        current.pos = field_0xcfc.i_GetCross();
+        onStateFlg0(FLG0_1);
+        field_0x957 = 0;
+        current.angle.y -= -0x8000;
+        shape_angle.y = current.angle.y;
+        resetLockActor();
+        return;
+    }
+    if (field_0x962 != 0) {
+        return;
+    }
+    field_0xc8c.Set(i_start, i_end, this);
+    if (dComIfG_Bgsp().LineCross(&field_0xc8c) == 0)
+        return;
+    if (checkStateFlg0(FLG0_0x200) != 0) {
+        return;
+    }
+    if (field_0x718[field_0x951] != 0) {
+        if (mLockActorsPositions[field_0x951].abs2(field_0xc8c.i_GetCross()) < 2500.0f) {
+            if (field_0x951 < mLockCnt - 1) {
+                field_0x718[field_0x951] = 0;
+                field_0x951++;
+                return;
+            }
+        }
+    }
+    if (field_0x957 == 0) {
+        if (checkStateFlg0(FLG0_10) == 0 && mLockCnt > field_0x951) {
+            return;
+        }
+        current.pos = field_0xc8c.i_GetCross();
+        onStateFlg0(FLG0_1);
+        field_0x957 = 0;
+        current.angle.y -= -0x8000;
+        if (dBgS_CheckBRoofPoly(field_0xc8c) != 0) {
+            current.angle.x *= -1;
+            current.pos.y -= 30.0f;
+        }
+        shape_angle.y = current.angle.y;
+        resetLockActor();
+    }
 }
-#pragma pop
 
 /* 804A006C-804A012C 00202C 00C0+00 1/1 0/0 0/0 .text setEffectTraceMatrix__13daBoomerang_cFPUlUs
  */
+#ifdef NONMATCHING
+// Matches with literals
+JPABaseEmitter* daBoomerang_c::setEffectTraceMatrix(u32* param_0, u16 param_1) {
+    *param_0 = dComIfGp_particle_set(*param_0, param_1, &current.pos, &mTevStr);
+    JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(*param_0);
+    if (emitter != NULL) {
+        emitter->setGlobalRTMatrix(field_0x568->getBaseTRMtx());
+    }
+    return emitter;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daBoomerang_c::setEffectTraceMatrix(u32* param_0, u16 param_1) {
+asm JPABaseEmitter* daBoomerang_c::setEffectTraceMatrix(u32* param_0, u16 param_1) {
     nofralloc
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/setEffectTraceMatrix__13daBoomerang_cFPUlUs.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804A2920-804A2924 0000D0 0004+00 0/1 0/0 0/0 .rodata          @5385 */
@@ -940,7 +1342,7 @@ COMPILER_STRIP_GATE(0x804A2950, &lit_5394);
 #pragma pop
 
 /* 804A2ADC-804A2AE8 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
@@ -974,24 +1376,38 @@ SECTION_DATA static void* lit_5579[3] = {
 /* 804A2B14-804A2B60 000038 004C+00 0/1 0/0 0/0 .data            l_atCpsSrc */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_atCpsSrc[76] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3B,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x05, 0x04, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x70, 0x00, 0x00,
+static dCcD_SrcCps l_atCpsSrc = {
+    {
+        {0, {{AT_TYPE_BOOMERANG, 0, 0x3B}, {0, 0}, 0}},
+        {dCcD_SE_WOOD, 4, 0, 0, {0}},
+        {dCcD_SE_NONE, 0, 0, 0, {0}},
+        {0},
+    },
+    {
+        {
+            {0.0f, 0.0f, 0.0f},
+            {0.0f, 0.0f, 0.0f},
+            15.0f,
+        },
+    }
 };
 #pragma pop
 
 /* 804A2B60-804A2BA4 000084 0044+00 0/1 0/0 0/0 .data            l_windAtCylSrc */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_windAtCylSrc[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x1B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x0D, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00, 0x44, 0x16, 0x00, 0x00,
+static dCcD_SrcCyl l_windAtCylSrc = {
+    {
+        {0, {{AT_TYPE_BOOMERANG, 0, 0x1B}, {0, 0}, 0}},
+        {dCcD_SE_13, 0, 0, 3, {2}},
+        {dCcD_SE_NONE, 0, 0, 0, {0}},
+        {0},
+    },
+    {
+        {0.0f, 0.0f, 0.0f},
+        150.0f,
+        600.0f,
+    }
 };
 #pragma pop
 
@@ -1419,6 +1835,38 @@ static int daBoomerang_Delete(daBoomerang_c* i_this) {
 }
 
 /* 804A1EE4-804A2064 003EA4 0180+00 1/1 0/0 0/0 .text            createHeap__13daBoomerang_cFv */
+#ifdef NONMATCHING
+// Matches with literals
+int daBoomerang_c::createHeap() {
+    if (mSight.createHeap() == 0) {
+        return 0;
+    }
+    mSight.initialize();
+    J3DModelData* modelData =
+        (J3DModelData*)dComIfG_getObjectRes(daAlink_c::getAlinkArcName(), 0x1f);
+    field_0x568 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    if (field_0x568 == NULL) {
+        return 0;
+    }
+    modelData = (J3DModelData*)dComIfG_getObjectRes(daAlink_c::getAlinkArcName(), 0x34);
+    field_0x56c = mDoExt_J3DModel__create(modelData, 0, 0x11000284);
+    if (field_0x56c == NULL) {
+        return 0;
+    }
+    J3DAnmTransform* transform =
+        (J3DAnmTransform*)dComIfG_getObjectRes(daAlink_c::getAlinkArcName(), 0x13);
+    if (mBck.init(transform, 0, 2, 1.0f, 0, -1, false) == 0) {
+        return 0;
+    }
+    modelData = (J3DModelData*)dComIfG_getObjectRes(daAlink_c::getAlinkArcName(), 0x19);
+    field_0x590 = mDoExt_J3DModel__create(modelData, 0, 0x11000284);
+    if (field_0x590 == NULL) {
+        return 0;
+    }
+    field_0x720.init(&current.pos, 2);
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1427,11 +1875,11 @@ asm int daBoomerang_c::createHeap() {
 #include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/createHeap__13daBoomerang_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 804A2064-804A2084 004024 0020+00 1/1 0/0 0/0 .text daBoomerang_createHeap__FP10fopAc_ac_c */
 static int daBoomerang_createHeap(fopAc_ac_c* i_this) {
-    daBoomerang_c* boomerang = (daBoomerang_c*)i_this;
-    return boomerang->createHeap();
+    return static_cast<daBoomerang_c*>(i_this)->createHeap();
 }
 
 /* ############################################################################################## */
@@ -1516,14 +1964,9 @@ extern "C" asm void __dt__12dBgS_ObjAcchFv() {
 
 /* 804A26F8-804A2718 0046B8 0020+00 1/0 0/0 0/0 .text            daBoomerang_Create__FP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int daBoomerang_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_boomerang/d_a_boomerang/daBoomerang_Create__FP10fopAc_ac_c.s"
+static int daBoomerang_Create(fopAc_ac_c* i_this) {
+    return static_cast<daBoomerang_c*>(i_this)->create();
 }
-#pragma pop
 
 /* 804A2718-804A271C 0046D8 0004+00 1/0 0/0 0/0 .text            draw__12dDlst_base_cFv */
 void draw__12dDlst_base_cFv() {

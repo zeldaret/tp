@@ -3,7 +3,7 @@ lbl_8083EB10:
 /* 8083EB14  7C 08 02 A6 */	mflr r0
 /* 8083EB18  90 01 00 54 */	stw r0, 0x54(r1)
 /* 8083EB1C  39 61 00 50 */	addi r11, r1, 0x50
-/* 8083EB20  4B B2 36 81 */	bl __save_gpr
+/* 8083EB20  4B B2 36 81 */	bl _savegpr_14
 /* 8083EB24  7C 7A 1B 78 */	mr r26, r3
 /* 8083EB28  4B FF FF 51 */	bl copyFootMatrix__9daHorse_cFv
 /* 8083EB2C  80 7A 05 AC */	lwz r3, 0x5ac(r26)
@@ -158,7 +158,7 @@ lbl_8083ED58:
 /* 8083ED6C  38 60 00 01 */	li r3, 1
 lbl_8083ED70:
 /* 8083ED70  39 61 00 50 */	addi r11, r1, 0x50
-/* 8083ED74  4B B2 34 79 */	bl __restore_gpr
+/* 8083ED74  4B B2 34 79 */	bl _restgpr_14
 /* 8083ED78  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 8083ED7C  7C 08 03 A6 */	mtlr r0
 /* 8083ED80  38 21 00 50 */	addi r1, r1, 0x50

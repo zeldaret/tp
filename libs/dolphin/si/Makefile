@@ -38,11 +38,8 @@ $(BUILD_DIR)/libs/dolphin/si/%.o: libs/dolphin/si/%.c $(BUILD_DIR)/libs/dolphin/
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
-	@$(FRANK_CC) $(LIBSI_A_CFLAGS) -c -o $(@:.o=.po) $(basename $@).c
 	@$(DOLPHIN_LIB_CC) $(LIBSI_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
 	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
-	@echo Frank is fixing $@
-	@$(PYTHON) $(FRANK) $@ $(@:.o=.po) $@
 
 ifndef DISABLE_DEPS
 LIBSI_A_D_FILES := $(LIBSI_A_O_FILES:.o=.d)

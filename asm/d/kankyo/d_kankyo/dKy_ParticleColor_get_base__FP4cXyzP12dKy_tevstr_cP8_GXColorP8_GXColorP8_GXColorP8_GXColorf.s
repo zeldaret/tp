@@ -9,7 +9,7 @@ lbl_801A8E20:
 /* 801A8E3C  DB A1 01 40 */	stfd f29, 0x140(r1)
 /* 801A8E40  F3 A1 01 48 */	psq_st f29, 328(r1), 0, 0 /* qr0 */
 /* 801A8E44  39 61 01 40 */	addi r11, r1, 0x140
-/* 801A8E48  48 1B 93 59 */	bl __save_gpr
+/* 801A8E48  48 1B 93 59 */	bl _savegpr_14
 /* 801A8E4C  7C 6E 1B 78 */	mr r14, r3
 /* 801A8E50  7C 99 23 78 */	mr r25, r4
 /* 801A8E54  7C BA 2B 78 */	mr r26, r5
@@ -921,7 +921,7 @@ lbl_801A9994:
 /* 801A9BC4  E3 A1 01 48 */	psq_l f29, 328(r1), 0, 0 /* qr0 */
 /* 801A9BC8  CB A1 01 40 */	lfd f29, 0x140(r1)
 /* 801A9BCC  39 61 01 40 */	addi r11, r1, 0x140
-/* 801A9BD0  48 1B 86 1D */	bl __restore_gpr
+/* 801A9BD0  48 1B 86 1D */	bl _restgpr_14
 /* 801A9BD4  80 01 01 74 */	lwz r0, 0x174(r1)
 /* 801A9BD8  7C 08 03 A6 */	mtlr r0
 /* 801A9BDC  38 21 01 70 */	addi r1, r1, 0x170

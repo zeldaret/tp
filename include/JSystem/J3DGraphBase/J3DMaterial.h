@@ -14,16 +14,16 @@ class J3DMaterialAnm;
 
 class J3DMaterial {
 public:
-    /* 803157A0 */ void createColorBlock(u32);
-    /* 803159A0 */ void createTexGenBlock(u32);
-    /* 80315B04 */ void createTevBlock(int);
-    /* 80315E78 */ void createIndBlock(int);
-    /* 80315F60 */ void createPEBlock(u32, u32);
-    /* 80316100 */ void calcSizeColorBlock(u32);
-    /* 80316150 */ void calcSizeTexGenBlock(u32);
-    /* 8031617C */ void calcSizeTevBlock(int);
-    /* 803161C4 */ void calcSizeIndBlock(int);
-    /* 803161D8 */ void calcSizePEBlock(u32, u32);
+    /* 803157A0 */ static J3DColorBlock* createColorBlock(u32);
+    /* 803159A0 */ static J3DTexGenBlock* createTexGenBlock(u32);
+    /* 80315B04 */ static J3DTevBlock* createTevBlock(int);
+    /* 80315E78 */ static J3DIndBlock* createIndBlock(int);
+    /* 80315F60 */ static J3DPEBlock* createPEBlock(u32, u32);
+    /* 80316100 */ static u32 calcSizeColorBlock(u32);
+    /* 80316150 */ static u32 calcSizeTexGenBlock(u32);
+    /* 8031617C */ static u32 calcSizeTevBlock(int);
+    /* 803161C4 */ static u32 calcSizeIndBlock(int);
+    /* 803161D8 */ static u32 calcSizePEBlock(u32, u32);
     /* 80316240 */ void initialize();
     /* 80316290 */ u32 countDLSize();
     /* 80316344 */ void makeDisplayList_private(J3DDisplayListObj*);
@@ -50,6 +50,7 @@ public:
     J3DColorBlock* getColorBlock() const { return mColorBlock; }
     J3DTexGenBlock* getTexGenBlock() const { return mTexGenBlock; }
     J3DDisplayListObj* getSharedDisplayListObj() const { return mSharedDLObj; }
+    J3DIndBlock* getIndBlock() const { return mIndBlock; }
     J3DShape* getShape() { return mShape; }
     J3DJoint* getJoint() { return mJoint; }
     J3DMaterialAnm* getMaterialAnm() const {
@@ -62,12 +63,15 @@ public:
     J3DNBTScale* getNBTScale() const { return mTexGenBlock->getNBTScale(); }
     u32 getTexNo(u32 idx) const { return mTevBlock->getTexNo(idx); }
     GXColor* getTevKColor(u32 param_0) { return mTevBlock->getTevKColor(param_0); }
+    GXColorS10* getTevColor(u32 param_0) { return mTevBlock->getTevColor(param_0); }
     J3DFog* getFog() { return mPEBlock->getFog(); }
     J3DTexMtx* getTexMtx(u32 idx) { return mTexGenBlock->getTexMtx(idx); }
     u16 getIndex() { return mIndex; }
     bool isDrawModeOpaTexEdge() { return (mMaterialMode & 3) == 0; }
     J3DPEBlock* getPEBlock() { return mPEBlock; }
     void onInvalid() { mInvalid = 1; }
+    u32 getTexGenNum() const { return mTexGenBlock->getTexGenNum(); }
+    u8 getTevStageNum() const { return mTevBlock->getTevStageNum(); }
 
     void setTevColor(u32 i, const J3DGXColorS10* i_color) { mTevBlock->setTevColor(i, i_color); }
     void setTevKColor(u32 i, const J3DGXColor* i_color) { mTevBlock->setTevKColor(i, i_color); }

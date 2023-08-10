@@ -3,7 +3,7 @@ lbl_80986448:
 /* 8098644C  7C 08 02 A6 */	mflr r0
 /* 80986450  90 01 00 E4 */	stw r0, 0xe4(r1)
 /* 80986454  39 61 00 E0 */	addi r11, r1, 0xe0
-/* 80986458  4B 9D BD 49 */	bl __save_gpr
+/* 80986458  4B 9D BD 49 */	bl _savegpr_14
 /* 8098645C  3C 60 80 98 */	lis r3, cNullVec__6Z2Calc@ha /* 0x8098795C@ha */
 /* 80986460  3B E3 79 5C */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x8098795C@l */
 /* 80986464  3C 60 80 98 */	lis r3, l_resMANa@ha /* 0x8098699C@ha */
@@ -307,7 +307,7 @@ lbl_80986448:
 /* 8098690C  80 04 00 08 */	lwz r0, 8(r4)
 /* 80986910  90 1F 3E 00 */	stw r0, 0x3e00(r31)
 /* 80986914  39 61 00 E0 */	addi r11, r1, 0xe0
-/* 80986918  4B 9D B8 D5 */	bl __restore_gpr
+/* 80986918  4B 9D B8 D5 */	bl _restgpr_14
 /* 8098691C  80 01 00 E4 */	lwz r0, 0xe4(r1)
 /* 80986920  7C 08 03 A6 */	mtlr r0
 /* 80986924  38 21 00 E0 */	addi r1, r1, 0xe0

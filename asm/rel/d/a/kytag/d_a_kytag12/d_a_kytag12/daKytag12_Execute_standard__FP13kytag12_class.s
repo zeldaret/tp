@@ -17,7 +17,7 @@ lbl_8085BD0C:
 /* 8085BD48  DB 21 01 40 */	stfd f25, 0x140(r1)
 /* 8085BD4C  F3 21 01 48 */	psq_st f25, 328(r1), 0, 0 /* qr0 */
 /* 8085BD50  39 61 01 40 */	addi r11, r1, 0x140
-/* 8085BD54  4B B0 64 4D */	bl __save_gpr
+/* 8085BD54  4B B0 64 4D */	bl _savegpr_14
 /* 8085BD58  7C 6F 1B 78 */	mr r15, r3
 /* 8085BD5C  3C 60 80 86 */	lis r3, lit_3836@ha /* 0x8085EF00@ha */
 /* 8085BD60  3B 83 EF 00 */	addi r28, r3, lit_3836@l /* 0x8085EF00@l */
@@ -1416,7 +1416,7 @@ lbl_8085D18C:
 /* 8085D1BC  E3 21 01 48 */	psq_l f25, 328(r1), 0, 0 /* qr0 */
 /* 8085D1C0  CB 21 01 40 */	lfd f25, 0x140(r1)
 /* 8085D1C4  39 61 01 40 */	addi r11, r1, 0x140
-/* 8085D1C8  4B B0 50 25 */	bl __restore_gpr
+/* 8085D1C8  4B B0 50 25 */	bl _restgpr_14
 /* 8085D1CC  80 01 01 B4 */	lwz r0, 0x1b4(r1)
 /* 8085D1D0  7C 08 03 A6 */	mtlr r0
 /* 8085D1D4  38 21 01 B0 */	addi r1, r1, 0x1b0

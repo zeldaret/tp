@@ -78,16 +78,16 @@ void dMpath_n::dTexObjAggregate_c::remove() {
 /* 8003C94C-8003CA40 03728C 00F4+00 2/0 9/2 0/0 .text
  * rendering__11dDrawPath_cFPCQ211dDrawPath_c10line_class       */
 void dDrawPath_c::rendering(dDrawPath_c::line_class const* p_line) {
-    if (isDrawType(p_line->unk0)) {
-        int width = getLineWidth(p_line->unk1);
+    if (isDrawType(p_line->field_0x0)) {
+        int width = getLineWidth(p_line->field_0x1);
 
-        if (width > 0 && p_line->unk2 >= 2) {
+        if (width > 0 && p_line->mDataNum >= 2) {
             GXSetLineWidth(width, GX_TO_ZERO);
-            GXSetTevColor(GX_TEVREG0, *getLineColor(p_line->unk0 & 0x3F, p_line->unk1));
-            GXBegin(GX_LINESTRIP, GX_VTXFMT0, p_line->unk2);
+            GXSetTevColor(GX_TEVREG0, *getLineColor(p_line->field_0x0 & 0x3F, p_line->field_0x1));
+            GXBegin(GX_LINESTRIP, GX_VTXFMT0, p_line->mDataNum);
 
-            u16* tmp = p_line->unk4;
-            for (int i = 0; i < p_line->unk2; i++) {
+            u16* tmp = p_line->mpData;
+            for (int i = 0; i < p_line->mDataNum; i++) {
                 GXPosition1x16(*tmp);
                 tmp++;
             }
@@ -102,11 +102,11 @@ void dDrawPath_c::rendering(dDrawPath_c::poly_class const* p_poly) {
     if (isDrawType(p_poly->field_0x0)) {
         GXSetTevColor(GX_TEVREG0, *getColor(p_poly->field_0x0 & 0x3F));
 
-        if (p_poly->field_0x1 >= 3) {
-            GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, p_poly->field_0x1);
+        if (p_poly->mDataNum >= 3) {
+            GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, p_poly->mDataNum);
 
-            u16* tmp = p_poly->field_0x4;
-            for (int i = 0; i < p_poly->field_0x1; i++) {
+            u16* tmp = p_poly->mpData;
+            for (int i = 0; i < p_poly->mDataNum; i++) {
                 GXPosition1x16(*tmp);
                 tmp++;
             }
@@ -120,13 +120,13 @@ void dDrawPath_c::rendering(dDrawPath_c::poly_class const* p_poly) {
 void dDrawPath_c::rendering(dDrawPath_c::group_class const* p_group) {
     if (isSwitch(p_group)) {
         poly_class* poly = p_group->mpPoly;
-        for (int i = 0; i < p_group->field_0x4; i++) {
+        for (int i = 0; i < p_group->mPolyNum; i++) {
             rendering(poly);
             poly++;
         }
 
         line_class* line = p_group->mpLine;
-        for (int i = 0; i < p_group->field_0x2; i++) {
+        for (int i = 0; i < p_group->mLineNum; i++) {
             rendering(line);
             line++;
         }
@@ -139,7 +139,7 @@ void dDrawPath_c::rendering(dDrawPath_c::floor_class const* p_floor) {
     if (p_floor->mpGroup != NULL) {
         group_class* group = p_floor->mpGroup;
 
-        for (int i = 0; i < p_floor->field_0x1; i++) {
+        for (int i = 0; i < p_floor->mGroupNum; i++) {
             rendering(group);
             group++;
         }
@@ -150,12 +150,12 @@ void dDrawPath_c::rendering(dDrawPath_c::floor_class const* p_floor) {
  * rendering__11dDrawPath_cFPCQ211dDrawPath_c10room_class       */
 void dDrawPath_c::rendering(dDrawPath_c::room_class const* p_room) {
     if (p_room != NULL) {
-        GXSetArray(GX_VA_POS, p_room->field_0x8, 8);
+        GXSetArray(GX_VA_POS, p_room->mpFloatData, 8);
         floor_class* floor = p_room->mpFloor;
 
         if (floor != NULL) {
-            for (int i = 0; i < p_room->field_0x0; i++) {
-                if (isRenderingFloor(floor->field_0x0)) {
+            for (int i = 0; i < p_room->mFloorNum; i++) {
+                if (isRenderingFloor(floor->mFloorNo)) {
                     rendering(floor);
                 }
                 floor++;
@@ -317,7 +317,7 @@ dMpath_n::dTexObjAggregate_c dMpath_n::m_texObjAgg;
 /* 8003D3C0-8003D68C 037D00 02CC+00 0/0 2/2 0/0 .text
  * renderingDecoration__18dRenderingFDAmap_cFPCQ211dDrawPath_c10line_class */
 void dRenderingFDAmap_c::renderingDecoration(dDrawPath_c::line_class const* p_line) {
-    s32 width = getDecorationLineWidth(p_line->unk1);
+    s32 width = getDecorationLineWidth(p_line->field_0x1);
     if (width <= 0) {
         return;
     }
@@ -331,18 +331,18 @@ void dRenderingFDAmap_c::renderingDecoration(dDrawPath_c::line_class const* p_li
     GXSetNumTevStages(1);
     GXLoadTexObj(dMpath_n::m_texObjAgg.mp_texObj[6], GX_TEXMAP0);
 
-    u16* unk = p_line->unk4;
-    s32 unk2 = p_line->unk2;
+    u16* data_p = p_line->mpData;
+    s32 data_num = p_line->mDataNum;
     GXSetLineWidth(width, GX_TO_ONE);
     GXSetPointSize(width, GX_TO_ONE);
-    GXColor lineColor = *getDecoLineColor(p_line->unk0 & 0x3f, p_line->unk1);
+    GXColor lineColor = *getDecoLineColor(p_line->field_0x0 & 0x3f, p_line->field_0x1);
     GXSetTevColor(GX_TEVREG0, lineColor);
     lineColor.r = lineColor.r - 4;
     GXSetTevColor(GX_TEVREG1, lineColor);
 
-    for (int i = 0; i < unk2; unk++, i++) {
+    for (int i = 0; i < data_num; data_p++, i++) {
 #ifndef HYRULE_FIELD_SPEEDHACK
-        if (i < unk2 - 1) {
+        if (i < data_num - 1) {
             GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, GX_CC_C0);
             GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE,
                             GX_TEVPREV);
@@ -350,9 +350,9 @@ void dRenderingFDAmap_c::renderingDecoration(dDrawPath_c::line_class const* p_li
             GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE,
                             GX_TEVPREV);
             GXBegin(GX_LINESTRIP, GX_VTXFMT0, 2);
-            GXPosition1x16(unk[0]);
+            GXPosition1x16(data_p[0]);
             GXTexCoord2f32(0, 0);
-            GXPosition1x16(unk[1]);
+            GXPosition1x16(data_p[1]);
             GXTexCoord2f32(0, 0);
         }
         GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_KONST, GX_CC_TEXC, GX_CC_C1);
@@ -361,7 +361,7 @@ void dRenderingFDAmap_c::renderingDecoration(dDrawPath_c::line_class const* p_li
         GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
 #endif
         GXBegin(GX_POINTS, GX_VTXFMT0, 1);
-        GXPosition1x16(unk[0]);
+        GXPosition1x16(data_p[0]);
         GXTexCoord2f32(0, 0);
         i_GXEnd();
     }

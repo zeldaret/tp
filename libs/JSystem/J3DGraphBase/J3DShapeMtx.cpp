@@ -355,8 +355,10 @@ u8* J3DShapeMtx::sCurrentScaleFlag;
 /* 804515B0-804515B4 -00001 0004+00 5/5 3/3 0/0 .sbss            None */
 /* 804515B0 0001+00 data_804515B0 None */
 /* 804515B1 0003+00 data_804515B1 None */
-extern u8 struct_804515B0[4];
-u8 struct_804515B0[4];
+u8 struct_804515B0;
+u8 struct_804515B1;
+u8 struct_804515B2;
+u8 struct_804515B3;
 
 /* 804515B4-804515B8 000AB4 0004+00 4/4 1/1 0/0 .sbss            sTexMtxLoadType__11J3DShapeMtx */
 u32 J3DShapeMtx::sTexMtxLoadType;

@@ -71,8 +71,7 @@ AS        		:= $(DEVKITPPC)/bin/powerpc-eabi-as
 OBJCOPY   		:= $(DEVKITPPC)/bin/powerpc-eabi-objcopy
 STRIP     		:= $(DEVKITPPC)/bin/powerpc-eabi-strip
 CC        		:= $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc_modded.exe
-DOLPHIN_LIB_CC 	:= $(WINE) tools/mwcc_compiler/1.2.5/mwcceppc.exe
-FRANK_CC  		:= $(WINE) tools/mwcc_compiler/1.2.5e/mwcceppc.exe
+DOLPHIN_LIB_CC 	:= $(WINE) tools/mwcc_compiler/1.2.5n/mwcceppc.exe
 LD        		:= $(WINE_LD) tools/mwcc_compiler/$(MWCC_VERSION)/mwldeppc.exe
 ELF2DOL   		:= $(BUILD_PATH)/elf2dol
 YAZ0   			:= $(BUILD_PATH)/yaz0.so
@@ -80,7 +79,6 @@ PYTHON    		:= python3
 ICONV     		:= iconv
 DOXYGEN   		:= doxygen
 MAKEREL   		:= tools/makerel.py
-FRANK     		:= tools/frank.py
 IMAGENAME 		:= gz2e01.iso
 
 # Options
@@ -156,7 +154,7 @@ tools: dirs $(ELF2DOL) $(YAZ0)
 
 assets:
 	@mkdir -p game
-	@cd game; $(PYTHON) ../tools/extract_game_assets.py ../$(IMAGENAME)
+	$(PYTHON) tools/extract_game_assets.py $(IMAGENAME) game
 
 docs:
 	$(DOXYGEN) Doxyfile
@@ -165,6 +163,7 @@ rels: $(ELF) $(RELS)
 	@echo generating RELs from .plf
 	@echo $(RELS) > build/plf_files
 	$(PYTHON) $(MAKEREL) build --string-table $(BUILD_DIR)/frameworkF.str @build/plf_files $(ELF)
+	./tp check --rels
 
 $(ELF): $(LIBS) $(O_FILES)
 	@echo $(O_FILES) > build/o_files

@@ -118,15 +118,15 @@ public:
     /* 802380C4 */ static void changeGroup(s16);
     /* 8023806C */ static void demoMessageGroup();
     /* 80238098 */ void endFlowGroup();
-    /* 802380F4 */ void getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, char*,
+    /* 802380F4 */ static bool getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, char*,
                                   char*, char*, s16*);
     /* 80238174 */ static u8* getMsgDtPtr();
-    /* 80238188 */ void setProcessID(unsigned int);
+    /* 80238188 */ static void setProcessID(unsigned int);
     /* 8023819C */ static fopAc_ac_c* getActor();
-    /* 802381C0 */ void getpTalkActor();
-    /* 802381D4 */ void getIdx();
-    /* 802381E8 */ void getNodeIdx();
-    /* 802381FC */ void setStatus(u16);
+    /* 802381C0 */ static fopAc_ac_c* getpTalkActor();
+    /* 802381D4 */ static u32 getIdx();
+    /* 802381E8 */ static u16 getNodeIdx();
+    /* 802381FC */ static void setStatus(u16);
     /* 8023822C */ static u16 getStatus();
     /* 80238258 */ void getScrnDrawPtr();
     /* 8023826C */ static void setTalkActor(fopAc_ac_c*);
@@ -322,6 +322,16 @@ inline void dMsgObject_setTalkActor(fopAc_ac_c* actor) {
     }
 }
 
+inline bool dMsgObject_getString(u32 param_0, J2DTextBox* param_1, J2DTextBox* param_2,
+                                 JUTFont* param_3, COutFont_c* param_4, char* param_5,
+                                 char* param_6, char* param_7, s16* param_8) {
+    return dMsgObject_c::getString(
+        param_0, param_1, param_2, param_3,
+        param_4, param_5, param_6, param_7,
+        param_8
+    );
+}
+
 inline void dMsgObject_onKillMessageFlag() {
     dMsgObject_c::onKillMessageFlag();
 }
@@ -508,7 +518,7 @@ public:
     /* 0x2F2 */ u8 mStageTitleDisplayType;
     /* 0x2F4 */ s16 mMsgIndex;
     /* 0x2F6 */ s16 mFlowIndex;
-    /* 0x2F8 */ u16 mSaveSeqMsgIndex;
+    /* 0x2F8 */ s16 mSaveSeqMsgIndex;
     /* 0x2FA */ u16 mSelWeightFrame;
     /* 0x2FC */ u16 mBoxAppearBound;
     /* 0x2FE */ u16 mBoxAppearFrame;

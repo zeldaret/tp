@@ -35,6 +35,7 @@
 #include "rel/d/a/e/d_a_e_wb/d_a_e_wb.h"
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 #include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"
+#include "rel/d/a/d_a_mirror/d_a_mirror.h"
 
 //
 // Types:
@@ -64,10 +65,6 @@ struct daObj {
 
 struct daNpcT_ActorMngr_c {
     /* 80145708 */ void getActorP();
-};
-
-struct daMirror_c {
-    /* 8003194C */ static void entry(J3DModel*);
 };
 
 struct dPaPoF_c {
@@ -2990,7 +2987,7 @@ extern "C" void __construct_new_array();
 extern "C" void __ptmf_test();
 extern "C" void __ptmf_scall();
 extern "C" void __cvt_fp2unsigned();
-extern "C" void __save_gpr();
+extern "C" void _savegpr_14();
 extern "C" void _savegpr_15();
 extern "C" void _savegpr_16();
 extern "C" void _savegpr_20();
@@ -3003,7 +3000,7 @@ extern "C" void _savegpr_26();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
-extern "C" void __restore_gpr();
+extern "C" void _restgpr_14();
 extern "C" void _restgpr_15();
 extern "C" void _restgpr_16();
 extern "C" void _restgpr_20();
@@ -3261,7 +3258,7 @@ bool daAlink_c::checkStageName(const char* stage) {
 /* 8009DA98-8009DB64 0983D8 00CC+00 1/1 0/0 0/0 .text
  * tgHitCallback__9daAlink_cFP10fopAc_ac_cP12dCcD_GObjInfP12dCcD_GObjInf */
 void daAlink_c::tgHitCallback(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, dCcD_GObjInf* param_2) {
-    if (param_2->ChkAtType(AT_TYPE_SPINNER)) {
+    if (param_2->ChkAtType(AT_TYPE_40000)) {
         field_0x369c = *param_2->GetAtVecP();
         for (int i = 0; i < 3; i++) {
             if (param_1 == &field_0x850[i]) {
@@ -11290,8 +11287,10 @@ static dCcD_SrcSph l_sphSrc = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        40.0f,
+        {
+            {0.0f, 0.0f, 0.0f},
+            40.0f,
+        }
     },
 };
 
@@ -11319,9 +11318,11 @@ static dCcD_SrcCps l_atCpsSrc = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        {0.0f, 0.0f, 0.0f},
-        20.0f,
+        {
+            {0.0f, 0.0f, 0.0f},
+            {0.0f, 0.0f, 0.0f},
+            20.0f,
+        }
     },
 };
 

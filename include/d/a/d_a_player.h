@@ -176,6 +176,7 @@ private:
 class daMidna_c;
 class daPy_py_c;
 inline daPy_py_c* dComIfGp_getLinkPlayer();
+inline BOOL i_dComIfGs_isEventBit(const u16);
 
 class daPy_py_c : public fopAc_ac_c {
 public:
@@ -711,6 +712,7 @@ public:
     void onForceAutoJump() { i_onEndResetFlg0(ERFLG0_FORCE_AUTO_JUMP); }
     void onNotAutoJump() { i_onEndResetFlg0(ERFLG0_NOT_AUTO_JUMP); }
     void onNotHang() { i_onEndResetFlg0(ERFLG0_NOT_HANG); }
+    void onFogFade() { i_onNoResetFlg2(FLG2_UNK_4000); }
     
     void offGoronSideMove() {
         if (i_checkGoronSideMove()) {
@@ -720,6 +722,8 @@ public:
 
     s16 getBodyAngleX() const { return mBodyAngle.x; }
     s16 getBodyAngleY() const { return mBodyAngle.y; }
+
+    BOOL checkMidnaWarp() const { return 0; }
 
     // some functions use these function as an inline
     // is there a better way to handle this?
@@ -788,6 +792,7 @@ public:
     inline static BOOL i_checkNowWolf() { return dComIfGp_getLinkPlayer()->i_checkWolf(); }
     inline bool checkZoraWearFlg() const;
     inline bool checkMagicArmorWearFlg() const;
+    inline static BOOL i_checkFirstMidnaDemo() { return i_dComIfGs_isEventBit(0xc10); }
 
     static daMidna_c* getMidnaActor() { return m_midnaActor; }
 

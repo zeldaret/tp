@@ -50,11 +50,8 @@ $(BUILD_DIR)/libs/dolphin/dvd/%.o: libs/dolphin/dvd/%.c $(BUILD_DIR)/libs/dolphi
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
-	@$(FRANK_CC) $(LIBDVD_A_CFLAGS) -c -o $(@:.o=.po) $(basename $@).c
 	@$(DOLPHIN_LIB_CC) $(LIBDVD_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
 	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
-	@echo Frank is fixing $@
-	@$(PYTHON) $(FRANK) $@ $(@:.o=.po) $@
 
 ifndef DISABLE_DEPS
 LIBDVD_A_D_FILES := $(LIBDVD_A_O_FILES:.o=.d)

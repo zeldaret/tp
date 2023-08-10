@@ -4,101 +4,69 @@
 //
 
 #include "JSystem/JAudio2/JASProbe.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
+#include "dolphin/os/OS.h"
 
 //
 // Types:
 //
 
-struct JASProbe {
-    /* 80290EE4 */ void start(s32, char const*);
-    /* 80290D74 */ void start(char const*);
-    /* 80290DC4 */ void stop();
-    /* 80290F24 */ void stop(s32);
-
-    static u8 sProbeTable[64];
-};
-
 //
 // Forward References:
 //
-
-extern "C" void start__8JASProbeFPCc();
-extern "C" void stop__8JASProbeFv();
-extern "C" void start__8JASProbeFlPCc();
-extern "C" void stop__8JASProbeFl();
-extern "C" u8 sProbeTable__8JASProbe[64];
 
 //
 // External References:
 //
 
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void OSGetTime();
-
 //
 // Declarations:
 //
-
 /* 80290D74-80290DC4 28B6B4 0050+00 1/1 0/0 0/0 .text            start__8JASProbeFPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASProbe::start(char const* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASProbe/start__8JASProbeFPCc.s"
+void JASProbe::start(char const* name) {
+	volatile BOOL interrupts = OSDisableInterrupts();
+	mName          = name;
+	mStartTime     = OSGetTime();
+	OSRestoreInterrupts(interrupts);
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 80455588-8045558C 003B88 0004+00 1/1 0/0 0/0 .sdata2          @125 */
-SECTION_SDATA2 static f32 lit_125 = 59.939998626708984f;
-
-/* 8045558C-80455590 003B8C 0004+00 1/1 0/0 0/0 .sdata2          @126 */
-SECTION_SDATA2 static f32 lit_126 = 24.0f / 25.0f;
-
-/* 80455590-80455598 003B90 0004+04 1/1 0/0 0/0 .sdata2          @127 */
-SECTION_SDATA2 static f32 lit_127[1 + 1 /* padding */] = {
-    1.0f / 25.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80455598-804555A0 003B98 0008+00 1/1 0/0 0/0 .sdata2          @129 */
-SECTION_SDATA2 static f64 lit_129 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80290DC4-80290EE4 28B704 0120+00 1/1 0/0 0/0 .text            stop__8JASProbeFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASProbe::stop() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASProbe/stop__8JASProbeFv.s"
+void JASProbe::stop() {
+	volatile int interrupts = OSDisableInterrupts();
+	_08            = (u32)OSGetTime() - mStartTime;
+	_08 /= OS_TIMER_CLOCK / 59.94f;
+	if (_10 < _08 && 100 < _1A8) {
+		_10 = _08;
+	}
+	_0C             = _0C * 0.96f + _08 * 0.04f;
+	u32 resultIndex = _1A8 % 100;
+	_14 -= _18[resultIndex];
+	_18[resultIndex] = _08;
+	_14 += _08;
+	_1A8++;
+	OSRestoreInterrupts(interrupts);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80431620-80431660 05E340 0040+00 2/2 0/0 0/0 .bss             sProbeTable__8JASProbe */
-u8 JASProbe::sProbeTable[64];
+JASProbe* JASProbe::sProbeTable[16];
 
 /* 80290EE4-80290F24 28B824 0040+00 0/0 7/7 0/0 .text            start__8JASProbeFlPCc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASProbe::start(s32 param_0, char const* param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASProbe/start__8JASProbeFlPCc.s"
+void JASProbe::start(s32 index, char const* name) {
+    if (index < 16) {
+        if (sProbeTable[index] != NULL) {
+            sProbeTable[index]->start(name);
+        }
+    }
 }
-#pragma pop
 
 /* 80290F24-80290F64 28B864 0040+00 0/0 6/6 0/0 .text            stop__8JASProbeFl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASProbe::stop(s32 param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASProbe/stop__8JASProbeFl.s"
+void JASProbe::stop(s32 index) {
+    if (index < 16) {
+        if (sProbeTable[index] != NULL) {
+            sProbeTable[index]->stop();
+        }
+    }
 }
-#pragma pop

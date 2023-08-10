@@ -66,4 +66,7 @@ struct J3DTevSwapModeTable {
 
 struct J3DTevSwapModeInfo {};
 
+struct J3DNBTScale;
+void loadNBTScale(J3DNBTScale& param_0);
+
 #endif /* J3DTEVS_H */

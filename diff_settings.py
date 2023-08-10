@@ -15,6 +15,6 @@ def apply(config, args):
     ]
     if args.show_source:
         config['makeflags'].append('DEBUG=1')
-    config['source_directories'] = ['src', 'libs', 'include']
+    config['source_directories'] = ['src', 'libs', 'include', 'rel']
     config['arch'] = 'ppc'
     config['objdump_executable'] = f"{os.environ['DEVKITPPC']}/bin/powerpc-eabi-objdump"

@@ -8,7 +8,6 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_alink.h"
 #include "d/d_procname.h"
-#include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 #include "rel/d/a/d_a_cstaF/d_a_cstaF.h"
 #include "rel/d/a/d_a_cstatue/d_a_cstatue.h"
@@ -26,15 +25,12 @@ enum daCrod_ANM {
     /* 18 */ ANM_WAIT_C,
 };
 
-extern "C" u8 sincosTable___5JMath[65536];
-
 /* ############################################################################################## */
 /* 804A40EC-804A40F8 000000 000C+00 2/2 0/0 0/0 .rodata          @3759 */
 // not sure what this is
-SECTION_RODATA static u8 const lit_3759[12] = {
+static u8 const lit_3759[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(0x804A40EC, &lit_3759);
 
 /* 804A40F8-804A4104 00000C 000C+00 1/2 0/0 0/0 .rodata          l_localRodPos */
 static const Vec l_localRodPos = {81.0f, -12.5f, -12.0f};
@@ -74,10 +70,12 @@ static dCcD_SrcCps l_atCpsSrc = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        {0.0f, 0.0f, 0.0f},
-        20.0f,
-    },
+        {
+            {0.0f, 0.0f, 0.0f},
+            {0.0f, 0.0f, 0.0f},
+            20.0f,
+        },
+    }
 };
 
 /* 804A2F18-804A31F8 000158 02E0+00 1/1 0/0 0/0 .text            create__8daCrod_cFv */
@@ -170,25 +168,16 @@ void daCrod_c::setMatrix() {
 }
 
 /* 804A3500-804A3580 000740 0080+00 1/1 0/0 0/0 .text            posMove__8daCrod_cFv */
-// close
-#ifdef NONMATCHING
 void daCrod_c::posMove() {
     f32 cosx = cM_scos(current.angle.x);
     f32 cosy = cM_scos(current.angle.y);
+    f32 speedfy = (speedF * cosy);
+    //probably fake match
+    f32 speedz;
     speed.set(speedF * cM_ssin(current.angle.y) * cM_scos(current.angle.x),
-              speedF * cM_ssin(current.angle.x), (speedF * cosy) * cosx);
+              speedF * cM_ssin(current.angle.x), speedz = speedfy * cosx);
     current.pos += speed;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daCrod_c::posMove() {
-    nofralloc
-#include "asm/rel/d/a/d_a_crod/d_a_crod/posMove__8daCrod_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 804A3580-804A35FC 0007C0 007C+00 2/2 0/0 0/0 .text            setBckAnm__8daCrod_cFUs */
 void daCrod_c::setBckAnm(u16 i_anmResID) {

@@ -4,7 +4,7 @@
 #include "dolphin/types.h"
 
 struct counter_class {
-    s32 mCounter0;
+    u32 mCounter0;
     s32 mCounter1;
     s32 mTimer;
 };

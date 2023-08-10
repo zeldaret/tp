@@ -36,8 +36,6 @@ void TRKSaveExtended1Block();
 void TRK_main();
 void EnableEXI2Interrupts();
 void InitMetroTRKCommTable();
-extern u32 gTRKState[41];
-extern u32 gTRKCPUState[268];
 void regist__9daBgObj_cFP4dBgW();
 
 //
@@ -86,85 +84,23 @@ asm void TRK__read_aram() {
 
 /* ############################################################################################## */
 /* 8044F810-8044F818 07C530 0004+04 3/3 0/0 0/0 .bss             lc_base */
-SECTION_BSS static u32 lc_base[1 + 1 /*padding*/];
+SECTION_BSS static u32 lc_base;
 
 /* 803719AC-803719F8 36C2EC 004C+00 0/0 1/1 0/0 .text TRKInitializeTarget */
 int TRKInitializeTarget() {
-    gTRKState[38] = 1;
-    gTRKState[35] = __TRK_get_MSR();
-    *lc_base = 0xE0000000;
+    gTRKState.stopped = TRUE;
+    gTRKState.MSR = __TRK_get_MSR();
+    lc_base = 0xE0000000;
     return 0;
 }
 
 /* ############################################################################################## */
 /* 803D3268-803D32A8 030388 003C+04 1/1 0/0 0/0 .data            TRK_ISR_OFFSETS */
-SECTION_DATA static u8 TRK_ISR_OFFSETS[60 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x02,
-    0x00,
-    0x00,
-    0x00,
-    0x03,
-    0x00,
-    0x00,
-    0x00,
-    0x04,
-    0x00,
-    0x00,
-    0x00,
-    0x05,
-    0x00,
-    0x00,
-    0x00,
-    0x06,
-    0x00,
-    0x00,
-    0x00,
-    0x07,
-    0x00,
-    0x00,
-    0x00,
-    0x08,
-    0x00,
-    0x00,
-    0x00,
-    0x09,
-    0x00,
-    0x00,
-    0x00,
-    0x0C,
-    0x00,
-    0x00,
-    0x00,
-    0x0D,
-    0x00,
-    0x00,
-    0x00,
-    0x0F,
-    0x00,
-    0x00,
-    0x00,
-    0x13,
-    0x00,
-    0x00,
-    0x00,
-    0x14,
-    0x00,
-    0x00,
-    0x00,
-    0x17,
-    0x00,
+static u32 TRK_ISR_OFFSETS[15 + 1 /* padding */] = {
+    0x100, 0x200, 0x300, 0x400, 0x500, 0x600, 0x700, 0x800, 0x900, 0xC00, 0xD00, 0xF00, 0x1300,
+    0x1400, 0x1700,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+    0};
 
 /* 803719F8-80371B24 36C338 012C+00 0/0 1/1 0/0 .text            __TRK_copy_vectors */
 #pragma push
@@ -178,8 +114,8 @@ asm void __TRK_copy_vectors() {
 
 /* 80371B24-80371B7C 36C464 0058+00 0/0 1/1 0/0 .text            TRKTargetTranslate */
 u32 TRKTargetTranslate(u32 param_0) {
-    if (param_0 >= *lc_base) {
-        if ((param_0 < *lc_base + 0x4000) && ((gTRKCPUState[142] & 3) != 0)) {
+    if (param_0 >= lc_base) {
+        if ((param_0 < lc_base + 0x4000) && ((gTRKCPUState.Extended1.DBAT3U & 3) != 0)) {
             return param_0;
         }
     }

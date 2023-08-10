@@ -308,12 +308,17 @@ public:
     J3DDrawBuffer* getOpaListFilter() { return mDrawBuffers[DB_LIST_FILTER]; }
     J3DDrawBuffer* getOpaListP0() { return mDrawBuffers[DB_LIST_P0]; }
     J3DDrawBuffer* getOpaListPacket() { return mDrawBuffers[DB_OPA_LIST_PACKET]; }
+    J3DDrawBuffer* getOpaListBG() { return mDrawBuffers[DB_OPA_LIST_BG]; }
     void setXluDrawList(J3DDrawBuffer* buffer) { j3dSys.setDrawBuffer(buffer, XLU_BUFFER); }
     void setOpaDrawList(J3DDrawBuffer* buffer) { j3dSys.setDrawBuffer(buffer, OPA_BUFFER); }
     void setXluListSky() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_SKY]); }
     void setOpaListSky() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST_SKY]); }
     void setXluListDark() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_DARK]); }
     void setOpaListDark() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST_DARK]); }
+    void setOpaListInvisible() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST_INVISIBLE]); }
+    void setXluListInvisible() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_INVISIBLE]); }
+    void setXluListDarkBG() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_DARK_BG]); }
+    void setOpaListDarkBG() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST_DARK_BG]); }
     void setOpaList() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST]); }
     void setXluList() { setXluDrawList(mDrawBuffers[DB_XLU_LIST]); }
     void setOpaListItem3D() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST_ITEM3D]); }

@@ -105,6 +105,8 @@ typedef struct DVDBB2 {
   u32 padding0;
 } DVDBB2;
 
+#define DVD_MIN_TRANSFER_SIZE 32
+
 typedef void (*DVDOptionalCommandChecker)(DVDCommandBlock* block, void (*cb)(u32 intType));
 
 void DVDInit(void);

@@ -51,19 +51,18 @@ extern "C" void J3DFifoLoadTexCached__F11_GXTexMapIDUl15_GXTexCacheSizeUl15_GXTe
 
 extern "C" void GDOverflowed();
 extern "C" void __cvt_fp2unsigned();
-extern "C" void __save_gpr();
+extern "C" void _savegpr_14();
 extern "C" void _savegpr_23();
 extern "C" void _savegpr_24();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_29();
-extern "C" void __restore_gpr();
+extern "C" void _restgpr_14();
 extern "C" void _restgpr_23();
 extern "C" void _restgpr_24();
 extern "C" void _restgpr_25();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_29();
-extern "C" extern u8 __GDCurrentDL[4];
 
 //
 // Declarations:
@@ -82,7 +81,7 @@ SECTION_SDATA static u8 cm2hw[4] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DGDSetGenMode(u8 param_0, u8 param_1, u8 param_2, u8 param_3, _GXCullMode param_4) {
+asm void J3DGDSetGenMode(u8 texGenNum, u8 colorChanNum, u8 tevStageNum, u8 IndTexStageNum, _GXCullMode cullMode) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DGD/J3DGDSetGenMode__FUcUcUcUc11_GXCullMode.s"
 }
@@ -92,7 +91,7 @@ asm void J3DGDSetGenMode(u8 param_0, u8 param_1, u8 param_2, u8 param_3, _GXCull
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DGDSetGenMode_3Param(u8 param_0, u8 param_1, u8 param_2) {
+asm void J3DGDSetGenMode_3Param(u8 texGenNum, u8 tevStageNum, u8 indTexStageNum) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DGD/J3DGDSetGenMode_3Param__FUcUcUc.s"
 }

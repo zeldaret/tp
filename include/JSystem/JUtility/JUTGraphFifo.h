@@ -32,4 +32,6 @@ private:
     /* 0x10 */ u8 field_0x10[0xC];
 };
 
+inline void JUTCreateFifo(u32 bufSize) { new JUTGraphFifo(bufSize); }
+
 #endif /* JUTGRAPHFIFO_H */

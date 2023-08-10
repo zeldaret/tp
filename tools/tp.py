@@ -35,14 +35,16 @@ def _handle_import_error(ex: ImportError):
 try:
     import click
     import libdol
-    import libarc
+    import libgithub
     import requests
+    import glob
 
     from rich.logging import RichHandler
     from rich.console import Console
     from rich.progress import Progress
     from rich.text import Text
     from rich.table import Table
+    from typing import Optional
 except ImportError as ex:
     _handle_import_error(ex)
 
@@ -136,7 +138,9 @@ def expected_copy(debug: bool, build_path: Path, expected_path: Path):
     default="native",
     required=False,
 )
-def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str):
+@click.option("--force-download/--no-force-download")
+@click.option("--skip-iso/--no-skip-iso", default=False)
+def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str, force_download: bool, skip_iso: bool):
     """Setup project"""
 
     if debug:
@@ -159,9 +163,11 @@ def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str):
     CONSOLE.print(text)
 
     compilers = tools_path.joinpath("mwcc_compiler")
+    if force_download:
+        shutil.rmtree(compilers)
     if not compilers.exists() or not compilers.is_dir():
         os.mkdir(compilers)
-        r = requests.get('https://cdn.discordapp.com/attachments/727918646525165659/917185027656286218/GC_WII_COMPILERS.zip')
+        r = requests.get('https://cdn.discordapp.com/attachments/727918646525165659/1129759991696457728/GC_WII_COMPILERS.zip')
         z = zipfile.ZipFile(io.BytesIO(r.content))
         z.extractall(compilers)
         gc_path = compilers.joinpath("GC")
@@ -198,11 +204,11 @@ def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str):
         )
         sys.exit(1)
 
-    c125e = compilers.joinpath("1.2.5e")
-    if not c125e.exists() or not c125e.is_dir():
+    c125n = compilers.joinpath("1.2.5n")
+    if not c125n.exists() or not c125n.is_dir():
         LOG.error(
             (
-                f"Unable to find patched MWCC compiler version 1.2.5e: missing directory '{c125e}'\n"
+                f"Unable to find patched MWCC compiler version 1.2.5n: missing directory '{c125n}'\n"
                 f"Check the README for instructions on how to obtain the compilers"
             )
         )
@@ -230,7 +236,7 @@ def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str):
 
     copy_lmgr326b(c27)
     copy_lmgr326b(c125)
-    copy_lmgr326b(c125e)
+    copy_lmgr326b(c125n)
 
     c27_mwcceppc = c27.joinpath("mwcceppc.exe")
     if not c27_mwcceppc.exists() or not c27_mwcceppc.is_file():
@@ -313,33 +319,30 @@ def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str):
         LOG.error("An error occurred while running 'make tools'")
         exit(1)
 
-    #
-    text = Text("--- Extracting game assets")
-    text.stylize("bold magenta")
-    CONSOLE.print(text)
+    if skip_iso is False:
+        text = Text("--- Extracting game assets")
+        text.stylize("bold magenta")
+        CONSOLE.print(text)
 
-    iso = Path("gz2e01.iso")
-    if not iso.exists() or not iso.is_file():
-        LOG.error(
-            (
-                f"Missing file '{iso}'.\n"
-                f"Did you forget to copy the NTSC-U version in the root directory?"
+        iso = Path("gz2e01.iso")
+        if not iso.exists() or not iso.is_file():
+            LOG.error(
+                (
+                    f"Missing file '{iso}'.\n"
+                    f"Did you forget to copy the NTSC-U version in the root directory?"
+                )
             )
-        )
-        sys.exit(1)
+            sys.exit(1)
 
-    try:
-        import extract_game_assets
-        previous_dir = os.getcwd()
-        os.chdir(str(game_path.absolute()))
-        extract_game_assets.extract("../" + str(iso),yaz0_encoder)
-        os.chdir(previous_dir)
-    except ImportError as ex:
-        _handle_import_error(ex)
-    except Exception as e:
-        LOG.error(f"failure:")
-        LOG.error(e)
-        sys.exit(1)
+        try:
+            import extract_game_assets
+            extract_game_assets.extract(iso, game_path, yaz0_encoder)
+        except ImportError as ex:
+            _handle_import_error(ex)
+        except Exception as e:
+            LOG.error(f"failure:")
+            LOG.error(e)
+            sys.exit(1)
 
     text = Text("--- Complete")
     text.stylize("bold magenta")
@@ -734,7 +737,6 @@ def calculate_progress(build_path: Path, matching: bool, format: str, print_rels
         LOG.error("unknown format: '{format}'")
 
 
-
 def find_function_range(asm: Path) -> Tuple[int, int]:
     with asm.open("r", encoding="utf-8") as file:
         lines = file.readlines()
@@ -1026,7 +1028,6 @@ def find_includes(lines: List[str], non_matching: bool, ext: str = ".s") -> Set[
 
 
 def find_used_asm_files(non_matching: bool, use_progress_bar: bool = True) -> Set[Path]:
-
     cpp_files = find_all_files()
     includes = set()
 
@@ -1195,6 +1196,438 @@ def check_sha1(game_path: Path, build_path: Path, include_rels: bool):
         raise CheckException("NO MATCH!")
 
     return True
+
+#
+# Github Command Helpers
+#
+
+import functools
+
+def common_github_options(func):
+    @click.option("--debug/--no-debug")
+    @click.option(
+        "--personal-access-token",
+        help="Github Personal Access Token for authorizing API calls.",
+        required=False,
+        default=os.environ.get('GITHUB_TOKEN')
+    )
+    @click.option(
+        "--owner",
+        help="Github repo owner",
+        required=False,
+        default="zeldaret"
+    )
+    @click.option(
+        "--repo",
+        help="Github repository name",
+        required=False,
+        default="tp"
+    )
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        return func(*args, **kwargs)
+    return wrapper
+
+def prereqs(owner: str, repo: str, personal_access_token: str):
+    # Setup GraphQL client singleton
+    libgithub.GraphQLClient.setup(personal_access_token)
+
+    # Setup RepoInfo classvars
+    libgithub.RepoInfo.owner = libgithub.OwnerInfo()
+    libgithub.RepoInfo.owner.name = owner
+    libgithub.RepoInfo.name = repo
+    libgithub.RepoInfo.set_ids()
+
+    # Load in the project state
+    libgithub.StateFile.load("tools/pjstate.yml")
+
+def load_from_yaml(type: str) -> any:
+    with open("./tools/projects.yml", 'r') as stream:
+        try:
+            import yaml
+
+            projects_data = yaml.safe_load(stream)
+            LOG.debug(f"Loaded projects.yml data: {projects_data}")
+
+            match type:
+                case "labels":
+                    ret_data = libgithub.Label.get_all_from_yaml(projects_data)
+                case "issues":
+                    ret_data = libgithub.Issue.get_all_from_yaml(projects_data)
+                case "projects":
+                    ret_data = libgithub.Project.get_all_from_yaml(projects_data)
+                case _:
+                    LOG.error(f"Invalid type: {type}")
+                    sys.exit(1)
+            
+            return ret_data
+        except ImportError:
+            LOG.error("Can't import yaml, exiting.")
+            sys.exit(1)
+        except yaml.YAMLError as error:
+            LOG.error(f"Error loading YAML: {error}")
+            sys.exit(1)
+
+#
+# Github Sync Commands
+#
+
+@tp.command(name="github-sync-labels", help="Creates all labels based on tools/projects.yml")
+@common_github_options
+def github_sync_labels(debug: bool, personal_access_token: str, owner: str, repo: str):
+    if debug:
+        LOG.setLevel(logging.DEBUG)
+
+    prereqs(owner, repo, personal_access_token)
+    yaml_labels = load_from_yaml("labels")
+
+    LOG.info("Syncing up labels")
+    for label in yaml_labels:
+        label.check_and_create()
+
+@tp.command(name="github-sync-issues", help="Creates all issues and labels based on tools/projects.yml")
+@common_github_options
+def github_sync_issues(debug: bool, personal_access_token: str, owner: str, repo: str):
+    if debug:
+        LOG.setLevel(logging.DEBUG)
+
+    prereqs(owner,repo,personal_access_token)
+    yaml_issues = load_from_yaml("issues")
+
+    LOG.info("Syncing up issues")
+    for issue in yaml_issues:
+        issue.check_and_create()
+
+@tp.command(name="github-sync-projects", help="Creates all projects, issues and labels based on tools/projects.yml")
+@common_github_options
+def github_sync_projects(debug: bool, personal_access_token: str, owner: str, repo: str):
+    if debug:
+        LOG.setLevel(logging.DEBUG)
+
+    prereqs(owner, repo, personal_access_token)
+    yaml_projects = load_from_yaml("projects")
+
+    LOG.info("Syncing up projects")
+    for project in yaml_projects:
+        project.check_and_create()
+
+@tp.command(name="github-check-update-status", help="Checks all issues and updates their status based on their local file path.")
+@common_github_options
+@click.option(
+    '--filename','filenames',
+    multiple=True, 
+    type=click.Path(exists=True)
+)
+@click.option(
+    '--all',
+    help="Check all items in every project and update their status.",
+    is_flag=True,
+    default=False
+)
+@click.option(
+    '--clang-lib-path',
+    help="Path to libclang.so",
+    default="/usr/lib/x86_64-linux-gnu/libclang-16.so"
+)
+def github_check_update_status(debug: bool, personal_access_token: str, owner: str, repo: str, filenames: Tuple[click.Path], all: bool, clang_lib_path: str):
+    if debug:
+        LOG.setLevel("DEBUG")
+
+    prereqs(owner, repo, personal_access_token)
+
+    issues = libgithub.StateFile.data.get('issues')
+    projects = libgithub.StateFile.data.get('projects')
+
+    filenames_list = list(filenames)
+
+    # If all flag is set, check all issue file paths in state file
+    if all:
+        for issue in issues:
+            filenames_list.append(issue["file_path"])
+
+    import classify_tu, clang
+
+    # Set the clang library file
+    clang.cindex.Config.set_library_file(clang_lib_path)
+
+    for filename in filenames_list:
+        LOG.info(f"Classifying TU {filename}")
+        status = classify_tu.run(filename)
+
+        LOG.debug(f"Classification result: {status}")
+        if status == "error":
+            LOG.error(f"Error classifying TU {filename}")
+            sys.exit(1)
+
+        # Find the matching issue_id for the filename
+        issue_id = None
+        for issue in issues:
+            if issue["file_path"] == filename:
+                issue_id = issue["id"]
+                break
+
+        if issue_id is None:
+            LOG.error(f"Couldn't find issue_id for {filename}. Run github-sync-issues first.")
+            sys.exit(1)
+
+        # Find the matching project_id, item_id and status_field for the issue_id
+        project_id = None
+        for project in projects:
+            for item in project["items"]:
+                if item["issue_id"] == issue_id:
+                    project_id = project["id"]
+                    item_id = item["item_id"]
+                    status_field = project["status_field"]
+                    break
+
+        if project_id is None:
+            LOG.error(f"Couldn't find project_id associated with {filename}. Run github-sync-projects first.")
+            sys.exit(1)            
+
+        libgithub.Project(id=project_id,status_field=status_field).set_status_for_item(item_id, status)
+        if status == "done":
+            libgithub.Issue(id=issue_id).set_closed()
+
+#
+# Github Clean Commands
+#
+
+@tp.command(name="github-clean-labels", help="Delete all labels for a given owner/repository.")
+@common_github_options
+def github_clean_labels(debug: bool, personal_access_token: str, owner: str, repo: str) -> None:
+    if debug:
+        LOG.setLevel("DEBUG")
+
+    LOG.warning(f"This command will completely delete all labels for {owner}/{repo}. Are you sure you want to do this? (y/n)")
+    confirmation = input().lower()
+
+    if confirmation == 'y':
+        prereqs(owner,repo,personal_access_token)
+        libgithub.Label.delete_all()
+    else:
+        sys.exit(0)
+
+@tp.command(name="github-clean-issues", help="Delete all issues for a given owner/repository.")
+@common_github_options
+def github_clean_issues(debug: bool, personal_access_token: str, owner: str, repo: str):
+    if debug:
+        LOG.setLevel("DEBUG")
+
+    LOG.warning(f"This command will completely delete all issues for {owner}/{repo}. Are you sure you want to do this? (y/n)")
+    confirmation = input().lower()
+
+    if confirmation == 'y':
+        prereqs(owner,repo,personal_access_token)
+        libgithub.Issue.delete_all()
+    else:
+        sys.exit(0)
+
+@tp.command(name="github-clean-projects", help="Delete all projects for a given owner/repository.")
+@common_github_options
+def github_clean_projects(debug: bool, personal_access_token: str, owner: str, repo: str):
+    if debug:
+        LOG.setLevel("DEBUG")
+
+    LOG.warning(f"This command will completely delete all projects for {owner}/{repo}. Are you sure you want to do this? (y/n)")
+    confirmation = input().lower()
+
+    if confirmation == 'y':
+        prereqs(owner,repo,personal_access_token)
+        libgithub.Project.delete_all()
+    else:
+        sys.exit(0)
+
+#
+# Progress Command Helpers
+#
+
+def copy_progress_script() -> None:
+    file_path = './tools/tp.py'
+    destination_path = './tools/tp_copy.py'
+
+    if not os.path.exists(destination_path):
+        shutil.copyfile(file_path, destination_path)
+
+def make_progress_dir() -> None:
+    progress_dir = './progress'
+
+    if not os.path.exists(progress_dir):
+        os.mkdir(progress_dir)
+
+def generate_progress(commit: str, wibo_path: Optional[str] = None) -> None:
+    git_show_output = subprocess.check_output(['git', 'show', '-s', '--format=%ct', commit]).decode('ascii').strip()
+    commit_timestamp = git_show_output
+
+    commit_string = f'progress/{commit_timestamp}_{commit}.json'
+
+    if os.path.exists(commit_string):
+        LOG.info(f"File {commit_string} already exists, skipping.")
+        return
+
+    process = subprocess.Popen(["make", "clean_all"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    stdout, stderr = process.communicate()
+    if process.returncode != 0:
+        LOG.error(f"Error during make clean_all: {stderr.decode()}")
+        return
+    
+    LOG.debug(f"stdout: {stdout.decode()}")
+
+    make_command = ["make", "all", "rels", f"-j{os.cpu_count()}"]
+    if wibo_path:
+        make_command.append(f"WINE={wibo_path}")
+    process = subprocess.Popen(make_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    stdout, stderr = process.communicate()
+
+    if process.returncode != 0:
+        LOG.error(f"Error during make all rels: {stderr.decode()}")
+        return
+
+    LOG.debug(f"stdout: {stdout.decode()}")
+    command = ["python", "./tools/tp_copy.py", "progress", "-f", "JSON"]
+
+    with open(commit_string, 'w') as outfile:
+        process = subprocess.Popen(command, stdout=outfile, stderr=subprocess.PIPE)
+        stdout, stderr = process.communicate()
+
+        if process.returncode != 0:
+            LOG.error(f"Error: {stderr.decode()}")
+        
+        LOG.debug(f"stdout: {stdout.decode()}")
+
+def checkout_and_run(repo_path: str, start_commit_hash: str, wibo_path: Optional[str] = None) -> None:
+    try:
+        import git
+
+        repo = git.Repo(repo_path)
+        head_commit = repo.head.commit
+    except ImportError:
+        LOG.error("Can't import git, exiting.")
+        sys.exit(1)
+
+    copy_progress_script()
+    make_progress_dir()
+
+    try:
+        commits = list(repo.iter_commits(f'{start_commit_hash}..{head_commit.hexsha}'))
+        commits.append(repo.commit(start_commit_hash))
+
+        for commit in commits[::-1]:  
+            LOG.info(f"Checking out commit {commit.hexsha}")
+            repo.git.checkout(commit.hexsha)
+            generate_progress(commit.hexsha, wibo_path)
+    except Exception as e:
+        LOG.error(f"Error occurred: {e}")
+    finally:
+        LOG.debug(f"Checking out origin head commit: {head_commit.hexsha}")
+        repo.git.checkout(head_commit.hexsha)
+
+#
+# Progress Commands
+#
+
+@tp.command(name="progress-history")
+@click.option("--debug/--no-debug", default=False)
+@click.option("--repo-path", default=".", required=False, help="Path to your git repository. Defaults to current directory.")
+@click.option("--start-commit", default="bc428f7f65b97cc9035aed1dc1b71c54ff2e6c3d", required=False, help="Start commit hash. If none supplied, will start at the commit where Julgodis added the progress script.")
+@click.option("--wibo-path", default=None, required=False, help="Path to wibo build. If none supplied, the default Wine will be used.")
+def progress_history(debug, repo_path, start_commit, wibo_path):
+    if debug:
+        LOG.setLevel(logging.DEBUG)
+
+    LOG.warning(f"This command will generate the progress for every commit since {start_commit}. This could take many hours to complete. Are you sure you want to do this? (y/n)")
+    confirmation = input().lower()
+
+    if confirmation == 'y':
+        checkout_and_run(repo_path, start_commit, wibo_path)
+    else:
+        sys.exit(0)
+
+def get_git_commit_timestamp() -> int:
+    return int(subprocess.check_output(['git', 'show', '-s', '--format=%ct']).decode('ascii').rstrip())
+
+def get_git_commit_sha() -> str:
+    return subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('ascii').strip()
+
+def generate_url(base_url: str, project: str, version: str) -> str:
+    url_components = [base_url.rstrip('/'), 'data']
+
+    for arg in [project, version.replace('.', '-')]:
+        if arg != "":
+            url_components.append(arg)
+
+    return str.join('/', url_components) + '/'
+
+@tp.command(name="upload-progress")
+@click.option("--debug/--no-debug")
+@click.option('-b', '--base_url', required=True, help='API base URL')
+@click.option('-a', '--api_key', required=False, default=os.environ.get('PROGRESS_API_KEY'), help='API key (env var PROGRESS_API_KEY)')
+@click.option('-p', '--project', required=True, help='Project slug')
+@click.option('-v', '--version', required=True, help='Version slug')
+@click.argument('input', type=click.Path(exists=True))
+def upload_progress(debug: bool, base_url: str, api_key: str, project: str, version: str, input: str) -> None:
+    if debug:
+        LOG.setLevel(logging.DEBUG)
+    
+    if not api_key:
+        raise click.UsageError("API key required")
+
+    url = generate_url(base_url, project, version)
+
+    entries = []
+
+    # Check if input is a directory
+    if os.path.isdir(input):
+        LOG.debug(f'Loading all JSON files in directory {input}')
+
+        # Read all JSON files in the directory
+        json_files = glob.glob(os.path.join(input, "*.json"))
+
+        for json_file in json_files:
+            # Extract timestamp and commit SHA from filename
+            filename = Path(json_file).stem
+            parts = filename.split('_')
+            
+            if len(parts) != 2 or not parts[0].isdigit() or len(parts[1]) != 40:
+                LOG.error(f"Filename '{filename}' is not in the correct format. When supplying an entire directory with JSON files in it, the filenames need to be in the format: '<unix_timestamp>_<git_sha>.json' in order for Frogress to properly understand the data.")
+                sys.exit(1)
+            
+            timestamp, git_hash = parts
+
+            with open(json_file, "r") as f:
+                data = json.load(f)
+                entries.append({
+                    "timestamp": int(timestamp),
+                    "git_hash": git_hash,
+                    "categories": {
+                        "default": data,
+                    },
+                })
+    else:
+        # Process a single JSON file
+        with open(input, "r") as f:
+            LOG.debug(f'Loading single JSON file {f.name}')
+            data = json.load(f)
+            entries.append({
+                "timestamp": get_git_commit_timestamp(),
+                "git_hash": get_git_commit_sha(),
+                "categories": {
+                    "default": data,
+                },
+            })
+
+    for entry in entries:
+        LOG.info(f"Publishing entry to {url}")
+        LOG.debug(f"Entry: {entry}")
+        data = {
+            "api_key": api_key,
+            "entries": [entry],  # only send current entry
+        }
+        try:
+            r = requests.post(url, json=data)
+            r.raise_for_status()
+        except requests.exceptions.HTTPError as err:
+            LOG.error(f"HTTP request failed: {err}")
+            exit(1)
 
 
 if __name__ == "__main__":

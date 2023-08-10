@@ -4,208 +4,215 @@
 //
 
 #include "JSystem/JAudio2/JASOscillator.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //
 // Types:
 //
 
-struct JASOscillator {
-    struct Data {};
-
-    /* 8029BE94 */ JASOscillator();
-    /* 8029BEC4 */ void initStart(JASOscillator::Data const*);
-    /* 8029BF68 */ void incCounter(f32);
-    /* 8029BFC8 */ void getValue() const;
-    /* 8029BFE4 */ void release();
-    /* 8029C0E0 */ void update();
-    /* 8029C2C0 */ void updateCurrentValue(f32);
-
-    static u8 const sCurveTableLinear[68];
-    static u8 const sCurveTableSampleCell[68];
-    static u8 const sCurveTableSqRoot[68];
-    static u8 const sCurveTableSquare[68];
-};
-
 //
 // Forward References:
 //
 
-extern "C" void __ct__13JASOscillatorFv();
-extern "C" void initStart__13JASOscillatorFPCQ213JASOscillator4Data();
-extern "C" void incCounter__13JASOscillatorFf();
-extern "C" void getValue__13JASOscillatorCFv();
-extern "C" void release__13JASOscillatorFv();
-extern "C" void update__13JASOscillatorFv();
-extern "C" void updateCurrentValue__13JASOscillatorFf();
-extern "C" u8 const sCurveTableLinear__13JASOscillator[68];
-extern "C" u8 const sCurveTableSampleCell__13JASOscillator[68];
-extern "C" u8 const sCurveTableSqRoot__13JASOscillator[68];
-extern "C" u8 const sCurveTableSquare__13JASOscillator[68];
-
 //
 // External References:
 //
-
-extern "C" void __cvt_fp2unsigned();
 
 //
 // Declarations:
 //
 
 /* ############################################################################################## */
-/* 804556F8-804556FC 003CF8 0004+00 3/3 0/0 0/0 .sdata2          @77 */
-SECTION_SDATA2 static u8 lit_77[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
 
 /* 8029BE94-8029BEC4 2967D4 0030+00 0/0 1/1 0/0 .text            __ct__13JASOscillatorFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JASOscillator::JASOscillator() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASOscillator/__ct__13JASOscillatorFv.s"
+JASOscillator::JASOscillator() {
+    mData = NULL;
+    _14 = 0;
+    _16 = 0;
+    _18 = 0;
+    _1C = 0;
+    _0C = 0.0f;
+    _10 = 0.0f;
+    _08 = 0.0f;
+    _04 = 0.0f;
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 804556FC-80455700 003CFC 0004+00 2/2 0/0 0/0 .sdata2          @87 */
-SECTION_SDATA2 static f32 lit_87 = 1.0f;
-
-/* 80455700-80455708 003D00 0004+04 3/3 0/0 0/0 .sdata2          @88 */
-SECTION_SDATA2 static f32 lit_88[1 + 1 /* padding */] = {
-    32768.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80455708-80455710 003D08 0008+00 3/3 0/0 0/0 .sdata2          @91 */
-SECTION_SDATA2 static f64 lit_91 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8029BEC4-8029BF68 296804 00A4+00 0/0 1/1 0/0 .text
  * initStart__13JASOscillatorFPCQ213JASOscillator4Data          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASOscillator::initStart(JASOscillator::Data const* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASOscillator/initStart__13JASOscillatorFPCQ213JASOscillator4Data.s"
+void JASOscillator::initStart(JASOscillator::Data const* data) {
+    mData = data;
+    _04 = 0.0f;
+    _08 = 0.0f;
+    _0C = 0.0f;
+    _14 = 0;
+    _16 = 0;
+    if (!data) {
+		_1C = 0;
+        return;
+	}
+
+    if (mData->_08 == NULL) {
+        _1C = 2;
+        _08 = 1.0f;
+        return;
+    }
+
+    _10 = mData->_08[2] / 32768.0f;
+    _18 = mData->_08[0];
+    _1C = 1;
 }
-#pragma pop
 
 /* 8029BF68-8029BFC8 2968A8 0060+00 0/0 1/1 0/0 .text            incCounter__13JASOscillatorFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASOscillator::incCounter(f32 param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASOscillator/incCounter__13JASOscillatorFf.s"
+void JASOscillator::incCounter(f32 param_0) {
+    const short* v1;
+	switch (_1C) {
+	case 0:
+	case 2:
+		return;
+	case 1:
+		break;
+	}
+	_04 += param_0 * mData->_04;
+    update();
 }
-#pragma pop
 
 /* 8029BFC8-8029BFE4 296908 001C+00 0/0 1/1 0/0 .text            getValue__13JASOscillatorCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASOscillator::getValue() const {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASOscillator/getValue__13JASOscillatorCFv.s"
+f32 JASOscillator::getValue() const {
+	return _08 * mData->_10 + mData->_14;
 }
-#pragma pop
 
 /* 8029BFE4-8029C0E0 296924 00FC+00 0/0 1/1 0/0 .text            release__13JASOscillatorFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASOscillator::release() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASOscillator/release__13JASOscillatorFv.s"
+void JASOscillator::release() {
+	if (mData->_0C == NULL && _16 == 0) {
+        stop();
+        return;
+	}
+
+	if (_16 != 0) {
+		_04 = 0.0f;
+        _0C = _08;
+        _10 = 0.0f;
+        _14 = 0;
+        _18 = (_16 >> 14) & 3;
+        _1C = 4;
+        update();
+        return;
+	}
+	
+    if (mData->_08 != mData->_0C) {
+        _04 = 0.0f;
+        _0C = _08;
+        _10 = mData->_0C[2] / 32768.0f;
+        _14 = 0;
+        _18 = mData->_0C[0];
+    }
+
+    _1C = 3;
+    update();
 }
-#pragma pop
 
 /* 8029C0E0-8029C2C0 296A20 01E0+00 2/2 1/1 0/0 .text            update__13JASOscillatorFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASOscillator::update() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASOscillator/update__13JASOscillatorFv.s"
+void JASOscillator::update() {
+    if (_1C == 4) {
+        s16 x = _16 & 0x3FFF;
+        if (_04 < x) {
+            updateCurrentValue(x);
+        } else {
+            _08 = _10;
+            _1C = 0;
+        }
+        return;
+    }
+
+    if (_1C == 2) return;
+
+    short* psVar1;
+    if (_1C == 1) {
+        psVar1 = mData->_08;
+    } else {
+        psVar1 = mData->_0C;
+    }
+
+    if (psVar1 == NULL) {
+        _1C = 2;
+        return;
+    }
+    
+    while (_04 >= psVar1[_14 * 3 + 1]) {
+        _04 -= psVar1[_14 * 3 + 1];
+        _08 = _10;
+        _14++;
+        _0C = _08;
+        s16* ps = &psVar1[_14 * 3];
+        switch(ps[0]) {
+        case 0xf:
+            _1C = 0;
+            return;
+        case 0xe:
+            _1C = 2;
+            return;
+        case 0xd:
+            _14 = ps[2];
+            break;
+        default:
+            _18 = ps[0];
+            _10 = ps[2] / 32768.0f;
+            break;
+        }
+    }
+
+    updateCurrentValue(psVar1[_14 * 3 + 1]);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039B1D0-8039B214 027830 0044+00 1/0 0/0 0/0 .rodata          sCurveTableLinear__13JASOscillator
  */
-SECTION_RODATA u8 const JASOscillator::sCurveTableLinear[68] = {
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x70, 0x00, 0x00, 0x3F, 0x60, 0x00, 0x00, 0x3F, 0x50,
-    0x00, 0x00, 0x3F, 0x40, 0x00, 0x00, 0x3F, 0x30, 0x00, 0x00, 0x3F, 0x20, 0x00, 0x00,
-    0x3F, 0x10, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x3E, 0xE0, 0x00, 0x00, 0x3E, 0xC0,
-    0x00, 0x00, 0x3E, 0xA0, 0x00, 0x00, 0x3E, 0x80, 0x00, 0x00, 0x3E, 0x40, 0x00, 0x00,
-    0x3E, 0x00, 0x00, 0x00, 0x3D, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+f32 const JASOscillator::sCurveTableLinear[17] = {
+    1.0, 0.9375, 0.875, 0.8125, 0.75, 0.6875, 0.625, 0.5625, 0.5,
+    0.4375, 0.375, 0.3125, 0.25, 0.1875, 0.125, 0.0625, 0.0,
 };
-COMPILER_STRIP_GATE(0x8039B1D0, &JASOscillator::sCurveTableLinear);
 
 /* 8039B214-8039B258 027874 0044+00 1/0 0/0 0/0 .rodata sCurveTableSampleCell__13JASOscillator */
-SECTION_RODATA u8 const JASOscillator::sCurveTableSampleCell[68] = {
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x78, 0x71, 0xF8, 0x3F, 0x48, 0x01, 0x93, 0x3F, 0x0B,
-    0xD9, 0x12, 0x3E, 0xCC, 0xB1, 0x89, 0x3E, 0x94, 0x21, 0x18, 0x3E, 0x59, 0x31, 0xCA,
-    0x3E, 0x21, 0x41, 0x63, 0x3D, 0xE6, 0xA1, 0xA5, 0x3D, 0xA7, 0x81, 0x4E, 0x3D, 0x6D,
-    0x81, 0xE4, 0x3D, 0x32, 0xC1, 0x6E, 0x3C, 0xFC, 0x81, 0xFC, 0x3C, 0xC2, 0x41, 0x8E,
-    0x3C, 0x7A, 0x02, 0x25, 0x3C, 0x16, 0x01, 0x29, 0x00, 0x00, 0x00, 0x00,
+f32 const JASOscillator::sCurveTableSampleCell[17] = {
+    1.0, 0.9704890251159668, 0.7812740206718445, 0.5462809801101685, 0.39979198575019836, 
+    0.28931498527526855, 0.21210399270057678, 0.15747599303722382, 0.1126129999756813, 0.08178959786891937, 
+    0.057985201478004456, 0.04364150017499924, 0.03082370012998581, 0.023712899535894394, 0.015259300358593464, 
+    0.00915555004030466, 0.0
 };
-COMPILER_STRIP_GATE(0x8039B214, &JASOscillator::sCurveTableSampleCell);
 
 /* 8039B258-8039B29C 0278B8 0044+00 1/0 0/0 0/0 .rodata          sCurveTableSqRoot__13JASOscillator
  */
-SECTION_RODATA u8 const JASOscillator::sCurveTableSqRoot[68] = {
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x60, 0xFF, 0xFC, 0x3F, 0x44, 0x00, 0x00, 0x3F, 0x28,
-    0xFF, 0xFC, 0x3F, 0x10, 0x00, 0x00, 0x3E, 0xF1, 0xFF, 0xF8, 0x3E, 0xC8, 0x00, 0x00,
-    0x3E, 0xA1, 0xFF, 0xF8, 0x3E, 0x80, 0x00, 0x00, 0x3E, 0x43, 0xFF, 0xEF, 0x3E, 0x10,
-    0x00, 0x00, 0x3D, 0xC7, 0xFF, 0xF9, 0x3D, 0x80, 0x00, 0x00, 0x3D, 0x0F, 0xFF, 0xF3,
-    0x3C, 0x80, 0x00, 0x00, 0x3B, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+f32 const JASOscillator::sCurveTableSqRoot[17] = {
+    1.0, 0.8789060115814209, 0.765625, 0.6601560115814209, 0.5625, 0.4726560115814209,
+    0.390625, 0.3164060115814209, 0.25, 0.1914059966802597, 0.140625, 0.09765619784593582,
+    0.0625, 0.03515620157122612, 0.015625, 0.00390625, 0.0
 };
-COMPILER_STRIP_GATE(0x8039B258, &JASOscillator::sCurveTableSqRoot);
 
 /* 8039B29C-8039B2E0 0278FC 0044+00 1/0 0/0 0/0 .rodata          sCurveTableSquare__13JASOscillator
  */
-SECTION_RODATA u8 const JASOscillator::sCurveTableSquare[68] = {
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x77, 0xDE, 0xF8, 0x3F, 0x6F, 0x77, 0x4B, 0x3F, 0x66,
-    0xC1, 0x5D, 0x3F, 0x5D, 0xB3, 0xD0, 0x3F, 0x54, 0x43, 0x91, 0x3F, 0x4A, 0x62, 0xBB,
-    0x3F, 0x40, 0x00, 0x00, 0x3F, 0x35, 0x04, 0xF7, 0x3F, 0x29, 0x54, 0x00, 0x3F, 0x1C,
-    0xC4, 0x69, 0x3F, 0x0F, 0x1B, 0xBD, 0x3F, 0x00, 0x00, 0x00, 0x3E, 0xDD, 0xB3, 0xE1,
-    0x3E, 0xB5, 0x04, 0xE6, 0x3E, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+f32 const JASOscillator::sCurveTableSquare[17] = {
+    1.0, 0.9682459831237793, 0.9354140162467957, 0.9013879895210266, 0.8660249710083008,
+    0.8291559815406799, 0.790569007396698, 0.75, 0.7071070075035095, 0.66143798828125,
+    0.6123719811439514, 0.55901700258255, 0.5, 0.433012992143631, 0.35355299711227417, 0.25, 0.0,
 };
-COMPILER_STRIP_GATE(0x8039B29C, &JASOscillator::sCurveTableSquare);
 
 /* 803C78A8-803C78B8 -00001 0010+00 1/1 0/0 0/0 .data            table_list$151 */
-SECTION_DATA static void* table_list[4] = {
-    (void*)&JASOscillator::sCurveTableLinear,
-    (void*)&JASOscillator::sCurveTableSquare,
-    (void*)&JASOscillator::sCurveTableSqRoot,
-    (void*)&JASOscillator::sCurveTableSampleCell,
+static f32* table_list[4] = {
+    (f32*)JASOscillator::sCurveTableLinear,
+    (f32*)JASOscillator::sCurveTableSquare,
+    (f32*)JASOscillator::sCurveTableSqRoot,
+    (f32*)JASOscillator::sCurveTableSampleCell,
 };
-
-/* 80455710-80455718 003D10 0004+04 1/1 0/0 0/0 .sdata2          @154 */
-SECTION_SDATA2 static f32 lit_154[1 + 1 /* padding */] = {
-    16.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80455718-80455720 003D18 0008+00 1/1 0/0 0/0 .sdata2          @156 */
-SECTION_SDATA2 static f64 lit_156 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8029C2C0-8029C388 296C00 00C8+00 1/1 0/0 0/0 .text updateCurrentValue__13JASOscillatorFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASOscillator::updateCurrentValue(f32 param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASOscillator/updateCurrentValue__13JASOscillatorFf.s"
+void JASOscillator::updateCurrentValue(f32 param_0) {
+    f32* table = table_list[_18];
+    f32 fVar1 = 16.0f * (_04 / param_0);
+    u32 index = (u32) fVar1;
+    f32 fVar3 = (fVar1 - index);
+    f32 fVar2 = (1.0f - fVar3) * table[index];
+    f32 fVar4 = fVar2 + fVar3 * table[index + 1];
+    _08 = _0C * fVar4 + _10 * (1.0f - fVar4);
 }
-#pragma pop

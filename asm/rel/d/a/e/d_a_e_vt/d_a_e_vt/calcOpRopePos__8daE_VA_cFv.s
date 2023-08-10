@@ -5,7 +5,7 @@ lbl_807C53FC:
 /* 807C5408  DB E1 01 30 */	stfd f31, 0x130(r1)
 /* 807C540C  F3 E1 01 38 */	psq_st f31, 312(r1), 0, 0 /* qr0 */
 /* 807C5410  39 61 01 30 */	addi r11, r1, 0x130
-/* 807C5414  4B B9 CD 8D */	bl __save_gpr
+/* 807C5414  4B B9 CD 8D */	bl _savegpr_14
 /* 807C5418  7C 7B 1B 78 */	mr r27, r3
 /* 807C541C  3C 60 80 7D */	lis r3, lit_3907@ha /* 0x807CECA8@ha */
 /* 807C5420  3A 63 EC A8 */	addi r19, r3, lit_3907@l /* 0x807CECA8@l */
@@ -596,7 +596,7 @@ lbl_807C5C8C:
 /* 807C5CD0  E3 E1 01 38 */	psq_l f31, 312(r1), 0, 0 /* qr0 */
 /* 807C5CD4  CB E1 01 30 */	lfd f31, 0x130(r1)
 /* 807C5CD8  39 61 01 30 */	addi r11, r1, 0x130
-/* 807C5CDC  4B B9 C5 11 */	bl __restore_gpr
+/* 807C5CDC  4B B9 C5 11 */	bl _restgpr_14
 /* 807C5CE0  80 01 01 44 */	lwz r0, 0x144(r1)
 /* 807C5CE4  7C 08 03 A6 */	mtlr r0
 /* 807C5CE8  38 21 01 40 */	addi r1, r1, 0x140

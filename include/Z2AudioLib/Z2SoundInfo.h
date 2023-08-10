@@ -3,6 +3,7 @@
 
 #include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JASGadget.h"
+#include "JSystem/JAudio2/JAISoundInfo.h"
 
 struct JAISeq;
 
@@ -11,16 +12,6 @@ struct JAISound;
 struct JAIStream;
 
 struct JAISe;
-
-struct JAISoundInfo : public JASGlobalInstance<JAISoundInfo> {
-    virtual void getSoundType(JAISoundID) const = 0;
-    virtual void getCategory(JAISoundID) const = 0;
-    virtual void getPriority(JAISoundID) const = 0;
-    virtual void getSeInfo(JAISoundID, JAISe*) const = 0;
-    virtual void getSeqInfo(JAISoundID, JAISeq*) const = 0;
-    virtual void getStreamInfo(JAISoundID, JAIStream*) const = 0;
-    virtual ~JAISoundInfo();
-};
 
 struct JAUSoundInfo : public JASGlobalInstance<JAUSoundInfo> {
     virtual void getAudibleSw(JAISoundID) const = 0;

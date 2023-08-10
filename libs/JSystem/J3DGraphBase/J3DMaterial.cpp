@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/J3DGraphBase/J3DGD.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -211,8 +212,6 @@ extern "C" void _restgpr_24();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_29();
-extern "C" extern u8 const j3dDefaultFogInfo[44];
-extern "C" extern u8 const j3dDefaultNBTScaleInfo[16];
 extern "C" extern void* __vt__14J3DPEBlockFull[31];
 extern "C" extern void* __vt__16J3DPEBlockFogOff[31];
 extern "C" extern void* __vt__13J3DTevBlock16[55];
@@ -230,9 +229,6 @@ extern "C" extern void* __vt__13J3DPEBlockOpa[31];
 extern "C" extern void* __vt__15J3DIndBlockFull[19];
 extern "C" extern void* __vt__11J3DTevBlock[55];
 extern "C" extern void* __vt__21J3DColorBlockLightOff[36 + 1 /* padding */];
-extern "C" extern u32 j3dDefaultBlendInfo;
-extern "C" extern u16 j3dDefaultAlphaCmpID;
-extern "C" extern u16 j3dDefaultZModeID[1 + 1 /* padding */];
 
 //
 // Declarations:
@@ -441,202 +437,280 @@ SECTION_DATA extern void* __vt__13J3DColorBlock[36] = {
 
 /* 803157A0-803159A0 3100E0 0200+00 0/0 3/3 0/0 .text            createColorBlock__11J3DMaterialFUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::createColorBlock(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/createColorBlock__11J3DMaterialFUl.s"
+J3DColorBlock* J3DMaterial::createColorBlock(u32 param_0) {
+    J3DColorBlock* rv = NULL;
+    switch (param_0) {
+        case 0:
+            rv = new J3DColorBlockLightOff();
+            break;
+        case 0x40000000:
+            rv = new J3DColorBlockLightOn();
+            break;
+        case 0x80000000:
+            rv = new J3DColorBlockAmbientOn();
+            break;
+    }
+
+    return rv;
 }
-#pragma pop
 
 /* 803159A0-80315B04 3102E0 0164+00 0/0 2/2 0/0 .text            createTexGenBlock__11J3DMaterialFUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::createTexGenBlock(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/createTexGenBlock__11J3DMaterialFUl.s"
+J3DTexGenBlock* J3DMaterial::createTexGenBlock(u32 param_0) {
+    switch (param_0) {
+        case 0x8000000:
+            return new J3DTexGenBlock4();
+        case 0:
+        default:
+            return new J3DTexGenBlockBasic();
+    }
 }
-#pragma pop
 
 /* 80315B04-80315E78 310444 0374+00 0/0 2/2 0/0 .text            createTevBlock__11J3DMaterialFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::createTevBlock(int param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/createTevBlock__11J3DMaterialFi.s"
+J3DTevBlock* J3DMaterial::createTevBlock(int param_0) {
+    J3DTevBlock* rv = NULL;
+    if (param_0 <= 1) {
+        rv = new J3DTevBlock1();
+    } else if (param_0 == 2) {
+        rv = new J3DTevBlock2();
+    } else if (param_0 <= 4) {
+        rv = new J3DTevBlock4();
+    } else if (param_0 <= 16) {
+        rv = new J3DTevBlock16();
+    }
+    return rv;
 }
-#pragma pop
 
 /* 80315E78-80315F60 3107B8 00E8+00 0/0 3/3 0/0 .text            createIndBlock__11J3DMaterialFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::createIndBlock(int param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/createIndBlock__11J3DMaterialFi.s"
+J3DIndBlock* J3DMaterial::createIndBlock(int param_0) {
+    if (param_0 != 0) {
+        return new J3DIndBlockFull();
+    }
+
+    return new J3DIndBlockNull();
 }
-#pragma pop
 
 /* 80315F60-80316100 3108A0 01A0+00 0/0 3/3 0/0 .text            createPEBlock__11J3DMaterialFUlUl
  */
+// rv is in r5 for some reason
+#ifdef NONMATCHING
+J3DPEBlock* J3DMaterial::createPEBlock(u32 param_0, u32 param_1) {
+    J3DPEBlock* rv = NULL;
+    if (param_0 == 0) {
+        if (param_1 & 1) {
+            return new J3DPEBlockOpa();
+        } else if (param_1 & 2) {
+            return new J3DPEBlockTexEdge();
+        } else if (param_1 & 4) {
+            return new J3DPEBlockXlu();
+        }
+    }
+
+    if (param_0 == 0x10000000) {
+        rv = new J3DPEBlockFull();
+    } else if (param_0 == 0x20000000) {
+        rv = new J3DPEBlockFogOff();
+    }
+    return rv;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DMaterial::createPEBlock(u32 param_0, u32 param_1) {
+asm J3DPEBlock* J3DMaterial::createPEBlock(u32 param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMaterial/createPEBlock__11J3DMaterialFUlUl.s"
 }
 #pragma pop
+#endif
 
 /* 80316100-80316150 310A40 0050+00 0/0 2/2 0/0 .text calcSizeColorBlock__11J3DMaterialFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::calcSizeColorBlock(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/calcSizeColorBlock__11J3DMaterialFUl.s"
+u32 J3DMaterial::calcSizeColorBlock(u32 param_0) {
+    u32 rv = 0;
+    switch (param_0) {
+        case 0:
+            rv = sizeof(J3DColorBlockLightOff);
+            break;
+        case 0x40000000:
+            rv = sizeof(J3DColorBlockLightOn);
+            break;
+        case 0x80000000:
+            rv = sizeof(J3DColorBlockAmbientOn);
+            break;
+    }
+
+    return rv;
 }
-#pragma pop
 
 /* 80316150-8031617C 310A90 002C+00 0/0 1/1 0/0 .text calcSizeTexGenBlock__11J3DMaterialFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::calcSizeTexGenBlock(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/calcSizeTexGenBlock__11J3DMaterialFUl.s"
+u32 J3DMaterial::calcSizeTexGenBlock(u32 param_0) {
+    switch (param_0) {
+        case 0x8000000:
+            return sizeof(J3DTexGenBlock4);
+        case 0:
+        default:
+            return sizeof(J3DTexGenBlockBasic);
+    }
 }
-#pragma pop
 
 /* 8031617C-803161C4 310ABC 0048+00 0/0 1/1 0/0 .text            calcSizeTevBlock__11J3DMaterialFi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::calcSizeTevBlock(int param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/calcSizeTevBlock__11J3DMaterialFi.s"
+u32 J3DMaterial::calcSizeTevBlock(int param_0) {
+    u32 rv = 0;
+    if (param_0 <= 1) {
+        rv = sizeof(J3DTevBlock1);
+    } else if (param_0 == 2) {
+        rv = sizeof(J3DTevBlock2);
+    } else if (param_0 <= 4) {
+        rv = sizeof(J3DTevBlock4);
+    } else if (param_0 <= 16) {
+        rv = sizeof(J3DTevBlock16);
+    }
+    return rv;
 }
-#pragma pop
 
 /* 803161C4-803161D8 310B04 0014+00 0/0 2/2 0/0 .text            calcSizeIndBlock__11J3DMaterialFi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::calcSizeIndBlock(int param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/calcSizeIndBlock__11J3DMaterialFi.s"
+u32 J3DMaterial::calcSizeIndBlock(int param_0) {
+    if (param_0 != 0) {
+        return sizeof(J3DIndBlockFull);
+    }
+
+    return sizeof(J3DIndBlockNull);
 }
-#pragma pop
 
 /* 803161D8-80316240 310B18 0068+00 0/0 2/2 0/0 .text            calcSizePEBlock__11J3DMaterialFUlUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::calcSizePEBlock(u32 param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/calcSizePEBlock__11J3DMaterialFUlUl.s"
+u32 J3DMaterial::calcSizePEBlock(u32 param_0, u32 param_1) {
+    u32 rv = 0;
+    if (param_0 == 0) {
+        if (param_1 & 1) {
+            rv = sizeof(J3DPEBlockOpa);
+        } else if (param_1 & 2) {
+            rv = sizeof(J3DPEBlockTexEdge);
+        } else if (param_1 & 4) {
+            rv = sizeof(J3DPEBlockXlu);
+        }
+    }
+    else if (param_0 == 0x10000000) {
+        rv = sizeof(J3DPEBlockFull);
+    } else if (param_0 == 0x20000000) {
+        rv = sizeof(J3DPEBlockFogOff);
+    }
+    return rv;
 }
-#pragma pop
 
 /* 80316240-80316290 310B80 0050+00 2/2 5/5 0/0 .text            initialize__11J3DMaterialFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::initialize() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/initialize__11J3DMaterialFv.s"
+void J3DMaterial::initialize() {
+    mShape = NULL;
+    mNext = NULL;
+    mJoint = NULL;
+    mMaterialMode = 1;
+    mIndex = -1;
+    mInvalid = 0;
+    mDiffFlag = 0;
+    mColorBlock = NULL;
+    mTexGenBlock = NULL;
+    mTevBlock = NULL;
+    mIndBlock = NULL;
+    mPEBlock = NULL;
+    mpOrigMaterial = NULL;
+    mMaterialAnm = NULL;
+    mSharedDLObj = NULL;
 }
-#pragma pop
 
 /* 80316290-80316344 310BD0 00B4+00 0/0 2/2 0/0 .text            countDLSize__11J3DMaterialFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 J3DMaterial::countDLSize() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/countDLSize__11J3DMaterialFv.s"
+u32 J3DMaterial::countDLSize() {
+    return (mColorBlock->countDLSize() + mTexGenBlock->countDLSize() + mTevBlock->countDLSize() +
+        mIndBlock->countDLSize() + mPEBlock->countDLSize() + 31) & ~0x1f;
 }
-#pragma pop
 
 /* 80316344-80316620 310C84 02DC+00 2/2 0/0 0/0 .text
  * makeDisplayList_private__11J3DMaterialFP17J3DDisplayListObj  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::makeDisplayList_private(J3DDisplayListObj* param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/makeDisplayList_private__11J3DMaterialFP17J3DDisplayListObj.s"
+void J3DMaterial::makeDisplayList_private(J3DDisplayListObj* param_0) {
+    param_0->beginDL();
+    mTevBlock->load();
+    mIndBlock->load();
+    mPEBlock->load();
+    J3DGDSetGenMode(mTexGenBlock->getTexGenNum(), mColorBlock->getColorChanNum(), mTevBlock->getTevStageNum(), mIndBlock->getIndTexStageNum(), (GXCullMode)(u8)mColorBlock->getCullMode());
+    mTexGenBlock->load();
+    mColorBlock->load();
+    J3DGDSetNumChans(mColorBlock->getColorChanNum());
+    J3DGDSetNumTexGens(mTexGenBlock->getTexGenNum());
+    param_0->endDL();
 }
-#pragma pop
 
 /* 80316620-80316668 310F60 0048+00 1/0 0/0 0/0 .text            makeDisplayList__11J3DMaterialFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::makeDisplayList() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/makeDisplayList__11J3DMaterialFv.s"
+void J3DMaterial::makeDisplayList() {
+    if (!j3dSys.getMatPacket()->isLocked()) {
+        j3dSys.getMatPacket()->mDiffFlag = mDiffFlag;
+        makeDisplayList_private(j3dSys.getMatPacket()->getDisplayListObj());
+    }
 }
-#pragma pop
 
 /* 80316668-8031668C 310FA8 0024+00 1/0 0/0 0/0 .text makeSharedDisplayList__11J3DMaterialFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::makeSharedDisplayList() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/makeSharedDisplayList__11J3DMaterialFv.s"
+void J3DMaterial::makeSharedDisplayList() {
+    makeDisplayList_private(mSharedDLObj);
 }
-#pragma pop
 
 /* 8031668C-803166DC 310FCC 0050+00 1/0 0/0 0/0 .text            load__11J3DMaterialFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::load() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/load__11J3DMaterialFv.s"
+void J3DMaterial::load() {
+    j3dSys.setMaterialMode(mMaterialMode);
+    if (!j3dSys.checkFlag(2)) {
+        loadNBTScale(*mTexGenBlock->getNBTScale());
+    }
 }
-#pragma pop
 
 /* 803166DC-80316740 31101C 0064+00 1/0 0/0 0/0 .text            loadSharedDL__11J3DMaterialFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::loadSharedDL() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/loadSharedDL__11J3DMaterialFv.s"
+void J3DMaterial::loadSharedDL() {
+    j3dSys.setMaterialMode(mMaterialMode);
+    if (!j3dSys.checkFlag(2)) {
+        mSharedDLObj->callDL();
+        loadNBTScale(*mTexGenBlock->getNBTScale());
+    }
 }
-#pragma pop
 
 /* 80316740-803167D8 311080 0098+00 2/0 0/0 0/0 .text            patch__11J3DMaterialFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::patch() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/patch__11J3DMaterialFv.s"
+void J3DMaterial::patch() {
+    j3dSys.getMatPacket()->mDiffFlag = mDiffFlag;
+    j3dSys.getMatPacket()->beginPatch();
+    mTevBlock->patch();
+    mColorBlock->patch();
+    mTexGenBlock->patch();
+    j3dSys.getMatPacket()->endPatch();
 }
-#pragma pop
 
 /* 803167D8-803169DC 311118 0204+00 2/0 0/0 0/0 .text            diff__11J3DMaterialFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::diff(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/diff__11J3DMaterialFUl.s"
+void J3DMaterial::diff(u32 param_0) {
+    if (j3dSys.getMatPacket()->isEnabled_Diff()) {
+        j3dSys.getMatPacket()->beginDiff();
+        mTevBlock->diff(param_0);
+        mIndBlock->diff(param_0);
+        mPEBlock->diff(param_0);
+        if (param_0 & 0x2000000) {
+            J3DGDSetGenMode_3Param(mTexGenBlock->getTexGenNum(), mTevBlock->getTevStageNum(), mIndBlock->getIndTexStageNum());
+            J3DGDSetNumTexGens(mTexGenBlock->getTexGenNum());
+        }
+        mTexGenBlock->diff(param_0);
+        mColorBlock->diff(param_0);
+        j3dSys.getMatPacket()->endDiff();
+    }
 }
-#pragma pop
 
 /* 803169DC-80316A54 31131C 0078+00 2/0 0/0 0/0 .text            calc__11J3DMaterialFPA4_Cf */
+// Matches but changes order of TU vtables (?!)
+#ifdef NONMATCHING
+void J3DMaterial::calc(f32 const (*param_0)[4]) {
+    if (j3dSys.checkFlag(0x40000000)) {
+        mTexGenBlock->calcPostTexMtx(param_0);
+    } else {
+        mTexGenBlock->calc(param_0);
+    }
+
+    calcCurrentMtx();
+    setCurrentMtx();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -646,28 +720,51 @@ extern "C" asm void calc__11J3DMaterialFPA4_Cf() {
 #include "asm/JSystem/J3DGraphBase/J3DMaterial/calc__11J3DMaterialFPA4_Cf.s"
 }
 #pragma pop
+#endif
 
 /* 80316A54-80316AB0 311394 005C+00 3/0 0/0 0/0 .text calcDiffTexMtx__11J3DMaterialFPA4_Cf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::calcDiffTexMtx(f32 const (*param_0)[4]) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/calcDiffTexMtx__11J3DMaterialFPA4_Cf.s"
+void J3DMaterial::calcDiffTexMtx(f32 const (*param_0)[4]) {
+    if (j3dSys.checkFlag(0x40000000)) {
+        mTexGenBlock->calcPostTexMtxWithoutViewMtx(param_0);
+    } else {
+        mTexGenBlock->calcWithoutViewMtx(param_0);
+    }
 }
-#pragma pop
 
 /* 80316AB0-80316AC8 3113F0 0018+00 1/1 1/1 0/0 .text            setCurrentMtx__11J3DMaterialFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::setCurrentMtx() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/setCurrentMtx__11J3DMaterialFv.s"
+void J3DMaterial::setCurrentMtx() {
+    mShape->setCurrentMtx(mCurrentMtx);
 }
-#pragma pop
 
 /* 80316AC8-80316D68 311408 02A0+00 1/1 0/0 0/0 .text            calcCurrentMtx__11J3DMaterialFv */
+// Issues with setCurrentTexMtx
+#ifdef NONMATCHING
+void J3DMaterial::calcCurrentMtx() {
+    if (!j3dSys.checkFlag(0x40000000)) {
+        mCurrentMtx.setCurrentTexMtx(
+            mTexGenBlock->getTexCoord(0)->getTexGenMtx(),
+            mTexGenBlock->getTexCoord(1)->getTexGenMtx(),
+            mTexGenBlock->getTexCoord(2)->getTexGenMtx(),
+            mTexGenBlock->getTexCoord(3)->getTexGenMtx(),
+            mTexGenBlock->getTexCoord(4)->getTexGenMtx(),
+            mTexGenBlock->getTexCoord(5)->getTexGenMtx(),
+            mTexGenBlock->getTexCoord(6)->getTexGenMtx(),
+            mTexGenBlock->getTexCoord(7)->getTexGenMtx()
+        );
+    } else {
+        mCurrentMtx.setCurrentTexMtx(
+            mTexGenBlock->getTexCoord(0)->getTexMtxReg(),
+            mTexGenBlock->getTexCoord(1)->getTexMtxReg(),
+            mTexGenBlock->getTexCoord(2)->getTexMtxReg(),
+            mTexGenBlock->getTexCoord(3)->getTexMtxReg(),
+            mTexGenBlock->getTexCoord(4)->getTexMtxReg(),
+            mTexGenBlock->getTexCoord(5)->getTexMtxReg(),
+            mTexGenBlock->getTexCoord(6)->getTexMtxReg(),
+            mTexGenBlock->getTexCoord(7)->getTexMtxReg()
+        );
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -676,72 +773,83 @@ asm void J3DMaterial::calcCurrentMtx() {
 #include "asm/JSystem/J3DGraphBase/J3DMaterial/calcCurrentMtx__11J3DMaterialFv.s"
 }
 #pragma pop
+#endif
 
 /* 80316D68-80316E14 3116A8 00AC+00 1/1 0/0 0/0 .text            copy__11J3DMaterialFP11J3DMaterial
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::copy(J3DMaterial* param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/copy__11J3DMaterialFP11J3DMaterial.s"
+void J3DMaterial::copy(J3DMaterial* param_0) {
+    mColorBlock->reset(param_0->mColorBlock);
+    mTexGenBlock->reset(param_0->mTexGenBlock);
+    mTevBlock->reset(param_0->mTevBlock);
+    mIndBlock->reset(param_0->mIndBlock);
+    mPEBlock->reset(param_0->mPEBlock);
 }
-#pragma pop
 
 /* 80316E14-80316E70 311754 005C+00 1/0 0/0 0/0 .text            reset__11J3DMaterialFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::reset() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/reset__11J3DMaterialFv.s"
+void J3DMaterial::reset() {
+    if ((~mDiffFlag & 0x80000000) == 0) {
+        mDiffFlag &= ~0x80000000;
+        mMaterialMode = mpOrigMaterial->mMaterialMode;
+        mInvalid = mpOrigMaterial->mInvalid;
+        mMaterialAnm = NULL;
+        copy(mpOrigMaterial);
+    }
 }
-#pragma pop
 
 /* 80316E70-80316E90 3117B0 0020+00 1/0 0/0 0/0 .text            change__11J3DMaterialFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMaterial::change() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/change__11J3DMaterialFv.s"
+void J3DMaterial::change() {
+    if ((mDiffFlag & 0xc0000000) == 0) {
+        mDiffFlag |= 0x80000000;
+        mMaterialAnm = NULL;
+    }
 }
-#pragma pop
 
 /* 80316E90-80316F24 3117D0 0094+00 0/0 2/2 0/0 .text newSharedDisplayList__11J3DMaterialFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 J3DMaterial::newSharedDisplayList(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/newSharedDisplayList__11J3DMaterialFUl.s"
+s32 J3DMaterial::newSharedDisplayList(u32 param_0) {
+    if (mSharedDLObj == NULL) {
+        mSharedDLObj = new J3DDisplayListObj();
+        if (mSharedDLObj == NULL) {
+            return 4;
+        }
+        s32 res = mSharedDLObj->newDisplayList(param_0);
+        switch (res) {
+        case kJ3DError_Success:
+            break;
+        default:
+            return res;
+        }
+    }
+    return 0;
 }
-#pragma pop
 
 /* 80316F24-80316FB8 311864 0094+00 0/0 2/2 0/0 .text newSingleSharedDisplayList__11J3DMaterialFUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 J3DMaterial::newSingleSharedDisplayList(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/newSingleSharedDisplayList__11J3DMaterialFUl.s"
+s32 J3DMaterial::newSingleSharedDisplayList(u32 param_0) {
+    if (mSharedDLObj == NULL) {
+        mSharedDLObj = new J3DDisplayListObj();
+        if (mSharedDLObj == NULL) {
+            return 4;
+        }
+        s32 res = mSharedDLObj->newSingleDisplayList(param_0);
+        switch (res) {
+        case kJ3DError_Success:
+            break;
+        default:
+            return res;
+        }
+    }
+    return 0;
 }
-#pragma pop
 
 /* 80316FB8-80316FD8 3118F8 0020+00 0/0 1/1 0/0 .text            initialize__18J3DPatchedMaterialFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DPatchedMaterial::initialize() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/initialize__18J3DPatchedMaterialFv.s"
+void J3DPatchedMaterial::initialize() {
+    J3DMaterial::initialize();
 }
-#pragma pop
 
 /* 80316FD8-80316FDC 311918 0004+00 1/0 0/0 0/0 .text makeDisplayList__18J3DPatchedMaterialFv */
 extern "C" asm void makeDisplayList__18J3DPatchedMaterialFv() {
+//void J3DPatchedMaterial::makeDisplayList() {
     /* empty function */
 }
 
@@ -752,14 +860,12 @@ void J3DPatchedMaterial::makeSharedDisplayList() {
 }
 
 /* 80316FE0-80316FFC 311920 001C+00 1/0 0/0 0/0 .text            load__18J3DPatchedMaterialFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DPatchedMaterial::load() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/load__18J3DPatchedMaterialFv.s"
+void J3DPatchedMaterial::load() {
+    j3dSys.setMaterialMode(mMaterialMode);
+    if (j3dSys.checkFlag(2)) {
+        return;
+    }
 }
-#pragma pop
 
 /* 80316FFC-8031703C 31193C 0040+00 1/0 0/0 0/0 .text loadSharedDL__18J3DPatchedMaterialFv */
 void J3DPatchedMaterial::loadSharedDL() {
@@ -780,14 +886,9 @@ void J3DPatchedMaterial::change() {
 
 /* 80317044-80317064 311984 0020+00 0/0 1/1 0/0 .text            initialize__17J3DLockedMaterialFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DLockedMaterial::initialize() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/initialize__17J3DLockedMaterialFv.s"
+void J3DLockedMaterial::initialize() {
+    J3DMaterial::initialize();
 }
-#pragma pop
 
 /* 80317064-80317068 3119A4 0004+00 1/0 0/0 0/0 .text makeDisplayList__17J3DLockedMaterialFv */
 void J3DLockedMaterial::makeDisplayList() {
@@ -801,21 +902,12 @@ void J3DLockedMaterial::makeSharedDisplayList() {
 }
 
 /* 8031706C-80317088 3119AC 001C+00 1/0 0/0 0/0 .text            load__17J3DLockedMaterialFv */
-#ifdef NONMATCHING
 void J3DLockedMaterial::load() {
     j3dSys.setMaterialMode(mMaterialMode);
-    // some extra dead code after? wtf?
+    if (j3dSys.checkFlag(2)) {
+        return;
+    }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DLockedMaterial::load() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/load__17J3DLockedMaterialFv.s"
-}
-#pragma pop
-#endif
 
 /* 80317088-803170C8 3119C8 0040+00 1/0 0/0 0/0 .text            loadSharedDL__17J3DLockedMaterialFv
  */

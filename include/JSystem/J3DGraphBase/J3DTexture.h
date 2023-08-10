@@ -82,6 +82,9 @@ struct J3DTexCoord : public J3DTexCoordInfo {
         *(J3DTexCoordInfo*)this = *param_1;
     }
 
+    u8 getTexGenMtx() { return mTexGenMtx & 0xff; }
+    u16 getTexMtxReg() { return mTexMtxReg & 0xff; }
+
     void resetTexMtxReg() {
         mTexMtxReg = mTexGenMtx;
     }

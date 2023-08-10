@@ -4,54 +4,28 @@
 //
 
 #include "JSystem/JAudio2/dspproc.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //
 // Forward References:
 //
 
-extern "C" void DSPReleaseHalt2__FUl();
-extern "C" static void setup_callback__FUs();
-extern "C" void DsetupTable__FUlUlUlUlUl();
-extern "C" void DsetMixerLevel__Ff();
-extern "C" void DsyncFrame2ch__FUlUlUl();
-extern "C" void DsyncFrame4ch__FUlUlUlUlUl();
-
 //
 // External References:
 //
-
-extern "C" void DSP_CreateMap2__FUl();
-extern "C" void DSPSendCommands2__FPUlUlPFUs_v();
 
 //
 // Declarations:
 //
 
-//Different compiler version for this TU? Something to note is that JAudio 1 is 32 byte aligned like this file
-
-#pragma function_align 32
-
 /* 8029E4E0-8029E528 298E20 0048+00 0/0 1/1 0/0 .text            DSPReleaseHalt2__FUl */
-#ifdef NONMATCHING
 void DSPReleaseHalt2(u32 msg) {
     u32 msgs[2];
-    msgs[0] = (msg<<16) | DSP_CreateMap2(msg);
+    u16 dspMap = DSP_CreateMap2(msg);
+    msgs[0] = (msg<<16) | dspMap;
 
     DSPSendCommands2(msgs,0,NULL);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-#pragma function_align 32
-asm void DSPReleaseHalt2(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/dspproc/DSPReleaseHalt2__FUl.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 804512F8-80451300 0007F8 0004+04 2/2 0/0 0/0 .sbss            flag */
@@ -63,82 +37,49 @@ static void setup_callback(u16 param_0) {
 }
 
 /* 8029E560-8029E5C4 298EA0 0064+00 0/0 1/1 0/0 .text            DsetupTable__FUlUlUlUlUl */
-#ifdef NONMATCHING
 void DsetupTable(u32 param_0, u32 param_1, u32 param_2, u32 param_3, u32 param_4) {
-    u32 r8 = 1;
-    void(*callback_func)(u16) = setup_callback;
-    u32 table[5] = {param_0&0xFFFF,param_1,param_2,param_3,param_4};
-    flag = r8;
-    DSPSendCommands2(table,5,callback_func);
+    u32 table[5];
+    table[0] = (param_0 & 0xFFFF) | 0x81000000;
+    table[1] = param_1;
+    table[2] = param_2;
+    table[3] = param_3;
+    table[4] = param_4;
+    flag = 1;
+    DSPSendCommands2(table,5,setup_callback);
     while (true) {
         if (flag==0) {
             return;
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-#pragma function_align 32
-asm void DsetupTable(u32 param_0, u32 param_1, u32 param_2, u32 param_3, u32 param_4) {
-    nofralloc
-#include "asm/JSystem/JAudio2/dspproc/DsetupTable__FUlUlUlUlUl.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 804507C8-804507D0 000248 0002+06 3/3 0/0 0/0 .sdata           DSP_MIXERLEVEL */
 static u16 DSP_MIXERLEVEL = 0x4000;
 
 /* 8029E5E0-8029E604 298F20 0024+00 0/0 1/1 0/0 .text            DsetMixerLevel__Ff */
-#ifdef NONMATCHING
 void DsetMixerLevel(f32 level) {
     DSP_MIXERLEVEL = 4096.0f*level;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-#pragma function_align 32
-
-/* 80455770-80455778 003D70 0004+04 1/1 0/0 0/0 .sdata2          @333 */
-SECTION_SDATA2 static f32 lit_333[1 + 1 /* padding */] = {
-    4096.0f,
-    /* padding */
-    0.0f,
-};
-
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-#pragma function_align 32
-asm void DsetMixerLevel(f32 param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/dspproc/DsetMixerLevel__Ff.s"
-}
-#pragma pop
-#endif
 
 /* 8029E620-8029E674 298F60 0054+00 0/0 1/1 0/0 .text            DsyncFrame2ch__FUlUlUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-#pragma function_align 32
-asm void DsyncFrame2ch(u32 param_0, u32 param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JAudio2/dspproc/DsyncFrame2ch__FUlUlUl.s"
+void DsyncFrame2ch(u32 param_0, u32 param_1, u32 param_2) {
+    u32 msgs[5];
+    msgs[0] = (param_0 & 0xff) << 0x10 | 0x82000000 | DSP_MIXERLEVEL;
+    msgs[1] = param_1;
+    msgs[2] = param_2;
+    msgs[3] = 0;
+    msgs[4] = 0;
+    DSPSendCommands2(msgs, 5, 0);
 }
-#pragma pop
 
 /* 8029E680-8029E6D0 298FC0 0050+00 0/0 1/1 0/0 .text            DsyncFrame4ch__FUlUlUlUlUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-#pragma function_align 32
-asm void DsyncFrame4ch(u32 param_0, u32 param_1, u32 param_2, u32 param_3, u32 param_4) {
-    nofralloc
-#include "asm/JSystem/JAudio2/dspproc/DsyncFrame4ch__FUlUlUlUlUl.s"
+void DsyncFrame4ch(u32 param_0, u32 param_1, u32 param_2, u32 param_3, u32 param_4) {
+    u32 msgs[5];
+    msgs[0] = (param_0 & 0xff) << 0x10 | 0x82000000 | DSP_MIXERLEVEL;
+    msgs[1] = param_1;
+    msgs[2] = param_2;
+    msgs[3] = param_3;
+    msgs[4] = param_4;
+    DSPSendCommands2(msgs, 5, 0);
 }
-#pragma pop

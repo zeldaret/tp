@@ -91,6 +91,8 @@ class dBgS_WtrChk;
 class fopAcM_wt_c {
 public:
     static dBgS_WtrChk* getWaterCheck() { return (dBgS_WtrChk*)&mWaterCheck; }
+    static f32 getWaterY() { return mWaterY[0]; }
+
     static bool waterCheck(const cXyz*);
     static u8 mWaterCheck[84 + 4 /* padding */];
     static f32 mWaterY[1 + 1 /* padding */];
@@ -301,6 +303,10 @@ inline dJntCol_c* fopAcM_GetJntCol(fopAc_ac_c* i_actor) {
     return i_actor->mJntCol;
 }
 
+inline void fopAcM_setCullSizeFar(fopAc_ac_c* i_actor, f32 i_far) {
+    i_actor->mCullSizeFar = i_far;
+}
+
 inline f32 fopAcM_getCullSizeFar(const fopAc_ac_c* i_actor) {
     return i_actor->mCullSizeFar;
 }
@@ -334,7 +340,7 @@ inline void i_fopAcM_offSwitch(const fopAc_ac_c* pActor, int sw) {
     return dComIfGs_offSwitch(sw, fopAcM_GetHomeRoomNo(pActor));
 }
 
-inline bool i_fopAcM_isSwitch(const fopAc_ac_c* item, int sw) {
+inline BOOL i_fopAcM_isSwitch(const fopAc_ac_c* item, int sw) {
     return dComIfGs_isSwitch(sw, fopAcM_GetHomeRoomNo(item));
 }
 
@@ -460,7 +466,7 @@ s32 fopAcM_cullingCheck(const fopAc_ac_c*);
 void* event_second_actor(u16);
 s32 fopAcM_orderTalkEvent(fopAc_ac_c*, fopAc_ac_c*, u16, u16);
 s32 fopAcM_orderTalkItemBtnEvent(u16, fopAc_ac_c*, fopAc_ac_c*, u16, u16);
-s32 fopAcM_orderSpeakEvent(fopAc_ac_c*, u16, u16);
+s32 fopAcM_orderSpeakEvent(fopAc_ac_c* i_actor, u16 i_priority, u16 i_flag);
 s32 fopAcM_orderDoorEvent(fopAc_ac_c*, fopAc_ac_c*, u16, u16);
 s32 fopAcM_orderCatchEvent(fopAc_ac_c*, fopAc_ac_c*, u16, u16);
 s32 fopAcM_orderOtherEvent(fopAc_ac_c*, const char*, u16, u16, u16);

@@ -13,7 +13,6 @@
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
-#include "m_Do/m_Do_graphic.h"
 #include "MSL_C/stdio.h"
 #include "MSL_C/string.h"
 #include "d/com/d_com_inf_game.h"
@@ -22,6 +21,7 @@
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 #include "global.h"
+#include "m_Do/m_Do_graphic.h"
 
 //
 // Types:
@@ -257,15 +257,15 @@ static void setAlpha(J3DModelData* pModelData) {
 /* ############################################################################################## */
 /* 80379840-803798A4 005EA0 0064+00 2/2 0/0 0/0 .rodata          l_texMtxInfo */
 SECTION_RODATA static const J3DTexMtxInfo l_texMtxInfo = {
-    0x00, 
-    0x08, 
+    0x00,
+    0x08,
     {0.5f, 0.5f, 0.0f},
-    { 0.1f, 0.1f, 0, 0.0f, 0.0f},
+    {0.1f, 0.1f, 0, 0.0f, 0.0f},
     {
-        { 0.5f, 0.0f, 0.0f, 0.5f }, 
-        { 0.0f, 0.5f, 0.0f, 0.5f }, 
-        { 0.0f, 0.0f, 0.0f, 1.0f }, 
-        { 0.0f, 0.0f, 0.0f, 1.0f },
+        {0.5f, 0.0f, 0.0f, 0.5f},
+        {0.0f, 0.5f, 0.0f, 0.5f},
+        {0.0f, 0.0f, 0.0f, 1.0f},
+        {0.0f, 0.0f, 0.0f, 1.0f},
     },
 };
 
@@ -293,7 +293,7 @@ SECTION_SDATA static J3DTevOrderInfo l_tevOrderInfo = {
 
 /* 80451DF0-80451DF8 0003F0 0008+00 1/1 0/0 0/0 .sdata2          l_alphaCompInfo$3775 */
 SECTION_SDATA2 static J3DAlphaCompInfo l_alphaCompInfo = {
-    0x04, 0x80, 0x00, 0x03, 0xFF,
+    0x04, 0x80, 0x00, 0x03, 0xFF, 0, 0, 0,
 };
 
 /* 8003A840-8003AACC 035180 028C+00 1/1 0/0 0/0 .text            addWarpMaterial__FP12J3DModelData
@@ -328,7 +328,7 @@ static void addWarpMaterial(J3DModelData* param_1) {
         pShape->addTexMtxIndexInVcd(attr);
         J3DPEBlock* peBlock = pMaterial->getPEBlock();
         J3DAlphaComp* alphaComp = peBlock->getAlphaComp();
-        alphaComp->setAlphaCompInfo(&l_alphaCompInfo);
+        alphaComp->setAlphaCompInfo(l_alphaCompInfo);
         peBlock->setZCompLoc((u8)0);
     }
 }
@@ -384,7 +384,8 @@ void dRes_info_c::offWarpMaterial(J3DModelData* modelData) {
 
 /* 8003AD08-8003AE14 035648 010C+00 0/0 1/1 0/0 .text
  * setWarpSRT__11dRes_info_cFP12J3DModelDataRC4cXyzff           */
-void dRes_info_c::setWarpSRT(J3DModelData* modelData, cXyz const& param_1, f32 translationX, f32 translationY) {
+void dRes_info_c::setWarpSRT(J3DModelData* modelData, cXyz const& param_1, f32 translationX,
+                             f32 translationY) {
     J3DMaterial* pMaterial = modelData->getMaterialNodePointer(0);
     J3DTexGenBlock* texGenBlock = pMaterial->getTexGenBlock();
     u32 texGenNum = texGenBlock->getTexGenNum();
@@ -416,72 +417,80 @@ SECTION_DATA static void* lit_4017[8] = {
  */
 // regalloc
 #ifdef NONMATCHING
-J3DModelData* dRes_info_c::loaderBasicBmd(u32 param_1, void* param_2) {
-    u32 pvVar5 = 0x59020010;
+J3DModelData* dRes_info_c::loaderBasicBmd(u32 i_type, void* i_data) {
+    u32 flags = 0x59020010;
     J3DMaterial* pMaterial;
-    J3DModelData* modelData; 
+    J3DModelData* modelData;
     u8 lightMask;
-    if (param_1 == 'BMDE' || param_1 == 'BMDV') {
-        pvVar5 |= 0x20;
-    } else if (param_1 == 'BMWR' || param_1 == 'BMWE') {
-        pvVar5 ^= 0x60020;
+
+    if (i_type == 'BMDE' || i_type == 'BMDV') {
+        flags |= 0x20;
+    } else if (i_type == 'BMWR' || i_type == 'BMWE') {
+        flags ^= 0x60020;
     }
-    modelData = (J3DModelData*)J3DModelLoaderDataBase::load(param_2, pvVar5);
+
+    modelData = (J3DModelData*)J3DModelLoaderDataBase::load(i_data, flags);
     if (modelData == NULL) {
         return NULL;
     }
 
-    if ((param_1 == 'BMDE' || param_1 == 'BMDV') || param_1 == 'BMWE') {
+    if (i_type == 'BMDE' || i_type == 'BMDV' || i_type == 'BMWE') {
         for (u16 i = 0; i < modelData->getShapeNum(); i++) {
             modelData->getShapeNodePointer(i)->setTexMtxLoadType(0x2000);
         }
     }
+
     for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
         pMaterial = modelData->getMaterialNodePointer(i);
         lightMask = pMaterial->getColorBlock()->getColorChan(0)->getLightMask();
         switch (g_env_light.field_0x1308) {
         case 1:
-            lightMask &= 4;
+            lightMask &= 0x4;
             break;
         case 2:
-            lightMask &= 0xc;
+            lightMask &= 0xC;
             break;
         case 3:
-            lightMask &= 0xd;
+            lightMask &= 0xD;
             break;
         case 4:
-            lightMask &= 0xf;
+            lightMask &= 0xF;
             break;
         case 5:
-            lightMask &= 0x1f;
+            lightMask &= 0x1F;
             break;
         case 6:
-            lightMask &= 0x3f;
+            lightMask &= 0x3F;
             break;
         case 7:
-            lightMask &= 0x7f;
+            lightMask &= 0x7F;
         }
+
         pMaterial->getColorBlock()->getColorChan(0)->setLightMask(lightMask);
         pMaterial->change();
-        J3DMaterialAnm* local_38 = new J3DMaterialAnm();
-        if (local_38 == NULL) {
+
+        J3DMaterialAnm* material_anm = new J3DMaterialAnm();
+        if (material_anm == NULL) {
             return NULL;
         }
-        pMaterial->setMaterialAnm(local_38);
+
+        pMaterial->setMaterialAnm(material_anm);
     }
+
     setIndirectTex(modelData);
-    if ((param_1 == 'BMWR') || (param_1 == 'BMWE')) {
+    if (i_type == 'BMWR' || i_type == 'BMWE') {
         addWarpMaterial(modelData);
     }
-    if ((param_1 == 'BMDR') || (param_1 == 'BMWR')) {
+
+    if (i_type == 'BMDR' || i_type == 'BMWR') {
         if (modelData->newSharedDisplayList(0x40000) == 0) {
-            modelData->simpleCalcMaterial(0, (float (*)[4])j3dDefaultMtx);
+            modelData->simpleCalcMaterial(0, (MtxP)j3dDefaultMtx);
             modelData->makeSharedDL();
         } else {
             modelData = NULL;
         }
     }
-    
+
     return modelData;
 }
 #else
@@ -661,14 +670,14 @@ SECTION_DEAD static char const* const stringBase_80379912 = "<%s> res == NULL !!
 // J3DXXX ctor/dtor inlines
 #ifdef NONMATCHING
 int dRes_info_c::loadResource() {
-    s32 pJVar4 = mArchive->countFile();
-    mRes = new void*[pJVar4];
+    s32 file_num = mArchive->countFile();
+    mRes = new void*[file_num];
     if (mRes == NULL) {
-        OSReport_Error("<%s.arc> setRes: res pointer buffer nothing !!\n", this);
+        OSReport_Error("<%s.arc> setRes: res pointer buffer nothing !!\n", mArchiveName);
         return -1;
     }
 
-    for (int i = 0; i < pJVar4; i++) {
+    for (int i = 0; i < file_num; i++) {
         mRes[i] = NULL;
     }
     JKRArchive::SDIDirEntry* node = mArchive->mNodes;
@@ -678,52 +687,60 @@ int dRes_info_c::loadResource() {
         u32 firstFileIndex = node->first_file_index;
         J3DModelData* modelData;
         void* result;
+
         for (int j = 0; j < node->num_entries; j++) {
             if (mArchive->isFileEntry(firstFileIndex)) {
                 result = mArchive->getIdxResource(firstFileIndex);
+
                 if (result == NULL) {
-                    OSReport_Error("<%s> res == NULL !!\n", mArchive->mStringTable + (mArchive->findIdxResource(firstFileIndex)->type_flags_and_name_offset & 0xFFFFFF));
-                } 
-                else if (nodeType == 'ARC ') {
-                    JKRArchive::SDIFileEntry* fileEntry = mArchive->findIdxResource(firstFileIndex);
-                    const char* __s = mArchive->mStringTable + fileEntry->getNameOffset();
-                    size_t len = strlen(__s) - 4;
-                    char aJStack_24[9];
-                    strncpy(aJStack_24, __s, len);
-                    aJStack_24[len] = '\0';
-                    JKRHeap* local_58 = JKRHeap::findFromRoot(JKRHeap::getCurrentHeap());
-                    JKRHeap* pJVar3 = local_58;
-                    
-                    if (local_58 == (JKRHeap*)mDoExt_getGameHeap()) {
-                        local_58 = NULL;
+                    OSReport_Error(
+                        "<%s> res == NULL !!\n",
+                        mArchive->mStringTable +
+                            (mArchive->findIdxResource(firstFileIndex)->type_flags_and_name_offset &
+                             0xFFFFFF));
+                } else if (nodeType == 'ARC ') {
+                    JKRArchive::SDIFileEntry* entry = mArchive->findIdxResource(firstFileIndex);
+
+                    const char* name_p = mArchive->mStringTable + entry->getNameOffset();
+                    size_t resNameLen = strlen(name_p) - 4;
+                    char arc_name[9];
+                    strncpy(arc_name, name_p, resNameLen);
+                    arc_name[resNameLen] = '\0';
+
+                    JKRHeap* parentHeap = JKRHeap::findFromRoot(JKRHeap::getCurrentHeap());
+                    if (parentHeap == (JKRHeap*)mDoExt_getGameHeap()) {
+                        parentHeap = NULL;
                     }
-                    dComIfG_setObjectRes(aJStack_24, result, fileEntry->data_size);
+
+                    dComIfG_setObjectRes(arc_name, result, entry->data_size);
                 } else if (nodeType == 'BMDP') {
-                    result = (J3DModelData*) J3DModelLoaderDataBase::load(result, 0x59020030);
+                    result = (J3DModelData*)J3DModelLoaderDataBase::load(result, 0x59020030);
                     if (result == NULL) {
                         return -1;
                     }
+
                     modelData = (J3DModelData*)result;
                     for (u16 k = 0; k < modelData->getMaterialNum(); k++) {
-                        J3DMaterial* pMaterial = modelData->getMaterialNodePointer(k);
-                        pMaterial->change();
-                        J3DMaterialAnm* materialAnm = new J3DMaterialAnm();
-                        if (materialAnm == (J3DMaterialAnm*)0x0) {
+                        J3DMaterial* material_p = modelData->getMaterialNodePointer(k);
+                        material_p->change();
+
+                        J3DMaterialAnm* material_anm = new J3DMaterialAnm();
+                        if (material_anm == NULL) {
                             return -1;
                         }
-                        pMaterial->setMaterialAnm(materialAnm);
+
+                        material_p->setMaterialAnm(material_anm);
                     }
+
                     setAlpha(modelData);
                     if (modelData->newSharedDisplayList(0x40000) != 0) {
                         return -1;
                     }
-                    modelData->simpleCalcMaterial(0, (float (*)[4])j3dDefaultMtx);
+
+                    modelData->simpleCalcMaterial(0, (MtxP)j3dDefaultMtx);
                     modelData->makeSharedDL();
-                } else if ((((nodeType == 'BMDR') ||
-                             (nodeType == 'BMDV')) ||
-                            (nodeType == 'BMDE')) ||
-                           ((nodeType == 'BMWR' ||
-                             (nodeType == 'BMWE'))))
+                } else if (nodeType == 'BMDR' || nodeType == 'BMDV' || nodeType == 'BMDE' ||
+                           nodeType == 'BMWR' || nodeType == 'BMWE')
                 {
                     result = loaderBasicBmd(nodeType, result);
                     if (result == NULL) {
@@ -734,60 +751,63 @@ int dRes_info_c::loadResource() {
                     if (result == NULL) {
                         return -1;
                     }
+
                     modelData = (J3DModelData*)result;
                     if (modelData->newSharedDisplayList(0x40000) != 0) {
                         return -1;
                     }
-                    modelData->simpleCalcMaterial(0, (float (*)[4])j3dDefaultMtx);
+
+                    modelData->simpleCalcMaterial(0, (MtxP)j3dDefaultMtx);
                     modelData->makeSharedDL();
                 } else if (nodeType == 'BMDA') {
                     result = (J3DModelData*)J3DModelLoaderDataBase::load(result, 0x59020010);
                     if (result == NULL) {
                         return -1;
                     }
+
                     modelData = (J3DModelData*)result;
                     if (modelData->newSharedDisplayList(0x40000) != 0) {
                         return -1;
                     }
-                    modelData->simpleCalcMaterial(0, (float (*)[4])j3dDefaultMtx);
+
+                    modelData->simpleCalcMaterial(0, (MtxP)j3dDefaultMtx);
                     modelData->makeSharedDL();
                 } else if (nodeType == 'BLS ') {
                     result = J3DClusterLoaderDataBase::load(result);
                     if (result == NULL) {
                         return -1;
                     }
-                } else if ((nodeType == 'BCKS') ||
-                           (nodeType == 'BCK '))
-                {
+                } else if (nodeType == 'BCKS' || nodeType == 'BCK ') {
                     int sVar1 = *(int*)((int)result + 0x1c);
                     void* local_9c = sVar1 != 0xffffffff ? (void*)(sVar1 + (u32)result) : NULL;
+
                     mDoExt_transAnmBas* transAnmBas = new mDoExt_transAnmBas(local_9c);
                     if (transAnmBas == NULL) {
                         return -1;
                     }
+
                     J3DAnmLoaderDataBase::setResource(transAnmBas, result);
                     result = transAnmBas;
-                } else if ((((nodeType == 'BTP ') ||
-                             (nodeType == 'BTK ')) ||
-                            (nodeType == 'BPK ')) ||
-                           (((nodeType == 'BRK ' ||
-                              (nodeType == 'BLK ')) ||
-                             ((nodeType == 'BVA ' ||
-                               (nodeType == 'BXA '))))))
+                } else if (nodeType == 'BTP ' || nodeType == 'BTK ' || nodeType == 'BPK ' ||
+                           nodeType == 'BRK ' || nodeType == 'BLK ' || nodeType == 'BVA ' ||
+                           nodeType == 'BXA ')
                 {
                     result = J3DAnmLoaderDataBase::load(result, J3DLOADER_UNK_FLAG0);
                     if (result == NULL) {
                         return -1;
                     }
                 } else if (nodeType == 'DZB ') {
-                    result = ((cBgS*)result)->ConvDzb(result);
+                    result = cBgS::ConvDzb(result);
                 } else if (nodeType == 'KCL ') {
                     result = dBgWKCol::initKCollision(result);
                 }
+
                 mRes[firstFileIndex] = result;
             }
+
             firstFileIndex++;
         }
+
         node++;
     }
 
@@ -853,9 +873,9 @@ void dRes_info_c::deleteArchiveRes() {
 /* 8003BA9C-8003BAC4 0363DC 0028+00 2/2 0/0 0/0 .text            getArcHeader__FP10JKRArchive */
 static SArcHeader* getArcHeader(JKRArchive* param_0) {
     if (param_0 != NULL) {
-        switch(param_0->getMountMode()) {
-            case JKRArchive::MOUNT_MEM:
-                return ((JKRMemArchive*)param_0)->getArcHeader();
+        switch (param_0->getMountMode()) {
+        case JKRArchive::MOUNT_MEM:
+            return ((JKRMemArchive*)param_0)->getArcHeader();
         }
     }
 
@@ -983,8 +1003,8 @@ void dRes_info_c::dump_long(dRes_info_c* param_0, int param_1) {
             }
 
             JUTReportConsole_f("%2d %08x %08x %08x(%6x) %08x(%5x) %08x %3d %s\n", i,
-                               param_0->getDMCommand(), archive, header, blockSize1,
-                               dataHeap, blockSize2, param_0->mRes, param_0->getCount(),
+                               param_0->getDMCommand(), archive, header, blockSize1, dataHeap,
+                               blockSize2, param_0->mRes, param_0->getCount(),
                                param_0->getArchiveName());
         }
         param_0++;
@@ -1034,14 +1054,17 @@ void dRes_info_c::dump(dRes_info_c* param_0, int param_1) {
             arcHeaderSize = JKRGetMemBlockSize(NULL, getArcHeader(param_0->getArchive()));
             heapSize = JKRGetMemBlockSize(NULL, param_0->mDataHeap);
             archiveName = param_0->getArchiveName();
-            JUTReportConsole_f("%2d %6.1f %6x %6.1f %6x %3d %s\n", i, arcHeaderSize / 1024.0f, arcHeaderSize, heapSize / 1024.0f, heapSize, param_0->getCount(), archiveName);
+            JUTReportConsole_f("%2d %6.1f %6x %6.1f %6x %3d %s\n", i, arcHeaderSize / 1024.0f,
+                               arcHeaderSize, heapSize / 1024.0f, heapSize, param_0->getCount(),
+                               archiveName);
             totalArcHeaderSize += arcHeaderSize;
             totalHeapSize += heapSize;
         }
         param_0++;
     }
     JUTReportConsole_f(
-        "----------------------------------------------\n   %6.1f %6x %6.1f %6x   Total\n\n",  totalArcHeaderSize / 1024.0f, totalArcHeaderSize,  totalHeapSize / 1024.0f, totalHeapSize);
+        "----------------------------------------------\n   %6.1f %6x %6.1f %6x   Total\n\n",
+        totalArcHeaderSize / 1024.0f, totalArcHeaderSize, totalHeapSize / 1024.0f, totalHeapSize);
 }
 #else
 #pragma push
@@ -1184,8 +1207,8 @@ void* dRes_control_c::getRes(char const* arcName, s32 resIdx, dRes_info_c* pInfo
     u32 fileCount = archive->countFile();
 
     if (resIdx >= (int)fileCount) {
-        OSReport_Error("<%s.arc> getRes: res index over !! index=%d count=%d\n", arcName,
-                        resIdx, fileCount);
+        OSReport_Error("<%s.arc> getRes: res index over !! index=%d count=%d\n", arcName, resIdx,
+                       fileCount);
         return NULL;
     }
     return resInfo->getRes(resIdx);

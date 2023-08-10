@@ -75,6 +75,11 @@ public:
 
 template <class T>
 struct JPANode {
+    JPANode() {
+        mpPrev = NULL;
+        mpNext = NULL;
+    }
+    ~JPANode() {}
     JPANode<T>* mpPrev;
     JPANode<T>* mpNext;
     T mData;
@@ -250,6 +255,13 @@ public:
     void setGlobalRTMatrix(const Mtx m) { JPASetRMtxTVecfromMtx(m, mGlobalRot, &mGlobalTrs); }
     void setGlobalTranslation(f32 x, f32 y, f32 z) { mGlobalTrs.set(x, y, z); }
     void setGlobalAlpha(u8 alpha) { mGlobalPrmClr.a = alpha; }
+    void setVolumeSize(u16 size) { mVolumeSize = size; }
+    void setLifeTime(s16 lifetime) { mLifeTime = lifetime; }
+
+    void setGlobalParticleScale(const JGeometry::TVec3<f32>& scale) {
+        mGlobalPScl.set(scale.x, scale.y);
+    }
+
     // void setGlobalScale(const JGeometry::TVec3<f32>& scale) {
     //     mGlobalScl = scale;
     //     mGlobalPScl = scale;
@@ -345,11 +357,13 @@ public:
     /* 80280548 */ f32 getWidth(JPABaseEmitter const*) const;
     /* 80280568 */ f32 getHeight(JPABaseEmitter const*) const;
     int getAge() { return mAge; }
+    void setOffsetPosition(const JGeometry::TVec3<f32>& pos) { mOffsetPosition.set(pos); }
+    void getOffsetPosition(JGeometry::TVec3<f32>& pos) { pos.set(mOffsetPosition); }
 
 public:
     /* 0x00 */ Vec mPosition;
     /* 0x0C */ Vec mLocalPosition;
-    /* 0x18 */ Vec mOffsetPosition;
+    /* 0x18 */ JGeometry::TVec3<f32> mOffsetPosition;
     /* 0x24 */ Vec mVelocity;
     /* 0x30 */ Vec mVelType1;
     /* 0x3C */ Vec mVelType0;

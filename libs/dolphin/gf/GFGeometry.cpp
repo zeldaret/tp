@@ -6,7 +6,6 @@
 #include "dolphin/gf/GFGeometry.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "dolphin/gx/GX.h"
 
 //
 // Types:

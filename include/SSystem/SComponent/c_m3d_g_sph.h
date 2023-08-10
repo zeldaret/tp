@@ -30,6 +30,7 @@ public:
     bool cross(const cM3dGCyl*, cXyz*) const;
     void GetMinMaxCube(cXyz&, cXyz&) const;
     const cXyz& GetC(void) const { return mCenter; }
+    const cXyz* GetCP() const { return &mCenter; }
     const f32 GetR(void) const { return mRadius; }
     f32 GetCX(void) const { return mCenter.x; }
     f32 GetCY(void) const { return mCenter.y; }

@@ -42,6 +42,12 @@ public:
         GFX_FIFO(u32) = getMtxIdxRegA();
         GFX_FIFO(u32) = getMtxIdxRegB();
     }
+
+    void setCurrentTexMtx(u8 param_1, u8 param_2, u8 param_3, u8 param_4,
+        u8 param_5, u8 param_6, u8 param_7, u8 param_8) {
+        mMtxIdxRegA = ((param_1 & 0xff) << 6) | (param_2 << 0xc)| (param_3 << 0x12) | (param_4 << 0x18);
+        mMtxIdxRegB = (param_5) | param_6 << 6 | param_7 << 0xc | param_8 << 0x12;
+    }
 };
 
 class J3DMaterial;
@@ -94,12 +100,14 @@ public:
     void show() { offFlag(J3DShpFlag_Visible); }
     void hide() { onFlag(J3DShpFlag_Visible); }
     void setCurrentViewNoPtr(u32* pViewNoPtr) { mCurrentViewNo = pViewNoPtr; }
+    void setCurrentMtx(J3DCurrentMtx& mtx) { mCurrentMtx = mtx; }
     void setScaleFlagArray(u8* pScaleFlagArray) { mScaleFlagArray = pScaleFlagArray; }
     void setDrawMtx(Mtx** pDrawMtx) { mDrawMtx = pDrawMtx; }
     void setNrmMtx(Mtx33** pNrmMtx) { mNrmMtx = pNrmMtx; }
     void setTexMtxLoadType(u32 type) { mFlags = (mFlags & 0xFFFF0FFF) | type; }
     bool getNBTFlag() const { return mHasNBT; }
     u32 getBumpMtxOffset() const { return mBumpMtxOffset; }
+    GXVtxDescList* getVtxDesc() const { return mVtxDesc; }
 
     J3DMaterial* getMaterial() const { return mMaterial; }
     u32 getIndex() const { return mIndex; }

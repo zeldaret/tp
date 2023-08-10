@@ -154,107 +154,100 @@ inline u32 alignNext(u32 var, u32 align) {
 }
 
 /* 802D72A8-802D75E0 2D1BE8 0338+00 1/1 0/0 0/0 .text            open__14JKRAramArchiveFl */
-#ifdef NONMATCHING
-// r30 <-> r29
 bool JKRAramArchive::open(s32 entryNum) {
     mArcInfoBlock = NULL;
     mNodes = NULL;
     mFiles = NULL;
     mStringTable = NULL;
     mBlock = NULL;
-    // int align;
-    // int align = -4;
-    // if (mMountDirection == MOUNT_DIRECTION_HEAD) {
-    //     align = 4;
-    // }
-    int align;
-    align = mMountDirection == MOUNT_DIRECTION_HEAD ? 4 : -4;
-    mDvdFile = new (JKRGetSystemHeap(), align) JKRDvdFile(entryNum);
-    if (mDvdFile == NULL) {
-        mMountMode = UNKNOWN_MOUNT_MODE;
-        return false;
+
+    mDvdFile = new (JKRGetSystemHeap(), mMountDirection == MOUNT_DIRECTION_HEAD ? 4 : -4) JKRDvdFile(entryNum);
+    if (mDvdFile == NULL)
+    {
+        mMountMode = 0;
+        return 0;
     }
 
-    SArcHeader* header = static_cast<SArcHeader*>(JKRAllocFromSysHeap(0x20, -0x20));
-    if (header == NULL) {
-        mMountMode = UNKNOWN_MOUNT_MODE;
-    } else {
-        JKRDvdToMainRam(entryNum, (u8*)header, EXPAND_SWITCH_UNKNOWN1, 0x20, NULL,
-                        JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 0, &mCompression, NULL);
-        DCInvalidateRange(header, 0x20);
-        align = mMountDirection == MOUNT_DIRECTION_HEAD ? 0x20 : -0x20;
-        u32 blockSize = alignNext(header->file_data_offset, 0x20);
-        mArcInfoBlock = static_cast<SArcDataInfo*>(JKRAllocFromHeap(mHeap, blockSize, align));
+    // NOTE: a different struct is used here for sure, unfortunately i can't get any hits on this address, so gonna leave it like this for now
+    SArcHeader *mem = (SArcHeader *)JKRAllocFromSysHeap(32, -32); 
+    if (mem == NULL)  {
+        mMountMode = 0;
+    }
+    else {
+        JKRDvdToMainRam(entryNum, (u8 *)mem, EXPAND_SWITCH_UNKNOWN1, 32, NULL, JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 0, &mCompression, NULL);
+        DCInvalidateRange(mem, 32);
+        int alignment = mMountDirection == MOUNT_DIRECTION_HEAD ? 32 : -32;
+        u32 alignedSize = ALIGN_NEXT(mem->file_data_offset, 32);
+        mArcInfoBlock = (SArcDataInfo *)JKRAllocFromHeap(mHeap, alignedSize, alignment);
         if (mArcInfoBlock == NULL) {
-            mMountMode = UNKNOWN_MOUNT_MODE;
-        } else {
-            JKRDvdToMainRam(entryNum, (u8*)mArcInfoBlock, EXPAND_SWITCH_UNKNOWN1, blockSize, NULL,
-                            JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 0x20, NULL, NULL);
-            DCInvalidateRange(mArcInfoBlock, blockSize);
-            mNodes = (SDIDirEntry*)((s32)mArcInfoBlock + mArcInfoBlock->node_offset);
-            mFiles = (SDIFileEntry*)((s32)mArcInfoBlock + mArcInfoBlock->file_entry_offset);
-            mStringTable = (char*)((s32)mArcInfoBlock + mArcInfoBlock->string_table_offset);
+            mMountMode = 0;
+        }
+        else {
+            JKRDvdToMainRam(entryNum, (u8 *)mArcInfoBlock, EXPAND_SWITCH_UNKNOWN1, alignedSize, NULL, JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 32, NULL, NULL);
+            DCInvalidateRange(mArcInfoBlock, alignedSize);
+
+            mNodes = (SDIDirEntry *)((u8 *)mArcInfoBlock + mArcInfoBlock->node_offset);
+            mFiles = (SDIFileEntry *)((u8 *)mArcInfoBlock + mArcInfoBlock->file_entry_offset);
+            mStringTable = (char *)((u8 *)mArcInfoBlock + mArcInfoBlock->string_table_offset);
             mExpandedSize = NULL;
-            u8 isAnyFileCompressed = 0;
-            SDIFileEntry* file = mFiles;
-            for (int i = 0; i < mArcInfoBlock->num_file_entries; file++, i++) {
-                if (file->isUnknownFlag1()) {
-                    isAnyFileCompressed |= file->getCompressFlag();
+
+            u8 compressedFiles = 0; // maybe a check for if the last file is compressed?
+
+            SDIFileEntry *fileEntry = mFiles;
+            for (int i = 0; i < mArcInfoBlock->num_file_entries; i++)
+            {
+                u8 flag = fileEntry->type_flags_and_name_offset >> 24;
+                if ((flag & 1))
+                {
+                    compressedFiles |= (flag & JKRARCHIVE_ATTR_COMPRESSION);
                 }
+                fileEntry++;
             }
-            if (isAnyFileCompressed != 0) {
-                mExpandedSize =
-                    (s32*)JKRAllocFromHeap(mHeap, mArcInfoBlock->num_file_entries * 4, abs(align));
-                if (mExpandedSize == NULL) {
+
+            if (compressedFiles != 0)
+            {
+                mExpandedSize = (s32 *)JKRAllocFromHeap(mHeap, mArcInfoBlock->num_file_entries << 2, abs(alignment));
+                if (mExpandedSize == NULL)
+                {
                     i_JKRFree(mArcInfoBlock);
-                    mMountMode = UNKNOWN_MOUNT_MODE;
-                    goto end;
-                } else {
-                    memset(mExpandedSize, 0, mArcInfoBlock->num_file_entries * 4);
+                    mMountMode = 0;
+                    goto cleanup;
                 }
+                memset(mExpandedSize, 0, mArcInfoBlock->num_file_entries << 2);
             }
-            u32 fileDataLength = alignNext(header->file_data_length, 0x20);
-            mBlock = static_cast<JKRAramBlock*>(JKRAllocFromAram(
-                fileDataLength,
-                mMountDirection == MOUNT_DIRECTION_HEAD ? JKRAramHeap::HEAD : JKRAramHeap::TAIL));
-            if (mBlock == NULL) {
-                if (mArcInfoBlock != NULL) {
+
+            u32 aramSize = ALIGN_NEXT(mem->file_data_length, 32);
+            mBlock = (JKRAramBlock*) JKRAllocFromAram(aramSize, mMountDirection == MOUNT_DIRECTION_HEAD ? JKRAramHeap::HEAD : JKRAramHeap::TAIL);
+            if(mBlock == NULL) {
+                if (mArcInfoBlock) {
                     i_JKRFree(mArcInfoBlock);
                 }
-                if (mExpandedSize != NULL) {
+                if(mExpandedSize) {
                     i_JKRFree(mExpandedSize);
                 }
-                mMountMode = UNKNOWN_MOUNT_MODE;
-            } else {
-                JKRDvdAramRipper::loadToAram(entryNum, mBlock->getAddress(), EXPAND_SWITCH_UNKNOWN1,
-                                             header->header_length + header->file_data_offset, 0,
-                                             NULL);
+                mMountMode = 0;
             }
+            else {
+                JKRDvdToAram(entryNum, mBlock->getAddress(), EXPAND_SWITCH_UNKNOWN1, mem->header_length + mem->file_data_offset, 0, NULL);
+            }
+
         }
     }
-end:
-    if (header != NULL) {
-        JKRFreeToSysHeap(header);
+cleanup:
+    if (mem != NULL)
+    {
+        JKRFreeToSysHeap(mem);
     }
-    if (mMountMode == UNKNOWN_MOUNT_MODE) {
-        if (mDvdFile != NULL) {
+    if (mMountMode == 0)
+    {
+        if (mDvdFile != NULL)
+        {
             delete mDvdFile;
         }
         return false;
-    } else {
-        return true;
     }
+    return true;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool JKRAramArchive::open(s32 param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRAramArchive/open__14JKRAramArchiveFl.s"
-}
-#pragma pop
-#endif
 
 /* 802D75E0-802D76F4 2D1F20 0114+00 1/0 0/0 0/0 .text
  * fetchResource__14JKRAramArchiveFPQ210JKRArchive12SDIFileEntryPUl */
@@ -396,10 +389,10 @@ u32 JKRAramArchive::fetchResource_subroutine(u32 entryNum, u32 length, JKRHeap* 
     case COMPRESSION_YAY0:
     case COMPRESSION_YAZ0:
         u8 tmpBuf[0x40];
-        SArcHeader* buf = (SArcHeader*)ALIGN_PREV((s32)&tmpBuf[0x1F], 0x20);
-        JKRAramToMainRam(entryNum, (u8*)buf, 0x20, EXPAND_SWITCH_UNKNOWN0, 0, NULL, -1, NULL);
-        length = alignNext(JKRDecompExpandSize(buf), 0x20);
-        tmpBufAligned = static_cast<u8*>(JKRAllocFromHeap(pHeap, length, 0x20));
+        u8* buf = (u8*)ALIGN_PREV((s32)&tmpBuf[0x1F], sizeof(SArcHeader));
+        JKRAramToMainRam(entryNum, buf, sizeof(SArcHeader), EXPAND_SWITCH_UNKNOWN0, 0, NULL, -1, NULL);
+        length = alignNext(JKRDecompExpandSize(buf), sizeof(SArcHeader));
+        tmpBufAligned = static_cast<u8*>(JKRAllocFromHeap(pHeap, length, sizeof(SArcHeader)));
 
         JKRAramToMainRam(entryNum, tmpBufAligned, alignedLen, EXPAND_SWITCH_UNKNOWN1, length, pHeap,
                          -1, &readLen);
@@ -443,8 +436,8 @@ u32 JKRAramArchive::getExpandedResSize(void const* ptr) const {
     }
 
     u8 tmpBuf[0x40];
-    SArcHeader* buf = (SArcHeader*)ALIGN_PREV((s32)&tmpBuf[0x1F], 0x20);
-    JKRAramToMainRam(entry->data_offset + mBlock->getAddress(), (u8*)buf, 0x20,
+    u8* buf = (u8*)ALIGN_PREV((s32)&tmpBuf[0x1F], 0x20);
+    JKRAramToMainRam(entry->data_offset + mBlock->getAddress(), buf, 0x20,
                      EXPAND_SWITCH_UNKNOWN0, 0, NULL, -1, NULL);
     expandSize = JKRDecompExpandSize(buf);
     // ??? casting away const?

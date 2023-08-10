@@ -63,4 +63,11 @@ inline JKRDecomp* JKRCreateDecompManager(long priority) {
     return JKRDecomp::create(priority);
 }
 
+inline JKRCompression JKRCheckCompressed_noASR(u8 *pBuf) {
+    JKRCompression compression = JKRDecomp::checkCompressed(pBuf);
+    if (compression == COMPRESSION_ASR) // ternary i had before was either incorrect, or was not a ternary at all
+        compression = COMPRESSION_NONE;
+    return compression;
+}
+
 #endif /* JKRDECOMP_H */

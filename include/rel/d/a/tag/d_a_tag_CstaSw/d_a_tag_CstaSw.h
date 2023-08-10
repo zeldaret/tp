@@ -27,6 +27,8 @@ class daTagCstaSw_HIO_c : public mDoHIO_entry_c {
 public:
     /* 805A202C */ daTagCstaSw_HIO_c();
     /* 805A2480 */ virtual ~daTagCstaSw_HIO_c();
+
+    u8 unk_0x4;
 };
 
 #endif /* D_A_TAG_CSTASW_H */
