@@ -24,6 +24,10 @@ public:
     /* 80018C0C */ J3DLightObj() : mInfo(j3dDefaultLightInfo) {}
 
     J3DLightInfo& getLightInfo() { return mInfo; }
+    J3DLightObj& operator=(J3DLightObj const& other) {
+        mInfo = other.mInfo;
+        return *this;
+    }
 
     /* 0x00 */ J3DLightInfo mInfo;
     /* 0x34 */ u8 field_0x34[64];

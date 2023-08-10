@@ -29,10 +29,18 @@ public:
     /* 80280568 */ f32 getHeight(JPABaseEmitter const*) const;
     int getAge() { return mAge; }
     void setOffsetPosition(const JGeometry::TVec3<f32>& pos) { mOffsetPosition.set(pos); }
+    void setOffsetPosition(f32 x, f32 y, f32 z) { mOffsetPosition.set(x, y, z); }
     void getOffsetPosition(JGeometry::TVec3<f32>& pos) { pos.set(mOffsetPosition); }
+    u16 getRotateAngle() const { return mRotateAngle; }
+    void getGlobalPosition(JGeometry::TVec3<f32>& pos) { pos.set(mPosition); }
+    f32 getParticleScaleX() const { return mParticleScaleX; }
+    f32 getParticleScaleY() const { return mParticleScaleY; }
+    void setStatus(u32 flag) { mStatus |= flag; }
+    void setInvisibleParticleFlag() { setStatus(8); }
+    void setDeleteParticleFlag() { setStatus(2); }
 
 public:
-    /* 0x00 */ Vec mPosition;
+    /* 0x00 */ JGeometry::TVec3<f32> mPosition;
     /* 0x0C */ Vec mLocalPosition;
     /* 0x18 */ JGeometry::TVec3<f32> mOffsetPosition;
     /* 0x24 */ Vec mVelocity;

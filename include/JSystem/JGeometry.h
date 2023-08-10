@@ -54,6 +54,11 @@ inline void setTVec3f(const f32* vec_a, f32* vec_b) {
     };
 }
 
+// Until we figure out TVec3 ctors
+inline void setTVec3f(const Vec& vec_a, Vec& vec_b) {
+    setTVec3f(&vec_a.x, &vec_b.x);
+}
+
 inline float fsqrt_step(float mag) {
     f32 root = __frsqrte(mag);
     return 0.5f * root * (3.0f - mag * (root * root));

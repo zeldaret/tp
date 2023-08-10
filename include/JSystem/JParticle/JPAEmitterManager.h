@@ -28,6 +28,7 @@ public:
     /* 8027E344 */ void entryResourceManager(JPAResourceManager*, u8);
     /* 8027E354 */ void clearResourceManager(u8);
     /* 8027E3F4 */ void calcYBBCam();
+    JPAResourceManager* getResourceManager(u16 idx) { return mpResMgrAry[idx]; }
 
 public:
     /* 0x00 */ JSUList<JPABaseEmitter>* mpGrpEmtr;

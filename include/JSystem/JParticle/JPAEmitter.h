@@ -76,6 +76,7 @@ enum {
     JPAEmtrStts_StopEmit = 0x01,
     JPAEmtrStts_StopCalc = 0x02,
     JPAEmtrStts_StopDraw = 0x04,
+    JPAEmtrStts_EnableDeleteEmitter = 0x08,
     JPAEmtrStts_FirstEmit = 0x10,
     JPAEmtrStts_RateStepEmit = 0x20,
     JPAEmtrStts_Immortal = 0x40,
@@ -99,7 +100,7 @@ public:
     void initStatus(u32 status) { mStatus = status; }
     void setStatus(u32 status) { mStatus |= status; }
     void clearStatus(u32 status) { mStatus &= ~status; }
-    bool checkStatus(u32 status) { return !!(mStatus & status); }
+    u32 checkStatus(u32 status) { return (mStatus & status); }
     bool checkFlag(u32 flag) { return !!(mpRes->getDyn()->getFlag() & flag); }
     u8 getResourceManagerID() const { return mResMgrID; }
     u8 getGroupID() const { return mGroupID; }
@@ -108,18 +109,28 @@ public:
     void setEmitterCallBackPtr(JPAEmitterCallBack* ptr) { mpEmtrCallBack = ptr; }
     void setGlobalRTMatrix(const Mtx m) { JPASetRMtxTVecfromMtx(m, mGlobalRot, &mGlobalTrs); }
     void setGlobalTranslation(f32 x, f32 y, f32 z) { mGlobalTrs.set(x, y, z); }
+    void getLocalTranslation(JGeometry::TVec3<f32>& vec) { vec.set(mLocalTrs); }
+    void setGlobalRotation(const JGeometry::TVec3<s16>& rot) {
+        JPAGetXYZRotateMtx(rot.x, rot.y, rot.z, mGlobalRot); 
+    }
     void setGlobalAlpha(u8 alpha) { mGlobalPrmClr.a = alpha; }
+    u8 getGlobalAlpha() { return mGlobalPrmClr.a; }
+    void getGlobalPrmColor(GXColor& color) { color = mGlobalPrmClr; }
+    void setGlobalPrmColor(u8 r, u8 g, u8 b) { mGlobalPrmClr.r = r; mGlobalPrmClr.g = g; mGlobalPrmClr.b = b; }
+    void setGlobalEnvColor(u8 r, u8 g, u8 b) { mGlobalEnvClr.r = r; mGlobalEnvClr.g = g; mGlobalEnvClr.b = b; }
     void setVolumeSize(u16 size) { mVolumeSize = size; }
     void setLifeTime(s16 lifetime) { mLifeTime = lifetime; }
 
     void setGlobalParticleScale(const JGeometry::TVec3<f32>& scale) {
         mGlobalPScl.set(scale.x, scale.y);
     }
-
-    // void setGlobalScale(const JGeometry::TVec3<f32>& scale) {
-    //     mGlobalScl = scale;
-    //     mGlobalPScl = scale;
-    // }
+    void getGlobalParticleScale(JGeometry::TVec3<f32>& scale) {
+        scale.set(mGlobalPScl.x, mGlobalPScl.y, 1.0f);
+    }
+    void setGlobalScale(const JGeometry::TVec3<f32>& scale) {
+        mGlobalScl.set(scale);
+        mGlobalPScl.set(scale.x ,scale.y);
+    }
 
     f32 get_r_f() { return mRndm.get_rndm_f(); }
     f32 get_r_zp() { return mRndm.get_rndm_zp(); }
@@ -127,6 +138,7 @@ public:
     s16 get_r_ss() { return mRndm.get_rndm_ss(); }
 
     void stopCreateParticle() { setStatus(JPAEmtrStts_StopEmit); }
+    void playCreateParticle() { clearStatus(JPAEmtrStts_StopEmit); }
     void becomeImmortalEmitter() { setStatus(JPAEmtrStts_Immortal); }
     void becomeContinuousParticle() { mMaxFrame = 0; }
     void becomeInvalidEmitter() {
@@ -138,11 +150,20 @@ public:
     void stopCalcEmitter() { setStatus(JPAEmtrStts_StopCalc); }
     void playCalcEmitter() { clearStatus(JPAEmtrStts_StopCalc); }
     void stopDrawParticle() { setStatus(JPAEmtrStts_StopDraw); }
+    void playDrawParticle() { clearStatus(JPAEmtrStts_StopDraw); }
 
-    void* getUserWork() { return mpUserWork; }
+    u32 getUserWork() { return mpUserWork; }
+    void setUserWork(u32 userWork) { mpUserWork = userWork; }
     u32 getParticleNumber() {
         return mAlivePtclBase.getNum() + mAlivePtclChld.getNum();
     }
+    bool isEnableDeleteEmitter() {
+        return checkStatus(JPAEmtrStts_EnableDeleteEmitter) && getParticleNumber() == 0;
+    }
+    void setDrawTimes(u8 drawTimes) { mDrawTimes = drawTimes; }
+    void setParticleCallBackPtr(JPAParticleCallBack* cb) { mpPtclCallBack = cb; }
+    JPAParticleCallBack* getParticleCallBackPtr() { return mpPtclCallBack; }
+    JPAEmitterCallBack* getEmitterCallBackPtr() const { return mpEmtrCallBack; }
 
 public:
     /* 0x00 */ JGeometry::TVec3<f32> mLocalScl;
@@ -169,7 +190,7 @@ public:
     /* 0xB0 */ JGeometry::TVec2<f32> mGlobalPScl;
     /* 0xB8 */ GXColor mGlobalPrmClr;
     /* 0xBC */ GXColor mGlobalEnvClr;
-    /* 0xC0 */ void* mpUserWork;
+    /* 0xC0 */ s32 mpUserWork;
     /* 0xC4 */ JPARandom mRndm;
     /* 0xC8 */ JPAList<JPABaseParticle> mAlivePtclBase;
     /* 0xD4 */ JPAList<JPABaseParticle> mAlivePtclChld;
