@@ -1113,6 +1113,7 @@ public:
     u8 getDataNum() const { return mDataNum; }
     void setDataNum(u8 num) { mDataNum = num; }
     void removeZone(int zoneNo) { mZone[zoneNo].reset(); }
+    u8 getNoFile() const { return mNoFile; }
     void setNoFile(u8 file) { mNoFile = file; }
     u8 getNewFile() const { return mNewFile; }
     void setNewFile(u8 file) { mNewFile = file; }

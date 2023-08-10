@@ -1,10 +1,7 @@
 #ifndef JASRESARCLOADER_H
 #define JASRESARCLOADER_H
 
-#include "dolphin/types.h"
-
-typedef struct OSMessageQueue OSMessageQueue;
-class JKRArchive;
+#include "JSystem/JKernel/JKRArchive.h"
 
 namespace JASResArcLoader {
     /* 80290BD0 */ size_t getResSize(JKRArchive const*, u16);
@@ -13,7 +10,8 @@ namespace JASResArcLoader {
     /* 80290D18 */ int loadResourceAsync(JKRArchive*, u16, u8*, u32, void (*)(u32, u32), u32);
 };
 
-
+typedef struct OSMessageQueue OSMessageQueue;
+class JKRArchive;
 
 // from pikmin2
 typedef void (*LoadCallback)(u32, u32);

@@ -10,6 +10,7 @@
 #include "d/meter/d_meter2_info.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_overlap_mng.h"
+#include "f_op/f_op_scene.h"
 #include "f_op/f_op_scene_mng.h"
 #include "f_pc/f_pc_manager.h"
 #include "global.h"
@@ -18,68 +19,91 @@
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_machine.h"
 #include "m_Do/m_Do_mtx.h"
-
-//
-// Types:
-//
-
-class dSn_HIO_c {
-public:
-    /* 8025878C */ dSn_HIO_c();
-    /* 802592DC */ virtual ~dSn_HIO_c() {}
-
-    /* 0x4 */ s8 field_0x4;
-    /* 0x5 */ u8 mFileSelWaitTime;
-};
-
-// TODO: Remove when dFile_select_c virtual functions are properly defined in header
-class dFile_select_c {
-public:
-    /* 8018366C */ dFile_select_c(JKRArchive*);
-    /* 8018375C */ virtual ~dFile_select_c();
-    /* 801843CC */ void _create();
-    /* 801844FC */ void _move();
-    /* 8018DD38 */ void _draw();
-
-    bool getFadeFlag() { return mFadeFlag; }
-    int isDataNew(u8 i) { return mDataNew[i]; }
-    int isSelectEnd() { return mSelectEnd; }
-    u8 getSelectNum() { return mSelectNum; }
-    void setUseType(u8 type) { mUseType = type; }
-
-private:
-    u8 field_0x4[0x254];
-    /* 0x0258 */ u8 mDataNew[3];
-    /* 0x025B */ u8 field_0x25b[0x265 - 0x25b];
-    /* 0x0265 */ u8 mSelectNum;
-    /* 0x0266 */ u8 field_0x266[0x270 - 0x266];
-    /* 0x0270 */ bool mSelectEnd;
-    /* 0x0271 */ u8 field_0x271[0x3b0 - 0x271];
-    /* 0x03B0 */ u8 mUseType;
-    /* 0x03B1 */ u8 field_0x3b1[0x2374 - 0x3b1];
-    /* 0x2374 */ bool mFadeFlag;
-    /* 0x2375 */ u8 field_0x2375[0x237c - 0x2375];
-};
-
-// TODO: Remove when dBrightCheck_c virtual functions are properly defined in header
-class dBrightCheck_c {
-public:
-    /* 80192F10 */ dBrightCheck_c(JKRArchive*);
-    /* 80192F98 */ virtual ~dBrightCheck_c();
-    /* 801934D0 */ void _move();
-    /* 80193594 */ void _draw();
-
-    bool isEnd() { return mEnd; }
-
-    u8 field_0x4[0x15];
-    /* 0x19 */ bool mEnd;
-};
-
+#include "f_op/f_op_overlap_mng.h"
 
 
 //
 // Forward References:
 //
+
+extern "C" void __ct__9dSn_HIO_cFv();
+extern "C" static void phase_1__FPc();
+extern "C" static void phase_2__FPc();
+extern "C" static void resLoad__FP30request_of_phase_process_classPc();
+extern "C" void create__10dScnName_cFv();
+extern "C" void setView__10dScnName_cFv();
+extern "C" void execute__10dScnName_cFv();
+extern "C" void draw__10dScnName_cFv();
+extern "C" void __dt__10dScnName_cFv();
+extern "C" void FileSelectOpen__10dScnName_cFv();
+extern "C" void FileSelectMain__10dScnName_cFv();
+extern "C" void FileSelectMainNormal__10dScnName_cFv();
+extern "C" void FileSelectClose__10dScnName_cFv();
+extern "C" void brightCheckOpen__10dScnName_cFv();
+extern "C" void brightCheck__10dScnName_cFv();
+extern "C" void changeGameScene__10dScnName_cFv();
+extern "C" static void dScnName_Draw__FP10dScnName_c();
+extern "C" static void dScnName_Execute__FP10dScnName_c();
+extern "C" static void dScnName_IsDelete__FP10dScnName_c();
+extern "C" static void dScnName_Delete__FP10dScnName_c();
+extern "C" static void dScnName_Create__FP11scene_class();
+extern "C" void __dt__17dScnName_camera_cFv();
+extern "C" void __dt__9dSn_HIO_cFv();
+extern "C" void __sinit_d_s_name_cpp();
+extern "C" extern char const* const d_s_d_s_name__stringBase0;
+
+//
+// External References:
+//
+
+extern "C" void mDoMtx_lookAt__FPA4_fPC3VecPC3Vecs();
+extern "C" void mDoMtx_concatProjView__FPA4_CfPA4_CfPA4_f();
+extern "C" void mDoExt_getGameHeap__Fv();
+extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
+extern "C" void fopOvlpM_IsPeek__Fv();
+extern "C" void fopScnM_ChangeReq__FP11scene_classssUs();
+extern "C" void dComIfG_resetToOpening__FP11scene_class();
+extern "C" void dComIfGp_setNextStage__FPCcsScSc();
+extern "C" void dComIfGs_gameStart__Fv();
+extern "C" void dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv();
+extern "C" void offFirstBit__21dSv_player_get_item_cFUc();
+extern "C" void setRes__14dRes_control_cFPCcP11dRes_info_ciPCcUcP7JKRHeap();
+extern "C" void syncRes__14dRes_control_cFPCcP11dRes_info_ci();
+extern "C" void deleteRes__14dRes_control_cFPCcP11dRes_info_ci();
+extern "C" void getResInfo__14dRes_control_cFPCcP11dRes_info_ci();
+extern "C" void cleanup__13dPa_control_cFv();
+extern "C" void setViewPort__14dDlst_window_cFffffff();
+extern "C" void setScissor__14dDlst_window_cFffff();
+extern "C" void Run__12dVibration_cFv();
+extern "C" void Init__12dVibration_cFv();
+extern "C" void __ct__14dFile_select_cFP10JKRArchive();
+extern "C" void _create__14dFile_select_cFv();
+extern "C" void _move__14dFile_select_cFv();
+extern "C" void _draw__14dFile_select_cFv();
+extern "C" void __ct__14dBrightCheck_cFP10JKRArchive();
+extern "C" void _move__14dBrightCheck_cFv();
+extern "C" void _draw__14dBrightCheck_cFv();
+extern "C" void dKy_clear_game_init__Fv();
+extern "C" void dKy_setLight_init__Fv();
+extern "C" void changeWater__13dMeter2Info_cFUc();
+extern "C" void bgmStart__8Z2SeqMgrFUlUll();
+extern "C" void bgmStop__8Z2SeqMgrFUll();
+extern "C" void bgmStreamPrepare__8Z2SeqMgrFUl();
+extern "C" void bgmStreamPlay__8Z2SeqMgrFv();
+extern "C" void becomeCurrentHeap__7JKRHeapFv();
+extern "C" void destroy__7JKRHeapFv();
+extern "C" void* __nw__FUl();
+extern "C" void __dl__FPv();
+extern "C" void create__10JKRExpHeapFUlP7JKRHeapb();
+extern "C" void __register_global_object();
+extern "C" void __ptmf_scall();
+extern "C" void _savegpr_28();
+extern "C" void _restgpr_28();
+extern "C" void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];
+extern "C" u8 mFader__13mDoGph_gInf_c[4];
+extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
+extern "C" u8 sManager__10JFWDisplay[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -130,9 +154,12 @@ static s32 phase_2(char* resName) {
 /* 80258878-802588A0 2531B8 0028+00 1/1 0/0 0/0 .text
  * resLoad__FP30request_of_phase_process_classPc                */
 static s32 resLoad(request_of_phase_process_class* i_phase, char* param_1) {
-    static s32 (*l_method[2])(char*) = {phase_1, phase_2};
+    static request_of_phase_process_fn l_method[2] = {
+        (request_of_phase_process_fn)phase_1, 
+        (request_of_phase_process_fn)phase_2
+    };
 
-    return dComLbG_PhaseHandler(i_phase, (request_of_phase_process_fn)l_method, param_1);
+    return dComLbG_PhaseHandler(i_phase, l_method, param_1);
 }
 
 /* ############################################################################################## */
@@ -313,10 +340,11 @@ void dScnName_c::brightCheck() {
     if (mBrightCheck->isEnd()) {
         dComIfGs_setSaveTotalTime(dComIfGs_getTotalTime());
         dComIfGs_setSaveStartTime(OSGetTime());
-
         mDoAud_bgmStop(0x2D);
+
         field_0x41f = 0;
         field_0x41d = 5;
+
         dComIfGs_offItemFirstBit(GREEN_RUPEE);
         dComIfGs_offItemFirstBit(BLUE_RUPEE);
         dComIfGs_offItemFirstBit(YELLOW_RUPEE);
@@ -339,6 +367,7 @@ void dScnName_c::changeGameScene() {
         if (dFs_c->isDataNew(dFs_c->getSelectNum())) {
             dComIfGp_setNextStage("F_SP108", 21, 1, 13);
         }
+        
         dKy_clear_game_init();
         dComIfGs_resetDan();
         dComIfGs_setRestartRoomParam(0);

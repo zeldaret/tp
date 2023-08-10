@@ -565,6 +565,11 @@ inline void dMeter2Info_setScopeZoomPointer(u8 param_0) {
     g_meter2_info.setScopeZoomPointer(param_0);
 }
 
+inline void dMeter2Info_decMsgKeyWaitTimer() {
+    g_meter2_info.decMsgKeyWaitTimer();
+}
+
+const char* dMeter2Info_getNumberTextureName(int pIndex);
 inline bool dMeter2Info_isFloatingMessageVisible() {
     return g_meter2_info.isFloatingMessageVisible();
 }

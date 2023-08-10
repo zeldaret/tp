@@ -711,16 +711,73 @@ asm void J2DPicture::drawOut(JGeometry::TBox2<f32> const& param_0,
 
 /* 802FE380-802FE5D0 2F8CC0 0250+00 1/0 0/0 0/0 .text
  * drawTexCoord__10J2DPictureFffffssssssssPA3_A4_f              */
+#ifdef NONMATCHING
+// matches with literals
+void J2DPicture::drawTexCoord(f32 param_0, f32 param_1, f32 param_2, f32 param_3, s16 param_4,
+                                  s16 param_5, s16 param_6, s16 param_7, s16 param_8, s16 param_9,
+                                  s16 param_10, s16 param_11, Mtx* param_12) {
+                                  
+    if (mTextureCount != 0) {
+        for (u8 i = 0; i < mTextureCount; i++) {
+            load(i);
+        }
+
+        f32 tmp1 = param_0 + param_2;
+        f32 tmp2 = param_1 + param_3;
+
+        GXSetNumTexGens(mTextureCount);
+
+        JUtility::TColor black[4];
+
+        Mtx outputMtx;
+
+        getNewColor(black);
+        setTevMode();
+        PSMTXConcat((MtxP)param_12,mGlobalMtx,outputMtx);
+
+        GXLoadPosMtxImm(outputMtx,0);
+        GXClearVtxDesc();
+        GXSetVtxDesc(GX_VA_POS,GX_DIRECT);
+        GXSetVtxDesc(GX_VA_CLR0,GX_DIRECT);
+        GXSetVtxDesc(GX_VA_TEX0,GX_DIRECT);
+        GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_POS,GX_CLR_RGBA,GX_F32,0);
+        GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_TEX0,GX_CLR_RGBA,GX_RGBA4,8);
+        GXBegin(GX_QUADS,GX_VTXFMT0,4);
+
+        GXPosition3f32(param_0,param_1,0.0f);
+        GXColor1u32(black[0]);
+        GXTexCoord2s16(param_4,param_5);
+
+        GXPosition3f32(tmp1,param_1,0.0f);
+        GXColor1u32(black[1]);
+        GXTexCoord2s16(param_6,param_7);
+
+        GXPosition3f32(tmp1,tmp2,0.0f);
+        GXColor1u32(black[3]);
+        GXTexCoord2s16(param_10,param_11);
+
+        GXPosition3f32(param_0,tmp2,0.0f);
+        GXColor1u32(black[2]);
+        GXTexCoord2s16(param_8,param_9);
+
+        i_GXEnd();
+
+        GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_TEX0,GX_CLR_RGBA,GX_RGBX8,0xf);
+        GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_POS,GX_CLR_RGBA,GX_RGBA4,0);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm void J2DPicture::drawTexCoord(f32 param_0, f32 param_1, f32 param_2, f32 param_3, s16 param_4,
                                   s16 param_5, s16 param_6, s16 param_7, s16 param_8, s16 param_9,
-                                  s16 param_10, s16 param_11, f32 (*param_12)[3][4]) {
+                                  s16 param_10, s16 param_11, Mtx* param_12) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DPicture/drawTexCoord__10J2DPictureFffffssssssssPA3_A4_f.s"
 }
 #pragma pop
+#endif
 
 /* 802FE5D0-802FEA60 2F8F10 0490+00 3/3 0/0 0/0 .text            setTevMode__10J2DPictureFv */
 #pragma push

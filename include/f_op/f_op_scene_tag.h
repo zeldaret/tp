@@ -3,9 +3,12 @@
 
 #include "SSystem/SComponent/c_list.h"
 #include "dolphin/types.h"
+#include "f_pc/f_pc_node.h"
+#include "SSystem/SComponent/c_phase.h"
 
 class scene_tag_class {
-    u8 _0[0x14];
+public:
+    u8 field_0x00[0x14];
 };
 
 void fopScnTg_QueueTo(scene_tag_class* pSceneTag);

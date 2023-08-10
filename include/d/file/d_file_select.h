@@ -2,24 +2,13 @@
 #define D_FILE_D_FILE_SELECT_H
 
 #include "dolphin/types.h"
-#include "global.h"
-
-class CPaneMgr;
-class CPaneMgrAlpha;
-class J2DAnmBase;
-class J2DAnmTransform;
-class J2DPane;
-class J2DPicture;
-class J2DScreen;
-class JKRArchive;
-class JUTFont;
-struct STControl;
-struct cXyz;
-class dFile_warning_c;
-class dMsgString_c;
-class dName_c;
-class dSelect_cursor_c;
-class dSv_save_c;
+#include "d/com/d_com_inf_game.h"
+#include "m_Do/m_Do_MemCard.h"
+#include "d/file/d_file_sel_warning.h"
+#include "d/d_name.h"
+#include "d/msg/d_msg_string.h"
+#include "JSystem/J3DGraphLoader/J3DModelLoader.h"
+#include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 
 class dDlst_FileSel_c {
 public:
@@ -30,7 +19,8 @@ public:
     /* 0x04 */ J2DScreen* mpScreen;
 };
 
-struct dFile_select3D_c {
+class dFile_select3D_c {
+public:
     /* 801902F0 */ dFile_select3D_c();
     /* 80190380 */ ~dFile_select3D_c();
     /* 801903DC */ void _create(u8, u8);
@@ -46,9 +36,33 @@ struct dFile_select3D_c {
     /* 80190D68 */ void createMirrorModel();
     /* 80190FE8 */ void toItem3Dpos(f32, f32, f32, cXyz*);
     /* 801910D4 */ void calcViewMtx(f32 (*)[4]);
+
+    void drawOff() { mpModel = 0; }
+
+    /* 0x0000 */ void* vtable;
+    /* 0x0004 */ JKRSolidHeap* mpHeap;
+    /* 0x0008 */ J3DModel* mpModel;
+    /* 0x000C */ mDoExt_bckAnm* mBckAnm;
+    /* 0x0010 */ mDoExt_brkAnm* mBrkAnm;
+    /* 0x0014 */ J3DLightInfo mLightInfo;
+    /* 0x0048 */ u8 field_0x0048[0x0088 - 0x0048];
+    /* 0x0088 */ J3DLightObj mLightObjects[6];
+    /* 0x0340 */ u8 field_0x0340[0x039C - 0x0340];
+    /* 0x039C */ J2DPane* pane;
+    /* 0x03A0 */ u8 field_0x03A0[0x03A4 - 0x03A0];
+    /* 0x03A4 */ cXyz field_0x03a4;
+    /* 0x03B0 */ csXyz field_0x03b0;
+    /* 0x03B6 */ u8 padding[2];
+    /* 0x03B8 */ cXyz field_0x03b8;
+    /* 0x03C4 */ float field_0x03c4;
+    /* 0x03C8 */ float field_0x03c8;
+    /* 0x03CC */ u8 field_0x03CC[0x03CE - 0x03CC];
+    /* 0x03CE */ u8 mMirrorIdx;
+    /* 0x03CF */ u8 mMaskIdx;
 };
 
-struct dDlst_FileSelYn_c {
+class dDlst_FileSelYn_c {
+public:
     /* 8018E0C0 */ void draw();
     /* 801911F4 */ ~dDlst_FileSelYn_c();
 
@@ -57,7 +71,8 @@ struct dDlst_FileSelYn_c {
     /* 0x08 */ u8 field_0x08[4];
 };
 
-struct dDlst_FileSelDt_c {
+class dDlst_FileSelDt_c {
+public:
     /* 8018DEF4 */ void draw();
     /* 801912E4 */ ~dDlst_FileSelDt_c();
 
@@ -67,7 +82,8 @@ struct dDlst_FileSelDt_c {
     /* 0x0C */ u8 field_0x0c[4];
 };
 
-struct dDlst_FileSelCp_c {
+class dDlst_FileSelCp_c {
+public:
     /* 8018DFFC */ void draw();
     /* 8019126C */ ~dDlst_FileSelCp_c();
 
@@ -78,7 +94,8 @@ struct dDlst_FileSelCp_c {
     /* 0x10 */ J2DPane* mpPane2;
 };
 
-struct dDlst_FileSel3m_c {
+class dDlst_FileSel3m_c {
+public:
     /* 8018E0F8 */ void draw();
     /* 8019117C */ ~dDlst_FileSel3m_c();
 
@@ -86,10 +103,13 @@ struct dDlst_FileSel3m_c {
     /* 0x04 */ J2DScreen* mpScreen;
 };
 
-struct dFile_info_c {
+class dFile_info_c {
+public:
     /* 80192434 */ dFile_info_c(JKRArchive*, u8);
     /* 80192954 */ void setSaveData(dSv_save_c*, int, u8);
     /* 80192D60 */ void _draw();
+
+    void draw() { _draw(); }
 };
 
 // temp struct in order to get matches
@@ -163,14 +183,14 @@ public:
     /* 80184B44 */ void dataDelEffAnm();
     /* 80184BFC */ void dataCopyEffAnm();
     /* 80184CB4 */ void selectDataBaseMoveAnmInitSet(int, int);
-    /* 80184D4C */ void selectDataBaseMoveAnm();
+    /* 80184D4C */ bool selectDataBaseMoveAnm();
     /* 80184E38 */ void dataSelectInAnmSet();
     /* 80185040 */ void dataSelectIn();
     /* 80185230 */ void dataSelectInit();
     /* 801853C4 */ void dataSelect();
     /* 80185508 */ void dataSelectStart();
     /* 80185994 */ void selectDataMoveAnmInitSet(int, int);
-    /* 80185AAC */ void selectDataMoveAnm();
+    /* 80185AAC */ bool selectDataMoveAnm();
     /* 80185C2C */ void dataSelectAnmSet();
     /* 80185DE0 */ void dataSelectMoveAnime();
     /* 80186088 */ void makeRecInfo(u8);
@@ -205,7 +225,7 @@ public:
     /* 8018832C */ void copyDataToSelectMoveAnmSet();
     /* 801884D0 */ void copyDataToSelectMoveAnm();
     /* 80188834 */ void copySelectWakuAlpahAnmInit(u8, u8, u8, u8);
-    /* 80188878 */ void copySelectWakuAlpahAnm(u8);
+    /* 80188878 */ bool copySelectWakuAlpahAnm(u8);
     /* 80188950 */ void getCptoNum(u8);
     /* 80188994 */ void copyToSelBack();
     /* 80188B54 */ void copyToSelPaneMove();
@@ -252,10 +272,10 @@ public:
     /* 8018D4F8 */ void ketteiTxtDispAnmInit(u8);
     /* 8018D574 */ bool ketteiTxtDispAnm();
     /* 8018D650 */ void selectWakuAlpahAnmInit(u8, u8, u8, u8);
-    /* 8018D68C */ void selectWakuAlpahAnm(u8);
+    /* 8018D68C */ bool selectWakuAlpahAnm(u8);
     /* 8018D764 */ void selFileCursorShow();
     /* 8018D884 */ void menuWakuAlpahAnmInit(u8, u8, u8, u8);
-    /* 8018D8C8 */ void menuWakuAlpahAnm(u8);
+    /* 8018D8C8 */ bool menuWakuAlpahAnm(u8);
     /* 8018DA10 */ void menuCursorShow();
     /* 8018DB80 */ void yesnoWakuAlpahAnmInit(u8, u8, u8, u8);
     /* 8018DBCC */ void yesnoWakuAlpahAnm(u8);
@@ -302,7 +322,7 @@ public:
     /* 8018FD30 */ void errorTxtChangeAnm();
     /* 8018FE18 */ bool fileRecScaleAnm();
     /* 8018FE64 */ void fileRecScaleAnmInitSet2(f32, f32);
-    /* 8018FEF4 */ void fileRecScaleAnm2();
+    /* 8018FEF4 */ bool fileRecScaleAnm2();
     /* 8018FF9C */ bool fileInfoScaleAnm();
     /* 80190074 */ void nameMoveAnmInitSet(int, int);
     /* 80190124 */ bool nameMoveAnm();
@@ -328,23 +348,33 @@ public:
     /* 0x0034 */ dDlst_FileSelCp_c mFileSelCopyDlst;     
     /* 0x0048 */ dDlst_FileSelYn_c mFileSelYesNoDlst;    
     /* 0x0054 */ dDlst_FileSel3m_c mFileSel3mDlst;       
-    /* 0x005C */ u8 field_0x00[4];                       
+    /* 0x005C */ u8 field_0x005c[4];                       
     /* 0x0060 */ dSelect_cursor_c* mpCursor1;            
     /* 0x0064 */ dSelect_cursor_c* mpCursor2;            
     /* 0x0068 */ dName_c* mpName;                        
     /* 0x006C */ dFile_warning_c* mpFileWarning;         
     /* 0x0070 */ u8 field_0x70[0xc];                     
     /* 0x007C */ dFile_info_c* mpFileInfo[2];            
-    /* 0x0084 */ J2DAnmBase* mpAnmBase[7];               
-    /* 0x00A0 */ u8 field_0xa0[4];                       
-    /* 0x00A4 */ CPaneMgr* mpPaneMgr1;                    
-    /* 0x00A8 */ u8 field_0xa8[0xbc-0xa8];               
-    /* 0x00BC */ CPaneMgr* mpPaneMgrs[4];
+    /* 0x0084 */ J2DAnmTransform* mpAnmBase[7]; // this might be 7 individual pointers and not an array              
+    /* 0x00A0 */ u8 field_0x00a0[4];                       
+    /* 0x00A4 */ CPaneMgr* field_0x00a4;                    
+    /* 0x00A8 */ u8 field_0x00a8[0xb0-0xa8];               
+    /* 0x00B0 */ s32 field_0x00b0;
+    /* 0x00B4 */ s32 field_0x00b4;
+    /* 0x00B8 */ u8 field_0x00b8;
+    /* 0x00B9 */ u8 field_0x00b9;
+    /* 0x00BA */ u8 field_0x00ba;
+    /* 0x00BB */ u8 field_0x00bb;
+    /* 0x00BC */ CPaneMgr* field_0x00bc[3];
+    /* 0x00C8 */ f32 field_0x00c8;
     /* 0x00CC */ u8 field_0x00cc[8];
     /* 0x00D4 */ float field_0x00d4;
-    /* 0x00D8 */ u8 field_0xd8[0x108 - 0xd8];
-    /* 0x0108 */ bool field_0x108;                       
-    /* 0x0109 */ bool field_0x109;                       
+    /* 0x00D8 */ u8 field_0x00d8[8];
+    /* 0x00E0 */ s32 field_0x00e0[3];
+    /* 0x00EC */ s32 field_0x00ec;
+    /* 0x00F0 */ u8 field_0x00f0[0x108 - 0xf0];
+    /* 0x0108 */ bool field_0x0108;                       
+    /* 0x0109 */ bool field_0x0109;                       
     /* 0x010A */ u8 field_0x10a[2];                      
     /* 0x010C */ J2DPane* mpPane;                        
     /* 0x0110 */ int field_0x0110;
@@ -365,80 +395,98 @@ public:
     /* 0x0188 */ CPaneMgr* field_0x0188[3];
     /* 0x0194 */ u8 field_0x0194[0x01C8 - 0x0194];
     /* 0x01C8 */ J2DAnmBase* field_0x01c8;
-    /* 0x01CC */ u8 field_0x01CC[0x01D0 - 0x01CC];
+    /* 0x01CC */ s32 field_0x01cc;
     /* 0x01D0 */ J2DAnmBase* field_0x01d0;
-    /* 0x01D4 */ u8 field_0x01D4[0x01D8 - 0x01D4];
+    /* 0x01D4 */ s32 field_0x01d4;
     /* 0x01D8 */ J2DAnmBase* field_0x01d8;
-    /* 0x01DC */ u8 field_0x01DC[0x01E0 - 0x01DC];
+    /* 0x01DC */ s32 field_0x01dc;
     /* 0x01E0 */ J2DAnmBase* field_0x01e0;
-    /* 0x01E4 */ u8 field_0x01E4[0x01E8 - 0x01E4];
+    /* 0x01E4 */ s32 field_0x01e4;
     /* 0x01E8 */ J2DAnmBase* field_0x01e8;
-    /* 0x01EC */ u8 field_0x01EC[0x01F0 - 0x01EC];
+    /* 0x01EC */ s32 field_0x01ec;
     /* 0x01F0 */ J2DAnmBase* field_0x01f0;
-    /* 0x01F4 */ u8 field_0x01F4[0x01F8 - 0x01F4];
+    /* 0x01F4 */ s32 field_0x01f4;
     /* 0x01F8 */ J2DAnmBase* field_0x01f8;
-    /* 0x01FC */ u8 field_0x01FC[0x0200 - 0x01FC];
+    /* 0x01FC */ s32 field_0x01fc;
     /* 0x0200 */ J2DAnmBase* field_0x0200;
-    /* 0x0204 */ u8 field_0x0204[8];
+    /* 0x0204 */ s32 field_0x0204;
+    /* 0x0208 */ u8 field_0x0208;
+    /* 0x0209 */ u8 field_0x0209;
+    /* 0x020A */ u8 field_0x020a;
+    /* 0x020B */ u8 field_0x020b;
     /* 0x020C */ CPaneMgrAlpha* field_0x020c;
     /* 0x0210 */ u8 field_0x0210[0x021C - 0x0210];
     /* 0x021C */ u8 field_0x021c;
     /* 0x021D */ u8 field_0x021d;
-    /* 0x021E */ u8 field_0x021e[0x0238 - 0x021E];
+    /* 0x021E */ u8 field_0x021e;
+    /* 0x021F */ u8 field_0x021f;
+    /* 0x0220 */ CPaneMgrAlpha* field_0x0220[3];
+    /* 0x022C */ CPaneMgrAlpha* field_0x022c[3];
     /* 0x0238 */ CPaneMgrAlpha* field_0x0238;
     /* 0x023C */ CPaneMgrAlpha* field_0x023c;
     /* 0x0240 */ CPaneMgrAlpha* field_0x0240;
     /* 0x0244 */ CPaneMgrAlpha* field_0x0244;
     /* 0x0248 */ u8 field_0x0248[0x024A - 0x0248];
     /* 0x024A */ bool field_0x024a;
-    /* 0x024B */ u8 field_0x024B[0x0250 - 0x024B];
+    /* 0x024B */ u8 field_0x024b;
+    /* 0x024C */ u8 field_0x024c;
+    /* 0x024B */ u8 field_0x024d[3];
     /* 0x0250 */ char* field_0x0250;
     /* 0x0254 */ STControl* mStick;
     /* 0x0258 */ u8 mDataNew[3];
     /* 0x025B */ u8 field_0x025b[3];
-    /* 0x025C */ u8 field_0x025e[0x0264 - 0x025E];
-    /* 0x0264 */ u8 field_0x0264;
-    /* 0x0265 */ u8 mSelectNum;
-    /* 0x0266 */ u8 field_0x0266;
-    /* 0x0267 */ u8 field_0x0267;
+    /* 0x025C */ u8 field_0x025e[0x0264 - 0x025e];
+    /* 0x0264 */ u8 mLastSelectNum; // previously selected quest log
+    /* 0x0265 */ u8 mSelectNum; // currently selected quest log
+    /* 0x0266 */ u8 mLastSelectMenuNum; // previously select menu number (for copy / start / delete)
+    /* 0x0267 */ u8 mSelectMenuNum; // currently selected menu number  (for copy / start / delete)
     /* 0x0268 */ u8 field_0x0268[0x026A - 0x0268];
     /* 0x026A */ u8 field_0x026a;
     /* 0x026B */ u8 field_0x026b[0x026e - 0x026b];
     /* 0x026E */ u8 field_0x026e;
     /* 0x026F */ u8 field_0x026f;
     /* 0x0270 */ bool mSelectEnd;
-    /* 0x0271 */ u8 field_0x0271[0x0283 - 0x0271];
+    /* 0x0271 */ u8 field_0x0271;
+    /* 0x0272 */ u8 field_0x0272[0x0281 - 0x0272];
+    /* 0x0281 */ bool field_0x0281;
+    /* 0x0282 */ bool field_0x0282;
     /* 0x0283 */ bool field_0x0283;
     /* 0x0284 */ u8 field_0x0284[0x029C - 0x0284];
-    /* 0x029C */ J2DAnmBase* field_0x029c;
-    /* 0x02A0 */ J2DAnmBase* field_0x02a0;
-    /* 0x02A4 */ u8 field_0x02A4[0x02E8 - 0x02A4];
+    /* 0x029C */ J2DAnmTransform* field_0x029c;
+    /* 0x02A0 */ J2DAnmTransform* field_0x02a0;
+    /* 0x02A4 */ CPaneMgr* field_0x02a4[3];
+    /* 0x02B0 */ u8 field_0x02b0[0x2c0-0x2b0];
+    /* 0x02C0 */ CPaneMgr* field_0x02c0;
+    /* 0x02C4 */ CPaneMgr* field_0x02c4;
+    /* 0x02C8 */ CPaneMgr* field_0x02c8;
+    /* 0x02CC */ CPaneMgr* field_0x02cc;
+    /* 0x02D0 */ CPaneMgr* field_0x02d0;
+    /* 0x02D4 */ CPaneMgr* field_0x02d4;
+    /* 0x02D8 */ u8 field_0x02d8[0x2e8-0x2d8];
     /* 0x02E8 */ J2DAnmBase* field_0x02e8;
-    /* 0x02EC */ u8 field_0x02EC[0x02F0 - 0x02EC];
+    /* 0x02EC */ s32 field_0x02ec;
     /* 0x02F0 */ J2DAnmBase* field_0x02f0;
-    /* 0x02F4 */ u8 field_0x02F4[0x02F8 - 0x02F4];
+    /* 0x02F4 */ s32 field_0x02f4;
     /* 0x02F8 */ J2DAnmBase* field_0x02f8;
-    /* 0x02FC */ u8 field_0x02FC[0x0300 - 0x02FC];
+    /* 0x02FC */ s32 field_0x02fc;
     /* 0x0300 */ J2DAnmBase* field_0x0300;
-    /* 0x0304 */ u8 field_0x0304[0x0308 - 0x0304];
+    /* 0x0304 */ s32 field_0x0304;
     /* 0x0308 */ J2DAnmBase* field_0x0308;
-    /* 0x030C */ u8 field_0x030C[0x0310 - 0x030C];
+    /* 0x030C */ s32 field_0x030c;
     /* 0x0310 */ J2DAnmBase* field_0x0310;
     /* 0x0314 */ J2DAnmBase* field_0x0314;
     /* 0x0318 */ J2DAnmBase* field_0x0318;
-    /* 0x031C */ J2DAnmBase* field_0x031c;
+    /* 0x031C */ s32 field_0x031c; // J2DAnmTransform*?
     /* 0x0320 */ J2DAnmBase* field_0x0320;
-    /* 0x0324 */ u8 field_0x0324[0x0328 - 0x0324];
-    /* 0x0328 */ J2DAnmTransform* field_0x0328; // actually J2DAnmVtxColor?
+    /* 0x0324 */ s32 field_0x0324;
+    /* 0x0328 */ J2DAnmTransform* field_0x0328;
     /* 0x032C */ J2DAnmTransform* field_0x032c;
     /* 0x0330 */ J2DAnmBase* field_0x0330;
-    /* 0x0334 */ u8 field_0x0334[0x0338 - 0x0334];
+    /* 0x0334 */ s32 field_0x0334;
     /* 0x0338 */ J2DAnmBase* field_0x0338;
-    /* 0x033C */ u8 field_0x033c[4];
-    /* 0x0340 */ CPaneMgrAlpha* field_0x0340;
-    /* 0x0344 */ u8 field_0x0344[8];
-    /* 0x034C */ s32 field_0x034c;
-    /* 0x0350 */ u8 field_0x0350[8];
+    /* 0x033C */ s32 field_0x033c;
+    /* 0x0340 */ CPaneMgr* field_0x0340[3];
+    /* 0x034C */ s32 field_0x034c[3];
     /* 0x0358 */ int field_0x0358;
     /* 0x035C */ int field_0x035c;
     /* 0x0360 */ bool field_0x0360;
@@ -461,15 +509,19 @@ public:
     /* 0x0394 */ CPaneMgr* mpPaneMgr2;
     /* 0x0398 */ u8 field_0x0398[0x03A0 - 0x0398];
     /* 0x03A0 */ J2DAnmBase* field_0x03a0;
-    /* 0x03A4 */ u8 field_0x03A4[0x03A8 - 0x03A4];
+    /* 0x03A4 */ s32 field_0x03a4;
     /* 0x03A8 */ CPaneMgr* field_0x03a8;
     /* 0x03AC */ s16 field_0x03ac;
     /* 0x03AE */ u8 field_0x03AE[0x03B0 - 0x03AE];
     /* 0x03B0 */ u8 mUseType;
-    /* 0x03B1 */ u8 field_0x03b1[7];
+    /* 0x03B1 */ u8 field_0x03b1;
+    /* 0x03B2 */ u8 field_0x03b2[6];
     /* 0x03B8 */ char mpMemCard;
     /* 0x03B9 */ u8 field_0x03b9[3];
-    /* 0x03BC */ u8 field_0x03bc[0x2374 - 0x3BC];
+    /* 0x03BC */ u8 field_0x03bc[0x3E0 - 0x3BC];
+    /* 0x03E0 */ dSv_save_c* mpSave;
+    /* 0x03E4 */ u8 field_0x03e4[4];
+    /* 0x03E8 */ u8 field_0x03e8[0x2374 - 0x3E8];
     /* 0x2374 */ bool mFadeFlag;
     /* 0x2375 */ bool mHasDrawn;
     /* 0x2376 */ u8 field_0x2376[0x2378 - 0x2376];

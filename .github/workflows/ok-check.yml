@@ -51,14 +51,26 @@ jobs:
         FILENAMES="${{ steps.changed-files-specific.outputs.all_changed_files }}"
         CMD="./tp github-check-update-status --personal-access-token ${{ secrets.PAT_TOKEN }} --debug"
 
-        # If .inc files are found, assume it's for d_a_alink.cpp for now. 
-        # We can come up something better here later if needed.
-        if echo "$FILENAMES" | grep -q ".inc"; then
-            CMD="$CMD --filename src/d/a/d_a_alink.cpp"
-        else
-            for FILE in $FILENAMES; do
-                CMD="$CMD --filename $FILE"
-            done
+        IFS=' ' read -ra FILE_ARRAY <<< "$FILENAMES"
+        INC_FOUND=false
+
+        # Remove any .inc files from the array
+        for index in "${!FILE_ARRAY[@]}"; do
+            if [[ "${FILE_ARRAY[index]}" == *.inc ]]; then
+                unset 'FILE_ARRAY[index]'
+                INC_FOUND=true
+            fi
+        done
+
+        # If any .inc files were found,
+        # We will add "src/d/a/d_a_alink.cpp" to the array once
+        # if it's not already there
+        if $INC_FOUND && ! [[ " ${FILE_ARRAY[@]} " =~ " src/d/a/d_a_alink.cpp " ]]; then
+            FILE_ARRAY+=("src/d/a/d_a_alink.cpp")
         fi
+
+        for FILE in "${FILE_ARRAY[@]}"; do
+            CMD="$CMD --filename $FILE"
+        done
 
         $CMD

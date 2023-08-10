@@ -22,7 +22,6 @@ class Label:
                 ret_label = Label(name=label)
                 ret_labels.append(ret_label)
         
-            
             title_label = Label(data=d)
             ret_labels.append(title_label)
 

@@ -64,18 +64,16 @@ int cPhs_Next(request_of_phase_process_class* pPhase) {
 /* 802666D8-802667AC 00D4+00 s=1 e=3 z=0  None .text cPhs_Do__FP30request_of_phase_process_classPv
  */
 #ifdef NONMATCHING
+// pUserData loading in too early
 int cPhs_Do(request_of_phase_process_class* pPhase, void* pUserData) {
-    if (const cPhs__Handler* pHandlerTable = pPhase->mpHandlerTable) {
-        // the load of pUserData seems to be slightly scrambled..
-        const cPhs__Handler pHandler = pHandlerTable[pPhase->id];
-        const int newStep = pHandler(pUserData);
+    if (pPhase->mpHandlerTable) {
+        int newStep = pPhase->mpHandlerTable[pPhase->id](pUserData);
 
         switch (newStep) {
         case cPhs_ONE_e:
             return cPhs_Next(pPhase);
         case cPhs_TWO_e:
-            const int step2 = cPhs_Next(pPhase);
-            return step2 == cPhs_ONE_e ? cPhs_TWO_e : cPhs_COMPLEATE_e;
+            return cPhs_Next(pPhase) == cPhs_ONE_e ? cPhs_TWO_e : cPhs_COMPLEATE_e;
         case cPhs_COMPLEATE_e:
             return cPhs_Compleate(pPhase);
         case cPhs_UNK3_e:
@@ -84,9 +82,9 @@ int cPhs_Do(request_of_phase_process_class* pPhase, void* pUserData) {
         case cPhs_ERROR_e:
             cPhs_UnCompleate(pPhase);
             return cPhs_ERROR_e;
+        default:
+            return newStep;
         }
-
-        return newStep;
     }
     
     return cPhs_Compleate(pPhase);

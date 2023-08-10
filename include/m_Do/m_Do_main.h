@@ -12,19 +12,11 @@ s32 LOAD_COPYDATE(void*);
 
 class HeapCheck {
 public:
-    // needed for sinit
-    /* HeapCheck(JKRExpHeap* heap, const char* name, const char* jName) {
+    HeapCheck(JKRExpHeap* heap, const char* name, const char* jName) {
         mName = name;
         mJName = jName;
         setHeap(heap);
-        mMaxTotalUsedSize = 0;
-        mMaxTotalFreeSize = 0;
-        field_0x14 = 0;
-        field_0x18 = 0;
-        mTargetHeapSize = 0;
-        mUsedCount = 0;
-        mTotalUsedSize = 0;
-    } */
+    }
 
     void CheckHeap1(void);
     s32 getUsedCount(void) const;
