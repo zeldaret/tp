@@ -23,8 +23,8 @@ jobs:
         # Download WiBo
         wget https://github.com/decompals/wibo/releases/download/0.4.2/wibo
         chmod +x wibo
-    - name: Run Make (OK)
-      run: make all rels -j$(nproc) WINE=./wibo
+    # - name: Run Make (OK)
+    #   run: make all rels -j$(nproc) WINE=./wibo
     # - name: Create JSON for Progress & Upload
     #   if: github.event_name != 'pull_request'
     #   env: 
