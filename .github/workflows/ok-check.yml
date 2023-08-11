@@ -23,15 +23,15 @@ jobs:
         # Download WiBo
         wget https://github.com/decompals/wibo/releases/download/0.4.2/wibo
         chmod +x wibo
-    # - name: Run Make (OK)
-    #   run: make all rels -j$(nproc) WINE=./wibo
-    # - name: Create JSON for Progress & Upload
-    #   if: github.event_name != 'pull_request'
-    #   env: 
-    #     PROGRESS_API_KEY: ${{ secrets.FROGRESS_API_KEY }}
-    #   run: |
-    #     ./tp progress -f JSON > progress-${{ github.run_id }}.json
-    #     ./tp upload-progress progress-${{ github.run_id }}.json -b https://progress.deco.mp/ -p twilightprincess -v gcn_usa
+    - name: Run Make (OK)
+      run: make all rels -j$(nproc) WINE=./wibo
+    - name: Create JSON for Progress & Upload
+      if: github.event_name != 'pull_request'
+      env: 
+        PROGRESS_API_KEY: ${{ secrets.FROGRESS_API_KEY }}
+      run: |
+        ./tp progress -f JSON > progress-${{ github.run_id }}.json
+        ./tp upload-progress progress-${{ github.run_id }}.json -b https://progress.deco.mp/ -p twilightprincess -v gcn_usa
     - name: Get changed .c, .cpp, .inc files
       if: github.event_name != 'pull_request'
       id: changed-files-specific

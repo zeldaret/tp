@@ -71,6 +71,10 @@ loggers = [logging.getLogger(name) for name in logging.root.manager.loggerDict]
 for logger in loggers:
     logger.setLevel(logging.INFO)
 
+if sys.version_info < (3, 10):
+    LOG.error("This script requires Python 3.10 or newer!")
+    sys.exit(1)
+
 DEFAULT_GAME_PATH = "game"
 DEFAULT_TOOLS_PATH = "tools"
 DEFAULT_BUILD_PATH = "build/dolzel2"
@@ -1201,12 +1205,6 @@ def check_sha1(game_path: Path, build_path: Path, include_rels: bool):
 # Github Command Helpers
 #
 
-if sys.version_info < (3, 10):
-    LOG.error("This script requires Python 3.10 or newer!")
-    sys.exit(1)
-else:
-    LOG.info(f"Python version is {sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}. You're good to go!")
-
 import functools
 
 def common_github_options(func):
@@ -1228,6 +1226,12 @@ def common_github_options(func):
         help="Github repository name",
         required=False,
         default="tp"
+    )
+    @click.option(
+        "--state-file", 
+        help="File to store the state of the issues in. Defaults to tools/projects.yml", 
+        required=False,
+        default="tools/pjstate.yml"
     )
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
@@ -1286,12 +1290,6 @@ def load_from_yaml(type: str, project_name: str) -> any:
     required=False,
     default=None
 )
-@click.option(
-    "--state-file", 
-    help="File to store the state of the issues in. Defaults to tools/projects.yml", 
-    required=False,
-    default="tools/projects.yml"
-)
 def github_sync_labels(debug: bool, personal_access_token: str, owner: str, repo: str, project: str, state_file: str):
     if debug:
         LOG.setLevel(logging.DEBUG)
@@ -1311,12 +1309,6 @@ def github_sync_labels(debug: bool, personal_access_token: str, owner: str, repo
     required=False,
     default=None
 )
-@click.option(
-    "--state-file", 
-    help="File to store the state of the issues in. Defaults to tools/projects.yml", 
-    required=False,
-    default="tools/projects.yml"
-)
 def github_sync_issues(debug: bool, personal_access_token: str, owner: str, repo: str, project: str, state_file: str):
     if debug:
         LOG.setLevel(logging.DEBUG)
@@ -1335,12 +1327,6 @@ def github_sync_issues(debug: bool, personal_access_token: str, owner: str, repo
     help="Only sync labels for a specific project", 
     required=False,
     default=None
-)
-@click.option(
-    "--state-file", 
-    help="File to store the state of the issues in. Defaults to tools/projects.yml", 
-    required=False,
-    default="tools/projects.yml"
 )
 def github_sync_projects(debug: bool, personal_access_token: str, owner: str, repo: str, project: str, state_file: str):
     if debug:
@@ -1378,17 +1364,11 @@ def github_sync_projects(debug: bool, personal_access_token: str, owner: str, re
     help="Path to libclang.so",
     default="/usr/lib/x86_64-linux-gnu/libclang-16.so"
 )
-@click.option(
-    "--state-file", 
-    help="File to store the state of the issues in. Defaults to tools/projects.yml", 
-    required=False,
-    default="tools/projects.yml"
-)
 def github_update_issues(debug: bool, personal_access_token: str, owner: str, repo: str, filenames: Tuple[click.Path], all: bool, author: str, clang_lib_path: str, state_file: str):
     if debug:
         LOG.setLevel("DEBUG")
 
-    if author is () and all == False:
+    if author == () and all == False:
         LOG.error("Author is required when --all is not set. Please set it using the --author argument.")
         sys.exit(1)
 
@@ -1472,12 +1452,6 @@ def github_update_issues(debug: bool, personal_access_token: str, owner: str, re
 
 @tp.command(name="github-clean-labels", help="Delete all labels for a given owner/repository.")
 @common_github_options
-@click.option(
-    "--state-file", 
-    help="File to store the state of the issues in. Defaults to tools/projects.yml", 
-    required=False,
-    default="tools/projects.yml"
-)
 def github_clean_labels(debug: bool, personal_access_token: str, owner: str, repo: str, state_file: str) -> None:
     if debug:
         LOG.setLevel("DEBUG")
@@ -1493,12 +1467,6 @@ def github_clean_labels(debug: bool, personal_access_token: str, owner: str, rep
 
 @tp.command(name="github-clean-issues", help="Delete all issues for a given owner/repository.")
 @common_github_options
-@click.option(
-    "--state-file", 
-    help="File to store the state of the issues in. Defaults to tools/projects.yml", 
-    required=False,
-    default="tools/projects.yml"
-)
 def github_clean_issues(debug: bool, personal_access_token: str, owner: str, repo: str, state_file: str) -> None:
     if debug:
         LOG.setLevel("DEBUG")
@@ -1514,12 +1482,6 @@ def github_clean_issues(debug: bool, personal_access_token: str, owner: str, rep
 
 @tp.command(name="github-clean-projects", help="Delete all projects for a given owner/repository.")
 @common_github_options
-@click.option(
-    "--state-file", 
-    help="File to store the state of the issues in. Defaults to tools/projects.yml", 
-    required=False,
-    default="tools/projects.yml"
-)
 def github_clean_projects(debug: bool, personal_access_token: str, owner: str, repo: str, state_file: str) -> None:
     if debug:
         LOG.setLevel("DEBUG")
