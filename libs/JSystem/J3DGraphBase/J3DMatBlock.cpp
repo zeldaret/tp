@@ -2587,7 +2587,7 @@ asm void J3DTevBlock16::setTexNo(u32 param_0, u16 const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u32 J3DTevBlock16::getTexNo(u32 param_0) const {
+asm u16 J3DTevBlock16::getTexNo(u32 param_0) const {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getTexNo__13J3DTevBlock16CFUl.s"
 }
@@ -3640,7 +3640,7 @@ asm void J3DTevBlock4::setTexNo(u32 param_0, u16 const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u32 J3DTevBlock4::getTexNo(u32 param_0) const {
+asm u16 J3DTevBlock4::getTexNo(u32 param_0) const {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getTexNo__12J3DTevBlock4CFUl.s"
 }
@@ -4033,7 +4033,7 @@ asm void J3DTevBlock2::setTexNo(u32 param_0, u16 const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u32 J3DTevBlock2::getTexNo(u32 param_0) const {
+asm u16 J3DTevBlock2::getTexNo(u32 param_0) const {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getTexNo__12J3DTevBlock2CFUl.s"
 }
@@ -4426,7 +4426,7 @@ asm void J3DTevBlock1::setTexNo(u32 param_0, u16 const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u32 J3DTevBlock1::getTexNo(u32 param_0) const {
+asm u16 J3DTevBlock1::getTexNo(u32 param_0) const {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getTexNo__12J3DTevBlock1CFUl.s"
 }
@@ -4680,7 +4680,7 @@ asm void J3DTevBlockPatched::setTexNo(u32 param_0, u16 const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u32 J3DTevBlockPatched::getTexNo(u32 param_0) const {
+asm u16 J3DTevBlockPatched::getTexNo(u32 param_0) const {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getTexNo__18J3DTevBlockPatchedCFUl.s"
 }

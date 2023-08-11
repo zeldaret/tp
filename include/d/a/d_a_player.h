@@ -793,6 +793,7 @@ public:
     inline bool checkZoraWearFlg() const;
     inline bool checkMagicArmorWearFlg() const;
     inline static BOOL i_checkFirstMidnaDemo() { return i_dComIfGs_isEventBit(0xc10); }
+    static int checkNowWolfPowerUp() { return checkNowWolfEyeUp(); }
 
     static daMidna_c* getMidnaActor() { return m_midnaActor; }
 

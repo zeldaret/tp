@@ -195,6 +195,10 @@ struct LightStatus {
 
 class dKy_tevstr_c {
 public:
+    // Supposedly exists but didn't work. Might be too big to inline.
+    // See dPa_modelEcallBack::model_c::set.
+    //inline dKy_tevstr_c& operator=(const dKy_tevstr_c& b);   
+    
     /* 0x000 */ J3DLightObj mLightObj;
     /* 0x074 */ J3DLightObj field_0x074[6];
     /* 0x32C */ cXyz field_0x32c;
@@ -573,5 +577,24 @@ void dKy_set_bgcol_ratio(f32 ratio);
 void dKy_set_fogcol_ratio(f32 ratio);
 void dKy_set_vrboxcol_ratio(f32 ratio);
 f32 dKy_get_parcent(f32 param_0, f32 param_1, f32 param_2);
+void dKy_setLight_nowroom_grass(char param_0, f32 param_1);
+void dKy_Global_amb_set(dKy_tevstr_c* i_tevstr);
+u8 dKy_pol_eff_prim_get(cBgS_PolyInfo const* param_0, _GXColor* param_1);
+void dKy_pol_eff_env_get(cBgS_PolyInfo const* param_0, _GXColor* param_1);
+u8 dKy_pol_eff_alpha_get(cBgS_PolyInfo const* param_0);
+f32 dKy_pol_eff_ratio_get(cBgS_PolyInfo const* param_0);
+void dKy_pol_eff2_prim_get(cBgS_PolyInfo const* param_0, _GXColor* param_1);
+void dKy_pol_eff2_env_get(cBgS_PolyInfo const* param_0, _GXColor* param_1);
+u8 dKy_pol_eff2_alpha_get(cBgS_PolyInfo const* param_0);
+f32 dKy_pol_eff2_ratio_get(cBgS_PolyInfo const* param_0);
+u8 dKy_pol_efftype_get(cBgS_PolyInfo const* param_0);
+u8 dKy_pol_efftype2_get(cBgS_PolyInfo const* param_0);
+void dKy_ParticleColor_get_actor(cXyz* param_0, dKy_tevstr_c* param_1, _GXColor* param_2,
+                                 _GXColor* param_3, _GXColor* param_4, _GXColor* param_5,
+                                 f32 param_6);
+void dKy_ParticleColor_get_bg(cXyz* param_0, dKy_tevstr_c* param_1, _GXColor* param_2,
+                              _GXColor* param_3, _GXColor* param_4, _GXColor* param_5,
+                              f32 param_6);
+_GXColor dKy_light_influence_col(_GXColor* param_0, f32 param_1);
 
 #endif /* D_KANKYO_D_KANKYO_H */

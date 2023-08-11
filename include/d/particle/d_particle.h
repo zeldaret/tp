@@ -2,10 +2,12 @@
 #define D_PARTICLE_D_PARTICLE_H
 
 #include "JSystem/JParticle/JPAParticle.h"
+#include "JSystem/JParticle/JPAEmitter.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
+#include "d/kankyo/d_kankyo.h"
 
 class J3DAnmTexPattern;
 class J3DModel;
@@ -35,32 +37,37 @@ public:
 private:
     /* 0x04 */ f32 mRate;
     /* 0x08 */ int mMaxCnt;
-    /* 0x0C */ cXyz* field_0xc;
-    /* 0x10 */ cXyz* field_0x10;
-    /* 0x14 */ cXyz* field_0x14;
+    /* 0x0C */ cXyz const* field_0xc;
+    /* 0x10 */ cXyz const* field_0x10;
+    /* 0x14 */ cXyz const* field_0x14;
 };
 
 class mDoDvdThd_toMainRam_c;
 class cBgS_PolyInfo;
 class JPAEmitterManager;
 struct JPADrawInfo;
+struct J3DAnmBase;
 
 class dPa_simpleEcallBack : public JPAEmitterCallBack {
 public:
     /* 8004ADF4 */ dPa_simpleEcallBack();
-    /* 8004AF98 */ void create(JPAEmitterManager*, u16, u8);
-    /* 8004B064 */ void createEmitter(JPAEmitterManager*);
-    /* 8004B168 */ void set(cXyz const*, dKy_tevstr_c const*, u8, _GXColor const&, _GXColor const&,
+    /* 8004AF98 */ JPABaseEmitter* create(JPAEmitterManager*, u16, u8);
+    /* 8004B064 */ JPABaseEmitter* createEmitter(JPAEmitterManager*);
+    /* 8004B168 */ u32 set(cXyz const*, dKy_tevstr_c const*, u8, _GXColor const&, _GXColor const&,
                             int, f32);
 
     /* 8004FC08 */ virtual ~dPa_simpleEcallBack();
     /* 8004AE1C */ virtual void executeAfter(JPABaseEmitter*);
     /* 8004AF94 */ virtual void draw(JPABaseEmitter*);
 
+    void removeEmitter() { mEmitter = NULL; }
+    u16 getID() const { return mID; }
+
     /* 0x04 */ JPABaseEmitter* mEmitter;
     /* 0x08 */ u16 mID;
     /* 0x0A */ u8 field_0xa;
     /* 0x0C */ s16 field_0xc;
+    /* 0x0C */ u16 field_0xe;
     /* 0x10 */ void* mData;
 };  // Size: 0x14
 
@@ -78,6 +85,9 @@ public:
 
     void remove() { end(); }
     JPABaseEmitter* getEmitter() { return mpEmitter; }
+    bool isEnd() {
+        return field_0x10 & 1;
+    }
 
     /* 0x04 */ JPABaseEmitter* mpEmitter;
     /* 0x08 */ const cXyz* field_0x8;
@@ -137,26 +147,41 @@ public:
 class dPa_modelEcallBack : public dPa_levelEcallBack {
 public:
     struct model_c {
-        /* 8004A608 */ void set(J3DModelData*, dKy_tevstr_c const&, u8, void*, u8, u8);
+        /* 8004A608 */ bool set(J3DModelData*, dKy_tevstr_c const&, u8, void*, u8, u8);
         /* 8004A7AC */ void setup();
         /* 8004A88C */ void cleanup();
         /* 8004A8DC */ void draw(f32 (*)[4]);
         /* 8004AB88 */ ~model_c();
         /* 8004FB90 */ model_c();
+
+        void reset() {
+            field_0x0 = 0;
+        }
+
+        u8 getRotAxis() { return mRotAxis; }
+        J3DModelData* getModelData() { return field_0x0; }
+
+        J3DModelData* field_0x0;
+        J3DAnmBase* field_0x4;
+        dKy_tevstr_c field_0x8;
+        u8 mRotAxis;
+        u8 field_0x391;
+        u8 field_0x392;
+        u8 field_0x393;
     };
 
     dPa_modelEcallBack() { mModel = NULL; }
 
-    /* 8004AB1C */ void create(u8);
-    /* 8004ABC4 */ void remove();
-    /* 8004AC00 */ static void setModel(JPABaseEmitter*, J3DModelData*, dKy_tevstr_c const&, u8,
+    /* 8004AB1C */ static void create(u8);
+    /* 8004ABC4 */ static void remove();
+    /* 8004AC00 */ static int setModel(JPABaseEmitter*, J3DModelData*, dKy_tevstr_c const&, u8,
                                         void*, u8, u8);
-    /* 8004AC90 */ void resetModel(JPABaseEmitter*);
-    /* 8004ACC0 */ void setupModel(JPABaseEmitter*);
-    /* 8004ACEC */ void drawModel(JPABaseEmitter*, f32 (*)[4]);
-    /* 8004AD28 */ void cleanupModel(JPABaseEmitter*);
-    /* 8004AD58 */ void getModel(JPABaseEmitter*);
-    /* 8004AD90 */ void getRotAxis(JPABaseEmitter*);
+    /* 8004AC90 */ static void resetModel(JPABaseEmitter*);
+    /* 8004ACC0 */ static void setupModel(JPABaseEmitter*);
+    /* 8004ACEC */ static void drawModel(JPABaseEmitter*, f32 (*)[4]);
+    /* 8004AD28 */ static void cleanupModel(JPABaseEmitter*);
+    /* 8004AD58 */ static model_c* getModel(JPABaseEmitter*);
+    /* 8004AD90 */ static u8 getRotAxis(JPABaseEmitter*);
 
     /* 80050378 */ virtual ~dPa_modelEcallBack();
     /* 8004AA34 */ virtual void draw(JPABaseEmitter*);
@@ -169,11 +194,11 @@ public:
         setModel(param_0, param_1, param_2, param_3, param_4, param_5);
     }
 
+    // Should be dPa_modelEcallBack
     static dPa_modelEcallBack* getEcallback() { return mEcallback; }
-
     static dPa_modelEcallBack* mEcallback;
     static u8 mPcallback[4];
-    static J3DModel* mModel;
+    static model_c* mModel;
 };
 
 class dPa_light8PcallBack : public JPAParticleCallBack {
@@ -262,6 +287,8 @@ public:
 
             void offActive() { mStatus &= ~1; }
             bool isActive() { return mStatus & 1; }
+            u16 getNameId() { return mNameId; }
+            dPa_levelEcallBack* getCallback() { return mCallback; }
 
         private:
             /* 0x00 */ u32 mId;
@@ -296,12 +323,12 @@ public:
     };  // Size: 0x1008
 
     /* 8004BACC */ dPa_control_c();
-    /* 8004BB70 */ static bool getRM_ID(u16);
+    /* 8004BB70 */ static u8 getRM_ID(u16);
     /* 8004BB78 */ void createCommon(void const*);
     /* 8004BCDC */ void createRoomScene();
-    /* 8004BDFC */ void readScene(u8, mDoDvdThd_toMainRam_c**);
+    /* 8004BDFC */ bool readScene(u8, mDoDvdThd_toMainRam_c**);
     /* 8004BEB0 */ void createScene(void const*);
-    /* 8004BF3C */ void removeRoomScene(bool);
+    /* 8004BF3C */ bool removeRoomScene(bool);
     /* 8004BFD4 */ void removeScene(bool);
     /* 8004C054 */ void cleanup();
     /* 8004C078 */ void calc3D();
@@ -317,21 +344,21 @@ public:
     /* 8004D4CC */ u32 set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
                            cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
                            _GXColor const*, cXyz const*, f32);
-    /* 8004CF90 */ void getPolyColor(cBgS_PolyInfo&, int, _GXColor*, _GXColor*, u8*, f32*);
+    /* 8004CF90 */ static s32 getPolyColor(cBgS_PolyInfo&, int, _GXColor*, _GXColor*, u8*, f32*);
     /* 8004D6A4 */ u32 setPoly(u32, u16, cBgS_PolyInfo&, cXyz const*, dKy_tevstr_c const*,
                                csXyz const*, cXyz const*, int, dPa_levelEcallBack*, s8,
                                cXyz const*);
-    /* 8004D068 */ void setPoly(u16, cBgS_PolyInfo&, cXyz const*, dKy_tevstr_c const*, csXyz const*,
+    /* 8004D068 */ JPABaseEmitter* setPoly(u16, cBgS_PolyInfo&, cXyz const*, dKy_tevstr_c const*, csXyz const*,
                                 cXyz const*, int, dPa_levelEcallBack*, s8, cXyz const*);
-    /* 8004D128 */ void newSimple(u16, u8, u32*);
-    /* 8004D1B8 */ void setSimple(u16, cXyz const*, dKy_tevstr_c const*, u8, _GXColor const&,
+    /* 8004D128 */ bool newSimple(u16, u8, u32*);
+    /* 8004D1B8 */ u32 setSimple(u16, cXyz const*, dKy_tevstr_c const*, u8, _GXColor const&,
                                   _GXColor const&, int, f32);
-    /* 8004D23C */ void getSimple(u16);
-    /* 8004D770 */ void setStopContinue(u32);
+    /* 8004D23C */ dPa_simpleEcallBack* getSimple(u16);
+    /* 8004D770 */ u32 setStopContinue(u32);
     /* 8004D7C4 */ u32 setSimpleFoot(u32, u32*, cBgS_PolyInfo&, cXyz const*, dKy_tevstr_c const*,
                                       int, csXyz const*, cXyz const*, dPa_levelEcallBack*, s8,
                                       cXyz const*);
-    /* 8004D988 */ void setCommonPoly(u32*, cBgS_PolyInfo*, cXyz const*, cXyz const*,
+    /* 8004D988 */ u16 setCommonPoly(u32*, cBgS_PolyInfo*, cXyz const*, cXyz const*,
                                       dKy_tevstr_c const*, u32, u32, csXyz const*, cXyz const*, s8);
 
     void forceOnEventMove(u32 param_0) { field_0x210.forceOnEventMove(param_0); }
@@ -386,6 +413,38 @@ public:
     }
 
     static JPAEmitterManager* getEmitterManager() { return mEmitterMng; }
+    static JPAParticleCallBack* getLight8PcallBack() { 
+        return (JPAParticleCallBack*)mLight8PcallBack;
+        //return &mLight8PcallBack; 
+    }
+    static JPAParticleCallBack* getGen_b_Light8PcallBack() {
+        return (JPAParticleCallBack*)m_b_Light8PcallBack;
+        //return &m_b_Light8PcallBack; 
+    }
+    static JPAParticleCallBack* getGen_d_Light8PcallBack() {
+        return (JPAParticleCallBack*)m_d_Light8PcallBack;
+        //return &m_d_Light8PcallBack; 
+    }
+    static dPa_gen_b_light8EcallBack* getGen_b_Light8EcallBack() {
+        return (dPa_gen_b_light8EcallBack*)m_b_Light8EcallBack;
+        //return &m_b_Light8EcallBack; 
+    }
+    static dPa_gen_d_light8EcallBack* getGen_d_Light8EcallBack() {
+        return (dPa_gen_d_light8EcallBack*)m_d_Light8EcallBack;
+        //return &m_d_Light8PcallBack; 
+    }
+    static dPa_light8EcallBack* getLight8EcallBack() {
+        return (dPa_light8EcallBack*)mLight8EcallBack;
+        //return &mLight8EcallBack; 
+    }
+    static JPAParticleCallBack* getParticleTracePCB() {
+        return (JPAParticleCallBack*)mParticleTracePCB;
+        //return &mParticleTracePCB; 
+    }
+    static JPAParticleCallBack* getFsenthPcallBack() {
+        return (JPAParticleCallBack*)mFsenthPcallBack;
+        //return &mFsenthPcallBack; 
+    }
 
     static u8 mTsubo[64];
     static u8 mLifeBall[24];
@@ -411,6 +470,8 @@ private:
     /* 0x014 */ JPAResourceManager* mSceneResMng;
     /* 0x018 */ u8 field_0x18;
     /* 0x019 */ u8 field_0x19;
+    /* 0x01A */ u8 field_0x1a;
+    /* 0x01B */ u8 field_0x1b;
     /* 0x01C */ dPa_simpleEcallBack field_0x1c[25];
     /* 0x210 */ level_c field_0x210;
 };

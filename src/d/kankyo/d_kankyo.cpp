@@ -1211,7 +1211,7 @@ SECTION_SDATA2 static f64 lit_4964 = 4503599627370496.0 /* cast u32 to float */;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dKy_light_influence_col(_GXColor* param_0, f32 param_1) {
+asm _GXColor dKy_light_influence_col(_GXColor* param_0, f32 param_1) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_light_influence_col__FP8_GXColorf.s"
 }
@@ -4778,7 +4778,7 @@ SECTION_DEAD static char const* const stringBase_80394ECD = "D_MN05A";
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dKy_pol_efftype_get(cBgS_PolyInfo const* param_0) {
+asm u8 dKy_pol_efftype_get(cBgS_PolyInfo const* param_0) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_pol_efftype_get__FPC13cBgS_PolyInfo.s"
 }
@@ -4788,7 +4788,7 @@ asm void dKy_pol_efftype_get(cBgS_PolyInfo const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dKy_pol_efftype2_get(cBgS_PolyInfo const* param_0) {
+asm u8 dKy_pol_efftype2_get(cBgS_PolyInfo const* param_0) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_pol_efftype2_get__FPC13cBgS_PolyInfo.s"
 }
@@ -4852,7 +4852,7 @@ u8 dKy_pol_argument_get(cBgS_PolyInfo const* p_poly) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dKy_pol_eff_prim_get(cBgS_PolyInfo const* param_0, _GXColor* param_1) {
+asm u8 dKy_pol_eff_prim_get(cBgS_PolyInfo const* param_0, _GXColor* param_1) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_pol_eff_prim_get__FPC13cBgS_PolyInfoP8_GXColor.s"
 }
@@ -4922,7 +4922,7 @@ asm void dKy_pol_eff2_env_get(cBgS_PolyInfo const* param_0, _GXColor* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dKy_pol_eff_alpha_get(cBgS_PolyInfo const* param_0) {
+asm u8 dKy_pol_eff_alpha_get(cBgS_PolyInfo const* param_0) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_pol_eff_alpha_get__FPC13cBgS_PolyInfo.s"
 }
@@ -4932,7 +4932,7 @@ asm void dKy_pol_eff_alpha_get(cBgS_PolyInfo const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dKy_pol_eff_ratio_get(cBgS_PolyInfo const* param_0) {
+asm f32 dKy_pol_eff_ratio_get(cBgS_PolyInfo const* param_0) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_pol_eff_ratio_get__FPC13cBgS_PolyInfo.s"
 }
@@ -4943,7 +4943,7 @@ asm void dKy_pol_eff_ratio_get(cBgS_PolyInfo const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dKy_pol_eff2_alpha_get(cBgS_PolyInfo const* param_0) {
+asm u8 dKy_pol_eff2_alpha_get(cBgS_PolyInfo const* param_0) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_pol_eff2_alpha_get__FPC13cBgS_PolyInfo.s"
 }
@@ -4954,7 +4954,7 @@ asm void dKy_pol_eff2_alpha_get(cBgS_PolyInfo const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dKy_pol_eff2_ratio_get(cBgS_PolyInfo const* param_0) {
+asm f32 dKy_pol_eff2_ratio_get(cBgS_PolyInfo const* param_0) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_pol_eff2_ratio_get__FPC13cBgS_PolyInfo.s"
 }

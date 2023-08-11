@@ -31,6 +31,12 @@ struct TVec3<s16> {
         z = b.z;
         return *this;
     }
+
+    void set(s16 x_, s16 y_, s16 z_) {
+        x = x_;
+        y = y_;
+        z = z_;
+    }
 };
 
 inline void setTVec3f(const f32* vec_a, f32* vec_b) {
@@ -46,6 +52,11 @@ inline void setTVec3f(const f32* vec_a, f32* vec_b) {
         psq_st a_x, 0(v_b), 0, 0 /* qr0 */
         stfs b_x, 8(v_b)
     };
+}
+
+// Until we figure out TVec3 ctors
+inline void setTVec3f(const Vec& vec_a, Vec& vec_b) {
+    setTVec3f(&vec_a.x, &vec_b.x);
 }
 
 inline float fsqrt_step(float mag) {

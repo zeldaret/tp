@@ -89,7 +89,9 @@ public:
     bool isEnvAnm() const { return !!(mpData->mClrFlg & 0x08); }
     u8 getClrAnmType() const { return (mpData->mClrFlg >> 4) & 0x07; }
     s16 getClrAnmMaxFrm() const { return mpData->mClrAnmFrmMax; }
+    void getPrmClr(GXColor* dst) { *dst = mpData->mClrPrm; }
     void getPrmClr(s16 idx, GXColor* dst) { *dst = mpPrmClrAnmTbl[idx]; }
+    void getEnvClr(GXColor* dst) { *dst = mpData->mClrEnv; }
     void getEnvClr(s16 idx, GXColor* dst) { *dst = mpEnvClrAnmTbl[idx]; }
 
     bool isTexAnm() const { return !!(mpData->mTexFlg & 0x01); }

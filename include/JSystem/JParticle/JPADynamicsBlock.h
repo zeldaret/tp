@@ -34,7 +34,7 @@ struct JPADynamicsBlockData {
     /* 0x6E */ s16 mMaxFrame;
     /* 0x70 */ s16 mStartFrame;
     /* 0x72 */ s16 mLifeTime;
-    /* 0x74 */ s16 mVolumeSize;
+    /* 0x74 */ u16 mVolumeSize;
     /* 0x76 */ u16 mDivNumber;
     /* 0x78 */ u8 mRateStep;
     /* 0x7C */ u32 field_0x7c;
@@ -64,6 +64,31 @@ public:
     u32 getVolumeType() const { return (mpData->mFlags >> 8) & 0x07; }
     u16 getDivNumber() const { return mpData->mDivNumber; }
     f32 getRateRndm() const { return mpData->mRateRndm; }
+    void getEmitterScl(JGeometry::TVec3<f32>* vec) const { 
+        vec->set(mpData->mEmitterScl.x, mpData->mEmitterScl.y, mpData->mEmitterScl.z); 
+    }
+    void getEmitterTrs(JGeometry::TVec3<f32>* vec) const { 
+        vec->set(mpData->mEmitterTrs.x, mpData->mEmitterTrs.y, mpData->mEmitterTrs.z); 
+    }
+    void getEmitterDir(JGeometry::TVec3<f32>* vec) const { 
+        vec->set(mpData->mEmitterDir.x, mpData->mEmitterDir.y, mpData->mEmitterDir.z); 
+    }
+    void getEmitterRot(JGeometry::TVec3<s16>* vec) const { 
+        vec->set(mpData->mEmitterRot.x, mpData->mEmitterRot.y, mpData->mEmitterRot.z); 
+    } 
+    s16 getMaxFrame() { return mpData->mMaxFrame; }
+    s16 getLifetime() { return mpData->mLifeTime; }
+    u16 getVolumeSize() { return mpData->mVolumeSize; }
+    f32 getRate() { return mpData->mRate; }
+    u8 getRateStep() { return mpData->mRateStep; }
+    f32 getVolumeSweep() { return mpData->mVolumeSweep; }
+    f32 getVolumeMinRad() { return mpData->mVolumeMinRad; }
+    f32 getInitVelOmni() { return mpData->mInitialVelOmni; }
+    f32 getInitVelAxis() { return mpData->mInitialVelAxis; }
+    f32 getInitVelDir() { return mpData->mInitialVelDir; }
+    f32 getInitVelDirSp() { return mpData->mSpread; }
+    f32 getInitVelRndm() { return mpData->mInitialVelRndm; }
+    f32 getAirRes() { return mpData->mAirResist; }
 
 public:
     /* 0x00 */ const JPADynamicsBlockData* mpData;

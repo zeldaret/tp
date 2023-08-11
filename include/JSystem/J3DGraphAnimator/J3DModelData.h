@@ -75,6 +75,10 @@ public:
     int removeMatColorAnimator(J3DAnmColor* anm) {
         return mMaterialTable.removeMatColorAnimator(anm);
     }
+    void syncJ3DSys() {
+        syncJ3DSysFlags();
+        syncJ3DSysPointers();
+    }
 
 private:
     /* 0x04 */ void* mpRawData;
