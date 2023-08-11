@@ -64,8 +64,8 @@ int J3DDrawBuffer::entryMatSort(J3DMatPacket* pMatPacket) {
 
     J3DTexture* texture = j3dSys.getTexture();
     u32 hash;
-    u32 texNo = pMatPacket->getMaterial()->getTexNo(0);
-    if ((u16)texNo == 0xFFFF) {
+    u16 texNo = pMatPacket->getMaterial()->getTexNo(0);
+    if (texNo == 0xFFFF) {
         hash = 0;
     } else {
         hash = ((u32)texture->getResTIMG(texNo) + texture->getResTIMG(texNo)->imageOffset) >> 5;

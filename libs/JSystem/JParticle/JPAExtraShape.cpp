@@ -6,6 +6,7 @@
 #include "JSystem/JParticle/JPAExtraShape.h"
 #include "JSystem/JMath/JMATrigonometric.h"
 #include "JSystem/JParticle/JPAParticle.h"
+#include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
 #include "dol2asm.h"

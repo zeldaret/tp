@@ -163,7 +163,7 @@ public:
     /* 8031730C */ virtual s32 countDLSize();
     /* 80323544 */ virtual void setTexNo(u32, u16 const*);
     /* 8000E0AC */ virtual void setTexNo(u32, u16);
-    /* 8000DF94 */ virtual u32 getTexNo(u32) const;
+    /* 8000DF94 */ virtual u16 getTexNo(u32) const;
     /* 80323548 */ virtual void setTevOrder(u32, J3DTevOrder const*);
     /* 8000E0BC */ virtual void setTevOrder(u32, J3DTevOrder);
     /* 8000DFB8 */ virtual J3DTevOrder* getTevOrder(u32);
@@ -229,7 +229,7 @@ public:
     /* 80317BB4 */ virtual s32 countDLSize();
     /* 803229D0 */ virtual void setTexNo(u32, u16 const*);
     /* 803229C0 */ virtual void setTexNo(u32, u16);
-    /* 803229E4 */ virtual u32 getTexNo(u32) const;
+    /* 803229E4 */ virtual u16 getTexNo(u32) const;
     /* 80322A08 */ virtual void setTevOrder(u32, J3DTevOrder const*);
     /* 803229F4 */ virtual void setTevOrder(u32, J3DTevOrder);
     /* 80322A1C */ virtual J3DTevOrder* getTevOrder(u32);
@@ -296,7 +296,7 @@ public:
     /* 80317BCC */ virtual s32 countDLSize();
     /* 8032202C */ virtual void setTexNo(u32, u16 const*);
     /* 8032201C */ virtual void setTexNo(u32, u16);
-    /* 80322040 */ virtual u32 getTexNo(u32) const;
+    /* 80322040 */ virtual u16 getTexNo(u32) const;
     /* 80322064 */ virtual void setTevOrder(u32, J3DTevOrder const*);
     /* 80322050 */ virtual void setTevOrder(u32, J3DTevOrder);
     /* 80322078 */ virtual J3DTevOrder* getTevOrder(u32);
@@ -369,7 +369,7 @@ public:
     /* 80317BC4 */ virtual s32 countDLSize();
     /* 803223F0 */ virtual void setTexNo(u32, u16 const*);
     /* 803223E0 */ virtual void setTexNo(u32, u16);
-    /* 80322404 */ virtual u32 getTexNo(u32) const;
+    /* 80322404 */ virtual u16 getTexNo(u32) const;
     /* 80322428 */ virtual void setTevOrder(u32, J3DTevOrder const*);
     /* 80322414 */ virtual void setTevOrder(u32, J3DTevOrder);
     /* 8032243C */ virtual J3DTevOrder* getTevOrder(u32);
@@ -442,7 +442,7 @@ public:
     /* 80317BD4 */ virtual s32 countDLSize();
     /* 80321C60 */ virtual void setTexNo(u32, u16 const*);
     /* 80321C50 */ virtual void setTexNo(u32, u16);
-    /* 80321C74 */ virtual u32 getTexNo(u32) const;
+    /* 80321C74 */ virtual u16 getTexNo(u32) const;
     /* 80321C98 */ virtual void setTevOrder(u32, J3DTevOrder const*);
     /* 80321C84 */ virtual void setTevOrder(u32, J3DTevOrder);
     /* 80321CAC */ virtual J3DTevOrder* getTevOrder(u32);
@@ -515,7 +515,7 @@ public:
     /* 80317BBC */ virtual s32 countDLSize();
     /* 803227B4 */ virtual void setTexNo(u32, u16 const*);
     /* 803227A4 */ virtual void setTexNo(u32, u16);
-    /* 803227C8 */ virtual u32 getTexNo(u32) const;
+    /* 803227C8 */ virtual u16 getTexNo(u32) const;
     /* 803227EC */ virtual void setTevOrder(u32, J3DTevOrder const*);
     /* 803227D8 */ virtual void setTevOrder(u32, J3DTevOrder);
     /* 80322800 */ virtual J3DTevOrder* getTevOrder(u32);
