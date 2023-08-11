@@ -8,6 +8,11 @@ on:
     branches:
       - master
 
+env:
+  GITHUB_ORG: "zeldaret"
+  GITHUB_REPO: "tp"
+  STATE_FILE: "tools/pjstate.yml"
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -49,7 +54,7 @@ jobs:
         sudo apt install -y libclang-16-dev
 
         FILENAMES="${{ steps.changed-files-specific.outputs.all_changed_files }}"
-        CMD="./tp github-update-issues --personal-access-token ${{ secrets.PAT_TOKEN }} --debug --owner pheenoh-test-org --repo tp --state-file tools/pjstate_test.yml"
+        CMD="./tp github-update-issues --personal-access-token ${{ secrets.PAT_TOKEN }} --debug --owner ${{ env.GITHUB_ORG }} --repo ${{ env.GITHUB_REPO }} --state-file ${{ env.STATE_FILE }}"
 
         IFS=' ' read -ra FILE_ARRAY <<< "$FILENAMES"
         INC_FOUND=false
