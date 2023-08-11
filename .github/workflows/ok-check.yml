@@ -49,7 +49,7 @@ jobs:
         sudo apt install -y libclang-16-dev
 
         FILENAMES="${{ steps.changed-files-specific.outputs.all_changed_files }}"
-        CMD="./tp github-update-issues --personal-access-token ${{ secrets.PAT_TOKEN }} --debug"
+        CMD="./tp github-update-issues --personal-access-token ${{ secrets.PAT_TOKEN }} --debug --owner pheenoh-test-org --repo tp --state-file tools/pjstate_test.yml"
 
         IFS=' ' read -ra FILE_ARRAY <<< "$FILENAMES"
         INC_FOUND=false
