@@ -1201,6 +1201,12 @@ def check_sha1(game_path: Path, build_path: Path, include_rels: bool):
 # Github Command Helpers
 #
 
+if sys.version_info < (3, 10):
+    LOG.error("This script requires Python 3.10 or newer!")
+    sys.exit(1)
+else:
+    LOG.info(f"Python version is {sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}. You're good to go!")
+
 import functools
 
 def common_github_options(func):
@@ -1228,7 +1234,7 @@ def common_github_options(func):
         return func(*args, **kwargs)
     return wrapper
 
-def prereqs(owner: str, repo: str, personal_access_token: str):
+def prereqs(owner: str, repo: str, personal_access_token: str, state_file: str):
     # Setup GraphQL client singleton
     libgithub.GraphQLClient.setup(personal_access_token)
 
@@ -1239,7 +1245,7 @@ def prereqs(owner: str, repo: str, personal_access_token: str):
     libgithub.RepoInfo.set_ids()
 
     # Load in the project state
-    libgithub.StateFile.load("tools/pjstate.yml")
+    libgithub.StateFile.load(state_file)
 
 def load_from_yaml(type: str, project_name: str) -> any:
     with open("./tools/projects.yml", 'r') as stream:
@@ -1254,14 +1260,8 @@ def load_from_yaml(type: str, project_name: str) -> any:
                     ret_data = libgithub.Label.get_all_from_yaml(projects_data, project_name)
                 case "issues":
                     ret_data = libgithub.Issue.get_all_from_yaml(projects_data, project_name)
-                    for d in ret_data:
-                        print(d.__dict__)
-                    sys.exit(0)
                 case "projects":
-                    ret_data = libgithub.Project.get_all_from_yaml(projects_data)
-                    for d in ret_data:
-                        print(d.__dict__)
-                    sys.exit(0)
+                    ret_data = libgithub.Project.get_all_from_yaml(projects_data, project_name)
                 case _:
                     LOG.error(f"Invalid type: {type}")
                     sys.exit(1)
@@ -1286,11 +1286,17 @@ def load_from_yaml(type: str, project_name: str) -> any:
     required=False,
     default=None
 )
-def github_sync_labels(debug: bool, personal_access_token: str, owner: str, repo: str, project: str):
+@click.option(
+    "--state-file", 
+    help="File to store the state of the issues in. Defaults to tools/projects.yml", 
+    required=False,
+    default="tools/projects.yml"
+)
+def github_sync_labels(debug: bool, personal_access_token: str, owner: str, repo: str, project: str, state_file: str):
     if debug:
         LOG.setLevel(logging.DEBUG)
 
-    prereqs(owner, repo, personal_access_token)
+    prereqs(owner, repo, personal_access_token, state_file)
     yaml_labels = load_from_yaml("labels", project)
 
     LOG.info("Syncing up labels")
@@ -1305,12 +1311,18 @@ def github_sync_labels(debug: bool, personal_access_token: str, owner: str, repo
     required=False,
     default=None
 )
-def github_sync_issues(debug: bool, personal_access_token: str, owner: str, repo: str):
+@click.option(
+    "--state-file", 
+    help="File to store the state of the issues in. Defaults to tools/projects.yml", 
+    required=False,
+    default="tools/projects.yml"
+)
+def github_sync_issues(debug: bool, personal_access_token: str, owner: str, repo: str, project: str, state_file: str):
     if debug:
         LOG.setLevel(logging.DEBUG)
 
-    prereqs(owner,repo,personal_access_token)
-    yaml_issues = load_from_yaml("issues")
+    prereqs(owner,repo,personal_access_token, state_file)
+    yaml_issues = load_from_yaml("issues", project)
 
     LOG.info("Syncing up issues")
     for issue in yaml_issues:
@@ -1324,12 +1336,18 @@ def github_sync_issues(debug: bool, personal_access_token: str, owner: str, repo
     required=False,
     default=None
 )
-def github_sync_projects(debug: bool, personal_access_token: str, owner: str, repo: str):
+@click.option(
+    "--state-file", 
+    help="File to store the state of the issues in. Defaults to tools/projects.yml", 
+    required=False,
+    default="tools/projects.yml"
+)
+def github_sync_projects(debug: bool, personal_access_token: str, owner: str, repo: str, project: str, state_file: str):
     if debug:
         LOG.setLevel(logging.DEBUG)
 
-    prereqs(owner, repo, personal_access_token)
-    yaml_projects = load_from_yaml("projects")
+    prereqs(owner, repo, personal_access_token, state_file)
+    yaml_projects = load_from_yaml("projects", project)
 
     LOG.info("Syncing up projects")
     for project in yaml_projects:
@@ -1347,7 +1365,6 @@ def github_sync_projects(debug: bool, personal_access_token: str, owner: str, re
     '--author',
     multiple=True,
     help="Author(s) to assign issues to.",
-    is_flag=True,
     default=None
 )
 @click.option(
@@ -1361,15 +1378,21 @@ def github_sync_projects(debug: bool, personal_access_token: str, owner: str, re
     help="Path to libclang.so",
     default="/usr/lib/x86_64-linux-gnu/libclang-16.so"
 )
-def github_update_issues(debug: bool, personal_access_token: str, owner: str, repo: str, filenames: Tuple[click.Path], all: bool, author: str, clang_lib_path: str):
+@click.option(
+    "--state-file", 
+    help="File to store the state of the issues in. Defaults to tools/projects.yml", 
+    required=False,
+    default="tools/projects.yml"
+)
+def github_update_issues(debug: bool, personal_access_token: str, owner: str, repo: str, filenames: Tuple[click.Path], all: bool, author: str, clang_lib_path: str, state_file: str):
     if debug:
         LOG.setLevel("DEBUG")
 
-    if author is None:
-        LOG.error("Author is required. Please set it using the --author argument.")
+    if author is () and all == False:
+        LOG.error("Author is required when --all is not set. Please set it using the --author argument.")
         sys.exit(1)
 
-    prereqs(owner, repo, personal_access_token)
+    prereqs(owner, repo, personal_access_token, state_file)
 
     issues = libgithub.StateFile.data.get('issues')
     projects = libgithub.StateFile.data.get('projects')
@@ -1377,17 +1400,20 @@ def github_update_issues(debug: bool, personal_access_token: str, owner: str, re
     filenames_list = list(filenames)
     author_list = list(author)
 
+    if len(author_list) == 0:
+        author_list = [""] * len(filenames_list)
+
     # If all flag is set, check all issue file paths in state file
     if all:
         for issue in issues:
             filenames_list.append(issue["file_path"])
 
-    import classify_tu, clang
+    import classify_tu, clang, itertools
 
     # Set the clang library file
     clang.cindex.Config.set_library_file(clang_lib_path)
 
-    for filename,author in zip(filenames_list,author_list):
+    for filename,author in itertools.zip_longest(filenames_list,author_list):
         LOG.info(f"Classifying TU {filename}")
         status = classify_tu.run(filename)
 
@@ -1423,16 +1449,18 @@ def github_update_issues(debug: bool, personal_access_token: str, owner: str, re
             sys.exit(1)            
 
         libgithub.Project(id=project_id,status_field=status_field).set_status_for_item(item_id, status)
-
-        # Find the matching author
-        author_user = libgithub.User(name=author)
-        author_user.get_id()
-
-        # Add the author as an assignee
         github_issue = libgithub.Issue(id=issue_id,title=issue_title)
-        assignees = github_issue.get_all_assignees()
-        assignees.append(author_user)
-        github_issue.add_assignees(assignees)
+
+        # Add the author as an assignee if it was passed in
+        if author is not None:
+            # Find the matching author
+            author_user = libgithub.User(name=author)
+            author_user.get_id()
+
+            # Add the author as an assignee    
+            assignees = github_issue.get_all_assignees()
+            assignees.append(author_user)
+            github_issue.add_assignees(assignees)
 
         # Close the issue if status is done
         if status == "done":
@@ -1444,7 +1472,13 @@ def github_update_issues(debug: bool, personal_access_token: str, owner: str, re
 
 @tp.command(name="github-clean-labels", help="Delete all labels for a given owner/repository.")
 @common_github_options
-def github_clean_labels(debug: bool, personal_access_token: str, owner: str, repo: str) -> None:
+@click.option(
+    "--state-file", 
+    help="File to store the state of the issues in. Defaults to tools/projects.yml", 
+    required=False,
+    default="tools/projects.yml"
+)
+def github_clean_labels(debug: bool, personal_access_token: str, owner: str, repo: str, state_file: str) -> None:
     if debug:
         LOG.setLevel("DEBUG")
 
@@ -1452,14 +1486,20 @@ def github_clean_labels(debug: bool, personal_access_token: str, owner: str, rep
     confirmation = input().lower()
 
     if confirmation == 'y':
-        prereqs(owner,repo,personal_access_token)
+        prereqs(owner,repo,personal_access_token, state_file)
         libgithub.Label.delete_all()
     else:
         sys.exit(0)
 
 @tp.command(name="github-clean-issues", help="Delete all issues for a given owner/repository.")
 @common_github_options
-def github_clean_issues(debug: bool, personal_access_token: str, owner: str, repo: str):
+@click.option(
+    "--state-file", 
+    help="File to store the state of the issues in. Defaults to tools/projects.yml", 
+    required=False,
+    default="tools/projects.yml"
+)
+def github_clean_issues(debug: bool, personal_access_token: str, owner: str, repo: str, state_file: str) -> None:
     if debug:
         LOG.setLevel("DEBUG")
 
@@ -1467,14 +1507,20 @@ def github_clean_issues(debug: bool, personal_access_token: str, owner: str, rep
     confirmation = input().lower()
 
     if confirmation == 'y':
-        prereqs(owner,repo,personal_access_token)
+        prereqs(owner,repo,personal_access_token, state_file)
         libgithub.Issue.delete_all()
     else:
         sys.exit(0)
 
 @tp.command(name="github-clean-projects", help="Delete all projects for a given owner/repository.")
 @common_github_options
-def github_clean_projects(debug: bool, personal_access_token: str, owner: str, repo: str):
+@click.option(
+    "--state-file", 
+    help="File to store the state of the issues in. Defaults to tools/projects.yml", 
+    required=False,
+    default="tools/projects.yml"
+)
+def github_clean_projects(debug: bool, personal_access_token: str, owner: str, repo: str, state_file: str) -> None:
     if debug:
         LOG.setLevel("DEBUG")
 
@@ -1482,7 +1528,7 @@ def github_clean_projects(debug: bool, personal_access_token: str, owner: str, r
     confirmation = input().lower()
 
     if confirmation == 'y':
-        prereqs(owner,repo,personal_access_token)
+        prereqs(owner,repo,personal_access_token, state_file)
         libgithub.Project.delete_all()
     else:
         sys.exit(0)

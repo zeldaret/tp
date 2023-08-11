@@ -514,7 +514,7 @@ class Project:
             StateFile.data['projects'] = [state]
 
 
-        with open("tools/pjstate.yml", 'w') as f:
+        with open(StateFile.file_name, 'w') as f:
             yaml.safe_dump(StateFile.data, f)
 
 # Custom representer for Option

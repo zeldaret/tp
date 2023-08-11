@@ -156,7 +156,6 @@ class Issue:
 
         data = GraphQLClient.get_instance().make_request(query, variables)
         if data:
-            print(data)
             assignees = data["data"]["node"]["assignees"]["nodes"]
             LOG.debug(f'Got assignees: {assignees}')
 
@@ -339,13 +338,6 @@ class Issue:
             LOG.debug(f'No labels found for issue {issue_id}')
             return []
         
-    def test(self):
-        LOG.debug(f"ID: {self.id}")
-        
-
-        data = GraphQLClient.get_instance().make_request(query, variables)
-        print(data)
-        
     def attach_labels(self) -> None:
         LOG.debug(f'Attaching labels to issue {self.id} on {RepoInfo.owner.name}/{RepoInfo.name}')
     
@@ -361,7 +353,7 @@ class Issue:
             LOG.info(f"Issue {self.title} from TU {self.file_path} already setup!")
             self.id = issue_dict[self.file_path]["id"]
         else:
-            LOG.info(f'Creating missing issue {self.title}.')
+            LOG.debug(f'Creating missing issue {self.title}.')
             self.create()
 
     def add_assignees(self, assignees: list[User]) -> None:
@@ -497,5 +489,5 @@ class Issue:
             StateFile.data['issues'] = [state]
 
 
-        with open("tools/pjstate.yml", 'w') as f:
+        with open(StateFile.file_name, 'w') as f:
             yaml.safe_dump(StateFile.data, f)
