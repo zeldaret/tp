@@ -11,11 +11,15 @@ import yaml, sys
 @dataclass
 class Label:
     @staticmethod
-    def get_all_from_yaml(data):
+    def get_all_from_yaml(data, project_name: str) -> list['Label']:
         ret_labels = []
         sub_labels = []
 
+        
         for d in data:
+            if d.get('project', {}).get('title', 'MISSING_TITLE') != project_name and project_name is not None:
+                LOG.debug("Project name was passed in but doesn't match the current project, skipping.")
+                continue
             sub_labels = get_sub_labels(d)
 
             for label in sub_labels:
@@ -24,7 +28,6 @@ class Label:
         
             title_label = Label(data=d)
             ret_labels.append(title_label)
-
         return ret_labels
 
 

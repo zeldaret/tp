@@ -1241,7 +1241,7 @@ def prereqs(owner: str, repo: str, personal_access_token: str):
     # Load in the project state
     libgithub.StateFile.load("tools/pjstate.yml")
 
-def load_from_yaml(type: str) -> any:
+def load_from_yaml(type: str, project_name: str) -> any:
     with open("./tools/projects.yml", 'r') as stream:
         try:
             import yaml
@@ -1251,11 +1251,17 @@ def load_from_yaml(type: str) -> any:
 
             match type:
                 case "labels":
-                    ret_data = libgithub.Label.get_all_from_yaml(projects_data)
+                    ret_data = libgithub.Label.get_all_from_yaml(projects_data, project_name)
                 case "issues":
-                    ret_data = libgithub.Issue.get_all_from_yaml(projects_data)
+                    ret_data = libgithub.Issue.get_all_from_yaml(projects_data, project_name)
+                    for d in ret_data:
+                        print(d.__dict__)
+                    sys.exit(0)
                 case "projects":
                     ret_data = libgithub.Project.get_all_from_yaml(projects_data)
+                    for d in ret_data:
+                        print(d.__dict__)
+                    sys.exit(0)
                 case _:
                     LOG.error(f"Invalid type: {type}")
                     sys.exit(1)
@@ -1274,12 +1280,18 @@ def load_from_yaml(type: str) -> any:
 
 @tp.command(name="github-sync-labels", help="Creates all labels based on tools/projects.yml")
 @common_github_options
-def github_sync_labels(debug: bool, personal_access_token: str, owner: str, repo: str):
+@click.option(
+    "--project", 
+    help="Only sync labels for a specific project", 
+    required=False,
+    default=None
+)
+def github_sync_labels(debug: bool, personal_access_token: str, owner: str, repo: str, project: str):
     if debug:
         LOG.setLevel(logging.DEBUG)
 
     prereqs(owner, repo, personal_access_token)
-    yaml_labels = load_from_yaml("labels")
+    yaml_labels = load_from_yaml("labels", project)
 
     LOG.info("Syncing up labels")
     for label in yaml_labels:
@@ -1287,6 +1299,12 @@ def github_sync_labels(debug: bool, personal_access_token: str, owner: str, repo
 
 @tp.command(name="github-sync-issues", help="Creates all issues and labels based on tools/projects.yml")
 @common_github_options
+@click.option(
+    "--project", 
+    help="Only sync labels for a specific project", 
+    required=False,
+    default=None
+)
 def github_sync_issues(debug: bool, personal_access_token: str, owner: str, repo: str):
     if debug:
         LOG.setLevel(logging.DEBUG)
@@ -1300,6 +1318,12 @@ def github_sync_issues(debug: bool, personal_access_token: str, owner: str, repo
 
 @tp.command(name="github-sync-projects", help="Creates all projects, issues and labels based on tools/projects.yml")
 @common_github_options
+@click.option(
+    "--project", 
+    help="Only sync labels for a specific project", 
+    required=False,
+    default=None
+)
 def github_sync_projects(debug: bool, personal_access_token: str, owner: str, repo: str):
     if debug:
         LOG.setLevel(logging.DEBUG)
@@ -1311,12 +1335,20 @@ def github_sync_projects(debug: bool, personal_access_token: str, owner: str, re
     for project in yaml_projects:
         project.check_and_create()
 
-@tp.command(name="github-check-update-status", help="Checks all issues and updates their status based on their local file path.")
+@tp.command(name="github-update-issues", help="Checks all issues and updates their status and assigness.")
 @common_github_options
 @click.option(
     '--filename','filenames',
+    help="Filename(s) used to look for and update issues.",
     multiple=True, 
     type=click.Path(exists=True)
+)
+@click.option(
+    '--author',
+    multiple=True,
+    help="Author(s) to assign issues to.",
+    is_flag=True,
+    default=None
 )
 @click.option(
     '--all',
@@ -1329,9 +1361,13 @@ def github_sync_projects(debug: bool, personal_access_token: str, owner: str, re
     help="Path to libclang.so",
     default="/usr/lib/x86_64-linux-gnu/libclang-16.so"
 )
-def github_check_update_status(debug: bool, personal_access_token: str, owner: str, repo: str, filenames: Tuple[click.Path], all: bool, clang_lib_path: str):
+def github_update_issues(debug: bool, personal_access_token: str, owner: str, repo: str, filenames: Tuple[click.Path], all: bool, author: str, clang_lib_path: str):
     if debug:
         LOG.setLevel("DEBUG")
+
+    if author is None:
+        LOG.error("Author is required. Please set it using the --author argument.")
+        sys.exit(1)
 
     prereqs(owner, repo, personal_access_token)
 
@@ -1339,6 +1375,7 @@ def github_check_update_status(debug: bool, personal_access_token: str, owner: s
     projects = libgithub.StateFile.data.get('projects')
 
     filenames_list = list(filenames)
+    author_list = list(author)
 
     # If all flag is set, check all issue file paths in state file
     if all:
@@ -1350,7 +1387,7 @@ def github_check_update_status(debug: bool, personal_access_token: str, owner: s
     # Set the clang library file
     clang.cindex.Config.set_library_file(clang_lib_path)
 
-    for filename in filenames_list:
+    for filename,author in zip(filenames_list,author_list):
         LOG.info(f"Classifying TU {filename}")
         status = classify_tu.run(filename)
 
@@ -1364,6 +1401,7 @@ def github_check_update_status(debug: bool, personal_access_token: str, owner: s
         for issue in issues:
             if issue["file_path"] == filename:
                 issue_id = issue["id"]
+                issue_title = issue["title"]
                 break
 
         if issue_id is None:
@@ -1385,8 +1423,20 @@ def github_check_update_status(debug: bool, personal_access_token: str, owner: s
             sys.exit(1)            
 
         libgithub.Project(id=project_id,status_field=status_field).set_status_for_item(item_id, status)
+
+        # Find the matching author
+        author_user = libgithub.User(name=author)
+        author_user.get_id()
+
+        # Add the author as an assignee
+        github_issue = libgithub.Issue(id=issue_id,title=issue_title)
+        assignees = github_issue.get_all_assignees()
+        assignees.append(author_user)
+        github_issue.add_assignees(assignees)
+
+        # Close the issue if status is done
         if status == "done":
-            libgithub.Issue(id=issue_id).set_closed()
+            github_issue.set_closed()
 
 #
 # Github Clean Commands

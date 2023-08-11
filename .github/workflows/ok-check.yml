@@ -25,13 +25,13 @@ jobs:
         chmod +x wibo
     - name: Run Make (OK)
       run: make all rels -j$(nproc) WINE=./wibo
-    - name: Create JSON for Progress & Upload
-      if: github.event_name != 'pull_request'
-      env: 
-        PROGRESS_API_KEY: ${{ secrets.FROGRESS_API_KEY }}
-      run: |
-        ./tp progress -f JSON > progress-${{ github.run_id }}.json
-        ./tp upload-progress progress-${{ github.run_id }}.json -b https://progress.deco.mp/ -p twilightprincess -v gcn_usa
+    # - name: Create JSON for Progress & Upload
+    #   if: github.event_name != 'pull_request'
+    #   env: 
+    #     PROGRESS_API_KEY: ${{ secrets.FROGRESS_API_KEY }}
+    #   run: |
+    #     ./tp progress -f JSON > progress-${{ github.run_id }}.json
+    #     ./tp upload-progress progress-${{ github.run_id }}.json -b https://progress.deco.mp/ -p twilightprincess -v gcn_usa
     - name: Get changed .c, .cpp, .inc files
       if: github.event_name != 'pull_request'
       id: changed-files-specific
@@ -39,7 +39,7 @@ jobs:
       with:
         files: |
           **/*.{c,cpp,inc}
-    - name: Update Status
+    - name: Update Issue(s)
       if: github.event_name != 'pull_request' && steps.changed-files-specific.outputs.any_changed == 'true'
       run: |
         # Install libclang-16-dev for FunctionChecker
@@ -49,7 +49,7 @@ jobs:
         sudo apt install -y libclang-16-dev
 
         FILENAMES="${{ steps.changed-files-specific.outputs.all_changed_files }}"
-        CMD="./tp github-check-update-status --personal-access-token ${{ secrets.PAT_TOKEN }} --debug"
+        CMD="./tp github-update-issues --personal-access-token ${{ secrets.PAT_TOKEN }} --debug"
 
         IFS=' ' read -ra FILE_ARRAY <<< "$FILENAMES"
         INC_FOUND=false
@@ -70,7 +70,9 @@ jobs:
         fi
 
         for FILE in "${FILE_ARRAY[@]}"; do
-            CMD="$CMD --filename $FILE"
+            AUTHOR=$(git log -1 --pretty=format:'%an' -- $FILE)
+            CMD="$CMD --filename $FILE --author $AUTHOR"
         done
 
+        # Update the status and assignees for every issue identified
         $CMD
