@@ -1177,6 +1177,78 @@ SECTION_SDATA2 static f32 lit_4852[1 + 1 /* padding */] = {
 };
 
 /* 8019DD6C-8019E13C 1986AC 03D0+00 3/3 0/0 0/0 .text            dKy_light_influence_id__F4cXyzi */
+// regalloc, but equivalent?
+#ifdef NONMATCHING
+static int dKy_light_influence_id(cXyz param_0, int param_1) {
+    f32 var_f31 = 1000000.0f;
+    
+    int var_r28 = -1;
+    int var_r27 = -1;
+    int var_r25 = -1;
+
+    f32 var_f30 = 800.0f;
+    if (strcmp(dComIfGp_getStartStageName(), "D_MN09") == 0) {
+        var_f30 = 250.0f;
+    }
+
+    for (int i = 0; i <= param_1; i++) {
+        for (int j = 0; j < 100; j++) {
+            if (g_env_light.mPointLight[j] != NULL && (i == 0 || j != var_r28) && g_env_light.mPointLight[j]->mPow > 0.01f) {
+                if (var_f31 > param_0.abs(g_env_light.mPointLight[j]->mPosition)) {
+                    if (g_env_light.mPointLight[j]->mIndex & 0x8000) {
+                        if (var_f31 > var_f30) {
+                            if (i == 0) {
+                                var_r28 = j;
+                            }
+
+                            if (i != 0) {
+                                var_r27 = j;
+                            }
+
+                            var_f31 = var_f30;
+                        }
+                    } else {
+                        var_f31 = param_0.abs(g_env_light.mPointLight[j]->mPosition);
+                        if (var_f31 < g_env_light.mPointLight[j]->mPow) {
+                            if (strcmp(dComIfGp_getStartStageName(), "D_MN05") == 0 && dComIfGp_roomControl_getStayNo() == 0) {
+                                if (var_f31 < g_env_light.mPointLight[j]->mPow * 0.5f) {
+                                    var_r25 = 99;
+                                }
+                            } else {
+                                var_r25 = 99;
+                            }
+                        }
+
+                        if (var_r25 != -2) {
+                            if (i == 0) {
+                                var_r28 = j;
+                            } else {
+                                var_r27 = j;
+                            }
+                        }
+                    }
+                }
+
+                if (g_env_light.mPointLight[j]->mIndex < 0 && var_r25 != 99) {
+                    if (i == 0) {
+                        var_r28 = j;
+                    }
+
+                    var_r25 = -2;
+                }
+            }
+        }
+        var_f31 = 1000000.0f;
+    }
+
+    int ret = var_r27;
+    if (param_1 == 0) {
+        ret = var_r28;
+    }
+
+    return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1185,9 +1257,43 @@ static asm int dKy_light_influence_id(cXyz param_0, int param_1) {
 #include "asm/d/kankyo/d_kankyo/dKy_light_influence_id__F4cXyzi.s"
 }
 #pragma pop
+#endif
 
 /* 8019E13C-8019E404 198A7C 02C8+00 2/2 0/0 0/0 .text            dKy_eflight_influence_id__F4cXyzi
  */
+// regalloc, but equivalent?
+#ifdef NONMATCHING
+static int dKy_eflight_influence_id(cXyz param_0, int param_1) {
+    f32 var_f31 = 1000000.0f;
+    
+    int var_r28 = -1;
+    int var_r27 = -1;
+
+    for (int i = 0; i <= param_1; i++) {
+        for (int j = 0; j < 5; j++) {
+            if (g_env_light.mEfPLight[j] != NULL && (i == 0 || j != var_r28)) {
+                if (var_f31 > param_0.abs(g_env_light.mEfPLight[j]->mPosition) && g_env_light.mEfPLight[j]->mPow > 0.01f) {
+                    var_f31 = param_0.abs(g_env_light.mEfPLight[j]->mPosition);
+
+                    if (i == 0) {
+                        var_r28 = j;
+                    } else {
+                        var_r27 = j;
+                    }
+                }
+            }
+        }
+        var_f31 = 1000000.0f;
+    }
+
+    int ret = var_r27;
+    if (param_1 == 0) {
+        ret = var_r28;
+    }
+
+    return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1196,6 +1302,7 @@ static asm int dKy_eflight_influence_id(cXyz param_0, int param_1) {
 #include "asm/d/kankyo/d_kankyo/dKy_eflight_influence_id__F4cXyzi.s"
 }
 #pragma pop
+#endif
 
 /* 8019E404-8019E430 198D44 002C+00 1/1 0/0 0/0 .text            dKy_light_influence_col__Fi */
 static GXColorS10 dKy_light_influence_col(int param_0) {
@@ -1211,7 +1318,7 @@ SECTION_SDATA2 static f64 lit_4964 = 4503599627370496.0 /* cast u32 to float */;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm _GXColor dKy_light_influence_col(_GXColor* param_0, f32 param_1) {
+asm GXColor dKy_light_influence_col(_GXColor* param_0, f32 param_1) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_light_influence_col__FP8_GXColorf.s"
 }
@@ -2568,6 +2675,98 @@ asm void dScnKy_env_light_c::setLight() {
 
 /* 801A133C-801A16C0 19BC7C 0384+00 2/2 0/0 0/0 .text
  * setLight_bg__18dScnKy_env_light_cFP12dKy_tevstr_cP11_GXColorS10P11_GXColorS10PfPf */
+// regalloc, but equivalent i think
+#ifdef NONMATCHING
+void dScnKy_env_light_c::setLight_bg(dKy_tevstr_c* i_tevstr, _GXColorS10* param_1,
+                                     _GXColorS10* param_2, f32* param_3, f32* param_4) {
+    i_tevstr->mColpatPrev = g_env_light.mColPatPrev;
+    i_tevstr->mColpatCurr = g_env_light.mColPatCurr;
+
+    if (i_tevstr->mColpatPrev != i_tevstr->mColpatCurr) {
+        i_tevstr->mColpatBlend = g_env_light.mColPatBlend;
+    }
+
+    u8 sp23;
+    u8 sp22;
+    u8 sp21;
+    u8 sp20;
+    f32 sp14;
+    int sp10;
+    int spC;
+    setLight_palno_get(&i_tevstr->mEnvrIdxPrev, &i_tevstr->mEnvrIdxCurr, &i_tevstr->mColpatPrev,
+                       &i_tevstr->mColpatCurr, &sp23, &sp21, &sp22, &sp20, &sp14, &sp10, &spC,
+                       &i_tevstr->mColpatBlend, &i_tevstr->mInitTimer);
+
+    if (sp23 == 0xFF) {
+        for (int i = 0; i < 4; i++) {
+            param_1[i].r = 255;
+            param_1[i].g = 0;
+            param_1[i].b = 0;
+        }
+    } else {
+        stage_palette_info_class* temp_r27 = &g_env_light.mpDmPalet[sp23];
+        stage_palette_info_class* temp_r26 = &g_env_light.mpDmPalet[sp21];
+        stage_palette_info_class* temp_r25 = &g_env_light.mpDmPalet[sp22];
+        stage_palette_info_class* temp_r24 = &g_env_light.mpDmPalet[sp20];
+
+        for (int i = 0; i < 4; i++) {
+            dKy_calc_color_set(&param_1[i], &temp_r27->mActor_K0[i], &temp_r25->mActor_K0[i],
+                               &temp_r26->mActor_K0[i], &temp_r24->mActor_K0[i], sp14,
+                               i_tevstr->mColpatBlend, mBgAddColAmb, g_env_light.mColBgColRatio);
+        }
+
+        if (daPy_py_c::checkNowWolfEyeUp()) {
+            dKy_WolfPowerup_BgAmbCol(param_1);
+        }
+
+        param_1[3].a = 255;
+        param_1[2].a = 255;
+        param_1[1].a = 255;
+        param_1[0].a = 255;
+
+        GXColorS10 sp50[6];
+        for (int i = 0; i < 6; i++) {
+            dKy_calc_color_set(&sp50[i], &temp_r27->mBG1_K0[i], &temp_r25->mBG1_K0[i],
+                               &temp_r26->mBG1_K0[i], &temp_r24->mBG1_K0[i], sp14,
+                               i_tevstr->mColpatBlend, mBgAddColAmb, g_env_light.mColBgColRatio);
+
+            if (daPy_py_c::checkNowWolfEyeUp()) {
+                sp50[i].r = 0;
+                sp50[i].g = 0;
+                sp50[i].b = 0;
+            }
+
+            J3DLightInfo& temp_r30 = i_tevstr->field_0x074[i].getLightInfo();
+
+            GXColor sp28;
+            sp28.r = sp50[i].r;
+            sp28.g = sp50[i].g;
+            sp28.b = sp50[i].b;
+            sp28.a = sp50[i].a;
+            temp_r30.mColor = dKy_light_influence_col(&sp28, i_tevstr->field_0x374);
+        }
+
+        dKy_calc_color_set(param_2, &temp_r27->field_0x21, &temp_r25->field_0x21,
+                           &temp_r26->field_0x21, &temp_r24->field_0x21, sp14,
+                           i_tevstr->mColpatBlend, mFogAddCol, g_env_light.mColFogColRatio);
+
+        *param_3 = float_kankyo_color_ratio_set(temp_r27->mFogStartZ, temp_r26->mFogStartZ, sp14,
+                                                temp_r25->mFogStartZ, temp_r24->mFogStartZ,
+                                                i_tevstr->mColpatBlend, g_env_light.field_0x11ec,
+                                                g_env_light.field_0x11f4);
+        *param_4 = float_kankyo_color_ratio_set(
+            temp_r27->mFogEndZ, temp_r26->mFogEndZ, sp14, temp_r25->mFogEndZ, temp_r24->mFogEndZ,
+            i_tevstr->mColpatBlend, g_env_light.field_0x11f0, g_env_light.field_0x11f4);
+
+        if (daPy_py_c::checkNowWolfEyeUp()) {
+            param_2->r = 0;
+            param_2->g = 0;
+            param_2->b = 0;
+            dKy_WolfPowerup_FogNearFar(param_3, param_4);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2577,66 +2776,7 @@ asm void dScnKy_env_light_c::setLight_bg(dKy_tevstr_c* param_0, _GXColorS10* par
 #include "asm/d/kankyo/d_kankyo/setLight_bg__18dScnKy_env_light_cFP12dKy_tevstr_cP11_GXColorS10P11_GXColorS10PfPf.s"
 }
 #pragma pop
-
-/* void dScnKy_env_light_c::setLight_bg(dKy_tevstr_c* i_tevstr, _GXColorS10* param_1,
-                                     _GXColorS10* param_2, f32* param_3, f32* param_4) {
-    i_tevstr->mColpatPrev = g_env_light.mColPatPrev;
-    i_tevstr->mColpatCurr = g_env_light.mColPatCurr;
-
-    if (i_tevstr->mColpatPrev != i_tevstr->mColpatCurr) {
-        i_tevstr->mColpatBlend = g_env_light.mColPatBlend;
-    }
-
-    u8 sp9D;
-    u8 sp9F;
-    u8 sp9E;
-    u8 spA0;
-    f32 sp8C;
-    int sp90;
-    int sp94;
-    setLight_palno_get(&i_tevstr->mEnvrIdxPrev, &i_tevstr->mEnvrIdxCurr, &i_tevstr->mColpatPrev,
-                       &i_tevstr->mColpatCurr, &sp9D, &sp9F, &sp9E, &spA0, &sp8C, &sp90, &sp94,
-                       &i_tevstr->mColpatBlend, &i_tevstr->mInitTimer);
-
-    stage_palette_info_class* palette_p = g_env_light.mpDmPalet;
-
-    if (sp9D == 0xFF) {
-        for (int i = 0; i < 4; i++) {
-            param_1[i].r = 255;
-            param_1[i].g = 0;
-            param_1[i].b = 0;
-        }
-    } else {
-        for (int i = 0; i < 4; i++) {
-            GXColorS10 sp78;
-            sp78.r = mBgAddColAmb.r;
-            sp78.b = mBgAddColAmb.b;
-
-            dKy_calc_color_set(&param_1, &palette_p[sp9D].mK0Color[i], &palette_p[sp9E].mK0Color[i],
-                               &palette_p[sp9F].mK0Color[i], &palette_p[spA0].mK0Color[i], sp8C,
-                               i_tevstr->mColpatBlend, sp78, g_env_light.mColBgColRatio);
-        }
-
-        if (daPy_py_c::checkNowWolfPowerUp()) {
-            dKy_WolfPowerup_BgAmbCol(param_1);
-        }
-
-        param_1[3].a = 255;
-        param_1[2].a = 255;
-        param_1[1].a = 255;
-        param_1[0].a = 255;
-
-        for (int i = 0; i < 4; i++) {
-            GXColorS10 sp80;
-            sp80.r = mBgAddColAmb.r;
-            sp80.b = mBgAddColAmb.b;
-
-            dKy_calc_color_set(&param_1, &palette_p[sp9D].mK0Color[i], &palette_p[sp9E].mK0Color[i],
-                               &palette_p[sp9F].mK0Color[i], &palette_p[spA0].mK0Color[i], sp8C,
-                               i_tevstr->mColpatBlend, sp80, g_env_light.mColBgColRatio);
-        }
-    }
-} */
+#endif
 
 /* 801A16C0-801A1D64 19C000 06A4+00 1/1 0/0 0/0 .text
  * setLight_actor__18dScnKy_env_light_cFP12dKy_tevstr_cP11_GXColorS10PfPf */
