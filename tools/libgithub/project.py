@@ -30,11 +30,14 @@ class Project:
             self.status_field = status_field  
 
     @staticmethod
-    def get_all_from_yaml(data) -> list['Project']:
+    def get_all_from_yaml(data, project_name) -> list['Project']:
         ret_projects = []
         issues_dict = {issue['file_path']: issue['id'] for issue in StateFile.data["issues"]}
 
         for d in data:
+            if d.get('project', {}).get('title', 'MISSING_TITLE') != project_name and project_name is not None:
+                LOG.debug("Project name was passed in but doesn't match the current project, skipping.")
+                continue
             items = []
 
             for tu, _, file_path in get_translation_units(d):
@@ -511,7 +514,7 @@ class Project:
             StateFile.data['projects'] = [state]
 
 
-        with open("tools/pjstate.yml", 'w') as f:
+        with open(StateFile.file_name, 'w') as f:
             yaml.safe_dump(StateFile.data, f)
 
 # Custom representer for Option

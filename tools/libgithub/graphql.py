@@ -56,5 +56,14 @@ class GraphQLClient:
                 else:
                     LOG.error(f"Fail. Error: {error_message}")
                     return None
+                
+            if data.get('extensions', ''):
+                warning_message = data['extensions']['warnings'][0]['message']
+                LOG.warning(warning_message)
+
+            if 'Bad credentials' in data.get('message', ''):
+                LOG.error(data['message'])
+                LOG.error('Invalid personal access token. Please provide a valid one with the --personal-access-token flag.')
+                sys.exit(1)
 
             return data

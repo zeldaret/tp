@@ -1,6 +1,7 @@
 import sys
 
 from .label import *
+from .user import *
 from typing import Optional
 
 @dataclass
@@ -90,11 +91,14 @@ class Issue:
         return Issue.get_by_state("OPEN")
     
     @staticmethod
-    def get_all_from_yaml(data):
+    def get_all_from_yaml(data, project_name):
         ret_issues = []
         labels_dict = {label['name']: label['id'] for label in StateFile.data["labels"]}
 
         for d in data:
+            if d.get('project', {}).get('title', 'MISSING_TITLE') != project_name and project_name is not None:
+                LOG.debug("Project name was passed in but doesn't match the current project, skipping.")
+                continue
             # Get tu, labels, filepath for current project
             tu_info = get_translation_units(d)
 
@@ -127,6 +131,42 @@ class Issue:
                 ret_issues.append(issue)
 
         return ret_issues
+    
+    def get_all_assignees(self) -> list[User]:
+        LOG.debug(f'Getting all assignees on for Issue {self.title}')
+
+        query = '''
+        query ($id: ID!) {
+            node(id: $id) {
+                ... on Issue {
+                    assignees(first: 100) {
+                        nodes {
+                            id
+                            login
+                        }
+                    }
+                }
+            }
+        }
+        '''
+
+        variables = {
+            "id": self.id
+        }
+
+        data = GraphQLClient.get_instance().make_request(query, variables)
+        if data:
+            assignees = data["data"]["node"]["assignees"]["nodes"]
+            LOG.debug(f'Got assignees: {assignees}')
+
+            ret_users = []
+            for assignee in assignees:
+                ret_users.append(User(id=assignee["id"],name=assignee["login"]))
+            
+            return ret_users
+        else:
+            LOG.error(f'Failed to get assignees for issue {self.title}')
+            sys.exit(1)
     
     @staticmethod
     def get_by_unique_id(unique_id: str) -> 'Issue':
@@ -313,51 +353,34 @@ class Issue:
             LOG.info(f"Issue {self.title} from TU {self.file_path} already setup!")
             self.id = issue_dict[self.file_path]["id"]
         else:
-            LOG.info(f'Creating missing issue {self.title}.')
+            LOG.debug(f'Creating missing issue {self.title}.')
             self.create()
 
-    # def check_and_attach_labels(self) -> None:
-    #     LOG.debug(f'Checking labels for issue {self.title} on {RepoInfo.owner.name}/{RepoInfo.name}')
+    def add_assignees(self, assignees: list[User]) -> None:
+        LOG.debug(f'Adding assignees to issue {self.id} on {RepoInfo.owner.name}/{RepoInfo.name}')
 
-    #     issues = StateFile.data.get('issues')
+        mutation = """
+        mutation UpdateIssue($input: UpdateIssueInput!) {
+            updateIssue(input: $input) {
+                clientMutationId
+            }
+        }
+        """
 
-    #     if issues is None:
-    #         issue_dict = {}
-    #     else:
-    #         issue_dict = {issue['file_path']: issue for issue in issues}
+        input_dict = {
+            "assigneeIds": [assignee.id for assignee in assignees],
+            "id": self.id
+        }
 
-    #     if self.file_path in issue_dict:
-    #         state_labels = StateFile.data.get('labels')
-    #         label_ids = issue_dict[self.file_path]["label_ids"]
+        variables = {
+            "input": input_dict
+        }
 
-    #         if label_ids is not None:
-    #             state_label_ids = [label['id'] for label in state_labels]
-    #             for label_id in label_ids:
-    #                 if label_id in state_label_ids:
-    #                     LOG.debug(f'Label {label_id} exists in state, continuing')
-    #                     continue
-    #                 else:
-    #                     LOG.error(f'Label {label_id} does not exist in state, please run sync-labels first')
-    #                     sys.exit(1)
-
-    #             LOG.info(f'All labels already attached to issue {self.title} on {RepoInfo.owner.name}/{RepoInfo.name}')
-    #         else:
-    #             LOG.info(f'Attaching labels to issue {self.title} on {RepoInfo.owner.name}/{RepoInfo.name}')
-
-    #             # use yaml data to fetch label names for this issue
-    #             # lookup id from state and attach to issue
-    #             <replace> = 
-    #             for label in <replace>:
-    #                 self.attach_label_by_id() # finish
-
-    #             LOG.info(f'Labels attached to issue {self.title} on {RepoInfo.owner.name}/{RepoInfo.name}')
-
-
-    #         print(label_ids)
-    #         sys.exit(0)
-    #     else:
-    #         LOG.error(f"Issue {self.title} from TU {self.file_path} is missing")
-    #         sys.exit(1)
+        data = GraphQLClient.get_instance().make_request(mutation, variables)
+        if data:
+            LOG.debug(f'Assignees added to issue {self.id} on {RepoInfo.owner.name}/{RepoInfo.name}')
+        else:
+            LOG.error(f'Assignees could not be added to issue {self.id} on {RepoInfo.owner.name}/{RepoInfo.name}')
 
     def create(self):
         repo_id = RepoInfo.id
@@ -414,6 +437,33 @@ class Issue:
         else:
             LOG.error(f'Failed to delete issue {self.title}')
 
+    def get_id(self,number) -> None:
+        LOG.debug(f'Getting ID for issue {self.title} on {RepoInfo.owner.name}/{RepoInfo.name}')
+
+        query = '''
+        query ($number: Int!, $owner: String!, $repo: String!) {
+            repository(owner: $owner, name: $repo) {
+                issue(number: $number) {
+                    id
+                }
+            }
+        }
+        '''
+
+        variables = {
+            "owner": RepoInfo.owner.name,
+            "repo": RepoInfo.name,
+            "number": number
+        }
+
+        data = GraphQLClient.get_instance().make_request(query, variables)
+        if data:
+            self.id = data['data']['repository']['issue']['id']
+            LOG.debug(f'ID retrieved: {self.id} for issue {self.title}')
+        else:
+            LOG.error(f'No ID found for issue {self.title}')
+            sys.exit(1)
+
     def write_state_to_file(self, delete: bool = False):        
         state = {
             "id": self.id,
@@ -439,5 +489,5 @@ class Issue:
             StateFile.data['issues'] = [state]
 
 
-        with open("tools/pjstate.yml", 'w') as f:
+        with open(StateFile.file_name, 'w') as f:
             yaml.safe_dump(StateFile.data, f)
