@@ -1,14 +1,12 @@
 /**
  * d_a_kytag17.cpp
- * Environment Tag 17
+ * Light Mask Tag
  */
 
 #include "rel/d/a/kytag/d_a_kytag17/d_a_kytag17.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
-#include "d/kankyo/d_kankyo.h"
 #include "d/d_procname.h"
+#include "d/kankyo/d_kankyo.h"
 
 /* 8046DB58-8046DB60 000078 0008+00 1/0 0/0 0/0 .text            daKytag17_Draw__FP13kytag17_class
  */
@@ -49,12 +47,9 @@ static int daKytag17_Create(fopAc_ac_c* i_this) {
 /* ############################################################################################## */
 /* 8046DBE8-8046DC08 -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag17_Method */
 static actor_method_class l_daKytag17_Method = {
-    (process_method_func)daKytag17_Create,
-    (process_method_func)daKytag17_Delete,
-    (process_method_func)daKytag17_Execute,
-    (process_method_func)daKytag17_IsDelete,
-    (process_method_func)daKytag17_Draw
-};
+    (process_method_func)daKytag17_Create, (process_method_func)daKytag17_Delete,
+    (process_method_func)daKytag17_Execute, (process_method_func)daKytag17_IsDelete,
+    (process_method_func)daKytag17_Draw};
 
 /* 8046DC08-8046DC38 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_KYTAG17 */
 extern actor_process_profile_definition g_profile_KYTAG17 = {

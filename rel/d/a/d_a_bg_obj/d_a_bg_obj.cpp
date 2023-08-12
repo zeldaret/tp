@@ -4,130 +4,15 @@
 //
 
 #include "rel/d/a/d_a_bg_obj/d_a_bg_obj.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "MSL_C/stdio.h"
-#include "d/bg/d_bg_w.h"
+#include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
 #include "rel/d/a/d_a_set_bgobj/d_a_set_bgobj.h"
-#include "JSystem/J3DGraphBase/J3DMaterial.h"
-
-//
-// Types:
-//
-
-class daBgObj_c;
-typedef int (daBgObj_c::*createHeapFunc)();
-typedef int (daBgObj_c::*createInitFunc)();
-typedef int (daBgObj_c::*executeFunc)();
-typedef void (daBgObj_c::*tgSetFunc)();
-typedef int (daBgObj_c::*actionFunc)();
-
-class daBgObj_c : public dBgS_MoveBgActor {
-public:
-    class spec_data_c {
-    public:
-        /* 804597E8 */ u8* initParticleBlock(u8*);
-        /* 80459814 */ u8* initSoundBlock(u8*);
-        /* 80459840 */ u8* initTexShareBlock(u8*);
-        /* 804598F4 */ u8* initFarInfoBlock(u8*);
-        /* 80459904 */ bool Set(void*);
-
-        /* 0x00 */ u16 mSpecType;
-        /* 0x02 */ u8 field_0x02;
-        /* 0x03 */ u8 field_0x03;
-        /* 0x04 */ u32 mParticleNum;
-        /* 0x08 */ u8* mpParticleBlock;
-        /* 0x0C */ u32 mSoundNum;
-        /* 0x10 */ u8* mpSoundBlock;
-        /* 0x14 */ u8 field_0x14;
-        /* 0x15 */ u8 field_0x15;
-        /* 0x16 */ u8 field_0x16;
-        /* 0x18 */ u8* mpTexShareBlock;
-        /* 0x1C */ u8 mTexShareNum;
-        /* 0x20 */ f32 mpFarInfoBlock;
-    };
-
-    /* 80459B64 */ void release(dBgW*);
-    /* 80459BB4 */ void regist(dBgW*);
-    /* 80459BEC */ void initAtt();
-    /* 80459D0C */ void setAttentionInfo(fopAc_ac_c*);
-    /* 80459D3C */ void initBaseMtx();
-    /* 80459D94 */ void setBaseMtx();
-    /* 80459E04 */ void settingCullSizeBoxForCo(int);
-    /* 80459F14 */ void settingCullSizeBoxForCull(int);
-    /* 8045A0EC */ int CreateInitType0();
-    /* 8045A160 */ int CreateInitType1();
-    /* 8045A2F0 */ int CreateHeapType0();
-    /* 8045A574 */ int CreateHeapType1();
-    /* 8045A83C */ void doShareTexture();
-    /* 8045A9E8 */ int create1st();
-    /* 8045AAF0 */ void setColCommon();
-    /* 8045AB80 */ void set_tri_0();
-    /* 8045ACC0 */ void set_tri_1();
-    /* 8045AE00 */ void set_cyl_0();
-    /* 8045AE98 */ void set_tri_2();
-    /* 8045AFD4 */ void set_tri_3();
-    /* 8045B17C */ void setParticle();
-    /* 8045B3A0 */ void setSe();
-    /* 8045B44C */ void checkDestroy();
-    /* 8045B534 */ void checkHitAt(cCcD_Obj*);
-    /* 8045B5E0 */ void orderWait_tri();
-    /* 8045B7FC */ void orderWait_cyl();
-    /* 8045B9C4 */ void orderWait_spec();
-    /* 8045BB38 */ int actionOrderWait();
-    /* 8045BBE0 */ int actionOrder();
-    /* 8045BD50 */ int actionEvent();
-    /* 8045BDB0 */ int actionWait();
-    /* 8045BDB8 */ int ExecuteType0();
-    /* 8045BED0 */ int ExecuteType1();
-    /* 8045C25C */ void indirectProc(J3DModel*);
-
-    /* 8045A940 */ virtual int CreateHeap();
-    /* 8045A2B8 */ virtual int Create();
-    /* 8045BFBC */ virtual int Execute(f32 (**)[3][4]);
-    /* 8045C078 */ virtual int Draw();
-    /* 8045C2E8 */ virtual int Delete();
-
-    static createHeapFunc mCreateHeapFunc[];
-    static createInitFunc mCreateInitFunc[];
-    static executeFunc mExecuteFunc[];
-    static tgSetFunc mTgSetFunc[];
-
-    /* 0x5A0 */ request_of_phase_process_class mPhase;
-    /* 0x5A8 */ J3DModel* field_0x5a8[2][2];
-    /* 0x5B8 */ mDoExt_btkAnm* field_0x5b8[2][2];
-    /* 0x5C8 */ mDoExt_brkAnm* field_0x5c8[2][2];
-    /* 0x5D8 */ dBgW* mpBgW;
-    /* 0x5DC */ dCcD_Stts field_0x5dc;
-    /* 0x618 */ dCcD_Tri field_0x618[4];
-    /* 0xB88 */ dCcD_Cyl field_0xb88;
-    /* 0xCC4 */ u8 field_0xcc4;
-    /* 0xCC5 */ u8 field_0xcc5;
-    /* 0xCC6 */ s16 mEventIdx;
-    /* 0xCC8 */ u8 field_0xcc8;
-    /* 0xCC9 */ u8 field_0xcc9;
-    /* 0xCCA */ s16 field_0xcca;
-    /* 0xCCC */ u16 field_0xccc;
-    /* 0xCCE */ u8 field_0xCCE[0xCD0 - 0xCCE];
-    /* 0xCD0 */ spec_data_c mSpecData;
-    /* 0xCF4 */ csXyz field_0xcf4;
-    /* 0xCFC */ u32 mAttnActorID;
-    /* 0xD00 */ u8 field_0xd00;
-    /* 0xD01 */ u8 field_0xd01;
-    /* 0xD02 */ u8 field_0xd02;
-};
-
-namespace daBgObj_prm {
-inline u8 getEvId(daBgObj_c* i_this) {
-    return (fopAcM_GetParam(i_this) >> 0x15) & 0xFF;
-}
-inline u8 getSwBit(daBgObj_c* i_this) {
-    return i_this->field_0xccc & 0xFF;
-}
-};  // namespace daBgObj_prm
 
 SECTION_DATA extern void* __vt__10cCcD_GStts[3];
 SECTION_DATA extern void* __vt__10dCcD_GStts[3];
@@ -610,15 +495,6 @@ asm void daBgObj_c::initAtt() {
 }
 #pragma pop
 
-/* void daBgObj_c::initAtt() {
-    int uvar6 = mSpecData.field_0x03 != 0 ? mSpecData.field_0x03 - 1 : 3;
-    int uvar5 = mSpecData.field_0x15 != 0 ? mSpecData.field_0x15 - 1 : 3;
-    int uvar4 = mSpecData.field_0x14 != 0 ? mSpecData.field_0x14 - 1 : 7;
-
-    fopAcM_fastCreate(PROC_Tag_Attp, uvar6 | uvar5 << 2 | uvar4 << 4 | daBgObj_prm::getObjArg0(this)
-<< 7 | daBgObj_prm::getSwBit2())
-} */
-
 /* 80459D0C-80459D3C 00072C 0030+00 2/2 0/0 0/0 .text setAttentionInfo__9daBgObj_cFP10fopAc_ac_c
  */
 #pragma push
@@ -712,10 +588,10 @@ int daBgObj_c::CreateInitType1() {
         field_0xcc8 = 1;
         release(field_0x568);
         regist(mpBgW);
-        field_0xcc5 = 3;
+        mAction = 3;
     } else {
         field_0xcc8 = 0;
-        field_0xcc5 = 0;
+        mAction = 0;
     }
 
     initBaseMtx();
@@ -732,7 +608,7 @@ int daBgObj_c::CreateInitType1() {
         fopAcM_setCullSizeFar(this, mSpecData.mpFarInfoBlock);
     }
 
-    field_0x5dc.Init(0xFF, 0xFF, this);
+    mStts.Init(0xFF, 0xFF, this);
     setColCommon();
 
     settingCullSizeBoxForCull(field_0xcc8);
@@ -1016,13 +892,13 @@ void daBgObj_c::setColCommon() {
     }
 
     if (mSpecData.field_0x16 == 1) {
-        u32 tg_type = field_0x618[0].GetTgType();
+        u32 tg_type = mTris[0].GetTgType();
 
         for (int i = 0; i < field_0xcc4; i++) {
-            field_0x618[i].SetTgType(tg_type | 0x40);
+            mTris[i].SetTgType(tg_type | 0x40);
         }
 
-        field_0xb88.SetTgType(tg_type | 0x40);
+        mCyl.SetTgType(tg_type | 0x40);
     }
 }
 
@@ -1145,27 +1021,111 @@ asm void daBgObj_c::setSe() {
 #endif
 
 /* 8045B44C-8045B534 001E6C 00E8+00 1/1 0/0 0/0 .text            checkDestroy__9daBgObj_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBgObj_c::checkDestroy() {
-    nofralloc
-#include "asm/rel/d/a/d_a_bg_obj/d_a_bg_obj/checkDestroy__9daBgObj_cFv.s"
+BOOL daBgObj_c::checkDestroy() {
+    if (mSpecData.mSpecType != 1 && mSpecData.mSpecType != 2) {
+        return false;
+    }
+
+    if (!i_fopAcM_isSwitch(this, daBgObj_prm::getSwBit(this)) &&
+        (daBgObj_prm::getSwBit2(this) == 0xFF ||
+         (i_fopAcM_isSwitch(this, daBgObj_prm::getSwBit2(this)) &&
+          daBgObj_prm::getObjArg0(this) == 0xFF) ||
+         (daBgObj_prm::getSwBit2(this) != 0xFF &&
+          !i_fopAcM_isSwitch(this, daBgObj_prm::getSwBit2(this)) &&
+          daBgObj_prm::getObjArg0(this) == 0)))
+    {
+        return true;
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 8045B534-8045B5E0 001F54 00AC+00 2/2 0/0 0/0 .text            checkHitAt__9daBgObj_cFP8cCcD_Obj
  */
+#ifdef NONMATCHING
+BOOL daBgObj_c::checkHitAt(cCcD_Obj* i_hitObj) {
+    u32 hit_flags = 0;
+    u32 var_r8 = 0;
+
+    if (i_hitObj != NULL) {
+        switch (mSpecData.mSpecType) {
+        case 1:
+            var_r8 = i_hitObj->ChkAtType(AT_TYPE_IRON_BALL) && i_hitObj->GetAtAtp() == 3;
+            hit_flags = var_r8 | i_hitObj->ChkAtType(AT_TYPE_BOMB);
+            break;
+        case 2:
+            u32 tmp2 = i_hitObj->ChkAtType(AT_TYPE_IRON_BALL);
+            var_r8 = tmp2;
+            hit_flags =
+                tmp2 |
+                (i_hitObj->ChkAtType(AT_TYPE_NORMAL_SWORD) | i_hitObj->ChkAtType(AT_TYPE_BOMB) |
+                 i_hitObj->ChkAtType(AT_TYPE_CSTATUE_SWING) | i_hitObj->ChkAtType(AT_TYPE_UNK));
+            break;
+        }
+
+        field_0xd01 = i_hitObj->ChkAtType(AT_TYPE_BOMB);
+        field_0xd01 |= var_r8 != 0;
+    }
+
+    return hit_flags != 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daBgObj_c::checkHitAt(cCcD_Obj* param_0) {
+asm BOOL daBgObj_c::checkHitAt(cCcD_Obj* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_bg_obj/d_a_bg_obj/checkHitAt__9daBgObj_cFP8cCcD_Obj.s"
 }
 #pragma pop
+#endif
 
 /* 8045B5E0-8045B7FC 002000 021C+00 1/1 0/0 0/0 .text            orderWait_tri__9daBgObj_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void daBgObj_c::orderWait_tri() {
+    for (int i = 0; i < field_0xcc4; i++) {
+        if (mTris[i].ChkTgHit()) {
+            if (checkHitAt(mTris[i].GetTgHitObj())) {
+                setSe();
+
+                fopAc_ac_c* hit_ac = mTris[i].GetTgHitAc();
+                if (hit_ac != NULL) {
+                    cXyz sp1C(hit_ac->current.pos);
+                    sp1C = sp1C - current.pos;
+
+                    mDoMtx_stack_c::YrotS(-shape_angle.y);
+                    mDoMtx_stack_c::multVec(&sp1C, &sp1C);
+                    mDoMtx_stack_c::transS(current.pos);
+                    mDoMtx_stack_c::YrotM(shape_angle.y);
+
+                    cXyz sp28;
+                    if (sp1C.z > 0.0f) {
+                        sp28 = cXyz(0.0, 0.0, 1.0);
+                    } else {
+                        sp28 = cXyz(0.0, 0.0, -1.0);
+                    }
+
+                    mDoMtx_stack_c::multVec(&sp28, &sp28);
+                    sp28 = sp28 - current.pos;
+
+                    field_0xcf4.y = cM_atan2s(sp28.x, sp28.z);
+                }
+
+                setParticle();
+                setAction(1);
+                break;
+            }
+
+            mTris[i].ClrTgHit();
+        }
+    }
+
+    for (int i = 0; i < field_0xcc4; i++) {
+        dComIfG_Ccsp()->Set(&mTris[i]);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1174,8 +1134,49 @@ asm void daBgObj_c::orderWait_tri() {
 #include "asm/rel/d/a/d_a_bg_obj/d_a_bg_obj/orderWait_tri__9daBgObj_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8045B7FC-8045B9C4 00221C 01C8+00 1/1 0/0 0/0 .text            orderWait_cyl__9daBgObj_cFv */
+// r30/r31 swap
+#ifdef NONMATCHING
+void daBgObj_c::orderWait_cyl() {
+    if (mCyl.ChkTgHit()) {
+        if (checkHitAt(mCyl.GetTgHitObj())) {
+            setSe();
+
+            fopAc_ac_c* hit_ac = mCyl.GetTgHitAc();
+            if (hit_ac != NULL) {
+                cXyz sp1C(hit_ac->current.pos);
+                sp1C = sp1C - current.pos;
+
+                mDoMtx_stack_c::YrotS(-shape_angle.y);
+                mDoMtx_stack_c::multVec(&sp1C, &sp1C);
+                mDoMtx_stack_c::transS(current.pos);
+                mDoMtx_stack_c::YrotM(shape_angle.y);
+
+                cXyz sp28;
+                if (sp1C.z > 0.0f) {
+                    sp28 = cXyz(0.0, 0.0, 1.0);
+                } else {
+                    sp28 = cXyz(0.0, 0.0, -1.0);
+                }
+
+                mDoMtx_stack_c::multVec(&sp28, &sp28);
+                sp28 = sp28 - current.pos;
+
+                field_0xcf4.y = cM_atan2s(sp28.x, sp28.z);
+            }
+
+            setParticle();
+            setAction(1);
+        }
+
+        mCyl.ClrTgHit();
+    }
+
+    dComIfG_Ccsp()->Set(&mCyl);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1184,8 +1185,41 @@ asm void daBgObj_c::orderWait_cyl() {
 #include "asm/rel/d/a/d_a_bg_obj/d_a_bg_obj/orderWait_cyl__9daBgObj_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8045B9C4-8045BB38 0023E4 0174+00 1/1 0/0 0/0 .text            orderWait_spec__9daBgObj_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void daBgObj_c::orderWait_spec() {
+    setSe();
+
+    fopAc_ac_c* player_p = dComIfGp_getPlayer(0);
+    if (player_p != NULL) {
+        cXyz sp1C(player_p->current.pos);
+        sp1C = sp1C - current.pos;
+
+        mDoMtx_stack_c::YrotS(-shape_angle.y);
+        mDoMtx_stack_c::multVec(&sp1C, &sp1C);
+        mDoMtx_stack_c::transS(current.pos);
+        mDoMtx_stack_c::YrotM(shape_angle.y);
+
+        cXyz sp28;
+        if (sp1C.z > 0.0f) {
+            sp28 = cXyz(0.0, 0.0, 1.0);
+        } else {
+            sp28 = cXyz(0.0, 0.0, -1.0);
+        }
+
+        mDoMtx_stack_c::multVec(&sp28, &sp28);
+        sp28 = sp28 - current.pos;
+
+        field_0xcf4.y = cM_atan2s(sp28.x, sp28.z);
+    }
+
+    setParticle();
+    setAction(1);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1194,18 +1228,69 @@ asm void daBgObj_c::orderWait_spec() {
 #include "asm/rel/d/a/d_a_bg_obj/d_a_bg_obj/orderWait_spec__9daBgObj_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8045BB38-8045BBE0 002558 00A8+00 1/0 0/0 0/0 .text            actionOrderWait__9daBgObj_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daBgObj_c::actionOrderWait() {
-    nofralloc
-#include "asm/rel/d/a/d_a_bg_obj/d_a_bg_obj/actionOrderWait__9daBgObj_cFv.s"
+int daBgObj_c::actionOrderWait() {
+    if (checkDestroy()) {
+        switch (mSpecData.field_0x02) {
+        case 0:
+        case 1:
+        case 3:
+        case 4:
+            orderWait_tri();
+            break;
+        case 2:
+            orderWait_cyl();
+            break;
+        }
+    } else if (i_fopAcM_isSwitch(this, daBgObj_prm::getSwBit(this))) {
+        orderWait_spec();
+        field_0xd00 = 1;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8045BBE0-8045BD50 002600 0170+00 1/0 0/0 0/0 .text            actionOrder__9daBgObj_cFv */
+// matches with literals
+#ifdef NONMATCHING
+int daBgObj_c::actionOrder() {
+    if (mEvtInfo.i_checkCommandDemoAccrpt()) {
+        setAction(2);
+
+        if (field_0xd01 < 5) {
+            dComIfGp_getVibration().StartShock(4, 31, cXyz(0.0f, 1.0f, 0.0f));
+        }
+    } else {
+        if (daBgObj_prm::getEvId(this) != 0xFF) {
+            fopAcM_orderOtherEventId(this, mEventIdx, daBgObj_prm::getEvId(this), 0xFFFF, 0, 1);
+        } else {
+            setAction(3);
+        }
+
+        if (!i_fopAcM_isSwitch(this, daBgObj_prm::getSwBit(this)) || field_0xd00 != 0 ||
+            field_0xcc8 == 0)
+        {
+            release(field_0x568);
+            regist(mpBgW);
+            field_0xcc8 = 1;
+
+            settingCullSizeBoxForCull(field_0xcc8);
+
+            fopAc_ac_c* attn_actor_p = fopAcM_SearchByID(mAttnActorID);
+            if (attn_actor_p != NULL) {
+                setAttentionInfo(attn_actor_p);
+            }
+
+            i_fopAcM_onSwitch(this, daBgObj_prm::getSwBit(this));
+            field_0xd00 = 0;
+        }
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1214,16 +1299,17 @@ asm int daBgObj_c::actionOrder() {
 #include "asm/rel/d/a/d_a_bg_obj/d_a_bg_obj/actionOrder__9daBgObj_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8045BD50-8045BDB0 002770 0060+00 1/0 0/0 0/0 .text            actionEvent__9daBgObj_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daBgObj_c::actionEvent() {
-    nofralloc
-#include "asm/rel/d/a/d_a_bg_obj/d_a_bg_obj/actionEvent__9daBgObj_cFv.s"
+int daBgObj_c::actionEvent() {
+    if (dComIfGp_evmng_endCheck(mEventIdx)) {
+        setAction(3);
+        i_dComIfGp_event_reset();
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8045BDB0-8045BDB8 0027D0 0008+00 1/0 0/0 0/0 .text            actionWait__9daBgObj_cFv */
 int daBgObj_c::actionWait() {
@@ -1231,21 +1317,43 @@ int daBgObj_c::actionWait() {
 }
 
 /* 8045BDB8-8045BED0 0027D8 0118+00 1/0 0/0 0/0 .text            ExecuteType0__9daBgObj_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daBgObj_c::ExecuteType0() {
-    nofralloc
-#include "asm/rel/d/a/d_a_bg_obj/d_a_bg_obj/ExecuteType0__9daBgObj_cFv.s"
+int daBgObj_c::ExecuteType0() {
+    u8 swBit = daBgObj_prm::getSwBit(this);
+    u8 arg0 = daBgObj_prm::getObjArg0(this);
+
+    if (swBit != 0xFF) {
+        if (arg0 == 0xFF) {
+            if (i_fopAcM_isSwitch(this, swBit)) {
+                if (field_0xcc8 == 1) {
+                    regist(field_0x568);
+                    field_0xcc8 = 0;
+                }
+            } else if (field_0xcc8 == 0) {
+                release(field_0x568);
+                field_0xcc8 = 1;
+            }
+        } else if (arg0 == 0) {
+            if (i_fopAcM_isSwitch(this, swBit)) {
+                if (field_0xcc8 == 0) {
+                    release(field_0x568);
+                    field_0xcc8 = 1;
+                }
+            } else if (field_0xcc8 == 1) {
+                regist(field_0x568);
+                field_0xcc8 = 0;
+            }
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8045BED0-8045BFBC 0028F0 00EC+00 3/0 0/0 0/0 .text            ExecuteType1__9daBgObj_cFv */
 int daBgObj_c::ExecuteType1() {
     static actionFunc l_func[] = {&daBgObj_c::actionOrderWait, &daBgObj_c::actionOrder,
                                   &daBgObj_c::actionEvent, &daBgObj_c::actionWait};
 
-    (this->*l_func[field_0xcc5])();
+    (this->*l_func[mAction])();
 
     if (field_0xd01 != 0 && field_0xd01 < 100) {
         field_0xd01++;
@@ -1253,28 +1361,6 @@ int daBgObj_c::ExecuteType1() {
 
     return 1;
 }
-
-/* 8045CD34-8045CD54 -00001 0020+00 1/0 0/0 0/0 .data            daBgObj_METHODS */
-SECTION_DATA static void* daBgObj_METHODS[8] = {
-    (void*)daBgObj_create1st__FP9daBgObj_c,
-    (void*)daBgObj_MoveBGDelete__FP9daBgObj_c,
-    (void*)daBgObj_MoveBGExecute__FP9daBgObj_c,
-    (void*)NULL,
-    (void*)daBgObj_MoveBGDraw__FP9daBgObj_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-};
-
-/* 8045CD54-8045CD84 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_BG_OBJ */
-SECTION_DATA extern void* g_profile_BG_OBJ[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x02DE0000, (void*)&g_fpcLf_Method,
-    (void*)0x00000D04, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x02F00000, (void*)&daBgObj_METHODS,
-    (void*)0x10044100, (void*)0x000E0000,
-};
 
 /* 8045BFBC-8045C078 0029DC 00BC+00 1/0 0/0 0/0 .text            Execute__9daBgObj_cFPPA3_A4_f */
 int daBgObj_c::Execute(f32 (**param_0)[3][4]) {
@@ -1372,32 +1458,44 @@ static int daBgObj_create1st(daBgObj_c* i_this) {
 
 /* 8045C744-8045C764 003164 0020+00 1/0 0/0 0/0 .text            daBgObj_MoveBGDelete__FP9daBgObj_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBgObj_MoveBGDelete(daBgObj_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_bg_obj/d_a_bg_obj/daBgObj_MoveBGDelete__FP9daBgObj_c.s"
+static int daBgObj_MoveBGDelete(daBgObj_c* i_this) {
+    return i_this->MoveBGDelete();
 }
-#pragma pop
 
 /* 8045C764-8045C784 003184 0020+00 1/0 0/0 0/0 .text            daBgObj_MoveBGExecute__FP9daBgObj_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBgObj_MoveBGExecute(daBgObj_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_bg_obj/d_a_bg_obj/daBgObj_MoveBGExecute__FP9daBgObj_c.s"
+static int daBgObj_MoveBGExecute(daBgObj_c* i_this) {
+    return i_this->MoveBGExecute();
 }
-#pragma pop
 
 /* 8045C784-8045C7B0 0031A4 002C+00 1/0 0/0 0/0 .text            daBgObj_MoveBGDraw__FP9daBgObj_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBgObj_MoveBGDraw(daBgObj_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_bg_obj/d_a_bg_obj/daBgObj_MoveBGDraw__FP9daBgObj_c.s"
+static int daBgObj_MoveBGDraw(daBgObj_c* i_this) {
+    return i_this->MoveBGDraw();
 }
-#pragma pop
+
+/* 8045CD34-8045CD54 -00001 0020+00 1/0 0/0 0/0 .data            daBgObj_METHODS */
+static actor_method_class daBgObj_METHODS = {
+    (process_method_func)daBgObj_create1st,
+    (process_method_func)daBgObj_MoveBGDelete,
+    (process_method_func)daBgObj_MoveBGExecute,
+    (process_method_func)NULL,
+    (process_method_func)daBgObj_MoveBGDraw,
+};
+
+/* 8045CD54-8045CD84 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_BG_OBJ */
+extern actor_process_profile_definition g_profile_BG_OBJ = {
+    -3,
+    7,
+    -3,
+    PROC_BG_OBJ,
+    &g_fpcLf_Method.mBase,
+    sizeof(daBgObj_c),
+    0,
+    0,
+    &g_fopAc_Method.base,
+    752,
+    &daBgObj_METHODS,
+    0x10044100,
+    0,
+    14,
+};
