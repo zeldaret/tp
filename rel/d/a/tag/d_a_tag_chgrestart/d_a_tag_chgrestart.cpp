@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_chgrestart/d_a_tag_chgrestart.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 //
