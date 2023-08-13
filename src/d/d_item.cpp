@@ -2448,7 +2448,7 @@ s32 isArrow(u8 item_no) {
 }
 
 /* 8009B708-8009B77C 096048 0074+00 0/0 4/4 1/1 .text            isBottleItem__FUc */
-bool isBottleItem(u8 item_no) {
+BOOL isBottleItem(u8 item_no) {
     switch (item_no) {
     case OIL_BOTTLE3:
     case EMPTY_BOTTLE:
@@ -2481,9 +2481,9 @@ bool isBottleItem(u8 item_no) {
     case POU_FIRE2:
     case POU_FIRE3:
     case POU_FIRE4:
-        return true;
+        return TRUE;
     default:
-        return false;
+        return FALSE;
     }
 }
 
