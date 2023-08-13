@@ -3,8 +3,6 @@
 
 #include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "dol2asm.h"
 
 class daTagChgRestart_c : public fopAc_ac_c {
 public:
