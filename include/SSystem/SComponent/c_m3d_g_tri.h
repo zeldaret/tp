@@ -8,6 +8,12 @@
 
 class cM3dGCyl;
 
+struct cM3dGTriS {
+    Vec a;
+    Vec b;
+    Vec c;
+};
+
 class cM3dGTri : public cM3dGPla {
     // private:
 public:

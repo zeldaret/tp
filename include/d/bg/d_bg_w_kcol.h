@@ -32,10 +32,17 @@ struct pkcdata {
     /* 0x24 */ u32 field_0x24;
 };
 
+struct KCol_Header {
+    /* 0x0 */ u32 pos_data_offset;
+    /* 0x4 */ u32 nrm_data_offset;
+    /* 0x8 */ u32 prism_data_offset;
+    /* 0xC */ u32 block_data_offset;
+};
+
 class dBgWKCol : public dBgW_Base {
 public:
     /* 8007E6F4 */ dBgWKCol();
-    /* 8007E7D0 */ void initKCollision(void*);
+    /* 8007E7D0 */ static void initKCollision(void*);
     /* 8007E804 */ void create(void* pprism, void* plc);
     /* 8007E850 */ void getTriNrm(KC_PrismData*, Vec**) const;
     /* 8007E8C0 */ cM3dGPla GetTriPla(int) const;
