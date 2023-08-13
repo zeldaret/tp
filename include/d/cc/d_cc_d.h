@@ -85,7 +85,8 @@ struct dCcD_SrcSph {
 
 struct dCcD_SrcTri {
     /* 0x00 */ dCcD_SrcGObjInf mObjInf;
-};  // Size: 0x30
+    /* 0x30 */ cCcD_SrcTriAttr mTriAttr;
+};  // Size: 0x54
 
 struct dCcD_SrcCyl {
     /* 0x00 */ dCcD_SrcGObjInf mObjInf;

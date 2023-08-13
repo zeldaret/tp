@@ -100,6 +100,10 @@ public:
 
 STATIC_ASSERT(0x20 == sizeof(cCcD_ShapeAttr));
 
+struct cCcD_SrcTriAttr {
+    cM3dGTriS mTri;
+};
+
 class cCcD_TriAttr : public cCcD_ShapeAttr, public cM3dGTri {
 public:
     /* 80263C04 */ virtual void CalcAabBox();

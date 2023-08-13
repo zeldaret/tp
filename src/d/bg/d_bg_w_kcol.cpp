@@ -223,14 +223,14 @@ extern "C" asm void __dt__8dBgWKColFv() {
 #pragma pop
 
 /* 8007E7D0-8007E804 079110 0034+00 0/0 1/1 0/0 .text            initKCollision__8dBgWKColFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgWKCol::initKCollision(void* param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w_kcol/initKCollision__8dBgWKColFPv.s"
+void dBgWKCol::initKCollision(void* i_kclData) {
+    KCol_Header* header_p = (KCol_Header*)i_kclData;
+
+    header_p->pos_data_offset = (u32)header_p + header_p->pos_data_offset;
+    header_p->nrm_data_offset = (u32)header_p + header_p->nrm_data_offset;
+    header_p->prism_data_offset = (u32)header_p + header_p->prism_data_offset;
+    header_p->block_data_offset = (u32)header_p + header_p->block_data_offset;
 }
-#pragma pop
 
 /* 8007E804-8007E850 079144 004C+00 0/0 0/0 1/1 .text            create__8dBgWKColFPvPv */
 void dBgWKCol::create(void* pprism, void* plc) {
