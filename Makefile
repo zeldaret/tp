@@ -180,7 +180,7 @@ $(DOL_SHIFT): $(ELF_SHIFT) | tools
 	
 shift: dirs $(DOL_SHIFT)
 
-shiftedrels: shift
+shiftedrels: shift $(RELS)
 	@echo generating shifted RELs from .plf
 	@echo $(RELS) > build/plf_files
 	$(PYTHON) $(MAKEREL) build --string-table $(BUILD_DIR)/frameworkF.str @build/plf_files $(ELF_SHIFT)
