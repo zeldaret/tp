@@ -64,6 +64,7 @@ public:
     bool checkCommandItem() { return mCommand == 4; }
     BOOL i_checkCommandDoor() { return mCommand == 3; }
     bool i_checkCommandDemoAccrpt() { return mCommand == 2; }
+    bool i_checkCommandCatch() { return mCommand == 6; }
 
     void suspendProc(void* actor) {
         if (field_0x10 != NULL) {

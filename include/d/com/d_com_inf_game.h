@@ -1811,6 +1811,12 @@ inline void dComIfGp_att_LookRequest(fopAc_ac_c* param_0, f32 i_horizontalDist, 
                                         param_5);
 }
 
+inline void dComIfGp_att_CatchRequest(fopAc_ac_c* param_0, u8 param_1, f32 i_horizontalDist, f32 i_upDist,
+                                     f32 i_downDist, s16 i_angle, int param_5) {
+    dComIfGp_getAttention().getCatghTarget().request(param_0, param_1, i_horizontalDist, i_upDist, i_downDist, i_angle,
+                                         param_5);
+}
+
 inline J2DGrafContext* dComIfGp_getCurrentGrafPort() {
     return g_dComIfG_gameInfo.play.getCurrentGrafPort();
 }

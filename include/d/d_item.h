@@ -388,5 +388,6 @@ BOOL isHeart(u8 item_no);
 s32 isBomb(u8);
 s32 isArrow(u8);
 int addBombCount(u8, u8);
+BOOL isBottleItem(u8 item_no);
 
 #endif /* D_D_ITEM_H */
