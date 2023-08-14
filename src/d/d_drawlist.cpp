@@ -4,12 +4,16 @@
 //
 
 #include "d/d_drawlist.h"
+#include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "JSystem/J3DGraphBase/J3DShape.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
+#include "JSystem/JMath/JMath.h"
 #include "SSystem/SComponent/c_bg_s_shdw_draw.h"
+#include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/s/d_s_play.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/mtx/mtx44.h"
@@ -68,12 +72,13 @@ public:
     /* 0x14 */ f32 field_0x14;
 };
 
-class dDlst_2DT_c {
+class dDlst_2DT_c : public dDlst_base_c {
 public:
+    dDlst_2DT_c() {}
     /* 80051F98 */ virtual void draw();
 
-    /* 0x04 */ void* field_0x4;
-    /* 0x08 */ u8 field_0x8[4];
+    /* 0x04 */ u8* field_0x4;
+    /* 0x08 */ u32 field_0x8;
     /* 0x0C */ u8 field_0xc;
     /* 0x0D */ u8 field_0xd;
     /* 0x0E */ u16 field_0xe;
@@ -90,28 +95,105 @@ public:
 
 class dDlst_2DQuad_c {
 public:
+    dDlst_2DQuad_c() {}
     /* 80051CF0 */ virtual void draw();
+
+    /* 0x04 */ s16 field_0x4;
+    /* 0x06 */ s16 field_0x6;
+    /* 0x08 */ s16 field_0x8;
+    /* 0x0A */ s16 field_0xa;
+    /* 0x0C */ GXColor field_0xc;
 };
 
 class dDlst_2DPoint_c {
 public:
     /* 80051E5C */ virtual void draw();
+
+    /* 0x04 */ s16 field_0x4;
+    /* 0x06 */ s16 field_0x6;
+    /* 0x08 */ GXColor field_0x8;
+    /* 0x0C */ u8 field_0xc;
+};
+
+class dDlst_2DMt_tex_c {
+public:
+    u8 check() { return field_0x0; }
+    int getCI() { return mCI; }
+    GXTexObj* getTexObj() { return &mTexObj; }
+    GXTlutObj* getTlutObj() { return &mTlutObj; }
+    GXColor getColor() { return mColor; }
+    f32 getS() { return mS; }
+    f32 getT() { return mT; }
+    f32 getSw() { return mSw; }
+    f32 getTw() { return mTw; }
+
+    /* 0x00 */ u8 field_0x0;
+    /* 0x01 */ u8 mCI;
+    /* 0x04 */ GXTexObj mTexObj;
+    /* 0x24 */ GXTlutObj mTlutObj;
+    /* 0x30 */ GXColor mColor;
+    /* 0x34 */ f32 mS;
+    /* 0x38 */ f32 mT;
+    /* 0x3C */ f32 mSw;
+    /* 0x40 */ f32 mTw;
 };
 
 class dDlst_2DMt_c {
 public:
     /* 8005364C */ virtual void draw();
+
+    /* 0x04 */ u8 field_0x4;
+    /* 0x08 */ dDlst_2DMt_tex_c* field_0x8;
+    /* 0x0C */ s16 field_0xc;
+    /* 0x0E */ s16 field_0xe;
+    /* 0x10 */ s16 field_0x10;
+    /* 0x12 */ s16 field_0x12;
 };
 
 class dDlst_2DM_c {
 public:
     /* 80052C58 */ virtual void draw();
+
+    /* 0x04 */ s16 field_0x4;
+    /* 0x06 */ s16 field_0x6;
+    /* 0x08 */ s16 field_0x8;
+    /* 0x0A */ s16 field_0xa;
+    /* 0x0C */ u8 field_0xc;
+    /* 0x0D */ GXColor field_0xd;
+    /* 0x11 */ GXColor field_0x11;
+    /* 0x18 */ void* field_0x18;
+    /* 0x1C */ u8 field_0x1c;
+    /* 0x1E */ u16 field_0x1e;
+    /* 0x20 */ u16 field_0x20;
+    /* 0x22 */ s16 field_0x22;
+    /* 0x24 */ s16 field_0x24;
+    /* 0x28 */ void* field_0x28;
+    /* 0x2C */ u8 field_0x2c;
+    /* 0x2E */ u16 field_0x2e;
+    /* 0x30 */ u16 field_0x30;
+    /* 0x32 */ s16 field_0x32;
+    /* 0x34 */ s16 field_0x34;
 };
 
 class ShdwDrawPoly_c : public cBgS_ShdwDraw {
 public:
     /* 80054A6C */ virtual ~ShdwDrawPoly_c() {}
+
+    void setCenter(cXyz* center) { mCenter = center; }
+    cXyz* getCenter() { return mCenter; }
+    void setLightVec(cXyz* lightVec) { mLightVec = lightVec; }
+    cXyz* getLightVec() { return mLightVec; }
+    void setPoly(dDlst_shadowPoly_c* poly) { mPoly = poly; }
+    dDlst_shadowPoly_c* getPoly() { return mPoly; }
+
+    /* 0x34 */ cXyz* mCenter;
+    /* 0x38 */ cXyz* mLightVec;
+    /* 0x3c */ dDlst_shadowPoly_c* mPoly;
 };
+
+static inline void GXSetTexCoordGen(GXTexCoordID dst, GXTexGenType type, GXTexGenSrc src, u32 mtx) {
+    GXSetTexCoordGen2(dst, type, src, mtx, GX_FALSE, GX_PTIDENTITY);
+}
 
 //
 // Forward References:
@@ -192,7 +274,7 @@ extern "C" void draw__12dDlst_list_cFPP12dDlst_base_cPP12dDlst_base_c();
 extern "C" void wipeIn__12dDlst_list_cFfR8_GXColor();
 extern "C" void wipeIn__12dDlst_list_cFf();
 extern "C" void calcWipe__12dDlst_list_cFv();
-extern "C" void getTri__22dDlst_shadowRealPoly_cFv();
+extern "C" dDlst_shadowTri_c* getTri__22dDlst_shadowRealPoly_cFv();
 extern "C" s32 getTriMax__22dDlst_shadowRealPoly_cFv();
 extern "C" void searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen();
 extern "C" void __sinit_d_drawlist_cpp();
@@ -306,6 +388,42 @@ void dDlst_window_c::setScissor(f32 xOrig, f32 yOrig, f32 width, f32 height) {
 }
 
 /* 80051AF0-80051CF0 04C430 0200+00 1/0 0/0 0/0 .text            draw__13dDlst_2DTri_cFv */
+// vtable data
+#ifdef NONMATCHING
+void dDlst_2DTri_c::draw() {
+    f32 f2 = cM_scos(field_0xc);
+    f32 f3 = cM_ssin(field_0xc);
+    s16 x[3];
+    s16 y[3];
+    int r8 = 0;
+    for (int i = 0; i < 3; i++) {
+        f32 f4 = field_0x10 * cM_ssin(r8);
+        f32 f5 = field_0x14 * cM_scos(r8);
+        x[i] = field_0x4 + s16(f4 * f2 + f5 * f3);
+        y[i] = field_0x6 + s16(f5 * f2 - f4 * f3);
+        r8 -= 0x5555;
+    }
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
+    GXSetNumChans(1);
+    GXSetChanCtrl(GX_COLOR0A0, GX_DISABLE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+    GXSetChanMatColor(GX_COLOR0A0, field_0x8);
+    GXSetNumTexGens(0);
+    GXSetNumTevStages(1);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+    GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
+    GXLoadPosMtxImm(mDoMtx_getIdentity(), GX_PNMTX0);
+    GXSetCurrentMtx(GX_PNMTX0);
+    GXBegin(GX_TRIANGLES, GX_VTXFMT0, 3);
+    i_GXPosition3s16(x[0], y[0], 0);
+    i_GXPosition3s16(x[1], y[1], 0);
+    i_GXPosition3s16(x[2], y[2], 0);
+    i_GXEnd();
+    dComIfGp_getCurrentGrafPort()->setup2D();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -315,8 +433,34 @@ extern "C" asm void draw__13dDlst_2DTri_cFv() {
 #include "asm/d/d_drawlist/draw__13dDlst_2DTri_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80051CF0-80051E5C 04C630 016C+00 1/0 0/0 0/0 .text            draw__14dDlst_2DQuad_cFv */
+// regalloc
+#ifdef NONMATCHING
+void dDlst_2DQuad_c::draw() {
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
+    GXSetNumChans(1);
+    GXSetChanCtrl(GX_COLOR0A0, GX_DISABLE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+    GXSetChanMatColor(GX_COLOR0A0, field_0xc);
+    GXSetNumTexGens(0);
+    GXSetNumTevStages(1);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+    GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
+    GXLoadPosMtxImm(mDoMtx_getIdentity(), GX_PNMTX0);
+    GXSetCurrentMtx(GX_PNMTX0);
+    GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+    i_GXPosition3s16(field_0x4, field_0x6, 0);
+    i_GXPosition3s16(field_0x8, field_0x6, 0);
+    i_GXPosition3s16(field_0x8, field_0xa, 0);
+    i_GXPosition3s16(field_0x4, field_0xa, 0);
+    i_GXEnd();
+    dComIfGp_getCurrentGrafPort()->setup2D();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -326,8 +470,32 @@ extern "C" asm void draw__14dDlst_2DQuad_cFv() {
 #include "asm/d/d_drawlist/draw__14dDlst_2DQuad_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80051E5C-80051F98 04C79C 013C+00 1/0 0/0 0/0 .text            draw__15dDlst_2DPoint_cFv */
+// vtable data
+#ifdef NONMATCHING
+void dDlst_2DPoint_c::draw() {
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
+    GXSetNumChans(1);
+    GXSetChanCtrl(GX_COLOR0A0, GX_DISABLE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+    GXSetChanMatColor(GX_COLOR0A0, field_0x8);
+    GXSetNumTexGens(0);
+    GXSetNumTevStages(1);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+    GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
+    GXSetPointSize(field_0xc, GX_TO_ZERO);
+    GXLoadPosMtxImm(mDoMtx_getIdentity(), GX_PNMTX0);
+    GXSetCurrentMtx(GX_PNMTX0);
+    GXBegin(GX_POINTS, GX_VTXFMT0, 1);
+    i_GXPosition3s16(field_0x4, field_0x6, 0);
+    i_GXEnd();
+    dComIfGp_getCurrentGrafPort()->setup2D();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -337,6 +505,7 @@ extern "C" asm void draw__15dDlst_2DPoint_cFv() {
 #include "asm/d/d_drawlist/draw__15dDlst_2DPoint_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80450648-8045064C 0000C8 0004+00 1/1 0/0 0/0 .sdata           l_color$4033 */
@@ -367,6 +536,65 @@ SECTION_SDATA2 static f64 lit_4076 = 4503599627370496.0 /* cast u32 to float */;
 SECTION_SDATA2 static f64 lit_4079 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80051F98-80052354 04C8D8 03BC+00 1/0 0/0 0/0 .text            draw__11dDlst_2DT_cFv */
+// regalloc
+#ifdef NONMATCHING
+void dDlst_2DT_c::draw() {
+    f32 var5 = field_0xe;
+    f32 var6 = field_0x10;
+    f32 var11 = (field_0x16 - field_0x12) * 0.5f / field_0x24;
+    f32 var12 = (field_0x18 - field_0x14) * 0.5f / field_0x28;
+    u16 var1 = (field_0x1c - var11) / var5 * 32768.0f;
+    u16 var2 = (field_0x20 - var12) / var6 * 32768.0f;
+    u16 var3 = (field_0x1c + var11) / var5 * 32768.0f;
+    u16 var4 = (field_0x20 + var12) / var6 * 32768.0f;
+
+    GXTexObj tex;
+    GXInitTexObj(&tex, field_0x4, field_0xe, field_0x10, (GXTexFmt)field_0xc, GX_CLAMP, GX_CLAMP, GX_FALSE);
+    GXInitTexObjLOD(&tex, GX_LINEAR, GX_LINEAR, 0.0, 0.0, 0.0, 0, 0, GX_ANISO_1);
+    GXLoadTexObj(&tex, GX_TEXMAP0);
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGBA, GX_RGBA8, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBX8, 0xf);
+    GXSetNumChans(1);
+    GXSetChanCtrl(GX_COLOR0A0, GX_DISABLE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+    l_color_4033.a = field_0xd;
+    GXSetNumTexGens(1);
+    GXSetNumTevStages(1);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
+    GXSetTevOp(GX_TEVSTAGE0, GX_MODULATE);
+    GXSetZCompLoc(GX_FALSE);
+    GXSetZMode(GX_DISABLE, GX_ALWAYS, GX_DISABLE);
+    GXSetBlendMode(GX_BM_NONE, GX_BL_ZERO, GX_BL_ZERO, GX_LO_SET);
+    GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
+    GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
+    GXSetCullMode(GX_CULL_NONE);
+    GXSetDither(GX_TRUE);
+    GXLoadPosMtxImm(mDoMtx_getIdentity(), GX_PNMTX0);
+    GXSetChanMatColor(GX_COLOR0A0, l_color_4033);
+    GXSetClipMode(GX_CLIP_DISABLE);
+    GXSetCurrentMtx(GX_PNMTX0);
+    GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+    i_GXPosition3s16(field_0x12, field_0x14, 0);
+    GXColor1u32(0xffffffff);
+    i_GXTexCoord2u16(var1, var2);
+    i_GXPosition3s16(field_0x16, field_0x14, 0);
+    GXColor1u32(0xffffffff);
+    i_GXTexCoord2u16(var3, var2);
+    i_GXPosition3s16(field_0x16, field_0x18, 0);
+    GXColor1u32(0xffffffff);
+    i_GXTexCoord2u16(var3, var4);
+    i_GXPosition3s16(field_0x12, field_0x18, 0);
+    GXColor1u32(0xffffffff);
+    i_GXTexCoord2u16(var1, var4);
+    i_GXEnd();
+    GXSetClipMode(GX_CLIP_ENABLE);
+    dComIfGp_getCurrentGrafPort()->setup2D();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -376,12 +604,211 @@ extern "C" asm void draw__11dDlst_2DT_cFv() {
 #include "asm/d/d_drawlist/draw__11dDlst_2DT_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80452028-8045202C 000628 0004+00 10/10 0/0 0/0 .sdata2          @4270 */
 SECTION_SDATA2 static f32 lit_4270 = 1.0f;
 
 /* 80052354-80052B00 04CC94 07AC+00 1/0 0/0 0/0 .text            draw__12dDlst_2DT2_cFv */
+// vtable data
+#ifdef NONMATCHING
+void dDlst_2DT2_c::draw() {
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XY, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBA6, 0);
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+    GXLoadTexObj(&mTexObj, GX_TEXMAP0);
+    GXSetNumChans(0);
+    GXSetTevColor(GX_TEVREG0, field_0x3c);
+    GXSetTevColor(GX_TEVREG1, field_0x40);
+    GXSetNumTexGens(1);
+    GXSetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY);
+    GXSetNumTevStages(1);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
+    GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C1, GX_CC_C0, GX_CC_TEXC, GX_CC_ZERO);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    if (field_0x46) {
+        GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_A0);
+    } else {
+        GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_A1, GX_CA_A0, GX_CA_TEXA, GX_CA_ZERO);
+    }
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetZCompLoc(GX_FALSE);
+    GXSetZMode(GX_DISABLE, GX_ALWAYS, GX_DISABLE);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_CLEAR);
+    GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_GREATER, 0);
+    GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
+    GXSetCullMode(GX_CULL_NONE);
+    GXSetDither(GX_TRUE);
+    GXLoadPosMtxImm(mDoMtx_getIdentity(), GX_PNMTX0);
+    GXSetClipMode(GX_CLIP_DISABLE);
+    GXSetCurrentMtx(GX_PNMTX0);
+    f32 f31 = field_0x24 + field_0x2c;
+    f32 f30 = field_0x28 + field_0x30;
+    if (field_0x44 && field_0x45) {
+        f32 f29 = field_0x24 + field_0x2c * 0.5f;
+        f32 f28 = field_0x28 + field_0x30 * 0.5f;
+        f32 f27;
+        f32 f26;
+        if (mScaleX == 0.0f) {
+            f27 = 0.0f;
+            f26 = 0.0f;
+        } else {
+            f27 = 1.0f - 1.0f / mScaleX;
+            f26 = 1.0f;
+        }
+        f32 f25;
+        f32 f24;
+        if (mScaleY == 0.0f) {
+            f25 = 0.0f;
+            f24 = 0.0f;
+        } else {
+            f25 = 1.0f - 1.0f / mScaleY;
+            f24 = 1.0f;
+        }
+        GXBegin(GX_QUADS, GX_VTXFMT0, 16);
+        GXPosition2f32(field_0x24, field_0x28);
+        GXTexCoord2f32(f27, f25);
+        GXPosition2f32(f29, field_0x28);
+        GXTexCoord2f32(f26, f25);
+        GXPosition2f32(f29, f28);
+        GXTexCoord2f32(f26, f24);
+        GXPosition2f32(field_0x24, f28);
+        GXTexCoord2f32(f27, f24);
+        GXPosition2f32(f29, field_0x28);
+        GXTexCoord2f32(f26, f25);
+        GXPosition2f32(f31, field_0x28);
+        GXTexCoord2f32(f27, f25);
+        GXPosition2f32(f31, f28);
+        GXTexCoord2f32(f27, f24);
+        GXPosition2f32(f29, f28);
+        GXTexCoord2f32(f26, f24);
+        GXPosition2f32(field_0x24, f28);
+        GXTexCoord2f32(f27, f24);
+        GXPosition2f32(f29, f28);
+        GXTexCoord2f32(f26, f24);
+        GXPosition2f32(f29, f30);
+        GXTexCoord2f32(f26, f25);
+        GXPosition2f32(field_0x24, f30);
+        GXTexCoord2f32(f27, f25);
+        GXPosition2f32(f29, f28);
+        GXTexCoord2f32(f26, f24);
+        GXPosition2f32(f31, f28);
+        GXTexCoord2f32(f27, f24);
+        GXPosition2f32(f31, f30);
+        GXTexCoord2f32(f27, f25);
+        GXPosition2f32(f29, f30);
+        GXTexCoord2f32(f26, f25);
+        i_GXEnd();
+    } else if (field_0x44) {
+        f32 f28 = field_0x24 + field_0x2c * 0.5f;
+        f32 f29;
+        f32 f27;
+        if (mScaleX == 0.0f) {
+            f29 = 0.0f;
+            f27 = 0.0f;
+        } else {
+            f29 = 1.0f - 1.0f / mScaleX;
+            f27 = 1.0f;
+        }
+        f32 f24;
+        if (mScaleY == 0.0f) {
+            f24 = 1.0f;
+        } else {
+            f24 = 0.5f - (1.0f / mScaleY) * 0.5f;
+        }
+        GXBegin(GX_QUADS, GX_VTXFMT0, 8);
+        GXPosition2f32(field_0x24, field_0x28);
+        GXTexCoord2f32(f29, f24);
+        GXPosition2f32(f28, field_0x28);
+        GXTexCoord2f32(f27, f24);
+        GXPosition2f32(f28, f30);
+        GXTexCoord2f32(f27, 1.0f);
+        GXPosition2f32(field_0x24, f30);
+        GXTexCoord2f32(f29, 1.0f);
+        GXPosition2f32(f28, field_0x28);
+        GXTexCoord2f32(f27, f24);
+        GXPosition2f32(f31, field_0x28);
+        GXTexCoord2f32(f29, f24);
+        GXPosition2f32(f31, f30);
+        GXTexCoord2f32(f29, 1.0f);
+        GXPosition2f32(f28, f30);
+        GXTexCoord2f32(f27, 1.0f);
+        i_GXEnd();
+    } else if (field_0x45) {
+        f32 f24 = field_0x28 + 0.5f * field_0x30;
+        f32 f25;
+        f32 f26;
+        if (mScaleX == 0.0f) {
+            f25 = 1.0f;
+            f26 = 1.0f;
+        } else {
+            f25 = 0.5f - (1.0f / mScaleX * 0.5f);
+            f26 = 0.5f + (1.0f / mScaleX * 0.5f);
+        }
+        f32 f27;
+        f32 f28;
+        if (mScaleY == 0.0f) {
+            f27 = 0.0f;
+            f28 = 0.0f;
+        } else {
+            f27 = 1.0f - 1.0f / mScaleY;
+            f28 = 1.0f;
+        }
+        GXBegin(GX_QUADS, GX_VTXFMT0, 8);
+        GXPosition2f32(field_0x24, field_0x28);
+        GXTexCoord2f32(f25, f27);
+        GXPosition2f32(f31, field_0x28);
+        GXTexCoord2f32(f26, f27);
+        GXPosition2f32(f31, f24);
+        GXTexCoord2f32(f26, f28);
+        GXPosition2f32(field_0x24, f24);
+        GXTexCoord2f32(f25, f28);
+        GXPosition2f32(field_0x24, f24);
+        GXTexCoord2f32(f25, f28);
+        GXPosition2f32(f31, f24);
+        GXTexCoord2f32(f26, f28);
+        GXPosition2f32(f31, f30);
+        GXTexCoord2f32(f26, f27);
+        GXPosition2f32(field_0x24, f30);
+        GXTexCoord2f32(f25, f27);
+        i_GXEnd();
+    } else {
+        f32 f24;
+        f32 f25;
+        if (mScaleX == 0.0f) {
+            f24 = 0.0f;
+            f25 = 0.0f;
+        } else {
+            f24 = 0.5f - (1.0f / mScaleX * 0.5f);
+            f25 = 0.5f + (1.0f / mScaleX * 0.5f);
+        }
+        f32 f26;
+        f32 f27;
+        if (mScaleY == 0.0f) {
+            f26 = 0.0f;
+            f27 = 0.0f;
+        } else {
+            f26 = 0.5f - (1.0f / mScaleY * 0.5f);
+            f27 = 0.5f + (1.0f / mScaleY * 0.5f);
+        }
+        GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+        GXPosition2f32(field_0x24, field_0x28);
+        GXTexCoord2f32(f24, f26);
+        GXPosition2f32(f31, field_0x28);
+        GXTexCoord2f32(f25, f26);
+        GXPosition2f32(f31, f30);
+        GXTexCoord2f32(f25, f27);
+        GXPosition2f32(field_0x24, f30);
+        GXTexCoord2f32(f24, f27);
+        i_GXEnd();
+    }
+    GXSetClipMode(GX_CLIP_ENABLE);
+    dComIfGp_getCurrentGrafPort()->setup2D();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -391,6 +818,7 @@ extern "C" asm void draw__12dDlst_2DT2_cFv() {
 #include "asm/d/d_drawlist/draw__12dDlst_2DT2_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803A87A0-803A87C0 0058C0 000C+14 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -724,6 +1152,69 @@ void dDlst_2DT2_c::init(ResTIMG* i_timg, f32 param_1, f32 param_2, f32 param_3, 
 SECTION_SDATA2 static f32 lit_4360 = 256.0f;
 
 /* 80052C58-8005312C 04D598 04D4+00 1/0 0/0 0/0 .text            draw__11dDlst_2DM_cFv */
+// regalloc
+#ifdef NONMATCHING
+void dDlst_2DM_c::draw() {
+    s16 r31 = field_0x22;
+    s16 r30 = field_0x24;
+    int r29 = field_0x22 + 256.0f;
+    int r28 = field_0x24 + 256.0f;
+    f32 f4 = 256.0f / field_0x2e;
+    f32 f3 = 256.0f / field_0x30;
+    int r27 = field_0x32 * f4;
+    int r26 = field_0x34 * f3;
+    s16 r25 = r27 + s16(field_0x1e * f4);
+    s16 r24 = r26 + s16(field_0x20 * f3);
+    GXTexObj tex[2];
+    GXInitTexObj(&tex[0], field_0x18, field_0x1e, field_0x20, GXTexFmt(field_0x1c), GX_CLAMP, GX_CLAMP, 0);
+    GXInitTexObjLOD(&tex[0], GX_LINEAR, GX_LINEAR, 0.0, 0.0, 0.0, 0, 0, GX_ANISO_1);
+    GXTexWrapMode wrap = field_0xc ? GX_REPEAT : GX_CLAMP;
+    GXInitTexObj(&tex[1], field_0x28, field_0x2e, field_0x30, GXTexFmt(field_0x2c), wrap, wrap, 0);
+    GXInitTexObjLOD(&tex[1], GX_LINEAR, GX_LINEAR, 0.0, 0.0, 0.0, 0, 0, GX_ANISO_1);
+    GXLoadTexObj(&tex[0], GX_TEXMAP0);
+    GXLoadTexObj(&tex[1], GX_TEXMAP1);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBA4, 8);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX1, GX_CLR_RGBA, GX_RGBA4, 8);
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_TEX1, GX_DIRECT);
+    GXSetNumChans(0);
+    GXSetTevColor(GX_TEVREG0, field_0xd);
+    GXSetTevColor(GX_TEVREG1, field_0x11);
+    GXSetNumTexGens(2);
+    GXSetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY);
+    GXSetTexCoordGen(GX_TEXCOORD1, GX_TG_MTX2x4, GX_TG_TEX1, GX_IDENTITY);
+    GXSetNumTevStages(2);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
+    GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C1, GX_CC_C0, GX_CC_TEXC, GX_CC_ZERO);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_A1, GX_CA_A0, GX_CA_TEXA, GX_CA_ZERO);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetTevOrder(GX_TEVSTAGE1, GX_TEXCOORD1, GX_TEXMAP1, GX_COLOR_NULL);
+    GXSetTevColorIn(GX_TEVSTAGE1, GX_CC_ZERO, GX_CC_TEXC, GX_CC_CPREV, GX_CC_ZERO);
+    GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE1, GX_CA_ZERO, GX_CA_TEXA, GX_CA_APREV, GX_CA_ZERO);
+    GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
+    GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+    i_GXPosition3s16(field_0x4, field_0x6, 0);
+    GXTexCoord2s16(r31, r30);
+    GXTexCoord2s16(r27, r26);
+    i_GXPosition3s16(field_0x8, field_0x6, 0);
+    GXTexCoord2s16(r29, r30);
+    GXTexCoord2s16(r25, r26);
+    i_GXPosition3s16(field_0x8, field_0xa, 0);
+    GXTexCoord2s16(r29, r28);
+    GXTexCoord2s16(r25, r24);
+    i_GXPosition3s16(field_0x4, field_0xa, 0);
+    GXTexCoord2s16(r31, r28);
+    GXTexCoord2s16(r27, r24);
+    i_GXEnd();
+    dComIfGp_getCurrentGrafPort()->setup2D();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -733,8 +1224,75 @@ extern "C" asm void draw__11dDlst_2DM_cFv() {
 #include "asm/d/d_drawlist/draw__11dDlst_2DM_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8005312C-8005364C 04DA6C 0520+00 1/0 0/0 0/0 .text            draw__11dDlst_2Dm_cFv */
+// regalloc
+#ifdef NONMATCHING
+void dDlst_2Dm_c::draw() {
+    s16 r31 = field_0x48;
+    s16 r30 = field_0x4a;
+    int r29 = field_0x48 + 256.0f;
+    int r28 = field_0x4a + 256.0f;
+    f32 f31 = field_0xc * 256.0f / GXGetTexObjWidth(&field_0x50);
+    f32 f30 = field_0x10 * 256.0f / GXGetTexObjHeight(&field_0x50);
+    int r27 = field_0x7c * f31;
+    int r26 = field_0x7e * f30;
+    s16 r25 = r27 + s16(f31 * GXGetTexObjWidth(&field_0x1c));
+    s16 r24 = r26 + s16(f30 * GXGetTexObjHeight(&field_0x1c));
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBA4, 8);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX1, GX_CLR_RGBA, GX_RGBA4, 8);
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_TEX1, GX_DIRECT);
+    GXLoadTexObj(&field_0x1c, GX_TEXMAP0);
+    if (field_0x4c) {
+        GXLoadTlut(&field_0x3c, GXGetTexObjTlut(&field_0x1c));
+    }
+    GXLoadTexObj(&field_0x50, GX_TEXMAP1);
+    if (field_0x80) {
+        GXLoadTlut(&field_0x70, GXGetTexObjTlut(&field_0x50));
+    }
+    GXSetNumChans(0);
+    GXSetTevColor(GX_TEVREG0, field_0x14);
+    GXSetTevColor(GX_TEVREG1, field_0x18);
+    GXSetNumTexGens(2);
+    GXSetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY);
+    GXSetTexCoordGen(GX_TEXCOORD1, GX_TG_MTX2x4, GX_TG_TEX1, GX_IDENTITY);
+    GXSetNumTevStages(2);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
+    GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C1, GX_CC_C0, GX_CC_TEXC, GX_CC_ZERO);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_A1, GX_CA_A0, GX_CA_TEXA, GX_CA_ZERO);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetTevOrder(GX_TEVSTAGE1, GX_TEXCOORD1, GX_TEXMAP1, GX_COLOR_NULL);
+    GXSetTevColorIn(GX_TEVSTAGE1, GX_CC_ZERO, GX_CC_TEXC, GX_CC_CPREV, GX_CC_ZERO);
+    GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE1, GX_CA_ZERO, GX_CA_TEXA, GX_CA_APREV, GX_CA_ZERO);
+    GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_GREATER, 0);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
+    GXLoadPosMtxImm(g_mDoMtx_identity, GX_PNMTX0);
+    GXSetCurrentMtx(0);
+    GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+    i_GXPosition3s16(field_0x4, field_0x6, 0);
+    GXTexCoord2s16(r31, r30);
+    GXTexCoord2s16(r27, r26);
+    i_GXPosition3s16(field_0x8, field_0x6, 0);
+    GXTexCoord2s16(r29, r30);
+    GXTexCoord2s16(r25, r26);
+    i_GXPosition3s16(field_0x8, field_0xa, 0);
+    GXTexCoord2s16(r29, r28);
+    GXTexCoord2s16(r25, r24);
+    i_GXPosition3s16(field_0x4, field_0xa, 0);
+    GXTexCoord2s16(r31, r28);
+    GXTexCoord2s16(r27, r24);
+    i_GXEnd();
+    dComIfGp_getCurrentGrafPort()->setup2D();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -744,8 +1302,84 @@ extern "C" asm void draw__11dDlst_2Dm_cFv() {
 #include "asm/d/d_drawlist/func_8005312C.s"
 }
 #pragma pop
+#endif
 
 /* 8005364C-800539DC 04DF8C 0390+00 1/0 0/0 0/0 .text            draw__12dDlst_2DMt_cFv */
+// regalloc
+#ifdef NONMATCHING
+void dDlst_2DMt_c::draw() {
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    dDlst_2DMt_tex_c* r27 = field_0x8;
+    int r28 = 0;
+    int r30 = 0;
+    for (int i = 0; i < field_0x4; i++) {
+        if (r27->check()) {
+            if (r27->getCI()) {
+                GXLoadTlut(r27->getTlutObj(), i);
+            }
+            GXLoadTexObj(r27->getTexObj(), GXTexMapID(r28));
+            GXSetVtxAttrFmt(GX_VTXFMT0, GXAttr(GX_VA_TEX0 + r28), GX_CLR_RGBA, GX_RGBA6, 0);
+            GXSetVtxDesc(GXAttr(GX_VA_TEX0 + r28), GX_DIRECT);
+            GXSetTevColor(GXTevRegID(GX_TEVREG0 + r28), r27->mColor);
+            GXSetTexCoordGen(GXTexCoordID(r28), GX_TG_MTX2x4, GXTexGenSrc(GX_TG_TEX0 + r28), GX_IDENTITY);
+            GXSetTevOrder(GXTevStageID(r28), GXTexCoordID(r28), GXTexMapID(r28), GX_COLOR_NULL);
+            GXSetTevColorIn(GXTevStageID(r28), GX_CC_ZERO, GXTevColorArg(GX_CC_C0 + r30), GX_CC_TEXC, r28 ? GX_CC_CPREV : GX_CC_ZERO);
+            GXSetTevColorOp(GXTevStageID(r28), GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+            GXSetTevAlphaIn(GXTevStageID(r28), GX_CA_ZERO, GXTevAlphaArg(GX_CA_A0 + r28), GX_CA_TEXA, r28 ? GX_CA_APREV : GX_CA_ZERO);
+            GXSetTevAlphaOp(GXTevStageID(r28), GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+            r28++;
+            r30 += 2;
+            if (r28 >= 3) {
+                break;
+            }
+        }
+        r27++;
+    }
+    if (r28) {
+        GXSetNumChans(0);
+        GXSetNumTexGens(r28);
+        GXSetNumTevStages(r28);
+        GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
+        GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+        i_GXPosition3s16(field_0xc, field_0xe, 0);
+        dDlst_2DMt_tex_c* tmp = field_0x8;
+        for (int i = 0; i < field_0x4; i++) {
+            if (tmp->check()) {
+                GXTexCoord2f32(tmp->getS(), tmp->getT());
+            }
+            tmp++;
+        }
+        i_GXPosition3s16(field_0x10, field_0xe, 0);
+        tmp = field_0x8;
+        for (int i = 0; i < field_0x4; i++) {
+            if (tmp->check()) {
+                GXTexCoord2f32(tmp->getS() + tmp->getSw(), tmp->getT());
+            }
+            tmp++;
+        }
+        i_GXPosition3s16(field_0x10, field_0x12, 0);
+        tmp = field_0x8;
+        for (int i = 0; i < field_0x4; i++) {
+            if (tmp->check()) {
+                GXTexCoord2f32(tmp->getS() + tmp->getSw(), tmp->getT() + tmp->getTw());
+            }
+            tmp++;
+        }
+        i_GXPosition3s16(field_0xc, field_0x12, 0);
+        tmp = field_0x8;
+        for (int i = 0; i < field_0x4; i++) {
+            if (tmp->check()) {
+                GXTexCoord2f32(tmp->getS(), tmp->getT() + tmp->getTw());
+            }
+            tmp++;
+        }
+        i_GXEnd();
+        dComIfGp_getCurrentGrafPort()->setup2D();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -755,6 +1389,7 @@ extern "C" asm void draw__12dDlst_2DMt_cFv() {
 #include "asm/d/d_drawlist/draw__12dDlst_2DMt_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 800539DC-80053A00 04E31C 0024+00 0/0 1/0 0/0 .text            getTexture__10J2DPictureCFUc */
 #pragma push
@@ -948,6 +1583,52 @@ f32 cM_rnd_c::getValue(f32 param_0, f32 param_1) {
 SECTION_SDATA2 static f32 lit_4876 = 32767.0f;
 
 /* 80053E9C-800541F4 04E7DC 0358+00 1/0 0/0 0/0 .text            draw__18dDlst_effectLine_cFv */
+// vtable data
+#ifdef NONMATCHING
+void dDlst_effectLine_c::draw() {
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetNumChans(1);
+    GXSetChanCtrl(GX_COLOR0, 0, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_CLAMP, GX_AF_NONE);
+    GXSetNumTexGens(0);
+    GXSetNumTevStages(1);
+    GXSetTevColor(GX_TEVREG0, mLineColor);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+    GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, GX_CC_C0);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_A0);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetZMode(GX_DISABLE, GX_LEQUAL, GX_DISABLE);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_CLEAR);
+    GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
+    GXSetCullMode(GX_CULL_NONE);
+    GXLoadPosMtxImm(j3dSys.mViewMtx, GX_PNMTX0);
+    GXSetClipMode(GX_CLIP_ENABLE);
+    GXSetCurrentMtx(0);
+    int r31 = getRndValue(field_0x20, field_0x22);
+    cXyz local_68;
+    cXyz local_74;
+    for (int i = 0; i < r31; i++) {
+        int r23 = getRndFX(32767.0f);
+        float tmp = getRndValue(field_0x28, field_0x2c);
+        local_68.x = field_0x10.x + tmp * cM_ssin(r23);
+        local_68.y = field_0x10.y + tmp * cM_scos(r23);
+        local_68.z = field_0x10.z;
+        tmp = getRndValue(field_0x30, field_0x34);
+        local_74.x = local_68.x + tmp * cM_ssin(r23);
+        local_74.y = local_68.y + tmp * cM_scos(r23);
+        local_74.z = field_0x10.z;
+        cMtx_multVec(dComIfGd_getInvViewMtx(), &local_68, &local_68);
+        cMtx_multVec(dComIfGd_getInvViewMtx(), &local_74, &local_74);
+        GXSetLineWidth(getRndValue(field_0x24, field_0x26), GX_TO_ZERO);
+        GXBegin(GX_LINES, GX_VTXFMT0, 2);
+        GXPosition3f32(local_68.x, local_68.y, local_68.z);
+        GXPosition3f32(local_74.x, local_74.y, local_74.z);
+        i_GXEnd();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -957,6 +1638,7 @@ extern "C" asm void draw__18dDlst_effectLine_cFv() {
 #include "asm/d/d_drawlist/draw__18dDlst_effectLine_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 800541F4-80054288 04EB34 0094+00 0/0 1/1 0/0 .text
  * update__18dDlst_effectLine_cFR4cXyzR8_GXColorUsUsUsUsffff    */
@@ -1081,9 +1763,9 @@ void dDlst_shadowReal_c::draw() {
     GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
-    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
-    GXSetCurrentMtx(0);
-    GXLoadTexMtxImm(mReceiverProjMtx, 30, GX_MTX3x4);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+    GXSetCurrentMtx(GX_PNMTX0);
+    GXLoadTexMtxImm(mReceiverProjMtx, GX_TEXMTX0, GX_MTX3x4);
     mShadowRealPoly.draw();
 }
 
@@ -1096,15 +1778,32 @@ SECTION_SDATA2 static f32 lit_5062 = -90.0f;
 
 /* 80054688-80054854 04EFC8 01CC+00 1/1 0/0 0/0 .text
  * psdRealCallBack__FP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int psdRealCallBack(cBgS_ShdwDraw* param_0, cBgD_Vtx_t* param_1, int param_2,
+static int psdRealCallBack(cBgS_ShdwDraw* param_0, cBgD_Vtx_t* param_1, int param_2,
                                int param_3, int param_4, cM3dGPla* param_5) {
-    nofralloc
-#include "asm/d/d_drawlist/psdRealCallBack__FP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla.s"
+    ShdwDrawPoly_c* shdwDrawPoly = (ShdwDrawPoly_c*)param_0;
+    const cXyz* normal = param_5->i_GetNP();
+    if (shdwDrawPoly->getLightVec()->inprod(*normal) < -0.2f) {
+        cXyz* center = shdwDrawPoly->getCenter();
+        if (normal->x * center->x + normal->y * center->y + normal->z * center->z + param_5->GetD() > -90.f) {
+            const cXyz* min = shdwDrawPoly->GetBndP()->GetMinP();
+            const cXyz* max = shdwDrawPoly->GetBndP()->GetMaxP();
+            cBgD_Vtx_t* vert1 = param_1 + param_2;
+            cBgD_Vtx_t* vert2 = param_1 + param_3;
+            cBgD_Vtx_t* vert3 = param_1 + param_4;
+            if ((vert1->y < min->y && vert2->y < min->y && vert3->y < min->y)
+            || (vert1->y > max->y && vert2->y > max->y && vert3->y > max->y)
+            || (vert1->x < min->x && vert2->x < min->x && vert3->x < min->x)
+            || (vert1->x > max->x && vert2->x > max->x && vert3->x > max->x)
+            || (vert1->z < min->z && vert2->z < min->z && vert3->z < min->z)
+            || (vert1->z > max->z && vert2->z > max->z && vert3->z > max->z)) {
+                return 1;
+            } else {
+                return shdwDrawPoly->getPoly()->set(param_1, param_2, param_3, param_4, param_5);
+            }
+        }
+    }
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80452058-8045205C 000658 0004+00 1/1 0/0 0/0 .sdata2          @5127 */
@@ -1121,34 +1820,60 @@ SECTION_SDATA2 static f32 lit_5130 = 10000.0f;
 
 /* 80054854-80054A6C 04F194 0218+00 1/1 0/0 0/0 .text
  * realPolygonCheck__FP4cXyzffP4cXyzP18dDlst_shadowPoly_c       */
+// vtable data
+#ifdef NONMATCHING
+static BOOL realPolygonCheck(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3,
+                                 dDlst_shadowPoly_c* param_4) {
+    ShdwDrawPoly_c shdwDrawPoly;
+    cXyz local_8c;
+    cXyz local_98;
+    f32 var1 = param_1 + param_2 - cLib_maxLimit(param_1 * param_1 * 0.002f, 120.0f);
+    local_8c.y = param_0->y - var1;
+    local_98.y = param_0->y + param_1 * 0.15f;
+    local_98.x = param_0->x + param_3->x * var1;
+    if (local_98.x < param_0->x) {
+        local_8c.x = local_98.x;
+        local_98.x = param_0->x;
+    } else {
+        local_8c.x = param_0->x;
+    }
+    local_8c.x -= param_1;
+    local_98.x += param_1;
+    var1 = param_0->z + param_3->z * var1;
+    local_98.z = var1;
+    if (var1 < param_0->z) {
+        local_8c.z = local_98.z;
+        local_98.z = param_0->z;
+    } else {
+        local_8c.z = param_0->z;
+    }
+    local_8c.z -= param_1;
+    local_98.z += param_1;
+    mDoLib_clipper::changeFar(mDoLib_clipper::getFovyRate() * 10000.0f);
+    s32 clip = mDoLib_clipper::clip(j3dSys.getViewMtx(), &local_98, &local_8c);
+    mDoLib_clipper::resetFar();
+    if (clip) {
+        return FALSE;
+    }
+    shdwDrawPoly.Set(local_8c, local_98);
+    shdwDrawPoly.SetCallback(psdRealCallBack);
+    shdwDrawPoly.setCenter(param_0);
+    shdwDrawPoly.setLightVec(param_3);
+    shdwDrawPoly.setPoly(param_4);
+    dComIfG_Bgsp().ShdwDraw(&shdwDrawPoly);
+    return TRUE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void realPolygonCheck(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3,
+static asm BOOL realPolygonCheck(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3,
                                  dDlst_shadowPoly_c* param_4) {
     nofralloc
 #include "asm/d/d_drawlist/realPolygonCheck__FP4cXyzffP4cXyzP18dDlst_shadowPoly_c.s"
 }
 #pragma pop
-
-/* static void realPolygonCheck(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3,
-                                 dDlst_shadowPoly_c* param_4) {
-    ShdwDrawPoly_c draw_poly;
-    cXyz sp1C;
-    cXyz sp10;
-
-    f32 var_f1 = cLib_maxLimit(param_1 * param_1 * 0.002f, 120.0f);
-    f32 temp_f2 = (param_1 + param_2) - var_f1;
-
-    sp1C.y = param_0->y - temp_f2;
-    sp10.y = param_0->y + (param_1 * 0.15f);
-    sp1C.x = param_0->x + (param_3->x * temp_f2);
-
-    if (sp1C.x < param_0->x) {
-        sp1C.x = sp10.x;
-        sp
-    }
-} */
+#endif
 
 /* 80054A6C-80054ACC 04F3AC 0060+00 1/0 0/0 0/0 .text            __dt__14ShdwDrawPoly_cFv */
 #pragma push
@@ -1249,6 +1974,64 @@ SECTION_SDATA2 static f32 lit_5275 = -0.5f;
 
 /* 80054BD0-80055028 04F510 0458+00 1/1 0/0 0/0 .text
  * setShadowRealMtx__18dDlst_shadowReal_cFP4cXyzP4cXyzfffP12dKy_tevstr_c */
+// g_envHIO
+#ifdef NONMATCHING
+u8 dDlst_shadowReal_c::setShadowRealMtx(cXyz* param_0, cXyz* param_1, f32 param_2, f32 param_3,
+                                            f32 param_4, dKy_tevstr_c* param_5) {
+    mShadowRealPoly.reset();
+    setkankyoShadow(param_5, &param_4);
+    int r29 = g_envHIO.mOther.mShadowDensity * param_4;
+    cXyz local_64 = *param_0 - *param_1;
+    u8 r28 = 0;
+    if (param_5) {
+        cLib_chaseUC(&param_5->field_0x385, param_3 > 50.0f ? 0 : 0xff, 60);
+        r28 = param_5->field_0x385;
+    }
+    f32 f29 = local_64.abs2();
+    if (!cM3d_IsZero(f29)) {
+        f32 tmp = JMAFastSqrt(f29);
+        if (local_64.y / tmp < 0.8f) {
+            local_64.y = tmp * 0.8f;
+            f32 tmp2 = local_64.abs2XZ();
+            if (!cM3d_IsZero(tmp2)) {
+                f32 tmp3 = JMAFastSqrt((f29 - local_64.y * local_64.y) / tmp2);
+                local_64.x *= tmp3;
+                local_64.z *= tmp3;
+            }
+        }
+        if (r28 == 0) {
+            local_64.x = 0.0f;
+            local_64.z = 0.0f;
+        } else if (r28 < 0xff) {
+            f32 tmp4 = r28 / 255.0f;
+            local_64.x *= tmp4;
+            local_64.z *= tmp4;
+        }
+        f29 = local_64.abs();
+        if (!cM3d_IsZero(f29)) {
+            f29 = (param_2 * 0.5f) / f29;
+        }
+    }
+    local_64 *= f29;
+    local_64 += *param_1;
+    param_2 = param_2 * 0.4f;
+    cXyz local_70 = *param_1 - local_64;
+    if (local_70.isZero()) {
+        local_70.y = -1.0f;
+        local_64.y = param_1->y + 1.0f;
+    } else {
+        local_70.normalize();
+    }
+    if (!realPolygonCheck(param_1, param_2, param_3, &local_70, &mShadowRealPoly)) {
+        return 0;
+    }
+    cMtx_lookAt(mViewMtx, &local_64, param_1, 0);
+    C_MTXOrtho(mRenderProjMtx, param_2, -param_2, -param_2, param_2, 1.0f, 10000.0f);
+    C_MTXLightOrtho(mReceiverProjMtx, param_2, -param_2, -param_2, param_2, 0.5f, -0.5f, 0.5f, 0.5f);
+    cMtx_concat(mReceiverProjMtx, mViewMtx, mReceiverProjMtx);
+    return r29;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1258,6 +2041,7 @@ asm u8 dDlst_shadowReal_c::setShadowRealMtx(cXyz* param_0, cXyz* param_1, f32 pa
 #include "asm/d/d_drawlist/setShadowRealMtx__18dDlst_shadowReal_cFP4cXyzP4cXyzfffP12dKy_tevstr_c.s"
 }
 #pragma pop
+#endif
 
 /* 80055028-800551D4 04F968 01AC+00 1/1 0/0 0/0 .text
  * set__18dDlst_shadowReal_cFUlP8J3DModelP4cXyzffP12dKy_tevstr_cff */
@@ -1322,13 +2106,13 @@ void dDlst_shadowSimple_c::draw() {
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
     GXLoadPosMtxImm(mVolumeMtx, GX_PNMTX0);
-    GXSetCurrentMtx(0);
+    GXSetCurrentMtx(GX_PNMTX0);
     GXCallDisplayList(l_frontMat, 0x40);
     GXCallDisplayList(l_shadowVolumeDL, 0x40);
     GXCallDisplayList(l_backSubMat, 0x20);
     GXCallDisplayList(l_shadowVolumeDL, 0x40);
     GXLoadPosMtxImm(mMtx, GX_PNMTX1);
-    GXSetCurrentMtx(3);
+    GXSetCurrentMtx(GX_PNMTX1);
 
     if (mpTexObj != NULL) {
         GXLoadTexObj(mpTexObj, GX_TEXMAP0);
@@ -1352,7 +2136,7 @@ void dDlst_shadowSimple_c::draw() {
     GXCallDisplayList(l_shadowSealDL, 0x60);
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
-    GXSetCurrentMtx(0);
+    GXSetCurrentMtx(GX_PNMTX0);
     GXCallDisplayList(l_clearMat, 0x40);
     GXCallDisplayList(l_shadowVolumeDL, 0x40);
 }
@@ -1372,6 +2156,60 @@ SECTION_SDATA2 static f32 lit_5378 = 16.0f;
 
 /* 800553EC-80055684 04FD2C 0298+00 1/1 0/0 0/0 .text
  * set__20dDlst_shadowSimple_cFP4cXyzffP4cXyzsfP9_GXTexObj      */
+// g_envHIO
+#ifdef NONMATCHING
+void dDlst_shadowSimple_c::set(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3,
+                                   s16 param_4, f32 param_5, _GXTexObj* param_6) {
+    if (param_5 < 0.0f) {
+        mAlpha = param_5 * -255.0f;
+        param_5 = 1.0f;
+    } else {
+        float local_a4 = 1.0f - (param_0->y - param_1) * 0.0007f;
+        if (local_a4 < 0.0f) {
+            local_a4 = 0.0f;
+        } else if (local_a4 > 1.0f) {
+            local_a4 = 1.0f;
+        }
+        setkankyoShadow(NULL, &local_a4);
+        local_a4 *= 1.4f;
+        if (local_a4 > 1.0f) {
+            local_a4 = 1.0f;
+        }
+        mAlpha = g_envHIO.mOther.mShadowDensity * local_a4;
+    }
+    f32 f30 = param_2 * 16.0f * (1.0f - param_3->y) + 2.0f;
+    mDoMtx_stack_c::transS(param_0->x, param_1 + f30, param_0->z);
+    mDoMtx_stack_c::YrotM(param_4);
+    mDoMtx_stack_c::scaleM(param_2, f30 + f30 + 16.0f, param_2 * param_5);
+    cMtx_concat(j3dSys.getViewMtx(), mDoMtx_stack_c::get(), mVolumeMtx);
+    f32 f31 = JMAFastSqrt(1.0f - param_3->x * param_3->x);
+    f32 f29;
+    f32 f28;
+    if (0.0f != f31) {
+        f29 = param_3->y * f31;
+        f28 = -param_3->z * f31;
+    } else {
+        f29 = 0.0f;
+        f28 = 0.0f;
+    }
+    mDoMtx_stack_c::get()[0][0] = f31;
+    mDoMtx_stack_c::get()[0][1] = param_3->x;
+    mDoMtx_stack_c::get()[0][2] = 0.0f;
+    mDoMtx_stack_c::get()[0][3] = param_0->x;
+    mDoMtx_stack_c::get()[1][0] = -param_3->x * f29;
+    mDoMtx_stack_c::get()[1][1] = param_3->y;
+    mDoMtx_stack_c::get()[1][2] = f28;
+    mDoMtx_stack_c::get()[1][3] = param_1;
+    mDoMtx_stack_c::get()[2][0] = param_3->x * f28;
+    mDoMtx_stack_c::get()[2][1] = param_3->z;
+    mDoMtx_stack_c::get()[2][2] = f29;
+    mDoMtx_stack_c::get()[2][3] = param_0->z;
+    mDoMtx_stack_c::YrotM(param_4);
+    mDoMtx_stack_c::scaleM(param_2, 1.0f, param_2 * param_5);
+    cMtx_concat(j3dSys.getViewMtx(), mDoMtx_stack_c::get(), mMtx);
+    mpTexObj = param_6;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1381,6 +2219,7 @@ asm void dDlst_shadowSimple_c::set(cXyz* param_0, f32 param_1, f32 param_2, cXyz
 #include "asm/d/d_drawlist/set__20dDlst_shadowSimple_cFP4cXyzffP4cXyzsfP9_GXTexObj.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80450654-80450658 0000D4 0004+00 1/1 0/0 0/0 .sdata           l_realImageSize$5383 */
@@ -1427,6 +2266,57 @@ void dDlst_shadowControl_c::reset() {
 }
 
 /* 800557C8-80055A14 050108 024C+00 0/0 1/1 0/0 .text imageDraw__21dDlst_shadowControl_cFPA4_f */
+// matches with literals
+#ifdef NONMATCHING
+void dDlst_shadowControl_c::imageDraw(Mtx param_0) {
+    GXCallDisplayList(l_matDL, 0x60);
+    GXSetZMode(GX_DISABLE, GX_LEQUAL, GX_DISABLE);
+    GXSetZCompLoc(GX_TRUE);
+    GXSetBlendMode(GX_BM_LOGIC, GX_BL_ONE, GX_BL_ONE, GX_LO_OR);
+    GXSetClipMode(GX_CLIP_DISABLE);
+    j3dSys.setDrawModeOpaTexEdge();
+    J3DShape::resetVcdVatCache();
+    dDlst_shadowReal_c* shadowReal = field_0x4;
+    int r29 = 0;
+    int tex = 0;
+    u16 r27;
+    u16 r26;
+    for (; shadowReal; shadowReal = shadowReal->getZsortNext()) {
+        if (shadowReal->isUse()) {
+            if (r29 == 0) {
+                r27 = GXGetTexObjWidth(field_0x15eb0 + tex);
+                r26 = r27 * 2;
+                GXSetViewport(0.0f, 0.0f, r26, r26, 0.0f, 1.0f);
+                GXSetScissor(0, 0, r26, r26);
+            }
+            GXSetTevColor(GX_TEVREG0, l_imageDrawColor[r29]);
+            if (r29 == 3) {
+                GXSetColorUpdate(GX_DISABLE);
+                GXSetAlphaUpdate(GX_ENABLE);
+            }
+            shadowReal->imageDraw(param_0);
+            r29 = (r29 + 1) % 4;
+            if (r29 == 0) {
+                GXSetTexCopySrc(0, 0, r26, r26);
+                GXSetTexCopyDst(r27, r27, GX_TF_TGB5A3, GX_TRUE);
+                GXSetColorUpdate(GX_ENABLE);
+                GXCopyTex(field_0x15ef0[tex++], GX_TRUE);
+                GXPixModeSync();
+                GXSetAlphaUpdate(GX_DISABLE);
+            }
+        }
+    }
+    if (r29) {
+        GXSetTexCopySrc(0, 0, r26, r26);
+        GXSetTexCopyDst(r27, r27, GX_TF_TGB5A3, GX_TRUE);
+        GXCopyTex(field_0x15ef0[tex], GX_TRUE);
+        GXPixModeSync();
+        GXSetAlphaUpdate(GX_DISABLE);
+    }
+    GXSetClipMode(GX_CLIP_ENABLE);
+    GXSetDither(GX_TRUE);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1435,6 +2325,7 @@ asm void dDlst_shadowControl_c::imageDraw(Mtx param_0) {
 #include "asm/d/d_drawlist/imageDraw__21dDlst_shadowControl_cFPA4_f.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80450658-8045065C 0000D8 0004+00 1/1 0/0 0/0 .sdata           clearColor$5435 */
@@ -1452,11 +2343,11 @@ void dDlst_shadowControl_c::draw(Mtx param_0) {
     GXSetNumIndStages(0);
     dKy_GxFog_set();
 
-    GXSetChanCtrl(GX_ALPHA0, 0, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+    GXSetChanCtrl(GX_ALPHA0, GX_DISABLE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
     GXSetArray(GX_VA_POS, l_shadowVolPos, 12);
-    GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3x4, GX_TG_POS, 30, GX_FALSE, 125);
+    GXSetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX3x4, GX_TG_POS, GX_TEXMTX0);
     GXSetNumTevStages(1);
-    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
     GXLoadPosMtxImm(param_0, GX_PNMTX0);
     GXSetChanMatColor(GX_ALPHA0, (GXColor){0, 0, 0, 0x20});
 
@@ -1484,7 +2375,7 @@ void dDlst_shadowControl_c::draw(Mtx param_0) {
     GXSetTevSwapModeTable(GX_TEV_SWAP0, GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGB8, 0);
     GXSetArray(GX_VA_POS, l_simpleShadowPos, 12);
-    GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 60, GX_FALSE, 125);
+    GXSetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY);
     GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
     GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
 
@@ -1599,12 +2490,10 @@ void dDlst_peekZ_c::peekData() {
 // TU vtable data order has to be fixed
 #ifdef NONMATCHING
 dDlst_list_c::dDlst_list_c() {
-    // these are probably fake matches, but cant figure out how to make these match here
-    // together with the other functions they're used in
-    mpCopy2DEnd = (dDlst_base_c**)&mpCopy2DStart;
-    mp2DOpaTopEnd = (dDlst_base_c**)&mp2DOpaTopStart;
-    mp2DOpaEnd = (dDlst_base_c**)&mp2DOpaStart;
-    mp2DXluEnd = (dDlst_base_c**)&mp2DXluStart;
+    mpCopy2DEnd = &mpCopy2DDrawLists[4];
+    mp2DOpaTopEnd = &mp2DOpaTopDrawLists[16];
+    mp2DOpaEnd = &mp2DOpaDrawLists[64];
+    mp2DXluEnd = &mp2DXluDrawLists[32];
 
     J3DDrawBuffer** buffer = mDrawBuffers;
     for (int i = 0; i < 21; i++) {
@@ -1952,6 +2841,23 @@ void dDlst_list_c::wipeIn(f32 i_wipeSpeed) {
 SECTION_SDATA2 static f32 lit_5838 = 1.218000054359436f;
 
 /* 80056900-800569A0 051240 00A0+00 0/0 1/1 0/0 .text            calcWipe__12dDlst_list_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dDlst_list_c::calcWipe() {
+    if (mWipe) {
+        mWipeRate += mWipeSpeed;
+        if (mWipeRate < 0.0f) {
+            mWipeRate = 0.0f;
+        } else if (mWipeRate > 1.0f) {
+            mWipeRate = 1.0f;
+            mWipe = false;
+        }
+        mWipeDlst.setScaleX(mWipeRate * 2.0f);
+        mWipeDlst.setScaleY(mWipeDlst.getScaleX() * 1.218f);
+        dComIfGd_set2DXlu(&mWipeDlst);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1960,18 +2866,26 @@ asm void dDlst_list_c::calcWipe() {
 #include "asm/d/d_drawlist/calcWipe__12dDlst_list_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 800569A0-800569A8 0512E0 0008+00 1/0 0/0 0/0 .text            getTri__22dDlst_shadowRealPoly_cFv
  */
+// vtable data
+#ifdef NONMATCHING
+dDlst_shadowTri_c * dDlst_shadowRealPoly_c::getTri() {
+    return mShadowTri;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-// asm void dDlst_shadowRealPoly_c::getTri() {
-extern "C" asm void getTri__22dDlst_shadowRealPoly_cFv() {
+// asm dDlst_shadowTri_c * dDlst_shadowRealPoly_c::getTri() {
+extern "C" asm dDlst_shadowTri_c * getTri__22dDlst_shadowRealPoly_cFv() {
     nofralloc
 #include "asm/d/d_drawlist/getTri__22dDlst_shadowRealPoly_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 800569A8-800569B0 0512E8 0008+00 1/0 0/0 0/0 .text getTriMax__22dDlst_shadowRealPoly_cFv */
 s32 dDlst_shadowRealPoly_c::getTriMax() {
