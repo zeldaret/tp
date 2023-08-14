@@ -277,5 +277,3 @@ extern actor_process_profile_definition g_profile_TAG_CHKPOINT = {
     0,                      // mActorType
     6                       // mCullType
 };
-
-
