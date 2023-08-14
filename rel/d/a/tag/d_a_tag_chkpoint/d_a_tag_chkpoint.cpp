@@ -96,6 +96,7 @@ COMPILER_STRIP_GATE(0x8048AC48, &lit_3846);
 
 /* 8048A6F8-8048A9EC 000078 02F4+00 1/1 0/0 0/0 .text            execute__11daTag_Chk_cFv */
 #ifdef NONMATCHING
+// still lots wrong here
 s32 daTag_Chk_c::execute() {
     int iVar12;
     bool bVar6;
