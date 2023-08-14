@@ -18,6 +18,8 @@ public:
     void Set(cXyz&, cXyz&);
     void SetCallback(cBgS_ShdwDraw_Callback);
 
+    cM3dGAab* GetBndP() { return &mM3dGAab; }
+
 private:
     /* 0x14 */ cM3dGAab mM3dGAab;
     /* 0x30 */ cBgS_ShdwDraw_Callback mCallbackFun;
