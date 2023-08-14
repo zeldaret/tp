@@ -10,6 +10,9 @@ struct JPANode {
         mpNext = NULL;
     }
     ~JPANode() {}
+    JPANode<T>* getPrev() { return mpPrev; }
+    JPANode<T>* getNext() { return mpNext; }
+    T* getObject() { return &mData; }
     JPANode<T>* mpPrev;
     JPANode<T>* mpNext;
     T mData;
@@ -23,6 +26,7 @@ struct JPAList {
 
     JPAList() : mpFirst(NULL), mpLast(NULL), mNum() {}
 
+    JPANode<T>* getEnd() { return NULL; }
     JPANode<T>* getFirst() const { return mpFirst; }
     JPANode<T>* getLast() const { return mpLast; }
     u32 getNum() const { return mNum; }
