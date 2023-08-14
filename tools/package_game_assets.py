@@ -342,10 +342,7 @@ def main(gamePath, buildPath, copyCode, yaz0Encoding):
 
     if not (gamePath / "files").exists() or not (gamePath / "sys").exists():
         print("ISO is not extracted; extracting...")
-        previousDir = os.getcwd()
-        os.chdir(str(gamePath.absolute()))
-        extract_game_assets.extract("../" + str(iso),yaz0Encoding)
-        os.chdir(previousDir)
+        extract_game_assets.extract(iso.absolute(),gamePath.absolute(),yaz0Encoding)
 
     print("Copying game files...")
     if os.path.exists(buildPath / "dolzel2") == False:
