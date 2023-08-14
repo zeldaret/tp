@@ -13,7 +13,6 @@
 #include "JSystem/JParticle/JPADynamicsBlock.h"
 #include "JSystem/JSupport/JSUList.h"
 
-struct JPABaseEmitter;
 struct JPAResourceManager;
 struct JPABaseEmitter;
 struct JPAEmitterManager;
@@ -164,6 +163,7 @@ public:
     void setParticleCallBackPtr(JPAParticleCallBack* cb) { mpPtclCallBack = cb; }
     JPAParticleCallBack* getParticleCallBackPtr() { return mpPtclCallBack; }
     JPAEmitterCallBack* getEmitterCallBackPtr() const { return mpEmtrCallBack; }
+    u32 getAge() const { return mTick; }
 
 public:
     /* 0x00 */ JGeometry::TVec3<f32> mLocalScl;

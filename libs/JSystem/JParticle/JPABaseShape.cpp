@@ -8,6 +8,7 @@
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
+#include "JSystem/JMath/JMATrigonometric.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GX.h"
@@ -267,81 +268,72 @@ void JPARegistEnv(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
     GXSetTevColor(GX_TEVREG1, env);
 }
 
-#define MIN(a, b) ((a) < (b) ? (a) : (b))
-
 /* 802771BC-802771E8 271AFC 002C+00 0/0 1/1 0/0 .text JPACalcClrIdxNormal__FP18JPAEmitterWorkData
  */
-#ifdef NONMATCHING
 void JPACalcClrIdxNormal(JPAEmitterWorkData* work) {
     JPABaseShape* bsp = work->mpRes->getBsp();
     // can't get the extsh to appear in the right spot...
-    work->mClrKeyFrame = MIN(work->mpEmtr->mTick, bsp->getClrAnmMaxFrm());
+    s16 keyFrame;
+    if (work->mpEmtr->mTick < bsp->getClrAnmMaxFrm()) {
+        keyFrame = work->mpEmtr->mTick;
+    } else {
+        keyFrame = bsp->getClrAnmMaxFrm();
+    }
+    work->mClrKeyFrame = keyFrame;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcClrIdxNormal(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcClrIdxNormal__FP18JPAEmitterWorkData.s"
-}
-#pragma pop
-#endif
 
 /* 802771E8-80277210 271B28 0028+00 0/0 1/1 0/0 .text
  * JPACalcClrIdxNormal__FP18JPAEmitterWorkDataP15JPABaseParticle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcClrIdxNormal(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcClrIdxNormal__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcClrIdxNormal(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
+    JPABaseShape* shape = work->mpRes->getBsp();
+    s16 age = param_1->mAge;
+    s16 maxFrm = shape->getClrAnmMaxFrm();
+    s16 keyFrame;
+    if (age < maxFrm) {
+        keyFrame = age;
+    } else {
+        keyFrame = maxFrm;
+    }
+    work->mClrKeyFrame = keyFrame;
 }
-#pragma pop
 
 /* 80277210-80277240 271B50 0030+00 0/0 1/1 0/0 .text JPACalcClrIdxRepeat__FP18JPAEmitterWorkData
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcClrIdxRepeat(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcClrIdxRepeat__FP18JPAEmitterWorkData.s"
+void JPACalcClrIdxRepeat(JPAEmitterWorkData* work) {
+    JPABaseShape* shape = work->mpRes->getBsp();
+    work->mClrKeyFrame = work->mpEmtr->mTick % (shape->getClrAnmMaxFrm() + 1);
 }
-#pragma pop
 
 /* 80277240-8027727C 271B80 003C+00 0/0 1/1 0/0 .text
  * JPACalcClrIdxRepeat__FP18JPAEmitterWorkDataP15JPABaseParticle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcClrIdxRepeat(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcClrIdxRepeat__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcClrIdxRepeat(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
+    JPABaseShape* shape = work->mpRes->getBsp();
+    s32 tick = shape->getClrLoopOfst(param_1->mAnmRandom);
+    tick = param_1->mAge + tick;
+    work->mClrKeyFrame = tick % (shape->getClrAnmMaxFrm() + 1);
 }
-#pragma pop
 
 /* 8027727C-802772BC 271BBC 0040+00 0/0 1/1 0/0 .text JPACalcClrIdxReverse__FP18JPAEmitterWorkData
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcClrIdxReverse(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcClrIdxReverse__FP18JPAEmitterWorkData.s"
+void JPACalcClrIdxReverse(JPAEmitterWorkData* work) {
+    JPABaseShape* shape = work->mpRes->getBsp();
+    int maxFrm = shape->getClrAnmMaxFrm();
+    u32 tick = work->mpEmtr->mTick;
+    u32 uVar1 = tick / maxFrm;
+    tick = tick % maxFrm;
+    uVar1 &= 1;
+    work->mClrKeyFrame = tick + (uVar1) * (maxFrm - tick * 2);
 }
-#pragma pop
 
 /* 802772BC-80277308 271BFC 004C+00 0/0 1/1 0/0 .text
  * JPACalcClrIdxReverse__FP18JPAEmitterWorkDataP15JPABaseParticle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcClrIdxReverse(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcClrIdxReverse__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcClrIdxReverse(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
+    JPABaseShape* shape = work->mpRes->getBsp();
+    s32 tick = param_1->mAge + shape->getClrLoopOfst(param_1->mAnmRandom);
+    s32 maxFrm = shape->getClrAnmMaxFrm();
+    s32 rem = tick % maxFrm;
+    work->mClrKeyFrame = rem + ((tick / maxFrm) & 1) * (maxFrm - rem * 2);
 }
-#pragma pop
 
 /* 80277308-80277314 271C48 000C+00 0/0 1/1 0/0 .text JPACalcClrIdxMerge__FP18JPAEmitterWorkData
  */
@@ -355,6 +347,15 @@ SECTION_SDATA2 static f64 lit_2623 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80277314-80277384 271C54 0070+00 0/0 1/1 0/0 .text
  * JPACalcClrIdxMerge__FP18JPAEmitterWorkDataP15JPABaseParticle */
+// Matches with literals
+#ifdef NONMATCHING
+void JPACalcClrIdxMerge(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
+    JPABaseShape* shape = work->mpRes->getBsp();
+    s32 maxFrm = shape->getClrAnmMaxFrm() + 1;
+    s32 tick = (s32)(param_1->mTime * maxFrm) + shape->getClrLoopOfst(param_1->mAnmRandom);
+    work->mClrKeyFrame = tick % maxFrm;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -363,6 +364,7 @@ asm void JPACalcClrIdxMerge(JPAEmitterWorkData* param_0, JPABaseParticle* param_
 #include "asm/JSystem/JParticle/JPABaseShape/JPACalcClrIdxMerge__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
 }
 #pragma pop
+#endif
 
 /* 80277384-80277390 271CC4 000C+00 0/0 1/1 0/0 .text JPACalcClrIdxRandom__FP18JPAEmitterWorkData
  */
@@ -372,14 +374,12 @@ void JPACalcClrIdxRandom(JPAEmitterWorkData* work) {
 
 /* 80277390-802773C4 271CD0 0034+00 0/0 1/1 0/0 .text
  * JPACalcClrIdxRandom__FP18JPAEmitterWorkDataP15JPABaseParticle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcClrIdxRandom(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcClrIdxRandom__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcClrIdxRandom(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
+    JPABaseShape* shape = work->mpRes->getBsp();
+    s32 tick = shape->getClrLoopOfst(param_1->mAnmRandom);
+    s32 maxFrm = shape->getClrAnmMaxFrm() + 1;
+    work->mClrKeyFrame = tick % maxFrm;
 }
-#pragma pop
 
 /* 802773C4-80277404 271D04 0040+00 0/0 1/1 0/0 .text            JPACalcPrm__FP18JPAEmitterWorkData
  */
@@ -450,6 +450,39 @@ SECTION_SDATA2 static f64 lit_2744 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802775AC-80277758 271EEC 01AC+00 0/0 1/1 0/0 .text
  * JPAGenCalcTexCrdMtxAnm__FP18JPAEmitterWorkData               */
+// Matches with literals
+#ifdef NONMATCHING
+void JPAGenCalcTexCrdMtxAnm(JPAEmitterWorkData* work) {
+    JPABaseShape* shape = work->mpRes->getBsp();
+    f32 dVar16 = work->mpEmtr->mTick;
+    f32 dVar15 = 0.5f * (1.0f + shape->getTilingS());
+    f32 dVar14 = 0.5f * (1.0f + shape->getTilingT());
+    f32 dVar11 = (dVar16 * shape->getIncTransX()) + shape->getInitTransX();
+    f32 dVar10 = (dVar16 * shape->getIncTransY()) + shape->getInitTransY();
+    f32 dVar13 = (dVar16 * shape->getIncScaleX()) + shape->getInitScaleX();
+    f32 dVar12 = (dVar16 * shape->getIncScaleY()) + shape->getInitScaleY();
+    s32 local_c0 = (dVar16 * shape->getIncRot()) + shape->getInitRot();
+    f32 dVar8 = JMASSin(local_c0);
+    f32 dVar9 = JMASCos(local_c0);
+    Mtx local_108;
+    local_108[0][0] = dVar13 * dVar9;
+    local_108[0][1] = -dVar13 * dVar8;
+    local_108[0][2] = 0.0f;
+    local_108[0][3] =
+        (dVar15 + (dVar13 * ((dVar8 * (dVar14 + dVar10)) - (dVar9 * (dVar15 + dVar11)))));
+    local_108[1][0] = dVar12 * dVar8;
+    local_108[1][1] = dVar12 * dVar9;
+    local_108[1][2] = 0.0f;
+    local_108[1][3] =
+        (dVar14 + (-dVar12 * ((dVar8 * (dVar15 + dVar11)) + (dVar9 * (dVar14 + dVar10)))));
+    local_108[2][0] = 0.0f;
+    local_108[2][1] = 0.0f;
+    local_108[2][2] = 1.0f;
+    local_108[2][3] = 0.0f;
+    GXLoadTexMtxImm(local_108, 0x1e, GX_MTX2x4);
+    GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 0x1e, false, 0x7d);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -458,9 +491,42 @@ asm void JPAGenCalcTexCrdMtxAnm(JPAEmitterWorkData* param_0) {
 #include "asm/JSystem/JParticle/JPABaseShape/JPAGenCalcTexCrdMtxAnm__FP18JPAEmitterWorkData.s"
 }
 #pragma pop
+#endif
 
 /* 80277758-802778EC 272098 0194+00 0/0 1/1 0/0 .text
  * JPALoadCalcTexCrdMtxAnm__FP18JPAEmitterWorkDataP15JPABaseParticle */
+// Matches with literals
+#ifdef NONMATCHING
+void JPALoadCalcTexCrdMtxAnm(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
+    JPABaseShape* shape = work->mpRes->getBsp();
+    f32 dVar16 = param_1->mAge;
+    f32 dVar15 = 0.5f * (1.0f + shape->getTilingS());
+    f32 dVar14 = 0.5f * (1.0f + shape->getTilingT());
+    f32 dVar11 = (dVar16 * shape->getIncTransX()) + shape->getInitTransX();
+    f32 dVar10 = (dVar16 * shape->getIncTransY()) + shape->getInitTransY();
+    f32 dVar13 = (dVar16 * shape->getIncScaleX()) + shape->getInitScaleX();
+    f32 dVar12 = (dVar16 * shape->getIncScaleY()) + shape->getInitScaleY();
+    s32 local_c0 = (dVar16 * shape->getIncRot()) + shape->getInitRot();
+    f32 dVar8 = JMASSin(local_c0);
+    f32 dVar9 = JMASCos(local_c0);
+    Mtx local_108;
+    local_108[0][0] = dVar13 * dVar9;
+    local_108[0][1] = -dVar13 * dVar8;
+    local_108[0][2] = 0.0f;
+    local_108[0][3] =
+        (dVar15 + (dVar13 * ((dVar8 * (dVar14 + dVar10)) - (dVar9 * (dVar15 + dVar11)))));
+    local_108[1][0] = dVar12 * dVar8;
+    local_108[1][1] = dVar12 * dVar9;
+    local_108[1][2] = 0.0f;
+    local_108[1][3] =
+        (dVar14 + (-dVar12 * ((dVar8 * (dVar15 + dVar11)) + (dVar9 * (dVar14 + dVar10)))));
+    local_108[2][0] = 0.0f;
+    local_108[2][1] = 0.0f;
+    local_108[2][2] = 1.0f;
+    local_108[2][3] = 0.0f;
+    GXLoadTexMtxImm(local_108, 0x1e, GX_MTX2x4);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -469,6 +535,7 @@ asm void JPALoadCalcTexCrdMtxAnm(JPAEmitterWorkData* param_0, JPABaseParticle* p
 #include "asm/JSystem/JParticle/JPABaseShape/JPALoadCalcTexCrdMtxAnm__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
 }
 #pragma pop
+#endif
 
 /* 802778EC-80277940 27222C 0054+00 0/0 1/1 0/0 .text            JPALoadTex__FP18JPAEmitterWorkData
  */
@@ -489,69 +556,55 @@ void JPALoadTexAnm(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
 
 /* 802779DC-80277A18 27231C 003C+00 0/0 1/1 0/0 .text JPACalcTexIdxNormal__FP18JPAEmitterWorkData
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcTexIdxNormal(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcTexIdxNormal__FP18JPAEmitterWorkData.s"
+void JPACalcTexIdxNormal(JPAEmitterWorkData* work) {
+    JPABaseShape* shape = work->mpRes->getBsp();
+    u8 tick = shape->getTexAnmKeyNum() - 1 < work->mpEmtr->mTick ? shape->getTexAnmKeyNum() - 1 : work->mpEmtr->mTick;
+    work->mpEmtr->mTexAnmIdx = shape->getTexIdx(tick);
 }
-#pragma pop
 
 /* 80277A18-80277A50 272358 0038+00 0/0 1/1 0/0 .text
  * JPACalcTexIdxNormal__FP18JPAEmitterWorkDataP15JPABaseParticle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcTexIdxNormal(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcTexIdxNormal__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcTexIdxNormal(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
+    JPABaseShape* shape = work->mpRes->getBsp();
+    u8 tick = shape->getTexAnmKeyNum() - 1 < param_1->mAge ? shape->getTexAnmKeyNum() - 1 : param_1->mAge;
+    param_1->mTexAnmIdx = shape->getTexIdx(tick);
 }
-#pragma pop
 
 /* 80277A50-80277A88 272390 0038+00 0/0 1/1 0/0 .text JPACalcTexIdxRepeat__FP18JPAEmitterWorkData
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcTexIdxRepeat(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcTexIdxRepeat__FP18JPAEmitterWorkData.s"
+void JPACalcTexIdxRepeat(JPAEmitterWorkData* work) {
+    JPABaseShape* shape = work->mpRes->getBsp();
+    work->mpEmtr->mTexAnmIdx = shape->getTexIdx(work->mpEmtr->mTick % shape->getTexAnmKeyNum());
 }
-#pragma pop
 
 /* 80277A88-80277ACC 2723C8 0044+00 0/0 1/1 0/0 .text
  * JPACalcTexIdxRepeat__FP18JPAEmitterWorkDataP15JPABaseParticle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcTexIdxRepeat(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcTexIdxRepeat__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcTexIdxRepeat(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
+    JPABaseShape* shape = work->mpRes->getBsp();
+    param_1->mTexAnmIdx = shape->getTexIdx(((int)shape->getTexLoopOfst(param_1->mAnmRandom) + param_1->mAge) % shape->getTexAnmKeyNum());
 }
-#pragma pop
 
 /* 80277ACC-80277B1C 27240C 0050+00 0/0 1/1 0/0 .text JPACalcTexIdxReverse__FP18JPAEmitterWorkData
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcTexIdxReverse(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcTexIdxReverse__FP18JPAEmitterWorkData.s"
+void JPACalcTexIdxReverse(JPAEmitterWorkData* work) {
+    JPABaseShape* shape = work->mpRes->getBsp();
+    int tick = work->mpEmtr->mTick;
+    int keyNum = (int)shape->getTexAnmKeyNum() - 1;
+    int div = tick / keyNum;
+    int rem = tick % keyNum;
+    work->mpEmtr->mTexAnmIdx = shape->getTexIdx(rem + (div & 1) * (keyNum - rem * 2));
 }
-#pragma pop
 
 /* 80277B1C-80277B78 27245C 005C+00 0/0 1/1 0/0 .text
  * JPACalcTexIdxReverse__FP18JPAEmitterWorkDataP15JPABaseParticle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcTexIdxReverse(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcTexIdxReverse__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcTexIdxReverse(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
+    JPABaseShape* shape = work->mpRes->getBsp();
+    s32 tick = shape->getTexLoopOfst(param_1->mAnmRandom) + param_1->mAge;
+    int keyNum = (int)shape->getTexAnmKeyNum() - 1;
+    int div = tick / keyNum;
+    int rem = tick % keyNum;
+    param_1->mTexAnmIdx = shape->getTexIdx(rem + (div & 1) * (keyNum - rem * 2));
 }
-#pragma pop
 
 /* 80277B78-80277B94 2724B8 001C+00 0/0 1/1 0/0 .text JPACalcTexIdxMerge__FP18JPAEmitterWorkData
  */
@@ -561,6 +614,15 @@ void JPACalcTexIdxMerge(JPAEmitterWorkData* work) {
 
 /* 80277B94-80277C0C 2724D4 0078+00 0/0 1/1 0/0 .text
  * JPACalcTexIdxMerge__FP18JPAEmitterWorkDataP15JPABaseParticle */
+// Matches with literals
+#ifdef NONMATCHING
+void JPACalcTexIdxMerge(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
+    JPABaseShape* shape = work->mpRes->getBsp();
+    s32 maxFrm = shape->getTexAnmKeyNum();
+    s32 tick = (s32)(maxFrm * param_1->mTime) + shape->getTexLoopOfst(param_1->mAnmRandom);
+    param_1->mTexAnmIdx = shape->getTexIdx(tick % maxFrm);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -569,6 +631,7 @@ asm void JPACalcTexIdxMerge(JPAEmitterWorkData* param_0, JPABaseParticle* param_
 #include "asm/JSystem/JParticle/JPABaseShape/JPACalcTexIdxMerge__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
 }
 #pragma pop
+#endif
 
 /* 80277C0C-80277C28 27254C 001C+00 0/0 1/1 0/0 .text JPACalcTexIdxRandom__FP18JPAEmitterWorkData
  */
@@ -578,14 +641,10 @@ void JPACalcTexIdxRandom(JPAEmitterWorkData* work) {
 
 /* 80277C28-80277C64 272568 003C+00 0/0 1/1 0/0 .text
  * JPACalcTexIdxRandom__FP18JPAEmitterWorkDataP15JPABaseParticle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPACalcTexIdxRandom(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPACalcTexIdxRandom__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPACalcTexIdxRandom(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
+    JPABaseShape* shape = work->mpRes->getBsp();
+    param_1->mTexAnmIdx = shape->getTexIdx(((int)shape->getTexLoopOfst(param_1->mAnmRandom)) % shape->getTexAnmKeyNum());
 }
-#pragma pop
 
 /* 80277C64-80277C8C 2725A4 0028+00 0/0 1/1 0/0 .text JPALoadPosMtxCam__FP18JPAEmitterWorkData */
 void JPALoadPosMtxCam(JPAEmitterWorkData* work) {
@@ -605,6 +664,40 @@ void loadPrj(JPAEmitterWorkData const* work, const Mtx srt) {
 }
 
 /* 80277CC8-80277E88 272608 01C0+00 1/0 0/0 0/0 .text loadPrjAnm__FPC18JPAEmitterWorkDataPA4_Cf */
+// Mathces with literals
+#ifdef NONMATCHING
+static void loadPrjAnm(JPAEmitterWorkData const* work, f32 const (*param_1)[4]) {
+    JPABaseShape* shape = work->mpRes->getBsp();
+    f32 dVar16 = work->mpEmtr->getAge();
+    f32 dVar15 = 0.5f * (1.0f + shape->getTilingS());
+    f32 dVar14 = 0.5f * (1.0f + shape->getTilingT());
+    f32 dVar11 = (dVar16 * shape->getIncTransX()) + shape->getInitTransX();
+    f32 dVar10 = (dVar16 * shape->getIncTransY()) + shape->getInitTransY();
+    f32 dVar13 = (dVar16 * shape->getIncScaleX()) + shape->getInitScaleX();
+    f32 dVar12 = (dVar16 * shape->getIncScaleY()) + shape->getInitScaleY();
+    s32 local_c0 = (dVar16 * shape->getIncRot()) + shape->getInitRot();
+    f32 dVar8 = JMASSin(local_c0);
+    f32 dVar9 = JMASCos(local_c0);
+    Mtx local_108;
+    local_108[0][0] = dVar13 * dVar9;
+    local_108[0][1] = -dVar13 * dVar8;
+    local_108[0][2] =
+        (dVar15 + (dVar13 * ((dVar8 * (dVar14 + dVar10)) - (dVar9 * (dVar15 + dVar11)))));
+    local_108[0][3] = 0.0f;
+    local_108[1][0] = dVar12 * dVar8;
+    local_108[1][1] = dVar12 * dVar9;
+    local_108[1][2] =
+        (dVar14 + (-dVar12 * ((dVar8 * (dVar15 + dVar11)) + (dVar9 * (dVar14 + dVar10)))));
+    local_108[1][3] = 0.0f;
+    local_108[2][0] = 0.0f;
+    local_108[2][1] = 0.0f;
+    local_108[2][2] = 1.0f;
+    local_108[2][3] = 0.0f;
+    PSMTXConcat(local_108, work->mPrjMtx, local_108);
+    PSMTXConcat(local_108, param_1, local_108);
+    GXLoadTexMtxImm(local_108, 0x1e, GX_MTX3x4);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -613,6 +706,7 @@ static asm void loadPrjAnm(JPAEmitterWorkData const* param_0, f32 const (*param_
 #include "asm/JSystem/JParticle/JPABaseShape/loadPrjAnm__FPC18JPAEmitterWorkDataPA4_Cf.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803C42E0-803C4300 021400 0020+00 10/9 0/0 0/0 .data            jpa_dl */
@@ -627,15 +721,42 @@ SECTION_DATA static u8 jpa_dl_x[32] = {
     0x02, 0x4B, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
+typedef void (*projectionFunc)(JPAEmitterWorkData const*, const Mtx);
+
 /* 803C4320-803C432C -00001 000C+00 6/10 0/0 0/0 .data            p_prj */
-SECTION_DATA static void* p_prj[3] = {
-    (void*)noLoadPrj,
-    (void*)loadPrj,
-    (void*)loadPrjAnm__FPC18JPAEmitterWorkDataPA4_Cf,
+static projectionFunc p_prj[3] = {
+    noLoadPrj,
+    loadPrj,
+    loadPrjAnm,
 };
 
 /* 80277E88-80277F70 2727C8 00E8+00 0/0 1/1 0/0 .text
  * JPADrawBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle   */
+// Matches with literals
+#ifdef NONMATCHING
+void JPADrawBillboard(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
+    if (param_1->checkStatus(8) == 0) {
+        JGeometry::TVec3<f32> local_48;
+        PSMTXMultVec(work->mPosCamMtx, param_1->mPosition, local_48);
+        Mtx local_38;
+        local_38[0][0] = work->mGlobalPtclScl.x * param_1->mParticleScaleX;
+        local_38[0][3] = local_48.x;
+        local_38[1][1] = work->mGlobalPtclScl.y * param_1->mParticleScaleY;
+        local_38[1][3] = local_48.y;
+        local_38[2][2] = 1.0f;
+        local_38[2][3] = local_48.z;
+        local_38[2][1] = 0.0f;
+        local_38[2][0] = 0.0f;
+        local_38[1][2] = 0.0f;
+        local_38[1][0] = 0.0f;
+        local_38[0][2] = 0.0f;
+        local_38[0][1] = 0.0f;
+        GXLoadPosMtxImm(local_38, 0);
+        p_prj[work->mPrjType](work, local_38);
+        GXCallDisplayList(jpa_dl, sizeof(jpa_dl));
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -644,9 +765,40 @@ asm void JPADrawBillboard(JPAEmitterWorkData* param_0, JPABaseParticle* param_1)
 #include "asm/JSystem/JParticle/JPABaseShape/JPADrawBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
 }
 #pragma pop
+#endif
 
 /* 80277F70-80278088 2728B0 0118+00 0/0 1/1 0/0 .text
  * JPADrawRotBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle */
+// Matches with literals
+#ifdef NONMATCHING
+void JPADrawRotBillboard(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
+    if (param_1->checkStatus(8) == 0) {
+        JGeometry::TVec3<f32> local_48;
+        PSMTXMultVec(work->mPosCamMtx, param_1->mPosition, local_48);
+        f32 sinRot = JMASSin(param_1->mRotateAngle);
+        f32 cosRot = JMASCos(param_1->mRotateAngle);
+        f32 particleX = work->mGlobalPtclScl.x * param_1->mParticleScaleX;
+        f32 particleY = work->mGlobalPtclScl.y * param_1->mParticleScaleY;
+        
+        Mtx local_38;
+        local_38[0][0] = cosRot * particleX;
+        local_38[0][1] = -sinRot * particleY;
+        local_38[0][3] = local_48.x;
+        local_38[1][0] = sinRot * particleX;
+        local_38[1][1] = cosRot * particleY;
+        local_38[1][3] = local_48.y;
+        local_38[2][2] = 1.0f;
+        local_38[2][3] = local_48.z;
+        local_38[2][1] = 0.0f;
+        local_38[2][0] = 0.0f;
+        local_38[1][2] = 0.0f;
+        local_38[0][2] = 0.0f;
+        GXLoadPosMtxImm(local_38, 0);
+        p_prj[work->mPrjType](work, local_38);
+        GXCallDisplayList(jpa_dl, sizeof(jpa_dl));
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -655,9 +807,36 @@ asm void JPADrawRotBillboard(JPAEmitterWorkData* param_0, JPABaseParticle* param
 #include "asm/JSystem/JParticle/JPABaseShape/JPADrawRotBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
 }
 #pragma pop
+#endif
 
 /* 80278088-80278184 2729C8 00FC+00 0/0 1/1 0/0 .text
  * JPADrawYBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle  */
+// Matches with literals
+#ifdef NONMATCHING
+void JPADrawYBillboard(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
+     if (param_1->checkStatus(8) == 0) {
+        JGeometry::TVec3<f32> local_48;
+        PSMTXMultVec(work->mPosCamMtx, param_1->mPosition, local_48);
+        Mtx local_38;
+        f32 particleY = work->mGlobalPtclScl.y * param_1->mParticleScaleY;
+        local_38[0][0] = work->mGlobalPtclScl.x * param_1->mParticleScaleX;
+        local_38[0][3] = local_48.x;
+        local_38[1][1] = work->mYBBCamMtx[1][1] * particleY;
+        local_38[1][2] = work->mYBBCamMtx[1][2];
+        local_38[1][3] = local_48.y;
+        local_38[2][1] = work->mYBBCamMtx[2][1] * particleY;
+        local_38[2][2] = work->mYBBCamMtx[2][2];
+        local_38[2][3] = local_48.z;
+        local_38[2][0] = 0.0f;
+        local_38[1][0] = 0.0f;
+        local_38[0][2] = 0.0f;
+        local_38[0][1] = 0.0f;
+        GXLoadPosMtxImm(local_38, 0);
+        p_prj[work->mPrjType](work, local_38);
+        GXCallDisplayList(jpa_dl, sizeof(jpa_dl));
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -666,9 +845,43 @@ asm void JPADrawYBillboard(JPAEmitterWorkData* param_0, JPABaseParticle* param_1
 #include "asm/JSystem/JParticle/JPABaseShape/JPADrawYBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
 }
 #pragma pop
+#endif
 
 /* 80278184-802782B4 272AC4 0130+00 0/0 1/1 0/0 .text
  * JPADrawRotYBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle */
+// Mathces with literals
+#ifdef NONMATCHING
+void JPADrawRotYBillboard(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
+    if (param_1->checkStatus(8) == 0) {
+        JGeometry::TVec3<f32> local_48;
+        PSMTXMultVec(work->mPosCamMtx, param_1->mPosition, local_48);
+        f32 sinRot = JMASSin(param_1->mRotateAngle);
+        f32 cosRot = JMASCos(param_1->mRotateAngle);
+        Mtx local_38;
+        f32 particleX = work->mGlobalPtclScl.x * param_1->mParticleScaleX;
+        f32 particleY = work->mGlobalPtclScl.y * param_1->mParticleScaleY;
+        f32 local_98 = (float)(sinRot * particleX);
+        f32 local_94 = (float)(cosRot * particleY);
+        f32 local_90 = work->mYBBCamMtx[1][1];
+        f32 fVar1 = work->mYBBCamMtx[2][1];
+        local_38[0][0] = (float)(cosRot * particleX);
+        local_38[0][1] = (float)(-sinRot * particleY);
+        local_38[0][2] = 0.0f;
+        local_38[0][3] = local_48.x;
+        local_38[1][0] = local_98 * local_90;
+        local_38[1][1] = local_94 * local_90;
+        local_38[1][2] = -fVar1;
+        local_38[1][3] = local_48.y;
+        local_38[2][0] = local_98 * fVar1;
+        local_38[2][1] = local_94 * fVar1;
+        local_38[2][2] = local_90;
+        local_38[2][3] = local_48.z;
+        GXLoadPosMtxImm(local_38, 0);
+        p_prj[work->mPrjType](work, local_38);
+        GXCallDisplayList(jpa_dl, sizeof(jpa_dl));
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -677,68 +890,73 @@ asm void JPADrawRotYBillboard(JPAEmitterWorkData* param_0, JPABaseParticle* para
 #include "asm/JSystem/JParticle/JPABaseShape/JPADrawRotYBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
 }
 #pragma pop
+#endif
 
 /* 802782B4-802782D0 272BF4 001C+00 1/0 0/0 0/0 .text
  * dirTypeVel__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f> */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dirTypeVel(JPAEmitterWorkData const* param_0, JPABaseParticle const* param_1,
+void dirTypeVel(JPAEmitterWorkData const* work, JPABaseParticle const* param_1,
                     JGeometry::TVec3<f32>* param_2) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/func_802782B4.s"
+    param_1->getVelVec(*param_2);
 }
-#pragma pop
 
 /* 802782D0-802782EC 272C10 001C+00 1/0 0/0 0/0 .text
  * dirTypePos__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f> */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dirTypePos(JPAEmitterWorkData const* param_0, JPABaseParticle const* param_1,
+void dirTypePos(JPAEmitterWorkData const* work, JPABaseParticle const* param_1,
                     JGeometry::TVec3<f32>* param_2) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/func_802782D0.s"
+    param_1->getLocalPosition(*param_2);
 }
-#pragma pop
 
 /* 802782EC-80278320 272C2C 0034+00 1/0 0/0 0/0 .text
  * dirTypePosInv__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f> */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dirTypePosInv(JPAEmitterWorkData const* param_0, JPABaseParticle const* param_1,
-                       JGeometry::TVec3<f32>* param_2) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/func_802782EC.s"
+void dirTypePosInv(JPAEmitterWorkData const* work, JPABaseParticle const* param_1,
+                    JGeometry::TVec3<f32>* param_2) {
+    param_1->getLocalPosition(*param_2);
+    param_2->negate();
 }
-#pragma pop
 
 /* 80278320-8027833C 272C60 001C+00 1/0 0/0 0/0 .text
  * dirTypeEmtrDir__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f> */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dirTypeEmtrDir(JPAEmitterWorkData const* param_0, JPABaseParticle const* param_1,
-                        JGeometry::TVec3<f32>* param_2) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/func_80278320.s"
+void dirTypeEmtrDir(JPAEmitterWorkData const* work, JPABaseParticle const* param_1,
+                    JGeometry::TVec3<f32>* param_2) {
+    param_2->set(work->mGlobalEmtrDir);
 }
-#pragma pop
 
 /* 8027833C-802783D4 272C7C 0098+00 1/0 0/0 0/0 .text
  * dirTypePrevPtcl__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f> */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dirTypePrevPtcl(JPAEmitterWorkData const* param_0, JPABaseParticle const* param_1,
-                         JGeometry::TVec3<f32>* param_2) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/func_8027833C.s"
+void dirTypePrevPtcl(JPAEmitterWorkData const* work, JPABaseParticle const* param_1,
+                    JGeometry::TVec3<f32>* param_2) {
+    JGeometry::TVec3<f32> aTStack_24;
+    param_1->getGlobalPosition(aTStack_24);
+    JPANode<JPABaseParticle>* end = work->mpAlivePtcl->getEnd();
+    JPANode<JPABaseParticle>* prev = work->mpCurNode->getPrev();
+    
+    if (end != prev) {
+        JPABaseParticle* particle = work->mpCurNode->getPrev()->getObject();
+        particle->getGlobalPosition(*param_2);
+    } else {
+        work->mpEmtr->calcEmitterGlobalPosition(param_2);
+    }
+    param_2->sub(aTStack_24);
 }
-#pragma pop
 
 /* 802783D4-80278414 272D14 0040+00 1/0 0/0 0/0 .text            rotTypeY__FffRA3_A4_f */
+// Matches with literals
+#ifdef NONMATCHING
+static void rotTypeY(f32 param_0, f32 param_1, f32 (&param_2)[3][4]) {
+    param_2[0][0] = param_1;
+    param_2[0][1] = 0.0f;
+    param_2[0][2] = -param_0;
+    param_2[0][3] = 0.0f;
+    param_2[1][0] = 0.0f;
+    param_2[1][1] = 1.0f;
+    param_2[1][2] = 0.0f;
+    param_2[1][3] = 0.0f;
+    param_2[2][0] = param_0;
+    param_2[2][1] = 0.0f;
+    param_2[2][2] = param_1;
+    param_2[2][3] = 0.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -747,8 +965,26 @@ static asm void rotTypeY(f32 param_0, f32 param_1, f32 (&param_2)[3][4]) {
 #include "asm/JSystem/JParticle/JPABaseShape/rotTypeY__FffRA3_A4_f.s"
 }
 #pragma pop
+#endif
 
 /* 80278414-80278454 272D54 0040+00 1/0 0/0 0/0 .text            rotTypeX__FffRA3_A4_f */
+// Matches with literals
+#ifdef NONMATCHING
+static void rotTypeX(f32 param_0, f32 param_1, f32 (&param_2)[3][4]) {
+    param_2[0][0] = 1.0f;
+    param_2[0][1] = 0.0f;
+    param_2[0][2] = 0.0f;
+    param_2[0][3] = 0.0f;
+    param_2[1][0] = 0.0f;
+    param_2[1][1] = param_1;
+    param_2[1][2] = -param_0;
+    param_2[1][3] = 0.0f;
+    param_2[2][0] = 0.0f;
+    param_2[2][1] = param_0;
+    param_2[2][2] = param_1;
+    param_2[2][3] = 0.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -757,8 +993,26 @@ static asm void rotTypeX(f32 param_0, f32 param_1, f32 (&param_2)[3][4]) {
 #include "asm/JSystem/JParticle/JPABaseShape/rotTypeX__FffRA3_A4_f.s"
 }
 #pragma pop
+#endif
 
 /* 80278454-80278494 272D94 0040+00 1/0 0/0 0/0 .text            rotTypeZ__FffRA3_A4_f */
+// Matches with literals
+#ifdef NONMATCHING
+static void rotTypeZ(f32 param_0, f32 param_1, f32 (&param_2)[3][4]) {
+    param_2[0][0] = param_1;
+    param_2[0][1] = -param_0;
+    param_2[0][2] = 0.0f;
+    param_2[0][3] = 0.0f;
+    param_2[1][0] = param_0;
+    param_2[1][1] = param_1;
+    param_2[1][2] = 0.0f;
+    param_2[1][3] = 0.0f;
+    param_2[2][0] = 0.0f;
+    param_2[2][1] = 0.0f;
+    param_2[2][2] = 1.0f;
+    param_2[2][3] = 0.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -767,6 +1021,7 @@ static asm void rotTypeZ(f32 param_0, f32 param_1, f32 (&param_2)[3][4]) {
 #include "asm/JSystem/JParticle/JPABaseShape/rotTypeZ__FffRA3_A4_f.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804552D0-804552D4 0038D0 0004+00 1/1 0/0 0/0 .sdata2          @3145 */
@@ -776,6 +1031,29 @@ SECTION_SDATA2 static f32 lit_3145 = 0.33333298563957214f;
 SECTION_SDATA2 static f32 lit_3146 = 0.5773500204086304f;
 
 /* 80278494-802784F0 272DD4 005C+00 1/0 0/0 0/0 .text            rotTypeXYZ__FffRA3_A4_f */
+// Matches with literals
+#ifdef NONMATCHING
+static void rotTypeXYZ(f32 param_0, f32 param_1, f32 (&param_2)[3][4]) {
+    f32 f3 = 0.33333298563957214f * (1.0f - param_1);
+    f32 fVar1;
+    f32 f4;
+    f4 = f3 + 0.5773500204086304f * param_0;
+    fVar1 =  f3 - 0.5773500204086304f * param_0;
+    f3 += param_1;
+    param_2[0][0] = f3;
+    param_2[0][1] = fVar1;
+    param_2[0][2] = f4;
+    param_2[0][3] = 0.0f;
+    param_2[1][0] = f4;
+    param_2[1][1] = f3;
+    param_2[1][2] = fVar1;
+    param_2[1][3] = 0.0f;
+    param_2[2][0] = fVar1;
+    param_2[2][1] = f4;
+    param_2[2][2] = f3;
+    param_2[2][3] = 0.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -784,67 +1062,73 @@ static asm void rotTypeXYZ(f32 param_0, f32 param_1, f32 (&param_2)[3][4]) {
 #include "asm/JSystem/JParticle/JPABaseShape/rotTypeXYZ__FffRA3_A4_f.s"
 }
 #pragma pop
+#endif
 
 /* 802784F0-8027853C 272E30 004C+00 1/0 0/0 0/0 .text            basePlaneTypeXY__FPA4_fff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void basePlaneTypeXY(f32 (*param_0)[4], f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/basePlaneTypeXY__FPA4_fff.s"
+static void basePlaneTypeXY(f32 (*param_0)[4], f32 param_1, f32 param_2) {
+    param_0[0][0] *= param_1;
+    param_0[1][0] *= param_1;
+    param_0[2][0] *= param_1;
+    param_0[0][1] *= param_2;
+    param_0[1][1] *= param_2;
+    param_0[2][1] *= param_2;
 }
-#pragma pop
 
 /* 8027853C-80278588 272E7C 004C+00 1/0 0/0 0/0 .text            basePlaneTypeXZ__FPA4_fff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void basePlaneTypeXZ(f32 (*param_0)[4], f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/basePlaneTypeXZ__FPA4_fff.s"
+static void basePlaneTypeXZ(f32 (*param_0)[4], f32 param_1, f32 param_2) {
+    param_0[0][0] *= param_1;
+    param_0[1][0] *= param_1;
+    param_0[2][0] *= param_1;
+    param_0[0][2] *= param_2;
+    param_0[1][2] *= param_2;
+    param_0[2][2] *= param_2;
 }
-#pragma pop
 
 /* 80278588-802785F8 272EC8 0070+00 1/0 0/0 0/0 .text            basePlaneTypeX__FPA4_fff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void basePlaneTypeX(f32 (*param_0)[4], f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/basePlaneTypeX__FPA4_fff.s"
+static void basePlaneTypeX(f32 (*param_0)[4], f32 param_1, f32 param_2) {
+    param_0[0][0] *= param_1;
+    param_0[1][0] *= param_1;
+    param_0[2][0] *= param_1;
+    param_0[0][1] *= param_2;
+    param_0[1][1] *= param_2;
+    param_0[2][1] *= param_2;
+    param_0[0][2] *= param_1;
+    param_0[1][2] *= param_1;
+    param_0[2][2] *= param_1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803C432C-803C4340 -00001 0014+00 2/5 0/0 0/0 .data            p_direction */
-SECTION_DATA static void* p_direction[5] = {
-    (void*)func_802782B4, (void*)func_802782D0, (void*)func_802782EC,
-    (void*)func_80278320, (void*)func_8027833C,
+typedef void (*dirTypeFunc)(JPAEmitterWorkData const*, JPABaseParticle const*, JGeometry::TVec3<f32>*);
+static dirTypeFunc p_direction[5] = {
+    dirTypeVel, dirTypePos, dirTypePosInv,
+    dirTypeEmtrDir, dirTypePrevPtcl,
 };
 
 /* 803C4340-803C4354 -00001 0014+00 0/2 0/0 0/0 .data            p_rot */
+typedef void (*rotTypeFunc)(f32, f32, f32 (&)[3][4]);
 #pragma push
 #pragma force_active on
-SECTION_DATA static void* p_rot[5] = {
-    (void*)rotTypeY__FffRA3_A4_f,   (void*)rotTypeX__FffRA3_A4_f, (void*)rotTypeZ__FffRA3_A4_f,
-    (void*)rotTypeXYZ__FffRA3_A4_f, (void*)rotTypeY__FffRA3_A4_f,
+static rotTypeFunc p_rot[5] = {
+    rotTypeY,   rotTypeX, rotTypeZ,
+    rotTypeXYZ, rotTypeY,
 };
 #pragma pop
 
 /* 803C4354-803C4360 -00001 000C+00 0/3 0/0 0/0 .data            p_plane */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* p_plane[3] = {
-    (void*)basePlaneTypeXY__FPA4_fff,
-    (void*)basePlaneTypeXZ__FPA4_fff,
-    (void*)basePlaneTypeX__FPA4_fff,
+
+typedef void (*planeFunc)(f32 (*)[4], f32, f32);
+
+static planeFunc p_plane[3] = {
+    basePlaneTypeXY,
+    basePlaneTypeXZ,
+    basePlaneTypeX,
 };
-#pragma pop
 
 /* 804507A0-804507A8 -00001 0008+00 3/3 0/0 0/0 .sdata           p_dl */
-SECTION_SDATA static void* p_dl[2] = {
-    (void*)&jpa_dl,
-    (void*)&jpa_dl_x,
+SECTION_SDATA static u8* p_dl[2] = {
+    jpa_dl,
+    jpa_dl_x,
 };
 
 /* 804552D8-804552DC 0038D8 0004+00 6/6 0/0 0/0 .sdata2          @3281 */
@@ -855,6 +1139,45 @@ SECTION_SDATA2 static f32 lit_3282 = 3.0f;
 
 /* 802785F8-80278994 272F38 039C+00 0/0 1/1 0/0 .text
  * JPADrawDirection__FP18JPAEmitterWorkDataP15JPABaseParticle   */
+// Matches with literals
+#ifdef NONMATCHING
+void JPADrawDirection(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
+    if (param_1->checkStatus(8) == 0) {
+        JGeometry::TVec3<f32> local_6c;
+        JGeometry::TVec3<f32> local_78;
+        p_direction[param_0->mDirType](param_0, param_1, &local_6c);
+        if (!local_6c.isZero()) {
+            local_6c.normalize();
+            local_78.cross(param_1->mBaseAxis, local_6c);
+            if (!local_78.isZero()) {
+                local_78.normalize();
+                param_1->mBaseAxis.cross(local_6c, local_78);
+                param_1->mBaseAxis.normalize();
+                Mtx local_60;
+                f32 fVar1 = param_0->mGlobalPtclScl.x * param_1->mParticleScaleX;
+                f32 fVar2 = param_0->mGlobalPtclScl.y * param_1->mParticleScaleY;
+                local_60[0][0] = param_1->mBaseAxis.x;
+                local_60[0][1] = local_6c.x;
+                local_60[0][2] = local_78.x;
+                local_60[0][3] = param_1->mPosition.x;
+                local_60[1][0] = param_1->mBaseAxis.y;
+                local_60[1][1] = local_6c.y;
+                local_60[1][2] = local_78.y;
+                local_60[1][3] = param_1->mPosition.y;
+                local_60[2][0] = param_1->mBaseAxis.z;
+                local_60[2][1] = local_6c.z;
+                local_60[2][2] = local_78.z;
+                local_60[2][3] = param_1->mPosition.z;
+                p_plane[param_0->mPlaneType](local_60, fVar1, fVar2);
+                PSMTXConcat(param_0->mPosCamMtx, local_60, local_60);
+                GXLoadPosMtxImm(local_60, 0);
+                p_prj[param_0->mPrjType](param_0, local_60);
+                GXCallDisplayList(p_dl[param_0->mDLType], sizeof(jpa_dl));
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -863,9 +1186,54 @@ asm void JPADrawDirection(JPAEmitterWorkData* param_0, JPABaseParticle* param_1)
 #include "asm/JSystem/JParticle/JPABaseShape/JPADrawDirection__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
 }
 #pragma pop
+#endif
 
 /* 80278994-80278DA8 2732D4 0414+00 0/0 1/1 0/0 .text
  * JPADrawRotDirection__FP18JPAEmitterWorkDataP15JPABaseParticle */
+// Matches with literals
+#ifdef NONMATCHING
+void JPADrawRotDirection(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
+    if (param_1->checkStatus(8) == 0) {
+        f32 sinRot = JMASSin(param_1->mRotateAngle);
+        f32 cosRot = JMASCos(param_1->mRotateAngle);
+        JGeometry::TVec3<f32> local_6c;
+        JGeometry::TVec3<f32> local_78;
+        p_direction[param_0->mDirType](param_0, param_1, &local_6c);
+        if (!local_6c.isZero()) {
+            local_6c.normalize();
+            local_78.cross(param_1->mBaseAxis, local_6c);
+            if (!local_78.isZero()) {
+                local_78.normalize();
+                param_1->mBaseAxis.cross(local_6c, local_78);
+                param_1->mBaseAxis.normalize();
+                f32 particleX = param_0->mGlobalPtclScl.x * param_1->mParticleScaleX;
+                f32 particleY = param_0->mGlobalPtclScl.y * param_1->mParticleScaleY;
+                Mtx auStack_80;
+                Mtx local_60;
+                p_rot[param_0->mRotType](sinRot, cosRot, auStack_80);
+                p_plane[param_0->mPlaneType](auStack_80, particleX, particleY);
+                local_60[0][0] = param_1->mBaseAxis.x;
+                local_60[0][1] = local_6c.x;
+                local_60[0][2] = local_78.x;
+                local_60[0][3] = param_1->mPosition.x;
+                local_60[1][0] = param_1->mBaseAxis.y;
+                local_60[1][1] = local_6c.y;
+                local_60[1][2] = local_78.y;
+                local_60[1][3] = param_1->mPosition.y;
+                local_60[2][0] = param_1->mBaseAxis.z;
+                local_60[2][1] = local_6c.z;
+                local_60[2][2] = local_78.z;
+                local_60[2][3] = param_1->mPosition.z;
+                PSMTXConcat(local_60, auStack_80, auStack_80);
+                PSMTXConcat(param_0->mPosCamMtx, auStack_80, local_60);
+                GXLoadPosMtxImm(local_60, 0);
+                p_prj[param_0->mPrjType](param_0, local_60);
+                GXCallDisplayList(p_dl[param_0->mDLType], sizeof(jpa_dl));
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -874,9 +1242,47 @@ asm void JPADrawRotDirection(JPAEmitterWorkData* param_0, JPABaseParticle* param
 #include "asm/JSystem/JParticle/JPABaseShape/JPADrawRotDirection__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
 }
 #pragma pop
+#endif
 
 /* 80278DA8-80278FC8 2736E8 0220+00 0/0 1/1 0/0 .text
  * JPADrawDBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle  */
+// Matches with literals
+#ifdef NONMATCHING
+void JPADrawDBillboard(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
+    if (param_1->checkStatus(8) == 0) {
+        JGeometry::TVec3<f32> local_70;
+        p_direction[param_0->mDirType](param_0, param_1, &local_70);
+        JGeometry::TVec3<f32> aTStack_7c;
+        aTStack_7c.set(param_0->mPosCamMtx[2][0], param_0->mPosCamMtx[2][1],
+            param_0->mPosCamMtx[2][2]);
+        local_70.cross(local_70, aTStack_7c);
+        if (!local_70.isZero()) {
+            local_70.normalize();
+            PSMTXMultVecSR(param_0->mPosCamMtx, local_70, local_70);
+            JGeometry::TVec3<f32> local_88;
+            PSMTXMultVec(param_0->mPosCamMtx, param_1->mPosition, local_88);
+            f32 particleX = param_0->mGlobalPtclScl.x * param_1->mParticleScaleX;
+            f32 particleY = param_0->mGlobalPtclScl.y * param_1->mParticleScaleY;
+            Mtx local_60;
+            local_60[0][0] = local_70.x * particleX;
+            local_60[0][1] = -local_70.y * particleY;
+            local_60[0][3] = local_88.x;
+            local_60[1][0] = local_70.y * particleX;
+            local_60[1][1] = local_70.x * particleY;
+            local_60[1][3] = local_88.y;
+            local_60[2][2] = 1.0f;
+            local_60[2][3] = local_88.z;
+            local_60[2][1] = 0.0f;
+            local_60[2][0] = 0.0f;
+            local_60[1][2] = 0.0f;
+            local_60[0][2] = 0.0f;
+            GXLoadPosMtxImm(local_60, 0);
+            p_prj[param_0->mPrjType](param_0, local_60);
+            GXCallDisplayList(jpa_dl, sizeof(jpa_dl));
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -885,17 +1291,28 @@ asm void JPADrawDBillboard(JPAEmitterWorkData* param_0, JPABaseParticle* param_1
 #include "asm/JSystem/JParticle/JPABaseShape/JPADrawDBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
 }
 #pragma pop
+#endif
 
 /* 80278FC8-80279110 273908 0148+00 0/0 1/1 0/0 .text
  * JPADrawRotation__FP18JPAEmitterWorkDataP15JPABaseParticle    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPADrawRotation(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPADrawRotation__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
+void JPADrawRotation(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
+    if (param_1->checkStatus(8) == 0) {
+        f32 sinRot = JMASSin(param_1->mRotateAngle);
+        f32 cosRot = JMASCos(param_1->mRotateAngle);
+        f32 particleX = param_0->mGlobalPtclScl.x * param_1->mParticleScaleX;
+        f32 particleY = param_0->mGlobalPtclScl.y * param_1->mParticleScaleY;
+        Mtx auStack_88;
+        p_rot[param_0->mRotType](sinRot, cosRot, auStack_88);
+        p_plane[param_0->mPlaneType](auStack_88, particleX, particleY);
+        auStack_88[0][3] = param_1->mPosition.x;
+        auStack_88[1][3] = param_1->mPosition.y;
+        auStack_88[2][3] = param_1->mPosition.z;
+        PSMTXConcat(param_0->mPosCamMtx, auStack_88, auStack_88);
+        GXLoadPosMtxImm(auStack_88, 0);
+        p_prj[param_0->mPrjType](param_0, auStack_88);
+        GXCallDisplayList(p_dl[param_0->mDLType], sizeof(jpa_dl));
+    }
 }
-#pragma pop
 
 /* 80279110-802791B0 273A50 00A0+00 0/0 1/1 0/0 .text
  * JPADrawPoint__FP18JPAEmitterWorkDataP15JPABaseParticle       */
@@ -927,6 +1344,31 @@ asm void JPADrawPoint(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
 
 /* 802791B0-80279364 273AF0 01B4+00 0/0 1/1 0/0 .text
  * JPADrawLine__FP18JPAEmitterWorkDataP15JPABaseParticle        */
+// Matches with literals
+#ifdef NONMATCHING
+void JPADrawLine(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
+    if (param_1->checkStatus(8) == 0) {
+        JGeometry::TVec3<f32> local_1c;
+        JGeometry::setTVec3f(&param_1->mPosition.x, &local_1c.x);
+        JGeometry::TVec3<f32> local_28;
+        param_1->getVelVec(local_28);
+        if (!local_28.isZero()) {
+            local_28.setLength(param_0->mGlobalPtclScl.y * (25.0f * param_1->mParticleScaleY));
+            local_28.sub(local_1c, local_28);
+            GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+            GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+            GXBegin(GX_LINES, GX_VTXFMT1, 2);
+            GXPosition3f32(local_1c.x, local_1c.y, local_1c.z);
+            GXTexCoord2f32(0.0f, 0.0f);
+            GXPosition3f32(local_28.x, local_28.y, local_28.z);
+            GXTexCoord2f32(0.0f, 1.0f);
+            i_GXEnd();
+            GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
+            GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -935,28 +1377,117 @@ asm void JPADrawLine(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
 #include "asm/JSystem/JParticle/JPABaseShape/JPADrawLine__FP18JPAEmitterWorkDataP15JPABaseParticle.s"
 }
 #pragma pop
+#endif
 
 /* 80279364-8027936C 273CA4 0008+00 2/2 0/0 0/0 .text getNext__FP26JPANode<15JPABaseParticle> */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void getNext(JPANode<JPABaseParticle>* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/func_80279364.s"
+JPANode<JPABaseParticle>* getNext(JPANode<JPABaseParticle>* param_0) {
+    return param_0->getNext();
 }
-#pragma pop
 
 /* 8027936C-80279374 273CAC 0008+00 2/2 0/0 0/0 .text getPrev__FP26JPANode<15JPABaseParticle> */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void getPrev(JPANode<JPABaseParticle>* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/func_8027936C.s"
+JPANode<JPABaseParticle>* getPrev(JPANode<JPABaseParticle>* param_0) {
+    return param_0->getPrev();
 }
-#pragma pop
+
+typedef JPANode<JPABaseParticle>* (*getNodeFunc)(JPANode<JPABaseParticle>*);
 
 /* 80279374-8027996C 273CB4 05F8+00 0/0 1/1 0/0 .text JPADrawStripe__FP18JPAEmitterWorkData */
+// local_d4 is optimized away.
+#ifdef NONMATCHING
+void JPADrawStripe(JPAEmitterWorkData* param_0) {
+    JPABaseShape* shape = param_0->mpRes->getBsp();
+    u32 uVar5 = param_0->mpAlivePtcl->getNum();
+    if (uVar5 < 2) {
+        return;
+    }
+
+    f32 dVar16 = 0.0f;
+    f32 dVar15 = 1.0f / (uVar5 - 1.0f);
+    f32 dVar14 = (1.0f + param_0->mPivot.x) *
+                      (25.0f * param_0->mGlobalPtclScl.x);
+    f32 dVar13 = (1.0f - param_0->mPivot.x) *
+                      (25.0f * param_0->mGlobalPtclScl.x);
+    Mtx local_c8;
+    f32 dVar11;
+    f32 dVar12;
+    JGeometry::TVec3<f32> local_ec;
+    JGeometry::TVec3<f32> local_e0;
+    JGeometry::TVec3<f32> local_d4;
+    JGeometry::TVec3<f32> local_f8;
+    JGeometry::TVec3<f32> local_104;
+    getNodeFunc pcVar9;
+    JPANode<JPABaseParticle>* startNode;
+    if (shape->isDrawFwdAhead()) {
+        startNode = param_0->mpAlivePtcl->getLast();
+        pcVar9 = getPrev;
+        dVar16 = 1.0f;
+        dVar15 = -dVar15;
+    } else {
+        startNode = param_0->mpAlivePtcl->getFirst();
+        pcVar9 = getNext;
+    }
+
+    GXLoadPosMtxImm(param_0->mPosCamMtx, 0);
+    p_prj[param_0->mPrjType](param_0, param_0->mPosCamMtx);
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT1, uVar5 << 1);
+    for (JPANode<JPABaseParticle>* this_00 = startNode; this_00 != param_0->mpAlivePtcl->getEnd(); 
+        this_00 = pcVar9(this_00), dVar16 += dVar15) {
+        param_0->mpCurNode = this_00;
+        JPABaseParticle* pTVar7 = this_00->getObject();
+        local_ec.set(pTVar7->mPosition);
+        dVar11 = JMASSin(pTVar7->mRotateAngle);
+        dVar12 = JMASCos(pTVar7->mRotateAngle);
+        local_e0.x = -pTVar7->mParticleScaleX * dVar14;
+        local_e0.y = 0.0f;
+        local_e0.z = 0.0f;
+        local_e0.set(local_e0.x * dVar12, 0.0f, local_e0.x * dVar11);
+        local_d4.x = pTVar7->mParticleScaleX * dVar13;
+        local_d4.y = 0.0f;
+        local_d4.z = 0.0f;
+        local_d4.set(local_d4.x * dVar12, 0.0f, local_d4.x * dVar11);
+        p_direction[param_0->mDirType](param_0, pTVar7, &local_f8);
+        if (local_f8.isZero()) {
+            local_f8.set(0.0f, 1.0f, 0.0f);
+        } else {
+            local_f8.normalize();
+        }
+        local_104.cross(pTVar7->mBaseAxis, local_f8);
+        if (local_104.isZero()) {
+            local_104.set(1.0f, 0.0f, 0.0f);
+        } else {
+            local_104.normalize();
+        }
+        pTVar7->mBaseAxis.cross(local_f8, local_104);
+        pTVar7->mBaseAxis.normalize();
+        
+        local_c8[0][0] = local_104.x;
+        local_c8[0][1] = local_f8.x;
+        local_c8[0][2] = pTVar7->mBaseAxis.x;
+        local_c8[0][3] = 0.0f;
+        local_c8[1][0] = local_104.y;
+        local_c8[1][1] = local_f8.y;
+        local_c8[1][2] = pTVar7->mBaseAxis.y;
+        local_c8[1][3] = 0.0f;
+        local_c8[2][0] = local_104.z;
+        local_c8[2][1] = local_f8.z;
+        local_c8[2][2] = pTVar7->mBaseAxis.z;
+        local_c8[2][3] = 0.0f;
+        PSMTXMultVecArraySR(local_c8, local_e0, local_e0, 2);
+        GXPosition3f32(local_e0.x + local_ec.x, local_e0.y + local_ec.y,
+                       local_e0.z + local_ec.z);
+        GXTexCoord2f32(0.0f, dVar16);
+        GXPosition3f32(local_d4.x + local_ec.x, local_d4.y + local_ec.y,
+                       local_d4.z + local_ec.z);
+        GXTexCoord2f32(1.0f, dVar16);
+        
+    }
+    i_GXEnd();
+    GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
+    GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -965,6 +1496,7 @@ asm void JPADrawStripe(JPAEmitterWorkData* param_0) {
 #include "asm/JSystem/JParticle/JPABaseShape/JPADrawStripe__FP18JPAEmitterWorkData.s"
 }
 #pragma pop
+#endif
 
 /* 8027996C-8027A3D8 2742AC 0A6C+00 0/0 1/1 0/0 .text JPADrawStripeX__FP18JPAEmitterWorkData */
 #pragma push
@@ -978,14 +1510,12 @@ asm void JPADrawStripeX(JPAEmitterWorkData* param_0) {
 
 /* 8027A3D8-8027A414 274D18 003C+00 0/0 1/1 0/0 .text
  * JPADrawEmitterCallBackB__FP18JPAEmitterWorkData              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPADrawEmitterCallBackB(JPAEmitterWorkData* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPABaseShape/JPADrawEmitterCallBackB__FP18JPAEmitterWorkData.s"
+void JPADrawEmitterCallBackB(JPAEmitterWorkData* work) {
+    if (work->mpEmtr->mpEmtrCallBack == NULL)
+        return;
+
+    work->mpEmtr->mpEmtrCallBack->drawAfter(work->mpEmtr);
 }
-#pragma pop
 
 /* 8027A414-8027A454 274D54 0040+00 0/0 1/1 0/0 .text
  * JPADrawParticleCallBack__FP18JPAEmitterWorkDataP15JPABaseParticle */
