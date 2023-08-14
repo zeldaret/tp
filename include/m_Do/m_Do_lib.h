@@ -26,6 +26,7 @@ struct mDoLib_clipper {
     }
 
     static f32 getFar() { return mSystemFar; }
+    static f32 getFovyRate() { return mFovyRate; }
     
     static void resetFar() {
         mClipper.setFar(mSystemFar);

@@ -685,8 +685,8 @@ void cBgW::MakeNodeTreeRp(int param_0) {
         int tmp = tree_data->m_id[0];
 
         if (tmp != 0xFFFF) {
-            cXyz* max = (cXyz*)&pm_node_tree[param_0].getMaxP();
-            cXyz* min = (cXyz*)&pm_node_tree[param_0].getMinP();
+            cXyz* max = (cXyz*)pm_node_tree[param_0].GetMaxP();
+            cXyz* min = (cXyz*)pm_node_tree[param_0].GetMinP();
 
             MakeBlckBnd(tmp, min, max);
         }
@@ -700,8 +700,8 @@ void cBgW::MakeNodeTreeRp(int param_0) {
 
             if (tmp != 0xFFFF) {
                 MakeNodeTreeRp(tmp);
-                pm_node_tree[param_0].SetMinMax(pm_node_tree[tmp].getMinP());
-                pm_node_tree[param_0].SetMinMax(pm_node_tree[tmp].getMaxP());
+                pm_node_tree[param_0].SetMinMax(*pm_node_tree[tmp].GetMinP());
+                pm_node_tree[param_0].SetMinMax(*pm_node_tree[tmp].GetMaxP());
             }
         }
     }
@@ -1183,8 +1183,8 @@ bool cBgW::GetTriPnt(cBgS_PolyInfo const& poly, cXyz* p_pnt1, cXyz* p_pnt2, cXyz
 
 /* 8007B240-8007B270 075B80 0030+00 2/0 1/0 0/0 .text            GetTopUnder__4cBgWCFPfPf */
 void cBgW::GetTopUnder(f32* p_top, f32* p_under) const {
-    *p_under = pm_grp[field_0x92].m_aab.getMinP().y;
-    *p_top = pm_grp[field_0x92].m_aab.getMaxP().y;
+    *p_under = pm_grp[field_0x92].m_aab.GetMinP()->y;
+    *p_top = pm_grp[field_0x92].m_aab.GetMaxP()->y;
 }
 
 /* 8007B270-8007B2B0 075BB0 0040+00 2/0 1/0 0/0 .text            GetTriPla__4cBgWCFRC13cBgS_PolyInfo

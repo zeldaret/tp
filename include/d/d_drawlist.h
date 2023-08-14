@@ -42,6 +42,9 @@ public:
     /* 80053E9C */ virtual void draw();
     /* 800541F4 */ void update(cXyz&, _GXColor&, u16, u16, u16, u16, f32, f32, f32, f32);
 
+    f32 getRndValue(f32 param_0, f32 param_1) { return mRnd.getValue(param_0, param_1); }
+    f32 getRndFX(f32 param_0) { return mRnd.getFX(param_0); }
+
 private:
     /* 0x04 */ cM_rnd_c mRnd;
     /* 0x10 */ cXyz field_0x10;
@@ -91,6 +94,10 @@ public:
     /* 80052354 */ virtual void draw();
     /* 80052B00 */ dDlst_2DT2_c();
     /* 80052B4C */ void init(ResTIMG*, f32, f32, f32, f32, u8, u8, u8, f32, f32);
+
+    f32 getScaleX() { return mScaleX; }
+    void setScaleX(f32 scale) { mScaleX = scale; }
+    void setScaleY(f32 scale) { mScaleY = scale; }
 
     /* 0x04 */ GXTexObj mTexObj;
     /* 0x24 */ f32 field_0x24;

@@ -281,12 +281,12 @@ inline bool cM3d_CrossNumSection(f32 lMinX, f32 lMaxX, f32 rMinX, f32 rMaxX) {
 /* 802689E8-80268B0C 263328 0124+00 0/0 4/4 0/0 .text cM3d_Cross_AabAab__FPC8cM3dGAabPC8cM3dGAab
  */
 bool cM3d_Cross_AabAab(const cM3dGAab* pAabA, const cM3dGAab* pAabB) {
-    if (cM3d_CrossNumSection(pAabA->getMinP().x, pAabA->getMaxP().x, pAabB->getMinP().x,
-                             pAabB->getMaxP().x) &&
-        cM3d_CrossNumSection(pAabA->getMinP().y, pAabA->getMaxP().y, pAabB->getMinP().y,
-                             pAabB->getMaxP().y) &&
-        cM3d_CrossNumSection(pAabA->getMinP().z, pAabA->getMaxP().z, pAabB->getMinP().z,
-                             pAabB->getMaxP().z)) {
+    if (cM3d_CrossNumSection(pAabA->GetMinP()->x, pAabA->GetMaxP()->x, pAabB->GetMinP()->x,
+                             pAabB->GetMaxP()->x) &&
+        cM3d_CrossNumSection(pAabA->GetMinP()->y, pAabA->GetMaxP()->y, pAabB->GetMinP()->y,
+                             pAabB->GetMaxP()->y) &&
+        cM3d_CrossNumSection(pAabA->GetMinP()->z, pAabA->GetMaxP()->z, pAabB->GetMinP()->z,
+                             pAabB->GetMaxP()->z)) {
         return true;
     } else {
         return false;
@@ -296,17 +296,17 @@ bool cM3d_Cross_AabAab(const cM3dGAab* pAabA, const cM3dGAab* pAabB) {
 /* 80268B0C-80268BB4 26344C 00A8+00 0/0 4/4 0/0 .text cM3d_Cross_AabCyl__FPC8cM3dGAabPC8cM3dGCyl
  */
 bool cM3d_Cross_AabCyl(const cM3dGAab* pAab, const cM3dGCyl* pCyl) {
-    if (pAab->getMinP().x > pCyl->GetCP()->x + pCyl->GetR()) {
+    if (pAab->GetMinP()->x > pCyl->GetCP()->x + pCyl->GetR()) {
         return false;
-    } else if (pAab->getMaxP().x < pCyl->GetCP()->x - pCyl->GetR()) {
+    } else if (pAab->GetMaxP()->x < pCyl->GetCP()->x - pCyl->GetR()) {
         return false;
-    } else if (pAab->getMinP().z > pCyl->GetCP()->z + pCyl->GetR()) {
+    } else if (pAab->GetMinP()->z > pCyl->GetCP()->z + pCyl->GetR()) {
         return false;
-    } else if (pAab->getMaxP().z < pCyl->GetCP()->z - pCyl->GetR()) {
+    } else if (pAab->GetMaxP()->z < pCyl->GetCP()->z - pCyl->GetR()) {
         return false;
-    } else if (pAab->getMinP().y > pCyl->GetCP()->y + pCyl->GetH()) {
+    } else if (pAab->GetMinP()->y > pCyl->GetCP()->y + pCyl->GetH()) {
         return false;
-    } else if (pAab->getMaxP().y < pCyl->GetCP()->y) {
+    } else if (pAab->GetMaxP()->y < pCyl->GetCP()->y) {
         return false;
     } else {
         return true;
