@@ -573,12 +573,9 @@ static int useHeapInit(fopAc_ac_c* actor) {
 /* 80B263E4-80B264E4 000AC4 0100+00 1/0 0/0 0/0 .text            daNPC_TR_Create__FP10fopAc_ac_c */
 // matches with literals
 #ifdef NONMATCHING
-static int daNPC_TR_Create(fopAc_ac_c* ac) {
-    if (!fopAcM_CheckCondition(ac, 8)) {
-        new (ac) npc_tr_class();
-        fopAcM_OnCondition(ac, 8);
-    }
-    npc_tr_class* npc_tr = (npc_tr_class*)ac;
+static int daNPC_TR_Create(fopAc_ac_c* i_this) {
+    SETUP_ACTOR(i_this, npc_tr_class);
+    npc_tr_class* npc_tr = (npc_tr_class*)i_this;
     
     int phase_state = dComIfG_resLoad(&npc_tr->mPhaseReq, "NPC_TR");
     if (phase_state == cPhs_COMPLEATE_e) {

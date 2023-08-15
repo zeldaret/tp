@@ -50,10 +50,7 @@ public:
     }
 
     int create() {
-        if (!fopAcM_CheckCondition(this, 8)) {
-            new (this) daGuardMng_c();
-            fopAcM_OnCondition(this, 8);
-        }
+        SETUP_ACTOR(this,daGuardMng_c);
         create_init();
         return cPhs_COMPLEATE_e;
     }

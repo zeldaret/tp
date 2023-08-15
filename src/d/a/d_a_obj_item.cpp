@@ -742,10 +742,7 @@ SECTION_DATA extern void* __vt__8daItem_c[17 + 36 /* padding */] = {
 // matches, but issues with vtable
 #ifdef NONMATCHING
 int daItem_c::_daItem_create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daItem_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daItem_c);
 
     if (!field_0x95d) {
         field_0x92c = orig.angle.x;

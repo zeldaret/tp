@@ -13,10 +13,7 @@
 
 /* 805A43EC-805A45D8 0000EC 01EC+00 1/1 0/0 0/0 .text            create__12daTagHstop_cFv */
 int daTagHstop_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagHstop_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daTagHstop_c);
 
     mScale.x *= 100.0f;
     mScale.y *= 100.0f;

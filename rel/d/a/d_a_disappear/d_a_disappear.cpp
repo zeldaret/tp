@@ -105,10 +105,7 @@ static void set_disappear(disappear_class* i_this, f32 i_scale) {
 /* 804A9364-804A9458 0004C4 00F4+00 1/0 0/0 0/0 .text            daDisappear_Create__FP10fopAc_ac_c
  */
 static int daDisappear_Create(fopAc_ac_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) disappear_class();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    SETUP_ACTOR(i_this,disappear_class);
     disappear_class* this_ = (disappear_class*)i_this;
 
     this_->field_0x567 = fopAcM_GetParam(this_);

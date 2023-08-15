@@ -1906,11 +1906,7 @@ SECTION_DEAD static char const* const stringBase_80807D69 = "E_yk";
 #ifdef NONMATCHING
 // matches with literals
 static int daE_YK_Create(fopAc_ac_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) e_yk_class();
-        fopAcM_OnCondition(i_this, 8);
-    }
-
+    SETUP_ACTOR(i_this, e_yk_class);
     e_yk_class* yk = (e_yk_class*)i_this;
 
     int phase_step = dComIfG_resLoad(&yk->mPhase,"E_YK");

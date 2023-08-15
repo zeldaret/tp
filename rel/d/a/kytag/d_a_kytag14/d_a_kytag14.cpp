@@ -83,10 +83,7 @@ static int daKytag14_Delete(kytag14_class*) {
 
 /* 80529B44-80529BE0 000224 009C+00 1/0 0/0 0/0 .text            daKytag14_Create__FP10fopAc_ac_c */
 static int daKytag14_Create(fopAc_ac_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) kytag14_class();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    SETUP_ACTOR(i_this, kytag14_class);
     kytag14_class* kytag = static_cast<kytag14_class*>(i_this);
 
     kytag->mSavePoint = fopAcM_GetParam(kytag);

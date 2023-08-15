@@ -10,10 +10,7 @@
 
 /* 80D638F8-80D63A78 000078 0180+00 1/1 0/0 0/0 .text            create__13daTagStream_cFv */
 int daTagStream_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagStream_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daTagStream_c);
 
     mPriority = fopAcM_GetParam(this) >> 8;
     mPower = fopAcM_GetParam(this);

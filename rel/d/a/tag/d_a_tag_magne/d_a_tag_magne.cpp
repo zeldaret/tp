@@ -23,10 +23,7 @@ int daTagMagne_c::Create() {
 
 /* 805A54DC-805A5578 0000BC 009C+00 1/1 0/0 0/0 .text            create__12daTagMagne_cFv */
 int daTagMagne_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagMagne_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daTagMagne_c);
 
     if (mTagMagne != NULL && mTagMagne->current.roomNo != current.roomNo) {
         return cPhs_ZERO_e;

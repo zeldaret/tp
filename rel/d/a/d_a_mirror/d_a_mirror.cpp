@@ -559,12 +559,9 @@ void daMirror_c::setModelMtx() {
 }
 
 /* 80872018-8087206C 0014D8 0054+00 1/0 0/0 0/0 .text            daMirror_create__FP10daMirror_c */
-static int daMirror_create(daMirror_c* param_0) {
-    if (fopAcM_CheckCondition(param_0, 8) == 0) {
-        new (param_0) daMirror_c();
-        fopAcM_OnCondition(param_0, 8);
-    }
-    return param_0->daMirror_c::create();
+static int daMirror_create(daMirror_c* i_this) {
+    SETUP_ACTOR(i_this,daMirror_c);
+    return i_this->daMirror_c::create();
 }
 
 /* ############################################################################################## */

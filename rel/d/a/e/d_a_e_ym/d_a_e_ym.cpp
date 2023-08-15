@@ -2148,10 +2148,7 @@ SECTION_DEAD static char const* const stringBase_80815AFE = "E_ym";
 // literals / small issue
 #ifdef NONMATCHING
 int daE_YM_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daE_YM_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daE_YM_c);
 
     mType = fopAcM_GetParam(this);
     if (mType == 0xFF) {

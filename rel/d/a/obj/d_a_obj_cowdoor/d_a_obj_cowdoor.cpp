@@ -42,10 +42,7 @@ static const char* l_dzbName = "A_UHDoor.dzb";
 
 /* 80BCC93C-80BCCA1C 0001BC 00E0+00 1/1 0/0 0/0 .text            create__11daCowdoor_cFv */
 int daCowdoor_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daCowdoor_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daCowdoor_c);
     int phase = dComIfG_resLoad(&field_0x5a0, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {
         phase =

@@ -9,6 +9,12 @@
 #include "f_pc/f_pc_manager.h"
 #include "f_pc/f_pc_searcher.h"
 
+#define SETUP_ACTOR(ptr,ClassName) \
+    if (!fopAcM_CheckCondition(ptr, 8)) { \
+        new (ptr) ClassName(); \
+        fopAcM_OnCondition(ptr, 8); \
+    }
+
 class J3DModelData;  // placeholder
 class JKRHeap;
 class cM3dGPla;

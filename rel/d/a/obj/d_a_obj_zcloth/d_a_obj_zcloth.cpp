@@ -195,10 +195,7 @@ SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
 #ifdef NONMATCHING
 // Matches but weird vtable
 int daObjZCloth_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daObjZCloth_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daObjZCloth_c);
     m_itemNo = 0x31;
     int phase = dComIfG_resLoad(&mPhase, dItem_data::getFieldArc(m_itemNo));
     if (phase == cPhs_COMPLEATE_e) {

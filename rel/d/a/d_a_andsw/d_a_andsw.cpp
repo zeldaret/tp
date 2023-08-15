@@ -21,10 +21,7 @@ int daAndsw_c::Create() {
 
 /* 804579B8-80457A20 0000B8 0068+00 1/1 0/0 0/0 .text            create__9daAndsw_cFv */
 int daAndsw_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daAndsw_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this,daAndsw_c);
     if (!Create()) {
         return cPhs_ERROR_e;
     }

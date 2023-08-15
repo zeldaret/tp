@@ -140,10 +140,7 @@ static fish_pos lf_pos[12] = {
 /* 80542254-805424B8 000154 0264+00 1/0 0/0 0/0 .text daNpc_Fish_Create__FP10fopAc_ac_c */
 static int daNpc_Fish_Create(fopAc_ac_c* i_this) {
     cXyz pos;
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) npc_fish_class();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    SETUP_ACTOR(i_this, npc_fish_class);
     if (strcmp(dComIfGp_getStartStageName(), "F_SP127")) {
         return 5;
     } else {

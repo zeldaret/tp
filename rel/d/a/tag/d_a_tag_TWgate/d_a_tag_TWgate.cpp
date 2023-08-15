@@ -1096,10 +1096,7 @@ asm int daTagTWGate_c::CreateHeap() {
 #endif
 
 int daTagTWGate_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagTWGate_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daTagTWGate_c);
 
     mType = getType();
 

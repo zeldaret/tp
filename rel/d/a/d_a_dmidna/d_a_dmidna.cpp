@@ -31,10 +31,7 @@ static int daDmidna_createHeap(fopAc_ac_c* i_this) {
 
 /* 8045CFE4-8045D094 000184 00B0+00 1/1 0/0 0/0 .text            create__10daDmidna_cFv */
 int daDmidna_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daDmidna_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this,daDmidna_c);
 
     int phase = dComIfG_resLoad(&mPhase, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {

@@ -9,11 +9,7 @@
 
 /* 80D59AF8-80D59B48 000078 0050+00 1/0 0/0 0/0 .text            daTagInst_Create__FP10fopAc_ac_c */
 static int daTagInst_Create(fopAc_ac_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) daTagInst_c();
-        fopAcM_OnCondition(i_this, 8);
-    }
-
+    SETUP_ACTOR(i_this, daTagInst_c);
     return cPhs_COMPLEATE_e;
 }
 

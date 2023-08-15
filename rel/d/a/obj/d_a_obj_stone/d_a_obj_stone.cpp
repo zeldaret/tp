@@ -815,10 +815,7 @@ bool daObjStone_c::CreateHeap() {
 #ifdef NONMATCHING
 // matches, but too many destructors being generated
 int daObjStone_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daObjStone_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daObjStone_c);
 
     mStoneType = getType();
 

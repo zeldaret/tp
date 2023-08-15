@@ -93,10 +93,7 @@ public:
     }
 
     int create() {
-        if (!fopAcM_CheckCondition(this, 8)) {
-            new (this) daObjCatDoor_c();
-            fopAcM_OnCondition(this, 8);
-        }
+        SETUP_ACTOR(this, daObjCatDoor_c);
 
         int phase_state = dComIfG_resLoad(&mPhaseReq, l_arcName);
         if (phase_state != cPhs_COMPLEATE_e) {

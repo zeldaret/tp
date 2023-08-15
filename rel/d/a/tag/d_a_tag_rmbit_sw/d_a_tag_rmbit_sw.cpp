@@ -15,10 +15,7 @@ daTagRmbitSw_c::~daTagRmbitSw_c() {}
 
 /* 80D5FB94-80D5FBEC 000114 0058+00 1/1 0/0 0/0 .text            create__14daTagRmbitSw_cFv */
 int daTagRmbitSw_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagRmbitSw_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daTagRmbitSw_c);
     init();
     return cPhs_COMPLEATE_e;
 }
@@ -109,10 +106,7 @@ u8 daTagRmbitSw_c::chkPlyrInTag() {
 
 /* 80D5FEEC-80D5FF40 00046C 0054+00 1/0 0/0 0/0 .text daTagRmbitSw_create__FP14daTagRmbitSw_c */
 int daTagRmbitSw_create(daTagRmbitSw_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) daTagRmbitSw_c();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    SETUP_ACTOR(i_this, daTagRmbitSw_c);
     return i_this->create();
 }
 

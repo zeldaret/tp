@@ -27,10 +27,7 @@ int daTagSpring_c::Create() {
 
 /* 805A6AF4-805A6B5C 000114 0068+00 1/1 0/0 0/0 .text            create__13daTagSpring_cFv */
 int daTagSpring_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagSpring_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daTagSpring_c);
 
     if (!Create()) {
         return cPhs_ERROR_e;

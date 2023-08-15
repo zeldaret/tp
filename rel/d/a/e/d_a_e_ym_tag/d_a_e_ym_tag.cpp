@@ -59,10 +59,7 @@ static int daE_YM_TAG_Delete(daE_YM_TAG_c* i_this) {
 
 /* 80815F28-80815F90 0001A8 0068+00 1/1 0/0 0/0 .text            create__12daE_YM_TAG_cFv */
 int daE_YM_TAG_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daE_YM_TAG_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daE_YM_TAG_c);
     if ((u8)fopAcM_GetParam(this) == 0xFF) {
         return cPhs_ERROR_e;
     }

@@ -30,10 +30,7 @@ int daObjWaterEff_c::Create() {
 
 /* 80C5C5DC-80C5C670 00015C 0094+00 1/1 0/0 0/0 .text            create__15daObjWaterEff_cFv */
 int daObjWaterEff_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daObjWaterEff_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daObjWaterEff_c);
 
     if (!Create()) {
         return cPhs_ERROR_e;

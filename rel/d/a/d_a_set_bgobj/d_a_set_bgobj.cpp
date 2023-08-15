@@ -27,10 +27,7 @@ int daSetBgObj_c::CreateInit() {
 
 /* 80485DFC-80485E88 0000FC 008C+00 1/1 0/0 0/0 .text            create__12daSetBgObj_cFv */
 int daSetBgObj_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daSetBgObj_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daSetBgObj_c);
 
     sprintf(mArcName, "%s", getArcName(this));
 

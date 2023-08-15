@@ -11,10 +11,7 @@
 
 /* 8057BF98-8057C138 000078 01A0+00 1/1 0/0 0/0 .text            create__12daObjDigpl_cFv */
 int daObjDigpl_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daObjDigpl_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daObjDigpl_c);
 
     mType = (fopAcM_GetParam(this) >> 8) & 0xF;
     mSwitch = fopAcM_GetParam(this) & 0xFF;

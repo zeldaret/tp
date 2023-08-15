@@ -276,10 +276,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 8061E868-8061E9EC 000C28 0184+00 1/0 0/0 0/0 .text            daB_OH2_Create__FP10fopAc_ac_c */
 static int daB_OH2_Create(fopAc_ac_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) b_oh2_class();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    SETUP_ACTOR(i_this,b_oh2_class);
     b_oh2_class* _this = static_cast<b_oh2_class*>(i_this);
 
     int phase = dComIfG_resLoad(&_this->mPhase, "B_oh");

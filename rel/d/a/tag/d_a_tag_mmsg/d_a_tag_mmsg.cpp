@@ -15,10 +15,7 @@
 /* ############################################################################################## */
 /* 80D5B918-80D5BA94 000078 017C+00 1/1 0/0 0/0 .text            create__11daTagMmsg_cFv */
 int daTagMmsg_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagMmsg_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daTagMmsg_c);
 
     field_0x570 = fpcM_GetParam(this) & 0x3FF;
     field_0x572 = (fpcM_GetParam(this) >> 10) & 0x3FF;

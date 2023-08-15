@@ -9,10 +9,7 @@
 
 /* 80D60B78-80D60D78 000078 0200+00 1/1 0/0 0/0 .text            create__16daTag_ShopItem_cFv */
 int daTag_ShopItem_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTag_ShopItem_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daTag_ShopItem_c);
     initialize();
     field_0x572 = 0;
     if (!strcmp("F_SP109", dComIfGp_getStartStageName())) {

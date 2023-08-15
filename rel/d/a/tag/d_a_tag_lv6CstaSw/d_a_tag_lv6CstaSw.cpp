@@ -20,11 +20,7 @@ void daLv6CstaSw_c::setBaseMtx() {
 
 /* 80D5B3B0-80D5B410 0001B0 0060+00 1/1 0/0 0/0 .text            create__13daLv6CstaSw_cFv */
 int daLv6CstaSw_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daLv6CstaSw_c();
-        fopAcM_OnCondition(this, 8);
-    }
-
+    SETUP_ACTOR(this, daLv6CstaSw_c);
     mSwitch = getSw();
     setBaseMtx();
     return cPhs_COMPLEATE_e;

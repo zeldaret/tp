@@ -245,10 +245,7 @@ static int daTagWaterFall_Delete(daTagWaterFall_c* i_this) {
 
 /* 80D64B20-80D64CBC 0005E0 019C+00 1/1 0/0 0/0 .text            create__16daTagWaterFall_cFv */
 cPhs__Step daTagWaterFall_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagWaterFall_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daTagWaterFall_c);
 
     if (masterWaterfallTagExists == false) {
         masterWaterfallTagExists = true;

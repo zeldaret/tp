@@ -874,10 +874,7 @@ COMPILER_STRIP_GATE(0x8095D640, &daNpcAsh_Param_c::m);
 cPhs__Step daNpcAsh_c::Create() {
     cPhs__Step step;
 
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daNpcAsh_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daNpcAsh_c);
 
     if (!strcmp(dComIfGp_getStartStageName(), "R_SP116") && dComIfG_play_c::getLayerNo(0) == 4) {
         if (daNpcF_chkEvtBit(0x169) && !daNpcF_chkEvtBit(0x10a)) {

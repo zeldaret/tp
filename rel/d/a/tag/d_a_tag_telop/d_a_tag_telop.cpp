@@ -11,10 +11,7 @@
 
 /* 80490A58-80490AF8 000078 00A0+00 1/1 0/0 0/0 .text            create__13daTag_Telop_cFv */
 int daTag_Telop_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTag_Telop_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daTag_Telop_c);
 
     mMessageNo = getMessageNo();
 

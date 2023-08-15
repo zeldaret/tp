@@ -1159,9 +1159,9 @@ bool dPa_modelEcallBack::model_c::set(J3DModelData* param_0, dKy_tevstr_c const&
     J3DLightObj* end;
     J3DLightObj* src;
     J3DLightObj* dst;
-    dst = (J3DLightObj*)field_0x8.field_0x074;
-    src = (J3DLightObj*)param_1.field_0x074;
-    end = field_0x8.field_0x074 + 6;
+    dst = (J3DLightObj*)field_0x8.mLights;
+    src = (J3DLightObj*)param_1.mLights;
+    end = field_0x8.mLights + 6;
     do {
         *dst = *src;
         dst++;

@@ -17,10 +17,7 @@ daTagSmkEmt_c::~daTagSmkEmt_c() {}
 
 /* 80D61384-80D613DC 000124 0058+00 1/1 0/0 0/0 .text            create__13daTagSmkEmt_cFv */
 int daTagSmkEmt_c::create() {
-     if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagSmkEmt_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daTagSmkEmt_c);
     createSmkEmt();
     return cPhs_COMPLEATE_e;
 }
@@ -72,10 +69,7 @@ void daTagSmkEmt_c::deleteSmkEmt() {
 
 /* 80D61544-80D61598 0002E4 0054+00 1/0 0/0 0/0 .text daTagSmkEmt_create__FP13daTagSmkEmt_c */
 static int daTagSmkEmt_create(daTagSmkEmt_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) daTagSmkEmt_c();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    SETUP_ACTOR(i_this, daTagSmkEmt_c);
     return i_this->create();
 }
 

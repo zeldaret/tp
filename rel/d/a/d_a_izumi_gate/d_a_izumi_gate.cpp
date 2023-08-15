@@ -47,10 +47,7 @@ static char* l_arcName = "M_IzmGate";
 /* 80849184-80849260 000164 00DC+00 1/0 0/0 0/0 .text            daIzumiGate_Create__FP10fopAc_ac_c
  */
 int daIzumiGate_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daIzumiGate_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this,daIzumiGate_c);
     int phase = dComIfG_resLoad(&mPhaseReq, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {
         int objectName = dComIfG_getObjctResName2Index(l_arcName, "M_IzumiGate_b.dzb");

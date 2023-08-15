@@ -147,10 +147,7 @@ static int daWarpBug_Delete(daWarpBug_c* i_this) {
 }
 
 int daWarpBug_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daWarpBug_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daWarpBug_c);
 
     int phase = dComIfG_resLoad(&mPhase, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {

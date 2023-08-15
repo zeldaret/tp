@@ -504,10 +504,7 @@ int daObjVolcBall_c::CreateHeap() {
 // matches with vtable data
 #ifdef NONMATCHING
 int daObjVolcBall_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daObjVolcBall_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daObjVolcBall_c);
 
     mIsBigVolc = checkBigVolc();
     if (mIsBigVolc == 1) {

@@ -45,4 +45,8 @@ inline f32 cM_sht2d(f32 v) {
     return v * 0.005493164f;
 }
 
+inline f32 cM_s2rad(s16 x) {
+    return x * 9.58738e-05f;
+}
+
 #endif /* C_MATH_H */

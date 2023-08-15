@@ -17,10 +17,7 @@ public:
     }
 
     int create() {
-        if (!fopAcM_CheckCondition(this, 8)) {
-            new (this) daTagGra_c();
-            fopAcM_OnCondition(this, 8);
-        }
+        SETUP_ACTOR(this,daTagGra_c);
 
         if (getMode() == 2) {
             if (dComIfGs_isSwitch(getSwBit(),fopAcM_GetRoomNo(this))) {

@@ -254,10 +254,7 @@ static daObj_Web1_HIO_c l_HIO;
 /* 80D35CE4-80D35F98 000A24 02B4+00 1/0 0/0 0/0 .text            daObj_Web1_Create__FP10fopAc_ac_c
  */
 static int daObj_Web1_Create(fopAc_ac_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) obj_web1_class();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    SETUP_ACTOR(i_this, obj_web1_class);
     obj_web1_class* _this = static_cast<obj_web1_class*>(i_this);
 
     static dCcD_SrcCyl cc_cyl_src = {

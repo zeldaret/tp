@@ -34,10 +34,7 @@ static int daKytag17_Delete(kytag17_class* i_this) {
 static int daKytag17_Create(fopAc_ac_c* i_this) {
     kytag17_class* kytag17 = (kytag17_class*)i_this;
 
-    if (!fopAcM_CheckCondition(kytag17, 8)) {
-        new (kytag17) kytag17_class();
-        fopAcM_OnCondition(kytag17, 8);
-    }
+    SETUP_ACTOR(kytag17, kytag17_class);
 
     kytag17->mParameters = fopAcM_GetParam(kytag17);
     g_env_light.field_0x1308 = kytag17->mParameters;

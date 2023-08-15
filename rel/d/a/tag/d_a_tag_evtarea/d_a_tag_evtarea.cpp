@@ -34,10 +34,7 @@ u8 daTag_EvtArea_c::getBitSW2() {
 
 /* 8048C4F8-8048C728 000078 0230+00 2/1 0/0 0/0 .text            create__15daTag_EvtArea_cFv */
 cPhs__Step daTag_EvtArea_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTag_EvtArea_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daTag_EvtArea_c);
 
     switch (getType()) {
         case 0:

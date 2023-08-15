@@ -8,10 +8,7 @@
 class daTagSchedule_c : public fopAc_ac_c {
 public:
     int create() {
-        if (!fopAcM_CheckCondition(this, 8)) {
-            new (this) daTagSchedule_c();
-            fopAcM_OnCondition(this, 8);
-        }
+        SETUP_ACTOR(this,daTagSchedule_c);
         return cPhs_COMPLEATE_e;
     }
 

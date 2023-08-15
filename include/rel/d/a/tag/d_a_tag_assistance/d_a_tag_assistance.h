@@ -14,10 +14,7 @@ public:
     }
 
     int create() {
-        if (!fopAcM_CheckCondition(this, 8)) {
-            new (this) daTagAssist_c();
-            fopAcM_OnCondition(this, 8);
-        }
+        SETUP_ACTOR(this,daTagAssist_c);
         create_init();
         return cPhs_COMPLEATE_e;
     }

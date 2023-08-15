@@ -20,10 +20,7 @@ void daTagCstaSw_c::setBaseMtx() {
 
 /* 805A20F0-805A2150 0001B0 0060+00 1/1 0/0 0/0 .text            create__13daTagCstaSw_cFv */
 int daTagCstaSw_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagCstaSw_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daTagCstaSw_c);
     mSwitch = getSw();
     setBaseMtx();
     return cPhs_COMPLEATE_e;

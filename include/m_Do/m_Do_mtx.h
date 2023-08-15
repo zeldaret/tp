@@ -101,6 +101,10 @@ inline void mDoMtx_quatSlerp(const Quaternion* a, const Quaternion* b, Quaternio
     C_QUATSlerp(a,b,ab,param_4);
 }
 
+inline void mDoMtx_identity(Mtx m) {
+    PSMTXIdentity(m);
+}
+
 class mDoMtx_stack_c {
 public:
     /* 8000CCC8 */ static bool push();

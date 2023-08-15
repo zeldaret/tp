@@ -19,10 +19,7 @@ int daSwTime_c::Create() {
 
 /* 80D4F660-80D4F6C8 0000A0 0068+00 1/1 0/0 0/0 .text            create__10daSwTime_cFv */
 int daSwTime_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daSwTime_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    SETUP_ACTOR(this, daSwTime_c);
     if (!Create()) {
         return cPhs_ERROR_e;
     }

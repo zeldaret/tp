@@ -1008,10 +1008,7 @@ int daBg_c::create() {
     field_0x5f1 = 0;
 
     if (mHeap == NULL) {
-        if (!fopAcM_CheckCondition(this, 8)) {
-            new (this) daBg_c();
-            fopAcM_OnCondition(this, 8);
-        }
+        SETUP_ACTOR(this,daBg_c);
 
         orig.roomNo = roomNo;
         current.roomNo = roomNo;

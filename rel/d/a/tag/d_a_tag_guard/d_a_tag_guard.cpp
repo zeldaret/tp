@@ -32,11 +32,7 @@ void daTagGuard_c::createGuard(u32 i_parameters) {
 }
 
 int daTagGuard_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagGuard_c();
-        fopAcM_OnCondition(this, 8);
-    }
-
+    SETUP_ACTOR(this, daTagGuard_c);
     create_init();
     return cPhs_COMPLEATE_e;
 }

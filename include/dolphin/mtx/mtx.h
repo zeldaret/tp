@@ -37,6 +37,10 @@ void C_MTXLightPerspective(Mtx m, f32 fovY, f32 aspect, f32 scale_s, f32 scale_t
 void C_MTXLightOrtho(Mtx m, f32 top, f32 bottom, f32 left, f32 right, f32 scale_s, f32 scale_t,
                      f32 trans_s, f32 trans_t);
 
+inline void C_MTXRotAxisRad(Mtx m, const Vec* axis, f32 rad) {
+    PSMTXRotAxisRad(m, axis, rad);
+}
+
 #ifdef __cplusplus
 };
 #endif

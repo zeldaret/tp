@@ -15,6 +15,8 @@ public:
     /* 80D602B4 */ int execute();
     /* 80D602BC */ int _delete();
 
+    s32 getType() { return mType; }
+
 private:
     u8 getType_private() { return fopAcM_GetParamBit(this, 8, 4); }
 
