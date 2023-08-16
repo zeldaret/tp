@@ -1275,7 +1275,7 @@ static int phase_1(char* i_arcName) {
         return cPhs_ERROR_e;
     }
 
-    return cPhs_TWO_e;
+    return cPhs_NEXT_e;
 }
 
 /* 8002CE38-8002CEB4 027778 007C+00 1/0 0/0 0/0 .text            phase_2__FPc */
@@ -1301,7 +1301,7 @@ int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_arcNa
     static int (*l_method[3])(void*) = {(int (*)(void*))phase_1, (int (*)(void*))phase_2,
                                         (int (*)(void*))phase_3};
 
-    if (i_phase->id == cPhs_TWO_e) {
+    if (i_phase->id == cPhs_NEXT_e) {
         return cPhs_COMPLEATE_e;
     }
 
@@ -1338,7 +1338,7 @@ int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_resNa
     static int (*l_method[3])(void*) = {(int (*)(void*))phase_01, (int (*)(void*))phase_02,
                                         (int (*)(void*))phase_03};
 
-    if (i_phase->id == cPhs_TWO_e) {
+    if (i_phase->id == cPhs_NEXT_e) {
         return cPhs_COMPLEATE_e;
     }
 
@@ -1349,12 +1349,12 @@ int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_resNa
 /* 8002D008-8002D06C 027948 0064+00 1/1 10/10 540/540 .text
  * dComIfG_resDelete__FP30request_of_phase_process_classPCc     */
 int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* i_resName) {
-    if (i_phase->id != cPhs_TWO_e) {
+    if (i_phase->id != cPhs_NEXT_e) {
         return 0;
     }
 
     dComIfG_deleteObjectResMain(i_resName);
-    i_phase->id = cPhs_ZERO_e;
+    i_phase->id = cPhs_INIT_e;
     return 1;
 }
 
@@ -2189,7 +2189,7 @@ void dComIfGs_setWarpMarkFlag(u8) {}
 /* 8002F314-8002F328 029C54 0014+00 0/0 0/0 1/1 .text            __ct__19dComIfG_resLoader_cFv */
 dComIfG_resLoader_c::dComIfG_resLoader_c() {
     field_0x0 = NULL;
-    field_0x4.id = cPhs_ZERO_e;
+    field_0x4.id = cPhs_INIT_e;
     field_0xc = 0;
 }
 
@@ -2198,7 +2198,7 @@ dComIfG_resLoader_c::~dComIfG_resLoader_c() {
     if (field_0x0 != NULL) {
         for (int i = field_0xc; i >= 0; i--) {
             dComIfG_resDelete(&field_0x4, field_0x0[i]);
-            field_0x4.id = cPhs_TWO_e;
+            field_0x4.id = cPhs_NEXT_e;
         }
     }
 }
@@ -2211,8 +2211,8 @@ int dComIfG_resLoader_c::load(char const** i_resNameTbl, JKRHeap* i_heap) {
     if (phase_state == cPhs_COMPLEATE_e) {
         if (field_0x0[field_0xc + 1][0] != 0) {
             field_0xc++;
-            field_0x4.id = cPhs_ZERO_e;
-            phase_state = cPhs_ZERO_e;
+            field_0x4.id = cPhs_INIT_e;
+            phase_state = cPhs_INIT_e;
         }
     }
 

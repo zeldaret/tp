@@ -29,7 +29,7 @@ int daTagMagne_c::create() {
     }
 
     if (mTagMagne != NULL && mTagMagne->current.roomNo != current.roomNo) {
-        return cPhs_ZERO_e;
+        return cPhs_INIT_e;
     }
 
     if (!Create()) {

@@ -136,12 +136,12 @@ int fopOvlpReq_Handler(overlap_request_class* i_overlapReq) {
     int phase_state = cPhs_Do(&i_overlapReq->field_0x18, i_overlapReq);
 
     switch (phase_state) {
-    case cPhs_TWO_e:
+    case cPhs_NEXT_e:
         return fopOvlpReq_Handler(i_overlapReq);
-    case cPhs_ZERO_e:
-        return cPhs_ZERO_e;
-    case cPhs_ONE_e:
-        return cPhs_ZERO_e;
+    case cPhs_INIT_e:
+        return cPhs_INIT_e;
+    case cPhs_LOADING_e:
+        return cPhs_INIT_e;
     case cPhs_COMPLEATE_e:
         return cPhs_COMPLEATE_e;
     case cPhs_UNK3_e:
