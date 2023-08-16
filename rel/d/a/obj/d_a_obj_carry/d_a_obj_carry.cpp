@@ -2126,7 +2126,6 @@ COMPILER_STRIP_GATE(0x8047A380, &lit_3930);
 
 /* 8046F340-8046F3E0 0003C0 00A0+00 1/0 0/0 0/0 .text
  * TgHitCallBackBokkuri__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
-#ifndef NONMATCHING
 static void TgHitCallBackBokkuri(fopAc_ac_c* param_0, dCcD_GObjInf* param_1,
                                      fopAc_ac_c* param_2, dCcD_GObjInf* param_3) {
 
@@ -2140,17 +2139,6 @@ static void TgHitCallBackBokkuri(fopAc_ac_c* param_0, dCcD_GObjInf* param_1,
         obj_carry->field_0xd68 = 4000;
       }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void TgHitCallBackBokkuri(fopAc_ac_c* param_0, dCcD_GObjInf* param_1,
-                                     fopAc_ac_c* param_2, dCcD_GObjInf* param_3) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/func_8046F340.s"
-}
-#pragma pop
-#endif
 
 /* 8046F3E0-8046F3E4 000460 0004+00 1/0 0/0 0/0 .text
  * CoHitCallBackBase__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
@@ -2228,7 +2216,6 @@ static asm void CoHitCallBackBokkuri(fopAc_ac_c* param_0, dCcD_GObjInf* param_1,
 #endif
 
 /* 8046F4AC-8046F52C 00052C 0080+00 1/1 0/0 0/0 .text            s_swA_sub__FPvPv */
-#ifndef NONMATCHING
 static void* s_swA_sub(void* param_0, void* param_1) {
     daObjSwBallA_c* ball = static_cast<daObjSwBallA_c*>(param_0);
     daObjCarry_c* carry = static_cast<daObjCarry_c*>(param_1);
@@ -2242,23 +2229,12 @@ static void* s_swA_sub(void* param_0, void* param_1) {
         }
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void s_swA_sub(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/s_swA_sub__FPvPv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 8047B1D8-8047B1DC 000000 0004+00 3/3 0/0 0/0 .bss             l_sw_id */
 static s32 l_sw_id;
 
 /* 8046F52C-8046F59C 0005AC 0070+00 2/2 0/0 0/0 .text            s_sw_sub__FPvPv */
-#ifndef NONMATCHING
 static void* s_sw_sub(void* param_0, void* param_1) {
     daObjSwBallB_c* ball = static_cast<daObjSwBallB_c*>(param_0);
 
@@ -2269,19 +2245,8 @@ static void* s_sw_sub(void* param_0, void* param_1) {
         }
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void s_sw_sub(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/s_sw_sub__FPvPv.s"
-}
-#pragma pop
-#endif
 
 /* 8046F59C-8046F610 00061C 0074+00 1/1 0/0 0/0 .text            s_setA_sub__FPvPv */
-#ifndef NONMATCHING
 static void* s_setA_sub(void* param_0, void* param_1) {
     daTagSetBall_c* ball = static_cast<daTagSetBall_c*>(param_0);
 
@@ -2292,19 +2257,8 @@ static void* s_setA_sub(void* param_0, void* param_1) {
         }
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void s_setA_sub(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/s_setA_sub__FPvPv.s"
-}
-#pragma pop
-#endif
 
 /* 8046F610-8046F684 000690 0074+00 1/1 0/0 0/0 .text            s_setB_sub__FPvPv */
-#ifndef NONMATCHING
 static void* s_setB_sub(void* param_0, void* param_1) {
     daTagSetBall_c* ball = static_cast<daTagSetBall_c*>(param_0);
 
@@ -2315,32 +2269,11 @@ static void* s_setB_sub(void* param_0, void* param_1) {
         }
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void s_setB_sub(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/s_setB_sub__FPvPv.s"
-}
-#pragma pop
-#endif
 
 /* 8046F684-8046F6A4 000704 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
-#ifndef NONMATCHING
 static void CheckCreateHeap(fopAc_ac_c* i_this) {
     static_cast<daObjCarry_c*>(i_this)->CreateHeap();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void CheckCreateHeap(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/CheckCreateHeap__FP10fopAc_ac_c.s"
-}
-#pragma pop
-#endif
 
 /* 8046F6A4-8046F6BC 000724 0018+00 40/40 0/0 0/0 .text            data__12daObjCarry_cFv */
 #ifdef NONMATCHING
@@ -2359,36 +2292,14 @@ asm u8 daObjCarry_c::data() {
 #endif
 
 /* 8046F6BC-8046F6D4 00073C 0018+00 3/3 0/0 0/0 .text            getArcName__12daObjCarry_cFv */
-#ifndef NONMATCHING
 void* daObjCarry_c::getArcName() {
     return l_arcName[mType]; // l_arcName needs to be setup properly at some point
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::getArcName() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/getArcName__12daObjCarry_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8046F6D4-8046F6EC 000754 0018+00 1/1 0/0 0/0 .text            getBmdName__12daObjCarry_cFv */
-#ifndef NONMATCHING
 void* daObjCarry_c::getBmdName() {
     return l_bmdName[mType]; // l_bmdName needs to be setup properly at some point
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::getBmdName() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/getBmdName__12daObjCarry_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8046F6EC-8046F724 00076C 0038+00 2/2 0/0 0/0 .text            checkFlag__12daObjCarry_cFUc */
 #ifdef NONMATCHING
@@ -2408,7 +2319,6 @@ asm void daObjCarry_c::checkFlag(u8 param_0) {
 #endif
 
 /* 8046F724-8046F7AC 0007A4 0088+00 1/1 0/0 0/0 .text            initBaseMtx__12daObjCarry_cFv */
-#ifndef NONMATCHING
 void daObjCarry_c::initBaseMtx() {
     field_0xcf4 = cXyz::Zero;
     field_0xd00 = 0;
@@ -2416,16 +2326,6 @@ void daObjCarry_c::initBaseMtx() {
     field_0xd4c = field_0xd3c;
     setBaseMtx();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::initBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/initBaseMtx__12daObjCarry_cFv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 8047A398-8047A39C 000A8C 0004+00 0/1 0/0 0/0 .rodata          @4166 */
@@ -2518,7 +2418,6 @@ asm void daObjCarry_c::setBaseMtx() {
 #endif
 
 /* 8046FACC-8046FB78 000B4C 00AC+00 1/1 0/0 0/0 .text            preInit__12daObjCarry_cFv */
-#ifndef NONMATCHING
 s32 daObjCarry_c::preInit() {
     SETUP_ACTOR(this,daObjCarry_c);
     if (field_0xd15 == 0) {
@@ -2536,16 +2435,6 @@ s32 daObjCarry_c::preInit() {
     mType = getType_private();
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::preInit() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/preInit__12daObjCarry_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8046FB78-8046FD90 000BF8 0218+00 1/1 0/0 0/0 .text            __ct__12daObjCarry_cFv */
 #pragma push
