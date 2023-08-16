@@ -1,7 +1,6 @@
 #ifndef D_SAVE_D_SAVE_HIO_H
 #define D_SAVE_D_SAVE_HIO_H
 
-#include "dolphin/types.h"
 #include "global.h"
 
 class dSvBit_childTransformHIO_c {

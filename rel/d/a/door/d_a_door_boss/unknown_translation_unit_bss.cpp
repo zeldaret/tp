@@ -4,7 +4,6 @@
 //
 
 #include "rel/d/a/door/d_a_door_boss/unknown_translation_unit_bss.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

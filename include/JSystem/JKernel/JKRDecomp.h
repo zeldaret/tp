@@ -3,7 +3,6 @@
 
 #include "JSystem/JKernel/JKRCompression.h"
 #include "JSystem/JKernel/JKRThread.h"
-#include "dolphin/types.h"
 
 class JKRAMCommand;
 class JKRDecompCommand {

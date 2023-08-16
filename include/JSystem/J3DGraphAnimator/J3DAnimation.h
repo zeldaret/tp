@@ -1,10 +1,8 @@
 #ifndef J3DANIMATION_H
 #define J3DANIMATION_H
 
-#include "JSystem/J3DGraphAnimator/J3DMaterialAttach.h"
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/JUtility/JUTNameTab.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 typedef struct _GXColor GXColor;

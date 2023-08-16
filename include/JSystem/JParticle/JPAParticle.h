@@ -2,7 +2,6 @@
 #define JPAPARTICLE_H
 
 #include "dolphin/gx/GXStruct.h"
-#include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 
 #include "JSystem/JGeometry.h"

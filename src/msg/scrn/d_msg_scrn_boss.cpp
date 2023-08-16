@@ -8,7 +8,6 @@
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "d/msg/d_msg_object.h"
 #include "d/pane/d_pane_class.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

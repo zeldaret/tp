@@ -41,10 +41,7 @@ bool daObjProp_c::createHeap() {
 
 /* 80CB5334-80CB5408 0001D4 00D4+00 1/1 0/0 0/0 .text            create__11daObjProp_cFv */
 int daObjProp_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daObjProp_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daObjProp_c);
 
     daObjProp_c* tmp = this;
     if (this) {
@@ -103,10 +100,7 @@ void daObjProp_c::setModelMtx() {
 
 /* 80CB5558-80CB55AC 0003F8 0054+00 1/0 0/0 0/0 .text            daObjProp_create__FP11daObjProp_c */
 static int daObjProp_create(daObjProp_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) daObjProp_c();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    fopAcM_SetupActor(i_this, daObjProp_c);
     return i_this->create();
 }
 

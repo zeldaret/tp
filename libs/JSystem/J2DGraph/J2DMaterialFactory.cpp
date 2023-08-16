@@ -5,9 +5,6 @@
 
 #include "JSystem/J2DGraph/J2DMaterialFactory.h"
 #include "JSystem/J2DGraph/J2DMaterial.h"
-#include "JSystem/J2DGraph/J2DScreen.h"
-#include "JSystem/JSupport/JSupport.h"
-#include "JSystem/JUtility/JUTResource.h"
 #include "MSL_C/string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"

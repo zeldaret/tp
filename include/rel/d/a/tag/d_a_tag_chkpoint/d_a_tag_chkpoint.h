@@ -15,10 +15,7 @@ public:
     u8 getSwBit2() { return fopAcM_GetParam(this) >> 16; }
 
     s32 create() {
-        if (!fopAcM_CheckCondition(this, 8)) {
-            new (this) daTag_Chk_c();
-            fopAcM_OnCondition(this, 8);
-        }
+        fopAcM_SetupActor(this, daTag_Chk_c);
 
         if (getAreaType() == 0) {
             mScale.x *= 50.0f;

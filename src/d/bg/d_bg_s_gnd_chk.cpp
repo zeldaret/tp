@@ -5,7 +5,6 @@
 
 #include "d/bg/d_bg_s_gnd_chk.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

@@ -2,7 +2,6 @@
 #define JASHEAPCTRL_H
 
 #include "JSystem/JSupport/JSUList.h"
-#include "dolphin/os/OSInterrupt.h"
 #include "dolphin/os/OSMutex.h"
 
 class JASDisposer;

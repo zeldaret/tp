@@ -5,7 +5,6 @@
 
 #include "rel/d/a/d_a_vrbox2/d_a_vrbox2.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

@@ -113,7 +113,6 @@
 #include "types.h"
 #include "errno.h"
 #include "MSL_C/math.h"
-#include "fdlibm.h"
 
 #ifndef _DOUBLE_IS_32BITS
 

@@ -4,9 +4,6 @@
 //
 
 #include "JSystem/JUtility/JUTProcBar.h"
-#include "JSystem/J2DGraph/J2DOrthoGraph.h"
-#include "JSystem/JUtility/JUTVideo.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "global.h"

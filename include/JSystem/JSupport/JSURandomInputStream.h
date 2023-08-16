@@ -2,7 +2,6 @@
 #define JSURANDOMINPUTSTREAM_H_
 
 #include "JSystem/JSupport/JSUInputStream.h"
-#include "dolphin/types.h"
 
 class JSURandomInputStream : public JSUInputStream {
 public:

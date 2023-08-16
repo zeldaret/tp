@@ -5,7 +5,6 @@
 
 #include "rel/d/a/tag/d_a_tag_myna_light/d_a_tag_myna_light.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

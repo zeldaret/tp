@@ -2,7 +2,6 @@
 #define D_FILE_D_FILE_SEL_INFO_H
 
 #include "d/d_drawlist.h"
-#include "dolphin/types.h"
 
 class CPaneMgrAlpha;
 class dSv_save_c;

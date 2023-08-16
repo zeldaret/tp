@@ -1,7 +1,6 @@
 #ifndef JSGACTOR_H
 #define JSGACTOR_H
 
-#include "dolphin/types.h"
 #include "JSystem/JStage/JSGObject.h"
 
 namespace JStage {

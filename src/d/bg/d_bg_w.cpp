@@ -4,11 +4,9 @@
 //
 
 #include "d/bg/d_bg_w.h"
-#include "JSystem/JMath/JMATrigonometric.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "dolphin/mtx/mtxvec.h"
 #include "global.h"
 #include "rel/d/a/d_a_horse/d_a_horse.h"
 

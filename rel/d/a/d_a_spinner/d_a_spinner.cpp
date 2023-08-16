@@ -5,9 +5,6 @@
 
 #include "rel/d/a/d_a_spinner/d_a_spinner.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-#include "d/bg/d_bg_w.h"
-#include "d/cc/d_cc_d.h"
 #include "d/a/d_a_alink.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "rel/d/a/d_a_mirror/d_a_mirror.h"

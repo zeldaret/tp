@@ -5,7 +5,6 @@
 
 #include "rel/d/a/d_a_passer_mng/d_a_passer_mng.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

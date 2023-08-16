@@ -49,10 +49,7 @@ int daTagLightBall_c::Create() {
 
 /* 80D5A9B8-80D5AA20 000238 0068+00 1/1 0/0 0/0 .text   create__16daTagLightBall_cFv */
 int daTagLightBall_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagLightBall_c;
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daTagLightBall_c);
 
     if (!Create()) {
         return cPhs_ERROR_e;

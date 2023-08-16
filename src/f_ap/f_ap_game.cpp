@@ -4,7 +4,6 @@
 #include "f_op/f_op_draw_tag.h"
 #include "f_op/f_op_overlap_mng.h"
 #include "f_op/f_op_scene_mng.h"
-#include "f_pc/f_pc_manager.h"
 #include "m_Do/m_Do_main.h"
 
 fapGm_HIO_c::fapGm_HIO_c()

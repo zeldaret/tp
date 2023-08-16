@@ -10,7 +10,6 @@
 #include "c/c_damagereaction.h"
 #include "d/d_procname.h"
 #include "f_op/f_op_actor_mng.h"
-#include "m_Do/m_Do_graphic.h"
 
 /* 8061DCB8-8061DDB0 000078 00F8+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
 static int nodeCallBack(J3DJoint* i_joint, int param_1) {
@@ -276,10 +275,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 8061E868-8061E9EC 000C28 0184+00 1/0 0/0 0/0 .text            daB_OH2_Create__FP10fopAc_ac_c */
 static int daB_OH2_Create(fopAc_ac_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) b_oh2_class();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    fopAcM_SetupActor(i_this, b_oh2_class);
     b_oh2_class* _this = static_cast<b_oh2_class*>(i_this);
 
     int phase = dComIfG_resLoad(&_this->mPhase, "B_oh");

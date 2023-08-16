@@ -5,7 +5,6 @@
 #include "d/cc/d_cc_d.h"
 #include "d/bg/d_bg_s_acch.h"
 #include "d/bg/d_bg_s_lin_chk.h"
-#include "Z2AudioLib/Z2SoundObject.h"
 #include "SSystem/SComponent/c_phase.h"
 
 class daCanoe_c : public fopAc_ac_c {

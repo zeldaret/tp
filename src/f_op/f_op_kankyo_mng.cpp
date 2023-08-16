@@ -4,7 +4,6 @@
  */
 
 #include "f_op/f_op_kankyo_mng.h"
-#include "SSystem/SComponent/c_lib.h"
 #include "SSystem/SComponent/c_malloc.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"

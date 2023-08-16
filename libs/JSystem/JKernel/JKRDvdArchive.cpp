@@ -6,11 +6,9 @@
 #include "JSystem/JKernel/JKRDvdArchive.h"
 #include "JSystem/JKernel/JKRDvdFile.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
-#include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "MSL_C/math.h"
 #include "MSL_C/string.h"
-#include "dol2asm.h"
 #include "dolphin/os/OS.h"
 #include "global.h"
 

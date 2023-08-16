@@ -1,10 +1,8 @@
 #ifndef Z2ENVSEMGR_H
 #define Z2ENVSEMGR_H
 
-#include "JSystem/JAudio2/JASGadget.h"
 #include "Z2AudioLib/Z2Calc.h"
 #include "Z2AudioLib/Z2SeMgr.h"
-#include "dolphin/mtx/mtxvec.h"
 #include "global.h"
 
 struct Z2EnvSeBase {

@@ -5,7 +5,6 @@
 #include "dolphin/dvd/dvd.h"
 #include "dolphin/os/OSMessage.h"
 #include "dolphin/os/OSMutex.h"
-#include "dolphin/types.h"
 
 struct OSThread;
 

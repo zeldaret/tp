@@ -8,7 +8,6 @@
 #include "TRK_MINNOW_DOLPHIN/utils/common/MWTrace.h"
 #include "amcstubs/AmcExi2Stubs.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

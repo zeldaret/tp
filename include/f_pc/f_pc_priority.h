@@ -2,7 +2,6 @@
 #ifndef F_PC_PRIORITY_H_
 #define F_PC_PRIORITY_H_
 
-#include "SSystem/SComponent/c_tag.h"
 #include "f_pc/f_pc_method_tag.h"
 
 typedef struct process_priority_queue_info {

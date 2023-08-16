@@ -7,7 +7,6 @@
 #include "MSL_C/string.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSRtc.h"
-#include "dolphin/types.h"
 
 //
 // Types:

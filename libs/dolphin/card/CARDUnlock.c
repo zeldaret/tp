@@ -7,7 +7,6 @@
 #include "dol2asm.h"
 #include "dolphin/card/card.h"
 #include "dolphin/dsp/dsp.h"
-#include "dolphin/exi/EXIBios.h"
 #include "dolphin/os/OS.h"
 
 #include "dolphin/card/CARDPriv.h"

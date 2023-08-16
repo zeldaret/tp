@@ -5,7 +5,6 @@
 
 #include "dolphin/gx/GXTexture.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

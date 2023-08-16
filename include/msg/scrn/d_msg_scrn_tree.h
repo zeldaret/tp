@@ -1,7 +1,6 @@
 #ifndef MSG_SCRN_D_MSG_SCRN_TREE_H
 #define MSG_SCRN_D_MSG_SCRN_TREE_H
 
-#include "dolphin/types.h"
 #include "msg/scrn/d_msg_scrn_base.h"
 
 struct JUTFont;

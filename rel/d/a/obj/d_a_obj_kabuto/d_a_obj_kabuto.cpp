@@ -5,7 +5,6 @@
 
 #include "rel/d/a/obj/d_a_obj_kabuto/d_a_obj_kabuto.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

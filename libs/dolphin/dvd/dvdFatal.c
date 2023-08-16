@@ -4,7 +4,6 @@
 //
 
 #include "dolphin/dvd/dvdFatal.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

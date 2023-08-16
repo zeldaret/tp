@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/JMath/JMath.h"
-#include "JSystem/JMath/JMATrigonometric.h"
 #include "dol2asm.h"
 
 //

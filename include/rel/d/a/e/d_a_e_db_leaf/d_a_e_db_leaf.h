@@ -3,8 +3,6 @@
 
 #include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/kankyo/d_kankyo.h"
-#include "d/d_resorce.h"
 #include "dolphin/types.h"
 
 class e_db_leaf_class : public fopEn_enemy_c {

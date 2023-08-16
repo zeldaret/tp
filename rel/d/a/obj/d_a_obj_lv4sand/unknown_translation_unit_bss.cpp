@@ -4,7 +4,6 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_lv4sand/unknown_translation_unit_bss.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

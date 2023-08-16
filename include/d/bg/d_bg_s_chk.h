@@ -3,7 +3,6 @@
 
 #include "d/bg/d_bg_s_grp_pass_chk.h"
 #include "d/bg/d_bg_s_poly_pass_chk.h"
-#include "dolphin/types.h"
 
 class dBgS_Chk : public dBgS_PolyPassChk, public dBgS_GrpPassChk {
 public:

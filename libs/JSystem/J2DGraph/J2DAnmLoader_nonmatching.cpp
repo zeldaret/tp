@@ -6,9 +6,7 @@
 // non matching because some dtors are emitted immediately after
 // J2DAnmLoaderDataBase::load but they should be at the very end
 
-#include "JSystem/J2DGraph/J2DAnimation.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
-#include "JSystem/JSupport/JSupport.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

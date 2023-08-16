@@ -2,7 +2,6 @@
 #define JUTGAMEPAD_H
 
 #include "JSystem/JKernel/JKRDisposer.h"
-#include "JSystem/JSupport/JSUList.h"
 #include "dolphin/os/OSTime.h"
 #include "dolphin/pad/Pad.h"
 #include "dolphin/types.h"

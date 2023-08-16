@@ -3,7 +3,6 @@
 
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/mtx/mtx.h"
-#include "dolphin/types.h"
 #include "f_pc/f_pc_leaf.h"
 
 struct view_process_profile_definition {

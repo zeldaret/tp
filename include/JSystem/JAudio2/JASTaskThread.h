@@ -2,7 +2,6 @@
 #define JASTASKTHREAD_H
 
 #include "JSystem/JKernel/JKRThread.h"
-#include "dolphin/types.h"
 
 class JASTaskThread : public JKRThread {
 public:

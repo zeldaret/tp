@@ -2,7 +2,6 @@
 #define Z2AUDIOARCLOADER_H
 
 #include "JSystem/JAudio2/JAUAudioArcLoader.h"
-#include "dolphin/types.h"
 
 class Z2AudioArcLoader {
     Z2AudioArcLoader(JAUSection*);

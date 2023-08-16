@@ -5,9 +5,7 @@
 
 #include "d/menu/d_menu_window.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
-#include "Z2AudioLib/Z2AudioMgr.h"
 #include "d/a/d_a_player.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/d_lib.h"
 #include "d/menu/d_menu_collect.h"
 #include "d/menu/d_menu_dmap.h"
@@ -26,7 +24,6 @@
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_msg_mng.h"
 #include "global.h"
 #include "m_Do/m_Do_controller_pad.h"

@@ -2,7 +2,6 @@
 #define JAIAUDIENCE_H
 
 #include "JSystem/JGeometry.h"
-#include "dolphin/types.h"
 
 struct JAIAudible;
 class JAISoundID;

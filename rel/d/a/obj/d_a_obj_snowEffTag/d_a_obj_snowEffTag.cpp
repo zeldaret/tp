@@ -9,7 +9,6 @@
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
-#include "std/cmath.h"
 
 /* 80CDF0AC-80CDF0E4 0000EC 0038+00 1/1 0/0 0/0 .text            __ct__18daSnowEffTag_HIO_cFv */
 daSnowEffTag_HIO_c::daSnowEffTag_HIO_c() {
@@ -27,10 +26,7 @@ void daSnowEffTag_c::setBaseMtx() {
 
 /* 80CDF184-80CDF2B8 0001C4 0134+00 1/1 0/0 0/0 .text            create__14daSnowEffTag_cFv */
 int daSnowEffTag_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daSnowEffTag_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daSnowEffTag_c);
 
     mMaxSize = mScale.x * 100.0f;
 

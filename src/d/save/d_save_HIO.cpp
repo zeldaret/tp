@@ -5,7 +5,6 @@
 
 #include "d/save/d_save_HIO.h"
 #include "d/com/d_com_inf_game.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

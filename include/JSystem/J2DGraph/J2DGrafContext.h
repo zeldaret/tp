@@ -1,7 +1,6 @@
 #ifndef J2DGRAFCONTEXT_H
 #define J2DGRAFCONTEXT_H
 
-#include "JSystem/J2DGraph/J2DMatBlock.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/JUtility/TColor.h"
 #include "dolphin/mtx/mtx.h"

@@ -9,9 +9,7 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
-#include "dolphin/mtx/mtxvec.h"
 #include "dolphin/os/OSCache.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_controller_pad.h"
 

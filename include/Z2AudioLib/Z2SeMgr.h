@@ -1,7 +1,6 @@
 #ifndef Z2SEMGR_H
 #define Z2SEMGR_H
 
-#include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JAISoundHandles.h"
 #include "JSystem/JAudio2/JASGadget.h"
 #include "dolphin/mtx/vec.h"

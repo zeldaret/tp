@@ -3,7 +3,6 @@
 
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
-#include "JSystem/JParticle/JPAParticle.h"
 #include "Z2AudioLib/Z2Creature.h"
 #include "Z2AudioLib/Z2WolfHowlMgr.h"
 #include "d/a/d_a_player.h"
@@ -19,9 +18,7 @@
 #include "d/particle/d_particle.h"
 #include "d/particle/d_particle_copoly.h"
 #include "d/save/d_save.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
-#include "global.h"
 #include "rel/d/a/kytag/d_a_kytag05/d_a_kytag05.h"
 #include "rel/d/a/tag/d_a_tag_mmsg/d_a_tag_mmsg.h"
 

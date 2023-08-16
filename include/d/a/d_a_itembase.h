@@ -4,7 +4,6 @@
 #include "SSystem/SComponent/c_phase.h"
 #include "d/bg/d_bg_s_acch.h"
 #include "d/cc/d_cc_d.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
 struct daItemBase_data {

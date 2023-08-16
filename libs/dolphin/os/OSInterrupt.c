@@ -5,7 +5,6 @@
 
 #include "dolphin/os/OSInterrupt.h"
 #include "dol2asm.h"
-#include "dolphin/ai/ai.h"
 #include "dolphin/dsp/dsp.h"
 #include "dolphin/exi/EXIBios.h"
 #include "dolphin/os/OS.h"

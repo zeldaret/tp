@@ -5,11 +5,9 @@
 
 #include "m_Do/m_Do_printf.h"
 #include "MSL_C/stdio.h"
-#include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
 #include "dolphin/base/PPCArch.h"
 #include "dolphin/os/OS.h"
-#include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
 
 /* 80450B98-80450B9C -00001 0004+00 0/0 6/6 0/0 .sbss            None */

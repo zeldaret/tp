@@ -4,15 +4,9 @@
 //
 
 #include "d/menu/d_menu_collect.h"
-#include "JSystem/J2DGraph/J2DAnimation.h"
-#include "JSystem/J2DGraph/J2DAnmLoader.h"
-#include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
-#include "MSL_C/string.h"
-#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/d_lib.h"
 #include "d/d_select_cursor.h"
 #include "d/meter/d_meter_HIO.h"
 #include "d/meter/d_meter2_info.h"

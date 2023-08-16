@@ -1,7 +1,6 @@
 #ifndef DSPPROC_H
 #define DSPPROC_H
 
-#include "dolphin/types.h"
 #include "dolphin/dsp/dsp.h"
 
 void DsyncFrame2ch(u32 param_0, u32 param_1, u32 param_2);

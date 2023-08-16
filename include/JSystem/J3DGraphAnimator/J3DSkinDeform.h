@@ -2,9 +2,7 @@
 #define J3DSKINDEFORM_H
 
 #include "JSystem/J3DGraphAnimator/J3DCluster.h"
-#include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/J3DGraphAnimator/J3DMtxBuffer.h"
-#include "JSystem/J3DGraphBase/J3DVertex.h"
 #include "JSystem/J3DGraphBase/J3DTransform.h"
 #include "dolphin/types.h"
 

@@ -4,7 +4,6 @@
 //
 
 #include "rel/d/a/d_a_title/d_a_title.h"
-#include "JSystem/JStudio/JStudio/stb.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

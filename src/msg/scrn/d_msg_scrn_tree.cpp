@@ -4,13 +4,10 @@
 //
 
 #include "msg/scrn/d_msg_scrn_tree.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/pane/d_pane_class.h"
 #include "d/msg/d_msg_object.h"
 #include "d/msg/d_msg_out_font.h"
-#include "dolphin/types.h"
 #include "dolphin/os/OS.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"

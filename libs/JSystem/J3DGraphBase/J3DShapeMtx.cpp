@@ -5,9 +5,6 @@
 
 #include "JSystem/J3DGraphBase/J3DShapeMtx.h"
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
-#include "JSystem/J3DGraphAnimator/J3DModelData.h"
-#include "JSystem/J3DGraphBase/J3DPacket.h"
-#include "JSystem/J3DGraphBase/J3DSys.h"
 #include "JSystem/J3DGraphBase/J3DGD.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"

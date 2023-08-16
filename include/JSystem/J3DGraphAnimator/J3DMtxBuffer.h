@@ -1,9 +1,7 @@
 #ifndef J3DMTXBUFFER_H
 #define J3DMTXBUFFER_H
 
-#include "JSystem/J3DGraphAnimator/J3DJointTree.h"
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
-#include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 
 class J3DModelData;

@@ -3,7 +3,6 @@
 
 #include "JSystem/JKernel/JKRCompression.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "dolphin/types.h"
 
 enum JKRExpandSwitch {
     EXPAND_SWITCH_UNKNOWN0 = 0,

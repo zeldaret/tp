@@ -6,7 +6,6 @@
 #include "rel/d/a/tag/d_a_tag_ret_room/d_a_tag_ret_room.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/a/d_a_player.h"
-#include "d/d_procname.h"
 
 /* 80D5EE98-80D5EED4 000078 003C+00 2/2 0/0 0/0 .text   __ct__12daTagRetRm_cFv */
 daTagRetRm_c::daTagRetRm_c() {}
@@ -16,10 +15,7 @@ daTagRetRm_c::~daTagRetRm_c() {}
 
 /* 80D5EF34-80D5EF8C 000114 0058+00 1/1 0/0 0/0 .text   create__12daTagRetRm_cFv */
 int daTagRetRm_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagRetRm_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daTagRetRm_c);
     init();
     return cPhs_COMPLEATE_e;
 }
@@ -79,10 +75,7 @@ u8 daTagRetRm_c::chkPlyrInTag() {
 
 /* 80D5F14C-80D5F1A0 00032C 0054+00 1/0 0/0 0/0 .text   daTagRetRm_create__FP12daTagRetRm_c */
 static int daTagRetRm_create(daTagRetRm_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) daTagRetRm_c();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    fopAcM_SetupActor(i_this, daTagRetRm_c);
     return i_this->create();
 }
 

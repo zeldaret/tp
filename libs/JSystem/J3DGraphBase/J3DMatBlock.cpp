@@ -6,7 +6,6 @@
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
-#include "dolphin/types.h"
 
 //
 // Types:

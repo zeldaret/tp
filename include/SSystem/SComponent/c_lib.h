@@ -1,7 +1,6 @@
 #ifndef C_LIB_H_
 #define C_LIB_H_
 
-#include "MSL_C/math.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/mtx/mtx.h"
 

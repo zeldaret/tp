@@ -4,7 +4,6 @@
 //
 
 #include "Runtime.PPCEABI.H/Gecko_ExceptionPPC.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

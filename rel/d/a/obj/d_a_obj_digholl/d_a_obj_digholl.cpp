@@ -6,16 +6,12 @@
 #include "rel/d/a/obj/d_a_obj_digholl/d_a_obj_digholl.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/a/d_a_player.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "f_op/f_op_actor_mng.h"
 
 /* 80BDC618-80BDC73C 000078 0124+00 1/1 0/0 0/0 .text            create__14daObjDigholl_cFv */
 int daObjDigholl_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daObjDigholl_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daObjDigholl_c);
     field_0x569 = fopAcM_GetParam(this);
     field_0x56a = fopAcM_GetParam(this) >> 8;
     field_0x56c = fopAcM_GetParam(this) >> 0x10 & 0xff;

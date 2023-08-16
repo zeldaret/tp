@@ -5,7 +5,6 @@
 
 #include "rel/d/a/e/d_a_e_ge/d_a_e_ge.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

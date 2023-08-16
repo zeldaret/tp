@@ -2,7 +2,6 @@
 #define JASCALC_H
 
 #include "dolphin/types.h"
-#include "MSL_C/MSL_Common/Src/limits"
 
 struct JASCalc {
     /* 8028F2E8 */ static void imixcopy(s16 const*, s16 const*, s16*, u32);

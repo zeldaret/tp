@@ -2,7 +2,6 @@
 #define JKRARAMSTREAM_H
 
 #include "JSystem/JKernel/JKRThread.h"
-#include "dolphin/types.h"
 
 class JSUFileInputStream;
 

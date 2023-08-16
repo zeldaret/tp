@@ -4,7 +4,6 @@
  */
 
 #include "TRK_MINNOW_DOLPHIN/utils/gc/MWCriticalSection_gc.h"
-#include "dolphin/os/OS.h"
 
 /* 80372CA4-80372CC8 36D5E4 0024+00 0/0 2/2 0/0 .text            MWExitCriticalSection */
 void MWExitCriticalSection(u32* section) {

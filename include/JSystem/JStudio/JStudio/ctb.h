@@ -1,7 +1,6 @@
 #ifndef CTB_H
 #define CTB_H
 
-#include "dolphin/types.h"
 #include "JSystem/JGadget/binary.h"
 #include "JSystem/JGadget/linklist.h"
 #include "JSystem/JStudio/JStudio/object-id.h"

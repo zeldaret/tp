@@ -5,7 +5,6 @@
 
 #include "JSystem/JKernel/JKRFileFinder.h"
 #include "JSystem/JKernel/JKRArchive.h"
-#include "dol2asm.h"
 
 //
 // Forward References:

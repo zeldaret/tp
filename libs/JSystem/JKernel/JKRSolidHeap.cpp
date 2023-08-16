@@ -6,7 +6,6 @@
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTConsole.h"
-#include "MSL_C/math.h"
 #include "global.h"
 
 //

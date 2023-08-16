@@ -5,7 +5,6 @@
 
 #include "dolphin/os/OSFont.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Declarations:

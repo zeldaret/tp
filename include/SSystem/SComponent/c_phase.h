@@ -1,7 +1,6 @@
 #ifndef C_PHASE_H
 #define C_PHASE_H
 
-#include "dolphin/types.h"
 
 typedef int (*cPhs__Handler)(void*);
 

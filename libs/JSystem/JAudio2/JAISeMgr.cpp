@@ -8,7 +8,6 @@
 #include "JSystem/JAudio2/JAISoundInfo.h"
 #include "JSystem/JAudio2/JASReport.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

@@ -2,7 +2,6 @@
 #define M_DO_M_DO_PRINTF_H
 
 #include "Runtime.PPCEABI.H/__va_arg.h"
-#include "dolphin/types.h"
 #include "m_Do/m_Do_main.h"
 
 void my_PutString(const char*);

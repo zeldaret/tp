@@ -1,7 +1,6 @@
 #ifndef Z2AUDIOMGR_H
 #define Z2AUDIOMGR_H
 
-#include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JASAudioReseter.h"
 #include "Z2AudioLib/Z2Audience.h"
 #include "Z2AudioLib/Z2FxLineMgr.h"
@@ -10,7 +9,6 @@
 #include "Z2AudioLib/Z2SeqMgr.h"
 #include "Z2AudioLib/Z2SoundMgr.h"
 #include "Z2AudioLib/Z2SoundObjMgr.h"
-#include "Z2AudioLib/Z2SoundStarter.h"
 #include "Z2AudioLib/Z2SpeechMgr2.h"
 #include "Z2AudioLib/Z2StatusMgr.h"
 #include "dolphin/types.h"

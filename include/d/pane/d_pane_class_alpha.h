@@ -2,7 +2,6 @@
 #define D_PANE_D_PANE_CLASS_ALPHA_H
 
 #include "JSystem/J2DGraph/J2DPane.h"
-#include "dolphin/types.h"
 
 class J2DPane;
 class J2DScreen;

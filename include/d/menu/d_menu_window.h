@@ -3,7 +3,6 @@
 
 #include "d/d_drawlist.h"
 #include "f_op/f_op_msg.h"
-#include "dolphin/types.h"
 #include "m_Do/m_Do_graphic.h"
 
 struct CSTControl;

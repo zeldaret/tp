@@ -1,7 +1,6 @@
 #ifndef GX_H_
 #define GX_H_
 
-#include "dolphin/gx/GXInit.h"
 #include "dolphin/gx/GXAttr.h"
 #include "dolphin/gx/GXBump.h"
 #include "dolphin/gx/GXDisplayList.h"

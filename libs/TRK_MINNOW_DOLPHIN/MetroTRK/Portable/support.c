@@ -5,7 +5,6 @@
 
 #include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/support.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

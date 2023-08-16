@@ -6,7 +6,6 @@
 #include "rel/d/a/kytag/d_a_kytag17/d_a_kytag17.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
-#include "d/kankyo/d_kankyo.h"
 
 /* 8046DB58-8046DB60 000078 0008+00 1/0 0/0 0/0 .text            daKytag17_Draw__FP13kytag17_class
  */
@@ -34,10 +33,7 @@ static int daKytag17_Delete(kytag17_class* i_this) {
 static int daKytag17_Create(fopAc_ac_c* i_this) {
     kytag17_class* kytag17 = (kytag17_class*)i_this;
 
-    if (!fopAcM_CheckCondition(kytag17, 8)) {
-        new (kytag17) kytag17_class();
-        fopAcM_OnCondition(kytag17, 8);
-    }
+    fopAcM_SetupActor(kytag17, kytag17_class);
 
     kytag17->mParameters = fopAcM_GetParam(kytag17);
     g_env_light.field_0x1308 = kytag17->mParameters;

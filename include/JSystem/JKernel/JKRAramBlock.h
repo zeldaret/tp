@@ -2,7 +2,6 @@
 #define JKRARAMBLOCK_H
 
 #include "JSystem/JSupport/JSUList.h"
-#include "dolphin/types.h"
 
 class JKRAramHeap;
 class JKRAramBlock {

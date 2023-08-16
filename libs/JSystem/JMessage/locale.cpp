@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/JMessage/locale.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

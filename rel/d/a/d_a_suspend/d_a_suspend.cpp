@@ -6,7 +6,6 @@
 #include "rel/d/a/d_a_suspend/d_a_suspend.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
-#include "f_op/f_op_actor_mng.h"
 
 /* 804D5118-804D51E0 000078 00C8+00 1/1 0/0 0/0 .text            create__7daSus_cFv */
 int daSus_c::create() {
@@ -36,10 +35,7 @@ int daSus_c::create() {
 
 /* 804D51E0-804D5234 000140 0054+00 1/0 0/0 0/0 .text            daSus_create__FP7daSus_c */
 static int daSus_create(daSus_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) daSus_c();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    fopAcM_SetupActor(i_this, daSus_c);
 
     return i_this->create();
 }

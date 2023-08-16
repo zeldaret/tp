@@ -1,7 +1,6 @@
 #ifndef D_A_MOVIE_PLAYER_H
 #define D_A_MOVIE_PLAYER_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
 class daMP_c : public fopAc_ac_c {

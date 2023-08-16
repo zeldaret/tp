@@ -4,7 +4,6 @@
 //
 
 #include "rel/d/a/npc/d_a_npc_ash/d_a_npc_ash.h"
-#include "rel/d/a/tag/d_a_tag_evtarea/d_a_tag_evtarea.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
@@ -874,10 +873,7 @@ COMPILER_STRIP_GATE(0x8095D640, &daNpcAsh_Param_c::m);
 cPhs__Step daNpcAsh_c::Create() {
     cPhs__Step step;
 
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daNpcAsh_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daNpcAsh_c);
 
     if (!strcmp(dComIfGp_getStartStageName(), "R_SP116") && dComIfG_play_c::getLayerNo(0) == 4) {
         if (daNpcF_chkEvtBit(0x169) && !daNpcF_chkEvtBit(0x10a)) {

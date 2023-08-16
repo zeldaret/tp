@@ -70,10 +70,7 @@ public:
     }    
 
     int create() {
-        if (!fopAcM_CheckCondition(this, 8)) {
-            new (this) daTagTheBHint_c();
-            fopAcM_OnCondition(this, 8);
-        }
+        fopAcM_SetupActor(this, daTagTheBHint_c);
         field_0x568 = pow(mScale.x * 100.0f,2.0f);
         return cPhs_COMPLEATE_e;
     }

@@ -3,7 +3,6 @@
 
 #include "JSystem/JUtility/JUTFont.h"
 #include "dolphin/gx/GXEnum.h"
-#include "dolphin/gx/GXStruct.h"
 
 class JKRHeap;
 

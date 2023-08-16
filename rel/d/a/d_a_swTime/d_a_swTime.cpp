@@ -6,7 +6,6 @@
 #include "rel/d/a/d_a_swTime/d_a_swTime.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
-#include "f_op/f_op_actor_mng.h"
 
 
 /* 80D4F638-80D4F660 000078 0028+00 1/1 0/0 0/0 .text            Create__10daSwTime_cFv */
@@ -19,10 +18,7 @@ int daSwTime_c::Create() {
 
 /* 80D4F660-80D4F6C8 0000A0 0068+00 1/1 0/0 0/0 .text            create__10daSwTime_cFv */
 int daSwTime_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daSwTime_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daSwTime_c);
     if (!Create()) {
         return cPhs_ERROR_e;
     }

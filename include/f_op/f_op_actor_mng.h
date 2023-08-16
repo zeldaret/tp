@@ -1,13 +1,16 @@
 #ifndef F_OP_ACTOR_MNG_H_
 #define F_OP_ACTOR_MNG_H_
 
-#include "SSystem/SComponent/c_sxyz.h"
-#include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 #include "f_op/f_op_actor_iter.h"
 #include "f_pc/f_pc_manager.h"
 #include "f_pc/f_pc_searcher.h"
+
+#define fopAcM_SetupActor(ptr,ClassName) \
+    if (!fopAcM_CheckCondition(ptr, 8)) { \
+        new (ptr) ClassName(); \
+        fopAcM_OnCondition(ptr, 8); \
+    }
 
 class J3DModelData;  // placeholder
 class JKRHeap;

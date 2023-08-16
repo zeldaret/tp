@@ -2,10 +2,7 @@
 #define D_KANKYO_D_KANKYO_H
 
 #include "JSystem/J3DGraphBase/J3DStruct.h"
-#include "SSystem/SComponent/c_sxyz.h"
-#include "SSystem/SComponent/c_xyz.h"
 #include "d/kankyo/d_kankyo_wether.h"
-#include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
 #include "global.h"
 #include "m_Do/m_Do_ext.h"
@@ -200,7 +197,7 @@ public:
     //inline dKy_tevstr_c& operator=(const dKy_tevstr_c& b);   
     
     /* 0x000 */ J3DLightObj mLightObj;
-    /* 0x074 */ J3DLightObj field_0x074[6];
+    /* 0x074 */ J3DLightObj mLights[6];
     /* 0x32C */ cXyz field_0x32c;
     /* 0x338 */ cXyz mLightPosWorld;
     /* 0x344 */ f32 field_0x344;

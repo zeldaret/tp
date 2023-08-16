@@ -4,10 +4,7 @@
 //
 
 #include "rel/d/a/d_a_mg_fshop/d_a_mg_fshop.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/bg/d_bg_w.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
 #include "dol2asm.h"
 #include "f_pc/f_pc_executor.h"
 #include "m_Do/m_Do_controller_pad.h"

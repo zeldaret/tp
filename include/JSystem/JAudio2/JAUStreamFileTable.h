@@ -2,7 +2,6 @@
 #define JAUSTREAMFILETABLE_H
 
 #include "JSystem/JAudio2/JAISound.h"
-#include "dolphin/types.h"
 
 struct BinaryStreamFileTable {
     /* 0x0 */ char mIdentifier[4];

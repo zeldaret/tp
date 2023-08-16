@@ -1,8 +1,6 @@
 #ifndef D_D_SELECT_CURSOR_H
 #define D_D_SELECT_CURSOR_H
 
-#include "JSystem/J2DGraph/J2DPane.h"
-#include "JSystem/J2DGraph/J2DScreen.h"
 #include "d/d_drawlist.h"
 #include "d/d_select_icon.h"
 

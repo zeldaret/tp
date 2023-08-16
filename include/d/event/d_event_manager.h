@@ -3,7 +3,6 @@
 
 #include "SSystem/SComponent/c_xyz.h"
 #include "d/event/d_event_data.h"
-#include "dolphin/types.h"
 
 class fopAc_ac_c;
 

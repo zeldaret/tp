@@ -6,7 +6,6 @@
 #include "JSystem/JAudio2/JASTaskThread.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSInterrupt.h"
-#include "dolphin/types.h"
 
 //
 // Types:

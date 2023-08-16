@@ -4,7 +4,6 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_path.h"
 #include "d/d_procname.h"
@@ -268,10 +267,7 @@ void dalv4CandleDemoTag_c::setBaseMtx() {
 // vtables need work
 #ifdef NONMATCHING
 int dalv4CandleDemoTag_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) dalv4CandleDemoTag_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, dalv4CandleDemoTag_c);
 
     mPathID = getPathID();
 

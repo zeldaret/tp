@@ -1,12 +1,6 @@
 #ifndef D_D_DEMO_H
 #define D_D_DEMO_H
 
-#include "JSystem/JGadget/binary.h"
-#include "JSystem/JStage/JSGAmbientLight.h"
-#include "JSystem/JStage/JSGCamera.h"
-#include "JSystem/JStage/JSGFog.h"
-#include "JSystem/JStage/JSGLight.h"
-#include "JSystem/JStudio/JStudio/jstudio-object.h"
 #include "JSystem/JStudio/JStudio_JAudio2/control.h"
 #include "JSystem/JStudio/JStudio_JParticle/object-particle.h"
 #include "JSystem/JStudio/JStudio_JStage/object.h"

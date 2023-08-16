@@ -4,8 +4,6 @@
 //
 
 #include "rel/d/a/kytag/d_a_kytag08/d_a_kytag08.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
@@ -556,10 +554,7 @@ static int daKytag08_Create(fopAc_ac_c* i_this) {
     cXyz sp(1.0f, 1.0f, 1.0f);
     dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
     
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) kytag08_class();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    fopAcM_SetupActor(i_this, kytag08_class);
     
     kytag08_class* this_ = (kytag08_class*)i_this;
 

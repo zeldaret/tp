@@ -6,7 +6,6 @@
 #include "dolphin/gx/GXFifo.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/os/OSInterrupt.h"
-#include "dol2asm.h"
 
 //
 // Forward References:

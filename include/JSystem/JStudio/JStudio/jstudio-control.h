@@ -1,7 +1,6 @@
 #ifndef JSTUDIO_CONTROL_H
 #define JSTUDIO_CONTROL_H
 
-#include "JSystem/JGadget/binary.h"
 #include "JSystem/JStudio/JStudio/fvb.h"
 #include "JSystem/JStudio/JStudio/stb.h"
 #include "JSystem/JStudio/JStudio/ctb.h"

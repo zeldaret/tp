@@ -8,7 +8,6 @@
 
 #include "SSystem/SComponent/c_cc_d.h"
 #include "Z2AudioLib/Z2SeMgr.h"
-#include "dolphin/types.h"
 
 enum dCcD_hitSe {
     /* 0  */ dCcD_SE_NONE,

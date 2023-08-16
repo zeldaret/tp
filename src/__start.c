@@ -1,6 +1,5 @@
 #include "MSL_C/stdlib.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "init.h"
 
 //

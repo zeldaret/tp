@@ -1,7 +1,6 @@
 #ifndef J3DGD_H
 #define J3DGD_H
 
-#include "dolphin/types.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/gd/GDBase.h"
 

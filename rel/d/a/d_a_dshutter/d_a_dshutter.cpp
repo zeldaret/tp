@@ -638,10 +638,7 @@ static s8 data_80468174[4];
 
 /* 80467C7C-80467DF8 00085C 017C+00 1/0 0/0 0/0 .text            daDsh_Create__FP10fopAc_ac_c */
 int daDsh_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daDsh_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daDsh_c);
 
     mType = getType();
 

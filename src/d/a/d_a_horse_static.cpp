@@ -4,8 +4,6 @@
 //
 
 #include "d/a/d_a_horse_static.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "rel/d/a/e/d_a_e_wb/d_a_e_wb.h"
 
 BOOL e_wb_class::checkWait() {

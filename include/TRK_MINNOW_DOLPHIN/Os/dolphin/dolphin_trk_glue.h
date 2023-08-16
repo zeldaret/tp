@@ -2,7 +2,6 @@
 #define OS_DOLPHIN_DOLPHIN_TRK_GLUE_H
 
 #include "dolphin/os/OS.h"
-#include "dolphin/types.h"
 
 typedef enum { HARDWARE_GDEV = 0, HARDWARE_DDH = 1, HARDWARE_BBA = 2 } HardwareType;
 

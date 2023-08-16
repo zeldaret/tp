@@ -24,10 +24,7 @@ int daTagSetBall_c::Create() {
 
 /* 80D6024C-80D602B4 0000CC 0068+00 1/1 0/0 0/0 .text            create__14daTagSetBall_cFv */
 int daTagSetBall_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagSetBall_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daTagSetBall_c);
 
     if (!Create()) {
         return cPhs_ERROR_e;

@@ -5,7 +5,6 @@
 
 #include "rel/d/a/d_a_mg_fish/d_a_mg_fish.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

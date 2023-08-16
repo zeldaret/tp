@@ -2,7 +2,6 @@
 #define JKRMEMARCHIVE_H
 
 #include "JSystem/JKernel/JKRArchive.h"
-#include "dolphin/types.h"
 
 enum JKRMemBreakFlag {
     JKRMEMBREAK_FLAG_UNKNOWN0 = 0,

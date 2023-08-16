@@ -4,7 +4,6 @@
 //
 
 #include "SSystem/SComponent/c_cc_s.h"
-#include "dol2asm.h"
 #include "global.h"
 
 //

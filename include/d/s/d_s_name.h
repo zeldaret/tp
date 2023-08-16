@@ -1,7 +1,6 @@
 #ifndef D_S_D_S_NAME_H
 #define D_S_D_S_NAME_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_scene.h"
 

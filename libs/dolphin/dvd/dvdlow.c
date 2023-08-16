@@ -6,10 +6,8 @@
 #include "dolphin/dvd/dvdlow.h"
 #include "dolphin/dvd/dvd.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "dolphin/os/OSAlarm.h"
 #include "dolphin/os/OSContext.h"
-#include "dolphin/os/OSInterrupt.h"
 #include "dolphin/os/OSReset.h"
 #include "dolphin/os/OSTime.h"
 

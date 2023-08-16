@@ -5,7 +5,6 @@
 
 #include "SSystem/SComponent/c_list_iter.h"
 #include "SSystem/SComponent/c_list.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 /* 80266060-80266098 0038+00 s=0 e=5 z=0  None .text

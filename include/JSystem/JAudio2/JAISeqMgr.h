@@ -2,8 +2,6 @@
 #define JAISEQMGR_H
 
 #include "JSystem/JAudio2/JAISeqDataMgr.h"
-#include "JSystem/JAudio2/JAISound.h"
-#include "JSystem/JAudio2/JAISoundParams.h"
 #include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JSupport/JSUList.h"
 

@@ -5,7 +5,6 @@
 
 #include "JSystem/J3DGraphAnimator/J3DCluster.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

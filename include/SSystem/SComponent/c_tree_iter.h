@@ -2,7 +2,6 @@
 #define C_TREE_ITER_H
 
 #include "SSystem/SComponent/c_node_iter.h"
-#include "dolphin/types.h"
 
 typedef struct node_lists_tree_class node_lists_tree_class;
 

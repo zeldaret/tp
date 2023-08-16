@@ -4,7 +4,6 @@
 //
 
 #include "dolphin/card/CARDStat.h"
-#include "dol2asm.h"
 #include "dolphin/card/card.h"
 #include "dolphin/dsp/dsp.h"
 

@@ -4,7 +4,6 @@
 //
 
 #include "odenotstub/odenotstub.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

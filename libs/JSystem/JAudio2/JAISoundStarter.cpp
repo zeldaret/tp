@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/JAudio2/JAISoundStarter.h"
-#include "JSystem/JAudio2/JAISoundHandles.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

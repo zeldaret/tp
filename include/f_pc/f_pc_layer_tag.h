@@ -3,7 +3,6 @@
 #define F_PC_LAYER_TAG_H_
 
 #include "SSystem/SComponent/c_tag.h"
-#include "dolphin/types.h"
 
 typedef struct layer_class layer_class;
 

@@ -4,12 +4,9 @@
 //
 
 #include "d/d_demo.h"
-#include "MSL_C/float.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 #include "global.h"
 #include "m_Do/m_Do_graphic.h"

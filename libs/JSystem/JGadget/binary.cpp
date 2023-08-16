@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/JGadget/binary.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

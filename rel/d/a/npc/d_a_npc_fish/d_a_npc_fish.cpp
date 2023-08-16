@@ -6,7 +6,6 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 /* 80542178-80542180 000078 0008+00 1/0 0/0 0/0 .text daNpc_Fish_Draw__FP14npc_fish_class */
 static int daNpc_Fish_Draw(npc_fish_class* i_this) {
@@ -140,10 +139,7 @@ static fish_pos lf_pos[12] = {
 /* 80542254-805424B8 000154 0264+00 1/0 0/0 0/0 .text daNpc_Fish_Create__FP10fopAc_ac_c */
 static int daNpc_Fish_Create(fopAc_ac_c* i_this) {
     cXyz pos;
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) npc_fish_class();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    fopAcM_SetupActor(i_this, npc_fish_class);
     if (strcmp(dComIfGp_getStartStageName(), "F_SP127")) {
         return 5;
     } else {

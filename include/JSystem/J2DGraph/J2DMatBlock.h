@@ -3,7 +3,6 @@
 
 #include "JSystem/J2DGraph/J2DTevs.h"
 #include "JSystem/JUtility/TColor.h"
-#include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
 
 class JUTFont;

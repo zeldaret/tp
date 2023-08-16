@@ -7,7 +7,6 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 #include "f_op/f_op_actor_mng.h"
-#include "f_pc/f_pc_executor.h"
 
 /* 80815DF8-80815E00 000078 0008+00 1/0 0/0 0/0 .text            daE_YM_TAG_Draw__FP12daE_YM_TAG_c
  */
@@ -59,10 +58,7 @@ static int daE_YM_TAG_Delete(daE_YM_TAG_c* i_this) {
 
 /* 80815F28-80815F90 0001A8 0068+00 1/1 0/0 0/0 .text            create__12daE_YM_TAG_cFv */
 int daE_YM_TAG_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daE_YM_TAG_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daE_YM_TAG_c);
     if ((u8)fopAcM_GetParam(this) == 0xFF) {
         return cPhs_ERROR_e;
     }

@@ -38,10 +38,7 @@ static const u32 l_dzbIdx[2] = {7, 7};
 
 /* 80C1F598-80C1F6B0 000258 0118+00 1/1 0/0 0/0 .text            create__12daHsTarget_cFv */
 int daHsTarget_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daHsTarget_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daHsTarget_c);
 
     mIndex = getModelType();
     if (mIndex == 0x0f) {

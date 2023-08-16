@@ -3,9 +3,7 @@
 
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/mtx/mtx.h"
 #include "dolphin/mtx/mtxvec.h"
-#include "dolphin/mtx/quat.h"
 #include "dolphin/types.h"
 
 void mDoMtx_XYZrotS(Mtx, s16, s16, s16);
@@ -99,6 +97,10 @@ inline void mDoMtx_quatMultiply(const Quaternion* a, const Quaternion* b, Quater
 
 inline void mDoMtx_quatSlerp(const Quaternion* a, const Quaternion* b, Quaternion* ab, f32 param_4) {
     C_QUATSlerp(a,b,ab,param_4);
+}
+
+inline void mDoMtx_identity(Mtx m) {
+    PSMTXIdentity(m);
 }
 
 class mDoMtx_stack_c {

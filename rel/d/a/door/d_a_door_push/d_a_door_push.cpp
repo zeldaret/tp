@@ -5,7 +5,6 @@
 
 #include "rel/d/a/door/d_a_door_push/d_a_door_push.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

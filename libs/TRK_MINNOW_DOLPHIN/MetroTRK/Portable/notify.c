@@ -4,7 +4,6 @@
 //
 
 #include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/notify.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

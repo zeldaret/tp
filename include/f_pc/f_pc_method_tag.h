@@ -3,7 +3,6 @@
 #define F_PC_METHOD_TAG_H_
 
 #include "SSystem/SComponent/c_tag.h"
-#include "dolphin/types.h"
 
 typedef int (*process_method_tag_func)(void*);
 

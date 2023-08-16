@@ -4,11 +4,7 @@
  */
 
 #include "rel/d/a/e/d_a_e_ym/d_a_e_ym.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
-#include "d/a/d_a_player.h"
-#include "d/d_path.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
@@ -2148,10 +2144,7 @@ SECTION_DEAD static char const* const stringBase_80815AFE = "E_ym";
 // literals / small issue
 #ifdef NONMATCHING
 int daE_YM_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daE_YM_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daE_YM_c);
 
     mType = fopAcM_GetParam(this);
     if (mType == 0xFF) {

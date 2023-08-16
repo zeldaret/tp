@@ -5,7 +5,6 @@
 
 #include "dolphin/os/OSLink.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 #define SHN_UNDEF 0
 #define SHN_LORESERVE 0xff00

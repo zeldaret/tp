@@ -5,8 +5,6 @@
 
 #include "JSystem/JAudio2/osdsp_task.h"
 #include "JSystem/JAudio2/dspproc.h"
-#include "dolphin/types.h"
-#include "dolphin/dsp/dsp.h"
 #include "dolphin/dsp/dsp_task.h"
 #include "dolphin/os/OSContext.h"
 

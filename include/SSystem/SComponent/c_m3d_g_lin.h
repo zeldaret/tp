@@ -2,7 +2,6 @@
 #define C_M3D_G_LIN_H
 
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/mtx/vec.h"
 #include "global.h"
 
 // Line

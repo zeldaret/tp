@@ -2,7 +2,6 @@
 #define F_AP_F_AP_GAME_H
 
 #include "JSystem/JUtility/TColor.h"
-#include "dolphin/types.h"
 
 void fapGm_After();
 void fapGm_Create();

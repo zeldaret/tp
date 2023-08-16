@@ -6,7 +6,6 @@
 #include "JSystem/J3DGraphAnimator/J3DShapeTable.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "JSystem/J3DGraphBase/J3DVertex.h"
-#include "dolphin/types.h"
 
 typedef struct _GXColor GXColor;
 class JUTNameTab;

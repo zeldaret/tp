@@ -4,11 +4,9 @@
 //
 
 #include "dolphin/os/OSCache.h"
-#include "dol2asm.h"
 #include "dolphin/base/PPCArch.h"
 #include "dolphin/db/db.h"
 #include "dolphin/os/OS.h"
-#include "dolphin/os/OSError.h"
 #include "dolphin/os/OSInterrupt.h"
 
 //

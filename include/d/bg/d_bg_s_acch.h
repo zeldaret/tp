@@ -1,7 +1,6 @@
 #ifndef D_BG_D_BG_S_ACCH_H
 #define D_BG_D_BG_S_ACCH_H
 
-#include "SSystem/SComponent/c_bg_s_poly_info.h"
 #include "SSystem/SComponent/c_m3d_g_cir.h"
 #include "SSystem/SComponent/c_m3d_g_cyl.h"
 #include "SSystem/SComponent/c_m3d_g_lin.h"

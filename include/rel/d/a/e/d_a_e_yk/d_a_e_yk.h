@@ -8,9 +8,7 @@
 #define D_A_E_YK_H
 
 #include "Z2AudioLib/Z2Creature.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/cc/d_cc_uty.h"
 #include "d/d_path.h"
 

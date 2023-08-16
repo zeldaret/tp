@@ -2,7 +2,6 @@
 #define D_MENU_D_MENU_OPTION_H
 
 #include "d/d_drawlist.h"
-#include "dolphin/types.h"
 
 class CPaneMgr;
 struct CSTControl;
