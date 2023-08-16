@@ -46,8 +46,8 @@ public:
     /* 0x40 */ u8* mpResMoon_A_A03;
     /* 0x44 */ u32 field_0x44[5];
     /* 0x58 */ int field_0x58;
-    /* 0x5C */ f32 field_0x5c;
-    /* 0x60 */ f32 field_0x60;
+    /* 0x5C */ f32 mVisibility;
+    /* 0x60 */ f32 mSunAlpha;
     /* 0x64 */ f32 field_0x64;
     /* 0x68 */ f32 field_0x68;
     /* 0x6C */ f32 field_0x6c;
@@ -71,7 +71,7 @@ public:
     /* 0x8C */ f32 field_0x8c;
     /* 0x90 */ f32 field_0x90;
     /* 0x94 */ f32 field_0x94;
-    /* 0x98 */ f32 field_0x98;
+    /* 0x98 */ f32 mDistFalloff;
     /* 0x9C */ u8 field_0x9c[2];
     /* 0x9E */ bool mDrawLenzInSky;
 };  // Size: 0xA0

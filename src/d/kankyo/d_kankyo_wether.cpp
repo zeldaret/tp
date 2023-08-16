@@ -831,8 +831,8 @@ static void wether_move_sun() {
                     g_env_light.mpSunPacket->field_0x28 = 0;
                     g_env_light.mpSunPacket->field_0x29 = 0;
                     f32 tmp0 = FLOAT_LABEL(lit_4378);
-                    g_env_light.mpSunPacket->field_0x5c = tmp0;
-                    g_env_light.mpSunPacket->field_0x60 = tmp0;
+                    g_env_light.mpSunPacket->mVisibility = tmp0;
+                    g_env_light.mpSunPacket->mSunAlpha = tmp0;
                     g_env_light.mpSunPacket->field_0x64 = tmp0;
                     g_env_light.mpSunPacket->field_0x68 = tmp0;
 
@@ -857,7 +857,7 @@ static void wether_move_sun() {
                     g_env_light.mpSunLenzPacket->field_0x8c = lit_4611;
                     f32 tmp0_2 = FLOAT_LABEL(lit_4378);
                     g_env_light.mpSunLenzPacket->field_0x90 = tmp0_2;
-                    g_env_light.mpSunLenzPacket->field_0x98 = tmp0_2;
+                    g_env_light.mpSunLenzPacket->mDistFalloff = tmp0_2;
                     g_env_light.mpSunLenzPacket->mDrawLenzInSky = false;
                     dKyr_sun_move();
                     dKyr_lenzflare_move();
