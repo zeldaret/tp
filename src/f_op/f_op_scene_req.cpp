@@ -13,9 +13,9 @@
  * fopScnRq_phase_ClearOverlap__FP19scene_request_class         */
 static cPhs__Step fopScnRq_phase_ClearOverlap(scene_request_class* i_sceneReq) {
     if (fopOvlpM_ClearOfReq() == 1) {
-        return cPhs_TWO_e;
+        return cPhs_NEXT_e;
     } else {
-        return cPhs_ZERO_e;
+        return cPhs_INIT_e;
     }
 }
 
@@ -29,9 +29,9 @@ static cPhs__Step fopScnRq_phase_Execute(scene_request_class* i_sceneReq) {
  * fopScnRq_phase_IsDoingOverlap__FP19scene_request_class       */
 static cPhs__Step fopScnRq_phase_IsDoingOverlap(scene_request_class* i_sceneReq) {
     if (fopOvlpM_IsDoingReq() == 1) {
-        return cPhs_TWO_e;
+        return cPhs_NEXT_e;
     } else {
-        return cPhs_ZERO_e;
+        return cPhs_INIT_e;
     }
 }
 
@@ -39,9 +39,9 @@ static cPhs__Step fopScnRq_phase_IsDoingOverlap(scene_request_class* i_sceneReq)
  * fopScnRq_phase_IsDoneOverlap__FP19scene_request_class        */
 static cPhs__Step fopScnRq_phase_IsDoneOverlap(scene_request_class* i_sceneReq) {
     if (fopOvlpM_IsDone() == 1) {
-        return cPhs_TWO_e;
+        return cPhs_NEXT_e;
     } else {
-        return cPhs_ZERO_e;
+        return cPhs_INIT_e;
     }
 }
 
@@ -56,7 +56,7 @@ static cPhs__Step fopScnRq_phase_Done(scene_request_class* i_sceneReq) {
         fopScnPause_Disable((scene_class*)fpcEx_SearchByID(i_sceneReq->mCrtReq.mCreatingID));
     }
     l_fopScnRq_IsUsingOfOverlap = 0;
-    return cPhs_TWO_e;
+    return cPhs_NEXT_e;
 }
 
 /* 8001EF24-8001EF6C 019864 0048+00 1/0 0/0 0/0 .text fopScnRq_Execute__FP19scene_request_class */

@@ -66,10 +66,10 @@ static int daVrbox_Draw(vrbox_class* i_this) {
 /* 804986B8-80498850 000218 0198+00 1/1 0/0 0/0 .text            daVrbox_color_set__FP11vrbox_class
  */
 static int daVrbox_color_set(vrbox_class* i_this) {
-    if ((g_env_light.mCloudOuterHazeColor.r + g_env_light.mCloudOuterHazeColor.g +
-         g_env_light.mCloudOuterHazeColor.b + g_env_light.mSkyColor.r + g_env_light.mSkyColor.g +
-         g_env_light.mSkyColor.b + g_env_light.mUpperCloudColor.r + g_env_light.mUpperCloudColor.g +
-         g_env_light.mUpperCloudColor.b) == 0)
+    if ((g_env_light.mVrKasumiCol.r + g_env_light.mVrKasumiCol.g +
+         g_env_light.mVrKasumiCol.b + g_env_light.mVrSkyCol.r + g_env_light.mVrSkyCol.g +
+         g_env_light.mVrSkyCol.b + g_env_light.mVrkumoCol.r + g_env_light.mVrkumoCol.g +
+         g_env_light.mVrkumoCol.b) == 0)
     {
         g_env_light.mVrboxInvisible = true;
         return 1;
@@ -85,9 +85,9 @@ static int daVrbox_color_set(vrbox_class* i_this) {
         material_0->setCullMode(0);
         material_0->change();
 
-        color.r = g_env_light.mSkyColor.r;
-        color.g = g_env_light.mSkyColor.g;
-        color.b = g_env_light.mSkyColor.b;
+        color.r = g_env_light.mVrSkyCol.r;
+        color.g = g_env_light.mVrSkyCol.g;
+        color.b = g_env_light.mVrSkyCol.b;
         color.a = 255;
         material_0->setTevColor(0, &color);
     }
@@ -97,10 +97,10 @@ static int daVrbox_color_set(vrbox_class* i_this) {
         material_1->setCullMode(0);
         material_1->change();
 
-        color.r = g_env_light.mCloudInnerHazeColor.r;
-        color.g = g_env_light.mCloudInnerHazeColor.g;
-        color.b = g_env_light.mCloudInnerHazeColor.b;
-        color.a = g_env_light.mCloudInnerHazeColor.a;
+        color.r = g_env_light.mVrOkuKasumiCol.r;
+        color.g = g_env_light.mVrOkuKasumiCol.g;
+        color.b = g_env_light.mVrOkuKasumiCol.b;
+        color.a = g_env_light.mVrOkuKasumiCol.a;
         material_1->setTevColor(0, &color);
     }
 

@@ -854,7 +854,7 @@ int daBg_c::draw() {
                             s16 var_r0;
                             s16 var_r3;
                             s16 var_r5;
-                            switch (g_env_light.field_0x12fe) {
+                            switch (g_env_light.mPondSeason) {
                             case 2:
                                 var_r5 = -3;
                                 var_r0 = 0;

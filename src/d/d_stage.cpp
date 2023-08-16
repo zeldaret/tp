@@ -2809,11 +2809,11 @@ static void layerTableLoader(void* i_data, dStage_dt_c* stageDt, int roomNo) {
     dStage_dt_c_decode(i_data, stageDt, l_layerFuncTableA, ARRAY_SIZE(l_layerFuncTableA));
 
     dStage_Elst_c* elst = i_dComIfGp_getStage()->getElst();
-    if (elst != NULL && newRoomNo >= 0 && elst->field_0x0 > newRoomNo) {
-        dStage_Elst_c::unkData* d = elst->field_0x4;
+    if (elst != NULL && newRoomNo >= 0 && elst->m_entryNum > newRoomNo) {
+        dStage_Elst_data* d = elst->m_entries;
         int layer = dComIfG_play_c::getLayerNo(0);
         dStage_setLayerTagName(l_envLayerFuncTable, ARRAY_SIZE(l_envLayerFuncTable),
-                               d[newRoomNo].field_0x0[layer]);
+                               d[newRoomNo].m_layerTable[layer]);
         dStage_dt_c_decode(i_data, stageDt, l_envLayerFuncTable, ARRAY_SIZE(l_envLayerFuncTable));
     } else {
         dStage_setLayerTagName(l_envLayerFuncTable, ARRAY_SIZE(l_envLayerFuncTable), 0);

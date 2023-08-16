@@ -26,7 +26,7 @@ int daTagMagne_c::create() {
     fopAcM_SetupActor(this, daTagMagne_c);
 
     if (mTagMagne != NULL && mTagMagne->current.roomNo != current.roomNo) {
-        return cPhs_ZERO_e;
+        return cPhs_INIT_e;
     }
 
     if (!Create()) {

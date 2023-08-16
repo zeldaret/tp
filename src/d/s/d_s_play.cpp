@@ -588,10 +588,10 @@ void dScnPly_c::offReset() {
 /* 80259C70-80259CAC 2545B0 003C+00 1/0 0/0 0/0 .text            phase_00__FP9dScnPly_c */
 static int phase_00(dScnPly_c* scn) {
     if (!scn->resetGame()) {
-        return cPhs_ZERO_e;
+        return cPhs_INIT_e;
     } else {
         mDoGph_gInf_c::offBlure();
-        return cPhs_TWO_e;
+        return cPhs_NEXT_e;
     }
 }
 
@@ -614,15 +614,15 @@ static int phase_01(dScnPly_c* scn) {
     mDoAud_setSceneName(dComIfGp_getStartStageName(), start_room, layer);
 
     if (!mDoAud_load1stDynamicWave()) {
-        return cPhs_ZERO_e;
+        return cPhs_INIT_e;
     } else {
-        return cPhs_TWO_e;
+        return cPhs_NEXT_e;
     }
 }
 
 /* 80259D7C-80259D84 2546BC 0008+00 1/0 0/0 0/0 .text            phase_0__FP9dScnPly_c */
 static int phase_0(dScnPly_c* param_0) {
-    return cPhs_TWO_e;
+    return cPhs_NEXT_e;
 }
 
 /* 80259D84-8025A438 2546C4 06B4+00 1/0 0/0 0/0 .text            phase_1__FP9dScnPly_c */
@@ -741,10 +741,10 @@ static int phase_1(dScnPly_c* scn) {
     // Stage: Fishing Pond, Room: Fishing Pond
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") && dComIfGp_getStartStageRoomNo() == 0 &&
         dComIfGp_getStartStagePoint() == 2) {
-        g_env_light.field_0x12fe++;
+        g_env_light.mPondSeason++;
 
-        if (g_env_light.field_0x12fe > 4) {
-            g_env_light.field_0x12fe = 1;
+        if (g_env_light.mPondSeason > 4) {
+            g_env_light.mPondSeason = 1;
         }
     }
 
@@ -757,19 +757,19 @@ static int phase_1(dScnPly_c* scn) {
     if (dComIfG_syncStageRes("Stg_00") < 0) {
         dComIfG_setStageRes("Stg_00", NULL);
     }
-    return cPhs_TWO_e;
+    return cPhs_NEXT_e;
 }
 
 /* 8025A438-8025A4F8 254D78 00C0+00 1/0 0/0 0/0 .text            phase_1_0__FP9dScnPly_c */
 static int phase_1_0(dScnPly_c* param_0) {
     if (dComIfG_syncStageRes("Stg_00")) {
-        return cPhs_ZERO_e;
+        return cPhs_INIT_e;
     } else {
         dStage_infoCreate();
         dComIfG_setObjectRes("Event", (u8)0, NULL);
         dComIfGp_setCameraParamFileName(0, camparamarc);
         dComIfG_setObjectRes("CamParam", (u8)0, NULL);
-        return cPhs_TWO_e;
+        return cPhs_NEXT_e;
     }
 }
 
@@ -779,7 +779,7 @@ static int phase_1_0(dScnPly_c* param_0) {
 static int phase_2(dScnPly_c* scn) {
     int tmp = dComIfG_syncAllObjectRes();
     if (tmp >= 0 && tmp != 0) {
-        return cPhs_ZERO_e;
+        return cPhs_INIT_e;
     }
     int layer = dComIfG_play_c::getLayerNo(0);
     stage_stag_info_class* stag_info = i_dComIfGp_getStage()->getStagInfo();
@@ -791,7 +791,7 @@ static int phase_2(dScnPly_c* scn) {
 
     dComIfGp_particle_readScene(particle_no, &scn->sceneCommand);
     dMsgObject_readMessageGroup(&scn->field_0x1d0);
-    return cPhs_TWO_e;
+    return cPhs_NEXT_e;
 }
 #else
 #pragma push
@@ -807,11 +807,11 @@ static asm int phase_2(dScnPly_c* param_0) {
 /* 8025A5D4-8025A654 254F14 0080+00 1/0 0/0 0/0 .text            phase_3__FP9dScnPly_c */
 static int phase_3(dScnPly_c* scn) {
     if ((scn->sceneCommand != NULL && !scn->sceneCommand->sync()) || mDoAud_check1stDynamicWave()) {
-        return cPhs_ZERO_e;
+        return cPhs_INIT_e;
     } else if (!scn->field_0x1d0 == NULL && !scn->field_0x1d0->sync()) {
-        return cPhs_ZERO_e;
+        return cPhs_INIT_e;
     } else {
-        return cPhs_TWO_e;
+        return cPhs_NEXT_e;
     }
 }
 
@@ -940,7 +940,7 @@ static int phase_4(dScnPly_c* i_this) {
     }
 
     resPreLoadTime0 = OSGetTime();
-    return cPhs_TWO_e;
+    return cPhs_NEXT_e;
 }
 #else
 #pragma push

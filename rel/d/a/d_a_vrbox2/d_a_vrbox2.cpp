@@ -4,54 +4,29 @@
 //
 
 #include "rel/d/a/d_a_vrbox2/d_a_vrbox2.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "SSystem/SComponent/c_math.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
+#include "d/kankyo/d_kankyo_rain.h"
 #include "dol2asm.h"
 
 //
 // Types:
 //
 
-struct vrbox2_class {};
-
-struct mDoMtx_stack_c {
-    /* 8000CE38 */ void scaleM(f32, f32, f32);
-
-    static u8 now[48];
-};
-
-struct J3DAnmTextureSRTKey {};
-
-struct J3DMaterialTable {
-    /* 8032F7B4 */ void removeTexMtxAnimator(J3DAnmTextureSRTKey*);
-};
-
-struct mDoExt_btkAnm {
-    /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
-    /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct mDoExt_baseAnm {
-    /* 8000D428 */ void play();
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct dStage_roomControl_c {
-    /* 80024384 */ void getStatusRoomDt(int);
-};
-
-struct cXyz {};
-
-struct Vec {};
-
-struct J3DModelData {};
-
-struct J3DModel {};
-
-struct J3DFrameCtrl {
-    /* 803283FC */ void init(s16);
-    /* 80499A1C */ ~J3DFrameCtrl();
+class vrbox2_class : public fopAc_ac_c {
+public:
+    /* 0x568 */ u8 field_0x568[0x56C - 0x568];
+    /* 0x56C */ J3DModel* mpKumoModel;
+    /* 0x570 */ u8 field_0x570[0x574 - 0x570];
+    /* 0x574 */ J3DModel* model2;
+    /* 0x578 */ J3DModel* model2_und;
+    /* 0x57C */ u8 field_0x57C[0x580 - 0x57C];
+    /* 0x580 */ mDoExt_btkAnm mSunBtk;
+    /* 0x598 */ J3DModel* mpKasumimModel;
+    /* 0x59C */ u8 field_0x59C[0x5A0 - 0x59C];
 };
 
 //
@@ -99,24 +74,17 @@ extern "C" void cLib_targetAngleX__FPC4cXyzPC4cXyz();
 extern "C" void __dl__FPv();
 extern "C" void init__12J3DFrameCtrlFs();
 extern "C" void removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
 extern "C" void _savegpr_17();
 extern "C" void _savegpr_25();
 extern "C" void _restgpr_17();
 extern "C" void _restgpr_25();
-extern "C" void strcmp();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 
 //
 // Declarations:
 //
+
+static int daVrbox2_color_set(vrbox2_class* param_0);
 
 /* ############################################################################################## */
 /* 80499A6C-80499A70 000000 0004+00 4/4 0/0 0/0 .rodata          @3627 */
@@ -133,6 +101,16 @@ SECTION_RODATA static u8 const lit_3628[4] = {
 COMPILER_STRIP_GATE(0x80499A70, &lit_3628);
 
 /* 80498A78-80498ACC 000078 0054+00 1/1 0/0 0/0 .text            texScrollCheck__FRf */
+// matches with literals
+#ifdef NONMATCHING
+static void texScrollCheck(f32& param_0) {
+    while (param_0 < 0.0f)
+        param_0 += 1.0f;
+
+    while (param_0 > 1.0f)
+        param_0 -= 1.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -141,6 +119,7 @@ static asm void texScrollCheck(f32& param_0) {
 #include "asm/rel/d/a/d_a_vrbox2/d_a_vrbox2/texScrollCheck__FRf.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80499A74-80499A78 000008 0004+00 0/1 0/0 0/0 .rodata          @3835 */
@@ -232,17 +211,178 @@ SECTION_DEAD static char const* const stringBase_80499ACC = "F_SP127";
 #pragma pop
 
 /* 80499B78-80499B7C 000000 0002+02 1/1 0/0 0/0 .bss             mangZ$3688 */
-static u8 mangZ[2 + 2 /* padding */];
+static s16 mangZ;
 
 /* 80498ACC-804990DC 0000CC 0610+00 1/0 0/0 0/0 .text            daVrbox2_Draw__FP12vrbox2_class */
+// reg alloc
+#ifdef NONMATCHING
+static int daVrbox2_Draw(vrbox2_class* i_this) {
+    cXyz sp14;
+    cXyz sp8;
+
+    camera_class* camera_p = dComIfGp_getCamera(0);
+    dKankyo_sunlenz_Packet* lenz_p = g_env_light.mpSunLenzPacket;
+    J3DModel* kumo_model_p = i_this->mpKumoModel;
+    J3DModel* sun_model_p = i_this->model2;
+    J3DModel* sun2_model_p = i_this->model2_und;
+    J3DModel* kasumim_model_p = i_this->mpKasumimModel;
+    dKankyo_sun_Packet* sun_p = g_env_light.mpSunPacket;
+
+    f32 var_f31 = 0.0f;
+    dStage_FileList_dt_c* filelist_p = NULL;
+    dKy_GxFog_set();
+
+    // these casts look like fake matches, but this ptr is used as both J3DModel and J3DModelData?
+    for (int i = ((J3DModelData*)kumo_model_p)->getMaterialNum() - 1; i >= 0; i--) {
+        J3DMaterial* material_p = ((J3DModelData*)kumo_model_p)->getMaterialNodePointer(i);
+
+        J3DFogInfo* fogInfo_p;
+        if (material_p != NULL) {
+            fogInfo_p = material_p->getFog()->getFogInfo();
+        }
+
+        fogInfo_p->field_0x0 = 2;
+    }
+
+    // these casts look like fake matches, but this ptr is used as both J3DModel and J3DModelData?
+    for (int i = ((J3DModelData*)sun_model_p)->getMaterialNum() - 1; i >= 0; i--) {
+        J3DMaterial* material_p = ((J3DModelData*)sun_model_p)->getMaterialNodePointer(i);
+
+        J3DFogInfo* fogInfo_p;
+        if (material_p != NULL) {
+            fogInfo_p = material_p->getFog()->getFogInfo();
+        }
+
+        fogInfo_p->field_0x0 = 2;
+    }
+
+    // these casts look like fake matches, but this ptr is used as both J3DModel and J3DModelData?
+    for (int i = ((J3DModelData*)kasumim_model_p)->getMaterialNum() - 1; i >= 0; i--) {
+        J3DMaterial* material_p = ((J3DModelData*)kasumim_model_p)->getMaterialNodePointer(i);
+
+        J3DFogInfo* fogInfo_p;
+        if (material_p != NULL) {
+            fogInfo_p = material_p->getFog()->getFogInfo();
+        }
+
+        fogInfo_p->field_0x0 = 2;
+    }
+
+    if ((g_env_light.mVrKasumiCol.r + g_env_light.mVrKasumiCol.g +
+         g_env_light.mVrKasumiCol.b + g_env_light.mVrSkyCol.r + g_env_light.mVrSkyCol.g +
+         g_env_light.mVrSkyCol.b + g_env_light.mVrkumoCol.r + g_env_light.mVrkumoCol.g +
+         g_env_light.mVrkumoCol.b) == 0)
+    {
+        return 1;
+    }
+
+    i_this->mSunBtk.entry(i_this->model2->getModelData());
+    daVrbox2_color_set(i_this);
+
+    if (dComIfGp_roomControl_getStayNo() >= 0) {
+        s32 stayNo = dComIfGp_roomControl_getStayNo();
+        filelist_p = dComIfGp_roomControl_getStatusRoomDt(stayNo)->mRoomDt.getFileListInfo();
+    }
+
+    if (filelist_p != NULL) {
+        var_f31 = dStage_FileList_dt_SeaLevel(filelist_p);
+    }
+
+    if (dComIfGd_getView() != NULL) {
+        var_f31 = (dComIfGd_getInvViewMtx()[1][3] - var_f31) * 0.09f;
+    } else {
+        var_f31 = 0.0f;
+    }
+
+    dComIfGd_setListSky();
+    mDoMtx_stack_c::transS(dComIfGd_getInvViewMtx()[0][3], dComIfGd_getInvViewMtx()[1][3] - var_f31,
+                           dComIfGd_getInvViewMtx()[2][3]);
+    kasumim_model_p->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mDoExt_modelUpdateDL(kasumim_model_p);
+
+    mDoMtx_stack_c::transS(dComIfGd_getInvViewMtx()[0][3], dComIfGd_getInvViewMtx()[1][3] - var_f31,
+                           dComIfGd_getInvViewMtx()[2][3]);
+    kumo_model_p->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mDoExt_modelUpdateDL(kumo_model_p);
+
+    if (dStage_stagInfo_GetArg0(i_dComIfGp_getStage()->getStagInfo()) != 0 && sun_model_p != NULL &&
+        sun_p != NULL && sun_p->mSunAlpha > 0.0f)
+    {
+        sp14 = sun_p->mPos[0];
+
+        if (strcmp(dComIfGp_getStartStageName(), "F_SP102") == 0) {
+            dKyr_get_vectle_calc(&camera_p->mLookat.mEye, &g_env_light.mSunPos, &sp8);
+            sp14.x = camera_p->mLookat.mEye.x + (8000.0f * sp8.x);
+            sp14.y = camera_p->mLookat.mEye.y + (8000.0f * sp8.y);
+            sp14.z = camera_p->mLookat.mEye.z + (8000.0f * sp8.z);
+        }
+
+        s16 temp_r19 = cLib_targetAngleX(&camera_p->mLookat.mEye, &sp14);
+        s16 temp_r18 = cLib_targetAngleY(&camera_p->mLookat.mEye, &sp14);
+        mDoMtx_stack_c::transS(sp14.x, sp14.y, sp14.z);
+        mDoMtx_stack_c::YrotM((s16)temp_r18);
+        mDoMtx_stack_c::XrotM(0x7FFF - temp_r19);
+
+        f32 scale;
+        if (g_env_light.mDaytime < 255.0f) {
+            f32 temp_f4 = 1.0f - lenz_p->mDistFalloff;
+            scale = 1.0f;
+
+            if (sun_p->mVisibility > 0.0f) {
+                scale = 1.0f + (sun_p->mVisibility * (0.4f * (temp_f4 * temp_f4)));
+            }
+        } else {
+            f32 var_f1;
+            if (g_env_light.mDaytime < 270.0f) {
+                var_f1 = dKy_get_parcent(270.0f, 240.0f, g_env_light.mDaytime);
+            } else {
+                var_f1 = 1.0f;
+            }
+
+            scale = 1.0f + (0.2f * var_f1);
+        }
+
+        mDoMtx_stack_c::scaleM(scale, scale, scale);
+        sun_model_p->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mDoExt_modelUpdateDL(sun_model_p);
+
+        if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0) {
+            sp14 = sun_p->mPos[0];
+            sp14.y = 300.0f - (sp14.y * 0.85f);
+
+            s16 temp_r19_2 = cLib_targetAngleX(&camera_p->mLookat.mEye, &sp14);
+            s16 temp_r18_2 = cLib_targetAngleY(&camera_p->mLookat.mEye, &sp14);
+            mDoMtx_stack_c::transS(sp14.x, sp14.y, sp14.z);
+            mDoMtx_stack_c::YrotM((s16)temp_r18_2);
+            mDoMtx_stack_c::XrotM(0x7FFF - temp_r19_2);
+            mDoMtx_stack_c::ZrotM(mangZ);
+
+            mDoMtx_stack_c::scaleM(scale, scale + 0.15f, scale);
+            mDoMtx_stack_c::ZrotM(-mangZ);
+            sun2_model_p->i_setBaseTRMtx(mDoMtx_stack_c::get());
+            mDoExt_modelUpdateDL(sun2_model_p);
+            mangZ += (s16)(483.0f + cM_rndF(100.0f));
+        }
+    }
+
+    dComIfGd_setList();
+
+    if (sun_model_p != NULL) {
+        i_this->mSunBtk.remove(i_this->model2->getModelData());
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daVrbox2_Draw(vrbox2_class* param_0) {
+static asm int daVrbox2_Draw(vrbox2_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_vrbox2/d_a_vrbox2/daVrbox2_Draw__FP12vrbox2_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80499AA4-80499AA8 000038 0004+00 0/1 0/0 0/0 .rodata          @4069 */
@@ -308,106 +448,277 @@ SECTION_DEAD static char const* const stringBase_80499AD4 = "R_SP30";
 #pragma pop
 
 /* 804990DC-804997E8 0006DC 070C+00 1/1 0/0 0/0 .text daVrbox2_color_set__FP12vrbox2_class */
+// one small weird block and some regalloc at the end
+#ifdef NONMATCHING
+static int daVrbox2_color_set(vrbox2_class* i_this) {
+    dKankyo_sun_Packet* sun_p = g_env_light.mpSunPacket;
+
+    if ((g_env_light.mVrKasumiCol.r + g_env_light.mVrKasumiCol.g +
+         g_env_light.mVrKasumiCol.b + g_env_light.mVrSkyCol.r + g_env_light.mVrSkyCol.g +
+         g_env_light.mVrSkyCol.b + g_env_light.mVrkumoCol.r + g_env_light.mVrkumoCol.g +
+         g_env_light.mVrkumoCol.b) == 0)
+    {
+        return 1;
+    }
+
+    camera_class* camera_p = dComIfGp_getCamera(0);
+
+    cXyz cam_eye;
+    cXyz cam_center;
+    cXyz camFwdXZ;
+    cXyz wind_vec;
+
+    cXyz* windVec_p = dKyw_get_wind_vec();
+    f32 wind_pow = dKyw_get_wind_pow();
+
+    wind_vec = *windVec_p;
+
+    dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo());
+
+    cam_eye = camera_p->mLookat.mEye;
+    cam_center = camera_p->mLookat.mCenter;
+    cam_eye.y = 0.0f;
+    cam_center.y = 0.0f;
+
+    dKyr_get_vectle_calc(&cam_eye, &cam_center, &camFwdXZ);
+    f32 temp_f30 =
+        cM3d_VectorProduct2d(0.0f, 0.0f, -wind_vec.x, -wind_vec.z, camFwdXZ.x, camFwdXZ.z) *
+        0.0005f;
+    f32 var_f29 = temp_f30 * wind_pow;
+
+    if (strcmp(dComIfGp_getStartStageName(), "R_SP30") == 0) {
+        dKyw_get_wind_vec();
+        var_f29 = temp_f30 * (wind_pow + 0.3f);
+    }
+
+    J3DModelData* modelData = i_this->mpKumoModel->getModelData();
+    J3DMaterial* material_0 = modelData->getMaterialNodePointer(0);
+    if (material_0 != NULL) {
+        material_0->setCullMode(0);
+
+        if (material_0->getTexMtx(0) != NULL) {
+            J3DTexMtxInfo& mtx_info = material_0->getTexMtx(0)->getTexMtxInfo();
+            mtx_info.mSRT.mTranslationX += var_f29;
+            texScrollCheck(mtx_info.mSRT.mTranslationX);
+        }
+
+        if (material_0->getTexMtx(1) != NULL) {
+            J3DTexMtxInfo& mtx_info = material_0->getTexMtx(1)->getTexMtxInfo();
+            mtx_info.mSRT.mTranslationX += var_f29 * 1.75f;
+            texScrollCheck(mtx_info.mSRT.mTranslationX);
+        }
+    }
+
+    J3DMaterial* material_1 = modelData->getMaterialNodePointer(1);
+    if (material_1 != NULL) {
+        material_1->setCullMode(0);
+
+        if (material_1->getTexMtx(0) != NULL) {
+            J3DTexMtxInfo& mtx_info = material_1->getTexMtx(0)->getTexMtxInfo();
+            mtx_info.mSRT.mTranslationX += var_f29 * 4.4f;
+            texScrollCheck(mtx_info.mSRT.mTranslationX);
+        }
+
+        if (material_1->getTexMtx(1) != NULL) {
+            J3DTexMtxInfo& mtx_info = material_1->getTexMtx(1)->getTexMtxInfo();
+            mtx_info.mSRT.mTranslationX += var_f29 * 2.2f;
+            texScrollCheck(mtx_info.mSRT.mTranslationX);
+        }
+    }
+
+    modelData = i_this->mpKumoModel->getModelData();
+    J3DGXColor k_color;
+    J3DGXColorS10 color;
+
+    J3DMaterial* kumo_material0 = modelData->getMaterialNodePointer(0);
+    if (kumo_material0 != NULL) {
+        kumo_material0->setCullMode(0);
+        kumo_material0->change();
+
+        k_color.r = g_env_light.mVrShitaGumoCol.r;
+        k_color.g = g_env_light.mVrShitaGumoCol.g;
+        k_color.b = g_env_light.mVrShitaGumoCol.b;
+        k_color.a = g_env_light.mVrkumoCol.a;
+        kumo_material0->setTevKColor(0, &k_color);
+
+        color.r = g_env_light.mVrShitaUneiCol.r;
+        color.g = g_env_light.mVrShitaUneiCol.g;
+        color.b = g_env_light.mVrShitaUneiCol.b;
+        color.a = (u8)g_env_light.mVrkumoCol.a;
+        kumo_material0->setTevColor(0, &color);
+    }
+
+    J3DMaterial* kumo_material1 = modelData->getMaterialNodePointer(1);
+    if (kumo_material1 != NULL) {
+        kumo_material1->setCullMode(0);
+        kumo_material1->change();
+
+        k_color.r = g_env_light.mVrShitaGumoCol.r;
+        k_color.g = g_env_light.mVrShitaGumoCol.g;
+        k_color.b = g_env_light.mVrShitaGumoCol.b;
+        k_color.a = g_env_light.mVrkumoCol.a;
+        kumo_material1->setTevKColor(0, &k_color);
+
+        color.r = g_env_light.mVrShitaUneiCol.r;
+        color.g = g_env_light.mVrShitaUneiCol.g;
+        color.b = g_env_light.mVrShitaUneiCol.b;
+        color.a = g_env_light.mVrkumoCol.a;
+        kumo_material1->setTevColor(0, &color);
+    }
+
+    modelData = i_this->mpKasumimModel->getModelData();
+    J3DMaterial* kasumim_material0 = modelData->getMaterialNodePointer(0);
+    if (kasumim_material0 != NULL) {
+        kasumim_material0->setCullMode(0);
+        kasumim_material0->change();
+
+        color.r = g_env_light.mVrKasumiCol.r;
+        color.g = g_env_light.mVrKasumiCol.g;
+        color.b = g_env_light.mVrKasumiCol.b;
+        color.a = g_env_light.mVrKasumiCol.a;
+        kasumim_material0->setTevColor(0, &color);
+    }
+
+    if (sun_p != NULL) {
+        J3DModelData* modelData = i_this->model2->getModelData();
+        for (int i = 0; i < 3; i++) {
+            J3DMaterial* material_p = modelData->getMaterialNodePointer(i);
+
+            if (material_p != NULL) {
+                material_p->setCullMode(0);
+                material_p->change();
+
+                color.r = sun_p->mColor.r;
+                color.g = sun_p->mColor.g;
+                color.b = sun_p->mColor.b;
+
+                k_color.r = sun_p->field_0x74.r;
+                k_color.g = sun_p->field_0x74.g;
+                k_color.b = sun_p->field_0x74.b;
+                k_color.a = sun_p->field_0x74.a;
+
+                if (i == 1) {
+                    if (g_env_light.mDaytime > 255.0f || g_env_light.mDaytime < 97.5f) {
+                        cLib_addCalc(&sun_p->field_0x64, 1.0f, 0.2f, 0.1f, 0.0001f);
+                    } else {
+                        cLib_addCalc(&sun_p->field_0x64, 0.0f, 0.2f, 0.1f, 0.0001f);
+                    }
+
+                    int alpha = sun_p->field_0x64 * 255.0f * sun_p->mSunAlpha;
+                    color.a = alpha;
+                    k_color.a = alpha;
+                } else if (i == 2) {
+                    int alpha = sun_p->mSunAlpha * 255.0f * (1.0f - sun_p->field_0x64);
+                    color.a = alpha;
+                    k_color.a = alpha;
+                } else {
+                    int alpha = sun_p->mSunAlpha * 255.0f;
+                    color.a = alpha;
+                    k_color.a = alpha;
+                }
+
+                material_p->setTevColor(0, &color);
+                material_p->setTevKColor(0, &k_color);
+            }
+        }
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daVrbox2_color_set(vrbox2_class* param_0) {
+static asm int daVrbox2_color_set(vrbox2_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_vrbox2/d_a_vrbox2/daVrbox2_color_set__FP12vrbox2_class.s"
 }
 #pragma pop
+#endif
 
 /* 804997E8-8049982C 000DE8 0044+00 1/0 0/0 0/0 .text            daVrbox2_Execute__FP12vrbox2_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daVrbox2_Execute(vrbox2_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_vrbox2/d_a_vrbox2/daVrbox2_Execute__FP12vrbox2_class.s"
+static int daVrbox2_Execute(vrbox2_class* i_this) {
+    if (g_env_light.mDaytime > FLOAT_LABEL(lit_3837)) {
+        i_this->mSunBtk.play();
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8049982C-80499834 000E2C 0008+00 1/0 0/0 0/0 .text            daVrbox2_IsDelete__FP12vrbox2_class
  */
-static bool daVrbox2_IsDelete(vrbox2_class* param_0) {
-    return true;
+static int daVrbox2_IsDelete(vrbox2_class* i_this) {
+    return 1;
 }
 
 /* 80499834-8049983C 000E34 0008+00 1/0 0/0 0/0 .text            daVrbox2_Delete__FP12vrbox2_class
  */
-static bool daVrbox2_Delete(vrbox2_class* param_0) {
-    return true;
+static int daVrbox2_Delete(vrbox2_class* i_this) {
+    return 1;
 }
-
-/* ############################################################################################## */
-/* 80499AC4-80499AC4 000058 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80499ADB = "vrbox_kumo.bmd";
-SECTION_DEAD static char const* const stringBase_80499AEA = "vrbox_sun.bmd";
-SECTION_DEAD static char const* const stringBase_80499AF8 = "vrbox_sun.btk";
-SECTION_DEAD static char const* const stringBase_80499B06 = "vrbox_kasumiM.bmd";
-#pragma pop
 
 /* 8049983C-80499978 000E3C 013C+00 1/1 0/0 0/0 .text daVrbox2_solidHeapCB__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daVrbox2_solidHeapCB(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_vrbox2/d_a_vrbox2/daVrbox2_solidHeapCB__FP10fopAc_ac_c.s"
+static int daVrbox2_solidHeapCB(fopAc_ac_c* i_this) {
+    vrbox2_class* a_this = (vrbox2_class*)i_this;
+
+    a_this->mpKumoModel = mDoExt_J3DModel__create(
+        (J3DModelData*)dComIfG_getStageRes("vrbox_kumo.bmd"), 0x80000, 0x11020202);
+
+    J3DModelData* sun_modelData = (J3DModelData*)dComIfG_getStageRes("vrbox_sun.bmd");
+    if (sun_modelData != NULL) {
+        a_this->model2 = mDoExt_J3DModel__create(sun_modelData, 0x80000, 0x11020202);
+        a_this->model2_und = mDoExt_J3DModel__create(sun_modelData, 0x80000, 0x11020202);
+
+        J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getStageRes("vrbox_sun.btk");
+        if (!a_this->mSunBtk.init(sun_modelData, pbtk, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, FLOAT_LABEL(lit_3627), 0, -1)) {
+            return 0;
+        }
+    }
+
+    J3DModelData* kasumi_modelData = (J3DModelData*)dComIfG_getStageRes("vrbox_kasumiM.bmd");
+    if (kasumi_modelData != NULL) {
+        a_this->mpKasumimModel = mDoExt_J3DModel__create(kasumi_modelData, 0x80000, 0x11020202);
+    }
+
+    return a_this->mpKumoModel != NULL && a_this->model2 != NULL && a_this->model2_und != NULL;
 }
-#pragma pop
+
+/* 80499978-80499A1C 000F78 00A4+00 1/0 0/0 0/0 .text            daVrbox2_Create__FP10fopAc_ac_c */
+static int daVrbox2_Create(fopAc_ac_c* i_this) {
+    fopAcM_SetupActor(i_this, vrbox2_class);
+    vrbox2_class* a_this = (vrbox2_class*)i_this;
+
+    int phase = cPhs_COMPLEATE_e;
+    if (!fopAcM_entrySolidHeap(a_this, daVrbox2_solidHeapCB, 0x80004340)) {
+        phase = cPhs_ERROR_e;
+    }
+
+    return phase;
+}
 
 /* ############################################################################################## */
 /* 80499B18-80499B38 -00001 0020+00 1/0 0/0 0/0 .data            l_daVrbox2_Method */
-SECTION_DATA static void* l_daVrbox2_Method[8] = {
-    (void*)daVrbox2_Create__FP10fopAc_ac_c,
-    (void*)daVrbox2_Delete__FP12vrbox2_class,
-    (void*)daVrbox2_Execute__FP12vrbox2_class,
-    (void*)daVrbox2_IsDelete__FP12vrbox2_class,
-    (void*)daVrbox2_Draw__FP12vrbox2_class,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daVrbox2_Method = {
+    (process_method_func)daVrbox2_Create,  (process_method_func)daVrbox2_Delete,
+    (process_method_func)daVrbox2_Execute, (process_method_func)daVrbox2_IsDelete,
+    (process_method_func)daVrbox2_Draw,
 };
 
 /* 80499B38-80499B68 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_VRBOX2 */
-SECTION_DATA extern void* g_profile_VRBOX2[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x02DB0000, (void*)&g_fpcLf_Method,
-    (void*)0x000005A0, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x00040000, (void*)&l_daVrbox2_Method,
-    (void*)0x00044000, (void*)NULL,
+extern actor_process_profile_definition g_profile_VRBOX2 = {
+    -3,
+    7,
+    -3,
+    PROC_VRBOX2,
+    &g_fpcLf_Method.mBase,
+    sizeof(vrbox2_class),
+    0,
+    0,
+    &g_fopAc_Method.base,
+    4,
+    &l_daVrbox2_Method,
+    0x44000,
+    0,
+    0,
 };
-
-/* 80499B68-80499B74 000050 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DFrameCtrlFv,
-};
-
-/* 80499978-80499A1C 000F78 00A4+00 1/0 0/0 0/0 .text            daVrbox2_Create__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daVrbox2_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_vrbox2/d_a_vrbox2/daVrbox2_Create__FP10fopAc_ac_c.s"
-}
-#pragma pop
-
-/* 80499A1C-80499A64 00101C 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DFrameCtrl::~J3DFrameCtrl() {
-    nofralloc
-#include "asm/rel/d/a/d_a_vrbox2/d_a_vrbox2/__dt__12J3DFrameCtrlFv.s"
-}
-#pragma pop
-
-/* 80499AC4-80499AC4 000058 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

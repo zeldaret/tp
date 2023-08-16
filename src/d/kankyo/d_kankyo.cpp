@@ -1594,7 +1594,7 @@ static void envcolor_init() {
         g_env_light.mpSchedule = dKyd_schejule_getp();
     }
 
-    g_env_light.mNowRoom = dComIfGp_roomControl_getStayNo();
+    g_env_light.mEnvrIdxPrev = dComIfGp_roomControl_getStayNo();
     g_env_light.mEnvrIdxCurr = dComIfGp_roomControl_getStayNo();
     g_env_light.mColPatBlend = 1.0f;
     g_env_light.field_0x12b0 = 0;
@@ -1729,7 +1729,7 @@ void dKy_clear_game_init() {
     g_env_light.mDarkDaytime = 120.0f;
 
     g_env_light.mDarktimeWeek = 0;
-    g_env_light.field_0x12fe = 0;
+    g_env_light.mPondSeason = 0;
     g_env_light.field_0x130a = 0;
     g_env_light.field_0x12cc = 0;
     g_env_light.field_0x130c = 0;
@@ -3668,7 +3668,7 @@ void dScnKy_env_light_c::drawKankyo() {
     setSunpos();
     SetBaseLight();
     setLight();
-    dKy_setLight_nowroom(g_env_light.mNowRoom);
+    dKy_setLight_nowroom(g_env_light.mEnvrIdxPrev);
 }
 
 /* ############################################################################################## */
@@ -4936,7 +4936,7 @@ u8 dKy_pol_sound_get(cBgS_PolyInfo const* p_poly) {
     }
 
     int att0 = dComIfG_Bgsp().GetPolyAtt0(*p_poly);
-    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") && g_env_light.field_0x12fe == 4 &&
+    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") && g_env_light.mPondSeason == 4 &&
         att0 == 4)
     {
         att0 = 13;
@@ -4966,7 +4966,7 @@ u8 dKy_pol_argument_get(cBgS_PolyInfo const* p_poly) {
     }
 
     int att0 = dComIfG_Bgsp().GetPolyAtt0(*p_poly);
-    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") && g_env_light.field_0x12fe == 4 &&
+    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") && g_env_light.mPondSeason == 4 &&
         att0 == 4)
     {
         att0 = 13;
@@ -4999,7 +4999,7 @@ asm u8 dKy_pol_eff_prim_get(cBgS_PolyInfo const* param_0, _GXColor* param_1) {
     }
 
     int att0 = dComIfG_Bgsp().GetPolyAtt0(*p_poly);
-    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") && g_env_light.field_0x12fe == 4 && att0 ==
+    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") && g_env_light.mPondSeason == 4 && att0 ==
 4) { att0 = 13; } else if (!strcmp(dComIfGp_getStartStageName(), "D_MN05A") &&
 dComIfGs_isStageBossEnemy() && att0 == 11) { att0 = 7;
     }

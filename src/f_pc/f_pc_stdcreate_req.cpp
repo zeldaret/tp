@@ -12,7 +12,7 @@
 s32 fpcSCtRq_phase_Load(standard_create_request_class* i_SCtReq) {
     switch (fpcLd_Load(i_SCtReq->mLoadID)) {
     case 0:
-        return cPhs_ZERO_e;
+        return cPhs_INIT_e;
     case 4:
         return 2;
     case 5:
@@ -49,7 +49,7 @@ s32 fpcSCtRq_phase_IsComplete(standard_create_request_class* i_SCtReq) {
     process_node_class* procNode = (process_node_class*)i_SCtReq->mBase.mpRes;
     if (fpcBs_Is_JustOfType(g_fpcNd_type, procNode->mBase.mSubType) == 1) {
         if (fpcLy_IsCreatingMesg(&procNode->mLayer) == 1) {
-            return cPhs_ZERO_e;
+            return cPhs_INIT_e;
         }
     }
     return 2;
@@ -61,7 +61,7 @@ s32 fpcSCtRq_phase_PostMethod(standard_create_request_class* i_SCtReq) {
     if (i_SCtReq->unk_0x58 != NULL &&
         i_SCtReq->unk_0x58(i_SCtReq->mBase.mpRes, i_SCtReq->unk_0x5C) == 0)
     {
-        return cPhs_ZERO_e;
+        return cPhs_INIT_e;
     } else {
         return 2;
     }
@@ -79,11 +79,11 @@ s32 fpcSCtRq_Handler(standard_create_request_class* i_SCtReq) {
     s32 phase_state = cPhs_Do(&i_SCtReq->unk_0x48, i_SCtReq);
 
     switch (phase_state) {
-    case cPhs_TWO_e:
+    case cPhs_NEXT_e:
         return fpcSCtRq_Handler(i_SCtReq);
     case cPhs_COMPLEATE_e:
         return cPhs_COMPLEATE_e;
-    case cPhs_ONE_e:
+    case cPhs_LOADING_e:
     case cPhs_ERROR_e:
     default:
         return phase_state;

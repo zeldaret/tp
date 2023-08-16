@@ -12656,19 +12656,19 @@ int daAlink_c::create() {
         mAttentionInfo.mFlags = -1;
 
         if (!i_dComIfGp_getEventManager().dataLoaded()) {
-            return cPhs_ZERO_e;
+            return cPhs_INIT_e;
         }
 
         setArcName(i_checkWolf());
         setOriginalHeap(&field_0x0638, 0xA2800);
         if (dComIfG_resLoad(&mPhaseReq, mArcName, field_0x0638) != cPhs_COMPLEATE_e) {
-            return cPhs_ZERO_e;
+            return cPhs_INIT_e;
         }
 
         setShieldArcName();
         setOriginalHeap(&field_0x0648, 0x7000);
         if (dComIfG_resLoad(&mShieldPhaseReq, mShieldArcName, field_0x0648) != cPhs_COMPLEATE_e) {
-            return cPhs_ZERO_e;
+            return cPhs_INIT_e;
         }
 
         if (!fopAcM_entrySolidHeap(this, daAlink_createHeap, 0xC003E930)) {
@@ -12708,7 +12708,7 @@ int daAlink_c::create() {
          !fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchLightBall, NULL)) ||
         (horseStart && i_dComIfGp_getHorseActor() == NULL))
     {
-        return cPhs_ZERO_e;
+        return cPhs_INIT_e;
     }
 
     if (var_r24) {

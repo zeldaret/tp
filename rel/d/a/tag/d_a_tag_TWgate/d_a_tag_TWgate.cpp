@@ -1121,11 +1121,11 @@ static int daTagTWGate_Create(fopAc_ac_c* i_actor) {
 inline daTagTWGate_c::~daTagTWGate_c() {
     dComIfG_resDelete(&mPhaseZevArc, l_zevParamTbl[mType].mArcName);
 
-    if (mPhaseMdRes.id != cPhs_ZERO_e) {
+    if (mPhaseMdRes.id != cPhs_INIT_e) {
         dComIfG_resDelete(&mPhaseMdRes, "TWGate_Md");
     }
 
-    if (mPhasePyRes.id != cPhs_ZERO_e) {
+    if (mPhasePyRes.id != cPhs_INIT_e) {
         dComIfG_resDelete(&mPhasePyRes, mIsWolf ? "TWGate_Wf" : "TWGate_Lk");
     }
 }

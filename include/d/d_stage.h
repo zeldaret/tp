@@ -16,12 +16,12 @@ struct stage_vrboxcol_info_class {
 
 // Virt
 struct stage_vrbox_info_class {
-    /* 0x00 */ GXColor field_0x0;
-    /* 0x04 */ GXColor field_0x4;
-    /* 0x08 */ color_RGB_class field_0x8;
-    /* 0x0B */ color_RGB_class field_0xb;
-    /* 0x0E */ color_RGB_class field_0xe;
-    /* 0x11 */ color_RGB_class field_0x11;
+    /* 0x00 */ color_RGB_class field_0x0;
+    /* 0x03 */ color_RGB_class field_0x3;
+    /* 0x06 */ color_RGB_class field_0x6;
+    /* 0x09 */ GXColor field_0x9;
+    /* 0x0D */ GXColor field_0xd;
+    /* 0x11 */ GXColor field_0x11;
 };  // Size: 0x15
 
 class stage_tresure_class {
@@ -86,7 +86,13 @@ struct stage_scls_info_dummy_class {
 
 struct stage_pure_lightvec_info_class {
     // LGT
-    /* 0x00 */ u8 field_0x0[0x1E - 0x0];
+    /* 0x00 */ Vec m_position;
+    /* 0x0C */ f32 m_radius;
+    /* 0x10 */ f32 m_directionX;
+    /* 0x14 */ f32 m_directionY;
+    /* 0x18 */ f32 m_spotCutoff;
+    /* 0x1C */ u8 field_0x1c;
+    /* 0x1D */ u8 field_0x1d;
     /* 0x1E */ u8 field_0x1e;
     /* 0x1F */ u8 field_0x1f;
 };  // Size: 0x20
@@ -99,27 +105,28 @@ struct stage_pselect_info_class {
 
 struct stage_plight_info_class {
     // LGHT
-};
+    /* 0x00 */ Vec m_position;
+    /* 0x0C */ f32 m_radius;
+    /* 0x10 */ u8 field_0x10[0x18 - 0x10];
+    /* 0x18 */ GXColor m_color;
+};  // Size: 0x1C
 
 // PALE
 struct stage_palette_info_class {
-    /* 0x00 */ color_RGB_class mActor_C0;
-    /* 0x03 */ color_RGB_class mActor_K0;
-    /* 0x06 */ color_RGB_class mBG0_C0;
-    /* 0x09 */ color_RGB_class mBG0_K0;
-    /* 0x0C */ color_RGB_class mBG1_C0;
-    /* 0x0F */ color_RGB_class mBG1_K0;
-    /* 0x12 */ color_RGB_class mBG2_C0;
-    /* 0x15 */ color_RGB_class mBG2_K0;
-    /* 0x18 */ color_RGB_class mBG3_C0;
-    /* 0x1B */ color_RGB_class mBG3_K0;
-    /* 0x1E */ color_RGB_class mFog;
-    /* 0x21 */ u8 mVirtIdx;
-    /* 0x22 */ u8 field_0x22;
-    /* 0x23 */ u8 field_0x23;
+    /* 0x00 */ color_RGB_class mActorAmbColor;
+    /* 0x03 */ color_RGB_class mBgAmbColor[4];
+    /* 0x0F */ color_RGB_class mPlightColor[6];
+    /* 0x21 */ color_RGB_class mFogColor;
     /* 0x24 */ f32 mFogStartZ;
     /* 0x28 */ f32 mFogEndZ;
-    /* 0x2C */ u8 field_0x2c[8];
+    /* 0x2C */ u8 mVirtIdx;
+    /* 0x2D */ u8 mTerrainLightInfluence;
+    /* 0x2E */ u8 mCloudShadowDensity;
+    /* 0x2F */ u8 field_0x2f;
+    /* 0x30 */ u8 mBloomTblIdx;
+    /* 0x31 */ u8 mBgAmbColor1A;
+    /* 0x32 */ u8 mBgAmbColor2A;
+    /* 0x33 */ u8 mBgAmbColor3A;
 };  // Size: 0x34
 
 struct stage_map_info_class {
@@ -134,7 +141,7 @@ struct stage_map_info_dummy_class {
 };
 
 struct stage_envr_info_class {
-    /* 0x0 */ u8 field_0x0[0x41];
+    /* 0x0 */ u8 m_pselectID[65];
 };  // Size: 0x41
 
 struct stage_camera2_data_class {
@@ -295,13 +302,13 @@ struct dStage_Lbnk_c {
     // LBNK
 };
 
-struct dStage_Elst_c {
-    struct unkData {
-        u8 field_0x0[15];
-    };
+struct dStage_Elst_data {
+    /* 0x0 */ u8 m_layerTable[15];
+};
 
-    /* 0x0 */ int field_0x0;
-    /* 0x4 */ unkData* field_0x4;
+struct dStage_Elst_c {
+    /* 0x0 */ int m_entryNum;
+    /* 0x4 */ dStage_Elst_data* m_entries;
 };
 
 struct dStage_MemoryConfig_data {

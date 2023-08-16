@@ -1697,7 +1697,7 @@ int daNpcT_c::loadRes(s8 const* resNoList, char const** resNameList) {
         }
     }
 
-    return cPhs_ZERO_e;
+    return cPhs_INIT_e;
 }
 
 /* 801484AC-8014852C 142DEC 0080+00 0/0 0/0 58/58 .text            deleteRes__8daNpcT_cFPCScPPCc */

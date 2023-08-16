@@ -117,11 +117,11 @@ s32 fpcBs_SubCreate(base_process_class* i_proc) {
         fpcBs_DeleteAppend(i_proc);
         i_proc->mUnk2 = 2;
         return 2;
-    case cPhs_ZERO_e:
+    case cPhs_INIT_e:
     case 1:
         i_proc->mInitState = 1;
         i_proc->mUnk2 = 0;
-        return cPhs_ZERO_e;
+        return cPhs_INIT_e;
     case 3:
         i_proc->mUnk2 = 3;
         return 3;

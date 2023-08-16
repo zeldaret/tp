@@ -398,17 +398,14 @@ public:
     /* 0x1094 */ cXyz mMoonPos;
     /* 0x10A0 */ cXyz field_0x10a0;
     /* 0x10AC */ GXFogAdjTable mXFogTbl;
-    /* 0x10C0 */ GXColorS10 mSkyColor;
-    /* 0x10C8 */ GXColorS10 mUpperCloudColor;
-    /* 0x10D0 */ GXColorS10 mUnderCloudColor;
-    /* 0x10D8 */ GXColorS10 mUnderCloudShadowColor;
-    /* 0x10E0 */ GXColorS10 mCloudOuterHazeColor;
-    /* 0x10E8 */ GXColorS10 mCloudInnerHazeColor;
+    /* 0x10C0 */ GXColorS10 mVrSkyCol;
+    /* 0x10C8 */ GXColorS10 mVrkumoCol;
+    /* 0x10D0 */ GXColorS10 mVrShitaGumoCol;
+    /* 0x10D8 */ GXColorS10 mVrShitaUneiCol;
+    /* 0x10E0 */ GXColorS10 mVrKasumiCol;
+    /* 0x10E8 */ GXColorS10 mVrOkuKasumiCol;
     /* 0x10F0 */ GXColorS10 field_0x10f0;
-    /* 0x10F8 */ s16 field_0x10f8;
-    /* 0x10FA */ s16 field_0x10fa;
-    /* 0x10FC */ s16 field_0x10fc;
-    /* 0x10FE */ s16 field_0x10fe;
+    /* 0x10F8 */ GXColorS10 field_0x10f8;
     /* 0x1100 */ GXColorS10 mActorAmbience;
     /* 0x1108 */ GXColorS10 mTerrainAmbienceBG0;
     /* 0x1110 */ GXColorS10 mTerrainAmbienceBG1;
@@ -496,7 +493,7 @@ public:
     /* 0x12C3 */ u8 mColPatCurr;
     /* 0x12C4 */ u8 mColpatPrevGather;
     /* 0x12C5 */ u8 mColpatCurrGather;
-    /* 0x12C6 */ s8 mNowRoom;
+    /* 0x12C6 */ u8 mEnvrIdxPrev;
     /* 0x12C7 */ u8 mEnvrIdxCurr;
     /* 0x12C8 */ u8 mColpatWeather;
     /* 0x12C9 */ u8 mDiceWeatherMode;
@@ -528,7 +525,7 @@ public:
     /* 0x12FB */ u8 field_0x12fb;
     /* 0x12FC */ s8 field_0x12fc;
     /* 0x12FD */ u8 mDarktimeWeek;
-    /* 0x12FE */ u8 field_0x12fe;
+    /* 0x12FE */ u8 mPondSeason;
     /* 0x1300 */ s16 field_0x1300;
     /* 0x1302 */ s16 field_0x1302;
     /* 0x1304 */ f32 mWaterSurfaceShineRate;
@@ -546,6 +543,24 @@ STATIC_ASSERT(sizeof(dScnKy_env_light_c) == 4880);
 inline dScnKy_env_light_c* i_dKy_getEnvlight() {
     return &g_env_light;
 }
+
+enum dKy_dice_wether_mode {
+    DICE_MODE_SUNNY_e,
+    DICE_MODE_CLOUDY_e,
+    DICE_MODE_RAIN_LIGHT_e,
+    DICE_MODE_RAIN_HEAVY_e,
+    DICE_MODE_THUNDER_LIGHT_e,
+    DICE_MODE_THUNDER_HEAVY_e,
+    DICE_MODE_UNK6_e,
+    DICE_MODE_DONE_e = 0xFF,
+};
+
+enum dKy_dice_wether_state {
+    DICE_STATE_RESET_e,
+    DICE_STATE_INIT_e,
+    DICE_STATE_EXEC_e,
+    DICE_STATE_NEXT_e,
+};
 
 u8 dKy_darkworld_stage_check(char const*, int);
 BOOL dKy_withwarp_capture_check();
