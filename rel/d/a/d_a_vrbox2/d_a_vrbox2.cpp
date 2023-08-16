@@ -268,10 +268,10 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
         fogInfo_p->field_0x0 = 2;
     }
 
-    if ((g_env_light.mCloudOuterHazeColor.r + g_env_light.mCloudOuterHazeColor.g +
-         g_env_light.mCloudOuterHazeColor.b + g_env_light.mSkyColor.r + g_env_light.mSkyColor.g +
-         g_env_light.mSkyColor.b + g_env_light.mUpperCloudColor.r + g_env_light.mUpperCloudColor.g +
-         g_env_light.mUpperCloudColor.b) == 0)
+    if ((g_env_light.mVrKasumiCol.r + g_env_light.mVrKasumiCol.g +
+         g_env_light.mVrKasumiCol.b + g_env_light.mVrSkyCol.r + g_env_light.mVrSkyCol.g +
+         g_env_light.mVrSkyCol.b + g_env_light.mVrkumoCol.r + g_env_light.mVrkumoCol.g +
+         g_env_light.mVrkumoCol.b) == 0)
     {
         return 1;
     }
@@ -453,10 +453,10 @@ SECTION_DEAD static char const* const stringBase_80499AD4 = "R_SP30";
 static int daVrbox2_color_set(vrbox2_class* i_this) {
     dKankyo_sun_Packet* sun_p = g_env_light.mpSunPacket;
 
-    if ((g_env_light.mCloudOuterHazeColor.r + g_env_light.mCloudOuterHazeColor.g +
-         g_env_light.mCloudOuterHazeColor.b + g_env_light.mSkyColor.r + g_env_light.mSkyColor.g +
-         g_env_light.mSkyColor.b + g_env_light.mUpperCloudColor.r + g_env_light.mUpperCloudColor.g +
-         g_env_light.mUpperCloudColor.b) == 0)
+    if ((g_env_light.mVrKasumiCol.r + g_env_light.mVrKasumiCol.g +
+         g_env_light.mVrKasumiCol.b + g_env_light.mVrSkyCol.r + g_env_light.mVrSkyCol.g +
+         g_env_light.mVrSkyCol.b + g_env_light.mVrkumoCol.r + g_env_light.mVrkumoCol.g +
+         g_env_light.mVrkumoCol.b) == 0)
     {
         return 1;
     }
@@ -535,16 +535,16 @@ static int daVrbox2_color_set(vrbox2_class* i_this) {
         kumo_material0->setCullMode(0);
         kumo_material0->change();
 
-        k_color.r = g_env_light.mUnderCloudColor.r;
-        k_color.g = g_env_light.mUnderCloudColor.g;
-        k_color.b = g_env_light.mUnderCloudColor.b;
-        k_color.a = g_env_light.mUpperCloudColor.a;
+        k_color.r = g_env_light.mVrShitaGumoCol.r;
+        k_color.g = g_env_light.mVrShitaGumoCol.g;
+        k_color.b = g_env_light.mVrShitaGumoCol.b;
+        k_color.a = g_env_light.mVrkumoCol.a;
         kumo_material0->setTevKColor(0, &k_color);
 
-        color.r = g_env_light.mUnderCloudShadowColor.r;
-        color.g = g_env_light.mUnderCloudShadowColor.g;
-        color.b = g_env_light.mUnderCloudShadowColor.b;
-        color.a = (u8)g_env_light.mUpperCloudColor.a;
+        color.r = g_env_light.mVrShitaUneiCol.r;
+        color.g = g_env_light.mVrShitaUneiCol.g;
+        color.b = g_env_light.mVrShitaUneiCol.b;
+        color.a = (u8)g_env_light.mVrkumoCol.a;
         kumo_material0->setTevColor(0, &color);
     }
 
@@ -553,16 +553,16 @@ static int daVrbox2_color_set(vrbox2_class* i_this) {
         kumo_material1->setCullMode(0);
         kumo_material1->change();
 
-        k_color.r = g_env_light.mUnderCloudColor.r;
-        k_color.g = g_env_light.mUnderCloudColor.g;
-        k_color.b = g_env_light.mUnderCloudColor.b;
-        k_color.a = g_env_light.mUpperCloudColor.a;
+        k_color.r = g_env_light.mVrShitaGumoCol.r;
+        k_color.g = g_env_light.mVrShitaGumoCol.g;
+        k_color.b = g_env_light.mVrShitaGumoCol.b;
+        k_color.a = g_env_light.mVrkumoCol.a;
         kumo_material1->setTevKColor(0, &k_color);
 
-        color.r = g_env_light.mUnderCloudShadowColor.r;
-        color.g = g_env_light.mUnderCloudShadowColor.g;
-        color.b = g_env_light.mUnderCloudShadowColor.b;
-        color.a = g_env_light.mUpperCloudColor.a;
+        color.r = g_env_light.mVrShitaUneiCol.r;
+        color.g = g_env_light.mVrShitaUneiCol.g;
+        color.b = g_env_light.mVrShitaUneiCol.b;
+        color.a = g_env_light.mVrkumoCol.a;
         kumo_material1->setTevColor(0, &color);
     }
 
@@ -572,10 +572,10 @@ static int daVrbox2_color_set(vrbox2_class* i_this) {
         kasumim_material0->setCullMode(0);
         kasumim_material0->change();
 
-        color.r = g_env_light.mCloudOuterHazeColor.r;
-        color.g = g_env_light.mCloudOuterHazeColor.g;
-        color.b = g_env_light.mCloudOuterHazeColor.b;
-        color.a = g_env_light.mCloudOuterHazeColor.a;
+        color.r = g_env_light.mVrKasumiCol.r;
+        color.g = g_env_light.mVrKasumiCol.g;
+        color.b = g_env_light.mVrKasumiCol.b;
+        color.a = g_env_light.mVrKasumiCol.a;
         kasumim_material0->setTevColor(0, &color);
     }
 
@@ -671,7 +671,7 @@ static int daVrbox2_solidHeapCB(fopAc_ac_c* i_this) {
         a_this->model2_und = mDoExt_J3DModel__create(sun_modelData, 0x80000, 0x11020202);
 
         J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getStageRes("vrbox_sun.btk");
-        if (!a_this->mSunBtk.init(sun_modelData, pbtk, TRUE, 2, FLOAT_LABEL(lit_3627), 0, -1)) {
+        if (!a_this->mSunBtk.init(sun_modelData, pbtk, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, FLOAT_LABEL(lit_3627), 0, -1)) {
             return 0;
         }
     }

@@ -746,10 +746,10 @@ static int phase_1(dScnPly_c* scn) {
     // Stage: Fishing Pond, Room: Fishing Pond
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") && dComIfGp_getStartStageRoomNo() == 0 &&
         dComIfGp_getStartStagePoint() == 2) {
-        g_env_light.field_0x12fe++;
+        g_env_light.mPondSeason++;
 
-        if (g_env_light.field_0x12fe > 4) {
-            g_env_light.field_0x12fe = 1;
+        if (g_env_light.mPondSeason > 4) {
+            g_env_light.mPondSeason = 1;
         }
     }
 

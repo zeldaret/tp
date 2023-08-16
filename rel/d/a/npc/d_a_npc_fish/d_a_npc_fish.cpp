@@ -38,7 +38,7 @@ static void fish_set(fopAc_ac_c* i_this, fish_data_s* data) {
         }
         u32 param = data->param;
         pos = data->pos;
-        if ((param == 1u) && envLight->field_0x12fe != 2) {
+        if ((param == 1u) && envLight->mPondSeason != 2) {
             param = 2;
         }
         param |= data->field_0x10 << 8;
@@ -149,9 +149,9 @@ static int daNpc_Fish_Create(fopAc_ac_c* i_this) {
     } else {
         dScnKy_env_light_c* envLight = i_dKy_getEnvlight();
         s32 param = 0;
-        if (envLight->field_0x12fe == 2) {
+        if (envLight->mPondSeason == 2) {
             param = 160;
-        } else if (envLight->field_0x12fe == 3) {
+        } else if (envLight->mPondSeason == 3) {
             param = 64;
         }
         if (param != 0) {
@@ -160,7 +160,7 @@ static int daNpc_Fish_Create(fopAc_ac_c* i_this) {
                           NULL, -1);
         }
     }
-    if (g_env_light.field_0x12fe == 2) {
+    if (g_env_light.mPondSeason == 2) {
         for (int i = 0; i < 4; i++) {
             pos.set(cM_rndFX(700.0f) + -2936.0f, 0.0f, cM_rndFX(700.0f) + -7865.0f);
             csXyz angle(0, 0, -1);

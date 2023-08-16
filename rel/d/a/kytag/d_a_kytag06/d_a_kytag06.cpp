@@ -28,7 +28,7 @@ static void dice_wether_execute(u8 i_weatherMode, f32 i_weatherTime, f32 i_curre
     dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
     env_light->mDiceWeatherMode = i_weatherMode;
 
-    if (env_light->mDiceWeatherMode != 0xFF) {
+    if (env_light->mDiceWeatherMode != DICE_MODE_DONE_e) {
         env_light->mDiceWeatherTime =
             i_currentTime + i_weatherTime + cM_rndF(i_weatherTime) + cM_rndF(i_weatherTime);
 
@@ -38,7 +38,7 @@ static void dice_wether_execute(u8 i_weatherMode, f32 i_weatherTime, f32 i_curre
 
         env_light->mDiceWeatherCounter++;
     } else {
-        env_light->mDiceWeatherMode = 0;
+        env_light->mDiceWeatherMode = DICE_MODE_SUNNY_e;
         env_light->mDiceWeatherState++;
     }
 }
@@ -105,17 +105,17 @@ static void dKy_event_proc() {
             f32 current_time = dComIfGs_getTime();
 
             switch (env_light->mDiceWeatherState) {
-            case 0:
+            case DICE_STATE_RESET_e:
                 if (current_time > env_light->mDiceWeatherChangeTime &&
                     current_time - env_light->mDiceWeatherChangeTime < 15.0f)
                 {
-                    env_light->mDiceWeatherState = 1;
+                    env_light->mDiceWeatherState = DICE_STATE_INIT_e;
                 }
                 break;
-            case 1:
+            case DICE_STATE_INIT_e:
                 u8 table_no = cM_rndF(12.99f);
                 if (table_no >= 8) {
-                    env_light->mDiceWeatherState = 3;
+                    env_light->mDiceWeatherState = DICE_STATE_NEXT_e;
                 } else {
                     env_light->mDiceWeatherCurrPattern = S_wether_table[table_no];
                     env_light->mDiceWeatherCounter = 0;
@@ -152,7 +152,7 @@ static void dKy_event_proc() {
                     env_light->mDiceWeatherState++;
                 }
                 break;
-            case 2:
+            case DICE_STATE_EXEC_e:
                 if (current_time > env_light->mDiceWeatherTime &&
                     current_time - env_light->mDiceWeatherTime < 180.0f)
                 {
@@ -185,7 +185,7 @@ static void dKy_event_proc() {
                     }
                 }
                 break;
-            case 3:
+            case DICE_STATE_NEXT_e:
                 u8 time_table_no = cM_rndF(7.99f);
                 env_light->mDiceWeatherChangeTime = current_time + S_time_table[time_table_no];
 
@@ -193,19 +193,19 @@ static void dKy_event_proc() {
                     env_light->mDiceWeatherChangeTime -= 360.0f;
                 }
 
-                env_light->mDiceWeatherState = 0;
+                env_light->mDiceWeatherState = DICE_STATE_RESET_e;
                 break;
             }
 
             if (g_env_light.field_0x130b == 1) {
-                env_light->mDiceWeatherMode = 6;
+                env_light->mDiceWeatherMode = DICE_MODE_UNK6_e;
             }
 
             if (g_env_light.mColPatMode == 0 && g_env_light.mColPatModeGather == 0) {
                 u8 weather_colpat;
 
                 switch (env_light->mDiceWeatherMode) {
-                case 0:
+                case DICE_MODE_SUNNY_e:
                     weather_colpat = 0;
                     if (g_env_light.mThunderEff.mMode == 1) {
                         g_env_light.mThunderEff.mMode = 0;
@@ -213,12 +213,12 @@ static void dKy_event_proc() {
 
                     dice_rain_minus();
                     break;
-                case 1:
+                case DICE_MODE_CLOUDY_e:
                     g_env_light.mThunderEff.mMode = 0;
                     weather_colpat = 1;
                     dice_rain_minus();
                     break;
-                case 2:
+                case DICE_MODE_RAIN_LIGHT_e:
                     weather_colpat = 1;
                     if (env_light->mRainCount < 40) {
                         env_light->mRainCount++;
@@ -228,21 +228,21 @@ static void dKy_event_proc() {
                         dKyw_rain_set(env_light->mRainCount);
                     }
                     break;
-                case 5:
+                case DICE_MODE_THUNDER_HEAVY_e:
                     g_env_light.mThunderEff.mMode = 1;
-                case 3:
+                case DICE_MODE_RAIN_HEAVY_e:
                     weather_colpat = 2;
                     if (env_light->mRainCount < 250) {
                         env_light->mRainCount++;
                         dKyw_rain_set(env_light->mRainCount);
                     }
                     break;
-                case 4:
+                case DICE_MODE_THUNDER_LIGHT_e:
                     weather_colpat = 1;
                     g_env_light.mThunderEff.mMode = 1;
                     dice_rain_minus();
                     break;
-                case 6:
+                case DICE_MODE_UNK6_e:
                     weather_colpat = 0;
                     if (g_env_light.mThunderEff.mMode == 1) {
                         g_env_light.mThunderEff.mMode = 0;

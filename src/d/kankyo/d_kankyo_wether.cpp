@@ -1152,7 +1152,7 @@ static void wether_move_housi() {
                     g_env_light.mpHousiPacket->mpResTex = (u8*)dComIfG_getObjectRes("Always", 0x5E);
                 } else {
                     if (g_env_light.field_0xea9 == 2) {
-                        if (g_env_light.field_0x12fe == 3) {
+                        if (g_env_light.mPondSeason == 3) {
                             g_env_light.mpHousiPacket->mpResTex =
                                 (u8*)dComIfG_getStageRes("momiji64s3tc.bti");
                         } else {
@@ -1531,8 +1531,8 @@ void dKyw_wether_proc() {
 
     // Stage is Fishing Pond
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") &&
-        (g_env_light.field_0x12fe == 1 || g_env_light.field_0x12fe == 3)) {
-        if (g_env_light.field_0x12fe == 1) {
+        (g_env_light.mPondSeason == 1 || g_env_light.mPondSeason == 3)) {
+        if (g_env_light.mPondSeason == 1) {
             g_env_light.mHousiCount = 35;
         } else {
             g_env_light.mHousiCount = 30;
