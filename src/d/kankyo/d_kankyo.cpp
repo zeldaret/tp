@@ -1601,7 +1601,7 @@ static void envcolor_init() {
         g_env_light.mpSchedule = dKyd_schejule_getp();
     }
 
-    g_env_light.mNowRoom = dComIfGp_roomControl_getStayNo();
+    g_env_light.mEnvrIdxPrev = dComIfGp_roomControl_getStayNo();
     g_env_light.mEnvrIdxCurr = dComIfGp_roomControl_getStayNo();
     g_env_light.mColPatBlend = 1.0f;
     g_env_light.field_0x12b0 = 0;
@@ -3675,7 +3675,7 @@ void dScnKy_env_light_c::drawKankyo() {
     setSunpos();
     SetBaseLight();
     setLight();
-    dKy_setLight_nowroom(g_env_light.mNowRoom);
+    dKy_setLight_nowroom(g_env_light.mEnvrIdxPrev);
 }
 
 /* ############################################################################################## */

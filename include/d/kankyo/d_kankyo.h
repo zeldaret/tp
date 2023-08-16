@@ -499,7 +499,7 @@ public:
     /* 0x12C3 */ u8 mColPatCurr;
     /* 0x12C4 */ u8 mColpatPrevGather;
     /* 0x12C5 */ u8 mColpatCurrGather;
-    /* 0x12C6 */ s8 mNowRoom;
+    /* 0x12C6 */ u8 mEnvrIdxPrev;
     /* 0x12C7 */ u8 mEnvrIdxCurr;
     /* 0x12C8 */ u8 mColpatWeather;
     /* 0x12C9 */ u8 mDiceWeatherMode;

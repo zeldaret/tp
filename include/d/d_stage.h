@@ -297,13 +297,13 @@ struct dStage_Lbnk_c {
     // LBNK
 };
 
-struct dStage_Elst_c {
-    struct unkData {
-        u8 field_0x0[15];
-    };
+struct dStage_Elst_data {
+    /* 0x0 */ u8 m_layerTable[15];
+};
 
-    /* 0x0 */ int field_0x0;
-    /* 0x4 */ unkData* field_0x4;
+struct dStage_Elst_c {
+    /* 0x0 */ int m_entryNum;
+    /* 0x4 */ dStage_Elst_data* m_entries;
 };
 
 struct dStage_MemoryConfig_data {
