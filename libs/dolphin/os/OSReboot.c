@@ -4,7 +4,6 @@
 //
 
 #include "dolphin/os/OSReboot.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

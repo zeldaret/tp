@@ -2,10 +2,8 @@
 #define Z2SPEECHMGR2_H
 
 #include "JSystem/JAudio2/JAISoundHandles.h"
-#include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JMath/random.h"
 #include "Z2AudioLib/Z2SoundStarter.h"
-#include "dolphin/mtx/vec.h"
 #include "global.h"
 
 struct Z2SpeechStarter : public Z2SoundStarter {

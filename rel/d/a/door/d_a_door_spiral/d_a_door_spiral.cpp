@@ -5,7 +5,6 @@
 
 #include "rel/d/a/door/d_a_door_spiral/d_a_door_spiral.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

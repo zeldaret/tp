@@ -5,7 +5,6 @@
 
 #include "rel/d/a/tag/d_a_tag_allmato/d_a_tag_allmato.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

@@ -99,7 +99,6 @@
  *                     = 1 - 2*(tan(y) - (tan(y)^2)/(1+tan(y)))
  */
 
-#include "fdlibm.h"
 #include "MSL_C/math.h"
 static const double one = 1.00000000000000000000e+00, /* 0x3FF00000, 0x00000000 */
     pio4                = 7.85398163397448278999e-01, /* 0x3FE921FB, 0x54442D18 */

@@ -5,7 +5,6 @@
 
 #include "d/d_error_msg.h"
 #include "dol2asm.h"
-#include "dolphin/dvd/dvd.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 

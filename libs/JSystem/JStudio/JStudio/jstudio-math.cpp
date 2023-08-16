@@ -5,7 +5,6 @@
 
 #include "JSystem/JStudio/JStudio/jstudio-math.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

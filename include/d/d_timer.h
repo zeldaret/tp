@@ -1,10 +1,6 @@
 #ifndef D_D_TIMER_H
 #define D_D_TIMER_H
 
-#include "JSystem/J2DGraph/J2DPane.h"
-#include "SSystem/SComponent/c_phase.h"
-#include "SSystem/SComponent/c_xyz.h"
-#include "d/d_drawlist.h"
 #include "d/msg/d_msg_object.h"
 #include "dolphin/os/OSTime.h"
 #include "dolphin/types.h"

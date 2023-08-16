@@ -2,7 +2,6 @@
 #define D_D_SPLINE_PATH_H
 
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/types.h"
 
 struct dPath;
 

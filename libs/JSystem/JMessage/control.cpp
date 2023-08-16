@@ -4,7 +4,6 @@
  */
 
 #include "JSystem/JMessage/control.h"
-#include "JSystem/JMessage/processor.h"
 
 //
 // External References:

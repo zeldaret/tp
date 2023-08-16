@@ -4,7 +4,6 @@
 #include "JSystem/JGadget/linklist.h"
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JUtility/JUTFont.h"
-#include "JSystem/JUtility/TColor.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dolphin/types.h"
 

@@ -2,7 +2,6 @@
 #define C_MATH_H
 
 #include "JSystem/JMath/JMATrigonometric.h"
-#include "dolphin/types.h"
 
 s16 cM_rad2s(float rad);
 u16 U_GetAtanTable(float, float);

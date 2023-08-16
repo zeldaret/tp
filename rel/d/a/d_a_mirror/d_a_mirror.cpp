@@ -5,10 +5,6 @@
 
 #include "rel/d/a/d_a_mirror/d_a_mirror.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-#include "dolphin/gf/GFGeometry.h"
-#include "dolphin/gf/GFLight.h"
-#include "MSL_C/float.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "d/a/d_a_player.h"

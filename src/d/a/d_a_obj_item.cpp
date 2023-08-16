@@ -4,14 +4,11 @@
 //
 
 #include "d/a/d_a_obj_item.h"
-#include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_item.h"
 #include "d/d_item_data.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-#include "f_op/f_op_actor_mng.h"
 #include "global.h"
 #include "m_Do/m_Do_mtx.h"
 

@@ -4,8 +4,6 @@
 //
 
 #include "SSystem/SComponent/c_bg_s_lin_chk.h"
-#include "SSystem/SComponent/c_bg_s_chk.h"
-#include "SSystem/SComponent/c_bg_s_poly_info.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

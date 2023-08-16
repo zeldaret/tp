@@ -4,8 +4,6 @@
 #include "JSystem/J3DGraphBase/J3DStruct.h"
 #include "JSystem/J3DGraphBase/J3DTevs.h"
 #include "JSystem/J3DGraphBase/J3DTexture.h"
-#include "dolphin/gx/GXStruct.h"
-#include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_lib.h"
 

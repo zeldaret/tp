@@ -2,9 +2,7 @@
 
 #include "msg/scrn/d_msg_scrn_arrow.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
-#include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
-#include "JSystem/JKernel/JKRExpHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/pane/d_pane_class.h"
 #include "dolphin/os/OS.h"

@@ -6,7 +6,6 @@
 #include "rel/d/a/tag/d_a_tag_shop_camera/d_a_tag_shop_camera.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
-#include "d/d_procname.h"
 
 
 /* 80D60898-80D608FC 000078 0064+00 1/1 0/0 0/0 .text            create__18daTag_ShopCamera_cFv */

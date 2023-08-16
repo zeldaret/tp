@@ -1,7 +1,6 @@
 #ifndef GXGEOMETRY_H
 #define GXGEOMETRY_H
 
-#include "dolphin/gx/GXStruct.h"
 #include "dolphin/gx/GXEnum.h"
 
 #ifdef __cplusplus

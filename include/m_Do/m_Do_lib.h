@@ -2,7 +2,6 @@
 #define M_DO_M_DO_LIB_H
 
 #include "JSystem/J3DU/J3DUClipper.h"
-#include "dolphin/types.h"
 
 typedef struct _GXTexObj GXTexObj;
 typedef struct _GXTlutObj GXTlutObj;

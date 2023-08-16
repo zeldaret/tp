@@ -2,7 +2,6 @@
 #define JKRFILE_H
 
 #include "JSystem/JKernel/JKRDisposer.h"
-#include "dolphin/types.h"
 
 class JKRFile : public JKRDisposer {
 public:

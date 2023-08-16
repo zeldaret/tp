@@ -7,9 +7,6 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_stone/d_a_obj_stone.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JMath/JMath.h"
-#include "SSystem/SComponent/c_math.h"
 #include "d/d_lib.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"

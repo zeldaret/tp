@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/JAudio2/JAUBankTable.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 /* 802A4A80-802A4AA0 29F3C0 0020+00 0/0 1/1 0/0 .text

@@ -3,7 +3,6 @@
 
 #include "d/com/d_com_inf_game.h"
 #include "d/particle/d_particle_copoly.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 #include "d/d_path.h"
 

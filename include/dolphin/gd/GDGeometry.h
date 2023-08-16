@@ -1,7 +1,6 @@
 #ifndef GDGEOMETRY_H
 #define GDGEOMETRY_H
 
-#include "dolphin/gx/GXEnum.h"
 #include "dolphin/types.h"
 
 #ifdef __cplusplus

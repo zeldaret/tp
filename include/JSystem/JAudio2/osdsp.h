@@ -1,7 +1,6 @@
 #ifndef OSDSP_H
 #define OSDSP_H
 
-#include "dolphin/types.h"
 
 struct DSPTaskInfo;
 struct STRUCT_DSP_TASK;

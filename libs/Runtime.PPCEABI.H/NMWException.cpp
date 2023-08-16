@@ -5,7 +5,6 @@
 
 #include "Runtime.PPCEABI.H/NMWException.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

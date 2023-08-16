@@ -2,7 +2,6 @@
 #define JAISTREAMDATAMGR_H
 
 #include "JSystem/JAudio2/JAISound.h"
-#include "dolphin/types.h"
 
 struct JAIStreamDataMgr {
     virtual void getStreamFileEntry(JAISoundID) = 0;

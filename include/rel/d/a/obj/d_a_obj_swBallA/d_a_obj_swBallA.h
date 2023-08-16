@@ -1,7 +1,6 @@
 #ifndef D_A_OBJ_SWBALLA_H
 #define D_A_OBJ_SWBALLA_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 class daObjSwBallA_c {

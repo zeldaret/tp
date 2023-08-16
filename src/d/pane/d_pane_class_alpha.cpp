@@ -6,8 +6,6 @@
 #include "d/pane/d_pane_class_alpha.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
 
 /* 802553EC-802553FC 24FD2C 0010+00 0/0 2/2 0/0 .text            __ct__13CPaneMgrAlphaFv */

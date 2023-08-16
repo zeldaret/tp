@@ -1,7 +1,6 @@
 #ifndef C_TREE_H
 #define C_TREE_H
 
-#include "dolphin/types.h"
 
 typedef struct node_class node_class;
 typedef struct node_list_class node_list_class;

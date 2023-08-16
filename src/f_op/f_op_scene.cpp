@@ -4,7 +4,6 @@
  */
 
 #include "f_op/f_op_scene.h"
-#include "f_op/f_op_scene_tag.h"
 #include "f_pc/f_pc_manager.h"
 
 /* 8001EB34-8001EB5C 019474 0028+00 1/0 0/0 0/0 .text            fopScn_Draw__FP11scene_class */

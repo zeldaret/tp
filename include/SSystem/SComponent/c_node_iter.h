@@ -1,7 +1,6 @@
 #ifndef C_NODE_ITER_H
 #define C_NODE_ITER_H
 
-#include "dolphin/types.h"
 
 typedef struct node_class node_class;
 

@@ -1,7 +1,6 @@
 #ifndef D_A_B_ZANT_H
 #define D_A_B_ZANT_H
 
-#include "d/com/d_com_inf_game.h"
 
 class daB_ZANT_c : public fopAc_ac_c {
 public:

@@ -1,7 +1,6 @@
 #ifndef D_A_D_A_HORSE_STATIC_H
 #define D_A_D_A_HORSE_STATIC_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
 class daTagHstop_c : public fopAc_ac_c {

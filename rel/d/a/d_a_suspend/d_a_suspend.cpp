@@ -6,7 +6,6 @@
 #include "rel/d/a/d_a_suspend/d_a_suspend.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
-#include "f_op/f_op_actor_mng.h"
 
 /* 804D5118-804D51E0 000078 00C8+00 1/1 0/0 0/0 .text            create__7daSus_cFv */
 int daSus_c::create() {

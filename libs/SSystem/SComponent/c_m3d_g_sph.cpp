@@ -5,7 +5,6 @@
 
 #include "SSystem/SComponent/c_m3d_g_sph.h"
 #include "SSystem/SComponent/c_m3d.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

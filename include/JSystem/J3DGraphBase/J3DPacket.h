@@ -3,7 +3,6 @@
 
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "dolphin/gd/GDBase.h"
-#include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 
 class J3DMatPacket;

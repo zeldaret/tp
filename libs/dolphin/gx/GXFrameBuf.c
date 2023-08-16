@@ -4,7 +4,6 @@
 //
 
 #include "dolphin/gx/GXFrameBuf.h"
-#include "dolphin/gx/GXInit.h"
 #include "dolphin/gx/GX.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"

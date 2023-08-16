@@ -1,8 +1,6 @@
 #ifndef D_S_D_S_LOGO_H
 #define D_S_D_S_LOGO_H
 
-#include "SSystem/SComponent/c_phase.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_scene.h"
 
 class JKRExpHeap;

@@ -7,7 +7,6 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
 #include "f_op/f_op_actor_mng.h"
 
 /* 8048D958-8048D9BC 000078 0064+00 1/1 0/0 0/0 .text            create__12daTag_Howl_cFv */

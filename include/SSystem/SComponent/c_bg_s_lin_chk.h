@@ -4,7 +4,6 @@
 #include "SSystem/SComponent/c_bg_s_chk.h"
 #include "SSystem/SComponent/c_bg_s_poly_info.h"
 #include "SSystem/SComponent/c_m3d_g_lin.h"
-#include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
 
 class cBgS_LinChk : public cBgS_Chk, public cBgS_PolyInfo {

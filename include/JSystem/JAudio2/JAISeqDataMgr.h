@@ -2,7 +2,6 @@
 #define JAISEQDATAMGR_H
 
 #include "JSystem/JAudio2/JAISound.h"
-#include "dolphin/types.h"
 
 struct JAISeqData {
     JAISeqData(void* param_0, u32 param_1) {

@@ -1,7 +1,6 @@
 #ifndef JMESSAGE_LOCALE_H
 #define JMESSAGE_LOCALE_H
 
-#include "dolphin/types.h"
 
 namespace JMessage {
 struct locale {

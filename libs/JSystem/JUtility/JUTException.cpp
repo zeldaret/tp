@@ -5,12 +5,10 @@
 
 #include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JUtility/JUTConsole.h"
-#include "JSystem/JUtility/JUTDirectFile.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "MSL_C/float.h"
 #include "MSL_C/stdio.h"
 #include "MSL_C/stdlib.h"
-#include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
 #include "global.h"

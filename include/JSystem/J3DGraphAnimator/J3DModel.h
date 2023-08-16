@@ -1,11 +1,8 @@
 #ifndef J3DMODEL_H
 #define J3DMODEL_H
 
-#include "JSystem/J3DGraphAnimator/J3DModelData.h"
-#include "JSystem/J3DGraphAnimator/J3DMtxBuffer.h"
 #include "JSystem/J3DGraphAnimator/J3DSkinDeform.h"
 #include "JSystem/J3DGraphBase/J3DPacket.h"
-#include "JSystem/J3DGraphBase/J3DShape.h"
 #include "JSystem/J3DGraphBase/J3DVertex.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"

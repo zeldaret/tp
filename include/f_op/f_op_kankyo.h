@@ -2,7 +2,6 @@
 #define F_OP_F_OP_KANKYO_H
 
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/types.h"
 #include "f_pc/f_pc_leaf.h"
 
 class kankyo_class : public leafdraw_class {

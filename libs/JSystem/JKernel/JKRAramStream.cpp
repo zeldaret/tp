@@ -5,9 +5,7 @@
 
 #include "JSystem/JKernel/JKRAramStream.h"
 #include "JSystem/JKernel/JKRAramPiece.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSUFileStream.h"
-#include "JSystem/JSupport/JSURandomInputStream.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "global.h"
 

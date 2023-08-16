@@ -1,7 +1,6 @@
 #ifndef JSGSYSTEM_H
 #define JSGSYSTEM_H
 
-#include "dolphin/types.h"
 #include "JSystem/JStage/JSGObject.h"
 
 namespace JStage {

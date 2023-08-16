@@ -5,7 +5,6 @@
 
 #include "rel/d/a/d_a_tbox/d_a_tbox.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

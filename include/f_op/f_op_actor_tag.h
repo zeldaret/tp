@@ -2,7 +2,6 @@
 #define F_OP_ACTOR_TAG_H_
 
 #include "SSystem/SComponent/c_tag.h"
-#include "dolphin/types.h"
 
 u32 fopAcTg_ActorQTo(create_tag_class* pTag);
 u32 fopAcTg_Init(create_tag_class* pTag, void* data);

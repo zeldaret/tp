@@ -1,9 +1,7 @@
 #ifndef D_S_D_S_PLAY_H
 #define D_S_D_S_PLAY_H
 
-#include "SSystem/SComponent/c_phase.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_scene.h"
 
 class mDoDvdThd_mountXArchive_c;

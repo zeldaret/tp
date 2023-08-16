@@ -5,7 +5,6 @@
 
 #include "dolphin/os/__ppc_eabi_init.h"
 #include "dol2asm.h"
-#include "dolphin/base/PPCArch.h"
 
 //
 // Forward References:

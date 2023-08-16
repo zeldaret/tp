@@ -4,13 +4,8 @@
 //
 
 #include "JSystem/JFramework/JFWSystem.h"
-#include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
-#include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTConsole.h"
-#include "JSystem/JUtility/JUTDirectPrint.h"
-#include "JSystem/JUtility/JUTException.h"
-#include "JSystem/JUtility/JUTGamePad.h"
 #include "JSystem/JUtility/JUTGraphFifo.h"
 #include "JSystem/JUtility/JUTVideo.h"
 #include "dol2asm.h"

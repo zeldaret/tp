@@ -5,12 +5,9 @@
 
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JParticle/JPAEmitterManager.h"
-#include "JSystem/JParticle/JPADynamicsBlock.h"
 #include "JSystem/JParticle/JPAParticle.h"
-#include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
 #include "JSystem/JParticle/JPABaseShape.h"
-#include "dolphin/mtx/mtx.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 

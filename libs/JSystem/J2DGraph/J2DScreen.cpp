@@ -4,13 +4,9 @@
 //
 
 #include "JSystem/J2DGraph/J2DScreen.h"
-#include "JSystem/J2DGraph/J2DMaterial.h"
-#include "JSystem/J2DGraph/J2DMaterialFactory.h"
-#include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "JSystem/J2DGraph/J2DPictureEx.h"
 #include "JSystem/J2DGraph/J2DTextBoxEx.h"
 #include "JSystem/J2DGraph/J2DWindowEx.h"
-#include "JSystem/JGeometry.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSUMemoryStream.h"

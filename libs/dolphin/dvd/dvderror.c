@@ -4,7 +4,6 @@
 //
 
 #include "dolphin/dvd/dvderror.h"
-#include "dol2asm.h"
 #include "dolphin/os/OSRtc.h"
 #include "dolphin/types.h"
 

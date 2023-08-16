@@ -4,10 +4,6 @@
  */
 
 #include "rel/d/a/b/d_a_b_oh/d_a_b_oh.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "SSystem/SComponent/c_math.h"
-#include "c/c_damagereaction.h"
-#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"

@@ -4,7 +4,6 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_zcloth/d_a_obj_zcloth.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"

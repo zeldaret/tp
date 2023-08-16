@@ -6,7 +6,6 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 /* 80542178-80542180 000078 0008+00 1/0 0/0 0/0 .text daNpc_Fish_Draw__FP14npc_fish_class */
 static int daNpc_Fish_Draw(npc_fish_class* i_this) {

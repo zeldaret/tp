@@ -6,7 +6,6 @@
 #include "rel/d/a/kytag/d_a_kytag17/d_a_kytag17.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
-#include "d/kankyo/d_kankyo.h"
 
 /* 8046DB58-8046DB60 000078 0008+00 1/0 0/0 0/0 .text            daKytag17_Draw__FP13kytag17_class
  */

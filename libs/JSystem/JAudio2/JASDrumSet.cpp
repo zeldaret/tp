@@ -6,7 +6,6 @@
 #include "JSystem/JAudio2/JASDrumSet.h"
 #include "JSystem/JAudio2/JASCalc.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dolphin/types.h"
 
 //
 // Types:

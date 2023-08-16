@@ -3,7 +3,6 @@
 
 #include "SSystem/SComponent/c_xyz.h"
 #include "d/msg/d_msg_flow.h"
-#include "dolphin/types.h"
 
 struct CSTControl;
 class J2DAnmTextureSRTKey;

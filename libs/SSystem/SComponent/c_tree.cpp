@@ -5,7 +5,6 @@
 
 #include "SSystem/SComponent/c_tree.h"
 #include "SSystem/SComponent/c_list.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 /* 80266440-80266460 0020+00 s=0 e=1 z=0  None .text      cTr_SingleCut__FP10node_class */

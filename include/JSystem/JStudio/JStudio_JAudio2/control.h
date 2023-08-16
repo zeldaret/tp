@@ -1,7 +1,6 @@
 #ifndef JSTUDIO_JAUDIO2_CONTROL_H
 #define JSTUDIO_JAUDIO2_CONTROL_H
 
-#include "dolphin/types.h"
 #include "JSystem/JAudio2/JAISoundHandles.h"
 #include "JSystem/JAudio2/JAISoundStarter.h"
 #include "JSystem/JStage/JSGSystem.h"

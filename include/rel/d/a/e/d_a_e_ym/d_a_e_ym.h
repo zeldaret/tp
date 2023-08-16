@@ -3,7 +3,6 @@
 
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/cc/d_cc_uty.h"
-#include "d/com/d_com_inf_game.h"
 
 class daE_YM_HIO_c {
 public:

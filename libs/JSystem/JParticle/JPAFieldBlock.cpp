@@ -5,7 +5,6 @@
 
 #include "JSystem/JParticle/JPAFieldBlock.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

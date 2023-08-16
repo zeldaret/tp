@@ -1,9 +1,7 @@
 #ifndef D_FILE_D_FILE_SELECT_H
 #define D_FILE_D_FILE_SELECT_H
 
-#include "dolphin/types.h"
 #include "d/com/d_com_inf_game.h"
-#include "m_Do/m_Do_MemCard.h"
 #include "d/file/d_file_sel_warning.h"
 #include "d/d_name.h"
 #include "d/msg/d_msg_string.h"

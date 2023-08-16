@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/JStudio/JStudio/object-id.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

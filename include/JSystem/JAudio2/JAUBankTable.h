@@ -2,7 +2,6 @@
 #define JAUBANKTABLE_H
 
 #include "JSystem/JSupport/JSUList.h"
-#include "dolphin/types.h"
 
 template <typename T>
 struct JASPtrTable {

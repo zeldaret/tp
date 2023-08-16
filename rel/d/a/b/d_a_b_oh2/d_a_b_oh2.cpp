@@ -10,7 +10,6 @@
 #include "c/c_damagereaction.h"
 #include "d/d_procname.h"
 #include "f_op/f_op_actor_mng.h"
-#include "m_Do/m_Do_graphic.h"
 
 /* 8061DCB8-8061DDB0 000078 00F8+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
 static int nodeCallBack(J3DJoint* i_joint, int param_1) {

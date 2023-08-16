@@ -5,7 +5,6 @@
 
 #include "msg/scrn/d_msg_scrn_jimaku.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

@@ -1,5 +1,4 @@
 #include "MSL_C/MSL_Common/Src/abort_exit.h"
-#include "MSL_C/MSL_Common/Src/signal.h"
 #include "MSL_C/MSL_Common/Src/stddef.h"
 
 extern unsigned char data_804519A0[8];

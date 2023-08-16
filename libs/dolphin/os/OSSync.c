@@ -1,5 +1,4 @@
 #include "dolphin/os/OSSync.h"
-#include "dolphin/base/PPCArch.h"
 #include "dolphin/os/OS.h"
 
 void __OSSystemCallVectorStart();

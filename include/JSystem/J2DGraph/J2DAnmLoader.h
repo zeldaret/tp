@@ -2,7 +2,6 @@
 #define J2DANMLOADER_H
 
 #include "JSystem/J2DGraph/J2DAnimation.h"
-#include "dolphin/types.h"
 
 struct J2DAnmLoaderDataBase {
     /* 80308A6C */ static J2DAnmBase* load(void const*);

@@ -3,7 +3,6 @@
 
 #include "d/a/d_a_npc.h"
 #include "d/shop/d_shop_item_ctrl.h"
-#include "dolphin/types.h"
 
 class dSelect_cursor_c;
 struct STControl;

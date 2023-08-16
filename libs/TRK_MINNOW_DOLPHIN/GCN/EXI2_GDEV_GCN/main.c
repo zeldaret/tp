@@ -6,7 +6,6 @@
 #include "TRK_MINNOW_DOLPHIN/GCN/EXI2_GDEV_GCN/main.h"
 #include "TRK_MINNOW_DOLPHIN/utils/common/CircleBuffer.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

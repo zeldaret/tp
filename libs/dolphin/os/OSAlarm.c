@@ -4,8 +4,6 @@
 //
 
 #include "dolphin/os/OSAlarm.h"
-#include "dol2asm.h"
-#include "dolphin/base/PPCArch.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/os/OSReset.h"
 

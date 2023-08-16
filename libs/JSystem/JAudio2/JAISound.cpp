@@ -4,12 +4,10 @@
 //
 
 #include "JSystem/JAudio2/JAISound.h"
-#include "JSystem/JAudio2/JAIAudible.h"
 #include "JSystem/JAudio2/JAIAudience.h"
 #include "JSystem/JAudio2/JAISoundHandles.h"
 #include "JSystem/JAudio2/JASReport.h"
 #include "JSystem/JAudio2/JASTrack.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 //

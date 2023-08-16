@@ -2,7 +2,6 @@
 #define D_D_TRESURE_H
 
 #include "dolphin/mtx/vec.h"
-#include "dolphin/types.h"
 
 class dTres_c {
 public:

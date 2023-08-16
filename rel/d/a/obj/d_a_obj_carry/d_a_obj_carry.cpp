@@ -4,16 +4,13 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
-#include "rel/d/a/d_a_mirror/d_a_mirror.h"
 #include "rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA.h"
 #include "rel/d/a/obj/d_a_obj_swBallB/d_a_obj_swBallB.h"
 #include "rel/d/a/tag/d_a_tag_setBall/d_a_tag_setBall.h"
-#include "MSL_C/string.h"
 #include "d/d_stage.h"
 #include "d/d_lib.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
-#include "dolphin/types.h"
 #include "d/d_procname.h"
 #include "SSystem/SComponent/c_math.h"
 #include "JSystem/JKernel/JKRHeap.h"

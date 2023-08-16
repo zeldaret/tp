@@ -8,7 +8,6 @@
 #include "SSystem/SComponent/c_lib.h"
 #include "d/d_item_data.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 u8 daItemBase_c::getItemNo() {
     return m_itemNo;

@@ -2,7 +2,6 @@
 #define F_F_OP_KANKYO_MNG_H_
 
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/types.h"
 #include "f_pc/f_pc_manager.h"
 
 struct fopKyM_prm_class {

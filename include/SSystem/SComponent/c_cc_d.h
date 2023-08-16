@@ -6,7 +6,6 @@
 #include "SSystem/SComponent/c_m3d_g_cyl.h"
 #include "SSystem/SComponent/c_m3d_g_sph.h"
 #include "SSystem/SComponent/c_m3d_g_tri.h"
-#include "global.h"
 
 typedef struct _GXColor GXColor;
 class fopAc_ac_c;

@@ -1,7 +1,6 @@
 #ifndef C_C_DAMAGEREACTION_H
 #define C_C_DAMAGEREACTION_H
 
-#include "dolphin/types.h"
 #include "JSystem/JParticle/JPAParticle.h"
 
 class JPTraceParticleCallBack4 /* : JPAParticleCallBack */ {

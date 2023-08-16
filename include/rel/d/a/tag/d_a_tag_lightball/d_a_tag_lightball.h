@@ -1,7 +1,6 @@
 #ifndef D_A_TAG_LIGHTBALL_H
 #define D_A_TAG_LIGHTBALL_H
 
-#include "d/kankyo/d_kankyo.h"
 #include "f_op/f_op_actor_mng.h"
 
 class daTagLightBall_c : public fopAc_ac_c {

@@ -1,9 +1,7 @@
 #ifndef J2DWINDOWEX_H
 #define J2DWINDOWEX_H
 
-#include "JSystem/J2DGraph/J2DMaterial.h"
 #include "JSystem/J2DGraph/J2DWindow.h"
-#include "dolphin/gx/GXEnum.h"
 #include "dolphin/types.h"
 
 class J2DWindowEx : public J2DWindow {

@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/JKernel/JKRThread.h"
-#include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "MSL_C/stdio.h"

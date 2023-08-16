@@ -9,7 +9,6 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/msg/d_msg_flow.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 //

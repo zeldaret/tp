@@ -1,8 +1,6 @@
 #ifndef F_F_OP_SCENE_REQ_H_
 #define F_F_OP_SCENE_REQ_H_
 
-#include "SSystem/SComponent/c_phase.h"
-#include "dolphin/types.h"
 #include "f_pc/f_pc_node_req.h"
 
 class scene_class;

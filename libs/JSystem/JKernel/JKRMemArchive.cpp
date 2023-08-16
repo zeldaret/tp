@@ -6,7 +6,6 @@
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "MSL_C/string.h"
 #include "dolphin/os/OSCache.h"

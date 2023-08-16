@@ -2,7 +2,6 @@
 #define JKREXPHEAP_H
 
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dolphin/types.h"
 
 class JKRExpHeap : public JKRHeap {
 public:

@@ -5,7 +5,6 @@
 
 #include "d/d_vib_pattern.h"
 #include "d/d_vibration.h"
-#include "dolphin/types.h"
 
 /* ############################################################################################## */
 /* 8037A620-8037A678 006C80 0058+00 0/0 1/1 0/0 .rodata          MS_patt__12dVibration_c */

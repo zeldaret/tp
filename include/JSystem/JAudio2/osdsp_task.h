@@ -1,7 +1,6 @@
 #ifndef OSDSP_TASK_H
 #define OSDSP_TASK_H
 
-#include "dolphin/types.h"
 #include "dolphin/os/OSInterrupt.h"
 
 struct DSPTaskInfo;

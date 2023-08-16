@@ -6,7 +6,6 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include "MSL_C/float.h"
 #include "SSystem/SComponent/c_math.h"
-#include "dol2asm.h"
 
 //
 // Declarations:

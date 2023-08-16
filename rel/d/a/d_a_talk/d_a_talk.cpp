@@ -5,7 +5,6 @@
 
 #include "rel/d/a/d_a_talk/d_a_talk.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "d/msg/d_msg_object.h"
 #include "f_op/f_op_msg_mng.h"

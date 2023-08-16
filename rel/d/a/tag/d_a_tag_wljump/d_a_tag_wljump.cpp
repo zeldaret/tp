@@ -5,8 +5,6 @@
 
 #include "rel/d/a/tag/d_a_tag_wljump/d_a_tag_wljump.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-#include "f_op/f_op_actor_mng.h"
 #include "d/d_path.h"
 #include "d/a/d_a_alink.h"
 #include "d/d_procname.h"

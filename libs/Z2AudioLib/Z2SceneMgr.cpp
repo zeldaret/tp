@@ -7,9 +7,7 @@
 #include "Z2AudioLib/Z2SoundMgr.h"
 #include "Z2AudioLib/Z2SeqMgr.h"
 #include "Z2AudioLib/Z2SeMgr.h"
-#include "Z2AudioLib/Z2StatusMgr.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 //

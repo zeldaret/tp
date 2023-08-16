@@ -5,7 +5,6 @@
 
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

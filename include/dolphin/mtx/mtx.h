@@ -3,7 +3,6 @@
 
 #include "dolphin/mtx/mtx44.h"
 #include "dolphin/mtx/quat.h"
-#include "dolphin/mtx/vec.h"
 #include "dolphin/types.h"
 
 #ifdef __cplusplus

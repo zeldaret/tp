@@ -4,9 +4,6 @@
 //
 
 #include "d/menu/d_menu_map_common.h"
-#include "JSystem/J2DGraph/J2DPane.h"
-#include "JSystem/J2DGraph/J2DPicture.h"
-#include "JSystem/JUtility/TColor.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_select_cursor.h"
 #include "d/meter/d_meter_HIO.h"

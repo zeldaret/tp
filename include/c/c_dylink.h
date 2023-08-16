@@ -1,7 +1,6 @@
 #ifndef C_C_DYLINK_H
 #define C_C_DYLINK_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_scene_mng.h"
 
 struct cDylPhs {

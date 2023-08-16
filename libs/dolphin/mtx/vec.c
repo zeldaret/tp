@@ -5,7 +5,6 @@
 
 #include "dolphin/mtx/vec.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Declarations:

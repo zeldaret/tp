@@ -5,7 +5,6 @@
 
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "MSL_C/stdio.h"
-#include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dolphin/os/OSCache.h"
 #include "global.h"
 

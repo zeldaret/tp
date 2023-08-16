@@ -4,9 +4,6 @@
  */
 
 #include "rel/d/a/kytag/d_a_kytag10/d_a_kytag10.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JMath/JMath.h"
-#include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_path.h"
 #include "d/d_procname.h"

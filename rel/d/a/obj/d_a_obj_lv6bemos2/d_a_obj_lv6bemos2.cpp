@@ -5,7 +5,6 @@
 
 #include "rel/d/a/obj/d_a_obj_lv6bemos2/d_a_obj_lv6bemos2.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

@@ -5,7 +5,6 @@
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTFader.h"
 #include "JSystem/JUtility/JUTXfb.h"
-#include "JSystem/JUtility/TColor.h"
 #include "dolphin/os/OSAlarm.h"
 #include "dolphin/types.h"
 

@@ -5,7 +5,6 @@
 
 #include "rel/d/a/d_a_midna/d_a_midna.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

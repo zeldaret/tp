@@ -6,7 +6,6 @@
 #include "d/bg/d_bg_w_kcol.h"
 #include "d/bg/d_bg_pc.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

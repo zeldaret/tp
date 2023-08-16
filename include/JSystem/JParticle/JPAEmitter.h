@@ -1,11 +1,8 @@
 #ifndef JPAEMITTER_H
 #define JPAEMITTER_H
 
-#include "dolphin/types.h"
 #include "dolphin/gx/GXEnum.h"
 #include "dolphin/gx/GXStruct.h"
-#include "dolphin/mtx/mtx.h"
-#include "JSystem/JGeometry.h"
 #include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JParticle/JPAList.h"
 #include "JSystem/JParticle/JPARandom.h"

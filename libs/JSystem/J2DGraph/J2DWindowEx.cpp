@@ -5,7 +5,6 @@
 
 #include "JSystem/J2DGraph/J2DWindowEx.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

@@ -2,7 +2,6 @@
 #define D_A_TAG_GRA_H
 
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
 

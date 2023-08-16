@@ -7,8 +7,6 @@
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "MSL_C/stdio.h"
-#include "SSystem/SComponent/c_math.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"

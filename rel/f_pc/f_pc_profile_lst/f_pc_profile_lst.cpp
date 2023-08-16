@@ -5,7 +5,6 @@
 
 #include "rel/f_pc/f_pc_profile_lst/f_pc_profile_lst.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_pc/f_pc_leaf.h"
 
 extern "C" extern void* g_profile_ALINK[12 + 9 /* padding */];

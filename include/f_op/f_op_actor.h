@@ -1,10 +1,7 @@
 #ifndef F_OP_ACTOR_H_
 #define F_OP_ACTOR_H_
 
-#include "SSystem/SComponent/c_sxyz.h"
-#include "SSystem/SComponent/c_xyz.h"
 #include "d/kankyo/d_kankyo.h"
-#include "dolphin/mtx/mtx.h"
 #include "f_pc/f_pc_leaf.h"
 #include "global.h"
 

@@ -3,9 +3,7 @@
 
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/mtx/mtx.h"
 #include "dolphin/mtx/mtxvec.h"
-#include "dolphin/mtx/quat.h"
 #include "dolphin/types.h"
 
 void mDoMtx_XYZrotS(Mtx, s16, s16, s16);

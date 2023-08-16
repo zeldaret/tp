@@ -6,7 +6,6 @@
 #include "JSystem/JKernel/JKRDvdFile.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTException.h"
-#include "dol2asm.h"
 
 /* 8043436C-80434378 06108C 000C+00 4/4 0/0 0/0 .bss             sDvdList__10JKRDvdFile */
 JSUList<JKRDvdFile> JKRDvdFile::sDvdList;

@@ -6,7 +6,6 @@
 #include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubinit.h"
 #include "TRK_MINNOW_DOLPHIN/utils/common/MWTrace.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // External References:

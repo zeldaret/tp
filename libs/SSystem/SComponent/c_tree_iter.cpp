@@ -7,7 +7,6 @@
 #include "SSystem/SComponent/c_list.h"
 #include "SSystem/SComponent/c_list_iter.h"
 #include "SSystem/SComponent/c_tree.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

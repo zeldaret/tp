@@ -1,8 +1,6 @@
 #ifndef D_D_NAME_H
 #define D_D_NAME_H
 
-#include "d/d_drawlist.h"
-#include "dolphin/types.h"
 #include "d/d_select_cursor.h"
 #include "MSL_C/string.h"
 

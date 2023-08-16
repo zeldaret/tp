@@ -9,7 +9,6 @@
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
-#include "std/cmath.h"
 
 /* 80CDF0AC-80CDF0E4 0000EC 0038+00 1/1 0/0 0/0 .text            __ct__18daSnowEffTag_HIO_cFv */
 daSnowEffTag_HIO_c::daSnowEffTag_HIO_c() {

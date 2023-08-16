@@ -80,7 +80,6 @@
  *---------------
  */
 
-#include "fdlibm.h"
 #include "errno.h"
 #include "MSL_C/math.h"
 

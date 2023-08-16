@@ -7,7 +7,6 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
-#include "f_op/f_op_actor_mng.h"
 
 /* 80D66858-80D66860 000078 0008+00 1/1 0/0 0/0 .text            Create__10daTboxSw_cFv */
 int daTboxSw_c::Create() {

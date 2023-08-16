@@ -4,10 +4,8 @@
  */
 
 #include "d/d_kyeff.h"
-#include "Z2AudioLib/Z2EnvSeMgr.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
-#include "d/kankyo/d_kankyo.h"
 #include "d/kankyo/d_kankyo_wether.h"
 #include "dol2asm.h"
 

@@ -2,8 +2,6 @@
 #define JUTCACHEFONT_H
 
 #include "JSystem/JUtility/JUTResFont.h"
-#include "dolphin/gx/GXEnum.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 class JKRAramBlock;
