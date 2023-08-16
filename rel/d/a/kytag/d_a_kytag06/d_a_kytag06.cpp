@@ -1270,7 +1270,7 @@ static void daKytag06_type03_init(fopAc_ac_c* i_this) {
 
 /* 80859C88-80859E68 002508 01E0+00 2/0 0/0 0/0 .text            daKytag06_Create__FP10fopAc_ac_c */
 static int daKytag06_Create(fopAc_ac_c* i_this) {
-    SETUP_ACTOR(i_this, kytag06_class);
+    fopAcM_SetupActor(i_this, kytag06_class);
     kytag06_class* this_ = static_cast<kytag06_class*>(i_this);
 
     this_->mType = (fopAcM_GetParam(this_) >> 0x18) & 0xF;

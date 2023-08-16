@@ -11,7 +11,7 @@
 
 /* 80D5BE18-80D5BFFC 000078 01E4+00 1/1 0/0 0/0 .text            create__12daTagMwait_cFv */
 int daTagMwait_c::create() {
-    SETUP_ACTOR(this, daTagMwait_c);
+    fopAcM_SetupActor(this, daTagMwait_c);
 
     mEnterSw = fopAcM_GetParam(this) >> 8;
 

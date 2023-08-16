@@ -104,7 +104,7 @@ static int daKytag02_Create(fopAc_ac_c* i_this) {
     dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
     dKyw_get_wind_vec();
 
-    SETUP_ACTOR(i_this, kytag02_class);
+    fopAcM_SetupActor(i_this, kytag02_class);
     kytag02_class* this_ = (kytag02_class*)i_this;
 
     this_->field_0x574 = 0;

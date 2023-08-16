@@ -17,7 +17,7 @@ daTagWrHowl_c::~daTagWrHowl_c() {}
 
 /* 80D63FD4-80D6402C 000114 0058+00 1/1 0/0 0/0 .text            create__13daTagWrHowl_cFv */
 int daTagWrHowl_c::create() {
-    SETUP_ACTOR(this, daTagWrHowl_c);
+    fopAcM_SetupActor(this, daTagWrHowl_c);
     init();
     return cPhs_COMPLEATE_e;
 }
@@ -68,7 +68,7 @@ bool daTagWrHowl_c::chkWlfInTag() {
 
 /* 80D64144-80D64198 000284 0054+00 1/0 0/0 0/0 .text daTagWrHowl_create__FP13daTagWrHowl_c */
 static int daTagWrHowl_create(daTagWrHowl_c* i_this) {
-    SETUP_ACTOR(i_this, daTagWrHowl_c);
+    fopAcM_SetupActor(i_this, daTagWrHowl_c);
     return i_this->create();
 }
 

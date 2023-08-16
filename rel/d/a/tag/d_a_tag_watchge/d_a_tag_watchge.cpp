@@ -67,7 +67,7 @@ static int daTagWatchGe_Delete(daTagWatchGe_c* i_this) {
 
 /* 80D643F8-80D644B0 000198 00B8+00 1/1 0/0 0/0 .text            create__14daTagWatchGe_cFv */
 int daTagWatchGe_c::create() {
-    SETUP_ACTOR(this, daTagWatchGe_c);
+    fopAcM_SetupActor(this, daTagWatchGe_c);
     mGroupNo = fopAcM_GetParam(this);
 
     if (mGroupNo == 0xFF) {

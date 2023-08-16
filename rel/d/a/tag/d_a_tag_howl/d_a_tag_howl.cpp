@@ -11,7 +11,7 @@
 
 /* 8048D958-8048D9BC 000078 0064+00 1/1 0/0 0/0 .text            create__12daTag_Howl_cFv */
 int daTag_Howl_c::create() {
-    SETUP_ACTOR(this, daTag_Howl_c);
+    fopAcM_SetupActor(this, daTag_Howl_c);
     getParam();
     return cPhs_COMPLEATE_e;
 }

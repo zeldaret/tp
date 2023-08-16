@@ -137,7 +137,7 @@ asm int daObjSMark_c::Create() {
 #ifdef NONMATCHING
 // matches, but has issues with weak labels being used
 int daObjSMark_c::create() {
-    SETUP_ACTOR(this, daObjSMark_c);
+    fopAcM_SetupActor(this, daObjSMark_c);
 
     int phase = dComIfG_resLoad(&mpPhase,l_arcName);
     if (phase == cPhs_COMPLEATE_e){

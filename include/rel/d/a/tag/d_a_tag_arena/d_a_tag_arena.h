@@ -7,7 +7,7 @@
 class daTagArena_c : public fopAc_ac_c {
 public:
     int create() {
-        SETUP_ACTOR(this,daTagArena_c);
+        fopAcM_SetupActor(this, daTagArena_c);
         return cPhs_COMPLEATE_e;
     }
 };

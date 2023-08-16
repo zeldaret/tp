@@ -15,7 +15,7 @@ daTagRetRm_c::~daTagRetRm_c() {}
 
 /* 80D5EF34-80D5EF8C 000114 0058+00 1/1 0/0 0/0 .text   create__12daTagRetRm_cFv */
 int daTagRetRm_c::create() {
-    SETUP_ACTOR(this, daTagRetRm_c);
+    fopAcM_SetupActor(this, daTagRetRm_c);
     init();
     return cPhs_COMPLEATE_e;
 }
@@ -75,7 +75,7 @@ u8 daTagRetRm_c::chkPlyrInTag() {
 
 /* 80D5F14C-80D5F1A0 00032C 0054+00 1/0 0/0 0/0 .text   daTagRetRm_create__FP12daTagRetRm_c */
 static int daTagRetRm_create(daTagRetRm_c* i_this) {
-    SETUP_ACTOR(i_this, daTagRetRm_c);
+    fopAcM_SetupActor(i_this, daTagRetRm_c);
     return i_this->create();
 }
 

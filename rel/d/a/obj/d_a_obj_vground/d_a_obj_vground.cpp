@@ -64,7 +64,7 @@ int daObjVGnd_c::CreateHeap() {
 
 /* 80D216F4-80D217A8 000394 00B4+00 1/1 0/0 0/0 .text            create__11daObjVGnd_cFv */
 int daObjVGnd_c::create() {
-    SETUP_ACTOR(this, daObjVGnd_c);
+    fopAcM_SetupActor(this, daObjVGnd_c);
     int phase = dComIfG_resLoad(&mPhaseReq, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, (heapCallbackFunc)CheckCreateHeap, 0x960)) {

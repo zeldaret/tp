@@ -26,7 +26,7 @@ void daSnowEffTag_c::setBaseMtx() {
 
 /* 80CDF184-80CDF2B8 0001C4 0134+00 1/1 0/0 0/0 .text            create__14daSnowEffTag_cFv */
 int daSnowEffTag_c::create() {
-    SETUP_ACTOR(this, daSnowEffTag_c);
+    fopAcM_SetupActor(this, daSnowEffTag_c);
 
     mMaxSize = mScale.x * 100.0f;
 

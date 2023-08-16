@@ -15,7 +15,7 @@ int daTboxSw_c::Create() {
 
 /* 80D66860-80D668C8 000080 0068+00 1/1 0/0 0/0 .text            create__10daTboxSw_cFv */
 int daTboxSw_c::create() {
-    SETUP_ACTOR(this, daTboxSw_c);
+    fopAcM_SetupActor(this, daTboxSw_c);
 
     if (!Create()) {
         return cPhs_ERROR_e;

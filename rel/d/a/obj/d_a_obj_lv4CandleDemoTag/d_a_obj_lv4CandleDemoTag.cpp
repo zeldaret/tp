@@ -267,7 +267,7 @@ void dalv4CandleDemoTag_c::setBaseMtx() {
 // vtables need work
 #ifdef NONMATCHING
 int dalv4CandleDemoTag_c::create() {
-    SETUP_ACTOR(this, dalv4CandleDemoTag_c);
+    fopAcM_SetupActor(this, dalv4CandleDemoTag_c);
 
     mPathID = getPathID();
 

@@ -11,7 +11,7 @@
 
 /* 8057BF98-8057C138 000078 01A0+00 1/1 0/0 0/0 .text            create__12daObjDigpl_cFv */
 int daObjDigpl_c::create() {
-    SETUP_ACTOR(this, daObjDigpl_c);
+    fopAcM_SetupActor(this, daObjDigpl_c);
 
     mType = (fopAcM_GetParam(this) >> 8) & 0xF;
     mSwitch = fopAcM_GetParam(this) & 0xFF;

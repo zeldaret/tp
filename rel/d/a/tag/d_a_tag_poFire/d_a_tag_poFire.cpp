@@ -20,7 +20,7 @@ void daTagPoFire_c::setBaseMtx() {
 
 /* 80D5DB90-80D5DBF0 0001B0 0060+00 1/1 0/0 0/0 .text            create__13daTagPoFire_cFv */
 int daTagPoFire_c::create() {
-    SETUP_ACTOR(this, daTagPoFire_c);
+    fopAcM_SetupActor(this, daTagPoFire_c);
     field_0x569 = 0;
     setBaseMtx();
     return cPhs_COMPLEATE_e;

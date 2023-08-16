@@ -34,7 +34,7 @@ int daTagRestart_c::Create() {
 
 /* 80D6048C-80D60520 00010C 0094+00 1/1 0/0 0/0 .text            create__14daTagRestart_cFv */
 int daTagRestart_c::create() {
-    SETUP_ACTOR(this, daTagRestart_c);
+    fopAcM_SetupActor(this, daTagRestart_c);
 
     if (!Create()) {
         return cPhs_ERROR_e;

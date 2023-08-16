@@ -59,7 +59,7 @@ int daScExit_c::Create() {
 
 /* 8059E230-8059E2C0 000150 0090+00 1/1 0/0 0/0 .text            create__10daScExit_cFv */
 int daScExit_c::create() {
-    SETUP_ACTOR(this, daScExit_c);
+    fopAcM_SetupActor(this, daScExit_c);
 
     int phase = dComIfG_resLoad(&mPhase, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {

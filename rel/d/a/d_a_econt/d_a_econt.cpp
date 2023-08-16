@@ -72,7 +72,7 @@ static int daEcont_Delete(econt_class* i_this) {
 /* 805196E4-80519774 000244 0090+00 1/0 0/0 0/0 .text            daEcont_Create__FP10fopAc_ac_c */
 static int daEcont_Create(fopAc_ac_c* i_this) {
     econt_class* encounter = (econt_class*)i_this;
-    SETUP_ACTOR(i_this,econt_class);
+    fopAcM_SetupActor(i_this, econt_class);
     dTimer_createTimer(8,0x989298,2,0,210.0f,410.0f,32.0f,419.0f);
     encounter->field_0x5b8[0] = 0x14;
     return cPhs_COMPLEATE_e;

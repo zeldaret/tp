@@ -26,7 +26,7 @@ int daTagLv2PrChk_c::Create() {
 
 /* 805A4CDC-805A4D44 0000FC 0068+00 1/1 0/0 0/0 .text            create__15daTagLv2PrChk_cFv */
 int daTagLv2PrChk_c::create() {
-    SETUP_ACTOR(this, daTagLv2PrChk_c);
+    fopAcM_SetupActor(this, daTagLv2PrChk_c);
 
     if (!Create()) {
         return cPhs_ERROR_e;

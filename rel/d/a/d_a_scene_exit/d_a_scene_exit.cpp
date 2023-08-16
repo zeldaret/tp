@@ -77,7 +77,7 @@ COMPILER_STRIP_GATE(0x80485C9C, &lit_3759);
 // matches with literals
 #ifdef NONMATCHING
 static int daScex_Create(fopAc_ac_c* i_this) {
-    SETUP_ACTOR(i_this, daScex_c);
+    fopAcM_SetupActor(i_this, daScex_c);
     daScex_c* scex = static_cast<daScex_c*>(i_this);
 
     mDoMtx_stack_c::transS(scex->current.pos.x, scex->current.pos.y, scex->current.pos.z);

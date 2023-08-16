@@ -128,7 +128,7 @@ static int daKytag09_Create(fopAc_ac_c* i_this) {
     kytag09_class* this_ = (kytag09_class*)i_this;
     this_->mType = fopAcM_GetParam(this_) & 0xFF;
 
-    SETUP_ACTOR(this_, kytag09_class);
+    fopAcM_SetupActor(this_, kytag09_class);
 
     int phase;
     if (this_->mType != 1) {

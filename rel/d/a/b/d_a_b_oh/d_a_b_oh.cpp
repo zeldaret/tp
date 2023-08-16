@@ -1456,7 +1456,7 @@ COMPILER_STRIP_GATE(0x8061DA70, &lit_4519);
 // matches with literals
 #ifdef NONMATCHING
 static int daB_OH_Create(fopAc_ac_c* i_this) {
-    SETUP_ACTOR(b_oh_class);
+    fopAcM_SetupActor(i_this, b_oh_class);
     b_oh_class* this_ = (b_oh_class*)i_this;
 
     int phase = dComIfG_resLoad(&this_->mPhase, "B_oh");

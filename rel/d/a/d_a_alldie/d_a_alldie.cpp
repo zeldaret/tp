@@ -163,7 +163,7 @@ static int daAlldie_Delete(daAlldie_c* i_this) {
 
 /* 804D5BF0-804D5D1C 000450 012C+00 1/0 0/0 0/0 .text            daAlldie_Create__FP10fopAc_ac_c */
 int daAlldie_c::create() {
-    SETUP_ACTOR(this,daAlldie_c);
+    fopAcM_SetupActor(this, daAlldie_c);
 
     s8 roomNo = fopAcM_GetRoomNo(this);
 

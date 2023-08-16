@@ -10,7 +10,7 @@
 
 /* 80D5AD58-80D5ADEC 000078 0094+00 1/1 0/0 0/0 .text            create__15daTag_Lv5Soup_cFv */
 int daTag_Lv5Soup_c::create() {
-    SETUP_ACTOR(this, daTag_Lv5Soup_c);
+    fopAcM_SetupActor(this, daTag_Lv5Soup_c);
     fopAcM_setCullSizeBox(this, -30.0f, -15.0f, -30.0f, 30.0f, 45.0f, 30.0f);
     mAttentionInfo.mFlags = 0;
     return cPhs_COMPLEATE_e;

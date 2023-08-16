@@ -1004,7 +1004,7 @@ int daBg_c::create() {
     field_0x5f1 = 0;
 
     if (mHeap == NULL) {
-        SETUP_ACTOR(this,daBg_c);
+        fopAcM_SetupActor(this, daBg_c);
 
         orig.roomNo = roomNo;
         current.roomNo = roomNo;

@@ -1446,7 +1446,7 @@ int daBgObj_c::Delete() {
 
 /* 8045C330-8045C444 002D50 0114+00 1/0 0/0 0/0 .text            daBgObj_create1st__FP9daBgObj_c */
 static int daBgObj_create1st(daBgObj_c* i_this) {
-    SETUP_ACTOR(i_this,daBgObj_c);
+    fopAcM_SetupActor(i_this, daBgObj_c);
 
     return i_this->create1st();
 }

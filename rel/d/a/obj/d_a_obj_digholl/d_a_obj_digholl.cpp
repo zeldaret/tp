@@ -11,7 +11,7 @@
 
 /* 80BDC618-80BDC73C 000078 0124+00 1/1 0/0 0/0 .text            create__14daObjDigholl_cFv */
 int daObjDigholl_c::create() {
-    SETUP_ACTOR(this, daObjDigholl_c);
+    fopAcM_SetupActor(this, daObjDigholl_c);
     field_0x569 = fopAcM_GetParam(this);
     field_0x56a = fopAcM_GetParam(this) >> 8;
     field_0x56c = fopAcM_GetParam(this) >> 0x10 & 0xff;

@@ -28,7 +28,7 @@ daTalk_c::~daTalk_c() {
 
 /* 80D663E4-80D664AC 0000E4 00C8+00 1/1 0/0 0/0 .text            create__8daTalk_cFv */
 int daTalk_c::create() {
-    SETUP_ACTOR(this, daTalk_c);
+    fopAcM_SetupActor(this, daTalk_c);
 
     if (getStatus() != 1) {
         return cPhs_ERROR_e;

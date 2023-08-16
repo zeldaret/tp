@@ -28,7 +28,7 @@ int daSkip2D_c::createHeap() {
 
 /* 80D4D4F4-80D4D588 0000F4 0094+00 1/1 0/0 0/0 .text            create__10daSkip2D_cFv */
 int daSkip2D_c::create() {
-    SETUP_ACTOR(this, daSkip2D_c);
+    fopAcM_SetupActor(this, daSkip2D_c);
 
     if (!fopAcM_entrySolidHeap(this, daSkip2D_createHeap, 0)) {
         return cPhs_ERROR_e;

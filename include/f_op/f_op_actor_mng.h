@@ -6,7 +6,7 @@
 #include "f_pc/f_pc_manager.h"
 #include "f_pc/f_pc_searcher.h"
 
-#define SETUP_ACTOR(ptr,ClassName) \
+#define fopAcM_SetupActor(ptr,ClassName) \
     if (!fopAcM_CheckCondition(ptr, 8)) { \
         new (ptr) ClassName(); \
         fopAcM_OnCondition(ptr, 8); \

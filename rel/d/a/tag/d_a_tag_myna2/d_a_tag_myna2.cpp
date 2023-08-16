@@ -12,7 +12,7 @@ extern "C" void func_80D5CA18(s16*);
 
 /* 80D5C698-80D5C708 000078 0070+00 1/1 0/0 0/0 .text            create__12daTagMyna2_cFv */
 s32 daTagMyna2_c::create() {
-    SETUP_ACTOR(this, daTagMyna2_c);
+    fopAcM_SetupActor(this, daTagMyna2_c);
     mSwitchNo = getSwBit();
     mMode = getMode();
     mTimer = 5;

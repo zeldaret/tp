@@ -225,7 +225,7 @@ void daObjE_CREATE_c::NameChk() {
 
 /* 80BE3770-80BE3878 000670 0108+00 1/1 0/0 0/0 .text            create__15daObjE_CREATE_cFv */
 int daObjE_CREATE_c::create() {
-    SETUP_ACTOR(this, daObjE_CREATE_c);
+    fopAcM_SetupActor(this, daObjE_CREATE_c);
 
     NameChk();
     u32 enemyType = fopAcM_GetParam(this) & 0xF;

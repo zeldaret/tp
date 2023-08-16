@@ -554,7 +554,7 @@ static int daKytag08_Create(fopAc_ac_c* i_this) {
     cXyz sp(1.0f, 1.0f, 1.0f);
     dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
     
-    SETUP_ACTOR(i_this, kytag08_class);
+    fopAcM_SetupActor(i_this, kytag08_class);
     
     kytag08_class* this_ = (kytag08_class*)i_this;
 

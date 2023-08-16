@@ -49,7 +49,7 @@ public:
     }
 
     int create() {
-        SETUP_ACTOR(this,daGuardMng_c);
+        fopAcM_SetupActor(this, daGuardMng_c);
         create_init();
         return cPhs_COMPLEATE_e;
     }

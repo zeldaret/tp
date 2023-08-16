@@ -259,7 +259,7 @@ int daObjMGate_c::Delete() {
 
 /* 80593D74-80593DD4 000834 0060+00 1/0 0/0 0/0 .text daObjMGate_create1st__FP12daObjMGate_c */
 static int daObjMGate_create1st(daObjMGate_c* i_this) {
-    SETUP_ACTOR(i_this, daObjMGate_c);
+    fopAcM_SetupActor(i_this, daObjMGate_c);
     return i_this->create1st();
 }
 

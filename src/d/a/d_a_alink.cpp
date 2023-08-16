@@ -12601,7 +12601,7 @@ inline bool checkMagicArmorWearFlg() {
 /* 800A5CC8-800A660C 0A0608 0944+00 1/1 0/0 0/0 .text            create__9daAlink_cFv */
 #ifdef NONMATCHING
 int daAlink_c::create() {
-    SETUP_ACTOR(this, daAlink_c);
+    fopAcM_SetupActor(this, daAlink_c);
 
     if (!struct_80450FD0) {
         bgWaitFlg = 0;

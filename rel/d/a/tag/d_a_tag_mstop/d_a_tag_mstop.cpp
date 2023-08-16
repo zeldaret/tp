@@ -73,7 +73,7 @@ COMPILER_STRIP_GATE(0x805A6970, &lit_3864);
 #ifdef NONMATCHING
 // matches with literals
 int daTagMstop_c::create() {
-    SETUP_ACTOR(this, daTagMstop_c);
+    fopAcM_SetupActor(this, daTagMstop_c);
 
     field_0x56b = fopAcM_GetParam(this) >> 16;
     field_0x56a = (fopAcM_GetParam(this) >> 24) & 0xF;

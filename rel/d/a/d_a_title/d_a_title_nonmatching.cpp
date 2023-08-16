@@ -295,7 +295,7 @@ int daTitle_c::CreateHeap() {
 
 /* 80D66CDC-80D66E7C 0002BC 01A0+00 1/1 0/0 0/0 .text            create__9daTitle_cFv */
 int daTitle_c::create() {
-    SETUP_ACTOR(this, daTitle_c);
+    fopAcM_SetupActor(this, daTitle_c);
     
     int phase_state = dComIfG_resLoad(&mPhaseReq, l_arcName);
     if (phase_state != cPhs_COMPLEATE_e) {

@@ -153,7 +153,7 @@ int daObjLv4Floor_c::Delete() {
 /* 80C67CAC-80C67D0C 00052C 0060+00 1/0 0/0 0/0 .text daObjLv4Floor_create1st__FP15daObjLv4Floor_c
  */
 static int daObjLv4Floor_create1st(daObjLv4Floor_c* i_this) {
-    SETUP_ACTOR(i_this, daObjLv4Floor_c);
+    fopAcM_SetupActor(i_this, daObjLv4Floor_c);
     return i_this->create1st();
 }
 

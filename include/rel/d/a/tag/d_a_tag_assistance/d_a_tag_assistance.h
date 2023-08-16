@@ -13,7 +13,7 @@ public:
     }
 
     int create() {
-        SETUP_ACTOR(this,daTagAssist_c);
+        fopAcM_SetupActor(this, daTagAssist_c);
         create_init();
         return cPhs_COMPLEATE_e;
     }

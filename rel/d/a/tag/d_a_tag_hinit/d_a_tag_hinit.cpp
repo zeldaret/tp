@@ -10,7 +10,7 @@
 
 /* 805A3758-805A3800 000078 00A8+00 1/1 0/0 0/0 .text            create__12daTagHinit_cFv */
 int daTagHinit_c::create() {
-    SETUP_ACTOR(this, daTagHinit_c);
+    fopAcM_SetupActor(this, daTagHinit_c);
 
     field_0x569 = shape_angle.x;
 

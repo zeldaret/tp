@@ -690,7 +690,7 @@ COMPILER_STRIP_GATE(0x80604088, &lit_3929);
 // matches with literals
 #ifdef NONMATCHING
 static int daB_GO_Create(fopAc_ac_c* i_actor) {
-    SETUP_ACTOR(b_go_class);
+    fopAcM_SetupActor(i_actor, b_go_class);
     b_go_class* b_go = (b_go_class*)i_actor;
 
     int phase_state = dComIfG_resLoad(&b_go->mPhase, "B_go");

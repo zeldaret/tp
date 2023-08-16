@@ -343,7 +343,7 @@ COMPILER_STRIP_GATE(0x80529444, &lit_4058);
 // matches with literals
 #ifdef NONMATCHING
 static int daKytag10_Create(fopAc_ac_c* i_this) {
-    SETUP_ACTOR(i_this, kytag10_class);
+    fopAcM_SetupActor(i_this, kytag10_class);
 
     u8 prm0 = fopAcM_GetParam(i_this);
     if (prm0 == 0xFF) {

@@ -2419,7 +2419,7 @@ asm void daObjCarry_c::setBaseMtx() {
 
 /* 8046FACC-8046FB78 000B4C 00AC+00 1/1 0/0 0/0 .text            preInit__12daObjCarry_cFv */
 s32 daObjCarry_c::preInit() {
-    SETUP_ACTOR(this,daObjCarry_c);
+    fopAcM_SetupActor(this, daObjCarry_c);
     if (field_0xd15 == 0) {
         field_0xd16 = orig.angle.x;
         field_0xd18 = orig.angle.z;

@@ -70,7 +70,7 @@ public:
     }    
 
     int create() {
-        SETUP_ACTOR(this,daTagTheBHint_c);
+        fopAcM_SetupActor(this, daTagTheBHint_c);
         field_0x568 = pow(mScale.x * 100.0f,2.0f);
         return cPhs_COMPLEATE_e;
     }

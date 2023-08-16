@@ -57,7 +57,7 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 /* 80D64EB8-80D64FE4 000078 012C+00 1/1 0/0 0/0 .text            create__13daTagWljump_cFv */
 int daTagWljump_c::create() {
-    SETUP_ACTOR(this, daTagWljump_c);
+    fopAcM_SetupActor(this, daTagWljump_c);
     u32 param = (fopAcM_GetParam(this) >> 8) & 0xff;
     field_0x571 = (u8)param;
     s32 uVar2 = fopAcM_GetParam(this);

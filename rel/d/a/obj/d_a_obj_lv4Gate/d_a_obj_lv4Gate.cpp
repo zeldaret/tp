@@ -92,7 +92,7 @@ extern "C" asm void CreateHeap__11daLv4Gate_cFv() {
 
 /* 80C5ECEC-80C5EE54 00026C 0168+00 1/1 0/0 0/0 .text            create__11daLv4Gate_cFv */
 int daLv4Gate_c::create() {
-    SETUP_ACTOR(this, daLv4Gate_c);
+    fopAcM_SetupActor(this, daLv4Gate_c);
 
     int phase = dComIfG_resLoad(&mPhase, "L4Gate");
     if (phase == cPhs_COMPLEATE_e) {

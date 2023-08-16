@@ -570,7 +570,7 @@ static int useHeapInit(fopAc_ac_c* actor) {
 // matches with literals
 #ifdef NONMATCHING
 static int daNPC_TR_Create(fopAc_ac_c* i_this) {
-    SETUP_ACTOR(i_this, npc_tr_class);
+    fopAcM_SetupActor(i_this, npc_tr_class);
     npc_tr_class* npc_tr = (npc_tr_class*)i_this;
     
     int phase_state = dComIfG_resLoad(&npc_tr->mPhaseReq, "NPC_TR");

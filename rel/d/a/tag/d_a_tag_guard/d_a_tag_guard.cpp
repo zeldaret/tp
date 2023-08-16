@@ -32,7 +32,7 @@ void daTagGuard_c::createGuard(u32 i_parameters) {
 }
 
 int daTagGuard_c::create() {
-    SETUP_ACTOR(this, daTagGuard_c);
+    fopAcM_SetupActor(this, daTagGuard_c);
     create_init();
     return cPhs_COMPLEATE_e;
 }

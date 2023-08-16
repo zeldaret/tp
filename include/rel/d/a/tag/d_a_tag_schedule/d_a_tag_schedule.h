@@ -7,7 +7,7 @@
 class daTagSchedule_c : public fopAc_ac_c {
 public:
     int create() {
-        SETUP_ACTOR(this,daTagSchedule_c);
+        fopAcM_SetupActor(this, daTagSchedule_c);
         return cPhs_COMPLEATE_e;
     }
 

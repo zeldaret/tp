@@ -35,7 +35,7 @@ int daSus_c::create() {
 
 /* 804D51E0-804D5234 000140 0054+00 1/0 0/0 0/0 .text            daSus_create__FP7daSus_c */
 static int daSus_create(daSus_c* i_this) {
-    SETUP_ACTOR(i_this, daSus_c);
+    fopAcM_SetupActor(i_this, daSus_c);
 
     return i_this->create();
 }
