@@ -688,56 +688,52 @@ static int daKytag00_Delete(kytag00_class* i_this) {
 // matches with literals
 #ifdef NONMATCHING
 static int daKytag00_Create(fopAc_ac_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) kytag00_class();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    fopAcM_SetupActor(i_this, kytag00_class);
+    kytag00_class* a_this = (kytag00_class*)i_this;
 
-    kytag00_class* this_ = (kytag00_class*)i_this;
-
-    this_->field_0x56e = 0;
-    this_->field_0x56f = fopAcM_GetParam(this_) & 0xFF;
-    this_->field_0x570 = (fopAcM_GetParam(this_) >> 8) & 0xFF;
-    this_->field_0x578 = (fopAcM_GetParam(this_) >> 0x10) & 0xFF;
-    this_->field_0x57c = (fopAcM_GetParam(this_) >> 0x18) & 0xFF;
-    this_->field_0x571 = this_->current.angle.x & 0xFF;
-    this_->field_0x572 = (this_->current.angle.x >> 8) & 0xFF;
+    a_this->field_0x56e = 0;
+    a_this->field_0x56f = fopAcM_GetParam(a_this) & 0xFF;
+    a_this->field_0x570 = (fopAcM_GetParam(a_this) >> 8) & 0xFF;
+    a_this->field_0x578 = (fopAcM_GetParam(a_this) >> 0x10) & 0xFF;
+    a_this->field_0x57c = (fopAcM_GetParam(a_this) >> 0x18) & 0xFF;
+    a_this->field_0x571 = a_this->current.angle.x & 0xFF;
+    a_this->field_0x572 = (a_this->current.angle.x >> 8) & 0xFF;
 
     BOOL var_r30 = true;
 
-    if (this_->field_0x571 != 0xFF) {
+    if (a_this->field_0x571 != 0xFF) {
         s32 room_no = dComIfGp_roomControl_getStayNo();
-        if (dComIfGs_isSwitch(this_->field_0x571, room_no)) {
+        if (dComIfGs_isSwitch(a_this->field_0x571, room_no)) {
             var_r30 = 0;
         }
-    } else if (this_->field_0x572 != 0xFF) {
+    } else if (a_this->field_0x572 != 0xFF) {
         s32 room_no = dComIfGp_roomControl_getStayNo();
-        if (!dComIfGs_isSwitch(this_->field_0x572, room_no)) {
+        if (!dComIfGs_isSwitch(a_this->field_0x572, room_no)) {
             var_r30 = 0;
         }
     }
 
     if (var_r30 == TRUE) {
-        this_->field_0x588 = 1.0f;
+        a_this->field_0x588 = 1.0f;
     } else {
-        this_->field_0x588 = 0.0f;
+        a_this->field_0x588 = 0.0f;
     }
 
-    if (this_->field_0x578 == 0xFF) {
-        this_->field_0x578 = 10;
+    if (a_this->field_0x578 == 0xFF) {
+        a_this->field_0x578 = 10;
     }
 
-    if (this_->field_0x57c == 0xFF) {
-        this_->field_0x57c = 10;
+    if (a_this->field_0x57c == 0xFF) {
+        a_this->field_0x57c = 10;
     }
 
-    this_->field_0x580 = this_->mScale.x * 5000.0f;
-    this_->field_0x584 = this_->mScale.x * 5000.0f + this_->field_0x578 * 100.0f;
-    this_->field_0x56c = 0;
-    this_->field_0x56d = 0;
+    a_this->field_0x580 = a_this->mScale.x * 5000.0f;
+    a_this->field_0x584 = a_this->mScale.x * 5000.0f + a_this->field_0x578 * 100.0f;
+    a_this->field_0x56c = 0;
+    a_this->field_0x56d = 0;
     g_env_light.mMoyaCount = 0;
 
-    wether_tag_efect_move(this_);
+    wether_tag_efect_move(a_this);
     return cPhs_COMPLEATE_e;
 }
 #else
