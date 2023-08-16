@@ -31,22 +31,25 @@ public:
     void setOffsetPosition(f32 x, f32 y, f32 z) { mOffsetPosition.set(x, y, z); }
     void getOffsetPosition(JGeometry::TVec3<f32>& pos) { pos.set(mOffsetPosition); }
     u16 getRotateAngle() const { return mRotateAngle; }
-    void getGlobalPosition(JGeometry::TVec3<f32>& pos) { pos.set(mPosition); }
+    void getGlobalPosition(JGeometry::TVec3<f32>& pos) const { pos.set(mPosition); }
     f32 getParticleScaleX() const { return mParticleScaleX; }
     f32 getParticleScaleY() const { return mParticleScaleY; }
     void setStatus(u32 flag) { mStatus |= flag; }
+    u32 checkStatus(u32 flag) { return mStatus & flag; }
     void setInvisibleParticleFlag() { setStatus(8); }
     void setDeleteParticleFlag() { setStatus(2); }
+    void getVelVec(JGeometry::TVec3<f32>& vec) const { vec.set(mVelocity); }
+    void getLocalPosition(JGeometry::TVec3<f32>& vec) const { vec.set(mLocalPosition); }
 
 public:
     /* 0x00 */ JGeometry::TVec3<f32> mPosition;
-    /* 0x0C */ Vec mLocalPosition;
+    /* 0x0C */ JGeometry::TVec3<f32> mLocalPosition;
     /* 0x18 */ JGeometry::TVec3<f32> mOffsetPosition;
-    /* 0x24 */ Vec mVelocity;
+    /* 0x24 */ JGeometry::TVec3<f32> mVelocity;
     /* 0x30 */ Vec mVelType1;
     /* 0x3C */ Vec mVelType0;
     /* 0x48 */ Vec mVelType2;
-    /* 0x54 */ Vec mBaseAxis;
+    /* 0x54 */ JGeometry::TVec3<f32> mBaseAxis;
     /* 0x60 */ f32 mParticleScaleX;
     /* 0x64 */ f32 mParticleScaleY;
     /* 0x68 */ f32 mScaleOut;

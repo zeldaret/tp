@@ -147,7 +147,7 @@ struct TVec3<f32> {
         return *this;
     }
 
-    f32 squared() {
+    f32 squared() const {
         return C_VECSquareMag((Vec*)&x);
     }
 
@@ -165,7 +165,7 @@ struct TVec3<f32> {
         scale(norm);
     }
 
-    f32 length() {
+    f32 length() const {
         return PSVECMag((Vec*)this);
     }
 
@@ -182,6 +182,55 @@ struct TVec3<f32> {
             ps_muls0 zres,       z, sc
             psq_st   zres,  8(dst),  1, 0
         };
+    }
+
+    void negateInternal(TVec3<f32>* dst) {
+        register f32* rdst = &dst->x;
+        const register f32* src = &x;
+        register f32 x_y;
+        register f32 z;
+        asm {
+            psq_l  x_y, 0(src), 0, 0
+            ps_neg x_y, x_y
+            psq_st x_y, 0(rdst), 0, 0
+            lfs    z,   8(src)
+            fneg   z,   z
+            stfs   z,   8(rdst)
+        };
+    }
+
+    void negate() {
+        negateInternal(this);
+    }
+
+    void sub(const TVec3<f32>& b) {
+        C_VECSubtract((Vec*)&x, (Vec*)&b.x, (Vec*)&x);
+    }
+
+    void sub(const TVec3<f32>& a, const TVec3<f32>& b) {
+        C_VECSubtract((Vec*)&a.x, (Vec*)&b.x, (Vec*)&x);
+    }
+
+    bool isZero() const {
+        return squared() <= 32.0f * FLT_EPSILON;
+    }
+
+    void cross(const TVec3<f32>& a, const TVec3<f32>& b) {
+        PSVECCrossProduct(a, b, *this);
+    }
+    
+    void setLength(f32 len) {
+         f32 sq = squared();
+        if (sq <= FLT_EPSILON * 32.0f) {
+            return;
+        }
+        f32 norm;
+        if (sq <= 0.0f) {
+            norm = sq;
+        } else {
+            norm = fsqrt_step(sq);
+        }
+        scale(norm * len);
     }
 };
 

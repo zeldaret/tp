@@ -2614,8 +2614,6 @@ u32 dPa_control_c::setSimpleFoot(u32 param_0, u32* param_1, cBgS_PolyInfo& param
 /* 8004D988-8004DC28 0482C8 02A0+00 0/0 1/1 0/0 .text
  * setCommonPoly__13dPa_control_cFPUlP13cBgS_PolyInfoPC4cXyzPC4cXyzPC12dKy_tevstr_cUlUlPC5csXyzPC4cXyzSc
  */
-// Small regalloc
-#ifdef NONMATCHING
 u16 dPa_control_c::setCommonPoly(u32* param_0, cBgS_PolyInfo* param_1, cXyz const* param_2,
                                       cXyz const* param_3, dKy_tevstr_c const* param_4, u32 param_5,
                                       u32 param_6, csXyz const* param_7, cXyz const* param_8,
@@ -2623,18 +2621,23 @@ u16 dPa_control_c::setCommonPoly(u32* param_0, cBgS_PolyInfo* param_1, cXyz cons
     f32 local_30;
     GXColor a_Stack_34;
     GXColor a_Stack_38;
-    u8 local_4c;
+    int j;
+    int i;
+    u8 bVar3;
+    u16* puVar7;
+    const cXyz* local_40;
+    u32* ptr;
     u16 uVar5 = 0;
+    u8 local_4c;
     if (dComIfG_Bgsp().ChkPolySafe(*param_1) == 0) {
         return 0;
     }
 
     int local_44 = dComIfG_Bgsp().GetPolyAtt0(*param_1);
-    for (int i = 0; i < 2; i++) {
+    for (i = 0; i < 2; i++) {
         if (getPolyColor(*param_1, i, &a_Stack_34, &a_Stack_38, &local_4c, &local_30) == 0) {
             return 0xffff;
         }
-        u8 bVar3;
         if ((param_6 & 0x80000000) != 0) {
             if (i == 1 && dKy_camera_water_in_status_check() && (local_44 == 1 || local_44 == 3)) {
                 bVar3 = 5;
@@ -2657,8 +2660,6 @@ u16 dPa_control_c::setCommonPoly(u32* param_0, cBgS_PolyInfo* param_1, cXyz cons
             uVar5 |= (0xff << (i << 3));
         } else {
             uVar5 |= bVar3 << (i << 3);
-            u16* puVar7;
-            const cXyz* local_40;
             if (bVar3 == 2 && ((param_6 & 0x10000) != 0)) {
                 puVar7 = ringID[bVar3];
                 local_40 = param_2;
@@ -2671,8 +2672,8 @@ u16 dPa_control_c::setCommonPoly(u32* param_0, cBgS_PolyInfo* param_1, cXyz cons
                     local_40 = param_3;
                 }
             }
-            u32* ptr = param_0 + 4*i;
-            for (int j = 0; j < 4; j++, ptr++, puVar7++) {
+            ptr = param_0 + 4*i;
+            for ( j = 0; j < 4; j++, ptr++, puVar7++) {
                 if (puVar7[0] == 0xffff) {
                     break;
                 }
@@ -2685,19 +2686,6 @@ u16 dPa_control_c::setCommonPoly(u32* param_0, cBgS_PolyInfo* param_1, cXyz cons
 
     return uVar5;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u16 dPa_control_c::setCommonPoly(u32* param_0, cBgS_PolyInfo* param_1, cXyz const* param_2,
-                                      cXyz const* param_3, dKy_tevstr_c const* param_4, u32 param_5,
-                                      u32 param_6, csXyz const* param_7, cXyz const* param_8,
-                                      s8 param_9) {
-    nofralloc
-#include "asm/d/particle/d_particle/func_8004D988.s"
-}
-#pragma pop
-#endif
 
 /* 8004DC28-8004DCA0 048568 0078+00 1/0 0/0 0/0 .text
  * execute__17dPa_wbPcallBack_cFP14JPABaseEmitterP15JPABaseParticle */

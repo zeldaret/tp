@@ -96,9 +96,26 @@ public:
     bool isTexAnm() const { return !!(mpData->mTexFlg & 0x01); }
     u8 getTexAnmType() const { return (mpData->mTexFlg >> 2) & 0x07; }
     u32 getTexIdx() const { return mpData->mTexIdx; }
+    u8 getTexIdx(u8 idx) const { return mpTexIdxAnimTbl[idx]; }
 
     f32 getBaseSizeX() const { return mpData->mBaseSizeX; }
     f32 getBaseSizeY() const { return mpData->mBaseSizeY; }
+    u8 getClrLoopOfstMask() const { return mpData->mClrAnmRndmMask; }
+    u32 getClrLoopOfst(u32 param_1) const { return getClrLoopOfstMask() & param_1; }
+    u8 getTexLoopOfstMask() const { return mpData->mTexAnmRndmMask; }
+    u32 getTexLoopOfst(u8 param_1) const { return getTexLoopOfstMask() & param_1; }
+
+    f32 getIncTransX() const { return ((f32*)mpTexCrdMtxAnmTbl)[5]; }
+    f32 getInitTransX() const { return ((f32*)mpTexCrdMtxAnmTbl)[0]; }
+    f32 getIncTransY() const { return ((f32*)mpTexCrdMtxAnmTbl)[6]; }
+    f32 getInitTransY() const { return ((f32*)mpTexCrdMtxAnmTbl)[1]; }
+    f32 getIncScaleX() const { return ((f32*)mpTexCrdMtxAnmTbl)[7]; }
+    f32 getInitScaleX() const { return ((f32*)mpTexCrdMtxAnmTbl)[2]; }
+    f32 getIncScaleY() const { return ((f32*)mpTexCrdMtxAnmTbl)[8]; }
+    f32 getInitScaleY() const { return ((f32*)mpTexCrdMtxAnmTbl)[3]; }
+    f32 getIncRot() const { return ((f32*)mpTexCrdMtxAnmTbl)[9]; }
+    f32 getInitRot() const { return ((f32*)mpTexCrdMtxAnmTbl)[4]; }
+    u8 getTexAnmKeyNum() const { return mpData->mTexAnmNum; }
 
 public:
     /* 0x00 */ const JPABaseShapeData* mpData;
