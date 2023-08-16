@@ -4,7 +4,6 @@
 //
 
 #include "d/bg/d_bg_plc.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

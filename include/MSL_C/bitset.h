@@ -1,7 +1,6 @@
 #ifndef MSL_BITSET_H_
 #define MSL_BITSET_H_
 
-#include "stddef.h"
 
 namespace std {
 template<size_t N> class bitset {

@@ -1,8 +1,6 @@
 #ifndef D_A_MIRROR_H
 #define D_A_MIRROR_H
 
-#include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
 #include "f_op/f_op_actor_mng.h"
 
 struct dMirror_packet_c : public J3DPacket {

@@ -1,7 +1,6 @@
 #ifndef OSAUDIOSYSTEM_H
 #define OSAUDIOSYSTEM_H
 
-#include "dolphin/types.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -1,7 +1,6 @@
 #ifndef JASAUDIORESETER_H
 #define JASAUDIORESETER_H
 
-#include "dolphin/types.h"
 #include "dolphin/os/OSInterrupt.h"
 
 struct JASCriticalSection {

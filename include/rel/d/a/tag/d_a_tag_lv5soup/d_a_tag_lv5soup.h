@@ -1,7 +1,6 @@
 #ifndef D_A_TAG_LV5SOUP_H
 #define D_A_TAG_LV5SOUP_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 class daTag_Lv5Soup_c : public fopAc_ac_c {

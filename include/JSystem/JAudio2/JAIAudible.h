@@ -2,7 +2,6 @@
 #define JAIAUDIBLE_H
 
 #include "JSystem/JGeometry.h"
-#include "dolphin/types.h"
 
 struct JASSoundParams;
 

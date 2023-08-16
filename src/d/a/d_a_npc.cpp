@@ -4,14 +4,9 @@
 //
 
 #include "d/a/d_a_npc.h"
-#include "SSystem/SComponent/c_math.h"
-#include "d/a/d_a_player.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
-#include "global.h"
-#include "m_Do/m_Do_mtx.h"
 #include "rel/d/a/npc/d_a_npc_tk/d_a_npc_tk.h"
 #include "d/msg/d_msg_object.h"
 #include "m_Do/m_Do_lib.h"

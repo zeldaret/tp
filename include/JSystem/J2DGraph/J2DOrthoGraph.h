@@ -2,7 +2,6 @@
 #define J2DORTHOGRAPH_H
 
 #include "JSystem/J2DGraph/J2DGrafContext.h"
-#include "dolphin/types.h"
 
 class J2DOrthoGraph : public J2DGrafContext {
 public:

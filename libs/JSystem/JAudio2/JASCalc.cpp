@@ -5,7 +5,6 @@
 
 #include "JSystem/JAudio2/JASCalc.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "dolphin/os/OSCache.h"
 #include "MSL_C/math.h"
 

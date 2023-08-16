@@ -5,7 +5,6 @@
 
 #include "SSystem/SComponent/c_API_graphic.h"
 #include "SSystem/SComponent/c_API.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

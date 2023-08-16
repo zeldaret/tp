@@ -7,7 +7,6 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
-#include "f_op/f_op_actor_mng.h"
 
 /* 80D66858-80D66860 000078 0008+00 1/1 0/0 0/0 .text            Create__10daTboxSw_cFv */
 int daTboxSw_c::Create() {
@@ -16,10 +15,7 @@ int daTboxSw_c::Create() {
 
 /* 80D66860-80D668C8 000080 0068+00 1/1 0/0 0/0 .text            create__10daTboxSw_cFv */
 int daTboxSw_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTboxSw_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daTboxSw_c);
 
     if (!Create()) {
         return cPhs_ERROR_e;

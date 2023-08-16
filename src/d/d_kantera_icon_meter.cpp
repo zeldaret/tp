@@ -9,7 +9,6 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/meter/d_meter_HIO.h"
 #include "d/pane/d_pane_class.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 /* 801AE938-801AE974 1A9278 003C+00 0/0 3/3 0/0 .text            __ct__15dKantera_icon_cFv */

@@ -1,8 +1,6 @@
 #ifndef JSTUDIO_OBJECT_H
 #define JSTUDIO_OBJECT_H
 
-#include "JSystem/JStudio/JStudio/fvb.h"
-#include "JSystem/JStudio/JStudio/stb.h"
 #include "JSystem/JStudio/JStudio/ctb.h"
 #include "JSystem/JStudio/JStudio/jstudio-control.h"
 

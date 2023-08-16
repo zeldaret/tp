@@ -5,7 +5,6 @@
 
 #include "d/ovlp/d_ovlp_fade3.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

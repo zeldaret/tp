@@ -2,7 +2,6 @@
 #define M_DO_M_DO_MACHINE_H
 
 #include "dolphin/gx/GXStruct.h"
-#include "dolphin/types.h"
 
 typedef struct OSContext OSContext;
 class JKRHeap;

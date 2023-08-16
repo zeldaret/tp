@@ -1,7 +1,6 @@
 #ifndef D_BG_D_BG_S_ROOF_CHK_H
 #define D_BG_D_BG_S_ROOF_CHK_H
 
-#include "SSystem/SComponent/c_bg_s_chk.h"
 #include "SSystem/SComponent/c_bg_s_poly_info.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "d/bg/d_bg_s_chk.h"

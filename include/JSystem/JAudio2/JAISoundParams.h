@@ -2,7 +2,6 @@
 #define JAISOUNDPARAMS_H
 
 #include "JSystem/JAudio2/JASSoundParams.h"
-#include "dolphin/types.h"
 
 struct JAISoundParamsProperty {
     void init() {

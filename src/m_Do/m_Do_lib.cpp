@@ -4,11 +4,9 @@
  */
 
 #include "m_Do/m_Do_lib.h"
-#include "JSystem/JMath/JMATrigonometric.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 /* 8001513C-8001528C 00FA7C 0150+00 0/0 3/3 2/2 .text

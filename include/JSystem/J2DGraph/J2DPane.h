@@ -5,7 +5,6 @@
 #include "JSystem/JSupport/JSUList.h"
 #include "dolphin/gx/GXEnum.h"
 #include "dolphin/mtx/mtx.h"
-#include "dolphin/types.h"
 
 class J2DAnmBase;
 class J2DAnmColor;

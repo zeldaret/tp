@@ -5,7 +5,6 @@
 
 #include "d/d_k_wmark.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

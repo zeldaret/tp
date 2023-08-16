@@ -1,7 +1,6 @@
 #ifndef JKRARAMARCHIVE_H
 #define JKRARAMARCHIVE_H
 
-#include "JSystem/JKernel/JKRAramBlock.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "dolphin/types.h"
 

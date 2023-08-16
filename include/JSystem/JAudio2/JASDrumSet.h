@@ -1,7 +1,6 @@
 #ifndef JASDRUMSET_H
 #define JASDRUMSET_H
 
-#include "dolphin/types.h"
 #include "JSystem/JAudio2/JASBasicInst.h"
 
 struct JKRHeap;

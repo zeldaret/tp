@@ -5,7 +5,6 @@
 
 #include "d/shop/d_shop_camera.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

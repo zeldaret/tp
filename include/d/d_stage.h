@@ -5,8 +5,6 @@
 #include "d/kankyo/d_kankyo.h"
 #include "d/kankyo/d_kankyo_data.h"
 #include "d/save/d_save.h"
-#include "dolphin/gx/GXStruct.h"
-#include "dolphin/types.h"
 #include "f_pc/f_pc_priority.h"
 #include "global.h"
 

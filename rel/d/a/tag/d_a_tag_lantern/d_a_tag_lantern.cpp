@@ -12,11 +12,7 @@ daTag_Lantern_c::~daTag_Lantern_c() {}
 
 /* 8048ED28-8048EDA8 000168 0080+00 1/1 0/0 0/0 .text            create__15daTag_Lantern_cFv */
 int daTag_Lantern_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTag_Lantern_c();
-        fopAcM_OnCondition(this, 8);
-    }
-
+    fopAcM_SetupActor(this, daTag_Lantern_c);
     initialize();
     return cPhs_COMPLEATE_e;
 }

@@ -2,7 +2,6 @@
 #define D_MENU_D_MENU_DMAP_H
 
 #include "d/d_select_cursor.h"
-#include "dolphin/mtx/vec.h"
 #include "dolphin/types.h"
 
 class CPaneMgr;

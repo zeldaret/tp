@@ -4,10 +4,8 @@
 //
 
 #include "JSystem/JAudio2/JASAudioReseter.h"
-#include "JSystem/JAudio2/JAISoundHandles.h"
 #include "JSystem/JAudio2/JASAudioThread.h"
 #include "JSystem/JAudio2/JASDriverIF.h"
-#include "JSystem/JAudio2/JASGadget.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/JAudio2/JASDSPChannel.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

@@ -5,8 +5,6 @@
 
 #include "JSystem/JAudio2/JASReport.h"
 #include "JSystem/JAudio2/JASMutex.h"
-#include "dolphin/types.h"
-#include "dolphin/os/OSMutex.h"
 #include "MSL_C/stdio.h"
 
 //

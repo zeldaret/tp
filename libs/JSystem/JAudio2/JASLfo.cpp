@@ -5,7 +5,6 @@
 
 #include "JSystem/JAudio2/JASLfo.h"
 #include "SSystem/SComponent/c_math.h"
-#include "dolphin/types.h"
 
 //
 // Types:

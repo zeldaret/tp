@@ -2,7 +2,6 @@
 #define M_DO_M_DO_GRAPHIC_H
 
 #include "JSystem/JFramework/JFWDisplay.h"
-#include "dolphin/gx/GXStruct.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 

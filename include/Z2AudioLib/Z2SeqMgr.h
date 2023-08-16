@@ -1,7 +1,6 @@
 #ifndef Z2SEQMGR_H
 #define Z2SEQMGR_H
 
-#include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JAISoundHandles.h"
 #include "JSystem/JAudio2/JASGadget.h"
 

@@ -1,7 +1,6 @@
 #ifndef D_A_NPC_ASH_H
 #define D_A_NPC_ASH_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
 class daNpcAsh_c;

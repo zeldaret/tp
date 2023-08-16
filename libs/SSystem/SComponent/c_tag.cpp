@@ -6,7 +6,6 @@
 #include "SSystem/SComponent/c_tag.h"
 #include "SSystem/SComponent/c_list.h"
 #include "SSystem/SComponent/c_tree.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 /* 80266880-8026688C 000C+00 s=0 e=3 z=0  None .text      cTg_IsUse__FP16create_tag_class */

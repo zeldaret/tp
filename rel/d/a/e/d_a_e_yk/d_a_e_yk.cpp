@@ -4,10 +4,6 @@
  */
 
 #include "rel/d/a/e/d_a_e_yk/d_a_e_yk.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JMath/JMath.h"
-#include "SSystem/SComponent/c_math.h"
-#include "c/c_damagereaction.h"
 #include "d/a/d_a_player.h"
 #include "d/d_procname.h"
 #include "d/s/d_s_play.h"
@@ -1906,11 +1902,7 @@ SECTION_DEAD static char const* const stringBase_80807D69 = "E_yk";
 #ifdef NONMATCHING
 // matches with literals
 static int daE_YK_Create(fopAc_ac_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) e_yk_class();
-        fopAcM_OnCondition(i_this, 8);
-    }
-
+    fopAcM_SetupActor(i_this, e_yk_class);
     e_yk_class* yk = (e_yk_class*)i_this;
 
     int phase_step = dComIfG_resLoad(&yk->mPhase,"E_YK");

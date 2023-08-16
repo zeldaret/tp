@@ -6,7 +6,6 @@
 #include "JSystem/J3DGraphLoader/J3DJointFactory.h"
 #include "JSystem/J3DGraphAnimator/J3DJoint.h"
 #include "JSystem/JSupport/JSupport.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

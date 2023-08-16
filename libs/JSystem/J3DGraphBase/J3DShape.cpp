@@ -5,10 +5,7 @@
 
 #include "JSystem/J3DGraphBase/J3DShape.h"
 #include "JSystem/J3DGraphBase/J3DPacket.h"
-#include "JSystem/J3DGraphBase/J3DSys.h"
 #include "JSystem/J3DGraphBase/J3DVertex.h"
-#include "dol2asm.h"
-#include "dolphin/gd/GDBase.h"
 #include "dolphin/gd/GDGeometry.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"

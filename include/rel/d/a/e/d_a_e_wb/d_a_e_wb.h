@@ -1,8 +1,6 @@
 #ifndef D_A_E_WB_H
 #define D_A_E_WB_H
 
-#include "Z2AudioLib/Z2Creature.h"
-#include "dolphin/types.h"
 #include "rel/d/a/d_a_horse/d_a_horse.h"
 #include "SSystem/SComponent/c_phase.h"
 #include "d/cc/d_cc_uty.h"

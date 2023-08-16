@@ -8,7 +8,6 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_alink.h"
 #include "d/d_procname.h"
-#include "f_op/f_op_actor_mng.h"
 #include "rel/d/a/d_a_cstaF/d_a_cstaF.h"
 #include "rel/d/a/d_a_cstatue/d_a_cstatue.h"
 
@@ -80,10 +79,7 @@ static dCcD_SrcCps l_atCpsSrc = {
 
 /* 804A2F18-804A31F8 000158 02E0+00 1/1 0/0 0/0 .text            create__8daCrod_cFv */
 int daCrod_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daCrod_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daCrod_c);
 
     if (fopAcM_GetParam(this) == 6) {
         fopAcM_setStageLayer(this);

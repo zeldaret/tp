@@ -6,7 +6,6 @@
 #include "d/d_lib.h"
 #include "SSystem/SComponent/c_m3d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 #include "m_Do/m_Do_controller_pad.h"
 

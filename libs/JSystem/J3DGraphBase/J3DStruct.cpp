@@ -5,7 +5,6 @@
 
 #include "JSystem/J3DGraphBase/J3DStruct.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

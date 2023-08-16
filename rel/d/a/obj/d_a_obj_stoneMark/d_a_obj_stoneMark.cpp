@@ -7,10 +7,8 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_stoneMark/d_a_obj_stoneMark.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "m_Do/m_Do_lib.h"
 
 //
@@ -139,10 +137,7 @@ asm int daObjSMark_c::Create() {
 #ifdef NONMATCHING
 // matches, but has issues with weak labels being used
 int daObjSMark_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daObjSMark_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daObjSMark_c);
 
     int phase = dComIfG_resLoad(&mpPhase,l_arcName);
     if (phase == cPhs_COMPLEATE_e){

@@ -5,7 +5,6 @@
 
 #include "d/d_npc_lib.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

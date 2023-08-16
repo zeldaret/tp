@@ -9,7 +9,6 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/msg/d_msg_flow.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 //
@@ -1096,10 +1095,7 @@ asm int daTagTWGate_c::CreateHeap() {
 #endif
 
 int daTagTWGate_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagTWGate_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daTagTWGate_c);
 
     mType = getType();
 

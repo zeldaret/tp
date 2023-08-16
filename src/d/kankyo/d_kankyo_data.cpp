@@ -5,8 +5,6 @@
 
 #include "d/kankyo/d_kankyo_data.h"
 #include "d/d_stage.h"
-#include "dol2asm.h"
-#include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
 //

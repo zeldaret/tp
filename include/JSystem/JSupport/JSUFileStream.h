@@ -2,7 +2,6 @@
 #define JSUFILESTREAM_H
 
 #include "JSystem/JSupport/JSURandomInputStream.h"
-#include "dolphin/types.h"
 
 class JKRFile;
 

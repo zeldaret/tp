@@ -5,7 +5,6 @@
 
 #include "SSystem/SComponent/c_m2d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

@@ -5,7 +5,6 @@
 
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "dolphin/gx/GX.h"
-#include "dolphin/mtx/mtx44.h"
 #include "dolphin/types.h"
 
 //

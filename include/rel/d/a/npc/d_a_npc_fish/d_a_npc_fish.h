@@ -1,7 +1,6 @@
 #ifndef D_A_NPC_FISH_H
 #define D_A_NPC_FISH_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 class npc_fish_class : public fopAc_ac_c {

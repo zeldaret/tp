@@ -4,7 +4,6 @@
 //
 
 #include "SSystem/SComponent/c_request.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

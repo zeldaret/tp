@@ -4,7 +4,6 @@
 //
 
 #include "dolphin/os/OSTime.h"
-#include "dol2asm.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/os/OSInterrupt.h"
 

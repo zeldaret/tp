@@ -6,8 +6,6 @@
 #include "d/d_tresure.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/map/d_map_path_dmap.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "d/d_path.h"
 #include "SSystem/SComponent/c_math.h"
 

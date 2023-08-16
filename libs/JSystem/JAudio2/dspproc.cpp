@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/JAudio2/dspproc.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

@@ -2,7 +2,6 @@
 #define JPATEXTURE_H
 
 #include "JSystem/JUtility/JUTTexture.h"
-#include "dolphin/gx/GXEnum.h"
 #include "dolphin/types.h"
 
 struct JPATextureData {

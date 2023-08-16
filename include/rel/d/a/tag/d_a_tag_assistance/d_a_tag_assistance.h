@@ -2,7 +2,6 @@
 #define D_A_TAG_ASSISTANCE_H
 
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
 
@@ -14,10 +13,7 @@ public:
     }
 
     int create() {
-        if (!fopAcM_CheckCondition(this, 8)) {
-            new (this) daTagAssist_c();
-            fopAcM_OnCondition(this, 8);
-        }
+        fopAcM_SetupActor(this, daTagAssist_c);
         create_init();
         return cPhs_COMPLEATE_e;
     }

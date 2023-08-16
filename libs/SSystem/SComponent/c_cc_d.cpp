@@ -4,8 +4,6 @@
 //
 
 #include "SSystem/SComponent/c_cc_d.h"
-#include "SSystem/SComponent/c_m3d.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 /* 80430CB4-80430CC0 05D9D4 000C+00 1/1 2/2 0/0 .bss             m_virtual_center__14cCcD_ShapeAttr

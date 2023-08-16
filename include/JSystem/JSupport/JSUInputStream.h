@@ -2,7 +2,6 @@
 #define JSUINPUTSTREAM_H
 
 #include "JSystem/JSupport/JSUIosBase.h"
-#include "dolphin/types.h"
 
 enum JSUStreamSeekFrom {
     JSUStreamSeekFrom_SET = 0,  // absolute

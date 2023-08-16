@@ -6,7 +6,6 @@
 #include "JSystem/J2DGraph/J2DTevs.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GX.h"
-#include "dolphin/types.h"
 
 //
 // Types:

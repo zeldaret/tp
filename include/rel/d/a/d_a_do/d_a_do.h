@@ -1,15 +1,9 @@
 #ifndef D_A_DO_H
 #define D_A_DO_H
 
-#include "JSystem/J3DGraphAnimator/J3DAnimation.h"
-#include "SSystem/SComponent/c_phase.h"
-#include "Z2AudioLib/Z2SoundObject.h"
 #include "d/a/d_a_item_static.h"
 #include "d/a/d_a_player.h"
-#include "d/bg/d_bg_s_acch.h"
-#include "d/cc/d_cc_d.h"
 #include "d/msg/d_msg_flow.h"
-#include "d/particle/d_particle.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 #include "m_Do/m_Do_controller_pad.h"

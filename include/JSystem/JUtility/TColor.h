@@ -2,7 +2,6 @@
 #define TCOLOR_H
 
 #include "dolphin/gx/GXStruct.h"
-#include "dolphin/types.h"
 
 namespace JUtility {
 struct TColor : public GXColor {

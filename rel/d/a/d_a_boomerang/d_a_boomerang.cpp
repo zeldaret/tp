@@ -4,12 +4,7 @@
 //
 
 #include "rel/d/a/d_a_boomerang/d_a_boomerang.h"
-#include "JSystem/J2DGraph/J2DAnimation.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
-#include "JSystem/JKernel/JKRArchive.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JParticle/JPAParticle.h"
-#include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_alink.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"

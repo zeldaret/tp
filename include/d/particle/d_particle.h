@@ -3,9 +3,6 @@
 
 #include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JParticle/JPAEmitter.h"
-#include "SSystem/SComponent/c_sxyz.h"
-#include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
 #include "d/kankyo/d_kankyo.h"
 

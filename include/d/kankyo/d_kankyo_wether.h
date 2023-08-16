@@ -4,7 +4,6 @@
 #include "JSystem/J3DGraphBase/J3DPacket.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
 
 void dKyw_wether_draw();

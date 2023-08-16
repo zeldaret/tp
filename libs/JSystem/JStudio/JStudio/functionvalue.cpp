@@ -8,7 +8,6 @@
 #include "MSL_C/math.h"
 #include "MSL_C/stdlib.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 //

@@ -4,7 +4,6 @@
 //
 
 #include "dolphin/gx/GXMisc.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

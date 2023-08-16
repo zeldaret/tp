@@ -1,7 +1,6 @@
 #ifndef Z2SOUNDHANDLES_H
 #define Z2SOUNDHANDLES_H
 
-#include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JAISoundHandles.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "dolphin/types.h"

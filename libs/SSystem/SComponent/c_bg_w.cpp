@@ -4,7 +4,6 @@
 //
 
 #include "SSystem/SComponent/c_bg_w.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

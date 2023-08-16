@@ -3,7 +3,6 @@
 
 #include "JSystem/JGeometry.h"
 #include "dolphin/mtx/mtxvec.h"
-#include "dolphin/types.h"
 
 struct J3DTransformInfo {
     /* 0x00 */ JGeometry::TVec3<f32> mScale;

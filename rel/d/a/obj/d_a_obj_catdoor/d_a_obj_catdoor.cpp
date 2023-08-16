@@ -4,13 +4,10 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_catdoor/d_a_obj_catdoor.h"
-#include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "SSystem/SComponent/c_phase.h"
 #include "d/bg/d_bg_w.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 #include "f_op/f_op_actor_mng.h"
 #include "global.h"
@@ -93,10 +90,7 @@ public:
     }
 
     int create() {
-        if (!fopAcM_CheckCondition(this, 8)) {
-            new (this) daObjCatDoor_c();
-            fopAcM_OnCondition(this, 8);
-        }
+        fopAcM_SetupActor(this, daObjCatDoor_c);
 
         int phase_state = dComIfG_resLoad(&mPhaseReq, l_arcName);
         if (phase_state != cPhs_COMPLEATE_e) {

@@ -5,7 +5,6 @@
 
 #include "rel/d/a/d_a_startAndGoal/d_a_startAndGoal.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

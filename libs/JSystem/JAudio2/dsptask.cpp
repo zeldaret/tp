@@ -6,7 +6,6 @@
 #include "JSystem/JAudio2/dsptask.h"
 #include "JSystem/JAudio2/osdsp.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "dolphin/dsp/dsp.h"
 #include "dolphin/os/OS.h"
 

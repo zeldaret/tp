@@ -3,7 +3,6 @@
 
 #include "JSystem/JSupport/JSUList.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "dolphin/os/OSMutex.h"
 
 class JKRHeap;

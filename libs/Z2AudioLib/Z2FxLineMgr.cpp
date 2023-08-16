@@ -5,7 +5,6 @@
 
 #include "Z2AudioLib/Z2FxLineMgr.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

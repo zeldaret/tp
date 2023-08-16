@@ -3,7 +3,6 @@
 
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "dolphin/os/OSTime.h"
-#include "dolphin/types.h"
 
 class JKRExpHeap;
 

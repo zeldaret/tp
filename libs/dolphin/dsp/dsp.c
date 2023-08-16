@@ -1,7 +1,6 @@
 #include "dolphin/dsp/dsp.h"
 #include "dolphin/dsp/dsp_debug.h"
 #include "dolphin/dsp/dsp_task.h"
-#include "dolphin/os/OS.h"
 #include "JSystem/JAudio2/osdsp_task.h"
 
 /* 80450A58-80450A60 -00001 0004+04 1/1 0/0 0/0 .sdata           __DSPVersion */

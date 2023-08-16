@@ -4,9 +4,7 @@
 //
 
 #include "SSystem/SComponent/c_m3d_g_pla.h"
-#include "MSL_C/math.h"
 #include "SSystem/SComponent/c_m3d.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

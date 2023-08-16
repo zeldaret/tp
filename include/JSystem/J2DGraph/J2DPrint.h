@@ -2,7 +2,6 @@
 #define J2DPRINT_H
 
 #include "JSystem/J2DGraph/J2DTextBox.h"
-#include "JSystem/JUtility/TColor.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dolphin/types.h"
 

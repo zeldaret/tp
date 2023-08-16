@@ -1,8 +1,6 @@
 #ifndef D_D_CAMERA_H
 #define D_D_CAMERA_H
 
-#include "SSystem/SComponent/c_angle.h"
-#include "SSystem/SComponent/c_xyz.h"
 #include "d/bg/d_bg_s_lin_chk.h"
 #include "d/bg/d_bg_s_gnd_chk.h"
 #include "d/d_cam_param.h"

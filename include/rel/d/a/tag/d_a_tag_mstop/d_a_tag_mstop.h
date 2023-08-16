@@ -1,8 +1,6 @@
 #ifndef D_A_TAG_MSTOP_H
 #define D_A_TAG_MSTOP_H
 
-#include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
 #include "d/msg/d_msg_flow.h"
 #include "d/com/d_com_inf_game.h"
 

@@ -4,7 +4,6 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_volcball/d_a_obj_volcball.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
@@ -504,10 +503,7 @@ int daObjVolcBall_c::CreateHeap() {
 // matches with vtable data
 #ifdef NONMATCHING
 int daObjVolcBall_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daObjVolcBall_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daObjVolcBall_c);
 
     mIsBigVolc = checkBigVolc();
     if (mIsBigVolc == 1) {

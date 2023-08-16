@@ -4,8 +4,6 @@
 //
 
 #include "dolphin/gf/GFTev.h"
-#include "dolphin/gx/GXEnum.h"
-#include "dolphin/gx/GXStruct.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 

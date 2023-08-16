@@ -2,7 +2,6 @@
 #define JKRSOLIDHEAP_H
 
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dolphin/types.h"
 
 class JKRSolidHeap : public JKRHeap {
 public:

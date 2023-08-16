@@ -5,7 +5,6 @@
 
 #include "JSystem/J3DU/J3DUClipper.h"
 #include "MSL_C/math.h"
-#include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 
 //

@@ -5,7 +5,6 @@
 
 #include "dolphin/os/OSExec.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // External References:

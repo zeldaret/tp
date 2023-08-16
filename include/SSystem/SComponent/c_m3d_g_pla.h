@@ -3,7 +3,6 @@
 
 #include "SSystem/SComponent/c_xyz.h"
 #include "SSystem/SComponent/c_m3d.h"
-#include "dolphin/types.h"
 
 // Plane with a normal
 class cM3dGPla {

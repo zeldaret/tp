@@ -5,8 +5,6 @@
 
 #include "m_Do/m_Do_controller_pad.h"
 #include "SSystem/SComponent/c_lib.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_ap/f_ap_game.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_main.h"

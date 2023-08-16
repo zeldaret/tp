@@ -7,7 +7,6 @@
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTXfb.h"
 #include "dolphin/gx/GX.h"
-#include "dolphin/vi/vi.h"
 
 /* 80451538-8045153C 000A38 0004+00 4/4 18/18 1/1 .sbss            sManager__8JUTVideo */
 JUTVideo* JUTVideo::sManager;

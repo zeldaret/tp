@@ -3,7 +3,6 @@
 
 #include "JSystem/J2DGraph/J2DMaterial.h"
 #include "JSystem/J2DGraph/J2DPane.h"
-#include "dolphin/types.h"
 
 class JSURandomInputStream;
 class JUTTexture;

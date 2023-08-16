@@ -1,7 +1,6 @@
 #ifndef Z2SOUNDSTARTER_H
 #define Z2SOUNDSTARTER_H
 
-#include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JAISoundStarter.h"
 #include "JSystem/JAudio2/JASGadget.h"
 

@@ -5,7 +5,6 @@
 
 #include "rel/d/a/d_a_talk/d_a_talk.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "d/msg/d_msg_object.h"
 #include "f_op/f_op_msg_mng.h"
@@ -29,10 +28,7 @@ daTalk_c::~daTalk_c() {
 
 /* 80D663E4-80D664AC 0000E4 00C8+00 1/1 0/0 0/0 .text            create__8daTalk_cFv */
 int daTalk_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTalk_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daTalk_c);
 
     if (getStatus() != 1) {
         return cPhs_ERROR_e;

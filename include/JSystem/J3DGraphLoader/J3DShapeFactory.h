@@ -3,7 +3,6 @@
 
 #include "dolphin/gx/GXAttr.h"
 #include "dolphin/mtx/vec.h"
-#include "dolphin/types.h"
 
 struct J3DShape;
 struct J3DShapeMtx;

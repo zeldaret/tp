@@ -4,7 +4,6 @@
 //
 
 #include "SSystem/SComponent/c_m3d_g_cir.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

@@ -1,7 +1,6 @@
 #include "dolphin/os/OSContext.h"
 #include "dolphin/db/db.h"
 #include "dolphin/os/OS.h"
-#include "dolphin/os/OSInterrupt.h"
 
 volatile OSContext* __OSCurrentContext : (OS_BASE_CACHED | 0x00D4);
 volatile OSContext* __OSFPUContext : (OS_BASE_CACHED | 0x00D8);

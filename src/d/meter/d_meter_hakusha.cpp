@@ -5,7 +5,6 @@
 
 #include "d/meter/d_meter_hakusha.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

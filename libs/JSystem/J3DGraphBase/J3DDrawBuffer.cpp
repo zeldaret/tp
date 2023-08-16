@@ -5,7 +5,6 @@
 
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "JSystem/J3DGraphBase/J3DPacket.h"
 #include "JSystem/JKernel/JKRHeap.h"
 
 void J3DDrawBuffer::calcZRatio() {

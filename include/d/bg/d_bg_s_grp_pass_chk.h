@@ -2,7 +2,6 @@
 #define D_BG_D_BG_S_GRP_PASS_CHK_H
 
 #include "SSystem/SComponent/c_bg_s_chk.h"
-#include "dolphin/types.h"
 
 class dBgS_GrpPassChk : public cBgS_GrpPassChk {
 public:

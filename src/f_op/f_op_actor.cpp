@@ -10,7 +10,6 @@
 #include "d/com/d_com_static.h"
 #include "d/d_demo.h"
 #include "d/s/d_s_play.h"
-#include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_actor_tag.h"
 #include "f_op/f_op_draw_tag.h"
 #include "f_pc/f_pc_manager.h"

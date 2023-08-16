@@ -4,7 +4,6 @@
 //
 
 #include "SSystem/SComponent/c_bg_s_poly_info.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 /* 80268074-802680B0 2629B4 003C+00 0/0 7/7 9/9 .text            __ct__13cBgS_PolyInfoFv */

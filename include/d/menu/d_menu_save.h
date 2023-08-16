@@ -2,7 +2,6 @@
 #define D_MENU_D_MENU_SAVE_H
 
 #include "d/d_drawlist.h"
-#include "dolphin/types.h"
 #include "d/save/d_save.h"
 
 class CPaneMgr;

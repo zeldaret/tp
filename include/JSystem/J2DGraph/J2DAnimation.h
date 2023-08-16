@@ -2,8 +2,6 @@
 #define J2DANIMATION_H
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
-#include "JSystem/JUtility/JUTNameTab.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 typedef struct _GXColor GXColor;

@@ -5,7 +5,6 @@
 
 #include "TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

@@ -1,7 +1,6 @@
 #ifndef GFLIGHT_H
 #define GFLIGHT_H
 
-#include "dolphin/types.h"
 #include "dolphin/gx/GXEnum.h"
 #include "dolphin/gx/GXStruct.h"
 

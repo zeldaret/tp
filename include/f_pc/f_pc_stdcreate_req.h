@@ -1,7 +1,6 @@
 #ifndef F_PC_STDCREATE_H_
 #define F_PC_STDCREATE_H_
 
-#include "dolphin/types.h"
 #include "f_pc/f_pc_create_req.h"
 
 typedef struct layer_class layer_class;

@@ -2,7 +2,6 @@
 //
 //
 
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 extern "C" void ModuleProlog();

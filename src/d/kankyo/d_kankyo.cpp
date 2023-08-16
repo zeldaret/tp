@@ -4,15 +4,8 @@
 //
 
 #include "d/kankyo/d_kankyo.h"
-#include "JSystem/J3DGraphBase/J3DMatBlock.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "MSL_C/string.h"
 #include "SSystem/SComponent/c_counter.h"
-#include "SSystem/SComponent/c_math.h"
-#include "d/a/d_a_player.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/kankyo/d_kankyo_data.h"
-#include "d/kankyo/d_kankyo_rain.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"

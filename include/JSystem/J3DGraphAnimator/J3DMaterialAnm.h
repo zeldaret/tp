@@ -2,7 +2,6 @@
 #define J3DMATERIALANM_H
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
-#include "dolphin/types.h"
 
 typedef struct _GXColor GXColor;
 typedef struct _GXColorS10 GXColorS10;

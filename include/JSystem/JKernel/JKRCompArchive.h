@@ -2,7 +2,6 @@
 #define JKRCOMPARCHIVE_H
 
 #include "JSystem/JKernel/JKRArchive.h"
-#include "dolphin/types.h"
 
 class JKRAramBlock;
 class JKRDvdFile;

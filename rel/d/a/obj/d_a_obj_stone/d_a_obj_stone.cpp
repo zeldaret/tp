@@ -7,9 +7,6 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_stone/d_a_obj_stone.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JMath/JMath.h"
-#include "SSystem/SComponent/c_math.h"
 #include "d/d_lib.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
@@ -815,10 +812,7 @@ bool daObjStone_c::CreateHeap() {
 #ifdef NONMATCHING
 // matches, but too many destructors being generated
 int daObjStone_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daObjStone_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daObjStone_c);
 
     mStoneType = getType();
 

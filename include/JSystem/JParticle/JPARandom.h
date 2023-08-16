@@ -1,7 +1,6 @@
 #ifndef JPARANDOM_H
 #define JPARANDOM_H
 
-#include "dolphin/types.h"
 
 struct JPARandom {
 public:

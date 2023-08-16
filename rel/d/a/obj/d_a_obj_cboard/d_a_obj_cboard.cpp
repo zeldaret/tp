@@ -145,10 +145,7 @@ int daObjBoard_c::Delete() {
 
 /* 8057BCFC-8057BD5C 00041C 0060+00 1/0 0/0 0/0 .text daObjBoard_create1st__FP12daObjBoard_c */
 static int daObjBoard_create1st(daObjBoard_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) daObjBoard_c();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    fopAcM_SetupActor(i_this, daObjBoard_c);
 
     return i_this->create1st();
 }

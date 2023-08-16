@@ -5,7 +5,6 @@
 
 #include "rel/d/a/obj/d_a_obj_shield/d_a_obj_shield.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

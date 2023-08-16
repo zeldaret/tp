@@ -5,7 +5,6 @@
 
 #include "dolphin/gx/GXBump.h"
 #include "dolphin/gx/GX.h"
-#include "dolphin/gx/GXInit.h"
 
 /* 8035ECC0-8035ED2C 359600 006C+00 1/1 3/3 0/0 .text            GXSetTevIndirect */
 void GXSetTevIndirect(GXTevStageID tevStage, GXIndTexStageID texStage, GXIndTexFormat texFmt,
