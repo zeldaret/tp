@@ -830,7 +830,7 @@ extern "C" asm void __dt__11cBgW_GrpElmFv() {
 cBgW_GrpElm::cBgW_GrpElm() {}
 
 /* 8007A200-8007A344 074B40 0144+00 1/1 0/0 0/0 .text RwgLineCheck__4cBgWFUsP11cBgS_LinChk */
-// loop needs work
+// vtable issue
 #ifdef NONMATCHING
 bool cBgW::RwgLineCheck(u16 poly_index, cBgS_LinChk* linchk) {
     bool chk;
@@ -852,11 +852,11 @@ bool cBgW::RwgLineCheck(u16 poly_index, cBgS_LinChk* linchk) {
             }
         }
 
-        poly_index = pm_rwg[poly_index].field_0x0;
 
-        if (poly_index != 0xFFFF) {
-            return chk;
+        if (pm_rwg[poly_index].field_0x0 == 0xFFFF) {
+            break;
         }
+        poly_index = pm_rwg[poly_index].field_0x0;
     }
 
     return chk;

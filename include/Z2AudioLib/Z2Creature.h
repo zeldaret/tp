@@ -75,6 +75,7 @@ public:
 
     void setInWater(bool status) { mInWater = status; }
     bool isInWater() { return mInWater; }
+    u8 getLinkState() const { return mLinkState; }
 
     static Z2CreatureLink* mLinkPtr;
 
