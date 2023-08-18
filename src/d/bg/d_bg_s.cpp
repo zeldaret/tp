@@ -7,7 +7,6 @@
 #include "d/bg/d_bg_s_sph_chk.h"
 #include "d/bg/d_bg_w.h"
 #include "d/com/d_com_inf_game.h"
-#include "dol2asm.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
@@ -16,120 +15,9 @@
 // Forward References:
 //
 
-extern "C" void Init__11cBgS_ChkElmFv();
-extern "C" void Regist2__11cBgS_ChkElmFP9dBgW_BaseUiPv();
-extern "C" void Release__11cBgS_ChkElmFv();
-extern "C" void Regist__4cBgSFP9dBgW_BaseUiPv();
-extern "C" void Release__4cBgSFP9dBgW_Base();
-extern "C" void Ct__4cBgSFv();
-extern "C" void Dt__4cBgSFv();
-extern "C" void LineCross__4cBgSFP11cBgS_LinChk();
-extern "C" void GroundCross__4cBgSFP11cBgS_GndChk();
-extern "C" void ConvDzb__4cBgSFPv();
-extern "C" void GetActorPointer__4cBgSCFi();
-extern "C" void GetBgWBasePointer__4cBgSCFRC13cBgS_PolyInfo();
-extern "C" void ChkPolySafe__4cBgSFRC13cBgS_PolyInfo();
-extern "C" void GetGrpRoomId__4cBgSCFRC13cBgS_PolyInfo();
-extern "C" void GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla();
-extern "C" void GetTriPnt__4cBgSCFRC13cBgS_PolyInfoP4cXyzP4cXyzP4cXyz();
-extern "C" void ShdwDraw__4cBgSFP13cBgS_ShdwDraw();
-extern "C" void GetGrpInf__4cBgSCFRC13cBgS_PolyInfo();
-extern "C" void Ct__4dBgSFv();
-extern "C" void Dt__4dBgSFv();
-extern "C" void ClrMoveFlag__4dBgSFv();
-extern "C" void Move__4dBgSFv();
-extern "C" void Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c();
-extern "C" void SetOldShapeAngleY__9dBgW_BaseFs();
-extern "C" void ChkMoveBG__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void ChkMoveBG_NoDABg__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetExitId__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetPolyColor__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetHorseNoEntry__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetSpecialCode__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetMagnetCode__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetMonkeyBarsCode__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetUnderwaterRoofCode__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetWallCode__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetPolyAtt0__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetPolyAtt1__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetGroundCode__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetCamMoveBG__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetRoomCamId__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetRoomPathId__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetRoomPathPntNo__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetGrpSoundId__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void ChkGrpInf__4dBgSFRC13cBgS_PolyInfoUl();
-extern "C" void GetRoomId__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetPolyAttackThrough__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void ChkPolyHSStick__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void WallCorrect__4dBgSFP9dBgS_Acch();
-extern "C" void WallCorrectSort__4dBgSFP9dBgS_Acch();
-extern "C" void RoofChk__4dBgSFP12dBgS_RoofChk();
-extern "C" void SplGrpChk__4dBgSFP14dBgS_SplGrpChk();
-extern "C" void SphChk__4dBgSFP11dBgS_SphChkPv();
-extern "C" void MoveBgCrrPos__4dBgSFRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyzbb();
-extern "C" void MoveBgTransPos__4dBgSFRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz();
-extern "C" void MoveBgMatrixCrrPos__4dBgSFRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz();
-extern "C" void dBgS_MoveBGProc_Typical__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz();
-extern "C" static void dBgS_MoveBGProc_RotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz();
-extern "C" void dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz();
-extern "C" void dBgS_MoveBGProc_Trans__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz();
-extern "C" void RideCallBack__4dBgSFRC13cBgS_PolyInfoP10fopAc_ac_c();
-extern "C" void ArrowStickCallBack__4dBgSFRC13cBgS_PolyInfoP10fopAc_ac_cR4cXyz();
-extern "C" void
-PushPullCallBack__4dBgSFRC13cBgS_PolyInfoP10fopAc_ac_csQ29dBgW_Base13PushPullLabel();
-extern "C" void dBgS_CheckBWallPoly__FRC13cBgS_PolyInfo();
-extern "C" void dBgS_CheckBGroundPoly__FRC13cBgS_PolyInfo();
-extern "C" void dBgS_CheckBRoofPoly__FRC13cBgS_PolyInfo();
-extern "C" void dBgS_GetNY__FRC13cBgS_PolyInfo();
-extern "C" extern void* __vt__4dBgS[5];
-extern "C" extern void* __vt__4cBgS[5];
-extern "C" extern void* __vt__11cBgS_ChkElm[4];
-extern "C" extern u8 data_80450F68[8];
-
 //
 // External References:
 //
-
-extern "C" void __dt__11cBgS_ChkElmFv();
-extern "C" void __dt__4dBgSFv();
-extern "C" void __dt__4cBgSFv();
-extern "C" void SetNowActorInfo__9dBgS_AcchFiPvUi();
-extern "C" void CalcMovePosWork__9dBgS_AcchFv();
-extern "C" void CalcWallRR__9dBgS_AcchFv();
-extern "C" void Init__14dBgS_SplGrpChkFv();
-extern "C" void Init__12dBgS_RoofChkFv();
-extern "C" void GetTrans__4cBgWCFP4cXyz();
-extern "C" void CalcDiffShapeAngleY__9dBgW_BaseFs();
-extern "C" void ChkSameActorPid__8cBgS_ChkCFUi();
-extern "C" void PreCheck__11cBgS_GndChkFv();
-extern "C" void PreCalc__11cBgS_LinChkFv();
-extern "C" void ChkSetInfo__13cBgS_PolyInfoCFv();
-extern "C" void ClearPi__13cBgS_PolyInfoFv();
-extern "C" void SetActorInfo__13cBgS_PolyInfoFiPvUi();
-extern "C" void ChkSafe__13cBgS_PolyInfoCFPCvUi();
-extern "C" void ChkBgIndex__13cBgS_PolyInfoCFv();
-extern "C" void Regist__9cBgW_BgIdFi();
-extern "C" void Release__9cBgW_BgIdFv();
-extern "C" void ChkUsed__9cBgW_BgIdCFv();
-extern "C" void cBgW_CheckBGround__Ff();
-extern "C" bool cBgW_CheckBRoof__Ff(f32);
-extern "C" void cBgW_CheckBWall__Ff();
-extern "C" void _savegpr_22();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_22();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__8cM3dGPla[3];
 
 //
 // Declarations:
@@ -304,15 +192,14 @@ struct cBgS_dzb_strgroup {
 };
 
 /* 80074578-80074618 06EEB8 00A0+00 0/0 1/1 0/0 .text            ConvDzb__4cBgSFPv */
-#ifdef NONMATCHING
 void* cBgS::ConvDzb(void* p_dzb) {
     cBgS_dzb_data* pbgd = (cBgS_dzb_data*)p_dzb;
 
-    if ((pbgd->field_0x30 & 0x80000000)) {
-        return;
+    if (((pbgd->field_0x30 & 0x80000000) == 0)) {
+        pbgd->field_0x30 |= 0x80000000;
+    } else {
+        return p_dzb;
     }
-
-    pbgd->field_0x30 |= 0x80000000;
 
     if (pbgd->m_v_tbl != 0) {
         pbgd->m_v_tbl += (u32)p_dzb;
@@ -330,16 +217,6 @@ void* cBgS::ConvDzb(void* p_dzb) {
 
     return p_dzb;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* cBgS::ConvDzb(void* param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_s/ConvDzb__4cBgSFPv.s"
-}
-#pragma pop
-#endif
 
 /* 80074618-80074628 06EF58 0010+00 0/0 9/9 13/13 .text            GetActorPointer__4cBgSCFi */
 fopAc_ac_c* cBgS::GetActorPointer(int actor_index) const {
@@ -681,8 +558,6 @@ u32 dBgS::ChkGrpInf(cBgS_PolyInfo const& poly, u32 param_1) {
 }
 
 /* 80075100-8007519C 06FA40 009C+00 0/0 16/16 60/60 .text GetRoomId__4dBgSFRC13cBgS_PolyInfo */
-// close
-#ifdef NONMATCHING
 s32 dBgS::GetRoomId(cBgS_PolyInfo const& poly) {
     if (!poly.ChkSetInfo()) {
         return -1;
@@ -694,22 +569,15 @@ s32 dBgS::GetRoomId(cBgS_PolyInfo const& poly) {
     }
 
     s32 roomId = m_chk_element[id].m_bgw_base_ptr->GetRoomId();
-    if (roomId == 0xFF && GetGrpRoomId(poly) == 0xFF) {
-        return -1;
+    if (roomId == 0xFF) {
+        roomId = GetGrpRoomId(poly);
+        if (roomId == 0xFF) {
+            roomId = -1;
+        }
     }
 
-    // return -1;
+    return roomId;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 dBgS::GetRoomId(cBgS_PolyInfo const& param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_s/GetRoomId__4dBgSFRC13cBgS_PolyInfo.s"
-}
-#pragma pop
-#endif
 
 /* 8007519C-800751F8 06FADC 005C+00 0/0 3/3 0/0 .text
  * GetPolyAttackThrough__4dBgSFRC13cBgS_PolyInfo                */
@@ -983,7 +851,6 @@ void dBgS::ArrowStickCallBack(cBgS_PolyInfo const& poly, fopAc_ac_c* param_1, cX
 
 /* 80075C6C-80075D0C 0705AC 00A0+00 0/0 1/1 0/0 .text
  * PushPullCallBack__4dBgSFRC13cBgS_PolyInfoP10fopAc_ac_csQ29dBgW_Base13PushPullLabel */
-#ifdef NONMATCHING
 bool dBgS::PushPullCallBack(cBgS_PolyInfo const& param_0, fopAc_ac_c* param_1, s16 param_2,
                             dBgW_Base::PushPullLabel param_3) {
     u16 bg_index = param_0.GetBgIndex();
@@ -1000,19 +867,8 @@ bool dBgS::PushPullCallBack(cBgS_PolyInfo const& param_0, fopAc_ac_c* param_1, s
         return false;
     }
 
-    base->GetPushPullCallback()(param_0, param_1, param_2, param_3);
+    return base->GetPushPullCallback()(m_chk_element[bg_index].m_actor_ptr, param_1, param_2, param_3);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dBgS::PushPullCallBack(cBgS_PolyInfo const& param_0, fopAc_ac_c* param_1, s16 param_2,
-                                dBgW_Base::PushPullLabel param_3) {
-    nofralloc
-#include "asm/d/bg/d_bg_s/PushPullCallBack__4dBgSFRC13cBgS_PolyInfoP10fopAc_ac_csQ29dBgW_Base13PushPullLabel.s"
-}
-#pragma pop
-#endif
 
 /* 80075D0C-80075D7C 07064C 0070+00 0/0 8/8 1/1 .text dBgS_CheckBWallPoly__FRC13cBgS_PolyInfo */
 bool dBgS_CheckBWallPoly(cBgS_PolyInfo const& poly) {
@@ -1056,5 +912,4 @@ f32 dBgS_GetNY(cBgS_PolyInfo const& poly) {
 }
 
 /* 80450F68-80450F70 000468 0008+00 0/0 1/1 0/0 .sbss            None */
-extern u8 data_80450F68[8];
-u8 data_80450F68[8] ALIGN_DECL(8);
+u8 data_80450F68[8] __attribute__((aligned(8)));

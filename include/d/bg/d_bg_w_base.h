@@ -24,7 +24,7 @@ public:
         PRIORITY_0,
     };
 
-    typedef s32 (*PushPull_CallBack)(cBgS_PolyInfo const&, fopAc_ac_c*, s16,
+    typedef bool (*PushPull_CallBack)(fopAc_ac_c*, fopAc_ac_c*, s16,
                                      dBgW_Base::PushPullLabel);
 
     /* 8007E5A8 */ dBgW_Base();

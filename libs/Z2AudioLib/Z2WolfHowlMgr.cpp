@@ -5,74 +5,26 @@
 
 #include "Z2AudioLib/Z2WolfHowlMgr.h"
 #include "Z2AudioLib/Z2Creature.h"
+#include "Z2AudioLib/Z2Calc.h"
+#include "Z2AudioLib/Z2SeqMgr.h"
+#include "Z2AudioLib/Z2SeMgr.h"
+#include "Z2AudioLib/Z2SceneMgr.h"
+#include "Z2AudioLib/Z2SoundMgr.h"
+#include "Z2AudioLib/Z2Audience.h"
 #include "dolphin/os/OS.h"
-#include "dol2asm.h"
+#include "d/d_demo.h"
 
 //
 // Types:
 //
 
-struct Z2SeqMgr {
-    /* 802AF49C */ void subBgmStart(u32);
-    /* 802B327C */ void stopWolfHowlSong();
-};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2Calc {
-    struct CurveSign {};
-
-    /* 802A968C */ void linearTransform(f32, f32, f32, f32, f32, bool);
-    /* 802A96F4 */ void getParamByExp(f32, f32, f32, f32, f32, f32, Z2Calc::CurveSign);
-};
-
 //
 // Forward References:
 //
 
-extern "C" void __ct__13Z2WolfHowlMgrFv();
-extern "C" void resetState__13Z2WolfHowlMgrFv();
-extern "C" void calcVolumeMod__13Z2WolfHowlMgrFf();
-extern "C" void getNowPitch__13Z2WolfHowlMgrFv();
-extern "C" void getNowInputValue__13Z2WolfHowlMgrFv();
-extern "C" void calcPitchMod__13Z2WolfHowlMgrFff();
-extern "C" void startWolfHowlSound__13Z2WolfHowlMgrFffbf();
-extern "C" void setCorrectData__13Z2WolfHowlMgrFScP14Z2WolfHowlData();
-extern "C" void getCorrectLine__13Z2WolfHowlMgrFUc();
-extern "C" void getCorrectLineNum__13Z2WolfHowlMgrFv();
-extern "C" void checkLine__13Z2WolfHowlMgrFv();
-extern "C" void getOnLineNum__13Z2WolfHowlMgrFv();
-extern "C" void startWindStoneSound__13Z2WolfHowlMgrFScP3Vec();
-extern "C" void startGuideMelody__13Z2WolfHowlMgrFb();
-extern "C" void skipCorrectDemo__13Z2WolfHowlMgrFv();
-extern "C" void __sinit_Z2WolfHowlMgr_cpp();
-
 //
 // External References:
 //
-
-extern "C" void stop__8JAISoundFUl();
-extern "C" void stop__8JAISoundFv();
-extern "C" void moveVolume__18JAISoundParamsMoveFfUl();
-extern "C" void movePitch__18JAISoundParamsMoveFfUl();
-extern "C" void func_802A2FEC();
-extern "C" void linearTransform__6Z2CalcFfffffb();
-extern "C" void getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void subBgmStart__8Z2SeqMgrFUl();
-extern "C" void stopWolfHowlSong__8Z2SeqMgrFv();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern u8 data_80450B44[4];
-extern "C" extern u8 data_80450B60[4];
-extern "C" extern u8 data_80450B80[4];
-extern "C" extern u8 data_80450B84[4];
-extern "C" extern u8 data_80450B88[4];
-extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -80,116 +32,93 @@ extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 804508A0-804508A8 000320 0008+00 1/0 0/0 0/0 .sdata           sHowlTobikusa */
-extern "C" u16 sHowlTobikusa[4];
+extern SongNote sHowlTobikusa[4];
 
 /* 803CBC50-803CBC5C 028D70 000C+00 1/0 0/0 0/0 .data            sHowlUmakusa */
-SECTION_DATA static u16 sHowlUmakusa[6] = {
-    0x010F, 0x020F, 0x033C, 0x010F, 0x020F, 0x033C,
+static SongNote sHowlUmakusa[6] = {
+    {0x01, 0x0F}, {0x02, 0x0F}, {0x03, 0x3C}, {0x01, 0x0F}, {0x02, 0x0F}, {0x03, 0x3C},
 };
 
 /* 803CBC5C-803CBC68 028D7C 000C+00 1/0 0/0 0/0 .data            sHowlZeldaSong */
-SECTION_DATA static u16 sHowlZeldaSong[6] = {
-    0x021E, 0x010F, 0x032D, 0x021E, 0x010F, 0x032D,
+static SongNote sHowlZeldaSong[6] = {
+    {0x02, 0x1E}, {0x01, 0x0F}, {0x03, 0x2D}, {0x02, 0x1E}, {0x01, 0x0F}, {0x03, 0x2D},
 };
 
 /* 803CBC68-803CBC74 028D88 000C+00 1/0 0/0 0/0 .data            sHowlLightPrelude */
-SECTION_DATA static u16 sHowlLightPrelude[6] = {
-    0x0114, 0x0328, 0x0114, 0x0314, 0x0214, 0x011E,
+static SongNote sHowlLightPrelude[6] = {
+    {0x01, 0x14}, {0x03, 0x28}, {0x01, 0x14}, {0x03, 0x14}, {0x02, 0x14}, {0x01, 0x1E},
 };
 
 /* 803CBC74-803CBC80 028D94 000C+00 1/0 0/0 0/0 .data            sHowlSoulRequiem */
-SECTION_DATA static u16 sHowlSoulRequiem[6] = {
-    0x031E, 0x020F, 0x030F, 0x011E, 0x021E, 0x031E,
+static SongNote sHowlSoulRequiem[6] = {
+    {0x03, 0x1E}, {0x02, 0x0F}, {0x03, 0x0F}, {0x01, 0x1E}, {0x02, 0x1E}, {0x03, 0x1E},
 };
 
 /* 803CBC80-803CBC8C 028DA0 000C+00 1/0 0/0 0/0 .data            sHealingSong */
-SECTION_DATA static u16 sHealingSong[6] = {
-    0x011E, 0x021E, 0x031E, 0x011E, 0x021E, 0x031E,
+static SongNote sHealingSong[6] = {
+    {0x01, 0x1E}, {0x02, 0x1E}, {0x03, 0x1E}, {0x01, 0x1E}, {0x02, 0x1E}, {0x03, 0x1E},
 };
 
 /* 803CBC8C-803CBC9C 028DAC 000E+02 1/0 0/0 0/0 .data            sNewSong1 */
-SECTION_DATA static u16 sNewSong1[7] = {
-    0x031E, 0x021E, 0x011E, 0x0328, 0x0214, 0x031E, 0x011E,
+static SongNote sNewSong1[7] = {
+    {0x03, 0x1E}, {0x02, 0x1E}, {0x01, 0x1E}, {0x03, 0x28}, {0x02, 0x14}, {0x03, 0x1E}, {0x01, 0x1E},
 };
 
 /* 803CBC9C-803CBCAC 028DBC 0010+00 1/0 0/0 0/0 .data            sNewSong2 */
-SECTION_DATA static u16 sNewSong2[8] = {
-    0x0114, 0x0214, 0x0314, 0x023C, 0x0314, 0x0114, 0x0214, 0x031E,
+static SongNote sNewSong2[8] = {
+    {0x01, 0x14}, {0x02, 0x14}, {0x03, 0x14}, {0x02, 0x3C}, {0x03, 0x14}, {0x01, 0x14}, {0x02, 0x14}, {0x03, 0x1E},
 };
 
 /* 803CBCAC-803CBCC0 028DCC 0012+02 1/0 0/0 0/0 .data            sNewSong3 */
-SECTION_DATA static u16 sNewSong3[9] = {
-    0x021E, 0x033C, 0x0228, 0x0114, 0x033C, 0x0114, 0x0214, 0x0114, 0x022D,
+static SongNote sNewSong3[9] = {
+    {0x02, 0x1E}, {0x03, 0x3C}, {0x02, 0x28}, {0x01, 0x14}, {0x03, 0x3C}, {0x01, 0x14}, {0x02, 0x14}, {0x01, 0x14}, {0x02, 0x2D},
 };
 
 /* 803CBCC0-803CBD08 -00001 0048+00 1/1 0/0 0/0 .data            sGuideData */
-SECTION_DATA static Z2WolfHowlData sGuideData[9] = {
+static Z2WolfHowlData sGuideData[9] = {
     {4, sHowlTobikusa}, {6, sHowlUmakusa},     {6, sHowlZeldaSong},
     {6, sHealingSong},  {6, sHowlSoulRequiem}, {6, sHowlLightPrelude},
     {7, sNewSong1},     {8, sNewSong2},        {9, sNewSong3},
 };
 
 /* 80450880-80450884 000300 0004+00 2/2 0/0 0/0 .sdata           cPitchDown */
-SECTION_SDATA static f32 cPitchDown = 0.8909000158309937f;
+static f32 cPitchDown = 0.8909000158309937f;
 
 /* 80450884-80450888 000304 0004+00 4/4 0/0 0/0 .sdata           cPitchCenter */
-SECTION_SDATA static f32 cPitchCenter = 1.0f;
+static f32 cPitchCenter = 1.0f;
 
 /* 80450888-8045088C 000308 0004+00 2/2 0/0 0/0 .sdata           cPitchUp */
-SECTION_SDATA static f32 cPitchUp = 1.1892000436782837f;
+static f32 cPitchUp = 1.1892000436782837f;
 
-/* 8045088C-8045088E -00001 0002+00 1/1 0/0 0/0 .sdata           None */
-SECTION_SDATA static u8 struct_8045088C[2] = {
-    /* 8045088C 0001+00 data_8045088C None */
-    0x07,
-    /* 8045088D 0001+00 data_8045088D None */
-    0x07,
-};
+static u8 struct_8045088C = 7;
+static u8 struct_8045088D = 7;
 
 /* 8045088E-80450890 00030E 0002+00 4/4 0/0 0/0 .sdata           None */
-SECTION_SDATA static u16 data_8045088E = 0x1E00;
+static u8 data_8045088E = 0x1E;
+static u8 data_8045088F = 0x00;
 
 /* 80450890-80450894 000310 0004+00 1/1 0/0 0/0 .sdata           cR_FlatWidth */
-SECTION_SDATA static f32 cR_FlatWidth = 0.9438700079917908f;
+static f32 cR_FlatWidth = 0.9438700079917908f;
 
 /* 80450894-80450898 -00001 0004+00 3/3 0/0 0/0 .sdata           None */
-SECTION_SDATA static u8 struct_80450894[4] = {
-    /* 80450894 0001+00 data_80450894 None */
-    0x05,
-    /* 80450895 0003+00 data_80450895 None */
-    0x1E,
-    0x00,
-    0x00,
-};
+static u8 struct_80450894 = 0x05;
+static u8 struct_80450895 = 0x1E;
 
 /* 80450898-8045089C 000318 0004+00 1/1 0/0 0/0 .sdata           sStickHigh */
-SECTION_SDATA static f32 sStickHigh = 0.5f;
+static f32 sStickHigh = 0.5f;
 
 /* 8045089C-804508A0 00031C 0004+00 1/1 0/0 0/0 .sdata           sStickCenter */
-SECTION_SDATA static f32 sStickCenter = 1.0f / 5.0f;
+static f32 sStickCenter = 1.0f / 5.0f;
 
 /* 804508A0-804508A8 000320 0008+00 1/0 0/0 0/0 .sdata           sHowlTobikusa */
-SECTION_SDATA static u16 sHowlTobikusa[4] = {
-    0x011E,
-    0x031E,
-    0x011E,
-    0x031E,
+static SongNote sHowlTobikusa[4] = {
+    {0x01, 0x1E},
+    {0x03, 0x1E},
+    {0x01, 0x1E},
+    {0x03, 0x1E},
 };
-
-/* 80455E60-80455E64 004460 0004+00 8/8 0/0 0/0 .sdata2          @3485 */
-SECTION_SDATA2 static u8 lit_3485[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80455E64-80455E68 004464 0004+00 11/11 0/0 0/0 .sdata2          @3486 */
-SECTION_SDATA2 static f32 lit_3486 = 1.0f;
 
 /* 802CAAC0-802CAB8C 2C5400 00CC+00 0/0 1/1 0/0 .text            __ct__13Z2WolfHowlMgrFv */
-// matches with literals
-#ifdef NONMATCHING
 Z2WolfHowlMgr::Z2WolfHowlMgr() : JASGlobalInstance(this) {
     mpCurSong = NULL;
     mNowInputValue = 0.0f;
@@ -198,7 +127,7 @@ Z2WolfHowlMgr::Z2WolfHowlMgr() : JASGlobalInstance(this) {
     field_0x20 = cPitchCenter;
     field_0x24 = cPitchCenter;
     field_0x28 = 1.0f;
-    mTimer = NULL;
+    mTimer = 0;
     mReleaseTimer = 0;
     mCorrectCurveID = -1;
     field_0x90 = -1;
@@ -217,27 +146,15 @@ Z2WolfHowlMgr::Z2WolfHowlMgr() : JASGlobalInstance(this) {
 
     field_0x34 = 0.0f;
     field_0x30 = 0.0f;
-    mpSongList = (Z2WolfHowlData**)&sGuideData;
+    mpSongList = (Z2WolfHowlData*)&sGuideData;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Z2WolfHowlMgr::Z2WolfHowlMgr() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2WolfHowlMgr/__ct__13Z2WolfHowlMgrFv.s"
-}
-#pragma pop
-#endif
 
 /* 802CAB8C-802CABEC 2C54CC 0060+00 1/1 0/0 0/0 .text            resetState__13Z2WolfHowlMgrFv */
-// matches with literals
-#ifdef NONMATCHING
 void Z2WolfHowlMgr::resetState() {
     field_0x18 = 1.0f;
     field_0x24 = cPitchCenter;
     field_0x28 = 1.0f;
-    mTimer = NULL;
+    mTimer = 0;
     mReleaseTimer = 0;
     field_0xba = 0;
 
@@ -249,258 +166,370 @@ void Z2WolfHowlMgr::resetState() {
     field_0x34 = 0.0f;
     field_0x30 = 0.0f;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2WolfHowlMgr::resetState() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2WolfHowlMgr/resetState__13Z2WolfHowlMgrFv.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 80455E68-80455E6C 004468 0004+00 2/2 0/0 0/0 .sdata2          @3527 */
-SECTION_SDATA2 static f32 lit_3527 = 30.0f;
-
-/* 80455E6C-80455E70 00446C 0004+00 1/1 0/0 0/0 .sdata2          @3528 */
-SECTION_SDATA2 static f32 lit_3528 = 2.0f;
-
-/* 80455E70-80455E78 004470 0008+00 2/2 0/0 0/0 .sdata2          @3530 */
-SECTION_SDATA2 static f64 lit_3530 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802CABEC-802CACB0 2C552C 00C4+00 1/1 0/0 0/0 .text            calcVolumeMod__13Z2WolfHowlMgrFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2WolfHowlMgr::calcVolumeMod(f32 param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2WolfHowlMgr/calcVolumeMod__13Z2WolfHowlMgrFf.s"
+void Z2WolfHowlMgr::calcVolumeMod(f32 param_0) {
+    if (field_0x00) {
+        if (mTimer < data_8045088E) {
+            field_0x00->getAuxiliary().moveVolume(1.0f, 0);
+        } else {
+            f32 dVar7 = 1.0f;
+            if (mReleaseTimer != 0x0) {
+                dVar7 = getParamByExp(mReleaseTimer, 30.0f, 0.0f, 2.0f, 0.0f, 1.0f, Z2Calc::CURVE_SIGN_1);
+            }
+            field_0x18 = dVar7;
+            if (field_0x00) {
+                field_0x00->getAuxiliary().moveVolume(field_0x18, 0);
+            }
+            field_0x1c = field_0x18;
+        }
+    }
 }
-#pragma pop
 
 /* 802CACB0-802CACCC 2C55F0 001C+00 1/1 0/0 0/0 .text            getNowPitch__13Z2WolfHowlMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2WolfHowlMgr::getNowPitch() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2WolfHowlMgr/getNowPitch__13Z2WolfHowlMgrFv.s"
+f32 Z2WolfHowlMgr::getNowPitch() {
+    if (field_0x00) {
+        return field_0x00->getAuxiliary().mParams.mPitch;
+    }
+
+    return 1.0f;
 }
-#pragma pop
 
 /* 802CACCC-802CACD4 2C560C 0008+00 0/0 2/2 0/0 .text            getNowInputValue__13Z2WolfHowlMgrFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2WolfHowlMgr::getNowInputValue() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2WolfHowlMgr/getNowInputValue__13Z2WolfHowlMgrFv.s"
+f32 Z2WolfHowlMgr::getNowInputValue() {
+    return mNowInputValue;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80455E78-80455E7C 004478 0004+00 1/1 0/0 0/0 .sdata2          @3589 */
-SECTION_SDATA2 static f32 lit_3589 = 97.0f / 100.0f;
-
-/* 80455E7C-80455E80 00447C 0004+00 4/4 0/0 0/0 .sdata2          @3590 */
-SECTION_SDATA2 static f32 lit_3590 = -1.0f;
 
 /* 802CACD4-802CAED4 2C5614 0200+00 1/1 0/0 0/0 .text            calcPitchMod__13Z2WolfHowlMgrFff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2WolfHowlMgr::calcPitchMod(f32 param_0, f32 param_1) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2WolfHowlMgr/calcPitchMod__13Z2WolfHowlMgrFff.s"
+void Z2WolfHowlMgr::calcPitchMod(f32 param_0, f32 param_1) {
+    f32 dVar12 = 1.0f;
+    field_0x20 = getNowPitch();
+    if (mReleaseTimer != 0) {
+        f32 dVar11 = getParamByExp(mReleaseTimer, 30.0f, 0.0f, 1.0f, 0.97f, 1.0f, Z2Calc::CURVE_SIGN_0);
+        dVar11 = field_0x24 * dVar11;
+        if (field_0x00) {
+            field_0x00->getAuxiliary().movePitch(dVar11, 0);
+        }
+    } else {
+        if (mTimer < data_8045088E) {
+            field_0x34 = 0.0f;
+        } else {
+            f32 dVar11 = 1.0f;
+            if (mNowInputValue < 0.0f) {
+                dVar11 = Z2Calc::linearTransform(mNowInputValue, -1.0f, 0.0f, cPitchDown, 1.0f, false);
+            } else if (mNowInputValue > 0.0f) {
+                dVar11 = Z2Calc::linearTransform(mNowInputValue, 1.0f, 0.0f,cPitchUp, 1.0f, false);
+            }
+            
+            f32 temp = dVar11 * cPitchCenter;
+            f32 fVar5 = temp - (dVar12 = field_0x24);
+            if (fVar5 == 0.0f) {
+                dVar12 = dVar12;
+            } else if (fVar5 > 0.0f) {
+                dVar12 += fVar5 / struct_8045088C;
+            } else {
+                dVar12 += fVar5 / struct_8045088D;
+            }
+        }
+        field_0x24 = dVar12;
+        f32 dVar11 = Z2Calc::linearTransform(param_1, 0.0f, 1.0f, 1.0f, cR_FlatWidth, true);
+        f32 fVar5 = field_0x28 + (dVar11 - field_0x28) / struct_80450894;
+        field_0x28 = fVar5;
+        dVar12 *= fVar5;
+        if (field_0x00) {
+            field_0x00->getAuxiliary().movePitch(dVar12, 0);
+        }
+    }
 }
-#pragma pop
 
 /* 802CAED4-802CB100 2C5814 022C+00 0/0 1/1 0/0 .text startWolfHowlSound__13Z2WolfHowlMgrFffbf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2WolfHowlMgr::startWolfHowlSound(f32 param_0, f32 param_1, bool param_2, f32 param_3) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2WolfHowlMgr/startWolfHowlSound__13Z2WolfHowlMgrFffbf.s"
+void Z2WolfHowlMgr::startWolfHowlSound(f32 param_0, f32 param_1, bool param_2, f32 param_3) {
+    if (mCorrectCurveID > 1) {
+        Z2GetSeqMgr()->i_setWindStoneVol(0.0f, 0);
+    }
+
+    if (Z2GetSeqMgr()->isItemGetDemo() || (mReleaseTimer != 0)) {
+        param_2 = false;
+    } else {
+        if (param_1 > sStickCenter) {
+            mNowInputValue = Z2Calc::linearTransform(param_1, sStickCenter, sStickHigh, 0.0f, 1.0f, false);
+        } else {
+            f32 fVar1 = -1.0f * sStickCenter;
+            if (param_1 < fVar1) {
+                mNowInputValue = Z2Calc::linearTransform(param_1, fVar1, -1.0f * sStickHigh, 0.0f, -1.0f, false);
+            } else {
+                mNowInputValue = 0.0f;
+            }
+        }
+    }
+
+    if (param_2) { 
+        if (mTimer > data_8045088E) {
+            //JVar7 = (JAISoundID)JAISoundID::JAISoundID(aJStack_34, 0x10035);
+            Z2GetSoundStarter()->startLevelSound(0x10035, &field_0x00, NULL);
+        }
+        if (field_0x00) {
+            calcPitchMod(0.0f, 0.0f);
+            calcVolumeMod(param_3);
+        }
+        mTimer++;
+    } else {
+         if (mTimer > data_8045088E) {
+            if (mReleaseTimer < 0x1e) {
+                Z2GetSoundStarter()->startLevelSound(0x10035, &field_0x00, NULL);
+                if (field_0x00) {
+                    calcPitchMod(0.0f, 0.0f);
+                    calcVolumeMod(param_3);
+                }
+                mReleaseTimer++;
+                mTimer++;
+            } else {
+                resetState();
+            }
+        } else {
+            resetState();
+        }
+    }
+    checkLine();
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80455E80-80455E84 004480 0004+00 1/1 0/0 0/0 .sdata2          @3711 */
-SECTION_SDATA2 static f32 lit_3711 = 1.1224600076675415f;
-
-/* 80455E84-80455E88 004484 0004+00 1/1 0/0 0/0 .sdata2          @3712 */
-SECTION_SDATA2 static f32 lit_3712 = 1.0594600439071655f;
-
-/* 80455E88-80455E8C 004488 0004+00 1/1 0/0 0/0 .sdata2          @3713 */
-SECTION_SDATA2 static f32 lit_3713 = 0.7936859726905823f;
-
-/* 80455E8C-80455E90 00448C 0004+00 1/1 0/0 0/0 .sdata2          @3714 */
-SECTION_SDATA2 static f32 lit_3714 = 1.2599060535430908f;
-
-/* 80455E90-80455E94 004490 0004+00 1/1 0/0 0/0 .sdata2          @3715 */
-SECTION_SDATA2 static f32 lit_3715 = 0.9438700079917908f;
-
-/* 80455E94-80455E98 004494 0004+00 1/1 0/0 0/0 .sdata2          @3716 */
-SECTION_SDATA2 static f32 lit_3716 = 0.8408849835395813f;
-
-/* 80455E98-80455E9C 004498 0004+00 1/1 0/0 0/0 .sdata2          @3717 */
-SECTION_SDATA2 static f32 lit_3717 = 1.3348400592803955f;
-
-/* 80455E9C-80455EA0 00449C 0004+00 1/1 0/0 0/0 .sdata2          @3718 */
-SECTION_SDATA2 static f32 lit_3718 = 0.8909000158309937f;
-
-/* 80455EA0-80455EA4 0044A0 0004+00 1/1 0/0 0/0 .sdata2          @3719 */
-SECTION_SDATA2 static f32 lit_3719 = 0.7491499781608582f;
-
-/* 80455EA4-80455EA8 0044A4 0004+00 1/1 0/0 0/0 .sdata2          @3720 */
-SECTION_SDATA2 static f32 lit_3720 = 1.1892000436782837f;
 
 /* 802CB100-802CB320 2C5A40 0220+00 0/0 1/1 0/0 .text
  * setCorrectData__13Z2WolfHowlMgrFScP14Z2WolfHowlData          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2WolfHowlMgr::setCorrectData(s8 param_0, Z2WolfHowlData* param_1) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2WolfHowlMgr/setCorrectData__13Z2WolfHowlMgrFScP14Z2WolfHowlData.s"
+void Z2WolfHowlMgr::setCorrectData(s8 param_0, Z2WolfHowlData* param_1) {
+    if (param_0 == mCorrectCurveID) {
+        return;
+    }
+    if (param_0 == -1) {
+        mCorrectCurveID = -1;
+        mpCurSong = 0;
+        return;
+    }
+    if (param_1 == NULL) {
+        if (param_0 >= 9) {
+            mCorrectCurveID = -1;
+            mpCurSong = 0;
+            return;
+        }
+        param_1 = &mpSongList[param_0];
+    }
+    mCorrectCurveID = param_0;
+    mpCurSong = param_1;
+
+    switch(param_0) {
+    case 3:
+        cPitchUp = 1.1224600076675415f;
+        cPitchCenter = 1.0594600439071655f;
+        cPitchDown = 0.7936859726905823f;
+        break;
+    case 4:
+        cPitchUp = 1.2599060535430908f;
+        cPitchCenter = 0.9438700079917908f;
+        cPitchDown = 0.8408849835395813f;
+        break;
+    case 6:
+        cPitchUp = 1.3348400592803955f;
+        cPitchCenter = 0.8909000158309937f;
+        cPitchDown = 0.8909000158309937f;
+        break;
+    case 7:
+        cPitchUp = 1.2599060535430908f;
+        cPitchCenter = 0.9438700079917908f;
+        cPitchDown = 0.8909000158309937f;
+        break;
+    case 8:
+        cPitchUp = 1.1224600076675415f;
+        cPitchCenter = 0.9438700079917908f;
+        cPitchDown = 0.7491499781608582f;
+        break;
+    default:
+        cPitchUp = 1.1892000436782837f;
+        cPitchCenter = 1.0f;
+        cPitchDown = 0.8909000158309937f;
+        break;
+    }
+
+    field_0xbe = 0;
+    u32 uVar4 = 0;
+
+    for (u8 bVar5 = 0; bVar5 < getCorrectLineNum(); bVar5++) {
+        uVar4 += getCorrectLine(bVar5).length;
+        if (getCorrectLine(bVar5).barType != 0) {
+            field_0xbe += struct_80450895;
+            field_0xbe += getCorrectLine(bVar5).length;
+        }
+    }
+    field_0xbe -= uVar4 >> 2;
 }
-#pragma pop
 
 /* 802CB320-802CB370 2C5C60 0050+00 3/3 2/2 0/0 .text            getCorrectLine__13Z2WolfHowlMgrFUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2WolfHowlMgr::getCorrectLine(u8 param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2WolfHowlMgr/getCorrectLine__13Z2WolfHowlMgrFUc.s"
+SongNote Z2WolfHowlMgr::getCorrectLine(u8 param_0) {
+    u16 local_18;
+
+    if (mpCurSong == 0 || param_0 >= mpCurSong->mLineNum) {
+        SongNote note;
+        note.barType = 0;
+        note.length = 0;
+        return note; 
+    }
+    return mpCurSong->mSongData[param_0];
 }
-#pragma pop
 
 /* 802CB370-802CB38C 2C5CB0 001C+00 2/2 1/1 0/0 .text getCorrectLineNum__13Z2WolfHowlMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2WolfHowlMgr::getCorrectLineNum() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2WolfHowlMgr/getCorrectLineNum__13Z2WolfHowlMgrFv.s"
+u8 Z2WolfHowlMgr::getCorrectLineNum() {
+    if (mpCurSong != NULL) {
+        return mpCurSong->mLineNum;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804341F8-8043421C 060F18 0024+00 2/2 0/0 0/0 .bss             sCorrectPhrase */
-static u8 sCorrectPhrase[36];
+static JAISoundID sCorrectPhrase[9] = {
+    0x1000052, 0x1000053, 0x1000054, 0x1000072, 0x1000068,
+    0x1000055, 0x1000075, 0x100007c, 0x100007f,
+};
 
 /* 8043421C-80434240 060F3C 0024+00 2/3 0/0 0/0 .bss             sWindStoneSound */
-static u8 sWindStoneSound[36];
+static JAISoundID sWindStoneSound[9] = {
+    0xffffffff, 0xffffffff, 0x100005b, 0x1000071, 0x1000067,
+    0x100005c,  0x1000074,  0x100007b, 0x100007e,
+};
 
 /* 80434240-80434268 060F60 0024+04 1/2 0/0 0/0 .bss             sCorrectDuo */
-static u8 sCorrectDuo[36 + 4 /* padding */];
+static JAISoundID sCorrectDuo[9] = {
+    0xffffffff, 0xffffffff, 0xffffffff, 0x1000073, 0x1000069,
+    0x1000066,  0x1000076,  0x100007d,  0x1000080,
+};
 
 /* 802CB38C-802CB650 2C5CCC 02C4+00 1/1 0/0 0/0 .text            checkLine__13Z2WolfHowlMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2WolfHowlMgr::checkLine() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2WolfHowlMgr/checkLine__13Z2WolfHowlMgrFv.s"
+s8 Z2WolfHowlMgr::checkLine() {
+    if (mCorrectCurveID == -1 || mpCurSong == NULL) {
+        return -1;
+    }
+
+    if (Z2GetSeqMgr()->isItemGetDemo()) {
+        return mCorrectCurveID;
+    }
+    if (mTimer == 0) {
+        if (field_0x90 > 0) {
+            field_0x90 = -1;
+        }
+        return -1;
+    } else if (field_0x90 >= field_0xbe) {
+        u32 uVar1 = 0;
+        for (u8 i = 0; i < getCorrectLineNum(); i++) {
+            uVar1 += getCorrectLine(i).length;
+        }
+        if (mTimer - data_8045088E < uVar1) {
+            return -1;
+        } 
+        Z2GetSeMgr()->seStart(0xd, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        if (mCorrectCurveID > 2) {
+            if (Z2GetSceneMgr()->getCurrentSceneNum() == 0x21) {
+                Z2GetSeqMgr()->subBgmStart(sCorrectDuo[mCorrectCurveID]);
+            }
+        } else { 
+            Z2GetSeqMgr()->subBgmStart(sCorrectPhrase[mCorrectCurveID]);
+        }
+        field_0x90 = 0xffff;
+        return mCorrectCurveID;
+    } else {
+        if (mTimer == 1) {
+            field_0x90 = 0;
+            field_0xba = 0;
+            field_0xbc = 0;
+        } else if (mTimer >= data_8045088E) {
+            u32 r29 = mTimer - data_8045088E;
+            u32 uVar1 = 0;
+            for (u8 i = 0; i <= field_0xba; i++) {
+                uVar1 += getCorrectLine(i).length;
+            }
+            if (r29 > uVar1 && field_0xba < getCorrectLineNum()) {
+                field_0x90 += field_0xbc;
+                if (field_0xbc > getCorrectLine(field_0xba).length / 6) {
+                    field_0x90 += struct_80450895;
+                }
+                field_0xba++;
+                field_0xbc = 0;
+            } else {
+                if (getOnLineNum() > -1) {
+                    field_0xbc++;
+                }
+            }
+        }
+        return -1;
+    }
+    
+    return mCorrectCurveID;
 }
-#pragma pop
 
 /* 802CB650-802CB6EC 2C5F90 009C+00 1/1 1/1 0/0 .text            getOnLineNum__13Z2WolfHowlMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2WolfHowlMgr::getOnLineNum() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2WolfHowlMgr/getOnLineNum__13Z2WolfHowlMgrFv.s"
+s8 Z2WolfHowlMgr::getOnLineNum() {
+    SongNote note = getCorrectLine(field_0xba);
+    if ((note.barType == 1 && mNowInputValue == 1.0f) ||
+        (note.barType == 2 && mNowInputValue == 0.0f) ||
+        (note.barType == 3 && mNowInputValue == -1.0f)) {
+        s8 rv = field_0xba;
+        return rv;
+    }
+
+    return -1;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80455EA8-80455EB0 0044A8 0008+00 1/1 0/0 0/0 .sdata2          @4032 */
-SECTION_SDATA2 static f64 lit_4032 = 0.5;
-
-/* 80455EB0-80455EB8 0044B0 0008+00 1/1 0/0 0/0 .sdata2          @4033 */
-SECTION_SDATA2 static f64 lit_4033 = 3.0;
-
-/* 80455EB8-80455EC0 0044B8 0008+00 1/1 0/0 0/0 .sdata2          @4034 */
-SECTION_SDATA2 static u8 lit_4034[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80455EC0-80455EC4 0044C0 0004+00 1/1 0/0 0/0 .sdata2          @4035 */
-SECTION_SDATA2 static f32 lit_4035 = 2100.0f;
-
-/* 80455EC4-80455EC8 0044C4 0004+00 1/1 0/0 0/0 .sdata2          @4036 */
-SECTION_SDATA2 static f32 lit_4036 = 150.0f;
-
-/* 80455EC8-80455ECC 0044C8 0004+00 1/1 0/0 0/0 .sdata2          @4037 */
-SECTION_SDATA2 static f32 lit_4037 = 2000.0f;
-
-/* 80455ECC-80455ED0 0044CC 0004+00 1/1 0/0 0/0 .sdata2          @4038 */
-SECTION_SDATA2 static f32 lit_4038 = 9.0f / 20.0f;
-
-/* 80455ED0-80455ED4 0044D0 0004+00 1/1 0/0 0/0 .sdata2          @4039 */
-SECTION_SDATA2 static f32 lit_4039 = 1.0f / 20.0f;
-
-/* 80455ED4-80455ED8 0044D4 0004+00 1/1 0/0 0/0 .sdata2          @4040 */
-SECTION_SDATA2 static f32 lit_4040 = 2.0f / 5.0f;
-
-/* 80455ED8-80455EE0 0044D8 0004+04 1/1 0/0 0/0 .sdata2          @4041 */
-SECTION_SDATA2 static f32 lit_4041[1 + 1 /* padding */] = {
-    1.0f / 25.0f,
-    /* padding */
-    0.0f,
-};
 
 /* 802CB6EC-802CBA88 2C602C 039C+00 0/0 0/0 2/2 .text startWindStoneSound__13Z2WolfHowlMgrFScP3Vec
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2WolfHowlMgr::startWindStoneSound(s8 param_0, Vec* param_1) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2WolfHowlMgr/startWindStoneSound__13Z2WolfHowlMgrFScP3Vec.s"
+void Z2WolfHowlMgr::startWindStoneSound(s8 param_0, Vec* param_1) {
+    if (param_1 == NULL || Z2GetLink() == NULL || Z2GetLink()->getCurrentPos() == NULL) {
+        return; 
+    }
+    JGeometry::TVec3<f32> local_60 = Z2GetAudience()->getAudioCamPos();
+    f32 dVar13 = sqrtf(PSVECSquareDistance(param_1, local_60));
+    if (dVar13 > 2100.0f && field_0x04) {
+        field_0x04->stop();
+    } else if (dVar13 < 2100.0f && !field_0x04) {
+        Z2GetSoundMgr()->startSound(sWindStoneSound[param_0], &field_0x04, (const JGeometry::TVec3<f32>*)param_1);
+    }
+    if (field_0x04) {
+        field_0x04->fadeIn(0);
+        field_0x04->stop(0x1e);
+        if (Z2GetLink()->getLinkState() == 1) {
+            f32 fVar14 = sqrtf(PSVECSquareDistance(param_1, Z2GetLink()->getCurrentPos()));
+            f32 dVar13 = 1.0f;
+            if (fVar14 < 150.0f) {
+                dVar13 = 0.0f;
+            } else if (fVar14 < 2000.0f) {
+                dVar13 = Z2Calc::getParamByExp(fVar14, 150.0f, 2000.0f, 
+                    0.45f, 0.05f, dVar13, Z2Calc::CURVE_SIGN_0);
+            }
+            Z2GetSeqMgr()->i_setWindStoneVol(dVar13, 0);
+            field_0x04->getAuxiliary().moveVolume(0.4f, 0);
+        } else {
+            field_0x04->getAuxiliary().moveVolume(0.04f, 0);
+        }
+    }
 }
-#pragma pop
 
 /* 802CBA88-802CBB58 2C63C8 00D0+00 0/0 1/1 0/0 .text            startGuideMelody__13Z2WolfHowlMgrFb
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2WolfHowlMgr::startGuideMelody(bool param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2WolfHowlMgr/startGuideMelody__13Z2WolfHowlMgrFb.s"
+int Z2WolfHowlMgr::startGuideMelody(bool param_0) {
+    Z2GetSeqMgr()->i_setWindStoneVol(0.0f, 0);
+    if (param_0) {
+        Z2GetSoundMgr()->startSound(sWindStoneSound[mCorrectCurveID], &field_0x08, NULL);
+    }
+    if (field_0x08) {
+        field_0x08->fadeIn(0);
+        field_0x08->stop(0x1e);
+        return field_0x08->getCount();
+    }
+    return 0;
 }
-#pragma pop
 
 /* 802CBB58-802CBB7C 2C6498 0024+00 0/0 1/1 0/0 .text            skipCorrectDemo__13Z2WolfHowlMgrFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2WolfHowlMgr::skipCorrectDemo() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2WolfHowlMgr/skipCorrectDemo__13Z2WolfHowlMgrFv.s"
+void Z2WolfHowlMgr::skipCorrectDemo() {
+    Z2GetSeqMgr()->stopWolfHowlSong();
 }
-#pragma pop
 
-/* 802CBB7C-802CBC60 2C64BC 00E4+00 0/0 1/0 0/0 .text            __sinit_Z2WolfHowlMgr_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_Z2WolfHowlMgr_cpp(){nofralloc
-#include "asm/Z2AudioLib/Z2WolfHowlMgr/__sinit_Z2WolfHowlMgr_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x802CBB7C, __sinit_Z2WolfHowlMgr_cpp);
-#pragma pop

@@ -118,6 +118,17 @@ struct JAISoundFader {
             forceOut();
         }
     }
+    void fadeIn(u32 param_1) {
+        if (param_1 == 0) {
+            forceIn();
+        } else {
+            mTransition.set(1.0f, mIntensity, param_1);
+        }
+    }
+    void fadeInFromOut(u32 param_1) {
+        mIntensity = 0.0f;
+        fadeIn(param_1);
+    }
     bool isOut() {
         return (mTransition.mCount == 0 && mIntensity < 0.01f);
     }
@@ -262,6 +273,15 @@ public:
         }
         return audible_ != NULL;
     }
+
+    void fadeIn(u32 param_1) {
+        fader.fadeInFromOut(param_1);
+        return;
+    }
+
+    s32 getCount() const { return mCount; }
+
+    JAISoundParamsMove& getAuxiliary() { return params.mMove; }
 
     /* 0x04 */ JAISoundHandle* handle_;
     /* 0x08 */ JAIAudible* audible_;

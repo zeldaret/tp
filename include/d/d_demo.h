@@ -14,6 +14,7 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/gx/GXEnum.h"
 #include "dolphin/gx/GXStruct.h"
+#include "Z2AudioLib/Z2SoundStarter.h"
 
 class J3DModel;
 class dDemo_actor_c;
@@ -306,5 +307,9 @@ public:
     static u16 m_branchType;
     static const u8* m_branchData;
 };
+
+inline Z2SoundStarter* Z2GetSoundStarter() {
+    return JASGlobalInstance<Z2SoundStarter>::getInstance();
+}
 
 #endif /* D_D_DEMO_H */

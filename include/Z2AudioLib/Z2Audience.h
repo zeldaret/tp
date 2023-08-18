@@ -16,6 +16,8 @@ struct Z2AudioCamera {
     /* 802BCBEC */ void convertAbsToRel(Z2Audible*, int);
     /* 802BCC7C */ void convertAbsToRel(Vec&, Vec*) const;
     /* 802BCCC0 */ void isInSight(Vec&) const;
+    JGeometry::TVec3<f32>* getPos() { return &mPos; }
+
 
     /* 0x00 */ u8 field_0x0[0x30];  // set up JGeometry::TPosition3
     /* 0x30 */ JGeometry::TVec3<f32> mVel;
@@ -129,6 +131,11 @@ struct Z2Audience : public JAIAudience, public JASGlobalInstance<Z2Audience> {
     /* 802BD71C */ virtual void mixChannelOut(JASSoundParams const&, JAIAudible*, int);
 
     Z2SpotMic* getLinkMic() { return mLinkMic; }
+    JGeometry::TVec3<f32> getAudioCamPos() {
+        JGeometry::TVec3<f32> pos;
+        JGeometry::setTVec3f(*(Vec*)mAudioCamera[0].getPos(), *(Vec*)pos);
+        return pos;
+    }
 
     /* 0x004 */ f32 field_0x4;
     /* 0x008 */ u8 field_0x8;

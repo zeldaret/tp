@@ -13,9 +13,15 @@
  * The high byte of each u16 line corresponds to bar type (low, middle, high)
  * The low byte of each u16 line corresponds to length of note
  */
+
+struct SongNote {
+    u8 barType;
+    u8 length;
+};
+
 struct Z2WolfHowlData {
     u8 mLineNum;
-    u16* mSongData;
+    SongNote* mSongData;
 };
 
 class Z2WolfHowlMgr : public JASGlobalInstance<Z2WolfHowlMgr> {
@@ -24,17 +30,17 @@ public:
 
     void resetState();
     void calcVolumeMod(f32);
-    void getNowPitch();
-    void getNowInputValue();
+    f32 getNowPitch();
+    f32 getNowInputValue();
     void calcPitchMod(f32, f32);
     void startWolfHowlSound(f32, f32, bool, f32);
     void setCorrectData(s8, Z2WolfHowlData*);
-    void getCorrectLine(u8);
-    void getCorrectLineNum();
-    void checkLine();
-    void getOnLineNum();
+    SongNote getCorrectLine(u8);
+    u8 getCorrectLineNum();
+    s8 checkLine();
+    s8 getOnLineNum();
     void startWindStoneSound(s8, Vec*);
-    void startGuideMelody(bool);
+    int startGuideMelody(bool);
     void skipCorrectDemo();
 
 private:
@@ -42,7 +48,7 @@ private:
     /* 0x04 */ JAISoundHandle field_0x04;
     /* 0x08 */ JAISoundHandle field_0x08;
     /* 0x0C */ Z2WolfHowlData* mpCurSong;
-    /* 0x10 */ Z2WolfHowlData** mpSongList;
+    /* 0x10 */ Z2WolfHowlData* mpSongList;
     /* 0x14 */ f32 mNowInputValue;
     /* 0x18 */ f32 field_0x18;
     /* 0x1C */ f32 field_0x1c;
@@ -54,16 +60,18 @@ private:
     /* 0x34 */ f32 field_0x34;
     /* 0x38 */ f32 field_0x38[10];
     /* 0x60 */ f32 field_0x60[10];
-    /* 0x88 */ void* mTimer;
+    /* 0x88 */ u32 mTimer;
     /* 0x8C */ u8 mReleaseTimer;
     /* 0x8D */ u8 field_0x8d;
     /* 0x8E */ s8 mCorrectCurveID;
     /* 0x8F */ u8 field_0x8f;
     /* 0x90 */ s16 field_0x90;
     /* 0x92 */ u16 field_0x92[20];
-    /* 0xBA */ s8 field_0xba;
+    /* 0xBA */ u8 field_0xba;
     /* 0xBB */ s8 field_0xbb;
-    /* 0xBC */ s8 field_0xbc;
+    /* 0xBC */ u8 field_0xbc;
+    /* 0xBD */ s8 field_0xbd;
+    /* 0xBE */ u16 field_0xbe;
 };
 
 #endif /* Z2WOLFHOWLMGR_H */

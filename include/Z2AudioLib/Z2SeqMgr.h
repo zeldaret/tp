@@ -95,6 +95,10 @@ public:
         mAllBgmMaster.mTransition.set(val, mAllBgmMaster.mIntensity, count);
     }
 
+    bool isItemGetDemo() {
+        return field_0x08.isSoundAttached() || field_0xba != 0;
+    }
+
 private:
     /* 0x00 */ JAISoundHandle mMainBgmHandle;
     /* 0x04 */ JAISoundHandle mSubBgmHandle;
