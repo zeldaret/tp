@@ -138,7 +138,7 @@ public:
     virtual void deleteObject();
 
 private:
-    /* 0x90 */ // Z2RideSoundStarter mSoundStarter;
+    /* 0x90 */  // Z2RideSoundStarter mSoundStarter;
     /* 0x98 */ bool mLinkRiding;
 };  // Size: 0x9C
 
@@ -162,7 +162,25 @@ public:
 private:
     /* 0x90 */ JSULink<Z2CreatureEnemy> mLink;
     /* 0xA0 */ u8 mEnemyID;
-    /* 0xA1 */ u8 field_0xa1;
+    /* 0xA1 */ s8 field_0xa1;
+    /* 0xA2 */ bool mLinkSearch;
+    /* 0xA3 */ u8 field_0xa3;
+};  // Size: 0xA4
+
+class Z2CreatureCitizen : public Z2Creature {
+public:
+    /* 802C0C10 */ Z2CreatureCitizen();
+    /* 802C0C6C */ ~Z2CreatureCitizen();
+    /* 802C0CE4 */ void init(Vec*, Vec*, u8, u8);
+    /* 802C0D04 */ virtual void deleteObject();
+    /* 802C0D48 */ void setMdlType(s8, bool, bool);
+    /* 802C0E18 */ void playVoice(int);
+    /* 802C0ED8 */ virtual void startCreatureVoice(JAISoundID, s8);
+
+private:
+    /* 0x90 */ JSULink<Z2CreatureCitizen> mLink;
+    /* 0xA0 */ s8 mCitizenID;
+    /* 0xA1 */ s8 field_0xa1;
     /* 0xA2 */ bool mLinkSearch;
     /* 0xA3 */ u8 field_0xa3;
 };  // Size: 0xA4
