@@ -2,8 +2,6 @@
 #define F_F_OP_CAMERA_MNG_H_
 
 #include "SSystem/SComponent/c_phase.h"
-#include "SSystem/SComponent/c_sxyz.h"
-#include "SSystem/SComponent/c_xyz.h"
 #include "d/d_camera.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_view.h"

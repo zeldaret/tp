@@ -7,7 +7,6 @@
 #include "msg/scrn/d_msg_scrn_arrow.h"
 #include "msg/scrn/d_msg_scrn_3select.h"
 #include "MSL_C/stdio.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_object.h"
 #include "d/msg/d_msg_out_font.h"
@@ -16,7 +15,6 @@
 #include "d/d_lib.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
-#include "JSystem/J2DGraph/J2DTextBox.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 

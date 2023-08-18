@@ -2,12 +2,10 @@
 #define JUTEXCEPTION_H
 
 #include "JSystem/JKernel/JKRThread.h"
-#include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JUtility/JUTGamePad.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dolphin/gx/GXEnum.h"
 #include "dolphin/os/OSError.h"
-#include "dolphin/os/OSMessage.h"
 #include "dolphin/types.h"
 #include "global.h"
 

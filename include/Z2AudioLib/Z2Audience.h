@@ -3,7 +3,6 @@
 
 #include "JSystem/JAudio2/JAIAudience.h"
 #include "JSystem/JAudio2/JASGadget.h"
-#include "JSystem/JGeometry.h"
 #include "dolphin/mtx/mtxvec.h"
 
 struct Z2Audible;

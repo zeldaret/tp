@@ -1,7 +1,6 @@
 #ifndef METROTRK_PORTABLE_DISPATCH_H
 #define METROTRK_PORTABLE_DISPATCH_H
 
-#include "dolphin/types.h"
 
 #define TRK_DISPATCH_CMD_CONNECT        1 /* Connect to the console */
 #define TRK_DISPATCH_CMD_DISCONNECT     2 /* Disconnect from the console */

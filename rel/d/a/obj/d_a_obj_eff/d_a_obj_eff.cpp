@@ -15,10 +15,7 @@ struct daObj {
 
 /* 8057C9D8-8057CA94 000078 00BC+00 1/1 0/0 0/0 .text            _create__Q28daObjEff5Act_cFv */
 int daObjEff::Act_c::_create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) Act_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, Act_c);
 
     if (daObj::PrmAbstract<Act_c::Prm_e>(this, PRM_8, PRM_0) == 3) {
         s32 roomNo = fopAcM_GetRoomNo(this);

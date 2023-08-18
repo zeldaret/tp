@@ -2,7 +2,6 @@
 #define JKRFILECACHE_H
 
 #include "JSystem/JKernel/JKRFileLoader.h"
-#include "dolphin/types.h"
 
 class JKRHeap;
 class JKRFileCache : public JKRFileLoader {

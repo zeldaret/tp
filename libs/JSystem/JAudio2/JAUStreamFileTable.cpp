@@ -1,7 +1,5 @@
 #include "JSystem/JAudio2/JAUStreamFileTable.h"
-#include "dol2asm.h"
 #include "dolphin/dvd/dvd.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 /* 802A7420-802A742C 2A1D60 000C+00 0/0 1/1 0/0 .text            __ct__18JAUStreamFileTableFv */

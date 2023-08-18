@@ -54,10 +54,7 @@ int daTagSpinner_c::CreateHeap() {
 int daTagSpinner_c::create() {
     int iVar1;
     int iVar2;
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagSpinner_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daTagSpinner_c);
 
     if (!fopAcM_entrySolidHeap(this, CheckCreateHeap, 0)) {
         iVar2 = 5;

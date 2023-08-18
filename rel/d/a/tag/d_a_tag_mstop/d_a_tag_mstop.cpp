@@ -4,8 +4,6 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_mstop/d_a_tag_mstop.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/a/d_a_npc.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
@@ -75,10 +73,7 @@ COMPILER_STRIP_GATE(0x805A6970, &lit_3864);
 #ifdef NONMATCHING
 // matches with literals
 int daTagMstop_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagMstop_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daTagMstop_c);
 
     field_0x56b = fopAcM_GetParam(this) >> 16;
     field_0x56a = (fopAcM_GetParam(this) >> 24) & 0xF;

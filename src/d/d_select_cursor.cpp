@@ -5,11 +5,8 @@
 
 #include "d/d_select_cursor.h"
 #include "d/com/d_com_inf_game.h"
-#include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DAnimation.h"
-#include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "dolphin/os/OS.h"
 #include "global.h"
 

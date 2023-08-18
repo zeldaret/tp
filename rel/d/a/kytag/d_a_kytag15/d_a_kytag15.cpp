@@ -107,10 +107,7 @@ static int daKytag15_Create(fopAc_ac_c* i_this) {
         this_->field_0x58c = 0;
     }
 
-    if (!fopAcM_CheckCondition(this_, 8)) {
-        new (this_) kytag15_class();
-        fopAcM_OnCondition(this_, 8);
-    }
+    fopAcM_SetupActor(this_, kytag15_class);
 
     if (this_->field_0x58c == 0) {
         if (!dKy_daynight_check()) {

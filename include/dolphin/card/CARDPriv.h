@@ -3,7 +3,6 @@
 
 #include "dolphin/os/OSAlarm.h"
 #include "dolphin/os/OSThread.h"
-#include "dolphin/types.h"
 
 #ifdef __cplusplus
 extern "C" {

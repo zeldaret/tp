@@ -2,7 +2,6 @@
 #define METROTRK_PORTABLE_NUBEVENT_H
 
 #include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf.h"
-#include "dolphin/types.h"
 
 typedef u32 NubEventID;
 

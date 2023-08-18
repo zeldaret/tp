@@ -3,8 +3,6 @@
 
 #include "JSystem/JAudio2/JAISoundParams.h"
 #include "JSystem/JAudio2/JAIAudible.h"
-#include "JSystem/JGeometry.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 class JAISoundID {

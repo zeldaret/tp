@@ -2,7 +2,6 @@
 #define M_DO_M_DO_MEMCARD_H
 
 #include "dolphin/os/OSMutex.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 class mDoMemCd_Ctrl_c {

@@ -5,10 +5,6 @@
 
 #include "rel/d/a/d_a_mirror/d_a_mirror.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-#include "dolphin/gf/GFGeometry.h"
-#include "dolphin/gf/GFLight.h"
-#include "MSL_C/float.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "d/a/d_a_player.h"
@@ -559,12 +555,9 @@ void daMirror_c::setModelMtx() {
 }
 
 /* 80872018-8087206C 0014D8 0054+00 1/0 0/0 0/0 .text            daMirror_create__FP10daMirror_c */
-static int daMirror_create(daMirror_c* param_0) {
-    if (fopAcM_CheckCondition(param_0, 8) == 0) {
-        new (param_0) daMirror_c();
-        fopAcM_OnCondition(param_0, 8);
-    }
-    return param_0->daMirror_c::create();
+static int daMirror_create(daMirror_c* i_this) {
+    fopAcM_SetupActor(i_this, daMirror_c);
+    return i_this->daMirror_c::create();
 }
 
 /* ############################################################################################## */

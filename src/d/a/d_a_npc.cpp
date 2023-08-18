@@ -4,14 +4,9 @@
 //
 
 #include "d/a/d_a_npc.h"
-#include "SSystem/SComponent/c_math.h"
-#include "d/a/d_a_player.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
-#include "global.h"
-#include "m_Do/m_Do_mtx.h"
 #include "rel/d/a/npc/d_a_npc_tk/d_a_npc_tk.h"
 #include "d/msg/d_msg_object.h"
 #include "m_Do/m_Do_lib.h"
@@ -1702,7 +1697,7 @@ int daNpcT_c::loadRes(s8 const* resNoList, char const** resNameList) {
         }
     }
 
-    return cPhs_ZERO_e;
+    return cPhs_INIT_e;
 }
 
 /* 801484AC-8014852C 142DEC 0080+00 0/0 0/0 58/58 .text            deleteRes__8daNpcT_cFPCScPPCc */

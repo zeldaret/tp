@@ -7,7 +7,6 @@
 #include "JSystem/JSupport/JSupport.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "dol2asm.h"
-#include "global.h"
 
 //
 // Forward References:

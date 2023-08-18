@@ -2,7 +2,6 @@
 #define D_MSG_D_MSG_OBJECT_H
 
 #include "JSystem/JMessage/control.h"
-#include "JSystem/JMessage/resource.h"
 #include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_msg.h"
 

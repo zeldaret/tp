@@ -1,7 +1,6 @@
 #ifndef J3DUCLIPPER_H
 #define J3DUCLIPPER_H
 
-#include "dolphin/mtx/vec.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 

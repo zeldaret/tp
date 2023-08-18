@@ -54,10 +54,7 @@ static int daKytag07_Delete(kytag07_class* i_this) {
 static int daKytag07_Create(fopAc_ac_c* i_this) {
     kytag07_class* kytag07 = (kytag07_class*)i_this;
     
-    if (!fopAcM_CheckCondition(kytag07, 8)) {
-        new (kytag07) kytag07_class();
-        fopAcM_OnCondition(kytag07, 8);
-    }
+    fopAcM_SetupActor(kytag07, kytag07_class);
 
     kytag07->mLightInfluence.mPosition = kytag07->current.pos;
     kytag07->mLightInfluence.mColor.r = fopAcM_GetParam(i_this) & 0xFF;

@@ -1,7 +1,6 @@
 #ifndef D_A_TAG_MAGNE_H
 #define D_A_TAG_MAGNE_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 struct cBgS_PolyInfo;

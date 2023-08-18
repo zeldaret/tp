@@ -4,9 +4,7 @@
 //
 
 #include "d/d_simple_model.h"
-#include "d/kankyo/d_kankyo.h"
 #include "d/com/d_com_inf_game.h"
-#include "dolphin/types.h"
 #include "m_Do/m_Do_mtx.h"
 
 //

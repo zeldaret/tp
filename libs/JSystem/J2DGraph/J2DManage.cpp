@@ -6,7 +6,6 @@
 #include "JSystem/J2DGraph/J2DManage.h"
 #include "JSystem/JSupport/JSUInputStream.h"
 #include "MSL_C/string.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

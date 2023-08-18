@@ -3,7 +3,6 @@
 
 #include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JUtility/JUTAssert.h"
-#include "dolphin/types.h"
 
 class JAISound;
 class JAISoundID;

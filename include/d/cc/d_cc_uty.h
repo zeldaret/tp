@@ -2,7 +2,6 @@
 #define D_CC_D_CC_UTY_H
 
 #include "d/com/d_com_inf_game.h"
-#include "dolphin/types.h"
 
 class fopAc_ac_c;
 

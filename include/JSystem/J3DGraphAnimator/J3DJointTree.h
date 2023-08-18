@@ -2,7 +2,6 @@
 #define J3DJOINTTREE_H
 
 #include "JSystem/J3DGraphAnimator/J3DJoint.h"
-#include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 
 class JUTNameTab;

@@ -13,8 +13,6 @@
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JSupport/JSUMemoryStream.h"
 #include "d/d_lib.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_graphic.h"
 

@@ -5,7 +5,6 @@
 
 #include "f_op/f_op_scene_pause.h"
 #include "f_op/f_op_scene.h"
-#include "f_pc/f_pc_executor.h"
 #include "f_pc/f_pc_manager.h"
 
 /* 80020548-80020594 01AE88 004C+00 0/0 2/2 0/0 .text            fopScnPause_Enable__FP11scene_class

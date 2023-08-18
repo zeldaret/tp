@@ -9,7 +9,6 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/msg/d_msg_flow.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 //
@@ -1096,10 +1095,7 @@ asm int daTagTWGate_c::CreateHeap() {
 #endif
 
 int daTagTWGate_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagTWGate_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daTagTWGate_c);
 
     mType = getType();
 
@@ -1125,11 +1121,11 @@ static int daTagTWGate_Create(fopAc_ac_c* i_actor) {
 inline daTagTWGate_c::~daTagTWGate_c() {
     dComIfG_resDelete(&mPhaseZevArc, l_zevParamTbl[mType].mArcName);
 
-    if (mPhaseMdRes.id != cPhs_ZERO_e) {
+    if (mPhaseMdRes.id != cPhs_INIT_e) {
         dComIfG_resDelete(&mPhaseMdRes, "TWGate_Md");
     }
 
-    if (mPhasePyRes.id != cPhs_ZERO_e) {
+    if (mPhasePyRes.id != cPhs_INIT_e) {
         dComIfG_resDelete(&mPhasePyRes, mIsWolf ? "TWGate_Wf" : "TWGate_Lk");
     }
 }

@@ -4,7 +4,6 @@
 //
 
 #include "dolphin/os/OSResetSW.h"
-#include "dol2asm.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/os/OSReset.h"
 

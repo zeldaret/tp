@@ -6,7 +6,6 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 /* 80542178-80542180 000078 0008+00 1/0 0/0 0/0 .text daNpc_Fish_Draw__FP14npc_fish_class */
 static int daNpc_Fish_Draw(npc_fish_class* i_this) {
@@ -38,7 +37,7 @@ static void fish_set(fopAc_ac_c* i_this, fish_data_s* data) {
         }
         u32 param = data->param;
         pos = data->pos;
-        if ((param == 1u) && envLight->field_0x12fe != 2) {
+        if ((param == 1u) && envLight->mPondSeason != 2) {
             param = 2;
         }
         param |= data->field_0x10 << 8;
@@ -140,18 +139,15 @@ static fish_pos lf_pos[12] = {
 /* 80542254-805424B8 000154 0264+00 1/0 0/0 0/0 .text daNpc_Fish_Create__FP10fopAc_ac_c */
 static int daNpc_Fish_Create(fopAc_ac_c* i_this) {
     cXyz pos;
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) npc_fish_class();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    fopAcM_SetupActor(i_this, npc_fish_class);
     if (strcmp(dComIfGp_getStartStageName(), "F_SP127")) {
         return 5;
     } else {
         dScnKy_env_light_c* envLight = i_dKy_getEnvlight();
         s32 param = 0;
-        if (envLight->field_0x12fe == 2) {
+        if (envLight->mPondSeason == 2) {
             param = 160;
-        } else if (envLight->field_0x12fe == 3) {
+        } else if (envLight->mPondSeason == 3) {
             param = 64;
         }
         if (param != 0) {
@@ -160,7 +156,7 @@ static int daNpc_Fish_Create(fopAc_ac_c* i_this) {
                           NULL, -1);
         }
     }
-    if (g_env_light.field_0x12fe == 2) {
+    if (g_env_light.mPondSeason == 2) {
         for (int i = 0; i < 4; i++) {
             pos.set(cM_rndFX(700.0f) + -2936.0f, 0.0f, cM_rndFX(700.0f) + -7865.0f);
             csXyz angle(0, 0, -1);

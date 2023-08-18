@@ -115,6 +115,10 @@ inline void mDoAud_heartGaugeOn() {
     Z2AudioMgr::getInterface()->mStatusMgr.heartGaugeOn();
 }
 
+inline void mDoAud_setSnowPower(s8 i_power) {
+    g_mEnvSeMgr.setSnowPower(i_power);
+}
+
 inline void mDoAud_setFogWipeWidth(f32 i_width) {
     g_mEnvSeMgr.setFogWipeWidth(i_width);
 }

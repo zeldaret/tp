@@ -13,11 +13,7 @@
 s32 daTag_BottleItem_c::create() {
     s32 ret;
 
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTag_BottleItem_c();
-        fopAcM_OnCondition(this, 8);
-    }
-
+    fopAcM_SetupActor(this, daTag_BottleItem_c);
     setTypeFromParam();
 
     if (!isBottleItem(mBottleItemType)) {

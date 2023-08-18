@@ -2,9 +2,7 @@
 #define J3DTEXTURE_H
 
 #include "JSystem/JUtility/JUTTexture.h"
-#include "dolphin/gx/GXEnum.h"
 #include "dolphin/mtx/mtx.h"
-#include "dolphin/mtx/mtx44.h"
 #include "dolphin/types.h"
 
 class J3DTexture {

@@ -2,7 +2,6 @@
 #define JAISEQ_H
 
 #include "JSystem/JAudio2/JAISeqDataMgr.h"
-#include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JAudio2/JASTrack.h"
 #include "JSystem/JSupport/JSUList.h"

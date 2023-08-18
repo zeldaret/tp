@@ -4,7 +4,6 @@
 //
 
 #include "rel/d/a/d_a_hozelda/unknown_translation_unit_bss.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

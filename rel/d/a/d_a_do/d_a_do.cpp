@@ -9,7 +9,6 @@
 #include "d/d_procname.h"
 #include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
-#include "global.h"
 
 //
 // Forward References:

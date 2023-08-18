@@ -3,7 +3,6 @@
 
 #include "JSystem/J2DGraph/J2DPane.h"
 #include "JSystem/JUtility/TColor.h"
-#include "dolphin/gx/GXEnum.h"
 #include "dolphin/types.h"
 
 class J2DMaterial;

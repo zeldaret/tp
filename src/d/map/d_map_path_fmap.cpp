@@ -4,7 +4,6 @@
 //
 
 #include "d/map/d_map_path_fmap.h"
-#include "MSL_C/float.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 

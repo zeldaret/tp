@@ -5,11 +5,7 @@
 
 #include "d/d_bright_check.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-#include "d/d_drawlist.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/msg/d_msg_string.h"
-#include "d/meter/d_meter2_info.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"

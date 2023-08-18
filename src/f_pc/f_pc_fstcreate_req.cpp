@@ -4,8 +4,6 @@
  */
 
 #include "f_pc/f_pc_fstcreate_req.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_pc/f_pc_base.h"
 #include "f_pc/f_pc_layer.h"
 #include "f_pc/f_pc_load.h"

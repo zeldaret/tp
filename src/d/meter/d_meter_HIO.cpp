@@ -6,7 +6,6 @@
 #include "d/meter/d_meter_HIO.h"
 #include "d/save/d_save.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 //

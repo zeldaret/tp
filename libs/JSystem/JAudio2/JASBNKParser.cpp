@@ -5,7 +5,6 @@
 
 #include "JSystem/JAudio2/JASBNKParser.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

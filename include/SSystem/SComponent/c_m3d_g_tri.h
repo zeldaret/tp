@@ -1,9 +1,7 @@
 #ifndef C_M3D_G_TRI_H_
 #define C_M3D_G_TRI_H_
 
-#include "SSystem/SComponent/c_m3d.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
-#include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
 
 class cM3dGCyl;

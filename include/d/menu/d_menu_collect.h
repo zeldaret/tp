@@ -3,7 +3,6 @@
 
 #include "d/d_drawlist.h"
 #include "d/kankyo/d_kankyo.h"
-#include "dolphin/types.h"
 
 class CPaneMgr;
 struct CSTControl;

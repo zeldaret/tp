@@ -15,9 +15,7 @@
 #include "d/meter/d_meter_HIO.h"
 #include "d/meter/d_meter_map.h"
 #include "dol2asm.h"
-#include "f_op/f_op_msg.h"
 #include "f_op/f_op_msg_mng.h"
-#include "m_Do/m_Do_audio.h"
 #include "rel/d/a/d_a_horse/d_a_horse.h"
 
 struct dMeterHakusha_c : public dMeterSub_c {

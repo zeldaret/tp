@@ -7,7 +7,6 @@
 #include "MSL_C/math.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSResetSW.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

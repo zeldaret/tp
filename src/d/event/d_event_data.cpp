@@ -4,13 +4,9 @@
 //
 
 #include "d/event/d_event_data.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/d_camera.h"
-#include "d/d_demo.h"
 #include "d/d_gameover.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_graphic.h"

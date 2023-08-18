@@ -1,8 +1,6 @@
 #ifndef D_A_TAG_SPINNER_H
 #define D_A_TAG_SPINNER_H
 
-#include "dol2asm.h"
-#include "f_op/f_op_actor_mng.h"
 #include "rel/d/a/d_a_spinner/d_a_spinner.h"
 
 class daTagSpinner_c : public fopAc_ac_c {

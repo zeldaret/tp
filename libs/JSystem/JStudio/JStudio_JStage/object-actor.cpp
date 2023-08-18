@@ -5,7 +5,6 @@
 
 #include "JSystem/JStudio/JStudio_JStage/object-actor.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

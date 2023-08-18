@@ -4,8 +4,6 @@
 //
 
 #include "SSystem/SComponent/c_m3d_g_aab.h"
-#include "dol2asm.h"
-#include "dolphin/mtx/vec.h"
 #include "dolphin/types.h"
 
 //

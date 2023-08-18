@@ -6,8 +6,6 @@
 #include "dolphin/os/OSAudioSystem.h"
 #include "dol2asm.h"
 #include "dolphin/dsp/dsp.h"
-#include "dolphin/os/OSArena.h"
-#include "dolphin/os/OSCache.h"
 #include "dolphin/os/OSTime.h"
 
 //

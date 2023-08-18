@@ -5,7 +5,6 @@
 
 #include "SSystem/SComponent/c_tag_iter.h"
 #include "SSystem/SComponent/c_tag.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 /* 80266A7C-80266AB0 0034+00 s=0 e=4 z=0  None .text

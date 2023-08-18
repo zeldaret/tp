@@ -5,8 +5,6 @@
 
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRAramPiece.h"
-#include "JSystem/JKernel/JKRArchive.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 
 //

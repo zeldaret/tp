@@ -1,7 +1,6 @@
 #ifndef D_METER_D_METER2_DRAW_H
 #define D_METER_D_METER2_DRAW_H
 
-#include "JSystem/JUtility/TColor.h"
 #include "d/d_drawlist.h"
 #include "dolphin/types.h"
 

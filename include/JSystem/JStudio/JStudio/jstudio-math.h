@@ -1,7 +1,6 @@
 #ifndef JSTUDIO_MATH_H
 #define JSTUDIO_MATH_H
 
-#include "dolphin/types.h"
 #include "dolphin/mtx/mtxvec.h"
 
 namespace JStudio {

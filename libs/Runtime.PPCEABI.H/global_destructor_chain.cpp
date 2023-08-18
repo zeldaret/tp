@@ -4,7 +4,6 @@
 //
 
 #include "Runtime.PPCEABI.H/global_destructor_chain.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

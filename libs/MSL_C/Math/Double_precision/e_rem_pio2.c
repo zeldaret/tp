@@ -18,7 +18,6 @@
  * use __kernel_rem_pio2()
  */
 
-#include "fdlibm.h"
 #include "MSL_C/math.h"
 
 /*

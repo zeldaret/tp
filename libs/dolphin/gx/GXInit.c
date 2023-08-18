@@ -7,7 +7,6 @@
 #include "dolphin/gx/GX.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSTime.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

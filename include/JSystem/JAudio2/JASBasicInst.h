@@ -1,7 +1,6 @@
 #ifndef JASBASICINST_H
 #define JASBASICINST_H
 
-#include "dolphin/types.h"
 #include "JSystem/JAudio2/JASOscillator.h"
 #include "JSystem/JAudio2/JASSoundParams.h"
 

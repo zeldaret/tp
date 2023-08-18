@@ -1,7 +1,5 @@
 #include "JSystem/JStudio/JStudio/stb.h"
 #include "JSystem/JUtility/JUTException.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 //

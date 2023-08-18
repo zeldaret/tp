@@ -4,17 +4,10 @@
 //
 
 #include "d/d_resorce.h"
-#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "JSystem/J3DGraphBase/J3DTevs.h"
-#include "JSystem/J3DGraphBase/J3DTexture.h"
-#include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
-#include "JSystem/J3DGraphLoader/J3DClusterLoader.h"
-#include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "MSL_C/stdio.h"
-#include "MSL_C/string.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/mtx/mtx.h"

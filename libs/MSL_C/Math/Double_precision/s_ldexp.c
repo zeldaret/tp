@@ -11,7 +11,6 @@
  * ====================================================
  */
 
-#include "fdlibm.h"
 #include "MSL_C/math.h" /* for isfinite macro */
 static const double
 

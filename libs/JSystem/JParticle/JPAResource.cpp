@@ -5,12 +5,9 @@
 
 #include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JParticle/JPABaseShape.h"
-#include "JSystem/JParticle/JPAMath.h"
-#include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GX.h"
-#include "dolphin/mtx/mtx.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 

@@ -4,14 +4,6 @@
 //
 
 #include "rel/d/a/d_a_title/d_a_title.h"
-#include "JSystem/J2DGraph/J2DScreen.h"
-#include "JSystem/J2DGraph/J2DTextBox.h"
-#include "JSystem/JKernel/JKRExpHeap.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JKernel/JKRMemArchive.h"
-#include "JSystem/JStudio/JStudio/stb.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_overlap_mng.h"
@@ -303,10 +295,7 @@ int daTitle_c::CreateHeap() {
 
 /* 80D66CDC-80D66E7C 0002BC 01A0+00 1/1 0/0 0/0 .text            create__9daTitle_cFv */
 int daTitle_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTitle_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daTitle_c);
     
     int phase_state = dComIfG_resLoad(&mPhaseReq, l_arcName);
     if (phase_state != cPhs_COMPLEATE_e) {

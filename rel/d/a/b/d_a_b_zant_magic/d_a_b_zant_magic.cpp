@@ -5,7 +5,6 @@
 
 #include "rel/d/a/b/d_a_b_zant_magic/d_a_b_zant_magic.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

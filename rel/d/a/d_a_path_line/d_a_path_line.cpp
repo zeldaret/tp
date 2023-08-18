@@ -5,7 +5,6 @@
 
 #include "rel/d/a/d_a_path_line/d_a_path_line.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

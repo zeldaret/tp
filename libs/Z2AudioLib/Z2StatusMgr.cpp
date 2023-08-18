@@ -6,7 +6,6 @@
 #include "Z2AudioLib/Z2StatusMgr.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "global.h"
 
 //
 // Forward References:

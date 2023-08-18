@@ -99,10 +99,7 @@ static int daKytag11_Delete(kytag11_class* i_this) {
 
 /* 805297A8-80529854 000308 00AC+00 1/0 0/0 0/0 .text            daKytag11_Create__FP10fopAc_ac_c */
 static int daKytag11_Create(fopAc_ac_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) kytag11_class();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    fopAcM_SetupActor(i_this, kytag11_class);
 
     kytag11_class* this_ = (kytag11_class*)i_this;
 

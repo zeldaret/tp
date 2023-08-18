@@ -6,8 +6,6 @@
 #include "dolphin/os/OSError.h"
 #include "dol2asm.h"
 #include "dolphin/base/PPCArch.h"
-#include "dolphin/dsp/dsp.h"
-#include "dolphin/dvd/dvdlow.h"
 #include "dolphin/os/OS.h"
 
 OSThread* __OSCurrentThread : (OS_BASE_CACHED | 0x00E4);

@@ -5,7 +5,6 @@
 
 #include "rel/d/a/obj/d_a_obj_kbox/d_a_obj_kbox.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

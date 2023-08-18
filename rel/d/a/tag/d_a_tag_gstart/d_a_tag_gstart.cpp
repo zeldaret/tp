@@ -12,10 +12,7 @@
 
 /* 805A3478-805A34F4 000078 007C+00 1/1 0/0 0/0 .text            create__13daTagGstart_cFv */
 int daTagGstart_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagGstart_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daTagGstart_c);
 
     mSwNo = fopAcM_GetParam(this);
     mSwNo2 = fopAcM_GetParam(this) >> 8;

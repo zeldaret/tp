@@ -4,10 +4,6 @@
  */
 
 #include "rel/d/a/b/d_a_b_oh/d_a_b_oh.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "SSystem/SComponent/c_math.h"
-#include "c/c_damagereaction.h"
-#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
@@ -1460,10 +1456,7 @@ COMPILER_STRIP_GATE(0x8061DA70, &lit_4519);
 // matches with literals
 #ifdef NONMATCHING
 static int daB_OH_Create(fopAc_ac_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) b_oh_class();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    fopAcM_SetupActor(i_this, b_oh_class);
     b_oh_class* this_ = (b_oh_class*)i_this;
 
     int phase = dComIfG_resLoad(&this_->mPhase, "B_oh");

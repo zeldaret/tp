@@ -7,7 +7,6 @@
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "JSystem/J3DGraphBase/J3DTexture.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

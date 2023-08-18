@@ -5,7 +5,6 @@
 
 #include "JSystem/JAudio2/JASCallback.h"
 #include "JSystem/JAudio2/JASAudioReseter.h"
-#include "dolphin/types.h"
 
 //
 // Types:

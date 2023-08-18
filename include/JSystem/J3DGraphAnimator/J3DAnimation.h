@@ -1,10 +1,8 @@
 #ifndef J3DANIMATION_H
 #define J3DANIMATION_H
 
-#include "JSystem/J3DGraphAnimator/J3DMaterialAttach.h"
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/JUtility/JUTNameTab.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 typedef struct _GXColor GXColor;
@@ -590,6 +588,14 @@ private:
 
 class J3DFrameCtrl {
 public:
+    enum Attribute_e {
+        LOOP_ONCE_e,
+        LOOP_ONCE_RESET_e,
+        LOOP_REPEAT_e,
+        LOOP_MIRROR_ONCE_e,
+        LOOP_MIRROR_REPEAT_e,
+    };
+
     J3DFrameCtrl() { this->init(0); }
     void init(s16);
     BOOL checkPass(f32);

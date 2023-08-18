@@ -6,7 +6,6 @@
 #include "dolphin/si/SIBios.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
-#include "dolphin/si/SISamplingRate.h"
 #include "dolphin/vi/vi.h"
 
 /* 803D11B8-803D11FC 02E2D8 0044+00 4/3 0/0 0/0 .data            @1 */

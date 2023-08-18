@@ -4,7 +4,6 @@
 
 #include "SSystem/SComponent/c_list.h"
 #include "SSystem/SComponent/c_tag.h"
-#include "dolphin/types.h"
 
 typedef struct create_tag {
     create_tag_class mBase;

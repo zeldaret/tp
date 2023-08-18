@@ -4,8 +4,6 @@
 //
 
 #include "dolphin/os/OSMessage.h"
-#include "dol2asm.h"
-#include "dolphin/os/OSInterrupt.h"
 #include "dolphin/os/OSThread.h"
 
 //

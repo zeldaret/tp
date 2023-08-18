@@ -5,7 +5,6 @@
 
 #include "SSystem/SComponent/c_malloc.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 /* ############################################################################################## */

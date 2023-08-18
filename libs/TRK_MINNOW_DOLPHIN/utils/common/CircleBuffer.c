@@ -1,7 +1,6 @@
 // Translation Unit: utils/common/CircleBuffer
 
 #include "TRK_MINNOW_DOLPHIN/utils/common/CircleBuffer.h"
-#include "TRK_MINNOW_DOLPHIN/utils/gc/MWCriticalSection_gc.h"
 #include "dolphin/types.h"
 
 /* 803726A0-803727A8 36CFE0 0108+00 0/0 2/2 0/0 .text            CircleBufferReadBytes */

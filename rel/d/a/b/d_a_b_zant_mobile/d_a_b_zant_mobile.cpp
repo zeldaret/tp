@@ -5,7 +5,6 @@
 
 #include "rel/d/a/b/d_a_b_zant_mobile/d_a_b_zant_mobile.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

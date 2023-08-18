@@ -3,7 +3,6 @@
 
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/cc/d_cc_uty.h"
-#include "d/com/d_com_inf_game.h"
 
 struct Z2CreatureOI : public Z2CreatureEnemy {
     /* 802C2578 */ Z2CreatureOI();

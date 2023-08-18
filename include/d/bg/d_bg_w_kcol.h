@@ -4,7 +4,6 @@
 #include "SSystem/SComponent/c_m3d_g_aab.h"
 #include "d/bg/d_bg_plc.h"
 #include "d/bg/d_bg_w_base.h"
-#include "dolphin/types.h"
 
 class cBgS_GrpPassChk;
 class cBgS_PolyPassChk;

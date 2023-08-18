@@ -2,7 +2,6 @@
 #define D_MSG_D_MSG_CLASS_H
 
 #include "JSystem/JMessage/control.h"
-#include "JSystem/JMessage/processor.h"
 #include "SSystem/SComponent/c_xyz.h"
 
 class COutFont_c;

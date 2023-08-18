@@ -8,17 +8,12 @@
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 /* ############################################################################################## */
 /* 80D5B918-80D5BA94 000078 017C+00 1/1 0/0 0/0 .text            create__11daTagMmsg_cFv */
 int daTagMmsg_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagMmsg_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daTagMmsg_c);
 
     field_0x570 = fpcM_GetParam(this) & 0x3FF;
     field_0x572 = (fpcM_GetParam(this) >> 10) & 0x3FF;

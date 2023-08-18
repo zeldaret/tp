@@ -1,7 +1,6 @@
 #ifndef D_D_BRIGHT_CHECK_H
 #define D_D_BRIGHT_CHECK_H
 
-#include "dolphin/types.h"
 #include "d/com/d_com_inf_game.h"
 
 // class dBrightCheck_c {

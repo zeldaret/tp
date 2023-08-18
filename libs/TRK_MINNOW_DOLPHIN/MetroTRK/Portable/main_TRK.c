@@ -4,8 +4,6 @@
  */
 
 #include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/main_TRK.h"
-#include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/mainloop.h"
-#include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubinit.h"
 #include "TRK_MINNOW_DOLPHIN/utils/common/MWTrace.h"
 #include "dol2asm.h"
 

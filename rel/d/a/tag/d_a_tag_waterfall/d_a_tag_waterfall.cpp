@@ -6,7 +6,6 @@
 #include "rel/d/a/tag/d_a_tag_waterfall/d_a_tag_waterfall.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JMath/JMath.h"
-#include "SSystem/SComponent/c_xyz.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 
@@ -245,10 +244,7 @@ static int daTagWaterFall_Delete(daTagWaterFall_c* i_this) {
 
 /* 80D64B20-80D64CBC 0005E0 019C+00 1/1 0/0 0/0 .text            create__16daTagWaterFall_cFv */
 cPhs__Step daTagWaterFall_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagWaterFall_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daTagWaterFall_c);
 
     if (masterWaterfallTagExists == false) {
         masterWaterfallTagExists = true;

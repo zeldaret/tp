@@ -5,7 +5,6 @@
 
 #include "rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

@@ -3,7 +3,6 @@
 
 #include "SSystem/SComponent/c_xyz.h"
 #include "d/d_vib_pattern.h"
-#include "dolphin/types.h"
 
 class dVibration_c {
 public:

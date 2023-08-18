@@ -3,7 +3,6 @@
 
 #include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JAudio2/JAISoundHandles.h"
-#include "dolphin/types.h"
 
 /*
  * Z2WolfHowlData

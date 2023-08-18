@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/JUtility/JUTDirectFile.h"
-#include "dolphin/types.h"
 #include "dolphin/os/OSInterrupt.h"
 #include "global.h"
 

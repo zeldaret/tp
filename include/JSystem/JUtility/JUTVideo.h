@@ -4,7 +4,6 @@
 #include "dolphin/gx/GXStruct.h"
 #include "dolphin/os/OSMessage.h"
 #include "dolphin/os/OSTime.h"
-#include "dolphin/types.h"
 #include "dolphin/vi/vi.h"
 
 typedef u8 (*Pattern)[2];

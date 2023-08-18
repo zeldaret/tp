@@ -27,10 +27,7 @@ int daTagHjump_c::CreateHeap() {
 
 /* 805A3B24-805A3D80 0000E4 025C+00 1/1 0/0 0/0 .text            create__12daTagHjump_cFv */
 int daTagHjump_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagHjump_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daTagHjump_c);
 
     mType = (fopAcM_GetParam(this) >> 4) & 0xF;
     field_0x5ad = fopAcM_GetParam(this) & 0xF;

@@ -5,7 +5,6 @@
 
 #include "rel/d/a/npc/d_a_npc_mk/d_a_npc_mk.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

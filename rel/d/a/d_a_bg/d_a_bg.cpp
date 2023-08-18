@@ -4,14 +4,10 @@
 //
 
 #include "rel/d/a/d_a_bg/d_a_bg.h"
-#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "MSL_C/string.h"
 #include "d/bg/d_bg_w.h"
 #include "d/bg/d_bg_w_kcol.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/com/d_com_static.h"
-#include "d/d_demo.h"
 #include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_lib.h"
@@ -858,7 +854,7 @@ int daBg_c::draw() {
                             s16 var_r0;
                             s16 var_r3;
                             s16 var_r5;
-                            switch (g_env_light.field_0x12fe) {
+                            switch (g_env_light.mPondSeason) {
                             case 2:
                                 var_r5 = -3;
                                 var_r0 = 0;
@@ -1008,10 +1004,7 @@ int daBg_c::create() {
     field_0x5f1 = 0;
 
     if (mHeap == NULL) {
-        if (!fopAcM_CheckCondition(this, 8)) {
-            new (this) daBg_c();
-            fopAcM_OnCondition(this, 8);
-        }
+        fopAcM_SetupActor(this, daBg_c);
 
         orig.roomNo = roomNo;
         current.roomNo = roomNo;

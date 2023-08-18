@@ -4,7 +4,6 @@
 //
 
 #include "d/menu/d_menu_dmap.h"
-#include "JSystem/J2DGraph/J2DPicture.h"
 #include "MSL_C/string.h"
 #include "d/d_lib.h"
 #include "dol2asm.h"

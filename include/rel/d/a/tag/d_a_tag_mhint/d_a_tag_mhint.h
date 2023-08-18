@@ -1,7 +1,6 @@
 #ifndef D_A_TAG_MHINT_H
 #define D_A_TAG_MHINT_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 #include "d/msg/d_msg_flow.h"
 

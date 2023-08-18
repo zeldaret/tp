@@ -1,9 +1,6 @@
 #ifndef D_D_RESORCE_H
 #define D_D_RESORCE_H
 
-#include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/types.h"
-#include "global.h"
 #include "m_Do/m_Do_dvd_thread.h"
 #include "m_Do/m_Do_ext.h"
 

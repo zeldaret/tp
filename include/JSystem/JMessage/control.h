@@ -2,7 +2,6 @@
 #define JMESSAGE_CONTROL_H
 
 #include "JSystem/JMessage/processor.h"
-#include "JSystem/JMessage/resource.h"
 #include "dolphin/types.h"
 
 namespace JMessage {

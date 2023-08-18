@@ -1,7 +1,6 @@
 #ifndef JPALIST_H
 #define JPALIST_H
 
-#include "dolphin/types.h"
 
 template <class T>
 struct JPANode {

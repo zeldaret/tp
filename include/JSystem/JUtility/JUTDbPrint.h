@@ -2,7 +2,6 @@
 #define JUTDBPRINT_H
 
 #include "JSystem/JUtility/JUTFont.h"
-#include "dolphin/types.h"
 
 class JKRHeap;
 

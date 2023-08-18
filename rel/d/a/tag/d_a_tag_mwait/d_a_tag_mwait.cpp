@@ -11,10 +11,7 @@
 
 /* 80D5BE18-80D5BFFC 000078 01E4+00 1/1 0/0 0/0 .text            create__12daTagMwait_cFv */
 int daTagMwait_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagMwait_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daTagMwait_c);
 
     mEnterSw = fopAcM_GetParam(this) >> 8;
 

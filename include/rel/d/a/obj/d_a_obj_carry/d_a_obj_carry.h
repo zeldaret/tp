@@ -1,11 +1,21 @@
 #ifndef D_A_OBJ_CARRY_H
 #define D_A_OBJ_CARRY_H
 
-#include "SSystem/SComponent/c_xyz.h"
 #include "d/bg/d_bg_s_acch.h"
 #include "d/cc/d_cc_d.h"
-#include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
+#include "d/d_jnt_col.h"
+#include "f_op/f_op_actor_mng.h"
+
+struct daObjCarry_Data {
+    /* 0x0000 */ u8 field_0x0000[0x0030 - 0x0000];
+    /* 0x0030 */ float field_0x0030;
+    /* 0x0034 */ u8 field_0x0034;
+    /* 0x0035 */ u8 field_0x0035[0x0038 - 0x0035];
+    /* 0x0038 */ float field_0x0038;
+    /* 0x003C */ float field_0x003c;
+    /* 0x0040 */ float field_0x0040;
+    /* 0x0044 */ u8 field_0x0044[0x94-0x44];
+};
 
 class daObjCarry_c : public fopAc_ac_c {
 public:
@@ -21,9 +31,9 @@ public:
         /* 0x8 */ TYPE_BALL_S,     // Light Ball A
         /* 0x9 */ TYPE_BALL_S_2,   // Light Ball B
         /* 0xA */ TYPE_AOTSUBO,    // Big Blue Pot
-        /* 0xB */ TYPE_LV8_BALL,
-        /* 0xC */ TYPE_TSUBO_S,  // Small pot - Twilight
-        /* 0xD */ TYPE_TSUBO_B,  // Big pot - Twilight
+        /* 0xB */ TYPE_LV8_BALL,   // Light Ball? Probably unused
+        /* 0xC */ TYPE_TSUBO_S,    // Small pot - Twilight
+        /* 0xD */ TYPE_TSUBO_B,    // Big pot - Twilight
     };
 
     /* 80031CF8 */ static void clrSaveFlag();
@@ -36,13 +46,13 @@ public:
     /* 80031D8C */ static u8 chkSttsFlag(int, u8);
     /* 80031DAC */ static void setRoomNo(int, s8);
     /* 80031DB8 */ static s8 getRoomNo(int);
-    /* 8046F6A4 */ void data();
-    /* 8046F6BC */ void getArcName();
-    /* 8046F6D4 */ void getBmdName();
+    /* 8046F6A4 */ u8 data();
+    /* 8046F6BC */ void* getArcName();
+    /* 8046F6D4 */ void* getBmdName();
     /* 8046F6EC */ void checkFlag(u8);
     /* 8046F724 */ void initBaseMtx();
     /* 8046F7AC */ void setBaseMtx();
-    /* 8046FACC */ void preInit();
+    /* 8046FACC */ s32 preInit();
     /* 8046FB78 */ daObjCarry_c();
     /* 8046FFA4 */ void checkBreakWolfAttack();
     /* 8046FFF8 */ void checkCarryBoomerang();
@@ -183,6 +193,8 @@ public:
     /* 80479664 */ void CreateInitCall();
 
     s32 getType() { return mType; }
+    u32 getSwbit2() { return fopAcM_GetParamBit(this,0xe,8); }
+    u32 checkOnMoveBg() { return ~((field_0xd18 >> 0xc) & 1);}
 
     static u8 const mData[2072];
     static Vec mPos[5];
@@ -190,20 +202,93 @@ public:
     static s8 mRoomNo[5];
     static bool mSaveFlag;
 
-private:
-    /* 0x568 */ u8 field_0x568[8];
-    /* 0x570 */ J3DModel* field_0x570;
-    /* 0x574 */ dBgS_Acch field_0x574;
-    /* 0x74C */ dBgS_AcchCir field_0x74c;
-    /* 0x78C */ dCcD_Stts field_0x78c;
+public:
+    /* 0x568 */ request_of_phase_process_class mPhaseReq;
+    /* 0x570 */ J3DModel* mpModel;
+    /* 0x574 */ dBgS_Acch mAcch;
+    /* 0x74C */ dBgS_AcchCir mAcchCir;
+    /* 0x78C */ dCcD_Stts mStts;
     /* 0x7C8 */ dCcD_Cyl field_0x7c8;
     /* 0x904 */ dCcD_Sph field_0x904;
     /* 0xA3C */ dCcD_Cps field_0xa3c;
     /* 0xB80 */ dCcD_Cyl field_0xb80;
-    /* 0xCBC */ u8 field_0xcbc[0x34];
+    /* 0xCBC */ u8 field_0xCBC[0xCEC - 0xCBC];
+    /* 0xCEC */ float field_0xcec;
     /* 0xCF0 */ u8 mType;
+    /* 0xCF1 */ u8 field_0xcf1;
+    /* 0xCF2 */ u8 field_0xCF2[0xCF4 - 0xCF2];
     /* 0xCF4 */ cXyz field_0xcf4;
-    /* 0xD00 */
+    /* 0xD00 */ s16 field_0xd00;
+    /* 0xD02 */ u8 field_0xD02[0xD04 - 0xD02];
+    /* 0xD04 */ s16 field_0xd04;
+    /* 0xD06 */ u8 field_0xD06[0xD15 - 0xD06];
+    /* 0xD15 */ u8 field_0xd15;
+    /* 0xD16 */ u16 field_0xd16;
+    /* 0xD18 */ u16 field_0xd18;
+    /* 0xD1A */ u8 field_0xD1A[0xD1C - 0xD1A];
+    /* 0xD1C */ cXyz field_0xd1c;
+    /* 0xD28 */ u8 field_0xD28[0xD3C - 0xD28];
+    /* 0xD3C */ Quaternion field_0xd3c;
+    /* 0xD4C */ Quaternion field_0xd4c;
+    /* 0xD5C */ float field_0xd5c;
+    /* 0xD60 */ float field_0xd60;
+    /* 0xD64 */ s16 field_0xd64;
+    /* 0xD66 */ s16 field_0xd66;
+    /* 0xD68 */ s16 field_0xd68;
+    /* 0xD6A */ s16 field_0xd6a;
+    /* 0xD6C */ u8 field_0xD6C[0xD70 - 0xD6C];
+    /* 0xD70 */ float field_0xd70;
+    /* 0xD74 */ u8 field_0xd74;
+    /* 0xD75 */ u8 field_0xd75;
+    /* 0xD76 */ u8 field_0xd76;
+    /* 0xD77 */ u8 field_0xd77;
+    /* 0xD78 */ u8 field_0xD78[0xD79 - 0xD78];
+    /* 0xD79 */ u8 field_0xd79;
+    /* 0xD7A */ u8 field_0xd7a;
+    /* 0xD7B */ u8 field_0xd7b;
+    /* 0xD7C */ csXyz field_0xd7c;
+    /* 0xD82 */ u8 field_0xD82[0xD84 - 0xD82];
+    /* 0xD84 */ float field_0xd84;
+    /* 0xD88 */ Z2SoundObjSimple field_0xd88;
+    /* 0xDA8 */ u8 field_0xDA8[0xDAA - 0xDA8];
+    /* 0xDAA */ u8 field_0xdaa;
+    /* 0xDAB */ u8 field_0xDAB[0xDAC - 0xDAB];
+    /* 0xDAC */ bool field_0xdac;
+    /* 0xDAD */ u8 field_0xdad;
+    /* 0xDAE */ u8 field_0xDAE[0xDAF - 0xDAE];
+    /* 0xDAF */ u8 field_0xdaf;
+    /* 0xDB0 */ u8 field_0xdb0;
+    /* 0xDB1 */ u8 field_0xDB1[0xDB2 - 0xDB1];
+    /* 0xDB2 */ u8 mOnMoveBG;
+    /* 0xDB3 */ u8 field_0xdb3;
+    /* 0xDB4 */ u8 field_0xDB4[0xDB7 - 0xDB4];
+    /* 0xDB7 */ u8 mDraw;
+    /* 0xDB8 */ u8 mCtrl;
+    /* 0xDB9 */ u8 field_0xdb9;
+    /* 0xDBA */ u8 mReset;
+    /* 0xDBB */ u8 mCarryHookOK;
+    /* 0xDBC */ u8 mRecover;
+    /* 0xDBD */ u8 field_0xDBD[0xDD0 - 0xDBD];
+    /* 0xDD0 */ fopAc_ac_c* field_0xdd0;
+    /* 0xDD4 */ u8 field_0xDD4[0xDDC - 0xDD4];
+    /* 0xDDC */ float field_0xddc;
+    /* 0xDE0 */ float field_0xde0;
+    /* 0xDE4 */ float field_0xde4;
+    /* 0xDE8 */ s16 field_0xde8;
+    /* 0xDEA */ u8 field_0xdea;
+    /* 0xDEB */ u8 mCannon;
+    /* 0xDEC */ cXyz field_0xdec;
+    /* 0xDF8 */ DALKMIST_INFLUENCE field_0xdf8;
+    /* 0xE0C */ u8 field_0xe0c;
+    /* 0xE0D */ u8 field_0xe0d;
+    /* 0xE0E */ u8 field_0xE0E[0xE10 - 0xE0E];
+    /* 0xE10 */ dJntCol_c field_0xe10;
+    /* 0xE20 */ float field_0xe20;
+    /* 0xE24 */ u8 field_0xe24[0xE28 - 0xE24];
+
+private:
+    u16 getType_private() { return field_0xd18 >> 1 & 0x1f; }
 };
+STATIC_ASSERT(sizeof(daObjCarry_c) == 0xE28);
 
 #endif /* D_A_OBJ_CARRY_H */

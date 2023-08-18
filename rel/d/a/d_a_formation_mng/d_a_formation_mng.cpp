@@ -5,7 +5,6 @@
 
 #include "rel/d/a/d_a_formation_mng/d_a_formation_mng.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

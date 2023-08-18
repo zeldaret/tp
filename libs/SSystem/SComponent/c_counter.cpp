@@ -4,7 +4,6 @@
 //
 
 #include "SSystem/SComponent/c_counter.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 /* ############################################################################################## */

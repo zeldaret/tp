@@ -11,7 +11,6 @@
 #include "JSystem/JUtility/JUTProcBar.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GX.h"
-#include "dolphin/mtx/mtx44.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 

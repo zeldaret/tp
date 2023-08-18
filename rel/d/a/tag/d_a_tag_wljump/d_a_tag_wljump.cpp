@@ -5,8 +5,6 @@
 
 #include "rel/d/a/tag/d_a_tag_wljump/d_a_tag_wljump.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-#include "f_op/f_op_actor_mng.h"
 #include "d/d_path.h"
 #include "d/a/d_a_alink.h"
 #include "d/d_procname.h"
@@ -59,10 +57,7 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 /* 80D64EB8-80D64FE4 000078 012C+00 1/1 0/0 0/0 .text            create__13daTagWljump_cFv */
 int daTagWljump_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagWljump_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daTagWljump_c);
     u32 param = (fopAcM_GetParam(this) >> 8) & 0xff;
     field_0x571 = (u8)param;
     s32 uVar2 = fopAcM_GetParam(this);

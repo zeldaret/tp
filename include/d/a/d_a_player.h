@@ -2,7 +2,6 @@
 #define D_A_D_A_PLAYER_H
 
 #include "d/d_drawlist.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
 struct ResTIMG;

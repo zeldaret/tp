@@ -8,7 +8,6 @@
 #include "MSL_C/stdio.h"
 #include "MSL_C/string.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

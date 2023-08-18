@@ -5,7 +5,6 @@
 
 #include "JSystem/JStudio/JStudio_JParticle/object-particle.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

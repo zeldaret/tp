@@ -78,10 +78,7 @@ int daTagMist_c::Create() {
 
 /* 8048F444-8048F518 000264 00D4+00 1/1 0/0 0/0 .text            create__11daTagMist_cFv */
 int daTagMist_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagMist_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daTagMist_c);
 
     if (!mInitParams) {
         mInitParams = true;

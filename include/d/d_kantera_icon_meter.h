@@ -2,7 +2,6 @@
 #define D_D_KANTERA_ICON_METER_H
 
 #include "d/d_drawlist.h"
-#include "dolphin/types.h"
 
 class CPaneMgr;
 

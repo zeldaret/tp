@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/JParticle/JPAKeyBlock.h"
-#include "dolphin/types.h"
 #include "JSystem/JParticle/JPAMath.h"
 
 //

@@ -3,12 +3,10 @@
 
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/a/d_a_player.h"
-#include "d/bg/d_bg_s.h"
 #include "d/bg/d_bg_s_acch.h"
 #include "d/bg/d_bg_s_lin_chk.h"
 #include "d/cc/d_cc_d.h"
 #include "d/msg/d_msg_flow.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
 class daHorseRein_c {

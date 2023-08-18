@@ -102,10 +102,7 @@ int daObjKJgjs_c::Delete() {
 
 /* 80C46400-80C46460 0003E0 0060+00 1/0 0/0 0/0 .text daObjKJgjs_create1st__FP12daObjKJgjs_c */
 static int daObjKJgjs_create1st(daObjKJgjs_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) daObjKJgjs_c();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    fopAcM_SetupActor(i_this, daObjKJgjs_c);
     return i_this->create1st();
 }
 

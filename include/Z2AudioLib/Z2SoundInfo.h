@@ -1,8 +1,6 @@
 #ifndef Z2SOUNDINFO_H
 #define Z2SOUNDINFO_H
 
-#include "JSystem/JAudio2/JAISound.h"
-#include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JAudio2/JAISoundInfo.h"
 
 struct JAISeq;

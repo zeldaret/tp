@@ -2,7 +2,6 @@
 #define D_CC_D_CC_MASS_S_H
 
 #include "SSystem/SComponent/c_cc_d.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 typedef void (*dCcMassS_ObjCallback)(fopAc_ac_c*, cXyz*, u32);

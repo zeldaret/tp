@@ -5,11 +5,8 @@
 
 #include "d/com/d_com_static.h"
 #include "MSL_C/stdio.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/d_demo.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-#include "f_op/f_op_actor_mng.h"
 #include "rel/d/a/d_a_movie_player/d_a_movie_player.h"
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 #include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"

@@ -3,7 +3,6 @@
 
 #include "dolphin/gx/GXEnum.h"
 #include "dolphin/gx/GXStruct.h"
-#include "dolphin/types.h"
 
 class JPAEmitterWorkData;
 class JKRHeap;

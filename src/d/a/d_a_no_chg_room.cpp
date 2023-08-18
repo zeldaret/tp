@@ -5,7 +5,6 @@
 
 #include "d/a/d_a_no_chg_room.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

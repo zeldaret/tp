@@ -5,7 +5,6 @@
 
 #include "rel/d/a/e/d_a_e_hzelda/d_a_e_hzelda.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

@@ -5,7 +5,6 @@
 
 #include "JSystem/JAudio2/JAUInitializer.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

@@ -5,7 +5,6 @@
 
 #include "JSystem/JStudio/JStudio_JParticle/control.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

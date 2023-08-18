@@ -7,7 +7,6 @@
 #include "JSystem/J3DGraphAnimator/J3DMaterialAttach.h"
 #include "JSystem/J3DGraphAnimator/J3DShapeTable.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 /* 80325A18-80325A9C 320358 0084+00 0/0 1/1 0/0 .text            __ct__12J3DJointTreeFv */

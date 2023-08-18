@@ -1,7 +1,6 @@
 #ifndef JAISOUNDINFO_H
 #define JAISOUNDINFO_H
 
-#include "dolphin/types.h"
 #include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JASGadget.h"
 

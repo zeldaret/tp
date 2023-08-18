@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/JAudio2/JASRegisterParam.h"
-#include "dolphin/types.h"
 
 //
 // Types:

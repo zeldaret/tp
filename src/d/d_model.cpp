@@ -4,11 +4,9 @@
 //
 
 #include "d/d_model.h"
-#include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/kankyo/d_kankyo.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

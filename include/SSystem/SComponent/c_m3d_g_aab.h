@@ -2,7 +2,6 @@
 #define C_M3D_G_AAB_H
 
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 // Axis aligned bounding box

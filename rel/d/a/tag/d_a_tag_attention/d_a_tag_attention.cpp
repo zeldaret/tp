@@ -6,7 +6,6 @@
 #include "rel/d/a/tag/d_a_tag_attention/d_a_tag_attention.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/a/d_a_player.h"
-#include "d/d_procname.h"
 
 static const u8 l_dist_tbl[] = { 0x23, 0x24 };
 
@@ -20,10 +19,7 @@ int daAttp_c::Create() {
 
 /* 804D5354-804D53AC 0000B4 0058+00 1/1 0/0 0/0 .text            create__8daAttp_cFv */
 int daAttp_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daAttp_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daAttp_c);
     Create();
     return cPhs_COMPLEATE_e;
 }

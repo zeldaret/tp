@@ -2,7 +2,6 @@
 #define C_TAG_ITER_H
 
 #include "SSystem/SComponent/c_node_iter.h"
-#include "dolphin/types.h"
 
 typedef struct create_tag_class create_tag_class;
 

@@ -3,7 +3,6 @@
 
 #include "JSystem/JUtility/TColor.h"
 #include "d/pane/d_pane_class_alpha.h"
-#include "dolphin/types.h"
 
 void dPaneClass_showNullPane(J2DScreen*);
 void dPaneClass_showNullPane(J2DPane*);

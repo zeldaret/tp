@@ -11,13 +11,10 @@
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/JParticle/JPAEmitterManager.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
-#include "SSystem/SComponent/c_math.h"
 #include "MSL_C/stdio.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/a/d_a_player.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
-#include "dolphin/types.h"
 #include "m_Do/m_Do_lib.h"
 #include "m_Do/m_Do_graphic.h"
 #include "f_op/f_op_actor_mng.h"
@@ -1159,9 +1156,9 @@ bool dPa_modelEcallBack::model_c::set(J3DModelData* param_0, dKy_tevstr_c const&
     J3DLightObj* end;
     J3DLightObj* src;
     J3DLightObj* dst;
-    dst = (J3DLightObj*)field_0x8.field_0x074;
-    src = (J3DLightObj*)param_1.field_0x074;
-    end = field_0x8.field_0x074 + 6;
+    dst = (J3DLightObj*)field_0x8.mLights;
+    src = (J3DLightObj*)param_1.mLights;
+    end = field_0x8.mLights + 6;
     do {
         *dst = *src;
         dst++;

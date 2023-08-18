@@ -5,7 +5,6 @@
 
 #include "rel/d/a/obj/d_a_obj_lv1Candle00/d_a_obj_lv1Candle00.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

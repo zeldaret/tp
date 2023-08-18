@@ -2,7 +2,6 @@
 #define D_METER_D_METER_MAP_H
 
 #include "d/map/d_map_path_dmap.h"
-#include "dolphin/types.h"
 
 class J2DPicture;
 

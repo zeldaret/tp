@@ -7,7 +7,6 @@
 #include "JSystem/JAudio2/JASCalc.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
