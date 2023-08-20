@@ -7,51 +7,6 @@
 #include "dol2asm.h"
 
 //
-// Types:
-//
-
-struct csXyz {
-    /* 80018BD0 */ ~csXyz();
-    /* 80112C80 */ csXyz();
-    /* 8026745C */ void operator+=(csXyz&);
-
-    static u8 Zero[4];
-};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80009184 */ ~cXyz();
-    /* 800125DC */ cXyz();
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266EF4 */ void normalize();
-    /* 802670AC */ void isZero() const;
-};
-
-struct mDoMtx_stack_c {
-    /* 8000CD64 */ void transS(cXyz const&);
-    /* 8000CE9C */ void XYZrotS(csXyz const&);
-    /* 8000CF44 */ void ZXYrotM(csXyz const&);
-
-    static u8 now[48];
-};
-
-struct fopAc_ac_c {};
-
-struct J3DModel {};
-
-struct dNpcLib_lookat_c {
-    /* 80251314 */ dNpcLib_lookat_c();
-    /* 8025140C */ void init(J3DModel*, int*, csXyz*, csXyz*);
-    /* 80251534 */ void action(cXyz, cXyz, fopAc_ac_c*, f32 (*)[4], int);
-    /* 80251B60 */ void dbView();
-    /* 80251B64 */ void setPrm();
-    /* 80251EF8 */ void update();
-    /* 80252018 */ void limitter(s16*, s16, s16, s16);
-    /* 80252094 */ ~dNpcLib_lookat_c();
-};
-
-//
 // Forward References:
 //
 
@@ -81,11 +36,6 @@ extern "C" void isZero__4cXyzCFv();
 extern "C" void __apl__5csXyzFR5csXyz();
 extern "C" void cM_atan2s__Fff();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXConcat();
-extern "C" void PSMTXInverse();
-extern "C" void PSMTXMultVec();
-extern "C" void PSVECSquareMag();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void _savegpr_22();
@@ -95,7 +45,6 @@ extern "C" void _restgpr_22();
 extern "C" void _restgpr_23();
 extern "C" void _restgpr_25();
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u32 __float_nan;
 extern "C" u8 Zero__5csXyz[4];
 extern "C" extern u8 data_80451164[4];
 
@@ -114,14 +63,7 @@ SECTION_DATA extern void* __vt__16dNpcLib_lookat_c[3 + 1 /* padding */] = {
 };
 
 /* 80251314-8025140C 24BC54 00F8+00 0/0 0/0 4/4 .text            __ct__16dNpcLib_lookat_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dNpcLib_lookat_c::dNpcLib_lookat_c() {
-    nofralloc
-#include "asm/d/d_npc_lib/__ct__16dNpcLib_lookat_cFv.s"
-}
-#pragma pop
+dNpcLib_lookat_c::dNpcLib_lookat_c() {}
 
 /* 8025140C-80251534 24BD4C 0128+00 0/0 0/0 2/2 .text
  * init__16dNpcLib_lookat_cFP8J3DModelPiP5csXyzP5csXyz          */
@@ -212,23 +154,25 @@ asm void dNpcLib_lookat_c::update() {
 }
 #pragma pop
 
-/* 80252018-80252094 24C958 007C+00 1/1 0/0 0/0 .text            limitter__16dNpcLib_lookat_cFPssss
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dNpcLib_lookat_c::limitter(s16* param_0, s16 param_1, s16 param_2, s16 param_3) {
-    nofralloc
-#include "asm/d/d_npc_lib/limitter__16dNpcLib_lookat_cFPssss.s"
+/* 80252018-80252094 24C958 007C+00 1/1 0/0 0/0 .text   limitter__16dNpcLib_lookat_cFPssss */
+int dNpcLib_lookat_c::limitter(s16* param_0, s16 param_1, s16 param_2, s16 param_3) {
+    int limit = param_1 + *param_0;
+    if (param_2 <= limit) {
+        if (param_2 <= param_1) {
+            *param_0 = 0;
+        } else {
+            *param_0 -= (s16)(limit - param_2);
+        }
+    }
+    if (limit <= param_3) {
+        if (param_1 <= param_3) {
+            *param_0 = 0;
+        } else {
+            *param_0 -= (s16)(limit - param_3);
+        }
+    }
+    return 1;
 }
-#pragma pop
 
-/* 80252094-8025217C 24C9D4 00E8+00 1/0 0/0 0/0 .text            __dt__16dNpcLib_lookat_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dNpcLib_lookat_c::~dNpcLib_lookat_c() {
-    nofralloc
-#include "asm/d/d_npc_lib/__dt__16dNpcLib_lookat_cFv.s"
-}
-#pragma pop
+/* 80252094-8025217C 24C9D4 00E8+00 1/0 0/0 0/0 .text   __dt__16dNpcLib_lookat_cFv */
+dNpcLib_lookat_c::~dNpcLib_lookat_c() {}

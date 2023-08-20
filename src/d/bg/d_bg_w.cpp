@@ -572,6 +572,50 @@ void cBgW::BlckConnect(u16* param_0, int* param_1, int param_2) {
 }
 
 /* 800797BC-8007998C 0740FC 01D0+00 2/0 1/0 0/0 .text            ClassifyPlane__4cBgWFv */
+// stack, G_CM3D_F_ABS_MIN is loaded outside of loop
+#ifdef NONMATCHING
+void cBgW::ClassifyPlane() {
+    if (pm_vtx_tbl == NULL) {
+        return;
+    }
+    
+    for (int i = 0; i < pm_bgd->m_b_num; i++) {
+        int local_2c = pm_bgd->m_b_tbl[i].field_0x0;
+        int uVar4;
+        if (i != pm_bgd->m_b_num - 1) {
+            uVar4 = pm_bgd->m_b_tbl[i + 1].field_0x0 - 1;
+        } else {
+            uVar4 = pm_bgd->m_t_num - 1;
+        }
+        field_0xa4[i].field_0x0 = 0xffff;
+        field_0xa4[i].field_0x2 = 0xffff;
+        field_0xa4[i].field_0x4 = 0xffff;
+        int local_30;
+        int local_34;
+        int local_38 = 0xffff;
+        local_34 = 0xffff;
+        local_30 = 0xffff;
+        
+        for (int uVar3 = local_2c; uVar3 <= uVar4; uVar3++) {
+            f32 dVar8 = pm_tri[uVar3].m_plane.i_GetNP()->y;
+            if (!cM3d_IsZero(pm_tri[uVar3].m_plane.i_GetNP()->x) ||
+            !cM3d_IsZero(dVar8) || !cM3d_IsZero(pm_tri[uVar3].m_plane.i_GetNP()->z)) {
+                if (cBgW_CheckBGround(dVar8)) {
+                    BlckConnect(&field_0xa4[i].field_0x4, &local_38, uVar3);
+                } else {
+                    if (cBgW_CheckBRoof(dVar8)) {
+                        if (!ChkRoofRegist()) {
+                            BlckConnect(&field_0xa4[i].field_0x0, &local_30, uVar3);
+                        }
+                    } else {
+                        BlckConnect(&field_0xa4[i].field_0x2, &local_34, uVar3);
+                    }
+                }
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -580,6 +624,7 @@ asm void cBgW::ClassifyPlane() {
 #include "asm/d/bg/d_bg_w/ClassifyPlane__4cBgWFv.s"
 }
 #pragma pop
+#endif
 
 /* 8007998C-800799E0 0742CC 0054+00 1/1 0/0 0/0 .text MakeBlckTransMinMax__4cBgWFP4cXyzP4cXyz */
 void cBgW::MakeBlckTransMinMax(cXyz* param_0, cXyz* param_1) {
@@ -706,41 +751,45 @@ void cBgW::MakeNodeTreeRp(int param_0) {
 }
 
 /* 80079CC4-80079DF0 074604 012C+00 1/1 0/0 0/0 .text            MakeNodeTreeGrpRp__4cBgWFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::MakeNodeTreeGrpRp(int param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/MakeNodeTreeGrpRp__4cBgWFi.s"
-}
-#pragma pop
-
-/* void cBgW::MakeNodeTreeGrpRp(int param_0) {
-    //u16 tmp = pm_bgd->m_g_tbl[param_0].field_0x2e;
-
+void cBgW::MakeNodeTreeGrpRp(int param_0) {
     if (pm_bgd->m_g_tbl[param_0].field_0x2e != 0xFFFF) {
         MakeNodeTreeRp(pm_bgd->m_g_tbl[param_0].field_0x2e);
-        pm_node_tree[param_0].SetMin(pm_grp[pm_bgd->m_g_tbl[param_0].field_0x2e].mMin);
-        pm_node_tree[param_0].SetMax(pm_grp[pm_bgd->m_g_tbl[param_0].field_0x2e].mMax);
+        pm_grp[param_0].m_aab.SetMin(*pm_node_tree[pm_bgd->m_g_tbl[param_0].field_0x2e].GetMinP());
+        pm_grp[param_0].m_aab.SetMax(*pm_node_tree[pm_bgd->m_g_tbl[param_0].field_0x2e].GetMaxP());
     }
 
-    u16 tmp2 = pm_bgd->m_g_tbl[param_0].field_0x28;
-    while (tmp2 != 0xFFFF) {
+    s32 tmp2 = pm_bgd->m_g_tbl[param_0].field_0x28;
+    while (true) {
+        if (tmp2 == 0xFFFF) break;
         MakeNodeTreeGrpRp(tmp2);
-        pm_grp[param_0].SetMin(pm_grp[tmp2].mMin);
-        pm_grp[param_0].SetMax(pm_node_tree[tmp2].mMax);
+        pm_grp[param_0].m_aab.SetMin(*pm_grp[tmp2].m_aab.GetMinP());
+        pm_grp[param_0].m_aab.SetMax(*pm_grp[tmp2].m_aab.GetMaxP());
+        tmp2 = pm_bgd->m_g_tbl[tmp2].field_0x26;
     }
-} */
+}
 
 /* 80079DF0-80079EEC 074730 00FC+00 2/2 0/0 0/0 .text            MakeNodeTree__4cBgWFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::MakeNodeTree() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/MakeNodeTree__4cBgWFv.s"
+void cBgW::MakeNodeTree() {
+    if (pm_vtx_tbl == NULL) {
+        for (int i = 0; i < pm_bgd->m_g_num; i++) {
+            if (pm_bgd->m_g_tbl[i].field_0x24 == 0xffff) {
+                field_0x92 = i;
+                return;
+            }
+        }
+    } else {
+        for (int i = 0; i < pm_bgd->m_g_num; i++) {
+            pm_grp[i].m_aab.ClearForMinMax();
+        }
+        for (int i = 0; i < pm_bgd->m_g_num; i++) {
+            if (pm_bgd->m_g_tbl[i].field_0x24 == 0xffff) {
+                field_0x92 = i;
+                MakeNodeTreeGrpRp(i);
+                return;
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 80079EEC-80079F38 07482C 004C+00 2/0 1/0 0/0 .text            ChkMemoryError__4cBgWFv */
 bool cBgW::ChkMemoryError() {

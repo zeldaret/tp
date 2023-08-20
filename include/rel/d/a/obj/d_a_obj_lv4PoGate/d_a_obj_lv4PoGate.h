@@ -5,6 +5,22 @@
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_hostIO.h"
 
+class daLv4PoGate_HIO_c : public mDoHIO_entry_c {
+public:
+    /* 80C5FBEC */ daLv4PoGate_HIO_c();
+    /* 80C60758 */ virtual ~daLv4PoGate_HIO_c() {};
+
+    /* 0x04 */ f32 mOpenSpeed;
+    /* 0x08 */ f32 mCloseStep1Speed;
+    /* 0x0C */ f32 mCloseStep2Speed;
+    /* 0x10 */ f32 mCloseStep1Amount;
+    /* 0x14 */ f32 mCloseStep2Amount;
+    /* 0x18 */ u8 mCloseStep1Wait;
+    /* 0x19 */ u8 mCloseStep2Wait;
+    /* 0x1C */ f32 mCloseStep3Speed;
+    /* 0x20 */ f32 mCloseStep3Max;
+    /* 0x24 */ u8 mShockStrength;
+};
 
 class daLv4PoGate_c : public dBgS_MoveBgActor {
 public:
@@ -53,23 +69,6 @@ public:
     /* 0x5B0 */ f32 mMoveTarget;
     /* 0x5B4 */ f32 mMoveValue;
     /* 0x5B8 */ u8 mCloseWaitTime;
-};
-
-class daLv4PoGate_HIO_c : public mDoHIO_entry_c {
-public:
-    /* 80C5FBEC */ daLv4PoGate_HIO_c();
-    /* 80C60758 */ virtual ~daLv4PoGate_HIO_c();
-
-    /* 0x04 */ f32 mOpenSpeed;
-    /* 0x08 */ f32 mCloseStep1Speed;
-    /* 0x0C */ f32 mCloseStep2Speed;
-    /* 0x10 */ f32 mCloseStep1Amount;
-    /* 0x14 */ f32 mCloseStep2Amount;
-    /* 0x18 */ u8 mCloseStep1Wait;
-    /* 0x19 */ u8 mCloseStep2Wait;
-    /* 0x1C */ f32 mCloseStep3Speed;
-    /* 0x20 */ f32 mCloseStep3Max;
-    /* 0x24 */ u8 mShockStrength;
 };
 
 #endif /* D_A_OBJ_LV4POGATE_H */
