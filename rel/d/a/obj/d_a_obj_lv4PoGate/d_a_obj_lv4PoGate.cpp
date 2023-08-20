@@ -7,31 +7,15 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
-#include "dol2asm.h"
-
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void CreateHeap__13daLv4PoGate_cFv();
-extern "C" bool Create__16dBgS_MoveBgActorFv();
-extern "C" void Execute__13daLv4PoGate_cFPPA3_A4_f();
-extern "C" void Draw__13daLv4PoGate_cFv();
-extern "C" void Delete__13daLv4PoGate_cFv();
-extern "C" bool IsDelete__16dBgS_MoveBgActorFv();
-extern "C" bool ToFore__16dBgS_MoveBgActorFv();
-extern "C" bool ToBack__16dBgS_MoveBgActorFv();
-extern "C" extern char const* const d_a_obj_lv4PoGate__stringBase0;
-SECTION_DATA extern void* __vt__13daLv4PoGate_c[10];
 
 /* 80C60854-80C60860 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 80C60860-80C60874 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
 // unused data ?
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
+static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
     0x40080000,
@@ -39,7 +23,6 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
     0x3FE00000,
     0x00000000,
 };
-#pragma pop
 
 /* 80C5FBEC-80C5FC5C 0000EC 0070+00 1/1 0/0 0/0 .text            __ct__17daLv4PoGate_HIO_cFv */
 daLv4PoGate_HIO_c::daLv4PoGate_HIO_c() {
@@ -65,16 +48,7 @@ void daLv4PoGate_c::setBaseMtx() {
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
-/* ############################################################################################## */
-/* 80C60848-80C60848 000044 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80C60848 = "L4R02Gate";
-#pragma pop
-
 /* 80C5FD40-80C5FDAC 000240 006C+00 1/0 0/0 0/0 .text            CreateHeap__13daLv4PoGate_cFv */
-// vtable ordering issue
-#ifdef NONMATCHING
 int daLv4PoGate_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("L4R02Gate", 4);
 
@@ -85,17 +59,6 @@ int daLv4PoGate_c::CreateHeap() {
 
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm int daLv4PoGate_c::CreateHeap() {
-extern "C" asm void CreateHeap__13daLv4PoGate_cFv() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv4PoGate/d_a_obj_lv4PoGate/CreateHeap__13daLv4PoGate_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80C5FDAC-80C5FEDC 0002AC 0130+00 1/1 0/0 0/0 .text            create__13daLv4PoGate_cFv */
 int daLv4PoGate_c::create() {
@@ -340,9 +303,6 @@ static int daLv4PoGate_Create(fopAc_ac_c* i_this) {
     return static_cast<daLv4PoGate_c*>(i_this)->create();
 }
 
-/* 80C60758-80C607B4 000C58 005C+00 2/1 0/0 0/0 .text            __dt__17daLv4PoGate_HIO_cFv */
-daLv4PoGate_HIO_c::~daLv4PoGate_HIO_c() {}
-
 /* 80C6091C-80C6093C -00001 0020+00 1/0 0/0 0/0 .data            l_daLv4PoGate_Method */
 static actor_method_class l_daLv4PoGate_Method = {
     (process_method_func)daLv4PoGate_Create,  (process_method_func)daLv4PoGate_Delete,
@@ -366,18 +326,4 @@ extern actor_process_profile_definition g_profile_Obj_Lv4PoGate = {
     0x40000,
     0,
     14,
-};
-
-/* 80C6096C-80C60994 000118 0028+00 1/1 0/0 0/0 .data            __vt__13daLv4PoGate_c */
-SECTION_DATA extern void* __vt__13daLv4PoGate_c[10] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)CreateHeap__13daLv4PoGate_cFv,
-    (void*)Create__16dBgS_MoveBgActorFv,
-    (void*)Execute__13daLv4PoGate_cFPPA3_A4_f,
-    (void*)Draw__13daLv4PoGate_cFv,
-    (void*)Delete__13daLv4PoGate_cFv,
-    (void*)IsDelete__16dBgS_MoveBgActorFv,
-    (void*)ToFore__16dBgS_MoveBgActorFv,
-    (void*)ToBack__16dBgS_MoveBgActorFv,
 };

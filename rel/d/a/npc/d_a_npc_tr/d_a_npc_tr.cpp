@@ -187,6 +187,7 @@ asm daNPC_TR_HIO_c::daNPC_TR_HIO_c() {
 #endif
 
 /* 80B25A54-80B25B78 000134 0124+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
+// regalloc
 #ifdef NONMATCHING
 static int nodeCallBack(J3DJoint* p_joint, int param_1) {
     if (param_1 == 0) {
@@ -201,8 +202,7 @@ static int nodeCallBack(J3DJoint* p_joint, int param_1) {
         } else if (jointNo >= 1 && jointNo <= 3) {
             mDoMtx_YrotM(*calc_mtx, npc_tr->field_0x5f2[jointNo - 1] + (s16)(npc_tr->field_0x5f8));
         }
-
-        PSMTXCopy(*calc_mtx, sysModel->i_getAnmMtx(jointNo));
+        sysModel->setAnmMtx(jointNo, *calc_mtx);
         PSMTXCopy(*calc_mtx, j3dSys.mCurrentMtx);
     }
 

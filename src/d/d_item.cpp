@@ -2618,7 +2618,7 @@ int addBombCount(u8 i_bombType, u8 i_addNum) {
                 return 0;
             } else {
                 dComIfGs_setEmptyBombBagItemIn(i_bombType, i_addNum, true);
-                i_addNum -= (int)dComIfGs_getBombMax(i_bombType);
+                i_addNum = i_addNum - dComIfGs_getBombMax(i_bombType);
             }
         } else {
             if (dComIfGs_getBombMax(bombType[bombIdx]) >= var_r22 + i_addNum) {
@@ -2626,7 +2626,7 @@ int addBombCount(u8 i_bombType, u8 i_addNum) {
                 return 0;
             } else {
                 dComIfGp_setItemBombNumCount(bombIdx, i_addNum);
-                i_addNum -= (int)dComIfGs_getBombMax(bombType[bombIdx]) - var_r22;
+                i_addNum = i_addNum - (dComIfGs_getBombMax(bombType[bombIdx]) - var_r22);
             }
         }
 

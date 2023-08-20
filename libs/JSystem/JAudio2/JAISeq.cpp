@@ -6,6 +6,7 @@
 #include "JSystem/JAudio2/JAISeq.h"
 #include "JSystem/JAudio2/JAISeqMgr.h"
 #include "JSystem/JAudio2/JASAudioReseter.h" // JASCriticalSection
+#include "JSystem/JAudio2/JAISoundChild.h"
 #include "dol2asm.h"
 
 //
@@ -295,8 +296,6 @@ bool JAISeq::prepare_(JASSoundParams const& param_0, JAISoundActivity param_1) {
 }
 
 /* 802A108C-802A1180 29B9CC 00F4+00 0/0 1/1 0/0 .text            JAISeqMgr_calc___6JAISeqFv */
-// missing instruction
-#ifdef NONMATCHING
 void JAISeq::JAISeqMgr_calc_() {
     if (inner_.outputTrack.getStatus() == 2 || (inner_.outputTrack.getStatus() == 0 && status_.state.unk == 2)) {
         die_();
@@ -314,16 +313,6 @@ void JAISeq::JAISeqMgr_calc_() {
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAISeq::JAISeqMgr_calc_() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISeq/JAISeqMgr_calc___6JAISeqFv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 804340A4-804340B0 060DC4 000C+00 3/3 0/0 0/0 .bss             @896 */
