@@ -7,47 +7,15 @@
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "d/com/d_com_inf_game.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //
 // Forward References:
 //
 
-extern "C" void draw__6dMdl_cFv();
-extern "C" void create__6dMdl_cFP12J3DModelDataUsP12dKy_tevstr_c();
-extern "C" void entryObj__6dMdl_cFP10dMdl_obj_c();
-extern "C" void search__10dMdl_mng_cFP12J3DModelDataUsP12dKy_tevstr_c();
-extern "C" void entry__10dMdl_mng_cFP12J3DModelDataUsP12dKy_tevstr_c();
-extern "C" void create__10dMdl_mng_cFv();
-extern "C" void __dt__6dMdl_cFv();
-extern "C" void remove__10dMdl_mng_cFv();
-extern "C" void reset__10dMdl_mng_cFv();
-extern "C" void entry__10dMdl_mng_cFP12J3DModelDataUsi();
-extern "C" void __ct__6dMdl_cFv();
-extern "C" u8 m_myObj__10dMdl_mng_c[4 + 4 /* padding */];
-
 //
 // External References:
 //
-
-extern "C" void dKy_setLight_nowroom_actor__FP12dKy_tevstr_c();
-extern "C" void dKy_setLight_again__Fv();
-extern "C" void dKy_GxFog_tevstr_set__FP12dKy_tevstr_c();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" bool entry__9J3DPacketFP13J3DDrawBuffer();
-extern "C" void loadPreDrawSetting__8J3DShapeCFv();
-extern "C" void entryImm__13J3DDrawBufferFP9J3DPacketUs();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 
 //
 // Declarations:
@@ -166,25 +134,13 @@ void dMdl_mng_c::reset() {
 }
 
 /* 8009C8D8-8009C930 097218 0058+00 0/0 0/0 4/4 .text entry__10dMdl_mng_cFP12J3DModelDataUsi */
-// missing mr instructions
-#ifdef NONMATCHING
 dMdl_c* dMdl_mng_c::entry(J3DModelData* i_modelData, u16 i_materialId, int i_roomNo) {
     if (m_myObj == NULL) {
         return NULL;
     }
-
-    return entry(i_modelData, i_materialId, dComIfGp_roomControl_getTevStr(i_roomNo));
+    dKy_tevstr_c* tevstr = dComIfGp_roomControl_getTevStr(i_roomNo);
+    return m_myObj->entry(i_modelData, i_materialId, tevstr);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMdl_c* dMdl_mng_c::entry(J3DModelData* param_0, u16 param_1, int param_2) {
-    nofralloc
-#include "asm/d/d_model/entry__10dMdl_mng_cFP12J3DModelDataUsi.s"
-}
-#pragma pop
-#endif
 
 /* 8009C930-8009C964 097270 0034+00 1/1 0/0 0/0 .text            __ct__6dMdl_cFv */
 dMdl_c::dMdl_c() {

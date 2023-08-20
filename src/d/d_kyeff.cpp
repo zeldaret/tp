@@ -7,10 +7,6 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "d/kankyo/d_kankyo_wether.h"
-#include "dol2asm.h"
-
-extern "C" extern char const* const d_d_kyeff__stringBase0;
-extern "C" void dKyw_wether_init__Fv();
 
 /* 801ADD00-801ADD38 1A8640 0038+00 2/2 0/0 0/0 .text            dKankyo_DayProc__Fv */
 void dKankyo_DayProc() {
@@ -47,30 +43,20 @@ static int dKyeff_Delete(dKyeff_c* i_this) {
     return 1;
 }
 
-/* ############################################################################################## */
-/* 80453E58-80453E5C 002458 0004+00 1/1 0/0 0/0 .sdata2          @3804 */
-SECTION_SDATA2 static u8 lit_3804[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+// Helper functions to set float literal order
+static f32 dummyLiteralOrder() {
+    return 0.0f;
+}
 
-/* 80453E5C-80453E60 00245C 0004+00 1/1 0/0 0/0 .sdata2          @3805 */
-SECTION_SDATA2 static f32 lit_3805 = 1.0f;
+static f32 dummyLiteralOrder2() {
+    return 1.0f;
+}
 
-/* 80453E60-80453E68 002460 0008+00 1/1 0/0 0/0 .sdata2          @3812 */
-SECTION_SDATA2 static f64 lit_3812 = 4503601774854144.0 /* cast s32 to float */;
-
-/* 80453E68-80453E6C 002468 0004+00 1/1 0/0 0/0 .sdata2          @3843 */
-SECTION_SDATA2 static f32 lit_3843 = 7.0f / 10.0f;
-
-/* 80453E6C-80453E70 00246C 0004+00 1/1 0/0 0/0 .sdata2          @3844 */
-SECTION_SDATA2 static f32 lit_3844 = 15.0f;
+static f32 dummyLiteralOrder3(s32 hours) {
+    return hours;
+}
 
 /* 801ADE00-801ADEA0 1A8740 00A0+00 1/0 0/0 0/0 .text            dKyeff_Create__FP12kankyo_class */
-// float data
-#ifdef NONMATCHING
 static int dKyeff_Create(kankyo_class* i_this) {
     OSCalendarTime time;
 
@@ -84,16 +70,6 @@ static int dKyeff_Create(kankyo_class* i_this) {
 
     return cPhs_COMPLEATE_e;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int dKyeff_Create(kankyo_class* i_this) {
-    nofralloc
-#include "asm/d/d_kyeff/dKyeff_Create__FP12kankyo_class.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 803BC158-803BC16C -00001 0014+00 1/0 0/0 0/0 .data            l_dKyeff_Method */
