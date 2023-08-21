@@ -222,6 +222,7 @@ class dCcD_GObjTg : public dCcD_GAtTgCoCommonBase {
 public:
     /* 800839A0 */ void Set(dCcD_SrcGObjTg const&);
     /* 80083BE8 */ virtual ~dCcD_GObjTg() {}
+    void SetSe(u8 se) { mSe = se; }
     void SetVec(cXyz& vec) { mVec = vec; }
     cXyz& GetVec() { return mVec; }
     void SetShieldFrontRangeYAngle(s16* angle) { mShieldFrontRangeYAngle = angle; }
@@ -288,11 +289,13 @@ public:
     void OnAtNoHitMark() { mGObjAt.OnSPrm(2); }
     void OffAtNoHitMark() { mGObjAt.OffSPrm(2); }
     void OnTgNoHitMark() { mGObjTg.OnSPrm(4); }
+    void OffTgNoHitMark() { mGObjTg.OffSPrm(4); }
     void OnAtNoConHit() { mGObjAt.OnSPrm(1); }
     void OffAtNoConHit() { mGObjAt.OffSPrm(1); }
     void OnTgNoConHit() { mGObjTg.OnSPrm(2); }
     void SetAtHitMark(u8 mark) { mGObjAt.SetHitMark(mark); }
     void SetAtSe(u8 se) { mGObjAt.SetSe(se); }
+    void SetTgSe(u8 se) { mGObjTg.SetSe(se); }
     void SetAtMtrl(u8 mtrl) { mGObjAt.SetMtrl(mtrl); }
     void SetTgMtrl(u8 mtrl) { mGObjTg.SetMtrl(mtrl); }
     fopAc_ac_c* GetAtHitAc() { return mGObjAt.GetAc(); }

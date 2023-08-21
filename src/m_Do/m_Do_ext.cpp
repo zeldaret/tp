@@ -3561,7 +3561,7 @@ asm void mDoExt_removeSubFont() {
 
 /* 80014C54-80014D5C 00F594 0108+00 3/3 14/14 445/445 .text
  * mDoExt_J3DModel__create__FP12J3DModelDataUlUl                */
-J3DModel* mDoExt_J3DModel__create(J3DModelData* i_modelData, u32 modelFlag, u32 differedDlistFlag) {
+J3DModel* mDoExt_J3DModel__create(J3DModelData* i_modelData, u32 i_modelFlag, u32 i_differedDlistFlag) {
     if (i_modelData != NULL) {
         J3DModel* model = new J3DModel();
 
@@ -3569,18 +3569,18 @@ J3DModel* mDoExt_J3DModel__create(J3DModelData* i_modelData, u32 modelFlag, u32 
             // Update the modelFlag if the model data passed in has a shared dlist object
             if (i_modelData->getMaterialNodePointer(0)->getSharedDisplayListObj() != NULL) {
                 if (i_modelData->isLocked()) {
-                    modelFlag = J3DMdlFlag_Unk20000;
-                } else if (modelFlag == J3DMdlFlag_Unk20000) {
-                    modelFlag |= J3DMdlFlag_Unk40000;
+                    i_modelFlag = J3DMdlFlag_Unk20000;
+                } else if (i_modelFlag == J3DMdlFlag_Unk20000) {
+                    i_modelFlag |= J3DMdlFlag_Unk40000;
                 } else {
-                    modelFlag = J3DMdlFlag_Unk80000;
+                    i_modelFlag = J3DMdlFlag_Unk80000;
                 }
             }
 
             // Set up the model
-            if (!model->entryModelData(i_modelData, modelFlag, 1)) {
-                if (modelFlag == J3DMdlFlag_Unk80000 &&
-                    model->newDifferedDisplayList(differedDlistFlag))
+            if (!model->entryModelData(i_modelData, i_modelFlag, 1)) {
+                if (i_modelFlag == J3DMdlFlag_Unk80000 &&
+                    model->newDifferedDisplayList(i_differedDlistFlag))
                 {
                     return NULL;
                 }

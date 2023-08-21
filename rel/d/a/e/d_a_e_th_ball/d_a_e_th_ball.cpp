@@ -4,6 +4,7 @@
 //
 
 #include "rel/d/a/e/d_a_e_th_ball/d_a_e_th_ball.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
 
 //
@@ -36,15 +37,6 @@ struct e_th_ball_class {
     /* 807B7AA8 */ e_th_ball_class();
 };
 
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 807B5074 */ ~cXyz();
-    /* 807B7E9C */ cXyz();
-};
-
 struct daPy_py_c {
     /* 8015F4F0 */ void setLookPos(cXyz*);
 };
@@ -74,28 +66,6 @@ struct dRes_control_c {
 
 struct dDlst_shadowControl_c {
     static u8 mSimpleTexObj[32];
-};
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800842C0 */ void ChkAtHit();
-    /* 80084358 */ void GetAtHitObj();
-    /* 80084460 */ void ChkTgHit();
-    /* 800844F8 */ void GetTgHitObj();
 };
 
 struct dBgS_PolyPassChk {
@@ -134,20 +104,6 @@ struct dBgS_Acch {
     /* 800760A0 */ dBgS_Acch();
     /* 80076248 */ void Set(cXyz*, cXyz*, fopAc_ac_c*, int, dBgS_AcchCir*, cXyz*, csXyz*, csXyz*);
     /* 80076AAC */ void CrrPos(dBgS&);
-};
-
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 8026F708 */ void SetR(f32);
-    /* 807B7D5C */ ~cM3dGSph();
-};
-
-struct cM3dGAab {
-    /* 807B7DA4 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {
-    /* 80263A48 */ void GetAc();
 };
 
 struct cCcS {
@@ -296,9 +252,6 @@ extern "C" void init__10Z2CreatureFP3VecP3VecUcUc();
 extern "C" void __dl__FPv();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXTrans();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSubtract();
-extern "C" void PSVECSquareMag();
 extern "C" void __construct_array();
 extern "C" void _savegpr_21();
 extern "C" void _savegpr_22();
@@ -326,7 +279,6 @@ extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
 
 //
 // Declarations:
@@ -428,7 +380,8 @@ static asm void chain_control_01(e_th_ball_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_th_ball/d_a_e_th_ball/__dt__4cXyzFv.s"
 }
@@ -1025,19 +978,29 @@ COMPILER_STRIP_GATE(0x807B7FBC, &lit_4829);
 #pragma pop
 
 /* 807B7FD0-807B8010 000000 0040+00 1/1 0/0 0/0 .data            cc_sph_src$4795 */
-SECTION_DATA static u8 cc_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0xD8, 0xEB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x75, 0x00, 0x01, 0x02, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x09, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x5C, 0x00, 0x00,
+static dCcD_SrcSph cc_sph_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0xd8ebfdff, 0x3}, 0x75}}, // mObj
+        {dCcD_SE_NONE, 0x1, 0x2, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_METAL, 0x2, 0x0, 0x0, 0x3}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 55.0f} // mSph
+    } // mSphAttr
 };
 
 /* 807B8010-807B8050 000040 0040+00 1/1 0/0 0/0 .data            at_sph_src$4796 */
-SECTION_DATA static u8 at_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1D,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x0E, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x5C, 0x00, 0x00,
+static dCcD_SrcSph at_sph_src = {
+    {
+        {0x0, {{AT_TYPE_CSTATUE_BOSS_SWING, 0x4, 0x1d}, {0x0, 0x0}, 0x0}}, // mObj
+        {dCcD_SE_NONE, 0x1, 0xe, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 55.0f} // mSph
+    } // mSphAttr
 };
 
 /* 807B792C-807B7AA8 00308C 017C+00 1/0 0/0 0/0 .text            daE_TH_BALL_Create__FP10fopAc_ac_c
@@ -1115,7 +1078,8 @@ asm e_th_ball_class::e_th_ball_class() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_th_ball/d_a_e_th_ball/__dt__8cM3dGSphFv.s"
 }
@@ -1125,7 +1089,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_th_ball/d_a_e_th_ball/__dt__8cM3dGAabFv.s"
 }
@@ -1157,7 +1122,8 @@ csXyz::csXyz() {
 }
 
 /* 807B7E9C-807B7EA0 0035FC 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+// cXyz::cXyz() {
+extern "C" asm void __ct__4cXyzFv() {
     /* empty function */
 }
 

@@ -4,6 +4,7 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_waterfall/d_a_obj_waterfall.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
 
 //
@@ -11,14 +12,6 @@
 //
 
 struct request_of_phase_process_class {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80D2EFF8 */ ~cXyz();
-    /* 80D2F6DC */ cXyz();
-};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -47,54 +40,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct dCcD_Tri {
-    /* 80D2F770 */ ~dCcD_Tri();
-    /* 80D2F850 */ dCcD_Tri();
-};
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
 struct dBomb_c {
     /* 80031FF4 */ void checkWaterBomb(fopAc_ac_c*);
 };
-
-struct cM3dGTri {
-    /* 80D2F8E0 */ ~cM3dGTri();
-};
-
-struct cM3dGPla {
-    /* 80D2F93C */ ~cM3dGPla();
-};
-
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8026F1F8 */ void SetH(f32);
-    /* 8026F200 */ void SetR(f32);
-    /* 80D2F6E0 */ ~cM3dGCyl();
-};
-
-struct cM3dGAab {
-    /* 80D2F728 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
 
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
@@ -248,7 +196,8 @@ asm void daObjWaterFall_c::search_bomb() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_waterfall/d_a_obj_waterfall/__dt__4cXyzFv.s"
 }
@@ -311,12 +260,18 @@ SECTION_DEAD static char const* const stringBase_80D2FD7C = "sample";
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_waterfall__stringBase0;
 
 /* 80D2FD88-80D2FDCC 000004 0044+00 1/1 0/0 0/0 .data            l_cyl_src */
-SECTION_DATA static u8 l_cyl_src[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x01, 0x19,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x84, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static dCcD_SrcCyl l_cyl_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x2, 0x10}, 0x119}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x84}, // mGObjTg
+        {0x2}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        0.0f, // mRadius
+        0.0f // mHeight
+    } // mCyl
 };
 
 /* 80D2F39C-80D2F5A0 0007FC 0204+00 1/1 0/0 0/0 .text            Create__16daObjWaterFall_cFv */
@@ -391,7 +346,8 @@ asm void daObjWaterFall_c::create() {
 #pragma pop
 
 /* 80D2F6DC-80D2F6E0 000B3C 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+// cXyz::cXyz() {
+extern "C" asm void __ct__4cXyzFv() {
     /* empty function */
 }
 
@@ -399,7 +355,8 @@ cXyz::cXyz() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_waterfall/d_a_obj_waterfall/__dt__8cM3dGCylFv.s"
 }
@@ -409,7 +366,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_waterfall/d_a_obj_waterfall/__dt__8cM3dGAabFv.s"
 }
@@ -419,7 +377,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Tri::~dCcD_Tri() {
+// asm dCcD_Tri::~dCcD_Tri() {
+extern "C" asm void __dt__8dCcD_TriFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_waterfall/d_a_obj_waterfall/__dt__8dCcD_TriFv.s"
 }
@@ -429,7 +388,8 @@ asm dCcD_Tri::~dCcD_Tri() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Tri::dCcD_Tri() {
+// asm dCcD_Tri::dCcD_Tri() {
+extern "C" asm void __ct__8dCcD_TriFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_waterfall/d_a_obj_waterfall/__ct__8dCcD_TriFv.s"
 }
@@ -439,7 +399,8 @@ asm dCcD_Tri::dCcD_Tri() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGTri::~cM3dGTri() {
+// asm cM3dGTri::~cM3dGTri() {
+extern "C" asm void __dt__8cM3dGTriFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_waterfall/d_a_obj_waterfall/__dt__8cM3dGTriFv.s"
 }
@@ -449,7 +410,8 @@ asm cM3dGTri::~cM3dGTri() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGPla::~cM3dGPla() {
+// asm cM3dGPla::~cM3dGPla() {
+extern "C" asm void __dt__8cM3dGPlaFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_waterfall/d_a_obj_waterfall/__dt__8cM3dGPlaFv.s"
 }

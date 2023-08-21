@@ -4,6 +4,7 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_burnbox/d_a_obj_burnbox.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
 
 //
@@ -11,8 +12,6 @@
 //
 
 struct request_of_phase_process_class {};
-
-struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -60,24 +59,6 @@ struct dPa_control_c {
                             cXyz const*, f32);
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
 struct dBgW {};
 
 struct cBgS_PolyInfo {};
@@ -94,17 +75,6 @@ struct dBgS_MoveBgActor {
     /* 800788DC */ void MoveBGDelete();
     /* 80078950 */ void MoveBGExecute();
 };
-
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8046ED44 */ ~cM3dGCyl();
-};
-
-struct cM3dGAab {
-    /* 8046ED8C */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
 
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
@@ -222,14 +192,19 @@ COMPILER_STRIP_GATE(0x8046EE54, &l_heap_size);
 /* 8046EE60-8046EEA4 000018 0044+00 0/1 0/0 0/0 .rodata          l_cyl_src */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const l_cyl_src[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1E, 0x00, 0x00, 0x00, 0x79,
-    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
+const static dCcD_SrcCyl l_cyl_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x1e}, {0x0, 0x1e}, 0x79}}, // mObj
+        {dCcD_SE_NONE, 0x1, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x6}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        40.0f, // mRadius
+        100.0f // mHeight
+    } // mCyl
 };
-COMPILER_STRIP_GATE(0x8046EE60, &l_cyl_src);
 #pragma pop
 
 /* 8046EEA4-8046EEB0 00005C 000A+02 0/1 0/0 0/0 .rodata          particle_id$3649 */
@@ -423,7 +398,8 @@ static asm void daObjBurnBox_create1st(daObjBurnBox_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_burnbox/d_a_obj_burnbox/__dt__8cM3dGCylFv.s"
 }
@@ -433,7 +409,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_burnbox/d_a_obj_burnbox/__dt__8cM3dGAabFv.s"
 }

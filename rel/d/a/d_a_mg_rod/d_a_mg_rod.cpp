@@ -5,6 +5,7 @@
 
 // #include "rel/d/a/d_a_mg_rod/d_a_mg_rod.h"
 #include "dol2asm.h"
+#include "d/cc/d_cc_d.h"
 #include "dolphin/types.h"
 
 //
@@ -99,20 +100,6 @@ struct daAlink_c {
     /* 800F3F38 */ void checkCanoeFishingRodGrabOrPut() const;
 };
 
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 804BB024 */ cXyz();
-    /* 804BB2B8 */ cXyz(cXyz const&);
-    /* 804BB238 */ cXyz(f32, f32, f32);
-    /* 804BB1B4 */ ~cXyz();
-    /* 804BB390 */ void abs() const;
-    /* 804BB4A4 */ void operator=(cXyz const&);
-};
-
 struct dVibration_c {
     /* 8006FA24 */ void StartShock(int, int, cXyz);
 };
@@ -202,26 +189,6 @@ struct dComIfG_play_c {
     /* 8002B36C */ void setItemBombNumCount(u8, s16);
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 804BAE3C */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 80084658 */ void ChkCoHit();
-};
-
 struct dCamera_c {
     /* 801614AC */ void Start();
     /* 801614D0 */ void Stop();
@@ -276,31 +243,12 @@ struct dAttLook_c {
 
 struct camera_class {};
 
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 804BADAC */ ~cM3dGSph();
-};
-
-struct cM3dGPla {
-    /* 804AB01C */ ~cM3dGPla();
-};
-
 struct cM3dGCir {
     /* 8026EF18 */ ~cM3dGCir();
 };
 
-struct cM3dGAab {
-    /* 804BADF4 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 804BB028 */ ~cCcD_GStts();
 };
 
 struct cBgS_PolyInfo {
@@ -326,19 +274,9 @@ struct Z2SeqMgr {
     /* 802B2A88 */ void changeFishingBgm(s32);
 };
 
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JMath {
@@ -603,9 +541,6 @@ extern "C" void __dl__FPv();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXTrans();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSubtract();
-extern "C" void PSVECSquareMag();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void __cvt_fp2unsigned();
@@ -629,9 +564,7 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void abs();
 extern "C" void strcmp();
-extern "C" void tan();
 extern "C" extern void* __vt__19mDoExt_3DlineMat0_c[5];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
@@ -651,7 +584,6 @@ extern "C" extern u8 j3dSys[284];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
 extern "C" extern u8 struct_80450C98[4];
 extern "C" extern u8 cDmr_SkipInfo[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
@@ -1034,11 +966,16 @@ SECTION_DATA static u8 esa_bmd[8] = {
 #pragma pop
 
 /* 804BBA6C-804BBAAC 00021C 0040+00 1/1 0/0 0/0 .data            cc_sph_src$11380 */
-SECTION_DATA static u8 cc_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x49, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0xA0, 0x00, 0x00,
+static dCcD_SrcSph cc_sph_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x0, 0x0}, 0x49}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 5.0f} // mSph
+    } // mSphAttr
 };
 
 /* 804BBAAC-804BBACC -00001 0020+00 1/0 0/0 0/0 .data            l_dmg_rod_Method */
@@ -1578,7 +1515,8 @@ static asm void line_control1(dmg_rod_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGPla::~cM3dGPla() {
+// asm cM3dGPla::~cM3dGPla() {
+extern "C" asm void __dt__8cM3dGPlaFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_rod/d_a_mg_rod/__dt__8cM3dGPlaFv.s"
 }
@@ -3220,7 +3158,8 @@ asm dmg_rod_class::dmg_rod_class() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_rod/d_a_mg_rod/__dt__8cM3dGSphFv.s"
 }
@@ -3230,7 +3169,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_rod/d_a_mg_rod/__dt__8cM3dGAabFv.s"
 }
@@ -3240,7 +3180,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_rod/d_a_mg_rod/__dt__10dCcD_GSttsFv.s"
 }
@@ -3292,7 +3233,8 @@ csXyz::csXyz() {
 }
 
 /* 804BB024-804BB028 011B24 0004+00 3/3 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+// cXyz::cXyz() {
+extern "C" asm void __ct__4cXyzFv() {
     /* empty function */
 }
 
@@ -3300,7 +3242,8 @@ cXyz::cXyz() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_rod/d_a_mg_rod/__dt__10cCcD_GSttsFv.s"
 }
@@ -3375,7 +3318,8 @@ asm csXyz::~csXyz() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_rod/d_a_mg_rod/__dt__4cXyzFv.s"
 }
@@ -3416,7 +3360,8 @@ static asm void dComIfGp_checkPlayerStatus0(int param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::cXyz(f32 param_0, f32 param_1, f32 param_2) {
+// asm cXyz::cXyz(f32 param_0, f32 param_1, f32 param_2) {
+extern "C" asm void __ct__4cXyzFfff() {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_rod/d_a_mg_rod/__ct__4cXyzFfff.s"
 }
@@ -3476,7 +3421,8 @@ static asm void daPy_getPlayerActorClass() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::cXyz(cXyz const& param_0) {
+// asm cXyz::cXyz(cXyz const& param_0) {
+extern "C" asm void __ct__4cXyzFRC4cXyz() {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_rod/d_a_mg_rod/__ct__4cXyzFRC4cXyz.s"
 }
@@ -3536,7 +3482,8 @@ static asm void cM_ssin(s16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cXyz::abs() const {
+// asm void cXyz::abs() const {
+extern "C" asm void abs__4cXyzCFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_rod/d_a_mg_rod/abs__4cXyzCFv.s"
 }
@@ -3546,7 +3493,8 @@ asm void cXyz::abs() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cXyz::operator=(cXyz const& param_0) {
+// asm void cXyz::operator=(cXyz const& param_0) {
+extern "C" asm void __as__4cXyzFRC4cXyz() {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_rod/d_a_mg_rod/__as__4cXyzFRC4cXyz.s"
 }
