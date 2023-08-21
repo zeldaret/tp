@@ -37,47 +37,47 @@ jobs:
       run: |
         ./tp progress -f JSON > progress-${{ github.run_id }}.json
         ./tp upload-progress progress-${{ github.run_id }}.json -b https://progress.deco.mp/ -p twilightprincess -v gcn_usa
-    # - name: Get changed .c, .cpp, .inc files
-    #   if: github.event_name != 'pull_request'
-    #   id: changed-files-specific
-    #   uses: tj-actions/changed-files@v36
-    #   with:
-    #     files: |
-    #       **/*.{c,cpp,inc}
-    # - name: Update Issue(s)
-    #   if: github.event_name != 'pull_request' && steps.changed-files-specific.outputs.any_changed == 'true'
-    #   run: |
-    #     # Install libclang-16-dev for FunctionChecker
-    #     wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
-    #     sudo add-apt-repository "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-16 main"
-    #     sudo apt update
-    #     sudo apt install -y libclang-16-dev
+    - name: Get changed .c, .cpp, .inc files
+      if: github.event_name != 'pull_request'
+      id: changed-files-specific
+      uses: tj-actions/changed-files@v36
+      with:
+        files: |
+          **/*.{c,cpp,inc}
+    - name: Update Issue(s)
+      if: github.event_name != 'pull_request' && steps.changed-files-specific.outputs.any_changed == 'true'
+      run: |
+        # Install libclang-16-dev for FunctionChecker
+        wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+        sudo add-apt-repository "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-16 main"
+        sudo apt update
+        sudo apt install -y libclang-16-dev
 
-    #     FILENAMES="${{ steps.changed-files-specific.outputs.all_changed_files }}"
-    #     CMD="./tp github-update-issues --personal-access-token ${{ secrets.PAT_TOKEN }} --debug --owner ${{ env.GITHUB_ORG }} --repo ${{ env.GITHUB_REPO }} --state-file ${{ env.STATE_FILE }}"
+        FILENAMES="${{ steps.changed-files-specific.outputs.all_changed_files }}"
+        CMD="./tp github-update-issues --personal-access-token ${{ secrets.PAT_TOKEN }} --debug --owner ${{ env.GITHUB_ORG }} --repo ${{ env.GITHUB_REPO }} --state-file ${{ env.STATE_FILE }}"
 
-    #     IFS=' ' read -ra FILE_ARRAY <<< "$FILENAMES"
-    #     INC_FOUND=false
+        IFS=' ' read -ra FILE_ARRAY <<< "$FILENAMES"
+        INC_FOUND=false
 
-    #     # Remove any .inc files from the array
-    #     for index in "${!FILE_ARRAY[@]}"; do
-    #         if [[ "${FILE_ARRAY[index]}" == *.inc ]]; then
-    #             unset 'FILE_ARRAY[index]'
-    #             INC_FOUND=true
-    #         fi
-    #     done
+        # Remove any .inc files from the array
+        for index in "${!FILE_ARRAY[@]}"; do
+            if [[ "${FILE_ARRAY[index]}" == *.inc ]]; then
+                unset 'FILE_ARRAY[index]'
+                INC_FOUND=true
+            fi
+        done
 
-    #     # If any .inc files were found,
-    #     # We will add "src/d/a/d_a_alink.cpp" to the array once
-    #     # if it's not already there
-    #     if $INC_FOUND && ! [[ " ${FILE_ARRAY[@]} " =~ " src/d/a/d_a_alink.cpp " ]]; then
-    #         FILE_ARRAY+=("src/d/a/d_a_alink.cpp")
-    #     fi
+        # If any .inc files were found,
+        # We will add "src/d/a/d_a_alink.cpp" to the array once
+        # if it's not already there
+        if $INC_FOUND && ! [[ " ${FILE_ARRAY[@]} " =~ " src/d/a/d_a_alink.cpp " ]]; then
+            FILE_ARRAY+=("src/d/a/d_a_alink.cpp")
+        fi
 
-    #     for FILE in "${FILE_ARRAY[@]}"; do
-    #         AUTHOR=$(git log -1 --pretty=format:'%an' -- $FILE)
-    #         CMD="$CMD --filename $FILE --author $AUTHOR"
-    #     done
+        for FILE in "${FILE_ARRAY[@]}"; do
+          AUTHOR=$(git log -1 --pretty=format:'%an' -- $FILE)
+          CMD="$CMD --filename $FILE --author \"$AUTHOR\""
+        done
 
-    #     # Update the status and assignees for every issue identified
-    #     $CMD
+        # Update the status and assignees for every issue identified
+        $CMD
