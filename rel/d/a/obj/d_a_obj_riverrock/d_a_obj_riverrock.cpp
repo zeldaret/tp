@@ -4,6 +4,7 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_riverrock/d_a_obj_riverrock.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
 
 //
@@ -13,8 +14,6 @@
 struct request_of_phase_process_class {};
 
 struct csXyz {};
-
-struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -86,25 +85,6 @@ struct dPa_control_c {
                             cXyz const*, f32);
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
 struct dBgW {};
 
 struct cBgS_PolyInfo {};
@@ -132,18 +112,6 @@ struct dBgS {
     /* 80074CBC */ void GetSpecialCode(cBgS_PolyInfo const&);
 };
 
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8026F200 */ void SetR(f32);
-    /* 80CBD71C */ ~cM3dGCyl();
-};
-
-struct cM3dGAab {
-    /* 80CBD764 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
 };
@@ -160,18 +128,6 @@ struct Z2SoundObjSimple {
 
 struct Z2SoundObjBase {
     /* 802BDFF8 */ void deleteObject();
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JMath {
@@ -375,14 +331,19 @@ asm daObjRIVERROCK_HIO_c::daObjRIVERROCK_HIO_c() {
 
 /* ############################################################################################## */
 /* 80CBDA60-80CBDAA4 000004 0044+00 1/1 0/0 0/0 .rodata          ccCylSrc$3635 */
-SECTION_RODATA static u8 const ccCylSrc[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x79,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC3, 0xFA, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x44, 0x7A, 0x00, 0x00, 0x44, 0x7A, 0x00, 0x00,
+const static dCcD_SrcCyl ccCylSrc = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x20, 0x11}, 0x79}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x1}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, -500.0f, 0.0f}, // mCenter
+        1000.0f, // mRadius
+        1000.0f // mHeight
+    } // mCyl
 };
-COMPILER_STRIP_GATE(0x80CBDA60, &ccCylSrc);
 
 /* 80CBC6F4-80CBC754 000114 0060+00 1/1 0/0 0/0 .text initCcCylinder__16daObjRIVERROCK_cFv */
 #pragma push
@@ -751,7 +712,8 @@ asm void daObjRIVERROCK_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_riverrock/d_a_obj_riverrock/__dt__8cM3dGCylFv.s"
 }
@@ -761,7 +723,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_riverrock/d_a_obj_riverrock/__dt__8cM3dGAabFv.s"
 }

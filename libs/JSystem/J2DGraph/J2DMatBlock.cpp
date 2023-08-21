@@ -2614,10 +2614,10 @@ J2DTevStage::J2DTevStage() {
 /* 802F19A8-802F1B70 2EC2E8 01C8+00 1/1 1/1 0/0 .text
  * setTevStageInfo__11J2DTevStageFRC15J2DTevStageInfo           */
 void J2DTevStage::setTevStageInfo(J2DTevStageInfo const& info) {
-    setColorABCD(info.field_0x1, info.field_0x2, info.field_0x3, info.field_0x4);
-    setTevColorOp(info.field_0x5, info.field_0x6, info.field_0x7, info.field_0x8, info.field_0x9);
-    setAlphaABCD(info.field_0xa, info.field_0xb, info.field_0xc, info.field_0xd);
-    setTevAlphaOp(info.field_0xe, info.field_0xf, info.field_0x10, info.field_0x11, info.field_0x12);
+    setColorABCD(info.mColorA, info.mColorB, info.mColorC, info.mColorD);
+    setTevColorOp(info.mCOp, info.mCBias, info.mCScale, info.mCClamp, info.mCReg);
+    setAlphaABCD(info.mAlphaA, info.mAlphaB, info.mAlphaC, info.mAlphaD);
+    setTevAlphaOp(info.mAOp, info.mABias, info.mAScale, info.mAClamp, info.mAReg);
 }
 
 /* 802F1B70-802F1B90 2EC4B0 0020+00 5/5 0/0 0/0 .text            __ct__11J2DTevOrderFv */

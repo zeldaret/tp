@@ -4,6 +4,7 @@
 //
 
 #include "rel/d/a/d_a_nbomb/d_a_nbomb.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
 
 //
@@ -13,23 +14,6 @@
 struct request_of_phase_process_class {};
 
 struct csXyz {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 80266CBC */ void outprod(Vec const&) const;
-    /* 80266F48 */ void normalizeZP();
-    /* 80267128 */ void atan2sX_Z() const;
-    /* 804C6F78 */ ~cXyz();
-
-    static f32 Zero[3];
-    static u8 BaseX[12];
-    static u8 BaseY[12];
-    static u8 BaseZ[12];
-};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -61,11 +45,6 @@ struct daPy_boomerangMove_c {
     /* 8015E5B0 */ void initOffset(cXyz const*);
     /* 8015E654 */ void posMove(cXyz*, s16*, fopAc_ac_c*, s16);
     /* 8015E87C */ void bgCheckAfterOffset(cXyz const*);
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
 };
 
 struct daNbomb_c {
@@ -186,25 +165,8 @@ struct dDlst_shadowControl_c {
     static u8 mSimpleTexObj[32];
 };
 
-struct cCcD_Obj {};
-
 struct dCcMassS_Mng {
     /* 80085D98 */ void Set(cCcD_Obj*, u8);
-};
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 804C7D58 */ ~dCcD_GStts();
 };
 
 struct dBomb_c {
@@ -253,30 +215,12 @@ struct dBgS_Acch {
     /* 80076AAC */ void CrrPos(dBgS&);
 };
 
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 8026F708 */ void SetR(f32);
-    /* 804C7CC8 */ ~cM3dGSph();
-};
-
-struct cM3dGPla {
-    /* 804C8A40 */ ~cM3dGPla();
-};
-
 struct cM3dGCir {
     /* 8026EF18 */ ~cM3dGCir();
 };
 
-struct cM3dGAab {
-    /* 804C7D10 */ ~cM3dGAab();
-};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 804CC220 */ ~cCcD_GStts();
 };
 
 struct cBgS_LinChk {};
@@ -296,29 +240,12 @@ struct Z2SoundObjBase {
     /* 802BDFF8 */ void deleteObject();
 };
 
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
 struct WIND_INFLUENCE {};
 
 struct LIGHT_INFLUENCE {};
 
 struct JMath {
     static u8 sincosTable_[65536];
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
 };
 
 struct J3DFrameCtrl {
@@ -531,11 +458,6 @@ extern "C" void PSMTXRotAxisRad();
 extern "C" void PSMTXTrans();
 extern "C" void PSMTXMultVec();
 extern "C" void PSMTXMultVecSR();
-extern "C" void PSVECAdd();
-extern "C" void PSVECScale();
-extern "C" void PSVECSquareMag();
-extern "C" void PSVECDotProduct();
-extern "C" void PSVECSquareDistance();
 extern "C" void __ptmf_test();
 extern "C" void __ptmf_cmpr();
 extern "C" void __ptmf_scall();
@@ -552,7 +474,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void abs();
 extern "C" void strcmp();
 extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
 extern "C" extern void* g_fopAc_Method[8];
@@ -572,7 +493,6 @@ extern "C" u8 BaseX__4cXyz[12];
 extern "C" u8 BaseY__4cXyz[12];
 extern "C" u8 BaseZ__4cXyz[12];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
 extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
@@ -698,7 +618,8 @@ asm void daNbomb_c::tgHitCallback(dCcD_GObjInf* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_nbomb/d_a_nbomb/__dt__4cXyzFv.s"
 }
@@ -771,11 +692,16 @@ COMPILER_STRIP_GATE(0x804CC38C, &bmdIdx);
 #pragma pop
 
 /* 804CC4D8-804CC518 000000 0040+00 1/1 0/0 0/0 .data            l_sphSrc */
-SECTION_DATA static u8 l_sphSrc[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1E,
-    0xD8, 0xFB, 0xFF, 0xEF, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x01, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
+static dCcD_SrcSph l_sphSrc = {
+    {
+        {0x0, {{AT_TYPE_BOMB, 0x4, 0x1e}, {0xd8fbffef, 0x11}, 0x79}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x1, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 30.0f} // mSph
+    } // mSphAttr
 };
 
 /* 804CC518-804CC530 -00001 0018+00 4/4 0/0 0/0 .data            m_arcNameList__9daNbomb_c */
@@ -1101,7 +1027,8 @@ asm daNbomb_c::daNbomb_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_nbomb/d_a_nbomb/__dt__8cM3dGSphFv.s"
 }
@@ -1111,7 +1038,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_nbomb/d_a_nbomb/__dt__8cM3dGAabFv.s"
 }
@@ -1121,7 +1049,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_nbomb/d_a_nbomb/__dt__10dCcD_GSttsFv.s"
 }
@@ -1403,7 +1332,8 @@ asm void daNbomb_c::insectLineCheck() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGPla::~cM3dGPla() {
+// asm cM3dGPla::~cM3dGPla() {
+extern "C" asm void __dt__8cM3dGPlaFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_nbomb/d_a_nbomb/__dt__8cM3dGPlaFv.s"
 }
@@ -1903,7 +1833,8 @@ static asm void daNbomb_Draw(daNbomb_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_nbomb/d_a_nbomb/__dt__10cCcD_GSttsFv.s"
 }

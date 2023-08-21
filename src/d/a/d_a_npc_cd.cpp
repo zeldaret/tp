@@ -4,8 +4,8 @@
 //
 
 #include "d/a/d_a_npc_cd.h"
-#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Types:
@@ -371,13 +371,6 @@ static Vec const a_transScaleTbl[30] = {
     {1.0f, 0.8630768f, 1.0f},  {1.0f, 1.0529536f, 1.0f},
 };
 
-/* 80392FE8-80392FE8 01F648 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039324E = "\0";
-#pragma pop
-
 /* 804534B8-804534BC 001AB8 0004+00 2/2 0/0 0/0 .sdata2          @4021 */
 SECTION_SDATA2 static f32 lit_4021 = 1.0f;
 
@@ -706,24 +699,17 @@ int daNpcCd_c::removeResrc(int idx, int param_1) {
 }
 
 /* 80156D1C-80156D78 15165C 005C+00 0/0 0/0 1/1 .text            setEnvTevCol__9daNpcCd_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcCd_c::setEnvTevCol() {
-    nofralloc
-#include "asm/a/npc/d_a_npc_cd/setEnvTevCol__9daNpcCd_cFv.s"
+void daNpcCd_c::setEnvTevCol() {
+    mTevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mAcch.m_gnd);
+    mTevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mAcch.m_gnd);
 }
-#pragma pop
 
 /* 80156D78-80156DBC 1516B8 0044+00 0/0 0/0 1/1 .text            setRoomNo__9daNpcCd_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcCd_c::setRoomNo() {
-    nofralloc
-#include "asm/a/npc/d_a_npc_cd/setRoomNo__9daNpcCd_cFv.s"
+void daNpcCd_c::setRoomNo() {
+    s32 id = dComIfG_Bgsp().GetRoomId(mAcch.m_gnd);
+    fopAcM_SetRoomNo(this, id);
+    mStts.SetRoomId(id);
 }
-#pragma pop
 
 /* 80156DBC-80156E20 1516FC 0064+00 0/0 0/0 1/1 .text            animation__9daNpcCd_cFv */
 void daNpcCd_c::animation() {

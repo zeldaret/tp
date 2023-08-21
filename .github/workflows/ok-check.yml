@@ -75,8 +75,8 @@ jobs:
         fi
 
         for FILE in "${FILE_ARRAY[@]}"; do
-            AUTHOR=$(git log -1 --pretty=format:'%an' -- $FILE)
-            CMD="$CMD --filename $FILE --author $AUTHOR"
+          AUTHOR=$(git log -1 --pretty=format:'%an' -- $FILE)
+          CMD="$CMD --filename $FILE --author \"$AUTHOR\""
         done
 
         # Update the status and assignees for every issue identified

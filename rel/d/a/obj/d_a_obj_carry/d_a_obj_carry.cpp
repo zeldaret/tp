@@ -23,53 +23,6 @@ struct dTres_c {
     /* 8009C3CC */ void setPosition(int, u8, Vec const*, int);
 };
 
-struct dPa_modelEcallBack {
-    /* 8004AC00 */ void setModel(JPABaseEmitter*, J3DModelData*, dKy_tevstr_c const&, u8, void*, u8,
-                                 u8);
-
-    static u8 mEcallback[4];
-};
-
-struct dPa_levelEcallBack {};
-
-struct dPa_control_c {
-    /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
-                            u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
-                            cXyz const*, f32);
-    /* 8004D068 */ void setPoly(u16, cBgS_PolyInfo&, cXyz const*, dKy_tevstr_c const*, csXyz const*,
-                                cXyz const*, int, dPa_levelEcallBack*, s8, cXyz const*);
-
-    static u8 mTsubo[64];
-};
-
-// struct dJntColData_c {};
-
-// struct dJntCol_c {
-//     /* 80035C8C */ dJntCol_c();
-//     /* 80035CA0 */ void init(fopAc_ac_c*, dJntColData_c const*, J3DModel*, int);
-// };
-
-struct dCcMassS_Mng {
-    /* 80085D98 */ void Set(cCcD_Obj*, u8);
-};
-
-struct dBgS {
-    /* 80074B40 */ void ChkMoveBG_NoDABg(cBgS_PolyInfo const&);
-    /* 80074E50 */ void GetPolyAtt0(cBgS_PolyInfo const&);
-    /* 80075100 */ void GetRoomId(cBgS_PolyInfo const&);
-    /* 80075564 */ void SplGrpChk(dBgS_SplGrpChk*);
-};
-
-struct cCcS {
-    /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cBgS {
-    /* 80074618 */ void GetActorPointer(int) const;
-    /* 80074660 */ void ChkPolySafe(cBgS_PolyInfo const&);
-    /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
-};
-
 //
 // Forward References:
 //
@@ -409,7 +362,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-// extern "C" extern u8 ZeroQuat[16];
 extern "C" extern void* __vt__8dCcD_Sph[36];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__8dCcD_Cps[36];
@@ -421,7 +373,6 @@ extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mTsubo__13dPa_control_c[64];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" f32 Zero__4cXyz[3];
@@ -597,52 +548,69 @@ COMPILER_STRIP_GATE(0x80479A24, &daObjCarry_c::mData);
 /* 8047A23C-8047A280 000930 0044+00 0/1 0/0 0/0 .rodata          l_cyl_src */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const l_cyl_src[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x1F, 0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x79,
-    0x12, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00,
+const static dCcD_SrcCyl l_cyl_src = {
+    {
+        {0x0, {{AT_TYPE_THROW_OBJ, 0x2, 0x1f}, {0xd8fbfdff, 0x1f}, 0x79}}, // mObj
+        {dCcD_SE_THROW_OBJ, 0x1, 0x0, 0x0, 0x1}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x6}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        10.0f, // mRadius
+        50.0f // mHeight
+    } // mCyl
 };
-COMPILER_STRIP_GATE(0x8047A23C, &l_cyl_src);
 #pragma pop
 
 /* 8047A280-8047A2C0 000974 0040+00 0/1 0/0 0/0 .rodata          l_light_at_sph_src */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const l_light_at_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x11,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00,
+const static dCcD_SrcSph l_light_at_sph_src = {
+    {
+        {0x0, {{AT_TYPE_LANTERN_SWING, 0x0, 0x11}, {0x0, 0x10}, 0x0}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x4, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 500.0f} // mSph
+    } // mSphAttr
 };
-COMPILER_STRIP_GATE(0x8047A280, &l_light_at_sph_src);
 #pragma pop
 
 /* 8047A2C0-8047A30C 0009B4 004C+00 0/1 0/0 0/0 .rodata          l_atCpsSrc */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const l_atCpsSrc[76] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x64, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00,
+const static dCcD_SrcCps l_atCpsSrc = {
+    {
+        {0x0, {{AT_TYPE_IRON_BALL, 0x64, 0x1f}, {0x0, 0x10}, 0x0}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x1}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x6}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, 40.0f}, // mCps
+    } // mCpsAttr
 };
-COMPILER_STRIP_GATE(0x8047A2C0, &l_atCpsSrc);
 #pragma pop
 
 /* 8047A30C-8047A350 000A00 0044+00 0/1 0/0 0/0 .rodata          l_tg_cyl */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const l_tg_cyl[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x1E, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00, 0x42, 0x70, 0x00, 0x00,
+const static dCcD_SrcCyl l_tg_cyl = {
+    {
+        {0x0, {{0x0, 0x0, 0x1e}, {0x200, 0x11}, 0x0}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x1}, // mGObjAt
+        {dCcD_SE_WOLF_KICK, 0x0, 0x0, 0x0, 0x4}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        40.0f, // mRadius
+        60.0f // mHeight
+    } // mCyl
 };
-COMPILER_STRIP_GATE(0x8047A30C, &l_tg_cyl);
 #pragma pop
 
 /* 8047A350-8047A354 000A44 0004+00 0/0 0/0 0/0 .rodata          l_light_color */
@@ -791,17 +759,22 @@ SECTION_DATA static u8 taru_jv_offset[24] = {
 };
 
 /* 8047A710-8047A71C -00001 000C+00 1/1 0/0 0/0 .data            kibako_jc_data */
-SECTION_DATA static void* kibako_jc_data[3] = {
-    (void*)0x01010000,
-    (void*)0x42340000,
-    (void*)&kibako_jv_offset,
+// box joint col data
+static dJntColData_c kibako_jc_data = {
+    1,
+    1,
+    0,
+    0x42340000,
+    &kibako_jv_offset
 };
 
 /* 8047A71C-8047A728 -00001 000C+00 1/1 0/0 0/0 .data            taru_jc_data */
-SECTION_DATA static void* taru_jc_data[3] = {
-    (void*)0x01010000,
-    (void*)0x42340000,
-    (void*)&taru_jv_offset,
+static dJntColData_c taru_jc_data = {
+    1,
+    1,
+    0,
+    0x42340000,
+    &taru_jv_offset
 };
 
 /* 8047A728-8047A734 -00001 000C+00 0/1 0/0 0/0 .data            @5956 */
@@ -2292,13 +2265,13 @@ asm u8 daObjCarry_c::data() {
 #endif
 
 /* 8046F6BC-8046F6D4 00073C 0018+00 3/3 0/0 0/0 .text            getArcName__12daObjCarry_cFv */
-void* daObjCarry_c::getArcName() {
-    return l_arcName[mType]; // l_arcName needs to be setup properly at some point
+char* daObjCarry_c::getArcName() {
+    return (char*)l_arcName[mType]; // l_arcName needs to be setup properly at some point
 }
 
 /* 8046F6D4-8046F6EC 000754 0018+00 1/1 0/0 0/0 .text            getBmdName__12daObjCarry_cFv */
-void* daObjCarry_c::getBmdName() {
-    return l_bmdName[mType]; // l_bmdName needs to be setup properly at some point
+int daObjCarry_c::getBmdName() {
+    return (int)l_bmdName[mType]; // l_bmdName needs to be setup properly at some point
 }
 
 /* 8046F6EC-8046F724 00076C 0038+00 2/2 0/0 0/0 .text            checkFlag__12daObjCarry_cFUc */
@@ -2421,7 +2394,7 @@ asm void daObjCarry_c::setBaseMtx() {
 s32 daObjCarry_c::preInit() {
     fopAcM_SetupActor(this, daObjCarry_c);
     if (field_0xd15 == 0) {
-        field_0xd16 = orig.angle.x;
+        mItemNo = orig.angle.x;
         field_0xd18 = orig.angle.z;
         orig.angle.z = 0;
         orig.angle.x = 0;
@@ -2437,6 +2410,10 @@ s32 daObjCarry_c::preInit() {
 }
 
 /* 8046FB78-8046FD90 000BF8 0218+00 1/1 0/0 0/0 .text            __ct__12daObjCarry_cFv */
+#ifdef NONMATCHING
+// matches, but can't uncomment until explicitly defined vtables are removed
+daObjCarry_c::daObjCarry_c() {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2445,6 +2422,7 @@ asm daObjCarry_c::daObjCarry_c() {
 #include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/__ct__12daObjCarry_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8046FD90-8046FDD8 000E10 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
 #pragma push
@@ -2483,8 +2461,8 @@ extern "C" asm void __dt__8cM3dGAabFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
+// asm dCcD_GStts::~dCcD_GStts() {
 extern "C" asm void __dt__10dCcD_GSttsFv() {
-    // asm dCcD_GStts::~dCcD_GStts() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/__dt__10dCcD_GSttsFv.s"
 }
@@ -2513,55 +2491,74 @@ extern "C" asm void __dt__12dBgS_ObjAcchFv() {
 #pragma pop
 
 /* 8046FFA4-8046FFF8 001024 0054+00 1/1 0/0 0/0 .text checkBreakWolfAttack__12daObjCarry_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::checkBreakWolfAttack() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/checkBreakWolfAttack__12daObjCarry_cFv.s"
+s32 daObjCarry_c::checkBreakWolfAttack() {
+    if (mType == TYPE_TSUBO || 
+        mType == TYPE_TSUBO_2 || 
+        mType == TYPE_OOTSUBO ||
+        mType == TYPE_KIBAKO || 
+        mType == TYPE_DOKURO ||
+        mType == TYPE_AOTSUBO ||
+        mType == TYPE_TSUBO_S ||
+        mType == TYPE_TSUBO_B) {
+            return 1;
+        }
+
+    return 0;
 }
-#pragma pop
 
 /* 8046FFF8-80470054 001078 005C+00 1/1 0/0 0/0 .text checkCarryBoomerang__12daObjCarry_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::checkCarryBoomerang() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/checkCarryBoomerang__12daObjCarry_cFv.s"
+s32 daObjCarry_c::checkCarryBoomerang() {
+    if (mType == TYPE_TSUBO || 
+        mType == TYPE_TSUBO_2 || 
+        mType == TYPE_OOTSUBO ||
+        mType == TYPE_KIBAKO || 
+        mType == TYPE_DOKURO ||
+        mType == TYPE_BOKKURI ||
+        mType == TYPE_AOTSUBO ||
+        mType == TYPE_TSUBO_S ||
+        mType == TYPE_TSUBO_B) {
+            return 1;
+        }
+
+    return 0;
 }
-#pragma pop
 
 /* 80470054-80470080 0010D4 002C+00 1/1 0/0 0/0 .text checkCarryHookshot__12daObjCarry_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::checkCarryHookshot() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/checkCarryHookshot__12daObjCarry_cFv.s"
+s32 daObjCarry_c::checkCarryHookshot() {
+    if (mType == TYPE_BALL_S|| 
+        mType == TYPE_BALL_S_2 || 
+        mType == TYPE_LV8_BALL) {
+            return 1;
+        }
+
+    return 0;
 }
-#pragma pop
 
 /* 80470080-804700B4 001100 0034+00 1/1 0/0 0/0 .text            checkCarryWolf__12daObjCarry_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::checkCarryWolf() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/checkCarryWolf__12daObjCarry_cFv.s"
+s32 daObjCarry_c::checkCarryWolf() {
+    if (mType == TYPE_TSUBO || 
+        mType == TYPE_DOKURO || 
+        mType == TYPE_TSUBO_2 || 
+        mType == TYPE_TSUBO_S) {
+            return 1;
+        }
+
+    return 0;
 }
-#pragma pop
 
 /* 804700B4-804700F0 001134 003C+00 1/1 0/0 0/0 .text            checkCarryOneHand__12daObjCarry_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::checkCarryOneHand() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/checkCarryOneHand__12daObjCarry_cFv.s"
+s32 daObjCarry_c::checkCarryOneHand() {
+    if (mType == TYPE_TSUBO || 
+        mType == TYPE_DOKURO || 
+        mType == TYPE_TSUBO_2 ||
+        mType == TYPE_BOKKURI || 
+        mType == TYPE_TSUBO_S) {
+            return 1;
+        }
+
+    return 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8047A3B4-8047A3B8 000AA8 0004+00 0/1 0/0 0/0 .rodata          @4594 */
@@ -2590,6 +2587,24 @@ COMPILER_STRIP_GATE(0x8047A3C0, &lit_4597);
 #pragma pop
 
 /* 804700F0-804705DC 001170 04EC+00 1/1 0/0 0/0 .text            Create__12daObjCarry_cFv */
+#ifdef NONMATCHING
+// need to map data() first
+void daObjCarry_c::Create() {
+    mScale.set((f32)data(), (f32)data(), (f32)data()); // need to map data
+    fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+    mAcchCir.SetWall((f32)data(), (f32)data()); // need to map data
+
+    mAcch.Set(&fopAcM_GetPosition_p(this), &fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, &fopAcM_GetSpeed_p(this), &current.angle, &shape_angle);
+    mAcch.SetWtrChkMode(2);
+    mAcch.ClrRoofNone();
+    mAcch.SetRoofCrrHeight(80.0f);
+
+    mStts.Init(data(),0xFF,this); // need to map data
+    field_0x7c8.Set(l_cyl_src);
+
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2598,78 +2613,86 @@ asm void daObjCarry_c::Create() {
 #include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/Create__12daObjCarry_cFv.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 8047A4BC-8047A4BC 000BB0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8047A5EF = "D_MN05A";
-#pragma pop
+#endif
 
 /* 804705DC-80470650 00165C 0074+00 3/0 0/0 0/0 .text            CreateInit_tsubo__12daObjCarry_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::CreateInit_tsubo() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/CreateInit_tsubo__12daObjCarry_cFv.s"
+s32 daObjCarry_c::CreateInit_tsubo() {
+    if (!checkCrashRoll()) {
+        mCrashRoll = 1;
+    }
+
+    mode_init_wait();
+
+    if (!strcmp(dComIfGp_getStartStageName(), "D_MN05A")) {
+        field_0xe25 = 1;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80470650-80470674 0016D0 0024+00 3/0 0/0 0/0 .text            CreateInit_ootubo__12daObjCarry_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::CreateInit_ootubo() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/CreateInit_ootubo__12daObjCarry_cFv.s"
+s32 daObjCarry_c::CreateInit_ootubo() {
+    mode_init_wait();
+    return 1;
 }
-#pragma pop
 
 /* 80470674-804706D4 0016F4 0060+00 1/0 0/0 0/0 .text            CreateInit_kibako__12daObjCarry_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::CreateInit_kibako() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/CreateInit_kibako__12daObjCarry_cFv.s"
+s32 daObjCarry_c::CreateInit_kibako() {
+    if (!field_0xe10.init(this,&kibako_jc_data,mpModel,1)) {
+        return 0;
+    }
+
+    mode_init_wait();
+    return 1;
 }
-#pragma pop
 
 /* 804706D4-804707E0 001754 010C+00 1/0 0/0 0/0 .text CreateInit_ironball__12daObjCarry_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::CreateInit_ironball() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/CreateInit_ironball__12daObjCarry_cFv.s"
+s32 daObjCarry_c::CreateInit_ironball() {
+    if (chkSaveFlag()) {
+        u8 l_saveID = getSaveID();
+
+        current.pos = getPos(l_saveID);
+        next.pos = current.pos;
+        mAttentionInfo.mPosition = current.pos;
+        mEyePos = current.pos;
+
+        fopAcM_SetRoomNo(this,getRoomNo(l_saveID));
+        mTevStr.mRoomNo = fopAcM_GetRoomNo(this);
+
+        if (chkSttsFlag(l_saveID,1)) {
+            mDraw = 1;
+        }
+    }
+
+    mAcch.SetLink();
+    mAcch.ClrObj();
+    mode_init_wait();
+    field_0x7c8.SetAtType(field_0x7c8.GetAtType() | AT_TYPE_IRON_BALL);
+    field_0x7c8.SetAtSe(6);
+
+    return 1;
 }
-#pragma pop
 
 /* 804707E0-80470840 001860 0060+00 1/0 0/0 0/0 .text            CreateInit_taru__12daObjCarry_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::CreateInit_taru() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/CreateInit_taru__12daObjCarry_cFv.s"
+s32 daObjCarry_c::CreateInit_taru() {
+    if (!field_0xe10.init(this,&taru_jc_data,mpModel,1)) {
+        return 0;
+    }
+
+    mode_init_wait();
+    return 1;
 }
-#pragma pop
 
 /* 80470840-80470890 0018C0 0050+00 1/0 0/0 0/0 .text            CreateInit_dokuro__12daObjCarry_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::CreateInit_dokuro() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/CreateInit_dokuro__12daObjCarry_cFv.s"
+bool daObjCarry_c::CreateInit_dokuro() {
+    mode_init_wait();
+    return !i_fopAcM_isSwitch(this,getSwbit());
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8047A3C4-8047A3C8 000AB8 0004+00 0/1 0/0 0/0 .rodata          @4683 */
@@ -2691,14 +2714,54 @@ SECTION_RODATA static f32 const lit_4685 = 1.0f;
 COMPILER_STRIP_GATE(0x8047A3CC, &lit_4685);
 
 /* 80470890-804709DC 001910 014C+00 1/0 0/0 0/0 .text CreateInit_bokkuri__12daObjCarry_cFv */
+#ifndef NONMATCHING
+s32 daObjCarry_c::CreateInit_bokkuri() {
+    field_0x7c8.SetTgHitMark((CcG_Tg_HitMark)0);
+    field_0x7c8.OnTgNoHitMark();
+    field_0xd76 = 0;
+    field_0xd79 = 3;
+    field_0xd7a = 100;
+    field_0xd88.init(&current.pos,1);
+
+    switch(getSetType()) {
+    case 0:
+        mode_init_wait();
+        break;
+    case 1:
+        field_0xd76 = 255;
+        speedF = FLOAT_LABEL(lit_4683);
+        speed.y = FLOAT_LABEL(lit_4684);
+        mScale.set(FLOAT_LABEL(lit_4685),FLOAT_LABEL(lit_4685),FLOAT_LABEL(lit_4685));
+        mode_init_dbDrop(1);
+        break;
+    case 2:
+        fopAcM_OnCarryType(this,fopAcM_CARRY_TYPE_1);
+        field_0xdb0 = 1;
+        field_0xd7a = 0;
+        mode_init_wait();
+        break;
+    case 3:
+        fopAcM_OnCarryType(this,fopAcM_CARRY_TYPE_1);
+        field_0xd76 = 255;
+        field_0xd7a = 0;
+        mode_init_growth();
+        break;
+    default:
+        mode_init_wait();
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjCarry_c::CreateInit_bokkuri() {
+asm s32 daObjCarry_c::CreateInit_bokkuri() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/CreateInit_bokkuri__12daObjCarry_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8047A3D0-8047A3D4 000AC4 0004+00 1/1 0/0 0/0 .rodata          @4707 */
@@ -2706,44 +2769,118 @@ SECTION_RODATA static f32 const lit_4707 = 750.0f;
 COMPILER_STRIP_GATE(0x8047A3D0, &lit_4707);
 
 /* 804709DC-80470AB4 001A5C 00D8+00 2/0 0/0 0/0 .text CreateInit_LightBall__12daObjCarry_cFv */
+#ifndef NONMATCHING
+s32 daObjCarry_c::CreateInit_LightBall() {
+    field_0xd88.init(&current.pos,1);
+
+    if (dComIfGp_roomControl_getStayNo()) {
+        fopAcM_OnStatus(this,0x2000000);
+    }
+
+    field_0xdf8.mPos = current.pos;
+    field_0xdf8.field_0xc = FLOAT_LABEL(lit_4707);
+    dKy_dalkmist_inf_set(&field_0xdf8);
+    field_0xe0c = 1;
+    fopAcM_OnStatus(this,0x20000);
+    field_0x7c8.SetTgSe(9);
+    field_0x7c8.SetTgHitMark((CcG_Tg_HitMark)2);
+    field_0x7c8.OffTgNoHitMark();
+    field_0x7c8.OnTgShieldHit();
+    field_0x7c8.SetAtSe(1);
+    mode_init_wait();
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjCarry_c::CreateInit_LightBall() {
+asm s32 daObjCarry_c::CreateInit_LightBall() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/CreateInit_LightBall__12daObjCarry_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80470AB4-80470B5C 001B34 00A8+00 1/0 0/0 0/0 .text CreateInit_Lv8Ball__12daObjCarry_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCarry_c::CreateInit_Lv8Ball() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/CreateInit_Lv8Ball__12daObjCarry_cFv.s"
+s32 daObjCarry_c::CreateInit_Lv8Ball() {
+    field_0xd88.init(&current.pos,1);
+    field_0x7c8.SetTgSe(9);
+    field_0x7c8.SetTgHitMark((CcG_Tg_HitMark)2);
+    field_0x7c8.OffTgNoHitMark();
+    field_0x7c8.OnTgShieldHit();
+
+    if (i_fopAcM_isSwitch(this,getSwbit())) {
+        mode_init_fit();
+    } else {
+        mode_init_wait();
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80470B5C-80470BF4 001BDC 0098+00 1/1 0/0 0/0 .text            CreateHeap__12daObjCarry_cFv */
+#ifdef NONMATCHING
+// 1 instruction in wrong place
+s32 daObjCarry_c::CreateHeap() {
+    s32 l_modelFlag;
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(getArcName(),getBmdName());    
+
+    l_modelFlag = 0x80000;
+
+    if (prm_chk_type_ironball()) {
+        l_modelFlag = 0;
+    }
+
+    mpModel = mDoExt_J3DModel__create(modelData,l_modelFlag,0x11000084);
+
+    if (mpModel == 0) {
+        return 0;
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjCarry_c::CreateHeap() {
+asm s32 daObjCarry_c::CreateHeap() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/CreateHeap__12daObjCarry_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80470BF4-80470CF0 001C74 00FC+00 1/1 0/0 0/0 .text            create__12daObjCarry_cFv */
+#ifdef NONMATCHING
+cPhs__Step daObjCarry_c::create() {
+    cPhs__Step step;
+    preInit();
+
+    switch(mType) {
+        case TYPE_BALL_S:
+            step = (cPhs__Step)checkCreate_LightBallA();
+        case TYPE_BALL_S_2:
+            step = (cPhs__Step)checkCreate_LightBallB();
+        case TYPE_LV8_BALL:
+            step = (cPhs__Step)checkCreate_Lv8Ball();
+    }
+
+    if (step == cPhs_NEXT_e) {
+        return;
+    }
+
+    return step;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjCarry_c::create() {
+asm cPhs__Step daObjCarry_c::create() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/func_80470BF4.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8047A3D4-8047A3E0 000AC8 000C+00 1/1 0/0 0/0 .rodata          l_event_bitA$4815 */
@@ -2756,7 +2893,7 @@ COMPILER_STRIP_GATE(0x8047A3D4, &l_event_bitA);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjCarry_c::checkCreate_LightBallA() {
+asm s32 daObjCarry_c::checkCreate_LightBallA() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/checkCreate_LightBallA__12daObjCarry_cFv.s"
 }
@@ -2773,7 +2910,7 @@ COMPILER_STRIP_GATE(0x8047A3E0, &l_event_bitB);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjCarry_c::checkCreate_LightBallB() {
+asm s32 daObjCarry_c::checkCreate_LightBallB() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/checkCreate_LightBallB__12daObjCarry_cFv.s"
 }
@@ -2783,7 +2920,7 @@ asm void daObjCarry_c::checkCreate_LightBallB() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjCarry_c::checkCreate_Lv8Ball() {
+asm s32 daObjCarry_c::checkCreate_Lv8Ball() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/checkCreate_Lv8Ball__12daObjCarry_cFv.s"
 }
@@ -4370,8 +4507,8 @@ static asm void daObjCarry_Create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
+// asm cCcD_GStts::~cCcD_GStts() {
 extern "C" asm void __dt__10cCcD_GSttsFv() {
-    // asm cCcD_GStts::~cCcD_GStts() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry/__dt__10cCcD_GSttsFv.s"
 }
