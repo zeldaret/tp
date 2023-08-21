@@ -103,6 +103,10 @@ inline void mDoMtx_identity(Mtx m) {
     PSMTXIdentity(m);
 }
 
+inline void mDoMtx_concat(const Mtx a, const Mtx b, Mtx c) {
+    PSMTXConcat(a, b, c);
+}
+
 class mDoMtx_stack_c {
 public:
     /* 8000CCC8 */ static bool push();
