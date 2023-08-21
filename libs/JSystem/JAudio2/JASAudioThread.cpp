@@ -4,6 +4,9 @@
 //
 
 #include "JSystem/JAudio2/JASAudioThread.h"
+#include "JSystem/JAudio2/JASDriverIF.h"
+#include "JSystem/JAudio2/JASHeapCtrl.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/dsp/dsp.h"
@@ -17,18 +20,12 @@ struct JASProbe {
     /* 80290F24 */ static void stop(s32);
 };
 
-template <typename A0>
-struct JASMemPool {};
-
 /* JASMemPool_MultiThreaded<JASChannel> */
 struct JASMemPool_MultiThreaded__template2 {
     /* 802978DC */ void func_802978DC(void* _this);
 };
 
-struct JASGenericMemPool {
-    /* 80290848 */ JASGenericMemPool();
-    /* 802908C8 */ static void newMemPool(u32, int);
-};
+
 
 struct JASDsp {
     /* 8029D958 */ static void boot(void (*)(void*));
@@ -85,7 +82,6 @@ extern "C" u8 sSystemHeap__7JKRHeap[4];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];
 extern "C" extern u8 __OSReport_disable;
 
-extern JKRHeap* JASDram;
 //
 // Declarations:
 //
@@ -139,27 +135,12 @@ private:
     BOOL mInterrupts;
 };
 
-class JASChannel {};
-
-template <class T>
-class JASMemPool_MultiThreaded {
-public:
-    static void newMemPool(int param_1) {
-        Lock lock;
-        JASGenericMemPool::newMemPool(0x108, param_1);
-    }
-};
-
-template <class T>
-class JASPoolAllocObject_MultiThreaded {
-public:
-    static void newMemPool(int param_1) {
-          JASMemPool_MultiThreaded<T>::newMemPool(param_1);
-    }
+class JASChannel {
+    u8 filler[0x108];
 };
 
 /* 8029CDEC-8029CF68 29772C 017C+00 1/0 0/0 0/0 .text            run__14JASAudioThreadFv */
-// JASPoolAllocObject_MultiThreaded is complex
+// Maybe location of JASPoolAllocObject_MultiThreaded<JASChannel>
 #ifdef NONMATCHING
 void* JASAudioThread::run() {
     i_OSInitFastCast();

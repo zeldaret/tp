@@ -81,7 +81,7 @@ struct dzb_tree_data {
 struct dzb_g_data {
     /* 0x00 */ u8 field_0x0[0x24 - 0x0];
     /* 0x24 */ u16 field_0x24;
-    /* 0x26 */ u8 field_0x26[0x28 - 0x26];
+    /* 0x26 */ u16 field_0x26;
     /* 0x28 */ u16 field_0x28;
     /* 0x2A */ u16 field_0x2a;
     /* 0x2C */ u8 field_0x2c[0x2E - 0x2C];
@@ -208,6 +208,7 @@ public:
     bool ChkNoCalcVtx() { return field_0x88 & 2; }
     bool ChkFlush() { return field_0x91 & 8; }
     void SetLock() { field_0x88 |= 0x80; }
+    bool ChkRoofRegist() { return field_0x91 & 4;}
 
 public:
     /* 0x18 */ MtxP pm_base;

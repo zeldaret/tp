@@ -114,6 +114,10 @@ public:
         memPool_->free(ptr, n);
     }
 
+    static void newMemPool(int n) {
+        getMemPool()->newMemPool(n);
+    }
+
 private:
     static JASMemPool_MultiThreaded<T>* getMemPool() {
         static JASMemPool_MultiThreaded<T> memPool_;

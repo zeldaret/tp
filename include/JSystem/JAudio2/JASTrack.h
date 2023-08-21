@@ -148,7 +148,7 @@ struct JASTrack {
     /* 0x1F4 */ short field_0x1f4[8];
     /* 0x204 */ short field_0x204[8];
     /* 0x214 */ char field_0x214;
-    /* 0x215 */ u8 mStatus;
+    /* 0x215 */ volatile u8 mStatus;
     /* 0x216 */ struct {
         u8 flag0 : 1;
         u8 flag1 : 1;

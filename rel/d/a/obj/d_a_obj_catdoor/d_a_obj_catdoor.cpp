@@ -93,15 +93,13 @@ public:
         fopAcM_SetupActor(this, daObjCatDoor_c);
 
         int phase_state = dComIfG_resLoad(&mPhaseReq, l_arcName);
-        if (phase_state != cPhs_COMPLEATE_e) {
-            return phase_state;
+        if (phase_state == cPhs_COMPLEATE_e) {
+            if (!fopAcM_entrySolidHeap(this, createSolidHeap, 0x2520)) {
+                phase_state = cPhs_ERROR_e;
+            } else {
+                create_init();
+            }
         }
-
-        if (!fopAcM_entrySolidHeap(this, createSolidHeap, 0x2520)) {
-            return cPhs_ERROR_e;
-        }
-
-        create_init();
         return phase_state;
     }
 
@@ -321,10 +319,10 @@ COMPILER_STRIP_GATE(0x80BC49D4, &lit_3864);
 
 /* 80BC4848-80BC49AC 000608 0164+00 1/0 0/0 0/0 .text            daObjCatDoor_Create__FP10fopAc_ac_c
  */
-#ifdef NONMATCHING // inverted conditional branch
-static void daObjCatDoor_Create(fopAc_ac_c* i_this) {
+#ifdef NONMATCHING // literals + register init order
+static int daObjCatDoor_Create(fopAc_ac_c* i_this) {
     fopAcM_GetID(i_this);
-    static_cast<daObjCatDoor_c*>(i_this)->create();
+    return static_cast<daObjCatDoor_c*>(i_this)->create();
 }
 #else
 #pragma push
