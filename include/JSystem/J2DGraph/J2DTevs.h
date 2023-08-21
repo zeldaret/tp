@@ -41,8 +41,8 @@ public:
     J2DTexMtx(const J2DTexMtxInfo& info) { mInfo = info; }
     /* 802E9C90 */ void load(u32);
     /* 802E9CC4 */ void calc();
-    /* 802E9D2C */ void getTextureMtx(J2DTextureSRTInfo const&, Vec, f32 (*)[4]);
-    /* 802E9EBC */ void getTextureMtxMaya(J2DTextureSRTInfo const&, f32 (*)[4]);
+    /* 802E9D2C */ void getTextureMtx(J2DTextureSRTInfo const&, Vec, Mtx);
+    /* 802E9EBC */ void getTextureMtxMaya(J2DTextureSRTInfo const&, Mtx);
     J2DTexMtxInfo& getTexMtxInfo() { return mInfo; }
     void setTexMtxInfo(J2DTexMtxInfo info) { mInfo = info; }
 
@@ -145,24 +145,24 @@ private:
 };  // Size: 0x2
 
 struct J2DIndTevStageInfo {
-    /* 0x0 */ u8 field_0x0;
-    /* 0x1 */ u8 field_0x1;
-    /* 0x2 */ u8 field_0x2;
-    /* 0x3 */ u8 field_0x3;
-    /* 0x4 */ u8 field_0x4;
-    /* 0x5 */ u8 field_0x5;
-    /* 0x6 */ u8 field_0x6;
-    /* 0x7 */ u8 field_0x7;
-    /* 0x8 */ u8 field_0x8;
+    /* 0x0 */ u8 mIndStage;
+    /* 0x1 */ u8 mIndFormat;
+    /* 0x2 */ u8 mBiasSel;
+    /* 0x3 */ u8 mMtxSel;
+    /* 0x4 */ u8 mWrapS;
+    /* 0x5 */ u8 mWrapT;
+    /* 0x6 */ u8 mPrev;
+    /* 0x7 */ u8 mLod;
+    /* 0x8 */ u8 mAlphaSel;
     /* 0x9 */ u8 field_0x9;
     /* 0xa */ u8 field_0xa;
     /* 0xb */ u8 field_0xb;
 };
 
 inline u32 J2DCalcIndTevStage(J2DIndTevStageInfo info) {
-    return (info.field_0x8 << 22) | (info.field_0x7 << 21) | (info.field_0x6 << 20) |
-           (info.field_0x3 << 16) | (info.field_0x5 << 11) | (info.field_0x4 << 8) |
-           (info.field_0x2 << 4)  | (info.field_0x1 << 2)  | (info.field_0x0);
+    return (info.mAlphaSel << 22) | (info.mLod << 21) | (info.mPrev << 20) |
+           (info.mMtxSel << 16) | (info.mWrapT << 11) | (info.mWrapS << 8) |
+           (info.mBiasSel << 4)  | (info.mIndFormat << 2)  | (info.mIndStage);
 }
 
 extern const J2DIndTevStageInfo j2dDefaultIndTevStageInfo;
@@ -263,30 +263,30 @@ public:
 
 struct J2DTevStageInfo {
     /* 0x00 */ u8 field_0x0;
-    /* 0x01 */ u8 field_0x1;
-    /* 0x02 */ u8 field_0x2;
-    /* 0x03 */ u8 field_0x3;
-    /* 0x04 */ u8 field_0x4;
-    /* 0x05 */ u8 field_0x5;
-    /* 0x06 */ u8 field_0x6;
-    /* 0x07 */ u8 field_0x7;
-    /* 0x08 */ u8 field_0x8;
-    /* 0x09 */ u8 field_0x9;
-    /* 0x0A */ u8 field_0xa;
-    /* 0x0B */ u8 field_0xb;
-    /* 0x0C */ u8 field_0xc;
-    /* 0x0D */ u8 field_0xd;
-    /* 0x0E */ u8 field_0xe;
-    /* 0x0F */ u8 field_0xf;
-    /* 0x10 */ u8 field_0x10;
-    /* 0x11 */ u8 field_0x11;
-    /* 0x12 */ u8 field_0x12;
+    /* 0x01 */ u8 mColorA;
+    /* 0x02 */ u8 mColorB;
+    /* 0x03 */ u8 mColorC;
+    /* 0x04 */ u8 mColorD;
+    /* 0x05 */ u8 mCOp;
+    /* 0x06 */ u8 mCBias;
+    /* 0x07 */ u8 mCScale;
+    /* 0x08 */ u8 mCClamp;
+    /* 0x09 */ u8 mCReg;
+    /* 0x0A */ u8 mAlphaA;
+    /* 0x0B */ u8 mAlphaB;
+    /* 0x0C */ u8 mAlphaC;
+    /* 0x0D */ u8 mAlphaD;
+    /* 0x0E */ u8 mAOp;
+    /* 0x0F */ u8 mABias;
+    /* 0x10 */ u8 mAScale;
+    /* 0x11 */ u8 mAClamp;
+    /* 0x12 */ u8 mAReg;
     /* 0x13 */ u8 field_0x13;
 };
 
 struct J2DTevSwapModeInfo {
-    /* 0x0 */ u8 field_0x0;
-    /* 0x1 */ u8 field_0x1;
+    /* 0x0 */ u8 mRasSel;
+    /* 0x1 */ u8 mTexSel;
     /* 0x2 */ u8 field_0x2;
     /* 0x3 */ u8 field_0x3;
 };
@@ -303,8 +303,8 @@ public:
     }
 
     void setTevSwapModeInfo(const J2DTevSwapModeInfo& swapInfo) {
-        setTexSel(swapInfo.field_0x1);
-        setRasSel(swapInfo.field_0x0);
+        setTexSel(swapInfo.mTexSel);
+        setRasSel(swapInfo.mRasSel);
     }
 
     void setTexSel(u8 param_0) {
@@ -315,58 +315,58 @@ public:
         field_0x7 = (field_0x7 & ~0x03) | param_0;
     }
 
-    void setColorABCD(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
-        setTevColorAB(param_0, param_1);
-        setTevColorCD(param_2, param_3);
+    void setColorABCD(u8 a, u8 b, u8 c, u8 d) {
+        setTevColorAB(a, b);
+        setTevColorCD(c, d);
     }
 
-    void setTevColorAB(u8 param_0, u8 param_1) { field_0x2 = param_0 << 4 | param_1; }
-    void setTevColorCD(u8 param_0, u8 param_1) { field_0x3 = param_0 << 4 | param_1; }
+    void setTevColorAB(u8 a, u8 b) { field_0x2 = a << 4 | b; }
+    void setTevColorCD(u8 c, u8 d) { field_0x3 = c << 4 | d; }
 
-    void setTevColorOp(u8 param_0, u8 param_1, u8 param_2, u8 param_3, u8 param_4) {
-        field_0x1 = field_0x1 & ~0x04 | param_0 << 2;
-        if (param_0 <= 1) {
-            field_0x1 = field_0x1 & ~0x30 | param_2 << 4;
-            field_0x1 = field_0x1 & ~0x03 | param_1;
+    void setTevColorOp(u8 op, u8 bias, u8 scale, u8 clamp, u8 reg) {
+        field_0x1 = field_0x1 & ~0x04 | op << 2;
+        if (op <= 1) {
+            field_0x1 = field_0x1 & ~0x30 | scale << 4;
+            field_0x1 = field_0x1 & ~0x03 | bias;
         } else {
-            field_0x1 = field_0x1 & ~0x30 | (param_0 >> 1 & 3) << 4;
+            field_0x1 = field_0x1 & ~0x30 | (op >> 1 & 3) << 4;
             field_0x1 = field_0x1 & ~0x03 | 3;
         }
-        field_0x1 = field_0x1 & ~0x08 | param_3 << 3;
-        field_0x1 = field_0x1 & ~0xc0 | param_4 << 6;
+        field_0x1 = field_0x1 & ~0x08 | clamp << 3;
+        field_0x1 = field_0x1 & ~0xc0 | reg << 6;
     }
 
-    void setAlphaABCD(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
-        setAlphaA(param_0);
-        setAlphaB(param_1);
-        setAlphaC(param_2);
-        setAlphaD(param_3);
+    void setAlphaABCD(u8 a, u8 b, u8 c, u8 d) {
+        setAlphaA(a);
+        setAlphaB(b);
+        setAlphaC(c);
+        setAlphaD(d);
     }
 
-    void setAlphaA(u8 param_0) {
-        field_0x6 = field_0x6 & ~0xe0 | param_0 << 5;
+    void setAlphaA(u8 a) {
+        field_0x6 = field_0x6 & ~0xe0 | a << 5;
     }
-    void setAlphaB(u8 param_0) {
-        field_0x6 = field_0x6 & ~0x1c | param_0 << 2;
+    void setAlphaB(u8 b) {
+        field_0x6 = field_0x6 & ~0x1c | b << 2;
     }
-    void setAlphaC(u8 param_0) {
-        field_0x6 = field_0x6 & ~0x03 | param_0 >> 1;
-        field_0x7 = field_0x7 & ~0x80 | param_0 << 7;
+    void setAlphaC(u8 c) {
+        field_0x6 = field_0x6 & ~0x03 | c >> 1;
+        field_0x7 = field_0x7 & ~0x80 | c << 7;
     }
-    void setAlphaD(u8 param_0) {
-        field_0x7 = field_0x7 & ~0x70 | param_0 << 4;
+    void setAlphaD(u8 d) {
+        field_0x7 = field_0x7 & ~0x70 | d << 4;
     }
-    void setTevAlphaOp(u8 param_0, u8 param_1, u8 param_2, u8 param_3, u8 param_4) {
-        field_0x5 = field_0x5 & ~0x04 | param_0 << 2;
-        if (param_0 <= 1) {
-            field_0x5 = field_0x5 & ~0x03 | param_1;
-            field_0x5 = field_0x5 & ~0x30 | param_2 << 4;
+    void setTevAlphaOp(u8 op, u8 bias, u8 scale, u8 clamp, u8 reg) {
+        field_0x5 = field_0x5 & ~0x04 | op << 2;
+        if (op <= 1) {
+            field_0x5 = field_0x5 & ~0x03 | bias;
+            field_0x5 = field_0x5 & ~0x30 | scale << 4;
         } else {
-            field_0x5 = field_0x5 & ~0x30 | (param_0 >> 1 & 3) << 4;
+            field_0x5 = field_0x5 & ~0x30 | (op >> 1 & 3) << 4;
             field_0x5 = field_0x5 & ~0x03 | 3;
         }
-        field_0x5 = field_0x5 & ~0x08 | param_3 << 3;
-        field_0x5 = field_0x5 & ~0xc0 | param_4 << 6;
+        field_0x5 = field_0x5 & ~0x08 | clamp << 3;
+        field_0x5 = field_0x5 & ~0xc0 | reg << 6;
     }
 
     u8 getColorA() { return (field_0x2 & 0xf0) >> 4; }
