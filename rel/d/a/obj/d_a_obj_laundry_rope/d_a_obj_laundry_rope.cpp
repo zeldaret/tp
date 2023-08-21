@@ -4,6 +4,7 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_laundry_rope/d_a_obj_laundry_rope.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
 
 //
@@ -43,17 +44,6 @@ struct daObjLndRope_c {
     static u8 const M_attr[20];
 };
 
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 80266F48 */ void normalizeZP();
-    /* 80C52820 */ ~cXyz();
-    /* 80C53140 */ cXyz();
-};
-
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
 };
@@ -64,35 +54,8 @@ struct dRes_control_c {
     /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
 };
 
-struct dCcD_Sph {
-    /* 80C52F2C */ ~dCcD_Sph();
-    /* 80C53144 */ dCcD_Sph();
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80C53258 */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-};
-
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
-};
-
-struct cM3dGSph {
-    /* 80C531C8 */ ~cM3dGSph();
-};
-
-struct cM3dGAab {
-    /* 80C53210 */ ~cM3dGAab();
-};
-
-struct cCcD_GStts {
-    /* 80C532B4 */ ~cCcD_GStts();
 };
 
 //
@@ -154,9 +117,6 @@ extern "C" void cLib_targetAngleY__FPC3VecPC3Vec();
 extern "C" void cLib_targetAngleX__FPC4cXyzPC4cXyz();
 extern "C" void __dl__FPv();
 extern "C" void PSMTXTrans();
-extern "C" void PSVECAdd();
-extern "C" void PSVECScale();
-extern "C" void PSVECSquareMag();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void _savegpr_25();
@@ -173,7 +133,6 @@ extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u32 __float_nan;
 
 //
 // Declarations:
@@ -321,7 +280,8 @@ asm void daObjLndRope_c::create_init() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_laundry_rope/d_a_obj_laundry_rope/__dt__4cXyzFv.s"
 }
@@ -351,13 +311,17 @@ asm void daObjLndRope_c::setBaseMtx() {
 /* 80C53364-80C533A4 000060 0040+00 0/0 0/0 0/0 .rodata          ccSphSrc$3837 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const ccSphSrc[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x01, 0x60, 0x7A, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x01, 0x49, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+const static dCcD_SrcSph ccSphSrc = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x1607a, 0x11}, 0x149}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 0.0f} // mSph
+    } // mSphAttr
 };
-COMPILER_STRIP_GATE(0x80C53364, &ccSphSrc);
 #pragma pop
 
 /* 80C533A4-80C533A8 0000A0 0004+00 0/1 0/0 0/0 .rodata          @4012 */
@@ -514,7 +478,8 @@ static asm void daObjLndRope_Delete(daObjLndRope_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Sph::~dCcD_Sph() {
+// asm dCcD_Sph::~dCcD_Sph() {
+extern "C" asm void __dt__8dCcD_SphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_laundry_rope/d_a_obj_laundry_rope/__dt__8dCcD_SphFv.s"
 }
@@ -532,7 +497,8 @@ static asm void daObjLndRope_Create(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* 80C53140-80C53144 000FC0 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+// cXyz::cXyz() {
+extern "C" asm void __ct__4cXyzFv() {
     /* empty function */
 }
 
@@ -540,7 +506,8 @@ cXyz::cXyz() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Sph::dCcD_Sph() {
+// asm dCcD_Sph::dCcD_Sph() {
+extern "C" asm void __ct__8dCcD_SphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_laundry_rope/d_a_obj_laundry_rope/__ct__8dCcD_SphFv.s"
 }
@@ -550,7 +517,8 @@ asm dCcD_Sph::dCcD_Sph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_laundry_rope/d_a_obj_laundry_rope/__dt__8cM3dGSphFv.s"
 }
@@ -560,7 +528,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_laundry_rope/d_a_obj_laundry_rope/__dt__8cM3dGAabFv.s"
 }
@@ -570,7 +539,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_laundry_rope/d_a_obj_laundry_rope/__dt__10dCcD_GSttsFv.s"
 }
@@ -580,7 +550,8 @@ asm dCcD_GStts::~dCcD_GStts() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_laundry_rope/d_a_obj_laundry_rope/__dt__10cCcD_GSttsFv.s"
 }

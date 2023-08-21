@@ -5,6 +5,7 @@
 #include "d/cc/d_cc_d.h"
 #include "d/d_jnt_col.h"
 #include "f_op/f_op_actor_mng.h"
+#include "d/com/d_com_inf_game.h"
 
 struct daObjCarry_Data {
     /* 0x0000 */ u8 field_0x0000[0x0030 - 0x0000];
@@ -47,33 +48,33 @@ public:
     /* 80031DAC */ static void setRoomNo(int, s8);
     /* 80031DB8 */ static s8 getRoomNo(int);
     /* 8046F6A4 */ u8 data();
-    /* 8046F6BC */ void* getArcName();
-    /* 8046F6D4 */ void* getBmdName();
+    /* 8046F6BC */ char* getArcName();
+    /* 8046F6D4 */ int getBmdName();
     /* 8046F6EC */ void checkFlag(u8);
     /* 8046F724 */ void initBaseMtx();
     /* 8046F7AC */ void setBaseMtx();
     /* 8046FACC */ s32 preInit();
     /* 8046FB78 */ daObjCarry_c();
-    /* 8046FFA4 */ void checkBreakWolfAttack();
-    /* 8046FFF8 */ void checkCarryBoomerang();
-    /* 80470054 */ void checkCarryHookshot();
-    /* 80470080 */ void checkCarryWolf();
-    /* 804700B4 */ void checkCarryOneHand();
+    /* 8046FFA4 */ s32 checkBreakWolfAttack();
+    /* 8046FFF8 */ s32 checkCarryBoomerang();
+    /* 80470054 */ s32 checkCarryHookshot();
+    /* 80470080 */ s32 checkCarryWolf();
+    /* 804700B4 */ s32 checkCarryOneHand();
     /* 804700F0 */ void Create();
-    /* 804705DC */ void CreateInit_tsubo();
-    /* 80470650 */ void CreateInit_ootubo();
-    /* 80470674 */ void CreateInit_kibako();
-    /* 804706D4 */ void CreateInit_ironball();
-    /* 804707E0 */ void CreateInit_taru();
-    /* 80470840 */ void CreateInit_dokuro();
-    /* 80470890 */ void CreateInit_bokkuri();
-    /* 804709DC */ void CreateInit_LightBall();
-    /* 80470AB4 */ void CreateInit_Lv8Ball();
-    /* 80470B5C */ void CreateHeap();
-    /* 80470BF4 */ void create();
-    /* 80470CF0 */ void checkCreate_LightBallA();
-    /* 8047114C */ void checkCreate_LightBallB();
-    /* 804715A8 */ void checkCreate_Lv8Ball();
+    /* 804705DC */ s32 CreateInit_tsubo();
+    /* 80470650 */ s32 CreateInit_ootubo();
+    /* 80470674 */ s32 CreateInit_kibako();
+    /* 804706D4 */ s32 CreateInit_ironball();
+    /* 804707E0 */ s32 CreateInit_taru();
+    /* 80470840 */ bool CreateInit_dokuro();
+    /* 80470890 */ s32 CreateInit_bokkuri();
+    /* 804709DC */ s32 CreateInit_LightBall();
+    /* 80470AB4 */ s32 CreateInit_Lv8Ball();
+    /* 80470B5C */ s32 CreateHeap();
+    /* 80470BF4 */ cPhs__Step create();
+    /* 80470CF0 */ s32 checkCreate_LightBallA();
+    /* 8047114C */ s32 checkCreate_LightBallB();
+    /* 804715A8 */ s32 checkCreate_Lv8Ball();
     /* 80471680 */ void resetIconPosForLightBallA();
     /* 804716D4 */ void setIconPosForLightBallAAtR00();
     /* 804717B4 */ void setIconPosForLightBallBAtR00();
@@ -193,8 +194,14 @@ public:
     /* 80479664 */ void CreateInitCall();
 
     s32 getType() { return mType; }
+    u32 getSwbit() { return fopAcM_GetParamBit(this,6,8);}
     u32 getSwbit2() { return fopAcM_GetParamBit(this,0xe,8); }
     u32 checkOnMoveBg() { return ~((field_0xd18 >> 0xc) & 1);}
+    u32 checkCrashRoll() { return field_0xd18 >> 6 & 1;}
+    u8 getItemNo() { return mItemNo; }
+    u8 getSaveID() { return getItemNo(); }
+    u32 getSetType() { return (u32)(field_0xd18 << 16) >> 29;} // fake match?
+    s8 prm_chk_type_ironball() { return (s8)(getType() == TYPE_IRON_BALL); }
 
     static u8 const mData[2072];
     static Vec mPos[5];
@@ -205,7 +212,7 @@ public:
 public:
     /* 0x568 */ request_of_phase_process_class mPhaseReq;
     /* 0x570 */ J3DModel* mpModel;
-    /* 0x574 */ dBgS_Acch mAcch;
+    /* 0x574 */ dBgS_ObjAcch mAcch;
     /* 0x74C */ dBgS_AcchCir mAcchCir;
     /* 0x78C */ dCcD_Stts mStts;
     /* 0x7C8 */ dCcD_Cyl field_0x7c8;
@@ -223,7 +230,7 @@ public:
     /* 0xD04 */ s16 field_0xd04;
     /* 0xD06 */ u8 field_0xD06[0xD15 - 0xD06];
     /* 0xD15 */ u8 field_0xd15;
-    /* 0xD16 */ u16 field_0xd16;
+    /* 0xD16 */ u16 mItemNo;
     /* 0xD18 */ u16 field_0xd18;
     /* 0xD1A */ u8 field_0xD1A[0xD1C - 0xD1A];
     /* 0xD1C */ cXyz field_0xd1c;
@@ -261,7 +268,9 @@ public:
     /* 0xDB1 */ u8 field_0xDB1[0xDB2 - 0xDB1];
     /* 0xDB2 */ u8 mOnMoveBG;
     /* 0xDB3 */ u8 field_0xdb3;
-    /* 0xDB4 */ u8 field_0xDB4[0xDB7 - 0xDB4];
+    /* 0xDB4 */ u8 field_0xdb4;
+    /* 0xDB5 */ u8 mCrashRoll;
+    /* 0xDB6 */ u8 field_0xdb6;
     /* 0xDB7 */ u8 mDraw;
     /* 0xDB8 */ u8 mCtrl;
     /* 0xDB9 */ u8 field_0xdb9;
@@ -284,7 +293,10 @@ public:
     /* 0xE0E */ u8 field_0xE0E[0xE10 - 0xE0E];
     /* 0xE10 */ dJntCol_c field_0xe10;
     /* 0xE20 */ float field_0xe20;
-    /* 0xE24 */ u8 field_0xe24[0xE28 - 0xE24];
+    /* 0xE24 */ u8 field_0xe24;
+    /* 0xE25 */ u8 field_0xe25;
+    /* 0xE26 */ u8 field_0xe26;
+    /* 0xE27 */ u8 field_0xe27;
 
 private:
     u16 getType_private() { return field_0xd18 >> 1 & 0x1f; }
