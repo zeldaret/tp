@@ -6,14 +6,9 @@
 #include "m_Do/m_Do_mtx.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
+#include "JSystem/JMath/JMATrigonometric.h"
+#include "JSystem/JMath/JMath.h"
+#include "SSystem/SComponent/c_math.h"
 
 //
 // Forward References:
@@ -167,6 +162,28 @@ SECTION_SDATA2 static u8 lit_3677[4] = {
 };
 
 /* 8000C344-8000C39C 006C84 0058+00 5/5 7/7 38/38 .text            mDoMtx_XrotS__FPA4_fs */
+#ifdef NONMATCHING
+// matches with literals
+void mDoMtx_XrotS(Mtx mtx, s16 x) {
+    f32 l_cos = JMASCos(x);
+    f32 l_sin = JMASSin(x);
+
+    mtx[0][0] = 1.0f;
+    mtx[0][1] = 0.0f;
+    mtx[0][2] = 0.0f;
+    mtx[0][3] = 0.0f;
+
+    mtx[1][0] = 0.0f;
+    mtx[1][1] = l_cos;
+    mtx[1][2] = -l_sin;
+    mtx[1][3] = 0.0f;
+
+    mtx[2][0] = 0.0f;
+    mtx[2][1] = l_sin;
+    mtx[2][2] = l_cos;
+    mtx[2][3] = 0.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -175,6 +192,7 @@ asm void mDoMtx_XrotS(f32 (*param_0)[4], s16 param_1) {
 #include "asm/m_Do/m_Do_mtx/mDoMtx_XrotS__FPA4_fs.s"
 }
 #pragma pop
+#endif
 
 /* 8000C39C-8000C3DC 006CDC 0040+00 0/0 11/11 425/425 .text            mDoMtx_XrotM__FPA4_fs */
 void mDoMtx_XrotM(Mtx mtx, s16 x) {
@@ -184,6 +202,28 @@ void mDoMtx_XrotM(Mtx mtx, s16 x) {
 }
 
 /* 8000C3DC-8000C434 006D1C 0058+00 5/5 24/24 809/809 .text            mDoMtx_YrotS__FPA4_fs */
+#ifdef NONMATCHING
+// matches with literals
+void mDoMtx_YrotS(Mtx mtx, s16 y) {
+    f32 l_cos = JMASCos(y);
+    f32 l_sin = JMASSin(y);
+
+    mtx[0][0] = l_cos;
+    mtx[0][1] = 0.0f;
+    mtx[0][2] = l_sin;
+    mtx[0][3] = 0.0f;
+
+    mtx[1][0] = 0.0f;
+    mtx[1][1] = 1.0;
+    mtx[1][2] = 0.0;
+    mtx[1][3] = 0.0f;
+    
+    mtx[2][0] = -l_sin;
+    mtx[2][1] = 0.0f;
+    mtx[2][2] = l_cos;
+    mtx[2][3] = 0.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -192,6 +232,7 @@ asm void mDoMtx_YrotS(f32 (*param_0)[4], s16 param_1) {
 #include "asm/m_Do/m_Do_mtx/mDoMtx_YrotS__FPA4_fs.s"
 }
 #pragma pop
+#endif
 
 /* 8000C434-8000C474 006D74 0040+00 0/0 44/44 775/775 .text            mDoMtx_YrotM__FPA4_fs */
 void mDoMtx_YrotM(Mtx mtx, s16 y) {
@@ -201,6 +242,28 @@ void mDoMtx_YrotM(Mtx mtx, s16 y) {
 }
 
 /* 8000C474-8000C4CC 006DB4 0058+00 7/7 1/1 6/6 .text            mDoMtx_ZrotS__FPA4_fs */
+#ifdef NONMATCHING
+// matches with literals
+void mDoMtx_ZrotS(Mtx mtx, s16 z) {
+    f32 l_cos = JMASCos(z);
+    f32 l_sin = JMASSin(z);
+
+    mtx[0][0] = l_cos;
+    mtx[0][1] = -l_sin;
+    mtx[0][2] = 0.0f;
+    mtx[0][3] = 0.0f;
+
+    mtx[1][0] = l_sin;
+    mtx[1][1] = l_cos;
+    mtx[1][2] = 0.0;
+    mtx[1][3] = 0.0f;
+    
+    mtx[2][0] = 0.0f;
+    mtx[2][1] = 0.0f;
+    mtx[2][2] = 1.0f;
+    mtx[2][3] = 0.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -209,6 +272,7 @@ asm void mDoMtx_ZrotS(f32 (*param_0)[4], s16 param_1) {
 #include "asm/m_Do/m_Do_mtx/mDoMtx_ZrotS__FPA4_fs.s"
 }
 #pragma pop
+#endif
 
 /* 8000C4CC-8000C50C 006E0C 0040+00 0/0 9/9 302/302 .text            mDoMtx_ZrotM__FPA4_fs */
 void mDoMtx_ZrotM(Mtx mtx, s16 z) {
@@ -219,6 +283,45 @@ void mDoMtx_ZrotM(Mtx mtx, s16 z) {
 
 /* 8000C50C-8000C710 006E4C 0204+00 0/0 3/3 0/0 .text            mDoMtx_lookAt__FPA4_fPC3VecPC3Vecs
  */
+#ifdef NONMATCHING
+// stack issues
+void mDoMtx_lookAt(Mtx mtx, Vec const* param_1, Vec const* param_2, s16 param_3) {
+    cXyz l_p1 = (cXyz)*param_1;
+    cXyz l_pos2;
+    cXyz l_pos1 = l_p1  - (cXyz)*param_2;
+
+    l_pos2.set(0.0f, 1.0f, 0.0f);
+    l_pos2 = l_pos2.outprod(l_pos1.normalize());
+
+    if (!l_pos2.normalizeRS()) {
+        l_pos2.set(-l_pos1.y,0.0f,0.0f);
+        l_pos2 = l_pos2.outprod(l_pos1);
+        l_pos2.normalize();
+    }
+
+    l_pos2 = l_pos2.outprod(l_pos1);
+    l_pos2.normalize();
+
+    mtx[0][0] = l_pos2.x;
+    mtx[0][1] = l_pos2.y;
+    mtx[0][2] = l_pos2.z;
+    mtx[0][3] = -l_pos2.inprod(l_p1);
+
+    mtx[1][0] = l_pos1.x;
+    mtx[1][1] = l_pos1.y;
+    mtx[1][2] = l_pos1.z;
+    mtx[1][3] = -l_pos1.inprod(l_p1);
+
+    mtx[2][0] = l_pos2.x;
+    mtx[2][1] = l_pos2.y;
+    mtx[2][2] = l_pos2.z;
+    mtx[2][3] = -l_pos2.inprod(l_p1);
+
+    Mtx tmp;
+    mDoMtx_ZrotS(tmp, param_3);
+    mDoMtx_concat(tmp, mtx, mtx);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -227,6 +330,7 @@ asm void mDoMtx_lookAt(f32 (*param_0)[4], Vec const* param_1, Vec const* param_2
 #include "asm/m_Do/m_Do_mtx/mDoMtx_lookAt__FPA4_fPC3VecPC3Vecs.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80451B10-80451B18 000110 0004+04 1/1 0/0 0/0 .sdata2          @3840 */
@@ -249,15 +353,14 @@ asm void mDoMtx_lookAt(f32 (*param_0)[4], Vec const* param_1, Vec const* param_2
 #pragma pop
 
 /* 8000C8D0-8000C9B0 007210 00E0+00 0/0 2/2 0/0 .text mDoMtx_concatProjView__FPA4_CfPA4_CfPA4_f */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoMtx_concatProjView(f32 const (*param_0)[4], f32 const (*param_1)[4],
-                               f32 (*param_2)[4]) {
-    nofralloc
-#include "asm/m_Do/m_Do_mtx/mDoMtx_concatProjView__FPA4_CfPA4_CfPA4_f.s"
+void mDoMtx_concatProjView(const Mtx a, const Mtx b,
+                               Mtx c) {
+    mDoMtx_concat(a,b,c);
+    c[3][0] = a[3][0] * b[0][0] + a[3][1] * b[1][0] + a[3][2] * b[2][0];
+    c[3][1] = a[3][0] * b[0][1] + a[3][1] * b[1][1] + a[3][2] * b[2][1];
+    c[3][2] = a[3][0] * b[0][2] + a[3][1] * b[1][2] + a[3][2] * b[2][2];
+    c[3][3] = a[3][0] * b[0][3] + a[3][1] * b[1][3] + a[3][2] * b[2][3] + a[3][3];
 }
-#pragma pop
 
 /* 8000C9B0-8000CB5C 0072F0 01AC+00 0/0 1/1 1/1 .text mDoMtx_inverseTranspose__FPA4_CfPA4_f */
 #pragma push
@@ -271,18 +374,34 @@ asm void mDoMtx_inverseTranspose(f32 const (*param_0)[4], f32 (*param_1)[4]) {
 
 /* 8000CB5C-8000CC00 00749C 00A4+00 0/0 2/2 2/2 .text
  * mDoMtx_QuatConcat__FPC10QuaternionPC10QuaternionP10Quaternion */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoMtx_QuatConcat(Quaternion const* param_0, Quaternion const* param_1,
-                           Quaternion* param_2) {
-    nofralloc
-#include "asm/m_Do/m_Do_mtx/mDoMtx_QuatConcat__FPC10QuaternionPC10QuaternionP10Quaternion.s"
+void mDoMtx_QuatConcat(Quaternion const* a, Quaternion const* b,
+                           Quaternion* c) {
+    c->w = (a->w * b->w) - (a->x * b->x) - (a->y * b->y) - (a->z * b->z);
+    c->x = (a->w * b->x) + (a->x * b->w) + (a->y * b->z) - (a->z * b->y);
+    c->y = (a->w * b->y) + (a->y * b->w) + (a->z * b->x) - (a->x * b->z);
+    c->z = (a->w * b->z) + (a->z * b->w) + (a->x * b->y) - (a->y * b->x);
 }
-#pragma pop
 
 /* 8000CC00-8000CCC8 007540 00C8+00 0/0 11/11 26/26 .text            mDoMtx_MtxToRot__FPA4_CfP5csXyz
  */
+#ifdef NONMATCHING
+// something wrong with JMAFastSqrt?
+void mDoMtx_MtxToRot(CMtxP param_0, csXyz* param_1) {
+    f32 tmp2 = param_0[0][2] * param_0[0][2];
+    f32 tmp3 = param_0[2][2] * param_0[2][2];
+    f32 sqrt = JMAFastSqrt(tmp2 + tmp3);
+
+    param_1->x = cM_atan2s(sqrt,-param_0[1][2]);
+
+    if (param_1->x == 0x4000 || param_1->x == -0x4000) {
+        param_1->z = 0;
+        param_1->y = cM_atan2s(-param_0[2][0],param_0[0][0]);
+    } else {
+        param_1->y = cM_atan2s(param_0[0][2],param_0[2][2]);
+        param_1->z = cM_atan2s(param_0[1][0],param_0[1][1]);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -291,6 +410,7 @@ asm void mDoMtx_MtxToRot(CMtxP param_0, csXyz* param_1) {
 #include "asm/m_Do/m_Do_mtx/mDoMtx_MtxToRot__FPA4_CfP5csXyz.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803DD470-803DD4A0 00A190 0030+00 12/12 142/142 1820/1820 .bss             now__14mDoMtx_stack_c
