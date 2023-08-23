@@ -10,7 +10,7 @@ class cM3dGPla;
 
 typedef int (*cBgS_ShdwDraw_Callback)(class cBgS_ShdwDraw*, cBgD_Vtx_t*, int, int, int, cM3dGPla*);
 
-class cBgS_ShdwDraw : cBgS_Chk {
+class cBgS_ShdwDraw : public cBgS_Chk {
 public:
     cBgS_ShdwDraw(void);
     virtual ~cBgS_ShdwDraw(void);
@@ -19,7 +19,6 @@ public:
 
     cM3dGAab* GetBndP() { return &mM3dGAab; }
 
-private:
     /* 0x14 */ cM3dGAab mM3dGAab;
     /* 0x30 */ cBgS_ShdwDraw_Callback mCallbackFun;
 };

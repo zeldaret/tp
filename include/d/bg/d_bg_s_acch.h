@@ -159,6 +159,7 @@ public:
     bool ChkMoveBGOnly() const { return m_flags & MOVE_BG_ONLY; }
     void SetWallHit() { m_flags |= WALL_HIT; }
     void ClrWallNone() { m_flags &= ~WALL_NONE; }
+    cM3dGCyl* GetWallBmdCylP() { return &m_wall_cyl; }
 
     // inline dupe
     void i_ClrGroundHit() { m_flags &= ~GROUND_HIT; }

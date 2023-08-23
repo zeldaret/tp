@@ -27,6 +27,9 @@ public:
     void SetR(f32);
     bool cross(const cM3dGSph*, cXyz*) const;
     bool cross(const cM3dGCyl*, cXyz*) const;
+    inline bool cross(const cM3dGTri *param_1) const {
+        return cM3d_Cross_SphTri(this, param_1);
+    }
     void GetMinMaxCube(cXyz&, cXyz&) const;
     const cXyz& GetC(void) const { return mCenter; }
     const cXyz* GetCP() const { return &mCenter; }
