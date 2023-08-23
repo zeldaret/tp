@@ -30,6 +30,9 @@ public:
     void SetupFrom3Vtx(const Vec* v1, const Vec* v2, const Vec* v3) {
         cM3d_CalcPla(v1, v2, v3, &mNormal, &mD);
     }
+    f32 getCrossY_NonIsZero(const cXyz *param_1) {
+        return ((-mNormal.x * param_1->x - mNormal.z * param_1->z) - mD) / mNormal.y;
+    }
 };
 
 #endif

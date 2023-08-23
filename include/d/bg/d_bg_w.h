@@ -9,8 +9,8 @@
 class cBgS_GrpPassChk;
 class cBgS_PolyPassChk;
 class fopAc_ac_c;
-
-struct dBgS_CaptPoly {};
+struct cBgD_Vtx_t;
+struct dBgS_CaptPoly;
 
 class cBgW_TriElm {
 public:
@@ -74,8 +74,7 @@ struct dzb_b_data {
 struct dzb_tree_data {
     /* 0x0 */ u16 field_0x0;
     /* 0x2 */ u16 field_0x2;
-    /* 0x4 */ u16 m_id[1];
-    /* 0x6 */ u8 field_0x6[0x14 - 0x6];
+    /* 0x4 */ u16 m_id[8];
 };  // Size: 0x14
 
 struct dzb_g_data {
@@ -123,10 +122,10 @@ public:
     /* 8007A200 */ bool RwgLineCheck(u16, cBgS_LinChk*);
     /* 8007A3A0 */ bool LineCheckRp(cBgS_LinChk*, int);
     /* 8007A52C */ bool LineCheckGrpRp(cBgS_LinChk*, int, int);
-    /* 8007A680 */ void RwgGroundCheckCommon(f32, u16, cBgS_GndChk*);
-    /* 8007A774 */ void RwgGroundCheckGnd(u16, cBgS_GndChk*);
-    /* 8007A824 */ void RwgGroundCheckWall(u16, cBgS_GndChk*);
-    /* 8007A8F4 */ void GroundCrossRp(cBgS_GndChk*, int);
+    /* 8007A680 */ bool RwgGroundCheckCommon(f32, u16, cBgS_GndChk*);
+    /* 8007A774 */ bool RwgGroundCheckGnd(u16, cBgS_GndChk*);
+    /* 8007A824 */ bool RwgGroundCheckWall(u16, cBgS_GndChk*);
+    /* 8007A8F4 */ bool GroundCrossRp(cBgS_GndChk*, int);
     /* 8007AA50 */ bool GroundCrossGrpRp(cBgS_GndChk*, int, int);
     /* 8007ABC4 */ void CopyOldMtx();
     /* 8007AC10 */ void Move();
@@ -223,7 +222,7 @@ public:
     /* 0x92 */ u16 field_0x92;
     /* 0x94 */ cBgW_TriElm* pm_tri;
     /* 0x98 */ cBgW_RwgElm* pm_rwg;
-    /* 0x9C */ Vec* pm_vtx_tbl;
+    /* 0x9C */ cBgD_Vtx_t* pm_vtx_tbl;
     /* 0xA0 */ cBgD_t* pm_bgd;
     /* 0xA4 */ cBgW_unk_b_data* field_0xa4;
     /* 0xA8 */ cBgW_GrpElm* pm_grp;
@@ -232,7 +231,7 @@ public:
 
 class dBgW;
 typedef void (*dBgW_RideCallback)(dBgW*, fopAc_ac_c*, fopAc_ac_c*);
-typedef void (*dBgW_ArrowStickCallback)(fopAc_ac_c*, fopAc_ac_c*, cXyz&);
+typedef void (*dBgW_ArrowStickCallback)(dBgW*, fopAc_ac_c*, fopAc_ac_c*, cXyz&);
 typedef void (*dBgW_CrrFunc)(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
 
 class dBgW : public cBgW {
@@ -240,23 +239,23 @@ public:
     /* 8007B970 */ dBgW();
     /* 8007B9C0 */ void Move();
     /* 8007B9EC */ void positionWallCorrect(dBgS_Acch*, f32, cM3dGPla&, cXyz* pupper_pos, f32);
-    /* 8007BA40 */ void RwgWallCorrect(dBgS_Acch*, u16);
-    /* 8007C234 */ void WallCorrectRp(dBgS_Acch*, int);
+    /* 8007BA40 */ bool RwgWallCorrect(dBgS_Acch*, u16);
+    /* 8007C234 */ bool WallCorrectRp(dBgS_Acch*, int);
     /* 8007C360 */ bool WallCorrectGrpRp(dBgS_Acch*, int, int);
     /* 8007C4AC */ void RwgWallCorrectSort(dBgS_Acch*, u16);
     /* 8007C714 */ void WallCorrectRpSort(dBgS_Acch*, int);
-    /* 8007C808 */ void WallCorrectGrpRpSort(dBgS_Acch*, int, int);
-    /* 8007D0DC */ void RwgRoofChk(u16, dBgS_RoofChk*);
-    /* 8007D208 */ void RoofChkRp(dBgS_RoofChk*, int);
+    /* 8007C808 */ bool WallCorrectGrpRpSort(dBgS_Acch*, int, int);
+    /* 8007D0DC */ bool RwgRoofChk(u16, dBgS_RoofChk*);
+    /* 8007D208 */ bool RoofChkRp(dBgS_RoofChk*, int);
     /* 8007D330 */ bool RoofChkGrpRp(dBgS_RoofChk*, int, int);
-    /* 8007D498 */ void RwgSplGrpChk(u16, dBgS_SplGrpChk*);
-    /* 8007D5C4 */ void SplGrpChkRp(dBgS_SplGrpChk*, int);
+    /* 8007D498 */ bool RwgSplGrpChk(u16, dBgS_SplGrpChk*);
+    /* 8007D5C4 */ bool SplGrpChkRp(dBgS_SplGrpChk*, int);
     /* 8007D6F0 */ bool SplGrpChkGrpRp(dBgS_SplGrpChk*, int, int);
     /* 8007D858 */ void RwgCaptPoly(int, dBgS_CaptPoly&);
     /* 8007D8E8 */ void CaptPolyRp(dBgS_CaptPoly&, int);
     /* 8007DA04 */ void CaptPolyGrpRp(dBgS_CaptPoly&, int, int);
-    /* 8007DB20 */ void RwgSphChk(u16, dBgS_SphChk*, void*);
-    /* 8007DC70 */ void SphChkRp(dBgS_SphChk*, void*, int);
+    /* 8007DB20 */ bool RwgSphChk(u16, dBgS_SphChk*, void*);
+    /* 8007DC70 */ bool SphChkRp(dBgS_SphChk*, void*, int);
     /* 8007DDE0 */ bool SphChkGrpRp(dBgS_SphChk*, void*, int, int);
 
     /* 8007E548 */ virtual ~dBgW();

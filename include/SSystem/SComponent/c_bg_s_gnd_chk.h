@@ -16,6 +16,8 @@ public:
 
     f32 GetNowY() const { return mNowY; }
     void SetNowY(f32 y) { mNowY = y; }
+    const cXyz& GetPointP() { return m_pos; }
+    u32 GetWallPrecheck() const { return mWallPrecheck; }
 
 private:
     /* 0x24 */ cXyz m_pos;
