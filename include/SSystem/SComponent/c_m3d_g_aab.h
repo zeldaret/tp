@@ -2,6 +2,8 @@
 #define C_M3D_G_AAB_H
 
 #include "SSystem/SComponent/c_xyz.h"
+#include "SSystem/SComponent/c_m3d_g_lin.h"
+#include "SSystem/SComponent/c_m3d.h"
 #include "global.h"
 
 // Axis aligned bounding box
@@ -32,6 +34,18 @@ public:
     const f32 GetMinX(void) const { return mMin.x; }
     const f32 GetMinY(void) const { return mMin.y; }
     const f32 GetMinZ(void) const { return mMin.z; }
+    bool Cross(const cM3dGLin *param_1) {
+        return cM3d_Cross_MinMaxBoxLine(GetMinP(), GetMaxP(), (Vec*)&param_1->GetStartP(), (Vec*)&param_1->GetEndP());
+    }
+    bool Cross(const cM3dGAab *param_1) {
+        return cM3d_Cross_AabAab(this, param_1);
+    }
+    bool Cross(const cM3dGCyl *param_1) {
+        return cM3d_Cross_AabCyl(this, param_1);
+    }
+    bool Cross(const cM3dGSph *param_1) {
+        return cM3d_Cross_AabSph(this, param_1);
+    }
 };  // Size = 0x1C
 
 STATIC_ASSERT(0x1C == sizeof(cM3dGAab));

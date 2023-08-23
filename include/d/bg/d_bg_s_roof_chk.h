@@ -17,6 +17,7 @@ public:
     void SetNowY(f32 y) { mNowY = y; }
     void i_SetPos(cXyz const& pos) { m_pos = pos; }
     f32 GetNowY() { return mNowY; }
+    cXyz* GetPosP() { return &m_pos; }
 
 private:
     /* 0x3C */ cXyz m_pos;

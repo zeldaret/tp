@@ -29,6 +29,7 @@ public:
     void SetHeight(f32 height) { m_height = height; }
     f32 GetHeight() { return m_height; }
     cXyz& GetPosP() { return m_ground; }
+    f32 GetRoof() const { return m_roof; }
 
 private:
     /* 0x3C */ cXyz m_ground;

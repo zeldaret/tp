@@ -4,6 +4,7 @@
 //
 
 #include "d/bg/d_bg_w_sv.h"
+#include "SSystem/SComponent/c_bg_s_chk.h"
 #include "dol2asm.h"
 
 //
