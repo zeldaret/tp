@@ -4,16 +4,14 @@
 //
 
 #include "d/a/d_a_npc_cd2.h"
+#include "d/a/d_a_player.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 
 //
 // Types:
 //
-
-struct daPy_py_c {
-    /* 8015F424 */ void checkNowWolfEyeUp();
-};
 
 struct daNpcCd2_HIO_c {
     /* 8015A4D8 */ daNpcCd2_HIO_c();
@@ -36,20 +34,6 @@ struct daNpcCd2_HIO_Jnt_c {
 };
 
 struct dPath {};
-
-struct PathTrace_c {
-    /* 80159A38 */ void setPath(int, int, int, cXyz*, bool);
-    /* 80159C14 */ void checkPoint(cXyz, f32);
-    /* 80159DC0 */ void checkPathEnd(cXyz, f32);
-    /* 80159E54 */ void getTargetPoint(Vec*);
-    /* 80159ECC */ void setAvoidPoint();
-    /* 8015A0D0 */ void setNextPoint();
-    /* 80159F98 */ void setNextPoint(cXyz&);
-    /* 8015A264 */ void incIndex(int);
-    /* 8015A294 */ void decIndex(int);
-    /* 8015A370 */ void checkObstacle(fopAc_ac_c*);
-    /* 8015A3E4 */ void checkObstacleSub(fopAc_ac_c*);
-};
 
 //
 // Forward References:
@@ -1766,7 +1750,7 @@ SECTION_SDATA2 static f32 lit_4586[1 + 1 /* padding */] = {
 /* 804534F0-804534F8 001AF0 0008+00 3/3 0/0 0/0 .sdata2          @4588 */
 SECTION_SDATA2 static f64 lit_4588 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 80158420-80158BB8 152D60 0798+00 0/0 0/0 5/5 .text            setAttention__10daNpcCd2_cFi */
+/* 80158420-80158BB8 152D60 0798+00 0/0 0/0 5/5 .text   setAttention__10daNpcCd2_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1776,7 +1760,7 @@ asm void daNpcCd2_c::setAttention(int param_0) {
 }
 #pragma pop
 
-/* 80158BB8-80158CBC 1534F8 0104+00 0/0 0/0 4/4 .text            loadResrc__10daNpcCd2_cFii */
+/* 80158BB8-80158CBC 1534F8 0104+00 0/0 0/0 4/4 .text   loadResrc__10daNpcCd2_cFii */
 int daNpcCd2_c::loadResrc(int idx, int param_1) {
     int result;
     if (field_0xac6) {
@@ -1808,7 +1792,7 @@ int daNpcCd2_c::loadResrc(int idx, int param_1) {
     }
 }
 
-/* 80158CBC-80158D88 1535FC 00CC+00 0/0 0/0 4/4 .text            removeResrc__10daNpcCd2_cFii */
+/* 80158CBC-80158D88 1535FC 00CC+00 0/0 0/0 4/4 .text   removeResrc__10daNpcCd2_cFii */
 int daNpcCd2_c::removeResrc(int idx, int param_1) {
     if (field_0xac6) {
         dComIfG_resDelete(&mPhase1, l_resNameTbl[idx][1]);
@@ -1822,13 +1806,13 @@ int daNpcCd2_c::removeResrc(int idx, int param_1) {
     return 1;
 }
 
-/* 80158D88-80158DE4 1536C8 005C+00 0/0 0/0 4/4 .text            setEnvTevCol__10daNpcCd2_cFv */
+/* 80158D88-80158DE4 1536C8 005C+00 0/0 0/0 4/4 .text   setEnvTevCol__10daNpcCd2_cFv */
 void daNpcCd2_c::setEnvTevCol() {
     mTevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mAcch.m_gnd);
     mTevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mAcch.m_gnd);
 }
 
-/* 80158DE4-80158E28 153724 0044+00 0/0 0/0 4/4 .text            setRoomNo__10daNpcCd2_cFv */
+/* 80158DE4-80158E28 153724 0044+00 0/0 0/0 4/4 .text   setRoomNo__10daNpcCd2_cFv */
 void daNpcCd2_c::setRoomNo() {
     s32 id = dComIfG_Bgsp().GetRoomId(mAcch.m_gnd);
     fopAcM_SetRoomNo(this, id);
@@ -1858,48 +1842,81 @@ asm void daNpcCd2_c::setAnm(J3DAnmTransformKey* param_0, f32 param_1, f32 param_
 #pragma pop
 
 /* 80158F6C-80158FF0 1538AC 0084+00 0/0 0/0 4/4 .text            drawShadow__10daNpcCd2_cFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcCd2_c::drawShadow(f32 param_0) {
-    nofralloc
-#include "asm/a/npc/d_a_npc_cd2/drawShadow__10daNpcCd2_cFf.s"
+int daNpcCd2_c::drawShadow(f32 param_0) {
+    if (field_0xac6 && !daPy_py_c::checkNowWolfEyeUp()) {
+        return 1;
+    }
+    dComIfGd_setSimpleShadow(&current.pos, mAcch.GetGroundH(), param_0, mAcch.m_gnd, 0,
+                             lit_4050,  // todo: lit_4050 = 1.0f
+                             dDlst_shadowControl_c::getSimpleTex());
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80393B08-80393B70 020168 0068+00 1/1 0/0 0/0 .rodata          a_jntNumTbl$4692 */
-SECTION_RODATA static u8 const a_jntNumTbl[104] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x07, 0xFF, 0xFF, 0xFF,
-    0xFF, 0x00, 0x00, 0x00, 0x0B, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x0B, 0x00, 0x00, 0x00, 0x07, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00,
-    0x00, 0x00, 0x0B, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-    0x00, 0x00, 0x00, 0x0B, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00,
-    0x0A, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00,
-    0x00, 0x0A, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x0B,
+static s32 const a_jntNumTbl[13][2] = {
+    {-1, -1}, {7, -1}, {11, -1}, {-1, 11}, {7, -1},  {-1, 11}, {1, -1},
+    {-1, 11}, {-1, 7}, {10, -1}, {-1, 11}, {10, -1}, {-1, 11},
 };
-COMPILER_STRIP_GATE(0x80393B08, &a_jntNumTbl);
 
-/* 80158FF0-801590FC 153930 010C+00 0/0 0/0 4/4 .text            drawObj__10daNpcCd2_cFiP8J3DModelf
- */
+/* 80158FF0-801590FC 153930 010C+00 0/0 0/0 4/4 .text   drawObj__10daNpcCd2_cFiP8J3DModelf */
+#ifdef NONMATCHING  // rlwinm loading wrong value
+int daNpcCd2_c::drawObj(int idx, J3DModel* i_model, f32 i_scale) {
+    if (i_model == NULL) {
+        return 0;
+    }
+    if (field_0xac6 && !daPy_py_c::checkNowWolfEyeUp()) {
+        return 0;
+    }
+    u32 x = !isM_();
+    s32 jntNum = a_jntNumTbl[idx][x];
+    if (i_model && jntNum >= 0) {
+        g_env_light.setLightTevColorType_MAJI(i_model, &mTevStr);
+        mDoMtx_copy(mpMorf->getModel()->i_getAnmMtx(jntNum), mDoMtx_stack_c::now);
+        mDoMtx_stack_c::scaleM(i_scale, i_scale, i_scale);
+        i_model->i_setBaseTRMtx(mDoMtx_stack_c::now);
+        mDoExt_modelUpdateDL(i_model);
+    }
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpcCd2_c::drawObj(int param_0, J3DModel* param_1, f32 param_2) {
+asm int daNpcCd2_c::drawObj(int param_0, J3DModel* param_1, f32 param_2) {
     nofralloc
 #include "asm/a/npc/d_a_npc_cd2/drawObj__10daNpcCd2_cFiP8J3DModelf.s"
 }
 #pragma pop
+#endif
 
 /* 801590FC-80159258 153A3C 015C+00 0/0 0/0 4/4 .text            drawNpc__10daNpcCd2_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcCd2_c::drawNpc() {
-    nofralloc
-#include "asm/a/npc/d_a_npc_cd2/drawNpc__10daNpcCd2_cFv.s"
+int daNpcCd2_c::drawNpc() {
+    if (field_0xac6) {
+        g_env_light.settingTevStruct(4, &current.pos, &mTevStr);
+    } else {
+        g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
+    }
+    if (field_0xac6 && !daPy_py_c::checkNowWolfEyeUp()) {
+        setHitodamaParticle();
+        return 1;
+    }
+    g_env_light.setLightTevColorType_MAJI(mpMorf->getModel(), &mTevStr);
+    if (field_0xac6) {
+        dComIfGd_setListDark();
+    }
+    if (mpBtpAnm) {
+        mpBtpAnm->entry(mpMorf->getModel()->getModelData(), field_0xac4);
+        mpMorf->entryDL();
+        mpBtpAnm->remove(mpMorf->getModel()->getModelData());
+    } else {
+        mpMorf->entryDL();
+    }
+    if (field_0xac6) {
+        dComIfGd_setList();
+    }
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804534F8-804534FC 001AF8 0004+00 1/1 0/0 0/0 .sdata2          @4845 */
@@ -1944,33 +1961,41 @@ asm void daNpcCd2_c::setHitodamaParticle() {
 
 /* ############################################################################################## */
 /* 80451004-80451008 000504 0004+00 2/2 0/0 0/0 .sbss            target */
-static u8 target[4];
+static void* target;
 
 /* 80451008-8045100C 000508 0004+00 1/1 0/0 0/0 .sbss            targetWay */
 static f32 targetWay;
 
 /* 8045100C-80451010 00050C 0002+02 2/2 0/0 0/0 .sbss            wolfAngle */
-static u8 wolfAngle[2 + 2 /* padding */];
+static s16 wolfAngle;
 
 /* 80159708-801597C0 154048 00B8+00 1/1 0/0 0/0 .text            s_sub1__FPvPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void s_sub1(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/a/npc/d_a_npc_cd2/s_sub1__FPvPv.s"
+static void* s_sub1(void* param_0, void* param_1) {
+    if (fopAc_IsActor(param_0) && fopAcM_GetName(param_0) == 0x28A) {
+        s16 angle = fopAcM_searchActorAngleY((fopAc_ac_c*)param_1, (fopAc_ac_c*)param_0);
+        s32 dist = cLib_distanceAngleS(wolfAngle, angle);
+        if (target == NULL) {
+            targetWay = fopAcM_searchActorDistanceXZ2((fopAc_ac_c*)param_1, (fopAc_ac_c*)param_0);
+            target = param_0;
+            return NULL;
+        } else if (dist > 0x4000) {
+            f32 way = fopAcM_searchActorDistanceXZ2((fopAc_ac_c*)param_1, (fopAc_ac_c*)param_0);
+            if (targetWay > way) {
+                targetWay = way;
+                target = param_0;
+            }
+        }
+    }
+    return NULL;
 }
-#pragma pop
 
 /* 801597C0-80159818 154100 0058+00 0/0 0/0 2/2 .text            getEscapeTag__10daNpcCd2_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcCd2_c::getEscapeTag() {
-    nofralloc
-#include "asm/a/npc/d_a_npc_cd2/getEscapeTag__10daNpcCd2_cFv.s"
+void* daNpcCd2_c::getEscapeTag() {
+    target = NULL;
+    wolfAngle = fopAcM_searchPlayerAngleY(this);
+    i_fpcM_Search(s_sub1, this);
+    return target;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80453508-80453510 001B08 0004+04 1/1 0/0 0/0 .sdata2          @4970 */
@@ -2151,22 +2176,25 @@ asm void PathTrace_c::decIndex(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void s_sub(void* param_0, void* param_1) {
+static asm void* s_sub(void* param_0, void* param_1) {
     nofralloc
 #include "asm/a/npc/d_a_npc_cd2/s_sub__FPvPv.s"
 }
 #pragma pop
 
-/* 8015A370-8015A3E4 154CB0 0074+00 0/0 0/0 4/4 .text checkObstacle__11PathTrace_cFP10fopAc_ac_c
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void PathTrace_c::checkObstacle(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/a/npc/d_a_npc_cd2/checkObstacle__11PathTrace_cFP10fopAc_ac_c.s"
+/* 8015A370-8015A3E4 154CB0 0074+00 0/0 0/0 4/4 .text checkObstacle__11PathTrace_cFP10fopAc_ac_c */
+fopAc_ac_c* PathTrace_c::checkObstacle(fopAc_ac_c* param_0) {
+    field_0x00 = param_0;
+    field_0x04 = NULL;
+    if (fopAcM_CheckCondition(field_0x00, 4)) {
+        return NULL;
+    }
+    i_fpcM_Search(s_sub, this);
+    if (field_0x04) {
+        setAvoidPoint();
+    }
+    return field_0x04;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80453548-80453550 001B48 0008+00 1/1 0/0 0/0 .sdata2          @5359 */
@@ -2177,7 +2205,7 @@ SECTION_SDATA2 static f64 lit_5359 = 250.0;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void PathTrace_c::checkObstacleSub(fopAc_ac_c* param_0) {
+asm void* PathTrace_c::checkObstacleSub(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/a/npc/d_a_npc_cd2/checkObstacleSub__11PathTrace_cFP10fopAc_ac_c.s"
 }
