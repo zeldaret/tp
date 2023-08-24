@@ -52,6 +52,7 @@ public:
     u8 getMapToolId() { return mMapToolId; }
     s16 getEventId() { return mEventId; }
     s16 getIdx() { return mIndex; }
+    void setIdx(u8 i_idx) { mIndex = i_idx; }
     char* getArchiveName() { return mArchiveName; }
     BOOL chkCondition(u16 condition) { return (mCondition & condition) == condition; }
     void i_onCondition(u16 cond) { mCondition |= cond; }
