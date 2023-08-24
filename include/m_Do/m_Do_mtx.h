@@ -111,41 +111,180 @@ class mDoMtx_stack_c {
 public:
     /* 8000CCC8 */ static bool push();
     /* 8000CD14 */ static bool pop();
-    /* 8000CD64 */ static void transS(cXyz const&);
-    /* 8000CDD4 */ static void transM(cXyz const&);
-    /* 8000CD9C */ static void transM(f32, f32, f32);
-    /* 8000CE00 */ static void scaleS(cXyz const&);
-    /* 8000CE70 */ static void scaleM(cXyz const&);
-    /* 8000CE38 */ static void scaleM(f32, f32, f32);
-    /* 8000CE9C */ static void XYZrotS(csXyz const&);
-    /* 8000CED4 */ static void XYZrotM(csXyz const&);
-    /* 8000CF0C */ static void ZXYrotS(csXyz const&);
-    /* 8000CF44 */ static void ZXYrotM(csXyz const&);
+    
+    /**
+     * Translates the `now` Matrix by the given cXyz
+     * @param xyz The xyz translation vector
+     */
+    /* 8000CD64 */ static void transS(cXyz const& xyz);
+
+    /**
+     * Translates a new Matrix by the given cXyz and then concatenates it with the `now` matrix
+     * @param xyz The xyz translation vector
+     */
+    /* 8000CDD4 */ static void transM(cXyz const& xyz);
+
+    /**
+     * Translates a new Matrix by the given X, Y, and Z values and then concatenates it with the `now` matrix
+     * @param x The x-axis translation value
+     * @param y The y-axis translation value
+     * @param z The z-axis translation value
+     */
+    /* 8000CD9C */ static void transM(f32 x, f32 y, f32 z);
+
+    /**
+     * Scales the `now` Matrix by the given cXyz
+     * @param xyz The xyz scale vector
+     */
+    /* 8000CE00 */ static void scaleS(cXyz const& xyz);
+
+    /**
+     * Scales a new Matrix by the given cXyz and then concatenates it with the `now` matrix
+     * @param xyz The xyz scale vector
+     */
+    /* 8000CE70 */ static void scaleM(cXyz const& xyz);
+
+    /**
+     * Scales a new Matrix by the given X, Y, and Z values and then concatenates it with the `now` matrix
+     * @param x The x-axis scale value
+     * @param y The y-axis scale value
+     * @param z The z-axis scale value
+     */
+    /* 8000CE38 */ static void scaleM(f32 x, f32 y, f32 z);
+
+    /* 8000CE9C */ static void XYZrotS(csXyz const& xyz);
+
+    /**
+     * Rotates the `now` matrix by the given csXyz in the order Z, Y, X
+     * @param xyz The xyz rotation vector
+     */
+    /* 8000CED4 */ static void XYZrotM(csXyz const& xyz);
+
+    /* 8000CF0C */ static void ZXYrotS(csXyz const& xyz);
+
+    /**
+     * Rotates the `now` matrix by the given csXyz in the order X, Y, Z
+     * @param xyz The xyz rotation vector
+     */
+    /* 8000CF44 */ static void ZXYrotM(csXyz const& xyz);
+
     /* 8000CF7C */ static void quatM(Quaternion const*);
     /* 8000D070 */ ~mDoMtx_stack_c();  // inline
 
+    /**
+     * Returns the `now` Matrix
+     * @return The `now` Matrix
+     */
     static MtxP get() { return now; }
+
+    /**
+     * Translates the `now` Matrix by the given X, Y, and Z values
+     * @param x The x-axis translation value
+     * @param y The y-axis translation value
+     * @param z The z-axis translation value
+     */
     static void transS(f32 x, f32 y, f32 z) { PSMTXTrans(now, x, y, z); }
+
+    /**
+     * Scales the `now` Matrix by the given X, Y, and Z values
+     * @param x The x-axis scale value
+     * @param y The y-axis scale value
+     * @param z The z-axis scale value
+     */
     static void scaleS(f32 x, f32 y, f32 z) { PSMTXScale(now, x, y, z); }
+    
+    /**
+     * Multiplies a given Vec `a` by the `now` Matrix and places the result into Vec `b`
+     * @param a The source Vec
+     * @param b The output Vec
+     */
     static void multVec(const Vec* a, Vec* b) { PSMTXMultVec(now, a, b); }
+
+    /**
+     * Multiplies a given Vec `a` by the `now` Matrix's "Scale-and-Rotate" component and places the result into Vec `b`
+     * @param a The source Vec
+     * @param b The output Vec
+     */
     static void multVecSR(const Vec* a, Vec* b) { PSMTXMultVecSR(now, a, b); }
+
     static void multVecZero(Vec* v) { mDoMtx_multVecZero(now, v); }
+
+    /**
+     * Multiplies a given Vec array `src` by the `now` Matrix and places the result into Vec array `dst`
+     * @param src The source Vec array
+     * @param dst The output Vec array
+     * @param count The size of the array
+     */
     static void multVecArray(const Vec* src, Vec* dst, u32 count) {
         PSMTXMultVecArray(now, src, dst, count);
     }
+
     static void XYZrotS(s16 x, s16 y, s16 z) { mDoMtx_XYZrotS(now, x, y, z); }
+    
+    /**
+     * Rotates the `now` matrix by the given X, Y, and Z values in the order Z, Y, X
+     * @param x The x-axis rotation value
+     * @param y The y-axis rotation value
+     * @param z The z-axis rotation value
+     */
     static void XYZrotM(s16 x, s16 y, s16 z) { mDoMtx_XYZrotM(now, x, y, z); }
+    
     static void ZXYrotS(s16 x, s16 y, s16 z) { mDoMtx_ZXYrotS(now, x, y, z); }
+    
+    /**
+     * Rotates the `now` matrix by the given X, Y, and Z values in the order X, Y, Z
+     * @param x The x-axis rotation value
+     * @param y The y-axis rotation value
+     * @param z The z-axis rotation value
+     */
     static void ZXYrotM(s16 x, s16 y, s16 z) { mDoMtx_ZXYrotM(now, x, y, z); }
+    
+    /**
+     * Rotates a new matrix on the Y-axis then concatenates it with the `now` matrix
+     * @param y The rotation value
+     */
     static void YrotM(s16 y) { mDoMtx_YrotM(now, y); }
+
+    /**
+     * Rotates the `now` matrix on the Y-axis
+     * @param y The rotation value
+     */
     static void YrotS(s16 y) { mDoMtx_YrotS(now, y); }
+
+    /**
+     * Rotates the `now` matrix on the X-axis
+     * @param x The rotation value
+     */
     static void XrotS(s16 x) { mDoMtx_XrotS(now, x); }
+
+    /**
+     * Rotates a new matrix on the X-axis then concatenates it with the `now` matrix
+     * @param x The rotation value
+     */
     static void XrotM(s16 x) { mDoMtx_XrotM(now, x); }
+
+    /**
+     * Rotates a new matrix on the z-axis then concatenates it with the `now` matrix
+     * @param z The rotation value
+     */
     static void ZrotM(s16 z) { mDoMtx_ZrotM(now, z); }
+
     static void inverse() { PSMTXInverse(now, now); }
+
     static void inverseTranspose() { mDoMtx_inverseTranspose(now, now); }
+
+    /**
+     * Concatenates the `now` matrix with the given Matrix `m`
+     * @param m The matrix to concatenate with `now`
+     */
     static void concat(const Mtx m) { PSMTXConcat(now, m, now); }
+
     static void revConcat(const Mtx m) { PSMTXConcat(m, now, now); }
+
+    /**
+     * Copies a given matrix `m` to the `now` matrix
+     * @param m The source matrix to copy
+     */
     static void copy(const Mtx m) { PSMTXCopy(m, now); }
 
     static Mtx now;

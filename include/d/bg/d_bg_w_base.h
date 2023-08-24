@@ -98,6 +98,8 @@ public:
     void SetRoomId(int id) { m_roomId = id; }
     bool ChkPriority(int prio) { return m_priority == prio; }
     void SetPriority(PRIORITY priority) { m_priority = priority; }
+    void onStickWall() { field_0xb |= 1; }
+    void onStickRoof() { field_0xb |= 2; }
 
 private:
     /* 0x08 */ u8 m_priority;
