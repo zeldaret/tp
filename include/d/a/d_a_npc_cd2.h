@@ -6,6 +6,24 @@
 #include "d/d_npc_lib.h"
 #include "dolphin/types.h"
 
+class PathTrace_c {
+public:
+    /* 80159A38 */ void setPath(int, int, int, cXyz*, bool);
+    /* 80159C14 */ void checkPoint(cXyz, f32);
+    /* 80159DC0 */ void checkPathEnd(cXyz, f32);
+    /* 80159E54 */ void getTargetPoint(Vec*);
+    /* 80159ECC */ void setAvoidPoint();
+    /* 8015A0D0 */ void setNextPoint();
+    /* 80159F98 */ void setNextPoint(cXyz&);
+    /* 8015A264 */ void incIndex(int);
+    /* 8015A294 */ void decIndex(int);
+    /* 8015A370 */ fopAc_ac_c* checkObstacle(fopAc_ac_c*);
+    /* 8015A3E4 */ void* checkObstacleSub(fopAc_ac_c*);
+
+    /* 0x00 */ fopAc_ac_c* field_0x00;
+    /* 0x04 */ fopAc_ac_c* field_0x04;
+};
+
 class daNpcCd2_c : public fopAc_ac_c {
 public:
     /* 80157D00 */ void NpcCreate(int);
@@ -20,12 +38,12 @@ public:
     /* 80158DE4 */ void setRoomNo();
     /* 80158E28 */ void animation(int);
     /* 80158F00 */ void setAnm(J3DAnmTransformKey*, f32, f32, int, int, int);
-    /* 80158F6C */ void drawShadow(f32);
-    /* 80158FF0 */ void drawObj(int, J3DModel*, f32);
-    /* 801590FC */ void drawNpc();
+    /* 80158F6C */ int drawShadow(f32);
+    /* 80158FF0 */ int drawObj(int, J3DModel*, f32);
+    /* 801590FC */ int drawNpc();
     /* 80159258 */ void jntNodeCB(J3DJoint*, J3DModel*);
     /* 80159550 */ void setHitodamaParticle();
-    /* 801597C0 */ void getEscapeTag();
+    /* 801597C0 */ void* getEscapeTag();
     /* 80159818 */ void checkFearSituation();
     /* 801598E8 */ void getNpcMdlDataP(int);
     /* 8015994C */ J3DModelData* getObjMdlDataP(int);
@@ -46,7 +64,8 @@ public:
     /* 0x850 */ dCcD_Stts mStts;
     /* 0x88C */ dCcD_Cyl mCyl;
     /* 0x9C8 */ dNpcLib_lookat_c mLookat;
-    /* 0xA98 */ u8 field_0xa98[0xAC6 - 0xA98];
+    /* 0xA98 */ u8 field_0xa98[0xAC4 - 0xA98];
+    /* 0xAC4 */ s16 field_0xac4;
     /* 0xAC6 */ bool field_0xac6;
 };
 
