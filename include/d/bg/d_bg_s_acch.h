@@ -110,7 +110,7 @@ public:
     /* 800D00DC */ void ClrGroundHit();
     /* 80141404 */ bool ChkGroundHit() const;
 
-    /* 80075F94 */ virtual ~dBgS_Acch() {}
+    /* 80075F94 */ virtual ~dBgS_Acch();
 
     cXyz* GetPos() { return pm_pos; }
     cXyz* GetOldPos() { return pm_old_pos; }

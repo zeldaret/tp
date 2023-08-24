@@ -4,52 +4,23 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "SSystem/SComponent/c_math.h"
+#include "Z2AudioLib/Z2SeMgr.h"
+#include "d/bg/d_bg_w.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
+#include "m_Do/m_Do_hostIO.h"
 
 //
 // Types:
 //
 
-struct request_of_phase_process_class {};
-
-struct mDoMtx_stack_c {
-    /* 8000CD9C */ void transM(f32, f32, f32);
-    /* 8000CE38 */ void scaleM(f32, f32, f32);
-
-    static u8 now[48];
-};
-
-struct mDoHIO_entry_c {
-    /* 80C8E9E0 */ ~mDoHIO_entry_c();
-};
-
-struct J3DMaterialTable {};
-
-struct J3DAnmTextureSRTKey {};
-
-struct mDoExt_btkAnm {
-    /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
-    /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct J3DAnmTevRegKey {};
-
-struct mDoExt_brkAnm {
-    /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
-    /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct mDoExt_baseAnm {
-    /* 8000D428 */ void play();
-};
-
-struct fopAc_ac_c {};
-
-struct daMagLiftRot_c {
+class daMagLiftRot_c : public dBgS_MoveBgActor {
+public:
     /* 80C8EA28 */ void setBaseMtx();
-    /* 80C8EB1C */ void CreateHeap();
-    /* 80C8EC64 */ void create();
-    /* 80C8EF94 */ void Execute(f32 (**)[3][4]);
+    /* 80C8EC64 */ int create();
     /* 80C8F02C */ void moveLift();
     /* 80C8F264 */ void init_modeMove();
     /* 80C8F4A0 */ void modeMove();
@@ -57,77 +28,61 @@ struct daMagLiftRot_c {
     /* 80C8F7CC */ void modeWait();
     /* 80C8F804 */ void init_modeMoveWait();
     /* 80C8F810 */ void modeMoveWait();
-    /* 80C8F86C */ void Draw();
-    /* 80C8F970 */ void Delete();
+
+    /* 80C8EB1C */ virtual int CreateHeap();
+    /* 80C8EF94 */ virtual int Execute(Mtx**);
+    /* 80C8F86C */ virtual int Draw();
+    /* 80C8F970 */ virtual int Delete();
+
+    /* 0x5A0 */ request_of_phase_process_class mPhase;
+    /* 0x5A8 */ J3DModel* mpModel;
+    /* 0x5AC */ mDoExt_btkAnm mBtk;
+    /* 0x5C4 */ mDoExt_brkAnm mBrk;
+    /* 0x5DC */ u8 mType;
+    /* 0x5DE */ s16 mTimer;
+    /* 0x5E0 */ u8 mMode;
+    /* 0x5E1 */ u8 field_0x5e1;
+    /* 0x5E2 */ s16 field_0x5e2;
+    /* 0x5E4 */ s16 field_0x5e4;
+    /* 0x5E6 */ csXyz field_0x5e6;
+    /* 0x5EC */ cXyz field_0x5ec;
+    /* 0x5F8 */ f32 field_0x5f8;
+    /* 0x5FC */ f32 mShakeStrength;
+    /* 0x600 */ f32 field_0x600;
+    /* 0x604 */ f32 mShakeYAmp;
+    /* 0x608 */ f32 mShakeDecay;
+    /* 0x60C */ f32 mMaxShakeDecay;
+    /* 0x610 */ f32 mMinShakeDecay;
+    /* 0x614 */ f32 mMoveStrength;
+    /* 0x618 */ f32 mXMoveAmp;
+    /* 0x61C */ f32 mZMoveAmp;
+    /* 0x620 */ f32 mMoveDecay;
+    /* 0x624 */ f32 mMaxMoveDecay;
+    /* 0x628 */ f32 mMinMoveDecay;
+    /* 0x62C */ f32 field_0x62c;
+    /* 0x630 */ f32 field_0x630;
 };
 
-struct daMagLiftRot_HIO_c {
+class daMagLiftRot_HIO_c : public mDoHIO_entry_c {
+public:
     /* 80C8E94C */ daMagLiftRot_HIO_c();
-    /* 80C8FA3C */ ~daMagLiftRot_HIO_c();
-};
+    /* 80C8FA3C */ virtual ~daMagLiftRot_HIO_c();
 
-struct dSv_info_c {
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
-struct cXyz {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dBgW {};
-
-struct cBgS_PolyInfo {};
-
-struct csXyz {};
-
-struct dBgS_MoveBgActor {
-    /* 80078624 */ dBgS_MoveBgActor();
-    /* 80078690 */ bool Create();
-    /* 800786B0 */ bool IsDelete();
-    /* 800786B8 */ bool ToFore();
-    /* 800786C0 */ bool ToBack();
-    /* 800787BC */ void MoveBGCreate(char const*, int,
-                                     void (*)(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*,
-                                              csXyz*, csXyz*),
-                                     u32, f32 (*)[3][4]);
-    /* 800788DC */ void MoveBGDelete();
-    /* 80078950 */ void MoveBGExecute();
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct J3DModel {};
-
-struct J3DFrameCtrl {
-    /* 803283FC */ void init(s16);
-    /* 80C8EF4C */ ~J3DFrameCtrl();
+    /* 0x04 */ u8 mWaitTime;
+    /* 0x08 */ f32 mInitSpeed;
+    /* 0x0C */ f32 mAcceleration;
+    /* 0x10 */ f32 mMaxSpeed;
+    /* 0x14 */ f32 mShakeStrength;
+    /* 0x18 */ f32 mShakeAmpY;
+    /* 0x1C */ f32 mShakeDecay;
+    /* 0x20 */ f32 mMaxShakeDecay;
+    /* 0x24 */ f32 mMinShakeDecay;
+    /* 0x28 */ f32 mMoveAmpX;
+    /* 0x2C */ f32 mMoveAmpZ;
+    /* 0x30 */ f32 mMoveStrength;
+    /* 0x34 */ f32 mMoveDecay;
+    /* 0x38 */ f32 mMaxMoveDecay;
+    /* 0x3C */ f32 mMinMoveDecay;
 };
 
 //
@@ -197,21 +152,12 @@ extern "C" void cLib_chaseF__FPfff();
 extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void __dl__FPv();
 extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
@@ -331,11 +277,7 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 80C8FBB0-80C8FBBC -00001 000C+00 3/3 0/0 0/0 .data            l_arcName */
-SECTION_DATA static void* l_arcName[3] = {
-    (void*)&d_a_obj_magLiftRot__stringBase0,
-    (void*)(((char*)&d_a_obj_magLiftRot__stringBase0) + 0x9),
-    (void*)(((char*)&d_a_obj_magLiftRot__stringBase0) + 0x12),
-};
+SECTION_DATA static char* l_arcName[3] = {"MagLiftS", "MagLiftM", "MagLiftL"};
 
 /* 80C8FBBC-80C8FBC8 -00001 000C+00 0/1 0/0 0/0 .data            @3856 */
 #pragma push
@@ -378,14 +320,12 @@ SECTION_DATA static u8 mode_proc[36] = {
 #pragma pop
 
 /* 80C8FC04-80C8FC10 000074 000C+00 1/1 0/0 0/0 .data            selLabel$3897 */
-SECTION_DATA static u8 selLabel_3897[12] = {
-    0x00, 0x08, 0x01, 0x2F, 0x00, 0x08, 0x01, 0x31, 0x00, 0x08, 0x01, 0x33,
-};
+SECTION_DATA static u32 selLabel_3897[] = {Z2SE_OBJ_MAGNELIFT_TURN_S, Z2SE_OBJ_MAGNELIFT_TURN_M,
+                                           Z2SE_OBJ_MAGNELIFT_TURN_L};
 
 /* 80C8FC10-80C8FC1C 000080 000C+00 1/1 0/0 0/0 .data            selLabel$3963 */
-SECTION_DATA static u8 selLabel_3963[12] = {
-    0x00, 0x08, 0x01, 0x30, 0x00, 0x08, 0x01, 0x32, 0x00, 0x08, 0x01, 0x34,
-};
+SECTION_DATA static u32 selLabel_3963[] = {Z2SE_OBJ_MAGNELIFT_STOP_S, Z2SE_OBJ_MAGNELIFT_STOP_M,
+                                           Z2SE_OBJ_MAGNELIFT_STOP_L};
 
 /* 80C8FC1C-80C8FC3C -00001 0020+00 1/0 0/0 0/0 .data            l_daMagLiftRot_Method */
 SECTION_DATA static void* l_daMagLiftRot_Method[8] = {
@@ -458,13 +398,35 @@ asm daMagLiftRot_HIO_c::daMagLiftRot_HIO_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm mDoHIO_entry_c::~mDoHIO_entry_c() {
+// asm mDoHIO_entry_c::~mDoHIO_entry_c() {
+extern "C" asm void __dt__14mDoHIO_entry_cFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot/__dt__14mDoHIO_entry_cFv.s"
 }
 #pragma pop
 
 /* 80C8EA28-80C8EB1C 0001C8 00F4+00 2/2 0/0 0/0 .text            setBaseMtx__14daMagLiftRot_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void daMagLiftRot_c::setBaseMtx() {
+    mScale.x = field_0x62c;
+    mScale.y = 1.0f;
+    mScale.z = field_0x630;
+
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(current.angle.x, current.angle.y, current.angle.z);
+    mDoMtx_stack_c::ZXYrotM(field_0x5e6.x, field_0x5e6.y, field_0x5e6.z);
+    mDoMtx_stack_c::transM(field_0x5ec.x, field_0x5ec.y, field_0x5ec.z);
+    mDoMtx_stack_c::scaleM(mScale.x, mScale.y, mScale.z);
+
+    // this generates a cXyz dtor symbol with causes issues,
+    // but this function doesnt match unless it's like this??
+    mpModel->setBaseScale(cXyz(1.0f, 1.0f, 1.0f));
+
+    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    PSMTXCopy(mDoMtx_stack_c::get(), field_0x56c);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -473,47 +435,67 @@ asm void daMagLiftRot_c::setBaseMtx() {
 #include "asm/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot/setBaseMtx__14daMagLiftRot_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80C8FB18-80C8FB24 000030 000C+00 0/1 0/0 0/0 .rodata          l_bmdIdx */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const l_bmdIdx[12] = {
-    0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x06,
-};
+SECTION_RODATA static int const l_bmdIdx[] = {4, 4, 6};
 COMPILER_STRIP_GATE(0x80C8FB18, &l_bmdIdx);
 #pragma pop
 
 /* 80C8FB24-80C8FB30 00003C 000C+00 0/1 0/0 0/0 .rodata          l_dzbIdx */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const l_dzbIdx[12] = {
-    0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x0F,
-};
+SECTION_RODATA static int const l_dzbIdx[] = {7, 7, 15};
 COMPILER_STRIP_GATE(0x80C8FB24, &l_dzbIdx);
 #pragma pop
 
 /* 80C8FB30-80C8FB3C 000048 000C+00 2/3 0/0 0/0 .rodata          l_btkIdx */
-SECTION_RODATA static u8 const l_btkIdx[12] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x0C,
-};
+SECTION_RODATA static int const l_btkIdx[] = {-1, -1, 12};
 COMPILER_STRIP_GATE(0x80C8FB30, &l_btkIdx);
 
 /* 80C8FB3C-80C8FB48 000054 000C+00 2/3 0/0 0/0 .rodata          l_brkIdx */
-SECTION_RODATA static u8 const l_brkIdx[12] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x09,
-};
+SECTION_RODATA static int const l_brkIdx[] = {-1, -1, 9};
 COMPILER_STRIP_GATE(0x80C8FB3C, &l_brkIdx);
 
 /* 80C8EB1C-80C8EC64 0002BC 0148+00 1/0 0/0 0/0 .text            CreateHeap__14daMagLiftRot_cFv */
+// matches with literals
+#ifdef NONMATCHING
+int daMagLiftRot_c::CreateHeap() {
+    J3DModelData* modelData =
+        (J3DModelData*)dComIfG_getObjectRes(l_arcName[mType], l_bmdIdx[mType]);
+    mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
+    if (mpModel == NULL) {
+        return 0;
+    }
+
+    if (l_btkIdx[mType] != -1) {
+        J3DAnmTextureSRTKey* res =
+            (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName[mType], l_btkIdx[mType]);
+        mBtk.init(modelData, res, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1);
+    }
+
+    if (l_brkIdx[mType] != -1) {
+        J3DAnmTevRegKey* res =
+            (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName[mType], l_brkIdx[mType]);
+        mBrk.init(modelData, res, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1);
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daMagLiftRot_c::CreateHeap() {
+// asm int daMagLiftRot_c::CreateHeap() {
+extern "C" asm void CreateHeap__14daMagLiftRot_cFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot/CreateHeap__14daMagLiftRot_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80C8FB48-80C8FB50 000060 0004+04 0/1 0/0 0/0 .rodata          @3816 */
@@ -537,20 +519,111 @@ COMPILER_STRIP_GATE(0x80C8FB50, &lit_3818);
 #pragma pop
 
 /* 80C8EC64-80C8EF4C 000404 02E8+00 1/1 0/0 0/0 .text            create__14daMagLiftRot_cFv */
+// matches with literals
+#ifdef NONMATCHING
+int daMagLiftRot_c::create() {
+    fopAcM_SetupActor(this, daMagLiftRot_c);
+
+    mType = 0;
+
+    u8 prm = (fopAcM_GetParam(this) >> 8) & 0xFF;
+    if (prm == 0 || prm == 0xFF) {
+        mType = (fopAcM_GetParam(this) >> 0x10) & 0xFF;
+    }
+
+    int phase = dComIfG_resLoad(&mPhase, l_arcName[mType]);
+    if (phase == cPhs_COMPLEATE_e) {
+        u32 tmp = 0x1500;
+        if (mType == 2) {
+            tmp = 0x2500;
+        }
+
+        if (MoveBGCreate(l_arcName[mType], l_dzbIdx[mType], dBgS_MoveBGProc_TypicalRotY, tmp,
+                         NULL) == cPhs_ERROR_e)
+        {
+            return cPhs_ERROR_e;
+        }
+
+        fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+        fopAcM_setCullSizeBox2(this, mpModel->getModelData());
+
+        field_0x568->onStickWall();
+        field_0x568->onStickRoof();
+
+        field_0x5e1 = fopAcM_GetParam(this) & 0xFF;
+        field_0x5e2 = -0x8000;
+        field_0x5e4 = 0;
+
+        if (field_0x5e1 == 0) {
+            current.angle.y += 0x8000;
+        }
+
+        u8 prm = (fopAcM_GetParam(this) >> 8) & 0xFF;
+        if (prm == 0 || prm == 0xFF) {
+            field_0x62c = 1.0f;
+        } else {
+            field_0x62c = prm * 0.5f;
+        }
+
+        u8 prm2 = (fopAcM_GetParam(this) >> 0x10) & 0xFF;
+        if (prm2 == 0 || prm2 == 0xFF) {
+            field_0x630 = 1.0f;
+        } else if (prm == 0 || prm == 0xFF) {
+            field_0x630 = 1.0f;
+        } else {
+            field_0x630 = prm2 * 0.5f;
+        }
+
+        u8 prm3 = (fopAcM_GetParam(this) >> 0x18) & 0xFF;
+        setBaseMtx();
+
+        if (prm3 == 0xFF) {
+            init_modeWait();
+        } else {
+            init_modeMoveWait();
+        }
+
+        mTimer = 0;
+        field_0x5f8 = 0.0f;
+        field_0x5e6.x = 0;
+        field_0x5e6.y = 0;
+        field_0x5e6.z = 0;
+        mShakeStrength = 0.0f;
+        mMoveStrength = 0.0f;
+        field_0x5ec.x = 0.0f;
+        field_0x5ec.y = 0.0f;
+        field_0x5ec.z = 0.0f;
+        mShakeYAmp = 0.0f;
+        field_0x600 = 0.0f;
+        mShakeDecay = 0.0f;
+        mMaxShakeDecay = 0.0f;
+        mMinShakeDecay = 0.0f;
+        mXMoveAmp = 0.0f;
+        mZMoveAmp = 0.0f;
+        mMoveDecay = 0.0f;
+        mMaxMoveDecay = 0.0f;
+        mMinMoveDecay = 0.0f;
+    }
+
+    return phase;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daMagLiftRot_c::create() {
+asm int daMagLiftRot_c::create() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot/create__14daMagLiftRot_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80C8EF4C-80C8EF94 0006EC 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DFrameCtrl::~J3DFrameCtrl() {
+// asm J3DFrameCtrl::~J3DFrameCtrl() {
+extern "C" asm void __dt__12J3DFrameCtrlFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot/__dt__12J3DFrameCtrlFv.s"
 }
@@ -558,14 +631,21 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 
 /* 80C8EF94-80C8F02C 000734 0098+00 1/0 0/0 0/0 .text            Execute__14daMagLiftRot_cFPPA3_A4_f
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMagLiftRot_c::Execute(f32 (**param_0)[3][4]) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot/Execute__14daMagLiftRot_cFPPA3_A4_f.s"
+int daMagLiftRot_c::Execute(Mtx** param_0) {
+    moveLift();
+
+    if (l_btkIdx[mType] != -1) {
+        mBtk.play();
+    }
+
+    if (l_brkIdx[mType] != -1) {
+        mBrk.play();
+    }
+
+    *param_0 = &mpModel->getBaseTRMtx();
+    setBaseMtx();
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80C8FB58-80C8FB60 000070 0004+04 1/2 0/0 0/0 .rodata          @3882 */
@@ -585,16 +665,32 @@ SECTION_RODATA static u8 const lit_3885[8] = {
 COMPILER_STRIP_GATE(0x80C8FB60, &lit_3885);
 #pragma pop
 
-/* 80C8FCC0-80C8FCCC 000008 000C+00 1/1 0/0 0/0 .bss             @3621 */
-static u8 lit_3621[12];
-
 /* 80C8FCCC-80C8FD0C 000014 0040+00 4/4 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[64];
+static daMagLiftRot_HIO_c l_HIO;
 
 /* 80C8FD0C-80C8FD10 000054 0004+00 1/1 0/0 0/0 .bss             None */
 static u8 data_80C8FD0C[4];
 
 /* 80C8F02C-80C8F264 0007CC 0238+00 1/1 0/0 0/0 .text            moveLift__14daMagLiftRot_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void daMagLiftRot_c::moveLift() {
+    typedef void (daMagLiftRot_c::*modeFunc)();
+    static modeFunc mode_proc[] = {&daMagLiftRot_c::modeMove, &daMagLiftRot_c::modeWait,
+                                   &daMagLiftRot_c::modeMoveWait};
+
+    (this->*mode_proc[mMode])();
+
+    field_0x5e6.z = mShakeStrength * cM_scos(field_0x5f8 * cM_deg2s(mShakeYAmp));
+    cLib_addCalc(&mShakeStrength, 0.0f, mShakeDecay, mMaxShakeDecay, mMinShakeDecay);
+
+    field_0x5ec.x = mMoveStrength * cM_scos(field_0x5f8 * cM_deg2s(mXMoveAmp));
+    field_0x5ec.y = mMoveStrength * cM_ssin(field_0x5f8 * cM_deg2s(mZMoveAmp));
+    cLib_addCalc(&mMoveStrength, 0.0f, mMoveDecay, mMaxMoveDecay, mMinMoveDecay);
+
+    field_0x5f8 += 1.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -603,6 +699,7 @@ asm void daMagLiftRot_c::moveLift() {
 #include "asm/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot/moveLift__14daMagLiftRot_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80C8FB68-80C8FB6C 000080 0004+00 0/2 0/0 0/0 .rodata          @3949 */
@@ -628,6 +725,37 @@ COMPILER_STRIP_GATE(0x80C8FB70, &lit_3951);
 
 /* 80C8F264-80C8F4A0 000A04 023C+00 1/1 0/0 0/0 .text            init_modeMove__14daMagLiftRot_cFv
  */
+// matches with literals
+#ifdef NONMATCHING
+void daMagLiftRot_c::init_modeMove() {
+    fopAcM_SetSpeedF(this, l_HIO.mInitSpeed);
+
+    if (mType != 2) {
+        mDoMtx_stack_c::ZXYrotS(shape_angle.x, shape_angle.y, shape_angle.z);
+
+        cXyz sp20(0.0f, 0.0f, 0.0f);
+        mDoMtx_stack_c::multVec(&sp20, &sp20);
+        sp20 += current.pos;
+
+        mDoAud_seStart(selLabel_3897[mType], &sp20, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    } else {
+        mDoMtx_stack_c::ZXYrotS(shape_angle.x, shape_angle.y, shape_angle.z);
+
+        cXyz sp2C(0.0f, 0.0f, 1515.0f);
+        mDoMtx_stack_c::multVec(&sp2C, &sp2C);
+        sp2C += current.pos;
+
+        cXyz sp38(0.0f, 0.0f, -1515.0f);
+        mDoMtx_stack_c::multVec(&sp38, &sp38);
+        sp38 += current.pos;
+
+        mDoAud_seStart(selLabel_3897[mType], &sp2C, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+        mDoAud_seStart(selLabel_3897[mType], &sp38, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    }
+
+    mMode = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -636,8 +764,23 @@ asm void daMagLiftRot_c::init_modeMove() {
 #include "asm/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot/init_modeMove__14daMagLiftRot_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80C8F4A0-80C8F538 000C40 0098+00 1/0 0/0 0/0 .text            modeMove__14daMagLiftRot_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void daMagLiftRot_c::modeMove() {
+    cLib_chaseF(&speedF, l_HIO.mMaxSpeed, l_HIO.mAcceleration);
+
+    if (cLib_addCalcAngleS(&current.angle.z, field_0x5e2, 1, fopAcM_GetSpeedF(this) * 182.0444f,
+                           1) == 0)
+    {
+        field_0x5e2 += 0x8000;
+        field_0x5e4 = 0;
+        init_modeWait();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -646,9 +789,51 @@ asm void daMagLiftRot_c::modeMove() {
 #include "asm/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot/modeMove__14daMagLiftRot_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80C8F538-80C8F7CC 000CD8 0294+00 3/3 0/0 0/0 .text            init_modeWait__14daMagLiftRot_cFv
  */
+// matches with literals
+#ifdef NONMATCHING
+void daMagLiftRot_c::init_modeWait() {
+    if (mType != 2) {
+        mDoMtx_stack_c::ZXYrotS(shape_angle.x, shape_angle.y, shape_angle.z);
+
+        cXyz sp20(0.0f, 0.0f, 0.0f);
+        mDoMtx_stack_c::multVec(&sp20, &sp20);
+        sp20 += current.pos;
+
+        mDoAud_seStart(selLabel_3963[mType], &sp20, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    } else {
+        mDoMtx_stack_c::ZXYrotS(shape_angle.x, shape_angle.y, shape_angle.z);
+
+        cXyz sp2C(0.0f, 0.0f, 1515.0f);
+        mDoMtx_stack_c::multVec(&sp2C, &sp2C);
+        sp2C += current.pos;
+
+        cXyz sp38(0.0f, 0.0f, -1515.0f);
+        mDoMtx_stack_c::multVec(&sp38, &sp38);
+        sp38 += current.pos;
+
+        mDoAud_seStart(selLabel_3963[mType], &sp2C, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+        mDoAud_seStart(selLabel_3963[mType], &sp38, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    }
+
+    mTimer = l_HIO.mWaitTime;
+    mShakeStrength = l_HIO.mShakeStrength;
+    mShakeYAmp = l_HIO.mShakeAmpY;
+    mShakeDecay = l_HIO.mShakeDecay;
+    mMaxShakeDecay = l_HIO.mMaxShakeDecay;
+    mMinShakeDecay = l_HIO.mMinShakeDecay;
+    mMoveStrength = l_HIO.mMoveStrength;
+    mXMoveAmp = l_HIO.mMoveAmpX;
+    mZMoveAmp = l_HIO.mMoveAmpZ;
+    mMoveDecay = l_HIO.mMoveDecay;
+    mMaxMoveDecay = l_HIO.mMaxMoveDecay;
+    mMinMoveDecay = l_HIO.mMinMoveDecay;
+    mMode = 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -657,121 +842,86 @@ asm void daMagLiftRot_c::init_modeWait() {
 #include "asm/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot/init_modeWait__14daMagLiftRot_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80C8F7CC-80C8F804 000F6C 0038+00 1/0 0/0 0/0 .text            modeWait__14daMagLiftRot_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMagLiftRot_c::modeWait() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot/modeWait__14daMagLiftRot_cFv.s"
+void daMagLiftRot_c::modeWait() {
+    if (mTimer == 0) {
+        init_modeMove();
+    } else {
+        mTimer--;
+    }
 }
-#pragma pop
 
 /* 80C8F804-80C8F810 000FA4 000C+00 1/1 0/0 0/0 .text init_modeMoveWait__14daMagLiftRot_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMagLiftRot_c::init_modeMoveWait() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot/init_modeMoveWait__14daMagLiftRot_cFv.s"
+void daMagLiftRot_c::init_modeMoveWait() {
+    mMode = 2;
 }
-#pragma pop
 
 /* 80C8F810-80C8F86C 000FB0 005C+00 1/0 0/0 0/0 .text            modeMoveWait__14daMagLiftRot_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMagLiftRot_c::modeMoveWait() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot/modeMoveWait__14daMagLiftRot_cFv.s"
+void daMagLiftRot_c::modeMoveWait() {
+    u8 sw_on = i_fopAcM_isSwitch(this, (fopAcM_GetParam(this) >> 0x18) & 0xFF);
+
+    if (sw_on) {
+        mTimer = 15;
+        init_modeWait();
+    }
 }
-#pragma pop
 
 /* 80C8F86C-80C8F970 00100C 0104+00 1/0 0/0 0/0 .text            Draw__14daMagLiftRot_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMagLiftRot_c::Draw() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot/Draw__14daMagLiftRot_cFv.s"
+int daMagLiftRot_c::Draw() {
+    g_env_light.settingTevStruct(0x40, &current.pos, &mTevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+
+    J3DModelData* modelData = mpModel->getModelData();
+    if (l_btkIdx[mType] != -1) {
+        mBtk.entry(modelData);
+    }
+
+    if (l_brkIdx[mType] != -1) {
+        mBrk.entry(modelData);
+    }
+
+    dComIfGd_setListBG();
+    mDoExt_modelUpdateDL(mpModel);
+    dComIfGd_setList();
+    return 1;
 }
-#pragma pop
 
 /* 80C8F970-80C8F9B0 001110 0040+00 1/0 0/0 0/0 .text            Delete__14daMagLiftRot_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMagLiftRot_c::Delete() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot/Delete__14daMagLiftRot_cFv.s"
+int daMagLiftRot_c::Delete() {
+    dComIfG_resDelete(&mPhase, l_arcName[mType]);
+    return 1;
 }
-#pragma pop
 
 /* 80C8F9B0-80C8F9DC 001150 002C+00 1/0 0/0 0/0 .text daMagLiftRot_Draw__FP14daMagLiftRot_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daMagLiftRot_Draw(daMagLiftRot_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot/daMagLiftRot_Draw__FP14daMagLiftRot_c.s"
+static int daMagLiftRot_Draw(daMagLiftRot_c* i_this) {
+    return i_this->MoveBGDraw();
 }
-#pragma pop
 
 /* 80C8F9DC-80C8F9FC 00117C 0020+00 1/0 0/0 0/0 .text daMagLiftRot_Execute__FP14daMagLiftRot_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daMagLiftRot_Execute(daMagLiftRot_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot/daMagLiftRot_Execute__FP14daMagLiftRot_c.s"
+static int daMagLiftRot_Execute(daMagLiftRot_c* i_this) {
+    return i_this->MoveBGExecute();
 }
-#pragma pop
 
 /* 80C8F9FC-80C8FA1C 00119C 0020+00 1/0 0/0 0/0 .text daMagLiftRot_Delete__FP14daMagLiftRot_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daMagLiftRot_Delete(daMagLiftRot_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot/daMagLiftRot_Delete__FP14daMagLiftRot_c.s"
+static int daMagLiftRot_Delete(daMagLiftRot_c* i_this) {
+    return i_this->MoveBGDelete();
 }
-#pragma pop
 
 /* 80C8FA1C-80C8FA3C 0011BC 0020+00 1/0 0/0 0/0 .text            daMagLiftRot_Create__FP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daMagLiftRot_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot/daMagLiftRot_Create__FP10fopAc_ac_c.s"
+static int daMagLiftRot_Create(fopAc_ac_c* i_this) {
+    return static_cast<daMagLiftRot_c*>(i_this)->create();
 }
-#pragma pop
 
 /* 80C8FA3C-80C8FA98 0011DC 005C+00 2/1 0/0 0/0 .text            __dt__18daMagLiftRot_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm daMagLiftRot_HIO_c::~daMagLiftRot_HIO_c() {
+// asm daMagLiftRot_HIO_c::~daMagLiftRot_HIO_c() {
+extern "C" asm void __dt__18daMagLiftRot_HIO_cFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot/__dt__18daMagLiftRot_HIO_cFv.s"
 }
 #pragma pop
-
-/* 80C8FA98-80C8FAD4 001238 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_magLiftRot_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_a_obj_magLiftRot_cpp() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot/__sinit_d_a_obj_magLiftRot_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80C8FA98, __sinit_d_a_obj_magLiftRot_cpp);
-#pragma pop
-
-/* 80C8FB74-80C8FB74 00008C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
