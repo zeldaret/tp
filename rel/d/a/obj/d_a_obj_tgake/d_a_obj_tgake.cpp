@@ -21,7 +21,7 @@ void daObjGake_c::setBaseMtx() {
     mDoMtx_stack_c::YrotM(shape_angle.y);
 
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
-    PSMTXCopy(mDoMtx_stack_c::get(), field_0x56c);
+    PSMTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
 /* 80D0BCB8-80D0BD30 000118 0078+00 1/0 0/0 0/0 .text            Create__11daObjGake_cFv */
@@ -72,8 +72,8 @@ int daObjGake_c::Execute(Mtx** param_0) {
         (mEventBit1 != 0x3FF &&
          !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[mEventBit1])))
     {
-        if (field_0x568 != NULL && field_0x568->ChkUsed()) {
-            dComIfG_Bgsp().Release(field_0x568);
+        if (mpBgW != NULL && mpBgW->ChkUsed()) {
+            dComIfG_Bgsp().Release(mpBgW);
         }
 
         mHide = true;
@@ -81,15 +81,15 @@ int daObjGake_c::Execute(Mtx** param_0) {
     }
 
     if (mEventBit1 != 0x3FF && i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[mEventBit1])) {
-        if (field_0x568 != NULL && !field_0x568->ChkUsed()) {
-            dComIfG_Bgsp().Regist(field_0x568, this);
+        if (mpBgW != NULL && !mpBgW->ChkUsed()) {
+            dComIfG_Bgsp().Regist(mpBgW, this);
         }
 
         mHide = false;
         return 1;
     }
 
-    *param_0 = &field_0x56c;
+    *param_0 = &mBgMtx;
     return 1;
 }
 

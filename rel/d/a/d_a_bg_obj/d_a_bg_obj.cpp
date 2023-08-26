@@ -508,7 +508,7 @@ asm void daBgObj_c::setAttentionInfo(fopAc_ac_c* param_0) {
 void daBgObj_c::initBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    PSMTXCopy(mDoMtx_stack_c::get(), field_0x56c);
+    PSMTXCopy(mDoMtx_stack_c::get(), mBgMtx);
     setBaseMtx();
 }
 
@@ -516,7 +516,7 @@ void daBgObj_c::initBaseMtx() {
 void daBgObj_c::setBaseMtx() {
     for (int i = 0; i < 2; i++) {
         if (field_0x5a8[field_0xcc8][i] != NULL) {
-            field_0x5a8[field_0xcc8][i]->i_setBaseTRMtx(field_0x56c);
+            field_0x5a8[field_0xcc8][i]->i_setBaseTRMtx(mBgMtx);
         }
     }
 }
@@ -584,8 +584,8 @@ int daBgObj_c::CreateInitType0() {
 int daBgObj_c::CreateInitType1() {
     if (i_fopAcM_isSwitch(this, daBgObj_prm::getSwBit(this))) {
         field_0xcc8 = 1;
-        release(field_0x568);
-        regist(mpBgW);
+        release(mpBgW);
+        regist(mpBgW2);
         mAction = 3;
     } else {
         field_0xcc8 = 0;
@@ -613,8 +613,8 @@ int daBgObj_c::CreateInitType1() {
 
     mEventIdx = i_dComIfGp_getEventManager().getEventIdx(this, daBgObj_prm::getEvId(this));
 
-    if (mpBgW != NULL) {
-        mpBgW->Move();
+    if (mpBgW2 != NULL) {
+        mpBgW2->Move();
     }
 
     initAtt();
@@ -801,9 +801,9 @@ int daBgObj_c::CreateHeapType1() {
 
     cBgD_t* dzb = (cBgD_t*)dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), getDzbName(1));
     if (dzb != NULL) {
-        mpBgW = new dBgW();
-        if (mpBgW == NULL || mpBgW->Set(dzb, 1, &field_0x56c)) {
-            mpBgW = NULL;
+        mpBgW2 = new dBgW();
+        if (mpBgW2 == NULL || mpBgW2->Set(dzb, cBgW::MOVE_BG_e, &mBgMtx)) {
+            mpBgW2 = NULL;
             return 0;
         }
     }
@@ -1270,8 +1270,8 @@ int daBgObj_c::actionOrder() {
         if (!i_fopAcM_isSwitch(this, daBgObj_prm::getSwBit(this)) || field_0xd00 != 0 ||
             field_0xcc8 == 0)
         {
-            release(field_0x568);
-            regist(mpBgW);
+            release(mpBgW);
+            regist(mpBgW2);
             field_0xcc8 = 1;
 
             settingCullSizeBoxForCull(field_0xcc8);
@@ -1323,21 +1323,21 @@ int daBgObj_c::ExecuteType0() {
         if (arg0 == 0xFF) {
             if (i_fopAcM_isSwitch(this, swBit)) {
                 if (field_0xcc8 == 1) {
-                    regist(field_0x568);
+                    regist(mpBgW);
                     field_0xcc8 = 0;
                 }
             } else if (field_0xcc8 == 0) {
-                release(field_0x568);
+                release(mpBgW);
                 field_0xcc8 = 1;
             }
         } else if (arg0 == 0) {
             if (i_fopAcM_isSwitch(this, swBit)) {
                 if (field_0xcc8 == 0) {
-                    release(field_0x568);
+                    release(mpBgW);
                     field_0xcc8 = 1;
                 }
             } else if (field_0xcc8 == 1) {
-                regist(field_0x568);
+                regist(mpBgW);
                 field_0xcc8 = 0;
             }
         }
@@ -1374,7 +1374,7 @@ int daBgObj_c::Execute(f32 (**param_0)[3][4]) {
         }
     }
 
-    *param_0 = &field_0x56c;
+    *param_0 = &mBgMtx;
     setBaseMtx();
     return 1;
 }
@@ -1439,7 +1439,7 @@ void daBgObj_c::indirectProc(J3DModel* i_model) {
 
 /* 8045C2E8-8045C330 002D08 0048+00 1/0 0/0 0/0 .text            Delete__9daBgObj_cFv */
 int daBgObj_c::Delete() {
-    release(mpBgW);
+    release(mpBgW2);
     dComIfG_resDelete(&mPhase, daSetBgObj_c::getArcName(this));
     return 1;
 }

@@ -106,7 +106,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     cBgD_t* pdzb = (cBgD_t*)dComIfG_getObjectRes("Obj_Fmobj", 7);
-    if (a_this->mpBgW->Set(pdzb, 1, &a_this->field_0x588) == 1) {
+    if (a_this->mpBgW->Set(pdzb, cBgW::MOVE_BG_e, &a_this->mBgMtx) == 1) {
         return 0;
     }
 
@@ -170,7 +170,7 @@ static int daObj_Fmobj_Create(fopAc_ac_c* i_this) {
         a_this->mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 
         mDoMtx_stack_c::transM(0.0f, -30.0f, 0.0f);
-        PSMTXCopy(mDoMtx_stack_c::get(), a_this->field_0x588);
+        PSMTXCopy(mDoMtx_stack_c::get(), a_this->mDzbMtx);
 
         a_this->mpBgW->Move();
     }

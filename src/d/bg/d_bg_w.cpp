@@ -4,10 +4,10 @@
 //
 
 #include "d/bg/d_bg_w.h"
-#include "SSystem/SComponent/c_math.h"
 #include "SSystem/SComponent/c_bg_s_shdw_draw.h"
-#include "d/bg/d_bg_s_sph_chk.h"
+#include "SSystem/SComponent/c_math.h"
 #include "d/bg/d_bg_s_cap_poly.h"
+#include "d/bg/d_bg_s_sph_chk.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "global.h"
@@ -420,22 +420,22 @@ SECTION_SDATA2 static u8 lit_3717[4] = {
 /* 80079294-8007933C 073BD4 00A8+00 1/1 0/0 0/0 .text            __ct__4cBgWFv */
 cBgW::cBgW() {
     pm_bgd = NULL;
-    field_0x88 = 0x20;
-    field_0x89 = 1;
-    field_0x90 = 0;
-    field_0x7c.set(FLOAT_LABEL(lit_3717), FLOAT_LABEL(lit_3717), FLOAT_LABEL(lit_3717));
+    mFlags = GLOBAL_e;
+    mNeedsFullTransform = 1;
+    mMoveCounter = 0;
+    mTransVel.set(FLOAT_LABEL(lit_3717), FLOAT_LABEL(lit_3717), FLOAT_LABEL(lit_3717));
 
     pm_tri = NULL;
     pm_rwg = NULL;
-    field_0xa4 = NULL;
+    pm_blk = NULL;
     pm_node_tree = NULL;
     pm_grp = NULL;
     pm_vtx_tbl = NULL;
     pm_base = NULL;
 
     PSMTXIdentity(m_inv_mtx);
-    PSMTXIdentity(field_0x4c);
-    field_0x92 = 0xFFFF;
+    PSMTXIdentity(m_mtx);
+    m_rootGrpIdx = 0xFFFF;
     field_0x91 = 0;
 }
 
@@ -455,7 +455,7 @@ void cBgW::FreeArea() {
     pm_tri = NULL;
     pm_rwg = NULL;
     pm_node_tree = NULL;
-    field_0xa4 = NULL;
+    pm_blk = NULL;
     pm_grp = NULL;
     pm_vtx_tbl = NULL;
 }
@@ -463,10 +463,10 @@ void cBgW::FreeArea() {
 /* 800793C4-80079484 073D04 00C0+00 2/2 0/0 1/1 .text            GlobalVtx__4cBgWFv */
 void cBgW::GlobalVtx() {
     if (pm_base != NULL) {
-        if (!field_0x89) {
+        if (!mNeedsFullTransform) {
             for (int i = 0; i < pm_bgd->m_v_num; i++) {
                 Vec* vtx = &pm_vtx_tbl[i];
-                PSVECAdd(vtx, &field_0x7c, vtx);
+                PSVECAdd(vtx, &mTransVel, vtx);
             }
         } else {
             for (int i = 0; i < pm_bgd->m_v_num; i++) {
@@ -480,16 +480,16 @@ void cBgW::GlobalVtx() {
 // matches with literals
 #ifdef NONMATCHING
 bool cBgW::SetVtx() {
-    if (field_0x88 & 0x10) {
+    if (mFlags & NO_VTX_TBL_e) {
         pm_vtx_tbl = NULL;
-    } else if (field_0x88 & 0x1) {
+    } else if (mFlags & MOVE_BG_e) {
         pm_vtx_tbl = new Vec[pm_bgd->m_v_num];
 
         if (pm_vtx_tbl == NULL) {
             return true;
         }
 
-        if (field_0x88 & 0x40) {
+        if (mFlags & CBGW_UNK_FLAG_40) {
             for (int i = 0; i < pm_bgd->m_v_num; i++) {
                 pm_vtx_tbl[i].x = 0.0f;
                 pm_vtx_tbl[i].y = 0.0f;
@@ -517,18 +517,18 @@ asm bool cBgW::SetVtx() {
 
 /* 80079564-80079668 073EA4 0104+00 2/0 1/0 0/0 .text            CalcPlane__4cBgWFv */
 void cBgW::CalcPlane() {
-    dzb_tri_data* tri_data = pm_bgd->m_t_tbl;
+    cBgD_Tri_t* tri_data = pm_bgd->m_t_tbl;
 
     if (pm_vtx_tbl != NULL) {
-        if (!field_0x89) {
+        if (!mNeedsFullTransform) {
             for (int i = 0; i < pm_bgd->m_t_num; i++) {
-                pm_tri[i].m_plane.mD -= PSVECDotProduct(&pm_tri[i].m_plane.mNormal, &field_0x7c);
+                pm_tri[i].m_plane.mD -= PSVECDotProduct(&pm_tri[i].m_plane.mNormal, &mTransVel);
             }
         } else {
             for (int i = 0; i < pm_bgd->m_t_num; i++) {
-                pm_tri[i].m_plane.SetupFrom3Vtx(&pm_vtx_tbl[tri_data[i].field_0x0],
-                                                &pm_vtx_tbl[tri_data[i].field_0x2],
-                                                &pm_vtx_tbl[tri_data[i].field_0x4]);
+                pm_tri[i].m_plane.SetupFrom3Vtx(&pm_vtx_tbl[tri_data[i].m_vtx_idx0],
+                                                &pm_vtx_tbl[tri_data[i].m_vtx_idx1],
+                                                &pm_vtx_tbl[tri_data[i].m_vtx_idx2]);
             }
         }
     }
@@ -561,17 +561,17 @@ extern "C" asm void __dt__11cBgW_TriElmFv() {
 cBgW_TriElm::cBgW_TriElm() {}
 
 /* 80079770-800797BC 0740B0 004C+00 1/1 0/0 0/0 .text            BlckConnect__4cBgWFPUsPii */
-void cBgW::BlckConnect(u16* param_0, int* param_1, int param_2) {
-    if (*param_0 == 0xFFFF) {
-        *param_0 = param_2;
+void cBgW::BlckConnect(u16* i_start_idx, int* i_prev_idx, int i_idx) {
+    if (*i_start_idx == 0xFFFF) {
+        *i_start_idx = i_idx;
     }
 
-    if (*param_1 != 0xFFFF) {
-        pm_rwg[*param_1].field_0x0 = param_2;
+    if (*i_prev_idx != 0xFFFF) {
+        pm_rwg[*i_prev_idx].m_next = i_idx;
     }
 
-    *param_1 = param_2;
-    pm_rwg[*param_1].field_0x0 = 0xFFFF;
+    *i_prev_idx = i_idx;
+    pm_rwg[*i_prev_idx].m_next = 0xFFFF;
 }
 
 /* 800797BC-8007998C 0740FC 01D0+00 2/0 1/0 0/0 .text            ClassifyPlane__4cBgWFv */
@@ -581,37 +581,39 @@ void cBgW::ClassifyPlane() {
     if (pm_vtx_tbl == NULL) {
         return;
     }
-    
+
     for (int i = 0; i < pm_bgd->m_b_num; i++) {
-        int local_2c = pm_bgd->m_b_tbl[i].field_0x0;
-        int uVar4;
+        int start_idx = pm_bgd->m_b_tbl[i].field_0x0;
+        int end_idx;
         if (i != pm_bgd->m_b_num - 1) {
-            uVar4 = pm_bgd->m_b_tbl[i + 1].field_0x0 - 1;
+            end_idx = pm_bgd->m_b_tbl[i + 1].field_0x0 - 1;
         } else {
-            uVar4 = pm_bgd->m_t_num - 1;
+            end_idx = pm_bgd->m_t_num - 1;
         }
-        field_0xa4[i].field_0x0 = 0xffff;
-        field_0xa4[i].field_0x2 = 0xffff;
-        field_0xa4[i].field_0x4 = 0xffff;
-        int local_30;
-        int local_34;
-        int local_38 = 0xffff;
-        local_34 = 0xffff;
-        local_30 = 0xffff;
-        
-        for (int uVar3 = local_2c; uVar3 <= uVar4; uVar3++) {
-            f32 dVar8 = pm_tri[uVar3].m_plane.i_GetNP()->y;
-            if (!cM3d_IsZero(pm_tri[uVar3].m_plane.i_GetNP()->x) ||
-            !cM3d_IsZero(dVar8) || !cM3d_IsZero(pm_tri[uVar3].m_plane.i_GetNP()->z)) {
-                if (cBgW_CheckBGround(dVar8)) {
-                    BlckConnect(&field_0xa4[i].field_0x4, &local_38, uVar3);
+        pm_blk[i].m_roof_idx = 0xFFFF;
+        pm_blk[i].m_wall_idx = 0xFFFF;
+        pm_blk[i].m_gnd_idx = 0xFFFF;
+        int blk_roof_idx;
+        int blk_wall_idx;
+        int blk_gnd_idx = 0xFFFF;
+        blk_wall_idx = 0xFFFF;
+        blk_roof_idx = 0xFFFF;
+
+        for (int j = start_idx; j <= end_idx; j++) {
+            f32 norm_y = pm_tri[j].m_plane.i_GetNP()->y;
+
+            if (!cM3d_IsZero(pm_tri[j].m_plane.i_GetNP()->x) || !cM3d_IsZero(norm_y) ||
+                !cM3d_IsZero(pm_tri[j].m_plane.i_GetNP()->z))
+            {
+                if (cBgW_CheckBGround(norm_y)) {
+                    BlckConnect(&pm_blk[i].m_gnd_idx, &blk_gnd_idx, j);
                 } else {
-                    if (cBgW_CheckBRoof(dVar8)) {
+                    if (cBgW_CheckBRoof(norm_y)) {
                         if (!ChkRoofRegist()) {
-                            BlckConnect(&field_0xa4[i].field_0x0, &local_30, uVar3);
+                            BlckConnect(&pm_blk[i].m_roof_idx, &blk_roof_idx, j);
                         }
                     } else {
-                        BlckConnect(&field_0xa4[i].field_0x2, &local_34, uVar3);
+                        BlckConnect(&pm_blk[i].m_wall_idx, &blk_wall_idx, j);
                     }
                 }
             }
@@ -630,38 +632,38 @@ asm void cBgW::ClassifyPlane() {
 #endif
 
 /* 8007998C-800799E0 0742CC 0054+00 1/1 0/0 0/0 .text MakeBlckTransMinMax__4cBgWFP4cXyzP4cXyz */
-void cBgW::MakeBlckTransMinMax(cXyz* param_0, cXyz* param_1) {
-    PSVECAdd(param_0, &field_0x7c, param_0);
-    PSVECAdd(param_1, &field_0x7c, param_1);
+void cBgW::MakeBlckTransMinMax(cXyz* i_min, cXyz* i_max) {
+    PSVECAdd(i_min, &mTransVel, i_min);
+    PSVECAdd(i_max, &mTransVel, i_max);
 }
 
 /* 800799E0-80079A68 074320 0088+00 1/1 0/0 0/0 .text            MakeBlckMinMax__4cBgWFiP4cXyzP4cXyz
  */
-void cBgW::MakeBlckMinMax(int vtx_index, cXyz* param_1, cXyz* param_2) {
+void cBgW::MakeBlckMinMax(int vtx_index, cXyz* i_min, cXyz* i_max) {
     Vec* vtx = &pm_vtx_tbl[vtx_index];
 
-    if (param_1->x > vtx->x) {
-        param_1->x = vtx->x;
+    if (i_min->x > vtx->x) {
+        i_min->x = vtx->x;
     }
 
-    if (param_2->x < vtx->x) {
-        param_2->x = vtx->x;
+    if (i_max->x < vtx->x) {
+        i_max->x = vtx->x;
     }
 
-    if (param_1->y > vtx->y) {
-        param_1->y = vtx->y;
+    if (i_min->y > vtx->y) {
+        i_min->y = vtx->y;
     }
 
-    if (param_2->y < vtx->y) {
-        param_2->y = vtx->y;
+    if (i_max->y < vtx->y) {
+        i_max->y = vtx->y;
     }
 
-    if (param_1->z > vtx->z) {
-        param_1->z = vtx->z;
+    if (i_min->z > vtx->z) {
+        i_min->z = vtx->z;
     }
 
-    if (param_2->z < vtx->z) {
-        param_2->z = vtx->z;
+    if (i_max->z < vtx->z) {
+        i_max->z = vtx->z;
     }
 }
 
@@ -678,38 +680,38 @@ SECTION_SDATA2 static f32 lit_3937 = 1.0f;
 /* 80079A68-80079BDC 0743A8 0174+00 1/1 0/0 0/0 .text            MakeBlckBnd__4cBgWFiP4cXyzP4cXyz */
 // matches with literals
 #ifdef NONMATCHING
-void cBgW::MakeBlckBnd(int param_0, cXyz* param_1, cXyz* param_2) {
-    int tmp = pm_bgd->m_b_tbl[param_0].field_0x0;
-    int tmp2;
+void cBgW::MakeBlckBnd(int i_blk_idx, cXyz* i_min, cXyz* i_max) {
+    int start = pm_bgd->m_b_tbl[i_blk_idx].field_0x0;
+    int max;
 
-    if (param_0 != pm_bgd->m_b_num - 1) {
-        tmp2 = pm_bgd->m_b_tbl[param_0 + 1].field_0x0 - 1;
+    if (i_blk_idx != pm_bgd->m_b_num - 1) {
+        max = pm_bgd->m_b_tbl[i_blk_idx + 1].field_0x0 - 1;
     } else {
-        tmp2 = pm_bgd->m_t_num - 1;
+        max = pm_bgd->m_t_num - 1;
     }
 
-    if (field_0x89 == 0) {
-        MakeBlckTransMinMax(param_1, param_2);
+    if (mNeedsFullTransform == 0) {
+        MakeBlckTransMinMax(i_min, i_max);
     } else {
-        param_1->z = 1000000000.0f;
-        param_1->y = 1000000000.0f;
-        param_1->x = 1000000000.0f;
-        param_2->z = -1000000000.0f;
-        param_2->y = -1000000000.0f;
-        param_2->x = -1000000000.0f;
+        i_min->z = 1000000000.0f;
+        i_min->y = 1000000000.0f;
+        i_min->x = 1000000000.0f;
+        i_max->z = -1000000000.0f;
+        i_max->y = -1000000000.0f;
+        i_max->x = -1000000000.0f;
 
-        for (int i = tmp; i <= tmp2; i++) {
-            MakeBlckMinMax(pm_bgd->m_t_tbl[i].field_0x0, param_1, param_2);
-            MakeBlckMinMax(pm_bgd->m_t_tbl[i].field_0x2, param_1, param_2);
-            MakeBlckMinMax(pm_bgd->m_t_tbl[i].field_0x4, param_1, param_2);
+        for (int i = start; i <= max; i++) {
+            MakeBlckMinMax(pm_bgd->m_t_tbl[i].m_vtx_idx0, i_min, i_max);
+            MakeBlckMinMax(pm_bgd->m_t_tbl[i].m_vtx_idx1, i_min, i_max);
+            MakeBlckMinMax(pm_bgd->m_t_tbl[i].m_vtx_idx2, i_min, i_max);
         }
 
-        param_1->x -= 1.0f;
-        param_1->y -= 1.0f;
-        param_1->z -= 1.0f;
-        param_2->x += 1.0f;
-        param_2->y += 1.0f;
-        param_2->z += 1.0f;
+        i_min->x -= 1.0f;
+        i_min->y -= 1.0f;
+        i_min->z -= 1.0f;
+        i_max->x += 1.0f;
+        i_max->y += 1.0f;
+        i_max->z += 1.0f;
     }
 }
 #else
@@ -724,50 +726,51 @@ asm void cBgW::MakeBlckBnd(int param_0, cXyz* param_1, cXyz* param_2) {
 #endif
 
 /* 80079BDC-80079CC4 07451C 00E8+00 1/1 0/0 0/0 .text            MakeNodeTreeRp__4cBgWFi */
-void cBgW::MakeNodeTreeRp(int param_0) {
-    dzb_tree_data* tree_data = &pm_bgd->m_tree_tbl[param_0];
+void cBgW::MakeNodeTreeRp(int i_tree_idx) {
+    cBgD_Tree_t* tree_data = &pm_bgd->m_tree_tbl[i_tree_idx];
 
-    if (tree_data->field_0x0 & 1) {
-        int tmp = tree_data->m_id[0];
+    if (tree_data->m_flag & 1) {
+        int child_idx = tree_data->m_id[0];
 
-        if (tmp != 0xFFFF) {
-            cXyz* max = (cXyz*)pm_node_tree[param_0].GetMaxP();
-            cXyz* min = (cXyz*)pm_node_tree[param_0].GetMinP();
+        if (child_idx != 0xFFFF) {
+            cXyz* max = (cXyz*)pm_node_tree[i_tree_idx].GetMaxP();
+            cXyz* min = (cXyz*)pm_node_tree[i_tree_idx].GetMinP();
 
-            MakeBlckBnd(tmp, min, max);
+            MakeBlckBnd(child_idx, min, max);
         }
     } else {
-        pm_node_tree[param_0].ClearForMinMax();
+        pm_node_tree[i_tree_idx].ClearForMinMax();
 
         for (int i = 0; i < 8; i++) {
-            // this is probably wrong, fix later
-            u16* tmp_p = (u16*)tree_data;
-            int tmp = tmp_p[i + 2];
+            int child_idx = tree_data->m_id[i];
 
-            if (tmp != 0xFFFF) {
-                MakeNodeTreeRp(tmp);
-                pm_node_tree[param_0].SetMinMax(*pm_node_tree[tmp].GetMinP());
-                pm_node_tree[param_0].SetMinMax(*pm_node_tree[tmp].GetMaxP());
+            if (child_idx != 0xFFFF) {
+                MakeNodeTreeRp(child_idx);
+                pm_node_tree[i_tree_idx].SetMinMax(*pm_node_tree[child_idx].GetMinP());
+                pm_node_tree[i_tree_idx].SetMinMax(*pm_node_tree[child_idx].GetMaxP());
             }
         }
     }
 }
 
 /* 80079CC4-80079DF0 074604 012C+00 1/1 0/0 0/0 .text            MakeNodeTreeGrpRp__4cBgWFi */
-void cBgW::MakeNodeTreeGrpRp(int param_0) {
-    if (pm_bgd->m_g_tbl[param_0].field_0x2e != 0xFFFF) {
-        MakeNodeTreeRp(pm_bgd->m_g_tbl[param_0].field_0x2e);
-        pm_grp[param_0].m_aab.SetMin(*pm_node_tree[pm_bgd->m_g_tbl[param_0].field_0x2e].GetMinP());
-        pm_grp[param_0].m_aab.SetMax(*pm_node_tree[pm_bgd->m_g_tbl[param_0].field_0x2e].GetMaxP());
+void cBgW::MakeNodeTreeGrpRp(int i_grp_idx) {
+    if (pm_bgd->m_g_tbl[i_grp_idx].m_tree_idx != 0xFFFF) {
+        MakeNodeTreeRp(pm_bgd->m_g_tbl[i_grp_idx].m_tree_idx);
+        pm_grp[i_grp_idx].m_aab.SetMin(
+            *pm_node_tree[pm_bgd->m_g_tbl[i_grp_idx].m_tree_idx].GetMinP());
+        pm_grp[i_grp_idx].m_aab.SetMax(
+            *pm_node_tree[pm_bgd->m_g_tbl[i_grp_idx].m_tree_idx].GetMaxP());
     }
 
-    s32 tmp2 = pm_bgd->m_g_tbl[param_0].field_0x28;
+    s32 child_idx = pm_bgd->m_g_tbl[i_grp_idx].m_first_child;
     while (true) {
-        if (tmp2 == 0xFFFF) break;
-        MakeNodeTreeGrpRp(tmp2);
-        pm_grp[param_0].m_aab.SetMin(*pm_grp[tmp2].m_aab.GetMinP());
-        pm_grp[param_0].m_aab.SetMax(*pm_grp[tmp2].m_aab.GetMaxP());
-        tmp2 = pm_bgd->m_g_tbl[tmp2].field_0x26;
+        if (child_idx == 0xFFFF)
+            break;
+        MakeNodeTreeGrpRp(child_idx);
+        pm_grp[i_grp_idx].m_aab.SetMin(*pm_grp[child_idx].m_aab.GetMinP());
+        pm_grp[i_grp_idx].m_aab.SetMax(*pm_grp[child_idx].m_aab.GetMaxP());
+        child_idx = pm_bgd->m_g_tbl[child_idx].m_next_sibling;
     }
 }
 
@@ -775,8 +778,8 @@ void cBgW::MakeNodeTreeGrpRp(int param_0) {
 void cBgW::MakeNodeTree() {
     if (pm_vtx_tbl == NULL) {
         for (int i = 0; i < pm_bgd->m_g_num; i++) {
-            if (pm_bgd->m_g_tbl[i].field_0x24 == 0xffff) {
-                field_0x92 = i;
+            if (pm_bgd->m_g_tbl[i].m_parent == 0xFFFF) {
+                m_rootGrpIdx = i;
                 return;
             }
         }
@@ -784,9 +787,10 @@ void cBgW::MakeNodeTree() {
         for (int i = 0; i < pm_bgd->m_g_num; i++) {
             pm_grp[i].m_aab.ClearForMinMax();
         }
+
         for (int i = 0; i < pm_bgd->m_g_num; i++) {
-            if (pm_bgd->m_g_tbl[i].field_0x24 == 0xffff) {
-                field_0x92 = i;
+            if (pm_bgd->m_g_tbl[i].m_parent == 0xFFFF) {
+                m_rootGrpIdx = i;
                 MakeNodeTreeGrpRp(i);
                 return;
             }
@@ -796,8 +800,9 @@ void cBgW::MakeNodeTree() {
 
 /* 80079EEC-80079F38 07482C 004C+00 2/0 1/0 0/0 .text            ChkMemoryError__4cBgWFv */
 bool cBgW::ChkMemoryError() {
-    if (pm_tri == NULL || pm_rwg == NULL || field_0xa4 == NULL || pm_node_tree == NULL ||
-        pm_grp == NULL) {
+    if (pm_tri == NULL || pm_rwg == NULL || pm_blk == NULL || pm_node_tree == NULL ||
+        pm_grp == NULL)
+    {
         return true;
     }
 
@@ -805,29 +810,29 @@ bool cBgW::ChkMemoryError() {
 }
 
 /* 80079F38-8007A184 074878 024C+00 1/1 3/3 85/85 .text            Set__4cBgWFP6cBgD_tUlPA3_A4_f */
-bool cBgW::Set(cBgD_t* pbgd, u32 param_1, Mtx* pbase_mtx) {
-    field_0x88 = 0x20;
+bool cBgW::Set(cBgD_t* pbgd, u32 flags, Mtx* pbase_mtx) {
+    mFlags = GLOBAL_e;
     pm_vtx_tbl = NULL;
     pm_tri = NULL;
     pm_rwg = NULL;
-    field_0xa4 = NULL;
+    pm_blk = NULL;
     pm_node_tree = NULL;
     pm_grp = NULL;
-    field_0x90 = cM_rndF(128.0f);
+    mMoveCounter = cM_rndF(128.0f);
 
     if (pbgd == NULL) {
         return true;
     }
 
-    field_0x88 = param_1;
-    if (field_0x88 & 0x20) {
+    mFlags = flags;
+    if (mFlags & GLOBAL_e) {
         pm_base = NULL;
         PSMTXIdentity(m_inv_mtx);
-        PSMTXIdentity(field_0x4c);
+        PSMTXIdentity(m_mtx);
     } else {
         pm_base = *pbase_mtx;
         PSMTXCopy(pm_base, m_inv_mtx);
-        PSMTXCopy(pm_base, field_0x4c);
+        PSMTXCopy(pm_base, m_mtx);
     }
 
     pm_bgd = pbgd;
@@ -843,8 +848,8 @@ bool cBgW::Set(cBgD_t* pbgd, u32 param_1, Mtx* pbase_mtx) {
         return true;
     }
 
-    field_0xa4 = new cBgW_unk_b_data[pm_bgd->m_b_num];
-    if (field_0xa4 == NULL) {
+    pm_blk = new cBgW_BlkElm[pm_bgd->m_b_num];
+    if (pm_blk == NULL) {
         FreeArea();
         return true;
     }
@@ -862,7 +867,7 @@ bool cBgW::Set(cBgD_t* pbgd, u32 param_1, Mtx* pbase_mtx) {
     }
 
     ClassifyPlane();
-    field_0x89 = 1;
+    mNeedsFullTransform = 1;
     MakeNodeTree();
     return false;
 }
@@ -890,7 +895,7 @@ bool cBgW::RwgLineCheck(u16 poly_index, cBgS_LinChk* linchk) {
     cM3dGTri tri;
 
     while (1) {
-        dzb_tri_data* tri_data = &pm_bgd->m_t_tbl[poly_index];
+        cBgD_Tri_t* tri_data = &pm_bgd->m_t_tbl[poly_index];
 
         tri.setBg(&pm_vtx_tbl[tri_data->field_0x0], &pm_vtx_tbl[tri_data->field_0x2],
                   &pm_vtx_tbl[tri_data->field_0x4], &pm_tri[poly_index].m_plane);
@@ -904,11 +909,10 @@ bool cBgW::RwgLineCheck(u16 poly_index, cBgS_LinChk* linchk) {
             }
         }
 
-
-        if (pm_rwg[poly_index].field_0x0 == 0xFFFF) {
+        if (pm_rwg[poly_index].m_next == 0xFFFF) {
             break;
         }
-        poly_index = pm_rwg[poly_index].field_0x0;
+        poly_index = pm_rwg[poly_index].m_next;
     }
 
     return chk;
@@ -940,31 +944,32 @@ extern "C" asm void __dt__8cM3dGTriFv() {
 bool cBgW::LineCheckRp(cBgS_LinChk* linchk, int param_1) {
     cBgW_NodeTree* pnode0 = &pm_node_tree[param_1];
 
-    if (!cM3d_Cross_MinMaxBoxLine((Vec*)pnode0->GetMinP(), (Vec*)pnode0->GetMaxP(), &linchk->GetLinP()->GetStartP(),
-                                  &linchk->GetLinP()->GetEndP())) {
+    if (!cM3d_Cross_MinMaxBoxLine((Vec*)pnode0->GetMinP(), (Vec*)pnode0->GetMaxP(),
+                                  &linchk->GetLinP()->GetStartP(), &linchk->GetLinP()->GetEndP()))
+    {
         return false;
     }
 
-    dzb_tree_data* pnode = &pm_bgd->m_tree_tbl[param_1];
+    cBgD_Tree_t* pnode = &pm_bgd->m_tree_tbl[param_1];
     bool chk = false;
 
-    if (pnode->field_0x0 & 1) {
+    if (pnode->m_flag & 1) {
         if (linchk->GetPreWallChk()) {
-            u16 tmp = field_0xa4[pnode->m_id[0]].field_0x2;
+            u16 tmp = pm_blk[pnode->m_id[0]].m_wall_idx;
             if (tmp != 0xFFFF && RwgLineCheck(tmp, linchk)) {
                 chk = true;
             }
         }
 
         if (linchk->GetPreGroundChk()) {
-            u16 tmp = field_0xa4[pnode->m_id[0]].field_0x4;
+            u16 tmp = pm_blk[pnode->m_id[0]].m_gnd_idx;
             if (tmp != 0xFFFF && RwgLineCheck(tmp, linchk)) {
                 chk = true;
             }
         }
 
         if (linchk->GetPreRoofChk()) {
-            u16 tmp = field_0xa4[pnode->m_id[0]].field_0x0;
+            u16 tmp = pm_blk[pnode->m_id[0]].m_roof_idx;
             if (tmp != 0xFFFF && RwgLineCheck(tmp, linchk)) {
                 chk = true;
             }
@@ -992,39 +997,40 @@ bool cBgW::LineCheckGrpRp(cBgS_LinChk* param_0, int param_1, int param_2) {
         return false;
     }
     bool uVar4 = false;
-    
-    if (pm_bgd->m_g_tbl[param_1].field_0x2e != 0xffff &&
-        LineCheckRp(param_0, pm_bgd->m_g_tbl[param_1].field_0x2e)) {
+
+    if (pm_bgd->m_g_tbl[param_1].m_tree_idx != 0xFFFF &&
+        LineCheckRp(param_0, pm_bgd->m_g_tbl[param_1].m_tree_idx))
+    {
         uVar4 = true;
     }
-    
-    s32 uVar1 = pm_bgd->m_g_tbl[param_1].field_0x28;
+
+    s32 uVar1 = pm_bgd->m_g_tbl[param_1].m_first_child;
     while (true) {
-        if (uVar1 == 0xffff) {
+        if (uVar1 == 0xFFFF) {
             break;
         }
         if (LineCheckGrpRp(param_0, uVar1, param_2 + 1)) {
             uVar4 = true;
         }
-        uVar1 = pm_bgd->m_g_tbl[uVar1].field_0x26;
+        uVar1 = pm_bgd->m_g_tbl[uVar1].m_next_sibling;
     }
     return uVar4;
 }
 
 /* 8007A658-8007A680 074F98 0028+00 2/0 1/0 0/0 .text            LineCheck__4cBgWFP11cBgS_LinChk */
 bool cBgW::LineCheck(cBgS_LinChk* pchk) {
-    return LineCheckGrpRp(pchk, field_0x92, 1);
+    return LineCheckGrpRp(pchk, m_rootGrpIdx, 1);
 }
 
 /* 8007A680-8007A774 074FC0 00F4+00 2/2 0/0 0/0 .text
  * RwgGroundCheckCommon__4cBgWFfUsP11cBgS_GndChk                */
 bool cBgW::RwgGroundCheckCommon(f32 param_0, u16 param_1, cBgS_GndChk* param_2) {
     if (param_0 < param_2->GetPointP().y && param_0 > param_2->GetNowY()) {
-        dzb_tri_data* puVar7 = &pm_bgd->m_t_tbl[param_1];
-        if (cM3d_CrossY_Tri_Front(pm_vtx_tbl[puVar7->field_0x0],
-                                pm_vtx_tbl[puVar7->field_0x2],
-                                pm_vtx_tbl[puVar7->field_0x4],
-                                (const Vec*)&param_2->GetPointP())) {
+        cBgD_Tri_t* puVar7 = &pm_bgd->m_t_tbl[param_1];
+        if (cM3d_CrossY_Tri_Front(pm_vtx_tbl[puVar7->m_vtx_idx0], pm_vtx_tbl[puVar7->m_vtx_idx1],
+                                  pm_vtx_tbl[puVar7->m_vtx_idx2],
+                                  (const Vec*)&param_2->GetPointP()))
+        {
             if (!ChkPolyThrough(param_1, param_2->GetPolyPassChk())) {
                 param_2->SetNowY(param_0);
                 param_2->SetPolyIndex(param_1);
@@ -1044,9 +1050,9 @@ bool cBgW::RwgGroundCheckGnd(u16 param_0, cBgS_GndChk* param_1) {
         if (RwgGroundCheckCommon(dVar5, (u32)param_0, param_1)) {
             rv = true;
         }
-        if (puVar4->field_0x0 == 0xffff)
+        if (puVar4->m_next == 0xFFFF)
             break;
-        param_0 = puVar4->field_0x0;
+        param_0 = puVar4->m_next;
     }
     return rv;
 }
@@ -1057,16 +1063,16 @@ bool cBgW::RwgGroundCheckWall(u16 param_0, cBgS_GndChk* param_1) {
     bool rv = false;
     while (true) {
         cBgW_TriElm* puVar5 = &pm_tri[param_0];
-            cBgW_RwgElm* puVar4 = &pm_rwg[param_0];
+        cBgW_RwgElm* puVar4 = &pm_rwg[param_0];
         if (puVar5->m_plane.mNormal.y >= 0.014f) {
             f32 dVar5 = puVar5->m_plane.getCrossY_NonIsZero(&param_1->GetPointP());
             if (RwgGroundCheckCommon(dVar5, (u32)param_0, param_1)) {
                 rv = true;
             }
         }
-        if (puVar4->field_0x0 == 0xffff)
+        if (puVar4->m_next == 0xFFFF)
             break;
-        param_0 = puVar4->field_0x0;
+        param_0 = puVar4->m_next;
     }
     return rv;
 }
@@ -1074,15 +1080,15 @@ bool cBgW::RwgGroundCheckWall(u16 param_0, cBgS_GndChk* param_1) {
 /* 8007A8F4-8007AA50 075234 015C+00 1/1 0/0 0/0 .text GroundCrossRp__4cBgWFP11cBgS_GndChki */
 bool cBgW::GroundCrossRp(cBgS_GndChk* param_0, int param_1) {
     bool rv = false;
-    dzb_tree_data* puVar9 = &pm_bgd->m_tree_tbl[param_1];
-    if ((puVar9->field_0x0 & 1)) {
-        if (field_0xa4[puVar9->m_id[0]].field_0x4 != 0xffff &&
-            RwgGroundCheckGnd(field_0xa4[puVar9->m_id[0]].field_0x4, param_0))
+    cBgD_Tree_t* puVar9 = &pm_bgd->m_tree_tbl[param_1];
+    if ((puVar9->m_flag & 1)) {
+        if (pm_blk[puVar9->m_id[0]].m_gnd_idx != 0xFFFF &&
+            RwgGroundCheckGnd(pm_blk[puVar9->m_id[0]].m_gnd_idx, param_0))
         {
             rv = true;
         }
-        if (param_0->GetWallPrecheck() && field_0xa4[puVar9->m_id[0]].field_0x2 != 0xffff &&
-            RwgGroundCheckWall(field_0xa4[puVar9->m_id[0]].field_0x2, param_0))
+        if (param_0->GetWallPrecheck() && pm_blk[puVar9->m_id[0]].m_wall_idx != 0xFFFF &&
+            RwgGroundCheckWall(pm_blk[puVar9->m_id[0]].m_wall_idx, param_0))
         {
             rv = true;
         }
@@ -1090,48 +1096,51 @@ bool cBgW::GroundCrossRp(cBgS_GndChk* param_0, int param_1) {
     }
 
     for (int i = 0; i < 8; i++) {
-        if (puVar9->m_id[i] != 0xffff) {
+        if (puVar9->m_id[i] != 0xFFFF) {
             cM3dGAab* this_00 = &pm_node_tree[puVar9->m_id[i]];
             if (this_00->CrossY(&param_0->GetPointP())) {
                 if (this_00->UnderPlaneYUnder(param_0->GetPointP().y)) {
                     if (!this_00->TopPlaneYUnder(param_0->GetNowY()) &&
-                        GroundCrossRp(param_0, puVar9->m_id[i])) {
+                        GroundCrossRp(param_0, puVar9->m_id[i]))
+                    {
                         rv = true;
                     }
                 }
             }
         }
     }
-    
+
     return rv;
 }
 
 /* 8007AA50-8007AB9C 075390 014C+00 1/1 0/0 0/0 .text GroundCrossGrpRp__4cBgWFP11cBgS_GndChkii */
 bool cBgW::GroundCrossGrpRp(cBgS_GndChk* param_0, int param_1, int param_2) {
     cBgW_GrpElm* iVar7 = &pm_grp[param_1];
-    if (!iVar7->m_aab.CrossY(&param_0->GetPointP()) || 
-        !iVar7->m_aab.UnderPlaneYUnder(param_0->GetPointP().y) || 
-        iVar7->m_aab.TopPlaneYUnder(param_0->GetNowY())) {
+    if (!iVar7->m_aab.CrossY(&param_0->GetPointP()) ||
+        !iVar7->m_aab.UnderPlaneYUnder(param_0->GetPointP().y) ||
+        iVar7->m_aab.TopPlaneYUnder(param_0->GetNowY()))
+    {
         return false;
     }
     if (ChkGrpThrough(param_1, param_0->GetGrpPassChk(), param_2)) {
         return false;
     }
     bool uVar6 = false;
-    
-    if (pm_bgd->m_g_tbl[param_1].field_0x2e != 0xffff &&
-        GroundCrossRp(param_0, pm_bgd->m_g_tbl[param_1].field_0x2e)) {
+
+    if (pm_bgd->m_g_tbl[param_1].m_tree_idx != 0xFFFF &&
+        GroundCrossRp(param_0, pm_bgd->m_g_tbl[param_1].m_tree_idx))
+    {
         uVar6 = true;
     }
-    s32 uVar8 = pm_bgd->m_g_tbl[param_1].field_0x28;
+    s32 uVar8 = pm_bgd->m_g_tbl[param_1].m_first_child;
     while (true) {
-        if (uVar8 == 0xffff) {
+        if (uVar8 == 0xFFFF) {
             break;
         }
         if (GroundCrossGrpRp(param_0, uVar8, param_2 + 1)) {
             uVar6 = true;
         }
-        uVar8 = pm_bgd->m_g_tbl[uVar8].field_0x26;
+        uVar8 = pm_bgd->m_g_tbl[uVar8].m_next_sibling;
     }
     return uVar6;
 }
@@ -1139,44 +1148,46 @@ bool cBgW::GroundCrossGrpRp(cBgS_GndChk* param_0, int param_1, int param_2) {
 /* 8007AB9C-8007ABC4 0754DC 0028+00 2/0 1/0 0/0 .text            GroundCross__4cBgWFP11cBgS_GndChk
  */
 bool cBgW::GroundCross(cBgS_GndChk* pchk) {
-    return GroundCrossGrpRp(pchk, field_0x92, 1);
+    return GroundCrossGrpRp(pchk, m_rootGrpIdx, 1);
 }
 
 /* 8007ABC4-8007AC10 075504 004C+00 1/1 0/0 0/0 .text            CopyOldMtx__4cBgWFv */
 void cBgW::CopyOldMtx() {
     if (pm_base != NULL) {
-        PSMTXCopy(field_0x4c, m_inv_mtx);
-        PSMTXCopy(pm_base, field_0x4c);
+        PSMTXCopy(m_mtx, m_inv_mtx);
+        PSMTXCopy(pm_base, m_mtx);
     }
 }
 
 /* 8007AC10-8007ADF0 075550 01E0+00 1/1 0/0 0/0 .text            Move__4cBgWFv */
 void cBgW::Move() {
-    if (!ChkLock() && (field_0x88 & 1)) {
+    if (!ChkLock() && (mFlags & 1)) {
         if (!ChkNoCalcVtx()) {
-            if (field_0x90 >= 0xFF || field_0x4c[0][0] != pm_base[0][0] ||
-                field_0x4c[0][1] != pm_base[0][1] || field_0x4c[0][2] != pm_base[0][2] ||
-                field_0x4c[1][0] != pm_base[1][0] || field_0x4c[1][1] != pm_base[1][1] ||
-                field_0x4c[1][2] != pm_base[1][2] || field_0x4c[2][0] != pm_base[2][0] ||
-                field_0x4c[2][1] != pm_base[2][1] || field_0x4c[2][2] != pm_base[2][2]) {
-                field_0x89 = 1;
-            } else if (field_0x4c[0][3] == pm_base[0][3] && field_0x4c[1][3] == pm_base[1][3] &&
-                       field_0x4c[2][3] == pm_base[2][3]) {
+            if (mMoveCounter >= 0xFF || m_mtx[0][0] != pm_base[0][0] ||
+                m_mtx[0][1] != pm_base[0][1] || m_mtx[0][2] != pm_base[0][2] ||
+                m_mtx[1][0] != pm_base[1][0] || m_mtx[1][1] != pm_base[1][1] ||
+                m_mtx[1][2] != pm_base[1][2] || m_mtx[2][0] != pm_base[2][0] ||
+                m_mtx[2][1] != pm_base[2][1] || m_mtx[2][2] != pm_base[2][2])
+            {
+                mNeedsFullTransform = 1;
+            } else if (m_mtx[0][3] == pm_base[0][3] && m_mtx[1][3] == pm_base[1][3] &&
+                       m_mtx[2][3] == pm_base[2][3])
+            {
                 PSMTXCopy(pm_base, m_inv_mtx);
                 if (!ChkFlush()) {
                     return;
                 }
             } else {
-                field_0x7c.x = pm_base[0][3] - field_0x4c[0][3];
-                field_0x7c.y = pm_base[1][3] - field_0x4c[1][3];
-                field_0x7c.z = pm_base[2][3] - field_0x4c[2][3];
-                field_0x89 = 0;
+                mTransVel.x = pm_base[0][3] - m_mtx[0][3];
+                mTransVel.y = pm_base[1][3] - m_mtx[1][3];
+                mTransVel.z = pm_base[2][3] - m_mtx[2][3];
+                mNeedsFullTransform = 0;
             }
 
-            if (field_0x90 >= 0xFF) {
-                field_0x90 = 0;
+            if (mMoveCounter >= 0xFF) {
+                mMoveCounter = 0;
             } else {
-                field_0x90++;
+                mMoveCounter++;
             }
             GlobalVtx();
         }
@@ -1193,37 +1204,34 @@ void cBgW::RwgShdwDraw(int param_0, cBgS_ShdwDraw* param_1) {
     while (true) {
         cBgW_RwgElm* puVar4 = &pm_rwg[param_0];
         if (!ChkShdwDrawThrough(param_0, param_1->GetPolyPassChk())) {
-            (param_1->mCallbackFun)(
-                param_1, pm_vtx_tbl,
-                pm_bgd->m_t_tbl[param_0].field_0x0,
-                pm_bgd->m_t_tbl[param_0].field_0x2,
-                pm_bgd->m_t_tbl[param_0].field_0x4,
-                &pm_tri[param_0].m_plane);
+            (param_1->mCallbackFun)(param_1, pm_vtx_tbl, pm_bgd->m_t_tbl[param_0].m_vtx_idx0,
+                                    pm_bgd->m_t_tbl[param_0].m_vtx_idx1,
+                                    pm_bgd->m_t_tbl[param_0].m_vtx_idx2, &pm_tri[param_0].m_plane);
         }
-        if (puVar4->field_0x0 == 0xffff)
+        if (puVar4->m_next == 0xFFFF)
             break;
-        param_0 = puVar4->field_0x0;
+        param_0 = puVar4->m_next;
     }
 }
 
 /* 8007AEA4-8007AFC0 0757E4 011C+00 1/1 0/0 0/0 .text            ShdwDrawRp__4cBgWFP13cBgS_ShdwDrawi
  */
-void cBgW::ShdwDrawRp(cBgS_ShdwDraw *param_1,int param_2) {
+void cBgW::ShdwDrawRp(cBgS_ShdwDraw* param_1, int param_2) {
     if (pm_node_tree[param_2].Cross(param_1->GetBndP())) {
-        dzb_tree_data* puVar3 = &pm_bgd->m_tree_tbl[param_2];
-        if ((puVar3->field_0x0 & 1)) {
-            if (field_0xa4[puVar3->m_id[0]].field_0x2 != 0xffff) {
-                RwgShdwDraw(field_0xa4[puVar3->m_id[0]].field_0x2, param_1);
+        cBgD_Tree_t* puVar3 = &pm_bgd->m_tree_tbl[param_2];
+        if ((puVar3->m_flag & 1)) {
+            if (pm_blk[puVar3->m_id[0]].m_wall_idx != 0xFFFF) {
+                RwgShdwDraw(pm_blk[puVar3->m_id[0]].m_wall_idx, param_1);
             }
-            if (field_0xa4[puVar3->m_id[0]].field_0x0 != 0xffff) {
-                RwgShdwDraw(field_0xa4[puVar3->m_id[0]].field_0x0, param_1);
+            if (pm_blk[puVar3->m_id[0]].m_roof_idx != 0xFFFF) {
+                RwgShdwDraw(pm_blk[puVar3->m_id[0]].m_roof_idx, param_1);
             }
-            if (field_0xa4[puVar3->m_id[0]].field_0x4 != 0xffff) {
-                RwgShdwDraw(field_0xa4[puVar3->m_id[0]].field_0x4, param_1);
+            if (pm_blk[puVar3->m_id[0]].m_gnd_idx != 0xFFFF) {
+                RwgShdwDraw(pm_blk[puVar3->m_id[0]].m_gnd_idx, param_1);
             }
         } else {
             for (int iVar2 = 0; iVar2 < 8; iVar2++) {
-                if (puVar3->m_id[iVar2] != 0xffff) {
+                if (puVar3->m_id[iVar2] != 0xFFFF) {
                     ShdwDrawRp(param_1, puVar3->m_id[iVar2]);
                 }
             }
@@ -1234,24 +1242,23 @@ void cBgW::ShdwDrawRp(cBgS_ShdwDraw *param_1,int param_2) {
 /* 8007AFC0-8007B084 075900 00C4+00 1/1 0/0 0/0 .text ShdwDrawGrpRp__4cBgWFP13cBgS_ShdwDrawi */
 void cBgW::ShdwDrawGrpRp(cBgS_ShdwDraw* param_0, int param_1) {
     if (pm_grp[param_1].m_aab.Cross(param_0->GetBndP())) {
-        
-        if (pm_bgd->m_g_tbl[param_1].field_0x2e != 0xffff) {
-            ShdwDrawRp(param_0, pm_bgd->m_g_tbl[param_1].field_0x2e);
+        if (pm_bgd->m_g_tbl[param_1].m_tree_idx != 0xFFFF) {
+            ShdwDrawRp(param_0, pm_bgd->m_g_tbl[param_1].m_tree_idx);
         }
-        s32 uVar1 = pm_bgd->m_g_tbl[param_1].field_0x28;
+        s32 uVar1 = pm_bgd->m_g_tbl[param_1].m_first_child;
         while (true) {
-            if (uVar1 == 0xffff) {
+            if (uVar1 == 0xFFFF) {
                 break;
             }
             ShdwDrawGrpRp(param_0, uVar1);
-            uVar1 = pm_bgd->m_g_tbl[uVar1].field_0x26;
+            uVar1 = pm_bgd->m_g_tbl[uVar1].m_next_sibling;
         }
     }
 }
 
 /* 8007B084-8007B0A8 0759C4 0024+00 2/0 1/0 0/0 .text            ShdwDraw__4cBgWFP13cBgS_ShdwDraw */
 void cBgW::ShdwDraw(cBgS_ShdwDraw* pshdw) {
-    ShdwDrawGrpRp(pshdw, field_0x92);
+    ShdwDrawGrpRp(pshdw, m_rootGrpIdx);
 }
 
 /* 8007B0A8-8007B0B0 0759E8 0008+00 1/0 0/0 0/0 .text ChkPolyThrough__4cBgWFiP16cBgS_PolyPassChk
@@ -1275,13 +1282,13 @@ bool cBgW::ChkGrpThrough(int param_0, cBgS_GrpPassChk* param_1, int param_2) {
 s32 cBgW::GetGrpRoomIndex(cBgS_PolyInfo const& poly) const {
     int grp_index = GetTriGrp(poly.GetPolyIndex());
 
-    u16 tmp = pm_bgd->m_g_tbl[grp_index].field_0x24;
+    u16 tmp = pm_bgd->m_g_tbl[grp_index].m_parent;
 
-    if (tmp == 0xFFFF || pm_bgd->m_g_tbl[tmp].field_0x24 == 0xFFFF) {
+    if (tmp == 0xFFFF || pm_bgd->m_g_tbl[tmp].m_parent == 0xFFFF) {
         return 0xFF;
     }
 
-    int room_index = pm_bgd->m_g_tbl[pm_bgd->m_g_tbl[tmp].field_0x24].field_0x2a;
+    int room_index = pm_bgd->m_g_tbl[pm_bgd->m_g_tbl[tmp].m_parent].m_room_id;
     if (room_index >= 0xFF) {
         room_index = 0xFF;
     }
@@ -1291,7 +1298,7 @@ s32 cBgW::GetGrpRoomIndex(cBgS_PolyInfo const& poly) const {
 
 /* 8007B164-8007B17C 075AA4 0018+00 2/0 1/0 0/0 .text            GetBnd__4cBgWCFv */
 cM3dGAab* cBgW::GetBnd() const {
-    return &pm_grp[field_0x92].m_aab;
+    return &pm_grp[m_rootGrpIdx].m_aab;
 }
 
 /* 8007B17C-8007B1B4 075ABC 0038+00 0/0 1/1 0/0 .text            GetTrans__4cBgWCFP4cXyz */
@@ -1306,18 +1313,18 @@ void cBgW::GetTrans(cXyz* p_trans) const {
  * GetTriPnt__4cBgWCFRC13cBgS_PolyInfoP4cXyzP4cXyzP4cXyz        */
 bool cBgW::GetTriPnt(cBgS_PolyInfo const& poly, cXyz* p_pnt1, cXyz* p_pnt2, cXyz* p_pnt3) const {
     u16 poly_index = poly.GetPolyIndex();
-    dzb_tri_data* tri_data = &pm_bgd->m_t_tbl[poly_index];
+    cBgD_Tri_t* tri_data = &pm_bgd->m_t_tbl[poly_index];
 
-    p_pnt1->set(pm_vtx_tbl[tri_data->field_0x0]);
-    p_pnt2->set(pm_vtx_tbl[tri_data->field_0x2]);
-    p_pnt3->set(pm_vtx_tbl[tri_data->field_0x4]);
+    p_pnt1->set(pm_vtx_tbl[tri_data->m_vtx_idx0]);
+    p_pnt2->set(pm_vtx_tbl[tri_data->m_vtx_idx1]);
+    p_pnt3->set(pm_vtx_tbl[tri_data->m_vtx_idx2]);
     return true;
 }
 
 /* 8007B240-8007B270 075B80 0030+00 2/0 1/0 0/0 .text            GetTopUnder__4cBgWCFPfPf */
 void cBgW::GetTopUnder(f32* p_top, f32* p_under) const {
-    *p_under = pm_grp[field_0x92].m_aab.GetMinP()->y;
-    *p_top = pm_grp[field_0x92].m_aab.GetMaxP()->y;
+    *p_under = pm_grp[m_rootGrpIdx].m_aab.GetMinP()->y;
+    *p_top = pm_grp[m_rootGrpIdx].m_aab.GetMaxP()->y;
 }
 
 /* 8007B270-8007B2B0 075BB0 0040+00 2/0 1/0 0/0 .text            GetTriPla__4cBgWCFRC13cBgS_PolyInfo
@@ -1525,12 +1532,12 @@ bool cBgW::ChkNotReady() const {
 
 /* 8007B958-8007B964 076298 000C+00 2/0 1/0 0/0 .text            ChkLock__4cBgWCFv */
 bool cBgW::ChkLock() const {
-    return field_0x88 & 0x80;
+    return mFlags & 0x80;
 }
 
 /* 8007B964-8007B970 0762A4 000C+00 2/0 1/0 0/0 .text            ChkMoveBg__4cBgWCFv */
 bool cBgW::ChkMoveBg() const {
-    return field_0x88 & 0x1;
+    return mFlags & 0x1;
 }
 
 /* 8007B970-8007B9C0 0762B0 0050+00 1/1 2/2 87/87 .text            __ct__4dBgWFv */
@@ -1602,27 +1609,27 @@ bool dBgW::WallCorrectRp(dBgS_Acch* param_0, int param_1) {
         return false;
     }
 
-    dzb_tree_data* puVar9 = &pm_bgd->m_tree_tbl[param_1];
+    cBgD_Tree_t* puVar9 = &pm_bgd->m_tree_tbl[param_1];
     bool uVar6 = false;
-    if ((puVar9->field_0x0 & 1)) {
-        if (field_0xa4[puVar9->m_id[0]].field_0x2 != 0xffff &&
-            RwgWallCorrect(param_0, field_0xa4[puVar9->m_id[0]].field_0x2)) {
-            uVar6 = true;
-        }
-        if (field_0xa4[puVar9->m_id[0]].field_0x0 != 0xffff &&
-            RwgWallCorrect(param_0, field_0xa4[puVar9->m_id[0]].field_0x0)) {
-            uVar6 = true;
-        }
-        return uVar6;
-    } 
-    for (int i = 0; i < 8; i++) {
-        if (puVar9->m_id[i] != 0xffff &&
-            WallCorrectRp(param_0, puVar9->m_id[i]))
+    if ((puVar9->m_flag & 1)) {
+        if (pm_blk[puVar9->m_id[0]].m_wall_idx != 0xFFFF &&
+            RwgWallCorrect(param_0, pm_blk[puVar9->m_id[0]].m_wall_idx))
         {
             uVar6 = true;
         }
+        if (pm_blk[puVar9->m_id[0]].m_roof_idx != 0xFFFF &&
+            RwgWallCorrect(param_0, pm_blk[puVar9->m_id[0]].m_roof_idx))
+        {
+            uVar6 = true;
+        }
+        return uVar6;
     }
-    
+    for (int i = 0; i < 8; i++) {
+        if (puVar9->m_id[i] != 0xFFFF && WallCorrectRp(param_0, puVar9->m_id[i])) {
+            uVar6 = true;
+        }
+    }
+
     return uVar6;
 }
 
@@ -1637,28 +1644,29 @@ bool dBgW::WallCorrectGrpRp(dBgS_Acch* param_0, int param_1, int param_2) {
     }
 
     bool uVar6 = false;
-    if (pm_bgd->m_g_tbl[param_1].field_0x2e != 0xffff &&
-        WallCorrectRp(param_0, pm_bgd->m_g_tbl[param_1].field_0x2e)) {
+    if (pm_bgd->m_g_tbl[param_1].m_tree_idx != 0xFFFF &&
+        WallCorrectRp(param_0, pm_bgd->m_g_tbl[param_1].m_tree_idx))
+    {
         uVar6 = true;
     }
-    
-    s32 uVar1 = pm_bgd->m_g_tbl[param_1].field_0x28;
+
+    s32 uVar1 = pm_bgd->m_g_tbl[param_1].m_first_child;
     while (true) {
-        if (uVar1 == 0xffff) {
+        if (uVar1 == 0xFFFF) {
             break;
         }
         if (WallCorrectGrpRp(param_0, uVar1, param_2 + 1)) {
             uVar6 = true;
         }
-        uVar1 = pm_bgd->m_g_tbl[uVar1].field_0x26;
+        uVar1 = pm_bgd->m_g_tbl[uVar1].m_next_sibling;
     }
-    
+
     return uVar6;
 }
 
 /* 8007C484-8007C4AC 076DC4 0028+00 1/0 1/0 0/0 .text            WallCorrect__4dBgWFP9dBgS_Acch */
 bool dBgW::WallCorrect(dBgS_Acch* pacch) {
-    return WallCorrectGrpRp(pacch, field_0x92, 1);
+    return WallCorrectGrpRp(pacch, m_rootGrpIdx, 1);
 }
 
 struct wcs_data {
@@ -1693,18 +1701,18 @@ void dBgW::WallCorrectRpSort(dBgS_Acch* param_0, int param_1) {
         return;
     }
 
-    dzb_tree_data* puVar9 = &pm_bgd->m_tree_tbl[param_1];
-    if ((puVar9->field_0x0 & 1)) {
-        if (field_0xa4[puVar9->m_id[0]].field_0x2 != 0xffff) {
-            RwgWallCorrectSort(param_0, field_0xa4[puVar9->m_id[0]].field_0x2);
+    cBgD_Tree_t* puVar9 = &pm_bgd->m_tree_tbl[param_1];
+    if ((puVar9->m_flag & 1)) {
+        if (pm_blk[puVar9->m_id[0]].m_wall_idx != 0xFFFF) {
+            RwgWallCorrectSort(param_0, pm_blk[puVar9->m_id[0]].m_wall_idx);
         }
-        if (field_0xa4[puVar9->m_id[0]].field_0x0 != 0xffff) {
-            RwgWallCorrectSort(param_0, field_0xa4[puVar9->m_id[0]].field_0x0);
+        if (pm_blk[puVar9->m_id[0]].m_roof_idx != 0xFFFF) {
+            RwgWallCorrectSort(param_0, pm_blk[puVar9->m_id[0]].m_roof_idx);
         }
         return;
-    } 
+    }
     for (int i = 0; i < 8; i++) {
-        if (puVar9->m_id[i] != 0xffff) {
+        if (puVar9->m_id[i] != 0xFFFF) {
             WallCorrectRpSort(param_0, puVar9->m_id[i]);
         }
     }
@@ -1720,19 +1728,19 @@ bool dBgW::WallCorrectGrpRpSort(dBgS_Acch* param_0, int param_1, int param_2) {
         return false;
     }
 
-    if (pm_bgd->m_g_tbl[param_1].field_0x2e != 0xffff) {
-        WallCorrectRpSort(param_0, pm_bgd->m_g_tbl[param_1].field_0x2e);
+    if (pm_bgd->m_g_tbl[param_1].m_tree_idx != 0xFFFF) {
+        WallCorrectRpSort(param_0, pm_bgd->m_g_tbl[param_1].m_tree_idx);
     }
-    
-    s32 uVar1 = pm_bgd->m_g_tbl[param_1].field_0x28;
+
+    s32 uVar1 = pm_bgd->m_g_tbl[param_1].m_first_child;
     while (true) {
-        if (uVar1 == 0xffff) {
+        if (uVar1 == 0xFFFF) {
             break;
         }
         WallCorrectGrpRpSort(param_0, uVar1, param_2 + 1);
-        uVar1 = pm_bgd->m_g_tbl[uVar1].field_0x26;
+        uVar1 = pm_bgd->m_g_tbl[uVar1].m_next_sibling;
     }
-    
+
     return false;
 }
 
@@ -1754,14 +1762,13 @@ bool dBgW::RwgRoofChk(u16 param_0, dBgS_RoofChk* param_1) {
     f32 crossY;
     while (true) {
         if (pm_tri[param_0].m_plane.getCrossY(*param_1->GetPosP(), &crossY) &&
-            crossY > param_1->GetPosP()->y &&
-            crossY < param_1->GetNowY()) {
-            dzb_tri_data* tri_data = &pm_bgd->m_t_tbl[param_0];
-            if (cM3d_CrossY_Tri(pm_vtx_tbl[tri_data->field_0x0],
-                                    pm_vtx_tbl[tri_data->field_0x2],
-                                    pm_vtx_tbl[tri_data->field_0x4],
-                                    pm_tri[param_0].m_plane,
-                                    (const Vec*)param_1->GetPosP())) {
+            crossY > param_1->GetPosP()->y && crossY < param_1->GetNowY())
+        {
+            cBgD_Tri_t* tri_data = &pm_bgd->m_t_tbl[param_0];
+            if (cM3d_CrossY_Tri(pm_vtx_tbl[tri_data->m_vtx_idx0], pm_vtx_tbl[tri_data->m_vtx_idx1],
+                                pm_vtx_tbl[tri_data->m_vtx_idx2], pm_tri[param_0].m_plane,
+                                (const Vec*)param_1->GetPosP()))
+            {
                 if (!ChkPolyThrough(param_0, param_1->GetPolyPassChk())) {
                     param_1->SetNowY(crossY);
                     param_1->SetPolyIndex(param_0);
@@ -1769,9 +1776,9 @@ bool dBgW::RwgRoofChk(u16 param_0, dBgS_RoofChk* param_1) {
                 }
             }
         }
-        if (pm_rwg[param_0].field_0x0 == 0xffff)
+        if (pm_rwg[param_0].m_next == 0xFFFF)
             break;
-        param_0 = pm_rwg[param_0].field_0x0;
+        param_0 = pm_rwg[param_0].m_next;
     }
     return rv;
 }
@@ -1780,23 +1787,24 @@ bool dBgW::RwgRoofChk(u16 param_0, dBgS_RoofChk* param_1) {
  */
 bool dBgW::RoofChkRp(dBgS_RoofChk* param_0, int param_1) {
     cBgW_NodeTree* tree = &pm_node_tree[param_1];
-    if (!tree->CrossY(param_0->GetPosP()) ||
-        !tree->UnderPlaneYUnder(param_0->GetNowY()) ||
-        tree->TopPlaneYUnder(param_0->GetPosP()->y)) {
+    if (!tree->CrossY(param_0->GetPosP()) || !tree->UnderPlaneYUnder(param_0->GetNowY()) ||
+        tree->TopPlaneYUnder(param_0->GetPosP()->y))
+    {
         return false;
     }
 
-    dzb_tree_data* puVar9 = &pm_bgd->m_tree_tbl[param_1];
-    if ((puVar9->field_0x0 & 1)) {
-        if (field_0xa4[puVar9->m_id[0]].field_0x0 != 0xffff && 
-            RwgRoofChk(field_0xa4[puVar9->m_id[0]].field_0x0, param_0)) {
+    cBgD_Tree_t* puVar9 = &pm_bgd->m_tree_tbl[param_1];
+    if ((puVar9->m_flag & 1)) {
+        if (pm_blk[puVar9->m_id[0]].m_roof_idx != 0xFFFF &&
+            RwgRoofChk(pm_blk[puVar9->m_id[0]].m_roof_idx, param_0))
+        {
             return true;
         }
         return false;
     }
     bool rv = false;
     for (int i = 0; i < 8; i++) {
-        if (puVar9->m_id[i] != 0xffff && RoofChkRp(param_0, puVar9->m_id[i])) {
+        if (puVar9->m_id[i] != 0xFFFF && RoofChkRp(param_0, puVar9->m_id[i])) {
             rv = true;
         }
     }
@@ -1806,9 +1814,10 @@ bool dBgW::RoofChkRp(dBgS_RoofChk* param_0, int param_1) {
 /* 8007D330-8007D470 077C70 0140+00 1/1 0/0 0/0 .text RoofChkGrpRp__4dBgWFP12dBgS_RoofChkii */
 bool dBgW::RoofChkGrpRp(dBgS_RoofChk* param_0, int param_1, int param_2) {
     cBgW_GrpElm* grp = &pm_grp[param_1];
-    if (!grp->m_aab.CrossY(param_0->GetPosP()) || 
+    if (!grp->m_aab.CrossY(param_0->GetPosP()) ||
         !grp->m_aab.UnderPlaneYUnder(param_0->GetNowY()) ||
-        grp->m_aab.TopPlaneYUnder(param_0->GetPosP()->y)) {
+        grp->m_aab.TopPlaneYUnder(param_0->GetPosP()->y))
+    {
         return false;
     }
 
@@ -1817,29 +1826,28 @@ bool dBgW::RoofChkGrpRp(dBgS_RoofChk* param_0, int param_1, int param_2) {
     }
 
     bool uVar6 = false;
-    dzb_g_data* data = &pm_bgd->m_g_tbl[param_1];
-    if (data->field_0x2e != 0xffff &&
-        RoofChkRp(param_0, data->field_0x2e)) {
+    cBgD_Grp_t* data = &pm_bgd->m_g_tbl[param_1];
+    if (data->m_tree_idx != 0xFFFF && RoofChkRp(param_0, data->m_tree_idx)) {
         uVar6 = true;
     }
-    
-    s32 uVar1 = data->field_0x28;
+
+    s32 uVar1 = data->m_first_child;
     while (true) {
-        if (uVar1 == 0xffff) {
+        if (uVar1 == 0xFFFF) {
             break;
         }
         if (RoofChkGrpRp(param_0, uVar1, param_2 + 1)) {
             uVar6 = true;
         }
-        uVar1 = pm_bgd->m_g_tbl[uVar1].field_0x26;
+        uVar1 = pm_bgd->m_g_tbl[uVar1].m_next_sibling;
     }
-    
+
     return uVar6;
 }
 
 /* 8007D470-8007D498 077DB0 0028+00 1/0 1/0 0/0 .text            RoofChk__4dBgWFP12dBgS_RoofChk */
 bool dBgW::RoofChk(dBgS_RoofChk* pchk) {
-    return RoofChkGrpRp(pchk, field_0x92, 1);
+    return RoofChkGrpRp(pchk, m_rootGrpIdx, 1);
 }
 
 /* 8007D498-8007D5C4 077DD8 012C+00 1/1 0/0 0/0 .text RwgSplGrpChk__4dBgWFUsP14dBgS_SplGrpChk */
@@ -1848,14 +1856,13 @@ bool dBgW::RwgSplGrpChk(u16 param_0, dBgS_SplGrpChk* param_1) {
     f32 crossY;
     while (true) {
         if (pm_tri[param_0].m_plane.getCrossY(param_1->GetPosP(), &crossY) &&
-            crossY < param_1->GetRoof() &&
-            crossY > param_1->GetHeight()) {
-            dzb_tri_data* tri_data = &pm_bgd->m_t_tbl[param_0];
-            if (cM3d_CrossY_Tri(pm_vtx_tbl[tri_data->field_0x0],
-                                    pm_vtx_tbl[tri_data->field_0x2],
-                                    pm_vtx_tbl[tri_data->field_0x4],
-                                    pm_tri[param_0].m_plane,
-                                    (const Vec*)&param_1->GetPosP())) {
+            crossY < param_1->GetRoof() && crossY > param_1->GetHeight())
+        {
+            cBgD_Tri_t* tri_data = &pm_bgd->m_t_tbl[param_0];
+            if (cM3d_CrossY_Tri(pm_vtx_tbl[tri_data->m_vtx_idx0], pm_vtx_tbl[tri_data->m_vtx_idx1],
+                                pm_vtx_tbl[tri_data->m_vtx_idx2], pm_tri[param_0].m_plane,
+                                (const Vec*)&param_1->GetPosP()))
+            {
                 if (!ChkPolyThrough(param_0, param_1->GetPolyPassChk())) {
                     param_1->SetHeight(crossY);
                     param_1->SetPolyIndex(param_0);
@@ -1863,9 +1870,9 @@ bool dBgW::RwgSplGrpChk(u16 param_0, dBgS_SplGrpChk* param_1) {
                 }
             }
         }
-        if (pm_rwg[param_0].field_0x0 == 0xffff)
+        if (pm_rwg[param_0].m_next == 0xFFFF)
             break;
-        param_0 = pm_rwg[param_0].field_0x0;
+        param_0 = pm_rwg[param_0].m_next;
     }
     return rv;
 }
@@ -1873,23 +1880,24 @@ bool dBgW::RwgSplGrpChk(u16 param_0, dBgS_SplGrpChk* param_1) {
 /* 8007D5C4-8007D6F0 077F04 012C+00 1/1 0/0 0/0 .text SplGrpChkRp__4dBgWFP14dBgS_SplGrpChki */
 bool dBgW::SplGrpChkRp(dBgS_SplGrpChk* param_0, int param_1) {
     cBgW_NodeTree* tree = &pm_node_tree[param_1];
-    if (!tree->CrossY(&param_0->GetPosP()) ||
-        !tree->UnderPlaneYUnder(param_0->GetRoof()) ||
-        tree->TopPlaneYUnder(param_0->GetHeight())) {
+    if (!tree->CrossY(&param_0->GetPosP()) || !tree->UnderPlaneYUnder(param_0->GetRoof()) ||
+        tree->TopPlaneYUnder(param_0->GetHeight()))
+    {
         return false;
     }
 
-    dzb_tree_data* puVar9 = &pm_bgd->m_tree_tbl[param_1];
-    if ((puVar9->field_0x0 & 1)) {
-        if (field_0xa4[puVar9->m_id[0]].field_0x4 != 0xffff && 
-            RwgSplGrpChk(field_0xa4[puVar9->m_id[0]].field_0x4, param_0)) {
+    cBgD_Tree_t* puVar9 = &pm_bgd->m_tree_tbl[param_1];
+    if ((puVar9->m_flag & 1)) {
+        if (pm_blk[puVar9->m_id[0]].m_gnd_idx != 0xFFFF &&
+            RwgSplGrpChk(pm_blk[puVar9->m_id[0]].m_gnd_idx, param_0))
+        {
             return true;
         }
         return false;
     }
     bool rv = false;
     for (int i = 0; i < 8; i++) {
-        if (puVar9->m_id[i] != 0xffff && SplGrpChkRp(param_0, puVar9->m_id[i])) {
+        if (puVar9->m_id[i] != 0xFFFF && SplGrpChkRp(param_0, puVar9->m_id[i])) {
             rv = true;
         }
     }
@@ -1899,9 +1907,10 @@ bool dBgW::SplGrpChkRp(dBgS_SplGrpChk* param_0, int param_1) {
 /* 8007D6F0-8007D830 078030 0140+00 1/1 0/0 0/0 .text SplGrpChkGrpRp__4dBgWFP14dBgS_SplGrpChkii */
 bool dBgW::SplGrpChkGrpRp(dBgS_SplGrpChk* param_0, int param_1, int param_2) {
     cBgW_GrpElm* grp = &pm_grp[param_1];
-    if (!grp->m_aab.CrossY(&param_0->GetPosP()) || 
+    if (!grp->m_aab.CrossY(&param_0->GetPosP()) ||
         !grp->m_aab.UnderPlaneYUnder(param_0->GetRoof()) ||
-        grp->m_aab.TopPlaneYUnder(param_0->GetHeight())) {
+        grp->m_aab.TopPlaneYUnder(param_0->GetHeight()))
+    {
         return false;
     }
 
@@ -1910,45 +1919,41 @@ bool dBgW::SplGrpChkGrpRp(dBgS_SplGrpChk* param_0, int param_1, int param_2) {
     }
 
     bool uVar6 = false;
-    dzb_g_data* data = &pm_bgd->m_g_tbl[param_1];
-    if (data->field_0x2e != 0xffff &&
-        SplGrpChkRp(param_0, data->field_0x2e)) {
+    cBgD_Grp_t* data = &pm_bgd->m_g_tbl[param_1];
+    if (data->m_tree_idx != 0xFFFF && SplGrpChkRp(param_0, data->m_tree_idx)) {
         uVar6 = true;
     }
-    
-    s32 uVar1 = data->field_0x28;
+
+    s32 uVar1 = data->m_first_child;
     while (true) {
-        if (uVar1 == 0xffff) {
+        if (uVar1 == 0xFFFF) {
             break;
         }
         if (SplGrpChkGrpRp(param_0, uVar1, param_2 + 1)) {
             uVar6 = true;
         }
-        uVar1 = pm_bgd->m_g_tbl[uVar1].field_0x26;
+        uVar1 = pm_bgd->m_g_tbl[uVar1].m_next_sibling;
     }
-    
+
     return uVar6;
 }
 
 /* 8007D830-8007D858 078170 0028+00 1/0 1/0 0/0 .text            SplGrpChk__4dBgWFP14dBgS_SplGrpChk
  */
 bool dBgW::SplGrpChk(dBgS_SplGrpChk* pchk) {
-    return SplGrpChkGrpRp(pchk, field_0x92, 1);
+    return SplGrpChkGrpRp(pchk, m_rootGrpIdx, 1);
 }
 
 /* 8007D858-8007D8E8 078198 0090+00 1/1 0/0 0/0 .text RwgCaptPoly__4dBgWFiR13dBgS_CaptPoly */
 void dBgW::RwgCaptPoly(int param_0, dBgS_CaptPoly& param_1) {
     while (true) {
         cBgW_RwgElm* puVar2 = &pm_rwg[param_0];
-        param_1.m_callback(
-            param_1, pm_vtx_tbl,
-            pm_bgd->m_t_tbl[param_0].field_0x0,
-            pm_bgd->m_t_tbl[param_0].field_0x2,
-            pm_bgd->m_t_tbl[param_0].field_0x4,
-            &pm_tri[param_0].m_plane);
-        if (puVar2->field_0x0 == 0xffff)
+        param_1.m_callback(param_1, pm_vtx_tbl, pm_bgd->m_t_tbl[param_0].m_vtx_idx0,
+                           pm_bgd->m_t_tbl[param_0].m_vtx_idx1, pm_bgd->m_t_tbl[param_0].m_vtx_idx2,
+                           &pm_tri[param_0].m_plane);
+        if (puVar2->m_next == 0xFFFF)
             break;
-        param_0 = puVar2->field_0x0;
+        param_0 = puVar2->m_next;
     }
 }
 
@@ -1959,22 +1964,22 @@ void dBgW::CaptPolyRp(dBgS_CaptPoly& param_0, int param_1) {
         return;
     }
 
-    dzb_tree_data* tree_data = &pm_bgd->m_tree_tbl[param_1];
-    if (tree_data->field_0x0 & 1) {
-        if (field_0xa4[tree_data->m_id[0]].field_0x2 != 0xffff) {
-            RwgCaptPoly(field_0xa4[tree_data->m_id[0]].field_0x2, param_0);
+    cBgD_Tree_t* tree_data = &pm_bgd->m_tree_tbl[param_1];
+    if (tree_data->m_flag & 1) {
+        if (pm_blk[tree_data->m_id[0]].m_wall_idx != 0xFFFF) {
+            RwgCaptPoly(pm_blk[tree_data->m_id[0]].m_wall_idx, param_0);
         }
-        if (field_0xa4[tree_data->m_id[0]].field_0x0 != 0xffff) {
-            RwgCaptPoly(field_0xa4[tree_data->m_id[0]].field_0x0, param_0);
+        if (pm_blk[tree_data->m_id[0]].m_roof_idx != 0xFFFF) {
+            RwgCaptPoly(pm_blk[tree_data->m_id[0]].m_roof_idx, param_0);
         }
-        if (field_0xa4[tree_data->m_id[0]].field_0x4 != 0xffff) {
-            RwgCaptPoly(field_0xa4[tree_data->m_id[0]].field_0x4, param_0);
+        if (pm_blk[tree_data->m_id[0]].m_gnd_idx != 0xFFFF) {
+            RwgCaptPoly(pm_blk[tree_data->m_id[0]].m_gnd_idx, param_0);
         }
         return;
     }
-    
+
     for (int i = 0; i < 8; i++) {
-        if (tree_data->m_id[i] == 0xffff) {
+        if (tree_data->m_id[i] == 0xFFFF) {
             continue;
         }
         CaptPolyRp(param_0, tree_data->m_id[i]);
@@ -1992,25 +1997,24 @@ void dBgW::CaptPolyGrpRp(dBgS_CaptPoly& param_0, int param_1, int param_2) {
         return;
     }
 
-    dzb_g_data* data = &pm_bgd->m_g_tbl[param_1];
-    if (pm_bgd->m_g_tbl[param_1].field_0x2e != 0xffff) {
-        CaptPolyRp(param_0, pm_bgd->m_g_tbl[param_1].field_0x2e);
+    cBgD_Grp_t* data = &pm_bgd->m_g_tbl[param_1];
+    if (pm_bgd->m_g_tbl[param_1].m_tree_idx != 0xFFFF) {
+        CaptPolyRp(param_0, pm_bgd->m_g_tbl[param_1].m_tree_idx);
     }
-    
-    s32 uVar1 = pm_bgd->m_g_tbl[param_1].field_0x28;
+
+    s32 uVar1 = pm_bgd->m_g_tbl[param_1].m_first_child;
     while (true) {
-        if (uVar1 == 0xffff) {
+        if (uVar1 == 0xFFFF) {
             break;
         }
         CaptPolyGrpRp(param_0, uVar1, param_2 + 1);
-        uVar1 = pm_bgd->m_g_tbl[uVar1].field_0x26;
+        uVar1 = pm_bgd->m_g_tbl[uVar1].m_next_sibling;
     }
 }
 
-
 /* 8007DAF8-8007DB20 078438 0028+00 1/0 1/0 0/0 .text            CaptPoly__4dBgWFR13dBgS_CaptPoly */
 void dBgW::CaptPoly(dBgS_CaptPoly& poly) {
-    CaptPolyGrpRp(poly, field_0x92, 1);
+    CaptPolyGrpRp(poly, m_rootGrpIdx, 1);
 }
 
 /* 8007DB20-8007DC70 078460 0150+00 1/1 0/0 0/0 .text            RwgSphChk__4dBgWFUsP11dBgS_SphChkPv
@@ -2020,27 +2024,24 @@ void dBgW::CaptPoly(dBgS_CaptPoly& poly) {
 bool dBgW::RwgSphChk(u16 param_0, dBgS_SphChk* param_1, void* param_2) {
     cM3dGTri acStack_50;
     cBgW_RwgElm* puVar4;
-    dzb_tri_data* puVar5;
+    cBgD_Tri_t* puVar5;
     bool uVar3 = false;
     while (true) {
         puVar4 = &pm_rwg[param_0];
         if (!ChkPolyThrough(param_0, param_1->GetPolyPassChk())) {
             puVar5 = &pm_bgd->m_t_tbl[param_0];
-            acStack_50.setBg(&pm_vtx_tbl[puVar5->field_0x0],
-                             &pm_vtx_tbl[puVar5->field_0x2],
-                             &pm_vtx_tbl[puVar5->field_0x4],
-                             &pm_tri[param_0].m_plane);
+            acStack_50.setBg(&pm_vtx_tbl[puVar5->field_0x0], &pm_vtx_tbl[puVar5->field_0x2],
+                             &pm_vtx_tbl[puVar5->field_0x4], &pm_tri[param_0].m_plane);
             if (param_1->cross(&acStack_50)) {
-                param_1->mCallback(param_1, pm_vtx_tbl, puVar5->field_0x0,
-                                             puVar5->field_0x2, puVar5->field_0x4,
-                                             &pm_tri[param_0].m_plane, param_2);
+                param_1->mCallback(param_1, pm_vtx_tbl, puVar5->field_0x0, puVar5->field_0x2,
+                                   puVar5->field_0x4, &pm_tri[param_0].m_plane, param_2);
                 param_1->SetPolyIndex(param_0);
                 uVar3 = true;
             }
         }
-        if (puVar4->field_0x0 == 0xffff)
+        if (puVar4->m_next == 0xFFFF)
             break;
-        param_0 = puVar4->field_0x0;
+        param_0 = puVar4->m_next;
     }
     return uVar3;
 }
@@ -2062,26 +2063,32 @@ bool dBgW::SphChkRp(dBgS_SphChk* param_0, void* param_1, int param_2) {
         return false;
     }
 
-    dzb_tree_data* tree_data = &pm_bgd->m_tree_tbl[param_2];
+    cBgD_Tree_t* tree_data = &pm_bgd->m_tree_tbl[param_2];
     bool rv = false;
-    if (tree_data->field_0x0 & 1) {
-        if (field_0xa4[tree_data->m_id[0]].field_0x4 != 0xffff &&
-            RwgSphChk(field_0xa4[tree_data->m_id[0]].field_0x4, param_0, param_1)) {
+    if (tree_data->m_flag & 1) {
+        if (pm_blk[tree_data->m_id[0]].m_gnd_idx != 0xFFFF &&
+            RwgSphChk(pm_blk[tree_data->m_id[0]].m_gnd_idx, param_0, param_1))
+        {
             rv = true;
         }
-        if (field_0xa4[tree_data->m_id[0]].field_0x0 != 0xffff &&
-            RwgSphChk(field_0xa4[tree_data->m_id[0]].field_0x0, param_0, param_1)) {
+
+        if (pm_blk[tree_data->m_id[0]].m_roof_idx != 0xFFFF &&
+            RwgSphChk(pm_blk[tree_data->m_id[0]].m_roof_idx, param_0, param_1))
+        {
             rv = true;
         }
-        if (field_0xa4[tree_data->m_id[0]].field_0x2 != 0xffff &&
-            RwgSphChk(field_0xa4[tree_data->m_id[0]].field_0x2, param_0, param_1)) {
+
+        if (pm_blk[tree_data->m_id[0]].m_wall_idx != 0xFFFF &&
+            RwgSphChk(pm_blk[tree_data->m_id[0]].m_wall_idx, param_0, param_1))
+        {
             rv = true;
         }
+
         return rv;
     }
-    
+
     for (int i = 0; i < 8; i++) {
-        if (tree_data->m_id[i] == 0xffff) {
+        if (tree_data->m_id[i] == 0xFFFF) {
             continue;
         }
         if (SphChkRp(param_0, param_1, tree_data->m_id[i])) {
@@ -2102,29 +2109,28 @@ bool dBgW::SphChkGrpRp(dBgS_SphChk* param_0, void* param_1, int param_2, int par
     }
 
     bool uVar6 = false;
-    dzb_g_data* data = &pm_bgd->m_g_tbl[param_2];
-    if (data->field_0x2e != 0xffff &&
-        SphChkRp(param_0, param_1, data->field_0x2e)) {
+    cBgD_Grp_t* data = &pm_bgd->m_g_tbl[param_2];
+    if (data->m_tree_idx != 0xFFFF && SphChkRp(param_0, param_1, data->m_tree_idx)) {
         uVar6 = true;
     }
-    
-    s32 uVar1 = data->field_0x28;
+
+    s32 uVar1 = data->m_first_child;
     while (true) {
-        if (uVar1 == 0xffff) {
+        if (uVar1 == 0xFFFF) {
             break;
         }
         if (SphChkGrpRp(param_0, param_1, uVar1, param_3 + 1)) {
             uVar6 = true;
         }
-        uVar1 = pm_bgd->m_g_tbl[uVar1].field_0x26;
+        uVar1 = pm_bgd->m_g_tbl[uVar1].m_next_sibling;
     }
-    
+
     return uVar6;
 }
 
 /* 8007DF00-8007DF28 078840 0028+00 1/0 1/0 0/0 .text            SphChk__4dBgWFP11dBgS_SphChkPv */
 bool dBgW::SphChk(dBgS_SphChk* pchk, void* param_1) {
-    return SphChkGrpRp(pchk, param_1, field_0x92, 1);
+    return SphChkGrpRp(pchk, param_1, m_rootGrpIdx, 1);
 }
 
 /* 8007DF28-8007DF58 078868 0030+00 1/0 1/0 0/0 .text GetPolyGrpRoomInfId__4dBgWFRC13cBgS_PolyInfo
@@ -2140,27 +2146,27 @@ u8 dBgW::GetGrpSoundId(cBgS_PolyInfo const& poly) {
 
 /* 8007DF88-8007DFC4 0788C8 003C+00 1/0 0/0 0/0 .text
  * CrrPos__4dBgWFRC13cBgS_PolyInfoPvbP4cXyzP5csXyzP5csXyz       */
-void dBgW::CrrPos(cBgS_PolyInfo const& param_0, void* param_1, bool param_2, cXyz* param_3,
-                        csXyz* param_4, csXyz* param_5) {
+void dBgW::CrrPos(cBgS_PolyInfo const& i_poly, void* i_actor_ptr, bool param_2, cXyz* i_pos,
+                  csXyz* i_angle, csXyz* i_shapeAngle) {
     if (m_crr_func) {
-        m_crr_func(this, param_1, param_0, param_2, param_3, param_4, param_5);
+        m_crr_func(this, i_actor_ptr, i_poly, param_2, i_pos, i_angle, i_shapeAngle);
     }
 }
 
 /* 8007DFC4-8007E000 078904 003C+00 1/0 0/0 0/0 .text
  * TransPos__4dBgWFRC13cBgS_PolyInfoPvbP4cXyzP5csXyzP5csXyz     */
-void dBgW::TransPos(cBgS_PolyInfo const& param_0, void* param_1, bool param_2, cXyz* param_3,
-                        csXyz* param_4, csXyz* param_5) {
+void dBgW::TransPos(cBgS_PolyInfo const& i_poly, void* i_actor_ptr, bool param_2, cXyz* i_pos,
+                    csXyz* i_angle, csXyz* i_shapeAngle) {
     if (m_crr_func) {
-        m_crr_func(this, param_1, param_0, param_2, param_3, param_4, param_5);
+        m_crr_func(this, i_actor_ptr, i_poly, param_2, i_pos, i_angle, i_shapeAngle);
     }
 }
 
 /* 8007E000-8007E02C 078940 002C+00 1/0 0/0 0/0 .text
  * MatrixCrrPos__4dBgWFRC13cBgS_PolyInfoPvbP4cXyzP5csXyzP5csXyz */
-void dBgW::MatrixCrrPos(cBgS_PolyInfo const& param_0, void* param_1, bool param_2,
-                            cXyz* param_3, csXyz* param_4, csXyz* param_5) {
-    CrrPos(param_0, param_1, param_2, param_3, param_4, param_5);
+void dBgW::MatrixCrrPos(cBgS_PolyInfo const& i_poly, void* i_actor_ptr, bool param_2, cXyz* i_pos,
+                        csXyz* i_angle, csXyz* i_shapeAngle) {
+    CrrPos(i_poly, i_actor_ptr, param_2, i_pos, i_angle, i_shapeAngle);
 }
 
 /* 8007E02C-8007E360 07896C 0334+00 1/0 1/0 0/0 .text ChkPolyThrough__4dBgWFiP16cBgS_PolyPassChk
@@ -2182,7 +2188,8 @@ bool dBgW::ChkPolyThrough(int poly_index, cBgS_PolyPassChk* ppass_chk) {
     }
 
     if ((chk->ChkLink() && GetPolyLinkThrough(poly_index)) ||
-        (chk->ChkHorse() && GetPolyLinkThrough(poly_index))) {
+        (chk->ChkHorse() && GetPolyLinkThrough(poly_index)))
+    {
         return true;
     }
 
@@ -2256,15 +2263,19 @@ bool dBgW::ChkShdwDrawThrough(int poly_index, cBgS_PolyPassChk*) {
 }
 
 /* 8007E3D8-8007E444 078D18 006C+00 1/0 1/0 0/0 .text ChkGrpThrough__4dBgWFiP15cBgS_GrpPassChki */
-bool dBgW::ChkGrpThrough(int param_0, cBgS_GrpPassChk* param_1, int param_2) {
-    if (param_2 != 2 || param_1 == NULL) {
+bool dBgW::ChkGrpThrough(int i_grp_idx, cBgS_GrpPassChk* i_passChk, int i_depth) {
+    if (i_depth != 2 || i_passChk == NULL) {
         return false;
     }
-    if ((pm_bgd->m_g_tbl[param_0].m_info & 0x100) == 0 && ((dBgS_GrpPassChk*)param_1)->MaskNormalGrp()) {
+    if ((pm_bgd->m_g_tbl[i_grp_idx].m_info & 0x100) == 0 &&
+        ((dBgS_GrpPassChk*)i_passChk)->MaskNormalGrp())
+    {
         return false;
     }
 
-    if ((pm_bgd->m_g_tbl[param_0].m_info & 0x100) && ((dBgS_GrpPassChk*)param_1)->MaskWaterGrp()) {
+    if ((pm_bgd->m_g_tbl[i_grp_idx].m_info & 0x100) &&
+        ((dBgS_GrpPassChk*)i_passChk)->MaskWaterGrp())
+    {
         return false;
     }
 
@@ -2298,14 +2309,14 @@ u32 dBgW::ChkMoveFlag() const {
 }
 
 /* 8007E4C0-8007E548 078E00 0088+00 0/0 0/0 1/1 .text            dBgW_NewSet__FP6cBgD_tUlPA3_A4_f */
-dBgW* dBgW_NewSet(cBgD_t* pbgd, u32 param_1, Mtx* pbase_mtx) {
+dBgW* dBgW_NewSet(cBgD_t* pbgd, u32 flags, Mtx* pbase_mtx) {
     dBgW* nw = new dBgW();
 
     if (nw == NULL) {
         return NULL;
     }
 
-    if (nw->Set(pbgd, param_1, pbase_mtx)) {
+    if (nw->Set(pbgd, flags, pbase_mtx)) {
         return NULL;
     }
 

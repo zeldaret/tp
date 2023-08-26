@@ -9,12 +9,13 @@ typedef void (*MoveBGActor_SetFunc)(dBgW*, void*, cBgS_PolyInfo const&, bool, cX
 
 class dBgS_MoveBgActor : public fopAc_ac_c {
 public:
-    /* 0x568 */ dBgW* field_0x568;
-    /* 0x56C */ Mtx field_0x56c;
+    /* 0x568 */ dBgW* mpBgW;
+    /* 0x56C */ Mtx mBgMtx;
 
     /* 80078624 */ dBgS_MoveBgActor();
     /* 800786C8 */ int MoveBGCreateHeap();
-    /* 800787BC */ int MoveBGCreate(char const*, int, MoveBGActor_SetFunc, u32, Mtx*);
+    /* 800787BC */ int MoveBGCreate(char const* i_arcName, int i_dzb_id,
+                                    MoveBGActor_SetFunc i_setFunc, u32 i_heapSize, Mtx* i_bgMtx);
     /* 800788DC */ int MoveBGDelete();
     /* 80078950 */ int MoveBGExecute();
 

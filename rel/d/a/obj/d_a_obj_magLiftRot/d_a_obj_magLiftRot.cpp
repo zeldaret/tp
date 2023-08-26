@@ -424,7 +424,7 @@ void daMagLiftRot_c::setBaseMtx() {
     mpModel->setBaseScale(cXyz(1.0f, 1.0f, 1.0f));
 
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
-    PSMTXCopy(mDoMtx_stack_c::get(), field_0x56c);
+    PSMTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 #else
 #pragma push
@@ -547,8 +547,8 @@ int daMagLiftRot_c::create() {
         fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
         fopAcM_setCullSizeBox2(this, mpModel->getModelData());
 
-        field_0x568->onStickWall();
-        field_0x568->onStickRoof();
+        mpBgW->onStickWall();
+        mpBgW->onStickRoof();
 
         field_0x5e1 = fopAcM_GetParam(this) & 0xFF;
         field_0x5e2 = -0x8000;

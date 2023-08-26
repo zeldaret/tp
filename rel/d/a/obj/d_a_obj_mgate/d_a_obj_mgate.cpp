@@ -58,7 +58,7 @@ void daObjMGate_c::setBaseMtx() {
     mDoMtx_stack_c::YrotM(shape_angle.y);
     mDoMtx_stack_c::ZXYrotM(mGateAngle.x, mGateAngle.y, mGateAngle.z);
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
-    PSMTXCopy(mDoMtx_stack_c::get(), field_0x56c);
+    PSMTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 
     if (mpKeyModel != NULL) {
         cXyz key_offset(l_key_offset[mKind]);
@@ -223,7 +223,7 @@ int daObjMGate_c::Execute(Mtx** param_0) {
         }
     }
 
-    *param_0 = &field_0x56c;
+    *param_0 = &mBgMtx;
     setBaseMtx();
 
     mGateAngle.y = mGateSwingMultiplier * cM_ssin(mCounter * 4000);

@@ -55,7 +55,7 @@ int daTagHjump_c::create() {
                 mDoMtx_stack_c::get()[1][3] -= 100.0f;
                 current.pos.y -= 100.0f;
 
-                field_0x568->SetLock();
+                mpBgW->SetLock();
                 mScale.x = 250.0f;
                 mScale.y = 350.0f;
                 mScale.z = 400.0f;
