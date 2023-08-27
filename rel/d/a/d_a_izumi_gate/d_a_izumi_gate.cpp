@@ -15,7 +15,7 @@ void daIzumiGate_c::initBaseMtx() {
 /* 808490B8-8084910C 000098 0054+00 2/2 0/0 0/0 .text            setBaseMtx__13daIzumiGate_cFv */
 void daIzumiGate_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
-    PSMTXCopy(mDoMtx_stack_c::now, field_0x56c);
+    PSMTXCopy(mDoMtx_stack_c::now, mBgMtx);
     PSMTXCopy(mDoMtx_stack_c::now, mpModel->mBaseTransformMtx);
 }
 
@@ -55,7 +55,7 @@ int daIzumiGate_c::create() {
         if (phase == cPhs_ERROR_e) {
             return phase;
         }
-        fopAcM_SetMtx(this, field_0x56c);
+        fopAcM_SetMtx(this, mBgMtx);
     }
     return phase;
 }
@@ -80,7 +80,7 @@ int daIzumiGate_c::Create() {
 /* 808492FC-80849328 0002DC 002C+00 1/0 0/0 0/0 .text            Execute__13daIzumiGate_cFPPA3_A4_f
  */
 int daIzumiGate_c::Execute(Mtx** i_mtx) {
-    *i_mtx = &field_0x56c;
+    *i_mtx = &mBgMtx;
     setBaseMtx();
     return 1;
 }

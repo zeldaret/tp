@@ -20,7 +20,7 @@ void daObjOnsen_c::setBaseMtx() {
     mDoMtx_stack_c::YrotM(shape_angle.y);
     PSMTXCopy(mDoMtx_stack_c::now, mpModel[0]->mBaseTransformMtx);
     PSMTXCopy(mDoMtx_stack_c::now, mpModel[1]->mBaseTransformMtx);
-    PSMTXCopy(mDoMtx_stack_c::now, field_0x56c);
+    PSMTXCopy(mDoMtx_stack_c::now, mBgMtx);
 }
 
 /* 80CA7C28-80CA7C74 000148 004C+00 1/0 0/0 0/0 .text            Create__12daObjOnsen_cFv */
@@ -92,7 +92,7 @@ int daObjOnsen_c::create1st() {
 /* 80CA7EEC-80CA7F1C 00040C 0030+00 1/0 0/0 0/0 .text            Execute__12daObjOnsen_cFPPA3_A4_f
  */
 int daObjOnsen_c::Execute(Mtx** i_mtx) {
-    *i_mtx = &field_0x56c;
+    *i_mtx = &mBgMtx;
     mpBtk->play();
     return 1;
 }

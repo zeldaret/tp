@@ -90,7 +90,7 @@ public:
     /* 0x5A8 */ J3DModel* field_0x5a8[2][2];
     /* 0x5B8 */ mDoExt_btkAnm* field_0x5b8[2][2];
     /* 0x5C8 */ mDoExt_brkAnm* field_0x5c8[2][2];
-    /* 0x5D8 */ dBgW* mpBgW;
+    /* 0x5D8 */ dBgW* mpBgW2;
     /* 0x5DC */ dCcD_Stts mStts;
     /* 0x618 */ dCcD_Tri mTris[4];
     /* 0xB88 */ dCcD_Cyl mCyl;

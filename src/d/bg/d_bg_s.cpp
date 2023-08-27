@@ -130,7 +130,8 @@ bool cBgS::LineCross(cBgS_LinChk* p_line) {
     cBgS_ChkElm* elm = m_chk_element;
     for (int i = 0; i < 0x100; i++) {
         if (elm->ChkUsed() && !elm->m_bgw_base_ptr->ChkNotReady() &&
-            !p_line->ChkSameActorPid(elm->m_actor_id) && elm->m_bgw_base_ptr->LineCheck(p_line)) {
+            !p_line->ChkSameActorPid(elm->m_actor_id) && elm->m_bgw_base_ptr->LineCheck(p_line))
+        {
             p_line->SetActorInfo(i, elm->m_bgw_base_ptr, elm->m_actor_id);
             p_line->SetHit();
         }
@@ -149,7 +150,8 @@ f32 cBgS::GroundCross(cBgS_GndChk* p_gnd) {
     cBgS_ChkElm* elm = m_chk_element;
     for (int i = 0; i < 0x100; i++) {
         if (elm->ChkUsed() && !elm->m_bgw_base_ptr->ChkNotReady() &&
-            !p_gnd->ChkSameActorPid(elm->m_actor_id) && elm->m_bgw_base_ptr->GroundCross(p_gnd)) {
+            !p_gnd->ChkSameActorPid(elm->m_actor_id) && elm->m_bgw_base_ptr->GroundCross(p_gnd))
+        {
             p_gnd->SetActorInfo(i, elm->m_bgw_base_ptr, elm->m_actor_id);
         }
         elm++;
@@ -212,7 +214,8 @@ void* cBgS::ConvDzb(void* p_dzb) {
     pbgd->m_ti_tbl += (u32)p_dzb;
 
     for (int i = 0; i < pbgd->m_g_num; i++) {
-        ((cBgS_dzb_strgroup*)pbgd->m_g_tbl)[i].strOffset = (u32)p_dzb + ((cBgS_dzb_strgroup*)pbgd->m_g_tbl)[i].strOffset;
+        ((cBgS_dzb_strgroup*)pbgd->m_g_tbl)[i].strOffset =
+            (u32)p_dzb + ((cBgS_dzb_strgroup*)pbgd->m_g_tbl)[i].strOffset;
     }
 
     return p_dzb;
@@ -726,107 +729,113 @@ bool dBgS::SphChk(dBgS_SphChk* p_sph, void* param_1) {
 
 /* 80075774-80075880 0700B4 010C+00 0/0 3/3 0/0 .text
  * MoveBgCrrPos__4dBgSFRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyzbb */
-void dBgS::MoveBgCrrPos(cBgS_PolyInfo const& poly, bool param_1, cXyz* param_2, csXyz* param_3,
-                        csXyz* param_4, bool param_5, bool param_6) {
-    if (!param_1 || !poly.ChkBgIndex()) {
+void dBgS::MoveBgCrrPos(cBgS_PolyInfo const& i_poly, bool param_1, cXyz* i_pos, csXyz* i_angle,
+                        csXyz* i_shapeAngle, bool param_5, bool param_6) {
+    if (!param_1 || !i_poly.ChkBgIndex()) {
         return;
-    } else {
-        int bg_index = poly.GetBgIndex();
-        if (m_chk_element[bg_index].ChkUsed()) {
-            dBgW_Base* base = m_chk_element[bg_index].m_bgw_base_ptr;
-            if ((!param_5 || base->chkStickWall()) && (!param_6 || base->chkStickRoof()) &&
-                base->ChkMoveFlag() && ChkPolySafe(poly)) {
-                base->CrrPos(poly, m_chk_element[bg_index].m_actor_ptr, param_1, param_2, param_3,
-                             param_4);
-            }
+    }
+
+    int bg_index = i_poly.GetBgIndex();
+    if (m_chk_element[bg_index].ChkUsed()) {
+        dBgW_Base* bgw_p = m_chk_element[bg_index].m_bgw_base_ptr;
+
+        if ((!param_5 || bgw_p->chkStickWall()) && (!param_6 || bgw_p->chkStickRoof()) &&
+            bgw_p->ChkMoveFlag() && ChkPolySafe(i_poly))
+        {
+            bgw_p->CrrPos(i_poly, m_chk_element[bg_index].m_actor_ptr, param_1, i_pos, i_angle,
+                          i_shapeAngle);
         }
     }
 }
 
 /* 80075880-8007595C 0701C0 00DC+00 0/0 7/7 2/2 .text
  * MoveBgTransPos__4dBgSFRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz */
-void dBgS::MoveBgTransPos(cBgS_PolyInfo const& poly, bool param_1, cXyz* param_2, csXyz* param_3,
-                          csXyz* param_4) {
-    if (!param_1 || !poly.ChkBgIndex()) {
+void dBgS::MoveBgTransPos(cBgS_PolyInfo const& i_poly, bool param_1, cXyz* i_pos, csXyz* i_angle,
+                          csXyz* i_shapeAngle) {
+    if (!param_1 || !i_poly.ChkBgIndex()) {
         return;
-    } else {
-        int bg_index = poly.GetBgIndex();
-        if (m_chk_element[bg_index].ChkUsed()) {
-            dBgW_Base* base = m_chk_element[bg_index].m_bgw_base_ptr;
-            if (base->ChkMoveFlag() && ChkPolySafe(poly)) {
-                base->TransPos(poly, m_chk_element[bg_index].m_actor_ptr, param_1, param_2, param_3,
-                               param_4);
-            }
+    }
+
+    int bg_index = i_poly.GetBgIndex();
+    if (m_chk_element[bg_index].ChkUsed()) {
+        dBgW_Base* bgw_p = m_chk_element[bg_index].m_bgw_base_ptr;
+
+        if (bgw_p->ChkMoveFlag() && ChkPolySafe(i_poly)) {
+            bgw_p->TransPos(i_poly, m_chk_element[bg_index].m_actor_ptr, param_1, i_pos, i_angle,
+                            i_shapeAngle);
         }
     }
 }
 
 /* 8007595C-80075A24 07029C 00C8+00 0/0 6/6 0/0 .text
  * MoveBgMatrixCrrPos__4dBgSFRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz */
-void dBgS::MoveBgMatrixCrrPos(cBgS_PolyInfo const& poly, bool param_1, cXyz* param_2,
-                              csXyz* param_3, csXyz* param_4) {
-    if (!param_1 || !poly.ChkBgIndex()) {
+void dBgS::MoveBgMatrixCrrPos(cBgS_PolyInfo const& i_poly, bool param_1, cXyz* i_pos,
+                              csXyz* i_angle, csXyz* i_shapeAngle) {
+    if (!param_1 || !i_poly.ChkBgIndex()) {
         return;
-    } else {
-        int bg_index = poly.GetBgIndex();
-        if (m_chk_element[bg_index].ChkUsed()) {
-            dBgW_Base* base = m_chk_element[bg_index].m_bgw_base_ptr;
-            if (base->ChkMoveFlag()) {
-                base->MatrixCrrPos(poly, m_chk_element[bg_index].m_actor_ptr, param_1, param_2,
-                                   param_3, param_4);
-            }
+    }
+
+    int bg_index = i_poly.GetBgIndex();
+    if (m_chk_element[bg_index].ChkUsed()) {
+        dBgW_Base* bgw_p = m_chk_element[bg_index].m_bgw_base_ptr;
+
+        if (bgw_p->ChkMoveFlag()) {
+            bgw_p->MatrixCrrPos(i_poly, m_chk_element[bg_index].m_actor_ptr, param_1, i_pos,
+                                i_angle, i_shapeAngle);
         }
     }
 }
 
 /* 80075A24-80075AA4 070364 0080+00 1/1 0/0 46/46 .text
  * dBgS_MoveBGProc_Typical__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz */
-void dBgS_MoveBGProc_Typical(dBgW* param_0, void* param_1, cBgS_PolyInfo const& param_2,
-                             bool param_3, cXyz* param_4, csXyz* param_5, csXyz* param_6) {
-    Mtx tmp;
-    if (param_0->GetOldInvMtx(tmp) != 0) {
-        cXyz tmp2;
-        PSMTXMultVec(tmp, param_4, &tmp2);
+void dBgS_MoveBGProc_Typical(dBgW* i_bgw, void* i_actor_ptr, cBgS_PolyInfo const& i_poly,
+                             bool param_3, cXyz* i_pos, csXyz* i_angle, csXyz* i_shapeAngle) {
+    Mtx m;
+    if (i_bgw->GetOldInvMtx(m) != NULL) {
+        cXyz move_old;
+        PSMTXMultVec(m, i_pos, &move_old);
 
-        cXyz tmp3;
-        PSMTXMultVec(param_0->GetBaseMtxP(), &tmp2, &tmp3);
-        param_4->x = tmp3.x;
-        param_4->y = tmp3.y;
-        param_4->z = tmp3.z;
+        cXyz move_pos;
+        PSMTXMultVec(i_bgw->GetBaseMtxP(), &move_old, &move_pos);
+        i_pos->x = move_pos.x;
+        i_pos->y = move_pos.y;
+        i_pos->z = move_pos.z;
     }
 }
 
 /* 80075AA4-80075AD8 0703E4 0034+00 1/1 0/0 0/0 .text
  * dBgS_MoveBGProc_RotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz */
-static void dBgS_MoveBGProc_RotY(dBgW* param_0, void* param_1, cBgS_PolyInfo const& param_2,
-                                 bool param_3, cXyz* param_4, csXyz* param_5, csXyz* param_6) {
-    if (param_6 != NULL) {
-        s16 y = param_0->GetDiffShapeAngleY();
-        if (param_6 != NULL) {
-            param_6->y += y;
+static void dBgS_MoveBGProc_RotY(dBgW* i_bgw, void* i_actor_ptr, cBgS_PolyInfo const& i_poly,
+                                 bool param_3, cXyz* i_pos, csXyz* i_angle, csXyz* i_shapeAngle) {
+    if (i_shapeAngle != NULL) {
+        s16 y = i_bgw->GetDiffShapeAngleY();
+
+        if (i_shapeAngle != NULL) {
+            i_shapeAngle->y += y;
         }
-        if (param_5 != NULL) {
-            param_5->y += y;
+
+        if (i_angle != NULL) {
+            i_angle->y += y;
         }
     }
 }
 
 /* 80075AD8-80075B44 070418 006C+00 0/0 0/0 124/124 .text
  * dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz */
-void dBgS_MoveBGProc_TypicalRotY(dBgW* param_0, void* param_1, cBgS_PolyInfo const& param_2,
-                                 bool param_3, cXyz* param_4, csXyz* param_5, csXyz* param_6) {
-    dBgS_MoveBGProc_Typical(param_0, param_1, param_2, param_3, param_4, param_5, param_6);
-    dBgS_MoveBGProc_RotY(param_0, param_1, param_2, param_3, param_4, param_5, param_6);
+void dBgS_MoveBGProc_TypicalRotY(dBgW* i_bgw, void* i_actor_ptr, cBgS_PolyInfo const& i_poly,
+                                 bool param_3, cXyz* i_pos, csXyz* i_angle, csXyz* i_shapeAngle) {
+    dBgS_MoveBGProc_Typical(i_bgw, i_actor_ptr, i_poly, param_3, i_pos, i_angle, i_shapeAngle);
+    dBgS_MoveBGProc_RotY(i_bgw, i_actor_ptr, i_poly, param_3, i_pos, i_angle, i_shapeAngle);
 }
 
 /* 80075B44-80075B84 070484 0040+00 0/0 0/0 10/10 .text
  * dBgS_MoveBGProc_Trans__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz */
-void dBgS_MoveBGProc_Trans(dBgW* param_0, void* param_1, cBgS_PolyInfo const& param_2, bool param_3,
-                           cXyz* param_4, csXyz* param_5, csXyz* param_6) {
-    cXyz xyz;
-    param_0->GetTrans(&xyz);
+void dBgS_MoveBGProc_Trans(dBgW* i_bgw, void* i_actor_ptr, cBgS_PolyInfo const& i_poly,
+                           bool param_3, cXyz* i_pos, csXyz* i_angle, csXyz* i_shapeAngle) {
+    cXyz trans;
+    i_bgw->GetTrans(&trans);
 
-    PSVECAdd(param_4, &xyz, param_4);
+    PSVECAdd(i_pos, &trans, i_pos);
 }
 
 /* 80075B84-80075BF4 0704C4 0070+00 0/0 1/1 2/2 .text
@@ -867,7 +876,8 @@ bool dBgS::PushPullCallBack(cBgS_PolyInfo const& param_0, fopAc_ac_c* param_1, s
         return false;
     }
 
-    return base->GetPushPullCallback()(m_chk_element[bg_index].m_actor_ptr, param_1, param_2, param_3);
+    return base->GetPushPullCallback()(m_chk_element[bg_index].m_actor_ptr, param_1, param_2,
+                                       param_3);
 }
 
 /* 80075D0C-80075D7C 07064C 0070+00 0/0 8/8 1/1 .text dBgS_CheckBWallPoly__FRC13cBgS_PolyInfo */

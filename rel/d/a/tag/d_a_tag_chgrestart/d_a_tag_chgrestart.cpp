@@ -1,51 +1,38 @@
 /**
  * d_a_tag_chgrestart.cpp
- * 
+ *
  */
 
 #include "rel/d/a/tag/d_a_tag_chgrestart/d_a_tag_chgrestart.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
-//
-// External References:
-//
-
-extern "C" void mDoMtx_YrotS__FPA4_fs();
-extern "C" void getStatusRoomDt__20dStage_roomControl_cFi();
-extern "C" void setRoom__13dSv_restart_cFRC4cXyzsSc();
-extern "C" void onSwitch__10dSv_info_cFii();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-extern "C" u8 now__14mDoMtx_stack_c[48];
-
 /* 80D56758-80D567E4 000078 008C+00 1/1 0/0 0/0 .text            Create__17daTagChgRestart_cFv */
 s32 daTagChgRestart_c::Create() {
-    field_0x568[0].x = -100.0f * mScale.x;
-    field_0x568[0].z = -100.0f * mScale.z;
+    mVertices[0].x = -100.0f * mScale.x;
+    mVertices[0].z = -100.0f * mScale.z;
 
-    field_0x568[1].x = 100.0f * mScale.x;
-    field_0x568[1].z = -100.0f * mScale.z;
+    mVertices[1].x = 100.0f * mScale.x;
+    mVertices[1].z = -100.0f * mScale.z;
 
-    field_0x568[2].x = 100.0f * mScale.x;
-    field_0x568[2].z = 100.0f * mScale.z;
+    mVertices[2].x = 100.0f * mScale.x;
+    mVertices[2].z = 100.0f * mScale.z;
 
-    field_0x568[3].x = -100.0f * mScale.x;
-    field_0x568[3].z = 100.0f * mScale.z;
+    mVertices[3].x = -100.0f * mScale.x;
+    mVertices[3].z = 100.0f * mScale.z;
 
-    field_0x568[3].y = 0.0f;
-    field_0x568[2].y = 0.0f;
-    field_0x568[1].y = 0.0f;
-    field_0x568[0].y = 0.0f;
+    mVertices[3].y = 0.0f;
+    mVertices[2].y = 0.0f;
+    mVertices[1].y = 0.0f;
+    mVertices[0].y = 0.0f;
 
     return 1;
 }
 
 /* 80D567E4-80D56878 000104 0094+00 1/1 0/0 0/0 .text            create__17daTagChgRestart_cFv */
-s32 daTagChgRestart_c::create() { 
+s32 daTagChgRestart_c::create() {
     fopAcM_SetupActor(this, daTagChgRestart_c);
-    
+
     if (!Create()) {
         return cPhs_ERROR_e;
     }
@@ -54,10 +41,8 @@ s32 daTagChgRestart_c::create() {
 }
 
 /* 80D568B8-80D56A84 0001D8 01CC+00 1/1 0/0 0/0 .text            execute__17daTagChgRestart_cFv */
-#ifdef NONMATCHING
-// do-while loop is wrong
 s32 daTagChgRestart_c::execute() {
-    if (i_fopAcM_isSwitch(this,daTagChgRestart_prm::getSwNo(this))) {
+    if (i_fopAcM_isSwitch(this, daTagChgRestart_prm::getSwNo(this))) {
         return 1;
     }
 
@@ -66,46 +51,40 @@ s32 daTagChgRestart_c::execute() {
     pos -= orig.pos;
 
     mDoMtx_stack_c::YrotS(-current.angle.y);
-    mDoMtx_stack_c::multVec(&pos,&pos);
+    mDoMtx_stack_c::multVec(&pos, &pos);
 
-    if (field_0x568[0].x < pos.x && field_0x568[0].z < pos.z &&
-        field_0x568[2].x > pos.x && field_0x568[2].z > pos.z) {
-        cXyz l_restartPos = orig.pos;
-        s16 l_restartAngle = orig.angle.y;
-        
+    if (mVertices[0].x < pos.x && mVertices[0].z < pos.z && mVertices[2].x > pos.x &&
+        mVertices[2].z > pos.z)
+    {
+        cXyz restart_pos = orig.pos;
+        s16 restart_angle = orig.angle.y;
+
         u8 playerNo = daTagChgRestart_prm::getPlayerNo(this);
         if (playerNo != 0xFF) {
-            dStage_roomStatus_c* roomStatusDt = dComIfGp_roomControl_getStatusRoomDt(fopAcM_GetRoomNo(this));
-            stage_actor_class* actor = roomStatusDt->mRoomDt.getPlayer();
-            stage_actor_data_class* actor_data = actor->mEntries;
-            int entryNum = actor->mEntryNum;
+            dStage_roomStatus_c* roomStatusDt =
+                dComIfGp_roomControl_getStatusRoomDt(fopAcM_GetRoomNo(this));
+            stage_actor_class* player_data = roomStatusDt->mRoomDt.getPlayer();
 
-            do {
-                actor_data++;
+            stage_actor_data_class* entry_p = player_data->mEntries;
+            for (int i = 0; i < player_data->mEntryNum; i++) {
+                if ((entry_p->mAngle.z & 0xFF) == playerNo) {
+                    break;
+                }
+
+                entry_p++;
             }
-            while (entryNum > 0 && actor->mEntryNum > playerNo && actor_data != 0);
-            
-            l_restartPos = actor_data->mSpawnPos;
-            l_restartAngle = actor_data->mAngle.y;
+
+            restart_pos = entry_p->mSpawnPos;
+            restart_angle = entry_p->mAngle.y;
         }
-        
+
         s32 l_roomNo = fopAcM_GetRoomNo(player);
-        dComIfGs_setRestartRoom(l_restartPos,l_restartAngle,l_roomNo);
-        i_fopAcM_onSwitch(this,daTagChgRestart_prm::getSwNo(this));
+        dComIfGs_setRestartRoom(restart_pos, restart_angle, l_roomNo);
+        i_fopAcM_onSwitch(this, daTagChgRestart_prm::getSwNo(this));
     }
 
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 daTagChgRestart_c::execute() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_chgrestart/d_a_tag_chgrestart/execute__17daTagChgRestart_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80D56A84-80D56A8C 0003A4 0008+00 1/1 0/0 0/0 .text            _delete__17daTagChgRestart_cFv */
 s32 daTagChgRestart_c::_delete() {
@@ -125,8 +104,8 @@ static s32 daTagChgRestart_Delete(daTagChgRestart_c* i_this) {
 }
 
 /* 80D56ACC-80D56AEC 0003EC 0020+00 1/0 0/0 0/0 .text daTagChgRestart_Create__FP10fopAc_ac_c */
-static s32 daTagChgRestart_Create(fopAc_ac_c* param_0) {
-    return static_cast<daTagChgRestart_c*>(param_0)->create();
+static s32 daTagChgRestart_Create(fopAc_ac_c* i_this) {
+    return static_cast<daTagChgRestart_c*>(i_this)->create();
 }
 
 /* ############################################################################################## */
@@ -134,7 +113,7 @@ static s32 daTagChgRestart_Create(fopAc_ac_c* param_0) {
 static actor_method_class l_daTagChgRestart_Method = {
     (process_method_func)daTagChgRestart_Create,
     (process_method_func)daTagChgRestart_Delete,
-    (process_method_func)daTagChgRestart_Execute
+    (process_method_func)daTagChgRestart_Execute,
 };
 
 /* 80D56B20-80D56B50 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_ChgRestart */

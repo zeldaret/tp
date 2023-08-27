@@ -12,7 +12,7 @@ public:
     /* 80D568B8 */ s32 execute();
     /* 80D56A84 */ s32 _delete();
 
-    /* 0x0568 */ cXyz field_0x568[4];
+    /* 0x0568 */ cXyz mVertices[4];
 };
 STATIC_ASSERT(sizeof(daTagChgRestart_c) == 0x598);
 

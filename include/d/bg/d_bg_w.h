@@ -2,6 +2,8 @@
 #define D_BG_D_BG_W_H
 
 #include "SSystem/SComponent/c_m3d_g_aab.h"
+#include "SSystem/SComponent/c_xyz.h"
+#include "SSystem/SComponent/c_sxyz.h"
 #include "d/bg/d_bg_w_base.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
@@ -24,7 +26,7 @@ public:
 
 class cBgW_RwgElm {
 public:
-    /* 0x0 */ u16 field_0x0;
+    /* 0x0 */ u16 m_next;
 
     /* 800791C4 */ cBgW_RwgElm();
     /* 800791D4 */ virtual ~cBgW_RwgElm();
@@ -46,66 +48,78 @@ public:
     /* 0x4 */ cM3dGAab m_aab;
 };
 
-struct cBgW_unk_b_data {
-    /* 0x0 */ u16 field_0x0;
-    /* 0x2 */ u16 field_0x2;
-    /* 0x4 */ u16 field_0x4;
+struct cBgW_BlkElm {
+    /* 0x0 */ u16 m_roof_idx;
+    /* 0x2 */ u16 m_wall_idx;
+    /* 0x4 */ u16 m_gnd_idx;
 };  // Size: 0x6
 
-struct dzb_tri_data {
-    /* 0x0 */ u16 field_0x0;
-    /* 0x2 */ u16 field_0x2;
-    /* 0x4 */ u16 field_0x4;
+struct cBgD_Tri_t {
+    /* 0x0 */ u16 m_vtx_idx0;
+    /* 0x2 */ u16 m_vtx_idx1;
+    /* 0x4 */ u16 m_vtx_idx2;
     /* 0x6 */ u16 m_id;
     /* 0x8 */ u16 m_grp;
 };  // Size: 0xA
 
-struct dzb_ti_data {
+struct cBgD_Ti_t {
     /* 0x0 */ u32 m_info0;
     /* 0x4 */ u32 m_info1;
     /* 0x8 */ u32 m_info2;
-    /* 0xC */ u8 field_0xc[0x10 - 0xC];
+    /* 0xC */ u32 m_passFlag;
 };
 
-struct dzb_b_data {
+struct cBgD_Blk_t {
     /* 0x0 */ u16 field_0x0;
 };
 
-struct dzb_tree_data {
-    /* 0x0 */ u16 field_0x0;
-    /* 0x2 */ u16 field_0x2;
+struct cBgD_Tree_t {
+    /* 0x0 */ u16 m_flag;
+    /* 0x2 */ u16 m_parent_id;
     /* 0x4 */ u16 m_id[8];
 };  // Size: 0x14
 
-struct dzb_g_data {
-    /* 0x00 */ u8 field_0x0[0x24 - 0x0];
-    /* 0x24 */ u16 field_0x24;
-    /* 0x26 */ u16 field_0x26;
-    /* 0x28 */ u16 field_0x28;
-    /* 0x2A */ u16 field_0x2a;
-    /* 0x2C */ u8 field_0x2c[0x2E - 0x2C];
-    /* 0x2E */ u16 field_0x2e;
+struct cBgD_Grp_t {
+    /* 0x00 */ char* m_name;
+    /* 0x04 */ cXyz m_scale;
+    /* 0x10 */ csXyz m_rotation;
+    /* 0x18 */ cXyz m_translation;
+    /* 0x24 */ u16 m_parent;
+    /* 0x26 */ u16 m_next_sibling;
+    /* 0x28 */ u16 m_first_child;
+    /* 0x2A */ u16 m_room_id;
+    /* 0x2C */ u16 m_first_vtx_idx;
+    /* 0x2E */ u16 m_tree_idx;
     /* 0x30 */ u32 m_info;
 }; // Size: 0x34
 
 struct cBgD_t {
     /* 0x00 */ int m_v_num;                // vertex num
-    /* 0x04 */ Vec* m_v_tbl;               // vertex table
+    /* 0x04 */ cBgD_Vtx_t* m_v_tbl;        // vertex table
     /* 0x08 */ int m_t_num;                // triangle num
-    /* 0x0C */ dzb_tri_data* m_t_tbl;      // triangle table
-    /* 0x10 */ int m_b_num;                // spatial?
-    /* 0x14 */ dzb_b_data* m_b_tbl;
-    /* 0x18 */ int m_tree_num;             // face group?
-    /* 0x1C */ dzb_tree_data* m_tree_tbl;
-    /* 0x20 */ int m_g_num;                // string group?
-    /* 0x24 */ dzb_g_data* m_g_tbl;
-    /* 0x28 */ int m_ti_num;               // surface property?
-    /* 0x2C */ dzb_ti_data* m_ti_tbl;
-    /* 0x30 */ int field_0x30;
+    /* 0x0C */ cBgD_Tri_t* m_t_tbl;        // triangle table
+    /* 0x10 */ int m_b_num;
+    /* 0x14 */ cBgD_Blk_t* m_b_tbl;
+    /* 0x18 */ int m_tree_num;
+    /* 0x1C */ cBgD_Tree_t* m_tree_tbl;
+    /* 0x20 */ int m_g_num;
+    /* 0x24 */ cBgD_Grp_t* m_g_tbl;
+    /* 0x28 */ int m_ti_num;
+    /* 0x2C */ cBgD_Ti_t* m_ti_tbl;
+    /* 0x30 */ int mFlags;
 };
 
 class cBgW : public dBgW_Base {
 public:
+    enum Flags_e {
+        MOVE_BG_e = 0x1,
+        NO_CALC_VTX_e = 0x2,
+        NO_VTX_TBL_e = 0x10,
+        GLOBAL_e = 0x20,
+        CBGW_UNK_FLAG_40 = 0x40,
+        LOCK_e = 0x80,
+    };
+
     /* 80079294 */ cBgW();
     /* 800793A4 */ void FreeArea();
     /* 800793C4 */ void GlobalVtx();
@@ -118,7 +132,7 @@ public:
     /* 80079BDC */ void MakeNodeTreeRp(int);
     /* 80079CC4 */ void MakeNodeTreeGrpRp(int);
     /* 80079DF0 */ void MakeNodeTree();
-    /* 80079F38 */ bool Set(cBgD_t*, u32, f32 (*)[3][4]);
+    /* 80079F38 */ bool Set(cBgD_t* pdzb, u32 flags, Mtx* pbase_mtx);
     /* 8007A200 */ bool RwgLineCheck(u16, cBgS_LinChk*);
     /* 8007A3A0 */ bool LineCheckRp(cBgS_LinChk*, int);
     /* 8007A52C */ bool LineCheckGrpRp(cBgS_LinChk*, int, int);
@@ -204,27 +218,27 @@ public:
 
     u32 GetOldInvMtx(Mtx m) { return PSMTXInverse(m_inv_mtx, m); }
     MtxP GetBaseMtxP() { return pm_base; }
-    bool ChkNoCalcVtx() { return field_0x88 & 2; }
+    bool ChkNoCalcVtx() { return mFlags & NO_CALC_VTX_e; }
     bool ChkFlush() { return field_0x91 & 8; }
-    void SetLock() { field_0x88 |= 0x80; }
+    void SetLock() { mFlags |= LOCK_e; }
     bool ChkRoofRegist() { return field_0x91 & 4;}
 
 public:
-    /* 0x18 */ MtxP pm_base;
+    /* 0x18 */ MtxP pm_base;  // Model Matrix
     /* 0x1C */ Mtx m_inv_mtx;
-    /* 0x4C */ Mtx field_0x4c;
-    /* 0x7C */ cXyz field_0x7c;
-    /* 0x88 */ u8 field_0x88;
-    /* 0x89 */ u8 field_0x89;
+    /* 0x4C */ Mtx m_mtx;
+    /* 0x7C */ cXyz mTransVel;
+    /* 0x88 */ u8 mFlags;
+    /* 0x89 */ u8 mNeedsFullTransform;
     /* 0x8A */ u8 field_0x8a[6];
-    /* 0x90 */ u8 field_0x90;
+    /* 0x90 */ u8 mMoveCounter;
     /* 0x91 */ u8 field_0x91;
-    /* 0x92 */ u16 field_0x92;
+    /* 0x92 */ u16 m_rootGrpIdx;
     /* 0x94 */ cBgW_TriElm* pm_tri;
     /* 0x98 */ cBgW_RwgElm* pm_rwg;
     /* 0x9C */ cBgD_Vtx_t* pm_vtx_tbl;
     /* 0xA0 */ cBgD_t* pm_bgd;
-    /* 0xA4 */ cBgW_unk_b_data* field_0xa4;
+    /* 0xA4 */ cBgW_BlkElm* pm_blk;
     /* 0xA8 */ cBgW_GrpElm* pm_grp;
     /* 0xAC */ cBgW_NodeTree* pm_node_tree;
 };

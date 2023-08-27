@@ -647,7 +647,7 @@ int daBg_c::createHeap() {
             return 0;
         }
 
-        if (mpBgW->Set(dzb, 0x20, NULL)) {
+        if (mpBgW->Set(dzb, cBgW::GLOBAL_e, NULL)) {
             return 0;
         }
 

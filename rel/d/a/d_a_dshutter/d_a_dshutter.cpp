@@ -179,7 +179,7 @@ int daDsh_c::Draw() {
 int daDsh_c::Execute(f32 (**param_0)[3][4]) {
     callExecute();
     setMtx();
-    *param_0 = &field_0x56c;
+    *param_0 = &mBgMtx;
     func_80467DF8(&mTiltTime);
     return 1;
 }
@@ -190,7 +190,7 @@ void daDsh_c::setMtx() {
     mDoMtx_stack_c::YrotM(shape_angle.y);
 
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
-    PSMTXCopy(mDoMtx_stack_c::get(), field_0x56c);
+    PSMTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
 /* 80467708-8046772C 0002E8 0024+00 5/5 0/0 0/0 .text setAction__7daDsh_cFPQ27daDsh_c8action_c */

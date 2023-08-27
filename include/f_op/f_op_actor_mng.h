@@ -140,6 +140,7 @@ enum fopAcM_CARRY {
     /* 0x04 */ fopAcM_CARRY_SIDE = 4,
     /* 0x08 */ fopAcM_CARRY_TYPE_8 = 8,
     /* 0x10 */ fopAcM_CARRY_LIGHT = 16, // guess based on context
+    /* 0x30 */ fopAcM_CARRY_UNK_30 = 0x30,
 };
 
 inline u32 fopAcM_CheckCarryType(fopAc_ac_c* actor, fopAcM_CARRY type) {

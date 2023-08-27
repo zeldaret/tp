@@ -20,7 +20,7 @@ void daObjLv4Floor_c::setBaseMtx() {
     mDoMtx_stack_c::YrotM(shape_angle.y);
 
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
-    PSMTXCopy(mDoMtx_stack_c::get(), field_0x56c);
+    PSMTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
 /* 80C678B0-80C678D4 000130 0024+00 1/0 0/0 0/0 .text            Create__15daObjLv4Floor_cFv */
@@ -84,7 +84,7 @@ int daObjLv4Floor_c::create1st() {
 /* 80C679E4-80C67A30 000264 004C+00 1/0 0/0 0/0 .text Execute__15daObjLv4Floor_cFPPA3_A4_f */
 int daObjLv4Floor_c::Execute(Mtx** param_0) {
     action();
-    *param_0 = &field_0x56c;
+    *param_0 = &mBgMtx;
     setBaseMtx();
 
     return 1;

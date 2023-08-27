@@ -238,7 +238,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     cBgD_t* dzb = (cBgD_t*)dComIfG_getObjectRes("Obj_web1", 11);
-    if (_this->mpBgW->Set(dzb, 1, &_this->mMtx) == 1) {
+    if (_this->mpBgW->Set(dzb, cBgW::MOVE_BG_e, &_this->mMtx) == 1) {
         return 0;
     }
 
