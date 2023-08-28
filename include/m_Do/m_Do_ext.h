@@ -149,7 +149,11 @@ public:
     /* 8000D9E8 */ void entryJoint(J3DModelData* i_modelData, u16 i_jntNo, f32 i_frame);
 
     void entry(J3DModelData* i_modelData) { entry(i_modelData, getFrame()); }
+
+    void remove(J3DModelData* i_modelData) { i_modelData->getJointNodePointer(0)->setMtxCalc(NULL); }
+
     J3DAnmTransform* getBckAnm() { return mAnm; }
+
     void removeJoint(J3DModelData* i_modelData, u16 i_idx) {
         J3DJoint* mpJnt = i_modelData->getJointNodePointer(i_idx);
         mpJnt->setMtxCalc(0);

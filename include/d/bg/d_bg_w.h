@@ -272,7 +272,7 @@ public:
     /* 8007DC70 */ bool SphChkRp(dBgS_SphChk*, void*, int);
     /* 8007DDE0 */ bool SphChkGrpRp(dBgS_SphChk*, void*, int, int);
 
-    /* 8007E548 */ virtual ~dBgW();
+    /* 8007E548 */ virtual ~dBgW() {}
     /* 8007E4B4 */ virtual u32 ChkMoveFlag() const;
     /* 8007E4A4 */ virtual void OffMoveFlag();
     /* 8007DAF8 */ virtual void CaptPoly(dBgS_CaptPoly&);
