@@ -24,16 +24,6 @@ struct TNodeLinkList {
 
 };  // namespace JGadget
 
-struct JASSeqCtrl {
-    struct IntrType {};
-
-    /* 802938BC */ JASSeqCtrl();
-    /* 80293924 */ void init();
-    /* 80293980 */ void start(void*, u32);
-    /* 802939C4 */ void tickProc(JASTrack*);
-    /* 80293ABC */ void interrupt(JASSeqCtrl::IntrType);
-};
-
 struct JASRegisterParam {
     /* 80293644 */ JASRegisterParam();
     /* 80293664 */ void init();

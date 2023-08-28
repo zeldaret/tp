@@ -3,6 +3,7 @@
 
 #include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JAudio2/JASOscillator.h"
+#include "JSystem/JAudio2/JASSeqCtrl.h"
 
 struct JASSoundParams;
 

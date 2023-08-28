@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/JAudio2/JASSeqParser.h"
+#include "JSystem/JAudio2/JASSeqCtrl.h"
 #include "JSystem/JAudio2/JASTrackPort.h"
 #include "dol2asm.h"
 
@@ -37,14 +38,6 @@ struct JASTrack {
     /* 8029297C */ void readPort(u32);
     /* 80292B58 */ void setTempo(u16);
     /* 80292BC0 */ void setTimebase(u16);
-};
-
-struct JASSeqReader {
-    /* 8029618C */ void call(u32);
-    /* 802961CC */ void loopStart(u32);
-    /* 80296210 */ void loopEnd();
-    /* 8029627C */ void ret();
-    /* 802962B0 */ void readMidiValue();
 };
 
 struct JASSeqParser {
@@ -123,13 +116,6 @@ struct JASSeqParser {
     static u8 sCmdInfo[1536];
     static u8 sExtCmdInfo[4080];
     static u8 sCallBackFunc[4];
-};
-
-struct JASSeqCtrl {
-    /* 80293AE0 */ void setIntrMask(u32);
-    /* 80293AF0 */ void clrIntrMask(u32);
-    /* 80293B00 */ void retIntr();
-    /* 80293B78 */ void checkIntr();
 };
 
 struct JASRegisterParam {
