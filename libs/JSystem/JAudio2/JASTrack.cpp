@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/JAudio2/JASTrack.h"
+#include "JSystem/JAudio2/JASTrackPort.h"
 #include "dol2asm.h"
 
 //
@@ -22,14 +23,6 @@ struct TNodeLinkList {
 };
 
 };  // namespace JGadget
-
-struct JASTrackPort {
-    /* 8029354C */ void init();
-    /* 8029357C */ void readImport(u32);
-    /* 802935A0 */ void readExport(u32);
-    /* 802935C4 */ void writeImport(u32, u16);
-    /* 802935E8 */ void writeExport(u32, u16);
-};
 
 struct JASSeqCtrl {
     struct IntrType {};

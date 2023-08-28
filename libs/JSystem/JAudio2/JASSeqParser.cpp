@@ -4,16 +4,12 @@
 //
 
 #include "JSystem/JAudio2/JASSeqParser.h"
+#include "JSystem/JAudio2/JASTrackPort.h"
 #include "dol2asm.h"
 
 //
 // Types:
 //
-
-struct JASTrackPort {
-    /* 8029360C */ void checkImport(u32) const;
-    /* 80293628 */ void checkExport(u32) const;
-};
 
 struct JASOscillator {
     struct Point {};
