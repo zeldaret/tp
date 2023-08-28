@@ -20,7 +20,7 @@ public:
 class dFile_select3D_c {
 public:
     /* 801902F0 */ dFile_select3D_c();
-    /* 80190380 */ ~dFile_select3D_c();
+    /* 80190380 */ /* virtual */ ~dFile_select3D_c();
     /* 801903DC */ void _create(u8, u8);
     /* 8019049C */ void _delete();
     /* 801904A0 */ void freeHeap();
@@ -33,7 +33,7 @@ public:
     /* 80190BA8 */ void createMaskModel();
     /* 80190D68 */ void createMirrorModel();
     /* 80190FE8 */ void toItem3Dpos(f32, f32, f32, cXyz*);
-    /* 801910D4 */ void calcViewMtx(f32 (*)[4]);
+    /* 801910D4 */ void calcViewMtx(Mtx);
 
     void drawOff() { mpModel = 0; }
 
@@ -42,12 +42,9 @@ public:
     /* 0x0008 */ J3DModel* mpModel;
     /* 0x000C */ mDoExt_bckAnm* mBckAnm;
     /* 0x0010 */ mDoExt_brkAnm* mBrkAnm;
-    /* 0x0014 */ J3DLightInfo mLightInfo;
-    /* 0x0048 */ u8 field_0x0048[0x0088 - 0x0048];
-    /* 0x0088 */ J3DLightObj mLightObjects[6];
-    /* 0x0340 */ u8 field_0x0340[0x039C - 0x0340];
-    /* 0x039C */ J2DPane* pane;
-    /* 0x03A0 */ u8 field_0x03A0[0x03A4 - 0x03A0];
+    /* 0x0014 */ dKy_tevstr_c mTevstr;
+    /* 0x039C */ CPaneMgr* mPaneMgr;
+    /* 0x03A0 */ J2DPane* mPane;
     /* 0x03A4 */ cXyz field_0x03a4;
     /* 0x03B0 */ csXyz field_0x03b0;
     /* 0x03B6 */ u8 padding[2];

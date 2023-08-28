@@ -73,7 +73,7 @@ inline void cMtx_multVec(Mtx mtx, const Vec* src, Vec* dst) {
     mDoMtx_multVec(mtx, src, dst);
 }
 
-inline void cMtx_lookAt(f32 (*param_0)[4],Vec const* param_1, Vec const* param_2,Vec const* param_3, s16 param_4) {
+inline void cMtx_lookAt(Mtx param_0, const Vec* param_1, const Vec* param_2, const Vec* param_3, s16 param_4) {
     mDoMtx_lookAt(param_0,param_1,param_2,param_3,param_4);
 }
 
@@ -105,6 +105,14 @@ inline void mDoMtx_identity(Mtx m) {
 
 inline void mDoMtx_concat(const Mtx a, const Mtx b, Mtx c) {
     PSMTXConcat(a, b, c);
+}
+
+inline void mDoMtx_inverse(const Mtx a, Mtx b) {
+    PSMTXInverse(a, b);
+}
+
+inline void cMtx_inverse(const Mtx a, Mtx b) {
+    mDoMtx_inverse(a, b);
 }
 
 class mDoMtx_stack_c {

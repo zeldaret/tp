@@ -8,7 +8,11 @@
 
 #include "d/file/d_file_select.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
+#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 #include "d/meter/d_meter2_info.h"
+#include "d/s/d_s_play.h"
 #include "dol2asm.h"
 #include "dolphin/dvd/dvd.h"
 #include "dolphin/types.h"
@@ -4882,9 +4886,14 @@ asm void dFile_select_c::dataSave() {
 #endif
 
 /* 801902F0-80190380 18AC30 0090+00 1/1 0/0 0/0 .text            __ct__16dFile_select3D_cFv */
+// vtable data
 #ifdef NONMATCHING
 dFile_select3D_c::dFile_select3D_c() {
-    mLightInfo.dKy_tevstr_c();
+    mpHeap = NULL;
+    mpModel = NULL;
+    field_0x03b8.y = 0.0f;
+    field_0x03b8.x = 0.0f;
+    field_0x03b8.z = 1.0f;
 }
 #else
 #pragma push
@@ -4898,6 +4907,12 @@ asm dFile_select3D_c::dFile_select3D_c() {
 #endif
 
 /* 80190380-801903DC 18ACC0 005C+00 1/0 0/0 0/0 .text            __dt__16dFile_select3D_cFv */
+// vtable data
+#ifdef NONMATCHING
+dFile_select3D_c::~dFile_select3D_c() {
+    freeHeap();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4906,14 +4921,15 @@ asm dFile_select3D_c::~dFile_select3D_c() {
 #include "asm/d/file/d_file_select/__dt__16dFile_select3D_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801903DC-8019049C 18AD1C 00C0+00 1/1 0/0 0/0 .text            _create__16dFile_select3D_cFUcUc */
 #ifdef NONMATCHING
 // matches with literals
 void dFile_select3D_c::_create(u8 i_mirrorIdx, u8 i_maskIdx) {
-    JKRHeap* ppHeap[2];
+    JKRHeap* ppHeap;
 
-    mpHeap = mDoExt_createSolidHeapFromGameToCurrent(ppHeap,0x25800,32);
+    mpHeap = mDoExt_createSolidHeapFromGameToCurrent(&ppHeap,0x25800,32);
     field_0x03c4 = 0.0f;
     field_0x03c8 = 0.0f;
     mMirrorIdx = i_mirrorIdx;
@@ -4927,10 +4943,10 @@ void dFile_select3D_c::_create(u8 i_mirrorIdx, u8 i_maskIdx) {
     }
 
     mpHeap->adjustSize();
-    mDoExt_setCurrentHeap(*ppHeap);
+    mDoExt_setCurrentHeap(ppHeap);
 
     if (mpModel) {
-        dKy_tevstr_init((dKy_tevstr_c *)&mLightInfo,0xFF,0xFF);
+        dKy_tevstr_init(&mTevstr,0xFF,0xFF);
         set_mtx();
     }
 }
@@ -4951,40 +4967,75 @@ void dFile_select3D_c::_delete() {
 }
 
 /* 801904A0-801904E4 18ADE0 0044+00 2/2 0/0 0/0 .text            freeHeap__16dFile_select3D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select3D_c::freeHeap() {
-    nofralloc
-#include "asm/d/file/d_file_select/freeHeap__16dFile_select3D_cFv.s"
+void dFile_select3D_c::freeHeap() {
+    if (mpHeap) {
+        mDoExt_destroySolidHeap(mpHeap);
+        mpHeap = NULL;
+        mpModel = NULL;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804539B4-804539B8 001FB4 0004+00 1/1 0/0 0/0 .sdata2          @8459 */
 SECTION_SDATA2 static f32 lit_8459 = 720.0f;
 
 /* 801904E4-801905A8 18AE24 00C4+00 1/1 0/0 0/0 .text            _move__16dFile_select3D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select3D_c::_move() {
-    nofralloc
-#include "asm/d/file/d_file_select/_move__16dFile_select3D_cFv.s"
+void dFile_select3D_c::_move() {
+    if (mpModel) {
+        cXyz stack_20;
+        Vec stack_8 = mPaneMgr->getGlobalVtxCenter(false, 0);
+        toItem3Dpos(stack_8.x + field_0x03b8.x, stack_8.y + field_0x03b8.y, 720.0f, &stack_20);
+        field_0x03a4.set(stack_20);
+        field_0x03b0.set(0, 0, 0);
+        animePlay();
+        set_mtx();
+    }
 }
-#pragma pop
 
 /* 801905A8-8019065C 18AEE8 00B4+00 1/1 0/0 0/0 .text            draw__16dFile_select3D_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select3D_c::draw() {
-    nofralloc
-#include "asm/d/file/d_file_select/draw__16dFile_select3D_cFv.s"
+void dFile_select3D_c::draw() {
+    if (mpModel) {
+        dComIfGd_setListItem3D();
+        g_env_light.settingTevStruct(13, &field_0x03a4, &mTevstr);
+        g_env_light.setLightTevColorType_MAJI(mpModel, &mTevstr);
+        animeEntry();
+        mDoExt_modelUpdateDL(mpModel);
+        dComIfGd_setList();
+    }
 }
-#pragma pop
 
 /* 8019065C-8019095C 18AF9C 0300+00 2/2 0/0 0/0 .text setJ3D__16dFile_select3D_cFPCcPCcPCc */
+#ifdef NONMATCHING
+// double branch, regswap
+void dFile_select3D_c::setJ3D(char const* param_0, char const* param_1, char const* param_2) {
+    JKRArchive* archive = dComIfGp_getCollectResArchive();
+    J3DModelData* modelData = (J3DModelData*)J3DModelLoaderDataBase::load(
+        archive->getResource('BMD ', param_0), 0x51020010);
+    for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
+        J3DMaterialAnm* local_48 = new J3DMaterialAnm();
+        modelData->getMaterialNodePointer(i)->change();
+        modelData->getMaterialNodePointer(i)->setMaterialAnm(local_48);
+    }
+    mpModel = new J3DModel(modelData, 0, 1);
+    if (param_1) {
+        J3DAnmTransform* pbck =
+            (J3DAnmTransform*)J3DAnmLoaderDataBase::load(archive->getResource('BCK ', param_1));
+        mBckAnm = new mDoExt_bckAnm();
+        if (mBckAnm && !mBckAnm->init(pbck, 1, 2, 1.0f, 0, -1, false)) {
+            return;
+        }
+    }
+    if (param_2) {
+        J3DAnmTevRegKey* pbrk =
+            (J3DAnmTevRegKey*)J3DAnmLoaderDataBase::load(archive->getResource('BRK ', param_2));
+        pbrk->searchUpdateMaterialID(modelData);
+        mBrkAnm = new mDoExt_brkAnm();
+        if (mBrkAnm && !mBrkAnm->init(modelData, pbrk, -1, 2, 1.0f, 0, -1)) {
+            return;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4993,12 +5044,28 @@ asm void dFile_select3D_c::setJ3D(char const* param_0, char const* param_1, char
 #include "asm/d/file/d_file_select/setJ3D__16dFile_select3D_cFPCcPCcPCc.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804539B8-804539BC 001FB8 0004+00 1/1 0/0 0/0 .sdata2          @8608 */
 SECTION_SDATA2 static f32 lit_8608 = 1.0f / 10.0f;
 
 /* 8019095C-80190A14 18B29C 00B8+00 2/2 0/0 0/0 .text            set_mtx__16dFile_select3D_cFv */
+#ifdef NONMATCHING
+// matches with literals
+void dFile_select3D_c::set_mtx() {
+    cXyz stack_8;
+    f32 tmp = mPane->getScaleX();
+    if (tmp <= 0.1f) {
+        tmp = 0.0f;
+    }
+    stack_8.x = stack_8.y = stack_8.z = tmp * field_0x03b8.z;
+    mDoMtx_stack_c::transS(field_0x03a4.x, field_0x03a4.y, field_0x03a4.z);
+    mDoMtx_stack_c::XYZrotM(field_0x03b0.x, field_0x03b0.y, field_0x03b0.z);
+    mpModel->setBaseScale(stack_8);
+    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5007,8 +5074,30 @@ asm void dFile_select3D_c::set_mtx() {
 #include "asm/d/file/d_file_select/set_mtx__16dFile_select3D_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80190A14-80190B44 18B354 0130+00 1/1 0/0 0/0 .text            animePlay__16dFile_select3D_cFv */
+#ifdef NONMATCHING
+// matches with literals
+void dFile_select3D_c::animePlay() {
+    if (mBrkAnm) {
+        field_0x03c4 += 1.0f;
+        if (field_0x03c4 >= mBrkAnm->getEndFrame()) {
+            field_0x03c4 -= mBrkAnm->getEndFrame();
+        }
+        mBrkAnm->setFrame(field_0x03c4);
+        mBrkAnm->play();
+    }
+    if (mBckAnm) {
+        field_0x03c8 += 1.0f;
+        if (field_0x03c8 >= mBckAnm->getEndFrame()) {
+            field_0x03c8 -= mBckAnm->getEndFrame();
+        }
+        mBckAnm->setFrame(field_0x03c8);
+        mBckAnm->play();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5017,6 +5106,7 @@ asm void dFile_select3D_c::animePlay() {
 #include "asm/d/file/d_file_select/animePlay__16dFile_select3D_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80190B44-80190BA8 18B484 0064+00 1/1 0/0 0/0 .text            animeEntry__16dFile_select3D_cFv */
 void dFile_select3D_c::animeEntry() {
@@ -5067,6 +5157,34 @@ COMPILER_STRIP_GATE(0x80394338, &m_kamen_scale);
 #pragma pop
 
 /* 80190BA8-80190D68 18B4E8 01C0+00 1/1 0/0 0/0 .text createMaskModel__16dFile_select3D_cFv */
+#ifdef NONMATCHING
+// matches with literals
+void dFile_select3D_c::createMaskModel() {
+    field_0x03b8.x = m_kamen_offset_x[mMaskIdx];
+    field_0x03b8.y = m_kamen_offset_y[mMaskIdx];
+    field_0x03b8.z = m_kamen_scale[mMaskIdx];
+    field_0x03a4.set(0.0f, 0.0f, 0.0f);
+    field_0x03b0.set(0, 0, 0);
+    mpModel = NULL;
+    mBckAnm = NULL;
+    mBrkAnm = NULL;
+    if (mMaskIdx == 0) {
+        return;
+    }
+    setJ3D("md_mask_UI.bmd", bck_name_8683[mMaskIdx - 1], brk_name_8684[mMaskIdx - 1]);
+    switch (mMaskIdx) {
+    case 1:
+        mpModel->getModelData()->getMaterialNodePointer(0)->getShape()->hide();
+        mpModel->getModelData()->getMaterialNodePointer(1)->getShape()->hide();
+    case 2:
+        mpModel->getModelData()->getMaterialNodePointer(2)->getShape()->hide();
+        mpModel->getModelData()->getMaterialNodePointer(3)->getShape()->hide();
+    case 3:
+        mpModel->getModelData()->getMaterialNodePointer(6)->getShape()->hide();
+        mpModel->getModelData()->getMaterialNodePointer(7)->getShape()->hide();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5075,6 +5193,7 @@ asm void dFile_select3D_c::createMaskModel() {
 #include "asm/d/file/d_file_select/createMaskModel__16dFile_select3D_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8039434C-80394360 0209AC 0014+00 0/1 0/0 0/0 .rodata          m_mirror_offset_x$8781 */
@@ -5125,6 +5244,40 @@ SECTION_DEAD static char const* const pad_80394827 = "";
 #pragma pop
 
 /* 80190D68-80190FE8 18B6A8 0280+00 1/1 0/0 0/0 .text createMirrorModel__16dFile_select3D_cFv */
+#ifdef NONMATCHING
+// matches with literals
+void dFile_select3D_c::createMirrorModel() {
+    field_0x03b8.x = m_mirror_offset_x[mMirrorIdx];
+    field_0x03b8.y = m_mirror_offset_y[mMirrorIdx];
+    field_0x03b8.z = m_mirror_scale[mMirrorIdx];
+    field_0x03a4.set(0.0f, 0.0f, 0.0f);
+    field_0x03b0.set(0, 0, 0);
+    mpModel = NULL;
+    mBckAnm = NULL;
+    mBrkAnm = NULL;
+    if (mMirrorIdx == 0) {
+        return;
+    }
+    setJ3D("kageri_mirrer_UI.bmd", bck_name_8786[mMirrorIdx - 1], brk_name_8787[mMirrorIdx - 1]);
+    switch (mMirrorIdx) {
+    case 1:
+        mpModel->getModelData()->getMaterialNodePointer(4)->getShape()->hide();
+        mpModel->getModelData()->getMaterialNodePointer(5)->getShape()->hide();
+        mpModel->getModelData()->getMaterialNodePointer(6)->getShape()->hide();
+        mpModel->getModelData()->getMaterialNodePointer(7)->getShape()->hide();
+    case 2:
+        mpModel->getModelData()->getMaterialNodePointer(8)->getShape()->hide();
+        mpModel->getModelData()->getMaterialNodePointer(9)->getShape()->hide();
+        mpModel->getModelData()->getMaterialNodePointer(10)->getShape()->hide();
+        mpModel->getModelData()->getMaterialNodePointer(11)->getShape()->hide();
+    case 3:
+        mpModel->getModelData()->getMaterialNodePointer(12)->getShape()->hide();
+        mpModel->getModelData()->getMaterialNodePointer(13)->getShape()->hide();
+        mpModel->getModelData()->getMaterialNodePointer(14)->getShape()->hide();
+        mpModel->getModelData()->getMaterialNodePointer(15)->getShape()->hide();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5133,6 +5286,7 @@ asm void dFile_select3D_c::createMirrorModel() {
 #include "asm/d/file/d_file_select/createMirrorModel__16dFile_select3D_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804539BC-804539C0 001FBC 0004+00 1/1 0/0 0/0 .sdata2          @8978 */
@@ -5152,6 +5306,21 @@ SECTION_SDATA2 static f64 lit_8980 = 0.39269909262657166;
 SECTION_SDATA2 static f32 lit_8981 = 19.0f / 14.0f;
 
 /* 80190FE8-801910D4 18B928 00EC+00 1/1 0/0 0/0 .text toItem3Dpos__16dFile_select3D_cFfffP4cXyz */
+#ifdef NONMATCHING
+// floating point hell
+void dFile_select3D_c::toItem3Dpos(f32 param_0, f32 param_1, f32 param_2, cXyz* param_3) {
+    f32 f28 = ((param_0 - mDoGph_gInf_c::getMinXF()) / mDoGph_gInf_c::getWidthF()) * 2.0f - 1.0f;
+    f32 f29 = ((param_1 - -100.0f) / 448.0f) * 2.0f - 1.0f;
+    Mtx stack_50;
+    Mtx stack_20;
+    calcViewMtx(&stack_50);
+    cMtx_inverse(stack_50, stack_20);
+    f32 f31 = tan(0.3926990926265717);
+    cXyz stack_10((f28 * param_2) * (f31 * mDoGph_gInf_c::getAspect()), f31 * (f29 * -param_2),
+                  -param_2);
+    cMtx_multVec(stack_20, &stack_10, param_3);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5160,6 +5329,7 @@ asm void dFile_select3D_c::toItem3Dpos(f32 param_0, f32 param_1, f32 param_2, cX
 #include "asm/d/file/d_file_select/toItem3Dpos__16dFile_select3D_cFfffP4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804539D4-804539D8 001FD4 0004+00 1/1 0/0 0/0 .sdata2          @8993 */
@@ -5168,14 +5338,14 @@ SECTION_SDATA2 static f32 lit_8993 = -1000.0f;
 /* 801910D4-80191130 18BA14 005C+00 1/1 0/0 0/0 .text calcViewMtx__16dFile_select3D_cFPA4_f */
 #ifdef NONMATCHING
 // matches with literals
-void dFile_select3D_c::calcViewMtx(f32 (*param_0)[4]) {
+void dFile_select3D_c::calcViewMtx(Mtx param_0) {
     cMtx_lookAt(param_0,&cXyz(0.0f,0.0f,-1000.0f),&cXyz::Zero,&cXyz(0.0f,1.0f,0.0f),0);
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dFile_select3D_c::calcViewMtx(f32 (*param_0)[4]) {
+asm void dFile_select3D_c::calcViewMtx(Mtx param_0) {
     nofralloc
 #include "asm/d/file/d_file_select/calcViewMtx__16dFile_select3D_cFPA4_f.s"
 }

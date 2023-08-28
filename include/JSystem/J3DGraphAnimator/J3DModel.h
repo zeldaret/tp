@@ -34,6 +34,10 @@ public:
     J3DModel() {
         initialize();
     }
+    J3DModel(J3DModelData* param_0, u32 param_1, u32 param_2) {
+        initialize();
+        entryModelData(param_0, param_1, param_2);
+    }
 
     /* 800CFFF4 */ void setBaseTRMtx(f32 (*)[4]);
     /* 80327100 */ void initialize();
