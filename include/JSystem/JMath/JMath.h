@@ -38,6 +38,29 @@ inline f32 fastReciprocal(f32 value) {
     return JMAFastReciprocal(value);
 }
 
+inline void gekko_ps_copy12(register f32* dst, register const f32* src) {
+    register f32 src0;
+    register f32 src1;
+    register f32 src2;
+    register f32 src3;
+    register f32 src4;
+    register f32 src5;
+    asm {
+        psq_l src0, 0(src), 0, 0
+        psq_l src1, 8(src), 0, 0
+        psq_l src2, 16(src), 0, 0
+        psq_l src3, 24(src), 0, 0
+        psq_l src4, 32(src), 0, 0
+        psq_l src5, 40(src), 0, 0
+        psq_st src0, 0(dst), 0, 0
+        psq_st src1, 8(dst), 0, 0
+        psq_st src2, 16(dst), 0, 0
+        psq_st src3, 24(dst), 0, 0
+        psq_st src4, 32(dst), 0, 0
+        psq_st src5, 40(dst), 0, 0
+    };
+}
+
 };  // namespace JMath
 
 #endif /* JMATH_H */

@@ -1881,7 +1881,8 @@ static asm void cM_scos(s16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void JMAFastSqrt(f32 param_0) {
+//static asm void JMAFastSqrt(f32 param_0) {
+static asm void JMAFastSqrt__Ff() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/JMAFastSqrt__Ff.s"
 }

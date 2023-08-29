@@ -6,7 +6,6 @@
 #include "SSystem/SComponent/c_lib.h"
 #include "MSL_C/string.h"
 #include "SSystem/SComponent/c_math.h"
-#include "dol2asm.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 

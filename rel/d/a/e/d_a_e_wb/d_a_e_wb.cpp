@@ -4833,7 +4833,8 @@ extern "C" asm void cMtx_XrotM__FPA4_fs() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void JMAFastSqrt(f32 param_0) {
+//static asm void JMAFastSqrt(f32 param_0) {
+static asm void JMAFastSqrt__Ff() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/JMAFastSqrt__Ff.s"
 }

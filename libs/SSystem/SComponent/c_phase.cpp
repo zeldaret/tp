@@ -6,10 +6,6 @@
 #include "SSystem/SComponent/c_phase.h"
 #include "dolphin/types.h"
 
-extern "C" static void cPhs_UnCompleate__FP30request_of_phase_process_class();
-extern "C" static void cPhs_Compleate__FP30request_of_phase_process_class();
-extern "C" static void cPhs_Next__FP30request_of_phase_process_class();
-
 //
 // Declarations:
 //

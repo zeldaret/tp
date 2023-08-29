@@ -46,9 +46,9 @@ inline void setTVec3f(const f32* vec_a, f32* vec_b) {
     register f32 b_x;
 
     asm {
-        psq_l a_x, 0(v_a), 0, 0 /* qr0 */
+        psq_l a_x, 0(v_a), 0, 0
         lfs b_x, 8(v_a)
-        psq_st a_x, 0(v_b), 0, 0 /* qr0 */
+        psq_st a_x, 0(v_b), 0, 0
         stfs b_x, 8(v_b)
     };
 }
@@ -165,6 +165,21 @@ struct TVec3<f32> {
         scale(norm);
     }
 
+    void normalize(const TVec3<f32>& other) {
+        f32 sq = other.squared();
+        if (sq <= FLT_EPSILON * 32.0f) {
+            zero();
+            return;
+        }
+        f32 norm;
+        if (sq <= 0.0f) {
+            norm = sq;
+        } else {
+            norm = fsqrt_step(sq);
+        }
+        scale(norm, other);
+    }
+
     f32 length() const {
         return PSVECMag((Vec*)this);
     }
@@ -177,6 +192,22 @@ struct TVec3<f32> {
         asm {
             psq_l    x_y, 0(dst),  0, 0
             psq_l    z,   8(dst),  1, 0
+            ps_muls0 x_y,    x_y, sc
+            psq_st   x_y, 0(dst),  0, 0
+            ps_muls0 zres,       z, sc
+            psq_st   zres,  8(dst),  1, 0
+        };
+    }
+
+    void scale(register f32 sc, const TVec3<f32>& other) {
+        register const f32* src = &other.x;
+        register f32 z;
+        register f32 x_y;
+        register f32* dst = &x;
+        register f32 zres;
+        asm {
+            psq_l    x_y, 0(src),  0, 0
+            psq_l    z,   8(src),  1, 0
             ps_muls0 x_y,    x_y, sc
             psq_st   x_y, 0(dst),  0, 0
             ps_muls0 zres,       z, sc
@@ -232,6 +263,25 @@ struct TVec3<f32> {
         }
         scale(norm * len);
     }
+
+    f32 dot(const TVec3<f32>& other) const {
+        register const f32* pThis = &x;
+        register const f32* pOther = &other.x;
+        register f32 otherReg;
+        register f32 thisyz;
+        register f32 res;
+        register f32 thisxy;
+        asm {
+            psq_l thisyz, 4(pThis), 0, 0
+            psq_l otherReg, 4(pOther), 0, 0
+            ps_mul thisyz, thisyz, otherReg
+            psq_l thisxy, 0(pThis), 0, 0
+            psq_l otherReg, 0(pOther), 0, 0
+            ps_madd res, thisxy, otherReg, thisyz
+            ps_sum0 res, res, thisyz, thisyz
+        };
+        return res;
+    }
 };
 
 template <typename T>
@@ -270,6 +320,23 @@ struct TVec2 {
 
     bool isAbove(const TVec2<T>& other) const {
         return (x >= other.x) && (y >= other.y) ? true : false;
+    }
+
+    f32 dot(const TVec2<T>& other) {
+        return x * other.x + y * other.y;
+    }
+
+    f32 squared() {
+        return dot(*this);
+    }
+
+    f32 length() {
+        f32 sqr = squared();
+        if (sqr <= 0.0f) {
+            return sqr;
+        }
+        sqr *= fsqrt_step(sqr);
+        return sqr;
     }
 
     T x;
@@ -328,6 +395,19 @@ struct TBox2 : TBox<TVec2<T> > {
     void set(const TBox2& other) { set(other.i, other.f); }
     void set(const TVec2<f32>& i, const TVec2<f32>& f) { this->i.set(i), this->f.set(f); }
     void set(f32 x0, f32 y0, f32 x1, f32 y1) { i.set(x0, y0); f.set(x1, y1); }
+};
+
+template<typename T>
+struct TUtil {
+    static inline T clamp(T v, T min, T max) {
+        if (v < min) {
+            return min;
+        }
+        if (v > max) {
+            return max;
+        }
+        return v;
+    }
 };
 
 // clang-format on
