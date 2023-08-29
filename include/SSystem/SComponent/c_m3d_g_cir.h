@@ -8,6 +8,11 @@ public:
     f32 mPosX;
     f32 mPosY;
     f32 mRadius;
+    
+    f32 GetCx() const { return mPosX; }
+    f32 GetCy() const { return mPosY; }
+    f32 GetR() const { return mRadius; }
+
     cM2dGCir() {}
     virtual ~cM2dGCir() {}
 };

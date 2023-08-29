@@ -16,7 +16,7 @@ public:
         TInner() : mSeqData(NULL, 0) {}
 
         /* 0x000 */ JASTrack outputTrack;
-        /* 0x248 */ JASPoolAllocObject<JAISoundChild>* mSoundChild[32];
+        /* 0x248 */ JAISoundChild* mSoundChild[32];
         /* 0x2C8 */ JAITempoMgr mTempoMgr;
         /* 0x2D8 */ JASSoundParams mSoundParams;
         /* 0x2EC */ JAISeqData mSeqData;

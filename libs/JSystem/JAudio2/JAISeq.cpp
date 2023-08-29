@@ -7,6 +7,8 @@
 #include "JSystem/JAudio2/JAISeqMgr.h"
 #include "JSystem/JAudio2/JASAudioReseter.h" // JASCriticalSection
 #include "JSystem/JAudio2/JAISoundChild.h"
+#include "JSystem/JAudio2/JAIAudience.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 
 //
@@ -90,22 +92,10 @@ extern "C" extern u8 data_80451318[8];
 
 /* 802A0A6C-802A0A8C 29B3AC 0020+00 1/1 0/0 0/0 .text
  * JASTrack_isFreeOrStopped__20@unnamed@JAISeq_cpp@FP8JASTrack  */
-// instruction order
-#ifdef NONMATCHING
 static bool func_802A0A6C(JASTrack* track) {
     u8 status = track->getStatus();
     return status == 0 || status == 2;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm bool func_802A0A6C(JASTrack*) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISeq/func_802A0A6C.s"
-}
-#pragma pop
-#endif
 
 /* 803C98F4-803C9928 026A14 0030+04 1/1 2/2 0/0 .data            __vt__6JAISeq */
 SECTION_DATA extern void* __vt__6JAISeq[12 + 1 /* padding */] = {
@@ -196,11 +186,12 @@ void JAISeq::playSeqData_(JASSoundParams const& param_0, JAISoundActivity param_
 static u8 lit_716[12];
 
 /* 802A0CA4-802A0E48 29B5E4 01A4+00 1/1 0/0 0/0 .text            reserveChildTracks___6JAISeqFi */
-// operator new?
+// Matches with literals
 #ifdef NONMATCHING
 void JAISeq::reserveChildTracks_(int param_0) {
     for (int i = 0; i < 2; i++) {
-        JASTrack* track = new JASPoolAllocObject_MultiThreaded<JASTrack>();
+        JASPoolAllocObject_MultiThreaded<JASTrack>* allocobj = new JASPoolAllocObject_MultiThreaded<JASTrack>();
+        JASTrack* track = new (allocobj) JASTrack();
         if (track) {
             track->setAutoDelete(true);
             inner_.outputTrack.connectChild(i, track);
@@ -208,7 +199,8 @@ void JAISeq::reserveChildTracks_(int param_0) {
                 if (i * 16 + j >= param_0) {
                     continue;
                 }
-                JASTrack* track2 = new JASPoolAllocObject_MultiThreaded<JASTrack>();
+                JASPoolAllocObject_MultiThreaded<JASTrack>* allocobj2 = new JASPoolAllocObject_MultiThreaded<JASTrack>();
+                JASTrack* track2 = new (allocobj2) JASTrack();
                 if (track2) {
                     track2->setAutoDelete(true);
                     track->connectChild(j, track2);
@@ -329,7 +321,7 @@ u8 data_804340B0[16];
 void JAISeq::die_() {
     for (int i = 0; i < 32; i++) {
         if (inner_.mSoundChild[i]) {
-            delete inner_.mSoundChild[i];
+            delete (JASPoolAllocObject<JAISoundChild>*)inner_.mSoundChild[i];
             inner_.mSoundChild[i] = NULL;
         }
     }
@@ -447,7 +439,8 @@ JAISoundChild* JAISeq::getChild(int index) {
     if (inner_.mSoundChild[index]) {
         return inner_.mSoundChild[index];
     }
-    inner_.mSoundChild[index] = new JASPoolAllocObject<JAISoundChild>();
+    JASPoolAllocObject<JAISoundChild>* allocobj = new JASPoolAllocObject<JAISoundChild>();
+    inner_.mSoundChild[index] = new (allocobj) JAISoundChild();
     if (!inner_.mSoundChild[index]) {
         return NULL;
     }
@@ -473,7 +466,7 @@ void JAISeq::releaseChild(int param_0) {
         if (track) {
             track->assignExtBuffer(0, NULL);
         }
-        delete inner_.mSoundChild[param_0];
+        delete (JASPoolAllocObject<JAISoundChild>*)inner_.mSoundChild[param_0];
         inner_.mSoundChild[param_0] = NULL;
     }
 }

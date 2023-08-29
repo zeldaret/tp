@@ -23,7 +23,7 @@ struct JAIStreamDataMgr {
 
 struct Z2SoundInfo /* : public JAISoundInfo, public JAUSoundInfo, public JAIStreamDataMgr */ : public JASGlobalInstance<Z2SoundInfo> {
     /* 802BB00C */ void getBgmSeqResourceID(JAISoundID) const;
-    /* 802BB158 */ void getAudibleSwFull(JAISoundID);
+    /* 802BB158 */ u32 getAudibleSwFull(JAISoundID);
     /* 802BB448 */ void getAudibleSw(JAISoundID) const;
     /* 802BBA10 */ void getStreamFilePath(JAISoundID);
     /* 802BBA88 */ void getStreamFileEntry(JAISoundID);
@@ -38,5 +38,9 @@ struct Z2SoundInfo /* : public JAISoundInfo, public JAUSoundInfo, public JAIStre
     /* 802BB8E0 */ void getStreamInfo(JAISoundID, JAIStream*) const;
     /* 802BBBE0 */ virtual ~Z2SoundInfo();
 };
+
+inline Z2SoundInfo* Z2GetSoundInfo() {
+    return JASGlobalInstance<Z2SoundInfo>::getInstance();
+}
 
 #endif /* Z2SOUNDINFO_H */

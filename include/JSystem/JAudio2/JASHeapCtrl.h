@@ -61,15 +61,15 @@ public:
 };
 
 template <typename T>
-class JASPoolAllocObject : public T {
+class JASPoolAllocObject {
 public:
     static void* operator new(size_t n) {
         JASMemPool<T>* memPool = getMemPool();
-        return memPool->alloc(n);
+        return memPool->alloc(sizeof(T));
     }
     static void operator delete(void* ptr, size_t n) {
         JASMemPool<T>* memPool_ = getMemPool();
-        memPool_->free(ptr, n);
+        memPool_->free(ptr, sizeof(T));
     }
     static void newMemPool(int param_0) {
         JASMemPool<T>* memPool_ = getMemPool();
@@ -103,15 +103,15 @@ public:
 };
 
 template <typename T>
-class JASPoolAllocObject_MultiThreaded : public T {
+class JASPoolAllocObject_MultiThreaded {
 public:
     static void* operator new(size_t n) {
         JASMemPool_MultiThreaded<T>* memPool_ = getMemPool();
-        return memPool_->alloc(n);
+        return memPool_->alloc(sizeof(T));
     }
     static void operator delete(void* ptr, size_t n) {
         JASMemPool_MultiThreaded<T>* memPool_ = getMemPool();
-        memPool_->free(ptr, n);
+        memPool_->free(ptr, sizeof(T));
     }
 
     static void newMemPool(int n) {

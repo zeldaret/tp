@@ -4040,7 +4040,8 @@ asm void daPy_py_c::checkGoronSideMove() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void JMAFastSqrt(f32 param_0) {
+//static asm void JMAFastSqrt(f32 param_0) {
+static asm void JMAFastSqrt__Ff() {
     nofralloc
 #include "asm/d/d_camera/JMAFastSqrt__Ff.s"
 }
