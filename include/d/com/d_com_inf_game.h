@@ -1720,6 +1720,10 @@ inline u8 dComIfGs_getFishSize(u8 param_0) {
     return g_dComIfG_gameInfo.info.getPlayer().getFishingInfo().getMaxSize(param_0);
 }
 
+inline BOOL dComIfGs_isStageMiddleBoss() {
+    return g_dComIfG_gameInfo.info.getMemory().getBit().isStageBossEnemy2();
+}
+
 void dComIfGp_setSelectItem(int index);
 s32 dComIfGp_offHeapLockFlag(int flag);
 void dComIfGp_createSubExpHeap2D();
