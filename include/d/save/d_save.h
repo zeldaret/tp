@@ -835,6 +835,7 @@ public:
         onDungeonItem(OOCCOO_NOTE);
     }
     s32 isStageBossEnemy() const { return isDungeonItem(STAGE_BOSS_ENEMY); }
+    s32 isStageBossEnemy2() const { return isDungeonItem(STAGE_BOSS_ENEMY_2); }
     s32 isDungeonItemWarp() const { return isDungeonItem(OOCCOO_NOTE); }
     void onStageLife() { onDungeonItem(STAGE_LIFE); }
 

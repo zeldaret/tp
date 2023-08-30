@@ -220,182 +220,6 @@ extern "C" u8 sincosTable___5JMath[65536];
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803ABA80-803ABB84 008BA0 0104+00 2/2 1/1 5/5 .data            __vt__4dBgW */
-SECTION_DATA extern void* __vt__4dBgW[65] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__4dBgWFv,
-    (void*)ChkMemoryError__4cBgWFv,
-    (void*)ChkNotReady__4cBgWCFv,
-    (void*)ChkLock__4cBgWCFv,
-    (void*)ChkMoveBg__4cBgWCFv,
-    (void*)ChkMoveFlag__4dBgWCFv,
-    (void*)GetTriPla__4cBgWCFRC13cBgS_PolyInfo,
-    (void*)GetTriPnt__4cBgWCFRC13cBgS_PolyInfoP4cXyzP4cXyzP4cXyz,
-    (void*)GetBnd__4cBgWCFv,
-    (void*)GetGrpInf__4cBgWCFRC13cBgS_PolyInfo,
-    (void*)OffMoveFlag__4dBgWFv,
-    (void*)GetTopUnder__4cBgWCFPfPf,
-    (void*)SetOldShapeAngleY__9dBgW_BaseFs,
-    (void*)LineCheck__4cBgWFP11cBgS_LinChk,
-    (void*)GroundCross__4cBgWFP11cBgS_GndChk,
-    (void*)ShdwDraw__4cBgWFP13cBgS_ShdwDraw,
-    (void*)CaptPoly__4dBgWFR13dBgS_CaptPoly,
-    (void*)WallCorrect__4dBgWFP9dBgS_Acch,
-    (void*)WallCorrectSort__4dBgWFP9dBgS_Acch,
-    (void*)RoofChk__4dBgWFP12dBgS_RoofChk,
-    (void*)SplGrpChk__4dBgWFP14dBgS_SplGrpChk,
-    (void*)SphChk__4dBgWFP11dBgS_SphChkPv,
-    (void*)GetGrpRoomIndex__4cBgWCFRC13cBgS_PolyInfo,
-    (void*)GetExitId__4dBgWFRC13cBgS_PolyInfo,
-    (void*)GetPolyColor__4dBgWFRC13cBgS_PolyInfo,
-    (void*)GetHorseNoEntry__4dBgWFRC13cBgS_PolyInfo,
-    (void*)GetSpecialCode__4dBgWFRC13cBgS_PolyInfo,
-    (void*)GetSpecialCode__4dBgWFi,
-    (void*)GetMagnetCode__4dBgWFRC13cBgS_PolyInfo,
-    (void*)GetPolyObjThrough__4dBgWFi,
-    (void*)GetPolyCamThrough__4dBgWFi,
-    (void*)GetPolyLinkThrough__4dBgWFi,
-    (void*)GetPolyArrowThrough__4dBgWFi,
-    (void*)GetPolyHSStick__4dBgWFi,
-    (void*)GetPolyBoomerangThrough__4dBgWFi,
-    (void*)GetPolyRopeThrough__4dBgWFi,
-    (void*)GetPolyBombThrough__4dBgWFi,
-    (void*)GetShdwThrough__4dBgWFi,
-    (void*)GetUnderwaterRoofCode__4dBgWFi,
-    (void*)GetMonkeyBarsCode__4dBgWFRC13cBgS_PolyInfo,
-    (void*)GetLinkNo__4dBgWFRC13cBgS_PolyInfo,
-    (void*)GetWallCode__4dBgWFRC13cBgS_PolyInfo,
-    (void*)GetPolyAtt0__4dBgWFRC13cBgS_PolyInfo,
-    (void*)GetPolyAtt1__4dBgWFRC13cBgS_PolyInfo,
-    (void*)GetGroundCode__4dBgWFRC13cBgS_PolyInfo,
-    (void*)GetIronBallThrough__4dBgWFi,
-    (void*)GetAttackThrough__4dBgWFi,
-    (void*)GetCamMoveBG__4dBgWFRC13cBgS_PolyInfo,
-    (void*)GetRoomCamId__4dBgWFRC13cBgS_PolyInfo,
-    (void*)GetRoomPathId__4dBgWFRC13cBgS_PolyInfo,
-    (void*)GetRoomPathPntNo__4dBgWFRC13cBgS_PolyInfo,
-    (void*)GetPolyGrpRoomInfId__4dBgWFRC13cBgS_PolyInfo,
-    (void*)GetGrpSoundId__4dBgWFRC13cBgS_PolyInfo,
-    (void*)CrrPos__4dBgWFRC13cBgS_PolyInfoPvbP4cXyzP5csXyzP5csXyz,
-    (void*)TransPos__4dBgWFRC13cBgS_PolyInfoPvbP4cXyzP5csXyzP5csXyz,
-    (void*)MatrixCrrPos__4dBgWFRC13cBgS_PolyInfoPvbP4cXyzP5csXyzP5csXyz,
-    (void*)CallRideCallBack__4dBgWFP10fopAc_ac_cP10fopAc_ac_c,
-    (void*)CallArrowStickCallBack__4dBgWFP10fopAc_ac_cP10fopAc_ac_cR4cXyz,
-    (void*)CalcPlane__4cBgWFv,
-    (void*)ClassifyPlane__4cBgWFv,
-    (void*)ChkPolyThrough__4dBgWFiP16cBgS_PolyPassChk,
-    (void*)ChkShdwDrawThrough__4dBgWFiP16cBgS_PolyPassChk,
-    (void*)ChkGrpThrough__4dBgWFiP15cBgS_GrpPassChki,
-};
-
-/* 803ABB84-803ABB90 008CA4 000C+00 3/3 5/5 0/0 .data            __vt__8cM3dGTri */
-SECTION_DATA extern void* __vt__8cM3dGTri[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGTriFv,
-};
-
-/* 803ABB90-803ABB9C 008CB0 000C+00 2/2 0/0 0/0 .data            __vt__11cBgW_GrpElm */
-SECTION_DATA extern void* __vt__11cBgW_GrpElm[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__11cBgW_GrpElmFv,
-};
-
-/* 803ABB9C-803ABBA8 008CBC 000C+00 2/2 0/0 0/0 .data            __vt__11cBgW_TriElm */
-SECTION_DATA extern void* __vt__11cBgW_TriElm[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__11cBgW_TriElmFv,
-};
-
-/* 803ABBA8-803ABCAC 008CC8 0104+00 2/2 0/0 0/0 .data            __vt__4cBgW */
-SECTION_DATA extern void* __vt__4cBgW[65] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__4cBgWFv,
-    (void*)ChkMemoryError__4cBgWFv,
-    (void*)ChkNotReady__4cBgWCFv,
-    (void*)ChkLock__4cBgWCFv,
-    (void*)ChkMoveBg__4cBgWCFv,
-    (void*)NULL,
-    (void*)GetTriPla__4cBgWCFRC13cBgS_PolyInfo,
-    (void*)GetTriPnt__4cBgWCFRC13cBgS_PolyInfoP4cXyzP4cXyzP4cXyz,
-    (void*)GetBnd__4cBgWCFv,
-    (void*)GetGrpInf__4cBgWCFRC13cBgS_PolyInfo,
-    (void*)NULL,
-    (void*)GetTopUnder__4cBgWCFPfPf,
-    (void*)SetOldShapeAngleY__9dBgW_BaseFs,
-    (void*)LineCheck__4cBgWFP11cBgS_LinChk,
-    (void*)GroundCross__4cBgWFP11cBgS_GndChk,
-    (void*)ShdwDraw__4cBgWFP13cBgS_ShdwDraw,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)GetGrpRoomIndex__4cBgWCFRC13cBgS_PolyInfo,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)CallRideCallBack__9dBgW_BaseFP10fopAc_ac_cP10fopAc_ac_c,
-    (void*)CallArrowStickCallBack__9dBgW_BaseFP10fopAc_ac_cP10fopAc_ac_cR4cXyz,
-    (void*)CalcPlane__4cBgWFv,
-    (void*)ClassifyPlane__4cBgWFv,
-    (void*)ChkPolyThrough__4cBgWFiP16cBgS_PolyPassChk,
-    (void*)ChkShdwDrawThrough__4cBgWFiP16cBgS_PolyPassChk,
-    (void*)ChkGrpThrough__4cBgWFiP15cBgS_GrpPassChki,
-};
-
-/* 803ABCAC-803ABCB8 008DCC 000C+00 2/2 0/0 0/0 .data            __vt__13cBgW_NodeTree */
-SECTION_DATA extern void* __vt__13cBgW_NodeTree[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__13cBgW_NodeTreeFv,
-};
-
-/* 803ABCB8-803ABCC8 008DD8 000C+04 2/2 0/0 0/0 .data            __vt__11cBgW_RwgElm */
-SECTION_DATA extern void* __vt__11cBgW_RwgElm[3 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__11cBgW_RwgElmFv,
-    /* padding */
-    NULL,
-};
-
 /* 800791C4-800791D4 073B04 0010+00 1/1 0/0 0/0 .text            __ct__11cBgW_RwgElmFv */
 cBgW_RwgElm::cBgW_RwgElm() {}
 
@@ -440,15 +264,9 @@ cBgW::cBgW() {
 }
 
 /* 8007933C-800793A4 073C7C 0068+00 2/1 1/1 5/5 .text            __dt__4cBgWFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm cBgW::~cBgW() {
-extern "C" asm void __dt__4cBgWFv() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/__dt__4cBgWFv.s"
+cBgW::~cBgW() {
+    FreeArea();
 }
-#pragma pop
 
 /* 800793A4-800793C4 073CE4 0020+00 2/2 0/0 0/0 .text            FreeArea__4cBgWFv */
 void cBgW::FreeArea() {
@@ -547,15 +365,7 @@ bool cBgW::SetTri() {
 }
 
 /* 800796F8-80079754 074038 005C+00 2/1 0/0 0/0 .text            __dt__11cBgW_TriElmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm cBgW_TriElm::~cBgW_TriElm() {
-extern "C" asm void __dt__11cBgW_TriElmFv() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/__dt__11cBgW_TriElmFv.s"
-}
-#pragma pop
+cBgW_TriElm::~cBgW_TriElm() {}
 
 /* 80079754-80079770 074094 001C+00 1/1 0/0 0/0 .text            __ct__11cBgW_TriElmFv */
 cBgW_TriElm::cBgW_TriElm() {}
@@ -873,22 +683,12 @@ bool cBgW::Set(cBgD_t* pbgd, u32 flags, Mtx* pbase_mtx) {
 }
 
 /* 8007A184-8007A1E4 074AC4 0060+00 2/1 0/0 0/0 .text            __dt__11cBgW_GrpElmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm cBgW_GrpElm::~cBgW_GrpElm() {
-extern "C" asm void __dt__11cBgW_GrpElmFv() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/__dt__11cBgW_GrpElmFv.s"
-}
-#pragma pop
+cBgW_GrpElm::~cBgW_GrpElm() {}
 
 /* 8007A1E4-8007A200 074B24 001C+00 1/1 0/0 0/0 .text            __ct__11cBgW_GrpElmFv */
 cBgW_GrpElm::cBgW_GrpElm() {}
 
 /* 8007A200-8007A344 074B40 0144+00 1/1 0/0 0/0 .text RwgLineCheck__4cBgWFUsP11cBgS_LinChk */
-// vtable issue
-#ifdef NONMATCHING
 bool cBgW::RwgLineCheck(u16 poly_index, cBgS_LinChk* linchk) {
     bool chk;
     chk = false;
@@ -897,8 +697,8 @@ bool cBgW::RwgLineCheck(u16 poly_index, cBgS_LinChk* linchk) {
     while (1) {
         cBgD_Tri_t* tri_data = &pm_bgd->m_t_tbl[poly_index];
 
-        tri.setBg(&pm_vtx_tbl[tri_data->field_0x0], &pm_vtx_tbl[tri_data->field_0x2],
-                  &pm_vtx_tbl[tri_data->field_0x4], &pm_tri[poly_index].m_plane);
+        tri.setBg(&pm_vtx_tbl[tri_data->m_vtx_idx0], &pm_vtx_tbl[tri_data->m_vtx_idx1],
+                  &pm_vtx_tbl[tri_data->m_vtx_idx2], &pm_tri[poly_index].m_plane);
 
         cXyz cross;
         if (tri.cross(linchk->GetLinP(), &cross, linchk->ChkFrontFlag(), linchk->ChkBackFlag())) {
@@ -917,27 +717,6 @@ bool cBgW::RwgLineCheck(u16 poly_index, cBgS_LinChk* linchk) {
 
     return chk;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool cBgW::RwgLineCheck(u16 param_0, cBgS_LinChk* param_1) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/RwgLineCheck__4cBgWFUsP11cBgS_LinChk.s"
-}
-#pragma pop
-#endif
-
-/* 8007A344-8007A3A0 074C84 005C+00 1/0 0/0 0/0 .text            __dt__8cM3dGTriFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm cM3dGTri::~cM3dGTri() {
-extern "C" asm void __dt__8cM3dGTriFv() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/__dt__8cM3dGTriFv.s"
-}
-#pragma pop
 
 /* 8007A3A0-8007A52C 074CE0 018C+00 1/1 0/0 0/0 .text            LineCheckRp__4cBgWFP11cBgS_LinChki
  */
@@ -2019,8 +1798,6 @@ void dBgW::CaptPoly(dBgS_CaptPoly& poly) {
 
 /* 8007DB20-8007DC70 078460 0150+00 1/1 0/0 0/0 .text            RwgSphChk__4dBgWFUsP11dBgS_SphChkPv
  */
-// vtable order
-#ifdef NONMATCHING
 bool dBgW::RwgSphChk(u16 param_0, dBgS_SphChk* param_1, void* param_2) {
     cM3dGTri acStack_50;
     cBgW_RwgElm* puVar4;
@@ -2030,11 +1807,11 @@ bool dBgW::RwgSphChk(u16 param_0, dBgS_SphChk* param_1, void* param_2) {
         puVar4 = &pm_rwg[param_0];
         if (!ChkPolyThrough(param_0, param_1->GetPolyPassChk())) {
             puVar5 = &pm_bgd->m_t_tbl[param_0];
-            acStack_50.setBg(&pm_vtx_tbl[puVar5->field_0x0], &pm_vtx_tbl[puVar5->field_0x2],
-                             &pm_vtx_tbl[puVar5->field_0x4], &pm_tri[param_0].m_plane);
+            acStack_50.setBg(&pm_vtx_tbl[puVar5->m_vtx_idx0], &pm_vtx_tbl[puVar5->m_vtx_idx1],
+                             &pm_vtx_tbl[puVar5->m_vtx_idx2], &pm_tri[param_0].m_plane);
             if (param_1->cross(&acStack_50)) {
-                param_1->mCallback(param_1, pm_vtx_tbl, puVar5->field_0x0, puVar5->field_0x2,
-                                   puVar5->field_0x4, &pm_tri[param_0].m_plane, param_2);
+                param_1->mCallback(param_1, pm_vtx_tbl, puVar5->m_vtx_idx0, puVar5->m_vtx_idx1,
+                                   puVar5->m_vtx_idx2, &pm_tri[param_0].m_plane, param_2);
                 param_1->SetPolyIndex(param_0);
                 uVar3 = true;
             }
@@ -2045,16 +1822,6 @@ bool dBgW::RwgSphChk(u16 param_0, dBgS_SphChk* param_1, void* param_2) {
     }
     return uVar3;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dBgW::RwgSphChk(u16 param_0, dBgS_SphChk* param_1, void* param_2) {
-    nofralloc
-#include "asm/d/bg/d_bg_w/RwgSphChk__4dBgWFUsP11dBgS_SphChkPv.s"
-}
-#pragma pop
-#endif
 
 /* 8007DC70-8007DDE0 0785B0 0170+00 1/1 0/0 0/0 .text            SphChkRp__4dBgWFP11dBgS_SphChkPvi
  */
@@ -2322,17 +2089,6 @@ dBgW* dBgW_NewSet(cBgD_t* pbgd, u32 flags, Mtx* pbase_mtx) {
 
     return nw;
 }
-
-/* 8007E548-8007E5A8 078E88 0060+00 1/0 0/0 0/0 .text            __dt__4dBgWFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dBgW::~dBgW() {
-extern "C" asm void __dt__4dBgWFv() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/__dt__4dBgWFv.s"
-}
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450F88-80450F90 -00001 0008+00 0/0 4/4 0/0 .sbss            None */
