@@ -5483,8 +5483,6 @@ asm BOOL daNpcF_c::chkPointInArea(cXyz param_0, cXyz param_1, f32 param_2, f32 p
 
 /* 801548F4-8015496C 14F234 0078+00 1/1 0/0 0/0 .text chkPointInArea__8daNpcF_cF4cXyz4cXyz4cXyzs
  */
-BOOL daNpcF_chkPointInArea(cXyz,cXyz,cXyz,s16); // fwd reference
-
 BOOL daNpcF_c::chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 param_3) {
     return daNpcF_chkPointInArea(param_0,param_1,param_2,param_3);
 }

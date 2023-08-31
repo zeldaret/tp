@@ -433,6 +433,7 @@ STATIC_ASSERT(sizeof(daNpcT_c) == 0xE40);
 
 BOOL daNpcT_chkEvtBit(u32 i_idx);
 BOOL daNpcT_chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 param_3, int param_4);
+BOOL daNpcF_chkPointInArea(cXyz, cXyz, cXyz, s16);
 
 class daNpcF_ActorMngr_c {
 private:
