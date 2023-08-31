@@ -284,7 +284,7 @@ void cBgW::GlobalVtx() {
         if (!mNeedsFullTransform) {
             for (int i = 0; i < pm_bgd->m_v_num; i++) {
                 Vec* vtx = &pm_vtx_tbl[i];
-                PSVECAdd(vtx, &mTransVel, vtx);
+                VECAdd(vtx, &mTransVel, vtx);
             }
         } else {
             for (int i = 0; i < pm_bgd->m_v_num; i++) {
@@ -340,7 +340,7 @@ void cBgW::CalcPlane() {
     if (pm_vtx_tbl != NULL) {
         if (!mNeedsFullTransform) {
             for (int i = 0; i < pm_bgd->m_t_num; i++) {
-                pm_tri[i].m_plane.mD -= PSVECDotProduct(&pm_tri[i].m_plane.mNormal, &mTransVel);
+                pm_tri[i].m_plane.mD -= VECDotProduct(&pm_tri[i].m_plane.mNormal, &mTransVel);
             }
         } else {
             for (int i = 0; i < pm_bgd->m_t_num; i++) {
@@ -443,8 +443,8 @@ asm void cBgW::ClassifyPlane() {
 
 /* 8007998C-800799E0 0742CC 0054+00 1/1 0/0 0/0 .text MakeBlckTransMinMax__4cBgWFP4cXyzP4cXyz */
 void cBgW::MakeBlckTransMinMax(cXyz* i_min, cXyz* i_max) {
-    PSVECAdd(i_min, &mTransVel, i_min);
-    PSVECAdd(i_max, &mTransVel, i_max);
+    VECAdd(i_min, &mTransVel, i_min);
+    VECAdd(i_max, &mTransVel, i_max);
 }
 
 /* 800799E0-80079A68 074320 0088+00 1/1 0/0 0/0 .text            MakeBlckMinMax__4cBgWFiP4cXyzP4cXyz

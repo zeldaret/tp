@@ -541,7 +541,7 @@ static void action(b_go_class* b_go) {
     b_go->speed.x = newSpeed.x;
     b_go->speed.z = newSpeed.z;
 
-    PSVECAdd(&b_go->current.pos, &b_go->speed, &b_go->current.pos);
+    VECAdd(&b_go->current.pos, &b_go->speed, &b_go->current.pos);
     b_go->speed.y += b_go->mGravity;
 
     b_go->mAcch.CrrPos(dComIfG_Bgsp());

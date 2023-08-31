@@ -68,8 +68,8 @@ void cM3dGAab::SetMax(const cXyz& pMax) {
 }
 /* 8026EE24-8026EE68 0044+00 s=0 e=1 z=0  None .text      CalcCenter__8cM3dGAabCFP4cXyz */
 void cM3dGAab::CalcCenter(cXyz* pOut) const {
-    PSVECAdd(&mMin, &mMax, pOut);
-    PSVECScale(pOut, pOut, 0.5f);
+    VECAdd(&mMin, &mMax, pOut);
+    VECScale(pOut, pOut, 0.5f);
 }
 
 /* 8026EE68-8026EEB4 004C+00 s=0 e=1 z=0  None .text      PlusR__8cM3dGAabFf */

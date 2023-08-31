@@ -403,8 +403,8 @@ void dCcS::SetPosCorrect(cCcD_Obj* param_0, cXyz* param_1, cCcD_Obj* param_2, cX
 
     f32 fvar14;
     if (bvar2) {
-        PSVECSubtract(param_3, param_1, &local_c8);
-        fvar14 = PSVECMag(&local_c8);
+        VECSubtract(param_3, param_1, &local_c8);
+        fvar14 = VECMag(&local_c8);
     } else {
         local_c8.x = param_3->x - param_1->x;
         local_c8.y = 0.0f;
@@ -414,10 +414,10 @@ void dCcS::SetPosCorrect(cCcD_Obj* param_0, cXyz* param_1, cCcD_Obj* param_2, cX
 
     if (!cM3d_IsZero(fvar14)) {
         if (bvar2) {
-            PSVECScale(&local_c8, &local_c8, param_4 / fvar14);
+            VECScale(&local_c8, &local_c8, param_4 / fvar14);
             fvar1 *= -1.0f;
-            PSVECScale(&local_c8, &local_b0, fvar1);
-            PSVECScale(&local_c8, &local_bc, fvar2);
+            VECScale(&local_c8, &local_b0, fvar1);
+            VECScale(&local_c8, &local_bc, fvar2);
         } else {
             fvar14 = param_4 / fvar14;
             local_c8.x *= fvar14;
@@ -458,7 +458,7 @@ void dCcS::CalcParticleAngle(dCcD_GObjInf* i_atObjInf, cCcD_Stts* i_atStts, cCcD
                              csXyz* o_angle) {
     cXyz vec(*i_atObjInf->GetAtVecP());
 
-    if (cM3d_IsZero(PSVECMag(&vec))) {
+    if (cM3d_IsZero(VECMag(&vec))) {
         fopAc_ac_c* atActor = i_atStts->GetActor();
         fopAc_ac_c* tgActor = i_tgStts->GetActor();
 
@@ -467,18 +467,18 @@ void dCcS::CalcParticleAngle(dCcD_GObjInf* i_atObjInf, cCcD_Stts* i_atStts, cCcD
             vec.x = 0.0f;
             vec.y = -1.0f;
         } else {
-            PSVECSubtract(&tgActor->current.pos, &atActor->current.pos, &vec);
+            VECSubtract(&tgActor->current.pos, &atActor->current.pos, &vec);
 
-            if (cM3d_IsZero(PSVECMag(&vec))) {
+            if (cM3d_IsZero(VECMag(&vec))) {
                 vec.z = 0.0f;
                 vec.x = 0.0f;
                 vec.y = -1.0f;
             } else {
-                PSVECNormalize(&vec, &vec);
+                VECNormalize(&vec, &vec);
             }
         }
     } else {
-        PSVECNormalize(&vec, &vec);
+        VECNormalize(&vec, &vec);
     }
 
     cM3d_CalcVecZAngle(vec, o_angle);

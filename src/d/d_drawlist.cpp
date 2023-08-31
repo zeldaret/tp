@@ -1673,9 +1673,9 @@ int dDlst_shadowPoly_c::set(cBgD_Vtx_t* i_vtx, u16 param_1, u16 param_2, u16 par
     b.z *= temp_f3;
     b *= 2.0f;
 
-    PSVECAdd(&i_vtx[param_1], &b, &dst->mPos[0]);
-    PSVECAdd(&i_vtx[param_2], &b, &dst->mPos[1]);
-    PSVECAdd(&i_vtx[param_3], &b, &dst->mPos[2]);
+    VECAdd(&i_vtx[param_1], &b, &dst->mPos[0]);
+    VECAdd(&i_vtx[param_2], &b, &dst->mPos[1]);
+    VECAdd(&i_vtx[param_3], &b, &dst->mPos[2]);
     mCount++;
     return 1;
 }

@@ -343,7 +343,7 @@ bool cCcD_TriAttr::GetNVec(cXyz const& param_0, cXyz* pOut) const {
         *pOut = mNormal;
     } else {
         *pOut = mNormal;
-        PSVECScale(pOut, pOut, -1.0f);
+        VECScale(pOut, pOut, -1.0f);
     }
     return true;
 }
@@ -436,32 +436,32 @@ void cCcD_CpsAttr::CalcAabBox() {
 bool cCcD_CpsAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
     Vec diff;
     const cXyz& endP = GetEndP();
-    PSVECSubtract(&endP, &mStart, &diff);
+    VECSubtract(&endP, &mStart, &diff);
 
-    f32 diffLen = PSVECDotProduct(&diff, &diff);
+    f32 diffLen = VECDotProduct(&diff, &diff);
     if (cM3d_IsZero(diffLen)) {
         return false;
     } else {
         Vec vec1, vec2;
-        PSVECSubtract(&param_0, &mStart, &vec1);
-        f32 vec1Len = PSVECDotProduct(&vec1, &diff) / diffLen;
+        VECSubtract(&param_0, &mStart, &vec1);
+        f32 vec1Len = VECDotProduct(&vec1, &diff) / diffLen;
         if (vec1Len < 0.0f) {
             vec2 = mStart;
         } else {
             if (vec1Len > 1.0f) {
                 vec2 = endP;
             } else {
-                PSVECScale(&diff, &diff, vec1Len);
-                PSVECAdd(&diff, &mStart, &vec2);
+                VECScale(&diff, &diff, vec1Len);
+                VECAdd(&diff, &mStart, &vec2);
             }
         }
 
-        PSVECSubtract(&param_0, &vec2, param_1);
-        if (cM3d_IsZero(PSVECMag(param_1))) {
+        VECSubtract(&param_0, &vec2, param_1);
+        if (cM3d_IsZero(VECMag(param_1))) {
             param_1->set(0.0f, 0.0f, 0.0f);
             return false;
         } else {
-            PSVECNormalize(param_1, param_1);
+            VECNormalize(param_1, param_1);
             return true;
         }
     }
@@ -569,12 +569,12 @@ bool cCcD_CylAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
         }
     }
 
-    PSVECSubtract(&param_0, &vec, param_1);
-    if (cM3d_IsZero(PSVECMag(param_1))) {
+    VECSubtract(&param_0, &vec, param_1);
+    if (cM3d_IsZero(VECMag(param_1))) {
         param_1->set(0.0f, 0.0f, 0.0f);
         return false;
     } else {
-        PSVECNormalize(param_1, param_1);
+        VECNormalize(param_1, param_1);
         return true;
     }
     return false;
@@ -692,13 +692,13 @@ bool cCcD_SphAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
     param_1->y = param_0.y - mCenter.y;
     param_1->z = param_0.z - mCenter.z;
 
-    if (cM3d_IsZero(PSVECMag(param_1))) {
+    if (cM3d_IsZero(VECMag(param_1))) {
         param_1->x = 0.0f;
         param_1->y = 0.0f;
         param_1->z = 0.0f;
         return false;
     } else {
-        PSVECNormalize(param_1, param_1);
+        VECNormalize(param_1, param_1);
         return true;
     }
 }

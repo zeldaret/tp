@@ -486,7 +486,7 @@ void Z2WolfHowlMgr::startWindStoneSound(s8 param_0, Vec* param_1) {
         return; 
     }
     JGeometry::TVec3<f32> local_60 = Z2GetAudience()->getAudioCamPos();
-    f32 dVar13 = sqrtf(PSVECSquareDistance(param_1, local_60));
+    f32 dVar13 = sqrtf(VECSquareDistance(param_1, local_60));
     if (dVar13 > 2100.0f && field_0x04) {
         field_0x04->stop();
     } else if (dVar13 < 2100.0f && !field_0x04) {
@@ -496,7 +496,7 @@ void Z2WolfHowlMgr::startWindStoneSound(s8 param_0, Vec* param_1) {
         field_0x04->fadeIn(0);
         field_0x04->stop(0x1e);
         if (Z2GetLink()->getLinkState() == 1) {
-            f32 fVar14 = sqrtf(PSVECSquareDistance(param_1, Z2GetLink()->getCurrentPos()));
+            f32 fVar14 = sqrtf(VECSquareDistance(param_1, Z2GetLink()->getCurrentPos()));
             f32 dVar13 = 1.0f;
             if (fVar14 < 150.0f) {
                 dVar13 = 0.0f;

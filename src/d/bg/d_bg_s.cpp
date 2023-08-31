@@ -835,7 +835,7 @@ void dBgS_MoveBGProc_Trans(dBgW* i_bgw, void* i_actor_ptr, cBgS_PolyInfo const& 
     cXyz trans;
     i_bgw->GetTrans(&trans);
 
-    PSVECAdd(i_pos, &trans, i_pos);
+    VECAdd(i_pos, &trans, i_pos);
 }
 
 /* 80075B84-80075BF4 0704C4 0070+00 0/0 1/1 2/2 .text

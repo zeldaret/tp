@@ -2043,7 +2043,7 @@ s32 fopAcM_wayBgCheck(fopAc_ac_c const* param_0, f32 param_1, f32 param_2) {
     tmp1.z = param_1;
 
     MtxPosition(&tmp1, &tmp2);
-    PSVECAdd(&tmp2, &param_0->current.pos, &tmp2);
+    VECAdd(&tmp2, &param_0->current.pos, &tmp2);
 
     linChk.Set(&tmp0, &tmp2, param_0);
 
@@ -2193,7 +2193,7 @@ s32 fopAcM_carryOffRevise(fopAc_ac_c* param_0) {
     tmp1.z = 150.0f;
 
     MtxPosition(&tmp1, &tmp2);
-    PSVECAdd(&tmp2, &player->current.pos, &tmp2);
+    VECAdd(&tmp2, &player->current.pos, &tmp2);
 
     linChk.Set(&tmp0, &tmp2, param_0);
 
