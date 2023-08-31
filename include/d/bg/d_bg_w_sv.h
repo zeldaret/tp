@@ -7,10 +7,10 @@ class dBgWSv : public dBgW {
 public:
     /* 80082F98 */ u8 Set(cBgD_t*, u32);
     /* 80083020 */ void CopyBackVtx();
-    /* 8008308C */ void CrrPosWork(cXyz*, int, int, int);
-    /* 80083300 */ void TransPosWork(cXyz*, int, int, int);
+    /* 8008308C */ bool CrrPosWork(cXyz*, int, int, int);
+    /* 80083300 */ bool TransPosWork(cXyz*, int, int, int);
 
-    /* 800835DC */ virtual ~dBgWSv();
+    /* 800835DC */ virtual ~dBgWSv() {}
     /* 80083244 */ virtual void CrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*, csXyz*);
     /* 8008351C */ virtual void TransPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*, csXyz*);
     /* 800835D8 */ virtual void MatrixCrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*, csXyz*);
