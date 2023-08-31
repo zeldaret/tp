@@ -56,7 +56,7 @@ void J2DGrafContext::setup2D() {
     GXSetCullMode(GX_CULL_NONE);
     GXLoadPosMtxImm(mPosMtx, 0);
     Mtx mtx;
-    PSMTXIdentity(mtx);
+    MTXIdentity(mtx);
     GXLoadTexMtxImm(mtx, GX_IDENTITY, GX_MTX3x4);
     GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE,
                   GX_AF_NONE);

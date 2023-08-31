@@ -41,8 +41,8 @@ int daObjKJgjs_c::create1st() {
 void daObjKJgjs_c::setMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::XYZrotM(current.angle.x, current.angle.y, current.angle.z);
-    PSMTXCopy(mDoMtx_stack_c::now, mMtx[1]);
-    PSMTXCopy(mDoMtx_stack_c::now, mMtx[0]);
+    MTXCopy(mDoMtx_stack_c::now, mMtx[1]);
+    MTXCopy(mDoMtx_stack_c::now, mMtx[0]);
 }
 
 /* 80C4654C-80C46554 000008 0008+00 1/1 0/0 0/0 .rodata          l_bmdidx */
@@ -65,7 +65,7 @@ static const Vec l_cull_box[4] = {
 /* 80C46264-80C46310 000244 00AC+00 1/0 0/0 0/0 .text            Create__12daObjKJgjs_cFv */
 int daObjKJgjs_c::Create() {
     fopAcM_SetMtx(this, mMtx[1]);
-    PSMTXCopy(mMtx[1], mpModel->mBaseTransformMtx);
+    MTXCopy(mMtx[1], mpModel->mBaseTransformMtx);
     dBgW* bgw_p = mpBgW;
     bgw_p->field_0x91 |= 4;
     if (!field_0x60c) {

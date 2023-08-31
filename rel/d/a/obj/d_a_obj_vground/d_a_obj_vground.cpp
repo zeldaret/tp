@@ -23,7 +23,7 @@ void daObjVGnd_c::initBaseMtx() {
 void daObjVGnd_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    PSMTXCopy(mDoMtx_stack_c::now, mpModel->mBaseTransformMtx);
+    MTXCopy(mDoMtx_stack_c::now, mpModel->mBaseTransformMtx);
 }
 
 /* 80D214AC-80D21500 00014C 0054+00 1/1 0/0 0/0 .text            Create__11daObjVGnd_cFv */

@@ -396,7 +396,7 @@ void daObjVolcBall_c::setBaseMtx() {
     }
 
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
-    PSMTXCopy(mDoMtx_stack_c::get(), field_0x28ec);
+    MTXCopy(mDoMtx_stack_c::get(), field_0x28ec);
 }
 
 /* ############################################################################################## */

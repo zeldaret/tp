@@ -25,7 +25,7 @@ static int daObj_Usaku_Execute(obj_usaku_class* i_this) {
 
     i_this->mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
     if (i_this->mpBgW != NULL) {
-        PSMTXCopy(mDoMtx_stack_c::get(), i_this->mBgMtx);
+        MTXCopy(mDoMtx_stack_c::get(), i_this->mBgMtx);
         i_this->mpBgW->Move();
     }
 

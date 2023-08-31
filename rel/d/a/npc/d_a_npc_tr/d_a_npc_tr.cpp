@@ -195,7 +195,7 @@ static int nodeCallBack(J3DJoint* p_joint, int param_1) {
         J3DModel* sysModel = j3dSys.mModel;
         npc_tr_class* npc_tr = (npc_tr_class*)sysModel->mUserArea;
 
-        PSMTXCopy(sysModel->i_getAnmMtx(jointNo), *calc_mtx);
+        MTXCopy(sysModel->i_getAnmMtx(jointNo), *calc_mtx);
 
         if (jointNo == 1) {
             mDoMtx_YrotM(*calc_mtx, npc_tr->field_0x5f2[0] + (s16)(npc_tr->field_0x5f8 * 0.3f));
@@ -203,7 +203,7 @@ static int nodeCallBack(J3DJoint* p_joint, int param_1) {
             mDoMtx_YrotM(*calc_mtx, npc_tr->field_0x5f2[jointNo - 1] + (s16)(npc_tr->field_0x5f8));
         }
         sysModel->setAnmMtx(jointNo, *calc_mtx);
-        PSMTXCopy(*calc_mtx, j3dSys.mCurrentMtx);
+        MTXCopy(*calc_mtx, j3dSys.mCurrentMtx);
     }
 
     return 1;
@@ -523,7 +523,7 @@ static int daNPC_TR_Execute(npc_tr_class* npc_tr) {
 
     f32 scale = npc_tr->mScale.x * l_HIO.field_0x8;
     mDoMtx_stack_c::scaleM(scale, scale, scale);
-    PSMTXCopy(mDoMtx_stack_c::get(), npc_tr->field_0x5b8->mBaseTransformMtx);
+    MTXCopy(mDoMtx_stack_c::get(), npc_tr->field_0x5b8->mBaseTransformMtx);
 
     return 1;
 }

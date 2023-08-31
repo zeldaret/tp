@@ -23,7 +23,7 @@ public:
     /* 80326EF0 */ void calcBBoardMtx();
 
     MtxP getAnmMtx(int idx) const { return mpAnmMtx[idx]; }
-    void setAnmMtx(int i, Mtx m) { PSMTXCopy(m, (MtxP)mpAnmMtx[i]); }
+    void setAnmMtx(int i, Mtx m) { MTXCopy(m, (MtxP)mpAnmMtx[i]); }
     MtxP getWeightAnmMtx(int idx) const { return mpWeightEvlpMtx[idx]; }
 
     void setScaleFlag(int idx, u8 flag) { mpScaleFlagArr[idx] = flag; }

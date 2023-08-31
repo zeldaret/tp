@@ -175,7 +175,7 @@ static int daObj_Web1_Execute(obj_web1_class* i_this) {
     mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
     mDoMtx_stack_c::scaleM(i_this->mScale.x * 1.2f, i_this->mScale.x, i_this->mScale.x * 1.2f);
     mDoMtx_stack_c::transM(0.0f, i_this->mScale.x * i_this->mScale.y * -15.0f + 9.0f, 0.0f);
-    PSMTXCopy(mDoMtx_stack_c::get(), i_this->mMtx);
+    MTXCopy(mDoMtx_stack_c::get(), i_this->mMtx);
 
     i_this->mpBgW->Move();
     i_this->mCylCc.SetC(i_this->current.pos);

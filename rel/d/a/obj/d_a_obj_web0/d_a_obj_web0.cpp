@@ -263,7 +263,7 @@ static int daObj_Web0_Execute(obj_web0_class* i_this) {
     if (tmp < 0) {
         mDoMtx_stack_c::YrotM(-0x8000);
     }
-    PSMTXCopy(mDoMtx_stack_c::get(), i_this->mMtx);
+    MTXCopy(mDoMtx_stack_c::get(), i_this->mMtx);
 
     i_this->mpBgW->Move();
 

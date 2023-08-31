@@ -190,7 +190,7 @@ void daDsh_c::setMtx() {
     mDoMtx_stack_c::YrotM(shape_angle.y);
 
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
-    PSMTXCopy(mDoMtx_stack_c::get(), mBgMtx);
+    MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
 /* 80467708-8046772C 0002E8 0024+00 5/5 0/0 0/0 .text setAction__7daDsh_cFPQ27daDsh_c8action_c */

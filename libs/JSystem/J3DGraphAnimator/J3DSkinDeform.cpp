@@ -534,8 +534,8 @@ void J3DSkinDeform::transformVtxPosNrm(J3DModelData* param_0) {
                 u16 drawMtxIndex = param_0->getDrawMtxIndex(posIndex);
                 Vec* pos = ((Vec*)param_0->getVtxPosArray()) + i;
                 Mtx invMtx;
-                PSMTXInverse(param_0->getInvJointMtx(drawMtxIndex), invMtx);
-                PSMTXMultVec(invMtx, pos, pos);
+                MTXInverse(param_0->getInvJointMtx(drawMtxIndex), invMtx);
+                MTXMultVec(invMtx, pos, pos);
             }
         }
         for (int i = 0; i < nrmNum; i++) {
@@ -544,8 +544,8 @@ void J3DSkinDeform::transformVtxPosNrm(J3DModelData* param_0) {
                 u16 drawMtxIndex = param_0->getDrawMtxIndex(nrmIndex);
                 Vec* nrm = ((Vec*)param_0->getVtxNrmArray()) + i;
                 Mtx invMtx;
-                PSMTXInverse(param_0->getInvJointMtx(drawMtxIndex), invMtx);
-                PSMTXMultVecSR(invMtx, nrm, nrm);
+                MTXInverse(param_0->getInvJointMtx(drawMtxIndex), invMtx);
+                MTXMultVecSR(invMtx, nrm, nrm);
             }
         }
         field_0x19 = 1;
@@ -561,7 +561,7 @@ void J3DSkinDeform::calcAnmInvJointMtx(J3DMtxBuffer* param_0) {
         Mtx* invJointMtx = &param_0->getJointTree()->getInvJointMtx(0);
         Mtx* posMtx = mPosMtx;
         for (int i = 0; i < jointNum; i++) {
-            PSMTXConcat(anmMtx[i], invJointMtx[i], posMtx[i]);
+            MTXConcat(anmMtx[i], invJointMtx[i], posMtx[i]);
         }
     }
 }

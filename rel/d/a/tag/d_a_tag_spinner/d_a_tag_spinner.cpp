@@ -33,7 +33,7 @@ void daTagSpinner_c::initBaseMtx() {
 
 /* 80D618C4-80D6191C 000244 0058+00 1/1 0/0 0/0 .text            setBaseMtx__14daTagSpinner_cFv */
 void daTagSpinner_c::setBaseMtx() {
-    PSMTXTrans(mDoMtx_stack_c::now, current.pos.x, current.pos.y, current.pos.z);
+    MTXTrans(mDoMtx_stack_c::now, current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_ZXYrotM(mDoMtx_stack_c::now, shape_angle.x, shape_angle.y, shape_angle.z);
 }
 

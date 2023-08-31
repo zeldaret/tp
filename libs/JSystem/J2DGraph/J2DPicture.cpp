@@ -662,7 +662,7 @@ void J2DPicture::changeTexture(char const* param_0, u8 param_1, JUTPalette* para
 /* 802FDB28-802FDB90 2F8468 0068+00 1/0 1/0 0/0 .text            drawSelf__10J2DPictureFff */
 void J2DPicture::drawSelf(f32 param_0, f32 param_1) {
     Mtx tmp;
-    PSMTXIdentity(tmp);
+    MTXIdentity(tmp);
 
     drawSelf(param_0, param_1, &tmp);
 }
@@ -732,7 +732,7 @@ void J2DPicture::drawTexCoord(f32 param_0, f32 param_1, f32 param_2, f32 param_3
 
         getNewColor(black);
         setTevMode();
-        PSMTXConcat((MtxP)param_12,mGlobalMtx,outputMtx);
+        MTXConcat((MtxP)param_12,mGlobalMtx,outputMtx);
 
         GXLoadPosMtxImm(outputMtx,0);
         GXClearVtxDesc();

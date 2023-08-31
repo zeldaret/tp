@@ -124,7 +124,7 @@ struct J3DSys {
     Mtx& getModelDrawMtx(u16 no) const { return mModelDrawMtx[no]; }
     J3DShapePacket* getShapePacket() const { return mShapePacket; }
 
-    void setViewMtx(Mtx m) { PSMTXCopy(m, mViewMtx); }
+    void setViewMtx(Mtx m) { MTXCopy(m, mViewMtx); }
 
     J3DModel* getModel() { return mModel; }
 

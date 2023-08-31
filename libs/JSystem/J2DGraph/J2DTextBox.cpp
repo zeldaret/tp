@@ -305,7 +305,7 @@ void J2DTextBox::draw(f32 posX, f32 posY) {
         if (mStringPtr != NULL) {
             print.print(0.0f, 0.0f, mAlpha, "%s", mStringPtr);
         }
-        PSMTXIdentity(m);
+        MTXIdentity(m);
         GXLoadPosMtxImm(m, 0);
     }
 }
@@ -334,7 +334,7 @@ void J2DTextBox::draw(f32 posX, f32 posY, f32 param_2, J2DTextBoxHBinding hBind)
             print.printReturn(mStringPtr, param_2, 0.0f, hBind, VBIND_TOP, 0.0f, -mFontSizeY,
                               mAlpha);
         }
-        PSMTXIdentity(m);
+        MTXIdentity(m);
         GXLoadPosMtxImm(m, 0);
     }
 }
@@ -421,7 +421,7 @@ bool J2DTextBox::setConnectParent(bool connected) {
 /* 803008E8-80300950 2FB228 0068+00 1/0 1/0 0/0 .text            drawSelf__10J2DTextBoxFff */
 void J2DTextBox::drawSelf(f32 param_0, f32 param_1) {
     Mtx identity;
-    PSMTXIdentity(identity);
+    MTXIdentity(identity);
 
     drawSelf(param_0, param_1, &identity);
 }
@@ -434,7 +434,7 @@ void J2DTextBox::drawSelf(f32 param_0, f32 param_1, Mtx* p_mtx) {
     J2DPrint print(mFont, mCharSpacing, mLineSpacing, mCharColor, mGradientColor, mBlackColor,
                    mWhiteColor);
     print.setFontSize(mFontSizeX, mFontSizeY);
-    PSMTXConcat(*p_mtx, mGlobalMtx, m);
+    MTXConcat(*p_mtx, mGlobalMtx, m);
 
     GXLoadPosMtxImm(m, GX_PNMTX0);
     GXSetNumIndStages(0);

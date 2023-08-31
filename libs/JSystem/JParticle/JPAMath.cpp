@@ -139,7 +139,7 @@ void JPASetRMtxSTVecfromMtx(f32 const (*param_0)[4], f32 (*param_1)[4],
     param_2->y = aTStack_54.length();
     aTStack_54.set(param_0[0][2], param_0[1][2], param_0[2][2]);
     param_2->z = aTStack_54.length();
-    PSMTXIdentity(param_1);
+    MTXIdentity(param_1);
     if (param_2->x != 0.0f) {
         f32 fVar5 = 1.0f / param_2->x;
         param_1[0][0] = param_0[0][0] * fVar5;

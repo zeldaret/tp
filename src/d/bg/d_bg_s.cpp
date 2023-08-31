@@ -793,10 +793,10 @@ void dBgS_MoveBGProc_Typical(dBgW* i_bgw, void* i_actor_ptr, cBgS_PolyInfo const
     Mtx m;
     if (i_bgw->GetOldInvMtx(m) != NULL) {
         cXyz move_old;
-        PSMTXMultVec(m, i_pos, &move_old);
+        MTXMultVec(m, i_pos, &move_old);
 
         cXyz move_pos;
-        PSMTXMultVec(i_bgw->GetBaseMtxP(), &move_old, &move_pos);
+        MTXMultVec(i_bgw->GetBaseMtxP(), &move_old, &move_pos);
         i_pos->x = move_pos.x;
         i_pos->y = move_pos.y;
         i_pos->z = move_pos.z;

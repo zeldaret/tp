@@ -393,7 +393,7 @@ asm void J3DDifferedTexMtx::loadExecute(f32 const (*param_0)[4]) {
  * loadMtxConcatView_PNGP__21J3DShapeMtxConcatViewCFiUs         */
 void J3DShapeMtxConcatView::loadMtxConcatView_PNGP(int slot, u16 drw) const {
     Mtx m;
-    PSMTXConcat(*j3dSys.getShapePacket()->getBaseMtxPtr(), j3dSys.getModelDrawMtx(drw), m);
+    MTXConcat(*j3dSys.getShapePacket()->getBaseMtxPtr(), j3dSys.getModelDrawMtx(drw), m);
     J3DDifferedTexMtx::load(m);
     J3DFifoLoadPosMtxImm(m, slot * 3);
     loadNrmMtx(slot, drw, m);
@@ -403,7 +403,7 @@ void J3DShapeMtxConcatView::loadMtxConcatView_PNGP(int slot, u16 drw) const {
  * loadMtxConcatView_PCPU__21J3DShapeMtxConcatViewCFiUs         */
 void J3DShapeMtxConcatView::loadMtxConcatView_PCPU(int slot, u16 drw) const {
     Mtx m;
-    PSMTXConcat(*j3dSys.getShapePacket()->getBaseMtxPtr(), j3dSys.getModelDrawMtx(drw), m);
+    MTXConcat(*j3dSys.getShapePacket()->getBaseMtxPtr(), j3dSys.getModelDrawMtx(drw), m);
     J3DDifferedTexMtx::load(m);
     J3DFifoLoadPosMtxImm(*j3dSys.getShapePacket()->getBaseMtxPtr(), slot * 3);
     loadNrmMtx(slot, drw, m);
@@ -413,7 +413,7 @@ void J3DShapeMtxConcatView::loadMtxConcatView_PCPU(int slot, u16 drw) const {
  * loadMtxConcatView_NCPU__21J3DShapeMtxConcatViewCFiUs         */
 void J3DShapeMtxConcatView::loadMtxConcatView_NCPU(int slot, u16 drw) const {
     Mtx m;
-    PSMTXConcat(*j3dSys.getShapePacket()->getBaseMtxPtr(), j3dSys.getModelDrawMtx(drw), m);
+    MTXConcat(*j3dSys.getShapePacket()->getBaseMtxPtr(), j3dSys.getModelDrawMtx(drw), m);
     J3DDifferedTexMtx::load(m);
     J3DFifoLoadPosMtxImm(m, slot * 3);
     J3DFifoLoadNrmMtxImm(*j3dSys.getShapePacket()->getBaseMtxPtr(), slot * 3);
@@ -426,7 +426,7 @@ void J3DShapeMtxConcatView::loadMtxConcatView_NCPU(int slot, u16 drw) const {
 void J3DShapeMtxConcatView::loadMtxConcatView_PNCPU(int slot, u16 drw) const {
     Mtx m;
     if (J3DDifferedTexMtx::sTexGenBlock != NULL) {
-        PSMTXConcat(*j3dSys.getShapePacket()->getBaseMtxPtr(), j3dSys.getModelDrawMtx(drw), m);
+        MTXConcat(*j3dSys.getShapePacket()->getBaseMtxPtr(), j3dSys.getModelDrawMtx(drw), m);
         J3DDifferedTexMtx::loadExecute(m);
     }
     J3DFifoLoadPosMtxImm(*j3dSys.getShapePacket()->getBaseMtxPtr(), slot * 3);
@@ -439,8 +439,8 @@ void J3DShapeMtxConcatView::loadMtxConcatView_PNCPU(int slot, u16 drw) const {
  * loadMtxConcatView_PNGP_LOD__21J3DShapeMtxConcatViewCFiUs     */
 void J3DShapeMtxConcatView::loadMtxConcatView_PNGP_LOD(int slot, u16 drw) const {
     Mtx m;
-    PSMTXConcat(*j3dSys.getShapePacket()->getBaseMtxPtr(), j3dSys.getModelDrawMtx(drw), m);
-    PSMTXConcat(m, j3dSys.mModel->getModelData()->getInvJointMtx(drw), m);
+    MTXConcat(*j3dSys.getShapePacket()->getBaseMtxPtr(), j3dSys.getModelDrawMtx(drw), m);
+    MTXConcat(m, j3dSys.mModel->getModelData()->getInvJointMtx(drw), m);
     J3DDifferedTexMtx::load(m);
     J3DFifoLoadPosMtxImm(m, slot * 3);
     loadNrmMtx(slot, drw, m);

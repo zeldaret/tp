@@ -113,7 +113,7 @@ int daObjHBombkoya_c::create1st() {
 
     int phase = dComIfG_resLoad(actor_phase, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {
-        PSMTXIdentity(mBgMtx);
+        MTXIdentity(mBgMtx);
 
         phase = MoveBGCreate(l_arcName, 7, NULL, 0x2860, &mBgMtx);
         if (phase == cPhs_ERROR_e) {
@@ -133,7 +133,7 @@ int daObjHBombkoya_c::CreateHeap() {
     }
 
     Mtx m;
-    PSMTXIdentity(m);
+    MTXIdentity(m);
     mpModel->i_setBaseTRMtx(m);
     return 1;
 }
@@ -173,7 +173,7 @@ int daObjHBombkoya_c::Create() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(current.angle.y);
     mDoMtx_stack_c::scaleM(mScale.x, mScale.y, mScale.z);
-    PSMTXCopy(mDoMtx_stack_c::get(), mMtx);
+    MTXCopy(mDoMtx_stack_c::get(), mMtx);
 
     for (int i = 0; i < 9; i++) {
         mEmitterKeys[i] = 0;
@@ -220,7 +220,7 @@ bool daObjHBombkoya_c::setParticle(u16* i_particleIDs, int i_particleMax,
             cXyz base_pos;
 
             base_pos = i_setTbl[i].m_position;
-            PSMTXMultVec(mMtx, &base_pos, &position);
+            MTXMultVec(mMtx, &base_pos, &position);
 
             cXyz scale;
             scale.z = i_setTbl[i].m_scale;
@@ -298,7 +298,7 @@ int daObjHBombkoya_c::Execute(Mtx** param_0) {
                 base_pos.y = 0.0f;
                 base_pos.z = -500.0f;
 
-                PSMTXMultVec(mMtx, &base_pos, &cyl_pos);
+                MTXMultVec(mMtx, &base_pos, &cyl_pos);
                 mCyl.SetC(cyl_pos);
                 dComIfG_Ccsp()->Set(&mCyl);
             }
@@ -333,7 +333,7 @@ int daObjHBombkoya_c::Execute(Mtx** param_0) {
                     cXyz base_pos;
 
                     base_pos = ptable[i].set_info.m_position;
-                    PSMTXMultVec(mMtx, &base_pos, &pos);
+                    MTXMultVec(mMtx, &base_pos, &pos);
 
                     cXyz scale;
                     scale.z = ptable[i].set_info.m_scale;

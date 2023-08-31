@@ -728,9 +728,9 @@ void Z2AudioCamera::setCameraState(f32 (*param_0)[4], Vec& param_1, Vec& param_2
         aTStack_cc.y = param_0[0][1];
         aTStack_cc.z = param_0[0][2];
         Mtx rotMtx;
-        PSMTXRotAxisRad(rotMtx, aTStack_cc, 0.01745329238474369f * (-1.0f * dVar10));
+        MTXRotAxisRad(rotMtx, aTStack_cc, 0.01745329238474369f * (-1.0f * dVar10));
         JGeometry::TVec3<f32> aTStack_d8;
-        PSMTXMultVec(rotMtx, aTStack_c0, aTStack_d8);
+        MTXMultVec(rotMtx, aTStack_c0, aTStack_d8);
         aTStack_d8.scale(aTStack_c0.y / aTStack_d8.y);
         mDolbyCenterZ = fVar8 * aTStack_d8.length();
         if (mSetMainCamera) {
@@ -759,7 +759,7 @@ void Z2AudioCamera::convertAbsToRel(Z2Audible* param_0, int param_1) {
         return;
     }
     Z2AudibleRelPos* relPos = &iVar2->field_0x14;
-    PSMTXMultVec(field_0x0, param_0->mPos, relPos->field_0x00);
+    MTXMultVec(field_0x0, param_0->mPos, relPos->field_0x00);
     relPos->field_0xC = relPos->field_0x00.length();
     JGeometry::TVec3<f32> aTStack_38;
     JGeometry::setTVec3f(*(Vec*)&relPos->field_0x00, *(Vec*)&aTStack_38);
@@ -770,7 +770,7 @@ void Z2AudioCamera::convertAbsToRel(Z2Audible* param_0, int param_1) {
 /* 802BCC7C-802BCCC0 2B75BC 0044+00 2/2 0/0 0/0 .text convertAbsToRel__13Z2AudioCameraCFR3VecP3Vec
  */
 bool Z2AudioCamera::convertAbsToRel(Vec& param_0, Vec* param_1) const {
-    PSMTXMultVec(field_0x0, &param_0, param_1);
+    MTXMultVec(field_0x0, &param_0, param_1);
     return isInSight(*param_1);
 }
 

@@ -129,7 +129,7 @@ public:
 
     MtxP getGlbMtx() { return mGlobalMtx; }
 
-    void setMtx(Mtx m) { PSMTXCopy(m, mPositionMtx); }
+    void setMtx(Mtx m) { MTXCopy(m, mPositionMtx); }
 
     void translate(f32 transX, f32 transY) {
         mTranslateX = transX;

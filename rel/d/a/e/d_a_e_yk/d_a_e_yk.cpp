@@ -1731,7 +1731,7 @@ static int daE_YK_Execute(e_yk_class* i_this) {
             i_this->mAttentionInfo.mFlags = 0;
 
             // need to define inline here
-            PSMTXCopy(daPy_getLinkPlayerActorClass()->getWolfMouthMatrix(),mDoMtx_stack_c::now);
+            MTXCopy(daPy_getLinkPlayerActorClass()->getWolfMouthMatrix(),mDoMtx_stack_c::now);
             model->i_setBaseTRMtx(mDoMtx_stack_c::get());
             mDoMtx_stack_c::multVecZero(&i_this->current.pos);
         } else {
@@ -1782,7 +1782,7 @@ static int daE_YK_Execute(e_yk_class* i_this) {
 
         
 
-        PSMTXCopy(model->i_getAnmMtx(2),(MtxP)calc_mtx);
+        MTXCopy(model->i_getAnmMtx(2),(MtxP)calc_mtx);
         pos.set(0.0f,0.0f,0.0f);
 
         MtxPosition(&pos,&i_this->mEyePos);

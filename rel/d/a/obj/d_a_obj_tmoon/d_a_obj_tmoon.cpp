@@ -23,7 +23,7 @@ void daObjTMoon_c::initBaseMtx() {
 void daObjTMoon_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    PSMTXCopy(mDoMtx_stack_c::now, field_0x570->mBaseTransformMtx);
+    MTXCopy(mDoMtx_stack_c::now, field_0x570->mBaseTransformMtx);
 }
 
 /* 80D12C48-80D12C9C 000128 0054+00 1/1 0/0 0/0 .text            Create__12daObjTMoon_cFv */

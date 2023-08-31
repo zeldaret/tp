@@ -3296,10 +3296,10 @@ void daAlink_c::setMatrixWorldAxisRot(MtxP param_0, s16 param_1, s16 param_2, s1
     mDoMtx_stack_c::YrotM(-shape_angle.y);
     concatMagneBootInvMtx();
     mDoMtx_stack_c::transM(-tmp.x, -tmp.y, -tmp.z);
-    PSMTXConcat(mDoMtx_stack_c::get(), param_0, mDoMtx_stack_c::get());
-    PSMTXCopy(mDoMtx_stack_c::get(), param_0);
+    MTXConcat(mDoMtx_stack_c::get(), param_0, mDoMtx_stack_c::get());
+    MTXCopy(mDoMtx_stack_c::get(), param_0);
     if (param_4 != 0) {
-        PSMTXCopy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
+        MTXCopy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
     }
 }
 
@@ -3335,7 +3335,7 @@ asm void daAlink_c::changeBlendRate(int param_0) {
 
 /* 8009EB18-8009EB58 099458 0040+00 1/1 0/0 0/0 .text            resetRootMtx__9daAlink_cFv */
 void daAlink_c::resetRootMtx() {
-    PSMTXCopy(mRootMtx, J3DSys::mCurrentMtx);
+    MTXCopy(mRootMtx, J3DSys::mCurrentMtx);
     field_0x2f90 = 0;
 }
 

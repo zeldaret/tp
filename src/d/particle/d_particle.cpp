@@ -981,7 +981,7 @@ static void static_light8EcallBack(JPABaseEmitter* param_0) {
 static void static_gen_b_light8EcallBack(JPABaseEmitter* param_0) {
     GXFlush();
     Mtx identity;
-    PSMTXIdentity(identity);
+    MTXIdentity(identity);
     GXLoadPosMtxImm(identity, 0);
     GXLoadNrmMtxImm(identity, 0);
     GXInvalidateVtxCache();
@@ -1093,27 +1093,27 @@ SECTION_SDATA2 static f64 lit_4093 = 4503599627370496.0 /* cast u32 to float */;
 void dPa_modelPcallBack::draw(JPABaseEmitter* param_0, JPABaseParticle* param_1) {
     Mtx local_74;
     Mtx local_44;
-    PSMTXIdentity(local_74);
-    PSMTXIdentity(local_44);
+    MTXIdentity(local_74);
+    MTXIdentity(local_44);
     f32 f31 = -90.0f / 16384.0f * param_1->getRotateAngle();
     if (f31) {
         switch(dPa_modelEcallBack::getRotAxis(param_0)) {
         case 0:
-            PSMTXRotRad(local_44, 0x79, DEG_TO_RAD(f31));
+            MTXRotRad(local_44, 0x79, DEG_TO_RAD(f31));
             break;
         case 1:
-            PSMTXRotRad(local_44, 0x78, DEG_TO_RAD(f31));
+            MTXRotRad(local_44, 0x78, DEG_TO_RAD(f31));
             break;
         case 2:
-            PSMTXRotRad(local_44, 0x7a, DEG_TO_RAD(f31));
+            MTXRotRad(local_44, 0x7a, DEG_TO_RAD(f31));
             break;
         case 3:
             Vec vec = {1.0f, 1.0f, 1.0f};
-            PSMTXRotAxisRad(local_44, &vec, DEG_TO_RAD(f31));
+            MTXRotAxisRad(local_44, &vec, DEG_TO_RAD(f31));
             break;
         }
 
-        PSMTXConcat(local_74, local_44, local_74);
+        MTXConcat(local_74, local_44, local_74);
     }
     JGeometry::TVec3<f32> local_cc;
     param_1->getGlobalPosition(local_cc);
@@ -1125,8 +1125,8 @@ void dPa_modelPcallBack::draw(JPABaseEmitter* param_0, JPABaseParticle* param_1)
     local_fc.x *= param_1->getParticleScaleX();
     local_fc.y *= param_1->getParticleScaleY();
     Mtx auStack_c0;
-    PSMTXScale(auStack_c0, local_fc.x, local_fc.y, local_fc.x);
-    PSMTXConcat(local_74, auStack_c0, local_74);
+    MTXScale(auStack_c0, local_fc.x, local_fc.y, local_fc.x);
+    MTXConcat(local_74, auStack_c0, local_74);
     dPa_modelEcallBack::drawModel(param_0, local_74);
     param_1->setInvisibleParticleFlag();
 }
@@ -1264,7 +1264,7 @@ void dPa_modelEcallBack::model_c::draw(f32 (*param_0)[4]) {
         dKy_Global_amb_set(&field_0x8);
         dKy_GxFog_tevstr_set(&field_0x8);
         Mtx auStack_48;
-        PSMTXConcat(j3dSys.getViewMtx(), param_0, auStack_48);
+        MTXConcat(j3dSys.getViewMtx(), param_0, auStack_48);
         GXLoadPosMtxImm(auStack_48, 0);
         GXLoadNrmMtxImm(auStack_48, 0);
         material->getShape()->simpleDrawCache();
@@ -1919,7 +1919,7 @@ dPa_control_c::dPa_control_c() {
     mSceneResMng = NULL;
     m_sceneRes = NULL;
 
-    PSMTXIdentity(mWindViewMatrix);
+    MTXIdentity(mWindViewMatrix);
 }
 
 /* 8004BB70-8004BB78 0464B0 0008+00 4/4 0/0 0/0 .text            getRM_ID__13dPa_control_cFUs */

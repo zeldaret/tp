@@ -3440,7 +3440,7 @@ MtxP J3DModel::getAnmMtx(int i) {
 
 /* 800CFFF4-800D0020 0CA934 002C+00 1/1 0/0 0/0 .text            setBaseTRMtx__8J3DModelFPA4_f */
 void J3DModel::setBaseTRMtx(MtxP matrix) {
-    PSMTXCopy(matrix, mBaseTransformMtx);
+    MTXCopy(matrix, mBaseTransformMtx);
 }
 
 /* 800D0020-800D0048 0CA960 0028+00 1/1 0/0 0/0 .text checkFmChainGrabAnime__9daAlink_cCFv */

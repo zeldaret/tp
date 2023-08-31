@@ -1040,7 +1040,7 @@ int daNpcT_Path_c::chkPassed1(cXyz param_0, int param_1) {
 
         s16 angle = cLib_targetAngleY(&l_pos1,&l_pos2);
         mDoMtx_YrotS((MtxP)&mDoMtx_stack_c::now,angle);
-        PSMTXMultVec((MtxP)&mDoMtx_stack_c::now,&l_vec,&l_vec);
+        MTXMultVec((MtxP)&mDoMtx_stack_c::now,&l_vec,&l_vec);
         l_pos4 = (cXyz)l_vec + l_pos2;
         l_pos3 = l_pos4;
     }
@@ -1052,7 +1052,7 @@ int daNpcT_Path_c::chkPassed1(cXyz param_0, int param_1) {
 
         s16 angle = cLib_targetAngleY(&l_pos3,&l_pos2);
         mDoMtx_YrotS((MtxP)&mDoMtx_stack_c::now,angle);
-        PSMTXMultVec((MtxP)&mDoMtx_stack_c::now,&l_vec,&l_vec);
+        MTXMultVec((MtxP)&mDoMtx_stack_c::now,&l_vec,&l_vec);
         l_pos5 = (cXyz)l_vec + l_pos2;
         l_pos1 = l_pos5;
     }
@@ -5705,7 +5705,7 @@ BOOL daNpcF_chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 param_3
 
     mDoMtx_YrotS((MtxP)&mDoMtx_stack_c::now,-param_3);
     mDoMtx_stack_c::transM(-param_1.x,-param_1.y,-param_1.z);
-    PSMTXMultVec((MtxP)&mDoMtx_stack_c::now,(Vec*)&param_0,&l_vec);
+    MTXMultVec((MtxP)&mDoMtx_stack_c::now,(Vec*)&param_0,&l_vec);
 
     l_float1 = fabsf(param_2.x);
     l_float2 = fabsf(param_2.z);

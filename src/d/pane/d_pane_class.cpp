@@ -394,11 +394,11 @@ Vec CPaneMgr::getGlobalVtx(J2DPane* p_pane, Mtx* param_1, u8 param_2, bool param
 
     if (parent != NULL) {
         getGlobalVtx(parent, param_1, param_2, param_3, param_4);
-        PSMTXCopy(*param_1, m);
-        PSMTXConcat(m, *p_pane->getMtx(), *param_1);
+        MTXCopy(*param_1, m);
+        MTXConcat(m, *p_pane->getMtx(), *param_1);
     } else {
         p_pane->calcMtx();
-        PSMTXCopy(*p_pane->getMtx(), *param_1);
+        MTXCopy(*p_pane->getMtx(), *param_1);
     }
 
     Vec outVec;

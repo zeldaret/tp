@@ -61,7 +61,7 @@ J3DSys::J3DSys() {
     makeZModeTable();
 
     mFlags = 0;
-    PSMTXIdentity(mViewMtx);
+    MTXIdentity(mViewMtx);
     mDrawMode = 1;
     mMaterialMode = 0;
     mModel = NULL;

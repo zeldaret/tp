@@ -216,7 +216,7 @@ public:
     /* 8007B0B0 */ virtual bool ChkShdwDrawThrough(int, cBgS_PolyPassChk*);
     /* 8007B0DC */ virtual bool ChkGrpThrough(int, cBgS_GrpPassChk*, int);
 
-    u32 GetOldInvMtx(Mtx m) { return PSMTXInverse(m_inv_mtx, m); }
+    u32 GetOldInvMtx(Mtx m) { return MTXInverse(m_inv_mtx, m); }
     MtxP GetBaseMtxP() { return pm_base; }
     bool ChkNoCalcVtx() { return mFlags & NO_CALC_VTX_e; }
     bool ChkFlush() { return field_0x91 & 8; }

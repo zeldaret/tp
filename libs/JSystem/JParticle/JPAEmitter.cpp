@@ -55,7 +55,7 @@ void JPABaseEmitter::init(JPAEmitterManager* param_0, JPAResource* param_1) {
     mRndmDirSpeed = mpRes->getDyn()->getInitVelRndm();
     mAirResist = mpRes->getDyn()->getAirRes();
     mRndm.set_seed(mpEmtrMgr->mpWorkData->mRndm.get_rndm_u());
-    PSMTXIdentity(mGlobalRot);
+    MTXIdentity(mGlobalRot);
     mGlobalScl.set(1.0f, 1.0f, 1.0f);
     mGlobalTrs.zero();
     mGlobalPScl.set(1.0f, 1.0f);
@@ -156,12 +156,12 @@ bool JPABaseEmitter::processTermination() {
  * calcEmitterGlobalPosition__14JPABaseEmitterCFPQ29JGeometry8TVec3<f> */
 void JPABaseEmitter::calcEmitterGlobalPosition(JGeometry::TVec3<f32>* dst) const {
     Mtx mtx;
-    PSMTXScale(mtx, mGlobalScl.x, mGlobalScl.y, mGlobalScl.z);
-    PSMTXConcat(mGlobalRot, mtx, mtx);
+    MTXScale(mtx, mGlobalScl.x, mGlobalScl.y, mGlobalScl.z);
+    MTXConcat(mGlobalRot, mtx, mtx);
     mtx[0][3] = mGlobalTrs.x;
     mtx[1][3] = mGlobalTrs.y;
     mtx[2][3] = mGlobalTrs.z;
-    PSMTXMultVec(mtx, mLocalTrs, *dst);
+    MTXMultVec(mtx, mLocalTrs, *dst);
 }
 
 /* 8027EF30-8027EF40 279870 0010+00 0/0 1/1 0/0 .text getCurrentCreateNumber__14JPABaseEmitterCFv

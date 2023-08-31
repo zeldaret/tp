@@ -208,7 +208,7 @@ void daObjCatDoor_c::initBaseMtx() {
     mCullMtx = mMtx;
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_YrotM(mDoMtx_stack_c::get(), shape_angle.y);
-    PSMTXCopy(mDoMtx_stack_c::get(), mMtx);
+    MTXCopy(mDoMtx_stack_c::get(), mMtx);
     setBaseMtx();
 }
 

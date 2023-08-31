@@ -72,7 +72,7 @@ void daObjSMark_c::initBaseMtx() {
 void daObjSMark_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    PSMTXCopy((MtxP)&mDoMtx_stack_c::now,(MtxP)&mCullMtx);
+    MTXCopy((MtxP)&mDoMtx_stack_c::now,(MtxP)&mCullMtx);
 }
 /* ############################################################################################## */
 /* 8059A3E8-8059A3EC 000000 0004+00 2/2 0/0 0/0 .rodata          @3642 */

@@ -1640,7 +1640,7 @@ void dAttention_c::Draw() {
     }
 
     Mtx tmp;
-    PSMTXInverse(dComIfGd_getViewRotMtx(), tmp);
+    MTXInverse(dComIfGd_getViewRotMtx(), tmp);
     fopAc_ac_c* target = LockonTarget(0);
 
     if (!i_dComIfGp_event_runCheck()) {
@@ -1775,7 +1775,7 @@ void dAttDraw_c::draw(cXyz& param_0, Mtx param_1) {
     f32 temp_f30 = (-100.0f - g_AttDwHIO.mCursorDistance) / temp_f31;
 
     cXyz tmp;
-    PSMTXMultVec(dComIfGd_getViewMtx(), &param_0, &tmp);
+    MTXMultVec(dComIfGd_getViewMtx(), &param_0, &tmp);
 
     f32 var_f2 = 1.0f;
     if (tmp.z < temp_f30) {

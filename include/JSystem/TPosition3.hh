@@ -15,7 +15,7 @@ template <>
 struct SMatrix34C<f32> {
     f32 data[3][4];
 
-    void identity() { PSMTXIdentity(data); }
+    void identity() { MTXIdentity(data); }
 
     typedef f32 ArrType[4];
     void set(const ArrType* src) { JMath::gekko_ps_copy12((f32*)data, (f32*)src); }
