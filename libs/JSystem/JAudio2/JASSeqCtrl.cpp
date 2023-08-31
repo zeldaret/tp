@@ -4,37 +4,8 @@
 //
 
 #include "JSystem/JAudio2/JASSeqCtrl.h"
+#include "JSystem/JAudio2/JASSeqParser.h"
 #include "JSystem/JAudio2/JASTrack.h"
-
-//
-// Types:
-//
-
-// TODO: Use JASSeqParser.hh when possible
-struct JASSeqParser {
-    /* 80293CAC */ inline virtual ~JASSeqParser() {}
-    /* 802958D4 */ virtual int parse(JASTrack*);
-    /* 80295540 */ virtual void execNoteOnMidi(JASTrack*, u32, u32, u32);
-    /* 80295498 */ virtual void execNoteOnGate(JASTrack*, u32, u32, u32, u32);
-    /* 80295570 */ virtual void execNoteOff(JASTrack*, u32);
-    /* 8029559C */ virtual void execCommand(JASTrack*, s32 (JASSeqParser::*)(JASTrack*, u32*), u32, u32*);
-
-    static u8 sCmdInfo[1536];
-    static u8 sExtCmdInfo[4080];
-    static u8 sCallBackFunc[4];
-};
-
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
 
 /* ############################################################################################## */
 /* 80451238-80451240 000738 0004+04 3/3 0/0 0/0 .sbss            sDefaultParser__10JASSeqCtrl */

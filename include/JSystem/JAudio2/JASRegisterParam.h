@@ -3,9 +3,13 @@
 
 #include "dolphin/types.h"
 
-struct JASRegisterParam {
+class JASRegisterParam {
+public:
     enum RegID {
-
+        REG0,
+        REG1,
+        REG2,
+        REG3,
     };
 
     /* 80293644 */ JASRegisterParam();

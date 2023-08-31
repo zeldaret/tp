@@ -13,6 +13,9 @@ public:
     /* 8029360C */ u32 checkImport(u32) const;
     /* 80293628 */ u32 checkExport(u32) const;
 
+    u16 get(u32 param_0) { return field_0x4[param_0]; }
+    void set(u32 param_0, u16 param_1) { field_0x4[param_0] = param_1; }
+
     u16 field_0x0;
     u16 field_0x2;
     u16 field_0x4[16];
