@@ -23,29 +23,6 @@ struct TNodeLinkList {
 
 };  // namespace JGadget
 
-struct JASTrackPort {
-    /* 8029354C */ void init();
-    /* 8029357C */ void readImport(u32);
-    /* 802935A0 */ void readExport(u32);
-    /* 802935C4 */ void writeImport(u32, u16);
-    /* 802935E8 */ void writeExport(u32, u16);
-};
-
-struct JASSeqCtrl {
-    struct IntrType {};
-
-    /* 802938BC */ JASSeqCtrl();
-    /* 80293924 */ void init();
-    /* 80293980 */ void start(void*, u32);
-    /* 802939C4 */ void tickProc(JASTrack*);
-    /* 80293ABC */ void interrupt(JASSeqCtrl::IntrType);
-};
-
-struct JASRegisterParam {
-    /* 80293644 */ JASRegisterParam();
-    /* 80293664 */ void init();
-};
-
 template <typename A0>
 struct JASMemPool_MultiThreaded {};
 /* JASMemPool_MultiThreaded<JASTrack> */
@@ -442,7 +419,7 @@ asm void JASTrack::closeChild(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASTrack::openChild(u32 param_0) {
+asm JASTrack* JASTrack::openChild(u32 param_0) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASTrack/openChild__8JASTrackFUl.s"
 }
@@ -484,7 +461,7 @@ asm void JASTrack::channelStart(JASTrack::TChannelMgr* param_0, u32 param_1, u32
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASTrack::noteOn(u32 param_0, u32 param_1, u32 param_2) {
+asm int JASTrack::noteOn(u32 param_0, u32 param_1, u32 param_2) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASTrack/noteOn__8JASTrackFUlUlUl.s"
 }
@@ -501,7 +478,7 @@ SECTION_SDATA2 static f64 lit_954 = 4503599627370496.0 /* cast u32 to float */;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASTrack::gateOn(u32 param_0, u32 param_1, f32 param_2, u32 param_3) {
+asm int JASTrack::gateOn(u32 param_0, u32 param_1, f32 param_2, u32 param_3) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASTrack/gateOn__8JASTrackFUlUlfUl.s"
 }
@@ -511,7 +488,7 @@ asm void JASTrack::gateOn(u32 param_0, u32 param_1, f32 param_2, u32 param_3) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASTrack::noteOff(u32 param_0, u16 param_1) {
+asm int JASTrack::noteOff(u32 param_0, u16 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASTrack/noteOff__8JASTrackFUlUs.s"
 }
@@ -694,7 +671,7 @@ asm void JASTrack::setIIR(s16 const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASTrack::readPortSelf(u32 param_0) {
+asm u16 JASTrack::readPortSelf(u32 param_0) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASTrack/readPortSelf__8JASTrackFUl.s"
 }
@@ -724,7 +701,7 @@ asm void JASTrack::writePort(u32 param_0, u16 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASTrack::readPort(u32 param_0) {
+asm u16 JASTrack::readPort(u32 param_0) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASTrack/readPort__8JASTrackFUl.s"
 }
