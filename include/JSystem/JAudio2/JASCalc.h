@@ -23,7 +23,7 @@ struct JASCalc {
     f32 fake2(long x);
     f32 fake3();
 
-    static u8 const CUTOFF_TO_IIR_TABLE[1024];
+    static s16 const CUTOFF_TO_IIR_TABLE[128][4];
 };
 
 #endif /* JASCALC_H */
