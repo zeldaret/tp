@@ -1,7 +1,7 @@
 #ifndef JASDRIVERIF_H
 #define JASDRIVERIF_H
 
-#include "dolphin/types.h"
+#include "JSystem/JAudio2/JASCallback.h"
 
 typedef s32 (*DriverCallback)(void*);
 
@@ -19,9 +19,9 @@ namespace JASDriver {
     /* 8029E2D0 */ void DSPSyncCallback();
     /* 8029E2F8 */ void updateDacCallback();
 
-    extern u8 sDspSyncCallback[256];
-    extern u8 sSubFrameCallback[256];
-    extern u8 sUpdateDacCallback[256 + 8 /* padding */];
+    extern JASCallbackMgr sDspSyncCallback;
+    extern JASCallbackMgr sSubFrameCallback;
+    extern JASCallbackMgr sUpdateDacCallback;
     extern u16 MAX_MIXERLEVEL;
     extern u32 JAS_SYSTEM_OUTPUT_MODE;
 };
