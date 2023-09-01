@@ -16,55 +16,6 @@ struct JASWaveInfo {
     static u32 one[1 + 1 /* padding */];
 };
 
-struct JASDsp {
-    struct FxlineConfig_ {};
-
-    struct TChannel {
-        /* 8029DCA4 */ void init();
-        /* 8029DCE0 */ void playStart();
-        /* 8029DD44 */ void playStop();
-        /* 8029DD50 */ void replyFinishRequest();
-        /* 8029DD60 */ void forceStop();
-        /* 8029DD6C */ void isActive() const;
-        /* 8029DD7C */ void isFinish() const;
-        /* 8029DD8C */ void setWaveInfo(JASWaveInfo const&, u32, u32);
-        /* 8029DEAC */ void setOscInfo(u32);
-        /* 8029DEC4 */ void initAutoMixer();
-        /* 8029DEF0 */ void setAutoMixer(u16, u8, u8, u8, u8);
-        /* 8029DF1C */ void setPitch(u16);
-        /* 8029DF34 */ void setMixerInitVolume(u8, s16);
-        /* 8029DF54 */ void setMixerVolume(u8, s16);
-        /* 8029DF80 */ void setPauseFlag(u8);
-        /* 8029DF8C */ void flush();
-        /* 8029DFB0 */ void initFilter();
-        /* 8029E00C */ void setFilterMode(u16);
-        /* 8029E044 */ void setIIRFilterParam(s16*);
-        /* 8029E06C */ void setFIR8FilterParam(s16*);
-        /* 8029E094 */ void setDistFilter(s16);
-        /* 8029E09C */ void setBusConnect(u8, u8);
-    };
-
-    /* 8029D958 */ void boot(void (*)(void*));
-    /* 8029D9A4 */ void releaseHalt(u32);
-    /* 8029D9C4 */ void finishWork(u16);
-    /* 8029D9E4 */ void syncFrame(u32, u32, u32);
-    /* 8029DA04 */ void setDSPMixerLevel(f32);
-    /* 8029DA30 */ void getDSPMixerLevel();
-    /* 8029DA38 */ void getDSPHandle(int);
-    /* 8029DA48 */ void setFilterTable(s16*, s16*, u32);
-    /* 8029DA6C */ void flushBuffer();
-    /* 8029DAA0 */ void invalChannelAll();
-    /* 8029DAC8 */ void initBuffer();
-    /* 8029DB78 */ void setFXLine(u8, s16*, JASDsp::FxlineConfig_*);
-
-    static u8 const DSPADPCM_FILTER[64];
-    static void* const DSPRES_FILTER[320];
-    static u8 SEND_TABLE[24 + 24 /* padding */];
-    static u8 CH_BUF[4];
-    static u8 FX_BUF[4];
-    static f32 sDSPVolume;
-};
-
 struct JASCalc {
     /* 8028F480 */ void bzero(void*, u32);
 };
@@ -216,7 +167,7 @@ asm void JASDsp::setDSPMixerLevel(f32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASDsp::getDSPMixerLevel() {
+asm f32 JASDsp::getDSPMixerLevel() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASDSPInterface/getDSPMixerLevel__6JASDspFv.s"
 }

@@ -21,10 +21,6 @@ struct JASPortCmd {
     /* 80291060 */ void execAllCommand();
 };
 
-struct JASOutputRate {};
-
-struct JASMixMode {};
-
 struct JASLfo {
     /* 8029BDD8 */ void incCounter(f32);
 
@@ -34,45 +30,6 @@ struct JASLfo {
 struct JASDsp {
     /* 8029D9E4 */ void syncFrame(u32, u32, u32);
     /* 8029DAA0 */ void invalChannelAll();
-};
-
-struct JASDriver {
-    /* 8029C388 */ void initAI(void (*)(void));
-    /* 8029C4E4 */ void startDMA();
-    /* 8029C504 */ void stopDMA();
-    /* 8029C524 */ void setOutputRate(JASOutputRate);
-    /* 8029C568 */ void updateDac();
-    /* 8029C6C4 */ void updateDSP();
-    /* 8029C7E0 */ void readDspBuffer(s16*, u32);
-    /* 8029C900 */ void finishDSPFrame();
-    /* 8029C9DC */ void registerMixCallback(s16* (*)(s32), JASMixMode);
-    /* 8029C9E8 */ void getDacRate();
-    /* 8029C9F0 */ u32 getSubFrames();
-    /* 8029C9F8 */ void getDacSize();
-    /* 8029CA04 */ void getFrameSamples();
-    /* 8029CA10 */ void mixMonoTrack(s16*, u32, s16* (*)(s32));
-    /* 8029CAC0 */ void mixMonoTrackWide(s16*, u32, s16* (*)(s32));
-    /* 8029CB70 */ void mixExtraTrack(s16*, u32, s16* (*)(s32));
-    /* 8029CC50 */ void mixInterleaveTrack(s16*, u32, s16* (*)(s32));
-    /* 8029CCD4 */ u32 getSubFrameCounter();
-    /* 8029E2A8 */ void subframeCallback();
-    /* 8029E2D0 */ void DSPSyncCallback();
-
-    static void* const sMixFuncs[4];
-    static u8 sDmaDacBuffer[12 + 4 /* padding */];
-    static u32 sMixMode;
-    static f32 sDacRate;
-    static u32 sSubFrames;
-    static u8 sDspDacBuffer[4];
-    static u8 sDspDacWriteBuffer[4];
-    static u8 sDspDacReadBuffer[4];
-    static u8 sDspStatus[4];
-    static u8 sDspDacCallback[4];
-    static u8 lastRspMadep[4];
-    static u8 dacCallbackFunc[4];
-    static u8 extMixCallback[4];
-    static u8 sOutputRate[4];
-    static u8 sSubFrameCounter[4];
 };
 
 struct JASDSPChannel {
