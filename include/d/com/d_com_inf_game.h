@@ -328,12 +328,11 @@ public:
     void setItemPachinkoNumCount(s16 seeds) { mItemPachinkoNumCount += seeds; }
     void setItemKeyNumCount(s16 keys) { mItemKeyNumCount += keys; }
     void setItemMaxLifeCount(s16 max) { mItemMaxLifeCount += max; }
-    void setOxygen(int oxygen) { mOxygen = oxygen; }
+    void setOxygen(s32 oxygen) { mOxygen = oxygen; }
     void setNowOxygen(s32 oxygen) { mNowOxygen = oxygen; }
     void setOxygenCount(s32 oxygen) { mOxygenCount += oxygen; }
     int getOxygen() { return mOxygen; }
     void setMaxOxygen(int max) { mMaxOxygen = max; }
-    void setOxygen(s32 i_oxygen) { mOxygen = i_oxygen; }
     int getMaxOxygen() { return mMaxOxygen; }
     int getNowOxygen() { return mNowOxygen; }
     void setItemNowLife(u16 life) { mItemNowLife = life; }
