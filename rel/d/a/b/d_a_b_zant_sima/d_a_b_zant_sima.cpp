@@ -4,442 +4,238 @@
 //
 
 #include "rel/d/a/b/d_a_b_zant_sima/d_a_b_zant_sima.h"
-#include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct request_of_phase_process_class {};
-
-struct csXyz {};
-
-struct mDoMtx_stack_c {
-    /* 8000CD9C */ void transM(f32, f32, f32);
-    /* 8000CF44 */ void ZXYrotM(csXyz const&);
-
-    static u8 now[48];
-};
-
-struct J3DMaterialTable {};
-
-struct J3DAnmTextureSRTKey {};
-
-struct mDoExt_btkAnm {
-    /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
-    /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct J3DAnmTevRegKey {};
-
-struct mDoExt_brkAnm {
-    /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
-    /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct mDoExt_baseAnm {
-    /* 8000D428 */ void play();
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct daB_ZANTS_c {
-    /* 806529D8 */ void draw();
-    /* 80652B28 */ void action();
-    /* 80652DA8 */ void execute();
-    /* 80652EC0 */ void _delete();
-    /* 80652F38 */ void CreateHeap();
-    /* 806531E8 */ void create();
-};
-
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
-struct cXyz {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dBgW_Base {};
-
-struct dBgW {
-    /* 8007B970 */ dBgW();
-    /* 8007B9C0 */ void Move();
-};
-
-struct dBgS {
-    /* 80074A08 */ void Regist(dBgW_Base*, fopAc_ac_c*);
-};
-
-struct cBgD_t {};
-
-struct cBgW {
-    /* 80079F38 */ void Set(cBgD_t*, u32, f32 (*)[3][4]);
-};
-
-struct cBgS_PolyInfo {};
-
-struct cBgS {
-    /* 80074250 */ void Release(dBgW_Base*);
-};
-
-struct J3DModel {};
-
-struct J3DFrameCtrl {
-    /* 803283FC */ void init(s16);
-    /* 80653180 */ ~J3DFrameCtrl();
-};
+#include "JSystem/JKernel/JKRHeap.h"
+#include "SSystem/SComponent/c_math.h"
+#include "d/a/d_a_player.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
 
 //
 // Forward References:
 //
 
-extern "C" void draw__11daB_ZANTS_cFv();
-extern "C" static void daB_ZANTS_Draw__FP11daB_ZANTS_c();
-extern "C" static void zants_ride_call_back__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c();
-extern "C" void action__11daB_ZANTS_cFv();
-extern "C" void execute__11daB_ZANTS_cFv();
-extern "C" static void daB_ZANTS_Execute__FP11daB_ZANTS_c();
-extern "C" static bool daB_ZANTS_IsDelete__FP11daB_ZANTS_c();
-extern "C" void _delete__11daB_ZANTS_cFv();
-extern "C" static void daB_ZANTS_Delete__FP11daB_ZANTS_c();
-extern "C" void CreateHeap__11daB_ZANTS_cFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" static void useHeapInit__FP10fopAc_ac_c();
-extern "C" void create__11daB_ZANTS_cFv();
-extern "C" static void daB_ZANTS_Create__FP11daB_ZANTS_c();
-extern "C" extern char const* const d_a_b_zant_sima__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_XrotM__FPA4_fs();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void transM__14mDoMtx_stack_cFfff();
-extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
-extern "C" void play__14mDoExt_baseAnmFv();
-extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
-extern "C" void entry__13mDoExt_btkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss();
-extern "C" void entry__13mDoExt_brkAnmFP16J3DMaterialTablef();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void fopAcM_SearchByID__FUiPP10fopAc_ac_c();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_SetMin__FP10fopAc_ac_cfff();
-extern "C" void fopAcM_SetMax__FP10fopAc_ac_cfff();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void Release__4cBgSFP9dBgW_Base();
-extern "C" void Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c();
-extern "C" void dBgS_MoveBGProc_Typical__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz();
-extern "C" void Set__4cBgWFP6cBgD_tUlPA3_A4_f();
-extern "C" void __ct__4dBgWFv();
-extern "C" void Move__4dBgWFv();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void cM_atan2s__Fff();
-extern "C" void cLib_addCalc2__FPffff();
-extern "C" void cLib_addCalcAngleS2__FPssss();
-extern "C" void cLib_chaseAngleS__FPsss();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
-extern "C" void PSVECSquareDistance();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
+static int daB_ZANTS_Draw(daB_ZANTS_c*);
+static int daB_ZANTS_Execute(daB_ZANTS_c*);
+static int daB_ZANTS_IsDelete(daB_ZANTS_c*);
+static int daB_ZANTS_Delete(daB_ZANTS_c*);
+static int daB_ZANTS_Create(daB_ZANTS_c*);
 
 //
 // Declarations:
 //
 
-/* 806529D8-80652AAC 000078 00D4+00 1/1 0/0 0/0 .text            draw__11daB_ZANTS_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daB_ZANTS_c::draw() {
-    nofralloc
-#include "asm/rel/d/a/b/d_a_b_zant_sima/d_a_b_zant_sima/draw__11daB_ZANTS_cFv.s"
+/* 806529D8-80652AAC 000078 00D4+00 1/1 0/0 0/0 .text   draw__11daB_ZANTS_cFv */
+int daB_ZANTS_c::draw() {
+    g_env_light.settingTevStruct(16, &current.pos, &mTevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    dComIfGd_setListBG();
+    mpBtkAnm->entry(mpModel->getModelData());
+    mpBrkAnm->entry(mpModel->getModelData());
+    mDoExt_modelUpdateDL(mpModel);
+    dComIfGd_setList();
+    return 1;
 }
-#pragma pop
 
-/* 80652AAC-80652ACC 00014C 0020+00 1/0 0/0 0/0 .text            daB_ZANTS_Draw__FP11daB_ZANTS_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daB_ZANTS_Draw(daB_ZANTS_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/b/d_a_b_zant_sima/d_a_b_zant_sima/daB_ZANTS_Draw__FP11daB_ZANTS_c.s"
+/* 80652AAC-80652ACC 00014C 0020+00 1/0 0/0 0/0 .text   daB_ZANTS_Draw__FP11daB_ZANTS_c */
+static int daB_ZANTS_Draw(daB_ZANTS_c* i_this) {
+    return i_this->draw();
 }
-#pragma pop
 
 /* 80652ACC-80652B28 00016C 005C+00 1/1 0/0 0/0 .text
  * zants_ride_call_back__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c      */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void zants_ride_call_back(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2) {
-    nofralloc
-#include "asm/rel/d/a/b/d_a_b_zant_sima/d_a_b_zant_sima/zants_ride_call_back__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 8065332C-80653334 000000 0004+04 3/3 0/0 0/0 .rodata          @3800 */
-SECTION_RODATA static u8 const lit_3800[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x8065332C, &lit_3800);
-
-/* 80653334-8065333C 000008 0008+00 0/1 0/0 0/0 .rodata          @3801 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3801[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80653334, &lit_3801);
-#pragma pop
-
-/* 8065333C-80653340 000010 0004+00 0/2 0/0 0/0 .rodata          @3802 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3802 = 150.0f;
-COMPILER_STRIP_GATE(0x8065333C, &lit_3802);
-#pragma pop
-
-/* 80653340-80653344 000014 0004+00 0/1 0/0 0/0 .rodata          @3803 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3803 = 130.0f;
-COMPILER_STRIP_GATE(0x80653340, &lit_3803);
-#pragma pop
-
-/* 80653344-80653348 000018 0004+00 0/1 0/0 0/0 .rodata          @3804 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3804 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80653344, &lit_3804);
-#pragma pop
-
-/* 80653348-8065334C 00001C 0004+00 0/1 0/0 0/0 .rodata          @3805 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3805 = 20.0f;
-COMPILER_STRIP_GATE(0x80653348, &lit_3805);
-#pragma pop
-
-/* 80652B28-80652DA8 0001C8 0280+00 1/1 0/0 0/0 .text            action__11daB_ZANTS_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daB_ZANTS_c::action() {
-    nofralloc
-#include "asm/rel/d/a/b/d_a_b_zant_sima/d_a_b_zant_sima/action__11daB_ZANTS_cFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 8065334C-80653350 000020 0004+00 1/1 0/0 0/0 .rodata          @3831 */
-SECTION_RODATA static f32 const lit_3831 = -30.0f;
-COMPILER_STRIP_GATE(0x8065334C, &lit_3831);
-
-/* 80652DA8-80652E98 000448 00F0+00 1/1 0/0 0/0 .text            execute__11daB_ZANTS_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daB_ZANTS_c::execute() {
-    nofralloc
-#include "asm/rel/d/a/b/d_a_b_zant_sima/d_a_b_zant_sima/execute__11daB_ZANTS_cFv.s"
-}
-#pragma pop
-
-/* 80652E98-80652EB8 000538 0020+00 2/1 0/0 0/0 .text            daB_ZANTS_Execute__FP11daB_ZANTS_c
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daB_ZANTS_Execute(daB_ZANTS_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/b/d_a_b_zant_sima/d_a_b_zant_sima/daB_ZANTS_Execute__FP11daB_ZANTS_c.s"
-}
-#pragma pop
-
-/* 80652EB8-80652EC0 000558 0008+00 1/0 0/0 0/0 .text            daB_ZANTS_IsDelete__FP11daB_ZANTS_c
- */
-static bool daB_ZANTS_IsDelete(daB_ZANTS_c* param_0) {
-    return true;
+static void zants_ride_call_back(dBgW* param_0, fopAc_ac_c* i_this, fopAc_ac_c* i_target) {
+    if (fopAcM_GetName(i_target) == PROC_ALINK) {
+        ((daB_ZANTS_c*)i_this)->mPlayerID = fopAcM_GetID(i_target);
+        ((daB_ZANTS_c*)i_this)->field_0x584[0] = 3;
+    } else if (fopAcM_GetName(i_target) == PROC_B_ZANT) {
+        ((daB_ZANTS_c*)i_this)->mBossID = fopAcM_GetID(i_target);
+        ((daB_ZANTS_c*)i_this)->field_0x584[1] = 3;
+    }
 }
 
-/* ############################################################################################## */
-/* 80653364-80653364 000038 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80653364 = "MAGNESIMA";
-#pragma pop
-
-/* 80652EC0-80652F18 000560 0058+00 1/1 0/0 0/0 .text            _delete__11daB_ZANTS_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daB_ZANTS_c::_delete() {
-    nofralloc
-#include "asm/rel/d/a/b/d_a_b_zant_sima/d_a_b_zant_sima/_delete__11daB_ZANTS_cFv.s"
+/* 80652B28-80652DA8 0001C8 0280+00 1/1 0/0 0/0 .text   action__11daB_ZANTS_cFv */
+void daB_ZANTS_c::action() {
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    if (player->i_checkMagneBootsOn()) {
+        field_0x584[0] = 3;
+        mPlayerID = fopAcM_GetID(player);
+    }
+    cXyz pos = current.pos;
+    fopAc_ac_c* target;
+    if (field_0x584[1] != 0) {
+        if (fopAcM_SearchByID(mBossID, &target), target != NULL) {
+            pos = target->current.pos;
+        }
+    }
+    u8 temp = field_0x584[3];
+    field_0x584[3] = 0;
+    field_0x584[2] = 0;
+    if (field_0x584[1]) {
+        field_0x584[3] = 1;
+    }
+    if (field_0x584[0]) {
+        field_0x584[2] = 1;
+    }
+    f32 x = pos.x - current.pos.x;
+    f32 z = pos.z - current.pos.z;
+    pos.absXZ(current.pos);
+    cLib_addCalcAngleS2(&field_0x58c.y, cM_atan2s(x, z), 8, 1024);
+    if (temp == 0 && field_0x584[3] != 0) {
+        if (field_0x58c.x == 0) {
+            field_0x58c.y = cM_atan2s(x, z);
+        }
+        field_0x58c.z = 0x400;
+    }
+    cLib_addCalcAngleS2(&field_0x58c.x, 0, 8, 64);
+    field_0x58c.x += field_0x58c.z;
+    if (0x1400 < field_0x58c.x) {
+        field_0x58c.x = 0x1400;
+        field_0x58c.z = 0;
+    }
+    cLib_chaseAngleS(&field_0x58c.z, 0, 128);
+    f32 temp2 = 150.0f;
+    if (field_0x584[0] || field_0x584[1]) {
+        temp2 = 130.0f;
+    }
+    cLib_addCalc2(&field_0x588, temp2, 0.2f, 20.0f);
+    for (int i = 0; i < 2; i++) {
+        if (field_0x584[i] != 0) {
+            field_0x584[i] -= 1;
+        }
+    }
 }
-#pragma pop
 
-/* 80652F18-80652F38 0005B8 0020+00 1/0 0/0 0/0 .text            daB_ZANTS_Delete__FP11daB_ZANTS_c
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daB_ZANTS_Delete(daB_ZANTS_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/b/d_a_b_zant_sima/d_a_b_zant_sima/daB_ZANTS_Delete__FP11daB_ZANTS_c.s"
+/* 80652DA8-80652E98 000448 00F0+00 1/1 0/0 0/0 .text   execute__11daB_ZANTS_cFv */
+int daB_ZANTS_c::execute() {
+    mpBrkAnm->play();
+    mpBtkAnm->play();
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y + field_0x588, current.pos.z);
+    mDoMtx_stack_c::YrotM(field_0x58c.y);
+    mDoMtx_stack_c::XrotM(field_0x58c.x);
+    mDoMtx_stack_c::YrotM(-field_0x58c.y);
+    mDoMtx_stack_c::ZXYrotM(shape_angle);
+    mDoMtx_stack_c::transM(0.0f, -30.0f, 0.0f);
+    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    cMtx_copy(mDoMtx_stack_c::get(), field_0x594);
+    if (mpBgW) {
+        mpBgW->Move();
+    }
+    action();
+    return 1;
 }
-#pragma pop
 
-/* ############################################################################################## */
-/* 80653350-80653354 000024 0004+00 1/1 0/0 0/0 .rodata          @3917 */
-SECTION_RODATA static f32 const lit_3917 = 1.0f;
-COMPILER_STRIP_GATE(0x80653350, &lit_3917);
+/* 80652E98-80652EB8 000538 0020+00 2/1 0/0 0/0 .text   daB_ZANTS_Execute__FP11daB_ZANTS_c */
+static int daB_ZANTS_Execute(daB_ZANTS_c* i_this) {
+    return i_this->execute();
+}
+
+/* 80652EB8-80652EC0 000558 0008+00 1/0 0/0 0/0 .text   daB_ZANTS_IsDelete__FP11daB_ZANTS_c */
+static int daB_ZANTS_IsDelete(daB_ZANTS_c* i_this) {
+    return 1;
+}
+
+/* 80652EC0-80652F18 000560 0058+00 1/1 0/0 0/0 .text   _delete__11daB_ZANTS_cFv */
+int daB_ZANTS_c::_delete() {
+    dComIfG_resDelete(&mPhase, "MAGNESIMA");
+    if (mpBgW) {
+        dComIfG_Bgsp().Release(mpBgW);
+    }
+    return 1;
+}
+
+/* 80652F18-80652F38 0005B8 0020+00 1/0 0/0 0/0 .text   daB_ZANTS_Delete__FP11daB_ZANTS_c */
+static int daB_ZANTS_Delete(daB_ZANTS_c* i_this) {
+    return i_this->_delete();
+}
 
 /* 80653370-80653390 -00001 0020+00 1/0 0/0 0/0 .data            l_daB_ZANTS_Method */
-SECTION_DATA static void* l_daB_ZANTS_Method[8] = {
-    (void*)daB_ZANTS_Create__FP11daB_ZANTS_c,
-    (void*)daB_ZANTS_Delete__FP11daB_ZANTS_c,
-    (void*)daB_ZANTS_Execute__FP11daB_ZANTS_c,
-    (void*)daB_ZANTS_IsDelete__FP11daB_ZANTS_c,
-    (void*)daB_ZANTS_Draw__FP11daB_ZANTS_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daB_ZANTS_Method = {
+    (process_method_func)daB_ZANTS_Create,  (process_method_func)daB_ZANTS_Delete,
+    (process_method_func)daB_ZANTS_Execute, (process_method_func)daB_ZANTS_IsDelete,
+    (process_method_func)daB_ZANTS_Draw,
 };
 
 /* 80653390-806533C0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_B_ZANTS */
-SECTION_DATA extern void* g_profile_B_ZANTS[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0003FFFD,
-    (void*)0x007D0000, (void*)&g_fpcLf_Method,
-    (void*)0x000005C8, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x00E50000, (void*)&l_daB_ZANTS_Method,
-    (void*)0x00040000, (void*)0x000E0000,
+extern actor_process_profile_definition g_profile_B_ZANTS = {
+    -3,
+    3,
+    -3,
+    PROC_B_ZANTS,
+    &g_fpcLf_Method.mBase,
+    sizeof(daB_ZANTS_c),
+    0,
+    0,
+    &g_fopAc_Method.base,
+    229,
+    &l_daB_ZANTS_Method,
+    0x40000,
+    0,
+    14,
 };
 
-/* 806533C0-806533CC 000050 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DFrameCtrlFv,
-};
-
-/* 80652F38-80653180 0005D8 0248+00 1/1 0/0 0/0 .text            CreateHeap__11daB_ZANTS_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daB_ZANTS_c::CreateHeap() {
-    nofralloc
-#include "asm/rel/d/a/b/d_a_b_zant_sima/d_a_b_zant_sima/CreateHeap__11daB_ZANTS_cFv.s"
+/* 80652F38-80653180 0005D8 0248+00 1/1 0/0 0/0 .text   CreateHeap__11daB_ZANTS_cFv */
+int daB_ZANTS_c::CreateHeap() {
+    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("MAGNESIMA", 7);
+    mpModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
+    if (mpModel == NULL) {
+        return 0;
+    }
+    mpBtkAnm = new mDoExt_btkAnm();
+    if (mpBtkAnm == NULL) {
+        return 0;
+    }
+    J3DAnmTextureSRTKey* srtkey = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("MAGNESIMA", 13);
+    if (!mpBtkAnm->init(mpModel->getModelData(), srtkey, 1, 2, 1.0f, 0, -1)) {
+        return 0;
+    }
+    mpBrkAnm = new mDoExt_brkAnm();
+    if (mpBrkAnm == NULL) {
+        return 0;
+    }
+    J3DAnmTevRegKey* tevkey = (J3DAnmTevRegKey*)dComIfG_getObjectRes("MAGNESIMA", 10);
+    if (!mpBrkAnm->init(mpModel->getModelData(), tevkey, 1, 2, 1.0f, 0, -1)) {
+        return 0;
+    }
+    mpBgW = new dBgW();
+    if (mpBgW == NULL) {
+        return 0;
+    }
+    cBgD_t* bgt = (cBgD_t*)dComIfG_getObjectRes("MAGNESIMA", 16);
+    if (mpBgW->Set(bgt, 1, &field_0x594)) {
+        return 0;
+    }
+    mpBgW->SetCrrFunc(dBgS_MoveBGProc_Typical);
+    mpBgW->SetRideCallback(zants_ride_call_back);
+    return 1;
 }
-#pragma pop
 
-/* 80653180-806531C8 000820 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DFrameCtrl::~J3DFrameCtrl() {
-    nofralloc
-#include "asm/rel/d/a/b/d_a_b_zant_sima/d_a_b_zant_sima/__dt__12J3DFrameCtrlFv.s"
+/* 806531C8-806531E8 000868 0020+00 1/1 0/0 0/0 .text   useHeapInit__FP10fopAc_ac_c */
+static int useHeapInit(fopAc_ac_c* i_this) {
+    return static_cast<daB_ZANTS_c*>(i_this)->CreateHeap();
 }
-#pragma pop
 
-/* 806531C8-806531E8 000868 0020+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void useHeapInit(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/b/d_a_b_zant_sima/d_a_b_zant_sima/useHeapInit__FP10fopAc_ac_c.s"
+/* 806531E8-80653304 000888 011C+00 1/1 0/0 0/0 .text   create__11daB_ZANTS_cFv */
+int daB_ZANTS_c::create() {
+    fopAcM_SetupActor(this, daB_ZANTS_c);
+    int result = dComIfG_resLoad(&mPhase, "MAGNESIMA");
+    if (result == cPhs_COMPLEATE_e) {
+        if (!fopAcM_entrySolidHeap(this, useHeapInit, 0x3AA0)) {
+            return cPhs_ERROR_e;
+        }
+        if (mpBgW && dComIfG_Bgsp().Regist(mpBgW, this)) {
+            return cPhs_ERROR_e;
+        }
+        mAttentionInfo.mFlags = 0;
+        field_0x588 = 150.0f;
+        fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+        fopAcM_SetMin(this, -200.0f, -500.0f, -500.0f);
+        fopAcM_SetMax(this, 200.0f, 500.0f, 500.0f);
+        daB_ZANTS_Execute(this);
+    }
+    return result;
 }
-#pragma pop
 
-/* ############################################################################################## */
-/* 80653354-80653358 000028 0004+00 0/1 0/0 0/0 .rodata          @3967 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3967 = -200.0f;
-COMPILER_STRIP_GATE(0x80653354, &lit_3967);
-#pragma pop
-
-/* 80653358-8065335C 00002C 0004+00 0/1 0/0 0/0 .rodata          @3968 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3968 = -500.0f;
-COMPILER_STRIP_GATE(0x80653358, &lit_3968);
-#pragma pop
-
-/* 8065335C-80653360 000030 0004+00 0/1 0/0 0/0 .rodata          @3969 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3969 = 200.0f;
-COMPILER_STRIP_GATE(0x8065335C, &lit_3969);
-#pragma pop
-
-/* 80653360-80653364 000034 0004+00 0/1 0/0 0/0 .rodata          @3970 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3970 = 500.0f;
-COMPILER_STRIP_GATE(0x80653360, &lit_3970);
-#pragma pop
-
-/* 806531E8-80653304 000888 011C+00 1/1 0/0 0/0 .text            create__11daB_ZANTS_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daB_ZANTS_c::create() {
-    nofralloc
-#include "asm/rel/d/a/b/d_a_b_zant_sima/d_a_b_zant_sima/create__11daB_ZANTS_cFv.s"
+/* 80653304-80653324 0009A4 0020+00 1/0 0/0 0/0 .text   daB_ZANTS_Create__FP11daB_ZANTS_c */
+static int daB_ZANTS_Create(daB_ZANTS_c* i_this) {
+    return i_this->create();
 }
-#pragma pop
-
-/* 80653304-80653324 0009A4 0020+00 1/0 0/0 0/0 .text            daB_ZANTS_Create__FP11daB_ZANTS_c
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daB_ZANTS_Create(daB_ZANTS_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/b/d_a_b_zant_sima/d_a_b_zant_sima/daB_ZANTS_Create__FP11daB_ZANTS_c.s"
-}
-#pragma pop
-
-/* 80653364-80653364 000038 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
