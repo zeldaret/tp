@@ -17,4 +17,6 @@ void __DSPHandler(OSInterrupt interrupt, OSContext* context);
 }
 #endif
 
+void DsyncFrame2(u32 param_0, u32 param_1, u32 param_2);
+
 #endif /* OSDSP_TASK_H */
