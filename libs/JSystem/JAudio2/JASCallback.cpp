@@ -4,7 +4,7 @@
 //
 
 #include "JSystem/JAudio2/JASCallback.h"
-#include "JSystem/JAudio2/JASAudioReseter.h"
+#include "JSystem/JAudio2/JASCriticalSection.h"
 
 //
 // Types:

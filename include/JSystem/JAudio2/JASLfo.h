@@ -9,6 +9,8 @@ struct JASLfo {
     /* 8029BDD8 */ void incCounter(f32);
     /* 8029BE2C */ void resetCounter();
 
+    static void updateFreeRun(f32 param_0) { sFreeRunLfo.incCounter(param_0); }
+
     static JASLfo sFreeRunLfo;
 
     /* 0x00 */ u32 field_0x0;
