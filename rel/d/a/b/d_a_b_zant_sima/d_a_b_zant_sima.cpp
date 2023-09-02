@@ -14,11 +14,11 @@
 // Forward References:
 //
 
-static void daB_ZANTS_Draw(daB_ZANTS_c*);
-static void daB_ZANTS_Execute(daB_ZANTS_c*);
-static bool daB_ZANTS_IsDelete(daB_ZANTS_c*);
-static void daB_ZANTS_Delete(daB_ZANTS_c*);
-static void daB_ZANTS_Create(daB_ZANTS_c*);
+static int daB_ZANTS_Draw(daB_ZANTS_c*);
+static int daB_ZANTS_Execute(daB_ZANTS_c*);
+static int daB_ZANTS_IsDelete(daB_ZANTS_c*);
+static int daB_ZANTS_Delete(daB_ZANTS_c*);
+static int daB_ZANTS_Create(daB_ZANTS_c*);
 
 //
 // Declarations:
@@ -37,8 +37,8 @@ int daB_ZANTS_c::draw() {
 }
 
 /* 80652AAC-80652ACC 00014C 0020+00 1/0 0/0 0/0 .text   daB_ZANTS_Draw__FP11daB_ZANTS_c */
-static void daB_ZANTS_Draw(daB_ZANTS_c* i_this) {
-    i_this->draw();
+static int daB_ZANTS_Draw(daB_ZANTS_c* i_this) {
+    return i_this->draw();
 }
 
 /* 80652ACC-80652B28 00016C 005C+00 1/1 0/0 0/0 .text
@@ -125,13 +125,13 @@ int daB_ZANTS_c::execute() {
 }
 
 /* 80652E98-80652EB8 000538 0020+00 2/1 0/0 0/0 .text   daB_ZANTS_Execute__FP11daB_ZANTS_c */
-static void daB_ZANTS_Execute(daB_ZANTS_c* i_this) {
-    i_this->execute();
+static int daB_ZANTS_Execute(daB_ZANTS_c* i_this) {
+    return i_this->execute();
 }
 
 /* 80652EB8-80652EC0 000558 0008+00 1/0 0/0 0/0 .text   daB_ZANTS_IsDelete__FP11daB_ZANTS_c */
-static bool daB_ZANTS_IsDelete(daB_ZANTS_c* i_this) {
-    return true;
+static int daB_ZANTS_IsDelete(daB_ZANTS_c* i_this) {
+    return 1;
 }
 
 /* 80652EC0-80652F18 000560 0058+00 1/1 0/0 0/0 .text   _delete__11daB_ZANTS_cFv */
@@ -144,8 +144,8 @@ int daB_ZANTS_c::_delete() {
 }
 
 /* 80652F18-80652F38 0005B8 0020+00 1/0 0/0 0/0 .text   daB_ZANTS_Delete__FP11daB_ZANTS_c */
-static void daB_ZANTS_Delete(daB_ZANTS_c* i_this) {
-    i_this->_delete();
+static int daB_ZANTS_Delete(daB_ZANTS_c* i_this) {
+    return i_this->_delete();
 }
 
 /* 80653370-80653390 -00001 0020+00 1/0 0/0 0/0 .data            l_daB_ZANTS_Method */
@@ -236,6 +236,6 @@ int daB_ZANTS_c::create() {
 }
 
 /* 80653304-80653324 0009A4 0020+00 1/0 0/0 0/0 .text   daB_ZANTS_Create__FP11daB_ZANTS_c */
-static void daB_ZANTS_Create(daB_ZANTS_c* i_this) {
-    i_this->create();
+static int daB_ZANTS_Create(daB_ZANTS_c* i_this) {
+    return i_this->create();
 }
