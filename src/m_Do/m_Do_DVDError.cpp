@@ -9,6 +9,7 @@
 #include "dol2asm.h"
 #include "dolphin/dvd/dvd.h"
 #include "dolphin/os/OSAlarm.h"
+#include "dolphin/os/OSInterrupt.h"
 #include "m_Do/m_Do_dvd_thread.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_Reset.h"

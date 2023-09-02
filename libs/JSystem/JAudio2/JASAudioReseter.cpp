@@ -5,6 +5,7 @@
 
 #include "JSystem/JAudio2/JASAudioReseter.h"
 #include "JSystem/JAudio2/JASAudioThread.h"
+#include "JSystem/JAudio2/JASCriticalSection.h"
 #include "JSystem/JAudio2/JASDriverIF.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
