@@ -114,7 +114,7 @@ void daObjRCircle_c::init() {
 /* 80CB8BF0-80CB8C44 000610 0054+00 1/1 0/0 0/0 .text            setModelMtx__14daObjRCircle_cFv */
 void daObjRCircle_c::setModelMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
-    PSMTXCopy(mDoMtx_stack_c::now, mpModel->mBaseTransformMtx);
+    MTXCopy(mDoMtx_stack_c::now, mpModel->mBaseTransformMtx);
 }
 
 /* 80CB8C44-80CB8C98 000664 0054+00 1/0 0/0 0/0 .text daObjRCircle_create__FP14daObjRCircle_c */

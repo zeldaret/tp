@@ -257,8 +257,8 @@ cBgW::cBgW() {
     pm_vtx_tbl = NULL;
     pm_base = NULL;
 
-    PSMTXIdentity(m_inv_mtx);
-    PSMTXIdentity(m_mtx);
+    MTXIdentity(m_inv_mtx);
+    MTXIdentity(m_mtx);
     m_rootGrpIdx = 0xFFFF;
     field_0x91 = 0;
 }
@@ -284,11 +284,11 @@ void cBgW::GlobalVtx() {
         if (!mNeedsFullTransform) {
             for (int i = 0; i < pm_bgd->m_v_num; i++) {
                 Vec* vtx = &pm_vtx_tbl[i];
-                PSVECAdd(vtx, &mTransVel, vtx);
+                VECAdd(vtx, &mTransVel, vtx);
             }
         } else {
             for (int i = 0; i < pm_bgd->m_v_num; i++) {
-                PSMTXMultVec(pm_base, &pm_bgd->m_v_tbl[i], &pm_vtx_tbl[i]);
+                MTXMultVec(pm_base, &pm_bgd->m_v_tbl[i], &pm_vtx_tbl[i]);
             }
         }
     }
@@ -340,7 +340,7 @@ void cBgW::CalcPlane() {
     if (pm_vtx_tbl != NULL) {
         if (!mNeedsFullTransform) {
             for (int i = 0; i < pm_bgd->m_t_num; i++) {
-                pm_tri[i].m_plane.mD -= PSVECDotProduct(&pm_tri[i].m_plane.mNormal, &mTransVel);
+                pm_tri[i].m_plane.mD -= VECDotProduct(&pm_tri[i].m_plane.mNormal, &mTransVel);
             }
         } else {
             for (int i = 0; i < pm_bgd->m_t_num; i++) {
@@ -443,8 +443,8 @@ asm void cBgW::ClassifyPlane() {
 
 /* 8007998C-800799E0 0742CC 0054+00 1/1 0/0 0/0 .text MakeBlckTransMinMax__4cBgWFP4cXyzP4cXyz */
 void cBgW::MakeBlckTransMinMax(cXyz* i_min, cXyz* i_max) {
-    PSVECAdd(i_min, &mTransVel, i_min);
-    PSVECAdd(i_max, &mTransVel, i_max);
+    VECAdd(i_min, &mTransVel, i_min);
+    VECAdd(i_max, &mTransVel, i_max);
 }
 
 /* 800799E0-80079A68 074320 0088+00 1/1 0/0 0/0 .text            MakeBlckMinMax__4cBgWFiP4cXyzP4cXyz
@@ -637,12 +637,12 @@ bool cBgW::Set(cBgD_t* pbgd, u32 flags, Mtx* pbase_mtx) {
     mFlags = flags;
     if (mFlags & GLOBAL_e) {
         pm_base = NULL;
-        PSMTXIdentity(m_inv_mtx);
-        PSMTXIdentity(m_mtx);
+        MTXIdentity(m_inv_mtx);
+        MTXIdentity(m_mtx);
     } else {
         pm_base = *pbase_mtx;
-        PSMTXCopy(pm_base, m_inv_mtx);
-        PSMTXCopy(pm_base, m_mtx);
+        MTXCopy(pm_base, m_inv_mtx);
+        MTXCopy(pm_base, m_mtx);
     }
 
     pm_bgd = pbgd;
@@ -933,8 +933,8 @@ bool cBgW::GroundCross(cBgS_GndChk* pchk) {
 /* 8007ABC4-8007AC10 075504 004C+00 1/1 0/0 0/0 .text            CopyOldMtx__4cBgWFv */
 void cBgW::CopyOldMtx() {
     if (pm_base != NULL) {
-        PSMTXCopy(m_mtx, m_inv_mtx);
-        PSMTXCopy(pm_base, m_mtx);
+        MTXCopy(m_mtx, m_inv_mtx);
+        MTXCopy(pm_base, m_mtx);
     }
 }
 
@@ -952,7 +952,7 @@ void cBgW::Move() {
             } else if (m_mtx[0][3] == pm_base[0][3] && m_mtx[1][3] == pm_base[1][3] &&
                        m_mtx[2][3] == pm_base[2][3])
             {
-                PSMTXCopy(pm_base, m_inv_mtx);
+                MTXCopy(pm_base, m_inv_mtx);
                 if (!ChkFlush()) {
                     return;
                 }

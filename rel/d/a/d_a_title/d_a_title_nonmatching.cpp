@@ -511,7 +511,7 @@ asm int daTitle_c::getDemoPrm() {
 /* 80D67768-80D6786C 000D48 0104+00 1/1 0/0 0/0 .text            Draw__9daTitle_cFv */
 int daTitle_c::Draw() {
     J3DModelData* modelData = mpModel->getModelData();
-    PSMTXTrans(mpModel->getBaseTRMtx(), 0.0f, 0.0f, -430.0f);
+    MTXTrans(mpModel->getBaseTRMtx(), 0.0f, 0.0f, -430.0f);
     mpModel->getBaseScale()->x = -1.0f;
 
     mBck.entry(modelData);

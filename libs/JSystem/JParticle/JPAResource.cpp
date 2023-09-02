@@ -759,8 +759,8 @@ void JPAResource::calcWorkData_d(JPAEmitterWorkData* work) {
     Mtx mtx;
     JPAGetXYZRotateMtx(work->mpEmtr->mLocalRot.x * 0xB6, work->mpEmtr->mLocalRot.y * 0xB6,
                        work->mpEmtr->mLocalRot.z * 0xB6, mtx);
-    PSMTXConcat(work->mpEmtr->mGlobalRot, mtx, work->mGlobalRot);
-    PSMTXMultVecSR(work->mGlobalRot, (Vec*)&work->mpEmtr->mLocalDir, (Vec*)&work->mGlobalEmtrDir);
+    MTXConcat(work->mpEmtr->mGlobalRot, mtx, work->mGlobalRot);
+    MTXMultVecSR(work->mGlobalRot, (Vec*)&work->mpEmtr->mLocalDir, (Vec*)&work->mGlobalEmtrDir);
 }
 
 /* 80276A8C-80276A90 2713CC 0004+00 0/0 3/0 0/0 .text

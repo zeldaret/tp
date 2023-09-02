@@ -15,8 +15,8 @@ void daIzumiGate_c::initBaseMtx() {
 /* 808490B8-8084910C 000098 0054+00 2/2 0/0 0/0 .text            setBaseMtx__13daIzumiGate_cFv */
 void daIzumiGate_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
-    PSMTXCopy(mDoMtx_stack_c::now, mBgMtx);
-    PSMTXCopy(mDoMtx_stack_c::now, mpModel->mBaseTransformMtx);
+    MTXCopy(mDoMtx_stack_c::now, mBgMtx);
+    MTXCopy(mDoMtx_stack_c::now, mpModel->mBaseTransformMtx);
 }
 
 /* 8084910C-80849138 0000EC 002C+00 1/0 0/0 0/0 .text            daIzumiGate_Draw__FP13daIzumiGate_c

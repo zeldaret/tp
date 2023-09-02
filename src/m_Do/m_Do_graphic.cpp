@@ -327,7 +327,7 @@ Mtx mDoGph_gInf_c::mBlureMtx;
 /* 800080A0-800080D0 0029E0 0030+00 1/1 1/1 0/0 .text            onBlure__13mDoGph_gInf_cFPA4_Cf */
 void mDoGph_gInf_c::onBlure(const Mtx m) {
     mBlureFlag = true;
-    PSMTXCopy(m, mBlureMtx);
+    MTXCopy(m, mBlureMtx);
 }
 
 /* 800080D0-800080F4 002A10 0024+00 0/0 3/3 7/7 .text            fadeOut__13mDoGph_gInf_cFf */
@@ -1478,7 +1478,7 @@ int mDoGph_Painter() {
                 ortho.setPort();
 
                 Mtx m3;
-                PSMTXTrans(m3, 304.0f, 224.0f, 0.0f);
+                MTXTrans(m3, 304.0f, 224.0f, 0.0f);
                 JPADrawInfo draw_info2(m3, 0.0f, 448.0f, 0.0f, 608.0f);
                 dComIfGp_particle_draw2Dgame(&draw_info2);
 
@@ -1501,10 +1501,10 @@ int mDoGph_Painter() {
     ortho.setPort();
 
     Mtx m4;
-    PSMTXCopy(j3dSys.getViewMtx(), m4);
+    MTXCopy(j3dSys.getViewMtx(), m4);
 
     Mtx m5;
-    PSMTXTrans(m5, 304.0f, 224.0f, 0.0f);
+    MTXTrans(m5, 304.0f, 224.0f, 0.0f);
 
     JPADrawInfo draw_info3(m5, 0.0f, 448.0f, 0.0f, 608.0f);
 

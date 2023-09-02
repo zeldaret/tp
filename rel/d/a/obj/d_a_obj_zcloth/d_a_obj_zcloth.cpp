@@ -108,7 +108,7 @@ void daObjZCloth_c::initBaseMtx() {
 void daObjZCloth_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
-    PSMTXCopy(mDoMtx_stack_c::now, mpModel->mBaseTransformMtx);
+    MTXCopy(mDoMtx_stack_c::now, mpModel->mBaseTransformMtx);
 }
 
 /* 80D3EEC0-80D3EF0C 000120 004C+00 1/1 0/0 0/0 .text            Create__13daObjZCloth_cFv */

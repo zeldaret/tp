@@ -82,7 +82,7 @@ static int daScex_Create(fopAc_ac_c* i_this) {
 
     mDoMtx_stack_c::transS(scex->current.pos.x, scex->current.pos.y, scex->current.pos.z);
     mDoMtx_stack_c::YrotM(scex->shape_angle.y);
-    PSMTXInverse(mDoMtx_stack_c::get(), scex->mMatrix);
+    MTXInverse(mDoMtx_stack_c::get(), scex->mMatrix);
     scex->mScale.x *= 75.0f;
     scex->mScale.z *= 75.0f;
     scex->mScale.y *= 150.0f;

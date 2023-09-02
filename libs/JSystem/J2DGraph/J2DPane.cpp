@@ -292,7 +292,7 @@ void J2DPane::draw(f32 x, f32 y, J2DGrafContext const* p_grafCtx, bool isOrthoGr
             f32 width = parent->mGlobalBounds.i.x - parent->mBounds.i.x;
             f32 height = parent->mGlobalBounds.i.y - parent->mBounds.i.y;
             mGlobalBounds.addPos(width, height);
-            PSMTXConcat(parent->mGlobalMtx, mPositionMtx, mGlobalMtx);
+            MTXConcat(parent->mGlobalMtx, mPositionMtx, mGlobalMtx);
 
             if (unkBool) {
                 if (isOrthoGraf) {
@@ -308,7 +308,7 @@ void J2DPane::draw(f32 x, f32 y, J2DGrafContext const* p_grafCtx, bool isOrthoGr
         } else {
             mGlobalBounds.addPos(x, y);
             makeMatrix(mTranslateX + x, mTranslateY + y);
-            PSMTXCopy(mPositionMtx, mGlobalMtx);
+            MTXCopy(mPositionMtx, mGlobalMtx);
             mClipRect = mGlobalBounds;
             mColorAlpha = mAlpha;
         }
@@ -528,15 +528,15 @@ void J2DPane::makeMatrix(f32 param_0, f32 param_1, f32 param_2, f32 param_3) {
     f32 tmpX = mRotateOffsetX - param_2;
     f32 tmpY = mRotateOffsetY - param_3;
     Mtx rotX, rotY, rotZ, rotMtx, mtx, tmp;
-    PSMTXTrans(mtx, -tmpX, -tmpY, 0);
-    PSMTXRotRad(rotX, 'x', DEG_TO_RAD(mRotateX));
-    PSMTXRotRad(rotY, 'y', DEG_TO_RAD(mRotateY));
-    PSMTXRotRad(rotZ, 'z', DEG_TO_RAD(-mRotateZ));
-    PSMTXConcat(rotZ, rotX, tmp);
-    PSMTXConcat(rotY, tmp, rotMtx);
-    PSMTXScaleApply(mtx, mPositionMtx, mScaleX, mScaleY, 1);
-    PSMTXConcat(rotMtx, mPositionMtx, tmp);
-    PSMTXTransApply(tmp, mPositionMtx, param_0 + tmpX, param_1 + tmpY, 0);
+    MTXTrans(mtx, -tmpX, -tmpY, 0);
+    MTXRotRad(rotX, 'x', DEG_TO_RAD(mRotateX));
+    MTXRotRad(rotY, 'y', DEG_TO_RAD(mRotateY));
+    MTXRotRad(rotZ, 'z', DEG_TO_RAD(-mRotateZ));
+    MTXConcat(rotZ, rotX, tmp);
+    MTXConcat(rotY, tmp, rotMtx);
+    MTXScaleApply(mtx, mPositionMtx, mScaleX, mScaleY, 1);
+    MTXConcat(rotMtx, mPositionMtx, tmp);
+    MTXTransApply(tmp, mPositionMtx, param_0 + tmpX, param_1 + tmpY, 0);
 }
 
 /* 802F7680-802F76F8 2F1FC0 0078+00 1/0 7/3 0/0 .text            setCullBack__7J2DPaneF11_GXCullMode

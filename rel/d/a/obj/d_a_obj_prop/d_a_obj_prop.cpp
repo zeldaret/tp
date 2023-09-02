@@ -95,7 +95,7 @@ void daObjProp_c::init() {
 void daObjProp_c::setModelMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    PSMTXCopy(mDoMtx_stack_c::now, mpModel->mBaseTransformMtx);
+    MTXCopy(mDoMtx_stack_c::now, mpModel->mBaseTransformMtx);
 }
 
 /* 80CB5558-80CB55AC 0003F8 0054+00 1/0 0/0 0/0 .text            daObjProp_create__FP11daObjProp_c */

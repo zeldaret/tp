@@ -508,7 +508,7 @@ asm void daBgObj_c::setAttentionInfo(fopAc_ac_c* param_0) {
 void daBgObj_c::initBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    PSMTXCopy(mDoMtx_stack_c::get(), mBgMtx);
+    MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
     setBaseMtx();
 }
 

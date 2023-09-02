@@ -50,7 +50,7 @@ void J2DOrthoGraph::setOrtho(JGeometry::TBox2<f32> const& bounds, f32 far, f32 n
 
 /* 802E9840-802E987C 2E4180 003C+00 1/0 0/0 0/0 .text            setLookat__13J2DOrthoGraphFv */
 void J2DOrthoGraph::setLookat() {
-    PSMTXIdentity(mPosMtx);
+    MTXIdentity(mPosMtx);
     GXLoadPosMtxImm(mPosMtx, 0);
 }
 

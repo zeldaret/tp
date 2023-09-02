@@ -36,20 +36,20 @@ void J3DUClipper::calcViewFrustum() {
     Vec tmp2 = {-f5, f4, -mNear};
     Vec tmp3 = {f5, f4, -mNear};
     Vec tmp4 = {f5, -f4, -mNear};
-    PSVECCrossProduct(&tmp2, &tmp1, &_04);
-    PSVECCrossProduct(&tmp3, &tmp2, &_10);
-    PSVECCrossProduct(&tmp4, &tmp3, &_1C);
-    PSVECCrossProduct(&tmp1, &tmp4, &_28);
-    PSVECNormalize(&_04, &_04);
-    PSVECNormalize(&_10, &_10);
-    PSVECNormalize(&_1C, &_1C);
-    PSVECNormalize(&_28, &_28);
+    VECCrossProduct(&tmp2, &tmp1, &_04);
+    VECCrossProduct(&tmp3, &tmp2, &_10);
+    VECCrossProduct(&tmp4, &tmp3, &_1C);
+    VECCrossProduct(&tmp1, &tmp4, &_28);
+    VECNormalize(&_04, &_04);
+    VECNormalize(&_10, &_10);
+    VECNormalize(&_1C, &_1C);
+    VECNormalize(&_28, &_28);
 }
 
 /* 802738FC-80273A44 26E23C 0148+00 0/0 3/3 2/2 .text            clip__11J3DUClipperCFPA4_Cf3Vecf */
 u32 J3DUClipper::clip(f32 const (*param_0)[4], Vec param_1, f32 param_2) const {
     Vec vec1;
-    PSMTXMultVec(param_0, &param_1, &vec1);
+    MTXMultVec(param_0, &param_1, &vec1);
     if (-vec1.z < mNear - param_2) {
         return 1;
     }
@@ -113,7 +113,7 @@ u32 J3DUClipper::clip(f32 const (*param_1)[4], Vec* param_2, Vec* param_3) const
 
     for (u32 i = 0; i < 8; i++) {
         Vec vec1;
-        PSMTXMultVec(param_1, local_80 + i, &vec1);
+        MTXMultVec(param_1, local_80 + i, &vec1);
         s32 r4 = 0;
         if (-vec1.z < mNear) {
             local_98[4]++;

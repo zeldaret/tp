@@ -17,8 +17,8 @@ cM3dGPla::cM3dGPla(const cXyz* pNormal, f32 pD) : mNormal(*pNormal), mD(pD) {}
 /* 8026F408-8026F4C4 269D48 00BC+00 0/0 3/3 0/0 .text crossInfLin__8cM3dGPlaCFRC4cXyzRC4cXyzR4cXyz
  */
 bool cM3dGPla::crossInfLin(const cXyz& pStart, const cXyz& pEnd, cXyz& out) const {
-    f32 tmp1 = (mD + PSVECDotProduct(&mNormal, &pStart));
-    f32 tmp2 = tmp1 - (mD + PSVECDotProduct(&mNormal, &pEnd));
+    f32 tmp1 = (mD + VECDotProduct(&mNormal, &pStart));
+    f32 tmp2 = tmp1 - (mD + VECDotProduct(&mNormal, &pEnd));
     if (fabsf(tmp2) < G_CM3D_F_ABS_MIN) {
         out = pEnd;
         return false;
@@ -31,14 +31,14 @@ bool cM3dGPla::crossInfLin(const cXyz& pStart, const cXyz& pEnd, cXyz& out) cons
 /* 8026F4C4-8026F52C 269E04 0068+00 0/0 1/1 0/0 .text            SetupNP0__8cM3dGPlaFRC3VecRC3Vec */
 void cM3dGPla::SetupNP0(const Vec& pNormal, const Vec& pPoint) {
     mNormal = pNormal;
-    PSVECNormalize(&mNormal, &mNormal);
-    mD = -PSVECDotProduct(&mNormal, &pPoint);
+    VECNormalize(&mNormal, &mNormal);
+    mD = -VECDotProduct(&mNormal, &pPoint);
 }
 
 /* 8026F52C-8026F57C 269E6C 0050+00 0/0 2/2 0/0 .text            SetupNP__8cM3dGPlaFRC3VecRC3Vec */
 void cM3dGPla::SetupNP(const Vec& pNormal, const Vec& pPoint) {
     mNormal = pNormal;
-    mD = -PSVECDotProduct(&mNormal, &pPoint);
+    mD = -VECDotProduct(&mNormal, &pPoint);
 }
 
 /* 8026F57C-8026F5D4 269EBC 0058+00 0/0 2/2 0/0 .text            getCrossY__8cM3dGPlaCFRC4cXyzPf */

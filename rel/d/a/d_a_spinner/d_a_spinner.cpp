@@ -531,7 +531,7 @@ void daSpinner_c::setMatrix() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y + field_0xa84 + 90.0f, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::YrotM(field_0xa7e);
-    PSMTXCopy(mDoMtx_stack_c::now, mpModel->mBaseTransformMtx);
+    MTXCopy(mDoMtx_stack_c::now, mpModel->mBaseTransformMtx);
     mBck.entry(mpModel->getModelData());
     mpModel->calc();
 }

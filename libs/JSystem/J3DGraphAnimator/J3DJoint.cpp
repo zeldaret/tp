@@ -83,8 +83,8 @@ void J3DMtxCalcCalcTransformBasic::calcTransform(J3DTransformInfo const& transIn
         mtxBuf->setScaleFlag(jntNo, 1);
     }
 
-    PSMTXConcat(J3DSys::mCurrentMtx, anmMtx, J3DSys::mCurrentMtx);
-    PSMTXCopy(J3DSys::mCurrentMtx, anmMtx);
+    MTXConcat(J3DSys::mCurrentMtx, anmMtx, J3DSys::mCurrentMtx);
+    MTXCopy(J3DSys::mCurrentMtx, anmMtx);
 }
 
 /* 8032EE50-8032EFBC 329790 016C+00 0/0 1/1 0/0 .text
@@ -99,7 +99,7 @@ void J3DMtxCalcCalcTransformSoftimage::calcTransform(J3DTransformInfo const& tra
                              transInfo.mTranslate.x * J3DSys::mCurrentS.x,
                              transInfo.mTranslate.y * J3DSys::mCurrentS.y,
                              transInfo.mTranslate.z * J3DSys::mCurrentS.z, anmMtx);
-    PSMTXConcat(J3DSys::mCurrentMtx, anmMtx, J3DSys::mCurrentMtx);
+    MTXConcat(J3DSys::mCurrentMtx, anmMtx, J3DSys::mCurrentMtx);
 
     J3DSys::mCurrentS.x *= transInfo.mScale.x;
     J3DSys::mCurrentS.y *= transInfo.mScale.y;
@@ -114,7 +114,7 @@ void J3DMtxCalcCalcTransformSoftimage::calcTransform(J3DTransformInfo const& tra
         anmMtx[2][3] = J3DSys::mCurrentMtx[2][3];
     } else {
         mtxBuf->setScaleFlag(jntNo, 1);
-        PSMTXCopy(J3DSys::mCurrentMtx, anmMtx);
+        MTXCopy(J3DSys::mCurrentMtx, anmMtx);
     }
 }
 
@@ -154,8 +154,8 @@ void J3DMtxCalcCalcTransformMaya::calcTransform(J3DTransformInfo const& transInf
         anmMtx[2][2] *= invZ;
     }
 
-    PSMTXConcat(J3DSys::mCurrentMtx, anmMtx, J3DSys::mCurrentMtx);
-    PSMTXCopy(J3DSys::mCurrentMtx, anmMtx);
+    MTXConcat(J3DSys::mCurrentMtx, anmMtx, J3DSys::mCurrentMtx);
+    MTXCopy(J3DSys::mCurrentMtx, anmMtx);
 
     J3DSys::mParentS.x = transInfo.mScale.x;
     J3DSys::mParentS.y = transInfo.mScale.y;

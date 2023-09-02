@@ -42,7 +42,7 @@ void dMdl_c::draw() {
 
     Mtx m;
     for (dMdl_obj_c* obj = mpModelObj; obj != NULL; obj = obj->mpObj) {
-        PSMTXConcat(j3dSys.getViewMtx(), obj->getMtx(), m);
+        MTXConcat(j3dSys.getViewMtx(), obj->getMtx(), m);
         GXLoadPosMtxImm(m, GX_PNMTX0);
         GXLoadNrmMtxImm(m, GX_PNMTX0);
         shape->simpleDrawCache();

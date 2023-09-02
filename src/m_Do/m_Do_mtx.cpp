@@ -77,17 +77,17 @@ void mDoMtx_XYZrotS(Mtx mtx, s16 x, s16 y, s16 z) {
     if (z != 0) {
         mDoMtx_ZrotS(mtx, z);
     } else {
-        PSMTXIdentity(mtx);
+        MTXIdentity(mtx);
     }
 
     if (y != 0) {
         mDoMtx_YrotS(tmp, y);
-        PSMTXConcat(mtx, tmp, mtx);
+        MTXConcat(mtx, tmp, mtx);
     }
 
     if (x != 0) {
         mDoMtx_XrotS(tmp, x);
-        PSMTXConcat(mtx, tmp, mtx);
+        MTXConcat(mtx, tmp, mtx);
     }
 }
 
@@ -96,17 +96,17 @@ void mDoMtx_XYZrotM(Mtx mtx, s16 x, s16 y, s16 z) {
     Mtx tmp;
     if (z != 0) {
         mDoMtx_ZrotS(tmp, z);
-        PSMTXConcat(mtx, tmp, mtx);
+        MTXConcat(mtx, tmp, mtx);
     }
 
     if (y != 0) {
         mDoMtx_YrotS(tmp, y);
-        PSMTXConcat(mtx, tmp, mtx);
+        MTXConcat(mtx, tmp, mtx);
     }
 
     if (x != 0) {
         mDoMtx_XrotS(tmp, x);
-        PSMTXConcat(mtx, tmp, mtx);
+        MTXConcat(mtx, tmp, mtx);
     }
 }
 
@@ -116,17 +116,17 @@ void mDoMtx_ZXYrotS(Mtx mtx, s16 x, s16 y, s16 z) {
     if (y != 0) {
         mDoMtx_YrotS(mtx, y);
     } else {
-        PSMTXIdentity(mtx);
+        MTXIdentity(mtx);
     }
 
     if (x != 0) {
         mDoMtx_XrotS(tmp, x);
-        PSMTXConcat(mtx, tmp, mtx);
+        MTXConcat(mtx, tmp, mtx);
     }
 
     if (z != 0) {
         mDoMtx_ZrotS(tmp, z);
-        PSMTXConcat(mtx, tmp, mtx);
+        MTXConcat(mtx, tmp, mtx);
     }
 }
 
@@ -135,17 +135,17 @@ void mDoMtx_ZXYrotM(Mtx mtx, s16 x, s16 y, s16 z) {
     Mtx tmp;
     if (y != 0) {
         mDoMtx_YrotS(tmp, y);
-        PSMTXConcat(mtx, tmp, mtx);
+        MTXConcat(mtx, tmp, mtx);
     }
 
     if (x != 0) {
         mDoMtx_XrotS(tmp, x);
-        PSMTXConcat(mtx, tmp, mtx);
+        MTXConcat(mtx, tmp, mtx);
     }
 
     if (z != 0) {
         mDoMtx_ZrotS(tmp, z);
-        PSMTXConcat(mtx, tmp, mtx);
+        MTXConcat(mtx, tmp, mtx);
     }
 }
 
@@ -198,7 +198,7 @@ asm void mDoMtx_XrotS(f32 (*param_0)[4], s16 param_1) {
 void mDoMtx_XrotM(Mtx mtx, s16 x) {
     Mtx tmp;
     mDoMtx_XrotS(tmp, x);
-    PSMTXConcat(mtx, tmp, mtx);
+    MTXConcat(mtx, tmp, mtx);
 }
 
 /* 8000C3DC-8000C434 006D1C 0058+00 5/5 24/24 809/809 .text            mDoMtx_YrotS__FPA4_fs */
@@ -238,7 +238,7 @@ asm void mDoMtx_YrotS(f32 (*param_0)[4], s16 param_1) {
 void mDoMtx_YrotM(Mtx mtx, s16 y) {
     Mtx tmp;
     mDoMtx_YrotS(tmp, y);
-    PSMTXConcat(mtx, tmp, mtx);
+    MTXConcat(mtx, tmp, mtx);
 }
 
 /* 8000C474-8000C4CC 006DB4 0058+00 7/7 1/1 6/6 .text            mDoMtx_ZrotS__FPA4_fs */
@@ -278,7 +278,7 @@ asm void mDoMtx_ZrotS(f32 (*param_0)[4], s16 param_1) {
 void mDoMtx_ZrotM(Mtx mtx, s16 z) {
     Mtx tmp;
     mDoMtx_ZrotS(tmp, z);
-    PSMTXConcat(mtx, tmp, mtx);
+    MTXConcat(mtx, tmp, mtx);
 }
 
 /* 8000C50C-8000C710 006E4C 0204+00 0/0 3/3 0/0 .text            mDoMtx_lookAt__FPA4_fPC3VecPC3Vecs
@@ -435,7 +435,7 @@ bool mDoMtx_stack_c::push() {
         return false;
     }
     Mtx* old = next++;
-    PSMTXCopy(now, *old);
+    MTXCopy(now, *old);
     return true;
 }
 
@@ -445,7 +445,7 @@ bool mDoMtx_stack_c::pop() {
         return false;
     }
     next--;
-    PSMTXCopy(*next, now);
+    MTXCopy(*next, now);
     return true;
 }
 
@@ -458,8 +458,8 @@ void mDoMtx_stack_c::transS(cXyz const& param_0) {
  */
 void mDoMtx_stack_c::transM(f32 x, f32 y, f32 z) {
     Mtx tmp;
-    PSMTXTrans(tmp, x, y, z);
-    PSMTXConcat(now, tmp, now);
+    MTXTrans(tmp, x, y, z);
+    MTXConcat(now, tmp, now);
 }
 
 /* 8000CDD4-8000CE00 007714 002C+00 0/0 3/3 40/40 .text            transM__14mDoMtx_stack_cFRC4cXyz
@@ -477,8 +477,8 @@ void mDoMtx_stack_c::scaleS(cXyz const& param_0) {
  */
 void mDoMtx_stack_c::scaleM(f32 x, f32 y, f32 z) {
     Mtx tmp;
-    PSMTXScale(tmp, x, y, z);
-    PSMTXConcat(now, tmp, now);
+    MTXScale(tmp, x, y, z);
+    MTXConcat(now, tmp, now);
 }
 
 /* 8000CE70-8000CE9C 0077B0 002C+00 0/0 7/7 79/79 .text            scaleM__14mDoMtx_stack_cFRC4cXyz
@@ -512,8 +512,8 @@ void mDoMtx_stack_c::ZXYrotM(csXyz const& param_0) {
 /* 8000CF7C-8000CFB8 0078BC 003C+00 0/0 1/1 6/6 .text quatM__14mDoMtx_stack_cFPC10Quaternion */
 void mDoMtx_stack_c::quatM(Quaternion const* param_0) {
     Mtx tmp;
-    PSMTXQuat(tmp, param_0);
-    PSMTXConcat(now, tmp, now);
+    MTXQuat(tmp, param_0);
+    MTXConcat(now, tmp, now);
 }
 
 /* ############################################################################################## */

@@ -211,7 +211,7 @@ void J2DTextBoxEx::drawSelf(f32 param_0, f32 param_1, Mtx* p_mtx) {
 
     if (mMaterial != NULL) {
         mMaterial->setGX();
-        PSMTXConcat(*p_mtx, mGlobalMtx, m);
+        MTXConcat(*p_mtx, mGlobalMtx, m);
 
         GXLoadPosMtxImm(m, GX_PNMTX0);
         GXClearVtxDesc();
@@ -288,7 +288,7 @@ void J2DTextBoxEx::draw(f32 posX, f32 posY) {
                 GXSetTevDirect((GXTevStageID)i);
             }
 
-            PSMTXIdentity(m);
+            MTXIdentity(m);
             GXLoadPosMtxImm(m, 0);
         }
     }
@@ -346,7 +346,7 @@ void J2DTextBoxEx::draw(f32 posX, f32 posY, f32 param_2, J2DTextBoxHBinding hBin
                 GXSetTevDirect((GXTevStageID)i);
             }
 
-            PSMTXIdentity(m);
+            MTXIdentity(m);
             GXLoadPosMtxImm(m, 0);
         }
     }

@@ -279,7 +279,7 @@ cM3dGPla dBgWKCol::GetTriPla(int poly_index) const {
 
     Vec* tri_pos;
     getTri1Pos(pd, &tri_pos);
-    PSVECDotProduct(tri_nrm, tri_pos);
+    VECDotProduct(tri_nrm, tri_pos);
 
     cM3dGPla plane;
     plane.SetupNP(*tri_nrm, *tri_pos);

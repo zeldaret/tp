@@ -14,21 +14,21 @@
 /* 80266AE4-80266B34 0050+00 s=0 e=103 z=300  None .text      __pl__4cXyzCFRC3Vec */
 cXyz cXyz::operator+(const Vec& vec) const {
     Vec ret;
-    PSVECAdd(this, &vec, &ret);
+    VECAdd(this, &vec, &ret);
     return cXyz(ret);
 }
 
 /* 80266B34-80266B84 0050+00 s=0 e=196 z=1082  None .text      __mi__4cXyzCFRC3Vec */
 cXyz cXyz::operator-(const Vec& vec) const {
     Vec ret;
-    PSVECSubtract(this, &vec, &ret);
+    VECSubtract(this, &vec, &ret);
     return cXyz(ret);
 }
 
 /* 80266B84-80266BD0 004C+00 s=1 e=99 z=158  None .text      __ml__4cXyzCFf */
 cXyz cXyz::operator*(f32 scale) const {
     Vec ret;
-    PSVECScale(this, &ret, scale);
+    VECScale(this, &ret, scale);
     return cXyz(ret);
 }
 
@@ -48,14 +48,14 @@ cXyz cXyz::operator*(const Vec& vec) const {
 /* 80266C18-80266C6C 0054+00 s=0 e=3 z=12  None .text      __dv__4cXyzCFf */
 cXyz cXyz::operator/(f32 scale) const {
     Vec ret;
-    PSVECScale(this, &ret, 1.0f / scale);
+    VECScale(this, &ret, 1.0f / scale);
     return cXyz(ret);
 }
 
 /* 80266C6C-80266CBC 0050+00 s=1 e=0 z=0  None .text      getCrossProduct__4cXyzCFRC3Vec */
 cXyz cXyz::getCrossProduct(const Vec& vec) const {
     Vec ret;
-    PSVECCrossProduct(this, &vec, &ret);
+    VECCrossProduct(this, &vec, &ret);
     return cXyz(ret);
 }
 
@@ -67,7 +67,7 @@ cXyz cXyz::outprod(const Vec& vec) const {
 /* 80266CE4-80266D30 004C+00 s=0 e=10 z=1  None .text      norm__4cXyzCFv */
 cXyz cXyz::norm(void) const {
     Vec ret;
-    PSVECNormalize(this, &ret);
+    VECNormalize(this, &ret);
     return cXyz(ret);
 }
 
@@ -75,7 +75,7 @@ cXyz cXyz::norm(void) const {
 cXyz cXyz::normZP(void) const {
     Vec vec;
     if (this->isNearZeroSquare() == false) {
-        PSVECNormalize(this, &vec);
+        VECNormalize(this, &vec);
     } else {
         vec = cXyz::Zero;
     }
@@ -96,7 +96,7 @@ inline void normToUpZIfNearZero(Vec& vec) {
 cXyz cXyz::normZC(void) const {
     Vec outVec;
     if (this->isNearZeroSquare() == false) {
-        PSVECNormalize(this, &outVec);
+        VECNormalize(this, &outVec);
     } else {
         outVec = (*this * 1.25f * 1000000.0f).normZP();
         normToUpZIfNearZero(outVec);
@@ -106,14 +106,14 @@ cXyz cXyz::normZC(void) const {
 
 /* 80266EF4-80266F48 0054+00 s=0 e=13 z=17  None .text      normalize__4cXyzFv */
 cXyz cXyz::normalize(void) {
-    PSVECNormalize(this, this);
+    VECNormalize(this, this);
     return *this;
 }
 
 /* 80266F48-80266FDC 0094+00 s=0 e=19 z=59  None .text      normalizeZP__4cXyzFv */
 cXyz cXyz::normalizeZP(void) {
     if (this->isNearZeroSquare() == false) {
-        PSVECNormalize(this, this);
+        VECNormalize(this, this);
     } else {
         *this = cXyz::Zero;
     }
@@ -125,7 +125,7 @@ bool cXyz::normalizeRS(void) {
     if (this->isNearZeroSquare()) {
         return false;
     } else {
-        PSVECNormalize(this, this);
+        VECNormalize(this, this);
         return true;
     }
 }

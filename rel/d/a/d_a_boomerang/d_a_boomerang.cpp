@@ -859,13 +859,13 @@ void daBoomerang_c::windModelCallBack() {
     mDoMtx_XrotM((MtxP)mDoMtx_stack_c::get(), -shape_angle.x);
     mDoMtx_YrotM((MtxP)mDoMtx_stack_c::get(), -shape_angle.y);
 
-    PSMTXConcat(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx, mDoMtx_stack_c::get());
+    MTXConcat(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx, mDoMtx_stack_c::get());
 
     mDoMtx_stack_c::get()[0][3] = J3DSys::mCurrentMtx[0][3];
     mDoMtx_stack_c::get()[1][3] = J3DSys::mCurrentMtx[1][3];
     mDoMtx_stack_c::get()[2][3] = J3DSys::mCurrentMtx[2][3];
 
-    PSMTXCopy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
+    MTXCopy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
     field_0x56c->setAnmMtx(4, mDoMtx_stack_c::get());
 
     return;
@@ -1092,14 +1092,14 @@ void daBoomerang_c::setRoomInfo() {
 /* 8049FAA4-8049FBAC 001A64 0108+00 2/2 0/0 0/0 .text            setKeepMatrix__13daBoomerang_cFv */
 void daBoomerang_c::setKeepMatrix() {
     daAlink_c* link = daAlink_getAlinkActorClass();
-    PSMTXCopy(link->getLeftItemMatrix(), mDoMtx_stack_c::now);
+    MTXCopy(link->getLeftItemMatrix(), mDoMtx_stack_c::now);
     mDoMtx_stack_c::transM(32.0f, -5.0f, -6.0f);
     mDoMtx_stack_c::XYZrotM(0xfd28, 0x1bbb, 0xf99a);
-    PSMTXCopy(mDoMtx_stack_c::now, field_0x568->mBaseTransformMtx);
-    PSMTXCopy(link->getLeftItemMatrix(), field_0x56c->mBaseTransformMtx);
+    MTXCopy(mDoMtx_stack_c::now, field_0x568->mBaseTransformMtx);
+    MTXCopy(link->getLeftItemMatrix(), field_0x56c->mBaseTransformMtx);
     mDoMtx_stack_c::multVecZero(&current.pos);
     daAlink_c::simpleAnmPlay(m_waitEffBtk);
-    PSMTXCopy(link->getLeftItemMatrix(), field_0x590->mBaseTransformMtx);
+    MTXCopy(link->getLeftItemMatrix(), field_0x590->mBaseTransformMtx);
 }
 
 /* ############################################################################################## */
@@ -1113,7 +1113,7 @@ COMPILER_STRIP_GATE(0x804A2910, &lit_4945);
 void daBoomerang_c::setMoveMatrix() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    PSMTXCopy(mDoMtx_stack_c::now, field_0x56c->mBaseTransformMtx);
+    MTXCopy(mDoMtx_stack_c::now, field_0x56c->mBaseTransformMtx);
     daAlink_c::simpleAnmPlay(m_windBtk);
     field_0x98c += 1.0f;
     s32 maxFrame = mBck.getBckAnm()->getFrameMax();
@@ -1126,7 +1126,7 @@ void daBoomerang_c::setMoveMatrix() {
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::YrotM(field_0x95a);
     mDoMtx_stack_c::XrotM(0x7fff);
-    PSMTXCopy(mDoMtx_stack_c::now, field_0x568->mBaseTransformMtx);
+    MTXCopy(mDoMtx_stack_c::now, field_0x568->mBaseTransformMtx);
 }
 #else
 #pragma push

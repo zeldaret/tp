@@ -108,9 +108,9 @@ int dBgS_MoveBgActor::MoveBGCreate(char const* i_arcName, int i_dzb_id,
         mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
         mDoMtx_stack_c::YrotM(shape_angle.y);
         mDoMtx_stack_c::scaleM(mScale.x, mScale.y, mScale.z);
-        PSMTXCopy(mDoMtx_stack_c::get(), mBgMtx);
+        MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
     } else {
-        PSMTXCopy(*i_bgMtx, mBgMtx);
+        MTXCopy(*i_bgMtx, mBgMtx);
     }
 
     m_name = i_arcName;
@@ -148,9 +148,9 @@ int dBgS_MoveBgActor::MoveBGExecute() {
         mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
         mDoMtx_stack_c::YrotM(shape_angle.y);
         mDoMtx_stack_c::scaleM(mScale.x, mScale.y, mScale.z);
-        PSMTXCopy(mDoMtx_stack_c::get(), mBgMtx);
+        MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
     } else {
-        PSMTXCopy(*new_mtx, mBgMtx);
+        MTXCopy(*new_mtx, mBgMtx);
     }
 
     if (mpBgW != NULL) {

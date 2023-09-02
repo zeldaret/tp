@@ -52,9 +52,9 @@ struct cXyz : Vec {
         y -= f;
         z -= f;
     }
-    void operator-=(const Vec& other) { PSVECSubtract(this, &other, this); }
-    void operator+=(const Vec& other) { PSVECAdd(this, &other, this); }
-    void operator*=(f32 scale) { PSVECScale(this, this, scale); }
+    void operator-=(const Vec& other) { VECSubtract(this, &other, this); }
+    void operator+=(const Vec& other) { VECAdd(this, &other, this); }
+    void operator*=(f32 scale) { VECScale(this, this, scale); }
     /* 80266C6C */ cXyz getCrossProduct(Vec const&) const;
     /* 80266CBC */ cXyz outprod(Vec const&) const;
     /* 80266CE4 */ cXyz norm() const;
@@ -111,8 +111,8 @@ struct cXyz : Vec {
         }
     }
 
-    float getSquareMag() const { return PSVECSquareMag(this); }
-    f32 getSquareDistance(const Vec& other) const { return PSVECSquareDistance(this, &other); }
+    float getSquareMag() const { return VECSquareMag(this); }
+    f32 getSquareDistance(const Vec& other) const { return VECSquareDistance(this, &other); }
 
     static float getNearZeroValue() { return 8e-11f; }
 
@@ -134,7 +134,7 @@ struct cXyz : Vec {
     f32 absXZ(const Vec& other) const { return sqrtf(this->abs2XZ(other)); }
     f32 getMagXZ() const { return cXyz(this->x, 0, this->z).getSquareMag(); }
 
-    f32 getDotProduct(const Vec& other) const { return PSVECDotProduct(this, &other); }
+    f32 getDotProduct(const Vec& other) const { return VECDotProduct(this, &other); }
     f32 inprod(const Vec& other) const { return getDotProduct(other); }
 };
 

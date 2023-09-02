@@ -658,7 +658,7 @@ static void noLoadPrj(JPAEmitterWorkData const* work, const Mtx srt) {
 /* 80277C90-80277CC8 2725D0 0038+00 1/0 0/0 0/0 .text loadPrj__FPC18JPAEmitterWorkDataPA4_Cf */
 void loadPrj(JPAEmitterWorkData const* work, const Mtx srt) {
     Mtx mtx;
-    PSMTXConcat(work->mPrjMtx, srt, mtx);
+    MTXConcat(work->mPrjMtx, srt, mtx);
     GXLoadTexMtxImm(mtx, GX_TEXMTX0, GX_MTX3x4);
 }
 
@@ -692,8 +692,8 @@ static void loadPrjAnm(JPAEmitterWorkData const* work, f32 const (*param_1)[4]) 
     local_108[2][1] = 0.0f;
     local_108[2][2] = 1.0f;
     local_108[2][3] = 0.0f;
-    PSMTXConcat(local_108, work->mPrjMtx, local_108);
-    PSMTXConcat(local_108, param_1, local_108);
+    MTXConcat(local_108, work->mPrjMtx, local_108);
+    MTXConcat(local_108, param_1, local_108);
     GXLoadTexMtxImm(local_108, 0x1e, GX_MTX3x4);
 }
 #else
@@ -736,7 +736,7 @@ static projectionFunc p_prj[3] = {
 void JPADrawBillboard(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
     if (param_1->checkStatus(8) == 0) {
         JGeometry::TVec3<f32> local_48;
-        PSMTXMultVec(work->mPosCamMtx, param_1->mPosition, local_48);
+        MTXMultVec(work->mPosCamMtx, param_1->mPosition, local_48);
         Mtx local_38;
         local_38[0][0] = work->mGlobalPtclScl.x * param_1->mParticleScaleX;
         local_38[0][3] = local_48.x;
@@ -773,7 +773,7 @@ asm void JPADrawBillboard(JPAEmitterWorkData* param_0, JPABaseParticle* param_1)
 void JPADrawRotBillboard(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
     if (param_1->checkStatus(8) == 0) {
         JGeometry::TVec3<f32> local_48;
-        PSMTXMultVec(work->mPosCamMtx, param_1->mPosition, local_48);
+        MTXMultVec(work->mPosCamMtx, param_1->mPosition, local_48);
         f32 sinRot = JMASSin(param_1->mRotateAngle);
         f32 cosRot = JMASCos(param_1->mRotateAngle);
         f32 particleX = work->mGlobalPtclScl.x * param_1->mParticleScaleX;
@@ -815,7 +815,7 @@ asm void JPADrawRotBillboard(JPAEmitterWorkData* param_0, JPABaseParticle* param
 void JPADrawYBillboard(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
      if (param_1->checkStatus(8) == 0) {
         JGeometry::TVec3<f32> local_48;
-        PSMTXMultVec(work->mPosCamMtx, param_1->mPosition, local_48);
+        MTXMultVec(work->mPosCamMtx, param_1->mPosition, local_48);
         Mtx local_38;
         f32 particleY = work->mGlobalPtclScl.y * param_1->mParticleScaleY;
         local_38[0][0] = work->mGlobalPtclScl.x * param_1->mParticleScaleX;
@@ -853,7 +853,7 @@ asm void JPADrawYBillboard(JPAEmitterWorkData* param_0, JPABaseParticle* param_1
 void JPADrawRotYBillboard(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
     if (param_1->checkStatus(8) == 0) {
         JGeometry::TVec3<f32> local_48;
-        PSMTXMultVec(work->mPosCamMtx, param_1->mPosition, local_48);
+        MTXMultVec(work->mPosCamMtx, param_1->mPosition, local_48);
         f32 sinRot = JMASSin(param_1->mRotateAngle);
         f32 cosRot = JMASCos(param_1->mRotateAngle);
         Mtx local_38;
@@ -1168,7 +1168,7 @@ void JPADrawDirection(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
                 local_60[2][2] = local_78.z;
                 local_60[2][3] = param_1->mPosition.z;
                 p_plane[param_0->mPlaneType](local_60, fVar1, fVar2);
-                PSMTXConcat(param_0->mPosCamMtx, local_60, local_60);
+                MTXConcat(param_0->mPosCamMtx, local_60, local_60);
                 GXLoadPosMtxImm(local_60, 0);
                 p_prj[param_0->mPrjType](param_0, local_60);
                 GXCallDisplayList(p_dl[param_0->mDLType], sizeof(jpa_dl));
@@ -1223,8 +1223,8 @@ void JPADrawRotDirection(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) 
                 local_60[2][1] = local_6c.z;
                 local_60[2][2] = local_78.z;
                 local_60[2][3] = param_1->mPosition.z;
-                PSMTXConcat(local_60, auStack_80, auStack_80);
-                PSMTXConcat(param_0->mPosCamMtx, auStack_80, local_60);
+                MTXConcat(local_60, auStack_80, auStack_80);
+                MTXConcat(param_0->mPosCamMtx, auStack_80, local_60);
                 GXLoadPosMtxImm(local_60, 0);
                 p_prj[param_0->mPrjType](param_0, local_60);
                 GXCallDisplayList(p_dl[param_0->mDLType], sizeof(jpa_dl));
@@ -1257,9 +1257,9 @@ void JPADrawDBillboard(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
         local_70.cross(local_70, aTStack_7c);
         if (!local_70.isZero()) {
             local_70.normalize();
-            PSMTXMultVecSR(param_0->mPosCamMtx, local_70, local_70);
+            MTXMultVecSR(param_0->mPosCamMtx, local_70, local_70);
             JGeometry::TVec3<f32> local_88;
-            PSMTXMultVec(param_0->mPosCamMtx, param_1->mPosition, local_88);
+            MTXMultVec(param_0->mPosCamMtx, param_1->mPosition, local_88);
             f32 particleX = param_0->mGlobalPtclScl.x * param_1->mParticleScaleX;
             f32 particleY = param_0->mGlobalPtclScl.y * param_1->mParticleScaleY;
             Mtx local_60;
@@ -1306,7 +1306,7 @@ void JPADrawRotation(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
         auStack_88[0][3] = param_1->mPosition.x;
         auStack_88[1][3] = param_1->mPosition.y;
         auStack_88[2][3] = param_1->mPosition.z;
-        PSMTXConcat(param_0->mPosCamMtx, auStack_88, auStack_88);
+        MTXConcat(param_0->mPosCamMtx, auStack_88, auStack_88);
         GXLoadPosMtxImm(auStack_88, 0);
         p_prj[param_0->mPrjType](param_0, auStack_88);
         GXCallDisplayList(p_dl[param_0->mDLType], sizeof(jpa_dl));
@@ -1473,7 +1473,7 @@ void JPADrawStripe(JPAEmitterWorkData* param_0) {
         local_c8[2][1] = local_f8.z;
         local_c8[2][2] = pTVar7->mBaseAxis.z;
         local_c8[2][3] = 0.0f;
-        PSMTXMultVecArraySR(local_c8, local_e0, local_e0, 2);
+        MTXMultVecArraySR(local_c8, local_e0, local_e0, 2);
         GXPosition3f32(local_e0.x + local_ec.x, local_e0.y + local_ec.y,
                        local_e0.z + local_ec.z);
         GXTexCoord2f32(0.0f, dVar16);

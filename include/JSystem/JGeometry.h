@@ -181,7 +181,7 @@ struct TVec3<f32> {
     }
 
     f32 length() const {
-        return PSVECMag((Vec*)this);
+        return VECMag((Vec*)this);
     }
 
     void scale(register f32 sc) {
@@ -247,7 +247,7 @@ struct TVec3<f32> {
     }
 
     void cross(const TVec3<f32>& a, const TVec3<f32>& b) {
-        PSVECCrossProduct(a, b, *this);
+        VECCrossProduct(a, b, *this);
     }
     
     void setLength(f32 len) {

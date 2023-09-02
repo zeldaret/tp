@@ -119,8 +119,8 @@ void J3DModel::initialize() {
     mBaseScale.y = 1.0f;
     mBaseScale.z = 1.0f;
 
-    PSMTXIdentity(mBaseTransformMtx);
-    PSMTXIdentity(mInternalView);
+    MTXIdentity(mBaseTransformMtx);
+    MTXIdentity(mInternalView);
 
     mMtxBuffer = NULL;
     mMatPacket = NULL;
@@ -406,7 +406,7 @@ void J3DModel::calcDiffTexMtx() {
             J3DTexMtx* texMtxNode = texGenBlock->getTexMtx(j);
             J3DTexMtxObj* texMtxObj = shapePacket->getTexMtxObj();
             if (texMtxNode != NULL && texMtxObj != NULL) {
-                PSMTXCopy(texMtxNode->getMtx(), texMtxObj->getMtx(j));
+                MTXCopy(texMtxNode->getMtx(), texMtxObj->getMtx(j));
             }
         }
     }

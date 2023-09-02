@@ -262,11 +262,11 @@ static int nodeCallBack(J3DJoint* param_0, int param_1) {
         b_oh_class* this_ = (b_oh_class*)model_p->getUserArea();
 
         if (this_ != NULL && jnt_no >= this_->field_0xca8 && jnt_no <= 29) {
-            PSMTXCopy(model_p->i_getAnmMtx(jnt_no), *calc_mtx);
+            MTXCopy(model_p->i_getAnmMtx(jnt_no), *calc_mtx);
             mDoMtx_YrotM(*calc_mtx, this_->field_0x61c[jnt_no].y + this_->field_0x784[jnt_no].y);
             mDoMtx_ZrotM(*calc_mtx, this_->field_0x61c[jnt_no].x + this_->field_0x784[jnt_no].x);
             MtxTrans(this_->mTentacleLength + -100.0f, 1.0f, 1.0f, 1);
-            PSMTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
+            MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
             MtxScale(1.0f, this_->field_0x8ec[jnt_no] + this_->field_0x9dc[jnt_no],
                      this_->field_0x8ec[jnt_no] + this_->field_0x9dc[jnt_no], 1);
             model_p->i_setAnmMtx(jnt_no, *calc_mtx);
@@ -473,7 +473,7 @@ static void start(b_oh_class* i_this) {
     case 1:
         if (i_this->field_0xcac < -100.0f) {
             for (int i = 0; i < 28; i++) {
-                PSMTXCopy(i_this->mpMorf->getModel()->i_getAnmMtx(i), mDoMtx_stack_c::get());
+                MTXCopy(i_this->mpMorf->getModel()->i_getAnmMtx(i), mDoMtx_stack_c::get());
                 mDoMtx_stack_c::multVecZero(&sp28);
 
                 if (sp28.y > boss->field_0x47a0) {
@@ -1071,7 +1071,7 @@ static void action(b_oh_class* i_this) {
         cLib_addCalc2(&i_this->mTentacleLength, l_HIO.mLength, 0.1f, 0.5f);
     }
 
-    PSMTXCopy(i_this->mpMorf->getModel()->i_getAnmMtx(i_this->field_0x5c8 + 8),
+    MTXCopy(i_this->mpMorf->getModel()->i_getAnmMtx(i_this->field_0x5c8 + 8),
               mDoMtx_stack_c::get());
     mDoMtx_stack_c::multVecZero(&i_this->current.pos);
 
@@ -1194,7 +1194,7 @@ static void damage_check(b_oh_class* i_this) {
                 i_this->mHealth = 1000;
                 cc_at_check(i_this, &i_this->mAtInfo);
 
-                PSMTXCopy(i_this->mpMorf->getModel()->i_getAnmMtx(i * 2 + 1),
+                MTXCopy(i_this->mpMorf->getModel()->i_getAnmMtx(i * 2 + 1),
                           mDoMtx_stack_c::get());
                 mDoMtx_stack_c::multVecZero(&i_this->mEyePos);
                 i_dComIfGp_setHitMark(1, i_this, &i_this->mEyePos, NULL, NULL, 0);
@@ -1310,7 +1310,7 @@ static int daB_OH_Execute(b_oh_class* i_this) {
     }
 
     for (int i = 0; i < 15; i++) {
-        PSMTXCopy(model_p->i_getAnmMtx(tmp + i * 2), mDoMtx_stack_c::get());
+        MTXCopy(model_p->i_getAnmMtx(tmp + i * 2), mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&collider_center);
 
         if (i_this->mAction >= ACTION_END) {

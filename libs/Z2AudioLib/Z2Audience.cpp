@@ -688,7 +688,7 @@ SECTION_SDATA2 static f32 lit_1273 = 0.01745329238474369f;
 void Z2AudioCamera::setCameraState(f32 (*param_0)[4], Vec& param_1, Vec& param_2, f32 param_3,
                                        f32 param_4, bool param_5, bool param_6) {
     JGeometry::TVec3<f32> aTStack_c0;
-    PSVECSubtract(&param_2, &param_1, aTStack_c0);
+    VECSubtract(&param_2, &param_1, aTStack_c0);
     mCamDist = aTStack_c0.length();
     f32 dVar10 = 0.5f * param_3;
     mFovySin = JMASinDegree(dVar10);
@@ -728,9 +728,9 @@ void Z2AudioCamera::setCameraState(f32 (*param_0)[4], Vec& param_1, Vec& param_2
         aTStack_cc.y = param_0[0][1];
         aTStack_cc.z = param_0[0][2];
         Mtx rotMtx;
-        PSMTXRotAxisRad(rotMtx, aTStack_cc, 0.01745329238474369f * (-1.0f * dVar10));
+        MTXRotAxisRad(rotMtx, aTStack_cc, 0.01745329238474369f * (-1.0f * dVar10));
         JGeometry::TVec3<f32> aTStack_d8;
-        PSMTXMultVec(rotMtx, aTStack_c0, aTStack_d8);
+        MTXMultVec(rotMtx, aTStack_c0, aTStack_d8);
         aTStack_d8.scale(aTStack_c0.y / aTStack_d8.y);
         mDolbyCenterZ = fVar8 * aTStack_d8.length();
         if (mSetMainCamera) {
@@ -759,7 +759,7 @@ void Z2AudioCamera::convertAbsToRel(Z2Audible* param_0, int param_1) {
         return;
     }
     Z2AudibleRelPos* relPos = &iVar2->field_0x14;
-    PSMTXMultVec(field_0x0, param_0->mPos, relPos->field_0x00);
+    MTXMultVec(field_0x0, param_0->mPos, relPos->field_0x00);
     relPos->field_0xC = relPos->field_0x00.length();
     JGeometry::TVec3<f32> aTStack_38;
     JGeometry::setTVec3f(*(Vec*)&relPos->field_0x00, *(Vec*)&aTStack_38);
@@ -770,7 +770,7 @@ void Z2AudioCamera::convertAbsToRel(Z2Audible* param_0, int param_1) {
 /* 802BCC7C-802BCCC0 2B75BC 0044+00 2/2 0/0 0/0 .text convertAbsToRel__13Z2AudioCameraCFR3VecP3Vec
  */
 bool Z2AudioCamera::convertAbsToRel(Vec& param_0, Vec* param_1) const {
-    PSMTXMultVec(field_0x0, &param_0, param_1);
+    MTXMultVec(field_0x0, &param_0, param_1);
     return isInSight(*param_1);
 }
 
@@ -1308,7 +1308,7 @@ asm f32 Z2Audience::calcRelPosVolume(Vec const& param_0, f32 param_1, int param_
 f32 Z2Audience::calcRelPosPan(Vec const& param_0, int param_1) {
     Vec local_54 = param_0;
     local_54.y = 0.0f;
-    f32 dVar6 = PSVECMag(&local_54);
+    f32 dVar6 = VECMag(&local_54);
     if (dVar6 < 0.1f) {
         return 0.5f;
     }

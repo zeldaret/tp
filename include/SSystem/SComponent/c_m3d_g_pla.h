@@ -23,7 +23,7 @@ public:
 
     virtual ~cM3dGPla() {}
 
-    f32 getPlaneFunc(const Vec* pPoint) const { return mD + PSVECDotProduct(&mNormal, pPoint); }
+    f32 getPlaneFunc(const Vec* pPoint) const { return mD + VECDotProduct(&mNormal, pPoint); }
     const cXyz& GetNP() const { return mNormal; }
     const cXyz* i_GetNP() const { return &mNormal; }
     f32 GetD() const { return mD; }

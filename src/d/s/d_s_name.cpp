@@ -217,12 +217,12 @@ void dScnName_c::setView() {
                      mCamera.mFar);
     mDoMtx_lookAt(mCamera.mViewMtx, &mCamera.mLookat.mEye, &mCamera.mLookat.mCenter,
                   mCamera.mBank);
-    PSMTXInverse(mCamera.mViewMtx, mCamera.mInvViewMtx);
-    PSMTXCopy(mCamera.mViewMtx, mCamera.mViewMtxNoTrans);
+    MTXInverse(mCamera.mViewMtx, mCamera.mInvViewMtx);
+    MTXCopy(mCamera.mViewMtx, mCamera.mViewMtxNoTrans);
     mCamera.mViewMtxNoTrans[0][3] = 0.0f;
     mCamera.mViewMtxNoTrans[1][3] = 0.0f;
     mCamera.mViewMtxNoTrans[2][3] = 0.0f;
-    PSMTXCopy(mCamera.mViewMtx, j3dSys.mViewMtx);
+    MTXCopy(mCamera.mViewMtx, j3dSys.mViewMtx);
     mDoMtx_concatProjView(mCamera.mProjMtx, mCamera.mViewMtx, mCamera.mProjViewMtx);
 }
 

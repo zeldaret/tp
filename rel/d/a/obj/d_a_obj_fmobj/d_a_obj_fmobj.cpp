@@ -170,7 +170,7 @@ static int daObj_Fmobj_Create(fopAc_ac_c* i_this) {
         a_this->mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 
         mDoMtx_stack_c::transM(0.0f, -30.0f, 0.0f);
-        PSMTXCopy(mDoMtx_stack_c::get(), a_this->mDzbMtx);
+        MTXCopy(mDoMtx_stack_c::get(), a_this->mDzbMtx);
 
         a_this->mpBgW->Move();
     }

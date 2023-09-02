@@ -65,7 +65,7 @@ static int daObjBombf_Delete(daObjBombf_c* i_this) {
 void daObjBombf_c::setMatrix() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y + field_0x584, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
-    PSMTXCopy(mDoMtx_stack_c::now, field_0x570->mBaseTransformMtx);
+    MTXCopy(mDoMtx_stack_c::now, field_0x570->mBaseTransformMtx);
 }
 
 /* 80BBAE9C-80BBAEA8 000018 000C+00 1/1 0/0 0/0 .rodata          bombOffset$3727 */

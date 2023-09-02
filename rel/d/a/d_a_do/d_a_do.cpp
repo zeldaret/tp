@@ -442,7 +442,7 @@ static int nodeCallBack(J3DJoint* i_jntP, int param_1) {
         do_class* user_area = (do_class*)model->getUserArea();
 
         if (user_area) {
-            PSMTXCopy(model->i_getAnmMtx(joint_num), *calc_mtx);
+            MTXCopy(model->i_getAnmMtx(joint_num), *calc_mtx);
 
             if (joint_num == 9 || joint_num == 10) {
                 cMtx_YrotM(*calc_mtx, user_area->field_0x60e.y + user_area->field_0x626.y);
@@ -457,7 +457,7 @@ static int nodeCallBack(J3DJoint* i_jntP, int param_1) {
             }
 
             model->setAnmMtx(joint_num, *calc_mtx);
-            PSMTXCopy(*calc_mtx, j3dSys.mCurrentMtx);
+            MTXCopy(*calc_mtx, j3dSys.mCurrentMtx);
         }
     }
     return 1;

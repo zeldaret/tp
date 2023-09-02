@@ -9,10 +9,10 @@
 
 /* 80BCC7F8-80BCC86C 000078 0074+00 2/2 0/0 0/0 .text            setBaseMtx__11daCowdoor_cFv */
 void daCowdoor_c::setBaseMtx() {
-    PSMTXTrans(mDoMtx_stack_c::now, current.pos.x, current.pos.y, current.pos.z);
+    MTXTrans(mDoMtx_stack_c::now, current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    PSMTXCopy(mDoMtx_stack_c::now, field_0x5a8->mBaseTransformMtx);
-    PSMTXCopy(mDoMtx_stack_c::now, mBgMtx);
+    MTXCopy(mDoMtx_stack_c::now, field_0x5a8->mBaseTransformMtx);
+    MTXCopy(mDoMtx_stack_c::now, mBgMtx);
 }
 
 /* 80BCC86C-80BCC8C4 0000EC 0058+00 1/0 0/0 0/0 .text            Create__11daCowdoor_cFv */

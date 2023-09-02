@@ -424,7 +424,7 @@ void daMagLiftRot_c::setBaseMtx() {
     mpModel->setBaseScale(cXyz(1.0f, 1.0f, 1.0f));
 
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
-    PSMTXCopy(mDoMtx_stack_c::get(), mBgMtx);
+    MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 #else
 #pragma push

@@ -349,9 +349,9 @@ void dDlst_FileInfo_c::draw() {
         MtxP glbMtx2 = mBasePane->getGlbMtx();
         // Fake match
         MtxP glbMtx = (MtxP)&glbMtx2[0][0];
-        PSMTXScale(m, mBasePane->getWidth() / field_0x10->getWidth(),
+        MTXScale(m, mBasePane->getWidth() / field_0x10->getWidth(),
                    mBasePane->getHeight() / field_0x10->getHeight(), 1.0f);
-        PSMTXConcat(glbMtx, m, glbMtx);
+        MTXConcat(glbMtx, m, glbMtx);
         Scr->search('Nm_02')->setMtx(glbMtx);
     }
     Scr->draw(0.0f, 0.0f, ctx);

@@ -942,7 +942,7 @@ s32 fopAcM_checkCullingBox(Mtx pMtx, f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32
     Vec tmp1 = {x1, y1, z1};
     Vec tmp2 = {x2, y2, z2};
     Mtx tmpMtx;
-    PSMTXConcat(j3dSys.mViewMtx, pMtx, tmpMtx);
+    MTXConcat(j3dSys.mViewMtx, pMtx, tmpMtx);
     return mDoLib_clipper::mClipper.clip(tmpMtx, &tmp2, &tmp1) != 0;
 }
 
@@ -1052,7 +1052,7 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
         mtx_p = j3dSys.getViewMtx();
     } else {
         Mtx concat_mtx;
-        PSMTXConcat(j3dSys.getViewMtx(), fopAcM_GetMtx(i_actor), concat_mtx);
+        MTXConcat(j3dSys.getViewMtx(), fopAcM_GetMtx(i_actor), concat_mtx);
         mtx_p = concat_mtx;
     }
 
@@ -2043,7 +2043,7 @@ s32 fopAcM_wayBgCheck(fopAc_ac_c const* param_0, f32 param_1, f32 param_2) {
     tmp1.z = param_1;
 
     MtxPosition(&tmp1, &tmp2);
-    PSVECAdd(&tmp2, &param_0->current.pos, &tmp2);
+    VECAdd(&tmp2, &param_0->current.pos, &tmp2);
 
     linChk.Set(&tmp0, &tmp2, param_0);
 
@@ -2193,7 +2193,7 @@ s32 fopAcM_carryOffRevise(fopAc_ac_c* param_0) {
     tmp1.z = 150.0f;
 
     MtxPosition(&tmp1, &tmp2);
-    PSVECAdd(&tmp2, &player->current.pos, &tmp2);
+    VECAdd(&tmp2, &player->current.pos, &tmp2);
 
     linChk.Set(&tmp0, &tmp2, param_0);
 
