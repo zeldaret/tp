@@ -750,9 +750,6 @@ static const u64 l_tagName11[2] = {
 #pragma pop
 
 /* 803975D8-803975D8 023C38 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#ifdef NONMATCHING
-
-#else
 #pragma push
 #pragma force_active on
 SECTION_DEAD static char const* const stringBase_803975D8 = "zelda_option_select_menu.blo";
@@ -768,7 +765,7 @@ SECTION_DEAD static char const* const stringBase_803976B5 = "zelda_file_select_y
 SECTION_DEAD static char const* const stringBase_803976D9 = "zelda_file_select_yes_no_window.bpk";
 SECTION_DEAD static char const* const stringBase_803976FD = "zelda_file_select_yes_no_window.btk";
 #pragma pop
-#endif
+
 
 /* 80454328-8045432C 002928 0002+02 1/1 0/0 0/0 .sdata2          l_msgNum2$3920 */
 SECTION_SDATA2 static u8 l_msgNum2[2 + 2 /* padding */] = {
@@ -780,9 +777,6 @@ SECTION_SDATA2 static u8 l_msgNum2[2 + 2 /* padding */] = {
 };
 
 /* 8045432C-80454330 00292C 0004+00 11/11 0/0 0/0 .sdata2          @4068 */
-#ifdef NONMATCHING
-
-#else
 SECTION_SDATA2 static u8 lit_4068[4] = {
     0x00,
     0x00,
@@ -792,7 +786,7 @@ SECTION_SDATA2 static u8 lit_4068[4] = {
 
 /* 80454330-80454334 002930 0004+00 18/18 0/0 0/0 .sdata2          @4069 */
 SECTION_SDATA2 static f32 lit_4069 = 1.0f;
-#endif
+
 /* 801E205C-801E2C1C 1DC99C 0BC0+00 1/1 0/0 0/0 .text            _create__14dMenu_Option_cFv */
 #ifdef NONMATCHING
 // Matches with literals
@@ -1197,8 +1191,6 @@ asm void dMenu_Option_c::_move() {
 
 /* ############################################################################################## */
 /* 80454334-80454338 002934 0004+00 1/1 0/0 0/0 .sdata2          @4442 */
-#ifdef NONMATCHING
-#else
 SECTION_SDATA2 static f32 lit_4442 = 608.0f;
 
 /* 80454338-80454340 002938 0004+04 1/1 0/0 0/0 .sdata2          @4443 */
@@ -1210,7 +1202,6 @@ SECTION_SDATA2 static f32 lit_4443[1 + 1 /* padding */] = {
 
 /* 80454340-80454348 002940 0008+00 1/1 0/0 0/0 .sdata2          @4445 */
 SECTION_SDATA2 static f64 lit_4445 = 4503599627370496.0 /* cast u32 to float */;
-#endif
 
 /* 801E36CC-801E38CC 1DE00C 0200+00 1/1 1/1 0/0 .text            _draw__14dMenu_Option_cFv */
 #ifdef NONMATCHING
@@ -1254,8 +1245,6 @@ asm void dMenu_Option_c::_draw() {
 
 /* ############################################################################################## */
 /* 80454348-8045434C 002948 0004+00 1/1 0/0 0/0 .sdata2          @4469 */
-#ifdef NONMATCHING
-#else
 SECTION_SDATA2 static f32 lit_4469 = 43.0f / 10.0f;
 
 /* 8045434C-80454350 00294C 0004+00 1/1 0/0 0/0 .sdata2          @4470 */
@@ -1266,7 +1255,6 @@ SECTION_SDATA2 static f32 lit_4471 = 0.5f;
 
 /* 80454354-80454358 002954 0004+00 11/11 0/0 0/0 .sdata2          @4472 */
 SECTION_SDATA2 static f32 lit_4472 = -1.0f;
-#endif
 
 /* 801E38CC-801E3A7C 1DE20C 01B0+00 1/1 0/0 0/0 .text            drawHaihai__14dMenu_Option_cFv */
 #ifdef NONMATCHING
@@ -1321,10 +1309,7 @@ bool dMenu_Option_c::checkRightTrigger() {
 
 /* ############################################################################################## */
 /* 80454358-80454360 002958 0008+00 8/8 0/0 0/0 .sdata2          @4520 */
-#ifdef NONMATCHING
-#else
 SECTION_SDATA2 static f64 lit_4520 = 4503601774854144.0 /* cast s32 to float */;
-#endif
 
 /* 801E3AEC-801E3B98 1DE42C 00AC+00 4/4 0/0 0/0 .text            setAnimation__14dMenu_Option_cFv */
 #ifdef NONMATCHING
@@ -1359,13 +1344,11 @@ asm void dMenu_Option_c::setAnimation() {
 
 /* ############################################################################################## */
 /* 803975D8-803975D8 023C38 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#ifdef NONMATCHING
-#else
 #pragma push
 #pragma force_active on
 SECTION_DEAD static char const* const stringBase_80397721 = "/res/Layout/optres.arc";
 #pragma pop
-#endif
+
 /* 801E3B98-801E3DE0 1DE4D8 0248+00 0/0 2/2 0/0 .text            _open__14dMenu_Option_cFv */
 #ifdef NONMATCHING
 // Matches with literals
@@ -1721,10 +1704,8 @@ void dMenu_Option_c::change_init() {
 
 /* ############################################################################################## */
 /* 80454360-80454364 002960 0004+00 2/2 0/0 0/0 .sdata2          @4862 */
-#ifdef NONMATCHING
-#else
 SECTION_SDATA2 static f32 lit_4862 = 5.0f;
-#endif
+
 /* 801E48E8-801E4B34 1DF228 024C+00 1/0 0/0 0/0 .text            change_move__14dMenu_Option_cFv */
 #ifdef NONMATCHING
 // matches but sinit and literals
@@ -1830,13 +1811,11 @@ asm void dMenu_Option_c::confirm_open_init() {
 
 /* ############################################################################################## */
 /* 80454364-80454368 002964 0004+00 2/2 0/0 0/0 .sdata2          @4893 */
-#ifdef NONMATCHING
-#else
 SECTION_SDATA2 static f32 lit_4893 = 2.0f / 5.0f;
 
 /* 80454368-8045436C 002968 0004+00 2/2 0/0 0/0 .sdata2          @4894 */
 SECTION_SDATA2 static f32 lit_4894 = 1.0f / 10.0f;
-#endif
+
 /* 801E4C10-801E4CE4 1DF550 00D4+00 1/0 0/0 0/0 .text confirm_open_move__14dMenu_Option_cFv */
 #ifdef NONMATCHING
 // Matches with literals
@@ -1963,8 +1942,6 @@ asm void dMenu_Option_c::confirm_close_init() {
 
 /* ############################################################################################## */
 /* 8045436C-80454370 00296C 0004+00 2/2 0/0 0/0 .sdata2          @5026 */
-#ifdef NONMATCHING
-#else
 SECTION_SDATA2 static f32 lit_5026 = 101.0f / 100.0f;
 
 /* 80454370-80454374 002970 0004+00 2/2 0/0 0/0 .sdata2          @5027 */
@@ -1972,7 +1949,6 @@ SECTION_SDATA2 static f32 lit_5027 = 17.0f / 20.0f;
 
 /* 80454374-80454378 002974 0004+00 2/2 0/0 0/0 .sdata2          @5028 */
 SECTION_SDATA2 static f32 lit_5028 = 1.0f / 50.0f;
-#endif
 
 /* 801E4FB0-801E51CC 1DF8F0 021C+00 1/0 0/0 0/0 .text confirm_close_move__14dMenu_Option_cFv */
 #ifdef NONMATCHING
@@ -3226,13 +3202,11 @@ bool dMenu_Option_c::dpdMenuMove() {
 
 /* ############################################################################################## */
 /* 80454378-8045437C 002978 0004+00 1/1 0/0 0/0 .sdata2          @6256 */
-#ifdef NONMATCHING
-#else
 SECTION_SDATA2 static f32 lit_6256 = 10.0f;
-#endif
+
 /* 801E80B4-801E8210 1E29F4 015C+00 1/1 0/0 0/0 .text            paneResize__14dMenu_Option_cFUx */
 #ifdef NONMATCHING
-// Matches with literals
+// float regswap
 void dMenu_Option_c::paneResize(u64 i_tag) {
     f32 boundsY = mpClipScreen->search(i_tag)->getBounds().i.y;
     f32 boundsX = mpClipScreen->search(i_tag)->getBounds().i.x - 5.0f;
@@ -3240,7 +3214,7 @@ void dMenu_Option_c::paneResize(u64 i_tag) {
     
     
     f32 height = mpClipScreen->search(i_tag)->getHeight();
-    f32 width = mpClipScreen->search(i_tag)->i_getWidth(); // temp hack to match the function
+    f32 width = mpClipScreen->search(i_tag)->getWidth();
     
     mpClipScreen->search(i_tag)->resize(width + 10.0f, height);
 }
@@ -3444,8 +3418,6 @@ asm u8 dMenu_Option_c::yesnoSelectMoveAnm() {
 #endif
 
 /* 8045437C-80454380 00297C 0004+00 1/1 0/0 0/0 .sdata2          @6507 */
-#ifdef NONMATCHING
-#else
 SECTION_SDATA2 static f32 lit_6507 = 24.0f / 25.0f;
 
 /* 80454380-80454384 002980 0004+00 1/1 0/0 0/0 .sdata2          @6508 */
@@ -3453,7 +3425,7 @@ SECTION_SDATA2 static f32 lit_6508 = 21.0f / 25.0f;
 
 /* 80454384-80454388 002984 0004+00 1/1 0/0 0/0 .sdata2          @6509 */
 SECTION_SDATA2 static f32 lit_6509 = 3.0f / 50.0f;
-#endif
+
 /* 801E8888-801E89F8 1E31C8 0170+00 2/2 0/0 0/0 .text            yesnoCursorShow__14dMenu_Option_cFv
  */
 #ifdef NONMATCHING
@@ -3626,5 +3598,5 @@ asm void __sinit_d_menu_option_cpp() {
 #pragma force_active on
 REGISTER_CTORS(0x801E8E8C, __sinit_d_menu_option_cpp);
 #pragma pop
+
 #endif
-/* 803975D8-803975D8 023C38 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

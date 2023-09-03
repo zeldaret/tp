@@ -355,10 +355,6 @@ struct TBox {
 template<> struct TBox<TVec2<f32> > {
     f32 getWidth() const { return f.x - i.x; }
     f32 getHeight() const { return f.y - i.y; }
-    f32 i_getWidth() const {
-        f32 sub = f.x - i.x;
-        return sub;
-    }
 
     bool isValid() const { return f.isAbove(i); }
 
