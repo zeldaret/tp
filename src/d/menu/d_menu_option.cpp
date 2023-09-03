@@ -4,30 +4,29 @@
 //
 
 #include "d/menu/d_menu_option.h"
+#include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "JSystem/JUtility/JUTGamePad.h"
+#include "MSL_C/string.h"
 #include "d/com/d_com_inf_game.h"
-#include "f_op/f_op_msg_mng.h"
 #include "d/d_lib.h"
 #include "d/d_select_cursor.h"
-#include "MSL_C/string.h"
-#include "d/msg/d_msg_string.h"
-#include "d/msg/d_msg_class.h"
-#include "d/meter/d_meter_HIO.h"
+#include "d/file/d_file_sel_warning.h"
+#include "d/menu/d_menu_calibration.h"
+#include "d/menu/d_menu_window.h"
 #include "d/meter/d_meter2.h"
 #include "d/meter/d_meter2_info.h"
-#include "d/menu/d_menu_window.h"
-#include "d/menu/d_menu_calibration.h"
+#include "d/meter/d_meter_HIO.h"
+#include "d/msg/d_msg_class.h"
+#include "d/msg/d_msg_string.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSRtc.h"
+#include "dolphin/types.h"
+#include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
-#include "JSystem/J2DGraph/J2DAnmLoader.h"
-#include "d/file/d_file_sel_warning.h"
-#include "dolphin/types.h"
-
 
 //
 // Forward References:
@@ -216,43 +215,30 @@ SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
 #ifdef NONMATCHING
 typedef void (dMenu_Option_c::*initFunc)();
 static initFunc init[] = {
-    &dMenu_Option_c::atten_init,
-    &dMenu_Option_c::vib_init,
-    &dMenu_Option_c::sound_init,
-    &dMenu_Option_c::change_init,
-    &dMenu_Option_c::confirm_open_init,
-    &dMenu_Option_c::confirm_move_init,
-    &dMenu_Option_c::confirm_select_init,
-    &dMenu_Option_c::confirm_close_init,
+    &dMenu_Option_c::atten_init,          &dMenu_Option_c::vib_init,
+    &dMenu_Option_c::sound_init,          &dMenu_Option_c::change_init,
+    &dMenu_Option_c::confirm_open_init,   &dMenu_Option_c::confirm_move_init,
+    &dMenu_Option_c::confirm_select_init, &dMenu_Option_c::confirm_close_init,
 };
 
 typedef void (dMenu_Option_c::*processFunc)();
 static processFunc process[] = {
-    &dMenu_Option_c::atten_move,
-    &dMenu_Option_c::vib_move,
-    &dMenu_Option_c::sound_move,
-    &dMenu_Option_c::change_move,
-    &dMenu_Option_c::confirm_open_move,
-    &dMenu_Option_c::confirm_move_move,
-    &dMenu_Option_c::confirm_select_move,
-    &dMenu_Option_c::confirm_close_move,
+    &dMenu_Option_c::atten_move,          &dMenu_Option_c::vib_move,
+    &dMenu_Option_c::sound_move,          &dMenu_Option_c::change_move,
+    &dMenu_Option_c::confirm_open_move,   &dMenu_Option_c::confirm_move_move,
+    &dMenu_Option_c::confirm_select_move, &dMenu_Option_c::confirm_close_move,
 };
 
 typedef void (dMenu_Option_c::*tvProcessFunc)();
 static tvProcessFunc tv_process[] = {
-    &dMenu_Option_c::tv_open1_move,
-    &dMenu_Option_c::tv_open2_move,
-    &dMenu_Option_c::tv_move_move,
-    &dMenu_Option_c::tv_close1_move,
-    &dMenu_Option_c::tv_close2_move,
+    &dMenu_Option_c::tv_open1_move,  &dMenu_Option_c::tv_open2_move,  &dMenu_Option_c::tv_move_move,
+    &dMenu_Option_c::tv_close1_move, &dMenu_Option_c::tv_close2_move,
 };
 
 typedef void (dMenu_Option_c::*calibrationFunc)();
 static calibrationFunc calibration_process[] = {
-    &dMenu_Option_c::calibration_open1_move,
-    &dMenu_Option_c::calibration_open2_move,
-    &dMenu_Option_c::calibration_move_move,
-    &dMenu_Option_c::calibration_close1_move,
+    &dMenu_Option_c::calibration_open1_move,  &dMenu_Option_c::calibration_open2_move,
+    &dMenu_Option_c::calibration_move_move,   &dMenu_Option_c::calibration_close1_move,
     &dMenu_Option_c::calibration_close2_move,
 };
 
@@ -691,7 +677,7 @@ dMenu_Option_c::dMenu_Option_c(JKRArchive* i_archive, STControl* i_stick) {
 dMenu_Option_c::~dMenu_Option_c() {}
 
 /* 80396EA8-80396EB8 023508 000C+04 4/4 0/0 0/0 .rodata          dMo_soundMode */
-static const u32 dMo_soundMode[3] = { 0, 1, 2 };
+static const u32 dMo_soundMode[3] = {0, 1, 2};
 
 /* 80396EB8-80396EE0 023518 0028+00 0/1 0/0 0/0 .rodata          text_a_tag$3904 */
 #pragma push
@@ -705,7 +691,7 @@ static const u64 text_a_tag_3904[5] = {
 #pragma push
 #pragma force_active on
 static const u64 text_b_tag_3905[5] = {
-   'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5',
+    'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5',
 };
 #pragma pop
 
@@ -713,7 +699,8 @@ static const u64 text_b_tag_3905[5] = {
 #pragma push
 #pragma force_active on
 static const u64 l_tagName012[2] = {
-    'w_no_n', 'w_yes_n',
+    'w_no_n',
+    'w_yes_n',
 };
 #pragma pop
 
@@ -721,7 +708,8 @@ static const u64 l_tagName012[2] = {
 #pragma push
 #pragma force_active on
 static const u64 l_tagName013[2] = {
-    'w_no_t', 'w_yes_t',
+    'w_no_t',
+    'w_yes_t',
 };
 #pragma pop
 
@@ -729,7 +717,8 @@ static const u64 l_tagName013[2] = {
 #pragma push
 #pragma force_active on
 static const u64 l_tagName9[2] = {
-    'w_no_m', 'w_yes_m',
+    'w_no_m',
+    'w_yes_m',
 };
 #pragma pop
 
@@ -737,7 +726,8 @@ static const u64 l_tagName9[2] = {
 #pragma push
 #pragma force_active on
 static const u64 l_tagName10[2] = {
-    'w_no_g', 'w_yes_g',
+    'w_no_g',
+    'w_yes_g',
 };
 #pragma pop
 
@@ -745,7 +735,8 @@ static const u64 l_tagName10[2] = {
 #pragma push
 #pragma force_active on
 static const u64 l_tagName11[2] = {
-    'w_no_gr', 'w_yes_gr',
+    'w_no_gr',
+    'w_yes_gr',
 };
 #pragma pop
 
@@ -765,7 +756,6 @@ SECTION_DEAD static char const* const stringBase_803976B5 = "zelda_file_select_y
 SECTION_DEAD static char const* const stringBase_803976D9 = "zelda_file_select_yes_no_window.bpk";
 SECTION_DEAD static char const* const stringBase_803976FD = "zelda_file_select_yes_no_window.btk";
 #pragma pop
-
 
 /* 80454328-8045432C 002928 0002+02 1/1 0/0 0/0 .sdata2          l_msgNum2$3920 */
 SECTION_SDATA2 static u8 l_msgNum2[2 + 2 /* padding */] = {
@@ -950,7 +940,7 @@ asm void dMenu_Option_c::_create() {
 void dMenu_Option_c::_delete() {
     delete mpString;
     mpString = NULL;
-    
+
     delete mpScreen;
     mpScreen = NULL;
 
@@ -987,7 +977,7 @@ void dMenu_Option_c::_delete() {
             delete mpButtonAB[i];
             mpButtonAB[i] = NULL;
         }
-  
+
         if (mpButtonText[i] != NULL) {
             delete mpButtonText[i];
             mpButtonText[i] = NULL;
@@ -1134,9 +1124,13 @@ void dMenu_Option_c::_move() {
     }
     if (mDoGph_gInf_c::getFader()->getStatus() == 1) {
         if (mDoCPd_c::getTrigA(0) != 0 && field_0x3ef != 3 && field_0x3f3 == 5) {
-            if (field_0x3f4 == 5 && field_0x3ef != 4 && field_0x3ef != 5 && field_0x3ef != 6 && field_0x3ef != 7) {
+            if (field_0x3f4 == 5 && field_0x3ef != 4 && field_0x3ef != 5 && field_0x3ef != 6 &&
+                field_0x3ef != 7)
+            {
                 if (mDoCPd_c::getTrigStart(0) == 0 && (mDoCPd_c::getTrig(0) & 0x200) == 0) {
-                    if (mDoCPd_c::getTrigUp(0) == 0 && mDoCPd_c::getTrigDown(0) == 0 && mDoCPd_c::getTrigLeft(0) == 0 && mDoCPd_c::getTrigRight(0) == 0) {
+                    if (mDoCPd_c::getTrigUp(0) == 0 && mDoCPd_c::getTrigDown(0) == 0 &&
+                        mDoCPd_c::getTrigLeft(0) == 0 && mDoCPd_c::getTrigRight(0) == 0)
+                    {
                         field_0x3f7 = 1;
                         field_0x3f5 = field_0x3ef;
                         field_0x3ef = 4;
@@ -1147,8 +1141,13 @@ void dMenu_Option_c::_move() {
                 }
             }
         }
-        if (mDoCPd_c::getTrigB(0) != 0 && field_0x3ef != 3 && field_0x3f3 == 5 && field_0x3ef != 4 && field_0x3ef != 5 && field_0x3ef != 6 && field_0x3ef != 7) {
-            if (field_0x3f4 == 5 && mDoCPd_c::getTrigStart(0) == 0 && mDoCPd_c::getTrigA(0) == 0 && mDoCPd_c::getTrigUp(0) == 0 && mDoCPd_c::getTrigDown(0) == 0 && mDoCPd_c::getTrigLeft(0) == 0 && mDoCPd_c::getTrigRight(0) == 0) {
+        if (mDoCPd_c::getTrigB(0) != 0 && field_0x3ef != 3 && field_0x3f3 == 5 &&
+            field_0x3ef != 4 && field_0x3ef != 5 && field_0x3ef != 6 && field_0x3ef != 7)
+        {
+            if (field_0x3f4 == 5 && mDoCPd_c::getTrigStart(0) == 0 && mDoCPd_c::getTrigA(0) == 0 &&
+                mDoCPd_c::getTrigUp(0) == 0 && mDoCPd_c::getTrigDown(0) == 0 &&
+                mDoCPd_c::getTrigLeft(0) == 0 && mDoCPd_c::getTrigRight(0) == 0)
+            {
                 field_0x3f7 = 0;
                 field_0x3f5 = field_0x3ef;
                 field_0x3ef = 4;
@@ -1168,7 +1167,7 @@ skip:
             field_0x3f0 = field_0x3f1;
             field_0x3f2 = 1;
         }
-    } else  {
+    } else {
         field_0x3f0 = 0xff;
     }
     (this->*process[field_0x3ef])();
@@ -1265,16 +1264,21 @@ void dMenu_Option_c::drawHaihai() {
     field_0x3f6 = 0;
     field_0x3f6 |= 1;
     field_0x3f6 |= 4;
-    if (selectType < 4 && field_0x3f6 != 0 && field_0x3f3 == 5 && field_0x3ef != 4 && field_0x3ef != 5 && field_0x3ef != 6 && field_0x3ef != 7) {
+    if (selectType < 4 && field_0x3f6 != 0 && field_0x3f3 == 5 && field_0x3ef != 4 &&
+        field_0x3ef != 5 && field_0x3ef != 6 && field_0x3ef != 7)
+    {
         mpMeterHaihai->_execute(0);
-        Vec haihaiPosL = mpHaihaiPosL[selectType]->getGlobalVtxCenter(mpHaihaiPosL[selectType]->mPane, false, 0);
-        Vec haihaiPosR = mpHaihaiPosR[selectType]->getGlobalVtxCenter(mpHaihaiPosR[selectType]->mPane, false, 0);
+        Vec haihaiPosL =
+            mpHaihaiPosL[selectType]->getGlobalVtxCenter(mpHaihaiPosL[selectType]->mPane, false, 0);
+        Vec haihaiPosR =
+            mpHaihaiPosR[selectType]->getGlobalVtxCenter(mpHaihaiPosR[selectType]->mPane, false, 0);
         haihaiPosL.x += g_drawHIO.mOptionScreen.mArrowOffsetX_4x3;
         haihaiPosR.x -= g_drawHIO.mOptionScreen.mArrowOffsetX_4x3;
 
         f32 haihaiX = haihaiPosR.x - haihaiPosL.x;
         f32 haihaiY = haihaiPosR.y - haihaiPosL.y;
-        mpMeterHaihai->drawHaihai(field_0x3f6, haihaiPosL.x + haihaiX / 2 + -5.0f + 4.3f, haihaiPosL.y + haihaiY / 2 + -1.0f, haihaiX, haihaiY);
+        mpMeterHaihai->drawHaihai(field_0x3f6, haihaiPosL.x + haihaiX / 2 + -5.0f + 4.3f,
+                                  haihaiPosL.y + haihaiY / 2 + -1.0f, haihaiX, haihaiY);
         field_0x3f6 = 0;
     }
 }
@@ -1323,7 +1327,7 @@ void dMenu_Option_c::setAnimation() {
         field_0x3c0 = field_0x3c0 - frameMax;
     }
     field_0x2c->setFrame(field_0x3c0);
-    
+
     field_0x3c4 += 2;
     frameMax = field_0x30->getFrameMax();
     if (field_0x3c4 >= frameMax) {
@@ -1367,7 +1371,7 @@ bool dMenu_Option_c::_open() {
     } else {
         return 0;
     }
-    
+
     s16 openFrame = g_drawHIO.mOptionScreen.mOpenFrames;
     s16 closeFrame = g_drawHIO.mOptionScreen.mCloseFrames;
     mFrame = openFrame;
@@ -1477,38 +1481,40 @@ void dMenu_Option_c::atten_move() {
     bool downTrigger = mpStick->checkDownTrigger();
     bool leftTrigger = checkLeftTrigger();
     bool rightTrigger = checkRightTrigger();
-    
+
     if (field_0x3f3 != 5) {
         (this->*tv_process[field_0x3f3])();
     } else if (downTrigger) {
         field_0x3ef = 1;
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_OPTION, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_OPTION, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                        0);
     } else if (leftTrigger) {
-            if (field_0x3e4 == 0) {
-                field_0x3e4 = 1;
-                field_0x3da = -5;
-            } else if (field_0x3e4 == 1) {
-                field_0x3e4 = 0;
-                field_0x3da = -5;
-            }
-            field_0x3ef = 3;
-            field_0x3f5 = 0;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-        } else if (rightTrigger) {
-            if (field_0x3e4 == 0) {
-                field_0x3e4 = 1;
-                field_0x3da = 5;
-            } else if (field_0x3e4 == 1) {
-                field_0x3e4 = 0;
-                field_0x3da = 5;
-            }
-            field_0x3ef = 3;
-            field_0x3f5 = 0;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-        } else {
-            changeTVCheck();
+        if (field_0x3e4 == 0) {
+            field_0x3e4 = 1;
+            field_0x3da = -5;
+        } else if (field_0x3e4 == 1) {
+            field_0x3e4 = 0;
+            field_0x3da = -5;
         }
-    
+        field_0x3ef = 3;
+        field_0x3f5 = 0;
+        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                        0);
+    } else if (rightTrigger) {
+        if (field_0x3e4 == 0) {
+            field_0x3e4 = 1;
+            field_0x3da = 5;
+        } else if (field_0x3e4 == 1) {
+            field_0x3e4 = 0;
+            field_0x3da = 5;
+        }
+        field_0x3ef = 3;
+        field_0x3f5 = 0;
+        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                        0);
+    } else {
+        changeTVCheck();
+    }
 }
 #else
 #pragma push
@@ -1554,10 +1560,12 @@ void dMenu_Option_c::vib_move() {
         (this->*tv_process[field_0x3f3])();
     } else if (upTrigger) {
         field_0x3ef = 0;
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_OPTION, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_OPTION, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                        0);
     } else if (downTrigger) {
         field_0x3ef = 2;
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_OPTION, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_OPTION, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                        0);
     } else if (leftTrigger) {
         if (isRumbleSupported()) {
             if (field_0x3ea == 0) {
@@ -1570,8 +1578,9 @@ void dMenu_Option_c::vib_move() {
             }
             field_0x3ef = 3;
             field_0x3f5 = 1;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-        } 
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                            -1.0f, 0);
+        }
     } else if (rightTrigger) {
         if (isRumbleSupported()) {
             if (field_0x3ea == 0) {
@@ -1584,8 +1593,9 @@ void dMenu_Option_c::vib_move() {
             }
             field_0x3ef = 3;
             field_0x3f5 = 1;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-        } 
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                            -1.0f, 0);
+        }
     } else {
         changeTVCheck();
     }
@@ -1634,7 +1644,8 @@ void dMenu_Option_c::sound_move() {
         (this->*tv_process[field_0x3f3])();
     } else if (upTrigger) {
         field_0x3ef = 1;
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_OPTION, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_OPTION, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                        0);
     } else if (leftTrigger) {
         if (field_0x3e9 == 2) {
             field_0x3e9 = 0;
@@ -1643,21 +1654,25 @@ void dMenu_Option_c::sound_move() {
         }
         field_0x3da = -5;
         switch (field_0x3e9) {
-            case 0:
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_SOUND_MODE_MONO, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-                break;
-            case 1:
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_SOUND_MODE_STEREO, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-                break;
-            case 2:
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_SOUND_MODE_SURROUND, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-                break;
+        case 0:
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_SOUND_MODE_MONO, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                            -1.0f, 0);
+            break;
+        case 1:
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_SOUND_MODE_STEREO, NULL, 0, 0, 1.0f, 1.0f,
+                                            -1.0f, -1.0f, 0);
+            break;
+        case 2:
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_SOUND_MODE_SURROUND, NULL, 0, 0, 1.0f, 1.0f,
+                                            -1.0f, -1.0f, 0);
+            break;
         }
         Z2AudioMgr::mAudioMgrPtr->setOutputMode(dMo_soundMode[field_0x3e9]);
         setSoundMode(dMo_soundMode[field_0x3e9]);
         field_0x3ef = 3;
         field_0x3f5 = 2;
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                        0);
     } else if (rightTrigger) {
         if (field_0x3e9 == 0) {
             field_0x3e9 = 2;
@@ -1666,21 +1681,25 @@ void dMenu_Option_c::sound_move() {
         }
         field_0x3da = 5;
         switch (field_0x3e9) {
-            case 0:
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_SOUND_MODE_MONO, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-                break;
-            case 1:
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_SOUND_MODE_STEREO, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-                break;
-            case 2:
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_SOUND_MODE_SURROUND, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-                break;
+        case 0:
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_SOUND_MODE_MONO, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                            -1.0f, 0);
+            break;
+        case 1:
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_SOUND_MODE_STEREO, NULL, 0, 0, 1.0f, 1.0f,
+                                            -1.0f, -1.0f, 0);
+            break;
+        case 2:
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_SOUND_MODE_SURROUND, NULL, 0, 0, 1.0f, 1.0f,
+                                            -1.0f, -1.0f, 0);
+            break;
         }
         Z2AudioMgr::mAudioMgrPtr->setOutputMode(dMo_soundMode[field_0x3e9]);
         setSoundMode(dMo_soundMode[field_0x3e9]);
         field_0x3ef = 3;
         field_0x3f5 = 2;
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                        0);
     } else {
         changeTVCheck();
     }
@@ -1711,7 +1730,7 @@ SECTION_SDATA2 static f32 lit_4862 = 5.0f;
 // matches but sinit and literals
 void dMenu_Option_c::change_move() {
     f32 x = 0.0f;
-    
+
     if (field_0x3da > 0) {
         field_0x3da--;
     } else if (field_0x3da < 0) {
@@ -1719,24 +1738,24 @@ void dMenu_Option_c::change_move() {
     }
     u8 index;
     switch (field_0x3f5) {
-        case 0:
-            index = 0;
-            if (field_0x3da == 0) {
-                setAttenString();
-            }
-            break;
-        case 1:
-            index = 1;
-            if (field_0x3da == 0) {
-                setVibString();
-            }
-            break;
-        case 2:
-            index = 2;
-            if (field_0x3da == 0) {
-                setSoundString();
-            }
-            break;
+    case 0:
+        index = 0;
+        if (field_0x3da == 0) {
+            setAttenString();
+        }
+        break;
+    case 1:
+        index = 1;
+        if (field_0x3da == 0) {
+            setVibString();
+        }
+        break;
+    case 2:
+        index = 2;
+        if (field_0x3da == 0) {
+            setSoundString();
+        }
+        break;
     }
     if (field_0x3da > 0) {
         f32 initPosX = (5 - field_0x3da) / 5.0f;
@@ -1859,7 +1878,7 @@ void dMenu_Option_c::confirm_move_init() {
 void dMenu_Option_c::confirm_move_move() {
     bool leftTrigger = checkLeftTrigger();
     bool rightTrigger = checkRightTrigger();
-    
+
     if (mDoCPd_c::getTrigA(0) != 0) {
         yesNoSelectStart();
         field_0x3ef = 7;
@@ -1871,7 +1890,8 @@ void dMenu_Option_c::confirm_move_move() {
         dMeter2Info_set2DVibrationM();
     } else if (rightTrigger != 0) {
         if (field_0x3f9 != 0) {
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_CURSOR_COMMON, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_CURSOR_COMMON, NULL, 0, 0, 1.0f, 1.0f,
+                                            -1.0f, -1.0f, 0);
             field_0x3fa = field_0x3f9;
             field_0x3f9 = 0;
             yesnoSelectAnmSet();
@@ -1879,7 +1899,8 @@ void dMenu_Option_c::confirm_move_move() {
         }
     } else if (leftTrigger != 0) {
         if (field_0x3f9 != 1) {
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_CURSOR_COMMON, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_CURSOR_COMMON, NULL, 0, 0, 1.0f, 1.0f,
+                                            -1.0f, -1.0f, 0);
             field_0x3fa = field_0x3f9;
             field_0x3f9 = 1;
             yesnoSelectAnmSet();
@@ -2043,7 +2064,7 @@ void dMenu_Option_c::tv_open2_move() {
 // Matches with literals
 void dMenu_Option_c::tv_move_move() {
     if (mDoCPd_c::getTrigZ(0) != 0 || mDoCPd_c::getTrigA(0) != 0) {
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_BACK, NULL, 0,0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         field_0x3f3 = 3;
         setAButtonString(0x40C);
         setBButtonString(0x3F9);
@@ -2142,10 +2163,10 @@ void dMenu_Option_c::menuShow(int index) {
     mpMenuPane[index]->show();
     if (mpMenuPaneC[index] != NULL) {
         mpMenuPaneC[index]->show();
-    }    
+    }
     if (mpMenuPane2[index] != NULL) {
         mpMenuPane2[index]->show();
-    } 
+    }
     if (mpMenuPane3[index] != NULL) {
         mpMenuPane3[index]->show();
     }
@@ -2153,7 +2174,7 @@ void dMenu_Option_c::menuShow(int index) {
         if (mpMenuText[index][i] != NULL) {
             mpMenuText[index][i]->show();
         }
-    } 
+    }
 }
 
 /* 801E55B8-801E5678 1DFEF8 00C0+00 1/1 0/0 0/0 .text            menuHide__14dMenu_Option_cFi */
@@ -2162,10 +2183,10 @@ void dMenu_Option_c::menuHide(int index) {
     mpMenuPane[index]->hide();
     if (mpMenuPaneC[index] != NULL) {
         mpMenuPaneC[index]->hide();
-    }    
+    }
     if (mpMenuPane2[index] != NULL) {
         mpMenuPane2[index]->hide();
-    } 
+    }
     if (mpMenuPane3[index] != NULL) {
         mpMenuPane3[index]->hide();
     }
@@ -2181,9 +2202,7 @@ void dMenu_Option_c::menuHide(int index) {
 #pragma push
 #pragma force_active on
 static const u64 tag_frame[6] = {
-    'flame_00', 'flame_01',
-    'flame_02', 'flame_03',
-    'flame_04', 'flame_05',
+    'flame_00', 'flame_01', 'flame_02', 'flame_03', 'flame_04', 'flame_05',
 };
 #pragma pop
 
@@ -2191,9 +2210,7 @@ static const u64 tag_frame[6] = {
 #pragma push
 #pragma force_active on
 static const u64 tag_menu0[6] = {
-    'fenu_t0', 'fenu_t1',
-    'fenu_t2', 'fenu_t3',
-    'fenu_t4', 'fenu_t5',
+    'fenu_t0', 'fenu_t1', 'fenu_t2', 'fenu_t3', 'fenu_t4', 'fenu_t5',
 };
 #pragma pop
 
@@ -2201,9 +2218,7 @@ static const u64 tag_menu0[6] = {
 #pragma push
 #pragma force_active on
 static const u64 let_n[6] = {
-    'let_00_n', 'let_01_n',
-    'let_02_n', 'let_03_n',
-    'let_04_n', 'let_05_n',
+    'let_00_n', 'let_01_n', 'let_02_n', 'let_03_n', 'let_04_n', 'let_05_n',
 };
 #pragma pop
 
@@ -2211,9 +2226,7 @@ static const u64 let_n[6] = {
 #pragma push
 #pragma force_active on
 static const u64 let2_n[6] = {
-    'let_00_n', 'let_01_n',
-    'let_02_n', 'let_03_n',
-    'let_04_n',
+    'let_00_n', 'let_01_n', 'let_02_n', 'let_03_n', 'let_04_n',
 };
 #pragma pop
 
@@ -2221,9 +2234,7 @@ static const u64 let2_n[6] = {
 #pragma push
 #pragma force_active on
 static const u64 menu_n[6] = {
-    'menu_n0', 'menu_n1',
-    'menu_n2', 'menu_n3',
-    'menu_n4', 'menu_n5',
+    'menu_n0', 'menu_n1', 'menu_n2', 'menu_n3', 'menu_n4', 'menu_n5',
 };
 #pragma pop
 
@@ -2231,9 +2242,7 @@ static const u64 menu_n[6] = {
 #pragma push
 #pragma force_active on
 static const u64 menu2_n[6] = {
-    'mw_n_0', 'mw_n_1',
-    'mw_n_2', 'mw_n_3',
-    'mw_n_4',
+    'mw_n_0', 'mw_n_1', 'mw_n_2', 'mw_n_3', 'mw_n_4',
 };
 #pragma pop
 
@@ -2241,9 +2250,7 @@ static const u64 menu2_n[6] = {
 #pragma push
 #pragma force_active on
 static const u64 al0_n[6] = {
-    's_grr_00', 's_grr_01',
-    's_grr_02', 's_grr_03',
-    's_grr_04', 's_grr_05',
+    's_grr_00', 's_grr_01', 's_grr_02', 's_grr_03', 's_grr_04', 's_grr_05',
 };
 #pragma pop
 
@@ -2251,9 +2258,7 @@ static const u64 al0_n[6] = {
 #pragma push
 #pragma force_active on
 static const u64 al1_n[6] = {
-    'c_grr_00', 'c_grr_01',
-    'c_grr_02', 'c_grr_03',
-    'c_grr_04', 'c_grr_05',
+    'c_grr_00', 'c_grr_01', 'c_grr_02', 'c_grr_03', 'c_grr_04', 'c_grr_05',
 };
 #pragma pop
 
@@ -2261,9 +2266,7 @@ static const u64 al1_n[6] = {
 #pragma push
 #pragma force_active on
 static const u64 al2_n[6] = {
-    's_grl_00', 's_grl_01',
-    's_grl_02', 's_grl_03',
-    's_grl_04', 's_grl_05',
+    's_grl_00', 's_grl_01', 's_grl_02', 's_grl_03', 's_grl_04', 's_grl_05',
 };
 #pragma pop
 
@@ -2271,9 +2274,7 @@ static const u64 al2_n[6] = {
 #pragma push
 #pragma force_active on
 static const u64 al3_n[6] = {
-    'c_grl_00', 'c_grl_01',
-    'c_grl_02', 'c_grl_03',
-    'c_grl_04', 'c_grl_05',
+    'c_grl_00', 'c_grl_01', 'c_grl_02', 'c_grl_03', 'c_grl_04', 'c_grl_05',
 };
 #pragma pop
 
@@ -2281,9 +2282,7 @@ static const u64 al3_n[6] = {
 #pragma push
 #pragma force_active on
 static const u64 haihail_n[5] = {
-    'y_set_l0', 'y_set_l1', 
-    'y_set_l2', 'y_set_l3', 
-    'y_set_l4',
+    'y_set_l0', 'y_set_l1', 'y_set_l2', 'y_set_l3', 'y_set_l4',
 };
 #pragma pop
 
@@ -2291,9 +2290,7 @@ static const u64 haihail_n[5] = {
 #pragma push
 #pragma force_active on
 static const u64 haihair_n[5] = {
-    'y_set_r0', 'y_set_r1', 
-    'y_set_r2', 'y_set_r3', 
-    'y_set_r4',
+    'y_set_r0', 'y_set_r1', 'y_set_r2', 'y_set_r3', 'y_set_r4',
 };
 #pragma pop
 
@@ -2301,9 +2298,7 @@ static const u64 haihair_n[5] = {
 #pragma push
 #pragma force_active on
 static const u64 menu3_n[6] = {
-    'menuapn0', 'menuapn1',
-    'menuapn2', 'menuapn3',
-    'menuapn4',
+    'menuapn0', 'menuapn1', 'menuapn2', 'menuapn3', 'menuapn4',
 };
 #pragma pop
 
@@ -2327,7 +2322,8 @@ static const u64 ftv_btnA[5] = {
 #pragma push
 #pragma force_active on
 static const u64 fenu_t0[2] = {
-    'fenu_t0s', 'fenu_t0',
+    'fenu_t0s',
+    'fenu_t0',
 };
 #pragma pop
 
@@ -2335,7 +2331,8 @@ static const u64 fenu_t0[2] = {
 #pragma push
 #pragma force_active on
 static const u64 menu_t0[2] = {
-    'menu_t0s', 'menu_t0',
+    'menu_t0s',
+    'menu_t0',
 };
 #pragma pop
 
@@ -2343,7 +2340,8 @@ static const u64 menu_t0[2] = {
 #pragma push
 #pragma force_active on
 static const u64 fenu_t2[2] = {
-    'fenu_t1s', 'fenu_t1',
+    'fenu_t1s',
+    'fenu_t1',
 };
 #pragma pop
 
@@ -2351,23 +2349,23 @@ static const u64 fenu_t2[2] = {
 #pragma push
 #pragma force_active on
 static const u64 menu_t2[2] = {
-    'menu_t1s', 'menu_t1',
+    'menu_t1s',
+    'menu_t1',
 };
 #pragma pop
 
 /* 80397248-80397258 0238A8 0010+00 0/1 0/0 0/0 .rodata          fenu_t3$5296 */
 #pragma push
 #pragma force_active on
-static const u64 fenu_t3[2] = {
-    'fenu_t2s', 'fenu_t2'
-};
+static const u64 fenu_t3[2] = {'fenu_t2s', 'fenu_t2'};
 #pragma pop
 
 /* 80397258-80397268 0238B8 0010+00 0/1 0/0 0/0 .rodata          menu_t3$5297 */
 #pragma push
 #pragma force_active on
 static const u64 menu_t3[2] = {
-    'menu_t2s', 'menu_t2',
+    'menu_t2s',
+    'menu_t2',
 };
 #pragma pop
 
@@ -2375,7 +2373,8 @@ static const u64 menu_t3[2] = {
 #pragma push
 #pragma force_active on
 static const u64 fenu_t4[2] = {
-   'fenu_t3s', 'fenu_t3',
+    'fenu_t3s',
+    'fenu_t3',
 };
 #pragma pop
 
@@ -2383,7 +2382,8 @@ static const u64 fenu_t4[2] = {
 #pragma push
 #pragma force_active on
 static const u64 menu_t4[2] = {
-    'menu_t3s', 'menu_t3',
+    'menu_t3s',
+    'menu_t3',
 };
 #pragma pop
 
@@ -2391,7 +2391,8 @@ static const u64 menu_t4[2] = {
 #pragma push
 #pragma force_active on
 static const u64 fenu_t1[2] = {
-    'fenu_t4s', 'fenu_t4',
+    'fenu_t4s',
+    'fenu_t4',
 };
 #pragma pop
 
@@ -2399,7 +2400,8 @@ static const u64 fenu_t1[2] = {
 #pragma push
 #pragma force_active on
 static const u64 menu_t1[2] = {
-    'menu_t4s', 'menu_t4',
+    'menu_t4s',
+    'menu_t4',
 };
 #pragma pop
 
@@ -2407,7 +2409,8 @@ static const u64 menu_t1[2] = {
 #pragma push
 #pragma force_active on
 static const u64 fenu_t5[2] = {
-    'fenu_t5s', 'fenu_t5',
+    'fenu_t5s',
+    'fenu_t5',
 };
 #pragma pop
 
@@ -2415,7 +2418,8 @@ static const u64 fenu_t5[2] = {
 #pragma push
 #pragma force_active on
 static const u64 menu_t5[2] = {
-    'menu_t5s', 'menu_t5',
+    'menu_t5s',
+    'menu_t5',
 };
 #pragma pop
 
@@ -2423,9 +2427,7 @@ static const u64 menu_t5[2] = {
 #pragma push
 #pragma force_active on
 static const u64 menut_0[6] = {
-    'menut0as', 'menut0a',
-    'menut0a2', 'menut0a1',
-    'menut0a4', 'menut0a3',
+    'menut0as', 'menut0a', 'menut0a2', 'menut0a1', 'menut0a4', 'menut0a3',
 };
 #pragma pop
 
@@ -2433,9 +2435,7 @@ static const u64 menut_0[6] = {
 #pragma push
 #pragma force_active on
 static const u64 fenut_0[6] = {
-    'menut010', 'menut0a9',
-    'menut0a8', 'menut0a7',
-    'menut0a6', 'menut0a5',
+    'menut010', 'menut0a9', 'menut0a8', 'menut0a7', 'menut0a6', 'menut0a5',
 };
 #pragma pop
 
@@ -2443,9 +2443,7 @@ static const u64 fenut_0[6] = {
 #pragma push
 #pragma force_active on
 static const u64 menut_1[6] = {
-    'menut1as', 'menut1a',
-    'menut1a2', 'menut1a1',
-    'menut1a4', 'menut1a3',
+    'menut1as', 'menut1a', 'menut1a2', 'menut1a1', 'menut1a4', 'menut1a3',
 };
 #pragma pop
 
@@ -2453,9 +2451,7 @@ static const u64 menut_1[6] = {
 #pragma push
 #pragma force_active on
 static const u64 fenut_1[6] = {
-    'menut110', 'menut1a9',
-    'menut1a8', 'menut1a7',
-    'menut1a6', 'menut1a5',
+    'menut110', 'menut1a9', 'menut1a8', 'menut1a7', 'menut1a6', 'menut1a5',
 };
 #pragma pop
 
@@ -2463,9 +2459,7 @@ static const u64 fenut_1[6] = {
 #pragma push
 #pragma force_active on
 static const u64 menut_2[6] = {
-    'menut2as', 'menut2a',
-    'menut2a2', 'menut2a1',
-    'menut2a4', 'menut2a3',
+    'menut2as', 'menut2a', 'menut2a2', 'menut2a1', 'menut2a4', 'menut2a3',
 };
 #pragma pop
 
@@ -2473,9 +2467,7 @@ static const u64 menut_2[6] = {
 #pragma push
 #pragma force_active on
 static const u64 fenut_2[6] = {
-    'menut210', 'menut2a9',
-    'menut2a8', 'menut2a7',
-    'menut2a6', 'menut2a5',
+    'menut210', 'menut2a9', 'menut2a8', 'menut2a7', 'menut2a6', 'menut2a5',
 };
 #pragma pop
 
@@ -2483,9 +2475,7 @@ static const u64 fenut_2[6] = {
 #pragma push
 #pragma force_active on
 static const u64 menut_3[6] = {
-    'menut3a5', 'menut3a6',
-    'menut3a7', 'menut3a8',
-    'menut3a9', 'menut310',
+    'menut3a5', 'menut3a6', 'menut3a7', 'menut3a8', 'menut3a9', 'menut310',
 };
 #pragma pop
 
@@ -2493,9 +2483,7 @@ static const u64 menut_3[6] = {
 #pragma push
 #pragma force_active on
 static const u64 fenut_3[6] = {
-    'menut315', 'menut314',
-    'menut313', 'menut312',
-    'menut311', 'menut001',
+    'menut315', 'menut314', 'menut313', 'menut312', 'menut311', 'menut001',
 };
 #pragma pop
 
@@ -2503,9 +2491,7 @@ static const u64 fenut_3[6] = {
 #pragma push
 #pragma force_active on
 static const u64 menut_4[6] = {
-    'menut3as', 'menut3a',
-    'menut3a2', 'menut3a1',
-    'menut3a4', 'menut3a3',
+    'menut3as', 'menut3a', 'menut3a2', 'menut3a1', 'menut3a4', 'menut3a3',
 };
 #pragma pop
 
@@ -2513,9 +2499,7 @@ static const u64 menut_4[6] = {
 #pragma push
 #pragma force_active on
 static const u64 fenut_4[6] = {
-    'menut321', 'menut320',
-    'menut319', 'menut318',
-    'menut317', 'menut316',
+    'menut321', 'menut320', 'menut319', 'menut318', 'menut317', 'menut316',
 };
 #pragma pop
 
@@ -2523,9 +2507,7 @@ static const u64 fenut_4[6] = {
 #pragma push
 #pragma force_active on
 static const u64 tx[6] = {
-    'w_p_tex5', 'w_p_tex6',
-    'w_p_tex3', 'w_p_tex4',
-    'fps_tex1', 'f_p_tex1',
+    'w_p_tex5', 'w_p_tex6', 'w_p_tex3', 'w_p_tex4', 'fps_tex1', 'f_p_tex1',
 };
 #pragma pop
 
@@ -2533,8 +2515,10 @@ static const u64 tx[6] = {
 #pragma push
 #pragma force_active on
 static const u64 op_tx[4] = {
-    'w_text_n', 'w_btn_n',
-    'w_k_t_n', 'w_abtn_n',
+    'w_text_n',
+    'w_btn_n',
+    'w_k_t_n',
+    'w_abtn_n',
 };
 #pragma pop
 
@@ -2550,11 +2534,8 @@ static const u64 z_tx[3] = {
 #pragma push
 #pragma force_active on
 static const u64 txTV[10] = {
-    'menu_t61', 'menu_t2',
-    'menu_t91', 'menu_t1',
-    'menut101', 'menu_t01',
-    'menu_t71', 'menu_t3',
-    'menu_t81', 'menu_t4',
+    'menu_t61', 'menu_t2',  'menu_t91', 'menu_t1',  'menut101',
+    'menu_t01', 'menu_t71', 'menu_t3',  'menu_t81', 'menu_t4',
 };
 #pragma pop
 
@@ -2566,7 +2547,7 @@ void dMenu_Option_c::screenSet() {
     Vec pos = mpTitle->getGlobalVtxCenter(mpTitle->mPane, false, 0);
     mpWarning->mPosY = pos.y + g_drawHIO.mOptionScreen.mBackgroundPosY;
     for (int i = 0; i < 6; i++) {
-        field_0x280[i] = (J2DPicture*)mpScreen->search(tag_frame[i]); 
+        field_0x280[i] = (J2DPicture*)mpScreen->search(tag_frame[i]);
         field_0x298[i] = (J2DTextBox*)mpScreen->search(tag_menu0[i]);
     }
     field_0x2b0[0] = field_0x280[1]->getBlack();
@@ -2605,7 +2586,7 @@ void dMenu_Option_c::screenSet() {
         field_0x2d0[i][0] = mpScreen->search(al0_n[i]);
         field_0x2d0[i][1] = mpScreen->search(al1_n[i]);
         field_0x2d0[i][2] = mpScreen->search(al2_n[i]);
-        field_0x2d0[i][3] = mpScreen->search(al3_n[i]); 
+        field_0x2d0[i][3] = mpScreen->search(al3_n[i]);
     }
     for (int i = 0; i < 4; i++) {
         field_0x404[i] = field_0x2d0[1][i]->getAlpha();
@@ -2779,7 +2760,7 @@ void dMenu_Option_c::screenSet() {
         J2DTextBox* tvScreen = (J2DTextBox*)mpTVScreen->search(txTV[i]);
         tvScreen->setFont(mpFont);
         tvScreen->setCharSpace(0.0f);
-        
+
         if (i < 2) {
             tvScreen->setString(0x100, "");
             mpString->getString(0x558, tvScreen, NULL, NULL, NULL, 0);
@@ -2822,7 +2803,7 @@ void dMenu_Option_c::setSoundMode(u32 param_0) {
     case 1:
     case 2:
         OSSetSoundMode(OS_SOUND_MODE_STEREO);
-        break;    
+        break;
     }
 }
 
@@ -2913,9 +2894,10 @@ void dMenu_Option_c::setCursorPos(u8 i_index) {
     if (i_index == 4) {
         i_index = 5;
     }
-    
+
     Vec pos = mpMenuPane[i_index]->getGlobalVtxCenter(mpMenuPane[i_index]->mPane, false, 0);
-    mpDrawCursor->setPos(pos.x + (field_0x330 - field_0x334), pos.y, mpMenuPane[i_index]->getPanePtr(), false);
+    mpDrawCursor->setPos(pos.x + (field_0x330 - field_0x334), pos.y,
+                         mpMenuPane[i_index]->getPanePtr(), false);
     setSelectColor(i_index, false);
     changeBarColor(false);
 }
@@ -2977,7 +2959,7 @@ u8 dMenu_Option_c::getSelectType() {
  */
 void dMenu_Option_c::changeBarColor(bool i_changeColor) {
     u8 selectType = getSelectType();
-    
+
     for (int i = 0; i < 6; i++) {
         if (i == selectType || i_changeColor) {
             field_0x280[i]->setBlackWhite(field_0x2b0[0], field_0x2c0[0]);
@@ -2997,7 +2979,9 @@ void dMenu_Option_c::changeBarColor(bool i_changeColor) {
 
 /* 801E78B8-801E7D18 1E21F8 0460+00 4/4 0/0 0/0 .text            setHIO__14dMenu_Option_cFb */
 void dMenu_Option_c::setHIO(bool i_useHIO) {
-    if (field_0x378 != g_drawHIO.mOptionScreen.mWindowPosX || field_0x37c != g_drawHIO.mOptionScreen.mWindowPosY) {
+    if (field_0x378 != g_drawHIO.mOptionScreen.mWindowPosX ||
+        field_0x37c != g_drawHIO.mOptionScreen.mWindowPosY)
+    {
         field_0x378 = g_drawHIO.mOptionScreen.mWindowPosX;
         field_0x37c = g_drawHIO.mOptionScreen.mWindowPosY;
         for (int i = 0; i < 5; i++) {
@@ -3013,18 +2997,27 @@ void dMenu_Option_c::setHIO(bool i_useHIO) {
         }
         setCursorPos(getSelectType());
     }
-    if (field_0x3b8.r != g_drawHIO.mOptionScreen.mSelectColor.r || field_0x3b8.g != g_drawHIO.mOptionScreen.mSelectColor.g || field_0x3b8.b != g_drawHIO.mOptionScreen.mSelectColor.b || field_0x3b8.a != g_drawHIO.mOptionScreen.mSelectColor.a
-        || field_0x3bc.r != g_drawHIO.mOptionScreen.mUnselectColor.r || field_0x3bc.g != g_drawHIO.mOptionScreen.mUnselectColor.g || field_0x3bc.b != g_drawHIO.mOptionScreen.mUnselectColor.b || field_0x3bc.a != g_drawHIO.mOptionScreen.mUnselectColor.a) {
-            field_0x3b8.set(g_drawHIO.mOptionScreen.mSelectColor);
-            field_0x3bc.set(g_drawHIO.mOptionScreen.mUnselectColor);
-            setSelectColor(getSelectType(), false);
+    if (field_0x3b8.r != g_drawHIO.mOptionScreen.mSelectColor.r ||
+        field_0x3b8.g != g_drawHIO.mOptionScreen.mSelectColor.g ||
+        field_0x3b8.b != g_drawHIO.mOptionScreen.mSelectColor.b ||
+        field_0x3b8.a != g_drawHIO.mOptionScreen.mSelectColor.a ||
+        field_0x3bc.r != g_drawHIO.mOptionScreen.mUnselectColor.r ||
+        field_0x3bc.g != g_drawHIO.mOptionScreen.mUnselectColor.g ||
+        field_0x3bc.b != g_drawHIO.mOptionScreen.mUnselectColor.b ||
+        field_0x3bc.a != g_drawHIO.mOptionScreen.mUnselectColor.a)
+    {
+        field_0x3b8.set(g_drawHIO.mOptionScreen.mSelectColor);
+        field_0x3bc.set(g_drawHIO.mOptionScreen.mUnselectColor);
+        setSelectColor(getSelectType(), false);
     }
     for (int i = 0; i < 6; i++) {
-        if (field_0x384[i] != g_drawHIO.mOptionScreen.mOptionTypeBGPosX[i] || field_0x39c[i] != g_drawHIO.mOptionScreen.mOptionTypeBGPosY[i]) {
+        if (field_0x384[i] != g_drawHIO.mOptionScreen.mOptionTypeBGPosX[i] ||
+            field_0x39c[i] != g_drawHIO.mOptionScreen.mOptionTypeBGPosY[i])
+        {
             field_0x384[i] = g_drawHIO.mOptionScreen.mOptionTypeBGPosX[i];
             field_0x39c[i] = g_drawHIO.mOptionScreen.mOptionTypeBGPosY[i];
             mpMenuPane[i]->paneTrans(field_0x384[i], field_0x39c[i]);
-        } 
+        }
     }
     for (int i = 0; i < 2; i++) {
         if (mBarScale[i] != g_drawHIO.mOptionScreen.mBarScale[i]) {
@@ -3037,22 +3030,26 @@ void dMenu_Option_c::setHIO(bool i_useHIO) {
     }
     if (g_drawHIO.mCollectScreen.mButtonDebugON != false || i_useHIO) {
         if (mpButtonAB[0] != NULL) {
-            mpButtonAB[0]->paneTrans(g_drawHIO.mCollectScreen.mAButtonPosX, g_drawHIO.mCollectScreen.mAButtonPosY);
+            mpButtonAB[0]->paneTrans(g_drawHIO.mCollectScreen.mAButtonPosX,
+                                     g_drawHIO.mCollectScreen.mAButtonPosY);
             f32 AButtonScale = g_drawHIO.mCollectScreen.mAButtonScale;
-            mpButtonAB[0]->scale(AButtonScale, AButtonScale); 
+            mpButtonAB[0]->scale(AButtonScale, AButtonScale);
         }
         if (mpButtonAB[1] != NULL) {
-            mpButtonAB[1]->paneTrans(g_drawHIO.mCollectScreen.mBButtonPosX, g_drawHIO.mCollectScreen.mBButtonPosY);
+            mpButtonAB[1]->paneTrans(g_drawHIO.mCollectScreen.mBButtonPosX,
+                                     g_drawHIO.mCollectScreen.mBButtonPosY);
             f32 BButtonScale = g_drawHIO.mCollectScreen.mBButtonScale;
             mpButtonAB[1]->scale(BButtonScale, BButtonScale);
         }
         if (mpButtonText[0] != NULL) {
-            mpButtonText[0]->paneTrans(g_drawHIO.mCollectScreen.mAButtonTextPosX, g_drawHIO.mCollectScreen.mAButtonTextPosY);
+            mpButtonText[0]->paneTrans(g_drawHIO.mCollectScreen.mAButtonTextPosX,
+                                       g_drawHIO.mCollectScreen.mAButtonTextPosY);
             f32 AButtonTextScale = g_drawHIO.mCollectScreen.mAButtonTextScale;
             mpButtonText[0]->scale(AButtonTextScale, AButtonTextScale);
         }
         if (mpButtonText[1] != NULL) {
-            mpButtonText[1]->paneTrans(g_drawHIO.mCollectScreen.mBButtonTextPosX, g_drawHIO.mCollectScreen.mBButtonTextPosY);
+            mpButtonText[1]->paneTrans(g_drawHIO.mCollectScreen.mBButtonTextPosX,
+                                       g_drawHIO.mCollectScreen.mBButtonTextPosY);
             f32 BButtonTextScale = g_drawHIO.mCollectScreen.mBButtonTextScale;
             mpButtonText[1]->scale(BButtonTextScale, BButtonTextScale);
         }
@@ -3088,7 +3085,8 @@ void dMenu_Option_c::setZButtonString(u16 i_stringID) {
 // Matches with literals
 void dMenu_Option_c::changeTVCheck() {
     if (mDoCPd_c::getTrigZ(0) != 0) {
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_CHANGE_WINDOW, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_CHANGE_WINDOW, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                        -1.0f, 0);
         field_0x3f3 = 0;
         setAButtonString(0);
         setBButtonString(0);
@@ -3112,7 +3110,7 @@ asm void dMenu_Option_c::changeTVCheck() {
 #pragma push
 #pragma force_active on
 static const u64 txTVhide[5] = {
-    'menu_6n','menu_9n', 'menu_10n', 'menu_7n', 'menu_8n',
+    'menu_6n', 'menu_9n', 'menu_10n', 'menu_7n', 'menu_8n',
 };
 #pragma pop
 
@@ -3211,11 +3209,10 @@ void dMenu_Option_c::paneResize(u64 i_tag) {
     f32 boundsY = mpClipScreen->search(i_tag)->getBounds().i.y;
     f32 boundsX = mpClipScreen->search(i_tag)->getBounds().i.x - 5.0f;
     mpClipScreen->search(i_tag)->move(boundsX, boundsY);
-    
-    
+
     f32 height = mpClipScreen->search(i_tag)->getHeight();
     f32 width = mpClipScreen->search(i_tag)->getWidth();
-    
+
     mpClipScreen->search(i_tag)->resize(width + 10.0f, height);
 }
 #else
@@ -3260,8 +3257,10 @@ void dMenu_Option_c::yesnoMenuMoveAnmInitSet(int param_0, int param_1) {
         field_0x3fa = 1;
     }
     if (param_0 == 0x473) {
-        ((J2DTextBox*)mpYesNoTxt_c[field_0x3f9]->getPanePtr())->setWhite(JUtility::TColor(0xff, 0xff, 0xff, 0xff));
-        ((J2DTextBox*)mpYesNoTxt_c[field_0x3fa]->getPanePtr())->setWhite(JUtility::TColor(0x96, 0x96, 0x96, 0xff));
+        ((J2DTextBox*)mpYesNoTxt_c[field_0x3f9]->getPanePtr())
+            ->setWhite(JUtility::TColor(0xff, 0xff, 0xff, 0xff));
+        ((J2DTextBox*)mpYesNoTxt_c[field_0x3fa]->getPanePtr())
+            ->setWhite(JUtility::TColor(0x96, 0x96, 0x96, 0xff));
     }
     mpDrawCursor->setAlphaRate(0.0f);
     mpYesNoSelBase_c[0]->getPanePtr()->setAnimation(field_0x20);
@@ -3346,7 +3345,7 @@ u8 dMenu_Option_c::yesnoSelectMoveAnm() {
     u8 ret = 0;
     bool bVar1;
     bool bVar2;
-    
+
     if (field_0x3fa != 0xff) {
         if (field_0x3c8[field_0x3fa] != OptYnSelStartFrameTbl[field_0x3fa]) {
             if (field_0x3c8[field_0x3fa] < OptYnSelStartFrameTbl[field_0x3fa]) {
@@ -3432,12 +3431,13 @@ SECTION_SDATA2 static f32 lit_6509 = 3.0f / 50.0f;
 // Matches with literals
 void dMenu_Option_c::yesnoCursorShow() {
     if (field_0x3f9 != 0xff) {
-
-        ((J2DTextBox*)mpYesNoTxt_c[field_0x3f9]->getPanePtr())->setWhite(JUtility::TColor(0xff, 0xff, 0xff, 0xff));
+        ((J2DTextBox*)mpYesNoTxt_c[field_0x3f9]->getPanePtr())
+            ->setWhite(JUtility::TColor(0xff, 0xff, 0xff, 0xff));
         mpYesNoCurWaku_c[field_0x3f9]->setAlpha(0xff);
         mpYesNoCurWakuG0_c[field_0x3f9]->setAlpha(0xff);
         mpYesNoCurWakuG1_c[field_0x3f9]->setAlpha(0xff);
-        Vec pos = mpYesNoSelBase_c[field_0x3f9]->getGlobalVtxCenter(mpYesNoSelBase_c[field_0x3f9]->mPane, false, 0);
+        Vec pos = mpYesNoSelBase_c[field_0x3f9]->getGlobalVtxCenter(
+            mpYesNoSelBase_c[field_0x3f9]->mPane, false, 0);
         mpDrawCursor->setPos(pos.x, pos.y, mpYesNoSelBase_c[field_0x3f9]->getPanePtr(), true);
         mpDrawCursor->setAlphaRate(1.0f);
         mpDrawCursor->setParam(0.96f, 0.84f, 0.06f, 0.5f, 0.5f);
@@ -3460,15 +3460,17 @@ asm void dMenu_Option_c::yesnoCursorShow() {
 void dMenu_Option_c::yesNoSelectStart() {
     if (field_0x3f9 != 0) {
         if (field_0x3f7 == 1) {
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_NAME_OK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_NAME_OK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                            0);
         } else {
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                            0);
         }
         yesnoMenuMoveAnmInitSet(0x47D, 0x473);
         mpDrawCursor->setAlphaRate(0.0f);
     } else {
         yesnoCancelAnmSet();
-    } 
+    }
 }
 #else
 #pragma push
@@ -3551,13 +3553,18 @@ u8 dMenu_Option_c::yesnoWakuAlpahAnm(u8 i_idx) {
     bool wakuAnimeG0;
     bool wakuAnimeG1;
     bool colorAnime;
-    
 
     if (i_idx != 0xff) {
-        wakuAnime = mpYesNoCurWaku_c[i_idx]->alphaAnime(field_0x3ff[i_idx], field_0x3fb[i_idx], field_0x3fd[i_idx], 0);
-        wakuAnimeG0 = mpYesNoCurWakuG0_c[i_idx]->alphaAnime(field_0x3ff[i_idx], field_0x3fb[i_idx], field_0x3fd[i_idx], 0);
-        wakuAnimeG1 = mpYesNoCurWakuG1_c[i_idx]->alphaAnime(field_0x3ff[i_idx], field_0x3fb[i_idx], field_0x3fd[i_idx], 0);
-        colorAnime = mpYesNoTxt_c[i_idx]->colorAnime(field_0x3ff[i_idx], mpYesNoTxt_c[i_idx]->getInitBlack(), mpYesNoTxt_c[i_idx]->getInitBlack(), JUtility::TColor(0xff, 0xff, 0xff, 0xff), JUtility::TColor(0x96, 0x96, 0x96, 0xff), 0);
+        wakuAnime = mpYesNoCurWaku_c[i_idx]->alphaAnime(field_0x3ff[i_idx], field_0x3fb[i_idx],
+                                                        field_0x3fd[i_idx], 0);
+        wakuAnimeG0 = mpYesNoCurWakuG0_c[i_idx]->alphaAnime(field_0x3ff[i_idx], field_0x3fb[i_idx],
+                                                            field_0x3fd[i_idx], 0);
+        wakuAnimeG1 = mpYesNoCurWakuG1_c[i_idx]->alphaAnime(field_0x3ff[i_idx], field_0x3fb[i_idx],
+                                                            field_0x3fd[i_idx], 0);
+        colorAnime = mpYesNoTxt_c[i_idx]->colorAnime(
+            field_0x3ff[i_idx], mpYesNoTxt_c[i_idx]->getInitBlack(),
+            mpYesNoTxt_c[i_idx]->getInitBlack(), JUtility::TColor(0xff, 0xff, 0xff, 0xff),
+            JUtility::TColor(0x96, 0x96, 0x96, 0xff), 0);
     } else {
         wakuAnime = true;
         wakuAnimeG0 = true;
@@ -3588,8 +3595,7 @@ extern "C" asm void draw__14dMenu_Option_cFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __sinit_d_menu_option_cpp() {
-    nofralloc
+asm void __sinit_d_menu_option_cpp(){nofralloc
 #include "asm/d/menu/d_menu_option/__sinit_d_menu_option_cpp.s"
 }
 #pragma pop
