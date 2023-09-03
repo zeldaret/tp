@@ -156,7 +156,7 @@ void JASDriver::initAI(void (*param_0)(void)) {
         JASCalc::bzero(sDmaDacBuffer[i], size);
         DCStoreRange(sDmaDacBuffer[i], size);
     }
-    sDspDacBuffer = new(JASDram, 0) void*[data_804507A8];
+    sDspDacBuffer = new(JASDram, 0) s16*[data_804507A8];
     for (int i = 0; i < data_804507A8; i++) {
         sDspDacBuffer[i] = new(JASDram, 0x20) s16[getDacSize()];
         JASCalc::bzero(sDspDacBuffer[i], size);
@@ -250,15 +250,7 @@ COMPILER_STRIP_GATE(0x8039B2E0, &JASDriver::sMixFuncs);
 /* 804512C4-804512C8 0007C4 0004+00 2/1 0/0 0/0 .sbss            sSubFrameCounter__9JASDriver */
 u32 JASDriver::sSubFrameCounter;
 
-/* 804512C8-804512CC 0007C8 0004+00 1/1 0/0 0/0 .sbss            dacp$239 */
-static u32 dacp;
-
-/* 804512CC-804512D0 0007CC 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_804512CC[4];
-
 /* 8029C568-8029C6C4 296EA8 015C+00 0/0 1/1 0/0 .text            updateDac__9JASDriverFv */
-// regswap
-#ifdef NONMATCHING
 void JASDriver::updateDac() {
     static u32 dacp = 0;
     s16* r30 = lastRspMadep;
@@ -266,7 +258,7 @@ void JASDriver::updateDac() {
     if (r30) {
         AIInitDMA((u32)r30, getDacSize() * 2);
     }
-    u32 frameSamples = getFrameSamples();
+    s32 frameSamples = getFrameSamples();
     readDspBuffer(sDmaDacBuffer[dacp], frameSamples);
     if (sDspStatus == 0) {
         finishDSPFrame();
@@ -287,16 +279,6 @@ void JASDriver::updateDac() {
         dacCallbackFunc(lastRspMadep, getFrameSamples());
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDriver::updateDac() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAiCtrl/updateDac__9JASDriverFv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 8039B2F0-8039B2F0 027950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -471,7 +453,7 @@ SECTION_DEAD static char const* const stringBase_8039B315 = "MONO-MIX";
 void JASDriver::mixMonoTrack(s16* param_0, u32 param_1, MixCallback param_2) {
     JASProbe::start(5, "MONO-MIX");
     s16* r31 = param_2(param_1);
-    if (r31) {
+    if (r31 == NULL) {
         return;
     }
     JASProbe::stop(5);
