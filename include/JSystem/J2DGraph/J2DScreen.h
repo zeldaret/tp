@@ -69,6 +69,8 @@ public:
     /* 802F9640 */ static void* getNameResource(char const*);
     /* 802F9690 */ void animation();
 
+    void setScissor(bool i_scissor) { mScissor = i_scissor; }
+
     static J2DDataManage* getDataManage() { return mDataManage; }
 
     static J2DDataManage* mDataManage;

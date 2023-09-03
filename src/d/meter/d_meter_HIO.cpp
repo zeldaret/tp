@@ -234,8 +234,8 @@ dMeter_drawCollectHIO_c::dMeter_drawCollectHIO_c() {
 
 /* 801FE4EC-801FE5CC 1F8E2C 00E0+00 1/1 0/0 0/0 .text            __ct__22dMeter_drawOptionHIO_cFv */
 dMeter_drawOptionHIO_c::dMeter_drawOptionHIO_c() {
-    mSelectBarScale = 1.02f;
-    mUnselectBarScale = 0.98f;
+    mBarScale[0] = 1.02f;
+    mBarScale[1] = 0.98f;
     mArrowSize = 0.3f;
 
     mSelectNameColor.set(255, 255, 255, 255);

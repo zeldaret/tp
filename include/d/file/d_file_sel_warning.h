@@ -26,7 +26,9 @@ public:
     u8 getStatus() { return mStatus; }
     void draw() { _draw(); }
 
-    u8 field_0x4[0x3D - 0x4];
+    u8 field_0x4[0x38 - 0x4];
+    /* 0x38 */ f32 mPosY;
+    /* 0x3C */ u8 field_0x3c[0x3D - 0x3C];
     /* 0x3D */ u8 mStatus;
 };
 

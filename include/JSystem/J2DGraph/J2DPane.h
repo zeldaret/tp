@@ -109,6 +109,7 @@ public:
 
     f32 getHeight() const { return mBounds.getHeight(); }
     f32 getWidth() const { return mBounds.getWidth(); }
+    f32 i_getWidth() const { return mBounds.i_getWidth(); }
     JSUTree<J2DPane>* getFirstChild() { return mPaneTree.getFirstChild(); }
     const JSUTree<J2DPane>* getPaneTree() { return &mPaneTree; }
     u8 getAlpha() const { return mAlpha; }

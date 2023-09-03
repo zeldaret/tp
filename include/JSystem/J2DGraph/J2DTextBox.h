@@ -105,6 +105,11 @@ public:
         size.mSizeY = mFontSizeY;
     }
 
+    void setFontColor(JUtility::TColor i_charColor, JUtility::TColor i_GradientColor) {
+        mCharColor = i_charColor;
+        mGradientColor = i_GradientColor;
+    }
+
     void setCharSpace(f32 space) { mCharSpacing = space; }
     f32 getCharSpace() const { return mCharSpacing; }
     void setLineSpace(f32 space) { mLineSpacing = space; }
