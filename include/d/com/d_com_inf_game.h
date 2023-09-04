@@ -418,6 +418,7 @@ public:
     JKRArchive* getNameResArchive() { return mNameResArchive; }
     JKRArchive* getFmapResArchive() { return mFmapResArchive; }
     JKRAramArchive* getFieldMapArchive2() { return (JKRAramArchive*)mFieldMapArchive2; }
+    JKRArchive* getOptionResArchive() { return mOptionResArchive; }
 
     void setFieldMapArchive2(JKRArchive* arc) { mFieldMapArchive2 = arc; }
     void setAnmArchive(JKRArchive* arc) { mAnmArchive = arc; }
@@ -426,6 +427,7 @@ public:
     void setCollectResArchive(JKRArchive* arc) { mCollectResArchive = arc; }
     void setItemIconArchive(JKRArchive* arc) { mItemIconArchive = arc; }
     void setAllMapArchive(JKRArchive* arc) { mAllMapArchive = arc; }
+    void setOptionResArchive(JKRArchive* arc) { mOptionResArchive = arc; }
     void setRingResArchive(JKRArchive* arc) { mRingResArchive = arc; }
     void setNameResArchive(JKRArchive* arc) { mNameResArchive = arc; }
     void setDemoMsgArchive(JKRArchive* arc) { mDemoMsgArchive = arc; }
@@ -1226,6 +1228,14 @@ inline u8 dComIfGs_getOptAttentionType() {
     return g_dComIfG_gameInfo.info.getPlayer().getConfig().getAttentionType();
 }
 
+inline u8 dComIfGs_getOptCameraControl() {
+    return g_dComIfG_gameInfo.info.getPlayer().getConfig().getCameraControl();
+}
+
+inline u8 dComIfGs_getOptSound() {
+    return g_dComIfG_gameInfo.info.getPlayer().getConfig().getSound();
+}
+
 inline BOOL dComIfGs_isTbox(int i_no) {
     return g_dComIfG_gameInfo.info.getMemory().getBit().isTbox(i_no);
 }
@@ -1672,6 +1682,22 @@ inline void dComIfGs_setLastWarpAcceptStage(s8 param_0) {
     g_dComIfG_gameInfo.info.getPlayer().getPlayerLastMarkInfo().setWarpAcceptStage(param_0);
 }
 
+inline void dComIfGs_setOptSound(u8 i_mode) {
+    g_dComIfG_gameInfo.info.getPlayer().getConfig().setSound(i_mode);
+}
+
+inline void dComIfGs_setOptVibration(u8 i_status) {
+    g_dComIfG_gameInfo.info.getPlayer().getConfig().setVibration(i_status);
+}
+
+inline void dComIfGs_setOptAttentionType(u8 i_attentionType) {
+    g_dComIfG_gameInfo.info.getPlayer().getConfig().setAttentionType(i_attentionType);
+}
+
+inline void dComIfGs_setOptCameraControl(u8 i_cameraControl) {
+    g_dComIfG_gameInfo.info.getPlayer().getConfig().setCameraControl(i_cameraControl);
+}
+
 inline void dComIfGs_setOptPointer(u8 i_pointer) {
     g_dComIfG_gameInfo.info.getPlayer().getConfig().setPointer(i_pointer);
 }
@@ -1912,6 +1938,10 @@ inline void dComIfGp_setAllMapArchive(JKRArchive* arc) {
 
 inline void dComIfGp_setRingResArchive(JKRArchive* arc) {
     g_dComIfG_gameInfo.play.setRingResArchive(arc);
+}
+
+inline void dComIfGp_setOptionResArchive(JKRArchive* arc) {
+    g_dComIfG_gameInfo.play.setOptionResArchive(arc);
 }
 
 inline void dComIfGp_setNameResArchive(JKRArchive* arc) {
@@ -2735,6 +2765,10 @@ inline dStage_Multi_c* dComIfGp_getMulti() {
 
 inline JKRAramArchive* dComIfGp_getFieldMapArchive2() {
     return g_dComIfG_gameInfo.play.getFieldMapArchive2();
+}
+
+inline JKRArchive* dComIfGp_getOptionResArchive() {
+    return g_dComIfG_gameInfo.play.getOptionResArchive();
 }
 
 inline void dComIfGp_onPauseFlag() {

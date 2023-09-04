@@ -95,8 +95,7 @@ public:
     /* 0x3C */ f32 mOptionTypeBGPosY[4];
     /* 0x4C */ f32 mTVsettingPosY;
     /* 0x50 */ f32 mPointerCalibrationPosY;
-    /* 0x54 */ f32 mSelectBarScale;
-    /* 0x58 */ f32 mUnselectBarScale;
+    /* 0x54 */ f32 mBarScale[2]; // 0: mSelectBarScale | 1: mUnselectBarScale
     /* 0x5C */ f32 mBackgroundPosY;
     /* 0x60 */ f32 mArrowOffsetX;
     /* 0x64 */ f32 mArrowOffsetX_4x3;
