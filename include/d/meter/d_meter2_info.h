@@ -5,7 +5,7 @@
 
 class CPaneMgr;
 class J2DTextBox;
-class JMSMesgEntry_c;
+struct JMSMesgEntry_c;
 class JUTFont;
 
 struct dMenu_LetterData {

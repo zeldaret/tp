@@ -4,10 +4,6 @@
 #include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JASGadget.h"
 
-struct JAISe;
-struct JAISeq;
-struct JAIStream;
-
 struct JAISoundInfo : public JASGlobalInstance<JAISoundInfo> {
     /* 802A2D34 */ JAISoundInfo(bool);
     virtual u32 getSoundType(JAISoundID) const = 0;

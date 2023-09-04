@@ -355,8 +355,8 @@ public:
 };  // Size: 0x24
 
 struct J3DTextureSRTInfo;
-struct J3DModelData;
-struct J3DMaterialTable;
+class J3DModelData;
+class J3DMaterialTable;
 
 class J3DAnmTextureSRTKey : public J3DAnmBase {
 public:

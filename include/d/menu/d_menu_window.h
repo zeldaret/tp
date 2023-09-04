@@ -6,7 +6,7 @@
 #include "m_Do/m_Do_graphic.h"
 
 struct CSTControl;
-struct STControl;
+class STControl;
 class dMenu_Collect_c;
 class dMenu_Dmap_c;
 class dMenu_Fishing_c;

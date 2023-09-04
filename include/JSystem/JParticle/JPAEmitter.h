@@ -10,10 +10,10 @@
 #include "JSystem/JParticle/JPADynamicsBlock.h"
 #include "JSystem/JSupport/JSUList.h"
 
-struct JPAResourceManager;
-struct JPABaseEmitter;
-struct JPAEmitterManager;
-struct JPAParticleCallBack;
+class JPAResourceManager;
+class JPABaseEmitter;
+class JPAEmitterManager;
+class JPAParticleCallBack;
 
 struct JPAEmitterWorkData {
     /* 0x00 */ JPABaseEmitter* mpEmtr;

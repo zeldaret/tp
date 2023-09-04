@@ -6,7 +6,7 @@
 #include "JSystem/JSupport/JSUList.h"
 
 struct JAIAudience;
-struct JAISeq;
+class JAISeq;
 
 class JAISeqMgr : public JAISeqDataUser, public JASGlobalInstance<JAISeqMgr> {
 public:

@@ -7,7 +7,7 @@ class CPaneMgr;
 struct CSTControl;
 class J2DTextBox;
 class JUTFont;
-struct STControl;
+class STControl;
 class dFile_warning_c;
 class dMenu_Calibration_c;
 class mDoDvdThd_mountArchive_c;

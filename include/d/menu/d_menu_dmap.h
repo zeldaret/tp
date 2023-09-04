@@ -11,7 +11,7 @@ class J2DPicture;
 class J2DScreen;
 class JKRArchive;
 class JKRExpHeap;
-struct STControl;
+class STControl;
 class dMenu_DmapMapCtrl_c;
 class dMenu_DmapBg_c;
 class mDoDvdThd_mountArchive_c;

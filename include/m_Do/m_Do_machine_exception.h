@@ -3,7 +3,7 @@
 
 #include "dolphin/gx/GX.h"
 
-struct JUTConsole;
+class JUTConsole;
 
 void print_f(char const*, ...);
 void print(char const*);

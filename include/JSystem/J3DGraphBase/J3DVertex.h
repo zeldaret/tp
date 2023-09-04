@@ -7,8 +7,8 @@
 
 typedef struct _GXColor GXColor;
 class J3DModel;
-struct J3DAnmVtxColor;
-struct J3DVertexBuffer;
+class J3DAnmVtxColor;
+class J3DVertexBuffer;
 
 struct J3DVtxColorCalc {
     /* 8032E180 */ void calc(J3DModel*);

@@ -6,7 +6,7 @@
 class CPaneMgr;
 struct CSTControl;
 class J2DTextBox;
-struct STControl;
+class STControl;
 class dKantera_icon_c;
 class dMsgString_c;
 class dMenu_ItemExplain_c;
