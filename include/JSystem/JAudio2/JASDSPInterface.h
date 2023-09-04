@@ -6,7 +6,28 @@
 struct JASWaveInfo;
 
 namespace JASDsp {
-    struct FxlineConfig_ {};
+    struct FxlineConfig_ {
+        u8 field_0x0;
+        u8 field_0x1;
+        u16 field_0x2;
+        s16 field_0x4;
+        u16 field_0x6;
+        s16 field_0x8;
+        u16 field_0xa;
+        u32 field_0xc;
+        s16 field_0x10[8];
+    };
+
+    typedef struct {
+        s16 field_0x0;
+        s16 field_0x2;
+        s16* field_0x4;
+        s16 field_0x8;
+        s16 field_0xa;
+        s16 field_0xc;
+        s16 field_0xe;
+        s16 field_0x10[8];
+    } FxBuf;
 
     struct TChannel {
         /* 8029DCA4 */ void init();
@@ -89,13 +110,13 @@ namespace JASDsp {
     /* 8029DA6C */ void flushBuffer();
     /* 8029DAA0 */ void invalChannelAll();
     /* 8029DAC8 */ void initBuffer();
-    /* 8029DB78 */ void setFXLine(u8, s16*, JASDsp::FxlineConfig_*);
+    /* 8029DB78 */ int setFXLine(u8, s16*, JASDsp::FxlineConfig_*);
 
     extern u8 const DSPADPCM_FILTER[64];
-    extern void* const DSPRES_FILTER[320];
+    extern u32 const DSPRES_FILTER[320];
     extern u16 SEND_TABLE[12 + 12 /* padding */];
     extern TChannel* CH_BUF;
-    extern void* FX_BUF;
+    extern FxBuf* FX_BUF;
     extern f32 sDSPVolume;
 };
 
