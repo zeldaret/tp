@@ -7,12 +7,12 @@
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JGeometry.h"
 
-struct JPAEmitterCallBack;
-struct JPAParticleCallBack;
-struct JPABaseEmitter;
-struct JPAResourceManager;
-struct JPABaseParticle;
-struct JKRHeap;
+class JPAEmitterCallBack;
+class JPAParticleCallBack;
+class JPABaseEmitter;
+class JPAResourceManager;
+class JPABaseParticle;
+class JKRHeap;
 struct JPAEmitterWorkData;
 
 class JPAEmitterManager {

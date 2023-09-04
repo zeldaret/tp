@@ -3,7 +3,7 @@
 
 #include "dolphin/types.h"
 
-struct J3DDeformer;
+class J3DDeformer;
 
 struct J3DCluster {
     /* 0x00 */ f32 field_0x0;

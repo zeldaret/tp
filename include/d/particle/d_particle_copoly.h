@@ -5,7 +5,7 @@
 #include "SSystem/SComponent/c_xyz.h"
 
 class dBgS_Acch;
-struct dKy_tevstr_c;
+class dKy_tevstr_c;
 
 class dPaPo_c {
 public:

@@ -11,7 +11,7 @@ struct J3DModelHierarchy {
     /* 0x2 */ u16 mValue;
 };
 
-struct J3DMaterialTable;
+class J3DMaterialTable;
 
 struct J3DDrawMtxData {
     /* 803115E0 */ J3DDrawMtxData();

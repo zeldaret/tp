@@ -3,8 +3,8 @@
 
 #include "msg/scrn/d_msg_scrn_base.h"
 
-struct JUTFont;
-struct JKRExpHeap;
+class JUTFont;
+class JKRExpHeap;
 
 struct dMsgScrnTree_c : public dMsgScrnBase_c {
     /* 80248954 */ dMsgScrnTree_c(JUTFont*, JKRExpHeap*);

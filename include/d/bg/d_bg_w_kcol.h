@@ -70,7 +70,7 @@ public:
     /* 80080330 */ virtual void WallCorrectSort(dBgS_Acch*);
     /* 80081E18 */ virtual bool RoofChk(dBgS_RoofChk*);
     /* 80082184 */ virtual bool SplGrpChk(dBgS_SplGrpChk*);
-    /* 800824EC */ virtual bool SphChk(dBgS_SphChk*, virtual void*);
+    /* 800824EC */ virtual bool SphChk(dBgS_SphChk*, void*);
     /* 800829F0 */ virtual s32 GetGrpRoomIndex(cBgS_PolyInfo const&) const;
     /* 80082A20 */ virtual s32 GetExitId(cBgS_PolyInfo const&);
     /* 80082A50 */ virtual s32 GetPolyColor(cBgS_PolyInfo const&);
@@ -102,11 +102,11 @@ public:
     /* 80082EFC */ virtual s32 GetRoomPathPntNo(cBgS_PolyInfo const&);
     /* 80082F2C */ virtual u8 GetPolyGrpRoomInfId(cBgS_PolyInfo const&);
     /* 80082F5C */ virtual u8 GetGrpSoundId(cBgS_PolyInfo const&);
-    /* 80082F8C */ virtual void CrrPos(cBgS_PolyInfo const&, virtual void*, bool, cXyz*, csXyz*,
+    /* 80082F8C */ virtual void CrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*,
                                        csXyz*);
-    /* 80082F90 */ virtual void TransPos(cBgS_PolyInfo const&, virtual void*, bool, cXyz*, csXyz*,
+    /* 80082F90 */ virtual void TransPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*,
                                          csXyz*);
-    /* 80082F94 */ virtual void MatrixCrrPos(cBgS_PolyInfo const&, virtual void*, bool, cXyz*,
+    /* 80082F94 */ virtual void MatrixCrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*,
                                              csXyz*, csXyz*);
 
     KC_PrismData* getPrismData(int poly_index) const { return &m_pkc_head->m_prism_data[poly_index]; }

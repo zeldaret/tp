@@ -6,7 +6,7 @@
 
 class CPaneMgr;
 struct CSTControl;
-struct STControl;
+class STControl;
 class dMsgString_c;
 class dMenu_save_c;
 class dMenu_Option_c;

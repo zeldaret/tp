@@ -101,8 +101,8 @@ public:
     static f32 mWaterY[1 + 1 /* padding */];
 };
 
-struct dKy_tevstr_c;
-struct cBgS_PolyInfo;
+class dKy_tevstr_c;
+class cBgS_PolyInfo;
 typedef int (*heapCallbackFunc)(fopAc_ac_c*);
 typedef int (*createFunc)(void*);
 

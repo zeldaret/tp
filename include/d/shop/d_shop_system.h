@@ -5,7 +5,7 @@
 #include "d/shop/d_shop_item_ctrl.h"
 
 class dSelect_cursor_c;
-struct STControl;
+class STControl;
 
 typedef int (*ShopCam_actionFunc)(void);
 

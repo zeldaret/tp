@@ -3,14 +3,6 @@
 
 #include "JSystem/JAudio2/JAISoundInfo.h"
 
-struct JAISeq;
-
-struct JAISound;
-
-struct JAIStream;
-
-struct JAISe;
-
 struct JAUSoundInfo : public JASGlobalInstance<JAUSoundInfo> {
     virtual void getAudibleSw(JAISoundID) const = 0;
     virtual void getBgmSeqResourceID(JAISoundID) const = 0;

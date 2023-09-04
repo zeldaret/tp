@@ -32,8 +32,8 @@ struct JMSMesgHeader_c {
     /* 0x0E */ u16 field_0xe;
 };  // Size: 0x10
 
-struct STControl;
-struct dMsgObject_c;
+class STControl;
+class dMsgObject_c;
 struct jmessage_tReference : public JMessage::TReference {
     /* 80228B04 */ jmessage_tReference();
     /* 80228D28 */ void calcDistance();
