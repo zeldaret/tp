@@ -953,7 +953,7 @@ void J2DPicture::load(_GXTexMapID param_0, u8 param_1) {
 }
 
 /* 802FF2E8-802FF2F0 2F9C28 0008+00 1/0 1/0 0/0 .text            getTypeID__10J2DPictureCFv */
-s32 J2DPicture::getTypeID() const {
+u16 J2DPicture::getTypeID() const {
     return 18;
 }
 

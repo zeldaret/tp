@@ -50,7 +50,7 @@ public:
     };
 
     /* 803001E0 */ virtual ~J2DTextBox();
-    /* 80300C68 */ virtual s32 getTypeID() const;
+    /* 80300C68 */ virtual u16 getTypeID() const;
     /* 80300AF8 */ virtual void resize(f32, f32);
     /* 80300870 */ virtual bool setConnectParent(bool);
     /* 80300950 */ virtual void drawSelf(f32, f32, Mtx*);

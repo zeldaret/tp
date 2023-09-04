@@ -25,8 +25,8 @@ public:
     /* 80302D98 */ virtual void setCullBack(_GXCullMode);
     /* 80302D48 */ virtual void setAlpha(u8);
     /* 8030122C */ virtual void drawSelf(f32, f32, f32 (*)[3][4]);
-    /* 80302EDC */ virtual void isUsed(ResTIMG const*);
-    /* 803035FC */ virtual void isUsed(ResFONT const*);
+    /* 80302EDC */ virtual bool isUsed(ResTIMG const*);
+    /* 803035FC */ virtual bool isUsed(ResFONT const*);
     /* 80302DF4 */ virtual void rewriteAlpha();
     /* 8030361C */ virtual void setAnimation(J2DAnmBase*);
     /* 80256084 */ virtual void setAnimation(J2DAnmTransform*);
@@ -36,20 +36,20 @@ public:
     /* 80303194 */ virtual void setAnimation(J2DAnmTevRegKey*);
     /* 80303274 */ virtual void setAnimation(J2DAnmVisibilityFull*);
     /* 8030327C */ virtual void setAnimation(J2DAnmVtxColor*);
-    /* 80303370 */ virtual void animationPane(J2DAnmTransform const*);
+    /* 80303370 */ virtual J2DAnmTransform* animationPane(J2DAnmTransform const*);
     /* 80301FC8 */ virtual void draw(JGeometry::TBox2<f32> const&);
     /* 80302164 */ virtual void draw(JGeometry::TBox2<f32> const&, JGeometry::TBox2<f32> const&);
     /* 80303568 */ virtual void draw(f32, f32, f32, f32);
-    /* 80302764 */ virtual void setBlack(JUtility::TColor);
-    /* 803027EC */ virtual void setWhite(JUtility::TColor);
-    /* 80302874 */ virtual void setBlackWhite(JUtility::TColor, JUtility::TColor);
-    /* 80302C88 */ virtual void getBlack() const;
-    /* 80302CE8 */ virtual void getWhite() const;
-    /* 80302E0C */ virtual void getFrameTexture(u8, u8) const;
-    /* 80302E74 */ virtual void getContentsTexture(u8) const;
+    /* 80302764 */ virtual bool setBlack(JUtility::TColor);
+    /* 803027EC */ virtual bool setWhite(JUtility::TColor);
+    /* 80302874 */ virtual bool setBlackWhite(JUtility::TColor, JUtility::TColor);
+    /* 80302C88 */ virtual JUtility::TColor getBlack() const;
+    /* 80302CE8 */ virtual JUtility::TColor getWhite() const;
+    /* 80302E0C */ virtual JUTTexture* getFrameTexture(u8, u8) const;
+    /* 80302E74 */ virtual JUTTexture* getContentsTexture(u8) const;
     /* 8030353C */ virtual void getMaterial(J2DWindow::TMaterial&) const;
-    /* 80303510 */ virtual void getFrameMaterial(u8) const;
-    /* 80303534 */ virtual void getContentsMaterial() const;
+    /* 80303510 */ virtual J2DMaterial* getFrameMaterial(u8) const;
+    /* 80303534 */ virtual J2DMaterial* getContentsMaterial() const;
     /* 80301994 */ virtual void drawContents(JGeometry::TBox2<f32> const&);
 
 private:
