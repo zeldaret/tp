@@ -4,71 +4,35 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/cc/d_cc_d.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Types:
 //
 
-struct request_of_phase_process_class {};
-
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct daObjWSword_c {
+class daObjWSword_c : public fopAc_ac_c {
+public:
     /* 80D3B998 */ void initBaseMtx();
     /* 80D3B9D4 */ void setBaseMtx();
-    /* 80D3BA40 */ void Create();
-    /* 80D3BAB8 */ void CreateHeap();
-    /* 80D3BB28 */ void create();
-    /* 80D3BDA0 */ void execute();
-    /* 80D3BDF0 */ void draw();
-    /* 80D3BE54 */ void _delete();
-};
+    /* 80D3BA40 */ int Create();
+    /* 80D3BAB8 */ int CreateHeap();
+    /* 80D3BB28 */ int create();
+    /* 80D3BDA0 */ int execute();
+    /* 80D3BDF0 */ int draw();
+    /* 80D3BE54 */ int _delete();
 
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dBgS_PolyPassChk {
-    /* 80078E68 */ void SetObj();
-};
-
-struct dBgS_ObjAcch {
-    /* 80D3BD30 */ ~dBgS_ObjAcch();
-};
-
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-};
-
-struct dBgS_Acch {
-    /* 80075F94 */ ~dBgS_Acch();
-    /* 800760A0 */ dBgS_Acch();
-};
-
-struct cCcS {
-    /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct J3DModel {};
+    /* 0x568 */ request_of_phase_process_class mPhaseReq;
+    /* 0x570 */ J3DModel* mpModel;
+    /* 0x574 */ dBgS_Acch mAcch;
+    /* 0x74C */ dBgS_AcchCir mAcchCir;
+    /* 0x78C */ dCcD_Stts mStts;
+    /* 0x7C8 */ dCcD_Cyl mCyl;
+};  // Size: 0x904
 
 //
 // Forward References:
@@ -120,105 +84,76 @@ extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP
 extern "C" void Set__4cCcSFP8cCcD_Obj();
 extern "C" void SetC__8cM3dGCylFRC4cXyz();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
 
 //
 // Declarations:
 //
 
 /* 80D3B978-80D3B998 000078 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void CheckCreateHeap(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword/CheckCreateHeap__FP10fopAc_ac_c.s"
+static int CheckCreateHeap(fopAc_ac_c* i_this) {
+    return static_cast<daObjWSword_c*>(i_this)->CreateHeap();
 }
-#pragma pop
 
 /* 80D3B998-80D3B9D4 000098 003C+00 1/1 0/0 0/0 .text            initBaseMtx__13daObjWSword_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjWSword_c::initBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword/initBaseMtx__13daObjWSword_cFv.s"
+void daObjWSword_c::initBaseMtx() {
+    mpModel->setBaseScale(mScale);
+    setBaseMtx();
 }
-#pragma pop
 
 /* 80D3B9D4-80D3BA40 0000D4 006C+00 2/2 0/0 0/0 .text            setBaseMtx__13daObjWSword_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjWSword_c::setBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword/setBaseMtx__13daObjWSword_cFv.s"
+void daObjWSword_c::setBaseMtx() {
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
+    PSMTXCopy(mDoMtx_stack_c::get(), mpModel->mBaseTransformMtx);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80D3BF20-80D3BF20 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80D3BF20 = "Obj_brksw";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80D3BF2A = "\0";
-#pragma pop
 
 /* 80D3BF2C-80D3BF30 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&d_a_obj_wsword__stringBase0;
+static char* l_arcName = "Obj_brksw";
 
 /* 80D3BF30-80D3BF74 000004 0044+00 1/1 0/0 0/0 .data            l_cyl_src */
 static dCcD_SrcCyl l_cyl_src = {
     {
-        {0x0, {{0x0, 0x0, 0x0}, {0x0, 0x0}, 0x19}}, // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x6}, // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4}, // mGObjTg
-        {0x0}, // mGObjCo
-    }, // mObjInf
+        {0x0, {{0x0, 0x0, 0x0}, {0x0, 0x0}, 0x19}},  // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x6},          // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4},          // mGObjTg
+        {0x0},                                       // mGObjCo
+    },                                               // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        50.0f, // mRadius
-        150.0f // mHeight
-    } // mCyl
+        {0.0f, 0.0f, 0.0f},  // mCenter
+        50.0f,               // mRadius
+        150.0f               // mHeight
+    }                        // mCyl
 };
 
 /* 80D3BA40-80D3BAB8 000140 0078+00 1/1 0/0 0/0 .text            Create__13daObjWSword_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjWSword_c::Create() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword/Create__13daObjWSword_cFv.s"
+int daObjWSword_c::Create() {
+    initBaseMtx();
+    fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+    mStts.Init(0xff, 0xff, this);
+    mCyl.Set(l_cyl_src);
+    mCyl.SetStts(&mStts);
+    fopAcM_setCullSizeBox2(this, mpModel->getModelData());
+    return 1;
 }
-#pragma pop
 
 /* 80D3BAB8-80D3BB28 0001B8 0070+00 1/1 0/0 0/0 .text            CreateHeap__13daObjWSword_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjWSword_c::CreateHeap() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword/CreateHeap__13daObjWSword_cFv.s"
+int daObjWSword_c::CreateHeap() {
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 3);
+    mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    return mpModel != NULL ? 1 : 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D3BF74-80D3BF94 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjWSword_Method */
-SECTION_DATA static void* l_daObjWSword_Method[8] = {
+static void* l_daObjWSword_Method[8] = {
     (void*)daObjWSword_Create__FP10fopAc_ac_c,
     (void*)daObjWSword_Delete__FP13daObjWSword_c,
     (void*)daObjWSword_Execute__FP13daObjWSword_c,
@@ -267,10 +202,25 @@ SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
 };
 
 /* 80D3BB28-80D3BCA0 000228 0178+00 1/1 0/0 0/0 .text            create__13daObjWSword_cFv */
+#ifdef NONMATCHING
+// vtable issue
+int daObjWSword_c::create() {
+    fopAcM_SetupActor(this, daObjWSword_c);
+    int phase = dComIfG_resLoad(&mPhaseReq, l_arcName);
+    if (phase == cPhs_COMPLEATE_e) {
+        if (!fopAcM_entrySolidHeap(this, (heapCallbackFunc)CheckCreateHeap, 0x840)) {
+            return cPhs_ERROR_e;
+        } else if (!Create()) {
+            return cPhs_ERROR_e;
+        }
+    }
+    return phase;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjWSword_c::create() {
+asm int daObjWSword_c::create() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword/func_80D3BB28.s"
 }
@@ -302,83 +252,56 @@ extern "C" asm void __dt__8cM3dGAabFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+// dBgS_ObjAcch::~dBgS_ObjAcch()
+extern "C" asm void __dt__12dBgS_ObjAcchFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword/__dt__12dBgS_ObjAcchFv.s"
 }
 #pragma pop
-
+#endif
 /* 80D3BDA0-80D3BDF0 0004A0 0050+00 1/1 0/0 0/0 .text            execute__13daObjWSword_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjWSword_c::execute() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword/execute__13daObjWSword_cFv.s"
+int daObjWSword_c::execute() {
+    setBaseMtx();
+    mCyl.SetC(current.pos);
+    dComIfG_Ccsp()->Set(&mCyl);
+    return 1;
 }
-#pragma pop
 
 /* 80D3BDF0-80D3BE54 0004F0 0064+00 1/1 0/0 0/0 .text            draw__13daObjWSword_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjWSword_c::draw() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword/draw__13daObjWSword_cFv.s"
+int daObjWSword_c::draw() {
+    g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    mDoExt_modelUpdateDL(mpModel);
+    return 1;
 }
-#pragma pop
 
 /* 80D3BE54-80D3BE88 000554 0034+00 1/1 0/0 0/0 .text            _delete__13daObjWSword_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjWSword_c::_delete() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword/_delete__13daObjWSword_cFv.s"
+int daObjWSword_c::_delete() {
+    dComIfG_resDelete(&mPhaseReq, l_arcName);
+    return 1;
 }
-#pragma pop
 
 /* 80D3BE88-80D3BEA8 000588 0020+00 1/0 0/0 0/0 .text            daObjWSword_Draw__FP13daObjWSword_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjWSword_Draw(daObjWSword_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword/daObjWSword_Draw__FP13daObjWSword_c.s"
+static int daObjWSword_Draw(daObjWSword_c* i_this) {
+    return i_this->draw();
 }
-#pragma pop
 
 /* 80D3BEA8-80D3BEC8 0005A8 0020+00 1/0 0/0 0/0 .text daObjWSword_Execute__FP13daObjWSword_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjWSword_Execute(daObjWSword_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword/daObjWSword_Execute__FP13daObjWSword_c.s"
+static int daObjWSword_Execute(daObjWSword_c* i_this) {
+    return i_this->execute();
 }
-#pragma pop
 
 /* 80D3BEC8-80D3BEE8 0005C8 0020+00 1/0 0/0 0/0 .text daObjWSword_Delete__FP13daObjWSword_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjWSword_Delete(daObjWSword_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword/daObjWSword_Delete__FP13daObjWSword_c.s"
+static int daObjWSword_Delete(daObjWSword_c* i_this) {
+    return i_this->_delete();
 }
-#pragma pop
 
 /* 80D3BEE8-80D3BF08 0005E8 0020+00 1/0 0/0 0/0 .text            daObjWSword_Create__FP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjWSword_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword/daObjWSword_Create__FP10fopAc_ac_c.s"
+static int daObjWSword_Create(fopAc_ac_c* i_this) {
+    return static_cast<daObjWSword_c*>(i_this)->create();
 }
-#pragma pop
 
 /* 80D3BF08-80D3BF10 000608 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
 #pragma push
