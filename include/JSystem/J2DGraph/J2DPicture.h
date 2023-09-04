@@ -36,7 +36,7 @@ struct J2DScrnBlockPictureParameter {
 class J2DPicture : public J2DPane {
 public:
     /* 802FCFF0 */ virtual ~J2DPicture();
-    /* 802FF2E8 */ virtual s32 getTypeID() const;
+    /* 802FF2E8 */ virtual u16 getTypeID() const;
     /* 802FDB28 */ virtual void drawSelf(f32, f32);
     /* 802FDB90 */ virtual void drawSelf(f32, f32, Mtx*);
     /* 802FF09C */ virtual bool isUsed(ResTIMG const*);

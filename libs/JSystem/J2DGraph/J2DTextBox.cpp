@@ -410,7 +410,7 @@ bool J2DTextBox::setConnectParent(bool connected) {
         return false;
     }
 
-    if ((u16)getPaneTree()->getParent()->getObject()->getTypeID() != 0x11) {
+    if (getPaneTree()->getParent()->getObject()->getTypeID() != 0x11) {
         return false;
     }
 
@@ -456,7 +456,7 @@ void J2DTextBox::resize(f32 x, f32 y) {
     if (mConnected && getPaneTree() != NULL && getPaneTree()->getParent() != NULL) {
         J2DPane* obj = getPaneTree()->getParent()->getObject();
 
-        if ((u16)obj->getTypeID() == 0x11) {
+        if (obj->getTypeID() == 0x11) {
             f32 obj_x = obj->getWidth() + (x - getWidth());
             f32 obj_y = obj->getHeight() + (y - getHeight());
             obj->resize(obj_x, obj_y);
@@ -477,7 +477,7 @@ bool J2DTextBox::isUsed(ResFONT const* p_font) {
 }
 
 /* 80300C68-80300C70 2FB5A8 0008+00 1/0 1/0 0/0 .text            getTypeID__10J2DTextBoxCFv */
-s32 J2DTextBox::getTypeID() const {
+u16 J2DTextBox::getTypeID() const {
     return 19;
 }
 
