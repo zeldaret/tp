@@ -71,10 +71,6 @@ struct J3DMtxCalcAnimation__template0 {
     /* 800150AC */ void func_800150AC(void* _this);
 };
 
-struct J3DIndTexMtxInfo {
-    /* 803257DC */ void operator=(J3DIndTexMtxInfo const&);
-};
-
 //
 // Forward References:
 //

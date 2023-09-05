@@ -4,59 +4,31 @@
 //
 
 #include "JSystem/J3DGraphBase/J3DStruct.h"
+#include "JSystem/JMath/JMath.h"
 #include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct J3DTexMtxInfo {
-    /* 80325718 */ void operator=(J3DTexMtxInfo const&);
-    /* 80325794 */ void setEffectMtx(f32 (*)[4]);
-};
-
-struct J3DNBTScaleInfo {
-    /* 8032587C */ void operator=(J3DNBTScaleInfo const&);
-};
-
-struct J3DIndTexMtxInfo {
-    /* 803257DC */ void operator=(J3DIndTexMtxInfo const&);
-};
-
-struct J3DFogInfo {
-    /* 80325800 */ void operator=(J3DFogInfo const&);
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __as__12J3DLightInfoFRC12J3DLightInfo();
-extern "C" void __as__13J3DTexMtxInfoFRC13J3DTexMtxInfo();
-extern "C" void setEffectMtx__13J3DTexMtxInfoFPA4_f();
-extern "C" void __as__16J3DIndTexMtxInfoFRC16J3DIndTexMtxInfo();
-extern "C" void __as__10J3DFogInfoFRC10J3DFogInfo();
-extern "C" void __as__15J3DNBTScaleInfoFRC15J3DNBTScaleInfo();
-
-//
-// External References:
-//
 
 //
 // Declarations:
 //
 
 /* 803256C4-80325718 320004 0054+00 0/0 11/11 24/24 .text __as__12J3DLightInfoFRC12J3DLightInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DLightInfo::operator=(J3DLightInfo const& param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DStruct/__as__12J3DLightInfoFRC12J3DLightInfo.s"
+void J3DLightInfo::operator=(J3DLightInfo const& param_0) {
+    JMath::gekko_ps_copy6(&mLightPosition, &param_0.mLightPosition);
+    mColor = param_0.mColor;
+    JMath::gekko_ps_copy6(&mCosAtten, &param_0.mCosAtten);
 }
-#pragma pop
 
 /* 80325718-80325794 320058 007C+00 0/0 4/4 0/0 .text __as__13J3DTexMtxInfoFRC13J3DTexMtxInfo */
+// J3DTextureSRTInfo::operator=
+#ifdef NONMATCHING
+void J3DTexMtxInfo::operator=(J3DTexMtxInfo const& param_0) {
+    mProjection = param_0.mProjection;
+    mInfo = param_0.mInfo;
+    JMath::gekko_ps_copy3(&mCenter, &param_0.mCenter);
+    mSRT = param_0.mSRT;
+    JMath::gekko_ps_copy16(&mEffectMtx, &param_0.mEffectMtx);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -65,6 +37,7 @@ asm void J3DTexMtxInfo::operator=(J3DTexMtxInfo const& param_0) {
 #include "asm/JSystem/J3DGraphBase/J3DStruct/__as__13J3DTexMtxInfoFRC13J3DTexMtxInfo.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80456410-80456414 004A10 0004+00 1/1 0/0 0/0 .sdata2          @409 */
@@ -80,6 +53,16 @@ SECTION_SDATA2 static u8 lit_410[4] = {
 
 /* 80325794-803257DC 3200D4 0048+00 0/0 2/2 7/7 .text            setEffectMtx__13J3DTexMtxInfoFPA4_f
  */
+// needs inline asm?
+#ifdef NONMATCHING
+void J3DTexMtxInfo::setEffectMtx(Mtx param_0) {
+    JMath::gekko_ps_copy12(&mEffectMtx, param_0);
+    mEffectMtx[3][0] = 0.0f;
+    mEffectMtx[3][1] = 0.0f;
+    mEffectMtx[3][2] = 0.0f;
+    mEffectMtx[3][3] = 1.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -88,36 +71,37 @@ asm void J3DTexMtxInfo::setEffectMtx(f32 (*param_0)[4]) {
 #include "asm/JSystem/J3DGraphBase/J3DStruct/setEffectMtx__13J3DTexMtxInfoFPA4_f.s"
 }
 #pragma pop
+#endif
 
 /* 803257DC-80325800 32011C 0024+00 0/0 5/5 0/0 .text
  * __as__16J3DIndTexMtxInfoFRC16J3DIndTexMtxInfo                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DIndTexMtxInfo::operator=(J3DIndTexMtxInfo const& param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DStruct/__as__16J3DIndTexMtxInfoFRC16J3DIndTexMtxInfo.s"
+void J3DIndTexMtxInfo::operator=(J3DIndTexMtxInfo const& param_0) {
+    JMath::gekko_ps_copy6(field_0x0, param_0.field_0x0);
+    field_0x18 = param_0.field_0x18;
 }
-#pragma pop
 
 /* 80325800-8032587C 320140 007C+00 0/0 6/6 0/0 .text            __as__10J3DFogInfoFRC10J3DFogInfo
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DFogInfo::operator=(J3DFogInfo const& param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DStruct/__as__10J3DFogInfoFRC10J3DFogInfo.s"
+void J3DFogInfo::operator=(J3DFogInfo const& param_0) {
+    field_0x0 = param_0.field_0x0;
+    field_0x1 = param_0.field_0x1;
+    field_0x2 = param_0.field_0x2;
+    field_0x4 = param_0.field_0x4;
+    field_0x8 = param_0.field_0x8;
+    field_0xc = param_0.field_0xc;
+    field_0x10 = param_0.field_0x10;
+    field_0x14 = param_0.field_0x14;
+    field_0x15 = param_0.field_0x15;
+    field_0x16 = param_0.field_0x16;
+    field_0x17 = param_0.field_0x17;
+    for (int i = 0; i < 10; i++) {
+        field_0x18[i] = param_0.field_0x18[i];
+    }
 }
-#pragma pop
 
 /* 8032587C-803258A0 3201BC 0024+00 0/0 6/6 0/0 .text __as__15J3DNBTScaleInfoFRC15J3DNBTScaleInfo
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DNBTScaleInfo::operator=(J3DNBTScaleInfo const& param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DStruct/__as__15J3DNBTScaleInfoFRC15J3DNBTScaleInfo.s"
+void J3DNBTScaleInfo::operator=(J3DNBTScaleInfo const& param_0) {
+    mbHasScale = param_0.mbHasScale;
+    mScale = param_0.mScale;
 }
-#pragma pop

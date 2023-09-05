@@ -15,10 +15,6 @@ struct J3DSys {
     static u8 sTexCoordScaleTable[64 + 4 /* padding */];
 };
 
-struct J3DIndTexMtxInfo {
-    /* 803257DC */ void operator=(J3DIndTexMtxInfo const&);
-};
-
 //
 // Forward References:
 //
