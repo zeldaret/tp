@@ -114,7 +114,7 @@ int daWarpBug_c::execute() {
     if (player_p->checkMidnaWarp()) {
         mpBrk->play();
         mpBtk->play();
-        Z2GetAudioMgr()->mSeMgr.seStartLevel(Z2SE_EN_YM_WAIT, &current.pos, NULL, 0, 1.0f, 1.0f,
+        Z2GetAudioMgr()->seStartLevel(Z2SE_EN_YM_WAIT, &current.pos, NULL, 0, 1.0f, 1.0f,
                                              -1.0f, -1.0f, 0);
     }
 #endif

@@ -1259,7 +1259,7 @@ SECTION_SDATA2 static u8 lit_4152[4] = {
 void dMw_c::collect_open_init(u8 param_0) {
     field_0x144 = 3;
     dMeter2Info_setWindowStatus(3);
-    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_IN, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_IN, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
     dMw_fade_out();
     dMw_capture_create();
     field_0x153 = 0;
@@ -1327,10 +1327,10 @@ void dMw_c::collect_close_init(u8 param_0) {
             mpMenuCollect->getSubWindowOpenCheck() == 5 ||
             mpMenuCollect->getSubWindowOpenCheck() == 6)
         {
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_SUB_IN, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_SUB_IN, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
         } else {
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_OUT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_OUT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                             0);
             dMeter2Info_set2DVibrationM();
         }
@@ -1429,7 +1429,7 @@ void dMw_c::collect_letter_move_init(u8 param_0) {
 
 /* 801FA6E0-801FA738 1F5020 0058+00 1/0 0/0 0/0 .text collect_letter_close_init__5dMw_cFUc */
 void dMw_c::collect_letter_close_init(u8 param_0) {
-    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_SUB_OUT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_SUB_OUT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
     dMeter2Info_set2DVibration();
     dMw_fade_out();
 }
@@ -1450,7 +1450,7 @@ void dMw_c::collect_fishing_move_init(u8 param_0) {
 
 /* 801FA798-801FA7F0 1F50D8 0058+00 1/0 0/0 0/0 .text collect_fishing_close_init__5dMw_cFUc */
 void dMw_c::collect_fishing_close_init(u8 param_0) {
-    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_SUB_OUT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_SUB_OUT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
     dMeter2Info_set2DVibration();
     dMw_fade_out();
 }
@@ -1474,7 +1474,7 @@ void dMw_c::collect_skill_move_init(u8 param_0) {
 /* 801FA850-801FA8A8 1F5190 0058+00 1/0 0/0 0/0 .text            collect_skill_close_init__5dMw_cFUc
  */
 void dMw_c::collect_skill_close_init(u8 param_0) {
-    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_SUB_OUT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_SUB_OUT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
     dMeter2Info_set2DVibration();
     dMw_fade_out();
 }
@@ -1497,7 +1497,7 @@ void dMw_c::collect_insect_move_init(u8 param_0) {
 
 /* 801FA90C-801FA964 1F524C 0058+00 1/0 0/0 0/0 .text collect_insect_close_init__5dMw_cFUc */
 void dMw_c::collect_insect_close_init(u8 param_0) {
-    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_SUB_OUT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_SUB_OUT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
     dMeter2Info_set2DVibration();
     dMw_fade_out();
 }
@@ -1506,7 +1506,7 @@ void dMw_c::collect_insect_close_init(u8 param_0) {
 void dMw_c::insect_open_init(u8 param_0) {
     field_0x144 = 10;
     dMeter2Info_setWindowStatus(10);
-    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_SUB_IN, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_SUB_IN, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
     dMw_fade_out();
     dMw_capture_create();
 }
@@ -1523,7 +1523,7 @@ void dMw_c::insect_move_init(u8 param_0) {
 
 /* 801FA9F0-801FAA48 1F5330 0058+00 1/0 0/0 0/0 .text            insect_close_init__5dMw_cFUc */
 void dMw_c::insect_close_init(u8 param_0) {
-    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_SUB_OUT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_SUB_OUT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
     dMeter2Info_set2DVibration();
     dMw_fade_out();
 }
@@ -1644,7 +1644,7 @@ void dMw_c::fmap_move_proc() {
 
         if (g_fmapHIO.field_0x2f9 != 0) {
             mMenuStatus = FMAP_CLOSE;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
         }
 
@@ -1691,7 +1691,7 @@ void dMw_c::dmap_move_proc() {
         dMeter2Info_setMapKeyDirection(0x200);
         mMenuStatus = DMAP_CLOSE;
         mpMenuDmap->setInOutDir(3);
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+        Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
     } else if (nextStatus == 2) {
         dMeter2Info_setMapStatus(0);
@@ -1699,7 +1699,7 @@ void dMw_c::dmap_move_proc() {
         mMenuStatus = DMAP_CLOSE;
         dMeter2Info_getMeterMapClass()->setDispPosOutsideFlg_SE_On();
         mpMenuDmap->setInOutDir(1);
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+        Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
     } else if (nextStatus == 3) {
         if (dMeterMap_c::isEnableDispMapAndMapDispSizeTypeNo()) {
@@ -1710,7 +1710,7 @@ void dMw_c::dmap_move_proc() {
 
         mMenuStatus = DMAP_CLOSE;
         mpMenuDmap->setInOutDir(2);
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+        Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
     } else {
         mpMenuDmap->_move();

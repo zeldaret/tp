@@ -306,19 +306,19 @@ void dMenu_Skill_c::wait_move() {
             mStatus = 3;
         } else if (mDoCPd_c::getTrigA(0)) {
             mProcess = PROC_WAIT_MOVE;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_OPEN, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_OPEN, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
             dMeter2Info_set2DVibration();
         } else if (mpStick->checkUpTrigger()) {
             if (mIndex) {
                 mIndex--;
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                                 -1.0f, 0);
             }
 
         } else if (mpStick->checkDownTrigger() && mIndex < mSkillNum - 1) {
             mIndex++;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
         }
         if (oldIndex != mIndex) {
@@ -378,13 +378,13 @@ void dMenu_Skill_c::read_move_init() {
  */
 void dMenu_Skill_c::read_move_move() {
     if (mDoCPd_c::getTrigA(0) != 0) {
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+        Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
         dMeter2Info_set2DVibration();
         mProcess = PROC_MOVE_MOVE;
 
     } else if ((mDoCPd_c::getTrig(0) & 0x200) != 0) {
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+        Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
         dMeter2Info_set2DVibration();
         mProcess = PROC_MOVE_MOVE;

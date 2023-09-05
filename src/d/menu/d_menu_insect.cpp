@@ -600,7 +600,7 @@ void dMenu_Insect_c::explain_close_init() {
     if (field_0xf6 == 1) {
         dMeter2Info_setInsectSelectType(getInsectItemID(field_0xf4, field_0xf5));
     }
-    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
     dMeter2Info_set2DVibration();
     mpExpParent->alphaAnimeStart(0);
 }
@@ -899,11 +899,11 @@ void dMenu_Insect_c::cursorMove() {
         setAButtonString(0);
     }
     if (dpd != 0) {
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_ITEM, NULL, 1, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+        Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_ITEM, NULL, 1, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
         dMeter2Info_set2DVibration();
     } else {
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+        Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
     }
 }

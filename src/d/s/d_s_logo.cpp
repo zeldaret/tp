@@ -536,7 +536,7 @@ static int phase_1(dScnLogo_c* logo) {
     }
 
     if (!mDoAud_zelAudio_c::isInitFlag() ||
-        Z2AudioMgr::getInterface()->mSceneMgr.checkFirstWaves()) {
+        Z2AudioMgr::getInterface()->checkFirstWaves()) {
         return 0;
     }
 
@@ -572,7 +572,7 @@ int dScnLogo_c::create() {
     mpHeap->becomeCurrentHeap();
 
     dvdDataLoad();
-    Z2AudioMgr::getInterface()->mSceneMgr.loadStaticWaves();
+    Z2AudioMgr::getInterface()->loadStaticWaves();
     mDoGph_gInf_c::setTickRate((OS_BUS_CLOCK / 4) / 60);
     mDoGph_gInf_c::waitBlanking(0);
     field_0x20a = 0;

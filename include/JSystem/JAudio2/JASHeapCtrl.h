@@ -11,7 +11,7 @@ class JKRSolidHeap;
 
 class JASHeap {
 public:
-    /* 80290140 */ JASHeap(JASDisposer*);
+    /* 80290140 */ JASHeap(JASDisposer* param_0 = NULL);
     /* 802901AC */ void initRootHeap(void*, u32);
     /* 8029021C */ bool alloc(JASHeap*, u32);
     /* 802903F4 */ bool allocTail(JASHeap*, u32);

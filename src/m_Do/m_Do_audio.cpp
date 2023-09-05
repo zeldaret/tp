@@ -151,7 +151,7 @@ static void mDoAud_Create() {
         }
 
         (*(mDoAud_zelAudio_c*)g_mDoAud_zelAudio)
-            .mAudioMgr.mStatusMgr.setEventBit(dComIfGs_getPEventBit());
+            .mAudioMgr.setEventBit(dComIfGs_getPEventBit());
         (*(mDoAud_zelAudio_c*)g_mDoAud_zelAudio).reset();
 
         u32 soundMode = OSGetSoundMode();
@@ -178,23 +178,23 @@ void mDoAud_Execute() {
 
 /* 800071BC-800071F8 001AFC 003C+00 0/0 3/3 0/0 .text            mDoAud_setSceneName__FPCcll */
 void mDoAud_setSceneName(char const* spot, s32 room, s32 layer) {
-    Z2AudioMgr::getInterface()->mSceneMgr.setSceneName((char*)spot, room, layer);
+    Z2AudioMgr::getInterface()->setSceneName((char*)spot, room, layer);
 }
 
 /* 800071F8-80007224 001B38 002C+00 0/0 1/1 0/0 .text            mDoAud_load1stDynamicWave__Fv */
 s32 mDoAud_load1stDynamicWave() {
-    Z2AudioMgr::getInterface()->mSceneMgr.load1stDynamicWave();
+    Z2AudioMgr::getInterface()->load1stDynamicWave();
     return 1;
 }
 
 /* 80007224-80007254 001B64 0030+00 0/0 2/2 0/0 .text            mDoAud_setFadeOutStart__FUc */
 void mDoAud_setFadeOutStart(u8 param_0) {
-    Z2AudioMgr::getInterface()->mSceneMgr.setFadeOutStart((u8)param_0);
+    Z2AudioMgr::getInterface()->setFadeOutStart((u8)param_0);
 }
 
 /* 80007254-80007284 001B94 0030+00 0/0 2/2 1/1 .text            mDoAud_setFadeInStart__FUc */
 void mDoAud_setFadeInStart(u8 param_0) {
-    Z2AudioMgr::getInterface()->mSceneMgr.setFadeInStart((u8)param_0);
+    Z2AudioMgr::getInterface()->setFadeInStart((u8)param_0);
 }
 
 /* 80007284-800072C4 001BC4 0040+00 0/0 1/1 0/0 .text            mDoAud_resetProcess__Fv */

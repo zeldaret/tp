@@ -2175,7 +2175,7 @@ void dMenu_save_c::endingDataCheck() {
 
 /* 801F2F4C-801F2FB4 1ED88C 0068+00 1/0 0/0 0/0 .text            retryQuestion0__12dMenu_save_cFv */
 void dMenu_save_c::retryQuestion0() {
-    if (Z2GetAudioMgr()->mSeqMgr.checkBgmIDPlaying(Z2BGM_GAME_OVER) != true) {
+    if (Z2GetAudioMgr()->checkBgmIDPlaying(Z2BGM_GAME_OVER) != true) {
         mYesNoCursor = CURSOR_YES;
         msgTxtSet(0x4BC, false);  // Retry?
         mMenuProc = PROC_RETRY_QUESTION1;
@@ -2292,11 +2292,11 @@ int dMenu_save_c::YesNoSelect() {
             }
             break;
         case 1:
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_CANCEL, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_CANCEL, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
             break;
         case 255:
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_CANCEL, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_CANCEL, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
             break;
         }

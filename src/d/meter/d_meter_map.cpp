@@ -541,7 +541,7 @@ void dMeterMap_c::ctrlShowMap() {
     if (!dMeter2Info_isGameStatus(1)) {
         if (!isMapOpenCheck() && !isEventRunCheck()) {
             if (dMw_LEFT_TRIGGER() || dMw_RIGHT_TRIGGER()) {
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SYS_ERROR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                Z2GetAudioMgr()->seStart(Z2SE_SYS_ERROR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                                 -1.0f, 0);
             }
         } else {
@@ -550,7 +550,7 @@ void dMeterMap_c::ctrlShowMap() {
                 dMeter2Info_getPauseStatus() == 2 || dMeter2Info_getPauseStatus() == 6) {
                 if (dMeter2Info_getMapStatus() == 0 && field_0x2d == 0) {
                     setDispPosInsideFlg_SE_On();
-                    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f,
+                    Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f,
                                                     -1.0f, -1.0f, 0);
                     dMeter2Info_set2DVibration();
                     dMeter2Info_setMapStatus(1);
@@ -578,7 +578,7 @@ void dMeterMap_c::ctrlShowMap() {
                         break;
                     }
                     dMeter2Info_setMapKeyDirection(0x400);
-                    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f,
+                    Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f,
                                                     -1.0f, -1.0f, 0);
                     dMeter2Info_set2DVibration();
                 }
@@ -589,7 +589,7 @@ void dMeterMap_c::ctrlShowMap() {
                     if (isDmapScreen()) {
                         if (dMeter2Info_getMapStatus() == 0 && field_0x2d == 0) {
                             setDispPosInsideFlg_SE_On();
-                            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f,
+                            Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f,
                                                             1.0f, -1.0f, -1.0f, 0);
                             dMeter2Info_set2DVibration();
                             dMeter2Info_setMapStatus(1);
@@ -598,7 +598,7 @@ void dMeterMap_c::ctrlShowMap() {
                         if (dMeter2Info_getMapStatus() == 1 && field_0x2d != 0) {
                             dMeter2Info_setMapStatus(6);
                             dMeter2Info_setMapKeyDirection(0x400);
-                            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f,
+                            Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f,
                                                             1.0f, -1.0f, -1.0f, 0);
                             dMeter2Info_set2DVibration();
                         }
@@ -711,7 +711,7 @@ void dMeterMap_c::meter_map_move(u32 param_0) {
             if (!dMeter2Info_isSub2DStatus(1) && isFmapScreen()) {
                 dMeter2Info_setMapStatus(3);
                 dMeter2Info_setMapKeyDirection(0x400);
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                                 -1.0f, 0);
                 dMeter2Info_set2DVibration();
             }
@@ -723,7 +723,7 @@ void dMeterMap_c::meter_map_move(u32 param_0) {
                     if (isFmapScreen() || isDmapScreen()) {
                         dMeter2Info_setMapStatus(2);
                         dMeter2Info_setMapKeyDirection(0x200);
-                        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f,
+                        Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f,
                                                         -1.0f, -1.0f, 0);
                         dMeter2Info_set2DVibration();
                     }
@@ -735,7 +735,7 @@ void dMeterMap_c::meter_map_move(u32 param_0) {
                     if (isFmapScreen() || isDmapScreen()) {
                         dMeter2Info_setMapStatus(2);
                         dMeter2Info_setMapKeyDirection(0x400);
-                        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f,
+                        Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f,
                                                         -1.0f, -1.0f, 0);
                         dMeter2Info_set2DVibration();
                     }
@@ -764,7 +764,7 @@ void dMeterMap_c::keyCheck() {
         if (dMeter2Info_getMapStatus() == 1) {
             if (isDispPosInsideFlg()) {
                 setDispPosOutsideFlg_SE_On();
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_CLOSE_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_CLOSE_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                                 -1.0f, 0);
                 dMeter2Info_setMapStatus(0);
             }
@@ -772,12 +772,12 @@ void dMeterMap_c::keyCheck() {
             if (!dMeter2Info_isSub2DStatus(1) && (isFmapScreen() || isDmapScreen())) {
                 dMeter2Info_setMapStatus(2);
                 dMeter2Info_setMapKeyDirection(0x200);
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                                 -1.0f, 0);
                 dMeter2Info_set2DVibration();
             } else {
                 setDispPosInsideFlg_SE_On();
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                                 -1.0f, 0);
                 dMeter2Info_set2DVibration();
                 dMeter2Info_setMapStatus(1);
@@ -789,7 +789,7 @@ void dMeterMap_c::keyCheck() {
             if (isEnableDispMapAndMapDispSizeTypeNo()) {
                 if (!isDispPosInsideFlg()) {
                     setDispPosInsideFlg_SE_On();
-                    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f,
+                    Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f,
                                                     -1.0f, -1.0f, 0);
                     dMeter2Info_set2DVibration();
                     dMeter2Info_setMapStatus(1);
@@ -797,7 +797,7 @@ void dMeterMap_c::keyCheck() {
             } else if (!dMeter2Info_isSub2DStatus(1) && (isFmapScreen() || isDmapScreen())) {
                 dMeter2Info_setMapStatus(2);
                 dMeter2Info_setMapKeyDirection(0x400);
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                                 -1.0f, 0);
                 dMeter2Info_set2DVibration();
             }
@@ -805,12 +805,12 @@ void dMeterMap_c::keyCheck() {
             if (!dMeter2Info_isSub2DStatus(1) && (isFmapScreen() || isDmapScreen())) {
                 dMeter2Info_setMapStatus(2);
                 dMeter2Info_setMapKeyDirection(0x400);
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                                 -1.0f, 0);
                 dMeter2Info_set2DVibration();
             } else {
                 setDispPosOutsideFlg_SE_On();
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MAP_CLOSE_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_CLOSE_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                                 -1.0f, 0);
                 dMeter2Info_setMapStatus(0);
             }

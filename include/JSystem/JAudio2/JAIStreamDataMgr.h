@@ -9,7 +9,7 @@ struct JAIStreamDataMgr {
 };
 
 struct JAIStreamAramMgr {
-    virtual void newStreamAram(u32*) = 0;
+    virtual void* newStreamAram(u32*) = 0;
     virtual void deleteStreamAram(u32) = 0;
     virtual ~JAIStreamAramMgr();
 };
