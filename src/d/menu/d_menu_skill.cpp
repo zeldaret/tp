@@ -248,10 +248,7 @@ int dMenu_Skill_c::_open() {
     if (mFrame >= openFrame) {
         mFrame = closeFrame;
         mStatus = 2;
-        J2DPane* pane = mpParent->getPanePtr();
-        pane->mScaleX = 1.0f;
-        pane->mScaleY = 1.0f;
-        pane->calcMtx();
+        mpParent->scale(1.0f, 1.0f);
         mpParent->setAlphaRate(1.0f);
         setCursorPos();
         mpDrawCursor->setAlphaRate(1.0f);
@@ -260,10 +257,7 @@ int dMenu_Skill_c::_open() {
         return 1;
     } else {
         f32 div = (f32)mFrame / (f32)openFrame;
-        J2DPane* pane = mpParent->getPanePtr();
-        pane->mScaleX = div;
-        pane->mScaleY = div;
-        pane->calcMtx();
+        mpParent->scale(div, div);
         mpParent->setAlphaRate(div);
         setCursorPos();
         mpDrawCursor->setAlphaRate(div);
@@ -279,10 +273,7 @@ int dMenu_Skill_c::_close() {
     if (mFrame <= 0) {
         mFrame = 0;
         mStatus = 0;
-        J2DPane* pane = mpParent->getPanePtr();
-        pane->mScaleX = 0.0f;
-        pane->mScaleY = 0.0f;
-        pane->calcMtx();
+        mpParent->scale(0.0f, 0.0f);
         mpParent->setAlphaRate(0.0f);
         setCursorPos();
         mpDrawCursor->setAlphaRate(0.0f);
@@ -290,10 +281,7 @@ int dMenu_Skill_c::_close() {
         return 1;
     } else {
         f32 div = (f32)mFrame / (f32)closeFrame;
-        J2DPane* pane = mpParent->getPanePtr();
-        pane->mScaleX = div;
-        pane->mScaleY = div;
-        pane->calcMtx();
+        mpParent->scale(div, div);
         mpParent->setAlphaRate(div);
         setCursorPos();
         mpDrawCursor->setAlphaRate(div);

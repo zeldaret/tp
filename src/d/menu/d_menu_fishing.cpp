@@ -259,18 +259,12 @@ int dMenu_Fishing_c::_open() {
     if (field_0x1f8 >= openFrames) {
         field_0x1f8 = closeFrames;
         mStatus = 2;
-        J2DPane* pane = mpParent->getPanePtr();
-        pane->mScaleX = 1.0f;
-        pane->mScaleY = 1.0f;
-        pane->calcMtx();
+        mpParent->scale(1.0f, 1.0f);
         mpParent->setAlphaRate(1.0f);
         return 1;
     } else {
         f32 div = field_0x1f8 / (f32)openFrames;
-        J2DPane* pane = mpParent->getPanePtr();
-        pane->mScaleX = div;
-        pane->mScaleY = div;
-        pane->calcMtx();
+        mpParent->scale(div, div);
         mpParent->setAlphaRate(div);
         return 0;
     }
@@ -283,18 +277,12 @@ int dMenu_Fishing_c::_close() {
     if (field_0x1f8 <= 0) {
         field_0x1f8 = 0;
         mStatus = 0;
-        J2DPane* pane = mpParent->getPanePtr();
-        pane->mScaleX = 0.0f;
-        pane->mScaleY = 0.0f;
-        pane->calcMtx();
+        mpParent->scale(0.0f, 0.0f);
         mpParent->setAlphaRate(0.0f);
         return 1;
     } else {
         f32 div = field_0x1f8 / (f32)closeFrames;
-        J2DPane* pane = mpParent->getPanePtr();
-        pane->mScaleX = div;
-        pane->mScaleY = div;
-        pane->calcMtx();
+        mpParent->scale(div, div);
         mpParent->setAlphaRate(div);
         return 0;
     }
