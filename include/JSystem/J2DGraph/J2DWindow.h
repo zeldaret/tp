@@ -61,6 +61,8 @@ public:
     /* 802FC024 */ virtual J2DMaterial* getContentsMaterial() const;
     /* 802FB338 */ virtual void drawContents(JGeometry::TBox2<f32> const&);
 
+    bool isField0x145Set(u8 flag) { return field_0x145 & flag; }
+
     void getContentsColor(TContentsColor& param_0) const {
         param_0.field_0x0 = field_0x128;
         param_0.field_0x4 = field_0x12C;
