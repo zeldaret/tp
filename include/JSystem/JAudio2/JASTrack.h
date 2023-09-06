@@ -9,14 +9,10 @@
 
 struct JASSoundParams;
 
-struct JASDsp {
-    struct TChannel {
-        /* 8029E00C */ void setFilterMode(u16);
-        /* 8029E044 */ void setIIRFilterParam(s16*);
-        /* 8029E06C */ void setFIR8FilterParam(s16*);
-    };
+namespace JASDsp {
+    class TChannel;
 
-    static u32 FILTER_MODE_IIR;
+    extern u32 FILTER_MODE_IIR;
 };
 
 struct JASChannel {
