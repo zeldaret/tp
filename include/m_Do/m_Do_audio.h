@@ -4,7 +4,7 @@
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "Z2AudioLib/Z2EnvSeMgr.h"
 
-class mDoAud_zelAudio_c {
+class mDoAud_zelAudio_c : public Z2AudioMgr {
 public:
     void reset();
     mDoAud_zelAudio_c() {}
@@ -22,8 +22,6 @@ public:
     static bool mInitFlag;
     static bool mResetFlag;
     static bool mBgmSet;
-
-    Z2AudioMgr mAudioMgr;
 };
 
 extern JKRSolidHeap* g_mDoAud_audioHeap;

@@ -141,7 +141,7 @@ static void mDoAud_Create() {
         if (g_mDoAud_audioHeap != NULL) {
             s32 groupID = JKRHeap::sCurrentHeap->changeGroupID(5);
             (*(mDoAud_zelAudio_c*)g_mDoAud_zelAudio)
-                .mAudioMgr.init(g_mDoAud_audioHeap, 0xA00000, l_affCommand->getMemAddress(),
+                .init(g_mDoAud_audioHeap, 0xA00000, l_affCommand->getMemAddress(),
                                 l_arcCommand->getArchive());
             JKRHeap::sCurrentHeap->changeGroupID(groupID);
             g_mDoAud_audioHeap->adjustSize();
@@ -151,7 +151,7 @@ static void mDoAud_Create() {
         }
 
         (*(mDoAud_zelAudio_c*)g_mDoAud_zelAudio)
-            .mAudioMgr.setEventBit(dComIfGs_getPEventBit());
+            .setEventBit(dComIfGs_getPEventBit());
         (*(mDoAud_zelAudio_c*)g_mDoAud_zelAudio).reset();
 
         u32 soundMode = OSGetSoundMode();
@@ -172,7 +172,7 @@ void mDoAud_Execute() {
             mDoAud_Create();
         }
     } else {
-        (*(mDoAud_zelAudio_c*)g_mDoAud_zelAudio).mAudioMgr.gframeProcess();
+        (*(mDoAud_zelAudio_c*)g_mDoAud_zelAudio).gframeProcess();
     }
 }
 
