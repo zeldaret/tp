@@ -82,10 +82,6 @@ struct JASResArcLoader {
     /* 80290C04 */ void getResMaxSize(JKRArchive const*);
 };
 
-struct JASKernel {
-    /* 80290B08 */ void getAramHeap();
-};
-
 struct JASAramStream {
     static u8 sBlockSize[4];
 };

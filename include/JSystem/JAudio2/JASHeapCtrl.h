@@ -2,15 +2,19 @@
 #define JASHEAPCTRL_H
 
 #include "JSystem/JSupport/JSUList.h"
+#include "dolphin/os/OSInterrupt.h"
 #include "dolphin/os/OSMutex.h"
 
 class JASDisposer;
+class JKRHeap;
+class JKRSolidHeap;
 
 class JASHeap {
+public:
     /* 80290140 */ JASHeap(JASDisposer*);
     /* 802901AC */ void initRootHeap(void*, u32);
-    /* 8029021C */ void alloc(JASHeap*, u32);
-    /* 802903F4 */ void allocTail(JASHeap*, u32);
+    /* 8029021C */ bool alloc(JASHeap*, u32);
+    /* 802903F4 */ bool allocTail(JASHeap*, u32);
     /* 802904E4 */ void free();
     /* 80290608 */ void insertChild(JASHeap*, JASHeap*, void*, u32, bool);
     /* 802906F0 */ void getTailHeap();
@@ -18,12 +22,27 @@ class JASHeap {
     /* 802907E0 */ void getCurOffset();
     /* 80290B54 */ ~JASHeap();
 
+    void* getBase() { return mBase; }
+
     /* 0x00 */ JSUTree<JASHeap> mTree;
     /* 0x1C */ OSMutex mMutex;
     /* 0x34 */ JASDisposer* mDisposer;
-    /* 0x38 */ int field_0x38;
-    /* 0x3c */ int field_0x3c;
-    /* 0x40 */ void* field_0x40;
+    /* 0x38 */ void* mBase;
+    /* 0x3c */ u32 mSize;
+    /* 0x40 */ JASHeap* field_0x40;
+};
+
+namespace JASKernel {
+    /* 802909B8 */ void setupRootHeap(JKRSolidHeap*, u32);
+    /* 80290AC0 */ JKRHeap* getSystemHeap();
+    /* 80290AC8 */ u32 getCommandHeap();
+    /* 80290AD0 */ void setupAramHeap(u32, u32);
+    /* 80290B08 */ JASHeap* getAramHeap();
+
+    extern u8 audioAramHeap[68];
+    extern u8 sAramBase[4];
+    extern JKRHeap* sSystemHeap;
+    extern u8 sCommandHeap[4];
 };
 
 struct JASGenericMemPool {
@@ -125,7 +144,6 @@ private:
     }
 };
 
-struct JKRSolidHeap;
 extern JKRSolidHeap* JASDram;
 
 #endif /* JASHEAPCTRL_H */

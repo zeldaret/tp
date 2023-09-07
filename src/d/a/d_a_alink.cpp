@@ -64,10 +64,6 @@ struct dPaPoF_c {
     static u8 m_emitterFourData[60 + 28 /* padding */];
 };
 
-struct JASKernel {
-    /* 80290B08 */ void getAramHeap();
-};
-
 struct JAISeq {
     /* 802A0A8C */ JAISeq(JAISeqMgr*, JAISoundStrategyMgr<JAISeq>*);
 };

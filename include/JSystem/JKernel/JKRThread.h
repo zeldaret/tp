@@ -133,6 +133,7 @@ public:
     JKRThread* enter(JKRThread* param_1, int param_2);
     static void callback(OSThread* param_1, OSThread* param_2);
 
+    static JKRThreadSwitch* getManager() { return sManager; }
     static u32 getTotalCount() { return sTotalCount; }
 
 private:
