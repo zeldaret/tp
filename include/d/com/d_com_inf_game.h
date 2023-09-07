@@ -1806,6 +1806,10 @@ inline u8 dComIfGp_att_getCatchChgItem() {
     return dComIfGp_getAttention().getCatchChgItem();
 }
 
+inline int dComIfGp_att_ZHintRequest(fopAc_ac_c *param_1, int param_2) {
+    return dComIfGp_getAttention().ZHintRequest(param_1, param_2);
+}
+
 inline void dComIfGp_att_LookRequest(fopAc_ac_c* param_0, f32 i_horizontalDist, f32 i_upDist,
                                      f32 i_downDist, s16 i_angle, int param_5) {
     dComIfGp_getAttention().LookRequest(param_0, i_horizontalDist, i_upDist, i_downDist, i_angle,

@@ -1,16 +1,18 @@
 #ifndef D_A_TAG_MHINT_H
 #define D_A_TAG_MHINT_H
 
-#include "f_op/f_op_actor.h"
+#include "f_op/f_op_actor_mng.h"
 #include "d/msg/d_msg_flow.h"
 
 class daTagMhint_c : public fopAc_ac_c {
 public:
-    /* 805A56B8 */ void create();
+    /* 805A56B8 */ int create();
     /* 805A58E8 */ ~daTagMhint_c();
     /* 805A5974 */ void eventOrder();
-    /* 805A5AE4 */ void execute();
+    /* 805A5AE4 */ int execute();
+
     bool checkNoAttention() const { return field_0x56d == 0xFF; }
+    bool checkEventID() const { return mToolEventID != 0xFF; }
 
 private:
     /* 0x568 */ u8 field_0x568;
