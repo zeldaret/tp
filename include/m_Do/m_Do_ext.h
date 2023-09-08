@@ -278,11 +278,7 @@ public:
     void changeAnm(J3DAnmTransform* anm) { mpAnm = anm; }
 
     bool isStop() {
-        bool stopped = true;
-        if (!mFrameCtrl.checkState(1) && mFrameCtrl.getRate() != 0.0f) {
-            stopped = false;
-        }
-        return stopped;
+        return mFrameCtrl.checkState(1) || mFrameCtrl.getRate() == 0.0f;
     }
 
     /* 0x04 */ J3DModel* mpModel;

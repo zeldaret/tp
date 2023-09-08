@@ -7,11 +7,15 @@
 #include "MSL_C/stdio.h"
 #include "d/d_demo.h"
 #include "dol2asm.h"
+#include "rel/d/a/d_a_dshutter/d_a_dshutter.h"
+#include "rel/d/a/d_a_grass/d_a_grass.h"
+#include "rel/d/a/d_a_mirror/d_a_mirror.h"
 #include "rel/d/a/d_a_movie_player/d_a_movie_player.h"
+#include "rel/d/a/d_a_set_bgobj/d_a_set_bgobj.h"
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 #include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"
+#include "rel/d/a/tag/d_a_tag_mist/d_a_tag_mist.h"
 #include "rel/d/a/tag/d_a_tag_stream/d_a_tag_stream.h"
-#include "rel/d/a/d_a_mirror/d_a_mirror.h"
 
 //
 // Types:
@@ -23,51 +27,10 @@ struct daYkgr_c {
     static u8 m_emitter[4];
 };
 
-struct daTagMist_c {
-    /* 80031CF0 */ static u8 getPlayerNo();
-
-    static u8 mPlayerNo;
-};
-
-struct daSetBgObj_c {
-    /* 80031870 */ static const char* getArcName(fopAc_ac_c*);
-};
-
 struct daObjMovebox {
     struct Act_c {
         static void* M_dir_base[2];
     };
-};
-
-struct dFlower_packet_c {
-    typedef void (dFlower_packet_c::*DeleteRoomFunc)(int);
-    static DeleteRoomFunc m_deleteRoom;
-};
-
-struct dGrass_packet_c {
-    typedef void (dGrass_packet_c::*DeleteRoomFunc)(int);
-    static DeleteRoomFunc m_deleteRoom;
-};
-
-struct daGrass_c {
-    /* 800319C8 */ static void deleteRoomGrass(int);
-    /* 80031A20 */ static void deleteRoomFlower(int);
-
-    static u8 m_myObj[4];
-    static dGrass_packet_c* m_grass;
-    static dFlower_packet_c* m_flower;
-};
-
-struct daDsh_c {
-    static f32 OPEN_SIZE;
-    static f32 OPEN_ACCEL;
-    static f32 OPEN_SPEED;
-    static f32 OPEN_BOUND_SPEED;
-    static f32 OPEN_BOUND_RATIO;
-    static f32 CLOSE_ACCEL;
-    static f32 CLOSE_SPEED;
-    static f32 CLOSE_BOUND_SPEED;
-    static f32 CLOSE_BOUND_RATIO;
 };
 
 //
@@ -227,7 +190,8 @@ bool daSus_c::data_c::check(cXyz const& i_pos) {
 
     if ((field_0x8.x <= i_pos.x && i_pos.x <= field_0x14.x) &&
         (field_0x8.y <= i_pos.y && i_pos.y <= field_0x14.y) &&
-        (field_0x8.z <= i_pos.z && i_pos.z <= field_0x14.z)) {
+        (field_0x8.z <= i_pos.z && i_pos.z <= field_0x14.z))
+    {
         return true;
     }
 
@@ -241,7 +205,7 @@ u8 daSus_c::data_c::check(fopAc_ac_c* i_actor) {
     }
 
     u8 tmp = 0x80;
-    
+
     if (check(i_actor->orig.pos)) {
         tmp |= 1;
     }
@@ -279,7 +243,8 @@ void daSus_c::room_c::add(daSus_c::data_c* i_data) {
     daSus_c::data_c* data1 = mpData;
     daSus_c::data_c* data2 = data1->getNext();
     while (data2 != NULL) {
-        if (data1->getType() != 0) break;
+        if (data1->getType() != 0)
+            break;
         data1 = data2;
         data2 = data2->getNext();
     }
@@ -316,8 +281,8 @@ s16 daSus_c::mSetTop;
 /* 80031248-800313BC 02BB88 0174+00 0/0 0/0 1/1 .text newData__7daSus_cFScRC4cXyzRC4cXyzUcUcUc */
 // Issues with mSetTop and m_count__9daArrow_c relocation
 #ifdef NONMATCHING
-int daSus_c::newData(s8 i_roomNo, cXyz const& param_1, cXyz const& param_2, u8 param_3,
-                          u8 param_4, u8 i_type) {
+int daSus_c::newData(s8 i_roomNo, cXyz const& param_1, cXyz const& param_2, u8 param_3, u8 param_4,
+                     u8 i_type) {
     s16 setTop = mSetTop;
     daSus_c::data_c* pData = ((daSus_c::data_c*)mData) + setTop;
     for (s16 i = setTop; i < 32; pData++, i++) {
@@ -347,7 +312,7 @@ int daSus_c::newData(s8 i_roomNo, cXyz const& param_1, cXyz const& param_2, u8 p
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm int daSus_c::newData(s8 param_0, cXyz const& param_1, cXyz const& param_2, u8 param_3,
-                          u8 param_4, u8 param_5) {
+                         u8 param_4, u8 param_5) {
     nofralloc
 #include "asm/d/com/d_com_static/newData__7daSus_cFScRC4cXyzRC4cXyzUcUcUc.s"
 }
@@ -542,12 +507,11 @@ SECTION_SDATA2 f32 daDsh_c::CLOSE_BOUND_RATIO = -0.4f;
 int daTagStream_c::checkArea(cXyz const* param_0) {
     cXyz relativePos;
     fpoAcM_relativePos(this, param_0, &relativePos);
-    if (relativePos.y >= 0.0f && relativePos.y <= mScale.y &&
-         fabsf(relativePos.x) <= mScale.x &&
+    if (relativePos.y >= 0.0f && relativePos.y <= mScale.y && fabsf(relativePos.x) <= mScale.x &&
         fabsf(relativePos.z) <= mScale.z)
     {
         return 1;
-    } 
+    }
     return 0;
 }
 
@@ -581,34 +545,34 @@ int daMirror_c::remove() {
 
 /* ############################################################################################## */
 /* 80424588-80424594 0512A8 000C+00 1/2 0/0 1/1 .bss             m_deleteRoom__15dGrass_packet_c */
-dGrass_packet_c::DeleteRoomFunc dGrass_packet_c::m_deleteRoom;
+dGrass_packet_c::deleteFunc dGrass_packet_c::m_deleteRoom;
 
 /* 80450DAC-80450DB0 0002AC 0004+00 0/0 0/0 2/2 .sbss            m_myObj__9daGrass_c */
-u8 daGrass_c::m_myObj[4];
+daGrass_c* daGrass_c::m_myObj;
 
 /* 80450DB0-80450DB4 0002B0 0004+00 1/1 0/0 11/11 .sbss            m_grass__9daGrass_c */
 dGrass_packet_c* daGrass_c::m_grass;
 
 /* 800319C8-80031A20 02C308 0058+00 0/0 0/0 1/1 .text            deleteRoomGrass__9daGrass_cFi */
 void daGrass_c::deleteRoomGrass(int param_0) {
-    if (m_grass) {
-        dGrass_packet_c::DeleteRoomFunc func = dGrass_packet_c::m_deleteRoom;
-        (m_grass->*(func))(param_0);
+    if (m_grass != NULL) {
+        dGrass_packet_c::deleteFunc delete_func = dGrass_packet_c::m_deleteRoom;
+        (m_grass->*(delete_func))(param_0);
     }
 }
 
 /* ############################################################################################## */
 /* 80424594-804245A0 0512B4 000C+00 1/2 0/0 1/1 .bss             m_deleteRoom__16dFlower_packet_c */
-dFlower_packet_c::DeleteRoomFunc dFlower_packet_c::m_deleteRoom;
+dFlower_packet_c::deleteFunc dFlower_packet_c::m_deleteRoom;
 
 /* 80450DB4-80450DB8 0002B4 0004+00 1/1 0/0 9/9 .sbss            m_flower__9daGrass_c */
 dFlower_packet_c* daGrass_c::m_flower;
 
 /* 80031A20-80031A78 02C360 0058+00 0/0 0/0 1/1 .text            deleteRoomFlower__9daGrass_cFi */
 void daGrass_c::deleteRoomFlower(int param_0) {
-    if (m_flower) {
-        dFlower_packet_c::DeleteRoomFunc func = dFlower_packet_c::m_deleteRoom;
-        (m_flower->*(func))(param_0);
+    if (m_flower != NULL) {
+        dFlower_packet_c::deleteFunc delete_func = dFlower_packet_c::m_deleteRoom;
+        (m_flower->*(delete_func))(param_0);
     }
 }
 
@@ -655,7 +619,8 @@ int daTagMagne_c::checkMagnetCode(cBgS_PolyInfo& poly) {
 
     int magCode = dComIfG_Bgsp().GetMagnetCode(poly);
     if ((magCode == 1 && mTagMagne->checkMagneA()) || (magCode == 2 && mTagMagne->checkMagneB()) ||
-        (magCode == 3 && mTagMagne->checkMagneC())) {
+        (magCode == 3 && mTagMagne->checkMagneC()))
+    {
         return 1;
     }
 
@@ -776,8 +741,7 @@ s8 daObjCarry_c::getRoomNo(int idx) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __sinit_d_com_static_cpp() {
-    nofralloc
+asm void __sinit_d_com_static_cpp(){nofralloc
 #include "asm/d/com/d_com_static/__sinit_d_com_static_cpp.s"
 }
 #pragma pop

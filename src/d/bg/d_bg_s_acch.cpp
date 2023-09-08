@@ -313,6 +313,9 @@ void dBgS_Acch::GroundCheckInit(dBgS& param_0) {
     }
 }
 
+/* 80450F68-80450F70 000468 0008+00 0/0 1/1 0/0 .sbss            None */
+s8 data_80450F68;
+
 /* 80076350-8007654C 070C90 01FC+00 2/2 0/0 0/0 .text            GroundCheck__9dBgS_AcchFR4dBgS */
 // issues with tmpRoofChk
 #ifdef NONMATCHING
