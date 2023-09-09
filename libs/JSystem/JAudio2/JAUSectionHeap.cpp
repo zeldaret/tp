@@ -11,35 +11,6 @@
 // Types:
 //
 
-namespace std {
-template <typename A1>
-struct __bitset_base {};
-/* __bitset_base<8> */
-struct __bitset_base__template0 {
-    /* 802A65D4 */ void func_802A65D4(void* _this, u32, bool);
-    /* 802A6614 */ void func_802A6614(void* _this, u32);
-    /* 802A6634 */ void func_802A6634(void* _this, u32) /* const */;
-    /* 802A665C */ void func_802A665C(void* _this);
-};
-
-};  // namespace std
-
-struct JSUPtrLink {
-    /* 802DBDFC */ JSUPtrLink(void*);
-    /* 802DBE14 */ ~JSUPtrLink();
-};
-
-struct JSUPtrList {
-    /* 802DBEAC */ ~JSUPtrList();
-    /* 802DBF14 */ void initiate();
-    /* 802DBF4C */ void append(JSUPtrLink*);
-};
-
-template <typename A0>
-struct JSULink {};
-/* JSULink<JAUBankTable> */
-struct JSULink__template0 {};
-
 struct JKRHeap {
     /* 802CE438 */ void becomeCurrentHeap();
     /* 802CE5F8 */ void freeTail();
@@ -48,11 +19,6 @@ struct JKRHeap {
 
 struct JKRSolidHeap {
     /* 802D0A24 */ void create(u32, JKRHeap*, bool);
-};
-
-struct JKRDisposer {
-    /* 802D147C */ JKRDisposer();
-    /* 802D14E4 */ ~JKRDisposer();
 };
 
 struct JKRArchive {};
@@ -76,78 +42,8 @@ struct JAUSeqDataMgr_SeqCollection {
     /* 802A677C */ JAUSeqDataMgr_SeqCollection();
 };
 
-struct JAUSeqDataBlock {
-    /* 802A68F4 */ JAUSeqDataBlock();
-};
-
 struct JAUSeqCollection {
     /* 802A66AC */ void init(void const*);
-};
-
-struct JAISeqDataUser {};
-
-struct JAISeqData {};
-
-struct JAISoundID {};
-
-struct JAUSectionHeap {
-    struct TSectionHeapData {
-        /* 802A5DF4 */ TSectionHeapData();
-    };
-
-    /* 802A5E60 */ void setSeqDataArchive(JKRArchive*);
-    /* 802A5EC0 */ void loadDynamicSeq(JAISoundID, bool);
-    /* 802A5EF8 */ void releaseIdleDynamicSeqDataBlock();
-    /* 802A5FE0 */ JAUSectionHeap(JKRSolidHeap*, bool, s32);
-    /* 802A6094 */ void getOpenSection();
-    /* 802A60A0 */ void setSeqDataUser(JAISeqDataUser*);
-    /* 802A60AC */ void newDynamicSeqBlock(u32);
-    /* 802A61D0 */ void getSeqData(JAISoundID, JAISeqData*);
-    /* 802A6270 */ bool releaseSeqData();
-    /* 802A6278 */ ~JAUSectionHeap();
-};
-
-struct JAUSection {
-    struct TSectionData {
-        /* 802A4EE8 */ TSectionData();
-        /* 802A4F68 */ void resetRegisteredBankTables();
-        /* 802A4FE4 */ void resetRegisteredWaveBankTables();
-    };
-
-    /* 802A5060 */ JAUSection(JAUSectionHeap*, u32, s32);
-    /* 802A50F8 */ void finishBuild();
-    /* 802A5160 */ void dispose();
-    /* 802A51E4 */ void newSoundTable(void const*, u32, bool);
-    /* 802A52A0 */ void newSoundNameTable(void const*, u32, bool);
-    /* 802A535C */ void newStreamFileTable(void const*, bool);
-    /* 802A5500 */ void newSeSeqCollection(void const*, u32);
-    /* 802A5598 */ void newStaticSeqDataBlock_(JAISoundID, u32);
-    /* 802A56C8 */ void newStaticSeqData(JAISoundID, void const*, u32);
-    /* 802A5730 */ void newStaticSeqData(JAISoundID);
-    /* 802A57F0 */ void newCopy(void const*, u32, s32);
-    /* 802A5854 */ void newWaveBank(u32, void const*);
-    /* 802A5948 */ void loadWaveArc(u32, u32);
-    /* 802A5A50 */ void newBank(void const*, u32);
-    /* 802A5B84 */ void newVoiceBank(u32, u32);
-    /* 802A5CAC */ void beginNewBankTable(u32, u32);
-    /* 802A5D9C */ void endNewBankTable();
-    /* 802A6468 */ ~JAUSection();
-};
-
-struct JAUDynamicSeqDataBlocks {
-    /* 802A6A58 */ JAUDynamicSeqDataBlocks();
-    /* 802A6AA8 */ void getSeqData(JAISoundID, JAISeqDataUser*, JAISeqData*, bool);
-    /* 802A6B8C */ void appendDynamicSeqDataBlock(JAUSeqDataBlock*);
-    /* 802A6C18 */ void loadDynamicSeq(JAISoundID, bool, JAISeqDataUser*);
-    /* 802A6D48 */ void releaseIdleDynamicSeqDataBlock(JAISeqDataUser*);
-};
-
-struct JAUBankTable {
-    /* 802A4AA0 */ void getBank(u32) const;
-};
-
-struct JAUBankTableDictionary {
-    /* 802A4A80 */ void appendBankTable(JSULink<JAUBankTable>*);
 };
 
 struct JASHeap {};
@@ -170,10 +66,6 @@ struct JASBNKParser {
 
 struct JAIStreamDataMgr {
     /* 802A3AD8 */ ~JAIStreamDataMgr();
-};
-
-struct JAISeqDataMgr {
-    /* 802A17BC */ ~JAISeqDataMgr();
 };
 
 //
@@ -625,7 +517,7 @@ asm void JAUSectionHeap::releaseIdleDynamicSeqDataBlock() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void JAUNewSectionHeap(JKRSolidHeap* param_0, bool param_1) {
+static asm JAUSectionHeap* JAUNewSectionHeap(JKRSolidHeap* param_0, bool param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAUSectionHeap/JAUNewSectionHeap__FP12JKRSolidHeapb.s"
 }
@@ -635,7 +527,7 @@ static asm void JAUNewSectionHeap(JKRSolidHeap* param_0, bool param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAUNewSectionHeap(bool param_0) {
+asm JAUSectionHeap* JAUNewSectionHeap(bool param_0) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAUSectionHeap/JAUNewSectionHeap__Fb.s"
 }
@@ -656,7 +548,7 @@ asm JAUSectionHeap::JAUSectionHeap(JKRSolidHeap* param_0, bool param_1, s32 para
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAUSectionHeap::getOpenSection() {
+asm JAUSection* JAUSectionHeap::getOpenSection() {
     nofralloc
 #include "asm/JSystem/JAudio2/JAUSectionHeap/getOpenSection__14JAUSectionHeapFv.s"
 }
@@ -688,7 +580,7 @@ asm void JAUSectionHeap::newDynamicSeqBlock(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAUSectionHeap::getSeqData(JAISoundID param_0, JAISeqData* param_1) {
+asm int JAUSectionHeap::getSeqData(JAISoundID param_0, JAISeqData* param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAUSectionHeap/getSeqData__14JAUSectionHeapF10JAISoundIDP10JAISeqData.s"
 }
@@ -696,8 +588,8 @@ asm void JAUSectionHeap::getSeqData(JAISoundID param_0, JAISeqData* param_1) {
 
 /* 802A6270-802A6278 2A0BB0 0008+00 2/1 0/0 0/0 .text            releaseSeqData__14JAUSectionHeapFv
  */
-bool JAUSectionHeap::releaseSeqData() {
-    return false;
+int JAUSectionHeap::releaseSeqData() {
+    return 0;
 }
 
 /* 802A6278-802A6440 2A0BB8 01C8+00 2/1 0/0 0/0 .text            __dt__14JAUSectionHeapFv */
