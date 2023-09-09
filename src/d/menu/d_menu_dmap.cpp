@@ -1698,7 +1698,7 @@ asm void dMenu_Dmap_c::_create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DPicture::append(ResTIMG const* param_0, f32 param_1) {
+asm bool J2DPicture::append(ResTIMG const* param_0, f32 param_1) {
     nofralloc
 #include "asm/d/menu/d_menu_dmap/append__10J2DPictureFPC7ResTIMGf.s"
 }

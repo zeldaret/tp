@@ -28,7 +28,8 @@ struct J2DScrnBlockPictureParameter {
     /* 0x00 */ u16 field_0x0;
     /* 0x02 */ u16 mMaterialNum;
     /* 0x04 */ u16 field_0x4;
-    /* 0x04 */ u8 field_0x6[10];
+    /* 0x06 */ u16 field_0x6;
+    /* 0x08 */ u16 field_0x8[4];
     /* 0x10 */ JGeometry::TVec2<s16> field_0x10[4];
     /* 0x20 */ u32 mCornerColor[4];
 };  // Size: 0x30
@@ -44,24 +45,24 @@ public:
     /* 802FF65C */ virtual void rewriteAlpha();
     /* 802FCCDC */ virtual void initiate(ResTIMG const*, ResTLUT const*);
     /* 802FD098 */ virtual bool prepareTexture(u8);
-    /* 801BDD40 */ virtual void append(ResTIMG const*, f32);
-    /* 802FF238 */ virtual void append(ResTIMG const*, JUTPalette*, f32);
-    /* 80020338 */ virtual void append(char const*, f32);
-    /* 802FF2F0 */ virtual void append(char const*, JUTPalette*, f32);
-    /* 802FF208 */ virtual void append(JUTTexture*, f32);
+    /* 801BDD40 */ virtual bool append(ResTIMG const*, f32);
+    /* 802FF238 */ virtual bool append(ResTIMG const*, JUTPalette*, f32);
+    /* 80020338 */ virtual bool append(char const*, f32);
+    /* 802FF2F0 */ virtual bool append(char const*, JUTPalette*, f32);
+    /* 802FF208 */ virtual bool append(JUTTexture*, f32);
     /* 802FF3E0 */ virtual void prepend(ResTIMG const*, f32);
     /* 802FF3B0 */ virtual void prepend(ResTIMG const*, JUTPalette*, f32);
     /* 802FF380 */ virtual void prepend(char const*, f32);
     /* 802FF350 */ virtual void prepend(char const*, JUTPalette*, f32);
     /* 802FF320 */ virtual void prepend(JUTTexture*, f32);
     /* 801BDD70 */ virtual void insert(ResTIMG const*, u8, f32);
-    /* 802FD168 */ virtual void insert(ResTIMG const*, JUTPalette*, u8, f32);
+    /* 802FD168 */ virtual bool insert(ResTIMG const*, JUTPalette*, u8, f32);
     /* 80020368 */ virtual void insert(char const*, u8, f32);
-    /* 802FD4B4 */ virtual void insert(char const*, JUTPalette*, u8, f32);
-    /* 802FD524 */ virtual void insert(JUTTexture*, u8, f32);
-    /* 802FD6F4 */ virtual int remove(u8);
-    /* 802FF410 */ virtual int remove();
-    /* 802FD814 */ virtual void remove(JUTTexture*);
+    /* 802FD4B4 */ virtual bool insert(char const*, JUTPalette*, u8, f32);
+    /* 802FD524 */ virtual bool insert(JUTTexture*, u8, f32);
+    /* 802FD6F4 */ virtual bool remove(u8);
+    /* 802FF410 */ virtual bool remove();
+    /* 802FD814 */ virtual bool remove(JUTTexture*);
     /* 802FF4E0 */ virtual void draw(f32, f32, bool, bool, bool);
     /* 802FF448 */ virtual void draw(f32, f32, u8, bool, bool, bool);
     /* 802FDC70 */ virtual void draw(f32, f32, f32, f32, bool, bool, bool);
@@ -73,22 +74,22 @@ public:
     /* 800202CC */ virtual void setBlendRatio(f32, f32);
     /* 802FEA74 */ virtual void setBlendColorRatio(f32, f32);
     /* 802FEA9C */ virtual void setBlendAlphaRatio(f32, f32);
-    /* 802FD874 */ virtual void changeTexture(ResTIMG const*, u8);
-    /* 802FD964 */ virtual void changeTexture(char const*, u8);
-    /* 802FD9BC */ virtual void changeTexture(ResTIMG const*, u8, JUTPalette*);
-    /* 802FDAC8 */ virtual void changeTexture(char const*, u8, JUTPalette*);
-    /* 800539DC */ virtual void getTexture(u8) const;
+    /* 802FD874 */ virtual const ResTIMG* changeTexture(ResTIMG const*, u8);
+    /* 802FD964 */ virtual const ResTIMG* changeTexture(char const*, u8);
+    /* 802FD9BC */ virtual const ResTIMG* changeTexture(ResTIMG const*, u8, JUTPalette*);
+    /* 802FDAC8 */ virtual const ResTIMG* changeTexture(char const*, u8, JUTPalette*);
+    /* 800539DC */ virtual JUTTexture* getTexture(u8) const;
     /* 802FF634 */ virtual u8 getTextureCount() const;
-    /* 80053C6C */ virtual void setBlack(JUtility::TColor);
-    /* 80053C44 */ virtual void setWhite(JUtility::TColor);
-    /* 8018BEE0 */ virtual void setBlackWhite(JUtility::TColor, JUtility::TColor);
+    /* 80053C6C */ virtual bool setBlack(JUtility::TColor);
+    /* 80053C44 */ virtual bool setWhite(JUtility::TColor);
+    /* 8018BEE0 */ virtual bool setBlackWhite(JUtility::TColor, JUtility::TColor);
     /* 801DFA4C */ virtual JUtility::TColor getBlack() const;
     /* 801DFA40 */ virtual JUtility::TColor getWhite() const;
     /* 8025603C */ virtual bool getMaterial() const;
     /* 802FDBFC */ virtual void drawFullSet(f32, f32, f32, f32, Mtx*);
     /* 802FE380 */ virtual void drawTexCoord(f32, f32, f32, f32, s16, s16, s16, s16, s16, s16, s16,
                                              s16, Mtx*);
-    /* 802FF100 */ virtual void getUsableTlut(u8);
+    /* 802FF100 */ virtual u8 getUsableTlut(u8);
 
     /* 802FC800 */ J2DPicture(u64, JGeometry::TBox2<f32> const&, ResTIMG const*, ResTLUT const*);
     /* 802FC708 */ J2DPicture(ResTIMG const*);
@@ -106,7 +107,7 @@ public:
     /* 802FED84 */ void setTexCoord(JGeometry::TVec2<s16>*, JUTTexture const*, J2DBinding,
                                     J2DMirror, bool);
     /* 802FED44 */ void setTexCoord(JUTTexture const*, J2DBinding, J2DMirror, bool);
-    /* 802FF1D0 */ u8 getTlutID(ResTIMG const*, u8);
+    /* 802FF1D0 */ GXTlut getTlutID(ResTIMG const*, u8);
 
     void setCornerColor(JUtility::TColor c0, JUtility::TColor c1, JUtility::TColor c2,
                         JUtility::TColor c3) {
@@ -116,12 +117,13 @@ public:
         mCornerColor[3] = c3;
     }
 
-private:
+protected:
     /* 0x100 */ JUTTexture* mTexture[2];
     /* 0x108 */ u8 mTextureCount;
     /* 0x109 */ u8 field_0x109;
     /* 0x10A */ JGeometry::TVec2<s16> field_0x10a[4];
-    /* 0x11C */ f32 field_0x11c[4];
+    /* 0x11C */ f32 field_0x11c[2];
+    /* 0x124 */ f32 field_0x124[2];
     /* 0x12C */ JUTPalette* mPalette;
     /* 0x130 */ JUtility::TColor mWhite;
     /* 0x134 */ JUtility::TColor mBlack;

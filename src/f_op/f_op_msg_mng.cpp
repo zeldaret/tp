@@ -405,7 +405,7 @@ void J2DPicture::setBlendRatio(f32 param_0, f32 param_1) {
 }
 
 /* 80020338-80020368 01AC78 0030+00 0/0 1/0 0/0 .text            append__10J2DPictureFPCcf */
-void J2DPicture::append(char const* param_0, f32 param_1) {
+bool J2DPicture::append(char const* param_0, f32 param_1) {
     insert(param_0, mTextureCount, param_1);
 }
 
