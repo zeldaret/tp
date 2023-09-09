@@ -6,38 +6,14 @@
 #include "rel/d/a/tag/d_a_tag_river_back/d_a_tag_river_back.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
-#include "dol2asm.h"
 
 //
 // Forward References:
 //
 
-extern "C" void Create__16daTagRiverBack_cFv();
-extern "C" void actionWait__16daTagRiverBack_cFv();
-extern "C" void actionOrderEvent__16daTagRiverBack_cFv();
-extern "C" void actionEvent__16daTagRiverBack_cFv();
-extern "C" void actionDead__16daTagRiverBack_cFv();
-// clib_calcTimer
-extern "C" u8 func_80D5F920(u8*);
-extern "C" extern char const* const d_a_tag_river_back__stringBase0;
-
 //
 // External References:
 //
-
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void dStage_changeScene__FifUlScsi();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void getIsAddvance__16dEvent_manager_cFi();
-extern "C" void getMyActIdx__16dEvent_manager_cFiPCPCciii();
-extern "C" void getMySubstanceP__16dEvent_manager_cFiPCci();
-extern "C" void cutEnd__16dEvent_manager_cFi();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_28();
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 data_80D5FA68[4];
 
 //
 // Declarations:
@@ -77,27 +53,17 @@ int daTagRiverBack_c::Create() {
 }
 
 /* 80D5F360-80D5F3F0 0000E0 0090+00 1/1 0/0 0/0 .text            create__16daTagRiverBack_cFv */
-#ifdef NONMATCHING
-// The diff shows this function as matching, but hash is different
 int daTagRiverBack_c::create() {
     fopAcM_SetupActor(this, daTagRiverBack_c);
-    int phase = dComIfG_resLoad(&mPhase, "RvBack");
-    int result = Create();
-    if (phase == cPhs_COMPLEATE_e && !result) {
-        phase = cPhs_ERROR_e;
+    int phase = dComIfG_resLoad(&mPhase, l_arcName);
+    if (phase == cPhs_COMPLEATE_e) {
+        int result = Create();
+        if (!result) {
+            return cPhs_ERROR_e;
+        }
     }
     return phase;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daTagRiverBack_c::create() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_river_back/d_a_tag_river_back/func_80D5F360.s"
-}
-#pragma pop
-#endif
 
 /* 80D5F3F0-80D5F48C 000170 009C+00 1/1 0/0 0/0 .text            execute__16daTagRiverBack_cFv */
 int daTagRiverBack_c::execute() {
@@ -120,7 +86,6 @@ int daTagRiverBack_c::execute() {
 /* 80D5F9A8-80D5F9AC -00001 0004+00 1/1 0/0 0/0 .data            l_staffName */
 static char* l_staffName = "rvback";
 
-#ifdef NONMATCHING
 /* 80D5F48C-80D5F548 00020C 00BC+00 1/1 0/0 0/0 .text event_proc_call__16daTagRiverBack_cFv */
 void daTagRiverBack_c::event_proc_call() {
     typedef void (daTagRiverBack_c::*actionFunc)();
@@ -131,67 +96,6 @@ void daTagRiverBack_c::event_proc_call() {
 
     (this->*l_func[mAction])();
 }
-#else
-/* 80D5F9AC-80D5F9B8 -00001 000C+00 0/1 0/0 0/0 .data            @3712 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3712[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionWait__16daTagRiverBack_cFv,
-};
-#pragma pop
-
-/* 80D5F9B8-80D5F9C4 -00001 000C+00 0/1 0/0 0/0 .data            @3713 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3713[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionOrderEvent__16daTagRiverBack_cFv,
-};
-#pragma pop
-
-/* 80D5F9C4-80D5F9D0 -00001 000C+00 0/1 0/0 0/0 .data            @3714 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3714[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionEvent__16daTagRiverBack_cFv,
-};
-#pragma pop
-
-/* 80D5F9D0-80D5F9DC -00001 000C+00 0/1 0/0 0/0 .data            @3715 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3715[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionDead__16daTagRiverBack_cFv,
-};
-#pragma pop
-
-/* 80D5F9DC-80D5FA0C 00005C 0030+00 0/1 0/0 0/0 .data            l_func$3711 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_func[48] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
-
-/* 80D5F48C-80D5F548 00020C 00BC+00 1/1 0/0 0/0 .text event_proc_call__16daTagRiverBack_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagRiverBack_c::event_proc_call() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_river_back/d_a_tag_river_back/event_proc_call__16daTagRiverBack_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80D5F548-80D5F5BC 0002C8 0074+00 1/0 0/0 0/0 .text            actionWait__16daTagRiverBack_cFv */
 void daTagRiverBack_c::actionWait() {
@@ -236,10 +140,6 @@ void daTagRiverBack_c::actionEvent() {
 /* 80D5F70C-80D5F710 00048C 0004+00 1/0 0/0 0/0 .text            actionDead__16daTagRiverBack_cFv */
 void daTagRiverBack_c::actionDead() {}
 
-/* ############################################################################################## */
-#ifdef NONMATCHING
-// Does not match due to cLib_calcTimer, also "Timer" string
-
 /* 80D5FA0C-80D5FA14 -00001 0008+00 1/1 0/0 0/0 .data            action_table$3769 */
 static char* action_table[] = {"WAIT", "SCENE_CHG"};
 
@@ -263,8 +163,7 @@ int daTagRiverBack_c::demoProc() {
     }
     switch (act_id) {
     case WAIT_e:
-        // Function is cLib_calcTimer
-        if ((func_80D5F920(&mTimer) & 0xFF) == 0) {
+        if ((cLib_calcTimer(&mTimer) & 0xFF) == 0) {
             dComIfGp_evmng_cutEnd(mStaffID);
         }
         break;
@@ -278,54 +177,6 @@ int daTagRiverBack_c::demoProc() {
 
     return 0;
 }
-#else
-/* 80D5F944-80D5F948 000000 0004+00 1/1 0/0 0/0 .rodata          @3813 */
-SECTION_RODATA static f32 const lit_3813 = 1.0f;
-COMPILER_STRIP_GATE(0x80D5F944, &lit_3813);
-
-/* 80D5F948-80D5F94C 000004 0004+00 0/1 0/0 0/0 .rodata          @3814 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3814 = -1.0f;
-COMPILER_STRIP_GATE(0x80D5F948, &lit_3814);
-#pragma pop
-
-/* 80D5F94C-80D5F950 000008 0004+00 0/1 0/0 0/0 .rodata          @3815 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3815[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80D5F94C, &lit_3815);
-#pragma pop
-
-/* 80D5F950-80D5F950 00000C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80D5F969 = "WAIT";
-SECTION_DEAD static char const* const stringBase_80D5F96E = "SCENE_CHG";
-SECTION_DEAD static char const* const stringBase_80D5F978 = "Timer";
-#pragma pop
-
-/* 80D5FA0C-80D5FA14 -00001 0008+00 1/1 0/0 0/0 .data            action_table$3769 */
-SECTION_DATA static void* action_table[2] = {
-    (void*)(((char*)&d_a_tag_river_back__stringBase0) + 0x19),
-    (void*)(((char*)&d_a_tag_river_back__stringBase0) + 0x1E),
-};
-
-/* 80D5F710-80D5F88C 000490 017C+00 2/2 0/0 0/0 .text            demoProc__16daTagRiverBack_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daTagRiverBack_c::demoProc() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_river_back/d_a_tag_river_back/demoProc__16daTagRiverBack_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80D5F88C-80D5F8C0 00060C 0034+00 1/1 0/0 0/0 .text            _delete__16daTagRiverBack_cFv */
 int daTagRiverBack_c::_delete() {
@@ -350,16 +201,6 @@ static int daTagRiverBack_Delete(daTagRiverBack_c* i_this) {
 static int daTagRiverBack_Create(daTagRiverBack_c* i_this) {
     return i_this->create();
 }
-
-/* 80D5F920-80D5F93C 0006A0 001C+00 1/1 0/0 0/0 .text            cLib_calcTimer<Uc>__FPUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm u8 func_80D5F920(u8* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_river_back/d_a_tag_river_back/func_80D5F920.s"
-}
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D5FA14-80D5FA34 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagRiverBack_Method */
