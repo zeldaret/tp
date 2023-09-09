@@ -6365,39 +6365,22 @@ public:
     }
 
     bool checkShadowModelDrawSmode() const {
-        if (field_0x84e != 3 && field_0x84e != 4) {
-            if (field_0x84e == 2) {
-                return false;
-            }
-        }
-        return true;
+        return field_0x84e == 3 || field_0x84e == 4 || field_0x84e == 2;
     }
 
-    int checkShadowModelDraw() const {
-        int ret = 0;
-
-        if (checkShadowModelDrawDemoForce() == 0) {
-            if (checkShadowModelDrawSmode() != 0) {
-                ret = 0;
-            }
-        }  
-
-        return ret;
+    bool checkShadowModelDraw() const {
+        return checkShadowModelDrawDemoForce() || checkShadowModelDrawSmode();
     }
 
-    int checkShadowReturnEnd() const {
-        if (field_0x5e4[0].getIdx() == 0x21C && !field_0x578->isStop()) {
-            return 1;
-        }
-
-        return 0;
+    bool checkShadowReturnEnd() const {
+        return field_0x5e4[0].getIdx() == 0x21C && field_0x578->isStop();
     }
 
     bool checkShadowModeTalkWait() const {
         return (field_0x84e == 2 || field_0x84e == 1) ;
     }
 
-    void setShadowReturn() { mDemoType = 4; }
+    void setShadowReturn() { field_0x84e = 4; }
 
 
     bool checkPortalObjRide() const {

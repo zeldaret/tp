@@ -3,12 +3,12 @@
 
 #include "dolphin/types.h"
 
-struct J3DMaterial;
-struct J3DTexture;
-struct J3DAnmColor;
-struct J3DAnmTexPattern;
-struct J3DAnmTextureSRTKey;
-struct J3DAnmTevRegKey;
+class J3DMaterial;
+class J3DTexture;
+class J3DAnmColor;
+class J3DAnmTexPattern;
+class J3DAnmTextureSRTKey;
+class J3DAnmTevRegKey;
 class JUTNameTab;
 
 class J3DMaterialTable {

@@ -61,11 +61,29 @@ public:
     void load(_GXTexMapID);
 
     const ResTIMG* getTexInfo() const { return mTexInfo; }
+    u8 getFormat() const { return mTexInfo->format; }
+    s32 getTransparency() { return mTexInfo->alphaEnabled; }
+    s32 getWidth() const { return mTexInfo->width; }
+    s32 getHeight() const { return mTexInfo->height; }
     void setCaptureFlag(bool flag) { mFlags &= 2 | flag; }
     u8 getCaptureFlag() const { return mFlags & 1; }
     u8 getEmbPaletteDelFlag() const { return mFlags & 2; }
     void setEmbPaletteDelFlag(bool flag) { mFlags = (mFlags & 1) | (flag << 1);}
     u8 getTlutName() const { return mTlutName; }
+    bool operator==(const JUTTexture& other) {
+        return mTexInfo == other.mTexInfo
+            && field_0x2c == other.field_0x2c
+            && mWrapS == other.mWrapS
+            && mWrapT == other.mWrapT
+            && mMinFilter == other.mMinFilter
+            && mMagFilter == other.mMagFilter
+            && mMinLOD == other.mMinLOD
+            && mMinLOD == other.mMinLOD
+            && mLODBias == other.mLODBias;
+    }
+    bool operator!=(const JUTTexture& other) {
+        return !operator==(other);
+    }
 
 private:
     /* 0x00 */ GXTexObj mTexObj;

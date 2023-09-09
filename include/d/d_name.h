@@ -10,7 +10,7 @@ class J2DAnmColorKey;
 class J2DAnmTextureSRTKey;
 class J2DTextBox;
 class JUTFont;
-struct STControl;
+class STControl;
 
 class dNm_HIO_c {
 public:

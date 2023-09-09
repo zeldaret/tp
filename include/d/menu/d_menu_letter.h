@@ -6,7 +6,7 @@
 class CPaneMgr;
 struct CSTControl;
 class J2DTextBox;
-struct STControl;
+class STControl;
 class mDoDvdThd_mountArchive_c;
 class dMsgString_c;
 class dMsgScrnArrow_c;

@@ -165,12 +165,12 @@ struct stage_camera_class {
 struct stage_arrow_data_class {
     /* 0x00 */ cXyz mPosition;
     /* 0x0C */ csXyz mAngle;
-};
+};  // Size: 0x14
 
 struct stage_arrow_class {
     /* 0x00 */ int mNum;
     /* 0x04 */ stage_arrow_data_class* mEntries;
-};  // Size: 0x14
+};
 
 class stage_actor_data_class {
 public:
@@ -979,7 +979,7 @@ int dStage_changeScene4Event(int i_exitId, s8 room_no, int i_wipe, bool param_3,
 void dStage_Create();
 static s32 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0);
 void dStage_restartRoom(u32 roomParam, u32 mode, int param_2);
-struct cBgS_GndChk;
+class cBgS_GndChk;
 int dStage_RoomCheck(cBgS_GndChk* gndChk);
 void dStage_dt_c_roomReLoader(void* i_data, dStage_dt_c* stageDt, int param_2);
 void dStage_dt_c_roomLoader(void* i_data, dStage_dt_c* stageDt, int param_2);

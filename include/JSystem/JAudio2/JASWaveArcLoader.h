@@ -1,6 +1,7 @@
 #ifndef JASWAVEARCLOADER_H
 #define JASWAVEARCLOADER_H
 
+#include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSMutex.h"
@@ -12,39 +13,6 @@ struct JASDisposer {
     JASDisposer() {}
     /* 8029A7B8 */ virtual ~JASDisposer() {}
     /* 80290BCC */ virtual void onDispose();
-};
-
-struct JASHeap : JSUTree<JASHeap> {
-    /* 80290140 */ JASHeap(JASDisposer*);
-    /* 802901AC */ void initRootHeap(void*, u32);
-    /* 8029021C */ bool alloc(JASHeap*, u32);
-    /* 802903F4 */ bool allocTail(JASHeap*, u32);
-    /* 802904E4 */ void free();
-    /* 80290608 */ void insertChild(JASHeap*, JASHeap*, void*, u32, bool);
-    /* 802906F0 */ void getTailHeap();
-    /* 8029077C */ void getTailOffset();
-    /* 802907E0 */ void getCurOffset();
-    /* 80290B54 */ ~JASHeap() {}
-    void* getBase() { return mBase; }
-
-    /* 0x1C */ OSMutex mMutex;
-    /* 0x38 */ JASDisposer* mDisposer;
-    /* 0x3C */ void* mBase;
-    /* 0x40 */ u32 _3c;
-    /* 0x44 */ u32 _40;
-};
-
-struct JASKernel {
-    /* 802909B8 */ void setupRootHeap(JKRSolidHeap*, u32);
-    /* 80290AC0 */ static JKRHeap* getSystemHeap();
-    /* 80290AC8 */ u32 getCommandHeap();
-    /* 80290AD0 */ void setupAramHeap(u32, u32);
-    /* 80290B08 */ static JASHeap* getAramHeap();
-
-    static u8 audioAramHeap[68];
-    static u8 sAramBase[4];
-    static JKRHeap* sSystemHeap;
-    static u8 sCommandHeap[4];
 };
 
 #define DIR_MAX 64

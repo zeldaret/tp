@@ -140,86 +140,13 @@ extern "C" u8 sincosTable___5JMath[65536];
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803ABDC8-803ABEB8 008EE8 00F0+00 2/2 0/0 0/0 .data            __vt__8dBgWKCol */
-SECTION_DATA extern void* __vt__8dBgWKCol[60] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8dBgWKColFv,
-    (void*)ChkMemoryError__9dBgW_BaseFv,
-    (void*)ChkNotReady__8dBgWKColCFv,
-    (void*)ChkLock__8dBgWKColCFv,
-    (void*)ChkMoveBg__8dBgWKColCFv,
-    (void*)ChkMoveFlag__8dBgWKColCFv,
-    (void*)GetTriPla__8dBgWKColCFRC13cBgS_PolyInfo,
-    (void*)GetTriPnt__8dBgWKColCFRC13cBgS_PolyInfoP4cXyzP4cXyzP4cXyz,
-    (void*)GetBnd__8dBgWKColCFv,
-    (void*)GetGrpInf__8dBgWKColCFRC13cBgS_PolyInfo,
-    (void*)OffMoveFlag__8dBgWKColFv,
-    (void*)GetTopUnder__8dBgWKColCFPfPf,
-    (void*)SetOldShapeAngleY__9dBgW_BaseFs,
-    (void*)LineCheck__8dBgWKColFP11cBgS_LinChk,
-    (void*)GroundCross__8dBgWKColFP11cBgS_GndChk,
-    (void*)ShdwDraw__8dBgWKColFP13cBgS_ShdwDraw,
-    (void*)CaptPoly__8dBgWKColFR13dBgS_CaptPoly,
-    (void*)WallCorrect__8dBgWKColFP9dBgS_Acch,
-    (void*)WallCorrectSort__8dBgWKColFP9dBgS_Acch,
-    (void*)RoofChk__8dBgWKColFP12dBgS_RoofChk,
-    (void*)SplGrpChk__8dBgWKColFP14dBgS_SplGrpChk,
-    (void*)SphChk__8dBgWKColFP11dBgS_SphChkPv,
-    (void*)GetGrpRoomIndex__8dBgWKColCFRC13cBgS_PolyInfo,
-    (void*)GetExitId__8dBgWKColFRC13cBgS_PolyInfo,
-    (void*)GetPolyColor__8dBgWKColFRC13cBgS_PolyInfo,
-    (void*)GetHorseNoEntry__8dBgWKColFRC13cBgS_PolyInfo,
-    (void*)GetSpecialCode__8dBgWKColFRC13cBgS_PolyInfo,
-    (void*)GetSpecialCode__8dBgWKColFi,
-    (void*)GetMagnetCode__8dBgWKColFRC13cBgS_PolyInfo,
-    (void*)GetPolyObjThrough__8dBgWKColFi,
-    (void*)GetPolyCamThrough__8dBgWKColFi,
-    (void*)GetPolyLinkThrough__8dBgWKColFi,
-    (void*)GetPolyArrowThrough__8dBgWKColFi,
-    (void*)GetPolyHSStick__8dBgWKColFi,
-    (void*)GetPolyBoomerangThrough__8dBgWKColFi,
-    (void*)GetPolyRopeThrough__8dBgWKColFi,
-    (void*)GetPolyBombThrough__8dBgWKColFi,
-    (void*)GetShdwThrough__8dBgWKColFi,
-    (void*)GetUnderwaterRoofCode__8dBgWKColFi,
-    (void*)GetMonkeyBarsCode__8dBgWKColFRC13cBgS_PolyInfo,
-    (void*)GetLinkNo__8dBgWKColFRC13cBgS_PolyInfo,
-    (void*)GetWallCode__8dBgWKColFRC13cBgS_PolyInfo,
-    (void*)GetPolyAtt0__8dBgWKColFRC13cBgS_PolyInfo,
-    (void*)GetPolyAtt1__8dBgWKColFRC13cBgS_PolyInfo,
-    (void*)GetGroundCode__8dBgWKColFRC13cBgS_PolyInfo,
-    (void*)GetIronBallThrough__8dBgWKColFi,
-    (void*)GetAttackThrough__8dBgWKColFi,
-    (void*)GetCamMoveBG__8dBgWKColFRC13cBgS_PolyInfo,
-    (void*)GetRoomCamId__8dBgWKColFRC13cBgS_PolyInfo,
-    (void*)GetRoomPathId__8dBgWKColFRC13cBgS_PolyInfo,
-    (void*)GetRoomPathPntNo__8dBgWKColFRC13cBgS_PolyInfo,
-    (void*)GetPolyGrpRoomInfId__8dBgWKColFRC13cBgS_PolyInfo,
-    (void*)GetGrpSoundId__8dBgWKColFRC13cBgS_PolyInfo,
-    (void*)CrrPos__8dBgWKColFRC13cBgS_PolyInfoPvbP4cXyzP5csXyzP5csXyz,
-    (void*)TransPos__8dBgWKColFRC13cBgS_PolyInfoPvbP4cXyzP5csXyzP5csXyz,
-    (void*)MatrixCrrPos__8dBgWKColFRC13cBgS_PolyInfoPvbP4cXyzP5csXyzP5csXyz,
-    (void*)CallRideCallBack__9dBgW_BaseFP10fopAc_ac_cP10fopAc_ac_c,
-    (void*)CallArrowStickCallBack__9dBgW_BaseFP10fopAc_ac_cP10fopAc_ac_cR4cXyz,
-};
-
 /* 8007E6F4-8007E74C 079034 0058+00 0/0 0/0 1/1 .text            __ct__8dBgWKColFv */
 dBgWKCol::dBgWKCol() {
     m_pkc_head = NULL;
 }
 
 /* 8007E74C-8007E7D0 07908C 0084+00 1/0 0/0 0/0 .text            __dt__8dBgWKColFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dBgWKCol::~dBgWKCol() {
-extern "C" asm void __dt__8dBgWKColFv() {
-    nofralloc
-#include "asm/d/bg/d_bg_w_kcol/__dt__8dBgWKColFv.s"
-}
-#pragma pop
+dBgWKCol::~dBgWKCol() {}
 
 /* 8007E7D0-8007E804 079110 0034+00 0/0 1/1 0/0 .text            initKCollision__8dBgWKColFPv */
 void dBgWKCol::initKCollision(void* i_kclData) {

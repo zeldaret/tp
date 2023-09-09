@@ -5,7 +5,7 @@
 
 #include "JSystem/JAudio2/JAISeq.h"
 #include "JSystem/JAudio2/JAISeqMgr.h"
-#include "JSystem/JAudio2/JASAudioReseter.h" // JASCriticalSection
+#include "JSystem/JAudio2/JASCriticalSection.h"
 #include "JSystem/JAudio2/JAISoundChild.h"
 #include "JSystem/JAudio2/JAIAudience.h"
 #include "JSystem/JKernel/JKRHeap.h"

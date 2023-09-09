@@ -562,8 +562,6 @@ bool J2DTextBoxEx::setBlackWhite(JUtility::TColor param_0, JUtility::TColor para
 
 /* 803084CC-80308668 302E0C 019C+00 4/4 0/0 0/0 .text
  * getBlackWhite__12J2DTextBoxExCFPQ28JUtility6TColorPQ28JUtility6TColor */
-// regalloc
-#ifdef NONMATCHING
 bool J2DTextBoxEx::getBlackWhite(JUtility::TColor* param_0, JUtility::TColor* param_1) const {
     if (mMaterial == NULL) {
         return false;
@@ -577,23 +575,25 @@ bool J2DTextBoxEx::getBlackWhite(JUtility::TColor* param_0, JUtility::TColor* pa
     *param_0 = JUtility::TColor(0);
     *param_1 = JUtility::TColor(0xffffffff);
     if (tevStageNum) {
-        J2DGXColorS10 local_30(*mMaterial->getTevBlock()->getTevColor(0));
-        J2DGXColorS10 local_38(*mMaterial->getTevBlock()->getTevColor(1));
-        *param_0 = JUtility::TColor((((u8)local_30.r) << 24) | (((u8)local_30.g) << 16) | (((u8)local_30.b) << 8) | ((u8)local_30.a));
-        *param_1 = JUtility::TColor((((u8)local_38.r) << 24) | (((u8)local_38.g) << 16) | (((u8)local_38.b) << 8) | ((u8)local_38.a));
+        J2DGXColorS10* local_30 = mMaterial->getTevBlock()->getTevColor(0);
+        s16 color0r = local_30->r;
+        s16 color0g = local_30->g;
+        s16 color0b = local_30->b;
+        s16 color0a = local_30->a;
+        J2DGXColorS10* local_38 = mMaterial->getTevBlock()->getTevColor(1);
+        s16 color1r = local_38->r;
+        s16 color1g = local_38->g;
+        s16 color1b = local_38->b;
+        s16 color1a = local_38->a;
+        *param_0 = JUtility::TColor(
+            (((u8)color0r) << 24) | (((u8)color0g) << 16) | (((u8)color0b) << 8) |
+                ((u8)color0a));
+        *param_1 = JUtility::TColor(
+            (((u8)color1r) << 24) | (((u8)color1g) << 16) | (((u8)color1b) << 8) |
+                ((u8)color1a));
     }
     return true;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DTextBoxEx::getBlackWhite(JUtility::TColor* param_0, JUtility::TColor* param_1) const {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DTextBoxEx/getBlackWhite__12J2DTextBoxExCFPQ28JUtility6TColorPQ28JUtility6TColor.s"
-}
-#pragma pop
-#endif
 
 /* 80308668-803086FC 302FA8 0094+00 1/1 0/0 0/0 .text
  * isSetBlackWhite__12J2DTextBoxExCFQ28JUtility6TColorQ28JUtility6TColor */

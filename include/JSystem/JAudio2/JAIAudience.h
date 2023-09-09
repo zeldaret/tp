@@ -3,7 +3,7 @@
 
 #include "JSystem/JGeometry.h"
 
-struct JAIAudible;
+class JAIAudible;
 class JAISoundID;
 struct JASSoundParams;
 

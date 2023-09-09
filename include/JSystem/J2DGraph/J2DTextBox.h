@@ -50,7 +50,7 @@ public:
     };
 
     /* 803001E0 */ virtual ~J2DTextBox();
-    /* 80300C68 */ virtual s32 getTypeID() const;
+    /* 80300C68 */ virtual u16 getTypeID() const;
     /* 80300AF8 */ virtual void resize(f32, f32);
     /* 80300870 */ virtual bool setConnectParent(bool);
     /* 80300950 */ virtual void drawSelf(f32, f32, Mtx*);
@@ -103,6 +103,11 @@ public:
     void getFontSize(TFontSize& size) const {
         size.mSizeX = mFontSizeX;
         size.mSizeY = mFontSizeY;
+    }
+
+    void setFontColor(JUtility::TColor i_charColor, JUtility::TColor i_GradientColor) {
+        mCharColor = i_charColor;
+        mGradientColor = i_GradientColor;
     }
 
     void setCharSpace(f32 space) { mCharSpacing = space; }

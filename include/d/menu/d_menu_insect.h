@@ -6,7 +6,7 @@
 class CPaneMgr;
 struct CSTControl;
 class J2DTextBox;
-struct STControl;
+class STControl;
 class dMsgScrn3Select_c;
 class dMsgString_c;
 class dSelect_cursor_c;

@@ -280,7 +280,7 @@ public:
     /* 8007C910 */ virtual void WallCorrectSort(dBgS_Acch*);
     /* 8007D470 */ virtual bool RoofChk(dBgS_RoofChk*);
     /* 8007D830 */ virtual bool SplGrpChk(dBgS_SplGrpChk*);
-    /* 8007DF00 */ virtual bool SphChk(dBgS_SphChk*, virtual void*);
+    /* 8007DF00 */ virtual bool SphChk(dBgS_SphChk*, void*);
     /* 8007B3AC */ virtual s32 GetExitId(cBgS_PolyInfo const&);
     /* 8007B3D8 */ virtual s32 GetPolyColor(cBgS_PolyInfo const&);
     /* 8007B404 */ virtual BOOL GetHorseNoEntry(cBgS_PolyInfo const&);
@@ -311,11 +311,11 @@ public:
     /* 8007B904 */ virtual s32 GetRoomPathPntNo(cBgS_PolyInfo const&);
     /* 8007DF28 */ virtual u8 GetPolyGrpRoomInfId(cBgS_PolyInfo const&);
     /* 8007DF58 */ virtual u8 GetGrpSoundId(cBgS_PolyInfo const&);
-    /* 8007DF88 */ virtual void CrrPos(cBgS_PolyInfo const&, virtual void*, bool, cXyz*, csXyz*,
+    /* 8007DF88 */ virtual void CrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*,
                                        csXyz*);
-    /* 8007DFC4 */ virtual void TransPos(cBgS_PolyInfo const&, virtual void*, bool, cXyz*, csXyz*,
+    /* 8007DFC4 */ virtual void TransPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*,
                                          csXyz*);
-    /* 8007E000 */ virtual void MatrixCrrPos(cBgS_PolyInfo const&, virtual void*, bool, cXyz*,
+    /* 8007E000 */ virtual void MatrixCrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*,
                                              csXyz*, csXyz*);
     /* 8007E444 */ virtual void CallRideCallBack(fopAc_ac_c*, fopAc_ac_c*);
     /* 8007E474 */ virtual void CallArrowStickCallBack(fopAc_ac_c*, fopAc_ac_c*, cXyz&);

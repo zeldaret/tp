@@ -28,7 +28,7 @@ enum {
     ACTOR_TYPE_ENEMY = 2,
 };
 
-struct JKRSolidHeap;
+class JKRSolidHeap;
 
 class dEvt_info_c {
 public:

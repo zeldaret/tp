@@ -4,6 +4,7 @@
 //
 
 #include "Z2AudioLib/Z2AudioMgr.h"
+#include "JSystem/JAudio2/JASAiCtrl.h"
 #include "JSystem/JAudio2/JASDriverIF.h"
 #include "MSL_C/stdio.h"
 #include "MSL_C/stdlib.h"
@@ -79,10 +80,6 @@ struct JASSeqParser {
 
 struct JASResArcLoader {
     /* 80290C04 */ void getResMaxSize(JKRArchive const*);
-};
-
-struct JASKernel {
-    /* 80290B08 */ void getAramHeap();
 };
 
 struct JASAramStream {

@@ -328,12 +328,11 @@ public:
     void setItemPachinkoNumCount(s16 seeds) { mItemPachinkoNumCount += seeds; }
     void setItemKeyNumCount(s16 keys) { mItemKeyNumCount += keys; }
     void setItemMaxLifeCount(s16 max) { mItemMaxLifeCount += max; }
-    void setOxygen(int oxygen) { mOxygen = oxygen; }
+    void setOxygen(s32 oxygen) { mOxygen = oxygen; }
     void setNowOxygen(s32 oxygen) { mNowOxygen = oxygen; }
     void setOxygenCount(s32 oxygen) { mOxygenCount += oxygen; }
     int getOxygen() { return mOxygen; }
     void setMaxOxygen(int max) { mMaxOxygen = max; }
-    void setOxygen(s32 i_oxygen) { mOxygen = i_oxygen; }
     int getMaxOxygen() { return mMaxOxygen; }
     int getNowOxygen() { return mNowOxygen; }
     void setItemNowLife(u16 life) { mItemNowLife = life; }
@@ -418,6 +417,7 @@ public:
     JKRArchive* getNameResArchive() { return mNameResArchive; }
     JKRArchive* getFmapResArchive() { return mFmapResArchive; }
     JKRAramArchive* getFieldMapArchive2() { return (JKRAramArchive*)mFieldMapArchive2; }
+    JKRArchive* getOptionResArchive() { return mOptionResArchive; }
 
     void setFieldMapArchive2(JKRArchive* arc) { mFieldMapArchive2 = arc; }
     void setAnmArchive(JKRArchive* arc) { mAnmArchive = arc; }
@@ -426,6 +426,7 @@ public:
     void setCollectResArchive(JKRArchive* arc) { mCollectResArchive = arc; }
     void setItemIconArchive(JKRArchive* arc) { mItemIconArchive = arc; }
     void setAllMapArchive(JKRArchive* arc) { mAllMapArchive = arc; }
+    void setOptionResArchive(JKRArchive* arc) { mOptionResArchive = arc; }
     void setRingResArchive(JKRArchive* arc) { mRingResArchive = arc; }
     void setNameResArchive(JKRArchive* arc) { mNameResArchive = arc; }
     void setDemoMsgArchive(JKRArchive* arc) { mDemoMsgArchive = arc; }
@@ -1226,6 +1227,14 @@ inline u8 dComIfGs_getOptAttentionType() {
     return g_dComIfG_gameInfo.info.getPlayer().getConfig().getAttentionType();
 }
 
+inline u8 dComIfGs_getOptCameraControl() {
+    return g_dComIfG_gameInfo.info.getPlayer().getConfig().getCameraControl();
+}
+
+inline u8 dComIfGs_getOptSound() {
+    return g_dComIfG_gameInfo.info.getPlayer().getConfig().getSound();
+}
+
 inline BOOL dComIfGs_isTbox(int i_no) {
     return g_dComIfG_gameInfo.info.getMemory().getBit().isTbox(i_no);
 }
@@ -1672,6 +1681,22 @@ inline void dComIfGs_setLastWarpAcceptStage(s8 param_0) {
     g_dComIfG_gameInfo.info.getPlayer().getPlayerLastMarkInfo().setWarpAcceptStage(param_0);
 }
 
+inline void dComIfGs_setOptSound(u8 i_mode) {
+    g_dComIfG_gameInfo.info.getPlayer().getConfig().setSound(i_mode);
+}
+
+inline void dComIfGs_setOptVibration(u8 i_status) {
+    g_dComIfG_gameInfo.info.getPlayer().getConfig().setVibration(i_status);
+}
+
+inline void dComIfGs_setOptAttentionType(u8 i_attentionType) {
+    g_dComIfG_gameInfo.info.getPlayer().getConfig().setAttentionType(i_attentionType);
+}
+
+inline void dComIfGs_setOptCameraControl(u8 i_cameraControl) {
+    g_dComIfG_gameInfo.info.getPlayer().getConfig().setCameraControl(i_cameraControl);
+}
+
 inline void dComIfGs_setOptPointer(u8 i_pointer) {
     g_dComIfG_gameInfo.info.getPlayer().getConfig().setPointer(i_pointer);
 }
@@ -1806,6 +1831,10 @@ inline u8 dComIfGp_att_getCatchChgItem() {
     return dComIfGp_getAttention().getCatchChgItem();
 }
 
+inline int dComIfGp_att_ZHintRequest(fopAc_ac_c *param_1, int param_2) {
+    return dComIfGp_getAttention().ZHintRequest(param_1, param_2);
+}
+
 inline void dComIfGp_att_LookRequest(fopAc_ac_c* param_0, f32 i_horizontalDist, f32 i_upDist,
                                      f32 i_downDist, s16 i_angle, int param_5) {
     dComIfGp_getAttention().LookRequest(param_0, i_horizontalDist, i_upDist, i_downDist, i_angle,
@@ -1912,6 +1941,10 @@ inline void dComIfGp_setAllMapArchive(JKRArchive* arc) {
 
 inline void dComIfGp_setRingResArchive(JKRArchive* arc) {
     g_dComIfG_gameInfo.play.setRingResArchive(arc);
+}
+
+inline void dComIfGp_setOptionResArchive(JKRArchive* arc) {
+    g_dComIfG_gameInfo.play.setOptionResArchive(arc);
 }
 
 inline void dComIfGp_setNameResArchive(JKRArchive* arc) {
@@ -2735,6 +2768,10 @@ inline dStage_Multi_c* dComIfGp_getMulti() {
 
 inline JKRAramArchive* dComIfGp_getFieldMapArchive2() {
     return g_dComIfG_gameInfo.play.getFieldMapArchive2();
+}
+
+inline JKRArchive* dComIfGp_getOptionResArchive() {
+    return g_dComIfG_gameInfo.play.getOptionResArchive();
 }
 
 inline void dComIfGp_onPauseFlag() {

@@ -10,11 +10,11 @@ class JUTTexture;
 class J2DWindow : public J2DPane {
 public:
     struct TMaterial {
-        /* 0x00 */ JUTTexture* field_0x0;
-        /* 0x04 */ JUTTexture* field_0x4;
-        /* 0x08 */ JUTTexture* field_0x8;
-        /* 0x0C */ JUTTexture* field_0xc;
-        /* 0x10 */ JUTTexture* field_0x10;
+        /* 0x00 */ J2DMaterial* field_0x0;
+        /* 0x04 */ J2DMaterial* field_0x4;
+        /* 0x08 */ J2DMaterial* field_0x8;
+        /* 0x0C */ J2DMaterial* field_0xc;
+        /* 0x10 */ J2DMaterial* field_0x10;
     };  // Size: 0x14
 
     struct TContentsColor {
@@ -39,10 +39,10 @@ public:
     /* 802FBB90 */ void setTevMode(JUTTexture*, JUtility::TColor, JUtility::TColor);
 
     /* 802FA880 */ virtual ~J2DWindow();
-    /* 802FBF98 */ virtual s32 getTypeID() const;
+    /* 802FBF98 */ virtual u16 getTypeID() const;
     /* 802FB000 */ virtual void resize(f32, f32);
     /* 802FB1D8 */ virtual void drawSelf(f32, f32);
-    /* 802FB240 */ virtual void drawSelf(f32, f32, f32 (*)[3][4]);
+    /* 802FB240 */ virtual void drawSelf(f32, f32, Mtx*);
     /* 802FBEDC */ virtual bool isUsed(ResTIMG const*);
     /* 802FC02C */ virtual bool isUsed(ResFONT const*);
     /* 802FC04C */ virtual void rewriteAlpha();
@@ -54,15 +54,31 @@ public:
     /* 80254568 */ virtual bool setBlackWhite(JUtility::TColor, JUtility::TColor);
     /* 80254000 */ virtual JUtility::TColor getBlack() const;
     /* 8025400C */ virtual JUtility::TColor getWhite() const;
-    /* 802FBE60 */ virtual void getFrameTexture(u8, u8) const;
-    /* 802FBFE8 */ virtual void getContentsTexture(u8) const;
+    /* 802FBE60 */ virtual JUTTexture* getFrameTexture(u8, u8) const;
+    /* 802FBFE8 */ virtual JUTTexture* getContentsTexture(u8) const;
     /* 802FC000 */ virtual void getMaterial(J2DWindow::TMaterial&) const;
-    /* 802FC01C */ virtual bool getFrameMaterial(u8) const;
-    /* 802FC024 */ virtual bool getContentsMaterial() const;
+    /* 802FC01C */ virtual J2DMaterial* getFrameMaterial(u8) const;
+    /* 802FC024 */ virtual J2DMaterial* getContentsMaterial() const;
     /* 802FB338 */ virtual void drawContents(JGeometry::TBox2<f32> const&);
 
+    bool isField0x145Set(u8 flag) { return field_0x145 & flag; }
+
+    void getContentsColor(TContentsColor& param_0) const {
+        param_0.field_0x0 = field_0x128;
+        param_0.field_0x4 = field_0x12C;
+        param_0.field_0x8 = field_0x130;
+        param_0.field_0xc = field_0x134;
+    }
+    void setContentsColor(JUtility::TColor param_0) {
+        setContentsColor(param_0, param_0, param_0, param_0);
+    }
+
 private:
-    /* 0x100 */ TMaterial mMaterial;
+    /* 0x100 */ JUTTexture* field_0x100;
+    /* 0x104 */ JUTTexture* field_0x104;
+    /* 0x108 */ JUTTexture* field_0x108;
+    /* 0x10C */ JUTTexture* field_0x10c;
+    /* 0x110 */ JUTTexture* field_0x110;
     /* 0x114 */ JGeometry::TBox2<f32> field_0x114;
     /* 0x124 */ JUTPalette* mPalette;
     /* 0x128 */ JUtility::TColor field_0x128;

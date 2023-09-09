@@ -25,15 +25,12 @@
 #include "rel/d/a/e/d_a_e_wb/d_a_e_wb.h"
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 #include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"
+#include "rel/d/a/tag/d_a_tag_mist/d_a_tag_mist.h"
 #include "rel/d/a/d_a_mirror/d_a_mirror.h"
 
 //
 // Types:
 //
-
-struct daTagMist_c {
-    /* 80031CF0 */ void getPlayerNo();
-};
 
 struct daObj_Sekizoa_c {
     /* 801312C8 */ void setWolfHowling();
@@ -65,10 +62,6 @@ struct dPaPoF_c {
 
     static u8 m_typeFourData[60];
     static u8 m_emitterFourData[60 + 28 /* padding */];
-};
-
-struct JASKernel {
-    /* 80290B08 */ void getAramHeap();
 };
 
 struct JAISeq {

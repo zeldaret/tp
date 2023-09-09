@@ -4,9 +4,9 @@
 #include "dolphin/types.h"
 
 struct cXyz;
-struct fopAc_ac_c;
-struct J3DJoint;
-struct J3DModel;
+class fopAc_ac_c;
+class J3DJoint;
+class J3DModel;
 
 struct daNPC_TK_c {
     /* 80B01498 */ void setBck(int, u8, f32, f32);

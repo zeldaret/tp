@@ -42,8 +42,8 @@ private:
 class mDoDvdThd_toMainRam_c;
 class cBgS_PolyInfo;
 class JPAEmitterManager;
-struct JPADrawInfo;
-struct J3DAnmBase;
+class JPADrawInfo;
+class J3DAnmBase;
 
 class dPa_simpleEcallBack : public JPAEmitterCallBack {
 public:

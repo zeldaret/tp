@@ -72,7 +72,7 @@ public:
 
     virtual ~J2DPane();
 
-    /* vt 0x0C */ virtual s32 getTypeID() const { return 16; }
+    /* vt 0x0C */ virtual u16 getTypeID() const { return 16; }
     /* vt 0x10 */ virtual void move(f32 x, f32 y);
     /* vt 0x14 */ virtual void add(f32 x, f32 y);
     /* vt 0x18 */ virtual void resize(f32 x, f32 y);
@@ -110,6 +110,7 @@ public:
     f32 getHeight() const { return mBounds.getHeight(); }
     f32 getWidth() const { return mBounds.getWidth(); }
     JSUTree<J2DPane>* getFirstChild() { return mPaneTree.getFirstChild(); }
+    JSUTree<J2DPane>* getEndChild() { return mPaneTree.getEndChild(); }
     const JSUTree<J2DPane>* getPaneTree() { return &mPaneTree; }
     u8 getAlpha() const { return mAlpha; }
 
@@ -149,6 +150,8 @@ public:
 
     void show() { mVisible = true; }
     void hide() { mVisible = false; }
+
+    bool isConnectParent() const { return mConnected; }
 
     void setUserInfo(u64 info) { mUserInfoTag = info; }
     const Mtx* getMtx() const { return &mPositionMtx; }

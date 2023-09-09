@@ -18,6 +18,12 @@ public:
     /* vt[4] */ virtual s32 skip(s32);
     /* vt[5] */ virtual u32 readData(void*, s32) = 0;
 
+    u32 readU32() {
+        u32 val;
+        this->read(&val, sizeof(val));
+        return val;
+    }
+
     u32 read32b() {
         u32 val;
         this->read(&val, sizeof(val));

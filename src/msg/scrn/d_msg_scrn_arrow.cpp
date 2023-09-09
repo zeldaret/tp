@@ -25,15 +25,15 @@ dMsgScrnArrow_c::dMsgScrnArrow_c() {
     mBpkFrame = 0.0f;
 
     mPaneMgr0 = new CPaneMgr(mScreen, 'set_ya_n', 0, NULL);
-    mPaneMgr1 = new CPaneMgr(mScreen, '\0ya_next', 0, NULL);
+    mPaneMgr1 = new CPaneMgr(mScreen, 'ya_next', 0, NULL);
     mPaneMgr1->hide();
     mPaneMgr1->mPane->setAnimation(mAnmBck);
-    mScreen->search('\0yajnext')->setAnimation(mAnmBpk);
+    mScreen->search('yajnext')->setAnimation(mAnmBpk);
     mScreen->search('yajinexl')->setAnimation(mAnmBpk);
 
     mPaneMgr2 = new CPaneMgr(mScreen, 'ya_end', 0, NULL);
     mPaneMgr2->hide();
-    mScreen->search('\0yaj_end')->setAnimation(mAnmBpk);
+    mScreen->search('yaj_end')->setAnimation(mAnmBpk);
     mScreen->search('yajiendl')->setAnimation(mAnmBpk);
 }
 

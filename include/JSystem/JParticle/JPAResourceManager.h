@@ -5,8 +5,8 @@
 #include "dolphin/types.h"
 
 class JKRHeap;
-class ResTIMG;
 class JPAResource;
+struct ResTIMG;
 
 class JPAResourceManager {
 public:

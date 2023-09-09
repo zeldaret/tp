@@ -15,13 +15,6 @@ struct J3DGXColor : public GXColor {
     /* 8000E538 */ J3DGXColor() {}
 };
 
-struct J3DNBTScaleInfo {
-    /* 8032587C */ void operator=(J3DNBTScaleInfo const&);
-
-    /* 0x0 */ u8 mbHasScale;
-    /* 0x4 */ Vec mScale;
-};  // Size: 0x10
-
 struct J3DNBTScale : public J3DNBTScaleInfo {
     J3DNBTScale() {}
     J3DNBTScale(J3DNBTScaleInfo const& info) {
@@ -577,23 +570,6 @@ struct J3DBlend : public J3DBlendInfo {
         *(J3DBlendInfo*)this = j3dDefaultBlendInfo;
     }
 };
-
-struct J3DFogInfo {
-    /* 80325800 */ void operator=(J3DFogInfo const&);
-
-    /* 0x00 */ u8 field_0x0;
-    /* 0x01 */ u8 field_0x1;
-    /* 0x02 */ u16 field_0x2;
-    /* 0x04 */ f32 field_0x4;
-    /* 0x08 */ f32 field_0x8;
-    /* 0x0C */ f32 field_0xc;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ u8 field_0x14;
-    /* 0x15 */ u8 field_0x15;
-    /* 0x16 */ u8 field_0x16;
-    /* 0x17 */ u8 field_0x17;
-    /* 0x18 */ u16 field_0x18[10];
-};  // Size: 0x2C
 
 extern const J3DFogInfo j3dDefaultFogInfo;
 

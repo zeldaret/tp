@@ -4,98 +4,36 @@
 //
 
 #include "JSystem/JAudio2/JASAiCtrl.h"
+#include "JSystem/JAudio2/JASAudioThread.h"
+#include "JSystem/JAudio2/JASCalc.h"
+#include "JSystem/JAudio2/JASCriticalSection.h"
+#include "JSystem/JAudio2/JASDSPInterface.h"
+#include "JSystem/JAudio2/JASHeapCtrl.h"
+#include "JSystem/JAudio2/JASLfo.h"
+#include "JSystem/JAudio2/JASProbe.h"
+#include "JSystem/JAudio2/JASReport.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 #include "dol2asm.h"
+#include "dolphin/ai/ai.h"
+#include "dolphin/os/OSCache.h"
+#include "dolphin/os/OSTime.h"
 
 //
 // Types:
 //
 
-struct JKRHeap {};
-
-struct JASProbe {
-    /* 80290EE4 */ void start(s32, char const*);
-    /* 80290F24 */ void stop(s32);
-};
-
 struct JASPortCmd {
-    /* 80291060 */ void execAllCommand();
-};
-
-struct JASOutputRate {};
-
-struct JASMixMode {};
-
-struct JASLfo {
-    /* 8029BDD8 */ void incCounter(f32);
-
-    static u8 sFreeRunLfo[24];
-};
-
-struct JASDsp {
-    /* 8029D9E4 */ void syncFrame(u32, u32, u32);
-    /* 8029DAA0 */ void invalChannelAll();
-};
-
-struct JASDriver {
-    /* 8029C388 */ void initAI(void (*)(void));
-    /* 8029C4E4 */ void startDMA();
-    /* 8029C504 */ void stopDMA();
-    /* 8029C524 */ void setOutputRate(JASOutputRate);
-    /* 8029C568 */ void updateDac();
-    /* 8029C6C4 */ void updateDSP();
-    /* 8029C7E0 */ void readDspBuffer(s16*, u32);
-    /* 8029C900 */ void finishDSPFrame();
-    /* 8029C9DC */ void registerMixCallback(s16* (*)(s32), JASMixMode);
-    /* 8029C9E8 */ void getDacRate();
-    /* 8029C9F0 */ u32 getSubFrames();
-    /* 8029C9F8 */ void getDacSize();
-    /* 8029CA04 */ void getFrameSamples();
-    /* 8029CA10 */ void mixMonoTrack(s16*, u32, s16* (*)(s32));
-    /* 8029CAC0 */ void mixMonoTrackWide(s16*, u32, s16* (*)(s32));
-    /* 8029CB70 */ void mixExtraTrack(s16*, u32, s16* (*)(s32));
-    /* 8029CC50 */ void mixInterleaveTrack(s16*, u32, s16* (*)(s32));
-    /* 8029CCD4 */ u32 getSubFrameCounter();
-    /* 8029E2A8 */ void subframeCallback();
-    /* 8029E2D0 */ void DSPSyncCallback();
-
-    static void* const sMixFuncs[4];
-    static u8 sDmaDacBuffer[12 + 4 /* padding */];
-    static u32 sMixMode;
-    static f32 sDacRate;
-    static u32 sSubFrames;
-    static u8 sDspDacBuffer[4];
-    static u8 sDspDacWriteBuffer[4];
-    static u8 sDspDacReadBuffer[4];
-    static u8 sDspStatus[4];
-    static u8 sDspDacCallback[4];
-    static u8 lastRspMadep[4];
-    static u8 dacCallbackFunc[4];
-    static u8 extMixCallback[4];
-    static u8 sOutputRate[4];
-    static u8 sSubFrameCounter[4];
+    /* 80291060 */ static void execAllCommand();
 };
 
 struct JASDSPChannel {
-    /* 8029D89C */ void updateAll();
-    /* 8029D910 */ void killActiveChannel();
+    /* 8029D89C */ static void updateAll();
+    /* 8029D910 */ static void killActiveChannel();
 };
 
 struct JASChannel {
-    /* 8029BC0C */ void initBankDisposeMsgQueue();
-    /* 8029BC48 */ void receiveBankDisposeMsg();
-};
-
-struct JASCalc {
-    /* 8028F2E8 */ void imixcopy(s16 const*, s16 const*, s16*, u32);
-    /* 8028F480 */ void bzero(void*, u32);
-    template <typename A1, typename B1>
-    void clamp(/* ... */);
-    /* 8028F69C */ /* JASCalc::clamp<s16, s32> */
-    void func_8028F69C(void* _this, s32);
-};
-
-struct JASAudioThread {
-    static u8 snIntCount[4 + 4 /* padding */];
+    /* 8029BC0C */ static void initBankDisposeMsgQueue();
+    /* 8029BC48 */ static void receiveBankDisposeMsg();
 };
 
 //
@@ -115,10 +53,10 @@ extern "C" void getDacRate__9JASDriverFv();
 extern "C" u32 getSubFrames__9JASDriverFv();
 extern "C" void getDacSize__9JASDriverFv();
 extern "C" void getFrameSamples__9JASDriverFv();
-extern "C" void mixMonoTrack__9JASDriverFPsUlPFl_Ps();
-extern "C" void mixMonoTrackWide__9JASDriverFPsUlPFl_Ps();
-extern "C" void mixExtraTrack__9JASDriverFPsUlPFl_Ps();
-extern "C" void mixInterleaveTrack__9JASDriverFPsUlPFl_Ps();
+extern "C" void mixMonoTrack(s16*, u32, s16* (*)(s32));
+extern "C" void mixMonoTrackWide(s16*, u32, s16* (*)(s32));
+extern "C" void mixExtraTrack(s16*, u32, s16* (*)(s32));
+extern "C" void mixInterleaveTrack(s16*, u32, s16* (*)(s32));
 extern "C" u32 getSubFrameCounter__9JASDriverFv();
 extern "C" void* const sMixFuncs__9JASDriver[4];
 extern "C" extern char const* const JASAiCtrl__stringBase0;
@@ -158,17 +96,6 @@ extern "C" void invalChannelAll__6JASDspFv();
 extern "C" void subframeCallback__9JASDriverFv();
 extern "C" void DSPSyncCallback__9JASDriverFv();
 extern "C" void* __nwa__FUlP7JKRHeapi();
-extern "C" void DCInvalidateRange();
-extern "C" void DCStoreRange();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void OSGetTick();
-extern "C" void AIRegisterDMACallback();
-extern "C" void AIInitDMA();
-extern "C" void AIStartDMA();
-extern "C" void AIStopDMA();
-extern "C" void AISetDSPSampleRate();
-extern "C" void AIInit();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
@@ -178,7 +105,6 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" u8 sFreeRunLfo__6JASLfo[24];
-extern "C" extern u8 JASDram[4];
 extern "C" u8 snIntCount__14JASAudioThread[4 + 4 /* padding */];
 
 //
@@ -187,39 +113,65 @@ extern "C" u8 snIntCount__14JASAudioThread[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 80431C58-80431C68 05E978 000C+04 2/2 0/0 0/0 .bss             sDmaDacBuffer__9JASDriver */
-u8 JASDriver::sDmaDacBuffer[12 + 4 /* padding */];
+s16* JASDriver::sDmaDacBuffer[3];
 
 /* 804507A8-804507AC 000228 0004+00 3/3 0/0 0/0 .sdata           None */
-SECTION_SDATA static u32 data_804507A8 = 0x03000000;
+SECTION_SDATA static u8 data_804507A8 = 3;
 
 /* 804512A0-804512A4 0007A0 0004+00 3/3 0/0 0/0 .sbss            sDspDacBuffer__9JASDriver */
-u8 JASDriver::sDspDacBuffer[4];
+s16** JASDriver::sDspDacBuffer;
 
 /* 804512A4-804512A8 0007A4 0004+00 3/3 0/0 0/0 .sbss            sDspDacWriteBuffer__9JASDriver */
-u8 JASDriver::sDspDacWriteBuffer[4];
+s32 JASDriver::sDspDacWriteBuffer;
 
 /* 804512A8-804512AC 0007A8 0004+00 3/3 0/0 0/0 .sbss            sDspDacReadBuffer__9JASDriver */
-u8 JASDriver::sDspDacReadBuffer[4];
+s32 JASDriver::sDspDacReadBuffer;
 
 /* 804512AC-804512B0 0007AC 0004+00 3/3 0/0 0/0 .sbss            sDspStatus__9JASDriver */
-u8 JASDriver::sDspStatus[4];
+s32 JASDriver::sDspStatus;
 
 /* 804512B0-804512B4 0007B0 0004+00 1/1 0/0 0/0 .sbss            sDspDacCallback__9JASDriver */
-u8 JASDriver::sDspDacCallback[4];
+void (*JASDriver::sDspDacCallback)(s16*, u32);
 
 /* 804512B4-804512B8 0007B4 0004+00 1/1 0/0 0/0 .sbss            lastRspMadep__9JASDriver */
-u8 JASDriver::lastRspMadep[4];
+s16* JASDriver::lastRspMadep;
 
 /* 804512B8-804512BC 0007B8 0004+00 1/1 0/0 0/0 .sbss            dacCallbackFunc__9JASDriver */
-u8 JASDriver::dacCallbackFunc[4];
+void (*JASDriver::dacCallbackFunc)(s16*, u32);
 
 /* 804512BC-804512C0 0007BC 0004+00 2/2 0/0 0/0 .sbss            extMixCallback__9JASDriver */
-u8 JASDriver::extMixCallback[4];
+JASDriver::MixCallback JASDriver::extMixCallback;
 
 /* 804512C0-804512C4 0007C0 0004+00 2/2 0/0 0/0 .sbss            sOutputRate__9JASDriver */
-u8 JASDriver::sOutputRate[4];
+u32 JASDriver::sOutputRate;
 
 /* 8029C388-8029C4E4 296CC8 015C+00 0/0 1/1 0/0 .text            initAI__9JASDriverFPFv_v */
+// missing instructions
+#ifdef NONMATCHING
+void JASDriver::initAI(void (*param_0)(void)) {
+    setOutputRate(OUTPUT_RATE_0);
+    u32 size = getDacSize() * 2;
+    for (int i = 0; i < 3; i++) {
+        sDmaDacBuffer[i] = new(JASDram, 0x20) s16[size / 2];
+        JASCalc::bzero(sDmaDacBuffer[i], size);
+        DCStoreRange(sDmaDacBuffer[i], size);
+    }
+    sDspDacBuffer = new(JASDram, 0) s16*[data_804507A8];
+    for (int i = 0; i < data_804507A8; i++) {
+        sDspDacBuffer[i] = new(JASDram, 0x20) s16[getDacSize()];
+        JASCalc::bzero(sDspDacBuffer[i], size);
+        DCStoreRange(sDspDacBuffer[i], size);
+    }
+    sDspDacWriteBuffer = data_804507A8 - 1;
+    sDspDacReadBuffer = 0;
+    sDspStatus = 0;
+    JASChannel::initBankDisposeMsgQueue();
+    AIInit(NULL);
+    AIInitDMA((u32)sDmaDacBuffer[2], size);
+    AISetDSPSampleRate(sOutputRate != 0);
+    AIRegisterDMACallback(param_0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -228,30 +180,22 @@ asm void JASDriver::initAI(void (*param_0)(void)) {
 #include "asm/JSystem/JAudio2/JASAiCtrl/initAI__9JASDriverFPFv_v.s"
 }
 #pragma pop
+#endif
 
 /* 8029C4E4-8029C504 296E24 0020+00 0/0 1/1 0/0 .text            startDMA__9JASDriverFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDriver::startDMA() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAiCtrl/startDMA__9JASDriverFv.s"
+void JASDriver::startDMA() {
+    AIStartDMA();
 }
-#pragma pop
 
 /* 8029C504-8029C524 296E44 0020+00 0/0 1/1 0/0 .text            stopDMA__9JASDriverFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDriver::stopDMA() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAiCtrl/stopDMA__9JASDriverFv.s"
+
+void JASDriver::stopDMA() {
+    AIStopDMA();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804507AC-804507B0 00022C 0004+00 2/2 0/0 0/0 .sdata           sMixMode__9JASDriver */
-SECTION_SDATA u32 JASDriver::sMixMode = 0x00000002;
+SECTION_SDATA JASMixMode JASDriver::sMixMode = MIX_MODE_EXTRA;
 
 /* 804507B0-804507B4 000230 0004+00 2/2 0/0 0/0 .sdata           sDacRate__9JASDriver */
 SECTION_SDATA f32 JASDriver::sDacRate = 32028.5f;
@@ -269,6 +213,20 @@ SECTION_SDATA2 static f32 lit_234 = 48000.0f;
 SECTION_SDATA2 static f32 lit_235 = 1.0008896589279175f;
 
 /* 8029C524-8029C568 296E64 0044+00 1/1 0/0 0/0 .text setOutputRate__9JASDriverF13JASOutputRate */
+// matches with literals
+#ifdef NONMATCHING
+void JASDriver::setOutputRate(JASOutputRate param_0) {
+    sOutputRate = param_0;
+    if (param_0 == 0) {
+        sSubFrames = 7;
+        sDacRate = 32000.0f;
+    } else {
+        sSubFrames = 10;
+        sDacRate = 48000.0f;
+    }
+    sDacRate *= 1.00089f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -277,35 +235,50 @@ asm void JASDriver::setOutputRate(JASOutputRate param_0) {
 #include "asm/JSystem/JAudio2/JASAiCtrl/setOutputRate__9JASDriverF13JASOutputRate.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8039B2E0-8039B2F0 -00001 0010+00 1/1 0/0 0/0 .rodata          sMixFuncs__9JASDriver */
-SECTION_RODATA void* const JASDriver::sMixFuncs[4] = {
-    (void*)mixMonoTrack__9JASDriverFPsUlPFl_Ps,
-    (void*)mixMonoTrackWide__9JASDriverFPsUlPFl_Ps,
-    (void*)mixExtraTrack__9JASDriverFPsUlPFl_Ps,
-    (void*)mixInterleaveTrack__9JASDriverFPsUlPFl_Ps,
+SECTION_RODATA const JASDriver::MixFunc JASDriver::sMixFuncs[4] = {
+    mixMonoTrack,
+    mixMonoTrackWide,
+    mixExtraTrack,
+    mixInterleaveTrack,
 };
 COMPILER_STRIP_GATE(0x8039B2E0, &JASDriver::sMixFuncs);
 
 /* 804512C4-804512C8 0007C4 0004+00 2/1 0/0 0/0 .sbss            sSubFrameCounter__9JASDriver */
-u8 JASDriver::sSubFrameCounter[4];
-
-/* 804512C8-804512CC 0007C8 0004+00 1/1 0/0 0/0 .sbss            dacp$239 */
-static u8 dacp[4];
-
-/* 804512CC-804512D0 0007CC 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_804512CC[4];
+u32 JASDriver::sSubFrameCounter;
 
 /* 8029C568-8029C6C4 296EA8 015C+00 0/0 1/1 0/0 .text            updateDac__9JASDriverFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDriver::updateDac() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAiCtrl/updateDac__9JASDriverFv.s"
+void JASDriver::updateDac() {
+    static u32 dacp = 0;
+    s16* r30 = lastRspMadep;
+    lastRspMadep = NULL;
+    if (r30) {
+        AIInitDMA((u32)r30, getDacSize() * 2);
+    }
+    s32 frameSamples = getFrameSamples();
+    readDspBuffer(sDmaDacBuffer[dacp], frameSamples);
+    if (sDspStatus == 0) {
+        finishDSPFrame();
+    }
+    if (extMixCallback) {
+        sMixFuncs[sMixMode](sDmaDacBuffer[dacp], frameSamples, extMixCallback);
+    }
+    {
+        JASCriticalSection cs;
+        DCStoreRange(sDmaDacBuffer[dacp], getDacSize() * 2);
+    }
+    lastRspMadep = sDmaDacBuffer[dacp];
+    dacp++;
+    if (dacp >= 3) {
+        dacp = 0;
+    }
+    if (dacCallbackFunc) {
+        dacCallbackFunc(lastRspMadep, getFrameSamples());
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039B2F0-8039B2F0 027950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -316,14 +289,12 @@ SECTION_DEAD static char const* const stringBase_8039B2FB = "kill DSP channel";
 #pragma pop
 
 /* 803C78B8-803C78E0 0249D8 0028+00 1/1 0/0 0/0 .data            history$267 */
-SECTION_DATA static u8 history[40] = {
-    0x00, 0x0F, 0x42, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_DATA static u32 history[10] = {
+    0x000F4240,
 };
 
 /* 804512D0-804512D4 0007D0 0004+00 1/1 0/0 0/0 .sbss            old_time$264 */
-static u8 old_time[4];
+static u32 old_time;
 
 /* 804512D4-804512D8 0007D4 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_804512D4[4];
@@ -342,6 +313,32 @@ SECTION_SDATA2 static f32 lit_276[1 + 1 /* padding */] = {
 SECTION_SDATA2 static f64 lit_278 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8029C6C4-8029C7E0 297004 011C+00 1/1 1/1 0/0 .text            updateDSP__9JASDriverFv */
+// matches with literals
+#ifdef NONMATCHING
+void JASDriver::updateDSP() {
+    JASProbe::start(3, "SFR-UPDATE");
+    JASDsp::invalChannelAll();
+    JASPortCmd::execAllCommand();
+    DSPSyncCallback();
+    static u32 old_time = 0;
+    u32 r28 = OSGetTick();
+    u32 r27 = r28 - old_time;
+    old_time = r28;
+    u32 subFrame = getSubFrames();
+    int r26 = JASAudioThread::getDSPSyncCount();
+    history[subFrame - r26] = r27;
+    if (subFrame != r26 && f32(history[0]) / r27 < 1.1f) {
+        JASReport("kill DSP channel");
+        JASDSPChannel::killActiveChannel();
+    }
+    JASChannel::receiveBankDisposeMsg();
+    JASDSPChannel::updateAll();
+    subframeCallback();
+    JASLfo::updateFreeRun(32028.5f / getDacRate());
+    JASProbe::stop(3);
+    sSubFrameCounter++;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -350,8 +347,32 @@ asm void JASDriver::updateDSP() {
 #include "asm/JSystem/JAudio2/JASAiCtrl/updateDSP__9JASDriverFv.s"
 }
 #pragma pop
+#endif
 
 /* 8029C7E0-8029C900 297120 0120+00 1/1 0/0 0/0 .text            readDspBuffer__9JASDriverFPsUl */
+// missing instruction
+#ifdef NONMATCHING
+void JASDriver::readDspBuffer(s16* param_0, u32 param_1) {
+    s32 r29 = sDspDacReadBuffer + 1;
+    if (r29 == data_804507A8) {
+        r29 = 0;
+    }
+    if (r29 == sDspDacWriteBuffer && data_804507A8 >= 3) {
+        s16 r25 = sDspDacBuffer[sDspDacReadBuffer][param_1 / 2 - 1];
+        s16 r24 = sDspDacBuffer[sDspDacReadBuffer][param_1 - 1];
+        for (int i = 0; i < param_1; i++) {
+            sDspDacBuffer[sDspDacReadBuffer][i] = r25;
+        }
+        for (int i = param_1; i < param_1 * 2; i++) {
+            sDspDacBuffer[sDspDacReadBuffer][i] = r24;
+        }
+    } else {
+        sDspDacReadBuffer = r29;
+        DCInvalidateRange(sDspDacBuffer[r29], param_1 * 4);
+    }
+    JASCalc::imixcopy(sDspDacBuffer[sDspDacReadBuffer] + param_1, sDspDacBuffer[sDspDacReadBuffer], param_0, param_1);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -360,6 +381,7 @@ asm void JASDriver::readDspBuffer(s16* param_0, u32 param_1) {
 #include "asm/JSystem/JAudio2/JASAiCtrl/readDspBuffer__9JASDriverFPsUl.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8039B2F0-8039B2F0 027950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -369,60 +391,53 @@ SECTION_DEAD static char const* const stringBase_8039B30C = "DSP-MAIN";
 #pragma pop
 
 /* 8029C900-8029C9DC 297240 00DC+00 1/1 1/1 0/0 .text            finishDSPFrame__9JASDriverFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDriver::finishDSPFrame() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAiCtrl/finishDSPFrame__9JASDriverFv.s"
+void JASDriver::finishDSPFrame() {
+    int r30 = sDspDacWriteBuffer + 1;
+    if (r30 == data_804507A8) {
+        r30 = 0;
+    }
+    if (r30 == sDspDacReadBuffer) {
+        sDspStatus = 0;
+        return;
+    }
+    sDspDacWriteBuffer = r30;
+    JASAudioThread::setDSPSyncCount(getSubFrames());
+    JASProbe::start(7, "DSP-MAIN");
+    u32 r27 = getFrameSamples();
+    JASDsp::syncFrame(getSubFrames(), u32(sDspDacBuffer[sDspDacWriteBuffer]), u32(sDspDacBuffer[sDspDacWriteBuffer] + r27));
+    sDspStatus = 1;
+    updateDSP();
+    if (sDspDacCallback) {
+        sDspDacCallback(sDspDacBuffer[sDspDacWriteBuffer], r27);
+    }
 }
-#pragma pop
 
 /* 8029C9DC-8029C9E8 29731C 000C+00 0/0 0/0 2/2 .text
  * registerMixCallback__9JASDriverFPFl_Ps10JASMixMode           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDriver::registerMixCallback(s16* (*param_0)(s32), JASMixMode param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAiCtrl/registerMixCallback__9JASDriverFPFl_Ps10JASMixMode.s"
+void JASDriver::registerMixCallback(MixCallback param_0, JASMixMode param_1) {
+    extMixCallback = param_0;
+    sMixMode = param_1;
 }
-#pragma pop
 
 /* 8029C9E8-8029C9F0 297328 0008+00 1/1 5/5 0/0 .text            getDacRate__9JASDriverFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDriver::getDacRate() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAiCtrl/getDacRate__9JASDriverFv.s"
+f32 JASDriver::getDacRate() {
+    return sDacRate;
 }
-#pragma pop
 
 /* 8029C9F0-8029C9F8 -00001 0008+00 0/0 0/0 0/0 .text            getSubFrames__9JASDriverFv */
 u32 JASDriver::getSubFrames() {
-    return *(u32*)(&JASDriver::sSubFrames);
+    return sSubFrames;
 }
 
 /* 8029C9F8-8029CA04 297338 000C+00 2/2 0/0 0/0 .text            getDacSize__9JASDriverFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDriver::getDacSize() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAiCtrl/getDacSize__9JASDriverFv.s"
+u32 JASDriver::getDacSize() {
+    return sSubFrames * 0xa0;
 }
-#pragma pop
 
 /* 8029CA04-8029CA10 297344 000C+00 3/3 0/0 0/0 .text            getFrameSamples__9JASDriverFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDriver::getFrameSamples() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAiCtrl/getFrameSamples__9JASDriverFv.s"
+u32 JASDriver::getFrameSamples() {
+    return sSubFrames * 0x50;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039B2F0-8039B2F0 027950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -433,14 +448,32 @@ SECTION_DEAD static char const* const stringBase_8039B315 = "MONO-MIX";
 
 /* 8029CA10-8029CAC0 297350 00B0+00 1/0 0/0 0/0 .text            mixMonoTrack__9JASDriverFPsUlPFl_Ps
  */
+// regalloc
+#ifdef NONMATCHING
+void JASDriver::mixMonoTrack(s16* param_0, u32 param_1, MixCallback param_2) {
+    JASProbe::start(5, "MONO-MIX");
+    s16* r31 = param_2(param_1);
+    if (r31 == NULL) {
+        return;
+    }
+    JASProbe::stop(5);
+    for (u32 i = param_1; i != 0; i--) {
+        param_0[0] = JASCalc::clamp<s16, s32>(param_0[0] + r31[0]);
+        param_0[1] = JASCalc::clamp<s16, s32>(param_0[1] + r31[0]);
+        param_0 += 2;
+        r31++;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASDriver::mixMonoTrack(s16* param_0, u32 param_1, s16* (*param_2)(s32)) {
+asm void JASDriver::mixMonoTrack(s16* param_0, u32 param_1, MixCallback param_2) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASAiCtrl/mixMonoTrack__9JASDriverFPsUlPFl_Ps.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8039B2F0-8039B2F0 027950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -450,14 +483,32 @@ SECTION_DEAD static char const* const stringBase_8039B31E = "MONO(W)-MIX";
 #pragma pop
 
 /* 8029CAC0-8029CB70 297400 00B0+00 1/0 0/0 0/0 .text mixMonoTrackWide__9JASDriverFPsUlPFl_Ps */
+// instruction order
+#ifdef NONMATCHING
+void JASDriver::mixMonoTrackWide(s16* param_0, u32 param_1, MixCallback param_2) {
+    JASProbe::start(5, "MONO(W)-MIX");
+    s16* r31 = param_2(param_1);
+    if (!r31) {
+        return;
+    }
+    JASProbe::stop(5);
+    for (u32 i = param_1; i != 0; i--) {
+        param_0[0] = JASCalc::clamp<s16, s32>(param_0[0] + r31[0]);
+        param_0[1] = JASCalc::clamp<s16, s32>(param_0[1] - r31[0]);
+        param_0 += 2;
+        r31++;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASDriver::mixMonoTrackWide(s16* param_0, u32 param_1, s16* (*param_2)(s32)) {
+asm void JASDriver::mixMonoTrackWide(s16* param_0, u32 param_1, MixCallback param_2) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASAiCtrl/mixMonoTrackWide__9JASDriverFPsUlPFl_Ps.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8039B2F0-8039B2F0 027950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -468,28 +519,65 @@ SECTION_DEAD static char const* const stringBase_8039B331 = "MIXING";
 #pragma pop
 
 /* 8029CB70-8029CC50 2974B0 00E0+00 1/0 0/0 0/0 .text mixExtraTrack__9JASDriverFPsUlPFl_Ps */
+// missing instruction
+#ifdef NONMATCHING
+void JASDriver::mixExtraTrack(s16* param_0, u32 param_1, MixCallback param_2) {
+    JASProbe::start(5, "DSPMIX");
+    s16* r31 = param_2(param_1);
+    if (!r31) {
+        return;
+    }
+    JASProbe::stop(5);
+    JASProbe::start(6, "MIXING");
+    s16* r29 = r31 + getFrameSamples();
+    for (u32 i = param_1; i != 0; i--) {
+        param_0[0] = JASCalc::clamp<s16, s32>(param_0[0] + r29[0]);
+        param_0[1] = JASCalc::clamp<s16, s32>(param_0[1] + r31[0]);
+        param_0 += 2;
+        r29++;
+        r31++;
+    }
+    JASProbe::stop(6);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASDriver::mixExtraTrack(s16* param_0, u32 param_1, s16* (*param_2)(s32)) {
+asm void JASDriver::mixExtraTrack(s16* param_0, u32 param_1, MixCallback param_2) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASAiCtrl/mixExtraTrack__9JASDriverFPsUlPFl_Ps.s"
 }
 #pragma pop
+#endif
 
 /* 8029CC50-8029CCD4 297590 0084+00 1/0 0/0 0/0 .text mixInterleaveTrack__9JASDriverFPsUlPFl_Ps */
+// missing instructions
+#ifdef NONMATCHING
+void JASDriver::mixInterleaveTrack(s16* param_0, u32 param_1, MixCallback param_2) {
+    s16* r31 = param_2(param_1);
+    if (!r31) {
+        return;
+    }
+    for (u32 i = param_1 * 2; i != 0; i--) {
+        param_0[0] = JASCalc::clamp<s16, s32>(param_0[0] + r31[0]);
+        param_0 += 1;
+        r31++;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASDriver::mixInterleaveTrack(s16* param_0, u32 param_1, s16* (*param_2)(s32)) {
+asm void JASDriver::mixInterleaveTrack(s16* param_0, u32 param_1, MixCallback param_2) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASAiCtrl/mixInterleaveTrack__9JASDriverFPsUlPFl_Ps.s"
 }
 #pragma pop
+#endif
 
 /* 8029CCD4-8029CCDC -00001 0008+00 0/0 0/0 0/0 .text            getSubFrameCounter__9JASDriverFv */
 u32 JASDriver::getSubFrameCounter() {
-    return *(u32*)(&JASDriver::sSubFrameCounter);
+    return sSubFrameCounter;
 }
 
 /* 8039B2F0-8039B2F0 027950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

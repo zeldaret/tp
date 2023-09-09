@@ -153,8 +153,6 @@ extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
 
 /* 80293CF4-80293DC4 28E634 00D0+00 3/3 0/0 0/0 .text
  * conditionCheck__12JASSeqParserFP8JASTrackQ212JASSeqParser15BranchCondition */
-// regswap
-#ifdef NONMATCHING
 bool JASSeqParser::conditionCheck(JASTrack* param_0, JASSeqParser::BranchCondition param_1) {
     u16 reg = readReg(param_0, 3);
     switch (param_1) {
@@ -167,23 +165,13 @@ bool JASSeqParser::conditionCheck(JASTrack* param_0, JASSeqParser::BranchConditi
     case 3:
         return reg == 1;
     case 4:
-        return reg <= 0x8000;
+        return 0x8000 <= reg;
     case 5:
-        return reg > 0x8000;
+        return 0x8000 > reg;
     default:
         return 0;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool JASSeqParser::conditionCheck(JASTrack* param_0, JASSeqParser::BranchCondition param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASSeqParser/conditionCheck__12JASSeqParserFP8JASTrackQ212JASSeqParser15BranchCondition.s"
-}
-#pragma pop
-#endif
 
 /* 803C5E80-803C6480 022FA0 0600+00 1/2 0/0 0/0 .data            sCmdInfo__12JASSeqParser */
 SECTION_DATA JASSeqParser::CmdInfo JASSeqParser::sCmdInfo[96] = {
@@ -544,7 +532,7 @@ SECTION_SDATA2 static f32 lit_718 = 256.0f;
 SECTION_SDATA2 static f32 lit_719 = 64.0f;
 
 /* 80293FC8-80294188 28E908 01C0+00 7/6 0/0 0/0 .text readReg__12JASSeqParserCFP8JASTrackUl */
-// extra mr instrucions
+// Matches with literals
 #ifdef NONMATCHING
 u32 JASSeqParser::readReg(JASTrack* param_0, u32 param_1) const {
     if (param_1 < 0x40) {
@@ -568,8 +556,7 @@ u32 JASSeqParser::readReg(JASTrack* param_0, u32 param_1) const {
     case 0x4d:
     case 0x4e:
     case 0x4f:
-        result = param_0->getPort(param_1 - 0x40);
-        break;
+        return param_0->getPort(param_1 - 0x40);
     case 0x60:
         u16 r27 = 1;
         for (int i = 0; i < 16; i++) {
@@ -581,65 +568,45 @@ u32 JASSeqParser::readReg(JASTrack* param_0, u32 param_1) const {
         }
         break;
     case 0x61:
-        result = param_0->getSeqCtrl()->getSeqReader()->getLoopCount();
-        break;
+        return param_0->getSeqCtrl()->getSeqReader()->getLoopCount();
     case 0x62:
-        result = param_0->getTimebase();
-        break;
+        return param_0->getTimebase();
     case 0x63:
-        result = param_0->getTranspose();
-        break;
+        return param_0->mTranspose;
     case 0x64:
-        result = param_0->getBendSense();
-        break;
+        return param_0->getBendSense();
     case 0x65:
-        result = param_0->getGateRate();
-        break;
+        return param_0->getGateRate();
     case 0x66:
-        result = param_0->getSkipSample();
-        break;
+        return param_0->getSkipSample();
     case 0x67:
-        result = param_0->getBankNumber();
-        break;
+        return param_0->getBankNumber();
     case 0x68:
-        result = param_0->getProgNumber();
-        break;
+        return param_0->getProgNumber();
     case 0x69:
-        result = param_0->getPanPower() * 32767.0f;
-        break;
+        return param_0->getPanPower() * 32767.0f;
     case 0x6a:
-        result = param_0->getReleasePrio() | param_0->getNoteOnPrio();
-        break;
+        return param_0->getReleasePrio() | param_0->getNoteOnPrio();
     case 0x6b:
-        result = param_0->getNoteOnPrio();
-        break;
+        return param_0->getNoteOnPrio();
     case 0x6c:
-        result = param_0->getReleasePrio();
-        break;
+        return param_0->getReleasePrio();
     case 0x6d:
-        result = param_0->getDirectRelease();
-        break;
+        return param_0->getDirectRelease();
     case 0x6e:
-        result = param_0->getVibDepth() * 1524.0f;
-        break;
+        return param_0->getVibDepth() * 1524.0f;
     case 0x6f:
-        result = param_0->getVibDepth() * 12192.0f;
-        break;
+        return param_0->getVibDepth() * 12192.0f;
     case 0x70:
-        result = param_0->getTremDepth() * 256.0f;
-        break;
+        return param_0->getTremDepth() * 256.0f;
     case 0x71:
-        result = param_0->getVibPitch() * 64.0f;
-        break;
+        return param_0->getVibPitch() * 64.0f;
     case 0x72:
-        result = param_0->getTremPitch() * 64.0f;
-        break;
+        return param_0->getTremPitch() * 64.0f;
     case 0x73:
-        result = param_0->getVibDelay();
-        break;
+        return param_0->getVibDelay();
     case 0x74:
-        result = param_0->getTremDelay();
-        break;
+        return param_0->getTremDelay();
     default:
         break;
     }
@@ -724,43 +691,23 @@ s32 JASSeqParser::cmdJmpF(JASTrack* param_0, u32* param_1) {
 }
 
 /* 80294398-802943CC 28ECD8 0034+00 1/0 0/0 0/0 .text cmdJmpTable__12JASSeqParserFP8JASTrackPUl */
-// instruction order
-#ifdef NONMATCHING
 s32 JASSeqParser::cmdJmpTable(JASTrack* param_0, u32* param_1) {
+    u32 uVar1 = param_1[0];
+    uVar1 += uVar1 * 2;
     JASSeqCtrl* seqCtrl = param_0->getSeqCtrl();
-    seqCtrl->jump(seqCtrl->get24(param_1[1] + param_1[0] * 2 + param_1[0]));
+    seqCtrl->jump(seqCtrl->get24(param_1[1] + uVar1));
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 JASSeqParser::cmdJmpTable(JASTrack* param_0, u32* param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASSeqParser/cmdJmpTable__12JASSeqParserFP8JASTrackPUl.s"
-}
-#pragma pop
-#endif
 
 /* 802943CC-8029441C 28ED0C 0050+00 1/0 0/0 0/0 .text cmdCallTable__12JASSeqParserFP8JASTrackPUl
  */
-// instruction order
-#ifdef NONMATCHING
 s32 JASSeqParser::cmdCallTable(JASTrack* param_0, u32* param_1) {
     JASSeqCtrl* seqCtrl = param_0->getSeqCtrl();
-    seqCtrl->call(seqCtrl->get24(param_1[1] + param_1[0] * 2 + param_1[0]));
+    u32 uVar1 = param_1[0];
+    uVar1 += uVar1 * 2;
+    seqCtrl->call(seqCtrl->get24(param_1[1] + uVar1));
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 JASSeqParser::cmdCallTable(JASTrack* param_0, u32* param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASSeqParser/cmdCallTable__12JASSeqParserFP8JASTrackPUl.s"
-}
-#pragma pop
-#endif
 
 /* 8029441C-80294448 28ED5C 002C+00 1/0 0/0 0/0 .text cmdLoopS__12JASSeqParserFP8JASTrackPUl */
 s32 JASSeqParser::cmdLoopS(JASTrack* param_0, u32* param_1) {
@@ -1151,31 +1098,7 @@ asm s32 JASSeqParser::cmdParamEI(JASTrack* param_0, u32* param_1) {
 #pragma pop
 #endif
 
-/* ############################################################################################## */
-/* 803C7624-803C7650 -00001 002C+00 1/1 0/0 0/0 .data            @1124 */
-SECTION_DATA static void* lit_1124[11] = {
-    (void*)(((char*)cmdReg__12JASSeqParserFP8JASTrackPUl) + 0x138),
-    (void*)(((char*)cmdReg__12JASSeqParserFP8JASTrackPUl) + 0x48),
-    (void*)(((char*)cmdReg__12JASSeqParserFP8JASTrackPUl) + 0x58),
-    (void*)(((char*)cmdReg__12JASSeqParserFP8JASTrackPUl) + 0x68),
-    (void*)(((char*)cmdReg__12JASSeqParserFP8JASTrackPUl) + 0x7C),
-    (void*)(((char*)cmdReg__12JASSeqParserFP8JASTrackPUl) + 0x90),
-    (void*)(((char*)cmdReg__12JASSeqParserFP8JASTrackPUl) + 0xA0),
-    (void*)(((char*)cmdReg__12JASSeqParserFP8JASTrackPUl) + 0xB0),
-    (void*)(((char*)cmdReg__12JASSeqParserFP8JASTrackPUl) + 0xC0),
-    (void*)(((char*)cmdReg__12JASSeqParserFP8JASTrackPUl) + 0x110),
-    (void*)(((char*)cmdReg__12JASSeqParserFP8JASTrackPUl) + 0x120),
-};
-
-/* 80451244-80451248 000744 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_80451244[4];
-
-/* 80451248-80451250 000748 0004+04 1/1 0/0 0/0 .sbss            oRandom$1099 */
-static u8 oRandom[4 + 4 /* padding */];
-
 /* 80294DA8-80294F10 28F6E8 0168+00 3/0 0/0 0/0 .text cmdReg__12JASSeqParserFP8JASTrackPUl */
-// mullw operand flipped
-#ifdef NONMATCHING
 s32 JASSeqParser::cmdReg(JASTrack* param_0, u32* param_1) {
     u32 r29 = param_1[1];
     u32 r30 = param_1[2];
@@ -1208,7 +1131,7 @@ s32 JASSeqParser::cmdReg(JASTrack* param_0, u32* param_1) {
     case 8:
         static JMath::TRandom_fast_ oRandom(0);
         u32 tmp = oRandom.get_bit32() >> 9;
-        r30 = tmp - tmp / r30 * r30;
+        r30 = tmp % r30;
         break;
     case 9:
         r30 = readReg(param_0, r29) << r30;
@@ -1222,16 +1145,6 @@ s32 JASSeqParser::cmdReg(JASTrack* param_0, u32* param_1) {
     writeReg(param_0, r29, r30);
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 JASSeqParser::cmdReg(JASTrack* param_0, u32* param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASSeqParser/cmdReg__12JASSeqParserFP8JASTrackPUl.s"
-}
-#pragma pop
-#endif
 
 /* 80294F10-80294F40 28F850 0030+00 1/0 0/0 0/0 .text cmdRegLoad__12JASSeqParserFP8JASTrackPUl */
 s32 JASSeqParser::cmdRegLoad(JASTrack* param_0, u32* param_1) {
@@ -1256,7 +1169,7 @@ s32 JASSeqParser::cmdRegUni(JASTrack* param_0, u32* param_1) {
 
 /* 80294FB4-80295088 28F8F4 00D4+00 1/0 0/0 0/0 .text cmdRegTblLoad__12JASSeqParserFP8JASTrackPUl
  */
-// case 12, case 14
+// case 12
 #ifdef NONMATCHING
 s32 JASSeqParser::cmdRegTblLoad(JASTrack* param_0, u32* param_1) {
     JASSeqCtrl* seqCtrl = param_0->getSeqCtrl();
@@ -1272,7 +1185,8 @@ s32 JASSeqParser::cmdRegTblLoad(JASTrack* param_0, u32* param_1) {
         r27 = seqCtrl->get16(p2 + p3 * 2);
         break;
     case 14:
-        r27 = seqCtrl->get24(p2 + p3 * 2 + p3);
+        p3 += p3 *2;
+        r27 = seqCtrl->get24(p2 + p3);
         break;
     case 15:
         r27 = seqCtrl->get32(p2 + p3 * 4);
@@ -1475,7 +1389,7 @@ s32 JASSeqParser::parseNoteOn(JASTrack* param_0, u8 param_1) {
 
 /* 802956B0-80295864 28FFF0 01B4+00 2/2 0/0 0/0 .text parseCommand__12JASSeqParserFP8JASTrackUcUs
  */
-// ptmf stack
+// u16 bit or
 #ifdef NONMATCHING
 s32 JASSeqParser::parseCommand(JASTrack* param_0, u8 cmd, u16 param_2) {
     JASSeqCtrl* seqCtrl = param_0->getSeqCtrl();
@@ -1506,7 +1420,7 @@ s32 JASSeqParser::parseCommand(JASTrack* param_0, u8 cmd, u16 param_2) {
         stack_28[i] = r27;
         r28 >>= 2;
     }
-    s32 (JASSeqParser::*ptr)(JASTrack*, u32*);
+    s32 (JASSeqParser::*ptr)(JASTrack*, u32*) = cmdInfo->field_0x0;
     if (!ptr) {
         return 0;
     }
