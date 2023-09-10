@@ -26,10 +26,6 @@ struct JASGenericMemPool {
     /* 80290948 */ void alloc(u32);
 };
 
-struct JASDsp {
-    struct TChannel {};
-};
-
 struct JASDriver {
     /* 8029C9E8 */ void getDacRate();
 };
@@ -38,13 +34,6 @@ struct JASChannel {
     /* 8029A800 */ JASChannel(void (*)(u32, JASChannel*, JASDsp::TChannel*, void*), void*);
     /* 8029A9F0 */ void play();
     /* 8029AB64 */ void setOscInit(u32, JASOscillator::Data const*);
-};
-
-struct JASBank {
-    /* 80297930 */ void noteOn(JASBank const*, int, u8, u8, u16,
-                               void (*)(u32, JASChannel*, JASDsp::TChannel*, void*), void*);
-    /* 80297C40 */ void noteOnOsc(int, u8, u8, u16,
-                                  void (*)(u32, JASChannel*, JASDsp::TChannel*, void*), void*);
 };
 
 //
