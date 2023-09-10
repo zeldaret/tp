@@ -30,7 +30,7 @@ public:
 
     u32 readU32_() {
         u32 temp = *(u32*)mReadPtr;
-        mReadPtr = mReadPtr + 4;
+        mReadPtr += 4;
         return temp;
     }
     const void* getContent_(u32 param_0) { return mBase + param_0; }
