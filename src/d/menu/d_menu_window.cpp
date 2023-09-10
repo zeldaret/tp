@@ -279,8 +279,8 @@ BOOL dMw_UP_TRIGGER() {
     return (bool)mDoCPd_c::getTrigUp(PAD_1);
 }
 
-bool dMw_DOWN_TRIGGER() {
-    return mDoCPd_c::getTrigDown(PAD_1);
+BOOL dMw_DOWN_TRIGGER() {
+    return (bool)mDoCPd_c::getTrigDown(PAD_1);
 }
 
 BOOL dMw_LEFT_TRIGGER() {

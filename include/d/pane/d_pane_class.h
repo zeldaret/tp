@@ -4,8 +4,11 @@
 #include "JSystem/JUtility/TColor.h"
 #include "d/pane/d_pane_class_alpha.h"
 
+class JKRHeap;
+
 void dPaneClass_showNullPane(J2DScreen*);
 void dPaneClass_showNullPane(J2DPane*);
+bool dPaneClass_setPriority(void**, JKRHeap*, J2DScreen*, char const*, u32, JKRArchive*);
 
 class CPaneMgr : public CPaneMgrAlpha {
 public:

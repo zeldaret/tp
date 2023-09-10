@@ -116,6 +116,7 @@ public:
     void resetPauseStatus() { mPauseStatus = 0; }
     u8 getPauseStatus() { return mPauseStatus; }
     bool isGameStatus(int status) { return mGameStatus & status; }
+    bool isTouchKeyCheck(int i_status) { return mTouchKeyCheck & i_status; }
     void setMapKeyDirection(u16 direction) { mMapKeyDirection = direction; }
     bool isSub2DStatus(int flag) { return mSub2DStatus & (1 << flag); }
     void offMenuInForce(int flag) { unk152 &= ~(1 << flag); }
@@ -152,6 +153,7 @@ public:
     u8 getNowCount() { return mNowCount; }
     void setScopeZoomPointer(u8 param_0) { mScopeZoomPointer = param_0; }
     u8 getItemExplainWindowStatus() { return mItemExplainWindowStatus; }
+    void setItemExplainWindowStatus(u8 i_value) { mItemExplainWindowStatus = i_value; }
     void resetDirectUseItem() { mDirectUseItem = 0; }
     u16 getFloatingFlowID() { return mFloatingFlowID; }
     void setCollectCursorPosXY(u8 x, u8 y) {
@@ -317,6 +319,11 @@ inline int dMeter2Info_readItemTexture(u8 i_itemNo, void* param_1, J2DPicture* p
                                          param_6, param_7, param_8, param_9);
 }
 
+inline void dMeter2Info_setItemColor(u8 param_0, J2DPicture* param_1, J2DPicture* param_2,
+                                     J2DPicture* param_3, J2DPicture* param_4) {
+    g_meter2_info.setItemColor(param_0, param_1, param_2, param_3, param_4);
+}
+
 inline u8 dMeter2Info_getWarpRoomNo() {
     return g_meter2_info.getWarpRoomNo();
 }
@@ -391,6 +398,10 @@ inline u8 dMeter2Info_getPauseStatus() {
 
 inline bool dMeter2Info_isGameStatus(int status) {
     return g_meter2_info.isGameStatus(status);
+}
+
+inline bool dMeter2Info_isTouchKeyCheck(int i_status) {
+    return g_meter2_info.isTouchKeyCheck(i_status);
 }
 
 inline void dMeter2Info_setMapKeyDirection(u16 direction) {
@@ -576,6 +587,10 @@ inline bool dMeter2Info_isFloatingMessageVisible() {
 
 inline u8 dMeter2Info_getItemExplainWindowStatus() {
     return g_meter2_info.getItemExplainWindowStatus();
+}
+
+inline void dMeter2Info_setItemExplainWindowStatus(u8 i_value) {
+    g_meter2_info.setItemExplainWindowStatus(i_value);
 }
 
 inline void dMeter2Info_resetDirectUseItem() {

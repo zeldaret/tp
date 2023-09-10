@@ -4,182 +4,19 @@
 //
 
 #include "d/menu/d_menu_item_explain.h"
+#include "JSystem/J2DGraph/J2DTextBox.h"
+#include "JSystem/JKernel/JKRMemArchive.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_lib.h"
+#include "d/d_select_cursor.h"
+#include "d/meter/d_meter2_info.h"
+#include "d/meter/d_meter_HIO.h"
+#include "d/msg/d_msg_string.h"
+#include "d/msg/d_msg_class.h"
 #include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct mDoCPd_c {
-    static u8 m_cpadInfo[256];
-};
-
-struct dSv_player_item_record_c {
-    /* 80033F7C */ void getBombNum(u8) const;
-};
-
-struct dSv_player_item_c {
-    /* 80033030 */ void getItem(int, bool) const;
-};
-
-struct dSv_player_get_item_c {
-    /* 80033EC8 */ void isFirstBit(u8) const;
-};
-
-struct dMsgString_c {
-    /* 80249CA0 */ dMsgString_c(u8);
-    /* 80249D28 */ ~dMsgString_c();
-};
-
-struct dMsgScrnArrow_c {
-    /* 8023BDC0 */ void draw();
-    /* 8023BE34 */ void arwAnimeInit();
-    /* 8023BE90 */ void arwAnimeMove();
-};
-
-struct dMsgScrn3Select_c {
-    /* 80239C64 */ void isSelect();
-    /* 80239C78 */ void setString(char*, char*, char*);
-    /* 80239D08 */ void setRubyString(char*, char*, char*);
-    /* 80239D98 */ void translate(f32, f32);
-    /* 80239DD4 */ void draw(f32, f32);
-    /* 8023A094 */ void selAnimeInit(u8, u8, u8, f32, u8);
-    /* 8023A398 */ void selAnimeMove(u8, u8, bool);
-    /* 8023A680 */ void selAnimeEnd();
-    /* 8023A934 */ void getTextBoxWidth();
-    /* 8023A94C */ void getFontSize();
-    /* 8023A97C */ void getCharSpace();
-};
-
-struct ResTIMG {};
-
-struct ResTLUT {};
-
-struct JGeometry {
-    template <typename A1>
-    struct TBox2 {};
-    /* TBox2<f32> */
-    struct TBox2__template0 {};
-};
-
-struct J2DPicture {
-    /* 802FC708 */ J2DPicture(ResTIMG const*);
-    /* 802FC800 */ J2DPicture(u64, JGeometry::TBox2<f32> const&, ResTIMG const*, ResTLUT const*);
-};
-
-struct JUTFont {};
-
-struct JMSMesgEntry_c {};
-
-struct dMeter2Info_c {
-    /* 8021C250 */ void getString(u32, char*, JMSMesgEntry_c*);
-    /* 8021C7FC */ void getStringLength(JUTFont*, f32, f32, char*);
-    /* 8021CF08 */ void readItemTexture(u8, void*, J2DPicture*, void*, J2DPicture*, void*,
-                                        J2DPicture*, void*, J2DPicture*, int);
-};
-
-struct STControl {
-    /* 8003219C */ void checkTrigger();
-    /* 80032524 */ void checkUpTrigger();
-    /* 800325A0 */ void checkDownTrigger();
-};
-
-struct JKRArchive {};
-
-struct J2DOrthoGraph {};
-
-struct JKRExpHeap {};
-
-struct dMenu_ItemExplain_c {
-    /* 801DA754 */ dMenu_ItemExplain_c(JKRExpHeap*, JKRArchive*, STControl*, bool);
-    /* 801DAFF0 */ ~dMenu_ItemExplain_c();
-    /* 801DB470 */ void move();
-    /* 801DB514 */ void draw(J2DOrthoGraph*);
-    /* 801DB744 */ void drawKantera();
-    /* 801DB818 */ void wait_init();
-    /* 801DB81C */ void wait_proc();
-    /* 801DB820 */ void open_init();
-    /* 801DBAB4 */ void open_proc();
-    /* 801DBB50 */ void move_init();
-    /* 801DBB7C */ void move_proc();
-    /* 801DBCB4 */ void move_select_init();
-    /* 801DBF44 */ void move_select_proc();
-    /* 801DC1E0 */ void move_next_init();
-    /* 801DC214 */ void move_next_proc();
-    /* 801DC2E4 */ void close_init();
-    /* 801DC2F0 */ void close_proc();
-    /* 801DC340 */ void openExplain(u8, u8, u8, bool);
-    /* 801DC3C8 */ void openExplainDmap(u8, u8, u8, bool, u8);
-    /* 801DC738 */ void openExplainTx(u32, u32);
-    /* 801DC7AC */ void getAlphaRatio();
-    /* 801DC7FC */ void setNumber();
-    /* 801DCB54 */ void getWarpMarkFlag();
-    /* 801DCBBC */ void setScale();
-};
-
-struct dKantera_icon_c {
-    /* 801AE938 */ dKantera_icon_c();
-    /* 801AEB7C */ void setAlphaRate(f32);
-    /* 801AEBA0 */ void setPos(f32, f32);
-    /* 801AEBF4 */ void setScale(f32, f32);
-    /* 801AEC44 */ void setNowGauge(u16, u16);
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JKRHeap {
-    /* 802CE4D4 */ void alloc(u32, int);
-    /* 802CE548 */ void free(void*);
-    /* 802CE784 */ void getTotalFreeSize();
-};
-
-struct J2DTextBox {
-    /* 8030074C */ void setString(s16, char const*, ...);
-};
-
-struct J2DGrafContext {};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-    /* 802F9690 */ void animation();
-};
-
-struct J2DBasePosition {};
-
-struct J2DPane {
-    /* 802F666C */ void appendChild(J2DPane*);
-    /* 802F7100 */ void getBounds();
-    /* 802F76F8 */ void setBasePosition(J2DBasePosition);
-};
-
-struct CPaneMgrAlpha {
-    /* 802555C8 */ void show();
-    /* 80255608 */ void hide();
-    /* 80255828 */ void getAlphaRate();
-};
-
-struct CPaneMgr {
-    /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 802542E8 */ void getGlobalPosX();
-    /* 80254364 */ void getGlobalPosY();
-    /* 802545B0 */ void paneTrans(f32, f32);
-};
-
-//
-// Forward References:
-//
+#include "m_Do/m_Do_controller_pad.h"
+#include "m_Do/m_Do_graphic.h"
+#include "JSystem/JUtility/JUTPalette.h"
 
 extern "C" void __ct__19dMenu_ItemExplain_cFP10JKRExpHeapP10JKRArchiveP9STControlb();
 extern "C" void __dt__19dMenu_ItemExplain_cFv();
@@ -284,12 +121,9 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void snprintf();
-extern "C" void strcat();
+
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_drawHIO[3880];
-extern "C" extern u8 g_ringHIO[344];
-extern "C" extern u8 g_meter2_info[248];
+
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //

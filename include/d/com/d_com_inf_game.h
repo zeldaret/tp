@@ -418,6 +418,7 @@ public:
     JKRArchive* getFmapResArchive() { return mFmapResArchive; }
     JKRAramArchive* getFieldMapArchive2() { return (JKRAramArchive*)mFieldMapArchive2; }
     JKRArchive* getOptionResArchive() { return mOptionResArchive; }
+    JKRArchive* getRingResArchive() { return mRingResArchive; }
 
     void setFieldMapArchive2(JKRArchive* arc) { mFieldMapArchive2 = arc; }
     void setAnmArchive(JKRArchive* arc) { mAnmArchive = arc; }
@@ -1124,6 +1125,10 @@ inline s32 dComIfGs_isDungeonItemBossKey() {
 
 inline u8 dComIfGs_getItem(int i_slotNo, bool i_checkCombo) {
     return g_dComIfG_gameInfo.info.getPlayer().getItem().getItem(i_slotNo, i_checkCombo);
+}
+
+inline u8 dComIfGs_getLineUpItem(int i_slotNo) {
+    return g_dComIfG_gameInfo.info.getPlayer().getItem().getLineUpItem(i_slotNo);
 }
 
 inline BOOL dComIfGs_isCollectSword(u8 i_swordNo) {
@@ -2768,6 +2773,10 @@ inline JKRAramArchive* dComIfGp_getFieldMapArchive2() {
 
 inline JKRArchive* dComIfGp_getOptionResArchive() {
     return g_dComIfG_gameInfo.play.getOptionResArchive();
+}
+
+inline JKRArchive* dComIfGp_getRingResArchive() {
+    return g_dComIfG_gameInfo.play.getRingResArchive();
 }
 
 inline void dComIfGp_onPauseFlag() {
