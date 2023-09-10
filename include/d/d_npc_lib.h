@@ -4,7 +4,8 @@
 #include "d/com/d_com_inf_game.h"
 #include "dolphin/types.h"
 
-struct dNpcLib_lookat_c {
+class dNpcLib_lookat_c {
+public:
     /* 80251314 */ dNpcLib_lookat_c();
     /* 8025140C */ void init(J3DModel*, int*, csXyz*, csXyz*);
     /* 80251534 */ void action(cXyz, cXyz, fopAc_ac_c*, f32 (*)[4], int);

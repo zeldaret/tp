@@ -1389,7 +1389,7 @@ extern "C" asm void draw__12dDlst_2DMt_cFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DPicture::getTexture(u8 param_0) const {
+asm JUTTexture* J2DPicture::getTexture(u8 param_0) const {
     nofralloc
 #include "asm/d/d_drawlist/getTexture__10J2DPictureCFUc.s"
 }
@@ -1484,7 +1484,7 @@ extern "C" s32 getTypeID__7J2DPaneCFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DPicture::setWhite(JUtility::TColor param_0) {
+asm bool J2DPicture::setWhite(JUtility::TColor param_0) {
     nofralloc
 #include "asm/d/d_drawlist/setWhite__10J2DPictureFQ28JUtility6TColor.s"
 }
@@ -1494,7 +1494,7 @@ asm void J2DPicture::setWhite(JUtility::TColor param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DPicture::setBlack(JUtility::TColor param_0) {
+asm bool J2DPicture::setBlack(JUtility::TColor param_0) {
     nofralloc
 #include "asm/d/d_drawlist/setBlack__10J2DPictureFQ28JUtility6TColor.s"
 }

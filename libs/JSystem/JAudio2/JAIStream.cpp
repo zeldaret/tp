@@ -16,39 +16,9 @@ struct JASGenericMemPool {
     /* 80290994 */ void free(void*, u32);
 };
 
-struct JASAramStream {
-    /* 802963A8 */ JASAramStream();
-    /* 8029649C */ void init(u32, u32, void (*)(u32, JASAramStream*, void*), void*);
-    /* 8029655C */ void prepare(s32, int);
-    /* 80296618 */ void start();
-    /* 8029664C */ void stop(u16);
-    /* 80296684 */ void pause(bool);
-    /* 802966CC */ void cancel();
-};
-
 struct JAIStreamMgr {};
 
 struct JAIAudience {};
-
-struct JAIStream {
-    /* 802A3104 */ JAIStream(JAIStreamMgr*, JAISoundStrategyMgr<JAIStream>*);
-    /* 802A319C */ void JAIStreamMgr_startID_(JAISoundID, s32, JGeometry::TVec3<f32> const*,
-                                              JAIAudience*, int);
-    /* 802A3230 */ void prepare_prepareStream_();
-    /* 802A33F4 */ void prepare_();
-    /* 802A3498 */ void prepare_startStream_();
-    /* 802A34E4 */ void JAIStreamMgr_mixOut_(JASSoundParams const&, JAISoundActivity);
-    /* 802A3720 */ void die_JAIStream_();
-    /* 802A37FC */ void JAISound_tryDie_();
-    /* 802A388C */ void JAIStreamMgr_calc_();
-    /* 802A3948 */ s32 getNumChild() const;
-    /* 802A3950 */ void getChild(int);
-    /* 802A3A24 */ void releaseChild(int);
-    /* 802A3ABC */ JASTrack* getTrack();
-    /* 802A3AC4 */ JASTrack* getChildTrack(int);
-    /* 802A3ACC */ JAIStream* asStream();
-    /* 802A3AD0 */ JAITempoMgr* getTempoMgr();
-};
 
 struct JAISoundChild {
     /* 802A2AB0 */ void init();
@@ -247,7 +217,7 @@ asm void JAIStream::die_JAIStream_() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAIStream::JAISound_tryDie_() {
+asm bool JAIStream::JAISound_tryDie_() {
     nofralloc
 #include "asm/JSystem/JAudio2/JAIStream/JAISound_tryDie___9JAIStreamFv.s"
 }
@@ -272,7 +242,7 @@ s32 JAIStream::getNumChild() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAIStream::getChild(int param_0) {
+asm JAISoundChild* JAIStream::getChild(int param_0) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAIStream/getChild__9JAIStreamFi.s"
 }

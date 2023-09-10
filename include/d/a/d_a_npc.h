@@ -290,7 +290,7 @@ public:
     /* 0xE1E */ u16 field_0xe1e;
     /* 0xE20 */ u16 field_0xe20;
     /* 0xE22 */ u16 field_0xe22;
-    /* 0xE24 */ u8 field_0xe24;
+    /* 0xE24 */ s8 field_0xe24;
     /* 0xE25 */ u8 field_0xe25;
     /* 0xE26 */ u8 field_0xe26;
     /* 0xE27 */ u8 field_0xe27;
@@ -422,8 +422,8 @@ public:
     }
 
     static u8 const mCcDObjData[48];
-    static u8 mCcDCyl[68];
-    static u8 mCcDSph[64];
+    static dCcD_SrcCyl mCcDCyl;
+    static dCcD_SrcSph mCcDSph;
     static fopAc_ac_c* mFindActorPtrs[50];
     static s16 mSrchName;
     static s32 mFindCount;
@@ -643,7 +643,7 @@ public:
 
     static u8 const mCcDObjInfo[48];
     static dCcD_SrcCyl mCcDCyl;
-    static u8 mCcDSph[64];
+    static dCcD_SrcSph mCcDSph;
     static fopAc_ac_c* mFindActorPList[100];
     static s32 mFindCount;
     static s16 mSrchActorName;
@@ -794,8 +794,8 @@ public:
     void setVtable(void* table) { vtable = table;}
 
     static u8 const mCcDObj[48];
-    static u8 mCcDCyl[68];
-    static u8 mCcDSph[64];
+    static dCcD_SrcCyl mCcDCyl;
+    static dCcD_SrcSph mCcDSph;
 };
 
 class daBaseNpc_moveBgActor_c : public daBaseNpc_c {

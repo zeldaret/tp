@@ -12,10 +12,6 @@ struct daTagWljump_c : fopAc_ac_c {
     /* 80D65090 */ int execute();
     /* 80D6589C */ int draw();
 
-    int dComIfGp_att_ZHintRequest(fopAc_ac_c *param_1, int param_2) {
-        return dComIfGp_getAttention().ZHintRequest(param_1, param_2);
-    }
-
     /* 0x568 */ s8 field_0x568;
     /* 0x568 */ s8 field_0x569;
     /* 0x568 */ u8 field_0x56a;

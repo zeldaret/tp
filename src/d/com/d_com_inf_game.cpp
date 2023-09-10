@@ -2428,11 +2428,11 @@ int dComLbG_PhaseHandler(request_of_phase_process_class* i_phaseReq, cPhs__Handl
                          void* i_data) {
     int phase = cPhs_Handler(i_phaseReq, i_handler, i_data);
     switch (phase) {
-    case 2:
+    case cPhs_NEXT_e:
         phase = dComLbG_PhaseHandler(i_phaseReq, i_handler, i_data);
         break;
-    case 1:
-    case 3:
+    case cPhs_LOADING_e:
+    case cPhs_UNK3_e:
         break;
     }
 

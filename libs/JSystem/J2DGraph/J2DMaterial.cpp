@@ -85,7 +85,6 @@ extern "C" void getTevKonstReg__15J2DAnmTevRegKeyCFUsP8_GXColor();
 extern "C" void __construct_array();
 extern "C" void _savegpr_26();
 extern "C" void _restgpr_26();
-extern "C" extern u8 const j2dDefaultTexMtxInfo[36];
 extern "C" extern void* __vt__15J2DIndBlockFull[14];
 extern "C" extern void* __vt__11J2DTevBlock[47];
 extern "C" extern void* __vt__14J2DTexGenBlock[3 + 1 /* padding */];

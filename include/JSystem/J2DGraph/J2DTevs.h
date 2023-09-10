@@ -36,8 +36,11 @@ struct J2DTexMtxInfo {
 
 };  // Size: 0x24
 
+extern J2DTexMtxInfo const j2dDefaultTexMtxInfo;
+
 class J2DTexMtx {
 public:
+    J2DTexMtx() { mInfo = j2dDefaultTexMtxInfo; }
     J2DTexMtx(const J2DTexMtxInfo& info) { mInfo = info; }
     /* 802E9C90 */ void load(u32);
     /* 802E9CC4 */ void calc();

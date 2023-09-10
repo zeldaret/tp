@@ -8,12 +8,10 @@ M736_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_river_back.map
 
 M736_CPP_FILES := \
 	rel/executor.cpp \
-	rel/d/a/tag/d_a_tag_river_back/unknown_translation_unit_bss.cpp \
 	rel/d/a/tag/d_a_tag_river_back/d_a_tag_river_back.cpp \
 
 M736_O_FILES := \
 	$(BUILD_DIR)/rel/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_river_back/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_river_back/d_a_tag_river_back.o \
 
 M736_LIBS := \

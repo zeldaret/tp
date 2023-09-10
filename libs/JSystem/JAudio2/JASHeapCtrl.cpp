@@ -20,19 +20,6 @@ struct JKRExpHeap {
     /* 802CEE2C */ void create(u32, JKRHeap*, bool);
 };
 
-struct JASKernel {
-    /* 802909B8 */ void setupRootHeap(JKRSolidHeap*, u32);
-    /* 80290AC0 */ u32 getSystemHeap();
-    /* 80290AC8 */ u32 getCommandHeap();
-    /* 80290AD0 */ void setupAramHeap(u32, u32);
-    /* 80290B08 */ void getAramHeap();
-
-    static u8 audioAramHeap[68];
-    static u8 sAramBase[4];
-    static u8 sSystemHeap[4];
-    static u8 sCommandHeap[4];
-};
-
 struct JASDisposer {
     /* 80290BCC */ void onDispose();
 };
@@ -122,7 +109,7 @@ asm void JASHeap::initRootHeap(void* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASHeap::alloc(JASHeap* param_0, u32 param_1) {
+asm bool JASHeap::alloc(JASHeap* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASHeapCtrl/alloc__7JASHeapFP7JASHeapUl.s"
 }
@@ -132,7 +119,7 @@ asm void JASHeap::alloc(JASHeap* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASHeap::allocTail(JASHeap* param_0, u32 param_1) {
+asm bool JASHeap::allocTail(JASHeap* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASHeapCtrl/allocTail__7JASHeapFP7JASHeapUl.s"
 }
@@ -250,7 +237,7 @@ asm void JASGenericMemPool::free(void* param_0, u32 param_1) {
 u8 JASKernel::sAramBase[4];
 
 /* 80451218-8045121C 000718 0004+00 2/1 0/0 0/0 .sbss            sSystemHeap__9JASKernel */
-u8 JASKernel::sSystemHeap[4];
+JKRHeap* JASKernel::sSystemHeap;
 
 /* 8045121C-80451220 00071C 0004+00 2/1 0/0 0/0 .sbss            sCommandHeap__9JASKernel */
 u8 JASKernel::sCommandHeap[4];
@@ -267,8 +254,8 @@ asm void JASKernel::setupRootHeap(JKRSolidHeap* param_0, u32 param_1) {
 #pragma pop
 
 /* 80290AC0-80290AC8 -00001 0008+00 0/0 0/0 0/0 .text            getSystemHeap__9JASKernelFv */
-u32 JASKernel::getSystemHeap() {
-    return *(u32*)(&JASKernel::sSystemHeap);
+JKRHeap* JASKernel::getSystemHeap() {
+    return JASKernel::sSystemHeap;
 }
 
 /* 80290AC8-80290AD0 -00001 0008+00 0/0 0/0 0/0 .text            getCommandHeap__9JASKernelFv */
@@ -297,7 +284,7 @@ asm void JASKernel::setupAramHeap(u32 param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASKernel::getAramHeap() {
+asm JASHeap* JASKernel::getAramHeap() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASHeapCtrl/getAramHeap__9JASKernelFv.s"
 }

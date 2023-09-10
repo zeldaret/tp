@@ -28,26 +28,6 @@ struct JAUSectionHeap {
     /* 802A6094 */ void getOpenSection();
 };
 
-struct JAUAudioArcLoader {
-    /* 802A4740 */ JAUAudioArcLoader(JAUSection*);
-    /* 802A47AC */ void readWS(u32, void const*, u32);
-    /* 802A4804 */ void readBNK(u32, void const*);
-    /* 802A4834 */ void readBSC(void const*, u32);
-    /* 802A4858 */ void readBST(void const*, u32);
-    /* 802A48A8 */ void readBMS(u32, void const*, u32);
-    /* 802A48D4 */ void readBMS_fromArchive(u32);
-    /* 802A4900 */ void newVoiceBank(u32, u32);
-    /* 802A4930 */ void newDynamicSeqBlock(u32);
-    /* 802A4968 */ void readBSFT(void const*);
-    /* 802A4990 */ void beginBNKList(u32, u32);
-    /* 802A49B4 */ void endBNKList();
-    /* 802A49D8 */ void readMaxSeCategory(int, int, int);
-};
-
-struct JAUAudioArcInterpreter {
-    /* 802A4260 */ ~JAUAudioArcInterpreter();
-};
-
 //
 // Forward References:
 //
