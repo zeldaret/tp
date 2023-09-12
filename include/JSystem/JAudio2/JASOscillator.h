@@ -6,12 +6,14 @@
 
 struct JASOscillator {
 	struct Point {};
-	
+
+    struct EffectParams {};
+
 	struct Data {
 		/* 0x00 */ u32 _00;
 		/* 0x04 */ f32 _04;
-		/* 0x08 */ short* _08;
-		/* 0x0C */ short* _0C;
+		/* 0x08 */ const short* _08;
+		/* 0x0C */ const short* _0C;
 		/* 0x10 */ f32 _10;
 		/* 0x14 */ f32 _14;
 	};
@@ -25,6 +27,7 @@ struct JASOscillator {
     void update();
     void updateCurrentValue(f32 param_0);
 
+    void setDirectRelease(u16 param_0) { mDirectRelease = param_0; }
     void stop() {
         _1C = 0;
     }
@@ -35,7 +38,7 @@ struct JASOscillator {
 	/* 0x0C */ f32 _0C;
 	/* 0x10 */ f32 _10;
 	/* 0x14 */ u16 _14;
-	/* 0x16 */ u16 _16;
+	/* 0x16 */ u16 mDirectRelease;
 	/* 0x18 */ u8 _18;
 	/* 0x1A */ u16 _1A;
 	/* 0x1C */ int _1C;

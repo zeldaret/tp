@@ -18,12 +18,12 @@ public:
     virtual bool getInstParam(int, int, int, JASInstParam*) const = 0;
     virtual u32 getType() const = 0;
 
-    JASWaveBank* getWaveBank() { return mWaveBank; }
+    JASWaveBank* getWaveBank() const { return mWaveBank; }
     void assignWaveBank(JASWaveBank* param_0) { mWaveBank = param_0; }
 
-    /* 80297930 */ static void noteOn(JASBank const*, int, u8, u8, u16,
+    /* 80297930 */ static JASChannel* noteOn(JASBank const*, int, u8, u8, u16,
                                 void (*)(u32, JASChannel*, JASDsp::TChannel*, void*), void*);
-    /* 80297C40 */ static void noteOnOsc(int, u8, u8, u16,
+    /* 80297C40 */ static JASChannel* noteOnOsc(int, u8, u8, u16,
                                 void (*)(u32, JASChannel*, JASDsp::TChannel*, void*), void*);
 
 private:
