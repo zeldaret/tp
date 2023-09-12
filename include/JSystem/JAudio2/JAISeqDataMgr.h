@@ -37,9 +37,9 @@ struct JAISeqDataUser {
 
 struct JAISeqDataMgr {
     virtual ~JAISeqDataMgr();
-    virtual int getSeqData(JAISoundID, JAISeqData*) = 0;
+    virtual s32 getSeqData(JAISoundID, JAISeqData*) = 0;
     virtual int releaseSeqData() = 0;
-    virtual void setSeqDataUser(JAISeqDataUser*) = 0;
+    virtual bool setSeqDataUser(JAISeqDataUser*) = 0;
 };
 
 #endif /* JAISEQDATAMGR_H */
