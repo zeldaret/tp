@@ -27,7 +27,7 @@
 JASOscillator::JASOscillator() {
     mData = NULL;
     _14 = 0;
-    _16 = 0;
+    mDirectRelease = 0;
     _18 = 0;
     _1C = 0;
     _0C = 0.0f;
@@ -46,7 +46,7 @@ void JASOscillator::initStart(JASOscillator::Data const* data) {
     _08 = 0.0f;
     _0C = 0.0f;
     _14 = 0;
-    _16 = 0;
+    mDirectRelease = 0;
     if (!data) {
 		_1C = 0;
         return;
@@ -84,17 +84,17 @@ f32 JASOscillator::getValue() const {
 
 /* 8029BFE4-8029C0E0 296924 00FC+00 0/0 1/1 0/0 .text            release__13JASOscillatorFv */
 void JASOscillator::release() {
-	if (mData->_0C == NULL && _16 == 0) {
+	if (mData->_0C == NULL && mDirectRelease == 0) {
         stop();
         return;
 	}
 
-	if (_16 != 0) {
+	if (mDirectRelease != 0) {
 		_04 = 0.0f;
         _0C = _08;
         _10 = 0.0f;
         _14 = 0;
-        _18 = (_16 >> 14) & 3;
+        _18 = (mDirectRelease >> 14) & 3;
         _1C = 4;
         update();
         return;
@@ -115,7 +115,7 @@ void JASOscillator::release() {
 /* 8029C0E0-8029C2C0 296A20 01E0+00 2/2 1/1 0/0 .text            update__13JASOscillatorFv */
 void JASOscillator::update() {
     if (_1C == 4) {
-        s16 x = _16 & 0x3FFF;
+        s16 x = mDirectRelease & 0x3FFF;
         if (_04 < x) {
             updateCurrentValue(x);
         } else {
@@ -127,7 +127,7 @@ void JASOscillator::update() {
 
     if (_1C == 2) return;
 
-    short* psVar1;
+    const short* psVar1;
     if (_1C == 1) {
         psVar1 = mData->_08;
     } else {
@@ -144,7 +144,7 @@ void JASOscillator::update() {
         _08 = _10;
         _14++;
         _0C = _08;
-        s16* ps = &psVar1[_14 * 3];
+        const s16* ps = &psVar1[_14 * 3];
         switch(ps[0]) {
         case 0xf:
             _1C = 0;

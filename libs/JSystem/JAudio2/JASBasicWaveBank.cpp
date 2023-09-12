@@ -4,67 +4,14 @@
 //
 
 #include "JSystem/JAudio2/JASBasicWaveBank.h"
+#include "JSystem/JAudio2/JASMutex.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "dol2asm.h"
 
 //
 // Types:
 //
-
-struct JKRHeap {};
-
-struct JASWaveInfo {
-    static u32 one[1 + 1 /* padding */];
-};
-
-struct JASWaveHandle {
-    /* 80298BD0 */ ~JASWaveHandle();
-};
-
-struct JASWaveBank {
-    /* 80298B88 */ ~JASWaveBank();
-};
-
-struct JASWaveArc {
-    /* 8029A13C */ JASWaveArc();
-    /* 8029A1B4 */ ~JASWaveArc();
-    /* 8029A664 */ void onDispose();
-};
-
-struct JASBasicWaveBank {
-    struct TWaveHandle {
-        /* 802985E4 */ ~TWaveHandle();
-        /* 80298B64 */ void getWavePtr() const;
-        /* 80298C18 */ TWaveHandle();
-        /* 80298C64 */ void getWaveInfo() const;
-    };
-
-    struct TWaveGroup {
-        /* 802989C0 */ TWaveGroup();
-        /* 80298A0C */ ~TWaveGroup();
-        /* 80298A84 */ void setWaveCount(u32, JKRHeap*);
-        /* 80298B04 */ void onLoadDone();
-        /* 80298B2C */ void onEraseDone();
-        /* 80298B54 */ void getWaveID(int) const;
-    };
-
-    struct TGroupWaveInfo {
-        /* 80298C4C */ TGroupWaveInfo();
-    };
-
-    /* 802984F8 */ JASBasicWaveBank();
-    /* 80298558 */ ~JASBasicWaveBank();
-    /* 80298640 */ void getWaveGroup(u32);
-    /* 80298664 */ void setGroupCount(u32, JKRHeap*);
-    /* 80298710 */ void setWaveTableSize(u32, JKRHeap*);
-    /* 80298790 */ void incWaveTable(JASBasicWaveBank::TWaveGroup const*);
-    /* 8029883C */ void decWaveTable(JASBasicWaveBank::TWaveGroup const*);
-    /* 802988DC */ void getWaveHandle(u32) const;
-    /* 80298910 */ void setWaveInfo(JASBasicWaveBank::TWaveGroup*, int, u16, JASWaveInfo const&);
-    /* 80298C6C */ void getWaveArc(u32);
-    /* 80298C8C */ void getArcCount() const;
-
-    static u8 mNoLoad[4 + 4 /* padding */];
-};
 
 //
 // Forward References:
@@ -107,9 +54,6 @@ extern "C" void onDispose__10JASWaveArcFv();
 extern "C" void* __nwa__FUlP7JKRHeapi();
 extern "C" void __dl__FPv();
 extern "C" void __dla__FPv();
-extern "C" void OSInitMutex();
-extern "C" void OSLockMutex();
-extern "C" void OSUnlockMutex();
 extern "C" void __destroy_new_array();
 extern "C" void __construct_new_array();
 extern "C" void _savegpr_25();
@@ -170,6 +114,16 @@ SECTION_DATA extern void* __vt__11JASWaveBank[6] = {
 };
 
 /* 802984F8-80298558 292E38 0060+00 0/0 1/1 0/0 .text            __ct__16JASBasicWaveBankFv */
+// vtable order
+#ifdef NONMATCHING
+JASBasicWaveBank::JASBasicWaveBank() {
+    mWaveTable = NULL;
+    mWaveGroupArray = NULL;
+    mHandleCount = 0;
+    mGroupCount = 0;
+    OSInitMutex(&field_0x4);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -178,8 +132,16 @@ asm JASBasicWaveBank::JASBasicWaveBank() {
 #include "asm/JSystem/JAudio2/JASBasicWaveBank/__ct__16JASBasicWaveBankFv.s"
 }
 #pragma pop
+#endif
 
 /* 80298558-802985E4 292E98 008C+00 1/0 0/0 0/0 .text            __dt__16JASBasicWaveBankFv */
+// vtable order
+#ifdef NONMATCHING
+JASBasicWaveBank::~JASBasicWaveBank() {
+    delete[] mWaveTable;
+    delete[] mWaveGroupArray;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -188,8 +150,13 @@ asm JASBasicWaveBank::~JASBasicWaveBank() {
 #include "asm/JSystem/JAudio2/JASBasicWaveBank/__dt__16JASBasicWaveBankFv.s"
 }
 #pragma pop
+#endif
 
 /* 802985E4-80298640 292F24 005C+00 3/2 0/0 0/0 .text __dt__Q216JASBasicWaveBank11TWaveHandleFv */
+// vtable order
+#ifdef NONMATCHING
+JASBasicWaveBank::TWaveHandle::~TWaveHandle() {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -198,42 +165,54 @@ asm JASBasicWaveBank::TWaveHandle::~TWaveHandle() {
 #include "asm/JSystem/JAudio2/JASBasicWaveBank/__dt__Q216JASBasicWaveBank11TWaveHandleFv.s"
 }
 #pragma pop
+#endif
 
 /* 80298640-80298664 292F80 0024+00 1/1 1/1 0/0 .text            getWaveGroup__16JASBasicWaveBankFUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASBasicWaveBank::getWaveGroup(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASBasicWaveBank/getWaveGroup__16JASBasicWaveBankFUl.s"
+JASBasicWaveBank::TWaveGroup* JASBasicWaveBank::getWaveGroup(u32 param_0) {
+    if (param_0 >= mGroupCount) {
+        return NULL;
+    }
+    return mWaveGroupArray + param_0;
 }
-#pragma pop
 
 /* 80298664-80298710 292FA4 00AC+00 0/0 1/1 0/0 .text
  * setGroupCount__16JASBasicWaveBankFUlP7JKRHeap                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASBasicWaveBank::setGroupCount(u32 param_0, JKRHeap* param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASBasicWaveBank/setGroupCount__16JASBasicWaveBankFUlP7JKRHeap.s"
+void JASBasicWaveBank::setGroupCount(u32 param_0, JKRHeap* param_1) {
+    delete[] mWaveGroupArray;
+    mGroupCount = param_0;
+    mWaveGroupArray = new(param_1, 0) TWaveGroup[param_0];
+    JUT_ASSERT("JASBasicWaveBank.cpp", 0x3e, mWaveGroupArray != 0);
+    for (int i = 0; i < mGroupCount; i++) {
+        mWaveGroupArray[i].mBank = this;
+    }
 }
-#pragma pop
 
 /* 80298710-80298790 293050 0080+00 0/0 1/1 0/0 .text
  * setWaveTableSize__16JASBasicWaveBankFUlP7JKRHeap             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASBasicWaveBank::setWaveTableSize(u32 param_0, JKRHeap* param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASBasicWaveBank/setWaveTableSize__16JASBasicWaveBankFUlP7JKRHeap.s"
+void JASBasicWaveBank::setWaveTableSize(u32 param_0, JKRHeap* param_1) {
+    delete[] mWaveTable;
+    mWaveTable = new(param_1, 0) TWaveHandle[param_0];
+    JUT_ASSERT("JASBasicWaveBank.cpp",0x5c, mWaveTable != 0);
+    mHandleCount = param_0;
 }
-#pragma pop
 
 /* 80298790-8029883C 2930D0 00AC+00 1/1 0/0 0/0 .text
  * incWaveTable__16JASBasicWaveBankFPCQ216JASBasicWaveBank10TWaveGroup */
+// instruction order
+#ifdef NONMATCHING
+void JASBasicWaveBank::incWaveTable(JASBasicWaveBank::TWaveGroup const* param_0) {
+    JASMutexLock lock(&field_0x4);
+    for (u32 i = 0; i < param_0->getWaveCount(); i++) {
+        TWaveHandle* handle = mWaveTable + param_0->getWaveID(i);
+        if (!handle->mHeap) {
+            handle->mHeap = &param_0->base.mHeap;
+            handle->field_0x4.field_0x20 = &param_0->base._48;
+            handle->field_0x4.field_0x08 = param_0->mCtrlWaveArray[i].field_0x4;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -242,6 +221,7 @@ asm void JASBasicWaveBank::incWaveTable(JASBasicWaveBank::TWaveGroup const* para
 #include "asm/JSystem/JAudio2/JASBasicWaveBank/incWaveTable__16JASBasicWaveBankFPCQ216JASBasicWaveBank10TWaveGroup.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80451278-80451280 000778 0004+04 2/2 0/0 0/0 .sbss            mNoLoad__16JASBasicWaveBank */
@@ -249,38 +229,52 @@ u8 JASBasicWaveBank::mNoLoad[4 + 4 /* padding */];
 
 /* 8029883C-802988DC 29317C 00A0+00 1/1 0/0 0/0 .text
  * decWaveTable__16JASBasicWaveBankFPCQ216JASBasicWaveBank10TWaveGroup */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASBasicWaveBank::decWaveTable(JASBasicWaveBank::TWaveGroup const* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASBasicWaveBank/decWaveTable__16JASBasicWaveBankFPCQ216JASBasicWaveBank10TWaveGroup.s"
+void JASBasicWaveBank::decWaveTable(JASBasicWaveBank::TWaveGroup const* param_0) {
+    JASMutexLock lock(&field_0x4);
+    for (u32 i = 0; i < param_0->getWaveCount(); i++) {
+        TWaveHandle* handle = mWaveTable + param_0->getWaveID(i);
+        if (handle->mHeap == &param_0->base.mHeap) {
+            handle->mHeap = NULL;
+            handle->field_0x4.field_0x20 = mNoLoad;
+            handle->field_0x4.field_0x08 = -1;
+        }
+    }
 }
-#pragma pop
 
 /* 802988DC-80298910 29321C 0034+00 1/0 0/0 0/0 .text getWaveHandle__16JASBasicWaveBankCFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASBasicWaveBank::getWaveHandle(u32 param_0) const {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASBasicWaveBank/getWaveHandle__16JASBasicWaveBankCFUl.s"
+JASWaveHandle* JASBasicWaveBank::getWaveHandle(u32 param_0) const {
+    if (param_0 >= mHandleCount) {
+        return NULL;
+    }
+    if (!mWaveTable[param_0].mHeap) {
+        return NULL;
+    }
+    return mWaveTable + param_0;
 }
-#pragma pop
 
 /* 80298910-802989C0 293250 00B0+00 0/0 1/1 0/0 .text
  * setWaveInfo__16JASBasicWaveBankFPQ216JASBasicWaveBank10TWaveGroupiUsRC11JASWaveInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASBasicWaveBank::setWaveInfo(JASBasicWaveBank::TWaveGroup* param_0, int param_1,
-                                       u16 param_2, JASWaveInfo const& param_3) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASBasicWaveBank/func_80298910.s"
+void JASBasicWaveBank::setWaveInfo(JASBasicWaveBank::TWaveGroup* wgrp, int index,
+                                   u16 param_2, JASWaveInfo const& param_3) {
+    JUT_ASSERT("JASBasicWaveBank.cpp", 0xcc, wgrp);
+    JUT_ASSERT("JASBasicWaveBank.cpp", 0xcd, index < wgrp->mWaveCount);
+    JUT_ASSERT("JASBasicWaveBank.cpp", 0xce, index >= 0);
+    mWaveTable[param_2].field_0x4 = param_3;
+    mWaveTable[param_2].field_0x4.field_0x20 = mNoLoad;
+    mWaveTable[param_2].field_0x4.field_0x08 = -1;
+    wgrp->mCtrlWaveArray[index].field_0x0 = param_2;
+    wgrp->mCtrlWaveArray[index].field_0x4 = param_3.field_0x08;
 }
-#pragma pop
 
 /* 802989C0-80298A0C 293300 004C+00 1/1 0/0 0/0 .text __ct__Q216JASBasicWaveBank10TWaveGroupFv */
+// vtable order
+#ifdef NONMATCHING
+JASBasicWaveBank::TWaveGroup::TWaveGroup() {
+    mBank = NULL;
+    mCtrlWaveArray = NULL;
+    mWaveCount = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -289,8 +283,15 @@ asm JASBasicWaveBank::TWaveGroup::TWaveGroup() {
 #include "asm/JSystem/JAudio2/JASBasicWaveBank/__ct__Q216JASBasicWaveBank10TWaveGroupFv.s"
 }
 #pragma pop
+#endif
 
 /* 80298A0C-80298A84 29334C 0078+00 3/2 0/0 0/0 .text __dt__Q216JASBasicWaveBank10TWaveGroupFv */
+// vtable order
+#ifdef NONMATCHING
+JASBasicWaveBank::TWaveGroup::~TWaveGroup() {
+    delete[] mCtrlWaveArray;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -299,67 +300,57 @@ asm JASBasicWaveBank::TWaveGroup::~TWaveGroup() {
 #include "asm/JSystem/JAudio2/JASBasicWaveBank/__dt__Q216JASBasicWaveBank10TWaveGroupFv.s"
 }
 #pragma pop
+#endif
 
 /* 80298A84-80298B04 2933C4 0080+00 0/0 1/1 0/0 .text
  * setWaveCount__Q216JASBasicWaveBank10TWaveGroupFUlP7JKRHeap   */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASBasicWaveBank::TWaveGroup::setWaveCount(u32 param_0, JKRHeap* param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASBasicWaveBank/setWaveCount__Q216JASBasicWaveBank10TWaveGroupFUlP7JKRHeap.s"
+void JASBasicWaveBank::TWaveGroup::setWaveCount(u32 param_0, JKRHeap* param_1) {
+    delete[] mCtrlWaveArray;
+    mWaveCount = param_0;
+    mCtrlWaveArray = new(param_1, 0) TGroupWaveInfo[param_0];
+    JUT_ASSERT("JASBasicWaveBank.cpp", 0xff, mCtrlWaveArray != 0);
 }
-#pragma pop
 
 /* 80298B04-80298B2C 293444 0028+00 1/0 0/0 0/0 .text
  * onLoadDone__Q216JASBasicWaveBank10TWaveGroupFv               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASBasicWaveBank::TWaveGroup::onLoadDone() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASBasicWaveBank/onLoadDone__Q216JASBasicWaveBank10TWaveGroupFv.s"
+void JASBasicWaveBank::TWaveGroup::onLoadDone() {
+    JUT_ASSERT("JASBasicWaveBank.cpp", 0x11e, mBank);
+    mBank->incWaveTable(this);
 }
-#pragma pop
 
 /* 80298B2C-80298B54 29346C 0028+00 1/0 0/0 0/0 .text
  * onEraseDone__Q216JASBasicWaveBank10TWaveGroupFv              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASBasicWaveBank::TWaveGroup::onEraseDone() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASBasicWaveBank/onEraseDone__Q216JASBasicWaveBank10TWaveGroupFv.s"
+void JASBasicWaveBank::TWaveGroup::onEraseDone() {
+    JUT_ASSERT("JASBasicWaveBank.cpp", 0x124, mBank);
+    mBank->decWaveTable(this);
 }
-#pragma pop
+
 
 /* 80298B54-80298B64 293494 0010+00 2/2 0/0 0/0 .text
  * getWaveID__Q216JASBasicWaveBank10TWaveGroupCFi               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASBasicWaveBank::TWaveGroup::getWaveID(int param_0) const {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASBasicWaveBank/getWaveID__Q216JASBasicWaveBank10TWaveGroupCFi.s"
+u32 JASBasicWaveBank::TWaveGroup::getWaveID(int index) const {
+    JUT_ASSERT("JASBasicWaveBank.cpp", 0x12a, index < mWaveCount);
+    JUT_ASSERT("JASBasicWaveBank.cpp", 299, index >= 0);
+    return mCtrlWaveArray[index].field_0x0;
 }
-#pragma pop
 
 /* 80298B64-80298B88 2934A4 0024+00 1/0 0/0 0/0 .text
  * getWavePtr__Q216JASBasicWaveBank11TWaveHandleCFv             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASBasicWaveBank::TWaveHandle::getWavePtr() const {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASBasicWaveBank/getWavePtr__Q216JASBasicWaveBank11TWaveHandleCFv.s"
+int JASBasicWaveBank::TWaveHandle::getWavePtr() const {
+    JUT_ASSERT("JASBasicWaveBank.cpp", 0x139, mHeap);
+    void* base = mHeap->getBase();
+    if (base == 0) {
+        return 0;
+    }
+    return (int)base + field_0x4.field_0x08;
 }
-#pragma pop
 
 /* 80298B88-80298BD0 2934C8 0048+00 1/0 0/0 0/0 .text            __dt__11JASWaveBankFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JASWaveBank::~JASWaveBank() {
+// asm JASWaveBank::~JASWaveBank() {
+asm void __dt__11JASWaveBankFv() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASBasicWaveBank/__dt__11JASWaveBankFv.s"
 }
@@ -369,7 +360,8 @@ asm JASWaveBank::~JASWaveBank() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JASWaveHandle::~JASWaveHandle() {
+// asm JASWaveHandle::~JASWaveHandle() {
+asm void __dt__13JASWaveHandleFv() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASBasicWaveBank/__dt__13JASWaveHandleFv.s"
 }
@@ -379,7 +371,8 @@ asm JASWaveHandle::~JASWaveHandle() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JASBasicWaveBank::TWaveHandle::TWaveHandle() {
+// asm JASBasicWaveBank::TWaveHandle::TWaveHandle() {
+asm void __ct__Q216JASBasicWaveBank11TWaveHandleFv() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASBasicWaveBank/__ct__Q216JASBasicWaveBank11TWaveHandleFv.s"
 }
@@ -390,7 +383,8 @@ asm JASBasicWaveBank::TWaveHandle::TWaveHandle() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JASBasicWaveBank::TGroupWaveInfo::TGroupWaveInfo() {
+// asm JASBasicWaveBank::TGroupWaveInfo::TGroupWaveInfo() {
+asm void __ct__Q216JASBasicWaveBank14TGroupWaveInfoFv() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASBasicWaveBank/__ct__Q216JASBasicWaveBank14TGroupWaveInfoFv.s"
 }
@@ -401,7 +395,8 @@ asm JASBasicWaveBank::TGroupWaveInfo::TGroupWaveInfo() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASBasicWaveBank::TWaveHandle::getWaveInfo() const {
+// asm JASWaveInfo* JASBasicWaveBank::TWaveHandle::getWaveInfo() const {
+asm void getWaveInfo__Q216JASBasicWaveBank11TWaveHandleCFv() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASBasicWaveBank/getWaveInfo__Q216JASBasicWaveBank11TWaveHandleCFv.s"
 }
@@ -412,7 +407,8 @@ asm void JASBasicWaveBank::TWaveHandle::getWaveInfo() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASBasicWaveBank::getWaveArc(u32 param_0) {
+// asm JASWaveArc* JASBasicWaveBank::getWaveArc(u32 param_0) {
+asm void getWaveArc__16JASBasicWaveBankFUl() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASBasicWaveBank/getWaveArc__16JASBasicWaveBankFUl.s"
 }
@@ -423,7 +419,8 @@ asm void JASBasicWaveBank::getWaveArc(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASBasicWaveBank::getArcCount() const {
+// asm u32 JASBasicWaveBank::getArcCount() const {
+asm void getArcCount__16JASBasicWaveBankCFv() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASBasicWaveBank/getArcCount__16JASBasicWaveBankCFv.s"
 }
