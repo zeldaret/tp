@@ -6,7 +6,7 @@
 
 struct JAUSoundTable : public JASGlobalInstance<JAUSoundTable> {
     /* 802A7114 */ void init(void const*);
-    /* 802A7160 */ void getTypeID(JAISoundID) const;
+    /* 802A7160 */ u8 getTypeID(JAISoundID) const;
     /* 802A728C */ void getData(JAISoundID) const;
 };
 
