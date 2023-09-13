@@ -21,7 +21,7 @@ public:
     /* 0x0C */ int field_0xc;
 };
 
-class JAUSeqDataMgr_SeqCollection : JAISeqDataMgr, JAUSeqCollection {
+class JAUSeqDataMgr_SeqCollection : public JAISeqDataMgr, public JAUSeqCollection {
 public:
     /* 802A677C */ JAUSeqDataMgr_SeqCollection();
     /* 802A67D0 */ bool setSeqDataUser(JAISeqDataUser*);

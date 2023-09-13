@@ -152,7 +152,7 @@ void JAUDynamicSeqDataBlocks::setSeqDataArchive(JKRArchive* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAUDynamicSeqDataBlocks::getSeqData(JAISoundID param_0, JAISeqDataUser* param_1,
+asm s32 JAUDynamicSeqDataBlocks::getSeqData(JAISoundID param_0, JAISeqDataUser* param_1,
                                              JAISeqData* param_2, bool param_3) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAUSeqDataBlockMgr/func_802A6AA8.s"
@@ -164,7 +164,7 @@ asm void JAUDynamicSeqDataBlocks::getSeqData(JAISoundID param_0, JAISeqDataUser*
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAUDynamicSeqDataBlocks::appendDynamicSeqDataBlock(JAUSeqDataBlock* param_0) {
+asm bool JAUDynamicSeqDataBlocks::appendDynamicSeqDataBlock(JAUSeqDataBlock* param_0) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAUSeqDataBlockMgr/appendDynamicSeqDataBlock__23JAUDynamicSeqDataBlocksFP15JAUSeqDataBlock.s"
 }
@@ -186,7 +186,7 @@ static asm void JAUDynamicSeqDataBlocks_receiveLoaded_(u32 param_0, u32 param_1)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAUDynamicSeqDataBlocks::loadDynamicSeq(JAISoundID param_0, bool param_1,
+asm bool JAUDynamicSeqDataBlocks::loadDynamicSeq(JAISoundID param_0, bool param_1,
                                                  JAISeqDataUser* param_2) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAUSeqDataBlockMgr/loadDynamicSeq__23JAUDynamicSeqDataBlocksF10JAISoundIDbP14JAISeqDataUser.s"

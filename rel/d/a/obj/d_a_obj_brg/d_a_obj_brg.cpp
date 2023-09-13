@@ -225,7 +225,6 @@ extern "C" void _restgpr_24();
 extern "C" void _restgpr_25();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
-extern "C" void strcmp();
 extern "C" extern u8 const j3dDefaultLightInfo[52];
 extern "C" extern void* __vt__19mDoExt_3DlineMat1_c[5];
 extern "C" extern void* g_fopAc_Method[8];

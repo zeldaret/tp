@@ -57,4 +57,8 @@ public:
     static JKRSolidHeap* create(u32, JKRHeap*, bool);
 };
 
+inline JKRSolidHeap* JKRCreateSolidHeap(u32 param_0, JKRHeap* heap, bool param_2) {
+    return JKRSolidHeap::create(param_0, heap, param_2);
+}
+
 #endif /* JKRSOLIDHEAP_H */
