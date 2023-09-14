@@ -6,13 +6,22 @@
 #include "d/menu/d_menu_item_explain.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JGeometry.h"
+#include "JSystem/JUtility/JUTTexture.h"
+#include "d/d_item.h"
+#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
+#include "msg/scrn/d_msg_scrn_3select.h"
+#include "msg/scrn/d_msg_scrn_arrow.h"
 #include "d/d_lib.h"
 #include "d/d_select_cursor.h"
+#include "d/d_kantera_icon_meter.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/meter/d_meter_HIO.h"
 #include "d/msg/d_msg_string.h"
 #include "d/msg/d_msg_class.h"
+#include "MSL_C/stdio.h"
 #include "dol2asm.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
@@ -120,7 +129,6 @@ extern "C" void _restgpr_22();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
-extern "C" void snprintf();
 
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 
@@ -132,32 +140,43 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 80396950-80396970 022FB0 0020+00 1/1 0/0 0/0 .rodata          name_tag$3883 */
-SECTION_RODATA static u8 const name_tag[32] = {
-    0x69, 0x74, 0x65, 0x6D, 0x5F, 0x6E, 0x30, 0x34, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x6E, 0x30, 0x35,
-    0x69, 0x74, 0x65, 0x6D, 0x5F, 0x6E, 0x30, 0x36, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x6E, 0x30, 0x37,
+static const u64 name_tag[4] = {
+    'item_n04', 'item_n05',
+    'item_n06', 'item_n07',
 };
-COMPILER_STRIP_GATE(0x80396950, &name_tag);
 
 /* 80396970-80396990 022FD0 0020+00 1/1 0/0 0/0 .rodata          fame_tag$3884 */
-SECTION_RODATA static u8 const fame_tag[32] = {
-    0x66, 0x5F, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x31, 0x66, 0x5F, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x32,
-    0x66, 0x5F, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x33, 0x66, 0x5F, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x34,
+static const u64 fame_tag[4] = {
+    'f_item_1', 'f_item_2',
+    'f_item_3', 'f_item_4',
 };
-COMPILER_STRIP_GATE(0x80396970, &fame_tag);
-
-/* 80396990-80396990 022FF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80396990 = "zelda_item_screen_info.blo";
-SECTION_DEAD static char const* const stringBase_803969AB = "";
-SECTION_DEAD static char const* const stringBase_803969AC = "tt_block8x8.bti";
-#pragma pop
 
 /* 803BD8C8-803BD8D4 01A9E8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
+#ifdef   NONMATCHING
+typedef void (dMenu_ItemExplain_c::*initFunc)();
+static initFunc init_process[] = {
+    &dMenu_ItemExplain_c::wait_init,
+    &dMenu_ItemExplain_c::open_init,
+    &dMenu_ItemExplain_c::move_init,
+    &dMenu_ItemExplain_c::move_select_init,
+    &dMenu_ItemExplain_c::move_next_init,
+    &dMenu_ItemExplain_c::close_init,
+};
+
+typedef void (dMenu_ItemExplain_c::*moveFunc)();
+static moveFunc move_process[] = {
+    &dMenu_ItemExplain_c::wait_proc,
+    &dMenu_ItemExplain_c::open_proc,
+    &dMenu_ItemExplain_c::move_proc,
+    &dMenu_ItemExplain_c::move_select_proc,
+    &dMenu_ItemExplain_c::move_next_proc,
+    &dMenu_ItemExplain_c::close_proc,
+};
+#else
 /* 803BD8D4-803BD8E0 -00001 000C+00 0/1 0/0 0/0 .data            @3844 */
 #pragma push
 #pragma force_active on
@@ -295,6 +314,7 @@ SECTION_DATA static u8 move_process[72] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+#endif
 
 /* 803BD9F4-803BDA00 01AB14 000C+00 2/2 0/0 0/0 .data            __vt__19dMenu_ItemExplain_c */
 SECTION_DATA extern void* __vt__19dMenu_ItemExplain_c[3] = {
@@ -303,56 +323,236 @@ SECTION_DATA extern void* __vt__19dMenu_ItemExplain_c[3] = {
     (void*)__dt__19dMenu_ItemExplain_cFv,
 };
 
-/* 80454288-8045428C 002888 0004+00 3/3 0/0 0/0 .sdata2          @4062 */
-SECTION_SDATA2 static u8 lit_4062[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 8045428C-80454290 00288C 0004+00 4/4 0/0 0/0 .sdata2          @4063 */
-SECTION_SDATA2 static f32 lit_4063 = 201.0f;
-
-/* 80454290-80454294 002890 0004+00 1/1 0/0 0/0 .sdata2          @4064 */
-SECTION_SDATA2 static f32 lit_4064 = 16.0f;
-
-/* 80454294-80454298 002894 0004+00 2/2 0/0 0/0 .sdata2          @4065 */
-SECTION_SDATA2 static f32 lit_4065 = 0.5f;
-
-/* 80454298-804542A0 002898 0004+04 1/1 0/0 0/0 .sdata2          @4066 */
-SECTION_SDATA2 static f32 lit_4066[1 + 1 /* padding */] = {
-    3.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 804542A0-804542A8 0028A0 0008+00 1/1 0/0 0/0 .sdata2          @4068 */
-SECTION_SDATA2 static f64 lit_4068 = 4503601774854144.0 /* cast s32 to float */;
-
 /* 801DA754-801DAFF0 1D5094 089C+00 0/0 2/2 0/0 .text
  * __ct__19dMenu_ItemExplain_cFP10JKRExpHeapP10JKRArchiveP9STControlb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMenu_ItemExplain_c::dMenu_ItemExplain_c(JKRExpHeap* param_0, JKRArchive* param_1,
-                                             STControl* param_2, bool param_3) {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/__ct__19dMenu_ItemExplain_cFP10JKRExpHeapP10JKRArchiveP9STControlb.s"
+dMenu_ItemExplain_c::dMenu_ItemExplain_c(JKRExpHeap* i_heap, JKRArchive* i_archive,
+                                             STControl* i_stick, bool param_3) {
+    mpHeap = i_heap;
+    mpArchive = dComIfGp_getDemoMsgArchive();
+    mpStick = i_stick;
+    mpHeap->getTotalFreeSize();
+    field_0xc8 = 0;
+    field_0xcc = 0;
+    field_0xd0 = 0;
+    field_0xc4 = 0;
+    field_0xe1 = 0;
+    field_0xe2 = 0;
+    mStatus = 0;
+    field_0xe7 = 0;
+    mEndButton = 0;
+    if (i_archive == dComIfGp_getDmapResArchive()) {
+        field_0xe5 = 2;
+    } else {
+        field_0xe5 = 1;
+    }
+    field_0xe6 = 0;
+    field_0xdf = 0;
+    field_0xde = 0;
+    offForceButton();
+    trans(0.0f, 0.0f);
+    field_0x74 = 0;
+    field_0x14 = 0;
+    for (int i = 0; i < 4; i++) {
+        field_0x28[i] = 0;
+    }
+    for (int i = 0; i < 2; i++) {
+        field_0x44[i] = 0;
+        field_0xa0[i] = 0;
+    }
+    field_0x50 = 0;
+    field_0x5c = 0;
+    for (int i = 0; i < 3; i++) {
+        field_0x60[i] = 0;
+    }
+    field_0xdc = 0;
+    mpInfoString = new dMsgString_c(1);
+    mpKanteraMeter = new dKantera_icon_c();
+    mpInfoScreen = new J2DScreen();
+    mpInfoScreen->setPriority("zelda_item_screen_info.blo", 0x20000, mpArchive);
+    mpParent[0] = new CPaneMgr(mpInfoScreen, 'n_all', 2, NULL);
+    mpParent[1] = NULL;
+    mpLabel = new CPaneMgr(mpInfoScreen, 'label_n', 0, NULL);
+    field_0xc0 = 0.0f;
+    field_0x78 = 0;
+    field_0xbc = 201.0f;
+    mpInfoText = new CPaneMgr(mpInfoScreen, 'i_text1', 0, NULL);
+    mpInfoScreen->search('i_text4')->hide();
+    ((J2DTextBox*)(mpInfoText->getPanePtr()))->setFont(mDoExt_getMesgFont());
+    ((J2DTextBox*)(mpInfoText->getPanePtr()))->setString(0x200, "");
+    mpInfoText->show();
+    for (int i = 0; i < 4; i++) {
+        mpNameText[i] = new CPaneMgr(mpInfoScreen, fame_tag[i], 0, NULL);
+        mpInfoScreen->search(name_tag[i])->hide();
+        ((J2DTextBox*)(mpNameText[i]->getPanePtr()))->setFont(mDoExt_getMesgFont());
+        ((J2DTextBox*)(mpNameText[i]->getPanePtr()))->setString(0x20, "");
+    }
+    mpInfoIcon = new CPaneMgr(mpInfoScreen, 'i_icon_p', 0, NULL);
+    for (int i = 0; i < 4; i++) {
+        mpExpItemTex[i] = (ResTIMG*)mpHeap->alloc(0xC00, 0x20);
+    }
+
+    mpExpItemPane[0] = new J2DPicture('i_icon_1', JGeometry::TBox2<f32>(0.0f, 0.0f, mpInfoIcon->getInitSizeX(), mpInfoIcon->getInitSizeY()), ((J2DPicture*)(mpInfoIcon->getPanePtr()))->getTexture(0)->getTexInfo(), NULL);
+    mpExpItemPane[0]->setBasePosition(J2DBasePosition_4);
+    mpInfoIcon->getPanePtr()->appendChild(mpExpItemPane[0]);
+    mpExpItemPane[1] = new J2DPicture('i_icon_2', JGeometry::TBox2<f32>(0.0f, 0.0f, mpInfoIcon->getInitSizeX(), mpInfoIcon->getInitSizeY()), ((J2DPicture*)(mpInfoIcon->getPanePtr()))->getTexture(0)->getTexInfo(), NULL);
+    mpExpItemPane[1]->setBasePosition(J2DBasePosition_4);
+    mpInfoIcon->getPanePtr()->appendChild(mpExpItemPane[1]);
+    mpExpItemPane[2] = new J2DPicture('i_icon_3', JGeometry::TBox2<f32>(0.0f, 0.0f, mpInfoIcon->getInitSizeX(), mpInfoIcon->getInitSizeY()), ((J2DPicture*)(mpInfoIcon->getPanePtr()))->getTexture(0)->getTexInfo(), NULL);
+    mpExpItemPane[2]->setBasePosition(J2DBasePosition_4);
+    mpInfoIcon->getPanePtr()->appendChild(mpExpItemPane[2]);
+ 
+    ResTIMG* texResource = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', dMeter2Info_getNumberTextureName(0));
+    for (int i = 0; i < 3; i++) {
+        mpItemNumTex[i] = new J2DPicture(texResource);
+        mpInfoScreen->search('info_n1')->appendChild(mpItemNumTex[i]);
+        mpItemNumTex[i]->move(i * 16.0f + (mpInfoIcon->getPosX() + mpInfoIcon->getSizeX() * 0.5f), mpInfoIcon->getPosY() + mpInfoIcon->getSizeY() - 3.0f);
+        mpItemNumTex[i]->resize(16.0f, 16.0f);
+    }
+    
+    if (param_3 == 1) {
+        texResource = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "tt_block8x8.bti");
+        mpBackTex = new J2DPicture(texResource);
+        mpBackTex->setBlackWhite(JUtility::TColor(0,0,0,0), JUtility::TColor(0,0,0,0xff));
+        mpBackTex->setAlpha(0);
+    } else {
+        mpBackTex = NULL;
+    }
+    mpArrow = NULL;
+    if (i_stick != NULL) {
+        mpSelect_c = NULL;
+    } else {
+        mpSelect_c = NULL;
+    }
 }
-#pragma pop
 
 /* 801DAFF0-801DB470 1D5930 0480+00 1/0 0/0 0/0 .text            __dt__19dMenu_ItemExplain_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMenu_ItemExplain_c::~dMenu_ItemExplain_c() {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/__dt__19dMenu_ItemExplain_cFv.s"
+dMenu_ItemExplain_c::~dMenu_ItemExplain_c() {
+    delete mpInfoString;
+    mpInfoString = NULL;
+
+    delete mpInfoScreen;
+    mpInfoScreen = NULL;
+
+    delete mpKanteraMeter;
+    mpKanteraMeter = NULL;
+
+    for (int i = 0; i < 2; i++) {
+        if (mpParent[i] != NULL) {
+            delete mpParent[i];
+            mpParent[i] = NULL;
+        }
+    }
+
+    delete mpLabel; 
+    mpLabel = NULL;
+
+    delete mpInfoText;
+    mpInfoText = NULL;
+
+    for (int i = 0; i < 4; i++) {
+        delete mpNameText[i];
+        mpNameText[i] = NULL;
+    }
+
+    if (field_0x74 != NULL) {
+        delete field_0x74;
+        field_0x74 = NULL;
+    }
+
+    for (int i = 0; i < 2; i++) {
+        if (field_0x44[i] != NULL) {
+            delete field_0x44[i];
+            field_0x44[i] = NULL;
+        }
+    }
+
+    if (field_0x50 != NULL) {
+        delete field_0x50;
+        field_0x50 = NULL;
+    }
+
+    if (field_0x5c != NULL) {
+        delete field_0x5c;
+        field_0x5c = NULL;
+    }
+
+    if (field_0x14 != NULL) {
+        delete field_0x14;
+        field_0x14 = NULL;
+    }
+
+    for (int i = 0; i < 4; i++) {
+        if (field_0x28[i] != NULL) {
+            delete field_0x28[i];
+            field_0x28[i] = NULL;
+        }
+    }
+
+    for (int i = 0; i < 3; i++) {
+        if (field_0x60[i] != NULL) {
+            delete field_0x60[i];
+            field_0x60[i] = NULL;
+        }
+    }
+
+    delete mpInfoIcon;
+    mpInfoIcon = NULL;
+
+    for (int i = 0; i < 4; i++) {
+        if (mpExpItemTex[i] != NULL) {
+            mpHeap->free(mpExpItemTex[i]);
+            mpExpItemTex[i] = NULL;
+        }
+    }
+
+    for (int i = 0; i < 3; i++) {
+        if (mpExpItemPane[i] != NULL) {
+            mpExpItemPane[i] = NULL;
+        }
+    }
+
+    for (int i = 0; i < 3; i++) {
+        if (mpItemNumTex[i] != NULL) {
+            mpItemNumTex[i] = NULL;
+        }
+    }
+
+    if (mpBackTex != NULL) {
+        delete mpBackTex;
+        mpBackTex = NULL;
+    }
+
+    if (mpArrow != NULL) {
+        delete mpArrow;
+        mpArrow = NULL;
+    }
+
+    if (mpSelect_c != NULL) {
+        delete mpSelect_c;
+        mpSelect_c = NULL;
+    }
+
+    dComIfGp_getMsgArchive(0)->removeResourceAll();
+    mpArchive->removeResourceAll();
 }
-#pragma pop
 
 /* 801DB470-801DB514 1D5DB0 00A4+00 0/0 5/5 0/0 .text            move__19dMenu_ItemExplain_cFv */
+#ifdef NONMATCHING
+// Matches with sinit
+void dMenu_ItemExplain_c::move() {
+    u8 status = mStatus;
+    (this->*move_process[status])();
+    if (status != mStatus) {
+        (this->*init_process[mStatus])();
+    }
+    if (mStatus != NULL) {
+        mpInfoScreen->animation();
+    }
+    if (g_ringHIO.mItemDescAlpha != field_0xc0) {
+        field_0xc0 = g_ringHIO.mItemDescAlpha;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -361,53 +561,53 @@ asm void dMenu_ItemExplain_c::move() {
 #include "asm/d/menu/d_menu_item_explain/move__19dMenu_ItemExplain_cFv.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 804542A8-804542AC 0028A8 0004+00 1/1 0/0 0/0 .sdata2          @4302 */
-SECTION_SDATA2 static f32 lit_4302 = 608.0f;
-
-/* 804542AC-804542B0 0028AC 0004+00 1/1 0/0 0/0 .sdata2          @4303 */
-SECTION_SDATA2 static f32 lit_4303 = 448.0f;
-
-/* 804542B0-804542B4 0028B0 0004+00 5/5 0/0 0/0 .sdata2          @4304 */
-SECTION_SDATA2 static f32 lit_4304 = -1.0f;
-
-/* 804542B4-804542B8 0028B4 0004+00 1/1 0/0 0/0 .sdata2          @4305 */
-SECTION_SDATA2 static f32 lit_4305 = 486.0f;
-
-/* 804542B8-804542BC 0028B8 0004+00 1/1 0/0 0/0 .sdata2          @4306 */
-SECTION_SDATA2 static f32 lit_4306 = 209.0f;
+#endif
 
 /* 801DB514-801DB744 1D5E54 0230+00 0/0 2/2 0/0 .text draw__19dMenu_ItemExplain_cFP13J2DOrthoGraph
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_ItemExplain_c::draw(J2DOrthoGraph* param_0) {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/draw__19dMenu_ItemExplain_cFP13J2DOrthoGraph.s"
+void dMenu_ItemExplain_c::draw(J2DOrthoGraph* param_0) {
+    if (mStatus != 0) {
+        for (int i = 0; i < 2; i++) {
+            if (mpParent[i] != NULL) {
+                mpParent[i]->scale(g_ringHIO.mItemDescScale, g_ringHIO.mItemDescScale);
+                mpParent[i]->paneTrans(field_0xd4 + g_ringHIO.mItemDescPosX, field_0xd8 + g_ringHIO.mItemDescPosY);
+            }
+        }
+        mpLabel->scale(g_ringHIO.mItemDescTitleScale, g_ringHIO.mItemDescTitleScale);
+        mpLabel->paneTrans(g_ringHIO.mItemDescTitlePosX, g_ringHIO.mItemDescTitlePosY);
+        if (mpBackTex != NULL) {
+            mpBackTex->draw(0.0f, 0.0f, 608.0f, 448.0f, false, false, false);
+        }
+        if (field_0xc8 != field_0xd0) {
+            field_0xd0 = field_0xc8;
+            for (int i = 0; i < 4; i++) {
+                mpInfoString->getString(field_0xcc, (J2DTextBox*)mpNameText[i]->getPanePtr(), NULL, NULL, NULL, 0);
+            }
+            mpInfoString->getString(field_0xc8, (J2DTextBox*)mpInfoText->getPanePtr(), NULL, NULL, NULL, 0);
+        }
+        mpInfoScreen->draw(0.0f, 0.0f, (J2DGrafContext*)param_0);
+        mpInfoString->drawOutFontLocal((J2DTextBox*)mpInfoText->getPanePtr(), -1.0f);
+        drawKantera();
+        if (mpSelect_c != NULL) {
+            mpSelect_c->translate(486.0f, 209.0f);
+            mpSelect_c->draw(0.0f, 0.0f);
+        }
+        if (mpArrow != NULL) {
+            mpArrow->draw();
+        }
+    }
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804542BC-804542C0 0028BC 0004+00 2/2 0/0 0/0 .sdata2          @4346 */
-SECTION_SDATA2 static f32 lit_4346 = 48.0f;
-
-/* 804542C0-804542C4 0028C0 0004+00 1/1 0/0 0/0 .sdata2          @4347 */
-SECTION_SDATA2 static f32 lit_4347 = 5.0f;
-
-/* 804542C4-804542C8 0028C4 0004+00 8/8 0/0 0/0 .sdata2          @4348 */
-SECTION_SDATA2 static f32 lit_4348 = 1.0f;
 
 /* 801DB744-801DB818 1D6084 00D4+00 1/1 0/0 0/0 .text drawKantera__19dMenu_ItemExplain_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_ItemExplain_c::drawKantera() {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/drawKantera__19dMenu_ItemExplain_cFv.s"
+void dMenu_ItemExplain_c::drawKantera() {
+    if (field_0xe1 == 0x48) {
+        mpKanteraMeter->setPos(mpInfoIcon->getGlobalPosX() + 48.0f, mpInfoIcon->getGlobalPosY() + mpInfoIcon->getSizeY() + 5.0f);
+        mpKanteraMeter->setScale(1.0f, 1.0f);
+        mpKanteraMeter->setNowGauge(dComIfGs_getMaxOil(), dComIfGs_getOil());
+        mpKanteraMeter->setAlphaRate(mpInfoIcon->getAlphaRate());
+        mpKanteraMeter->drawSelf();
+    }
 }
-#pragma pop
 
 /* 801DB818-801DB81C 1D6158 0004+00 1/0 0/0 0/0 .text            wait_init__19dMenu_ItemExplain_cFv
  */
@@ -423,177 +623,440 @@ void dMenu_ItemExplain_c::wait_proc() {
 
 /* 801DB820-801DBAB4 1D6160 0294+00 3/2 0/0 0/0 .text            open_init__19dMenu_ItemExplain_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_ItemExplain_c::open_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/open_init__19dMenu_ItemExplain_cFv.s"
+void dMenu_ItemExplain_c::open_init() {
+    field_0xc4 = field_0xc8;
+    mEndButton = 0;
+    offForceButton();
+    if (field_0xe1 != 0xff) {
+        u8 itemNo = field_0xe1;
+        s32 iVar = -1;
+        if (itemNo == 0x26) {
+            if (i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x11) {
+                s32 itemsObtained = 0;
+                for (int i = 0; i < 3; i++) {
+                    if (checkItemGet(i + L2_KEY_PIECES1, 1) != 0) {
+                        itemsObtained++;
+                    }
+                }
+                if (itemsObtained == 1) {
+                    iVar = 0x43;
+                }
+                if (itemsObtained == 2) {
+                    itemNo = 0xfa;
+                    iVar = 0x44;
+                } else {
+                    itemNo = 0xfd;
+                }
+            } else {
+                if (i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x14) {
+                    itemNo = 0xf6;
+                }
+            }
+        }
+        s32 texture = dMeter2Info_readItemTexture(itemNo, mpExpItemTex[0], (J2DPicture*)mpInfoIcon->getPanePtr(), mpExpItemTex[1], mpExpItemPane[0], mpExpItemTex[2], mpExpItemPane[1], mpExpItemTex[3], mpExpItemPane[2], iVar);
+        mpInfoIcon->show();
+        for (int i = 0; i < 3; i++) {
+            if (i < texture - 1) {
+                mpExpItemPane[i]->show();
+            } else {
+                mpExpItemPane[i]->hide();
+            }
+        }
+        setNumber();
+        mpInfoScreen->search('i_i_back')->show();
+        field_0xe6 = 0;
+    } else {
+        mpInfoIcon->hide();
+        for (int i = 0; i < 3; i++) {
+            mpExpItemPane[i]->hide();
+        }
+        setNumber();
+        mpInfoScreen->search('i_i_back')->hide();
+        field_0xe6 = 1;
+    }
+    if (mpArrow != NULL) {
+        mpArrow->arwAnimeInit();
+    }
+    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_OPEN, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804542C8-804542CC 0028C8 0004+00 1/1 0/0 0/0 .sdata2          @4452 */
-SECTION_SDATA2 static f32 lit_4452 = 2.0f;
-
-/* 804542CC-804542D0 0028CC 0004+00 1/1 0/0 0/0 .sdata2          @4453 */
-SECTION_SDATA2 static f32 lit_4453 = 150.0f;
 
 /* 801DBAB4-801DBB50 1D63F4 009C+00 1/0 0/0 0/0 .text            open_proc__19dMenu_ItemExplain_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_ItemExplain_c::open_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/open_proc__19dMenu_ItemExplain_cFv.s"
+void dMenu_ItemExplain_c::open_proc() {
+    field_0xbc += 2.0f;
+    if (field_0xbc >= 201.0f) {
+        field_0xbc = 201.0f;
+        mStatus = 2;
+    }
+    if (mpBackTex != NULL) {
+        mpBackTex->setAlpha((1.0f - getAlphaRatio()) * 150.0f);
+    }
 }
-#pragma pop
 
 /* 801DBB50-801DBB7C 1D6490 002C+00 1/0 0/0 0/0 .text            move_init__19dMenu_ItemExplain_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_ItemExplain_c::move_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/move_init__19dMenu_ItemExplain_cFv.s"
+void dMenu_ItemExplain_c::move_init() {
+    if (mpArrow != NULL) {
+        mpArrow->arwAnimeInit();
+    }
 }
-#pragma pop
 
 /* 801DBB7C-801DBCB4 1D64BC 0138+00 1/0 0/0 0/0 .text            move_proc__19dMenu_ItemExplain_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_ItemExplain_c::move_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/move_proc__19dMenu_ItemExplain_cFv.s"
+void dMenu_ItemExplain_c::move_proc() {
+    if (field_0xe1 == 0x25 && field_0xe5 == 2 && mpArrow != NULL) {
+        mpArrow->arwAnimeMove();
+    }
+    if (!mDoCPd_c::getTrigA(PAD_1) && !mDoCPd_c::getTrigB(PAD_1) && mForceButton == 0) {
+        if (field_0xe7 == 0) {
+            return;
+        }
+        if (!mDoCPd_c::getTrigX(PAD_1) && !mDoCPd_c::getTrigY(PAD_1)) {
+            return;
+        }
+    }
+    if (mForceButton != 0) {
+        mEndButton = 6;
+    } else if (mDoCPd_c::getTrigA(PAD_1)) {
+        mEndButton = 1;
+    } else if (mDoCPd_c::getTrigB(PAD_1)) {
+        mEndButton = 2;
+    } else if (mDoCPd_c::getTrigX(PAD_1)) {
+        mEndButton = 3;
+    } else if (mDoCPd_c::getTrigY(PAD_1)) {
+        mEndButton = 4;
+    }
+    mStatus = 5;
+    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    dMeter2Info_set2DVibration();
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80396990-80396990 022FF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803969BC = ""
-                                                            "\x1B"
-                                                            "CR[%d]";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803969C4 = "\0\0\0";
-#pragma pop
 
 /* 801DBCB4-801DBF44 1D65F4 0290+00 1/0 0/0 0/0 .text move_select_init__19dMenu_ItemExplain_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_ItemExplain_c::move_select_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/move_select_init__19dMenu_ItemExplain_cFv.s"
+void dMenu_ItemExplain_c::move_select_init() {
+    char local_88[8];
+    char local_80[8];
+    char local_64[20];
+    char cStack78[20];
+
+    local_88[0] = 0;
+    local_80[0] = 0;
+    local_64[0] = 0;
+    cStack78[1] = 0;
+
+    if (getWarpMarkFlag() == 0) {
+        field_0xc8 = 0x517;
+        field_0xe2 = 0;
+        dMeter2Info_getString(0x518, local_88, NULL);
+        dMeter2Info_getString(0x519, local_80, NULL);
+    } else {
+        field_0xc8 = 0x51A;
+        field_0xe2 = 0;
+        dMeter2Info_getString(0x51B, local_88, NULL);
+        dMeter2Info_getString(0x51C, local_80, NULL);
+    }
+
+    f32 stringLength1 = dMeter2Info_getStringLength(mDoExt_getMesgFont(), mpSelect_c->getFontSize(), mpSelect_c->getCharSpace(), local_88);
+    f32 stringLength2 = dMeter2Info_getStringLength(mDoExt_getMesgFont(), mpSelect_c->getFontSize(), mpSelect_c->getCharSpace(), local_80);
+    f32 length;
+    if (stringLength1 < stringLength2) {
+        length = stringLength2;
+    } else {
+        length = stringLength1;
+    }
+    f32 textBoxWidth = mpSelect_c->getTextBoxWidth();
+    if (length < textBoxWidth) {
+        length = mpSelect_c->getTextBoxWidth();
+    }
+
+    snprintf(local_64, 20, "\x1B""CR[%d]", (int)(0.5f * (length - stringLength1)));
+    strcat(local_64, local_88);
+    snprintf(cStack78, 20, "\x1B""CR[%d]", (int)(0.5f * (length - stringLength2)));
+    strcat(cStack78, local_80);
+    mpSelect_c->setString("", local_64, cStack78);
+    mpSelect_c->setRubyString("", "", "");
+    mpSelect_c->selAnimeInit(2, field_0xe2 + 1, 0, length, 0);
+    if (mpArrow != NULL) {
+        mpArrow->arwAnimeInit();
+    }
 }
-#pragma pop
 
 /* 801DBF44-801DC1E0 1D6884 029C+00 1/0 0/0 0/0 .text move_select_proc__19dMenu_ItemExplain_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_ItemExplain_c::move_select_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/move_select_proc__19dMenu_ItemExplain_cFv.s"
+void dMenu_ItemExplain_c::move_select_proc() {
+    mpStick->checkTrigger();
+    if (mDoCPd_c::getTrigA(PAD_1)) {
+        mEndButton = 1;
+        if (field_0xe2 == 0) {
+            if (getWarpMarkFlag() == 0) {
+                dMeter2Info_setWarpStatus(1);
+            } else {
+                dMeter2Info_setWarpStatus(2);
+            }
+        }
+        if (field_0xe5 == 2) {
+            mStatus = 5;
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            dMeter2Info_set2DVibration();
+        } else {
+            mStatus = 2;
+            field_0xc8 = field_0xc4;
+        }
+        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    } else if (mDoCPd_c::getTrigB(PAD_1)) {
+        mEndButton = 2;
+        if (field_0xe5 == 2) {
+            mStatus = 5;
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            dMeter2Info_set2DVibration();
+        } else {
+            mStatus = 2;
+            field_0xc8 = field_0xc4;
+        }
+    } else if (mpSelect_c->isSelect() && mpStick->checkUpTrigger()) {
+        if (field_0xe2 == 1) {
+            field_0xe2 = 0;
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        }
+    } else if (mpSelect_c->isSelect() && mpStick->checkDownTrigger()) {
+        if (field_0xe2 == 0) {
+            field_0xe2 = 1;
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        }
+    }
+    if (mStatus == 3) {
+        mpSelect_c->selAnimeMove(2, field_0xe2 + 1, false);
+    } else {
+        mpSelect_c->selAnimeEnd();
+    }
 }
-#pragma pop
 
 /* 801DC1E0-801DC214 1D6B20 0034+00 1/0 0/0 0/0 .text move_next_init__19dMenu_ItemExplain_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_ItemExplain_c::move_next_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/move_next_init__19dMenu_ItemExplain_cFv.s"
+void dMenu_ItemExplain_c::move_next_init() {
+    field_0xc8 = 0x51d;
+    if (mpArrow != NULL) {
+        mpArrow->arwAnimeInit();
+    }
 }
-#pragma pop
 
 /* 801DC214-801DC2E4 1D6B54 00D0+00 1/0 0/0 0/0 .text move_next_proc__19dMenu_ItemExplain_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_ItemExplain_c::move_next_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/move_next_proc__19dMenu_ItemExplain_cFv.s"
+void dMenu_ItemExplain_c::move_next_proc() {
+    if (mDoCPd_c::getTrigA(PAD_1) || mDoCPd_c::getTrigB(PAD_1)) {
+        if (mDoCPd_c::getTrigA(PAD_1)) {
+            mEndButton = 1;
+        } else if (mDoCPd_c::getTrigB(PAD_1)) {
+            mEndButton = 2;
+        }
+
+        if (field_0xe5 == 2) {
+            mStatus = 5;
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            dMeter2Info_set2DVibration();
+        } else {
+            mStatus = 2;
+            field_0xc8 = field_0xc4;
+        }
+        mpSelect_c->selAnimeEnd();
+    } 
 }
-#pragma pop
 
 /* 801DC2E4-801DC2F0 1D6C24 000C+00 1/0 0/0 0/0 .text            close_init__19dMenu_ItemExplain_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_ItemExplain_c::close_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/close_init__19dMenu_ItemExplain_cFv.s"
+void dMenu_ItemExplain_c::close_init() {
+    field_0xbc = 201.0f;
 }
-#pragma pop
 
 /* 801DC2F0-801DC340 1D6C30 0050+00 1/0 0/0 0/0 .text            close_proc__19dMenu_ItemExplain_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_ItemExplain_c::close_proc() {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/close_proc__19dMenu_ItemExplain_cFv.s"
+void dMenu_ItemExplain_c::close_proc() {
+    bool check;
+    if (mpSelect_c != NULL) {
+        check = mpSelect_c->selAnimeEnd();
+    } else {
+        check = 1;
+    }
+    if (check != 0) {
+        mStatus = 0;
+    }
 }
-#pragma pop
 
 /* 801DC340-801DC3C8 1D6C80 0088+00 0/0 2/2 0/0 .text openExplain__19dMenu_ItemExplain_cFUcUcUcb
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_ItemExplain_c::openExplain(u8 param_0, u8 param_1, u8 param_2, bool param_3) {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/openExplain__19dMenu_ItemExplain_cFUcUcUcb.s"
+u8 dMenu_ItemExplain_c::openExplain(u8 param_0, u8 param_1, u8 param_2, bool param_3) {
+    u8 item = dComIfGs_getItem(param_0, false);
+    if (item == 0xff) {
+        return 0;
+    } else {
+        return openExplainDmap(item, param_1, param_2, param_3, param_0);
+    }
 }
-#pragma pop
 
 /* 801DC3C8-801DC738 1D6D08 0370+00 1/1 1/1 0/0 .text
  * openExplainDmap__19dMenu_ItemExplain_cFUcUcUcbUc             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_ItemExplain_c::openExplainDmap(u8 param_0, u8 param_1, u8 param_2, bool param_3,
+u8 dMenu_ItemExplain_c::openExplainDmap(u8 param_0, u8 param_1, u8 param_2, bool param_3,
                                               u8 param_4) {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/openExplainDmap__19dMenu_ItemExplain_cFUcUcUcbUc.s"
+    u8 itemNo = param_0;
+    u8 ret = 0;
+    s32 itemsObtained = 0;
+
+    if (i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x11 && param_0 == 0x26) {
+        for (int i = 0; i < 3; i++) {
+            if (checkItemGet(i + L2_KEY_PIECES1, 1) != 0) {
+                itemsObtained++;
+            }
+        }
+        if (itemsObtained <= 1) {
+            itemNo = 0xf9;
+        } else if (itemsObtained <= 2) {
+            itemNo = 0xfa;
+        } else {
+            itemNo = 0xfd;
+        }
+    }
+    if (itemNo == 0x50 && i_dComIfGs_isItemFirstBit(0x4f) && dMeter2Info_getRentalBombBag() == 0xff) {
+        itemNo = 0x4f;
+    }
+    if (mStatus == 0) {
+        mStatus = 1;
+        field_0xe1 = param_0;
+        field_0xcc = itemNo + 0x165;
+        if (i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x14 && itemNo == 0x23) {
+            field_0xcc = 0x5bf;
+        }
+        if (itemNo == 0x25 && dComIfGs_isDungeonItemWarp(0x16)) {
+            field_0xcc = 0x251;
+        }
+        field_0xc8 = itemNo + 0x265;
+        if (dMeter2Info_getRentalBombBag() != 0xff) {
+            if (param_4 == dMeter2Info_getRentalBombBag() + 0xf) {
+                field_0xcc = 0x16d;
+                if (dComIfGs_getBombNum(dMeter2Info_getRentalBombBag()) != 0) {
+                    field_0xc8 = 0x26d;
+                } else {
+                    field_0xc8 = 0x26e;
+                }
+            }
+        }
+        if (itemNo == 0x46 &&  daPy_getPlayerActorClass()->checkCopyRodTopUse() == 0) {
+            field_0xc8 = 0x2b2;
+        }
+        if (itemNo == 0x25 && dComIfGs_isDungeonItemWarp(0x16)) {
+            field_0xc8 = 0x351;
+        }
+        field_0xe7 = 0;
+        field_0xde = param_1;
+        field_0xdf = param_2;
+        open_init();
+        setScale();
+        ret = 1;
+    } else if (param_3 && (mStatus == 1 || mStatus == 2)) {
+        field_0xe1 = param_0;
+        field_0xcc = itemNo + 0x165;
+        if (itemNo == 0x25 && dComIfGs_isDungeonItemWarp(0x16)) {
+            field_0xcc = 0x251;
+        }
+        field_0xc8 = itemNo + 0x265;
+        if (dMeter2Info_getRentalBombBag() != 0xff) {
+            if (param_4 == dMeter2Info_getRentalBombBag() + 0xf) {
+                if (dComIfGs_getBombNum(dMeter2Info_getRentalBombBag()) != 0) {
+                    field_0xc8 = 0x26d;
+                } else {
+                    field_0xc8 = 0x26e;
+                }
+            } 
+        }
+        if (itemNo == 0x25 && dComIfGs_isDungeonItemWarp(0x16)) {
+            field_0xc8 = 0x351;
+        }
+        field_0xe7 = 0;
+        field_0xde = param_1;
+        field_0xdf = param_2;
+        open_init();
+        setScale();
+        ret = 1;; 
+    }
+    return ret;
 }
-#pragma pop
 
 /* 801DC738-801DC7AC 1D7078 0074+00 0/0 1/1 0/0 .text openExplainTx__19dMenu_ItemExplain_cFUlUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_ItemExplain_c::openExplainTx(u32 param_0, u32 param_1) {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/openExplainTx__19dMenu_ItemExplain_cFUlUl.s"
+u8 dMenu_ItemExplain_c::openExplainTx(u32 param_0, u32 param_1) {
+    u8 ret = 0;
+    if (mStatus == 0) {
+        mStatus = 1;
+        field_0xe1 = 0xff;
+        field_0xcc = param_0;
+        field_0xc8 = param_1;
+        field_0xe7 = 0;
+        field_0xde = 0;
+        field_0xdf = 0;
+        open_init();
+        setScale();
+        ret = 1;
+    }
+    return ret;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804542D0-804542D4 0028D0 0004+00 1/1 0/0 0/0 .sdata2          @4820 */
-SECTION_SDATA2 static f32 lit_4820 = 7.0f;
 
 /* 801DC7AC-801DC7FC 1D70EC 0050+00 1/1 2/2 0/0 .text getAlphaRatio__19dMenu_ItemExplain_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_ItemExplain_c::getAlphaRatio() {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/getAlphaRatio__19dMenu_ItemExplain_cFv.s"
+f32 dMenu_ItemExplain_c::getAlphaRatio() {
+    switch (mStatus) {
+        case 1:
+        case 5:
+            return (201.0f - field_0xbc) / 7.0f;
+        case 0:
+            return 1.0f;
+        default:
+            return 0.0f;
+    }
 }
-#pragma pop
 
 /* 801DC7FC-801DCB54 1D713C 0358+00 1/1 0/0 0/0 .text            setNumber__19dMenu_ItemExplain_cFv
  */
+#ifdef NONMATCHING
+// regalloc and one lwz instruction misplaced
+void dMenu_ItemExplain_c::setNumber() {
+    u8 temp = field_0xdf;
+    if (temp == 0) {
+        for (int i = 0; i < 3; i++) {
+            mpItemNumTex[i]->hide();
+        }
+    } else {
+        s32 uVar8 = field_0xde;
+        for (int i = 0; i < 3; i++) {
+            mpItemNumTex[i]->show();
+        }
+        if (uVar8 > 100) {
+            uVar8 = 100;
+        }
+        JUtility::TColor colorBlack;
+        JUtility::TColor colorWhite;
+        if (uVar8 == temp) {
+            colorBlack.set(30, 30, 30, 0);
+            colorWhite.set(0xff, 200, 50, 0xff);
+        } else if (uVar8 == 0) {
+            colorBlack.set(30, 30, 30, 0);
+            colorWhite.set(180, 180, 180, 0xff);
+        } else {
+            colorBlack.set(0, 0, 0, 0);
+            colorWhite.set(0xff, 0xff, 0xff, 0xff);
+        }
+        for (int i = 0; i < 3; i++) {
+            mpItemNumTex[i]->setBlackWhite(colorBlack, colorWhite);
+        }
+        if (uVar8 < 100) {
+            void* texture = dComIfGp_getMain2DArchive()->getResource('TIMG', dMeter2Info_getNumberTextureName(uVar8 / 10));
+            mpItemNumTex[0]->changeTexture((char*)texture, 0);
+            texture = dComIfGp_getMain2DArchive()->getResource('TIMG', dMeter2Info_getNumberTextureName(uVar8 % 10));
+            mpItemNumTex[1]->changeTexture((char*)texture, 0);
+            mpItemNumTex[2]->hide();
+        } else {
+            void* texture = dComIfGp_getMain2DArchive()->getResource('TIMG', dMeter2Info_getNumberTextureName(uVar8 / 100));
+            mpItemNumTex[0]->changeTexture((char*)texture, 0);
+            texture = dComIfGp_getMain2DArchive()->getResource('TIMG', dMeter2Info_getNumberTextureName((uVar8 % 100) / 10));
+            mpItemNumTex[1]->changeTexture((char*)texture, 0);
+            texture = dComIfGp_getMain2DArchive()->getResource('TIMG', dMeter2Info_getNumberTextureName((uVar8 % 100) % 10));
+            mpItemNumTex[2]->changeTexture((char*)texture, 0);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -602,36 +1065,31 @@ asm void dMenu_ItemExplain_c::setNumber() {
 #include "asm/d/menu/d_menu_item_explain/setNumber__19dMenu_ItemExplain_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801DCB54-801DCBBC 1D7494 0068+00 2/2 0/0 0/0 .text getWarpMarkFlag__19dMenu_ItemExplain_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_ItemExplain_c::getWarpMarkFlag() {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/getWarpMarkFlag__19dMenu_ItemExplain_cFv.s"
+bool dMenu_ItemExplain_c::getWarpMarkFlag() {
+    if (dStage_stagInfo_GetUpButton(dComIfGp_getStageStagInfo()) == 1) {
+        return dComIfGs_getWarpMarkFlag();
+    }
+    return dComIfGs_getLastWarpAcceptStage() < 0 ? 0 : 1;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804542D4-804542D8 0028D4 0004+00 1/1 0/0 0/0 .sdata2          @4948 */
-SECTION_SDATA2 static f32 lit_4948 = 100.0f;
-
-/* 804542D8-804542E0 0028D8 0008+00 1/1 0/0 0/0 .sdata2          @4950 */
-SECTION_SDATA2 static f64 lit_4950 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 801DCBBC-801DCC8C 1D74FC 00D0+00 2/2 0/0 0/0 .text            setScale__19dMenu_ItemExplain_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_ItemExplain_c::setScale() {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/setScale__19dMenu_ItemExplain_cFv.s"
+void dMenu_ItemExplain_c::setScale() {
+    if (field_0xe1 != 0xff) {
+        f32 scale = g_drawHIO.mItemScaleAdjustON == true ? g_drawHIO.mItemScalePercent / 100.0f : 1.0f;
+        f32 w = mpExpItemTex[0]->width / 48.0f * scale;
+        f32 h = mpExpItemTex[0]->height / 48.0f * scale;
+        mpInfoIcon->scale(w, h);
+    }
 }
-#pragma pop
 
 /* 801DCC8C-801DCDC0 1D75CC 0134+00 0/0 1/0 0/0 .text            __sinit_d_menu_item_explain_cpp */
+#ifdef   NONMATCHING
+
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -645,5 +1103,6 @@ asm void __sinit_d_menu_item_explain_cpp() {
 #pragma force_active on
 REGISTER_CTORS(0x801DCC8C, __sinit_d_menu_item_explain_cpp);
 #pragma pop
+#endif
 
 /* 80396990-80396990 022FF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -415,7 +415,9 @@ public:
     JKRArchive* getCollectResArchive() { return mCollectResArchive; }
     JKRArchive* getItemIconArchive() { return mItemIconArchive; }
     JKRArchive* getNameResArchive() { return mNameResArchive; }
+    JKRArchive* getDemoMsgArchive() { return mDemoMsgArchive; }
     JKRArchive* getFmapResArchive() { return mFmapResArchive; }
+    JKRArchive* getDmapResArchive() { return mDmapResArchive; }
     JKRAramArchive* getFieldMapArchive2() { return (JKRAramArchive*)mFieldMapArchive2; }
     JKRArchive* getOptionResArchive() { return mOptionResArchive; }
     JKRArchive* getRingResArchive() { return mRingResArchive; }
@@ -903,12 +905,14 @@ u8 dComIfGs_getBottleMax();
 u8 dComIfGs_checkGetItem(u8 i_itemNo);
 void dComIfGs_setSelectEquipClothes(u8 i_itemNo);
 void dComIfGs_setKeyNum(int i_stageNo, u8 i_keyNum);
+s32 dComIfGs_isDungeonItemWarp(int i_stageNo);
 void dComIfGs_BossLife_public_Set(s8);
 s8 dComIfGs_sense_type_change_Get();
 cXyz& dComIfGs_getWarpPlayerPos();
 const char* dComIfGs_getWarpStageName();
 s16 dComIfGs_getWarpPlayerAngleY();
 s8 dComIfGs_getWarpRoomNo();
+bool dComIfGs_getWarpMarkFlag();
 BOOL dComIfGs_isOneZoneSwitch(int i_swBit, int i_roomNo);
 BOOL dComIfGs_isOneZoneItem(int i_swBit, int i_roomNo);
 BOOL dComIfGs_isZoneSwitch(int, int);
@@ -1200,7 +1204,7 @@ inline u8 dComIfGs_getLastWarpMarkRoomNo() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerLastMarkInfo().getRoomNo();
 }
 
-inline char dComIfGs_getLastWarpAcceptStage() {
+inline s8 dComIfGs_getLastWarpAcceptStage() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerLastMarkInfo().getWarpAcceptStage();
 }
 
@@ -1902,6 +1906,10 @@ inline JKRArchive* dComIfGp_getItemIconArchive() {
 
 inline JKRArchive* dComIfGp_getNameResArchive() {
     return g_dComIfG_gameInfo.play.getNameResArchive();
+}
+
+inline JKRArchive* dComIfGp_getDemoMsgArchive() {
+    return g_dComIfG_gameInfo.play.getDemoMsgArchive();
 }
 
 inline JKRArchive* dComIfGp_getMsgDtArchive(int idx) {
@@ -2799,6 +2807,10 @@ inline void i_dComIfGp_setHitMark(u16 i_hitmark, fopAc_ac_c* param_1, const cXyz
 
 inline JKRArchive* dComIfGp_getFmapResArchive() {
     return g_dComIfG_gameInfo.play.getFmapResArchive();
+}
+
+inline JKRArchive* dComIfGp_getDmapResArchive() {
+    return g_dComIfG_gameInfo.play.getDmapResArchive();
 }
 
 inline u8 dComIfGp_getMesgStatus() {

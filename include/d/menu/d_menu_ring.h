@@ -25,7 +25,7 @@ public:
     /* 801EB0A4 */ bool isOpen();
     /* 801EB2B4 */ bool isMoveEnd();
     /* 801EB3CC */ bool isClose();
-    /* 801EB624 */ void getStickInfo(STControl*);
+    /* 801EB624 */ u8 getStickInfo(STControl*);
     /* 801EB8C0 */ s16 calcStickAngle(STControl*, u8);
     /* 801EB960 */ void setRotate();
     /* 801EBA38 */ void setItemScale(int, f32);
@@ -50,8 +50,8 @@ public:
     /* 801EDC98 */ void drawSelectItem();
     /* 801EDF2C */ void setSelectItemForce(int);
     /* 801EDFDC */ s32 getCursorPos(u8);
-    /* 801EE058 */ void getItemNum(u8);
-    /* 801EE15C */ void getItemMaxNum(u8);
+    /* 801EE058 */ u8 getItemNum(u8);
+    /* 801EE15C */ u8 getItemMaxNum(u8);
     /* 801EE228 */ void checkExplainForce();
     /* 801EE63C */ bool checkCombineBomb(int);
     /* 801EE644 */ void setCombineBomb(int);
@@ -63,16 +63,17 @@ public:
     /* 801EED84 */ void setMixMessage();
     /* 801EEF14 */ void textScaleHIO();
     /* 801EF11C */ void textCentering();
-    /* 801EF13C */ void clacEllipseFunction(f32, f32, f32);
-    /* 801EF174 */ void calcDistance(f32, f32, f32, f32);
+    /* 801EF13C */ f32 clacEllipseFunction(f32, f32, f32);
+    /* 801EF174 */ f32 calcDistance(f32, f32, f32, f32);
     /* 801EF1A0 */ void clacEllipsePlotAverage(int, f32, f32);
     /* 801EF484 */ bool dpdMove();
-    /* 801EF48C */ void openExplain(u8);
+    /* 801EF48C */ u8 openExplain(u8);
 
     /* 801EF560 */ virtual void draw();
     /* 801EA708 */ virtual ~dMenu_Ring_c();
 
     void drawFlag0() { mDrawFlag = 0; }
+    void setStatus(u8 i_status) { mStatus = i_status; }
 
 private:
     /* 0x004 */ JKRExpHeap* mpHeap;
@@ -92,15 +93,13 @@ private:
     /* 0x060 */ u8 field_0x060[0x064 - 0x060];
     /* 0x064 */ J2DScreen* mpCenterScreen;
     /* 0x068 */ J2DPicture* mpSelectItemTex[4][3];
-    /* 0x098 */ J2DPicture* mpItemTex[4][3];
-    /* 0x0C8 */ u8 field_0x0C8[0x1B8 - 0x0C8];
+    /* 0x098 */ J2DPicture* mpItemTex[24][3];
     /* 0x1B8 */ J2DPicture* mpBlackTex;
     /* 0x1BC */ J2DPicture* mpItemNumTex[3];
     /* 0x1C8 */ J2DTextBox* field_0x1c8[5];
     /* 0x1DC */ J2DTextBox* field_0x1dc[5];
     /* 0x1F0 */ ResTIMG* mpSelectItemTexBuf[4][3][2];
-    /* 0x250 */ ResTIMG* mpItemBuf[4][3];
-    /* 0x280 */ u8 field_0x280[0x370 - 0x280];
+    /* 0x250 */ ResTIMG* mpItemBuf[24][3];
     /* 0x370 */ dMenu_ItemExplain_c* mpItemExplain;
     /* 0x374 */ void* field_0x374[3];
     /* 0x380 */ cXyz field_0x380;
@@ -161,7 +160,10 @@ private:
     /* 0x6AD */ u8 field_0x6ad;
     /* 0x6AE */ u8 field_0x6ae;
     /* 0x6AF */ u8 field_0x6af;
-    /* 0x6B0 */ u8 field_0x6b0[4];
+    /* 0x6B0 */ u8 field_0x6b0;
+    /* 0x6B1 */ u8 field_0x6b1;
+    /* 0x6B2 */ u8 field_0x6b2;
+    /* 0x6B3 */ u8 field_0x6b3;
     /* 0x6B4 */ u8 field_0x6b4[4];
     /* 0x6B8 */ u8 field_0x6b8[4];
     /* 0x6BC */ u8 field_0x6bc;
