@@ -156,7 +156,6 @@ static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-#ifdef   NONMATCHING
 typedef void (dMenu_ItemExplain_c::*initFunc)();
 static initFunc init_process[] = {
     &dMenu_ItemExplain_c::wait_init,
@@ -175,152 +174,6 @@ static moveFunc move_process[] = {
     &dMenu_ItemExplain_c::move_select_proc,
     &dMenu_ItemExplain_c::move_next_proc,
     &dMenu_ItemExplain_c::close_proc,
-};
-#else
-/* 803BD8D4-803BD8E0 -00001 000C+00 0/1 0/0 0/0 .data            @3844 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3844[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait_init__19dMenu_ItemExplain_cFv,
-};
-#pragma pop
-
-/* 803BD8E0-803BD8EC -00001 000C+00 0/1 0/0 0/0 .data            @3845 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3845[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)open_init__19dMenu_ItemExplain_cFv,
-};
-#pragma pop
-
-/* 803BD8EC-803BD8F8 -00001 000C+00 0/1 0/0 0/0 .data            @3846 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3846[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)move_init__19dMenu_ItemExplain_cFv,
-};
-#pragma pop
-
-/* 803BD8F8-803BD904 -00001 000C+00 0/1 0/0 0/0 .data            @3847 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3847[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)move_select_init__19dMenu_ItemExplain_cFv,
-};
-#pragma pop
-
-/* 803BD904-803BD910 -00001 000C+00 0/1 0/0 0/0 .data            @3848 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3848[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)move_next_init__19dMenu_ItemExplain_cFv,
-};
-#pragma pop
-
-/* 803BD910-803BD91C -00001 000C+00 0/1 0/0 0/0 .data            @3849 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3849[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)close_init__19dMenu_ItemExplain_cFv,
-};
-#pragma pop
-
-/* 803BD91C-803BD964 01AA3C 0048+00 1/2 0/0 0/0 .data            init_process */
-SECTION_DATA static u8 init_process[72] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 803BD964-803BD970 -00001 000C+00 0/1 0/0 0/0 .data            @3850 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3850[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait_proc__19dMenu_ItemExplain_cFv,
-};
-#pragma pop
-
-/* 803BD970-803BD97C -00001 000C+00 0/1 0/0 0/0 .data            @3851 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3851[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)open_proc__19dMenu_ItemExplain_cFv,
-};
-#pragma pop
-
-/* 803BD97C-803BD988 -00001 000C+00 0/1 0/0 0/0 .data            @3852 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3852[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)move_proc__19dMenu_ItemExplain_cFv,
-};
-#pragma pop
-
-/* 803BD988-803BD994 -00001 000C+00 0/1 0/0 0/0 .data            @3853 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3853[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)move_select_proc__19dMenu_ItemExplain_cFv,
-};
-#pragma pop
-
-/* 803BD994-803BD9A0 -00001 000C+00 0/1 0/0 0/0 .data            @3854 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3854[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)move_next_proc__19dMenu_ItemExplain_cFv,
-};
-#pragma pop
-
-/* 803BD9A0-803BD9AC -00001 000C+00 0/1 0/0 0/0 .data            @3855 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3855[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)close_proc__19dMenu_ItemExplain_cFv,
-};
-#pragma pop
-
-/* 803BD9AC-803BD9F4 01AACC 0048+00 1/2 0/0 0/0 .data            move_process */
-SECTION_DATA static u8 move_process[72] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#endif
-
-/* 803BD9F4-803BDA00 01AB14 000C+00 2/2 0/0 0/0 .data            __vt__19dMenu_ItemExplain_c */
-SECTION_DATA extern void* __vt__19dMenu_ItemExplain_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__19dMenu_ItemExplain_cFv,
 };
 
 /* 801DA754-801DAFF0 1D5094 089C+00 0/0 2/2 0/0 .text
@@ -537,8 +390,6 @@ dMenu_ItemExplain_c::~dMenu_ItemExplain_c() {
 }
 
 /* 801DB470-801DB514 1D5DB0 00A4+00 0/0 5/5 0/0 .text            move__19dMenu_ItemExplain_cFv */
-#ifdef NONMATCHING
-// Matches with sinit
 void dMenu_ItemExplain_c::move() {
     u8 status = mStatus;
     (this->*move_process[status])();
@@ -552,16 +403,6 @@ void dMenu_ItemExplain_c::move() {
         field_0xc0 = g_ringHIO.mItemDescAlpha;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_ItemExplain_c::move() {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/move__19dMenu_ItemExplain_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 801DB514-801DB744 1D5E54 0230+00 0/0 2/2 0/0 .text draw__19dMenu_ItemExplain_cFP13J2DOrthoGraph
  */
@@ -1085,24 +926,3 @@ void dMenu_ItemExplain_c::setScale() {
         mpInfoIcon->scale(w, h);
     }
 }
-
-/* 801DCC8C-801DCDC0 1D75CC 0134+00 0/0 1/0 0/0 .text            __sinit_d_menu_item_explain_cpp */
-#ifdef   NONMATCHING
-
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_menu_item_explain_cpp() {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/__sinit_d_menu_item_explain_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x801DCC8C, __sinit_d_menu_item_explain_cpp);
-#pragma pop
-#endif
-
-/* 80396990-80396990 022FF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
