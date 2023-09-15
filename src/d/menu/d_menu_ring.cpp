@@ -919,7 +919,7 @@ SECTION_SDATA2 static f32 lit_4465[1 + 1 /* padding */] = {
 // Matches with sinit and literals
 void dMenu_Ring_c::_create() {
     (this->*stick_init[field_0x6b0])();
-    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_ITEM_RING_IN, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    Z2GetAudioMgr()->seStart(Z2SE_ITEM_RING_IN, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
 }
 #else
 #pragma push
@@ -1118,7 +1118,7 @@ bool dMenu_Ring_c::isMoveEnd() {
             } else {
                 field_0x6bc = 0xff;
             }
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_ITEM_RING_OUT, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_ITEM_RING_OUT, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
             dMeter2Info_set2DVibrationM();
             ret = 1;
@@ -1396,7 +1396,7 @@ void dMenu_Ring_c::setActiveCursor() {
                 }
             }
         } else if (mDoCPd_c::getTrigX(PAD_1) || mDoCPd_c::getTrigY(PAD_1)) {
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SYS_ERROR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SYS_ERROR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                             0);
         }
     }
@@ -1503,7 +1503,7 @@ void dMenu_Ring_c::stick_move_init() {
         }
     }
     field_0x63a = 0;
-    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_ITEM_RING_ROLL, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    Z2GetAudioMgr()->seStart(Z2SE_ITEM_RING_ROLL, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
 }
 #else
 #pragma push
@@ -1857,7 +1857,7 @@ void dMenu_Ring_c::setMixMessage() {
             }
             if (!mpTextParent[4]->isVisible()) {
                 field_0x570 = 18.0f - g_ringHIO.mHighlightAnimSpeed;
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_ITEM_COMBINE_ICON, NULL, 0, 0, 1.0f, 1.0f,
+                Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_COMBINE_ICON, NULL, 0, 0, 1.0f, 1.0f,
                                                 -1.0f, -1.0f, 0);
             }
             mpTextParent[4]->show();
@@ -1868,7 +1868,7 @@ void dMenu_Ring_c::setMixMessage() {
             }
             if (!mpTextParent[4]->isVisible()) {
                 field_0x570 = 18.0f - g_ringHIO.mHighlightAnimSpeed;
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_ITEM_COMBINE_ICON, NULL, 0, 0, 1.0f, 1.0f,
+                Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_COMBINE_ICON, NULL, 0, 0, 1.0f, 1.0f,
                                                 -1.0f, -1.0f, 0);
             }
             mpTextParent[4]->show();

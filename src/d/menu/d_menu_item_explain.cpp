@@ -534,7 +534,7 @@ void dMenu_ItemExplain_c::open_init() {
     if (mpArrow != NULL) {
         mpArrow->arwAnimeInit();
     }
-    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_OPEN, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_OPEN, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
 }
 
 /* 801DBAB4-801DBB50 1D63F4 009C+00 1/0 0/0 0/0 .text            open_proc__19dMenu_ItemExplain_cFv
@@ -584,7 +584,7 @@ void dMenu_ItemExplain_c::move_proc() {
         mEndButton = 4;
     }
     mStatus = 5;
-    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
     dMeter2Info_set2DVibration();
 }
 
@@ -659,20 +659,20 @@ void dMenu_ItemExplain_c::move_select_proc() {
         }
         if (field_0xe5 == 2) {
             mStatus = 5;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
             dMeter2Info_set2DVibration();
         } else {
             mStatus = 2;
             field_0xc8 = field_0xc4;
         }
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+        Z2GetAudioMgr()->seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
     } else if (mDoCPd_c::getTrigB(PAD_1)) {
         mEndButton = 2;
         if (field_0xe5 == 2) {
             mStatus = 5;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
             dMeter2Info_set2DVibration();
         } else {
@@ -682,13 +682,13 @@ void dMenu_ItemExplain_c::move_select_proc() {
     } else if (mpSelect_c->isSelect() && mpStick->checkUpTrigger()) {
         if (field_0xe2 == 1) {
             field_0xe2 = 0;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
         }
     } else if (mpSelect_c->isSelect() && mpStick->checkDownTrigger()) {
         if (field_0xe2 == 0) {
             field_0xe2 = 1;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
         }
     }
@@ -718,7 +718,7 @@ void dMenu_ItemExplain_c::move_next_proc() {
 
         if (field_0xe5 == 2) {
             mStatus = 5;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
             dMeter2Info_set2DVibration();
         } else {
