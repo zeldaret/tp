@@ -57,7 +57,7 @@ public:
     /* 802FF320 */ virtual void prepend(JUTTexture*, f32);
     /* 801BDD70 */ virtual void insert(ResTIMG const*, u8, f32);
     /* 802FD168 */ virtual bool insert(ResTIMG const*, JUTPalette*, u8, f32);
-    /* 80020368 */ virtual void insert(char const*, u8, f32);
+    /* 80020368 */ virtual bool insert(char const*, u8, f32);
     /* 802FD4B4 */ virtual bool insert(char const*, JUTPalette*, u8, f32);
     /* 802FD524 */ virtual bool insert(JUTTexture*, u8, f32);
     /* 802FD6F4 */ virtual bool remove(u8);
