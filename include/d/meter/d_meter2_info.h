@@ -94,6 +94,7 @@ public:
     dMeterMap_c* getMeterMapClass() { return mMeterMap; }
     void setMenuWindowClass(dMw_c* p_menu) { mMenuWindowClass = p_menu; }
     dMw_c* getMenuWindowClass() { return mMenuWindowClass; }
+    CPaneMgr* getMeterItemPanePtr(s32 i_idx) { return mMeterItemPanePtr[i_idx]; }
     void offUseButton(int pButton) { mUseButton &= ~(u16)pButton; }
     u16 getOilGaugeBackUp() { return mOilGaugeBackUp; }
     u8 getInsectSelectType() { return mInsectSelectType; }
@@ -269,6 +270,10 @@ inline dMw_c* dMeter2Info_getMenuWindowClass() {
 
 inline void dMeter2Info_setWindowStatus(u8 status) {
     g_meter2_info.setWindowStatus(status);
+}
+
+inline CPaneMgr* dMeter2Info_getMeterItemPanePtr(s32 i_idx) {
+    return g_meter2_info.getMeterItemPanePtr(i_idx);
 }
 
 inline void dMeter2Info_getString(u32 param_0, char* param_1, JMSMesgEntry_c* param_2) {
@@ -580,7 +585,6 @@ inline void dMeter2Info_decMsgKeyWaitTimer() {
     g_meter2_info.decMsgKeyWaitTimer();
 }
 
-const char* dMeter2Info_getNumberTextureName(int pIndex);
 inline bool dMeter2Info_isFloatingMessageVisible() {
     return g_meter2_info.isFloatingMessageVisible();
 }

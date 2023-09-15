@@ -57,17 +57,20 @@ public:
 
     f32 getInitCenterPosY() { return mInitPos.y + mInitSize.y * 0.5f; }
 
-    f32 getInitSizeX() { return mInitSize.x; }
-    f32 getInitSizeY() { return mInitSize.y; }
-
     f32 getInitPosX() { return mInitPos.x; }
     f32 getInitPosY() { return mInitPos.y; }
 
-    JUtility::TColor getInitBlack() { return mInitBlack; }
-    JUtility::TColor getInitWhite() { return mInitWhite; }
-
     f32 getInitGlobalPosX() { return mGlobalPos.x; }
     f32 getInitGlobalPosY() { return mGlobalPos.y; }
+
+    f32 getInitSizeX() { return mInitSize.x; }
+    f32 getInitSizeY() { return mInitSize.y; }
+
+    f32 getInitScaleX() { return mInitScale.x; }
+    f32 getInitScaleY() { return mInitScale.y; }
+
+    JUtility::TColor getInitBlack() { return mInitBlack; }
+    JUtility::TColor getInitWhite() { return mInitWhite; }
 
 private:
     /* 0x1C */ void* mpFirstStackSize;

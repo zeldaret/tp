@@ -299,16 +299,16 @@ BOOL dMw_RIGHT_TRIGGER() {
     }
 }
 
-bool dMw_A_TRIGGER() {
-    return mDoCPd_c::getTrigA(PAD_1);
+BOOL dMw_A_TRIGGER() {
+    return (bool)mDoCPd_c::getTrigA(PAD_1);
 }
 
 BOOL dMw_B_TRIGGER() {
     return (bool)mDoCPd_c::getTrigB(PAD_1);
 }
 
-bool dMw_Z_TRIGGER() {
-    return mDoCPd_c::getTrigZ(PAD_1);
+BOOL dMw_Z_TRIGGER() {
+    return (bool)mDoCPd_c::getTrigZ(PAD_1);
 }
 
 BOOL dMw_START_TRIGGER() {

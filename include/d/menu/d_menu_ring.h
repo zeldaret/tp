@@ -93,13 +93,13 @@ private:
     /* 0x060 */ u8 field_0x060[0x064 - 0x060];
     /* 0x064 */ J2DScreen* mpCenterScreen;
     /* 0x068 */ J2DPicture* mpSelectItemTex[4][3];
-    /* 0x098 */ J2DPicture* mpItemTex[24][3];
+    /* 0x098 */ J2DPicture* mpItemTex[MAX_ITEM_SLOTS][3];
     /* 0x1B8 */ J2DPicture* mpBlackTex;
     /* 0x1BC */ J2DPicture* mpItemNumTex[3];
     /* 0x1C8 */ J2DTextBox* field_0x1c8[5];
     /* 0x1DC */ J2DTextBox* field_0x1dc[5];
     /* 0x1F0 */ ResTIMG* mpSelectItemTexBuf[4][3][2];
-    /* 0x250 */ ResTIMG* mpItemBuf[24][3];
+    /* 0x250 */ ResTIMG* mpItemBuf[MAX_ITEM_SLOTS][3];
     /* 0x370 */ dMenu_ItemExplain_c* mpItemExplain;
     /* 0x374 */ void* field_0x374[3];
     /* 0x380 */ cXyz field_0x380;

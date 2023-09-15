@@ -22,9 +22,9 @@ BOOL dMw_UP_TRIGGER();
 BOOL dMw_DOWN_TRIGGER();
 BOOL dMw_LEFT_TRIGGER();
 BOOL dMw_RIGHT_TRIGGER();
-bool dMw_A_TRIGGER();
+BOOL dMw_A_TRIGGER();
 BOOL dMw_B_TRIGGER();
-bool dMw_Z_TRIGGER();
+BOOL dMw_Z_TRIGGER();
 BOOL dMw_START_TRIGGER();
 
 class dDlst_MENU_CAPTURE_c : public dDlst_base_c {
