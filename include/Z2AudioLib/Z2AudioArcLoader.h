@@ -3,13 +3,14 @@
 
 #include "JSystem/JAudio2/JAUAudioArcLoader.h"
 
-class Z2AudioArcLoader {
+class Z2AudioArcLoader : public JAUAudioArcLoader {
+public:
     Z2AudioArcLoader(JAUSection*);
-    ~Z2AudioArcLoader();
+    virtual ~Z2AudioArcLoader();
 
-    void readCommandMore(u32);
+    virtual bool readCommandMore(u32);
     void readBFCA(const void*);
-    void readBSTN(const void*, u32);
+    virtual void readBSTN(const void*, u32);
 };
 
 #endif /* Z2AUDIOARCLOADER_H */

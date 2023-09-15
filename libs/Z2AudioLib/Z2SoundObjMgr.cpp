@@ -52,7 +52,6 @@ extern "C" void _savegpr_23();
 extern "C" void _savegpr_27();
 extern "C" void _restgpr_23();
 extern "C" void _restgpr_27();
-extern "C" void strcmp();
 extern "C" extern u8 data_80450B80[4];
 extern "C" extern Z2SeqMgr* data_80450B84;
 extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];

@@ -104,12 +104,12 @@ void dMenu_Calibration_c::step1_move_move() {
     if (mDoCPd_c::getTrigA(PAD_1)) {
         mProcess = PROC_STEP2_WAIT;
         field_0xff = 0;
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_NEXT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_NEXT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         dMeter2Info_set2DVibration();
     } else if (mDoCPd_c::getTrigB(PAD_1)) {
         field_0x101 = 0;
         mStatus = 0;
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         dMeter2Info_set2DVibration();
     }
 }
@@ -174,12 +174,12 @@ void dMenu_Calibration_c::step2_move_move() {
     if (mDoCPd_c::getTrigA(PAD_1)) {
         mProcess = PROC_STEP3_WAIT;
         field_0xff = 0;
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_NEXT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_NEXT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         dMeter2Info_set2DVibration();
     } else if (mDoCPd_c::getTrigB(PAD_1)) {
         mProcess = PROC_STEP1_WAIT;
         field_0xff = 1;
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         dMeter2Info_set2DVibration();
     }
 }
@@ -231,13 +231,13 @@ void dMenu_Calibration_c::step3_move_move() {
     if (mDoCPd_c::getTrigA(PAD_1)) {
         mStatus = 0;
         field_0x101 = 1;
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         dMeter2Info_set2DVibration();
         setCalibrationValue();
     } else if (mDoCPd_c::getTrigB(PAD_1)) {
         mProcess = PROC_STEP2_WAIT;
         field_0xff = 1;
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         dMeter2Info_set2DVibration();
     }
 }

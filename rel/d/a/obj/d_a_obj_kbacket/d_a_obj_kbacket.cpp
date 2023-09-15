@@ -196,7 +196,6 @@ extern "C" extern char const* const d_a_obj_kbacket__stringBase0;
 // External References:
 //
 
-SECTION_INIT void memset();
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void mDoMtx_ZrotM__FPA4_fs();

@@ -89,6 +89,7 @@ public:
         return mAudience;
     }
     JAISeqDataMgr* getSeqDataMgr() { return mSeqDataMgr; }
+    JAISoundParamsMove* getParams() { return &mParams; }
 
 private:
     /* 0x008 */ JAIAudience* mAudience;

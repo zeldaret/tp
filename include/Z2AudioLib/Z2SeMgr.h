@@ -13,6 +13,8 @@ struct Z2MultiSeMgr {
     void getPanPower();
     void getDolbyPower();
 
+    void setVolumeScale(f32 param_0) { mVolumeScale = param_0; }
+
     /* 0x00 */ float mVolumeScale;
     /* 0x04 */ float mMaxVolume;
     /* 0x08 */ float mMaxPowL;

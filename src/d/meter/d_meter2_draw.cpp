@@ -1570,7 +1570,7 @@ void dMeter2Draw_c::drawKanteraScreen(u8 i_meterType) {
             playOxygenBpkAnimation(mpOxygenBpk[0]);
 
             if (mMeterAlphaRate[i_meterType] > 0.0f) {
-                Z2GetAudioMgr()->mSeMgr.seStartLevel(Z2SE_SWIM_TIMER_BLINK_2, NULL, 0, 0, 1.0f,
+                Z2GetAudioMgr()->seStartLevel(Z2SE_SWIM_TIMER_BLINK_2, NULL, 0, 0, 1.0f,
                                                      1.0f, -1.0f, -1.0f, 0);
             }
         } else if (oxygen_percent <= 0.5f) {
@@ -1579,7 +1579,7 @@ void dMeter2Draw_c::drawKanteraScreen(u8 i_meterType) {
             playOxygenBpkAnimation(mpOxygenBpk[1]);
 
             if (mMeterAlphaRate[i_meterType] > 0.0f) {
-                Z2GetAudioMgr()->mSeMgr.seStartLevel(Z2SE_SWIM_TIMER_BLINK_1, NULL, 0, 0, 1.0f,
+                Z2GetAudioMgr()->seStartLevel(Z2SE_SWIM_TIMER_BLINK_1, NULL, 0, 0, 1.0f,
                                                      1.0f, -1.0f, -1.0f, 0);
             }
         } else {

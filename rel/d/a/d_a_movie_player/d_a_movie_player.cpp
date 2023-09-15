@@ -207,8 +207,6 @@ extern "C" extern char const* const d_a_movie_player__stringBase0;
 // External References:
 //
 
-SECTION_INIT void memset();
-SECTION_INIT void memcpy();
 extern "C" void fadeOut__13mDoGph_gInf_cFf();
 extern "C" void mDoExt_getArchiveHeap__Fv();
 extern "C" void __ct__10fopAc_ac_cFv();
@@ -250,7 +248,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void __div2i();
 extern "C" void sprintf();
-extern "C" void strcmp();
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_clearColor[4];
 extern "C" extern u8 mBlureFlag__13mDoGph_gInf_c[4];

@@ -1089,7 +1089,7 @@ int dEvt_control_c::Step() {
     mChangeOK = NULL;
 
     if (chkEventFlag(0x200)) {
-        Z2AudioMgr::getInterface()->mStatusMgr.setDemoName(NULL);
+        Z2AudioMgr::getInterface()->setDemoName(NULL);
     }
 
     if (mEventStatus != 0) {

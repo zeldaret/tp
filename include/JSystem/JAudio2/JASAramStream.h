@@ -89,9 +89,11 @@ public:
     /* 0x1C4 */ float field_0x1c4[6];
     /* 0x1DC */ short field_0x1dc[6];
 
+    u32 getBlockSize() { return sBlockSize; }
+
     static u8 sLoadThread[4];
     static u8 sReadBuffer[4];
-    static u8 sBlockSize[4];
+    static u32 sBlockSize;
     static u8 sChannelMax[4];
 };
 

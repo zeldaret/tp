@@ -4,7 +4,12 @@
 //
 
 #include "Z2AudioLib/Z2SoundInfo.h"
+#include "JSystem/JAudio2/JAISeq.h"
+#include "JSystem/JAudio2/JAUAudibleParam.h"
+#include "JSystem/JAudio2/JAUSoundTable.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "dol2asm.h"
+#include "dolphin/dvd/dvd.h"
 
 //
 // Types:
@@ -17,11 +22,6 @@ struct Z2Calc {
 
 struct JAUStdSoundTableType {
     static u32 STRM_CH_SHIFT;
-};
-
-struct JAUSoundTable {
-    /* 802A7160 */ void getTypeID(JAISoundID) const;
-    /* 802A728C */ void getData(JAISoundID) const;
 };
 
 //
@@ -59,7 +59,6 @@ extern "C" void getData__13JAUSoundTableCF10JAISoundID();
 extern "C" void linearTransform__6Z2CalcFfffffb();
 extern "C" void getRandom_0_1__6Z2CalcFv();
 extern "C" void __dl__FPv();
-extern "C" void DVDConvertPathToEntrynum();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
@@ -81,37 +80,35 @@ extern "C" extern u8 __OSReport_disable;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2SoundInfo::getBgmSeqResourceID(JAISoundID param_0) const {
+asm u16 Z2SoundInfo::getBgmSeqResourceID(JAISoundID param_0) const {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundInfo/getBgmSeqResourceID__11Z2SoundInfoCF10JAISoundID.s"
 }
 #pragma pop
 
 /* 802BB090-802BB0D8 2B59D0 0048+00 1/0 0/0 0/0 .text getSoundType__11Z2SoundInfoCF10JAISoundID */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2SoundInfo::getSoundType(JAISoundID param_0) const {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundInfo/getSoundType__11Z2SoundInfoCF10JAISoundID.s"
+u32 Z2SoundInfo::getSoundType(JAISoundID param_0) const {
+    switch (param_0.mId.mBytes.b0) {
+    case 0:
+        return 0;
+    case 1:
+        return 1;
+    case 2:
+        return 2;
+    }
+    return -1;
 }
-#pragma pop
 
 /* 802BB0D8-802BB0E0 2B5A18 0008+00 1/0 0/0 0/0 .text getCategory__11Z2SoundInfoCF10JAISoundID */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2SoundInfo::getCategory(JAISoundID param_0) const {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundInfo/getCategory__11Z2SoundInfoCF10JAISoundID.s"
+int Z2SoundInfo::getCategory(JAISoundID param_0) const {
+    return param_0.mId.mBytes.b1;
 }
-#pragma pop
 
 /* 802BB0E0-802BB158 2B5A20 0078+00 1/0 0/0 0/0 .text getPriority__11Z2SoundInfoCF10JAISoundID */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2SoundInfo::getPriority(JAISoundID param_0) const {
+asm u32 Z2SoundInfo::getPriority(JAISoundID param_0) const {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundInfo/getPriority__11Z2SoundInfoCF10JAISoundID.s"
 }
@@ -185,14 +182,9 @@ asm void Z2SoundInfo::getSeInfo(JAISoundID param_0, JAISe* param_1) const {
 
 /* 802BB8B4-802BB8E0 2B61F4 002C+00 1/0 0/0 0/0 .text
  * getSeqInfo__11Z2SoundInfoCF10JAISoundIDP6JAISeq              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2SoundInfo::getSeqInfo(JAISoundID param_0, JAISeq* param_1) const {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundInfo/getSeqInfo__11Z2SoundInfoCF10JAISoundIDP6JAISeq.s"
+void Z2SoundInfo::getSeqInfo(JAISoundID param_0, JAISeq* param_1) const {
+    getSoundInfo_(param_0, param_1);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80455A90-80455A94 004090 0004+00 1/1 0/0 0/0 .sdata2 STRM_CH_SHIFT__20JAUStdSoundTableType */
@@ -217,7 +209,7 @@ asm void Z2SoundInfo::getStreamInfo(JAISoundID param_0, JAIStream* param_1) cons
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2SoundInfo::getStreamFilePath(JAISoundID param_0) {
+asm const char* Z2SoundInfo::getStreamFilePath(JAISoundID param_0) {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundInfo/getStreamFilePath__11Z2SoundInfoF10JAISoundID.s"
 }
@@ -225,20 +217,16 @@ asm void Z2SoundInfo::getStreamFilePath(JAISoundID param_0) {
 
 /* 802BBA88-802BBAC8 2B63C8 0040+00 2/1 0/0 0/0 .text
  * getStreamFileEntry__11Z2SoundInfoF10JAISoundID               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2SoundInfo::getStreamFileEntry(JAISoundID param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundInfo/getStreamFileEntry__11Z2SoundInfoF10JAISoundID.s"
+s32 Z2SoundInfo::getStreamFileEntry(JAISoundID param_0) {
+    const char* path = getStreamFilePath(param_0);
+    return !path ? -1 : DVDConvertPathToEntrynum(path);
 }
-#pragma pop
 
 /* 802BBAC8-802BBB48 2B6408 0080+00 3/3 4/4 0/0 .text getSwBit__11Z2SoundInfoCF10JAISoundID */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2SoundInfo::getSwBit(JAISoundID param_0) const {
+asm int Z2SoundInfo::getSwBit(JAISoundID param_0) const {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundInfo/getSwBit__11Z2SoundInfoCF10JAISoundID.s"
 }

@@ -141,7 +141,6 @@ extern "C" u32 FILTER_MODE_IIR__6JASDsp;
 // External References:
 //
 
-SECTION_INIT void memset();
 extern "C" void __ct__17JASGenericMemPoolFv();
 extern "C" void __dt__17JASGenericMemPoolFv();
 extern "C" void alloc__17JASGenericMemPoolFUl();

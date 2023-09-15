@@ -398,9 +398,9 @@ void dMsgScrnExplain_c::move_select_proc() {
             if (field_0x64 == 2) {
                 if (mSelCursor == 0) {
                     dMeter2Info_setWarpStatus(3);
-                    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_WARP_MAP_DECIDE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                    Z2GetAudioMgr()->seStart(Z2SE_WARP_MAP_DECIDE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
                 } else {
-                    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_CANCEL, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                    Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_CANCEL, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
                 }
             } else if (field_0x66 == 0) {
                 mDoAud_seStart(Z2SE_SY_TALK_CURSOR_OK, NULL, 0, 0);
@@ -409,7 +409,7 @@ void dMsgScrnExplain_c::move_select_proc() {
             mDoAud_seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0);
         } else if (field_0x58 && (checkTriggerB() || mForceSelect)) {
             if (field_0x64 == 2) {
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_CANCEL, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_CANCEL, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
             } else if (field_0x64 == 1) {
                 if (field_0x63 != 0xff) {
                     mSelCursor = field_0x63;
@@ -422,11 +422,11 @@ void dMsgScrnExplain_c::move_select_proc() {
         } else if (mpSelect_c->isSelect() && field_0x44->checkUpTrigger()) {
             if (mSelCursor == 1) {
                 mSelCursor = 0;
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_CURSOR_COMMON, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_CURSOR_COMMON, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
             }
         } else if (mpSelect_c->isSelect() && field_0x44->checkDownTrigger() && mSelCursor == 0) {
             mSelCursor = 1;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_CURSOR_COMMON, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_CURSOR_COMMON, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         }
     }
 

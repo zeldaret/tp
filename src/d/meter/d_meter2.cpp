@@ -958,7 +958,7 @@ void dMeter2_c::moveKantera() {
             }
 
             if (!dComIfGp_getOxygenShowFlag() && mpMeterDraw->getMeterGaugeAlphaRate(1) > 0.0f) {
-                Z2GetAudioMgr()->mSeMgr.seStartLevel(Z2SE_OIL_METER_RECOVER, NULL, 0, 0, 1.0f, 1.0f,
+                Z2GetAudioMgr()->seStartLevel(Z2SE_OIL_METER_RECOVER, NULL, 0, 0, 1.0f, 1.0f,
                                                      -1.0f, -1.0f, 0);
             }
             draw_kantera = true;
@@ -970,13 +970,13 @@ void dMeter2_c::moveKantera() {
 
             if (mNowOil == 0) {
                 if (mpMeterDraw->getMeterGaugeAlphaRate(1) > 0.0f) {
-                    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_OIL_METER_FINISH, NULL, 0, 0, 1.0f, 1.0f,
+                    Z2GetAudioMgr()->seStart(Z2SE_OIL_METER_FINISH, NULL, 0, 0, 1.0f, 1.0f,
                                                     -1.0f, -1.0f, 0);
                 }
             } else if (((f32)dComIfGs_getOil() / (f32)dComIfGs_getMaxOil()) <= 0.1f &&
                        mpMeterDraw->getMeterGaugeAlphaRate(1) > 0.0f)
             {
-                Z2GetAudioMgr()->mSeMgr.seStartLevel(Z2SE_OIL_METER_LESS, NULL, 0, 0, 1.0f, 1.0f,
+                Z2GetAudioMgr()->seStartLevel(Z2SE_OIL_METER_LESS, NULL, 0, 0, 1.0f, 1.0f,
                                                      -1.0f, -1.0f, 0);
             }
 
@@ -1055,7 +1055,7 @@ void dMeter2_c::moveOxygen() {
             if (dComIfGp_getOxygen() < dComIfGp_getMaxOxygen() &&
                 mpMeterDraw->getMeterGaugeAlphaRate(2) > 0.0f)
             {
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SWIM_TIMER_RECOVER, NULL, 0, 0, 1.0f, 1.0f,
+                Z2GetAudioMgr()->seStart(Z2SE_SWIM_TIMER_RECOVER, NULL, 0, 0, 1.0f, 1.0f,
                                                 -1.0f, -1.0f, 0);
             }
         }
@@ -1098,7 +1098,7 @@ void dMeter2_c::moveOxygen() {
             if ((f32)dComIfGp_getOxygen() / (f32)dComIfGp_getMaxOxygen() > 0.5f &&
                 mpMeterDraw->getMeterGaugeAlphaRate(2) > 0.0f)
             {
-                Z2GetAudioMgr()->mSeMgr.seStartLevel(Z2SE_SWIM_TIMER_DEC, NULL, 0, 0, 1.0f, 1.0f,
+                Z2GetAudioMgr()->seStartLevel(Z2SE_SWIM_TIMER_DEC, NULL, 0, 0, 1.0f, 1.0f,
                                                      -1.0f, -1.0f, 0);
             }
 
@@ -1160,11 +1160,11 @@ void dMeter2_c::moveLightDrop() {
             dComIfGs_getLightDropNum(dComIfGp_getStartStageDarkArea()))
         {
             var_r28 = 2;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_LIGHT_DROP_COMPLETE, NULL, 0, 0, 1.0f, 1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_LIGHT_DROP_COMPLETE, NULL, 0, 0, 1.0f, 1.0f,
                                             -1.0f, -1.0f, 0);
         } else if (mLightDropNum < dComIfGs_getLightDropNum(dComIfGp_getStartStageDarkArea())) {
             var_r28 = 1;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_LIGHT_DROP_GET, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_LIGHT_DROP_GET, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
         }
 
@@ -3051,7 +3051,7 @@ void dMeter2_c::alphaAnimeOxygen() {
             field_0x1e1 = 1;
 
             if (mpMeterDraw->getMeterGaugeAlphaRate(2) > 0.0f) {
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SWIM_TIMER_ON, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                Z2GetAudioMgr()->seStart(Z2SE_SWIM_TIMER_ON, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                                 -1.0f, 0);
             }
         }

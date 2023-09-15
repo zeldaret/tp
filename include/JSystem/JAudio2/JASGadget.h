@@ -2,6 +2,7 @@
 #define JASGADGET_H
 
 #include "JSystem/JUtility/JUTAssert.h"
+#include "MSL_C/string.h"
 
 template<class T>
 class JASGlobalInstance {
@@ -61,7 +62,7 @@ private:
 template<class T, size_t N>
 class JASPtrArray : public JASPtrTable<T> {
 public:
-    JASPtrArray() : JASPtrTable(mArray, N) {}
+    JASPtrArray() : JASPtrTable<T>(mArray, N) {}
 
 private:
     /* 0x08 */ T* mArray[N];

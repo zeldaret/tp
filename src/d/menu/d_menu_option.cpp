@@ -1486,7 +1486,7 @@ void dMenu_Option_c::atten_move() {
         (this->*tv_process[field_0x3f3])();
     } else if (downTrigger) {
         field_0x3ef = 1;
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_OPTION, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+        Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_OPTION, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
     } else if (leftTrigger) {
         if (field_0x3e4 == 0) {
@@ -1498,7 +1498,7 @@ void dMenu_Option_c::atten_move() {
         }
         field_0x3ef = 3;
         field_0x3f5 = 0;
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+        Z2GetAudioMgr()->seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
     } else if (rightTrigger) {
         if (field_0x3e4 == 0) {
@@ -1510,7 +1510,7 @@ void dMenu_Option_c::atten_move() {
         }
         field_0x3ef = 3;
         field_0x3f5 = 0;
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+        Z2GetAudioMgr()->seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
     } else {
         changeTVCheck();
@@ -1560,11 +1560,11 @@ void dMenu_Option_c::vib_move() {
         (this->*tv_process[field_0x3f3])();
     } else if (upTrigger) {
         field_0x3ef = 0;
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_OPTION, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+        Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_OPTION, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
     } else if (downTrigger) {
         field_0x3ef = 2;
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_OPTION, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+        Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_OPTION, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
     } else if (leftTrigger) {
         if (isRumbleSupported()) {
@@ -1578,7 +1578,7 @@ void dMenu_Option_c::vib_move() {
             }
             field_0x3ef = 3;
             field_0x3f5 = 1;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
         }
     } else if (rightTrigger) {
@@ -1593,7 +1593,7 @@ void dMenu_Option_c::vib_move() {
             }
             field_0x3ef = 3;
             field_0x3f5 = 1;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
         }
     } else {
@@ -1644,7 +1644,7 @@ void dMenu_Option_c::sound_move() {
         (this->*tv_process[field_0x3f3])();
     } else if (upTrigger) {
         field_0x3ef = 1;
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_OPTION, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+        Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_OPTION, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
     } else if (leftTrigger) {
         if (field_0x3e9 == 2) {
@@ -1655,15 +1655,15 @@ void dMenu_Option_c::sound_move() {
         field_0x3da = -5;
         switch (field_0x3e9) {
         case 0:
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_SOUND_MODE_MONO, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_SOUND_MODE_MONO, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
             break;
         case 1:
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_SOUND_MODE_STEREO, NULL, 0, 0, 1.0f, 1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_SOUND_MODE_STEREO, NULL, 0, 0, 1.0f, 1.0f,
                                             -1.0f, -1.0f, 0);
             break;
         case 2:
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_SOUND_MODE_SURROUND, NULL, 0, 0, 1.0f, 1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_SOUND_MODE_SURROUND, NULL, 0, 0, 1.0f, 1.0f,
                                             -1.0f, -1.0f, 0);
             break;
         }
@@ -1671,7 +1671,7 @@ void dMenu_Option_c::sound_move() {
         setSoundMode(dMo_soundMode[field_0x3e9]);
         field_0x3ef = 3;
         field_0x3f5 = 2;
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+        Z2GetAudioMgr()->seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
     } else if (rightTrigger) {
         if (field_0x3e9 == 0) {
@@ -1682,15 +1682,15 @@ void dMenu_Option_c::sound_move() {
         field_0x3da = 5;
         switch (field_0x3e9) {
         case 0:
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_SOUND_MODE_MONO, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_SOUND_MODE_MONO, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
             break;
         case 1:
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_SOUND_MODE_STEREO, NULL, 0, 0, 1.0f, 1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_SOUND_MODE_STEREO, NULL, 0, 0, 1.0f, 1.0f,
                                             -1.0f, -1.0f, 0);
             break;
         case 2:
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_SOUND_MODE_SURROUND, NULL, 0, 0, 1.0f, 1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_SOUND_MODE_SURROUND, NULL, 0, 0, 1.0f, 1.0f,
                                             -1.0f, -1.0f, 0);
             break;
         }
@@ -1698,7 +1698,7 @@ void dMenu_Option_c::sound_move() {
         setSoundMode(dMo_soundMode[field_0x3e9]);
         field_0x3ef = 3;
         field_0x3f5 = 2;
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+        Z2GetAudioMgr()->seStart(Z2SE_SY_OPTION_SWITCH, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
     } else {
         changeTVCheck();
@@ -1815,7 +1815,7 @@ void dMenu_Option_c::confirm_open_init() {
     changeBarColor(true);
     setAButtonString(0);
     setBButtonString(0);
-    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_OPEN, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_OPEN, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
 }
 #else
 #pragma push
@@ -1890,7 +1890,7 @@ void dMenu_Option_c::confirm_move_move() {
         dMeter2Info_set2DVibrationM();
     } else if (rightTrigger != 0) {
         if (field_0x3f9 != 0) {
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_CURSOR_COMMON, NULL, 0, 0, 1.0f, 1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_CURSOR_COMMON, NULL, 0, 0, 1.0f, 1.0f,
                                             -1.0f, -1.0f, 0);
             field_0x3fa = field_0x3f9;
             field_0x3f9 = 0;
@@ -1899,7 +1899,7 @@ void dMenu_Option_c::confirm_move_move() {
         }
     } else if (leftTrigger != 0) {
         if (field_0x3f9 != 1) {
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_CURSOR_COMMON, NULL, 0, 0, 1.0f, 1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_CURSOR_COMMON, NULL, 0, 0, 1.0f, 1.0f,
                                             -1.0f, -1.0f, 0);
             field_0x3fa = field_0x3f9;
             field_0x3f9 = 1;
@@ -1948,7 +1948,7 @@ void dMenu_Option_c::confirm_close_init() {
     changeBarColor(false);
     setAButtonString(0);
     setBButtonString(0);
-    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
 }
 #else
 #pragma push
@@ -2064,7 +2064,7 @@ void dMenu_Option_c::tv_open2_move() {
 // Matches with literals
 void dMenu_Option_c::tv_move_move() {
     if (mDoCPd_c::getTrigZ(0) != 0 || mDoCPd_c::getTrigA(0) != 0) {
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         field_0x3f3 = 3;
         setAButtonString(0x40C);
         setBButtonString(0x3F9);
@@ -3085,7 +3085,7 @@ void dMenu_Option_c::setZButtonString(u16 i_stringID) {
 // Matches with literals
 void dMenu_Option_c::changeTVCheck() {
     if (mDoCPd_c::getTrigZ(0) != 0) {
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_CHANGE_WINDOW, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+        Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_CHANGE_WINDOW, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                         -1.0f, 0);
         field_0x3f3 = 0;
         setAButtonString(0);
@@ -3460,10 +3460,10 @@ asm void dMenu_Option_c::yesnoCursorShow() {
 void dMenu_Option_c::yesNoSelectStart() {
     if (field_0x3f9 != 0) {
         if (field_0x3f7 == 1) {
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_NAME_OK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_NAME_OK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                             0);
         } else {
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_MENU_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                             0);
         }
         yesnoMenuMoveAnmInitSet(0x47D, 0x473);
@@ -3517,7 +3517,7 @@ asm void dMenu_Option_c::yesnoSelectAnmSet() {
 #ifdef NONMATCHING
 // Matches with literals
 void dMenu_Option_c::yesnoCancelAnmSet() {
-    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_CANCEL, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_CANCEL, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
     mpDrawCursor->setAlphaRate(0.0f);
     yesnoMenuMoveAnmInitSet(0x47D, 0x473);
 }
