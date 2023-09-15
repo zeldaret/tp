@@ -10,17 +10,21 @@
         OSPanic(FILE, LINE, "Halt");                                                               \
     }
 
-#else
-#define JUT_ASSERT(...)
-#endif
-
-#if DEBUG
 #define JUT_PANIC(FILE, LINE, TEXT)                                                                \
     JUTAssertion::showAssert(JUTAssertion::getSDevice(), FILE, LINE, TEXT);                        \
     OSPanic(FILE, LINE, "Halt");
 
+#define JUT_WARN(FILE, LINE, ...)                                                                  \
+    JUTAssertion::setWarningMessage_f(JUTAssertion::getSDevice(), FILE, LINE, __VA_ARGS__)
+
+#define JUT_LOG(LINE, ...)                                                                         \
+    JUTAssertion::setLogMessage_f(JUTAssertion::getSDevice(), __FILE__, LINE, __VA_ARGS__)
+
 #else
+#define JUT_ASSERT(...)
 #define JUT_PANIC(...)
+#define JUT_WARN(...)
+#define JUT_LOG(...)
 #endif
 
 namespace JUTAssertion {

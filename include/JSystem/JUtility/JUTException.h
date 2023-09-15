@@ -103,6 +103,9 @@ public:
     static void setMapFile(const char* map) {
         appendMapFile(map);
     }
+    static void panic(const char* file, int line, const char* msg) {
+        panic_f(file, line, "%s", msg);
+    }
 
 private:
     static OSMessageQueue sMessageQueue;
