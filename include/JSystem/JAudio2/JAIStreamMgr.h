@@ -34,11 +34,11 @@ public:
 
     JAISoundParamsMove* getParams() { return &mParams; }
     void setStreamDataMgr(JAIStreamDataMgr* param_0) {
-        JUT_ASSERT("JAIStreamMgr.h", 0x8b, !isActive());
+        JUT_ASSERT(139, !isActive());
         mStreamDataMgr = param_0;
     }
     void setStreamAramMgr(JAIStreamAramMgr* param_0) {
-        JUT_ASSERT("JAIStreamMgr.h", 0x9d, !isActive());
+        JUT_ASSERT(157, !isActive());
         mStreamAramMgr = param_0;
     }
 

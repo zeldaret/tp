@@ -125,7 +125,7 @@ bool JAUAudioArcInterpreter::readCommand_() {
     }
     default:
         if (!readCommandMore(cmd)) {
-            JUT_ASSERT("JAUAudioArcInterpreter.cpp", 0x91, false);
+            JUT_ASSERT(145, false);
         }
         break;
     }

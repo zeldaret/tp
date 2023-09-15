@@ -143,7 +143,7 @@ JKRThreadSwitch::JKRThreadSwitch(JKRHeap* param_0) {
 /* 802D1A14-802D1A70 2CC354 005C+00 0/0 1/1 0/0 .text createManager__15JKRThreadSwitchFP7JKRHeap
  */
 JKRThreadSwitch* JKRThreadSwitch::createManager(JKRHeap* heap) {
-    JUT_ASSERT(__FILE__, 343, sManager == 0);
+    JUT_ASSERT(343, sManager == 0);
 
     if (!heap) {
         heap = JKRGetCurrentHeap();
@@ -224,7 +224,7 @@ void JKRThreadSwitch::callback(OSThread* current, OSThread* next) {
                 } else {
                     switch (thread->getCurrentHeapError()) {
                     case 0:
-                        JUT_PANIC(__FILE__, 508, "JKRThreadSwitch: currentHeap destroyed.");
+                        JUT_PANIC(508, "JKRThreadSwitch: currentHeap destroyed.");
                         break;
                     case 1:
                         JUTWarningConsole("JKRThreadSwitch: currentHeap destroyed.\n");

@@ -70,7 +70,7 @@ JAUSeqDataMgr_SeqCollection::JAUSeqDataMgr_SeqCollection() {
 /* 802A67D0-802A67DC 2A1110 000C+00 1/0 0/0 0/0 .text
  * setSeqDataUser__27JAUSeqDataMgr_SeqCollectionFP14JAISeqDataUser */
 bool JAUSeqDataMgr_SeqCollection::setSeqDataUser(JAISeqDataUser* param_0) {
-    JUT_ASSERT("JAUSeqCollection.cpp", 0x3c, user_ == 0);
+    JUT_ASSERT(60, user_ == 0);
     user_ = param_0;
     return true;
 }

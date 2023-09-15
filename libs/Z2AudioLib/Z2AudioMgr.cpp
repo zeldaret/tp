@@ -299,7 +299,7 @@ void Z2AudioMgr::init(JKRSolidHeap* param_0, u32 param_1, void* param_2, JKRArch
     sectionHeap->newDynamicSeqBlock(resMaxSize);
     Z2AudioArcLoader stack_a0(sectionHeap);
     bool baaLoadResult = stack_a0.load(param_2);
-    JUT_ASSERT("Z2AudioMgr.cpp", 0xfc, baaLoadResult);
+    JUT_ASSERT(252, baaLoadResult);
     seqMgr->setSeqDataMgr(sectionHeap->getSeqDataMgr());
     if (sectionHeap->getStreamDataMgr()) {
         streamMgr->setStreamDataMgr(sectionHeap->getStreamDataMgr());
