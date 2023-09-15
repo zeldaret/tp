@@ -9,20 +9,6 @@
 #include "dolphin/os/OS.h"
 
 //
-// Forward References:
-//
-
-extern "C" void getFreeSize__7JKRHeapFv();
-extern "C" void getMaxFreeBlock__7JKRHeapFv();
-
-//
-// External References:
-//
-
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-
-//
 // Declarations:
 //
 
@@ -79,11 +65,13 @@ JKRHeap::~JKRHeap() {
     mChildTree.getParent()->removeChild(&mChildTree);
     JSUTree<JKRHeap>* nextRootHeap = sRootHeap->mChildTree.getFirstChild();
 
-    if (sCurrentHeap == this)
+    if (sCurrentHeap == this) {
         sCurrentHeap = !nextRootHeap ? sRootHeap : nextRootHeap->getObject();
+    }
 
-    if (sSystemHeap == this)
+    if (sSystemHeap == this) {
         sSystemHeap = !nextRootHeap ? sRootHeap : nextRootHeap->getObject();
+    }
 }
 
 /* ############################################################################################## */
@@ -167,6 +155,9 @@ void* JKRHeap::alloc(u32 size, int alignment, JKRHeap* heap) {
 
 /* 802CE4D4-802CE500 2C8E14 002C+00 1/1 30/30 1/1 .text            alloc__7JKRHeapFUli */
 void* JKRHeap::alloc(u32 size, int alignment) {
+    if (mInitFlag) {
+        JUT_WARN(__FILE__, 393, "alloc %x byte in heap %x", size, this);
+    }
     return do_alloc(size, alignment);
 }
 
@@ -183,6 +174,9 @@ void JKRHeap::free(void* ptr, JKRHeap* heap) {
 
 /* 802CE548-802CE574 2C8E88 002C+00 1/1 29/29 0/0 .text            free__7JKRHeapFPv */
 void JKRHeap::free(void* ptr) {
+    if (mInitFlag) {
+        JUT_WARN(__FILE__, 441, "free %x in heap %x", ptr, this);
+    }
     do_free(ptr);
 }
 
@@ -197,11 +191,17 @@ void JKRHeap::callAllDisposer() {
 
 /* 802CE5CC-802CE5F8 2C8F0C 002C+00 0/0 12/12 0/0 .text            freeAll__7JKRHeapFv */
 void JKRHeap::freeAll() {
+    if (mInitFlag) {
+        JUT_WARN(__FILE__, 493, "freeAll in heap %x", this);
+    }
     do_freeAll();
 }
 
 /* 802CE5F8-802CE624 2C8F38 002C+00 0/0 1/1 0/0 .text            freeTail__7JKRHeapFv */
 void JKRHeap::freeTail() {
+    if (mInitFlag) {
+        JUT_WARN(__FILE__, 507, "freeTail in heap %x", this);
+    }
     do_freeTail();
 }
 
@@ -218,6 +218,9 @@ s32 JKRHeap::resize(void* ptr, u32 size, JKRHeap* heap) {
 
 /* 802CE684-802CE6B0 2C8FC4 002C+00 1/1 1/1 0/0 .text            resize__7JKRHeapFPvUl */
 s32 JKRHeap::resize(void* ptr, u32 size) {
+    if (mInitFlag) {
+        JUT_WARN(__FILE__, 567, "resize block %x into %x in heap %x", ptr, size, this);
+    }
     return do_resize(ptr, size);
 }
 
@@ -254,32 +257,19 @@ s32 JKRHeap::getTotalFreeSize() {
 
 /* 802CE7B0-802CE7DC 2C90F0 002C+00 0/0 1/1 0/0 .text            changeGroupID__7JKRHeapFUc */
 s32 JKRHeap::changeGroupID(u8 groupID) {
+    if (mInitFlag) {
+        JUT_WARN(__FILE__, 646, "change heap ID into %x in heap %x", groupID, this);
+    }
     return do_changeGroupID(groupID);
 }
 
 /* 802CE7DC-802CE83C 2C911C 0060+00 0/0 2/2 0/0 .text            getMaxAllocatableSize__7JKRHeapFi
  */
-// "not/nor" instruction in the wrong place
-#ifdef NONMATCHING
 u32 JKRHeap::getMaxAllocatableSize(int alignment) {
     u32 maxFreeBlock = (u32)getMaxFreeBlock();
-    s32 freeSize = getFreeSize();
-
-    u32 mask = alignment - 1U;
-    s32 ptrOffset = mask & (alignment - (maxFreeBlock & 0xf));
-    s32 alignedSize = (freeSize - ptrOffset) & ~(alignment - 1U);
-    return alignedSize;
+    u32 ptrOffset = (alignment - 1) & alignment - (maxFreeBlock & 0xf);
+    return ~(alignment - 1) & (getFreeSize() - ptrOffset);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 JKRHeap::getMaxAllocatableSize(int param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/getMaxAllocatableSize__7JKRHeapFi.s"
-}
-#pragma pop
-#endif
 
 /* 802CE83C-802CE894 2C917C 0058+00 3/3 8/8 0/0 .text            findFromRoot__7JKRHeapFPv */
 JKRHeap* JKRHeap::findFromRoot(void* ptr) {
@@ -366,9 +356,7 @@ void JKRHeap::dispose_subroutine(u32 begin, u32 end) {
 
 /* 802CEA78-802CEAA0 2C93B8 0028+00 0/0 1/1 0/0 .text            dispose__7JKRHeapFPvUl */
 bool JKRHeap::dispose(void* ptr, u32 size) {
-    u32 begin = (u32)ptr;
-    u32 end = (u32)ptr + size;
-    dispose_subroutine(begin, end);
+    dispose_subroutine((u32)ptr, (u32)ptr + size);
     return false;
 }
 
@@ -378,26 +366,12 @@ void JKRHeap::dispose(void* begin, void* end) {
 }
 
 /* 802CEAC0-802CEB18 2C9400 0058+00 0/0 3/3 0/0 .text            dispose__7JKRHeapFv */
-// missing stack variable?
-#ifdef NONMATCHING
 void JKRHeap::dispose() {
-    const JSUList<JKRDisposer>& list = mDisposerList;
     JSUListIterator<JKRDisposer> iterator;
-    while (list.getFirst() != list.getEnd()) {
-        iterator = list.getFirst();
+    while ((iterator = mDisposerList.getFirst()) != mDisposerList.getEnd()) {
         iterator->~JKRDisposer();
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::dispose() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/dispose__7JKRHeapFv.s"
-}
-#pragma pop
-#endif
 
 /* 802CEB18-802CEB40 2C9458 0028+00 0/0 4/4 0/0 .text            copyMemory__7JKRHeapFPvPvUl */
 void JKRHeap::copyMemory(void* dst, void* src, u32 size) {
@@ -415,7 +389,11 @@ void JKRHeap::copyMemory(void* dst, void* src, u32 size) {
 
 /* 802CEB40-802CEB78 2C9480 0038+00 2/2 0/0 0/0 .text JKRDefaultMemoryErrorRoutine__FPvUli */
 void JKRDefaultMemoryErrorRoutine(void* heap, u32 size, int alignment) {
-    JUTException::panic_f(__FILE__, 831, "%s", "abort\n");
+#if DEBUG
+    OSReport("Error: Cannot allocate memory %d(0x%x)byte in %d byte alignment from %08x\n", size,
+             size, alignment, heap);
+#endif
+    JUTException::panic(__FILE__, 831, "abort\n");
 }
 
 /* 802CEB78-802CEB88 2C94B8 0010+00 0/0 2/2 0/0 .text            setErrorFlag__7JKRHeapFb */
@@ -462,32 +440,32 @@ bool JKRHeap::isSubHeap(JKRHeap* heap) const {
 }
 
 /* 802CEC4C-802CEC74 2C958C 0028+00 0/0 278/278 377/377 .text            __nw__FUl */
-void* operator new(u32 size) {
+void* operator new(size_t size) {
     return JKRHeap::alloc(size, 4, NULL);
 }
 
 /* 802CEC74-802CEC98 2C95B4 0024+00 0/0 15/15 0/0 .text            __nw__FUli */
-void* operator new(u32 size, int alignment) {
+void* operator new(size_t size, int alignment) {
     return JKRHeap::alloc(size, alignment, NULL);
 }
 
 /* 802CEC98-802CECC4 2C95D8 002C+00 0/0 47/47 0/0 .text            __nw__FUlP7JKRHeapi */
-void* operator new(u32 size, JKRHeap* heap, int alignment) {
+void* operator new(size_t size, JKRHeap* heap, int alignment) {
     return JKRHeap::alloc(size, alignment, heap);
 }
 
 /* 802CECC4-802CECEC 2C9604 0028+00 0/0 52/52 15/15 .text            __nwa__FUl */
-void* operator new[](u32 size) {
+void* operator new[](size_t size) {
     return JKRHeap::alloc(size, 4, NULL);
 }
 
 /* 802CECEC-802CED10 2C962C 0024+00 0/0 29/29 0/0 .text            __nwa__FUli */
-void* operator new[](u32 size, int alignment) {
+void* operator new[](size_t size, int alignment) {
     return JKRHeap::alloc(size, alignment, NULL);
 }
 
 /* 802CED10-802CED3C 2C9650 002C+00 0/0 25/25 0/0 .text            __nwa__FUlP7JKRHeapi */
-void* operator new[](u32 size, JKRHeap* heap, int alignment) {
+void* operator new[](size_t size, JKRHeap* heap, int alignment) {
     return JKRHeap::alloc(size, alignment, heap);
 }
 
@@ -510,16 +488,16 @@ u32 JKRHeap::state_register(JKRHeap::TState* p, u32 id) const {
 
 /* 802CED88-802CEDA0 2C96C8 0018+00 1/0 1/0 0/0 .text
  * state_compare__7JKRHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState */
-bool JKRHeap::state_compare(JKRHeap::TState const& r1, JKRHeap::TState const& r2) const {
+bool JKRHeap::state_compare(const JKRHeap::TState& r1, const JKRHeap::TState& r2) const {
     JUT_ASSERT(__FILE__, 1222, r1.getHeap() == r2.getHeap());
     return r1.getCheckCode() == r2.getCheckCode();
 }
 
 /* 802CEDA0-802CEDA4 2C96E0 0004+00 1/0 3/0 0/0 .text state_dump__7JKRHeapCFRCQ27JKRHeap6TState */
-void JKRHeap::state_dump(JKRHeap::TState const& p) const {
-    LOGF("check-code : 0x%08x", p.getCheckCode());
-    LOGF("id         : 0x%08x", p.getId());
-    LOGF("used size  : %u", p.getUsedSize());
+void JKRHeap::state_dump(const JKRHeap::TState& p) const {
+    JUT_LOG(__FILE__, 1246, "check-code : 0x%08x", p.getCheckCode());
+    JUT_LOG(__FILE__, 1247, "id         : 0x%08x", p.getId());
+    JUT_LOG(__FILE__, 1248, "used size  : %u", p.getUsedSize());
 }
 
 /* 802CEDA4-802CEDAC 2C96E4 0008+00 1/0 1/0 0/0 .text            do_changeGroupID__7JKRHeapFUc */
