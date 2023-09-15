@@ -44,7 +44,7 @@ public:
     u8 getStatus() { return mStatus; }
     void offForceButton() { mForceButton = 0; }
     u8 getForceButton() { return mForceButton; }
-    bool checkEndButton() { return mEndButton;}
+    u8 checkEndButton() { return mEndButton; }
 
     void trans(f32 x, f32 y) {
         field_0xd4 = x;
@@ -56,20 +56,20 @@ private:
     /* 0x08 */ JKRArchive* mpArchive;
     /* 0x0C */ dMsgString_c* mpInfoString;
     /* 0x10 */ CPaneMgr* mpInfoText;
-    /* 0x14 */ J2DPane* field_0x14; // actual data type not known
+    /* 0x14 */ J2DPane* field_0x14;  // actual data type not known
     /* 0x18 */ CPaneMgr* mpNameText[4];
-    /* 0x28 */ J2DPane* field_0x28[4]; // actual data type not known
+    /* 0x28 */ J2DPane* field_0x28[4];  // actual data type not known
     /* 0x38 */ CPaneMgr* mpInfoIcon;
     /* 0x3C */ CPaneMgr* mpParent[2];
-    /* 0x44 */ J2DPane* field_0x44[2]; // actual data type not known
+    /* 0x44 */ J2DPane* field_0x44[2];  // actual data type not known
     /* 0x4C */ CPaneMgr* mpLabel;
-    /* 0x50 */ J2DPane* field_0x50; // actual data type not known
+    /* 0x50 */ J2DPane* field_0x50;  // actual data type not known
     /* 0x54 */ u8 field_0x54[0x5C - 0x54];
-    /* 0x5C */ J2DPane* field_0x5c; // actual data type not known
-    /* 0x60 */ J2DPane* field_0x60[3]; // actual data type not known
+    /* 0x5C */ J2DPane* field_0x5c;     // actual data type not known
+    /* 0x60 */ J2DPane* field_0x60[3];  // actual data type not known
     /* 0x6C */ dKantera_icon_c* mpKanteraMeter;
     /* 0x70 */ J2DScreen* mpInfoScreen;
-    /* 0x74 */ J2DPane* field_0x74; // actual data type not known
+    /* 0x74 */ J2DPane* field_0x74;  // actual data type not known
     /* 0x78 */ int field_0x78;
     /* 0x7C */ J2DPicture* mpExpItemPane[3];
     /* 0x88 */ ResTIMG* mpExpItemTex[4];
@@ -79,8 +79,8 @@ private:
     /* 0xA8 */ J2DPicture* mpItemNumTex[3];
     /* 0xB4 */ J2DPicture* mpBackTex;
     /* 0xB8 */ STControl* mpStick;
-    /* 0xBC */ f32 field_0xbc;
-    /* 0xC0 */ f32 field_0xc0;
+    /* 0xBC */ f32 mAlphaRatio;
+    /* 0xC0 */ f32 mDescAlpha;
     /* 0xC4 */ u32 field_0xc4;
     /* 0xC8 */ u32 field_0xc8;
     /* 0xCC */ u32 field_0xcc;

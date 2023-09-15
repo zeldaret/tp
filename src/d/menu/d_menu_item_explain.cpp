@@ -5,27 +5,27 @@
 
 #include "d/menu/d_menu_item_explain.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
-#include "JSystem/JKernel/JKRMemArchive.h"
-#include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JGeometry.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JKernel/JKRMemArchive.h"
+#include "JSystem/JUtility/JUTPalette.h"
 #include "JSystem/JUtility/JUTTexture.h"
-#include "d/d_item.h"
+#include "MSL_C/stdio.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
-#include "msg/scrn/d_msg_scrn_3select.h"
-#include "msg/scrn/d_msg_scrn_arrow.h"
+#include "d/d_item.h"
+#include "d/d_kantera_icon_meter.h"
 #include "d/d_lib.h"
 #include "d/d_select_cursor.h"
-#include "d/d_kantera_icon_meter.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/meter/d_meter_HIO.h"
-#include "d/msg/d_msg_string.h"
 #include "d/msg/d_msg_class.h"
-#include "MSL_C/stdio.h"
+#include "d/msg/d_msg_string.h"
 #include "dol2asm.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
-#include "JSystem/JUtility/JUTPalette.h"
+#include "msg/scrn/d_msg_scrn_3select.h"
+#include "msg/scrn/d_msg_scrn_arrow.h"
 
 extern "C" void __ct__19dMenu_ItemExplain_cFP10JKRExpHeapP10JKRArchiveP9STControlb();
 extern "C" void __dt__19dMenu_ItemExplain_cFv();
@@ -141,14 +141,18 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 /* ############################################################################################## */
 /* 80396950-80396970 022FB0 0020+00 1/1 0/0 0/0 .rodata          name_tag$3883 */
 static const u64 name_tag[4] = {
-    'item_n04', 'item_n05',
-    'item_n06', 'item_n07',
+    'item_n04',
+    'item_n05',
+    'item_n06',
+    'item_n07',
 };
 
 /* 80396970-80396990 022FD0 0020+00 1/1 0/0 0/0 .rodata          fame_tag$3884 */
 static const u64 fame_tag[4] = {
-    'f_item_1', 'f_item_2',
-    'f_item_3', 'f_item_4',
+    'f_item_1',
+    'f_item_2',
+    'f_item_3',
+    'f_item_4',
 };
 
 /* 803BD8C8-803BD8D4 01A9E8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -158,28 +162,22 @@ static u8 cNullVec__6Z2Calc[12] = {
 
 typedef void (dMenu_ItemExplain_c::*initFunc)();
 static initFunc init_process[] = {
-    &dMenu_ItemExplain_c::wait_init,
-    &dMenu_ItemExplain_c::open_init,
-    &dMenu_ItemExplain_c::move_init,
-    &dMenu_ItemExplain_c::move_select_init,
-    &dMenu_ItemExplain_c::move_next_init,
-    &dMenu_ItemExplain_c::close_init,
+    &dMenu_ItemExplain_c::wait_init,      &dMenu_ItemExplain_c::open_init,
+    &dMenu_ItemExplain_c::move_init,      &dMenu_ItemExplain_c::move_select_init,
+    &dMenu_ItemExplain_c::move_next_init, &dMenu_ItemExplain_c::close_init,
 };
 
 typedef void (dMenu_ItemExplain_c::*moveFunc)();
 static moveFunc move_process[] = {
-    &dMenu_ItemExplain_c::wait_proc,
-    &dMenu_ItemExplain_c::open_proc,
-    &dMenu_ItemExplain_c::move_proc,
-    &dMenu_ItemExplain_c::move_select_proc,
-    &dMenu_ItemExplain_c::move_next_proc,
-    &dMenu_ItemExplain_c::close_proc,
+    &dMenu_ItemExplain_c::wait_proc,      &dMenu_ItemExplain_c::open_proc,
+    &dMenu_ItemExplain_c::move_proc,      &dMenu_ItemExplain_c::move_select_proc,
+    &dMenu_ItemExplain_c::move_next_proc, &dMenu_ItemExplain_c::close_proc,
 };
 
 /* 801DA754-801DAFF0 1D5094 089C+00 0/0 2/2 0/0 .text
  * __ct__19dMenu_ItemExplain_cFP10JKRExpHeapP10JKRArchiveP9STControlb */
 dMenu_ItemExplain_c::dMenu_ItemExplain_c(JKRExpHeap* i_heap, JKRArchive* i_archive,
-                                             STControl* i_stick, bool param_3) {
+                                         STControl* i_stick, bool param_3) {
     mpHeap = i_heap;
     mpArchive = dComIfGp_getDemoMsgArchive();
     mpStick = i_stick;
@@ -225,9 +223,9 @@ dMenu_ItemExplain_c::dMenu_ItemExplain_c(JKRExpHeap* i_heap, JKRArchive* i_archi
     mpParent[0] = new CPaneMgr(mpInfoScreen, 'n_all', 2, NULL);
     mpParent[1] = NULL;
     mpLabel = new CPaneMgr(mpInfoScreen, 'label_n', 0, NULL);
-    field_0xc0 = 0.0f;
+    mDescAlpha = 0.0f;
     field_0x78 = 0;
-    field_0xbc = 201.0f;
+    mAlphaRatio = 201.0f;
     mpInfoText = new CPaneMgr(mpInfoScreen, 'i_text1', 0, NULL);
     mpInfoScreen->search('i_text4')->hide();
     ((J2DTextBox*)(mpInfoText->getPanePtr()))->setFont(mDoExt_getMesgFont());
@@ -244,28 +242,39 @@ dMenu_ItemExplain_c::dMenu_ItemExplain_c(JKRExpHeap* i_heap, JKRArchive* i_archi
         mpExpItemTex[i] = (ResTIMG*)mpHeap->alloc(0xC00, 0x20);
     }
 
-    mpExpItemPane[0] = new J2DPicture('i_icon_1', JGeometry::TBox2<f32>(0.0f, 0.0f, mpInfoIcon->getInitSizeX(), mpInfoIcon->getInitSizeY()), ((J2DPicture*)(mpInfoIcon->getPanePtr()))->getTexture(0)->getTexInfo(), NULL);
+    mpExpItemPane[0] = new J2DPicture(
+        'i_icon_1',
+        JGeometry::TBox2<f32>(0.0f, 0.0f, mpInfoIcon->getInitSizeX(), mpInfoIcon->getInitSizeY()),
+        ((J2DPicture*)(mpInfoIcon->getPanePtr()))->getTexture(0)->getTexInfo(), NULL);
     mpExpItemPane[0]->setBasePosition(J2DBasePosition_4);
     mpInfoIcon->getPanePtr()->appendChild(mpExpItemPane[0]);
-    mpExpItemPane[1] = new J2DPicture('i_icon_2', JGeometry::TBox2<f32>(0.0f, 0.0f, mpInfoIcon->getInitSizeX(), mpInfoIcon->getInitSizeY()), ((J2DPicture*)(mpInfoIcon->getPanePtr()))->getTexture(0)->getTexInfo(), NULL);
+    mpExpItemPane[1] = new J2DPicture(
+        'i_icon_2',
+        JGeometry::TBox2<f32>(0.0f, 0.0f, mpInfoIcon->getInitSizeX(), mpInfoIcon->getInitSizeY()),
+        ((J2DPicture*)(mpInfoIcon->getPanePtr()))->getTexture(0)->getTexInfo(), NULL);
     mpExpItemPane[1]->setBasePosition(J2DBasePosition_4);
     mpInfoIcon->getPanePtr()->appendChild(mpExpItemPane[1]);
-    mpExpItemPane[2] = new J2DPicture('i_icon_3', JGeometry::TBox2<f32>(0.0f, 0.0f, mpInfoIcon->getInitSizeX(), mpInfoIcon->getInitSizeY()), ((J2DPicture*)(mpInfoIcon->getPanePtr()))->getTexture(0)->getTexInfo(), NULL);
+    mpExpItemPane[2] = new J2DPicture(
+        'i_icon_3',
+        JGeometry::TBox2<f32>(0.0f, 0.0f, mpInfoIcon->getInitSizeX(), mpInfoIcon->getInitSizeY()),
+        ((J2DPicture*)(mpInfoIcon->getPanePtr()))->getTexture(0)->getTexInfo(), NULL);
     mpExpItemPane[2]->setBasePosition(J2DBasePosition_4);
     mpInfoIcon->getPanePtr()->appendChild(mpExpItemPane[2]);
- 
-    ResTIMG* texResource = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', dMeter2Info_getNumberTextureName(0));
+
+    ResTIMG* texResource = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource(
+        'TIMG', dMeter2Info_getNumberTextureName(0));
     for (int i = 0; i < 3; i++) {
         mpItemNumTex[i] = new J2DPicture(texResource);
         mpInfoScreen->search('info_n1')->appendChild(mpItemNumTex[i]);
-        mpItemNumTex[i]->move(i * 16.0f + (mpInfoIcon->getPosX() + mpInfoIcon->getSizeX() * 0.5f), mpInfoIcon->getPosY() + mpInfoIcon->getSizeY() - 3.0f);
+        mpItemNumTex[i]->move(i * 16.0f + (mpInfoIcon->getPosX() + mpInfoIcon->getSizeX() * 0.5f),
+                              mpInfoIcon->getPosY() + mpInfoIcon->getSizeY() - 3.0f);
         mpItemNumTex[i]->resize(16.0f, 16.0f);
     }
-    
+
     if (param_3 == 1) {
         texResource = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "tt_block8x8.bti");
         mpBackTex = new J2DPicture(texResource);
-        mpBackTex->setBlackWhite(JUtility::TColor(0,0,0,0), JUtility::TColor(0,0,0,0xff));
+        mpBackTex->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 0xff));
         mpBackTex->setAlpha(0);
     } else {
         mpBackTex = NULL;
@@ -296,7 +305,7 @@ dMenu_ItemExplain_c::~dMenu_ItemExplain_c() {
         }
     }
 
-    delete mpLabel; 
+    delete mpLabel;
     mpLabel = NULL;
 
     delete mpInfoText;
@@ -399,19 +408,20 @@ void dMenu_ItemExplain_c::move() {
     if (mStatus != NULL) {
         mpInfoScreen->animation();
     }
-    if (g_ringHIO.mItemDescAlpha != field_0xc0) {
-        field_0xc0 = g_ringHIO.mItemDescAlpha;
+    if (g_ringHIO.mItemDescAlpha != mDescAlpha) {
+        mDescAlpha = g_ringHIO.mItemDescAlpha;
     }
 }
 
 /* 801DB514-801DB744 1D5E54 0230+00 0/0 2/2 0/0 .text draw__19dMenu_ItemExplain_cFP13J2DOrthoGraph
  */
-void dMenu_ItemExplain_c::draw(J2DOrthoGraph* param_0) {
+void dMenu_ItemExplain_c::draw(J2DOrthoGraph* i_graph) {
     if (mStatus != 0) {
         for (int i = 0; i < 2; i++) {
             if (mpParent[i] != NULL) {
                 mpParent[i]->scale(g_ringHIO.mItemDescScale, g_ringHIO.mItemDescScale);
-                mpParent[i]->paneTrans(field_0xd4 + g_ringHIO.mItemDescPosX, field_0xd8 + g_ringHIO.mItemDescPosY);
+                mpParent[i]->paneTrans(field_0xd4 + g_ringHIO.mItemDescPosX,
+                                       field_0xd8 + g_ringHIO.mItemDescPosY);
             }
         }
         mpLabel->scale(g_ringHIO.mItemDescTitleScale, g_ringHIO.mItemDescTitleScale);
@@ -422,11 +432,13 @@ void dMenu_ItemExplain_c::draw(J2DOrthoGraph* param_0) {
         if (field_0xc8 != field_0xd0) {
             field_0xd0 = field_0xc8;
             for (int i = 0; i < 4; i++) {
-                mpInfoString->getString(field_0xcc, (J2DTextBox*)mpNameText[i]->getPanePtr(), NULL, NULL, NULL, 0);
+                mpInfoString->getString(field_0xcc, (J2DTextBox*)mpNameText[i]->getPanePtr(), NULL,
+                                        NULL, NULL, 0);
             }
-            mpInfoString->getString(field_0xc8, (J2DTextBox*)mpInfoText->getPanePtr(), NULL, NULL, NULL, 0);
+            mpInfoString->getString(field_0xc8, (J2DTextBox*)mpInfoText->getPanePtr(), NULL, NULL,
+                                    NULL, 0);
         }
-        mpInfoScreen->draw(0.0f, 0.0f, (J2DGrafContext*)param_0);
+        mpInfoScreen->draw(0.0f, 0.0f, (J2DGrafContext*)i_graph);
         mpInfoString->drawOutFontLocal((J2DTextBox*)mpInfoText->getPanePtr(), -1.0f);
         drawKantera();
         if (mpSelect_c != NULL) {
@@ -442,7 +454,8 @@ void dMenu_ItemExplain_c::draw(J2DOrthoGraph* param_0) {
 /* 801DB744-801DB818 1D6084 00D4+00 1/1 0/0 0/0 .text drawKantera__19dMenu_ItemExplain_cFv */
 void dMenu_ItemExplain_c::drawKantera() {
     if (field_0xe1 == 0x48) {
-        mpKanteraMeter->setPos(mpInfoIcon->getGlobalPosX() + 48.0f, mpInfoIcon->getGlobalPosY() + mpInfoIcon->getSizeY() + 5.0f);
+        mpKanteraMeter->setPos(mpInfoIcon->getGlobalPosX() + 48.0f,
+                               mpInfoIcon->getGlobalPosY() + mpInfoIcon->getSizeY() + 5.0f);
         mpKanteraMeter->setScale(1.0f, 1.0f);
         mpKanteraMeter->setNowGauge(dComIfGs_getMaxOil(), dComIfGs_getOil());
         mpKanteraMeter->setAlphaRate(mpInfoIcon->getAlphaRate());
@@ -494,7 +507,10 @@ void dMenu_ItemExplain_c::open_init() {
                 }
             }
         }
-        s32 texture = dMeter2Info_readItemTexture(itemNo, mpExpItemTex[0], (J2DPicture*)mpInfoIcon->getPanePtr(), mpExpItemTex[1], mpExpItemPane[0], mpExpItemTex[2], mpExpItemPane[1], mpExpItemTex[3], mpExpItemPane[2], iVar);
+        s32 texture = dMeter2Info_readItemTexture(
+            itemNo, mpExpItemTex[0], (J2DPicture*)mpInfoIcon->getPanePtr(), mpExpItemTex[1],
+            mpExpItemPane[0], mpExpItemTex[2], mpExpItemPane[1], mpExpItemTex[3], mpExpItemPane[2],
+            iVar);
         mpInfoIcon->show();
         for (int i = 0; i < 3; i++) {
             if (i < texture - 1) {
@@ -524,9 +540,9 @@ void dMenu_ItemExplain_c::open_init() {
 /* 801DBAB4-801DBB50 1D63F4 009C+00 1/0 0/0 0/0 .text            open_proc__19dMenu_ItemExplain_cFv
  */
 void dMenu_ItemExplain_c::open_proc() {
-    field_0xbc += 2.0f;
-    if (field_0xbc >= 201.0f) {
-        field_0xbc = 201.0f;
+    mAlphaRatio += 2.0f;
+    if (mAlphaRatio >= 201.0f) {
+        mAlphaRatio = 201.0f;
         mStatus = 2;
     }
     if (mpBackTex != NULL) {
@@ -596,8 +612,10 @@ void dMenu_ItemExplain_c::move_select_init() {
         dMeter2Info_getString(0x51C, local_80, NULL);
     }
 
-    f32 stringLength1 = dMeter2Info_getStringLength(mDoExt_getMesgFont(), mpSelect_c->getFontSize(), mpSelect_c->getCharSpace(), local_88);
-    f32 stringLength2 = dMeter2Info_getStringLength(mDoExt_getMesgFont(), mpSelect_c->getFontSize(), mpSelect_c->getCharSpace(), local_80);
+    f32 stringLength1 = dMeter2Info_getStringLength(mDoExt_getMesgFont(), mpSelect_c->getFontSize(),
+                                                    mpSelect_c->getCharSpace(), local_88);
+    f32 stringLength2 = dMeter2Info_getStringLength(mDoExt_getMesgFont(), mpSelect_c->getFontSize(),
+                                                    mpSelect_c->getCharSpace(), local_80);
     f32 length;
     if (stringLength1 < stringLength2) {
         length = stringLength2;
@@ -609,9 +627,15 @@ void dMenu_ItemExplain_c::move_select_init() {
         length = mpSelect_c->getTextBoxWidth();
     }
 
-    snprintf(local_64, 20, "\x1B""CR[%d]", (int)(0.5f * (length - stringLength1)));
+    snprintf(local_64, 20,
+             "\x1B"
+             "CR[%d]",
+             (int)(0.5f * (length - stringLength1)));
     strcat(local_64, local_88);
-    snprintf(cStack78, 20, "\x1B""CR[%d]", (int)(0.5f * (length - stringLength2)));
+    snprintf(cStack78, 20,
+             "\x1B"
+             "CR[%d]",
+             (int)(0.5f * (length - stringLength2)));
     strcat(cStack78, local_80);
     mpSelect_c->setString("", local_64, cStack78);
     mpSelect_c->setRubyString("", "", "");
@@ -635,18 +659,21 @@ void dMenu_ItemExplain_c::move_select_proc() {
         }
         if (field_0xe5 == 2) {
             mStatus = 5;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                            -1.0f, 0);
             dMeter2Info_set2DVibration();
         } else {
             mStatus = 2;
             field_0xc8 = field_0xc4;
         }
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                        0);
     } else if (mDoCPd_c::getTrigB(PAD_1)) {
         mEndButton = 2;
         if (field_0xe5 == 2) {
             mStatus = 5;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                            -1.0f, 0);
             dMeter2Info_set2DVibration();
         } else {
             mStatus = 2;
@@ -655,12 +682,14 @@ void dMenu_ItemExplain_c::move_select_proc() {
     } else if (mpSelect_c->isSelect() && mpStick->checkUpTrigger()) {
         if (field_0xe2 == 1) {
             field_0xe2 = 0;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                            -1.0f, 0);
         }
     } else if (mpSelect_c->isSelect() && mpStick->checkDownTrigger()) {
         if (field_0xe2 == 0) {
             field_0xe2 = 1;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                            -1.0f, 0);
         }
     }
     if (mStatus == 3) {
@@ -689,20 +718,21 @@ void dMenu_ItemExplain_c::move_next_proc() {
 
         if (field_0xe5 == 2) {
             mStatus = 5;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                            -1.0f, 0);
             dMeter2Info_set2DVibration();
         } else {
             mStatus = 2;
             field_0xc8 = field_0xc4;
         }
         mpSelect_c->selAnimeEnd();
-    } 
+    }
 }
 
 /* 801DC2E4-801DC2F0 1D6C24 000C+00 1/0 0/0 0/0 .text            close_init__19dMenu_ItemExplain_cFv
  */
 void dMenu_ItemExplain_c::close_init() {
-    field_0xbc = 201.0f;
+    mAlphaRatio = 201.0f;
 }
 
 /* 801DC2F0-801DC340 1D6C30 0050+00 1/0 0/0 0/0 .text            close_proc__19dMenu_ItemExplain_cFv
@@ -721,19 +751,19 @@ void dMenu_ItemExplain_c::close_proc() {
 
 /* 801DC340-801DC3C8 1D6C80 0088+00 0/0 2/2 0/0 .text openExplain__19dMenu_ItemExplain_cFUcUcUcb
  */
-u8 dMenu_ItemExplain_c::openExplain(u8 param_0, u8 param_1, u8 param_2, bool param_3) {
-    u8 item = dComIfGs_getItem(param_0, false);
+u8 dMenu_ItemExplain_c::openExplain(u8 i_slotNo, u8 param_1, u8 param_2, bool param_3) {
+    u8 item = dComIfGs_getItem(i_slotNo, false);
     if (item == 0xff) {
         return 0;
     } else {
-        return openExplainDmap(item, param_1, param_2, param_3, param_0);
+        return openExplainDmap(item, param_1, param_2, param_3, i_slotNo);
     }
 }
 
 /* 801DC3C8-801DC738 1D6D08 0370+00 1/1 1/1 0/0 .text
  * openExplainDmap__19dMenu_ItemExplain_cFUcUcUcbUc             */
 u8 dMenu_ItemExplain_c::openExplainDmap(u8 param_0, u8 param_1, u8 param_2, bool param_3,
-                                              u8 param_4) {
+                                        u8 param_4) {
     u8 itemNo = param_0;
     u8 ret = 0;
     s32 itemsObtained = 0;
@@ -752,7 +782,8 @@ u8 dMenu_ItemExplain_c::openExplainDmap(u8 param_0, u8 param_1, u8 param_2, bool
             itemNo = 0xfd;
         }
     }
-    if (itemNo == 0x50 && i_dComIfGs_isItemFirstBit(0x4f) && dMeter2Info_getRentalBombBag() == 0xff) {
+    if (itemNo == 0x50 && i_dComIfGs_isItemFirstBit(0x4f) && dMeter2Info_getRentalBombBag() == 0xff)
+    {
         itemNo = 0x4f;
     }
     if (mStatus == 0) {
@@ -776,7 +807,7 @@ u8 dMenu_ItemExplain_c::openExplainDmap(u8 param_0, u8 param_1, u8 param_2, bool
                 }
             }
         }
-        if (itemNo == 0x46 &&  daPy_getPlayerActorClass()->checkCopyRodTopUse() == 0) {
+        if (itemNo == 0x46 && daPy_getPlayerActorClass()->checkCopyRodTopUse() == 0) {
             field_0xc8 = 0x2b2;
         }
         if (itemNo == 0x25 && dComIfGs_isDungeonItemWarp(0x16)) {
@@ -802,7 +833,7 @@ u8 dMenu_ItemExplain_c::openExplainDmap(u8 param_0, u8 param_1, u8 param_2, bool
                 } else {
                     field_0xc8 = 0x26e;
                 }
-            } 
+            }
         }
         if (itemNo == 0x25 && dComIfGs_isDungeonItemWarp(0x16)) {
             field_0xc8 = 0x351;
@@ -812,7 +843,8 @@ u8 dMenu_ItemExplain_c::openExplainDmap(u8 param_0, u8 param_1, u8 param_2, bool
         field_0xdf = param_2;
         open_init();
         setScale();
-        ret = 1;; 
+        ret = 1;
+        ;
     }
     return ret;
 }
@@ -838,20 +870,20 @@ u8 dMenu_ItemExplain_c::openExplainTx(u32 param_0, u32 param_1) {
 /* 801DC7AC-801DC7FC 1D70EC 0050+00 1/1 2/2 0/0 .text getAlphaRatio__19dMenu_ItemExplain_cFv */
 f32 dMenu_ItemExplain_c::getAlphaRatio() {
     switch (mStatus) {
-        case 1:
-        case 5:
-            return (201.0f - field_0xbc) / 7.0f;
-        case 0:
-            return 1.0f;
-        default:
-            return 0.0f;
+    case 1:
+    case 5:
+        return (201.0f - mAlphaRatio) / 7.0f;
+    case 0:
+        return 1.0f;
+    default:
+        return 0.0f;
     }
 }
 
 /* 801DC7FC-801DCB54 1D713C 0358+00 1/1 0/0 0/0 .text            setNumber__19dMenu_ItemExplain_cFv
  */
 #ifdef NONMATCHING
-// regalloc and one lwz instruction misplaced
+// lwz instruction misplaced
 void dMenu_ItemExplain_c::setNumber() {
     u8 temp = field_0xdf;
     if (temp == 0) {
@@ -859,19 +891,19 @@ void dMenu_ItemExplain_c::setNumber() {
             mpItemNumTex[i]->hide();
         }
     } else {
-        s32 uVar8 = field_0xde;
+        s32 temp2 = field_0xde;
         for (int i = 0; i < 3; i++) {
             mpItemNumTex[i]->show();
         }
-        if (uVar8 > 100) {
-            uVar8 = 100;
+        if (temp2 > 100) {
+            temp2 = 100;
         }
         JUtility::TColor colorBlack;
         JUtility::TColor colorWhite;
-        if (uVar8 == temp) {
+        if (temp2 == temp) {
             colorBlack.set(30, 30, 30, 0);
             colorWhite.set(0xff, 200, 50, 0xff);
-        } else if (uVar8 == 0) {
+        } else if (temp2 == 0) {
             colorBlack.set(30, 30, 30, 0);
             colorWhite.set(180, 180, 180, 0xff);
         } else {
@@ -881,19 +913,24 @@ void dMenu_ItemExplain_c::setNumber() {
         for (int i = 0; i < 3; i++) {
             mpItemNumTex[i]->setBlackWhite(colorBlack, colorWhite);
         }
-        if (uVar8 < 100) {
-            void* texture = dComIfGp_getMain2DArchive()->getResource('TIMG', dMeter2Info_getNumberTextureName(uVar8 / 10));
-            mpItemNumTex[0]->changeTexture((char*)texture, 0);
-            texture = dComIfGp_getMain2DArchive()->getResource('TIMG', dMeter2Info_getNumberTextureName(uVar8 % 10));
-            mpItemNumTex[1]->changeTexture((char*)texture, 0);
+        if (temp2 < 100) {
+            ResTIMG* texture = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource(
+                'TIMG', dMeter2Info_getNumberTextureName(temp2 / 10));
+            mpItemNumTex[0]->changeTexture(texture, 0);
+            texture = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource(
+                'TIMG', dMeter2Info_getNumberTextureName(temp2 % 10));
+            mpItemNumTex[1]->changeTexture(texture, 0);
             mpItemNumTex[2]->hide();
         } else {
-            void* texture = dComIfGp_getMain2DArchive()->getResource('TIMG', dMeter2Info_getNumberTextureName(uVar8 / 100));
-            mpItemNumTex[0]->changeTexture((char*)texture, 0);
-            texture = dComIfGp_getMain2DArchive()->getResource('TIMG', dMeter2Info_getNumberTextureName((uVar8 % 100) / 10));
-            mpItemNumTex[1]->changeTexture((char*)texture, 0);
-            texture = dComIfGp_getMain2DArchive()->getResource('TIMG', dMeter2Info_getNumberTextureName((uVar8 % 100) % 10));
-            mpItemNumTex[2]->changeTexture((char*)texture, 0);
+            ResTIMG* texture = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource(
+                'TIMG', dMeter2Info_getNumberTextureName(temp2 / 100));
+            mpItemNumTex[0]->changeTexture(texture, 0);
+            texture = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource(
+                'TIMG', dMeter2Info_getNumberTextureName((u8)(temp2 % 100) / 10));
+            mpItemNumTex[1]->changeTexture(texture, 0);
+            texture = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource(
+                'TIMG', dMeter2Info_getNumberTextureName((temp2 % 100) % 10));
+            mpItemNumTex[2]->changeTexture(texture, 0);
         }
     }
 }
@@ -920,7 +957,8 @@ bool dMenu_ItemExplain_c::getWarpMarkFlag() {
  */
 void dMenu_ItemExplain_c::setScale() {
     if (field_0xe1 != 0xff) {
-        f32 scale = g_drawHIO.mItemScaleAdjustON == true ? g_drawHIO.mItemScalePercent / 100.0f : 1.0f;
+        f32 scale =
+            g_drawHIO.mItemScaleAdjustON == true ? g_drawHIO.mItemScalePercent / 100.0f : 1.0f;
         f32 w = mpExpItemTex[0]->width / 48.0f * scale;
         f32 h = mpExpItemTex[0]->height / 48.0f * scale;
         mpInfoIcon->scale(w, h);
