@@ -29,9 +29,9 @@ JASLfo::JASLfo() {
     field_0x0 = 0;
     field_0x4 = 1;
     field_0x8 = 0.0f;
-    field_0xC = 0.0f;
-    field_0x10 = 1.0f;
-    field_0x14 = 0;
+    mDepth = 0.0f;
+    mPitch = 1.0f;
+    mDelay = 0;
     field_0x16 = 0;
 }
 
@@ -43,11 +43,11 @@ f32 JASLfo::getValue() const {
         return 0.0f;
     }
 
-    if (field_0xC == 0.0f) {
+    if (mDepth == 0.0f) {
         return 0.0f;
     }
 
-    return field_0xC * JMASinLap(field_0x8);
+    return mDepth * JMASinLap(field_0x8);
 }
 
 /* ############################################################################################## */
@@ -59,7 +59,7 @@ void JASLfo::incCounter(f32 param_0) {
         return;
     }
 
-    field_0x8 += param_0 * ((1.0f / 72.0f) * field_0x10);
+    field_0x8 += param_0 * ((1.0f / 72.0f) * mPitch);
     if (field_0x8 >= 1.0f) {
         field_0x8 -= 1.0f; 
     }
@@ -71,7 +71,7 @@ JASLfo JASLfo::sFreeRunLfo;
 
 /* 8029BE2C-8029BE6C 29676C 0040+00 0/0 1/1 0/0 .text            resetCounter__6JASLfoFv */
 void JASLfo::resetCounter() {
-    field_0x16 = field_0x14;
+    field_0x16 = mDelay;
     switch (field_0x4) {
     case 0:
         field_0x8 = sFreeRunLfo.field_0x8;

@@ -5,13 +5,10 @@
 
 #include "JSystem/JAudio2/JAUAudioArcInterpreter.h"
 #include "JSystem/JUtility/JUTAssert.h"
-#include "dol2asm.h"
 
 //
 // Forward References:
 //
-
-extern "C" void readCommand___22JAUAudioArcInterpreterFv();
 
 //
 // Declarations:
@@ -28,8 +25,6 @@ JAUAudioArcInterpreter::~JAUAudioArcInterpreter() {}
 
 /* 802A42A8-802A4314 29EBE8 006C+00 0/0 1/1 0/0 .text            parse__22JAUAudioArcInterpreterFPCv
  */
-// regswap
-#ifdef NONMATCHING
 bool JAUAudioArcInterpreter::parse(void const* param_0) {
     mBase = (const u8*)param_0;
     mReadPtr = mBase;
@@ -39,16 +34,6 @@ bool JAUAudioArcInterpreter::parse(void const* param_0) {
     while (readCommand_()) {}
     return true;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool JAUAudioArcInterpreter::parse(void const* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAUAudioArcInterpreter/parse__22JAUAudioArcInterpreterFPCv.s"
-}
-#pragma pop
-#endif
 
 /* 802A4314-802A431C 29EC54 0008+00 1/0 1/0 0/0 .text readCommandMore__22JAUAudioArcInterpreterFUl
  */
@@ -57,8 +42,6 @@ bool JAUAudioArcInterpreter::readCommandMore(u32 param_0) {
 }
 
 /* 802A431C-802A4740 29EC5C 0424+00 1/1 0/0 0/0 .text readCommand___22JAUAudioArcInterpreterFv */
-// regalloc
-#ifdef NONMATCHING
 bool JAUAudioArcInterpreter::readCommand_() {
     u32 cmd = readU32_();
     switch (cmd) {
@@ -148,13 +131,3 @@ bool JAUAudioArcInterpreter::readCommand_() {
     }
     return true;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool JAUAudioArcInterpreter::readCommand_() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAUAudioArcInterpreter/readCommand___22JAUAudioArcInterpreterFv.s"
-}
-#pragma pop
-#endif

@@ -1260,7 +1260,7 @@ asm void J2DPictureEx::prepend(ResTIMG const* param_0, f32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DPictureEx::insert(char const* param_0, u8 param_1, f32 param_2) {
+asm bool J2DPictureEx::insert(char const* param_0, u8 param_1, f32 param_2) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DPictureEx/insert__12J2DPictureExFPCcUcf.s"
 }

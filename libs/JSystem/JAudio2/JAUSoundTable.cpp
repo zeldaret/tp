@@ -38,7 +38,7 @@ asm void JAUSoundTable::init(void const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAUSoundTable::getTypeID(JAISoundID param_0) const {
+asm u8 JAUSoundTable::getTypeID(JAISoundID param_0) const {
     nofralloc
 #include "asm/JSystem/JAudio2/JAUSoundTable/getTypeID__13JAUSoundTableCF10JAISoundID.s"
 }

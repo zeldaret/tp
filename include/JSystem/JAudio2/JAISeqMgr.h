@@ -4,6 +4,7 @@
 #include "JSystem/JAudio2/JAISeqDataMgr.h"
 #include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JSupport/JSUList.h"
+#include "JSystem/JUtility/JUTAssert.h"
 
 struct JAIAudience;
 class JAISeq;
@@ -25,7 +26,23 @@ public:
     /* 802A1804 */ virtual bool isUsingSeqData(JAISeqDataRegion const&);
     /* 802A1870 */ virtual int releaseSeqData(JAISeqDataRegion const&);
 
+    void setAudience(JAIAudience* param_0) { mAudience = param_0; }
     JAISeqDataMgr* getSeqDataMgr() { return seqDataMgr_; }
+    void setSeqDataMgr(JAISeqDataMgr* param_0) {
+        JUT_ASSERT("JAISeqMgr.h", 0x7c, !isActive());
+        resetSeqDataMgr();
+        seqDataMgr_ = param_0;
+        seqDataMgr_->setSeqDataUser(this);
+    }
+    void resetSeqDataMgr() {
+        JUT_ASSERT("JAISeqMgr.h", 0x83, !isActive());
+        if (seqDataMgr_) {
+            seqDataMgr_->setSeqDataUser(NULL);
+            seqDataMgr_ = NULL;
+        }
+    }
+    JAISoundParamsMove* getParams() { return &mMove; }
+    bool isActive() { return mSeqList.getNumLinks() != 0; }
 
 private:
     /* 0x04 */ JAISoundActivity mActivity;

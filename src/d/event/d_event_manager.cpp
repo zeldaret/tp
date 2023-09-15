@@ -370,7 +370,7 @@ void dEvent_manager_c::Sequencer() {
                     }
                 }
             }
-            Z2GetAudioMgr()->mStatusMgr.setDemoName(name);
+            Z2GetAudioMgr()->setDemoName(name);
         }
 
         if (event->finishCheck()) {
@@ -477,7 +477,7 @@ void dEvent_manager_c::Sequencer() {
         }
     } else {
         if (evtControl.chkEventFlag(0x100)) {
-            Z2GetAudioMgr()->mStatusMgr.setDemoName(NULL);
+            Z2GetAudioMgr()->setDemoName(NULL);
         }
     }
 }

@@ -17,6 +17,7 @@ public:
     JAISoundID() {}
 
     bool isAnonymous() { return mId.mFullId == 0xffffffff; }
+    void setAnonymous() { mId.mFullId = -1; }
 
     union {
         u32 mFullId;

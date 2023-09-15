@@ -1052,24 +1052,24 @@ void jmessage_tReference::selectMessage() {
                 if (mSelectNum == 2) {
                     if (mSelectPos == 1) {
                         mSelectPos = 0;
-                        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f,
+                        Z2GetAudioMgr()->seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f,
                                                         -1.0f, -1.0f, 0);
                     }
                 } else if (mSelectNum == 3 && mSelectPos != 0) {
                     mSelectPos--;
-                    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f,
+                    Z2GetAudioMgr()->seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f,
                                                     -1.0f, -1.0f, 0);
                 }
             } else if (mpStick->checkDownTrigger()) {
                 if (mSelectNum == 2) {
                     if (mSelectPos == 0) {
                         mSelectPos = 1;
-                        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f,
+                        Z2GetAudioMgr()->seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f,
                                                         -1.0f, -1.0f, 0);
                     }
                 } else if (mSelectNum == 3 && mSelectPos < 2) {
                     mSelectPos++;
-                    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f,
+                    Z2GetAudioMgr()->seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f,
                                                     -1.0f, -1.0f, 0);
                 }
             }
@@ -1077,24 +1077,24 @@ void jmessage_tReference::selectMessage() {
             if (mSelectPos == 1) {
                 mSelectPos = 0;
                 getObjectPtr()->getSequenceProcessor()->calcStringLength();
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                Z2GetAudioMgr()->seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                                 -1.0f, 0);
             } else if (mSelectPos == 2) {
                 mSelectPos = 1;
                 getObjectPtr()->getSequenceProcessor()->calcStringLength();
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                Z2GetAudioMgr()->seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                                 -1.0f, 0);
             }
         } else if (mpStick->checkRightTrigger()) {
             if (mSelectPos == 0) {
                 mSelectPos = 1;
                 getObjectPtr()->getSequenceProcessor()->calcStringLength();
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                Z2GetAudioMgr()->seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                                 -1.0f, 0);
             } else if (mSelectPos == 1 && mSelectNum == 3) {
                 mSelectPos = 2;
                 getObjectPtr()->getSequenceProcessor()->calcStringLength();
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                Z2GetAudioMgr()->seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                                 -1.0f, 0);
             }
         }
@@ -1162,13 +1162,13 @@ void jmessage_tReference::inputNumber() {
     } else if (mpStick->checkLeftTrigger()) {
         if (mInputFigure < max_figure) {
             mInputFigure++;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
         }
     } else if (mpStick->checkRightTrigger()) {
         if (mInputFigure != 0) {
             mInputFigure--;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
         }
     }
@@ -1182,7 +1182,7 @@ void jmessage_tReference::inputNumber() {
     }
 
     if (new_input_val != input_val) {
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+        Z2GetAudioMgr()->seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
     }
 

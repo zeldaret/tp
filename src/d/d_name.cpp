@@ -1422,17 +1422,23 @@ void dName_c::NameStrSet() {
 
 /* 80251048-80251094 24B988 004C+00 6/6 0/0 0/0 .text            getMenuPosIdx__7dName_cFUc */
 s32 dName_c::getMenuPosIdx(u8 selPos) {
+    s32 result;
     switch (selPos) {
     case 0:
-        return 0;
+        result = 0;
+        break;
     case 1:
-        return 1;
+        result = 1;
+        break;
     case 2:
-        return 2;
+        result = 2;
+        break;
     case 3:
-        return 3;
+        result = 3;
+        break;
     }
-    //!@bug UB: no default return
+    return result;
+    //!@bug UB: uninitialized default return
 }
 
 /* 80251094-8025115C 24B9D4 00C8+00 1/0 0/0 0/0 .text            draw__14dDlst_NameIN_cFv */

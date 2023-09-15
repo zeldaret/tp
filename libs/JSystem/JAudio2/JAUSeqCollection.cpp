@@ -4,74 +4,31 @@
 //
 
 #include "JSystem/JAudio2/JAUSeqCollection.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "dol2asm.h"
 
 //
 // Types:
 //
 
-struct JAISeqDataUser {};
-
-struct JAISoundID {};
-
-struct JAISeqData {};
-
-struct JAUSeqDataMgr_SeqCollection {
-    /* 802A677C */ JAUSeqDataMgr_SeqCollection();
-    /* 802A67D0 */ void setSeqDataUser(JAISeqDataUser*);
-    /* 802A67DC */ void releaseSeqData();
-    /* 802A683C */ void getSeqData(JAISoundID, JAISeqData*);
-    /* 802A6894 */ ~JAUSeqDataMgr_SeqCollection();
-};
-
-struct JAISeqDataRegion {};
-
-struct JAUSeqCollection {
-    /* 802A66A0 */ JAUSeqCollection();
-    /* 802A66AC */ void init(void const*);
-    /* 802A66FC */ void getSeqData(int, int, JAISeqData*);
-    /* 802A6754 */ void getSeqDataRegion(JAISeqDataRegion*);
-};
-
-struct JAISeqDataMgr {
-    /* 802A17BC */ ~JAISeqDataMgr();
-};
-
 //
 // Forward References:
 //
 
-extern "C" void __ct__16JAUSeqCollectionFv();
-extern "C" void init__16JAUSeqCollectionFPCv();
 extern "C" void getSeqData__16JAUSeqCollectionFiiP10JAISeqData();
-extern "C" void getSeqDataRegion__16JAUSeqCollectionFP16JAISeqDataRegion();
-extern "C" void __ct__27JAUSeqDataMgr_SeqCollectionFv();
-extern "C" void setSeqDataUser__27JAUSeqDataMgr_SeqCollectionFP14JAISeqDataUser();
-extern "C" void releaseSeqData__27JAUSeqDataMgr_SeqCollectionFv();
-extern "C" void getSeqData__27JAUSeqDataMgr_SeqCollectionF10JAISoundIDP10JAISeqData();
-extern "C" void __dt__27JAUSeqDataMgr_SeqCollectionFv();
 
 //
 // External References:
 //
-
-extern "C" void __dt__13JAISeqDataMgrFv();
-extern "C" void __dl__FPv();
-extern "C" extern void* __vt__13JAISeqDataMgr[6];
 
 //
 // Declarations:
 //
 
 /* 802A66A0-802A66AC 2A0FE0 000C+00 1/1 0/0 0/0 .text            __ct__16JAUSeqCollectionFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JAUSeqCollection::JAUSeqCollection() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAUSeqCollection/__ct__16JAUSeqCollectionFv.s"
+JAUSeqCollection::JAUSeqCollection() {
+    field_0x8 = NULL;
 }
-#pragma pop
 
 /* 802A66AC-802A66FC 2A0FEC 0050+00 0/0 1/1 0/0 .text            init__16JAUSeqCollectionFPCv */
 #pragma push
@@ -88,7 +45,7 @@ asm void JAUSeqCollection::init(void const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAUSeqCollection::getSeqData(int param_0, int param_1, JAISeqData* param_2) {
+asm bool JAUSeqCollection::getSeqData(int param_0, int param_1, JAISeqData* param_2) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAUSeqCollection/getSeqData__16JAUSeqCollectionFiiP10JAISeqData.s"
 }
@@ -105,67 +62,53 @@ asm void JAUSeqCollection::getSeqDataRegion(JAISeqDataRegion* param_0) {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 803C9B38-803C9B50 026C58 0018+00 2/2 0/0 0/0 .data            __vt__27JAUSeqDataMgr_SeqCollection
- */
-SECTION_DATA extern void* __vt__27JAUSeqDataMgr_SeqCollection[6] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__27JAUSeqDataMgr_SeqCollectionFv,
-    (void*)getSeqData__27JAUSeqDataMgr_SeqCollectionF10JAISoundIDP10JAISeqData,
-    (void*)releaseSeqData__27JAUSeqDataMgr_SeqCollectionFv,
-    (void*)setSeqDataUser__27JAUSeqDataMgr_SeqCollectionFP14JAISeqDataUser,
-};
-
 /* 802A677C-802A67D0 2A10BC 0054+00 0/0 1/1 0/0 .text __ct__27JAUSeqDataMgr_SeqCollectionFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JAUSeqDataMgr_SeqCollection::JAUSeqDataMgr_SeqCollection() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAUSeqCollection/__ct__27JAUSeqDataMgr_SeqCollectionFv.s"
+JAUSeqDataMgr_SeqCollection::JAUSeqDataMgr_SeqCollection() {
+    user_ = NULL;
 }
-#pragma pop
 
 /* 802A67D0-802A67DC 2A1110 000C+00 1/0 0/0 0/0 .text
  * setSeqDataUser__27JAUSeqDataMgr_SeqCollectionFP14JAISeqDataUser */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAUSeqDataMgr_SeqCollection::setSeqDataUser(JAISeqDataUser* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAUSeqCollection/setSeqDataUser__27JAUSeqDataMgr_SeqCollectionFP14JAISeqDataUser.s"
+bool JAUSeqDataMgr_SeqCollection::setSeqDataUser(JAISeqDataUser* param_0) {
+    JUT_ASSERT("JAUSeqCollection.cpp", 0x3c, user_ == 0);
+    user_ = param_0;
+    return true;
 }
-#pragma pop
 
 /* 802A67DC-802A683C 2A111C 0060+00 1/0 0/0 0/0 .text
  * releaseSeqData__27JAUSeqDataMgr_SeqCollectionFv              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAUSeqDataMgr_SeqCollection::releaseSeqData() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAUSeqCollection/releaseSeqData__27JAUSeqDataMgr_SeqCollectionFv.s"
+int JAUSeqDataMgr_SeqCollection::releaseSeqData() {
+    if (user_) {
+        JAISeqDataRegion region;
+        getSeqDataRegion(&region);
+        return user_->releaseSeqData(region);
+    }
+    return 2;
 }
-#pragma pop
 
 /* 802A683C-802A6894 2A117C 0058+00 1/0 0/0 0/0 .text
  * getSeqData__27JAUSeqDataMgr_SeqCollectionF10JAISoundIDP10JAISeqData */
+// branch
+#ifdef NONMATCHING
+s32 JAUSeqDataMgr_SeqCollection::getSeqData(JAISoundID param_0, JAISeqData* param_1) {
+    if (!isValid()) {
+        return 0;
+    }
+    if (JAUSeqCollection::getSeqData(param_0.mId.mBytes.b1, param_0.mId.mAdvancedId.mShortId, param_1)) {
+        return 2;
+    }
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAUSeqDataMgr_SeqCollection::getSeqData(JAISoundID param_0, JAISeqData* param_1) {
+asm s32 JAUSeqDataMgr_SeqCollection::getSeqData(JAISoundID param_0, JAISeqData* param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAUSeqCollection/getSeqData__27JAUSeqDataMgr_SeqCollectionF10JAISoundIDP10JAISeqData.s"
 }
 #pragma pop
+#endif
 
 /* 802A6894-802A68F4 2A11D4 0060+00 1/0 0/0 0/0 .text __dt__27JAUSeqDataMgr_SeqCollectionFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JAUSeqDataMgr_SeqCollection::~JAUSeqDataMgr_SeqCollection() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAUSeqCollection/__dt__27JAUSeqDataMgr_SeqCollectionFv.s"
-}
-#pragma pop
+JAUSeqDataMgr_SeqCollection::~JAUSeqDataMgr_SeqCollection() {}

@@ -6,7 +6,7 @@
 #include "global.h"
 
 struct Z2EnvSeBase {
-    /* 802C589C */ Z2EnvSeBase(Vec*);
+    /* 802C589C */ Z2EnvSeBase(Vec* param_0 = NULL);
     /* 802C58AC */ ~Z2EnvSeBase();
     /* 802C5908 */ void startEnvSe(JAISoundID, f32, f32, f32, f32, f32, u32);
     /* 802C5AB4 */ void startEnvSeLevel(JAISoundID, f32, f32, f32, f32, f32, u32);
@@ -31,7 +31,7 @@ struct Z2EnvSeAutoPan : public Z2EnvSeBase {
 };  // Size: 0x1C
 
 struct Z2EnvSeDir : public Z2EnvSeBase {
-    /* 802C5C9C */ Z2EnvSeDir(Vec*);
+    /* 802C5C9C */ Z2EnvSeDir(Vec* param_0 = NULL);
     /* 802C5D1C */ ~Z2EnvSeDir();
     /* 802C5D70 */ void setPanDir(Vec*);
     /* 802C5D9C */ void calcPan(f32);
@@ -111,7 +111,7 @@ struct Z2EnvSeMgr : public JASGlobalInstance<Z2EnvSeMgr> {
     /* 0x120 */ Z2Calc::FNoise1f field_0x120;
     /* 0x130 */ Z2Calc::FNoise1f field_0x130;
     /* 0x140 */ u8 field_0x140;
-    /* 0x141 */ u8 field_0x141;
+    /* 0x141 */ u8 mSnowPower;
     /* 0x144 */ Z2EnvSeDir field_0x144;
     /* 0x160 */ u8 mWindType;
     /* 0x164 */ Z2MultiSeMgr field_0x164;
@@ -158,7 +158,7 @@ struct Z2EnvSeMgr : public JASGlobalInstance<Z2EnvSeMgr> {
     /* 0x2E4 */ u8 field_0x2e4;
     /* 0x2E8 */ Z2Calc::FNoise1f field_0x2e8;
     /* 0x2F8 */ Z2Calc::FNoise1f field_0x2f8;
-    /* 0x308 */ f32 field_0x308;
+    /* 0x308 */ f32 mFogDensity;
 };  // Size: 0x30C
 
 STATIC_ASSERT(sizeof(Z2EnvSeMgr) == 0x30C);

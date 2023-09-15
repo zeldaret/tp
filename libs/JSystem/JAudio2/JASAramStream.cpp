@@ -138,7 +138,7 @@ u8 JASAramStream::sLoadThread[4];
 u8 JASAramStream::sReadBuffer[4];
 
 /* 80451258-8045125C 000758 0004+00 6/6 1/1 0/0 .sbss            sBlockSize__13JASAramStream */
-u8 JASAramStream::sBlockSize[4];
+u32 JASAramStream::sBlockSize;
 
 /* 8045125C-80451260 00075C 0004+00 1/1 0/0 0/0 .sbss            sChannelMax__13JASAramStream */
 u8 JASAramStream::sChannelMax[4];

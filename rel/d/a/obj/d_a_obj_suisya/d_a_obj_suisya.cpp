@@ -30,7 +30,7 @@ static int daObj_Suisya_Draw(daObj_Suisya_c* i_this) {
 
 /* 80CF0168-80CF020C 000168 00A4+00 1/1 0/0 0/0 .text            execute__14daObj_Suisya_cFv */
 int daObj_Suisya_c::execute() {
-    Z2GetAudioMgr()->mSeMgr.seStartLevel(Z2SE_OBJ_WATERMILL_ROUND, &current.pos, 0, 0, 1.0f, 1.0f,
+    Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_WATERMILL_ROUND, &current.pos, 0, 0, 1.0f, 1.0f,
                                          -1.0f, -1.0f, 0);
     shape_angle.x += 25;
 

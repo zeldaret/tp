@@ -176,7 +176,7 @@ void daTagLv2PrChk_c::actionEnd() {}
 /* 805A5294-805A52F4 0006B4 0060+00 1/1 0/0 0/0 .text            seStartWrong__15daTagLv2PrChk_cFv
  */
 void daTagLv2PrChk_c::seStartWrong() {
-    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SYS_RESULT_WRONG, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    Z2GetAudioMgr()->seStart(Z2SE_SYS_RESULT_WRONG, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
 }
 
 /* 805A52F4-805A52FC 000714 0008+00 1/1 0/0 0/0 .text            _delete__15daTagLv2PrChk_cFv */

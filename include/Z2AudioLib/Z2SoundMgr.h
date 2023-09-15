@@ -6,6 +6,8 @@
 #include "JSystem/JAudio2/JAIStreamMgr.h"
 #include "global.h"
 
+u16 seqCallback(JASTrack* param_0, u16 param_1);
+
 class Z2SoundMgr : public JASGlobalInstance<Z2SoundMgr> {
 public:
     /* 802A9E80 */ Z2SoundMgr();
@@ -23,10 +25,12 @@ public:
     /* 802AA9E8 */ void multiVolumeSoundID(JAISoundID, f32);
     /* 802AAAC4 */ void isPlayingSoundID(JAISoundID);
 
-    /* 802A9EE8 */ virtual void startSound(JAISoundID, JAISoundHandle*,
+    /* 802A9EE8 */ virtual int startSound(JAISoundID, JAISoundHandle*,
                                                  JGeometry::TVec3<f32> const*);
 
     JAISeMgr* getSeMgr() { return &mSeMgr; }
+    JAISeqMgr* getSeqMgr() { return &mSeqMgr; }
+    JAIStreamMgr* getStreamMgr() { return &mStreamMgr; }
 
 private:
     /* 0x004 */ JAISeMgr mSeMgr;

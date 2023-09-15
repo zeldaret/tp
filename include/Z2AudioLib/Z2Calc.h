@@ -10,6 +10,12 @@ enum CurveSign {
 };
 
 struct FNoise1f {
+    FNoise1f(float param_0 = 0.1f, float param_1 = 0.0f, float param_2 = 0.01f) {
+        unk0 = param_0;
+        unk4 = param_0;
+        unk8 = param_2;
+        unk12 = param_1;
+    }
     void setParam(float, float, float);
     float tau(float);
     float calcNoise1f();

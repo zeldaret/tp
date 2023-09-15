@@ -139,7 +139,6 @@ extern "C" void _savegpr_16();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_16();
 extern "C" void _restgpr_29();
-extern "C" void strcmp();
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 struct_80450860[4];

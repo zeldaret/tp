@@ -164,24 +164,12 @@ extern "C" extern u8 __OSReport_disable;
 //
 
 /* 802C589C-802C58AC 2C01DC 0010+00 3/3 0/0 0/0 .text            __ct__11Z2EnvSeBaseFP3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Z2EnvSeBase::Z2EnvSeBase(Vec* param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2EnvSeMgr/__ct__11Z2EnvSeBaseFP3Vec.s"
+Z2EnvSeBase::Z2EnvSeBase(Vec* param_0) {
+    mPos = param_0;
 }
-#pragma pop
 
 /* 802C58AC-802C5908 2C01EC 005C+00 3/3 0/0 0/0 .text            __dt__11Z2EnvSeBaseFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Z2EnvSeBase::~Z2EnvSeBase() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2EnvSeMgr/__dt__11Z2EnvSeBaseFv.s"
-}
-#pragma pop
+Z2EnvSeBase::~Z2EnvSeBase() {}
 
 /* ############################################################################################## */
 /* 80455D40-80455D44 004340 0004+00 2/2 0/0 0/0 .sdata2          @3501 */
@@ -237,31 +225,25 @@ asm void Z2EnvSeBase::startEnvSeLevel(JAISoundID param_0, f32 param_1, f32 param
 
 /* ############################################################################################## */
 /* 8039C250-8039C260 0288B0 000C+04 2/2 0/0 0/0 .rodata          cNullVec__6Z2Calc */
-SECTION_RODATA static u8 const cNullVec__6Z2Calc[12 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_RODATA static Vec const cNullVec__6Z2Calc = {0.0f, 0.0f, 0.0f};
 COMPILER_STRIP_GATE(0x8039C250, &cNullVec__6Z2Calc);
 
 /* 80455D60-80455D64 004360 0004+00 10/10 0/0 0/0 .sdata2          @3574 */
 SECTION_SDATA2 static f32 lit_3574 = 0.5f;
 
 /* 802C5C9C-802C5D1C 2C05DC 0080+00 1/1 0/0 0/0 .text            __ct__10Z2EnvSeDirFP3Vec */
+// matches with literals
+#ifdef NONMATCHING
+Z2EnvSeDir::Z2EnvSeDir(Vec* param_0) {
+    field_0x8 = 0.5f;
+    field_0xc = 0.5f;
+    if (param_0) {
+        setPanDir(param_0);
+    } else {
+        mPanDir = cNullVec__6Z2Calc;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -270,22 +252,24 @@ asm Z2EnvSeDir::Z2EnvSeDir(Vec* param_0) {
 #include "asm/Z2AudioLib/Z2EnvSeMgr/__ct__10Z2EnvSeDirFP3Vec.s"
 }
 #pragma pop
+#endif
 
 /* 802C5D1C-802C5D70 2C065C 0054+00 1/1 0/0 0/0 .text            __dt__10Z2EnvSeDirFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Z2EnvSeDir::~Z2EnvSeDir() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2EnvSeMgr/__dt__10Z2EnvSeDirFv.s"
-}
-#pragma pop
+Z2EnvSeDir::~Z2EnvSeDir() {}
 
 /* ############################################################################################## */
 /* 80455D64-80455D68 004364 0004+00 1/1 0/0 0/0 .sdata2          @3585 */
 SECTION_SDATA2 static f32 lit_3585 = -1000.0f;
 
 /* 802C5D70-802C5D9C 2C06B0 002C+00 2/2 0/0 0/0 .text            setPanDir__10Z2EnvSeDirFP3Vec */
+// matches with literals
+#ifdef NONMATCHING
+void Z2EnvSeDir::setPanDir(Vec* dir) {
+    mPanDir.x = dir->x * -1000.0f;
+    mPanDir.y = dir->y * -1000.0f;
+    mPanDir.z = dir->z * -1000.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -294,6 +278,7 @@ asm void Z2EnvSeDir::setPanDir(Vec* param_0) {
 #include "asm/Z2AudioLib/Z2EnvSeMgr/setPanDir__10Z2EnvSeDirFP3Vec.s"
 }
 #pragma pop
+#endif
 
 /* 802C5D9C-802C5E90 2C06DC 00F4+00 1/1 0/0 0/0 .text            calcPan__10Z2EnvSeDirFf */
 #pragma push
@@ -324,6 +309,17 @@ SECTION_SDATA2 static f32 lit_3654 = 0.0018554000416770577f;
 SECTION_SDATA2 static f32 lit_3655 = 0.0008553999941796064f;
 
 /* 802C5ECC-802C5F28 2C080C 005C+00 1/1 0/0 0/0 .text            __ct__14Z2EnvSeAutoPanFv */
+// matches with literals
+#ifdef NONMATCHING
+Z2EnvSeAutoPan::Z2EnvSeAutoPan() {
+    field_0x8 = 0.5f;
+    field_0xc = 0.5f;
+    field_0x10 = 0.0018554000416770577f;
+    field_0x14 = 0.0008553999941796064f;
+    field_0x18 = 1;
+    field_0x19 = 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -332,16 +328,10 @@ asm Z2EnvSeAutoPan::Z2EnvSeAutoPan() {
 #include "asm/Z2AudioLib/Z2EnvSeMgr/__ct__14Z2EnvSeAutoPanFv.s"
 }
 #pragma pop
+#endif
 
 /* 802C5F28-802C5F7C 2C0868 0054+00 1/1 0/0 0/0 .text            __dt__14Z2EnvSeAutoPanFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Z2EnvSeAutoPan::~Z2EnvSeAutoPan() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2EnvSeMgr/__dt__14Z2EnvSeAutoPanFv.s"
-}
-#pragma pop
+Z2EnvSeAutoPan::~Z2EnvSeAutoPan() {}
 
 /* 802C5F7C-802C5F98 2C08BC 001C+00 2/2 0/0 0/0 .text setPanParam__14Z2EnvSeAutoPanFffbbff */
 #pragma push
@@ -472,6 +462,41 @@ SECTION_SDATA2 static f32 lit_3776 = 0.0010000000474974513f;
 SECTION_SDATA2 static f32 lit_3777 = 0.0037908784579485655f;
 
 /* 802C611C-802C6540 2C0A5C 0424+00 0/0 1/1 0/0 .text            __ct__10Z2EnvSeMgrFv */
+// matches with literals
+#ifdef NONMATCHING
+Z2EnvSeMgr::Z2EnvSeMgr()
+    : JASGlobalInstance<Z2EnvSeMgr>(this), field_0x38(), field_0x48(1.0f), field_0x4c(1.0f),
+      field_0x50(1.0f), field_0x140(), mSnowPower(), mWindType(), field_0x188(), field_0x1ac(1.0f),
+      field_0x1b0(1.0f), field_0x1b4(1.0f), field_0x1b8(), field_0x1e0(), field_0x1e4(1.0f),
+      field_0x1e8(1.0f), field_0x1ec(1.0f), field_0x214(), field_0x218(1.0f), field_0x21c(1.0f),
+      field_0x220(1.0f), field_0x248(), field_0x24c(1.0f), field_0x250(1.0f), field_0x254(1.0f),
+      field_0x27c(), field_0x280(1.0f), field_0x284(1.0f), field_0x288(1.0f), field_0x2b0(),
+      field_0x2b4(1.0f), field_0x2b8(1.0f), field_0x2bc(1.0f), field_0x2e4(), mFogDensity() {
+    field_0x3c = 0.0f;
+    field_0x40 = 0.0f;
+    field_0x44 = 0.0f;
+    field_0x54 = 0.0f;
+    field_0x58 = 0.0f;
+    field_0x5c = 0.0f;
+    field_0x39 = 0;
+    field_0x2e8.setParam(0.1f, 0.007823764f, 0.06f);
+    field_0x2f8.setParam(0.2f, 0.007823764f, 0.06f);
+    field_0x90.setParam(0.1f, 0.02630252f, 0.005f);
+    field_0xa0.setParam(0.9f, 0.02331011f, 0.003f);
+    field_0xb0.setParam(0.2f, 0.006385157f, 0.004f);
+    field_0xc0.setParam(0.8f, 0.006188805f, 0.0045f);
+    field_0xd0.setParam(0.3f, 0.05343298f, 0.002f);
+    field_0xe0.setParam(0.7f, 0.04256627f, 0.0025f);
+    field_0xf0.setParam(0.4f, 0.01293395f, 0.006f);
+    field_0x100.setParam(0.6f, 0.01215741f, 0.0065f);
+    field_0x18c.setParam(0.1f, 0.02331011f, 0.005f);
+    field_0x19c.setParam(0.5f, 0.05343298f, 0.0025f);
+    field_0x64.setVolumeScale(1.0f);
+    field_0x2c0.setVolumeScale(1.0f);
+    field_0x120.setParam(0.5f, 0.02092357f, 0.001f);
+    field_0x130.setParam(0.1f, 0.003790878f, 0.005f);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -480,16 +505,10 @@ asm Z2EnvSeMgr::Z2EnvSeMgr() {
 #include "asm/Z2AudioLib/Z2EnvSeMgr/__ct__10Z2EnvSeMgrFv.s"
 }
 #pragma pop
+#endif
 
 /* 802C6540-802C66B0 2C0E80 0170+00 0/0 1/1 0/0 .text            __dt__10Z2EnvSeMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Z2EnvSeMgr::~Z2EnvSeMgr() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2EnvSeMgr/__dt__10Z2EnvSeMgrFv.s"
-}
-#pragma pop
+Z2EnvSeMgr::~Z2EnvSeMgr() {}
 
 /* ############################################################################################## */
 /* 80455DEC-80455DF0 0043EC 0004+00 1/1 0/0 0/0 .sdata2          @3928 */
