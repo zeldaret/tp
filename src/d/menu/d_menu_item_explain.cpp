@@ -1,7 +1,7 @@
 /**
  * d_menu_item_explain.cpp
  * Menu - Item Explain
-*/
+ */
 
 #include "d/menu/d_menu_item_explain.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
@@ -27,118 +27,6 @@
 #include "msg/scrn/d_msg_scrn_3select.h"
 #include "msg/scrn/d_msg_scrn_arrow.h"
 
-extern "C" void __ct__19dMenu_ItemExplain_cFP10JKRExpHeapP10JKRArchiveP9STControlb();
-extern "C" void __dt__19dMenu_ItemExplain_cFv();
-extern "C" void move__19dMenu_ItemExplain_cFv();
-extern "C" void draw__19dMenu_ItemExplain_cFP13J2DOrthoGraph();
-extern "C" void drawKantera__19dMenu_ItemExplain_cFv();
-extern "C" void wait_init__19dMenu_ItemExplain_cFv();
-extern "C" void wait_proc__19dMenu_ItemExplain_cFv();
-extern "C" void open_init__19dMenu_ItemExplain_cFv();
-extern "C" void open_proc__19dMenu_ItemExplain_cFv();
-extern "C" void move_init__19dMenu_ItemExplain_cFv();
-extern "C" void move_proc__19dMenu_ItemExplain_cFv();
-extern "C" void move_select_init__19dMenu_ItemExplain_cFv();
-extern "C" void move_select_proc__19dMenu_ItemExplain_cFv();
-extern "C" void move_next_init__19dMenu_ItemExplain_cFv();
-extern "C" void move_next_proc__19dMenu_ItemExplain_cFv();
-extern "C" void close_init__19dMenu_ItemExplain_cFv();
-extern "C" void close_proc__19dMenu_ItemExplain_cFv();
-extern "C" void openExplain__19dMenu_ItemExplain_cFUcUcUcb();
-extern "C" void openExplainDmap__19dMenu_ItemExplain_cFUcUcUcbUc();
-extern "C" void openExplainTx__19dMenu_ItemExplain_cFUlUl();
-extern "C" void getAlphaRatio__19dMenu_ItemExplain_cFv();
-extern "C" void setNumber__19dMenu_ItemExplain_cFv();
-extern "C" void getWarpMarkFlag__19dMenu_ItemExplain_cFv();
-extern "C" void setScale__19dMenu_ItemExplain_cFv();
-extern "C" void __sinit_d_menu_item_explain_cpp();
-extern "C" extern char const* const d_menu_d_menu_item_explain__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoExt_getMesgFont__Fv();
-extern "C" void dComIfGs_isDungeonItemWarp__Fi();
-extern "C" void dComIfGs_getWarpMarkFlag__Fv();
-extern "C" void checkTrigger__9STControlFv();
-extern "C" void checkUpTrigger__9STControlFv();
-extern "C" void checkDownTrigger__9STControlFv();
-extern "C" void getItem__17dSv_player_item_cCFib();
-extern "C" void isFirstBit__21dSv_player_get_item_cCFUc();
-extern "C" void getBombNum__24dSv_player_item_record_cCFUc();
-extern "C" void checkItemGet__FUci();
-extern "C" void __ct__15dKantera_icon_cFv();
-extern "C" void setAlphaRate__15dKantera_icon_cFf();
-extern "C" void setPos__15dKantera_icon_cFff();
-extern "C" void setScale__15dKantera_icon_cFff();
-extern "C" void setNowGauge__15dKantera_icon_cFUsUs();
-extern "C" void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c();
-extern "C" void getStringLength__13dMeter2Info_cFP7JUTFontffPc();
-extern "C" void
-readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei();
-extern "C" void dMeter2Info_getNumberTextureName__Fi();
-extern "C" void dMeter2Info_set2DVibration__Fv();
-extern "C" void isSelect__17dMsgScrn3Select_cFv();
-extern "C" void setString__17dMsgScrn3Select_cFPcPcPc();
-extern "C" void setRubyString__17dMsgScrn3Select_cFPcPcPc();
-extern "C" void translate__17dMsgScrn3Select_cFff();
-extern "C" void draw__17dMsgScrn3Select_cFff();
-extern "C" void selAnimeInit__17dMsgScrn3Select_cFUcUcUcfUc();
-extern "C" void selAnimeMove__17dMsgScrn3Select_cFUcUcb();
-extern "C" void selAnimeEnd__17dMsgScrn3Select_cFv();
-extern "C" void getTextBoxWidth__17dMsgScrn3Select_cFv();
-extern "C" void getFontSize__17dMsgScrn3Select_cFv();
-extern "C" void getCharSpace__17dMsgScrn3Select_cFv();
-extern "C" void draw__15dMsgScrnArrow_cFv();
-extern "C" void arwAnimeInit__15dMsgScrnArrow_cFv();
-extern "C" void arwAnimeMove__15dMsgScrnArrow_cFv();
-extern "C" void __ct__12dMsgString_cFUc();
-extern "C" void __dt__12dMsgString_cFv();
-extern "C" void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap();
-extern "C" void getGlobalPosX__8CPaneMgrFv();
-extern "C" void getGlobalPosY__8CPaneMgrFv();
-extern "C" void paneTrans__8CPaneMgrFff();
-extern "C" void show__13CPaneMgrAlphaFv();
-extern "C" void hide__13CPaneMgrAlphaFv();
-extern "C" void getAlphaRate__13CPaneMgrAlphaFv();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void alloc__7JKRHeapFUli();
-extern "C" void free__7JKRHeapFPv();
-extern "C" void getTotalFreeSize__7JKRHeapFv();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void appendChild__7J2DPaneFP7J2DPane();
-extern "C" void getBounds__7J2DPaneFv();
-extern "C" void setBasePosition__7J2DPaneF15J2DBasePosition();
-extern "C" void __ct__9J2DScreenFv();
-extern "C" void setPriority__9J2DScreenFPCcUlP10JKRArchive();
-extern "C" void draw__9J2DScreenFffPC14J2DGrafContext();
-extern "C" void animation__9J2DScreenFv();
-extern "C" void __ct__10J2DPictureFPC7ResTIMG();
-extern "C" void func_802FC800();
-extern "C" void setString__10J2DTextBoxFsPCce();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_21();
-extern "C" void _savegpr_22();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_21();
-extern "C" void _restgpr_22();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-
-extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
 /* 80396950-80396970 022FB0 0020+00 1/1 0/0 0/0 .rodata          name_tag$3883 */
 static const u64 name_tag[4] = {
     'item_n04',
@@ -659,21 +547,20 @@ void dMenu_ItemExplain_c::move_select_proc() {
         }
         if (field_0xe5 == 2) {
             mStatus = 5;
-            Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
-                                            -1.0f, 0);
+            Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                     0);
             dMeter2Info_set2DVibration();
         } else {
             mStatus = 2;
             field_0xc8 = field_0xc4;
         }
-        Z2GetAudioMgr()->seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
-                                        0);
+        Z2GetAudioMgr()->seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
     } else if (mDoCPd_c::getTrigB(PAD_1)) {
         mEndButton = 2;
         if (field_0xe5 == 2) {
             mStatus = 5;
-            Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
-                                            -1.0f, 0);
+            Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                     0);
             dMeter2Info_set2DVibration();
         } else {
             mStatus = 2;
@@ -682,14 +569,12 @@ void dMenu_ItemExplain_c::move_select_proc() {
     } else if (mpSelect_c->isSelect() && mpStick->checkUpTrigger()) {
         if (field_0xe2 == 1) {
             field_0xe2 = 0;
-            Z2GetAudioMgr()->seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
-                                            -1.0f, 0);
+            Z2GetAudioMgr()->seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         }
     } else if (mpSelect_c->isSelect() && mpStick->checkDownTrigger()) {
         if (field_0xe2 == 0) {
             field_0xe2 = 1;
-            Z2GetAudioMgr()->seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
-                                            -1.0f, 0);
+            Z2GetAudioMgr()->seStart(Z2SE_SY_TALK_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         }
     }
     if (mStatus == 3) {
@@ -718,8 +603,8 @@ void dMenu_ItemExplain_c::move_next_proc() {
 
         if (field_0xe5 == 2) {
             mStatus = 5;
-            Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
-                                            -1.0f, 0);
+            Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                     0);
             dMeter2Info_set2DVibration();
         } else {
             mStatus = 2;
@@ -882,8 +767,6 @@ f32 dMenu_ItemExplain_c::getAlphaRatio() {
 
 /* 801DC7FC-801DCB54 1D713C 0358+00 1/1 0/0 0/0 .text            setNumber__19dMenu_ItemExplain_cFv
  */
-#ifdef NONMATCHING
-// regalloc
 void dMenu_ItemExplain_c::setNumber() {
     u8 temp = field_0xdf;
     if (temp == 0) {
@@ -914,32 +797,27 @@ void dMenu_ItemExplain_c::setNumber() {
             mpItemNumTex[i]->setBlackWhite(colorBlack, colorWhite);
         }
         if (temp2 < 100) {
-            ResTIMG* texture = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', dMeter2Info_getNumberTextureName(temp2 / 10));
+            ResTIMG* texture = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource(
+                'TIMG', dMeter2Info_getNumberTextureName(temp2 / 10));
             mpItemNumTex[0]->changeTexture(texture, 0);
-            texture = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', dMeter2Info_getNumberTextureName(temp2 % 10));
+            texture = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource(
+                'TIMG', dMeter2Info_getNumberTextureName(temp2 % 10));
             mpItemNumTex[1]->changeTexture(texture, 0);
             mpItemNumTex[2]->hide();
         } else {
-            ResTIMG* texture = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', dMeter2Info_getNumberTextureName(temp2 / 100));
+            ResTIMG* texture = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource(
+                'TIMG', dMeter2Info_getNumberTextureName(temp2 / 100));
             mpItemNumTex[0]->changeTexture(texture, 0);
-            u8 math = temp2 % 100;
-            texture = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', dMeter2Info_getNumberTextureName(math / 10));
+            temp2 = (u8)(temp2 % 100);
+            texture = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource(
+                'TIMG', dMeter2Info_getNumberTextureName(temp2 / 10));
             mpItemNumTex[1]->changeTexture(texture, 0);
-            texture = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', dMeter2Info_getNumberTextureName(math % 10));
+            texture = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource(
+                'TIMG', dMeter2Info_getNumberTextureName(temp2 % 10));
             mpItemNumTex[2]->changeTexture(texture, 0);
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_ItemExplain_c::setNumber() {
-    nofralloc
-#include "asm/d/menu/d_menu_item_explain/setNumber__19dMenu_ItemExplain_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 801DCB54-801DCBBC 1D7494 0068+00 2/2 0/0 0/0 .text getWarpMarkFlag__19dMenu_ItemExplain_cFv */
 bool dMenu_ItemExplain_c::getWarpMarkFlag() {
