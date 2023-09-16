@@ -14,6 +14,7 @@
 #define MAX_ITEM_SLOTS 24
 #define LIGHT_DROP_STAGE 4
 #define LETTER_INFO_BIT 64
+#define MAX_INSECT_NUM 24
 #define BOMB_BAG_MAX 3
 #define BOTTLE_MAX 4
 #define TBOX_MAX 64

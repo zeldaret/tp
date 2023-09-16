@@ -158,7 +158,7 @@ void dScnLogo_c::progSelDraw() {
             }
         }
 
-        if (mDoCPd_c::getTrigA(0) || mTimer == 0) {
+        if (mDoCPd_c::getTrigA(PAD_1) || mTimer == 0) {
             if (field_0x209 == 0) {
                 mProgressiveSel->getPicture()->changeTexture(mProgressivePro, 0);
                 setProgressiveMode(1);
@@ -330,7 +330,7 @@ void dScnLogo_c::warningDispDraw() {
     }
 
     if (mTimer == 0 ||
-        mDoCPd_c::getTrig(0) & (CButton::A | CButton::B | CButton::X | CButton::Y | CButton::START |
+        mDoCPd_c::getTrig(PAD_1) & (CButton::A | CButton::B | CButton::X | CButton::Y | CButton::START |
                                 CButton::Z | CButton::L | CButton::R | CButton::DPAD_LEFT |
                                 CButton::DPAD_RIGHT | CButton::DPAD_DOWN | CButton::DPAD_UP)) {
         mExecCommand = EXEC_WARNING_OUT;

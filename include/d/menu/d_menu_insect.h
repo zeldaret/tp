@@ -1,6 +1,7 @@
 #ifndef D_MENU_D_MENU_INSECT_H
 #define D_MENU_D_MENU_INSECT_H
 
+#include "d/com/d_com_inf_game.h"
 #include "d/d_drawlist.h"
 
 class CPaneMgr;
@@ -74,7 +75,7 @@ private:
     /* 0x60 */ J2DPicture* mpBlackTex;
     /* 0x64 */ CPaneMgr* mpParent;
     /* 0x68 */ CPaneMgr* mpExpParent;
-    /* 0x6C */ CPaneMgr* mpINSParent[24];
+    /* 0x6C */ CPaneMgr* mpINSParent[MAX_INSECT_NUM];
     /* 0xCC */ CPaneMgr* mpInfoText;
     /* 0xD0 */ CPaneMgr* mpExpSubWin[2];
     /* 0xD8 */ CPaneMgr* mpButtonAB[2];
