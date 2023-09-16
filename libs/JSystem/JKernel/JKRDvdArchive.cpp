@@ -80,7 +80,8 @@ extern "C" u8 sSystemHeap__7JKRHeap[4];
 /* 802D7BF0-802D7C98 2D2530 00A8+00 0/0 1/1 0/0 .text
  * __ct__13JKRDvdArchiveFlQ210JKRArchive15EMountDirection       */
 JKRDvdArchive::JKRDvdArchive(s32 entryNum, JKRArchive::EMountDirection mountDirection)
-    : JKRArchive(entryNum, MOUNT_DVD), mMountDirection(mountDirection) {
+    : JKRArchive(entryNum, MOUNT_DVD) {
+    mMountDirection = mountDirection;
     if (!open(entryNum))
         return;
 
