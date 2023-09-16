@@ -31,8 +31,6 @@ public:
 private:
     /* 0x00 */  // vtable
     /* 0x04 */  // JKRArchive
-    /* 0x5C */ JKRCompression mCompression;
-    /* 0x60 */ EMountDirection mMountDirection;
     /* 0x64 */ SArcHeader* mArcHeader;
     /* 0x68 */ u8* mArchiveData;
     /* 0x6C */ bool mIsOpen;

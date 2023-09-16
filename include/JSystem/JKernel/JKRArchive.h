@@ -182,6 +182,8 @@ public:
 
 protected:
     /* 0x58 */ u32 field_0x58;
+    /* 0x5C */ JKRCompression mCompression;
+    /* 0x60 */ EMountDirection mMountDirection;
 
 public:
     static JKRArchive* check_mount_already(s32, JKRHeap*);
