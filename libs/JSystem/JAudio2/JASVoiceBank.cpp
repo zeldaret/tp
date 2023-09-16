@@ -5,7 +5,6 @@
 
 #include "JSystem/JAudio2/JASVoiceBank.h"
 #include "JSystem/JAudio2/JASBasicInst.h"
-#include "dol2asm.h"
 
 //
 // Declarations:

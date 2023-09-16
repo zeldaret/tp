@@ -5,7 +5,6 @@
 
 #include "JSystem/JAudio2/JAUSeqCollection.h"
 #include "JSystem/JUtility/JUTAssert.h"
-#include "dol2asm.h"
 
 //
 // Types:
@@ -14,8 +13,6 @@
 //
 // Forward References:
 //
-
-extern "C" void getSeqData__16JAUSeqCollectionFiiP10JAISeqData();
 
 //
 // External References:
@@ -31,36 +28,43 @@ JAUSeqCollection::JAUSeqCollection() {
 }
 
 /* 802A66AC-802A66FC 2A0FEC 0050+00 0/0 1/1 0/0 .text            init__16JAUSeqCollectionFPCv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAUSeqCollection::init(void const* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAUSeqCollection/init__16JAUSeqCollectionFPCv.s"
+void JAUSeqCollection::init(void const* param_0) {
+    field_0x8 = (const JAUSeqCollectionData*)param_0;
+    if (field_0x8->field_0x0 != 0x53 || field_0x8->field_0x1 != 0x43) {
+        field_0x8 = NULL;
+        return;
+    }
+
+    field_0x0 = field_0x8->field_0x2;
+    field_0xc = field_0x8->field_0x4;
+    field_0x4 = &field_0x8->field_0x8;
+
 }
-#pragma pop
 
 /* 802A66FC-802A6754 2A103C 0058+00 1/1 0/0 0/0 .text
  * getSeqData__16JAUSeqCollectionFiiP10JAISeqData               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool JAUSeqCollection::getSeqData(int param_0, int param_1, JAISeqData* param_2) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAUSeqCollection/getSeqData__16JAUSeqCollectionFiiP10JAISeqData.s"
+bool JAUSeqCollection::getSeqData(int param_0, int param_1, JAISeqData* param_2) {
+    if (param_0 >= field_0x0) {
+        return false;
+    }
+    u32* puVar2 = (u32*)((u8*)field_0x8 + field_0x4[param_0]);
+    if (param_1 >= puVar2[0]) {
+        return false;
+    }
+    param_2->set((void*)field_0x8, puVar2[param_1 + 1]);
+    return true;
 }
-#pragma pop
 
 /* 802A6754-802A677C 2A1094 0028+00 1/1 0/0 0/0 .text
  * getSeqDataRegion__16JAUSeqCollectionFP16JAISeqDataRegion     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAUSeqCollection::getSeqDataRegion(JAISeqDataRegion* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAUSeqCollection/getSeqDataRegion__16JAUSeqCollectionFP16JAISeqDataRegion.s"
+bool JAUSeqCollection::getSeqDataRegion(JAISeqDataRegion* param_0) {
+    if (isValid()) {
+        param_0->field_0x0 = (u32)field_0x8;
+        param_0->field_0x4 = field_0xc;
+        return true;
+    }
+    return false;
 }
-#pragma pop
 
 /* 802A677C-802A67D0 2A10BC 0054+00 0/0 1/1 0/0 .text __ct__27JAUSeqDataMgr_SeqCollectionFv */
 JAUSeqDataMgr_SeqCollection::JAUSeqDataMgr_SeqCollection() {
@@ -88,27 +92,15 @@ int JAUSeqDataMgr_SeqCollection::releaseSeqData() {
 
 /* 802A683C-802A6894 2A117C 0058+00 1/0 0/0 0/0 .text
  * getSeqData__27JAUSeqDataMgr_SeqCollectionF10JAISoundIDP10JAISeqData */
-// branch
-#ifdef NONMATCHING
-s32 JAUSeqDataMgr_SeqCollection::getSeqData(JAISoundID param_0, JAISeqData* param_1) {
+JAUSeqDataMgr_SeqCollection::SeqDataReturnValue JAUSeqDataMgr_SeqCollection::getSeqData(JAISoundID param_0, JAISeqData* param_1) {
     if (!isValid()) {
-        return 0;
+        return SeqDataReturnValue_0;
     }
     if (JAUSeqCollection::getSeqData(param_0.mId.mBytes.b1, param_0.mId.mAdvancedId.mShortId, param_1)) {
-        return 2;
+        return SeqDataReturnValue_2;
     }
-    return 0;
+    return SeqDataReturnValue_0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 JAUSeqDataMgr_SeqCollection::getSeqData(JAISoundID param_0, JAISeqData* param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAUSeqCollection/getSeqData__27JAUSeqDataMgr_SeqCollectionF10JAISoundIDP10JAISeqData.s"
-}
-#pragma pop
-#endif
 
 /* 802A6894-802A68F4 2A11D4 0060+00 1/0 0/0 0/0 .text __dt__27JAUSeqDataMgr_SeqCollectionFv */
 JAUSeqDataMgr_SeqCollection::~JAUSeqDataMgr_SeqCollection() {}
