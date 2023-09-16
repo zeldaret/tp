@@ -182,7 +182,7 @@ void JASBasicWaveBank::setGroupCount(u32 param_0, JKRHeap* param_1) {
     delete[] mWaveGroupArray;
     mGroupCount = param_0;
     mWaveGroupArray = new(param_1, 0) TWaveGroup[param_0];
-    JUT_ASSERT("JASBasicWaveBank.cpp", 0x3e, mWaveGroupArray != 0);
+    JUT_ASSERT(62, mWaveGroupArray != 0);
     for (int i = 0; i < mGroupCount; i++) {
         mWaveGroupArray[i].mBank = this;
     }
@@ -193,7 +193,7 @@ void JASBasicWaveBank::setGroupCount(u32 param_0, JKRHeap* param_1) {
 void JASBasicWaveBank::setWaveTableSize(u32 param_0, JKRHeap* param_1) {
     delete[] mWaveTable;
     mWaveTable = new(param_1, 0) TWaveHandle[param_0];
-    JUT_ASSERT("JASBasicWaveBank.cpp",0x5c, mWaveTable != 0);
+    JUT_ASSERT(92, mWaveTable != 0);
     mHandleCount = param_0;
 }
 
@@ -256,9 +256,9 @@ JASWaveHandle* JASBasicWaveBank::getWaveHandle(u32 param_0) const {
  * setWaveInfo__16JASBasicWaveBankFPQ216JASBasicWaveBank10TWaveGroupiUsRC11JASWaveInfo */
 void JASBasicWaveBank::setWaveInfo(JASBasicWaveBank::TWaveGroup* wgrp, int index,
                                    u16 param_2, JASWaveInfo const& param_3) {
-    JUT_ASSERT("JASBasicWaveBank.cpp", 0xcc, wgrp);
-    JUT_ASSERT("JASBasicWaveBank.cpp", 0xcd, index < wgrp->mWaveCount);
-    JUT_ASSERT("JASBasicWaveBank.cpp", 0xce, index >= 0);
+    JUT_ASSERT(204, wgrp);
+    JUT_ASSERT(205, index < wgrp->mWaveCount);
+    JUT_ASSERT(206, index >= 0);
     mWaveTable[param_2].field_0x4 = param_3;
     mWaveTable[param_2].field_0x4.field_0x20 = mNoLoad;
     mWaveTable[param_2].field_0x4.field_0x08 = -1;
@@ -308,20 +308,20 @@ void JASBasicWaveBank::TWaveGroup::setWaveCount(u32 param_0, JKRHeap* param_1) {
     delete[] mCtrlWaveArray;
     mWaveCount = param_0;
     mCtrlWaveArray = new(param_1, 0) TGroupWaveInfo[param_0];
-    JUT_ASSERT("JASBasicWaveBank.cpp", 0xff, mCtrlWaveArray != 0);
+    JUT_ASSERT(255, mCtrlWaveArray != 0);
 }
 
 /* 80298B04-80298B2C 293444 0028+00 1/0 0/0 0/0 .text
  * onLoadDone__Q216JASBasicWaveBank10TWaveGroupFv               */
 void JASBasicWaveBank::TWaveGroup::onLoadDone() {
-    JUT_ASSERT("JASBasicWaveBank.cpp", 0x11e, mBank);
+    JUT_ASSERT(286, mBank);
     mBank->incWaveTable(this);
 }
 
 /* 80298B2C-80298B54 29346C 0028+00 1/0 0/0 0/0 .text
  * onEraseDone__Q216JASBasicWaveBank10TWaveGroupFv              */
 void JASBasicWaveBank::TWaveGroup::onEraseDone() {
-    JUT_ASSERT("JASBasicWaveBank.cpp", 0x124, mBank);
+    JUT_ASSERT(292, mBank);
     mBank->decWaveTable(this);
 }
 
@@ -329,15 +329,15 @@ void JASBasicWaveBank::TWaveGroup::onEraseDone() {
 /* 80298B54-80298B64 293494 0010+00 2/2 0/0 0/0 .text
  * getWaveID__Q216JASBasicWaveBank10TWaveGroupCFi               */
 u32 JASBasicWaveBank::TWaveGroup::getWaveID(int index) const {
-    JUT_ASSERT("JASBasicWaveBank.cpp", 0x12a, index < mWaveCount);
-    JUT_ASSERT("JASBasicWaveBank.cpp", 299, index >= 0);
+    JUT_ASSERT(298, index < mWaveCount);
+    JUT_ASSERT(299, index >= 0);
     return mCtrlWaveArray[index].field_0x0;
 }
 
 /* 80298B64-80298B88 2934A4 0024+00 1/0 0/0 0/0 .text
  * getWavePtr__Q216JASBasicWaveBank11TWaveHandleCFv             */
 int JASBasicWaveBank::TWaveHandle::getWavePtr() const {
-    JUT_ASSERT("JASBasicWaveBank.cpp", 0x139, mHeap);
+    JUT_ASSERT(313, mHeap);
     void* base = mHeap->getBase();
     if (base == 0) {
         return 0;

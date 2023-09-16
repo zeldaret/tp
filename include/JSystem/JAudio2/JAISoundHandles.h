@@ -15,7 +15,7 @@ public:
     bool isSoundAttached() const { return sound_ != NULL; }
 
     JAISound* operator->() const {
-        JUT_ASSERT("JAISound.h", 58, sound_ != 0);
+        JUT_ASSERT(58, sound_ != 0);
         return sound_;
     }
 

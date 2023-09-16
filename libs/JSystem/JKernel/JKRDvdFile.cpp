@@ -99,7 +99,7 @@ s32 JKRDvdFile::readData(void* param_1, long length, long param_3) {
     // The assert condition gets stringified as "( length & 0x1f ) == 0", 
     // with out disabling clang-format the spaces in the condition will  
     // get removed and the string will be incorrect.
-    JUT_ASSERT(__FILE__, 238, ( length & 0x1f ) == 0);
+    JUT_ASSERT(238, ( length & 0x1f ) == 0);
     /* clang-format on */
 
     OSLockMutex(&mMutex1);

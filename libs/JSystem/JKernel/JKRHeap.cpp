@@ -156,7 +156,7 @@ void* JKRHeap::alloc(u32 size, int alignment, JKRHeap* heap) {
 /* 802CE4D4-802CE500 2C8E14 002C+00 1/1 30/30 1/1 .text            alloc__7JKRHeapFUli */
 void* JKRHeap::alloc(u32 size, int alignment) {
     if (mInitFlag) {
-        JUT_WARN(__FILE__, 393, "alloc %x byte in heap %x", size, this);
+        JUT_WARN(393, "alloc %x byte in heap %x", size, this);
     }
     return do_alloc(size, alignment);
 }
@@ -175,7 +175,7 @@ void JKRHeap::free(void* ptr, JKRHeap* heap) {
 /* 802CE548-802CE574 2C8E88 002C+00 1/1 29/29 0/0 .text            free__7JKRHeapFPv */
 void JKRHeap::free(void* ptr) {
     if (mInitFlag) {
-        JUT_WARN(__FILE__, 441, "free %x in heap %x", ptr, this);
+        JUT_WARN(441, "free %x in heap %x", ptr, this);
     }
     do_free(ptr);
 }
@@ -192,7 +192,7 @@ void JKRHeap::callAllDisposer() {
 /* 802CE5CC-802CE5F8 2C8F0C 002C+00 0/0 12/12 0/0 .text            freeAll__7JKRHeapFv */
 void JKRHeap::freeAll() {
     if (mInitFlag) {
-        JUT_WARN(__FILE__, 493, "freeAll in heap %x", this);
+        JUT_WARN(493, "freeAll in heap %x", this);
     }
     do_freeAll();
 }
@@ -200,7 +200,7 @@ void JKRHeap::freeAll() {
 /* 802CE5F8-802CE624 2C8F38 002C+00 0/0 1/1 0/0 .text            freeTail__7JKRHeapFv */
 void JKRHeap::freeTail() {
     if (mInitFlag) {
-        JUT_WARN(__FILE__, 507, "freeTail in heap %x", this);
+        JUT_WARN(507, "freeTail in heap %x", this);
     }
     do_freeTail();
 }
@@ -219,7 +219,7 @@ s32 JKRHeap::resize(void* ptr, u32 size, JKRHeap* heap) {
 /* 802CE684-802CE6B0 2C8FC4 002C+00 1/1 1/1 0/0 .text            resize__7JKRHeapFPvUl */
 s32 JKRHeap::resize(void* ptr, u32 size) {
     if (mInitFlag) {
-        JUT_WARN(__FILE__, 567, "resize block %x into %x in heap %x", ptr, size, this);
+        JUT_WARN(567, "resize block %x into %x in heap %x", ptr, size, this);
     }
     return do_resize(ptr, size);
 }
@@ -258,7 +258,7 @@ s32 JKRHeap::getTotalFreeSize() {
 /* 802CE7B0-802CE7DC 2C90F0 002C+00 0/0 1/1 0/0 .text            changeGroupID__7JKRHeapFUc */
 s32 JKRHeap::changeGroupID(u8 groupID) {
     if (mInitFlag) {
-        JUT_WARN(__FILE__, 646, "change heap ID into %x in heap %x", groupID, this);
+        JUT_WARN(646, "change heap ID into %x in heap %x", groupID, this);
     }
     return do_changeGroupID(groupID);
 }
@@ -482,22 +482,22 @@ void operator delete[](void* ptr) {
 /* 802CED84-802CED88 2C96C4 0004+00 1/0 1/0 0/0 .text
  * state_register__7JKRHeapCFPQ27JKRHeap6TStateUl               */
 u32 JKRHeap::state_register(JKRHeap::TState* p, u32 id) const {
-    JUT_ASSERT(__FILE__, 1213, p != 0);
-    JUT_ASSERT(__FILE__, 1214, p->getHeap() == this);
+    JUT_ASSERT(1213, p != 0);
+    JUT_ASSERT(1214, p->getHeap() == this);
 }
 
 /* 802CED88-802CEDA0 2C96C8 0018+00 1/0 1/0 0/0 .text
  * state_compare__7JKRHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState */
 bool JKRHeap::state_compare(const JKRHeap::TState& r1, const JKRHeap::TState& r2) const {
-    JUT_ASSERT(__FILE__, 1222, r1.getHeap() == r2.getHeap());
+    JUT_ASSERT(1222, r1.getHeap() == r2.getHeap());
     return r1.getCheckCode() == r2.getCheckCode();
 }
 
 /* 802CEDA0-802CEDA4 2C96E0 0004+00 1/0 3/0 0/0 .text state_dump__7JKRHeapCFRCQ27JKRHeap6TState */
 void JKRHeap::state_dump(const JKRHeap::TState& p) const {
-    JUT_LOG(__FILE__, 1246, "check-code : 0x%08x", p.getCheckCode());
-    JUT_LOG(__FILE__, 1247, "id         : 0x%08x", p.getId());
-    JUT_LOG(__FILE__, 1248, "used size  : %u", p.getUsedSize());
+    JUT_LOG(1246, "check-code : 0x%08x", p.getCheckCode());
+    JUT_LOG(1247, "id         : 0x%08x", p.getId());
+    JUT_LOG(1248, "used size  : %u", p.getUsedSize());
 }
 
 /* 802CEDA4-802CEDAC 2C96E4 0008+00 1/0 1/0 0/0 .text            do_changeGroupID__7JKRHeapFUc */
