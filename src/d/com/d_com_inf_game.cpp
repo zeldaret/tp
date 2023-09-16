@@ -2175,8 +2175,8 @@ s8 dComIfGs_getWarpRoomNo() {
     return dComIfGs_getLastWarpMarkRoomNo();
 }
 
-BOOL dComIfGs_getWarpMarkFlag() {
-    return dComIfGs_getLastWarpAcceptStage() >= 0;
+bool dComIfGs_getWarpMarkFlag() {
+    return dComIfGs_getLastWarpAcceptStage() >= 0 ? 1 : 0;
 }
 
 void dComIfGs_setWarpMarkFlag(u8) {}

@@ -3,7 +3,8 @@
 
 #include "dolphin/types.h"
 
-struct dMsgScrn3Select_c {
+class dMsgScrn3Select_c {
+public:
     /* 802390B4 */ dMsgScrn3Select_c();
     /* 802398CC */ virtual ~dMsgScrn3Select_c();
     /* 80239C64 */ bool isSelect();
