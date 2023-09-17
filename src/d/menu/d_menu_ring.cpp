@@ -1308,6 +1308,72 @@ asm void dMenu_Ring_c::setItem() {
 #pragma pop
 
 /* 801EBE58-801EC20C 1E6798 03B4+00 2/2 0/0 0/0 .text            setJumpItem__12dMenu_Ring_cFb */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Ring_c::setJumpItem(bool i_useVibrationM) {
+    for (int i = 0; i < 4; i++) {
+        if (i == 2) {
+            setSelectItem(i, field_0x6b4[i]);
+        } else if (i == field_0x6cd) {
+            setSelectItem(i, getItem(field_0x6cb, 0));
+        } else {
+            setSelectItem(i, getItem(field_0x6b4[i], field_0x6b8[i]));
+        }
+    }
+    if (field_0x6aa != 0xff) {
+        field_0x518[0] = field_0x38c[field_0x6aa];
+        field_0x528[0] = field_0x3ec[field_0x6aa];
+    }
+    if (field_0x6ab != 0xff) {
+        field_0x518[1] = field_0x38c[field_0x6ab];
+        field_0x528[1] = field_0x3ec[field_0x6ab];
+    }
+    if (field_0x6ac != 0xff) {
+        field_0x518[2] = field_0x38c[field_0x6ac];
+        field_0x528[2] = field_0x3ec[field_0x6ac];
+    }
+    if (field_0x6ad != 0xff) {
+        field_0x518[3] = field_0x38c[field_0x6ad];
+        field_0x528[3] = field_0x3ec[field_0x6ad];
+    }
+    if (field_0x6b3 == 0) {
+        field_0x538[0] = g_ringHIO.mSelectItemScale;
+        field_0x538[1] = g_ringHIO.mUnselectItemScale;
+        if (field_0x6b4[0] != dComIfGs_getSelectItemIndex(0) || field_0x6b8[0] != dComIfGs_getMixItemIndex(0)) {
+            field_0x674[0] = 1;
+        }
+    } else if (field_0x6b3 == 1) {
+        field_0x538[0] = g_ringHIO.mUnselectItemScale;
+        field_0x538[1] = g_ringHIO.mSelectItemScale;
+        if (field_0x6b4[1] != dComIfGs_getSelectItemIndex(1) || field_0x6b8[1] != dComIfGs_getMixItemIndex(1)) {
+            field_0x674[1] = 1;
+        }
+    }
+    if (field_0x674[0] == 1) {
+        if (i_useVibrationM) {
+            dMeter2Info_set2DVibrationM();
+        }
+        Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_SET_X, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    } else if (field_0x674[1] == 1) {
+        if (i_useVibrationM) {
+            dMeter2Info_set2DVibrationM();
+        }
+        Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_SET_X, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    } else if (field_0x674[2] == 1) {
+        if (i_useVibrationM) {
+            dMeter2Info_set2DVibrationM();
+        }
+        Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_SET_X, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    } else if (field_0x674[3] == 1) {
+        if (i_useVibrationM) {
+            dMeter2Info_set2DVibrationM();
+        }
+        Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_SET_B, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    } else {
+        Z2GetAudioMgr()->seStart(Z2SE_SYS_ERROR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1316,6 +1382,7 @@ asm void dMenu_Ring_c::setJumpItem(bool param_0) {
 #include "asm/d/menu/d_menu_ring/setJumpItem__12dMenu_Ring_cFb.s"
 }
 #pragma pop
+#endif
 
 /* 801EC20C-801EC3B0 1E6B4C 01A4+00 2/2 0/0 0/0 .text            setScale__12dMenu_Ring_cFv */
 #pragma push
@@ -1715,7 +1782,7 @@ SECTION_SDATA2 static f32 lit_6143 = 16.0f;
 
 /* 801EE648-801EEA84 1E8F88 043C+00 2/2 0/0 0/0 .text            drawNumber__12dMenu_Ring_cFiiff */
 #ifdef NONMATCHING
-// regalloc
+// Matches with literals
 void dMenu_Ring_c::drawNumber(int param_0, int param_1, f32 param_2, f32 param_3) {
     if (param_0 > 100) {
         param_0 = 100;
@@ -1748,12 +1815,12 @@ void dMenu_Ring_c::drawNumber(int param_0, int param_1, f32 param_2, f32 param_3
         ResTIMG* texture = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource(
             'TIMG', dMeter2Info_getNumberTextureName(param_0 / 100));
         mpItemNumTex[0]->changeTexture(texture, 0);
-        u8 math = param_0 % 100;
+        param_0 = (u8)(param_0 % 100);
         texture = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource(
-            'TIMG', dMeter2Info_getNumberTextureName(math / 10));
+            'TIMG', dMeter2Info_getNumberTextureName(param_0 / 10));
         mpItemNumTex[1]->changeTexture(texture, 0);
         texture = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource(
-            'TIMG', dMeter2Info_getNumberTextureName(math % 10));
+            'TIMG', dMeter2Info_getNumberTextureName(param_0 % 10));
         mpItemNumTex[2]->changeTexture(texture, 0);
         mpItemNumTex[2]->show();
     }

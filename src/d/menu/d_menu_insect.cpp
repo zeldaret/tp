@@ -583,15 +583,66 @@ SECTION_SDATA2 static f64 lit_4138 = 4503599627370496.0 /* cast u32 to float */;
 #ifdef NONMATCHING
 // Mache ich gleich weiter
 void dMenu_Insect_c::explain_open_init() {
-    char cStack_d8[32];
-    char local_b8[32];
-    char local_98[32];
     char local_78[32];
+    char local_98[32];
+    char local_b8[32];
+    char cStack_d8[32];
 
     setAButtonString(0);
     setBButtonString(0x3F9);
-    s32 i_textureNum = dMeter2Info_readItemTexture(getInsectItemID(field_0xf4, field_0xf5), mpExpItemTex, NULL, NULL, NULL, NULL, NULL, NULL, NULL, -1);
+    u8 insectItemId = getInsectItemID(field_0xf4, field_0xf5);
+    s32 i_textureNum = dMeter2Info_readItemTexture(insectItemId, mpExpItemTex, NULL, NULL, NULL, NULL, NULL, NULL, NULL, -1);
+    f32 tex = (f32)((u32)mpExpItemTex + 2) / 48.0f;
+    f32 tex2 = (f32)((u32)mpExpItemTex + 4) / 48.0f;
+    
+    for (int i = 0; i < 2; i++) {
+        field_0x54[i]->changeTexture((ResTIMG*)mpExpItemTex, 0);
+        field_0x54[i]->scale(tex, tex2);
+    }
+    mpString->getString(insectItemId + 0x265, (J2DTextBox*)mpInfoText->getPanePtr(), NULL, NULL, NULL, 0);
+    if (field_0xf6 == 1) {
+        if (!isGiveInsect(field_0xf4, field_0xf5)) {
+            mpString->getString(0x5BB, field_0x5c, NULL, NULL, NULL, 0);
+            local_78[0] = 0;
+            local_98[0] = 0;
+            local_b8[0] = 0;
+            cStack_d8[1] = 0;
+            field_0xf7 = 0;
+            dMeter2Info_getString(0x4BD, local_78, NULL);
+            dMeter2Info_getString(0x4BE, local_98, NULL);
+            f32 stringLength1 = dMeter2Info_getStringLength(mDoExt_getMesgFont(), mpSelect_c->getFontSize(),
+                                                    mpSelect_c->getCharSpace(), local_78);
+            f32 stringLength2 = dMeter2Info_getStringLength(mDoExt_getMesgFont(), mpSelect_c->getFontSize(),
+                                                            mpSelect_c->getCharSpace(), local_98);
+            f32 length;
+            if (stringLength1 < stringLength2) {
+                length = stringLength2;
+            } else {
+                length = stringLength1;
+            }
+            f32 textBoxWidth = mpSelect_c->getTextBoxWidth();
+            if (length < textBoxWidth) {
+                length = mpSelect_c->getTextBoxWidth();
+            }
 
+            snprintf(local_b8, 32,
+                     "\x1B"
+                     "CR[%d]",
+                     (int)(0.5f * (length - stringLength1)));
+            strcat(local_b8, local_78);
+            snprintf(cStack_d8, 32,
+                     "\x1B"
+                     "CR[%d]",
+                     (int)(0.5f * (length - stringLength2)));
+            strcat(cStack_d8, local_98);
+            mpSelect_c->setString("", local_b8, cStack_d8);
+            mpSelect_c->setRubyString("", "", "");
+            mpSelect_c->selAnimeInit(2, field_0xf7 + 1, 0, length, 0);
+        } else {
+            mpString->getString(0x5BC, field_0x5c, NULL, NULL, NULL, 0);
+        }
+    }
+    mpExpParent->alphaAnimeStart(0);
 }
 #else
 #pragma push
@@ -811,8 +862,8 @@ void dMenu_Insect_c::screenSetExplain() {
     field_0x5c = (J2DTextBox*)mpExpScreen->search('ms_for_2');
     mpExpScreen->search('w_msg_jp')->hide();
     mpExpScreen->search('ms_for_3')->hide();
-    field_0x54 = (J2DTextBox*)mpExpScreen->search('insects');
-    field_0x58 = (J2DTextBox*)mpExpScreen->search('insectss');
+    field_0x54[0] = (J2DTextBox*)mpExpScreen->search('insects');
+    field_0x54[1] = (J2DTextBox*)mpExpScreen->search('insectss');
     J2DTextBox* textBox = (J2DTextBox*)mpInfoText->getPanePtr();
     textBox->setFont(mDoExt_getMesgFont());
     J2DTextBox* textBox2 = (J2DTextBox*)mpInfoText->getPanePtr();

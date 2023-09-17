@@ -69,8 +69,7 @@ private:
     /* 0x28 */ J2DScreen* mpIconScreen;
     /* 0x2C */ J2DTextBox* mpAButtonString[5];
     /* 0x40 */ J2DTextBox* mpBButtonString[5];
-    /* 0x54 */ J2DTextBox* field_0x54;
-    /* 0x58 */ J2DTextBox* field_0x58;
+    /* 0x54 */ J2DPicture* field_0x54[2];
     /* 0x5C */ J2DTextBox* field_0x5c;
     /* 0x60 */ J2DPicture* mpBlackTex;
     /* 0x64 */ CPaneMgr* mpParent;
