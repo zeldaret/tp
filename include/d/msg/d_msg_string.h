@@ -12,7 +12,7 @@ public:
     /* 80249CA0 */ dMsgString_c(u8);
     /* 80249D28 */ ~dMsgString_c();
 
-    /* 80191B6C */ virtual void getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, u8);
+    /* 80191B6C */ virtual f32 getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, u8);
     /* 801E1D10 */ virtual void getStringPage(u32, u8, u8, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*,
                                       u8);
     /* 80249DB4 */ virtual void resetStringLocal(J2DTextBox*);

@@ -523,7 +523,7 @@ public:
     cXyz& getPos() { return mPos; }
     s16 getAngleY() { return mAngleY; }
     s8 getRoomNo() { return mRoomNo; }
-    char getWarpAcceptStage() { return mWarpAcceptStage; }
+    s8 getWarpAcceptStage() { return mWarpAcceptStage; }
     void resetWarpAcceptStage() { mWarpAcceptStage = -1; }
     void setWarpAcceptStage(s8 accept) { mWarpAcceptStage = accept; }
 

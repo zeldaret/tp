@@ -22,7 +22,7 @@ public:
     /* 80249A48 */ void getPageMax(int);
     /* 80249A70 */ void getMessageLocal(u32, char*);
 
-    /* 80249BB0 */ virtual void getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, u8);
+    /* 80249BB0 */ virtual f32 getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, u8);
     /* 80249BD0 */ virtual void getStringPage(u32, u8, u8, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*,
                                       u8);
     /* 80249BF8 */ virtual void getMessage(u32, char*);

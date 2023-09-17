@@ -2,9 +2,9 @@
 #define D_A_SPINNER_H
 
 #include "d/com/d_com_inf_game.h"
+#include "d/d_path.h"
 #include "d/particle/d_particle_copoly.h"
 #include "f_op/f_op_actor_mng.h"
-#include "d/d_path.h"
 
 class daSpinner_c : public fopAc_ac_c {
 public:
@@ -61,6 +61,12 @@ public:
         field_0xaa4 = param_0;
     }
 
+    void offSpinnerTag() {
+        if (mSpinnerTag != 0) {
+            mSpinnerTag = 5;
+        }
+    }
+
     bool reflectAccept() {
         bool accept = false;
         if (!mBck.isStop() && mSpinnerTag == 0) {
@@ -71,6 +77,8 @@ public:
     }
 
     MtxP getModelMtx() { return mpModel->getBaseTRMtx(); }
+
+    s16 getAngleY() { return shape_angle.y + field_0xa7e; }
 
 private:
     /* 0x568 */ J3DModel* mpModel;

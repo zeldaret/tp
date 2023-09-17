@@ -18,13 +18,13 @@ public:
     ~JAUStreamAramMgrBase_() { releaseAram_JAUStreamAramMgrBase_(); }
     bool isStreamUsingAram() { return field_0x4.any(); }
     void releaseAram_JAUStreamAramMgrBase_() {
-        JUT_ASSERT("JAUStreamAramMgr.h", 0x26, ! isStreamUsingAram());
+        JUT_ASSERT(38, ! isStreamUsingAram());
         for (int i = 0; i >= 0; i--) {
             if (mHeaps[i].isAllocated()) {
                 JASHeap* heap = mHeaps[i];
                 heap.free();
                 if (!heap) {
-                    JUT_ASSERT("JAUStreamAramMgr.h", 0x2f, 0);
+                    JUT_ASSERT(47, 0);
                 }
             }
         }
@@ -65,15 +65,15 @@ public:
     }
     bool isAramReserved() const { return field_0x4c; }
     void reserveAram(JASHeap* heap, int numReserve, u32 param_2) {
-        JUT_ASSERT("JAUStreamAramMgr.h", 0x48, ! isAramReserved());
-        JUT_ASSERT("JAUStreamAramMgr.h", 0x49, ! JAUStreamAramMgrBase_ < MAX_CHUNKS_ >::isStreamUsingAram());
+        JUT_ASSERT(72, ! isAramReserved());
+        JUT_ASSERT(73, ! JAUStreamAramMgrBase_ < MAX_CHUNKS_ >::isStreamUsingAram());
         if (!heap) {
             heap = JASKernel::getAramHeap();
         }
         if (numReserve < 1) {
             numReserve = 1;
         }
-        JUT_ASSERT("JAUStreamAramMgr.h", 0x53, numReserve <= MAX_CHUNKS);
+        JUT_ASSERT(83, numReserve <= MAX_CHUNKS);
         int r27 = param_2 * JASAramStream::getBlockSize();
         for (int i = 0; i < numReserve; i++) {
             if (!this->mHeaps[i].alloc(heap, r27)) {

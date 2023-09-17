@@ -29,13 +29,13 @@ public:
     void setAudience(JAIAudience* param_0) { mAudience = param_0; }
     JAISeqDataMgr* getSeqDataMgr() { return seqDataMgr_; }
     void setSeqDataMgr(JAISeqDataMgr* param_0) {
-        JUT_ASSERT("JAISeqMgr.h", 0x7c, !isActive());
+        JUT_ASSERT(124, !isActive());
         resetSeqDataMgr();
         seqDataMgr_ = param_0;
         seqDataMgr_->setSeqDataUser(this);
     }
     void resetSeqDataMgr() {
-        JUT_ASSERT("JAISeqMgr.h", 0x83, !isActive());
+        JUT_ASSERT(131, !isActive());
         if (seqDataMgr_) {
             seqDataMgr_->setSeqDataUser(NULL);
             seqDataMgr_ = NULL;

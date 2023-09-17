@@ -14,8 +14,8 @@
 
 /* 802A4740-802A478C 29F080 004C+00 0/0 1/1 0/0 .text __ct__17JAUAudioArcLoaderFP10JAUSection */
 JAUAudioArcLoader::JAUAudioArcLoader(JAUSection* section) {
-    //JUT_ASSERT("JAUAudioArcLoader.cpp",0xd, section->isOpen());
-    //JUT_ASSERT("JAUAudioArcLoader.cpp",0xe, section->isBuilding());
+    //JUT_ASSERT(13, section->isOpen());
+    //JUT_ASSERT(14, section->isBuilding());
     mSection = section;
 }
 
@@ -77,7 +77,7 @@ void JAUAudioArcLoader::newVoiceBank(u32 param_0, u32 param_1) {
  */
 void JAUAudioArcLoader::newDynamicSeqBlock(u32 param_0) {
     JAUSectionHeap* sectionHeap = mSection->asSectionHeap();
-    JUT_ASSERT("JAUAudioArcLoader.cpp", 0x48, sectionHeap);
+    JUT_ASSERT(72, sectionHeap);
     sectionHeap->newDynamicSeqBlock(param_0);
 }
 
