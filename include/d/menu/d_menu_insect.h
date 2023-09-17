@@ -80,7 +80,7 @@ private:
     /* 0xD8 */ CPaneMgr* mpButtonAB[2];
     /* 0xE0 */ CPaneMgr* mpButtonText[2];
     /* 0xE8 */ dMsgString_c* mpString;
-    /* 0xEC */ void* mpExpItemTex;
+    /* 0xEC */ ResTIMG* mpExpItemTex;
     /* 0xF0 */ s16 field_0xf0;
     /* 0xF2 */ u8 mStatus;
     /* 0xF3 */ u8 field_0xf3;
