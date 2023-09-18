@@ -6,6 +6,7 @@
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "MSL_C/string.h"
 #include "dolphin/os/OSCache.h"
@@ -25,7 +26,7 @@
 
 /* 802D69B8-802D6A6C 2D12F8 00B4+00 0/0 2/2 0/0 .text
  * __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection       */
-JKRMemArchive::JKRMemArchive(long entryNum, JKRArchive::EMountDirection mountDirection)
+JKRMemArchive::JKRMemArchive(s32 entryNum, JKRArchive::EMountDirection mountDirection)
     : JKRArchive(entryNum, MOUNT_MEM) {
     mIsMounted = false;
     mMountDirection = mountDirection;
@@ -71,7 +72,7 @@ JKRMemArchive::~JKRMemArchive() {
 
 /* 802D6BCC-802D6D30 2D150C 0164+00 1/1 0/0 0/0 .text
  * open__13JKRMemArchiveFlQ210JKRArchive15EMountDirection       */
-bool JKRMemArchive::open(long entryNum, JKRArchive::EMountDirection mountDirection) {
+bool JKRMemArchive::open(s32 entryNum, JKRArchive::EMountDirection mountDirection) {
     mArcHeader = NULL;
     mArcInfoBlock = NULL;
     mArchiveData = NULL;
@@ -83,7 +84,7 @@ bool JKRMemArchive::open(long entryNum, JKRArchive::EMountDirection mountDirecti
 
     if (mMountDirection == JKRArchive::MOUNT_DIRECTION_HEAD) {
         u32 loadedSize;
-        mArcHeader = (SArcHeader *)JKRDvdRipper::loadToMainRAM(
+        mArcHeader = (SArcHeader *)JKRDvdToMainRam(
             entryNum, NULL, EXPAND_SWITCH_UNKNOWN1, 0, mHeap, JKRDvdRipper::ALLOC_DIRECTION_FORWARD,
             0, (int *)&mCompression, &loadedSize);
         if (mArcHeader) {
@@ -92,7 +93,7 @@ bool JKRMemArchive::open(long entryNum, JKRArchive::EMountDirection mountDirecti
     }
     else {
         u32 loadedSize;
-        mArcHeader = (SArcHeader *)JKRDvdRipper::loadToMainRAM(
+        mArcHeader = (SArcHeader *)JKRDvdToMainRam(
             entryNum, NULL, EXPAND_SWITCH_UNKNOWN1, 0, mHeap,
             JKRDvdRipper::ALLOC_DIRECTION_BACKWARD, 0, (int *)&mCompression, &loadedSize);
         if (mArcHeader) {
@@ -104,6 +105,7 @@ bool JKRMemArchive::open(long entryNum, JKRArchive::EMountDirection mountDirecti
         mMountMode = UNKNOWN_MOUNT_MODE;
     }
     else {
+        JUT_ASSERT(438, mArcHeader->signature =='RARC');
         mArcInfoBlock = (SArcDataInfo *)((u8 *)mArcHeader + mArcHeader->header_length);
         mNodes = (SDIDirEntry *)((u8 *)&mArcInfoBlock->num_nodes + mArcInfoBlock->node_offset);
         mFiles = (SDIFileEntry *)((u8 *)&mArcInfoBlock->num_nodes + mArcInfoBlock->file_entry_offset);
@@ -114,6 +116,12 @@ bool JKRMemArchive::open(long entryNum, JKRArchive::EMountDirection mountDirecti
         mIsOpen = true;
     }
 
+#if DEBUG
+    if (mMountMode == 0) {
+        OSReport(":::Cannot alloc memory [%s][%d]\n", __FILE__, 460)
+    }
+#endif
+
     return (mMountMode == UNKNOWN_MOUNT_MODE) ? false : true;
 }
 
@@ -121,6 +129,7 @@ bool JKRMemArchive::open(long entryNum, JKRArchive::EMountDirection mountDirecti
  */
 bool JKRMemArchive::open(void* buffer, u32 bufferSize, JKRMemBreakFlag flag) {
     mArcHeader = (SArcHeader *)buffer;
+    JUT_ASSERT(491, mArcHeader->signature =='RARC');
     mArcInfoBlock = (SArcDataInfo *)((u8 *)mArcHeader + mArcHeader->header_length);
     mNodes = (SDIDirEntry *)((u8 *)&mArcInfoBlock->num_nodes + mArcInfoBlock->node_offset);
     mFiles = (SDIFileEntry *)((u8 *)&mArcInfoBlock->num_nodes + mArcInfoBlock->file_entry_offset);
@@ -135,6 +144,7 @@ bool JKRMemArchive::open(void* buffer, u32 bufferSize, JKRMemBreakFlag flag) {
 /* 802D6DDC-802D6E10 2D171C 0034+00 1/0 0/0 0/0 .text
  * fetchResource__13JKRMemArchiveFPQ210JKRArchive12SDIFileEntryPUl */
 void* JKRMemArchive::fetchResource(SDIFileEntry* fileEntry, u32* resourceSize) {
+    JUT_ASSERT(555, isMounted());
     if (!fileEntry->data) {
         fileEntry->data = mArchiveData + fileEntry->data_offset;
     }
@@ -150,6 +160,7 @@ void* JKRMemArchive::fetchResource(SDIFileEntry* fileEntry, u32* resourceSize) {
  * fetchResource__13JKRMemArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl */
 void* JKRMemArchive::fetchResource(void* buffer, u32 bufferSize, SDIFileEntry* fileEntry,
                                    u32* resourceSize) {
+    JUT_ASSERT(595, isMounted());
     u32 srcLength = fileEntry->data_size;
     if (srcLength > bufferSize) {
         srcLength = bufferSize;
@@ -173,7 +184,7 @@ void* JKRMemArchive::fetchResource(void* buffer, u32 bufferSize, SDIFileEntry* f
 
 /* 802D6ED0-802D6F20 2D1810 0050+00 1/0 0/0 0/0 .text removeResourceAll__13JKRMemArchiveFv */
 void JKRMemArchive::removeResourceAll(void) {
-    ASSERT(isMounted());
+    JUT_ASSERT(642, isMounted());
 
     if (mArcInfoBlock == NULL)
         return;
@@ -193,7 +204,7 @@ void JKRMemArchive::removeResourceAll(void) {
 /* 802D6F20-802D6F5C 2D1860 003C+00 1/0 0/0 0/0 .text            removeResource__13JKRMemArchiveFPv
  */
 bool JKRMemArchive::removeResource(void* resource) {
-    ASSERT(isMounted());
+    JUT_ASSERT(673, isMounted());
 
     SDIFileEntry* fileEntry = findPtrResource(resource);
     if (!fileEntry)
@@ -228,7 +239,7 @@ u32 JKRMemArchive::fetchResource_subroutine(u8* src, u32 srcLength, u8* dst, u32
         return srcLength;
 
     default: {
-        JUTException::panic_f(__FILE__, 723, "%s", "??? bad sequence\n");
+        JUTException::panic(__FILE__, 723, "??? bad sequence\n");
     } break;
     }
 
