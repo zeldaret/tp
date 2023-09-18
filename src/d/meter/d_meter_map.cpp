@@ -604,7 +604,7 @@ void dMeterMap_c::ctrlShowMap() {
                         }
                     }
 
-                } else if (!mDoCPd_c::getTrigUp(0) && !mDoCPd_c::getTrigDown(0)) {
+                } else if (!mDoCPd_c::getTrigUp(PAD_1) && !mDoCPd_c::getTrigDown(PAD_1)) {
                     keyCheck();
                 }
             }

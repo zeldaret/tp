@@ -297,7 +297,7 @@ void dMenu_Fishing_c::wait_init() {
 
 /* 801C55A8-801C55D8 1BFEE8 0030+00 1/0 0/0 0/0 .text            wait_move__15dMenu_Fishing_cFv */
 void dMenu_Fishing_c::wait_move() {
-    if (mDoGph_gInf_c::getFader()->getStatus() == 1 && mDoCPd_c::getTrigB(0)) {
+    if (mDoGph_gInf_c::getFader()->getStatus() == 1 && mDoCPd_c::getTrigB(PAD_1)) {
         mStatus = 3;
     }
 }

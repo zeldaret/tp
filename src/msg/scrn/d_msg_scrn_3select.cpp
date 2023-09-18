@@ -10,11 +10,6 @@
 // Types:
 //
 
-struct J2DPane {
-    /* 802F7100 */ void getBounds();
-    /* 802F7FCC */ void animationTransform();
-};
-
 struct JKRArchive {};
 
 struct dSelect_cursor_c {
@@ -143,7 +138,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcpy();
 extern "C" extern void* __vt__10J2DAnmBase[4];
 extern "C" extern void* __vt__10JUTNameTab[3];
 extern "C" extern void* __vt__14J2DAnmColorKey[5];

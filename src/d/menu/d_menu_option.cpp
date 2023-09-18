@@ -1123,13 +1123,13 @@ void dMenu_Option_c::_move() {
         field_0x3ea = 0;
     }
     if (mDoGph_gInf_c::getFader()->getStatus() == 1) {
-        if (mDoCPd_c::getTrigA(0) != 0 && field_0x3ef != 3 && field_0x3f3 == 5) {
+        if (mDoCPd_c::getTrigA(PAD_1) != 0 && field_0x3ef != 3 && field_0x3f3 == 5) {
             if (field_0x3f4 == 5 && field_0x3ef != 4 && field_0x3ef != 5 && field_0x3ef != 6 &&
                 field_0x3ef != 7)
             {
-                if (mDoCPd_c::getTrigStart(0) == 0 && (mDoCPd_c::getTrig(0) & 0x200) == 0) {
-                    if (mDoCPd_c::getTrigUp(0) == 0 && mDoCPd_c::getTrigDown(0) == 0 &&
-                        mDoCPd_c::getTrigLeft(0) == 0 && mDoCPd_c::getTrigRight(0) == 0)
+                if (mDoCPd_c::getTrigStart(PAD_1) == 0 && mDoCPd_c::getTrigB(PAD_1) == 0) {
+                    if (mDoCPd_c::getTrigUp(PAD_1) == 0 && mDoCPd_c::getTrigDown(PAD_1) == 0 &&
+                        mDoCPd_c::getTrigLeft(PAD_1) == 0 && mDoCPd_c::getTrigRight(PAD_1) == 0)
                     {
                         field_0x3f7 = 1;
                         field_0x3f5 = field_0x3ef;
@@ -1141,12 +1141,12 @@ void dMenu_Option_c::_move() {
                 }
             }
         }
-        if (mDoCPd_c::getTrigB(0) != 0 && field_0x3ef != 3 && field_0x3f3 == 5 &&
+        if (mDoCPd_c::getTrigB(PAD_1) != 0 && field_0x3ef != 3 && field_0x3f3 == 5 &&
             field_0x3ef != 4 && field_0x3ef != 5 && field_0x3ef != 6 && field_0x3ef != 7)
         {
-            if (field_0x3f4 == 5 && mDoCPd_c::getTrigStart(0) == 0 && mDoCPd_c::getTrigA(0) == 0 &&
-                mDoCPd_c::getTrigUp(0) == 0 && mDoCPd_c::getTrigDown(0) == 0 &&
-                mDoCPd_c::getTrigLeft(0) == 0 && mDoCPd_c::getTrigRight(0) == 0)
+            if (field_0x3f4 == 5 && mDoCPd_c::getTrigStart(PAD_1) == 0 && mDoCPd_c::getTrigA(PAD_1) == 0 &&
+                mDoCPd_c::getTrigUp(PAD_1) == 0 && mDoCPd_c::getTrigDown(PAD_1) == 0 &&
+                mDoCPd_c::getTrigLeft(PAD_1) == 0 && mDoCPd_c::getTrigRight(PAD_1) == 0)
             {
                 field_0x3f7 = 0;
                 field_0x3f5 = field_0x3ef;
@@ -1879,11 +1879,11 @@ void dMenu_Option_c::confirm_move_move() {
     bool leftTrigger = checkLeftTrigger();
     bool rightTrigger = checkRightTrigger();
 
-    if (mDoCPd_c::getTrigA(0) != 0) {
+    if (mDoCPd_c::getTrigA(PAD_1) != 0) {
         yesNoSelectStart();
         field_0x3ef = 7;
         dMeter2Info_set2DVibrationM();
-    } else if ((mDoCPd_c::getTrig(0) & 0x200) != 0) {
+    } else if (mDoCPd_c::getTrigB(PAD_1) != 0) {
         field_0x3f9 = 0;
         yesnoCancelAnmSet();
         field_0x3ef = 7;
@@ -2063,7 +2063,7 @@ void dMenu_Option_c::tv_open2_move() {
 #ifdef NONMATCHING
 // Matches with literals
 void dMenu_Option_c::tv_move_move() {
-    if (mDoCPd_c::getTrigZ(0) != 0 || mDoCPd_c::getTrigA(0) != 0) {
+    if (mDoCPd_c::getTrigZ(PAD_1) != 0 || mDoCPd_c::getTrigA(PAD_1) != 0) {
         Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         field_0x3f3 = 3;
         setAButtonString(0x40C);
@@ -3084,7 +3084,7 @@ void dMenu_Option_c::setZButtonString(u16 i_stringID) {
 #ifdef NONMATCHING
 // Matches with literals
 void dMenu_Option_c::changeTVCheck() {
-    if (mDoCPd_c::getTrigZ(0) != 0) {
+    if (mDoCPd_c::getTrigZ(PAD_1) != 0) {
         Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_CHANGE_WINDOW, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                         -1.0f, 0);
         field_0x3f3 = 0;

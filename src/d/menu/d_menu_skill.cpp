@@ -13,7 +13,6 @@
 #include "d/meter/d_meter_HIO.h"
 #include "d/msg/d_msg_string.h"
 #include "dol2asm.h"
-#include "global.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
 
@@ -301,10 +300,10 @@ void dMenu_Skill_c::wait_init() {
 void dMenu_Skill_c::wait_move() {
     u8 oldIndex = mIndex;
     if (mDoGph_gInf_c::getFader()->getStatus() == 1) {
-        if ((mDoCPd_c::getTrig(0) & 0x200) != 0) {
+        if (mDoCPd_c::getTrigB(PAD_1) != 0) {
             mpDrawCursor->offPlayAnime(0);
             mStatus = 3;
-        } else if (mDoCPd_c::getTrigA(0)) {
+        } else if (mDoCPd_c::getTrigA(PAD_1)) {
             mProcess = PROC_WAIT_MOVE;
             Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_OPEN, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
@@ -377,13 +376,13 @@ void dMenu_Skill_c::read_move_init() {
 /* 801F8150-801F8218 1F2A90 00C8+00 1/0 0/0 0/0 .text            read_move_move__13dMenu_Skill_cFv
  */
 void dMenu_Skill_c::read_move_move() {
-    if (mDoCPd_c::getTrigA(0) != 0) {
+    if (mDoCPd_c::getTrigA(PAD_1) != 0) {
         Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
         dMeter2Info_set2DVibration();
         mProcess = PROC_MOVE_MOVE;
 
-    } else if ((mDoCPd_c::getTrig(0) & 0x200) != 0) {
+    } else if (mDoCPd_c::getTrigB(PAD_1) != 0) {
         Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
         dMeter2Info_set2DVibration();

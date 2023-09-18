@@ -330,7 +330,7 @@ SECTION_SDATA2 static f32 lit_3822[1 + 1 /* padding */] = {
 
 /* 8019350C-80193594 18DE4C 0088+00 1/0 0/0 0/0 .text            modeMove__14dBrightCheck_cFv */
 void dBrightCheck_c::modeMove() {
-    if (mDoCPd_c::getTrigA(0) || mDoCPd_c::getTrigStart(0)) {
+    if (mDoCPd_c::getTrigA(PAD_1) || mDoCPd_c::getTrigStart(PAD_1)) {
         mDoAud_seStart(1, 0, 0, 0);
         field_0x19 = 1;
         field_0x18 = 0;
