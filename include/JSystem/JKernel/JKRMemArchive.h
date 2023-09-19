@@ -10,11 +10,11 @@ enum JKRMemBreakFlag {
 
 class JKRMemArchive : public JKRArchive {
 public:
-    JKRMemArchive(long, JKRArchive::EMountDirection);
+    JKRMemArchive(s32, JKRArchive::EMountDirection);
     JKRMemArchive(void*, u32, JKRMemBreakFlag);
     virtual ~JKRMemArchive();
 
-    bool open(long, JKRArchive::EMountDirection);
+    bool open(s32, JKRArchive::EMountDirection);
     bool open(void*, u32, JKRMemBreakFlag);
 
     /* vt[09] */ void removeResourceAll(void); /* override */

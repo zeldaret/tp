@@ -8,10 +8,10 @@ class JKRDvdFile;
 
 class JKRCompArchive : public JKRArchive {
 public:
-    JKRCompArchive(long, JKRArchive::EMountDirection);
+    JKRCompArchive(s32, JKRArchive::EMountDirection);
     virtual ~JKRCompArchive();
 
-    bool open(long);
+    bool open(s32);
 
     /* vt[09] */ void removeResourceAll(void); /* override */
     /* vt[10] */ bool removeResource(void*);   /* override */

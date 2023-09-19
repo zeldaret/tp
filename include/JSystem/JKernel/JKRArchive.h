@@ -120,7 +120,7 @@ public:
 
 protected:
     JKRArchive();
-    JKRArchive(long, EMountMode);
+    JKRArchive(s32, EMountMode);
     virtual ~JKRArchive();
 
 public:

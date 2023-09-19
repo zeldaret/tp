@@ -1,5 +1,0 @@
-#ifndef JKRARCHIVEPRI_H
-#define JKRARCHIVEPRI_H
-
-
-#endif /* JKRARCHIVEPRI_H */

@@ -9,10 +9,10 @@ class JKRDvdFile;
 
 class JKRAramArchive : public JKRArchive {
 public:
-    JKRAramArchive(long, JKRArchive::EMountDirection);
+    JKRAramArchive(s32, JKRArchive::EMountDirection);
     virtual ~JKRAramArchive();
 
-    bool open(long);
+    bool open(s32);
     u32 getAramAddress_Entry(SDIFileEntry*);
     u32 getAramAddress(char const*);
 
