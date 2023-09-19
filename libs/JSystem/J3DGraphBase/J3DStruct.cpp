@@ -19,8 +19,6 @@ void J3DLightInfo::operator=(J3DLightInfo const& param_0) {
 }
 
 /* 80325718-80325794 320058 007C+00 0/0 4/4 0/0 .text __as__13J3DTexMtxInfoFRC13J3DTexMtxInfo */
-// J3DTextureSRTInfo::operator=
-#ifdef NONMATCHING
 void J3DTexMtxInfo::operator=(J3DTexMtxInfo const& param_0) {
     mProjection = param_0.mProjection;
     mInfo = param_0.mInfo;
@@ -28,16 +26,6 @@ void J3DTexMtxInfo::operator=(J3DTexMtxInfo const& param_0) {
     mSRT = param_0.mSRT;
     JMath::gekko_ps_copy16(&mEffectMtx, &param_0.mEffectMtx);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DTexMtxInfo::operator=(J3DTexMtxInfo const& param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DStruct/__as__13J3DTexMtxInfoFRC13J3DTexMtxInfo.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80456410-80456414 004A10 0004+00 1/1 0/0 0/0 .sdata2          @409 */

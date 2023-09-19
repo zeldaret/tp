@@ -40,6 +40,24 @@ struct J3DTextureSRTInfo {
     /* 0x08 */ s16 mRotation;
     /* 0x0C */ f32 mTranslationX;
     /* 0x10 */ f32 mTranslationY;
+
+    inline void operator=(J3DTextureSRTInfo const& other) {
+        register const f32* src = &other.mScaleX;
+        register f32* dst = &mScaleX;
+        register f32 xy;
+        asm {
+            psq_l xy, 0(src), 0, 0
+            psq_st xy, 0(dst), 0, 0
+        };
+        // Unclear why there's a 4 byte copy here.
+        *(u32*)&mRotation = *(u32*)&other.mRotation;
+        src = &other.mTranslationX;
+        dst = &mTranslationX;
+        asm {
+            psq_l xy, 0(src), 0, 0
+            psq_st xy, 0(dst), 0, 0
+        };
+    }
 };  // Size: 0x14
 
 struct J3DTexMtxInfo {

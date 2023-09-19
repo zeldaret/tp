@@ -9,6 +9,11 @@ struct JAISeqData {
         field_0x4 = param_1;
     }
 
+    void set(void* param_0, u32 param_1) {
+        field_0x0 = param_0;
+        field_0x4 = param_1;
+    }
+
     /* 0x00 */ void* field_0x0;
     /* 0x04 */ u32 field_0x4;
 };
@@ -36,8 +41,9 @@ struct JAISeqDataUser {
 };
 
 struct JAISeqDataMgr {
+    enum SeqDataReturnValue{ SeqDataReturnValue_0 = 0, SeqDataReturnValue_1 = 1, SeqDataReturnValue_2 = 2};
     virtual ~JAISeqDataMgr();
-    virtual s32 getSeqData(JAISoundID, JAISeqData*) = 0;
+    virtual SeqDataReturnValue getSeqData(JAISoundID, JAISeqData*) = 0;
     virtual int releaseSeqData() = 0;
     virtual bool setSeqDataUser(JAISeqDataUser*) = 0;
 };
