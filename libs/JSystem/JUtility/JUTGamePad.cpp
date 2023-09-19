@@ -727,25 +727,9 @@ void JUTGamePad::CRumble::stopPatternedRumble(s16 port) {
 
 /* 802E1978-802E199C 2DC2B8 0024+00 0/0 1/1 0/0 .text
  * stopPatternedRumbleAtThePeriod__Q210JUTGamePad7CRumbleFv     */
-// r4 += (r5 - 1) is broken to r4 += r5 and r4 += 1
-#ifdef NONMATCHING
 void JUTGamePad::CRumble::stopPatternedRumbleAtThePeriod() {
-    u32 r5 = field_0xc;
-    u32 r4 = field_0x0;
-    r4 += (r5 - 1);
-    u32 temp = r4 / r5;
-    field_0x4 = r4 - temp * r5;
+    field_0x4 = (field_0x0 + field_0xc - 1) % field_0xc;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTGamePad::CRumble::stopPatternedRumbleAtThePeriod() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTGamePad/stopPatternedRumbleAtThePeriod__Q210JUTGamePad7CRumbleFv.s"
-}
-#pragma pop
-#endif
 
 /* 802E199C-802E19D8 2DC2DC 003C+00 1/1 1/1 0/0 .text            getGamePad__10JUTGamePadFi */
 JUTGamePad* JUTGamePad::getGamePad(int padNo) {
