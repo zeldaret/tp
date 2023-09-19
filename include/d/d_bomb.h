@@ -7,14 +7,13 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/d_procname.h"
 
-class daNbomb_c {
+class daNbomb_c : public fopAc_ac_c {
 public:
     enum daNbomb_FLG0 { WATER_BOMB = 16 };
 
     u32 checkStateFlg0(daNbomb_FLG0 flag) const { return mStateFlg0 & flag; }
     u32 checkWaterBomb() const { return checkStateFlg0(WATER_BOMB); }
 
-    /* 0x000 */ fopAc_ac_c mActor;
     /* 0x568 */ u8 field_0x568[0x10];
     /* 0x578 */ dBgS_Acch mAcch;
     /* 0x750 */ dBgS_AcchCir mAcchCir;
