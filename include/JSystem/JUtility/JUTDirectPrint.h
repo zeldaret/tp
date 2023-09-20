@@ -23,6 +23,7 @@ public:
 
     bool isActive() const { return field_0x00 != 0; }
     JUtility::TColor getCharColor() const { return mCharColor; }
+    void changeFrameBuffer(void *param_0) { changeFrameBuffer(param_0, mFrameBufferWidth, mFrameBufferHeight); }
 
     static JUTDirectPrint* getManager() { return sDirectPrint; }
 

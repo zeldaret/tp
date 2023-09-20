@@ -67,6 +67,7 @@ public:
     bool isVisible() const { return mVisible; }
     void setVisible(bool visible) { mVisible = visible; }
 
+    u8 getLineAttr(int param_0) { return mBuf[(field_0x20 + 2) * param_0]; }
     void setLineAttr(int param_0, u8 param_1) { mBuf[(field_0x20 + 2) * param_0] = param_1; }
     u8* getLinePtr(int param_0) const { return &mBuf[(field_0x20 + 2) * param_0] + 1; }
     int diffIndex(int param_0, int param_1) const {
@@ -77,13 +78,12 @@ public:
         return diff += mMaxLines;
     }
 
-    int nextIndex(int param_0) const {
-        int index = param_0 + 1;
-        if (mMaxLines <= index) {
-            index = 0;
-        }
+    int prevIndex(int index) const {
+        return --index < 0 ? index = mMaxLines - 1 : index;
+    }
 
-        return index;
+    int nextIndex(int index) const {
+        return ++index >= mMaxLines ? 0 : index;
     }
 
     void scrollToLastLine() { scroll(mMaxLines); }
