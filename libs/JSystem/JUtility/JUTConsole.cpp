@@ -6,6 +6,7 @@
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTVideo.h"
 #include "MSL_C/stdio.h"
@@ -164,7 +165,7 @@ void JUTConsole::clear() {
     field_0x38 = 0;
     field_0x3c = 0;
 
-    for (int i = 0; i < mMaxLines; i++) {
+    for (u32 i = 0; i < mMaxLines; i++) {
         setLineAttr(i, 0);
     }
     setLineAttr(0, -1);
@@ -261,6 +262,74 @@ void JUTConsole::print_f(char const* fmt, ...) {
 }
 
 /* 802E7C38-802E7F30 2E2578 02F8+00 2/2 10/10 0/0 .text            print__10JUTConsoleFPCc */
+// signed/unsigned
+#ifdef NONMATCHING
+void JUTConsole::print(char const* param_0) {
+    if (mOutput & 2) {
+#if DEBUG
+        OSReport("%s", param_0);
+#endif
+    }
+    if (mOutput & 1) {
+        const u8* r29 = (const u8*)param_0;
+        u8* r28 = getLinePtr(field_0x38) + field_0x3c;
+        while (*r29 != 0) {
+            if (field_0x6a && field_0x34 == nextIndex(field_0x38)) {
+                break;
+            }
+            if (*r29 == '\n') {
+                r29++;
+                field_0x3c = field_0x20;
+            } else if (*r29 == '\t') {
+                r29++;
+                while (field_0x3c < field_0x20) {
+                    *(r28++) = ' ';
+                    field_0x3c++;
+                    if (field_0x3c % field_0x64 == 0) {
+                        break;
+                    }
+                }
+            } else if (mFont && mFont->isLeadByte(*r29)) {
+                if (field_0x3c + 1 < field_0x20) {
+                    *(r28++) = *(r29++);
+                    *(r28++) = *(r29++);
+                    field_0x3c++;
+                    field_0x3c++;
+                } else {
+                    *(r28++) = 0;
+                    field_0x3c++;
+                }
+            } else {
+                *(r28++) = *(r29++);
+                field_0x3c++;
+            }
+            if (field_0x3c < field_0x20) {
+                continue;
+            }
+            *r28 = 0;
+            field_0x38 = nextIndex(field_0x38);
+            field_0x3c = 0;
+            setLineAttr(field_0x38, 0xff);
+            r28 = getLinePtr(field_0x38);
+            *r28 = 0;
+            int local_28 = diffIndex(field_0x30, field_0x38);
+            if (local_28 == mHeight) {
+                field_0x30 = nextIndex(field_0x30);
+            }
+            if (field_0x38 == field_0x34) {
+                field_0x34 = nextIndex(field_0x34);
+            }
+            if (field_0x38 == field_0x30) {
+                field_0x30 = nextIndex(field_0x30);
+            }
+            if (field_0x6b) {
+                break;
+            }
+        }
+        *r28 = 0;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -269,6 +338,7 @@ asm void JUTConsole::print(char const* param_0) {
 #include "asm/JSystem/JUtility/JUTConsole/print__10JUTConsoleFPCc.s"
 }
 #pragma pop
+#endif
 
 /* 802E7F30-802E7F7C 2E2870 004C+00 1/1 1/1 0/0 .text            JUTConsole_print_f_va_ */
 extern "C" void JUTConsole_print_f_va_(JUTConsole* console, const char* fmt, va_list args) {
@@ -286,6 +356,50 @@ SECTION_DEAD static char const* const stringBase_8039D9B3 = "%s\n";
 #pragma pop
 
 /* 802E7F7C-802E80A8 2E28BC 012C+00 0/0 2/2 0/0 .text            dumpToTerminal__10JUTConsoleFUi */
+// signed/unsigned, instruction order
+#ifdef NONMATCHING
+void JUTConsole::dumpToTerminal(unsigned int param_0) {
+    if (param_0 == 0) {
+        return;
+    }
+    u32 r29 = field_0x34;
+    if (param_0 != -1) {
+        r29 = field_0x38;
+        for (int i = 0; i != param_0; i++) {
+            int r25 = prevIndex(r29);
+            if (getLineAttr(r25) == 0) {
+                break;
+            }
+            r29 = r25;
+            if (r25 == field_0x34) {
+                break;
+            }
+        }
+    }
+
+    int r27 = 0;
+#if DEBUG
+    OSReport("\n:::dump of console[%x]--------------------------------\n",this);
+#endif
+    do {
+        u8* r28 = getLinePtr(r29);
+        u8 r24 = r28[-1];
+        if (r24 == 0) {
+            break;
+        }
+        if (field_0x69) {
+            OSReport("[%03d] %s\n", r27, r28);
+        } else {
+            OSReport("%s\n", r28);
+        }
+        r29 = nextIndex(r29);
+        r27++;
+    } while (r27 != field_0x34);
+#if DEBUG
+    OSReport(":::dump of console[%x] END----------------------------\n",this);
+#endif
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -294,6 +408,7 @@ asm void JUTConsole::dumpToTerminal(unsigned int param_0) {
 #include "asm/JSystem/JUtility/JUTConsole/dumpToTerminal__10JUTConsoleFUi.s"
 }
 #pragma pop
+#endif
 
 /* 802E80A8-802E8184 2E29E8 00DC+00 0/0 3/3 0/0 .text            scroll__10JUTConsoleFi */
 void JUTConsole::scroll(int scrollAmnt) {
@@ -357,10 +472,11 @@ JUTConsoleManager* JUTConsoleManager::createManager(JKRHeap* pHeap) {
 /* 802E8240-802E82B0 2E2B80 0070+00 3/3 0/0 0/0 .text
  * appendConsole__17JUTConsoleManagerFP10JUTConsole             */
 #ifdef NONMATCHING
-void JUTConsoleManager::appendConsole(JUTConsole* param_0) {
-    mLinkList.Push_back(param_0);
+void JUTConsoleManager::appendConsole(JUTConsole* console) {
+    JUT_ASSERT(961, sManager != 0 && console != 0);
+    mLinkList.Push_back(console);
     if (mActiveConsole == NULL) {
-        mActiveConsole = param_0;
+        mActiveConsole = console;
     }
 }
 #else
