@@ -481,7 +481,7 @@ void operator delete[](void* ptr) {
 
 /* 802CED84-802CED88 2C96C4 0004+00 1/0 1/0 0/0 .text
  * state_register__7JKRHeapCFPQ27JKRHeap6TStateUl               */
-u32 JKRHeap::state_register(JKRHeap::TState* p, u32 id) const {
+void JKRHeap::state_register(JKRHeap::TState* p, u32 id) const {
     JUT_ASSERT(1213, p != 0);
     JUT_ASSERT(1214, p->getHeap() == this);
 }
