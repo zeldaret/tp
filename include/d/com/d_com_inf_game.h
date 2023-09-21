@@ -1754,6 +1754,14 @@ inline u8 dComIfGs_getFishSize(u8 param_0) {
     return g_dComIfG_gameInfo.info.getPlayer().getFishingInfo().getMaxSize(param_0);
 }
 
+inline u8 dComIfGs_getGetNumber(int i_no) {
+    return g_dComIfG_gameInfo.info.getPlayer().getLetterInfo().getGetNumber(i_no);
+}
+
+inline void dComIfGs_setGetNumber(int i_no, u8 i_value) {
+    g_dComIfG_gameInfo.info.getPlayer().getLetterInfo().setGetNumber(i_no, i_value);
+}
+
 inline BOOL dComIfGs_isStageMiddleBoss() {
     return g_dComIfG_gameInfo.info.getMemory().getBit().isStageBossEnemy2();
 }

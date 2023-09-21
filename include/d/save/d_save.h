@@ -667,6 +667,8 @@ public:
     BOOL isLetterGetFlag(int i_no) const;
     void onLetterReadFlag(int i_no);
     int isLetterReadFlag(int i_no) const;
+    u8 getGetNumber(int i_no) { return mGetNumber[i_no]; }
+    void setGetNumber(int i_no, u8 i_value) { mGetNumber[i_no] = i_value; }
 
 private:
     /* 0x00 */ u32 mLetterGetFlags[2];

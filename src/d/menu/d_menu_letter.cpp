@@ -7,68 +7,24 @@
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "MSL_C/stdio.h"
 #include "MSL_C/string.h"
+#include "MSL_C/math.h"
 #include "dol2asm.h"
+#include "dolphin/types.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRMemArchive.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_lib.h"
+#include "d/d_select_cursor.h"
+#include "d/meter/d_meter2_info.h"
+#include "d/meter/d_meter_HIO.h"
+#include "d/msg/d_msg_class.h"
+#include "d/msg/d_msg_string.h"
+#include "msg/scrn/d_msg_scrn_arrow.h"
+#include "m_Do/m_Do_controller_pad.h"
+#include "m_Do/m_Do_graphic.h"
 
-//
-// Types:
-//
 
-struct mDoGph_gInf_c {
-    static u8 mFader[4];
-};
 
-struct mDoDvdThd_mountArchive_c {
-    /* 80015E14 */ void create(char const*, u8, JKRHeap*);
-};
-
-struct mDoCPd_c {
-    static u8 m_cpadInfo[256];
-};
-
-struct dSv_letter_info_c {
-    /* 80034428 */ void onLetterGetFlag(int);
-    /* 80034474 */ void onLetterReadFlag(int);
-    /* 8003449C */ void isLetterReadFlag(int) const;
-};
-
-struct COutFont_c {};
-
-struct dMsgString_c {
-    /* 801E1D10 */ void getStringPage(u32, u8, u8, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*,
-                                      u8);
-    /* 80249C20 */ dMsgString_c();
-    /* 80249D28 */ ~dMsgString_c();
-};
-
-struct dMsgStringBase_c {
-    /* 802498D8 */ void getStringPageLocal(u32, u8, u8, J2DTextBox*, J2DTextBox*, JUTFont*,
-                                           COutFont_c*, u8);
-    /* 80249A48 */ void getPageMax(int);
-};
-
-struct dMsgScrnArrow_c {
-    /* 8023B9B4 */ dMsgScrnArrow_c();
-    /* 8023BDC0 */ void draw();
-    /* 8023BDF8 */ void setPos(f32, f32);
-    /* 8023BE34 */ void arwAnimeInit();
-    /* 8023BE90 */ void arwAnimeMove();
-    /* 8023BFC4 */ void dotAnimeInit();
-    /* 8023C010 */ void dotAnimeMove();
-};
-
-struct JMSMesgEntry_c {};
-
-struct dMeter2Info_c {
-    /* 8021C544 */ void getStringKanji(u32, char*, JMSMesgEntry_c*);
-};
-
-struct dMenu_Letter {
-    static u8 letter_data[512];
-};
-
-//
-// Forward References:
-//
 
 extern "C" void __ct__14dMenu_Letter_cFP10JKRExpHeapP9STControlP10CSTControl();
 extern "C" void __dt__14dMenu_Letter_cFv();
@@ -194,9 +150,6 @@ extern "C" void _restgpr_29();
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" u8 letter_data__12dMenu_Letter[512];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_drawHIO[3880];
-extern "C" extern u8 g_meter2_info[248];
 extern "C" u8 mFader__13mDoGph_gInf_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
@@ -206,188 +159,32 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 803BDA00-803BDA0C 01AB20 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803BDA0C-803BDA18 -00001 000C+00 0/1 0/0 0/0 .data            @3795 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3795[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait_init__14dMenu_Letter_cFv,
-};
-#pragma pop
-
-/* 803BDA18-803BDA24 -00001 000C+00 0/1 0/0 0/0 .data            @3796 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3796[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)slide_right_init__14dMenu_Letter_cFv,
-};
-#pragma pop
-
-/* 803BDA24-803BDA30 -00001 000C+00 0/1 0/0 0/0 .data            @3797 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3797[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)slide_left_init__14dMenu_Letter_cFv,
-};
-#pragma pop
-
-/* 803BDA30-803BDA3C -00001 000C+00 0/1 0/0 0/0 .data            @3798 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3798[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)read_open_init__14dMenu_Letter_cFv,
-};
-#pragma pop
-
-/* 803BDA3C-803BDA48 -00001 000C+00 0/1 0/0 0/0 .data            @3799 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3799[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)read_move_init__14dMenu_Letter_cFv,
-};
-#pragma pop
-
-/* 803BDA48-803BDA54 -00001 000C+00 0/1 0/0 0/0 .data            @3800 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3800[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)read_next_fadeout_init__14dMenu_Letter_cFv,
-};
-#pragma pop
-
-/* 803BDA54-803BDA60 -00001 000C+00 0/1 0/0 0/0 .data            @3801 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3801[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)read_next_fadein_init__14dMenu_Letter_cFv,
-};
-#pragma pop
-
-/* 803BDA60-803BDA6C -00001 000C+00 0/1 0/0 0/0 .data            @3802 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3802[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)read_close_init__14dMenu_Letter_cFv,
-};
-#pragma pop
-
-/* 803BDA6C-803BDACC 01AB8C 0060+00 2/3 0/0 0/0 .data            map_init_process */
-SECTION_DATA static u8 map_init_process[96] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+typedef void (dMenu_Letter_c::*initFunc)();
+static initFunc map_init_process[] = {
+    &dMenu_Letter_c::wait_init,
+    &dMenu_Letter_c::slide_right_init,
+    &dMenu_Letter_c::slide_left_init,
+    &dMenu_Letter_c::read_open_init,
+    &dMenu_Letter_c::read_move_init,
+    &dMenu_Letter_c::read_next_fadeout_init,
+    &dMenu_Letter_c::read_next_fadein_init,
+    &dMenu_Letter_c::read_close_init,
 };
 
-/* 803BDACC-803BDAD8 -00001 000C+00 0/1 0/0 0/0 .data            @3803 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3803[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait_move__14dMenu_Letter_cFv,
-};
-#pragma pop
-
-/* 803BDAD8-803BDAE4 -00001 000C+00 0/1 0/0 0/0 .data            @3804 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3804[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)slide_right_move__14dMenu_Letter_cFv,
-};
-#pragma pop
-
-/* 803BDAE4-803BDAF0 -00001 000C+00 0/1 0/0 0/0 .data            @3805 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3805[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)slide_left_move__14dMenu_Letter_cFv,
-};
-#pragma pop
-
-/* 803BDAF0-803BDAFC -00001 000C+00 0/1 0/0 0/0 .data            @3806 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3806[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)read_open_move__14dMenu_Letter_cFv,
-};
-#pragma pop
-
-/* 803BDAFC-803BDB08 -00001 000C+00 0/1 0/0 0/0 .data            @3807 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3807[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)read_move_move__14dMenu_Letter_cFv,
-};
-#pragma pop
-
-/* 803BDB08-803BDB14 -00001 000C+00 0/1 0/0 0/0 .data            @3808 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3808[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)read_next_fadeout_move__14dMenu_Letter_cFv,
-};
-#pragma pop
-
-/* 803BDB14-803BDB20 -00001 000C+00 0/1 0/0 0/0 .data            @3809 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3809[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)read_next_fadein_move__14dMenu_Letter_cFv,
-};
-#pragma pop
-
-/* 803BDB20-803BDB2C -00001 000C+00 0/1 0/0 0/0 .data            @3810 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3810[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)read_close_move__14dMenu_Letter_cFv,
-};
-#pragma pop
-
-/* 803BDB2C-803BDB8C 01AC4C 0060+00 1/2 0/0 0/0 .data            map_move_process */
-SECTION_DATA static u8 map_move_process[96] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+typedef void (dMenu_Letter_c::*moveFunc)();
+static moveFunc map_move_process[] = {
+    &dMenu_Letter_c::wait_move,
+    &dMenu_Letter_c::slide_right_move,
+    &dMenu_Letter_c::slide_left_move,
+    &dMenu_Letter_c::read_open_move,
+    &dMenu_Letter_c::read_move_move,
+    &dMenu_Letter_c::read_next_fadeout_move,
+    &dMenu_Letter_c::read_next_fadein_move,
+    &dMenu_Letter_c::read_close_move,
 };
 
 /* 803BDB8C-803BDBA8 01ACAC 0010+0C 2/2 0/0 0/0 .data            __vt__14dMenu_Letter_c */
@@ -415,6 +212,38 @@ SECTION_SDATA2 static f32 lit_3828 = 1.0f;
 
 /* 801DCDC0-801DCF34 1D7700 0174+00 0/0 2/2 0/0 .text
  * __ct__14dMenu_Letter_cFP10JKRExpHeapP9STControlP10CSTControl */
+#ifdef NONMATCHING
+// Matches with literals
+dMenu_Letter_c::dMenu_Letter_c(JKRExpHeap* i_heap, STControl* i_stick, CSTControl* i_cstick) {
+    mpHeap = i_heap;
+    mpMount = NULL;
+    mpArchive = NULL;
+    mpStick = i_stick;
+    mpCStick = i_cstick;
+    mStatus = 1;
+    mProcess = 0;
+    field_0x368 = 0;
+    field_0x36a = 0;
+    mIndex = 0;
+    field_0x36f = 0;
+    field_0x372 = 0;
+    field_0x3e2 = 0;
+    field_0x3e3 = 0;
+    field_0x3e4 = 0;
+    field_0x370 = 0xff;
+    field_0x371 = 0xff;
+    letter_init_calc();
+    field_0x358 = 0.0f;
+    field_0x35c = 0.0f;
+    field_0x364 = 1.0f;
+    field_0x360 = 1.0f;
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 6; j++) {
+            field_0x376[i][j] = 0;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -423,16 +252,93 @@ asm dMenu_Letter_c::dMenu_Letter_c(JKRExpHeap* param_0, STControl* param_1, CSTC
 #include "asm/d/menu/d_menu_letter/__ct__14dMenu_Letter_cFP10JKRExpHeapP9STControlP10CSTControl.s"
 }
 #pragma pop
+#endif
 
 /* 801DCF34-801DD36C 1D7874 0438+00 1/0 0/0 0/0 .text            __dt__14dMenu_Letter_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMenu_Letter_c::~dMenu_Letter_c() {
-    nofralloc
-#include "asm/d/menu/d_menu_letter/__dt__14dMenu_Letter_cFv.s"
+dMenu_Letter_c::~dMenu_Letter_c() {
+    delete mpDrawCursor;
+    mpDrawCursor = NULL;
+
+    delete mpArrow;
+    mpArrow = NULL;
+
+    delete mpString;
+    mpString = NULL;
+
+    delete mpMenuScreen;
+    mpMenuScreen = NULL;
+
+    delete mpMenuDMYScreen;
+    mpMenuDMYScreen = NULL;
+
+    delete mpMenuBaseScreen;
+    mpMenuBaseScreen = NULL;
+
+    delete mpSdwScreen;
+    mpSdwScreen = NULL;
+
+    for (int i = 0; i < 2; i++) {    
+        delete mpLetterScreen[i];
+        mpLetterScreen[i] = NULL;
+        
+        delete field_0x2ec[i];
+        field_0x2ec[i] = NULL;
+
+        if (field_0x2f4[i] != NULL) {
+            delete field_0x2f4[i];
+            field_0x2f4[i] = NULL;
+        }
+        
+        delete mpTextParent[i];
+        mpTextParent[i] = NULL;
+    }
+    
+    delete mpLineParent;
+    mpLineParent = NULL;
+
+    delete mpBlackTex;
+    mpBlackTex = NULL;
+
+    for (int i = 0; i < 3; i++) {
+        delete mpParent[i];
+        mpParent[i] = NULL;
+    }
+
+    for (int i = 0; i < 6; i++) {
+        delete mpLetterParent[i];
+        mpLetterParent[i] = NULL;
+    }
+
+    delete mpDMYParent;
+    mpDMYParent = NULL;
+
+    delete mpIconScreen;
+    mpIconScreen = NULL;
+
+    for (int i = 0; i < 2; i++) {
+        if (mpButtonAB[i] != NULL) {
+            delete mpButtonAB[i];
+            mpButtonAB[i] = NULL;
+        }
+
+        if (mpButtonText[i] != NULL) {
+            delete mpButtonText[i];
+            mpButtonText[i] = NULL;
+        } 
+    }
+
+    if (mpMount != NULL) {
+        mpMount->getArchive()->unmount();
+        delete mpMount;
+        mpMount = NULL;
+    }
+
+    if (mpArchive != NULL) {
+        mpArchive->unmount();
+        mpArchive = NULL;
+    } 
+    dComIfGp_getMsgArchive(0)->removeResourceAll();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804542E8-804542EC 0028E8 0004+00 1/1 0/0 0/0 .sdata2          @3964 */
@@ -448,6 +354,28 @@ SECTION_SDATA2 static f32 lit_3966 = 1.0f / 50.0f;
 SECTION_SDATA2 static f32 lit_3967 = 2.0f / 5.0f;
 
 /* 801DD36C-801DD474 1D7CAC 0108+00 1/1 0/0 0/0 .text            _create__14dMenu_Letter_cFv */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Letter_c::_create() {
+    mpDrawCursor = new dSelect_cursor_c(2, 1.0f, NULL);
+    mpDrawCursor->setParam(1.06f, 0.9f, 0.02f, 0.4f, 0.4f);
+    mpDrawCursor->setAlphaRate(0.0f);
+    mpDrawCursor->setScale(0.0f);
+    mpDrawCursor->offPlayAnime(0);
+
+    mpString = new dMsgString_c();
+
+    mpArrow = new dMsgScrnArrow_c();
+
+    screenSetMenu();
+    screenSetBase();
+    screenSetShadow();
+    screenSetLetter();
+    screenSetDoIcon();
+    setHIO(true);
+    init();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -456,16 +384,19 @@ asm void dMenu_Letter_c::_create() {
 #include "asm/d/menu/d_menu_letter/_create__14dMenu_Letter_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801DD474-801DD50C 1D7DB4 0098+00 0/0 2/2 0/0 .text            _move__14dMenu_Letter_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Letter_c::_move() {
-    nofralloc
-#include "asm/d/menu/d_menu_letter/_move__14dMenu_Letter_cFv.s"
+void dMenu_Letter_c::_move() {
+    JKRHeap* heap = mDoExt_setCurrentHeap((JKRHeap*)mpHeap);
+    u8 process = mProcess;
+    (this->*map_move_process[mProcess])();
+    if (process != mProcess) {
+        (this->*map_init_process[mProcess])();
+    }
+    setHIO(false);
+    mDoExt_setCurrentHeap(heap);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804542F8-804542FC 0028F8 0004+00 1/1 0/0 0/0 .sdata2          @4054 */
@@ -495,34 +426,44 @@ asm void dMenu_Letter_c::_draw() {
 #pragma pop
 
 /* 801DD934-801DD95C 1D8274 0028+00 0/0 2/2 0/0 .text            isSync__14dMenu_Letter_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dMenu_Letter_c::isSync() {
-    nofralloc
-#include "asm/d/menu/d_menu_letter/isSync__14dMenu_Letter_cFv.s"
+bool dMenu_Letter_c::isSync() {
+    if (mpMount != NULL && mpMount->sync() == false) {
+        return 0;
+    }
+    return 1;
 }
-#pragma pop
 
 /* 801DD95C-801DDA20 1D829C 00C4+00 1/1 0/0 0/0 .text letter_init_calc__14dMenu_Letter_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Letter_c::letter_init_calc() {
-    nofralloc
-#include "asm/d/menu/d_menu_letter/letter_init_calc__14dMenu_Letter_cFv.s"
+void dMenu_Letter_c::letter_init_calc() {
+    m_letter_num = getLetterNum();
+    for (int i = 0; i < 54; i++) {
+        if (i < m_letter_num) {
+            field_0x3ac[i] = dComIfGs_getGetNumber(m_letter_num - i -1);
+        }
+        else {
+            field_0x3ac[i] = 0xff;
+        }
+    }
+    if (m_letter_num < 6) {
+        field_0x373 = m_letter_num;
+    }
+    else {
+        field_0x373 = 6;
+    }
+    if (m_letter_num % 6 == 0) {
+        field_0x374 = m_letter_num / 6;
+    }
+    else {
+        field_0x374 = m_letter_num / 6 + 1;
+    }
 }
-#pragma pop
 
 /* 801DDA20-801DDA74 1D8360 0054+00 1/1 0/0 0/0 .text            init__14dMenu_Letter_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Letter_c::init() {
-    nofralloc
-#include "asm/d/menu/d_menu_letter/init__14dMenu_Letter_cFv.s"
+void dMenu_Letter_c::init() {
+    setPageText();
+    changeActiveColor();
+    (this->*map_init_process[mProcess])();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80396DC0-80396DC0 023420 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -535,36 +476,168 @@ SECTION_DEAD static char const* const stringBase_80396DC0 = "/res/Layout/letres.
 SECTION_SDATA2 static f64 lit_4171 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 801DDA74-801DDC98 1D83B4 0224+00 0/0 2/2 0/0 .text            _open__14dMenu_Letter_cFv */
+#ifdef NONMATCHING
+// Matches with literals
+int dMenu_Letter_c::_open() {
+    if (mpMount == NULL) {
+        mpMount = mDoDvdThd_mountArchive_c::create("/res/Layout/letres.arc", 0, NULL);
+    }
+    if (!mpArchive) {
+        if (mpMount->sync() != 0) {
+            if (!mpArchive) {
+                mpArchive = (JKRArchive*)mpMount->getArchive();
+                delete mpMount;
+                mpMount = NULL;
+                _create();
+            }
+        } else {
+            return 0;
+        }
+    }
+
+    s16 openFrame = g_drawHIO.mLetterSelectScreen.mOpenFrame[0];
+    s16 closeFrame = g_drawHIO.mLetterSelectScreen.mCloseFrame[0];
+    field_0x368 = g_drawHIO.mLetterSelectScreen.mOpenFrame[0];
+    if (field_0x368 >= openFrame) {
+        field_0x368 = closeFrame;
+        mStatus = 2;
+        for (int i = 0; i < 3; i++) {
+            mpParent[i]->scale(g_drawHIO.mLetterSelectScreen.mWindowScale, g_drawHIO.mLetterSelectScreen.mWindowScale);
+            mpParent[i]->setAlphaRate(1.0f);
+        }
+        setCursorPos();
+        mpDrawCursor->setAlphaRate(1.0f);
+        mpDrawCursor->setScale(1.0f);
+        mpDrawCursor->onPlayAnime(0);
+        return 1;
+    }
+    else {
+        f32 div = (f32)field_0x368 / (f32)openFrame;
+        for (int i = 0; i < 3; i++) {
+            mpParent[i]->scale(g_drawHIO.mLetterSelectScreen.mWindowScale * div, g_drawHIO.mLetterSelectScreen.mWindowScale * div);
+            mpParent[i]->setAlphaRate(div);
+        }
+        setCursorPos();
+        mpDrawCursor->setAlphaRate(div);
+        mpDrawCursor->setScale(div);
+        return 0;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Letter_c::_open() {
+asm int dMenu_Letter_c::_open() {
     nofralloc
 #include "asm/d/menu/d_menu_letter/_open__14dMenu_Letter_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801DDC98-801DDE18 1D85D8 0180+00 0/0 1/1 0/0 .text            _close__14dMenu_Letter_cFv */
+#ifdef NONMATCHING
+// Matches with literals
+int dMenu_Letter_c::_close() {
+    s16 closeFrame = g_drawHIO.mLetterSelectScreen.mCloseFrame[0];
+    field_0x368 = 0;
+    if (field_0x368 <= 0) {
+        field_0x368 = 0;
+        mStatus = 0;
+        for (int i = 0; i < 3; i++) {
+            mpParent[i]->scale(0.0f, 0.0f);
+            mpParent[i]->setAlphaRate(0.0f);
+        }
+        setCursorPos();
+        mpDrawCursor->setAlphaRate(0.0f);
+        mpDrawCursor->setScale(0.0f);
+        return 1;
+    }
+    else {
+        f32 div = (f32)field_0x368 / (f32)closeFrame;
+        for (int i = 0; i < 3; i++) {
+            mpParent[i]->scale(g_drawHIO.mLetterSelectScreen.mWindowScale * div, g_drawHIO.mLetterSelectScreen.mWindowScale * div);
+            mpParent[i]->setAlphaRate(div);
+        }
+        setCursorPos();
+        mpDrawCursor->setAlphaRate(div);
+        mpDrawCursor->setScale(div);
+        return 0;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Letter_c::_close() {
+asm int dMenu_Letter_c::_close() {
     nofralloc
 #include "asm/d/menu/d_menu_letter/_close__14dMenu_Letter_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801DDE18-801DDE54 1D8758 003C+00 1/0 0/0 0/0 .text            wait_init__14dMenu_Letter_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Letter_c::wait_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_letter/wait_init__14dMenu_Letter_cFv.s"
+void dMenu_Letter_c::wait_init() {
+    setAButtonString(0x40c);    
+    setBButtonString(0x3f9);    
 }
-#pragma pop
 
 /* 801DDE54-801DE164 1D8794 0310+00 1/0 0/0 0/0 .text            wait_move__14dMenu_Letter_cFv */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Letter_c::wait_move() {
+    u8 oldIndex = mIndex;
+    if (mDoGph_gInf_c::getFader()->getStatus() == 1) {
+        if (mDoCPd_c::getTrigB(PAD_1) != 0) {
+            mpDrawCursor->offPlayAnime(0);
+            mStatus = 3;
+        } else if (mDoCPd_c::getTrigA(PAD_1)) {
+            mProcess = 3;
+            Z2GetAudioMgr()->seStart(Z2SE_SY_LETTER_OPEN, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                            -1.0f, 0);
+            dMeter2Info_set2DVibration();
+        } else if (mpStick->checkUpTrigger()) {
+            if (mIndex) {
+                mIndex--;
+                Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                                -1.0f, 0);
+            }
+
+        } else if (mpStick->checkDownTrigger()) {
+            if (mIndex < field_0x373 - 1) {
+                mIndex++;
+                Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                            -1.0f, 0);
+            }
+        } else if (mDoCPd_c::getTrigR(PAD_1)) {
+            if (field_0x36f < field_0x374 - 1) {
+                field_0x372 = field_0x36f;
+                field_0x36f++;
+                mProcess = 2;
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_SUB_NEXT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            }
+        } 
+        else if (mDoCPd_c::getTrigL(PAD_1)) {
+            if (field_0x36f) {
+                field_0x372 = field_0x36f;
+                field_0x36f--;
+                mProcess = 1;
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_SUB_NEXT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+
+            }
+        }
+        
+        if (mProcess == 1 || mProcess == 2) {
+            J2DTextBox* textBox = (J2DTextBox*)mpMenuBaseScreen->search('f_t_00');
+            mpMenuBaseScreen->search('t_t00')->hide();
+            dComIfGp_setMessageCountNumber(field_0x374 + (field_0x36f +1) * 100);
+            mpString->getString(0x4d6, textBox, NULL, NULL, NULL, 0);
+        }
+        if (oldIndex != mIndex) {
+            changeActiveColor();
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -573,8 +646,20 @@ asm void dMenu_Letter_c::wait_move() {
 #include "asm/d/menu/d_menu_letter/wait_move__14dMenu_Letter_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801DE164-801DE1E8 1D8AA4 0084+00 1/0 0/0 0/0 .text slide_right_init__14dMenu_Letter_cFv */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Letter_c::slide_right_init() {
+    field_0x358 = -field_0x1ec->getWidth() * mDoGph_gInf_c::getInvScale();
+    field_0x35c = field_0x1ec->getWidth() * mDoGph_gInf_c::getInvScale();
+    changePageLight();
+    copyDMYMenu();
+    setAButtonString(0);
+    setBButtonString(0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -583,6 +668,7 @@ asm void dMenu_Letter_c::slide_right_init() {
 #include "asm/d/menu/d_menu_letter/slide_right_init__14dMenu_Letter_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80454318-8045431C 002918 0004+00 3/3 0/0 0/0 .sdata2          @4308 */
@@ -599,6 +685,16 @@ SECTION_SDATA2 static f32 lit_4310[1 + 1 /* padding */] = {
 };
 
 /* 801DE1E8-801DE24C 1D8B28 0064+00 1/0 0/0 0/0 .text slide_right_move__14dMenu_Letter_cFv */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Letter_c::slide_right_move() {
+    cLib_addCalc2(&field_0x358, 0.0f, 0.5f, 50.0f);
+    if (fabsf(field_0x358) < 0.1f) {
+        field_0x358 = 0.0f;
+        mProcess = 0;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -607,9 +703,21 @@ asm void dMenu_Letter_c::slide_right_move() {
 #include "asm/d/menu/d_menu_letter/slide_right_move__14dMenu_Letter_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801DE24C-801DE2D0 1D8B8C 0084+00 1/0 0/0 0/0 .text            slide_left_init__14dMenu_Letter_cFv
  */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Letter_c::slide_left_init() {
+    field_0x358 = field_0x1ec->getWidth() * mDoGph_gInf_c::getInvScale();
+    field_0x35c = -field_0x1ec->getWidth() * mDoGph_gInf_c::getInvScale();
+    changePageLight();
+    copyDMYMenu();
+    setAButtonString(0);
+    setBButtonString(0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -618,9 +726,20 @@ asm void dMenu_Letter_c::slide_left_init() {
 #include "asm/d/menu/d_menu_letter/slide_left_init__14dMenu_Letter_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801DE2D0-801DE334 1D8C10 0064+00 1/0 0/0 0/0 .text            slide_left_move__14dMenu_Letter_cFv
  */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Letter_c::slide_left_move() {
+    cLib_addCalc2(&field_0x358, 0.0f, 0.5f, 50.0f);
+    if (fabsf(field_0x358) < 0.1f) {
+        field_0x358 = 0.0f;
+        mProcess = 0;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -629,6 +748,7 @@ asm void dMenu_Letter_c::slide_left_move() {
 #include "asm/d/menu/d_menu_letter/slide_left_move__14dMenu_Letter_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80396DC0-80396DC0 023420 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -650,6 +770,29 @@ asm void dMenu_Letter_c::read_open_init() {
 
 /* 801DE564-801DE70C 1D8EA4 01A8+00 1/0 0/0 0/0 .text            read_open_move__14dMenu_Letter_cFv
  */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Letter_c::read_open_move() {
+    s16 openFrame = g_drawHIO.mLetterSelectScreen.mOpenFrame[1];
+    field_0x36a++;
+    if (field_0x36a >= openFrame) {
+        mProcess = 4;
+        for (int i = 0; i < 2; i++) {
+            mpTextParent[i]->scale(g_drawHIO.mLetterSelectScreen.mLetterWindowScale, g_drawHIO.mLetterSelectScreen.mLetterWindowScale);
+            mpTextParent[i]->setAlphaRate(1.0f);
+        }
+        mpBlackTex->setAlpha(g_drawHIO.mLetterSelectScreen.mWindowBGAlpha);
+    }
+    else {
+        f32 div = (f32)field_0x36a / (f32)openFrame;
+        for (int i = 0; i < 2; i++) {
+            mpTextParent[i]->scale(g_drawHIO.mLetterSelectScreen.mLetterWindowScale * div, g_drawHIO.mLetterSelectScreen.mLetterWindowScale * div);
+            mpTextParent[i]->setAlphaRate(div);
+        }
+        mpBlackTex->setAlpha(g_drawHIO.mLetterSelectScreen.mWindowBGAlpha * div);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -658,20 +801,73 @@ asm void dMenu_Letter_c::read_open_move() {
 #include "asm/d/menu/d_menu_letter/read_open_move__14dMenu_Letter_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801DE70C-801DE824 1D904C 0118+00 1/0 0/0 0/0 .text            read_move_init__14dMenu_Letter_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Letter_c::read_move_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_letter/read_move_init__14dMenu_Letter_cFv.s"
+void dMenu_Letter_c::read_move_init() {
+    mpArrow->arwAnimeInit();
+    mpArrow->dotAnimeInit();
+    if (field_0x3e2 > 1) {
+        if (field_0x3e3 == field_0x3e2) {
+            setAButtonString(0);
+            setBButtonString(0x3f9);
+        }
+        else {
+        setAButtonString(0x408);
+        setBButtonString(0x3f9);
+        }
+        CPaneMgr paneMgr;
+        J2DPane* pane = mpLetterScreen[0]->search('set_ya_n');
+        Vec pos = paneMgr.getGlobalVtxCenter(pane, false, 0);
+        mpArrow->setPos(pos.x, pos.y);
+    }
+    else {
+        setAButtonString(0);
+        setBButtonString(0x3f9);
+    }
 }
-#pragma pop
 
 /* 801DE824-801DEA48 1D9164 0224+00 1/0 0/0 0/0 .text            read_move_move__14dMenu_Letter_cFv
  */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Letter_c::read_move_move() {
+    if (mDoCPd_c::getTrigA(PAD_1) != 0) {
+        if (field_0x3e3 == field_0x3e2) {
+            Z2GetAudioMgr()->seStart(Z2SE_SY_LETTER_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            dMeter2Info_set2DVibration();
+            mProcess = 7;
+        } else {
+            mProcess = 5;
+            Z2GetAudioMgr()->seStart(Z2SE_SY_LETTER_NEXT_PAGE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            dMeter2Info_set2DVibration();
+            field_0x3e4 = 1;
+        }
+    } else if (mDoCPd_c::getTrigB(PAD_1) != 0) {
+        if (field_0x3e3 <= 1) {    
+            mProcess = 7;
+            Z2GetAudioMgr()->seStart(Z2SE_SY_LETTER_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            dMeter2Info_set2DVibration();
+        } else {
+            mProcess = 5;
+            Z2GetAudioMgr()->seStart(Z2SE_SY_LETTER_NEXT_PAGE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            dMeter2Info_set2DVibration();
+            field_0x3e4 = 0;
+        }
+    } else if (field_0x3e2 > 1) {
+        if (field_0x3e3 == field_0x3e2) {
+            mpArrow->dotAnimeMove();
+        } else {
+            mpArrow->arwAnimeMove();
+        }
+        CPaneMgr paneMgr;
+        J2DPane* pane = mpLetterScreen[0]->search('set_ya_n');
+        Vec pos = paneMgr.getGlobalVtxCenter(pane, false, 0);
+        mpArrow->setPos(pos.x, pos.y);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -680,20 +876,50 @@ asm void dMenu_Letter_c::read_move_move() {
 #include "asm/d/menu/d_menu_letter/read_move_move__14dMenu_Letter_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801DEA48-801DEA94 1D9388 004C+00 1/0 0/0 0/0 .text read_next_fadeout_init__14dMenu_Letter_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Letter_c::read_next_fadeout_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_letter/read_next_fadeout_init__14dMenu_Letter_cFv.s"
+void dMenu_Letter_c::read_next_fadeout_init() {
+    field_0x36a = g_drawHIO.mLetterSelectScreen.mCloseFrame[1];
+    setAButtonString(0);
+    setBButtonString(0);
 }
-#pragma pop
 
 /* 801DEA94-801DEBD8 1D93D4 0144+00 1/0 0/0 0/0 .text read_next_fadeout_move__14dMenu_Letter_cFv
  */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Letter_c::read_next_fadeout_move() {
+    s16 closeFrame = g_drawHIO.mLetterSelectScreen.mCloseFrame[0];
+    field_0x36a--;
+    if (field_0x36a <= 0) {
+        mProcess = 6;
+        for (int i = 0; i < 2; i++) {
+            field_0x2ec[i]->setAlphaRate(0.0f);
+            
+            if (field_0x2f4[i] != NULL) {
+                field_0x2f4[i]->setAlphaRate(0.0f);
+            }
+        }
+        if (field_0x3e4 != 0) {
+            field_0x3e3++;
+        }
+        else {
+            field_0x3e3--;
+        }
+    }
+    else {
+        f32 div = (f32)field_0x36a / (f32)closeFrame;
+        for (int i = 0; i < 2; i++) {
+            field_0x2ec[i]->setAlphaRate(div);
+            if (field_0x2f4[i]) {
+                field_0x2f4[i]->setAlphaRate(div);
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -702,6 +928,7 @@ asm void dMenu_Letter_c::read_next_fadeout_move() {
 #include "asm/d/menu/d_menu_letter/read_next_fadeout_move__14dMenu_Letter_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801DEBD8-801DED04 1D9518 012C+00 1/0 0/0 0/0 .text read_next_fadein_init__14dMenu_Letter_cFv */
 #pragma push
@@ -1170,7 +1397,7 @@ asm void dMenu_Letter_c::setBButtonString(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Letter_c::getLetterNum() {
+asm u8 dMenu_Letter_c::getLetterNum() {
     nofralloc
 #include "asm/d/menu/d_menu_letter/getLetterNum__14dMenu_Letter_cFv.s"
 }
@@ -1209,20 +1436,3 @@ extern "C" asm void draw__14dMenu_Letter_cFv() {
 #include "asm/d/menu/d_menu_letter/draw__14dMenu_Letter_cFv.s"
 }
 #pragma pop
-
-/* 801E1D7C-801E1F10 1DC6BC 0194+00 0/0 1/0 0/0 .text            __sinit_d_menu_letter_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_menu_letter_cpp() {
-    nofralloc
-#include "asm/d/menu/d_menu_letter/__sinit_d_menu_letter_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x801E1D7C, __sinit_d_menu_letter_cpp);
-#pragma pop
-
-/* 80396DC0-80396DC0 023420 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
