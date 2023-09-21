@@ -4,97 +4,37 @@
 //
 
 #include "JSystem/JUtility/JUTProcBar.h"
+#include "JSystem/J2DGraph/J2DOrthoGraph.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTVideo.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "global.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__10JUTProcBarFv();
-extern "C" void __dt__10JUTProcBarFv();
-extern "C" void create__10JUTProcBarFv();
-extern "C" void destroy__10JUTProcBarFv();
-extern "C" void clear__10JUTProcBarFv();
-extern "C" void bar_subroutine__10JUTProcBarFiiiiiiiQ28JUtility6TColorQ28JUtility6TColor();
-extern "C" void adjustMeterLength__10JUTProcBarFUlPfffPi();
-extern "C" void draw__10JUTProcBarFv();
-extern "C" void drawProcessBar__10JUTProcBarFv();
-extern "C" static void addrToXPos__FPvi();
-extern "C" static void byteToXLen__Fii();
-extern "C" static void heapBar__FP7JKRHeapiiiii();
-extern "C" void drawHeapBar__10JUTProcBarFv();
-extern "C" void __ct__Q210JUTProcBar5CTimeFv();
-extern "C" u8 sManager__10JUTProcBar[4];
-
-//
-// External References:
-//
-
-extern "C" void getTotalFreeSize__7JKRHeapFv();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void J2DDrawLine__FffffQ28JUtility6TColori();
-extern "C" void J2DFillBox__FffffQ28JUtility6TColor();
-extern "C" void J2DDrawFrame__FffffQ28JUtility6TColorUc();
-extern "C" void __construct_array();
-extern "C" void _savegpr_21();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _restgpr_21();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" u8 sSystemHeap__7JKRHeap[4];
-extern "C" u8 sCurrentHeap__7JKRHeap[4];
-extern "C" u8 sRootHeap__7JKRHeap[4];
-extern "C" u8 mCodeStart__7JKRHeap[4];
-extern "C" u8 mCodeEnd__7JKRHeap[4];
-extern "C" u8 mUserRamStart__7JKRHeap[4];
-extern "C" u8 mUserRamEnd__7JKRHeap[4];
-extern "C" u8 mMemorySize__7JKRHeap[4];
-extern "C" u8 sManager__8JUTVideo[4];
 
 //
 // Declarations:
 //
 
 /* 802E5888-802E599C 2E01C8 0114+00 1/1 0/0 0/0 .text            __ct__10JUTProcBarFv */
-#ifdef NONMATCHING  // inline CTime ctor
 JUTProcBar::JUTProcBar() {
     mVisible = true;
     mHeapBarVisible = true;
     field_0x108 = 0;
-    s32 height = JUTGetVideoManager()->getRenderMode()->efb_height;
+    s32 height = JUTVideo::getManager()->getEfbHeight();
     if (height > 400) {
-        mParams.mBarWidth = 2;
-        mParams.mPosX = 0x27;
-        mParams.mPosY = height - 0x28;
-        mParams.mWidth = 0x232;
-        mParams.mUserPosition = height - 0x46;
+        mParams.setBarWidth(2);
+        mParams.setPosition(39, height - 40);
+        mParams.setWidth(562);
+        mParams.setUserPosition(height - 70);
     } else {
-        mParams.mBarWidth = 1;
-        mParams.mPosX = 0x27;
-        mParams.mPosY = height - 0x14;
-        mParams.mWidth = 0x232;
-        mParams.mUserPosition = height - 0x23;
+        mParams.setBarWidth(1);
+        mParams.setPosition(39, height - 20);
+        mParams.setWidth(562);
+        mParams.setUserPosition(height - 35);
     }
     field_0x110 = 1;
     field_0x128 = 0;
     mWatchHeap = NULL;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUTProcBar::JUTProcBar() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTProcBar/__ct__10JUTProcBarFv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80451558-8045155C 000A58 0004+00 4/4 6/6 0/0 .sbss            sManager__10JUTProcBar */
@@ -123,53 +63,24 @@ void JUTProcBar::destroy() {
 
 /* ############################################################################################## */
 /* 80450900-80450904 000380 0004+00 2/2 0/0 0/0 .sdata           oneFrameRate */
-SECTION_SDATA static f32 oneFrameRate = 8.0f;
+static f32 oneFrameRate = 8.0f;
 
 /* 80450904-80450908 000384 0004+00 2/2 0/0 0/0 .sdata           oneFrameRateUser */
-SECTION_SDATA static f32 oneFrameRateUser = 10.0f;
-
-/* 804560D8-804560DC 0046D8 0004+00 1/1 0/0 0/0 .sdata2          @2258 */
-SECTION_SDATA2 static f32 lit_2258 = 8.0f;
-
-/* 804560DC-804560E0 0046DC 0004+00 2/2 0/0 0/0 .sdata2          @2259 */
-SECTION_SDATA2 static f32 lit_2259 = 10.0f;
+static f32 oneFrameRateUser = 10.0f;
 
 /* 802E5A60-802E5B30 2E03A0 00D0+00 0/0 1/1 0/0 .text            clear__10JUTProcBarFv */
-#ifdef NONMATCHING  // data
 void JUTProcBar::clear() {
     sManager->idleStart();
     sManager->cpuStart();
     sManager->gpStart();
     sManager->wholeLoopStart();
-    sManager->mCostFrame = 0;
+    sManager->setCostFrame(0);
     oneFrameRate = 8.0f;
     oneFrameRateUser = 10.0f;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTProcBar::clear() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTProcBar/clear__10JUTProcBarFv.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 804560E0-804560E8 0046E0 0004+04 1/1 0/0 0/0 .sdata2          @2279 */
-SECTION_SDATA2 static f32 lit_2279[1 + 1 /* padding */] = {
-    6.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 804560E8-804560F0 0046E8 0008+00 7/7 0/0 0/0 .sdata2          @2281 */
-SECTION_SDATA2 static f64 lit_2281 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 802E5B30-802E5CC4 2E0470 0194+00 1/1 0/0 0/0 .text
  * bar_subroutine__10JUTProcBarFiiiiiiiQ28JUtility6TColorQ28JUtility6TColor */
-#ifdef NONMATCHING  // data
 void JUTProcBar::bar_subroutine(int param_0, int param_1, int param_2, int param_3, int param_4,
                                 int param_5, int param_6, JUtility::TColor param_7,
                                 JUtility::TColor param_8) {
@@ -184,83 +95,37 @@ void JUTProcBar::bar_subroutine(int param_0, int param_1, int param_2, int param
         J2DFillBox(param_0 + var1 - 6, param_1, 6.0f, param_2, param_8);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTProcBar::bar_subroutine(int param_0, int param_1, int param_2, int param_3, int param_4,
-                                    int param_5, int param_6, JUtility::TColor param_7,
-                                    JUtility::TColor param_8) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTProcBar/bar_subroutine__10JUTProcBarFiiiiiiiQ28JUtility6TColorQ28JUtility6TColor.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 804560F0-804560F4 0046F0 0004+00 2/2 0/0 0/0 .sdata2          @2308 */
-SECTION_SDATA2 static f32 lit_2308 = 20.0f;
-
-/* 804560F4-804560F8 0046F4 0004+00 1/1 0/0 0/0 .sdata2          @2309 */
-SECTION_SDATA2 static f32 lit_2309 = 16666.0f;
-
-/* 804560F8-804560FC 0046F8 0004+00 1/1 0/0 0/0 .sdata2          @2310 */
-SECTION_SDATA2 static f32 lit_2310 = 30.0f;
-
-/* 804560FC-80456100 0046FC 0004+00 1/1 0/0 0/0 .sdata2          @2311 */
-SECTION_SDATA2 static f32 lit_2311 = 1.0f / 10.0f;
-
-/* 80456100-80456104 004700 0004+00 1/1 0/0 0/0 .sdata2          @2312 */
-SECTION_SDATA2 static f32 lit_2312 = 1.0f / 5.0f;
-
-/* 80456104-80456108 004704 0004+00 1/1 0/0 0/0 .sdata2          @2313 */
-SECTION_SDATA2 static f32 lit_2313 = 60.0f;
-
-/* 80456108-80456110 004708 0008+00 3/3 0/0 0/0 .sdata2          @2315 */
-SECTION_SDATA2 static f64 lit_2315 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802E5CC4-802E5E08 2E0604 0144+00 1/1 0/0 0/0 .text adjustMeterLength__10JUTProcBarFUlPfffPi */
-#ifdef NONMATCHING  // float literals
 void JUTProcBar::adjustMeterLength(u32 param_0, f32* param_1, f32 param_2, f32 param_3,
                                    int* param_4) {
     BOOL var2 = false;
     float var1 = *param_1;
     while (var1 > param_2) {
-        if (param_0 * var1 * FLOAT_LABEL(lit_2308) / FLOAT_LABEL(lit_2309) <=
-            mParams.mWidth - FLOAT_LABEL(lit_2310))
+        if (param_0 * var1 * 20.0f / 16666.0f <=
+            mParams.mWidth - 30.0f)
             break;
 
-        var1 -= FLOAT_LABEL(lit_2311);
+        var1 -= (1.0f / 10.0f);
         var2 = true;
     }
 
     if (var1 >= param_3)
         *param_4 = 0;
-    if (var1 > param_3 - FLOAT_LABEL(lit_2312))
+    if (var1 > param_3 - (1.0f / 5.0f))
         var1 = param_3;
 
     while (!var2 && var1 < param_3) {
         (*param_4)++;
         if (*param_4 < 0x1e)
             break;
-        if ((param_0 * var1 * FLOAT_LABEL(lit_2308) / FLOAT_LABEL(lit_2309)) <
-            (mParams.mWidth - FLOAT_LABEL(lit_2313)))
-            var1 += FLOAT_LABEL(lit_2312);
+        if ((param_0 * var1 * 20.0f / 16666.0f) <
+            (mParams.mWidth - 60.0f))
+            var1 += (1.0f / 5.0f);
         break;
     }
     *param_1 = var1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTProcBar::adjustMeterLength(u32 param_0, f32* param_1, f32 param_2, f32 param_3,
-                                       int* param_4) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTProcBar/adjustMeterLength__10JUTProcBarFUlPfffPi.s"
-}
-#pragma pop
-#endif
 
 /* 802E5E08-802E5E3C 2E0748 0034+00 0/0 1/1 0/0 .text            draw__10JUTProcBarFv */
 void JUTProcBar::draw() {
@@ -268,27 +133,7 @@ void JUTProcBar::draw() {
     drawHeapBar();
 }
 
-/* ############################################################################################## */
-/* 8045155C-80451560 000A5C 0004+00 1/1 0/0 0/0 .sbss            cnt$2330 */
-static int cnt;
-
-/* 80451560-80451564 000A60 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_80451560[4];
-
-/* 80451564-80451568 000A64 0004+00 1/1 0/0 0/0 .sbss            cntUser$2379 */
-static int cntUser;
-
-/* 80451568-80451570 000A68 0008+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_80451568[8];
-
-/* 80456110-80456114 004710 0004+00 1/1 0/0 0/0 .sdata2          @2580 */
-SECTION_SDATA2 static f32 lit_2580 = 1.0f;
-
-/* 80456114-80456118 004714 0004+00 1/1 0/0 0/0 .sdata2          @2581 */
-SECTION_SDATA2 static f32 lit_2581 = 3.0f;
-
 /* 802E5E3C-802E6D3C 2E077C 0F00+00 1/1 0/0 0/0 .text            drawProcessBar__10JUTProcBarFv */
-#ifdef NONMATCHING  // regalloc, signed/unsigned, instruction order
 void JUTProcBar::drawProcessBar() {
     if (mVisible) {
 		int frameDuration = 16666; // duration in miliseconds? for how long a frame takes,
@@ -402,51 +247,18 @@ void JUTProcBar::drawProcessBar() {
 		field_0x108 = 0;
 	}
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTProcBar::drawProcessBar() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTProcBar/drawProcessBar__10JUTProcBarFv.s"
-}
-#pragma pop
-#endif
 
 /* 802E6D3C-802E6DA4 2E167C 0068+00 2/2 0/0 0/0 .text            addrToXPos__FPvi */
-#ifdef NONMATCHING  // data
 static int addrToXPos(void* param_0, int param_1) {
     return param_1 * (((u32)param_0 - 0x80000000) / (float)JKRHeap::mMemorySize);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int addrToXPos(void* param_0, int param_1) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTProcBar/addrToXPos__FPvi.s"
-}
-#pragma pop
-#endif
 
 /* 802E6DA4-802E6E0C 2E16E4 0068+00 2/2 0/0 0/0 .text            byteToXLen__Fii */
-#ifdef NONMATCHING  // data
 static int byteToXLen(int param_0, int param_1) {
     return param_1 * (param_0 / (float)JKRHeap::mMemorySize);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int byteToXLen(int param_0, int param_1) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTProcBar/byteToXLen__Fii.s"
-}
-#pragma pop
-#endif
 
 /* 802E6E0C-802E6FA0 2E174C 0194+00 1/1 0/0 0/0 .text            heapBar__FP7JKRHeapiiiii */
-#ifdef NONMATCHING  // data
 static void heapBar(JKRHeap* param_0, int param_1, int param_2, int param_3, int param_4,
                     int param_5) {
     int stack52 = param_1 + addrToXPos(param_0->getStartAddr(), param_4);
@@ -457,20 +269,8 @@ static void heapBar(JKRHeap* param_0, int param_1, int param_2, int param_3, int
     J2DFillBox(stack52, param_2 - param_5 * 2 + param_5 / 2, stack36, param_5 / 2,
                JUtility::TColor(255, 180, 250, 255));
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void heapBar(JKRHeap* param_0, int param_1, int param_2, int param_3, int param_4,
-                        int param_5) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTProcBar/heapBar__FP7JKRHeapiiiii.s"
-}
-#pragma pop
-#endif
 
 /* 802E6FA0-802E7340 2E18E0 03A0+00 1/1 0/0 0/0 .text            drawHeapBar__10JUTProcBarFv */
-#ifdef NONMATCHING  // regalloc
 void JUTProcBar::drawHeapBar() {
     if (mHeapBarVisible)
     {
@@ -484,17 +284,17 @@ void JUTProcBar::drawHeapBar() {
         // draw main box in opaque bordeaux red and main frame in purple?
         J2DFillBox(posX, posY - (height * 2), width, height, JUtility::TColor(100, 0, 50, 200));
         J2DDrawFrame(posX, posY - (height * 2), width, height, JUtility::TColor(100, 50, 150, 255), 6);
-        
+
         // Draws a pink line that shows the size of the memstart to start of arenalow?
         start = posX + addrToXPos(JKRHeap::getCodeStart(), width);
         int codeEnd = posX + addrToXPos(JKRHeap::getCodeEnd(), width);
         J2DFillBox(start, posY - (height * 2), codeEnd - start, height, JUtility::TColor(255, 50, 150, 255));
-        
+
         // draws a dark blue line that shows how much memory is free?
         start = posX + addrToXPos(JKRHeap::getUserRamStart(), width);
         int userEnd = posX + addrToXPos(JKRHeap::getUserRamEnd(), width);
         J2DFillBox(start, posY - (height * 2), userEnd - start, height, JUtility::TColor(0, 50, 150, 255));
-        
+
         // draws a light blue line that shows how much memory is free in the root heap(blends to light pink, not sure how this works)
         int size = byteToXLen(JKRHeap::getRootHeap()->getTotalFreeSize(), width);
         J2DFillBox(start, posY - (height * 2), size, height / 2, JUtility::TColor(0, 250, 250, 255));
@@ -502,29 +302,20 @@ void JUTProcBar::drawHeapBar() {
         {
             // draws a line of either the watch heap(if available), otherwise draw the current heap
             JKRHeap *heap = mWatchHeap ? mWatchHeap : JKRGetCurrentHeap();
-            if (heap != JKRHeap::getSystemHeap()) { 
+            if (heap != JKRHeap::getSystemHeap()) {
                 heapBar(heap, posX, posY, barHeight, width, height);
             }
-                
+
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTProcBar::drawHeapBar() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTProcBar/drawHeapBar__10JUTProcBarFv.s"
-}
-#pragma pop
-#endif
 
 /* 802E7340-802E7354 2E1C80 0014+00 1/1 0/0 0/0 .text            __ct__Q210JUTProcBar5CTimeFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JUTProcBar::CTime::CTime() {
+// asm JUTProcBar::CTime::CTime() {
+extern "C" asm void __ct__Q210JUTProcBar5CTimeFv() {
     nofralloc
 #include "asm/JSystem/JUtility/JUTProcBar/__ct__Q210JUTProcBar5CTimeFv.s"
 }
