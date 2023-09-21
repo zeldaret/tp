@@ -241,10 +241,10 @@ int dMenu_Skill_c::_open() {
         }
     }
 
-    s16 openFrame = g_drawHIO.mSkillListScreen.mOpenFrame[0];
-    s16 closeFrame = g_drawHIO.mSkillListScreen.mCloseFrame[0];
-    mFrame = g_drawHIO.mSkillListScreen.mOpenFrame[0];
-    if (mFrame >= openFrame) {
+    s16 openWindowFrame = g_drawHIO.mSkillListScreen.mOpenFrame[dMeter_drawSkillHIO_c::WINDOW];
+    s16 closeFrame = g_drawHIO.mSkillListScreen.mCloseFrame[dMeter_drawSkillHIO_c::WINDOW];
+    mFrame = g_drawHIO.mSkillListScreen.mOpenFrame[dMeter_drawSkillHIO_c::WINDOW];
+    if (mFrame >= openWindowFrame) {
         mFrame = closeFrame;
         mStatus = 2;
         mpParent->scale(1.0f, 1.0f);
@@ -255,7 +255,7 @@ int dMenu_Skill_c::_open() {
         mpDrawCursor->onPlayAnime(0);
         return 1;
     } else {
-        f32 div = (f32)mFrame / (f32)openFrame;
+        f32 div = (f32)mFrame / (f32)openWindowFrame;
         mpParent->scale(div, div);
         mpParent->setAlphaRate(div);
         setCursorPos();
@@ -353,14 +353,14 @@ void dMenu_Skill_c::read_open_init() {
 /* 801F7FF8-801F8114 1F2938 011C+00 1/0 0/0 0/0 .text            read_open_move__13dMenu_Skill_cFv
  */
 void dMenu_Skill_c::read_open_move() {
-    s16 openFrame = g_drawHIO.mSkillListScreen.mOpenFrame[1];
+    s16 openSkillDescFrame = g_drawHIO.mSkillListScreen.mOpenFrame[dMeter_drawSkillHIO_c::SKILL_DESC];
     mProcFrame++;
-    if (mProcFrame >= openFrame) {
+    if (mProcFrame >= openSkillDescFrame) {
         mProcess = PROC_OPEN_MOVE;
         mpTextParent->setAlphaRate(1.0f);
         mpBlackTex->setAlpha(g_drawHIO.mSkillListScreen.mWindowBGalpha);
     } else {
-        f32 alphaRate = (f32)mProcFrame / (f32)openFrame;
+        f32 alphaRate = (f32)mProcFrame / (f32)openSkillDescFrame;
         mpTextParent->setAlphaRate(alphaRate);
         mpBlackTex->setAlpha(g_drawHIO.mSkillListScreen.mWindowBGalpha * alphaRate);
     }
@@ -393,7 +393,7 @@ void dMenu_Skill_c::read_move_move() {
 /* 801F8218-801F826C 1F2B58 0054+00 1/0 0/0 0/0 .text            read_close_init__13dMenu_Skill_cFv
  */
 void dMenu_Skill_c::read_close_init() {
-    mProcFrame = g_drawHIO.mSkillListScreen.mCloseFrame[1];
+    mProcFrame = g_drawHIO.mSkillListScreen.mCloseFrame[dMeter_drawSkillHIO_c::SKILL_DESC];
     mStringID = 0;
     setAButtonString(0);
     setBButtonString(0);
@@ -402,14 +402,14 @@ void dMenu_Skill_c::read_close_init() {
 /* 801F826C-801F8388 1F2BAC 011C+00 1/0 0/0 0/0 .text            read_close_move__13dMenu_Skill_cFv
  */
 void dMenu_Skill_c::read_close_move() {
-    s16 closeFrame = g_drawHIO.mSkillListScreen.mCloseFrame[1];
+    s16 closeSkillDescFrame = g_drawHIO.mSkillListScreen.mCloseFrame[dMeter_drawSkillHIO_c::SKILL_DESC];
     mProcFrame--;
     if (mProcFrame <= 0) {
         mProcess = PROC_CLOSE_MOVE;
         mpTextParent->setAlphaRate(0.0f);
         mpBlackTex->setAlpha(g_drawHIO.mSkillListScreen.mWindowBGalpha);
     } else {
-        f32 alphaRate = (f32)mProcFrame / (f32)closeFrame;
+        f32 alphaRate = (f32)mProcFrame / (f32)closeSkillDescFrame;
         mpTextParent->setAlphaRate(alphaRate);
         mpBlackTex->setAlpha(g_drawHIO.mSkillListScreen.mWindowBGalpha * alphaRate);
     }

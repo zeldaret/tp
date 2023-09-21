@@ -495,11 +495,11 @@ int dMenu_Letter_c::_open() {
         }
     }
 
-    s16 openFrame = g_drawHIO.mLetterSelectScreen.mOpenFrame[0];
-    s16 closeFrame = g_drawHIO.mLetterSelectScreen.mCloseFrame[0];
-    field_0x368 = g_drawHIO.mLetterSelectScreen.mOpenFrame[0];
-    if (field_0x368 >= openFrame) {
-        field_0x368 = closeFrame;
+    s16 openWindowFrame = g_drawHIO.mLetterSelectScreen.mOpenFrame[dMeter_drawLetterHIO_c::WINDOW_FRAME];
+    s16 closeWindowFrame = g_drawHIO.mLetterSelectScreen.mCloseFrame[dMeter_drawLetterHIO_c::WINDOW_FRAME];
+    field_0x368 = g_drawHIO.mLetterSelectScreen.mOpenFrame[dMeter_drawLetterHIO_c::WINDOW_FRAME];
+    if (field_0x368 >= openWindowFrame) {
+        field_0x368 = closeWindowFrame;
         mStatus = 2;
         for (int i = 0; i < 3; i++) {
             mpParent[i]->scale(g_drawHIO.mLetterSelectScreen.mWindowScale, g_drawHIO.mLetterSelectScreen.mWindowScale);
@@ -512,7 +512,7 @@ int dMenu_Letter_c::_open() {
         return 1;
     }
     else {
-        f32 div = (f32)field_0x368 / (f32)openFrame;
+        f32 div = (f32)field_0x368 / (f32)openWindowFrame;
         for (int i = 0; i < 3; i++) {
             mpParent[i]->scale(g_drawHIO.mLetterSelectScreen.mWindowScale * div, g_drawHIO.mLetterSelectScreen.mWindowScale * div);
             mpParent[i]->setAlphaRate(div);
@@ -538,7 +538,7 @@ asm int dMenu_Letter_c::_open() {
 #ifdef NONMATCHING
 // Matches with literals
 int dMenu_Letter_c::_close() {
-    s16 closeFrame = g_drawHIO.mLetterSelectScreen.mCloseFrame[0];
+    s16 closeWindowFrame = g_drawHIO.mLetterSelectScreen.mCloseFrame[dMeter_drawLetterHIO_c::WINDOW_FRAME];
     field_0x368 = 0;
     if (field_0x368 <= 0) {
         field_0x368 = 0;
@@ -553,7 +553,7 @@ int dMenu_Letter_c::_close() {
         return 1;
     }
     else {
-        f32 div = (f32)field_0x368 / (f32)closeFrame;
+        f32 div = (f32)field_0x368 / (f32)closeWindowFrame;
         for (int i = 0; i < 3; i++) {
             mpParent[i]->scale(g_drawHIO.mLetterSelectScreen.mWindowScale * div, g_drawHIO.mLetterSelectScreen.mWindowScale * div);
             mpParent[i]->setAlphaRate(div);
@@ -773,9 +773,9 @@ asm void dMenu_Letter_c::read_open_init() {
 #ifdef NONMATCHING
 // Matches with literals
 void dMenu_Letter_c::read_open_move() {
-    s16 openFrame = g_drawHIO.mLetterSelectScreen.mOpenFrame[1];
+    s16 openLetterFrame = g_drawHIO.mLetterSelectScreen.mOpenFrame[dMeter_drawLetterHIO_c::LETTER_FRAME];
     field_0x36a++;
-    if (field_0x36a >= openFrame) {
+    if (field_0x36a >= openLetterFrame) {
         mProcess = 4;
         for (int i = 0; i < 2; i++) {
             mpTextParent[i]->scale(g_drawHIO.mLetterSelectScreen.mLetterWindowScale, g_drawHIO.mLetterSelectScreen.mLetterWindowScale);
@@ -784,7 +784,7 @@ void dMenu_Letter_c::read_open_move() {
         mpBlackTex->setAlpha(g_drawHIO.mLetterSelectScreen.mWindowBGAlpha);
     }
     else {
-        f32 div = (f32)field_0x36a / (f32)openFrame;
+        f32 div = (f32)field_0x36a / (f32)openLetterFrame;
         for (int i = 0; i < 2; i++) {
             mpTextParent[i]->scale(g_drawHIO.mLetterSelectScreen.mLetterWindowScale * div, g_drawHIO.mLetterSelectScreen.mLetterWindowScale * div);
             mpTextParent[i]->setAlphaRate(div);
@@ -881,7 +881,7 @@ asm void dMenu_Letter_c::read_move_move() {
 /* 801DEA48-801DEA94 1D9388 004C+00 1/0 0/0 0/0 .text read_next_fadeout_init__14dMenu_Letter_cFv
  */
 void dMenu_Letter_c::read_next_fadeout_init() {
-    field_0x36a = g_drawHIO.mLetterSelectScreen.mCloseFrame[1];
+    field_0x36a = g_drawHIO.mLetterSelectScreen.mCloseFrame[dMeter_drawLetterHIO_c::LETTER_FRAME];
     setAButtonString(0);
     setBButtonString(0);
 }
@@ -891,7 +891,7 @@ void dMenu_Letter_c::read_next_fadeout_init() {
 #ifdef NONMATCHING
 // Matches with literals
 void dMenu_Letter_c::read_next_fadeout_move() {
-    s16 closeFrame = g_drawHIO.mLetterSelectScreen.mCloseFrame[0];
+    s16 closeWindowFrame = g_drawHIO.mLetterSelectScreen.mCloseFrame[dMeter_drawLetterHIO_c::WINDOW_FRAME];
     field_0x36a--;
     if (field_0x36a <= 0) {
         mProcess = 6;
@@ -910,7 +910,7 @@ void dMenu_Letter_c::read_next_fadeout_move() {
         }
     }
     else {
-        f32 div = (f32)field_0x36a / (f32)closeFrame;
+        f32 div = (f32)field_0x36a / (f32)closeWindowFrame;
         for (int i = 0; i < 2; i++) {
             field_0x2ec[i]->setAlphaRate(div);
             if (field_0x2f4[i]) {
@@ -941,6 +941,30 @@ asm void dMenu_Letter_c::read_next_fadein_init() {
 #pragma pop
 
 /* 801DED04-801DEE20 1D9644 011C+00 1/0 0/0 0/0 .text read_next_fadein_move__14dMenu_Letter_cFv */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Letter_c::read_next_fadein_move() {
+    s16 openLetterFrame = g_drawHIO.mLetterSelectScreen.mOpenFrame[dMeter_drawLetterHIO_c::LETTER_FRAME];
+    field_0x36a++;
+    if (field_0x36a >= openLetterFrame) {
+        mProcess = 4;
+        for (int i = 0; i < 2; i++) {
+            field_0x2ec[i]->setAlphaRate(1.0f);
+            if (field_0x2f4[i] != NULL) {
+                field_0x2f4[i]->setAlphaRate(1.0f);
+            }
+        }
+    } else {
+        f32 div = (f32)field_0x36a / (f32)openLetterFrame;
+        for (int i = 0; i < 2; i++) {
+            field_0x2ec[i]->setAlphaRate(div);
+            if (field_0x2f4[i] != NULL) {
+                field_0x2f4[i]->setAlphaRate(div);
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -949,20 +973,40 @@ asm void dMenu_Letter_c::read_next_fadein_move() {
 #include "asm/d/menu/d_menu_letter/read_next_fadein_move__14dMenu_Letter_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801DEE20-801DEE6C 1D9760 004C+00 1/0 0/0 0/0 .text            read_close_init__14dMenu_Letter_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Letter_c::read_close_init() {
-    nofralloc
-#include "asm/d/menu/d_menu_letter/read_close_init__14dMenu_Letter_cFv.s"
+void dMenu_Letter_c::read_close_init() {
+    field_0x36a = g_drawHIO.mLetterSelectScreen.mCloseFrame[dMeter_drawLetterHIO_c::LETTER_FRAME];
+    setAButtonString(0);
+    setBButtonString(0);
 }
-#pragma pop
 
 /* 801DEE6C-801DF010 1D97AC 01A4+00 1/0 0/0 0/0 .text            read_close_move__14dMenu_Letter_cFv
  */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Letter_c::read_close_move() {
+    s16 closeLetterFrame = g_drawHIO.mLetterSelectScreen.mCloseFrame[dMeter_drawLetterHIO_c::LETTER_FRAME];
+    field_0x36a--;
+    if (field_0x36a <= 0) {
+        mProcess = 0;
+        for (int i = 0; i < 2; i++) {
+            mpTextParent[i]->scale(0.0f, 0.0f);
+            mpTextParent[i]->setAlphaRate(0.0f);
+        }
+        mpBlackTex->setAlpha(g_drawHIO.mLetterSelectScreen.mWindowBGAlpha); 
+    } else {
+        f32 div = (f32)field_0x36a / (f32)closeLetterFrame;
+        for (int i = 0; i < 2; i++) {
+            mpTextParent[i]->scale(g_drawHIO.mLetterSelectScreen.mLetterWindowScale * div, g_drawHIO.mLetterSelectScreen.mLetterWindowScale * div);
+            mpTextParent[i]->setAlphaRate(div);
+        }
+        mpBlackTex->setAlpha(g_drawHIO.mLetterSelectScreen.mWindowBGAlpha * div);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -971,6 +1015,7 @@ asm void dMenu_Letter_c::read_close_move() {
 #include "asm/d/menu/d_menu_letter/read_close_move__14dMenu_Letter_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803969C8-803969F8 023028 0030+00 2/2 0/0 0/0 .rodata          tag_sub0$4610 */
@@ -1312,14 +1357,10 @@ asm void dMenu_Letter_c::screenSetDoIcon() {
 #pragma pop
 
 /* 801E0B24-801E0BB0 1DB464 008C+00 3/3 0/0 0/0 .text            setCursorPos__14dMenu_Letter_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Letter_c::setCursorPos() {
-    nofralloc
-#include "asm/d/menu/d_menu_letter/setCursorPos__14dMenu_Letter_cFv.s"
+void dMenu_Letter_c::setCursorPos() {
+    Vec pos = mpLetterParent[mIndex]->getGlobalVtxCenter(mpLetterParent[mIndex]->mPane, false, 0);
+    mpDrawCursor->setPos(pos.x, pos.y, mpLetterParent[mIndex]->getPanePtr(), false);
 }
-#pragma pop
 
 /* 801E0BB0-801E0E34 1DB4F0 0284+00 3/3 0/0 0/0 .text changeActiveColor__14dMenu_Letter_cFv */
 #pragma push
@@ -1333,14 +1374,15 @@ asm void dMenu_Letter_c::changeActiveColor() {
 
 /* 801E0E34-801E0E84 1DB774 0050+00 2/2 0/0 0/0 .text            changePageLight__14dMenu_Letter_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Letter_c::changePageLight() {
-    nofralloc
-#include "asm/d/menu/d_menu_letter/changePageLight__14dMenu_Letter_cFv.s"
+void dMenu_Letter_c::changePageLight() {
+    for (int i = 0; i < 9; i++) {
+        if (i == field_0x36f) {
+            field_0x214[i]->show();
+        } else {
+            field_0x214[i]->hide();
+        }
+    }
 }
-#pragma pop
 
 /* 801E0E84-801E1038 1DB7C4 01B4+00 2/2 0/0 0/0 .text            setPageText__14dMenu_Letter_cFv */
 #pragma push
@@ -1374,24 +1416,54 @@ asm void dMenu_Letter_c::copyDMYMenu() {
 #pragma pop
 
 /* 801E1518-801E15C8 1DBE58 00B0+00 7/7 0/0 0/0 .text setAButtonString__14dMenu_Letter_cFUs */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Letter_c::setAButtonString(u16 i_stringID) {
+    if (i_stringID == 0) {
+        for (int i = 0; i < 5; i++) {
+            strcpy(mpAButtonString[i]->getStringPtr(), "");
+        }
+    } else {
+        for (int i = 0; i < 5; i++) {
+            dMeter2Info_getStringKanji(i_stringID, mpAButtonString[i]->getStringPtr(), NULL);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Letter_c::setAButtonString(u16 param_0) {
+asm void dMenu_Letter_c::setAButtonString(u16 i_stringID) {
     nofralloc
 #include "asm/d/menu/d_menu_letter/setAButtonString__14dMenu_Letter_cFUs.s"
 }
 #pragma pop
+#endif
 
 /* 801E15C8-801E1678 1DBF08 00B0+00 7/7 0/0 0/0 .text setBButtonString__14dMenu_Letter_cFUs */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Letter_c::setBButtonString(u16 i_stringID) {
+    if (i_stringID == 0) {
+        for (int i = 0; i < 5; i++) {
+            strcpy(mpBButtonString[i]->getStringPtr(), "");
+        }
+    } else {
+        for (int i = 0; i < 5; i++) {
+            dMeter2Info_getStringKanji(i_stringID, mpBButtonString[i]->getStringPtr(), NULL);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Letter_c::setBButtonString(u16 param_0) {
+asm void dMenu_Letter_c::setBButtonString(u16 i_stringID) {
     nofralloc
 #include "asm/d/menu/d_menu_letter/setBButtonString__14dMenu_Letter_cFUs.s"
 }
 #pragma pop
+#endif
 
 /* 801E1678-801E1748 1DBFB8 00D0+00 1/1 0/0 0/0 .text            getLetterNum__14dMenu_Letter_cFv */
 #pragma push
@@ -1407,7 +1479,7 @@ asm u8 dMenu_Letter_c::getLetterNum() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Letter_c::setHIO(bool param_0) {
+asm void dMenu_Letter_c::setHIO(bool i_useHIO) {
     nofralloc
 #include "asm/d/menu/d_menu_letter/setHIO__14dMenu_Letter_cFb.s"
 }
