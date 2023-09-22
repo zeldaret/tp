@@ -39,7 +39,7 @@ public:
     /* vt[17] */ virtual void* do_getMaxFreeBlock(void); /* override */
     /* vt[18] */ virtual s32 do_getTotalFreeSize(void);  /* override */
 
-    /* vt[21] */ virtual u32 state_register(JKRHeap::TState*, u32) const; /* override */
+    /* vt[21] */ virtual void state_register(JKRHeap::TState*, u32) const; /* override */
     /* vt[22] */ virtual bool state_compare(JKRHeap::TState const&,
                                             JKRHeap::TState const&) const; /* override */
 

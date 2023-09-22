@@ -265,15 +265,16 @@ bool JKRSolidHeap::dump(void) {
 }
 /* 802D11FC-802D1258 2CBB3C 005C+00 1/0 0/0 0/0 .text
  * state_register__12JKRSolidHeapCFPQ27JKRHeap6TStateUl         */
-u32 JKRSolidHeap::state_register(JKRHeap::TState* p, u32 id) const {
+void JKRSolidHeap::state_register(JKRHeap::TState* p, u32 id) const {
     JUT_ASSERT(604, p != 0);
     JUT_ASSERT(605, p->getHeap() == this);
 
     getState_(p);
     setState_u32ID_(p, id);
     setState_uUsedSize_(p, getUsedSize((JKRSolidHeap*)this));
-    setState_u32CheckCode_(p, (u32)mSolidHead + (u32)mSolidTail * 3);
-    return (u32)mSolidHead + (u32)mSolidTail * 3;
+    u32 r29 = (u32)mSolidHead;
+    r29 += (u32)mSolidTail * 3;
+    setState_u32CheckCode_(p, r29);
 }
 
 /* 802D1258-802D1288 2CBB98 0030+00 1/0 0/0 0/0 .text
