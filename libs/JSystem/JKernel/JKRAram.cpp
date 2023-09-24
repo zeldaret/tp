@@ -8,7 +8,6 @@
 #include "JSystem/JKernel/JKRAramStream.h"
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
-#include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "MSL_C/string.h"
 #include "dolphin/ar/ar.h"
@@ -41,7 +40,7 @@ JKRAram* JKRAram::sAramObject;
 
 /* 802D1FA4-802D2040 2CC8E4 009C+00 0/0 1/1 0/0 .text            create__7JKRAramFUlUllll */
 JKRAram* JKRAram::create(u32 aram_audio_buffer_size, u32 aram_audio_graph_size,
-                         long stream_priority, long decomp_priority, long piece_priority) {
+                         s32 stream_priority, s32 decomp_priority, s32 piece_priority) {
     if (!sAramObject) {
         sAramObject = new (JKRHeap::getSystemHeap(), 0)
             JKRAram(aram_audio_buffer_size, aram_audio_graph_size, piece_priority);
@@ -66,7 +65,7 @@ OSMessage JKRAram::sMessageBuffer[4] = {
 OSMessageQueue JKRAram::sMessageQueue = {0};
 
 /* 802D2040-802D214C 2CC980 010C+00 1/1 0/0 0/0 .text            __ct__7JKRAramFUlUll */
-JKRAram::JKRAram(u32 audio_buffer_size, u32 audio_graph_size, long priority)
+JKRAram::JKRAram(u32 audio_buffer_size, u32 audio_graph_size, s32 priority)
     : JKRThread(0xC00, 0x10, priority) {
     u32 aramBase = ARInit(mStackArray, ARRAY_SIZE(mStackArray));
     ARQInit();
@@ -125,11 +124,11 @@ void* JKRAram::run(void) {
  * checkOkAddress__7JKRAramFPUcUlP12JKRAramBlockUl              */
 void JKRAram::checkOkAddress(u8* addr, u32 size, JKRAramBlock* block, u32 param_4) {
     if (!IS_ALIGNED((u32)addr, 0x20) && !IS_ALIGNED(size, 0x20)) {
-        JUTException::panic_f(__FILE__, 219, "%s", ":::address not 32Byte aligned.");
+        JUTException::panic(__FILE__, 219, ":::address not 32Byte aligned.");
     }
 
     if (block && !IS_ALIGNED((u32)block->getAddress() + param_4, 0x20)) {
-        JUTException::panic_f(__FILE__, 227, "%s", ":::address not 32Byte aligned.");
+        JUTException::panic(__FILE__, 227, ":::address not 32Byte aligned.");
     }
 }
 

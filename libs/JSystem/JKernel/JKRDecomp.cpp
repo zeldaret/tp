@@ -53,7 +53,7 @@ extern "C" u8 sSystemHeap__7JKRHeap[4];
 /* 804514B0-804514B8 0009B0 0004+04 1/1 0/0 0/0 .sbss            sDecompObject__9JKRDecomp */
 JKRDecomp* JKRDecomp::sDecompObject;
 
-JKRDecomp* JKRDecomp::create(long priority) {
+JKRDecomp* JKRDecomp::create(s32 priority) {
     if (!sDecompObject) {
         sDecompObject = new (JKRHeap::getSystemHeap(), 0) JKRDecomp(priority);
     }
@@ -69,7 +69,7 @@ OSMessage JKRDecomp::sMessageBuffer[8] = {0};
 OSMessageQueue JKRDecomp::sMessageQueue = {0};
 
 /* 802DB6E0-802DB730 2D6020 0050+00 1/1 0/0 0/0 .text            __ct__9JKRDecompFl */
-JKRDecomp::JKRDecomp(long priority) : JKRThread(0x800, 0x10, priority) {
+JKRDecomp::JKRDecomp(s32 priority) : JKRThread(0x800, 0x10, priority) {
     resume();
 }
 

@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/JKernel/JKRDvdArchive.h"
+#include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRDvdFile.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "JSystem/JUtility/JUTAssert.h"

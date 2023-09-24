@@ -15,7 +15,7 @@
 JKRAramStream* JKRAramStream::sAramStreamObject;
 
 /* 802D3B48-802D3BB8 2CE488 0070+00 0/0 1/1 0/0 .text            create__13JKRAramStreamFl */
-JKRAramStream* JKRAramStream::create(long priority) {
+JKRAramStream* JKRAramStream::create(s32 priority) {
     if (!sAramStreamObject) {
         sAramStreamObject = new (JKRGetSystemHeap(), 0) JKRAramStream(priority);
         setTransBuffer(NULL, 0, NULL);
@@ -37,7 +37,7 @@ void* JKRAramStream::sMessageBuffer[4] = {
 OSMessageQueue JKRAramStream::sMessageQueue = {0};
 
 /* 802D3BB8-802D3C08 2CE4F8 0050+00 1/1 0/0 0/0 .text            __ct__13JKRAramStreamFl */
-JKRAramStream::JKRAramStream(long priority) : JKRThread(0xc00, 0x10, priority) {
+JKRAramStream::JKRAramStream(s32 priority) : JKRThread(0xc00, 0x10, priority) {
     resume();
 }
 
@@ -107,7 +107,7 @@ s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command) {
             heap->dump();
         }
 
-        JUTException::panic_f(__FILE__, 172, "%s", ":::Cannot alloc memory\n");
+        JUTException::panic(__FILE__, 172, ":::Cannot alloc memory\n");
     }
 
     if (buffer) {
