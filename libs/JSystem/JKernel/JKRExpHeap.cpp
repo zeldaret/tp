@@ -680,7 +680,7 @@ s32 JKRExpHeap::getTotalUsedSize() const {
  * appendUsedList__10JKRExpHeapFPQ210JKRExpHeap9CMemBlock       */
 void JKRExpHeap::appendUsedList(JKRExpHeap::CMemBlock* newblock) {
     if (!newblock) {
-        JUTException::panic_f(__FILE__, 1568, "%s", "bad appendUsedList\n");
+        JUTException::panic(__FILE__, 1568, "bad appendUsedList\n");
     }
 
     CMemBlock* block = mTailUsedList;
@@ -824,7 +824,7 @@ void JKRExpHeap::joinTwoBlocks(CMemBlock* block) {
     if (endAddr > nextAddr) {
         JUTWarningConsole_f(":::Heap may be broken. (block = %x)", block);
         JKRGetCurrentHeap()->dump();
-        JUTException::panic_f(__FILE__, 1820, "%s", "Bad Block\n");
+        JUTException::panic(__FILE__, 1820, "Bad Block\n");
     }
 
     if (endAddr == nextAddr) {

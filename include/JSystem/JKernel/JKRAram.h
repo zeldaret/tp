@@ -10,7 +10,7 @@ class JKRAMCommand;
 class JKRAramBlock;
 class JKRAram : public JKRThread {
 private:
-    JKRAram(u32, u32, long);
+    JKRAram(u32, u32, s32);
     virtual ~JKRAram();
 
     /* vt[03] */ void* run(void); /* override */
@@ -33,7 +33,7 @@ public:
     /* 0x98 */ u32 mStackArray[3];
 
 public:
-    static JKRAram* create(u32, u32, long, long, long);
+    static JKRAram* create(u32, u32, s32, s32, s32);
     static void checkOkAddress(u8*, u32, JKRAramBlock*, u32);
     static void changeGroupIdIfNeed(u8*, int);
     static JKRAramBlock* mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
@@ -67,7 +67,7 @@ private:
     static JSUList<JKRAMCommand> sAramCommandList;
 };
 
-inline void* JKRAllocFromAram(u32 size, JKRAramHeap::EAllocMode allocMode) {
+inline JKRAramBlock* JKRAllocFromAram(u32 size, JKRAramHeap::EAllocMode allocMode) {
     return JKRAram::getAramHeap()->alloc(size, allocMode);
 }
 
