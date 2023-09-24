@@ -5,45 +5,6 @@
 
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRAramPiece.h"
-#include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void create__9JKRDecompFl();
-extern "C" void __ct__9JKRDecompFl();
-extern "C" void __dt__9JKRDecompFv();
-extern "C" void run__9JKRDecompFv();
-extern "C" void prepareCommand__9JKRDecompFPUcPUcUlUlPFUl_v();
-extern "C" void sendCommand__9JKRDecompFP16JKRDecompCommand();
-extern "C" void orderAsync__9JKRDecompFPUcPUcUlUlPFUl_v();
-extern "C" void sync__9JKRDecompFP16JKRDecompCommandi();
-extern "C" void orderSync__9JKRDecompFPUcPUcUlUl();
-extern "C" void decode__9JKRDecompFPUcPUcUlUl();
-extern "C" void decodeSZP__9JKRDecompFPUcPUcUlUl();
-extern "C" void decodeSZS__9JKRDecompFPUcPUcUlUl();
-extern "C" void checkCompressed__9JKRDecompFPUc();
-extern "C" void __ct__16JKRDecompCommandFv();
-extern "C" void __dt__16JKRDecompCommandFv();
-extern "C" u8 sMessageBuffer__9JKRDecomp[32];
-extern "C" u8 sMessageQueue__9JKRDecomp[32];
-extern "C" u8 sDecompObject__9JKRDecomp[4 + 4 /* padding */];
-
-//
-// External References:
-//
-
-extern "C" void* __nw__FUlP7JKRHeapi();
-extern "C" void __dl__FPv();
-extern "C" void __ct__9JKRThreadFUlii();
-extern "C" void __dt__9JKRThreadFv();
-extern "C" void sendCommand__12JKRAramPieceFP12JKRAMCommand();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" u8 sSystemHeap__7JKRHeap[4];
 
 //
 // Declarations:
@@ -254,7 +215,6 @@ void JKRDecomp::decodeSZP(u8* src, u8* dst, u32 srcLength, u32 dstLength) {
 }
 
 /* 802DBC14-802DBCF8 2D6554 00E4+00 1/1 0/0 0/0 .text            decodeSZS__9JKRDecompFPUcPUcUlUl */
-#ifdef NONMATCHING
 void JKRDecomp::decodeSZS(u8* src_buffer, u8* dst_buffer, u32 srcSize, u32 dstSize) {
     u8* decompEnd;
     u8* copyStart;
@@ -264,21 +224,23 @@ void JKRDecomp::decodeSZS(u8* src_buffer, u8* dst_buffer, u32 srcSize, u32 dstSi
 
     decompEnd = dst_buffer + *(int*)(src_buffer + 4) - dstSize;
 
-    if (srcSize == 0)
+    if (srcSize == 0) {
         return;
-    if (dstSize > *(u32*)src_buffer)
+    }
+    if (dstSize > *(u32*)src_buffer) {
         return;
+    }
 
     u8* curSrcPos = src_buffer + 0x10;
     do {
         if (chunkBitsLeft == 0) {
-            chunkBits = *curSrcPos;
+            chunkBits = curSrcPos[0];
             chunkBitsLeft = 8;
             curSrcPos++;
         }
         if ((chunkBits & 0x80) != 0) {
             if (dstSize == 0) {
-                *dst_buffer = *curSrcPos;
+                dst_buffer[0] = curSrcPos[0];
                 srcSize--;
                 dst_buffer++;
                 if (srcSize == 0)
@@ -288,21 +250,19 @@ void JKRDecomp::decodeSZS(u8* src_buffer, u8* dst_buffer, u32 srcSize, u32 dstSi
             }
             curSrcPos++;
         } else {
-            u8 curVal = *curSrcPos;
-            // load is inversed
-            copyStart = dst_buffer - ((curVal & 0xF) << 8 | curSrcPos[1]);
-            // copyByteCount = ;
+            u32 local_28 = curSrcPos[1] | (curSrcPos[0] & 0xF) << 8;
+            u32 r31 = curSrcPos[0] >> 4;
             curSrcPos += 2;
-            // instruction order differences
-            if (curVal >> 4 == 0) {
-                copyByteCount = *curSrcPos + 0x12;
+            copyStart = dst_buffer - local_28;
+            if (r31 == 0) {
+                copyByteCount = curSrcPos[0] + 0x12;
                 curSrcPos++;
             } else {
-                copyByteCount = (curVal >> 4) + 2;
+                copyByteCount = r31 + 2;
             }
             do {
                 if (dstSize == 0) {
-                    *dst_buffer = *(copyStart - 1);
+                    dst_buffer[0] = copyStart[-1];
                     srcSize--;
                     dst_buffer++;
                     if (srcSize == 0)
@@ -318,16 +278,6 @@ void JKRDecomp::decodeSZS(u8* src_buffer, u8* dst_buffer, u32 srcSize, u32 dstSi
         chunkBitsLeft--;
     } while (dst_buffer != decompEnd);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRDecomp::decodeSZS(u8* param_0, u8* param_1, u32 param_2, u32 param_3) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRDecomp/decodeSZS__9JKRDecompFPUcPUcUlUl.s"
-}
-#pragma pop
-#endif
 
 /* 802DBCF8-802DBD70 2D6638 0078+00 1/1 4/4 0/0 .text            checkCompressed__9JKRDecompFPUc */
 JKRCompression JKRDecomp::checkCompressed(u8* src) {
