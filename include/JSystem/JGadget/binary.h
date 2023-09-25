@@ -50,6 +50,14 @@ struct TParse_header_block {
     bool parse(const void* ppData_inout, u32 a2) {
         return parse_next(&ppData_inout, a2);
     }
+
+    bool checkNext(const void** ptrLocation, u32* headerEnd, u32 idx) {
+        bool checkNext = false;
+        if (parseHeader_next(ptrLocation, headerEnd, idx)) {
+            checkNext = true;
+        }
+        return checkNext;
+    }
 };
 
 template <typename T>
