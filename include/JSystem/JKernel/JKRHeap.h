@@ -176,18 +176,18 @@ public:
     static JKRErrorHandler mErrorHandler;
 };
 
-void* operator new(u32 size);
-void* operator new(u32 size, int alignment);
-void* operator new(u32 size, JKRHeap* heap, int alignment);
+void* operator new(size_t size);
+void* operator new(size_t size, int alignment);
+void* operator new(size_t size, JKRHeap* heap, int alignment);
 
-void* operator new[](u32 size);
-void* operator new[](u32 size, int alignment);
-void* operator new[](u32 size, JKRHeap* heap, int alignment);
+void* operator new[](size_t size);
+void* operator new[](size_t size, int alignment);
+void* operator new[](size_t size, JKRHeap* heap, int alignment);
 
 void operator delete(void* ptr);
 void operator delete[](void* ptr);
 
-inline void* operator new(u32 size, void* ptr) {
+inline void* operator new(size_t size, void* ptr) {
     return ptr;
 }
 
