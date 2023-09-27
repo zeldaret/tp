@@ -30,7 +30,7 @@ public:
     /* 802A40B8 */ void stopSoundID(JAISoundID);
     /* 802A4118 */ void mixOut();
     /* 802A4174 */ void newStream_();
-    /* 802B9978 */ void isActive() const;
+    /* 802B9978 */ bool isActive() const;
 
     JAISoundParamsMove* getParams() { return &mParams; }
     void setStreamDataMgr(JAIStreamDataMgr* param_0) {

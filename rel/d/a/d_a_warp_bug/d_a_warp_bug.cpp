@@ -4,7 +4,9 @@
  */
 
 #include "rel/d/a/d_a_warp_bug/d_a_warp_bug.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 
@@ -114,8 +116,8 @@ int daWarpBug_c::execute() {
     if (player_p->checkMidnaWarp()) {
         mpBrk->play();
         mpBtk->play();
-        Z2GetAudioMgr()->seStartLevel(Z2SE_EN_YM_WAIT, &current.pos, NULL, 0, 1.0f, 1.0f,
-                                             -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->seStartLevel(Z2SE_EN_YM_WAIT, &current.pos, NULL, 0, 1.0f, 1.0f, -1.0f,
+                                      -1.0f, 0);
     }
 #endif
     return 1;

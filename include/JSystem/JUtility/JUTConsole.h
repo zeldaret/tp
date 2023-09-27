@@ -144,6 +144,7 @@ extern "C" void JUTSetReportConsole(JUTConsole*);
 extern "C" JUTConsole* JUTGetReportConsole();
 extern "C" void JUTSetWarningConsole(JUTConsole*);
 extern "C" JUTConsole* JUTGetWarningConsole();
+extern "C" void JUTWarningConsole_f_va(const char*, va_list);
 extern "C" void JUTReportConsole_f_va(const char*, va_list);
 extern "C" void JUTReportConsole_f(const char*, ...);
 extern "C" void JUTWarningConsole(const char* message);

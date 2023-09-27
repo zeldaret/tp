@@ -443,7 +443,6 @@ extern "C" extern char const* const d_a_tbox__stringBase0;
 // External References:
 //
 
-extern "C" void OSReport_Error();
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();

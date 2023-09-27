@@ -266,7 +266,7 @@ void JUTConsole::print_f(char const* fmt, ...) {
 #ifdef NONMATCHING
 void JUTConsole::print(char const* param_0) {
     if (mOutput & 2) {
-#if DEBUG
+#ifdef DEBUG
         OSReport("%s", param_0);
 #endif
     }
@@ -378,7 +378,7 @@ void JUTConsole::dumpToTerminal(unsigned int param_0) {
     }
 
     int r27 = 0;
-#if DEBUG
+#ifdef DEBUG
     OSReport("\n:::dump of console[%x]--------------------------------\n",this);
 #endif
     do {
@@ -395,7 +395,7 @@ void JUTConsole::dumpToTerminal(unsigned int param_0) {
         r29 = nextIndex(r29);
         r27++;
     } while (r27 != field_0x34);
-#if DEBUG
+#ifdef DEBUG
     OSReport(":::dump of console[%x] END----------------------------\n",this);
 #endif
 }
@@ -607,6 +607,18 @@ SECTION_DEAD static char const* const pad_8039DA0B = "\0\0\0\0\0\0\0\0\0\0\0\0\0
 /* 802E8648-802E867C 2E2F88 0034+00 0/0 6/6 0/0 .text            JUTReportConsole */
 void JUTReportConsole(const char* message) {
     JUTReportConsole_f("%s", message);
+}
+
+void JUTWarningConsole_f_va(const char* fmt, va_list args) {
+    char buf[256];
+
+    if (JUTGetWarningConsole() == NULL) {
+        vsnprintf(buf, sizeof(buf), fmt, args);
+        OSReport("%s", buf);
+    } else if (JUTGetWarningConsole()->getOutput() & (JUTConsole::OUTPUT_CONSOLE | JUTConsole::OUTPUT_OSREPORT)) {
+        vsnprintf(buf, sizeof(buf), fmt, args);
+        JUTGetWarningConsole()->print(buf);
+    }
 }
 
 /* 802E867C-802E86FC 2E2FBC 0080+00 0/0 9/9 0/0 .text            JUTWarningConsole_f */

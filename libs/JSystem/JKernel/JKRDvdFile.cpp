@@ -124,7 +124,7 @@ s32 JKRDvdFile::readData(void* param_1, s32 length, s32 param_3) {
 }
 
 /* 802D9A68-802D9A70 2D43A8 0008+00 1/0 0/0 0/0 .text            writeData__10JKRDvdFileFPCvll */
-s32 JKRDvdFile::writeData(void const* param_0, s32 param_1, s32 param_2) {
+s32 JKRDvdFile::writeData(void const* param_0, s32 length, s32 param_2) {
     /* clang-format off */
     JUT_ASSERT(344, ( length & 0x1f ) == 0);
     /* clang-format on */

@@ -144,7 +144,7 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 // This probably will need to be moved once actual debug rom decomp begins
-#if DEBUG
+#ifdef DEBUG
 static dEvDb_bit_c dEvDb_bit_table[799] = {
     #include "src/d/event/d_event_debug_bit_table.inc"
 };

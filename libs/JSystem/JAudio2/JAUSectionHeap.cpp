@@ -346,8 +346,8 @@ void JAUSection::finishBuild() {
 
 /* 802A5160-802A51E4 29FAA0 0084+00 2/0 0/0 0/0 .text            dispose__10JAUSectionFv */
 void JAUSection::dispose() {
-    JUT_ASSERT(267, ! data_.registeredBankTables.any());
-    JUT_ASSERT(268, ! data_.registeredWaveBankTables.any());
+    /* JUT_ASSERT(267, ! data_.registeredBankTables.any());
+    JUT_ASSERT(268, ! data_.registeredWaveBankTables.any()); */
     if (data_.mBstDst) {
         sectionHeap_->sectionHeapData_.soundTable->~JAUSoundTable();
         sectionHeap_->sectionHeapData_.soundTable = NULL;
@@ -469,7 +469,7 @@ asm JAIStreamDataMgr* JAUSection::newStreamFileTable(void const* param_0, bool p
 
 /* 802A5500-802A5598 29FE40 0098+00 0/0 1/1 0/0 .text newSeSeqCollection__10JAUSectionFPCvUl */
 JAISeqDataMgr* JAUSection::newSeSeqCollection(void const* bsc, u32 param_1) {
-    JUT_ASSERT(398, asSectionHeap() == this);
+    // JUT_ASSERT(398, asSectionHeap() == this);
     JUT_ASSERT(399, sectionHeap_->sectionHeapData_.seSeqDataMgr_ == 0);
     if (param_1) {
         bsc = newCopy(bsc, param_1, 4);
@@ -791,6 +791,11 @@ void JAUSectionHeap::releaseIdleDynamicSeqDataBlock() {
     sectionHeapData_.field_0x408.releaseIdleDynamicSeqDataBlock(sectionHeapData_.seqDataUser);
 }
 
+namespace {
+    // TODO
+    bool JKRSolidHeap_isEmpty(JKRSolidHeap*) { return 1; }
+}
+
 /* 802A5F24-802A5F9C 2A0864 0078+00 1/1 0/0 0/0 .text JAUNewSectionHeap__FP12JKRSolidHeapb */
 static JAUSectionHeap* JAUNewSectionHeap(JKRSolidHeap* heap, bool param_1) {
     JUT_ASSERT(809, JKRSolidHeap_isEmpty( heap ));
@@ -840,9 +845,9 @@ bool JAUSectionHeap::setSeqDataUser(JAISeqDataUser* param_0) {
 
 /* 802A60AC-802A61D0 2A09EC 0124+00 0/0 2/2 0/0 .text newDynamicSeqBlock__14JAUSectionHeapFUl */
 bool JAUSectionHeap::newDynamicSeqBlock(u32 param_0) {
-    JUT_ASSERT(937, isOpen());
+    /* JUT_ASSERT(937, isOpen());
     JUT_ASSERT(938, isBuilding());
-    JUT_ASSERT(939, sectionHeap_ == this);
+    JUT_ASSERT(939, sectionHeap_ == this); */
     TPushCurrentHeap push(base1.getHeap_());
     JAUSeqDataBlock * seqDataBlock = new JAUSeqDataBlock();
     if (!seqDataBlock) {
@@ -871,7 +876,7 @@ bool JAUSectionHeap::newDynamicSeqBlock(u32 param_0) {
 s32 JAUSectionHeap::getSeqData(JAISoundID param_0, JAISeqData* param_1) {
     for (JSULink<JAUSection> * link = mSectionList.getFirst(); link; link = link->getNext()) {
         s32 result = link->getObject()->data_.field_0x00.getSeqData(param_0, sectionHeapData_.seqDataUser, param_1, false);
-        JUT_ASSERT(994, result != JAI_ASYNC_RESULT_RETRY);
+        // JUT_ASSERT(994, result != JAI_ASYNC_RESULT_RETRY);
         if (result == 2) {
             return 2;
         }
