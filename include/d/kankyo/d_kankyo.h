@@ -359,7 +359,7 @@ public:
     /* 0x0EC0 */ dKankyo_cloud_Packet* mpCloudPacket;
     /* 0x0EC4 */ u8 mVrkumoStatus;
     /* 0x0EC8 */ int mVrkumoCount;
-    /* 0x0ECC */ f32 field_0xecc;
+    /* 0x0ECC */ f32 mVrkumoStrength;
     /* 0x0ED0 */ dKankyo_vrkumo_Packet* mpVrkumoPacket;
     /* 0x0ED4 */ EF_THUNDER mThunderEff;
     /* 0x0F18 */ u8 field_0xf18[4];

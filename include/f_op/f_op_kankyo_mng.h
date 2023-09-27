@@ -3,6 +3,7 @@
 
 #include "SSystem/SComponent/c_xyz.h"
 #include "f_pc/f_pc_manager.h"
+#include "f_op/f_op_kankyo.h"
 
 struct fopKyM_prm_class {
     /* 0x00 */ cXyz mPos;
