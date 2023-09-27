@@ -136,9 +136,9 @@ static actor_method_class l_daDisappear_Method = {
 
 /* 804A94C4-804A94F4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_DISAPPEAR */
 extern actor_process_profile_definition g_profile_DISAPPEAR = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_DISAPPEAR,
     &g_fpcLf_Method.mBase,
     sizeof(disappear_class),
@@ -148,6 +148,6 @@ extern actor_process_profile_definition g_profile_DISAPPEAR = {
     725,
     &l_daDisappear_Method,
     0x44000,
-    0,
-    0,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_0_e,
 };

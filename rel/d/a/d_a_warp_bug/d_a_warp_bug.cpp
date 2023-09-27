@@ -175,9 +175,9 @@ static actor_method_class l_daWarpBug_Method = {
 
 /* 80D6822C-80D6825C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_WarpBug */
 extern actor_process_profile_definition g_profile_WarpBug = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_WarpBug,
     &g_fpcLf_Method.mBase,
     sizeof(daWarpBug_c),
@@ -187,6 +187,6 @@ extern actor_process_profile_definition g_profile_WarpBug = {
     726,
     &l_daWarpBug_Method,
     0x40000,
-    0,
-    14,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

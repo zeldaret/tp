@@ -757,9 +757,9 @@ static actor_method_class l_daKytag00_Method = {
 
 /* 8046CA98-8046CAC8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_KYTAG00 */
 extern actor_process_profile_definition g_profile_KYTAG00 = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_KYTAG00,
     &g_fpcLf_Method.mBase,
     sizeof(kytag00_class),
@@ -769,6 +769,6 @@ extern actor_process_profile_definition g_profile_KYTAG00 = {
     94,
     &l_daKytag00_Method,
     0x44000,
-    0,
-    0,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_0_e,
 };

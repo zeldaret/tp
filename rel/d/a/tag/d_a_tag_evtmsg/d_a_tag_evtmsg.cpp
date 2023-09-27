@@ -124,7 +124,7 @@ int daTag_EvtMsg_c::Execute() {
                         fopAcM_orderOtherEventId(this, mEventID, 0xFF, 0xFFFF, 0, 1);
                     }
                 } else {
-                    mEvtInfo.i_onCondition(1);
+                    mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
                     fopAcM_orderSpeakEvent(this, 0, 0);
                 }
             }
@@ -290,9 +290,9 @@ static actor_method_class daTag_EvtMsg_MethodTable = {
 
 /* 8048D8A4-8048D8D4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TAG_EVTMSG */
 extern actor_process_profile_definition g_profile_TAG_EVTMSG = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_TAG_MSG,
     &g_fpcLf_Method.mBase,
     sizeof(daTag_EvtMsg_c),
@@ -302,6 +302,6 @@ extern actor_process_profile_definition g_profile_TAG_EVTMSG = {
     285,
     &daTag_EvtMsg_MethodTable,
     0x44000,
-    0,
-    14,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

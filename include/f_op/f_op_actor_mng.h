@@ -7,9 +7,9 @@
 #include "f_pc/f_pc_searcher.h"
 
 #define fopAcM_SetupActor(ptr,ClassName) \
-    if (!fopAcM_CheckCondition(ptr, 8)) { \
+    if (!fopAcM_CheckCondition(ptr, fopAcCnd_INIT_e)) { \
         new (ptr) ClassName(); \
-        fopAcM_OnCondition(ptr, 8); \
+        fopAcM_OnCondition(ptr, fopAcCnd_INIT_e); \
     }
 
 class J3DModelData;  // placeholder

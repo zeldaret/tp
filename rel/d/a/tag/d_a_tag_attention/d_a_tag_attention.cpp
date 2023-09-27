@@ -162,18 +162,18 @@ static actor_method_class l_daAttp_Method = {
 
 /* 804D576C-804D579C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Attp */
 extern actor_process_profile_definition g_profile_Tag_Attp = {
-    -3,                     // mLayerID
+    fpcLy_CURRENT_e,        // mLayerID
     7,                      // mListID
-    -3,                     // mListPrio
+    fpcPi_CURRENT_e,        // mListPrio
     PROC_Tag_Attp,          // mProcName
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daAttp_c),       // mSize
     0,                      // mSizeOther
     0,                      // mParameter
     &g_fopAc_Method.base,   // mSubMtd
-    0x01B8,                 // mPriority
+    440,                    // mPriority
     &l_daAttp_Method,       // mSubMtd
-    0x00040100,             // mStatus
-    0,                      // mActorType
-    0,                      // mCullType
+    0x40100,                // mStatus
+    fopAc_ACTOR_e,          // mActorType
+    fopAc_CULLBOX_0_e,      // mCullType   
 };

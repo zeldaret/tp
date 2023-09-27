@@ -1009,7 +1009,7 @@ void daItem_c::procInitGetDemoEvent() {
 
     field_0x9c1 = 10;
     fopAcM_orderItemEvent(this, 0, 0);
-    mEvtInfo.i_onCondition(8);
+    mEvtInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
 
     m_item_id = fopAcM_createItemForTrBoxDemo(&current.pos, m_itemNo, -1, fopAcM_GetRoomNo(this),
                                               NULL, NULL);
@@ -1027,7 +1027,7 @@ void daItem_c::procWaitGetDemoEvent() {
     } else {
         if (m_itemNo == BOOMERANG) {
             fopAcM_orderItemEvent(this, 0, 0);
-            mEvtInfo.i_onCondition(8);
+            mEvtInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
             return;
         }
 
@@ -1042,7 +1042,7 @@ void daItem_c::procWaitGetDemoEvent() {
             }
         } else {
             fopAcM_orderItemEvent(this, 0, 0);
-            mEvtInfo.i_onCondition(8);
+            mEvtInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
         }
     }
 }

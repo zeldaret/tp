@@ -12,15 +12,14 @@
 /* ############################################################################################## */
 /* 803C3018-803C3040 -00001 0028+00 0/0 0/0 1/0 .data            g_profile_MENU_SCENE */
 extern scene_process_profile_definition g_profile_MENU_SCENE = {
-    0,                      // mLayerID
+    fpcLy_ROOT_e,           // mLayerID
     1,                      // mListID
-    -3,                     // mListPrio
+    fpcPi_CURRENT_e,        // mListPrio
     PROC_MENU_SCENE,        // mProcName
     &g_fpcNd_Method.mBase,  // mSubMtd
     0,                      // mSize
     0,                      // mSizeOther      
     0,                      // mParameters      
     &g_fopScn_Method.mBase, // mSubMtd
-    0,                      // mpMtd
-    0                       // padding
+    NULL,                   // mpMtd
 };

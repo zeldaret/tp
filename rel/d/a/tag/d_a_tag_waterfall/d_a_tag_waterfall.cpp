@@ -32,20 +32,20 @@ static actor_method_class l_daTagWaterFall_Method = {
 
 /* 80D64DB8-80D64DE8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_WaterFall */
 extern actor_process_profile_definition g_profile_Tag_WaterFall = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    0xFFFD,
+    fpcPi_CURRENT_e,
     PROC_Tag_WaterFall,
     &g_fpcLf_Method.mBase,
     sizeof(daTagWaterFall_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x00C6,
+    198,
     &l_daTagWaterFall_Method,
-    0x00044000,
-    0,
-    0,
+    0x44000,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_0_e,
 };
 
 /* 80D6462C-80D64680 0000EC 0054+00 1/1 0/0 0/0 .text            __ct__20daTagWaterFall_HIO_cFv */

@@ -176,18 +176,18 @@ static actor_method_class daObjBoard_METHODS = {
 
 /* 8057BEB0-8057BEE0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Cboard */
 extern actor_process_profile_definition g_profile_Obj_Cboard = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Obj_Cboard,
     &g_fpcLf_Method.mBase,
     sizeof(daObjBoard_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x01C5,
+    453,
     &daObjBoard_METHODS,
-    0x00040000,
-    0,
-    14,
+    0x40000,
+    fopAc_CULLBOX_0_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

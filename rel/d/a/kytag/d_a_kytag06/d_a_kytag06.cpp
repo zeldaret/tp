@@ -1350,20 +1350,20 @@ static actor_method_class l_daKytag06_Method = {
 
 /* 8085A0F4-8085A124 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_KYTAG06 */
 extern actor_process_profile_definition g_profile_KYTAG06 = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_KYTAG06,
     &g_fpcLf_Method.mBase,
     sizeof(kytag06_class),
     0,
     0,
     &g_fopAc_Method.base,
-    0x64,
+    100,
     &l_daKytag06_Method,
-    0x00060000,
-    0,
-    0,
+    0x60000,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_0_e,
 };
 
 /* 8085A18C-8085A190 000064 0004+00 0/0 0/0 0/0 .bss

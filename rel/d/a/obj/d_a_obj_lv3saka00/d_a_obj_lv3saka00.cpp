@@ -166,20 +166,20 @@ static actor_method_class daObjLv3saka_METHODS = {
 
 /* 80C5C418-80C5C448 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Lv3R10Saka */
 extern actor_process_profile_definition g_profile_Obj_Lv3R10Saka = {
-    -3,                      // mLayerID
+    fpcLy_CURRENT_e,         // mLayerID
     3,                       // mListID
-    -3,                      // mListPrio
+    fpcPi_CURRENT_e,         // mListPrio
     PROC_Obj_Lv3R10Saka,     // mProcName
     &g_fpcLf_Method.mBase,   // mSubMtd
     sizeof(daObjLv3saka_c),  // mSize
     0,                       // mSizeOther
     0,                       // mParameters
     &g_fopAc_Method.base,    // mSubMtd
-    0x0210,                  // mPriority
+    528,                     // mPriority
     &daObjLv3saka_METHODS,   // mSubMtd
-    0x00040100,              // mStatus
-    0,                       // mActorType
-    14,                      // mCullType
+    0x40100,                 // mStatus
+    fopAc_ACTOR_e,           // mActorType
+    fopAc_CULLBOX_CUSTOM_e,  // mCullType
 };
 
 /* 80C5C3DC-80C5C3DC 000018 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

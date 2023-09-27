@@ -32,18 +32,18 @@ static actor_method_class l_daTagInst_Method = {
 
 /* 80D59BA0-80D59BD0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Instruction */
 extern actor_process_profile_definition g_profile_Tag_Instruction = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    0xFFFD,
+    fpcPi_CURRENT_e,
     PROC_Tag_Instruction,
     &g_fpcLf_Method.mBase,
     sizeof(daTagInst_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x014E,
+    334,
     &l_daTagInst_Method,
-    0x00040000,
-    0,
-    14,
+    0x40000,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

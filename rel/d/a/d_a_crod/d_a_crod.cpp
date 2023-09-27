@@ -409,18 +409,18 @@ static actor_method_class l_daCrod_Method = {
 
 /* 804A41B4-804A41E4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_CROD */
 extern actor_process_profile_definition g_profile_CROD = {
-    -3,
+    fpcLy_CURRENT_e,
     8,
-    0xFFFD,
+    fpcPi_CURRENT_e,
     PROC_CROD,
     &g_fpcLf_Method.mBase,
     sizeof(daCrod_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x02B0,
+    688,
     &l_daCrod_Method,
-    0x00060000,
+    0x60000,
     5,
-    0,
+    fopAc_CULLBOX_0_e,
 };

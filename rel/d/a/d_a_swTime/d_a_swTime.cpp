@@ -68,18 +68,18 @@ static actor_method_class l_daSwTime_Method = {
 
 /* 80D4F7E8-80D4F818 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_SwTime */
 extern actor_process_profile_definition g_profile_SwTime = {
-    -3,                     // mLayerID
+    fpcLy_CURRENT_e,        // mLayerID
     7,                      // mListID
-    -3,                     // mListPrio
+    fpcPi_CURRENT_e,        // mListPrio
     PROC_SwTime,            // mProcName
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daSwTime_c),     // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
-    0x0240,                 // mPriority
+    576,                    // mPriority
     &l_daSwTime_Method,     // mSubMtd
-    0x00040100,             // mStatus
-    0,                      // mActorType
-    0x0E,                   // mCullType
+    0x40100,                // mStatus
+    fopAc_ACTOR_e,          // mActorType
+    fopAc_CULLBOX_CUSTOM_e, // mCullType
 };

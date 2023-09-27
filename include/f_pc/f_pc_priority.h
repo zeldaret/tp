@@ -4,6 +4,11 @@
 
 #include "f_pc/f_pc_method_tag.h"
 
+enum {
+    fpcPi_CURRENT_e = 0xFFFD,
+    fpcPi_SPECIAL_e = 0xFFFE,
+};
+
 typedef struct process_priority_queue_info {
     u32 mLayer;
     u16 mListID;

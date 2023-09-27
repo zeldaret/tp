@@ -128,18 +128,18 @@ static actor_method_class daObjProp_METHODS = {
 
 /* 80CB564C-80CB567C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Prop */
 extern actor_process_profile_definition g_profile_Obj_Prop = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Obj_Prop,
     &g_fpcLf_Method.mBase,
     sizeof(daObjProp_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x02E1,
+    737,
     &daObjProp_METHODS,
-    0x00040000,
-    3,
-    14,
+    0x40000,
+    fopAc_ENV_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

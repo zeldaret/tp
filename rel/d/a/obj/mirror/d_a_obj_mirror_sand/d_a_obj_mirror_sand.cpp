@@ -187,9 +187,9 @@ static actor_method_class l_daObjMirrorSand_Method = {
 
 /* 80C98A14-80C98A44 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_MirrorSand */
 extern actor_process_profile_definition g_profile_Obj_MirrorSand = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Obj_MirrorSand,
     &g_fpcLf_Method.mBase,
     sizeof(daObjMirrorSand_c),
@@ -199,6 +199,6 @@ extern actor_process_profile_definition g_profile_Obj_MirrorSand = {
     679,
     &l_daObjMirrorSand_Method,
     0x40000,
-    0,
-    14,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

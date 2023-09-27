@@ -210,18 +210,18 @@ static actor_method_class l_daAlldie_Method = {
 
 /* 804D5D44-804D5D74 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_ALLDIE */
 extern actor_process_profile_definition g_profile_ALLDIE = {
-    -3,
+    fpcLy_CURRENT_e,
     2,
-    0xFFFD,
+    fpcPi_CURRENT_e,
     PROC_ALLDIE,
     &g_fpcLf_Method.mBase,
     sizeof(daAlldie_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x0116,
+    278,
     &l_daAlldie_Method,
-    0x00044000,
-    0,
-    6,
+    0x44000,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_6_e,
 };

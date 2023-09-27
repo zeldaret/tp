@@ -76,18 +76,18 @@ static actor_method_class l_daE_DB_LEAF_Method = {
 
 /* 806A2140-806A2170 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_E_DB_LEAF */
 extern actor_process_profile_definition g_profile_E_DB_LEAF = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_E_DB_LEAF,
     &g_fpcLf_Method.mBase,
     sizeof(e_db_leaf_class),
     0,
     0,
     &g_fopAc_Method.base,
-    0x0089,
+    137,
     &l_daE_DB_LEAF_Method,
-    0x00040000,
-    0,
-    0,
+    0x40000,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_0_e,
 };

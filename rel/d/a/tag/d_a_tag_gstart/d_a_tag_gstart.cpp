@@ -71,18 +71,18 @@ static actor_method_class l_daTagGstart_Method = {
 
 /* 805A36A8-805A36D8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Gstart */
 extern actor_process_profile_definition g_profile_Tag_Gstart = {
-    -3,
+    fpcLy_CURRENT_e,
     2,
-    0xFFFD,
+    fpcPi_CURRENT_e,
     PROC_Tag_Gstart,
     &g_fpcLf_Method.mBase,
     sizeof(daTagGstart_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x01B5,
+    437,
     &l_daTagGstart_Method,
-    0x00060000,
-    3,
-    14,
+    0x60000,
+    fopAc_ENV_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

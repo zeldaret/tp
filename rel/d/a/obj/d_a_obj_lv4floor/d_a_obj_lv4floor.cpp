@@ -187,9 +187,9 @@ static actor_method_class daObjLv4Floor_METHODS = {
 
 /* 80C67E28-80C67E58 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Lv4Floor */
 extern actor_process_profile_definition g_profile_Obj_Lv4Floor = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Obj_Lv4Floor,
     &g_fpcLf_Method.mBase,
     sizeof(daObjLv4Floor_c),
@@ -199,6 +199,6 @@ extern actor_process_profile_definition g_profile_Obj_Lv4Floor = {
     584,
     &daObjLv4Floor_METHODS,
     0x44000,
-    0,
-    14,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

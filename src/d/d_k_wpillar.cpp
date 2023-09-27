@@ -163,9 +163,9 @@ static leafdraw_method_class l_dkWpillar_Method = {
 
 /* 803C3484-803C34B0 -00001 0028+04 0/0 0/0 1/0 .data            g_profile_WPILLAR */
 extern kankyo_process_profile_definition g_profile_WPILLAR = {
-    -3,
+    fpcLy_CURRENT_e,
     9,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_WPILLAR,
     &g_fpcLf_Method.mBase,
     sizeof(dkWpillar_c),

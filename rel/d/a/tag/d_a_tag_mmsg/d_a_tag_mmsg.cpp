@@ -115,18 +115,18 @@ static actor_method_class l_daTagMmsg_Method = {
 
 /* 80D5BD64-80D5BD94 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Mmsg */
 extern actor_process_profile_definition g_profile_Tag_Mmsg = {
-    -3,                     // mLayerID
+    fpcLy_CURRENT_e,        // mLayerID
     7,                      // mListID
-    0xFFFD,                 // mListPrio
+    fpcPi_CURRENT_e,        // mListPrio
     PROC_Tag_Mmsg,          // mProcName
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daTagMmsg_c),    // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
-    0x00FF,                 // mPriority
+    255,                    // mPriority
     &l_daTagMmsg_Method,    // mSubMtd
-    0x00044000,             // mStatus
-    0x03,                   // mActorType
-    0x0E,                   // mCullType
+    0x44000,                // mStatus
+    fopAc_ENV_e,            // mActorType
+    fopAc_CULLBOX_CUSTOM_e, // mCullType
 };

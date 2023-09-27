@@ -71,18 +71,18 @@ static actor_method_class l_daTagGuard_Method = {
 
 /* 80D59A38-80D59A68 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TAG_GUARD */
 extern actor_process_profile_definition g_profile_TAG_GUARD = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_TAG_GUARD,
     &g_fpcLf_Method.mBase,
     sizeof(daTagGuard_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x0198,
+    408,
     &l_daTagGuard_Method,
-    0x00040000,
-    0x00,
-    0x0E,
+    0x40000,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

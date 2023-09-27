@@ -392,9 +392,9 @@ static actor_method_class l_daObjSwPr_Method = {
 
 /* 8059B3AC-8059B3DC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Swpropeller */
 extern actor_process_profile_definition g_profile_Obj_Swpropeller = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Obj_Swpropeller,
     &g_fpcLf_Method.mBase,
     sizeof(daObjSwPr_c),
@@ -404,6 +404,6 @@ extern actor_process_profile_definition g_profile_Obj_Swpropeller = {
     448,
     &l_daObjSwPr_Method,
     0x44100,
-    0,
-    14,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

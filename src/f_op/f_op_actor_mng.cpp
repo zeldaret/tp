@@ -1905,7 +1905,7 @@ s32 fopAc_IsActor(void*);
 /* 8001C9CC-8001CA1C 01730C 0050+00 1/1 0/0 0/0 .text            enemySearchJugge__FPvPv */
 void* enemySearchJugge(void* i_actor, void* i_data) {
     if (i_actor != NULL && fopAc_IsActor(i_actor) &&
-        static_cast<fopAc_ac_c*>(i_actor)->mGroup == ACTOR_TYPE_ENEMY)
+        static_cast<fopAc_ac_c*>(i_actor)->mGroup == fopAc_ENEMY_e)
     {
         return i_actor;
     } else {

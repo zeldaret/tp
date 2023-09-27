@@ -210,20 +210,20 @@ static actor_method_class l_daTagRiverBack_Method = {(process_method_func)daTagR
 
 /* 80D5FA34-80D5FA64 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_RiverBack */
 extern actor_process_profile_definition g_profile_Tag_RiverBack = {
-    -3,                        // mLayerID
+    fpcLy_CURRENT_e,           // mLayerID
     7,                         // mListID
-    -3,                        // mListPrio
+    fpcPi_CURRENT_e,           // mListPrio
     PROC_Tag_RiverBack,        // mProcName
     &g_fpcLf_Method.mBase,     // mSubMtd
     sizeof(daTagRiverBack_c),  // mSize
     0,                         // mSizeOther
     0,                         // mParameters
     &g_fopAc_Method.base,      // mSubMtd
-    0x022C,                    // mPriority
+    556,                       // mPriority
     &l_daTagRiverBack_Method,  // mSubMtd
-    0x00040000,                // mStatus
-    0,                         // mActorType
-    14,                        // mCullType
+    0x40000,                   // mStatus
+    fopAc_ACTOR_e,             // mActorType
+    fopAc_CULLBOX_CUSTOM_e,    // mCullType
 };
 
 /* 80D5F950-80D5F950 00000C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

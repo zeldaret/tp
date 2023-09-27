@@ -186,9 +186,9 @@ static actor_method_class l_daObjMirror6Pole_Method = {
 
 /* 80C965D0-80C96600 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Mirror6Pole */
 extern actor_process_profile_definition g_profile_Obj_Mirror6Pole = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Obj_Mirror6Pole,
     &g_fpcLf_Method.mBase,
     sizeof(daObjMirror6Pole_c),
@@ -198,6 +198,6 @@ extern actor_process_profile_definition g_profile_Obj_Mirror6Pole = {
     682,
     &l_daObjMirror6Pole_Method,
     0x40000,
-    0,
-    14,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

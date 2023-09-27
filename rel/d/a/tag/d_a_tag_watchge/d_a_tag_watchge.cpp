@@ -104,18 +104,18 @@ static actor_method_class l_daTagWatchGe_Method = {
 
 /* 80D644F8-80D64528 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_WatchGe */
 extern actor_process_profile_definition g_profile_Tag_WatchGe = {
-    -3,                      // mLayerID  
+    fpcLy_CURRENT_e,         // mLayerID  
     7,                       // mListID
-    -3,                      // mListPrio 
+    fpcPi_CURRENT_e,         // mListPrio 
     PROC_Tag_WatchGe,        // mProcName               
     &g_fpcLf_Method.mBase,   // mSubMtd                    
     sizeof(daTagWatchGe_c),  // mSize                      
     0,                       // mSizeOther
     0,                       // mParameters       
     &g_fopAc_Method.base,    // mSubMtd                   
-    0x00C1,                  // mPriority    
+    193,                     // mPriority    
     &l_daTagWatchGe_Method,  // mSubMtd                     
-    0x00044000,              // mStatus          
-    0,                       // mActorType
-    0,                       // mCullType
+    0x44000,                 // mStatus          
+    fopAc_ACTOR_e,           // mActorType
+    fopAc_CULLBOX_0_e,       // mCullType
 };

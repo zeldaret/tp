@@ -53,7 +53,7 @@ int daTalk_c::execute() {
             mMessageID = -1;
             fopAcM_delete(this);
         } else {
-            mEvtInfo.i_onCondition(1);
+            mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
         }
     }
 
@@ -134,9 +134,9 @@ static actor_method_class l_daTalk_Method = {
 
 /* 80D66794-80D667C4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TALK */
 extern actor_process_profile_definition g_profile_TALK = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_TALK,
     &g_fpcLf_Method.mBase,
     sizeof(daTalk_c),
@@ -146,6 +146,6 @@ extern actor_process_profile_definition g_profile_TALK = {
     766,
     &l_daTalk_Method,
     0x44000,
-    0,
-    6,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_6_e,
 };

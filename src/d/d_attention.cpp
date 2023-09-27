@@ -524,7 +524,7 @@ dAttList_c* dAttention_c::getActionBtnXY() {
     dAttList_c* list = GetLockonList(0);
 
     if (list != NULL && list->getActor() != NULL && list->mType == 1 && LockonTruth()) {
-        if (list->getActor()->mEvtInfo.chkCondition(0x20)) {
+        if (list->getActor()->mEvtInfo.chkCondition(dEvtCnd_CANTALKITEM_e)) {
             return list;
         }
 
@@ -537,7 +537,7 @@ dAttList_c* dAttention_c::getActionBtnXY() {
 
     for (i = 0; i < mActionCount; i++) {
         if (mActionList[i].mType == 3) {
-            if (mActionList[i].getActor()->mEvtInfo.chkCondition(0x20)) {
+            if (mActionList[i].getActor()->mEvtInfo.chkCondition(dEvtCnd_CANTALKITEM_e)) {
                 return &mActionList[i];
             }
         }

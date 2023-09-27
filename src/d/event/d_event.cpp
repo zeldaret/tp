@@ -328,7 +328,7 @@ void dEvt_control_c::setParam(dEvt_order_c* p_order) {
 s32 dEvt_control_c::beforeFlagProc(dEvt_order_c* p_order) {
     fopAc_ac_c* actor = p_order->mActor2;
 
-    if (p_order->mFlag & 4 && actor->mEvtInfo.chkCondition(1) != true) {
+    if (p_order->mFlag & 4 && actor->mEvtInfo.chkCondition(dEvtCnd_CANTALK_e) != true) {
         return 0;
     }
 
@@ -442,7 +442,7 @@ int dEvt_control_c::talkXyCheck(dEvt_order_c* p_order) {
         return 0;
     }
 
-    if (pActor2 == NULL || !pActor2->mEvtInfo.chkCondition(0x20)) {
+    if (pActor2 == NULL || !pActor2->mEvtInfo.chkCondition(dEvtCnd_CANTALKITEM_e)) {
         return 0;
     }
 
@@ -467,9 +467,9 @@ int dEvt_control_c::catchCheck(dEvt_order_c* p_order) {
         return 0;
     }
 
-    actor1->mEvtInfo.setCommand(6);
+    actor1->mEvtInfo.setCommand(dEvtCmd_INCATCH_e);
     if (actor2 != NULL) {
-        actor2->mEvtInfo.setCommand(6);
+        actor2->mEvtInfo.setCommand(dEvtCmd_INCATCH_e);
     }
 
     setParam(p_order);
@@ -486,12 +486,12 @@ int dEvt_control_c::catchCheck(dEvt_order_c* p_order) {
 int dEvt_control_c::talkEnd() {
     fopAc_ac_c* actor = getPt1();
     if (actor != NULL) {
-        actor->mEvtInfo.setCommand(0);
+        actor->mEvtInfo.setCommand(dEvtCmd_NONE_e);
     }
 
     actor = getPt2();
     if (actor != NULL) {
-        actor->mEvtInfo.setCommand(0);
+        actor->mEvtInfo.setCommand(dEvtCmd_NONE_e);
     }
 
     if (mSpecifiedEvent != -1) {
@@ -540,11 +540,11 @@ int dEvt_control_c::demoCheck(dEvt_order_c* p_order) {
     }
 
     if (actor1 != NULL) {
-        actor1->mEvtInfo.setCommand(2);
+        actor1->mEvtInfo.setCommand(dEvtCmd_INDEMO_e);
     }
 
     if (actor2 != NULL) {
-        actor2->mEvtInfo.setCommand(2);
+        actor2->mEvtInfo.setCommand(dEvtCmd_INDEMO_e);
     }
 
     mMode = EVT_MODE_DEMO;
@@ -557,12 +557,12 @@ int dEvt_control_c::demoCheck(dEvt_order_c* p_order) {
 int dEvt_control_c::demoEnd() {
     fopAc_ac_c* actor = getPt1();
     if (actor != NULL) {
-        actor->mEvtInfo.setCommand(0);
+        actor->mEvtInfo.setCommand(dEvtCmd_NONE_e);
     }
 
     actor = getPt2();
     if (actor != NULL) {
-        actor->mEvtInfo.setCommand(0);
+        actor->mEvtInfo.setCommand(dEvtCmd_NONE_e);
     }
 
     if (mSpecifiedEvent != -1) {
@@ -578,7 +578,7 @@ int dEvt_control_c::potentialCheck(dEvt_order_c* p_order) {
     if (!beforeFlagProc(p_order)) {
         return 0;
     } else {
-        actor->mEvtInfo.setCommand(2);
+        actor->mEvtInfo.setCommand(dEvtCmd_INDEMO_e);
         mMode = EVT_MODE_DEMO;
         setParam(p_order);
         afterFlagProc(p_order);
@@ -1271,7 +1271,7 @@ void* dEvt_control_c::getStbDemoData(char* resName) {
 }
 
 dEvt_info_c::dEvt_info_c() {
-    setCommand(0);
+    setCommand(dEvtCmd_NONE_e);
     setCondition(2);
     setEventId(-1);
     setMapToolId(-1);

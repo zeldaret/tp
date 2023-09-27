@@ -161,9 +161,9 @@ static actor_method_class l_daTagMist_Method = {
 
 /* 8048F72C-8048F75C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Mist */
 extern actor_process_profile_definition g_profile_Tag_Mist = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Tag_Mist,
     &g_fpcLf_Method.mBase,
     sizeof(daTagMist_c),
@@ -173,6 +173,6 @@ extern actor_process_profile_definition g_profile_Tag_Mist = {
     292,
     &l_daTagMist_Method,
     0x40000,
-    0,
-    14,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };
