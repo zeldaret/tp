@@ -105,18 +105,18 @@ static actor_method_class l_daDmidna_Method = {
 
 /* 8045D2BC-8045D2EC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_DMIDNA */
 extern actor_process_profile_definition g_profile_DMIDNA = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    0xFFFD,
+    fpcPi_CURRENT_e,
     PROC_DMIDNA,
     &g_fpcLf_Method.mBase,
     sizeof(daDmidna_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x005D,
+    93,
     &l_daDmidna_Method,
-    0x00060000,
-    3,
-    0,
+    0x60000,
+    fopAc_ENV_e,
+    fopAc_CULLBOX_0_e,
 };

@@ -148,9 +148,9 @@ static actor_method_class l_daSnowEffTag_Method = {
 
 /* 80CDF778-80CDF7A8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_SnowEff */
 extern actor_process_profile_definition g_profile_Tag_SnowEff = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Tag_SnowEff,
     &g_fpcLf_Method.mBase,
     sizeof(daSnowEffTag_c),
@@ -160,6 +160,6 @@ extern actor_process_profile_definition g_profile_Tag_SnowEff = {
     656,
     &l_daSnowEffTag_Method,
     0x44000,
-    0,
-    14,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

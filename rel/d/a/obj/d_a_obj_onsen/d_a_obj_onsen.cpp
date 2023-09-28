@@ -149,18 +149,18 @@ static actor_method_class daObjOnsen_METHODS = {
 
 /* 80CA8184-80CA81B4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Onsen */
 extern actor_process_profile_definition g_profile_Obj_Onsen = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Obj_Onsen,
     &g_fpcLf_Method.mBase,
     sizeof(daObjOnsen_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x025A,
+    602,
     &daObjOnsen_METHODS,
-    0x00044100,
-    0,
-    14,
+    0x44100,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

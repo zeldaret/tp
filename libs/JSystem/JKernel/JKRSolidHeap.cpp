@@ -95,13 +95,13 @@ s32 JKRSolidHeap::adjustSize(void) {
 
 /* 802D0CB0-802D0D58 2CB5F0 00A8+00 1/0 0/0 0/0 .text            do_alloc__12JKRSolidHeapFUli */
 void* JKRSolidHeap::do_alloc(u32 size, int alignment) {
-#if DEBUG
+#ifdef DEBUG
     // TODO(Julgodis): JUTAssertion::setConfirmMessage
-    if (alignment != 0) {
+    /* if (alignment != 0) {
         int u = abs(alignment);
         JUT_ASSERT(219, u < 0x80);
         JUT_ASSERT(220, JGadget::binary::isPower2(u));
-    }
+    } */
 #endif
 
     lock();
@@ -210,8 +210,8 @@ void JKRSolidHeap::do_freeTail(void) {
 /* 802D1000-802D1004 2CB940 0004+00 1/0 0/0 0/0 .text            do_fillFreeArea__12JKRSolidHeapFv
  */
 void JKRSolidHeap::do_fillFreeArea() {
-#if DEBUG
-    fillMemory(mSolidHead, mEnd - mSolidHead, (uint)DAT_8074a8ba);
+#ifdef DEBUG
+    // fillMemory(mSolidHead, mEnd - mSolidHead, (uint)DAT_8074a8ba);
 #endif
 }
 

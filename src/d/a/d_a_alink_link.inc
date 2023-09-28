@@ -2536,7 +2536,7 @@ int daAlink_c::execute() {
     }
 
     if (checkDeadHP()) {
-        mEvtInfo.offCondition(2);
+        mEvtInfo.offCondition(fopAcCnd_NOEXEC_e);
     } else if (!checkMagneBootsOn()) {
         f32 var_f31_2;
         if (mLinkAcch.ChkGroundHit()) {
@@ -2553,13 +2553,13 @@ int daAlink_c::execute() {
                    ((checkReinRide() || checkCanoeRide() || checkSpinnerRide()) &&
                     !checkNoResetFlg3(FLG3_UNK_80000) && !checkModeFlg(MODE_JUMP)))
         {
-            mEvtInfo.onCondition(1);
+            mEvtInfo.onCondition(dEvtCnd_CANTALK_e);
             if (checkReinRide() || checkCanoeRide()) {
-                mEvtInfo.onCondition(8);
+                mEvtInfo.onCondition(dEvtCnd_CANGETITEM_e);
             }
         }
     } else if (checkMagneBootsOn() && cBgW_CheckBGround(mMagneBootsTopVec.y)) {
-        mEvtInfo.onCondition(1);
+        mEvtInfo.onCondition(dEvtCnd_CANTALK_e);
     }
 
     if (checkEndResetFlg1(ERFLG1_UNK_40000) && checkMidnaRide() && checkWolf()) {

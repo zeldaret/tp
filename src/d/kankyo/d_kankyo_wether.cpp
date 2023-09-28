@@ -130,7 +130,6 @@ extern "C" void dKyw_evt_wind_set_go__Fv();
 extern "C" void dKyw_rain_set__Fi();
 extern "C" extern char const* const d_kankyo_d_kankyo_wether__stringBase0;
 
-
 //
 // External References:
 //
@@ -533,18 +532,19 @@ SECTION_SDATA2 static u8 lit_4378[4] = {
 SECTION_SDATA2 static f32 lit_4379 = 1.0f;
 
 // remove these once float data is fixed
-inline JPABaseEmitter* tmp_dComIfGp_particle_set(u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3,
-                                     const csXyz* param_4, const cXyz* param_5, u8 param_6,
-                                     dPa_levelEcallBack* param_7, s8 param_8,
-                                     const GXColor* param_9, const GXColor* param_10,
-                                     const cXyz* param_11) {
+inline JPABaseEmitter* tmp_dComIfGp_particle_set(u16 param_1, const cXyz* param_2,
+                                                 const dKy_tevstr_c* param_3, const csXyz* param_4,
+                                                 const cXyz* param_5, u8 param_6,
+                                                 dPa_levelEcallBack* param_7, s8 param_8,
+                                                 const GXColor* param_9, const GXColor* param_10,
+                                                 const cXyz* param_11) {
     return g_dComIfG_gameInfo.play.getParticle()->setNormal(param_1, param_2, param_3, param_4,
                                                             param_5, param_6, param_7, param_8,
                                                             param_9, param_10, param_11, lit_4379);
 }
 
-inline JPABaseEmitter* tmp_dComIfGp_particle_set(u16 param_0, const cXyz* param_1, const csXyz* param_2,
-                                     const cXyz* param_3) {
+inline JPABaseEmitter* tmp_dComIfGp_particle_set(u16 param_0, const cXyz* param_1,
+                                                 const csXyz* param_2, const cXyz* param_3) {
     return tmp_dComIfGp_particle_set(param_0, param_1, NULL, param_2, param_3, 0xFF, NULL, -1, NULL,
                                      NULL, NULL);
 }
@@ -589,7 +589,8 @@ void dKyw_wether_init() {
 
     // Stage is Zora's Domain and Room is Outside Throne Room
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP113") && dComIfGp_roomControl_getStayNo() == 1 &&
-        dComIfG_play_c::getLayerNo(0) < 8) {
+        dComIfG_play_c::getLayerNo(0) < 8)
+    {
         cXyz tmp;
         f32 tmp0_2 = FLOAT_LABEL(lit_4378);
         tmp.z = tmp0_2;
@@ -615,7 +616,8 @@ void dKyw_wether_init() {
     // Room is Entrance or Right Wing Outside or Left Wing Outside or Central Hub Outside
     if (!strcmp(dComIfGp_getStartStageName(), "D_MN07")) {
         if ((dComIfGp_roomControl_getStayNo() == 0 || dComIfGp_roomControl_getStayNo() == 3) ||
-            dComIfGp_roomControl_getStayNo() == 6 || dComIfGp_roomControl_getStayNo() == 13) {
+            dComIfGp_roomControl_getStayNo() == 6 || dComIfGp_roomControl_getStayNo() == 13)
+        {
             g_mEnvSeMgr.initStrongWindSe();
         }
     }
@@ -790,7 +792,8 @@ static void wether_move_sun() {
             sunVisible = true;
             // Stage is Hyrule Castle or Castle Throne Room
         } else if (!strcmp(dComIfGp_getStartStageName(), "D_MN09") ||
-                   !strcmp(dComIfGp_getStartStageName(), "D_MN09A")) {
+                   !strcmp(dComIfGp_getStartStageName(), "D_MN09A"))
+        {
             sunVisible = false;
         }
 
@@ -1017,12 +1020,14 @@ static void wether_move_star() {
     s32 starsVisible = false;
     // Stage is Hyrule Castle or Castle Throne Room
     if (!strcmp(dComIfGp_getStartStageName(), "D_MN09") ||
-        !strcmp(dComIfGp_getStartStageName(), "D_MN09A")) {
+        !strcmp(dComIfGp_getStartStageName(), "D_MN09A"))
+    {
         return;
     } else {
         // Stage is Hero Shade arena
         if ((dComIfGp_checkStatus(1) && !g_env_light.mVrboxInvisible) ||
-            !strcmp(dComIfGp_getStartStageName(), "F_SP200")) {
+            !strcmp(dComIfGp_getStartStageName(), "F_SP200"))
+        {
             roomRead_class* room = dComIfGp_getStageRoom();
             if (room != NULL && room->field_0x0 > dComIfGp_roomControl_getStayNo()) {
                 starsVisible = dStage_roomRead_dt_c_GetVrboxswitch(
@@ -1068,7 +1073,8 @@ static void wether_move_star() {
                 // Stage is Hyrule Field or Outside Castle Town or Hidden Village
                 if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") ||
                     !strcmp(dComIfGp_getStartStageName(), "F_SP122") ||
-                    !strcmp(dComIfGp_getStartStageName(), "F_SP128")) {
+                    !strcmp(dComIfGp_getStartStageName(), "F_SP128"))
+                {
                     g_env_light.mStarCount = (s16)(lit_4772 * g_env_light.mStarDensity);
                 }
 
@@ -1110,14 +1116,16 @@ static void wether_move_housi() {
          dComIfGp_roomControl_getStayNo() != 11) ||
         (!strcmp(dComIfGp_getStartStageName(), "D_MN08A") ||
          !strcmp(dComIfGp_getStartStageName(), "D_MN08B") ||
-         !strcmp(dComIfGp_getStartStageName(), "D_MN08C"))) {
+         !strcmp(dComIfGp_getStartStageName(), "D_MN08C")))
+    {
         return;
     }
 
     // Stage is darkworld or Stage is Lake Hylia and Room is Lanayru Spring
     if (dKy_darkworld_check() == true ||
         (!strcmp(dComIfGp_getStartStageName(), "F_SP115") &&
-         dComIfGp_roomControl_getStayNo() == 1 && dComIfGp_getStartStageLayer() == 9)) {
+         dComIfGp_roomControl_getStayNo() == 1 && dComIfGp_getStartStageLayer() == 9))
+    {
         if (g_env_light.mInitAnmTimer != 0) {
             g_env_light.field_0xea9 = 0;
             g_env_light.mHousiCount = 200;
@@ -1133,7 +1141,8 @@ static void wether_move_housi() {
                 (!strcmp(dComIfGp_getStartStageName(), "F_SP108") &&
                  dComIfGp_getStartStageRoomNo() == 0 && dComIfGp_getStartStageLayer() == 9) ||
                 (!strcmp(dComIfGp_getStartStageName(), "F_SP115") &&
-                 dComIfGp_getStartStageLayer() == 9)) {
+                 dComIfGp_getStartStageLayer() == 9))
+            {
                 g_env_light.mHousiCount = 0;
             }
         }
@@ -1183,7 +1192,8 @@ static void wether_move_housi() {
         break;
     case TRUE:
         if (g_env_light.mHousiCount == 0 &&
-            g_env_light.mpHousiPacket->field_0x5de8 <= FLOAT_LABEL(lit_4378)) {
+            g_env_light.mpHousiPacket->field_0x5de8 <= FLOAT_LABEL(lit_4378))
+        {
             g_env_light.mHousiInitialized = false;
             delete g_env_light.mpHousiPacket;
             g_env_light.mpHousiPacket = NULL;
@@ -1503,14 +1513,17 @@ void dKyw_wether_proc() {
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP108") ||
         !strcmp(dComIfGp_getStartStageName(), "F_SP127") ||
         (!strcmp(dComIfGp_getStartStageName(), "F_SP121") &&
-         FLOAT_LABEL(lit_4378) != g_env_light.mDiceWeatherTime)) {
+         FLOAT_LABEL(lit_4378) != g_env_light.mDiceWeatherTime))
+    {
         if (!dKy_darkworld_check()) {
             // Stage is Hyrule Field
             if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") || g_env_light.mDaytime >= 75.0f ||
-                g_env_light.mDaytime <= 120.0f) {
+                g_env_light.mDaytime <= 120.0f)
+            {
                 // Stage is Hyrule Field
                 if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") &&
-                    g_env_light.mDiceWeatherMode >= 1 && g_env_light.mDiceWeatherMode < 6) {
+                    g_env_light.mDiceWeatherMode >= 1 && g_env_light.mDiceWeatherMode < 6)
+                {
                     dKy_get_dayofweek();
                     cLib_addCalc(&g_env_light.field_0xebc, lit_4379, lit_5362, lit_5363, lit_4770);
                     g_env_light.mMoyaMode = 7;
@@ -1528,7 +1541,8 @@ void dKyw_wether_proc() {
 
     // Stage is Fishing Pond
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") &&
-        (g_env_light.mPondSeason == 1 || g_env_light.mPondSeason == 3)) {
+        (g_env_light.mPondSeason == 1 || g_env_light.mPondSeason == 3))
+    {
         if (g_env_light.mPondSeason == 1) {
             g_env_light.mHousiCount = 35;
         } else {

@@ -652,20 +652,20 @@ static actor_method_class daNpcAsh_MethodTable = {
 
 /* 8095DC24-8095DC54 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_ASH */
 extern actor_process_profile_definition g_profile_NPC_ASH = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_NPC_ASH,
     &g_fpcLf_Method.mBase,
     sizeof(daNpcAsh_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x019B,
+    411,
     &daNpcAsh_MethodTable,
-    0x00040100,
-    4,
-    14,
+    0x40100,
+    fopAc_NPC_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };
 
 /* 8095DC54-8095DC60 0002C4 000C+00 2/2 0/0 0/0 .data            __vt__11J3DTexNoAnm */

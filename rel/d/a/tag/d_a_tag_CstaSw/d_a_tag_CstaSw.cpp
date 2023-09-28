@@ -113,18 +113,18 @@ static actor_method_class l_daTagCstaSw_Method = {
 
 /* 805A2570-805A25A0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_CstaSw */
 extern actor_process_profile_definition g_profile_Tag_CstaSw = {
-    -3,                     // mLayerID
+    fpcLy_CURRENT_e,        // mLayerID
     7,                      // mListID
-    -3,                     // mListPrio
+    fpcPi_CURRENT_e,        // mListPrio
     PROC_Tag_CstaSw,        // mProcName
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daTagCstaSw_c),  // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
-    0x0291,                 // mPriority
+    657,                    // mPriority
     &l_daTagCstaSw_Method,  // mSubMtd
-    0x00044000,             // mStatus
-    0,                      // mActorType
-    14,                     // mCullType
+    0x44000,                // mStatus
+    fopAc_ACTOR_e,          // mActorType
+    fopAc_CULLBOX_CUSTOM_e, // mCullType
 };

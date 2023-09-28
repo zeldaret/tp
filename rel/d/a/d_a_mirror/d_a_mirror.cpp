@@ -778,18 +778,18 @@ static actor_method_class daMirror_METHODS = {
 
 /* 80872694-808726C4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_MIRROR */
 extern actor_process_profile_definition g_profile_MIRROR = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_MIRROR,
     &g_fpcLf_Method.mBase,
     sizeof(daMirror_c), 
     0,
     0,
     &g_fopAc_Method.base,
-    0x02F5, 
+    757, 
     &daMirror_METHODS,
     0x00060000,
     5,
-    0,
+    fopAc_CULLBOX_0_e,
 };

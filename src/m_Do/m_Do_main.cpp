@@ -163,7 +163,11 @@ void HeapCheck::heapDisplay() const {
 }
 
 /* 80450580-80450584 000000 0004+00 3/3 6/6 0/0 .sdata           None */
+#ifdef DEBUG
+s8 mDoMain::developmentMode = 1;
+#else
 s8 mDoMain::developmentMode = -1;
+#endif
 
 /* 80450584-80450588 000004 0004+00 0/0 1/1 0/0 .sdata           memMargin__7mDoMain */
 u32 mDoMain::memMargin = 0xFFFFFFFF;

@@ -24,11 +24,83 @@ struct actor_process_profile_definition2 {
     /* 0x30 */ u32 field_0x30;
 };
 
-enum {
-    ACTOR_TYPE_ENEMY = 2,
+enum fopAc_Status_e {
+    fopAcStts_NOEXEC_e = 0x00000080,
+    fopAcStts_CULL_e = 0x00000100,
+    fopAcStts_FREEZE_e = 0x00000400,
+    fopAcStts_CARRY_e = 0x00002000,
+    fopAcStts_NOPAUSE_e = 0x00020000,
+    fopAcStts_NODRAW_e = 0x01000000,
+    fopAcStts_BOSS_e = 0x04000000,
+};
+
+enum fopAc_Group_e {
+    /* 0 */ fopAc_ACTOR_e,
+    /* 1 */ fopAc_PLAYER_e,
+    /* 2 */ fopAc_ENEMY_e,
+    /* 3 */ fopAc_ENV_e,  // is this correct?
+    /* 4 */ fopAc_NPC_e,
+};
+
+enum fopAc_Condition_e {
+    fopAcCnd_NOEXEC_e = 0x02,
+    fopAcCnd_NODRAW_e = 0x04,
+    fopAcCnd_INIT_e = 0x08,
+};
+
+enum fopAc_Cull_e {
+    fopAc_CULLBOX_0_e,
+    fopAc_CULLBOX_1_e,
+    fopAc_CULLBOX_2_e,
+    fopAc_CULLBOX_3_e,
+    fopAc_CULLBOX_4_e,
+    fopAc_CULLBOX_5_e,
+    fopAc_CULLBOX_6_e,
+    fopAc_CULLBOX_7_e,
+    fopAc_CULLBOX_8_e,
+    fopAc_CULLBOX_9_e,
+    fopAc_CULLBOX_10_e,
+    fopAc_CULLBOX_11_e,
+    fopAc_CULLBOX_12_e,
+    fopAc_CULLBOX_13_e,
+    fopAc_CULLBOX_CUSTOM_e,
+    fopAc_CULLSPHERE_0_e,
+    fopAc_CULLSPHERE_1_e,
+    fopAc_CULLSPHERE_2_e,
+    fopAc_CULLSPHERE_3_e,
+    fopAc_CULLSPHERE_4_e,
+    fopAc_CULLSPHERE_5_e,
+    fopAc_CULLSPHERE_6_e,
+    fopAc_CULLSPHERE_7_e,
+    fopAc_CULLSPHERE_8_e,
+    fopAc_CULLSPHERE_9_e,
+    fopAc_CULLSPHERE_10_e,
+    fopAc_CULLSPHERE_11_e,
+    fopAc_CULLSPHERE_12_e,
+    fopAc_CULLSPHERE_13_e,
+    fopAc_CULLSPHERE_CUSTOM_e,
 };
 
 class JKRSolidHeap;
+
+enum dEvt_Command_e {
+    dEvtCmd_NONE_e,
+    dEvtCmd_INTALK_e,
+    dEvtCmd_INDEMO_e,
+    dEvtCmd_INDOOR_e,
+    dEvtCmd_INGETITEM_e,
+    dEvtCmd_INCATCH_e = 6,
+    dEvtCmd_DUMMY = 0xFFFF,
+};
+
+enum dEvt_Condition_e {
+    dEvtCnd_NONE_e = 0x0000,
+    dEvtCnd_CANTALK_e = 0x0001,
+    dEvtCnd_CANDOOR_e = 0x0004,
+    dEvtCnd_CANGETITEM_e = 0x0008,
+    dEvtCnd_CANTALKITEM_e = 0x0020,
+    dEvtCnd_DUMMY = 0x8000,
+};
 
 class dEvt_info_c {
 public:
@@ -41,7 +113,7 @@ public:
     void offCondition(u16);
     bool checkCommandCatch();
     BOOL checkCommandDoor();
-    BOOL checkCommandDemoAccrpt() { return mCommand == 2; }
+    BOOL checkCommandDemoAccrpt() { return mCommand == dEvtCmd_INDEMO_e; }
 
     void setCommand(u16 command) { mCommand = command; }
     void setMapToolId(u8 id) { mMapToolId = id; }
@@ -58,11 +130,11 @@ public:
     void i_onCondition(u16 cond) { mCondition |= cond; }
     void i_offCondition(u16 cond) { mCondition &= ~cond; }
 
-    bool checkCommandTalk() { return mCommand == 1; }
-    bool checkCommandItem() { return mCommand == 4; }
-    BOOL i_checkCommandDoor() { return mCommand == 3; }
-    bool i_checkCommandDemoAccrpt() { return mCommand == 2; }
-    bool i_checkCommandCatch() { return mCommand == 6; }
+    bool checkCommandTalk() { return mCommand == dEvtCmd_INTALK_e; }
+    bool checkCommandItem() { return mCommand == dEvtCmd_INGETITEM_e; }
+    BOOL i_checkCommandDoor() { return mCommand == dEvtCmd_INDOOR_e; }
+    bool i_checkCommandDemoAccrpt() { return mCommand == dEvtCmd_INDEMO_e; }
+    bool i_checkCommandCatch() { return mCommand == dEvtCmd_INCATCH_e; }
 
     void suspendProc(void* actor) {
         if (field_0x10 != NULL) {
@@ -81,7 +153,7 @@ public:
 };  // Size = 0x18
 
 struct actor_place {
-    /* 807E2468 */ //void operator=(actor_place const&);
+    /* 807E2468 */  // void operator=(actor_place const&);
 
     /* 0x00 */ cXyz pos;
     /* 0x0C */ csXyz angle;

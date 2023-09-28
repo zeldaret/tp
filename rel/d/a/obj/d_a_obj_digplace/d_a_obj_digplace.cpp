@@ -187,9 +187,9 @@ static actor_method_class l_daObjDigpl_Method = {
 
 /* 8057C918-8057C948 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Digpl */
 extern actor_process_profile_definition g_profile_Obj_Digpl = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Obj_Digpl,
     &g_fpcLf_Method.mBase,
     sizeof(daObjDigpl_c),
@@ -199,6 +199,6 @@ extern actor_process_profile_definition g_profile_Obj_Digpl = {
     250,
     &l_daObjDigpl_Method,
     0x44080,
-    3,
-    14,
+    fopAc_ENV_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

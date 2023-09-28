@@ -86,18 +86,18 @@ static actor_method_class l_daHitobj_Method = {
 
 /* 8046B63C-8046B66C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_HITOBJ */
 extern actor_process_profile_definition g_profile_HITOBJ = {
-    -3,                     // mLayerID   
+    fpcLy_CURRENT_e,        // mLayerID   
     7,                      // mListID  
-    -3,                     // mListPrio   
+    fpcPi_CURRENT_e,        // mListPrio   
     PROC_HITOBJ,            // mProcName            
     &g_fpcLf_Method.mBase,  // mSubMtd                      
     sizeof(hitobj_class),   // mSize                      
     0,                      // mSizeOther  
     0,                      // mParameters         
     &g_fopAc_Method.base,   // mSubMtd                     
-    0x02B2,                 // mPriority       
+    690,                    // mPriority       
     &l_daHitobj_Method,     // mSubMtd                   
-    0x00040000,             // mStatus            
-    0,                      // mActorType  
-    0,                      // mCullType  
+    0x40000,                // mStatus            
+    fopAc_ACTOR_e,          // mActorType  
+    fopAc_CULLBOX_0_e,      // mCullType     
 };

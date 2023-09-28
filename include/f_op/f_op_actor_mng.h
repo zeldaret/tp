@@ -7,9 +7,9 @@
 #include "f_pc/f_pc_searcher.h"
 
 #define fopAcM_SetupActor(ptr,ClassName) \
-    if (!fopAcM_CheckCondition(ptr, 8)) { \
+    if (!fopAcM_CheckCondition(ptr, fopAcCnd_INIT_e)) { \
         new (ptr) ClassName(); \
-        fopAcM_OnCondition(ptr, 8); \
+        fopAcM_OnCondition(ptr, fopAcCnd_INIT_e); \
     }
 
 class J3DModelData;  // placeholder
@@ -77,16 +77,16 @@ public:
 class dBgS_GndChk;
 class fopAcM_gc_c {
 public:
-    static dBgS_GndChk* getGroundCheck() { return (dBgS_GndChk*)&mGndCheck; }
     static bool gndCheck(const cXyz*);
     static u8 mGndCheck[84]; // this is dBgS_GndChk but all static data in the TU probably needs to be setup first (otherwise causes a reordering problem with the __sinit function)
     static f32 mGroundY;
 
-    // strange issue where f_op_actor_mng.h can't find the dComIfG_Bgsp() inline even when you include the header
-    // static bool getTriPla(cM3dGPla* pPlane) {
-    //     return dComIfG_Bgsp().GetTriPla(mGndCheck,pPlane);
-    // }
+    // this avoids having to include d_bg_s.h here
+    static inline bool getTriPla(cM3dGPla* pPlane);
+    static inline int getRoomId();
+    static inline int getPolyColor();
 
+    static dBgS_GndChk* getGroundCheck() { return (dBgS_GndChk*)&mGndCheck; }
     static f32 getGroundY() { return mGroundY; }
 };
 

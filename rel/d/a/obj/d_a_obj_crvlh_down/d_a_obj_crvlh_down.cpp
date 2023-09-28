@@ -152,7 +152,6 @@ extern "C" extern char const* const d_a_obj_crvlh_down__stringBase0;
 // External References:
 //
 
-extern "C" void OSReport();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();

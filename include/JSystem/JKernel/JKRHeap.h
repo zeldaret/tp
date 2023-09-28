@@ -142,7 +142,7 @@ public:
     static void* getUserRamEnd(void) { return mUserRamEnd; }
     static u32 getMemorySize(void) { return mMemorySize; }
     static JKRHeap* getRootHeap() { return sRootHeap; }
-#if DEBUG
+#ifdef DEBUG
     static JKRHeap* getRootHeap2() { return sRootHeap2; }
 #endif
 
@@ -166,7 +166,7 @@ public:
     static u32 mMemorySize;
 
     static JKRHeap* sRootHeap;
-#if DEBUG
+#ifdef DEBUG
     static JKRHeap* sRootHeap2;
 #endif
 

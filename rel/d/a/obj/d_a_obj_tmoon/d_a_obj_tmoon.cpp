@@ -118,18 +118,18 @@ static actor_method_class l_daObjTMoon_Method = {
 
 /* 80D12FC4-80D12FF4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_TMoon */
 extern actor_process_profile_definition g_profile_Obj_TMoon = {
-    -3,                     // mLayerID
+    fpcLy_CURRENT_e,        // mLayerID
     7,                      // mListID
-    -3,                     // mListPrio
+    fpcPi_CURRENT_e,        // mListPrio
     PROC_Obj_TMoon,         // mProcName
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daObjTMoon_c),   // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
-    0x0239,                 // mPriority
+    569,                    // mPriority
     &l_daObjTMoon_Method,   // mSubMtd
-    0x00040000,             // mStatus
-    0,                      // mActorType
-    14,                     // mCullType
+    0x40000,                // mStatus
+    fopAc_ACTOR_e,          // mActorType
+    fopAc_CULLBOX_CUSTOM_e, // mCullType
 };

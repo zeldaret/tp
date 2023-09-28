@@ -761,9 +761,9 @@ static dScnLogo_Method l_dScnLogo_Method[5] = {
 
 /* 803C2FE4-803C300C -00001 0028+00 0/0 0/0 1/0 .data            g_profile_LOGO_SCENE */
 extern scene_process_profile_definition g_profile_LOGO_SCENE = {
-    0,
+    fpcLy_ROOT_e,
     1,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_LOGO_SCENE,
     &g_fpcNd_Method.mBase,
     sizeof(dScnLogo_c),

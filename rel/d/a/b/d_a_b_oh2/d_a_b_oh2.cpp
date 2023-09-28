@@ -312,18 +312,18 @@ static actor_method_class l_daB_OH2_Method = {
 
 /* 8061EAAC-8061EADC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_B_OH2 */
 extern actor_process_profile_definition g_profile_B_OH2 = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    0xFFFD,
+    fpcPi_CURRENT_e,
     PROC_B_OH2,
     &g_fpcLf_Method.mBase,
     sizeof(b_oh2_class),
     0,
     0,
     &g_fopAc_Method.base,
-    0x00DB,
+    219,
     &l_daB_OH2_Method,
-    0x00044000,
-    ACTOR_TYPE_ENEMY,
-    14,
+    0x44000,
+    fopAc_ENEMY_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

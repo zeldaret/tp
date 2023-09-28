@@ -114,18 +114,18 @@ static actor_method_class l_daTagSpinner_Method = {
 
 /* 80D61B68-80D61B98 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Spinner */
 extern actor_process_profile_definition g_profile_Tag_Spinner = {
-    -3,                      // mLayerID
+    fpcLy_CURRENT_e,         // mLayerID
     3,                       // mListID
-    -3,                      // mListPrio
+    fpcPi_CURRENT_e,         // mListPrio
     PROC_Tag_Spinner,        // mProcName
     &g_fpcLf_Method.mBase,   // mSubMtd
     sizeof(daTagSpinner_c),  // mSize
     0,                       // mSizeOther
     0,                       // mParameters
     &g_fopAc_Method.base,    // mSubMtd
-    0x025D,                  // mPriority
+    605,                     // mPriority
     &l_daTagSpinner_Method,  // mSubMtd
-    0x00040100,              // mStatus
-    0,                       // mActorType
-    14,                      // mCullType
+    0x40100,                 // mStatus
+    fopAc_ACTOR_e,           // mActorType
+    fopAc_CULLBOX_CUSTOM_e,  // mCullType
 };

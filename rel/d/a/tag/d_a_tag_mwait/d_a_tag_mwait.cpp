@@ -97,7 +97,7 @@ int daTagMwait_c::execute() {
         }
     } else if (mEnteredTrigger) {
         fopAcM_orderSpeakEvent(this, 0, 0);
-        mEvtInfo.i_onCondition(1);
+        mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
         mAttentionInfo.mPosition = midna_p->mAttentionInfo.mPosition;
         mEyePos = mAttentionInfo.mPosition;
     } else {
@@ -132,14 +132,14 @@ int daTagMwait_c::execute() {
                         mAttentionInfo.mPosition = midna_p->mAttentionInfo.mPosition;
                         mEyePos = mAttentionInfo.mPosition;
                         fopAcM_orderSpeakEvent(this, 0, 0);
-                        mEvtInfo.i_onCondition(1);
+                        mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
                     }
                 } else if (field_0x570 > 0.0f && player_dist < field_0x570 &&
                            player_p->current.pos.y >= current.pos.y &&
                            player_p->current.pos.y <= current.pos.y + mScale.y)
                 {
                     mAttentionInfo.mFlags = 2;
-                    mEvtInfo.i_onCondition(1);
+                    mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
                 }
             }
         }
@@ -169,9 +169,9 @@ static actor_method_class l_daTagMwait_Method = {
 
 /* 80D5C5E4-80D5C614 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Mwait */
 extern actor_process_profile_definition g_profile_Tag_Mwait = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Tag_Mwait,
     &g_fpcLf_Method.mBase,
     sizeof(daTagMwait_c),
@@ -181,6 +181,6 @@ extern actor_process_profile_definition g_profile_Tag_Mwait = {
     256,
     &l_daTagMwait_Method,
     0x44000,
-    3,
-    14,
+    fopAc_ENV_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

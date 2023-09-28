@@ -4868,11 +4868,7 @@ asm void dFile_select_c::setInitSaveData() {
 /* 801902B8-801902F0 18ABF8 0038+00 2/2 0/0 0/0 .text            dataSave__14dFile_select_cFv */
 #ifndef NONMATCHING
 void dFile_select_c::dataSave() {
-    #if DEBUG
-    mDoMemCd_saveNAND(&mpMemCard,0x1fbc,0);
-    #else
     mDoMemCd_save(&mpMemCard,0x1fbc,0);
-    #endif
 }
 #else
 #pragma push

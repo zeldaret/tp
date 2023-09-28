@@ -70,18 +70,18 @@ static actor_method_class l_daTagSetBall_Method = {
 
 /* 80D6034C-80D6037C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_SetBall */
 extern actor_process_profile_definition g_profile_Tag_SetBall = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    0xFFFD,
+    fpcPi_CURRENT_e,
     PROC_Tag_SetBall,
     &g_fpcLf_Method.mBase,
     sizeof(daTagSetBall_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x023F,
+    575,
     &l_daTagSetBall_Method,
-    0x00040100,
-    0,
-    14,
+    0x40100,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

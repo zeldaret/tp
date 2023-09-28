@@ -95,18 +95,18 @@ static actor_method_class l_daTagMyna2_Method = {
 
 /* 80D5CA84-80D5CAB4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TAG_MYNA2 */
 extern actor_process_profile_definition g_profile_TAG_MYNA2 = {
-    -3,                     // mLayerID
+    fpcLy_CURRENT_e,        // mLayerID
     7,                      // mListID
-    -3,                     // mListPrio
+    fpcPi_CURRENT_e,        // mListPrio
     PROC_TAG_MYNA2,         // mProcName
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daTagMyna2_c),   // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
-    0x0000018A,             // mPriority
+    394,                    // mPriority
     &l_daTagMyna2_Method,   // mSubMtd
-    0x00044000,             // mStatus
-    0,                      // mActorType
-    0xE                     // mCullType
+    0x44000,                // mStatus
+    fopAc_ACTOR_e,          // mActorType
+    fopAc_CULLBOX_CUSTOM_e, // mCullType
 };

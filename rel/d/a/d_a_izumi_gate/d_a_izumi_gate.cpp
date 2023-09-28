@@ -110,18 +110,18 @@ static actor_method_class l_daIzumiGate_Method = {
 
 /* 8084945C-8084948C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Izumi_Gate */
 extern actor_process_profile_definition g_profile_Izumi_Gate = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Izumi_Gate,
     &g_fpcLf_Method.mBase,
     sizeof(daIzumiGate_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x0026,
+    38,
     &l_daIzumiGate_Method,
-    0x00040000,
-    0,
-    14,
+    0x40000,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

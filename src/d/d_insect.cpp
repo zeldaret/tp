@@ -29,7 +29,7 @@ void dInsect_c::Insect_GetDemoMain() {
             cLib_offBit(mAttentionInfo.mFlags, 0x10);
             fopAcM_cancelCarryNow(this);
             fopAcM_orderItemEvent(this, 0, 0);
-            mEvtInfo.i_onCondition(8);
+            mEvtInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
 
             m_itemId = fopAcM_createItemForTrBoxDemo(&current.pos, m_itemNo, -1,
                                                      fopAcM_GetRoomNo(this), NULL, NULL);
@@ -52,7 +52,7 @@ void dInsect_c::Insect_GetDemoMain() {
             m_mode = 2;
         } else {
             fopAcM_orderItemEvent(this, 0, 0);
-            mEvtInfo.i_onCondition(8);
+            mEvtInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
         }
         break;
     case 2:

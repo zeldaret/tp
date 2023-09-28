@@ -186,9 +186,9 @@ static actor_method_class l_daNpc_Fish_Method = {
 
 /* 80542DE8-80542E18 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_FISH */
 extern actor_process_profile_definition g_profile_NPC_FISH = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_NPC_FISH,
     &g_fpcLf_Method.mBase,
     sizeof(npc_fish_class),
@@ -198,8 +198,8 @@ extern actor_process_profile_definition g_profile_NPC_FISH = {
     719,
     &l_daNpc_Fish_Method,
     0x40100,
-    0,
-    6,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_6_e,
 };
 
 /* 805424DC-805424DC 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

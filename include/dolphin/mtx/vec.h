@@ -87,7 +87,8 @@ inline f32 C_VECSquareMag(const Vec* v) {
 
 /* When compiling in debug mode, use C implementations */
 #ifdef DEBUG
-#define VECAdd C_VECAdd
+// TODO: Add debug rom C implementations
+/* #define VECAdd C_VECAdd
 #define VECSubtract C_VECSubtract
 #define VECScale C_VECScale
 #define VECNormalize C_VECNormalize
@@ -96,7 +97,18 @@ inline f32 C_VECSquareMag(const Vec* v) {
 #define VECDotProduct C_VECDotProduct
 #define VECCrossProduct C_VECCrossProduct
 #define VECSquareDistance C_VECSquareDistance
-#define VECDistance C_VECDistance
+#define VECDistance C_VECDistance */
+
+#define VECAdd PSVECAdd
+#define VECSubtract PSVECSubtract
+#define VECScale PSVECScale
+#define VECNormalize PSVECNormalize
+#define VECSquareMag PSVECSquareMag
+#define VECMag PSVECMag
+#define VECDotProduct PSVECDotProduct
+#define VECCrossProduct PSVECCrossProduct
+#define VECSquareDistance PSVECSquareDistance
+#define VECDistance PSVECDistance
 #else
 #define VECAdd PSVECAdd
 #define VECSubtract PSVECSubtract

@@ -111,9 +111,9 @@ static actor_method_class l_daObj_Usaku_Method = {
 
 /* 80D21318-80D21348 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_USAKU */
 extern actor_process_profile_definition g_profile_OBJ_USAKU = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_OBJ_USAKU,
     &g_fpcLf_Method.mBase,
     sizeof(obj_usaku_class),
@@ -123,6 +123,6 @@ extern actor_process_profile_definition g_profile_OBJ_USAKU = {
     78,
     &l_daObj_Usaku_Method,
     0x40100,
-    0,
-    14,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

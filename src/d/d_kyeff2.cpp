@@ -46,15 +46,15 @@ static leafdraw_method_class l_dKyeff2_Method = {
 
 /* 803BC1AC-803BC1D8 -00001 0028+04 0/0 0/0 1/0 .data            g_profile_KYEFF2 */
 extern kankyo_process_profile_definition g_profile_KYEFF2 = {
-    -3,
+    fpcLy_CURRENT_e,
     12,
-    0xFFFD,
+    fpcPi_CURRENT_e,
     PROC_KYEFF2,
     &g_fpcLf_Method.mBase,
     sizeof(dKyeff2_c),
     0,
     0,
     &g_fopKy_Method,
-    0x0003,
+    3,
     &l_dKyeff2_Method,
 };

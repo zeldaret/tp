@@ -175,8 +175,6 @@ extern "C" void __dt__Q27JGadget13TNodeLinkListFv();
 extern "C" void
 Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode();
 extern "C" void Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
 extern "C" void __register_global_object();
 extern "C" void __construct_array();
 extern "C" void __cvt_fp2unsigned();

@@ -158,7 +158,7 @@ SECTION_DEAD static char const* const stringBase_805A604C = "D_MN04B";
 #ifdef NONMATCHING
 void daTagMhint_c::eventOrder() {
     if (!i_dComIfGp_event_runCheck()) {
-        mEvtInfo.i_onCondition(1);
+        mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
 
         if (!daPy_getPlayerActorClass()->checkPlayerFly() ||
             i_dComIfGp_checkPlayerStatus0(0, 0x100000))
@@ -280,7 +280,7 @@ int daTagMhint_c::execute() {
         }
     } else {
         if (field_0x570 != 0) {
-            mEvtInfo.i_onCondition(1);
+            mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
             fopAcM_orderSpeakEvent(this, 3, 0);
             return 1;
         }
@@ -321,7 +321,7 @@ int daTagMhint_c::execute() {
         }
     }
 
-    if (!mEvtInfo.chkCondition(1)) {
+    if (!mEvtInfo.chkCondition(dEvtCnd_CANTALK_e)) {
         field_0x56f = 0;
     }
 
@@ -359,9 +359,9 @@ static actor_method_class l_daTagMhint_Method = {
 
 /* 805A6074-805A60A4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Mhint */
 extern actor_process_profile_definition g_profile_Tag_Mhint = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Tag_Mhint,
     &g_fpcLf_Method.mBase,
     sizeof(daTagMhint_c),
@@ -371,6 +371,6 @@ extern actor_process_profile_definition g_profile_Tag_Mhint = {
     254,
     &l_daTagMhint_Method,
     0x44000,
-    3,
-    14,
+    fopAc_ENV_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };
