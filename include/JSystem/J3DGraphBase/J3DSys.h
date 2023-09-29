@@ -23,6 +23,13 @@ class J3DShape;
 class J3DDrawBuffer;
 class J3DTexture;
 
+struct J3DTexCoordScaleInfo {
+    /* 0x0 */ u16 field_0x00;
+    /* 0x2 */ u16 field_0x02;
+    /* 0x4 */ u16 field_0x04;
+    /* 0x6 */ u16 field_0x06;
+};
+
 enum J3DSysFlag {
     J3DSysFlag_SkinPosCpu = 0x00000004,
     J3DSysFlag_SkinNrmCpu = 0x00000008,
@@ -131,7 +138,7 @@ struct J3DSys {
     static Mtx mCurrentMtx;
     static Vec mCurrentS;
     static Vec mParentS;
-    static u16 sTexCoordScaleTable[32];
+    static J3DTexCoordScaleInfo sTexCoordScaleTable[8];
 };
 
 extern u32 j3dDefaultViewNo;
