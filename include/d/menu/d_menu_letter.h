@@ -78,8 +78,8 @@ private:
     /* 0x184 */ J2DTextBox* field_0x184[6][4];
     /* 0x1E4 */ J2DTextBox* field_0x1e4[2];
     /* 0x1EC */ J2DTextBox* field_0x1ec;
-    /* 0x1F0 */ u8 field_0x1f0[0x24];
-    /* 0x214 */ J2DTextBox* field_0x214[9];
+    /* 0x1F0 */ J2DTextBox* field_0x1f0[9];
+    /* 0x214 */ J2DTextBox* mpPageLight[9];
     /* 0x238 */ J2DTextBox* field_0x238[9];
     /* 0x25C */ J2DTextBox* field_0x25c[12];
     /* 0x28C */ J2DTextBox* mpAButtonString[5];
