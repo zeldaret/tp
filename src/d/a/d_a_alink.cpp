@@ -11663,20 +11663,20 @@ static actor_method_class l_daAlink_Method = {
 
 /* 803B2DCC-803B2E20 -00001 0030+24 0/0 0/0 1/0 .data            g_profile_ALINK */
 extern actor_process_profile_definition g_profile_ALINK = {
-    -3,
+    fpcLy_CURRENT_e,
     5,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_ALINK,
     &g_fpcLf_Method.mBase,
     sizeof(daAlink_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x5B,
+    91,
     &l_daAlink_Method,
-    0x00060400,
-    1,
-    0,
+    0x60400,
+    fopAc_PLAYER_e,
+    fopAc_CULLBOX_0_e,
 };
 
 // tons of extra padding? not sure what this is

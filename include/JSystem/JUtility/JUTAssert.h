@@ -2,8 +2,9 @@
 #define JUTASSERT_H
 
 #include "dolphin/types.h"
+#include "dolphin/os/OS.h"
 
-#if DEBUG
+#ifdef DEBUG
 #define JUT_ASSERT(LINE, COND)                                                                     \
     if ((COND) == 0) {                                                                             \
         JUTAssertion::showAssert(JUTAssertion::getSDevice(), __FILE__, LINE, #COND);               \
@@ -34,6 +35,11 @@ namespace JUTAssertion {
     /* 802E4A54 */ void flushMessage_dbPrint();
     /* 802E4C34 */ void setVisible(bool);
     /* 802E4C3C */ void setMessageCount(int);
+
+    u32 getSDevice();
+    void showAssert(u32 device, const char * file, int line, const char * assertion);
+    void setWarningMessage_f(u32 device, char * file, int line, const char * fmt, ...);
+    void setLogMessage_f(u32 device, char* file, int line, const char* fmt, ...);
 };
 
 extern bool sAssertVisible;

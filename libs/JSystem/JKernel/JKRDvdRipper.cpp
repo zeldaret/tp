@@ -211,7 +211,7 @@ void* JKRDvdRipper::loadToMainRAM(JKRDvdFile* dvdFile, u8* dst, JKRExpandSwitch 
         {
             JKRDecompressFromDVD(dvdFile, dst, fileSizeAligned, dstLength, 0, offset, param_8);
         } else {
-            JUTException::panic_f(__FILE__, 0x143, "%s", "Sorry, not applied for SZP archive.");
+            JUTException::panic(__FILE__, 0x143, "Sorry, not applied for SZP archive.");
         }
         return dst;
     }
@@ -221,7 +221,7 @@ void* JKRDvdRipper::loadToMainRAM(JKRDvdFile* dvdFile, u8* dst, JKRExpandSwitch 
         // s32 readoffset = startOffset;
         if (offset != 0)
         {
-            JUTException::panic_f(__FILE__, 0x14d, "%s", "Not support SZP with offset read");
+            JUTException::panic(__FILE__, 0x14d, "Not support SZP with offset read");
         }
         while (true)
         {

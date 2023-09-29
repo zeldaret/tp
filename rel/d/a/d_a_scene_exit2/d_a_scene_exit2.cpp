@@ -224,9 +224,9 @@ static actor_method_class l_daScExit_Method = {
 
 /* 8059E8EC-8059E91C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_SCENE_EXIT2 */
 extern actor_process_profile_definition g_profile_SCENE_EXIT2 = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_SCENE_EXIT2,
     &g_fpcLf_Method.mBase,
     sizeof(daScExit_c),
@@ -236,6 +236,6 @@ extern actor_process_profile_definition g_profile_SCENE_EXIT2 = {
     583,
     &l_daScExit_Method,
     0x40000,
-    0,
-    14,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

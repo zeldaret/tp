@@ -198,9 +198,9 @@ static actor_method_class l_daObj_Fmobj_Method = {
 
 /* 8057CFA0-8057CFD0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_FMOBJ */
 extern actor_process_profile_definition g_profile_OBJ_FMOBJ = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_OBJ_FMOBJ,
     &g_fpcLf_Method.mBase,
     sizeof(obj_fmobj_class),
@@ -210,6 +210,6 @@ extern actor_process_profile_definition g_profile_OBJ_FMOBJ = {
     40,
     &l_daObj_Fmobj_Method,
     0x40100,
-    0,
-    7,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_7_e,
 };

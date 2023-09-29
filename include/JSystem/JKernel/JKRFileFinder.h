@@ -3,31 +3,27 @@
 
 #include "dolphin/dvd/dvd.h"
 
-struct JKRFileFinder_UnknownBase {
-    const char* mEntryName;
-    s32 mEntryFileIndex;
-    u16 mEntryId;
-    u16 mEntryTypeFlags;
-};
-
-class JKRFileFinder : public JKRFileFinder_UnknownBase {
+class JKRFileFinder {
 public:
     JKRFileFinder() {
         mIsAvailable = false;
         mIsFileOrDirectory = false;
     }
-    inline virtual ~JKRFileFinder();
 
     bool isAvailable() const { return mIsAvailable; }
     bool isFile() const { return mIsFileOrDirectory; }
     bool isDirectory() const { return mIsFileOrDirectory; }
 
-public:
-    /* vt[3] */ virtual bool findNextFile(void) = 0;
-
 protected:
-    /* 0x00 */  // JKRFileFinder_UnknownBase
+    /* 0x00 */ const char* mEntryName;
+    /* 0x04 */ s32 mEntryFileIndex;
+    /* 0x08 */ u16 mEntryId;
+    /* 0x0A */ u16 mEntryTypeFlags;
     /* 0x0C */  // vtable
+public:
+    /* vt[2] */ virtual ~JKRFileFinder() {};
+    /* vt[3] */ virtual bool findNextFile(void) = 0;
+protected:
     /* 0x10 */ bool mIsAvailable;
     /* 0x11 */ bool mIsFileOrDirectory;
     /* 0x12 */ u8 field_0x12[2];
@@ -37,7 +33,7 @@ class JKRArchive;
 class JKRArcFinder : public JKRFileFinder {
 public:
     JKRArcFinder(JKRArchive*, s32, s32);
-    inline virtual ~JKRArcFinder();
+    inline virtual ~JKRArcFinder() {}
 
 public:
     /* vt[3] */ virtual bool findNextFile(void); /* override */

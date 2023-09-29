@@ -84,18 +84,18 @@ static actor_method_class l_daTagHinit_Method = {
 
 /* 805A3A08-805A3A38 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Hinit */
 extern actor_process_profile_definition g_profile_Tag_Hinit = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Tag_Hinit,
     &g_fpcLf_Method.mBase,
     sizeof(daTagHinit_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x01B1,
+    433,
     &l_daTagHinit_Method,
-    0x00060000,
-    3,
-    0x0E,
+    0x60000,
+    fopAc_ENV_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

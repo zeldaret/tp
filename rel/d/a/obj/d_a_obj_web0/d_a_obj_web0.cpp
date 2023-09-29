@@ -442,18 +442,18 @@ static actor_method_class l_daObj_Web0_Method = {
 
 /* 80D35228-80D35258 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_WEB0 */
 extern actor_process_profile_definition g_profile_OBJ_WEB0 = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_OBJ_WEB0,
     &g_fpcLf_Method.mBase,
     sizeof(obj_web0_class),
     0,
     0,
     &g_fopAc_Method.base,
-    0x002F,
+    47,
     &l_daObj_Web0_Method,
-    0x00040100,
-    0,
-    14,
+    0x40100,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

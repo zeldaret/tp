@@ -79,18 +79,18 @@ static actor_method_class l_daTag_Telop_Method = {
 
 /* 80490C08-80490C38 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TAG_TELOP */
 extern actor_process_profile_definition g_profile_TAG_TELOP = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    0xFFFD,
+    fpcPi_CURRENT_e,
     PROC_TAG_TELOP,
     &g_fpcLf_Method.mBase,
     sizeof(daTag_Telop_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x011A,
+    282,
     &l_daTag_Telop_Method,
-    0x00044000,
-    0,
-    6,
+    0x44000,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_6_e,
 };

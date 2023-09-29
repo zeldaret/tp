@@ -8,97 +8,9 @@
 #include "JSystem/JSupport/JSupport.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTConsole.h"
-#include "dol2asm.h"
 #include "dolphin/gx/GX.h"
 
 #define suAboutEncoding_ 3
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__10JUTResFontFv();
-extern "C" void __ct__10JUTResFontFPC7ResFONTP7JKRHeap();
-extern "C" void __dt__10JUTResFontFv();
-extern "C" void deleteMemBlocks_ResFont__10JUTResFontFv();
-extern "C" void initialize_state__10JUTResFontFv();
-extern "C" void initiate__10JUTResFontFPC7ResFONTP7JKRHeap();
-extern "C" void protected_initiate__10JUTResFontFPC7ResFONTP7JKRHeap();
-extern "C" void countBlock__10JUTResFontFv();
-extern "C" void setBlock__10JUTResFontFv();
-extern "C" void setGX__10JUTResFontFv();
-extern "C" void setGX__10JUTResFontFQ28JUtility6TColorQ28JUtility6TColor();
-extern "C" void drawChar_scale__10JUTResFontFffffib();
-extern "C" void loadFont__10JUTResFontFi11_GXTexMapIDPQ27JUTFont6TWidth();
-extern "C" void getWidthEntry__10JUTResFontCFiPQ27JUTFont6TWidth();
-extern "C" void getCellWidth__10JUTResFontCFv();
-extern "C" void getCellHeight__10JUTResFontCFv();
-extern "C" void isLeadByte__10JUTResFontCFi();
-extern "C" void getFontCode__10JUTResFontCFi();
-extern "C" void loadImage__10JUTResFontFi11_GXTexMapID();
-extern "C" void convertSjis__10JUTResFontCFiPUs();
-extern "C" bool isLeadByte_1Byte__7JUTFontFi();
-extern "C" bool isLeadByte_2Byte__7JUTFontFi();
-extern "C" void isLeadByte_ShiftJIS__7JUTFontFi();
-extern "C" void* const saoAboutEncoding___10JUTResFont[3];
-extern "C" extern char const* const JUTResFont__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void* __nwa__FUlP7JKRHeapi();
-extern "C" void __dl__FPv();
-extern "C" void __dla__FPv();
-extern "C" void getResFont__10JUTResFontCFv();
-extern "C" void getFontType__10JUTResFontCFv();
-extern "C" void getLeading__10JUTResFontCFv();
-extern "C" void getWidth__10JUTResFontCFv();
-extern "C" void getAscent__10JUTResFontCFv();
-extern "C" void getDescent__10JUTResFontCFv();
-extern "C" void getHeight__10JUTResFontCFv();
-extern "C" void __ct__7JUTFontFv();
-extern "C" void initialize_state__7JUTFontFv();
-extern "C" void GXClearVtxDesc();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__7JUTFont[17];
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 803CC5A0-803CC5F0 0296C0 004C+04 3/3 0/0 0/0 .data            __vt__10JUTResFont */
-SECTION_DATA extern void* __vt__10JUTResFont[19 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10JUTResFontFv,
-    (void*)setGX__10JUTResFontFv,
-    (void*)setGX__10JUTResFontFQ28JUtility6TColorQ28JUtility6TColor,
-    (void*)drawChar_scale__10JUTResFontFffffib,
-    (void*)getLeading__10JUTResFontCFv,
-    (void*)getAscent__10JUTResFontCFv,
-    (void*)getDescent__10JUTResFontCFv,
-    (void*)getHeight__10JUTResFontCFv,
-    (void*)getWidth__10JUTResFontCFv,
-    (void*)getWidthEntry__10JUTResFontCFiPQ27JUTFont6TWidth,
-    (void*)getCellWidth__10JUTResFontCFv,
-    (void*)getCellHeight__10JUTResFontCFv,
-    (void*)getFontType__10JUTResFontCFv,
-    (void*)getResFont__10JUTResFontCFv,
-    (void*)isLeadByte__10JUTResFontCFi,
-    (void*)loadImage__10JUTResFontFi11_GXTexMapID,
-    (void*)setBlock__10JUTResFontFv,
-    /* padding */
-    NULL,
-};
 
 /* 802DEF48-802DEF94 2D9888 004C+00 0/0 1/1 0/0 .text            __ct__10JUTResFontFv */
 JUTResFont::JUTResFont() {
@@ -222,12 +134,6 @@ IsLeadByte_func const JUTResFont::saoAboutEncoding_[3] = {
     JUTFont::isLeadByte_2Byte,
     JUTFont::isLeadByte_ShiftJIS,
 };
-
-/* 8039D45C-8039D45C 029ABC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D47C = "Unknown data block\n";
-#pragma pop
 
 /* 802DF344-802DF48C 2D9C84 0148+00 1/0 0/0 0/0 .text            setBlock__10JUTResFontFv */
 void JUTResFont::setBlock() {
@@ -461,8 +367,6 @@ static const u16 halftofull[95] = {
 };
 
 /* 802DFDD8-802DFF60 2DA718 0188+00 2/2 0/0 0/0 .text            getFontCode__10JUTResFontCFi */
-#ifdef NONMATCHING
-// regalloc
 int JUTResFont::getFontCode(int chr) const {
     int ret = mInf1Ptr->defaultCode;
     if ((getFontType() == 2) && (mMaxCode >= 0x8000U) && (chr >= 0x20) && (chr < 0x7FU)) {
@@ -471,10 +375,10 @@ int JUTResFont::getFontCode(int chr) const {
     for (int i = 0; i < mMap1BlockNum; i++) {
         if ((mpMapBlocks[i]->startCode <= chr) && (chr <= mpMapBlocks[i]->endCode)) {
             if (mpMapBlocks[i]->mappingMethod == 0) {
-                ret = chr - mpMapBlocks[i]->endCode;
+                ret = chr - mpMapBlocks[i]->startCode;
                 break;
             } else if (mpMapBlocks[i]->mappingMethod == 2) {
-                ret = *(&mpMapBlocks[i]->mLeading + (chr - mpMapBlocks[i]->endCode));
+                ret = *(&mpMapBlocks[i]->mLeading + (chr - mpMapBlocks[i]->startCode));
                 break;
             } else if (mpMapBlocks[i]->mappingMethod == 3) {
                 u16* leading_temp = &mpMapBlocks[i]->mLeading;
@@ -510,16 +414,6 @@ int JUTResFont::getFontCode(int chr) const {
     }
     return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int JUTResFont::getFontCode(int param_0) const {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTResFont/getFontCode__10JUTResFontCFi.s"
-}
-#pragma pop
-#endif
 
 /* 802DFF60-802E00C4 2DA8A0 0164+00 1/0 0/0 0/0 .text loadImage__10JUTResFontFi11_GXTexMapID */
 void JUTResFont::loadImage(int code, GXTexMapID id){
@@ -586,13 +480,8 @@ bool JUTFont::isLeadByte_2Byte(int param_0) {
 }
 
 /* 802E0118-802E0148 2DAA58 0030+00 1/0 0/0 0/0 .text            isLeadByte_ShiftJIS__7JUTFontFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool JUTFont::isLeadByte_ShiftJIS(int param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTResFont/isLeadByte_ShiftJIS__7JUTFontFi.s"
+bool JUTFont::isLeadByte_ShiftJIS(int param_0) {
+    return (param_0 >= 0x81 && param_0 <= 0x9f) || (param_0 >= 0xe0 && param_0 <= 0xfc);
 }
-#pragma pop
 
 /* 8039D45C-8039D45C 029ABC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

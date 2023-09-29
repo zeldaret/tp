@@ -173,18 +173,18 @@ static actor_method_class daTag_ShopItem_MethodTable = {
 
 /* 80D61210-80D61240 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TAG_SHOPITM */
 extern actor_process_profile_definition g_profile_TAG_SHOPITM = {
-    -3,                             // mLayerID
+    fpcLy_CURRENT_e,                // mLayerID
     7,                              // mListID
-    -3,                             // mListPrio
+    fpcPi_CURRENT_e,                // mListPrio
     PROC_TAG_SHOPITM,               // mProcName
     &g_fpcLf_Method.mBase,          // mSubMtd
     sizeof(daTag_ShopItem_c),       // mSize
     0,                              // mSizeOther
     0,                              // mParameters
     &g_fopAc_Method.base,           // mSubMtd
-    0x004B,                         // mPriority
+    75,                             // mPriority
     &daTag_ShopItem_MethodTable,    // mSubMtd
-    0x00064100,                     // mStatus
+    0x64100,                        // mStatus
     5,                              // mActorType
-    14,                             // mCullType
+    fopAc_CULLBOX_CUSTOM_e,         // mCullType
 };

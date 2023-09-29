@@ -103,9 +103,9 @@ static actor_method_class l_daObjWaterEff_Method = {
 
 /* 80C5C8C0-80C5C8F0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_WaterEff */
 extern actor_process_profile_definition g_profile_Obj_WaterEff = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Obj_WaterEff,
     &g_fpcLf_Method.mBase,
     sizeof(daObjWaterEff_c),
@@ -115,6 +115,6 @@ extern actor_process_profile_definition g_profile_Obj_WaterEff = {
     555,
     &l_daObjWaterEff_Method,
     0x40100,
-    0,
-    14,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

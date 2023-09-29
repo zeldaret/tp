@@ -162,9 +162,9 @@ static actor_method_class l_daVrbox_Method = {
 
 /* 804989C8-804989F8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_VRBOX */
 extern actor_process_profile_definition g_profile_VRBOX = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_VRBOX,
     &g_fpcLf_Method.mBase,
     sizeof(vrbox_class),
@@ -173,7 +173,7 @@ extern actor_process_profile_definition g_profile_VRBOX = {
     &g_fopAc_Method.base,
     7,
     &l_daVrbox_Method,
-    0x00044000,
-    0,
-    0,
+    0x44000,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_0_e,
 };

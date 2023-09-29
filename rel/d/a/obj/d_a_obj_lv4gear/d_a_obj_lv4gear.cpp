@@ -186,20 +186,20 @@ static actor_method_class l_daObjLv4Gear_Method = {
 
 /* 80C68550-80C68580 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Lv4Gear */
 extern actor_process_profile_definition g_profile_Obj_Lv4Gear = {
-    -3,                      // mLayerID
+    fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
-    -3,                      // mListPrio
+    fpcPi_CURRENT_e,         // mListPrio
     PROC_Obj_Lv4Gear,        // mProcName
     &g_fpcLf_Method.mBase,   // mSubMtd
     sizeof(daObjLv4Gear_c),  // mSize
     0,                       // mSizeOther
     0,                       // mParameters
     &g_fopAc_Method.base,    // mSubMtd
-    0x0231,                  // mPriority
+    561,                     // mPriority
     &l_daObjLv4Gear_Method,  // mSubMtd
-    0x00040100,              // mStatus
-    0,                       // mActorType
-    14,                      // mCullType
+    0x40100,                 // mStatus
+    fopAc_ACTOR_e,           // mActorType
+    fopAc_CULLBOX_CUSTOM_e,  // mCullType
 };
 
 /* 80C68524-80C68524 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

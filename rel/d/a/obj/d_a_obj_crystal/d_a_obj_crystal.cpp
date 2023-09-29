@@ -153,9 +153,9 @@ static actor_method_class l_daObjCrystal_Method = {
 
 /* 80BD6914-80BD6944 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Crystal */
 extern actor_process_profile_definition g_profile_Obj_Crystal = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Obj_Crystal,
     &g_fpcLf_Method.mBase,
     sizeof(daObjCrystal_c),
@@ -165,6 +165,6 @@ extern actor_process_profile_definition g_profile_Obj_Crystal = {
     579,
     &l_daObjCrystal_Method,
     0x40000,
-    0,
-    14,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

@@ -32,13 +32,13 @@ public:
 
 class JKRDecomp : public JKRThread {
 private:
-    JKRDecomp(long);
+    JKRDecomp(s32);
     virtual ~JKRDecomp();
 
     /* vt[03] */ virtual void* run(); /* override */
 
 public:
-    static JKRDecomp* create(long);
+    static JKRDecomp* create(s32);
     static JKRDecompCommand* prepareCommand(u8*, u8*, u32, u32, JKRDecompCommand::AsyncCallback);
     static void sendCommand(JKRDecompCommand*);
     static bool sync(JKRDecompCommand*, int);
@@ -58,7 +58,7 @@ inline void JKRDecompress(u8* srcBuffer, u8* dstBuffer, u32 srcLength, u32 dstLe
     JKRDecomp::orderSync(srcBuffer, dstBuffer, srcLength, dstLength);
 }
 
-inline JKRDecomp* JKRCreateDecompManager(long priority) {
+inline JKRDecomp* JKRCreateDecompManager(s32 priority) {
     return JKRDecomp::create(priority);
 }
 
@@ -67,6 +67,10 @@ inline JKRCompression JKRCheckCompressed_noASR(u8 *pBuf) {
     if (compression == COMPRESSION_ASR) // ternary i had before was either incorrect, or was not a ternary at all
         compression = COMPRESSION_NONE;
     return compression;
+}
+
+inline u32 JKRDecompExpandSize(u8* pBuf) {
+    return (pBuf[4] << 0x18) | (pBuf[5] << 0x10) | (pBuf[6] << 8) | pBuf[7];
 }
 
 #endif /* JKRDECOMP_H */

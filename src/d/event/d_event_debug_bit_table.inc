@@ -102,7 +102,7 @@
 	"810 ゴーストのにおいを覚えた", // Learned ghost's scent
 	"京極", // Kyogoku
 	0x6210,
-	"D_MN10:LV4ダンジョン" // LV4 Dungeon
+	"D_MN10:LV4ダンジョン", // LV4 Dungeon
 	0x9,
 	0xa,
 },
@@ -1155,7 +1155,7 @@
 	"681 １匹目のゴーストを倒した後のミドナヒントを聞いた", // Heard Midna's hint after defeating first ghost
 	"京極", // Kyogoku
 	0x5302,
-	"D_MN10:LV4ダンジョン" // LV4 Dungeon,
+	"D_MN10:LV4ダンジョン", // LV4 Dungeon,
 	0x9,
 	0xa,
 },
@@ -1164,7 +1164,7 @@
 	"680 ゴースト逃亡デモ後のミドナヒントを聞いた", // Heard Midna's hint after cutscene of ghost escaping
 	"京極", // Kyogoku
 	0x5304,
-	"D_MN10:LV4ダンジョン" // LV4 Dungeon,
+	"D_MN10:LV4ダンジョン", // LV4 Dungeon,
 	0x9,
 	0xa,
 },
@@ -1386,7 +1386,7 @@
 },
 {
 	"F_0655",
-	"655 ウキ釣りで【トアルナマズ】を初めて釣った",　// Caught an Ordon Catfish using bobber first time
+	"655 ウキ釣りで【トアルナマズ】を初めて釣った",  // Caught an Ordon Catfish using bobber first time
 	"京極", // Kyogoku
 	0x5008,
 	"釣り", // Fishing
@@ -3990,7 +3990,7 @@
 	"361 スピナー柱まわした", // Spun the spinning pillars
 	"京極", // Kyogoku
 	0x2c10,
-	"D_MN10:LV4ダンジョン" // LV4 Dungeon,
+	"D_MN10:LV4ダンジョン", // LV4 Dungeon,
 	0x9,
 	0xa,
 },
@@ -4854,7 +4854,7 @@
 	"265 LV4ダンジョンクリア", // LV4 dungeon clear
 	"京極", // Kyogoku
 	0x2010,
-	"D_MN10:LV4ダンジョン" // LV4 Dungeon,
+	"D_MN10:LV4ダンジョン", // LV4 Dungeon,
 	0x9,
 	0xa,
 },

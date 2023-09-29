@@ -183,9 +183,9 @@ static actor_method_class l_daObj_Myogan_Method = {
 
 /* 80C9F2C8-80C9F2F8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_MYOGAN */
 extern actor_process_profile_definition g_profile_OBJ_MYOGAN = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_OBJ_MYOGAN,
     &g_fpcLf_Method.mBase,
     sizeof(obj_myogan_class),
@@ -195,6 +195,6 @@ extern actor_process_profile_definition g_profile_OBJ_MYOGAN = {
     52,
     &l_daObj_Myogan_Method,
     0x44000,
-    0,
-    14,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

@@ -21,6 +21,10 @@ JKRHeap* JKRHeap::sCurrentHeap;
 /* 80451378-8045137C 000878 0004+00 3/3 10/10 0/0 .sbss            sRootHeap__7JKRHeap */
 JKRHeap* JKRHeap::sRootHeap;
 
+#ifdef DEBUG
+JKRHeap* JKRHeap::sRootHeap2;
+#endif
+
 /* 8045137C-80451380 00087C 0004+00 2/2 3/3 0/0 .sbss            mErrorHandler__7JKRHeap */
 JKRErrorHandler JKRHeap::mErrorHandler;
 
@@ -389,7 +393,7 @@ void JKRHeap::copyMemory(void* dst, void* src, u32 size) {
 
 /* 802CEB40-802CEB78 2C9480 0038+00 2/2 0/0 0/0 .text JKRDefaultMemoryErrorRoutine__FPvUli */
 void JKRDefaultMemoryErrorRoutine(void* heap, u32 size, int alignment) {
-#if DEBUG
+#ifdef DEBUG
     OSReport("Error: Cannot allocate memory %d(0x%x)byte in %d byte alignment from %08x\n", size,
              size, alignment, heap);
 #endif
@@ -481,7 +485,7 @@ void operator delete[](void* ptr) {
 
 /* 802CED84-802CED88 2C96C4 0004+00 1/0 1/0 0/0 .text
  * state_register__7JKRHeapCFPQ27JKRHeap6TStateUl               */
-u32 JKRHeap::state_register(JKRHeap::TState* p, u32 id) const {
+void JKRHeap::state_register(JKRHeap::TState* p, u32 id) const {
     JUT_ASSERT(1213, p != 0);
     JUT_ASSERT(1214, p->getHeap() == this);
 }

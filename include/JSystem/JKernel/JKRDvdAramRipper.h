@@ -20,10 +20,10 @@ public:
     /* 0x20 */ int field_0x20;
     /* 0x24 */ int field_0x24;
     /* 0x28 */ JKRDvdFile* mDvdFile;
-    /* 0x2C */ u32 field_0x2c;
+    /* 0x2C */ u32 mAddress;
     /* 0x30 */ JKRAramBlock* mBlock;
-    /* 0x34 */ int field_0x34;
-    /* 0x38 */ void (*field_0x38)(u32);
+    /* 0x34 */ JKRExpandSwitch mExpandSwitch;
+    /* 0x38 */ void (*mCallback)(u32);
     /* 0x3C */ u32 field_0x3c;
     /* 0x40 */ u32 field_0x40;
     /* 0x44 */ u32* field_0x44;
@@ -35,7 +35,7 @@ public:
 class JKRDvdFile;
 class JKRDvdAramRipper {
 public:
-    static JKRAramBlock* loadToAram(long, u32, JKRExpandSwitch, u32, u32, u32*);
+    static JKRAramBlock* loadToAram(s32, u32, JKRExpandSwitch, u32, u32, u32*);
     static JKRAramBlock* loadToAram(JKRDvdFile*, u32, JKRExpandSwitch, u32, u32, u32*);
     static JKRADCommand* loadToAram_Async(JKRDvdFile*, u32, JKRExpandSwitch, void (*)(u32), u32,
                                           u32, u32*);

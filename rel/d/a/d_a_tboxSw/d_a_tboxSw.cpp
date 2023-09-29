@@ -74,18 +74,18 @@ static actor_method_class l_daTboxSw_Method = {
 
 /* 80D669F0-80D66A20 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TBOX_SW */
 extern actor_process_profile_definition g_profile_TBOX_SW = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    0xFFFD,
+    fpcPi_CURRENT_e,
     PROC_TBOX_SW,
     &g_fpcLf_Method.mBase,
     sizeof(daTboxSw_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x020E,
+    526,
     &l_daTboxSw_Method,
-    0x00040100,
-    0,
-    14,
+    0x40100,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

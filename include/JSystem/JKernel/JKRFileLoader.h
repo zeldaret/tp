@@ -43,7 +43,7 @@ public:
     static bool removeResource(void*, JKRFileLoader*);
     static bool detachResource(void*, JKRFileLoader*);
     static JKRFileLoader* findVolume(const char**);
-    static const char* fetchVolumeName(char*, long, const char*);
+    static const char* fetchVolumeName(char*, s32, const char*);
 
     static JKRFileLoader* getCurrentVolume() { return sCurrentVolume; }
     static void setCurrentVolume(JKRFileLoader* fileLoader) { sCurrentVolume = fileLoader; }

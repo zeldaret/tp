@@ -333,7 +333,7 @@ void GXGetVtxAttrFmtv(GXVtxFmt param_0, GXVtxAttrFmtList* param_1) {
 
 #ifdef DEBUG
     // not fully matching
-    tmp = 1;
+    /* tmp = 1;
     if (data_8074d3c8 != 0) {
         OSPanic("GXAttr.c", 941, "\'GXGetVtxAttrFmtv\' is not allowed between GXBegin/GXEnd");
         tmp = 0;
@@ -349,7 +349,7 @@ void GXGetVtxAttrFmtv(GXVtxFmt param_0, GXVtxAttrFmtList* param_1) {
     if (param_0 >= 8) {
         OSPanic("GXAttr.c", 943, "GXSetVtxAttrFmt: Format Index is out of range");
         tmp3 = 0;
-    }
+    } */
 #endif
 
     for (i = 9; i <= 0x14; i++) {
@@ -371,7 +371,7 @@ void GXGetVtxAttrFmt(GXVtxFmt param_0, int param_1, GXCompCnt* param_2, GXCompTy
 
 #ifdef DEBUG
     // not fully matching
-    tmp = 1;
+    /* tmp = 1;
     if (data_8074d3c8) {
         OSPanic("GXAttr.c", 844, "\'GXGetVtxAttrFmt\' is not allowed between GXBegin/GXEnd");
         tmp = 0;
@@ -381,7 +381,7 @@ void GXGetVtxAttrFmt(GXVtxFmt param_0, int param_1, GXCompCnt* param_2, GXCompTy
     if (param_0 >= 8) {
         OSPanic("GXAttr.c", 845, "GXSetVtxAttrFmt: Format Index is out of range");
         tmp2 = 0;
-    }
+    } */
 #endif
 
     tmp_1 = &__GXData->field_0x1c[param_0];

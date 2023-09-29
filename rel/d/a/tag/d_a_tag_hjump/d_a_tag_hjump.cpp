@@ -202,9 +202,9 @@ static actor_method_class l_daTagHjump_Method = {
 
 /* 805A428C-805A42BC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Hjump */
 extern actor_process_profile_definition g_profile_Tag_Hjump = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Tag_Hjump,
     &g_fpcLf_Method.mBase,
     sizeof(daTagHjump_c),
@@ -214,6 +214,6 @@ extern actor_process_profile_definition g_profile_Tag_Hjump = {
     434,
     &l_daTagHjump_Method,
     0x44100,
-    3,
-    14,
+    fopAc_ENV_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

@@ -146,7 +146,7 @@ JKRFileLoader* JKRFileLoader::findVolume(const char** volumeName) {
 static char rootPath[2] = "/";
 
 /* 802D44C4-802D45A0 2CEE04 00DC+00 1/1 0/0 0/0 .text fetchVolumeName__13JKRFileLoaderFPclPCc */
-const char* JKRFileLoader::fetchVolumeName(char* buffer, long bufferSize, const char* path) {
+const char* JKRFileLoader::fetchVolumeName(char* buffer, s32 bufferSize, const char* path) {
     if (strcmp(path, "/") == 0) {
         strcpy(buffer, rootPath);
         return rootPath;

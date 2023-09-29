@@ -410,9 +410,9 @@ static leafdraw_method_class l_dScnName_Method = {
 
 /* 803C30F0-803C3118 -00001 0028+00 0/0 0/0 1/0 .data            g_profile_NAME_SCENE */
 extern scene_process_profile_definition g_profile_NAME_SCENE = {
-    0,
+    fpcLy_ROOT_e,
     1,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_NAME_SCENE,
     &g_fpcNd_Method.mBase,
     sizeof(dScnName_c),
@@ -425,9 +425,9 @@ extern scene_process_profile_definition g_profile_NAME_SCENE = {
 
 /* 803C3118-803C3140 -00001 0028+00 0/0 0/0 1/0 .data            g_profile_NAMEEX_SCENE */
 extern scene_process_profile_definition g_profile_NAMEEX_SCENE = {
-    0,
+    fpcLy_ROOT_e,
     1,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_NAMEEX_SCENE,
     &g_fpcNd_Method.mBase,
     sizeof(dScnName_c),

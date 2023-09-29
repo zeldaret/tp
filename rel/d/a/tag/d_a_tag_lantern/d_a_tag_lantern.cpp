@@ -39,7 +39,7 @@ int daTag_Lantern_c::Execute() {
             }
         }
     } else if (field_0x5f8) {
-        mEvtInfo.i_onCondition(1);
+        mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
         fopAcM_orderSpeakEvent(this, 0, 0);
     }
 
@@ -124,9 +124,9 @@ static actor_method_class daTag_Lantern_MethodTable = {
 
 /* 8048F174-8048F1A4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TAG_LANTERN */
 extern actor_process_profile_definition g_profile_TAG_LANTERN = {
-    -3,                          // mLayerID
+    fpcLy_CURRENT_e,             // mLayerID
     7,                           // mListID
-    -3,                          // mListPrio
+    fpcPi_CURRENT_e,             // mListPrio
     PROC_TAG_LANTERN,            // mProcName
     &g_fpcLf_Method.mBase,       // mSubMtd
     sizeof(daTag_Lantern_c),     // mSize
@@ -135,7 +135,7 @@ extern actor_process_profile_definition g_profile_TAG_LANTERN = {
     &g_fopAc_Method.base,        // mSubMtd
     286,                         // mPriority
     &daTag_Lantern_MethodTable,  // mSubMtd
-    0x00040000,                  // mStatus
-    0,                           // mActorType
-    14,                          // mCullType
+    0x40000,                     // mStatus
+    fopAc_ACTOR_e,               // mActorType
+    fopAc_CULLBOX_CUSTOM_e,      // mCullType
 };

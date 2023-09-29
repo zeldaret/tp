@@ -40,10 +40,6 @@ inline u16 read_big_endian_u16(void* ptr) {
     return ((u16)uptr[0] << 8) | ((u16)uptr[1]);
 }
 
-inline u32 JKRDecompExpandSize(u8 * pBuf) {
-    return (pBuf[4] << 0x18) | (pBuf[5] << 0x10) | (pBuf[6] << 8) | pBuf[7];
-}
-
 extern u32 sCurrentDirID__10JKRArchive;  // JKRArchive::sCurrentDirID
 
 class JKRArchive : public JKRFileLoader {

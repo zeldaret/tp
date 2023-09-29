@@ -76,7 +76,7 @@ public:
     /* vt[18] */ virtual s32 do_getTotalFreeSize() = 0;
     /* vt[19] */ virtual s32 do_changeGroupID(u8 newGroupID);
     /* vt[20] */ virtual u8 do_getCurrentGroupId();
-    /* vt[21] */ virtual u32 state_register(JKRHeap::TState* p, u32 id) const;
+    /* vt[21] */ virtual void state_register(JKRHeap::TState* p, u32 id) const;
     /* vt[22] */ virtual bool state_compare(JKRHeap::TState const& r1, JKRHeap::TState const& r2) const;
     /* vt[23] */ virtual void state_dump(JKRHeap::TState const& p) const;
 
@@ -142,7 +142,7 @@ public:
     static void* getUserRamEnd(void) { return mUserRamEnd; }
     static u32 getMemorySize(void) { return mMemorySize; }
     static JKRHeap* getRootHeap() { return sRootHeap; }
-#if DEBUG
+#ifdef DEBUG
     static JKRHeap* getRootHeap2() { return sRootHeap2; }
 #endif
 
@@ -166,7 +166,7 @@ public:
     static u32 mMemorySize;
 
     static JKRHeap* sRootHeap;
-#if DEBUG
+#ifdef DEBUG
     static JKRHeap* sRootHeap2;
 #endif
 
@@ -176,18 +176,18 @@ public:
     static JKRErrorHandler mErrorHandler;
 };
 
-void* operator new(u32 size);
-void* operator new(u32 size, int alignment);
-void* operator new(u32 size, JKRHeap* heap, int alignment);
+void* operator new(size_t size);
+void* operator new(size_t size, int alignment);
+void* operator new(size_t size, JKRHeap* heap, int alignment);
 
-void* operator new[](u32 size);
-void* operator new[](u32 size, int alignment);
-void* operator new[](u32 size, JKRHeap* heap, int alignment);
+void* operator new[](size_t size);
+void* operator new[](size_t size, int alignment);
+void* operator new[](size_t size, JKRHeap* heap, int alignment);
 
 void operator delete(void* ptr);
 void operator delete[](void* ptr);
 
-inline void* operator new(u32 size, void* ptr) {
+inline void* operator new(size_t size, void* ptr) {
     return ptr;
 }
 

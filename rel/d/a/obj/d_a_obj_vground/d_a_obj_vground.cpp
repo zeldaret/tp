@@ -143,18 +143,18 @@ static actor_method_class l_daObjVGnd_Method = {
 
 /* 80D21A48-80D21A78 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_VolcGnd */
 extern actor_process_profile_definition g_profile_Obj_VolcGnd = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Obj_VolcGnd,
     &g_fpcLf_Method.mBase,
     sizeof(daObjVGnd_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x0253,
+    595,
     &l_daObjVGnd_Method,
-    0x00040100,
-    0,
-    14,
+    0x40100,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

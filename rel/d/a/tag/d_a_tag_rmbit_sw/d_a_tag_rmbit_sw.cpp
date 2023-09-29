@@ -136,18 +136,18 @@ static actor_method_class daTagRmbitSw_METHODS = {
 
 /* 80D5FFD4-80D60004 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_RmbitSw */
 extern actor_process_profile_definition g_profile_Tag_RmbitSw = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Tag_RmbitSw,
     &g_fpcLf_Method.mBase,
     sizeof(daTagRmbitSw_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x02EC,
+    748,
     &daTagRmbitSw_METHODS,
-    0x00040000,
-    0,
-    0x0E,
+    0x40000,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

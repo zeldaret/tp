@@ -27,18 +27,18 @@ static actor_method_class l_daTagSchedule_Method = {
 
 /* 80D60140-80D60170 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Schedule */
 extern actor_process_profile_definition g_profile_Tag_Schedule = {
-    0xFFFFFFFD,                 // mLayerID
-    0x0007,                     // mListID
-    0xFFFD,                     // mListPrio
+    fpcLy_CURRENT_e,            // mLayerID
+    7,                          // mListID
+    fpcPi_CURRENT_e,            // mListPrio
     PROC_Tag_Schedule,          // mProcName
     &g_fpcLf_Method.mBase,      // mSubMtd
     sizeof(daTagSchedule_c),    // mSize
     0,                          // mSizeOther
     0,                          // mParameters
     &g_fopAc_Method.base,       // mSubMtd
-    0x018C,                     // mPriority
+    396,                        // mPriority
     &l_daTagSchedule_Method,    // mSubMtd
-    0x00040000,                 // mStatus
-    0x00,                       // mActorType
-    0x0E,                       // mCullType
+    0x40000,                    // mStatus
+    fopAc_ACTOR_e,              // mActorType
+    fopAc_CULLBOX_CUSTOM_e,     // mCullType
 };

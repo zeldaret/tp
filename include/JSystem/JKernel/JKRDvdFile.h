@@ -15,7 +15,7 @@ class JKRDvdFile : public JKRFile {
 public:
     JKRDvdFile();
     JKRDvdFile(const char*);
-    JKRDvdFile(long);
+    JKRDvdFile(s32);
     virtual ~JKRDvdFile();
 
     void initiate(void);
@@ -52,7 +52,7 @@ public:
     /* 0xF4 */ OSThread* mOSThread;
 
 public:
-    static void doneProcess(long, DVDFileInfo*);
+    static void doneProcess(s32, DVDFileInfo*);
 
     static JSUList<JKRDvdFile>& getDvdList() { return sDvdList; }
 

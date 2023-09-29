@@ -724,7 +724,7 @@ void Z2SeqMgr::setFieldBgmPlay(bool param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAIStreamMgr::isActive() const {
+asm bool JAIStreamMgr::isActive() const {
     nofralloc
 #include "asm/Z2AudioLib/Z2SceneMgr/isActive__12JAIStreamMgrCFv.s"
 }

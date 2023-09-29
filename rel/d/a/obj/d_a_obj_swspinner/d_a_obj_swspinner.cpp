@@ -241,20 +241,20 @@ static actor_method_class daObjSwSpinner_METHODS = {
 
 /* 80D00B04-80D00B34 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_SwSpinner */
 extern actor_process_profile_definition g_profile_Obj_SwSpinner = {
-    -3,                        // mLayerID
+    fpcLy_CURRENT_e,           // mLayerID
     3,                         // mListID
-    -3,                        // mListPrio
+    fpcPi_CURRENT_e,           // mListPrio
     PROC_Obj_SwSpinner,        // mProcName
     &g_fpcLf_Method.mBase,     // mSubMtd
     sizeof(daObjSwSpinner_c),  // mSize
     0,                         // mSizeOther
     0,                         // mParameters
     &g_fopAc_Method.base,      // mSubMtd
-    0x022F,                    // mPriority
+    559,                       // mPriority
     &daObjSwSpinner_METHODS,   // mSubMtd
-    0x00040100,                // mStatus
-    0,                         // mActorType
-    14,                        // mCullType
+    0x40100,                   // mStatus
+    fopAc_ACTOR_e,             // mActorType
+    fopAc_CULLBOX_CUSTOM_e,    // mCullType
 };
 
 /* 80D00AD4-80D00AD4 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

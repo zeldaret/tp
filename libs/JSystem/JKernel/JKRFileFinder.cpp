@@ -7,27 +7,6 @@
 #include "JSystem/JKernel/JKRArchive.h"
 
 //
-// Forward References:
-//
-
-extern "C" void __ct__12JKRArcFinderFP10JKRArchivell();
-extern "C" void findNextFile__12JKRArcFinderFv();
-extern "C" void __ct__12JKRDvdFinderFPCc();
-extern "C" void __dt__12JKRDvdFinderFv();
-extern "C" void findNextFile__12JKRDvdFinderFv();
-extern "C" void __dt__13JKRFileFinderFv();
-extern "C" void __dt__12JKRArcFinderFv();
-extern "C" void* __vt__12JKRDvdFinder;
-extern "C" void* __vt__13JKRFileFinder;
-
-//
-// External References:
-//
-
-extern "C" void __dl__FPv();
-extern "C" void getDirEntry__10JKRArchiveCFPQ210JKRArchive9SDirEntryUl();
-
-//
 // Declarations:
 //
 
@@ -68,23 +47,11 @@ JKRDvdFinder::JKRDvdFinder(const char* directory) : JKRFileFinder() {
 }
 
 /* 802D47F4-802D4874 2CF134 0080+00 1/0 0/0 0/0 .text            __dt__12JKRDvdFinderFv */
-// JKRFileFinder::~JKRFileFinder is not inlined
-#ifdef NONMATCHING
 JKRDvdFinder::~JKRDvdFinder() {
     if (mDvdIsOpen) {
         DVDCloseDir(&mDvdDirectory);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JKRDvdFinder::~JKRDvdFinder() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRFileFinder/__dt__12JKRDvdFinderFv.s"
-}
-#pragma pop
-#endif
 
 /* 802D4874-802D4910 2CF1B4 009C+00 1/0 0/0 0/0 .text            findNextFile__12JKRDvdFinderFv */
 bool JKRDvdFinder::findNextFile(void) {
@@ -110,8 +77,3 @@ bool JKRDvdFinder::findNextFile(void) {
 
     return mIsAvailable;
 }
-
-inline JKRFileFinder::~JKRFileFinder() {}
-
-/* 802D4958-802D49B4 2CF298 005C+00 1/0 0/0 0/0 .text            __dt__12JKRArcFinderFv */
-inline JKRArcFinder::~JKRArcFinder() {}

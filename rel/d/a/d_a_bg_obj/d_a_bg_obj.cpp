@@ -1479,9 +1479,9 @@ static actor_method_class daBgObj_METHODS = {
 
 /* 8045CD54-8045CD84 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_BG_OBJ */
 extern actor_process_profile_definition g_profile_BG_OBJ = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_BG_OBJ,
     &g_fpcLf_Method.mBase,
     sizeof(daBgObj_c),
@@ -1491,6 +1491,6 @@ extern actor_process_profile_definition g_profile_BG_OBJ = {
     752,
     &daBgObj_METHODS,
     0x10044100,
-    0,
-    14,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

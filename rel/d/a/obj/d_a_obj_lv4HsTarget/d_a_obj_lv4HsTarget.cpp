@@ -106,9 +106,9 @@ static actor_method_class l_daLv4HsTarget_Method = {
 
 /* 80C5FA68-80C5FA98 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Lv4HsTarget */
 extern actor_process_profile_definition g_profile_Obj_Lv4HsTarget = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Obj_Lv4HsTarget,
     &g_fpcLf_Method.mBase,
     sizeof(daLv4HsTarget_c),
@@ -118,6 +118,6 @@ extern actor_process_profile_definition g_profile_Obj_Lv4HsTarget = {
     640,
     &l_daLv4HsTarget_Method,
     0x40100,
-    0,
-    14,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

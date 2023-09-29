@@ -277,20 +277,20 @@ static actor_method_class l_daObjSMark_Method = {
 
 /* 8059A434-8059A464 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_StoneMark */
 extern actor_process_profile_definition g_profile_Obj_StoneMark = {
-    -3,                     // mLayerID   
+    fpcLy_CURRENT_e,        // mLayerID   
     7,                      // mListID 
-    -3,                     // mListPrio  
+    fpcPi_CURRENT_e,        // mListPrio  
     PROC_Obj_StoneMark,     // mProcName      
     &g_fpcLf_Method.mBase,  // mSubMtd                     
     sizeof(daObjSMark_c),   // mSize                     
     0,                      // mSizeOther 
     0,                      // mParameters        
     &g_fopAc_Method.base,   // mSubMtd                    
-    0x0216,                 // mPriority      
+    534,                    // mPriority      
     &l_daObjSMark_Method,   // mSubMtd                    
-    0x00040100,             // mStatus           
-    0,                      // mActorType 
-    23,                     // mCullType  
+    0x40100,                // mStatus           
+    fopAc_ACTOR_e,          // mActorType 
+    fopAc_CULLSPHERE_8_e,   // mCullType  
 };
 
 /* 8059A464-8059A488 000054 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */

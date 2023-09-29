@@ -212,9 +212,9 @@ static actor_method_class l_daTagLv2PrChk_Method = {
 
 /* 805A53DC-805A540C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Lv2PrChk */
 extern actor_process_profile_definition g_profile_Tag_Lv2PrChk = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Tag_Lv2PrChk,
     &g_fpcLf_Method.mBase,
     sizeof(daTagLv2PrChk_c),
@@ -224,6 +224,6 @@ extern actor_process_profile_definition g_profile_Tag_Lv2PrChk = {
     558,
     &l_daTagLv2PrChk_Method,
     0x40000,
-    0,
-    14,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

@@ -5,6 +5,7 @@
 
 #include "JSystem/JKernel/JKRAramArchive.h"
 #include "JSystem/JKernel/JKRAram.h"
+#include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRDvdAramRipper.h"
 #include "JSystem/JKernel/JKRDvdFile.h"
 #include "JSystem/JUtility/JUTAssert.h"
@@ -240,7 +241,7 @@ cleanup:
     }
     if (mMountMode == 0)
     {
-#if DEBUG
+#ifdef DEBUG
         OSReport(":::[%s: %d] Cannot alloc memory\n", __FILE__, 415);
 #endif
         if (mDvdFile != NULL)

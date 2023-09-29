@@ -140,7 +140,7 @@ s32 daTag_BottleItem_c::orderEvent() {
     if (mAttentionInfo.mFlags == 0x20000008) {
         mAttentionInfo.field_0x0[1] = EMPTY_BOTTLE;
         mAttentionInfo.field_0x0[3] = EMPTY_BOTTLE;
-        mEvtInfo.i_onCondition(1);
+        mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
     }
 
     return 1;
@@ -214,18 +214,18 @@ static actor_method_class daTag_BottleItem_MethodTable = {
 
 /* 80D5669C-80D566CC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TAG_BTLITM */
 extern actor_process_profile_definition g_profile_TAG_BTLITM = {
-    -3,                             // mLayerID
+    fpcLy_CURRENT_e,                // mLayerID
     7,                              // mListID
-    -3,                             // mListPri
+    fpcPi_CURRENT_e,                // mListPri
     PROC_TAG_SSDRINK,               // mProcName
     &g_fpcLf_Method.mBase,          // mSubMtd
     sizeof(daTag_BottleItem_c),     // mSize
     0,                              // mSizeOther
     0,                              // mParameters
     &g_fopAc_Method.base,           // mSubMtd
-    0x46,                           // mPriority
+    70,                             // mPriority
     &daTag_BottleItem_MethodTable,  // mSubMtd
-    0x00064100,                     // mStatus
+    0x64100,                        // mStatus
     5,                              // mActorType
-    0xE,                            // mCullType
+    fopAc_CULLBOX_CUSTOM_e,         // mCullType
 };

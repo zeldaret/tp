@@ -312,9 +312,9 @@ static actor_method_class l_daLv4PoGate_Method = {
 
 /* 80C6093C-80C6096C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Lv4PoGate */
 extern actor_process_profile_definition g_profile_Obj_Lv4PoGate = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Obj_Lv4PoGate,
     &g_fpcLf_Method.mBase,
     sizeof(daLv4PoGate_c),
@@ -324,6 +324,6 @@ extern actor_process_profile_definition g_profile_Obj_Lv4PoGate = {
     638,
     &l_daLv4PoGate_Method,
     0x40000,
-    0,
-    14,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

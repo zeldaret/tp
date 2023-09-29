@@ -40,18 +40,18 @@ static actor_method_class l_daTagAssist_Method = {
 
 /* 80D55F28-80D55F58 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Assist */
 extern actor_process_profile_definition g_profile_Tag_Assist = {
-    -3,                     // mLayerID
+    fpcLy_CURRENT_e,        // mLayerID
     7,                      // mListID
-    -3,                     // mListPrio
+    fpcPi_CURRENT_e,        // mListPrio
     PROC_Tag_Assist,        // mProcName
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daTagAssist_c),  // mSize
     0,                      // mSizeOther
     0,                      // mParameters    
     &g_fopAc_Method.base,   // mSubMtd
-    0x010A,                 // mPriority
+    266,                    // mPriority
     &l_daTagAssist_Method,  // mSubMtd
-    0x00040000,             // mStatus
-    0x00,                   // mActorType
-    0x0E,                   // mCullType
+    0x40000,                // mStatus
+    fopAc_ACTOR_e,          // mActorType
+    fopAc_CULLBOX_CUSTOM_e, // mCullType
 };

@@ -273,18 +273,18 @@ static actor_method_class l_daObjE_CREATE_Method = {
 
 /* 80BE38F4-80BE3924 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_E_CREATE */
 extern actor_process_profile_definition g_profile_Obj_E_CREATE = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    0xFFFD,
+    fpcPi_CURRENT_e,
     PROC_Obj_E_CREATE,
     &g_fpcLf_Method.mBase,
     sizeof(daObjE_CREATE_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x01CA,
+    458,
     &l_daObjE_CREATE_Method,
-    0x00040000,
-    0x0,
-    0xE,
+    0x40000,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };
