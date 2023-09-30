@@ -609,13 +609,13 @@ static void daKytag06_type_07_Execute(kytag06_class* i_this) {
     if (camera != NULL) {
         if (camera->mLookat.mEye.y > 0.0f) {
             dKy_BossLight_set(&spX, &color, i_this->mWindPower * 2.0f, 0);
-            g_env_light.mTerrainAmbienceBG3.r = (u8)(i_this->mWindPower * 230.0f + 25.0f);
-            g_env_light.mTerrainAmbienceBG3.g = (u8)(i_this->mWindPower * 215.0f + 30.0f);
-            g_env_light.mTerrainAmbienceBG3.b = (u8)(i_this->mWindPower * 155.0f + 25.0f);
+            g_env_light.mTerrainAmbienceBG[3].r = (u8)(i_this->mWindPower * 230.0f + 25.0f);
+            g_env_light.mTerrainAmbienceBG[3].g = (u8)(i_this->mWindPower * 215.0f + 30.0f);
+            g_env_light.mTerrainAmbienceBG[3].b = (u8)(i_this->mWindPower * 155.0f + 25.0f);
         } else {
-            g_env_light.mTerrainAmbienceBG3.r = 0;
-            g_env_light.mTerrainAmbienceBG3.g = 0;
-            g_env_light.mTerrainAmbienceBG3.b = 0;
+            g_env_light.mTerrainAmbienceBG[3].r = 0;
+            g_env_light.mTerrainAmbienceBG[3].g = 0;
+            g_env_light.mTerrainAmbienceBG[3].b = 0;
             g_env_light.mThunderEff.mMode = 0;
         }
     }
@@ -777,9 +777,9 @@ static void daKytag06_type_06_Execute(kytag06_class* i_this) {
         break;
     }
 
-    g_env_light.mTerrainAmbienceBG3.r = (u8)(i_this->mWindPower * 245.0f + 10.0f);
-    g_env_light.mTerrainAmbienceBG3.g = (u8)(i_this->mWindPower * 185.0f + 15.0f);
-    g_env_light.mTerrainAmbienceBG3.b = (u8)(i_this->mWindPower * 130.0f + 20.0f);
+    g_env_light.mTerrainAmbienceBG[3].r = (u8)(i_this->mWindPower * 245.0f + 10.0f);
+    g_env_light.mTerrainAmbienceBG[3].g = (u8)(i_this->mWindPower * 185.0f + 15.0f);
+    g_env_light.mTerrainAmbienceBG[3].b = (u8)(i_this->mWindPower * 130.0f + 20.0f);
 
     static cXyz c_pos(0.0f, 0.0f, 0.0f);
 

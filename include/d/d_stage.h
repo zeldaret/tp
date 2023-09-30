@@ -108,7 +108,8 @@ struct stage_plight_info_class {
     /* 0x00 */ Vec m_position;
     /* 0x0C */ f32 m_radius;
     /* 0x10 */ u8 field_0x10[0x18 - 0x10];
-    /* 0x18 */ GXColor m_color;
+    /* 0x18 */ color_RGB_class m_color;
+    /* 0x1B */ u8 m_fluctuation;
 };  // Size: 0x1C
 
 // PALE

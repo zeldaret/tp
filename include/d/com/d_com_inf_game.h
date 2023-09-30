@@ -1848,7 +1848,7 @@ inline u8 dComIfGp_att_getCatchChgItem() {
     return dComIfGp_getAttention().getCatchChgItem();
 }
 
-inline int dComIfGp_att_ZHintRequest(fopAc_ac_c *param_1, int param_2) {
+inline int dComIfGp_att_ZHintRequest(fopAc_ac_c* param_1, int param_2) {
     return dComIfGp_getAttention().ZHintRequest(param_1, param_2);
 }
 
@@ -1858,10 +1858,10 @@ inline void dComIfGp_att_LookRequest(fopAc_ac_c* param_0, f32 i_horizontalDist, 
                                         param_5);
 }
 
-inline void dComIfGp_att_CatchRequest(fopAc_ac_c* param_0, u8 param_1, f32 i_horizontalDist, f32 i_upDist,
-                                     f32 i_downDist, s16 i_angle, int param_5) {
-    dComIfGp_getAttention().getCatghTarget().request(param_0, param_1, i_horizontalDist, i_upDist, i_downDist, i_angle,
-                                         param_5);
+inline void dComIfGp_att_CatchRequest(fopAc_ac_c* param_0, u8 param_1, f32 i_horizontalDist,
+                                      f32 i_upDist, f32 i_downDist, s16 i_angle, int param_5) {
+    dComIfGp_getAttention().getCatghTarget().request(param_0, param_1, i_horizontalDist, i_upDist,
+                                                     i_downDist, i_angle, param_5);
 }
 
 inline J2DGrafContext* dComIfGp_getCurrentGrafPort() {
@@ -2390,6 +2390,14 @@ inline stage_pselect_info_class* dComIfGp_getStagePselectInfo() {
 
 inline stage_vrbox_info_class* dComIfGp_getStageVrboxcolInfo() {
     return g_dComIfG_gameInfo.play.getStage().getVrboxInfo();
+}
+
+inline stage_plight_info_class* dComIfGp_getStagePlightInfo() {
+    return g_dComIfG_gameInfo.play.getStage().getPlightInfo();
+}
+
+inline int dComIfGp_getStagePlightNumInfo() {
+    return g_dComIfG_gameInfo.play.getStage().getPlightNumInfo();
 }
 
 inline u8 dComIfGp_isHeapLockFlag() {
@@ -3244,6 +3252,26 @@ inline void dComIfGp_particle_draw2DmenuBack(JPADrawInfo* i_drawInfo) {
     if (g_dComIfG_gameInfo.play.getParticle() != NULL) {
         g_dComIfG_gameInfo.play.getParticle()->draw2DmenuBack(i_drawInfo);
     }
+}
+
+inline void dComIfGp_particle_setWaterRipple(u32* param_0, cBgS_PolyInfo& param_1,
+                                             const cXyz* param_2, f32 param_3,
+                                             const dKy_tevstr_c* param_4, const cXyz* param_5,
+                                             s8 param_6) {
+    g_dComIfG_gameInfo.play.getParticle()->setWaterRipple(param_0, param_1, param_2, param_3,
+                                                          param_4, param_5, param_6);
+}
+
+inline u16 dComIfGp_particle_setCommonPoly(u32* param_0, cBgS_PolyInfo* param_1,
+                                           const cXyz* param_2, const cXyz* param_3,
+                                           const dKy_tevstr_c* param_4, u32 param_5, u32 param_6,
+                                           const csXyz* param_7, const cXyz* param_8, s8 param_9) {
+    return g_dComIfG_gameInfo.play.getParticle()->setCommonPoly(
+        param_0, param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9);
+}
+
+inline u32 dComIfGp_particle_setStopContinue(u32 param_0) {
+    return g_dComIfG_gameInfo.play.getParticle()->setStopContinue(param_0);
 }
 
 inline int dComIfG_getTimerNowTimeMs() {

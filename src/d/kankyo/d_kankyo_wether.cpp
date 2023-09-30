@@ -1345,6 +1345,115 @@ static asm void wether_move_vrkumo() {
 }
 #pragma pop
 
+/* static void wether_move_vrkumo() {
+    BOOL var_r31 = false;
+    static cXyz r09o(-180000.0f, 750.0f, -200000.0f);
+
+    if (dComIfGp_checkStatus(1) && !g_env_light.mbVrboxInvisible) {
+        g_env_light.mVrkumoCount = 6;
+
+        if (memcmp(dComIfGp_getStartStageName(), "D_MN07", 6) == 0 ||
+            strcmp(dComIfGp_getStartStageName(), "F_SP114") == 0 ||
+            (strcmp(dComIfGp_getStartStageName(), "D_MN09B") == 0 &&
+             (g_env_light.field_0x12cc != 0 || i_dComIfGp_event_runCheck())))
+        {
+            cLib_addCalc(&g_env_light.mVrkumoStrength, 1.0f, 0.1f, 0.003f, 0.0000001f);
+        } else if (strcmp(dComIfGp_getStartStageName(), "F_SP104") == 0 && dComIfG_play_c::getLayerNo(0) > 2) {
+            if (g_env_light.mColpatCurr > 4) {
+                cLib_addCalc(&g_env_light.mVrkumoStrength, 1.0f, 0.1f, 0.003f, 0.0000001f);
+            } else {
+                cLib_addCalc(&g_env_light.mVrkumoStrength, 0.0f, 0.08f, 0.002f, 0.00000001f);
+            }
+        } else if ((g_env_light.mColpatCurr == 1 && g_env_light.mColPatBlend > 0.0f) ||
+            (g_env_light.mColpatPrev == 1 && g_env_light.mColPatBlend < 1.0f) ||
+            (g_env_light.mColpatCurr == 2 && g_env_light.mColPatBlend > 0.0f) ||
+            (g_env_light.mColpatPrev == 2 && g_env_light.mColPatBlend < 1.0f))
+        {
+            cLib_addCalc(&g_env_light.mVrkumoStrength, 1.0f, 0.1f, 0.003f, 0.0000001f);
+        } else {
+            cLib_addCalc(&g_env_light.mVrkumoStrength, 0.0f, 0.08f, 0.002f, 0.00000001f);
+        }
+
+        g_env_light.mVrkumoCount = (s16)(g_env_light.mVrkumoStrength * 56.0f + 6.0f);
+    } else {
+        g_env_light.mVrkumoCount = 0;
+    }
+
+    if (dKy_darkworld_check()) {
+        g_env_light.mVrkumoCount = 30;
+    }
+
+    roomRead_class* room_p = dComIfGp_getStageRoom();
+    if (room_p != NULL && dComIfGp_roomControl_getStayNo() < room_p->field_0x0) {
+        var_r31 = dStage_roomRead_dt_c_GetVrboxswitch(room_p->field_0x4[dComIfGp_roomControl_getStayNo()]);
+    }
+
+    if (strcmp(dComIfGp_getStartStageName(), "F_SP200") == 0) {
+        g_env_light.mVrkumoCount = 30;
+    } else if (var_r31 == 0) {
+        return;
+    }
+
+    switch (g_env_light.mVrkumoStatus) {
+    case 0:
+        if (g_env_light.mVrkumoCount != 0) {
+            g_env_light.mpVrkumoPacket = new (0x20) dKankyo_vrkumo_Packet();
+            if (g_env_light.mpVrkumoPacket == NULL) {
+                return;
+            }
+
+            if (dComIfG_getStageRes("Stage", "vr_box.bmd") != NULL ||
+                dComIfG_getStageRes("Stage", "vr_box.bdl"))
+            {
+                g_env_light.mpVrkumoPacket->mpCloudTx1 =
+                    (u8*)dComIfG_getStageRes("Stage", "cloud_01.bti");
+                g_env_light.mpVrkumoPacket->mpCloudTx2 =
+                    (u8*)dComIfG_getStageRes("Stage", "cloud_02.bti");
+                g_env_light.mpVrkumoPacket->mpCloudTx3 =
+                    (u8*)dComIfG_getStageRes("Stage", "cloud_03.bti");
+            } else {
+                g_env_light.mpVrkumoPacket->mpCloudTx1 =
+                    (u8*)dComIfG_getStageRes("Stage", "cloudtx_01.bti");
+                g_env_light.mpVrkumoPacket->mpCloudTx2 =
+                    (u8*)dComIfG_getStageRes("Stage", "cloudtx_02.bti");
+                g_env_light.mpVrkumoPacket->mpCloudTx3 =
+                    (u8*)dComIfG_getStageRes("Stage", "cloudtx_03.bti");
+            }
+
+            if (g_env_light.mpVrkumoPacket->mpCloudTx1 == NULL) {
+                g_env_light.mVrkumoStatus = 99;
+            }
+
+            for (int i = 0; i < 100; i++) {
+                g_env_light.mpVrkumoPacket->mInst[i].mStatus = 0;
+            }
+
+            vrkumo_move();
+            g_env_light.mVrkumoStatus++;
+        }
+        break;
+    case 1:
+        vrkumo_move();
+        dKyw_get_wind_vec();
+
+        cXyz localE0;
+        localE0.x = g_env_light.mWind.vec.x;
+        localE0.y = g_env_light.mWind.vec.y;
+        localE0.z = g_env_light.mWind.vec.z;
+        f32 var_f31 = g_env_light.mWind.pow;
+
+        if (strcmp(dComIfGp_getStartStageName(), "R_SP127") == 0) {
+            pow = 0.3f;
+        }
+
+        f32 x = JMAFastSqrt(localE0.x * localE0.x + localE0.z * localE0.z);
+        cM_atan2s(localE0.x, localE0.z);
+        cM_atan2s(localE0.y, x);
+        
+        break;
+    }
+} */
+
 /* 80059E38-80059F74 054778 013C+00 1/1 0/0 0/0 .text            wether_move_mud__Fv */
 static void wether_move_mud() {
     switch (g_env_light.mMudInitialized) {
