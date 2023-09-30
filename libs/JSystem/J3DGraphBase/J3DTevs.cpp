@@ -4,15 +4,16 @@
 //
 
 #include "JSystem/J3DGraphBase/J3DTevs.h"
+#include "JSystem/J3DGraphBase/J3DGD.h"
+#include "JSystem/J3DGraphBase/J3DMatBlock.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "JSystem/J3DGraphBase/J3DTexture.h"
+#include "JSystem/J3DGraphBase/J3DTransform.h"
 #include "dol2asm.h"
 
 //
 // Types:
 //
-
-struct J3DNBTScale {};
 
 //
 // Forward References:
@@ -47,11 +48,8 @@ extern "C" extern u8 j3dDefaultIndTexCoordScaleInfo[4];
 extern "C" extern GXColor j3dDefaultTevKColor;
 extern "C" extern u8 j3dDefaultTevSwapMode[4];
 extern "C" extern u32 j3dDefaultTevSwapModeTable;
-extern "C" extern u32 j3dDefaultBlendInfo;
 extern "C" extern u8 j3dDefaultColorChanInfo[8];
 extern "C" extern u16 data_804563F8;
-extern "C" extern u16 j3dDefaultAlphaCmpID;
-extern "C" extern u16 j3dDefaultZModeID[1 + 1 /* padding */];
 
 //
 // External References:
@@ -81,13 +79,22 @@ extern "C" void _savegpr_28();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" u8 sTexCoordScaleTable__6J3DSys[64 + 4 /* padding */];
-extern "C" extern u8 __GDCurrentDL[4];
 
 //
 // Declarations:
 //
 
 /* 80323590-80323644 31DED0 00B4+00 0/0 3/3 0/0 .text            load__11J3DLightObjCFUl */
+// missing instruction
+#ifdef NONMATCHING
+void J3DLightObj::load(u32 param_0) const {
+    GDOverflowCheck(0x48);
+    J3DGDSetLightPos(GXLightID(param_0 * 2), mInfo.mLightPosition.x, mInfo.mLightPosition.y, mInfo.mLightPosition.z);
+    J3DGDSetLightAttn(GXLightID(param_0 * 2), mInfo.mCosAtten.x, mInfo.mCosAtten.y, mInfo.mCosAtten.z, mInfo.mDistAtten.x, mInfo.mDistAtten.y, mInfo.mDistAtten.z);
+    J3DGDSetLightColor(GXLightID(param_0 * 2), mInfo.mColor);
+    J3DGDSetLightDir(GXLightID(param_0 * 2), mInfo.mLightDirection.x, mInfo.mLightDirection.y, mInfo.mLightDirection.z);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -96,17 +103,30 @@ asm void J3DLightObj::load(u32 param_0) const {
 #include "asm/JSystem/J3DGraphBase/J3DTevs/load__11J3DLightObjCFUl.s"
 }
 #pragma pop
+#endif
 
 /* 80323644-803238C4 31DF84 0280+00 0/0 3/3 0/0 .text            loadTexCoordGens__FUlP11J3DTexCoord
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void loadTexCoordGens(u32 param_0, J3DTexCoord* param_1) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DTevs/loadTexCoordGens__FUlP11J3DTexCoord.s"
+void loadTexCoordGens(u32 param_0, J3DTexCoord* param_1) {
+    GDOverflowCheck(param_0 * 8 + 10);
+    J3DGDWriteXFCmdHdr(0x1040, param_0);
+    for (int i = 0; i < param_0; i++) {
+        J3DGDSetTexCoordGen(
+            GXTexGenType(param_1[i].getTexGenType()),
+            GXTexGenSrc(param_1[i].getTexGenSrc())
+        );
+    }
+    J3DGDWriteXFCmdHdr(0x1050, param_0);
+    if (j3dSys.checkFlag(0x40000000)) {
+        for (int i = 0; i < param_0; i++) {
+            J3DGDWrite_u32(param_1[i].getTexGenMtx() == 60 ? 61 : i * 3);
+        }
+    } else {
+        for (int i = 0; i < param_0; i++) {
+            J3DGDWrite_u32(61);
+        }
+    }
 }
-#pragma pop
 
 /* 803238C4-80323900 31E204 003C+00 0/0 6/6 0/0 .text            load__9J3DTexMtxCFUl */
 void J3DTexMtx::load(u32 mtxIdx) const {
@@ -122,108 +142,224 @@ void J3DTexMtx::calc(f32 const (*param_0)[4]) {
     calcTexMtx(param_0);
 }
 
-/* ############################################################################################## */
-/* 803CEAC8-803CEAF8 02BBE8 0030+00 1/1 0/0 0/0 .data            qMtx$1001 */
-SECTION_DATA static u8 qMtx_1001[48] = {
-    0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0xBF, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 803CEAF8-803CEB28 02BC18 0030+00 1/1 0/0 0/0 .data            qMtx2$1002 */
-SECTION_DATA static u8 qMtx2_1002[48] = {
-    0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0xBF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 803CEB28-803CEB58 -00001 0030+00 1/1 0/0 0/0 .data            @1059 */
-SECTION_DATA static void* lit_1059[12] = {
-    (void*)(((char*)calcTexMtx__9J3DTexMtxFPA4_Cf) + 0x2A4),
-    (void*)(((char*)calcTexMtx__9J3DTexMtxFPA4_Cf) + 0x1C8),
-    (void*)(((char*)calcTexMtx__9J3DTexMtxFPA4_Cf) + 0x20C),
-    (void*)(((char*)calcTexMtx__9J3DTexMtxFPA4_Cf) + 0x20C),
-    (void*)(((char*)calcTexMtx__9J3DTexMtxFPA4_Cf) + 0x260),
-    (void*)(((char*)calcTexMtx__9J3DTexMtxFPA4_Cf) + 0x20C),
-    (void*)(((char*)calcTexMtx__9J3DTexMtxFPA4_Cf) + 0x170),
-    (void*)(((char*)calcTexMtx__9J3DTexMtxFPA4_Cf) + 0xB0),
-    (void*)(((char*)calcTexMtx__9J3DTexMtxFPA4_Cf) + 0x48),
-    (void*)(((char*)calcTexMtx__9J3DTexMtxFPA4_Cf) + 0x48),
-    (void*)(((char*)calcTexMtx__9J3DTexMtxFPA4_Cf) + 0x108),
-    (void*)(((char*)calcTexMtx__9J3DTexMtxFPA4_Cf) + 0x48),
-};
-
 /* 80323920-80323C0C 31E260 02EC+00 2/1 0/0 0/0 .text            calcTexMtx__9J3DTexMtxFPA4_Cf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DTexMtx::calcTexMtx(f32 const (*param_0)[4]) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DTevs/calcTexMtx__9J3DTexMtxFPA4_Cf.s"
+void J3DTexMtx::calcTexMtx(const Mtx param_0) {
+    Mtx44 mtx1;
+    Mtx44 mtx2;
+
+    static Mtx qMtx = {
+        0.5f, 0.0f, 0.5f, 0.0f,
+        0.0f, -0.5f, 0.5f, 0.0f,
+        0.0f, 0.0f, 1.0f, 0.0f,
+    };
+    static Mtx qMtx2 = {
+        0.5f, 0.0f, 0.0f, 0.5f,
+        0.0f, -0.5f, 0.0f, 0.5f,
+        0.0f, 0.0f, 1.0f, 0.0f,
+    };
+
+    u8 r28 = mTexMtxInfo.mInfo & 0x3f;
+    u32 r30 = (mTexMtxInfo.mInfo >> 7) & 1;
+    switch (r28) {
+    case 8:
+    case 9:
+    case 11:
+        if (r30 == 0) {
+            J3DGetTextureMtx(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx2);
+        } else if (r30 == 1) {
+            J3DGetTextureMtxMaya(mTexMtxInfo.mSRT, mtx2);
+        }
+        MTXConcat(mtx2, qMtx, mtx2);
+        J3DMtxProjConcat(mtx2, mTexMtxInfo.mEffectMtx, mtx1);
+        MTXConcat(mtx1, param_0, mMtx);
+        break;
+    case 7:
+        if (r30 == 0) {
+            J3DGetTextureMtx(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx1);
+        } else if (r30 == 1) {
+            J3DGetTextureMtxMaya(mTexMtxInfo.mSRT, mtx1);
+        }
+        MTXConcat(mtx1, qMtx, mtx1);
+        MTXConcat(mtx1, param_0, mMtx);
+        break;
+    case 10:
+        if (r30 == 0) {
+            J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx2);
+        } else if (r30 == 1) {
+            J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mtx2);
+        }
+        MTXConcat(mtx2, qMtx2, mtx2);
+        J3DMtxProjConcat(mtx2, mTexMtxInfo.mEffectMtx, mtx1);
+        MTXConcat(mtx1, param_0, mMtx);
+        break;
+    case 6:
+        if (r30 == 0) {
+            J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx1);
+        } else if (r30 == 1) {
+            J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mtx1);
+        }
+        MTXConcat(mtx1, qMtx2, mtx1);
+        MTXConcat(mtx1, param_0, mMtx);
+        break;
+    case 1:
+        if (r30 == 0) {
+            J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx1);
+        } else if (r30 == 1) {
+            J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mtx1);
+        }
+        MTXConcat(mtx1, param_0, mMtx);
+        break;
+    case 2:
+    case 3:
+    case 5:
+        if (r30 == 0) {
+            J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx2);
+        } else if (r30 == 1) {
+            J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mtx2);
+        }
+        J3DMtxProjConcat(mtx2, mTexMtxInfo.mEffectMtx, mtx1);
+        MTXConcat(mtx1, param_0, mMtx);
+        break;
+    case 4:
+        if (r30 == 0) {
+            J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx2);
+        } else if (r30 == 1) {
+            J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mtx2);
+        }
+        J3DMtxProjConcat(mtx2, mTexMtxInfo.mEffectMtx, mMtx);
+        break;
+    default:
+        if (r30 == 0) {
+            J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mMtx);
+        } else if (r30 == 1) {
+            J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mMtx);
+        }
+        break;
+    }
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 803CEB58-803CEB88 02BC78 0030+00 1/1 0/0 0/0 .data            qMtx$1063 */
-SECTION_DATA static u8 qMtx_1063[48] = {
-    0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0xBF, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 803CEB88-803CEBB8 02BCA8 0030+00 1/1 0/0 0/0 .data            qMtx2$1064 */
-SECTION_DATA static u8 qMtx2_1064[48] = {
-    0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0xBF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 803CEBB8-803CEBE8 -00001 0030+00 1/1 0/0 0/0 .data            @1131 */
-SECTION_DATA static void* lit_1131[12] = {
-    (void*)(((char*)calcPostTexMtx__9J3DTexMtxFPA4_Cf) + 0x310),
-    (void*)(((char*)calcPostTexMtx__9J3DTexMtxFPA4_Cf) + 0x200),
-    (void*)(((char*)calcPostTexMtx__9J3DTexMtxFPA4_Cf) + 0x234),
-    (void*)(((char*)calcPostTexMtx__9J3DTexMtxFPA4_Cf) + 0x288),
-    (void*)(((char*)calcPostTexMtx__9J3DTexMtxFPA4_Cf) + 0x2CC),
-    (void*)(((char*)calcPostTexMtx__9J3DTexMtxFPA4_Cf) + 0x234),
-    (void*)(((char*)calcPostTexMtx__9J3DTexMtxFPA4_Cf) + 0x1B8),
-    (void*)(((char*)calcPostTexMtx__9J3DTexMtxFPA4_Cf) + 0x108),
-    (void*)(((char*)calcPostTexMtx__9J3DTexMtxFPA4_Cf) + 0x48),
-    (void*)(((char*)calcPostTexMtx__9J3DTexMtxFPA4_Cf) + 0xB0),
-    (void*)(((char*)calcPostTexMtx__9J3DTexMtxFPA4_Cf) + 0x150),
-    (void*)(((char*)calcPostTexMtx__9J3DTexMtxFPA4_Cf) + 0x48),
-};
 
 /* 80323C0C-80323F64 31E54C 0358+00 1/0 2/2 0/0 .text            calcPostTexMtx__9J3DTexMtxFPA4_Cf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DTexMtx::calcPostTexMtx(f32 const (*param_0)[4]) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DTevs/calcPostTexMtx__9J3DTexMtxFPA4_Cf.s"
+void J3DTexMtx::calcPostTexMtx(const Mtx param_0) {
+    Mtx44 mtx1;
+    Mtx44 mtx2;
+
+    static Mtx qMtx = {
+        0.5f, 0.0f, 0.5f, 0.0f,
+        0.0f, -0.5f, 0.5f, 0.0f,
+        0.0f, 0.0f, 1.0f, 0.0f,
+    };
+    static Mtx qMtx2 = {
+        0.5f, 0.0f, 0.0f, 0.5f,
+        0.0f, -0.5f, 0.0f, 0.5f,
+        0.0f, 0.0f, 1.0f, 0.0f,
+    };
+
+    u8 r29 = mTexMtxInfo.mInfo & 0x3f;
+    u32 r30 = (mTexMtxInfo.mInfo >> 7) & 1;
+    switch (r29) {
+    case 8:
+    case 11:
+        if (r30 == 0) {
+            J3DGetTextureMtx(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx2);
+        } else if (r30 == 1) {
+            J3DGetTextureMtxMaya(mTexMtxInfo.mSRT, mtx2);
+        }
+        MTXConcat(mtx2, qMtx, mtx2);
+        J3DMtxProjConcat(mtx2, mTexMtxInfo.mEffectMtx, mtx1);
+        MTXConcat(mtx1, param_0, mMtx);
+        break;
+    case 9:
+        if (r30 == 0) {
+            J3DGetTextureMtx(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx2);
+        } else if (r30 == 1) {
+            J3DGetTextureMtxMaya(mTexMtxInfo.mSRT, mtx2);
+        }
+        MTXConcat(mtx2, qMtx, mtx2);
+        J3DMtxProjConcat(mtx2, mTexMtxInfo.mEffectMtx, mMtx);
+        break;
+    case 7:
+        if (r30 == 0) {
+            J3DGetTextureMtx(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx1);
+        } else if (r30 == 1) {
+            J3DGetTextureMtxMaya(mTexMtxInfo.mSRT, mtx1);
+        }
+        MTXConcat(mtx1, qMtx, mMtx);
+        break;
+    case 10:
+        if (r30 == 0) {
+            J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx2);
+        } else if (r30 == 1) {
+            J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mtx2);
+        }
+        MTXConcat(mtx2, qMtx2, mtx2);
+        J3DMtxProjConcat(mtx2, mTexMtxInfo.mEffectMtx, mtx1);
+        MTXConcat(mtx1, param_0, mMtx);
+        break;
+    case 6:
+        if (r30 == 0) {
+            J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx1);
+        } else if (r30 == 1) {
+            J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mtx1);
+        }
+        MTXConcat(mtx1, qMtx2, mMtx);
+        break;
+    case 1:
+        if (r30 == 0) {
+            J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mMtx);
+        } else if (r30 == 1) {
+            J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mMtx);
+        }
+        break;
+    case 2:
+    case 5:
+        if (r30 == 0) {
+            J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx2);
+        } else if (r30 == 1) {
+            J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mtx2);
+        }
+        J3DMtxProjConcat(mtx2, mTexMtxInfo.mEffectMtx, mtx1);
+        MTXConcat(mtx1, param_0, mMtx);
+        break;
+    case 3:
+        if (r30 == 0) {
+            J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx2);
+        } else if (r30 == 1) {
+            J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mtx2);
+        }
+        J3DMtxProjConcat(mtx2, mTexMtxInfo.mEffectMtx, mMtx);
+        break;
+    case 4:
+        if (r30 == 0) {
+            J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx2);
+        } else if (r30 == 1) {
+            J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mtx2);
+        }
+        J3DMtxProjConcat(mtx2, mTexMtxInfo.mEffectMtx, mMtx);
+        break;
+    default:
+        if (r30 == 0) {
+            J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mMtx);
+        } else if (r30 == 1) {
+            J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mMtx);
+        }
+        break;
+    }
 }
-#pragma pop
 
 /* 80323F64-80323F88 31E8A4 0024+00 0/0 1/1 0/0 .text            isTexNoReg__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void isTexNoReg(void* param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DTevs/isTexNoReg__FPv.s"
+bool isTexNoReg(void* param_0) {
+    u8 r31 = ((u8*)param_0)[1];
+    if (r31 >= 0x80 && r31 <= 0xbb) {
+        return true;
+    }
+    return false;
 }
-#pragma pop
 
 /* 80323F88-80323F94 31E8C8 000C+00 0/0 1/1 0/0 .text            getTexNoReg__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void getTexNoReg(void* param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DTevs/getTexNoReg__FPv.s"
+u16 getTexNoReg(void* param_0) {
+    return *(u32*)((u8*)param_0 + 1);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804563B0-804563B4 0049B0 0004+00 1/1 0/0 0/0 .sdata2          @1167 */
@@ -236,29 +372,35 @@ SECTION_SDATA2 static f32 lit_1168 = 1.0f / 100.0f;
 SECTION_SDATA2 static f64 lit_1171 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80323F94-8032413C 31E8D4 01A8+00 0/0 20/20 0/0 .text            loadTexNo__FUlRCUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void loadTexNo(u32 param_0, u16 const& param_1) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DTevs/loadTexNo__FUlRCUs.s"
+void loadTexNo(u32 param_0, u16 const& param_1) {
+    ResTIMG* resTIMG = j3dSys.getTexture()->getResTIMG(param_1);
+    J3DSys::sTexCoordScaleTable[param_0].field_0x00 = resTIMG->width;
+    J3DSys::sTexCoordScaleTable[param_0].field_0x02 = resTIMG->height;
+    GDOverflowCheck(0x14);
+    J3DGDSetTexImgPtr(GXTexMapID(param_0), (u8*)resTIMG + resTIMG->imageOffset);
+    J3DGDSetTexImgAttr(GXTexMapID(param_0), resTIMG->width, resTIMG->height, GXTexFmt(resTIMG->format & 0x0f));
+    J3DGDSetTexLookupMode(GXTexMapID(param_0), GXTexWrapMode(resTIMG->wrapS), GXTexWrapMode(resTIMG->wrapT), GXTexFilter(resTIMG->minFilter), GXTexFilter(resTIMG->magFilter), resTIMG->minLOD * 0.125f, resTIMG->maxLOD * 0.125f, resTIMG->LODBias * 0.01f, resTIMG->biasClamp, resTIMG->doEdgeLOD, GXAnisotropy(resTIMG->maxAnisotropy));
+    if (resTIMG->indexTexture == true) {
+        GXTlutSize tlutSize = resTIMG->numColors > 16 ? GX_TLUT_256 : GX_TLUT_16;
+        GDOverflowCheck(0x14);
+        J3DGDLoadTlut((u8*)resTIMG + resTIMG->paletteOffset, (param_0 << 13) + 0xf0000, tlutSize);
+        J3DGDSetTexTlut(GXTexMapID(param_0), (param_0 << 13) + 0xf0000, GXTlutFmt(resTIMG->colorFormat));
+    }
 }
-#pragma pop
 
 /* 8032413C-80324160 31EA7C 0024+00 0/0 2/2 0/0 .text            patchTexNo_PtrToIdx__FUlRCUs */
 void patchTexNo_PtrToIdx(u32 texID, u16 const& idx) {
-    J3DGDSetTexImgPtrRaw((GXTexMapID)texID, idx);
+    J3DGDSetTexImgPtrRaw(GXTexMapID(texID), idx);
 }
 
 /* 80324160-80324194 31EAA0 0034+00 0/0 2/2 0/0 .text            loadNBTScale__FR11J3DNBTScale */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void loadNBTScale(J3DNBTScale& param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DTevs/loadNBTScale__FR11J3DNBTScale.s"
+void loadNBTScale(J3DNBTScale& param_0) {
+    if (param_0.mbHasScale == true) {
+        j3dSys.setNBTScale(&param_0.mScale);
+    } else {
+        j3dSys.setNBTScale(NULL);
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803A1EC8-803A1EFC 02E528 0034+00 0/0 9/9 24/24 .rodata          j3dDefaultLightInfo */
@@ -313,16 +455,15 @@ SECTION_RODATA extern u8 const j3dDefaultIndTevStageInfo[12] = {
 COMPILER_STRIP_GATE(0x803A1FB0, &j3dDefaultIndTevStageInfo);
 
 /* 803A1FBC-803A1FE8 02E61C 002C+00 0/0 3/3 0/0 .rodata          j3dDefaultFogInfo */
-SECTION_RODATA extern u8 const j3dDefaultFogInfo[44] = {
-    0x00, 0x00, 0x01, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3D, 0xCC, 0xCC,
-    0xCD, 0x46, 0x1C, 0x40, 0x00, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_RODATA extern J3DFogInfo const j3dDefaultFogInfo = {
+    0x00, 0x00, 0x0140, 0.0f, 0.0f, 0.1f, 10000.0f, 0xFF, 0xFF, 0xFF, 0x00,
+    0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
 };
 COMPILER_STRIP_GATE(0x803A1FBC, &j3dDefaultFogInfo);
 
 /* 803A1FE8-803A1FF8 02E648 0010+00 0/0 3/3 0/0 .rodata          j3dDefaultNBTScaleInfo */
-SECTION_RODATA extern u8 const j3dDefaultNBTScaleInfo[16] = {
-    0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
+SECTION_RODATA extern J3DNBTScaleInfo const j3dDefaultNBTScaleInfo = {
+    0x00, 1.0f, 1.0f, 1.0f,
 };
 COMPILER_STRIP_GATE(0x803A1FE8, &j3dDefaultNBTScaleInfo);
 
@@ -352,6 +493,24 @@ COMPILER_STRIP_GATE(0x803A1FF8, &lit_1197);
 static u8 j3dTexCoordTable[7623 + 1 /* padding */];
 
 /* 80324194-8032423C 31EAD4 00A8+00 0/0 1/1 0/0 .text            makeTexCoordTable__Fv */
+// regswap
+#ifdef NONMATCHING
+void makeTexCoordTable() {
+    u8 bytes[] = { 0x1e, 0x21, 0x24, 0x27, 0x2a, 0x2d, 0x30, 0x33, 0x36, 0x39, 0x3c };
+
+    u8* table = j3dTexCoordTable;
+    for (u32 i = 0; i < 11; i++) {
+        for (u32 j = 0; j < 21; j++) {
+            for (int k = 0; k < 11; k++) {
+                u32 idx = i * 0xe7 + j * 11 + k;
+                table[idx * 3] = i;
+                table[idx * 3 + 1] = j;
+                table[idx * 3 + 2] = bytes[k];
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -360,6 +519,7 @@ asm void makeTexCoordTable() {
 #include "asm/JSystem/J3DGraphBase/J3DTevs/makeTexCoordTable__Fv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80436A60-80436E60 063780 0400+00 1/1 3/3 0/0 .bss             j3dTevSwapTableTable */
@@ -371,14 +531,19 @@ extern u8 j3dAlphaCmpTable[768];
 u8 j3dAlphaCmpTable[768];
 
 /* 8032423C-803242A8 31EB7C 006C+00 0/0 1/1 0/0 .text            makeAlphaCmpTable__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void makeAlphaCmpTable() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DTevs/makeAlphaCmpTable__Fv.s"
+void makeAlphaCmpTable() {
+    u8* table = j3dAlphaCmpTable;
+    for (u32 i = 0; i < 8; i++) {
+        for (int j = 0; j < 4; j++) {
+            for (u32 k = 0; k < 8; k++) {
+                u32 idx = i * 32 + j * 8 + k;
+                table[idx * 3] = i;
+                table[idx * 3 + 1] = j;
+                table[idx * 3 + 2] = k;
+            }
+        }
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80437160-804371C0 063E80 0060+00 1/1 4/4 5/5 .bss             j3dZModeTable */
@@ -386,6 +551,22 @@ extern u8 j3dZModeTable[96];
 u8 j3dZModeTable[96];
 
 /* 803242A8-80324314 31EBE8 006C+00 0/0 1/1 0/0 .text            makeZModeTable__Fv */
+// regswap
+#ifdef NONMATCHING
+void makeZModeTable() {
+    u8* table = j3dZModeTable;
+    for (int i = 0; i < 2; i++) {
+        for (u32 j = 0; j < 8; j++) {
+            for (int k = 0; k < 2; k++) {
+                u32 idx = i * 16 + j * 2 + k;
+                table[idx * 3] = i;
+                table[idx * 3 + 1] = j;
+                table[idx * 3 + 2] = k;
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -394,16 +575,21 @@ asm void makeZModeTable() {
 #include "asm/JSystem/J3DGraphBase/J3DTevs/makeZModeTable__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 80324314-80324358 31EC54 0044+00 0/0 1/1 0/0 .text            makeTevSwapTable__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void makeTevSwapTable() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DTevs/makeTevSwapTable__Fv.s"
+void makeTevSwapTable() {
+    u8* table = j3dTevSwapTableTable;
+    int i = 0;
+    do {
+        table[0] = i >> 6;
+        table[1] = (i >> 4) & 3;
+        table[2] = (i >> 2) & 3;
+        table[3] = i & 3;
+        i++;
+        table += 4;
+    } while (i < 256);
 }
-#pragma pop
 
 /* 80324358-803243BC 31EC98 0064+00 1/1 0/0 0/0 .text            loadTexMtx__9J3DTexMtxCFUl */
 #pragma push
@@ -488,7 +674,7 @@ SECTION_SDATA2 extern u8 j3dDefaultTevSwapMode[4] = {
 SECTION_SDATA2 extern u32 j3dDefaultTevSwapModeTable = 0x00010203;
 
 /* 804563EC-804563F0 0049EC 0004+00 0/0 3/3 0/0 .sdata2          j3dDefaultBlendInfo */
-SECTION_SDATA2 extern u32 j3dDefaultBlendInfo = 0x01040505;
+SECTION_SDATA2 extern const J3DBlendInfo j3dDefaultBlendInfo = {GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_NOOP};
 
 /* 804563F0-804563F8 0049F0 0008+00 0/0 3/3 0/0 .sdata2          j3dDefaultColorChanInfo */
 SECTION_SDATA2 extern u8 j3dDefaultColorChanInfo[8] = {
@@ -499,11 +685,7 @@ SECTION_SDATA2 extern u8 j3dDefaultColorChanInfo[8] = {
 SECTION_SDATA2 extern u16 data_804563F8 = 0x1B00;
 
 /* 804563FA-804563FC 0049FA 0002+00 0/0 1/1 0/0 .sdata2          j3dDefaultAlphaCmpID */
-SECTION_SDATA2 extern u16 j3dDefaultAlphaCmpID = 0x00E7;
+SECTION_SDATA2 extern const u16 j3dDefaultAlphaCmpID = 0x00E7;
 
 /* 804563FC-80456400 0049FC 0002+02 0/0 3/3 0/0 .sdata2          j3dDefaultZModeID */
-SECTION_SDATA2 extern u16 j3dDefaultZModeID[1 + 1 /* padding */] = {
-    0x0017,
-    /* padding */
-    0x0000,
-};
+SECTION_SDATA2 extern const u16 j3dDefaultZModeID = 0x0017;
