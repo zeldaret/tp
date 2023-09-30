@@ -31,6 +31,12 @@ struct TNodeLinkList {
     struct const_iterator {
         const_iterator(TLinkListNode* pNode) { node = pNode; }
         const_iterator(const const_iterator& iter) { *this = iter; }
+        const_iterator(iterator iter) { *this = iter; }
+        TLinkListNode* operator->() const { return node; }
+        const_iterator& operator++() {
+            node = node->getNext();
+            return *this; 
+        }
 
         TLinkListNode* node;
     };
@@ -74,11 +80,25 @@ struct TLinkList : public TNodeLinkList {
         iterator(TNodeLinkList::iterator iter) : TNodeLinkList::iterator(iter) {}
     };
 
-    TLinkListNode* Element_toNode(T* element) const { return &element->ocObject_; }
+    struct const_iterator : TNodeLinkList::const_iterator {
+        const_iterator(TNodeLinkList::const_iterator iter) : TNodeLinkList::const_iterator(iter) {}
+        const_iterator(iterator iter) : TNodeLinkList::const_iterator(iter) {}
+        const T* operator->() const {
+            return Element_toValue(TNodeLinkList::const_iterator::operator->());
+        }
+        const T& operator*() const { return *operator->();}
+        const_iterator& operator++() {
+            TNodeLinkList::const_iterator::operator++();
+            return *this;
+        }
+    };
 
-    void Insert(TLinkList::iterator iter, T* element) {
+    TLinkListNode* Element_toNode(T* element) const { return &element->ocObject_; }
+    static T* Element_toValue(TLinkListNode* node) { return (T*)node; }
+
+    iterator Insert(TLinkList::iterator iter, T* element) {
         TLinkListNode* node = Element_toNode(element);
-        TNodeLinkList::Insert(iter, node);
+        return TNodeLinkList::Insert(iter, node);
     }
 
     iterator Erase(T* element) {
@@ -92,10 +112,18 @@ struct TLinkList : public TNodeLinkList {
         return iter;
     }
 
+    TLinkList::const_iterator end() const {
+        return TLinkList::const_iterator(((TLinkList*)this)->end());
+    }
+
     TLinkList::iterator begin() {
         TNodeLinkList::iterator node_iter = TNodeLinkList::begin();
         TLinkList::iterator iter(node_iter);
         return iter;
+    }
+
+    TLinkList::const_iterator begin() const {
+        return TLinkList::const_iterator(((TLinkList*)this)->begin());
     }
 
     void Push_back(T* element) {
@@ -103,6 +131,16 @@ struct TLinkList : public TNodeLinkList {
         this->Insert(iter, element);
     }
 };
+
+template<typename T, int I>
+bool operator==(const typename TLinkList<T, I>::const_iterator iter1, const typename TLinkList<T, I>::const_iterator iter2) {
+    return iter1->node == iter2->node;
+}
+
+template<typename T, int I>
+bool operator!=(const typename TLinkList<T, I>::const_iterator iter1, const typename TLinkList<T, I>::const_iterator iter2) {
+    return !(iter1 == iter2);
+}
 
 template <typename T, int I>
 struct TLinkList_factory : public TLinkList<T, I> {
@@ -113,12 +151,27 @@ struct TLinkList_factory : public TLinkList<T, I> {
 
 template <typename T, int I>
 struct TEnumerator {
-    TLinkList<T, I> field_0x0;
-    TLinkList<T, I> field_0x4;
+    inline TEnumerator(typename TLinkList<T,I>::const_iterator _current, typename TLinkList<T,I>::const_iterator _end) :
+        current(_current), end(_end)
+    {}
+
+    bool isEnd() const { return current.node == end.node; }
+    operator bool() const { return isEnd(); }
+    T& operator*() {
+        T& rv = (T&)*current; 
+        ++current;
+        return rv;
+    }
+
+    TLinkList<T, I>::const_iterator current;
+    TLinkList<T, I>::const_iterator end;
 };
 
 template <typename T, int I>
-struct TContainerEnumerator_const : public TEnumerator<T, I> {};
+struct TContainerEnumerator_const : public TEnumerator<T, I> {
+    inline TContainerEnumerator_const(const T* param_0) : TEnumerator<T,I>(param_0->begin(), param_0->end())
+    {}
+};
 
 };  // namespace JGadget
 

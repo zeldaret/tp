@@ -7,11 +7,11 @@
 #include "JSystem/JStudio/JStudio/fvb-data.h"
 
 namespace JMessage {
-struct TResource : public JGadget::TLinkListNode {
+struct TResource {
     TResource()
         : field_0x8(NULL), field_0xc(NULL), field_0x10(NULL), field_0x14(0), field_0x18(NULL) {}
 
-    /* 802A8CDC */ void toMessageIndex_messageID(u32, u32, bool*) const;
+    /* 802A8CDC */ u16 toMessageIndex_messageID(u32, u32, bool*) const;
 
     bool isContained_messageIndex(u16 messageIndex) const {
         return messageIndex < getMessageEntryNumber();
@@ -46,7 +46,7 @@ struct TResource : public JGadget::TLinkListNode {
     void setData_header(const void* pData) {
         field_0x8.setRaw(pData);
     }
-
+    JGadget::TLinkListNode ocObject_;
     /* 0x08 */ data::TParse_THeader field_0x8;
     /* 0x0C */ data::TParse_TBlock_info field_0xc;
     /* 0x10 */ char* field_0x10;
@@ -81,7 +81,8 @@ struct TResourceContainer {
     TResource* getResource_groupID(u16 groupID) { return resContainer_.Get_groupID(groupID); }
     TResource* getResource_groupID(u16 groupID) const { return getResource_groupID(groupID); }
 
-    bool isEncodingSettable(u8 e) const { return mEncodingType == e || e == 0; }
+    bool isEncodingSettable(u8 e) const { return mEncodingType == e || mEncodingType == 0; }
+    const TCResource* getResourceContainer() const { return &resContainer_; }
 
     static JMessage::locale::parseCharacter_function sapfnParseCharacter_[5];
 
