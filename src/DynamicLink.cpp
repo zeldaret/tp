@@ -537,83 +537,23 @@ extern "C" void ModuleDestructorsX(void (**dtors)()) {
 }
 
 /* 802631D4-802631DC 25DB14 0008+00 1/0 0/0 0/0 .text do_link__24DynamicModuleControlBaseFv */
-BOOL DynamicModuleControlBase::do_link() {
-    return TRUE;
-}
 
 /* 802631DC-802631E4 25DB1C 0008+00 1/0 0/0 0/0 .text do_load__24DynamicModuleControlBaseFv */
-bool DynamicModuleControlBase::do_load() {
-    return true;
-}
 
 /* 802631E4-802631EC 25DB24 0008+00 1/0 0/0 0/0 .text do_unload__24DynamicModuleControlBaseFv */
-bool DynamicModuleControlBase::do_unload() {
-    return true;
-}
 
 /* 802631EC-802631F4 25DB2C 0008+00 1/0 0/0 0/0 .text do_unlink__24DynamicModuleControlBaseFv */
-bool DynamicModuleControlBase::do_unlink() {
-    return true;
-}
 
 /* 802631F4-802631FC 25DB34 0008+00 1/0 0/0 0/0 .text do_load_async__24DynamicModuleControlBaseFv
  */
-BOOL DynamicModuleControlBase::do_load_async() {
-    return true;
-}
 
 /* 802631FC-80263200 25DB3C 0004+00 1/0 0/0 0/0 .text            dump2__24DynamicModuleControlBaseFv
  */
-void DynamicModuleControlBase::dump2() {
-    /* empty function */
-}
 
 /* 80263200-80263210 25DB40 0010+00 1/0 0/0 0/0 .text
  * getModuleTypeString__24DynamicModuleControlBaseCFv           */
-const char* DynamicModuleControlBase::getModuleTypeString() const {
-    return "Base";
-}
 
 /* 80263210-80263218 25DB50 0008+00 1/0 0/0 0/0 .text getModuleSize__24DynamicModuleControlBaseCFv
  */
-int DynamicModuleControlBase::getModuleSize() const {
-    return 0;
-}
 
 /* 80263218-80263220 25DB58 0008+00 1/0 0/0 0/0 .text getModuleName__20DynamicModuleControlCFv */
-const char* DynamicModuleControl::getModuleName() const {
-    return mName;
-}
-
-extern "C" void dump__24DynamicModuleControlBaseFv();
-extern "C" void __ct__20DynamicModuleControlFPCc();
-extern "C" void mountCallback__20DynamicModuleControlFPv();
-extern "C" void initialize__20DynamicModuleControlFv();
-extern "C" void callback__20DynamicModuleControlFPv();
-extern "C" void do_load__20DynamicModuleControlFv();
-extern "C" void do_load_async__20DynamicModuleControlFv();
-extern "C" void do_unload__20DynamicModuleControlFv();
-extern "C" void dump2__20DynamicModuleControlFv();
-extern "C" void do_link__20DynamicModuleControlFv();
-extern "C" void do_unlink__20DynamicModuleControlFv();
-extern "C" void getModuleSize__20DynamicModuleControlCFv();
-extern "C" void getModuleTypeString__20DynamicModuleControlCFv();
-extern "C" void getModuleName__20DynamicModuleControlCFv();
-extern "C" void __dt__20DynamicModuleControlFv();
-
-/* 803C34C0-803C34F4 0205E0 0034+00 1/1 2/2 0/0 .data            __vt__20DynamicModuleControl */
-SECTION_DATA extern void* __vt__20DynamicModuleControl[13] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__20DynamicModuleControlFv,
-    (void*)getModuleName__20DynamicModuleControlCFv,
-    (void*)getModuleSize__20DynamicModuleControlCFv,
-    (void*)getModuleTypeString__20DynamicModuleControlCFv,
-    (void*)dump__24DynamicModuleControlBaseFv,
-    (void*)dump2__20DynamicModuleControlFv,
-    (void*)do_load__20DynamicModuleControlFv,
-    (void*)do_load_async__20DynamicModuleControlFv,
-    (void*)do_unload__20DynamicModuleControlFv,
-    (void*)do_link__20DynamicModuleControlFv,
-    (void*)do_unlink__20DynamicModuleControlFv,
-};

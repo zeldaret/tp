@@ -1045,3 +1045,7 @@ RELS := \
 	$(BUILD_DIR)/rel/d/a/d_a_tboxSw.plf \
 	$(BUILD_DIR)/rel/d/a/d_a_title.plf \
 	$(BUILD_DIR)/rel/d/a/d_a_warp_bug.plf \
+
+O_FILES_SYM_ON := \
+	$(BUILD_DIR)/src/c/c_dylink.o \
+	$(BUILD_DIR)/src/DynamicLink.o \

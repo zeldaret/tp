@@ -17,16 +17,16 @@ struct DynamicModuleControlBase {
     /* 0x0C */ /*vtable*/
     /* 802621CC */ virtual ~DynamicModuleControlBase();
     /* 800188DC */ virtual const char* getModuleName() const { return NULL; };
-    /* 80263210 */ virtual int getModuleSize() const;
-    /* 80263200 */ virtual const char* getModuleTypeString() const;
+    /* 80263210 */ virtual int getModuleSize() const { return 0; };
+    /* 80263200 */ virtual const char* getModuleTypeString() const {return "Base";};
                    virtual void dump();
     /* 80262470 */ static void dump();
-    /* 802631FC */ virtual void dump2();
-    /* 802631DC */ virtual bool do_load();
-    /* 802631F4 */ virtual BOOL do_load_async();
-    /* 802631E4 */ virtual bool do_unload();
-    /* 802631D4 */ virtual BOOL do_link();
-    /* 802631EC */ virtual bool do_unlink();
+    /* 802631FC */ virtual void dump2() {};
+    /* 802631DC */ virtual bool do_load() {return true;};
+    /* 802631F4 */ virtual BOOL do_load_async() {return true;};
+    /* 802631E4 */ virtual bool do_unload() {return true;};
+    /* 802631D4 */ virtual BOOL do_link() {return TRUE;};
+    /* 802631EC */ virtual bool do_unlink() {return true; };
     /* 80262284 */ DynamicModuleControlBase();
     /* 802622D0 */ BOOL link();
     /* 80262364 */ BOOL unlink();
@@ -42,8 +42,8 @@ struct DynamicModuleControlBase {
 };
 
 struct DynamicModuleControl : DynamicModuleControlBase {
+    /* 80263218 */ virtual const char* getModuleName() const { return mName; };
     /* 800188E4 */ virtual ~DynamicModuleControl() {}
-    /* 80263218 */ virtual const char* getModuleName() const;
     /* 80263000 */ virtual int getModuleSize() const;
     /* 80263070 */ virtual const char* getModuleTypeString() const;
     // virtual void dump();
