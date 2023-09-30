@@ -5,6 +5,7 @@
 
 #include "JSystem/JMessage/processor.h"
 #include "JSystem/JMessage/control.h"
+#include "JSystem/JUtility/JUTAssert.h"
 
 //
 // Forward References:
@@ -139,28 +140,45 @@ void JMessage::TProcessor::stack_popCurrent() {
 
 /* 802A7C54-802A7CD4 2A2594 0080+00 1/1 1/1 0/0 .text
  * getResource_groupID__Q28JMessage10TProcessorCFUs             */
-#ifdef NONMATCHING
 const JMessage::TResource* JMessage::TProcessor::getResource_groupID(u16 groupID) const {
     if (isResourceCache_groupID(groupID)) {
         return pResourceCache_;
     }
 
-    pResourceCache_ = getResource_groupID_uncached(groupID);
+    // Is there another way to do this?
+    ((JMessage::TProcessor*)this)->pResourceCache_ = getResource_groupID_uncached(groupID);
     return pResourceCache_;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm const JMessage::TResource* JMessage::TProcessor::getResource_groupID(u16 param_0) const {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/getResource_groupID__Q28JMessage10TProcessorCFUs.s"
-}
-#pragma pop
-#endif
 
 /* 802A7CD4-802A7E38 2A2614 0164+00 0/0 1/1 0/0 .text
  * toMessageCode_messageID__Q28JMessage10TProcessorCFUlUlPb     */
+// TContainerEnumerator_const inline issues + while condition
+#ifdef NONMATCHING
+u32 JMessage::TProcessor::toMessageCode_messageID(u32 param_0, u32 param_1,
+                                                      bool* param_2) const {
+    const TResource* this_00 = getResourceCache();
+    u16 uVar4;
+    if (this_00 != NULL && (uVar4 = this_00->toMessageIndex_messageID(param_0, param_1, param_2)) != 0xffff) {
+        return uVar4 | (this_00->getGroupID() << 16);
+    }
+    TResourceContainer* this_01 = getResourceContainer();
+    if (this_01 == NULL) {
+        return -1;
+    }
+
+    JGadget::TContainerEnumerator_const<TResourceContainer::TCResource, 0> enumerator(this_01->getResourceContainer());
+    const TResource* this_02;
+    while (!enumerator) {
+        this_02 = (const TResource*)&(*enumerator);
+        if (this_02 == this_00 || (uVar4 = this_02->toMessageIndex_messageID(param_0, param_1, param_2)) == 0xffff) {
+            continue;
+        }
+        ((JMessage::TProcessor*)this)->pResourceCache_ = this_02;
+        return uVar4 | (this_02->getGroupID() << 0x10);
+    }
+    return -1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -170,6 +188,7 @@ asm u32 JMessage::TProcessor::toMessageCode_messageID(u32 param_0, u32 param_1,
 #include "asm/JSystem/JMessage/processor/toMessageCode_messageID__Q28JMessage10TProcessorCFUlUlPb.s"
 }
 #pragma pop
+#endif
 
 /* 802A7E38-802A7EDC 2A2778 00A4+00 1/1 0/0 0/0 .text
  * on_select_begin__Q28JMessage10TProcessorFPFPQ28JMessage10TProcessor_PCcPCvPCcUl */
@@ -265,8 +284,8 @@ bool JMessage::TProcessor::do_setBegin_isReady_() const {
 
 /* 802A8090-802A81EC 2A29D0 015C+00 2/2 0/0 0/0 .text do_tag___Q28JMessage10TProcessorFUlPCvUl */
 void JMessage::TProcessor::do_tag_(u32 uTag, void const* data, u32 uSize) {
-    u8 group = data::getTagGroup(uTag);
-    u16 code = data::getTagCode(uTag);
+    u32 group = data::getTagGroup(uTag);
+    u32 code = data::getTagCode(uTag);
 
     switch (group) {
     case 0xFF:
@@ -345,38 +364,25 @@ bool JMessage::TProcessor::process_onCharacterEnd_select_(JMessage::TProcessor* 
 
 /* 802A833C-802A8358 2A2C7C 001C+00 1/1 0/0 0/0 .text
  * process_onSelect_limited___Q28JMessage10TProcessorFPQ28JMessage10TProcessor */
-// r4 vs r5
-#ifdef NONMATCHING
 const char* JMessage::TProcessor::process_onSelect_limited_(JMessage::TProcessor* pThis) {
-    u16* ptr = (u16*)pThis->oProcess_.rData.pOffset;
-    u16 data = *ptr;
+    u16 data = JGadget::binary::TParseValue<u16, TParseValue_endian_big_>::parse((u16*)pThis->oProcess_.rData.pOffset);
 
     pThis->oProcess_.rData.pOffset =
-        JGadget::binary::TParseValue<u16, TParseValue_endian_big_>::parse(ptr) + 2;
+        (void*)((u8*)pThis->oProcess_.rData.pOffset + 2);
 
     return &pThis->oProcess_.rData.pcBase[data];
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm const char* JMessage::TProcessor::process_onSelect_limited_(JMessage::TProcessor* param_0) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/process_onSelect_limited___Q28JMessage10TProcessorFPQ28JMessage10TProcessor.s"
-}
-#pragma pop
-#endif
 
 /* 802A8358-802A8374 2A2C98 001C+00 1/1 0/0 0/0 .text
  * process_onSelect___Q28JMessage10TProcessorFPQ28JMessage10TProcessor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm const char* JMessage::TProcessor::process_onSelect_(JMessage::TProcessor* param_0) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/process_onSelect___Q28JMessage10TProcessorFPQ28JMessage10TProcessor.s"
+const char* JMessage::TProcessor::process_onSelect_(JMessage::TProcessor* pThis) {
+    u32 data = JGadget::binary::TParseValue<u32, TParseValue_endian_big_>::parse((u32*)pThis->oProcess_.rData.pOffset);
+
+    pThis->oProcess_.rData.pOffset =
+        (void*)((u8*)pThis->oProcess_.rData.pOffset + 4);
+
+    return &pThis->oProcess_.rData.pcBase[data];
 }
-#pragma pop
 
 /* 802A8374-802A83B8 2A2CB4 0044+00 0/0 2/2 0/0 .text
  * __ct__Q28JMessage18TSequenceProcessorFPCQ28JMessage10TReferencePQ28JMessage8TControl */
@@ -559,8 +565,8 @@ void JMessage::TSequenceProcessor::do_end_() {
  * do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl             */
 void JMessage::TSequenceProcessor::do_tag_(u32 uTag, void const* data, u32 uSize) {
     char* temp = (char*)data;
-    u8 group = data::getTagGroup(uTag);
-    u16 code = data::getTagCode(uTag);
+    u32 group = data::getTagGroup(uTag);
+    u32 code = data::getTagCode(uTag);
 
     switch (group) {
     case 0xFF:
@@ -613,9 +619,10 @@ void JMessage::TSequenceProcessor::do_tag_(u32 uTag, void const* data, u32 uSize
  * process_setMessageIndex_reserved___Q28JMessage18TSequenceProcessorFUs */
 #ifdef NONMATCHING
 void JMessage::TSequenceProcessor::process_setMessageIndex_reserved_(u16 u16Index) {
+    JUT_ASSERT(890, u16Index >= 0xff00);
     if (u16Index != -1) {
         return;
-    }
+    } 
 }
 #else
 #pragma push
@@ -711,11 +718,9 @@ void JMessage::TRenderingProcessor::do_end_() {}
 
 /* 802A8BAC-802A8C24 2A34EC 0078+00 1/0 4/0 0/0 .text
  * do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl            */
-// r0 / r7 swapped
-#ifdef NONMATCHING
 void JMessage::TRenderingProcessor::do_tag_(u32 uTag, void const* data, u32 uSize) {
-    u8 group = data::getTagGroup(uTag);
-    u16 code = data::getTagCode(uTag);
+    u32 group = data::getTagGroup(uTag);
+    u32 code = data::getTagCode(uTag);
 
     switch (group) {
     case 0xFF:
@@ -746,16 +751,6 @@ void JMessage::TRenderingProcessor::do_tag_(u32 uTag, void const* data, u32 uSiz
         break;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMessage::TRenderingProcessor::do_tag_(u32 param_0, void const* param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JMessage/processor/do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl.s"
-}
-#pragma pop
-#endif
 
 /* 802A8C24-802A8C44 2A3564 0020+00 1/1 0/0 0/0 .text on_message__Q28JMessage10TProcessorCFUl */
 const char* JMessage::TProcessor::on_message(u32 param_0) const {

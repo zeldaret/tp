@@ -24,6 +24,8 @@ struct TReference {
         return pcResource_->getResource_groupID(groupID);
     }
 
+    TResourceContainer* getResourceContainer() const { return pcResource_; }
+
     /* 0x4 */ TResourceContainer* pcResource_;
 };
 
@@ -190,6 +192,14 @@ struct TProcessor {
 
     bool isResourceCache_groupID(u16 groupID) const {
         return pResourceCache_ != NULL && groupID == pResourceCache_->getGroupID();
+    }
+
+    TResourceContainer* getResourceContainer() const {
+        if (pReference_ == NULL) {
+            return NULL;
+        }
+
+        return pReference_->getResourceContainer();
     }
 
     /* 0x04 */ const TReference* pReference_;
