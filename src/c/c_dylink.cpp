@@ -14,57 +14,6 @@
 #include "global.h"
 #include "m_Do/m_Do_ext.h"
 
-//
-// Forward References:
-//
-
-extern "C" static void cCc_Init__Fv();
-extern "C" void cDyl_IsLinked__Fs();
-extern "C" void cDyl_Unlink__Fs();
-extern "C" void cDyl_LinkASync__Fs();
-extern "C" static void cDyl_InitCallback__FPv();
-extern "C" void cDyl_InitAsync__Fv();
-extern "C" void cDyl_InitAsyncIsDone__Fv();
-extern "C" s32 phase_01__7cDylPhsFPv();
-extern "C" void phase_02__7cDylPhsFPs();
-extern "C" bool phase_03__7cDylPhsFPv();
-extern "C" void Link__7cDylPhsFP30request_of_phase_process_classs();
-extern "C" void Unlink__7cDylPhsFP30request_of_phase_process_classs();
-extern "C" bool getModuleName__24DynamicModuleControlBaseCFv();
-extern "C" void __dt__20DynamicModuleControlFv();
-extern "C" extern char const* const c_c_dylink__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoExt_getArchiveHeap__Fv();
-extern "C" void create__20mDoDvdThd_callback_cFPFPv_PvPv();
-extern "C" void fopScnM_CreateReq__FssUsUl();
-extern "C" void dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv();
-extern "C" void __dt__24DynamicModuleControlBaseFv();
-extern "C" void link__24DynamicModuleControlBaseFv();
-extern "C" void unlink__24DynamicModuleControlBaseFv();
-extern "C" void load_async__24DynamicModuleControlBaseFv();
-extern "C" void __ct__20DynamicModuleControlFPCc();
-extern "C" void initialize__20DynamicModuleControlFv();
-extern "C" void becomeCurrentHeap__7JKRHeapFv();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void create__12JKRSolidHeapFUlP7JKRHeapb();
-extern "C" void adjustSize__12JKRSolidHeapFv();
-extern "C" void getGlbResource__13JKRFileLoaderFPCc();
-extern "C" void detachResource__13JKRFileLoaderFPvP13JKRFileLoader();
-extern "C" void mount__12JKRFileCacheFPCcP7JKRHeapPCc();
-extern "C" void OSSetStringTable(void*);
-extern "C" void _savegpr_23();
-extern "C" void _restgpr_23();
-extern "C" extern void* __vt__20DynamicModuleControl[13];
-
-//
-// Declarations:
-//
-
 /* 80374640-80375DE8 -00001 17A8+00 1/1 0/0 0/0 .rodata          DynamicNameTable */
 static DynamicNameTableEntry const DynamicNameTable[757] = {
     {PROC_ALLDIE, "d_a_alldie"},
@@ -827,7 +776,7 @@ static DynamicNameTableEntry const DynamicNameTable[757] = {
 };
 
 /* 803F0F50-803F1BB0 01DC70 0C60+00 4/4 0/0 0/0 .bss             DMC */
-static DynamicModuleControl* DMC[0x318];
+static DynamicModuleControlBase* DMC[0x318];
 
 /* 80450CA8-80450CAC 0001A8 0004+00 1/1 0/0 0/0 .sbss            None */
 static bool DMC_initialized;
@@ -894,7 +843,7 @@ int cDyl_LinkASync(s16 i_ProfName) {
         return cPhs_ERROR_e;
     }
 
-    DynamicModuleControl* d = DMC[i_ProfName];
+    DynamicModuleControlBase* d = DMC[i_ProfName];
     if (d != NULL) {
         if (d->load_async()) {
             if (d->link()) {
@@ -1009,20 +958,8 @@ int cDylPhs::Unlink(request_of_phase_process_class* i_phase, s16 i_ProfName) {
 
 /* 800188DC-800188E4 01321C 0008+00 0/0 1/0 0/0 .text getModuleName__24DynamicModuleControlBaseCFv
  */
-// const char* DynamicModuleControlBase::getModuleName() const {
-extern "C" bool getModuleName__24DynamicModuleControlBaseCFv() {
-    return false;
-}
 
 /* 800188E4-80018944 013224 0060+00 0/0 1/0 0/0 .text            __dt__20DynamicModuleControlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm DynamicModuleControl::~DynamicModuleControl() {
-extern "C" asm void __dt__20DynamicModuleControlFv() {
-    nofralloc
-#include "asm/c/c_dylink/__dt__20DynamicModuleControlFv.s"
-}
-#pragma pop
 
 /* 80375DE8-80375DE8 002448 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+
