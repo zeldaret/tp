@@ -65,7 +65,7 @@ struct J3DTexMtxInfo {
     /* 80325794 */ void setEffectMtx(Mtx);
 
     /* 0x00 */ u8 mProjection;
-    /* 0x01 */ s8 mInfo;
+    /* 0x01 */ u8 mInfo;
     /* 0x04 */ Vec mCenter;
     /* 0x10 */ J3DTextureSRTInfo mSRT;
     /* 0x24 */ Mtx44 mEffectMtx;    
@@ -98,7 +98,7 @@ struct J3DFogInfo {
 struct J3DNBTScaleInfo {
     /* 8032587C */ void operator=(J3DNBTScaleInfo const&);
 
-    /* 0x0 */ u8 mbHasScale;
+    /* 0x0 */ bool mbHasScale;
     /* 0x4 */ Vec mScale;
 };  // Size: 0x10
 
