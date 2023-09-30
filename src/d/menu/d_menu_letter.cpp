@@ -5,13 +5,11 @@
 
 #include "d/menu/d_menu_letter.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
-#include "MSL_C/stdio.h"
-#include "MSL_C/string.h"
-#include "MSL_C/math.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
+#include "MSL_C/math.h"
+#include "MSL_C/stdio.h"
+#include "MSL_C/string.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_lib.h"
 #include "d/d_select_cursor.h"
@@ -19,12 +17,11 @@
 #include "d/meter/d_meter_HIO.h"
 #include "d/msg/d_msg_class.h"
 #include "d/msg/d_msg_string.h"
-#include "msg/scrn/d_msg_scrn_arrow.h"
+#include "dol2asm.h"
+#include "dolphin/types.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
-
-
-
+#include "msg/scrn/d_msg_scrn_arrow.h"
 
 extern "C" void __ct__14dMenu_Letter_cFP10JKRExpHeapP9STControlP10CSTControl();
 extern "C" void __dt__14dMenu_Letter_cFv();
@@ -277,10 +274,10 @@ dMenu_Letter_c::~dMenu_Letter_c() {
     delete mpSdwScreen;
     mpSdwScreen = NULL;
 
-    for (int i = 0; i < 2; i++) {    
+    for (int i = 0; i < 2; i++) {
         delete mpLetterScreen[i];
         mpLetterScreen[i] = NULL;
-        
+
         delete field_0x2ec[i];
         field_0x2ec[i] = NULL;
 
@@ -288,11 +285,11 @@ dMenu_Letter_c::~dMenu_Letter_c() {
             delete field_0x2f4[i];
             field_0x2f4[i] = NULL;
         }
-        
+
         delete mpTextParent[i];
         mpTextParent[i] = NULL;
     }
-    
+
     delete mpLineParent;
     mpLineParent = NULL;
 
@@ -324,7 +321,7 @@ dMenu_Letter_c::~dMenu_Letter_c() {
         if (mpButtonText[i] != NULL) {
             delete mpButtonText[i];
             mpButtonText[i] = NULL;
-        } 
+        }
     }
 
     if (mpMount != NULL) {
@@ -336,7 +333,7 @@ dMenu_Letter_c::~dMenu_Letter_c() {
     if (mpArchive != NULL) {
         mpArchive->unmount();
         mpArchive = NULL;
-    } 
+    }
     dComIfGp_getMsgArchive(0)->removeResourceAll();
 }
 
@@ -438,22 +435,19 @@ void dMenu_Letter_c::letter_init_calc() {
     m_letter_num = getLetterNum();
     for (int i = 0; i < 54; i++) {
         if (i < m_letter_num) {
-            field_0x3ac[i] = dComIfGs_getGetNumber(m_letter_num - i -1);
-        }
-        else {
+            field_0x3ac[i] = dComIfGs_getGetNumber(m_letter_num - i - 1);
+        } else {
             field_0x3ac[i] = 0xff;
         }
     }
     if (m_letter_num < 6) {
         field_0x373 = m_letter_num;
-    }
-    else {
+    } else {
         field_0x373 = 6;
     }
     if (m_letter_num % 6 == 0) {
         field_0x374 = m_letter_num / 6;
-    }
-    else {
+    } else {
         field_0x374 = m_letter_num / 6 + 1;
     }
 }
@@ -495,14 +489,17 @@ int dMenu_Letter_c::_open() {
         }
     }
 
-    s16 openWindowFrame = g_drawHIO.mLetterSelectScreen.mOpenFrame[dMeter_drawLetterHIO_c::WINDOW_FRAME];
-    s16 closeWindowFrame = g_drawHIO.mLetterSelectScreen.mCloseFrame[dMeter_drawLetterHIO_c::WINDOW_FRAME];
+    s16 openWindowFrame =
+        g_drawHIO.mLetterSelectScreen.mOpenFrame[dMeter_drawLetterHIO_c::WINDOW_FRAME];
+    s16 closeWindowFrame =
+        g_drawHIO.mLetterSelectScreen.mCloseFrame[dMeter_drawLetterHIO_c::WINDOW_FRAME];
     field_0x368 = g_drawHIO.mLetterSelectScreen.mOpenFrame[dMeter_drawLetterHIO_c::WINDOW_FRAME];
     if (field_0x368 >= openWindowFrame) {
         field_0x368 = closeWindowFrame;
         mStatus = 2;
         for (int i = 0; i < 3; i++) {
-            mpParent[i]->scale(g_drawHIO.mLetterSelectScreen.mWindowScale, g_drawHIO.mLetterSelectScreen.mWindowScale);
+            mpParent[i]->scale(g_drawHIO.mLetterSelectScreen.mWindowScale,
+                               g_drawHIO.mLetterSelectScreen.mWindowScale);
             mpParent[i]->setAlphaRate(1.0f);
         }
         setCursorPos();
@@ -510,11 +507,11 @@ int dMenu_Letter_c::_open() {
         mpDrawCursor->setScale(1.0f);
         mpDrawCursor->onPlayAnime(0);
         return 1;
-    }
-    else {
+    } else {
         f32 div = (f32)field_0x368 / (f32)openWindowFrame;
         for (int i = 0; i < 3; i++) {
-            mpParent[i]->scale(g_drawHIO.mLetterSelectScreen.mWindowScale * div, g_drawHIO.mLetterSelectScreen.mWindowScale * div);
+            mpParent[i]->scale(g_drawHIO.mLetterSelectScreen.mWindowScale * div,
+                               g_drawHIO.mLetterSelectScreen.mWindowScale * div);
             mpParent[i]->setAlphaRate(div);
         }
         setCursorPos();
@@ -538,7 +535,8 @@ asm int dMenu_Letter_c::_open() {
 #ifdef NONMATCHING
 // Matches with literals
 int dMenu_Letter_c::_close() {
-    s16 closeWindowFrame = g_drawHIO.mLetterSelectScreen.mCloseFrame[dMeter_drawLetterHIO_c::WINDOW_FRAME];
+    s16 closeWindowFrame =
+        g_drawHIO.mLetterSelectScreen.mCloseFrame[dMeter_drawLetterHIO_c::WINDOW_FRAME];
     field_0x368 = 0;
     if (field_0x368 <= 0) {
         field_0x368 = 0;
@@ -551,11 +549,11 @@ int dMenu_Letter_c::_close() {
         mpDrawCursor->setAlphaRate(0.0f);
         mpDrawCursor->setScale(0.0f);
         return 1;
-    }
-    else {
+    } else {
         f32 div = (f32)field_0x368 / (f32)closeWindowFrame;
         for (int i = 0; i < 3; i++) {
-            mpParent[i]->scale(g_drawHIO.mLetterSelectScreen.mWindowScale * div, g_drawHIO.mLetterSelectScreen.mWindowScale * div);
+            mpParent[i]->scale(g_drawHIO.mLetterSelectScreen.mWindowScale * div,
+                               g_drawHIO.mLetterSelectScreen.mWindowScale * div);
             mpParent[i]->setAlphaRate(div);
         }
         setCursorPos();
@@ -577,8 +575,8 @@ asm int dMenu_Letter_c::_close() {
 
 /* 801DDE18-801DDE54 1D8758 003C+00 1/0 0/0 0/0 .text            wait_init__14dMenu_Letter_cFv */
 void dMenu_Letter_c::wait_init() {
-    setAButtonString(0x40c);    
-    setBButtonString(0x3f9);    
+    setAButtonString(0x40c);
+    setBButtonString(0x3f9);
 }
 
 /* 801DDE54-801DE164 1D8794 0310+00 1/0 0/0 0/0 .text            wait_move__14dMenu_Letter_cFv */
@@ -592,44 +590,43 @@ void dMenu_Letter_c::wait_move() {
             mStatus = 3;
         } else if (mDoCPd_c::getTrigA(PAD_1)) {
             mProcess = 3;
-            Z2GetAudioMgr()->seStart(Z2SE_SY_LETTER_OPEN, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
-                                            -1.0f, 0);
+            Z2GetAudioMgr()->seStart(Z2SE_SY_LETTER_OPEN, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
             dMeter2Info_set2DVibration();
         } else if (mpStick->checkUpTrigger()) {
             if (mIndex) {
                 mIndex--;
-                Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
-                                                -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                         0);
             }
 
         } else if (mpStick->checkDownTrigger()) {
             if (mIndex < field_0x373 - 1) {
                 mIndex++;
-                Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
-                                            -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                         0);
             }
         } else if (mDoCPd_c::getTrigR(PAD_1)) {
             if (field_0x36f < field_0x374 - 1) {
                 field_0x372 = field_0x36f;
                 field_0x36f++;
                 mProcess = 2;
-                Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_SUB_NEXT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_SUB_NEXT, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                         -1.0f, 0);
             }
-        } 
-        else if (mDoCPd_c::getTrigL(PAD_1)) {
+        } else if (mDoCPd_c::getTrigL(PAD_1)) {
             if (field_0x36f) {
                 field_0x372 = field_0x36f;
                 field_0x36f--;
                 mProcess = 1;
-                Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_SUB_NEXT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_SUB_NEXT, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                         -1.0f, 0);
             }
         }
-        
+
         if (mProcess == 1 || mProcess == 2) {
             J2DTextBox* textBox = (J2DTextBox*)mpMenuBaseScreen->search('f_t_00');
             mpMenuBaseScreen->search('t_t00')->hide();
-            dComIfGp_setMessageCountNumber(field_0x374 + (field_0x36f +1) * 100);
+            dComIfGp_setMessageCountNumber(field_0x374 + (field_0x36f + 1) * 100);
             mpString->getString(0x4d6, textBox, NULL, NULL, NULL, 0);
         }
         if (oldIndex != mIndex) {
@@ -773,20 +770,22 @@ asm void dMenu_Letter_c::read_open_init() {
 #ifdef NONMATCHING
 // Matches with literals
 void dMenu_Letter_c::read_open_move() {
-    s16 openLetterFrame = g_drawHIO.mLetterSelectScreen.mOpenFrame[dMeter_drawLetterHIO_c::LETTER_FRAME];
+    s16 openLetterFrame =
+        g_drawHIO.mLetterSelectScreen.mOpenFrame[dMeter_drawLetterHIO_c::LETTER_FRAME];
     field_0x36a++;
     if (field_0x36a >= openLetterFrame) {
         mProcess = 4;
         for (int i = 0; i < 2; i++) {
-            mpTextParent[i]->scale(g_drawHIO.mLetterSelectScreen.mLetterWindowScale, g_drawHIO.mLetterSelectScreen.mLetterWindowScale);
+            mpTextParent[i]->scale(g_drawHIO.mLetterSelectScreen.mLetterWindowScale,
+                                   g_drawHIO.mLetterSelectScreen.mLetterWindowScale);
             mpTextParent[i]->setAlphaRate(1.0f);
         }
         mpBlackTex->setAlpha(g_drawHIO.mLetterSelectScreen.mWindowBGAlpha);
-    }
-    else {
+    } else {
         f32 div = (f32)field_0x36a / (f32)openLetterFrame;
         for (int i = 0; i < 2; i++) {
-            mpTextParent[i]->scale(g_drawHIO.mLetterSelectScreen.mLetterWindowScale * div, g_drawHIO.mLetterSelectScreen.mLetterWindowScale * div);
+            mpTextParent[i]->scale(g_drawHIO.mLetterSelectScreen.mLetterWindowScale * div,
+                                   g_drawHIO.mLetterSelectScreen.mLetterWindowScale * div);
             mpTextParent[i]->setAlphaRate(div);
         }
         mpBlackTex->setAlpha(g_drawHIO.mLetterSelectScreen.mWindowBGAlpha * div);
@@ -812,17 +811,15 @@ void dMenu_Letter_c::read_move_init() {
         if (field_0x3e3 == field_0x3e2) {
             setAButtonString(0);
             setBButtonString(0x3f9);
-        }
-        else {
-        setAButtonString(0x408);
-        setBButtonString(0x3f9);
+        } else {
+            setAButtonString(0x408);
+            setBButtonString(0x3f9);
         }
         CPaneMgr paneMgr;
         J2DPane* pane = mpLetterScreen[0]->search('set_ya_n');
         Vec pos = paneMgr.getGlobalVtxCenter(pane, false, 0);
         mpArrow->setPos(pos.x, pos.y);
-    }
-    else {
+    } else {
         setAButtonString(0);
         setBButtonString(0x3f9);
     }
@@ -840,18 +837,20 @@ void dMenu_Letter_c::read_move_move() {
             mProcess = 7;
         } else {
             mProcess = 5;
-            Z2GetAudioMgr()->seStart(Z2SE_SY_LETTER_NEXT_PAGE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            Z2GetAudioMgr()->seStart(Z2SE_SY_LETTER_NEXT_PAGE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                     0);
             dMeter2Info_set2DVibration();
             field_0x3e4 = 1;
         }
     } else if (mDoCPd_c::getTrigB(PAD_1) != 0) {
-        if (field_0x3e3 <= 1) {    
+        if (field_0x3e3 <= 1) {
             mProcess = 7;
             Z2GetAudioMgr()->seStart(Z2SE_SY_LETTER_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
             dMeter2Info_set2DVibration();
         } else {
             mProcess = 5;
-            Z2GetAudioMgr()->seStart(Z2SE_SY_LETTER_NEXT_PAGE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            Z2GetAudioMgr()->seStart(Z2SE_SY_LETTER_NEXT_PAGE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                     0);
             dMeter2Info_set2DVibration();
             field_0x3e4 = 0;
         }
@@ -891,25 +890,24 @@ void dMenu_Letter_c::read_next_fadeout_init() {
 #ifdef NONMATCHING
 // Matches with literals
 void dMenu_Letter_c::read_next_fadeout_move() {
-    s16 closeWindowFrame = g_drawHIO.mLetterSelectScreen.mCloseFrame[dMeter_drawLetterHIO_c::WINDOW_FRAME];
+    s16 closeWindowFrame =
+        g_drawHIO.mLetterSelectScreen.mCloseFrame[dMeter_drawLetterHIO_c::WINDOW_FRAME];
     field_0x36a--;
     if (field_0x36a <= 0) {
         mProcess = 6;
         for (int i = 0; i < 2; i++) {
             field_0x2ec[i]->setAlphaRate(0.0f);
-            
+
             if (field_0x2f4[i] != NULL) {
                 field_0x2f4[i]->setAlphaRate(0.0f);
             }
         }
         if (field_0x3e4 != 0) {
             field_0x3e3++;
-        }
-        else {
+        } else {
             field_0x3e3--;
         }
-    }
-    else {
+    } else {
         f32 div = (f32)field_0x36a / (f32)closeWindowFrame;
         for (int i = 0; i < 2; i++) {
             field_0x2ec[i]->setAlphaRate(div);
@@ -944,7 +942,8 @@ asm void dMenu_Letter_c::read_next_fadein_init() {
 #ifdef NONMATCHING
 // Matches with literals
 void dMenu_Letter_c::read_next_fadein_move() {
-    s16 openLetterFrame = g_drawHIO.mLetterSelectScreen.mOpenFrame[dMeter_drawLetterHIO_c::LETTER_FRAME];
+    s16 openLetterFrame =
+        g_drawHIO.mLetterSelectScreen.mOpenFrame[dMeter_drawLetterHIO_c::LETTER_FRAME];
     field_0x36a++;
     if (field_0x36a >= openLetterFrame) {
         mProcess = 4;
@@ -988,7 +987,8 @@ void dMenu_Letter_c::read_close_init() {
 #ifdef NONMATCHING
 // Matches with literals
 void dMenu_Letter_c::read_close_move() {
-    s16 closeLetterFrame = g_drawHIO.mLetterSelectScreen.mCloseFrame[dMeter_drawLetterHIO_c::LETTER_FRAME];
+    s16 closeLetterFrame =
+        g_drawHIO.mLetterSelectScreen.mCloseFrame[dMeter_drawLetterHIO_c::LETTER_FRAME];
     field_0x36a--;
     if (field_0x36a <= 0) {
         mProcess = 0;
@@ -996,11 +996,12 @@ void dMenu_Letter_c::read_close_move() {
             mpTextParent[i]->scale(0.0f, 0.0f);
             mpTextParent[i]->setAlphaRate(0.0f);
         }
-        mpBlackTex->setAlpha(g_drawHIO.mLetterSelectScreen.mWindowBGAlpha); 
+        mpBlackTex->setAlpha(g_drawHIO.mLetterSelectScreen.mWindowBGAlpha);
     } else {
         f32 div = (f32)field_0x36a / (f32)closeLetterFrame;
         for (int i = 0; i < 2; i++) {
-            mpTextParent[i]->scale(g_drawHIO.mLetterSelectScreen.mLetterWindowScale * div, g_drawHIO.mLetterSelectScreen.mLetterWindowScale * div);
+            mpTextParent[i]->scale(g_drawHIO.mLetterSelectScreen.mLetterWindowScale * div,
+                                   g_drawHIO.mLetterSelectScreen.mLetterWindowScale * div);
             mpTextParent[i]->setAlphaRate(div);
         }
         mpBlackTex->setAlpha(g_drawHIO.mLetterSelectScreen.mWindowBGAlpha * div);
@@ -1019,18 +1020,14 @@ asm void dMenu_Letter_c::read_close_move() {
 
 /* 803969C8-803969F8 023028 0030+00 2/2 0/0 0/0 .rodata          tag_sub0$4610 */
 static const u64 tag_sub0[6] = {
-    'menu_t0s', 'menu_t1s',
-    'menu_t2s', 'menu_t3s',
-    'menu_t4s', 'menu_t5s',
+    'menu_t0s', 'menu_t1s', 'menu_t2s', 'menu_t3s', 'menu_t4s', 'menu_t5s',
 };
 
 /* 803969F8-80396A28 023058 0030+00 0/1 0/0 0/0 .rodata          tag_sub1$4611 */
 #pragma push
 #pragma force_active on
 static const u64 tag_sub1[6] = {
-    'menu_t0', 'menu_t1',
-    'menu_t2', 'menu_t3',
-    'menu_t4', 'menu_t5',
+    'menu_t0', 'menu_t1', 'menu_t2', 'menu_t3', 'menu_t4', 'menu_t5',
 };
 #pragma pop
 
@@ -1038,9 +1035,7 @@ static const u64 tag_sub1[6] = {
 #pragma push
 #pragma force_active on
 static const u64 tag_name0[6] = {
-    'menu_t6s', 'menu_f7s',
-    'menu_f8s', 'menu_t9s',
-    'menu_10s', 'menu_11s',
+    'menu_t6s', 'menu_f7s', 'menu_f8s', 'menu_t9s', 'menu_10s', 'menu_11s',
 };
 #pragma pop
 
@@ -1048,9 +1043,7 @@ static const u64 tag_name0[6] = {
 #pragma push
 #pragma force_active on
 static const u64 tag_name1[6] = {
-    'menu_f6', 'menu_f7',
-    'menu_t8', 'menu_t9',
-    'menu_t10', 'menu_t11',
+    'menu_f6', 'menu_f7', 'menu_t8', 'menu_t9', 'menu_t10', 'menu_t11',
 };
 #pragma pop
 
@@ -1058,9 +1051,7 @@ static const u64 tag_name1[6] = {
 #pragma push
 #pragma force_active on
 static const u64 ftag_sub0[6] = {
-    'fenu_t0s', 'fenu_t1s',
-    'fenu_t2s', 'fenu_t3s',
-    'fenu_t4s', 'fenu_t5s',
+    'fenu_t0s', 'fenu_t1s', 'fenu_t2s', 'fenu_t3s', 'fenu_t4s', 'fenu_t5s',
 };
 #pragma pop
 
@@ -1068,9 +1059,7 @@ static const u64 ftag_sub0[6] = {
 #pragma push
 #pragma force_active on
 static const u64 ftag_sub1[6] = {
-    'fenu_t0', 'fenu_t1',
-    'fenu_t2', 'fenu_t3',
-    'fenu_t4', 'fenu_t5',
+    'fenu_t0', 'fenu_t1', 'fenu_t2', 'fenu_t3', 'fenu_t4', 'fenu_t5',
 };
 #pragma pop
 
@@ -1078,9 +1067,7 @@ static const u64 ftag_sub1[6] = {
 #pragma push
 #pragma force_active on
 static const u64 ftag_name0[6] = {
-    'fenu_t6s', 'fenu_t7s',
-    'fenu_f8s', 'fenu_t9s',
-    'fenu_10s', 'fenu_11s',
+    'fenu_t6s', 'fenu_t7s', 'fenu_f8s', 'fenu_t9s', 'fenu_10s', 'fenu_11s',
 };
 #pragma pop
 
@@ -1088,9 +1075,7 @@ static const u64 ftag_name0[6] = {
 #pragma push
 #pragma force_active on
 static const u64 ftag_name1[6] = {
-    'fenu_t6', 'fenu_t7',
-    'fenu_t8', 'fenu_t9',
-    'fenu_t10', 'fenu_t11',
+    'fenu_t6', 'fenu_t7', 'fenu_t8', 'fenu_t9', 'fenu_t10', 'fenu_t11',
 };
 #pragma pop
 
@@ -1098,9 +1083,7 @@ static const u64 ftag_name1[6] = {
 #pragma push
 #pragma force_active on
 static const u64 tag_letter[6] = {
-    'let_00_n', 'let_01_n',
-    'let_02_n', 'let_03_n',
-    'let_04_n', 'let_05_n',
+    'let_00_n', 'let_01_n', 'let_02_n', 'let_03_n', 'let_04_n', 'let_05_n',
 };
 #pragma pop
 
@@ -1108,9 +1091,7 @@ static const u64 tag_letter[6] = {
 #pragma push
 #pragma force_active on
 static const u64 tag_frame[6] = {
-    'flame_00', 'flame_01',
-    'flame_02', 'flame_03',
-    'flame_04', 'flame_05',
+    'flame_00', 'flame_01', 'flame_02', 'flame_03', 'flame_04', 'flame_05',
 };
 #pragma pop
 
@@ -1118,9 +1099,7 @@ static const u64 tag_frame[6] = {
 #pragma push
 #pragma force_active on
 static const u64 tag_menu0[6] = {
-    'fenu_t0', 'fenu_t1',
-    'fenu_t2', 'fenu_t3',
-    'fenu_t4', 'fenu_t5',
+    'fenu_t0', 'fenu_t1', 'fenu_t2', 'fenu_t3', 'fenu_t4', 'fenu_t5',
 };
 #pragma pop
 
@@ -1128,9 +1107,7 @@ static const u64 tag_menu0[6] = {
 #pragma push
 #pragma force_active on
 static const u64 tag_menu1[6] = {
-    'fenu_t6', 'fenu_t7',
-    'fenu_t8', 'fenu_t9',
-    'fenu_t10', 'fenu_t11',
+    'fenu_t6', 'fenu_t7', 'fenu_t8', 'fenu_t9', 'fenu_t10', 'fenu_t11',
 };
 #pragma pop
 
@@ -1138,9 +1115,7 @@ static const u64 tag_menu1[6] = {
 #pragma push
 #pragma force_active on
 static const u64 tag_midoku[6] = {
-    'midoku_0', 'midoku_1',
-    'midoku_2', 'midoku_3',
-    'midoku_4', 'midoku_5',
+    'midoku_0', 'midoku_1', 'midoku_2', 'midoku_3', 'midoku_4', 'midoku_5',
 };
 #pragma pop
 
@@ -1224,8 +1199,7 @@ static const u64 tag_pil[9] = {
 #pragma push
 #pragma force_active on
 static const u64 tag_pii[9] = {
-    'pi_00', 'pi_01', 'pi_02', 'pi_03', 'pi_04', 
-    'pi_05', 'pi_06', 'pi_07', 'pi_08',
+    'pi_00', 'pi_01', 'pi_02', 'pi_03', 'pi_04', 'pi_05', 'pi_06', 'pi_07', 'pi_08',
 };
 #pragma pop
 
@@ -1264,7 +1238,7 @@ void dMenu_Letter_c::screenSetShadow() {
     mpParent[2] = new CPaneMgr(mpSdwScreen, 'n_all', 2, NULL);
     mpParent[2]->setAlphaRate(0.0f);
 }
-#else 
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1277,7 +1251,8 @@ asm void dMenu_Letter_c::screenSetShadow() {
 
 /* ############################################################################################## */
 /* 80396D10-80396D70 023370 0060+00 1/1 0/0 0/0 .rodata          line_tag$4914 */
-SECTION_RODATA static u8 const line_tag4914[96] = { // in-function static
+SECTION_RODATA static u8 const line_tag4914[96] = {
+    // in-function static
     0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x30, 0x39, 0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x31, 0x30,
     0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x31, 0x31, 0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x31, 0x32,
     0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x31, 0x33, 0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x31, 0x34,
