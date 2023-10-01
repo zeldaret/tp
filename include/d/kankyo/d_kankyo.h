@@ -52,9 +52,6 @@ void dKy_shadow_mode_set(u8 mode);
 void dKy_shadow_mode_reset(u8 mode);
 
 struct LIGHT_INFLUENCE {
-    /* 800CFC7C */ ~LIGHT_INFLUENCE() {}
-    /* 8019F4F8 */ LIGHT_INFLUENCE() {}
-
     /* 0x00 */ cXyz mPosition;
     /* 0x0C */ GXColorS10 mColor;
     /* 0x14 */ f32 mPow;
@@ -74,9 +71,6 @@ struct WIND_INFLUENCE {
 };
 
 struct WIND_INF_ENTITY {
-    /* 8019F4B8 */ ~WIND_INF_ENTITY();
-    /* 8019F4F4 */ WIND_INF_ENTITY();
-
     /* 0x00 */ u8 mInUse;
     /* 0x04 */ f32 mMinRadius;
     /* 0x08 */ f32 mSpeed;
@@ -105,35 +99,29 @@ struct DALKMIST_INFLUENCE {
 };
 
 struct DUNGEON_LIGHT {
-    /* 8019F478 */ ~DUNGEON_LIGHT();
-    /* 8019F4B4 */ DUNGEON_LIGHT();
-
     /* 0x00 */ cXyz mPosition;
     /* 0x0C */ GXColor mColor;
     /* 0x10 */ f32 mRefDistance;
-    /* 0x14 */ u8 field_0x14[4];
+    /* 0x14 */ f32 field_0x14;
     /* 0x18 */ f32 mCutoffAngle;
     /* 0x1C */ f32 mAngleX;
     /* 0x20 */ f32 mAngleY;
     /* 0x24 */ u8 mAngleAttenuation;
     /* 0x25 */ u8 mDistAttenuation;
     /* 0x26 */ u8 field_0x26[6];
-    /* 0x2C */ LIGHT_INFLUENCE field_0x2c;
+    /* 0x2C */ LIGHT_INFLUENCE mInfluence;
 };  // Size: 0x4C
 
 struct BOSS_LIGHT {
-    /* 8019F438 */ ~BOSS_LIGHT();
-    /* 8019F474 */ BOSS_LIGHT();
-
     /* 0x00 */ cXyz mPos;
     /* 0x0C */ GXColor mColor;
-    /* 0x10 */ f32 field_0x10;
+    /* 0x10 */ f32 mRefDistance;
     /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1c;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ u8 field_0x24;
-    /* 0x25 */ u8 field_0x25;
+    /* 0x18 */ f32 mCutoffAngle;
+    /* 0x1C */ f32 mAngleX;
+    /* 0x20 */ f32 mAngleY;
+    /* 0x24 */ u8 mAngleAttenuation;
+    /* 0x25 */ u8 mDistAttenuation;
     /* 0x26 */ u8 field_0x26;
 };  // Size: 0x28
 
@@ -159,8 +147,6 @@ struct EF_THUNDER {
 };
 
 struct GB_MAPLE_COL_CHANGE {
-    /* 8019F400 */ GB_MAPLE_COL_CHANGE();
-
     /* 0x00 */ J3DLightObj field_0x0;
 };  // Size: 0x74
 
@@ -369,9 +355,9 @@ public:
     /* 0x0F24 */ int field_0xf24;
     /* 0x0F28 */ dKankyo_odour_Packet* mpOdourPacket;
     /* 0x0F2C */ u8 field_0xf2c;
-    /* 0x0F30 */ J3DModel* field_0xf30;
+    /* 0x0F30 */ J3DModel* mpUndwaterEfModel;
     /* 0x0F34 */ f32 field_0xf34;
-    /* 0x0F38 */ JKRSolidHeap* field_0xf38;
+    /* 0x0F38 */ JKRSolidHeap* mpUndwaterEfHeap;
     /* 0x0F3C */ u8 field_0xf3c;
     /* 0x0F3D */ u8 field_0xf3d;
     /* 0x0F40 */ f32 field_0xf40;
@@ -389,7 +375,7 @@ public:
     /* 0x1051 */ u8 field_0x1051;
     /* 0x1054 */ int field_0x1054;
     /* 0x1058 */ dKankyo_evil_Packet* mpEvilPacket;
-    /* 0x105C */ mDoExt_btkAnm* field_0x105c;
+    /* 0x105C */ mDoExt_btkAnm* mpUndwaterBtk;
     /* 0x1060 */ kytag08_class* field_0x1060;
     /* 0x1064 */ Vec field_0x1064;
     /* 0x1070 */ cXyz mSunPos2;
@@ -407,12 +393,8 @@ public:
     /* 0x10F0 */ GXColorS10 field_0x10f0;
     /* 0x10F8 */ GXColorS10 field_0x10f8;
     /* 0x1100 */ GXColorS10 mActorAmbience;
-    /* 0x1108 */ GXColorS10 mTerrainAmbienceBG0;
-    /* 0x1110 */ GXColorS10 mTerrainAmbienceBG1;
-    /* 0x1118 */ GXColorS10 mTerrainAmbienceBG2;
-    /* 0x1120 */ GXColorS10 mTerrainAmbienceBG3;
-    /* 0x1128 */ GXColorS10 field_0x1128;
-    /* 0x1130 */ u8 field_0x1130[0x28];
+    /* 0x1108 */ GXColorS10 mTerrainAmbienceBG[4];
+    /* 0x1128 */ GXColorS10 field_0x1128[6];
     /* 0x1158 */ GXColorS10 mFogColor;
     /* 0x1160 */ GXColorS10 mActorAddColAmb;
     /* 0x1168 */ u8 field_0x1168[8];
@@ -608,5 +590,7 @@ void dKy_ParticleColor_get_bg(cXyz* param_0, dKy_tevstr_c* param_1, _GXColor* pa
                               _GXColor* param_3, _GXColor* param_4, _GXColor* param_5,
                               f32 param_6);
 _GXColor dKy_light_influence_col(_GXColor* param_0, f32 param_1);
+static void dKy_WaterIn_Light_set();
+
 
 #endif /* D_KANKYO_D_KANKYO_H */

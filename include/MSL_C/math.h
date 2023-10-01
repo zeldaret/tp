@@ -9,6 +9,7 @@
 #define M_PI 3.14159265358979323846f
 
 #define DEG_TO_RAD(degrees) (degrees * (M_PI / 180.0f))
+#define RAD_TO_DEG(radians) (radians / (180.0f / M_PI))
 
 #ifdef __cplusplus
 extern "C" {

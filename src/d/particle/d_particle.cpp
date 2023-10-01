@@ -930,10 +930,10 @@ static void drawSecond_b_light8(JPABaseEmitter* param_0) {
         local_18.b = envLight->mActorAmbience.b;
         local_18.a = envLight->mActorAmbience.a;
     } else {
-        local_18.r = envLight->mTerrainAmbienceBG0.r;;
-        local_18.g = envLight->mTerrainAmbienceBG0.g;;
-        local_18.b = envLight->mTerrainAmbienceBG0.b;;
-        local_18.a = envLight->mTerrainAmbienceBG0.a;;
+        local_18.r = envLight->mTerrainAmbienceBG[0].r;
+        local_18.g = envLight->mTerrainAmbienceBG[0].g;
+        local_18.b = envLight->mTerrainAmbienceBG[0].b;
+        local_18.a = envLight->mTerrainAmbienceBG[0].a;
     }
     initiate_b_Lighting8(local_18);
     GXSetNumTevStages(2);

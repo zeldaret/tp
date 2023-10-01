@@ -54,16 +54,6 @@ struct daNpcT_ActorMngr_c {
     /* 80145708 */ void getActorP();
 };
 
-struct dPaPoF_c {
-    /* 800512E8 */ void setEffectFour(dKy_tevstr_c const*, cXyz const*, u32, u32, cXyz const*,
-                                      cXyz const*, cXyz const*, cXyz const*, cXyz const*,
-                                      csXyz const*, cXyz const*, s8, f32, f32);
-    /* 80051424 */ void clearFourAllID();
-
-    static u8 m_typeFourData[60];
-    static u8 m_emitterFourData[60 + 28 /* padding */];
-};
-
 struct JAISeq {
     /* 802A0A8C */ JAISeq(JAISeqMgr*, JAISoundStrategyMgr<JAISeq>*);
 };
