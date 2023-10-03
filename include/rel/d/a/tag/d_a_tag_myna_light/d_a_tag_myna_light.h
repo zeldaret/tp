@@ -17,7 +17,7 @@ public:
 
     /* 80D5D298 */ virtual ~daTag_MynaLight_c();
 
-    inline bool checkTurnOnOffChange() {
+    bool checkTurnOnOffChange() {
         bool var1 = mTurnOnFlag - field_0x578;
         return var1 & 0xFF;
     }

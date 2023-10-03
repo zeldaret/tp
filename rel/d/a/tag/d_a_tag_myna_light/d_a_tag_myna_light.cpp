@@ -59,9 +59,6 @@ int daTag_MynaLight_c::Execute() {
 
 /* 80D5CD94-80D5CE40 0002D4 00AC+00 1/1 0/0 0/0 .text            Draw__17daTag_MynaLight_cFv */
 int daTag_MynaLight_c::Draw() {
-    GXColor color;
-    static const u8 color_data[4] = {0xBC, 0x66, 0x42, 0xFF};
-
     if (mTurnOnFlag) {
         cLib_addCalc(&field_0x56c, 1.0f, 0.5f, 0.1f, 0.0001f);
     } else {
@@ -69,7 +66,7 @@ int daTag_MynaLight_c::Draw() {
     }
 
     if (field_0x56c >= 0.000001f) {
-        *(u32*)&color = *(u32*)color_data;
+        GXColor color = {0xBC, 0x66, 0x42, 0xFF};
         dKy_BossLight_set(&current.pos, &color, field_0x56c, 0);
     }
     return 1;
@@ -144,28 +141,28 @@ void daTag_MynaLight_c::initialize() {
 }
 
 /* 80D5D210-80D5D230 000750 0020+00 1/0 0/0 0/0 .text            daTag_MynaLight_Create__FPv */
-static void daTag_MynaLight_Create(daTag_MynaLight_c* i_this) {
-    i_this->create();
+static int daTag_MynaLight_Create(void* i_this) {
+    return static_cast<daTag_MynaLight_c*>(i_this)->create();
 }
 
 /* 80D5D230-80D5D250 000770 0020+00 1/0 0/0 0/0 .text            daTag_MynaLight_Delete__FPv */
-static void daTag_MynaLight_Delete(daTag_MynaLight_c* i_this) {
-    i_this->Delete();
+static int daTag_MynaLight_Delete(void* i_this) {
+    return static_cast<daTag_MynaLight_c*>(i_this)->Delete();
 }
 
 /* 80D5D250-80D5D270 000790 0020+00 1/0 0/0 0/0 .text            daTag_MynaLight_Execute__FPv */
-static void daTag_MynaLight_Execute(daTag_MynaLight_c* i_this) {
-    i_this->Execute();
+static int daTag_MynaLight_Execute(void* i_this) {
+    return static_cast<daTag_MynaLight_c*>(i_this)->Execute();
 }
 
 /* 80D5D270-80D5D290 0007B0 0020+00 1/0 0/0 0/0 .text            daTag_MynaLight_Draw__FPv */
-static void daTag_MynaLight_Draw(daTag_MynaLight_c* i_this) {
-    i_this->Draw();
+static int daTag_MynaLight_Draw(void* i_this) {
+    return static_cast<daTag_MynaLight_c*>(i_this)->Draw();
 }
 
 /* 80D5D290-80D5D298 0007D0 0008+00 1/0 0/0 0/0 .text            daTag_MynaLight_IsDelete__FPv */
-static bool daTag_MynaLight_IsDelete(daTag_MynaLight_c* i_this) {
-    return true;
+static int daTag_MynaLight_IsDelete(void* i_this) {
+    return 1;
 }
 
 /* 80D5D298-80D5D2F8 0007D8 0060+00 1/0 0/0 0/0 .text            __dt__17daTag_MynaLight_cFv */
