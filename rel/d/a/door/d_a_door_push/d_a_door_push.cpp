@@ -4,34 +4,27 @@
 //
 
 #include "rel/d/a/door/d_a_door_push/d_a_door_push.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/a/d_a_player.h"
+#include "d/bg/d_bg_s_movebg_actor.h"
+#include "d/bg/d_bg_w.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Types:
 //
 
-struct request_of_phase_process_class {};
-
-struct cXyz {
-    /* 80678060 */ ~cXyz();
-    /* 80678E38 */ cXyz();
-};
-
-struct mDoMtx_stack_c {
-    /* 8000CD64 */ void transS(cXyz const&);
-
-    static u8 now[48];
-};
-
-struct fopAc_ac_c {};
-
-struct daDoorPush_c {
+class daDoorPush_c : public dBgS_MoveBgActor {
+public:
     /* 80677E08 */ void initBaseMtx();
     /* 80677F38 */ void setBaseMtx();
-    /* 8067809C */ void Create();
-    /* 806781FC */ void CreateHeap();
-    /* 80678318 */ void create1st();
-    /* 8067839C */ void Execute(f32 (**)[3][4]);
+    /* 8067809C */ int Create();
+    /* 806781FC */ int CreateHeap();
+    /* 80678318 */ int create1st();
+    /* 8067839C */ int Execute(Mtx**);
     /* 8067840C */ void action();
     /* 80678488 */ void init_modeWait();
     /* 806784B4 */ void modeWait();
@@ -41,99 +34,41 @@ struct daDoorPush_c {
     /* 806787F8 */ void actionEvent();
     /* 80678818 */ void demoProc();
     /* 80678AEC */ void rotateInit();
-    /* 80678B10 */ void rotate();
+    /* 80678B10 */ int rotate();
     /* 80678BC0 */ void setGoal();
-    /* 80678C70 */ void Draw();
-    /* 80678D2C */ void Delete();
-};
+    /* 80678C70 */ int Draw();
+    /* 80678D2C */ int Delete();
 
-struct dKy_tevstr_c {};
+    void setAction(u8 i_action) { mAction = i_action; }
+    u32 getSceneNo() { return fopAcM_GetParamBit(this, 4, 6); }
 
-struct J3DModelData {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dEvent_manager_c {
-    /* 80047758 */ void getEventIdx(fopAc_ac_c*, char const*, u8);
-    /* 80047B1C */ void getMyStaffId(char const*, fopAc_ac_c*, int);
-    /* 80047D4C */ void getIsAddvance(int);
-    /* 80047E10 */ void getMyActIdx(int, char const* const*, int, int, int);
-    /* 800480EC */ void getMySubstanceP(int, char const*, int);
-    /* 8004817C */ void cutEnd(int);
-    /* 800483C4 */ void setGoal(cXyz*);
-};
-
-struct dBgW_Base {
-    struct PushPullLabel {};
-};
-
-struct dBgW {
-    /* 8007B970 */ dBgW();
-    /* 8007B9C0 */ void Move();
-};
-
-struct cBgS_PolyInfo {};
-
-struct csXyz {};
-
-struct dBgS_MoveBgActor {
-    /* 80078624 */ dBgS_MoveBgActor();
-    /* 800786B0 */ bool IsDelete();
-    /* 800786B8 */ bool ToFore();
-    /* 800786C0 */ bool ToBack();
-    /* 800787BC */ void MoveBGCreate(char const*, int,
-                                     void (*)(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*,
-                                              csXyz*, csXyz*),
-                                     u32, f32 (*)[3][4]);
-    /* 800788DC */ void MoveBGDelete();
-    /* 80078950 */ void MoveBGExecute();
-};
-
-struct dBgS {
-    /* 80074A08 */ void Regist(dBgW_Base*, fopAc_ac_c*);
-};
-
-struct cBgW_BgId {
-    /* 802681D4 */ void ChkUsed() const;
-};
-
-struct cBgD_t {};
-
-struct cBgW {
-    /* 80079F38 */ void Set(cBgD_t*, u32, f32 (*)[3][4]);
-};
-
-struct cBgS {
-    /* 80074250 */ void Release(dBgW_Base*);
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct J3DModel {};
+    /* 0x5A0 */ request_of_phase_process_class mPhaseReq;
+    /* 0x5A8 */ J3DModel* mpModel[2];
+    /* 0x5B0 */ dBgW* field_0x5b0;
+    /* 0x5B4 */ Mtx field_0x5b4;
+    /* 0x5E4 */ Mtx field_0x5e4;
+    /* 0x614 */ cXyz field_0x614[2];
+    /* 0x62C */ u8 field_0x62c[2];
+    /* 0x62E */ u8 field_0x62e[2];
+    /* 0x630 */ s16 field_0x630[2];
+    /* 0x634 */ s16 field_0x634[2];
+    /* 0x638 */ u8 field_0x638;
+    /* 0x639 */ u8 field_0x639;
+    /* 0x63A */ s16 field_0x63a[2];
+    /* 0x63E */ u8 field_0x63e[2];
+    /* 0x640 */ u8 mAction;
+    /* 0x641 */ u8 field_0x641;
+    /* 0x642 */ u8 field_0x642[0x644 - 0x642];
+    /* 0x644 */ s32 field_0x644;
+    /* 0x648 */ u8 field_0x648;
+    /* 0x649 */ u8 field_0x649;
+    /* 0x64A */ s16 field_0x64a;
+    /* 0x64C */ s16 field_0x64c;
+    /* 0x64E */ s16 field_0x64e;
+    /* 0x650 */ s16 field_0x650;
+    /* 0x652 */ u8 field_0x652[0x654 - 0x652];
+    /* 0x654 */ cXyz field_0x654;
+};  // Size: 0x660
 
 //
 // Forward References:
@@ -214,9 +149,7 @@ extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
+
 extern "C" void __construct_array();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_25();
@@ -225,12 +158,7 @@ extern "C" void _savegpr_28();
 extern "C" void _restgpr_25();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" extern u8 struct_80679070[4];
@@ -241,6 +169,19 @@ extern "C" extern u8 struct_80679070[4];
 
 /* 80677DB8-80677DE0 000078 0028+00 1/1 0/0 0/0 .text
  * PPCallBack__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel */
+#ifdef NONMATCHING
+// Later
+static void PPCallBack(fopAc_ac_c* i_this, fopAc_ac_c* param_1, s16 param_2,
+                           dBgW_Base::PushPullLabel param_3) {
+    
+    if (cLib_checkBit(param_3, 1) != 0) {
+        daDoorPush_c* door = (daDoorPush_c*)i_this;
+        door->field_0x62e[0]++;
+        door->field_0x62e[1] = 0;
+        door->field_0x62c[0] = 1;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -250,6 +191,7 @@ static asm void PPCallBack(fopAc_ac_c* param_0, fopAc_ac_c* param_1, s16 param_2
 #include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/PPCallBack__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel.s"
 }
 #pragma pop
+#endif
 
 /* 80677DE0-80677E08 0000A0 0028+00 1/1 0/0 0/0 .text
  * PPCallBack2__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel */
@@ -288,6 +230,25 @@ COMPILER_STRIP_GATE(0x80678ED4, &lit_3690);
 #pragma pop
 
 /* 80677E08-80677F38 0000C8 0130+00 1/1 0/0 0/0 .text            initBaseMtx__12daDoorPush_cFv */
+#ifdef NONMATCHING
+// Matches with literals
+void daDoorPush_c::initBaseMtx() {
+    mpModel[0]->setBaseScale(mScale);
+    mpModel[1]->setBaseScale(mScale);
+    field_0x614[0].set(-550.0f, 0.0f, 0.0f);
+    mDoMtx_stack_c::YrotS(shape_angle.y);
+    mDoMtx_stack_c::multVec(&field_0x614[0], &field_0x614[0]);
+    VECAdd(&field_0x614[0], &current.pos, &field_0x614[0]);
+    field_0x614[1].set(550.0f, 0.0f, 0.0f);
+    mDoMtx_stack_c::YrotS(shape_angle.y);
+    mDoMtx_stack_c::multVec(&field_0x614[1], &field_0x614[1]);
+    VECAdd(&field_0x614[1], &current.pos, &field_0x614[1]);
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
+    MTXCopy(mDoMtx_stack_c::get(), field_0x5e4);
+    setBaseMtx();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -296,6 +257,7 @@ asm void daDoorPush_c::initBaseMtx() {
 #include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/initBaseMtx__12daDoorPush_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80678ED8-80678EDC 00000C 0004+00 0/1 0/0 0/0 .rodata          @3716 */
@@ -313,6 +275,30 @@ COMPILER_STRIP_GATE(0x80678EDC, &lit_3717);
 #pragma pop
 
 /* 80677F38-80678060 0001F8 0128+00 2/2 0/0 0/0 .text            setBaseMtx__12daDoorPush_cFv */
+#ifdef NONMATCHING
+// Matches with literals
+void daDoorPush_c::setBaseMtx() {
+    mDoMtx_stack_c::transS(field_0x614[0]);
+    mDoMtx_stack_c::YrotM(field_0x630);
+    MTXCopy(mDoMtx_stack_c::get(), mpModel[0]->mBaseTransformMtx);
+    MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
+    mDoMtx_stack_c::transS(field_0x614[1]);
+    mDoMtx_stack_c::YrotM(field_0x632);
+    MTXCopy(mDoMtx_stack_c::get(), mpModel[1]->mBaseTransformMtx);
+    MTXCopy(mDoMtx_stack_c::get(), field_0x5b4);
+
+    if (field_0x639 != 2) {
+        cXyz mult(450.0f, 0.0f, 75.0f);
+
+        if (field_0x639 == 1) {
+            mult.z = -mult.z;
+        }
+        mDoMtx_stack_c::transS(field_0x614[field_0x639]);
+        mDoMtx_stack_c::YrotM(field_0x63a[field_0x639 - 5]);
+        mDoMtx_stack_c::multVec(&mult, &field_0x654);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -321,12 +307,14 @@ asm void daDoorPush_c::setBaseMtx() {
 #include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/setBaseMtx__12daDoorPush_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80678060-8067809C 000320 003C+00 1/1 0/0 0/0 .text            __dt__4cXyzFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// cXyz::~cXyz()
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/__dt__4cXyzFv.s"
 }
@@ -366,51 +354,117 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 SECTION_DATA static void* l_arcName = (void*)&d_a_door_push__stringBase0;
 
 /* 80678F74-80678F8C 000024 0018+00 1/1 0/0 0/0 .data            l_cull_box */
-SECTION_DATA static u8 l_cull_box[24] = {
-    0xC4, 0x16, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC4, 0x16, 0x00, 0x00,
-    0x44, 0x16, 0x00, 0x00, 0x44, 0x7A, 0x00, 0x00, 0x44, 0x16, 0x00, 0x00,
+static Vec l_cull_box[2] = {
+    {-600.0f, 0.0f, -600.0f},
+    {600.0f, 1000.0f, 600.0f},
 };
 
 /* 8067809C-806781FC 00035C 0160+00 1/0 0/0 0/0 .text            Create__12daDoorPush_cFv */
+#ifdef NONMATCHING
+// Matches with literals
+int daDoorPush_c::Create() {
+    if (field_0x5b0 != NULL && dComIfG_Bgsp().Regist(field_0x5b0, this)) {
+        return 0;
+    }
+    field_0x630[0] = shape_angle.y;
+    field_0x630[1] = shape_angle.y + 0x7fff;
+    field_0x634[0] = field_0x630[0];
+    field_0x634[1] = field_0x630[1];
+    field_0x639 = 2;
+    initBaseMtx();
+    fopAcM_SetMtx(this, field_0x5e4);
+    fopAcM_setCullSizeBox(this, l_cull_box[0].x, l_cull_box[0].y, l_cull_box[0].z, l_cull_box[1].x,
+                          l_cull_box[1].y, l_cull_box[1].z);
+    mpBgW->SetPushPullCallback((dBgW_Base::PushPull_CallBack)PPCallBack);
+    field_0x5b0->SetPushPullCallback((dBgW_Base::PushPull_CallBack)PPCallBack2);
+    mEvtInfo.setArchiveName(l_arcName);
+    for (int i = 0; i < 2; i++) {
+        field_0x63a[i] = i_dComIfGp_getEventManager().getEventIdx(this, "PUSH_DOOR_L", 0xff);
+        field_0x63e[i] = 0xff;
+    }
+    fopAcM_setCullSizeFar(this, 5.0f);
+    init_modeWait();
+    MoveBGExecute();
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daDoorPush_c::Create() {
+asm int daDoorPush_c::Create() {
     nofralloc
 #include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/Create__12daDoorPush_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 806781FC-80678318 0004BC 011C+00 1/0 0/0 0/0 .text            CreateHeap__12daDoorPush_cFv */
+#ifdef NONMATCHING
+// Matches with literals (l_arcName)
+int daDoorPush_c::CreateHeap() {
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes((char*)l_arcName, 5);
+    for (int i = 0; i < 2; i++) {
+        mpModel[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+        if (mpModel[i] == NULL) {
+            return 0;
+        }
+    }
+    field_0x5b0 = new dBgW();
+    if (field_0x5b0 == NULL ||
+        field_0x5b0->Set((cBgD_t*)dComIfG_getObjectRes((char*)l_arcName, 8), 1, &field_0x5b4)) {
+        field_0x5b0 = NULL;
+        return 0;
+    }
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daDoorPush_c::CreateHeap() {
+asm int daDoorPush_c::CreateHeap() {
     nofralloc
 #include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/CreateHeap__12daDoorPush_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80678318-8067839C 0005D8 0084+00 1/1 0/0 0/0 .text            create1st__12daDoorPush_cFv */
+#ifdef NONMATCHING
+// Matches with literals (l_arcName)
+int daDoorPush_c::create1st() {
+    int phase = dComIfG_resLoad(&mPhaseReq, l_arcName);
+    if (phase == cPhs_COMPLEATE_e) {
+        phase = MoveBGCreate(l_arcName, 8, NULL, 0x8600, NULL);
+        if (phase == cPhs_ERROR_e) {
+            return phase;
+        }
+    }
+    return phase;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daDoorPush_c::create1st() {
+asm int daDoorPush_c::create1st() {
     nofralloc
 #include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/create1st__12daDoorPush_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8067839C-8067840C 00065C 0070+00 1/0 0/0 0/0 .text            Execute__12daDoorPush_cFPPA3_A4_f
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daDoorPush_c::Execute(f32 (**param_0)[3][4]) {
-    nofralloc
-#include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/Execute__12daDoorPush_cFPPA3_A4_f.s"
+int daDoorPush_c::Execute(Mtx** i_mtx) {
+    *i_mtx = &mBgMtx;
+    action();
+    event_proc_call();
+    setBaseMtx();
+    field_0x5b0->Move();
+    for (int i = 0; i < 2; i++) {
+        field_0x62c[i] = 0;
+    }
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80678F8C-80678F98 -00001 000C+00 1/1 0/0 0/0 .data            @3792 */
@@ -426,6 +480,13 @@ SECTION_DATA static u8 l_func_3791[12] = {
 };
 
 /* 8067840C-80678488 0006CC 007C+00 1/1 0/0 0/0 .text            action__12daDoorPush_cFv */
+#ifdef NONMATCHING
+void daDoorPush_c::action() {
+    typedef void (daDoorPush_c::*actionFunc)();
+    static actionFunc l_func[] = {&daDoorPush_c::modeWait};
+    (this->*l_func[field_0x638])();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -434,16 +495,15 @@ asm void daDoorPush_c::action() {
 #include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/action__12daDoorPush_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80678488-806784B4 000748 002C+00 1/1 0/0 0/0 .text            init_modeWait__12daDoorPush_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daDoorPush_c::init_modeWait() {
-    nofralloc
-#include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/init_modeWait__12daDoorPush_cFv.s"
+void daDoorPush_c::init_modeWait() {
+    for (int i = 0; i < 2; i++) {
+        field_0x62e[i] = 0;
+    }
+    field_0x638 = 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80678EE4-80678EEC 000018 0004+04 1/1 0/0 0/0 .rodata          @3870 */
@@ -513,6 +573,17 @@ SECTION_DATA static u8 l_func_3877[36] = {
 
 /* 80678664-80678708 000924 00A4+00 1/1 0/0 0/0 .text            event_proc_call__12daDoorPush_cFv
  */
+#ifdef NONMATCHING
+void daDoorPush_c::event_proc_call() {
+    typedef void (daDoorPush_c::*actionFunc)();
+    static actionFunc l_func[] = {
+        &daDoorPush_c::actionOpenWait,
+        &daDoorPush_c::actionOrderEvent,
+        &daDoorPush_c::actionEvent,
+    };
+    (this->*l_func[field_0x640])();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -521,37 +592,35 @@ asm void daDoorPush_c::event_proc_call() {
 #include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/event_proc_call__12daDoorPush_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80678708-8067877C 0009C8 0074+00 1/0 0/0 0/0 .text            actionOpenWait__12daDoorPush_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daDoorPush_c::actionOpenWait() {
-    nofralloc
-#include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/actionOpenWait__12daDoorPush_cFv.s"
+void daDoorPush_c::actionOpenWait() {
+    if (field_0x639 != 2) {
+        setAction(1);
+        fopAcM_orderOtherEventId(this, field_0x63a[field_0x639], field_0x63e[field_0x639], 0xffff,
+                                 0, 1);
+        mEvtInfo.i_onCondition(2);
+    }
 }
-#pragma pop
 
 /* 8067877C-806787F8 000A3C 007C+00 1/0 0/0 0/0 .text            actionOrderEvent__12daDoorPush_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daDoorPush_c::actionOrderEvent() {
-    nofralloc
-#include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/actionOrderEvent__12daDoorPush_cFv.s"
+void daDoorPush_c::actionOrderEvent() {
+    if (mEvtInfo.i_checkCommandDemoAccrpt()) {
+        setAction(2);
+        demoProc();
+    } else {
+        fopAcM_orderOtherEventId(this, field_0x63a[field_0x639], field_0x63e[field_0x639], 0xffff,
+                                 0, 1);
+        mEvtInfo.i_onCondition(2);
+    }
 }
-#pragma pop
 
 /* 806787F8-80678818 000AB8 0020+00 1/0 0/0 0/0 .text            actionEvent__12daDoorPush_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daDoorPush_c::actionEvent() {
-    nofralloc
-#include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/actionEvent__12daDoorPush_cFv.s"
+void daDoorPush_c::actionEvent() {
+    demoProc();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80678F18-80678F18 00004C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -582,14 +651,11 @@ asm void daDoorPush_c::demoProc() {
 #pragma pop
 
 /* 80678AEC-80678B10 000DAC 0024+00 1/1 0/0 0/0 .text            rotateInit__12daDoorPush_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daDoorPush_c::rotateInit() {
-    nofralloc
-#include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/rotateInit__12daDoorPush_cFv.s"
+void daDoorPush_c::rotateInit() {
+    daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
+    player->i_onPushPullKeep();
+    field_0x649 = 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80678EF4-80678EF8 000028 0004+00 0/0 0/0 0/0 .rodata          @3985 */
@@ -621,14 +687,31 @@ SECTION_RODATA static u8 const lit_4012[8] = {
 COMPILER_STRIP_GATE(0x80678F04, &lit_4012);
 
 /* 80678B10-80678BC0 000DD0 00B0+00 1/1 0/0 0/0 .text            rotate__12daDoorPush_cFv */
+#ifdef NONMATCHING
+// Matches with literals
+int daDoorPush_c::rotate() {
+    field_0x649++;
+    field_0x630[field_0x639] = field_0x634[field_0x639];
+    s16 rotation = field_0x649 / 60.0f * 5461.0f;
+    if (field_0x639 == 1) {
+        rotation = -rotation;
+    }
+    field_0x630[field_0x639] += rotation;
+    if (field_0x649 == 60) {
+        return 1;
+    }
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daDoorPush_c::rotate() {
+asm int daDoorPush_c::rotate() {
     nofralloc
 #include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/rotate__12daDoorPush_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80678F0C-80678F10 000040 0004+00 0/1 0/0 0/0 .rodata          @4031 */
@@ -653,6 +736,21 @@ COMPILER_STRIP_GATE(0x80678F14, &lit_4033);
 #pragma pop
 
 /* 80678BC0-80678C70 000E80 00B0+00 1/1 0/0 0/0 .text            setGoal__12daDoorPush_cFv */
+#ifdef NONMATCHING
+// Matches with literals?
+void daDoorPush_c::setGoal() {
+    cXyz goal;
+    if (field_0x639 == 0) {
+        goal.set(300.0f, 0.0f, -400.0f);
+    } else {
+        goal.set(-300.0f, 0.0f, -400.0f);
+    }
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::YrotM(orig.angle.y);
+    mDoMtx_stack_c::multVec(&goal, &goal);
+    dComIfGp_evmng_setGoal(&goal);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -661,26 +759,42 @@ asm void daDoorPush_c::setGoal() {
 #include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/setGoal__12daDoorPush_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80678C70-80678D2C 000F30 00BC+00 1/0 0/0 0/0 .text            Draw__12daDoorPush_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daDoorPush_c::Draw() {
-    nofralloc
-#include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/Draw__12daDoorPush_cFv.s"
+int daDoorPush_c::Draw() {
+    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
+    for (int i = 0; i < 2; i++) {
+        g_env_light.setLightTevColorType_MAJI(mpModel[i], &mTevStr);
+        dComIfGd_setListBG();
+        mDoExt_modelUpdateDL(mpModel[i]);
+        dComIfGd_setList();
+    }
+    return 1;
 }
-#pragma pop
 
 /* 80678D2C-80678DAC 000FEC 0080+00 1/0 0/0 0/0 .text            Delete__12daDoorPush_cFv */
+#ifdef NONMATCHING
+// Matches with literals (l_arcName)
+int daDoorPush_c::Delete() {
+    if (field_0x5b0 != NULL && field_0x5b0->ChkUsed()) {
+        dComIfG_Bgsp().Release(field_0x5b0);
+    }
+    mpBgW->SetPushPullCallback(NULL);
+    field_0x5b0->SetPushPullCallback(NULL);
+    dComIfG_resDelete(&mPhaseReq, (char*)l_arcName);
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daDoorPush_c::Delete() {
+asm int daDoorPush_c::Delete() {
     nofralloc
 #include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/Delete__12daDoorPush_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80678FF8-80679018 -00001 0020+00 1/0 0/0 0/0 .data            daDoorPush_METHODS */
@@ -720,50 +834,44 @@ SECTION_DATA extern void* __vt__12daDoorPush_c[10] = {
 };
 
 /* 80678DAC-80678E38 00106C 008C+00 1/0 0/0 0/0 .text daDoorPush_create1st__FP12daDoorPush_c */
+#ifdef NONMATCHING
+// vtable
+static int daDoorPush_create1st(daDoorPush_c* i_this) {
+    fopAcM_SetupActor(i_this, daDoorPush_c);
+    return i_this->create1st();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daDoorPush_create1st(daDoorPush_c* param_0) {
+static asm void daDoorPush_create1st(daDoorPush_c* i_this) {
     nofralloc
 #include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/daDoorPush_create1st__FP12daDoorPush_c.s"
 }
 #pragma pop
+#endif
 
 /* 80678E38-80678E3C 0010F8 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+// cXyz::cXyz()
+extern "C" void __ct__4cXyzFv() {
     /* empty function */
 }
 
 /* 80678E3C-80678E5C 0010FC 0020+00 1/0 0/0 0/0 .text daDoorPush_MoveBGDelete__FP12daDoorPush_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daDoorPush_MoveBGDelete(daDoorPush_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/daDoorPush_MoveBGDelete__FP12daDoorPush_c.s"
+static int daDoorPush_MoveBGDelete(daDoorPush_c* i_this) {
+    return i_this->MoveBGDelete();
 }
-#pragma pop
 
 /* 80678E5C-80678E7C 00111C 0020+00 1/0 0/0 0/0 .text daDoorPush_MoveBGExecute__FP12daDoorPush_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daDoorPush_MoveBGExecute(daDoorPush_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/daDoorPush_MoveBGExecute__FP12daDoorPush_c.s"
+static int daDoorPush_MoveBGExecute(daDoorPush_c* i_this) {
+    return i_this->MoveBGExecute();
 }
-#pragma pop
 
 /* 80678E7C-80678EA8 00113C 002C+00 1/0 0/0 0/0 .text daDoorPush_MoveBGDraw__FP12daDoorPush_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daDoorPush_MoveBGDraw(daDoorPush_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/daDoorPush_MoveBGDraw__FP12daDoorPush_c.s"
+static int daDoorPush_MoveBGDraw(daDoorPush_c* i_this) {
+    return i_this->MoveBGDraw();
 }
-#pragma pop
 
 /* 80678EA8-80678EC4 001168 001C+00 1/1 0/0 0/0 .text            cLib_calcTimer<Uc>__FPUc */
 #pragma push
