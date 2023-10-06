@@ -22,7 +22,7 @@ void mDoMtx_lookAt(Mtx param_0, Vec const* param_1, Vec const* param_2, Vec cons
                    s16 param_4);
 void mDoMtx_concatProjView(f32 const (*param_0)[4], f32 const (*param_1)[4], f32 (*param_2)[4]);
 void mDoMtx_ZrotM(Mtx mtx, s16 z);
-void mDoMtx_inverseTranspose(f32 const (*param_0)[4], f32 (*param_1)[4]);
+bool mDoMtx_inverseTranspose(f32 const (*param_0)[4], f32 (*param_1)[4]);
 void mDoMtx_QuatConcat(Quaternion const* param_0, Quaternion const* param_1, Quaternion* param_2);
 
 inline void mDoMtx_multVecSR(Mtx m, const Vec* src, Vec* dst) {
@@ -111,15 +111,28 @@ inline void mDoMtx_inverse(const Mtx a, Mtx b) {
     MTXInverse(a, b);
 }
 
+inline void mDoMtx_scale(Mtx m, f32 x, f32 y, f32 z) {
+    MTXScale(m, x, y, z);
+}
+
+inline void mDoMtx_quat(Mtx m, const Quaternion* q) {
+    MTXQuat(m, q);
+}
+
 inline void cMtx_inverse(const Mtx a, Mtx b) {
     mDoMtx_inverse(a, b);
 }
 
 class mDoMtx_stack_c {
 public:
+    mDoMtx_stack_c() {
+        next = buffer;
+        end = buffer + 16;
+    }
+
     /* 8000CCC8 */ static bool push();
     /* 8000CD14 */ static bool pop();
-    
+
     /**
      * Translates the `now` Matrix by the given cXyz
      * @param xyz The xyz translation vector
@@ -177,7 +190,7 @@ public:
     /* 8000CF44 */ static void ZXYrotM(csXyz const& xyz);
 
     /* 8000CF7C */ static void quatM(Quaternion const*);
-    /* 8000D070 */ ~mDoMtx_stack_c();  // inline
+    /* 8000D070 */ ~mDoMtx_stack_c() {}  // inline
 
     /**
      * Returns the `now` Matrix
@@ -200,7 +213,7 @@ public:
      * @param z The z-axis scale value
      */
     static void scaleS(f32 x, f32 y, f32 z) { MTXScale(now, x, y, z); }
-    
+
     /**
      * Multiplies a given Vec `a` by the `now` Matrix and places the result into Vec `b`
      * @param a The source Vec
@@ -228,7 +241,7 @@ public:
     }
 
     static void XYZrotS(s16 x, s16 y, s16 z) { mDoMtx_XYZrotS(now, x, y, z); }
-    
+
     /**
      * Rotates the `now` matrix by the given X, Y, and Z values in the order Z, Y, X
      * @param x The x-axis rotation value
@@ -236,9 +249,9 @@ public:
      * @param z The z-axis rotation value
      */
     static void XYZrotM(s16 x, s16 y, s16 z) { mDoMtx_XYZrotM(now, x, y, z); }
-    
+
     static void ZXYrotS(s16 x, s16 y, s16 z) { mDoMtx_ZXYrotS(now, x, y, z); }
-    
+
     /**
      * Rotates the `now` matrix by the given X, Y, and Z values in the order X, Y, Z
      * @param x The x-axis rotation value
@@ -246,7 +259,7 @@ public:
      * @param z The z-axis rotation value
      */
     static void ZXYrotM(s16 x, s16 y, s16 z) { mDoMtx_ZXYrotM(now, x, y, z); }
-    
+
     /**
      * Rotates a new matrix on the Y-axis then concatenates it with the `now` matrix
      * @param y The rotation value
@@ -309,15 +322,18 @@ inline MtxP mDoMtx_getIdentity() {
 
 class mDoMtx_quatStack_c {
 public:
-    ~mDoMtx_quatStack_c();  // inline
+    mDoMtx_quatStack_c() {
+        field_0x0 = &field_0x4;
+        field_0x114 = field_0x14;
+        field_0x118 = &field_0x114;
+    }
+    ~mDoMtx_quatStack_c() {}  // inline
 
-    /* 0x000 */ mDoMtx_quatStack_c* field_0x0;
-    /* 0x004 */ mDoMtx_quatStack_c* field_0x4;
-    /* 0x008 */ u8 field_0x8[0xC];
-    /* 0x014 */ mDoMtx_quatStack_c* field_0x14;
-    /* 0x018 */ u8 field_0x18[0xFC];
-    /* 0x114 */ mDoMtx_quatStack_c* field_0x114;
-    /* 0x118 */ mDoMtx_quatStack_c* field_0x118;
+    /* 0x000 */ Quaternion* field_0x0;
+    /* 0x004 */ Quaternion field_0x4;
+    /* 0x014 */ Quaternion field_0x14[16];
+    /* 0x114 */ Quaternion* field_0x114;
+    /* 0x118 */ Quaternion** field_0x118;
 };  // Size: 0x11C
 
 #endif /* M_DO_M_DO_MTX_H */
