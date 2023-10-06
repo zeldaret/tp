@@ -497,8 +497,8 @@ void JUTCacheFont::prepend(JUTCacheFont::TGlyphCacheInfo* cacheInfo) {
 }
 
 /* 802DDFD8-802DDFE0 2D8918 0008+00 1/0 1/0 0/0 .text            getResFont__10JUTResFontCFv */
-ResFONT* JUTResFont::getResFont() const {
-    return (ResFONT*)mResFont;
+const ResFONT* JUTResFont::getResFont() const {
+    return mResFont;
 }
 
 /* 802DDFE0-802DDFEC 2D8920 000C+00 1/0 1/0 0/0 .text            getFontType__10JUTResFontCFv */

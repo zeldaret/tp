@@ -80,7 +80,7 @@ public:
     /* 0x30 */ virtual int getCellWidth() const;
     /* 0x34 */ virtual s32 getCellHeight() const;
     /* 0x38 */ virtual int getFontType() const = 0;
-    /* 0x3C */ virtual ResFONT* getResFont() const = 0;
+    /* 0x3C */ virtual const ResFONT* getResFont() const = 0;
     /* 0x40 */ virtual bool isLeadByte(int a1) const = 0;
 
     static bool isLeadByte_1Byte(int b);

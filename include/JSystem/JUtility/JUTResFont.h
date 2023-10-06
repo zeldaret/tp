@@ -29,7 +29,7 @@ public:
     /* 802DFD0C */ virtual int getCellWidth() const;
     /* 802DFD58 */ virtual s32 getCellHeight() const;
     /* 802DDFE0 */ virtual int getFontType() const;
-    /* 802DDFD8 */ virtual ResFONT* getResFont() const;
+    /* 802DDFD8 */ virtual const ResFONT* getResFont() const;
     /* 802DFDA4 */ virtual bool isLeadByte(int) const;
     /* 802DFF60 */ virtual void loadImage(int, _GXTexMapID);
     /* 802DF344 */ virtual void setBlock();

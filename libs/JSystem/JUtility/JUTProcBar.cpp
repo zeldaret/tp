@@ -309,14 +309,3 @@ void JUTProcBar::drawHeapBar() {
         }
     }
 }
-
-/* 802E7340-802E7354 2E1C80 0014+00 1/1 0/0 0/0 .text            __ct__Q210JUTProcBar5CTimeFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm JUTProcBar::CTime::CTime() {
-extern "C" asm void __ct__Q210JUTProcBar5CTimeFv() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTProcBar/__ct__Q210JUTProcBar5CTimeFv.s"
-}
-#pragma pop

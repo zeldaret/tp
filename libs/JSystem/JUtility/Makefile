@@ -47,6 +47,7 @@ LIBJUTILITY_A_O_FILES := \
 	$(BUILD_DIR)/libs/JSystem/JUtility/JUTFontData_Ascfont_fix12.o \
 
 LIBJUTILITY_A_CFLAGS := \
+	-sym on \
 
 LIBJUTILITY_A_LDFLAGS := \
 	-nodefaults \
