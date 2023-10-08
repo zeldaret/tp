@@ -54,14 +54,35 @@ struct J3DMtxCalcNoAnm__template0 {
     /* 80015084 */ void func_80015084(void* _this);
 };
 
-struct J3DMtxCalcAnmBase {
+struct J3DMtxCalcAnimationAdaptorBase {
+    J3DMtxCalcAnimationAdaptorBase() {}
+    void change() {}
+};
+
+template <typename A0>
+struct J3DMtxCalcAnimationAdaptorDefault : public J3DMtxCalcAnimationAdaptorBase {
+    J3DMtxCalcAnimationAdaptorDefault(J3DAnmTransform* param_0) {}
+};
+
+struct J3DMtxCalcAnmBase /* : public J3DMtxCalc */ {
+    J3DMtxCalcAnmBase(J3DAnmTransform* param_0) { mAnmTransform = param_0; }
     /* 8000D8EC */ ~J3DMtxCalcAnmBase();
-    /* 80014FB8 */ void getAnmTransform();
+    /* 80014FB8 */ J3DAnmTransform* getAnmTransform();
     /* 80014FC0 */ void setAnmTransform(J3DAnmTransform*);
+
+    J3DAnmTransform* mAnmTransform;
 };
 
 template <typename A0, typename B0>
-struct J3DMtxCalcAnimation {};
+struct J3DMtxCalcAnimation : public J3DMtxCalcAnmBase {
+    J3DMtxCalcAnimation(J3DAnmTransform* param_0) : J3DMtxCalcAnmBase(param_0), field_0x8(param_0) {}
+    ~J3DMtxCalcAnimation() {}
+    void setAnmTransform(J3DAnmTransform*) {}
+    void init(const Vec&, const Mtx&) {}
+    void calc() {}
+
+    A0 field_0x8;
+};
 /* J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>,
  * J3DMtxCalcJ3DSysInitMaya> */
 struct J3DMtxCalcAnimation__template0 {
@@ -440,14 +461,62 @@ SECTION_SDATA2 static f32 lit_3847 = 1.0f;
 
 /* 8000D0AC-8000D320 0079EC 0274+00 5/5 0/0 0/0 .text
  * mDoExt_setJ3DData__FPA4_fPC16J3DTransformInfoUs              */
+// matches with literals
+#ifdef NONMATCHING
+static void mDoExt_setJ3DData(Mtx mtx, const J3DTransformInfo* transformInfo, u16 param_2) {
+    bool local_28;
+    if (cM3d_IsZero(transformInfo->mScale.x - 1.0f) && cM3d_IsZero(transformInfo->mScale.y - 1.0f) && cM3d_IsZero(transformInfo->mScale.z - 1.0f)) {
+        j3dSys.getModel()->setScaleFlag(param_2, 1);
+        local_28 = true;
+    } else {
+        j3dSys.getModel()->setScaleFlag(param_2, 0);
+        local_28 = false;
+    }
+    mtx[0][3] = transformInfo->mTranslate.x;
+    mtx[1][3] = transformInfo->mTranslate.y;
+    mtx[2][3] = transformInfo->mTranslate.z;
+
+    if (!local_28) {
+        mtx[0][0] *= transformInfo->mScale.x;
+        mtx[0][1] *= transformInfo->mScale.y;
+        mtx[0][2] *= transformInfo->mScale.z;
+        mtx[1][0] *= transformInfo->mScale.x;
+        mtx[1][1] *= transformInfo->mScale.y;
+        mtx[1][2] *= transformInfo->mScale.z;
+        mtx[2][0] *= transformInfo->mScale.x;
+        mtx[2][1] *= transformInfo->mScale.y;
+        mtx[2][2] *= transformInfo->mScale.z;
+    }
+    if (j3dSys.getModel()->getModelData()->getJointNodePointer(param_2)->getScaleCompensate() == 1) {
+        f32 x = 1.0f / J3DSys::mParentS.x;
+        f32 y = 1.0f / J3DSys::mParentS.y;
+        f32 z = 1.0f / J3DSys::mParentS.z;
+        mtx[0][0] *= x;
+        mtx[0][1] *= x;
+        mtx[0][2] *= x;
+        mtx[1][0] *= y;
+        mtx[1][1] *= y;
+        mtx[1][2] *= y;
+        mtx[2][0] *= z;
+        mtx[2][1] *= z;
+        mtx[2][2] *= z;
+    }
+    mDoMtx_concat(J3DSys::mCurrentMtx, mtx, J3DSys::mCurrentMtx);
+    j3dSys.getModel()->setAnmMtx(param_2, J3DSys::mCurrentMtx);
+    J3DSys::mParentS.x = transformInfo->mScale.x;
+    J3DSys::mParentS.y = transformInfo->mScale.y;
+    J3DSys::mParentS.z = transformInfo->mScale.z;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void mDoExt_setJ3DData(f32 (*param_0)[4], J3DTransformInfo const* param_1, u16 param_2) {
+static asm void mDoExt_setJ3DData(Mtx mtx, const J3DTransformInfo* transformInfo, u16 param_2) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/mDoExt_setJ3DData__FPA4_fPC16J3DTransformInfoUs.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80451B1C-80451B20 00011C 0004+00 22/22 0/0 0/0 .sdata2          @3876 */
@@ -1370,6 +1439,27 @@ SECTION_DATA extern void* __vt__10J3DMtxCalc[11 + 1 /* padding */] = {
 
 /* 8000D7DC-8000D8E4 00811C 0108+00 0/0 18/18 85/85 .text
  * init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb               */
+// J3DMtxCalcAnimation inheritance
+#ifdef NOTIMPLEMENTED
+int mDoExt_bckAnm::init(J3DAnmTransform* i_bck, int i_play, int i_attr, f32 i_rate,
+                        s16 i_startF, s16 i_endF, bool i_modify) {
+    JUT_ASSERT(614, (i_modify || isCurrentSolidHeap()) && i_bck != 0);
+    mAnm = i_bck;
+    if (!i_modify) {
+        mpMtxCalc = new J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>(mAnm);
+        if (!mpMtxCalc) {
+            return 0;
+        }
+    } else {
+        mpMtxCalc->setAnmTransform(mAnm);
+    }
+    if (i_play) {
+        i_attr = i_attr < 0 ? mAnm->getAttribute() : i_attr;
+        return initPlay(mAnm->getFrameMax(), i_attr, i_rate, i_startF, i_endF);
+    }
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1379,6 +1469,7 @@ asm int mDoExt_bckAnm::init(J3DAnmTransform* i_bck, int i_play, int i_attr, f32 
 #include "asm/m_Do/m_Do_ext/init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb.s"
 }
 #pragma pop
+#endif
 
 /* 8000D8E4-8000D8EC -00001 0008+00 0/0 0/0 0/0 .text
  * setAnmTransform__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FP15J3DAnmTransform
@@ -2034,16 +2125,7 @@ extern "C" asm void __dt__9J3DPacketFv() {
 
 /* 8000E6C8-8000E7C0 009008 00F8+00 1/1 0/0 0/0 .text entryJoint__21mDoExt_invisibleModelFP4cXyz
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_invisibleModel::entryJoint(cXyz* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/entryJoint__21mDoExt_invisibleModelFP4cXyz.s"
-}
-#pragma pop
-
-/* void mDoExt_invisibleModel::entryJoint(cXyz* param_0) {
+void mDoExt_invisibleModel::entryJoint(cXyz* param_0) {
     J3DModelData* modelData = mModel->getModelData();
     mDoExt_invJntPacket* packet = mpPackets;
 
@@ -2061,32 +2143,39 @@ asm void mDoExt_invisibleModel::entryJoint(cXyz* param_0) {
             packet++;
         }
     }
-} */
+}
 
 /* 8000E7C0-8000E834 009100 0074+00 0/0 0/0 17/17 .text entryDL__21mDoExt_invisibleModelFP4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_invisibleModel::entryDL(cXyz* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/entryDL__21mDoExt_invisibleModelFP4cXyz.s"
+void mDoExt_invisibleModel::entryDL(cXyz* param_0) {
+    J3DDrawBuffer* buffer0 = j3dSys.getDrawBuffer(0);
+    J3DDrawBuffer* buffer1 = j3dSys.getDrawBuffer(1);
+    dComIfGd_setListZxlu();
+    mDoExt_modelEntryDL(mModel);
+    entryJoint(param_0);
+    j3dSys.setDrawBuffer(buffer0, 0);
+    j3dSys.setDrawBuffer(buffer1, 1);
 }
-#pragma pop
 
 /* 8000E834-8000EA80 009174 024C+00 0/0 0/0 7/7 .text
  * mDoExt_setupShareTexture__FP12J3DModelDataP12J3DModelData    */
 #ifdef NONMATCHING
 void mDoExt_setupShareTexture(J3DModelData* i_modelData, J3DModelData* i_shareModelData) {
+    JUT_ASSERT(1547, i_modelData != 0 && i_shareModelData != 0);
     J3DTexture* texture = i_modelData->getTexture();
+    JUT_ASSERT(1549, texture != 0);
     JUTNameTab* textureName = i_modelData->getTextureName();
+    JUT_ASSERT(1551, textureName != 0);
     J3DTexture* shareTexture = i_shareModelData->getTexture();
+    JUT_ASSERT(1553, shareTexture != 0);
     JUTNameTab* shareTextureName = i_shareModelData->getTextureName();
+    JUT_ASSERT(1555, shareTextureName != 0)
 
     bool bvar = false;
     for (u16 i = 0; i < texture->getNum(); i++) {
         if (texture->getResTIMG(i)->imageOffset == 0) {
             for (u16 j = 0; j < shareTexture->getNum(); j++) {
                 if (!strcmp(textureName->getName(i), shareTextureName->getName(j))) {
+                    JUT_ASSERT(1564, shareTexture->getResTIMG(j)->imageOffset != 0);
                     texture->setResTIMG(i, *shareTexture->getResTIMG(j));
                     bvar = true;
                 }
@@ -2100,6 +2189,7 @@ void mDoExt_setupShareTexture(J3DModelData* i_modelData, J3DModelData* i_shareMo
         for (u16 i = 0; i < i_modelData->getMaterialNum(); i++) {
             J3DMaterial* mat = i_modelData->getMaterialNodePointer(i);
             J3DTevBlock* tevBlock = mat->getTevBlock();
+            JUT_ASSERT(1577, tevBlock != 0);
             J3DDisplayListObj* dlObj = mat->getSharedDisplayListObj();
 
             BOOL ret = OSDisableInterrupts();
@@ -2463,6 +2553,47 @@ int mDoExt_resIDToIndex(JKRArchive* p_archive, u16 id) {
 
 /* 8000F26C-8000F4B0 009BAC 0244+00 1/0 0/0 0/0 .text            calc__25mDoExt_MtxCalcAnmBlendTblFv
  */
+// matches with literals
+#ifdef NONMATCHING
+void mDoExt_MtxCalcAnmBlendTbl::calc() {
+    u16 jntNo = getJoint()->getJntNo();
+    j3dSys.setCurrentMtxCalc(this);
+    if (mNum == 1) {
+        J3DTransformInfo info1;
+        mAnmRatio->getAnmTransform()->getTransform(jntNo, &info1);
+        J3DMtxCalcCalcTransformMaya::calcTransform(info1);
+        return;
+    }
+    J3DTransformInfo info2;
+    Quaternion quat1;
+    Quaternion quat2;
+    Quaternion quat3;
+    mAnmRatio->getAnmTransform()->getTransform(jntNo, &info2);
+    JMAEulerToQuat(info2.mRotation.x, info2.mRotation.y, info2.mRotation.z, &quat1);
+    quat3 = quat1;
+    for (int i = 1; i < mNum; i++) {
+        J3DAnmTransform* transform = mAnmRatio[i].getAnmTransform();
+        if (transform) {
+            J3DTransformInfo info3;
+            transform->getTransform(jntNo, &info3);
+            f32 ratio = mAnmRatio[i].getRatio();
+            f32 f30 = 1.0f - ratio;
+            JMAEulerToQuat(info3.mRotation.x, info3.mRotation.y, info3.mRotation.z, &quat2);
+            JMAQuatLerp(&quat1, &quat2, ratio, &quat3);
+            quat1 = quat3;
+            info2.mTranslate.x = info2.mTranslate.x * f30 + info3.mTranslate.x * ratio;
+            info2.mTranslate.y = info2.mTranslate.y * f30 + info3.mTranslate.y * ratio;
+            info2.mTranslate.z = info2.mTranslate.z * f30 + info3.mTranslate.z * ratio;
+            info2.mScale.x = info2.mScale.x * f30 + info3.mScale.x * ratio;
+            info2.mScale.y = info2.mScale.y * f30 + info3.mScale.y * ratio;
+            info2.mScale.z = info2.mScale.z * f30 + info3.mScale.z * ratio;
+        }
+    }
+    Mtx mtx;
+    MTXQuat(mtx, &quat3);
+    mDoExt_setJ3DData(mtx, &info2, jntNo);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2471,8 +2602,68 @@ asm void mDoExt_MtxCalcAnmBlendTbl::calc() {
 #include "asm/m_Do/m_Do_ext/calc__25mDoExt_MtxCalcAnmBlendTblFv.s"
 }
 #pragma pop
+#endif
 
 /* 8000F4B0-8000F848 009DF0 0398+00 1/0 0/0 0/0 .text calc__28mDoExt_MtxCalcAnmBlendTblOldFv */
+// matches with literals
+#ifdef NONMATCHING
+void mDoExt_MtxCalcAnmBlendTblOld::calc() {
+    u16 jntNo = getJoint()->getJntNo();
+    j3dSys.setCurrentMtxCalc(this);
+    J3DModelData* modelData = j3dSys.getModel()->getModelData();
+    J3DTransformInfo info1;
+    Quaternion quat1;
+    Quaternion quat2;
+    Quaternion quat3;
+    mAnmRatio->getAnmTransform()->getTransform(jntNo, &info1);
+    JMAEulerToQuat(info1.mRotation.x, info1.mRotation.y, info1.mRotation.z, &quat1);
+    quat3 = quat1;
+    for (int i = 1; i < mNum; i++) {
+        if (mAnmRatio[i].getAnmTransform()) {
+            J3DAnmTransform* transform = mAnmRatio[i].getAnmTransform();
+            J3DTransformInfo info2;
+            transform->getTransform(jntNo, &info2);
+            f32 ratio = mAnmRatio[i].getRatio();
+            f32 f30 = 1.0f - ratio;
+            JMAEulerToQuat(info2.mRotation.x, info2.mRotation.y, info2.mRotation.z, &quat2);
+            JMAQuatLerp(&quat1, &quat2, ratio, &quat3);
+            quat1 = quat3;
+            info1.mTranslate.x = info1.mTranslate.x * f30 + info2.mTranslate.x * ratio;
+            info1.mTranslate.y = info1.mTranslate.y * f30 + info2.mTranslate.y * ratio;
+            info1.mTranslate.z = info1.mTranslate.z * f30 + info2.mTranslate.z * ratio;
+            info1.mScale.x = info1.mScale.x * f30 + info2.mScale.x * ratio;
+            info1.mScale.y = info1.mScale.y * f30 + info2.mScale.y * ratio;
+            info1.mScale.z = info1.mScale.z * f30 + info2.mScale.z * ratio;
+        }
+    }
+
+    J3DTransformInfo* oldTransInfo = mOldFrame->getOldFrameTransInfo(jntNo);
+    Quaternion* oldQuat = mOldFrame->getOldFrameQuaternion(jntNo);
+    if (mOldFrame->getOldFrameFlg()) {
+        if (mOldFrame->getOldFrameRate() > 0.0f && mOldFrame->getOldFrameStartJoint() <= jntNo && mOldFrame->getOldFrameEndJoint() > jntNo) {
+            f32 oldFrameRate = mOldFrame->getOldFrameRate();
+            f32 f31 = 1.0f - oldFrameRate;
+            JMAQuatLerp(oldQuat, &quat1, f31, &quat3);
+            info1.mTranslate.x = info1.mTranslate.x * f31 + oldTransInfo->mTranslate.x * oldFrameRate;
+            info1.mTranslate.y = info1.mTranslate.y * f31 + oldTransInfo->mTranslate.y * oldFrameRate;
+            info1.mTranslate.z = info1.mTranslate.z * f31 + oldTransInfo->mTranslate.z * oldFrameRate;
+            info1.mScale.x = info1.mScale.x * f31 + oldTransInfo->mScale.x * oldFrameRate;
+            info1.mScale.y = info1.mScale.y * f31 + oldTransInfo->mScale.y * oldFrameRate;
+            info1.mScale.z = info1.mScale.z * f31 + oldTransInfo->mScale.z * oldFrameRate;
+        }
+    } else if (jntNo == modelData->getJointNum() - 1) {
+        mOldFrame->onOldFrameFlg();
+    }
+    Mtx mtx;
+    mDoMtx_quat(mtx, &quat3);
+    mDoExt_setJ3DData(mtx, &info1, jntNo);
+    *oldQuat = quat3;
+    *oldTransInfo = info1;
+    if (jntNo == modelData->getJointNum() - 1) {
+        mOldFrame->decOldFrameMorfCounter();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2481,6 +2672,7 @@ asm void mDoExt_MtxCalcAnmBlendTblOld::calc() {
 #include "asm/m_Do/m_Do_ext/calc__28mDoExt_MtxCalcAnmBlendTblOldFv.s"
 }
 #pragma pop
+#endif
 
 /* 8000F848-8000F8CC 00A188 0084+00 0/0 26/26 8/8 .text
  * initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs             */
@@ -2614,17 +2806,15 @@ asm void mDoExt_morf_c::frameUpdate() {
 /* 8000FC4C-8000FD10 00A58C 00C4+00 0/0 0/0 34/34 .text
  * __ct__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm mDoExt_McaMorf::mDoExt_McaMorf(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
-                                   mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
+mDoExt_McaMorf::mDoExt_McaMorf(J3DModelData* modelData, mDoExt_McaMorfCallBack1_c* callback1,
+                                   mDoExt_McaMorfCallBack2_c* callback2, J3DAnmTransform* anmTransform,
                                    int param_4, f32 param_5, int param_6, int param_7, int param_8,
                                    void* param_9, u32 param_10, u32 param_11) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/func_8000FC4C.s"
+    field_0x50 = false;
+    field_0x51 = false;
+    field_0x52 = false;
+    create(modelData, callback1, callback2, anmTransform, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11);
 }
-#pragma pop
 
 /* 8000FD10-8000FD94 00A650 0084+00 1/0 0/0 0/0 .text            __dt__14mDoExt_McaMorfFv */
 #pragma push
@@ -2644,10 +2834,89 @@ SECTION_SDATA2 static f32 lit_5939 = -1.0f;
 /* 8000FD94-80010074 00A6D4 02E0+00 1/1 0/0 0/0 .text
  * create__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl
  */
+// matches with literals
+#ifdef NONMATCHING
+int mDoExt_McaMorf::create(J3DModelData* modelData, mDoExt_McaMorfCallBack1_c* callback1,
+                           mDoExt_McaMorfCallBack2_c* callback2, J3DAnmTransform* anmTransform,
+                           int param_4, f32 param_5, int param_6, int param_7, int param_8,
+                           void* param_9, u32 param_10, u32 param_11) {
+    mpModel = NULL;
+    mpSound = NULL;
+    mpTransformInfo = NULL;
+    mpQuat = NULL;
+    if (!modelData) {
+        return 0;
+    }
+    if (modelData->getMaterialNodePointer(0)->getSharedDisplayListObj() && param_10 == 0) {
+        if (param_10 = modelData->isLocked()) {
+            param_10 = 0x20000;
+        } else {
+            param_10 = 0x80000;
+        }
+    }
+    mpModel = mDoExt_J3DModel__create(modelData, param_10, param_11);
+    if (!mpModel) {
+        return 0;
+    }
+    if (param_10 != 0x80000) {
+        mDoExt_changeMaterial(mpModel);
+    }
+    if (param_9 == NULL && anmTransform) {
+        param_9 = ((mDoExt_transAnmBas*)anmTransform)->getBas();
+        if (param_9) {
+            param_8 = 1;
+        }
+    }
+    if (param_8) {
+        mpSound = new mDoExt_zelAnime();
+        if (!mpSound) {
+            goto cleanup;
+        }
+    }
+    setAnm(anmTransform, param_4, 0.0f, param_5, param_6, param_7, param_9);
+    mPrevMorf = -1.0f;
+    mpTransformInfo = new J3DTransformInfo[modelData->getJointNum()];
+    if (!mpTransformInfo) {
+        goto cleanup;
+    }
+    mpQuat = new Quaternion[modelData->getJointNum()];
+    if (!mpQuat) {
+        goto cleanup;
+    }
+    J3DTransformInfo* info = mpTransformInfo;
+    Quaternion* quat = mpQuat;
+    J3DModelData* r23 = mpModel->getModelData();
+    u16 jointNum = r23->getJointNum();
+    for (int i = 0; i < jointNum; i++) {
+        *info = r23->getJointNodePointer(i)->getTransformInfo();
+        JMAEulerToQuat(info->mRotation.x, info->mRotation.y, info->mRotation.z, quat);
+        info++;
+        quat++;
+    }
+    mpCallback1 = callback1;
+    mpCallback2 = callback2;
+    return 1;
+    cleanup:
+    if (mpSound) {
+        mpSound->stopAnime();
+        mpSound = NULL;
+    }
+    if (mpTransformInfo) {
+        mpTransformInfo = NULL;
+    }
+    if (mpQuat) {
+        mpQuat = NULL;
+    }
+    if (mpModel) {
+        mpModel = NULL;
+    }
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoExt_McaMorf::create(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
+asm int mDoExt_McaMorf::create(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
                                 mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
                                 int param_4, f32 param_5, int param_6, int param_7, int param_8,
                                 void* param_9, u32 param_10, u32 param_11) {
@@ -2655,8 +2924,76 @@ asm void mDoExt_McaMorf::create(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c
 #include "asm/m_Do/m_Do_ext/func_8000FD94.s"
 }
 #pragma pop
+#endif
 
 /* 80010074-8001037C 00A9B4 0308+00 1/0 0/0 0/0 .text            calc__14mDoExt_McaMorfFv */
+// matches with literals
+#ifdef NONMATCHING
+void mDoExt_McaMorf::calc() {
+    if (!mpModel) {
+        return;
+    }
+    u16 jntNo = getJoint()->getJntNo();
+    j3dSys.setCurrentMtxCalc(this);
+    J3DTransformInfo info1;
+    J3DTransformInfo* infoPtr;
+    if (mpTransformInfo == NULL) {
+        infoPtr = &info1;
+    } else {
+        infoPtr = &mpTransformInfo[jntNo];
+    }
+    Quaternion quat1;
+    Quaternion* quatPtr;
+    if (mpQuat == NULL) {
+        quatPtr = &quat1;
+    } else {
+        quatPtr = &mpQuat[jntNo];
+    }
+    if (!mpAnm) {
+        *infoPtr = mpModel->getModelData()->getJointNodePointer(jntNo)->getTransformInfo();
+        if (mpCallback1) {
+            mpCallback1->execute(jntNo, infoPtr);
+        }
+        JMAEulerToQuat(infoPtr->mRotation.x, infoPtr->mRotation.y, infoPtr->mRotation.z, quatPtr);
+        J3DMtxCalcCalcTransformMaya::calcTransform(*infoPtr);
+    } else if (mCurMorf >= 1.0f || !mpTransformInfo || !mpQuat) {
+        getTransform(jntNo, infoPtr);
+        if (mpCallback1) {
+            mpCallback1->execute(jntNo, infoPtr);
+        }
+        JMAEulerToQuat(infoPtr->mRotation.x, infoPtr->mRotation.y, infoPtr->mRotation.z, quatPtr);
+        J3DMtxCalcCalcTransformMaya::calcTransform(*infoPtr);
+    } else {
+        f32 f31;
+        if (field_0x52) {
+            f31 = 1.0f;
+        } else {
+            f31 = (mCurMorf - mPrevMorf) / (1.0f - mPrevMorf);
+        }
+        f32 f30 = 1.0f - f31;
+        J3DTransformInfo info2;
+        Quaternion quat2;
+        getTransform(jntNo, &info2);
+        if (mpCallback1) {
+            mpCallback1->execute(jntNo, &info2);
+        }
+        JMAEulerToQuat(info2.mRotation.x, info2.mRotation.y, info2.mRotation.z, &quat2);
+        JMAQuatLerp(quatPtr, &quat2, f31, quatPtr);
+        Mtx mtx;
+        mDoMtx_quat(mtx, quatPtr);
+        infoPtr->mTranslate.x = infoPtr->mTranslate.x * f30 + info2.mTranslate.x * f31;
+        infoPtr->mTranslate.y = infoPtr->mTranslate.y * f30 + info2.mTranslate.y * f31;
+        infoPtr->mTranslate.z = infoPtr->mTranslate.z * f30 + info2.mTranslate.z * f31;
+        infoPtr->mScale.x = infoPtr->mScale.x * f30 + info2.mScale.x * f31;
+        infoPtr->mScale.y = infoPtr->mScale.y * f30 + info2.mScale.y * f31;
+        infoPtr->mScale.z = infoPtr->mScale.z * f30 + info2.mScale.z * f31;
+        mDoExt_setJ3DData(mtx, infoPtr, jntNo);
+    }
+    if (mpCallback2) {
+        mpCallback2->execute(jntNo);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2665,9 +3002,50 @@ asm void mDoExt_McaMorf::calc() {
 #include "asm/m_Do/m_Do_ext/calc__14mDoExt_McaMorfFv.s"
 }
 #pragma pop
+#endif
 
 /* 8001037C-800105C8 00ACBC 024C+00 1/1 1/1 29/29 .text
  * setAnm__14mDoExt_McaMorfFP15J3DAnmTransformiffffPv           */
+// matches with literals
+#ifdef NONMATCHING
+void mDoExt_McaMorf::setAnm(J3DAnmTransform* param_0, int param_1, f32 param_2, f32 param_3,
+                                f32 param_4, f32 param_5, void* param_6) {
+    mpAnm = param_0;
+    setStartFrame(param_4);
+    if (param_5 < 0.0f) {
+        if (!mpAnm) {
+            mFrameCtrl.init(0);
+        } else {
+            mFrameCtrl.init(mpAnm->getFrameMax());
+        }
+    } else {
+        mFrameCtrl.init(param_5);
+    }
+    if (param_0 && param_1 < 0) {
+        param_1 = param_0->getAttribute();
+    }
+    setPlayMode(param_1);
+    setPlaySpeed(param_3);
+    if (param_3 >= 0.0f) {
+        setFrame(param_4);
+    } else {
+        setFrame(getEndFrame());
+    }
+    setLoopFrame(getFrame());
+    setMorf(param_2);
+    if (mpSound) {
+        if (param_6 == NULL && param_0) {
+            param_6 = ((mDoExt_transAnmBas*)param_0)->getBas();
+        }
+        mpSound->field_0x48 = param_6;
+        if (mpSound->field_0x48) {
+            mpSound->initAnime(param_6, getPlaySpeed() >= 0.0f, getLoopFrame(), 0.0f);
+        } else {
+            mpSound->stopAnime();
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2677,6 +3055,7 @@ asm void mDoExt_McaMorf::setAnm(J3DAnmTransform* param_0, int param_1, f32 param
 #include "asm/m_Do/m_Do_ext/setAnm__14mDoExt_McaMorfFP15J3DAnmTransformiffffPv.s"
 }
 #pragma pop
+#endif
 
 /* 800105C8-80010680 00AF08 00B8+00 0/0 1/1 37/37 .text            play__14mDoExt_McaMorfFP3VecUlSc
  */
@@ -3675,13 +4054,13 @@ void J3DMtxCalc::setAnmTransform(J3DAnmTransform* param_0) {
 
 /* 80014E94-80014E9C 00F7D4 0008+00 11/0 2/0 0/0 .text            getAnmTransform__10J3DMtxCalcFUc
  */
-bool J3DMtxCalc::getAnmTransform(u8 param_0) {
-    return false;
+J3DAnmTransform* J3DMtxCalc::getAnmTransform(u8 param_0) {
+    return NULL;
 }
 
 /* 80014E9C-80014EA4 00F7DC 0008+00 9/0 2/0 0/0 .text            getAnmTransform__10J3DMtxCalcFv */
-bool J3DMtxCalc::getAnmTransform() {
-    return false;
+J3DAnmTransform* J3DMtxCalc::getAnmTransform() {
+    return NULL;
 }
 
 /* 80014EA4-80014EA8 00F7E4 0004+00 11/0 2/0 0/0 .text            setWeight__10J3DMtxCalcFUcf */
@@ -3726,7 +4105,7 @@ extern "C" asm void __dt__25mDoExt_MtxCalcAnmBlendTblFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DMtxCalcAnmBase::getAnmTransform() {
+asm J3DAnmTransform* J3DMtxCalcAnmBase::getAnmTransform() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/getAnmTransform__17J3DMtxCalcAnmBaseFv.s"
 }
@@ -3773,7 +4152,7 @@ void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya>::ini
 /* 80015084-800150AC 00F9C4 0028+00 2/0 0/0 0/0 .text
  * calc__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>Fv */
 void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya>::calc() {
-    calcTransform(getJoint()->getTransformInfo());
+    J3DMtxCalcCalcTransformMaya::calcTransform(getJoint()->getTransformInfo());
 }
 
 /* 800150AC-8001513C 00F9EC 0090+00 1/0 0/0 0/0 .text

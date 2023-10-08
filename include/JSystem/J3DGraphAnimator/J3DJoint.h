@@ -14,12 +14,12 @@ public:
 
     /* 8000D948 */ virtual ~J3DMtxCalc();
     /* 80014E90 */ virtual void setAnmTransform(J3DAnmTransform*);
-    /* 80014E9C */ virtual bool getAnmTransform();
+    /* 80014E9C */ virtual J3DAnmTransform* getAnmTransform();
     /* 80014E8C */ virtual void setAnmTransform(u8, J3DAnmTransform*);
-    /* 80014E94 */ virtual bool getAnmTransform(u8);
+    /* 80014E94 */ virtual J3DAnmTransform* getAnmTransform(u8);
     /* 80014EA4 */ virtual void setWeight(u8, f32);
     /* 80014EA8 */ virtual void getWeight(u8) const;
-    virtual void init(Vec const& param_0, Mtx*) = 0;
+    virtual void init(const Vec& param_0, const Mtx&) = 0;
     virtual void calc() = 0;
 
     static J3DMtxBuffer* getMtxBuffer() { return mMtxBuffer; }
@@ -36,11 +36,11 @@ public:
 };
 
 template <class A, class B>
-class J3DMtxCalcNoAnm : public J3DMtxCalcNoAnmBase, public A, public B {
+class J3DMtxCalcNoAnm : public J3DMtxCalcNoAnmBase {
 public:
     J3DMtxCalcNoAnm() {}
     virtual ~J3DMtxCalcNoAnm() {}
-    virtual void init(Vec const& param_0, f32 const (&param_1)[3][4]);
+    virtual void init(const Vec& param_0, const Mtx& param_1);
     virtual void calc();
 };
 
@@ -93,11 +93,11 @@ private:
 };  // Size: 0x5C
 
 struct J3DMtxCalcJ3DSysInitMaya {
-    /* 8032ECAC */ static void init(Vec const&, f32 const (&)[3][4]);
+    /* 8032ECAC */ static void init(const Vec&, const Mtx& param_1);
 };
 
 struct J3DMtxCalcJ3DSysInitBasic {
-    /* 8032EC28 */ static void init(Vec const&, f32 const (&)[3][4]);
+    /* 8032EC28 */ static void init(const Vec&, const Mtx& param_1);
 };
 
 struct J3DMtxCalcCalcTransformSoftimage {

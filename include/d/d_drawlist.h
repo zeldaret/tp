@@ -333,6 +333,8 @@ public:
     void setXluList2DScreen() { setXluDrawList(mDrawBuffers[DB_LIST_2D_SCREEN]); }
     void setXluListP0() { setXluDrawList(mDrawBuffers[DB_LIST_P0]); }
     void setOpaListP0() { setOpaDrawList(mDrawBuffers[DB_LIST_P0]); }
+    void setOpaListZxlu() { setOpaDrawList(mDrawBuffers[DB_LIST_Z_XLU]); }
+    void setXluListZxlu() { setXluDrawList(mDrawBuffers[DB_LIST_Z_XLU]); }
 
     void peekZdata() { mPeekZ.peekData(); }
     void entryZSortListZxlu(J3DPacket* i_packet, cXyz& param_1) {
