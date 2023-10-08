@@ -97,8 +97,10 @@ public:
     f32 RoofChk(dBgS_RoofChk*);
     bool SplGrpChk(dBgS_SplGrpChk*);
     bool SphChk(dBgS_SphChk*, void*);
-    void MoveBgCrrPos(cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*, bool, bool);
-    void MoveBgTransPos(cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
+    void MoveBgCrrPos(cBgS_PolyInfo const& i_poly, bool param_1, cXyz* i_pos, csXyz* i_angle,
+                      csXyz* i_shapeAngle, bool param_5, bool param_6);
+    void MoveBgTransPos(cBgS_PolyInfo const& i_poly, bool param_1, cXyz* i_pos, csXyz* i_angle,
+                        csXyz* i_shapeAngle);
     void MoveBgMatrixCrrPos(cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
     void RideCallBack(cBgS_PolyInfo const&, fopAc_ac_c*);
     void ArrowStickCallBack(cBgS_PolyInfo const&, fopAc_ac_c*, cXyz&);

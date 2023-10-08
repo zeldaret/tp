@@ -623,18 +623,18 @@ void dCcS::SetAtTgGObjInf(bool i_setAt, bool i_setTg, cCcD_Obj* param_2, cCcD_Ob
     }
 
     if (i_setAt) {
-        dCcD_HitCallback cb = atObjInf->GetAtHitCallback();
+        dCcD_HitCallback at_callback = atObjInf->GetAtHitCallback();
 
-        if (cb != NULL) {
-            cb(atObjInf->GetAc(), atObjInf, tgObjInf->GetAc(), tgObjInf);
+        if (at_callback != NULL) {
+            at_callback(atObjInf->GetAc(), atObjInf, tgObjInf->GetAc(), tgObjInf);
         }
     }
 
     if (i_setTg) {
-        dCcD_HitCallback cb = tgObjInf->GetTgHitCallback();
+        dCcD_HitCallback tg_callback = tgObjInf->GetTgHitCallback();
 
-        if (cb != NULL) {
-            cb(tgObjInf->GetAc(), tgObjInf, atObjInf->GetAc(), atObjInf);
+        if (tg_callback != NULL) {
+            tg_callback(tgObjInf->GetAc(), tgObjInf, atObjInf->GetAc(), atObjInf);
         }
     }
 

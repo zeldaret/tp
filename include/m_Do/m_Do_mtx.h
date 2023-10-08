@@ -272,6 +272,12 @@ public:
     static void XrotM(s16 x) { mDoMtx_XrotM(now, x); }
 
     /**
+     * Rotates the `now` matrix on the Z-axis
+     * @param z The rotation value
+     */
+    static void ZrotS(s16 z) { mDoMtx_ZrotS(now, z); }
+
+    /**
      * Rotates a new matrix on the z-axis then concatenates it with the `now` matrix
      * @param z The rotation value
      */

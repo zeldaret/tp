@@ -1,3 +1,8 @@
+/**
+ * d_a_alink_kandelaar.inc
+ * Player Lantern action handling
+ */
+
 /* 80110654-80110668 10AF94 0014+00 1/1 0/0 0/0 .text daAlink_searchTagKandelaar__FP10fopAc_ac_cPv
  */
 static fopAc_ac_c* daAlink_searchTagKandelaar(fopAc_ac_c* i_actor, void* param_1) {
@@ -158,7 +163,7 @@ asm void daAlink_c::setKandelaarModel() {
 void daAlink_c::resetOilBottleModel() {
     deleteEquipItem(0, 1);
 
-    if (field_0x300e != 0) {
+    if (field_0x300e.x != 0) {
         setKandelaarModel();
         mEquipItem = KANTERA;
     }

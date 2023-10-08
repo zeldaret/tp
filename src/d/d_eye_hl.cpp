@@ -39,11 +39,11 @@ void dEyeHL_c::remove() {
 
 /* ############################################################################################## */
 /* 80450FA8-80450FB0 0004A8 0004+04 3/3 0/0 0/0 .sbss            m_obj__12dEyeHL_mng_c */
-dEyeHL_mng_c* dEyeHL_mng_c::m_obj;
+dEyeHL_c* dEyeHL_mng_c::m_obj;
 
 /* 8009CA48-8009CB14 097388 00CC+00 0/0 1/1 0/0 .text            update__12dEyeHL_mng_cFv */
 void dEyeHL_mng_c::update() {
-    dEyeHL_mng_c* obj = m_obj;
+    dEyeHL_c* obj = m_obj;
 
     if (g_envHIO[0x10] == 0 || !i_dComIfGp_event_runCheck()) {
         for (; obj != NULL; obj = obj->m_next) {
@@ -72,8 +72,8 @@ void dEyeHL_mng_c::entry(dEyeHL_c* i_obj) {
  */
 void dEyeHL_mng_c::remove(dEyeHL_c* i_obj) {
     if (i_obj->m_timg != NULL) {
-        dEyeHL_mng_c* prev = i_obj->m_pre;
-        dEyeHL_mng_c* next = i_obj->m_next;
+        dEyeHL_c* prev = i_obj->m_pre;
+        dEyeHL_c* next = i_obj->m_next;
 
         if (next != NULL) {
             next->m_pre = prev;

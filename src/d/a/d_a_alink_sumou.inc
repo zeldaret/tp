@@ -1,3 +1,8 @@
+/**
+ * d_a_alink_sumou.inc
+ * Player Sumo action handling
+ */
+
 /* 800EA844-800EA8D0 0E5184 008C+00 5/5 0/0 0/0 .text            checkSumouVsActor__9daAlink_cFv */
 BOOL daAlink_c::checkSumouVsActor() {
     mCargoCarryAcKeep.setActor();
@@ -47,7 +52,7 @@ int daAlink_c::procSumouReadyInit() {
     field_0x2f99 = 4;
     mSpecialMode = 1;
     field_0x300c = 0;
-    field_0x300e = 0;
+    field_0x300e.x = 0;
     deleteEquipItem(0, 1);
 
     if (mThrowBoomerangAcKeep.getActor() != NULL) {

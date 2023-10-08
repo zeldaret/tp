@@ -1,3 +1,8 @@
+/**
+ * d_a_alink_hang.inc
+ * Player hang / climb action handling
+ */
+
 #include "rel/d/a/b/d_a_b_ob/d_a_b_ob.h"
 #include "rel/d/a/obj/d_a_obj_swhang/d_a_obj_swhang.h"
 
@@ -521,10 +526,10 @@ int daAlink_c::procBossBodyHangInit(fopAc_ac_c* param_0) {
     speed.y = FLOAT_LABEL(lit_6108);
 
     field_0x300c = 0;
-    field_0x300e = 0;
-    field_0x3010 = 0;
+    field_0x300e.x = 0;
+    field_0x300e.y = 0;
     field_0x3008 = 0;
-    field_0x3012 = 0;
+    field_0x300e.z = 0;
     field_0x3080 = 0;
 
     field_0x280c.setData(param_0);
@@ -687,7 +692,7 @@ int daAlink_c::procLadderUpEndInit(int param_0) {
     field_0x30a0 = -0x0800;
     field_0x33f4 = lit_6041;
     field_0x300c = 1;
-    field_0x3010 = 1;
+    field_0x300e.y = 1;
     dComIfGp_setPlayerStatus0(0, 0x2000000);
     return 1;
 }
@@ -707,7 +712,7 @@ int daAlink_c::procLadderUpEnd() {
     {
         if (frame_ctrl->getFrame() >= lit_15341) {
             field_0x300c = 0;
-            field_0x3010 = 0;
+            field_0x300e.y = 0;
         } else if (frame_ctrl->getFrame() >= lit_17382) {
             field_0x30a0 = 0;
             field_0x33f4 = FLOAT_LABEL(lit_6108);
@@ -745,7 +750,7 @@ int daAlink_c::procLadderDownStart() {
         }
     } else if (frame_ctrl->getFrame() >= lit_10286) {
         field_0x300c = 1;
-        field_0x3010 = 1;
+        field_0x300e.y = 1;
     }
 
     return 1;
@@ -765,7 +770,7 @@ int daAlink_c::procLadderDownEndInit(int param_0) {
     field_0x30a0 = 0x2800;
     field_0x33f4 = lit_6040;
     field_0x300c = 0;
-    field_0x3010 = 0;
+    field_0x300e.y = 0;
     dComIfGp_setPlayerStatus0(0, 0x2000000);
     return 1;
 }

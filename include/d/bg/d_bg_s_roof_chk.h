@@ -28,7 +28,7 @@ private:
 class dBgS_LinkRoofChk : public dBgS_RoofChk {
 public:
     dBgS_LinkRoofChk() { SetLink(); }
-    /* 80140E40 */ virtual ~dBgS_LinkRoofChk();
+    /* 80140E40 */ virtual ~dBgS_LinkRoofChk() {}
 };
 
 #endif /* D_BG_D_BG_S_ROOF_CHK_H */
