@@ -3,7 +3,6 @@
 
 #include "JSystem/JUtility/TColor.h"
 #include "d/pane/d_pane_class_alpha.h"
-#include "dolphin/types.h"
 
 void dPaneClass_showNullPane(J2DScreen*);
 void dPaneClass_showNullPane(J2DPane*);
@@ -63,6 +62,9 @@ public:
 
     JUtility::TColor getInitBlack() { return mInitBlack; }
     JUtility::TColor getInitWhite() { return mInitWhite; }
+
+    f32 getInitGlobalPosX() { return mGlobalPos.x; }
+    f32 getInitGlobalPosY() { return mGlobalPos.y; }
 
 private:
     /* 0x1C */ void* mpFirstStackSize;

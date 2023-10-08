@@ -1,7 +1,6 @@
 #ifndef F_OP_ACTOR_ITER_H_
 #define F_OP_ACTOR_ITER_H_
 
-#include "dolphin/types.h"
 
 typedef int (*fopAcIt_ExecutorFunc)(void*, void*);
 typedef void* (*fopAcIt_JudgeFunc)(void*, void*);

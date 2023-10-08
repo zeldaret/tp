@@ -1,10 +1,9 @@
 #ifndef C_C_DAMAGEREACTION_H
 #define C_C_DAMAGEREACTION_H
 
-#include "dolphin/types.h"
 #include "JSystem/JParticle/JPAParticle.h"
 
-class JPTraceParticleCallBack4 {
+class JPTraceParticleCallBack4 /* : JPAParticleCallBack */ {
 public:
     /* 8001817C */ void execute(JPABaseEmitter*, JPABaseParticle*);
     /* 800182A4 */ void draw(JPABaseEmitter*, JPABaseParticle*);

@@ -5,7 +5,6 @@
 
 #include "JSystem/J3DGraphLoader/J3DMaterialFactory.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -291,7 +290,7 @@ struct J3DColorBlock {
     /* 8000DFF0 */ bool getAmbColor(u32);
     /* 8000DFF8 */ bool getColorChan(u32);
     /* 8000E000 */ bool getMatColor(u32);
-    /* 8000E008 */ bool getColorChanNum() const;
+    /* 8000E008 */ u8 getColorChanNum() const;
     /* 801A4C0C */ void setAmbColor(u32, J3DGXColor const*);
     /* 8000E0D4 */ void setAmbColor(u32, J3DGXColor);
     /* 80317450 */ void setColorChan(u32, J3DColorChan const*);

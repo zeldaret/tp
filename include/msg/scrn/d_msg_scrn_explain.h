@@ -4,7 +4,7 @@
 #include "msg/scrn/d_msg_scrn_base.h"
 
 class J2DOrthoGraph;
-struct STControl;
+class STControl;
 class dMsgScrnArrow_c;
 class dMsgScrn3Select_c;
 class dMsgString_c;
@@ -27,9 +27,11 @@ public:
     /* 8023E43C */ void close_init();
     /* 8023E448 */ void close_proc();
     /* 8023E558 */ bool openExplain(u32, u8, u8, u8, bool);
-    /* 8023E5CC */ void getAlphaRatio();
-    /* 8023E640 */ void checkTriggerA();
-    /* 8023E654 */ void checkTriggerB();
+    /* 8023E5CC */ f32 getAlphaRatio();
+    /* 8023E640 */ bool checkTriggerA();
+    /* 8023E654 */ bool checkTriggerB();
+
+    typedef void (dMsgScrnExplain_c::*ProcFunc)(); 
 
     /* 8023D538 */ virtual ~dMsgScrnExplain_c();
 

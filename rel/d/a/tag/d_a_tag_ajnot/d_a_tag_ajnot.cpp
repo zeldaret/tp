@@ -10,11 +10,7 @@
 
 /* 805A2658-805A26A8 000078 0050+00 1/1 0/0 0/0 .text            create__12daTagAJnot_cFv */
 int daTagAJnot_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagAJnot_c();
-        fopAcM_OnCondition(this, 8);
-    }
-
+    fopAcM_SetupActor(this, daTagAJnot_c);
     return cPhs_COMPLEATE_e;
 }
 

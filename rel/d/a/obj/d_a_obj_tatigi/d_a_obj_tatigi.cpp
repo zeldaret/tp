@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_tatigi/d_a_obj_tatigi.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -46,51 +46,9 @@ struct dComIfG_play_c {
     /* 8002CB68 */ void entrySimpleModel(J3DModel*, int);
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-    /* 80084658 */ void ChkCoHit();
-    /* 800846F0 */ void GetCoHitObj();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
 struct dBgS_GndChk {
     /* 8007757C */ dBgS_GndChk();
     /* 800775F0 */ ~dBgS_GndChk();
-};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-};
-
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8026F1F8 */ void SetH(f32);
-    /* 8026F200 */ void SetR(f32);
-    /* 80D08528 */ ~cM3dGCyl();
-};
-
-struct cM3dGAab {
-    /* 80D08570 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {
-    /* 80263A48 */ void GetAc();
 };
 
 struct cCcS {
@@ -170,7 +128,6 @@ extern "C" void MtxPull__Fv();
 extern "C" void __dl__FPv();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXTrans();
-extern "C" void PSVECSquareMag();
 extern "C" void __construct_array();
 extern "C" void _savegpr_23();
 extern "C" void _savegpr_25();
@@ -191,7 +148,6 @@ extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
 
 //
 // Declarations:
@@ -405,12 +361,18 @@ COMPILER_STRIP_GATE(0x80D08618, &lit_4076);
 #pragma pop
 
 /* 80D08628-80D0866C 000000 0044+00 1/1 0/0 0/0 .data            cc_cyl_src$3986 */
-SECTION_DATA static u8 cc_cyl_src[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x79,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x09, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x42, 0xF0, 0x00, 0x00,
+static dCcD_SrcCyl cc_cyl_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0xd8fbfdff, 0x11}, 0x79}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_METAL, 0x2, 0x0, 0x0, 0x3}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        35.0f, // mRadius
+        120.0f // mHeight
+    } // mCyl
 };
 
 /* 80D07FD8-80D083C0 000678 03E8+00 1/0 0/0 0/0 .text            daObj_Tatigi_Create__FP10fopAc_ac_c
@@ -485,7 +447,8 @@ asm tg_ss::tg_ss() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_tatigi/d_a_obj_tatigi/__dt__8cM3dGCylFv.s"
 }
@@ -495,7 +458,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_tatigi/d_a_obj_tatigi/__dt__8cM3dGAabFv.s"
 }

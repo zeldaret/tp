@@ -4,17 +4,14 @@
 //
 
 #include "rel/d/a/d_a_bg/d_a_bg.h"
-#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "MSL_C/string.h"
 #include "d/bg/d_bg_w.h"
 #include "d/bg/d_bg_w_kcol.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/com/d_com_static.h"
-#include "d/d_demo.h"
 #include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_lib.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 
 //
 // Types:
@@ -561,7 +558,7 @@ SECTION_DEAD static char const* const stringBase_804593C6 = "room.plc";
 #pragma pop
 
 /* 804582B8-80458750 000738 0498+00 2/2 0/0 1/1 .text            createHeap__6daBg_cFv */
-// regalloc
+// regalloc, but equivalent
 #ifdef NONMATCHING
 int daBg_c::createHeap() {
     const char* arcName = setArcName();
@@ -618,11 +615,11 @@ int daBg_c::createHeap() {
                 const char* name = modelData->getMaterialName()->getName(j);
 
                 if (name[3] == 'M' && name[4] == 'A') {
-                    if (!memcmp(&name[5], &"00", 2)) {
+                    if (!memcmp(&name[5], "00", 2)) {
                         modelFlags |= 0x1200;
-                    } else if (!memcmp(&name[5], &"01", 2)) {
+                    } else if (!memcmp(&name[5], "01", 2)) {
                         modelFlags |= 0x20000000;
-                    } else if (!memcmp(&name[5], &"12", 2) || !memcmp(&name[5], &"18", 2)) {
+                    } else if (!memcmp(&name[5], "12", 2) || !memcmp(&name[5], "18", 2)) {
                         field_0x5f0 = 1;
                     }
                 }
@@ -650,7 +647,7 @@ int daBg_c::createHeap() {
             return 0;
         }
 
-        if (mpBgW->Set(dzb, 0x20, NULL)) {
+        if (mpBgW->Set(dzb, cBgW::GLOBAL_e, NULL)) {
             return 0;
         }
 
@@ -772,6 +769,7 @@ SECTION_DEAD static char const* const stringBase_80459418 = "MA00_Kusa";
 #pragma pop
 
 /* 804588C4-80458F38 000D44 0674+00 1/1 0/0 0/0 .text            draw__6daBg_cFv */
+// just regalloc + some reorder issues
 #ifdef NONMATCHING
 int daBg_c::draw() {
     int roomNo = fopAcM_GetParam(this);
@@ -781,8 +779,10 @@ int daBg_c::draw() {
     mDoLib_clipper::changeFar(1000000.0f);
 
     for (int i = 0; i < 6; bgData++, i++) {
-        if (bgData->mpBgModel != NULL) {
-            J3DModelData* modelData = bgData->mpBgModel->getModelData();
+        J3DModel* bg_model = bgData->mpBgModel;
+        
+        if (bg_model != NULL) {
+            J3DModelData* modelData = bg_model->getModelData();
 
             if (bgData->mpBgBtk != NULL) {
                 bgData->mpBgBtk->entryFrame();
@@ -796,7 +796,7 @@ int daBg_c::draw() {
                 }
             }
 
-            bgData->mpBgModel->calc();
+            bg_model->calc();
 
             for (u16 j = 0; j < modelData->getShapeNum(); j++) {
                 J3DShape* shape = modelData->getShapeNodePointer(j);
@@ -809,52 +809,52 @@ int daBg_c::draw() {
             }
 
             g_env_light.settingTevStruct(l_tevStrType[i], NULL, bgData->mpTevStr);
-            g_env_light.setLightTevColorType_MAJI(bgData->mpBgModel, bgData->mpTevStr);
-            dKy_bg_MAxx_proc(bgData->mpBgModel);
+            g_env_light.setLightTevColorType_MAJI(bg_model, bgData->mpTevStr);
+            dKy_bg_MAxx_proc(bg_model);
 
-            if (bgData->mpBgModel != NULL) {
-                modelData = bgData->mpBgModel->getModelData();
+            if (bg_model != NULL) {
+                modelData = bg_model->getModelData();
 
                 for (u16 j = 0; j < modelData->getMaterialNum(); j++) {
                     J3DMaterial* mat = modelData->getMaterialNodePointer(j);
                     const char* name = modelData->getMaterialName()->getName(j);
 
-                    if (!memcmp(&name[3], &"MA12", 4)) {
+                    if (!memcmp(&name[3], "MA12", 4)) {
                         if (g_env_light.mColPatCurr == 6) {
                             field_0x5f0 = 0;
                         }
-                    } else if (!memcmp(&name[3], &"MA18", 4)) {
-                        if (dDemo_c::getFrame() > 1117) {
+                    } else if (!memcmp(&name[3], "MA18", 4)) {
+                        if (dDemo_c::getFrame() >= 1118) {
                             field_0x5f0 = 0;
                         }
 
-                        if (i_dComIfGs_isEventBit(0x0D04)) {
+                        if (i_dComIfGs_isEventBit(dSv_event_flag_c::M_077)) {
                             field_0x5f0 = 9;
                         }
-                    } else if (!memcmp(&name[3], &"MA15", 4)) {
-                        if (dComIfGs_BossLife_public_Get() == -1) {
-                            field_0x5f0 = 0;
+                    } else if (!memcmp(&name[3], "MA15", 4)) {
+                        if (dComIfGs_BossLife_public_Get() != -1) {
+                            field_0x5f1 = dComIfGs_BossLife_public_Get() + 1;
                         } else {
-                            field_0x5f0 = dComIfGs_BossLife_public_Get() + 1;
+                            field_0x5f1 = 0;
                         }
-                    } else if (!memcmp(&name[3], &"MA09", 4)) {
-                        bgData->mBtkAnmSpeed = 1.0f - (1.0f - g_env_light.mWaterSurfaceShineRate);
-                    } else if (!memcmp(&name[3], &"MA05", 4)) {
-                        bgData->mpTevStr->field_0x378 |= j;
+                    } else if (!memcmp(&name[3], "MA09", 4)) {
+                        bgData->mBtkAnmSpeed = 1.0f - (1.0f - g_env_light.mWaterSurfaceShineRate) * 0.9f;
+                    } else if (!memcmp(&name[3], "MA05", 4)) {
+                        bgData->mpTevStr->field_0x378 |= (u8)j;
                     }
 
                     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") ||
                         !strcmp(dComIfGp_getStartStageName(), "R_SP127")) {
-                        if (!memcmp(&name[3], &"MA00_Enkei_Tree_Color", 21) ||
-                            !memcmp(&name[3], &"MA00_Gake", 9) ||
-                            !memcmp(&name[3], &"MA00_Kusa", 9)) {
+                        if (!memcmp(&name[3], "MA00_Enkei_Tree_Color", 21) ||
+                            !memcmp(&name[3], "MA00_Gake", 9) ||
+                            !memcmp(&name[3], "MA00_Kusa", 9)) {
                             J3DGXColorS10 colorS10;
                             J3DGXColor color;
 
                             s16 var_r0;
                             s16 var_r3;
                             s16 var_r5;
-                            switch (g_env_light.field_0x12fe) {
+                            switch (g_env_light.mPondSeason) {
                             case 2:
                                 var_r5 = -3;
                                 var_r0 = 0;
@@ -882,22 +882,22 @@ int daBg_c::draw() {
                             if (var_f2 > 1.0f) {
                                 var_f2 = 1.0f;
                             }
-                            colorS10.mColor.r = var_r5 * var_f2;
+                            colorS10.r = var_r5 * var_f2;
 
                             f32 temp_f2_2 = bgData->mpTevStr->mColorC0.g / 10.0f;
                             f32 var_f2_2 = temp_f2_2 * temp_f2_2;
                             if (var_f2_2 > 1.0f) {
                                 var_f2_2 = 1.0f;
                             }
-                            colorS10.mColor.g = var_r0 * var_f2_2;
+                            colorS10.g = var_r0 * var_f2_2;
 
                             f32 temp_f2_3 = bgData->mpTevStr->mColorC0.b / 10.0f;
                             f32 var_f2_3 = temp_f2_3 * temp_f2_3;
                             if (var_f2_3 > 1.0f) {
                                 var_f2_3 = 1.0f;
                             }
-                            colorS10.mColor.b = var_r3 * var_f2_3;
-                            colorS10.mColor.a = 255;
+                            colorS10.b = var_r3 * var_f2_3;
+                            colorS10.a = 255;
                             mat->setTevColor(0, &colorS10);
 
                             color.r = 0;
@@ -909,14 +909,15 @@ int daBg_c::draw() {
                     }
                 }
 
-                mDoExt_modelEntryDL(bgData->mpBgModel);
+                mDoExt_modelEntryDL(bg_model);
                 dComIfGd_setListBG();
             }
         }
     }
 
     dComIfGd_setList();
-    g_env_light.settingTevStruct(0x10, NULL, dComIfGp_roomControl_getTevStr(roomNo));
+    dKy_tevstr_c* tevstr = dComIfGp_roomControl_getTevStr(roomNo);
+    g_env_light.settingTevStruct(0x10, NULL, tevstr);
 
     return 1;
 }
@@ -1003,10 +1004,7 @@ int daBg_c::create() {
     field_0x5f1 = 0;
 
     if (mHeap == NULL) {
-        if (!fopAcM_CheckCondition(this, 8)) {
-            new (this) daBg_c();
-            fopAcM_OnCondition(this, 8);
-        }
+        fopAcM_SetupActor(this, daBg_c);
 
         orig.roomNo = roomNo;
         current.roomNo = roomNo;

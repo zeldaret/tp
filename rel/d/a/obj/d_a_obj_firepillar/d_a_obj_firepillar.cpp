@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_firepillar/d_a_obj_firepillar.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -40,25 +40,6 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCps {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80BE93A8 */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-};
-
-struct dCcD_Cps {
-    /* 800847D0 */ void Set(dCcD_SrcCps const&);
-};
-
 struct dBgS_PolyPassChk {
     /* 80078E68 */ void SetObj();
 };
@@ -79,35 +60,12 @@ struct dBgS_Acch {
 
 struct csXyz {};
 
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-};
-
-struct cM3dGCpsS {};
-
-struct cM3dGCps {
-    /* 8026EF88 */ cM3dGCps();
-    /* 8026F03C */ void Set(cM3dGCpsS const&);
-};
-
 struct cM3dGCir {
     /* 8026EF18 */ ~cM3dGCir();
 };
 
-struct cM3dGAab {
-    /* 80BE9360 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 80BE9A40 */ ~cCcD_GStts();
 };
 
 struct cBgS_PolyInfo {
@@ -236,12 +194,16 @@ SECTION_DATA static u8 l_cull_box[24] = {
 };
 
 /* 80BE9AF4-80BE9B40 000038 004C+00 1/1 0/0 0/0 .data            l_cps_src */
-SECTION_DATA static u8 l_cps_src[76] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1D,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x42, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00,
+static dCcD_SrcCps l_cps_src = {
+    {
+        {0x0, {{0x100, 0x1, 0x1d}, {0x0, 0x0}, 0x0}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x1, 0x2}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, {0.0f, 100.0f, 0.0f}, 50.0f}, // mCps
+    } // mCpsAttr
 };
 
 /* 80BE9190-80BE9230 0000F0 00A0+00 1/1 0/0 0/0 .text            Create__14daObjFPillar_cFv */
@@ -372,7 +334,8 @@ asm void daObjFPillar_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_firepillar/d_a_obj_firepillar/__dt__8cM3dGAabFv.s"
 }
@@ -382,7 +345,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_firepillar/d_a_obj_firepillar/__dt__10dCcD_GSttsFv.s"
 }
@@ -595,7 +559,8 @@ static asm void daObjFPillar_Create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_firepillar/d_a_obj_firepillar/__dt__10cCcD_GSttsFv.s"
 }

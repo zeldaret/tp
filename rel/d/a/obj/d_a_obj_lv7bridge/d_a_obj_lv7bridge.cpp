@@ -4,16 +4,14 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_lv7bridge/d_a_obj_lv7bridge.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
 //
 
 struct request_of_phase_process_class {};
-
-struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -89,28 +87,6 @@ struct dPa_control_c {
                             cXyz const*, f32);
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80C87798 */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-    /* 80C875B8 */ ~dCcD_Cyl();
-    /* 80C87684 */ dCcD_Cyl();
-};
-
 struct dBgW_Base {};
 
 struct dBgW {
@@ -157,27 +133,12 @@ struct dBgS {
     /* 80074A08 */ void Regist(dBgW_Base*, fopAc_ac_c*);
 };
 
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 80C87708 */ ~cM3dGCyl();
-};
-
 struct cM3dGCir {
     /* 8026EF18 */ ~cM3dGCir();
 };
 
-struct cM3dGAab {
-    /* 80C87750 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 80C87940 */ ~cCcD_GStts();
 };
 
 struct cBgW_BgId {
@@ -192,19 +153,6 @@ struct cBgW {
 
 struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct J3DModel {};
@@ -488,12 +436,18 @@ SECTION_DATA static void* l_arcName[2] = {
 };
 
 /* 80C87A5C-80C87AA0 000028 0044+00 1/1 0/0 0/0 .data            l_cyl_src */
-SECTION_DATA static u8 l_cyl_src[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x19,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00, 0x43, 0x7A, 0x00, 0x00,
+static dCcD_SrcCyl l_cyl_src = {
+    {
+        {0x0, {{AT_TYPE_CSTATUE_SWING, 0x0, 0xd}, {0x0, 0x0}, 0x19}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0xd}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x6}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        100.0f, // mRadius
+        250.0f // mHeight
+    } // mCyl
 };
 
 /* 80C865B8-80C867CC 0002B8 0214+00 1/0 0/0 0/0 .text            Create__13daObjLv7Brg_cFv */
@@ -848,7 +802,8 @@ static asm void daObjLv7Brg_create1st(daObjLv7Brg_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Cyl::~dCcD_Cyl() {
+// asm dCcD_Cyl::~dCcD_Cyl() {
+extern "C" asm void __dt__8dCcD_CylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv7bridge/d_a_obj_lv7bridge/__dt__8dCcD_CylFv.s"
 }
@@ -858,7 +813,8 @@ asm dCcD_Cyl::~dCcD_Cyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Cyl::dCcD_Cyl() {
+// asm dCcD_Cyl::dCcD_Cyl() {
+extern "C" asm void __ct__8dCcD_CylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv7bridge/d_a_obj_lv7bridge/__ct__8dCcD_CylFv.s"
 }
@@ -868,7 +824,8 @@ asm dCcD_Cyl::dCcD_Cyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv7bridge/d_a_obj_lv7bridge/__dt__8cM3dGCylFv.s"
 }
@@ -878,7 +835,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv7bridge/d_a_obj_lv7bridge/__dt__8cM3dGAabFv.s"
 }
@@ -888,7 +846,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv7bridge/d_a_obj_lv7bridge/__dt__10dCcD_GSttsFv.s"
 }
@@ -950,7 +909,8 @@ static asm void daObjLv7Brg_MoveBGDraw(daObjLv7Brg_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv7bridge/d_a_obj_lv7bridge/__dt__10cCcD_GSttsFv.s"
 }

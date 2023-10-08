@@ -17,11 +17,7 @@ daTagWrHowl_c::~daTagWrHowl_c() {}
 
 /* 80D63FD4-80D6402C 000114 0058+00 1/1 0/0 0/0 .text            create__13daTagWrHowl_cFv */
 int daTagWrHowl_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagWrHowl_c();
-        fopAcM_OnCondition(this, 8);
-    }
-
+    fopAcM_SetupActor(this, daTagWrHowl_c);
     init();
     return cPhs_COMPLEATE_e;
 }
@@ -42,7 +38,7 @@ int daTagWrHowl_c::execute() {
 
     if (chkWlfInTag()) {
         mAttentionInfo.mFlags |= 0x80;
-        mAttentionInfo.field_0x4[3] = 65;
+        mAttentionInfo.field_0x0[7] = 65;
     }
 
     return 1;
@@ -72,11 +68,7 @@ bool daTagWrHowl_c::chkWlfInTag() {
 
 /* 80D64144-80D64198 000284 0054+00 1/0 0/0 0/0 .text daTagWrHowl_create__FP13daTagWrHowl_c */
 static int daTagWrHowl_create(daTagWrHowl_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) daTagWrHowl_c();
-        fopAcM_OnCondition(i_this, 8);
-    }
-
+    fopAcM_SetupActor(i_this, daTagWrHowl_c);
     return i_this->create();
 }
 

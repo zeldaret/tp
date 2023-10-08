@@ -4,109 +4,46 @@
 //
 
 #include "JSystem/JAudio2/JASTrackPort.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JASTrackPort {
-    /* 8029354C */ void init();
-    /* 8029357C */ void readImport(u32);
-    /* 802935A0 */ void readExport(u32);
-    /* 802935C4 */ void writeImport(u32, u16);
-    /* 802935E8 */ void writeExport(u32, u16);
-    /* 8029360C */ void checkImport(u32) const;
-    /* 80293628 */ void checkExport(u32) const;
-};
-
-//
-// Forward References:
-//
-
-extern "C" void init__12JASTrackPortFv();
-extern "C" void readImport__12JASTrackPortFUl();
-extern "C" void readExport__12JASTrackPortFUl();
-extern "C" void writeImport__12JASTrackPortFUlUs();
-extern "C" void writeExport__12JASTrackPortFUlUs();
-extern "C" void checkImport__12JASTrackPortCFUl();
-extern "C" void checkExport__12JASTrackPortCFUl();
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
 
 /* 8029354C-8029357C 28DE8C 0030+00 0/0 1/1 0/0 .text            init__12JASTrackPortFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASTrackPort::init() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASTrackPort/init__12JASTrackPortFv.s"
+void JASTrackPort::init() {
+    for (int i = 0; i < 16; i++) {
+        field_0x4[i] = 0;
+    }
+    field_0x0 = 0;
+    field_0x2 = 0;
 }
-#pragma pop
 
 /* 8029357C-802935A0 28DEBC 0024+00 0/0 1/1 0/0 .text            readImport__12JASTrackPortFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASTrackPort::readImport(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASTrackPort/readImport__12JASTrackPortFUl.s"
+u16 JASTrackPort::readImport(u32 port_num) {
+    field_0x0 = field_0x0 & ~(1 << port_num);
+    return field_0x4[port_num];
 }
-#pragma pop
 
 /* 802935A0-802935C4 28DEE0 0024+00 0/0 1/1 0/0 .text            readExport__12JASTrackPortFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASTrackPort::readExport(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASTrackPort/readExport__12JASTrackPortFUl.s"
+u16 JASTrackPort::readExport(u32 port_num) {
+    field_0x2 = field_0x2 & ~(1 << port_num);
+    return field_0x4[port_num];
 }
-#pragma pop
 
 /* 802935C4-802935E8 28DF04 0024+00 0/0 1/1 0/0 .text            writeImport__12JASTrackPortFUlUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASTrackPort::writeImport(u32 param_0, u16 param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASTrackPort/writeImport__12JASTrackPortFUlUs.s"
+void JASTrackPort::writeImport(u32 port_num, u16 param_1) {
+    field_0x0 = field_0x0 | (1 << port_num);
+    field_0x4[port_num] = param_1;
 }
-#pragma pop
 
 /* 802935E8-8029360C 28DF28 0024+00 0/0 1/1 0/0 .text            writeExport__12JASTrackPortFUlUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASTrackPort::writeExport(u32 param_0, u16 param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASTrackPort/writeExport__12JASTrackPortFUlUs.s"
+void JASTrackPort::writeExport(u32 port_num, u16 param_1) {
+    field_0x2 = field_0x2 | (1 << port_num);
+    field_0x4[port_num] = param_1;
 }
-#pragma pop
 
 /* 8029360C-80293628 28DF4C 001C+00 0/0 1/1 0/0 .text            checkImport__12JASTrackPortCFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASTrackPort::checkImport(u32 param_0) const {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASTrackPort/checkImport__12JASTrackPortCFUl.s"
+u32 JASTrackPort::checkImport(u32 param_0) const {
+    return field_0x0 & 1 << param_0 ? 1 : 0;
 }
-#pragma pop
 
 /* 80293628-80293644 28DF68 001C+00 0/0 1/1 0/0 .text            checkExport__12JASTrackPortCFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASTrackPort::checkExport(u32 param_0) const {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASTrackPort/checkExport__12JASTrackPortCFUl.s"
+u32 JASTrackPort::checkExport(u32 param_0) const {
+    return field_0x2 & 1 << param_0 ? 1 : 0;
 }
-#pragma pop

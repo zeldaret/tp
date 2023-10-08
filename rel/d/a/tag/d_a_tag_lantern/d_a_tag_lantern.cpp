@@ -12,10 +12,7 @@ daTag_Lantern_c::~daTag_Lantern_c() {}
 
 /* 8048ED28-8048EDA8 000168 0080+00 1/1 0/0 0/0 .text            create__15daTag_Lantern_cFv */
 int daTag_Lantern_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTag_Lantern_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daTag_Lantern_c);
     initialize();
     return cPhs_COMPLEATE_e;
 }
@@ -28,35 +25,36 @@ int daTag_Lantern_c::Delete() {
 
 /* 8048EDDC-8048EF6C 00021C 0190+00 2/2 0/0 0/0 .text            Execute__15daTag_Lantern_cFv */
 int daTag_Lantern_c::Execute() {
-    s32 sVar;
-    dComIfG_play_c& play = g_dComIfG_gameInfo.getPlay(); // fake match
+    dComIfG_play_c& play = g_dComIfG_gameInfo.getPlay();  // fake match
+
     if (i_dComIfGp_event_runCheck()) {
-        if (mEvtInfo.mCommand == 1) {
+        if (mEvtInfo.checkCommandTalk()) {
             if (!field_0x604) {
-                field_0x568.init(this, field_0x600, NULL, NULL);
-                field_0x604 += 1;
-            } else if (field_0x604 == 1 && field_0x568.doFlow(this, NULL, NULL)) {
+                mMsgFlow.init(this, mFlowIndex, 0, NULL);
+                field_0x604++;
+            } else if (field_0x604 == 1 && mMsgFlow.doFlow(this, NULL, 0)) {
                 play.getEvent().reset();
                 field_0x604 = 0;
                 field_0x5f8 = 0;
             }
         }
-    } else {
-        if (field_0x5f8) {
-            mEvtInfo.mCondition |= 1;
-            fopAcM_orderSpeakEvent(this, 0, 0);
-        }
+    } else if (field_0x5f8) {
+        mEvtInfo.i_onCondition(1);
+        fopAcM_orderSpeakEvent(this, 0, 0);
     }
-    field_0x5b4.SetPos(&current.pos);
-    field_0x5f4 = dComIfG_Bgsp().GroundCross(&field_0x5b4);
 
-    if (field_0x5f4 != -1000000000.0f) {
-        sVar = dComIfG_Bgsp().GetRoomId(field_0x5b4);
-        mTevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(field_0x5b4);
+    mGndChk.SetPos(&current.pos);
+    mGroundCross = dComIfG_Bgsp().GroundCross(&mGndChk);
+
+    s32 room_no;
+    if (mGroundCross != -1000000000.0f) {
+        room_no = dComIfG_Bgsp().GetRoomId(mGndChk);
+        mTevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mGndChk);
     } else {
-        sVar = dComIfGp_roomControl_getStayNo();
+        room_no = dComIfGp_roomControl_getStayNo();
     }
-    mTevStr.mRoomNo = sVar;
+
+    mTevStr.mRoomNo = room_no;
     fopAcM_SetRoomNo(this, mTevStr.mRoomNo);
     mAttentionInfo.mFlags = 0;
     mAttentionInfo.mPosition = current.pos;
@@ -72,16 +70,20 @@ int daTag_Lantern_c::Draw() {
 /* 8048EF74-8048F024 0003B4 00B0+00 1/1 0/0 0/0 .text            initialize__15daTag_Lantern_cFv */
 void daTag_Lantern_c::initialize() {
     fopAcM_setCullSizeBox(this, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-    if (orig.angle.z != 0xffff) {
-        field_0x600 = orig.angle.z;
+
+    if (orig.angle.z != 0xFFFF) {
+        mFlowIndex = orig.angle.z;
     } else {
-        field_0x600 = -1;
+        mFlowIndex = -1;
     }
+
     orig.angle.z = 0;
-    field_0x5fc = fopAcM_GetParam(this) & 0xfff;
+    field_0x5fc = fopAcM_GetParam(this) & 0xFFF;
+
     mScale.x *= 100.0f;
     mScale.y *= 100.0f;
     mScale.z *= 100.0f;
+
     Execute();
 }
 
@@ -110,9 +112,6 @@ static int daTag_Lantern_IsDelete(void* i_this) {
     return 1;
 }
 
-/* 8048F1C8-8048F1D4 000008 000C+00 1/1 0/0 0/0 .bss             @3622 */
-static u8 lit_3622[12];
-
 /* 8048F1D4-8048F1D8 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daTag_Lantern_Param_c l_HIO;
 
@@ -134,7 +133,7 @@ extern actor_process_profile_definition g_profile_TAG_LANTERN = {
     0,                           // mSizeOther
     0,                           // mParameters
     &g_fopAc_Method.base,        // mSubMtd
-    0x011E,                      // mPriority
+    286,                         // mPriority
     &daTag_Lantern_MethodTable,  // mSubMtd
     0x00040000,                  // mStatus
     0,                           // mActorType

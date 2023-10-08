@@ -6,7 +6,6 @@
 #include "d/d_lib.h"
 #include "SSystem/SComponent/c_m3d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 #include "m_Do/m_Do_controller_pad.h"
 
@@ -171,30 +170,26 @@ s16 CSTControl::getAngleStick() {
 u8 STControl::checkTrigger() {
     field_0x0d = mDirectionTrig;
     f32 stickValue = getValueStick();
-    s16 stickAngle_ = getAngleStick();
+    s16 stickAngle = getAngleStick();
     u8 var_r6 = 0;
     s16 temp_r7 = 0x2000 - field_0x26 >> 1;
 
     if (!cM3d_IsZero(stickValue)) {
-        int stickAngle = stickAngle_;
-        s16 temp_r4 = field_0x22;
-        int temp_r3 = temp_r4 + temp_r7;
-
-        if (stickAngle < temp_r3 - 0x7000) {
+        if (stickAngle < field_0x22 + temp_r7 - 0x7000) {
             var_r6 |= TRIG_UP;
-        } else if (stickAngle < (temp_r4 - 0x5000) - temp_r7) {
+        } else if (stickAngle < (field_0x22 - 0x5000) - temp_r7) {
             var_r6 |= TRIG_UP_LEFT;
-        } else if (stickAngle < temp_r3 - 0x3000) {
+        } else if (stickAngle < field_0x22 + temp_r7 - 0x3000) {
             var_r6 |= TRIG_LEFT;
-        } else if (stickAngle < (temp_r4 - 0x1000) - temp_r7) {
+        } else if (stickAngle < (field_0x22 - 0x1000) - temp_r7) {
             var_r6 |= TRIG_DOWN_LEFT;
-        } else if (stickAngle < temp_r3 + 0x1000) {
+        } else if (stickAngle < field_0x22 + temp_r7 + 0x1000) {
             var_r6 |= TRIG_DOWN;
-        } else if (stickAngle < (temp_r4 + 0x3000) - temp_r7) {
+        } else if (stickAngle < (field_0x22 + 0x3000) - temp_r7) {
             var_r6 |= TRIG_DOWN_RIGHT;
-        } else if (stickAngle < temp_r3 + 0x5000) {
+        } else if (stickAngle < field_0x22 + temp_r7 + 0x5000) {
             var_r6 |= TRIG_RIGHT;
-        } else if (stickAngle < (temp_r4 + 0x7000) - temp_r7) {
+        } else if (stickAngle < (field_0x22 + 0x7000) - temp_r7) {
             var_r6 |= TRIG_UP_RIGHT;
         } else {
             var_r6 |= TRIG_UP;
@@ -208,9 +203,8 @@ u8 STControl::checkTrigger() {
             mDirectionTrig &= ~var_r6;
         }
 
-        u8 temp_r3_2 = mDirectionTrig;
-        if (temp_r3_2 != field_0x0d) {
-            if (temp_r3_2 == 0) {
+        if (mDirectionTrig != field_0x0d) {
+            if (mDirectionTrig == 0) {
                 field_0x22 = 0;
             } else if ((stickAngle & 0x1FFF) > 0x1000) {
                 field_0x22 = field_0x24;

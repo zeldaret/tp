@@ -4,16 +4,14 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_lv6bemos/d_a_obj_lv6bemos.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
 //
 
 struct request_of_phase_process_class {};
-
-struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CCC8 */ void push();
@@ -102,34 +100,6 @@ struct dDlst_shadowControl_c {
     static u8 mSimpleTexObj[32];
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_SrcCps {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80C7DD80 */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-    /* 800844F8 */ void GetTgHitObj();
-};
-
-struct dCcD_Cps {
-    /* 800847D0 */ void Set(dCcD_SrcCps const&);
-    /* 80084824 */ void CalcAtVec();
-};
-
 struct dBgW {};
 
 struct dBgS_PolyPassChk {
@@ -160,41 +130,13 @@ struct dBgS_GndChk {
     /* 800775F0 */ ~dBgS_GndChk();
 };
 
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 80C7DCF0 */ ~cM3dGSph();
-};
-
-struct cM3dGPla {
-    /* 80C7DA74 */ ~cM3dGPla();
-};
-
-struct cM3dGCpsS {};
-
-struct cM3dGCps {
-    /* 8026EF88 */ cM3dGCps();
-    /* 8026F03C */ void Set(cM3dGCpsS const&);
-};
-
-struct cM3dGAab {
-    /* 80C7DD38 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 80C7DE48 */ ~cCcD_GStts();
 };
 
 struct cBgS {
     /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
 };
-
-struct Vec {};
 
 struct J3DSys {
     static u8 mCurrentMtx[48];
@@ -308,7 +250,6 @@ extern "C" void removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey(
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXTrans();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECSquareDistance();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_27();
@@ -318,7 +259,6 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void abs();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];
@@ -334,7 +274,6 @@ extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u32 __float_nan;
 extern "C" extern u8 data_80C7E138[4];
 
 //
@@ -343,13 +282,17 @@ extern "C" extern u8 data_80C7E138[4];
 
 /* ############################################################################################## */
 /* 80C7DECC-80C7DF0C 000000 0040+00 5/5 0/0 0/0 .rodata          l_sph_src */
-SECTION_RODATA static u8 const l_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1E,
-    0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00,
+const static dCcD_SrcSph l_sph_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x1e}, {0xd8fbfdff, 0x11}, 0x0}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x8}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 50.0f} // mSph
+    } // mSphAttr
 };
-COMPILER_STRIP_GATE(0x80C7DECC, &l_sph_src);
 
 /* 80C7DF0C-80C7DF10 000040 0004+00 0/1 0/0 0/0 .rodata          @3728 */
 #pragma push
@@ -483,12 +426,16 @@ SECTION_DATA static u8 l_cull_box[24] = {
 };
 
 /* 80C7DFB4-80C7E000 00003C 004C+00 1/1 0/0 0/0 .data            l_cps_src */
-SECTION_DATA static u8 l_cps_src[76] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1D,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00,
+static dCcD_SrcCps l_cps_src = {
+    {
+        {0x0, {{0x100, 0x1, 0x1d}, {0x0, 0x0}, 0x0}}, // mObj
+        {dCcD_SE_SWORD, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, 50.0f}, // mCps
+    } // mCpsAttr
 };
 
 /* 80C7CED4-80C7CFD0 000434 00FC+00 1/0 0/0 0/0 .text            Create__11daObjL6Bm_cFv */
@@ -772,7 +719,8 @@ asm void daObjL6Bm_c::Draw() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGPla::~cM3dGPla() {
+// asm cM3dGPla::~cM3dGPla() {
+extern "C" asm void __dt__8cM3dGPlaFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv6bemos/d_a_obj_lv6bemos/__dt__8cM3dGPlaFv.s"
 }
@@ -827,7 +775,8 @@ asm dBgS_ObjGndChk::~dBgS_ObjGndChk() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv6bemos/d_a_obj_lv6bemos/__dt__8cM3dGSphFv.s"
 }
@@ -837,7 +786,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv6bemos/d_a_obj_lv6bemos/__dt__8cM3dGAabFv.s"
 }
@@ -847,7 +797,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv6bemos/d_a_obj_lv6bemos/__dt__10dCcD_GSttsFv.s"
 }
@@ -887,7 +838,8 @@ static asm void daObjL6Bm_MoveBGDraw(daObjL6Bm_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv6bemos/d_a_obj_lv6bemos/__dt__10cCcD_GSttsFv.s"
 }

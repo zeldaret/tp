@@ -8,9 +8,7 @@
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "d/a/d_a_alink.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/d_kantera_icon_meter.h"
-#include "d/meter/d_meter2_info.h"
 #include "d/meter/d_meter_HIO.h"
 #include "d/msg/d_msg_object.h"
 #include "d/pane/d_pane_class.h"
@@ -2437,11 +2435,8 @@ SECTION_SBSS2 static u8 data_80456B9C[4];
 #ifdef NONMATCHING
 void dMeter2Draw_c::drawKanteraMeter(u8 i_button, f32 i_alphaRate) {
     CPaneMgr* pane = mpItemXY[i_button];
-    f32 local_68[2][2];
-    local_68[1][0] = 0.0f;
-    local_68[1][1] = 0.0f;
-    local_68[0][0] = 0.0f;
-    local_68[0][1] = 0.0f;
+    f32 local_74[2] = {0.0f};
+    f32 local_68[2] = {0.0f};
 
     if (i_alphaRate == 1.0f) {
         i_alphaRate = pane->getAlphaRate();
@@ -2450,8 +2445,8 @@ void dMeter2Draw_c::drawKanteraMeter(u8 i_button, f32 i_alphaRate) {
     JGeometry::TVec3<f32> vtx1 = pane->getPanePtr()->getGlbVtx(0);
     JGeometry::TVec3<f32> vtx2 = pane->getPanePtr()->getGlbVtx(3);
 
-    mpKanteraMeter[i_button]->setPos((vtx1.x + vtx2.x) * 0.5f + 9.0f + local_68[1][i_button],
-                                     vtx2.y + local_68[0][i_button]);
+    mpKanteraMeter[i_button]->setPos((vtx1.x + vtx2.x) * 0.5f + 9.0f + local_74[i_button],
+                                     vtx2.y + local_68[i_button]);
     mpKanteraMeter[i_button]->setScale(0.6f, 0.6f);
     mpKanteraMeter[i_button]->setNowGauge(dComIfGs_getMaxOil(), dComIfGs_getOil());
     mpKanteraMeter[i_button]->setAlphaRate(i_alphaRate);

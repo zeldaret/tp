@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/d_a_sq/d_a_sq.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -34,8 +34,6 @@ struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Vec {};
-
 struct J3DAnmTransform {};
 
 struct J3DModelData {};
@@ -61,10 +59,6 @@ struct daSq_HIO_c {
 
 struct dKy_tevstr_c {};
 
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-};
-
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
     /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
@@ -88,24 +82,6 @@ struct dEvt_control_c {
 
 struct dDlst_shadowControl_c {
     static u8 mSimpleTexObj[32];
-};
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
 };
 
 struct dBgS_PolyPassChk {
@@ -137,18 +113,6 @@ struct dBgS_Acch {
     /* 80076248 */ void Set(cXyz*, cXyz*, fopAc_ac_c*, int, dBgS_AcchCir*, cXyz*, csXyz*, csXyz*);
     /* 80076AAC */ void CrrPos(dBgS&);
 };
-
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 8026F708 */ void SetR(f32);
-    /* 805A0FB0 */ ~cM3dGSph();
-};
-
-struct cM3dGAab {
-    /* 805A0FF8 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
 
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
@@ -266,7 +230,6 @@ extern "C" void __dl__FPv();
 extern "C" void init__12J3DFrameCtrlFs();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXTrans();
-extern "C" void PSVECAdd();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_28();
@@ -355,19 +318,29 @@ SECTION_DATA static u8 carry_wait_bck[12] = {
 };
 
 /* 805A1204-805A1244 00001C 0040+00 1/1 0/0 0/0 .data            cc_sph_src$4278 */
-SECTION_DATA static u8 cc_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x75, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00,
+static dCcD_SrcSph cc_sph_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x0, 0x0}, 0x75}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 20.0f} // mSph
+    } // mSphAttr
 };
 
 /* 805A1244-805A1284 00005C 0040+00 1/1 0/0 0/0 .data            at_sph_src$4279 */
-SECTION_DATA static u8 at_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x70, 0x00, 0x00,
+static dCcD_SrcSph at_sph_src = {
+    {
+        {0x0, {{AT_TYPE_CSTATUE_SWING, 0x1, 0xd}, {0x0, 0x0}, 0x0}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 15.0f} // mSph
+    } // mSphAttr
 };
 
 /* 805A1284-805A12A4 -00001 0020+00 1/0 0/0 0/0 .data            l_daSq_Method */
@@ -820,7 +793,8 @@ static asm void daSq_Create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_sq/d_a_sq/__dt__8cM3dGSphFv.s"
 }
@@ -830,7 +804,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_sq/d_a_sq/__dt__8cM3dGAabFv.s"
 }

@@ -4,7 +4,6 @@
 //
 
 #include "SSystem/SComponent/c_sxyz.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

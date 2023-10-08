@@ -4,32 +4,9 @@
 //
 
 #include "JSystem/J3DU/J3DUDL.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct J3DShapeMtx {
-    /* 80273E08 */ bool getUseMtxNum() const;
-};
-
-//
-// Forward References:
-//
-
-extern "C" bool getUseMtxNum__11J3DShapeMtxCFv();
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
+#include "JSystem/J3DGraphBase/J3DShapeMtx.h"
 
 /* 80273E08-80273E10 26E748 0008+00 0/0 4/0 0/0 .text            getUseMtxNum__11J3DShapeMtxCFv */
-bool J3DShapeMtx::getUseMtxNum() const {
-    return true;
+u32 J3DShapeMtx::getUseMtxNum() const {
+    return 1;
 }

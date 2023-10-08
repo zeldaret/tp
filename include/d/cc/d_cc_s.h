@@ -3,7 +3,6 @@
 
 #include "SSystem/SComponent/c_cc_s.h"
 #include "d/cc/d_cc_mass_s.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 class dCcD_GObjInf;
@@ -47,10 +46,10 @@ public:
     /* 80086754 */ virtual void CalcParticleAngle(dCcD_GObjInf*, cCcD_Stts*, cCcD_Stts*, csXyz*);
 
     void SetMass(cCcD_Obj* i_obj, u8 i_priority) { mMass_Mng.Set(i_obj, i_priority); }
+    void PrepareMass() { mMass_Mng.Prepare(); }
 
     static u8 m_mtrl_hit_tbl[64];
 
-private:
     // /* 0x0000 */ cCcS mCCcS;
     /* 0x284C */ dCcMassS_Mng mMass_Mng;
 };  // Size = 0x2AC4

@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/e/d_a_e_sb/d_a_e_sb.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -14,12 +14,6 @@
 struct request_of_phase_process_class {};
 
 struct csXyz {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -155,27 +149,6 @@ struct dDlst_shadowControl_c {
 
 struct dCcU_AtInfo {};
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80083830 */ void Move();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-    /* 800844F8 */ void GetTgHitObj();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
 struct dBgS_PolyPassChk {
     /* 80078E68 */ void SetObj();
 };
@@ -208,21 +181,6 @@ struct dBgS_Acch {
     /* 80076248 */ void Set(cXyz*, cXyz*, fopAc_ac_c*, int, dBgS_AcchCir*, cXyz*, csXyz*, csXyz*);
     /* 80076AAC */ void CrrPos(dBgS&);
 };
-
-struct cM3dGSph {
-    /* 80784BA0 */ ~cM3dGSph();
-};
-
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 80784B58 */ ~cM3dGCyl();
-};
-
-struct cM3dGAab {
-    /* 80784BE8 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
 
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
@@ -411,7 +369,6 @@ extern "C" void __dl__FPv();
 extern "C" void checkPass__12J3DFrameCtrlFf();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECSquareDistance();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
@@ -432,7 +389,6 @@ extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
 extern "C" f32 mGroundY__11fopAcM_gc_c;
 extern "C" void __register_global_object();
 
@@ -625,14 +581,19 @@ static asm void useHeapInit(fopAc_ac_c* param_0) {
 
 /* ############################################################################################## */
 /* 80784D94-80784DD8 00002C 0044+00 1/1 0/0 0/0 .rodata          ccCylSrc$3693 */
-SECTION_RODATA static u8 const ccCylSrc[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x0D, 0x00, 0x00, 0x60, 0x32, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x75,
-    0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x42, 0xA0, 0x00, 0x00, 0x43, 0x02, 0x00, 0x00,
+const static dCcD_SrcCyl ccCylSrc = {
+    {
+        {0x0, {{AT_TYPE_CSTATUE_SWING, 0x2, 0xd}, {0x6032, 0x11}, 0x75}}, // mObj
+        {dCcD_SE_STONE, 0x0, 0x0, 0x0, 0x1}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x1}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        80.0f, // mRadius
+        130.0f // mHeight
+    } // mCyl
 };
-COMPILER_STRIP_GATE(0x80784D94, &ccCylSrc);
 
 /* 807817F0-80781850 000290 0060+00 1/1 0/0 0/0 .text            initCcCylinder__8daE_SB_cFv */
 #pragma push
@@ -1445,7 +1406,8 @@ asm void daE_SB_c::Create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_sb/d_a_e_sb/__dt__8cM3dGCylFv.s"
 }
@@ -1455,7 +1417,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_sb/d_a_e_sb/__dt__8cM3dGSphFv.s"
 }
@@ -1465,7 +1428,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_sb/d_a_e_sb/__dt__8cM3dGAabFv.s"
 }

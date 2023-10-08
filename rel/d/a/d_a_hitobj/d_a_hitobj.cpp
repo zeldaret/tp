@@ -6,7 +6,6 @@
 #include "rel/d/a/d_a_hitobj/d_a_hitobj.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
-#include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_kankyo_mng.h"
 
 /* 8046B358-8046B360 000078 0008+00 1/0 0/0 0/0 .text            daHitobj_Draw__FP12hitobj_class */
@@ -51,18 +50,17 @@ static dCcD_SrcSph cc_sph_src = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        100.0f,
-    },
+        {
+            {0.0f, 0.0f, 0.0f},
+            100.0f,
+        },
+    }
 };
 
 /* 8046B400-8046B53C 000120 013C+00 1/0 0/0 0/0 .text            daHitobj_Create__FP10fopAc_ac_c */
 static int daHitobj_Create(fopAc_ac_c* i_this) {
     hitobj_class* hitobj = (hitobj_class*)i_this;
-    if (!fopAcM_CheckCondition(hitobj, 8)) {
-        new (hitobj) hitobj_class();
-        fopAcM_OnCondition(hitobj, 8);
-    }
+    fopAcM_SetupActor(i_this, hitobj_class);
 
     int ret = dComIfG_resLoad(&hitobj->mPhase,"Hitobj");
 

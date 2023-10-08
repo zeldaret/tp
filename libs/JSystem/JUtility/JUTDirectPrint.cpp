@@ -5,8 +5,6 @@
 
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "MSL_C/stdio.h"
-#include "Runtime.PPCEABI.H/__va_arg.h"
-#include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
 #include "global.h"
 
@@ -14,16 +12,9 @@
 // Forward References:
 //
 
-extern "C" u8 sAsciiTable__14JUTDirectPrint[128];
-extern "C" void* sFontData__14JUTDirectPrint[64];
-extern "C" void* sFontData2__14JUTDirectPrint[77];
-
 //
 // External References:
 //
-
-extern "C" void _savegpr_27();
-extern "C" void _restgpr_27();
 
 //
 // Declarations:
@@ -76,7 +67,7 @@ void JUTDirectPrint::erase(int x, int y, int width, int height) {
 
 /* ############################################################################################## */
 /* 803CC6B8-803CC738 0297D8 0080+00 2/2 0/0 0/0 .data            sAsciiTable__14JUTDirectPrint */
-SECTION_DATA u8 JUTDirectPrint::sAsciiTable[128] = {
+u8 JUTDirectPrint::sAsciiTable[128] = {
     0x7A, 0x7A, 0x7A, 0x7A, 0x7A, 0x7A, 0x7A, 0x7A, 0x7A, 0xFD, 0xFE, 0x7A, 0x7A, 0x7A, 0x7A, 0x7A,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
     0xFF, 0x29, 0x64, 0x65, 0x66, 0x2B, 0x67, 0x68, 0x25, 0x26, 0x69, 0x2A, 0x6A, 0x27, 0x2C, 0x6B,
@@ -88,9 +79,7 @@ SECTION_DATA u8 JUTDirectPrint::sAsciiTable[128] = {
 };
 
 /* 803CC738-803CC838 -00001 0100+00 0/1 0/0 0/0 .data            sFontData__14JUTDirectPrint */
-#pragma push
-#pragma force_active on
-SECTION_DATA u32 JUTDirectPrint::sFontData[64] = {
+u32 JUTDirectPrint::sFontData[64] = {
     0x70871C30, 0x8988A250, 0x88808290, 0x88830C90, 0x888402F8, 0x88882210, 0x71CF9C10, 0xF9CF9C70,
     0x8208A288, 0xF200A288, 0x0BC11C78, 0x0A222208, 0x8A222208, 0x71C21C70, 0x23C738F8, 0x5228A480,
     0x8A282280, 0x8BC822F0, 0xFA282280, 0x8A28A480, 0x8BC738F8, 0xF9C89C08, 0x82288808, 0x82088808,
@@ -100,12 +89,9 @@ SECTION_DATA u32 JUTDirectPrint::sFontData[64] = {
     0x70852220, 0xF8011000, 0x08020800, 0x10840400, 0x20040470, 0x40840400, 0x80020800, 0xF8011000,
     0x70800000, 0x88822200, 0x08820400, 0x108F8800, 0x20821000, 0x00022200, 0x20800020, 0x00000000,
 };
-#pragma pop
 
 /* 803CC838-803CC96C -00001 0134+00 0/1 0/0 0/0 .data            sFontData2__14JUTDirectPrint */
-#pragma push
-#pragma force_active on
-SECTION_DATA u32 JUTDirectPrint::sFontData2[77] = {
+u32 JUTDirectPrint::sFontData2[77] = {
     0x51421820, 0x53E7A420, 0x014A2C40, 0x01471000, 0x0142AA00, 0x03EAA400, 0x01471A78, 0x00000000,
     0x50008010, 0x20010820, 0xF8020040, 0x20420820, 0x50441010, 0x00880000, 0x00070E00, 0x01088840,
     0x78898820, 0x004A8810, 0x788A8810, 0x01098808, 0x00040E04, 0x70800620, 0x11400820, 0x12200820,
@@ -117,146 +103,72 @@ SECTION_DATA u32 JUTDirectPrint::sFontData2[77] = {
     0x00000000, 0x8A28B688, 0x8A2A8888, 0x8A2A8878, 0x894A8808, 0x788536F0, 0x00000000, 0x00000000,
     0xF8000000, 0x10000000, 0x20000000, 0x40000000, 0xF8000000,
 };
-#pragma pop
 
 /* 803CC96C-803CC980 029A8C 0010+04 0/1 0/0 0/0 .data            twiceBit$371 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 twiceBit[4] = {
-    0x00000000,
-    0x00000003,
-    0x0000000C,
-    0x0000000F,
+static u32 twiceBit[4] = {
+    0,
+    3,
+    12,
+    15,
 };
-#pragma pop
 
 /* 802E431C-802E456C 2DEC5C 0250+00 1/1 0/0 0/0 .text            drawChar__14JUTDirectPrintFiii */
-// incorrect reg-alloc
-#ifdef NONMATCHING
 void JUTDirectPrint::drawChar(int position_x, int position_y, int ch) {
-    int codepoint;
-    if (100 <= ch)
-        codepoint = ch - 100;
-    else
-        codepoint = ch;
+    int codepoint = (100 <= ch) ? ch - 100 : ch;
+    int col_index = (codepoint % 5) * 6;
+    int row_index = (codepoint / 5) * 7;
 
-    u32 col_index = (codepoint % 5) * 6;
-    u32 row_index = (codepoint / 5) * 7;
+    const u32 *font_data = (100 > ch) ? sFontData + row_index : sFontData2 + row_index;
 
-    u32* font_data;
-    if (100 > ch)
-        font_data = sFontData + row_index;
-    else
-        font_data = sFontData2 + row_index;
+    int scale_x = (mFrameBufferWidth < 400) ? 1 : 2;
+    int scale_y = (mFrameBufferHeight < 300) ? 1 : 2;
 
-    s32 scale_x;
-    if (mFrameBufferWidth < 400)
-        scale_x = 1;
-    else
-        scale_x = 2;
-
-    s32 scale_y;
-    if (mFrameBufferHeight < 300)
-        scale_y = 1;
-    else
-        scale_y = 2;
-
-    u16* pixel = mFrameBuffer + mStride * position_y * scale_y + position_x * scale_x;
-    for (u32 y = 0; y < 7; y++) {
+    u16 *pixel = mFrameBuffer + mStride * position_y * scale_y + position_x * scale_x;
+    for (int y = 0; y < 7; y++)
+    {
         u32 data = *font_data << col_index;
         font_data += 1;
 
-        if (scale_x == 1) {
-            data = data >> 1 & 0x7e000000;
-        } else {
+        if (scale_x == 1)
+        {
+            data = (data & 0xfc000000) >> 1;
+        }
+        else
+        {
             u32 a = twiceBit[(data >> 26) & 3];
             u32 b = twiceBit[(data >> 28) & 3] << 4;
             u32 c = twiceBit[(data >> 30) & 3] << 8;
-            data = (a | b | c) << 0x13;
+            data = (a | b | c) << 19;
         }
 
-        for (int x = 0; x < scale_x * 6; x += 2) {
-            u16 C1;
-            u16 C2;
-            u16 C3;
-            u16 Y;
+        for (int x = 0; x < scale_x * 6; x += 2)
+        {
             u16 value;
 
-            if (data & 0x40000000) {
-                C1 = mCharColor_Cb2;
-            } else {
-                C1 = 0x40;
-            }
-
-            if (data & 0x80000000) {
-                C2 = mCharColor_Cb4;
-            } else {
-                C2 = 0x20;
-            }
-
-            if (data & 0x20000000) {
-                C3 = mCharColor_Cb4;
-            } else {
-                C3 = 0x20;
-            }
-
-            if (data & 0x40000000) {
-                Y = mCharColor_Y;
-            } else {
-                Y = 0x00;
-            }
-
-            value = Y | (C2 + C1 + C3);
+            value = (((data & 0x40000000) ? mCharColor_Y : 0) |
+                        ((data & 0x80000000) ? mCharColor_Cb4 : 32) +
+                        ((data & 0x40000000) ? mCharColor_Cb2 : 64) +
+                        ((data & 0x20000000) ? mCharColor_Cb4 : 32));
             pixel[0] = value;
             if (scale_y > 1)
                 pixel[mStride] = value;
 
-            if (data & 0x20000000) {
-                C1 = mCharColor_Cr2;
-            } else {
-                C1 = 0x40;
-            }
-
-            if (data & 0x40000000) {
-                C2 = mCharColor_Cr4;
-            } else {
-                C2 = 0x20;
-            }
-
-            if (data & 0x10000000) {
-                C3 = mCharColor_Cr4;
-            } else {
-                C3 = 0x20;
-            }
-
-            if (data & 0x20000000) {
-                Y = mCharColor_Y;
-            } else {
-                Y = 0x00;
-            }
-
-            value = Y | (C2 + C1 + C3);
+            value = (((data & 0x20000000) ? mCharColor_Y : 0) |
+                        ((data & 0x40000000) ? mCharColor_Cr4 : 32) +
+                        ((data & 0x20000000) ? mCharColor_Cr2 : 64) +
+                        ((data & 0x10000000) ? mCharColor_Cr4 : 32));
             pixel[1] = value;
             if (scale_y > 1)
                 pixel[1 + mStride] = value;
 
-            data <<= 2;
             pixel += 2;
+            data <<= 2;
+           
         }
 
-        pixel += mStride * scale_y - scale_x * 6;
+        pixel += mStride * scale_y - 6 * scale_x;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTDirectPrint::drawChar(int param_0, int param_1, int param_2) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTDirectPrint/drawChar__14JUTDirectPrintFiii.s"
-}
-#pragma pop
-#endif
 
 /* 802E456C-802E45A4 2DEEAC 0038+00 1/1 4/4 0/0 .text changeFrameBuffer__14JUTDirectPrintFPvUsUs
  */

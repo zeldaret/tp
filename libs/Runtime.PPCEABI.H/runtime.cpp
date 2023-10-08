@@ -5,7 +5,6 @@
 
 #include "Runtime.PPCEABI.H/runtime.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:
@@ -24,7 +23,7 @@ extern "C" void _restfpr_26();
 extern "C" void _restfpr_27();
 extern "C" void _restfpr_28();
 extern "C" void _restfpr_29();
-extern "C" void __save_gpr();
+extern "C" void _savegpr_14();
 extern "C" void _savegpr_15();
 extern "C" void _savegpr_16();
 extern "C" void _savegpr_17();
@@ -40,7 +39,7 @@ extern "C" void _savegpr_26();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
-extern "C" void __restore_gpr();
+extern "C" void _restgpr_14();
 extern "C" void _restgpr_15();
 extern "C" void _restgpr_16();
 extern "C" void _restgpr_17();
@@ -212,13 +211,13 @@ asm void _restfpr_29() {
 }
 #pragma pop
 
-/* 803621A0-803621A4 35CAE0 0004+00 0/0 22/22 13/13 .text            __save_gpr */
+/* 803621A0-803621A4 35CAE0 0004+00 0/0 22/22 13/13 .text            _savegpr_14 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __save_gpr() {
+asm void _savegpr_14() {
     nofralloc
-#include "asm/Runtime.PPCEABI.H/runtime/__save_gpr.s"
+#include "asm/Runtime.PPCEABI.H/runtime/_savegpr_14.s"
 }
 #pragma pop
 
@@ -372,13 +371,13 @@ asm void _savegpr_29() {
 }
 #pragma pop
 
-/* 803621EC-803621F0 35CB2C 0004+00 0/0 22/22 13/13 .text            __restore_gpr */
+/* 803621EC-803621F0 35CB2C 0004+00 0/0 22/22 13/13 .text            _restgpr_14 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __restore_gpr() {
+asm void _restgpr_14() {
     nofralloc
-#include "asm/Runtime.PPCEABI.H/runtime/__restore_gpr.s"
+#include "asm/Runtime.PPCEABI.H/runtime/_restgpr_14.s"
 }
 #pragma pop
 

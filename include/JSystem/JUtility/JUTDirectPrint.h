@@ -3,7 +3,6 @@
 
 #include "JSystem/JUtility/TColor.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
-#include "dolphin/types.h"
 
 class JUTDirectPrint {
 private:

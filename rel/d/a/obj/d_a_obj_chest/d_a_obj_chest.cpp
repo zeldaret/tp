@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_chest/d_a_obj_chest.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -16,8 +16,6 @@ struct request_of_phase_process_class {};
 struct csXyz {
     /* 8026745C */ void operator+=(csXyz&);
 };
-
-struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -74,28 +72,6 @@ struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80BC95D0 */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-    /* 80BC93F0 */ ~dCcD_Cyl();
-    /* 80BC94BC */ dCcD_Cyl();
-};
-
 struct dBgW {};
 
 struct dBgS_PolyPassChk {
@@ -135,32 +111,8 @@ struct dBgS_Acch {
     /* 80076248 */ void Set(cXyz*, cXyz*, fopAc_ac_c*, int, dBgS_AcchCir*, cXyz*, csXyz*, csXyz*);
 };
 
-struct cM3dGCyl {
-    /* 80BC9540 */ ~cM3dGCyl();
-};
-
 struct cM3dGCir {
     /* 8026EF18 */ ~cM3dGCir();
-};
-
-struct cM3dGAab {
-    /* 80BC9588 */ ~cM3dGAab();
-};
-
-struct cCcD_GStts {
-    /* 80BC9F64 */ ~cCcD_GStts();
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct J3DModel {};
@@ -252,8 +204,6 @@ extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void __dl__FPv();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECScale();
-extern "C" void PSVECSquareDistance();
 extern "C" void __construct_array();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_23();
@@ -273,7 +223,6 @@ extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u32 __float_nan;
 extern "C" f32 mGroundY__11fopAcM_gc_c;
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" extern u8 data_80BCA200[4];
@@ -294,14 +243,19 @@ asm void daObjChest_c::initBaseMtx() {
 
 /* ############################################################################################## */
 /* 80BC9FFC-80BCA040 000000 0044+00 3/3 0/0 0/0 .rodata          l_cyl_src */
-SECTION_RODATA static u8 const l_cyl_src[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x19,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00, 0x43, 0x82, 0x00, 0x00,
+const static dCcD_SrcCyl l_cyl_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0xffffffff, 0x0}, 0x19}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        40.0f, // mRadius
+        260.0f // mHeight
+    } // mCyl
 };
-COMPILER_STRIP_GATE(0x80BC9FFC, &l_cyl_src);
 
 /* 80BCA040-80BCA044 000044 0004+00 1/4 0/0 0/0 .rodata          @3679 */
 SECTION_RODATA static f32 const lit_3679 = 1.0f;
@@ -544,7 +498,8 @@ asm void daObjChest_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Cyl::~dCcD_Cyl() {
+// asm dCcD_Cyl::~dCcD_Cyl() {
+extern "C" asm void __dt__8dCcD_CylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_chest/d_a_obj_chest/__dt__8dCcD_CylFv.s"
 }
@@ -554,7 +509,8 @@ asm dCcD_Cyl::~dCcD_Cyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Cyl::dCcD_Cyl() {
+// asm dCcD_Cyl::dCcD_Cyl() {
+extern "C" asm void __ct__8dCcD_CylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_chest/d_a_obj_chest/__ct__8dCcD_CylFv.s"
 }
@@ -564,7 +520,8 @@ asm dCcD_Cyl::dCcD_Cyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_chest/d_a_obj_chest/__dt__8cM3dGCylFv.s"
 }
@@ -574,7 +531,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_chest/d_a_obj_chest/__dt__8cM3dGAabFv.s"
 }
@@ -584,7 +542,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_chest/d_a_obj_chest/__dt__10dCcD_GSttsFv.s"
 }
@@ -854,7 +813,8 @@ static asm void daObjChest_Create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_chest/d_a_obj_chest/__dt__10cCcD_GSttsFv.s"
 }

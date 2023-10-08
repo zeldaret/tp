@@ -3,7 +3,7 @@ lbl_8007F9A4:
 /* 8007F9A8  7C 08 02 A6 */	mflr r0
 /* 8007F9AC  90 01 09 04 */	stw r0, 0x904(r1)
 /* 8007F9B0  39 61 09 00 */	addi r11, r1, 0x900
-/* 8007F9B4  48 2E 27 ED */	bl __save_gpr
+/* 8007F9B4  48 2E 27 ED */	bl _savegpr_14
 /* 8007F9B8  7C 6F 1B 78 */	mr r15, r3
 /* 8007F9BC  90 81 00 08 */	stw r4, 8(r1)
 /* 8007F9C0  7C 83 23 78 */	mr r3, r4
@@ -359,7 +359,7 @@ lbl_8007FEB0:
 /* 8007FEE4  40 81 FC 64 */	ble lbl_8007FB48
 lbl_8007FEE8:
 /* 8007FEE8  39 61 09 00 */	addi r11, r1, 0x900
-/* 8007FEEC  48 2E 23 01 */	bl __restore_gpr
+/* 8007FEEC  48 2E 23 01 */	bl _restgpr_14
 /* 8007FEF0  80 01 09 04 */	lwz r0, 0x904(r1)
 /* 8007FEF4  7C 08 03 A6 */	mtlr r0
 /* 8007FEF8  38 21 09 00 */	addi r1, r1, 0x900

@@ -4,13 +4,9 @@
 //
 
 #include "d/event/d_event_data.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/d_camera.h"
-#include "d/d_demo.h"
 #include "d/d_gameover.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_graphic.h"
@@ -306,10 +302,10 @@ static int dEvDt_Next_Stage(int index, int wipe_type) {
             point = stgInfo->mStart;
             roomNo = (s8)stgInfo->mRoom;
             layer = dStage_sclsInfo_getSceneLayer(stgInfo);
-            wipe = (s8)dStage_sclsInfo_getWipe(stgInfo);
+            wipe = (s8)stgInfo->mWipe;
             wipe_time = dStage_sclsInfo_getWipeTime(stgInfo);
 
-            if (wipe == 15) {
+            if (stgInfo->mWipe == 15) {
                 wipe = 0;
             }
 
@@ -1237,6 +1233,7 @@ SECTION_DEAD static char const* const stringBase_80379F18 = "OffsetAngY";
 SECTION_SDATA2 static f32 lit_5057 = 10.0f;
 
 /* 80045878-80045AFC 0401B8 0284+00 1/1 0/0 0/0 .text specialProcPackage__12dEvDtStaff_cFv */
+// Matches without literals
 #ifdef NONMATCHING
 void dEvDtStaff_c::specialProcPackage() {
     dMsgObject_c* msgObj = dComIfGp_getMsgObjectClass();
@@ -1267,9 +1264,10 @@ void dEvDtStaff_c::specialProcPackage() {
             }
 
             // should not save event from g_dComIfG_gameInfo to register
-            u8* demoData = (u8*)i_dComIfGp_getEvent().getStbDemoData(fileName);
+            dComIfG_play_c& info = g_dComIfG_gameInfo.play;
+            u8* demoData = (u8*)info.getEvent().getStbDemoData(fileName);
             dDemo_c::start(demoData, offsetPos, offsetAngY);
-            dComIfGp_event_setCullRate(10.0f);
+            info.getEvent().setCullRate(10.0f);
 
             int* eventFlagP = dComIfGp_evmng_getMyIntegerP(staffId, "EventFlag");
             if (eventFlagP != NULL) {

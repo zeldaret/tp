@@ -2,12 +2,11 @@
 #define D_MENU_D_MENU_RING_H
 
 #include "d/d_drawlist.h"
-#include "dolphin/types.h"
 
 class CPaneMgr;
 struct CSTControl;
 class J2DTextBox;
-struct STControl;
+class STControl;
 class dKantera_icon_c;
 class dMsgString_c;
 class dMenu_ItemExplain_c;
@@ -127,7 +126,7 @@ private:
     /* 0x5B8 */ f32 field_0x5b8[10];
     /* 0x5E0 */ f32 field_0x5e0[10];
     /* 0x608 */ f32 field_0x608;
-    /* 0x604 */ f32 field_0x604;
+    /* 0x60C */ f32 field_0x60c;
     /* 0x610 */ f32 field_0x610;
     /* 0x614 */ f32 field_0x614;
     /* 0x618 */ f32 field_0x618;

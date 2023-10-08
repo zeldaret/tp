@@ -4,6 +4,7 @@
 //
 
 #include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubevent.h"
+#include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/mutex_TRK.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -12,48 +13,33 @@
 //
 
 void TRKDestructEvent();
-void TRKConstructEvent();
+void TRKConstructEvent(NubEvent*, NubEventType);
 void TRKPostEvent();
-void TRKGetNextEvent();
-void TRKInitializeEventQueue();
+u8 TRKGetNextEvent(NubEvent*);
+u8 TRKInitializeEventQueue();
 
 //
 // External References:
 //
 
-SECTION_INIT void TRK_memcpy();
+SECTION_INIT void TRK_memcpy(void* dst, const void* src, size_t n);
 void TRKReleaseBuffer();
-u8 TRKReleaseMutex();
-u8 TRKAcquireMutex();
-u8 TRKInitializeMutex();
 
 //
 // Declarations:
 //
 
 /* 8036CC18-8036CC3C 367558 0024+00 0/0 1/1 0/0 .text            TRKDestructEvent */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void TRKDestructEvent() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubevent/TRKDestructEvent.s"
+void TRKDestructEvent(NubEvent* event) {
+    TRKReleaseBuffer(event->mMessageBufferID);
 }
-#pragma pop
 
 /* 8036CC3C-8036CC54 36757C 0018+00 0/0 5/5 0/0 .text            TRKConstructEvent */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void TRKConstructEvent() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubevent/TRKConstructEvent.s"
+void TRKConstructEvent(NubEvent* event, NubEventType eventType) {
+    event->mType = eventType;
+    event->mID = 0;
+    event->mMessageBufferID = -1;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 8044D890-8044D8B8 07A5B0 0028+00 3/3 0/0 0/0 .bss             gTRKEventQueue */
-static u8 gTRKEventQueue[40];
 
 /* 8036CC54-8036CD34 367594 00E0+00 0/0 5/5 0/0 .text            TRKPostEvent */
 #pragma push
@@ -66,21 +52,28 @@ asm void TRKPostEvent() {
 #pragma pop
 
 /* 8036CD34-8036CDE8 367674 00B4+00 0/0 1/1 0/0 .text            TRKGetNextEvent */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void TRKGetNextEvent() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubevent/TRKGetNextEvent.s"
+u8 TRKGetNextEvent(NubEvent* event) {
+    u8 status = 0;
+    TRKAcquireMutex(&gTRKEventQueue);
+    if (0 < gTRKEventQueue.mCount) {
+        TRK_memcpy(event, &gTRKEventQueue.mEventList[gTRKEventQueue.mFirst], sizeof(NubEvent));
+        gTRKEventQueue.mCount--;
+        if (++gTRKEventQueue.mFirst == 2) {
+            gTRKEventQueue.mFirst = 0;
+        }
+        status = 1;
+    }
+    TRKReleaseMutex(&gTRKEventQueue);
+    return status;
 }
-#pragma pop
 
 /* 8036CDE8-8036CE40 367728 0058+00 0/0 1/1 0/0 .text            TRKInitializeEventQueue */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void TRKInitializeEventQueue() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubevent/TRKInitializeEventQueue.s"
+u8 TRKInitializeEventQueue() {
+    TRKInitializeMutex(&gTRKEventQueue);
+    TRKAcquireMutex(&gTRKEventQueue);
+    gTRKEventQueue.mCount = 0;
+    gTRKEventQueue.mFirst = 0;
+    gTRKEventQueue.mEventID = 0x100;
+    TRKReleaseMutex();
+    return 0;
 }
-#pragma pop

@@ -2,7 +2,6 @@
 #define J3DSYS_H
 
 #include "dolphin/gx/GX.h"
-#include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 
 // Perhaps move to a new J3DEnum.h?
@@ -90,6 +89,7 @@ struct J3DSys {
     void setModel(J3DModel* pModel) { mModel = pModel; }
     void setShapePacket(J3DShapePacket* pPacket) { mShapePacket = pPacket; }
     void setMatPacket(J3DMatPacket* pPacket) { mMatPacket = pPacket; }
+    J3DMatPacket* getMatPacket() { return mMatPacket; }
     void setMaterialMode(u32 mode) { mMaterialMode = mode; }
 
     void setTexture(J3DTexture* pTex) { mTexture = pTex; }
@@ -124,7 +124,7 @@ struct J3DSys {
     Mtx& getModelDrawMtx(u16 no) const { return mModelDrawMtx[no]; }
     J3DShapePacket* getShapePacket() const { return mShapePacket; }
 
-    void setViewMtx(Mtx m) { PSMTXCopy(m, mViewMtx); }
+    void setViewMtx(Mtx m) { MTXCopy(m, mViewMtx); }
 
     J3DModel* getModel() { return mModel; }
 
@@ -134,6 +134,7 @@ struct J3DSys {
     static u16 sTexCoordScaleTable[32];
 };
 
+extern u32 j3dDefaultViewNo;
 extern J3DSys j3dSys;
 
 #endif /* J3DSYS_H */

@@ -2,7 +2,6 @@
 #define J2DPRINT_H
 
 #include "JSystem/J2DGraph/J2DTextBox.h"
-#include "JSystem/JUtility/TColor.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dolphin/types.h"
 
@@ -23,12 +22,12 @@ public:
     /* 802F4778 */ void print(f32, f32, u8, char const*, ...);
     /* 802F4828 */ void printReturn(char const*, f32, f32, J2DTextBoxHBinding, J2DTextBoxVBinding,
                                     f32, f32, u8);
-    /* 802F4B4C */ void parse(u8 const*, int, int, u16*, J2DPrint::TSize&, u8, bool);
+    /* 802F4B4C */ f32 parse(u8 const*, int, int, u16*, J2DPrint::TSize&, u8, bool);
     /* 802F52E8 */ void doCtrlCode(int);
-    /* 802F5410 */ void doEscapeCode(u8 const**, u8);
+    /* 802F5410 */ u16 doEscapeCode(u8 const**, u8);
     /* 802F594C */ void initchar();
-    /* 802F59C0 */ void getNumberS32(u8 const**, s32, s32, int);
-    /* 802F5AC4 */ void getNumberF32(u8 const**, f32, f32, int);
+    /* 802F59C0 */ s32 getNumberS32(u8 const**, s32, s32, int);
+    /* 802F5AC4 */ f32 getNumberF32(u8 const**, f32, f32, int);
 
     /* 802F4420 */ virtual ~J2DPrint();
 
@@ -65,7 +64,7 @@ private:
     /* 0x18 */ f32 field_0x18;
     /* 0x1C */ f32 field_0x1c;
     /* 0x20 */ s16 field_0x20;
-    /* 0x22 */ u8 field_0x22;
+    /* 0x22 */ bool field_0x22;
     /* 0x24 */ f32 field_0x24;
     /* 0x28 */ f32 field_0x28;
     /* 0x2C */ f32 field_0x2c;
@@ -80,7 +79,7 @@ private:
     /* 0x50 */ f32 mFontSizeX;
     /* 0x54 */ f32 mFontSizeY;
     /* 0x58 */ s16 field_0x58;
-    /* 0x5A */ u8 field_0x5a;
+    /* 0x5A */ bool field_0x5a;
 };  // Size: 0x5C
 
 f32 J2DPrint_print_alpha_va(J2DPrint*, u8, const char*, va_list);

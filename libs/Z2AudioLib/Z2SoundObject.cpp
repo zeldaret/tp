@@ -6,7 +6,6 @@
 #include "Z2AudioLib/Z2SoundObject.h"
 #include "JSystem/JAudio2/JASGadget.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -101,7 +100,6 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_23();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u32 __float_max;
 extern "C" extern Z2SoundInfo* data_80450B4C;
 extern "C" extern u8 data_80450B60[4];
 extern "C" extern Z2SoundStarter* data_80450B74;

@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/J3DGraphBase/J3DTexture.h"
-#include "dol2asm.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 

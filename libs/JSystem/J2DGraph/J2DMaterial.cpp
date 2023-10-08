@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/J2DGraph/J2DMaterial.h"
-#include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
@@ -86,16 +85,9 @@ extern "C" void getTevKonstReg__15J2DAnmTevRegKeyCFUsP8_GXColor();
 extern "C" void __construct_array();
 extern "C" void _savegpr_26();
 extern "C" void _restgpr_26();
-extern "C" extern u8 const j2dDefaultTexCoordInfo[32];
-extern "C" extern u8 const j2dDefaultTexMtxInfo[36];
-extern "C" extern u8 const j2dDefaultIndTexMtxInfo[28];
 extern "C" extern void* __vt__15J2DIndBlockFull[14];
 extern "C" extern void* __vt__11J2DTevBlock[47];
 extern "C" extern void* __vt__14J2DTexGenBlock[3 + 1 /* padding */];
-extern "C" extern u16 j2dDefaultIndTexOrderNull[1 + 1 /* padding */];
-extern "C" extern u8 j2dDefaultIndTexCoordScaleInfo[2 + 2 /* padding */];
-extern "C" extern u32 j2dDefaultColorChanInfo;
-extern "C" extern u16 j2dDefaultAlphaCmp;
 
 //
 // Declarations:
@@ -561,7 +553,8 @@ void J2DIndBlock::setIndTexCoordScale(u32 param_0, J2DIndTexCoordScale param_1) 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DTexCoord::J2DTexCoord() {
+//asm J2DTexCoord::J2DTexCoord() {
+asm void __ct__11J2DTexCoordFv() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterial/__ct__11J2DTexCoordFv.s"
 }
@@ -571,17 +564,20 @@ asm J2DTexCoord::J2DTexCoord() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DColorChan::J2DColorChan() {
+asm void __ct__12J2DColorChanFv() {
+//asm J2DColorChan::J2DColorChan() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterial/__ct__12J2DColorChanFv.s"
 }
 #pragma pop
 
 /* 802EB290-802EB2CC 2E5BD0 003C+00 1/1 1/1 0/0 .text            __dt__19J2DIndTexCoordScaleFv */
+// Most likely inline
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DIndTexCoordScale::~J2DIndTexCoordScale() {
+// asm J2DIndTexCoordScale::~J2DIndTexCoordScale() {
+asm void __dt__19J2DIndTexCoordScaleFv() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterial/__dt__19J2DIndTexCoordScaleFv.s"
 }
@@ -591,7 +587,8 @@ asm J2DIndTexCoordScale::~J2DIndTexCoordScale() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DIndTexCoordScale::J2DIndTexCoordScale() {
+//asm J2DIndTexCoordScale::J2DIndTexCoordScale() {
+asm void __ct__19J2DIndTexCoordScaleFv() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterial/__ct__19J2DIndTexCoordScaleFv.s"
 }
@@ -601,7 +598,8 @@ asm J2DIndTexCoordScale::J2DIndTexCoordScale() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DIndTexMtx::~J2DIndTexMtx() {
+asm void __dt__12J2DIndTexMtxFv() {
+//asm J2DIndTexMtx::~J2DIndTexMtx() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterial/__dt__12J2DIndTexMtxFv.s"
 }
@@ -611,17 +609,20 @@ asm J2DIndTexMtx::~J2DIndTexMtx() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DIndTexMtx::J2DIndTexMtx() {
+//asm J2DIndTexMtx::J2DIndTexMtx() {
+asm void __ct__12J2DIndTexMtxFv() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterial/__ct__12J2DIndTexMtxFv.s"
 }
 #pragma pop
 
 /* 802EB378-802EB390 2E5CB8 0018+00 1/1 0/0 0/0 .text            __ct__14J2DIndTexOrderFv */
+// Most likely inline
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J2DIndTexOrder::J2DIndTexOrder() {
+//asm J2DIndTexOrder::J2DIndTexOrder() {
+asm void __ct__14J2DIndTexOrderFv() {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterial/__ct__14J2DIndTexOrderFv.s"
 }

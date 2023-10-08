@@ -1,13 +1,16 @@
 #ifndef F_OP_ACTOR_MNG_H_
 #define F_OP_ACTOR_MNG_H_
 
-#include "SSystem/SComponent/c_sxyz.h"
-#include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 #include "f_op/f_op_actor_iter.h"
 #include "f_pc/f_pc_manager.h"
 #include "f_pc/f_pc_searcher.h"
+
+#define fopAcM_SetupActor(ptr,ClassName) \
+    if (!fopAcM_CheckCondition(ptr, 8)) { \
+        new (ptr) ClassName(); \
+        fopAcM_OnCondition(ptr, 8); \
+    }
 
 class J3DModelData;  // placeholder
 class JKRHeap;
@@ -91,13 +94,15 @@ class dBgS_WtrChk;
 class fopAcM_wt_c {
 public:
     static dBgS_WtrChk* getWaterCheck() { return (dBgS_WtrChk*)&mWaterCheck; }
+    static f32 getWaterY() { return mWaterY[0]; }
+
     static bool waterCheck(const cXyz*);
     static u8 mWaterCheck[84 + 4 /* padding */];
     static f32 mWaterY[1 + 1 /* padding */];
 };
 
-struct dKy_tevstr_c;
-struct cBgS_PolyInfo;
+class dKy_tevstr_c;
+class cBgS_PolyInfo;
 typedef int (*heapCallbackFunc)(fopAc_ac_c*);
 typedef int (*createFunc)(void*);
 
@@ -135,6 +140,7 @@ enum fopAcM_CARRY {
     /* 0x04 */ fopAcM_CARRY_SIDE = 4,
     /* 0x08 */ fopAcM_CARRY_TYPE_8 = 8,
     /* 0x10 */ fopAcM_CARRY_LIGHT = 16, // guess based on context
+    /* 0x30 */ fopAcM_CARRY_UNK_30 = 0x30,
 };
 
 inline u32 fopAcM_CheckCarryType(fopAc_ac_c* actor, fopAcM_CARRY type) {
@@ -301,6 +307,10 @@ inline dJntCol_c* fopAcM_GetJntCol(fopAc_ac_c* i_actor) {
     return i_actor->mJntCol;
 }
 
+inline void fopAcM_setCullSizeFar(fopAc_ac_c* i_actor, f32 i_far) {
+    i_actor->mCullSizeFar = i_far;
+}
+
 inline f32 fopAcM_getCullSizeFar(const fopAc_ac_c* i_actor) {
     return i_actor->mCullSizeFar;
 }
@@ -334,7 +344,7 @@ inline void i_fopAcM_offSwitch(const fopAc_ac_c* pActor, int sw) {
     return dComIfGs_offSwitch(sw, fopAcM_GetHomeRoomNo(pActor));
 }
 
-inline bool i_fopAcM_isSwitch(const fopAc_ac_c* item, int sw) {
+inline BOOL i_fopAcM_isSwitch(const fopAc_ac_c* item, int sw) {
     return dComIfGs_isSwitch(sw, fopAcM_GetHomeRoomNo(item));
 }
 
@@ -460,7 +470,7 @@ s32 fopAcM_cullingCheck(const fopAc_ac_c*);
 void* event_second_actor(u16);
 s32 fopAcM_orderTalkEvent(fopAc_ac_c*, fopAc_ac_c*, u16, u16);
 s32 fopAcM_orderTalkItemBtnEvent(u16, fopAc_ac_c*, fopAc_ac_c*, u16, u16);
-s32 fopAcM_orderSpeakEvent(fopAc_ac_c*, u16, u16);
+s32 fopAcM_orderSpeakEvent(fopAc_ac_c* i_actor, u16 i_priority, u16 i_flag);
 s32 fopAcM_orderDoorEvent(fopAc_ac_c*, fopAc_ac_c*, u16, u16);
 s32 fopAcM_orderCatchEvent(fopAc_ac_c*, fopAc_ac_c*, u16, u16);
 s32 fopAcM_orderOtherEvent(fopAc_ac_c*, const char*, u16, u16, u16);

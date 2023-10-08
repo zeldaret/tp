@@ -40,9 +40,8 @@ inline u16 read_big_endian_u16(void* ptr) {
     return ((u16)uptr[0] << 8) | ((u16)uptr[1]);
 }
 
-inline u32 JKRDecompExpandSize(SArcHeader* header) {
-    u8* fileLength = (u8*)&header->file_length;
-    return read_big_endian_u32(fileLength);
+inline u32 JKRDecompExpandSize(u8 * pBuf) {
+    return (pBuf[4] << 0x18) | (pBuf[5] << 0x10) | (pBuf[6] << 8) | pBuf[7];
 }
 
 extern u32 sCurrentDirID__10JKRArchive;  // JKRArchive::sCurrentDirID
@@ -133,7 +132,6 @@ public:
     u32 countResource(void) const;
     u32 getFileAttribute(u32) const;
 
-    u32 getMountMode() const { return mMountMode; }
     SDIFileEntry* findNameResource(const char*) const;
     bool isSameName(CArcName&, u32, u16) const;
     SDIDirEntry* findResType(u32) const;
@@ -164,6 +162,10 @@ public:
 
     u32 countFile() const { return mArcInfoBlock->num_file_entries; }
     s32 countDirectory() const { return mArcInfoBlock->num_nodes; }
+    u8 getMountMode() const { return mMountMode; }
+    bool isFileEntry(u32 param_0) {
+        return getFileAttribute(param_0) & 1;
+    }
 
 public:
     /* 0x00 */  // vtable
@@ -175,10 +177,10 @@ public:
     /* 0x44 */ SArcDataInfo* mArcInfoBlock;
     /* 0x48 */ SDIDirEntry* mNodes;
     /* 0x4C */ SDIFileEntry* mFiles;
-
-protected:
     /* 0x50 */ s32* mExpandedSize;
     /* 0x54 */ char* mStringTable;
+
+protected:
     /* 0x58 */ u32 field_0x58;
 
 public:

@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_pumpkin/d_a_obj_pumpkin.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -14,13 +14,6 @@
 struct request_of_phase_process_class {};
 
 struct csXyz {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266F48 */ void normalizeZP();
-};
 
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
@@ -112,30 +105,6 @@ struct dDlst_shadowControl_c {
     static u8 mSimpleTexObj[32];
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80CB5EBC */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-    /* 80084548 */ void GetTgHitGObj();
-    /* 80084658 */ void ChkCoHit();
-    /* 800846F0 */ void GetCoHitObj();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
 struct dBgS_PolyPassChk {
     /* 80078E68 */ void SetObj();
 };
@@ -172,43 +141,12 @@ struct dBgS_Acch {
     /* 80076AAC */ void CrrPos(dBgS&);
 };
 
-struct cM3dGPla {
-    /* 80CB77DC */ ~cM3dGPla();
-};
-
-struct cM3dGLin {
-    /* 80CB5D74 */ ~cM3dGLin();
-};
-
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8026F1F8 */ void SetH(f32);
-    /* 8026F200 */ void SetR(f32);
-    /* 80CB5DBC */ ~cM3dGCyl();
-};
-
 struct cM3dGCir {
     /* 8026EF18 */ ~cM3dGCir();
 };
 
-struct cM3dGAab {
-    /* 80CB5E04 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {
-    /* 80263A48 */ void GetAc();
-};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_Stts {
-    /* 8026395C */ void ClrCcMove();
-};
-
-struct cCcD_GStts {
-    /* 80CB822C */ ~cCcD_GStts();
 };
 
 struct cBgS_LinChk {};
@@ -221,16 +159,6 @@ struct cBgS_GndChk {
 struct cBgS {
     /* 800743B4 */ void LineCross(cBgS_LinChk*);
     /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
-};
-
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JMath {
@@ -374,7 +302,6 @@ extern "C" void __dl__FPv();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXTrans();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
 extern "C" void _savegpr_24();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_26();
@@ -383,7 +310,6 @@ extern "C" void _restgpr_24();
 extern "C" void _restgpr_25();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_29();
-extern "C" void abs();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
@@ -396,7 +322,6 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" u8 const m__19daNpc_Jagar_Param_c[160];
 extern "C" void __register_global_object();
@@ -443,12 +368,18 @@ SECTION_DATA static void* l_resNameList[2] = {
 };
 
 /* 80CB849C-80CB84E0 000030 0044+00 1/2 0/0 0/0 .data            l_ccDCyl */
-SECTION_DATA static u8 l_ccDCyl[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static dCcD_SrcCyl l_ccDCyl = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x0, 0x0}, 0x0}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        0.0f, // mRadius
+        0.0f // mHeight
+    } // mCyl
 };
 
 /* 80CB84E0-80CB84E8 000074 0008+00 1/1 0/0 0/0 .data            emttrId$5110 */
@@ -603,7 +534,8 @@ asm void daObj_Pumpkin_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGLin::~cM3dGLin() {
+// asm cM3dGLin::~cM3dGLin() {
+extern "C" asm void __dt__8cM3dGLinFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_pumpkin/d_a_obj_pumpkin/__dt__8cM3dGLinFv.s"
 }
@@ -613,7 +545,8 @@ asm cM3dGLin::~cM3dGLin() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_pumpkin/d_a_obj_pumpkin/__dt__8cM3dGCylFv.s"
 }
@@ -623,7 +556,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_pumpkin/d_a_obj_pumpkin/__dt__8cM3dGAabFv.s"
 }
@@ -643,7 +577,8 @@ asm dBgS_AcchCir::~dBgS_AcchCir() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_pumpkin/d_a_obj_pumpkin/__dt__10dCcD_GSttsFv.s"
 }
@@ -898,7 +833,8 @@ asm void daObj_Pumpkin_c::Draw() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGPla::~cM3dGPla() {
+// asm cM3dGPla::~cM3dGPla() {
+extern "C" asm void __dt__8cM3dGPlaFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_pumpkin/d_a_obj_pumpkin/__dt__8cM3dGPlaFv.s"
 }
@@ -1105,7 +1041,8 @@ static bool daObj_Pumpkin_IsDelete(void* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_pumpkin/d_a_obj_pumpkin/__dt__10cCcD_GSttsFv.s"
 }

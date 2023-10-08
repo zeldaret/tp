@@ -4,24 +4,14 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_swchain/d_a_obj_swchain.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
 //
 
 struct request_of_phase_process_class {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 80266F48 */ void normalizeZP();
-    /* 80267128 */ void atan2sX_Z() const;
-};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -101,25 +91,6 @@ struct dMdl_c {
     /* 8009C668 */ void entryObj(dMdl_obj_c*);
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 80084658 */ void ChkCoHit();
-};
-
 struct dBgS_PolyPassChk {
     /* 80078E68 */ void SetObj();
 };
@@ -148,38 +119,13 @@ struct dBgS_Acch {
     /* 80076AAC */ void CrrPos(dBgS&);
 };
 
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 80CF8E40 */ ~cM3dGSph();
-};
-
-struct cM3dGAab {
-    /* 80CF8E88 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_Stts {
-    /* 8026395C */ void ClrCcMove();
 };
 
 struct cBgS {
     /* 80074618 */ void GetActorPointer(int) const;
     /* 80074660 */ void ChkPolySafe(cBgS_PolyInfo const&);
-};
-
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JMath {
@@ -285,9 +231,6 @@ extern "C" void* __nwa__FUl();
 extern "C" void __dl__FPv();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSquareMag();
-extern "C" void PSVECSquareDistance();
 extern "C" void __construct_new_array();
 extern "C" void _savegpr_24();
 extern "C" void _savegpr_25();
@@ -299,7 +242,6 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_29();
-extern "C" void abs();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];
@@ -314,7 +256,6 @@ extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
 extern "C" f32 mGroundY__11fopAcM_gc_c;
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
@@ -392,19 +333,29 @@ SECTION_DEAD static char const* const stringBase_80CFB790 = "P_Chain";
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_swchain__stringBase0;
 
 /* 80CFB79C-80CFB7DC 000004 0040+00 1/1 0/0 0/0 .data            l_sph_src */
-SECTION_DATA static u8 l_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x58, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00,
+static dCcD_SrcSph l_sph_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x4000, 0x11}, 0x58}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 50.0f} // mSph
+    } // mSphAttr
 };
 
 /* 80CFB7DC-80CFB81C 000044 0040+00 1/1 0/0 0/0 .data            l_sph_srcCo */
-SECTION_DATA static u8 l_sph_srcCo[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x49, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00,
+static dCcD_SrcSph l_sph_srcCo = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x0, 0x10}, 0x49}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 50.0f} // mSph
+    } // mSphAttr
 };
 
 /* 80CF8768-80CF89C0 000128 0258+00 1/1 0/0 0/0 .text            Create__14daObjSwChain_cFv */
@@ -523,7 +474,8 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swchain/d_a_obj_swchain/__dt__8cM3dGSphFv.s"
 }
@@ -533,7 +485,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swchain/d_a_obj_swchain/__dt__8cM3dGAabFv.s"
 }

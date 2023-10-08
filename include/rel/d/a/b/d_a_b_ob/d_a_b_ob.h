@@ -3,7 +3,6 @@
 
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/cc/d_cc_uty.h"
-#include "d/com/d_com_inf_game.h"
 
 struct Z2CreatureOI : public Z2CreatureEnemy {
     /* 802C2578 */ Z2CreatureOI();
@@ -70,7 +69,7 @@ public:
     /* 0x4738 */ int field_0x4738;
     /* 0x4738 */ u8 field_0x473c;
     /* 0x4740 */ f32 field_0x4740;
-    /* 0x4744 */ u8 field_0x4744;
+    /* 0x4744 */ s8 field_0x4744;
     /* 0x4745 */ u8 field_0x4745;
     /* 0x4748 */ u32 field_0x4748;
     /* 0x474C */ u8 field_0x474c;
@@ -158,7 +157,8 @@ public:
     /* 0x5D08 */ s16 field_0x5d08;
     /* 0x5D0A */ s16 field_0x5d0a;
     /* 0x5D0C */ s16 field_0x5d0c;
-    /* 0x5D0E */ u8 field_0x5d0e[0x5d11 - 0x5d0e];
+    /* 0x5D0E */ u8 field_0x5d0e[0x5d10 - 0x5d0e];
+    /* 0x5D10 */ u8 field_0x5d10;
     /* 0x5D11 */ s8 field_0x5d11;
     /* 0x5D12 */ s8 field_0x5d12;
     /* 0x5D14 */ f32 field_0x5d14;

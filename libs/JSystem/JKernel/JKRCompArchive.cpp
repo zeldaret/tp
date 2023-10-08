@@ -9,79 +9,20 @@
 #include "JSystem/JKernel/JKRDvdArchive.h"
 #include "JSystem/JKernel/JKRDvdFile.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
+#include "JSystem/JKernel/JKRDecomp.h"
+#include "JSystem/JKernel/JKRAramArchive.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "MSL_C/math.h"
 #include "MSL_C/string.h"
-#include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
 
 //
 // Forward References:
 //
 
-extern "C" void __ct__14JKRCompArchiveFlQ210JKRArchive15EMountDirection();
-extern "C" void __dt__14JKRCompArchiveFv();
-extern "C" void open__14JKRCompArchiveFl();
-extern "C" void fetchResource__14JKRCompArchiveFPQ210JKRArchive12SDIFileEntryPUl();
-extern "C" void fetchResource__14JKRCompArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl();
-extern "C" void removeResourceAll__14JKRCompArchiveFv();
-extern "C" void removeResource__14JKRCompArchiveFPv();
-extern "C" void getExpandedResSize__14JKRCompArchiveCFPCv();
-extern "C" extern char const* const JKRCompArchive__stringBase0;
-
 //
 // External References:
 //
-
-extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
-extern "C" void alloc__7JKRHeapFUli();
-extern "C" void free__7JKRHeapFPvP7JKRHeap();
-extern "C" void free__7JKRHeapFPv();
-extern "C" void copyMemory__7JKRHeapFPvPvUl();
-extern "C" void* __nw__FUlP7JKRHeapi();
-extern "C" void __dl__FPv();
-extern "C" void mainRamToAram__7JKRAramFPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl();
-extern "C" void aramToMainRam__7JKRAramFUlPUcUl15JKRExpandSwitchUlP7JKRHeapiPUl();
-extern "C" void alloc__11JKRAramHeapFUlQ211JKRAramHeap10EAllocMode();
-extern "C" void unmount__13JKRFileLoaderFv();
-extern "C" void becomeCurrent__10JKRArchiveFPCc();
-extern "C" void getResource__10JKRArchiveFPCc();
-extern "C" void getResource__10JKRArchiveFUlPCc();
-extern "C" void readResource__10JKRArchiveFPvUlUlPCc();
-extern "C" void readResource__10JKRArchiveFPvUlPCc();
-extern "C" void detachResource__10JKRArchiveFPv();
-extern "C" void getResSize__10JKRArchiveCFPCv();
-extern "C" void countFile__10JKRArchiveCFPCc();
-extern "C" void getFirstFile__10JKRArchiveCFPCc();
-extern "C" void __ct__10JKRArchiveFlQ210JKRArchive10EMountMode();
-extern "C" void __dt__10JKRArchiveFv();
-extern "C" void findPtrResource__10JKRArchiveCFPCv();
-extern "C" void setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl();
-extern "C" void getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry();
-extern "C" void fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUli();
-extern "C" void fetchResource_subroutine__14JKRAramArchiveFUlUlPUcUli();
-extern "C" void fetchResource_subroutine__14JKRAramArchiveFUlUlP7JKRHeapiPPUc();
-extern "C" void fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii();
-extern "C" void fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapiiPPUc();
-extern "C" void __ct__10JKRDvdFileFl();
-extern "C" void
-loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl();
-extern "C" void loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl();
-extern "C" void orderSync__9JKRDecompFPUcPUcUlUl();
-extern "C" void prepend__10JSUPtrListFP10JSUPtrLink();
-extern "C" void remove__10JSUPtrListFP10JSUPtrLink();
-extern "C" void panic_f__12JUTExceptionFPCciPCce();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 sVolumeList__13JKRFileLoader[12];
-extern "C" u8 sSystemHeap__7JKRHeap[4];
-extern "C" u8 sAramObject__7JKRAram[4];
 
 //
 // Declarations:
@@ -119,8 +60,8 @@ JKRCompArchive::~JKRCompArchive() {
         mArcInfoBlock = NULL;
     }
 
-    if (field_0x68 != NULL) {
-        delete field_0x68;
+    if (mAramPart != NULL) {
+        delete mAramPart;
     }
 
     if (mExpandedSize != NULL) {
@@ -128,8 +69,8 @@ JKRCompArchive::~JKRCompArchive() {
         mExpandedSize = NULL;
     }
 
-    if (field_0x70 != NULL) {
-        delete field_0x70;
+    if (mDvdFile != NULL) {
+        delete mDvdFile;
     }
 
     sVolumeList.remove(&mFileLoaderLink);
@@ -137,46 +78,254 @@ JKRCompArchive::~JKRCompArchive() {
 }
 
 /* 802D89BC-802D8F40 2D32FC 0584+00 1/1 0/0 0/0 .text            open__14JKRCompArchiveFl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool JKRCompArchive::open(s32 param_0) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRCompArchive/open__14JKRCompArchiveFl.s"
+bool JKRCompArchive::open(long entryNum) {
+    mArcInfoBlock = NULL;
+    field_0x64 = 0;
+    mAramPart = NULL;
+    field_0x6c = 0;
+    mSizeOfMemPart = 0;
+    mSizeOfAramPart = 0;
+    field_0x7c = 0;
+    mNodes = NULL;
+    mFiles = NULL;
+    mStringTable = NULL;
+
+    mDvdFile = new (JKRGetSystemHeap(), 0) JKRDvdFile(entryNum);
+    if(mDvdFile == NULL) {
+        mMountMode = 0;
+        return 0;
+    }
+    SArcHeader *arcHeader = (SArcHeader *)JKRAllocFromSysHeap(sizeof(SArcHeader), -32); // NOTE: unconfirmed if this struct is used
+    if(arcHeader == NULL) {
+        mMountMode = 0;
+    }
+    else {
+        int alignment;
+
+        JKRDvdToMainRam(entryNum, (u8 *)arcHeader, EXPAND_SWITCH_UNKNOWN1, 32, NULL, JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 0, &mCompression, NULL);
+        DCInvalidateRange(arcHeader, 32);
+
+        mSizeOfMemPart = arcHeader->field_0x14;
+        mSizeOfAramPart = arcHeader->field_0x18;
+
+        switch (mCompression)
+        {
+        case COMPRESSION_NONE:
+        case COMPRESSION_YAZ0:
+            alignment = mMountDirection == 1 ? 32 : -32;
+            mArcInfoBlock = (SArcDataInfo *)JKRAllocFromHeap(mHeap, arcHeader->file_data_offset + mSizeOfMemPart, alignment);
+            if (mArcInfoBlock == NULL) {
+                mMountMode = 0;
+            }
+            else
+            {
+                JKRDvdToMainRam(entryNum, (u8 *)mArcInfoBlock, EXPAND_SWITCH_UNKNOWN1, (u32)arcHeader->file_data_offset + mSizeOfMemPart,
+                                NULL, JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 0x20, NULL, NULL);
+                DCInvalidateRange(mArcInfoBlock, (u32)arcHeader->file_data_offset + mSizeOfMemPart);
+                field_0x64 = (u32)mArcInfoBlock + arcHeader->file_data_offset;
+
+                if (mSizeOfAramPart != 0) {
+                    mAramPart = (JKRAramBlock*)JKRAllocFromAram(mSizeOfAramPart, JKRAramHeap::HEAD);
+                    if(mAramPart == NULL) {
+                        mMountMode = 0;
+                        break;
+                    }
+
+                    JKRDvdToAram(entryNum, mAramPart->getAddress(), EXPAND_SWITCH_UNKNOWN1, arcHeader->header_length + arcHeader->file_data_offset + mSizeOfMemPart, 0, NULL);
+                }
+
+                mNodes = (SDIDirEntry*)((u32)mArcInfoBlock + mArcInfoBlock->node_offset);
+                mFiles = (SDIFileEntry *)((u32)mArcInfoBlock + mArcInfoBlock->file_entry_offset);
+                mStringTable = (char*)((u32)mArcInfoBlock + mArcInfoBlock->string_table_offset);
+                field_0x6c = arcHeader->header_length + arcHeader->file_data_offset;
+            }
+            break;
+
+        case COMPRESSION_YAY0:
+            u32 alignedSize = ALIGN_NEXT(mDvdFile->getFileSize(), 32);
+            alignment = ((mMountDirection == 1) ? 32 : -32);
+            u8 *buf = (u8 *)JKRAllocFromSysHeap(alignedSize, -alignment);
+
+            if(buf == NULL) {
+                mMountMode = 0;
+            }
+            else {
+                JKRDvdToMainRam(entryNum, buf, EXPAND_SWITCH_UNKNOWN2, alignedSize, NULL, JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 0, NULL, NULL);
+                DCInvalidateRange(buf, alignedSize);
+                u32 expandSize = ALIGN_NEXT(JKRDecompExpandSize(buf), 32);
+                u8 *mem = (u8 *)JKRAllocFromHeap(mHeap, expandSize, -alignment);
+
+                if(mem == NULL) {
+                    mMountMode = 0;
+                }
+                else {
+                    arcHeader = (SArcHeader *)mem;
+                    JKRDecompress((u8 *)buf, (u8 *)mem, expandSize, 0);
+                    JKRFreeToSysHeap(buf);
+
+                    mArcInfoBlock = (SArcDataInfo *)JKRAllocFromHeap(mHeap, arcHeader->file_data_offset + mSizeOfMemPart, alignment);
+                    if(mArcInfoBlock == NULL) {
+                        mMountMode = 0;
+                    }
+                    else {
+                        // arcHeader + 1 should lead to 0x20, which is the data after the header
+                        JKRHeap::copyMemory((u8 *)mArcInfoBlock, arcHeader + 1, (arcHeader->file_data_offset + mSizeOfMemPart));
+                        field_0x64 = (u32)mArcInfoBlock + arcHeader->file_data_offset;
+                        if (mSizeOfAramPart != 0) {
+                            mAramPart = (JKRAramBlock*)JKRAllocFromAram(mSizeOfAramPart, JKRAramHeap::HEAD);
+                            if(mAramPart == NULL) {
+                                mMountMode = 0;                                
+                            }
+                            else {
+                                JKRMainRamToAram((u8 *)mem + arcHeader->header_length + arcHeader->file_data_offset + mSizeOfMemPart,
+                                                 mAramPart->getAddress(), mSizeOfAramPart, EXPAND_SWITCH_UNKNOWN0, 0, NULL, -1, NULL);
+                            }
+                        }
+                    }                    
+                }
+            }
+            mNodes = (SDIDirEntry *)((u32)mArcInfoBlock + mArcInfoBlock->node_offset);
+            mFiles = (SDIFileEntry *)((u32)mArcInfoBlock + mArcInfoBlock->file_entry_offset);
+            mStringTable = (char *)((u32)mArcInfoBlock + mArcInfoBlock->string_table_offset);
+            field_0x6c = arcHeader->header_length + arcHeader->file_data_offset;
+            break;
+        }
+        mExpandedSize = NULL;
+        u8 compressedFiles = 0;
+        SDIFileEntry *fileEntry = mFiles;
+        for (int i = 0; i < mArcInfoBlock->num_file_entries; i++)
+        {
+            u8 flag = fileEntry->type_flags_and_name_offset >> 0x18;
+            if (((flag & 0x1) != 0) && (((flag)&0x10) == 0))
+            {
+                compressedFiles = compressedFiles | (flag & 4);
+            }
+            fileEntry++;
+        }
+
+        if (compressedFiles != 0)
+        {
+            mExpandedSize = (s32 *)JKRAllocFromHeap(mHeap, mArcInfoBlock->num_file_entries * 4, abs(alignment));
+            if (mExpandedSize == NULL)
+            {
+                JKRFreeToSysHeap(mArcInfoBlock);
+                mMountMode = 0;
+            }
+            else
+            {
+                memset(mExpandedSize, 0, mArcInfoBlock->num_file_entries * 4);
+            }
+        }
+    }
+
+    if (arcHeader != NULL)
+    {
+        JKRFreeToSysHeap(arcHeader);
+    }
+    if(mMountMode == 0) {
+        if(mDvdFile != NULL) {
+            delete mDvdFile;
+        }
+        return false;
+    }
+    return true;
 }
-#pragma pop
+
 
 /* 802D8F40-802D90C0 2D3880 0180+00 1/0 0/0 0/0 .text
  * fetchResource__14JKRCompArchiveFPQ210JKRArchive12SDIFileEntryPUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* JKRCompArchive::fetchResource(JKRArchive::SDIFileEntry* param_0, u32* param_1) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRCompArchive/fetchResource__14JKRCompArchiveFPQ210JKRArchive12SDIFileEntryPUl.s"
+void* JKRCompArchive::fetchResource(SDIFileEntry *fileEntry, u32 *pSize) {
+    u32 ptrSize;
+    u32 size = fileEntry->data_size;
+    int compression = JKRConvertAttrToCompressionType(fileEntry->type_flags_and_name_offset >> 0x18);
+
+    if(pSize == NULL) {
+        pSize = &ptrSize; // this makes barely any sense but ok
+    }
+
+    if (fileEntry->data == NULL) {
+        u32 flag = fileEntry->type_flags_and_name_offset >> 0x18;
+        if(flag & 0x10) {
+            fileEntry->data = (void *)(field_0x64 + fileEntry->data_offset);
+            *pSize = size;
+        }
+        else if (flag & 0x20) {
+            u8 *data;
+            *pSize = JKRAramArchive::fetchResource_subroutine(fileEntry->data_offset + mAramPart->getAddress() - mSizeOfMemPart, size, mHeap, compression, &data);
+            fileEntry->data = data;
+            if(compression == COMPRESSION_YAZ0) {
+                setExpandSize(fileEntry, *pSize);
+            }
+        }
+        else if (flag & 0x40) {
+            u8 *data;
+            u32 resSize = JKRDvdArchive::fetchResource_subroutine(mEntryNum, field_0x6c + fileEntry->data_offset, fileEntry->data_size, mHeap, compression, mCompression, &data);
+            if (pSize != NULL) {
+                *pSize = resSize;
+            }
+            fileEntry->data = data;
+            if (compression == COMPRESSION_YAZ0) {
+                setExpandSize(fileEntry, *pSize);
+            }
+        }
+    }
+    else  {
+        if (pSize != NULL) {
+            *pSize = fileEntry->data_size;
+        }
+    }
+    return fileEntry->data;
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 8039D220-8039D220 029880 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D220 = "JKRCompArchive.cpp";
-SECTION_DEAD static char const* const stringBase_8039D233 = "%s";
-SECTION_DEAD static char const* const stringBase_8039D236 = "illegal archive.";
-#pragma pop
 
 /* 802D90C0-802D9260 2D3A00 01A0+00 1/0 0/0 0/0 .text
  * fetchResource__14JKRCompArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* JKRCompArchive::fetchResource(void* param_0, u32 param_1,
-                                        JKRArchive::SDIFileEntry* param_2, u32* param_3) {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRCompArchive/fetchResource__14JKRCompArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl.s"
+void *JKRCompArchive::fetchResource(void *data, u32 compressedSize, SDIFileEntry *fileEntry, u32 *pSize)
+{
+    u32 size = 0;
+    u32 fileSize = fileEntry->data_size;
+    u32 alignedSize = ALIGN_NEXT(fileSize, 32);
+    u32 fileFlag = fileEntry->type_flags_and_name_offset >> 0x18;
+    int compression = JKRConvertAttrToCompressionType(fileFlag);
+    
+    if(fileEntry->data != NULL) {
+        if (compression == COMPRESSION_YAZ0) {
+            u32 expandSize = getExpandSize(fileEntry);
+            if (expandSize != 0) {
+                fileSize = expandSize;
+            }
+        }
+
+        if (fileSize > compressedSize) {
+            fileSize = compressedSize;
+        }
+
+        JKRHeap::copyMemory(data, fileEntry->data, fileSize);
+        size = fileSize;
+        }
+    else {
+        if (fileFlag & 0x10) {
+            size = JKRMemArchive::fetchResource_subroutine((u8 *)(field_0x64 + fileEntry->data_offset), alignedSize, (u8 *)data,
+                                                           compressedSize & ~31, compression);
+        }
+        else if (fileFlag & 0x20) {
+            size = JKRAramArchive::fetchResource_subroutine(fileEntry->data_offset + mAramPart->getAddress() - mSizeOfMemPart,
+                                                            alignedSize, (u8 *)data, compressedSize & ~31, compression);
+        }
+        else if (fileFlag & 0x40){
+            size = JKRDvdArchive::fetchResource_subroutine(mEntryNum, field_0x6c + fileEntry->data_offset, alignedSize, (u8 *)data,
+                                                           compressedSize & ~31, compression, mCompression);
+        } else {
+            JUTException::panic_f(__FILE__, 0x308, "%s", "illegal archive.");
+        }
+    }
+
+    if(pSize != NULL) {
+        *pSize = size;
+    }
+    return data;
 }
-#pragma pop
 
 /* 802D9260-802D92F4 2D3BA0 0094+00 1/0 0/0 0/0 .text removeResourceAll__14JKRCompArchiveFv */
 void JKRCompArchive::removeResourceAll() {
@@ -212,22 +361,46 @@ bool JKRCompArchive::removeResource(void* resource) {
 }
 
 /* ############################################################################################## */
-/* 8039D220-8039D220 029880 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D247 = "illegal resource.";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039D259 = "\0\0\0\0\0\0";
-#pragma pop
 
 /* 802D9360-802D9518 2D3CA0 01B8+00 1/0 0/0 0/0 .text getExpandedResSize__14JKRCompArchiveCFPCv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 JKRCompArchive::getExpandedResSize(void const* param_0) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRCompArchive/getExpandedResSize__14JKRCompArchiveCFPCv.s"
+u32 JKRCompArchive::getExpandedResSize(const void *resource) const
+{
+    if (mExpandedSize == NULL) {
+        return getResSize(resource);
+    }
+
+    SDIFileEntry *fileEntry = findPtrResource(resource);
+    if(!fileEntry) {
+        return 0xffffffff;
+    }
+
+    u8 flags = (fileEntry->type_flags_and_name_offset >> 0x18);
+    if((flags & 4) == 0) { // not compressed
+        return getResSize(resource);
+    }
+
+    if ((flags & 0x10) != 0) {
+        return JKRDecompExpandSize((u8 *)resource);
+    }
+
+    u8 buf[64];
+    u8 *bufPtr = (u8 *)ALIGN_NEXT((u32)buf, 32);
+    if ((flags & 0x20) != 0) {
+        u32 addr = mAramPart->mAddress;
+        addr = fileEntry->data_offset + addr;
+        JKRAramToMainRam(addr, bufPtr, sizeof(buf) / 2, EXPAND_SWITCH_UNKNOWN0, 0, NULL, -1, NULL);
+        DCInvalidateRange(bufPtr, sizeof(buf) / 2);
+    }
+    else if ((flags & 0x40) != 0) {
+        JKRDvdToMainRam(mEntryNum, bufPtr, EXPAND_SWITCH_UNKNOWN2, sizeof(buf) / 2, NULL, JKRDvdRipper::ALLOC_DIRECTION_FORWARD, field_0x6c + fileEntry->data_offset, NULL, NULL);
+        DCInvalidateRange(bufPtr, sizeof(buf) / 2);
+    }
+    else {
+        JUTException::panic_f(__FILE__, 0x3af, "%s", "illegal resource.");
+    }
+    u32 expandSize = JKRDecompExpandSize(bufPtr);
+    const_cast<JKRCompArchive *>(this)->setExpandSize(fileEntry, expandSize);
+    return expandSize;
 }
-#pragma pop
 
 /* 8039D220-8039D220 029880 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

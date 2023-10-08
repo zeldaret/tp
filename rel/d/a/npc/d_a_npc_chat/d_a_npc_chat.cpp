@@ -5,7 +5,6 @@
 
 #include "rel/d/a/npc/d_a_npc_chat/d_a_npc_chat.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -541,12 +540,12 @@ extern "C" void __construct_array();
 extern "C" void __ptmf_test();
 extern "C" void __ptmf_cmpr();
 extern "C" void __ptmf_scall();
-extern "C" void __save_gpr();
+extern "C" void _savegpr_14();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
-extern "C" void __restore_gpr();
+extern "C" void _restgpr_14();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();

@@ -7,14 +7,9 @@
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "JSystem/J3DGraphBase/J3DShape.h"
-#include "JSystem/J3DGraphBase/J3DShapeMtx.h"
-#include "JSystem/J3DGraphBase/J3DSys.h"
-#include "JSystem/J3DGraphBase/J3DVertex.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "MSL_C/string.h"
 #include "dol2asm.h"
-#include "dolphin/gx/GX.h"
 #include "dolphin/os/OSCache.h"
 #include "dolphin/os/OSInterrupt.h"
 #include "dolphin/types.h"
@@ -24,63 +19,9 @@
 // Forward References:
 //
 
-extern "C" void newDisplayList__17J3DDisplayListObjFUl();
-extern "C" void newSingleDisplayList__17J3DDisplayListObjFUl();
-extern "C" void single_To_Double__17J3DDisplayListObjFv();
-extern "C" void setSingleDisplayList__17J3DDisplayListObjFPvUl();
-extern "C" void swapBuffer__17J3DDisplayListObjFv();
-extern "C" void callDL__17J3DDisplayListObjCFv();
-extern "C" void beginDL__17J3DDisplayListObjFv();
-extern "C" void endDL__17J3DDisplayListObjFv();
-extern "C" void beginPatch__17J3DDisplayListObjFv();
-extern "C" void endPatch__17J3DDisplayListObjFv();
-extern "C" bool entry__9J3DPacketFP13J3DDrawBuffer();
-extern "C" void addChildPacket__9J3DPacketFP9J3DPacket();
-extern "C" void __ct__13J3DDrawPacketFv();
-extern "C" void __dt__13J3DDrawPacketFv();
-extern "C" void newDisplayList__13J3DDrawPacketFUl();
-extern "C" void newSingleDisplayList__13J3DDrawPacketFUl();
-extern "C" void draw__13J3DDrawPacketFv();
-extern "C" void __ct__12J3DMatPacketFv();
-extern "C" void __dt__12J3DMatPacketFv();
-extern "C" void addShapePacket__12J3DMatPacketFP14J3DShapePacket();
-extern "C" void beginDiff__12J3DMatPacketFv();
-extern "C" void endDiff__12J3DMatPacketFv();
-extern "C" void isSame__12J3DMatPacketCFP12J3DMatPacket();
-extern "C" void draw__12J3DMatPacketFv();
-extern "C" void __ct__14J3DShapePacketFv();
-extern "C" void __dt__14J3DShapePacketFv();
-extern "C" void calcDifferedBufferSize__14J3DShapePacketFUl();
-extern "C" void newDifferedDisplayList__14J3DShapePacketFUl();
-extern "C" void prepareDraw__14J3DShapePacketCFv();
-extern "C" void draw__14J3DShapePacketFv();
-extern "C" void drawFast__14J3DShapePacketFv();
-extern "C" void draw__9J3DPacketFv();
-extern "C" void entry__12J3DMatPacketFP13J3DDrawBuffer();
-extern "C" u8 sGDLObj__17J3DDisplayListObj[16];
-extern "C" u8 sInterruptFlag__17J3DDisplayListObj[4 + 4 /* padding */];
-
 //
 // External References:
 //
-
-extern "C" void __dt__9J3DPacketFv();
-extern "C" void* __nw__FUl();
-extern "C" void* __nwa__FUli();
-extern "C" void __dl__FPv();
-extern "C" void setArray__15J3DVertexBufferCFv();
-extern "C" void loadPreDrawSetting__8J3DShapeCFv();
-extern "C" void syncJ3DSysFlags__12J3DModelDataCFv();
-extern "C" void GDFlushCurrToMem();
-extern "C" void GDPadCurr32();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_28();
-extern "C" u8 sortFuncTable__13J3DDrawBuffer[72];
-extern "C" extern u8 struct_804515B0[4];
-extern "C" u8 sTexGenBlock__17J3DDifferedTexMtx[4];
-extern "C" u8 sTexMtxObj__17J3DDifferedTexMtx[4];
-extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 
 //
 // Declarations:
@@ -324,14 +265,63 @@ J3DShapePacket::~J3DShapePacket() {}
 
 /* 80312BD4-80312DBC 30D514 01E8+00 1/1 0/0 0/0 .text calcDifferedBufferSize__14J3DShapePacketFUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 J3DShapePacket::calcDifferedBufferSize(u32 flag) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/calcDifferedBufferSize__14J3DShapePacketFUl.s"
+u32 J3DShapePacket::calcDifferedBufferSize(u32 flag) {
+    int iVar5 = 0;
+    for (int i = 0; i < 8; i++) {
+        if ((flag & sDifferedRegister[i]) != 0) {
+            iVar5 += sSizeOfDiffered[i];
+        }
+    }
+
+    iVar5 += getDiffFlag_LightObjNum(flag) * 0x48;
+    u32 uVar2 = getDiffFlag_TexGenNum(flag);
+    if (uVar2 != 0) {
+        u32 local_4c = mpShape->getMaterial()->getTexGenNum();
+        if (uVar2 > local_4c) {
+            local_4c = uVar2;
+        }
+        if ((flag & 0x1000)) {
+            iVar5 += calcDifferedBufferSize_TexGenSize(local_4c);
+        } else {
+            iVar5 += calcDifferedBufferSize_TexMtxSize(local_4c);
+        }
+    }
+
+    uVar2 = getDiffFlag_TexNoNum(flag);
+    if (uVar2 != 0) {
+        u8 local_58;
+        if (mpShape->getMaterial()->getTevStageNum() > 8) {
+            local_58 = 8;
+        } else {
+            local_58 = mpShape->getMaterial()->getTevStageNum();
+        }
+        u32 local_50 = local_58;
+        local_50 = uVar2 > local_50 ? uVar2 : local_50;
+        if ((flag & 0x4000000)) {
+            iVar5 += calcDifferedBufferSize_TexNoAndTexCoordScaleSize(local_50);
+        } else {
+            iVar5 += calcDifferedBufferSize_TexNoSize(local_50);
+        }
+    }
+
+    uVar2 = getDiffFlag_TevStageNum(flag);
+    if (uVar2 != 0) {
+        u8 local_58;
+        if (mpShape->getMaterial()->getTevStageNum() > 8) {
+            local_58 = 8;
+        } else {
+            local_58 = mpShape->getMaterial()->getTevStageNum();
+        }
+        u32 local_50 = local_58;
+        local_50 = uVar2 > local_50 ? uVar2 : local_50;
+        iVar5 += calcDifferedBufferSize_TevStageSize(local_50);
+        if (flag & 0x8000000) {
+            iVar5 += calcDifferedBufferSize_TevStageDirectSize(local_50);
+        }
+    }
+
+    return (iVar5 + 0x1f) & ~0x1f;
 }
-#pragma pop
 
 /* 80312DBC-80312E08 30D6FC 004C+00 0/0 1/1 0/0 .text newDifferedDisplayList__14J3DShapePacketFUl
  */
@@ -349,7 +339,6 @@ J3DError J3DShapePacket::newDifferedDisplayList(u32 flag) {
 }
 
 /* 80312E08-80312F24 30D748 011C+00 2/2 0/0 0/0 .text            prepareDraw__14J3DShapePacketCFv */
-#if defined NONMATCHING
 void J3DShapePacket::prepareDraw() const {
     mpModel->getVertexBuffer()->setArray();
     j3dSys.setModel(mpModel);
@@ -364,34 +353,25 @@ void J3DShapePacket::prepareDraw() const {
         mpShape->offFlag(J3DShpFlag_SkinPosCpu);
     }
 
-    if (mpModel->checkFlag(J3DMdlFlag_SkinNrmCpu) && !mpShape->checkFlag(J3DShpFlag_EnableLod)) {
+    if (mpModel->checkFlag(J3DMdlFlag_SkinNrmCpu) && mpShape->checkFlag(J3DShpFlag_EnableLod) == false) {
         mpShape->onFlag(J3DShpFlag_SkinNrmCpu);
     } else {
         mpShape->offFlag(J3DShpFlag_SkinNrmCpu);
     }
 
-    mpShape->setCurrentViewNoPtr(mpMtxBuffer->getCurrentViewNoPtr());
-    mpShape->setScaleFlagArray(mpMtxBuffer->getScaleFlagArray());
-    mpShape->setDrawMtx(mpMtxBuffer->getDrawMtxPtrPtr());
+    J3DMtxBuffer* buffer = mpMtxBuffer;
+    mpShape->setCurrentViewNoPtr(buffer->getCurrentViewNoPtr());
+    mpShape->setScaleFlagArray(buffer->getScaleFlagArray());
+    mpShape->setDrawMtx(buffer->getDrawMtxPtrPtr());
 
     if (!mpShape->getNBTFlag()) {
-        mpShape->setNrmMtx(mpMtxBuffer->getNrmMtxPtrPtr());
+        mpShape->setNrmMtx(buffer->getNrmMtxPtrPtr());
     } else {
-        mpShape->setNrmMtx(mpMtxBuffer->getBumpMtxPtrPtr()[mpShape->getBumpMtxOffset()]);
+        mpShape->setNrmMtx(buffer->getBumpMtxPtrPtr()[mpShape->getBumpMtxOffset()]);
     }
 
     mpModel->getModelData()->syncJ3DSysFlags();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DShapePacket::prepareDraw() const {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DPacket/prepareDraw__14J3DShapePacketCFv.s"
-}
-#pragma pop
-#endif
 
 /* 80312F24-80312FBC 30D864 0098+00 1/0 0/0 0/0 .text            draw__14J3DShapePacketFv */
 void J3DShapePacket::draw() {

@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_octhashi/d_a_obj_octhashi.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -18,11 +18,6 @@ struct csXyz {
     /* 80CA624C */ csXyz();
     /* 8026745C */ void operator+=(csXyz&);
     /* 80CA546C */ ~csXyz();
-};
-
-struct cXyz {
-    /* 80CA54A8 */ ~cXyz();
-    /* 80CA6250 */ cXyz();
 };
 
 struct mDoMtx_stack_c {
@@ -90,40 +85,6 @@ struct dPa_control_c {
                             cXyz const*, f32);
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-    /* 80CA610C */ ~dCcD_Stts();
-    /* 80CA619C */ dCcD_Stts();
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-    /* 80CA5F74 */ ~dCcD_Sph();
-    /* 80CA6040 */ dCcD_Sph();
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80CA61F0 */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-    /* 800844F8 */ void GetTgHitObj();
-    /* 80084658 */ void ChkCoHit();
-    /* 800846F0 */ void GetCoHitObj();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
 struct dBgW_Base {};
 
 struct dBgW {};
@@ -143,32 +104,8 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 8026F708 */ void SetR(f32);
-    /* 80CA60C4 */ ~cM3dGSph();
-};
-
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8026F1F8 */ void SetH(f32);
-    /* 80CA5EE4 */ ~cM3dGCyl();
-};
-
-struct cM3dGAab {
-    /* 80CA5F2C */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {
-    /* 80263A48 */ void GetAc();
-};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 80CA625C */ ~cCcD_GStts();
 };
 
 struct cBgW_BgId {
@@ -179,21 +116,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct J3DModel {};
@@ -300,8 +225,6 @@ extern "C" void init__10Z2CreatureFP3VecP3VecUcUc();
 extern "C" void __dl__FPv();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
-extern "C" void PSVECScale();
 extern "C" void __construct_array();
 extern "C" void _savegpr_20();
 extern "C" void _savegpr_21();
@@ -339,13 +262,17 @@ extern "C" extern u8 data_80CA6680[4];
 
 /* ############################################################################################## */
 /* 80CA6480-80CA64C0 000000 0040+00 6/6 0/0 0/0 .rodata          ccSphSrc$3655 */
-SECTION_RODATA static u8 const ccSphSrc[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x13,
-    0x00, 0x10, 0x40, 0x02, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x7F, 0x0A, 0x02, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x01, 0x0A, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x43, 0xC8, 0x00, 0x00,
+const static dCcD_SrcSph ccSphSrc = {
+    {
+        {0x0, {{0x0, 0x0, 0x13}, {0x104002, 0x1f}, 0x7f}}, // mObj
+        {dCcD_SE_STONE, 0x2, 0x0, 0x0, 0x1}, // mGObjAt
+        {dCcD_SE_STONE, 0x2, 0x0, 0x0, 0x1}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 400.0f} // mSph
+    } // mSphAttr
 };
-COMPILER_STRIP_GATE(0x80CA6480, &ccSphSrc);
 
 /* 80CA64C0-80CA64C4 000040 0004+00 0/1 0/0 0/0 .rodata          @3681 */
 #pragma push
@@ -393,12 +320,18 @@ SECTION_DEAD static char const* const stringBase_80CA6550 = "Octhashi";
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_octhashi__stringBase0;
 
 /* 80CA6588-80CA65CC 000004 0044+00 1/1 0/0 0/0 .data            ccCylSrc$3656 */
-SECTION_DATA static u8 ccCylSrc[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x0D, 0x00, 0x10, 0x40, 0x02, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x75,
-    0x0A, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x0A, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x43, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static dCcD_SrcCyl ccCylSrc = {
+    {
+        {0x0, {{0x0, 0x0, 0xd}, {0x104002, 0x1f}, 0x75}}, // mObj
+        {dCcD_SE_STONE, 0x2, 0x0, 0x0, 0x1}, // mGObjAt
+        {dCcD_SE_STONE, 0x2, 0x0, 0x0, 0x1}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        400.0f, // mRadius
+        0.0f // mHeight
+    } // mCyl
 };
 
 /* 80CA4BB8-80CA4D98 000078 01E0+00 1/1 0/0 0/0 .text            initCcCylinder__15daObjOCTHASHI_cFv
@@ -552,7 +485,8 @@ asm csXyz::~csXyz() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_octhashi/d_a_obj_octhashi/__dt__4cXyzFv.s"
 }
@@ -874,7 +808,8 @@ asm void daObjOCTHASHI_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_octhashi/d_a_obj_octhashi/__dt__8cM3dGCylFv.s"
 }
@@ -884,7 +819,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_octhashi/d_a_obj_octhashi/__dt__8cM3dGAabFv.s"
 }
@@ -894,7 +830,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Sph::~dCcD_Sph() {
+// asm dCcD_Sph::~dCcD_Sph() {
+extern "C" asm void __dt__8dCcD_SphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_octhashi/d_a_obj_octhashi/__dt__8dCcD_SphFv.s"
 }
@@ -904,7 +841,8 @@ asm dCcD_Sph::~dCcD_Sph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Sph::dCcD_Sph() {
+// asm dCcD_Sph::dCcD_Sph() {
+extern "C" asm void __ct__8dCcD_SphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_octhashi/d_a_obj_octhashi/__ct__8dCcD_SphFv.s"
 }
@@ -914,7 +852,8 @@ asm dCcD_Sph::dCcD_Sph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_octhashi/d_a_obj_octhashi/__dt__8cM3dGSphFv.s"
 }
@@ -924,7 +863,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Stts::~dCcD_Stts() {
+// asm dCcD_Stts::~dCcD_Stts() {
+extern "C" asm void __dt__9dCcD_SttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_octhashi/d_a_obj_octhashi/__dt__9dCcD_SttsFv.s"
 }
@@ -934,7 +874,8 @@ asm dCcD_Stts::~dCcD_Stts() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Stts::dCcD_Stts() {
+// asm dCcD_Stts::dCcD_Stts() {
+extern "C" asm void __ct__9dCcD_SttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_octhashi/d_a_obj_octhashi/__ct__9dCcD_SttsFv.s"
 }
@@ -944,7 +885,8 @@ asm dCcD_Stts::dCcD_Stts() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_octhashi/d_a_obj_octhashi/__dt__10dCcD_GSttsFv.s"
 }
@@ -956,7 +898,8 @@ csXyz::csXyz() {
 }
 
 /* 80CA6250-80CA6254 001710 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+// cXyz::cXyz() {
+extern "C" asm void __ct__4cXyzFv() {
     /* empty function */
 }
 
@@ -970,7 +913,8 @@ static bool daObjOCTHASHI_IsDelete(daObjOCTHASHI_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_octhashi/d_a_obj_octhashi/__dt__10cCcD_GSttsFv.s"
 }

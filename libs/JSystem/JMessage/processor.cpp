@@ -5,7 +5,6 @@
 
 #include "JSystem/JMessage/processor.h"
 #include "JSystem/JMessage/control.h"
-#include "JSystem/JMessage/resource.h"
 
 //
 // Forward References:

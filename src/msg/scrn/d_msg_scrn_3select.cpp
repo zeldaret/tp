@@ -5,7 +5,6 @@
 
 #include "msg/scrn/d_msg_scrn_3select.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -23,35 +22,6 @@ struct dSelect_cursor_c {
     /* 801950F4 */ void setPos(f32, f32, J2DPane*, bool);
     /* 801951B0 */ void setParam(f32, f32, f32, f32, f32);
     /* 801952A0 */ void setAlphaRate(f32);
-};
-
-struct dMsgScrn3Select_c {
-    /* 802390B4 */ dMsgScrn3Select_c();
-    /* 802398CC */ ~dMsgScrn3Select_c();
-    /* 80239C64 */ void isSelect();
-    /* 80239C78 */ void setString(char*, char*, char*);
-    /* 80239D08 */ void setRubyString(char*, char*, char*);
-    /* 80239D98 */ void translate(f32, f32);
-    /* 80239DD4 */ void draw(f32, f32);
-    /* 8023A094 */ void selAnimeInit(u8, u8, u8, f32, u8);
-    /* 8023A398 */ void selAnimeMove(u8, u8, bool);
-    /* 8023A680 */ void selAnimeEnd();
-    /* 8023A934 */ void getTextBoxWidth();
-    /* 8023A94C */ void getFontSize();
-    /* 8023A95C */ void getRubyFontSize();
-    /* 8023A97C */ void getCharSpace();
-    /* 8023A98C */ void getRubyCharSpace();
-    /* 8023A9AC */ void getTextBoxGlobalPosX(int);
-    /* 8023A9D8 */ void getTextBoxGlobalPosY(int);
-    /* 8023AA04 */ void open1Proc();
-    /* 8023AAF4 */ void open2Proc();
-    /* 8023AC14 */ void waitProc();
-    /* 8023AC44 */ void selectProc();
-    /* 8023AE68 */ void changeProc();
-    /* 8023B148 */ void closeProc();
-    /* 8023B228 */ void selectScale();
-    /* 8023B4AC */ void selectTrans();
-    /* 8023B870 */ void selectAnimeTransform(int);
 };
 
 struct JKRFileLoader {
@@ -504,7 +474,7 @@ asm J2DAnmColorKey::~J2DAnmColorKey() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgScrn3Select_c::isSelect() {
+asm bool dMsgScrn3Select_c::isSelect() {
     nofralloc
 #include "asm/msg/scrn/d_msg_scrn_3select/isSelect__17dMsgScrn3Select_cFv.s"
 }
@@ -602,7 +572,7 @@ SECTION_SDATA2 static f32 lit_4434 = 199.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgScrn3Select_c::selAnimeEnd() {
+asm bool dMsgScrn3Select_c::selAnimeEnd() {
     nofralloc
 #include "asm/msg/scrn/d_msg_scrn_3select/selAnimeEnd__17dMsgScrn3Select_cFv.s"
 }
@@ -612,7 +582,7 @@ asm void dMsgScrn3Select_c::selAnimeEnd() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgScrn3Select_c::getTextBoxWidth() {
+asm f32 dMsgScrn3Select_c::getTextBoxWidth() {
     nofralloc
 #include "asm/msg/scrn/d_msg_scrn_3select/getTextBoxWidth__17dMsgScrn3Select_cFv.s"
 }
@@ -623,7 +593,7 @@ asm void dMsgScrn3Select_c::getTextBoxWidth() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgScrn3Select_c::getFontSize() {
+asm f32 dMsgScrn3Select_c::getFontSize() {
     nofralloc
 #include "asm/msg/scrn/d_msg_scrn_3select/getFontSize__17dMsgScrn3Select_cFv.s"
 }
@@ -644,7 +614,7 @@ asm void dMsgScrn3Select_c::getRubyFontSize() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgScrn3Select_c::getCharSpace() {
+asm f32 dMsgScrn3Select_c::getCharSpace() {
     nofralloc
 #include "asm/msg/scrn/d_msg_scrn_3select/getCharSpace__17dMsgScrn3Select_cFv.s"
 }

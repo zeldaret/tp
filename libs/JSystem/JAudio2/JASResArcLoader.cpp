@@ -6,7 +6,6 @@
 #include "JSystem/JAudio2/JASResArcLoader.h"
 #include "JSystem/JAudio2/JASDvdThread.h"
 #include "JSystem/JAudio2/JASTaskThread.h"
-#include "JSystem/JKernel/JKRArchive.h"
 
 
 /* 80290BD0-80290C04 28B510 0034+00 0/0 2/2 0/0 .text

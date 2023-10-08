@@ -6,23 +6,17 @@
 #include "m_Do/m_Do_ext.h"
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "JSystem/J3DGraphBase/J3DTevs.h"
-#include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRAssertHeap.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
-#include "JSystem/JMath/JMath.h"
 #include "MSL_C/stdio.h"
-#include "MSL_C/string.h"
-#include "SSystem/SComponent/c_xyz.h"
-#include "SSystem/SComponent/c_lib.h"
 #include "Z2AudioLib/Z2Creature.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GXDraw.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
-#include "d/kankyo/d_kankyo.h"
 #include "global.h"
 #include "m_Do/m_Do_mtx.h"
 
@@ -36,15 +30,7 @@ struct J3DDrawBuffer {
     /* 8032548C */ void entryImm(J3DPacket*, u16);
 };
 
-struct dDlst_list_c {
-    /* 800565EC */ void entryZSortXluDrawList(J3DDrawBuffer*, J3DPacket*, cXyz&);
-};
-
 struct ResFONT {};
-
-struct JUtility {
-    struct TColor {};
-};
 
 struct JUTResFont {
     /* 802DEF94 */ JUTResFont(ResFONT const*, JKRHeap*);
@@ -83,10 +69,6 @@ struct J3DMtxCalcAnimation__template0 {
     /* 80014FC8 */ void func_80014FC8(void* _this);
     /* 80015034 */ void func_80015034(void* _this, Vec const&, f32 const (&)[3][4]);
     /* 800150AC */ void func_800150AC(void* _this);
-};
-
-struct J3DIndTexMtxInfo {
-    /* 803257DC */ void operator=(J3DIndTexMtxInfo const&);
 };
 
 //
@@ -435,11 +417,9 @@ extern "C" extern u8 const j3dDefaultTevStageInfo[20];
 extern "C" extern u8 const j3dDefaultIndTevStageInfo[12];
 extern "C" extern void* __vt__9J3DPacket[5];
 extern "C" extern void* __vt__8J3DModel[9];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" f32 mParentS__6J3DSys[3];
 extern "C" u8 sGDLObj__17J3DDisplayListObj[16];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];
 extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 extern "C" u8 mJoint__10J3DMtxCalc[4];
@@ -1532,7 +1512,8 @@ void mDoExt_modelUpdate(J3DModel* i_model) {
     J3DModelData* model_data = i_model->getModelData();
 
     if (model_data->getMaterialNodePointer(0)->getSharedDisplayListObj() != NULL &&
-        !model_data->isLocked()) {
+        !model_data->isLocked())
+    {
         i_model->calc();
         mDoExt_modelDiff(i_model);
     } else {
@@ -1548,7 +1529,8 @@ void mDoExt_modelUpdateDL(J3DModel* i_model) {
     J3DModelData* model_data = i_model->getModelData();
 
     if (model_data->getMaterialNodePointer(0)->getSharedDisplayListObj() != NULL &&
-        !model_data->isLocked()) {
+        !model_data->isLocked())
+    {
         i_model->calc();
         mDoExt_modelDiff(i_model);
     } else {
@@ -1566,7 +1548,8 @@ void mDoExt_modelEntryDL(J3DModel* i_model) {
     J3DModelData* model_data = i_model->getModelData();
 
     if (model_data->getMaterialNodePointer(0)->getSharedDisplayListObj() != NULL &&
-        !model_data->isLocked()) {
+        !model_data->isLocked())
+    {
         mDoExt_modelDiff(i_model);
     } else {
         i_model->unlock();
@@ -1610,8 +1593,8 @@ bool J3DPEBlock::getZCompLoc() const {
 }
 
 /* 8000DF44-8000DF4C 008884 0008+00 0/0 5/0 0/0 .text            getZMode__10J3DPEBlockFv */
-bool J3DPEBlock::getZMode() {
-    return false;
+J3DZMode* J3DPEBlock::getZMode() {
+    return NULL;
 }
 
 /* 8000DF4C-8000DF54 00888C 0008+00 0/0 5/0 0/0 .text            getBlend__10J3DPEBlockFv */
@@ -1620,8 +1603,8 @@ bool J3DPEBlock::getBlend() {
 }
 
 /* 8000DF54-8000DF5C 008894 0008+00 0/0 5/0 0/0 .text            getAlphaComp__10J3DPEBlockFv */
-bool J3DPEBlock::getAlphaComp() {
-    return false;
+J3DAlphaComp* J3DPEBlock::getAlphaComp() {
+    return NULL;
 }
 
 /* 8000DF5C-8000DF64 00889C 0008+00 0/0 6/0 0/0 .text            getFog__10J3DPEBlockFv */
@@ -1646,8 +1629,8 @@ bool J3DIndBlock::getIndTexOrder(u32 param_0) {
 
 /* 8000DF7C-8000DF84 0088BC 0008+00 0/0 2/0 0/0 .text            getIndTexStageNum__11J3DIndBlockCFv
  */
-bool J3DIndBlock::getIndTexStageNum() const {
-    return false;
+u8 J3DIndBlock::getIndTexStageNum() const {
+    return 0;
 }
 
 /* 8000DF84-8000DF8C 0088C4 0008+00 0/0 2/0 0/0 .text            getIndTevStage__11J3DTevBlockFUl */
@@ -1664,7 +1647,7 @@ bool J3DTevBlock::getTevStage(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u32 J3DTevBlock::getTexNo(u32 param_0) const {
+asm u16 J3DTevBlock::getTexNo(u32 param_0) const {
     nofralloc
 #include "asm/m_Do/m_Do_ext/getTexNo__11J3DTevBlockCFUl.s"
 }
@@ -1688,8 +1671,8 @@ bool J3DTevBlock::getTevKColorSel(u32 param_0) {
 }
 
 /* 8000DFB8-8000DFC0 0088F8 0008+00 0/0 2/0 0/0 .text            getTevOrder__11J3DTevBlockFUl */
-bool J3DTevBlock::getTevOrder(u32 param_0) {
-    return false;
+J3DTevOrder* J3DTevBlock::getTevOrder(u32 param_0) {
+    return NULL;
 }
 
 /* 8000DFC0-8000DFC8 008900 0008+00 0/0 3/0 0/0 .text            getTevKColor__11J3DTevBlockFUl */
@@ -1713,14 +1696,14 @@ J3DTexMtx* J3DTexGenBlock::getTexMtx(u32 param_0) {
 }
 
 /* 8000DFE0-8000DFE8 008920 0008+00 0/0 2/0 0/0 .text            getTexCoord__14J3DTexGenBlockFUl */
-bool J3DTexGenBlock::getTexCoord(u32 param_0) {
-    return false;
+J3DTexCoord* J3DTexGenBlock::getTexCoord(u32 param_0) {
+    return NULL;
 }
 
 /* 8000DFE8-8000DFF0 008928 0008+00 0/0 2/0 0/0 .text            getTexGenNum__14J3DTexGenBlockCFv
  */
-bool J3DTexGenBlock::getTexGenNum() const {
-    return false;
+u32 J3DTexGenBlock::getTexGenNum() const {
+    return 0;
 }
 
 /* 8000DFF0-8000DFF8 008930 0008+00 0/0 3/0 0/0 .text            getAmbColor__13J3DColorBlockFUl */
@@ -1729,8 +1712,8 @@ bool J3DColorBlock::getAmbColor(u32 param_0) {
 }
 
 /* 8000DFF8-8000E000 008938 0008+00 0/0 2/0 0/0 .text            getColorChan__13J3DColorBlockFUl */
-bool J3DColorBlock::getColorChan(u32 param_0) {
-    return false;
+J3DColorChan* J3DColorBlock::getColorChan(u32 param_0) {
+    return NULL;
 }
 
 /* 8000E000-8000E008 008940 0008+00 0/0 2/0 0/0 .text            getMatColor__13J3DColorBlockFUl */
@@ -1740,8 +1723,8 @@ GXColor* J3DColorBlock::getMatColor(u32 param_0) {
 
 /* 8000E008-8000E010 008948 0008+00 0/0 2/0 0/0 .text            getColorChanNum__13J3DColorBlockCFv
  */
-bool J3DColorBlock::getColorChanNum() const {
-    return false;
+u8 J3DColorBlock::getColorChanNum() const {
+    return 0;
 }
 
 /* 8000E010-8000E014 008950 0004+00 0/0 5/0 0/0 .text            setZCompLoc__10J3DPEBlockFUc */
@@ -1980,7 +1963,8 @@ asm void J3DTevStage::setTevStageInfo(J3DTevStageInfo const& param_0) {
 #pragma pop
 
 /* 8000E460-8000E464 008DA0 0004+00 0/0 3/3 0/0 .text            __ct__13J3DGXColorS10Fv */
-J3DGXColorS10::J3DGXColorS10() {
+// J3DGXColorS10::J3DGXColorS10() {
+extern "C" void __ct__13J3DGXColorS10Fv() {
     /* empty function */
 }
 
@@ -2005,7 +1989,8 @@ asm J3DColorChan::J3DColorChan() {
 #pragma pop
 
 /* 8000E538-8000E53C 008E78 0004+00 0/0 3/3 0/0 .text            __ct__10J3DGXColorFv */
-J3DGXColor::J3DGXColor() {
+// J3DGXColor::J3DGXColor() {
+extern "C" void __ct__10J3DGXColorFv() {
     /* empty function */
 }
 
@@ -2144,24 +2129,63 @@ asm void mDoExt_setupShareTexture(J3DModelData* i_modelData, J3DModelData* i_sha
 #pragma force_active on
 // MWCC ignores mapping of some japanese characters using the
 // byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
+
 // "ソリッドヒープちゃうがな！\n"
 // "This isn't a solid heap! \n"
 SECTION_DEAD static char const* const stringBase_803740FC =
     "\x83\x5C\x83\x8A\x83\x62\x83\x68\x83\x71\x81\x5B\x83\x76\x82\xBF\x82\xE1\x82\xA4\x82\xAA\x82"
     "\xC8\x81\x49\x0A";
-SECTION_DEAD static char const* const stringBase_80374118 = "%s.bti";
 #pragma pop
 
 /* 8000EA80-8000ECC0 0093C0 0240+00 0/0 0/0 6/6 .text mDoExt_setupStageTexture__FP12J3DModelData
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_setupStageTexture(J3DModelData* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_setupStageTexture__FP12J3DModelData.s"
+void mDoExt_setupStageTexture(J3DModelData* i_modelData) {
+    J3DTexture* texture_p = i_modelData->getTexture();
+
+    if (texture_p != NULL) {
+        JUTNameTab* tex_name_p = i_modelData->getTextureName();
+        if (tex_name_p != NULL) {
+            bool set_timg = false;
+
+            for (u16 i = 0; i < texture_p->getNum(); i++) {
+                ResTIMG* img = texture_p->getResTIMG(i);
+                if (img->imageOffset == 0) {
+                    char res_name[64];
+                    snprintf(res_name, sizeof(res_name), "%s.bti", tex_name_p->getName(i));
+
+                    ResTIMG* timg = (ResTIMG*)dComIfG_getStageRes(res_name);
+                    texture_p->setResTIMG(i, *timg);
+                    set_timg = true;
+                }
+            }
+
+            if (set_timg) {
+                j3dSys.setTexture(texture_p);
+
+                for (u16 i = 0; i < i_modelData->getMaterialNum(); i++) {
+                    J3DMaterial* mat_p = i_modelData->getMaterialNodePointer(i);
+                    J3DTevBlock* block_p = mat_p->getTevBlock();
+
+                    if (block_p != NULL) {
+                        J3DDisplayListObj* dlObj_p = mat_p->getSharedDisplayListObj();
+
+                        if (dlObj_p != NULL) {
+                            BOOL state = OSDisableInterrupts();
+
+                            GDInitGDLObj(&J3DDisplayListObj::sGDLObj, dlObj_p->getDisplayList(0),
+                                         dlObj_p->getDisplayListSize());
+                            GDSetCurrent(&J3DDisplayListObj::sGDLObj);
+                            block_p->patchTexNoAndTexCoordScale();
+
+                            OSRestoreInterrupts(state);
+                            GDSetCurrent(NULL);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450C20-80450C24 000120 0004+00 2/1 0/0 0/0 .sbss            AssertHeap */
@@ -2724,9 +2748,9 @@ extern "C" asm void __dt__16mDoExt_McaMorfSOFv() {
  */
 #ifdef NONMATCHING
 int mDoExt_McaMorfSO::create(J3DModelData* i_modelData, mDoExt_McaMorfCallBack1_c* param_1,
-                              mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
-                              int param_4, f32 param_5, int param_6, int param_7,
-                              Z2Creature* i_sound, u32 param_9, u32 param_10) {
+                             mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
+                             int param_4, f32 param_5, int param_6, int param_7,
+                             Z2Creature* i_sound, u32 param_9, u32 param_10) {
     mpModel = NULL;
     mpTransformInfo = NULL;
     mpQuat = NULL;
@@ -2773,7 +2797,8 @@ int mDoExt_McaMorfSO::create(J3DModelData* i_modelData, mDoExt_McaMorfCallBack1_
 
             for (int i = 0; i < modelData->getJointNum(); i++) {
                 transInfo = &modelData->getJointNodePointer(i)->getTransformInfo();
-                JMAEulerToQuat(transInfo->mRotation.x, transInfo->mRotation.y, transInfo->mRotation.z, quat);
+                JMAEulerToQuat(transInfo->mRotation.x, transInfo->mRotation.y,
+                               transInfo->mRotation.z, quat);
 
                 transInfo++;
                 quat++;
@@ -2804,9 +2829,9 @@ int mDoExt_McaMorfSO::create(J3DModelData* i_modelData, mDoExt_McaMorfCallBack1_
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm int mDoExt_McaMorfSO::create(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
-                                  mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
-                                  int param_4, f32 param_5, int param_6, int param_7,
-                                  Z2Creature* param_8, u32 param_9, u32 param_10) {
+                                 mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
+                                 int param_4, f32 param_5, int param_6, int param_7,
+                                 Z2Creature* param_8, u32 param_9, u32 param_10) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/func_800108F0.s"
 }
@@ -3291,7 +3316,8 @@ void drawCube(MtxP mtx, cXyz* pos, const GXColor& color) {
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
     GXSetNumChans(1);
-    GXSetChanCtrl(GX_COLOR0, GX_DISABLE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_CLAMP, GX_AF_NONE);
+    GXSetChanCtrl(GX_COLOR0, GX_DISABLE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_CLAMP,
+                  GX_AF_NONE);
     GXSetNumTexGens(0);
     GXSetNumTevStages(1);
     GXSetTevColor(GX_TEVREG0, color);
@@ -3328,14 +3354,9 @@ void drawCube(MtxP mtx, cXyz* pos, const GXColor& color) {
 
 void mDoExt_cubePacket::draw() {
     static cXyz l_pos[8] = {
-        cXyz(-1.0f, 1.0f, -1.0f),
-        cXyz(1.0f, 1.0f, -1.0f),
-        cXyz(-1.0f, 1.0f, 1.0f),
-        cXyz(1.0f, 1.0f, 1.0f),
-        cXyz(-1.0f, -1.0f, -1.0f),
-        cXyz(1.0f, -1.0f, -1.0f),
-        cXyz(-1.0f, -1.0f, 1.0f),
-        cXyz(1.0f, -1.0f, 1.0f),
+        cXyz(-1.0f, 1.0f, -1.0f), cXyz(1.0f, 1.0f, -1.0f),   cXyz(-1.0f, 1.0f, 1.0f),
+        cXyz(1.0f, 1.0f, 1.0f),   cXyz(-1.0f, -1.0f, -1.0f), cXyz(1.0f, -1.0f, -1.0f),
+        cXyz(-1.0f, -1.0f, 1.0f), cXyz(1.0f, -1.0f, 1.0f),
     };
 
     mDoMtx_stack_c::transS(mPosition.x, mPosition.y, mPosition.z);
@@ -3372,7 +3393,7 @@ void mDoExt_cylinderPacket::draw() {
     mDoMtx_stack_c::transM(mPosition.x, mPosition.y + mHeight * 0.5f, mPosition.z);
     mDoMtx_stack_c::scaleM(mRadius, mRadius * 0.5f, mRadius);
     mDoMtx_stack_c::XrotM(0x4000);
-    
+
     GXLoadPosMtxImm(mDoMtx_stack_c::get(), 0);
     mDoMtx_stack_c::inverseTranspose();
 
@@ -3536,7 +3557,7 @@ asm void mDoExt_removeSubFont() {
 
 /* 80014C54-80014D5C 00F594 0108+00 3/3 14/14 445/445 .text
  * mDoExt_J3DModel__create__FP12J3DModelDataUlUl                */
-J3DModel* mDoExt_J3DModel__create(J3DModelData* i_modelData, u32 modelFlag, u32 differedDlistFlag) {
+J3DModel* mDoExt_J3DModel__create(J3DModelData* i_modelData, u32 i_modelFlag, u32 i_differedDlistFlag) {
     if (i_modelData != NULL) {
         J3DModel* model = new J3DModel();
 
@@ -3544,20 +3565,22 @@ J3DModel* mDoExt_J3DModel__create(J3DModelData* i_modelData, u32 modelFlag, u32 
             // Update the modelFlag if the model data passed in has a shared dlist object
             if (i_modelData->getMaterialNodePointer(0)->getSharedDisplayListObj() != NULL) {
                 if (i_modelData->isLocked()) {
-                    modelFlag = J3DMdlFlag_Unk20000;
-                } else if (modelFlag == J3DMdlFlag_Unk20000) {
-                    modelFlag |= J3DMdlFlag_Unk40000;
+                    i_modelFlag = J3DMdlFlag_Unk20000;
+                } else if (i_modelFlag == J3DMdlFlag_Unk20000) {
+                    i_modelFlag |= J3DMdlFlag_Unk40000;
                 } else {
-                    modelFlag = J3DMdlFlag_Unk80000;
+                    i_modelFlag = J3DMdlFlag_Unk80000;
                 }
             }
 
             // Set up the model
-            if (!model->entryModelData(i_modelData, modelFlag, 1)) {
-                if (modelFlag == J3DMdlFlag_Unk80000 && model->newDifferedDisplayList(differedDlistFlag)) {
+            if (!model->entryModelData(i_modelData, i_modelFlag, 1)) {
+                if (i_modelFlag == J3DMdlFlag_Unk80000 &&
+                    model->newDifferedDisplayList(i_differedDlistFlag))
+                {
                     return NULL;
                 }
-                
+
                 model->lock();
                 return model;
             }

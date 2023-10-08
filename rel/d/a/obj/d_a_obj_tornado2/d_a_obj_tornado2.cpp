@@ -4,21 +4,14 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_tornado2/d_a_obj_tornado2.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
 //
 
 struct csXyz {};
-
-struct cXyz {
-    /* 80266EF4 */ void normalize();
-    /* 802670AC */ void isZero() const;
-
-    static f32 Zero[3];
-};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -64,37 +57,6 @@ struct dPa_control_c {
                             u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
                             cXyz const*, f32);
 };
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCps {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-};
-
-struct dCcD_Cps {
-    /* 800847D0 */ void Set(dCcD_SrcCps const&);
-};
-
-struct cM3dGCpsS {};
-
-struct cM3dGCps {
-    /* 8026EF88 */ cM3dGCps();
-    /* 8026F03C */ void Set(cM3dGCpsS const&);
-};
-
-struct cM3dGAab {
-    /* 80D1CD78 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
 
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
@@ -159,8 +121,6 @@ extern "C" void cLib_chaseF__FPfff();
 extern "C" void __dl__FPv();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECScale();
-extern "C" void PSVECSquareDistance();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
@@ -178,7 +138,6 @@ extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" f32 Zero__4cXyz[3];
-extern "C" extern u32 __float_nan;
 
 //
 // Declarations:
@@ -459,12 +418,16 @@ COMPILER_STRIP_GATE(0x80D1D448, &lit_3820);
 #pragma pop
 
 /* 80D1D458-80D1D4A4 000000 004C+00 1/1 0/0 0/0 .data            l_cps_src */
-SECTION_DATA static u8 l_cps_src[76] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1D,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03,
-    0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x45, 0x3B, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00,
+static dCcD_SrcCps l_cps_src = {
+    {
+        {0x0, {{AT_TYPE_LANTERN_SWING, 0x0, 0x1d}, {0x0, 0x0}, 0x0}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x3, 0x2}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, {0.0f, 3000.0f, 0.0f}, 150.0f}, // mCps
+    } // mCpsAttr
 };
 
 /* 80D1C98C-80D1CC80 00052C 02F4+00 1/1 0/0 0/0 .text            Create__12daObjTrnd2_cFv */
@@ -521,7 +484,8 @@ asm void daObjTrnd2_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_tornado2/d_a_obj_tornado2/__dt__8cM3dGAabFv.s"
 }

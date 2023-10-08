@@ -4,14 +4,11 @@
  */
 #include "c/c_dylink.h"
 #include "DynamicLink.h"
-#include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRFileCache.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
-#include "MSL_C/string.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
-#include "dol2asm.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 #include "global.h"
@@ -889,7 +886,7 @@ static BOOL cDyl_Initialized;
 /* 800185C0-80018688 012F00 00C8+00 1/1 1/1 0/0 .text            cDyl_LinkASync__Fs */
 int cDyl_LinkASync(s16 i_ProfName) {
     if (cDyl_Initialized == false) {
-        return cPhs_ZERO_e;
+        return cPhs_INIT_e;
     }
 
     if (i_ProfName >= ARRAY_SIZE(DMC)) {
@@ -908,7 +905,7 @@ int cDyl_LinkASync(s16 i_ProfName) {
                 return cPhs_ERROR_e;
             }
         } else {
-            return cPhs_ZERO_e;
+            return cPhs_INIT_e;
         }
     }
 
@@ -982,10 +979,13 @@ int cDylPhs::phase_03(void* param_0) {
 /* 8001884C-80018890 01318C 0044+00 0/0 2/2 0/0 .text
  * Link__7cDylPhsFP30request_of_phase_process_classs            */
 int cDylPhs::Link(request_of_phase_process_class* i_phase, s16 param_1) {
-    static int (*l_method[3])(void*) = {cDylPhs::phase_01, (int (*)(void*))cDylPhs::phase_02,
-                                        cDylPhs::phase_03};
+    static request_of_phase_process_fn l_method[3] = {
+        (request_of_phase_process_fn)cDylPhs::phase_01, 
+        (request_of_phase_process_fn)cDylPhs::phase_02,
+        (request_of_phase_process_fn)cDylPhs::phase_03
+    };
 
-    if (i_phase->id == cPhs_TWO_e) {
+    if (i_phase->id == cPhs_NEXT_e) {
         return cPhs_COMPLEATE_e;
     }
 
@@ -997,9 +997,9 @@ int cDylPhs::Link(request_of_phase_process_class* i_phase, s16 param_1) {
 int cDylPhs::Unlink(request_of_phase_process_class* i_phase, s16 i_ProfName) {
     int ret;
 
-    if (i_phase->id == cPhs_TWO_e) {
+    if (i_phase->id == cPhs_NEXT_e) {
         ret = cDyl_Unlink(i_ProfName);
-        i_phase->id = cPhs_ZERO_e;
+        i_phase->id = cPhs_INIT_e;
     } else {
         ret = 0;
     }

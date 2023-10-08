@@ -2,7 +2,6 @@
 #define JKRFILEFINDER_H
 
 #include "dolphin/dvd/dvd.h"
-#include "dolphin/types.h"
 
 struct JKRFileFinder_UnknownBase {
     const char* mEntryName;

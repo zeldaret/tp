@@ -6,7 +6,6 @@
 #include "JSystem/J3DGraphAnimator/J3DMtxBuffer.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
-#include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 
 //
@@ -318,5 +317,5 @@ void J3DCalcViewBaseMtx(Mtx view, Vec const& scale, const Mtx& base, Mtx dst) {
     m[2][2] = base[2][2] * scale.z;
     m[2][3] = base[2][3];
 
-    PSMTXConcat(view, m, dst);
+    MTXConcat(view, m, dst);
 }

@@ -2,7 +2,6 @@
 #define D_MENU_D_MENU_SAVE_H
 
 #include "d/d_drawlist.h"
-#include "dolphin/types.h"
 #include "d/save/d_save.h"
 
 class CPaneMgr;
@@ -11,7 +10,7 @@ struct CSTControl;
 class J2DAnmColorKey;
 class J2DAnmTransformKey;
 class JUTFont;
-struct STControl;
+class STControl;
 class dMsgString_c;
 class dFile_warning_c;
 class dFile_info_c;

@@ -5,7 +5,6 @@
 
 #include "d/d_item_data.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

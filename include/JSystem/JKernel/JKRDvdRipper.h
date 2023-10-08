@@ -2,7 +2,7 @@
 #define JKRDVDRIPPER_H
 
 #include "JSystem/JKernel/JKRCompression.h"
-#include "dolphin/types.h"
+#include "JSystem/JSupport/JSUList.h"
 
 enum JKRExpandSwitch {
     EXPAND_SWITCH_UNKNOWN0 = 0,
@@ -15,12 +15,16 @@ struct SYaz0Header {
     u32 length;
 };
 
+class JKRDMCommand {
+    JKRDMCommand();
+    ~JKRDMCommand();
+};
+
 class JKRHeap;
 class JKRDvdFile;
 class JKRDvdRipper {
 public:
-    // TODO: fix type
-    static u8 sDvdAsyncList[12];
+    static JSUList<JKRDMCommand> sDvdAsyncList;
     static u32 sSZSBufferSize;
 
     enum EAllocDirection {
@@ -39,6 +43,7 @@ public:
                                u32, JKRCompression*, u32*);
 
     static u8 isErrorRetry(void);
+    inline static u32 getSZSBufferSize() { return sSZSBufferSize; }
 };
 
 // void JKRDecompressFromDVD(JKRDvdFile*, void*, u32, u32, u32, u32, u32*);

@@ -1,7 +1,6 @@
 #ifndef D_BG_D_BG_S_ACCH_H
 #define D_BG_D_BG_S_ACCH_H
 
-#include "SSystem/SComponent/c_bg_s_poly_info.h"
 #include "SSystem/SComponent/c_m3d_g_cir.h"
 #include "SSystem/SComponent/c_m3d_g_cyl.h"
 #include "SSystem/SComponent/c_m3d_g_lin.h"
@@ -111,7 +110,7 @@ public:
     /* 800D00DC */ void ClrGroundHit();
     /* 80141404 */ bool ChkGroundHit() const;
 
-    /* 80075F94 */ virtual ~dBgS_Acch() {}
+    /* 80075F94 */ virtual ~dBgS_Acch();
 
     cXyz* GetPos() { return pm_pos; }
     cXyz* GetOldPos() { return pm_old_pos; }
@@ -160,6 +159,7 @@ public:
     bool ChkMoveBGOnly() const { return m_flags & MOVE_BG_ONLY; }
     void SetWallHit() { m_flags |= WALL_HIT; }
     void ClrWallNone() { m_flags &= ~WALL_NONE; }
+    cM3dGCyl* GetWallBmdCylP() { return &m_wall_cyl; }
 
     // inline dupe
     void i_ClrGroundHit() { m_flags &= ~GROUND_HIT; }

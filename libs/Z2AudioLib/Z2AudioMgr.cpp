@@ -4,12 +4,12 @@
 //
 
 #include "Z2AudioLib/Z2AudioMgr.h"
+#include "JSystem/JAudio2/JASAiCtrl.h"
 #include "JSystem/JAudio2/JASDriverIF.h"
 #include "MSL_C/stdio.h"
 #include "MSL_C/stdlib.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -80,34 +80,6 @@ struct JASSeqParser {
 
 struct JASResArcLoader {
     /* 80290C04 */ void getResMaxSize(JKRArchive const*);
-};
-
-template <typename A0>
-struct JASMemPool {};
-/* JASMemPool<Z2SoundHandlePool> */
-struct JASMemPool__template4 {
-    /* 802AB200 */ void func_802AB200(void* _this);
-};
-
-/* JASMemPool<Z2Audible> */
-struct JASMemPool__template5 {
-    /* 802BD288 */ void func_802BD288(void* _this);
-};
-
-struct JASKernel {
-    /* 80290B08 */ void getAramHeap();
-};
-
-struct JASHeap {
-    /* 8029021C */ void alloc(JASHeap*, u32);
-    /* 802904E4 */ void free();
-    /* 80290B54 */ ~JASHeap();
-    /* 802A4A5C */ void __defctor();
-};
-
-struct JASGenericMemPool {
-    /* 80290848 */ JASGenericMemPool();
-    /* 802908C8 */ void newMemPool(u32, int);
 };
 
 struct JASAramStream {

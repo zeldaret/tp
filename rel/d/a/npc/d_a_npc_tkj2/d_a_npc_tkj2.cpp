@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/npc/d_a_npc_tkj2/d_a_npc_tkj2.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -16,12 +16,6 @@ struct request_of_phase_process_class {};
 struct npc_tkj2_class {};
 
 struct csXyz {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -105,27 +99,6 @@ struct dDlst_shadowControl_c {
     static u8 mSimpleTexObj[32];
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-    /* 800844F8 */ void GetTgHitObj();
-    /* 80084548 */ void GetTgHitGObj();
-};
-
 struct dBgS_PolyPassChk {
     /* 80078E68 */ void SetObj();
 };
@@ -164,28 +137,8 @@ struct dBgS_Acch {
     /* 800773A4 */ void ClrMoveBGOnly();
 };
 
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 8026F708 */ void SetR(f32);
-    /* 80B1411C */ ~cM3dGSph();
-};
-
-struct cM3dGPla {
-    /* 80B1169C */ ~cM3dGPla();
-};
-
-struct cM3dGAab {
-    /* 80B14164 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_Stts {
-    /* 8026395C */ void ClrCcMove();
 };
 
 struct cBgS_PolyInfo {};
@@ -355,9 +308,6 @@ extern "C" void checkPass__12J3DFrameCtrlFf();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXTrans();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
-extern "C" void PSVECScale();
-extern "C" void PSVECSquareDistance();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
@@ -381,7 +331,6 @@ extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
 extern "C" void __register_global_object();
 
 //
@@ -409,11 +358,16 @@ SECTION_DATA static void* lit_4761[7] = {
 };
 
 /* 80B143D4-80B14414 00001C 0040+00 1/1 0/0 0/0 .data            cc_sph_src$4995 */
-SECTION_DATA static u8 cc_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x01, 0x42, 0x02, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x75, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00,
+static dCcD_SrcSph cc_sph_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x14202, 0x11}, 0x75}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 20.0f} // mSph
+    } // mSphAttr
 };
 
 /* 80B14414-80B14434 -00001 0020+00 1/0 0/0 0/0 .data            l_daNpc_Tkj2_Method */
@@ -692,7 +646,8 @@ static asm void CheckRoof(npc_tkj2_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGPla::~cM3dGPla() {
+// asm cM3dGPla::~cM3dGPla() {
+extern "C" asm void __dt__8cM3dGPlaFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_tkj2/d_a_npc_tkj2/__dt__8cM3dGPlaFv.s"
 }
@@ -1137,7 +1092,8 @@ static asm void daNpc_Tkj2_Create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_tkj2/d_a_npc_tkj2/__dt__8cM3dGSphFv.s"
 }
@@ -1147,7 +1103,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_tkj2/d_a_npc_tkj2/__dt__8cM3dGAabFv.s"
 }

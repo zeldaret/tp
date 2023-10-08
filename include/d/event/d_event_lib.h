@@ -21,7 +21,8 @@ struct action_class {
     fptr& getExecute() { return execute; }
 };
 
-struct dEvLib_callback_c {
+class dEvLib_callback_c {
+public:
     dEvLib_callback_c(fopAc_ac_c* param_0) {
         mActor = param_0;
         mAction = NULL;

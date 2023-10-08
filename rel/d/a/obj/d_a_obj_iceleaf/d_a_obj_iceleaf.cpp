@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_iceleaf/d_a_obj_iceleaf.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -14,8 +14,6 @@
 struct request_of_phase_process_class {};
 
 struct csXyz {};
-
-struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -121,27 +119,6 @@ struct dEvent_manager_c {
     /* 80047A78 */ void endCheck(s16);
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80C2501C */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-    /* 800844F8 */ void GetTgHitObj();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
 struct dBgS_PolyPassChk {
     /* 80078E68 */ void SetObj();
 };
@@ -162,41 +139,12 @@ struct dBgS_Acch {
     /* 80076248 */ void Set(cXyz*, cXyz*, fopAc_ac_c*, int, dBgS_AcchCir*, cXyz*, csXyz*, csXyz*);
 };
 
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8026F1F8 */ void SetH(f32);
-    /* 8026F200 */ void SetR(f32);
-    /* 80C24F8C */ ~cM3dGCyl();
-};
-
 struct cM3dGCir {
     /* 8026EF18 */ ~cM3dGCir();
 };
 
-struct cM3dGAab {
-    /* 80C24FD4 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 80C25D04 */ ~cCcD_GStts();
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct J3DModel {};
@@ -306,7 +254,6 @@ extern "C" void init__12J3DFrameCtrlFs();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXTrans();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECSquareDistance();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
@@ -324,7 +271,6 @@ extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u32 __float_nan;
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" extern u8 struct_80C25F98[4];
 
@@ -426,12 +372,18 @@ COMPILER_STRIP_GATE(0x80C25D74, &lit_3759);
 #pragma pop
 
 /* 80C25DD4-80C25E18 000024 0044+00 1/1 0/0 0/0 .data            l_cyl_src */
-SECTION_DATA static u8 l_cyl_src[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x1F, 0x00, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x78,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
+static dCcD_SrcCyl l_cyl_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x1f}, {0x400000, 0x11}, 0x78}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x6}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        50.0f, // mRadius
+        100.0f // mHeight
+    } // mCyl
 };
 
 /* 80C249E4-80C24BC4 000344 01E0+00 1/1 0/0 0/0 .text            Create__14daObjIceLeaf_cFv */
@@ -670,7 +622,8 @@ asm void daObjIceLeaf_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_iceleaf/d_a_obj_iceleaf/__dt__8cM3dGCylFv.s"
 }
@@ -680,7 +633,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_iceleaf/d_a_obj_iceleaf/__dt__8cM3dGAabFv.s"
 }
@@ -690,7 +644,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_iceleaf/d_a_obj_iceleaf/__dt__10dCcD_GSttsFv.s"
 }
@@ -941,7 +896,8 @@ static asm void daObjIceLeaf_Create(daObjIceLeaf_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_iceleaf/d_a_obj_iceleaf/__dt__10cCcD_GSttsFv.s"
 }

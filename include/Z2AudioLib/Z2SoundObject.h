@@ -2,7 +2,6 @@
 #define Z2SOUNDOBJECT_H
 
 #include "Z2AudioLib/Z2SoundHandles.h"
-#include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 
 struct Z2SoundStarter;

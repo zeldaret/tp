@@ -4,12 +4,8 @@
 //
 
 #include "SSystem/SComponent/c_lib.h"
-#include "JSystem/JMath/JMath.h"
-#include "MSL_C/math.h"
 #include "MSL_C/string.h"
 #include "SSystem/SComponent/c_math.h"
-#include "SSystem/SComponent/c_xyz.h"
-#include "dol2asm.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 
@@ -367,36 +363,36 @@ void MtxInit() {
 /* 80270E5C-80270EA4 26B79C 0048+00 0/0 0/0 43/43 .text            MtxTrans__FfffUc */
 void MtxTrans(f32 x_trans, f32 y_trans, f32 z_trans, u8 param_3) {
     if (param_3 == 0) {
-        PSMTXTrans(*calc_mtx, x_trans, y_trans, z_trans);
+        MTXTrans(*calc_mtx, x_trans, y_trans, z_trans);
     } else {
         Mtx mtx;
-        PSMTXTrans(mtx, x_trans, y_trans, z_trans);
-        PSMTXConcat(*calc_mtx, mtx, *calc_mtx);
+        MTXTrans(mtx, x_trans, y_trans, z_trans);
+        MTXConcat(*calc_mtx, mtx, *calc_mtx);
     }
 }
 
 /* 80270EA4-80270EEC 26B7E4 0048+00 0/0 0/0 46/46 .text            MtxScale__FfffUc */
 void MtxScale(f32 x_trans, f32 y_trans, f32 z_trans, u8 param_3) {
     if (param_3 == 0) {
-        PSMTXScale(*calc_mtx, x_trans, y_trans, z_trans);
+        MTXScale(*calc_mtx, x_trans, y_trans, z_trans);
     } else {
         Mtx mtx;
-        PSMTXScale(mtx, x_trans, y_trans, z_trans);
-        PSMTXConcat(*calc_mtx, mtx, *calc_mtx);
+        MTXScale(mtx, x_trans, y_trans, z_trans);
+        MTXConcat(*calc_mtx, mtx, *calc_mtx);
     }
 }
 
 /* 80270EEC-80270F1C 26B82C 0030+00 0/0 2/2 615/615 .text            MtxPosition__FP4cXyzP4cXyz */
 void MtxPosition(cXyz* src, cXyz* dest) {
-    PSMTXMultVec(*calc_mtx, src, dest);
+    MTXMultVec(*calc_mtx, src, dest);
 }
 
 /* 80270F1C-80270F58 26B85C 003C+00 0/0 0/0 20/20 .text            MtxPush__Fv */
 void MtxPush() {
     Mtx mtx;
-    PSMTXCopy(*calc_mtx, mtx);
+    MTXCopy(*calc_mtx, mtx);
     calc_mtx++;
-    PSMTXCopy(mtx, *calc_mtx);
+    MTXCopy(mtx, *calc_mtx);
 }
 
 /* 80270F58-80270F68 26B898 0010+00 0/0 0/0 20/20 .text            MtxPull__Fv */

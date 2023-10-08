@@ -4,27 +4,14 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_lv4chandelier/d_a_obj_lv4chandelier.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
 //
 
 struct request_of_phase_process_class {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 80266EF4 */ void normalize();
-
-    static f32 Zero[3];
-    static u8 BaseY[12];
-    static u8 BaseZ[12];
-};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -99,31 +86,6 @@ struct dDlst_shadowControl_c {
     static u8 mSimpleTexObj[32];
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-    /* 80C662F4 */ ~dCcD_Sph();
-    /* 80C663C0 */ dCcD_Sph();
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80083830 */ void Move();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-    /* 800844F8 */ void GetTgHitObj();
-    /* 800845B0 */ void getHitSeID(u8, int);
-};
-
 struct dBgW {};
 
 struct dBgS_PolyPassChk {
@@ -156,19 +118,6 @@ struct dBgS_GndChk {
     /* 800775F0 */ ~dBgS_GndChk();
 };
 
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 80C66444 */ ~cM3dGSph();
-};
-
-struct cM3dGAab {
-    /* 80C6648C */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {
-    /* 80263A48 */ void GetAc();
-};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
 };
@@ -182,17 +131,6 @@ struct cBgS {
 };
 
 struct _GXTexObj {};
-
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
 
 struct JMath {
     static u8 sincosTable_[65536];
@@ -306,12 +244,6 @@ extern "C" void PSMTXConcat();
 extern "C" void PSMTXRotAxisRad();
 extern "C" void PSMTXTrans();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
-extern "C" void PSVECScale();
-extern "C" void PSVECSquareMag();
-extern "C" void PSVECDotProduct();
-extern "C" void PSVECCrossProduct();
-extern "C" void PSVECSquareDistance();
 extern "C" void __construct_array();
 extern "C" void __construct_new_array();
 extern "C" void _savegpr_18();
@@ -328,7 +260,6 @@ extern "C" void _restgpr_24();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_29();
-extern "C" void acos();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];
@@ -345,8 +276,6 @@ extern "C" u8 BaseY__4cXyz[12];
 extern "C" u8 BaseZ__4cXyz[12];
 extern "C" extern u8 j3dSys[284];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
@@ -615,11 +544,16 @@ COMPILER_STRIP_GATE(0x80C668C0, &lit_4093);
 #pragma pop
 
 /* 80C66994-80C669D4 000004 0040+00 1/1 0/0 0/0 .data            cc_sph_src */
-SECTION_DATA static u8 cc_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00,
+static dCcD_SrcSph cc_sph_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0xd8fbfdff, 0x11}, 0x79}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x5, 0x0, 0x0, 0x2}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 40.0f} // mSph
+    } // mSphAttr
 };
 
 /* 80C63FA8-80C6449C 000CE8 04F4+00 1/0 0/0 0/0 .text            Create__14daObjLv4Chan_cFv */
@@ -1016,7 +950,8 @@ asm dBgS_ObjGndChk::~dBgS_ObjGndChk() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Sph::~dCcD_Sph() {
+// asm dCcD_Sph::~dCcD_Sph() {
+extern "C" asm void __dt__8dCcD_SphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4chandelier/d_a_obj_lv4chandelier/__dt__8dCcD_SphFv.s"
 }
@@ -1026,7 +961,8 @@ asm dCcD_Sph::~dCcD_Sph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Sph::dCcD_Sph() {
+// asm dCcD_Sph::dCcD_Sph() {
+extern "C" asm void __ct__8dCcD_SphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4chandelier/d_a_obj_lv4chandelier/__ct__8dCcD_SphFv.s"
 }
@@ -1036,7 +972,8 @@ asm dCcD_Sph::dCcD_Sph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4chandelier/d_a_obj_lv4chandelier/__dt__8cM3dGSphFv.s"
 }
@@ -1046,7 +983,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4chandelier/d_a_obj_lv4chandelier/__dt__8cM3dGAabFv.s"
 }

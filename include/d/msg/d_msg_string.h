@@ -19,6 +19,10 @@ public:
     /* 80249DE4 */ virtual void drawOutFontLocal(J2DTextBox*, f32);
     /* 80249ED0 */ virtual void drawFontLocal(J2DTextBox*, u8, f32, f32, f32, f32, u32, u8);
 
+    void drawOutFont(J2DTextBox* param_0, f32 param_1) {
+        drawOutFontLocal(param_0, param_1);
+    }
+
 private:
     /* 0x24 */ COutFont_c* mpOutFont;
     /* 0x28 */ u8 field_0x28;

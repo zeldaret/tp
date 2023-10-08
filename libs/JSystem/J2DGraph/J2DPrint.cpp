@@ -9,7 +9,6 @@
 #include "MSL_C/stdlib.h"
 #include "MSL_C/string.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 //
@@ -275,6 +274,65 @@ SECTION_SDATA2 static f64 lit_791 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802F4828-802F4B4C 2EF168 0324+00 0/0 4/4 0/0 .text
  * printReturn__8J2DPrintFPCcff18J2DTextBoxHBinding18J2DTextBoxVBindingffUc */
+// Matches with literals
+#ifdef NONMATCHING
+void J2DPrint::printReturn(char const* param_0, f32 param_1, f32 param_2,
+                               J2DTextBoxHBinding param_3, J2DTextBoxVBinding param_4, f32 param_5,
+                               f32 param_6, u8 param_7) {
+    if (mFont != NULL) {
+        initchar();
+        field_0x24 = field_0x2c;
+        field_0x28 = mCursorV;
+        size_t sVar6 = strlen(param_0);
+        if (sVar6 >= mStrBuffSize) {
+            sVar6 = mStrBuffSize - 1;
+            data_8045158C[0] = 1;
+        }
+        u16 local_2b0[260];
+        TSize aTStack_2b8;
+        f32 dVar10 = parse((const u8*)param_0, sVar6, param_1, local_2b0, aTStack_2b8,
+                               param_7, false);
+        f32 dVar12 = mFont->getAscent()*(mFontSizeY / mFont->getCellHeight());
+        f32 dVar13 = dVar10 + dVar12;
+        switch (param_4)
+        {
+        case VBIND_TOP:
+            break;
+        case VBIND_BOTTOM:
+            param_6 += (s32)(param_2 - dVar13 - 0.5f);
+            break;
+        case VBIND_CENTER:
+            param_6 += (s32)(param_2 - dVar13 - 0.5f) / 2;
+        default:
+            break;
+        }
+
+        for (int iVar8 = 0; local_2b0[iVar8] != 0xffff; iVar8++) {
+            switch (param_3) {
+            case VBIND_TOP:
+                local_2b0[iVar8] = 0;
+                break;
+            case VBIND_BOTTOM:
+                local_2b0[iVar8] = param_1 - local_2b0[iVar8];
+                break;
+            case VBIND_CENTER:
+                f32 fVar1 = (local_2b0[iVar8]);
+                fVar1 = param_1 - fVar1;
+                f32 ratio = 0.5f;
+                local_2b0[iVar8] = fVar1 * ratio;
+                break;
+            
+            }
+        }
+        initchar();
+        field_0x2c += param_5;
+        mCursorV += param_6 + dVar12;
+        field_0x24 = field_0x2c;
+        field_0x28 = mCursorV;
+        parse((const u8*)param_0, sVar6, param_1, local_2b0, aTStack_2b8, param_7, true);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -285,6 +343,7 @@ asm void J2DPrint::printReturn(char const* param_0, f32 param_1, f32 param_2,
 #include "asm/JSystem/J2DGraph/J2DPrint/printReturn__8J2DPrintFPCcff18J2DTextBoxHBinding18J2DTextBoxVBindingffUc.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804561E8-804561EC 0047E8 0004+00 1/1 0/0 0/0 .sdata2          @913 */
@@ -292,21 +351,235 @@ SECTION_SDATA2 static f32 lit_913 = 10000.0f;
 
 /* 802F4B4C-802F52E8 2EF48C 079C+00 2/2 0/0 0/0 .text
  * parse__8J2DPrintFPCUciiPUsRQ28J2DPrint5TSizeUcb              */
+// Mostly regalloc
+#ifdef NONMATCHING
+f32 J2DPrint::parse(u8 const* param_0, int param_1, int param_2, u16* param_3,
+                         J2DPrint::TSize& param_4, u8 param_5, bool param_6) {
+    if (mFont == NULL) {
+        return 0.0f;
+    }
+    u16 uVar13 = 0;
+    f32 dVar18 = (double)field_0x2c;
+    f32 dVar16 = mCursorV;
+    f32 dVar19 = dVar18;
+    f32 f28 = dVar16;
+    u8 const* local_f8 = param_0 + 1;
+    int uVar12 = *param_0;
+    f32 tmpf = field_0x2c;
+    f32 dVar17 = tmpf;
+    f32 local_ac = tmpf;
+    f32 local_b0 = mCursorV;
+    f32 local_b4 = mCursorV;
+    JUtility::TColor local_b8 = field_0x8;
+    JUtility::TColor local_bc = field_0xc;
+    f32 local_c0;
+    local_b8.a = local_b8.a * param_5 / 0xff;
+    local_bc.a = local_bc.a * param_5 / 0xff;
+    JUtility::TColor* local_d8;
+    if (field_0x22) {
+        local_d8 = &local_bc;
+    } else {
+        local_d8 = &local_b8;
+    }
+    mFont->setGradColor(local_bc, *local_d8);
+    bool bVar1;
+    do {
+        u8 local_f0 = 0;
+        if (mFont->isLeadByte(uVar12)) {
+            uVar12 = (uVar12 << 8) | (*(++local_f8));
+            local_f0 = 1;
+        }
+
+        if (uVar12 == 0 || ((u32)param_1 > (u32)local_f8 - (u32)param_0)) {
+            if (param_6 == 0 && param_3 != NULL) {
+                param_3[uVar13] = 0.5f + dVar19;
+            }
+            uVar13++;
+            break;
+        } else {
+            bVar1 = true;
+            local_c0 = field_0x2c;
+            if (uVar12 < 0x20) {
+                if (uVar12 == 0x1b) {
+                    u16 local_e8 = doEscapeCode(&local_f8, param_5);
+                    if (local_e8 == 'HM') {
+                        if ((param_6 == 0) && (param_3 != NULL)) {
+                            param_3[uVar13] = 0.5f + dVar19;
+                        }
+                        field_0x2c = dVar18;
+                        mCursorV = dVar16;
+                        uVar13++;
+                        if (uVar13 == 0x100) {
+                            break;
+                        }
+                        dVar19 = 0.0f;
+                    }
+                    if (local_e8) {
+                        bVar1 = false;
+                    }
+                } else {
+                    doCtrlCode(uVar12);
+                    bVar1 = false;
+                    if (uVar12 == 10) {
+                        if ((!param_6) && (param_3 != NULL)) {
+                            param_3[uVar13] = 0.5f + dVar19;
+                        }
+                        uVar13++;
+                        if (uVar13 == 0x100) {
+                            break;
+                        }
+                        dVar19 = 0.0f;
+                    }
+                }
+            } else if (local_f0 && ((u32)local_f8 - (u32)param_0 > (u32)param_1)) {
+                if ((!param_6) && (param_3 != NULL)) {
+                    param_3[uVar13] = 0.5f + dVar19;
+                }
+                uVar13++;
+                break;
+            } else {
+                if (mFont->isFixed()) {
+                    field_0x34 = mFont->getFixedWidth();
+                } else {
+                    JUTFont::TWidth uStack_ec;
+                    mFont->getWidthEntry(uVar12, &uStack_ec);
+                    field_0x34 = uStack_ec.field_0x1;
+                }
+
+                field_0x34 *= field_0x18 / mFont->getCellWidth();
+                f32 fVar6 = ((field_0x2c + field_0x34) - field_0x24);
+                fVar6 = 10000.0f * fVar6;
+                f32 local_90 = ((s32)fVar6) / 10000.0f;
+                if (local_90 > param_2 && field_0x2c > dVar18) {
+                    u32 local_e4;
+                    if (local_f0) {
+                        local_e4 = 2;
+                    } else {
+                        local_e4 = 1;
+                    }
+                    local_f8 -= local_e4;
+                    mCursorV += field_0x14;
+                    if (!param_6 && (param_3 != NULL)) {
+                        param_3[uVar13] = 0.5f + dVar19;
+                    }
+                    uVar13++;
+                    if (uVar13 == 0x100) {
+                        break;
+                    }
+                    field_0x2c = field_0x24;
+                    dVar19 = 0.0f;
+                    bVar1 = false;
+                } else {
+                    if (param_6) {
+                        if (param_3 != NULL) {
+                            mFont->drawChar_scale(field_0x2c + (f32)(s16)param_3[uVar13], mCursorV, 
+                                (s32)field_0x18, (s32)field_0x1c, uVar12, true);
+                        } else {
+                            mFont->drawChar_scale(field_0x2c, mCursorV, 
+                                (s32)field_0x18, (s32)field_0x1c, uVar12, true);
+                        }
+                    }
+                    field_0x2c += field_0x34;
+                }
+            }
+        }
+
+        if (bVar1) {
+            if (field_0x2c - dVar18 > dVar19) {
+                dVar19 = field_0x2c - dVar18;
+            }
+            field_0x2c += field_0x10;
+            field_0x34 += field_0x10;
+            f32 local_cc = mCursorV + (field_0x1c / mFont->getHeight()) * mFont->getDescent();
+            if (f28 < local_cc) {
+                f28 = local_cc;
+            }
+            if (field_0x2c > local_ac) {
+                local_ac = field_0x2c;
+            }
+            if (field_0x2c < dVar17) {
+                dVar17 = field_0x2c;
+            }
+            if (local_c0 < dVar17) {
+                dVar17 = local_c0;
+            }
+            if (local_b4 > mCursorV) {
+                local_b4 = mCursorV;
+            }
+            if (mCursorV < local_b0) {
+                local_b0 = mCursorV;
+            }
+        }
+        local_f8++;
+        uVar12 = *local_f8;
+    } while (true);
+
+    if (param_3 != NULL) {
+        param_3[uVar13] = 0xffff;
+    }
+    param_4.field_0x0 = local_ac - dVar17;
+    param_4.field_0x4 = local_b4 - local_b0 + mFont->getLeading();
+    if (!param_6) {
+        field_0x2c = dVar18;
+        mCursorV = dVar16;
+    }
+    return f28 - dVar16;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DPrint::parse(u8 const* param_0, int param_1, int param_2, u16* param_3,
+asm f32 J2DPrint::parse(u8 const* param_0, int param_1, int param_2, u16* param_3,
                          J2DPrint::TSize& param_4, u8 param_5, bool param_6) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DPrint/parse__8J2DPrintFPCUciiPUsRQ28J2DPrint5TSizeUcb.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804561EC-804561F0 0047EC 0004+00 2/2 0/0 0/0 .sdata2          @937 */
 SECTION_SDATA2 static f32 lit_937 = 1.0f;
 
 /* 802F52E8-802F5410 2EFC28 0128+00 2/1 0/0 0/0 .text            doCtrlCode__8J2DPrintFi */
+// Matches with literals
+#ifdef NONMATCHING
+void J2DPrint::doCtrlCode(int param_0) {
+    switch (param_0) {
+    case 8:
+        field_0x2c -= field_0x34;
+        field_0x34 = 0.0f;
+        break;
+    case 9:
+        if (field_0x20 > 0) {
+            f32 fVar1 = field_0x2c;
+            field_0x2c = field_0x20 + field_0x20 * ((int)field_0x2c / field_0x20);
+            field_0x34 = field_0x2c - fVar1;
+        }
+        break;
+    case 10:
+        field_0x34 = 0.0f;
+        field_0x2c = field_0x24;
+        mCursorV += field_0x14;
+        break;
+    case 0xd:
+        field_0x34 = 0.0f;
+        field_0x2c = field_0x24;
+        break;
+    case 0x1c:
+        field_0x2c += 1.0f;
+        break;
+    case 0x1d:
+        field_0x2c -= 1.0f;
+        break;
+    case 0x1e:
+        mCursorV -= 1.0f;
+        break;
+    case 0x1f:
+        mCursorV += + 1.0f;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -315,16 +588,136 @@ asm void J2DPrint::doCtrlCode(int param_0) {
 #include "asm/JSystem/J2DGraph/J2DPrint/doCtrlCode__8J2DPrintFi.s"
 }
 #pragma pop
+#endif
 
 /* 802F5410-802F594C 2EFD50 053C+00 1/1 0/0 0/0 .text            doEscapeCode__8J2DPrintFPPCUcUc */
+// Matches with literals
+#ifdef NONMATCHING
+u16 J2DPrint::doEscapeCode(u8 const** param_0, u8 param_1) {
+    u8 const* puVar9 = *param_0;
+    u16 uVar11 = 0;
+    u16 uVar3;
+    for (int iVar10 = 0; iVar10 < 2; iVar10++) {
+        if (mFont->isLeadByte(**param_0)) {
+            uVar3 = ((**param_0) << 8) | (*param_0)[1];
+            (*param_0) += 2;
+        } else {
+            uVar3 = **param_0;
+            (*param_0)++;
+        }
+        if (uVar3 >= 0x80 || uVar3 < 0x20) {
+            *param_0 = puVar9;
+            return 0;
+        }
+        uVar11 = ((uVar11) << 8) | uVar3;
+    }
+
+    JUtility::TColor local_40 = field_0x8;
+    JUtility::TColor local_44 = field_0xc;
+    switch(uVar11) {
+    case 'CU':
+        mCursorV -= getNumberF32(param_0, 1.0f, 0.0f, 10);
+        break;
+    case 'CD':
+        mCursorV += getNumberF32(param_0, 1.0f, 0.0f, 10);
+        break;
+    case 'CL':
+        field_0x2c -= getNumberF32(param_0, 1.0f, 0.0f, 10);
+        break;
+    case 'CR':
+        field_0x2c += getNumberF32(param_0, 1.0f, 0.0f, 10);
+        break;
+    case 'LU':
+        mCursorV -= field_0x14;
+        break;
+    case 'LD':
+        mCursorV += field_0x14;
+        break;
+    case 'ST':
+        s32 val = getNumberS32(param_0, field_0x20, field_0x20, 10);
+        if (val > 0) {
+            field_0x20 = val;
+        }
+        break;
+    case 'CC':
+        field_0x8 = getNumberS32(param_0, *(u32*)&mCharColor, *(u32*)&field_0x8, 16);
+        local_40 = field_0x8;
+        local_40.a = local_40.a * param_1 / 0xff;
+        local_44.a = local_44.a * param_1 / 0xff;
+        JUtility::TColor* local_68;
+        if (field_0x22 != 0) {
+            local_68 = &local_44;
+        }
+        else {
+            local_68 = &local_40;
+        }
+        mFont->setGradColor(local_40, *local_68);
+        break;
+    case 'GC':
+        field_0xc = getNumberS32(param_0, *(u32*)&mGradColor, *(u32*)&field_0xc, 16);
+        local_44 = field_0xc;
+        local_40.a = local_40.a * param_1 / 0xff;
+        local_44.a = local_44.a * param_1 / 0xff;
+        JUtility::TColor* local_74;
+        if (field_0x22 != 0) {
+            local_74 = &local_44;
+        }
+        else {
+            local_74 = &local_40;
+        }
+        mFont->setGradColor(local_40, *local_74);
+        break;
+    case 'FX':
+        f32 dVar13 = getNumberF32(param_0, mFontSizeX, field_0x18, 10);
+        if (dVar13 >= 0) {
+            field_0x18 = dVar13;
+        }
+        break;
+    case 'FY':
+        f32 dVar14 = getNumberF32(param_0, mFontSizeY, field_0x1c, 10);
+        if (dVar14 >= 0) {
+            field_0x1c = dVar14;
+        }
+        break;
+    case 'SH':
+        field_0x10 = getNumberF32(param_0, field_0x48, field_0x10, 10);
+        break;
+    case 'SV':
+        field_0x14 = getNumberF32(param_0, field_0x4c, field_0x14, 10);
+        break;
+    case 'GM':
+        s32 isZero = getNumberS32(param_0, field_0x22 == 0, field_0x22, 10) == 0;
+        field_0x22 = isZero == 0;
+        local_40.a = local_40.a * param_1 / 0xff;
+        local_44.a = local_44.a * param_1 / 0xff;
+        JUtility::TColor* local_80;
+        if (field_0x22 != 0) {
+            local_80 = &local_44;
+        }
+        else {
+            local_80 = &local_40;
+        }
+        mFont->setGradColor(local_40, *local_80);
+        break;
+    case 'HM':
+        break;
+    default:
+        *param_0 = puVar9;
+        uVar11 = 0;
+        break;
+    }
+    return uVar11;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DPrint::doEscapeCode(u8 const** param_0, u8 param_1) {
+asm u16 J2DPrint::doEscapeCode(u8 const** param_0, u8 param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DPrint/doEscapeCode__8J2DPrintFPPCUcUc.s"
 }
 #pragma pop
+#endif
 
 /* 802F594C-802F59C0 2F028C 0074+00 3/3 0/0 0/0 .text            initchar__8J2DPrintFv */
 void J2DPrint::initchar() {
@@ -339,21 +732,87 @@ void J2DPrint::initchar() {
 }
 
 /* 802F59C0-802F5AC4 2F0300 0104+00 1/1 0/0 0/0 .text            getNumberS32__8J2DPrintFPPCUclli */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPrint::getNumberS32(u8 const** param_0, s32 param_1, s32 param_2, int param_3) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPrint/getNumberS32__8J2DPrintFPPCUclli.s"
+s32 J2DPrint::getNumberS32(u8 const** param_0, s32 param_1, s32 param_2, int base) {
+    const u8* puVar1 = *param_0;
+    s32 uVar2 = param_1;
+    if (*puVar1 != '[') {
+        return param_1;
+    }
+    (*param_0)++;
+    uVar2 = 0;
+    char* local_28;
+    if (base == 10) {
+        uVar2 = strtol((char*)*param_0, &local_28, base);
+    } else if (base == 16) {
+        uVar2 = strtoul((char*)*param_0, &local_28, base);
+        if ((u32)local_28 - (u32)*param_0 != 8) {
+            if ((u32)local_28 - (u32)*param_0 == 6) {
+                uVar2 = (uVar2 << 8) | 0xff;
+            } else {
+                *param_0 = puVar1;
+                return param_2;
+            }
+        }
+    }
+    if (local_28[0] != ']') {
+        *param_0 = puVar1;
+        return param_2;
+    } else {
+        if ((char*)*param_0 == (char*)local_28) {
+            *param_0 = (const u8*)local_28 + 1;
+            return param_1;
+        } else {
+            *param_0 = (const u8*)local_28 + 1;
+        }
+    }
+    return uVar2;
 }
-#pragma pop
 
 /* 802F5AC4-802F5BF8 2F0404 0134+00 1/1 0/0 0/0 .text            getNumberF32__8J2DPrintFPPCUcffi */
+// Matches with literals
+#ifdef NONMATCHING
+f32 J2DPrint::getNumberF32(u8 const** param_0, f32 param_1, f32 param_2, int base) {
+    const u8* puVar1 = *param_0;
+    s32 uVar2 = param_1;
+    if (*puVar1 != '[') {
+        return param_1;
+    }
+    (*param_0)++;
+    uVar2 = 0;
+    char* local_28;
+    if (base == 10) {
+        uVar2 = strtol((char*)*param_0, &local_28, base);
+    } else if (base == 16) {
+        uVar2 = strtoul((char*)*param_0, &local_28, base);
+        if ((u32)local_28 - (u32)*param_0 != 8) {
+            if ((u32)local_28 - (u32)*param_0 == 6) {
+                uVar2 = (uVar2 << 8) | 0xff;
+            } else {
+                *param_0 = puVar1;
+                return param_2;
+            }
+        }
+    }
+    if (local_28[0] != ']') {
+        *param_0 = puVar1;
+        return param_2;
+    } else {
+        if ((char*)*param_0 == (char*)local_28) {
+            *param_0 = (const u8*)local_28 + 1;
+            return param_1;
+        } else {
+            *param_0 = (const u8*)local_28 + 1;
+        }
+    }
+    return uVar2;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DPrint::getNumberF32(u8 const** param_0, f32 param_1, f32 param_2, int param_3) {
+asm f32 J2DPrint::getNumberF32(u8 const** param_0, f32 param_1, f32 param_2, int param_3) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DPrint/getNumberF32__8J2DPrintFPPCUcffi.s"
 }
 #pragma pop
+#endif

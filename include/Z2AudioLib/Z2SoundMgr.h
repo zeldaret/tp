@@ -3,9 +3,7 @@
 
 #include "JSystem/JAudio2/JAISeMgr.h"
 #include "JSystem/JAudio2/JAISeqMgr.h"
-#include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JAIStreamMgr.h"
-#include "JSystem/JAudio2/JASGadget.h"
 #include "global.h"
 
 class Z2SoundMgr : public JASGlobalInstance<Z2SoundMgr> {
@@ -25,9 +23,8 @@ public:
     /* 802AA9E8 */ void multiVolumeSoundID(JAISoundID, f32);
     /* 802AAAC4 */ void isPlayingSoundID(JAISoundID);
 
-    /* 802A9EE8 */ /* virtual */ void startSound(JAISoundID, JAISoundHandle*,
+    /* 802A9EE8 */ virtual void startSound(JAISoundID, JAISoundHandle*,
                                                  JGeometry::TVec3<f32> const*);
-    /* 0x000 */ void* vtable;  // remove later
 
     JAISeMgr* getSeMgr() { return &mSeMgr; }
 

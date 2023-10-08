@@ -4,30 +4,14 @@
 //
 
 #include "JSystem/JAudio2/JASRegisterParam.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
 //
 
-struct JASRegisterParam {
-    struct RegID {};
-
-    /* 80293644 */ JASRegisterParam();
-    /* 80293664 */ void init();
-    /* 80293684 */ void write(JASRegisterParam::RegID, u32);
-    /* 802937B8 */ void read(JASRegisterParam::RegID);
-};
-
 //
 // Forward References:
 //
-
-extern "C" void __ct__16JASRegisterParamFv();
-extern "C" void init__16JASRegisterParamFv();
-extern "C" void write__16JASRegisterParamFQ216JASRegisterParam5RegIDUl();
-extern "C" void read__16JASRegisterParamFQ216JASRegisterParam5RegID();
 
 //
 // External References:
@@ -38,73 +22,129 @@ extern "C" void read__16JASRegisterParamFQ216JASRegisterParam5RegID();
 //
 
 /* 80293644-80293664 28DF84 0020+00 0/0 1/1 0/0 .text            __ct__16JASRegisterParamFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JASRegisterParam::JASRegisterParam() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASRegisterParam/__ct__16JASRegisterParamFv.s"
+JASRegisterParam::JASRegisterParam() {
+    for (int i = 0; i < 14; i++) {
+        field_0x0[i] = 0;
+    }
 }
-#pragma pop
 
 /* 80293664-80293684 28DFA4 0020+00 0/0 1/1 0/0 .text            init__16JASRegisterParamFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASRegisterParam::init() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASRegisterParam/init__16JASRegisterParamFv.s"
+void JASRegisterParam::init() {
+    for (int i = 0; i < 14; i++) {
+        field_0x0[i] = 0;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 803C5B90-803C5BB8 -00001 0028+00 1/1 0/0 0/0 .data            @56 */
-SECTION_DATA static void* lit_56[10] = {
-    (void*)(((char*)write__16JASRegisterParamFQ216JASRegisterParam5RegIDUl) + 0x50),
-    (void*)(((char*)write__16JASRegisterParamFQ216JASRegisterParam5RegIDUl) + 0x64),
-    (void*)(((char*)write__16JASRegisterParamFQ216JASRegisterParam5RegIDUl) + 0x74),
-    (void*)(((char*)write__16JASRegisterParamFQ216JASRegisterParam5RegIDUl) + 0x94),
-    (void*)(((char*)write__16JASRegisterParamFQ216JASRegisterParam5RegIDUl) + 0xB4),
-    (void*)(((char*)write__16JASRegisterParamFQ216JASRegisterParam5RegIDUl) + 0xD4),
-    (void*)(((char*)write__16JASRegisterParamFQ216JASRegisterParam5RegIDUl) + 0xF4),
-    (void*)(((char*)write__16JASRegisterParamFQ216JASRegisterParam5RegIDUl) + 0x104),
-    (void*)(((char*)write__16JASRegisterParamFQ216JASRegisterParam5RegIDUl) + 0x114),
-    (void*)(((char*)write__16JASRegisterParamFQ216JASRegisterParam5RegIDUl) + 0x124),
-};
 
 /* 80293684-802937B8 28DFC4 0134+00 1/0 4/4 0/0 .text
  * write__16JASRegisterParamFQ216JASRegisterParam5RegIDUl       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASRegisterParam::write(JASRegisterParam::RegID param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASRegisterParam/write__16JASRegisterParamFQ216JASRegisterParam5RegIDUl.s"
+void JASRegisterParam::write(JASRegisterParam::RegID param_0, u32 param_1) {
+    if (param_0 < 14) {
+        if (param_0 <= 2) {
+            field_0x0[param_0] = (u8)param_1;
+            return;
+        }
+
+        field_0x0[param_0] = param_1;
+        return;
+    }
+
+    switch (param_0) {
+    case 32:
+        field_0x0[0] = (param_1 >> 8) & 0xff;
+        field_0x0[1] = param_1 & 0xff;
+        break;
+    case 33:
+        field_0x0[4] = param_1 >> 16;
+        field_0x0[5] = param_1;
+        break;
+    case 34:
+        field_0x0[4] &= 0xff;
+        field_0x0[4] |= ((param_1 & 0xff) << 8);
+        break;
+    case 35:
+        field_0x0[4] &= 0xff00;
+        field_0x0[4] |= param_1 & 0xff;
+        break;
+    case 36:
+        field_0x0[5] &= 0xff;
+        field_0x0[5] |= (param_1 & 0xff) << 8;
+        break;
+    case 37:
+        field_0x0[5] &= 0xff00;
+        field_0x0[5] |= param_1 & 0xff;
+        break;
+    case 38:
+        field_0x0[6] = param_1 >> 16;
+        field_0x0[7] = param_1;
+        break;
+    case 39:
+        field_0x0[8] = param_1 >> 16;
+        field_0x0[9] = param_1;
+        break;
+    case 40:
+        field_0x0[10] = param_1 >> 16;
+        field_0x0[11] = param_1;
+        break;
+    case 41:
+        field_0x0[12] = param_1 >> 16;
+        field_0x0[13] = param_1;
+        break;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 803C5BB8-803C5BE0 -00001 0028+00 1/1 0/0 0/0 .data            @87 */
-SECTION_DATA static void* lit_87[10] = {
-    (void*)(((char*)read__16JASRegisterParamFQ216JASRegisterParam5RegID) + 0x3C),
-    (void*)(((char*)read__16JASRegisterParamFQ216JASRegisterParam5RegID) + 0x54),
-    (void*)(((char*)read__16JASRegisterParamFQ216JASRegisterParam5RegID) + 0x68),
-    (void*)(((char*)read__16JASRegisterParamFQ216JASRegisterParam5RegID) + 0x7C),
-    (void*)(((char*)read__16JASRegisterParamFQ216JASRegisterParam5RegID) + 0x8C),
-    (void*)(((char*)read__16JASRegisterParamFQ216JASRegisterParam5RegID) + 0xA0),
-    (void*)(((char*)read__16JASRegisterParamFQ216JASRegisterParam5RegID) + 0xB0),
-    (void*)(((char*)read__16JASRegisterParamFQ216JASRegisterParam5RegID) + 0xC4),
-    (void*)(((char*)read__16JASRegisterParamFQ216JASRegisterParam5RegID) + 0xD8),
-    (void*)(((char*)read__16JASRegisterParamFQ216JASRegisterParam5RegID) + 0xEC),
-};
 
 /* 802937B8-802938BC 28E0F8 0104+00 1/0 1/1 0/0 .text
  * read__16JASRegisterParamFQ216JASRegisterParam5RegID          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASRegisterParam::read(JASRegisterParam::RegID param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASRegisterParam/read__16JASRegisterParamFQ216JASRegisterParam5RegID.s"
+u32 JASRegisterParam::read(JASRegisterParam::RegID param_0) {
+    if (param_0 < 14) {
+        return field_0x0[param_0];
+    }
+    u32 rv = 0;
+    switch (param_0) {
+    case 32:
+        rv = ((field_0x0[0] & 0xff) << 8) | (field_0x0[1] & 0xff) ;
+        break;
+    case 33:
+        rv = field_0x0[4];
+        rv <<= 16;
+        rv |= field_0x0[5];
+        break;
+    case 34:
+        rv = (u8)(field_0x0[4] >> 8);
+        break;
+    case 35:
+        rv = (u8)field_0x0[4];
+        break;
+    case 36:
+        rv = (u8)(field_0x0[5] >> 8);
+        break;
+    case 37:
+        rv = (u8)field_0x0[5];
+        break;
+    case 38:
+        rv = field_0x0[6];
+        rv <<= 16;
+        rv |= field_0x0[7];
+        break;
+    case 39:
+        rv = field_0x0[8];
+        rv <<= 16;
+        rv |= field_0x0[9];
+        break;
+    case 40:
+        rv = field_0x0[10];
+        rv <<= 16;
+        rv |= field_0x0[11];
+        break;
+    case 41:
+        // !@bug I think this should get field_0x0[12] and field_0x0[13]. Looks like a copy paste bug.
+        rv = field_0x0[10];
+        rv <<= 16;
+        rv |= field_0x0[11];
+        break;
+    }
+    return rv;
 }
-#pragma pop

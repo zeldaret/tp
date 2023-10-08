@@ -4,12 +4,8 @@
 //
 
 #include "rel/d/a/b/d_a_b_go/d_a_b_go.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "SSystem/SComponent/c_lib.h"
-#include "SSystem/SComponent/c_math.h"
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
@@ -545,7 +541,7 @@ static void action(b_go_class* b_go) {
     b_go->speed.x = newSpeed.x;
     b_go->speed.z = newSpeed.z;
 
-    PSVECAdd(&b_go->current.pos, &b_go->speed, &b_go->current.pos);
+    VECAdd(&b_go->current.pos, &b_go->speed, &b_go->current.pos);
     b_go->speed.y += b_go->mGravity;
 
     b_go->mAcch.CrrPos(dComIfG_Bgsp());
@@ -694,10 +690,7 @@ COMPILER_STRIP_GATE(0x80604088, &lit_3929);
 // matches with literals
 #ifdef NONMATCHING
 static int daB_GO_Create(fopAc_ac_c* i_actor) {
-    if (!fopAcM_CheckCondition(i_actor, 8)) {
-        new (i_actor) b_go_class();
-        fopAcM_OnCondition(i_actor, 8);
-    }
+    fopAcM_SetupActor(i_actor, b_go_class);
     b_go_class* b_go = (b_go_class*)i_actor;
 
     int phase_state = dComIfG_resLoad(&b_go->mPhase, "B_go");

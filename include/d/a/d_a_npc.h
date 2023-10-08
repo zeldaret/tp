@@ -8,7 +8,6 @@
 #include "d/d_path.h"
 #include "d/msg/d_msg_flow.h"
 #include "d/particle/d_particle_copoly.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 struct bckGetParam {
@@ -145,12 +144,16 @@ private:
 
 struct daNpcT_evtData_c {};
 
-struct daNpcT_faceMotionAnmData_c {};
+struct daNpcT_faceMotionAnmData_c {
+    u32 field_0x0[6];
+    u32 field_0x18;
+};
 
 struct daNpcT_pntData_c {};
 
 struct daNpcT_motionAnmData_c {
-    u8 data[8];
+    u32 field_0x0[6];
+    u32 field_0x18;
 };
 
 class daNpcT_Hermite_c {
@@ -186,7 +189,7 @@ public:
     /* 80146188 */ int chkPassed1(cXyz, int);
     /* 801464D8 */ int chkPassed2(cXyz, cXyz*, int, int);
 
-    inline cXyz& getPntPos(int i_idx) {
+    inline Vec getPntPos(int i_idx) {
         return mpRoomPath->m_points[i_idx].m_position;
     }
 
@@ -194,6 +197,8 @@ public:
         int roomPath = dPath_ChkClose(mpRoomPath); 
         return roomPath;
     }
+
+    bool chkReverse() { return mDirection == 1; }
 
     u16 getNumPnts() { 
         dPath* path = mpRoomPath;
@@ -285,7 +290,7 @@ public:
     /* 0xE1E */ u16 field_0xe1e;
     /* 0xE20 */ u16 field_0xe20;
     /* 0xE22 */ u16 field_0xe22;
-    /* 0xE24 */ u8 field_0xe24;
+    /* 0xE24 */ s8 field_0xe24;
     /* 0xE25 */ u8 field_0xe25;
     /* 0xE26 */ u8 field_0xe26;
     /* 0xE27 */ u8 field_0xe27;
@@ -328,7 +333,7 @@ public:
     /* 80148C70 */ void setEnvTevColor();
     /* 80148CCC */ void setRoomNo();
     /* 80148D10 */ int checkEndAnm(f32);
-    /* 80148DD0 */ void checkEndAnm(J3DFrameCtrl*, f32);
+    /* 80148DD0 */ int checkEndAnm(J3DFrameCtrl*, f32);
     /* 80148E4C */ void playAllAnm();
     /* 80149190 */ void setMtx();
     /* 8014924C */ void ctrlFaceMotion();
@@ -355,9 +360,9 @@ public:
     /* 8014BB00 */ void getActorDistance(fopAc_ac_c*, int, int);
     /* 8014BBF0 */ int initTalk(int, fopAc_ac_c**);
     /* 8014BC78 */ void talkProc(int*, int, fopAc_ac_c**, int);
-    /* 8014BE2C */ void getNearestActorP(s16);
+    /* 8014BE2C */ fopAc_ac_c* getNearestActorP(s16);
     /* 8014BEE4 */ void getEvtAreaTagP(int, int);
-    /* 8014BFB0 */ u32 getShopItemTagP();
+    /* 8014BFB0 */ fopAc_ac_c* getShopItemTagP();
     /* 8014C030 */ void setHitodamaPrtcl();
 
     /* 8014CD20 */ virtual ~daNpcT_c();
@@ -400,8 +405,8 @@ public:
     /* 8014CC2C */ virtual void drawGhost();
     /* 8014CCA0 */ virtual bool afterSetFaceMotionAnm(int, int, f32, int);
     /* 8014CCE0 */ virtual bool afterSetMotionAnm(int, int, f32, int);
-    /* 8014CCB0 */ virtual void getFaceMotionAnm(daNpcT_faceMotionAnmData_c);
-    /* 8014CCF0 */ virtual void getMotionAnm(daNpcT_motionAnmData_c);
+    /* 8014CCB0 */ virtual daNpcT_faceMotionAnmData_c getFaceMotionAnm(daNpcT_faceMotionAnmData_c);
+    /* 8014CCF0 */ virtual daNpcT_motionAnmData_c getMotionAnm(daNpcT_motionAnmData_c);
     /* 8014CCEC */ virtual void changeAnm(int*, int*);
     /* 8014CCAC */ virtual void changeBck(int*, int*);
     /* 8014CCA8 */ virtual void changeBtp(int*, int*);
@@ -417,8 +422,8 @@ public:
     }
 
     static u8 const mCcDObjData[48];
-    static u8 mCcDCyl[68];
-    static u8 mCcDSph[64];
+    static dCcD_SrcCyl mCcDCyl;
+    static dCcD_SrcSph mCcDSph;
     static fopAc_ac_c* mFindActorPtrs[50];
     static s16 mSrchName;
     static s32 mFindCount;
@@ -428,6 +433,7 @@ STATIC_ASSERT(sizeof(daNpcT_c) == 0xE40);
 
 BOOL daNpcT_chkEvtBit(u32 i_idx);
 BOOL daNpcT_chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 param_3, int param_4);
+BOOL daNpcF_chkPointInArea(cXyz, cXyz, cXyz, s16);
 
 class daNpcF_ActorMngr_c {
 private:
@@ -501,14 +507,13 @@ protected:
     /* 0x99C */ u32 mAnmFlags;
     /* 0x9A0 */ u32 field_0x9a0;
     /* 0x9A4 */ profile_method_class* field_0x9a4;
-    /* 0x9A8 */ int field_0x9a8;
-    /* 0x9AC */ int field_0x9ac;
+    /* 0x9A8 */ int field_0x9a8[2];
     /* 0x9B0 */ u32 field_0x9b0;
     /* 0x9B4 */ int mFlowNodeNo;
     /* 0x9B8 */ cXyz field_0x9b8;
     /* 0x9C4 */ cXyz field_0x9c4;
-    /* 0x9D0 */ u16 field_0x9d0;
-    /* 0x9D2 */ u16 field_0x9d2;
+    /* 0x9D0 */ s16 field_0x9d0;
+    /* 0x9D2 */ s16 field_0x9d2;
     /* 0x9D4 */ s16 field_0x9d4;
     /* 0x9D6 */ s16 mExpressionPhase;
     /* 0x9D8 */ s16 mExpressionPrevPhase;
@@ -604,11 +609,11 @@ public:
     /* 80154250 */ void setAngle(s16);
     /* 80154278 */ u8 getDistTableIdx(int, int);
     /* 801542A0 */ fopAc_ac_c* getEvtAreaTagP(int, int);
-    /* 8015436C */ void getAttnActorP(int, void* (*)(void*, void*), f32, f32, f32, f32, s16, int,
+    /* 8015436C */ fopAc_ac_c* getAttnActorP(int, void* (*)(void*, void*), f32, f32, f32, f32, s16, int,
                                       int);
     /* 80154730 */ BOOL chkActorInSight2(fopAc_ac_c*, f32, s16);
-    /* 80154834 */ bool chkPointInArea(cXyz, cXyz, f32, f32, f32, s16);
-    /* 801548F4 */ bool chkPointInArea(cXyz, cXyz, cXyz, s16);
+    /* 80154834 */ BOOL chkPointInArea(cXyz, cXyz, f32, f32, f32, s16);
+    /* 801548F4 */ BOOL chkPointInArea(cXyz, cXyz, cXyz, s16);
     /* 8015496C */ cXyz getAttentionPos(fopAc_ac_c*);
     /* 801549E0 */ void chkFindPlayer2(int, s16);
     /* 80154BD8 */ void setHitodamaPrtcl();
@@ -638,8 +643,8 @@ public:
 
     static u8 const mCcDObjInfo[48];
     static dCcD_SrcCyl mCcDCyl;
-    static u8 mCcDSph[64];
-    static u8 mFindActorPList[400];
+    static dCcD_SrcSph mCcDSph;
+    static fopAc_ac_c* mFindActorPList[100];
     static s32 mFindCount;
     static s16 mSrchActorName;
 };
@@ -651,7 +656,7 @@ BOOL daNpcF_chkTmpBit(u32 i_idx);
 void daNpcF_offTmpBit(u32 i_idx);
 int daNpcF_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz& param_2,
                                             csXyz& param_3);
-int daNpcF_getGroundAngle(cBgS_PolyInfo*, s16);
+s16 daNpcF_getGroundAngle(cBgS_PolyInfo*, s16);
 
 struct daBaseNpc_matAnm_c {
     /* 8014D884 */ void calc(J3DMaterial*) const;
@@ -674,8 +679,7 @@ private:
     /* 0x000 */ f32 field_0x0;
     /* 0x004 */ dPath* mpRoomPath;
     /* 0x008 */ f32 field_0x8;
-    /* 0x00C */ dPath* field_0xc;
-    /* 0x010 */ u8 field_0x10[2558];
+    /* 0x010 */ u8 field_0xc[2562];
     /* 0xA0E */ u16 field_0xa0e;
     /* 0xA10 */ u16 mIdx;
     /* 0xA12 */ s8 mDirection;
@@ -686,11 +690,11 @@ public:
     /* 8014D9A8 */ BOOL isPath();
     /* 8014D9BC */ int setPathInfo(u8, s8, s8);
     /* 8014DA48 */ void reverseDir();
-    /* 8014DA64 */ void chkPnt(cXyz);
+    /* 8014DA64 */ s32 chkPnt(cXyz);
     /* 8014DAC4 */ void setNextPnt();
     /* 8014DB04 */ u16 getIdx();
     /* 8014DB0C */ void setIdx(u16);
-    /* 8014DB14 */ void getPntPos(u16);
+    /* 8014DB14 */ Vec getPntPos(u16);
     /* 801503FC */ ~daBaseNpc_path_c();
 
     
@@ -706,7 +710,7 @@ private:
     /* 0x34 */ cXyz mJntPos[3];
     /* 0x4C */ u8 field_0x4C[24];
     /* 0x64 */ csXyz mUnk[2];
-    /* 0x70 */ u8 field_0x70[12];
+    /* 0x70 */ csXyz mRotation[2];
     /* 0x7C */ csXyz mUnk2[2];
     /* 0x88 */ u8 field_0x88[4];
     /* 0x8C */ cXyz* mpAttnPos;
@@ -718,7 +722,7 @@ public:
     /* 8014E658 */ void setMinJntLmt(csXyz, int);
     /* 8014E67C */ void setJntPos(cXyz, int);
     /* 8014E6A0 */ int setAttnPos(cXyz*);
-    /* 8014E6AC */ void getRot(int);
+    /* 8014E6AC */ csXyz getRot(int);
     /* 801502EC */ ~daBaseNpc_lookat_c();
 };
 
@@ -790,8 +794,8 @@ public:
     void setVtable(void* table) { vtable = table;}
 
     static u8 const mCcDObj[48];
-    static u8 mCcDCyl[68];
-    static u8 mCcDSph[64];
+    static dCcD_SrcCyl mCcDCyl;
+    static dCcD_SrcSph mCcDSph;
 };
 
 class daBaseNpc_moveBgActor_c : public daBaseNpc_c {
@@ -847,7 +851,7 @@ private:
     /* 0x02 */ u16 field_0x02;
     /* 0x04 */ u8 field_0x04;
     /* 0x05 */ bool mIsClosed;
-    // /* 0x08 */ dPnt mPoints[96];
+    /* 0x08 */ dStage_dPnt_c mPoints[96];
 
 
 public:
@@ -875,13 +879,45 @@ public:
     /* 80150BE0 */ int setNextIdx();
     /* 80150C18 */ u16 getNextIdx();
     /* 80150C60 */ u16 getBeforeIdx();
-    /* 80150CA8 */ void getBeforePos(cXyz&);
-    /* 80150D44 */ void getNextPos(cXyz&);
+    /* 80150CA8 */ int getBeforePos(cXyz&);
+    /* 80150D44 */ int getNextPos(cXyz&);
     /* 80150DE0 */ int getDstPos(cXyz, cXyz&);
     /* 80150EB4 */ void setNextIdxDst(cXyz);
 
     u16& getIdx() { return mIdx; };
-    cXyz* getPntPos(); // finish
+    inline Vec getPntPos(int i_idx) {
+        return mpRoomPath->m_points[i_idx].m_position;
+    }
+    int chkClose() {
+        return dPath_ChkClose(mpRoomPath);
+    }
+};
+
+class daNpcF_Lookat_c {
+private:
+    /* 0x00 */ cXyz field_0x00[4];
+    /* 0x30 */ cXyz* mAttnPos;
+    /* 0x34 */ csXyz field_0x34[4];
+    /* 0x4C */ csXyz field_0x4c[4];
+    /* 0x64 */ csXyz field_0x64[4];
+    /* 0x7C */ csXyz mRotAngle[4];
+    /* 0x94 */ u8 field_0x94[4];
+    /* 0x98 vtable */
+
+public:
+    /* 80151038 */ void initialize();
+    /* 801510B8 */ void setParam(f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s16,
+                                 cXyz*);
+    /* 80151350 */ void calc(fopAc_ac_c*, f32 (*)[4], csXyz**, int, int, int);
+    /* 801515D4 */ void adjustMoveDisAngle(s16&, s16, s16, s16);
+    /* 80151648 */ void initCalc(fopAc_ac_c*, f32 (*)[4], cXyz*, csXyz*, f32*, cXyz&, int);
+    /* 80151A54 */ void update(cXyz*, csXyz*, f32*);
+    /* 80151B68 */ void calcMoveDisAngle(int, cXyz*, csXyz*, cXyz, int, int);
+    /* 80151F54 */ void setRotAngle();
+    /* 80151FE0 */ void clrRotAngle();
+    virtual ~daNpcF_Lookat_c() {}
+    cXyz* getAttnPos() { return mAttnPos; }
+    void setAttnPos(cXyz* i_attnPos) { mAttnPos = i_attnPos; }
 };
 
 class daNpcF_Lookat_c {

@@ -6,14 +6,11 @@
 #include "SSystem/SComponent/c_m3d.h"
 #include "MSL_C/float.h"
 #include "SSystem/SComponent/c_m3d_g_aab.h"
-#include "SSystem/SComponent/c_m3d_g_cps.h"
 #include "SSystem/SComponent/c_m3d_g_cyl.h"
 #include "SSystem/SComponent/c_m3d_g_lin.h"
-#include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "SSystem/SComponent/c_m3d_g_sph.h"
 #include "SSystem/SComponent/c_m3d_g_tri.h"
 #include "SSystem/SComponent/c_math.h"
-#include "SSystem/SComponent/c_xyz.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "global.h"
@@ -120,15 +117,15 @@ f32 G_CM3D_F_ABS_MIN = 32 * FLT_EPSILON;
  */
 void cM3d_InDivPos1(const Vec* pVecA, const Vec* pVecB, f32 pF, Vec* pOut) {
     Vec tmp;
-    PSVECScale(pVecB, &tmp, pF);
-    PSVECAdd(&tmp, pVecA, pOut);
+    VECScale(pVecB, &tmp, pF);
+    VECAdd(&tmp, pVecA, pOut);
 }
 
 /* 802685B0-80268614 262EF0 0064+00 2/2 1/1 2/2 .text            cM3d_InDivPos2__FPC3VecPC3VecfP3Vec
  */
 void cM3d_InDivPos2(const Vec* pVecA, const Vec* pVecB, f32 pF, Vec* pOut) {
     Vec tmp;
-    PSVECSubtract(pVecB, pVecA, &tmp);
+    VECSubtract(pVecB, pVecA, &tmp);
     cM3d_InDivPos1(pVecA, &tmp, pF, pOut);
 }
 
@@ -192,24 +189,24 @@ bool cM3d_Len2dSqPntAndSegLine(f32 param_1, f32 param_2, f32 param_3, f32 param_
 bool cM3d_Len3dSqPntAndSegLine(const cM3dGLin* pLine, const Vec* pVec, Vec* pOutVec, f32* pOutF) {
     bool retVal = false;
     Vec tmp;
-    PSVECSubtract(&pLine->GetEndP(), &pLine->GetStartP(), &tmp);
-    f32 seqLen = PSVECDotProduct(&tmp, &tmp);
+    VECSubtract(&pLine->GetEndP(), &pLine->GetStartP(), &tmp);
+    f32 seqLen = VECDotProduct(&tmp, &tmp);
     if (cM3d_IsZero(seqLen)) {
         *pOutF = /* 0.0 */ FLOAT_LABEL(lit_2256);
         return retVal;
     } else {
         Vec tmp2;
-        PSVECSubtract(pVec, &pLine->GetStartP(), &tmp2);
-        f32 tmpF = PSVECDotProduct(&tmp2, &tmp);
+        VECSubtract(pVec, &pLine->GetStartP(), &tmp2);
+        f32 tmpF = VECDotProduct(&tmp2, &tmp);
         tmpF /= seqLen;
         if (tmpF < /* 0.0 */ FLOAT_LABEL(lit_2256) || tmpF > /* 1.0 */ FLOAT_LABEL(lit_2273)) {
             retVal = false;
         } else {
             retVal = true;
         }
-        PSVECScale(&tmp, &tmp, tmpF);
-        PSVECAdd(&tmp, &pLine->GetStartP(), pOutVec);
-        *pOutF = PSVECSquareDistance(pOutVec, pVec);
+        VECScale(&tmp, &tmp, tmpF);
+        VECAdd(&tmp, &pLine->GetStartP(), pOutVec);
+        *pOutF = VECSquareDistance(pOutVec, pVec);
         return retVal;
     }
 }
@@ -217,11 +214,11 @@ bool cM3d_Len3dSqPntAndSegLine(const cM3dGLin* pLine, const Vec* pVec, Vec* pOut
 /* 80268814-80268894 263154 0080+00 1/1 3/3 0/0 .text cM3d_SignedLenPlaAndPos__FPC8cM3dGPlaPC3Vec
  */
 f32 cM3d_SignedLenPlaAndPos(const cM3dGPla* pPlane, const Vec* pPosition) {
-    f32 mag = PSVECMag(&pPlane->GetNP());
+    f32 mag = VECMag(&pPlane->GetNP());
     if (cM3d_IsZero(mag)) {
         return /* 0.0 */ FLOAT_LABEL(lit_2256);
     } else {
-        return (pPlane->mD + PSVECDotProduct(&pPlane->GetNP(), pPosition)) / mag;
+        return (pPlane->mD + VECDotProduct(&pPlane->GetNP(), pPosition)) / mag;
     }
 }
 
@@ -235,9 +232,9 @@ f32 cM3d_VectorProduct2d(f32 pX1, f32 pY1, f32 pX2, f32 pY2, f32 pX3, f32 pY3) {
 void cM3d_VectorProduct(const cXyz* pVecA, const cXyz* pVecB, const cXyz* pVecC, cXyz* pVecOut) {
     Vec tmp1;
     Vec tmp2;
-    PSVECSubtract(pVecB, pVecA, &tmp1);
-    PSVECSubtract(pVecC, pVecA, &tmp2);
-    PSVECCrossProduct(&tmp1, &tmp2, pVecOut);
+    VECSubtract(pVecB, pVecA, &tmp1);
+    VECSubtract(pVecC, pVecA, &tmp2);
+    VECCrossProduct(&tmp1, &tmp2, pVecOut);
 }
 
 /* ############################################################################################## */
@@ -248,13 +245,13 @@ SECTION_SDATA2 static f32 lit_2346 = 1.0f / 50.0f;
 void cM3d_CalcPla(const Vec* pVecA, const Vec* pVecB, const Vec* pVecC, Vec* pVecOut, f32* pD) {
     Vec tmp2;
     Vec tmp1;
-    PSVECSubtract(pVecB, pVecA, &tmp1);
-    PSVECSubtract(pVecC, pVecA, &tmp2);
-    PSVECCrossProduct(&tmp1, &tmp2, pVecOut);
-    f32 mag = PSVECMag(pVecOut);
+    VECSubtract(pVecB, pVecA, &tmp1);
+    VECSubtract(pVecC, pVecA, &tmp2);
+    VECCrossProduct(&tmp1, &tmp2, pVecOut);
+    f32 mag = VECMag(pVecOut);
     if (fabsf(mag) >= /* 0.02 */ FLOAT_LABEL(lit_2346)) {
-        PSVECScale(pVecOut, pVecOut, /* 1.0 */ FLOAT_LABEL(lit_2273) / mag);
-        *pD = -PSVECDotProduct(pVecOut, pVecA);
+        VECScale(pVecOut, pVecOut, /* 1.0 */ FLOAT_LABEL(lit_2273) / mag);
+        *pD = -VECDotProduct(pVecOut, pVecA);
     } else {
         f32 zero = /* 0.0 */ FLOAT_LABEL(lit_2256);
         pVecOut->y = zero;
@@ -281,12 +278,12 @@ inline bool cM3d_CrossNumSection(f32 lMinX, f32 lMaxX, f32 rMinX, f32 rMaxX) {
 /* 802689E8-80268B0C 263328 0124+00 0/0 4/4 0/0 .text cM3d_Cross_AabAab__FPC8cM3dGAabPC8cM3dGAab
  */
 bool cM3d_Cross_AabAab(const cM3dGAab* pAabA, const cM3dGAab* pAabB) {
-    if (cM3d_CrossNumSection(pAabA->getMinP().x, pAabA->getMaxP().x, pAabB->getMinP().x,
-                             pAabB->getMaxP().x) &&
-        cM3d_CrossNumSection(pAabA->getMinP().y, pAabA->getMaxP().y, pAabB->getMinP().y,
-                             pAabB->getMaxP().y) &&
-        cM3d_CrossNumSection(pAabA->getMinP().z, pAabA->getMaxP().z, pAabB->getMinP().z,
-                             pAabB->getMaxP().z)) {
+    if (cM3d_CrossNumSection(pAabA->GetMinP()->x, pAabA->GetMaxP()->x, pAabB->GetMinP()->x,
+                             pAabB->GetMaxP()->x) &&
+        cM3d_CrossNumSection(pAabA->GetMinP()->y, pAabA->GetMaxP()->y, pAabB->GetMinP()->y,
+                             pAabB->GetMaxP()->y) &&
+        cM3d_CrossNumSection(pAabA->GetMinP()->z, pAabA->GetMaxP()->z, pAabB->GetMinP()->z,
+                             pAabB->GetMaxP()->z)) {
         return true;
     } else {
         return false;
@@ -296,17 +293,17 @@ bool cM3d_Cross_AabAab(const cM3dGAab* pAabA, const cM3dGAab* pAabB) {
 /* 80268B0C-80268BB4 26344C 00A8+00 0/0 4/4 0/0 .text cM3d_Cross_AabCyl__FPC8cM3dGAabPC8cM3dGCyl
  */
 bool cM3d_Cross_AabCyl(const cM3dGAab* pAab, const cM3dGCyl* pCyl) {
-    if (pAab->getMinP().x > pCyl->GetCP().x + pCyl->GetR()) {
+    if (pAab->GetMinP()->x > pCyl->GetCP()->x + pCyl->GetR()) {
         return false;
-    } else if (pAab->getMaxP().x < pCyl->GetCP().x - pCyl->GetR()) {
+    } else if (pAab->GetMaxP()->x < pCyl->GetCP()->x - pCyl->GetR()) {
         return false;
-    } else if (pAab->getMinP().z > pCyl->GetCP().z + pCyl->GetR()) {
+    } else if (pAab->GetMinP()->z > pCyl->GetCP()->z + pCyl->GetR()) {
         return false;
-    } else if (pAab->getMaxP().z < pCyl->GetCP().z - pCyl->GetR()) {
+    } else if (pAab->GetMaxP()->z < pCyl->GetCP()->z - pCyl->GetR()) {
         return false;
-    } else if (pAab->getMinP().y > pCyl->GetCP().y + pCyl->GetH()) {
+    } else if (pAab->GetMinP()->y > pCyl->GetCP()->y + pCyl->GetH()) {
         return false;
-    } else if (pAab->getMaxP().y < pCyl->GetCP().y) {
+    } else if (pAab->GetMaxP()->y < pCyl->GetCP()->y) {
         return false;
     } else {
         return true;
@@ -349,23 +346,23 @@ int cM3d_Check_LinLin(const cM3dGLin* pLinA, const cM3dGLin* pLinB, f32* pFloatA
     Vec linBVec;
     pLinA->CalcVec(&linAVec);
     pLinB->CalcVec(&linBVec);
-    f32 linALen = PSVECMag(&linAVec);
-    f32 linBLen = PSVECMag(&linBVec);
+    f32 linALen = VECMag(&linAVec);
+    f32 linBLen = VECMag(&linBVec);
     if (cM3d_IsZero(linALen) || cM3d_IsZero(linBLen)) {
         return 1;
     } else {
         f32 invLinALen = /* 1.0 */ FLOAT_LABEL(lit_2273) / linALen;
         f32 invLinBLen = /* 1.0 */ FLOAT_LABEL(lit_2273) / linBLen;
-        PSVECScale(&linAVec, &linAVec, invLinALen);
-        PSVECScale(&linBVec, &linBVec, invLinBLen);
+        VECScale(&linAVec, &linAVec, invLinALen);
+        VECScale(&linBVec, &linBVec, invLinBLen);
         Vec tmp;
-        PSVECSubtract(&pLinA->GetStartP(), &pLinB->GetStartP(), &tmp);
-        f32 tmpF = -PSVECDotProduct(&linAVec, &linBVec);
-        f32 tmpF2 = PSVECDotProduct(&tmp, &linAVec);
-        PSVECSquareMag(&tmp);  // result not used
+        VECSubtract(&pLinA->GetStartP(), &pLinB->GetStartP(), &tmp);
+        f32 tmpF = -VECDotProduct(&linAVec, &linBVec);
+        f32 tmpF2 = VECDotProduct(&tmp, &linAVec);
+        VECSquareMag(&tmp);  // result not used
         f32 tmpF3 = fabsf(/* 1.0 */ FLOAT_LABEL(lit_2273) - (tmpF * tmpF));
         if (!cM3d_IsZero(tmpF3)) {
-            f32 tmpF4 = -PSVECDotProduct(&tmp, &linBVec);
+            f32 tmpF4 = -VECDotProduct(&tmp, &linBVec);
             f32 tmpF7 = /* 1.0 */ FLOAT_LABEL(lit_2273) / tmpF3;
             f32 outFloatAtmp = ((tmpF * tmpF4) - tmpF2) * tmpF7;
             *pFloatA = outFloatAtmp * invLinALen;
@@ -380,7 +377,7 @@ int cM3d_Check_LinLin(const cM3dGLin* pLinA, const cM3dGLin* pLinB, f32* pFloatA
                 tmpF6 = linBLen;
                 tmpF5 = (tmpF6 * tmpF) - tmpF2;
             }
-            f32 tmpF7 = PSVECDotProduct(&tmp, &linBVec);
+            f32 tmpF7 = VECDotProduct(&tmp, &linBVec);
             if (tmpF5 < /* 0.0 */ FLOAT_LABEL(lit_2256) || tmpF5 > linALen) {
                 tmpF5 = /* 0.0 */ FLOAT_LABEL(lit_2256);
                 tmpF6 = tmpF7;
@@ -900,9 +897,9 @@ bool cM3d_Cross_SphSph(const cM3dGSph* pSphereA, const cM3dGSph* pSphereB, Vec* 
             // could be an inlined function
             f32 tmpF = pSphereB->GetR() / centerDist;
             Vec tmp;
-            PSVECSubtract(&pSphereA->GetC(), &pSphereB->GetC(), &tmp);
-            PSVECScale(&tmp, &tmp, tmpF);
-            PSVECAdd(&tmp, &pSphereB->GetC(), pVecOut);
+            VECSubtract(&pSphereA->GetC(), &pSphereB->GetC(), &tmp);
+            VECScale(&tmp, &tmp, tmpF);
+            VECAdd(&tmp, &pSphereB->GetC(), pVecOut);
         } else {
             *pVecOut = pSphereA->GetC();
         }
@@ -921,9 +918,9 @@ SECTION_SDATA2 static f32 lit_3892 = 0.5f;
 void cM3d_CalcSphVsTriCrossPoint(const cM3dGSph* pSphere, const cM3dGTri* pTriangle, Vec* pVecOut) {
     Vec tmp2;
     Vec tmp;
-    PSVECAdd(&pTriangle->mA, &pTriangle->mB, &tmp);
-    PSVECScale(&tmp, &tmp2, /* 0.5 */ FLOAT_LABEL(lit_3892));
-    f32 sqDist = PSVECSquareDistance(&tmp2, &pSphere->GetC());
+    VECAdd(&pTriangle->mA, &pTriangle->mB, &tmp);
+    VECScale(&tmp, &tmp2, /* 0.5 */ FLOAT_LABEL(lit_3892));
+    f32 sqDist = VECSquareDistance(&tmp2, &pSphere->GetC());
     if (cM3d_IsZero(sqDist)) {
         *pVecOut = pSphere->GetC();
     } else {
@@ -1002,11 +999,11 @@ static int cM3d_Cross_CylPntPnt(const cM3dGCyl* pCylinder, const Vec* pVecStart,
 
 /* 8026D0B0-8026D114 2679F0 0064+00 2/2 0/0 0/0 .text cM3d_Cross_CylPnt__FPC8cM3dGCylPC3Vec */
 bool cM3d_Cross_CylPnt(const cM3dGCyl* pCylinder, const Vec* pPoint) {
-    f32 dX = pCylinder->GetCP().getXDiff(pPoint);
-    f32 dZ = pCylinder->GetCP().getZDiff(pPoint);
-    f32 maxY = pCylinder->GetCP().y + pCylinder->GetH();
+    f32 dX = pCylinder->GetCP()->getXDiff(pPoint);
+    f32 dZ = pCylinder->GetCP()->getZDiff(pPoint);
+    f32 maxY = pCylinder->GetCP()->y + pCylinder->GetH();
     if (dX * dX + dZ * dZ < pCylinder->GetR() * pCylinder->GetR() &&
-        pCylinder->GetCP().y < pPoint->y && maxY > pPoint->y) {
+        pCylinder->GetCP()->y < pPoint->y && maxY > pPoint->y) {
         return true;
     } else {
         return false;
@@ -1074,8 +1071,8 @@ inline void cM3d_2LinCenter(cM3dGLin const pLinA, f32 pLinAF, cM3dGLin const& pL
     Vec tmp, tmp2;
     pLinA.CalcPos(&tmp, pLinAF);
     pLinB.CalcPos(&tmp2, pLinBF);
-    PSVECAdd(&tmp, &tmp2, pVecOut);
-    PSVECScale(pVecOut, pVecOut, /* 0.5 */ FLOAT_LABEL(lit_3892));
+    VECAdd(&tmp, &tmp2, pVecOut);
+    VECScale(pVecOut, pVecOut, /* 0.5 */ FLOAT_LABEL(lit_3892));
 }
 
 /* 8026E12C-8026E4FC 268A6C 03D0+00 0/0 2/2 0/0 .text
@@ -1118,7 +1115,7 @@ void cM3d_PlaneCrossLineProcWork(f32 f1, f32 f2, f32 f3, f32 f4, f32 f5, f32 f6,
 static int cM3d_2PlaneCrossLine(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB,
                                 cM3dGLin* pLinOut) {
     Vec tmp;
-    PSVECCrossProduct(&pPlaneA.GetNP(), &pPlaneB.GetNP(), &tmp);
+    VECCrossProduct(&pPlaneA.GetNP(), &pPlaneB.GetNP(), &tmp);
     if (cM3d_IsZero(tmp.x) && cM3d_IsZero(tmp.y) && cM3d_IsZero(tmp.z)) {
         return 0;
     } else {
@@ -1141,12 +1138,12 @@ static int cM3d_2PlaneCrossLine(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB
                                         &pLinOut->GetStartP().x, &pLinOut->GetStartP().y);
             pLinOut->GetStartP().z = /* 0.0 */ FLOAT_LABEL(lit_2256);
         }
-        f32 scale = PSVECMag(&pLinOut->GetStartP());
+        f32 scale = VECMag(&pLinOut->GetStartP());
         if (cM3d_IsZero(scale)) {
             scale = /* 1.0 */ FLOAT_LABEL(lit_2273);
         }
-        PSVECScale(&tmp, &tmp, scale);
-        PSVECAdd(&pLinOut->GetStartP(), &tmp, &pLinOut->GetEndP());
+        VECScale(&tmp, &tmp, scale);
+        VECAdd(&pLinOut->GetStartP(), &tmp, &pLinOut->GetEndP());
         return 1;
     }
 }
@@ -1177,15 +1174,15 @@ f32 cM3d_lineVsPosSuisenCross(const cM3dGLin* pLine, const Vec* pPoint, Vec* pVe
     Vec tmp2;
     Vec tmp3;
     pLine->CalcVec(&tmp1);
-    f32 diffLen = PSVECSquareMag(&tmp1);
+    f32 diffLen = VECSquareMag(&tmp1);
     if (cM3d_IsZero(diffLen)) {
         *pVecOut = *pPoint;
         return /* 0.0 */ FLOAT_LABEL(lit_2256);
     } else {
-        PSVECSubtract(pPoint, &pLine->GetStartP(), &tmp2);
-        f32 retVal = PSVECDotProduct(&tmp2, &tmp1) / diffLen;
-        PSVECScale(&tmp1, &tmp3, retVal);
-        PSVECAdd(&tmp3, &pLine->GetStartP(), pVecOut);
+        VECSubtract(pPoint, &pLine->GetStartP(), &tmp2);
+        f32 retVal = VECDotProduct(&tmp2, &tmp1) / diffLen;
+        VECScale(&tmp1, &tmp3, retVal);
+        VECAdd(&tmp3, &pLine->GetStartP(), pVecOut);
         return retVal;
     }
 }
@@ -1197,17 +1194,17 @@ f32 cM3d_lineVsPosSuisenCross(const Vec& pLinePointA, const Vec& pLinePointB, co
     Vec tmp1;
     Vec tmp2;
     Vec tmp3;
-    PSVECSubtract(&pLinePointB, &pLinePointA, &tmp1);
-    f32 diffLen = PSVECSquareMag(&tmp1);
+    VECSubtract(&pLinePointB, &pLinePointA, &tmp1);
+    f32 diffLen = VECSquareMag(&tmp1);
     if (cM3d_IsZero(diffLen)) {
         *pVecOut = pPoint;
         return /* 0.0 */ FLOAT_LABEL(lit_2256);
     } else {
-        PSVECSubtract(&pPoint, &pLinePointA, &tmp2);
-        f32 dotProd = PSVECDotProduct(&tmp2, &tmp1);
+        VECSubtract(&pPoint, &pLinePointA, &tmp2);
+        f32 dotProd = VECDotProduct(&tmp2, &tmp1);
         f32 retVal = dotProd / diffLen;
-        PSVECScale(&tmp1, &tmp3, retVal);
-        PSVECAdd(&tmp3, &pLinePointA, pVecOut);
+        VECScale(&tmp1, &tmp3, retVal);
+        VECAdd(&tmp3, &pLinePointA, pVecOut);
         return retVal;
     }
 }
@@ -1228,6 +1225,6 @@ int cM3d_2PlaneLinePosNearPos(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB, 
 /* 8026EBBC-8026EC3C 2694FC 0080+00 0/0 1/1 0/0 .text            cM3d_CrawVec__FRC3VecRC3VecP3Vec */
 void cM3d_CrawVec(const Vec& pVecA, const Vec& pVecB, Vec* pVecOut) {
     Vec tmp;
-    PSVECScale(&pVecA, &tmp, fabsf(pVecB.x * pVecA.x + pVecB.y * pVecA.y + pVecB.z * pVecA.z));
-    PSVECAdd(&tmp, &pVecB, pVecOut);
+    VECScale(&pVecA, &tmp, fabsf(pVecB.x * pVecA.x + pVecB.y * pVecA.y + pVecB.z * pVecA.z));
+    VECAdd(&tmp, &pVecB, pVecOut);
 }

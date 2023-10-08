@@ -6,7 +6,6 @@
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "JSystem/J3DGraphBase/J3DTransform.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
@@ -120,8 +119,8 @@ void J3DModel::initialize() {
     mBaseScale.y = 1.0f;
     mBaseScale.z = 1.0f;
 
-    PSMTXIdentity(mBaseTransformMtx);
-    PSMTXIdentity(mInternalView);
+    MTXIdentity(mBaseTransformMtx);
+    MTXIdentity(mInternalView);
 
     mMtxBuffer = NULL;
     mMatPacket = NULL;
@@ -407,7 +406,7 @@ void J3DModel::calcDiffTexMtx() {
             J3DTexMtx* texMtxNode = texGenBlock->getTexMtx(j);
             J3DTexMtxObj* texMtxObj = shapePacket->getTexMtxObj();
             if (texMtxNode != NULL && texMtxObj != NULL) {
-                PSMTXCopy(texMtxNode->getMtx(), texMtxObj->getMtx(j));
+                MTXCopy(texMtxNode->getMtx(), texMtxObj->getMtx(j));
             }
         }
     }
@@ -680,12 +679,11 @@ void J3DModel::calcBBoardMtx() {
 }
 
 /* 803282EC-80328350 322C2C 0064+00 2/2 0/0 0/0 .text            prepareShapePackets__8J3DModelFv */
-#if defined NONMATCHING
 void J3DModel::prepareShapePackets() {
     u16 shapeNum = getModelData()->getShapeNum();
 
     for (u16 i = 0; i < shapeNum; i++) {
-        // two swapped instructions right around here when calling getShapePacket
+        J3DShape* xx = mModelData->getShapeNodePointer(i);
         J3DShapePacket* pkt = getShapePacket(i);
         pkt->setMtxBuffer(mMtxBuffer);
         if (getMtxCalcMode() == 2) {
@@ -695,16 +693,6 @@ void J3DModel::prepareShapePackets() {
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DModel::prepareShapePackets() {
-    nofralloc
-#include "asm/JSystem/J3DGraphAnimator/J3DModel/prepareShapePackets__8J3DModelFv.s"
-}
-#pragma pop
-#endif
 
 /* 80328350-803283B4 322C90 0064+00 1/0 0/0 0/0 .text            __dt__8J3DModelFv */
 J3DModel::~J3DModel() {}

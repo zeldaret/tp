@@ -5,7 +5,6 @@
 
 #include "rel/d/a/obj/d_a_obj_fireWood/d_a_obj_fireWood.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

@@ -41,7 +41,6 @@
  *
  */
 
-#include "fdlibm.h"
 #include "MSL_C/math.h"
 
 #ifdef __STDC__

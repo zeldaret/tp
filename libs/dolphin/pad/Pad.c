@@ -4,7 +4,6 @@
 //
 
 #include "dolphin/pad/Pad.h"
-#include "MSL_C/string.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/si/SIBios.h"

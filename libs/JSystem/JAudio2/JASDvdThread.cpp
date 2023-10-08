@@ -4,29 +4,18 @@
 //
 
 #include "JSystem/JAudio2/JASDvdThread.h"
-#include "dol2asm.h"
-#include "dolphin/os/OSThread.h"
+#include "JSystem/JAudio2/JASTaskThread.h"
+#include "JSystem/JAudio2/JASHeapCtrl.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 #include "dolphin/types.h"
 
 //
 // Forward References:
 //
 
-extern "C" u32 getThreadPointer__6JASDvdFv();
-extern "C" void createThread__6JASDvdFliUl();
-extern "C" u8 sThread__6JASDvd[4 + 4 /* padding */];
-
 //
 // External References:
 //
-
-extern "C" void __ct__13JASTaskThreadFiiUl();
-extern "C" void* __nw__FUlP7JKRHeapi();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-extern "C" extern u8 JASDram[4];
-extern "C" u8 sSystemHeap__7JKRHeap[4];
-extern "C" u8 sCurrentHeap__7JKRHeap[4];
 
 //
 // Declarations:
@@ -42,11 +31,10 @@ JASTaskThread* JASDvd::getThreadPointer() {
 }
 
 /* 8028FF04-8028FFA8 28A844 00A4+00 0/0 1/1 0/0 .text            createThread__6JASDvdFliUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDvd::createThread(s32 param_0, int param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASDvdThread/createThread__6JASDvdFliUl.s"
+bool JASDvd::createThread(s32 priority, int param_1, u32 param_2) {
+    if (sThread != NULL) return false;
+    sThread = new (JASDram, 0) JASTaskThread(priority, param_1, param_2);
+    sThread->setCurrentHeap(JKRGetSystemHeap());
+	OSResumeThread(sThread->getThreadRecord());
+	return true;
 }
-#pragma pop

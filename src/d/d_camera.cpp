@@ -6,8 +6,6 @@
 #include "d/d_camera.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
-#include "dolphin/types.h"
-#include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "d/a/d_a_alink.h"
 #include "d/com/d_com_inf_game.h"
 #include "m_Do/m_Do_controller_pad.h"
@@ -21,10 +19,6 @@ namespace std {
 /* 80182A3C */ void fabsf(f32);
 /* 80182D10 */ void fabs(f32);
 };  // namespace std
-
-struct mDoLib_clipper {
-    /* 8001528C */ void setup(f32, f32, f32, f32);
-};
 
 struct daTagMwait_c {
     /* 80182D9C */ void checkEndMessage();
@@ -4046,7 +4040,8 @@ asm void daPy_py_c::checkGoronSideMove() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void JMAFastSqrt(f32 param_0) {
+//static asm void JMAFastSqrt(f32 param_0) {
+static asm void JMAFastSqrt__Ff() {
     nofralloc
 #include "asm/d/d_camera/JMAFastSqrt__Ff.s"
 }

@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_smallkey/d_a_obj_smallkey.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -14,10 +14,6 @@
 struct request_of_phase_process_class {};
 
 struct csXyz {};
-
-struct cXyz {
-    /* 80266B84 */ void operator*(f32) const;
-};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -83,8 +79,6 @@ struct daItemBase_c {
     /* 801451D0 */ void getCollisionR();
 };
 
-struct Vec {};
-
 struct dTres_c {
     /* 8009C1F0 */ void offStatus(u8, int, int);
     /* 8009C3CC */ void setPosition(int, u8, Vec const*, int);
@@ -134,25 +128,6 @@ struct dEvent_manager_c {
     /* 80047ADC */ void endCheckOld(char const*);
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80CDA544 */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
 struct dBgS_PolyPassChk {
     /* 80078E68 */ void SetObj();
 };
@@ -176,33 +151,12 @@ struct dBgS_Acch {
     /* 80076AAC */ void CrrPos(dBgS&);
 };
 
-struct cM3dGPla {
-    /* 80CD9E3C */ ~cM3dGPla();
-};
-
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8026F1F8 */ void SetH(f32);
-    /* 8026F200 */ void SetR(f32);
-    /* 80CDA4B4 */ ~cM3dGCyl();
-};
-
 struct cM3dGCir {
     /* 8026EF18 */ ~cM3dGCir();
 };
 
-struct cM3dGAab {
-    /* 80CDA4FC */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 80CDB6F4 */ ~cCcD_GStts();
 };
 
 struct cBgS_PolyInfo {
@@ -211,17 +165,6 @@ struct cBgS_PolyInfo {
 
 struct cBgS {
     /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
-};
-
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JPABaseEmitter {};
@@ -374,9 +317,6 @@ extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void __dl__FPv();
 extern "C" void PSMTXCopy();
-extern "C" void PSVECSquareMag();
-extern "C" void C_VECReflect();
-extern "C" void PSVECSquareDistance();
 extern "C" void __construct_array();
 extern "C" void __ptmf_scall();
 extern "C" void __cvt_fp2unsigned();
@@ -398,7 +338,6 @@ extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_nan;
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" extern u8 data_80CDBAB0[4];
 
@@ -408,14 +347,19 @@ extern "C" extern u8 data_80CDBAB0[4];
 
 /* ############################################################################################## */
 /* 80CDB7F4-80CDB838 000000 0044+00 6/6 0/0 0/0 .rodata          l_cyl_src */
-SECTION_RODATA static u8 const l_cyl_src[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x59,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00,
+const static dCcD_SrcCyl l_cyl_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0xffffffff, 0x11}, 0x59}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        20.0f, // mRadius
+        40.0f // mHeight
+    } // mCyl
 };
-COMPILER_STRIP_GATE(0x80CDB7F4, &l_cyl_src);
 
 /* 80CDB838-80CDB83C 000044 0004+00 2/7 0/0 0/0 .rodata          @3875 */
 SECTION_RODATA static u8 const lit_3875[4] = {
@@ -719,7 +663,8 @@ static asm void Reflect(cXyz* param_0, cBgS_PolyInfo const& param_1, f32 param_2
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGPla::~cM3dGPla() {
+// asm cM3dGPla::~cM3dGPla() {
+extern "C" asm void __dt__8cM3dGPlaFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_smallkey/d_a_obj_smallkey/__dt__8cM3dGPlaFv.s"
 }
@@ -857,7 +802,8 @@ asm void dPa_followEcallBack::__defctor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_smallkey/d_a_obj_smallkey/__dt__8cM3dGCylFv.s"
 }
@@ -867,7 +813,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_smallkey/d_a_obj_smallkey/__dt__8cM3dGAabFv.s"
 }
@@ -877,7 +824,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_smallkey/d_a_obj_smallkey/__dt__10dCcD_GSttsFv.s"
 }
@@ -1233,7 +1181,8 @@ static asm void daKey_Create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_smallkey/d_a_obj_smallkey/__dt__10cCcD_GSttsFv.s"
 }

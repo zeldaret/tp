@@ -5,66 +5,16 @@
 
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "JSystem/JUtility/JUTAssert.h"
-#include "MSL_C/math.h"
-#include "dol2asm.h"
+#include "JSystem/JUtility/JUTConsole.h"
 #include "global.h"
 
 //
 // Forward References:
 //
 
-extern "C" void create__12JKRSolidHeapFUlP7JKRHeapb();
-extern "C" void do_destroy__12JKRSolidHeapFv();
-extern "C" void __ct__12JKRSolidHeapFPvUlP7JKRHeapb();
-extern "C" void __dt__12JKRSolidHeapFv();
-extern "C" void adjustSize__12JKRSolidHeapFv();
-extern "C" void do_alloc__12JKRSolidHeapFUli();
-extern "C" void allocFromHead__12JKRSolidHeapFUli();
-extern "C" void allocFromTail__12JKRSolidHeapFUli();
-extern "C" void do_free__12JKRSolidHeapFPv();
-extern "C" void do_freeAll__12JKRSolidHeapFv();
-extern "C" void do_freeTail__12JKRSolidHeapFv();
-extern "C" void do_fillFreeArea__12JKRSolidHeapFv();
-extern "C" void do_resize__12JKRSolidHeapFPvUl();
-extern "C" void do_getSize__12JKRSolidHeapFPv();
-extern "C" void check__12JKRSolidHeapFv();
-extern "C" void dump__12JKRSolidHeapFv();
-extern "C" void state_register__12JKRSolidHeapCFPQ27JKRHeap6TStateUl();
-extern "C" void state_compare__12JKRSolidHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState();
-extern "C" void getHeapType__12JKRSolidHeapFv();
-extern "C" void do_getFreeSize__12JKRSolidHeapFv();
-extern "C" void do_getMaxFreeBlock__12JKRSolidHeapFv();
-extern "C" void do_getTotalFreeSize__12JKRSolidHeapFv();
-extern "C" extern char const* const JKRSolidHeap__stringBase0;
-
 //
 // External References:
 //
-
-extern "C" bool dump_sort__7JKRHeapFv();
-extern "C" void __ct__7JKRHeapFPvUlP7JKRHeapb();
-extern "C" void __dt__7JKRHeapFv();
-extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
-extern "C" void free__7JKRHeapFPvP7JKRHeap();
-extern "C" void callAllDisposer__7JKRHeapFv();
-extern "C" void resize__7JKRHeapFPvUl();
-extern "C" void getFreeSize__7JKRHeapFv();
-extern "C" void getTotalFreeSize__7JKRHeapFv();
-extern "C" void getMaxAllocatableSize__7JKRHeapFi();
-extern "C" void dispose__7JKRHeapFPvPv();
-extern "C" void dispose__7JKRHeapFv();
-extern "C" void __dl__FPv();
-extern "C" void state_dump__7JKRHeapCFRCQ27JKRHeap6TState();
-extern "C" bool do_changeGroupID__7JKRHeapFUc();
-extern "C" bool do_getCurrentGroupId__7JKRHeapFv();
-extern "C" void JUTReportConsole_f(const char*, ...);
-extern "C" void JUTWarningConsole_f(const char*, ...);
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 sRootHeap__7JKRHeap[4];
-extern "C" u8 mErrorHandler__7JKRHeap[4];
 
 //
 // Declarations:
@@ -315,9 +265,7 @@ bool JKRSolidHeap::dump(void) {
 }
 /* 802D11FC-802D1258 2CBB3C 005C+00 1/0 0/0 0/0 .text
  * state_register__12JKRSolidHeapCFPQ27JKRHeap6TStateUl         */
-// full match expect using the wrong register
-#ifdef NONMATCHING
-void JKRSolidHeap::state_register(JKRHeap::TState* p, u32 id) const {
+u32 JKRSolidHeap::state_register(JKRHeap::TState* p, u32 id) const {
     JUT_ASSERT(__FILE__, 0x25c, p != 0);
     JUT_ASSERT(__FILE__, 0x25d, p->getHeap() == this);
 
@@ -325,17 +273,8 @@ void JKRSolidHeap::state_register(JKRHeap::TState* p, u32 id) const {
     setState_u32ID_(p, id);
     setState_uUsedSize_(p, getUsedSize((JKRSolidHeap*)this));
     setState_u32CheckCode_(p, (u32)mSolidHead + (u32)mSolidTail * 3);
+    return (u32)mSolidHead + (u32)mSolidTail * 3;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRSolidHeap::state_register(JKRHeap::TState* param_0, u32 param_1) const {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRSolidHeap/state_register__12JKRSolidHeapCFPQ27JKRHeap6TStateUl.s"
-}
-#pragma pop
-#endif
 
 /* 802D1258-802D1288 2CBB98 0030+00 1/0 0/0 0/0 .text
  * state_compare__12JKRSolidHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState */

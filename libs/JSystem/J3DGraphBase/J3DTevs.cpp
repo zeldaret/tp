@@ -7,17 +7,12 @@
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "JSystem/J3DGraphBase/J3DTexture.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
 //
 
 struct J3DNBTScale {};
-
-struct J3DLightObj {
-    /* 80323590 */ void load(u32) const;
-};
 
 //
 // Forward References:
@@ -267,11 +262,12 @@ asm void loadNBTScale(J3DNBTScale& param_0) {
 
 /* ############################################################################################## */
 /* 803A1EC8-803A1EFC 02E528 0034+00 0/0 9/9 24/24 .rodata          j3dDefaultLightInfo */
-SECTION_RODATA extern u8 const j3dDefaultLightInfo[52] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF,
-    0xFF, 0xFF, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_RODATA extern const J3DLightInfo j3dDefaultLightInfo = {
+    0.0f, 0.0f, 0.0f,
+    0.0f, -1.0f, 0.0f,
+    0xff, 0xff, 0xff, 0xff,
+    1.0f, 0.0f, 0.0f,
+    1.0f, 0.0f, 0.0f,
 };
 COMPILER_STRIP_GATE(0x803A1EC8, &j3dDefaultLightInfo);
 

@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_crvlh_down/d_a_obj_crvlh_down.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -16,8 +16,6 @@ struct request_of_phase_process_class {};
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
-
-struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -92,28 +90,6 @@ struct dPa_control_c {
                             cXyz const*, f32);
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-    /* 800844F8 */ void GetTgHitObj();
-    /* 80084658 */ void ChkCoHit();
-    /* 800846F0 */ void GetCoHitObj();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
 struct dBgW_Base {};
 
 struct dBgW {};
@@ -133,20 +109,6 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8026F200 */ void SetR(f32);
-    /* 80BD49EC */ ~cM3dGCyl();
-};
-
-struct cM3dGAab {
-    /* 80BD4A34 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {
-    /* 80263A48 */ void GetAc();
-};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
 };
@@ -157,18 +119,6 @@ struct cBgW_BgId {
 
 struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct J3DModel {};
@@ -276,14 +226,19 @@ extern "C" void HakaiSet__15daObjCRVLH_UP_cFv();
 
 /* ############################################################################################## */
 /* 80BD4D04-80BD4D48 000000 0044+00 5/5 0/0 0/0 .rodata          ccCylSrc$3655 */
-SECTION_RODATA static u8 const ccCylSrc[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x75,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x43, 0x7A, 0x00, 0x00, 0x43, 0xC8, 0x00, 0x00,
+const static dCcD_SrcCyl ccCylSrc = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x400000, 0x11}, 0x75}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x1}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        250.0f, // mRadius
+        400.0f // mHeight
+    } // mCyl
 };
-COMPILER_STRIP_GATE(0x80BD4D04, &ccCylSrc);
 
 /* 80BD4138-80BD41A4 000078 006C+00 1/1 0/0 0/0 .text            initCcCylinder__15daObjCRVLH_DW_cFv
  */
@@ -550,7 +505,8 @@ asm void daObjCRVLH_DW_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_crvlh_down/d_a_obj_crvlh_down/__dt__8cM3dGCylFv.s"
 }
@@ -560,7 +516,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_crvlh_down/d_a_obj_crvlh_down/__dt__8cM3dGAabFv.s"
 }

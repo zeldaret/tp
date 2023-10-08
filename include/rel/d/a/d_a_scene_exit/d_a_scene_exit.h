@@ -1,7 +1,6 @@
 #ifndef D_A_SCENE_EXIT_H
 #define D_A_SCENE_EXIT_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 class daScex_c : public fopAc_ac_c {

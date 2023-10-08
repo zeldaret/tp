@@ -4,9 +4,9 @@
 //
 
 #include "d/shop/d_shop_system.h"
+#include "rel/d/a/tag/d_a_tag_shop_item/d_a_tag_shop_item.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_shop_item_static.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/d_item.h"
 #include "d/d_lib.h"
 #include "d/d_procname.h"
@@ -15,8 +15,6 @@
 #include "d/meter/d_meter_HIO.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_lib.h"
@@ -208,7 +206,7 @@ SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
 };
 
 /* 803BB8A4-803BB8C0 0189C4 001C+00 6/6 0/0 0/0 .data            dShopSystem_itemActor */
-SECTION_DATA static fopAc_ac_c* dShopSystem_itemActor[7] = {
+SECTION_DATA static daTag_ShopItem_c* dShopSystem_itemActor[7] = {
     NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 };
 
@@ -249,10 +247,10 @@ static int dShopSystem_searchItemActor(void* param_0, void* param_1) {
                     } else {
                         if (param2 == 0) {
                             data_80451060 = 1;
-                            dShopSystem_itemActor[dShopSystem_item_count] = (fopAc_ac_c*) param_0;
+                            dShopSystem_itemActor[dShopSystem_item_count] = (daTag_ShopItem_c*) param_0;
                             dShopSystem_itemNo[dShopSystem_item_count] = item_no;
                         } else if (dShopSystem_itemActor[param2 - 1] == NULL) {
-                            dShopSystem_itemActor[param2 - 1] = (fopAc_ac_c*) param_0;
+                            dShopSystem_itemActor[param2 - 1] = (daTag_ShopItem_c*) param_0;
                             dShopSystem_itemNo[param2 - 1] = item_no;
                         }
                         dShopSystem_item_count++;
@@ -298,25 +296,9 @@ static int dShopSystem_searchCameraActor(void* param_0, void* param_1) {
 }
 
 /* ############################################################################################## */
-/* 80453B00-80453B04 002100 0004+00 1/1 0/0 0/0 .sdata2          @4097 */
-SECTION_SDATA2 static f32 lit_4097 = 9.0f / 10.0f;
-
-/* 80453B04-80453B08 002104 0004+00 2/2 0/0 0/0 .sdata2          @4098 */
-SECTION_SDATA2 static f32 lit_4098 = 0.5f;
-
-/* 80453B08-80453B0C 002108 0004+00 5/5 0/0 0/0 .sdata2          @4099 */
-SECTION_SDATA2 static f32 lit_4099 = 1.0f;
-
-/* 80453B0C-80453B10 00210C 0004+00 1/1 0/0 0/0 .sdata2          @4100 */
-SECTION_SDATA2 static f32 lit_4100 = 1.0f / 10.0f;
-
-/* 80453B10-80453B14 002110 0004+00 1/1 0/0 0/0 .sdata2          @4101 */
-SECTION_SDATA2 static f32 lit_4101 = 7.0f / 10.0f;
 
 /* 80197338-801974E4 191C78 01AC+00 0/0 0/0 19/19 .text            initShopSystem__13dShopSystem_cFv
  */
-// matches with literals
-#ifdef NONMATCHING
 void dShopSystem_c::initShopSystem() {
     data_80451058 = 3;
     data_80451060 = 0;
@@ -362,16 +344,6 @@ void dShopSystem_c::initShopSystem() {
     field_0xf78 = -1;
     mFlow.onNonStopJunpFlowFlag();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::initShopSystem() {
-    nofralloc
-#include "asm/d/shop/d_shop_system/initShopSystem__13dShopSystem_cFv.s"
-}
-#pragma pop
-#endif
 
 struct shop_item_data {
     Vec mItemPos[3];
@@ -396,16 +368,6 @@ static processFunc process[22] = {
     &dShopSystem_c::seq_decide_no,
     &dShopSystem_c::seq_finish,
     (processFunc)&dShopSystem_c::seq_event,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
 };
 #else
 /* 803BB8E4-803BB8F0 -00001 000C+00 0/1 0/0 0/0 .data            @4056 */
@@ -900,21 +862,8 @@ int dShopSystem_c::checkController(u8 seq, dMsgFlow_c* p_flow) {
 }
 
 /* ############################################################################################## */
-/* 80453B14-80453B18 002114 0004+00 4/4 0/0 0/0 .sdata2          @4493 */
-SECTION_SDATA2 static f32 lit_4493 = -1.0f;
-
-/* 80453B18-80453B1C 002118 0004+00 8/8 0/0 0/0 .sdata2          @4494 */
-SECTION_SDATA2 static f32 lit_4494 = 0.25f;
-
-/* 80453B1C-80453B20 00211C 0004+00 9/9 0/0 0/0 .sdata2          @4495 */
-SECTION_SDATA2 static f32 lit_4495 = 20.0f;
-
-/* 80453B20-80453B24 002120 0004+00 9/9 0/0 0/0 .sdata2          @4496 */
-SECTION_SDATA2 static f32 lit_4496 = 5.0f;
 
 /* 80197808-80197DD0 192148 05C8+00 1/1 0/0 0/0 .text            chooseItem3__13dShopSystem_cFUc */
-// matches with literals
-#ifdef NONMATCHING
 int dShopSystem_c::chooseItem3(u8 seq) {
     u8 old_cursor = mLastCursorPos;
     if (checkLeftTrigger(mpStick) && seq != SEQ_SELECT_WAIT) {
@@ -1051,20 +1000,8 @@ up:
 ret:
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dShopSystem_c::chooseItem3(u8 param_0) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/chooseItem3__13dShopSystem_cFUc.s"
-}
-#pragma pop
-#endif
 
 /* 80197DD0-80198250 192710 0480+00 1/1 0/0 0/0 .text            chooseItem5__13dShopSystem_cFUc */
-// matches with literals
-#ifdef NONMATCHING
 int dShopSystem_c::chooseItem5(u8 seq) {
     u8 old_cursor = mLastCursorPos;
     if (checkLeftTrigger(mpStick) && seq != SEQ_SELECT_WAIT) {
@@ -1178,20 +1115,8 @@ down:
 ret:
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dShopSystem_c::chooseItem5(u8 seq) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/chooseItem5__13dShopSystem_cFUc.s"
-}
-#pragma pop
-#endif
 
 /* 80198250-80198444 192B90 01F4+00 1/1 0/0 0/0 .text            chooseItem4__13dShopSystem_cFUc */
-// matches with literals. gotos can probably be removed
-#ifdef NONMATCHING
 int dShopSystem_c::chooseItem4(u8 seq) {
     u8 old_cursor = mLastCursorPos;
     if (checkLeftTrigger(mpStick) && seq != SEQ_SELECT_WAIT && mCursorPos != 0) {
@@ -1233,16 +1158,6 @@ right:
 ret:
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dShopSystem_c::chooseItem4(u8 seq) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/chooseItem4__13dShopSystem_cFUc.s"
-}
-#pragma pop
-#endif
 
 /* 80198444-80198488 192D84 0044+00 5/5 0/0 0/0 .text            moveCursor__13dShopSystem_cFiUc */
 int dShopSystem_c::moveCursor(int control_status, u8 param_1) {
@@ -1258,8 +1173,6 @@ int dShopSystem_c::moveCursor(int control_status, u8 param_1) {
 }
 
 /* 80198488-80198708 192DC8 0280+00 1/1 0/0 0/0 .text            moveCursor0__13dShopSystem_cFiUc */
-// matches with literals
-#ifdef NONMATCHING
 int dShopSystem_c::moveCursor0(int control_status, u8 param_1) {
     offFlag(7);
 
@@ -1313,23 +1226,16 @@ int dShopSystem_c::moveCursor0(int control_status, u8 param_1) {
 
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dShopSystem_c::moveCursor0(int param_0, u8 param_1) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/moveCursor0__13dShopSystem_cFiUc.s"
-}
-#pragma pop
-#endif
 
 /* 80198708-80198878 193048 0170+00 1/1 0/0 0/0 .text            moveCursor1__13dShopSystem_cFiUc */
-#ifdef NONMATCHING
 int dShopSystem_c::moveCursor1(int control_status, u8 param_1) {
     offFlag(7);
 
     switch (control_status) {
+    case 3:
+    case 4:
+    case 5:
+    case 6:
     case 7:
         if (mCursorPos == 0) {
             return getFlowNodeNum() + 1;
@@ -1362,16 +1268,6 @@ int dShopSystem_c::moveCursor1(int control_status, u8 param_1) {
         return 0;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dShopSystem_c::moveCursor1(int param_0, u8 param_1) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/moveCursor1__13dShopSystem_cFiUc.s"
-}
-#pragma pop
-#endif
 
 /* 80198878-80198950 1931B8 00D8+00 0/0 0/0 9/9 .text            drawCursor__13dShopSystem_cFv */
 int dShopSystem_c::drawCursor() {
@@ -1426,39 +1322,8 @@ int dShopSystem_c::itemRotate() {
 }
 
 /* ############################################################################################## */
-/* 80394C10-80394C10 021270 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80394C10 = "R_SP01";
-#pragma pop
-
-/* 80453B24-80453B28 002124 0004+00 1/1 0/0 0/0 .sdata2          @5000 */
-SECTION_SDATA2 static f32 lit_5000 = -25.0f;
-
-/* 80453B28-80453B2C 002128 0004+00 1/1 0/0 0/0 .sdata2          @5001 */
-SECTION_SDATA2 static f32 lit_5001 = 150.0f;
-
-/* 80453B2C-80453B30 00212C 0004+00 1/1 0/0 0/0 .sdata2          @5002 */
-SECTION_SDATA2 static f32 lit_5002 = -50.0f;
-
-/* 80453B30-80453B34 002130 0004+00 1/1 0/0 0/0 .sdata2          @5003 */
-SECTION_SDATA2 static f32 lit_5003 = 250.0f;
-
-/* 80453B34-80453B38 002134 0004+00 1/1 0/0 0/0 .sdata2          @5004 */
-SECTION_SDATA2 static f32 lit_5004 = 60.0f;
-
-/* 80453B38-80453B3C 002138 0004+00 1/1 0/0 0/0 .sdata2          @5005 */
-SECTION_SDATA2 static f32 lit_5005 = -130.0f;
-
-/* 80453B3C-80453B40 00213C 0004+00 2/2 0/0 0/0 .sdata2          @5006 */
-SECTION_SDATA2 static f32 lit_5006 = 215.0f;
-
-/* 80453B40-80453B44 002140 0004+00 1/1 0/0 0/0 .sdata2          @5007 */
-SECTION_SDATA2 static f32 lit_5007 = 15.0f;
 
 /* 80198A2C-801990B0 19336C 0684+00 0/0 0/0 9/9 .text            itemZoom__13dShopSystem_cFP4cXyz */
-// matches with literals
-#ifdef NONMATCHING
 int dShopSystem_c::itemZoom(cXyz* param_0) {
     cXyz local_1c;
 
@@ -1519,11 +1384,11 @@ int dShopSystem_c::itemZoom(cXyz* param_0) {
                     if (dShopSystem_itemNo[mCursorPos - 1] == ARROW_10 ||
                         dShopSystem_itemNo[mCursorPos - 1] == ARROW_20 ||
                         dShopSystem_itemNo[mCursorPos - 1] == ARROW_30) {
-                        local_34.set(g_cursorHIO.mObjZoom.x, 5.0f + g_cursorHIO.mObjZoom.y + -50.0f,
+                        local_34.set(g_cursorHIO.mObjZoom.x, -50.0f + g_cursorHIO.mObjZoom.y + 5.0f,
                                      (g_cursorHIO.mObjZoom.z + 250.0f) - 60.0f);
                     } else {
                         local_34.set(g_cursorHIO.mObjZoom.x,
-                                     20.0f + g_cursorHIO.mObjZoom.y + -50.0f,
+                                     -50.0f + g_cursorHIO.mObjZoom.y + 20.0f,
                                      (g_cursorHIO.mObjZoom.z + 250.0f) - 60.0f);
                     }
                 } else if (mCursorPos == 7) {
@@ -1589,16 +1454,6 @@ int dShopSystem_c::itemZoom(cXyz* param_0) {
 
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dShopSystem_c::itemZoom(cXyz* param_0) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/itemZoom__13dShopSystem_cFP4cXyz.s"
-}
-#pragma pop
-#endif
 
 /* 801990B0-801990B8 1939F0 0008+00 1/0 0/0 0/0 .text
  * seq_wait__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c         */
@@ -1607,13 +1462,6 @@ int dShopSystem_c::seq_wait(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
 }
 
 /* ############################################################################################## */
-/* 80453B44-80453B48 002144 0004+00 3/3 0/0 0/0 .sdata2          @5084 */
-SECTION_SDATA2 static u8 lit_5084[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
 
 inline void pos3Dto2D(Vec* a, Vec* b) {
     mDoLib_project(a, b);
@@ -1621,8 +1469,6 @@ inline void pos3Dto2D(Vec* a, Vec* b) {
 
 /* 801990B8-8019936C 1939F8 02B4+00 1/0 0/0 0/0 .text
  * seq_start__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c        */
-// matches with literals
-#ifdef NONMATCHING
 int dShopSystem_c::seq_start(fopAc_ac_c* actor, dMsgFlow_c* p_flow) {
     if (field_0xf79 != 0) {
         dComIfGp_setDoStatusForce(0, 0);
@@ -1690,16 +1536,6 @@ int dShopSystem_c::seq_start(fopAc_ac_c* actor, dMsgFlow_c* p_flow) {
 
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dShopSystem_c::seq_start(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/seq_start__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c.s"
-}
-#pragma pop
-#endif
 
 /* 8019936C-801993C4 193CAC 0058+00 1/0 0/0 0/0 .text
  * seq_select_wait__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c  */
@@ -1714,8 +1550,6 @@ int dShopSystem_c::seq_select_wait(fopAc_ac_c*, dMsgFlow_c*) {
 
 /* 801993C4-8019959C 193D04 01D8+00 1/0 0/0 0/0 .text
  * seq_select_start__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c */
-// matches with literals
-#ifdef NONMATCHING
 int dShopSystem_c::seq_select_start(fopAc_ac_c*, dMsgFlow_c*) {
     if (field_0xf60 < 0 && field_0xf76 == 0 && dShopSystem_item_count != -1) {
         if (dShopSystem_item_count != data_80451058) {
@@ -1765,21 +1599,9 @@ int dShopSystem_c::seq_select_start(fopAc_ac_c*, dMsgFlow_c*) {
 
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dShopSystem_c::seq_select_start(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/seq_select_start__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c.s"
-}
-#pragma pop
-#endif
 
 /* 8019959C-80199A18 193EDC 047C+00 1/0 0/0 0/0 .text
  * seq_select__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c       */
-// matches with literals
-#ifdef NONMATCHING
 int dShopSystem_c::seq_select(fopAc_ac_c* actor, dMsgFlow_c* p_flow) {
     if (chkSpMode() && !beforeSelectSeqAction(p_flow, field_0xf5c)) {
         return 0;
@@ -1883,32 +1705,11 @@ int dShopSystem_c::seq_select(fopAc_ac_c* actor, dMsgFlow_c* p_flow) {
 
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dShopSystem_c::seq_select(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/seq_select__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
-/* 80453B48-80453B50 002148 0004+04 1/1 0/0 0/0 .sdata2          @5296 */
-SECTION_SDATA2 static f32 lit_5296[1 + 1 /* padding */] = {
-    9.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80453B50-80453B58 002150 0008+00 1/1 0/0 0/0 .sdata2          @5298 */
-SECTION_SDATA2 static f64 lit_5298 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80199A18-80199BF8 194358 01E0+00 1/0 0/0 0/0 .text
  * seq_moving__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c       */
-// matches with literals
-#ifdef NONMATCHING
 int dShopSystem_c::seq_moving(fopAc_ac_c*, dMsgFlow_c*) {
     field_0xf68++;
 
@@ -1952,16 +1753,6 @@ int dShopSystem_c::seq_moving(fopAc_ac_c*, dMsgFlow_c*) {
 
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dShopSystem_c::seq_moving(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/seq_moving__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c.s"
-}
-#pragma pop
-#endif
 
 /* 80199BF8-80199D14 194538 011C+00 1/0 0/0 0/0 .text
  * seq_decide__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c       */
@@ -2019,8 +1810,6 @@ int dShopSystem_c::seq_choose(fopAc_ac_c* actor, dMsgFlow_c* p_flow) {
 
 /* 80199E28-80199FA4 194768 017C+00 1/0 0/0 0/0 .text
  * seq_decide_yes__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c   */
-// matches with literals
-#ifdef NONMATCHING
 int dShopSystem_c::seq_decide_yes(fopAc_ac_c* actor, dMsgFlow_c* p_flow) {
     if (dMsgObject_getMessageID() == 0x1B82) {
         mShopCamAction.SetSelectIdx(0);
@@ -2061,16 +1850,6 @@ int dShopSystem_c::seq_decide_yes(fopAc_ac_c* actor, dMsgFlow_c* p_flow) {
 
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dShopSystem_c::seq_decide_yes(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/seq_decide_yes__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c.s"
-}
-#pragma pop
-#endif
 
 /* 80199FA4-8019A020 1948E4 007C+00 1/0 0/0 0/0 .text
  * seq_decide_no__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c    */
@@ -2120,11 +1899,9 @@ int dShopSystem_c::shop_init(bool param_0) {
 
 /* 8019A158-8019A238 194A98 00E0+00 0/0 0/0 9/9 .text
  * shop_process__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c     */
-// process array match issues
-#ifdef NONMATCHING
 int dShopSystem_c::shop_process(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
     int iVar1;
-    iVar1 = (this->*process[mSeq])(param_0, param_1);
+    iVar1 = (this->*((processFunc*)process)[mSeq])(param_0, param_1);
 
     if (mWaitTimer != 0) {
         mWaitTimer--;
@@ -2149,16 +1926,6 @@ int dShopSystem_c::shop_process(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
     }
     return iVar1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dShopSystem_c::shop_process(fopAc_ac_c* param_0, dMsgFlow_c* param_1) {
-    nofralloc
-#include "asm/d/shop/d_shop_system/shop_process__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 804506F8-80450700 -00001 0004+04 1/1 0/0 0/0 .sdata           shop_item_pos_data_tbl */
@@ -2278,40 +2045,134 @@ void dShopSystem_c::deleteObject() {
 }
 
 /* ############################################################################################## */
-/* 80453B60-80453B64 002160 0004+00 1/1 0/0 0/0 .sdata2          @5687 */
-SECTION_SDATA2 static f32 lit_5687 = -175.0f;
-
-/* 80453B64-80453B68 002164 0004+00 1/1 0/0 0/0 .sdata2          @5688 */
-SECTION_SDATA2 static f32 lit_5688 = 165.0f;
-
-/* 80453B68-80453B6C 002168 0004+00 1/1 0/0 0/0 .sdata2          @5689 */
-SECTION_SDATA2 static f32 lit_5689 = 10.0f;
-
-/* 80453B6C-80453B70 00216C 0004+00 1/1 0/0 0/0 .sdata2          @5690 */
-SECTION_SDATA2 static f32 lit_5690 = 225.0f;
-
-/* 80453B70-80453B74 002170 0004+00 1/1 0/0 0/0 .sdata2          @5691 */
-SECTION_SDATA2 static f32 lit_5691 = 370.0f;
-
-/* 80453B74-80453B78 002174 0004+00 1/1 0/0 0/0 .sdata2          @5692 */
-SECTION_SDATA2 static f32 lit_5692 = -180.0f;
-
-/* 80453B78-80453B7C 002178 0004+00 1/1 0/0 0/0 .sdata2          @5693 */
-SECTION_SDATA2 static f32 lit_5693 = 245.0f;
-
-/* 80453B7C-80453B80 00217C 0004+00 1/1 0/0 0/0 .sdata2          @5694 */
-SECTION_SDATA2 static f32 lit_5694 = -380.0f;
 
 /* 8019A5D0-8019AB00 194F10 0530+00 1/1 0/0 8/8 .text            searchItemActor__13dShopSystem_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dShopSystem_c::searchItemActor() {
-    nofralloc
-#include "asm/d/shop/d_shop_system/searchItemActor__13dShopSystem_cFv.s"
+int dShopSystem_c::searchItemActor() {
+    u8 temp_data;
+    if ((dShopSystem_item_count != -1 && ((dShopSystem_item_count < (temp_data = data_80451058)) || dShopSystem_camera_count < 2))) {
+        if (dShopSystem_item_count < temp_data) {
+            fpcEx_Search((fpcLyIt_JudgeFunc)dShopSystem_searchItemActor, this);
+        }
+        if (dShopSystem_camera_count < 2) {
+            fpcEx_Search((fpcLyIt_JudgeFunc)dShopSystem_searchCameraActor, this);
+        }
+        return 0;
+    }
+
+    if (dShopSystem_item_count >= data_80451058 && dShopSystem_camera_count >= 2) {
+        mSoldOutFlag = -1;
+        if (data_80451060) {
+            f32 actorDistArr[7];
+            u8 itemNoArr[7];
+            f32 arr2[7];
+            daTag_ShopItem_c* actorArr[7];
+            u8 arr3[7];
+            for (int i = 0; i < data_80451058; i++) {
+                actorArr[i] = dShopSystem_itemActor[i];
+                itemNoArr[i] = dShopSystem_itemNo[i];
+                actorDistArr[i] = fopAcM_searchActorDistance(this, actorArr[i]);
+                arr2[i] = 0.0f;
+                arr3[i] = 0;
+            }
+            for (int i = 0; i < data_80451058; i++) {
+                arr2[i] = actorDistArr[i];
+                arr3[i] = i;
+                if (i > 0) {
+                    for (int j = i; j >= 0; j--) {
+                        if (arr2[j] < arr2[j-1]) {
+                            f32 temp = arr2[j];
+                            arr2[j] = arr2[j-1];
+                            arr2[j-1] = temp;
+                            u8 temp2 = arr3[j];
+                            arr3[j] = arr3[j-1];
+                            arr3[j-1] = temp2;
+                        }
+                    }
+                }
+            }
+            for (int i = 0; i < data_80451058; i++) {
+                dShopSystem_itemActor[i] = actorArr[arr3[i]];
+                dShopSystem_itemNo[i] = itemNoArr[arr3[i]];
+            }
+        }
+
+        for (int i = 0; i < data_80451058; i++) {
+            u32 processId = dShopSystem_itemActor[i]->getProcessID();
+            mItemCtrl.setItemIndex(i, processId);
+            mItemCtrl.setMessageIndex(i, (u16)dShopSystem_itemActor[i]->orig.angle.GetX() != 0xffff ? (u16)dShopSystem_itemActor[i]->orig.angle.GetX() : -1);
+
+            if (processId + 0x10000 == 0xffff) {
+                onFlag(i);
+                onSoldOutItemFlag(i);
+            } else {
+                offFlag(i);
+                if ((u8)fopAcM_GetParam(dShopSystem_itemActor[i]) == 0xff) {
+                    onSoldOutItemFlag(i);
+                } else {
+                    offSoldOutItemFlag(i);
+                }
+            }
+        }
+
+        if (field_0xf77 == 8) {
+            dShopSystem_cameraActor[0]->current.pos.set(-175.0f, 165.0f, 10.0f);
+            dShopSystem_cameraActor[1]->current.pos.set(215.0f, 225.0f, 370.0f);
+        }
+
+        if (data_80451058 > 3) {
+            mShopCamAction.setCamDataIdx2(
+                this, dShopSystem_itemActor[0], dShopSystem_itemActor[1], dShopSystem_itemActor[2],
+                dShopSystem_itemActor[3], dShopSystem_itemActor[4], dShopSystem_itemActor[5], &dShopSystem_cameraActor[0]->current.pos,
+                &dShopSystem_cameraActor[1]->current.pos
+            );
+
+            if (field_0xf77 == 8) {
+                cXyz camCtrPos;
+                camCtrPos.set(-180.0f, 245.0f, -380.0f);
+                mShopCamAction.setMasterCamCtrPos(&camCtrPos);
+            }
+
+            for (int i = 0; i < 7; i++) {
+                if (dShopSystem_itemActor[i] != NULL) {
+                    u8 cVar8 = dShopSystem_itemActor[i]->orig.angle.GetZ();
+                    u8 cVar4 = ((u16)dShopSystem_itemActor[i]->orig.angle.GetZ()) >> 8;
+                    if (((cVar8 != 0xff) &&
+                         (dComIfGs_isSaveSwitch(cVar8) == 0)) &&
+                        ((cVar4 != 0xff &&
+                          (dComIfGs_isSaveSwitch(cVar4) == 0)))) {
+                        onFlag(i);
+                        onSoldOutItemFlag(i);
+                    }
+                }
+            }
+            dShopSystem_item_count = -1;
+        } else {
+            mShopCamAction.setCamDataIdx(
+                this, dShopSystem_itemActor[0], dShopSystem_itemActor[1], dShopSystem_itemActor[2],
+                &dShopSystem_cameraActor[0]->current.pos,
+                &dShopSystem_cameraActor[1]->current.pos
+            );
+
+            for (int i = 0; i < 7; i++) {
+                if (dShopSystem_itemActor[i] != NULL) {
+                    u8 cVar8 = dShopSystem_itemActor[i]->orig.angle.GetZ();
+                    u8 cVar4 = ((u16)dShopSystem_itemActor[i]->orig.angle.GetZ()) >> 8;
+                    if (((cVar8 != 0xff) &&
+                         (dComIfGs_isSaveSwitch(cVar8) == 0)) &&
+                        ((cVar4 != 0xff &&
+                          (dComIfGs_isSaveSwitch(cVar4) == 0)))) {
+                        onFlag(i);
+                        onSoldOutItemFlag(i);
+                    }
+                }
+            }
+            dShopSystem_item_count = -1;
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8019AB00-8019AB1C 195440 001C+00 1/1 0/0 0/0 .text            getFlowNodeNum__13dShopSystem_cFv
  */

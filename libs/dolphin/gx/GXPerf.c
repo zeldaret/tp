@@ -5,7 +5,6 @@
 
 #include "dolphin/gx/GXPerf.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

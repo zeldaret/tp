@@ -7,9 +7,6 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_stone/d_a_obj_stone.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JMath/JMath.h"
-#include "SSystem/SComponent/c_math.h"
 #include "d/d_lib.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
@@ -198,9 +195,11 @@ const static dCcD_SrcSph l_sph_src = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        50.0f,
-    },
+        {
+            {0.0f, 0.0f, 0.0f},
+            50.0f,
+        },
+    }
 };
 COMPILER_STRIP_GATE(0x80CECABC, &l_sph_src);
 #pragma pop
@@ -761,7 +760,7 @@ int daObjStone_c::Create() {
 
     fopAcM_setCullSizeSphere(this,0.0f,0.0f,0.0f,l_r[mStoneType]*1.2f);
     cLib_onBit(mAttentionInfo.mFlags,16);
-    mAttentionInfo.field_0x4[0] = 0x2A;
+    mAttentionInfo.field_0x0[4] = 0x2A;
     fopAcM_OnCarryType(this,fopAcM_CARRY_LIGHT);
 
     cXyz other_pos = current.pos;
@@ -813,10 +812,7 @@ bool daObjStone_c::CreateHeap() {
 #ifdef NONMATCHING
 // matches, but too many destructors being generated
 int daObjStone_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daObjStone_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daObjStone_c);
 
     mStoneType = getType();
 

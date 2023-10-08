@@ -4,11 +4,9 @@
 //
 
 #include "d/msg/d_msg_object.h"
-#include "JSystem/JGadget/binary.h"
 #include "MSL_C/stdio.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_class.h"
-#include "d/msg/d_msg_out_font.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
@@ -1662,7 +1660,7 @@ asm void dMsgObject_c::changeGroup(s16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getString(u32 param_0, J2DTextBox* param_1, J2DTextBox* param_2,
+asm bool dMsgObject_c::getString(u32 param_0, J2DTextBox* param_1, J2DTextBox* param_2,
                                  JUTFont* param_3, COutFont_c* param_4, char* param_5,
                                  char* param_6, char* param_7, s16* param_8) {
     nofralloc
@@ -1704,7 +1702,7 @@ asm fopAc_ac_c* dMsgObject_c::getActor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getpTalkActor() {
+asm fopAc_ac_c* dMsgObject_c::getpTalkActor() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getpTalkActor__12dMsgObject_cFv.s"
 }
@@ -1714,7 +1712,7 @@ asm void dMsgObject_c::getpTalkActor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getIdx() {
+asm u32 dMsgObject_c::getIdx() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getIdx__12dMsgObject_cFv.s"
 }
@@ -1724,7 +1722,7 @@ asm void dMsgObject_c::getIdx() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getNodeIdx() {
+asm u16 dMsgObject_c::getNodeIdx() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getNodeIdx__12dMsgObject_cFv.s"
 }

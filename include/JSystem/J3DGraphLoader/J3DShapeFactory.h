@@ -3,11 +3,10 @@
 
 #include "dolphin/gx/GXAttr.h"
 #include "dolphin/mtx/vec.h"
-#include "dolphin/types.h"
 
-struct J3DShape;
-struct J3DShapeMtx;
-struct J3DShapeDraw;
+class J3DShape;
+class J3DShapeMtx;
+class J3DShapeDraw;
 struct ResNTAB;
 
 struct J3DShapeInitData {

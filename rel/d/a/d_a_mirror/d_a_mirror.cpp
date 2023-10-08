@@ -5,134 +5,16 @@
 
 #include "rel/d/a/d_a_mirror/d_a_mirror.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
+#include "d/a/d_a_player.h"
+#include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 
 //
 // Types:
 //
-
-struct request_of_phase_process_class {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 80266CBC */ void outprod(Vec const&) const;
-    /* 80266F48 */ void normalizeZP();
-    /* 80870C54 */ ~cXyz();
-    /* 80870C90 */ cXyz();
-};
-
-struct mDoMtx_stack_c {
-    /* 8000CE00 */ void scaleS(cXyz const&);
-    /* 8000CE38 */ void scaleM(f32, f32, f32);
-
-    static u8 now[48];
-};
-
-struct mDoLib_clipper {
-    static u8 mClipper[92];
-    static f32 mSystemFar;
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct daPy_py_c {
-    /* 8015F4F0 */ void setLookPos(cXyz*);
-};
-
-struct J3DModel {};
-
-struct daMirror_c {
-    /* 80871E24 */ daMirror_c();
-    /* 80871F08 */ void createHeap();
-    /* 80871F78 */ void setModelMtx();
-    /* 8087206C */ void create();
-    /* 808723E4 */ void execute();
-    /* 80872560 */ void entryModel(J3DModel*);
-
-    static u8 m_entryModel[12];
-    static u8 m_myObj[4];
-};
-
-struct dSv_info_c {
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A441C */ void setLightTevColorType(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dMirror_packet_c {
-    /* 80870BD8 */ dMirror_packet_c();
-    /* 80870C94 */ void reset();
-    /* 80870CA0 */ void calcMinMax();
-    /* 80870D58 */ void entryModel(J3DModel*);
-    /* 80870D88 */ void mirrorZdraw(f32*, f32*, f32, f32, f32, f32, f32, f32);
-    /* 80871268 */ void modelDraw(J3DModel*, f32 (*)[4]);
-    /* 8087146C */ void mainDraw();
-    /* 80871D84 */ void draw();
-    /* 80871E84 */ ~dMirror_packet_c();
-};
-
-struct _GXTlutObj {};
-
-struct _GXTexObj {};
-
-struct _GXCullMode {};
-
-struct _GXColor {};
-
-struct _GXChannelID {};
-
-struct ResTIMG {};
-
-struct J3DUClipper {
-    /* 8027378C */ void calcViewFrustum();
-    /* 80273A44 */ void clip(f32 const (*)[4], Vec*, Vec*) const;
-};
-
-struct J3DSys {
-    /* 8031073C */ void reinitGX();
-};
-
-struct J3DShapePacket {
-    /* 80312FBC */ void drawFast();
-};
-
-struct J3DShape {
-    /* 80315300 */ void loadPreDrawSetting() const;
-
-    static u8 sOldVcdVatCmd[4];
-};
-
-struct J3DPacket;
-struct J3DDrawBuffer {
-    /* 8032548C */ void entryImm(J3DPacket*, u16);
-};
-
-struct J3DPacket {
-    /* 80312750 */ bool entry(J3DDrawBuffer*);
-};
-
-struct J3DDisplayListObj {
-    /* 80312618 */ void callDL() const;
-};
 
 //
 // Forward References:
@@ -203,48 +85,7 @@ extern "C" bool entry__9J3DPacketFP13J3DDrawBuffer();
 extern "C" void drawFast__14J3DShapePacketFv();
 extern "C" void loadPreDrawSetting__8J3DShapeCFv();
 extern "C" void entryImm__13J3DDrawBufferFP9J3DPacketUs();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXConcat();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXMultVec();
-extern "C" void PSMTXMultVecArray();
-extern "C" void C_MTXOrtho();
-extern "C" void PSVECScale();
-extern "C" void GXSetVtxDesc();
-extern "C" void GXClearVtxDesc();
-extern "C" void GXSetVtxAttrFmt();
-extern "C" void GXSetTexCoordGen2();
-extern "C" void GXSetNumTexGens();
-extern "C" void GXBegin();
-extern "C" void GXSetCullMode();
-extern "C" void GXSetNumChans();
-extern "C" void GXSetChanCtrl();
-extern "C" void GXGetTexObjWidth();
-extern "C" void GXLoadTexObj();
-extern "C" void GXSetNumIndStages();
-extern "C" void GXSetTevColorIn();
-extern "C" void GXSetTevAlphaIn();
-extern "C" void GXSetTevColorOp();
-extern "C" void GXSetTevAlphaOp();
-extern "C" void GXSetTevColor();
-extern "C" void GXSetAlphaCompare();
-extern "C" void GXSetTevOrder();
-extern "C" void GXSetNumTevStages();
-extern "C" void GXSetFog();
-extern "C" void GXSetFogRangeAdj();
-extern "C" void GXSetBlendMode();
-extern "C" void GXSetColorUpdate();
-extern "C" void GXSetAlphaUpdate();
-extern "C" void GXSetZMode();
-extern "C" void GXSetZCompLoc();
-extern "C" void GXSetProjection();
-extern "C" void GXSetProjectionv();
-extern "C" void GXGetProjectionv();
-extern "C" void GXLoadPosMtxImm();
-extern "C" void GXSetCurrentMtx();
-extern "C" void GXGetViewportv();
-extern "C" void GXSetScissor();
-extern "C" void GXGetScissor();
+
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void __cvt_fp2unsigned();
@@ -254,19 +95,10 @@ extern "C" void _savegpr_28();
 extern "C" void _restgpr_18();
 extern "C" void _restgpr_21();
 extern "C" void _restgpr_28();
-extern "C" void tan();
-extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__9J3DPacket[5];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mClipper__14mDoLib_clipper[92];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 m_entryModel__10daMirror_c[12];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 g_clearColor[4];
-extern "C" extern u32 __float_max;
 extern "C" f32 mSystemFar__14mDoLib_clipper;
 extern "C" u8 m_myObj__10daMirror_c[4];
 extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
@@ -276,57 +108,16 @@ extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 //
 
 /* 80870BB8-80870BD8 000078 0020+00 1/1 0/0 0/0 .text daMirror_c_createHeap__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daMirror_c_createHeap(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_mirror/d_a_mirror/daMirror_c_createHeap__FP10fopAc_ac_c.s"
+static bool daMirror_c_createHeap(fopAc_ac_c* param_0) {
+    return ((daMirror_c*)param_0)->createHeap();
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 80872650-80872650 0000C4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80872650 = "Mirror";
-SECTION_DEAD static char const* const stringBase_80872657 = "MR-Table";
-#pragma pop
-
 /* 80872660-80872664 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&d_a_mirror__stringBase0;
+static char* l_arcName = "Mirror";
 
 /* 80872664-80872668 -00001 0004+00 2/2 0/0 0/0 .data            l_arcName2 */
-SECTION_DATA static void* l_arcName2 = (void*)(((char*)&d_a_mirror__stringBase0) + 0x7);
-
-/* 80872668-80872674 -00001 000C+00 1/1 0/0 0/0 .data            @4377 */
-SECTION_DATA static void* lit_4377[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)entryModel__10daMirror_cFP8J3DModel,
-};
-
-/* 80872674-80872694 -00001 0020+00 1/0 0/0 0/0 .data            daMirror_METHODS */
-SECTION_DATA static void* daMirror_METHODS[8] = {
-    (void*)daMirror_create__FP10daMirror_c,
-    (void*)daMirror_Delete__FP10daMirror_c,
-    (void*)daMirror_execute__FP10daMirror_c,
-    (void*)NULL,
-    (void*)daMirror_draw__FP10daMirror_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-};
-
-/* 80872694-808726C4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_MIRROR */
-SECTION_DATA extern void* g_profile_MIRROR[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x02DF0000, (void*)&g_fpcLf_Method,
-    (void*)0x000006FC, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x02F50000, (void*)&daMirror_METHODS,
-    (void*)0x00060000, (void*)0x05000000,
-};
+static char* l_arcName2 = "MR-Table";
 
 /* 808726C4-808726D8 000064 0014+00 2/2 0/0 0/0 .data            __vt__16dMirror_packet_c */
 SECTION_DATA extern void* __vt__16dMirror_packet_c[5] = {
@@ -338,59 +129,80 @@ SECTION_DATA extern void* __vt__16dMirror_packet_c[5] = {
 };
 
 /* 80870BD8-80870C54 000098 007C+00 1/1 0/0 0/0 .text            __ct__16dMirror_packet_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMirror_packet_c::dMirror_packet_c() {
-    nofralloc
-#include "asm/rel/d/a/d_a_mirror/d_a_mirror/__ct__16dMirror_packet_cFv.s"
+dMirror_packet_c::dMirror_packet_c() {
+    reset();
 }
-#pragma pop
+
 
 /* 80870C54-80870C90 000114 003C+00 2/2 0/0 0/0 .text            __dt__4cXyzFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+//asm cXyz::~cXyz() {
+asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_mirror/d_a_mirror/__dt__4cXyzFv.s"
 }
 #pragma pop
 
 /* 80870C90-80870C94 000150 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+//cXyz::cXyz() {
+void __ct__4cXyzFv() {
     /* empty function */
 }
 
 /* 80870C94-80870CA0 000154 000C+00 2/2 0/0 0/0 .text            reset__16dMirror_packet_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMirror_packet_c::reset() {
-    nofralloc
-#include "asm/rel/d/a/d_a_mirror/d_a_mirror/reset__16dMirror_packet_cFv.s"
+void dMirror_packet_c::reset() {
+    mModelCount = 0;
 }
-#pragma pop
 
 /* 80870CA0-80870D58 000160 00B8+00 1/1 0/0 0/0 .text            calcMinMax__16dMirror_packet_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMirror_packet_c::calcMinMax() {
-    nofralloc
-#include "asm/rel/d/a/d_a_mirror/d_a_mirror/calcMinMax__16dMirror_packet_cFv.s"
+void dMirror_packet_c::calcMinMax() {
+    mMinVal.set(FLT_MAX, FLT_MAX, FLT_MAX);
+    mMaxVal.set(-FLT_MAX, -FLT_MAX, -FLT_MAX);
+    cXyz* ptr = mQuad;
+    for (int i = 0; i < 4; i++, ptr++) {
+        f32 val = ptr->x;
+        if (val < mMinVal.x) {
+            mMinVal.x = val;
+        }
+
+        val = ptr->x;
+        if (val > mMaxVal.x) {
+            mMaxVal.x = val;
+        }
+
+        val = ptr->y;
+        if (val < mMinVal.y) {
+            mMinVal.y = val;
+        }
+
+        val = ptr->y;
+        if (val > mMaxVal.y) {
+            mMaxVal.y = val;
+        }
+
+        val = ptr->z;
+        if (val < mMinVal.z) {
+            mMinVal.z = val;
+        }
+
+        val = ptr->z;
+        if (val > mMaxVal.z) {
+            mMaxVal.z = val;
+        }
+    }
 }
-#pragma pop
 
 /* 80870D58-80870D88 000218 0030+00 1/1 0/0 0/0 .text entryModel__16dMirror_packet_cFP8J3DModel */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMirror_packet_c::entryModel(J3DModel* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_mirror/d_a_mirror/entryModel__16dMirror_packet_cFP8J3DModel.s"
+int dMirror_packet_c::entryModel(J3DModel* param_0) {
+    if (mModelCount >= 0x40) {
+        return 0;
+    }
+
+    mModels[mModelCount++] = param_0;
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8087258C-80872590 000000 0004+00 3/3 0/0 0/0 .rodata          @3884 */
@@ -400,8 +212,8 @@ COMPILER_STRIP_GATE(0x8087258C, &lit_3884);
 /* 80872590-80872598 000004 0008+00 0/1 0/0 0/0 .rodata          l_texCoord$3899 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const l_texCoord[8] = {
-    0x00, 0x00, 0x01, 0x00, 0x01, 0x01, 0x00, 0x01,
+SECTION_RODATA static s8 const l_texCoord[4][2] = {
+    {0x00, 0x00}, {0x01, 0x00}, {0x01, 0x01}, {0x00, 0x01},
 };
 COMPILER_STRIP_GATE(0x80872590, &l_texCoord);
 #pragma pop
@@ -436,8 +248,107 @@ SECTION_RODATA static f32 const lit_3948 = -100.0f;
 COMPILER_STRIP_GATE(0x808725A4, &lit_3948);
 #pragma pop
 
+inline static void GXSetTexCoordGen(GXTexCoordID dst, GXTexGenType type, GXTexGenSrc src, u32 mtx) {
+    GXSetTexCoordGen2(dst, type, src, mtx, 0, 125);
+}
+
+inline static void damirror_GXEnd() {
+    i_GXEnd();
+}
+
 /* 80870D88-80871268 000248 04E0+00 1/1 0/0 0/0 .text mirrorZdraw__16dMirror_packet_cFPfPfffffff
  */
+// Matches with literals (Maybe l_texCoord should be inside)
+#ifdef NONMATCHING
+void dMirror_packet_c::mirrorZdraw(f32* param_0, f32* param_1, f32 param_2, f32 param_3,
+                                       f32 param_4, f32 param_5, f32 param_6, f32 param_7) {
+    GXSetNumChans(1);
+    GXSetChanCtrl(GX_COLOR0, 0, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
+    GXSetNumTexGens(0);
+    GXSetNumTevStages(1);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+    GXColor color = {0xff,0,0,0};
+    GXSetTevColor(GX_TEVREG0, color);
+    GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, GX_CC_C0);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_A0);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetZCompLoc(1);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_OR);
+    GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_GREATER, 0);
+    GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
+    GXSetFogRangeAdj(0, 0, NULL);
+    GXSetCullMode(GX_CULL_BACK);
+    GXSetNumIndStages(0);
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+    GXSetZMode(1, GX_GEQUAL, 1);
+    GXLoadPosMtxImm(j3dSys.getViewMtx(), 0);
+    GXSetCurrentMtx(0);
+    GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+    for (int i = 0; i < 4; i++) {
+        GXPosition3f32(mQuad[i].x, mQuad[i].y, mQuad[i].z);
+    }
+    damirror_GXEnd();
+    
+    if (mViewScale.y > 0.0f) {
+        GXSetZMode(1, GX_ALWAYS, 1);
+        GXSetColorUpdate(0);
+        GXSetAlphaUpdate(0);
+        Mtx44 mtx;
+        C_MTXOrtho(mtx, param_1[1], param_1[1] + param_1[3], param_1[0],
+                         param_1[0] + param_1[2], 0, 100.0f);
+        GXSetProjection(mtx, GX_ORTHOGRAPHIC);
+        GXLoadPosMtxImm(mDoMtx_getIdentity(), 0);
+
+        param_3 -= 1.0f;
+        param_4 -= 1.0f;
+        param_5 += 1.0f;
+        param_6 += 1.0f;
+        GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+        GXPosition3f32(param_3, param_4, -100.0f);
+        GXPosition3f32(param_5, param_4, -100.0f);
+        GXPosition3f32(param_5, param_6, -100.0f);
+        GXPosition3f32(param_3, param_6, -100.0f);
+        damirror_GXEnd();
+        GXSetProjectionv(param_0);
+        GXSetZMode(1, GX_ALWAYS, 1);
+        GXLoadPosMtxImm(j3dSys.getViewMtx(), 0);
+        if (GXGetTexObjWidth(&mTexObj)) {
+            GXLoadTexObj(&mTexObj, GX_TEXMAP0);
+            GXSetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 60);
+            GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
+            GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_TEXA);
+            GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+            GXSetNumChans(0);
+            GXSetNumTexGens(1);
+            GXSetZCompLoc(0);
+            GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+            GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_S8, 0);
+            GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+            cXyz* ptr = mQuad;
+            s8* texPtr = (s8*)l_texCoord;
+            for (int i = 0; i < 4; ptr++, texPtr += 2, i++) {
+                GXPosition3f32(ptr->x, ptr->y, ptr->z);
+                GXTexCoord2s8(texPtr[0], texPtr[1]);
+            }
+        } else {
+            GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+            cXyz* ptr = mQuad;
+            for (int i = 0; i < 4; ptr++, i++) {
+                GXPosition3f32(ptr->x, ptr->y, ptr->z);
+            }
+        }
+        damirror_GXEnd();
+    } else {
+        GXSetProjectionv(param_0);
+    }
+
+    GXSetColorUpdate(1);
+    GXSetAlphaUpdate(0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -447,6 +358,7 @@ asm void dMirror_packet_c::mirrorZdraw(f32* param_0, f32* param_1, f32 param_2, 
 #include "asm/rel/d/a/d_a_mirror/d_a_mirror/mirrorZdraw__16dMirror_packet_cFPfPfffffff.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 808725A8-808725AC 00001C 0004+00 1/1 0/0 0/0 .rodata          @3956 */
@@ -460,6 +372,54 @@ COMPILER_STRIP_GATE(0x808725A8, &lit_3956);
 
 /* 80871268-8087146C 000728 0204+00 1/1 0/0 0/0 .text
  * modelDraw__16dMirror_packet_cFP8J3DModelPA4_f                */
+// Matches with literals
+#ifdef NONMATCHING
+void dMirror_packet_c::modelDraw(J3DModel* param_0, f32 (*param_1)[4]) {
+    Mtx& baseMtx = param_0->getBaseTRMtx();
+    cXyz acStack_3c(baseMtx[0][3], baseMtx[1][3], baseMtx[2][3]);
+    cXyz cStack_48;
+    cMtx_multVec(param_1, &acStack_3c, &cStack_48);
+    cXyz cStack_54;
+    cMtx_multVec(j3dSys.getViewMtx(), &acStack_3c, &cStack_54);
+
+    if (mViewScale.y > 0.0f && cStack_48.z > cStack_54.z) {
+        return;
+    }
+    
+    GXColor color = {0};
+    color.r = i_dKy_getEnvlight()->mTerrainAmbienceBG0.r;
+    color.g = i_dKy_getEnvlight()->mTerrainAmbienceBG0.g;
+    color.b = i_dKy_getEnvlight()->mTerrainAmbienceBG0.b;
+    color.a = i_dKy_getEnvlight()->mTerrainAmbienceBG0.a;
+    J3DModelData* modelData = param_0->getModelData();
+    u16 materialNum = modelData->getMaterialNum();
+    for (u16 i = 0; i < materialNum; i++) {
+        J3DMatPacket* matPacket = param_0->getMatPacket(i);
+        J3DShapePacket* shapePacket = matPacket->getShapePacket();
+        J3DShape* shape = shapePacket->getShape();
+        if (!shape->checkFlag(1)) {
+            J3DMaterial* material = modelData->getMaterialNodePointer(i);
+            u32 texGenNum = material->getTexGenBlock()->getTexGenNum();
+            u8 colorChanNum = material->getColorBlock()->getColorChanNum();
+            u8 tevStageNum = material->getTevBlock()->getTevStageNum();
+            u8 indTexStageNum = material->getIndBlock()->getIndTexStageNum();
+            material->load();
+            matPacket->callDL();
+            shape->loadPreDrawSetting();
+            if (shapePacket->getDisplayListObj() != NULL) {
+                shapePacket->getDisplayListObj()->callDL();
+            }
+            GFSetGenMode2(texGenNum, (_GXChannelID)colorChanNum, (_GXTevStageID)tevStageNum, indTexStageNum, GX_CULL_FRONT);
+            GXColor ambColor = *(GXColor*)&color;
+            GFSetChanAmbColor(GX_COLOR0, ambColor);
+            shapePacket->setBaseMtxPtr((Mtx*)param_1);
+            shapePacket->drawFast();
+            shapePacket->setBaseMtxPtr((Mtx*)j3dSys.getViewMtx());
+        }
+        shape->resetVcdVatCache();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -468,6 +428,7 @@ asm void dMirror_packet_c::modelDraw(J3DModel* param_0, f32 (*param_1)[4]) {
 #include "asm/rel/d/a/d_a_mirror/d_a_mirror/modelDraw__16dMirror_packet_cFP8J3DModelPA4_f.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 808725AC-808725B0 000020 0004+00 0/1 0/0 0/0 .rodata          @4345 */
@@ -557,64 +518,47 @@ asm void dMirror_packet_c::mainDraw() {
 #pragma pop
 
 /* 80871D84-80871E24 001244 00A0+00 1/0 0/0 0/0 .text            draw__16dMirror_packet_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMirror_packet_c::draw() {
-    nofralloc
-#include "asm/rel/d/a/d_a_mirror/d_a_mirror/draw__16dMirror_packet_cFv.s"
+void dMirror_packet_c::draw() {
+    mDoLib_clipper::changeFar(dComIfGd_getView()->mFar);
+    s32 clipRes = mDoLib_clipper::clip(j3dSys.getViewMtx(), &mMaxVal, &mMinVal);
+    if (clipRes == 0) {
+        mainDraw();
+    }
+    mDoLib_clipper::resetFar();
+    reset();
 }
-#pragma pop
 
 /* 80871E24-80871E84 0012E4 0060+00 1/1 0/0 0/0 .text            __ct__10daMirror_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm daMirror_c::daMirror_c() {
-    nofralloc
-#include "asm/rel/d/a/d_a_mirror/d_a_mirror/__ct__10daMirror_cFv.s"
+daMirror_c::daMirror_c() {
+    m_entryModel = &daMirror_c::entryModel;
 }
-#pragma pop
 
 /* 80871E84-80871F08 001344 0084+00 1/0 0/0 0/0 .text            __dt__16dMirror_packet_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMirror_packet_c::~dMirror_packet_c() {
-    nofralloc
-#include "asm/rel/d/a/d_a_mirror/d_a_mirror/__dt__16dMirror_packet_cFv.s"
+dMirror_packet_c::~dMirror_packet_c() {
 }
-#pragma pop
 
 /* 80871F08-80871F78 0013C8 0070+00 1/1 0/0 0/0 .text            createHeap__10daMirror_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMirror_c::createHeap() {
-    nofralloc
-#include "asm/rel/d/a/d_a_mirror/d_a_mirror/createHeap__10daMirror_cFv.s"
+bool daMirror_c::createHeap() {
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
+    field_0x6f8 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    return (field_0x6f8 != NULL);
 }
-#pragma pop
 
 /* 80871F78-80872018 001438 00A0+00 1/1 0/0 0/0 .text            setModelMtx__10daMirror_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMirror_c::setModelMtx() {
-    nofralloc
-#include "asm/rel/d/a/d_a_mirror/d_a_mirror/setModelMtx__10daMirror_cFv.s"
+void daMirror_c::setModelMtx() {
+    field_0x6f8->setBaseScale(mScale);
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
+    mDoMtx_stack_c::XrotM(shape_angle.x);
+    mDoMtx_stack_c::ZrotM(0x2000);
+    field_0x6f8->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
-#pragma pop
 
 /* 80872018-8087206C 0014D8 0054+00 1/0 0/0 0/0 .text            daMirror_create__FP10daMirror_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daMirror_create(daMirror_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_mirror/d_a_mirror/daMirror_create__FP10daMirror_c.s"
+static int daMirror_create(daMirror_c* i_this) {
+    fopAcM_SetupActor(i_this, daMirror_c);
+    return i_this->daMirror_c::create();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 808725DC-8087260C 000050 0030+00 0/0 0/0 0/0 .rodata          @4406 */
@@ -630,17 +574,16 @@ COMPILER_STRIP_GATE(0x808725DC, &lit_4406);
 
 /* 8087260C-8087263C 000080 0030+00 1/1 0/0 0/0 .rodata
  * l_mirrorQuad$localstatic3$create__10daMirror_cFv             */
-SECTION_RODATA static u8 const data_8087260C[48] = {
-    0xC2, 0x48, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00,
-    0x42, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0xC2, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_RODATA static Vec const data_8087260C[4] = {
+    {-50.0f, 100.0f, 0.0f}, {50.0f, 100.0f, 0.0f}, 
+    {50.0f, 0.0f, 0.0f}, {-50.0f, 0.0f, 0.0f},
 };
 COMPILER_STRIP_GATE(0x8087260C, &data_8087260C);
 
 /* 8087263C-80872648 0000B0 000C+00 1/1 0/0 0/0 .rodata
  * l_mirrorLook$localstatic4$create__10daMirror_cFv             */
-SECTION_RODATA static u8 const data_8087263C[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_RODATA static Vec const data_8087263C = {
+    0.0f, 50.0f, 0.0f,
 };
 COMPILER_STRIP_GATE(0x8087263C, &data_8087263C);
 
@@ -652,34 +595,114 @@ COMPILER_STRIP_GATE(0x80872648, &lit_4544);
 #pragma pop
 
 /* 8087206C-80872344 00152C 02D8+00 2/2 0/0 0/0 .text            create__10daMirror_cFv */
+// regalloc, static var load
+#ifdef NONMATCHING
+int daMirror_c::create() {
+    if (getSw() != 0xff && !i_fopAcM_isSwitch(this, getSw())) {
+        return 4;
+    }
+
+    if (m_myObj != NULL) {
+        return 0;
+    }
+
+    s32 type = getType();
+    if (type == 2) {
+        request_of_phase_process_class* phase = (request_of_phase_process_class*)this;
+        if (this) {
+            phase = &mPhase;
+        }
+        int res = dComIfG_resLoad(phase, l_arcName);
+        switch (res) {
+        default:
+            return res;
+        case cPhs_COMPLEATE_e:
+            if (!fopAcM_entrySolidHeap(this, (heapCallbackFunc)daMirror_c_createHeap, 0x1540)) {
+                return 5;
+            }
+            break;
+        }
+
+        setModelMtx();
+        void* uVar2 = dComIfG_getObjectRes(l_arcName, 7);
+        GXTexObj& texObj = mPacket.getTexObj();
+        mDoLib_setResTimgObj((ResTIMG*)uVar2, &texObj, 0, NULL);
+        Vec src[4] = {
+            {-72.5f, 145.0f, 0.0f}, {72.5f, 145.0f, 0.0f},
+            {72.5f, 0.0f, 0.0f}, {-72.5f, 0.0f, 0.0f},
+        };
+        mDoMtx_stack_c::scaleS(mScale);
+        mDoMtx_stack_c::revConcat(field_0x6f8->getBaseTRMtx());
+        cMtx_multVecArray(mDoMtx_stack_c::get(), src, mPacket.getQuad(), 4);
+        mPacket.getViewScale().set(-1.0f, 1.0f, 1.0f);
+    } else {
+        if (type == 1) {
+            mScale *= 10.0f;
+            mPacket.getViewScale().set(1.0,-1.0,1.0);
+        } else {
+            if (type == 3) {
+                request_of_phase_process_class* phase = (request_of_phase_process_class*)this;
+                if (this) {
+                    phase = &mPhase;
+                }
+                int res = dComIfG_resLoad(phase, l_arcName2);
+                switch (res) {
+                default:
+                    return res;
+                case cPhs_COMPLEATE_e:
+                    void* objRes = dComIfG_getObjectRes(l_arcName2, 0x25);
+                    mDoLib_setResTimgObj((ResTIMG*)objRes, &mPacket.getTexObj(), 0, NULL);
+                    break;
+                }
+            }
+            mPacket.getViewScale().set(-1.0f, 1.0f, 1.0f);
+        }
+        mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+        mDoMtx_stack_c::YrotM(shape_angle.y);
+        mDoMtx_stack_c::XrotM(shape_angle.x);
+        mDoMtx_stack_c::scaleM(mScale.x, mScale.y, mScale.z);
+        static Vec const data_8087260Cb[4] = {
+            {-50.0f, 100.0f, 0.0f}, {50.0f, 100.0f, 0.0f}, 
+            {50.0f, 0.0f, 0.0f}, {-50.0f, 0.0f, 0.0f},
+        };
+        mDoMtx_stack_c::multVecArray(data_8087260Cb,
+                                     mPacket.getQuad(), 4);
+    }
+    m_myObj = this;
+    mPacket.calcMinMax();
+    static Vec const data_8087263C_a = {
+        0.0f, 50.0f, 0.0f,
+    };
+    mDoMtx_stack_c::multVec(&data_8087263C_a, &mEyePos);
+    return 4;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daMirror_c::create() {
+asm int daMirror_c::create() {
     nofralloc
 #include "asm/rel/d/a/d_a_mirror/d_a_mirror/create__10daMirror_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80872344-808723C4 001804 0080+00 1/0 0/0 0/0 .text            daMirror_Delete__FP10daMirror_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daMirror_Delete(daMirror_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_mirror/d_a_mirror/daMirror_Delete__FP10daMirror_c.s"
+static int daMirror_Delete(daMirror_c* param_0) {
+    s32 mirrorType = param_0->getType();
+    if (mirrorType == 2) {
+        dComIfG_resDelete(param_0 ? &param_0->mPhase : (request_of_phase_process_class*)param_0, l_arcName);
+    } else if (mirrorType == 3) {
+        dComIfG_resDelete(param_0 ? &param_0->mPhase: (request_of_phase_process_class*)param_0, l_arcName2);
+    }
+    daMirror_c::m_myObj = NULL;
+    return 1;
 }
-#pragma pop
 
 /* 808723C4-808723E4 001884 0020+00 1/0 0/0 0/0 .text            daMirror_execute__FP10daMirror_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daMirror_execute(daMirror_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_mirror/d_a_mirror/daMirror_execute__FP10daMirror_c.s"
+static int daMirror_execute(daMirror_c* param_0) {
+    return param_0->execute();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8087264C-80872650 0000C0 0004+00 1/1 0/0 0/0 .rodata          @4574 */
@@ -687,34 +710,86 @@ SECTION_RODATA static f32 const lit_4574 = 40000.0f;
 COMPILER_STRIP_GATE(0x8087264C, &lit_4574);
 
 /* 808723E4-808724C0 0018A4 00DC+00 1/1 0/0 0/0 .text            execute__10daMirror_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+int daMirror_c::execute() {
+    if (this != m_myObj) {
+        if (m_myObj == NULL) {
+            if (create() == 5) {
+                fopAcM_delete(this);
+            }
+        }
+        return 1;
+    }
+
+    daPy_py_c* player = daPy_getLinkPlayerActorClass();
+    if (mPacket.getViewScale().y > 0.0f &&
+        player->getKandelaarFlamePos() &&
+        fopAcM_searchActorDistance2(this, player) < 40000.0f)
+    {
+        if (fopAcM_seenActorAngleY(this, player) < 0x4000) {
+            daPy_py_c::setLookPos(&mEyePos);
+        }
+    }
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daMirror_c::execute() {
+asm int daMirror_c::execute() {
     nofralloc
 #include "asm/rel/d/a/d_a_mirror/d_a_mirror/execute__10daMirror_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 808724C0-80872560 001980 00A0+00 1/0 0/0 0/0 .text            daMirror_draw__FP10daMirror_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daMirror_draw(daMirror_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_mirror/d_a_mirror/daMirror_draw__FP10daMirror_c.s"
+static int daMirror_draw(daMirror_c* param_0) {
+    if (param_0 != daMirror_c::m_myObj) {
+        return 1;
+    }
+
+    if (param_0->field_0x6f8) {
+        g_env_light.settingTevStruct(0x10, &param_0->current.pos, &param_0->mTevStr);
+        g_env_light.setLightTevColorType(param_0->field_0x6f8->mModelData, &param_0->mTevStr);
+        mDoExt_modelUpdateDL(param_0->field_0x6f8);
+    }
+
+    dComIfGd_getOpaListBG()->entryImm(&param_0->mPacket, 0);
+    return 1;
 }
-#pragma pop
 
 /* 80872560-80872584 001A20 0024+00 1/0 0/0 0/0 .text            entryModel__10daMirror_cFP8J3DModel
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMirror_c::entryModel(J3DModel* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_mirror/d_a_mirror/entryModel__10daMirror_cFP8J3DModel.s"
+int daMirror_c::entryModel(J3DModel* param_0) {
+    return mPacket.entryModel(param_0);
 }
-#pragma pop
 
 /* 80872650-80872650 0000C4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+/* 80872674-80872694 -00001 0020+00 1/0 0/0 0/0 .data            daMirror_METHODS */
+static actor_method_class daMirror_METHODS = {
+    (process_method_func)daMirror_create,
+    (process_method_func)daMirror_Delete,
+    (process_method_func)daMirror_execute,
+    (process_method_func)NULL,
+    (process_method_func)daMirror_draw,
+};
+
+/* 80872694-808726C4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_MIRROR */
+extern actor_process_profile_definition g_profile_MIRROR = {
+    -3,
+    7,
+    -3,
+    PROC_MIRROR,
+    &g_fpcLf_Method.mBase,
+    sizeof(daMirror_c), 
+    0,
+    0,
+    &g_fopAc_Method.base,
+    0x02F5, 
+    &daMirror_METHODS,
+    0x00060000,
+    5,
+    0,
+};

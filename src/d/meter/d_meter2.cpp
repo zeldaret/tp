@@ -15,9 +15,7 @@
 #include "d/meter/d_meter_HIO.h"
 #include "d/meter/d_meter_map.h"
 #include "dol2asm.h"
-#include "f_op/f_op_msg.h"
 #include "f_op/f_op_msg_mng.h"
-#include "m_Do/m_Do_audio.h"
 #include "rel/d/a/d_a_horse/d_a_horse.h"
 
 struct dMeterHakusha_c : public dMeterSub_c {
@@ -2030,7 +2028,8 @@ void dMeter2_c::moveButtonS() {
 }
 
 /* 80222518-80222E88 21CE58 0970+00 1/1 0/0 0/0 .text            moveButtonXY__9dMeter2_cFv */
-// single r26 / r29 reg swap
+// dMeter2Info_isDirectUseItem is the issue. If you set the return value to int all through the
+// stack, it matches but then dMeter2Info_isDirectUseItem itself doesn't match.
 #ifdef NONMATCHING
 void dMeter2_c::moveButtonXY() {
     bool sp8[2];
@@ -2194,19 +2193,19 @@ void dMeter2_c::moveButtonXY() {
                     dComIfGp_setXStatusForce(0, 0);
                 }
 
-                if (mItemStatus[i][1] != dComIfGp_getXStatus()) {
-                    mItemStatus[i][1] = dComIfGp_getXStatus();
+                if (mItemStatus[i*2+1] != dComIfGp_getXStatus()) {
+                    mItemStatus[i*2+1] = dComIfGp_getXStatus();
 
-                    if (mItemStatus[i][1] == 0x2D || mItemStatus[i][1] == 0x2E) {
-                        dComIfGp_setXStatus(mItemStatus[i][1], 1);
+                    if (mItemStatus[i*2+1] == 0x2D || mItemStatus[i*2+1] == 0x2E) {
+                        dComIfGp_setXStatus(mItemStatus[i*2+1], 1);
                     }
 
                     spC[i] = 1;
                     sp8[i] = 1;
                 }
 
-                if (mXSetFlag[i] != dComIfGp_isXSetFlag(2)) {
-                    mXSetFlag[i] = dComIfGp_isXSetFlag(2);
+                if ((&mXSetFlag)[i] != dComIfGp_isXSetFlag(2)) {
+                    (&mXSetFlag)[i] = dComIfGp_isXSetFlag(2);
                     spC[i] = 1;
                     sp8[i] = 1;
                 }
@@ -2216,37 +2215,37 @@ void dMeter2_c::moveButtonXY() {
                     dComIfGp_setYStatusForce(0, 0);
                 }
 
-                if (mItemStatus[i][1] != dComIfGp_getYStatus()) {
-                    mItemStatus[i][1] = dComIfGp_getYStatus();
+                if (mItemStatus[i*2+1] != dComIfGp_getYStatus()) {
+                    mItemStatus[i*2+1] = dComIfGp_getYStatus();
 
-                    if (mItemStatus[i][1] == 0x2D || mItemStatus[i][1] == 0x2E) {
-                        dComIfGp_setYStatus(mItemStatus[i][1], 1);
+                    if (mItemStatus[i*2+1] == 0x2D || mItemStatus[i*2+1] == 0x2E) {
+                        dComIfGp_setYStatus(mItemStatus[i*2+1], 1);
                     }
 
                     spC[i] = 1;
                     sp8[i] = 1;
                 }
 
-                if (mXSetFlag[i] != dComIfGp_isYSetFlag(2)) {
-                    mXSetFlag[i] = dComIfGp_isYSetFlag(2);
+                if ((&mXSetFlag)[i] != dComIfGp_isYSetFlag(2)) {
+                    (&mXSetFlag)[i] = dComIfGp_isYSetFlag(2);
                     spC[i] = 1;
                     sp8[i] = 1;
                 }
             }
         } else {
-            if (mItemStatus[0][i] != dComIfGp_getSelectItem(i) || field_0x128 != field_0x12c) {
-                mItemStatus[0][i] = dComIfGp_getSelectItem(i);
-                spC[i] = 1;  //
+            if (mItemStatus[2*i] != dComIfGp_getSelectItem(i) || field_0x128 != field_0x12c) {
+                mItemStatus[2*i] = dComIfGp_getSelectItem(i);
+                spC[i] = 1;
                 sp8[i] = 1;
             }
 
-            if (field_0x1d6[i][0] != dMeter2Info_isDirectUseItem(i)) {
-                field_0x1d6[i][0] = dMeter2Info_isDirectUseItem(i);
-                spC[i] = 1;  //
+            if (field_0x1d6[i] != dMeter2Info_isDirectUseItem(i)) {
+                field_0x1d6[i] = dMeter2Info_isDirectUseItem(i);
+                spC[i] = 1;
                 sp8[i] = 1;
             }
 
-            if (mItemStatus[0][i] == 0x48) {
+            if (mItemStatus[2*i] == 0x48) {
                 if (field_0x1ec == 0) {
                     if (dComIfGs_getOil() != 0) {
                         field_0x1ec = 1;
@@ -2258,7 +2257,7 @@ void dMeter2_c::moveButtonXY() {
                         sp8[i] = 1;
                     }
                 }
-            } else if (mItemStatus[0][i] == 0x46) {
+            } else if (mItemStatus[2*i] == 0x46) {
                 if (field_0x1ed == 0) {
                     if (daPy_getPlayerActorClass()->checkCopyRodTopUse()) {
                         field_0x1ed = 1;
@@ -2270,16 +2269,16 @@ void dMeter2_c::moveButtonXY() {
                         sp8[i] = 1;
                     }
                 }
-            } else if (mItemStatus[0][i] == 0x50 || mItemStatus[0][i] == 0x70 ||
-                       mItemStatus[0][i] == 0x71 || mItemStatus[0][i] == 0x72)
+            } else if (mItemStatus[2*i] == 0x50 || mItemStatus[2*i] == 0x70 ||
+                       mItemStatus[2*i] == 0x71 || mItemStatus[2*i] == 0x72)
             {
                 if (sp8[i] != 0) {
                     mpMeterDraw->setItemNum(i, dComIfGp_getSelectItemNum(i),
                                             dComIfGp_getSelectItemMaxNum(i));
                 }
-            } else if (mItemStatus[0][i] == 0x76) {
-                if (field_0x1d6[i][2] != dComIfGp_getSelectItemNum(i)) {
-                    field_0x1d6[i][2] = dComIfGp_getSelectItemNum(i);
+            } else if (mItemStatus[2*i] == 0x76) {
+                if (field_0x1d8[i] != dComIfGp_getSelectItemNum(i)) {
+                    field_0x1d8[i] = dComIfGp_getSelectItemNum(i);
                     sp8[i] = 1;
                 }
 
@@ -2287,18 +2286,18 @@ void dMeter2_c::moveButtonXY() {
                     mpMeterDraw->setItemNum(i, dComIfGp_getSelectItemNum(i),
                                             dComIfGp_getSelectItemMaxNum(i));
                 }
-            } else if (mItemStatus[0][i] == 0x43 || mItemStatus[0][i] == 0x53 ||
-                       mItemStatus[0][i] == 0x54 || mItemStatus[0][i] == 0x55 ||
-                       mItemStatus[0][i] == 0x56 || mItemStatus[0][i] == 0x5A)
+            } else if (mItemStatus[2*i] == 0x43 || mItemStatus[2*i] == 0x53 ||
+                       mItemStatus[2*i] == 0x54 || mItemStatus[2*i] == 0x55 ||
+                       mItemStatus[2*i] == 0x56 || mItemStatus[2*i] == 0x5A)
             {
                 if (sp8[i] != 0) {
                     mpMeterDraw->setItemNum(i, mArrowNum, dComIfGs_getArrowMax());
                 }
-            } else if (mItemStatus[0][i] == 0x4B) {
+            } else if (mItemStatus[2*i] == 0x4B) {
                 if (sp8[i] != 0) {
                     mpMeterDraw->setItemNum(i, mPachinkoNum, dComIfGs_getPachinkoMax());
                 }
-            } else if (mItemStatus[0][i] == 0x59) {
+            } else if (mItemStatus[2*i] == 0x59) {
                 u8 var_r25 = dComIfGp_getSelectItemNum(i);
                 u8 var_r6_2 = dComIfGp_getSelectItemMaxNum(i);
 
@@ -2315,7 +2314,7 @@ void dMeter2_c::moveButtonXY() {
         }
 
         if (sp8[i] != 0) {
-            mpMeterDraw->drawButtonXY(i, mItemStatus[i][0], mItemStatus[i][1],
+            mpMeterDraw->drawButtonXY(i, mItemStatus[2*i], mItemStatus[i*2+1],
                                       field_0x128 == 0 ? true : false, spC[i]);
         }
     }

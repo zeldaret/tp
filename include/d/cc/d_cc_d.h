@@ -7,7 +7,7 @@
  */
 
 #include "SSystem/SComponent/c_cc_d.h"
-#include "dolphin/types.h"
+#include "Z2AudioLib/Z2SeMgr.h"
 
 enum dCcD_hitSe {
     /* 0  */ dCcD_SE_NONE,
@@ -66,21 +66,26 @@ struct dCcD_SrcGObjTg {
     /* 0x4 */ dCcD_SrcGAtTgCoCommonBase mBase;
 };  // Size: 0x8
 
+struct dCcD_SrcGObjCo {
+    /* 0x0 */ dCcD_SrcGAtTgCoCommonBase mBase;
+};  // Size: 0x4
+
 struct dCcD_SrcGObjInf {
     /* 0x00 */ cCcD_SrcObj mObj;
     /* 0x1C */ dCcD_SrcGObjAt mGObjAt;
     /* 0x24 */ dCcD_SrcGObjTg mGObjTg;
-    /* 0x2C */ dCcD_SrcGAtTgCoCommonBase mGObjCo;
+    /* 0x2C */ dCcD_SrcGObjCo mGObjCo;
 };  // Size: 0x30
 
 struct dCcD_SrcSph {
     /* 0x00 */ dCcD_SrcGObjInf mObjInf;
-    /* 0x30 */ cM3dGSphS mSph;
+    /* 0x30 */ cCcD_SrcSphAttr mSphAttr;
 };  // Size: 0x40
 
 struct dCcD_SrcTri {
     /* 0x00 */ dCcD_SrcGObjInf mObjInf;
-};  // Size: 0x30
+    /* 0x30 */ cCcD_SrcTriAttr mTriAttr;
+};  // Size: 0x54
 
 struct dCcD_SrcCyl {
     /* 0x00 */ dCcD_SrcGObjInf mObjInf;
@@ -89,7 +94,7 @@ struct dCcD_SrcCyl {
 
 struct dCcD_SrcCps {
     /* 0x00 */ dCcD_SrcGObjInf mObjInf;
-    /* 0x30 */ cM3dGCpsS mCps;
+    /* 0x30 */ cCcD_SrcCpsAttr mCpsAttr;
 };  // Size: 0x4C
 
 class dCcD_GStts : public cCcD_GStts {
@@ -98,6 +103,7 @@ public:
     /* 800837F8 */ void Ct();
     /* 80083830 */ void Move();
     /* 8008523C */ virtual ~dCcD_GStts() {}
+    void ClrAt() { mAt = 0; }
     void ClrTg() { mTg = 0; }
     void SetAtApid(unsigned int id) { mAtApid = id; }
     void SetTgApid(unsigned int id) { mTgApid = id; }
@@ -111,6 +117,7 @@ public:
     void SetAtSpl(dCcG_At_Spl spl) { mAt = spl; }
     dCcG_Tg_Spl GetTgSpl() { return (dCcG_Tg_Spl)mTg; }
     void SetTgSpl(dCcG_Tg_Spl spl) { mTg = spl; }
+    void OnNoActor() { field_0x1C |= 1; }
 
     // private:
     /* 0x04 */ u8 mAt;
@@ -127,11 +134,11 @@ public:
 class dCcD_Stts : public cCcD_Stts, public dCcD_GStts {
 public:
     dCcD_Stts() {}
-    /* 80083850 */ cCcD_GStts* GetGStts();
+    /* 80083850 */ virtual cCcD_GStts* GetGStts();
     /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-    /* 800838F4 */ void Ct();
-    /* 80083928 */ void ClrAt();
-    /* 80083934 */ void ClrTg();
+    /* 800838F4 */ virtual void Ct();
+    /* 80083928 */ virtual void ClrAt();
+    /* 80083934 */ virtual void ClrTg();
     /* 800851AC */ virtual ~dCcD_Stts() {}
 
 };  // Size = 0x3C
@@ -164,7 +171,7 @@ public:
     /* 80083748 */ bool ChkEffCounter();
     /* 80083CA0 */ virtual ~dCcD_GAtTgCoCommonBase() {}
 
-    void ResetEffCounter() { mEffCounter = 0; }
+    void ClrEffCounter() { mEffCounter = 0; }
     u32 GetGFlag() const { return mGFlag; }
     u32 GetRPrm() const { return mRPrm; }
     u32 MskSPrm(u32 mask) const { return mGFlag & mask; }
@@ -173,9 +180,11 @@ public:
     void OnSPrm(u32 flag) { mGFlag |= flag; }
     void OnRPrm(u32 flag) { mRPrm |= flag; }
     void OffSPrm(u32 flag) { mGFlag &= ~flag; }
+    void OffRPrm(u32 flag) { mRPrm &= ~flag; }
     bool ChkRPrm(u32 flag) const { return MskRPrm(flag); }
     void SetHitCallback(dCcD_HitCallback callback) { mHitCallback = callback; }
     dCcD_HitCallback GetHitCallback() { return mHitCallback; }
+    void ClrHit() { ClrActorInfo(); }
 };  // Size = 0x1C
 
 
@@ -213,6 +222,7 @@ class dCcD_GObjTg : public dCcD_GAtTgCoCommonBase {
 public:
     /* 800839A0 */ void Set(dCcD_SrcGObjTg const&);
     /* 80083BE8 */ virtual ~dCcD_GObjTg() {}
+    void SetSe(u8 se) { mSe = se; }
     void SetVec(cXyz& vec) { mVec = vec; }
     cXyz& GetVec() { return mVec; }
     void SetShieldFrontRangeYAngle(s16* angle) { mShieldFrontRangeYAngle = angle; }
@@ -243,6 +253,7 @@ private:
 class dCcD_GObjCo : public dCcD_GAtTgCoCommonBase {
 public:
     /* 80083B8C */ virtual ~dCcD_GObjCo() {}
+    void Set(dCcD_SrcGObjCo const& pSrc) { dCcD_GAtTgCoCommonBase::Set(pSrc.mBase); }
 };  // Size = 0x1C ?
 
 // Object Info
@@ -250,21 +261,21 @@ class dCcD_GObjInf : public cCcD_GObjInf {
 public:
     /* 80083A28 */ dCcD_GObjInf();
     /* 800840E4 */ virtual ~dCcD_GObjInf();
-    /* 80084268 */ cCcD_GObjInf* GetGObjInf();
+    /* 80084268 */ virtual cCcD_GObjInf* GetGObjInf();
     /* 8008426C */ virtual void ClrAtHit();
     /* 800842C0 */ u32 ChkAtHit();
     /* 80084318 */ void ResetAtHit();
     /* 80084358 */ cCcD_Obj* GetAtHitObj();
     /* 800843A8 */ cCcD_GObjInf* GetAtHitGObj();
-    /* 800843DC */ bool ChkAtNoGuard();
-    /* 800843FC */ void ClrTgHit();
+    /* 800843DC */ u8 ChkAtNoGuard();
+    /* 800843FC */ virtual void ClrTgHit();
     /* 80084460 */ u32 ChkTgHit();
     /* 800844B8 */ void ResetTgHit();
     /* 800844F8 */ cCcD_Obj* GetTgHitObj();
     /* 80084548 */ dCcD_GObjInf* GetTgHitGObj();
     /* 8008457C */ u8 GetTgHitObjSe();
-    /* 800845B0 */ static u32 getHitSeID(u8, int);
-    /* 8008460C */ void ClrCoHit();
+    /* 800845B0 */ static Z2SoundID getHitSeID(u8, int);
+    /* 8008460C */ virtual void ClrCoHit();
     /* 80084658 */ u32 ChkCoHit();
     /* 800846B0 */ void ResetCoHit();
     /* 800846F0 */ cCcD_Obj* GetCoHitObj();
@@ -273,15 +284,18 @@ public:
     fopAc_ac_c* GetCoHitAc() { return mGObjCo.GetAc(); }
 
     void SetAtVec(cXyz& vec) { mGObjAt.SetVec(vec); }
+    void SetTgVec(cXyz& vec) { mGObjTg.SetVec(vec); }
     bool ChkAtNoMass() const { return mGObjAt.ChkSPrm(8); }
     void OnAtNoHitMark() { mGObjAt.OnSPrm(2); }
     void OffAtNoHitMark() { mGObjAt.OffSPrm(2); }
     void OnTgNoHitMark() { mGObjTg.OnSPrm(4); }
+    void OffTgNoHitMark() { mGObjTg.OffSPrm(4); }
     void OnAtNoConHit() { mGObjAt.OnSPrm(1); }
     void OffAtNoConHit() { mGObjAt.OffSPrm(1); }
     void OnTgNoConHit() { mGObjTg.OnSPrm(2); }
     void SetAtHitMark(u8 mark) { mGObjAt.SetHitMark(mark); }
     void SetAtSe(u8 se) { mGObjAt.SetSe(se); }
+    void SetTgSe(u8 se) { mGObjTg.SetSe(se); }
     void SetAtMtrl(u8 mtrl) { mGObjAt.SetMtrl(mtrl); }
     void SetTgMtrl(u8 mtrl) { mGObjTg.SetMtrl(mtrl); }
     fopAc_ac_c* GetAtHitAc() { return mGObjAt.GetAc(); }
@@ -326,8 +340,14 @@ public:
     void SetAtHitApid(unsigned int apid) { mGObjAt.SetHitApid(apid); }
     void SetTgHitApid(unsigned int apid) { mGObjTg.SetHitApid(apid); }
     void OnCoHitNoActor() { mGObjCo.OnRPrm(1); }
+    void OffCoHitNoActor() { mGObjCo.OffRPrm(1); }
     void OnAtHitNoActor() { mGObjAt.OnRPrm(2); }
+    void OffAtHitNoActor() { mGObjAt.OffRPrm(2); }
     void OnTgHitNoActor() { mGObjTg.OnRPrm(1); }
+    void OffTgHitNoActor() { mGObjTg.OffRPrm(1); }
+    bool ChkCoHitNoActor() const { return mGObjCo.ChkRPrm(1); }
+    bool ChkAtHitNoActor() const { return mGObjAt.ChkRPrm(2); }
+    bool ChkTgHitNoActor() const { return mGObjTg.ChkRPrm(1); }
     bool ChkTgWolfSpNoDamage() { return mGObjTg.ChkSPrm(0x800); }
     bool ChkAtNoHitMark() { return mGObjAt.ChkSPrm(2); }
     bool ChkTgNoHitMark() { return mGObjTg.ChkSPrm(4); }
@@ -338,17 +358,26 @@ public:
     int GetAtHitMark() { return mGObjAt.GetHitMark(); }
     bool ChkAtEffCounter() { return mGObjAt.ChkEffCounter(); }
     bool ChkTgEffCounter() { return mGObjTg.ChkEffCounter(); }
+    void ClrAtEffCounter() { mGObjAt.ClrEffCounter(); }
+    void ClrTgEffCounter() { mGObjTg.ClrEffCounter(); }
+    void ClrCoEffCounter() { mGObjCo.ClrEffCounter(); }
     void SetAtEffCounterTimer() { mGObjAt.SetEffCounterTimer(); }
     void SetTgEffCounterTimer() { mGObjTg.SetEffCounterTimer(); }
+    void SubtractAtEffCounter() { mGObjAt.SubtractEffCounter(); }
+    void SubtractTgEffCounter() { mGObjTg.SubtractEffCounter(); }
+    void SubtractCoEffCounter() { mGObjCo.SubtractEffCounter(); }
     void OnTgShieldHit() { mGObjTg.OnRPrm(2); }
+    void OffTgShieldHit() { mGObjTg.OffRPrm(2); }
     void OnAtShieldHit() { mGObjAt.OnRPrm(1); }
+    void OffAtShieldHit() { mGObjAt.OffRPrm(1); }
+    void OffTgMagneHit() { mGObjTg.OffRPrm(4); }
     void SetTgRVec(cXyz& vec) { mGObjTg.SetRVec(vec); }
     void SetAtRVec(cXyz& vec) { mGObjAt.SetRVec(vec); }
     void SetTgHitPos(cXyz& pos) { mGObjTg.SetHitPos(pos); }
     void SetAtHitPos(cXyz& pos) { mGObjAt.SetHitPos(pos); }
     u32 GetTgHitObjHitSeID(int i_soundID) { return getHitSeID(GetTgHitObjSe(),i_soundID); }
     
-    static u32 const m_hitSeID[24];
+    static const Z2SoundID m_hitSeID[24];
 
 protected:
     /* 0x058 */ dCcD_GObjAt mGObjAt;

@@ -1,9 +1,6 @@
 #ifndef D_BG_D_BG_S_H
 #define D_BG_D_BG_S_H
 
-#include "SSystem/SComponent/c_bg_s_gnd_chk.h"
-#include "SSystem/SComponent/c_bg_s_lin_chk.h"
-#include "SSystem/SComponent/c_bg_s_poly_info.h"
 #include "d/bg/d_bg_w_base.h"
 #include "dolphin/types.h"
 #include "global.h"
@@ -43,7 +40,7 @@ public:
     int Release(dBgW_Base*);
     bool LineCross(cBgS_LinChk*);
     f32 GroundCross(cBgS_GndChk*);
-    static void ConvDzb(void*);
+    static void* ConvDzb(void*);
     fopAc_ac_c* GetActorPointer(int) const;
     dBgW_Base* GetBgWBasePointer(cBgS_PolyInfo const&) const;
     bool ChkPolySafe(cBgS_PolyInfo const&);
@@ -111,6 +108,7 @@ public:
 };  // Size: 0x1404
 
 bool dBgS_CheckBGroundPoly(cBgS_PolyInfo const&);
+bool dBgS_CheckBRoofPoly(cBgS_PolyInfo const&);
 bool dBgS_CheckBWallPoly(cBgS_PolyInfo const&);
 void dBgS_MoveBGProc_Typical(dBgW* param_0, void* param_1, cBgS_PolyInfo const& param_2,
                              bool param_3, cXyz* param_4, csXyz* param_5, csXyz* param_6);

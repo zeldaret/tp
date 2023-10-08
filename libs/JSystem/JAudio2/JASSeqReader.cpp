@@ -4,7 +4,6 @@
  */
 
 #include "JSystem/JAudio2/JASSeqReader.h"
-#include "dolphin/types.h"
 
 /* 80296108-80296148 290A48 0040+00 0/0 2/2 0/0 .text            init__12JASSeqReaderFv */
 void JASSeqReader::init() {

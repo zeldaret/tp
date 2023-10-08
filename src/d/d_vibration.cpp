@@ -4,19 +4,18 @@
 //
 
 #include "d/d_vibration.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "d/com/d_com_inf_game.h"
 #include "m_Do/m_Do_controller_pad.h"
+#include "SSystem/SComponent/c_math.h"
 
 //
 // Forward References:
 //
 
-extern "C" static void func_8006F168();
-extern "C" static void func_8006F184();
-extern "C" static void func_8006F1A4();
-extern "C" static void func_8006F1D8();
+extern "C" static void func_8006F168__FPUsUll();
+extern "C" static void func_8006F184__FUlll();
+extern "C" static u32 func_8006F1A4__FUlll();
+extern "C" static void func_8006F1D8__Fll();
 extern "C" void Run__12dVibration_cFv();
 extern "C" void StartShock__12dVibration_cFii4cXyz();
 extern "C" void StartQuake__12dVibration_cFii4cXyz();
@@ -63,64 +62,284 @@ extern "C" u8 m_gamePad__8mDoCPd_c[16];
 
 /* 8006F168-8006F184 069AA8 001C+00 1/1 0/0 0/0 .text makedata__25@unnamed@d_vibration_cpp@FPUsUll
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8006F168() {
-    nofralloc
-#include "asm/d/d_vibration/func_8006F168.s"
+static u16* func_8006F168(u16* param_0, u32 param_1, s32 param_2) {
+    param_0[0] = param_2;
+    param_0[1] = param_1 >> 16;
+    param_0[2] = param_1;
+    param_0[3] = 0;
+    return param_0;
 }
-#pragma pop
 
 /* 8006F184-8006F1A4 069AC4 0020+00 1/1 0/0 0/0 .text rollshift__25@unnamed@d_vibration_cpp@FUlll
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8006F184() {
-    nofralloc
-#include "asm/d/d_vibration/func_8006F184.s"
+static s32 func_8006F184(u32 param_0, s32 param_1, s32 param_2) {
+    s32 temp = param_2 / param_1;
+    temp = temp * param_1;
+    temp = param_2 - temp;
+    param_2 = param_0 >> temp;
+    temp = param_1 - temp;
+    temp = param_0 << temp;
+    return param_2 | temp;
 }
-#pragma pop
 
 /* 8006F1A4-8006F1D8 069AE4 0034+00 2/2 0/0 0/0 .text makebits__25@unnamed@d_vibration_cpp@FUlll
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8006F1A4() {
-    nofralloc
-#include "asm/d/d_vibration/func_8006F1A4.s"
+static u32 func_8006F1A4(u32 param_0, s32 param_1, s32 param_2) {
+    s32 uVar1 = -1;
+    u32 temp = param_0 & (uVar1 << (32 - param_1));
+    param_0 = temp;
+    uVar1 = param_1;
+    while (uVar1 < param_2) {
+        param_0 = temp | (param_0 >> param_1);
+        uVar1 += param_1;
+    }
+    return param_0;
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 80452620-80452628 000C20 0008+00 1/1 0/0 0/0 .sdata2          @3756 */
-SECTION_SDATA2 static f64 lit_3756 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8006F1D8-8006F268 069B18 0090+00 1/1 0/0 0/0 .text randombit__25@unnamed@d_vibration_cpp@Fll */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8006F1D8() {
-    nofralloc
-#include "asm/d/d_vibration/func_8006F1D8.s"
+static u32 func_8006F1D8(s32 param_0, s32 param_1) {
+    u32 uVar3 = 0;
+    
+    for (s32 iVar2 = 0; iVar2 < param_0; iVar2++) {
+        u32 dVar4 = param_1 * cM_rnd();
+        uVar3 |= 0x40000000 >> dVar4;
+    }
+    return uVar3;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450F50-80450F58 000450 0008+00 1/1 0/0 0/0 .sbss            data$3831 */
-static u8 data[8];
+static u16 data[4];
 
 /* 8006F268-8006FA24 069BA8 07BC+00 0/0 2/2 0/0 .text            Run__12dVibration_cFv */
+// Stack issues
+#ifdef NONMATCHING
+int dVibration_c::Run() {
+
+    field_0x8c = 1;
+    if (dComIfGs_checkOptVibration() != 1) {
+        if (field_0x54 != -1) {
+            field_0x54 = -1;
+            field_0x50 |= 1;
+        }
+        if (field_0x70 != -1) {
+            field_0x70 = -1;
+            field_0x6c |= 1;
+        }
+        field_0x80 = -99;
+        field_0x64 = 0xffffff9d;
+    }
+
+    if (((field_0x0.mShock.field_0x0 & 1) != 0) && (field_0x0.mShock.field_0x24 != -99)) {
+        field_0x0.mShock.field_0x24 = 0;
+        field_0x0.mShock.field_0x4 = -1;
+    }
+    if (((field_0x0.mQuake.field_0x0 & 1) != 0) && (field_0x0.mQuake.field_0x24 != -99)) {
+        field_0x0.mQuake.field_0x24 = 0;
+        field_0x0.mQuake.field_0x4 = -1;
+    }
+
+    if (field_0x0.mShock.field_0x24 == 0 || field_0x0.mQuake.field_0x24 == 0) {
+        s32 local_68 = 0;
+        if (field_0x0.mShock.field_0x4 == -1 || (field_0x0.mShock.field_0x0 & 1) != 0) {
+            field_0x0.mShock.field_0x24 = -99;
+            field_0x0.mShock.field_0x8 = 0;
+            field_0x0.mShock.field_0xc = 0;
+            field_0x0.mShock.field_0x10 = 0;
+        } else if (field_0x0.mShock.field_0x24 >= 0) {
+            local_68 |= 1;
+        }
+
+        if (field_0x0.mQuake.field_0x4 == -1 || (field_0x0.mQuake.field_0x0 & 1) != 0) {
+            field_0x0.mQuake.field_0x24 = -99;
+            field_0x0.mQuake.field_0x8 = 0;
+            field_0x0.mQuake.field_0xc = 0;
+            field_0x0.mQuake.field_0x10 = 0;
+        } else if (field_0x0.mQuake.field_0x24 >= 0) {
+            local_68 |= 2;
+        }
+
+        switch (local_68) {
+        case 1:
+            s32 x = field_0x0.mShock.field_0xc;
+            u32 local_60 = field_0x0.mShock.field_0x8;
+            local_60 |= func_8006F1D8(field_0x0.mShock.field_0x10, x);
+            s32 uVar3 = field_0x0.mShock.field_0x14;
+            if (dKy_darkworld_check()) {
+                uVar3 &= ~0x30;
+            }
+            camera_class* pCamera = dComIfGp_getCamera(0);
+            if (pCamera && pCamera->field_0x22f == 0x47) {
+                dCam_getBody()->StartShake(x, (u8*)&local_60, uVar3, field_0x0.mShock.field_0x18.norm());
+            }
+            break;
+        case 2:
+            x = field_0x0.mQuake.field_0xc;
+            local_60 = func_8006F184(field_0x0.mQuake.field_0x8, x, field_0x88);
+            local_60 |= func_8006F1D8(field_0x0.mQuake.field_0x10, x);
+            uVar3 = field_0x0.mQuake.field_0x14;
+            if (dKy_darkworld_check()) {
+                uVar3 &= ~0x30;
+            }
+            pCamera = dComIfGp_getCamera(0);
+            if (pCamera && pCamera->field_0x22f == 0x47) {
+                dCam_getBody()->StartShake(x, (u8*)&local_60, uVar3, field_0x0.mQuake.field_0x18.norm());
+            }
+            break;
+        case 3:
+            local_60 = field_0x0.mShock.field_0x8 << field_0x0.mShock.field_0x24;
+            x = field_0x0.mShock.field_0xc - field_0x0.mShock.field_0x24;
+            local_60 |= func_8006F184(func_8006F1A4(field_0x0.mQuake.field_0x8, field_0x0.mQuake.field_0xc, x), x, field_0x88);
+            local_60 |= func_8006F1D8(
+                field_0x0.mShock.field_0x10 > field_0x0.mQuake.field_0x10 ? field_0x0.mShock.field_0x10 : field_0x0.mQuake.field_0x10,
+                x
+                );
+            uVar3 = field_0x0.mShock.field_0x14 | field_0x0.mQuake.field_0x14;
+            if (dKy_darkworld_check()) {
+                uVar3 &= ~0x30;
+            }
+            pCamera = dComIfGp_getCamera(0);
+            if (pCamera && pCamera->field_0x22f == 0x47) {
+                cXyz tempSum = field_0x0.mShock.field_0x18 + field_0x0.mQuake.field_0x18;
+                dCam_getBody()->StartShake(x, (u8*)&local_60, uVar3, tempSum.norm());
+            }
+            field_0x0.mQuake.field_0x24 = 0;
+            field_0x0.mShock.field_0x24 = 0;
+            break;
+        default:
+            pCamera = dComIfGp_getCamera(0);
+            if (pCamera && pCamera->field_0x22f == 0x47) {
+                dCam_getBody()->StopShake();
+            }
+            break;
+        }
+    }
+
+    if (((field_0x50 & 1) != 0) && (field_0x64 != -99)) {
+        field_0x64 = 0;
+        field_0x54 = -1;
+    }
+
+    if (((field_0x6c & 1) != 0) && (field_0x80 != -99)) {
+        field_0x80 = 0;
+        field_0x70 = -1;
+    }
+
+    if (field_0x64 == 0 || field_0x80 == 0) {
+        s32 local_68 = 0;
+        if (field_0x54 == -1 || (field_0x50 & 1) != 0) {
+            field_0x64 = -99;
+            field_0x58 = 0;
+            field_0x5c = 0;
+            field_0x60 = 0;
+        } else if (field_0x64 >= 0) {
+            local_68 |= 1;
+        }
+
+        if (field_0x70 == -1 || (field_0x6c & 1) != 0) {
+            field_0x80 = -99;
+            field_0x74 = 0;
+            field_0x78 = 0;
+            field_0x7c = 0;
+        } else if (field_0x80 >= 0) {
+            local_68 |= 2;
+        }
+        switch (local_68) {
+        case 1:
+            u32 local_60;
+            s32 x = field_0x5c;
+            local_60 = field_0x58;
+            local_60 |= func_8006F1D8(field_0x60, x);
+            field_0x68 = x;
+            mDoCPd_c::startMotorWave(0, func_8006F168(data, local_60, x), JUTGamePad::CRumble::VAL_0, 0x3c);
+            break;
+        case 2:
+            x = field_0x78;
+            local_60 = func_8006F184(field_0x74, x, field_0x88);
+            local_60 |= func_8006F1D8(field_0x7c, x);
+            field_0x84 = 0x7fffffff;
+            mDoCPd_c::startMotorWave(0, func_8006F168(data, local_60, x), JUTGamePad::CRumble::VAL_1, 0x3c);
+            break;
+        case 3:
+            local_60 = field_0x58 << field_0x64;
+            x = field_0x5c - field_0x64;
+            local_60 |= func_8006F184(func_8006F1A4(field_0x74, field_0x78, x), x, field_0x88);
+            local_60 |= func_8006F1D8(
+                field_0x60 > field_0x7c ? field_0x60 : field_0x7c,
+                x
+                );
+            field_0x84 = x;
+            field_0x68 = x;
+            field_0x80 = 0;
+            field_0x64 = 0;
+            mDoCPd_c::startMotorWave(0, func_8006F168(data, local_60, x), JUTGamePad::CRumble::VAL_0, 0x3c);
+            break;
+        default:
+            mDoCPd_c::stopMotorWave(0);
+            mDoCPd_c::stopMotor(0);
+            field_0x84 = -99;
+            field_0x68 = -99;
+            break;
+        }
+    }
+
+    field_0x0.mQuake.field_0x0 = 0;
+    field_0x0.mShock.field_0x0 = 0;
+    field_0x6c = 0;
+    field_0x50 = 0;
+
+    if (field_0x0.mShock.field_0x24 >= 0) {
+        field_0x0.mShock.field_0x24++;
+
+        if (field_0x0.mShock.field_0x24 > field_0x0.mShock.field_0xc) {
+            field_0x0.mShock.field_0x0 |= 1;
+        }
+    }
+
+    if (field_0x64 >= 0) {
+        field_0x64++;
+
+        if (field_0x64 > field_0x68) {
+            field_0x50 |= 1;
+        }
+    }
+
+    if (field_0x0.mQuake.field_0x24 >= 0) {
+        field_0x0.mQuake.field_0x24++;
+
+        if (field_0x0.mQuake.field_0x24 > field_0x0.mQuake.field_0xc) {
+            field_0x0.mQuake.field_0x24 = 0;
+        }
+    }
+
+    if (field_0x80 >= 930) {
+        field_0x80 = 0;
+    } else if (field_0x80 >= 900) {
+        mDoCPd_c::stopMotorWave(0);
+        mDoCPd_c::stopMotor(0);
+        field_0x80++;
+    } else if (field_0x80 >= 0) {
+        field_0x80++;
+        if (field_0x80 > field_0x84) {
+            field_0x80 = 0;
+        }
+    }
+
+    field_0x88++;
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dVibration_c::Run() {
+asm int dVibration_c::Run() {
     nofralloc
 #include "asm/d/d_vibration/Run__12dVibration_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8006FA24-8006FB10 06A364 00EC+00 0/0 62/62 298/298 .text StartShock__12dVibration_cFii4cXyz */
 bool dVibration_c::StartShock(int param_0, int param_1, cXyz param_2) {
@@ -170,14 +389,58 @@ bool dVibration_c::StartQuake(int param_0, int param_1, cXyz param_2) {
 }
 
 /* 8006FC0C-8006FD94 06A54C 0188+00 0/0 2/2 2/2 .text StartQuake__12dVibration_cFPCUcii4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dVibration_c::StartQuake(u8 const* param_0, int param_1, int param_2, cXyz param_3) {
-    nofralloc
-#include "asm/d/d_vibration/StartQuake__12dVibration_cFPCUcii4cXyz.s"
+bool dVibration_c::StartQuake(u8 const* param_0, int param_1, int param_2, cXyz param_3) {
+    int iVar7;
+    int iVar6;
+    int iVar5;
+    int iVar4;
+    bool bVar8 = false;
+    int uVar1 = (param_0[0] << 8) | param_0[1];
+    if (uVar1 >= 9) {
+        iVar7 = 3;
+    } else {
+        iVar7 = 0;
+    }
+    if (uVar1 >= 1) {
+        iVar6 = 2;
+    } else {
+        iVar6 = 0;
+    }
+    
+    if (uVar1 >= 0x11) {
+        iVar5 = 4;
+    } else {
+        iVar5 = 0;
+    }
+    if (uVar1 >= 0x19) {
+        iVar4 = 5;
+    } else {
+        iVar4 = 0;
+    }
+    u32 this_00 =
+        param_0[iVar6] << 24 | param_0[iVar7] << 16 | param_0[iVar5] << 8 | (param_0[iVar4]);
+    if ((param_2 & 0x7e) != 0) {
+        field_0x0.mQuake.field_0x4 = 0;
+        field_0x0.mQuake.field_0x24 = 0;
+        field_0x0.mQuake.field_0x14 = param_2;
+        field_0x0.mQuake.field_0x18 = param_3;
+        field_0x0.mQuake.field_0x8 = func_8006F1A4(this_00, param_0[1], 0x20);
+        field_0x0.mQuake.field_0xc = 0x20;
+        field_0x0.mQuake.field_0x10 = param_1;
+        bVar8 = true;
+    }
+    if (((param_2 & 1) != 0) &&
+        (dComIfGs_checkOptVibration() == 1))
+    {
+        field_0x70 = 0;
+        field_0x80 = 0;
+        field_0x74 = func_8006F1A4(this_00, param_0[1], 0x20);
+        field_0x78 = 0x20;
+        field_0x7c = param_1;
+        bVar8 = true;
+    }
+    return bVar8;
 }
-#pragma pop
 
 /* 8006FD94-8006FE00 06A6D4 006C+00 0/0 6/6 82/82 .text            StopQuake__12dVibration_cFi */
 int dVibration_c::StopQuake(int param_0) {

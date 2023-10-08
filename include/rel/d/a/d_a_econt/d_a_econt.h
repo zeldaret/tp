@@ -2,7 +2,6 @@
 #define D_A_ECONT_H
 
 #include "f_op/f_op_actor_mng.h"
-#include "d/com/d_com_inf_game.h"
 
 class econt_class : public fopEn_enemy_c {
 public:

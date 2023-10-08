@@ -2,13 +2,12 @@
 #define J2DORTHOGRAPH_H
 
 #include "JSystem/J2DGraph/J2DGrafContext.h"
-#include "dolphin/types.h"
 
 class J2DOrthoGraph : public J2DGrafContext {
 public:
     /* 802E9670 */ J2DOrthoGraph();
-    /* 802E96D0 */ J2DOrthoGraph(f32, f32, f32, f32, f32, f32);
-    /* 802E980C */ void setOrtho(JGeometry::TBox2<f32> const&, f32, f32);
+    /* 802E96D0 */ J2DOrthoGraph(f32 x, f32 y, f32 width, f32 height, f32 far, f32 near);
+    /* 802E980C */ void setOrtho(JGeometry::TBox2<f32> const& bounds, f32 far, f32 near);
     /* 802E987C */ void scissorBounds(JGeometry::TBox2<f32>*, JGeometry::TBox2<f32> const*);
 
     /* 8000B118 */ virtual ~J2DOrthoGraph() {}
@@ -19,9 +18,9 @@ public:
     f32 getWidthPower() const { return mBounds.getWidth() / mOrtho.getWidth(); }
     f32 getHeightPower() const { return mBounds.getHeight() / mOrtho.getHeight(); }
 
-    void setOrtho(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4, f32 param_5) {
-        JGeometry::TBox2<f32> ortho(param_0, param_1, param_0 + param_2, param_1 + param_3);
-        setOrtho(ortho, param_4, param_5);
+    void setOrtho(f32 x, f32 y, f32 width, f32 height, f32 far, f32 near) {
+        JGeometry::TBox2<f32> ortho(x, y, x + width, y + height);
+        setOrtho(ortho, far, near);
     }
 
 private:
@@ -30,12 +29,11 @@ private:
     /* 0xD0 */ f32 mFar;
 };
 
-void J2DDrawLine(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor color,
+void J2DDrawLine(f32 x1, f32 y1, f32 x2, f32 y2, JUtility::TColor color,
                  int line_width);
-void J2DFillBox(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor color);
-void J2DFillBox(JGeometry::TBox2<f32> const& param_0, JUtility::TColor param_1);
-void J2DDrawFrame(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor param_4,
-                  u8 param_5);
-void J2DDrawFrame(JGeometry::TBox2<f32> const& param_0, JUtility::TColor param_1, u8 param_2);
+void J2DFillBox(f32 x, f32 y, f32 width, f32 height, JUtility::TColor color);
+void J2DFillBox(JGeometry::TBox2<f32> const& box, JUtility::TColor color);
+void J2DDrawFrame(f32 x, f32 y, f32 width, f32 height, JUtility::TColor color, u8 line_width);
+void J2DDrawFrame(JGeometry::TBox2<f32> const& box, JUtility::TColor color, u8 line_width);
 
 #endif /* J2DORTHOGRAPH_H */

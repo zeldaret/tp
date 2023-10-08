@@ -4,8 +4,6 @@
 //
 
 #include "JSystem/JUtility/JUTProcBar.h"
-#include "JSystem/J2DGraph/J2DOrthoGraph.h"
-#include "JSystem/JUtility/JUTVideo.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "global.h"
@@ -71,17 +69,17 @@ JUTProcBar::JUTProcBar() {
     field_0x108 = 0;
     s32 height = JUTGetVideoManager()->getRenderMode()->efb_height;
     if (height > 400) {
-        field_0x114.mBarWidth = 2;
-        field_0x114.mPosX = 0x27;
-        field_0x114.mPosY = height - 0x28;
-        field_0x114.mWidth = 0x232;
-        field_0x114.mUserPosition = height - 0x46;
+        mParams.mBarWidth = 2;
+        mParams.mPosX = 0x27;
+        mParams.mPosY = height - 0x28;
+        mParams.mWidth = 0x232;
+        mParams.mUserPosition = height - 0x46;
     } else {
-        field_0x114.mBarWidth = 1;
-        field_0x114.mPosX = 0x27;
-        field_0x114.mPosY = height - 0x14;
-        field_0x114.mWidth = 0x232;
-        field_0x114.mUserPosition = height - 0x23;
+        mParams.mBarWidth = 1;
+        mParams.mPosX = 0x27;
+        mParams.mPosY = height - 0x14;
+        mParams.mWidth = 0x232;
+        mParams.mUserPosition = height - 0x23;
     }
     field_0x110 = 1;
     field_0x128 = 0;
@@ -140,7 +138,7 @@ SECTION_SDATA2 static f32 lit_2259 = 10.0f;
 #ifdef NONMATCHING  // data
 void JUTProcBar::clear() {
     sManager->idleStart();
-    sManager->gpWaitStart();
+    sManager->cpuStart();
     sManager->gpStart();
     sManager->wholeLoopStart();
     sManager->mCostFrame = 0;
@@ -229,7 +227,7 @@ void JUTProcBar::adjustMeterLength(u32 param_0, f32* param_1, f32 param_2, f32 p
     float var1 = *param_1;
     while (var1 > param_2) {
         if (param_0 * var1 * FLOAT_LABEL(lit_2308) / FLOAT_LABEL(lit_2309) <=
-            field_0x114.mWidth - FLOAT_LABEL(lit_2310))
+            mParams.mWidth - FLOAT_LABEL(lit_2310))
             break;
 
         var1 -= FLOAT_LABEL(lit_2311);
@@ -246,7 +244,7 @@ void JUTProcBar::adjustMeterLength(u32 param_0, f32* param_1, f32 param_2, f32 p
         if (*param_4 < 0x1e)
             break;
         if ((param_0 * var1 * FLOAT_LABEL(lit_2308) / FLOAT_LABEL(lit_2309)) <
-            (field_0x114.mWidth - FLOAT_LABEL(lit_2313)))
+            (mParams.mWidth - FLOAT_LABEL(lit_2313)))
             var1 += FLOAT_LABEL(lit_2312);
         break;
     }
@@ -292,150 +290,117 @@ SECTION_SDATA2 static f32 lit_2581 = 3.0f;
 /* 802E5E3C-802E6D3C 2E077C 0F00+00 1/1 0/0 0/0 .text            drawProcessBar__10JUTProcBarFv */
 #ifdef NONMATCHING  // regalloc, signed/unsigned, instruction order
 void JUTProcBar::drawProcessBar() {
-    if (!mVisible) {
-        return;
-    }
-    int r29 = 16666;
-    if (JUTGetVideoManager() &&
-        ((JUTGetVideoManager()->getRenderMode()->vi_tv_mode >> 2) & 0x0f) == 1)
-    {
-        r29 = 20000;
-    }
-    static int cnt = 0;
-    adjustMeterLength(mWholeLoop.field_0x4, &oneFrameRate, 1.0f, 10.0f, &cnt);
-    int r28 = oneFrameRate * 20.0f;
-    int r27 = field_0x114.mBarWidth * 8;
-    int r26 = field_0x114.mBarWidth * 2;
-    int r25 = field_0x114.mBarWidth * 10;
-    int r24 = (field_0x114.mWidth - 4 + r28) / r28;
-    if (++mIdle.field_0xc >= 0x10 || mIdle.field_0x4 >= mIdle.field_0x8) {
-        mIdle.field_0x8 = mIdle.field_0x4;
-        mIdle.field_0xc = 0;
-    }
-    if (++mGp.field_0xc >= 0x10 || mGp.field_0x4 >= mGp.field_0x8) {
-        mGp.field_0x8 = mGp.field_0x4;
-        mGp.field_0xc = 0;
-    }
-    if (++mCpu.field_0xc >= 0x10 || mCpu.field_0x4 >= mCpu.field_0x8) {
-        mCpu.field_0x8 = mCpu.field_0x4;
-        mCpu.field_0xc = 0;
-    }
-    int temp1 = mCpu.field_0x4;
-    int r30 = mGp.field_0x4 - mGpWait.field_0x4;
-    int r23 = r30 - temp1;
-    J2DFillBox(field_0x114.mPosX, field_0x114.mPosY, field_0x114.mWidth, r27,
-               JUtility::TColor(0, 0, 50, 200));
-    J2DDrawFrame(field_0x114.mPosX, field_0x114.mPosY, field_0x114.mWidth, r27,
-                 JUtility::TColor(50, 50, 150, 255), 6);
-    if (mCostFrame > r24) {
-        J2DFillBox(field_0x114.mPosX, field_0x114.mPosY + r27 + 1, field_0x114.mWidth, 1.0f,
-                   JUtility::TColor(250, 0, 0, 200));
-    } else {
-        J2DFillBox(field_0x114.mPosX, field_0x114.mPosY + r27 + 1, mCostFrame * r28 + 2, 1.0f,
-                   JUtility::TColor(0, 250, 250, 200));
-    }
-    int stack92 = mWholeLoop.field_0x4 * r28 / r29;
-    if (stack92 > field_0x114.mWidth) {
-        J2DFillBox(field_0x114.mPosX, field_0x114.mPosY, field_0x114.mWidth, 1.0f,
-                   JUtility::TColor(255, 100, 0, 255));
-    } else {
-        J2DFillBox(field_0x114.mPosX, field_0x114.mPosY, stack92, 1.0f,
-                   JUtility::TColor(50, 255, 0, 255));
-    }
-    if (field_0x110 == 0) {
-        r23 = field_0x114.mPosY + field_0x114.mBarWidth;
-        bar_subroutine(field_0x114.mPosX + 1, r23, r26, r28, r29, mGp.field_0x4, mGp.field_0x8,
-                       JUtility::TColor(80, 255, 80, 255), JUtility::TColor(100, 255, 120, 255));
-        r23 += field_0x114.mBarWidth * 2;
-        bar_subroutine(field_0x114.mPosX + 1, r23, r26, r28, r29, mCpu.field_0x4, mCpu.field_0x8,
-                       JUtility::TColor(255, 80, 80, 255), JUtility::TColor(255, 100, 100, 255));
-        r23 += field_0x114.mBarWidth * 2;
-        bar_subroutine(field_0x114.mPosX + 1, r23, r26, r28, r29, mIdle.field_0x4, mIdle.field_0x8,
-                       JUtility::TColor(180, 180, 160, 255), JUtility::TColor(200, 200, 200, 255));
-    } else {
-        int r22 = field_0x114.mPosY + field_0x114.mBarWidth;
-        int r21 = field_0x114.mPosX + 1;
-        bar_subroutine(r21, r22, r26, r28, r29, r30, -1, JUtility::TColor(80, 255, 80, 255),
-                       JUtility::TColor(80, 255, 80, 255));
-        J2DFillBox(r21 + r30 * r28 / r29, r22, mGpWait.field_0x4 * r28 / r29, r26,
-                   JUtility::TColor(0, 255, 0, 255));
-        r30 = mGp.field_0x4 * r28 / r29 + r21;
-        r21 += r23 * r28 / r29;
-        r22 += field_0x114.mBarWidth * 2;
-        bar_subroutine(r21, r22, r26, r28, r29, mCpu.field_0x4, -1,
-                       JUtility::TColor(255, 80, 80, 255), JUtility::TColor(255, 80, 80, 255));
-        r22 += field_0x114.mBarWidth * 2;
-        bar_subroutine(r30, r22, r26, r28, r29, mIdle.field_0x4, -1,
-                       JUtility::TColor(180, 180, 160, 255), JUtility::TColor(180, 180, 160, 255));
-    }
-    for (int i = 1; i < r24; i++) {
-        int temp2 = field_0x114.mPosX + i * r28 + 1;
-        J2DDrawLine(temp2, field_0x114.mPosY + field_0x114.mBarWidth, temp2,
-                    field_0x114.mPosY + r27 - field_0x114.mBarWidth,
-                    i - (i / 5) * 5 != 0 ? JUtility::TColor(100, 100, 255, 255) :
-                                           JUtility::TColor(180, 255, 255, 255),
-                    12);
-    }
-    u32 temp3 = 0;
-    for (int i = 0; i < 8; i++) {
-        CTime* time = field_0x64 + i;
-        if (++time->field_0xc >= 0x10 || time->field_0x4 > time->field_0x8) {
-            time->field_0x8 = time->field_0x4;
-            time->field_0xc = 0;
-        }
-        if (time->field_0x8 > temp3) {
-            temp3 = time->field_0x8;
-        }
-    }
-    if ((bool)temp3 == true) {
-        static int cntUser = 0;
-        adjustMeterLength(temp3, &oneFrameRateUser, 1.0f, 10.0f, &cntUser);
-        int r21 = oneFrameRateUser * 20.0f;
-        J2DFillBox(field_0x114.mPosX, field_0x114.mUserPosition, field_0x114.mWidth, r25,
-                   JUtility::TColor(0, 0, 50, 200));
-        J2DDrawFrame(field_0x114.mPosX, field_0x114.mUserPosition, field_0x114.mWidth, r25,
-                     JUtility::TColor(50, 50, 150, 255), 6);
-        for (int i = 0; i < 8; i++) {
-            CTime* time = field_0x64 + i;
-            if (++time->field_0xc >= 0x10 || time->field_0x4 > time->field_0x8) {
-                time->field_0x8 = time->field_0x4;
-                time->field_0xc = 0;
-            }
-            if (time->field_0x4 != 0 || time->field_0x8 != 0) {
-                int temp4 = time->field_0x4 * r21 / r29;
-                u32 temp5 = time->field_0x8 * r21 / r29;
-                time->field_0x4 = 0;
-                J2DFillBox(
-                    field_0x114.mPosX + 1,
-                    field_0x114.mUserPosition + field_0x114.mBarWidth + i * field_0x114.mBarWidth,
-                    temp4, field_0x114.mBarWidth,
-                    JUtility::TColor(time->field_0x10, time->field_0x11, time->field_0x12, 255));
-                if (temp5 < 3) {
-                    J2DFillBox(field_0x114.mPosX,
-                               field_0x114.mUserPosition + field_0x114.mBarWidth +
-                                   i * field_0x114.mBarWidth,
-                               temp5, field_0x114.mBarWidth, JUtility::TColor(255, 200, 50, 255));
-                } else {
-                    J2DFillBox(field_0x114.mPosX + temp5 - 3,
-                               field_0x114.mUserPosition + field_0x114.mBarWidth +
-                                   i * field_0x114.mBarWidth,
-                               3.0f, field_0x114.mBarWidth, JUtility::TColor(255, 200, 50, 255));
-                }
-            }
-        }
+    if (mVisible) {
+		int frameDuration = 16666; // duration in miliseconds? for how long a frame takes,
+		if (JUTVideo::getManager() && ((JUTVideo::getManager()->getRenderMode()->vi_tv_mode >> 2) & 0x0f) == 1) // possibly a define
+			frameDuration = 20000;                                                                            // duration for PAL
 
-        int r22 = (field_0x114.mWidth - 4 + r21) / r21;
+		static int cnt = 0;
+		adjustMeterLength(mWholeLoop.mCost, &oneFrameRate, 1.0f, 10.0f, &cnt);
+		int r28 = oneFrameRate * 20.0f;
+		int r27 = mParams.mBarWidth * 8;
+		int r26 = mParams.mBarWidth * 2;
+		int r25 = mParams.mBarWidth * 10;
+		int r24 = (mParams.mWidth - 4 + r28) / r28;
 
-        for (int i = 1; i < r22; i++) {
-            int temp6 = field_0x114.mPosX + i * r21 + 1;
-            J2DDrawLine(temp6, field_0x114.mUserPosition + field_0x114.mBarWidth, temp6,
-                        field_0x114.mUserPosition + r25 - field_0x114.mBarWidth,
-                        i - (i / 5) * 5 != 0 ? JUtility::TColor(100, 100, 255, 255) :
-                                               JUtility::TColor(180, 255, 255, 255),
-                        12);
-        }
-    }
-    field_0x108 = 0;
+		mIdle.accumePeek();
+		mGp.accumePeek();
+		mCpu.accumePeek();
+
+		u32 totalTime = (mGp.mCost - mGpWait.mCost) - mCpu.mCost; // unsure of types
+		u32 gpuTime   = (mGp.mCost - mGpWait.mCost);
+		J2DFillBox(mParams.mPosX, mParams.mPosY, mParams.mWidth, r27, JUtility::TColor(0, 0, 50, 200));
+		J2DDrawFrame(mParams.mPosX, mParams.mPosY, mParams.mWidth, r27, JUtility::TColor(50, 50, 150, 255), 6);
+		if (mCostFrame > r24)
+			J2DFillBox(mParams.mPosX, mParams.mPosY + r27 + 1, mParams.mWidth, 1.0f, JUtility::TColor(250, 0, 0, 200));
+		else
+			J2DFillBox(mParams.mPosX, mParams.mPosY + r27 + 1, mCostFrame * r28 + 2, 1.0f, JUtility::TColor(0, 250, 250, 200));
+
+		int stack92 = mWholeLoop.mCost * r28 / frameDuration;
+		if (stack92 > mParams.mWidth)
+			J2DFillBox(mParams.mPosX, mParams.mPosY, mParams.mWidth, 1.0f, JUtility::TColor(255, 100, 0, 255));
+		else
+			J2DFillBox(mParams.mPosX, mParams.mPosY, stack92, 1.0f, JUtility::TColor(50, 255, 0, 255));
+
+		if (field_0x110 == 0) {
+			int r23 = mParams.mPosY + mParams.mBarWidth;
+			bar_subroutine(mParams.mPosX + 1, r23, r26, r28, frameDuration, mGp.mCost, mGp.field_0x8, JUtility::TColor(80, 255, 80, 255),
+			               JUtility::TColor(100, 255, 120, 255));
+			r23 += mParams.mBarWidth * 2;
+			bar_subroutine(mParams.mPosX + 1, r23, r26, r28, frameDuration, mCpu.mCost, mCpu.field_0x8, JUtility::TColor(255, 80, 80, 255),
+			               JUtility::TColor(255, 100, 100, 255));
+			r23 += mParams.mBarWidth * 2;
+			bar_subroutine(mParams.mPosX + 1, r23, r26, r28, frameDuration, mIdle.mCost, mIdle.field_0x8, JUtility::TColor(180, 180, 160, 255),
+			               JUtility::TColor(200, 200, 200, 255));
+		} else {
+			int r22 = mParams.mPosY + mParams.mBarWidth;
+			int r21 = mParams.mPosX + 1;
+			bar_subroutine(r21, r22, r26, r28, frameDuration, gpuTime, -1, JUtility::TColor(80, 255, 80, 255),
+			               JUtility::TColor(80, 255, 80, 255));
+			int thingy1 = gpuTime * r28 / frameDuration + r21; // inline or define?
+			J2DFillBox(thingy1, r22, mGpWait.calcBarSize(r28, frameDuration), r26, JUtility::TColor(0, 255, 0, 255));
+			int r30 = mGp.calcBarSize(r28, frameDuration) + r21;
+			r21 += totalTime * r28 / frameDuration;
+			r22 += mParams.mBarWidth * 2;
+			bar_subroutine(r21, r22, r26, r28, frameDuration, mCpu.mCost, -1, JUtility::TColor(255, 80, 80, 255),
+			               JUtility::TColor(255, 80, 80, 255));
+			r22 += mParams.mBarWidth * 2;
+			bar_subroutine(r30, r22, r26, r28, frameDuration, mIdle.mCost, -1, JUtility::TColor(180, 180, 160, 255),
+			               JUtility::TColor(180, 180, 160, 255));
+		}
+		for (int i = 1; i < r24; i++) {
+			int temp2 = mParams.mPosX + i * r28 + 1;
+			J2DDrawLine(temp2, mParams.mPosY + mParams.mBarWidth, temp2, mParams.mPosY + r27 - mParams.mBarWidth,
+			            (i % 5) != 0 ? JUtility::TColor(100, 100, 255, 255) : JUtility::TColor(180, 255, 255, 255), 12);
+		}
+		u32 temp3 = 0;
+		for (int i = 0; i < 8; i++) {
+			CTime* time = &mUsers[i];
+			if (++time->field_0xc >= 0x10 || time->mCost > time->field_0x8) {
+				time->field_0x8 = time->mCost;
+				time->field_0xc = 0;
+			}
+			if (time->field_0x8 > temp3)
+				temp3 = time->field_0x8;
+		}
+		if ((bool)temp3 == true) {
+			static int cntUser = 0;
+			adjustMeterLength(temp3, &oneFrameRateUser, 1.0f, 10.0f, &cntUser);
+			int r21 = oneFrameRateUser * 20.0f;
+			J2DFillBox(mParams.mPosX, mParams.mUserPosition, mParams.mWidth, r25, JUtility::TColor(0, 0, 50, 200));
+			J2DDrawFrame(mParams.mPosX, mParams.mUserPosition, mParams.mWidth, r25, JUtility::TColor(50, 50, 150, 255), 6);
+			for (int i = 0; i < 8; i++) {
+				CTime* time = &mUsers[i];
+				if (++time->field_0xc >= 0x10 || time->mCost > time->field_0x8) {
+					time->field_0x8 = time->mCost;
+					time->field_0xc = 0;
+				}
+				if (time->mCost != 0 || time->field_0x8 != 0) {
+					int temp4   = time->mCost * r21 / frameDuration;
+					int temp5   = time->field_0x8 * r21 / frameDuration;
+					time->mCost = 0;
+					J2DFillBox(mParams.mPosX + 1, mParams.mUserPosition + mParams.mBarWidth + i * mParams.mBarWidth, temp4,
+					           mParams.mBarWidth, JUtility::TColor(time->mR, time->mG, time->mB, 255));
+
+					if (temp5 < 3u)
+						J2DFillBox(mParams.mPosX, mParams.mUserPosition + mParams.mBarWidth + i * mParams.mBarWidth, temp5,
+						           mParams.mBarWidth, JUtility::TColor(255, 200, 50, 255));
+					else
+						J2DFillBox(mParams.mPosX + temp5 - 3, mParams.mUserPosition + mParams.mBarWidth + i * mParams.mBarWidth, 3.0f,
+						           mParams.mBarWidth, JUtility::TColor(255, 200, 50, 255));
+				}
+			}
+
+			int r22 = (mParams.mWidth - 4 + r21) / r21;
+
+			for (int i = 1; i < r22; i++) {
+				int temp6 = mParams.mPosX + i * r21 + 1;
+				J2DDrawLine(temp6, mParams.mUserPosition + mParams.mBarWidth, temp6, mParams.mUserPosition + r25 - mParams.mBarWidth,
+				            (i % 5) != 0 ? JUtility::TColor(100, 100, 255, 255) : JUtility::TColor(180, 255, 255, 255), 12);
+			}
+		}
+		field_0x108 = 0;
+	}
 }
 #else
 #pragma push
@@ -507,33 +472,41 @@ static asm void heapBar(JKRHeap* param_0, int param_1, int param_2, int param_3,
 /* 802E6FA0-802E7340 2E18E0 03A0+00 1/1 0/0 0/0 .text            drawHeapBar__10JUTProcBarFv */
 #ifdef NONMATCHING  // regalloc
 void JUTProcBar::drawHeapBar() {
-    if (!mHeapBarVisible) {
-        return;
-    }
-    int posX = field_0x114.mPosX;
-    int posY = field_0x114.mPosY;
-    int barWidth = field_0x114.mBarWidth;
-    int var1 = barWidth << 1;
-    int width = field_0x114.mWidth;
-    J2DFillBox(posX, posY - barWidth * 4, width, var1, JUtility::TColor(100, 0, 50, 200));
-    J2DDrawFrame(posX, posY - barWidth * 4, width, var1, JUtility::TColor(100, 50, 150, 255), 6);
-    int codeStart = posX + addrToXPos(JKRHeap::mCodeStart, width);
-    int codeEnd = posX + addrToXPos(JKRHeap::mCodeEnd, width);
-    J2DFillBox(codeStart, posY - barWidth * 4, codeEnd - codeStart, var1,
-               JUtility::TColor(255, 50, 150, 255));
-    int userRamStart = posX + addrToXPos(JKRHeap::mUserRamStart, width);
-    int userRamEnd = posX + addrToXPos(JKRHeap::mUserRamEnd, width);
-    J2DFillBox(userRamStart, posY - barWidth * 4, userRamEnd - userRamStart, var1,
-               JUtility::TColor(0, 50, 150, 255));
-    int totalFreeSize = byteToXLen(JKRHeap::sRootHeap->getTotalFreeSize(), width);
-    J2DFillBox(userRamStart, posY - barWidth * 4, totalFreeSize, var1 / 2,
-               JUtility::TColor(0, 250, 250, 255));
-    if (field_0x128 != 0) {
-        return;
-    }
-    JKRHeap* heap = mWatchHeap ? mWatchHeap : JKRHeap::sCurrentHeap;
-    if (heap != JKRHeap::sSystemHeap) {
-        heapBar(heap, posX, posY, var1, width, var1);
+    if (mHeapBarVisible)
+    {
+        int start; // required/workaround for regswaps, end might be a shared variable too, however doesn't seem to be needed?
+        int posX = mParams.mPosX;
+        int posY = mParams.mPosY;
+        int barHeight = mParams.mBarWidth * 2;
+        int width = mParams.mWidth;
+        int height = mParams.mBarWidth * 2;
+
+        // draw main box in opaque bordeaux red and main frame in purple?
+        J2DFillBox(posX, posY - (height * 2), width, height, JUtility::TColor(100, 0, 50, 200));
+        J2DDrawFrame(posX, posY - (height * 2), width, height, JUtility::TColor(100, 50, 150, 255), 6);
+        
+        // Draws a pink line that shows the size of the memstart to start of arenalow?
+        start = posX + addrToXPos(JKRHeap::getCodeStart(), width);
+        int codeEnd = posX + addrToXPos(JKRHeap::getCodeEnd(), width);
+        J2DFillBox(start, posY - (height * 2), codeEnd - start, height, JUtility::TColor(255, 50, 150, 255));
+        
+        // draws a dark blue line that shows how much memory is free?
+        start = posX + addrToXPos(JKRHeap::getUserRamStart(), width);
+        int userEnd = posX + addrToXPos(JKRHeap::getUserRamEnd(), width);
+        J2DFillBox(start, posY - (height * 2), userEnd - start, height, JUtility::TColor(0, 50, 150, 255));
+        
+        // draws a light blue line that shows how much memory is free in the root heap(blends to light pink, not sure how this works)
+        int size = byteToXLen(JKRHeap::getRootHeap()->getTotalFreeSize(), width);
+        J2DFillBox(start, posY - (height * 2), size, height / 2, JUtility::TColor(0, 250, 250, 255));
+        if (field_0x128 == 0)
+        {
+            // draws a line of either the watch heap(if available), otherwise draw the current heap
+            JKRHeap *heap = mWatchHeap ? mWatchHeap : JKRGetCurrentHeap();
+            if (heap != JKRHeap::getSystemHeap()) { 
+                heapBar(heap, posX, posY, barHeight, width, height);
+            }
+                
+        }
     }
 }
 #else

@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/e/d_a_e_s1/d_a_e_s1.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -77,16 +77,6 @@ struct daE_S1_HIO_c {
     /* 80780840 */ ~daE_S1_HIO_c();
 };
 
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 807804D8 */ cXyz();
-    /* 80780D74 */ ~cXyz();
-};
-
 struct dVibration_c {
     /* 8006FA24 */ void StartShock(int, int, cXyz);
 };
@@ -151,33 +141,6 @@ struct dDlst_shadowControl_c {
 
 struct dCcU_AtInfo {};
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-    /* 80084A78 */ void StartCAt(cXyz&);
-    /* 80084AC4 */ void MoveCAt(cXyz&);
-    /* 8078056C */ ~dCcD_Sph();
-    /* 80780638 */ dCcD_Sph();
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80083830 */ void Move();
-    /* 807806BC */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-    /* 800844F8 */ void GetTgHitObj();
-};
-
 struct dCamera_c {
     /* 801614AC */ void Start();
     /* 801614D0 */ void Stop();
@@ -219,28 +182,12 @@ struct dBgS_Acch {
     /* 80076AAC */ void CrrPos(dBgS&);
 };
 
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 8026F708 */ void SetR(f32);
-    /* 807804DC */ ~cM3dGSph();
-};
-
 struct cM3dGCir {
     /* 8026EF18 */ ~cM3dGCir();
 };
 
-struct cM3dGAab {
-    /* 80780524 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 807807F8 */ ~cCcD_GStts();
 };
 
 struct cBgS_PolyInfo {
@@ -270,13 +217,6 @@ struct Z2CreatureEnemy {
 
 struct JMath {
     static u8 sincosTable_[65536];
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
 };
 
 struct J3DFrameCtrl {
@@ -463,9 +403,6 @@ extern "C" void checkPass__12J3DFrameCtrlFf();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXTrans();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSubtract();
-extern "C" void PSVECSquareMag();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void _savegpr_19();
@@ -499,7 +436,6 @@ extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
 extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" u8 m_midnaActor__9daPy_py_c[4];
 extern "C" void __register_global_object();
@@ -787,19 +723,29 @@ SECTION_DATA static void* jc_data[27] = {
 };
 
 /* 807811E4-80781224 00023C 0040+00 1/1 0/0 0/0 .data            cc_sph_src$6084 */
-SECTION_DATA static u8 cc_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x75, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00,
+static dCcD_SrcSph cc_sph_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0xd8fbfdff, 0x3}, 0x75}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 40.0f} // mSph
+    } // mSphAttr
 };
 
 /* 80781224-80781264 00027C 0040+00 1/1 0/0 0/0 .data            at_sph_src$6085 */
-SECTION_DATA static u8 at_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00,
+static dCcD_SrcSph at_sph_src = {
+    {
+        {0x0, {{AT_TYPE_CSTATUE_SWING, 0x2, 0xd}, {0x0, 0x0}, 0x0}}, // mObj
+        {dCcD_SE_HARD_BODY, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 35.0f} // mSph
+    } // mSphAttr
 };
 
 /* 80781264-80781284 -00001 0020+00 1/0 0/0 0/0 .data            l_daE_S1_Method */
@@ -2076,7 +2022,8 @@ asm s1_ke_s::s1_ke_s() {
 #pragma pop
 
 /* 807804D8-807804DC 005A38 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+// cXyz::cXyz() {
+extern "C" asm void __ct__4cXyzFv() {
     /* empty function */
 }
 
@@ -2084,7 +2031,8 @@ cXyz::cXyz() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_s1/d_a_e_s1/__dt__8cM3dGSphFv.s"
 }
@@ -2094,7 +2042,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_s1/d_a_e_s1/__dt__8cM3dGAabFv.s"
 }
@@ -2104,7 +2053,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Sph::~dCcD_Sph() {
+// asm dCcD_Sph::~dCcD_Sph() {
+extern "C" asm void __dt__8dCcD_SphFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_s1/d_a_e_s1/__dt__8dCcD_SphFv.s"
 }
@@ -2114,7 +2064,8 @@ asm dCcD_Sph::~dCcD_Sph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Sph::dCcD_Sph() {
+// asm dCcD_Sph::dCcD_Sph() {
+extern "C" asm void __ct__8dCcD_SphFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_s1/d_a_e_s1/__ct__8dCcD_SphFv.s"
 }
@@ -2124,7 +2075,8 @@ asm dCcD_Sph::dCcD_Sph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_s1/d_a_e_s1/__dt__10dCcD_GSttsFv.s"
 }
@@ -2154,7 +2106,8 @@ asm dBgS_AcchCir::~dBgS_AcchCir() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_s1/d_a_e_s1/__dt__10cCcD_GSttsFv.s"
 }
@@ -2250,7 +2203,8 @@ static asm void setMidnaBindEffect(fopEn_enemy_c* param_0, Z2CreatureEnemy* para
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_s1/d_a_e_s1/__dt__4cXyzFv.s"
 }

@@ -2,10 +2,9 @@
 #define J3DJOINTFACTORY_H
 
 #include "JSystem/J3DGraphBase/J3DTransform.h"
-#include "JSystem/JGeometry.h"
 #include "dolphin/types.h"
 
-struct J3DJoint;
+class J3DJoint;
 struct ResNTAB;
 
 struct J3DJointInitData {

@@ -4,14 +4,13 @@
 //
 
 #include "d/kankyo/d_kankyo_rain.h"
-#include "MSL_C/math.h"
-#include "MSL_C/string.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/d_demo.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
+#include "m_Do/m_Do_lib.h"
+#include "SSystem/SComponent/c_math.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
 //
 // Forward References:
@@ -146,7 +145,7 @@ extern "C" void* __nw__FUli();
 extern "C" void reinitGX__6J3DSysFv();
 extern "C" void __register_global_object();
 extern "C" void __construct_array();
-extern "C" void __save_gpr();
+extern "C" void _savegpr_14();
 extern "C" void _savegpr_17();
 extern "C" void _savegpr_18();
 extern "C" void _savegpr_19();
@@ -159,7 +158,7 @@ extern "C" void _savegpr_26();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
-extern "C" void __restore_gpr();
+extern "C" void _restgpr_14();
 extern "C" void _restgpr_17();
 extern "C" void _restgpr_18();
 extern "C" void _restgpr_19();
@@ -303,7 +302,7 @@ static asm void dKy_set_eyevect_calc2(camera_class* param_0, Vec* param_1, f32 p
 SECTION_SDATA2 static f32 lit_3992 = 0.125f;
 
 /* 804521C4-804521C8 0007C4 0004+00 9/9 0/0 0/0 .sdata2          @3993 */
-SECTION_SDATA2 static f32 lit_3993 = 1.0f / 100.0f;
+SECTION_SDATA2 static f32 lit_3993 = 0.01f;
 
 /* 804521C8-804521D0 0007C8 0008+00 15/15 0/0 0/0 .sdata2          @3995 */
 SECTION_SDATA2 static f64 lit_3995 = 4503601774854144.0 /* cast s32 to float */;
@@ -342,7 +341,7 @@ static void dKyr_set_btitex(GXTexObj* i_obj, ResTIMG* i_img) {
 
 /* ############################################################################################## */
 /* 804521D0-804521D4 0007D0 0004+00 4/4 0/0 0/0 .sdata2          @4103 */
-SECTION_SDATA2 static f32 lit_4103 = 9.999999747378752e-05f;
+SECTION_SDATA2 static f32 lit_4103 = 0.0001;
 
 /* 804521D4-804521D8 0007D4 0004+00 4/4 0/0 0/0 .sdata2          @4104 */
 SECTION_SDATA2 static f32 lit_4104 = 4000.0f;
@@ -378,6 +377,54 @@ SECTION_SDATA2 static f32 lit_4113 = 110.0f;
 SECTION_SDATA2 static f32 lit_4114 = 4100.0f;
 
 /* 8005BA48-8005BED8 056388 0490+00 0/0 1/1 0/0 .text            dKyr_lenzflare_move__Fv */
+// Matches with literals
+#ifdef NONMATCHING
+void dKyr_lenzflare_move() {
+    dKankyo_sun_Packet* sunPacket = g_env_light.mpSunPacket;
+    dKankyo_sunlenz_Packet* sunLenzPacket = g_env_light.mpSunLenzPacket;
+    camera_class* iVar6 = dComIfGp_getCamera(0);
+    
+    cXyz cStack_48;
+    cXyz cStack_54;
+    cXyz local_60;
+    cXyz cStack_6c;
+    if (sunPacket->field_0x5c < 0.0001) {
+        return;
+    }
+    dKy_set_eyevect_calc(iVar6, &cStack_48, 4000.0f, 4000.0f);
+    dKyr_get_vectle_calc(&cStack_48, sunPacket->mPos, &local_60);
+    sunLenzPacket->mPositions[0] = sunPacket->mPos[0];
+    sunLenzPacket->mPositions[1] = sunPacket->mPos[0];
+    cXyz local_78;
+    cXyz cStack_84;
+    cXyz local_90;
+    mDoLib_project(sunLenzPacket->mPositions, &cStack_84);
+    local_90.x = 304.0f;
+    local_90.y = 224.0f;
+    local_90.z = 0.0054931640625f; // Maybe 45 / 8192
+    dKyr_get_vectle_calc(&local_90, &cStack_84, &local_78);
+    sunLenzPacket->field_0x94 = cM_atan2s(local_78.x, local_78.y);
+    sunLenzPacket->field_0x94 *= 0.0054931640625f;
+    sunLenzPacket->field_0x94 += 180.0f;
+    dKyr_get_vectle_calc(&iVar6->mLookat.mEye, &iVar6->mLookat.mCenter, &cStack_6c);
+
+    for (int i = 2; i < 8; i++) {
+        if (i == 2) {
+            f32 fVar3 = local_60.abs(cStack_6c);
+            f32 fVar4 = 250.0f + 600.0f * fVar3;
+            sunLenzPacket->mPositions[i].x = sunPacket->mPos[0].x - local_60.x * fVar4 * i;
+            sunLenzPacket->mPositions[i].y = sunPacket->mPos[0].y - local_60.y * fVar4 * i;
+            sunLenzPacket->mPositions[i].z = sunPacket->mPos[0].z - local_60.z * fVar4 * i;
+        } else {
+            f32 fVar3 = local_60.abs(cStack_6c);
+            f32 fVar4 = 250.0f + 110.0f * fVar3;
+            sunLenzPacket->mPositions[i].x = sunPacket->mPos[0].x - (4100.0f * local_60.x + local_60.x * fVar4 * i);
+            sunLenzPacket->mPositions[i].y = sunPacket->mPos[0].y - (4100.0f * local_60.y + local_60.y * fVar4 * i);
+            sunLenzPacket->mPositions[i].z = sunPacket->mPos[0].z - (4100.0f * local_60.z + local_60.z * fVar4 * i);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -386,20 +433,26 @@ asm void dKyr_lenzflare_move() {
 #include "asm/d/kankyo/d_kankyo_rain/dKyr_lenzflare_move__Fv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80452208-8045220C 000808 0004+00 3/3 0/0 0/0 .sdata2          @4126 */
 SECTION_SDATA2 static f32 lit_4126 = 285.0f;
 
 /* 8005BED8-8005BF08 056818 0030+00 1/1 0/0 0/0 .text            dKyr_moon_arrival_check__Fv */
-static bool dKyr_moon_arrival_check() {
-    return g_env_light.mDaytime > lit_4126 || g_env_light.mDaytime < 67.5f;
+static int dKyr_moon_arrival_check() {
+    int rv = 0;
+    if (g_env_light.mDaytime > lit_4126 || g_env_light.mDaytime < 67.5f) {
+        rv = 1;
+    }
+
+    return rv;
 }
 
 /* ############################################################################################## */
 /* 8037A4C0-8037A4E8 006B20 0028+00 1/1 0/0 0/0 .rodata          sun_chkpnt$4155 */
-SECTION_RODATA static f32 const sun_chkpnt[10] = {
-    0.0f, 0.0f, -10.0f, -20.0f, 10.0f, 20.0f, -20.0f, 10.0f, 20.0f, -10.0f,
+SECTION_RODATA static f32 const sun_chkpnt[5][2] = {
+    {0.0f, 0.0f}, {-10.0f, -20.0f}, {10.0f, 20.0f}, {-20.0f, 10.0f}, {20.0f, -10.0f},
 };
 COMPILER_STRIP_GATE(0x8037A4C0, &sun_chkpnt);
 
@@ -430,7 +483,7 @@ static f32 S_parcent_bak;
 /* 80450EEC-80450EF0 -00001 0004+00 2/2 0/0 0/0 .sbss            None */
 /* 80450EEC 0002+00 data_80450EEC None */
 /* 80450EEE 0002+00 data_80450EEE S_rot_work1$7554 */
-static u8 struct_80450EEC[4];
+static s8 struct_80450EEC[4];
 
 /* 80452210-80452214 000810 0004+00 4/4 0/0 0/0 .sdata2          @4353 */
 SECTION_SDATA2 static f32 lit_4353 = 8000.0f;
@@ -442,13 +495,13 @@ SECTION_SDATA2 static f32 lit_4354 = 1.0f;
 SECTION_SDATA2 static f32 lit_4355 = 77.5f;
 
 /* 8045221C-80452220 00081C 0004+00 5/5 0/0 0/0 .sdata2          @4356 */
-SECTION_SDATA2 static f32 lit_4356 = 1.0f / 20.0f;
+SECTION_SDATA2 static f32 lit_4356 = 0.05f;
 
 /* 80452220-80452224 000820 0004+00 14/14 0/0 0/0 .sdata2          @4357 */
-SECTION_SDATA2 static f32 lit_4357 = 1.0f / 10.0f;
+SECTION_SDATA2 static f32 lit_4357 = 0.1f;
 
 /* 80452224-80452228 000824 0004+00 2/2 0/0 0/0 .sdata2          @4358 */
-SECTION_SDATA2 static f32 lit_4358 = 9.999999747378752e-06f;
+SECTION_SDATA2 static f32 lit_4358 = 0.00001f;
 
 /* 80452228-8045222C 000828 0004+00 2/2 0/0 0/0 .sdata2          @4359 */
 SECTION_SDATA2 static f32 lit_4359 = 458.0f;
@@ -463,19 +516,19 @@ SECTION_SDATA2 static f32 lit_4361 = 1000000000.0f;
 SECTION_SDATA2 static f32 lit_4362 = 450.0f;
 
 /* 80452238-8045223C 000838 0004+00 10/10 0/0 0/0 .sdata2          @4363 */
-SECTION_SDATA2 static f32 lit_4363 = 0.0010000000474974513f;
+SECTION_SDATA2 static f32 lit_4363 = 0.001f;
 
 /* 8045223C-80452240 00083C 0004+00 18/18 0/0 0/0 .sdata2          @4364 */
 SECTION_SDATA2 static f32 lit_4364 = 0.5f;
 
 /* 80452240-80452244 000840 0004+00 13/13 0/0 0/0 .sdata2          @4365 */
-SECTION_SDATA2 static f32 lit_4365 = 1.0f / 5.0f;
+SECTION_SDATA2 static f32 lit_4365 = 0.2f;
 
 /* 80452244-80452248 000844 0004+00 11/11 0/0 0/0 .sdata2          @4366 */
-SECTION_SDATA2 static f32 lit_4366 = 3.0f / 10.0f;
+SECTION_SDATA2 static f32 lit_4366 = 0.3f;
 
 /* 80452248-8045224C 000848 0004+00 8/8 0/0 0/0 .sdata2          @4367 */
-SECTION_SDATA2 static f32 lit_4367 = 4.0f / 5.0f;
+SECTION_SDATA2 static f32 lit_4367 = 0.8f;
 
 /* 8045224C-80452250 00084C 0004+00 12/12 0/0 0/0 .sdata2          @4368 */
 SECTION_SDATA2 static f32 lit_4368 = 255.0f;
@@ -508,6 +561,242 @@ SECTION_SDATA2 static f32 lit_4376 = 21678.0f;
 SECTION_SDATA2 static f64 lit_4379 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8005BF08-8005CC5C 056848 0D54+00 0/0 1/1 0/0 .text            dKyr_sun_move__Fv */
+// regalloc
+#ifdef NONMATCHING
+void dKyr_sun_move() {
+    dKankyo_sun_Packet* sunPacket = g_env_light.mpSunPacket;
+    dKankyo_sunlenz_Packet* sunLenzPacket = g_env_light.mpSunLenzPacket;
+    cXyz local_90;
+    cXyz cStack_9c;
+    f32 dVar20;
+    camera_class* pCamera = dComIfGp_getCamera(0);
+    f32 dVar19 = 0.0f;
+    if (struct_80450EEC[0] == 0) {
+        S_parcent_bak = dVar19;
+        struct_80450EEC[0] = 1;
+    }
+    u8 r22 = 0;
+    u8 r21 = 0;
+    s32 r20 = 0;
+    u32 stType = dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo());
+    if ((g_env_light.mBaseLightInfluence.mColor.r == 0) && (stType != 2)) {
+        dKyr_get_vectle_calc(&pCamera->mLookat.mEye, &g_env_light.mBaseLightInfluence.mPosition, &local_90);
+    } else {
+        dKyr_get_vectle_calc(&pCamera->mLookat.mEye, &g_env_light.mSunPos2, &local_90);
+    }
+
+    sunPacket->mPos[0].x = pCamera->mLookat.mEye.x + 8000.0f * local_90.x;
+    sunPacket->mPos[0].y = pCamera->mLookat.mEye.y + 8000.0f * local_90.y;
+    sunPacket->mPos[0].z = pCamera->mLookat.mEye.z + 8000.0f * local_90.z;
+
+    f32 fVar4 = (sunPacket->mPos[0].y - pCamera->mLookat.mEye.y) / 8000.0f;
+    if (fVar4 < 0.0f) {
+        fVar4 = 0.0f;
+    }
+
+    if (fVar4 >= 1.0f) {
+        fVar4 = 1.0f;
+    }
+
+    fVar4 = 1.0f - fVar4;
+    fVar4 *= fVar4;
+    dVar20 = 1.0f - fVar4;
+    
+    if (i_dComIfGp_getStage()->getStagInfo() != 0) {
+        dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo());
+    }
+
+    if (sunPacket->field_0x28) {
+        sunPacket->field_0x28--;
+    }
+
+    sunPacket->field_0x29 = 0;
+    if (g_env_light.mDaytime > 77.5f && g_env_light.mDaytime < 285.0f && dKy_rain_check() < 0x14 && 
+        strcmp(dComIfGp_getStartStageName(), "F_SP200") != 0 && 
+        strcmp(dComIfGp_getStartStageName(), "D_MN09B") != 0) {
+            f32 local_f8 = 0.0f;
+            cLib_addCalc(
+                &sunPacket->field_0x60,
+                1.0f,
+                1.0f / 20.0f,
+                1.0f / 10.0f,
+                0.00001f);
+            
+            if (pCamera != 0) {
+                local_f8 = pCamera->mCamera.TrimHeight();
+            }
+            cXyz cStack_a8;
+            mDoLib_project(sunPacket->mPos, &cStack_a8);
+            for (int i = 0; i < 5; i++) {
+                cXyz local_b4 = cStack_a8;
+                local_b4.x -= sun_chkpnt[i][0];
+                local_b4.y -= sun_chkpnt[i][1];
+                if (local_b4.x > 0.0f &&
+                    local_b4.x < 608.0f &&
+                    local_b4.y > local_f8 &&
+                    local_b4.y < 458.0f - local_f8)
+                {
+                    if ((sunPacket->field_0x44)[i] >= 0x00FFFFFF){
+                        r22++;
+                        if (i == 0) {
+                            r21++;
+                        }
+                    }
+                    dComIfGd_peekZ(local_b4.x, local_b4.y, sunPacket->field_0x44 + i);
+                } else {
+                    sunPacket->field_0x44[i] = 0;
+                    r20++;
+                }
+            }
+            if (r20 != 0 && r22 != 0 && r21 != 0) {
+                r21 = 1;
+                r22 = 5;
+            }
+            if (r22 != 0) {
+                if (sunPacket->field_0x28 < 5) {
+                    sunPacket->field_0x28 += 2;
+                }
+                sunPacket->field_0x29 = 1;
+            }
+            sunLenzPacket->field_0x84 = sunLenzPacket->field_0x8c;
+            sunLenzPacket->field_0x88 = sunLenzPacket->field_0x90;
+            sunLenzPacket->field_0x8c = 1000000000.0f;
+            sunLenzPacket->field_0x90 = 0.0f;
+            cXyz local_cc;
+            local_cc.x = 304.0f;
+            local_cc.y = 224.0f;
+            local_cc.z = 0.0f;
+            sunLenzPacket->field_0x98 = local_cc.abs(cStack_a8);
+            sunLenzPacket->field_0x98 /= 450.0f;
+            if (sunLenzPacket->field_0x98 > 1.0f) {
+                sunLenzPacket->field_0x98 = 1.0f;
+            }
+            sunLenzPacket->field_0x98 = 1.0f - sunLenzPacket->field_0x98;
+            dVar19 = sunLenzPacket->field_0x98 * sunLenzPacket->field_0x98;
+            sunLenzPacket->field_0x98 = 1.0f - dVar19;
+    } else {
+        cLib_addCalc(&sunPacket->field_0x60, 0.0f, 0.1f, 0.05f, 0.001f);
+        r22 = 0;
+        sunPacket->field_0x28 = 0;
+        sunPacket->field_0x29 = 0;
+    }
+
+
+    if (g_env_light.mColpatWeather != 0 || g_env_light.mSnowCount > 10) {
+        r21 = 0;
+        r22 = 0;
+    }
+
+    if (stType == 2) {
+        r21 = 0;
+        r22 = 0;
+    }
+
+    if (r21 != 0) {
+        if (r22 == 4) {
+            cLib_addCalc(&sunPacket->field_0x5c, 1.0f, 0.5f, 0.5f, 0.01f);
+        } else {
+            cLib_addCalc(&sunPacket->field_0x5c, 1.0f, 0.2f, 0.3f, 0.001f);
+        }
+    } else {
+        if (r22 < 1) {
+            cLib_addCalc(&sunPacket->field_0x5c, 0.0f, 0.5f, 0.5f, 0.001f);
+        } else {
+            cLib_addCalc(&sunPacket->field_0x5c, 0.0f, 0.2f, 0.3f, 0.001f);
+        }
+    }
+
+    if (sunPacket->field_0x5c <= 0.0f) {
+        g_env_light.mpSunLenzPacket->mDrawLenzInSky = 1;
+    } else {
+        g_env_light.mpSunLenzPacket->mDrawLenzInSky = 0;
+    }
+
+    if (local_90.y > 0.0f && g_env_light.mpSunLenzPacket->mDrawLenzInSky == 0) {
+        if (dStage_stagInfo_GetArg0(i_dComIfGp_getStage()->getStagInfo()) != 0) {
+            f32 dVar3;
+            if (S_parcent_bak < dVar19) {
+                dVar3 = dVar19 - S_parcent_bak;
+            } else {
+                dVar3 = S_parcent_bak - dVar19;;
+            }
+            if (dVar3 < 0.3f) {
+                dKy_set_actcol_ratio(1.0f - dVar19 * sunPacket->field_0x5c);
+                dKy_set_bgcol_ratio(1.0f - dVar19 * sunPacket->field_0x5c);
+                dKy_set_fogcol_ratio(1.0f - dVar20 * (dVar19 * sunPacket->field_0x5c));
+                dKy_set_vrboxcol_ratio(1.0f - 0.8f * (dVar20 * (dVar19 * sunPacket->field_0x5c)));
+            }
+            S_parcent_bak = dVar19;
+        }
+    }
+
+    if (g_env_light.mDaytime < 255.0f && g_env_light.mColpatWeather == 0) {
+        cLib_addCalc(&sunPacket->field_0x6c, 1.0f, 0.1f, 0.01f, 0.0001f);
+    } else {
+        cLib_addCalc(&sunPacket->field_0x6c, 0.0f, 0.5f, 0.1f, 0.001f);
+    }
+
+    if (g_env_light.mDaytime < 180.0f) {
+        f32 fVar7;
+        if (g_env_light.mDaytime < 90.0f) {
+            fVar7 = 0.0f;
+        } else if (g_env_light.mDaytime < 105.0f) {
+            fVar7 = dKy_get_parcent(105.0f, 90.0f, g_env_light.mDaytime);
+        } else {
+            fVar7 = 1.0f;
+        }
+
+        sunPacket->mColor.r = (f32)sun_color[0].r + fVar7 * ((f32)sun_color[1].r - (f32)sun_color[0].r);
+        sunPacket->mColor.g = (f32)sun_color[0].g + fVar7 * ((f32)sun_color[1].g - (f32)sun_color[0].g);
+        sunPacket->mColor.b = (f32)sun_color[0].b + fVar7 * ((f32)sun_color[1].b - (f32)sun_color[0].b);
+
+        sunPacket->field_0x74.r = (f32)sun_color2[0].r + fVar7 * ((f32)sun_color2[1].r - (f32)sun_color2[0].r);
+        sunPacket->field_0x74.g = (f32)sun_color2[0].g + fVar7 * ((f32)sun_color2[1].g - (f32)sun_color2[0].g);
+        sunPacket->field_0x74.b = (f32)sun_color2[0].b + fVar7 * ((f32)sun_color2[1].b - (f32)sun_color2[0].b);
+    } else {
+        f32 fVar7;
+        if (g_env_light.mDaytime < 247.5f) {
+            fVar7 = 1.0f;
+        } else if (g_env_light.mDaytime < 270.0f) {
+            fVar7 = 1.0f - dKy_get_parcent(270.0f, 247.5f, g_env_light.mDaytime);
+        } else {
+            fVar7 = 0.0f;
+        }
+
+        sunPacket->mColor.r = (f32)sun_color[2].r + fVar7 * ((f32)sun_color[1].r - (f32)sun_color[2].r);
+        sunPacket->mColor.g = (f32)sun_color[2].g + fVar7 * ((f32)sun_color[1].g - (f32)sun_color[2].g);
+        sunPacket->mColor.b = (f32)sun_color[2].b + fVar7 * ((f32)sun_color[1].b - (f32)sun_color[2].b);
+
+        sunPacket->field_0x74.r = (f32)sun_color2[2].r + fVar7 * ((f32)sun_color2[1].r - (f32)sun_color2[2].r);
+        sunPacket->field_0x74.g = (f32)sun_color2[2].g + fVar7 * ((f32)sun_color2[1].g - (f32)sun_color2[2].g);
+        sunPacket->field_0x74.b = (f32)sun_color2[2].b + fVar7 * ((f32)sun_color2[1].b - (f32)sun_color2[2].b);
+    }
+
+    if (dKyr_moon_arrival_check()) {
+        f32 fVar6 = (sunPacket->mPos[0].y - pCamera->mLookat.mEye.y) / -8000.0f;
+        fVar6 *= fVar6;
+        fVar6 *= 6.0f;
+
+        if (fVar6 > 1.0f) {
+            fVar6 = 1.0f;
+        }
+
+        cLib_addCalc(&sunPacket->field_0x68, fVar6, 0.2f, 0.01f, 0.001f);
+    } else {
+        cLib_addCalc(&sunPacket->field_0x68, 0.0f, 0.2f, 0.01f, 0.001f);
+    }
+
+    if (g_env_light.mCameraInWater == 0 && g_env_light.mDaytime > 255.0f && sunPacket->field_0x60 >= 0.2f) {
+        cXyz local_d8;
+        dKyr_get_vectle_calc(&pCamera->mLookat.mEye, &g_env_light.mSunPos2, &local_90);
+        local_d8.x = pCamera->mLookat.mEye.x + 30160.0f * local_90.x;
+        local_d8.y = pCamera->mLookat.mEye.y + 30160.0f * local_90.y;
+        local_d8.z = pCamera->mLookat.mEye.z + 30160.0f * local_90.z;
+        local_d8.y -= 21678.0f;
+        sunPacket->field_0x58 = dComIfGp_particle_set(sunPacket->field_0x58, 0x11c, &local_d8, 0, 0);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -516,6 +805,7 @@ asm void dKyr_sun_move() {
 #include "asm/d/kankyo/d_kankyo_rain/dKyr_sun_move__Fv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8037A578-8037A578 006BD8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -525,6 +815,31 @@ SECTION_DEAD static char const* const stringBase_8037A588 = "Always";
 #pragma pop
 
 /* 8005CC5C-8005CDA8 05759C 014C+00 0/0 1/1 0/0 .text            dKyr_rain_init__Fv */
+// Matches with literals
+#ifdef NONMATCHING
+void dKyr_rain_init() {
+    camera_class* pCamera = g_dComIfG_gameInfo.play.mCameraInfo[0].mCamera;
+    g_env_light.mpRainPacket->mpTex = (u8*)dComIfG_getObjectRes("Always", 0x4a);
+    g_env_light.mpRainPacket->mpTex2 = (u8*)dComIfG_getObjectRes("Always", 0x57);
+    g_env_light.mpRainPacket->mCamEyePos = pCamera->mLookat.mEye;
+    g_env_light.mpRainPacket->mCamCenterPos = pCamera->mLookat.mCenter;
+    g_env_light.mpRainPacket->mCenterDeltaMul = 0.0f;
+    g_env_light.mpRainPacket->field_0x3700 = 0.0f;
+    g_env_light.mpRainPacket->mSibukiAlpha = 0.0f;
+    g_env_light.mpRainPacket->mOverheadFade = 0.0f;
+    g_env_light.mpRainPacket->mFwdFade1 = 0.0f;
+    g_env_light.mpRainPacket->mFwdFade2  = 0.0f;
+    g_env_light.mpRainPacket->mStatus  = 0.0f;
+    g_env_light.mpRainPacket->mCenterDelta.x = 0.0f;
+    g_env_light.mpRainPacket->mCenterDelta.y = 0.0f;
+    g_env_light.mpRainPacket->mCenterDelta.z = 0.0f;
+
+    for (int i = 0; i < 250; i++) {
+        g_env_light.mpRainPacket->mRainEff[i].mStatus = 0;
+    }
+    g_env_light.mpRainPacket->mRainCount = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -533,6 +848,7 @@ asm void dKyr_rain_init() {
 #include "asm/d/kankyo/d_kankyo_rain/dKyr_rain_init__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 8005CDA8-8005CDD0 0576E8 0028+00 1/1 0/0 0/0 .text rain_bg_chk__FP19dKankyo_rain_Packeti */
 static void rain_bg_chk(dKankyo_rain_Packet* i_packet, int i_idx) {
@@ -596,6 +912,40 @@ static asm void overhead_bg_chk() {
 
 /* 8005CF78-8005D18C 0578B8 0214+00 1/1 0/0 0/0 .text            forward_overhead_bg_chk__FP4cXyzf
  */
+// Matches with literals
+#ifdef NONMATCHING
+static int forward_overhead_bg_chk(cXyz* param_0, f32 param_1) {
+    camera_class* iVar7 = dComIfGp_getCamera(0);
+    u32 r30 = 0;
+    dBgS_ObjGndChk_All adStack_88;
+    dBgS_RoofChk adStack_d8;
+    cXyz local_e8;
+    cXyz local_f4;
+    dKyr_get_vectle_calc(&iVar7->mLookat.mEye, &iVar7->mLookat.mCenter, &local_f4);
+    local_e8.x = iVar7->mLookat.mEye.x + local_f4.x * param_1;
+    local_e8.y = iVar7->mLookat.mEye.y + local_f4.y * param_1;
+    local_e8.z = iVar7->mLookat.mEye.z + local_f4.z * param_1;
+    local_e8.y = 50.0f + iVar7->mLookat.mEye.y;
+    *param_0 = local_e8;
+    adStack_d8.i_SetPos(local_e8);
+    if (1000000000.0f != dComIfG_Bgsp().RoofChk(&adStack_d8)) {
+        r30 = 1;
+        if (strcmp(dComIfGp_getStartStageName(), "F_SP122") == 0) {
+            if (dStage_roomControl_c::getStayNo() == 17) {
+                return 0;
+            }
+        }
+    }
+
+    local_e8.y += 10000.0f;
+    adStack_88.SetPos(&local_e8);
+
+    if (dComIfG_Bgsp().GroundCross(&adStack_88) > 50.0f + iVar7->mLookat.mEye.y) {
+        r30 = 1;
+    }
+    return r30;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -604,6 +954,7 @@ static asm void forward_overhead_bg_chk(cXyz* param_0, f32 param_1) {
 #include "asm/d/kankyo/d_kankyo_rain/forward_overhead_bg_chk__FP4cXyzf.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8037A578-8037A578 006BD8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -870,6 +1221,34 @@ asm void dKyr_housi_move() {
 #pragma pop
 
 /* 8005FBDC-8005FD48 05A51C 016C+00 0/0 1/1 0/0 .text            dKyr_snow_init__Fv */
+// Matches with literals
+#ifdef NONMATCHING
+void dKyr_snow_init() {
+    camera_class* pCamera = g_dComIfG_gameInfo.play.mCameraInfo[0].mCamera;
+    g_env_light.mpSnowPacket = new (32) dKankyo_snow_Packet();
+
+    if (g_env_light.mpSnowPacket == NULL) {
+        return;
+    }
+
+    g_env_light.mpSnowPacket->mpTex = (u8*)dComIfG_getObjectRes("Always", 0x56);
+
+    for (int i = 0; i < 500; i++) {
+        g_env_light.mpSnowPacket->mSnowEff[i].mStatus = 0;
+    }
+
+    g_env_light.mpSnowPacket->field_0x6d88 = 0;
+    g_env_light.mpSnowPacket->field_0x6d74 = pCamera->mLookat.mEye;
+    g_env_light.mpSnowPacket->field_0x6d80 = 0.0f;
+    g_env_light.mpSnowPacket->field_0x6d84 = 0.0f;
+    g_env_light.mpSnowPacket->field_0x6d8a = 0;
+    g_env_light.mpSnowPacket->field_0x6d8c = 0;
+    g_env_light.mpSnowPacket->field_0x6d90 = 0;
+    g_env_light.mpSnowPacket->field_0x6d91 = 0;
+    g_env_light.mpSnowPacket->field_0x6d92 = 0;
+    g_env_light.mpSnowPacket->field_0x6d93 = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -878,6 +1257,7 @@ asm void dKyr_snow_init() {
 #include "asm/d/kankyo/d_kankyo_rain/dKyr_snow_init__Fv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8037A578-8037A578 006BD8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -943,6 +1323,21 @@ asm void dKyr_snow_move() {
 #pragma pop
 
 /* 80061324-8006140C 05BC64 00E8+00 0/0 1/1 0/0 .text            dKyr_star_init__Fv */
+// Matches without literals
+#ifdef NONMATCHING
+void dKyr_star_init() {
+    camera_class* pCamera = g_dComIfG_gameInfo.play.mCameraInfo[0].mCamera;
+    g_env_light.mpStarPacket = new (32) dKankyo_star_Packet();
+
+    if (g_env_light.mpStarPacket == NULL) {
+        return;
+    }
+
+    g_env_light.mpStarPacket->field_0x10 = (u8*)dComIfG_getObjectRes("Always", 0x4a);
+    g_env_light.mpStarPacket->mEffect[0].field_0x28 = 1.0f;
+    g_env_light.mpStarPacket->mEffectNum = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -951,6 +1346,7 @@ asm void dKyr_star_init() {
 #include "asm/d/kankyo/d_kankyo_rain/dKyr_star_init__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 8006140C-80061438 05BD4C 002C+00 0/0 1/1 0/0 .text            dKyr_star_move__Fv */
 void dKyr_star_move() {
@@ -1124,7 +1520,7 @@ SECTION_SDATA2 static f32 lit_7211 = 0.01745329238474369f;
 SECTION_SDATA2 static f32 lit_7212 = 11000.0f;
 
 /* 80452468-8045246C 000A68 0004+00 2/2 0/0 0/0 .sdata2          @7213 */
-SECTION_SDATA2 static f32 lit_7213 = 23.0f / 10.0f;
+SECTION_SDATA2 static f32 lit_7213 = 2.3f;
 
 /* 80062B4C-80063670 05D48C 0B24+00 2/1 0/0 0/0 .text            dKyr_draw_rev_moon__FPA4_fPPUc */
 #pragma push
@@ -1209,7 +1605,7 @@ static u8 struct_80450EF0[4];
 static u8 data_80450EF4[4];
 
 /* 8045247C-80452480 000A7C 0004+00 1/1 0/0 0/0 .sdata2          @7882 */
-SECTION_SDATA2 static f32 lit_7882 = 29.0f / 10.0f;
+SECTION_SDATA2 static f32 lit_7882 = 2.9f;
 
 /* 80452480-80452484 000A80 0004+00 2/2 0/0 0/0 .sdata2          @7883 */
 SECTION_SDATA2 static f32 lit_7883 = 34.0f;
@@ -1218,22 +1614,22 @@ SECTION_SDATA2 static f32 lit_7883 = 34.0f;
 SECTION_SDATA2 static f32 lit_7884 = 160.0f;
 
 /* 80452488-8045248C 000A88 0004+00 1/1 0/0 0/0 .sdata2          @7885 */
-SECTION_SDATA2 static f32 lit_7885 = 43.0f / 50.0f;
+SECTION_SDATA2 static f32 lit_7885 = 0.86f;
 
 /* 8045248C-80452490 000A8C 0004+00 1/1 0/0 0/0 .sdata2          @7886 */
-SECTION_SDATA2 static f32 lit_7886 = 123.0f / 50.0f;
+SECTION_SDATA2 static f32 lit_7886 = 2.46f;
 
 /* 80452490-80452494 000A90 0004+00 2/2 0/0 0/0 .sdata2          @7887 */
-SECTION_SDATA2 static f32 lit_7887 = 11.0f / 10.0f;
+SECTION_SDATA2 static f32 lit_7887 = 1.1f;
 
 /* 80452494-80452498 000A94 0004+00 1/1 0/0 0/0 .sdata2          @7888 */
-SECTION_SDATA2 static f32 lit_7888 = 1.0f / 25.0f;
+SECTION_SDATA2 static f32 lit_7888 = 0.04f;
 
 /* 80452498-8045249C 000A98 0004+00 1/1 0/0 0/0 .sdata2          @7889 */
-SECTION_SDATA2 static f32 lit_7889 = 3.0f / 40.0f;
+SECTION_SDATA2 static f32 lit_7889 = 0.075f;
 
 /* 8045249C-804524A0 000A9C 0004+00 1/1 0/0 0/0 .sdata2          @7890 */
-SECTION_SDATA2 static f32 lit_7890 = 22.0f / 25.0f;
+SECTION_SDATA2 static f32 lit_7890 = 0.88f;
 
 /* 804524A0-804524A4 000AA0 0004+00 1/1 0/0 0/0 .sdata2          @7891 */
 SECTION_SDATA2 static f32 lit_7891 = 30.599998474121094f;
@@ -1242,7 +1638,7 @@ SECTION_SDATA2 static f32 lit_7891 = 30.599998474121094f;
 SECTION_SDATA2 static f32 lit_7892 = 140.0f;
 
 /* 804524A8-804524AC 000AA8 0004+00 1/1 0/0 0/0 .sdata2          @7893 */
-SECTION_SDATA2 static f32 lit_7893 = 17.0f / 20.0f;
+SECTION_SDATA2 static f32 lit_7893 = 0.85f;
 
 /* 804524AC-804524B0 000AAC 0004+00 2/2 0/0 0/0 .sdata2          @7894 */
 SECTION_SDATA2 static f32 lit_7894 = 60.0f;
@@ -1368,7 +1764,7 @@ SECTION_SDATA2 static f32 lit_8919 = 123.0f;
 SECTION_SDATA2 static f32 lit_8920 = 8.0f;
 
 /* 804524E4-804524E8 000AE4 0004+00 1/1 0/0 0/0 .sdata2          @8921 */
-SECTION_SDATA2 static f32 lit_8921 = -9.0f / 10.0f;
+SECTION_SDATA2 static f32 lit_8921 = -0.9f;
 
 /* 804524E8-804524EC 000AE8 0004+00 1/1 0/0 0/0 .sdata2          @8922 */
 SECTION_SDATA2 static f32 lit_8922 = 213.0f;
@@ -1622,10 +2018,10 @@ static f32 rot_9421;
 static u8 struct_80450F1C[4];
 
 /* 80452554-80452558 000B54 0004+00 2/2 0/0 0/0 .sdata2          @9833 */
-SECTION_SDATA2 static f32 lit_9833 = 13.0f / 20.0f;
+SECTION_SDATA2 static f32 lit_9833 = 0.65f;
 
 /* 80452558-8045255C 000B58 0004+00 1/1 0/0 0/0 .sdata2          @9834 */
-SECTION_SDATA2 static f32 lit_9834 = 7.0f / 25.0f;
+SECTION_SDATA2 static f32 lit_9834 = 0.28f;
 
 /* 8045255C-80452560 000B5C 0004+00 1/1 0/0 0/0 .sdata2          @9835 */
 SECTION_SDATA2 static f32 lit_9835 = 540.0f;
@@ -1663,10 +2059,10 @@ SECTION_SDATA2 static u32 lit_9851 = 0xFFFFFFFF;
 SECTION_SDATA2 static u32 lit_9852 = 0xFFFFFFFF;
 
 /* 80452574-80452578 000B74 0004+00 2/2 0/0 0/0 .sdata2          @10030 */
-SECTION_SDATA2 static f32 lit_10030 = 11.0f / 20.0f;
+SECTION_SDATA2 static f32 lit_10030 = 0.55f;
 
 /* 80452578-8045257C 000B78 0004+00 2/2 0/0 0/0 .sdata2          @10031 */
-SECTION_SDATA2 static f32 lit_10031 = 49.0f / 100.0f;
+SECTION_SDATA2 static f32 lit_10031 = 0.49f;
 
 /* 8006950C-8006A090 063E4C 0B84+00 0/0 1/1 0/0 .text            drawCloudShadow__FPA4_fPPUc */
 #pragma push
@@ -1695,31 +2091,31 @@ static u8 data_80450F2C[4];
 SECTION_SDATA2 static f32 lit_10593 = 240.0f;
 
 /* 80452580-80452584 000B80 0004+00 1/1 0/0 0/0 .sdata2          @10594 */
-SECTION_SDATA2 static f32 lit_10594 = 1.000000013351432e-10f;
+SECTION_SDATA2 static f32 lit_10594 = 0.0000000001;
 
 /* 80452584-80452588 000B84 0004+00 1/1 0/0 0/0 .sdata2          @10595 */
 SECTION_SDATA2 static f32 lit_10595 = 0.0625f;
 
 /* 80452588-8045258C 000B88 0004+00 1/1 0/0 0/0 .sdata2          @10596 */
-SECTION_SDATA2 static f32 lit_10596 = 21.0f / 25.0f;
+SECTION_SDATA2 static f32 lit_10596 = 0.84f;
 
 /* 8045258C-80452590 000B8C 0004+00 1/1 0/0 0/0 .sdata2          @10597 */
-SECTION_SDATA2 static f32 lit_10597 = 23.0f / 25.0f;
+SECTION_SDATA2 static f32 lit_10597 = 0.92f;
 
 /* 80452590-80452594 000B90 0004+00 1/1 0/0 0/0 .sdata2          @10598 */
-SECTION_SDATA2 static f32 lit_10598 = 19.0f / 10.0f;
+SECTION_SDATA2 static f32 lit_10598 = 1.9f;
 
 /* 80452594-80452598 000B94 0004+00 1/1 0/0 0/0 .sdata2          @10599 */
 SECTION_SDATA2 static f32 lit_10599 = 16.0f;
 
 /* 80452598-8045259C 000B98 0004+00 2/2 0/0 0/0 .sdata2          @10600 */
-SECTION_SDATA2 static f32 lit_10600 = 9.0f / 10.0f;
+SECTION_SDATA2 static f32 lit_10600 = 0.9f;
 
 /* 8045259C-804525A0 000B9C 0004+00 1/1 0/0 0/0 .sdata2          @10601 */
 SECTION_SDATA2 static f32 lit_10601 = -4.0f;
 
 /* 804525A0-804525A4 000BA0 0004+00 1/1 0/0 0/0 .sdata2          @10602 */
-SECTION_SDATA2 static f32 lit_10602 = 121.0f / 100.0f;
+SECTION_SDATA2 static f32 lit_10602 = 1.21f;
 
 /* 804525A4-804525A8 000BA4 0004+00 1/1 0/0 0/0 .sdata2          @10603 */
 SECTION_SDATA2 static f32 lit_10603 = 708.0f;

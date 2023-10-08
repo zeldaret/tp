@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_mhole/d_a_obj_mhole.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -14,12 +14,6 @@
 struct request_of_phase_process_class {};
 
 struct csXyz {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -96,35 +90,6 @@ struct dPa_control_c {
                             u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
                             cXyz const*, f32);
 };
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCps {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-};
-
-struct dCcD_Cps {
-    /* 800847D0 */ void Set(dCcD_SrcCps const&);
-};
-
-struct cM3dGCps {
-    /* 8026EF88 */ cM3dGCps();
-    /* 8026F000 */ void Set(cXyz const&, cXyz const&, f32);
-};
-
-struct cM3dGAab {
-    /* 80C93660 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
 
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
@@ -225,7 +190,6 @@ extern "C" void init__12J3DFrameCtrlFs();
 extern "C" void PSMTXCopy();
 extern "C" void C_MTXLightPerspective();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECSquareDistance();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_29();
@@ -244,7 +208,6 @@ extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u32 __float_nan;
 
 //
 // Declarations:
@@ -418,12 +381,16 @@ SECTION_DATA static void* l_arcName[2] = {
 };
 
 /* 80C93E1C-80C93E68 000008 004C+00 1/1 0/0 0/0 .data            l_cps_src */
-SECTION_DATA static u8 l_cps_src[76] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1D,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x44, 0x7A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00,
+static dCcD_SrcCps l_cps_src = {
+    {
+        {0x0, {{AT_TYPE_40000, 0x0, 0x1d}, {0x0, 0x0}, 0x0}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x6}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, {0.0f, 1000.0f, 0.0f}, 150.0f}, // mCps
+    } // mCpsAttr
 };
 
 /* 80C9307C-80C93198 00029C 011C+00 1/1 0/0 0/0 .text            Create__12daObjMHole_cFv */
@@ -524,7 +491,8 @@ asm void daObjMHole_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_mhole/d_a_obj_mhole/__dt__8cM3dGAabFv.s"
 }

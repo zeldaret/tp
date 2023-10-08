@@ -2,13 +2,11 @@
 #define JAISEQMGR_H
 
 #include "JSystem/JAudio2/JAISeqDataMgr.h"
-#include "JSystem/JAudio2/JAISound.h"
-#include "JSystem/JAudio2/JAISoundParams.h"
 #include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JSupport/JSUList.h"
 
 struct JAIAudience;
-struct JAISeq;
+class JAISeq;
 
 class JAISeqMgr : public JAISeqDataUser, public JASGlobalInstance<JAISeqMgr> {
 public:
@@ -25,13 +23,15 @@ public:
 
     /* 802A20F0 */ virtual ~JAISeqMgr();  // inline?
     /* 802A1804 */ virtual bool isUsingSeqData(JAISeqDataRegion const&);
-    /* 802A1870 */ virtual void releaseSeqData(JAISeqDataRegion const&);
+    /* 802A1870 */ virtual int releaseSeqData(JAISeqDataRegion const&);
+
+    JAISeqDataMgr* getSeqDataMgr() { return seqDataMgr_; }
 
 private:
     /* 0x04 */ JAISoundActivity mActivity;
-    /* 0x08 */ void* field_0x8;
-    /* 0x0C */ JAIAudience* mAudience;
-    /* 0x10 */ JAISeqDataMgr* seqDataMgr_;
+    /* 0x08 */ JAIAudience* mAudience;
+    /* 0x0C */ JAISeqDataMgr* seqDataMgr_;
+    /* 0x10 */ void* field_0x10;
     /* 0x14 */ JAISoundParamsMove mMove;
     /* 0x64 */ JSUList<JAISeq> mSeqList;
     /* 0x70 */ int field_0x70;

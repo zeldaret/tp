@@ -7,15 +7,11 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
 #include "f_op/f_op_actor_mng.h"
 
 /* 8048D958-8048D9BC 000078 0064+00 1/1 0/0 0/0 .text            create__12daTag_Howl_cFv */
 int daTag_Howl_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTag_Howl_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daTag_Howl_c);
     getParam();
     return cPhs_COMPLEATE_e;
 }
@@ -31,7 +27,7 @@ int daTag_Howl_c::execute() {
     this->mAttentionInfo.mFlags = 0;
     if (isAreaCheck() != NULL) {
         this->mAttentionInfo.mFlags |= 0x80;
-        this->mAttentionInfo.field_0x4[3] = 0x41;
+        this->mAttentionInfo.field_0x0[7] = 0x41;
     }
     return 1;
 }

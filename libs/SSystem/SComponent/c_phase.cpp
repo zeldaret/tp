@@ -4,12 +4,7 @@
 //
 
 #include "SSystem/SComponent/c_phase.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
-
-extern "C" static void cPhs_UnCompleate__FP30request_of_phase_process_class();
-extern "C" static void cPhs_Compleate__FP30request_of_phase_process_class();
-extern "C" static void cPhs_Next__FP30request_of_phase_process_class();
 
 //
 // Declarations:
@@ -18,14 +13,14 @@ extern "C" static void cPhs_Next__FP30request_of_phase_process_class();
 /* 80266624-80266630 000C+00 s=1 e=2 z=0  None .text
  * cPhs_Reset__FP30request_of_phase_process_class               */
 void cPhs_Reset(request_of_phase_process_class* pPhase) {
-    pPhase->id = cPhs_ZERO_e;
+    pPhase->id = cPhs_INIT_e;
 }
 
 /* 80266630-80266640 0010+00 s=0 e=3 z=0  None .text
  * cPhs_Set__FP30request_of_phase_process_classPPFPv_i          */
 void cPhs_Set(request_of_phase_process_class* pPhase, cPhs__Handler* pHandlerTable) {
     pPhase->mpHandlerTable = pHandlerTable;
-    pPhase->id = cPhs_ZERO_e;
+    pPhase->id = cPhs_INIT_e;
 }
 
 /* 80266640-80266668 0028+00 s=1 e=0 z=0  None .text
@@ -54,7 +49,7 @@ int cPhs_Next(request_of_phase_process_class* pPhase) {
         if (handler == NULL || handler == NULL) {
             return cPhs_Compleate(pPhase);
         } else {
-            return cPhs_ONE_e;
+            return cPhs_LOADING_e;
         }
     }
 
@@ -64,18 +59,16 @@ int cPhs_Next(request_of_phase_process_class* pPhase) {
 /* 802666D8-802667AC 00D4+00 s=1 e=3 z=0  None .text cPhs_Do__FP30request_of_phase_process_classPv
  */
 #ifdef NONMATCHING
+// pUserData loading in too early
 int cPhs_Do(request_of_phase_process_class* pPhase, void* pUserData) {
-    if (const cPhs__Handler* pHandlerTable = pPhase->mpHandlerTable) {
-        // the load of pUserData seems to be slightly scrambled..
-        const cPhs__Handler pHandler = pHandlerTable[pPhase->id];
-        const int newStep = pHandler(pUserData);
+    if (pPhase->mpHandlerTable) {
+        int newStep = pPhase->mpHandlerTable[pPhase->id](pUserData);
 
         switch (newStep) {
-        case cPhs_ONE_e:
+        case cPhs_LOADING_e:
             return cPhs_Next(pPhase);
-        case cPhs_TWO_e:
-            const int step2 = cPhs_Next(pPhase);
-            return step2 == cPhs_ONE_e ? cPhs_TWO_e : cPhs_COMPLEATE_e;
+        case cPhs_NEXT_e:
+            return cPhs_Next(pPhase) == cPhs_LOADING_e ? cPhs_NEXT_e : cPhs_COMPLEATE_e;
         case cPhs_COMPLEATE_e:
             return cPhs_Compleate(pPhase);
         case cPhs_UNK3_e:
@@ -84,9 +77,9 @@ int cPhs_Do(request_of_phase_process_class* pPhase, void* pUserData) {
         case cPhs_ERROR_e:
             cPhs_UnCompleate(pPhase);
             return cPhs_ERROR_e;
+        default:
+            return newStep;
         }
-
-        return newStep;
     }
     
     return cPhs_Compleate(pPhase);

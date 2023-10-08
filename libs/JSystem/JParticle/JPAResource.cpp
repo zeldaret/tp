@@ -5,11 +5,9 @@
 
 #include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JParticle/JPABaseShape.h"
-#include "JSystem/JParticle/JPAMath.h"
-#include "JSystem/JParticle/JPAParticle.h"
+#include "JSystem/JParticle/JPAEmitter.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GX.h"
-#include "dolphin/mtx/mtx.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 
@@ -136,11 +134,11 @@ extern "C" void func_80280588();
 extern "C" void JPAGetXYZRotateMtx__FsssPA4_f();
 extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
 extern "C" void load__10JUTTextureF11_GXTexMapID();
-extern "C" void __save_gpr();
+extern "C" void _savegpr_14();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
-extern "C" void __restore_gpr();
+extern "C" void _restgpr_14();
 extern "C" void _restgpr_25();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
@@ -761,8 +759,8 @@ void JPAResource::calcWorkData_d(JPAEmitterWorkData* work) {
     Mtx mtx;
     JPAGetXYZRotateMtx(work->mpEmtr->mLocalRot.x * 0xB6, work->mpEmtr->mLocalRot.y * 0xB6,
                        work->mpEmtr->mLocalRot.z * 0xB6, mtx);
-    PSMTXConcat(work->mpEmtr->mGlobalRot, mtx, work->mGlobalRot);
-    PSMTXMultVecSR(work->mGlobalRot, &work->mpEmtr->mLocalDir, work->mGlobalEmtrDir);
+    MTXConcat(work->mpEmtr->mGlobalRot, mtx, work->mGlobalRot);
+    MTXMultVecSR(work->mGlobalRot, (Vec*)&work->mpEmtr->mLocalDir, (Vec*)&work->mGlobalEmtrDir);
 }
 
 /* 80276A8C-80276A90 2713CC 0004+00 0/0 3/0 0/0 .text

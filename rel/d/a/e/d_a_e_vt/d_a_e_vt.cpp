@@ -5,7 +5,6 @@
 
 #include "rel/d/a/e/d_a_e_vt/d_a_e_vt.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -655,7 +654,7 @@ extern "C" void PSVECSquareMag();
 extern "C" void PSVECSquareDistance();
 extern "C" void __copy();
 extern "C" void __construct_array();
-extern "C" void __save_gpr();
+extern "C" void _savegpr_14();
 extern "C" void _savegpr_17();
 extern "C" void _savegpr_19();
 extern "C" void _savegpr_22();
@@ -666,7 +665,7 @@ extern "C" void _savegpr_26();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
-extern "C" void __restore_gpr();
+extern "C" void _restgpr_14();
 extern "C" void _restgpr_17();
 extern "C" void _restgpr_19();
 extern "C" void _restgpr_22();

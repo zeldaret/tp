@@ -11,7 +11,6 @@
 #include "JSystem/JUtility/JUTProcBar.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GX.h"
-#include "dolphin/mtx/mtx44.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 
@@ -19,95 +18,9 @@
 // Forward References:
 //
 
-extern "C" void ctor_subroutine__10JFWDisplayFb();
-extern "C" void __ct__10JFWDisplayFP7JKRHeapQ26JUTXfb10EXfbNumberb();
-extern "C" void __dt__10JFWDisplayFv();
-extern "C" void createManager__10JFWDisplayFPC16_GXRenderModeObjP7JKRHeapQ26JUTXfb10EXfbNumberb();
-extern "C" static void callDirectDraw__Fv();
-extern "C" void prepareCopyDisp__10JFWDisplayFv();
-extern "C" void drawendXfb_single__10JFWDisplayFv();
-extern "C" void exchangeXfb_double__10JFWDisplayFv();
-extern "C" void exchangeXfb_triple__10JFWDisplayFv();
-extern "C" void copyXfb_triple__10JFWDisplayFv();
-extern "C" void preGX__10JFWDisplayFv();
-extern "C" void endGX__10JFWDisplayFv();
-extern "C" void beginRender__10JFWDisplayFv();
-extern "C" void endRender__10JFWDisplayFv();
-extern "C" void endFrame__10JFWDisplayFv();
-extern "C" void waitBlanking__10JFWDisplayFi();
-extern "C" static void waitForTick__FUlUs();
-extern "C" static void JFWThreadAlarmHandler__FP7OSAlarmP9OSContext();
-extern "C" void threadSleep__10JFWDisplayFx();
-extern "C" void clearEfb_init__10JFWDisplayFv();
-extern "C" void clearEfb__10JFWDisplayFv();
-extern "C" void clearEfb__10JFWDisplayF8_GXColor();
-extern "C" void clearEfb__10JFWDisplayFiiii8_GXColor();
-extern "C" void calcCombinationRatio__10JFWDisplayFv();
-extern "C" static void JFWDrawDoneAlarm__Fv();
-extern "C" static void JFWGXAbortAlarmHandler__FP7OSAlarmP9OSContext();
-extern "C" static void diagnoseGpHang__Fv();
-extern "C" void __sinit_JFWDisplay_cpp();
-extern "C" void func_80273724(void* _this);
-extern "C" extern char const* const JFWDisplay__stringBase0;
-extern "C" u8 sList__8JFWAlarm[12];
-extern "C" u8 sManager__10JFWDisplay[4];
-
 //
 // External References:
 //
-
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void __ct__10JSUPtrLinkFPv();
-extern "C" void __dt__10JSUPtrLinkFv();
-extern "C" void __ct__10JSUPtrListFb();
-extern "C" void __dt__10JSUPtrListFv();
-extern "C" void append__10JSUPtrListFP10JSUPtrLink();
-extern "C" void remove__10JSUPtrListFP10JSUPtrLink();
-extern "C" void flush__10JUTDbPrintFv();
-extern "C" void changeFrameBuffer__14JUTDirectPrintFPvUsUs();
-extern "C" void flushMessage__12JUTAssertionFv();
-extern "C" void flushMessage_dbPrint__12JUTAssertionFv();
-extern "C" void drawDoneStart__8JUTVideoFv();
-extern "C" void dummyNoDrawWait__8JUTVideoFv();
-extern "C" void setRenderMode__8JUTVideoFPC16_GXRenderModeObj();
-extern "C" void waitRetraceIfNeed__8JUTVideoFv();
-extern "C" void createManager__6JUTXfbFP7JKRHeapQ26JUTXfb10EXfbNumber();
-extern "C" void destroyManager__6JUTXfbFv();
-extern "C" void control__8JUTFaderFv();
-extern "C" void create__10JUTProcBarFv();
-extern "C" void destroy__10JUTProcBarFv();
-extern "C" void clear__10JUTProcBarFv();
-extern "C" void draw__10JUTProcBarFv();
-extern "C" void draw__17JUTConsoleManagerCFv();
-extern "C" void __ct__13J2DOrthoGraphFffffff();
-extern "C" void setPort__13J2DOrthoGraphFv();
-extern "C" void VIFlush();
-extern "C" void GXClearVtxDesc();
-extern "C" void GXInvalidateVtxCache();
-extern "C" void GXAbortFrame();
-extern "C" void GXSetDrawDone();
-extern "C" void GXDrawDone();
-extern "C" void GXPixModeSync();
-extern "C" void GXInvalidateTexAll();
-extern "C" void __register_global_object();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" void __cvt_dbl_usll();
-extern "C" extern void* __vt__14J2DGrafContext[10];
-extern "C" extern void* __vt__13J2DOrthoGraph[10];
-extern "C" u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
-extern "C" u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
-extern "C" u8 sManager__8JUTVideo[4];
-extern "C" u8 sVideoLastTick__8JUTVideo[4];
-extern "C" u8 sVideoInterval__8JUTVideo[4];
-extern "C" u8 sManager__6JUTXfb[4 + 4 /* padding */];
-extern "C" u8 sManager__10JUTProcBar[4];
-extern "C" u8 sManager__17JUTConsoleManager[4];
 
 //
 // Declarations:
@@ -141,14 +54,14 @@ void JFWDisplay::ctor_subroutine(bool enableAlpha) {
 
 /* ############################################################################################## */
 /* 803C4020-803C4060 021140 0030+10 1/1 0/0 0/0 .data            e_mtx */
-SECTION_DATA static Mtx e_mtx ALIGN_DECL(32) = {
+static Mtx e_mtx ALIGN_DECL(32) = {
     {1.0f, 0.0f, 0.0f, 0.0f},
     {0.0f, 1.0f, 0.0f, 0.0f},
     {0.0f, 0.0f, 1.0f, 0.0f},
 };
 
 /* 803C4060-803C40A0 021180 0040+00 1/1 0/0 0/0 .data            clear_z_TX */
-SECTION_DATA static u8 clear_z_TX[64] ALIGN_DECL(32) = {
+static u8 clear_z_TX[64] ALIGN_DECL(32) = {
     0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF,
     0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
@@ -483,7 +396,6 @@ void JFWDisplay::waitBlanking(int param_0) {
     }
 }
 
-#ifdef NONMATCHING
 /* ############################################################################################## */
 /* 804511D0-804511D4 0006D0 0004+00 1/1 0/0 0/0 .sbss            nextTick$2642 */
 static OSTime nextTick ALIGN_DECL(8);
@@ -498,64 +410,28 @@ static u32 nextCount;
 static s8 data_804511E0;
 
 /* 80272CB0-80272DD0 26D5F0 0120+00 2/2 0/0 0/0 .text            waitForTick__FUlUs */
-static void waitForTick(u32 param_0, u16 param_1) {
-    if (param_0 != 0) {
-        if (!data_804511D8) {
-            nextTick = OSGetTime();
-            data_804511D8 = true;
+static void waitForTick(u32 p1, u16 p2) {
+    if (p1 != 0) {
+        static s64 nextTick = OSGetTime();
+        s64 time = OSGetTime();
+        while (time < nextTick) {
+            JFWDisplay::getManager()->threadSleep((nextTick - time));
+            time = OSGetTime();
         }
-
-        while (OSGetTime() < nextTick) {
-            JFWDisplay::getManager()->threadSleep(nextTick - param_0);
-        }
-        nextTick += param_0;
-    } else {
-        if (!data_804511E0) {
-            nextCount = VIGetRetraceCount();
-            data_804511E0 = true;
-        }
-
-        int uvar4 = 1;
-        if (param_1 != 0) {
-            uvar4 = param_1;
-        }
-
+        nextTick = time + p1;
+    }
+    else {
+        static u32 nextCount = VIGetRetraceCount();
+        u32 uVar1 = (p2 == 0) ? 1 : p2;
         OSMessage msg;
         do {
-            if (!OSReceiveMessage(JUTVideo::getManager()->getMessageQueue(), &msg,
-                                  OS_MESSAGE_BLOCK)) {
-                msg = NULL;
+            if (!OSReceiveMessage(JUTVideo::getManager()->getMessageQueue(), &msg, OS_MESSAGE_BLOCK)) {
+                msg = 0;
             }
-        } while ((int)msg - nextCount > 0);
-        nextCount = (int)msg + uvar4;
+        } while (((int)msg - (int)nextCount) < 0);
+        nextCount = (int)msg + uVar1;
     }
 }
-#else
-/* ############################################################################################## */
-/* 804511D0-804511D4 0006D0 0004+00 1/1 0/0 0/0 .sbss            nextTick$2642 */
-static u8 nextTick[4] ALIGN_DECL(8);
-
-/* 804511D4-804511D8 0006D4 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_804511D4[4];
-
-/* 804511D8-804511DC 0006D8 0004+00 1/1 0/0 0/0 .sbss            None */
-static s8 data_804511D8;
-
-/* 804511DC-804511E0 0006DC 0004+00 1/1 0/0 0/0 .sbss            nextCount$2650 */
-static u32 nextCount;
-
-/* 804511E0-804511E8 0006E0 0008+00 1/1 0/0 0/0 .sbss            None */
-static s8 data_804511E0;
-
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void waitForTick(u32 param_0, u16 param_1) {
-    nofralloc
-#include "asm/JSystem/JFramework/JFWDisplay/waitForTick__FUlUs.s"
-}
-#pragma pop
-#endif
 
 /* 80430FE4-80430FF0 05DD04 000C+00 4/4 0/0 0/0 .bss             sList__8JFWAlarm */
 JSUList<JFWAlarm> JFWAlarm::sList(false);

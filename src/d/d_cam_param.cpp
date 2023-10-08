@@ -88,7 +88,7 @@ cXyz dCamMath::xyzRotateX(cXyz& i_xyz, cSAngle i_angle) {
 
     s16 angle = i_angle.Val();
     mDoMtx_XrotS(m, angle);
-    PSMTXMultVec(m, &i_xyz, &rot_xyz);
+    MTXMultVec(m, &i_xyz, &rot_xyz);
     return rot_xyz;
 }
 
@@ -99,7 +99,7 @@ cXyz dCamMath::xyzRotateY(cXyz& i_xyz, cSAngle i_angle) {
 
     s16 angle = i_angle.Val();
     mDoMtx_YrotS(m, angle);
-    PSMTXMultVec(m, &i_xyz, &rot_xyz);
+    MTXMultVec(m, &i_xyz, &rot_xyz);
     return rot_xyz;
 }
 

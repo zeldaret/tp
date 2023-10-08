@@ -2,8 +2,6 @@
 #define F_F_OP_CAMERA_MNG_H_
 
 #include "SSystem/SComponent/c_phase.h"
-#include "SSystem/SComponent/c_sxyz.h"
-#include "SSystem/SComponent/c_xyz.h"
 #include "d/d_camera.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_view.h"
@@ -18,7 +16,7 @@ public:
     /* 0x22C */ s8 mPrm1;
     /* 0x22D */ s8 mPrm2;
     /* 0x22E */ s8 mPrm3;
-    /* 0x22F */ u8 field_0x22f;
+    /* 0x22F */ s8 field_0x22f;
     /* 0x230 */ csXyz mAngle;
     /* 0x238 */ int field_0x238;
 };
@@ -60,6 +58,10 @@ void fopCamM_SetBank(camera_class* cam, s16 bank) {
 
 inline s16 fopCamM_GetAngleY(camera_class* i_camera) {
     return i_camera->mAngle.y;
+}
+
+inline f32 fopCamM_GetFovy(camera_class* i_camera) {
+    return i_camera->mFovy;
 }
 
 u32 fopCamM_Create(int i_cameraIdx, s16 pProcName, void* param_3);

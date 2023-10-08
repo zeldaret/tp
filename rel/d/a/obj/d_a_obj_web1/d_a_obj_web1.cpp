@@ -175,7 +175,7 @@ static int daObj_Web1_Execute(obj_web1_class* i_this) {
     mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
     mDoMtx_stack_c::scaleM(i_this->mScale.x * 1.2f, i_this->mScale.x, i_this->mScale.x * 1.2f);
     mDoMtx_stack_c::transM(0.0f, i_this->mScale.x * i_this->mScale.y * -15.0f + 9.0f, 0.0f);
-    PSMTXCopy(mDoMtx_stack_c::get(), i_this->mMtx);
+    MTXCopy(mDoMtx_stack_c::get(), i_this->mMtx);
 
     i_this->mpBgW->Move();
     i_this->mCylCc.SetC(i_this->current.pos);
@@ -238,7 +238,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     cBgD_t* dzb = (cBgD_t*)dComIfG_getObjectRes("Obj_web1", 11);
-    if (_this->mpBgW->Set(dzb, 1, &_this->mMtx) == 1) {
+    if (_this->mpBgW->Set(dzb, cBgW::MOVE_BG_e, &_this->mMtx) == 1) {
         return 0;
     }
 
@@ -254,10 +254,7 @@ static daObj_Web1_HIO_c l_HIO;
 /* 80D35CE4-80D35F98 000A24 02B4+00 1/0 0/0 0/0 .text            daObj_Web1_Create__FP10fopAc_ac_c
  */
 static int daObj_Web1_Create(fopAc_ac_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) obj_web1_class();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    fopAcM_SetupActor(i_this, obj_web1_class);
     obj_web1_class* _this = static_cast<obj_web1_class*>(i_this);
 
     static dCcD_SrcCyl cc_cyl_src = {

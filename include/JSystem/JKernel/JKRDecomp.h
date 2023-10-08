@@ -3,7 +3,6 @@
 
 #include "JSystem/JKernel/JKRCompression.h"
 #include "JSystem/JKernel/JKRThread.h"
-#include "dolphin/types.h"
 
 class JKRAMCommand;
 class JKRDecompCommand {
@@ -61,6 +60,13 @@ inline void JKRDecompress(u8* srcBuffer, u8* dstBuffer, u32 srcLength, u32 dstLe
 
 inline JKRDecomp* JKRCreateDecompManager(long priority) {
     return JKRDecomp::create(priority);
+}
+
+inline JKRCompression JKRCheckCompressed_noASR(u8 *pBuf) {
+    JKRCompression compression = JKRDecomp::checkCompressed(pBuf);
+    if (compression == COMPRESSION_ASR) // ternary i had before was either incorrect, or was not a ternary at all
+        compression = COMPRESSION_NONE;
+    return compression;
 }
 
 #endif /* JKRDECOMP_H */

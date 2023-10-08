@@ -3,14 +3,13 @@
 
 #include "SSystem/SComponent/c_xyz.h"
 #include "d/msg/d_msg_flow.h"
-#include "dolphin/types.h"
 
 struct CSTControl;
 class J2DAnmTextureSRTKey;
 class JKRArchive;
 class JKRExpHeap;
 class JKRHeap;
-struct STControl;
+class STControl;
 class dMenu_Fmap_stage_data_c;
 class dMenu_Fmap_world_data_c;
 class dMenu_Fmap_region_data_c;

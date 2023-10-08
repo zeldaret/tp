@@ -9,7 +9,6 @@
 #include "d/d_procname.h"
 #include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
-#include "global.h"
 
 //
 // Forward References:
@@ -315,11 +314,16 @@ SECTION_DATA static void* lit_5955[40] = {
 };
 
 /* 8066F18C-8066F1CC 0001D0 0040+00 1/1 0/0 0/0 .data            cc_sph_src$6355 */
-SECTION_DATA static u8 cc_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x75, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00,
+static dCcD_SrcSph cc_sph_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x0, 0x0}, 0x75}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 20.0f} // mSph
+    } // mSphAttr
 };
 
 /* 8066F1CC-8066F1EC -00001 0020+00 1/0 0/0 0/0 .data            l_daDo_Method */
@@ -438,7 +442,7 @@ static int nodeCallBack(J3DJoint* i_jntP, int param_1) {
         do_class* user_area = (do_class*)model->getUserArea();
 
         if (user_area) {
-            PSMTXCopy(model->i_getAnmMtx(joint_num), *calc_mtx);
+            MTXCopy(model->i_getAnmMtx(joint_num), *calc_mtx);
 
             if (joint_num == 9 || joint_num == 10) {
                 cMtx_YrotM(*calc_mtx, user_area->field_0x60e.y + user_area->field_0x626.y);
@@ -453,7 +457,7 @@ static int nodeCallBack(J3DJoint* i_jntP, int param_1) {
             }
 
             model->setAnmMtx(joint_num, *calc_mtx);
-            PSMTXCopy(*calc_mtx, j3dSys.mCurrentMtx);
+            MTXCopy(*calc_mtx, j3dSys.mCurrentMtx);
         }
     }
     return 1;

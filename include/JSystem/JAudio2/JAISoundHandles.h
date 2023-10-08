@@ -3,7 +3,6 @@
 
 #include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JUtility/JUTAssert.h"
-#include "dolphin/types.h"
 
 class JAISound;
 class JAISoundID;
@@ -36,7 +35,7 @@ public:
         numHandles_ = param_1;
     };
 
-    void getHandleSoundID(JAISoundID);
+    JAISoundHandle* getHandleSoundID(JAISoundID);
     JAISoundHandle* getFreeHandle();
 
 private:

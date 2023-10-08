@@ -28,7 +28,8 @@ public:
     void loadSeWave(u32);
     void loadBgmWave(u32);
 
-    bool isSceneExist() { return sceneExist; }
+    bool isSceneExist() const { return sceneExist; }
+    int getCurrentSceneNum() const { return sceneNum; }
 
 private:
     /* 0x00 */ long BGM_ID;

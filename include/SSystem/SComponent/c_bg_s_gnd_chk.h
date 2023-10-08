@@ -4,7 +4,6 @@
 #include "SSystem/SComponent/c_bg_s_chk.h"
 #include "SSystem/SComponent/c_bg_s_poly_info.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/types.h"
 
 class cBgS_GndChk : public cBgS_Chk, public cBgS_PolyInfo {
 public:
@@ -17,6 +16,8 @@ public:
 
     f32 GetNowY() const { return mNowY; }
     void SetNowY(f32 y) { mNowY = y; }
+    const cXyz& GetPointP() { return m_pos; }
+    u32 GetWallPrecheck() const { return mWallPrecheck; }
 
 private:
     /* 0x24 */ cXyz m_pos;

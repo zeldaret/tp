@@ -5,7 +5,6 @@
 
 #include "JSystem/JAudio2/JAISeqMgr.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -106,7 +105,7 @@ asm bool JAISeqMgr::isUsingSeqData(JAISeqDataRegion const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAISeqMgr::releaseSeqData(JAISeqDataRegion const& param_0) {
+asm int JAISeqMgr::releaseSeqData(JAISeqDataRegion const& param_0) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAISeqMgr/releaseSeqData__9JAISeqMgrFRC16JAISeqDataRegion.s"
 }

@@ -3,7 +3,6 @@
 
 #include "JSystem/J2DGraph/J2DTevs.h"
 #include "JSystem/JUtility/TColor.h"
-#include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
 
 class JUTFont;
@@ -15,7 +14,27 @@ struct ResTIMG;
 struct ResTLUT;
 
 struct J2DGXColorS10 : public GXColorS10 {
-    /* 802F1B90 */ J2DGXColorS10();
+    /* 802F1B90 */ J2DGXColorS10() {}
+    J2DGXColorS10(const J2DGXColorS10& other) {
+        r = other.r;
+        g = other.g;
+        b = other.b;
+        a = other.a;
+    }
+    J2DGXColorS10(const GXColorS10& other) {
+        r = other.r;
+        g = other.g;
+        b = other.b;
+        a = other.a;
+    }
+
+    // J2DGXColorS10& operator=(const GXColorS10& other) {
+    //     r = other.r;
+    //     g = other.g;
+    //     b = other.b;
+    //     a = other.a;
+    //     return *this;
+    // }
 };
 
 struct J2DTevSwapModeInfo;
@@ -26,11 +45,11 @@ public:
     /* 802EB1D0 */ virtual void setGX();
     /* 802F2A44 */ virtual void loadTexture(_GXTexMapID, u32);
     virtual u32 getType() = 0;
-    virtual s32 getMaxStage() = 0;
+    virtual u8 getMaxStage() = 0;
     /* 802EB1DC */ virtual void setTexNo(u32, u16);
     /* 802EA170 */ virtual u32 getTexNo(u32) const;
     /* 802F2A48 */ virtual void setFontNo(u16);
-    /* 802EA164 */ virtual u32 getFontNo() const;
+    /* 802EA164 */ virtual u16 getFontNo() const;
     /* 802F2A4C */ virtual void setTevOrder(u32, J2DTevOrder);
     /* 802EA144 */ virtual J2DTevOrder* getTevOrder(u32);
     /* 802EB1D8 */ virtual void setTevColor(u32, J2DGXColorS10);
@@ -77,11 +96,11 @@ public:
     /* 802EC328 */ virtual void setGX();
     /* 802EC570 */ virtual void loadTexture(_GXTexMapID, u32);
     /* 802F27A0 */ virtual u32 getType();
-    /* 802F27AC */ virtual s32 getMaxStage();
+    /* 802F27AC */ virtual u8 getMaxStage();
     /* 802F27B4 */ virtual void setTexNo(u32, u16);
     /* 802F27C4 */ virtual u32 getTexNo(u32) const;
     /* 802F27D4 */ virtual void setFontNo(u16);
-    /* 802F27DC */ virtual u32 getFontNo() const;
+    /* 802F27DC */ virtual u16 getFontNo() const;
     /* 802F27E4 */ virtual void setTevOrder(u32, J2DTevOrder);
     /* 802F2808 */ virtual J2DTevOrder* getTevOrder(u32);
     /* 802F281C */ virtual void setTevColor(u32, J2DGXColorS10);
@@ -144,11 +163,11 @@ public:
     /* 802ED584 */ virtual void setGX();
     /* 802ED874 */ virtual void loadTexture(_GXTexMapID, u32);
     /* 802F24FC */ virtual u32 getType();
-    /* 802F2508 */ virtual s32 getMaxStage();
+    /* 802F2508 */ virtual u8 getMaxStage();
     /* 802F2510 */ virtual void setTexNo(u32, u16);
     /* 802F2520 */ virtual u32 getTexNo(u32) const;
     /* 802F2530 */ virtual void setFontNo(u16);
-    /* 802F2538 */ virtual u32 getFontNo() const;
+    /* 802F2538 */ virtual u16 getFontNo() const;
     /* 802F2540 */ virtual void setTevOrder(u32, J2DTevOrder);
     /* 802F2564 */ virtual J2DTevOrder* getTevOrder(u32);
     /* 802F2578 */ virtual void setTevColor(u32, J2DGXColorS10);
@@ -213,11 +232,11 @@ public:
     /* 802EEA2C */ virtual void setGX();
     /* 802EED1C */ virtual void loadTexture(_GXTexMapID, u32);
     /* 802F2258 */ virtual u32 getType();
-    /* 802F2264 */ virtual s32 getMaxStage();
+    /* 802F2264 */ virtual u8 getMaxStage();
     /* 802F226C */ virtual void setTexNo(u32, u16);
     /* 802F227C */ virtual u32 getTexNo(u32) const;
     /* 802F228C */ virtual void setFontNo(u16);
-    /* 802F2294 */ virtual u32 getFontNo() const;
+    /* 802F2294 */ virtual u16 getFontNo() const;
     /* 802F229C */ virtual void setTevOrder(u32, J2DTevOrder);
     /* 802F22C0 */ virtual J2DTevOrder* getTevOrder(u32);
     /* 802F22D4 */ virtual void setTevColor(u32, J2DGXColorS10);
@@ -282,11 +301,11 @@ public:
     /* 802EFEAC */ virtual void setGX();
     /* 802F019C */ virtual void loadTexture(_GXTexMapID, u32);
     /* 802F1FB8 */ virtual u32 getType();
-    /* 802F1FC4 */ virtual s32 getMaxStage();
+    /* 802F1FC4 */ virtual u8 getMaxStage();
     /* 802F1FCC */ virtual void setTexNo(u32, u16);
     /* 802F1FDC */ virtual u32 getTexNo(u32) const;
     /* 802F1FEC */ virtual void setFontNo(u16);
-    /* 802F1FF4 */ virtual u32 getFontNo() const;
+    /* 802F1FF4 */ virtual u16 getFontNo() const;
     /* 802F1FFC */ virtual void setTevOrder(u32, J2DTevOrder);
     /* 802F2020 */ virtual J2DTevOrder* getTevOrder(u32);
     /* 802F2034 */ virtual void setTevColor(u32, J2DGXColorS10);
@@ -352,11 +371,11 @@ public:
     /* 802F132C */ virtual void setGX();
     /* 802F161C */ virtual void loadTexture(_GXTexMapID, u32);
     /* 802F1D18 */ virtual u32 getType();
-    /* 802F1D24 */ virtual s32 getMaxStage();
+    /* 802F1D24 */ virtual u8 getMaxStage();
     /* 802F1D2C */ virtual void setTexNo(u32, u16);
     /* 802F1D3C */ virtual u32 getTexNo(u32) const;
     /* 802F1D4C */ virtual void setFontNo(u16);
-    /* 802F1D54 */ virtual u32 getFontNo() const;
+    /* 802F1D54 */ virtual u16 getFontNo() const;
     /* 802F1D5C */ virtual void setTevOrder(u32, J2DTevOrder);
     /* 802F1D80 */ virtual J2DTevOrder* getTevOrder(u32);
     /* 802F1D94 */ virtual void setTevColor(u32, J2DGXColorS10);
@@ -414,7 +433,22 @@ public:
     /* 0x1B1 */ bool mFontUndeleteFlag;
 };  // Size: 0x1B4
 
+struct J2DAlphaCompInfo {
+    /* 0x0 */ u8 field_0x0;
+    /* 0x1 */ u8 field_0x1;
+    /* 0x2 */ u8 mRef0;
+    /* 0x3 */ u8 mRef1;
+    /* 0x4 */ u8 field_0x4;
+    /* 0x5 */ u8 field_0x5;
+    /* 0x6 */ u8 field_0x6;
+    /* 0x7 */ u8 field_0x7;
+};
+
 extern u16 j2dDefaultAlphaCmp;
+
+inline u16 J2DCalcAlphaCmp(s32 param_1, u32 param_2, u32 param_3) {
+    return ((param_1) << 5) | ((param_2 & 0xff) << 3) | (param_3 & 0xff);
+}
 
 struct J2DAlphaComp {
     J2DAlphaComp() {
@@ -422,6 +456,16 @@ struct J2DAlphaComp {
         mRef0 = 0;
         mRef1 = 0;
     }
+    J2DAlphaComp(const J2DAlphaCompInfo& info) {
+        mAlphaCmp = J2DCalcAlphaCmp(info.field_0x0, info.mRef0, info.mRef1);
+        mRef0 = info.field_0x1;
+        mRef1 = info.field_0x4;
+    }
+    u8 getComp0() { return mAlphaCmp >> 5 & 7; }
+    u8 getRef0() { return mRef0; }
+    u8 getOp() { return mAlphaCmp >> 3 & 3; }
+    u8 getComp1() { return mAlphaCmp & 7; }
+    u8 getRef1() { return mRef1; }
 
     /* 0x0 */ u16 mAlphaCmp;
     /* 0x2 */ u8 mRef0;
@@ -433,21 +477,27 @@ struct J2DBlendInfo {
         mType = other.mType;
         mSrcFactor = other.mSrcFactor;
         mDstFactor = other.mDstFactor;
-        // mOp = other.mOp;
+        mOp = other.mOp;
     }
 
     /* 0x0 */ u8 mType;
     /* 0x1 */ u8 mSrcFactor;
     /* 0x2 */ u8 mDstFactor;
+    /* 0x3 */ u8 mOp;
 };
 
 extern J2DBlendInfo j2dDefaultBlendInfo;
 
 struct J2DBlend {
     J2DBlend() { mBlendInfo = j2dDefaultBlendInfo; }
+    J2DBlend(const J2DBlendInfo& info) { mBlendInfo = info; }
+    void setBlendInfo(const J2DBlendInfo& info) { mBlendInfo = info; }
+    u8 getType() { return mBlendInfo.mType; }
+    u8 getSrcFactor() { return mBlendInfo.mSrcFactor; }
+    u8 getDstFactor() { return mBlendInfo.mDstFactor; }
+    u8 getOp() { return mBlendInfo.mOp; }
 
     /* 0x0 */ J2DBlendInfo mBlendInfo;
-    /* 0x3 */ u8 mOp;
 };
 
 class J2DPEBlock {
@@ -456,6 +506,9 @@ public:
 
     /* 802F17FC */ void initialize();
     /* 802F1840 */ void setGX();
+    void setAlphaComp(J2DAlphaComp comp) { mAlphaComp = comp; }
+    void setBlend(J2DBlend blend) { mBlend = blend; }
+    void setDither(u8 dither) { mDither = dither; }
 
 private:
     /* 0x0 */ J2DAlphaComp mAlphaComp;
@@ -527,22 +580,39 @@ public:
     /* 802EB7E0 */ void getTexMtx(u32, J2DTexMtx&);
 
     u32 getTexGenNum() const { return mTexGenNum; }
+    void setTexGenNum(u32 num) { mTexGenNum = num; }
+    void setTexCoord(u32 i, J2DTexCoord coord) { mTexGenCoord[i] = coord; }
+    void setTexMtx(u32 i, J2DTexMtx* mtx) { mTexMtx[i] = mtx; }
 
     /* 802EB620 */ virtual ~J2DTexGenBlock();
 };  // Size: 0x48
 
 struct J2DColorChanInfo {
-    /* 0x0 */ u16 field_0x0;
+    /* 0x0 */ u8 field_0x0;
+    /* 0x0 */ u8 field_0x1;
+    /* 0x0 */ u8 field_0x2;
+    /* 0x0 */ u8 field_0x3;
 };
+
+inline u8 J2DCalcColorChanID(u8 param_1) { return param_1; }
+extern J2DColorChanInfo j2dDefaultColorChanInfo;
 
 class J2DColorChan {
 public:
-    /* 802EB280 */ J2DColorChan();
+    /* 802EB280 */ J2DColorChan() {
+        setColorChanInfo(j2dDefaultColorChanInfo);
+    }
+    J2DColorChan(const J2DColorChanInfo& info) {
+        mColorChan = J2DCalcColorChanID(info.field_0x1);
+    }
 
-    u16 getMatSrc() const { return mColorChanInfo.field_0x0 & 1; }
+    void setColorChanInfo(const J2DColorChanInfo& info) {
+        mColorChan = J2DCalcColorChanID(info.field_0x1);
+    }
+    u16 getMatSrc() const { return mColorChan & 1; }
 
 private:
-    /* 0x0 */ J2DColorChanInfo mColorChanInfo;
+    /* 0x0 */ u16 mColorChan;
 };
 
 class J2DColorBlock {
@@ -563,6 +633,9 @@ public:
     JUtility::TColor* getMatColor(u32 i) { return &mMatColor[i]; }
     J2DColorChan* getColorChan(u32 i) { return &mColorChan[i]; }
     void setCullMode(u8 mode) { mCullMode = mode; }
+    void setColorChanNum(u8 num) { mColorChanNum = num; }
+    void setMatColor(u32 i, JUtility::TColor color) { mMatColor[i] = color; }
+    void setColorChan(u32 i, const J2DColorChan& color) { mColorChan[i] = color; }
 };
 
 #endif /* J2DMATBLOCK_H */

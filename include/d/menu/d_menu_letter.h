@@ -2,12 +2,11 @@
 #define D_MENU_D_MENU_LETTER_H
 
 #include "d/d_drawlist.h"
-#include "dolphin/types.h"
 
 class CPaneMgr;
 struct CSTControl;
 class J2DTextBox;
-struct STControl;
+class STControl;
 class mDoDvdThd_mountArchive_c;
 class dMsgString_c;
 class dMsgScrnArrow_c;

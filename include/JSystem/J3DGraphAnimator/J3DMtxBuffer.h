@@ -1,9 +1,7 @@
 #ifndef J3DMTXBUFFER_H
 #define J3DMTXBUFFER_H
 
-#include "JSystem/J3DGraphAnimator/J3DJointTree.h"
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
-#include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 
 class J3DModelData;
@@ -25,12 +23,14 @@ public:
     /* 80326EF0 */ void calcBBoardMtx();
 
     MtxP getAnmMtx(int idx) const { return mpAnmMtx[idx]; }
-    void setAnmMtx(int i, Mtx m) { PSMTXCopy(m, (MtxP)mpAnmMtx[i]); }
+    void setAnmMtx(int i, Mtx m) { MTXCopy(m, (MtxP)mpAnmMtx[i]); }
+    MtxP getWeightAnmMtx(int idx) const { return mpWeightEvlpMtx[idx]; }
 
     void setScaleFlag(int idx, u8 flag) { mpScaleFlagArr[idx] = flag; }
     u32* getCurrentViewNoPtr() { return &mCurrentViewNo; }
     u8* getScaleFlagArray() const { return mpScaleFlagArr; }
-    u8 getScaleFlag(u16 idx) const { return mpScaleFlagArr[idx]; }
+    u8 getScaleFlag(int idx) const { return mpScaleFlagArr[idx]; }
+    u8 getEnvScaleFlag(int idx) const { return mpEvlpScaleFlagArr[idx]; }
     Mtx** getDrawMtxPtrPtr() const { return mpDrawMtxArr[1]; }
     Mtx* getDrawMtxPtr() const { return mpDrawMtxArr[1][mCurrentViewNo]; }
     Mtx* getDrawMtx(u16 idx) const { return &mpDrawMtxArr[1][mCurrentViewNo][idx]; }
@@ -39,6 +39,7 @@ public:
     Mtx33* getNrmMtx(u16 idx) const { return &mpNrmMtxArr[1][mCurrentViewNo][idx]; }
     Mtx33*** getBumpMtxPtrPtr() const { return mpBumpMtxArr[1]; }
     Mtx33* getBumpMtxPtr(int idx) const { return mpBumpMtxArr[1][idx][mCurrentViewNo]; }
+    J3DJointTree* getJointTree() const { return mJointTree; }
 
     void swapDrawMtx() {
         Mtx* tmp = mpDrawMtxArr[0][mCurrentViewNo];

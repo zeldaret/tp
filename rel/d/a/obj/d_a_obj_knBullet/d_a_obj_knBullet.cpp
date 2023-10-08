@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_knBullet/d_a_obj_knBullet.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -40,13 +40,6 @@ struct dKy_tevstr_c {};
 
 struct _GXColor {};
 
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266F48 */ void normalizeZP();
-};
-
 struct dPa_control_c {
     struct level_c {
         /* 8004B918 */ void getEmitter(u32);
@@ -60,49 +53,8 @@ struct dPa_control_c {
                             _GXColor const*, cXyz const*, f32);
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800842C0 */ void ChkAtHit();
-};
-
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 8026F708 */ void SetR(f32);
-    /* 80C47270 */ ~cM3dGSph();
-};
-
-struct cM3dGAab {
-    /* 80C472B8 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JPABaseEmitter {
@@ -163,7 +115,6 @@ extern "C" void __dl__FPv();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXTrans();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECScale();
 extern "C" void _savegpr_24();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_29();
@@ -193,13 +144,17 @@ SECTION_RODATA static u8 const l_DATA[12] = {
 COMPILER_STRIP_GATE(0x80C47950, &l_DATA);
 
 /* 80C4795C-80C4799C 00000C 0040+00 1/1 0/0 0/0 .rodata          l_sph_src */
-SECTION_RODATA static u8 const l_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D,
-    0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+const static dCcD_SrcSph l_sph_src = {
+    {
+        {0x0, {{AT_TYPE_THROW_OBJ, 0x0, 0xd}, {0x10, 0x1f}, 0x0}}, // mObj
+        {dCcD_SE_HARD_BODY, 0x0, 0x0, 0x0, 0x8}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 0.0f} // mSph
+    } // mSphAttr
 };
-COMPILER_STRIP_GATE(0x80C4795C, &l_sph_src);
 
 /* 80C4799C-80C479A0 00004C 0004+00 0/1 0/0 0/0 .rodata          @3907 */
 #pragma push
@@ -279,7 +234,8 @@ asm void daObjKnBullet_c::Create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_knBullet/d_a_obj_knBullet/__dt__8cM3dGSphFv.s"
 }
@@ -289,7 +245,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_knBullet/d_a_obj_knBullet/__dt__8cM3dGAabFv.s"
 }

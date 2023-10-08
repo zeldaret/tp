@@ -29,6 +29,9 @@ typedef int BOOL;
 #define TRUE 1
 #define FALSE 0
 
+#define READU32_BE(ptr, offset) \
+    (((u32)ptr[offset] << 24) | ((u32)ptr[offset + 1] << 16) | ((u32)ptr[offset + 2] << 8) | (u32)ptr[offset + 3]);
+
 #include "MSL_C/MSL_Common/Src/stddef.h"
 
 #define INT32_MAX (0x7fffffff)

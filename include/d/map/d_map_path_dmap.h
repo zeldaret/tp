@@ -3,7 +3,6 @@
 
 #include "d/d_tresure.h"
 #include "d/map/d_map_path.h"
-#include "dolphin/types.h"
 
 class dStage_FileList2_dt_c;
 struct stage_tgsc_data_class;
@@ -14,10 +13,13 @@ public:
     /* 8003F760 */ static int getTopBottomFloorNo(s8*, s8*);
     /* 8003F7E8 */ static void createWork();
     /* 8003FA40 */ static void setPointer(s8, void*, int);
-    /* 8003F810 */ static void setPointer(dDrawPath_c::room_class*, s8*, s8*);
+    /* 8003F810 */ static int setPointer(dDrawPath_c::room_class*, s8*, s8*);
     /* 8003FB70 */ static void create();
     /* 8003FBD0 */ static void reset();
     /* 8003FC70 */ static void remove();
+    static dDrawPath_c::room_class* getRoomPointer(int layerNo, int roomNo) {
+        return (mLayerList + 0x40*layerNo)[roomNo];
+    }
 
     static dDrawPath_c::room_class** mLayerList;  // this doesn't seem right, but can't figure it out atm
     static f32 mMinX;
@@ -92,7 +94,7 @@ public:
     /* 8003FFC4 */ virtual void postDrawPath();
     /* 800402C0 */ virtual bool isDrawPath();
     /* 8003FE4C */ virtual GXColor* getBackColor() const;
-    /* 800402E0 */ virtual bool getFirstDrawLayerNo();
+    /* 800402E0 */ virtual int getFirstDrawLayerNo();
     /* 800402E8 */ virtual int getNextDrawLayerNo(int);
     /* 800409E0 */ virtual bool isDrawIconSingle(dTres_c::data_s const*, int, int, bool, bool,
                                                  Vec const*) const;

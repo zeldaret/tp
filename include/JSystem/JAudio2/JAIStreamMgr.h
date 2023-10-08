@@ -7,7 +7,8 @@
 
 class JAIStreamMgr;
 
-struct JAIStream {
+class JAIStream {
+public:
     /* 802A3104 */ JAIStream(JAIStreamMgr*, JAISoundStrategyMgr<JAIStream>*);
     /* 802A319C */ void JAIStreamMgr_startID_(JAISoundID, s32, JGeometry::TVec3<f32> const*,
                                               JAIAudience*, int);

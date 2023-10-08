@@ -4,10 +4,8 @@
 //
 
 #include "JSystem/JParticle/JPAExTexShape.h"
-#include "JSystem/JParticle/JPAParticle.h"
-#include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
-#include "dol2asm.h"
+#include "JSystem/JParticle/JPAEmitter.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 

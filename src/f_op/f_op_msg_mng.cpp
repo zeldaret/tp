@@ -4,12 +4,8 @@
 //
 
 #include "f_op/f_op_msg_mng.h"
-#include "JSystem/J2DGraph/J2DPane.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
-#include "JSystem/JMath/JMath.h"
 #include "SSystem/SComponent/c_malloc.h"
-#include "SSystem/SComponent/c_math.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/meter/d_meter2.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_object.h"
@@ -409,7 +405,7 @@ void J2DPicture::setBlendRatio(f32 param_0, f32 param_1) {
 }
 
 /* 80020338-80020368 01AC78 0030+00 0/0 1/0 0/0 .text            append__10J2DPictureFPCcf */
-void J2DPicture::append(char const* param_0, f32 param_1) {
+bool J2DPicture::append(char const* param_0, f32 param_1) {
     insert(param_0, mTextureCount, param_1);
 }
 

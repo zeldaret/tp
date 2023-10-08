@@ -5,7 +5,6 @@
 
 #include "Runtime.PPCEABI.H/__init_cpp_exceptions.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

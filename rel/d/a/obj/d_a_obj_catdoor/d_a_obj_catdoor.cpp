@@ -4,13 +4,10 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_catdoor/d_a_obj_catdoor.h"
-#include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "SSystem/SComponent/c_phase.h"
 #include "d/bg/d_bg_w.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 #include "f_op/f_op_actor_mng.h"
 #include "global.h"
@@ -93,21 +90,16 @@ public:
     }
 
     int create() {
-        if (!fopAcM_CheckCondition(this, 8)) {
-            new (this) daObjCatDoor_c();
-            fopAcM_OnCondition(this, 8);
-        }
+        fopAcM_SetupActor(this, daObjCatDoor_c);
 
         int phase_state = dComIfG_resLoad(&mPhaseReq, l_arcName);
-        if (phase_state != cPhs_COMPLEATE_e) {
-            return phase_state;
+        if (phase_state == cPhs_COMPLEATE_e) {
+            if (!fopAcM_entrySolidHeap(this, createSolidHeap, 0x2520)) {
+                phase_state = cPhs_ERROR_e;
+            } else {
+                create_init();
+            }
         }
-
-        if (!fopAcM_entrySolidHeap(this, createSolidHeap, 0x2520)) {
-            return cPhs_ERROR_e;
-        }
-
-        create_init();
         return phase_state;
     }
 
@@ -216,7 +208,7 @@ void daObjCatDoor_c::initBaseMtx() {
     mCullMtx = mMtx;
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_YrotM(mDoMtx_stack_c::get(), shape_angle.y);
-    PSMTXCopy(mDoMtx_stack_c::get(), mMtx);
+    MTXCopy(mDoMtx_stack_c::get(), mMtx);
     setBaseMtx();
 }
 
@@ -327,10 +319,10 @@ COMPILER_STRIP_GATE(0x80BC49D4, &lit_3864);
 
 /* 80BC4848-80BC49AC 000608 0164+00 1/0 0/0 0/0 .text            daObjCatDoor_Create__FP10fopAc_ac_c
  */
-#ifdef NONMATCHING // inverted conditional branch
-static void daObjCatDoor_Create(fopAc_ac_c* i_this) {
+#ifdef NONMATCHING // literals + register init order
+static int daObjCatDoor_Create(fopAc_ac_c* i_this) {
     fopAcM_GetID(i_this);
-    static_cast<daObjCatDoor_c*>(i_this)->create();
+    return static_cast<daObjCatDoor_c*>(i_this)->create();
 }
 #else
 #pragma push

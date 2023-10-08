@@ -1,12 +1,6 @@
 #ifndef D_D_DEMO_H
 #define D_D_DEMO_H
 
-#include "JSystem/JGadget/binary.h"
-#include "JSystem/JStage/JSGAmbientLight.h"
-#include "JSystem/JStage/JSGCamera.h"
-#include "JSystem/JStage/JSGFog.h"
-#include "JSystem/JStage/JSGLight.h"
-#include "JSystem/JStudio/JStudio/jstudio-object.h"
 #include "JSystem/JStudio/JStudio_JAudio2/control.h"
 #include "JSystem/JStudio/JStudio_JParticle/object-particle.h"
 #include "JSystem/JStudio/JStudio_JStage/object.h"
@@ -14,6 +8,7 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/gx/GXEnum.h"
 #include "dolphin/gx/GXStruct.h"
+#include "Z2AudioLib/Z2SoundStarter.h"
 
 class J3DModel;
 class dDemo_actor_c;
@@ -279,7 +274,7 @@ public:
     static dDemo_actor_c* getActor(u8 param_0) { return m_object->getActor(param_0); }
     static u32 getFrameNoMsg() { return m_frameNoMsg; }
     static s32 getMode() { return m_mode; }
-    static int getFrame() { return m_frame; }
+    static u32 getFrame() { return m_frame; }
     static JStudio::stb::TControl* getControl() { return m_control; }
     static bool isStatus(u32 status) { return m_status & status; }
     static void onStatus(u32 status) { m_status |= status; }
@@ -306,5 +301,9 @@ public:
     static u16 m_branchType;
     static const u8* m_branchData;
 };
+
+inline Z2SoundStarter* Z2GetSoundStarter() {
+    return JASGlobalInstance<Z2SoundStarter>::getInstance();
+}
 
 #endif /* D_D_DEMO_H */

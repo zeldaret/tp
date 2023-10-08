@@ -4,25 +4,24 @@
 //
 
 #include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubinit.h"
+#include "TRK_MINNOW_DOLPHIN/utils/common/MWTrace.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // External References:
 //
 
-void TRKInitializeEventQueue();
-void TRKInitializeMessageBuffers();
+int TRKInitializeEventQueue();
+int TRKInitializeMessageBuffers();
 u8 TRKTerminateSerialHandler();
-void TRKInitializeSerialHandler();
+int TRKInitializeSerialHandler();
 void usr_put_initialize();
-u8 TRKInitializeDispatcher();
-void TRKTargetSetInputPendingPtr();
-void TRKInitializeTarget();
+int TRKInitializeDispatcher();
+void TRKTargetSetInputPendingPtr(void*);
+int TRKInitializeTarget();
 void InitializeProgramEndTrap();
-void TRK_board_display();
-void TRKInitializeIntDrivenUART();
-void MWTRACE();
+void TRK_board_display(const char*);
+int TRKInitializeIntDrivenUART(u32, u32, u32, void*);
 extern u8 gTRKInputPendingPtr[4 + 4 /* padding */];
 
 //
@@ -35,24 +34,15 @@ SECTION_RODATA static char const lit_133[] = "MetroTRK for GAMECUBE v2.6";
 COMPILER_STRIP_GATE(0x803A2688, &lit_133);
 
 /* 8036CE40-8036CE68 367780 0028+00 0/0 1/1 0/0 .text            TRKNubWelcome */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void TRKNubWelcome(void) {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubinit/TRKNubWelcome.s"
+void TRKNubWelcome(void) {
+    TRK_board_display(lit_133);
 }
-#pragma pop
 
 /* 8036CE68-8036CE8C 3677A8 0024+00 0/0 1/1 0/0 .text            TRKTerminateNub */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 TRKTerminateNub(void) {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubinit/TRKTerminateNub.s"
+s32 TRKTerminateNub(void) {
+    TRKTerminateSerialHandler();
+    return 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803A26A4-803A26B8 02ED04 0010+04 1/1 0/0 0/0 .rodata          @154 */
@@ -60,8 +50,28 @@ SECTION_RODATA static char const lit_154[] = "Initialize NUB\n";
 COMPILER_STRIP_GATE(0x803A26A4, &lit_154);
 
 /* 8044D8B8-8044D8C0 07A5D8 0004+04 1/1 4/4 0/0 .bss             gTRKBigEndian */
-SECTION_BSS extern u8 gTRKBigEndian[4 + 4 /* padding */];
-SECTION_BSS u8 gTRKBigEndian[4 + 4 /* padding */];
+SECTION_BSS extern BOOL gTRKBigEndian;
+SECTION_BSS BOOL gTRKBigEndian;
+
+inline BOOL TRKInitializeEndian() {
+    BOOL res = FALSE;
+    u8 bendian[4];
+    u32 load;
+    gTRKBigEndian = TRUE;
+    bendian[0] = 0x12;
+    bendian[1] = 0x34;
+    bendian[2] = 0x56;
+    bendian[3] = 0x78;
+    load = *(u32*)bendian;
+    if (load == 0x12345678) {
+        gTRKBigEndian = TRUE;
+    } else if (load == 0x78563412) {
+        gTRKBigEndian = FALSE;
+    } else {
+        res = TRUE;
+    }
+    return res;
+}
 
 /* 8036CE8C-8036CFD8 3677CC 014C+00 0/0 1/1 0/0 .text            TRKInitializeNub */
 #pragma push
@@ -71,4 +81,3 @@ asm s32 TRKInitializeNub(void) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubinit/TRKInitializeNub.s"
 }
-#pragma pop

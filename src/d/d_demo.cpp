@@ -4,12 +4,9 @@
 //
 
 #include "d/d_demo.h"
-#include "MSL_C/float.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 #include "global.h"
 #include "m_Do/m_Do_graphic.h"
@@ -1674,7 +1671,7 @@ s32 dDemo_actor_c::JSGFindNodeID(char const* param_0) const {
 /* 8003A088-8003A0C8 0349C8 0040+00 1/0 0/0 0/0 .text
  * JSGGetNodeTransformation__13dDemo_actor_cCFUlPA4_f           */
 int dDemo_actor_c::JSGGetNodeTransformation(u32 param_0, Mtx param_1) const {
-    PSMTXCopy(mModel->i_getAnmMtx((u16)param_0), param_1);
+    MTXCopy(mModel->i_getAnmMtx((u16)param_0), param_1);
     return 1;
 }
 

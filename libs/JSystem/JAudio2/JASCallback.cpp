@@ -4,39 +4,19 @@
 //
 
 #include "JSystem/JAudio2/JASCallback.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
+#include "JSystem/JAudio2/JASCriticalSection.h"
 
 //
 // Types:
 //
 
-struct JASCallbackMgr {
-    /* 8028FFA8 */ void regist(s32 (*)(void*), void*);
-    /* 80290030 */ void reject(s32 (*)(void*), void*);
-    /* 802900C4 */ void callback();
-};
-
 //
 // Forward References:
 //
 
-extern "C" void regist__14JASCallbackMgrFPFPv_lPv();
-extern "C" void reject__14JASCallbackMgrFPFPv_lPv();
-extern "C" void callback__14JASCallbackMgrFv();
-
 //
 // External References:
 //
-
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
 
 //
 // Declarations:
@@ -44,32 +24,40 @@ extern "C" void _restgpr_29();
 
 /* 8028FFA8-80290030 28A8E8 0088+00 0/0 2/2 0/0 .text            regist__14JASCallbackMgrFPFPv_lPv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASCallbackMgr::regist(s32 (*param_0)(void*), void* param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASCallback/regist__14JASCallbackMgrFPFPv_lPv.s"
+bool JASCallbackMgr::regist(JASCallback* function, void* argument)
+{
+	JASCriticalSection criticalSection;
+	for (int i = 0; i < 0x20; i++) {
+		if (mCallbacks[i].mFunction == NULL) {
+			mCallbacks[i].mFunction = function;
+			mCallbacks[i].mArgument = argument;
+			return true;
+		}
+	}
+	return false;
 }
-#pragma pop
 
 /* 80290030-802900C4 28A970 0094+00 0/0 1/1 0/0 .text            reject__14JASCallbackMgrFPFPv_lPv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASCallbackMgr::reject(s32 (*param_0)(void*), void* param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASCallback/reject__14JASCallbackMgrFPFPv_lPv.s"
+int JASCallbackMgr::reject(JASCallback* function, void* argument) {
+	int rejectNum = 0;
+	JASCriticalSection criticalSection;
+	for (int i = 0; i < 0x20; i++) {
+		if (mCallbacks[i].mFunction == function && mCallbacks[i].mArgument == argument) {
+			mCallbacks[i].mFunction = NULL;
+			mCallbacks[i].mArgument = NULL;
+			rejectNum++;
+		}
+	}
+	return rejectNum;
 }
-#pragma pop
 
 /* 802900C4-80290140 28AA04 007C+00 0/0 3/3 0/0 .text            callback__14JASCallbackMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASCallbackMgr::callback() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASCallback/callback__14JASCallbackMgrFv.s"
+void JASCallbackMgr::callback() {
+	for (int i = 0; i < 0x20; i++) {
+		if (mCallbacks[i].mFunction && mCallbacks[i].mFunction(mCallbacks[i].mArgument) < 0) {
+			mCallbacks[i].mFunction = NULL;
+			mCallbacks[i].mArgument = NULL;
+		}
+	}
 }
-#pragma pop

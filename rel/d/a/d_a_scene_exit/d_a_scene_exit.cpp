@@ -4,9 +4,7 @@
 //
 
 #include "rel/d/a/d_a_scene_exit/d_a_scene_exit.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_mtx.h"
@@ -78,16 +76,13 @@ COMPILER_STRIP_GATE(0x80485C9C, &lit_3759);
 /* 80485974-80485A30 0001B4 00BC+00 1/0 0/0 0/0 .text            daScex_Create__FP10fopAc_ac_c */
 // matches with literals
 #ifdef NONMATCHING
-static int daScex_Create(fopAc_ac_c* ac) {
-    if (!fopAcM_CheckCondition(ac, 8)) {
-        new (ac) daScex_c();
-        fopAcM_OnCondition(ac, 8);
-    }
-    daScex_c* scex = static_cast<daScex_c*>(ac);
+static int daScex_Create(fopAc_ac_c* i_this) {
+    fopAcM_SetupActor(i_this, daScex_c);
+    daScex_c* scex = static_cast<daScex_c*>(i_this);
 
     mDoMtx_stack_c::transS(scex->current.pos.x, scex->current.pos.y, scex->current.pos.z);
     mDoMtx_stack_c::YrotM(scex->shape_angle.y);
-    PSMTXInverse(mDoMtx_stack_c::get(), scex->mMatrix);
+    MTXInverse(mDoMtx_stack_c::get(), scex->mMatrix);
     scex->mScale.x *= 75.0f;
     scex->mScale.z *= 75.0f;
     scex->mScale.y *= 150.0f;
@@ -144,6 +139,7 @@ COMPILER_STRIP_GATE(0x80485CA8, &lit_3842);
 
 /* 80485A50-80485C90 000290 0240+00 1/1 0/0 0/0 .text            execute__8daScex_cFv */
 // regalloc
+// this matches debug but not retail :/
 #ifdef NONMATCHING
 int daScex_c::execute() {
     daPy_py_c* player = daPy_getPlayerActorClass();

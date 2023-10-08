@@ -6,11 +6,9 @@
 #include "JSystem/JKernel/JKRDvdArchive.h"
 #include "JSystem/JKernel/JKRDvdFile.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
-#include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "MSL_C/math.h"
 #include "MSL_C/string.h"
-#include "dol2asm.h"
 #include "dolphin/os/OS.h"
 #include "global.h"
 
@@ -313,8 +311,8 @@ u32 JKRDvdArchive::fetchResource_subroutine(s32 entryNum, u32 offset, u32 size, 
             // The dst pointer to JKRDvdToMainRam should be aligned to 32 bytes. This will align
             // arcHeader to 32 bytes on the stack.
             char arcHeaderBuffer[64];
-            SArcHeader* arcHeader = (SArcHeader*)ALIGN_NEXT((u32)arcHeaderBuffer, 0x20);
-            JKRDvdToMainRam(entryNum, (u8*)arcHeader, EXPAND_SWITCH_UNKNOWN2, sizeof(SArcHeader),
+            u8* arcHeader = (u8*)ALIGN_NEXT((u32)arcHeaderBuffer, 0x20);
+            JKRDvdToMainRam(entryNum, arcHeader, EXPAND_SWITCH_UNKNOWN2, sizeof(SArcHeader),
                             NULL, JKRDvdRipper::ALLOC_DIRECTION_FORWARD, offset, NULL, NULL);
             DCInvalidateRange(arcHeader, sizeof(SArcHeader));
 
@@ -380,8 +378,8 @@ u32 JKRDvdArchive::fetchResource_subroutine(s32 entryNum, u32 offset, u32 size, 
             // The dst pointer to JKRDvdToMainRam should be aligned to 32 bytes. This will align
             // arcHeader to 32 bytes on the stack.
             char arcHeaderBuffer[64];
-            SArcHeader* arcHeader = (SArcHeader*)ALIGN_NEXT((u32)arcHeaderBuffer, 0x20);
-            JKRDvdToMainRam(entryNum, (u8*)arcHeader, EXPAND_SWITCH_UNKNOWN2, sizeof(SArcHeader),
+            u8* arcHeader = (u8*)ALIGN_NEXT((u32)arcHeaderBuffer, 0x20);
+            JKRDvdToMainRam(entryNum, arcHeader, EXPAND_SWITCH_UNKNOWN2, sizeof(SArcHeader),
                             NULL, JKRDvdRipper::ALLOC_DIRECTION_FORWARD, offset, NULL, NULL);
             DCInvalidateRange(arcHeader, sizeof(SArcHeader));
 
@@ -444,11 +442,11 @@ u32 JKRDvdArchive::getExpandedResSize(const void* resource) const {
     // The dst pointer to JKRDvdToMainRam should be aligned to 32 bytes. This will align arcHeader
     // to 32 bytes on the stack.
     char buffer[64];
-    SArcHeader* arcHeader = (SArcHeader*)ALIGN_NEXT((u32)buffer, 0x20);
-    JKRDvdToMainRam(mEntryNum, (u8*)arcHeader, EXPAND_SWITCH_UNKNOWN2, sizeof(*arcHeader), NULL,
+    u8* arcHeader = (u8*)ALIGN_NEXT((u32)buffer, 0x20);
+    JKRDvdToMainRam(mEntryNum, arcHeader, EXPAND_SWITCH_UNKNOWN2, sizeof(SArcHeader), NULL,
                     JKRDvdRipper::ALLOC_DIRECTION_FORWARD,
                     this->field_0x64 + fileEntry->data_offset, NULL, NULL);
-    DCInvalidateRange(arcHeader, sizeof(*arcHeader));
+    DCInvalidateRange(arcHeader, sizeof(SArcHeader));
 
     resourceSize = JKRDecompExpandSize(arcHeader);
     // ???

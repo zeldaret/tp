@@ -2,7 +2,6 @@
 #define JKRDVDARAMRIPPER_H
 
 #include "JSystem/JKernel/JKRDvdRipper.h"
-#include "JSystem/JSupport/JSUList.h"
 #include "dolphin/types.h"
 
 class JKRAramBlock;
@@ -49,5 +48,9 @@ public:
     static u8 sDvdAramAsyncList[12];
     static u32 sSZSBufferSize;
 };
+
+inline JKRAramBlock *JKRDvdToAram(s32 entrynum, u32 p2, JKRExpandSwitch expSwitch, u32 p4, u32 p5, u32 *p6) {
+    return JKRDvdAramRipper::loadToAram(entrynum, p2, expSwitch, p4, p5, p6);
+}
 
 #endif /* JKRDVDARAMRIPPER_H */

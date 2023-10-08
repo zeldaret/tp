@@ -4,7 +4,6 @@
 //
 
 #include "rel/d/a/npc/d_a_npc_ash/d_a_npc_ash.h"
-#include "rel/d/a/tag/d_a_tag_evtarea/d_a_tag_evtarea.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
@@ -637,10 +636,10 @@ SECTION_DATA static void* lit_5140[3] = {
 #pragma pop
 
 static cPhs__Step daNpcAsh_Create(void*);
-static bool daNpcAsh_Delete(void*);
-static bool daNpcAsh_Execute(void*);
-static bool daNpcAsh_IsDelete(void*);
-static bool daNpcAsh_Draw(void*);
+static int daNpcAsh_Delete(void*);
+static int daNpcAsh_Execute(void*);
+static int daNpcAsh_IsDelete(void*);
+static int daNpcAsh_Draw(void*);
 
 /* 8095DC04-8095DC24 -00001 0020+00 1/0 0/0 0/0 .data            daNpcAsh_MethodTable */
 static actor_method_class daNpcAsh_MethodTable = {
@@ -776,7 +775,7 @@ asm daNpcAsh_c::daNpcAsh_c() {
 #include "asm/rel/d/a/npc/d_a_npc_ash/d_a_npc_ash/__ct__10daNpcAsh_cFv.s"
 }
 #pragma pop
-
+ 
 /* 80958430-809584FC 000230 00CC+00 2/2 0/0 0/0 .text            __dt__8dCcD_CylFv */
 #pragma push
 #pragma optimization_level 0
@@ -870,23 +869,13 @@ SECTION_RODATA daNpcAsh_Param_c::param const daNpcAsh_Param_c::m = {
 };
 COMPILER_STRIP_GATE(0x8095D640, &daNpcAsh_Param_c::m);
 
-/* 8095D910-8095D910 0002D0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8095D97C = "R_SP116";
-SECTION_DEAD static char const* const stringBase_8095D984 = "D_MN09";
-#pragma pop
-
 /* 809587A0-80958B68 0005A0 03C8+00 1/1 0/0 0/0 .text            Create__10daNpcAsh_cFv */
 cPhs__Step daNpcAsh_c::Create() {
     cPhs__Step step;
 
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daNpcAsh_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daNpcAsh_c);
 
-    if (!strcmp(dComIfGp_getStartStageName(), ((char*)&d_a_npc_ash__stringBase0) + 0x6C) && dComIfG_play_c::getLayerNo(0) == 4) { // "R_SP116"
+    if (!strcmp(dComIfGp_getStartStageName(), "R_SP116") && dComIfG_play_c::getLayerNo(0) == 4) {
         if (daNpcF_chkEvtBit(0x169) && !daNpcF_chkEvtBit(0x10a)) {
             return cPhs_ERROR_e;
         }
@@ -894,7 +883,7 @@ cPhs__Step daNpcAsh_c::Create() {
             return cPhs_ERROR_e;
         }
         field_0xf60 = 0;
-    } else if (!strcmp(dComIfGp_getStartStageName(), ((char*)&d_a_npc_ash__stringBase0) + 0x74)) { // "D_MN09"
+    } else if (!strcmp(dComIfGp_getStartStageName(), "D_MN09")) {
         if (dComIfGs_isSaveSwitch(0x14)) {
             return cPhs_ERROR_e;
         }
@@ -1148,19 +1137,19 @@ asm void __ct__14J3DMatColorAnmFv() {
 #pragma pop
 
 /* 809590C4-809590F8 000EC4 0034+00 1/1 0/0 0/0 .text            Delete__10daNpcAsh_cFv */
-bool daNpcAsh_c::Delete() {
+int daNpcAsh_c::Delete() {
     this->~daNpcAsh_c();
-    return true;
+    return 1;
 }
 
 /* 809590F8-8095911C 000EF8 0024+00 2/2 0/0 0/0 .text            Execute__10daNpcAsh_cFv */
-bool daNpcAsh_c::Execute() {
+int daNpcAsh_c::Execute() {
     execute();
-    return true;
+    return 1;
 }
 
 /* 8095911C-80959238 000F1C 011C+00 1/1 0/0 0/0 .text            Draw__10daNpcAsh_cFv */
-bool daNpcAsh_c::Draw() {
+int daNpcAsh_c::Draw() {
     mMcaMorf->getModel()->getModelData()->getMaterialNodePointer(2)->setMaterialAnm(mpMatAnm);
     draw(0, 0, daNpcAsh_Param_c::m.mShadow, NULL, 0);
     if (field_0xf60 == 1) {
@@ -1173,21 +1162,15 @@ bool daNpcAsh_c::Draw() {
         mModelQuiver->i_setBaseTRMtx(mDoMtx_stack_c::get());
         mDoExt_modelUpdateDL(mModelQuiver);
     }
-    return true;
+    return 1;
 }
 
 /* ############################################################################################## */
-/* 8095D6C4-8095D6D0 000084 000C+00 1/1 0/0 0/0 .rodata          @4385 */
-SECTION_RODATA static u8 const lit_4385[12] = {
-    0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04,
-};
-COMPILER_STRIP_GATE(0x8095D6C4, &lit_4385);
 
 /* 80959238-80959458 001038 0220+00 1/1 0/0 0/0 .text ctrlJoint__10daNpcAsh_cFP8J3DJointP8J3DModel
  */
-#ifdef NONMATCHING
 bool daNpcAsh_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
-    s32 jointNo = i_joint->getJntNo();
+    int jointNo = i_joint->getJntNo();
     int lookatJoints[3] = {1, 3, 4};
     if (jointNo == 0) {
         mDoMtx_stack_c::copy(mMcaMorf->getModel()->i_getAnmMtx(1));
@@ -1221,16 +1204,6 @@ bool daNpcAsh_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     }
     return true;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool daNpcAsh_c::ctrlJoint(J3DJoint* param_0, J3DModel* param_1) {
-    nofralloc
-#include "asm/rel/d/a/npc/d_a_npc_ash/d_a_npc_ash/ctrlJoint__10daNpcAsh_cFP8J3DJointP8J3DModel.s"
-}
-#pragma pop
-#endif
 
 /* 80959458-80959478 001258 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__10daNpcAsh_cFP10fopAc_ac_c               */
@@ -2283,8 +2256,8 @@ BOOL daNpcAsh_c::EvCut_Meeting(int cutIndex) {
     int* cutName = (int*)evtMgr.getMyNowCutName(cutIndex);
     if (evtMgr.getIsAddvance(cutIndex)) {
         switch (*cutName) {
-            case 0x30303031: // "0001"
-            case 0x30303032: // "0002"
+            case '0001':
+            case '0002':
                 dComIfGp_setMesgCameraInfoActor(actors[0], actors[1], actors[2], actors[3], NULL, NULL, NULL, NULL, NULL, NULL);
                 initTalk(0x42e, actors);
         }
@@ -2299,7 +2272,7 @@ BOOL daNpcAsh_c::EvCut_Meeting(int cutIndex) {
         }
     }
     switch (*cutName) {
-        case 0x30303031: // "0001"
+        case '0001':
             if (talkProc(NULL, 1, actors)) {
                 return true;
             }
@@ -2309,7 +2282,7 @@ BOOL daNpcAsh_c::EvCut_Meeting(int cutIndex) {
             }
             setLookMode(5, talkPartner);
             break;
-        case 0x30303032: // "0002"
+        case '0002':
             if (talkProc(NULL, 1, actors)) {
                 return true;
             }
@@ -2352,7 +2325,7 @@ BOOL daNpcAsh_c::EvCut_WiretapSponsor(int cutIndex) {
     int* cutName = (int*)evtMgr.getMyNowCutName(cutIndex);
     if (evtMgr.getIsAddvance(cutIndex)) {
         switch (*cutName) {
-            case 0x30303031: // "0001"
+            case '0001':
                 dComIfGp_setMesgCameraInfoActor(actors[0], actors[1], actors[2], actors[3], NULL, NULL, NULL, NULL, NULL, NULL);
                 initTalk(mMessageNo, actors);
         }
@@ -2367,7 +2340,7 @@ BOOL daNpcAsh_c::EvCut_WiretapSponsor(int cutIndex) {
         }
     }
     switch (*cutName) {
-        case 0x30303031: // "0001"
+        case '0001':
             if (talkProc(NULL, 1, actors)) {
                 return true;
             }
@@ -2440,23 +2413,23 @@ static cPhs__Step daNpcAsh_Create(void* i_this) {
 }
 
 /* 8095BC58-8095BC78 003A58 0020+00 1/0 0/0 0/0 .text            daNpcAsh_Delete__FPv */
-static bool daNpcAsh_Delete(void* i_this) {
+static int daNpcAsh_Delete(void* i_this) {
     return static_cast<daNpcAsh_c*>(i_this)->Delete();
 }
 
 /* 8095BC78-8095BC98 003A78 0020+00 1/0 0/0 0/0 .text            daNpcAsh_Execute__FPv */
-static bool daNpcAsh_Execute(void* i_this) {
+static int daNpcAsh_Execute(void* i_this) {
     return static_cast<daNpcAsh_c*>(i_this)->Execute();
 }
 
 /* 8095BC98-8095BCB8 003A98 0020+00 1/0 0/0 0/0 .text            daNpcAsh_Draw__FPv */
-static bool daNpcAsh_Draw(void* i_this) {
+static int daNpcAsh_Draw(void* i_this) {
     return static_cast<daNpcAsh_c*>(i_this)->Draw();
 }
 
 /* 8095BCB8-8095BCC0 003AB8 0008+00 1/0 0/0 0/0 .text            daNpcAsh_IsDelete__FPv */
-static bool daNpcAsh_IsDelete(void* i_this) {
-    return true;
+static int daNpcAsh_IsDelete(void* i_this) {
+    return 1;
 }
 
 /* 8095BCC0-8095BCF0 003AC0 0030+00 1/0 0/0 0/0 .text            calc__11J3DTexNoAnmCFPUs */

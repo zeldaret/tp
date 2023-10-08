@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_thashi/d_a_obj_thashi.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -16,11 +16,6 @@ struct request_of_phase_process_class {};
 struct csXyz {
     /* 80D0C318 */ ~csXyz();
     /* 80D0CE60 */ csXyz();
-};
-
-struct cXyz {
-    /* 80D0C2DC */ ~cXyz();
-    /* 80D0CE64 */ cXyz();
 };
 
 struct mDoMtx_stack_c {
@@ -62,30 +57,6 @@ struct dRes_control_c {
     /* 8003C6B8 */ void getObjectResName2Index(char const*, char const*);
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_Sph {
-    /* 80D0CC58 */ ~dCcD_Sph();
-    /* 80D0CD24 */ dCcD_Sph();
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
 struct dBgW {
     /* 8007B970 */ dBgW();
 };
@@ -122,19 +93,6 @@ struct dBgS_AcchCir {
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
     /* 800760A0 */ dBgS_Acch();
-};
-
-struct cM3dGSph {
-    /* 80D0CDA8 */ ~cM3dGSph();
-};
-
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 80D0CBC8 */ ~cM3dGCyl();
-};
-
-struct cM3dGAab {
-    /* 80D0CC10 */ ~cM3dGAab();
 };
 
 struct cBgD_t {};
@@ -310,14 +268,19 @@ COMPILER_STRIP_GATE(0x80D0D1DC, &lit_3697);
 #pragma pop
 
 /* 80D0D1E4-80D0D228 000058 0044+00 1/1 0/0 0/0 .rodata          ccCylSrc$3701 */
-SECTION_RODATA static u8 const ccCylSrc_3701[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x75,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x42, 0xDC, 0x00, 0x00, 0x43, 0x02, 0x00, 0x00,
+const static dCcD_SrcCyl ccCylSrc_3701 = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x100000, 0x1f}, 0x75}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x1, 0x0, 0x0, 0x2}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        110.0f, // mRadius
+        130.0f // mHeight
+    } // mCyl
 };
-COMPILER_STRIP_GATE(0x80D0D1E4, &ccCylSrc_3701);
 
 /* 80D0C238-80D0C298 000078 0060+00 1/1 0/0 0/0 .text            initCcCylinder__13daObjTHASHI_cFv
  */
@@ -355,7 +318,8 @@ static asm void daObjTHASHI_Delete(daObjTHASHI_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_thashi/d_a_obj_thashi/__dt__4cXyzFv.s"
 }
@@ -779,7 +743,8 @@ asm void daObjTHASHI_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_thashi/d_a_obj_thashi/__dt__8cM3dGCylFv.s"
 }
@@ -789,7 +754,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_thashi/d_a_obj_thashi/__dt__8cM3dGAabFv.s"
 }
@@ -799,7 +765,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Sph::~dCcD_Sph() {
+// asm dCcD_Sph::~dCcD_Sph() {
+extern "C" asm void __dt__8dCcD_SphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_thashi/d_a_obj_thashi/__dt__8dCcD_SphFv.s"
 }
@@ -809,7 +776,8 @@ asm dCcD_Sph::~dCcD_Sph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Sph::dCcD_Sph() {
+// asm dCcD_Sph::dCcD_Sph() {
+extern "C" asm void __ct__8dCcD_SphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_thashi/d_a_obj_thashi/__ct__8dCcD_SphFv.s"
 }
@@ -819,7 +787,8 @@ asm dCcD_Sph::dCcD_Sph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_thashi/d_a_obj_thashi/__dt__8cM3dGSphFv.s"
 }
@@ -841,7 +810,8 @@ csXyz::csXyz() {
 }
 
 /* 80D0CE64-80D0CE68 000CA4 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+// cXyz::cXyz() {
+extern "C" asm void __ct__4cXyzFv() {
     /* empty function */
 }
 

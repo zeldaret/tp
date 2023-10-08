@@ -2,7 +2,6 @@
 #define D_FILE_D_FILE_SEL_INFO_H
 
 #include "d/d_drawlist.h"
-#include "dolphin/types.h"
 
 class CPaneMgrAlpha;
 class dSv_save_c;
@@ -24,6 +23,7 @@ public:
     void setBasePane(J2DPane* pane) { mFileInfo.mBasePane = pane; }
     CPaneMgrAlpha* getDatBase() { return mDatBase; }
     CPaneMgrAlpha* getNoDatBase() { return mNoDatBase; }
+    void draw() { _draw(); }
 
 private:
     /* 0x04 */ JKRArchive* mArchive;

@@ -1,7 +1,6 @@
 #ifndef GXSTRUCT_H
 #define GXSTRUCT_H
 
-#include "dolphin/types.h"
 #include "global.h"
 
 typedef struct _GXColor {

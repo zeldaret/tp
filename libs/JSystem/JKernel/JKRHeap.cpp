@@ -7,7 +7,6 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "dolphin/os/OS.h"
-#include "global.h"
 
 //
 // Forward References:
@@ -188,25 +187,13 @@ void JKRHeap::free(void* ptr) {
 }
 
 /* 802CE574-802CE5CC 2C8EB4 0058+00 1/0 5/2 0/0 .text            callAllDisposer__7JKRHeapFv */
-// missing stack var
-#ifdef NONMATCHING
 void JKRHeap::callAllDisposer() {
     JSUListIterator<JKRDisposer> iterator;
 
-    while (iterator = mDisposerList.getFirst(), iterator != mDisposerList.getEnd()) {
+    while ((iterator = mDisposerList.getFirst()) != mDisposerList.getEnd()) {
         iterator->~JKRDisposer();
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRHeap::callAllDisposer() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRHeap/callAllDisposer__7JKRHeapFv.s"
-}
-#pragma pop
-#endif
 
 /* 802CE5CC-802CE5F8 2C8F0C 002C+00 0/0 12/12 0/0 .text            freeAll__7JKRHeapFv */
 void JKRHeap::freeAll() {
@@ -516,7 +503,7 @@ void operator delete[](void* ptr) {
 
 /* 802CED84-802CED88 2C96C4 0004+00 1/0 1/0 0/0 .text
  * state_register__7JKRHeapCFPQ27JKRHeap6TStateUl               */
-void JKRHeap::state_register(JKRHeap::TState* p, u32 id) const {
+u32 JKRHeap::state_register(JKRHeap::TState* p, u32 id) const {
     JUT_ASSERT(__FILE__, 1213, p != 0);
     JUT_ASSERT(__FILE__, 1214, p->getHeap() == this);
 }

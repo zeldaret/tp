@@ -4,55 +4,40 @@
 //
 
 #include "JSystem/JParticle/JPAKeyBlock.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
+#include "JSystem/JParticle/JPAMath.h"
 
 //
 // Types:
 //
 
-struct JPAKeyBlock {
-    /* 8027D730 */ JPAKeyBlock(u8 const*);
-    /* 8027D740 */ void calc(f32);
-};
-
 //
 // Forward References:
 //
 
-extern "C" void __ct__11JPAKeyBlockFPCUc();
-extern "C" void calc__11JPAKeyBlockFf();
-
 //
 // External References:
 //
-
-extern "C" void JPACalcKeyAnmValue__FfUsPCf();
 
 //
 // Declarations:
 //
 
 /* 8027D730-8027D740 278070 0010+00 0/0 1/1 0/0 .text            __ct__11JPAKeyBlockFPCUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JPAKeyBlock::JPAKeyBlock(u8 const* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAKeyBlock/__ct__11JPAKeyBlockFPCUc.s"
+JPAKeyBlock::JPAKeyBlock(const u8* data)
+    : mDataStart(data)
+    , field_0x4(reinterpret_cast<const float*>(&data[0xC]))
+{
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 80455350-80455358 003950 0008+00 1/1 0/0 0/0 .sdata2          @2215 */
-SECTION_SDATA2 static f64 lit_2215 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8027D740-8027D7D4 278080 0094+00 0/0 1/1 0/0 .text            calc__11JPAKeyBlockFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPAKeyBlock::calc(f32 param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAKeyBlock/calc__11JPAKeyBlockFf.s"
+void JPAKeyBlock::calc(float p1) {
+	if (mDataStart[0xB] != '\0') {
+		int v1 = (int)field_0x4[(mDataStart[9] - 1) * 4] + 1;
+		// p1 -= (v1 * ((int)p1 / v1));
+		int v2 = ((int)p1 / v1);
+		p1     = p1 - (v2 * v1);
+	}
+	JPACalcKeyAnmValue(p1, mDataStart[9], field_0x4);
 }
-#pragma pop

@@ -1,7 +1,6 @@
 #ifndef D_BG_D_BG_S_SPL_GRP_CHK_H
 #define D_BG_D_BG_S_SPL_GRP_CHK_H
 
-#include "SSystem/SComponent/c_bg_s_chk.h"
 #include "SSystem/SComponent/c_bg_s_poly_info.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "d/bg/d_bg_s_chk.h"
@@ -30,6 +29,7 @@ public:
     void SetHeight(f32 height) { m_height = height; }
     f32 GetHeight() { return m_height; }
     cXyz& GetPosP() { return m_ground; }
+    f32 GetRoof() const { return m_roof; }
 
 private:
     /* 0x3C */ cXyz m_ground;

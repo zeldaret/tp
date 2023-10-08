@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/e/d_a_e_tk_ball/d_a_e_tk_ball.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -28,13 +28,6 @@ struct e_tk_ball_class {};
 struct dKy_tevstr_c {};
 
 struct J3DModelData {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -68,28 +61,6 @@ struct dPa_control_c {
     static u8 mParticleTracePCB[4 + 4 /* padding */];
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-    /* 80084A78 */ void StartCAt(cXyz&);
-    /* 80084AC4 */ void MoveCAt(cXyz&);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800842C0 */ void ChkAtHit();
-    /* 80084460 */ void ChkTgHit();
-};
-
 struct dBgS_LinChk {
     /* 80077C68 */ dBgS_LinChk();
     /* 80077CDC */ ~dBgS_LinChk();
@@ -100,17 +71,6 @@ struct dAttention_c {
     /* 8007353C */ void LockonTarget(s32);
     /* 800737E4 */ void LockonTruth();
 };
-
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 807BD4D4 */ ~cM3dGSph();
-};
-
-struct cM3dGAab {
-    /* 807BD51C */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
 
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
@@ -209,10 +169,6 @@ extern "C" void __dl__FPv();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXTrans();
 extern "C" void PSMTXScale();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSubtract();
-extern "C" void PSVECScale();
-extern "C" void PSVECSquareMag();
 extern "C" void _savegpr_24();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_26();
@@ -231,7 +187,6 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
 extern "C" u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
 
 //
@@ -502,19 +457,29 @@ static asm void useHeapInit(fopAc_ac_c* param_0) {
 
 /* ############################################################################################## */
 /* 807BD5D8-807BD618 000008 0040+00 1/1 0/0 0/0 .data            at_sph_src$4199 */
-SECTION_DATA static u8 at_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x09, 0x01, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00,
+static dCcD_SrcSph at_sph_src = {
+    {
+        {0x0, {{AT_TYPE_CSTATUE_SWING, 0x1, 0xd}, {0x0, 0x0}, 0x0}}, // mObj
+        {dCcD_SE_METAL, 0x1, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 20.0f} // mSph
+    } // mSphAttr
 };
 
 /* 807BD618-807BD658 000048 0040+00 1/1 0/0 0/0 .data            tg_sph_src$4200 */
-SECTION_DATA static u8 tg_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x09, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00,
+static dCcD_SrcSph tg_sph_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0xd8fbfdff, 0x3}, 0x0}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_METAL, 0x5, 0x0, 0x0, 0x2}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 35.0f} // mSph
+    } // mSphAttr
 };
 
 /* 807BD658-807BD678 -00001 0020+00 1/0 0/0 0/0 .data            l_daE_TK_BALL_Method */
@@ -568,7 +533,8 @@ static asm void daE_TK_BALL_Create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_tk_ball/d_a_e_tk_ball/__dt__8cM3dGSphFv.s"
 }
@@ -578,7 +544,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_tk_ball/d_a_e_tk_ball/__dt__8cM3dGAabFv.s"
 }

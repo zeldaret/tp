@@ -4,24 +4,14 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_cblock/d_a_obj_cblock.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
 //
 
 struct request_of_phase_process_class {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266F48 */ void normalizeZP();
-    /* 80BC5CBC */ ~cXyz();
-    /* 80BC6020 */ cXyz();
-};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -70,28 +60,6 @@ struct dRes_control_c {
 
 struct dPath {};
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80BC6204 */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-    /* 80BC6024 */ dCcD_Cyl();
-    /* 80BC60A8 */ ~dCcD_Cyl();
-};
-
 struct dBgW {};
 
 struct cBgS_PolyInfo {};
@@ -109,28 +77,6 @@ struct dBgS_MoveBgActor {
                                      u32, f32 (*)[3][4]);
     /* 800788DC */ void MoveBGDelete();
     /* 80078950 */ void MoveBGExecute();
-};
-
-struct cM3dGCyl {
-    /* 80BC6174 */ ~cM3dGCyl();
-};
-
-struct cM3dGAab {
-    /* 80BC61BC */ ~cM3dGAab();
-};
-
-struct cCcD_GStts {
-    /* 80BC6930 */ ~cCcD_GStts();
-};
-
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JMath {
@@ -217,8 +163,6 @@ extern "C" void __dl__FPv();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXTrans();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
-extern "C" void PSVECDotProduct();
 extern "C" void __construct_array();
 extern "C" void __construct_new_array();
 extern "C" void _savegpr_25();
@@ -334,12 +278,18 @@ SECTION_DATA static u8 l_side_co_offset[48] = {
 #pragma pop
 
 /* 80BC6B28-80BC6B6C 000054 0044+00 1/1 0/0 0/0 .data            l_cyl_src */
-SECTION_DATA static u8 l_cyl_src[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x19,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x42, 0x70, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00,
+static dCcD_SrcCyl l_cyl_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x0, 0x0}, 0x19}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x6}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        60.0f, // mRadius
+        300.0f // mHeight
+    } // mCyl
 };
 
 /* 80BC5ABC-80BC5CBC 00019C 0200+00 1/0 0/0 0/0 .text            Create__11daObjCBlk_cFv */
@@ -356,7 +306,8 @@ asm void daObjCBlk_c::Create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_cblock/d_a_obj_cblock/__dt__4cXyzFv.s"
 }
@@ -492,7 +443,8 @@ asm void daObjCBlk_c::create() {
 #pragma pop
 
 /* 80BC6020-80BC6024 000700 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+// cXyz::cXyz() {
+extern "C" asm void __ct__4cXyzFv() {
     /* empty function */
 }
 
@@ -500,7 +452,8 @@ cXyz::cXyz() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Cyl::dCcD_Cyl() {
+// asm dCcD_Cyl::dCcD_Cyl() {
+extern "C" asm void __ct__8dCcD_CylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_cblock/d_a_obj_cblock/__ct__8dCcD_CylFv.s"
 }
@@ -510,7 +463,8 @@ asm dCcD_Cyl::dCcD_Cyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Cyl::~dCcD_Cyl() {
+// asm dCcD_Cyl::~dCcD_Cyl() {
+extern "C" asm void __dt__8dCcD_CylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_cblock/d_a_obj_cblock/__dt__8dCcD_CylFv.s"
 }
@@ -520,7 +474,8 @@ asm dCcD_Cyl::~dCcD_Cyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_cblock/d_a_obj_cblock/__dt__8cM3dGCylFv.s"
 }
@@ -530,7 +485,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_cblock/d_a_obj_cblock/__dt__8cM3dGAabFv.s"
 }
@@ -540,7 +496,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_cblock/d_a_obj_cblock/__dt__10dCcD_GSttsFv.s"
 }
@@ -945,7 +902,8 @@ static asm void daObjCBlk_Create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_cblock/d_a_obj_cblock/__dt__10cCcD_GSttsFv.s"
 }

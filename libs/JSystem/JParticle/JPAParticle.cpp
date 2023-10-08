@@ -4,9 +4,10 @@
 //
 
 #include "JSystem/JParticle/JPAParticle.h"
+#include "JSystem/JParticle/JPAEmitter.h"
+#include "JSystem/JParticle/JPAEmitterManager.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:
@@ -37,7 +38,6 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_29();
 extern "C" extern void* __vt__19JPAParticleCallBack[5];
-extern "C" extern u32 __float_epsilon;
 
 //
 // Declarations:

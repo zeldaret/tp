@@ -2,7 +2,6 @@
 #define C_CC_S_H
 
 #include "SSystem/SComponent/c_cc_d.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 enum WeightType {

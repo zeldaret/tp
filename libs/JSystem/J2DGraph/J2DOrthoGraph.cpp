@@ -4,48 +4,16 @@
 //
 
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
-#include "dol2asm.h"
 #include "dolphin/gx/GX.h"
-#include "dolphin/mtx/mtx44.h"
 #include "dolphin/types.h"
 
 //
 // Forward References:
 //
 
-extern "C" void __ct__13J2DOrthoGraphFv();
-extern "C" void __ct__13J2DOrthoGraphFffffff();
-extern "C" void setPort__13J2DOrthoGraphFv();
-extern "C" void func_802E980C();
-extern "C" void setLookat__13J2DOrthoGraphFv();
-extern "C" void func_802E987C();
-extern "C" void J2DDrawLine__FffffQ28JUtility6TColori();
-extern "C" void J2DFillBox__FffffQ28JUtility6TColor();
-extern "C" void func_802E9B0C();
-extern "C" void J2DDrawFrame__FffffQ28JUtility6TColorUc();
-extern "C" void func_802E9BE8();
-extern "C" bool getGrafType__13J2DOrthoGraphCFv();
-
 //
 // External References:
 //
-
-extern "C" void __dt__13J2DOrthoGraphFv();
-extern "C" void __ct__14J2DGrafContextFffff();
-extern "C" void setPort__14J2DGrafContextFv();
-extern "C" void setup2D__14J2DGrafContextFv();
-extern "C" void setScissor__14J2DGrafContextFv();
-extern "C" void func_802E90E4();
-extern "C" void
-setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor();
-extern "C" void setLineWidth__14J2DGrafContextFUc();
-extern "C" void func_802E9260();
-extern "C" void func_802E9368();
-extern "C" void func_802E9564();
-extern "C" void place__14J2DGrafContextFffff();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__14J2DGrafContext[10];
 
 //
 // Declarations:
@@ -57,11 +25,11 @@ J2DOrthoGraph::J2DOrthoGraph() : J2DGrafContext(0, 0, 0, 0) {
 }
 
 /* 802E96D0-802E97B4 2E4010 00E4+00 0/0 7/7 0/0 .text            __ct__13J2DOrthoGraphFffffff */
-J2DOrthoGraph::J2DOrthoGraph(f32 left, f32 top, f32 right, f32 bottom, f32 param_4, f32 param_5)
-    : J2DGrafContext(left, top, right, bottom) {
-    mOrtho = JGeometry::TBox2<f32>(0, 0, right, bottom);
-    mNear = -param_5;
-    mFar = -param_4;
+J2DOrthoGraph::J2DOrthoGraph(f32 x, f32 y, f32 width, f32 height, f32 far, f32 near)
+    : J2DGrafContext(x, y, width, height) {
+    mOrtho = JGeometry::TBox2<f32>(0, 0, width, height);
+    mNear = -near;
+    mFar = -far;
     this->setLookat();
 }
 
@@ -82,7 +50,7 @@ void J2DOrthoGraph::setOrtho(JGeometry::TBox2<f32> const& bounds, f32 far, f32 n
 
 /* 802E9840-802E987C 2E4180 003C+00 1/0 0/0 0/0 .text            setLookat__13J2DOrthoGraphFv */
 void J2DOrthoGraph::setLookat() {
-    PSMTXIdentity(mPosMtx);
+    MTXIdentity(mPosMtx);
     GXLoadPosMtxImm(mPosMtx, 0);
 }
 
@@ -103,41 +71,41 @@ void J2DOrthoGraph::scissorBounds(JGeometry::TBox2<f32>* param_0,
 }
 
 /* 802E9998-802E9AC4 2E42D8 012C+00 0/0 6/6 0/0 .text J2DDrawLine__FffffQ28JUtility6TColori */
-void J2DDrawLine(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor color,
+void J2DDrawLine(f32 x1, f32 y1, f32 x2, f32 y2, JUtility::TColor color,
                  int line_width) {
     J2DOrthoGraph oGrph;
     oGrph.setLineWidth(line_width);
     oGrph.setColor(color);
-    oGrph.moveTo(param_0, param_1);
-    oGrph.lineTo(param_2, param_3);
+    oGrph.moveTo(x1, y1);
+    oGrph.lineTo(x2, y2);
 }
 
 /* 802E9AC4-802E9B0C 2E4404 0048+00 0/0 10/10 0/0 .text J2DFillBox__FffffQ28JUtility6TColor */
-void J2DFillBox(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor color) {
-    J2DFillBox(JGeometry::TBox2<f32>(param_0, param_1, param_0 + param_2, param_1 + param_3),
+void J2DFillBox(f32 x, f32 y, f32 width, f32 height, JUtility::TColor color) {
+    J2DFillBox(JGeometry::TBox2<f32>(x, y, x + width, y + height),
                color);
 }
 
 /* 802E9B0C-802E9B9C 2E444C 0090+00 1/1 0/0 0/0 .text
  * J2DFillBox__FRCQ29JGeometry8TBox2<f>Q28JUtility6TColor       */
-void J2DFillBox(JGeometry::TBox2<f32> const& param_0, JUtility::TColor param_1) {
+void J2DFillBox(JGeometry::TBox2<f32> const& box, JUtility::TColor color) {
     J2DOrthoGraph oGrph;
-    oGrph.setColor(param_1);
-    oGrph.fillBox(param_0);
+    oGrph.setColor(color);
+    oGrph.fillBox(box);
 }
 
 /* 802E9B9C-802E9BE8 2E44DC 004C+00 0/0 5/5 0/0 .text J2DDrawFrame__FffffQ28JUtility6TColorUc */
-void J2DDrawFrame(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor color,
+void J2DDrawFrame(f32 x, f32 y, f32 width, f32 height, JUtility::TColor color,
                   u8 line_width) {
-    J2DDrawFrame(JGeometry::TBox2<f32>(param_0, param_1, param_0 + param_2, param_1 + param_3),
+    J2DDrawFrame(JGeometry::TBox2<f32>(x, y, x + width, y + height),
                  color, line_width);
 }
 
 /* 802E9BE8-802E9C88 2E4528 00A0+00 1/1 0/0 0/0 .text
  * J2DDrawFrame__FRCQ29JGeometry8TBox2<f>Q28JUtility6TColorUc   */
-void J2DDrawFrame(JGeometry::TBox2<f32> const& param_0, JUtility::TColor color, u8 line_width) {
+void J2DDrawFrame(JGeometry::TBox2<f32> const& box, JUtility::TColor color, u8 line_width) {
     J2DOrthoGraph oGrph;
     oGrph.setColor(color);
     oGrph.setLineWidth(line_width);
-    oGrph.drawFrame(param_0);
+    oGrph.drawFrame(box);
 }

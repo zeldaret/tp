@@ -3,11 +3,10 @@
 
 #include "d/d_drawlist.h"
 #include "d/kankyo/d_kankyo.h"
-#include "dolphin/types.h"
 
 class CPaneMgr;
 struct CSTControl;
-struct STControl;
+class STControl;
 class dMsgString_c;
 class dMenu_save_c;
 class dMenu_Option_c;
@@ -20,6 +19,7 @@ class dSelect_cursor_c;
 class dMenu_Collect2D_c;
 class dMenu_Collect2DTop_c : public dDlst_base_c {
 public:
+    dMenu_Collect2DTop_c(dMenu_Collect2D_c* param_0) { mpCollect2D = param_0; }
     /* 801B77A4 */ virtual void draw();
     /* 801B7EB8 */ virtual ~dMenu_Collect2DTop_c();
 
@@ -32,9 +32,9 @@ public:
     /* 801AFEA4 */ void _create();
     /* 801B0100 */ void _delete();
     /* 801B0570 */ void initialize();
-    /* 801B05A8 */ void isFishIconVisible();
-    /* 801B061C */ void isSkillIconVisible();
-    /* 801B071C */ void isInsectIconVisible();
+    /* 801B05A8 */ bool isFishIconVisible();
+    /* 801B061C */ bool isSkillIconVisible();
+    /* 801B071C */ bool isInsectIconVisible();
     /* 801B074C */ void screenSet();
     /* 801B1C3C */ void animationSet();
     /* 801B1CE0 */ void btkAnimeLoop0(J2DAnmTextureSRTKey*);
@@ -105,6 +105,8 @@ public:
     /* 801B7F00 */ virtual void draw();
     /* 801AFE34 */ virtual ~dMenu_Collect2D_c();
 
+    u8 getCursorX() { return mCursorX; }
+    u8 getCursorY() { return mCursorY; }
     u8 getSubWindowOpenCheck() { return mSubWindowOpenCheck; }
 
 private:
@@ -311,12 +313,12 @@ public:
     /* 801B6FB0 */ void animeEntry();
     /* 801B7014 */ void createMaskModel();
     /* 801B71C4 */ void createMirrorModel();
-    /* 801B7434 */ void getCrystalNum();
-    /* 801B749C */ void getMirrorNum();
+    /* 801B7434 */ int getCrystalNum();
+    /* 801B749C */ int getMirrorNum();
     /* 801B7504 */ void getMaskMdlVisible();
-    /* 801B75E8 */ static void setupItem3D(f32 (*)[4]);
+    /* 801B75E8 */ static void setupItem3D(Mtx);
     /* 801B7660 */ void toItem3Dpos(f32, f32, f32, cXyz*);
-    /* 801B774C */ void calcViewMtx(f32 (*)[4]);
+    /* 801B774C */ static void calcViewMtx(Mtx);
 
     /* 801B6538 */ virtual ~dMenu_Collect3D_c();
 
@@ -331,7 +333,7 @@ private:
     /* 0x018 */ J3DModel* mpModel;
     /* 0x01C */ mDoExt_bckAnm* field_0x1c;
     /* 0x020 */ mDoExt_brkAnm* field_0x20;
-    /* 0x024 */ u8 field_0x24[4];
+    /* 0x024 */ u32 field_0x24;
     /* 0x028 */ dKy_tevstr_c field_0x28;
     /* 0x3B0 */ cXyz field_0x3b0;
     /* 0x3BC */ csXyz field_0x3bc;

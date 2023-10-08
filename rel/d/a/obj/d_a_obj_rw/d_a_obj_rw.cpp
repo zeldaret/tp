@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_rw/d_a_obj_rw.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -25,19 +25,10 @@ struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
 };
 
-struct cXyz {};
-
 struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
 
     static u8 mGndCheck[84];
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-    /* 800844F8 */ void GetTgHitObj();
 };
 
 struct daObj {
@@ -75,51 +66,7 @@ struct dDlst_shadowControl_c {
 
 struct dCcU_AtInfo {};
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-    /* 80CC38C4 */ ~dCcD_Sph();
-    /* 80CC3990 */ dCcD_Sph();
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80083830 */ void Move();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-    /* 80CC36E4 */ ~dCcD_Cyl();
-    /* 80CC37B0 */ dCcD_Cyl();
-};
-
 struct csXyz {};
-
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 8026F708 */ void SetR(f32);
-    /* 80CC3A14 */ ~cM3dGSph();
-};
-
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8026F1F8 */ void SetH(f32);
-    /* 8026F200 */ void SetR(f32);
-    /* 80CC3834 */ ~cM3dGCyl();
-};
-
-struct cM3dGAab {
-    /* 80CC387C */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
 
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
@@ -128,8 +75,6 @@ struct cCcS {
 struct cBgS_PolyInfo {};
 
 struct _GXTexObj {};
-
-struct Vec {};
 
 struct Z2CreatureEnemy {
     /* 802C0F64 */ Z2CreatureEnemy();
@@ -229,7 +174,6 @@ extern "C" void init__15Z2CreatureEnemyFP3VecP3VecUcUc();
 extern "C" void __dl__FPv();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXTrans();
-extern "C" void PSVECAdd();
 extern "C" void __construct_array();
 extern "C" void _savegpr_21();
 extern "C" void _savegpr_24();
@@ -279,20 +223,31 @@ SECTION_DATA static u8 pole_z[16] = {
 };
 
 /* 80CC3B74-80CC3BB4 000020 0040+00 1/1 0/0 0/0 .data            cc_sph_src$3951 */
-SECTION_DATA static u8 cc_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x75, 0x0B, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00,
+static dCcD_SrcSph cc_sph_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0xd8fbfdff, 0x3}, 0x75}}, // mObj
+        {dCcD_SE_HARD_BODY, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 40.0f} // mSph
+    } // mSphAttr
 };
 
 /* 80CC3BB4-80CC3BF8 000060 0044+00 1/1 0/0 0/0 .data            cc_cyl_src$3952 */
-SECTION_DATA static u8 cc_cyl_src[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x75,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x43, 0x48, 0x00, 0x00, 0x43, 0x7A, 0x00, 0x00,
+static dCcD_SrcCyl cc_cyl_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0xd8fbfdff, 0x3}, 0x75}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x3}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        200.0f, // mRadius
+        250.0f // mHeight
+    } // mCyl
 };
 
 /* 80CC3BF8-80CC3C18 -00001 0020+00 1/0 0/0 0/0 .data            l_daOBJ_RW_Method */
@@ -625,7 +580,8 @@ static asm void daOBJ_RW_Create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Cyl::~dCcD_Cyl() {
+// asm dCcD_Cyl::~dCcD_Cyl() {
+extern "C" asm void __dt__8dCcD_CylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_rw/d_a_obj_rw/__dt__8dCcD_CylFv.s"
 }
@@ -635,7 +591,8 @@ asm dCcD_Cyl::~dCcD_Cyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Cyl::dCcD_Cyl() {
+// asm dCcD_Cyl::dCcD_Cyl() {
+extern "C" asm void __ct__8dCcD_CylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_rw/d_a_obj_rw/__ct__8dCcD_CylFv.s"
 }
@@ -645,7 +602,8 @@ asm dCcD_Cyl::dCcD_Cyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_rw/d_a_obj_rw/__dt__8cM3dGCylFv.s"
 }
@@ -655,7 +613,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_rw/d_a_obj_rw/__dt__8cM3dGAabFv.s"
 }
@@ -665,7 +624,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Sph::~dCcD_Sph() {
+// asm dCcD_Sph::~dCcD_Sph() {
+extern "C" asm void __dt__8dCcD_SphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_rw/d_a_obj_rw/__dt__8dCcD_SphFv.s"
 }
@@ -675,7 +635,8 @@ asm dCcD_Sph::~dCcD_Sph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Sph::dCcD_Sph() {
+// asm dCcD_Sph::dCcD_Sph() {
+extern "C" asm void __ct__8dCcD_SphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_rw/d_a_obj_rw/__ct__8dCcD_SphFv.s"
 }
@@ -685,7 +646,8 @@ asm dCcD_Sph::dCcD_Sph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_rw/d_a_obj_rw/__dt__8cM3dGSphFv.s"
 }

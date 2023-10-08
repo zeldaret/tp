@@ -4,8 +4,11 @@
 //
 
 #include "Z2AudioLib/Z2Creature.h"
+#include "Z2AudioLib/Z2SceneMgr.h"
+#include "Z2AudioLib/Z2SeMgr.h"
+#include "Z2AudioLib/Z2SoundObjMgr.h"
+#include "Z2AudioLib/Z2StatusMgr.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -13,11 +16,6 @@
 
 struct Z2SpeechMgr2 {
     /* 802CCF88 */ void isMidnaSpeak();
-};
-
-struct Z2SoundObjMgr {
-    /* 802C0074 */ void getEnemyID(char const*, JSULink<Z2CreatureEnemy>*);
-    /* 802C0190 */ void removeEnemy(JSULink<Z2CreatureEnemy>*);
 };
 
 struct Z2SoundObjBeeGroup {
@@ -32,12 +30,6 @@ struct Z2SeqMgr {
     /* 802B3FEC */ void setChildTrackVolume(JAISoundHandle*, int, f32, u32, f32, f32);
     /* 802B4844 */ void setBattleSeqState(u8);
     /* 802B4AFC */ void setBattleLastHit(u8);
-};
-
-struct Z2SeMgr {
-    /* 802AB93C */ void incrCrowdSize();
-    /* 802AB960 */ void decrCrowdSize();
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
 struct Z2CreatureSumomo {
@@ -69,16 +61,6 @@ struct Z2CreatureFM {
     /* 802C20E8 */ void framework(u32, s8);
     /* 802C2194 */ void startChainSound(JAISoundID, u8, f32, u32, s8);
     /* 802C2290 */ void startChainSoundLevel(JAISoundID, u8, f32, u32, s8);
-};
-
-struct Z2CreatureCitizen {
-    /* 802C0C10 */ Z2CreatureCitizen();
-    /* 802C0C6C */ ~Z2CreatureCitizen();
-    /* 802C0CE4 */ void init(Vec*, Vec*, u8, u8);
-    /* 802C0D04 */ void deleteObject();
-    /* 802C0D48 */ void setMdlType(s8, bool, bool);
-    /* 802C0E18 */ void playVoice(int);
-    /* 802C0ED8 */ void startCreatureVoice(JAISoundID, s8);
 };
 
 struct Z2Calc {
@@ -554,86 +536,62 @@ asm Z2Creature::~Z2Creature() {
 #pragma pop
 
 /* 802C04E8-802C0530 2BAE28 0048+00 4/2 2/2 0/0 .text            deleteObject__10Z2CreatureFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2Creature::deleteObject() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Creature/deleteObject__10Z2CreatureFv.s"
+void Z2Creature::deleteObject() {
+    mSoundObjAnime.field_0x20 = NULL;
+    mSoundObjAnime.deleteObject();
+    mSoundObjSimple1.deleteObject();
+    mSoundObjSimple2.deleteObject();
 }
-#pragma pop
 
 /* 802C0530-802C05B0 2BAE70 0080+00 5/5 1/1 125/125 .text init__10Z2CreatureFP3VecP3VecUcUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2Creature::init(Vec* param_0, Vec* param_1, u8 param_2, u8 param_3) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Creature/init__10Z2CreatureFP3VecP3VecUcUc.s"
+void Z2Creature::init(Vec* param_0, Vec* param_1, u8 param_2, u8 param_3) {
+    if (param_0) {
+        mSoundObjAnime.init(param_0, param_2);
+        mpPos = param_0;
+    }
+    if (param_1) {
+        mSoundObjSimple1.init(param_1, param_3);
+    }
 }
-#pragma pop
 
 /* 802C05B0-802C0618 2BAEF0 0068+00 2/2 1/1 0/0 .text init__10Z2CreatureFP3VecP3VecP3VecUcUcUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2Creature::init(Vec* param_0, Vec* param_1, Vec* param_2, u8 param_3, u8 param_4,
-                          u8 param_5) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Creature/init__10Z2CreatureFP3VecP3VecP3VecUcUcUc.s"
+void Z2Creature::init(Vec* param_0, Vec* param_1, Vec* param_2, u8 param_3, u8 param_4,
+                      u8 param_5) {
+    init(param_0, param_1, param_3, param_4);
+    if (param_2) {
+        mSoundObjSimple2.init(param_2, param_5);
+    }
 }
-#pragma pop
 
 /* 802C0618-802C0628 2BAF58 0010+00 7/0 2/0 0/0 .text
  * setSoundStarter__10Z2CreatureFP14Z2SoundStarter              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2Creature::setSoundStarter(Z2SoundStarter* param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Creature/setSoundStarter__10Z2CreatureFP14Z2SoundStarter.s"
+void Z2Creature::setSoundStarter(Z2SoundStarter* i_starter) {
+    mSoundObjAnime.setSoundStarter(i_starter);
+    mSoundObjSimple1.setSoundStarter(i_starter);
+    mSoundObjSimple2.setSoundStarter(i_starter);
 }
-#pragma pop
 
 /* 802C0628-802C064C 2BAF68 0024+00 0/0 4/4 2/2 .text            initAnime__10Z2CreatureFPvbff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2Creature::initAnime(void* param_0, bool param_1, f32 param_2, f32 param_3) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Creature/initAnime__10Z2CreatureFPvbff.s"
+void Z2Creature::initAnime(void* param_0, bool param_1, f32 param_2, f32 param_3) {
+    mSoundObjAnime.initAnime(param_0, param_1, param_2, param_3);
 }
-#pragma pop
 
 /* 802C064C-802C06D0 2BAF8C 0084+00 7/3 2/1 0/0 .text            framework__10Z2CreatureFUlSc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2Creature::framework(u32 param_0, s8 param_1) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Creature/framework__10Z2CreatureFUlSc.s"
+void Z2Creature::framework(u32 param_0, s8 param_1) {
+    mSoundObjAnime.framework(param_0, param_1);
+    mSoundObjSimple1.framework(param_0, param_1);
+    mSoundObjSimple2.framework(param_0, param_1);
 }
-#pragma pop
 
 /* 802C06D0-802C06F4 2BB010 0024+00 0/0 3/3 2/2 .text            updateAnime__10Z2CreatureFff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2Creature::updateAnime(f32 param_0, f32 param_1) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Creature/updateAnime__10Z2CreatureFff.s"
+void Z2Creature::updateAnime(f32 param_0, f32 param_1) {
+    mSoundObjAnime.updateAnime(param_0, param_1);
 }
-#pragma pop
 
 /* 802C06F4-802C0720 2BB034 002C+00 0/0 0/0 7/7 .text            stopAnime__10Z2CreatureFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2Creature::stopAnime() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Creature/stopAnime__10Z2CreatureFv.s"
+void Z2Creature::stopAnime() {
+    deleteObject();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80455BD8-80455BDC 0041D8 0004+00 1/1 0/0 0/0 .sdata2          sAreaDefault */
@@ -767,36 +725,20 @@ asm void Z2Creature::startCreatureVoiceLevel(JAISoundID param_0, s8 param_1) {
 
 /* 802C0B70-802C0BAC 2BB4B0 003C+00 4/0 2/0 0/0 .text
  * startCreatureExtraSound__10Z2CreatureF10JAISoundIDUlSc       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2Creature::startCreatureExtraSound(JAISoundID param_0, u32 param_1, s8 param_2) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Creature/startCreatureExtraSound__10Z2CreatureF10JAISoundIDUlSc.s"
+void Z2Creature::startCreatureExtraSound(JAISoundID param_0, u32 param_1, s8 param_2) {
+    mSoundObjSimple2.startSound(param_0, param_1, param_2);
 }
-#pragma pop
 
 /* 802C0BAC-802C0BE8 2BB4EC 003C+00 4/0 2/0 0/0 .text
  * startCreatureExtraSoundLevel__10Z2CreatureF10JAISoundIDUlSc  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2Creature::startCreatureExtraSoundLevel(JAISoundID param_0, u32 param_1, s8 param_2) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Creature/startCreatureExtraSoundLevel__10Z2CreatureF10JAISoundIDUlSc.s"
+void Z2Creature::startCreatureExtraSoundLevel(JAISoundID param_0, u32 param_1, s8 param_2) {
+    mSoundObjSimple2.startLevelSound(param_0, param_1, param_2);
 }
-#pragma pop
 
-/* 802C0BE8-802C0C10 2BB528 0028+00 4/0 2/0 0/0 .text            startCollisionSE__10Z2CreatureFUlUl
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2Creature::startCollisionSE(u32 param_0, u32 param_1) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Creature/startCollisionSE__10Z2CreatureFUlUl.s"
+/* 802C0BE8-802C0C10 2BB528 0028+00 4/0 2/0 0/0 .text startCollisionSE__10Z2CreatureFUlUl */
+void Z2Creature::startCollisionSE(u32 param_0, u32 param_1) {
+    mSoundObjAnime.startCollisionSE(param_0, param_1, NULL);
 }
-#pragma pop
 
 /* 802C0C10-802C0C6C 2BB550 005C+00 0/0 0/0 12/12 .text            __ct__17Z2CreatureCitizenFv */
 #pragma push
@@ -819,25 +761,17 @@ asm Z2CreatureCitizen::~Z2CreatureCitizen() {
 #pragma pop
 
 /* 802C0CE4-802C0D04 2BB624 0020+00 0/0 2/2 7/7 .text init__17Z2CreatureCitizenFP3VecP3VecUcUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2CreatureCitizen::init(Vec* param_0, Vec* param_1, u8 param_2, u8 param_3) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Creature/init__17Z2CreatureCitizenFP3VecP3VecUcUc.s"
+void Z2CreatureCitizen::init(Vec* param_0, Vec* param_1, u8 param_2, u8 param_3) {
+    Z2Creature::init(param_0, param_1, param_2, param_3);
 }
-#pragma pop
 
-/* 802C0D04-802C0D48 2BB644 0044+00 1/0 0/0 0/0 .text            deleteObject__17Z2CreatureCitizenFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2CreatureCitizen::deleteObject() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Creature/deleteObject__17Z2CreatureCitizenFv.s"
+/* 802C0D04-802C0D48 2BB644 0044+00 1/0 0/0 0/0 .text   deleteObject__17Z2CreatureCitizenFv */
+void Z2CreatureCitizen::deleteObject() {
+    if (mLinkSearch == false) {
+        Z2GetSeMgr()->decrCrowdSize();
+    }
+    Z2Creature::deleteObject();
 }
-#pragma pop
 
 /* 802C0D48-802C0E18 2BB688 00D0+00 0/0 2/2 4/4 .text setMdlType__17Z2CreatureCitizenFScbb */
 #pragma push
@@ -894,37 +828,24 @@ extern "C" asm void deleteObject__15Z2CreatureEnemyFv() {
 #pragma pop
 
 /* 802C1094-802C10B4 2BB9D4 0020+00 0/0 0/0 98/98 .text init__15Z2CreatureEnemyFP3VecP3VecUcUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2CreatureEnemy::init(Vec* param_0, Vec* param_1, u8 param_2, u8 param_3) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Creature/init__15Z2CreatureEnemyFP3VecP3VecUcUc.s"
+void Z2CreatureEnemy::init(Vec* param_0, Vec* param_1, u8 param_2, u8 param_3) {
+    Z2Creature::init(param_0, param_1, param_2, param_3);
 }
-#pragma pop
 
-/* 802C10B4-802C10D4 2BB9F4 0020+00 0/0 0/0 3/3 .text
- * init__15Z2CreatureEnemyFP3VecP3VecP3VecUcUcUc                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2CreatureEnemy::init(Vec* param_0, Vec* param_1, Vec* param_2, u8 param_3, u8 param_4,
-                               u8 param_5) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Creature/init__15Z2CreatureEnemyFP3VecP3VecP3VecUcUcUc.s"
-}
-#pragma pop
-
-/* 802C10D4-802C110C 2BBA14 0038+00 1/0 0/0 0/0 .text            framework__15Z2CreatureEnemyFUlSc
+/* 802C10B4-802C10D4 2BB9F4 0020+00 0/0 0/0 3/3 .text init__15Z2CreatureEnemyFP3VecP3VecP3VecUcUcUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2CreatureEnemy::framework(u32 param_0, s8 param_1) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Creature/framework__15Z2CreatureEnemyFUlSc.s"
+void Z2CreatureEnemy::init(Vec* param_0, Vec* param_1, Vec* param_2, u8 param_3, u8 param_4,
+                           u8 param_5) {
+    Z2Creature::init(param_0, param_1, param_2, param_3, param_4, param_5);
 }
-#pragma pop
+
+/* 802C10D4-802C110C 2BBA14 0038+00 1/0 0/0 0/0 .text framework__15Z2CreatureEnemyFUlSc */
+void Z2CreatureEnemy::framework(u32 param_0, s8 param_1) {
+    if (field_0xa1 < 1) {
+        field_0xa1 += 1;
+    }
+    Z2Creature::framework(param_0, param_1);
+}
 
 /* ############################################################################################## */
 /* 80455C44-80455C48 004244 0004+00 1/1 0/0 0/0 .sdata2          @4090 */
@@ -1007,26 +928,15 @@ asm void Z2CreatureEnemy::startCreatureVoiceLevel(JAISoundID param_0, s8 param_1
 
 /* 802C199C-802C19D8 2BC2DC 003C+00 3/0 0/0 0/0 .text
  * startCreatureExtraSound__15Z2CreatureEnemyF10JAISoundIDUlSc  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2CreatureEnemy::startCreatureExtraSound(JAISoundID param_0, u32 param_1, s8 param_2) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Creature/startCreatureExtraSound__15Z2CreatureEnemyF10JAISoundIDUlSc.s"
+void Z2CreatureEnemy::startCreatureExtraSound(JAISoundID param_0, u32 param_1, s8 param_2) {
+    mSoundObjSimple2.startSound(param_0, param_1, param_2);
 }
-#pragma pop
 
 /* 802C19D8-802C1A14 2BC318 003C+00 3/0 0/0 0/0 .text
  * startCreatureExtraSoundLevel__15Z2CreatureEnemyF10JAISoundIDUlSc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2CreatureEnemy::startCreatureExtraSoundLevel(JAISoundID param_0, u32 param_1,
-                                                       s8 param_2) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Creature/startCreatureExtraSoundLevel__15Z2CreatureEnemyF10JAISoundIDUlSc.s"
+void Z2CreatureEnemy::startCreatureExtraSoundLevel(JAISoundID param_0, u32 param_1, s8 param_2) {
+    mSoundObjSimple2.startLevelSound(param_0, param_1, param_2);
 }
-#pragma pop
 
 /* 802C1A14-802C1B7C 2BC354 0168+00 4/0 0/0 0/0 .text startCollisionSE__15Z2CreatureEnemyFUlUl */
 #pragma push
@@ -1039,14 +949,12 @@ asm void Z2CreatureEnemy::startCollisionSE(u32 param_0, u32 param_1) {
 #pragma pop
 
 /* 802C1B7C-802C1B90 2BC4BC 0014+00 0/0 0/0 55/55 .text setLinkSearch__15Z2CreatureEnemyFb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2CreatureEnemy::setLinkSearch(bool param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Creature/setLinkSearch__15Z2CreatureEnemyFb.s"
+void Z2CreatureEnemy::setLinkSearch(bool b_search) {
+    if (field_0xa3 != 0) {
+        return;
+    }
+    mLinkSearch = b_search;
 }
-#pragma pop
 
 /* 802C1B90-802C1BE8 2BC4D0 0058+00 0/0 0/0 72/72 .text setEnemyName__15Z2CreatureEnemyFPCc */
 #pragma push
@@ -1354,8 +1262,7 @@ SECTION_SDATA2 static f32 lit_4944 = 300.0f;
 /* 80455C94-80455C98 004294 0004+00 1/1 0/0 0/0 .sdata2          @4945 */
 SECTION_SDATA2 static f32 lit_4945 = 1.5f;
 
-/* 802C2EE4-802C3040 2BD824 015C+00 2/2 0/0 0/0 .text Z2_B_zan_modPitch__FP17Z2SoundHandlePoolUl
- */
+/* 802C2EE4-802C3040 2BD824 015C+00 2/2 0/0 0/0 .text Z2_B_zan_modPitch__FP17Z2SoundHandlePoolUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1369,8 +1276,7 @@ static asm void Z2_B_zan_modPitch(Z2SoundHandlePool* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __sinit_Z2Creature_cpp() {
-    nofralloc
+asm void __sinit_Z2Creature_cpp(){nofralloc
 #include "asm/Z2AudioLib/Z2Creature/__sinit_Z2Creature_cpp.s"
 }
 #pragma pop

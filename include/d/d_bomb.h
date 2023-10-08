@@ -1,12 +1,11 @@
 #ifndef D_D_BOMB_H
 #define D_D_BOMB_H
 
-#include "Z2AudioLib/Z2SoundObject.h"
 #include "d/bg/d_bg_s_acch.h"
 #include "d/bg/d_bg_s_lin_chk.h"
 #include "d/cc/d_cc_d.h"
-#include "d/kankyo/d_kankyo.h"
 #include "f_op/f_op_actor_mng.h"
+#include "d/d_procname.h"
 
 class daNbomb_c {
 public:
@@ -44,15 +43,15 @@ public:
     bool checkInsectBombMove(fopAc_ac_c*);
 
     static fopAc_ac_c* createNormalBombPlayer(cXyz* p_pos) {
-        return (fopAc_ac_c*)fopAcM_fastCreate(0x221, 8, p_pos, -1, NULL, NULL, -1, NULL, NULL);
+        return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 8, p_pos, -1, NULL, NULL, -1, NULL, NULL);
     }
 
     static fopAc_ac_c* createWaterBombPlayer(cXyz* p_pos) {
-        return (fopAc_ac_c*)fopAcM_fastCreate(0x221, 9, p_pos, -1, NULL, NULL, -1, NULL, NULL);
+        return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 9, p_pos, -1, NULL, NULL, -1, NULL, NULL);
     }
 
     static fopAc_ac_c* createFlowerBomb(cXyz* i_pos, csXyz* i_angle, int param_2) {
-        return (fopAc_ac_c*)fopAcM_fastCreate(0x221, 4, i_pos, param_2, i_angle, NULL, -1, NULL, NULL);
+        return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 4, i_pos, param_2, i_angle, NULL, -1, NULL, NULL);
     }
 };
 

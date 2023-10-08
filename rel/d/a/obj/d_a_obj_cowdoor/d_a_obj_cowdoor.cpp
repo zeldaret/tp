@@ -9,10 +9,10 @@
 
 /* 80BCC7F8-80BCC86C 000078 0074+00 2/2 0/0 0/0 .text            setBaseMtx__11daCowdoor_cFv */
 void daCowdoor_c::setBaseMtx() {
-    PSMTXTrans(mDoMtx_stack_c::now, current.pos.x, current.pos.y, current.pos.z);
+    MTXTrans(mDoMtx_stack_c::now, current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    PSMTXCopy(mDoMtx_stack_c::now, field_0x5a8->mBaseTransformMtx);
-    PSMTXCopy(mDoMtx_stack_c::now, field_0x56c);
+    MTXCopy(mDoMtx_stack_c::now, field_0x5a8->mBaseTransformMtx);
+    MTXCopy(mDoMtx_stack_c::now, mBgMtx);
 }
 
 /* 80BCC86C-80BCC8C4 0000EC 0058+00 1/0 0/0 0/0 .text            Create__11daCowdoor_cFv */
@@ -42,10 +42,7 @@ static const char* l_dzbName = "A_UHDoor.dzb";
 
 /* 80BCC93C-80BCCA1C 0001BC 00E0+00 1/1 0/0 0/0 .text            create__11daCowdoor_cFv */
 int daCowdoor_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daCowdoor_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daCowdoor_c);
     int phase = dComIfG_resLoad(&field_0x5a0, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {
         phase =
@@ -60,7 +57,7 @@ int daCowdoor_c::create() {
 
 /* 80BCCA1C-80BCCA48 00029C 002C+00 1/0 0/0 0/0 .text            Execute__11daCowdoor_cFPPA3_A4_f */
 int daCowdoor_c::Execute(f32 (**param_0)[3][4]) {
-    *param_0 = &field_0x56c;
+    *param_0 = &mBgMtx;
     setBaseMtx();
     return 1;
 }

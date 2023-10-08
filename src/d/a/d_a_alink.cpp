@@ -9,24 +9,14 @@
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JMath/JMath.h"
-#include "JSystem/JStudio/JStudio/stb.h"
-#include "MSL_C/float.h"
 #include "SSystem/SComponent/c_math.h"
-#include "d/a/d_a_horse_static.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/d_bomb.h"
-#include "d/d_demo.h"
 #include "d/d_item.h"
-#include "d/d_path.h"
 #include "d/d_procname.h"
 #include "d/meter/d_meter2_draw.h"
 #include "d/msg/d_msg_object.h"
 #include "d/pane/d_pane_class.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
-#include "f_op/f_op_actor_mng.h"
-#include "global.h"
-#include "m_Do/m_Do_controller_pad.h"
 #include "rel/d/a/d_a_crod/d_a_crod.h"
 #include "rel/d/a/d_a_horse/d_a_horse.h"
 #include "rel/d/a/d_a_mg_rod/d_a_mg_rod.h"
@@ -35,14 +25,12 @@
 #include "rel/d/a/e/d_a_e_wb/d_a_e_wb.h"
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 #include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"
+#include "rel/d/a/tag/d_a_tag_mist/d_a_tag_mist.h"
+#include "rel/d/a/d_a_mirror/d_a_mirror.h"
 
 //
 // Types:
 //
-
-struct daTagMist_c {
-    /* 80031CF0 */ void getPlayerNo();
-};
 
 struct daObj_Sekizoa_c {
     /* 801312C8 */ void setWolfHowling();
@@ -66,10 +54,6 @@ struct daNpcT_ActorMngr_c {
     /* 80145708 */ void getActorP();
 };
 
-struct daMirror_c {
-    /* 8003194C */ static void entry(J3DModel*);
-};
-
 struct dPaPoF_c {
     /* 800512E8 */ void setEffectFour(dKy_tevstr_c const*, cXyz const*, u32, u32, cXyz const*,
                                       cXyz const*, cXyz const*, cXyz const*, cXyz const*,
@@ -78,10 +62,6 @@ struct dPaPoF_c {
 
     static u8 m_typeFourData[60];
     static u8 m_emitterFourData[60 + 28 /* padding */];
-};
-
-struct JASKernel {
-    /* 80290B08 */ void getAramHeap();
 };
 
 struct JAISeq {
@@ -2990,7 +2970,7 @@ extern "C" void __construct_new_array();
 extern "C" void __ptmf_test();
 extern "C" void __ptmf_scall();
 extern "C" void __cvt_fp2unsigned();
-extern "C" void __save_gpr();
+extern "C" void _savegpr_14();
 extern "C" void _savegpr_15();
 extern "C" void _savegpr_16();
 extern "C" void _savegpr_20();
@@ -3003,7 +2983,7 @@ extern "C" void _savegpr_26();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
-extern "C" void __restore_gpr();
+extern "C" void _restgpr_14();
 extern "C" void _restgpr_15();
 extern "C" void _restgpr_16();
 extern "C" void _restgpr_20();
@@ -3261,7 +3241,7 @@ bool daAlink_c::checkStageName(const char* stage) {
 /* 8009DA98-8009DB64 0983D8 00CC+00 1/1 0/0 0/0 .text
  * tgHitCallback__9daAlink_cFP10fopAc_ac_cP12dCcD_GObjInfP12dCcD_GObjInf */
 void daAlink_c::tgHitCallback(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, dCcD_GObjInf* param_2) {
-    if (param_2->ChkAtType(AT_TYPE_SPINNER)) {
+    if (param_2->ChkAtType(AT_TYPE_40000)) {
         field_0x369c = *param_2->GetAtVecP();
         for (int i = 0; i < 3; i++) {
             if (param_1 == &field_0x850[i]) {
@@ -3309,10 +3289,10 @@ void daAlink_c::setMatrixWorldAxisRot(MtxP param_0, s16 param_1, s16 param_2, s1
     mDoMtx_stack_c::YrotM(-shape_angle.y);
     concatMagneBootInvMtx();
     mDoMtx_stack_c::transM(-tmp.x, -tmp.y, -tmp.z);
-    PSMTXConcat(mDoMtx_stack_c::get(), param_0, mDoMtx_stack_c::get());
-    PSMTXCopy(mDoMtx_stack_c::get(), param_0);
+    MTXConcat(mDoMtx_stack_c::get(), param_0, mDoMtx_stack_c::get());
+    MTXCopy(mDoMtx_stack_c::get(), param_0);
     if (param_4 != 0) {
-        PSMTXCopy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
+        MTXCopy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
     }
 }
 
@@ -3348,7 +3328,7 @@ asm void daAlink_c::changeBlendRate(int param_0) {
 
 /* 8009EB18-8009EB58 099458 0040+00 1/1 0/0 0/0 .text            resetRootMtx__9daAlink_cFv */
 void daAlink_c::resetRootMtx() {
-    PSMTXCopy(mRootMtx, J3DSys::mCurrentMtx);
+    MTXCopy(mRootMtx, J3DSys::mCurrentMtx);
     field_0x2f90 = 0;
 }
 
@@ -11290,8 +11270,10 @@ static dCcD_SrcSph l_sphSrc = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        40.0f,
+        {
+            {0.0f, 0.0f, 0.0f},
+            40.0f,
+        }
     },
 };
 
@@ -11319,9 +11301,11 @@ static dCcD_SrcCps l_atCpsSrc = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        {0.0f, 0.0f, 0.0f},
-        20.0f,
+        {
+            {0.0f, 0.0f, 0.0f},
+            {0.0f, 0.0f, 0.0f},
+            20.0f,
+        }
     },
 };
 
@@ -12610,10 +12594,7 @@ inline bool checkMagicArmorWearFlg() {
 /* 800A5CC8-800A660C 0A0608 0944+00 1/1 0/0 0/0 .text            create__9daAlink_cFv */
 #ifdef NONMATCHING
 int daAlink_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daAlink_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daAlink_c);
 
     if (!struct_80450FD0) {
         bgWaitFlg = 0;
@@ -12668,19 +12649,19 @@ int daAlink_c::create() {
         mAttentionInfo.mFlags = -1;
 
         if (!i_dComIfGp_getEventManager().dataLoaded()) {
-            return cPhs_ZERO_e;
+            return cPhs_INIT_e;
         }
 
         setArcName(i_checkWolf());
         setOriginalHeap(&field_0x0638, 0xA2800);
         if (dComIfG_resLoad(&mPhaseReq, mArcName, field_0x0638) != cPhs_COMPLEATE_e) {
-            return cPhs_ZERO_e;
+            return cPhs_INIT_e;
         }
 
         setShieldArcName();
         setOriginalHeap(&field_0x0648, 0x7000);
         if (dComIfG_resLoad(&mShieldPhaseReq, mShieldArcName, field_0x0648) != cPhs_COMPLEATE_e) {
-            return cPhs_ZERO_e;
+            return cPhs_INIT_e;
         }
 
         if (!fopAcM_entrySolidHeap(this, daAlink_createHeap, 0xC003E930)) {
@@ -12720,7 +12701,7 @@ int daAlink_c::create() {
          !fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchLightBall, NULL)) ||
         (horseStart && i_dComIfGp_getHorseActor() == NULL))
     {
-        return cPhs_ZERO_e;
+        return cPhs_INIT_e;
     }
 
     if (var_r24) {

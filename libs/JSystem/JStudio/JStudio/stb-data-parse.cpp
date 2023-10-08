@@ -4,14 +4,11 @@
 //
 
 #include "JSystem/JStudio/JStudio/stb-data-parse.h"
-#include "dol2asm.h"
 #include "global.h"
 
 namespace JStudio {
 namespace stb {
 namespace data {
-
-extern "C" u32 gauDataSize_TEParagraph_data__Q37JStudio3stb4data[];
 
 void TParse_TSequence::getData(TData* pData) const {
     ASSERT(pData != 0);
@@ -50,48 +47,36 @@ void TParse_TParagraph::getData(TData* pData) const {
     }
 }
 
-#ifdef NONMATCHING
 void TParse_TParagraph_data::getData(data::TParse_TParagraph_data::TData* pData) const {
-    ASSERT(pData != 0);
+    u8* set2;
 
-    pData->_4 = 0;
-    pData->_8 = 0;
-    pData->_c = NULL;
-    pData->_10 = 0;
-    u8* p = (u8*)getRaw();
-    if (p != NULL) {
-        u8 val = *p;
-        pData->_0 = val & ~8;
-        if (val != 0) {
-            u32 count = 1;
-            p++;
-            if (val & 8) {
-                count = *(p++);
-            }
-            pData->_8 = count;
-            pData->_c = p;
-            u8 idx = val & 7;
-            if (idx) {
-                u32 size = gauDataSize_TEParagraph_data[idx];
-                pData->_4 = size;
-                pData->_10 = p + size * count;
-            }
-        }
-    }
+	int dSize = pData->dataSize = 0;
+	pData->_8                  = 0;
+	pData->fileCount            = NULL;
+	pData->_10                  = NULL;
+	u8* filedata = (u8*)getRaw();
+	if (filedata == NULL)
+		return;
+	u8 set       = *filedata;
+	pData->status = set & ~0x8;
+	if (!set)
+		return;
+    int is8;
+	int set3 = 1;
+	is8 = set & 8;
+    // Probably fake match
+	if (set2 = (filedata + 1), is8) {
+		set3 = *set2++;
+	}
+	pData->_8       = set3;
+	pData->fileCount = set2;
+
+	if (!(set & 7))
+		return;
+	dSize          = (gauDataSize_TEParagraph_data)[set &= 7];
+	pData->dataSize = dSize;
+	pData->_10      = (u8*)set2 + (dSize * set3);
 }
-#else
-/* 80289A80-80289B00 2843C0 0080+00 0/0 3/3 1/1 .text
- * getData__Q47JStudio3stb4data22TParse_TParagraph_dataCFPQ57JStudio3stb4data22TParse_TParagraph_data5TData
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void TParse_TParagraph_data::getData(TParse_TParagraph_data::TData* param_0) const {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/stb-data-parse/func_80289A80.s"
-}
-#pragma pop
-#endif
 
 }  // namespace data
 }  // namespace stb

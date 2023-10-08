@@ -1,7 +1,6 @@
 #ifndef F_F_OP_SCENE_H_
 #define F_F_OP_SCENE_H_
 
-#include "dolphin/types.h"
 #include "f_op/f_op_scene_tag.h"
 #include "f_pc/f_pc_node.h"
 

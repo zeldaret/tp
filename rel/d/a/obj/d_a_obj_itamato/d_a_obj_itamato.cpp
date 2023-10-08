@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_itamato/d_a_obj_itamato.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -18,8 +18,6 @@ struct csXyz {
     /* 80C29AC0 */ csXyz();
 };
 
-struct cXyz {};
-
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
@@ -30,13 +28,6 @@ struct mDoMtx_stack_c {
 struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
     /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-    /* 800844F8 */ void GetTgHitObj();
 };
 
 struct daObj_ItaMato_c {
@@ -105,26 +96,6 @@ struct dDlst_shadowControl_c {
     static u8 mSimpleTexObj[32];
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80083830 */ void Move();
-    /* 80C29C0C */ ~dCcD_GStts();
-};
-
-struct dCcD_GAtTgCoCommonBase {
-    /* 80083688 */ void GetAc();
-};
-
 struct dBgS_PolyPassChk {
     /* 80078E68 */ void SetObj();
 };
@@ -168,32 +139,12 @@ struct dAttList_c {
     /* 80073864 */ void getActor();
 };
 
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 8026F708 */ void SetR(f32);
-    /* 80C29B0C */ ~cM3dGSph();
-};
-
-struct cM3dGLin {
-    /* 80C29AC4 */ ~cM3dGLin();
-};
-
 struct cM3dGCir {
     /* 8026EF18 */ ~cM3dGCir();
 };
 
-struct cM3dGAab {
-    /* 80C29B54 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 80C2AA48 */ ~cCcD_GStts();
 };
 
 struct cBgS_GndChk {
@@ -202,18 +153,6 @@ struct cBgS_GndChk {
 };
 
 struct _GXTexObj {};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
 
 struct JMath {
     static u8 sincosTable_[65536];
@@ -369,11 +308,16 @@ SECTION_DEAD static char const* const stringBase_80C2AC20 = "H_ItaMato";
 #pragma pop
 
 /* 80C2AC34-80C2AC74 000000 0040+00 2/2 0/0 0/0 .data            l_ccDSph */
-SECTION_DATA static u8 l_ccDSph[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static dCcD_SrcSph l_ccDSph = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x0, 0x0}, 0x0}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 0.0f} // mSph
+    } // mSphAttr
 };
 
 /* 80C2AC74-80C2AC78 -00001 0004+00 1/1 0/0 0/0 .data            l_resName */
@@ -552,7 +496,8 @@ csXyz::csXyz() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGLin::~cM3dGLin() {
+// asm cM3dGLin::~cM3dGLin() {
+extern "C" asm void __dt__8cM3dGLinFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_itamato/d_a_obj_itamato/__dt__8cM3dGLinFv.s"
 }
@@ -562,7 +507,8 @@ asm cM3dGLin::~cM3dGLin() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_itamato/d_a_obj_itamato/__dt__8cM3dGSphFv.s"
 }
@@ -572,7 +518,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_itamato/d_a_obj_itamato/__dt__8cM3dGAabFv.s"
 }
@@ -592,7 +539,8 @@ asm dBgS_AcchCir::~dBgS_AcchCir() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_itamato/d_a_obj_itamato/__dt__10dCcD_GSttsFv.s"
 }
@@ -932,7 +880,8 @@ static bool daObj_ItaMato_IsDelete(void* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_itamato/d_a_obj_itamato/__dt__10cCcD_GSttsFv.s"
 }

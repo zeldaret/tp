@@ -4,30 +4,38 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_path.h"
+#include "d/d_procname.h"
+#include "d/event/d_event_lib.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "m_Do/m_Do_hostIO.h"
 
 //
 // Types:
 //
 
-struct mDoMtx_stack_c {
-    static u8 now[48];
+class daLv4EdShutter_c : public fopAc_ac_c {
+public:
+    u8 getStatus() { return mStatus; }
+
+    /* 0x568 */ u8 field_0x568[0x5CA - 0x568];
+    /* 0x56A */ u8 mStatus;
 };
 
-struct mDoHIO_entry_c {
-    /* 80C5CA10 */ ~mDoHIO_entry_c();
+// idk how this works atm. dEvLib_callback_c seems to need to be inherited, but this data comes
+// before it. the fopAc_ac_c struct size is 100% correct, so do not change it
+struct temp {
+    /* 0x568 */ u8 field_0x568[0x570 - 0x568];
 };
 
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
+class dalv4CandleDemoTag_c : public fopAc_ac_c, temp, public dEvLib_callback_c {
+public:
+    dalv4CandleDemoTag_c() : dEvLib_callback_c(this) {}
 
-struct dalv4CandleDemoTag_c {
     /* 80C5CA58 */ void setBaseMtx();
-    /* 80C5CA90 */ void create();
-    /* 80C5CBA4 */ void Execute();
+    /* 80C5CA90 */ int create();
+    /* 80C5CBA4 */ int Execute();
     /* 80C5CBE8 */ void procMain();
     /* 80C5CCA4 */ void init_modeWatch();
     /* 80C5CCC0 */ void modeWatch();
@@ -37,36 +45,34 @@ struct dalv4CandleDemoTag_c {
     /* 80C5CEC0 */ void modeNG();
     /* 80C5CF34 */ void init_modeEnd();
     /* 80C5CF40 */ void modeEnd();
-    /* 80C5CF78 */ void eventStart();
-    /* 80C5CF9C */ void searchShutterAct(void*, void*);
-    /* 80C5CFEC */ bool Draw();
-    /* 80C5CFF4 */ bool Delete();
-    /* 80C5D184 */ ~dalv4CandleDemoTag_c();
+    /* 80C5CF9C */ static void* searchShutterAct(void*, void*);
+    /* 80C5CFEC */ int Draw();
+    /* 80C5CFF4 */ int Delete();
+
+    u8 getPathID() { return fopAcM_GetParamBit(this, 0x10, 8); }
+    int getSwNG() { return fopAcM_GetParamBit(this, 0, 8); }
+    int getSwDest() { return fopAcM_GetParamBit(this, 8, 8); }
+    int getSwOK() { return shape_angle.x & 0xFF; }
+    int getEventID() { return fopAcM_GetParamBit(this, 0x18, 8); }
+
+    /* 80C5D184 */ virtual ~dalv4CandleDemoTag_c();
+    /* 80C5CF78 */ virtual BOOL eventStart();
+
+    /* 0x584 */ u8 mMode;
+    /* 0x585 */ u8 mPathID;
+    /* 0x586 */ u8 mSwNG;
+    /* 0x587 */ u8 mSwDest;
+    /* 0x588 */ u16 mEnemyWaitTime;
+    /* 0x58C */ daLv4EdShutter_c* mpShutterActor;
 };
 
-struct dalv4CandleDemoTag_HIO_c {
+class dalv4CandleDemoTag_HIO_c : public mDoHIO_entry_c {
+public:
     /* 80C5C9EC */ dalv4CandleDemoTag_HIO_c();
-    /* 80C5D07C */ ~dalv4CandleDemoTag_HIO_c();
+    /* 80C5D07C */ virtual ~dalv4CandleDemoTag_HIO_c();
+
+    /* 0x4 */ s16 mEnemyWaitTime;
 };
-
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 800352B0 */ void offSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dEvLib_callback_c {
-    /* 8004886C */ void eventUpdate();
-    /* 80048940 */ void orderEvent(int, int, int);
-    /* 80C5D124 */ ~dEvLib_callback_c();
-    /* 80C5D16C */ bool eventRun();
-    /* 80C5D174 */ bool eventEnd();
-    /* 80C5D17C */ bool eventStart();
-};
-
-struct csXyz {};
-
-struct cXyz {};
 
 //
 // Forward References:
@@ -121,14 +127,10 @@ extern "C" void eventUpdate__17dEvLib_callback_cFv();
 extern "C" void orderEvent__17dEvLib_callback_cFiii();
 extern "C" void dPath_GetRoomPath__Fii();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXTrans();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" void __register_global_object();
 
 //
@@ -250,71 +252,62 @@ SECTION_DATA extern void* __vt__17dEvLib_callback_c[6] = {
     (void*)eventEnd__17dEvLib_callback_cFv,
 };
 
-/* 80C5D328-80C5D334 000110 000C+00 2/2 0/0 0/0 .data            __vt__24dalv4CandleDemoTag_HIO_c */
-SECTION_DATA extern void* __vt__24dalv4CandleDemoTag_HIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__24dalv4CandleDemoTag_HIO_cFv,
-};
-
-/* 80C5D334-80C5D340 00011C 000C+00 3/3 0/0 0/0 .data            __vt__14mDoHIO_entry_c */
-SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14mDoHIO_entry_cFv,
-};
-
 /* 80C5C9EC-80C5CA10 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__24dalv4CandleDemoTag_HIO_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dalv4CandleDemoTag_HIO_c::dalv4CandleDemoTag_HIO_c() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/__ct__24dalv4CandleDemoTag_HIO_cFv.s"
+dalv4CandleDemoTag_HIO_c::dalv4CandleDemoTag_HIO_c() {
+    mEnemyWaitTime = 60;
 }
-#pragma pop
-
-/* 80C5CA10-80C5CA58 000110 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm mDoHIO_entry_c::~mDoHIO_entry_c() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/__dt__14mDoHIO_entry_cFv.s"
-}
-#pragma pop
 
 /* 80C5CA58-80C5CA90 000158 0038+00 2/2 0/0 0/0 .text setBaseMtx__20dalv4CandleDemoTag_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dalv4CandleDemoTag_c::setBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/setBaseMtx__20dalv4CandleDemoTag_cFv.s"
+void dalv4CandleDemoTag_c::setBaseMtx() {
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
 }
-#pragma pop
 
 /* 80C5CA90-80C5CBA4 000190 0114+00 1/1 0/0 0/0 .text            create__20dalv4CandleDemoTag_cFv */
+// vtables need work
+#ifdef NONMATCHING
+int dalv4CandleDemoTag_c::create() {
+    fopAcM_SetupActor(this, dalv4CandleDemoTag_c);
+
+    mPathID = getPathID();
+
+    if (dPath_GetRoomPath(mPathID, fopAcM_GetRoomNo(this)) == NULL) {
+        return 0;
+    }
+
+    mSwNG = getSwNG();
+    mSwDest = getSwDest();
+    i_fopAcM_offSwitch(this, mSwDest);
+
+    setBaseMtx();
+
+    if (i_fopAcM_isSwitch(this, getSwOK())) {
+        init_modeEnd();
+    } else {
+        init_modeWatch();
+    }
+
+    return cPhs_COMPLEATE_e;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dalv4CandleDemoTag_c::create() {
+asm int dalv4CandleDemoTag_c::create() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/create__20dalv4CandleDemoTag_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80C5CBA4-80C5CBE8 0002A4 0044+00 1/1 0/0 0/0 .text            Execute__20dalv4CandleDemoTag_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dalv4CandleDemoTag_c::Execute() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/Execute__20dalv4CandleDemoTag_cFv.s"
+int dalv4CandleDemoTag_c::Execute() {
+    eventUpdate();
+    procMain();
+    setBaseMtx();
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80C5D348-80C5D354 000008 000C+00 1/1 0/0 0/0 .bss             @3632 */
@@ -328,6 +321,12 @@ static u8 data_80C5D35C[4];
 
 /* 80C5CBE8-80C5CCA4 0002E8 00BC+00 1/1 0/0 0/0 .text            procMain__20dalv4CandleDemoTag_cFv
  */
+// need virtuals to match so sinit can also be matched
+#ifdef NONMATCHING
+void dalv4CandleDemoTag_c::procMain() {
+    (this->*mode_proc[mMode])();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -336,181 +335,154 @@ asm void dalv4CandleDemoTag_c::procMain() {
 #include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/procMain__20dalv4CandleDemoTag_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80C5CCA4-80C5CCC0 0003A4 001C+00 2/2 0/0 0/0 .text init_modeWatch__20dalv4CandleDemoTag_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dalv4CandleDemoTag_c::init_modeWatch() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/init_modeWatch__20dalv4CandleDemoTag_cFv.s"
+void dalv4CandleDemoTag_c::init_modeWatch() {
+    mEnemyWaitTime = (*(dalv4CandleDemoTag_HIO_c*)l_HIO).mEnemyWaitTime;
+    mMode = 0;
 }
-#pragma pop
 
 /* 80C5CCC0-80C5CDC0 0003C0 0100+00 1/0 0/0 0/0 .text            modeWatch__20dalv4CandleDemoTag_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dalv4CandleDemoTag_c::modeWatch() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/modeWatch__20dalv4CandleDemoTag_cFv.s"
+void dalv4CandleDemoTag_c::modeWatch() {
+    mpShutterActor = (daLv4EdShutter_c*)fopAcM_Search(searchShutterAct, this);
+
+    u8 var3;
+    if (mpShutterActor == NULL) {
+        var3 = 1;
+    } else {
+        var3 = mpShutterActor->getStatus();
+    }
+
+    if (i_fopAcM_isSwitch(this, mSwNG) && var3 != 0) {
+        if (mEnemyWaitTime == 0) {
+            if (getEventID() != 0xFF) {
+                orderEvent(getEventID(), 0xFF, 1);
+            } else {
+                eventStart();
+            }
+        } else {
+            mEnemyWaitTime--;
+        }
+    }
+
+    if (i_fopAcM_isSwitch(this, getSwOK())) {
+        init_modeEnd();
+    }
 }
-#pragma pop
 
 /* 80C5CDC0-80C5CE70 0004C0 00B0+00 1/1 0/0 0/0 .text
  * init_modeEnemyCreate__20dalv4CandleDemoTag_cFv               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dalv4CandleDemoTag_c::init_modeEnemyCreate() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/init_modeEnemyCreate__20dalv4CandleDemoTag_cFv.s"
+void dalv4CandleDemoTag_c::init_modeEnemyCreate() {
+    dPath* path_p = dPath_GetRoomPath(mPathID, fopAcM_GetRoomNo(this));
+
+    for (int i = 0; i < path_p->m_num; i++) {
+        dStage_dPnt_c* pnt = &path_p->m_points[i];
+
+        cXyz pos;
+        pos.x = pnt->m_position.x;
+        pos.y = pnt->m_position.y;
+        pos.z = pnt->m_position.z;
+
+        fopAcM_create(PROC_E_BS, 0xFFFFFEFF, &pos, fopAcM_GetRoomNo(this), NULL, NULL, -1);
+    }
+
+    mMode = 1;
 }
-#pragma pop
 
 /* 80C5CE70-80C5CEB4 000570 0044+00 1/0 0/0 0/0 .text modeEnemyCreate__20dalv4CandleDemoTag_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dalv4CandleDemoTag_c::modeEnemyCreate() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/modeEnemyCreate__20dalv4CandleDemoTag_cFv.s"
+void dalv4CandleDemoTag_c::modeEnemyCreate() {
+    if (fopAcM_myRoomSearchEnemy(fopAcM_GetRoomNo(this))) {
+        init_modeNG();
+    }
 }
-#pragma pop
 
 /* 80C5CEB4-80C5CEC0 0005B4 000C+00 1/1 0/0 0/0 .text init_modeNG__20dalv4CandleDemoTag_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dalv4CandleDemoTag_c::init_modeNG() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/init_modeNG__20dalv4CandleDemoTag_cFv.s"
+void dalv4CandleDemoTag_c::init_modeNG() {
+    mMode = 2;
 }
-#pragma pop
 
 /* 80C5CEC0-80C5CF34 0005C0 0074+00 1/0 0/0 0/0 .text            modeNG__20dalv4CandleDemoTag_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dalv4CandleDemoTag_c::modeNG() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/modeNG__20dalv4CandleDemoTag_cFv.s"
+void dalv4CandleDemoTag_c::modeNG() {
+    if (!fopAcM_myRoomSearchEnemy(fopAcM_GetRoomNo(this))) {
+        i_fopAcM_onSwitch(this, mSwDest);
+        i_fopAcM_offSwitch(this, mSwNG);
+        init_modeWatch();
+    }
 }
-#pragma pop
 
 /* 80C5CF34-80C5CF40 000634 000C+00 2/2 0/0 0/0 .text init_modeEnd__20dalv4CandleDemoTag_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dalv4CandleDemoTag_c::init_modeEnd() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/init_modeEnd__20dalv4CandleDemoTag_cFv.s"
+void dalv4CandleDemoTag_c::init_modeEnd() {
+    mMode = 3;
 }
-#pragma pop
 
 /* 80C5CF40-80C5CF78 000640 0038+00 1/0 0/0 0/0 .text            modeEnd__20dalv4CandleDemoTag_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dalv4CandleDemoTag_c::modeEnd() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/modeEnd__20dalv4CandleDemoTag_cFv.s"
+void dalv4CandleDemoTag_c::modeEnd() {
+    i_fopAcM_offSwitch(this, mSwNG);
 }
-#pragma pop
 
 /* 80C5CF78-80C5CF9C 000678 0024+00 2/1 0/0 0/0 .text eventStart__20dalv4CandleDemoTag_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dalv4CandleDemoTag_c::eventStart() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/eventStart__20dalv4CandleDemoTag_cFv.s"
+BOOL dalv4CandleDemoTag_c::eventStart() {
+    init_modeEnemyCreate();
+    return 1;
 }
-#pragma pop
 
 /* 80C5CF9C-80C5CFEC 00069C 0050+00 1/1 0/0 0/0 .text
  * searchShutterAct__20dalv4CandleDemoTag_cFPvPv                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dalv4CandleDemoTag_c::searchShutterAct(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/searchShutterAct__20dalv4CandleDemoTag_cFPvPv.s"
+void* dalv4CandleDemoTag_c::searchShutterAct(void* param_0, void* param_1) {
+    if (param_0 != NULL && fopAcM_IsActor(param_0) &&
+        fopAcM_GetProfName(param_0) == PROC_Obj_Lv4EdShutter)
+    {
+        return param_0;
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* 80C5CFEC-80C5CFF4 0006EC 0008+00 1/1 0/0 0/0 .text            Draw__20dalv4CandleDemoTag_cFv */
-bool dalv4CandleDemoTag_c::Draw() {
-    return true;
+int dalv4CandleDemoTag_c::Draw() {
+    return 1;
 }
 
 /* 80C5CFF4-80C5CFFC 0006F4 0008+00 1/1 0/0 0/0 .text            Delete__20dalv4CandleDemoTag_cFv */
-bool dalv4CandleDemoTag_c::Delete() {
-    return true;
+int dalv4CandleDemoTag_c::Delete() {
+    return 1;
 }
 
 /* 80C5CFFC-80C5D01C 0006FC 0020+00 1/0 0/0 0/0 .text
  * dalv4CandleDemoTag_Draw__FP20dalv4CandleDemoTag_c            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dalv4CandleDemoTag_Draw(dalv4CandleDemoTag_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/dalv4CandleDemoTag_Draw__FP20dalv4CandleDemoTag_c.s"
+static int dalv4CandleDemoTag_Draw(dalv4CandleDemoTag_c* i_this) {
+    return i_this->Draw();
 }
-#pragma pop
 
 /* 80C5D01C-80C5D03C 00071C 0020+00 1/0 0/0 0/0 .text
  * dalv4CandleDemoTag_Execute__FP20dalv4CandleDemoTag_c         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dalv4CandleDemoTag_Execute(dalv4CandleDemoTag_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/dalv4CandleDemoTag_Execute__FP20dalv4CandleDemoTag_c.s"
+static int dalv4CandleDemoTag_Execute(dalv4CandleDemoTag_c* i_this) {
+    return i_this->Execute();
 }
-#pragma pop
 
 /* 80C5D03C-80C5D05C 00073C 0020+00 1/0 0/0 0/0 .text
  * dalv4CandleDemoTag_Delete__FP20dalv4CandleDemoTag_c          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dalv4CandleDemoTag_Delete(dalv4CandleDemoTag_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/dalv4CandleDemoTag_Delete__FP20dalv4CandleDemoTag_c.s"
+static int dalv4CandleDemoTag_Delete(dalv4CandleDemoTag_c* i_this) {
+    return i_this->Delete();
 }
-#pragma pop
 
 /* 80C5D05C-80C5D07C 00075C 0020+00 1/0 0/0 0/0 .text dalv4CandleDemoTag_Create__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dalv4CandleDemoTag_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/dalv4CandleDemoTag_Create__FP10fopAc_ac_c.s"
+static int dalv4CandleDemoTag_Create(fopAc_ac_c* i_this) {
+    return static_cast<dalv4CandleDemoTag_c*>(i_this)->create();
 }
-#pragma pop
 
 /* 80C5D07C-80C5D0D8 00077C 005C+00 2/1 0/0 0/0 .text            __dt__24dalv4CandleDemoTag_HIO_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dalv4CandleDemoTag_HIO_c::~dalv4CandleDemoTag_HIO_c() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/__dt__24dalv4CandleDemoTag_HIO_cFv.s"
-}
-#pragma pop
+dalv4CandleDemoTag_HIO_c::~dalv4CandleDemoTag_HIO_c() {}
 
 /* 80C5D0D8-80C5D114 0007D8 003C+00 0/0 1/0 0/0 .text __sinit_d_a_obj_lv4CandleDemoTag_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __sinit_d_a_obj_lv4CandleDemoTag_cpp() {
-    nofralloc
+asm void __sinit_d_a_obj_lv4CandleDemoTag_cpp(){nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/__sinit_d_a_obj_lv4CandleDemoTag_cpp.s"
 }
 #pragma pop
@@ -545,25 +517,29 @@ static asm void func_80C5D11C() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dEvLib_callback_c::~dEvLib_callback_c() {
+// asm dEvLib_callback_c::~dEvLib_callback_c() {
+extern "C" asm void __dt__17dEvLib_callback_cFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/__dt__17dEvLib_callback_cFv.s"
 }
 #pragma pop
 
 /* 80C5D16C-80C5D174 00086C 0008+00 2/0 0/0 0/0 .text            eventRun__17dEvLib_callback_cFv */
-bool dEvLib_callback_c::eventRun() {
+// bool dEvLib_callback_c::eventRun() {
+extern "C" bool eventRun__17dEvLib_callback_cFv() {
     return true;
 }
 
 /* 80C5D174-80C5D17C 000874 0008+00 2/0 0/0 0/0 .text            eventEnd__17dEvLib_callback_cFv */
-bool dEvLib_callback_c::eventEnd() {
+// bool dEvLib_callback_c::eventEnd() {
+extern "C" bool eventEnd__17dEvLib_callback_cFv() {
     return true;
 }
 
 /* 80C5D17C-80C5D184 00087C 0008+00 1/0 0/0 0/0 .text            eventStart__17dEvLib_callback_cFv
  */
-bool dEvLib_callback_c::eventStart() {
+// bool dEvLib_callback_c::eventStart() {
+extern "C" bool eventStart__17dEvLib_callback_cFv() {
     return true;
 }
 
@@ -571,7 +547,8 @@ bool dEvLib_callback_c::eventStart() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dalv4CandleDemoTag_c::~dalv4CandleDemoTag_c() {
+// asm dalv4CandleDemoTag_c::~dalv4CandleDemoTag_c() {
+extern "C" asm void __dt__20dalv4CandleDemoTag_cFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/__dt__20dalv4CandleDemoTag_cFv.s"
 }

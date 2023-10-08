@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_geyser/d_a_obj_geyser.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -14,12 +14,6 @@
 struct request_of_phase_process_class {};
 
 struct csXyz {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -98,25 +92,6 @@ struct dPa_control_c {
                             cXyz const*, f32);
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCps {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80BF8ED0 */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-};
-
-struct dCcD_Cps {
-    /* 800847D0 */ void Set(dCcD_SrcCps const&);
-};
-
 struct dBgW {
     /* 8007B9C0 */ void Move();
 };
@@ -136,40 +111,8 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct cM3dGLin {
-    /* 8026F2E8 */ void SetStartEnd(cXyz const&, cXyz const&);
-    /* 80BF77F0 */ ~cM3dGLin();
-};
-
-struct cM3dGCpsS {};
-
-struct cM3dGCps {
-    /* 8026EF88 */ cM3dGCps();
-    /* 8026F03C */ void Set(cM3dGCpsS const&);
-};
-
-struct cM3dGAab {
-    /* 80BF8E88 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 80BF8F98 */ ~cCcD_GStts();
-};
-
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct WIND_INFLUENCE {};
@@ -280,7 +223,6 @@ extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void __dl__FPv();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECSquareDistance();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
@@ -295,7 +237,6 @@ extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u32 __float_nan;
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" extern u8 struct_80BF9240[4];
 
@@ -358,12 +299,16 @@ SECTION_DATA static u8 l_cull_box[24] = {
 };
 
 /* 80BF90A4-80BF90F0 00003C 004C+00 1/1 0/0 0/0 .data            l_cps_src */
-SECTION_DATA static u8 l_cps_src[76] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1D,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
-    0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x43, 0xFA, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
+static dCcD_SrcCps l_cps_src = {
+    {
+        {0x0, {{0x100, 0x0, 0x1d}, {0x0, 0x0}, 0x0}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x1, 0x0, 0x2}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, {0.0f, 500.0f, 0.0f}, 100.0f}, // mCps
+    } // mCpsAttr
 };
 
 /* 80BF6F80-80BF70E0 0000E0 0160+00 1/0 0/0 0/0 .text            Create__13daObjGeyser_cFv */
@@ -688,7 +633,8 @@ asm void daObjGeyser_c::actionOff2() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGLin::~cM3dGLin() {
+// asm cM3dGLin::~cM3dGLin() {
+extern "C" asm void __dt__8cM3dGLinFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_geyser/d_a_obj_geyser/__dt__8cM3dGLinFv.s"
 }
@@ -1061,7 +1007,8 @@ static asm void daObjGeyser_create1st(daObjGeyser_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_geyser/d_a_obj_geyser/__dt__8cM3dGAabFv.s"
 }
@@ -1071,7 +1018,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_geyser/d_a_obj_geyser/__dt__10dCcD_GSttsFv.s"
 }
@@ -1113,7 +1061,8 @@ static asm void daObjGeyser_MoveBGDraw(daObjGeyser_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_geyser/d_a_obj_geyser/__dt__10cCcD_GSttsFv.s"
 }

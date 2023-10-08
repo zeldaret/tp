@@ -6,7 +6,6 @@
 #include "JSystem/J3DGraphLoader/J3DClusterLoader.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -82,7 +81,7 @@ extern "C" void _restgpr_26();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DClusterLoaderDataBase::load(void const* param_0) {
+asm void* J3DClusterLoaderDataBase::load(void const* param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DClusterLoader/load__24J3DClusterLoaderDataBaseFPCv.s"
 }

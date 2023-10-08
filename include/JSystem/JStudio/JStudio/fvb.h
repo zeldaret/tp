@@ -4,7 +4,6 @@
 #include "JSystem/JGadget/linklist.h"
 #include "JSystem/JStudio/JStudio/fvb-data-parse.h"
 #include "JSystem/JStudio/JStudio/object-id.h"
-#include "global.h"
 
 namespace JStudio {
 namespace fvb {

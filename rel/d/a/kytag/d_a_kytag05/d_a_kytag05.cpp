@@ -32,10 +32,7 @@ static int daKytag05_Delete(kytag05_class* i_this) {
 
 /* 80528A78-80528B10 000098 0098+00 1/0 0/0 0/0 .text            daKytag05_Create__FP10fopAc_ac_c */
 static int daKytag05_Create(fopAc_ac_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) kytag05_class();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    fopAcM_SetupActor(i_this, kytag05_class);
     kytag05_class* tag = static_cast<kytag05_class*>(i_this);
 
     tag->field_0x56c = fopAcM_GetParam(tag) >> 8;
@@ -43,7 +40,7 @@ static int daKytag05_Create(fopAc_ac_c* i_this) {
     tag->field_0x568 = 100.0f * tag->mScale.x;
 
     if (!tag->field_0x56c) {
-        tag->mAttentionInfo.field_0x4[3] = 0x21;
+        tag->mAttentionInfo.field_0x0[7] = 0x21;
         tag->mAttentionInfo.setFlag(0x80);
     }
     return 4;

@@ -4,7 +4,6 @@
 //
 
 #include "SSystem/SStandard/s_basic.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 /* 80271C8C-80271CAC 0020+00 s=1 e=0 z=0  None .text      sBs_FillArea_s__FPvUls */

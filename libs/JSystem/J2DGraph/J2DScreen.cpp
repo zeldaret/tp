@@ -4,13 +4,9 @@
 //
 
 #include "JSystem/J2DGraph/J2DScreen.h"
-#include "JSystem/J2DGraph/J2DMaterial.h"
-#include "JSystem/J2DGraph/J2DMaterialFactory.h"
-#include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "JSystem/J2DGraph/J2DPictureEx.h"
 #include "JSystem/J2DGraph/J2DTextBoxEx.h"
 #include "JSystem/J2DGraph/J2DWindowEx.h"
-#include "JSystem/JGeometry.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSUMemoryStream.h"
@@ -798,7 +794,7 @@ J2DPane* J2DScreen::createPane(J2DScrnBlockHeader const& header, JSURandomInputS
 }
 
 /* 802F9A18-802F9A20 2F4358 0008+00 1/0 0/0 0/0 .text            getTypeID__9J2DScreenCFv */
-s32 J2DScreen::getTypeID() const {
+u16 J2DScreen::getTypeID() const {
     return 8;
 }
 

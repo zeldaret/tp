@@ -5,7 +5,6 @@
 
 #include "JSystem/JStudio/JStudio_JParticle/object-particle.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -90,7 +89,6 @@ extern "C" u8 const sauVariableValue_4_COLOR_RGBA__Q27JStudio17TAdaptor_particle
 extern "C" extern void* __vt__18JPAEmitterCallBack[7];
 extern "C" extern void* __vt__Q27JStudio17TAdaptor_particle[19];
 extern "C" extern void* __vt__Q27JStudio8TAdaptor[8];
-extern "C" extern u32 __float_nan;
 extern "C" extern u8 data_80451200[8];
 
 //

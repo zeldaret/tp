@@ -2,7 +2,6 @@
 #define D_CC_D_CC_MASS_S_H
 
 #include "SSystem/SComponent/c_cc_d.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 typedef void (*dCcMassS_ObjCallback)(fopAc_ac_c*, cXyz*, u32);
@@ -42,6 +41,7 @@ public:
     void SetCoHitObj(cCcD_Obj* obj) { mpCoObj = obj; }
     void SetAtHitObj(cCcD_Obj* obj) { mpAtObj = obj; }
     void SetCoHitLen(f32 len) { mCoHitLen = len; }
+    cCcD_Obj* GetAtHitObj() const { return mpAtObj; }
 };
 
 class dCcMassS_Mng {

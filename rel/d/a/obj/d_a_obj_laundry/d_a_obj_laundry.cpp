@@ -4,24 +4,14 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_laundry/d_a_obj_laundry.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
 //
 
 struct request_of_phase_process_class {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 80266F48 */ void normalizeZP();
-    /* 802670AC */ void isZero() const;
-};
 
 struct mDoMtx_stack_c {
     /* 8000CCC8 */ void push();
@@ -73,35 +63,6 @@ struct dRes_info_c {};
 
 struct dRes_control_c {
     /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80C51F54 */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-    /* 800844F8 */ void GetTgHitObj();
-    /* 80084658 */ void ChkCoHit();
-};
-
-struct dCcD_GAtTgCoCommonBase {
-    /* 80083688 */ void GetAc();
-};
-
-struct cM3dGCyl {
-    /* 80C51EC4 */ ~cM3dGCyl();
-};
-
-struct cM3dGAab {
-    /* 80C51F0C */ ~cM3dGAab();
-};
-
-struct cCcD_GStts {
-    /* 80C51FB0 */ ~cCcD_GStts();
 };
 
 struct LaundJoint_c {
@@ -199,9 +160,6 @@ extern "C" void init__12J3DFrameCtrlFs();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXInverse();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
-extern "C" void PSVECScale();
-extern "C" void PSVECSquareMag();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void _savegpr_25();
@@ -223,7 +181,6 @@ extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
 
 //
 // Declarations:
@@ -334,14 +291,19 @@ asm void daObjLdy_c::getJointAngle(csXyz* param_0, int param_1) {
 /* 80C52054-80C52098 000054 0044+00 0/0 0/0 0/0 .rodata          ccCylSrc$3800 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const ccCylSrc[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x01, 0x60, 0x48, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x01, 0x49,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC2, 0xA0, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x41, 0xC8, 0x00, 0x00, 0x41, 0xC8, 0x00, 0x00,
+const static dCcD_SrcCyl ccCylSrc = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x16048, 0x11}, 0x149}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, -80.0f, 0.0f}, // mCenter
+        25.0f, // mRadius
+        25.0f // mHeight
+    } // mCyl
 };
-COMPILER_STRIP_GATE(0x80C52054, &ccCylSrc);
 #pragma pop
 
 /* 80C52098-80C520A0 000098 0008+00 0/2 0/0 0/0 .rodata          @3855 */
@@ -601,7 +563,8 @@ LaundJoint_c::LaundJoint_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_laundry/d_a_obj_laundry/__dt__8cM3dGCylFv.s"
 }
@@ -611,7 +574,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_laundry/d_a_obj_laundry/__dt__8cM3dGAabFv.s"
 }
@@ -621,7 +585,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_laundry/d_a_obj_laundry/__dt__10dCcD_GSttsFv.s"
 }
@@ -631,7 +596,8 @@ asm dCcD_GStts::~dCcD_GStts() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_laundry/d_a_obj_laundry/__dt__10cCcD_GSttsFv.s"
 }

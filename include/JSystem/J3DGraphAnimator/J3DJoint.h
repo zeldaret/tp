@@ -2,7 +2,6 @@
 #define J3DJOINT_H
 
 #include "JSystem/J3DGraphBase/J3DTransform.h"
-#include "dolphin/types.h"
 
 class J3DAnmTransform;
 class J3DJoint;

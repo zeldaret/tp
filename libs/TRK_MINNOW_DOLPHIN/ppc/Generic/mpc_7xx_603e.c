@@ -4,7 +4,6 @@
 //
 
 #include "TRK_MINNOW_DOLPHIN/ppc/Generic/mpc_7xx_603e.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //

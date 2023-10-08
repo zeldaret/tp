@@ -4,7 +4,6 @@
 #include "JSystem/JUtility/TColor.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 class JKRArchive;
@@ -96,8 +95,7 @@ public:
     /* 0x3C */ f32 mOptionTypeBGPosY[4];
     /* 0x4C */ f32 mTVsettingPosY;
     /* 0x50 */ f32 mPointerCalibrationPosY;
-    /* 0x54 */ f32 mSelectBarScale;
-    /* 0x58 */ f32 mUnselectBarScale;
+    /* 0x54 */ f32 mBarScale[2]; // 0: mSelectBarScale | 1: mUnselectBarScale
     /* 0x5C */ f32 mBackgroundPosY;
     /* 0x60 */ f32 mArrowOffsetX;
     /* 0x64 */ f32 mArrowOffsetX_4x3;
@@ -184,13 +182,10 @@ public:
     /* 0x1B8 */ f32 mFishInfoScale[6];
     /* 0x1D0 */ f32 mFishInfoPosX[6];
     /* 0x1E8 */ f32 mFishInfoPosY[6];
-    /* 0x200 */ f32 mMaxSizeScale;
-    /* 0x204 */ f32 mCaughtNumScale;
-    /* 0x208 */ f32 mMaxSizePosX;
-    /* 0x20C */ f32 mCaughtNumPosX;
+    /* 0x200 */ f32 mScale[2];  // 0: MaxSizeScale, 1: CaughtNumScale
+    /* 0x208 */ f32 mPosX[2];  // 0: MaxSizePosX, 1: CaughtNumPosX
     /* 0x210 */ f32 mCaughtNumPosX_4x3;
-    /* 0x214 */ f32 mMaxSizePosY;
-    /* 0x218 */ f32 mCaughtNumPosY;
+    /* 0x214 */ f32 mPosY[2]; // 0: MaxSizePosY, 1: CaughtNumPosY
     /* 0x21C */ s16 mOpenFrames;
     /* 0x21E */ s16 mCloseFrames;
     /* 0x220 */ s16 mFishNum[6];

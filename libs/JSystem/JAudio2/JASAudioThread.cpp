@@ -4,58 +4,37 @@
 //
 
 #include "JSystem/JAudio2/JASAudioThread.h"
+#include "JSystem/JAudio2/JASDriverIF.h"
+#include "JSystem/JAudio2/JASHeapCtrl.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "dolphin/os/OS.h"
+#include "dolphin/dsp/dsp.h"
 
 //
 // Types:
 //
 
-struct JKRHeap {
-    static u8 sSystemHeap[4];
-    static u8 sCurrentHeap[4];
-};
-
-struct JKRThread {
-    /* 802D1610 */ JKRThread(JKRHeap*, u32, int, int);
-    /* 802D1758 */ ~JKRThread();
-};
-
 struct JASProbe {
-    /* 80290EE4 */ void start(s32, char const*);
-    /* 80290F24 */ void stop(s32);
+    /* 80290EE4 */ static void start(s32, char const*);
+    /* 80290F24 */ static void stop(s32);
 };
 
-template <typename A0>
-struct JASMemPool_MultiThreaded {};
 /* JASMemPool_MultiThreaded<JASChannel> */
 struct JASMemPool_MultiThreaded__template2 {
     /* 802978DC */ void func_802978DC(void* _this);
 };
 
-struct JASGenericMemPool {
-    /* 80290848 */ JASGenericMemPool();
-    /* 802908C8 */ void newMemPool(u32, int);
-};
+
 
 struct JASDsp {
-    /* 8029D958 */ void boot(void (*)(void*));
-    /* 8029D9C4 */ void finishWork(u16);
-    /* 8029DAC8 */ void initBuffer();
-};
-
-struct JASDriver {
-    /* 8029C388 */ void initAI(void (*)(void));
-    /* 8029C4E4 */ void startDMA();
-    /* 8029C504 */ void stopDMA();
-    /* 8029C568 */ void updateDac();
-    /* 8029C6C4 */ void updateDSP();
-    /* 8029C900 */ void finishDSPFrame();
-    /* 8029E2F8 */ void updateDacCallback();
+    /* 8029D958 */ static void boot(void (*)(void*));
+    /* 8029D9C4 */ static void finishWork(u16);
+    /* 8029DAC8 */ static void initBuffer();
 };
 
 struct JASDSPChannel {
-    /* 8029D3C8 */ void initAll();
+    /* 8029D3C8 */ static void initAll();
 };
 
 //
@@ -96,20 +75,8 @@ extern "C" void* __nw__FUlP7JKRHeapi();
 extern "C" void __dl__FPv();
 extern "C" void __ct__9JKRThreadFP7JKRHeapUlii();
 extern "C" void __dt__9JKRThreadFv();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void OSSendMessage();
-extern "C" void OSReceiveMessage();
-extern "C" void OSJamMessage();
-extern "C" void OSInitThreadQueue();
-extern "C" void OSExitThread();
-extern "C" void OSResumeThread();
-extern "C" void OSSleepThread();
-extern "C" void DSPCheckMailFromDSP();
-extern "C" void DSPReadMailFromDSP();
 extern "C" void __register_global_object();
 extern "C" extern u8 data_80431B34[16 + 4 /* padding */];
-extern "C" extern u8 JASDram[4];
 extern "C" extern u8 struct_80451260[8];
 extern "C" u8 sSystemHeap__7JKRHeap[4];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];
@@ -120,43 +87,28 @@ extern "C" extern u8 __OSReport_disable;
 //
 
 /* ############################################################################################## */
-/* 803C78E0-803C78F0 024A00 0010+00 2/2 0/0 0/0 .data            __vt__14JASAudioThread */
-SECTION_DATA extern void* __vt__14JASAudioThread[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14JASAudioThreadFv,
-    (void*)run__14JASAudioThreadFv,
-};
 
 /* 8029CCDC-8029CD4C 29761C 0070+00 1/1 0/0 0/0 .text            __ct__14JASAudioThreadFiiUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JASAudioThread::JASAudioThread(int param_0, int param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAudioThread/__ct__14JASAudioThreadFiiUl.s"
+JASAudioThread::JASAudioThread(int stackSize, int msgCount, u32 threadPriority)
+    : 
+    JKRThread(JASDram, threadPriority, msgCount, stackSize),
+    JASGlobalInstance<JASAudioThread>(true)
+{
+    sbPauseFlag = false;
+    OSInitThreadQueue(&sThreadQueue);
 }
-#pragma pop
 
 /* 8029CD4C-8029CDC0 29768C 0074+00 0/0 1/1 0/0 .text            create__14JASAudioThreadFl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASAudioThread::create(s32 param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAudioThread/create__14JASAudioThreadFl.s"
+void JASAudioThread::create(long threadPriority) {
+	JASAudioThread* sAudioThread = new (JASDram, 0) JASAudioThread(threadPriority, 0x10, 0x1400);
+    sAudioThread->setCurrentHeap(JKRGetSystemHeap());
+	sAudioThread->resume();
 }
-#pragma pop
 
 /* 8029CDC0-8029CDEC 297700 002C+00 0/0 1/1 0/0 .text            stop__14JASAudioThreadFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASAudioThread::stop() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAudioThread/stop__14JASAudioThreadFv.s"
+void JASAudioThread::stop() {
+    jamMessageBlock((void*)2);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039B338-8039B338 027998 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -169,18 +121,78 @@ SECTION_DEAD static char const* const stringBase_8039B338 = "SFR_DSP";
 static u8 lit_205[12 + 4 /* padding */];
 
 /* 804512D8-804512E0 0007D8 0004+04 1/1 2/2 0/0 .sbss            snIntCount__14JASAudioThread */
-u8 JASAudioThread::snIntCount[4 + 4 /* padding */];
+volatile int JASAudioThread::snIntCount;
+
+class Lock {
+public:
+    Lock() {
+        mInterrupts = OSDisableInterrupts();
+    }
+    ~Lock() {
+        OSRestoreInterrupts(mInterrupts);
+    }
+private:
+    BOOL mInterrupts;
+};
+
+class JASChannel {
+    u8 filler[0x108];
+};
 
 /* 8029CDEC-8029CF68 29772C 017C+00 1/0 0/0 0/0 .text            run__14JASAudioThreadFv */
+// Maybe location of JASPoolAllocObject_MultiThreaded<JASChannel>
+#ifdef NONMATCHING
+void* JASAudioThread::run() {
+    i_OSInitFastCast();
+    JASDriver::initAI(DMACallback);
+    JASDsp::boot(DSPCallback);
+    JASDsp::initBuffer();
+    JASDSPChannel::initAll();
+
+    JASPoolAllocObject_MultiThreaded<JASChannel>::newMemPool(0x48);
+    JASDriver::startDMA();
+
+    while (true) {
+        OSMessage msg = waitMessageBlock();
+        switch ((int)msg) {
+        case AUDIOMSG_DMA:
+            if (sbPauseFlag) {
+                JASDriver::stopDMA();
+                OSSleepThread(&sThreadQueue);
+            }
+            JASDriver::updateDac();
+            JASDriver::updateDacCallback();
+            break;
+
+        case AUDIOMSG_DSP:
+            snIntCount--;
+            if (snIntCount == 0) {
+                JASProbe::stop(7);
+                JASDriver::finishDSPFrame();
+            } else {
+                JASProbe::start(2, "SFR_DSP");
+                JASDriver::updateDSP();
+                JASProbe::stop(2);
+            }
+            break;
+
+        case AUDIOMSG_STOP:
+            JASDriver::stopDMA();
+            OSExitThread(NULL);
+            break;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASAudioThread::run() {
+asm void* JASAudioThread::run() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASAudioThread/run__14JASAudioThreadFv.s"
 }
 #pragma pop
-
+#endif
 /* ############################################################################################## */
 /* 8039B338-8039B338 027998 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
@@ -191,33 +203,26 @@ SECTION_DEAD static char const* const pad_8039B34B = "\0\0\0\0\0\0\0\0\0\0\0\0\0
 #pragma pop
 
 /* 8029CF68-8029CFBC 2978A8 0054+00 1/1 0/0 0/0 .text            DMACallback__14JASAudioThreadFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASAudioThread::DMACallback() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAudioThread/DMACallback__14JASAudioThreadFv.s"
+void JASAudioThread::DMACallback() {
+    JASAudioThread* thread = getInstance();
+	JASProbe::stop(4);
+	JASProbe::start(4, "UPDATE-DAC");
+	thread->sendMessage((void*)AUDIOMSG_DMA);
 }
-#pragma pop
 
 /* 8029CFBC-8029D028 2978FC 006C+00 1/1 0/0 0/0 .text            DSPCallback__14JASAudioThreadFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASAudioThread::DSPCallback(void* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAudioThread/DSPCallback__14JASAudioThreadFPv.s"
-}
-#pragma pop
+void JASAudioThread::DSPCallback(void*) {
+    JASAudioThread* thread = getInstance();
+	while (DSPCheckMailFromDSP() == 0) { }
 
-/* 8029D028-8029D0B4 297968 008C+00 1/0 0/0 0/0 .text            __dt__14JASAudioThreadFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JASAudioThread::~JASAudioThread() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAudioThread/__dt__14JASAudioThreadFv.s"
+	u32 mail = DSPReadMailFromDSP();
+	if (mail >> 0x10 == 0xF355) {
+		if ((mail & 0xFF00) == 0xFF00) {
+            thread->sendMessage((void*)AUDIOMSG_DSP);
+		} else {
+			JASDsp::finishWork(mail);
+		}
+	}
 }
-#pragma pop
 
 /* 8039B338-8039B338 027998 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

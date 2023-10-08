@@ -33,6 +33,83 @@ f32 PSVECDistance(const Vec* a, const Vec* b);
 void C_VECHalfAngle(const Vec* a, const Vec* b, Vec* half);
 void C_VECReflect(const Vec* src, const Vec* normal, Vec* dst);
 
+inline void C_VECAdd(register const Vec* a, register const Vec* b, register Vec* ab) {
+    register f32 axy;
+    register f32 bxy;
+    register f32 az;
+    register f32 sumz;
+    register f32 bz;
+    asm {
+        psq_l axy, 0(a), 0, 0
+        psq_l bxy, 0(b), 0, 0
+        ps_add axy, axy, bxy
+        psq_st axy, 0(ab), 0, 0
+        psq_l az, 8(a), 1, 0
+        psq_l bz, 8(b), 1, 0
+        ps_add sumz, az, bz
+        psq_st sumz, 8(ab), 1, 0
+    }
+}
+
+inline void C_VECSubtract(register const Vec* a, register const Vec* b, register Vec* ab) {
+    register f32 axy;
+    register f32 bxy;
+    register f32 az;
+    register f32 subz;
+    register f32 bz;
+    asm {
+        psq_l axy, 0(a), 0, 0
+        psq_l bxy, 0(b), 0, 0
+        ps_sub bxy, axy, bxy
+        psq_st bxy, 0(ab), 0, 0
+        psq_l az, 8(a), 1, 0
+        psq_l bz, 8(b), 1, 0
+        ps_sub subz, az, bz
+        psq_st subz, 8(ab), 1, 0
+    }
+}
+
+inline f32 C_VECSquareMag(const Vec* v) {
+    register f32 x_y;
+    register f32 z;
+    register f32 res;
+    register const f32* src = &v->x;
+    asm {
+        psq_l   x_y, 0(src), 0, 0
+        ps_mul  x_y, x_y, x_y
+        lfs     z,   8(src)
+        ps_madd res, z, z, x_y
+        ps_sum0 res, res, x_y, x_y
+    }
+    ;
+    return res;
+}
+
+/* When compiling in debug mode, use C implementations */
+#ifdef DEBUG
+#define VECAdd C_VECAdd
+#define VECSubtract C_VECSubtract
+#define VECScale C_VECScale
+#define VECNormalize C_VECNormalize
+#define VECSquareMag C_VECSquareMag
+#define VECMag C_VECMag
+#define VECDotProduct C_VECDotProduct
+#define VECCrossProduct C_VECCrossProduct
+#define VECSquareDistance C_VECSquareDistance
+#define VECDistance C_VECDistance
+#else
+#define VECAdd PSVECAdd
+#define VECSubtract PSVECSubtract
+#define VECScale PSVECScale
+#define VECNormalize PSVECNormalize
+#define VECSquareMag PSVECSquareMag
+#define VECMag PSVECMag
+#define VECDotProduct PSVECDotProduct
+#define VECCrossProduct PSVECCrossProduct
+#define VECSquareDistance PSVECSquareDistance
+#define VECDistance PSVECDistance
+#endif
+
 #ifdef __cplusplus
 };
 #endif

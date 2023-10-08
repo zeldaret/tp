@@ -227,14 +227,45 @@ SECTION_DEAD static char const* const stringBase_8039D47C = "Unknown data block\
 #pragma pop
 
 /* 802DF344-802DF48C 2D9C84 0148+00 1/0 0/0 0/0 .text            setBlock__10JUTResFontFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTResFont::setBlock() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTResFont/setBlock__10JUTResFontFv.s"
+void JUTResFont::setBlock() {
+	s32 widthNum, glyphNum, mapNum;
+	widthNum = 0;
+    glyphNum = 0;
+    mapNum = 0;
+	mMaxCode                     = -1;
+
+	BlockHeader* data = (BlockHeader*)mResFont->data;
+	for (u32 i = 0; i < mResFont->numBlocks; i++, data = (BlockHeader*)data->getNext()) {
+		switch (data->magic) {
+		case 'INF1':
+			mInf1Ptr  = (ResFONT::INF1*)data;
+			mIsLeadByte = (IsLeadByte_func*)&saoAboutEncoding_[mInf1Ptr->fontType];
+			break;
+
+		case 'WID1':
+			mpWidthBlocks[widthNum] = (ResFONT::WID1*)data;
+			widthNum++;
+			break;
+
+		case 'GLY1':
+			mpGlyphBlocks[glyphNum] = (ResFONT::GLY1*)data;
+			glyphNum++;
+			break;
+
+		case 'MAP1':
+			mpMapBlocks[mapNum] = (ResFONT::MAP1*)data;
+			if (mMaxCode > mpMapBlocks[mapNum]->startCode) {
+				mMaxCode = mpMapBlocks[mapNum]->startCode;
+			}
+			mapNum++;
+			break;
+
+		default:
+			JUTReportConsole("Unknown data block\n");
+			break;
+		}
+	}
 }
-#pragma pop
 
 /* 802DF48C-802DF584 2D9DCC 00F8+00 1/0 1/0 0/0 .text            setGX__10JUTResFontFv */
 void JUTResFont::setGX() {
@@ -429,9 +460,7 @@ int JUTResFont::getCellWidth() const {
 }
 
 /* 802DFD58-802DFDA4 2DA698 004C+00 1/0 1/0 0/0 .text            getCellHeight__10JUTResFontCFv */
-#ifdef NONMATCHING
-// casting issue on the return
-int JUTResFont::getCellHeight() const {
+s32 JUTResFont::getCellHeight() const {
     u16 height;
 
     if (mpGlyphBlocks) {
@@ -443,16 +472,6 @@ int JUTResFont::getCellHeight() const {
 
     return getHeight();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u16 JUTResFont::getCellHeight() const {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTResFont/getCellHeight__10JUTResFontCFv.s"
-}
-#pragma pop
-#endif
 
 /* 802DFDA4-802DFDD8 2DA6E4 0034+00 1/0 1/0 0/0 .text            isLeadByte__10JUTResFontCFi */
 bool JUTResFont::isLeadByte(int param_0) const {
@@ -474,30 +493,27 @@ static const u16 halftofull[95] = {
 
 /* 802DFDD8-802DFF60 2DA718 0188+00 2/2 0/0 0/0 .text            getFontCode__10JUTResFontCFi */
 #ifdef NONMATCHING
-// still many issues
+// regalloc
 int JUTResFont::getFontCode(int param_0) const {
-    int ret = mInf1Ptr->width;
+    int ret = mInf1Ptr->defaultCode;
     if ((getFontType() == 2) && (mMaxCode >= 0x8000U) && (param_0 >= 0x20) && (param_0 < 0x7FU)) {
         param_0 = halftofull[param_0 - 32];
     }
-    int j = 0;
-    for (int i = mMap1BlockNum; i > 0; j++, i--) {
-        if ((mpMapBlocks[j]->endCode <= param_0) && (param_0 <= mpMapBlocks[j]->numEntries)) {
-            ResFONT::MAP1* temp_r4 = mpMapBlocks[j];
-            if (temp_r4->startCode == 0) {
-                ret = param_0 - temp_r4->endCode;
+    for (int i = 0; i < mMap1BlockNum; i++) {
+        if ((mpMapBlocks[i]->startCode <= param_0) && (param_0 <= mpMapBlocks[i]->endCode)) {
+            if (mpMapBlocks[i]->mappingMethod == 0) {
+                ret = param_0 - mpMapBlocks[i]->endCode;
                 break;
-            } else if (temp_r4->startCode == 2) {
-                ret = *(&mpMapBlocks[j]->mLeading + ((param_0 - mpMapBlocks[j]->endCode)));
+            } else if (mpMapBlocks[i]->mappingMethod == 2) {
+                ret = *(&mpMapBlocks[i]->mLeading + ((param_0 - mpMapBlocks[i]->endCode)));
                 break;
-            } else if (temp_r4->startCode == 3) {
-                u16* leading_temp = &temp_r4->mLeading;
+            } else if (mpMapBlocks[i]->mappingMethod == 3) {
+                u16* leading_temp = &mpMapBlocks[i]->mLeading;
                 int phi_r5 = 0;
-                int phi_r6_2 = temp_r4->numEntries - 1;
+                int phi_r6_2 = mpMapBlocks[i]->numEntries - 1;
 
                 while (phi_r6_2 >= phi_r5) {
-                    u32 temp_r3 = phi_r6_2 + phi_r5;
-                    int temp_r7 = (int)((temp_r3 >> 0x1FU) + phi_r6_2 + phi_r5) >> 1;
+                    int temp_r7 = (phi_r6_2 + phi_r5) / 2;
 
                     if (param_0 < leading_temp[temp_r7 * 2]) {
                         phi_r6_2 = temp_r7 - 1;
@@ -512,10 +528,10 @@ int JUTResFont::getFontCode(int param_0) const {
                     ret = leading_temp[temp_r7 * 2 + 1];
                     break;
                 }
-            } else if (temp_r4->startCode == 1) {
+            } else if (mpMapBlocks[i]->mappingMethod == 1) {
                 u16* phi_r5_2 = NULL;
-                if (temp_r4->numEntries == 1) {
-                    phi_r5_2 = &temp_r4->mLeading;
+                if (mpMapBlocks[i]->numEntries == 1) {
+                    phi_r5_2 = &mpMapBlocks[i]->mLeading;
                 }
                 ret = convertSjis(param_0, phi_r5_2);
                 break;
@@ -537,8 +553,42 @@ asm int JUTResFont::getFontCode(int param_0) const {
 #endif
 
 /* 802DFF60-802E00C4 2DA8A0 0164+00 1/0 0/0 0/0 .text loadImage__10JUTResFontFi11_GXTexMapID */
+// Matches with literals
 #ifdef NONMATCHING
-asm void JUTResFont::loadImage(int param_0, _GXTexMapID param_1) {}
+void JUTResFont::loadImage(int code, GXTexMapID id){
+    int i = 0;
+    for (; i < mGly1BlockNum; i++)
+    {
+        if (mpGlyphBlocks[i]->startCode <= code && code <= mpGlyphBlocks[i]->endCode)
+        {
+            code -= mpGlyphBlocks[i]->startCode;
+            break;
+        }
+    }
+
+    if (i == mGly1BlockNum)
+        return;
+
+    s32 pageNumCells = mpGlyphBlocks[i]->numRows * mpGlyphBlocks[i]->numColumns;
+    s32 pageIdx = code / pageNumCells;
+    s32 cellIdxInPage = code % pageNumCells;
+    s32 cellCol = (cellIdxInPage % mpGlyphBlocks[i]->numRows);
+    s32 cellRow = (cellIdxInPage / mpGlyphBlocks[i]->numRows);
+    mWidth = cellCol * mpGlyphBlocks[i]->cellWidth;
+    mHeight = cellRow * mpGlyphBlocks[i]->cellHeight;
+
+    if (pageIdx != field_0x44 || i != field_0x66)
+    {
+        GXInitTexObj(&field_0x24, &mpGlyphBlocks[i]->data[pageIdx * mpGlyphBlocks[i]->textureSize], mpGlyphBlocks[i]->textureWidth,
+                     mpGlyphBlocks[i]->textureHeight, (GXTexFmt)mpGlyphBlocks[i]->textureFormat, GX_CLAMP, GX_CLAMP, 0);
+
+        GXInitTexObjLOD(&field_0x24, GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, 0U, 0U, GX_ANISO_1);
+        field_0x44 = pageIdx;
+        field_0x66 = i;
+    }
+
+    GXLoadTexObj(&field_0x24, id);
+}
 #else
 #pragma push
 #pragma optimization_level 0

@@ -1,7 +1,6 @@
 #ifndef GX_H_
 #define GX_H_
 
-#include "dolphin/gx/GXInit.h"
 #include "dolphin/gx/GXAttr.h"
 #include "dolphin/gx/GXBump.h"
 #include "dolphin/gx/GXDisplayList.h"
@@ -120,6 +119,11 @@ inline void GXTexCoord2s8(s8 x, s8 y) {
 inline void i_GXTexCoord2u16(u16 x, u16 y) {
     GFX_FIFO(u16) = x;
     GFX_FIFO(u16) = y;
+}
+
+inline void GXTexCoord2s16(const s16 u, const s16 v) {
+	GFX_FIFO(s16) = u;
+	GFX_FIFO(s16) = v;
 }
 
 inline void GFWriteBPCmd(u32 param_1) {

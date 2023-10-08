@@ -6,9 +6,6 @@
 #include "f_pc/f_pc_node_req.h"
 #include "SSystem/SComponent/c_malloc.h"
 #include "SSystem/SStandard/s_basic.h"
-#include "f_pc/f_pc_base.h"
-#include "f_pc/f_pc_create_req.h"
-#include "f_pc/f_pc_creator.h"
 #include "f_pc/f_pc_deletor.h"
 #include "f_pc/f_pc_executor.h"
 #include "f_pc/f_pc_layer.h"
@@ -39,7 +36,7 @@ void fpcNdRq_ToRequestQ(node_create_request* i_NdCtReq) {
  * fpcNdRq_phase_IsCreated__FP19node_create_request             */
 s32 fpcNdRq_phase_IsCreated(node_create_request* i_NdCtReq) {
     if (fpcCtRq_IsCreatingByID(i_NdCtReq->mCreatingID) == TRUE) {
-        return cPhs_ZERO_e;
+        return cPhs_INIT_e;
     } else {
         return fpcEx_IsExist(i_NdCtReq->mCreatingID) == TRUE ? 2 : 3;
     }
@@ -64,7 +61,7 @@ s32 fpcNdRq_phase_IsDeleteTiming(node_create_request* i_NdCtReq) {
 /* 8002290C-8002293C 0030+00 s=2 e=0 z=0  None .text
  * fpcNdRq_phase_IsDeleted__FP19node_create_request             */
 s32 fpcNdRq_phase_IsDeleted(node_create_request* i_NdCtReq) {
-    return fpcDt_IsComplete() == 0 ? cPhs_ZERO_e : 2;
+    return fpcDt_IsComplete() == 0 ? cPhs_INIT_e : 2;
 }
 
 /* 8002293C-80022990 0054+00 s=2 e=0 z=0  None .text fpcNdRq_phase_Delete__FP19node_create_request
@@ -72,7 +69,7 @@ s32 fpcNdRq_phase_IsDeleted(node_create_request* i_NdCtReq) {
 s32 fpcNdRq_phase_Delete(node_create_request* i_NdCtReq) {
     if (i_NdCtReq->mNodeProc.mpNodeProc != NULL) {
         if (fpcDt_Delete(&i_NdCtReq->mNodeProc.mpNodeProc->mBase) == 0) {
-            return cPhs_ZERO_e;
+            return cPhs_INIT_e;
         }
         i_NdCtReq->mNodeProc.mpNodeProc = NULL;
     }

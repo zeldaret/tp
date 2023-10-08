@@ -4,7 +4,6 @@
 //
 
 #include "SSystem/SComponent/c_cc_s.h"
-#include "dol2asm.h"
 #include "global.h"
 
 //
@@ -311,8 +310,8 @@ void cCcS::SetPosCorrect(cCcD_Obj* obj1, cXyz* xyz1, cCcD_Obj* obj2, cXyz* xyz2,
         Vec obj2Move;
         Vec objsDist;
         if (bothCoSph3DCrr) {
-            PSVECSubtract(xyz2, xyz1, &objsDist);
-            objDistLen = PSVECMag(&objsDist);
+            VECSubtract(xyz2, xyz1, &objsDist);
+            objDistLen = VECMag(&objsDist);
         } else {
             objsDist.x = xyz2->x - xyz1->x;
             objsDist.y = 0;
@@ -321,10 +320,10 @@ void cCcS::SetPosCorrect(cCcD_Obj* obj1, cXyz* xyz1, cCcD_Obj* obj2, cXyz* xyz2,
         }
         if (!cM3d_IsZero(objDistLen)) {
             if (bothCoSph3DCrr) {
-                PSVECScale(&objsDist, &objsDist, crossLen / objDistLen);
+                VECScale(&objsDist, &objsDist, crossLen / objDistLen);
                 obj2Weight *= -1;
-                PSVECScale(&objsDist, &obj1Move, obj2Weight);
-                PSVECScale(&objsDist, &obj2Move, obj1Weight);
+                VECScale(&objsDist, &obj1Move, obj2Weight);
+                VECScale(&objsDist, &obj2Move, obj1Weight);
             } else {
                 f32 pushFactor = crossLen / objDistLen;
                 objsDist.x *= pushFactor;
@@ -351,8 +350,8 @@ void cCcS::SetPosCorrect(cCcD_Obj* obj1, cXyz* xyz1, cCcD_Obj* obj2, cXyz* xyz2,
         }
         obj1->GetStts()->PlusCcMove(obj1Move.x, obj1Move.y, obj1Move.z);
         obj2->GetStts()->PlusCcMove(obj2Move.x, obj2Move.y, obj2Move.z);
-        PSVECAdd(xyz1, &obj1Move, xyz1);
-        PSVECAdd(xyz2, &obj2Move, xyz2);
+        VECAdd(xyz1, &obj1Move, xyz1);
+        VECAdd(xyz2, &obj2Move, xyz2);
     }
 }
 

@@ -4,8 +4,6 @@
 //
 
 #include "JSystem/JParticle/JPADynamicsBlock.h"
-#include "JSystem/JMath/JMATrigonometric.h"
-#include "JSystem/JParticle/JPAParticle.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

@@ -4,8 +4,6 @@
 //
 
 #include "SSystem/SComponent/c_API_controller_pad.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "m_Do/m_Do_controller_pad.h"
 
 /* 8026328C-802632AC 25DBCC 0020+00 0/0 3/3 0/0 .text            cAPICPad_recalibrate__Fv */

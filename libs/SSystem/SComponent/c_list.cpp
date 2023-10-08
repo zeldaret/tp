@@ -5,7 +5,6 @@
 
 #include "SSystem/SComponent/c_list.h"
 #include "SSystem/SComponent/c_node.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 /* 80265E64-80265E78 0014+00 s=1 e=0 z=0  None .text      cLs_Init__FP15node_list_class */

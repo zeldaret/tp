@@ -58,7 +58,7 @@ void daObjMGate_c::setBaseMtx() {
     mDoMtx_stack_c::YrotM(shape_angle.y);
     mDoMtx_stack_c::ZXYrotM(mGateAngle.x, mGateAngle.y, mGateAngle.z);
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
-    PSMTXCopy(mDoMtx_stack_c::get(), field_0x56c);
+    MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 
     if (mpKeyModel != NULL) {
         cXyz key_offset(l_key_offset[mKind]);
@@ -223,7 +223,7 @@ int daObjMGate_c::Execute(Mtx** param_0) {
         }
     }
 
-    *param_0 = &field_0x56c;
+    *param_0 = &mBgMtx;
     setBaseMtx();
 
     mGateAngle.y = mGateSwingMultiplier * cM_ssin(mCounter * 4000);
@@ -259,11 +259,7 @@ int daObjMGate_c::Delete() {
 
 /* 80593D74-80593DD4 000834 0060+00 1/0 0/0 0/0 .text daObjMGate_create1st__FP12daObjMGate_c */
 static int daObjMGate_create1st(daObjMGate_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) daObjMGate_c();
-        fopAcM_OnCondition(i_this, 8);
-    }
-
+    fopAcM_SetupActor(i_this, daObjMGate_c);
     return i_this->create1st();
 }
 

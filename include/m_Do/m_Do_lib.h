@@ -2,7 +2,6 @@
 #define M_DO_M_DO_LIB_H
 
 #include "JSystem/J3DU/J3DUClipper.h"
-#include "dolphin/types.h"
 
 typedef struct _GXTexObj GXTexObj;
 typedef struct _GXTlutObj GXTlutObj;
@@ -26,11 +25,14 @@ struct mDoLib_clipper {
     }
 
     static f32 getFar() { return mSystemFar; }
+    static f32 getFovyRate() { return mFovyRate; }
     
     static void resetFar() {
         mClipper.setFar(mSystemFar);
         mClipper.calcViewFrustum();
     }
+
+    static void setup(f32, f32, f32, f32);
 
     static J3DUClipper mClipper;
     static f32 mSystemFar;
@@ -41,5 +43,9 @@ void mDoLib_project(Vec* src, Vec* dst);
 u8 mDoLib_setResTimgObj(ResTIMG const* res, GXTexObj* o_texObj, u32 tlut_name,
                           GXTlutObj* o_tlutObj);
 void mDoLib_pos2camera(Vec* src, Vec* dst);
+
+inline u32 calcAlphaCmpID(u32 param_1, u32 param_2, u32 param_3) {
+    return ((param_1 & 0xff) << 5) + ((param_2 & 0xff) << 3) + (param_3 & 0xff);
+}
 
 #endif /* M_DO_M_DO_LIB_H */

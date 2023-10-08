@@ -1,8 +1,6 @@
 #ifndef D_S_D_S_LOGO_H
 #define D_S_D_S_LOGO_H
 
-#include "SSystem/SComponent/c_phase.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_scene.h"
 
 class JKRExpHeap;
@@ -39,6 +37,7 @@ public:
         /* 0xF */ EXEC_SCENE_CHANGE,
     };
 
+    dScnLogo_c() {}
     /* 802560B4 */ void preLoad_dyl_create();
     /* 802560F8 */ void preLoad_dyl_remove();
     /* 8025611C */ bool preLoad_dyl();
@@ -127,5 +126,7 @@ public:
 static int phase_0(dScnLogo_c* logo);
 static int phase_1(dScnLogo_c* logo);
 static int phase_2(dScnLogo_c* logo);
+
+typedef int (*dScnLogo_Method)(dScnLogo_c*);;
 
 #endif /* D_S_D_S_LOGO_H */

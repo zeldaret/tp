@@ -1,7 +1,6 @@
 #ifndef C_BG_S_CHK_H
 #define C_BG_S_CHK_H
 
-#include "dolphin/types.h"
 #include "dolphin/mtx/vec.h"
 
 struct cBgD_Vtx_t : public Vec {};
@@ -31,6 +30,7 @@ public:
     void SetPolyPassChk(cBgS_PolyPassChk* p_chk) { mPolyPassChk = p_chk; }
     void SetGrpPassChk(cBgS_GrpPassChk* p_chk) { mGrpPassChk = p_chk; }
     cBgS_PolyPassChk* GetPolyPassChk() const { return mPolyPassChk; }
+    cBgS_GrpPassChk* GetGrpPassChk() const { return mGrpPassChk; }
 
     virtual ~cBgS_Chk(void);
 };  // Size: 0x14

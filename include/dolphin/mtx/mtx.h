@@ -3,7 +3,6 @@
 
 #include "dolphin/mtx/mtx44.h"
 #include "dolphin/mtx/quat.h"
-#include "dolphin/mtx/vec.h"
 #include "dolphin/types.h"
 
 #ifdef __cplusplus
@@ -14,6 +13,7 @@ typedef f32 Mtx[3][4];
 typedef f32 Mtx33[3][3];
 typedef f32 Mtx23[2][3];
 typedef f32 (*MtxP)[4];
+typedef f32 (*Mtx3P)[3];
 typedef const f32 (*CMtxP)[4];  // Change name later?
 
 void PSMTXIdentity(Mtx m);
@@ -35,6 +35,39 @@ void C_MTXLightPerspective(Mtx m, f32 fovY, f32 aspect, f32 scale_s, f32 scale_t
                            f32 trans_t);
 void C_MTXLightOrtho(Mtx m, f32 top, f32 bottom, f32 left, f32 right, f32 scale_s, f32 scale_t,
                      f32 trans_s, f32 trans_t);
+
+inline void C_MTXRotAxisRad(Mtx m, const Vec* axis, f32 rad) {
+    PSMTXRotAxisRad(m, axis, rad);
+}
+
+/* When compiling in debug mode, use C implementations */
+#ifdef DEBUG
+#define MTXIdentity C_MTXIdentity
+#define MTXCopy C_MTXCopy
+#define MTXConcat C_MTXConcat
+#define MTXInverse C_MTXInverse
+#define MTXRotRad C_MTXRotRad
+#define MTXRotTrig C_MTXRotTrig
+#define MTXRotAxisRad C_MTXRotAxisRad
+#define MTXTrans C_MTXTrans
+#define MTXTransApply C_MTXTransApply
+#define MTXScale C_MTXScale
+#define MTXScaleApply C_MTXScaleApply
+#define MTXQuat C_MTXQuat
+#else
+#define MTXIdentity PSMTXIdentity
+#define MTXCopy PSMTXCopy
+#define MTXConcat PSMTXConcat
+#define MTXInverse PSMTXInverse
+#define MTXRotRad PSMTXRotRad
+#define MTXRotTrig PSMTXRotTrig
+#define MTXRotAxisRad PSMTXRotAxisRad
+#define MTXTrans PSMTXTrans
+#define MTXTransApply PSMTXTransApply
+#define MTXScale PSMTXScale
+#define MTXScaleApply PSMTXScaleApply
+#define MTXQuat PSMTXQuat
+#endif
 
 #ifdef __cplusplus
 };

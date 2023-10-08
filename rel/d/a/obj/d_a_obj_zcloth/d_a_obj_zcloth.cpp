@@ -4,7 +4,6 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_zcloth/d_a_obj_zcloth.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
@@ -109,7 +108,7 @@ void daObjZCloth_c::initBaseMtx() {
 void daObjZCloth_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
-    PSMTXCopy(mDoMtx_stack_c::now, mpModel->mBaseTransformMtx);
+    MTXCopy(mDoMtx_stack_c::now, mpModel->mBaseTransformMtx);
 }
 
 /* 80D3EEC0-80D3EF0C 000120 004C+00 1/1 0/0 0/0 .text            Create__13daObjZCloth_cFv */
@@ -195,10 +194,7 @@ SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
 #ifdef NONMATCHING
 // Matches but weird vtable
 int daObjZCloth_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daObjZCloth_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daObjZCloth_c);
     m_itemNo = 0x31;
     int phase = dComIfG_resLoad(&mPhase, dItem_data::getFieldArc(m_itemNo));
     if (phase == cPhs_COMPLEATE_e) {

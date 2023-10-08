@@ -2,7 +2,6 @@
 #define JKRASSERTHEAP_H
 
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dolphin/types.h"
 
 class JKRAssertHeap : public JKRHeap {
 protected:

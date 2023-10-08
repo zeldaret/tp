@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/npc/d_a_npc_ks/d_a_npc_ks.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -47,8 +47,6 @@ struct J3DAnmTransform {};
 
 struct J3DModelData {};
 
-struct Vec {};
-
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
@@ -71,18 +69,6 @@ struct mDoCPd_c {
 
 struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
-};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 80A49168 */ ~cXyz();
-    /* 80A5DB80 */ cXyz(cXyz const&);
-    /* 80A5DDE4 */ cXyz(f32, f32, f32);
-    /* 80A5DC64 */ void operator+=(Vec const&);
-    /* 80A5DCA4 */ void set(f32, f32, f32);
-    /* 80A5DCB4 */ void operator=(cXyz const&);
 };
 
 struct daPy_py_c {
@@ -187,25 +173,6 @@ struct dDlst_shadowControl_c {
     static u8 mSimpleTexObj[32];
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80A5D90C */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
 struct dCamera_c {
     /* 801614AC */ void Start();
     /* 801614D0 */ void Stop();
@@ -257,29 +224,12 @@ struct dAttention_c {
     /* 8007353C */ void LockonTarget(s32);
 };
 
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8026F1F8 */ void SetH(f32);
-    /* 8026F200 */ void SetR(f32);
-    /* 80A5D87C */ ~cM3dGCyl();
-};
-
 struct cM3dGCir {
     /* 8026EF18 */ ~cM3dGCir();
 };
 
-struct cM3dGAab {
-    /* 80A5D8C4 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 80A5DA48 */ ~cCcD_GStts();
 };
 
 struct cBgS_PolyInfo {
@@ -301,18 +251,6 @@ struct _GXTexObj {};
 
 struct Z2SeqMgr {
     /* 802B4164 */ void setBattleBgmOff(bool);
-};
-
-struct JAISoundID {
-    /* 80A5DE4C */ JAISoundID(u32);
-};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JMath {
@@ -589,10 +527,6 @@ extern "C" void init__12J3DFrameCtrlFs();
 extern "C" void checkPass__12J3DFrameCtrlFf();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXTrans();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSubtract();
-extern "C" void PSVECScale();
-extern "C" void PSVECSquareMag();
 extern "C" void __cvt_fp2unsigned();
 extern "C" void _savegpr_19();
 extern "C" void _savegpr_22();
@@ -629,7 +563,6 @@ extern "C" extern u8 j3dSys[284];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
 extern "C" extern u8 struct_80450C98[4];
 extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" u8 m_midnaActor__9daPy_py_c[4];
@@ -1436,12 +1369,18 @@ SECTION_DATA static void* lit_11379[23] = {
 };
 
 /* 80A5FD30-80A5FD74 0018D8 0044+00 1/1 0/0 0/0 .data            cc_cyl_src$11445 */
-SECTION_DATA static u8 cc_cyl_src[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0xD8, 0xFA, 0xFD, 0x3F, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x79,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00,
+static dCcD_SrcCyl cc_cyl_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0xd8fafd3f, 0x3}, 0x79}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        30.0f, // mRadius
+        20.0f // mHeight
+    } // mCyl
 };
 
 /* 80A5FD74-80A5FD94 -00001 0020+00 1/0 0/0 0/0 .data            l_daNpc_Ks_Method */
@@ -1581,7 +1520,8 @@ static asm void otherBgCheck(fopAc_ac_c* param_0, fopAc_ac_c* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_ks/d_a_npc_ks/__dt__4cXyzFv.s"
 }
@@ -4791,7 +4731,8 @@ static asm void daNpc_Ks_Create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_ks/d_a_npc_ks/__dt__8cM3dGCylFv.s"
 }
@@ -4801,7 +4742,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_ks/d_a_npc_ks/__dt__8cM3dGAabFv.s"
 }
@@ -4811,7 +4753,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_ks/d_a_npc_ks/__dt__10dCcD_GSttsFv.s"
 }
@@ -4841,7 +4784,8 @@ asm dBgS_AcchCir::~dBgS_AcchCir() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_ks/d_a_npc_ks/__dt__10cCcD_GSttsFv.s"
 }
@@ -4916,7 +4860,8 @@ static asm void dComIfGp_event_reset() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::cXyz(cXyz const& param_0) {
+// asm cXyz::cXyz(cXyz const& param_0) {
+extern "C" asm void __ct__4cXyzFRC4cXyz() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_ks/d_a_npc_ks/__ct__4cXyzFRC4cXyz.s"
 }
@@ -4979,7 +4924,8 @@ asm void daPy_py_c::changeDemoPos0(cXyz const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cXyz::operator+=(Vec const& param_0) {
+// asm void cXyz::operator+=(Vec const& param_0) {
+extern "C" asm void __apl__4cXyzFRC3Vec() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_ks/d_a_npc_ks/__apl__4cXyzFRC3Vec.s"
 }
@@ -4999,7 +4945,8 @@ asm void std::fabsf(f32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cXyz::set(f32 param_0, f32 param_1, f32 param_2) {
+// asm void cXyz::set(f32 param_0, f32 param_1, f32 param_2) {
+extern "C" asm void set__4cXyzFfff() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_ks/d_a_npc_ks/set__4cXyzFfff.s"
 }
@@ -5009,7 +4956,8 @@ asm void cXyz::set(f32 param_0, f32 param_1, f32 param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cXyz::operator=(cXyz const& param_0) {
+// asm void cXyz::operator=(cXyz const& param_0) {
+extern "C" asm void __as__4cXyzFRC4cXyz() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_ks/d_a_npc_ks/__as__4cXyzFRC4cXyz.s"
 }
@@ -5130,7 +5078,8 @@ static asm void dComIfGp_getVibration() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::cXyz(f32 param_0, f32 param_1, f32 param_2) {
+// asm cXyz::cXyz(f32 param_0, f32 param_1, f32 param_2) {
+extern "C" asm void __ct__4cXyzFfff() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_ks/d_a_npc_ks/__ct__4cXyzFfff.s"
 }
@@ -5168,8 +5117,12 @@ static asm void dComIfGs_setItem(int param_0, u8 param_1) {
 #pragma pop
 
 /* 80A5DE4C-80A5DE54 -00001 0008+00 0/0 0/0 0/0 .text            __ct__10JAISoundIDFUl */
-JAISoundID::JAISoundID(u32 param_0) {
-    *(u32*)this = (u32)(param_0);
+// JAISoundID::JAISoundID(u32 param_0) {
+void __ct__10JAISoundIDFUl() {
+    // *(u32*)this = (u32)(param_0);
+    asm {
+        stw r4, 0x0(r3)
+    }
 }
 
 /* 80A5DE54-80A5DEB8 014FB4 0064+00 1/1 0/0 0/0 .text            mDoAud_seStart__FUlPC3VecUlSc */

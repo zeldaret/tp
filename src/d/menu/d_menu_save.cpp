@@ -4,7 +4,6 @@
 //
 
 #include "d/menu/d_menu_save.h"
-#include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "MSL_C/stdio.h"
@@ -16,8 +15,6 @@
 #include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_string.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-#include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_MemCard.h"
 #include "m_Do/m_Do_MemCardRWmng.h"
 #include "m_Do/m_Do_Reset.h"
@@ -1883,7 +1880,7 @@ void dMenu_save_c::memCardMakeGameFileWait() {
         errorTxtSet(0x3C6);  // An error might have occurred when creating a save file.
         mMenuProc = PROC_MEMCARD_COMMAND_END;
     } else if (mCmdState == 1) {
-        dComIfGs_setNewFile(1);
+        dComIfGs_setNewFile(dComIfGs_getNewFile() | 1);
         errorTxtSet(0x3C7);  // A save file has been created.
         mMenuProc = PROC_MEMCARD_COMMAND_END;
     }

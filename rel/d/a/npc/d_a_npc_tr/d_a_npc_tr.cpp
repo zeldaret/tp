@@ -4,11 +4,7 @@
 //
 
 #include "rel/d/a/npc/d_a_npc_tr/d_a_npc_tr.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JMath/JMath.h"
-#include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_mtx.h"
@@ -191,6 +187,7 @@ asm daNPC_TR_HIO_c::daNPC_TR_HIO_c() {
 #endif
 
 /* 80B25A54-80B25B78 000134 0124+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
+// regalloc
 #ifdef NONMATCHING
 static int nodeCallBack(J3DJoint* p_joint, int param_1) {
     if (param_1 == 0) {
@@ -198,16 +195,15 @@ static int nodeCallBack(J3DJoint* p_joint, int param_1) {
         J3DModel* sysModel = j3dSys.mModel;
         npc_tr_class* npc_tr = (npc_tr_class*)sysModel->mUserArea;
 
-        PSMTXCopy(sysModel->i_getAnmMtx(jointNo), *calc_mtx);
+        MTXCopy(sysModel->i_getAnmMtx(jointNo), *calc_mtx);
 
         if (jointNo == 1) {
             mDoMtx_YrotM(*calc_mtx, npc_tr->field_0x5f2[0] + (s16)(npc_tr->field_0x5f8 * 0.3f));
         } else if (jointNo >= 1 && jointNo <= 3) {
             mDoMtx_YrotM(*calc_mtx, npc_tr->field_0x5f2[jointNo - 1] + (s16)(npc_tr->field_0x5f8));
         }
-
-        PSMTXCopy(*calc_mtx, sysModel->i_getAnmMtx(jointNo));
-        PSMTXCopy(*calc_mtx, j3dSys.mCurrentMtx);
+        sysModel->setAnmMtx(jointNo, *calc_mtx);
+        MTXCopy(*calc_mtx, j3dSys.mCurrentMtx);
     }
 
     return 1;
@@ -527,7 +523,7 @@ static int daNPC_TR_Execute(npc_tr_class* npc_tr) {
 
     f32 scale = npc_tr->mScale.x * l_HIO.field_0x8;
     mDoMtx_stack_c::scaleM(scale, scale, scale);
-    PSMTXCopy(mDoMtx_stack_c::get(), npc_tr->field_0x5b8->mBaseTransformMtx);
+    MTXCopy(mDoMtx_stack_c::get(), npc_tr->field_0x5b8->mBaseTransformMtx);
 
     return 1;
 }
@@ -573,12 +569,9 @@ static int useHeapInit(fopAc_ac_c* actor) {
 /* 80B263E4-80B264E4 000AC4 0100+00 1/0 0/0 0/0 .text            daNPC_TR_Create__FP10fopAc_ac_c */
 // matches with literals
 #ifdef NONMATCHING
-static int daNPC_TR_Create(fopAc_ac_c* ac) {
-    if (!fopAcM_CheckCondition(ac, 8)) {
-        new (ac) npc_tr_class();
-        fopAcM_OnCondition(ac, 8);
-    }
-    npc_tr_class* npc_tr = (npc_tr_class*)ac;
+static int daNPC_TR_Create(fopAc_ac_c* i_this) {
+    fopAcM_SetupActor(i_this, npc_tr_class);
+    npc_tr_class* npc_tr = (npc_tr_class*)i_this;
     
     int phase_state = dComIfG_resLoad(&npc_tr->mPhaseReq, "NPC_TR");
     if (phase_state == cPhs_COMPLEATE_e) {

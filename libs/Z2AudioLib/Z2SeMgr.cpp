@@ -5,7 +5,6 @@
 
 #include "Z2AudioLib/Z2SeMgr.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 //
@@ -178,7 +177,6 @@ extern "C" f32 VOL_SE_CHAR_VOICE_PAUSING__7Z2Param;
 extern "C" f32 VOL_SE_CHAR_MOVE_PAUSING__7Z2Param;
 extern "C" f32 VOL_SE_OBJECT_PAUSING__7Z2Param;
 extern "C" f32 VOL_SE_ATMOSPHERE_PAUSING__7Z2Param;
-extern "C" extern u32 __float_nan;
 extern "C" extern u8 data_80450B44[4];
 extern "C" extern u8 data_80450B60[4];
 extern "C" extern u8 data_80450B70[4];

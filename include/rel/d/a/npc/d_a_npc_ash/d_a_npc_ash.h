@@ -1,7 +1,6 @@
 #ifndef D_A_NPC_ASH_H
 #define D_A_NPC_ASH_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
 class daNpcAsh_c;
@@ -37,9 +36,9 @@ public:
     /* 80958610 */ ~daNpcAsh_c();
     /* 809587A0 */ cPhs__Step Create();
     /* 80958B68 */ BOOL CreateHeap();
-    /* 809590C4 */ bool Delete();
-    /* 809590F8 */ bool Execute();
-    /* 8095911C */ bool Draw();
+    /* 809590C4 */ int Delete();
+    /* 809590F8 */ int Execute();
+    /* 8095911C */ int Draw();
     /* 80959238 */ bool ctrlJoint(J3DJoint*, J3DModel*);
     /* 80959458 */ static BOOL createHeapCallBack(fopAc_ac_c*);
     /* 80959478 */ static BOOL ctrlJointCallBack(J3DJoint*, int);

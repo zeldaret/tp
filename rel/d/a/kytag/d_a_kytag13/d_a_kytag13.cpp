@@ -5,7 +5,6 @@
 
 #include "rel/d/a/kytag/d_a_kytag13/d_a_kytag13.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

@@ -1,7 +1,7 @@
 lbl_802F3A1C:
 /* 802F3A1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F3A20  80 E2 D1 B0 */	lwz r7, lit_2018(r2)
-/* 802F3A24  80 02 D1 B4 */	lwz r0, data_80456BB4(r2)
+/* 802F3A24  80 02 D1 B4 */	lwz r0, lit_2018+0x4(r2)
 /* 802F3A28  90 E1 00 08 */	stw r7, 8(r1)
 /* 802F3A2C  90 01 00 0C */	stw r0, 0xc(r1)
 /* 802F3A30  A9 21 00 0A */	lha r9, 0xa(r1)

@@ -1,11 +1,8 @@
 #ifndef J3DMODEL_H
 #define J3DMODEL_H
 
-#include "JSystem/J3DGraphAnimator/J3DModelData.h"
-#include "JSystem/J3DGraphAnimator/J3DMtxBuffer.h"
 #include "JSystem/J3DGraphAnimator/J3DSkinDeform.h"
 #include "JSystem/J3DGraphBase/J3DPacket.h"
-#include "JSystem/J3DGraphBase/J3DShape.h"
 #include "JSystem/J3DGraphBase/J3DVertex.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
@@ -36,6 +33,10 @@ class J3DModel {
 public:
     J3DModel() {
         initialize();
+    }
+    J3DModel(J3DModelData* param_0, u32 param_1, u32 param_2) {
+        initialize();
+        entryModelData(param_0, param_1, param_2);
     }
 
     /* 800CFFF4 */ void setBaseTRMtx(f32 (*)[4]);
@@ -74,11 +75,12 @@ public:
     bool isCpuSkinningOn() const { return (mFlags & J3DMdlFlag_SkinPosCpu) && (mFlags & J3DMdlFlag_SkinNrmCpu); }
 
     Mtx& getBaseTRMtx() { return mBaseTransformMtx; }
-    void i_setBaseTRMtx(Mtx m) { PSMTXCopy(m, mBaseTransformMtx); }
+    void i_setBaseTRMtx(Mtx m) { MTXCopy(m, mBaseTransformMtx); }
     u32 getMtxCalcMode() const { return mFlags & 0x03; }
     J3DVertexBuffer* getVertexBuffer() const { return (J3DVertexBuffer*)&mVertexBuffer; }
     J3DMatPacket* getMatPacket(u16 idx) const { return &mMatPacket[idx]; }
     J3DShapePacket* getShapePacket(u16 idx) const { return &mShapePacket[idx]; }
+    J3DMtxBuffer* getMtxBuffer() const { return mMtxBuffer; }
     Mtx33* getBumpMtxPtr(int idx) const { return mMtxBuffer->getBumpMtxPtr(idx); }
     Mtx33* getNrmMtxPtr() const { return mMtxBuffer->getNrmMtxPtr(); }
     Mtx* getDrawMtxPtr() const { return mMtxBuffer->getDrawMtxPtr(); }

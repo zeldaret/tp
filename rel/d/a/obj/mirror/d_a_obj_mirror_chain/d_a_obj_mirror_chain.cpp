@@ -5,7 +5,6 @@
 
 #include "rel/d/a/obj/mirror/d_a_obj_mirror_chain/d_a_obj_mirror_chain.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

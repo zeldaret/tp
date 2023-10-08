@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_kaisou/d_a_obj_kaisou.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -14,8 +14,6 @@
 struct request_of_phase_process_class {};
 
 struct csXyz {};
-
-struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -69,41 +67,9 @@ struct dRes_control_c {
     /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-    /* 80084658 */ void ChkCoHit();
-    /* 800846F0 */ void GetCoHitObj();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
 struct dBgS_AcchCir {
     /* 80075EAC */ dBgS_AcchCir();
 };
-
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 80C34E4C */ ~cM3dGCyl();
-};
-
-struct cM3dGAab {
-    /* 80C34E94 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
 
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
@@ -181,7 +147,6 @@ extern "C" void cLib_addCalcAngleS__FPsssss();
 extern "C" void __ct__16Z2SoundObjSimpleFv();
 extern "C" void __dl__FPv();
 extern "C" void PSMTXCopy();
-extern "C" void PSVECSquareDistance();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
@@ -200,7 +165,6 @@ extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
 extern "C" f32 mGroundY__11fopAcM_gc_c;
 
 //
@@ -287,14 +251,19 @@ static asm void daObjKaisou_Delete(daObjKaisou_c* param_0) {
 
 /* ############################################################################################## */
 /* 80C34EFC-80C34F40 000010 0044+00 1/1 0/0 0/0 .rodata          ccCylSrc$3850 */
-SECTION_RODATA static u8 const ccCylSrc[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x79,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
+const static dCcD_SrcCyl ccCylSrc = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x2, 0x11}, 0x79}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        50.0f, // mRadius
+        100.0f // mHeight
+    } // mCyl
 };
-COMPILER_STRIP_GATE(0x80C34EFC, &ccCylSrc);
 
 /* 80C34390-80C343F0 0003B0 0060+00 1/1 0/0 0/0 .text            initCcCylinder__13daObjKaisou_cFv
  */
@@ -618,7 +587,8 @@ asm void daObjKaisou_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kaisou/d_a_obj_kaisou/__dt__8cM3dGCylFv.s"
 }
@@ -628,7 +598,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kaisou/d_a_obj_kaisou/__dt__8cM3dGAabFv.s"
 }

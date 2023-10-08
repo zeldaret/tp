@@ -7,12 +7,13 @@
 
 class fopAc_ac_c;
 
-struct JKRAramArchive;
+class JKRAramArchive;
 u32 dLib_getExpandSizeFromAramArchive(JKRAramArchive* arc, char const* resName);
 BOOL dLib_checkActorInRectangle(fopAc_ac_c* param_0, fopAc_ac_c* param_1, cXyz const* param_2,
                                 cXyz const* param_3);
 
-struct STControl {
+class STControl {
+public:
     STControl() {
         setWaitParm(15, 15, 0, 0, 0.9f, 0.5f, 0, 0x2000);
         init();

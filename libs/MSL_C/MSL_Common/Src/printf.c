@@ -8,7 +8,6 @@
 #include "MSL_C/MSL_Common/Src/mem.h"
 #include "MSL_C/MSL_Common/Src/string.h"
 #include "MSL_C/MSL_Common/Src/wchar_io.h"
-#include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
 
 //

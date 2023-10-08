@@ -15,7 +15,7 @@ lbl_804C3298:
 /* 804C32CC  DB 41 01 20 */	stfd f26, 0x120(r1)
 /* 804C32D0  F3 41 01 28 */	psq_st f26, 296(r1), 0, 0 /* qr0 */
 /* 804C32D4  39 61 01 20 */	addi r11, r1, 0x120
-/* 804C32D8  4B E9 EE C9 */	bl __save_gpr
+/* 804C32D8  4B E9 EE C9 */	bl _savegpr_14
 /* 804C32DC  7C 6F 1B 78 */	mr r15, r3
 /* 804C32E0  3C 80 80 4C */	lis r4, lit_3777@ha /* 0x804C64C8@ha */
 /* 804C32E4  3B 84 64 C8 */	addi r28, r4, lit_3777@l /* 0x804C64C8@l */
@@ -850,7 +850,7 @@ lbl_804C3EBC:
 /* 804C3EE4  E3 41 01 28 */	psq_l f26, 296(r1), 0, 0 /* qr0 */
 /* 804C3EE8  CB 41 01 20 */	lfd f26, 0x120(r1)
 /* 804C3EEC  39 61 01 20 */	addi r11, r1, 0x120
-/* 804C3EF0  4B E9 E2 FD */	bl __restore_gpr
+/* 804C3EF0  4B E9 E2 FD */	bl _restgpr_14
 /* 804C3EF4  80 01 01 84 */	lwz r0, 0x184(r1)
 /* 804C3EF8  7C 08 03 A6 */	mtlr r0
 /* 804C3EFC  38 21 01 80 */	addi r1, r1, 0x180

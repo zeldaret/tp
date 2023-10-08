@@ -4,7 +4,6 @@
 #include "MSL_C/string.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/os/OSTime.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 #define DEFAULT_SELECT_ITEM_INDEX 0
@@ -678,6 +677,9 @@ class dSv_fishing_info_c {
 public:
     void init();
     void addFishCount(u8 i_fishIndex);
+    u16 getFishCount(u8 i_fishIndex) const { return mFishCount[i_fishIndex]; }
+    u8 getMaxSize(s32 i_sizeIndex) { return mMaxSize[i_sizeIndex]; }
+    void setMaxSize(s32 i_sizeIndex, u8 i_size) { mMaxSize[i_sizeIndex] = i_size; }
 
 private:
     /* 0x00 */ u16 mFishCount[16];
@@ -768,6 +770,7 @@ public:
     dSv_player_get_item_c& getGetItem() { return mGetItem; }
     dSv_player_config_c& getConfig() { return mConfig; }
     dSv_letter_info_c& getLetterInfo() { return mLetterInfo; }
+    dSv_fishing_info_c& getFishingInfo() { return mFishingInfo; }
     dSv_player_field_last_stay_info_c& getPlayerFieldLastStayInfo() {
         return mPlayerFieldLastStayInfo;
     }
@@ -832,6 +835,7 @@ public:
         onDungeonItem(OOCCOO_NOTE);
     }
     s32 isStageBossEnemy() const { return isDungeonItem(STAGE_BOSS_ENEMY); }
+    s32 isStageBossEnemy2() const { return isDungeonItem(STAGE_BOSS_ENEMY_2); }
     s32 isDungeonItemWarp() const { return isDungeonItem(OOCCOO_NOTE); }
     void onStageLife() { onDungeonItem(STAGE_LIFE); }
 
@@ -1109,9 +1113,10 @@ public:
     u8 getDataNum() const { return mDataNum; }
     void setDataNum(u8 num) { mDataNum = num; }
     void removeZone(int zoneNo) { mZone[zoneNo].reset(); }
+    u8 getNoFile() const { return mNoFile; }
     void setNoFile(u8 file) { mNoFile = file; }
     u8 getNewFile() const { return mNewFile; }
-    void setNewFile(u8 file) { mNewFile |= file; }
+    void setNewFile(u8 file) { mNewFile = file; }
 
     static const int MEMORY_SWITCH = 0x80;
     static const int DAN_SWITCH = 0x40;

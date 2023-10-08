@@ -4,7 +4,6 @@
 #include "JSystem/J2DGraph/J2DManage.h"
 #include "JSystem/J2DGraph/J2DPane.h"
 #include "JSystem/JUtility/TColor.h"
-#include "dolphin/types.h"
 
 class J2DMaterial;
 class JUTNameTab;
@@ -33,7 +32,7 @@ struct J2DScrnBlockHeader {
 class J2DScreen : public J2DPane {
 public:
     /* 802F8540 */ virtual ~J2DScreen();
-    /* 802F9A18 */ virtual s32 getTypeID() const;
+    /* 802F9A18 */ virtual u16 getTypeID() const;
     /* 802F9A20 */ virtual void calcMtx();
     /* 802F9120 */ virtual void drawSelf(f32, f32, Mtx*);
     /* 802F90A0 */ virtual J2DPane* search(u64);
@@ -69,6 +68,8 @@ public:
     /* 802F937C */ bool createMaterial(JSURandomInputStream*, u32, JKRArchive*);
     /* 802F9640 */ static void* getNameResource(char const*);
     /* 802F9690 */ void animation();
+
+    void setScissor(bool i_scissor) { mScissor = i_scissor; }
 
     static J2DDataManage* getDataManage() { return mDataManage; }
 

@@ -4,53 +4,8 @@
 //
 
 #include "d/d_npc_lib.h"
+#include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct csXyz {
-    /* 80018BD0 */ ~csXyz();
-    /* 80112C80 */ csXyz();
-    /* 8026745C */ void operator+=(csXyz&);
-
-    static u8 Zero[4];
-};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80009184 */ ~cXyz();
-    /* 800125DC */ cXyz();
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266EF4 */ void normalize();
-    /* 802670AC */ void isZero() const;
-};
-
-struct mDoMtx_stack_c {
-    /* 8000CD64 */ void transS(cXyz const&);
-    /* 8000CE9C */ void XYZrotS(csXyz const&);
-    /* 8000CF44 */ void ZXYrotM(csXyz const&);
-
-    static u8 now[48];
-};
-
-struct fopAc_ac_c {};
-
-struct J3DModel {};
-
-struct dNpcLib_lookat_c {
-    /* 80251314 */ dNpcLib_lookat_c();
-    /* 8025140C */ void init(J3DModel*, int*, csXyz*, csXyz*);
-    /* 80251534 */ void action(cXyz, cXyz, fopAc_ac_c*, f32 (*)[4], int);
-    /* 80251B60 */ void dbView();
-    /* 80251B64 */ void setPrm();
-    /* 80251EF8 */ void update();
-    /* 80252018 */ void limitter(s16*, s16, s16, s16);
-    /* 80252094 */ ~dNpcLib_lookat_c();
-};
 
 //
 // Forward References:
@@ -82,11 +37,6 @@ extern "C" void isZero__4cXyzCFv();
 extern "C" void __apl__5csXyzFR5csXyz();
 extern "C" void cM_atan2s__Fff();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXConcat();
-extern "C" void PSMTXInverse();
-extern "C" void PSMTXMultVec();
-extern "C" void PSVECSquareMag();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void _savegpr_22();
@@ -96,7 +46,6 @@ extern "C" void _restgpr_22();
 extern "C" void _restgpr_23();
 extern "C" void _restgpr_25();
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u32 __float_nan;
 extern "C" u8 Zero__5csXyz[4];
 extern "C" extern u8 data_80451164[4];
 
@@ -104,36 +53,32 @@ extern "C" extern u8 data_80451164[4];
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803C2B88-803C2B98 01FCA8 000C+04 2/2 0/0 0/0 .data            __vt__16dNpcLib_lookat_c */
-SECTION_DATA extern void* __vt__16dNpcLib_lookat_c[3 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__16dNpcLib_lookat_cFv,
-    /* padding */
-    NULL,
-};
-
 /* 80251314-8025140C 24BC54 00F8+00 0/0 0/0 4/4 .text            __ct__16dNpcLib_lookat_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dNpcLib_lookat_c::dNpcLib_lookat_c() {
-    nofralloc
-#include "asm/d/d_npc_lib/__ct__16dNpcLib_lookat_cFv.s"
-}
-#pragma pop
+dNpcLib_lookat_c::dNpcLib_lookat_c() {}
 
 /* 8025140C-80251534 24BD4C 0128+00 0/0 0/0 2/2 .text
  * init__16dNpcLib_lookat_cFP8J3DModelPiP5csXyzP5csXyz          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dNpcLib_lookat_c::init(J3DModel* param_0, int* param_1, csXyz* param_2, csXyz* param_3) {
-    nofralloc
-#include "asm/d/d_npc_lib/init__16dNpcLib_lookat_cFP8J3DModelPiP5csXyzP5csXyz.s"
+void dNpcLib_lookat_c::init(J3DModel* i_mdl_p, int* param_1, csXyz* param_2, csXyz* param_3) {
+    int i;
+    for (i = 0; i < 4; i++) {
+        field_0xbc[i] = -1;
+    }
+
+    mCount = 0;
+    for (i = 0; i < 3; i++) {
+        int a_jntNum = param_1[i];
+        if (a_jntNum < 0) {
+            break;
+        }
+
+        mDoMtx_stack_c::copy(i_mdl_p->i_getAnmMtx(a_jntNum));
+        mDoMtx_stack_c::multVecZero(&field_0x04[mCount]);
+        field_0xbc[i] = a_jntNum;
+        field_0x94[i] = param_2[i];
+        field_0x7c[i] = param_3[i];
+        mCount++;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80454DE8-80454DEC 0033E8 0004+00 3/3 0/0 0/0 .sdata2          @3864 */
@@ -170,20 +115,96 @@ SECTION_SDATA2 static f64 lit_3873 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80251534-80251B60 24BE74 062C+00 0/0 0/0 2/2 .text
  * action__16dNpcLib_lookat_cF4cXyz4cXyzP10fopAc_ac_cPA4_fi     */
+// regswap, equivalent
+#ifdef NONMATCHING
+void dNpcLib_lookat_c::action(cXyz param_0, cXyz param_1, fopAc_ac_c* param_2, Mtx param_3,
+                              int param_4) {
+    cXyz spA0;
+
+    Mtx sp90;
+    cMtx_copy(param_3, sp90);
+    sp90[2][3] = 0.0f;
+    sp90[1][3] = 0.0f;
+    sp90[0][3] = 0.0f;
+
+    mDoMtx_stack_c::copy(sp90);
+    mDoMtx_stack_c::inverse();
+    cMtx_copy(mDoMtx_stack_c::get(), sp90);
+
+    for (int i = 0; i < mCount; i++) {
+        spA0 = field_0x04[i] - param_2->current.pos;
+        mDoMtx_stack_c::transS(param_2->current.pos);
+        mDoMtx_stack_c::concat(sp90);
+        mDoMtx_stack_c::multVec(&spA0, &field_0x04[i]);
+    }
+
+    spA0 = param_0 - param_2->current.pos;
+    mDoMtx_stack_c::transS(param_2->current.pos);
+    mDoMtx_stack_c::concat(sp90);
+    mDoMtx_stack_c::multVec(&spA0, &param_0);
+
+    spA0 = param_1 - param_2->current.pos;
+    mDoMtx_stack_c::transS(param_2->current.pos);
+    mDoMtx_stack_c::concat(sp90);
+    mDoMtx_stack_c::multVec(&spA0, &field_0x04[mCount]);
+
+    setPrm();
+    update();
+
+    cXyz spAC;
+    cXyz spB8;
+
+    f32 tmp = 1.0f;
+    for (int i = mCount - 1; i >= 0 && param_4 == 1; i--) {
+        spAC = param_0 - field_0x04[i];
+
+        if (!spAC.isZero()) {
+            spAC.normalize();
+
+            spB8 = field_0x04[mCount] - field_0x04[i];
+            if (!spB8.isZero()) {
+                spB8.normalize();
+
+                s16 svar7 = -cM_atan2s(spAC.y, spAC.absXZ());
+                s16 svar8 = cM_atan2s(spAC.x, spAC.z);
+
+                s16 svar9 = -cM_atan2s(spB8.y, spB8.absXZ());
+                s16 svar10 = cM_atan2s(spB8.x, spB8.z);
+
+                field_0x4c[i].x += (s16)(tmp * (f32)(svar7 - svar9));
+                field_0x4c[i].y += (s16)(tmp * (f32)(svar8 - svar10));
+
+                limitter(&field_0x4c[i].x, field_0x34[i].x, field_0x94[i].x, field_0x7c[i].x);
+                limitter(&field_0x4c[i].y, field_0x34[i].y, field_0x94[i].y, field_0x7c[i].y);
+            }
+        }
+
+        tmp *= 0.5f;
+        update();
+    }
+
+    csXyz sp114(csXyz::Zero);
+    for (int i = 0; i < 4; i++) {
+        sp114 += field_0x4c[i];
+        field_0x64[i].x = sp114.x;
+        field_0x64[i].y = sp114.y;
+        field_0x64[i].z = 0;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dNpcLib_lookat_c::action(cXyz param_0, cXyz param_1, fopAc_ac_c* param_2,
-                                  f32 (*param_3)[4], int param_4) {
+asm void dNpcLib_lookat_c::action(cXyz param_0, cXyz param_1, fopAc_ac_c* param_2, Mtx param_3,
+                                  int param_4) {
     nofralloc
 #include "asm/d/d_npc_lib/action__16dNpcLib_lookat_cF4cXyz4cXyzP10fopAc_ac_cPA4_fi.s"
 }
 #pragma pop
+#endif
 
 /* 80251B60-80251B64 24C4A0 0004+00 0/0 0/0 2/2 .text            dbView__16dNpcLib_lookat_cFv */
-void dNpcLib_lookat_c::dbView() {
-    /* empty function */
-}
+void dNpcLib_lookat_c::dbView() {}
 
 /* ############################################################################################## */
 /* 80454E18-80454E20 003418 0004+04 1/1 0/0 0/0 .sdata2          @3970 */
@@ -204,6 +225,29 @@ asm void dNpcLib_lookat_c::setPrm() {
 #pragma pop
 
 /* 80251EF8-80252018 24C838 0120+00 1/1 0/0 0/0 .text            update__16dNpcLib_lookat_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dNpcLib_lookat_c::update() {
+    cXyz sp50;
+    csXyz sp58(csXyz::Zero);
+    Mtx m;
+
+    for (int i = 0; i < mCount; i++) {
+        mDoMtx_stack_c::XYZrotS(field_0x34[i]);
+        cMtx_copy(mDoMtx_stack_c::get(), m);
+
+        mDoMtx_stack_c::transS(field_0x04[i]);
+        sp58.x += field_0x4c[i].x;
+        sp58.y += field_0x4c[i].y;
+
+        mDoMtx_stack_c::ZXYrotM(sp58);
+        mDoMtx_stack_c::concat(m);
+
+        sp50.set(0.0f, 0.0f, field_0xac[i]);
+        mDoMtx_stack_c::multVec(&sp50, &field_0x04[i + 1]);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -212,24 +256,29 @@ asm void dNpcLib_lookat_c::update() {
 #include "asm/d/d_npc_lib/update__16dNpcLib_lookat_cFv.s"
 }
 #pragma pop
+#endif
 
-/* 80252018-80252094 24C958 007C+00 1/1 0/0 0/0 .text            limitter__16dNpcLib_lookat_cFPssss
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dNpcLib_lookat_c::limitter(s16* param_0, s16 param_1, s16 param_2, s16 param_3) {
-    nofralloc
-#include "asm/d/d_npc_lib/limitter__16dNpcLib_lookat_cFPssss.s"
-}
-#pragma pop
+/* 80252018-80252094 24C958 007C+00 1/1 0/0 0/0 .text   limitter__16dNpcLib_lookat_cFPssss */
+int dNpcLib_lookat_c::limitter(s16* o_value, s16 param_1, s16 param_2, s16 param_3) {
+    int limit = param_1 + *o_value;
+    if (param_2 <= limit) {
+        if (param_2 <= param_1) {
+            *o_value = 0;
+        } else {
+            *o_value -= (s16)(limit - param_2);
+        }
+    }
 
-/* 80252094-8025217C 24C9D4 00E8+00 1/0 0/0 0/0 .text            __dt__16dNpcLib_lookat_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dNpcLib_lookat_c::~dNpcLib_lookat_c() {
-    nofralloc
-#include "asm/d/d_npc_lib/__dt__16dNpcLib_lookat_cFv.s"
+    if (limit <= param_3) {
+        if (param_1 <= param_3) {
+            *o_value = 0;
+        } else {
+            *o_value -= (s16)(limit - param_3);
+        }
+    }
+
+    return 1;
 }
-#pragma pop
+
+/* 80252094-8025217C 24C9D4 00E8+00 1/0 0/0 0/0 .text   __dt__16dNpcLib_lookat_cFv */
+dNpcLib_lookat_c::~dNpcLib_lookat_c() {}

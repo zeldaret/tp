@@ -29,8 +29,6 @@ $(BUILD_DIR)/libs/dolphin/base/%.o: libs/dolphin/base/%.c $(BUILD_DIR)/libs/dolp
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
 	@$(DOLPHIN_LIB_CC) $(CFLAGS) $(LIBBASE_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
 	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
-	@echo Frank is fixing $@
-	@$(PYTHON) $(FRANK) $@ $@ $@
 
 ifndef DISABLE_DEPS
 LIBBASE_A_D_FILES := $(LIBBASE_A_O_FILES:.o=.d)

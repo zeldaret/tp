@@ -2,7 +2,6 @@
 #define C_M3D_G_LIN_H
 
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/mtx/vec.h"
 #include "global.h"
 
 // Line
@@ -19,7 +18,7 @@ public:
     void SetStartEnd(const cXyz&, const cXyz&);
     void SetStartEnd(const Vec&, const Vec&);
     void CalcPos(Vec*, f32) const;
-    void CalcVec(Vec* pOut) const { PSVECSubtract(&this->mEnd, &this->mStart, pOut); }
+    void CalcVec(Vec* pOut) const { VECSubtract(&this->mEnd, &this->mStart, pOut); }
     void SetEnd(const cXyz&);
     const cXyz& GetStartP(void) const { return mStart; }
     cXyz& GetStartP(void) { return mStart; }

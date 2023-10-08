@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/d_a_bd/d_a_bd.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -32,8 +32,6 @@ struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Vec {};
-
 struct J3DAnmTransform {};
 
 struct J3DModelData {};
@@ -59,11 +57,6 @@ struct daBd_HIO_c {
 
 struct dKy_tevstr_c {};
 
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 804D6ED4 */ ~cXyz();
-};
-
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
     /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
@@ -73,24 +66,6 @@ struct dRes_info_c {};
 
 struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
 };
 
 struct dBgS_PolyPassChk {
@@ -126,14 +101,6 @@ struct dBgS_Acch {
     /* 800760A0 */ dBgS_Acch();
     /* 80076248 */ void Set(cXyz*, cXyz*, fopAc_ac_c*, int, dBgS_AcchCir*, cXyz*, csXyz*, csXyz*);
     /* 80076AAC */ void CrrPos(dBgS&);
-};
-
-struct cM3dGSph {
-    /* 804D9BB8 */ ~cM3dGSph();
-};
-
-struct cM3dGAab {
-    /* 804D9C00 */ ~cM3dGAab();
 };
 
 struct cBgS_LinChk {};
@@ -269,8 +236,6 @@ extern "C" void __dl__FPv();
 extern "C" void init__12J3DFrameCtrlFs();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXTrans();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSquareMag();
 extern "C" void _savegpr_21();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
@@ -292,7 +257,6 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_Counter[12 + 4 /* padding */];
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
 extern "C" void __register_global_object();
 
 //
@@ -387,11 +351,16 @@ SECTION_DATA static void* lit_4761[8] = {
 };
 
 /* 804DA234-804DA274 0002AC 0040+00 1/1 0/0 0/0 .data            cc_sph_src$4956 */
-SECTION_DATA static u8 cc_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x75, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00,
+static dCcD_SrcSph cc_sph_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0xd8fbfdff, 0x3}, 0x75}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 10.0f} // mSph
+    } // mSphAttr
 };
 
 /* 804DA274-804DA294 -00001 0020+00 1/0 0/0 0/0 .data            l_daBd_Method */
@@ -533,7 +502,8 @@ static asm void way_bg_check(bd_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_bd/d_a_bd/__dt__4cXyzFv.s"
 }
@@ -1198,7 +1168,8 @@ static asm void daBd_Create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_bd/d_a_bd/__dt__8cM3dGSphFv.s"
 }
@@ -1208,7 +1179,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_bd/d_a_bd/__dt__8cM3dGAabFv.s"
 }

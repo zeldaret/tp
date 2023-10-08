@@ -4,7 +4,6 @@
  */
 
 #include "dolphin/gd/GDBase.h"
-#include "dolphin/os/OSCache.h"
 
 /* 80360F98-80360FB0 35B8D8 0018+00 0/0 6/6 0/0 .text            GDInitGDLObj */
 void GDInitGDLObj(GDLObj* obj, u8* start, u32 len) {
@@ -25,10 +24,6 @@ static GDOverflowCallback overflowcb = NULL;
 /* 80360FB0-80360FDC 35B8F0 002C+00 0/0 2/2 0/0 .text            GDFlushCurrToMem */
 void GDFlushCurrToMem(void) {
     DCFlushRange(__GDCurrentDL->start, __GDCurrentDL->length);
-}
-
-static inline void __GDWrite(u8 data) {
-    *__GDCurrentDL->ptr++ = data;
 }
 
 /* 80360FDC-803610D4 35B91C 00F8+00 0/0 2/2 0/0 .text            GDPadCurr32 */

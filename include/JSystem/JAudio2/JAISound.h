@@ -2,8 +2,7 @@
 #define JAISOUND_H
 
 #include "JSystem/JAudio2/JAISoundParams.h"
-#include "JSystem/JGeometry.h"
-#include "dolphin/types.h"
+#include "JSystem/JAudio2/JAIAudible.h"
 #include "global.h"
 
 class JAISoundID {
@@ -17,8 +16,16 @@ public:
 
     JAISoundID() {}
 
+    bool isAnonymous() { return mId.mFullId == 0xffffffff; }
+
     union {
         u32 mFullId;
+        struct {
+            u8 b0;
+            u8 b1;
+            u8 b2;
+            u8 b3;
+        } mBytes;
         struct {
             u16 mSoundType;
             u16 mShortId;
@@ -41,15 +48,20 @@ struct JAISoundStatus_ {
     }
 
     bool isAlive();  // used in assert
+    bool isDead() { return state.unk == 6;}
 
     inline bool isPlaying() { return state.unk == 5; }
 
+    inline bool isMute() { return field_0x0.flags.mute; }
     inline bool isPaused() { return field_0x0.flags.paused; }
+    void pauseWhenOut() {
+        field_0x1.flags.flag6 = 1;
+    }
 
     /* 0x0 */ union {
         u8 value;
         struct {
-            u8 flag1 : 1;
+            u8 mute : 1;
             u8 paused : 1;
             u8 flag3 : 1;
             u8 flag4 : 1;
@@ -104,20 +116,39 @@ struct JAISoundFader {
             forceOut();
         }
     }
-    bool isOut() {
-        if (mTransition.mCount != 0 || mIntensity < 0.01f) {
-            return true;
+    void fadeIn(u32 param_1) {
+        if (param_1 == 0) {
+            forceIn();
+        } else {
+            mTransition.set(1.0f, mIntensity, param_1);
         }
-        return false;
+    }
+    void fadeInFromOut(u32 param_1) {
+        mIntensity = 0.0f;
+        fadeIn(param_1);
+    }
+    bool isOut() {
+        return (mTransition.mCount == 0 && mIntensity < 0.01f);
     }
     inline void calc() { mIntensity = mTransition.apply(mIntensity); }
+    f32 getIntensity() { return mIntensity; }
 
     /* 0x00 */ f32 mIntensity;
     /* 0x04 */ JAISoundParamsTransition::TTransition mTransition;
 };  // Size: 0x10
+template <typename A0>
+struct JAISoundStrategyMgr__unknown {
+    virtual void virtual2();
+    virtual void virtual3(A0*);
+    virtual void virtual4(A0*, const JASSoundParams&);
+};
 
 template <typename A0>
-struct JAISoundStrategyMgr {};
+struct JAISoundStrategyMgr {
+    virtual void virtual2();
+    virtual JAISoundStrategyMgr__unknown<A0>* virtual3(JAISoundID);
+    virtual void virtual4(JAISoundStrategyMgr__unknown<A0>*);
+};
 /* JAISoundStrategyMgr<JAISe> */
 struct JAISoundStrategyMgr__template0 {};
 /* JAISoundStrategyMgr<JAISeq> */
@@ -127,14 +158,46 @@ struct JAISoundStrategyMgr__template2 {};
 
 class JAISoundActivity {
 public:
-    void init() { field_0x0 = 0; }
+    void init() { field_0x0.value = 0; }
 
-    /* 0x0 */ u8 field_0x0;
+    /* 0x0 */ union {
+        u8 value;
+        struct {
+            u8 flag1 : 1;
+            u8 flag2 : 1;
+            u8 flag3 : 1;
+            u8 flag4 : 1;
+            u8 flag5 : 1;
+            u8 flag6 : 1;
+            u8 flag7 : 1;
+            u8 flag8 : 1;
+        } flags;
+    } field_0x0;
+};
+
+class JAITempoMgr {
+public:
+    /* 0x00 */ f32 mTempo;
+    /* 0x04 */ JAISoundParamsTransition::TTransition field_0x4;
+
+    JAITempoMgr() { init(); }
+    void init() { setTempo(1.0f); }
+    void setTempo(f32 param_0) {
+        mTempo = param_0;
+        field_0x4.zero();
+    }
+    f32 getTempo() { return mTempo; }
+    void calc() { mTempo = field_0x4.apply(mTempo); }
 };
 
 class JAISoundHandle;
 class JAIAudible;
 class JAIAudience;
+class JAISe;
+class JAISeq;
+class JAISoundChild;
+class JAIStream;
+class JAITempoMgr;
 class JAISound {
 public:
     /* 802A21A0 */ void releaseHandle();
@@ -151,15 +214,15 @@ public:
     /* 802A26B8 */ bool calc_JAISound_();
     /* 802A29DC */ void initTrack_JAISound_(JASTrack*);
 
-    virtual void getNumChild() = 0;
-    virtual void getChild() = 0;
-    virtual void releaseChild() = 0;
-    /* 802A25D8 */ virtual bool asSe();
-    /* 802A25E0 */ virtual bool asSeq();
-    /* 802A25E8 */ virtual bool asStream();
-    virtual void getTrack() = 0;
-    virtual void getChildTrack() = 0;
-    virtual void getTempoMgr() = 0;
+    virtual s32 getNumChild() const = 0;
+    virtual JAISoundChild* getChild(int) = 0;
+    virtual void releaseChild(int) = 0;
+    /* 802A25D8 */ virtual JAISe* asSe();
+    /* 802A25E0 */ virtual JAISeq* asSeq();
+    /* 802A25E8 */ virtual JAIStream* asStream();
+    virtual JASTrack* getTrack() = 0;
+    virtual JASTrack* getChildTrack(int) = 0;
+    virtual JAITempoMgr* getTempoMgr() = 0;
     virtual bool JAISound_tryDie_() = 0;
 
     JAISoundID getID() const;
@@ -174,10 +237,49 @@ public:
     bool isStopping() {
         bool isStopping = false;
         if (status_.state.flags.flag1) {
-            isStopping = status_.state.flags.flag5 ? fader.isOut() : true;
+            isStopping = !status_.state.flags.flag5 || fader.isOut();
         }
         return isStopping;
     }
+
+    void pause(bool param_0) {
+        status_.field_0x0.flags.paused = param_0;
+    }
+
+    void updateLifeTime(u32 param_0) {
+        if (lifeTime < param_0) {
+            lifeTime = param_0;
+        }
+    }
+
+    void setLifeTime(u32 param_0, bool param_1) {
+        lifeTime = param_0;
+        setComesBack(param_1);
+        status_.field_0x1.flags.flag2 = 1;
+    }
+
+    void setComesBack(bool param_0) {
+        status_.field_0x1.flags.flag1 = 1;
+        if (param_0) {
+            status_.pauseWhenOut();
+        }
+    }
+
+    bool setPos(const JGeometry::TVec3<f32>& param_1) {
+        if (audible_ != NULL) {
+            audible_->setPos(param_1);
+        }
+        return audible_ != NULL;
+    }
+
+    void fadeIn(u32 param_1) {
+        fader.fadeInFromOut(param_1);
+        return;
+    }
+
+    s32 getCount() const { return mCount; }
+
+    JAISoundParamsMove& getAuxiliary() { return params.mMove; }
 
     /* 0x04 */ JAISoundHandle* handle_;
     /* 0x08 */ JAIAudible* audible_;
@@ -187,7 +289,7 @@ public:
     /* 0x18 */ JAISoundID soundID;
     /* 0x1C */ JAISoundStatus_ status_;
     /* 0x24 */ JAISoundFader fader;
-    /* 0x34 */ s32 mPriority;
+    /* 0x34 */ u32 mPriority;
     /* 0x38 */ s32 mCount;
     /* 0x3C */ JAISoundParams params;
 };  // Size: 0x98

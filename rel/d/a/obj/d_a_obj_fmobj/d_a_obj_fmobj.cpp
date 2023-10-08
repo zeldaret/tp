@@ -4,74 +4,12 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_fmobj/d_a_obj_fmobj.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "SSystem/SComponent/c_math.h"
+#include "d/bg/d_bg_w.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct request_of_phase_process_class {};
-
-struct obj_fmobj_class {};
-
-struct mDoMtx_stack_c {
-    /* 8000CD9C */ void transM(f32, f32, f32);
-
-    static u8 now[48];
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct dSv_memBit_c {
-    /* 80034934 */ void isDungeonItem(int) const;
-};
-
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
-struct cXyz {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dBgW_Base {};
-
-struct dBgW {
-    /* 8007B970 */ dBgW();
-    /* 8007B9C0 */ void Move();
-};
-
-struct dBgS {
-    /* 80074A08 */ void Regist(dBgW_Base*, fopAc_ac_c*);
-};
-
-struct csXyz {};
-
-struct cBgD_t {};
-
-struct cBgW {
-    /* 80079F38 */ void Set(cBgD_t*, u32, f32 (*)[3][4]);
-};
-
-struct cBgS_PolyInfo {};
-
-struct cBgS {
-    /* 80074250 */ void Release(dBgW_Base*);
-};
-
-struct J3DModel {};
 
 //
 // Forward References:
@@ -84,7 +22,6 @@ extern "C" static void daObj_Fmobj_Delete__FP15obj_fmobj_class();
 extern "C" static void useHeapInit__FP10fopAc_ac_c();
 extern "C" static void daObj_Fmobj_Create__FP10fopAc_ac_c();
 extern "C" extern char const* const d_a_obj_fmobj__stringBase0;
-extern "C" extern void* g_profile_OBJ_FMOBJ[12];
 
 //
 // External References:
@@ -110,71 +47,72 @@ extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
 extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
 extern "C" void cM_rndF__Ff();
 extern "C" void* __nw__FUl();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
 
 //
 // Declarations:
 //
 
 /* 8057CBD8-8057CC44 000078 006C+00 1/0 0/0 0/0 .text daObj_Fmobj_Draw__FP15obj_fmobj_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObj_Fmobj_Draw(obj_fmobj_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_fmobj/d_a_obj_fmobj/daObj_Fmobj_Draw__FP15obj_fmobj_class.s"
+static int daObj_Fmobj_Draw(obj_fmobj_class* i_this) {
+    J3DModel* model_p = i_this->mpModel;
+
+    g_env_light.settingTevStruct(0x40, &i_this->current.pos, &i_this->mTevStr);
+    g_env_light.setLightTevColorType_MAJI(model_p, &i_this->mTevStr);
+    mDoExt_modelUpdateDL(model_p);
+    return 1;
 }
-#pragma pop
 
 /* 8057CC44-8057CC84 0000E4 0040+00 1/0 0/0 0/0 .text daObj_Fmobj_Execute__FP15obj_fmobj_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObj_Fmobj_Execute(obj_fmobj_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_fmobj/d_a_obj_fmobj/daObj_Fmobj_Execute__FP15obj_fmobj_class.s"
+static int daObj_Fmobj_Execute(obj_fmobj_class* i_this) {
+    i_this->field_0x578++;
+
+    for (int i = 0; i < 2; i++) {
+        if (i_this->field_0x57e[i] != 0) {
+            i_this->field_0x57e[i]--;
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 8057CC84-8057CC8C 000124 0008+00 1/0 0/0 0/0 .text daObj_Fmobj_IsDelete__FP15obj_fmobj_class */
-static bool daObj_Fmobj_IsDelete(obj_fmobj_class* param_0) {
-    return true;
+static int daObj_Fmobj_IsDelete(obj_fmobj_class* i_this) {
+    return 1;
 }
-
-/* ############################################################################################## */
-/* 8057CF74-8057CF74 00000C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8057CF74 = "Obj_Fmobj";
-#pragma pop
 
 /* 8057CC8C-8057CCDC 00012C 0050+00 1/0 0/0 0/0 .text daObj_Fmobj_Delete__FP15obj_fmobj_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObj_Fmobj_Delete(obj_fmobj_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_fmobj/d_a_obj_fmobj/daObj_Fmobj_Delete__FP15obj_fmobj_class.s"
+static int daObj_Fmobj_Delete(obj_fmobj_class* i_this) {
+    dComIfG_resDelete(&i_this->mPhase, "Obj_Fmobj");
+    dComIfG_Bgsp().Release(i_this->mpBgW);
+    return 1;
 }
-#pragma pop
 
 /* 8057CCDC-8057CDE0 00017C 0104+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void useHeapInit(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_fmobj/d_a_obj_fmobj/useHeapInit__FP10fopAc_ac_c.s"
+static int useHeapInit(fopAc_ac_c* i_this) {
+    obj_fmobj_class* a_this = (obj_fmobj_class*)i_this;
+
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_Fmobj", 4);
+    a_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    if (a_this->mpModel == NULL) {
+        return 0;
+    }
+
+    a_this->mpBgW = new dBgW();
+    if (a_this->mpBgW == NULL) {
+        return 0;
+    }
+
+    cBgD_t* pdzb = (cBgD_t*)dComIfG_getObjectRes("Obj_Fmobj", 7);
+    if (a_this->mpBgW->Set(pdzb, cBgW::MOVE_BG_e, &a_this->mBgMtx) == 1) {
+        return 0;
+    }
+
+    a_this->mpBgW->SetCrrFunc(dBgS_MoveBGProc_Typical);
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8057CF68-8057CF6C 000000 0004+00 1/1 0/0 0/0 .rodata          @3743 */
@@ -202,36 +140,76 @@ COMPILER_STRIP_GATE(0x8057CF70, &lit_3745);
 
 /* 8057CDE0-8057CF60 000280 0180+00 1/0 0/0 0/0 .text            daObj_Fmobj_Create__FP10fopAc_ac_c
  */
+// reg alloc
+#ifdef NONMATCHING
+static int daObj_Fmobj_Create(fopAc_ac_c* i_this) {
+    obj_fmobj_class* a_this = (obj_fmobj_class*)i_this;
+    fopAcM_SetupActor(a_this, obj_fmobj_class);
+
+    int phase = dComIfG_resLoad(&a_this->mPhase, "Obj_Fmobj");
+    if (phase == cPhs_COMPLEATE_e) {
+        a_this->field_0x570 = fopAcM_GetParam(a_this) & 0xFF;
+
+        if (dComIfGs_isStageBossEnemy()) {
+            return cPhs_ERROR_e;
+        }
+
+        if (!fopAcM_entrySolidHeap(a_this, useHeapInit, 0x4B000)) {
+            return cPhs_ERROR_e;
+        }
+
+        if (dComIfG_Bgsp().Regist(a_this->mpBgW, a_this)) {
+            return cPhs_ERROR_e;
+        }
+
+        fopAcM_SetMtx(a_this, a_this->mpModel->getBaseTRMtx());
+        a_this->shape_angle.y = cM_rndF(65536.0f);
+
+        mDoMtx_stack_c::transS(a_this->current.pos.x, a_this->current.pos.y, a_this->current.pos.z);
+        mDoMtx_stack_c::YrotM(a_this->shape_angle.y);
+        a_this->mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+
+        mDoMtx_stack_c::transM(0.0f, -30.0f, 0.0f);
+        MTXCopy(mDoMtx_stack_c::get(), a_this->mDzbMtx);
+
+        a_this->mpBgW->Move();
+    }
+
+    return phase;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daObj_Fmobj_Create(fopAc_ac_c* param_0) {
+static asm int daObj_Fmobj_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_fmobj/d_a_obj_fmobj/daObj_Fmobj_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8057CF80-8057CFA0 -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Fmobj_Method */
-SECTION_DATA static void* l_daObj_Fmobj_Method[8] = {
-    (void*)daObj_Fmobj_Create__FP10fopAc_ac_c,
-    (void*)daObj_Fmobj_Delete__FP15obj_fmobj_class,
-    (void*)daObj_Fmobj_Execute__FP15obj_fmobj_class,
-    (void*)daObj_Fmobj_IsDelete__FP15obj_fmobj_class,
-    (void*)daObj_Fmobj_Draw__FP15obj_fmobj_class,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daObj_Fmobj_Method = {
+    (process_method_func)daObj_Fmobj_Create,  (process_method_func)daObj_Fmobj_Delete,
+    (process_method_func)daObj_Fmobj_Execute, (process_method_func)daObj_Fmobj_IsDelete,
+    (process_method_func)daObj_Fmobj_Draw,
 };
 
 /* 8057CFA0-8057CFD0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_FMOBJ */
-SECTION_DATA extern void* g_profile_OBJ_FMOBJ[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0003FFFD,
-    (void*)0x00260000, (void*)&g_fpcLf_Method,
-    (void*)0x000005BC, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x00280000, (void*)&l_daObj_Fmobj_Method,
-    (void*)0x00040100, (void*)0x00070000,
+extern actor_process_profile_definition g_profile_OBJ_FMOBJ = {
+    -3,
+    3,
+    -3,
+    PROC_OBJ_FMOBJ,
+    &g_fpcLf_Method.mBase,
+    sizeof(obj_fmobj_class),
+    0,
+    0,
+    &g_fopAc_Method.base,
+    40,
+    &l_daObj_Fmobj_Method,
+    0x40100,
+    0,
+    7,
 };
-
-/* 8057CF74-8057CF74 00000C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

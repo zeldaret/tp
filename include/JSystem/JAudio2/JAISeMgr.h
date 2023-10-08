@@ -1,10 +1,8 @@
 #ifndef JAISEMGR_H
 #define JAISEMGR_H
 
-#include "JSystem/JAudio2/JAISeqDataMgr.h"
-#include "JSystem/JAudio2/JAISound.h"
-#include "JSystem/JAudio2/JAISoundParams.h"
-#include "JSystem/JAudio2/JASGadget.h"
+#include "JSystem/JAudio2/JAISe.h"
+#include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "global.h"
 
@@ -15,22 +13,22 @@ struct JASNonCopyable {
     /* 0x0 */ int field_0x0;
 };  // Size: 0x4
 
-struct JAISeCategoryArrangement {};
+struct JAISeCategoryArrangementItem {
+    u8 mMaxActiveSe;
+    u8 mMaxInactiveSe;
+};
+
+struct JAISeCategoryArrangement {
+    JAISeCategoryArrangementItem mItems[16];
+};
 
 class JAISeMgr;
-
-struct JAISe {
-    /* 8029F03C */ JAISe(JAISeMgr*, JAISoundStrategyMgr<JAISe>*, u32);
-    /* 8029F304 */ void JAISeCategoryMgr_mixOut_(bool, JASSoundParams const&, JAISoundActivity);
-    /* 8029F4CC */ void JAISeCategoryMgr_calc_();
-    /* 8029F650 */ void JAISeMgr_startID_(JAISoundID, JGeometry::TVec3<f32> const*, JAIAudience*);
-};
 
 class JAISeCategoryMgr : public JAISeqDataUser {
 public:
     /* 8029F9C4 */ void JAISeMgr_calc_();
     /* 8029FB30 */ void JAISeMgr_freeDeadSe_();
-    /* 8029FC88 */ void JAISeMgr_acceptsNewSe_(u32) const;
+    /* 8029FC88 */ u32 JAISeMgr_acceptsNewSe_(u32) const;
     /* 8029FD40 */ void sortByPriority_();
     /* 8029FDE0 */ void stop(u32);
     /* 8029FE34 */ void stop();
@@ -41,9 +39,17 @@ public:
 
     /* 800078DC */ virtual ~JAISeCategoryMgr() {}
     /* 8029F8B0 */ virtual bool isUsingSeqData(JAISeqDataRegion const&);
-    /* 8029F91C */ virtual void releaseSeqData(JAISeqDataRegion const&);
+    /* 8029F91C */ virtual int releaseSeqData(JAISeqDataRegion const&);
 
     JAISoundParamsMove* getParams() { return &mParams; }
+    int getMaxSe() const {
+        return (mMaxActiveSe == 0) ? 0 : mMaxActiveSe + mMaxInactiveSe;
+    }
+    int getMaxActiveSe() const { return mMaxActiveSe; }
+    void setMaxActiveSe(int se) { mMaxActiveSe = se; }
+    void setMaxInactiveSe(int se) { mMaxInactiveSe = se; }
+    int getNumSe() const { return mSeList.getNumLinks(); }
+    JAIAudience* getAudience() { return (JAIAudience*)field_0x4.field_0x0; }
 
     /* 0x04 */ JASNonCopyable field_0x4;
     /* 0x08 */ JAISoundParamsMove mParams;
@@ -52,9 +58,9 @@ public:
     /* 0x68 */ int mMaxActiveSe;
 };  // Size: 0x6C
 
-class JAISeMgr : public JAISeqDataUser,
-                 public JAISoundActivity,
-                 public JASGlobalInstance<JAISeMgr> {
+class JAISeMgr : public JASGlobalInstance<JAISeMgr>,
+                 public JAISeqDataUser,
+                 public JAISoundActivity {
 public:
     /* 802A0074 */ JAISeMgr(bool);
     /* 802A0268 */ void setCategoryArrangement(JAISeCategoryArrangement const&);
@@ -64,17 +70,25 @@ public:
     /* 802A03D8 */ void setAudience(JAIAudience*);
     /* 802A03E0 */ void setSeqDataMgr(JAISeqDataMgr*);
     /* 802A0434 */ void resetSeqDataMgr();
-    /* 802A0484 */ void newSe_(int, u32);
+    /* 802A0484 */ JAISe* newSe_(int, u32);
     /* 802A0574 */ void calc();
     /* 802A0704 */ void mixOut();
-    /* 802A0768 */ void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
-    /* 802A08D0 */ void getNumActiveSe() const;
+    /* 802A0768 */ int startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
+    /* 802A08D0 */ int getNumActiveSe() const;
 
     /* 802A08FC */ virtual ~JAISeMgr();  // inline?
     /* 802A0168 */ virtual bool isUsingSeqData(JAISeqDataRegion const&);
-    /* 802A01D8 */ virtual void releaseSeqData(JAISeqDataRegion const&);
+    /* 802A01D8 */ virtual int releaseSeqData(JAISeqDataRegion const&);
 
     JAISeCategoryMgr* getCategory(int categoryIndex) { return &mCategoryMgrs[categoryIndex]; }
+    JAIAudience* getAudience(int categoryIndex) {
+        if (categoryIndex >= 0 && categoryIndex < 16) {
+            JAIAudience* rv = mCategoryMgrs[categoryIndex].getAudience();
+            if (rv) return rv;
+        }
+        return mAudience;
+    }
+    JAISeqDataMgr* getSeqDataMgr() { return mSeqDataMgr; }
 
 private:
     /* 0x008 */ JAIAudience* mAudience;

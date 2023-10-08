@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_gomikabe/d_a_obj_gomikabe.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -18,11 +18,6 @@ struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
     /* 8026745C */ void operator+=(csXyz&);
     /* 80BFEA24 */ ~csXyz();
-};
-
-struct cXyz {
-    /* 80BFE3FC */ ~cXyz();
-    /* 80BFF8CC */ cXyz();
 };
 
 struct mDoMtx_stack_c {
@@ -88,28 +83,6 @@ struct dRes_control_c {
     /* 8003C6B8 */ void getObjectResName2Index(char const*, char const*);
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-    /* 80BFF5B4 */ ~dCcD_Sph();
-    /* 80BFF680 */ dCcD_Sph();
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-};
-
 struct dBgW_Base {};
 
 struct dBgW {};
@@ -159,21 +132,9 @@ struct dBgS_Acch {
     /* 80076AAC */ void CrrPos(dBgS&);
 };
 
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 8026F708 */ void SetR(f32);
-    /* 80BFF704 */ ~cM3dGSph();
-};
-
 struct cM3dGCir {
     /* 8026EF18 */ ~cM3dGCir();
 };
-
-struct cM3dGAab {
-    /* 80BFF74C */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
 
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
@@ -189,18 +150,6 @@ struct cBgS_GndChk {
 
 struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct J3DModel {};
@@ -449,13 +398,17 @@ asm daObjGOMIKABE_HIO_c::daObjGOMIKABE_HIO_c() {
 
 /* ############################################################################################## */
 /* 80BFFC1C-80BFFC5C 000000 0040+00 7/7 0/0 0/0 .rodata          ccSphSrc$3769 */
-SECTION_RODATA static u8 const ccSphSrc[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x20, 0x20, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x78, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x43, 0x48, 0x00, 0x00,
+const static dCcD_SrcSph ccSphSrc = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x2020, 0x11}, 0x78}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 200.0f} // mSph
+    } // mSphAttr
 };
-COMPILER_STRIP_GATE(0x80BFFC1C, &ccSphSrc);
 
 /* 80BFE244-80BFE2CC 000104 0088+00 1/1 0/0 0/0 .text            initCcCylinder__15daObjGOMIKABE_cFv
  */
@@ -519,7 +472,8 @@ asm void daObjGOMIKABE_c::SetCcCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_gomikabe/d_a_obj_gomikabe/__dt__4cXyzFv.s"
 }
@@ -919,7 +873,8 @@ asm void daObjGOMIKABE_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Sph::~dCcD_Sph() {
+// asm dCcD_Sph::~dCcD_Sph() {
+extern "C" asm void __dt__8dCcD_SphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_gomikabe/d_a_obj_gomikabe/__dt__8dCcD_SphFv.s"
 }
@@ -929,7 +884,8 @@ asm dCcD_Sph::~dCcD_Sph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Sph::dCcD_Sph() {
+// asm dCcD_Sph::dCcD_Sph() {
+extern "C" asm void __ct__8dCcD_SphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_gomikabe/d_a_obj_gomikabe/__ct__8dCcD_SphFv.s"
 }
@@ -939,7 +895,8 @@ asm dCcD_Sph::dCcD_Sph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_gomikabe/d_a_obj_gomikabe/__dt__8cM3dGSphFv.s"
 }
@@ -949,7 +906,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_gomikabe/d_a_obj_gomikabe/__dt__8cM3dGAabFv.s"
 }
@@ -991,7 +949,8 @@ csXyz::csXyz() {
 }
 
 /* 80BFF8CC-80BFF8D0 00178C 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+// cXyz::cXyz() {
+extern "C" asm void __ct__4cXyzFv() {
     /* empty function */
 }
 

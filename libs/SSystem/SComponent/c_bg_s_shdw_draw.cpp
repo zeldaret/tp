@@ -4,9 +4,6 @@
 //
 
 #include "SSystem/SComponent/c_bg_s_shdw_draw.h"
-#include "SSystem/SComponent/c_m3d_g_aab.h"
-#include "SSystem/SComponent/c_m3d_g_pla.h"
-#include "SSystem/SComponent/c_xyz.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

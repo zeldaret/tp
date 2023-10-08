@@ -4,7 +4,6 @@
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "SSystem/SComponent/c_m3d_g_lin.h"
 #include "SSystem/SComponent/c_sxyz.h"
-#include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/types.h"
 
 class fopAc_ac_c;
@@ -14,7 +13,8 @@ public:
     /* 0x0 */ u8 field_0x0;
     /* 0x1 */ s8 mType;
     /* 0x2 */ s16 mJntNum;
-    /* 0x4 */ u8 field_0x4[0xC - 0x4];
+    /* 0x4 */ u32 field_0x4;
+    /* 0x8 */ void* field_0x8;
 };
 
 class dJntCol_c {

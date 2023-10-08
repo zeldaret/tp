@@ -4,8 +4,6 @@
 //
 
 #include "SSystem/SComponent/c_angle.h"
-#include "MSL_C/math.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 extern f32 cM_atan2f(f32, f32);

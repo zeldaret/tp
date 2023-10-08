@@ -5,7 +5,6 @@
 
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -460,7 +459,7 @@ asm J3DModelLoader::J3DModelLoader() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DModelLoaderDataBase::load(void const* param_0, u32 param_1) {
+asm void* J3DModelLoaderDataBase::load(void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DModelLoader/load__22J3DModelLoaderDataBaseFPCvUl.s"
 }

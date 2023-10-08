@@ -4,7 +4,6 @@
 #include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JStage/JSGSystem.h"
 #include "JSystem/JStudio/JStudio/jstudio-object.h"
-#include "dolphin/types.h"
 
 namespace JStudio_JParticle {
 struct TCreateObject : public JStudio::TCreateObject {

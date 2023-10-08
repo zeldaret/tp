@@ -4,7 +4,6 @@
 #include "JSystem/JGadget/linklist.h"
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JUtility/JUTFont.h"
-#include "JSystem/JUtility/TColor.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dolphin/types.h"
 
@@ -148,6 +147,7 @@ extern "C" JUTConsole* JUTGetWarningConsole();
 extern "C" void JUTReportConsole_f_va(const char*, va_list);
 extern "C" void JUTReportConsole_f(const char*, ...);
 extern "C" void JUTWarningConsole(const char* message);
+extern "C" void JUTWarningConsole_f(const char* message, ...);
 extern "C" void JUTReportConsole(const char* message);
 
 #endif /* JUTCONSOLE_H */

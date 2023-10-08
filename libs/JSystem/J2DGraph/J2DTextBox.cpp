@@ -4,12 +4,9 @@
 //
 
 #include "JSystem/J2DGraph/J2DTextBox.h"
-#include "JSystem/J2DGraph/J2DMaterial.h"
 #include "JSystem/J2DGraph/J2DPrint.h"
 #include "JSystem/JSupport/JSURandomInputStream.h"
 #include "JSystem/JUtility/JUTResFont.h"
-#include "MSL_C/string.h"
-#include "Runtime.PPCEABI.H/__va_arg.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -308,7 +305,7 @@ void J2DTextBox::draw(f32 posX, f32 posY) {
         if (mStringPtr != NULL) {
             print.print(0.0f, 0.0f, mAlpha, "%s", mStringPtr);
         }
-        PSMTXIdentity(m);
+        MTXIdentity(m);
         GXLoadPosMtxImm(m, 0);
     }
 }
@@ -337,7 +334,7 @@ void J2DTextBox::draw(f32 posX, f32 posY, f32 param_2, J2DTextBoxHBinding hBind)
             print.printReturn(mStringPtr, param_2, 0.0f, hBind, VBIND_TOP, 0.0f, -mFontSizeY,
                               mAlpha);
         }
-        PSMTXIdentity(m);
+        MTXIdentity(m);
         GXLoadPosMtxImm(m, 0);
     }
 }
@@ -413,7 +410,7 @@ bool J2DTextBox::setConnectParent(bool connected) {
         return false;
     }
 
-    if ((u16)getPaneTree()->getParent()->getObject()->getTypeID() != 0x11) {
+    if (getPaneTree()->getParent()->getObject()->getTypeID() != 0x11) {
         return false;
     }
 
@@ -424,7 +421,7 @@ bool J2DTextBox::setConnectParent(bool connected) {
 /* 803008E8-80300950 2FB228 0068+00 1/0 1/0 0/0 .text            drawSelf__10J2DTextBoxFff */
 void J2DTextBox::drawSelf(f32 param_0, f32 param_1) {
     Mtx identity;
-    PSMTXIdentity(identity);
+    MTXIdentity(identity);
 
     drawSelf(param_0, param_1, &identity);
 }
@@ -437,7 +434,7 @@ void J2DTextBox::drawSelf(f32 param_0, f32 param_1, Mtx* p_mtx) {
     J2DPrint print(mFont, mCharSpacing, mLineSpacing, mCharColor, mGradientColor, mBlackColor,
                    mWhiteColor);
     print.setFontSize(mFontSizeX, mFontSizeY);
-    PSMTXConcat(*p_mtx, mGlobalMtx, m);
+    MTXConcat(*p_mtx, mGlobalMtx, m);
 
     GXLoadPosMtxImm(m, GX_PNMTX0);
     GXSetNumIndStages(0);
@@ -459,7 +456,7 @@ void J2DTextBox::resize(f32 x, f32 y) {
     if (mConnected && getPaneTree() != NULL && getPaneTree()->getParent() != NULL) {
         J2DPane* obj = getPaneTree()->getParent()->getObject();
 
-        if ((u16)obj->getTypeID() == 0x11) {
+        if (obj->getTypeID() == 0x11) {
             f32 obj_x = obj->getWidth() + (x - getWidth());
             f32 obj_y = obj->getHeight() + (y - getHeight());
             obj->resize(obj_x, obj_y);
@@ -480,7 +477,7 @@ bool J2DTextBox::isUsed(ResFONT const* p_font) {
 }
 
 /* 80300C68-80300C70 2FB5A8 0008+00 1/0 1/0 0/0 .text            getTypeID__10J2DTextBoxCFv */
-s32 J2DTextBox::getTypeID() const {
+u16 J2DTextBox::getTypeID() const {
     return 19;
 }
 

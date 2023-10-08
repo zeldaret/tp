@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/e/d_a_e_pm/d_a_e_pm.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -14,12 +14,6 @@
 struct request_of_phase_process_class {};
 
 struct csXyz {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -219,29 +213,6 @@ struct dComIfG_play_c {
 
 struct dCcU_AtInfo {};
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80083830 */ void Move();
-    /* 8074B8C4 */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-    /* 800844F8 */ void GetTgHitObj();
-    /* 800845B0 */ void getHitSeID(u8, int);
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
 struct dCamera_c {
     /* 801614AC */ void Start();
     /* 801614D0 */ void Stop();
@@ -290,31 +261,12 @@ struct dBgS_Acch {
     /* 80076AAC */ void CrrPos(dBgS&);
 };
 
-struct cM3dGPla {
-    /* 80742720 */ ~cM3dGPla();
-};
-
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8074B834 */ ~cM3dGCyl();
-};
-
 struct cM3dGCir {
     /* 8026EF18 */ ~cM3dGCir();
 };
 
-struct cM3dGAab {
-    /* 8074B87C */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 8074BA20 */ ~cCcD_GStts();
 };
 
 struct cBgS_PolyInfo {
@@ -342,13 +294,6 @@ struct Z2CreatureEnemy {
 
 struct JMath {
     static u8 sincosTable_[65536];
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
 };
 
 struct J3DSys {
@@ -585,8 +530,6 @@ extern "C" void checkPass__12J3DFrameCtrlFf();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXTrans();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECSquareMag();
-extern "C" void PSVECSquareDistance();
 extern "C" void _savegpr_19();
 extern "C" void _savegpr_24();
 extern "C" void _savegpr_25();
@@ -616,7 +559,6 @@ extern "C" extern u8 j3dSys[284];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
 extern "C" extern u8 struct_80450C98[4];
 extern "C" f32 mGroundY__11fopAcM_gc_c;
 extern "C" u8 m_midnaActor__9daPy_py_c[4];
@@ -1066,14 +1008,19 @@ static asm void s_pm_sub(void* param_0, void* param_1) {
 
 /* ############################################################################################## */
 /* 8074BF8C-8074BFD0 000050 0044+00 1/1 0/0 0/0 .rodata          ccCylSrc$4052 */
-SECTION_RODATA static u8 const ccCylSrc[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x0D, 0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x51, 0x00, 0x00, 0x00, 0x75,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00, 0x43, 0x02, 0x00, 0x00,
+const static dCcD_SrcCyl ccCylSrc = {
+    {
+        {0x0, {{AT_TYPE_CSTATUE_SWING, 0x1, 0xd}, {0xd8fbfdff, 0x51}, 0x75}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        40.0f, // mRadius
+        130.0f // mHeight
+    } // mCyl
 };
-COMPILER_STRIP_GATE(0x8074BF8C, &ccCylSrc);
 
 /* 80742448-807424C0 000648 0078+00 1/1 0/0 0/0 .text            initCcCylinder__8daE_PM_cFv */
 #pragma push
@@ -1144,7 +1091,8 @@ asm void daE_PM_c::SetAnm(int param_0, int param_1, f32 param_2, f32 param_3) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGPla::~cM3dGPla() {
+// asm cM3dGPla::~cM3dGPla() {
+extern "C" asm void __dt__8cM3dGPlaFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_pm/d_a_e_pm/__dt__8cM3dGPlaFv.s"
 }
@@ -2470,7 +2418,8 @@ asm void daE_PM_c::Create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_pm/d_a_e_pm/__dt__8cM3dGCylFv.s"
 }
@@ -2480,7 +2429,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_pm/d_a_e_pm/__dt__8cM3dGAabFv.s"
 }
@@ -2490,7 +2440,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_pm/d_a_e_pm/__dt__10dCcD_GSttsFv.s"
 }
@@ -2530,7 +2481,8 @@ static asm void daE_PM_Create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_pm/d_a_e_pm/__dt__10cCcD_GSttsFv.s"
 }

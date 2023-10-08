@@ -9,7 +9,6 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/msg/d_msg_flow.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 //
@@ -603,31 +602,29 @@ asm void daTagTWGate_c::initDemoFilone2() {
 #endif
 
 /* 80D52BF0-80D52DB4 000670 01C4+00 1/0 0/0 0/0 .text executeDemoFilone2__13daTagTWGate_cFv */
-// regswap
-#ifdef NONMATCHING
 void daTagTWGate_c::executeDemoFilone2() {
-    int staffId = i_dComIfGp_evmng_getMyStaffId(l_myName, NULL, 0);
+    s32 staffId = i_dComIfGp_evmng_getMyStaffId(l_myName, NULL, 0);
 
     if (staffId != -1) {
         int* cutName = (int*)i_dComIfGp_getEventManager().getMyNowCutName(staffId);
 
         if (dComIfGp_evmng_getIsAddvance(staffId)) {
             switch (*cutName) {
-            case 0x30303032:
+            case '0002':
                 initTalk(0xBC1, NULL);
                 break;
-            case 0x30303031:
-            case 0x30303033:
+            case '0001':
+            case '0003':
                 break;
             }
         }
 
         switch (*cutName) {
-        case 0x30303031:
-        case 0x30303033:
+        case '0001':
+        case '0003':
             dComIfGp_evmng_cutEnd(staffId);
             break;
-        case 0x30303032:
+        case '0002':
             if (talkProc(NULL, 1, NULL)) {
                 if (mMsgFlow.getChoiceNo() == 0) {
                     mActionID = ACT_DEMO_FILONE_3;
@@ -649,16 +646,6 @@ void daTagTWGate_c::executeDemoFilone2() {
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagTWGate_c::executeDemoFilone2() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/executeDemoFilone2__13daTagTWGate_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80D52DB4-80D52E7C 000834 00C8+00 1/0 0/0 0/0 .text            initDemoFilone3__13daTagTWGate_cFv
  */
@@ -706,10 +693,10 @@ SECTION_RODATA static f32 const lit_4083 = -1.0f;
 COMPILER_STRIP_GATE(0x80D5583C, &lit_4083);
 
 /* 80D52E7C-80D53250 0008FC 03D4+00 1/0 0/0 0/0 .text executeDemoFilone3__13daTagTWGate_cFv */
-// regswap
+// matches without literals
 #ifdef NONMATCHING
 void daTagTWGate_c::executeDemoFilone3() {
-    int staffId = i_dComIfGp_evmng_getMyStaffId(l_myName, NULL, 0);
+    s32 staffId = i_dComIfGp_evmng_getMyStaffId(l_myName, NULL, 0);
 
     if (staffId != -1) {
         int* cutName = (int*)i_dComIfGp_getEventManager().getMyNowCutName(staffId);
@@ -1108,10 +1095,7 @@ asm int daTagTWGate_c::CreateHeap() {
 #endif
 
 int daTagTWGate_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagTWGate_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daTagTWGate_c);
 
     mType = getType();
 
@@ -1137,11 +1121,11 @@ static int daTagTWGate_Create(fopAc_ac_c* i_actor) {
 inline daTagTWGate_c::~daTagTWGate_c() {
     dComIfG_resDelete(&mPhaseZevArc, l_zevParamTbl[mType].mArcName);
 
-    if (mPhaseMdRes.id != cPhs_ZERO_e) {
+    if (mPhaseMdRes.id != cPhs_INIT_e) {
         dComIfG_resDelete(&mPhaseMdRes, "TWGate_Md");
     }
 
-    if (mPhasePyRes.id != cPhs_ZERO_e) {
+    if (mPhasePyRes.id != cPhs_INIT_e) {
         dComIfG_resDelete(&mPhasePyRes, mIsWolf ? "TWGate_Wf" : "TWGate_Lk");
     }
 }

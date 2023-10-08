@@ -2,7 +2,6 @@
 #define JKRDVDARCHIVE_H
 
 #include "JSystem/JKernel/JKRArchive.h"
-#include "dolphin/types.h"
 
 class JKRDvdFile;
 class JKRDvdArchive : public JKRArchive {

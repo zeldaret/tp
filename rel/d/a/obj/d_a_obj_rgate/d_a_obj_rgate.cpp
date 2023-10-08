@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_rgate/d_a_obj_rgate.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -14,12 +14,6 @@
 struct request_of_phase_process_class {};
 
 struct csXyz {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -106,21 +100,6 @@ struct dEvent_manager_c {
     /* 8004817C */ void cutEnd(int);
 };
 
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80CBC234 */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-};
-
-struct dCcD_Cyl {
-    /* 80CBC054 */ ~dCcD_Cyl();
-    /* 80CBC120 */ dCcD_Cyl();
-};
-
 struct dBgW_Base {};
 
 struct dBgW {
@@ -147,18 +126,6 @@ struct dBgS {
     /* 80074A08 */ void Regist(dBgW_Base*, fopAc_ac_c*);
 };
 
-struct cM3dGCyl {
-    /* 80CBC1A4 */ ~cM3dGCyl();
-};
-
-struct cM3dGAab {
-    /* 80CBC1EC */ ~cM3dGAab();
-};
-
-struct cCcD_GStts {
-    /* 80CBC2FC */ ~cCcD_GStts();
-};
-
 struct cBgW_BgId {
     /* 802681D4 */ void ChkUsed() const;
 };
@@ -171,16 +138,6 @@ struct cBgW {
 
 struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
-};
-
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JMath {
@@ -302,8 +259,6 @@ extern "C" void __dl__FPv();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXInverse();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
-extern "C" void PSVECScale();
 extern "C" void __construct_array();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_25();
@@ -314,7 +269,6 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void abs();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
@@ -367,14 +321,19 @@ COMPILER_STRIP_GATE(0x80CBC368, &l_cull_box);
 /* 80CBC380-80CBC3C4 000018 0044+00 0/0 0/0 0/0 .rodata          l_cyl_src */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const l_cyl_src[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x1E, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x78,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00, 0x43, 0xAF, 0x00, 0x00,
+const static dCcD_SrcCyl l_cyl_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x1e}, {0x20, 0x11}, 0x78}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x6}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        40.0f, // mRadius
+        350.0f // mHeight
+    } // mCyl
 };
-COMPILER_STRIP_GATE(0x80CBC380, &l_cyl_src);
 #pragma pop
 
 /* 80CBC3C4-80CBC3C8 00005C 0004+00 2/8 0/0 0/0 .rodata          @3897 */
@@ -1040,7 +999,8 @@ static asm void daObjRgate_create1st(daObjRgate_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Cyl::~dCcD_Cyl() {
+// asm dCcD_Cyl::~dCcD_Cyl() {
+extern "C" asm void __dt__8dCcD_CylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_rgate/d_a_obj_rgate/__dt__8dCcD_CylFv.s"
 }
@@ -1050,7 +1010,8 @@ asm dCcD_Cyl::~dCcD_Cyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Cyl::dCcD_Cyl() {
+// asm dCcD_Cyl::dCcD_Cyl() {
+extern "C" asm void __ct__8dCcD_CylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_rgate/d_a_obj_rgate/__ct__8dCcD_CylFv.s"
 }
@@ -1060,7 +1021,8 @@ asm dCcD_Cyl::dCcD_Cyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_rgate/d_a_obj_rgate/__dt__8cM3dGCylFv.s"
 }
@@ -1070,7 +1032,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_rgate/d_a_obj_rgate/__dt__8cM3dGAabFv.s"
 }
@@ -1080,7 +1043,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_rgate/d_a_obj_rgate/__dt__10dCcD_GSttsFv.s"
 }
@@ -1121,7 +1085,8 @@ static asm void daObjRgate_MoveBGDraw(daObjRgate_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_rgate/d_a_obj_rgate/__dt__10cCcD_GSttsFv.s"
 }

@@ -5,7 +5,6 @@
 
 #include "JSystem/J2DGraph/J2DWindowEx.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:
@@ -341,7 +340,7 @@ asm void J2DWindowEx::setStage(J2DTevStage* param_0, J2DWindowEx::stage_enum par
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DWindowEx::setBlack(JUtility::TColor param_0) {
+asm bool J2DWindowEx::setBlack(JUtility::TColor param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DWindowEx/setBlack__11J2DWindowExFQ28JUtility6TColor.s"
 }
@@ -352,7 +351,7 @@ asm void J2DWindowEx::setBlack(JUtility::TColor param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DWindowEx::setWhite(JUtility::TColor param_0) {
+asm bool J2DWindowEx::setWhite(JUtility::TColor param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DWindowEx/setWhite__11J2DWindowExFQ28JUtility6TColor.s"
 }
@@ -363,7 +362,7 @@ asm void J2DWindowEx::setWhite(JUtility::TColor param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DWindowEx::setBlackWhite(JUtility::TColor param_0, JUtility::TColor param_1) {
+asm bool J2DWindowEx::setBlackWhite(JUtility::TColor param_0, JUtility::TColor param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DWindowEx/setBlackWhite__11J2DWindowExFQ28JUtility6TColorQ28JUtility6TColor.s"
 }
@@ -395,7 +394,7 @@ asm void J2DWindowEx::isSetBlackWhite(JUtility::TColor param_0, JUtility::TColor
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DWindowEx::getBlack() const {
+asm JUtility::TColor J2DWindowEx::getBlack() const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DWindowEx/getBlack__11J2DWindowExCFv.s"
 }
@@ -405,7 +404,7 @@ asm void J2DWindowEx::getBlack() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DWindowEx::getWhite() const {
+asm JUtility::TColor J2DWindowEx::getWhite() const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DWindowEx/getWhite__11J2DWindowExCFv.s"
 }
@@ -445,7 +444,7 @@ asm void J2DWindowEx::rewriteAlpha() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DWindowEx::getFrameTexture(u8 param_0, u8 param_1) const {
+asm JUTTexture* J2DWindowEx::getFrameTexture(u8 param_0, u8 param_1) const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DWindowEx/getFrameTexture__11J2DWindowExCFUcUc.s"
 }
@@ -455,7 +454,7 @@ asm void J2DWindowEx::getFrameTexture(u8 param_0, u8 param_1) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DWindowEx::getContentsTexture(u8 param_0) const {
+asm JUTTexture* J2DWindowEx::getContentsTexture(u8 param_0) const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DWindowEx/getContentsTexture__11J2DWindowExCFUc.s"
 }
@@ -465,7 +464,7 @@ asm void J2DWindowEx::getContentsTexture(u8 param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DWindowEx::isUsed(ResTIMG const* param_0) {
+asm bool J2DWindowEx::isUsed(ResTIMG const* param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DWindowEx/isUsed__11J2DWindowExFPC7ResTIMG.s"
 }
@@ -687,7 +686,7 @@ COMPILER_STRIP_GATE(0x803A1D40, &lit_3089);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DWindowEx::animationPane(J2DAnmTransform const* param_0) {
+asm J2DAnmTransform* J2DWindowEx::animationPane(J2DAnmTransform const* param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DWindowEx/animationPane__11J2DWindowExFPC15J2DAnmTransform.s"
 }
@@ -698,7 +697,7 @@ asm void J2DWindowEx::animationPane(J2DAnmTransform const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DWindowEx::getFrameMaterial(u8 param_0) const {
+asm J2DMaterial* J2DWindowEx::getFrameMaterial(u8 param_0) const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DWindowEx/getFrameMaterial__11J2DWindowExCFUc.s"
 }
@@ -708,7 +707,7 @@ asm void J2DWindowEx::getFrameMaterial(u8 param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DWindowEx::getContentsMaterial() const {
+asm J2DMaterial* J2DWindowEx::getContentsMaterial() const {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DWindowEx/getContentsMaterial__11J2DWindowExCFv.s"
 }
@@ -749,7 +748,7 @@ asm void J2DWindowEx::setCullBack(bool param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J2DWindowEx::isUsed(ResFONT const* param_0) {
+asm bool J2DWindowEx::isUsed(ResFONT const* param_0) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DWindowEx/isUsed__11J2DWindowExFPC7ResFONT.s"
 }

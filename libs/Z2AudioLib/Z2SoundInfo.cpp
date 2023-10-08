@@ -5,7 +5,6 @@
 
 #include "Z2AudioLib/Z2SoundInfo.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -123,7 +122,7 @@ asm void Z2SoundInfo::getPriority(JAISoundID param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2SoundInfo::getAudibleSwFull(JAISoundID param_0) {
+asm u32 Z2SoundInfo::getAudibleSwFull(JAISoundID param_0) {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundInfo/getAudibleSwFull__11Z2SoundInfoF10JAISoundID.s"
 }

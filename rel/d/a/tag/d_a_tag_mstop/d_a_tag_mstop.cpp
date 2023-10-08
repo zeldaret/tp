@@ -4,8 +4,6 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_mstop/d_a_tag_mstop.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/a/d_a_npc.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
@@ -75,10 +73,7 @@ COMPILER_STRIP_GATE(0x805A6970, &lit_3864);
 #ifdef NONMATCHING
 // matches with literals
 int daTagMstop_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daTagMstop_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daTagMstop_c);
 
     field_0x56b = fopAcM_GetParam(this) >> 16;
     field_0x56a = (fopAcM_GetParam(this) >> 24) & 0xF;
@@ -200,91 +195,87 @@ COMPILER_STRIP_GATE(0x805A6980, &lit_4059);
 #pragma pop
 
 /* 805A63F8-805A693C 000338 0544+00 1/1 0/0 0/0 .text            execute__12daTagMstop_cFv */
+// one small block with issues
 #ifdef NONMATCHING
-// inline function nightmare
 int daTagMstop_c::execute() {
     if (field_0x56c) {
         fopAcM_seStartCurrentLevel(this, Z2SE_OBJ_DARK_GATE, 0);
     }
 
-    daMidna_c* midna = daPy_py_c::getMidnaActor();
+    daMidna_c* midna_p = daPy_py_c::getMidnaActor();
 
-    if (!midna) {
+    if (midna_p == NULL) {
         return 1;
-    } else {
-        daAlink_c* link = (daAlink_c*)daPy_getLinkPlayerActorClass();
-
-        if (checkNoAttention()) {
-            mAttentionInfo.mPosition = midna->mAttentionInfo.mPosition;
-            shape_angle.y = midna->shape_angle.y;
-            mEyePos = midna->mAttentionInfo.mPosition;
-
-        } else {
-            shape_angle.y = fopAcM_searchPlayerAngleY(this);
-        }
-
-        if (field_0x56e == 4) {
-            if (field_0x5c8.abs2(link->current.pos) < 2500.0f) {
-                i_dComIfGp_event_reset();
-                link->i_cancelOriginalDemo();
-                field_0x56e = 0;
-            }
-        } else if (field_0x56e == 3) {
-            if (link->checkHorseRide()) {
-                link->setPlayerPosAndAngle(&field_0x5c8, link->shape_angle.y, 0);
-                i_dComIfGp_event_reset();
-                field_0x56e = 0;
-            } else {
-                field_0x56e = 4;
-                link->i_changeOriginalDemo();
-
-                field_0x56a == 0 ? link->i_changeDemoMode(3, 0, 0, 0) :
-                                   link->i_changeDemoMode(2, 0, 0, 0);
-                link->i_changeDemoPos0(&field_0x5c8);
-            }
-        } else if (mEvtInfo.checkCommandTalk()) {
-            if (field_0x56e == 2) {
-                int shadowmode = midna->checkShadowModelDraw();
-                if (midna->checkShadowReturnEnd()) {
-                    i_dComIfGp_getEvent().reset(this);
-                    fopAcM_orderPotentialEvent(this, 0x400, 0x14f, 1);
-                    field_0x56e = 3;
-                } else if (shadowmode == 0) {
-                    return 1;
-                }
-            }
-        } else if (mSwitch != 0xFF || i_fopAcM_isSwitch(this, mSwitch) && field_0x572 == -1 ||
-                   dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x572]))
-        {
-            fopAcM_delete(this);
-
-        } else if (field_0x568 == 0xFF ||
-                   i_fopAcM_isSwitch(this, field_0x568) && field_0x570 == -1 ||
-                   dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x572]) &&
-                       current.pos.y <= link->current.pos.y && link->current.pos.y <= field_0x5c4 &&
-                       fopAcM_searchPlayerDistanceXZ2(this) < field_0x5c0)
-        {
-            eventOrder();
-
-        } else {
-            if (midna->checkShadowModeTalkWait()) {
-                if (field_0x56e == 0) {
-                    mMsgFlow.init(this, shape_angle.z, 0, 0);
-                    mDoAud_seStart(16, 0, 0, 0);
-                    field_0x56e = 1;
-                } else {
-                    if (mMsgFlow.doFlow(this, 0, 0)) {
-                        field_0x56e = 2;
-                        mDoAud_seStart(17, 0, 0, 0);
-
-                        if (midna->checkShadowModelDraw()) {
-                            midna->setShadowReturn();
-                        }
-                    }
-                }
-            }
-        }
     }
+
+    daPy_py_c* player_p = daPy_getLinkPlayerActorClass();
+
+    if (checkNoAttention()) {
+        mAttentionInfo.mPosition = midna_p->mAttentionInfo.mPosition;
+        shape_angle.y = midna_p->shape_angle.y;
+        mEyePos = mAttentionInfo.mPosition;
+    } else {
+        shape_angle.y = fopAcM_searchPlayerAngleY(this);
+    }
+
+    if (field_0x56e == 4) {
+        if (field_0x5c8.abs2(player_p->current.pos) < 2500.0f) {
+            i_dComIfGp_event_reset();
+            player_p->i_cancelOriginalDemo();
+            field_0x56e = 0;
+        }
+    } else if (field_0x56e == 3) {
+        if (player_p->checkHorseRide()) {
+            player_p->setPlayerPosAndAngle(&field_0x5c8, player_p->shape_angle.y, 0);
+            i_dComIfGp_event_reset();
+            field_0x56e = 0;
+        } else {
+            field_0x56e = 4;
+            player_p->i_changeOriginalDemo();
+            field_0x56a == 0 ? player_p->i_changeDemoMode(3, 0, 0, 0) :
+                               player_p->i_changeDemoMode(2, 0, 0, 0);
+
+            player_p->i_changeDemoPos0(&field_0x5c8);
+        }
+    } else if (mEvtInfo.checkCommandTalk()) {
+        if (field_0x56e == 2) {
+            if (!midna_p->checkShadowModelDraw() || midna_p->checkShadowReturnEnd()) {
+                i_dComIfGp_getEvent().reset(this);
+                fopAcM_orderPotentialEvent(this, 0x400, 0x14f, 1);
+                field_0x56e = 3;
+            }
+        } else if (!midna_p->checkShadowModeTalkWait()) {
+            if (field_0x56e == 0) {
+                mMsgFlow.init(this, (u16)shape_angle.z, 0, 0);
+                mDoAud_seStart(Z2SE_NAVI_TALK_START, 0, 0, 0);
+                field_0x56e = 1;
+            } else if (mMsgFlow.doFlow(this, 0, 0)) {
+                field_0x56e = 2;
+                mDoAud_seStart(Z2SE_NAVI_TALK_END, 0, 0, 0);
+
+                if (midna_p->checkShadowModelDraw()) {
+                    midna_p->setShadowReturn();
+                }
+            }
+        }
+    } else if ((mSwitch != 0xFF && i_fopAcM_isSwitch(this, mSwitch)) ||
+               (field_0x572 != 0xFFFF &&
+                i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x572])))
+    {
+        fopAcM_delete(this);
+        return 1;
+    } else if ((field_0x568 != 0xFF && !i_fopAcM_isSwitch(this, field_0x568)) ||
+               (field_0x570 != 0xFFFF &&
+                !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x570])))
+    {
+        return 1;
+    } else if (current.pos.y <= player_p->current.pos.y && field_0x5c4 >= player_p->current.pos.y &&
+               fopAcM_searchPlayerDistanceXZ2(this) < field_0x5c0)
+    {
+        eventOrder();
+    }
+
+    return 1;
 }
 #else
 #pragma push

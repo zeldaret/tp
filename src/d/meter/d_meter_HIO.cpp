@@ -6,7 +6,6 @@
 #include "d/meter/d_meter_HIO.h"
 #include "d/save/d_save.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 //
@@ -235,8 +234,8 @@ dMeter_drawCollectHIO_c::dMeter_drawCollectHIO_c() {
 
 /* 801FE4EC-801FE5CC 1F8E2C 00E0+00 1/1 0/0 0/0 .text            __ct__22dMeter_drawOptionHIO_cFv */
 dMeter_drawOptionHIO_c::dMeter_drawOptionHIO_c() {
-    mSelectBarScale = 1.02f;
-    mUnselectBarScale = 0.98f;
+    mBarScale[0] = 1.02f;
+    mBarScale[1] = 0.98f;
     mArrowSize = 0.3f;
 
     mSelectNameColor.set(255, 255, 255, 255);
@@ -375,13 +374,13 @@ dMeter_drawFishingHIO_c::dMeter_drawFishingHIO_c() {
         mFishInfoPosX[i] = fishnPosX[i];
         mFishInfoPosY[i] = fishnPosY[i];
     }
-    mMaxSizeScale = 0.83f;
-    mMaxSizePosX = 5.0f;
-    mMaxSizePosY = -22.2f;
+    mScale[0] = 0.83f;
+    mPosX[0] = 5.0f;
+    mPosY[0] = -22.2f;
 
-    mCaughtNumScale = 0.83f;
-    mCaughtNumPosX = -189.5f;
-    mCaughtNumPosY = -3.95f;
+    mScale[1] = 0.83f;
+    mPosX[1] = -189.5f;
+    mPosY[1] = -3.95f;
     mCaughtNumPosX_4x3 = -188.0f;
 }
 

@@ -4,7 +4,6 @@
 //
 
 #include "SSystem/SComponent/c_m3d_g_lin.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //
@@ -29,9 +28,9 @@ void cM3dGLin::SetStartEnd(const Vec& pStart, const Vec& pEnd) {
 /* 8026F350-8026F3C0 0070+00 s=0 e=3 z=0  None .text      CalcPos__8cM3dGLinCFP3Vecf */
 void cM3dGLin::CalcPos(Vec* pOut, f32 pScale) const {
     Vec tmp;
-    PSVECSubtract(&mEnd, &mStart, &tmp);
-    PSVECScale(&tmp, &tmp, pScale);
-    PSVECAdd(&tmp, &mStart, pOut);
+    VECSubtract(&mEnd, &mStart, &tmp);
+    VECScale(&tmp, &tmp, pScale);
+    VECAdd(&tmp, &mStart, pOut);
 }
 
 /* 8026F3C0-8026F3DC 001C+00 s=0 e=1 z=0  None .text      SetEnd__8cM3dGLinFRC4cXyz */

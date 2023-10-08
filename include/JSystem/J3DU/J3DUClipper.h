@@ -1,7 +1,6 @@
 #ifndef J3DUCLIPPER_H
 #define J3DUCLIPPER_H
 
-#include "dolphin/mtx/vec.h"
 #include "dolphin/mtx/mtxvec.h"
 #include "dolphin/types.h"
 
@@ -22,15 +21,15 @@ public:
     f32 getFar() { return mFar; }
 
 private:
-    Vec _04;
-    Vec _10;
-    Vec _1C;
-    Vec _28;
-    u8 _34[0x4C - 0x34];
-    f32 mFovY;
-    f32 mAspect;
-    f32 mNear;
-    f32 mFar;
+    /* 0x04 */ Vec _04;
+    /* 0x10 */ Vec _10;
+    /* 0x1C */ Vec _1C;
+    /* 0x28 */ Vec _28;
+    /* 0x34 */ u8 _34[0x4C - 0x34];
+    /* 0x4C */ f32 mFovY;
+    /* 0x50 */ f32 mAspect;
+    /* 0x54 */ f32 mNear;
+    /* 0x58 */ f32 mFar;
 };
 
 #endif /* J3DUCLIPPER_H */

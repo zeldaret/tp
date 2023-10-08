@@ -4,7 +4,6 @@
  */
 
 #include "d/map/d_map_path_dmap.h"
-#include "MSL_C/float.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/map/d_map_path.h"
@@ -301,23 +300,21 @@ Vec dMapInfo_n::getMapRestartPos() {
 
 /* 8003F0F8-8003F19C 039A38 00A4+00 1/1 1/1 0/0 .text            getMapRestartAngleY__10dMapInfo_nFv
  */
-// small regalloc
-#ifdef NONMATCHING
 s16 dMapInfo_n::getMapRestartAngleY() {
     int angle = dComIfGs_getRestartRoomAngleY();
 
     const dTres_c::typeGroupData_c* icon_data = getConstRestartIconPointer();
     if (icon_data != NULL) {
-        int icon_angle = icon_data->getAngleY();
-        bool tmp = icon_angle > 0;
+        angle = icon_data->getAngleY();
+        bool tmp = angle > 0;
 
         if (tmp) {
-            icon_angle = -icon_angle;
+            angle = -angle;
         }
 
-        angle = icon_angle * 0x0100;
+        angle = angle * 0x0100;
         if (tmp) {
-            angle = icon_angle * -0x0100;
+            angle = -angle;
         }
     }
 
@@ -329,16 +326,6 @@ s16 dMapInfo_n::getMapRestartAngleY() {
 
     return angle;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s16 dMapInfo_n::getMapRestartAngleY() {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/getMapRestartAngleY__10dMapInfo_nFv.s"
-}
-#pragma pop
-#endif
 
 /* 8003F19C-8003F1F4 039ADC 0058+00 0/0 1/1 0/0 .text            getRoomCenter__10dMapInfo_nFiPfPf
  */
@@ -609,14 +596,79 @@ asm void dMpath_c::createWork() {
 
 /* 8003F810-8003FA40 03A150 0230+00 1/1 1/1 0/0 .text
  * setPointer__8dMpath_cFPQ211dDrawPath_c10room_classPScPSc     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMpath_c::setPointer(dDrawPath_c::room_class* param_0, s8* param_1, s8* param_2) {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/setPointer__8dMpath_cFPQ211dDrawPath_c10room_classPScPSc.s"
+int dMpath_c::setPointer(dDrawPath_c::room_class* i_room, s8* param_1, s8* param_2) {
+    int var_r6 = 0;
+    if ((u32)i_room->mpFloor >= 0x80000000) {
+        dDrawPath_c::floor_class* floor_p = i_room->mpFloor;
+        for (int i = 0; i < i_room->mFloorNum; i++) {
+            if (floor_p->mFloorNo < *param_1) {
+                *param_1 = floor_p->mFloorNo;
+            }
+
+            if (floor_p->mFloorNo > *param_2) {
+                *param_2 = floor_p->mFloorNo;
+            }
+
+            floor_p++;
+        }
+
+        dDrawPath_c::floor_class* floor_e = &i_room->mpFloor[i_room->mFloorNum - 1];
+        dDrawPath_c::group_class* group_e = &floor_e->mpGroup[floor_e->mGroupNum - 1];
+
+        if (group_e->mPolyNum != 0) {
+            dDrawPath_c::poly_class* poly_e = &group_e->mpPoly[group_e->mPolyNum - 1];
+            return (u32)(poly_e->mpData + poly_e->mDataNum) - (u32)i_room;
+        }
+
+        dDrawPath_c::line_class* line_e = &group_e->mpLine[group_e->mLineNum - 1];
+        return (u32)(line_e->mpData + line_e->mDataNum) - (u32)i_room;
+    }
+    
+    i_room->mpFloor = (dDrawPath_c::floor_class*)((u32)i_room + (u32)i_room->mpFloor);
+    i_room->mpFloatData = (f32*)((u32)i_room + (u32)i_room->mpFloatData);
+
+    dDrawPath_c::floor_class* floor_p = i_room->mpFloor;
+    int room = (int)i_room;
+    for (int i = 0; i < i_room->mFloorNum; i++) {
+        floor_p->mpGroup = (dDrawPath_c::group_class*)(room + (u32)floor_p->mpGroup);
+
+        dDrawPath_c::group_class* group_p = floor_p->mpGroup;
+        for (int j = 0; j < floor_p->mGroupNum; j++) {
+            var_r6 = (u32)group_p->mpPoly;
+            group_p->mpLine = (dDrawPath_c::line_class*)(room + (u32)group_p->mpLine);
+
+            dDrawPath_c::line_class* line_p = group_p->mpLine;
+            for (int k = 0; k < group_p->mLineNum; k++) {
+                var_r6 = (u32)(line_p->mpData + line_p->mDataNum);
+                line_p->mpData = (u16*)(room + (u32)line_p->mpData);
+                line_p++;
+            }
+
+            group_p->mpPoly = (dDrawPath_c::poly_class*)(room + (u32)group_p->mpPoly);
+            
+            dDrawPath_c::poly_class* poly_p = group_p->mpPoly;
+            for (int l = 0; l < group_p->mPolyNum; l++) {
+                var_r6 = (u32)(poly_p->mpData + poly_p->mDataNum);
+                poly_p->mpData = (u16*)(room + (u32)poly_p->mpData);
+                poly_p++;
+            }
+
+            group_p++;
+        }
+        
+        if (floor_p->mFloorNo < *param_1) {
+            *param_1 = floor_p->mFloorNo;
+        }
+
+        if (floor_p->mFloorNo > *param_2) {
+            *param_2 = floor_p->mFloorNo;
+        }
+
+        floor_p++;
+    }
+
+    return var_r6;
 }
-#pragma pop
 
 struct map_path_class {
     int field_0x0;
@@ -777,36 +829,13 @@ void renderingDAmap_c::setSingleRoomSetting() {}
 
 /* 8003FE70-8003FF14 03A7B0 00A4+00 3/0 3/1 0/0 .text            isDrawRoom__16renderingDAmap_cCFii
  */
-// regalloc. probably supposed to be a one liner or some kind of ternary
-#ifdef NONMATCHING
 bool renderingDAmap_c::isDrawRoom(int param_0, int param_1) const {
-    bool var_r31;
-    bool var_r30 = false;
-    if (hasMap() || param_0 == param_1) {
-        var_r30 = true;
-    }
-
+    bool rv = hasMap() || param_0 == param_1;
     if (isRendAllRoom()) {
-        var_r31 = false;
-        if (var_r30 || dMapInfo_n::isVisitedRoom(param_1)) {
-            var_r31 = true;
-        }
-
-        var_r30 = var_r31;
+        rv = rv || dMapInfo_n::isVisitedRoom(param_0);
     }
-
-    return var_r30;
+    return rv;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool renderingDAmap_c::isDrawRoom(int param_0, int param_1) const {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/isDrawRoom__16renderingDAmap_cCFii.s"
-}
-#pragma pop
-#endif
 
 /* 8003FF14-8003FFC4 03A854 00B0+00 3/0 3/0 0/0 .text            preDrawPath__16renderingDAmap_cFv
  */
@@ -863,8 +892,6 @@ int renderingDAmap_c::getFirstDrawRoomNo() {
 }
 
 /* 80040094-80040134 03A9D4 00A0+00 2/2 0/0 0/0 .text getNextDrawRoomNo__16renderingDAmap_cFi */
-// weird loop
-#ifdef NONMATCHING
 int renderingDAmap_c::getNextDrawRoomNo(int param_0) {
     int i = param_0 + 1;
 
@@ -872,11 +899,13 @@ int renderingDAmap_c::getNextDrawRoomNo(int param_0) {
         if (i >= 64) {
             i = -1;
         } else {
-            for (; i < 64; ++i) {
-                if (isDrawRoom(i, mRoomNoSingle)) {
-                    return i;
+            while (!isDrawRoom(i, mRoomNoSingle)) {
+                i++;
+                if (i >= 64) {
+                    i = -1;
+                    break;
                 }
-            }
+            } 
         }
     } else {
         i = -1;
@@ -884,36 +913,51 @@ int renderingDAmap_c::getNextDrawRoomNo(int param_0) {
 
     return i;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int renderingDAmap_c::getNextDrawRoomNo(int param_0) {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/getNextDrawRoomNo__16renderingDAmap_cFi.s"
-}
-#pragma pop
-#endif
 
 /* 80040134-800401E8 03AA74 00B4+00 3/0 3/0 0/0 .text getFirstRoomPointer__16renderingDAmap_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dDrawPath_c::room_class* renderingDAmap_c::getFirstRoomPointer() {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/getFirstRoomPointer__16renderingDAmap_cFv.s"
+dDrawPath_c::room_class* renderingDAmap_c::getFirstRoomPointer() {
+    dDrawPath_c::room_class* pRoomClass = NULL;
+    mRoomNo = getFirstDrawRoomNo();
+    if (mRoomNo >= 0) {
+        field_0x28 = getFirstDrawLayerNo();
+
+        pRoomClass = dMpath_c::getRoomPointer(field_0x28, mRoomNo);
+        if (pRoomClass == NULL) {
+            pRoomClass = getNextRoomPointer();
+        }
+    }
+
+    if(pRoomClass != NULL) {
+        setSingleRoomSetting();
+    }
+    return pRoomClass;
 }
-#pragma pop
 
 /* 800401E8-800402C0 03AB28 00D8+00 3/0 3/0 0/0 .text getNextRoomPointer__16renderingDAmap_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dDrawPath_c::room_class* renderingDAmap_c::getNextRoomPointer() {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/getNextRoomPointer__16renderingDAmap_cFv.s"
+dDrawPath_c::room_class* renderingDAmap_c::getNextRoomPointer() {
+    dDrawPath_c::room_class* pRoomClass = NULL;
+    bool bVar1 = false;
+    do  {
+        mRoomNo = getNextDrawRoomNo(mRoomNo);
+        if (mRoomNo < 0) {
+            field_0x28 = getNextDrawLayerNo(field_0x28);
+            if (field_0x28 < 0) {
+                bVar1 = true;
+            } else {
+                mRoomNo = getFirstDrawRoomNo();
+            }
+        }
+
+        if (!bVar1) {
+            pRoomClass = dMpath_c::getRoomPointer(field_0x28, mRoomNo);
+        }
+    } while(pRoomClass == NULL && !bVar1);
+
+    if (pRoomClass != NULL) {
+        setSingleRoomSetting();
+    } 
+    return pRoomClass;
 }
-#pragma pop
 
 /* 800402C0-800402E0 03AC00 0020+00 3/0 3/0 0/0 .text            isDrawPath__16renderingDAmap_cFv */
 bool renderingDAmap_c::isDrawPath() {
@@ -921,8 +965,8 @@ bool renderingDAmap_c::isDrawPath() {
 }
 
 /* 800402E0-800402E8 03AC20 0008+00 3/0 3/0 0/0 .text getFirstDrawLayerNo__16renderingDAmap_cFv */
-bool renderingDAmap_c::getFirstDrawLayerNo() {
-    return false;
+int renderingDAmap_c::getFirstDrawLayerNo() {
+    return 0;
 }
 
 /* 800402E8-800402FC 03AC28 0014+00 3/0 3/0 0/0 .text getNextDrawLayerNo__16renderingDAmap_cFi */
@@ -1232,8 +1276,9 @@ void renderingPlusDoorAndCursor_c::drawTreasure() {
     setTevSettingIntensityTextureToCI();
 
     for (int i = 0; i < 4; i++) {
+        dTres_c::typeGroupData_c* typeGroupData_p;
         u8 tmp = l_treasureDispList_4524[i].field_0x0;
-        dTres_c::typeGroupData_c* typeGroupData_p = getFirstData(tmp);
+        typeGroupData_p = getFirstData(tmp);
         int group_num = getIconGroupNumber(tmp);
 
         if (group_num != 0) {
@@ -1256,7 +1301,7 @@ void renderingPlusDoorAndCursor_c::drawTreasure() {
             GXSetTevColor(GX_TEVREG2, sp18);
 
             for (int j = 0; j < group_num && typeGroupData_p != NULL; j++) {
-                Vec* icon_pos = getIconPosition(typeGroupData_p);
+                const Vec* icon_pos = getIconPosition(typeGroupData_p);
 
                 if (tmp == 0) {
                     if (mRoomNoSingle != typeGroupData_p->getRoomNo()) {

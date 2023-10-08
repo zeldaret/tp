@@ -4,10 +4,8 @@
 //
 
 #include "JSystem/JParticle/JPAEmitterManager.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JParticle/JPAParticle.h"
+#include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
-#include "dol2asm.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
@@ -64,7 +62,6 @@ extern "C" void _restgpr_24();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_29();
-extern "C" extern u32 __float_epsilon;
 
 //
 // Declarations:
@@ -72,6 +69,7 @@ extern "C" extern u32 __float_epsilon;
 
 /* 8027DCA0-8027DEBC 2785E0 021C+00 0/0 1/1 0/0 .text __ct__17JPAEmitterManagerFUlUlP7JKRHeapUcUc
  */
+// template ctors are at the end of the TU for some reason
 #ifdef NONMATCHING
 JPAEmitterManager::JPAEmitterManager(u32 ptclMax, u32 emtrMax, JKRHeap* pHeap, u8 grpMax,
                                      u8 resMax) {
@@ -88,11 +86,11 @@ JPAEmitterManager::JPAEmitterManager(u32 ptclMax, u32 emtrMax, JKRHeap* pHeap, u
     for (u32 i = 0; i < mPtclMax; i++)
         mPtclPool.push_back(&ptcl[i]);
 
-    // can't get __construct_new_array to call the correct constructor within.
     mpGrpEmtr = new (pHeap, 0) JSUList<JPABaseEmitter>[mGrpMax];
     mpResMgrAry = new (pHeap, 0) JPAResourceManager*[mResMax];
-    for (u8 i = 0; i < mResMax; i++)
+    for (int i = 0; i < mResMax; i++) {
         mpResMgrAry[i] = NULL;
+    }
 
     mpWorkData = new (pHeap, 0) JPAEmitterWorkData();
 }
@@ -231,40 +229,26 @@ void JPAEmitterManager::clearResourceManager(u8 resMgrID) {
 }
 
 /* ############################################################################################## */
-/* 80455358-8045535C 003958 0004+00 1/1 0/0 0/0 .sdata2          @2632 */
-SECTION_SDATA2 static u8 lit_2632[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 8045535C-80455360 00395C 0004+00 1/1 0/0 0/0 .sdata2          @2633 */
-SECTION_SDATA2 static f32 lit_2633 = 32.0f;
-
-/* 80455360-80455364 003960 0004+00 1/1 0/0 0/0 .sdata2          @2634 */
-SECTION_SDATA2 static f32 lit_2634 = 0.5f;
-
-/* 80455364-80455368 003964 0004+00 1/1 0/0 0/0 .sdata2          @2635 */
-SECTION_SDATA2 static f32 lit_2635 = 3.0f;
-
-/* 80455368-80455370 003968 0004+04 1/1 0/0 0/0 .sdata2          @2636 */
-SECTION_SDATA2 static f32 lit_2636[1 + 1 /* padding */] = {
-    1.0f,
-    /* padding */
-    0.0f,
-};
 
 /* 8027E3F4-8027E51C 278D34 0128+00 1/1 0/0 0/0 .text            calcYBBCam__17JPAEmitterManagerFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPAEmitterManager::calcYBBCam() {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAEmitterManager/calcYBBCam__17JPAEmitterManagerFv.s"
+void JPAEmitterManager::calcYBBCam() {
+    JGeometry::TVec3<float> v;
+    v.set(0.0f, mpWorkData->mPosCamMtx[1][1], mpWorkData->mPosCamMtx[2][1]);
+    v.normalize();
+    mpWorkData->mYBBCamMtx[0][0] = 1.0f;
+    mpWorkData->mYBBCamMtx[0][1] = 0.0f;
+    mpWorkData->mYBBCamMtx[0][2] = 0.0f;
+    mpWorkData->mYBBCamMtx[0][3] = mpWorkData->mPosCamMtx[0][3];
+    mpWorkData->mYBBCamMtx[1][0] = 0.0f;
+    mpWorkData->mYBBCamMtx[1][1] = v.y;
+    mpWorkData->mYBBCamMtx[1][2] = -v.z;
+    mpWorkData->mYBBCamMtx[1][3] = mpWorkData->mPosCamMtx[1][3];
+    mpWorkData->mYBBCamMtx[2][0] = 0.0f;
+    mpWorkData->mYBBCamMtx[2][1] = v.z;
+    mpWorkData->mYBBCamMtx[2][2] = v.y;
+    mpWorkData->mYBBCamMtx[2][3] = mpWorkData->mPosCamMtx[2][3];
 }
-#pragma pop
 
 /* 8027E51C-8027E54C 278E5C 0030+00 1/1 0/0 0/0 .text            __ct__25JSUList<14JPABaseEmitter>Fv
  */

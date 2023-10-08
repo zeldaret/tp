@@ -5,7 +5,6 @@
 
 #include "TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:
@@ -15,12 +14,12 @@ static void TRKLoadContext();
 void TRKUARTInterruptHandler();
 void InitializeProgramEndTrap();
 void TRK_board_display();
-void TRKReadUARTN();
-void TRKPollUART();
+int TRKReadUARTN(void*, u32);
+int TRKPollUART();
 void EnableEXI2Interrupts();
-void TRKInitializeIntDrivenUART();
+int TRKInitializeIntDrivenUART();
 void InitMetroTRKCommTable();
-static void TRKEXICallBack();
+static void TRKEXICallBack(s16 param_0, OSContext* ctx);
 SECTION_BSS extern u8 data_8044F828[8];
 
 //
@@ -28,11 +27,9 @@ SECTION_BSS extern u8 data_8044F828[8];
 //
 
 SECTION_INIT void TRK_memcpy();
-void OSReport();
 void PPCHalt();
 void DCFlushRange();
 void ICInvalidateRange();
-void OSEnableScheduler();
 void TRKInterruptHandler();
 s32 udp_cc_post_stop();
 s32 udp_cc_pre_continue();
@@ -87,23 +84,17 @@ void TRKUARTInterruptHandler() {
 
 /* ############################################################################################## */
 /* 803A2C08-803A2C0C 02F268 0004+00 2/2 0/0 0/0 .rodata          EndofProgramInstruction$162 */
-SECTION_RODATA static u8 const EndofProgramInstruction[4] = {
-    0x00,
-    0x45,
-    0x4E,
-    0x44,
-};
+SECTION_RODATA static u32 const EndofProgramInstruction = 0x00454E44;  // \0END
 COMPILER_STRIP_GATE(0x803A2C08, &EndofProgramInstruction);
 
 /* 80371C80-80371CD8 36C5C0 0058+00 0/0 1/1 0/0 .text            InitializeProgramEndTrap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void InitializeProgramEndTrap() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue/InitializeProgramEndTrap.s"
+void InitializeProgramEndTrap() {
+    u8* endOfProgramInstructionBytes = (u8*)&EndofProgramInstruction;
+    u8* ppcHaltPtr = (u8*)PPCHalt;
+    TRK_memcpy(ppcHaltPtr + 4, endOfProgramInstructionBytes, 4);
+    ICInvalidateRange(ppcHaltPtr + 4, 4);
+    DCFlushRange(ppcHaltPtr + 4, 4);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803A2C0C-803A2C10 02F26C 0004+00 1/1 0/0 0/0 .rodata          @165 */
@@ -122,85 +113,54 @@ asm void TRK_board_display() {
 
 /* ############################################################################################## */
 /* 803D32A8-803D32D0 0303C8 0028+00 8/8 0/0 0/0 .data            gDBCommTable */
-SECTION_DATA static u8 gDBCommTable[40] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+static DBCommTable gDBCommTable = {};
 
 /* 80371D08-80371D38 36C648 0030+00 0/0 1/1 0/0 .text            UnreserveEXI2Port */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void UnreserveEXI2Port() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue/UnreserveEXI2Port.s"
+void UnreserveEXI2Port() {
+    gDBCommTable.pre_continue_func();
 }
-#pragma pop
 
 /* 80371D38-80371D68 36C678 0030+00 0/0 1/1 0/0 .text            ReserveEXI2Port */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void ReserveEXI2Port() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue/ReserveEXI2Port.s"
+void ReserveEXI2Port() {
+    gDBCommTable.post_stop_func();
 }
-#pragma pop
 
 /* 80371D68-80371DA4 36C6A8 003C+00 0/0 13/13 0/0 .text            TRKWriteUARTN */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 TRKWriteUARTN(const void*, u32) {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue/TRKWriteUARTN.s"
+s32 TRKWriteUARTN(const void* bytes, u32 length) {
+    int r3 = gDBCommTable.write_func(bytes, length);
+    return ((-r3 | r3)) >> 31;
 }
-#pragma pop
 
 /* 80371DA4-80371DE0 36C6E4 003C+00 0/0 1/1 0/0 .text            TRKReadUARTN */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void TRKReadUARTN() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue/TRKReadUARTN.s"
+int TRKReadUARTN(void* bytes, u32 limit) {
+    int r3 = gDBCommTable.read_func(bytes, limit);
+    return ((-r3 | r3)) >> 31;
 }
-#pragma pop
 
 /* 80371DE0-80371E10 36C720 0030+00 0/0 1/1 0/0 .text            TRKPollUART */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void TRKPollUART() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue/TRKPollUART.s"
+int TRKPollUART() {
+    return gDBCommTable.peek_func();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8044F820-8044F824 07C540 0004+00 2/2 0/0 0/0 .bss             None */
 SECTION_BSS static u8 data_8044F820[4];
 
 /* 80371E10-80371E58 36C750 0048+00 0/0 1/1 0/0 .text            EnableEXI2Interrupts */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void EnableEXI2Interrupts() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue/EnableEXI2Interrupts.s"
+void EnableEXI2Interrupts() {
+    if (!*data_8044F820) {
+        if (gDBCommTable.initinterrupts_func != NULL) {
+            gDBCommTable.initinterrupts_func();
+        }
+    }
 }
-#pragma pop
 
 /* 80371E58-80371EA8 36C798 0050+00 0/0 1/1 0/0 .text            TRKInitializeIntDrivenUART */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void TRKInitializeIntDrivenUART() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue/TRKInitializeIntDrivenUART.s"
+int TRKInitializeIntDrivenUART(u32 param_0, u32 param_1, u32 param_2, void* param_3) {
+    gDBCommTable.initialize_func(param_3, TRKEXICallBack);
+    gDBCommTable.open_func();
+    return 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803A2C10-803A2C28 02F270 0015+03 0/1 0/0 0/0 .rodata          @215 */
@@ -263,14 +223,10 @@ asm void InitMetroTRKCommTable() {
 #pragma pop
 
 /* 80372114-8037214C 36CA54 0038+00 1/1 0/0 0/0 .text            TRKEXICallBack */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void TRKEXICallBack() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue/TRKEXICallBack.s"
+static void TRKEXICallBack(s16 param_0, OSContext* ctx) {
+    OSEnableScheduler();
+    TRKLoadContext(ctx, 0x500);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8044F828-8044F830 07C548 0008+00 0/0 2/2 0/0 .bss             None */

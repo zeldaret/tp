@@ -7,7 +7,6 @@
 #include "JSystem/JSupport/JSupport.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "dol2asm.h"
-#include "global.h"
 
 //
 // Forward References:
@@ -342,6 +341,12 @@ void* JKRExpHeap::allocFromHead(u32 size, int align) {
             } else {
                 CMemBlock* prev = foundBlock->mPrev;
                 CMemBlock* next = foundBlock->mNext;
+                // Works but very fake match
+                /*size = (u32)foundBlock->allocFore(size, mCurrentGroupId, 0, 0, 0);
+                removeFreeBlock(foundBlock);
+                if (size) {
+                    setFreeBlock((CMemBlock*)size, prev, next);
+                }*/
                 newFreeBlock = foundBlock->allocFore(size, mCurrentGroupId, 0, 0, 0);
                 removeFreeBlock(foundBlock);
                 if (newFreeBlock) {
@@ -1078,7 +1083,7 @@ JKRExpHeap::CMemBlock* JKRExpHeap::CMemBlock::getHeapBlock(void* ptr) {
 
 /* 802D0938-802D09E0 2CB278 00A8+00 1/0 0/0 0/0 .text
  * state_register__10JKRExpHeapCFPQ27JKRHeap6TStateUl           */
-void JKRExpHeap::state_register(JKRHeap::TState* p, u32 param_1) const {
+u32 JKRExpHeap::state_register(JKRHeap::TState* p, u32 param_1) const {
     p->mId = param_1;
     if (param_1 <= 0xff) {
         p->mUsedSize = getUsedSize(param_1);
@@ -1099,6 +1104,7 @@ void JKRExpHeap::state_register(JKRHeap::TState* p, u32 param_1) const {
         }
     }
     p->mCheckCode = checkCode;
+    return checkCode;
 }
 
 /* 802D09E0-802D0A10 2CB320 0030+00 1/0 0/0 0/0 .text

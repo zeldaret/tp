@@ -3,7 +3,6 @@
 
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "dolphin/os/OSMutex.h"
-#include "dolphin/types.h"
 
 class JKRHeap;
 typedef void (*JKRErrorHandler)(void*, u32, int);
@@ -77,7 +76,7 @@ public:
     /* vt[18] */ virtual s32 do_getTotalFreeSize() = 0;
     /* vt[19] */ virtual s32 do_changeGroupID(u8 newGroupID);
     /* vt[20] */ virtual u8 do_getCurrentGroupId();
-    /* vt[21] */ virtual void state_register(JKRHeap::TState* p, u32 id) const;
+    /* vt[21] */ virtual u32 state_register(JKRHeap::TState* p, u32 id) const;
     /* vt[22] */ virtual bool state_compare(JKRHeap::TState const& r1, JKRHeap::TState const& r2) const;
     /* vt[23] */ virtual void state_dump(JKRHeap::TState const& p) const;
 

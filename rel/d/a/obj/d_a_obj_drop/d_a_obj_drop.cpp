@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_drop/d_a_obj_drop.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -47,8 +47,6 @@ struct daObjDrop_c {
     /* 80BE1BC4 */ void execute();
     /* 80BE1DCC */ void _delete();
 };
-
-struct Vec {};
 
 struct dTres_c {
     /* 8009C3CC */ void setPosition(int, u8, Vec const*, int);
@@ -98,14 +96,6 @@ struct csXyz {
     static u8 Zero[4];
 };
 
-struct cXyz {
-    /* 802670AC */ void isZero() const;
-    /* 80BE0318 */ ~cXyz();
-    /* 80BE0354 */ cXyz();
-
-    static f32 Zero[3];
-};
-
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
                             u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
@@ -118,25 +108,6 @@ struct dEvt_control_c {
 
 struct dEvent_manager_c {
     /* 80047ADC */ void endCheckOld(char const*);
-};
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80BE00EC */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
 };
 
 struct dCamera_c {
@@ -163,33 +134,12 @@ struct dBgS_Acch {
     /* 80076248 */ void Set(cXyz*, cXyz*, fopAc_ac_c*, int, dBgS_AcchCir*, cXyz*, csXyz*, csXyz*);
 };
 
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 8026F664 */ void Set(cXyz const&, f32);
-    /* 80BE005C */ ~cM3dGSph();
-};
-
-struct cM3dGLin {
-    /* 8026F2E8 */ void SetStartEnd(cXyz const&, cXyz const&);
-    /* 80BE18E0 */ ~cM3dGLin();
-};
-
 struct cM3dGCir {
     /* 8026EF18 */ ~cM3dGCir();
 };
 
-struct cM3dGAab {
-    /* 80BE00A4 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 80BE1EF0 */ ~cCcD_GStts();
 };
 
 struct cBgS_PolyInfo {
@@ -330,8 +280,6 @@ extern "C" void deleteObject__14Z2SoundObjBaseFv();
 extern "C" void __ct__16Z2SoundObjSimpleFv();
 extern "C" void __dl__FPv();
 extern "C" void PSMTXCopy();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSquareDistance();
 extern "C" void __construct_array();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_18();
@@ -357,7 +305,6 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" f32 Zero__4cXyz[3];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 g_saftyWhiteColor;
-extern "C" extern u32 __float_nan;
 extern "C" u8 Zero__5csXyz[4];
 extern "C" extern u8 struct_80BE2238[4];
 
@@ -390,13 +337,17 @@ COMPILER_STRIP_GATE(0x80BE1F94, &l_sizuku_app_effect_list);
 #pragma pop
 
 /* 80BE1F98-80BE1FD8 000010 0040+00 1/1 0/0 0/0 .rodata          l_sph_src */
-SECTION_RODATA static u8 const l_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x01, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
+const static dCcD_SrcSph l_sph_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x0, 0x0}, 0x79}}, // mObj
+        {dCcD_SE_NONE, 0x1, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x6}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 30.0f} // mSph
+    } // mSphAttr
 };
-COMPILER_STRIP_GATE(0x80BE1F98, &l_sph_src);
 
 /* 80BE1FD8-80BE1FDC 000050 0004+00 1/2 0/0 0/0 .rodata          @3825 */
 SECTION_RODATA static f32 const lit_3825 = 50.0f;
@@ -646,7 +597,8 @@ asm void daObjDrop_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_drop/d_a_obj_drop/__dt__8cM3dGSphFv.s"
 }
@@ -656,7 +608,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_drop/d_a_obj_drop/__dt__8cM3dGAabFv.s"
 }
@@ -666,7 +619,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_drop/d_a_obj_drop/__dt__10dCcD_GSttsFv.s"
 }
@@ -737,14 +691,16 @@ csXyz::csXyz() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_drop/d_a_obj_drop/__dt__4cXyzFv.s"
 }
 #pragma pop
 
 /* 80BE0354-80BE0358 0006F4 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+// cXyz::cXyz() {
+extern "C" asm void __ct__4cXyzFv() {
     /* empty function */
 }
 
@@ -1048,7 +1004,8 @@ asm void daObjDrop_c::modeWait() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGLin::~cM3dGLin() {
+// asm cM3dGLin::~cM3dGLin() {
+extern "C" asm void __dt__8cM3dGLinFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_drop/d_a_obj_drop/__dt__8cM3dGLinFv.s"
 }
@@ -1203,7 +1160,8 @@ void JPAEmitterCallBack::drawAfter(JPABaseEmitter* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_drop/d_a_obj_drop/__dt__10cCcD_GSttsFv.s"
 }

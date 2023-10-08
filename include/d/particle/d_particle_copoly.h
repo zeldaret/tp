@@ -3,10 +3,9 @@
 
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/types.h"
 
 class dBgS_Acch;
-struct dKy_tevstr_c;
+class dKy_tevstr_c;
 
 class dPaPo_c {
 public:

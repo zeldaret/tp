@@ -4,8 +4,6 @@
 //
 
 #include "JSystem/JStudio/JStudio/fvb-data-parse.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -15,15 +13,9 @@
 // Forward References:
 //
 
-extern "C" void
-getData__Q47JStudio3fvb4data17TParse_TParagraphCFPQ57JStudio3fvb4data17TParse_TParagraph5TData();
-
 //
 // External References:
 //
-
-extern "C" void
-parseVariableUInt_16_32_following__Q27JGadget6binaryFPCvPUlPUlPQ37JGadget6binary5TEBit();
 
 //
 // Declarations:
@@ -31,12 +23,15 @@ parseVariableUInt_16_32_following__Q27JGadget6binaryFPCvPUlPUlPQ37JGadget6binary
 
 /* 802850AC-80285114 27F9EC 0068+00 0/0 1/1 0/0 .text
  * getData__Q47JStudio3fvb4data17TParse_TParagraphCFPQ57JStudio3fvb4data17TParse_TParagraph5TData */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::fvb::data::TParse_TParagraph::getData(
-    JStudio::fvb::data::TParse_TParagraph::TData* param_0) const {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/fvb-data-parse/func_802850AC.s"
+void JStudio::fvb::data::TParse_TParagraph::getData(TParse_TParagraph::TData* data) const
+{
+	u16* parse = (u16*)JGadget::binary::parseVariableUInt_16_32_following(getRaw(), (u32*)data, (u32*)&data->u32Type, NULL);
+	u32 t      = (u32)data->u32Size;
+	if (!t) {
+		data->pContent = NULL;
+		data->next    = parse;
+	} else {
+		data->pContent = parse;
+		data->next    = parse + ((t + 3) >> 1 & ~1);
+	}
 }
-#pragma pop

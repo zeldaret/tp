@@ -2,7 +2,6 @@
 #define JKRMEMARCHIVE_H
 
 #include "JSystem/JKernel/JKRArchive.h"
-#include "dolphin/types.h"
 
 enum JKRMemBreakFlag {
     JKRMEMBREAK_FLAG_UNKNOWN0 = 0,
@@ -27,6 +26,7 @@ public:
 
 public:
     static u32 fetchResource_subroutine(u8*, u32, u8*, u32, JKRCompression);
+    SArcHeader* getArcHeader() { return mArcHeader; }
 
 private:
     /* 0x00 */  // vtable

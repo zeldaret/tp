@@ -2,13 +2,6 @@
 #define JASAUDIORESETER_H
 
 #include "dolphin/types.h"
-#include "dolphin/os/OSInterrupt.h"
-
-struct JASCriticalSection {
-    inline JASCriticalSection() {mInterruptState = OSDisableInterrupts();};
-    inline ~JASCriticalSection() {OSRestoreInterrupts(mInterruptState);};
-    u32 mInterruptState;
-};
 
 struct JASAudioReseter {
     /* 8029D0B4 */ JASAudioReseter();

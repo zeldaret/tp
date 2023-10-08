@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_kwheel00/d_a_obj_kwheel00.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -43,8 +43,6 @@ struct dKy_tevstr_c {};
 
 struct J3DModelData {};
 
-struct cXyz {};
-
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
     /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
@@ -77,28 +75,6 @@ struct dEvLib_callback_c {
     /* 80C4E6DC */ bool eventEnd();
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-    /* 80C4E394 */ ~dCcD_Sph();
-    /* 80C4E460 */ dCcD_Sph();
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80C4E574 */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-};
-
 struct dBgW {};
 
 struct cBgS_PolyInfo {};
@@ -116,37 +92,8 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 8026F708 */ void SetR(f32);
-    /* 80C4E4E4 */ ~cM3dGSph();
-};
-
-struct cM3dGAab {
-    /* 80C4E52C */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 80C4E63C */ ~cCcD_GStts();
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct J3DModel {};
@@ -338,11 +285,16 @@ asm void daObjKWheel00_c::CreateHeap() {
 
 /* ############################################################################################## */
 /* 80C4E878-80C4E8B8 000008 0040+00 1/1 0/0 0/0 .data            l_sphSrc */
-SECTION_DATA static u8 l_sphSrc[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x43, 0x20, 0x00, 0x00,
+static dCcD_SrcSph l_sphSrc = {
+    {
+        {0x0, {{0x0, 0x1, 0x0}, {0xd8fbfdff, 0x0}, 0x79}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x1}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 160.0f} // mSph
+    } // mSphAttr
 };
 
 /* 80C4E8B8-80C4E8C0 000048 0008+00 2/2 0/0 0/0 .data            l_se_angle */
@@ -544,7 +496,8 @@ static asm void daObjKWheel00_create1st(daObjKWheel00_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Sph::~dCcD_Sph() {
+// asm dCcD_Sph::~dCcD_Sph() {
+extern "C" asm void __dt__8dCcD_SphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kwheel00/d_a_obj_kwheel00/__dt__8dCcD_SphFv.s"
 }
@@ -554,7 +507,8 @@ asm dCcD_Sph::~dCcD_Sph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Sph::dCcD_Sph() {
+// asm dCcD_Sph::dCcD_Sph() {
+extern "C" asm void __ct__8dCcD_SphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kwheel00/d_a_obj_kwheel00/__ct__8dCcD_SphFv.s"
 }
@@ -564,7 +518,8 @@ asm dCcD_Sph::dCcD_Sph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kwheel00/d_a_obj_kwheel00/__dt__8cM3dGSphFv.s"
 }
@@ -574,7 +529,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kwheel00/d_a_obj_kwheel00/__dt__8cM3dGAabFv.s"
 }
@@ -584,7 +540,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kwheel00/d_a_obj_kwheel00/__dt__10dCcD_GSttsFv.s"
 }
@@ -627,7 +584,8 @@ static asm void daObjKWheel00_MoveBGDraw(daObjKWheel00_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kwheel00/d_a_obj_kwheel00/__dt__10cCcD_GSttsFv.s"
 }

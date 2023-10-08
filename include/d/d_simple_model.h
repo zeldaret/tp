@@ -2,7 +2,6 @@
 #define D_D_SIMPLE_MODEL_H
 
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
-#include "dolphin/types.h"
 
 class JKRSolidHeap;
 

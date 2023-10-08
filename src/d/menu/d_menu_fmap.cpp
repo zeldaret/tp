@@ -7,7 +7,6 @@
 #include "JSystem/JKernel/JKRArchive.h"
 #include "MSL_C/stdio.h"
 #include "MSL_C/string.h"
-#include "d/d_lib.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
 #include "dolphin/types.h"
@@ -428,7 +427,7 @@ extern "C" void create__10JKRExpHeapFUlP7JKRHeapb();
 extern "C" void __register_global_object();
 extern "C" void __destroy_arr();
 extern "C" void __ptmf_scall();
-extern "C" void __save_gpr();
+extern "C" void _savegpr_14();
 extern "C" void _savegpr_15();
 extern "C" void _savegpr_19();
 extern "C" void _savegpr_23();
@@ -438,7 +437,7 @@ extern "C" void _savegpr_26();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
-extern "C" void __restore_gpr();
+extern "C" void _restgpr_14();
 extern "C" void _restgpr_15();
 extern "C" void _restgpr_19();
 extern "C" void _restgpr_23();

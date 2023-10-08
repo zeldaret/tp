@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_kkanban/d_a_obj_kkanban.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -35,8 +35,6 @@ struct dKy_tevstr_c {};
 
 struct J3DModelData {};
 
-struct cXyz {};
-
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
     /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
@@ -46,25 +44,6 @@ struct dRes_info_c {};
 
 struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dCcD_SrcTri {};
-
-struct dCcD_Tri {
-    /* 80084884 */ void Set(dCcD_SrcTri const&);
-};
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
 };
 
 struct dBgW {};
@@ -85,23 +64,6 @@ struct dBgS_MoveBgActor {
     /* 800788DC */ void MoveBGDelete();
     /* 80078950 */ void MoveBGExecute();
 };
-
-struct Vec {};
-
-struct cM3dGTri {
-    /* 8026F7DC */ void setPos(Vec const*, Vec const*, Vec const*);
-    /* 80C46DF4 */ ~cM3dGTri();
-};
-
-struct cM3dGPla {
-    /* 80C46E50 */ ~cM3dGPla();
-};
-
-struct cM3dGAab {
-    /* 80C46E98 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
 
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
@@ -289,13 +251,16 @@ SECTION_DEAD static char const* const stringBase_80C46F92 = "move";
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_kkanban__stringBase0;
 
 /* 80C46F9C-80C46FF0 000004 0054+00 1/1 0/0 0/0 .data            l_tri_src */
-SECTION_DATA static u8 l_tri_src[84] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static dCcD_SrcTri l_tri_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x20, 0x11}, 0x0}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}} // mTri
+    } // mTriAttr
 };
 
 /* 80C46808-80C46928 0001E8 0120+00 1/0 0/0 0/0 .text            Create__14daObjKKanban_cFv */
@@ -498,7 +463,8 @@ static asm void daObjKKanban_create1st(daObjKKanban_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGTri::~cM3dGTri() {
+// asm cM3dGTri::~cM3dGTri() {
+extern "C" asm void __dt__8cM3dGTriFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kkanban/d_a_obj_kkanban/__dt__8cM3dGTriFv.s"
 }
@@ -508,7 +474,8 @@ asm cM3dGTri::~cM3dGTri() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGPla::~cM3dGPla() {
+// asm cM3dGPla::~cM3dGPla() {
+extern "C" asm void __dt__8cM3dGPlaFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kkanban/d_a_obj_kkanban/__dt__8cM3dGPlaFv.s"
 }
@@ -518,7 +485,8 @@ asm cM3dGPla::~cM3dGPla() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kkanban/d_a_obj_kkanban/__dt__8cM3dGAabFv.s"
 }

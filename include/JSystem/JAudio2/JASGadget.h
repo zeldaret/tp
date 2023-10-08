@@ -1,7 +1,7 @@
 #ifndef JASGADGET_H
 #define JASGADGET_H
 
-#include "dolphin/types.h"
+#include "JSystem/JUtility/JUTAssert.h"
 
 template<class T>
 class JASGlobalInstance {
@@ -10,8 +10,15 @@ public:
         sInstance = inst;
     }
 
+    JASGlobalInstance(bool param_1) {
+        if (param_1) {
+            JUT_ASSERT("JASGadget.h", 0xba, sInstance == 0);
+            sInstance = (T*)this;
+        }
+    }
+
     ~JASGlobalInstance() {
-        if (this == sInstance) {
+        if (sInstance == (T*)this) {
             sInstance = NULL;
         }
     }
@@ -19,6 +26,45 @@ public:
     static T* getInstance() { return sInstance; }
 
     static T* sInstance;
+};
+
+template<class T>
+class JASPtrTable {
+public:
+    JASPtrTable(T** param_0, u32 size) {
+        mTable = param_0;
+        mSize = size;
+        memset(mTable, 0, size * 4);
+    }
+    T* get(u32 index) {
+        if (index >= mSize) {
+            return NULL;
+        }
+        return mTable[index];
+    }
+    T* get(u32 index) const {
+        if (index >= mSize) {
+            return NULL;
+        }
+        return mTable[index];
+    }
+    void set(u32 index, T* value) {
+        JUT_ASSERT("JASGadget.h", 0xe5, index < mSize);
+        mTable[index] = value;
+    }
+
+private:
+    /* 0x00 */ T** mTable;
+    /* 0x04 */ u32 mSize;
+};
+
+template<class T, size_t N>
+class JASPtrArray : public JASPtrTable<T> {
+public:
+    JASPtrArray() : JASPtrTable(mArray, N) {}
+
+private:
+    /* 0x08 */ T* mArray[N];
 };
 
 #endif /* JASGADGET_H */

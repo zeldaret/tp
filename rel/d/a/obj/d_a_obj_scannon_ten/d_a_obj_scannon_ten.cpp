@@ -5,7 +5,6 @@
 
 #include "rel/d/a/obj/d_a_obj_scannon_ten/d_a_obj_scannon_ten.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

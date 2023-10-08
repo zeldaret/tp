@@ -61,7 +61,7 @@ J3DSys::J3DSys() {
     makeZModeTable();
 
     mFlags = 0;
-    PSMTXIdentity(mViewMtx);
+    MTXIdentity(mViewMtx);
     mDrawMode = 1;
     mMaterialMode = 0;
     mModel = NULL;
@@ -400,5 +400,4 @@ void J3DSys::reinitPixelProc() {
 
 /* ############################################################################################## */
 /* 80451598-804515A0 000A98 0004+04 0/0 1/1 0/0 .sbss            j3dDefaultViewNo */
-extern u8 j3dDefaultViewNo[4 + 4 /* padding */];
-u8 j3dDefaultViewNo[4 + 4 /* padding */];
+u32 j3dDefaultViewNo;

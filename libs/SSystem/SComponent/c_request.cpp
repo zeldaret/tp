@@ -4,17 +4,11 @@
 //
 
 #include "SSystem/SComponent/c_request.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 //
 // Forward References:
 //
-
-extern "C" void cReq_Is_Done__FP18request_base_class();
-extern "C" void cReq_Done__FP18request_base_class();
-extern "C" void cReq_Command__FP18request_base_classUc();
-extern "C" void cReq_Create__FP18request_base_classUc();
 
 //
 // External References:
@@ -25,42 +19,30 @@ extern "C" void cReq_Create__FP18request_base_classUc();
 //
 
 /* 802667D4-80266800 261114 002C+00 0/0 3/3 0/0 .text cReq_Is_Done__FP18request_base_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int cReq_Is_Done(request_base_class* param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_request/cReq_Is_Done__FP18request_base_class.s"
+int cReq_Is_Done(request_base_class* param_0) {
+    if (param_0->field_0x0.flag1 == 1) {
+        param_0->field_0x0.flag1 = 0;
+        return 1;
+    }
+    return 0;
 }
-#pragma pop
 
 /* 80266800-80266830 261140 0030+00 0/0 3/3 0/0 .text            cReq_Done__FP18request_base_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int cReq_Done(request_base_class* param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_request/cReq_Done__FP18request_base_class.s"
+void cReq_Done(request_base_class* param_0) {
+    param_0->field_0x0.flag0 = 0;
+    param_0->field_0x0.flag1 = 1;
+    param_0->field_0x0.flag2 = 0;
 }
-#pragma pop
 
 /* 80266830-80266850 261170 0020+00 0/0 2/2 0/0 .text cReq_Command__FP18request_base_classUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int cReq_Command(request_base_class* param_0, u8 param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_request/cReq_Command__FP18request_base_classUc.s"
+void cReq_Command(request_base_class* param_0, u8 param_1) {
+    cReq_Create(param_0, param_1);
 }
-#pragma pop
 
 /* 80266850-80266880 261190 0030+00 1/1 2/2 0/0 .text cReq_Create__FP18request_base_classUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int cReq_Create(request_base_class* param_0, u8 param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_request/cReq_Create__FP18request_base_classUc.s"
+void cReq_Create(request_base_class* param_0, u8 param_1) {
+    param_0->field_0x0.flag0 = 1;
+    param_0->field_0x0.flag1 = 0;
+    param_0->field_0x0.flag2 = param_1;
 }
-#pragma pop

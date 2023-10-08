@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/npc/d_a_npc_blue_ns/d_a_npc_blue_ns.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -24,8 +24,6 @@ struct mDoExt_McaMorfCallBack1_c {};
 struct J3DAnmTransform {};
 
 struct J3DModelData {};
-
-struct Vec {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
@@ -81,12 +79,6 @@ struct daNpcF_c {
 struct csXyz {
     /* 8096C0E4 */ ~csXyz();
     /* 8096C120 */ csXyz();
-};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 8096C124 */ ~cXyz();
-    /* 8096C160 */ cXyz();
 };
 
 struct daNpcF_Lookat_c {
@@ -228,29 +220,6 @@ struct dDlst_shadowControl_c {
     static u8 mSimpleTexObj[32];
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 8096C610 */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-    /* 800844F8 */ void GetTgHitObj();
-    /* 80084548 */ void GetTgHitGObj();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
 struct dBgS_PolyPassChk {
     /* 80078E68 */ void SetObj();
 };
@@ -284,29 +253,12 @@ struct dBgS_Acch {
     /* 80076AAC */ void CrrPos(dBgS&);
 };
 
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8026F1F8 */ void SetH(f32);
-    /* 8026F200 */ void SetR(f32);
-    /* 80968AF0 */ ~cM3dGCyl();
-};
-
 struct cM3dGCir {
     /* 8026EF18 */ ~cM3dGCir();
 };
 
-struct cM3dGAab {
-    /* 80968B38 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 8096C748 */ ~cCcD_GStts();
 };
 
 struct cBgS_PolyInfo {
@@ -535,7 +487,6 @@ extern "C" void __dl__FPv();
 extern "C" void init__12J3DFrameCtrlFs();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECSquareMag();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void __ptmf_test();
@@ -561,7 +512,6 @@ extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u32 __float_nan;
 extern "C" void __register_global_object();
 
 //
@@ -906,7 +856,8 @@ asm daNpcBlueNS_c::daNpcBlueNS_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_blue_ns/d_a_npc_blue_ns/__dt__8cM3dGCylFv.s"
 }
@@ -916,7 +867,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_blue_ns/d_a_npc_blue_ns/__dt__8cM3dGAabFv.s"
 }
@@ -934,14 +886,19 @@ asm daNpcBlueNS_c::~daNpcBlueNS_c() {
 
 /* ############################################################################################## */
 /* 8096C920-8096C964 000000 0044+00 8/8 0/0 0/0 .rodata          l_cyl_src */
-SECTION_RODATA static u8 const l_cyl_src[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x75,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+const static dCcD_SrcCyl l_cyl_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0xd8fbfdff, 0x3}, 0x75}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x8}, // mGObjAt
+        {dCcD_SE_NONE, 0x8, 0x0, 0x0, 0x0}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        0.0f, // mRadius
+        0.0f // mHeight
+    } // mCyl
 };
-COMPILER_STRIP_GATE(0x8096C920, &l_cyl_src);
 
 /* 8096C964-8096C9D4 000044 0070+00 3/9 0/0 0/0 .rodata          m__19daNpcBlueNS_Param_c */
 SECTION_RODATA u8 const daNpcBlueNS_Param_c::m[112] = {
@@ -2036,14 +1993,16 @@ csXyz::csXyz() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_blue_ns/d_a_npc_blue_ns/__dt__4cXyzFv.s"
 }
 #pragma pop
 
 /* 8096C160-8096C164 0038E0 0004+00 2/2 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+// cXyz::cXyz() {
+extern "C" asm void __ct__4cXyzFv() {
     /* empty function */
 }
 
@@ -2081,7 +2040,8 @@ asm dBgS_AcchCir::~dBgS_AcchCir() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_blue_ns/d_a_npc_blue_ns/__dt__10dCcD_GSttsFv.s"
 }
@@ -2141,7 +2101,8 @@ void daNpcF_c::drawOtherMdls() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_blue_ns/d_a_npc_blue_ns/__dt__10cCcD_GSttsFv.s"
 }

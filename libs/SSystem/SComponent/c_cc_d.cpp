@@ -4,8 +4,6 @@
 //
 
 #include "SSystem/SComponent/c_cc_d.h"
-#include "SSystem/SComponent/c_m3d.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 /* 80430CB4-80430CC0 05D9D4 000C+00 1/1 2/2 0/0 .bss             m_virtual_center__14cCcD_ShapeAttr
@@ -257,17 +255,17 @@ void cCcD_ObjCommonBase::ct() {
 void cCcD_ObjHitInf::Set(cCcD_SrcObjHitInf const& src) {
     mObjAt.Set(src.mObjAt);
     mObjTg.Set(src.mObjTg);
-    mObjCo.SetSPrm(src.mSPrm);
+    mObjCo.Set(src.mObjCo);
 }
 
 /* 80263A10-80263A1C 25E350 000C+00 0/0 1/1 0/0 .text            ct__8cCcD_ObjFv */
 void cCcD_Obj::ct() {
-    field_0x40 = 0;
+    mFlags = 0;
 }
 
 /* 80263A1C-80263A48 25E35C 002C+00 0/0 1/1 0/0 .text            Set__8cCcD_ObjFRC11cCcD_SrcObj */
 void cCcD_Obj::Set(cCcD_SrcObj const& src) {
-    field_0x40 = src.field_0x0;
+    mFlags = src.mFlags;
     cCcD_ObjHitInf::Set(src.mSrcObjHitInf);
 }
 
@@ -345,7 +343,7 @@ bool cCcD_TriAttr::GetNVec(cXyz const& param_0, cXyz* pOut) const {
         *pOut = mNormal;
     } else {
         *pOut = mNormal;
-        PSVECScale(pOut, pOut, -1.0f);
+        VECScale(pOut, pOut, -1.0f);
     }
     return true;
 }
@@ -438,32 +436,32 @@ void cCcD_CpsAttr::CalcAabBox() {
 bool cCcD_CpsAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
     Vec diff;
     const cXyz& endP = GetEndP();
-    PSVECSubtract(&endP, &mStart, &diff);
+    VECSubtract(&endP, &mStart, &diff);
 
-    f32 diffLen = PSVECDotProduct(&diff, &diff);
+    f32 diffLen = VECDotProduct(&diff, &diff);
     if (cM3d_IsZero(diffLen)) {
         return false;
     } else {
         Vec vec1, vec2;
-        PSVECSubtract(&param_0, &mStart, &vec1);
-        f32 vec1Len = PSVECDotProduct(&vec1, &diff) / diffLen;
+        VECSubtract(&param_0, &mStart, &vec1);
+        f32 vec1Len = VECDotProduct(&vec1, &diff) / diffLen;
         if (vec1Len < 0.0f) {
             vec2 = mStart;
         } else {
             if (vec1Len > 1.0f) {
                 vec2 = endP;
             } else {
-                PSVECScale(&diff, &diff, vec1Len);
-                PSVECAdd(&diff, &mStart, &vec2);
+                VECScale(&diff, &diff, vec1Len);
+                VECAdd(&diff, &mStart, &vec2);
             }
         }
 
-        PSVECSubtract(&param_0, &vec2, param_1);
-        if (cM3d_IsZero(PSVECMag(param_1))) {
+        VECSubtract(&param_0, &vec2, param_1);
+        if (cM3d_IsZero(VECMag(param_1))) {
             param_1->set(0.0f, 0.0f, 0.0f);
             return false;
         } else {
-            PSVECNormalize(param_1, param_1);
+            VECNormalize(param_1, param_1);
             return true;
         }
     }
@@ -571,12 +569,12 @@ bool cCcD_CylAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
         }
     }
 
-    PSVECSubtract(&param_0, &vec, param_1);
-    if (cM3d_IsZero(PSVECMag(param_1))) {
+    VECSubtract(&param_0, &vec, param_1);
+    if (cM3d_IsZero(VECMag(param_1))) {
         param_1->set(0.0f, 0.0f, 0.0f);
         return false;
     } else {
-        PSVECNormalize(param_1, param_1);
+        VECNormalize(param_1, param_1);
         return true;
     }
     return false;
@@ -694,13 +692,13 @@ bool cCcD_SphAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
     param_1->y = param_0.y - mCenter.y;
     param_1->z = param_0.z - mCenter.z;
 
-    if (cM3d_IsZero(PSVECMag(param_1))) {
+    if (cM3d_IsZero(VECMag(param_1))) {
         param_1->x = 0.0f;
         param_1->y = 0.0f;
         param_1->z = 0.0f;
         return false;
     } else {
-        PSVECNormalize(param_1, param_1);
+        VECNormalize(param_1, param_1);
         return true;
     }
 }
@@ -725,7 +723,7 @@ void cCcD_ObjAt::SetHit(cCcD_Obj* pObj) {
 /* 8026484C-80264868 25F18C 001C+00 1/1 0/0 0/0 .text            Set__10cCcD_ObjAtFRC13cCcD_SrcObjAt
  */
 void cCcD_ObjAt::Set(cCcD_SrcObjAt const& src) {
-    mSPrm = src.mSPrm;
+    cCcD_ObjCommonBase::Set(src.mBase);
     mType = src.mType;
     mAtp = src.mAtp;
 }
@@ -739,7 +737,7 @@ void cCcD_ObjAt::ClrHit() {
 /* 80264880-80264894 25F1C0 0014+00 1/1 0/0 0/0 .text            Set__10cCcD_ObjTgFRC13cCcD_SrcObjTg
  */
 void cCcD_ObjTg::Set(cCcD_SrcObjTg const& src) {
-    mSPrm = src.mSPrm;
+    cCcD_ObjCommonBase::Set(src.mBase);
     mType = src.mType;
 }
 

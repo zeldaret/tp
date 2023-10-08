@@ -5,7 +5,6 @@
 
 #include "JSystem/JStudio/JStudio_JAudio2/object-sound.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "JSystem/JStudio/JStudio_JAudio2/control.h"
 
 //
@@ -86,7 +85,6 @@ extern "C" u8 const sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound[
 extern "C" extern void* __vt__Q27JStudio14TAdaptor_sound[20];
 extern "C" extern void* __vt__Q27JStudio8TAdaptor[8];
 extern "C" extern void* __vt__Q37JStudio14TVariableValue7TOutput[4];
-extern "C" extern u32 __float_nan;
 extern "C" u8 soOutput_none___Q27JStudio14TVariableValue[4 + 4 /* padding */];
 extern "C" extern u8 data_804511F8[8];
 

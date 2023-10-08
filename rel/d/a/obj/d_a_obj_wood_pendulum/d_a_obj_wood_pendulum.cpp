@@ -4,16 +4,14 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_wood_pendulum/d_a_obj_wood_pendulum.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
 //
 
 struct request_of_phase_process_class {};
-
-struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -50,38 +48,6 @@ struct dRes_info_c {};
 struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
 };
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-    /* 80D39798 */ dCcD_Sph();
-    /* 80D3981C */ ~dCcD_Sph();
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-};
-
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 80D398E8 */ ~cM3dGSph();
-};
-
-struct cM3dGAab {
-    /* 80D39930 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
 
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
@@ -193,24 +159,32 @@ asm void daObjWPndlm_c::setBaseMtx() {
 
 /* ############################################################################################## */
 /* 80D39C88-80D39CC8 000000 0040+00 2/2 0/0 0/0 .rodata          l_sph_src */
-SECTION_RODATA static u8 const l_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
-    0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00,
+const static dCcD_SrcSph l_sph_src = {
+    {
+        {0x0, {{AT_TYPE_CSTATUE_SWING, 0x0, 0xd}, {0x0, 0x10}, 0x0}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x1, 0x0, 0x8}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 150.0f} // mSph
+    } // mSphAttr
 };
-COMPILER_STRIP_GATE(0x80D39C88, &l_sph_src);
 
 /* 80D39CC8-80D39D08 000040 0040+00 0/1 0/0 0/0 .rodata          l_sph_src2 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const l_sph_src2[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0C,
-    0xD8, 0xFA, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
-    0x00, 0x00, 0x00, 0x08, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0xF0, 0x00, 0x00,
+const static dCcD_SrcSph l_sph_src2 = {
+    {
+        {0x0, {{0x0, 0x0, 0xc}, {0xd8fafdff, 0x11}, 0x0}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x1, 0x0, 0x8}, // mGObjAt
+        {dCcD_SE_NONE, 0x2, 0x0, 0x0, 0x3}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 120.0f} // mSph
+    } // mSphAttr
 };
-COMPILER_STRIP_GATE(0x80D39CC8, &l_sph_src2);
 #pragma pop
 
 /* 80D39D08-80D39D10 000080 0004+04 0/1 0/0 0/0 .rodata          @3672 */
@@ -314,7 +288,8 @@ asm void daObjWPndlm_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Sph::dCcD_Sph() {
+// asm dCcD_Sph::dCcD_Sph() {
+extern "C" asm void __ct__8dCcD_SphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wood_pendulum/d_a_obj_wood_pendulum/__ct__8dCcD_SphFv.s"
 }
@@ -324,7 +299,8 @@ asm dCcD_Sph::dCcD_Sph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Sph::~dCcD_Sph() {
+// asm dCcD_Sph::~dCcD_Sph() {
+extern "C" asm void __dt__8dCcD_SphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wood_pendulum/d_a_obj_wood_pendulum/__dt__8dCcD_SphFv.s"
 }
@@ -334,7 +310,8 @@ asm dCcD_Sph::~dCcD_Sph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wood_pendulum/d_a_obj_wood_pendulum/__dt__8cM3dGSphFv.s"
 }
@@ -344,7 +321,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wood_pendulum/d_a_obj_wood_pendulum/__dt__8cM3dGAabFv.s"
 }

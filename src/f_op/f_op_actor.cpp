@@ -10,7 +10,6 @@
 #include "d/com/d_com_static.h"
 #include "d/d_demo.h"
 #include "d/s/d_s_play.h"
-#include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_actor_tag.h"
 #include "f_op/f_op_draw_tag.h"
 #include "f_pc/f_pc_manager.h"
@@ -170,11 +169,11 @@ static int fopAc_Create(void* i_this) {
         _this->mAttentionInfo.field_0x0[1] = 2;
         _this->mAttentionInfo.field_0x0[2] = 3;
         _this->mAttentionInfo.field_0x0[3] = 5;
-        _this->mAttentionInfo.field_0x4[0] = 6;
-        _this->mAttentionInfo.field_0x4[3] = 14;
-        _this->mAttentionInfo.field_0x4[1] = 15;
-        _this->mAttentionInfo.field_0x4[2] = 15;
-        _this->mAttentionInfo.field_0x8[0] = 51;
+        _this->mAttentionInfo.field_0x0[4] = 6;
+        _this->mAttentionInfo.field_0x0[7] = 14;
+        _this->mAttentionInfo.field_0x0[5] = 15;
+        _this->mAttentionInfo.field_0x0[6] = 15;
+        _this->mAttentionInfo.field_0x0[8] = 51;
         _this->mAttentionInfo.mPosition = _this->orig.pos;
         _this->mAttentionInfo.field_0xa = 30;
         dKy_tevstr_init(&_this->mTevStr, _this->orig.roomNo, -1);

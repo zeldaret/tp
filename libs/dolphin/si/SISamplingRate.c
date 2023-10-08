@@ -4,9 +4,7 @@
 //
 
 #include "dolphin/si/SISamplingRate.h"
-#include "dol2asm.h"
 #include "dolphin/os/OS.h"
-#include "dolphin/si/SIBios.h"
 #include "dolphin/vi/vi.h"
 
 //

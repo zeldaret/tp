@@ -31,14 +31,11 @@ int daObjSmoke_c::Create() {
 
 /* 80CDCF9C-80CDD004 00019C 0068+00 1/1 0/0 0/0 .text            create__12daObjSmoke_cFv */
 int daObjSmoke_c::create() {
-        if (!fopAcM_CheckCondition(this, 8)) {
-            new (this) daObjSmoke_c();
-            fopAcM_OnCondition(this, 8);
-        }
-        if (Create() == 0) {
-            return cPhs_ERROR_e;
-        }
-        return cPhs_COMPLEATE_e; 
+    fopAcM_SetupActor(this, daObjSmoke_c);
+    if (Create() == 0) {
+        return cPhs_ERROR_e;
+    }
+    return cPhs_COMPLEATE_e; 
 }
 
 /* 80CDD004-80CDD0B8 000204 00B4+00 1/1 0/0 0/0 .text            execute__12daObjSmoke_cFv */

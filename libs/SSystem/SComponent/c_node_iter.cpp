@@ -5,7 +5,6 @@
 
 #include "SSystem/SComponent/c_node_iter.h"
 #include "SSystem/SComponent/c_node.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 /* 80266324-802663B4 0090+00 s=0 e=1 z=0  None .text

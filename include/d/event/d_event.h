@@ -2,7 +2,6 @@
 #define D_EVENT_D_EVENT_H
 
 #include "d/a/d_a_itembase.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 struct dStage_MapEvent_dt_c;

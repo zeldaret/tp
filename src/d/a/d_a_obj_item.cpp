@@ -4,14 +4,11 @@
 //
 
 #include "d/a/d_a_obj_item.h"
-#include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_item.h"
 #include "d/d_item_data.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-#include "f_op/f_op_actor_mng.h"
 #include "global.h"
 #include "m_Do/m_Do_mtx.h"
 
@@ -742,10 +739,7 @@ SECTION_DATA extern void* __vt__8daItem_c[17 + 36 /* padding */] = {
 // matches, but issues with vtable
 #ifdef NONMATCHING
 int daItem_c::_daItem_create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daItem_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daItem_c);
 
     if (!field_0x95d) {
         field_0x92c = orig.angle.x;

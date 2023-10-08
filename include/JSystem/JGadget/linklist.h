@@ -10,6 +10,8 @@ struct TLinkListNode {
         mPrev = NULL;
     }
 
+    TLinkListNode* getNext() { return mNext; }
+
     /* 0x0 */ TLinkListNode* mNext;
     /* 0x4 */ TLinkListNode* mPrev;
 };  // Size: 0x8
@@ -18,6 +20,10 @@ struct TNodeLinkList {
     struct iterator {
         iterator(TLinkListNode* pNode) { node = pNode; }
         iterator(const iterator& iter) { *this = iter; }
+        iterator& operator++() {
+            node = node->getNext();
+            return *this; 
+        }
 
         TLinkListNode* node;
     };

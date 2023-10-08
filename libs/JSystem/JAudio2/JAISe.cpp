@@ -4,289 +4,175 @@
 //
 
 #include "JSystem/JAudio2/JAISe.h"
-#include "dol2asm.h"
+#include "JSystem/JAudio2/JAIAudience.h"
+#include "JSystem/JAudio2/JAISeMgr.h"
+#include "JSystem/JSupport/JSUList.h"
 #include "dolphin/types.h"
 
 //
 // Types:
 //
 
-struct JSUPtrLink {
-    /* 802DBDFC */ JSUPtrLink(void*);
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
-struct JASSoundParams {};
-
-struct JASTrack {
-    /* 80291228 */ JASTrack();
-    /* 80291444 */ void setChannelMgrCount(u32);
-    /* 802915D4 */ void init();
-    /* 802919F4 */ void assignExtBuffer(u32, JASSoundParams*);
-    /* 80291A08 */ void setSeqData(void*, u32);
-    /* 80291A28 */ void startSeq();
-    /* 80291A78 */ void stopSeq();
-    /* 802927A0 */ void mute(bool);
-    /* 80292A3C */ void pause(bool);
-    /* 80292B8C */ void setTempoRate(f32);
-};
-
-template <typename A0>
-struct JAISoundStrategyMgr {};
-/* JAISoundStrategyMgr<JAISe> */
-struct JAISoundStrategyMgr__template0 {};
-
-struct JAISoundParams {
-    /* 802A2280 */ void mixOutAll(JASSoundParams const&, JASSoundParams*, f32);
-};
-
-struct JAISoundID {};
-
-struct JAISoundActivity {};
-
-struct JAIAudience {};
-
-struct JAISound {
-    /* 802A22F8 */ JAISound();
-    /* 802A2328 */ void start_JAISound_(JAISoundID, JGeometry::TVec3<f32> const*, JAIAudience*);
-    /* 802A25E0 */ bool asSeq();
-    /* 802A25E8 */ bool asStream();
-    /* 802A25F0 */ void die_JAISound_();
-    /* 802A266C */ void increasePrepareCount_JAISound_();
-    /* 802A26B8 */ void calc_JAISound_();
-    /* 802A29DC */ void initTrack_JAISound_(JASTrack*);
-};
-
-struct JAISeMgr {};
-
-struct JAISe {
-    /* 8029F03C */ JAISe(JAISeMgr*, JAISoundStrategyMgr<JAISe>*, u32);
-    /* 8029F0F8 */ void mixOut_(JASSoundParams const&);
-    /* 8029F214 */ void stopTrack_();
-    /* 8029F250 */ void startTrack_(JASSoundParams const&);
-    /* 8029F304 */ void JAISeCategoryMgr_mixOut_(bool, JASSoundParams const&, JAISoundActivity);
-    /* 8029F4CC */ void JAISeCategoryMgr_calc_();
-    /* 8029F5C8 */ void JAISound_tryDie_();
-    /* 8029F650 */ void JAISeMgr_startID_(JAISoundID, JGeometry::TVec3<f32> const*, JAIAudience*);
-    /* 8029F6D8 */ bool getNumChild() const;
-    /* 8029F6E0 */ bool getChild(int);
-    /* 8029F6E8 */ void releaseChild(int);
-    /* 8029F6EC */ void prepare_getSeqData_();
-    /* 8029F78C */ void prepare_();
-    /* 8029F84C */ void getTrack();
-    /* 8029F854 */ void getChildTrack(int);
-    /* 8029F864 */ void asSe();
-    /* 8029F868 */ void getTempoMgr();
-};
-
 //
 // Forward References:
 //
-
-extern "C" void func_8029F03C();
-extern "C" void mixOut___5JAISeFRC14JASSoundParams();
-extern "C" void stopTrack___5JAISeFv();
-extern "C" void startTrack___5JAISeFRC14JASSoundParams();
-extern "C" void JAISeCategoryMgr_mixOut___5JAISeFbRC14JASSoundParams16JAISoundActivity();
-extern "C" void JAISeCategoryMgr_calc___5JAISeFv();
-extern "C" void JAISound_tryDie___5JAISeFv();
-extern "C" void func_8029F650();
-extern "C" bool getNumChild__5JAISeCFv();
-extern "C" bool getChild__5JAISeFi();
-extern "C" void releaseChild__5JAISeFi();
-extern "C" void prepare_getSeqData___5JAISeFv();
-extern "C" void prepare___5JAISeFv();
-extern "C" void getTrack__5JAISeFv();
-extern "C" void getChildTrack__5JAISeFi();
-extern "C" void asSe__5JAISeFv();
-extern "C" void getTempoMgr__5JAISeFv();
-extern "C" static void func_8029F870();
-extern "C" static void func_8029F878();
-extern "C" static void func_8029F880();
-extern "C" static void func_8029F888();
-extern "C" static void func_8029F890();
-extern "C" static void func_8029F898();
-extern "C" static void func_8029F8A0();
-extern "C" static void func_8029F8A8();
 
 //
 // External References:
 //
 
-extern "C" void __ct__8JASTrackFv();
-extern "C" void setChannelMgrCount__8JASTrackFUl();
-extern "C" void init__8JASTrackFv();
-extern "C" void assignExtBuffer__8JASTrackFUlP14JASSoundParams();
-extern "C" void setSeqData__8JASTrackFPvUl();
-extern "C" void startSeq__8JASTrackFv();
-extern "C" void stopSeq__8JASTrackFv();
-extern "C" void mute__8JASTrackFb();
-extern "C" void pause__8JASTrackFb();
-extern "C" void setTempoRate__8JASTrackFf();
-extern "C" void mixOutAll__14JAISoundParamsFRC14JASSoundParamsP14JASSoundParamsf();
-extern "C" void __ct__8JAISoundFv();
-extern "C" void func_802A2328();
-extern "C" bool asSeq__8JAISoundFv();
-extern "C" bool asStream__8JAISoundFv();
-extern "C" void die_JAISound___8JAISoundFv();
-extern "C" void increasePrepareCount_JAISound___8JAISoundFv();
-extern "C" void calc_JAISound___8JAISoundFv();
-extern "C" void initTrack_JAISound___8JAISoundFP8JASTrack();
-extern "C" void __ct__10JSUPtrLinkFPv();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803C9858-803C98B0 026978 0058+00 1/1 1/1 0/0 .data            __vt__5JAISe */
-SECTION_DATA extern void* __vt__5JAISe[22] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_8029F8A8,
-    (void*)func_8029F8A0,
-    (void*)func_8029F898,
-    (void*)func_8029F890,
-    (void*)asSeq__8JAISoundFv,
-    (void*)asStream__8JAISoundFv,
-    (void*)func_8029F888,
-    (void*)func_8029F880,
-    (void*)func_8029F878,
-    (void*)func_8029F870,
-    (void*)getNumChild__5JAISeCFv,
-    (void*)getChild__5JAISeFi,
-    (void*)releaseChild__5JAISeFi,
-    (void*)getTrack__5JAISeFv,
-    (void*)getChildTrack__5JAISeFi,
-    (void*)asSe__5JAISeFv,
-    (void*)getTempoMgr__5JAISeFv,
-    (void*)JAISound_tryDie___5JAISeFv,
-};
-
-/* 80455778-8045577C 003D78 0004+00 2/2 0/0 0/0 .sdata2          @626 */
-SECTION_SDATA2 static f32 lit_626 = 1.0f;
-
-/* 8045577C-80455780 003D7C 0004+00 2/2 0/0 0/0 .sdata2          @627 */
-SECTION_SDATA2 static u8 lit_627[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80455780-80455784 003D80 0004+00 2/2 0/0 0/0 .sdata2          @628 */
-SECTION_SDATA2 static f32 lit_628 = 0.5f;
-
 /* 8029F03C-8029F0F8 29997C 00BC+00 0/0 1/1 0/0 .text
  * __ct__5JAISeFP8JAISeMgrP27JAISoundStrategyMgr<5JAISe>Ul      */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JAISe::JAISe(JAISeMgr* param_0, JAISoundStrategyMgr<JAISe>* param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISe/func_8029F03C.s"
+JAISe::JAISe(JAISeMgr* param_0, JAISoundStrategyMgr<JAISe>* param_1, u32 param_2) : JSULink<JAISe>(this) {
+    inner_.mSoundStrategyMgr = param_1;
+    inner_.seMgr = param_0;
+    inner_.mProperPriority = param_2;
 }
-#pragma pop
+
 
 /* 8029F0F8-8029F214 299A38 011C+00 1/1 0/0 0/0 .text            mixOut___5JAISeFRC14JASSoundParams
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAISe::mixOut_(JASSoundParams const& param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISe/mixOut___5JAISeFRC14JASSoundParams.s"
+*/
+void JAISe::mixOut_(JASSoundParams const& param_0) {
+    inner_.track.setTempoRate(inner_.mTempoMgr.getTempo());
+    JASSoundParams stackParams;
+    params.mixOutAll(param_0, &stackParams, fader.getIntensity());
+    if (inner_.field_0x278) {
+        inner_.field_0x278->virtual4(this, stackParams);
+    }
+    if (audible_) {
+        int maxChannels = audience_->getMaxChannels();
+        for (int i = 0; i < maxChannels; i++) {
+            audience_->mixChannelOut(stackParams, audible_, i);
+        }
+    } else {
+        inner_.mSoundParams = stackParams;
+    }
 }
-#pragma pop
 
 /* 8029F214-8029F250 299B54 003C+00 1/1 0/0 0/0 .text            stopTrack___5JAISeFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAISe::stopTrack_() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISe/stopTrack___5JAISeFv.s"
+void JAISe::stopTrack_() {
+    switch (inner_.track.getStatus()) {
+    case 0:
+        break;
+    case 1:
+        inner_.track.stopSeq();
+        break;
+    case 2:
+        break;
+    }
 }
-#pragma pop
 
 /* 8029F250-8029F304 299B90 00B4+00 1/1 0/0 0/0 .text startTrack___5JAISeFRC14JASSoundParams */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAISe::startTrack_(JASSoundParams const& param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISe/startTrack___5JAISeFRC14JASSoundParams.s"
+void JAISe::startTrack_(JASSoundParams const& param_0) {
+    if (inner_.track.getStatus() == 2) {
+        inner_.track.init();
+    }
+    if (audible_) {
+        initTrack_JAISound_(&inner_.track);
+    } else {
+        params.mixOutAll(param_0, &inner_.mSoundParams, fader.getIntensity());
+        inner_.track.setChannelMgrCount(1);
+        inner_.track.assignExtBuffer(0, &inner_.mSoundParams);
+    }
+    inner_.field_0x26c = 1;
+    inner_.track.setSeqData(inner_.mSeqData.field_0x0, inner_.mSeqData.field_0x4);
+    inner_.track.startSeq();
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80455784-80455788 003D84 0004+00 2/2 0/0 0/0 .sdata2          @736 */
-SECTION_SDATA2 static f32 lit_736 = 1.0f / 100.0f;
 
 /* 8029F304-8029F4CC 299C44 01C8+00 0/0 1/1 0/0 .text
  * JAISeCategoryMgr_mixOut___5JAISeFbRC14JASSoundParams16JAISoundActivity */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAISe::JAISeCategoryMgr_mixOut_(bool param_0, JASSoundParams const& param_1,
-                                         JAISoundActivity param_2) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISe/JAISeCategoryMgr_mixOut___5JAISeFbRC14JASSoundParams16JAISoundActivity.s"
+void JAISe::JAISeCategoryMgr_mixOut_(bool param_0, JASSoundParams const& param_1, JAISoundActivity param_2) {
+    mixOut_(param_1);
+    if (isStopping()) {
+        stopTrack_();
+    } else if (param_0) {
+        if (status_.isPlaying()) {
+            if (inner_.field_0x26c) {
+                switch (inner_.track.getStatus()) {
+                case 2:
+                    if (status_.field_0x1.flags.flag1) {
+                        startTrack_(param_1);
+                    } else {
+                        stop_JAISound_();
+                    }
+                    break;
+                case 1:
+                    inner_.track.pause(status_.isPaused() || param_2.field_0x0.flags.flag2);
+                    inner_.track.mute(status_.isMute() || param_2.field_0x0.flags.flag1);
+                }
+            } else {
+                startTrack_(param_1);
+            }
+        }
+    } else if (status_.field_0x1.flags.flag1) {
+        if (status_.field_0x1.flags.flag3) {
+            inner_.track.pause(true);
+        } else {
+            stopTrack_();
+        }
+    } else {
+        stopTrack_();
+        stop_JAISound_();
+    }
 }
-#pragma pop
 
 /* 8029F4CC-8029F5C8 299E0C 00FC+00 0/0 1/1 0/0 .text            JAISeCategoryMgr_calc___5JAISeFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAISe::JAISeCategoryMgr_calc_() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISe/JAISeCategoryMgr_calc___5JAISeFv.s"
+void JAISe::JAISeCategoryMgr_calc_() {
+    prepare_();
+    if (calc_JAISound_()) {
+        inner_.mTempoMgr.calc();
+        if (inner_.field_0x278) {
+            inner_.field_0x278->virtual3(this);
+        }
+    }
+    if (isStopping() || mPriority == -1) {
+        inner_.mPriority = -1;
+    } else {
+        inner_.mPriority = inner_.mProperPriority + mPriority;
+    }
 }
-#pragma pop
 
 /* 8029F5C8-8029F650 299F08 0088+00 2/1 0/0 0/0 .text            JAISound_tryDie___5JAISeFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAISe::JAISound_tryDie_() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISe/JAISound_tryDie___5JAISeFv.s"
+bool JAISe::JAISound_tryDie_() {
+    switch (inner_.track.getStatus()) {
+    case 0:
+    case 2:
+        if (inner_.field_0x278) {
+            inner_.mSoundStrategyMgr->virtual4(inner_.field_0x278);
+            inner_.field_0x278 = NULL;
+        }
+        die_JAISound_();
+        return true;
+    case 1:
+        break;
+    }
+    return false;
 }
-#pragma pop
 
 /* 8029F650-8029F6D8 299F90 0088+00 0/0 1/1 0/0 .text
  * JAISeMgr_startID___5JAISeF10JAISoundIDPCQ29JGeometry8TVec3<f>P11JAIAudience */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAISe::JAISeMgr_startID_(JAISoundID param_0, JGeometry::TVec3<f32> const* param_1,
-                                  JAIAudience* param_2) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISe/func_8029F650.s"
+void JAISe::JAISeMgr_startID_(JAISoundID param_0, JGeometry::TVec3<f32> const* param_1, JAIAudience* param_2) {
+    start_JAISound_(param_0, param_1, param_2);
+    inner_.field_0x26c = 0;
+    if (inner_.mSoundStrategyMgr) {
+        inner_.field_0x278 = inner_.mSoundStrategyMgr->virtual3(param_0);
+    } else {
+        inner_.field_0x278 = NULL;
+    }
 }
-#pragma pop
 
 /* 8029F6D8-8029F6E0 29A018 0008+00 2/1 0/0 0/0 .text            getNumChild__5JAISeCFv */
-bool JAISe::getNumChild() const {
-    return false;
+s32 JAISe::getNumChild() const {
+    return 0;
 }
 
 /* 8029F6E0-8029F6E8 29A020 0008+00 2/1 0/0 0/0 .text            getChild__5JAISeFi */
-bool JAISe::getChild(int param_0) {
-    return false;
+JAISoundChild* JAISe::getChild(int param_0) {
+    return NULL;
 }
 
 /* 8029F6E8-8029F6EC 29A028 0004+00 2/1 0/0 0/0 .text            releaseChild__5JAISeFi */
@@ -295,136 +181,63 @@ void JAISe::releaseChild(int param_0) {
 }
 
 /* 8029F6EC-8029F78C 29A02C 00A0+00 1/1 0/0 0/0 .text            prepare_getSeqData___5JAISeFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAISe::prepare_getSeqData_() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISe/prepare_getSeqData___5JAISeFv.s"
+bool JAISe::prepare_getSeqData_() {
+    switch (inner_.seMgr->getSeqDataMgr()->getSeqData(soundID, &inner_.mSeqData)) {
+    case 0:
+        status_.state.unk = 2;
+        return false;
+    case 1:
+        increasePrepareCount_JAISound_();
+        return false;
+    case 2:
+        return true;
+    }
+    return false;
 }
-#pragma pop
 
 /* 8029F78C-8029F84C 29A0CC 00C0+00 1/1 0/0 0/0 .text            prepare___5JAISeFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAISe::prepare_() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISe/prepare___5JAISeFv.s"
+void JAISe::prepare_() {
+    switch (status_.state.unk) {
+    case 6:
+        break;
+    case 2:
+        stop_JAISound_();
+        break;
+    case 0:
+        if (prepare_getSeqData_()) {
+            status_.state.unk = 5;
+        }
+        break;
+    case 1:
+        if (prepare_getSeqData_()) {
+            status_.state.unk = 3;
+        }
+        break;
+    case 4:
+        status_.state.unk = 5;
+        break;
+    case 3:
+    case 5:
+        break;
+    }
 }
-#pragma pop
 
 /* 8029F84C-8029F854 29A18C 0008+00 2/1 0/0 0/0 .text            getTrack__5JAISeFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAISe::getTrack() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISe/getTrack__5JAISeFv.s"
+JASTrack* JAISe::getTrack() {
+    return &inner_.track;
 }
-#pragma pop
 
 /* 8029F854-8029F864 29A194 0010+00 2/1 0/0 0/0 .text            getChildTrack__5JAISeFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAISe::getChildTrack(int param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISe/getChildTrack__5JAISeFi.s"
+JASTrack* JAISe::getChildTrack(int param_0) {
+    return inner_.track.getChild(param_0);
 }
-#pragma pop
 
 /* 8029F864-8029F868 29A1A4 0004+00 2/1 0/0 0/0 .text            asSe__5JAISeFv */
-void JAISe::asSe() {
-    /* empty function */
+JAISe* JAISe::asSe() {
+    return this;
 }
 
 /* 8029F868-8029F870 29A1A8 0008+00 2/1 0/0 0/0 .text            getTempoMgr__5JAISeFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAISe::getTempoMgr() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISe/getTempoMgr__5JAISeFv.s"
+JAITempoMgr* JAISe::getTempoMgr() {
+    return &inner_.mTempoMgr;
 }
-#pragma pop
-
-/* 8029F870-8029F878 29A1B0 0008+00 1/0 0/0 0/0 .text            @16@JAISound_tryDie___5JAISeFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8029F870() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISe/func_8029F870.s"
-}
-#pragma pop
-
-/* 8029F878-8029F880 29A1B8 0008+00 1/0 0/0 0/0 .text            @16@getTempoMgr__5JAISeFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8029F878() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISe/func_8029F878.s"
-}
-#pragma pop
-
-/* 8029F880-8029F888 29A1C0 0008+00 1/0 0/0 0/0 .text            @16@getChildTrack__5JAISeFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8029F880() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISe/func_8029F880.s"
-}
-#pragma pop
-
-/* 8029F888-8029F890 29A1C8 0008+00 1/0 0/0 0/0 .text            @16@getTrack__5JAISeFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8029F888() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISe/func_8029F888.s"
-}
-#pragma pop
-
-/* 8029F890-8029F898 29A1D0 0008+00 1/0 0/0 0/0 .text            @16@asSe__5JAISeFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8029F890() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISe/func_8029F890.s"
-}
-#pragma pop
-
-/* 8029F898-8029F8A0 29A1D8 0008+00 1/0 0/0 0/0 .text            @16@releaseChild__5JAISeFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8029F898() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISe/func_8029F898.s"
-}
-#pragma pop
-
-/* 8029F8A0-8029F8A8 29A1E0 0008+00 1/0 0/0 0/0 .text            @16@getChild__5JAISeFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8029F8A0() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISe/func_8029F8A0.s"
-}
-#pragma pop
-
-/* 8029F8A8-8029F8B0 29A1E8 0008+00 1/0 0/0 0/0 .text            @16@getNumChild__5JAISeCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8029F8A8() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISe/func_8029F8A8.s"
-}
-#pragma pop

@@ -6,23 +6,17 @@
 #include "m_Do/m_Do_main.h"
 #include "DynamicLink.h"
 #include "JSystem/JAudio2/JASAudioThread.h"
-#include "JSystem/JAudio2/JASGadget.h"
-#include "JSystem/JAudio2/JASTrack.h"
 #include "JSystem/JAudio2/JAUSoundTable.h"
 #include "JSystem/JFramework/JFWSystem.h"
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
-#include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTReport.h"
 #include "Z2AudioLib/Z2SoundInfo.h"
 #include "Z2AudioLib/Z2WolfHowlMgr.h"
 #include "c/c_dylink.h"
 #include "d/com/d_com_inf_game.h"
-#include "dol2asm.h"
-#include "dolphin/dvd/dvd.h"
 #include "dolphin/os/OS.h"
-#include "dolphin/types.h"
 #include "f_ap/f_ap_game.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_MemCard.h"
@@ -32,23 +26,7 @@
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_machine.h"
 
-//
-// Forward References:
-//
-
-extern "C" extern char const* const m_Do_m_Do_main__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void dump__14dRes_control_cFv();
-extern "C" void dump__24DynamicModuleControlBaseFv();
-
-//
-// Declarations:
-//
-
+/* 800056C0-80005728 000000 0068+00 1/1 0/0 0/0 .text            version_check__Fv */
 void version_check() {
     if (!strcmp("20Apr2004", "20Apr2004") && !strcmp("Patch2", "Patch2")) {
         return;
@@ -60,76 +38,59 @@ void version_check() {
     } while (true);
 }
 
+/* 80005728-8000578C 000068 0064+00 1/1 0/0 0/0 .text            CheckHeap1__9HeapCheckFv */
 void HeapCheck::CheckHeap1() {
     s32 totalUsedSize = mHeap->getTotalUsedSize();
     s32 freeSize = mHeap->getFreeSize();
 
-    if (mMaxTotalUsedSize < totalUsedSize) {
+    if (mMaxTotalUsedSize < totalUsedSize)
         mMaxTotalUsedSize = totalUsedSize;
-    }
 
-    if (mMaxTotalFreeSize > freeSize) {
+    if (mMaxTotalFreeSize > freeSize)
         mMaxTotalFreeSize = freeSize;
-    }
 }
+
+/* 803A2EE0-803A2EF4 000000 0012+02 2/2 1/1 0/0 .data            COPYDATE_STRING__7mDoMain */
+char mDoMain::COPYDATE_STRING[18] = "??/??/?? ??:??:??";
 
 /* ############################################################################################## */
 /* 803D32E0-803D3308 000000 0028+00 3/2 0/0 0/0 .bss             RootHeapCheck */
-extern "C" HeapCheck RootHeapCheck;
+// static HeapCheck RootHeapCheck;
+static HeapCheck RootHeapCheck = HeapCheck(0,"Root","ルート");
 
 /* 803D3308-803D3330 000028 0028+00 1/2 0/0 0/0 .bss             SystemHeapCheck */
-extern "C" HeapCheck SystemHeapCheck;
+// static HeapCheck SystemHeapCheck;
+static HeapCheck SystemHeapCheck = HeapCheck(0,"System","システム");
 
 /* 803D3330-803D3358 000050 0028+00 1/2 0/0 0/0 .bss             ZeldaHeapCheck */
-extern "C" HeapCheck ZeldaHeapCheck;
+// static HeapCheck ZeldaHeapCheck;
+static HeapCheck ZeldaHeapCheck = HeapCheck(0,"Zelda","ゼルダ");
 
 /* 803D3358-803D3380 000078 0028+00 1/2 0/0 0/0 .bss             GameHeapCheck */
-extern "C" HeapCheck GameHeapCheck;
+// static HeapCheck GameHeapCheck;
+static HeapCheck GameHeapCheck = HeapCheck(0,"Game","ゲーム");
 
 /* 803D3380-803D33A8 0000A0 0028+00 1/2 0/0 0/0 .bss             ArchiveHeapCheck */
-extern "C" HeapCheck ArchiveHeapCheck;
+// static HeapCheck ArchiveHeapCheck;
+static HeapCheck ArchiveHeapCheck = HeapCheck(0,"Archive","アーカイブ");
 
 /* 803D33A8-803D33D0 0000C8 0028+00 1/2 0/0 0/0 .bss             J2dHeapCheck */
-extern "C" HeapCheck J2dHeapCheck;
+// static HeapCheck J2dHeapCheck;
+static HeapCheck J2dHeapCheck = HeapCheck(0,"J2d","J2D");
 
 /* 803D33D0-803D33F8 0000F0 0028+00 1/2 0/0 0/0 .bss             HostioHeapCheck */
-extern "C" HeapCheck HostioHeapCheck;
+// static HeapCheck HostioHeapCheck;
+static HeapCheck HostioHeapCheck = HeapCheck(0,"Hostio","ホストIO");
 
 /* 803D33F8-803D3420 000118 0028+00 1/2 0/0 0/0 .bss             CommandHeapCheck */
-extern "C" HeapCheck CommandHeapCheck;
-
-/* 803A2EE0-803A2EF4 000000 0012+02 2/2 1/1 0/0 .data            COPYDATE_STRING__7mDoMain */
-SECTION_DATA char mDoMain::COPYDATE_STRING[18] = "??/??/?? ??:??:??";
+// static HeapCheck CommandHeapCheck;
+static HeapCheck CommandHeapCheck = HeapCheck(0,"Command","コマンド");
 
 /* 803A2EF4-803A2F14 -00001 0020+00 1/2 0/0 0/0 .data            HeapCheckTable */
-SECTION_DATA static HeapCheck* HeapCheckTable[8] = {
+static HeapCheck* HeapCheckTable[8] = {
     &RootHeapCheck,    &SystemHeapCheck, &ZeldaHeapCheck,  &GameHeapCheck,
     &ArchiveHeapCheck, &J2dHeapCheck,    &HostioHeapCheck, &CommandHeapCheck,
 };
-
-/* 803D32E0-803D3308 000000 0028+00 3/2 0/0 0/0 .bss             RootHeapCheck */
-static HeapCheck RootHeapCheck;
-
-/* 803D3308-803D3330 000028 0028+00 1/2 0/0 0/0 .bss             SystemHeapCheck */
-static HeapCheck SystemHeapCheck;
-
-/* 803D3330-803D3358 000050 0028+00 1/2 0/0 0/0 .bss             ZeldaHeapCheck */
-static HeapCheck ZeldaHeapCheck;
-
-/* 803D3358-803D3380 000078 0028+00 1/2 0/0 0/0 .bss             GameHeapCheck */
-static HeapCheck GameHeapCheck;
-
-/* 803D3380-803D33A8 0000A0 0028+00 1/2 0/0 0/0 .bss             ArchiveHeapCheck */
-static HeapCheck ArchiveHeapCheck;
-
-/* 803D33A8-803D33D0 0000C8 0028+00 1/2 0/0 0/0 .bss             J2dHeapCheck */
-static HeapCheck J2dHeapCheck;
-
-/* 803D33D0-803D33F8 0000F0 0028+00 1/2 0/0 0/0 .bss             HostioHeapCheck */
-static HeapCheck HostioHeapCheck;
-
-/* 803D33F8-803D3420 000118 0028+00 1/2 0/0 0/0 .bss             CommandHeapCheck */
-static HeapCheck CommandHeapCheck;
 
 /* 8000578C-80005848 0000CC 00BC+00 1/1 0/0 0/0 .text            CheckHeap__FUl */
 void CheckHeap(u32 i_padNo) {
@@ -154,6 +115,7 @@ void CheckHeap(u32 i_padNo) {
     }
 }
 
+/* 80005848-800058A0 000188 0058+00 2/2 0/0 0/0 .text            countUsed__FP10JKRExpHeap */
 static int countUsed(JKRExpHeap* heap) {
     OSDisableScheduler();
     int counter = 0;
@@ -168,10 +130,12 @@ static int countUsed(JKRExpHeap* heap) {
     return counter;
 }
 
+/* 800058A0-800058C4 0001E0 0024+00 2/2 0/0 0/0 .text            getUsedCount__9HeapCheckCFv */
 s32 HeapCheck::getUsedCount() const {
     return countUsed(mHeap);
 }
 
+/* 800058C4-80005AD8 000204 0214+00 1/1 0/0 0/0 .text            heapDisplay__9HeapCheckCFv */
 void HeapCheck::heapDisplay() const {
     s32 heap_size = mHeap->getSize();
     s32 used_count = heap_size - mTargetHeapSize;
@@ -199,13 +163,13 @@ void HeapCheck::heapDisplay() const {
 }
 
 /* 80450580-80450584 000000 0004+00 3/3 6/6 0/0 .sdata           None */
-SECTION_SDATA s8 mDoMain::developmentMode = -1;
+s8 mDoMain::developmentMode = -1;
 
 /* 80450584-80450588 000004 0004+00 0/0 1/1 0/0 .sdata           memMargin__7mDoMain */
-SECTION_SDATA u32 mDoMain::memMargin = 0xFFFFFFFF;
+u32 mDoMain::memMargin = 0xFFFFFFFF;
 
 /* 80450588-80450590 000008 0008+00 2/2 0/0 0/0 .sdata           None */
-SECTION_SDATA u8 mDoMain::mHeapBriefType = 4;
+u8 mDoMain::mHeapBriefType = 4;
 
 /* 80450B00-80450B08 000000 0008+00 1/1 0/0 0/0 .sbss            None */
 static u8 fillcheck_check_frame;
@@ -218,10 +182,12 @@ OSTime mDoMain::sHungUpTime;
 
 /* 80450B18-80450B1C -00001 0004+00 3/3 0/0 0/0 .sbss            None */
 /* 80450B18 0001+00 data_80450B18 None */
-/* 80450B19 0001+00 data_80450B19 None */
-/* 80450B1A 0002+00 data_80450B1A None */
 static bool mDisplayHeapSize;
+
+/* 80450B19 0001+00 data_80450B19 None */
 static u8 mSelectHeapBar;
+
+/* 80450B1A 0002+00 data_80450B1A None */
 static bool mCheckHeap;
 
 /* 80005AD8-80005D4C 000418 0274+00 1/1 0/0 0/0 .text            debugDisplay__Fv */
@@ -377,7 +343,8 @@ bool Debug_console(u32 i_padNo) {
                         JKRAram::getAramHeap()->dump();
                     }
 
-                    dump__24DynamicModuleControlBaseFv();
+                    // dump__24DynamicModuleControlBaseFv();
+                    DynamicModuleControlBase::dump();
                     g_dComIfG_gameInfo.mResControl.dump();
                 }
 
@@ -416,6 +383,7 @@ s32 LOAD_COPYDATE(void*) {
     return status;
 }
 
+/* 800061C8-8000628C 000B08 00C4+00 1/1 0/0 0/0 .text            debug__Fv */
 static void debug() {
     if (mDoMain::developmentMode) {
         if (mCheckHeap) {
@@ -447,8 +415,13 @@ static void debug() {
 void main01(void) {
     static u32 frame;
 
+    // Setup heaps, setup exception manager, set RNG seed, setup DVDError Thread, setup Memory card Thread
     mDoMch_Create();
+
+    // setup FrameBuffer and ZBuffer, init display lists
     mDoGph_Create();
+
+    // Setup control pad
     mDoCPd_c::create();
 
     RootHeapCheck.setHeap((JKRExpHeap*)JKRHeap::getRootHeap());
@@ -497,10 +470,10 @@ void main01(void) {
     console->setPosition(32, 42);
 
     mDoDvdThd_callback_c::create((mDoDvdThd_callback_func)LOAD_COPYDATE, NULL);
-    fapGm_Create();
+    fapGm_Create(); // init framework
     fopAcM_initManager();
     mDisplayHeapSize = 0;
-    cDyl_InitAsync();
+    cDyl_InitAsync(); // init RELs
 
     g_mDoAud_audioHeap = JKRSolidHeap::create(0x14D800, JKRHeap::getCurrentHeap(), false);
 
@@ -514,10 +487,10 @@ void main01(void) {
             g_mDoMemCd_control.update();
         }
 
-        mDoCPd_c::read();
-        fapGm_Execute();
-        mDoAud_Execute();
-        debug();
+        mDoCPd_c::read();   // read controller input
+        fapGm_Execute();    // handle game execution
+        mDoAud_Execute();   // handle audio execution
+        debug();            // run debugger
     } while (true);
 }
 
@@ -572,8 +545,7 @@ void main() {
     }
 
     s32 priority = OSGetThreadPriority(current_thread);
-    OSCreateThread(&mainThread, main01, 0, stack + sizeof(mainThreadStack), sizeof(mainThreadStack),
-                   priority, 0);
+    OSCreateThread(&mainThread, main01, 0, stack + sizeof(mainThreadStack), sizeof(mainThreadStack), priority, 0);
     OSResumeThread(&mainThread);
     OSSetThreadPriority(current_thread, 0x1F);
     OSSuspendThread(current_thread);
@@ -583,42 +555,6 @@ void main() {
 bool JKRHeap::dump_sort() {
     return true;
 }
-
-/* ############################################################################################## */
-/* 803739A0-803739A0 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80373C3F = "Root";
-SECTION_DEAD static char const* const stringBase_80373C44 = "ルート";
-SECTION_DEAD static char const* const stringBase_80373C4B = "System";
-SECTION_DEAD static char const* const stringBase_80373C52 = "システム";
-SECTION_DEAD static char const* const stringBase_80373C5B = "Zelda";
-SECTION_DEAD static char const* const stringBase_80373C61 = "ゼルダ";
-SECTION_DEAD static char const* const stringBase_80373C68 = "Game";
-SECTION_DEAD static char const* const stringBase_80373C6D = "ゲーム";
-SECTION_DEAD static char const* const stringBase_80373C74 = "Archive";
-SECTION_DEAD static char const* const stringBase_80373C7C = "アーカイブ";
-SECTION_DEAD static char const* const stringBase_80373C87 = "J2d";
-SECTION_DEAD static char const* const stringBase_80373C8B = "J2D";
-SECTION_DEAD static char const* const stringBase_80373C8F = "Hostio";
-SECTION_DEAD static char const* const stringBase_80373C96 = "ホストIO";
-SECTION_DEAD static char const* const stringBase_80373C9F = "Command";
-SECTION_DEAD static char const* const stringBase_80373CA7 = "コマンド";
-#pragma pop
-
-/* 800065E0-80006798 000F20 01B8+00 0/0 1/0 0/0 .text            __sinit_m_Do_main_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_m_Do_main_cpp(){nofralloc
-#include "asm/m_Do/m_Do_main/__sinit_m_Do_main_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x800065E0, __sinit_m_Do_main_cpp);
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450B38-80450B3C 000038 0004+00 0/0 2/2 0/0 .sbss

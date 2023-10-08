@@ -4,8 +4,8 @@
  */
 
 #include "rel/d/a/e/d_a_e_ge/d_a_e_ge.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:
@@ -168,10 +168,6 @@ extern "C" void __dl__FPv();
 extern "C" void checkPass__12J3DFrameCtrlFf();
 // extern "C" void PSMTXCopy();
 // extern "C" void PSMTXMultVec();
-// extern "C" void PSVECAdd();
-// extern "C" void PSVECScale();
-// extern "C" void PSVECSquareMag();
-// extern "C" void PSVECSquareDistance();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_19();
 extern "C" void _savegpr_25();
@@ -183,7 +179,6 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-// extern "C" void abs();
 // extern "C" extern void* g_fopAc_Method[8];
 // extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];
@@ -196,7 +191,6 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 // extern "C" extern u8 g_env_light[4880];
 extern "C" u8 sincosTable___5JMath[65536];
-// extern "C" extern u32 __float_nan;
 extern "C" u8 m_midnaActor__9daPy_py_c[4];
 extern "C" void __register_global_object();
 
@@ -480,11 +474,16 @@ SECTION_DATA u8 daE_GE_c::l_actionmenu[108] = {
 };
 
 /* 806CD254-806CD294 00013C 0040+00 1/1 0/0 0/0 .data            cc_sph_src$5699 */
-SECTION_DATA static u8 cc_sph_src[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D,
-    0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x75, 0x09, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x22, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00,
+static dCcD_SrcSph cc_sph_src = {
+    {
+        {0x0, {{AT_TYPE_CSTATUE_SWING, 0x1, 0xd}, {0xd8fbfdff, 0x3}, 0x75}}, // mObj
+        {dCcD_SE_METAL, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x22}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 40.0f} // mSph
+    } // mSphAttr
 };
 
 /* 806CD294-806CD2B4 -00001 0020+00 1/0 0/0 0/0 .data            l_daE_GE_Method */

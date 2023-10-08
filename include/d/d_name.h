@@ -1,8 +1,8 @@
 #ifndef D_D_NAME_H
 #define D_D_NAME_H
 
-#include "d/d_drawlist.h"
-#include "dolphin/types.h"
+#include "d/d_select_cursor.h"
+#include "MSL_C/string.h"
 
 class CPaneMgr;
 class CPaneMgrAlpha;
@@ -10,8 +10,7 @@ class J2DAnmColorKey;
 class J2DAnmTextureSRTKey;
 class J2DTextBox;
 class JUTFont;
-struct STControl;
-class dSelect_cursor_c;
+class STControl;
 
 class dNm_HIO_c {
 public:
@@ -61,15 +60,15 @@ public:
     };
 
     enum {
-        MOJI_HIRA,
-        MOJI_KATA,
-        MOJI_EIGO,
+        MOJI_HIRA, // hiragana characters
+        MOJI_KATA, // katakana characters
+        MOJI_EIGO, // english characters
     };
 
     enum {
-        MENU_HIRA,
-        MENU_KATA,
-        MENU_EIGO,
+        MENU_HIRA, // hiragana menu
+        MENU_KATA, // katakana menu
+        MENU_EIGO, // english menu
         MENU_END,
     };
 
@@ -114,6 +113,13 @@ public:
     /* 80251048 */ s32 getMenuPosIdx(u8);
 
     /* 8024E468 */ virtual ~dName_c();
+
+    u8 getCurPos() { return mCurPos; }
+    u8 isInputEnd() { return mIsInputEnd; }
+    char* getInputStrPtr() { return mInputStr; }
+    void hideIcon() { mSelIcon->setAlphaRate(0.0f); }
+    void setNextNameStr(char* i_name) { strcpy(mNextNameStr,i_name); }
+    void draw() { _draw(); }
 
 private:
     /* 0x004 */ STControl* stick;

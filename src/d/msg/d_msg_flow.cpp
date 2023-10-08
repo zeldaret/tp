@@ -4,20 +4,16 @@
 //
 
 #include "d/msg/d_msg_flow.h"
-#include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_alink.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/com/d_com_static.h"
 #include "d/d_item.h"
-#include "d/d_procname.h"
-#include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_object.h"
 #include "d/shop/d_shop_system.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_audio.h"
+#include "m_Do/m_Do_graphic.h"
 
 //
 // Forward References:
@@ -447,7 +443,7 @@ SECTION_DEAD static char const* const stringBase_80399CB5 = "FLI1";
 
 /* 80249F90-8024A13C 2448D0 01AC+00 0/0 10/10 86/86 .text
  * init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c             */
-void dMsgFlow_c::init(fopAc_ac_c* param_0, int param_1, int param_2, fopAc_ac_c** param_3) {
+void dMsgFlow_c::init(fopAc_ac_c* i_partner, int i_flowID, int param_2, fopAc_ac_c** param_3) {
     u16 uVar4;
     u16 flow_val;
 
@@ -458,11 +454,11 @@ void dMsgFlow_c::init(fopAc_ac_c* param_0, int param_1, int param_2, fopAc_ac_c*
         }
 
         if (param_2 == 0 && g_MsgObject_HIO_c.mMsgDebug == 2) {
-            param_1 = g_MsgObject_HIO_c.mFlowIndex;
+            i_flowID = g_MsgObject_HIO_c.mFlowIndex;
         }
-        flow_val = param_1;
+        flow_val = i_flowID;
 
-        dMsgObject_changeFlowGroup(param_1);
+        dMsgObject_changeFlowGroup(i_flowID);
         if (param_2 == 0) {
             setInitValue(1);
             mFlow_p = getMsgDataBlock("FLW1");
@@ -472,15 +468,15 @@ void dMsgFlow_c::init(fopAc_ac_c* param_0, int param_1, int param_2, fopAc_ac_c*
             field_0x18 = field_0x14 + *(u16*)(mFlow_p + 8);
 
             mFlow = flow_val;
-            if (param_0 != NULL) {
-                dMsgObject_setTalkPartner(param_0);
+            if (i_partner != NULL) {
+                dMsgObject_setTalkPartner(i_partner);
             }
             setNodeIndex(getInitNodeIndex(mFlow), param_3);
         } else {
             uVar4 = field_0x10;
             setInitValue(0);
-            if (param_0 != NULL) {
-                dMsgObject_setTalkPartner(param_0);
+            if (i_partner != NULL) {
+                dMsgObject_setTalkPartner(i_partner);
             }
             setNodeIndex(uVar4, param_3);
         }
@@ -567,9 +563,9 @@ asm int dMsgFlow_c::checkOpenDoor(fopAc_ac_c* param_0, int* param_1) {
 
 /* 8024A2D8-8024A424 244C18 014C+00 0/0 21/21 78/78 .text
  * doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci            */
-int dMsgFlow_c::doFlow(fopAc_ac_c* param_0, fopAc_ac_c** param_1, int flow) {
+int dMsgFlow_c::doFlow(fopAc_ac_c* param_0, fopAc_ac_c** param_1, int i_flow) {
     int check = false;
-    u16 set_flow = flow;
+    u16 set_flow = i_flow;
     dMsgObject_changeFlowGroup(mFlow);
 
     if (dMsgObject_isKillMessageFlag()) {
@@ -1559,36 +1555,50 @@ int dMsgFlow_c::query038(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, in
 
 /* 8024BDB0-8024BE4C 2466F0 009C+00 1/0 0/0 0/0 .text
  * query039__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query039(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query039__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query039(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
+    u16 uVar2 = *(u16*)param_0->params;
+    u8 iVar4 = dComIfGs_getTmpReg(0xfbff);
+    u8 bombNum = dComIfGs_getBombNum(iVar4 - 1);
+    return dComIfGs_getBombMax(NORMAL_BOMB) >= bombNum + uVar2;
 }
-#pragma pop
 
 /* 8024BE4C-8024BF50 24678C 0104+00 1/0 0/0 0/0 .text
  * query040__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query040(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query040__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query040(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
+    s32 uVar7 = *(u16*)param_0->params;
+    u8 unaff_r30;
+    if (uVar7 >= 1 && uVar7 < 4) {
+        unaff_r30 = uVar7 - 1;
+    } else if (uVar7 == 4) {
+        if (dMeter2Info_getRentalBombBag() != 0xff) {
+            unaff_r30 = dMeter2Info_getRentalBombBag();
+        }
+    } else {
+        unaff_r30 = dComIfGs_getTmpReg(0xfbff) - 1;
+    }
+
+    u8 bombNum = dComIfGs_getBombNum(unaff_r30);
+    u8 uVar4 = dComIfGs_getItem((u8)(unaff_r30 + SLOT_15), 0);
+    u8 bombMax = dComIfGs_getBombMax(uVar4);
+    u8 rv;
+    if (bombNum == 0) {
+        rv = 0;
+    } else if (bombNum >= bombMax) {
+        rv = 2;
+    } else {
+        rv = 1;
+    }
+    return rv;
 }
-#pragma pop
 
 /* 8024BF50-8024BFEC 246890 009C+00 1/0 0/0 0/0 .text
  * query041__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query041(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query041__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query041(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
+    u16 uVar2 = *(u16*)param_0->params;
+    u8 iVar4 = dComIfGs_getTmpReg(0xfbff);
+    u8 bombNum = dComIfGs_getBombNum(iVar4 - 1);
+    return dComIfGs_getBombMax(WATER_BOMB) >= bombNum + uVar2;
 }
-#pragma pop
 
 /* 8024BFEC-8024C0A8 24692C 00BC+00 1/0 0/0 0/0 .text
  * query042__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
@@ -1627,14 +1637,23 @@ int dMsgFlow_c::query044(mesg_flow_node_branch*, fopAc_ac_c*, int) {
 
 /* 8024C18C-8024C218 246ACC 008C+00 1/0 0/0 0/0 .text
  * query045__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::query045(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/query045__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci.s"
+int dMsgFlow_c::query045(mesg_flow_node_branch* param_0, fopAc_ac_c* param_1, int param_2) {
+    u8 insectNum = dComIfGs_checkGetInsectNum();
+    u8 rv = 0;
+    if (insectNum == 0) {
+        rv = 0;
+    } else if (insectNum >= 1 && insectNum <= 11) {
+        rv = 1;
+    } else if (insectNum >= 12 && insectNum <= 22) {
+        rv = 2;
+    } else if (insectNum == 23) {
+        rv = 3;
+    } else if (insectNum == 24) {
+        rv = 4;
+    }
+
+    return rv;
 }
-#pragma pop
 
 /* 8024C218-8024C248 246B58 0030+00 1/0 0/0 0/0 .text
  * query046__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
@@ -2094,6 +2113,12 @@ int dMsgFlow_c::event020(mesg_flow_node_event* flow_node, fopAc_ac_c* actor) {
 
 /* 8024CD84-8024CDAC 2476C4 0028+00 1/0 0/0 0/0 .text
  * event021__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
+#ifdef NONMATCHING
+int dMsgFlow_c::event021(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
+    cLib_calcTimer(&field_0x3c);
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2102,6 +2127,7 @@ asm int dMsgFlow_c::event021(mesg_flow_node_event* param_0, fopAc_ac_c* param_1)
 #include "asm/d/msg/d_msg_flow/event021__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80454DA8-80454DAC 0033A8 0004+00 1/1 0/0 0/0 .sdata2          @6273 */
@@ -2435,6 +2461,29 @@ asm int dMsgFlow_c::event032(mesg_flow_node_event* param_0, fopAc_ac_c* param_1)
 
 /* 8024D6BC-8024D788 247FFC 00CC+00 1/0 0/0 0/0 .text
  * event033__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
+#ifdef NONMATCHING
+// Matches with literals
+int dMsgFlow_c::event033(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
+    u16 uVar1;
+    u16 uVar2;
+    GXColor color;
+
+    getParam(&uVar2, &uVar1, param_0->params);
+    if (uVar1 + 1 == field_0x3c) {
+        if (uVar2 == 0) {
+            color.r = 0;
+            color.g = 0;
+            color.b = 0;
+            color.a = 0;
+        } else {
+            color = g_saftyWhiteColor;
+        }
+        mDoGph_gInf_c::fadeOut(1.0f / uVar1, color);
+    }
+    cLib_calcTimer(&field_0x3c);
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2443,6 +2492,7 @@ asm int dMsgFlow_c::event033(mesg_flow_node_event* param_0, fopAc_ac_c* param_1)
 #include "asm/d/msg/d_msg_flow/event033__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* 8024D788-8024D7C8 2480C8 0040+00 1/0 0/0 0/0 .text
  * event034__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */

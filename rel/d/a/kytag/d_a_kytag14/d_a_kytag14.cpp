@@ -23,7 +23,7 @@ static int daKytag14_Execute(kytag14_class* i_this) {
     BOOL switch1_set = true;
     BOOL switch2_unset = true;
 
-    if (dComIfGs_isTmpBit(0x1301)) {
+    if (dComIfGs_isTmpBit(dSv_event_tmp_flag_c::NO_TELOP)) {
         return 1;
     }
 
@@ -83,21 +83,18 @@ static int daKytag14_Delete(kytag14_class*) {
 
 /* 80529B44-80529BE0 000224 009C+00 1/0 0/0 0/0 .text            daKytag14_Create__FP10fopAc_ac_c */
 static int daKytag14_Create(fopAc_ac_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) kytag14_class();
-        fopAcM_OnCondition(i_this, 8);
-    }
-    kytag14_class* kytag = static_cast<kytag14_class*>(i_this);
+    fopAcM_SetupActor(i_this, kytag14_class);
+    kytag14_class* a_this = static_cast<kytag14_class*>(i_this);
 
-    kytag->mSavePoint = fopAcM_GetParam(kytag);
-    kytag->mSaveRoomNo = (fopAcM_GetParam(kytag) >> 8) & 0xFF;
-    kytag->mEventID1 = kytag->current.angle.x;
-    kytag->mEventID2 = kytag->current.angle.y;
-    kytag->mSwitchNo1 = kytag->current.angle.z;
-    kytag->mSwitchNo2 = (kytag->current.angle.z >> 8) & 0xFF;
+    a_this->mSavePoint = fopAcM_GetParam(a_this) & 0xFF;
+    a_this->mSaveRoomNo = (fopAcM_GetParam(a_this) >> 8) & 0xFF;
+    a_this->mEventID1 = a_this->current.angle.x & 0xFFFF;
+    a_this->mEventID2 = a_this->current.angle.y & 0xFFFF;
+    a_this->mSwitchNo1 = a_this->current.angle.z & 0xFF;
+    a_this->mSwitchNo2 = (a_this->current.angle.z >> 8) & 0xFF;
 
-    if (kytag->orig.roomNo != -1) {
-        kytag->mSaveRoomNo = kytag->orig.roomNo;
+    if (a_this->orig.roomNo != -1) {
+        a_this->mSaveRoomNo = a_this->orig.roomNo;
     }
 
     return cPhs_COMPLEATE_e;

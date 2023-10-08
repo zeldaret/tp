@@ -2,7 +2,6 @@
 #define M_DO_M_DO_GRAPHIC_H
 
 #include "JSystem/JFramework/JFWDisplay.h"
-#include "dolphin/gx/GXStruct.h"
 #include "dolphin/mtx/mtx.h"
 #include "dolphin/types.h"
 
@@ -55,14 +54,18 @@ public:
 
     static int startFadeOut(int param_0) { return JFWDisplay::getManager()->startFadeOut(param_0); }
     static int startFadeIn(int param_0) { return JFWDisplay::getManager()->startFadeIn(param_0); }
-    static void setFadeColor(JUtility::TColor& color) { mFader->setColor(color); }
+    static void setFadeColor(JUtility::TColor color) { mFader->mColor.set(color); }
     static void setClearColor(JUtility::TColor color) { JFWDisplay::getManager()->setClearColor(color); }
     static void setBackColor(GXColor& color) { mBackColor = color; }
     static void endFrame() { JFWDisplay::getManager()->endFrame(); }
     static void offFade() { mFade = 0; }
     static u8 isFade() { return mFade; }
     static void offBlure() { mBlureFlag = false; }
+    static bool isBlure() { return mBlureFlag; }
+    static u8 getBlureRate() { return mBlureRate; }
+    static MtxP getBlureMtx() { return mBlureMtx; }
     static void offAutoForcus() { data_80450BE7 = 0; }
+    static bool isAutoForcus() { return data_80450BE7; }
     static void setTickRate(u32 rate) { JFWDisplay::getManager()->setTickRate(rate); }
     static void waitBlanking(int wait) { JFWDisplay::getManager()->waitBlanking(wait); }
     static f32 getWidthF() { return 608.0f; }
@@ -73,18 +76,24 @@ public:
     static f32 getMinXF() { return 0.0f; }
     static f32 getMaxYF() { return 448.0f; }
     static f32 getMaxXF() { return 608.0f; }
+    static f32 getAspect() { return 1.3571428f; }
     static int getMinY() { return 0; }
     static int getMinX() { return 0; }
     static int getMaxY() { return 448; }
     static int getMaxX() { return 608; }
     static ResTIMG* getFrameBufferTimg() { return mFrameBufferTimg; }
+    static ResTIMG* getZbufferTimg() { return mZbufferTimg; }
     static void* getFrameBufferTex() { return mFrameBufferTex; }
+    static void* getZbufferTex() { return mZbufferTex; }
     static void setFadeRate(f32 rate) { mFadeRate = rate; }
     static f32 getFadeRate() { return mFadeRate; }
     static bloom_c* getBloom() { return &m_bloom; }
     static GXColor& getFadeColor() { return mFadeColor; }
     static GXColor& getBackColor() { return mBackColor; }
     static void endRender() { JFWDisplay::getManager()->endRender(); }
+    static GXTexObj* getZbufferTexObj() { return &mZbufferTexObj; }
+    static GXTexObj* getFrameBufferTexObj() { return &mFrameBufferTexObj; }
+    static f32 getInvScale() { return 1.0f; }
 
     static GXTexObj mFrameBufferTexObj;
     static GXTexObj mZbufferTexObj;
@@ -100,6 +109,7 @@ public:
     static f32 mFadeRate;
     static f32 mFadeSpeed;
     static bool mBlureFlag;
+    static u8 mBlureRate;
     static u8 mFade;
 };
 

@@ -7,9 +7,7 @@
 #include "Z2AudioLib/Z2SoundMgr.h"
 #include "Z2AudioLib/Z2SeqMgr.h"
 #include "Z2AudioLib/Z2SeMgr.h"
-#include "Z2AudioLib/Z2StatusMgr.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 //
@@ -50,8 +48,6 @@ struct Z2EnvSeMgr {
 struct JAUSoundTable {
     /* 802A7160 */ void getTypeID(JAISoundID) const;
 };
-
-struct JASHeap {};
 
 struct JASWaveArc {
     /* 8029A4C0 */ void load(JASHeap*);

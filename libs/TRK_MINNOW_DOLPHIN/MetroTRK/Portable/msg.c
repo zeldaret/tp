@@ -4,7 +4,6 @@
  */
 
 #include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msg.h"
-#include "TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue.h"
 #include "TRK_MINNOW_DOLPHIN/utils/common/MWTrace.h"
 
 /* 8036CFD8-8036D01C 367918 0044+00 0/0 6/6 0/0 .text            TRKMessageSend */

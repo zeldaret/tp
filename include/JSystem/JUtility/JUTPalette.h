@@ -3,7 +3,6 @@
 
 #include "dolphin/gx/GXEnum.h"
 #include "dolphin/gx/GXStruct.h"
-#include "dolphin/types.h"
 
 enum JUTTransparency { UNK0, UNK1 };
 
@@ -28,6 +27,10 @@ public:
     /* 802DE95C */ bool load();
 
     u8 getTlutName() const { return mTlutName; }
+    u8 getFormat() const { return mFormat; }
+    u8 getTransparency() const { return mTransparency; }
+    u16 getNumColors() const { return mNumColors; }
+    ResTLUT* getColorTable() const { return mColorTable; }
 
 private:
     /* 0x00 */ _GXTlutObj mTlutObj;

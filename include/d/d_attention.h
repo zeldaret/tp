@@ -2,8 +2,6 @@
 #define D_D_ATTENTION_H
 
 #include "SSystem/SComponent/c_angle.h"
-#include "dolphin/types.h"
-#include "global.h"
 #include "m_Do/m_Do_ext.h"
 
 class fopAc_ac_c;
@@ -215,6 +213,16 @@ public:
     int GetActionCount() { return mActionCount; }
     int GetLockonCount() { return mLockonCount; }
     bool Lockon() { return LockonTruth() || chkFlag(0x20000000); }  // only matches with -O2?
+    int ZHintRequest(fopAc_ac_c* param_1, int param_2) {
+        return mZHintTarget.request(param_1, param_2);
+    }
+
+    void LookRequest(fopAc_ac_c* param_0, f32 i_horizontalDist, f32 i_upDist, f32 i_downDist,
+                     s16 i_angle, int param_5) {
+        mLookTarget.request(param_0, i_horizontalDist, i_upDist, i_downDist, i_angle, param_5);
+    }
+
+    static dist_entry& i_getDistTable(int i_no) { return dist_table[i_no]; }
 
     static type_tbl_entry loc_type_tbl[3];
     static type_tbl_entry act_type_tbl[5];

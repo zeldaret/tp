@@ -5,7 +5,6 @@
 
 #include "rel/d/a/obj/d_a_obj_kanban2/d_a_obj_kanban2.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

@@ -4,207 +4,142 @@
 //
 
 #include "rel/d/a/d_a_mg_fshop/d_a_mg_fshop.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
+#include "f_pc/f_pc_executor.h"
+#include "m_Do/m_Do_controller_pad.h"
 
 //
 // Types:
 //
 
-struct request_of_phase_process_class {};
-
-struct mDoMtx_stack_c {
-    /* 8000CCC8 */ void push();
-    /* 8000CD14 */ void pop();
-    /* 8000CD9C */ void transM(f32, f32, f32);
-    /* 8000CE38 */ void scaleM(f32, f32, f32);
-
-    static u8 now[48];
-};
-
-struct mDoExt_3DlineMat_c {};
-
-struct mDoExt_3DlineMatSortPacket {
-    /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
-};
-
-struct dKy_tevstr_c {};
-
-struct _GXColor {};
-
-struct mDoExt_3DlineMat0_c {
-    /* 800125E0 */ void init(u16, u16, int);
-    /* 80012874 */ void update(int, f32, _GXColor&, u16, dKy_tevstr_c*);
-    /* 80012E3C */ void update(int, _GXColor&, dKy_tevstr_c*);
-};
-
-struct mDoCPd_c {
-    static u8 m_cpadInfo[256];
-};
-
-struct fshop_class {};
-
 struct fs_weed_s {
     /* 8086FED8 */ ~fs_weed_s();
     /* 8086FF38 */ fs_weed_s();
+
+    /* 0x00 */ cXyz field_0x00[15];
+    /* 0xB4 */ f32 field_0xb4;
+    /* 0xB8 */ f32 field_0xb8;
+    /* 0xBC */ s16 field_0xbc;
 };
 
 struct fs_tsubo_s {
     /* 8086FE98 */ ~fs_tsubo_s();
     /* 8086FED4 */ fs_tsubo_s();
+
+    /* 0x00 */ u8 field_0x00[0x14 - 0x00];
+    /* 0x14 */ J3DModel* field_0x14;
+    /* 0x18 */ u8 field_0x18[0x1C - 0x18];
+    /* 0x1C */ f32 field_0x1c;
+    /* 0x20 */ s16 field_0x20;
+    /* 0x22 */ s16 field_0x22;
+    /* 0x24 */ s16 field_0x24;
 };
 
 struct fs_rod_s {
     /* 8086FF84 */ ~fs_rod_s();
     /* 8086FFC0 */ fs_rod_s();
+
+    /* 0x00 */ u8 field_0x00[0x04 - 0x00];
+    /* 0x04 */ f32 field_0x04;
+    /* 0x08 */ f32 field_0x08;
+    /* 0x0C */ u8 field_0x0C[0x14 - 0x0C];
+    /* 0x14 */ J3DModel* field_0x14;
+    /* 0x18 */ J3DModel* field_0x18[6];
+    /* 0x30 */ mDoExt_3DlineMat0_c line_mat;
+    /* 0x4C */ int field_0x4c;
+    /* 0x50 */ u8 field_0x50[0x54 - 0x50];
+    /* 0x54 */ f32 field_0x54;
+    /* 0x58 */ u8 field_0x58[0x5C - 0x58];
 };
 
 struct fs_lure_s {
     /* 8086FFDC */ ~fs_lure_s();
     /* 80870018 */ fs_lure_s();
+
+    /* 0x00 */ f32 field_0x00;
+    /* 0x04 */ u8 field_0x04[0x08 - 0x04];
+    /* 0x08 */ f32 field_0x08;
+    /* 0x0C */ s16 field_0x0c;
+    /* 0x0E */ s16 field_0x0e;
+    /* 0x10 */ s16 field_0x10;
+    /* 0x12 */ u8 field_0x12[0x14 - 0x12];
+    /* 0x14 */ J3DModel* field_0x14;
+    /* 0x18 */ J3DModel* field_0x18[2];
+    /* 0x20 */ u8 field_0x20[0x24 - 0x20];
+    /* 0x24 */ int field_0x24;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ s16 field_0x30;
+    /* 0x32 */ s16 field_0x32;
+    /* 0x34 */ s16 field_0x34;
+    /* 0x36 */ s16 field_0x36;
+    /* 0x38 */ f32 field_0x38;
+    /* 0x3C */ f32 field_0x3c;
 };
 
 struct fs_koro2_s {
     /* 8086FD78 */ ~fs_koro2_s();
     /* 8086FDB4 */ fs_koro2_s();
+
+    /* 0x00 */ J3DModel* mpModel;
+    /* 0x04 */ J3DModelData* field_0x04;
+    /* 0x08 */ u8 field_0x08[0x34 - 0x08];
+    /* 0x34 */ s8 field_0x34;
+    /* 0x35 */ u8 field_0x35[0x38 - 0x35];
+    /* 0x38 */ cXyz field_0x38;
+    /* 0x44 */ cXyz field_0x44;
+    /* 0x50 */ s16 field_0x50;
+    /* 0x52 */ u8 field_0x52[0x54 - 0x52];
+    /* 0x54 */ cXyz field_0x54;
+    /* 0x60 */ u8 field_0x60;
+    /* 0x61 */ u8 field_0x61[0x64 - 0x61];
+    /* 0x64 */ dBgW* mpBgW;
 };
 
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
+class fshop_class : public fopAc_ac_c {
+public:
+    /* 0x0568 */ request_of_phase_process_class mPhase;
+    /* 0x0570 */ s16 field_0x0570;
+    /* 0x0572 */ s16 field_0x0572;
+    /* 0x0574 */ fs_lure_s mLure[48];
+    /* 0x1174 */ fs_rod_s mRod[3];
+    /* 0x1288 */ fs_weed_s mWeed[60];
+    /* 0x3F88 */ mDoExt_3DlineMat0_c field_0x3f88;
+    /* 0x3FA4 */ fs_tsubo_s mTsubo[2];
+    /* 0x3FF4 */ J3DModel* field_0x3ff4;
+    /* 0x3FF8 */ s16 field_0x3ff8;
+    /* 0x3FFA */ s16 field_0x3ffa;
+    /* 0x3FFC */ f32 field_0x3ffc;
+    /* 0x4000 */ f32 field_0x4000;
+    /* 0x4004 */ J3DModel* field_0x4004;
+    /* 0x4008 */ fshop_class* field_0x4008;
+    /* 0x400C */ u8 field_0x400C[0x400D - 0x400C];
+    /* 0x400D */ u8 field_0x400d;
+    /* 0x400E */ u8 field_0x400e;
+    /* 0x4010 */ s16 field_0x4010;
+    /* 0x4014 */ cXyz field_0x4014;
+    /* 0x4020 */ csXyz field_0x4020;
+    /* 0x4028 */ J3DModel* mpA_crwaku_model;
+    /* 0x402C */ dBgW* field_0x402c;
+    /* 0x4030 */ Mtx field_0x4030;
+    /* 0x4060 */ s16 field_0x4060;
+    /* 0x4062 */ s16 field_0x4062;
+    /* 0x4064 */ cXyz field_0x4064;
+    /* 0x4070 */ J3DModel* field_0x4070;
+    /* 0x4074 */ dBgS_AcchCir field_0x4074;
+    /* 0x40B4 */ dBgS_ObjAcch field_0x40b4;
+    /* 0x428C */ u8 field_0x428c;
+    /* 0x428D */ u8 field_0x428d;
+    /* 0x4290 */ fs_koro2_s mKoro2[100];
+    /* 0x6B30 */ J3DModel* field_0x6b30;
+    /* 0x6B34 */ s16 field_0x6b34;
+    /* 0x6B38 */ Mtx field_0x6b38;
+    /* 0x6B68 */ dBgW* field_0x6b68;
+    /* 0x6B6C */ u32 field_0x6b6c[2];
+    /* 0x6B74 */ u8 field_0x6B74[0x6B7C - 0x6B74];
+    /* 0x6B7C */ u8 field_0x6b7c;
 };
-
-struct dSv_event_c {
-    /* 80034A04 */ void getEventReg(u16) const;
-};
-
-struct J3DModelData {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 8086CC30 */ ~cXyz();
-    /* 8086FF80 */ cXyz();
-};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dPa_levelEcallBack {};
-
-struct csXyz {
-    /* 802673F4 */ csXyz(s16, s16, s16);
-};
-
-struct dPa_control_c {
-    /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
-                            cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
-                            _GXColor const*, cXyz const*, f32);
-};
-
-struct dDlst_shadowControl_c {
-    static u8 mSimpleTexObj[32];
-};
-
-struct J3DModel {};
-
-struct dComIfG_play_c {
-    /* 8002CAF0 */ void addSimpleModel(J3DModelData*, int, u8);
-    /* 8002CB30 */ void removeSimpleModel(J3DModelData*, int);
-    /* 8002CB68 */ void entrySimpleModel(J3DModel*, int);
-};
-
-struct dBgW_Base {};
-
-struct dBgW {
-    /* 8007B970 */ dBgW();
-    /* 8007B9C0 */ void Move();
-};
-
-struct dBgS_PolyPassChk {
-    /* 80078E68 */ void SetObj();
-};
-
-struct dBgS_ObjAcch {
-    /* 8086FDB8 */ ~dBgS_ObjAcch();
-};
-
-struct dBgS_LinChk {
-    /* 80077C68 */ dBgS_LinChk();
-    /* 80077CDC */ ~dBgS_LinChk();
-    /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
-};
-
-struct dBgS_GndChk {
-    /* 8007757C */ dBgS_GndChk();
-    /* 800775F0 */ ~dBgS_GndChk();
-};
-
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-    /* 80075F58 */ void SetWall(f32, f32);
-    /* 8086FE28 */ ~dBgS_AcchCir();
-};
-
-struct dBgS {
-    /* 80074A08 */ void Regist(dBgW_Base*, fopAc_ac_c*);
-};
-
-struct dBgS_Acch {
-    /* 80075F94 */ ~dBgS_Acch();
-    /* 800760A0 */ dBgS_Acch();
-    /* 80076248 */ void Set(cXyz*, cXyz*, fopAc_ac_c*, int, dBgS_AcchCir*, cXyz*, csXyz*, csXyz*);
-    /* 80076AAC */ void CrrPos(dBgS&);
-    /* 800773EC */ void OnWallSort();
-};
-
-struct cM3dGCir {
-    /* 8026EF18 */ ~cM3dGCir();
-};
-
-struct cBgD_t {};
-
-struct cBgW {
-    /* 80079F38 */ void Set(cBgD_t*, u32, f32 (*)[3][4]);
-};
-
-struct cBgS_PolyInfo {
-    /* 802680B0 */ ~cBgS_PolyInfo();
-};
-
-struct cBgS_LinChk {};
-
-struct cBgS_GndChk {
-    /* 80267D28 */ void SetPos(cXyz const*);
-};
-
-struct cBgS {
-    /* 80074250 */ void Release(dBgW_Base*);
-    /* 800743B4 */ void LineCross(cBgS_LinChk*);
-    /* 800744A0 */ void GroundCross(cBgS_GndChk*);
-};
-
-struct _GXTexObj {};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct J3DSys {
-    static u8 mCurrentMtx[48];
-};
-
-struct J3DJoint {};
 
 //
 // Forward References:
@@ -333,14 +268,9 @@ extern "C" void MtxScale__FfffUc();
 extern "C" void MtxPosition__FP4cXyzP4cXyz();
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSquareMag();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
-extern "C" void __save_gpr();
+extern "C" void _savegpr_14();
 extern "C" void _savegpr_17();
 extern "C" void _savegpr_18();
 extern "C" void _savegpr_19();
@@ -351,7 +281,7 @@ extern "C" void _savegpr_26();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
-extern "C" void __restore_gpr();
+extern "C" void _restgpr_14();
 extern "C" void _restgpr_17();
 extern "C" void _restgpr_18();
 extern "C" void _restgpr_19();
@@ -363,18 +293,11 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern void* __vt__19mDoExt_3DlineMat0_c[5];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
 extern "C" void __register_global_object();
 
 //
@@ -1970,7 +1893,8 @@ static asm void rod_set(fshop_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/__dt__4cXyzFv.s"
 }
@@ -2101,14 +2025,11 @@ static asm void weed_control(fshop_class* param_0, fs_weed_s* param_1) {
 #pragma pop
 
 /* 8086D1A0-8086D1EC 001220 004C+00 1/1 0/0 0/0 .text stage_copy__FP11fshop_classP11fshop_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void stage_copy(fshop_class* param_0, fshop_class* param_1) {
-    nofralloc
-#include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/stage_copy__FP11fshop_classP11fshop_class.s"
+static void stage_copy(fshop_class* param_0, fshop_class* param_1) {
+    param_0->field_0x4014 = param_1->field_0x4014;
+    param_0->field_0x4020 = param_1->field_0x4020;
+    param_0->mScale = param_1->mScale;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80870110-80870114 00007C 0004+00 0/1 0/0 0/0 .rodata          @4376 */
@@ -2164,7 +2085,7 @@ static asm void koro2_mtx_set(fshop_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void s_sel_sub(void* param_0, void* param_1) {
+static asm void* s_sel_sub(void* param_0, void* param_1) {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/s_sel_sub__FPvPv.s"
 }
@@ -2174,7 +2095,7 @@ static asm void s_sel_sub(void* param_0, void* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void s_ball_sub(void* param_0, void* param_1) {
+static asm void* s_ball_sub(void* param_0, void* param_1) {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/s_ball_sub__FPvPv.s"
 }
@@ -2265,6 +2186,91 @@ static u8 old_stick_x[4];
 static u8 data_80870AC4[4];
 
 /* 8086D55C-8086D854 0015DC 02F8+00 1/1 0/0 0/0 .text            koro2_game__FP11fshop_class */
+#ifdef NONMATCHING
+static void koro2_game(fshop_class* i_this) {
+    cXyz sp5C;
+    cXyz sp68;
+    i_this->mScale.x = 1.0f;
+
+    switch (i_this->field_0x4010) {
+    case 0:
+        i_this->field_0x4014.x = 284.0f;
+        i_this->field_0x4014.y = 87.8f;
+        i_this->field_0x4014.z = 432.0;
+        i_this->field_0x4020.z = 0;
+        i_this->field_0x4020.x = 0;
+        break;
+    case 1:
+        i_this->field_0x4014.x = 204.0f;
+        i_this->field_0x4014.y = -1352.2f;
+        i_this->field_0x4014.z = 430.0;
+        i_this->field_0x4020.y = -0x4000;
+
+        cLib_addCalcAngleS2(&i_this->field_0x4020.x, 0, 2, 0x200);
+        cLib_addCalcAngleS2(&i_this->field_0x4020.z, 0, 2, 0x200);
+    case 2:
+        i_this->mScale.x = 10.0f;
+        if (i_this->field_0x4010 == 2) {
+            static f32 old_stick_x = 0.0f;
+
+            if ((mDoCPd_c::getSubStickX(PAD_1) >= 0.8f && old_stick_x < 0.8f) ||
+                (mDoCPd_c::getSubStickX(PAD_1) <= -0.8f && old_stick_x > -0.8f))
+            {
+                if (mDoCPd_c::getSubStickX(PAD_1) > 0.0f) {
+                    i_this->field_0x4062 += 0x4000;
+                } else {
+                    i_this->field_0x4062 += -0x4000;
+                }
+            }
+
+            old_stick_x = mDoCPd_c::getSubStickX(PAD_1);
+            cLib_addCalcAngleS2(&i_this->field_0x4060, i_this->field_0x4062, 4, 0x1000);
+            mDoMtx_YrotS(*calc_mtx, -i_this->field_0x4060);
+
+            sp5C.x = mDoCPd_c::getStickX3D(PAD_1);
+            sp5C.y = 0.0f;
+            sp5C.z = mDoCPd_c::getStickY(PAD_1);
+            MtxPosition(&sp5C, &sp68);
+
+            f32 var_f2 = sp68.x;
+            f32 var_f3 = sp68.z;
+
+            f32 var_f31;
+            f32 var_f3_2;
+            if (var_f2 > 0.15f) {
+                var_f31 = var_f2 - 0.15f;
+            } else if (var_f2 < -0.15f) {
+                var_f31 = var_f2 + 0.15f;
+            } else {
+                var_f31 = 0.0f;
+            }
+
+            if (var_f3 > 0.15f) {
+                var_f3_2 = var_f3 - 0.15f;
+            } else if (var_f3 < -0.15f) {
+                var_f3_2 = var_f3 + 0.15f;
+            } else {
+                var_f3_2 = 0.0f;
+            }
+
+            cLib_addCalcAngleS2(&i_this->field_0x4020.x, var_f3_2 * -6000.0f, 4, 0x200);
+            cLib_addCalcAngleS2(&i_this->field_0x4020.z, var_f31 * -6000.0f, 4, 0x200);
+        }
+        break;
+    }
+
+    i_this->field_0x4008 = (fshop_class*)i_fpcM_Search(s_sel_sub, i_this);
+    if (i_this->field_0x4008 != NULL) {
+        stage_copy(i_this->field_0x4008, i_this);
+        i_this->field_0x4008->field_0x400d = 0;
+
+        fshop_class* ball_p = (fshop_class*)i_fpcM_Search(s_ball_sub, i_this);
+        if (ball_p != NULL) {
+            ball_p->field_0x4008 = i_this->field_0x4008;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2273,6 +2279,7 @@ static asm void koro2_game(fshop_class* param_0) {
 #include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/koro2_game__FP11fshop_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 808707A4-808707B4 000520 0010+00 1/1 0/0 0/0 .data            c_x$4477 */
@@ -2946,7 +2953,8 @@ asm fs_koro2_s::~fs_koro2_s() {
 #pragma pop
 
 /* 8086FDB4-8086FDB8 003E34 0004+00 1/1 0/0 0/0 .text            __ct__10fs_koro2_sFv */
-fs_koro2_s::fs_koro2_s() {
+// fs_koro2_s::fs_koro2_s() {
+extern "C" void __ct__10fs_koro2_sFv() {
     /* empty function */
 }
 
@@ -2954,7 +2962,8 @@ fs_koro2_s::fs_koro2_s() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+// asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+extern "C" asm void __dt__12dBgS_ObjAcchFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/__dt__12dBgS_ObjAcchFv.s"
 }
@@ -2964,7 +2973,8 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_AcchCir::~dBgS_AcchCir() {
+// asm dBgS_AcchCir::~dBgS_AcchCir() {
+extern "C" asm void __dt__12dBgS_AcchCirFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/__dt__12dBgS_AcchCirFv.s"
 }
@@ -2981,7 +2991,8 @@ asm fs_tsubo_s::~fs_tsubo_s() {
 #pragma pop
 
 /* 8086FED4-8086FED8 003F54 0004+00 1/1 0/0 0/0 .text            __ct__10fs_tsubo_sFv */
-fs_tsubo_s::fs_tsubo_s() {
+// fs_tsubo_s::fs_tsubo_s() {
+extern "C" void __ct__10fs_tsubo_sFv() {
     /* empty function */
 }
 
@@ -2999,14 +3010,16 @@ asm fs_weed_s::~fs_weed_s() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm fs_weed_s::fs_weed_s() {
+// asm fs_weed_s::fs_weed_s() {
+extern "C" asm void __ct__9fs_weed_sFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/__ct__9fs_weed_sFv.s"
 }
 #pragma pop
 
 /* 8086FF80-8086FF84 004000 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+// cXyz::cXyz() {
+extern "C" void __ct__4cXyzFv() {
     /* empty function */
 }
 
@@ -3024,7 +3037,8 @@ asm fs_rod_s::~fs_rod_s() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm fs_rod_s::fs_rod_s() {
+// asm fs_rod_s::fs_rod_s() {
+extern "C" asm void __ct__8fs_rod_sFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/__ct__8fs_rod_sFv.s"
 }
@@ -3041,7 +3055,8 @@ asm fs_lure_s::~fs_lure_s() {
 #pragma pop
 
 /* 80870018-8087001C 004098 0004+00 1/1 0/0 0/0 .text            __ct__9fs_lure_sFv */
-fs_lure_s::fs_lure_s() {
+// fs_lure_s::fs_lure_s() {
+extern "C" void __ct__9fs_lure_sFv() {
     /* empty function */
 }
 
@@ -3049,8 +3064,7 @@ fs_lure_s::fs_lure_s() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __sinit_d_a_mg_fshop_cpp() {
-    nofralloc
+asm void __sinit_d_a_mg_fshop_cpp(){nofralloc
 #include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/__sinit_d_a_mg_fshop_cpp.s"
 }
 #pragma pop

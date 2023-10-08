@@ -5,7 +5,6 @@
 
 #include "rel/d/a/obj/d_a_obj_web0/d_a_obj_web0.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "SSystem/SComponent/c_math.h"
 #include "d/bg/d_bg_w.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
@@ -264,7 +263,7 @@ static int daObj_Web0_Execute(obj_web0_class* i_this) {
     if (tmp < 0) {
         mDoMtx_stack_c::YrotM(-0x8000);
     }
-    PSMTXCopy(mDoMtx_stack_c::get(), i_this->mMtx);
+    MTXCopy(mDoMtx_stack_c::get(), i_this->mMtx);
 
     i_this->mpBgW->Move();
 
@@ -364,10 +363,7 @@ static daObj_Web0_HIO_c l_HIO;
 /* 80D34D8C-80D35054 00094C 02C8+00 1/0 0/0 0/0 .text            daObj_Web0_Create__FP10fopAc_ac_c
  */
 static int daObj_Web0_Create(fopAc_ac_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) obj_web0_class();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    fopAcM_SetupActor(i_this, obj_web0_class);
     obj_web0_class* _this = static_cast<obj_web0_class*>(i_this);
 
     static dCcD_SrcSph cc_sph_src = {
@@ -378,9 +374,11 @@ static int daObj_Web0_Create(fopAc_ac_c* i_this) {
             {0},
         },
         {
-            {0.0f, 0.0f, 0.0f},
-            40.0f,
-        },
+            {
+                {0.0f, 0.0f, 0.0f},
+                40.0f,
+            },
+        }
     };
 
     int phase = dComIfG_resLoad(&_this->mPhase, "Obj_web0");

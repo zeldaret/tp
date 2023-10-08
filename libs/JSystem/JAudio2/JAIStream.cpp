@@ -5,31 +5,10 @@
 
 #include "JSystem/JAudio2/JAIStream.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
 //
-
-struct JSUPtrLink {
-    /* 802DBDFC */ JSUPtrLink(void*);
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
-
-struct JASSoundParams {};
-
-template <typename A0>
-struct JASMemPool {};
-/* JASMemPool<JAISoundChild> */
-struct JASMemPool__template1 {
-    /* 802A1268 */ void func_802A1268(void* _this);
-};
 
 struct JASGenericMemPool {
     /* 80290848 */ JASGenericMemPool();
@@ -37,66 +16,13 @@ struct JASGenericMemPool {
     /* 80290994 */ void free(void*, u32);
 };
 
-struct JASAramStream {
-    /* 802963A8 */ JASAramStream();
-    /* 8029649C */ void init(u32, u32, void (*)(u32, JASAramStream*, void*), void*);
-    /* 8029655C */ void prepare(s32, int);
-    /* 80296618 */ void start();
-    /* 8029664C */ void stop(u16);
-    /* 80296684 */ void pause(bool);
-    /* 802966CC */ void cancel();
-};
-
 struct JAIStreamMgr {};
 
-struct JAISoundActivity {};
-
-template <typename A0>
-struct JAISoundStrategyMgr {};
-/* JAISoundStrategyMgr<JAIStream> */
-struct JAISoundStrategyMgr__template2 {};
-
 struct JAIAudience {};
-
-struct JAISoundID {};
-
-struct JAIStream {
-    /* 802A3104 */ JAIStream(JAIStreamMgr*, JAISoundStrategyMgr<JAIStream>*);
-    /* 802A319C */ void JAIStreamMgr_startID_(JAISoundID, s32, JGeometry::TVec3<f32> const*,
-                                              JAIAudience*, int);
-    /* 802A3230 */ void prepare_prepareStream_();
-    /* 802A33F4 */ void prepare_();
-    /* 802A3498 */ void prepare_startStream_();
-    /* 802A34E4 */ void JAIStreamMgr_mixOut_(JASSoundParams const&, JAISoundActivity);
-    /* 802A3720 */ void die_JAIStream_();
-    /* 802A37FC */ void JAISound_tryDie_();
-    /* 802A388C */ void JAIStreamMgr_calc_();
-    /* 802A3948 */ s32 getNumChild() const;
-    /* 802A3950 */ void getChild(int);
-    /* 802A3A24 */ void releaseChild(int);
-    /* 802A3ABC */ bool getTrack();
-    /* 802A3AC4 */ bool getChildTrack(int);
-    /* 802A3ACC */ void asStream();
-    /* 802A3AD0 */ bool getTempoMgr();
-};
-
-struct JAISoundParams {
-    /* 802A2280 */ void mixOutAll(JASSoundParams const&, JASSoundParams*, f32);
-};
 
 struct JAISoundChild {
     /* 802A2AB0 */ void init();
     /* 802A2B7C */ void calc();
-};
-
-struct JAISound {
-    /* 802A22F8 */ JAISound();
-    /* 802A2328 */ void start_JAISound_(JAISoundID, JGeometry::TVec3<f32> const*, JAIAudience*);
-    /* 802A25D8 */ bool asSe();
-    /* 802A25E0 */ bool asSeq();
-    /* 802A25F0 */ void die_JAISound_();
-    /* 802A266C */ void increasePrepareCount_JAISound_();
-    /* 802A26B8 */ void calc_JAISound_();
 };
 
 //
@@ -291,7 +217,7 @@ asm void JAIStream::die_JAIStream_() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAIStream::JAISound_tryDie_() {
+asm bool JAIStream::JAISound_tryDie_() {
     nofralloc
 #include "asm/JSystem/JAudio2/JAIStream/JAISound_tryDie___9JAIStreamFv.s"
 }
@@ -316,7 +242,7 @@ s32 JAIStream::getNumChild() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAIStream::getChild(int param_0) {
+asm JAISoundChild* JAIStream::getChild(int param_0) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAIStream/getChild__9JAIStreamFi.s"
 }
@@ -333,21 +259,21 @@ asm void JAIStream::releaseChild(int param_0) {
 #pragma pop
 
 /* 802A3ABC-802A3AC4 29E3FC 0008+00 1/0 0/0 0/0 .text            getTrack__9JAIStreamFv */
-bool JAIStream::getTrack() {
-    return false;
+JASTrack* JAIStream::getTrack() {
+    return NULL;
 }
 
 /* 802A3AC4-802A3ACC 29E404 0008+00 1/0 0/0 0/0 .text            getChildTrack__9JAIStreamFi */
-bool JAIStream::getChildTrack(int param_0) {
-    return false;
+JASTrack* JAIStream::getChildTrack(int param_0) {
+    return NULL;
 }
 
 /* 802A3ACC-802A3AD0 29E40C 0004+00 1/0 0/0 0/0 .text            asStream__9JAIStreamFv */
-void JAIStream::asStream() {
-    /* empty function */
+JAIStream* JAIStream::asStream() {
+    return this;
 }
 
 /* 802A3AD0-802A3AD8 29E410 0008+00 1/0 0/0 0/0 .text            getTempoMgr__9JAIStreamFv */
-bool JAIStream::getTempoMgr() {
-    return false;
+JAITempoMgr* JAIStream::getTempoMgr() {
+    return NULL;
 }

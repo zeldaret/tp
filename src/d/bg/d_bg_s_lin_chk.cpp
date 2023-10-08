@@ -5,7 +5,6 @@
 
 #include "d/bg/d_bg_s_lin_chk.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 //

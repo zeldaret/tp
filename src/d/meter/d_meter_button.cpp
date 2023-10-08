@@ -5,7 +5,6 @@
 
 #include "d/meter/d_meter_button.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -378,14 +377,14 @@ extern "C" void setPriority__9J2DScreenFPCcUlP10JKRArchive();
 extern "C" void draw__9J2DScreenFffPC14J2DGrafContext();
 extern "C" void getStringPtr__10J2DTextBoxCFv();
 extern "C" void setString__10J2DTextBoxFsPCce();
-extern "C" void __save_gpr();
+extern "C" void _savegpr_14();
 extern "C" void _savegpr_21();
 extern "C" void _savegpr_24();
 extern "C" void _savegpr_25();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_29();
-extern "C" void __restore_gpr();
+extern "C" void _restgpr_14();
 extern "C" void _restgpr_21();
 extern "C" void _restgpr_24();
 extern "C" void _restgpr_25();

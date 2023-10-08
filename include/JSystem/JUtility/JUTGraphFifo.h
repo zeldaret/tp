@@ -2,7 +2,6 @@
 #define JUTGRAPHFIFO_H
 
 #include "dolphin/gx/GX.h"
-#include "dolphin/types.h"
 
 class JUTGraphFifo {
 public:
@@ -31,5 +30,7 @@ private:
     /* 0x0C */ u32 mSize;
     /* 0x10 */ u8 field_0x10[0xC];
 };
+
+inline void JUTCreateFifo(u32 bufSize) { new JUTGraphFifo(bufSize); }
 
 #endif /* JUTGRAPHFIFO_H */

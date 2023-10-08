@@ -4,7 +4,6 @@
 //
 
 #include "dolphin/os/OSMutex.h"
-#include "dol2asm.h"
 #include "dolphin/os/OS.h"
 
 #define PushTail(queue, mutex, link)                                                               \

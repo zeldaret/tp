@@ -3,7 +3,6 @@
 
 #include "SSystem/SComponent/c_bg_s_lin_chk.h"
 #include "d/bg/d_bg_s_chk.h"
-#include "dolphin/types.h"
 
 class fopAc_ac_c;
 

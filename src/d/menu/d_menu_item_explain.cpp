@@ -5,7 +5,6 @@
 
 #include "d/menu/d_menu_item_explain.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

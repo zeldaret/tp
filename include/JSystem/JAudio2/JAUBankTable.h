@@ -1,20 +1,8 @@
 #ifndef JAUBANKTABLE_H
 #define JAUBANKTABLE_H
 
+#include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "dolphin/types.h"
-
-template <typename T>
-struct JASPtrTable {
-    T* get(u32 value) const {
-        if (value >= mLength) {
-            return NULL;
-        }
-        return mTable[value];
-    }
-    T** mTable;
-    u32 mLength;
-};
 
 struct JASBank;
 struct JAUBankTable {
@@ -25,6 +13,14 @@ struct JAUBankTable {
 
 struct JAUBankTableDictionary : JSUList<JAUBankTable> {
     /* 802A4A80 */ void appendBankTable(JSULink<JAUBankTable>*);
+};
+
+class JASWaveBank;
+class JAUWaveBankTable : private JASPtrArray<JASWaveBank,255> {
+public:
+    JASWaveBank* getWaveBank(u32 index) { return get(index); }
+    JASWaveBank* getWaveBank(u32 index) const { return get(index); }
+    void registWaveBank(u32 index, JASWaveBank* bank) { set(index, bank); }
 };
 
 #endif /* JAUBANKTABLE_H */

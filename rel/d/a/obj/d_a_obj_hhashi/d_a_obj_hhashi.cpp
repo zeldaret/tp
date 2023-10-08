@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_hhashi/d_a_obj_hhashi.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -17,11 +17,6 @@ struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
     /* 805811BC */ csXyz();
     /* 8057FD6C */ ~csXyz();
-};
-
-struct cXyz {
-    /* 8057FD30 */ ~cXyz();
-    /* 805811C0 */ cXyz();
 };
 
 struct mDoMtx_stack_c {
@@ -93,28 +88,6 @@ struct dComIfG_play_c {
     /* 8002CB68 */ void entrySimpleModel(J3DModel*, int);
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80083830 */ void Move();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-    /* 800844B8 */ void ResetTgHit();
-    /* 800844F8 */ void GetTgHitObj();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
 struct dBgW_Base {};
 
 struct dBgW {};
@@ -140,19 +113,6 @@ struct dBgS_LinChk {
     /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
 };
 
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8058112C */ ~cM3dGCyl();
-};
-
-struct cM3dGAab {
-    /* 80581174 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {
-    /* 80263A48 */ void GetAc();
-};
-
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
 };
@@ -168,20 +128,8 @@ struct cBgS {
     /* 800743B4 */ void LineCross(cBgS_LinChk*);
 };
 
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
 struct Z2CreatureFM {
     /* 802C2194 */ void startChainSound(JAISoundID, u8, f32, u32, s8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JMath {
@@ -286,8 +234,6 @@ extern "C" void startChainSound__12Z2CreatureFMF10JAISoundIDUcfUlSc();
 extern "C" void __dl__FPv();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXMultVec();
-extern "C" void PSVECSquareMag();
-extern "C" void PSVECSquareDistance();
 extern "C" void __construct_array();
 extern "C" void _savegpr_22();
 extern "C" void _savegpr_25();
@@ -313,7 +259,6 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
@@ -322,14 +267,19 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 805814AC-805814F0 000000 0044+00 10/10 0/0 0/0 .rodata          ccCylSrc$3773 */
-SECTION_RODATA static u8 const ccCylSrc[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x11,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x42, 0xDC, 0x00, 0x00, 0x43, 0x1E, 0x00, 0x00,
+const static dCcD_SrcCyl ccCylSrc = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x100000, 0x1f}, 0x11}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        110.0f, // mRadius
+        158.0f // mHeight
+    } // mCyl
 };
-COMPILER_STRIP_GATE(0x805814AC, &ccCylSrc);
 
 /* 8057F9B8-8057FA18 000078 0060+00 1/1 0/0 0/0 .text            initCcCylinder__13daObjHHASHI_cFv
  */
@@ -417,7 +367,8 @@ asm void daObjHHASHI_c::Set_Hahen(cXyz* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_hhashi/d_a_obj_hhashi/__dt__4cXyzFv.s"
 }
@@ -887,7 +838,8 @@ asm void daObjHHASHI_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_hhashi/d_a_obj_hhashi/__dt__8cM3dGCylFv.s"
 }
@@ -897,7 +849,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_hhashi/d_a_obj_hhashi/__dt__8cM3dGAabFv.s"
 }
@@ -909,7 +862,8 @@ csXyz::csXyz() {
 }
 
 /* 805811C0-805811C4 001880 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+// cXyz::cXyz() {
+extern "C" asm void __ct__4cXyzFv() {
     /* empty function */
 }
 

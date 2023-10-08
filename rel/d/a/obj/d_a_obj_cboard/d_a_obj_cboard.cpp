@@ -18,7 +18,7 @@ void daObjBoard_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(mScale);
-    PSMTXCopy(mDoMtx_stack_c::get(), field_0x56c);
+    MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
 /* 8057BE20-8057BE24 -00001 0004+00 2/2 0/0 0/0 .data            l_arcName */
@@ -102,12 +102,12 @@ int daObjBoard_c::Execute(Mtx** param_0) {
     case 7:
     case 15:
         if (i_fopAcM_isSwitch(this, getSwNo())) {
-            if (!field_0x568->ChkUsed()) {
-                dComIfG_Bgsp().Regist(field_0x568, this);
+            if (!mpBgW->ChkUsed()) {
+                dComIfG_Bgsp().Regist(mpBgW, this);
             }
         } else {
-            if (field_0x568->ChkUsed()) {
-                dComIfG_Bgsp().Release(field_0x568);
+            if (mpBgW->ChkUsed()) {
+                dComIfG_Bgsp().Release(mpBgW);
             }
         }
         break;
@@ -117,18 +117,18 @@ int daObjBoard_c::Execute(Mtx** param_0) {
     case 6:
     case 8:
         if (i_fopAcM_isSwitch(this, getSwNo())) {
-            if (field_0x568->ChkUsed()) {
-                dComIfG_Bgsp().Release(field_0x568);
+            if (mpBgW->ChkUsed()) {
+                dComIfG_Bgsp().Release(mpBgW);
             }
         } else {
-            if (!field_0x568->ChkUsed()) {
-                dComIfG_Bgsp().Regist(field_0x568, this);
+            if (!mpBgW->ChkUsed()) {
+                dComIfG_Bgsp().Regist(mpBgW, this);
             }
         }
         break;
     }
 
-    *param_0 = &field_0x56c;
+    *param_0 = &mBgMtx;
     return 1;
 }
 
@@ -145,10 +145,7 @@ int daObjBoard_c::Delete() {
 
 /* 8057BCFC-8057BD5C 00041C 0060+00 1/0 0/0 0/0 .text daObjBoard_create1st__FP12daObjBoard_c */
 static int daObjBoard_create1st(daObjBoard_c* i_this) {
-    if (!fopAcM_CheckCondition(i_this, 8)) {
-        new (i_this) daObjBoard_c();
-        fopAcM_OnCondition(i_this, 8);
-    }
+    fopAcM_SetupActor(i_this, daObjBoard_c);
 
     return i_this->create1st();
 }

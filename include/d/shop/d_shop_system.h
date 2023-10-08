@@ -3,10 +3,9 @@
 
 #include "d/a/d_a_npc.h"
 #include "d/shop/d_shop_item_ctrl.h"
-#include "dolphin/types.h"
 
 class dSelect_cursor_c;
-struct STControl;
+class STControl;
 
 typedef int (*ShopCam_actionFunc)(void);
 
@@ -120,7 +119,7 @@ public:
     /* 8019A364 */ void setSoldOut();
     /* 8019A4F4 */ void setSoldOutItemHide();
     /* 8019A564 */ void deleteObject();
-    /* 8019A5D0 */ void searchItemActor();
+    /* 8019A5D0 */ int searchItemActor();
     /* 8019AB00 */ int getFlowNodeNum();
     /* 8019AB1C */ void setSellItemMax(u8);
     /* 8019AB24 */ bool checkShopOpen();

@@ -3,10 +3,7 @@
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
-#include "SSystem/SComponent/c_sxyz.h"
-#include "SSystem/SComponent/c_xyz.h"
 #include "Z2AudioLib/Z2SoundObject.h"
-#include "dolphin/gx/GXStruct.h"
 #include "global.h"
 #include "m_Do/m_Do_audio.h"
 #include "m_Do/m_Do_mtx.h"
@@ -76,7 +73,7 @@ public:
 
     int remove(J3DModelData* i_modelData) { return i_modelData->removeTexMtxAnimator(mpAnm); }
     void entryFrame() { entryFrame(getFrame()); }
-    void entryFrame(f32 frame) { setFrame(frame); }
+    void entryFrame(f32 frame) { mpAnm->setFrame(frame); }
 
     J3DAnmTextureSRTKey* getBtkAnm() const { return mpAnm; }
 
@@ -106,7 +103,7 @@ public:
 
     int remove(J3DModelData* i_modelData) { return i_modelData->removeTevRegAnimator(mpAnm); }
     void entryFrame() { entryFrame(getFrame()); }
-    void entryFrame(f32 frame) { setFrame(frame); }
+    void entryFrame(f32 frame) { mpAnm->setFrame(frame); }
 
     J3DAnmTevRegKey* getBrkAnm() const { return mpAnm; }
 
@@ -152,7 +149,11 @@ public:
     /* 8000D9E8 */ void entryJoint(J3DModelData* i_modelData, u16 i_jntNo, f32 i_frame);
 
     void entry(J3DModelData* i_modelData) { entry(i_modelData, getFrame()); }
+
+    void remove(J3DModelData* i_modelData) { i_modelData->getJointNodePointer(0)->setMtxCalc(NULL); }
+
     J3DAnmTransform* getBckAnm() { return mAnm; }
+
     void removeJoint(J3DModelData* i_modelData, u16 i_idx) {
         J3DJoint* mpJnt = i_modelData->getJointNodePointer(i_idx);
         mpJnt->setMtxCalc(0);
@@ -277,11 +278,7 @@ public:
     void changeAnm(J3DAnmTransform* anm) { mpAnm = anm; }
 
     bool isStop() {
-        bool stopped = true;
-        if (!mFrameCtrl.checkState(1) && mFrameCtrl.getRate() != 0.0f) {
-            stopped = false;
-        }
-        return stopped;
+        return mFrameCtrl.checkState(1) || mFrameCtrl.getRate() == 0.0f;
     }
 
     /* 0x04 */ J3DModel* mpModel;
@@ -568,17 +565,19 @@ JKRSolidHeap* mDoExt_createSolidHeapToCurrent(u32 i_size, JKRHeap* i_parent, u32
 JKRSolidHeap* mDoExt_createSolidHeapFromGameToCurrent(u32 i_size, u32 i_alignment);
 JKRSolidHeap* mDoExt_createSolidHeapFromGameToCurrent(JKRHeap** o_heap, u32 i_size,
                                                       u32 i_alignment);
+JKRSolidHeap* mDoExt_createSolidHeapFromSystem(u32 i_size, u32 i_alignment);
 u32 mDoExt_adjustSolidHeapToSystem(JKRSolidHeap* i_heap);
 JKRHeap* mDoExt_getCurrentHeap();
 void mDoExt_removeMesgFont();
 void mDoExt_modelUpdate(J3DModel* i_model);
 void mDoExt_modelUpdateDL(J3DModel* i_model);
-J3DModel* mDoExt_J3DModel__create(J3DModelData* i_modelData, u32 param_1, u32 param_2);
+J3DModel* mDoExt_J3DModel__create(J3DModelData* i_modelData, u32 i_modelFlag, u32 i_differedDlistFlag);
 void mDoExt_setAraCacheSize(u32 size);
 int mDoExt_resIDToIndex(JKRArchive* p_archive, u16 id);
 void mDoExt_modelEntryDL(J3DModel* i_model);
 void mDoExt_setupStageTexture(J3DModelData* i_modelData);
 OSThread* mDoExt_GetCurrentRunningThread();
+void mDoExt_setupShareTexture(J3DModelData* i_modelData, J3DModelData* i_shareModelData);
 
 struct JUTFont;
 JUTFont* mDoExt_getMesgFont();

@@ -2,7 +2,6 @@
 #define D_D_CAM_PARAM_H
 
 #include "SSystem/SComponent/c_angle.h"
-#include "SSystem/SComponent/c_xyz.h"
 
 struct dCamMath {
     /* 8008813C */ static f32 rationalBezierRatio(f32, f32);

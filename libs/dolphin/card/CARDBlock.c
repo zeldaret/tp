@@ -4,8 +4,6 @@
 //
 
 #include "dolphin/card/CARDBlock.h"
-#include "MSL_C/string.h"
-#include "dol2asm.h"
 #include "dolphin/card/card.h"
 #include "dolphin/dsp/dsp.h"
 

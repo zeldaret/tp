@@ -4,133 +4,59 @@
 //
 
 #include "JSystem/JAudio2/osdsp.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
+#include "JSystem/JAudio2/osdsp_task.h"
+#include "dolphin/os/OS.h"
+#include "dolphin/dsp/dsp_task.h"
 
 //
 // Types:
 //
 
-struct STRUCT_DSP_TASK {};
+// Unclear why this is a different type than DSPTaskInfo
+struct STRUCT_DSP_TASK {
+    DSPTaskInfo info;
+};
 
 //
 // Forward References:
 //
 
-extern "C" void DSPAddTask();
-extern "C" void DSPAddPriorTask__FP15STRUCT_DSP_TASK();
-
 //
 // External References:
 //
-
-extern "C" void OSReport();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void __DSP_boot_task();
-extern "C" void __DSP_insert_task();
-extern "C" extern u8 DSP_prior_task[4];
 
 //
 // Declarations:
 //
 
 /* ############################################################################################## */
-/* 8039B8B8-8039B8D4 027F18 001A+02 1/1 0/0 0/0 .rodata          @81 */
-SECTION_RODATA static u8 const lit_81[26 + 2 /* padding */] = {
-    0x50,
-    0x72,
-    0x69,
-    0x6F,
-    0x72,
-    0x20,
-    0x54,
-    0x61,
-    0x73,
-    0x6B,
-    0x20,
-    0x69,
-    0x73,
-    0x20,
-    0x6E,
-    0x6F,
-    0x74,
-    0x20,
-    0x69,
-    0x6E,
-    0x69,
-    0x74,
-    0x65,
-    0x64,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x8039B8B8, &lit_81);
 
 /* 8029EA00-8029EA84 299340 0084+00 0/0 1/1 0/0 .text            DSPAddTask */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-#pragma function_align 32
-asm void DSPAddTask() {
-    nofralloc
-#include "asm/JSystem/JAudio2/osdsp/DSPAddTask.s"
+DSPTaskInfo* DSPAddTask(DSPTaskInfo* task) {
+    if (DSP_prior_task == NULL) {
+        OSReport("Prior Task is not inited\n");
+        return NULL;
+    }
+    BOOL status = OSDisableInterrupts();
+    __DSP_insert_task(task);
+    task->state = 0;
+    task->flags = 1;
+    OSRestoreInterrupts(status);
+    return task;
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 8039B8D4-8039B8F8 027F34 001F+05 1/1 0/0 0/0 .rodata          @88 */
-SECTION_RODATA static u8 const lit_88[31 + 5 /* padding */] = {
-    0x41,
-    0x6C,
-    0x72,
-    0x65,
-    0x61,
-    0x64,
-    0x79,
-    0x20,
-    0x69,
-    0x6E,
-    0x69,
-    0x74,
-    0x65,
-    0x64,
-    0x20,
-    0x70,
-    0x72,
-    0x69,
-    0x6F,
-    0x72,
-    0x20,
-    0x44,
-    0x53,
-    0x50,
-    0x20,
-    0x74,
-    0x61,
-    0x73,
-    0x6B,
-    0x0A,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x8039B8D4, &lit_88);
 
 /* 8029EAA0-8029EB1C 2993E0 007C+00 0/0 1/1 0/0 .text DSPAddPriorTask__FP15STRUCT_DSP_TASK */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-#pragma function_align 32
-asm void DSPAddPriorTask(STRUCT_DSP_TASK* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/osdsp/DSPAddPriorTask__FP15STRUCT_DSP_TASK.s"
+void DSPAddPriorTask(STRUCT_DSP_TASK* task) {
+    if (DSP_prior_task != NULL) {
+        OSReport("Already inited prior DSP task\n");
+        return;
+    }
+    BOOL status = OSDisableInterrupts();
+    DSP_prior_task = (DSPTaskInfo*)task;
+    task->info.state = 0;
+    task->info.flags = 1;
+    __DSP_boot_task((DSPTaskInfo*)task);
+    OSRestoreInterrupts(status);
 }
-#pragma pop

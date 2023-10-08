@@ -8,9 +8,7 @@
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "MSL_C/string.h"
-#include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
-#include "dolphin/types.h"
 #include "global.h"
 #include "init.h"
 

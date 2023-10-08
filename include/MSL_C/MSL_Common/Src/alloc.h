@@ -8,7 +8,7 @@ extern "C" {
 #endif
 
 void free(FILE* file);
-void __pool_free();
+void __pool_free(int **param_1, unsigned int **param_2);
 
 #ifdef __cplusplus
 }

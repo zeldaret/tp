@@ -4,8 +4,6 @@
 //
 
 #include "JSystem/J2DGraph/J2DGrafContext.h"
-#include "MSL_C/math.h"
-#include "dol2asm.h"
 #include "dolphin/gx/GX.h"
 #include "dolphin/types.h"
 
@@ -14,10 +12,8 @@
 //
 
 /* 802E8B08-802E8BB4 2E3448 00AC+00 0/0 2/2 0/0 .text            __ct__14J2DGrafContextFffff */
-J2DGrafContext::J2DGrafContext(f32 left, f32 top, f32 right, f32 bottom)
-    : mBounds(left, top, left + right, top + bottom),
-      mScissorBounds(left, top, left + right, top + bottom), mColorTL(-1), mColorTR(-1),
-      mColorBR(-1), mColorBL(-1) {
+J2DGrafContext::J2DGrafContext(f32 x, f32 y, f32 width, f32 height)
+    : mBounds(x, y, x + width, y + height), mScissorBounds(x, y, x + width, y + height) {
     JUtility::TColor color(-1);
     setColor(color);
     setLineWidth(6);
@@ -28,18 +24,19 @@ void J2DGrafContext::setPort() {
     setScissor();
     setup2D();
 
-    f32 x_origin = mBounds.i.x;
-    f32 y_origin = mBounds.i.y;
-    f32 width = mBounds.f.x;
-    f32 height = mBounds.f.y;
+    JGeometry::TBox2<float> bounds(mBounds);
 
-    if (x_origin < 0.0f) {
-        x_origin = 0.0f;
+    if (bounds.i.x < 0.0f) {
+        bounds.i.x = 0.0f;
     }
-    if (y_origin < 0.0f) {
-        y_origin = 0.0f;
+    if (bounds.i.y < 0.0f) {
+        bounds.i.y = 0.0f;
     }
-    GXSetViewport(x_origin, y_origin, width - x_origin, height - y_origin, 0.0f, 1.0f);
+    GXSetViewport(bounds.i.x, bounds.i.y, bounds.getWidth(), bounds.getHeight(), 0.0f, 1.0f);
+}
+
+static inline void GXSetTexCoordGen(GXTexCoordID dst, GXTexGenType type, GXTexGenSrc src, u32 mtx) {
+    GXSetTexCoordGen2(dst, type, src, mtx, GX_FALSE, GX_PTIDENTITY);
 }
 
 /* 802E8C44-802E8E20 2E3584 01DC+00 1/0 1/0 0/0 .text            setup2D__14J2DGrafContextFv */
@@ -59,14 +56,14 @@ void J2DGrafContext::setup2D() {
     GXSetCullMode(GX_CULL_NONE);
     GXLoadPosMtxImm(mPosMtx, 0);
     Mtx mtx;
-    PSMTXIdentity(mtx);
-    GXLoadTexMtxImm(mtx, 0x3c, GX_MTX3x4);
+    MTXIdentity(mtx);
+    GXLoadTexMtxImm(mtx, GX_IDENTITY, GX_MTX3x4);
     GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE,
                   GX_AF_NONE);
     GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE,
                   GX_AF_NONE);
     GXSetCurrentMtx(0);
-    GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 0x3c, GX_FALSE, 0x7d);
+    GXSetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGBA, GX_RGBA8, 0);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBX8, 0xf);

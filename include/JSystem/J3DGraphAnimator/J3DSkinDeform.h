@@ -2,9 +2,8 @@
 #define J3DSKINDEFORM_H
 
 #include "JSystem/J3DGraphAnimator/J3DCluster.h"
-#include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/J3DGraphAnimator/J3DMtxBuffer.h"
-#include "JSystem/J3DGraphBase/J3DVertex.h"
+#include "JSystem/J3DGraphBase/J3DTransform.h"
 #include "dolphin/types.h"
 
 class J3DModel;
@@ -38,10 +37,10 @@ struct J3DSkinNList {
     /* 8032C85C */ void calcSkin_VtxPosF32(f32 (*)[4], void*, void*);
     /* 8032C8E4 */ void calcSkin_VtxNrmF32(f32 (*)[4], void*, void*);
 
-    /* 0x00 */ int field_0x0;
-    /* 0x04 */ int field_0x4;
-    /* 0x08 */ int field_0x8;
-    /* 0x0C */ int field_0xc;
+    /* 0x00 */ u16* field_0x0;
+    /* 0x04 */ u16* field_0x4;
+    /* 0x08 */ f32* field_0x8;
+    /* 0x0C */ f32* field_0xc;
     /* 0x10 */ u16 field_0x10;
     /* 0x12 */ u16 field_0x12;
 };  // Size: 0x14
@@ -50,7 +49,7 @@ class J3DSkinDeform {
 public:
     /* 8032C96C */ J3DSkinDeform();
     /* 8032C9B0 */ void initSkinInfo(J3DModelData*);
-    /* 8032CF44 */ void initMtxIndexArray(J3DModelData*);
+    /* 8032CF44 */ int initMtxIndexArray(J3DModelData*);
     /* 8032D378 */ void changeFastSkinDL(J3DModelData*);
     /* 8032D5C4 */ void calcNrmMtx(J3DMtxBuffer*);
     /* 8032D738 */ void transformVtxPosNrm(J3DModelData*);
@@ -62,25 +61,32 @@ public:
     /* 8032DDB8 */ void deformVtxNrm_F32(J3DVertexBuffer*) const;
     /* 8032DEBC */ void deformVtxNrm_S16(J3DVertexBuffer*) const;
     /* 8032DFDC */ void deform(J3DModel*);
+    void setNrmMtx(int i, MtxP mtx) {
+        J3DPSMtx33CopyFrom34(mtx, (Mtx3P)mNrmMtx[i]);
+    }
+    Mtx3P getNrmMtx(int i) { return mNrmMtx[i]; }
+    void onFlag(u32 flag) { mFlags |= flag; }
+    void offFlag(u32 flag) { mFlags &= ~flag; }
+    bool checkFlag(u32 flag) { return mFlags & flag; }
 
     /* 8032E064 */ virtual void deform(J3DVertexBuffer*, J3DMtxBuffer*);
     /* 8032E1B0 */ virtual ~J3DSkinDeform();
 
-    static u8 sWorkArea_WEvlpMixMtx[4096];
-    static u8 sWorkArea_WEvlpMixWeight[4096];
-    static u8 sWorkArea_MtxReg[2048 + 8 /* padding */];
+    static u16* sWorkArea_WEvlpMixMtx[1024];
+    static f32* sWorkArea_WEvlpMixWeight[1024];
+    static u16 sWorkArea_MtxReg[1024 + 4 /* padding */];
 
 private:
-    /* 0x04 */ void** mPosData;
-    /* 0x08 */ void** field_0x8;
-    /* 0x0C */ void** field_0xc;
-    /* 0x10 */ Mtx** mNrmMtx;
+    /* 0x04 */ u16* mPosData;
+    /* 0x08 */ u16* mNrmData;
+    /* 0x0C */ Mtx* mPosMtx;
+    /* 0x10 */ Mtx33* mNrmMtx;
     /* 0x14 */ u32 mFlags;
     /* 0x18 */ u8 field_0x18;
     /* 0x19 */ u8 field_0x19;
     /* 0x1C */ int field_0x1c;
     /* 0x20 */ int field_0x20;
-    /* 0x24 */ J3DSkinNList** mSkinNList;
+    /* 0x24 */ J3DSkinNList* mSkinNList;
 };
 
 class J3DDeformer {
@@ -99,5 +105,16 @@ private:
     /* 0x0C */ int field_0xc;
     /* 0x10 */ u32 mFlags;
 };  // Size: 0x14
+
+inline void J3DFillZero32B(register void* param_0, register u32 param_1) {
+    asm {
+        srwi param_1, param_1, 5
+        mtctr param_1
+    lbl_8032D948:
+    	dcbz 0, param_0
+    	addi param_0, param_0, 0x20
+    	bdnz lbl_8032D948
+    }
+}
 
 #endif /* J3DSKINDEFORM_H */

@@ -5,7 +5,6 @@
 
 #include "JSystem/JAudio2/JASAramStream.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -41,10 +40,6 @@ struct JASGenericMemPool {
     /* 80290948 */ void alloc(u32);
 };
 
-struct JASDsp {
-    struct TChannel {};
-};
-
 struct JASDriver {
     /* 8029C9E8 */ void getDacRate();
     /* 8029E1C4 */ void rejectCallback(s32 (*)(void*), void*);
@@ -57,37 +52,6 @@ struct JASChannel {
     /* 8029AAD0 */ void release(u16);
     /* 8029AB64 */ void setOscInit(u32, JASOscillator::Data const*);
     /* 8029AB98 */ void setMixConfig(u32, u16);
-};
-
-struct JASAramStream {
-    /* 8029631C */ void initSystem(u32, u32);
-    /* 802963A8 */ JASAramStream();
-    /* 8029649C */ void init(u32, u32, void (*)(u32, JASAramStream*, void*), void*);
-    /* 8029655C */ void prepare(s32, int);
-    /* 80296618 */ void start();
-    /* 8029664C */ void stop(u16);
-    /* 80296684 */ void pause(bool);
-    /* 802966CC */ void cancel();
-    /* 80296710 */ void getBlockSamples() const;
-    /* 8029673C */ void headerLoadTask(void*);
-    /* 8029676C */ void firstLoadTask(void*);
-    /* 80296848 */ void loadToAramTask(void*);
-    /* 80296868 */ void finishTask(void*);
-    /* 802968C8 */ void prepareFinishTask(void*);
-    /* 80296920 */ void headerLoad(u32, int);
-    /* 80296AE8 */ void load();
-    /* 80296D74 */ void channelProcCallback(void*);
-    /* 80296D94 */ void dvdErrorCheck(void*);
-    /* 80296DF0 */ void channelCallback(u32, JASChannel*, JASDsp::TChannel*, void*);
-    /* 80296E2C */ void updateChannel(u32, JASChannel*, JASDsp::TChannel*);
-    /* 802974AC */ void channelProc();
-    /* 80297658 */ void channelStart();
-    /* 80297870 */ void channelStop(u16);
-
-    static u8 sLoadThread[4];
-    static u8 sReadBuffer[4];
-    static u8 sBlockSize[4];
-    static u8 sChannelMax[4];
 };
 
 //
@@ -146,9 +110,6 @@ extern "C" void __dl__FPv();
 extern "C" void mainRamToAram__7JKRAramFPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl();
 extern "C" void OSDisableInterrupts();
 extern "C" void OSRestoreInterrupts();
-extern "C" void OSInitMessageQueue();
-extern "C" void OSSendMessage();
-extern "C" void OSReceiveMessage();
 extern "C" void DVDFastOpen();
 extern "C" void DVDReadPrio();
 extern "C" void DVDGetDriveStatus();

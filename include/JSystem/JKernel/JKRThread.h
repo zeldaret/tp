@@ -1,11 +1,8 @@
 #ifndef JKRTHREAD_H
 #define JKRTHREAD_H
 
-#include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JSupport/JSUList.h"
 #include "dolphin/os/OSMessage.h"
-#include "dolphin/os/OSThread.h"
 #include "dolphin/os/OSTime.h"
 #include "dolphin/types.h"
 
@@ -72,11 +69,7 @@ public:
     s32 getCurrentHeapError() const { return mCurrentHeapError; }
 
     void setCurrentHeap(JKRHeap* heap) {
-        if (!heap) {
-            heap = JKRHeap::getCurrentHeap();
-        }
-
-        mCurrentHeap = heap;
+        mCurrentHeap = heap ? heap : JKRHeap::getCurrentHeap();
     }
 
 protected:
@@ -140,6 +133,7 @@ public:
     JKRThread* enter(JKRThread* param_1, int param_2);
     static void callback(OSThread* param_1, OSThread* param_2);
 
+    static JKRThreadSwitch* getManager() { return sManager; }
     static u32 getTotalCount() { return sTotalCount; }
 
 private:

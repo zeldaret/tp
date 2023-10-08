@@ -3,10 +3,6 @@
 
 #include "JSystem/J2DGraph/J2DPicture.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
-#include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/gx/GXStruct.h"
-#include "dolphin/mtx/mtx.h"
-#include "dolphin/mtx/mtx44.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_view.h"
 #include "m_Do/m_Do_ext.h"
@@ -41,6 +37,9 @@ class dDlst_effectLine_c : public dDlst_base_c {
 public:
     /* 80053E9C */ virtual void draw();
     /* 800541F4 */ void update(cXyz&, _GXColor&, u16, u16, u16, u16, f32, f32, f32, f32);
+
+    f32 getRndValue(f32 param_0, f32 param_1) { return mRnd.getValue(param_0, param_1); }
+    f32 getRndFX(f32 param_0) { return mRnd.getFX(param_0); }
 
 private:
     /* 0x04 */ cM_rnd_c mRnd;
@@ -91,6 +90,10 @@ public:
     /* 80052354 */ virtual void draw();
     /* 80052B00 */ dDlst_2DT2_c();
     /* 80052B4C */ void init(ResTIMG*, f32, f32, f32, f32, u8, u8, u8, f32, f32);
+
+    f32 getScaleX() { return mScaleX; }
+    void setScaleX(f32 scale) { mScaleX = scale; }
+    void setScaleY(f32 scale) { mScaleY = scale; }
 
     /* 0x04 */ GXTexObj mTexObj;
     /* 0x24 */ f32 field_0x24;
@@ -308,12 +311,17 @@ public:
     J3DDrawBuffer* getOpaListFilter() { return mDrawBuffers[DB_LIST_FILTER]; }
     J3DDrawBuffer* getOpaListP0() { return mDrawBuffers[DB_LIST_P0]; }
     J3DDrawBuffer* getOpaListPacket() { return mDrawBuffers[DB_OPA_LIST_PACKET]; }
+    J3DDrawBuffer* getOpaListBG() { return mDrawBuffers[DB_OPA_LIST_BG]; }
     void setXluDrawList(J3DDrawBuffer* buffer) { j3dSys.setDrawBuffer(buffer, XLU_BUFFER); }
     void setOpaDrawList(J3DDrawBuffer* buffer) { j3dSys.setDrawBuffer(buffer, OPA_BUFFER); }
     void setXluListSky() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_SKY]); }
     void setOpaListSky() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST_SKY]); }
     void setXluListDark() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_DARK]); }
     void setOpaListDark() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST_DARK]); }
+    void setOpaListInvisible() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST_INVISIBLE]); }
+    void setXluListInvisible() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_INVISIBLE]); }
+    void setXluListDarkBG() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_DARK_BG]); }
+    void setOpaListDarkBG() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST_DARK_BG]); }
     void setOpaList() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST]); }
     void setXluList() { setXluDrawList(mDrawBuffers[DB_XLU_LIST]); }
     void setOpaListItem3D() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST_ITEM3D]); }

@@ -4,7 +4,6 @@
 //
 
 #include "SSystem/SComponent/c_node.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 /* 802660D0-802660DC 000C+00 s=1 e=0 z=0  None .text      cNd_Join__FP10node_classP10node_class */

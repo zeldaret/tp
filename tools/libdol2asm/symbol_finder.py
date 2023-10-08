@@ -143,7 +143,7 @@ def calculate_symbol_sizes(section: linker_map.Section, symbols: List[linker_map
                 curr_addr = caddr + curr.size
                 next_addr = naddr
                 if curr_addr > next_addr:
-                    # There are functions that have sub-function within themself. (See __save_gpr)
+                    # There are functions that have sub-function within themself. (See _savegpr_14)
                     # Truncate symbol size.
                     curr.size = naddr - caddr
                 else:

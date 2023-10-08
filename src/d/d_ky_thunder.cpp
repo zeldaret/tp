@@ -52,7 +52,7 @@ int dThunder_c::draw() {
     mDoMtx_stack_c::XrotM(field_0x15c);
 
     Mtx m;
-    PSMTXCopy(mDoMtx_stack_c::get(), m);
+    MTXCopy(mDoMtx_stack_c::get(), m);
 
     mModelInfo.mpModel->setBaseScale(field_0x138);
     mModelInfo.mpModel->i_setBaseTRMtx(m);

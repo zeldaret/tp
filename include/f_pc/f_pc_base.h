@@ -2,7 +2,6 @@
 #ifndef F_PC_BASE_H_
 #define F_PC_BASE_H_
 
-#include "dolphin/types.h"
 #include "f_pc/f_pc_delete_tag.h"
 #include "f_pc/f_pc_layer_tag.h"
 #include "f_pc/f_pc_line_tag.h"

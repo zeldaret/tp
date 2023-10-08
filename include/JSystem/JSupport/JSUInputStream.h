@@ -2,7 +2,6 @@
 #define JSUINPUTSTREAM_H
 
 #include "JSystem/JSupport/JSUIosBase.h"
-#include "dolphin/types.h"
 
 enum JSUStreamSeekFrom {
     JSUStreamSeekFrom_SET = 0,  // absolute
@@ -18,6 +17,12 @@ public:
     /* vt[3] */ virtual s32 getAvailable() const = 0;
     /* vt[4] */ virtual s32 skip(s32);
     /* vt[5] */ virtual u32 readData(void*, s32) = 0;
+
+    u32 readU32() {
+        u32 val;
+        this->read(&val, sizeof(val));
+        return val;
+    }
 
     u32 read32b() {
         u32 val;

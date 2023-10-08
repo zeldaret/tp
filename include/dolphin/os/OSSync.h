@@ -1,7 +1,6 @@
 #ifndef OSSYNC_H
 #define OSSYNC_H
 
-#include "dolphin/types.h"
 
 #ifdef __cplusplus
 extern "C" {

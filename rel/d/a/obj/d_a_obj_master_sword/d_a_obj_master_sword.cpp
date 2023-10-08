@@ -4,185 +4,63 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/a/d_a_player.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
+#include "d/meter/d_meter2_info.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
 //
 
-struct request_of_phase_process_class {};
+class daObjMasterSword_c;
+typedef void (daObjMasterSword_c::*actionFunc)();
 
-struct cXyz {};
+class daObjMasterSword_c : public fopAc_ac_c {
+public:
+    enum Mode_e {
+        MODE_0_e,
+    };
 
-struct mDoMtx_stack_c {
-    /* 8000CD64 */ void transS(cXyz const&);
-
-    static u8 now[48];
-};
-
-struct J3DAnmTextureSRTKey {};
-
-struct J3DAnmTevRegKey {};
-
-struct J3DMaterialTable {
-    /* 8032F7B4 */ void removeTexMtxAnimator(J3DAnmTextureSRTKey*);
-    /* 8032F880 */ void removeTevRegAnimator(J3DAnmTevRegKey*);
-};
-
-struct mDoExt_btkAnm {
-    /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
-    /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct mDoExt_brkAnm {
-    /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
-    /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct mDoExt_baseAnm {
-    /* 8000D428 */ void play();
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct daObjMasterSword_c {
     /* 80C90AF8 */ void initWait();
     /* 80C90B50 */ void executeWait();
-    /* 80C90C50 */ void createHeapCallBack(fopAc_ac_c*);
-    /* 80C90C70 */ void CreateHeap();
-    /* 80C90DB8 */ void create();
+    /* 80C90C50 */ static int createHeapCallBack(fopAc_ac_c* i_this);
+    /* 80C90C70 */ int CreateHeap();
+    /* 80C90DB8 */ int create();
     /* 80C90F6C */ void create_init();
     /* 80C91448 */ ~daObjMasterSword_c();
-    /* 80C91714 */ void draw();
+    /* 80C91714 */ int draw();
+
+    inline void initCollision();
+    inline void setCollision();
+    inline void initBaseMtx();
+    inline void setAction(Mode_e i_mode);
+    inline void callInit();
+    inline void callExecute();
+    inline int execute();
+
+    f32 attr() const { return mAttr; }
+
+    u8 getEventID() { return (fopAcM_GetParam(this) >> 0x10) & 0xFF; }
+    u16 getFlagNo() { return fopAcM_GetParam(this) & 0xFFFF; }
 
     static f32 const mAttr;
+    // static actionFunc ActionTable[];
     static u8 ActionTable[24];
-};
 
-struct dSv_player_get_item_c {
-    /* 80033E60 */ void onFirstBit(u8);
-};
-
-struct dSv_event_tmp_flag_c {
-    static u8 const tempBitLabels[370 + 2 /* padding */];
-};
-
-struct dSv_event_flag_c {
-    static u8 saveBitLabels[1644 + 4 /* padding */];
-};
-
-struct dSv_event_c {
-    /* 8003498C */ void onEventBit(u16);
-    /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dDlst_shadowControl_c {
-    static u8 mSimpleTexObj[32];
-};
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80C9137C */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
-struct dBgS_PolyPassChk {
-    /* 80078E68 */ void SetObj();
-};
-
-struct dBgS_ObjAcch {
-    /* 80C9120C */ ~dBgS_ObjAcch();
-};
-
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-    /* 80075F58 */ void SetWall(f32, f32);
-    /* 80C9127C */ ~dBgS_AcchCir();
-};
-
-struct csXyz {};
-
-struct dBgS {};
-
-struct dBgS_Acch {
-    /* 80075F94 */ ~dBgS_Acch();
-    /* 800760A0 */ dBgS_Acch();
-    /* 80076248 */ void Set(cXyz*, cXyz*, fopAc_ac_c*, int, dBgS_AcchCir*, cXyz*, csXyz*, csXyz*);
-    /* 80076AAC */ void CrrPos(dBgS&);
-};
-
-struct dAttention_c {
-    /* 80070880 */ void getActionBtnB();
-    /* 80073734 */ void ActionTarget(s32);
-};
-
-struct cM3dGCyl {
-    /* 80C912EC */ ~cM3dGCyl();
-};
-
-struct cM3dGCir {
-    /* 8026EF18 */ ~cM3dGCir();
-};
-
-struct cM3dGAab {
-    /* 80C91334 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
-struct cCcS {
-    /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 80C9189C */ ~cCcD_GStts();
-};
-
-struct cBgS_PolyInfo {
-    /* 80268074 */ cBgS_PolyInfo();
-    /* 802680B0 */ ~cBgS_PolyInfo();
-};
-
-struct _GXTexObj {};
-
-struct J3DModel {};
-
-struct J3DFrameCtrl {
-    /* 803283FC */ void init(s16);
-    /* 80C913D8 */ ~J3DFrameCtrl();
+    /* 0x568 */ J3DModel* mpModel;
+    /* 0x56C */ request_of_phase_process_class mPhase;
+    /* 0x574 */ mDoExt_btkAnm mBtk;
+    /* 0x58C */ mDoExt_brkAnm mBrk;
+    /* 0x5A4 */ dCcD_Stts mCcStts;
+    /* 0x5E0 */ dCcD_Cyl mCyl;
+    /* 0x71C */ actionFunc* mActionFunc;
+    /* 0x720 */ Mode_e mMode;
+    /* 0x724 */ u32 mShadowKey;
+    /* 0x728 */ cBgS_PolyInfo field_0x728;
+    /* 0x738 */ f32 field_0x738;
 };
 
 //
@@ -270,7 +148,6 @@ extern "C" void __dl__FPv();
 extern "C" void init__12J3DFrameCtrlFs();
 extern "C" void removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey();
 extern "C" void removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
-extern "C" void PSMTXCopy();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_27();
@@ -281,8 +158,6 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
@@ -290,10 +165,7 @@ extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 extern "C" extern u8 data_80C91AD0[4];
 
 //
@@ -301,36 +173,39 @@ extern "C" extern u8 data_80C91AD0[4];
 //
 
 /* 80C90AF8-80C90B50 000078 0058+00 1/0 0/0 0/0 .text            initWait__18daObjMasterSword_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjMasterSword_c::initWait() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword/initWait__18daObjMasterSword_cFv.s"
+void daObjMasterSword_c::initWait() {
+    cLib_onBit(mAttentionInfo.mFlags, 0x10);
+    current.pos = orig.pos;
+    current.angle = orig.angle;
+    shape_angle = orig.angle;
 }
-#pragma pop
 
 /* 80C90B50-80C90C50 0000D0 0100+00 1/0 0/0 0/0 .text            executeWait__18daObjMasterSword_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjMasterSword_c::executeWait() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword/executeWait__18daObjMasterSword_cFv.s"
+void daObjMasterSword_c::executeWait() {
+    if (daPy_getPlayerActorClass()->checkPriActorOwn(this)) {
+        for (int i = 0; i < dComIfGp_getAttention().GetActionCount(); i++) {
+            if (dComIfGp_getAttention().ActionTarget(i) == this) {
+                if (dComIfGp_getAttention().getActionBtnB() != NULL &&
+                    dComIfGp_getAttention().getActionBtnB()->mType == 4)
+                {
+                    dComIfGp_setDoStatusForce(8, 0);
+                }
+            }
+        }
+    }
+
+    if (fopAcM_checkCarryNow(this)) {
+        dMeter2Info_setCloth(WEAR_KOKIRI, false);
+        fopAcM_orderMapToolEvent(this, getEventID(), 0xFF, 0xFFFF, 1, 0);
+    }
 }
-#pragma pop
 
 /* 80C90C50-80C90C70 0001D0 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__18daObjMasterSword_cFP10fopAc_ac_c       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjMasterSword_c::createHeapCallBack(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword/createHeapCallBack__18daObjMasterSword_cFP10fopAc_ac_c.s"
+int daObjMasterSword_c::createHeapCallBack(fopAc_ac_c* i_this) {
+    return static_cast<daObjMasterSword_c*>(i_this)->CreateHeap();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80C91940-80C91944 000000 0004+00 2/2 0/0 0/0 .rodata          mAttr__18daObjMasterSword_c */
@@ -375,28 +250,34 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 80C9199C-80C919A0 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&d_a_obj_master_sword__stringBase0;
+SECTION_DATA static char* l_arcName = "MstrSword";
 
 /* 80C90C70-80C90D98 0001F0 0128+00 1/1 0/0 0/0 .text            CreateHeap__18daObjMasterSword_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjMasterSword_c::CreateHeap() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword/CreateHeap__18daObjMasterSword_cFv.s"
+int daObjMasterSword_c::CreateHeap() {
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 5);
+    mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
+    if (mpModel == NULL) {
+        return 0;
+    }
+
+    J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 11);
+    if (!mBtk.init(modelData, pbtk, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+        return 0;
+    }
+
+    J3DAnmTevRegKey* pbrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, 8);
+    if (!mBrk.init(modelData, pbrk, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+        return 0;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80C90D98-80C90DB8 000318 0020+00 1/0 0/0 0/0 .text daObjMasterSword_Create__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjMasterSword_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword/daObjMasterSword_Create__FP10fopAc_ac_c.s"
+static int daObjMasterSword_Create(fopAc_ac_c* i_this) {
+    return static_cast<daObjMasterSword_c*>(i_this)->create();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80C919A0-80C919AC -00001 000C+00 0/1 0/0 0/0 .data            @3655 */
@@ -425,6 +306,10 @@ SECTION_DATA u8 daObjMasterSword_c::ActionTable[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+
+/* static actionFunc daObjMasterSword_c::ActionTable[] = {
+    &daObjMasterSword_c::initWait, &daObjMasterSword_c::executeWait,
+}; */
 
 /* 80C919D0-80C91A14 000054 0044+00 1/1 0/0 0/0 .data
  * ccCylSrc$localstatic3$initCollision__18daObjMasterSword_cFv  */
@@ -514,14 +399,36 @@ SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
 };
 
 /* 80C90DB8-80C90F6C 000338 01B4+00 1/1 0/0 0/0 .text            create__18daObjMasterSword_cFv */
+// matches with weak funcs
+#ifdef NONMATCHING
+int daObjMasterSword_c::create() {
+    fopAcM_SetupActor(this, daObjMasterSword_c);
+
+    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[getFlagNo()])) {
+        return cPhs_ERROR_e;
+    }
+
+    int phase = dComIfG_resLoad(&mPhase, l_arcName);
+    if (phase == cPhs_COMPLEATE_e) {
+        if (!fopAcM_entrySolidHeap(this, daObjMasterSword_c::createHeapCallBack, 0x1830)) {
+            return cPhs_ERROR_e;
+        }
+
+        create_init();
+    }
+
+    return phase;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjMasterSword_c::create() {
+asm int daObjMasterSword_c::create() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword/create__18daObjMasterSword_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80C91954-80C91958 000014 0004+00 0/1 0/0 0/0 .rodata          @3861 */
@@ -545,8 +452,78 @@ SECTION_RODATA static f32 const lit_3863 = 30.0f;
 COMPILER_STRIP_GATE(0x80C9195C, &lit_3863);
 #pragma pop
 
+void daObjMasterSword_c::initCollision() {
+    static dCcD_SrcCyl ccCylSrc = {
+        {
+            {0, {{0, 0, 0}, {0, 0}, 0x79}},  // mObj
+            {dCcD_SE_NONE, 0, 0, 0, 0},      // mGObjAt
+            {dCcD_SE_NONE, 0, 0, 0, 4},      // mGObjTg
+            {0},                             // mGObjCo
+        },                                   // mObjInf
+        {
+            {current.pos.x, current.pos.y, current.pos.z},  // mCenter
+            18.0f,                                          // mRadius
+            180.0f                                          // mHeight
+        }                                                   // mCyl
+    };
+
+    mCcStts.Init(0xFF, 0xFF, this);
+    mCyl.Set(ccCylSrc);
+    mCyl.SetStts(&mCcStts);
+}
+
+void daObjMasterSword_c::initBaseMtx() {
+    fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+
+    Vec scale = {attr(), attr(), attr()};
+    mpModel->setBaseScale(scale);
+
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
+
+    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+}
+
+void daObjMasterSword_c::callInit() {
+    (this->**mActionFunc)();
+}
+
+void daObjMasterSword_c::setAction(daObjMasterSword_c::Mode_e i_mode) {
+    mMode = i_mode;
+    // mActionFunc = &ActionTable[mMode];
+    callInit();
+}
+
 /* 80C90F6C-80C9120C 0004EC 02A0+00 1/1 0/0 0/0 .text            create_init__18daObjMasterSword_cFv
  */
+// matches, but weak function emission is hella weird. cant be linked til its fixed
+#ifdef NONMATCHING
+void daObjMasterSword_c::create_init() {
+    fopAcM_setCullSizeBox2(this, mpModel->getModelData());
+    initCollision();
+    initBaseMtx();
+
+    fopAcM_OnCarryType(this, fopAcM_CARRY_UNK_30);
+    cLib_onBit(mAttentionInfo.mFlags, 0x10);
+    mAttentionInfo.field_0x0[4] = 74;
+    mAttentionInfo.mPosition = current.pos;
+    mAttentionInfo.mPosition.y += 100.0f;
+    mEyePos = mAttentionInfo.mPosition;
+
+    dBgS_AcchCir cir_check;
+    dBgS_ObjAcch obj_check;
+
+    cir_check.SetWall(10.0f, 30.0f);
+    obj_check.Set(&fopAcM_GetPosition_p(this), &fopAcM_GetOldPosition_p(this), this, 1, &cir_check,
+                  &fopAcM_GetSpeed_p(this), NULL, NULL);
+    obj_check.CrrPos(dComIfG_Bgsp());
+
+    field_0x738 = obj_check.GetGroundH();
+    field_0x728 = obj_check.m_gnd;
+
+    setAction(MODE_0_e);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -555,12 +532,14 @@ asm void daObjMasterSword_c::create_init() {
 #include "asm/rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword/create_init__18daObjMasterSword_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80C9120C-80C9127C 00078C 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+// asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+extern "C" asm void __dt__12dBgS_ObjAcchFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword/__dt__12dBgS_ObjAcchFv.s"
 }
@@ -570,7 +549,8 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_AcchCir::~dBgS_AcchCir() {
+// asm dBgS_AcchCir::~dBgS_AcchCir() {
+extern "C" asm void __dt__12dBgS_AcchCirFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword/__dt__12dBgS_AcchCirFv.s"
 }
@@ -580,7 +560,8 @@ asm dBgS_AcchCir::~dBgS_AcchCir() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword/__dt__8cM3dGCylFv.s"
 }
@@ -590,7 +571,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword/__dt__8cM3dGAabFv.s"
 }
@@ -600,7 +582,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword/__dt__10dCcD_GSttsFv.s"
 }
@@ -610,7 +593,8 @@ asm dCcD_GStts::~dCcD_GStts() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DFrameCtrl::~J3DFrameCtrl() {
+// asm J3DFrameCtrl::~J3DFrameCtrl() {
+extern "C" asm void __dt__12J3DFrameCtrlFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword/__dt__12J3DFrameCtrlFv.s"
 }
@@ -618,14 +602,10 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 
 /* 80C91420-80C91448 0009A0 0028+00 1/0 0/0 0/0 .text
  * daObjMasterSword_Delete__FP18daObjMasterSword_c              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjMasterSword_Delete(daObjMasterSword_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword/daObjMasterSword_Delete__FP18daObjMasterSword_c.s"
+static int daObjMasterSword_Delete(daObjMasterSword_c* i_this) {
+    i_this->~daObjMasterSword_c();
+    return 1;
 }
-#pragma pop
 
 /* 80C91448-80C915E8 0009C8 01A0+00 1/1 0/0 0/0 .text            __dt__18daObjMasterSword_cFv */
 #pragma push
@@ -644,27 +624,45 @@ SECTION_RODATA static u8 const lit_4030[8] = {
 };
 COMPILER_STRIP_GATE(0x80C91960, &lit_4030);
 
+void daObjMasterSword_c::callExecute() {
+    (this->*mActionFunc[1])();
+}
+
+void daObjMasterSword_c::setCollision() {
+    dComIfG_Ccsp()->Set(&mCyl);
+}
+
+int daObjMasterSword_c::execute() {
+    callExecute();
+    setCollision();
+
+    mBtk.play();
+    mBrk.play();
+
+    if (dComIfGs_isTmpBit(dSv_event_tmp_flag_c::tempBitLabels[73])) {
+        dComIfGs_onItemFirstBit(MASTER_SWORD);
+        dMeter2Info_setSword(MASTER_SWORD, false);
+        dComIfGs_setSelectEquipSword(MASTER_SWORD);
+
+        i_dComIfGp_setItemLifeCount(dComIfGs_getMaxLife(), 0);
+        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[getFlagNo()]);
+        fopAcM_delete(this);
+    }
+
+    return 1;
+}
+
 /* 80C915E8-80C916F4 000B68 010C+00 1/0 0/0 0/0 .text
  * daObjMasterSword_Execute__FP18daObjMasterSword_c             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjMasterSword_Execute(daObjMasterSword_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword/daObjMasterSword_Execute__FP18daObjMasterSword_c.s"
+static int daObjMasterSword_Execute(daObjMasterSword_c* i_this) {
+    return i_this->execute();
 }
-#pragma pop
 
 /* 80C916F4-80C91714 000C74 0020+00 1/0 0/0 0/0 .text
  * daObjMasterSword_Draw__FP18daObjMasterSword_c                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjMasterSword_Draw(daObjMasterSword_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword/daObjMasterSword_Draw__FP18daObjMasterSword_c.s"
+static int daObjMasterSword_Draw(daObjMasterSword_c* i_this) {
+    return i_this->draw();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80C91968-80C9196C 000028 0004+00 0/1 0/0 0/0 .rodata          @4091 */
@@ -682,26 +680,56 @@ COMPILER_STRIP_GATE(0x80C9196C, &lit_4092);
 #pragma pop
 
 /* 80C91714-80C91894 000C94 0180+00 1/1 0/0 0/0 .text            draw__18daObjMasterSword_cFv */
+// weird cXyz stuff
+#ifdef NONMATCHING
+int daObjMasterSword_c::draw() {
+    if (dComIfGs_isTmpBit(dSv_event_tmp_flag_c::tempBitLabels[73])) {
+        return 1;
+    }
+
+    J3DModelData* modelData = mpModel->getModelData();
+    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+
+    dComIfGd_setListBG();
+    mBtk.entry(modelData);
+    mBrk.entry(modelData);
+    mDoExt_modelUpdateDL(mpModel);
+
+    mBtk.remove(modelData);
+    mBrk.remove(modelData);
+    dComIfGd_setList();
+
+    cXyz sp14, sp8 = cXyz(current.pos.x, current.pos.y + 50.0f, current.pos.z);
+    mShadowKey =
+        dComIfGd_setShadow(mShadowKey, 1, mpModel, &sp14, 200.0f, 10.0f, current.pos.y, field_0x738,
+                           field_0x728, &mTevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjMasterSword_c::draw() {
+asm int daObjMasterSword_c::draw() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword/draw__18daObjMasterSword_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80C91894-80C9189C 000E14 0008+00 1/0 0/0 0/0 .text
  * daObjMasterSword_IsDelete__FP18daObjMasterSword_c            */
-static bool daObjMasterSword_IsDelete(daObjMasterSword_c* param_0) {
-    return true;
+static int daObjMasterSword_IsDelete(daObjMasterSword_c* param_0) {
+    return 1;
 }
 
 /* 80C9189C-80C918E4 000E1C 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword/__dt__10cCcD_GSttsFv.s"
 }
@@ -711,8 +739,7 @@ asm cCcD_GStts::~cCcD_GStts() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __sinit_d_a_obj_master_sword_cpp() {
-    nofralloc
+asm void __sinit_d_a_obj_master_sword_cpp(){nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword/__sinit_d_a_obj_master_sword_cpp.s"
 }
 #pragma pop

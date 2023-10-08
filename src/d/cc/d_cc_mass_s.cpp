@@ -7,7 +7,6 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/cc/d_cc_d.h"
 #include "f_op/f_op_actor.h"
-#include "global.h"
 
 /* 800852E0-800852F0 07FC20 0010+00 1/1 0/0 0/0 .text
  * Set__12dCcMassS_ObjFP8cCcD_ObjUcPFP10fopAc_ac_cP4cXyzUl_v    */
@@ -172,13 +171,13 @@ u32 dCcMassS_Mng::Chk(cXyz* p_xyz, fopAc_ac_c** p_actor, dCcMassS_HitInf* p_hitI
 
                 if (field_0x200 & 0x10) {
                     Vec vec;
-                    PSVECSubtract(&(*p_actor)->current.pos, p_xyz, &vec);
+                    VECSubtract(&(*p_actor)->current.pos, p_xyz, &vec);
                     vec.y = 0;
-                    f32 vecMag = PSVECMag(&vec);
+                    f32 vecMag = VECMag(&vec);
                     if (cM3d_IsZero(vecMag)) {
                         vec.x = 1;
                     } else {
-                        PSVECScale(&vec, &vec, f / vecMag);
+                        VECScale(&vec, &vec, f / vecMag);
                     }
                     obj->GetStts()->PlusCcMove(vec.x, vec.y, vec.z);
                 }
@@ -204,7 +203,7 @@ u32 dCcMassS_Mng::Chk(cXyz* p_xyz, fopAc_ac_c** p_actor, dCcMassS_HitInf* p_hitI
             tmpVec.z = p_xyz->z;
 
             if (mCamTopPos.y < (20.0f + plusH)) {
-                f32 newCamTopDist = PSVECSquareDistance(&tmpVec, &mCpsAttr.GetStartP());
+                f32 newCamTopDist = VECSquareDistance(&tmpVec, &mCpsAttr.GetStartP());
                 if (mCamTopDist > newCamTopDist) {
                     mCamTopDist = newCamTopDist;
                     mCamTopPos = tmpVec;
@@ -212,7 +211,7 @@ u32 dCcMassS_Mng::Chk(cXyz* p_xyz, fopAc_ac_c** p_actor, dCcMassS_HitInf* p_hitI
             }
 
             if (mCamBottomPos.y < (20.0f + plusH)) {
-                f32 newCamBottomDist = PSVECSquareDistance(&tmpVec, &mCpsAttr.GetEndP());
+                f32 newCamBottomDist = VECSquareDistance(&tmpVec, &mCpsAttr.GetEndP());
                 if (mCamBottomDist > newCamBottomDist) {
                     mCamBottomDist = newCamBottomDist;
                     mCamBottomPos = tmpVec;

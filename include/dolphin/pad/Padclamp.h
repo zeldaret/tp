@@ -1,7 +1,6 @@
 #ifndef PADCLAMP_H
 #define PADCLAMP_H
 
-#include "dolphin/types.h"
 
 #ifdef __cplusplus
 extern "C" {

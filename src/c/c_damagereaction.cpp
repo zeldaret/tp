@@ -5,7 +5,6 @@
 
 #include "c/c_damagereaction.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
@@ -71,17 +70,25 @@ SECTION_SDATA2 static f64 lit_3736 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8001817C-800182A4 012ABC 0128+00 1/0 0/0 0/0 .text
  * execute__24JPTraceParticleCallBack4FP14JPABaseEmitterP15JPABaseParticle */
+// Matches with TVec3<f32> ctors
 #ifdef NONMATCHING
 void JPTraceParticleCallBack4::execute(JPABaseEmitter* param_0, JPABaseParticle* param_1) {
-    int age = param_1->getAge();
+    u32 age = param_1->getAge();
     if (age != 0) {
-        JGeometry::TVec3<f32> vec1;
-        JGeometry::TVec3<f32> vec2;
+        Vec* user_work = (Vec*)param_0->getUserWork();
+        f32 fVar1 = (25.0f - age) / 25.0f;
+        if (fVar1 < 0.0f) {
+            fVar1 = 0.0f;
+        }
+        JGeometry::TVec3<f32> vec1(user_work[age]);
+        vec1.scale(0.3f * fVar1);
+        JGeometry::TVec3<f32> vec2(user_work[0]);
+        vec2.scale(0.5f * fVar1);
         JGeometry::TVec3<f32> vec3;
 
-        void* user_work = param_0->getUserWork();
-        user_work[age*0x0C];
-        param_1->setOffsetPosition(param_1->getOffsetPosition() + )
+        param_1->getOffsetPosition(vec3);
+        vec3.add(vec1 + vec2);
+        param_1->setOffsetPosition(vec3);
     }
 }
 #else
@@ -129,6 +136,10 @@ SECTION_DATA extern void* __vt__24JPTraceParticleCallBack4[5] = {
 
 /* 80018328-80018388 012C68 0060+00 2/1 0/0 0/0 .text            __dt__24JPTraceParticleCallBack4Fv
  */
+// Needs JPAParticleCallBack inheritance and function order issues in the file
+#ifdef NONMATCHING
+JPTraceParticleCallBack4::~JPTraceParticleCallBack4() {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -137,7 +148,7 @@ asm JPTraceParticleCallBack4::~JPTraceParticleCallBack4() {
 #include "asm/c/c_damagereaction/__dt__24JPTraceParticleCallBack4Fv.s"
 }
 #pragma pop
-
+#endif
 /* ############################################################################################## */
 /* 803A357C-803A3590 00069C 0014+00 1/1 3/3 0/0 .data            __vt__19JPAParticleCallBack */
 SECTION_DATA extern void* __vt__19JPAParticleCallBack[5] = {

@@ -6,7 +6,6 @@
 #include "JSystem/JKernel/JKRAramPiece.h"
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRDecomp.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "dolphin/os/OS.h"
 

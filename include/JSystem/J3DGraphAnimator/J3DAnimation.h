@@ -1,10 +1,8 @@
 #ifndef J3DANIMATION_H
 #define J3DANIMATION_H
 
-#include "JSystem/J3DGraphAnimator/J3DMaterialAttach.h"
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/JUtility/JUTNameTab.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 typedef struct _GXColor GXColor;
@@ -340,6 +338,7 @@ private:
 };  // Size: 0x28
 
 class J3DAnmTransformFull : public J3DAnmTransform {
+public:
     /* 8032C2AC */ virtual ~J3DAnmTransformFull();
     /* 8032C318 */ virtual s32 getKind() const;
     /* 80328E90 */ virtual void getTransform(u16, J3DTransformInfo*) const;
@@ -349,14 +348,15 @@ private:
 };  // Size: 0x24
 
 class J3DAnmTransformFullWithLerp : public J3DAnmTransformFull {
+public:
     /* 8032C228 */ virtual ~J3DAnmTransformFullWithLerp();
     /* 8032C2A4 */ virtual s32 getKind() const;
     /* 803291F0 */ virtual void getTransform(u16, J3DTransformInfo*) const;
 };  // Size: 0x24
 
 struct J3DTextureSRTInfo;
-struct J3DModelData;
-struct J3DMaterialTable;
+class J3DModelData;
+class J3DMaterialTable;
 
 class J3DAnmTextureSRTKey : public J3DAnmBase {
 public:
@@ -590,6 +590,14 @@ private:
 
 class J3DFrameCtrl {
 public:
+    enum Attribute_e {
+        LOOP_ONCE_e,
+        LOOP_ONCE_RESET_e,
+        LOOP_REPEAT_e,
+        LOOP_MIRROR_ONCE_e,
+        LOOP_MIRROR_REPEAT_e,
+    };
+
     J3DFrameCtrl() { this->init(0); }
     void init(s16);
     BOOL checkPass(f32);

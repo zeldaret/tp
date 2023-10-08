@@ -23,7 +23,7 @@ void daObjTMoon_c::initBaseMtx() {
 void daObjTMoon_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    PSMTXCopy(mDoMtx_stack_c::now, field_0x570->mBaseTransformMtx);
+    MTXCopy(mDoMtx_stack_c::now, field_0x570->mBaseTransformMtx);
 }
 
 /* 80D12C48-80D12C9C 000128 0054+00 1/1 0/0 0/0 .text            Create__12daObjTMoon_cFv */
@@ -47,10 +47,7 @@ bool daObjTMoon_c::CreateHeap() {
 
 /* 80D12D0C-80D12DC0 0001EC 00B4+00 1/1 0/0 0/0 .text            create__12daObjTMoon_cFv */
 int daObjTMoon_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daObjTMoon_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daObjTMoon_c);
     int phase = dComIfG_resLoad(&field_0x568, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, (heapCallbackFunc)CheckCreateHeap, 0x880)) {

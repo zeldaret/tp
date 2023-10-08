@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_graWall/d_a_obj_graWall.h"
+#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:
@@ -34,39 +34,6 @@ struct dSv_event_flag_c {
 struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
-struct cXyz {};
-
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8026F1F8 */ void SetH(f32);
-    /* 8026F200 */ void SetR(f32);
-    /* 80C10D48 */ ~cM3dGCyl();
-};
-
-struct cM3dGAab {
-    /* 80C10D90 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
 
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
@@ -170,7 +137,8 @@ asm void daObjGraWall_c::Create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_graWall/d_a_obj_graWall/__dt__8cM3dGCylFv.s"
 }
@@ -180,7 +148,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_graWall/d_a_obj_graWall/__dt__8cM3dGAabFv.s"
 }
@@ -209,14 +178,19 @@ SECTION_RODATA static u8 const l_DATA[8] = {
 COMPILER_STRIP_GATE(0x80C10FB0, &l_DATA);
 
 /* 80C10FB8-80C10FFC 000008 0044+00 1/1 0/0 0/0 .rodata          l_cyl_src */
-SECTION_RODATA static u8 const l_cyl_src[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x19,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+const static dCcD_SrcCyl l_cyl_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x0, 0x0}, 0x19}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x8}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        0.0f, // mRadius
+        0.0f // mHeight
+    } // mCyl
 };
-COMPILER_STRIP_GATE(0x80C10FB8, &l_cyl_src);
 
 /* 80C10E80-80C10ED4 000300 0054+00 1/1 0/0 0/0 .text            col_init__14daObjGraWall_cFv */
 #pragma push
