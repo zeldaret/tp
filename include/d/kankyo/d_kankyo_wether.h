@@ -4,7 +4,8 @@
 #include "JSystem/J3DGraphBase/J3DPacket.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/types.h"
+
+class WIND_INFLUENCE;
 
 void dKyw_wether_draw();
 void dKyw_wether_delete();
@@ -28,6 +29,7 @@ void dKyw_custom_windpower(f32 pow);
 void dKyw_evt_wind_set_go();
 void dKyw_wether_proc();
 void dKyw_get_AllWind_vec(cXyz* param_0, cXyz* param_1, f32* param_2);
+void dKyw_pntwind_cut(WIND_INFLUENCE* i_pntwind);
 
 class dKankyo_sun_Packet : public J3DPacket {
 public:

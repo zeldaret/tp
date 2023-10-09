@@ -38,7 +38,6 @@ public:
         : mUseMtxIndex(useMtxIndex)
     {}
 
-    /* 803130A8 */ void resetMtxLoadCache();
     /* 803130E4 */ void loadMtxIndx_PNGP(int, u16) const;
     /* 80313128 */ void loadMtxIndx_PCPU(int, u16) const;
     /* 80313188 */ void loadMtxIndx_NCPU(int, u16) const;
