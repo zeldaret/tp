@@ -765,8 +765,9 @@ public:
     bool i_checkMidnaRide() const { return i_checkNoResetFlg0(FLG0_MIDNA_RIDE); }
     void i_onPlayerNoDraw() { i_onNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
     void i_offPlayerNoDraw() { i_offNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
-    void onPushPullKeep() { onNoResetFlg0(FLG0_PUSH_PULL_KEEP); }
     void i_onPushPullKeep() { i_onNoResetFlg0(FLG0_PUSH_PULL_KEEP); }
+    void i_offPushPullKeep() { i_offNoResetFlg0(FLG0_PUSH_PULL_KEEP); }
+
 
     u32 i_checkBoarSingleBattle() const { return i_checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
 

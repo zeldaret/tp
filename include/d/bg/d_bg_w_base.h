@@ -17,7 +17,9 @@ class fopAc_ac_c;
 
 class dBgW_Base : public cBgW_BgId {
 public:
-    enum PushPullLabel {};
+    enum PushPullLabel {
+        PUSHPULL_LABEL1 = 1,
+    };
 
     enum PRIORITY {
         PRIORITY_0,
