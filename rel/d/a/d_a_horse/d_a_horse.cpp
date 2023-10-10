@@ -3094,13 +3094,13 @@ void J3DMtxCalc::setAnmTransform(J3DAnmTransform* param_0) {
 }
 
 /* 80844B94-80844B9C 00CD54 0008+00 3/0 0/0 0/0 .text            getAnmTransform__10J3DMtxCalcFUc */
-bool J3DMtxCalc::getAnmTransform(u8 param_0) {
-    return false;
+J3DAnmTransform* J3DMtxCalc::getAnmTransform(u8 param_0) {
+    return NULL;
 }
 
 /* 80844B9C-80844BA4 00CD5C 0008+00 3/0 0/0 0/0 .text            getAnmTransform__10J3DMtxCalcFv */
-bool J3DMtxCalc::getAnmTransform() {
-    return false;
+J3DAnmTransform* J3DMtxCalc::getAnmTransform() {
+    return NULL;
 }
 
 /* 80844BA4-80844BA8 00CD64 0004+00 3/0 0/0 0/0 .text            setWeight__10J3DMtxCalcFUcf */

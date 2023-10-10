@@ -122,7 +122,7 @@ void J3DJointTree::findImportantMtxIndex() {
 /* 80325CAC-80325D1C 3205EC 0070+00 1/0 0/0 0/0 .text
  * calc__12J3DJointTreeFP12J3DMtxBufferRC3VecRA3_A4_Cf          */
 void J3DJointTree::calc(J3DMtxBuffer* pMtxBuffer, Vec const& scale, f32 const (&mtx)[3][4]) {
-    getBasicMtxCalc()->init(scale, (Mtx*)mtx);
+    getBasicMtxCalc()->init(scale, mtx);
     J3DMtxCalc::setMtxBuffer(pMtxBuffer);
     J3DJoint* root = getRootNode();
 

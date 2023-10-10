@@ -3552,6 +3552,11 @@ inline void dComIfGd_setListIndScreen() {
     g_dComIfG_gameInfo.drawlist.setXluListP0();
 }
 
+inline void dComIfGd_setListZxlu() {
+    g_dComIfG_gameInfo.drawlist.setOpaListZxlu();
+    g_dComIfG_gameInfo.drawlist.setXluListZxlu();
+}
+
 inline J3DDrawBuffer* dComIfGd_getOpaListBG() {
     return g_dComIfG_gameInfo.drawlist.getOpaListBG();
 }
