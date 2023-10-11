@@ -46,7 +46,7 @@ inline void cLib_onBit(T& value, u8 bit) {
 }
 
 template <typename T>
-inline T cLib_checkBit(T& value, u8 bit) {
+inline u8 cLib_checkBit(T& value, u8 bit) {
     return value & bit;
 }
 

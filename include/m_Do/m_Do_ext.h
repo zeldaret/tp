@@ -247,18 +247,22 @@ public:
     /* 0x4 */ mDoExt_invJntPacket* mpPackets;
 };
 
-class mDoExt_zelAnime : public Z2SoundObjAnime {};
+class mDoExt_zelAnime : public Z2SoundObjAnime {
+public:
+    void* field_0x48;
+};
 
 class mDoExt_McaMorfCallBack1_c {
 public:
     virtual void execute(u16, J3DTransformInfo*) = 0;
 };
 
-class mDoExt_McaMorfCallBack2_c {};
+class mDoExt_McaMorfCallBack2_c {
+public:
+    virtual void execute(u16) = 0;
+};
 
-class mDoExt_morf_c {
-    // : public J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya>
-    // inheritance causing issues, fix later
+class mDoExt_morf_c : public J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya> {
 public:
     /* 8000F950 */ mDoExt_morf_c();
     /* 8000FB7C */ void setMorf(f32 i_morf);
@@ -266,20 +270,26 @@ public:
 
     /* 8000FAE8 */ virtual ~mDoExt_morf_c();
 
-    void setPlaySpeed(f32 speed) { mFrameCtrl.setRate(speed); }
-    void setFrame(f32 frame) { mFrameCtrl.setFrame((s16)frame); }
-    f32 getPlaySpeed() { return mFrameCtrl.getRate(); }
-    f32 getFrame() { return mFrameCtrl.getFrame(); }
-    u8 getPlayMode() { return mFrameCtrl.getAttribute(); }
-    bool isLoop() { return mFrameCtrl.checkState(2); }
-    f32 getEndFrame() { return mFrameCtrl.getEnd(); }
-    BOOL checkFrame(f32 frame) { return mFrameCtrl.checkPass(frame); }
     J3DAnmTransform* getAnm() { return mpAnm; }
     void changeAnm(J3DAnmTransform* anm) { mpAnm = anm; }
-
+    u8 getPlayMode() { return mFrameCtrl.getAttribute(); }
+    void setPlayMode(int mode) { mFrameCtrl.setAttribute(mode); }
     bool isStop() {
         return mFrameCtrl.checkState(1) || mFrameCtrl.getRate() == 0.0f;
     }
+    bool isLoop() { return mFrameCtrl.checkState(2); }
+    f32 getStartFrame() { return mFrameCtrl.getStart(); }
+    void setStartFrame(f32 frame) { mFrameCtrl.setStart(frame); }
+    f32 getEndFrame() { return mFrameCtrl.getEnd(); }
+    void setEndFrame(f32 frame) { mFrameCtrl.setEnd(frame); }
+    f32 getLoopFrame() { return mFrameCtrl.getLoop(); }
+    void setLoopFrame(f32 frame) { mFrameCtrl.setLoop(frame); }
+    f32 getPlaySpeed() { return mFrameCtrl.getRate(); }
+    void setPlaySpeed(f32 speed) { mFrameCtrl.setRate(speed); }
+    f32 getFrame() { return mFrameCtrl.getFrame(); }
+    void setFrame(f32 frame) { mFrameCtrl.setFrame((s16)frame); }
+    void setFrameF(f32 frame) { mFrameCtrl.setFrame(frame); }
+    BOOL checkFrame(f32 frame) { return mFrameCtrl.checkPass(frame); }
 
     /* 0x04 */ J3DModel* mpModel;
     /* 0x08 */ J3DAnmTransform* mpAnm;
@@ -329,7 +339,7 @@ public:
     /* 8000FC4C */ mDoExt_McaMorf(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
                                   mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int, int,
                                   int, void*, u32, u32);
-    /* 8000FD94 */ void create(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
+    /* 8000FD94 */ int create(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
                                mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int, int,
                                int, void*, u32, u32);
     /* 8001037C */ void setAnm(J3DAnmTransform*, int, f32, f32, f32, f32, void*);
@@ -386,9 +396,12 @@ public:
     /* 8000F848 */ void initOldFrameMorf(f32, u16, u16);
     /* 8000F8CC */ void decOldFrameMorfCounter();
 
+    bool getOldFrameFlg() { return mOldFrameFlg; }
+    void onOldFrameFlg() { mOldFrameFlg = true; }
     f32 getOldFrameRate() { return mOldFrameRate; }
     J3DTransformInfo* getOldFrameTransInfo(int i) { return &mOldFrameTransInfo[i]; }
     u16 getOldFrameStartJoint() { return mOldFrameStartJoint; }
+    u16 getOldFrameEndJoint() { return mOldFrameEndJoint; }
     Quaternion* getOldFrameQuaternion(int i_no) { return &mOldFrameQuaternion[i_no]; }
 
 private:
@@ -404,23 +417,39 @@ private:
     /* 0x20 */ Quaternion* mOldFrameQuaternion;
 };  // Size: 0x24
 
-struct mDoExt_MtxCalcAnmBlendTblOld
-    : public J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya> {
-    /* 80014EB0 */ virtual ~mDoExt_MtxCalcAnmBlendTblOld();
-    /* 8000F4B0 */ virtual void calc();
+struct mDoExt_MtxCalcAnmBlendTbl : public J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya> {
+    mDoExt_MtxCalcAnmBlendTbl(int num, mDoExt_AnmRatioPack* anmRatio) {
+        mNum = num;
+        mAnmRatio = anmRatio;
+        for (int i = 0; i < mNum; i++) {
+            if (!mAnmRatio[i].getAnmTransform()) {
+                mAnmRatio[i].setRatio(0.0f);
+            }
+        }
+    }
 
-    /* 0x4 */ int mNum;
-    /* 0x8 */ mDoExt_AnmRatioPack* mAnmRatio;
-};  // Size: 0xC
-
-struct mDoExt_MtxCalcAnmBlendTbl : public mDoExt_MtxCalcAnmBlendTblOld {
     /* 800D00BC */ J3DAnmTransform* getAnm(int);
 
     /* 80014F3C */ virtual ~mDoExt_MtxCalcAnmBlendTbl();
     /* 8000F26C */ virtual void calc();
 
+    /* 0x4 */ int mNum;
+    /* 0x8 */ mDoExt_AnmRatioPack* mAnmRatio;
+};  // Size: 0x0C
+
+STATIC_ASSERT(sizeof(mDoExt_MtxCalcAnmBlendTbl) == 0x0C);
+
+struct mDoExt_MtxCalcAnmBlendTblOld : public mDoExt_MtxCalcAnmBlendTbl {
+    mDoExt_MtxCalcAnmBlendTblOld(mDoExt_MtxCalcOldFrame* oldFrame, int num, mDoExt_AnmRatioPack* anmRatio) : mDoExt_MtxCalcAnmBlendTbl(num, anmRatio) {
+        mOldFrame = oldFrame;
+    }
+    /* 80014EB0 */ virtual ~mDoExt_MtxCalcAnmBlendTblOld();
+    /* 8000F4B0 */ virtual void calc();
+
     /* 0xC */ mDoExt_MtxCalcOldFrame* mOldFrame;
-};
+};  // Size: 0x10
+
+STATIC_ASSERT(sizeof(mDoExt_MtxCalcAnmBlendTblOld) == 0x10);
 
 class mDoExt_3Dline_c {
 public:

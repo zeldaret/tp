@@ -81,6 +81,7 @@ public:
     J3DMatPacket* getMatPacket(u16 idx) const { return &mMatPacket[idx]; }
     J3DShapePacket* getShapePacket(u16 idx) const { return &mShapePacket[idx]; }
     J3DMtxBuffer* getMtxBuffer() const { return mMtxBuffer; }
+    void setScaleFlag(int idx, u8 flag) { mMtxBuffer->setScaleFlag(idx, flag); }
     Mtx33* getBumpMtxPtr(int idx) const { return mMtxBuffer->getBumpMtxPtr(idx); }
     Mtx33* getNrmMtxPtr() const { return mMtxBuffer->getNrmMtxPtr(); }
     Mtx* getDrawMtxPtr() const { return mMtxBuffer->getDrawMtxPtr(); }

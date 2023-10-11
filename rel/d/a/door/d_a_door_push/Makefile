@@ -8,12 +8,10 @@ M169_MAP := $(BUILD_DIR)/rel/d/a/door/d_a_door_push.map
 
 M169_CPP_FILES := \
 	rel/executor.cpp \
-	rel/d/a/door/d_a_door_push/unknown_translation_unit_bss.cpp \
 	rel/d/a/door/d_a_door_push/d_a_door_push.cpp \
 
 M169_O_FILES := \
 	$(BUILD_DIR)/rel/executor.o \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_push/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/door/d_a_door_push/d_a_door_push.o \
 
 M169_LIBS := \

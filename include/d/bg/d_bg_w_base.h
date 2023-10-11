@@ -17,7 +17,9 @@ class fopAc_ac_c;
 
 class dBgW_Base : public cBgW_BgId {
 public:
-    enum PushPullLabel {};
+    enum PushPullLabel {
+        PUSHPULL_LABEL1 = 1,
+    };
 
     enum PRIORITY {
         PRIORITY_0,
@@ -95,6 +97,7 @@ public:
     bool chkStickWall() { return field_0xb & 1; }
     bool chkStickRoof() { return field_0xb & 2; }
     bool ChkPushPullOk() const { return m_pushPull_Ok; }
+    void SetPushPullCallback(PushPull_CallBack i_callBack) { m_pushPull_Callback = i_callBack; }
     void SetRoomId(int id) { m_roomId = id; }
     bool ChkPriority(int prio) { return m_priority == prio; }
     void SetPriority(PRIORITY priority) { m_priority = priority; }

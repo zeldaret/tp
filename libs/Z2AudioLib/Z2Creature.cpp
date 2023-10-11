@@ -537,7 +537,7 @@ asm Z2Creature::~Z2Creature() {
 
 /* 802C04E8-802C0530 2BAE28 0048+00 4/2 2/2 0/0 .text            deleteObject__10Z2CreatureFv */
 void Z2Creature::deleteObject() {
-    mSoundObjAnime.field_0x20 = NULL;
+    mSoundObjAnime.animation_ = NULL;
     mSoundObjAnime.deleteObject();
     mSoundObjSimple1.deleteObject();
     mSoundObjSimple2.deleteObject();

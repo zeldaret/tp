@@ -3086,6 +3086,10 @@ inline int dComIfGp_evmng_getMySubstanceNum(int index, char* name) {
     return dComIfGp_getPEvtManager()->getMySubstanceNum(index, name);
 }
 
+inline void dComIfGp_evmng_setGoal(cXyz* i_goal) {
+    dComIfGp_getPEvtManager()->setGoal(i_goal);
+}
+
 inline BOOL dComIfGp_evmng_ChkPresentEnd() {
     return dComIfGp_getPEvtManager()->ChkPresentEnd();
 }
@@ -3569,6 +3573,11 @@ inline void dComIfGd_setListIndScreen() {
 inline void dComIfGd_setListMiddle() {
     g_dComIfG_gameInfo.drawlist.setOpaListMiddle();
     g_dComIfG_gameInfo.drawlist.setXluListMiddle();
+}
+
+inline void dComIfGd_setListZxlu() {
+    g_dComIfG_gameInfo.drawlist.setOpaListZxlu();
+    g_dComIfG_gameInfo.drawlist.setXluListZxlu();
 }
 
 inline J3DDrawBuffer* dComIfGd_getOpaListBG() {

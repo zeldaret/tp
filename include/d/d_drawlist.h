@@ -336,6 +336,8 @@ public:
     void setOpaListP0() { setOpaDrawList(mDrawBuffers[DB_LIST_P0]); }
     void setXluListMiddle() { setXluDrawList(mDrawBuffers[DB_LIST_MIDDLE]); }
     void setOpaListMiddle() { setOpaDrawList(mDrawBuffers[DB_LIST_MIDDLE]); }
+    void setOpaListZxlu() { setOpaDrawList(mDrawBuffers[DB_LIST_Z_XLU]); }
+    void setXluListZxlu() { setXluDrawList(mDrawBuffers[DB_LIST_Z_XLU]); }
 
     void peekZdata() { mPeekZ.peekData(); }
     void entryZSortListZxlu(J3DPacket* i_packet, cXyz& param_1) {
