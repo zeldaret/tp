@@ -1,3 +1,8 @@
+/**
+ * d_a_alink_crawl.inc
+ * Player Crawl action handling
+ */
+
 /* 800F7C50-800F7C74 0F2590 0024+00 2/2 0/0 0/0 .text            getCrawlMoveAnmSpeed__9daAlink_cFv
  */
 f32 daAlink_c::getCrawlMoveAnmSpeed() {

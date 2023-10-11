@@ -11,8 +11,8 @@ enum J3DError {
 };
 
 enum J3DSysDrawBuffer {
-    /* 0x0 */ OPA_BUFFER,
-    /* 0x1 */ XLU_BUFFER
+    /* 0x0 */ J3DSys_OPA_BUFFER_e,
+    /* 0x1 */ J3DSys_XLU_BUFFER_e
 };
 
 class J3DMtxCalc;

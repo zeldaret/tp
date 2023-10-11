@@ -838,3 +838,148 @@ asm int daAlink_c::procPullMove() {
 #include "asm/d/a/d_a_alink/procPullMove__9daAlink_cFv.s"
 }
 #pragma pop
+
+/* 800E91B0-800E91C4 0E3AF0 0014+00 1/1 0/0 0/0 .text daAlink_searchGoat__FP10fopAc_ac_cPv */
+static fopAc_ac_c* daAlink_searchGoat(fopAc_ac_c* i_actor, void*) {
+    if (fopAcM_GetName(i_actor) == PROC_COW) {
+        return i_actor;
+    }
+
+    return NULL;
+}
+
+/* 800E91C4-800E9210 0E3B04 004C+00 1/0 0/0 0/0 .text            cancelGoronThrowEvent__9daAlink_cFv
+ */
+void daAlink_c::cancelGoronThrowEvent() {
+    if (mProcID == PROC_GOAT_CATCH && field_0x300e.z == 0) {
+        field_0x300e.z = 1;
+        i_dComIfGp_event_reset();
+    }
+}
+
+/* 800E9210-800E9344 0E3B50 0134+00 2/2 0/0 0/0 .text
+ * setGoatStopGameFail__9daAlink_cFP10fopAc_ac_c                */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void daAlink_c::setGoatStopGameFail(fopAc_ac_c* param_0) {
+    nofralloc
+#include "asm/d/a/d_a_alink/setGoatStopGameFail__9daAlink_cFP10fopAc_ac_c.s"
+}
+#pragma pop
+
+/* 800E9344-800E9434 0E3C84 00F0+00 1/1 0/0 0/0 .text            procGoatMoveInit__9daAlink_cFv */
+int daAlink_c::procGoatMoveInit() {
+    if (!commonProcInitNotSameProc(PROC_GOAT_MOVE)) {
+        return 0;
+    }
+
+    if (checkZeroSpeedF()) {
+        onModeFlg(1);
+    }
+
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    field_0x37c8 = current.pos;
+    field_0x2f98 = 3;
+    current.angle.y = shape_angle.y + -0x4000;
+    field_0x594 = daAlinkHIO_atnMove_c0::m.mMaxSpeed;
+
+    setSingleAnimeBase(ANM_ATN_COW);
+    field_0x300c = 0;
+
+    fopAc_ac_c* goat_p = (fopAc_ac_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchGoat, NULL);
+    if (goat_p != NULL) {
+        field_0x280c.setData(goat_p);
+    }
+
+    field_0x300e.x = 0;
+    deleteEquipItem(FALSE, FALSE);
+    return 1;
+}
+
+/* 800E9434-800E9894 0E3D74 0460+00 1/0 0/0 0/0 .text            procGoatMove__9daAlink_cFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm int daAlink_c::procGoatMove() {
+    nofralloc
+#include "asm/d/a/d_a_alink/procGoatMove__9daAlink_cFv.s"
+}
+#pragma pop
+
+/* 800E9894-800E9BD0 0E41D4 033C+00 3/3 0/0 0/0 .text procGoatCatchInit__9daAlink_cFP10fopAc_ac_cf
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm int daAlink_c::procGoatCatchInit(fopAc_ac_c* param_0, f32 param_1) {
+    nofralloc
+#include "asm/d/a/d_a_alink/procGoatCatchInit__9daAlink_cFP10fopAc_ac_cf.s"
+}
+#pragma pop
+
+/* 800E9BD0-800EA2A8 0E4510 06D8+00 1/0 0/0 0/0 .text            procGoatCatch__9daAlink_cFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm int daAlink_c::procGoatCatch() {
+    nofralloc
+#include "asm/d/a/d_a_alink/procGoatCatch__9daAlink_cFv.s"
+}
+#pragma pop
+
+/* 800EA2A8-800EA3AC 0E4BE8 0104+00 2/2 0/0 0/0 .text            procGoatStrokeInit__9daAlink_cFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm int daAlink_c::procGoatStrokeInit() {
+    nofralloc
+#include "asm/d/a/d_a_alink/procGoatStrokeInit__9daAlink_cFv.s"
+}
+#pragma pop
+
+/* 800EA3AC-800EA3F4 0E4CEC 0048+00 1/0 0/0 0/0 .text            procGoatStroke__9daAlink_cFv */
+int daAlink_c::procGoatStroke() {
+    if (mUnderFrameCtrl[0].checkAnmEnd()) {
+        checkNextAction(0);
+    }
+
+    return 1;
+}
+
+/* 800EA3F4-800EA4CC 0E4D34 00D8+00 2/2 0/0 0/0 .text            procGoronMoveInit__9daAlink_cFv */
+int daAlink_c::procGoronMoveInit() {
+    if (mEquipItem != NO_ITEM) {
+        return procPreActionUnequipInit(PROC_GORON_MOVE, NULL);
+    }
+
+    if (!commonProcInitNotSameProc(PROC_GORON_MOVE)) {
+        return 0;
+    }
+
+    mCargoCarryAcKeep.setActor();
+
+    if (mCargoCarryAcKeep.getActor() == NULL) {
+        offGoronSideMove();
+        return 0;
+    }
+
+    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    field_0x2f98 = 3;
+    current.angle.y = shape_angle.y + -0x4000;
+    field_0x594 = daAlinkHIO_atnMove_c0::m.mMaxSpeed;
+    setSingleAnimeBase(ANM_ATN_RIGHT);
+    field_0x300c = 1;
+    field_0x300e.x = 0;
+    return 1;
+}
+
+/* 800EA4CC-800EA844 0E4E0C 0378+00 1/0 0/0 0/0 .text            procGoronMove__9daAlink_cFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm int daAlink_c::procGoronMove() {
+    nofralloc
+#include "asm/d/a/d_a_alink/procGoronMove__9daAlink_cFv.s"
+}
+#pragma pop

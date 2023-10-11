@@ -39,7 +39,7 @@ public:
     /* 80125F14 */ BOOL create();
     /* 80126358 */ void update();
     /* 80126424 */ virtual void draw();
-    /* 800CFE68 */ virtual ~daAlink_lockCursor_c();
+    /* 800CFE68 */ virtual ~daAlink_lockCursor_c() {}
 
     void initFrame() {
         field_0x4 = false;
@@ -72,7 +72,7 @@ public:
     /* 80126710 */ void onLockFlg();
 
     /* 801266C0 */ virtual void draw();
-    /* 800CFDF4 */ virtual ~daAlink_sight_c();
+    /* 800CFDF4 */ virtual ~daAlink_sight_c() {}
 
     bool getLockFlg() { return mLockFlag; }
     void offLockFlg() { mLockFlag = false; }
@@ -90,7 +90,7 @@ public:
     /* 80125B0C */ void traceBlur(cXyz const*, cXyz const*, s16);
 
     /* 80125BF4 */ virtual void draw();
-    /* 800CFD58 */ virtual ~daAlink_blur_c();
+    /* 800CFD58 */ virtual ~daAlink_blur_c() {}
 
     // private:
     /* 0x010 */ void* m_blurTex;
@@ -109,7 +109,7 @@ class dAlink_bottleWaterPcallBack_c : public JPAParticleCallBack {
 public:
     dAlink_bottleWaterPcallBack_c() { initialize(0.0f); }
     /* 80124A2C */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
-    /* 800CFCF8 */ virtual ~dAlink_bottleWaterPcallBack_c();
+    /* 800CFCF8 */ virtual ~dAlink_bottleWaterPcallBack_c() {}
 
     void initialize(f32 minY) {
         mHitFlg = 0;
@@ -669,7 +669,9 @@ public:
         FTANM_UNK_9F = 0x9F,
     };
 
-    enum daAlink_WARP_MAT_MODE {};
+    enum daAlink_WARP_MAT_MODE {
+        WARP_MAT_MODE_1 = 1,
+    };
 
     enum daAlink_WANM {
         /* 0x00 */ WANM_WAIT,
@@ -1635,7 +1637,7 @@ public:
     /* 800CC7DC */ void initTevCustomColor();
     /* 800CC7FC */ int draw();
     /* 800CD7AC */ ~daAlink_c();
-    /* 800CE294 */ void checkNoSubjectModeCamera();
+    /* 800CE294 */ bool checkNoSubjectModeCamera();
     /* 800CE468 */ bool acceptSubjectModeChange();
     /* 800CE628 */ int checkSubjectAction();
     /* 800CE728 */ void checkBodyAngleX(s16);
@@ -2392,7 +2394,7 @@ public:
     /* 801086DC */ void resetHookshotMode();
     /* 8010871C */ bool setEnemyBombHookshot(fopAc_ac_c*);
     /* 80108784 */ bool checkLv7BossRoom();
-    /* 801087B0 */ bool checkHookshotStickBG(cBgS_PolyInfo&);
+    /* 801087B0 */ BOOL checkHookshotStickBG(cBgS_PolyInfo&);
     /* 80108828 */ void cancelHookshotCarry();
     /* 80108864 */ void changeHookshotDrawModel();
     /* 801088A0 */ BOOL checkHookshotRoofLv7Boss();
@@ -2413,17 +2415,17 @@ public:
     /* 80109284 */ int checkUpperItemActionHookshot();
     /* 801095C8 */ int checkNextActionHookshot();
     /* 801097A0 */ void setHookshotReturnEnd();
-    /* 80109890 */ void setHookshotHangMoveBGCollect();
+    /* 80109890 */ int setHookshotHangMoveBGCollect();
     /* 80109AAC */ void setHookshotTopPosFly();
     /* 80109BDC */ void setHookshotPos();
     /* 8010B2DC */ void setHookshotRoofWaitAnime();
     /* 8010B35C */ void setHookshotWallWaitAnime();
     /* 8010B3AC */ void hookshotRoofTurn();
     /* 8010B644 */ void initHookshotRoofWaitActor(fopAc_ac_c*);
-    /* 8010B720 */ void checkNextHookPoint();
-    /* 8010B84C */ void checkLandHookshotHang();
-    /* 8010B96C */ void commonHookshotRoofWait();
-    /* 8010BA6C */ void commonHookshotWallWait();
+    /* 8010B720 */ int checkNextHookPoint();
+    /* 8010B84C */ int checkLandHookshotHang();
+    /* 8010B96C */ int commonHookshotRoofWait();
+    /* 8010BA6C */ int commonHookshotWallWait();
     /* 8010BAA8 */ int procHookshotSubjectInit();
     /* 8010BB48 */ int procHookshotSubject();
     /* 8010BC08 */ int procHookshotMoveInit();
@@ -3021,7 +3023,7 @@ public:
     virtual bool exchangeGrabActor(fopAc_ac_c*);
     virtual bool setForceGrab(fopAc_ac_c*, int, int);
     virtual void setForcePutPos(cXyz const&);
-    virtual BOOL checkPlayerNoDraw();
+    virtual u32 checkPlayerNoDraw();
     virtual void voiceStart(u32);
     virtual void seStartOnlyReverb(u32);
     virtual void seStartOnlyReverbLevel(u32);
@@ -3314,6 +3316,8 @@ public:
         return i_frameCtrl->checkAnmEnd();
     }
 
+    const cXyz& getHsChainTopPos() const { return mHookshotTopPos; }
+
     static int getBallModelIdx() { return 0x25; }
     static int getBallBtkIdx() { return 0x49; }
     static int getBallBrkIdx() { return 0x41; }
@@ -3387,37 +3391,34 @@ private:
     /* 0x006DC */ void* field_0x06dc;
     /* 0x006E0 */ void* field_0x06e0;
     /* 0x006E4 */ J3DShape* field_0x06e4;
-    /* 0x006E8 */ void* field_0x06e8;
+    /* 0x006E8 */ J3DShape* field_0x06e8;
     /* 0x006EC */ J3DShape* field_0x06ec;
     /* 0x006F0 */ J3DShape* field_0x06f0;
-    /* 0x006F4 */ J3DAnmBase* field_0x06f4;
+    /* 0x006F4 */ J3DAnmTevRegKey* field_0x06f4;
     /* 0x006F8 */ J3DAnmBase* field_0x06f8;
     /* 0x006FC */ J3DModel* field_0x06fc;  // related to human link
     /* 0x00700 */ J3DModel* field_0x0700;
     /* 0x00704 */ J3DAnmBase* field_0x0704;
     /* 0x00708 */ J3DModel* mHeldItemModel;
-    /* 0x0070C */ J3DModel* field_0x070c;  // related to held item
+    /* 0x0070C */ J3DModel* mpHookTipModel;  // related to held item
     /* 0x00710 */ J3DModel* field_0x0710;  // related to held item
     /* 0x00714 */ J3DModel* field_0x0714;  // related to held item
-    /* 0x00718 */ J3DAnmBase* field_0x0718;
+    /* 0x00718 */ J3DAnmTextureSRTKey* field_0x0718;
     /* 0x0071C */ J3DAnmBase* field_0x071c;
     /* 0x00720 */ J3DAnmBase* field_0x0720;
     /* 0x00724 */ J3DAnmTevRegKey* field_0x0724;
     /* 0x00728 */ J3DAnmBase* field_0x0728;
     /* 0x0072C */ J3DAnmBase* field_0x072c;
-    /* 0x00730 */ mDoExt_bckAnm field_0x730;
-    /* 0x0074C */ mDoExt_bckAnm field_0x74C;
-    /* 0x00768 */ J3DModelData* field_0x0768;
-    /* 0x0076C */ Z2SoundObjSimple* field_0x076c;
-    /* 0x00770 */ hsChainShape_c* field_0x770;
+    /* 0x00730 */ mDoExt_bckAnm mItemBck;
+    /* 0x0074C */ mDoExt_bckAnm mHookTipBck;
+    /* 0x00768 */ J3DModelData* mpHookKusariModelData;
+    /* 0x0076C */ Z2SoundObjSimple* mpHookSound;
+    /* 0x00770 */ hsChainShape_c* mpHookChain;
     /* 0x00774 */ u8 field_0x0774[0x77C - 0x774];
     /* 0x0077C */ dBgS_ObjLinChk* mpHookshotLinChk;
     /* 0x00780 */ u8 field_0x780[4];
     /* 0x00784 */ J3DModel* field_0x784[2];
-    /* 0x0078C */ J3DModel* mpWlChain1Model;
-    /* 0x00790 */ J3DModel* mpWlChain2Model;
-    /* 0x00794 */ J3DModel* mpWlChain3Model;
-    /* 0x00798 */ J3DModel* mpWlChain4Model;
+    /* 0x0078C */ J3DModel* mpWlChainModels[4];
     /* 0x0079C */ J3DModel* field_0x79c;  // related to wolf
     /* 0x007A0 */ J3DModel* mpWlMidnaHatModel;
     /* 0x007A4 */ J3DModel* field_0x7a4;  // related to wolf
@@ -3500,7 +3501,7 @@ private:
     /* 0x02834 */ daPy_actorKeep_c mThrowBoomerangAcKeep;
     /* 0x0283C */ daPy_actorKeep_c mCopyRodAcKeep;
     /* 0x02844 */ daPy_actorKeep_c field_0x2844;
-    /* 0x0284C */ daPy_actorKeep_c field_0x284c;
+    /* 0x0284C */ daPy_actorKeep_c mHookTargetAcKeep;
     /* 0x02854 */ daPy_actorKeep_c mCargoCarryAcKeep;
     /* 0x0285C */ daPy_actorKeep_c field_0x285c;
     /* 0x02864 */ dMsgFlow_c mMsgFlow;
@@ -3643,9 +3644,7 @@ private:
     /* 0x03008 */ s16 field_0x3008;
     /* 0x0300A */ s16 field_0x300a;
     /* 0x0300C */ s16 field_0x300c;  // might need more accurate name
-    /* 0x0300E */ s16 field_0x300e;
-    /* 0x03010 */ s16 field_0x3010;
-    /* 0x03012 */ s16 field_0x3012;
+    /* 0x0300E */ csXyz field_0x300e;
     /* 0x03014 */ s16 mFallVoiceInit;
     /* 0x03016 */ u8 field_0x3016[2];
     /* 0x03018 */ s16 field_0x3018;
@@ -3814,7 +3813,7 @@ private:
     /* 0x0321C */ u32 field_0x321c;
     /* 0x03220 */ u32 field_0x3220;
     /* 0x03224 */ u32 field_0x3224;
-    /* 0x03228 */ u8 field_0x3228[24];
+    /* 0x03228 */ u32 field_0x3228[2][3];
     /* 0x03240 */ u32 field_0x3240;
     /* 0x03244 */ u8 field_0x3244[20];
     /* 0x03258 */ u32 field_0x3258;
@@ -3955,7 +3954,7 @@ private:
     /* 0x037B0 */ cXyz field_0x37b0[2];
     /* 0x037C8 */ cXyz field_0x37c8;
     /* 0x037D4 */ cXyz field_0x37d4;
-    /* 0x037E0 */ cXyz field_0x37e0;
+    /* 0x037E0 */ cXyz mHeldItemRootPos;
     /* 0x037EC */ cXyz mHookshotTopPos;
     /* 0x037F8 */ cXyz mIronBallCenterPos;
     /* 0x03804 */ cXyz mIronBallBgChkPos;

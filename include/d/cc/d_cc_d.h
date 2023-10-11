@@ -144,7 +144,7 @@ public:
 };  // Size = 0x3C
 
 class dCcD_GObjInf;
-typedef void (*dCcD_HitCallback)(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
+typedef void (*dCcD_HitCallback)(fopAc_ac_c* i_actorA, dCcD_GObjInf* i_objInfA, fopAc_ac_c* i_actorB, dCcD_GObjInf* i_objInfB);
 
 
 // Attack/Defense/Correction Collider Common Base
@@ -206,6 +206,7 @@ public:
     u8 GetHitMark() { return mHitMark; }
     void SetRVec(cXyz& vec) { mRVec = vec; }
     void SetHitPos(cXyz& pos) { mHitPos = pos; }
+    cXyz* GetHitPosP() { return &mHitPos; }
 
     // private:
     /* 0x1C */ u8 mSe;
@@ -376,6 +377,8 @@ public:
     void SetTgHitPos(cXyz& pos) { mGObjTg.SetHitPos(pos); }
     void SetAtHitPos(cXyz& pos) { mGObjAt.SetHitPos(pos); }
     u32 GetTgHitObjHitSeID(int i_soundID) { return getHitSeID(GetTgHitObjSe(),i_soundID); }
+    cXyz* GetAtHitPosP() { return mGObjAt.GetHitPosP(); }
+    bool ChkTgHookshotThrough() { return mGObjTg.ChkSPrm(0x80); }
     
     static const Z2SoundID m_hitSeID[24];
 

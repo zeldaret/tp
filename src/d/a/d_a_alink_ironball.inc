@@ -1,3 +1,8 @@
+/**
+ * d_a_alink_ironball.inc
+ * Player Ball & Chain action handling
+ */
+
 /* 8011243C-80112458 10CD7C 001C+00 1/0 0/0 0/0 .text            getIronBallCenterPos__9daAlink_cFv
  */
 cXyz* daAlink_c::getIronBallCenterPos() {

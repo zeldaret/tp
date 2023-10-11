@@ -1048,4 +1048,5 @@ RELS := \
 
 O_FILES_SYM_ON := \
 	$(BUILD_DIR)/src/c/c_dylink.o \
+	$(BUILD_DIR)/src/d/a/d_a_alink.o \
 	$(BUILD_DIR)/src/DynamicLink.o \

@@ -312,8 +312,9 @@ public:
     J3DDrawBuffer* getOpaListP0() { return mDrawBuffers[DB_LIST_P0]; }
     J3DDrawBuffer* getOpaListPacket() { return mDrawBuffers[DB_OPA_LIST_PACKET]; }
     J3DDrawBuffer* getOpaListBG() { return mDrawBuffers[DB_OPA_LIST_BG]; }
-    void setXluDrawList(J3DDrawBuffer* buffer) { j3dSys.setDrawBuffer(buffer, XLU_BUFFER); }
-    void setOpaDrawList(J3DDrawBuffer* buffer) { j3dSys.setDrawBuffer(buffer, OPA_BUFFER); }
+    J3DDrawBuffer* getOpaListDark() { return mDrawBuffers[DB_OPA_LIST_DARK]; }
+    void setXluDrawList(J3DDrawBuffer* buffer) { j3dSys.setDrawBuffer(buffer, J3DSys_XLU_BUFFER_e); }
+    void setOpaDrawList(J3DDrawBuffer* buffer) { j3dSys.setDrawBuffer(buffer, J3DSys_OPA_BUFFER_e); }
     void setXluListSky() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_SKY]); }
     void setOpaListSky() { setOpaDrawList(mDrawBuffers[DB_OPA_LIST_SKY]); }
     void setXluListDark() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_DARK]); }
@@ -333,12 +334,18 @@ public:
     void setXluList2DScreen() { setXluDrawList(mDrawBuffers[DB_LIST_2D_SCREEN]); }
     void setXluListP0() { setXluDrawList(mDrawBuffers[DB_LIST_P0]); }
     void setOpaListP0() { setOpaDrawList(mDrawBuffers[DB_LIST_P0]); }
+    void setXluListMiddle() { setXluDrawList(mDrawBuffers[DB_LIST_MIDDLE]); }
+    void setOpaListMiddle() { setOpaDrawList(mDrawBuffers[DB_LIST_MIDDLE]); }
     void setOpaListZxlu() { setOpaDrawList(mDrawBuffers[DB_LIST_Z_XLU]); }
     void setXluListZxlu() { setXluDrawList(mDrawBuffers[DB_LIST_Z_XLU]); }
 
     void peekZdata() { mPeekZ.peekData(); }
     void entryZSortListZxlu(J3DPacket* i_packet, cXyz& param_1) {
         entryZSortXluDrawList(mDrawBuffers[DB_LIST_Z_XLU], i_packet, param_1);
+    }
+
+    void entryZSortXluList(J3DPacket* i_packet, cXyz& param_1) {
+        entryZSortXluDrawList(mDrawBuffers[DB_XLU_LIST], i_packet, param_1);
     }
 
     int setSimpleShadow(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3, s16 param_4,

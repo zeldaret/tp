@@ -1,3 +1,8 @@
+/**
+ * d_a_alink_boom.inc
+ * Player Boomerang action handling
+ */
+
 #include "rel/d/a/d_a_boomerang/d_a_boomerang.h"
 
 /* 800DFFE0-800E0010 0DA920 0030+00 0/0 0/0 1/1 .text checkBoomerangLockAccept__9daAlink_cFv */
@@ -374,9 +379,9 @@ int daAlink_c::checkBoomerangCatchAction() {
 /* 800E0E64-800E0F10 0DB7A4 00AC+00 3/3 0/0 0/0 .text            setBoomerangSight__9daAlink_cFv */
 void daAlink_c::setBoomerangSight() {
     if (mItemAcKeep.getActor() && !checkBoomerangThrowAnime()) {
-        BOOL check_line = checkSightLine(getBoomLockMax(), &field_0x37e0);
+        BOOL check_line = checkSightLine(getBoomLockMax(), &mHeldItemRootPos);
 
-        mSight.setPos(&field_0x37e0);
+        mSight.setPos(&mHeldItemRootPos);
         mSight.onDrawFlg();
 
         daBoomerang_c* boomerang = (daBoomerang_c*)mItemAcKeep.getActor();

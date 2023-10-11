@@ -1,3 +1,8 @@
+/**
+ * d_a_alink_whistle.inc
+ * Player Horse / Hawk Grass Whistle action handling
+ */
+
 #include "rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa.h"
 
 /* 8011174C-80111770 10C08C 0024+00 1/1 0/0 0/0 .text daAlink_searchWhistle__FP10fopAc_ac_cPv */
@@ -68,9 +73,9 @@ int daAlink_c::procGrassWhistleGetInit() {
 
     daObjYobikusa_c* yobikusa = (daObjYobikusa_c*)field_0x27f4;
     field_0x300c = yobikusa->getType();
-    field_0x300e = yobikusa->getPathID();
-    field_0x3010 = yobikusa->isPlayerCorrect();
-    field_0x3012 = yobikusa->shape_angle.y + 0x8000;
+    field_0x300e.x = yobikusa->getPathID();
+    field_0x300e.y = yobikusa->isPlayerCorrect();
+    field_0x300e.z = yobikusa->shape_angle.y + 0x8000;
     field_0x37c8.set(yobikusa->current.pos.x + cM_ssin(yobikusa->shape_angle.y) * 50.0f,
                      yobikusa->current.pos.y + 50.0f,
                      yobikusa->current.pos.z + cM_scos(yobikusa->shape_angle.y) * 50.0f);
@@ -94,7 +99,7 @@ int daAlink_c::procGrassWhistleGet() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
     
     if (frameCtrl->checkAnmEnd()) {
-        procGrassWhistleWaitInit(field_0x300c, field_0x300e, field_0x3010, field_0x3012, &field_0x37c8);
+        procGrassWhistleWaitInit(field_0x300c, field_0x300e.x, field_0x300e.y, field_0x300e.z, &field_0x37c8);
     } else if (mEquipItem == NO_ITEM && frameCtrl->getFrame() >= lit_7710) {
         setGrassWhistleModel(field_0x300c);
         
@@ -135,11 +140,11 @@ int daAlink_c::procCoHorseCallWaitInit(int param_0) {
     commonProcInit(PROC_HORSE_CALL_WAIT);
 
     if (param_0 == 4) {
-        field_0x3010 = 2;
+        field_0x300e.y = 2;
     } else if (param_0 == 1) {
-        field_0x3010 = 0x3D;
+        field_0x300e.y = 0x3D;
     } else {
-        field_0x3010 = 0x10;
+        field_0x300e.y = 0x10;
     }
 
     if (i_checkWolf()) {

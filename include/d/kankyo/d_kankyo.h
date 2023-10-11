@@ -127,7 +127,7 @@ struct BOSS_LIGHT {
 
 struct GB_WIND_INFLUENCE {
     /* 0x00 */ cXyz vec;
-    /* 0x0C */ int field_0xc;
+    /* 0x0C */ cXyz* vec_override;
     /* 0x10 */ f32 pow;
 };
 
