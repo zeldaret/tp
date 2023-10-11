@@ -6,6 +6,9 @@
 #include "d/meter/d_meter_HIO.h"
 #include "d/save/d_save.h"
 #include "dol2asm.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "m_Do/m_Do_ext.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "global.h"
 
 //
@@ -1685,6 +1688,7 @@ dMeter_fmapHIO_c::dMeter_fmapHIO_c() {
 }
 
 /* 80200BCC-80200CD4 1FB50C 0108+00 2/1 0/0 0/0 .text            __dt__16dMeter_fmapHIO_cFv */
+// Matches with dMeter_mapIconHIO_c dtor defined instead of declared in the header
 #ifdef NONMATCHING
 dMeter_fmapHIO_c::~dMeter_fmapHIO_c() {
     if (field_0xc != NULL) {
@@ -1702,8 +1706,6 @@ dMeter_fmapHIO_c::~dMeter_fmapHIO_c() {
         delete field_0x8;
         field_0x8 = NULL;
     }
-
-    delete mMapIconHIO;
 }
 #else
 #pragma push
