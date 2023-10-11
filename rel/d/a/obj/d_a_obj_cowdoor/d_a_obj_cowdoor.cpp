@@ -109,18 +109,18 @@ static actor_method_class l_daCowdoor_Method = {
 
 /* 80BCCC08-80BCCC38 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Cowdoor */
 extern actor_process_profile_definition g_profile_Obj_Cowdoor = {
-    -3,                     // mLayerID
+    fpcLy_CURRENT_e,        // mLayerID
     3,                      // mListID
-    -3,                     // mListPrio
+    fpcPi_CURRENT_e,        // mListPrio
     PROC_Obj_Cowdoor,       // mProcName
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daCowdoor_c),    // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
-    0x01BF,                 // mPriority
+    447,                    // mPriority
     &l_daCowdoor_Method,    // mSubMtd
-    0x00040100,             // mStatus
-    0,                      // mActorType
-    14,                     // mCullType
+    0x40100,                // mStatus
+    fopAc_ACTOR_e,          // mActorType
+    fopAc_CULLBOX_CUSTOM_e, // mCullType
 };

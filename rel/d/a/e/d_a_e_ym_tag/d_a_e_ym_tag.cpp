@@ -83,18 +83,18 @@ static actor_method_class l_daE_YM_TAG_Method = {
 
 /* 80815FD8-80816008 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_E_YM_TAG */
 extern actor_process_profile_definition g_profile_E_YM_TAG = {
-    -3,                     // mLayerID
+    fpcLy_CURRENT_e,        // mLayerID
     7,                      // mListID
-    -3,                     // mListPrio
+    fpcPi_CURRENT_e,        // mListPrio
     PROC_E_YM_TAG,          // mProcName
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daE_YM_TAG_c),   // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
-    0x00C3,                 // mPriority
+    195,                    // mPriority
     &l_daE_YM_TAG_Method,   // mSubMtd
-    0x00044000,             // mStatus
-    0,                      // mActorType
-    0,                      // mCullType
+    0x44000,                // mStatus
+    fopAc_ACTOR_e,          // mActorType
+    fopAc_CULLBOX_0_e,      // mCullType   
 };

@@ -10,7 +10,7 @@ class JKRAMCommand;
 class JKRAramBlock;
 class JKRAram : public JKRThread {
 private:
-    JKRAram(u32, u32, long);
+    JKRAram(u32, u32, s32);
     virtual ~JKRAram();
 
     /* vt[03] */ void* run(void); /* override */
@@ -33,7 +33,7 @@ public:
     /* 0x98 */ u32 mStackArray[3];
 
 public:
-    static JKRAram* create(u32, u32, long, long, long);
+    static JKRAram* create(u32, u32, s32, s32, s32);
     static void checkOkAddress(u8*, u32, JKRAramBlock*, u32);
     static void changeGroupIdIfNeed(u8*, int);
     static JKRAramBlock* mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
@@ -67,7 +67,7 @@ private:
     static JSUList<JKRAMCommand> sAramCommandList;
 };
 
-inline void* JKRAllocFromAram(u32 size, JKRAramHeap::EAllocMode allocMode) {
+inline JKRAramBlock* JKRAllocFromAram(u32 size, JKRAramHeap::EAllocMode allocMode) {
     return JKRAram::getAramHeap()->alloc(size, allocMode);
 }
 
@@ -75,9 +75,9 @@ inline void JKRFreeToAram(JKRAramBlock* block) {
     JKRAram::getAramHeap()->free(block);
 }
 
-inline void JKRAramToMainRam(u32 p1, u8* p2, u32 p3, JKRExpandSwitch p4, u32 p5, JKRHeap* p6,
+inline u8* JKRAramToMainRam(u32 p1, u8* p2, u32 p3, JKRExpandSwitch p4, u32 p5, JKRHeap* p6,
                              int p7, u32* p8) {
-    JKRAram::aramToMainRam(p1, p2, p3, p4, p5, p6, p7, p8);
+    return JKRAram::aramToMainRam(p1, p2, p3, p4, p5, p6, p7, p8);
 }
 
 inline JKRAramBlock *JKRMainRamToAram(u8 *buf, u32 bufSize, u32 alignedSize, JKRExpandSwitch expandSwitch, u32 fileSize, JKRHeap *heap, int id, u32 *pSize) {

@@ -280,9 +280,9 @@ static leafdraw_method_class l_dThunder_Method = {
 
 /* 803BC1EC-803BC218 -00001 0028+04 0/0 0/0 1/0 .data            g_profile_KY_THUNDER */
 extern kankyo_process_profile_definition g_profile_KY_THUNDER = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_KY_THUNDER,
     &g_fpcLf_Method.mBase,
     sizeof(dThunder_c),

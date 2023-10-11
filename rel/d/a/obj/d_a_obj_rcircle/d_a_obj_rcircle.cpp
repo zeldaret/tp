@@ -147,18 +147,18 @@ static actor_method_class daObjRCircle_METHODS = {
 
 /* 80CB8D34-80CB8D64 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_RCircle */
 extern actor_process_profile_definition g_profile_Obj_RCircle = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Obj_RCircle,
     &g_fpcLf_Method.mBase,
     sizeof(daObjRCircle_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x02E4,
+    740,
     &daObjRCircle_METHODS,
-    0x00044180,
-    3,
-    14,
+    0x44180,
+    fopAc_ENV_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

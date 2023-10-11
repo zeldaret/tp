@@ -103,6 +103,8 @@ $(BUILD_DIR)/src/__start.o: CFLAGS 			:= -Cpp_exceptions off -proc gekko -fp har
 $(BUILD_DIR)/src/__start.o: MWCC_VERSION 	:= 1.2.5
 $(BUILD_DIR)/src/__start.o: CC 				:= $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc.exe
 
+$(O_FILES_SYM_ON): CFLAGS += -sym on
+
 # elf2dol needs to know these in order to calculate sbss correctly.
 SDATA_PDHR 	:= 9
 SBSS_PDHR 	:= 10

@@ -474,7 +474,7 @@ void dName_c::_move() {
     stick->checkTrigger();
     (this->*SelProc[mSelProc])();
 
-    if (mDoCPd_c::getTrigRight(0)) {
+    if (mDoCPd_c::getTrigRight(PAD_1)) {
         // BUG: this check only fails if the cursor is at exactly 7
         // setMoji allows the cursor to reach 8, which is out of bounds here
         if (mCurPos != 7) {
@@ -483,14 +483,14 @@ void dName_c::_move() {
             mCurPos++;
             nameCursorMove();
         }
-    } else if (mDoCPd_c::getTrigLeft(0)) {
+    } else if (mDoCPd_c::getTrigLeft(PAD_1)) {
         if (mCurPos != 0) {
             mDoAud_seStart(Z2SE_SY_DUMMY, 0, 0, 0);
             mLastCurPos = mCurPos;
             mCurPos--;
             nameCursorMove();
         }
-    } else if (mDoCPd_c::getTrigB(0)) {
+    } else if (mDoCPd_c::getTrigB(PAD_1)) {
         if (mCurPos == 0) {
             mDoAud_seStart(Z2SE_SY_MENU_BACK, 0, 0, 0);
             field_0x2ac = mSelProc;
@@ -500,7 +500,7 @@ void dName_c::_move() {
         } else {
             backSpace();
         }
-    } else if (mDoCPd_c::getTrigStart(0)) {
+    } else if (mDoCPd_c::getTrigStart(PAD_1)) {
         if ((mSelProc != PROC_MENU_SELECT || mSelMenu != MENU_END) &&
             (mSelProc == PROC_MENU_SELECT || mSelProc == PROC_MOJI_SELECT)) {
             mDoAud_seStart(Z2SE_SY_CURSOR_OPTION, 0, 0, 0);
@@ -585,7 +585,7 @@ void dName_c::Wait() {
 // matches with literals
 #ifdef NONMATCHING
 void dName_c::MojiSelect() {
-    if (mDoCPd_c::getTrigA(0)) {
+    if (mDoCPd_c::getTrigA(PAD_1)) {
         selectMojiSet();
     } else if (stick->checkRightTrigger()) {
         mDoAud_seStart(Z2SE_SY_NAME_CURSOR, 0, 0, 0);
@@ -951,7 +951,7 @@ void dName_c::MenuSelect() {
             selectCursorPosSet(0);
             MenuSelectAnmInit();
             mSelProc = PROC_MENU_SEL_ANM2;
-        } else if (mDoCPd_c::getTrigA(0)) {
+        } else if (mDoCPd_c::getTrigA(PAD_1)) {
             if (mSelMenu == MENU_END) {
                 if (nameCheck() != 0) {
                     mDoAud_seStart(Z2SE_SY_NAME_OK, NULL, 0, 0);
@@ -962,7 +962,7 @@ void dName_c::MenuSelect() {
                 mDoAud_seStart(Z2SE_SY_CURSOR_OK, NULL, 0, 0);
             }
             menuAbtnSelect();
-        } else if (mDoCPd_c::getTrigStart(0)) {
+        } else if (mDoCPd_c::getTrigStart(PAD_1)) {
             if (mSelMenu == MENU_END) {
                 if (nameCheck() != 0) {
                     mDoAud_seStart(Z2SE_SY_NAME_OK, NULL, 0, 0);
@@ -1422,17 +1422,23 @@ void dName_c::NameStrSet() {
 
 /* 80251048-80251094 24B988 004C+00 6/6 0/0 0/0 .text            getMenuPosIdx__7dName_cFUc */
 s32 dName_c::getMenuPosIdx(u8 selPos) {
+    s32 result;
     switch (selPos) {
     case 0:
-        return 0;
+        result = 0;
+        break;
     case 1:
-        return 1;
+        result = 1;
+        break;
     case 2:
-        return 2;
+        result = 2;
+        break;
     case 3:
-        return 3;
+        result = 3;
+        break;
     }
-    //!@bug UB: no default return
+    return result;
+    //!@bug UB: uninitialized default return
 }
 
 /* 80251094-8025115C 24B9D4 00C8+00 1/0 0/0 0/0 .text            draw__14dDlst_NameIN_cFv */

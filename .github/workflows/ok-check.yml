@@ -3,10 +3,10 @@ name: OK Check / Progress Push
 on:
   pull_request:
     branches:
-      - master
+      - main
   push:
     branches:
-      - master
+      - main
 
 env:
   GITHUB_ORG: "zeldaret"

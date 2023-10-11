@@ -7,6 +7,7 @@
 #include "JSystem/JKernel/JKRDvdFile.h"
 #include "JSystem/JKernel/JKRFileFinder.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "MSL_C/MSL_Common/Src/ctype.h"
 #include "MSL_C/string.h"
 #include "global.h"
@@ -40,7 +41,7 @@ JKRFileCache* JKRFileCache::mount(const char* path, JKRHeap* heap, const char* p
 }
 
 /* 802D4AB4-802D4C70 2CF3F4 01BC+00 1/1 0/0 0/0 .text            __ct__12JKRFileCacheFPCcPCc */
-JKRFileCache::JKRFileCache(const char* path, const char* volume) : mCacheBlockList() {
+JKRFileCache::JKRFileCache(const char* path, const char* volume) {
     mParentHeap = JKRHeap::findFromRoot(this);
     mMountCount = 1;
     mVolumeType = 'CASH';
@@ -119,7 +120,7 @@ bool JKRFileCache::becomeCurrent(const char* path) {
 
 /* 802D4DD8-802D4EDC 2CF718 0104+00 1/0 0/0 0/0 .text            getResource__12JKRFileCacheFPCc */
 void* JKRFileCache::getResource(const char* path) {
-    ASSERT(isMounted());
+    JUT_ASSERT(237, isMounted());
 
     void* buffer = NULL;
     char* name = getDvdPathName(path);
@@ -151,7 +152,7 @@ void* JKRFileCache::getResource(const char* path) {
 /* 802D4EDC-802D4F64 2CF81C 0088+00 1/0 0/0 0/0 .text            getResource__12JKRFileCacheFUlPCc
  */
 void* JKRFileCache::getResource(u32, const char* path) {
-    ASSERT(isMounted());
+    JUT_ASSERT(303, isMounted());
 
     char finalPath[256];
     u32 rootLength = strlen(mRootPath);
@@ -167,7 +168,7 @@ void* JKRFileCache::getResource(u32, const char* path) {
 
 /* 802D4F64-802D503C 2CF8A4 00D8+00 1/0 0/0 0/0 .text readResource__12JKRFileCacheFPvUlPCc */
 u32 JKRFileCache::readResource(void* dst, u32 dstLength, const char* path) {
-    ASSERT(isMounted());
+    JUT_ASSERT(412, isMounted());
 
     char* name = getDvdPathName(path);
     JKRDvdFile dvdFile(name);
@@ -176,8 +177,10 @@ u32 JKRFileCache::readResource(void* dst, u32 dstLength, const char* path) {
 
 // !@bug: (maybe?) Infinite Loop: Because dvdFile.isAvailable() is never updated in the loop-body
 // will would never exit the loop.
-loop:
-    if (dvdFile.isAvailable()) {
+    while (true) {
+        if (!dvdFile.isAvailable()) {
+            break;
+        }
         u32 fileSize = dvdFile.getFileInfo()->length;
         resourceSize = ALIGN_NEXT(fileSize, 0x20);
         dstLength = ALIGN_PREV(dstLength, 0x20);
@@ -191,7 +194,6 @@ loop:
         } else {
             memcpy(dst, cacheBlock->mMemoryPtr, resourceSize);
         }
-        goto loop;
     }
 
     JKRFreeToSysHeap(name);
@@ -200,7 +202,7 @@ loop:
 
 /* 802D503C-802D50D4 2CF97C 0098+00 1/0 0/0 0/0 .text readResource__12JKRFileCacheFPvUlUlPCc */
 u32 JKRFileCache::readResource(void* dst, u32 dstLength, u32, const char* path) {
-    ASSERT(isMounted());
+    JUT_ASSERT(344, isMounted());
 
     char finalPath[256];
     u32 rootLength = strlen(mRootPath);
@@ -217,7 +219,7 @@ u32 JKRFileCache::readResource(void* dst, u32 dstLength, u32, const char* path) 
 /* 802D50D4-802D5164 2CFA14 0090+00 1/0 0/0 0/0 .text            removeResourceAll__12JKRFileCacheFv
  */
 void JKRFileCache::removeResourceAll(void) {
-    ASSERT(isMounted());
+    JUT_ASSERT(412, isMounted());
 
     JSUListIterator<CCacheBlock> iterator;
     iterator = mCacheBlockList.getFirst();
@@ -232,7 +234,7 @@ void JKRFileCache::removeResourceAll(void) {
 /* 802D5164-802D51F8 2CFAA4 0094+00 1/0 0/0 0/0 .text            removeResource__12JKRFileCacheFPv
  */
 bool JKRFileCache::removeResource(void* resource) {
-    ASSERT(isMounted());
+    JUT_ASSERT(463, isMounted());
 
     CCacheBlock* cacheBlock = findCacheBlock(resource);
     if (!cacheBlock)
@@ -252,7 +254,7 @@ bool JKRFileCache::removeResource(void* resource) {
 /* 802D51F8-802D526C 2CFB38 0074+00 1/0 0/0 0/0 .text            detachResource__12JKRFileCacheFPv
  */
 bool JKRFileCache::detachResource(void* resource) {
-    ASSERT(isMounted());
+    JUT_ASSERT(490, isMounted());
 
     CCacheBlock* cacheBlock = findCacheBlock(resource);
     if (!cacheBlock)
@@ -265,8 +267,6 @@ bool JKRFileCache::detachResource(void* resource) {
 
 /* 802D526C-802D52A0 2CFBAC 0034+00 1/0 0/0 0/0 .text            getResSize__12JKRFileCacheCFPCv */
 u32 JKRFileCache::getResSize(const void* resource) const {
-    ASSERT(isMounted());
-
     CCacheBlock* cacheBlock = findCacheBlock(resource);
     if (cacheBlock == NULL) {
         return -1;
@@ -277,8 +277,6 @@ u32 JKRFileCache::getResSize(const void* resource) const {
 
 /* 802D52A0-802D531C 2CFBE0 007C+00 1/0 0/0 0/0 .text            countFile__12JKRFileCacheCFPCc */
 u32 JKRFileCache::countFile(const char* path) const {
-    ASSERT(isMounted());
-
     DVDDirectory dir;
     DVDDirectoryEntry dirEntry;
 

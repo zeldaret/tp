@@ -201,7 +201,6 @@ extern "C" extern char const* const d_a_obj_kago__stringBase0;
 // External References:
 //
 
-SECTION_INIT void memset();
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void scaleM__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();

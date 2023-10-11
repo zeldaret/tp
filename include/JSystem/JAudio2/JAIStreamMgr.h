@@ -4,7 +4,10 @@
 #include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JSupport/JSUList.h"
+#include "JSystem/JUtility/JUTAssert.h"
 
+class JAIStreamAramMgr;
+class JAIStreamDataMgr;
 class JAIStreamMgr;
 
 class JAIStream {
@@ -27,15 +30,25 @@ public:
     /* 802A40B8 */ void stopSoundID(JAISoundID);
     /* 802A4118 */ void mixOut();
     /* 802A4174 */ void newStream_();
-    /* 802B9978 */ void isActive() const;
+    /* 802B9978 */ bool isActive() const;
+
+    JAISoundParamsMove* getParams() { return &mParams; }
+    void setStreamDataMgr(JAIStreamDataMgr* param_0) {
+        JUT_ASSERT(139, !isActive());
+        mStreamDataMgr = param_0;
+    }
+    void setStreamAramMgr(JAIStreamAramMgr* param_0) {
+        JUT_ASSERT(157, !isActive());
+        mStreamAramMgr = param_0;
+    }
 
 private:
     /* 0x00 */ JAISoundActivity mActivity;
     /* 0x04 */ JAISoundParamsMove mParams;
     /* 0x54 */ int field_0x54;
     /* 0x58 */ JSUList<JAIStream> mStreamList;
-    /* 0x64 */ int field_0x64;
-    /* 0x68 */ int field_0x68;
+    /* 0x64 */ JAIStreamDataMgr * mStreamDataMgr;
+    /* 0x68 */ JAIStreamAramMgr* mStreamAramMgr;
     /* 0x6C */ int field_0x6c;
 };  // Size: 0x70
 

@@ -1,3 +1,8 @@
+/**
+ * d_a_alink_canoe.inc
+ * Player Canoe riding handling
+ */
+
 #include "rel/d/a/d_a_canoe/d_a_canoe.h"
 
 /* 800F3BB0-800F3BDC 0EE4F0 002C+00 1/1 0/0 2/2 .text            getCanoeMaxSpeed__9daAlink_cCFv */
@@ -122,11 +127,11 @@ BOOL daAlink_c::checkCanoeFishingRodGrabOrPut() const {
 
 /* 800F3FC4-800F4008 0EE904 0044+00 2/2 0/0 0/0 .text            initCanoeRide__9daAlink_cFv */
 void daAlink_c::initCanoeRide() {
-    field_0x3012 = 1;
+    field_0x300e.z = 1;
     field_0x3588 = l_waitBaseAnime;
     field_0x384c = (cXyz*)&l_canoeBaseAnime;
     mRideStatus = 3;
-    field_0x3010 = 0;
+    field_0x300e.y = 0;
 }
 
 /* 800F4008-800F40E4 0EE948 00DC+00 2/2 0/0 0/0 .text            checkCanoeJumpRide__9daAlink_cFv */
@@ -141,7 +146,7 @@ BOOL daAlink_c::checkCanoeJumpRide() {
 
     if (speed.y < FLOAT_LABEL(lit_6108) && canoe != NULL && fopAcM_GetName(canoe) == PROC_CANOE &&
         canoe->checkJumpRideFlg() && !checkDeadHP() &&
-        (mProcID != PROC_FALL || field_0x3010 != 0)) {
+        (mProcID != PROC_FALL || field_0x300e.y != 0)) {
         return procCanoeJumpRideInit(canoe);
     }
 
@@ -274,7 +279,7 @@ int daAlink_c::procCanoeRideInit() {
     current.angle.y = shape_angle.y;
 
     initCanoeRide();
-    field_0x300e = 0x80;
+    field_0x300e.x = 0x80;
     swimOutAfter(1);
     return 1;
 }
@@ -292,12 +297,12 @@ int daAlink_c::procCanoeRide() {
     if (frameCtrl->checkAnmEnd()) {
         procCanoeWaitInit(1);
     } else if (frameCtrl->getFrame() < lit_7710) {
-        field_0x300e += 0x180;
+        field_0x300e.x += 0x180;
 
         if (field_0x3008 == 0) {
-            canoe->incShapeAngleZ(-field_0x300e);
+            canoe->incShapeAngleZ(-field_0x300e.x);
         } else {
-            canoe->incShapeAngleZ(field_0x300e);
+            canoe->incShapeAngleZ(field_0x300e.x);
         }
         canoe->incShapeOffsetY(lit_21021);
     }

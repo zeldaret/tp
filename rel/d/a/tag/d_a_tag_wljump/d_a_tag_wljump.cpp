@@ -229,9 +229,9 @@ int daTagWljump_c::execute() {
             }
             if (field_0x572 == 0) {
                 if (!g_dComIfG_gameInfo.play.getEvent().runCheck()) {
-                    mEvtInfo.i_onCondition(1);
+                    mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
                     if (!linkPlayer->checkPlayerFly() &&
-                        linkPlayer->mEvtInfo.chkCondition(1)) {
+                        linkPlayer->mEvtInfo.chkCondition(dEvtCnd_CANTALK_e)) {
                         dComIfGp_att_ZHintRequest(this, 0x1ff);
                         if (field_0x56c[2] == 0)  {
                             field_0x56c[2] = 1;
@@ -255,7 +255,7 @@ int daTagWljump_c::execute() {
         field_0x568 = -1;
     }
     current.pos = mAttentionInfo.mPosition;
-    if (!mEvtInfo.chkCondition(1)) {
+    if (!mEvtInfo.chkCondition(dEvtCnd_CANTALK_e)) {
         field_0x56c[2] = 0;
     }
     
@@ -398,18 +398,18 @@ static actor_method_class l_daTagWljump_Method = {
 
 /* 80D65934-80D65964 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Wljump */
 extern actor_process_profile_definition g_profile_Tag_Wljump = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Tag_Wljump,
     &g_fpcLf_Method.mBase,
     sizeof(daTagWljump_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x0104,
+    260,
     &l_daTagWljump_Method,
-    0x00044000,
-    3,
-    0x0E,
+    0x44000,
+    fopAc_ENV_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

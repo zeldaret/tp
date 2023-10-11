@@ -812,7 +812,7 @@ BOOL dShopSystem_c::isSoldOutItemFlag(int flag) {
  * checkController__13dShopSystem_cFUcP10dMsgFlow_c             */
 int dShopSystem_c::checkController(u8 seq, dMsgFlow_c* p_flow) {
     if (mWaitTimer != 0) {
-        if (mDoCPd_c::getTrigA(0)) {
+        if (mDoCPd_c::getTrigA(PAD_1)) {
             dMsgObject_setShopWaitTimer(1);
         }
         return 0;
@@ -840,14 +840,14 @@ int dShopSystem_c::checkController(u8 seq, dMsgFlow_c* p_flow) {
         return msg->getSelectPushFlag() == 2 ? 2 : 1;
     }
 
-    if (mDoCPd_c::getTrigA(0)) {
+    if (mDoCPd_c::getTrigA(PAD_1)) {
         if (msg->getStatus() != 6 && msg->getStatus() != 8 && msg->getStatus() != 9 &&
             msg->getStatus() != 20 && seq != SEQ_WAIT) {
             return 1;
         }
     }
 
-    if (mDoCPd_c::getTrigB(0)) {
+    if (mDoCPd_c::getTrigB(PAD_1)) {
         if (seq != SEQ_SELECT_WAIT) {
             mLastCursorPos = mCursorPos;
             mCursorPos = 0;

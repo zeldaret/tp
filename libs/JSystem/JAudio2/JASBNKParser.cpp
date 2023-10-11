@@ -14,12 +14,6 @@ struct JKRHeap {
     /* 802CE72C */ void getFreeSize();
 };
 
-struct JASOscillator {
-    struct Point {};
-
-    struct Data {};
-};
-
 template <typename A0>
 struct JASMemPool_MultiThreaded {};
 /* JASMemPool_MultiThreaded<JASChannel> */
@@ -59,29 +53,6 @@ struct JASBasicBank {
     /* 80297DA4 */ void newInstTable(u8, JKRHeap*);
     /* 80297E68 */ void setInst(int, JASInst*);
     /* 80297E80 */ void getInst(int) const;
-};
-
-struct JASBNKParser {
-    struct Ver1 {
-        /* 80299600 */ void findChunk(void const*, u32);
-        /* 8029963C */ void createBasicBank(void const*, JKRHeap*);
-    };
-
-    struct Ver0 {
-        struct THeader {};
-
-        struct TOsc {};
-
-        /* 80299A3C */ void createBasicBank(void const*, JKRHeap*);
-        /* 80299E68 */ void findOscPtr(JASBasicBank*, JASBNKParser::Ver0::THeader const*,
-                                       JASBNKParser::Ver0::TOsc const*);
-        /* 80299F8C */ void getOscTableEndPtr(JASOscillator::Point const*);
-    };
-
-    /* 80299538 */ void createBank(void const*, JKRHeap*);
-    /* 80299558 */ void createBasicBank(void const*, JKRHeap*);
-
-    static u8 sUsedHeapSize[4];
 };
 
 //
@@ -148,7 +119,7 @@ extern "C" extern u8 JASDram[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASBNKParser::createBank(void const* param_0, JKRHeap* param_1) {
+asm JASBank* JASBNKParser::createBank(void const* param_0, JKRHeap* param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASBNKParser/createBank__12JASBNKParserFPCvP7JKRHeap.s"
 }
@@ -163,7 +134,7 @@ u8 JASBNKParser::sUsedHeapSize[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASBNKParser::createBasicBank(void const* param_0, JKRHeap* param_1) {
+asm JASBasicBank* JASBNKParser::createBasicBank(void const* param_0, JKRHeap* param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASBNKParser/createBasicBank__12JASBNKParserFPCvP7JKRHeap.s"
 }

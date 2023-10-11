@@ -10,12 +10,13 @@
 #include "JSystem/JKernel/JKRFileFinder.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
+#include "JSystem/JUtility/JUTAssert.h"
 
 /* 802D5778-802D57E4 2D00B8 006C+00 2/2 0/0 0/0 .text check_mount_already__10JKRArchiveFlP7JKRHeap
  */
 JKRArchive* JKRArchive::check_mount_already(s32 entryNum, JKRHeap* heap) {
     if (heap == NULL) {
-        heap = JKRHeap::getCurrentHeap();
+        heap = JKRGetCurrentHeap();
     }
 
     JSUList<JKRFileLoader>& volumeList = getVolumeList();
@@ -35,8 +36,8 @@ JKRArchive* JKRArchive::check_mount_already(s32 entryNum, JKRHeap* heap) {
 
 /* 802D57E4-802D5840 2D0124 005C+00 0/0 1/1 0/0 .text
  * mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection */
-JKRArchive* JKRArchive::mount(const char* path, JKRArchive::EMountMode mountMode, JKRHeap* heap,
-                              JKRArchive::EMountDirection mountDirection) {
+JKRArchive* JKRArchive::mount(const char* path, EMountMode mountMode, JKRHeap* heap,
+                              EMountDirection mountDirection) {
     s32 entryNum = DVDConvertPathToEntrynum(path);
     if (entryNum < 0)
         return NULL;
@@ -47,13 +48,13 @@ JKRArchive* JKRArchive::mount(const char* path, JKRArchive::EMountMode mountMode
 /* 802D5840-802D58C8 2D0180 0088+00 0/0 1/1 0/0 .text
  * mount__10JKRArchiveFPvP7JKRHeapQ210JKRArchive15EMountDirection */
 JKRArchive* JKRArchive::mount(void* ptr, JKRHeap* heap,
-                              JKRArchive::EMountDirection mountDirection) {
+                              EMountDirection mountDirection) {
     JKRArchive* archive = check_mount_already((s32)ptr, heap);
     if (archive)
         return archive;
 
     int alignment;
-    if (mountDirection == JKRArchive::MOUNT_DIRECTION_HEAD) {
+    if (mountDirection == MOUNT_DIRECTION_HEAD) {
         alignment = 4;
     } else {
         alignment = -4;
@@ -161,6 +162,7 @@ void* JKRArchive::getGlbResource(u32 param_1, const char* path, JKRArchive* arch
 
 /* 802D5BE8-802D5C64 2D0528 007C+00 1/0 4/0 0/0 .text            getResource__10JKRArchiveFPCc */
 void* JKRArchive::getResource(const char* path) {
+    JUT_ASSERT(303, isMounted());
     SDIFileEntry* fileEntry;
     if (*path == '/') {
         fileEntry = findFsResource(path + 1, 0);
@@ -177,6 +179,7 @@ void* JKRArchive::getResource(const char* path) {
 
 /* 802D5C64-802D5CE4 2D05A4 0080+00 1/0 4/0 0/0 .text            getResource__10JKRArchiveFUlPCc */
 void* JKRArchive::getResource(u32 type, const char* path) {
+    JUT_ASSERT(347, isMounted());
     SDIFileEntry* fileEntry;
     if (type == 0 || type == '????') {
         fileEntry = findNameResource(path);
@@ -193,6 +196,7 @@ void* JKRArchive::getResource(u32 type, const char* path) {
 
 /* 802D5CE4-802D5D38 2D0624 0054+00 0/0 1/1 0/0 .text            getIdxResource__10JKRArchiveFUl */
 void* JKRArchive::getIdxResource(u32 index) {
+    JUT_ASSERT(384, isMounted());
     SDIFileEntry* fileEntry = findIdxResource(index);
     if (fileEntry) {
         return fetchResource(fileEntry, NULL);
@@ -203,6 +207,7 @@ void* JKRArchive::getIdxResource(u32 index) {
 
 /* 802D5D38-802D5D8C 2D0678 0054+00 0/0 1/1 0/0 .text            getResource__10JKRArchiveFUs */
 void* JKRArchive::getResource(u16 id) {
+    JUT_ASSERT(409, isMounted());
     SDIFileEntry* fileEntry = findIdResource(id);
     if (fileEntry) {
         return fetchResource(fileEntry, NULL);
@@ -213,6 +218,7 @@ void* JKRArchive::getResource(u16 id) {
 
 /* 802D5D8C-802D5E30 2D06CC 00A4+00 1/0 4/0 0/0 .text readResource__10JKRArchiveFPvUlUlPCc */
 u32 JKRArchive::readResource(void* buffer, u32 bufferSize, u32 type, const char* path) {
+    JUT_ASSERT(493, isMounted());
     SDIFileEntry* fileEntry;
     if (type == 0 || type == '????') {
         fileEntry = findNameResource(path);
@@ -232,6 +238,7 @@ u32 JKRArchive::readResource(void* buffer, u32 bufferSize, u32 type, const char*
 /* 802D5E30-802D5ECC 2D0770 009C+00 1/0 4/0 0/0 .text            readResource__10JKRArchiveFPvUlPCc
  */
 u32 JKRArchive::readResource(void* buffer, u32 bufferSize, const char* path) {
+    JUT_ASSERT(539, isMounted());
     SDIFileEntry* fileEntry;
     if (*path == '/') {
         fileEntry = findFsResource(path + 1, 0);
@@ -250,6 +257,7 @@ u32 JKRArchive::readResource(void* buffer, u32 bufferSize, const char* path) {
 
 /* 802D5ECC-802D5F40 2D080C 0074+00 0/0 7/7 1/1 .text readIdxResource__10JKRArchiveFPvUlUl */
 u32 JKRArchive::readIdxResource(void* buffer, u32 bufferSize, u32 index) {
+    JUT_ASSERT(593, isMounted());
     SDIFileEntry* fileEntry = findIdxResource(index);
     if (fileEntry) {
         u32 resourceSize;
@@ -263,6 +271,7 @@ u32 JKRArchive::readIdxResource(void* buffer, u32 bufferSize, u32 index) {
 /* 802D5F40-802D5FB4 2D0880 0074+00 0/0 1/1 0/0 .text            readResource__10JKRArchiveFPvUlUs
  */
 u32 JKRArchive::readResource(void* buffer, u32 bufferSize, u16 id) {
+    JUT_ASSERT(625, isMounted());
     SDIFileEntry* fileEntry = findIdResource(id);
     if (fileEntry) {
         u32 resourceSize;
@@ -289,6 +298,7 @@ void JKRArchive::removeResourceAll() {
 
 /* 802D603C-802D609C 2D097C 0060+00 1/0 2/0 0/0 .text            removeResource__10JKRArchiveFPv */
 bool JKRArchive::removeResource(void* resource) {
+    JUT_ASSERT(678, resource != 0);
     SDIFileEntry* fileEntry = findPtrResource(resource);
     if (fileEntry == NULL)
         return false;
@@ -300,6 +310,7 @@ bool JKRArchive::removeResource(void* resource) {
 
 /* 802D609C-802D60D8 2D09DC 003C+00 1/0 4/0 0/0 .text            detachResource__10JKRArchiveFPv */
 bool JKRArchive::detachResource(void* resource) {
+    JUT_ASSERT(707, resource != 0);
     SDIFileEntry* fileEntry = findPtrResource(resource);
     if (fileEntry == NULL)
         return false;
@@ -310,6 +321,7 @@ bool JKRArchive::detachResource(void* resource) {
 
 /* 802D60D8-802D610C 2D0A18 0034+00 1/0 4/0 0/0 .text            getResSize__10JKRArchiveCFPCv */
 u32 JKRArchive::getResSize(const void* resource) const {
+    JUT_ASSERT(732, resource != 0);
     SDIFileEntry* fileEntry = findPtrResource(resource);
     if (fileEntry == NULL)
         return -1;

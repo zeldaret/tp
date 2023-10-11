@@ -55,8 +55,8 @@ public:
     // some types uncertain, may need to be fixed
     /* 0x1C */ int mWidth;
     /* 0x20 */ int mHeight;
-    /* 0x24 */ _GXTexObj field_0x24;
-    /* 0x44 */ int field_0x44;
+    /* 0x24 */ GXTexObj mTexObj;
+    /* 0x44 */ int mTexPageIdx;
     /* 0x48 */ const ResFONT* mResFont;
     /* 0x4C */ ResFONT::INF1* mInf1Ptr;
     /* 0x50 */ void** mMemBlocks;
@@ -68,7 +68,7 @@ public:
     /* 0x64 */ u16 mMap1BlockNum;
     /* 0x66 */ u16 field_0x66;
     /* 0x68 */ u16 mMaxCode;
-    /* 0x6C */ IsLeadByte_func* mIsLeadByte;
+    /* 0x6C */ const IsLeadByte_func* mIsLeadByte;
 };
 
 #endif /* JUTRESFONT_H */

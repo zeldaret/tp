@@ -14,7 +14,7 @@ u32 JKRArchive::sCurrentDirID;
 
 /* 802D6294-802D6334 2D0BD4 00A0+00 0/0 5/5 0/0 .text
  * __ct__10JKRArchiveFlQ210JKRArchive10EMountMode               */
-JKRArchive::JKRArchive(long entryNumber, JKRArchive::EMountMode mountMode) {
+JKRArchive::JKRArchive(s32 entryNumber, JKRArchive::EMountMode mountMode) {
     mIsMounted = false;
     mMountMode = mountMode;
     mMountCount = 1;

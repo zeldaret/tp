@@ -32,18 +32,18 @@ static actor_method_class l_daTagEscape_Method = {
 
 /* 80D58880-80D588B0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Escape */
 extern actor_process_profile_definition g_profile_Tag_Escape = {
-    -3,
-    07,
-    0xFFFD,
+    fpcLy_CURRENT_e,
+    7,
+    fpcPi_CURRENT_e,
     PROC_Tag_Escape,
     &g_fpcLf_Method.mBase,
     sizeof(daTagEscape_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x018D,
+    397,
     &l_daTagEscape_Method,
-    0x00040000,
-    0,
-    14,
+    0x40000,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

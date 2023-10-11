@@ -10,7 +10,7 @@ class daPy_sightPacket_c : public dDlst_base_c {
 public:
     daPy_sightPacket_c() {}
     /* 8015F1A0 */ virtual void draw();
-    /* 80140CDC */ virtual ~daPy_sightPacket_c();
+    /* 80140CDC */ virtual ~daPy_sightPacket_c() {}
 
     /* 8015F2FC */ void setSight();
     /* 8015F384 */ void setSightImage(ResTIMG*);
@@ -118,7 +118,7 @@ public:
     /* 80140D80 */ daPy_frameCtrl_c();
     bool checkAnmEnd();
     void updateFrame();
-    void setFrameCtrl(u8, short, short, float, float);
+    void setFrameCtrl(u8, short, short, f32, f32);
 
     u16 getEndFlg() { return mEndFlg; }
     u16 getNowSetFlg() { return mNowSetFlg; }
@@ -217,11 +217,13 @@ public:
         FLG0_UNDERWATER = 0x800000,
         FLG0_UNK_100000 = 0x100000,
         FLG0_UNK_80000 = 0x80000,
+        FLG0_UNK_40000 = 0x40000,
         FLG0_UNK_20000 = 0x20000,
         FLG0_UNK_8000 = 0x8000,
         FLG0_UNK_4000 = 0x4000,
         FLG0_UNK_2000 = 0x2000,
         FLG0_MAGNE_BOOTS_ON = 0x1000,
+        FLG0_PUSH_PULL_KEEP = 0x800,
         FLG0_UNK_100 = 0x100,
         FLG0_UNK_80 = 0x80,
         FLG0_UNK_40 = 0x40,
@@ -233,6 +235,7 @@ public:
 
         FLG0_HVY_STATE = FLG0_UNK_40000000 | FLG0_EQUIP_HVY_BOOTS | FLG0_UNK_20000,
         FLG0_UNK_14000 = 0x14000,
+        FLG0_UNK_18 = FLG0_UNK_10 | FLG0_UNK_8,
     };
 
     enum daPy_FLG1 {
@@ -274,6 +277,7 @@ public:
         FLG2_UNK_4000 = 0x4000,
         FLG2_UNK_2000 = 0x2000,
         FLG2_UNK_1000 = 0x1000,
+        FLG2_UNK_400 = 0x400,
         FLG2_UNK_200 = 0x200,
         FLG2_UNK_80 = 0x80,
         FLG2_UNK_40 = 0x40,
@@ -287,6 +291,7 @@ public:
     };
 
     enum daPy_FLG3 {
+        FLG3_UNK_80000000 = 0x80000000,
         FLG3_UNK_40000000 = 0x40000000,
         FLG3_UNK_20000000 = 0x20000000,
         FLG3_UNK_4000000 = 0x4000000,
@@ -364,6 +369,7 @@ public:
         RFLG0_FRONT_ROLL_CRASH = 0x2000,
         RFLG0_ENEMY_ATTN_LOCK = 0x1000,
         RFLG0_UNK_400 = 0x400,
+        RFLG0_UNK_100 = 0x100,
         RFLG0_UNK_80 = 0x80,
         RFLG0_UNK_40 = 0x40,
         RFLG0_UNK_10 = 0x10,
@@ -458,10 +464,10 @@ public:
     static bool checkRoomRestartStart();
     static u32 checkCarryStartLightBallA();
     static u32 checkCarryStartLightBallB();
-    float getSpinnerRideSpeed() const;
+    f32 getSpinnerRideSpeed() const;
     bool checkSpinnerReflectEffect();
     static bool checkBoomerangCharge();
-    bool checkBoomerangChargeTime();
+    int checkBoomerangChargeTime();
     static daBoomerang_c* getThrowBoomerangActor();
     static void cancelBoomerangLockActor(fopAc_ac_c*);
     static void setPlayerDamage(int, int);
@@ -564,9 +570,9 @@ public:
     virtual BOOL checkBoarRun() const;
     virtual bool checkFmChainPut() const;
     virtual bool checkHorseElecDamage() const;
-    virtual float getBaseAnimeFrameRate() const;
-    virtual float getBaseAnimeFrame() const;
-    virtual void setAnimeFrame(float);
+    virtual f32 getBaseAnimeFrameRate() const;
+    virtual f32 getBaseAnimeFrame() const;
+    virtual void setAnimeFrame(f32);
     virtual bool checkWolfLock(fopAc_ac_c*) const;
     virtual bool cancelWolfLock(fopAc_ac_c*);
     virtual s32 getAtnActorID() const;
@@ -575,14 +581,14 @@ public:
     virtual bool exchangeGrabActor(fopAc_ac_c*);
     virtual bool setForceGrab(fopAc_ac_c*, int, int);
     virtual void setForcePutPos(cXyz const&);
-    virtual BOOL checkPlayerNoDraw();
+    virtual u32 checkPlayerNoDraw();
     virtual bool checkRopeTag();
     virtual void voiceStart(u32);
     virtual void seStartOnlyReverb(u32);
     virtual void seStartOnlyReverbLevel(u32);
-    virtual void setOutPower(float, short, int);
-    virtual void setGrabCollisionOffset(float, float, cBgS_PolyInfo*);
-    virtual void onMagneGrab(float, float);
+    virtual void setOutPower(f32, short, int);
+    virtual void setGrabCollisionOffset(f32, f32, cBgS_PolyInfo*);
+    virtual void onMagneGrab(f32, f32);
     virtual void onFrollCrashFlg(u8, int);
     virtual MtxP getModelJointMtx(u16);
     virtual MtxP getHeadMtx();
@@ -595,10 +601,10 @@ public:
     virtual void setClothesChange(int);
     virtual void setPlayerPosAndAngle(cXyz const*, short, int);
     virtual void setPlayerPosAndAngle(cXyz const*, csXyz const*);
-    virtual void setPlayerPosAndAngle(float (*)[4]);
-    virtual bool setThrowDamage(short, float, float, int, int, int);
+    virtual void setPlayerPosAndAngle(f32 (*)[4]);
+    virtual bool setThrowDamage(short, f32, f32, int, int, int);
     virtual bool checkSetNpcTks(cXyz*, int, int);
-    virtual int setRollJump(float, float, short);
+    virtual int setRollJump(f32, f32, short);
     virtual void playerStartCollisionSE(u32, u32);
     virtual void changeTextureAnime(u16, u16, int);
     virtual void cancelChangeTextureAnime();
@@ -630,7 +636,7 @@ public:
     virtual bool onWolfEnemyBiteAll(fopAc_ac_c*, daPy_FLG2);
     virtual bool checkWolfEnemyBiteAllOwn(fopAc_ac_c const*) const;
     virtual void setWolfEnemyHangBiteAngle(short);
-    virtual void setKandelaarMtx(float (*)[4], int, int);
+    virtual void setKandelaarMtx(f32 (*)[4], int, int);
     virtual bool getStickAngleFromPlayerShape(short*) const;
     virtual bool checkSpinnerPathMove();
     virtual bool checkSpinnerTriggerAttack();
@@ -671,7 +677,7 @@ public:
     virtual BOOL checkBootsOrArmorHeavy() const;
     virtual s32 getBottleOpenAppearItem() const;
     virtual bool checkItemSwordEquip() const;
-    virtual float getSinkShapeOffset() const;
+    virtual f32 getSinkShapeOffset() const;
     virtual BOOL checkSinkDead() const;
     virtual BOOL checkHorseStart();
     virtual Z2WolfHowlMgr* getWolfHowlMgrP();
@@ -707,6 +713,7 @@ public:
     bool checkSceneChangeAreaStart() const { return i_checkNoResetFlg2(FLG2_SCN_CHG_START); }
     bool checkFrontRollCrash() const { return i_checkResetFlg0(RFLG0_FRONT_ROLL_CRASH); }
     bool checkWolfAttackReverse() const { return checkResetFlg1(RFLG1_WOLF_ATTACK_REVERSE); }
+    bool checkFreezeDamage() const { return i_checkNoResetFlg1(FLG1_UNK_40000000); }
     
     void onForceAutoJump() { i_onEndResetFlg0(ERFLG0_FORCE_AUTO_JUMP); }
     void onNotAutoJump() { i_onEndResetFlg0(ERFLG0_NOT_AUTO_JUMP); }
@@ -764,6 +771,9 @@ public:
     bool i_checkMidnaRide() const { return i_checkNoResetFlg0(FLG0_MIDNA_RIDE); }
     void i_onPlayerNoDraw() { i_onNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
     void i_offPlayerNoDraw() { i_offNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
+    void i_onPushPullKeep() { i_onNoResetFlg0(FLG0_PUSH_PULL_KEEP); }
+    void i_offPushPullKeep() { i_offNoResetFlg0(FLG0_PUSH_PULL_KEEP); }
+
 
     u32 i_checkBoarSingleBattle() const { return i_checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
 

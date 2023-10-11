@@ -26,7 +26,7 @@ struct dKyd_l_vr_box_data_struct {
 //
 
 /* 803A8E98-803A9198 005FB8 0300+00 1/1 0/0 0/0 .data            l_kydata_BloomInf_tbl */
-static dKydata_BloomInfo_c l_kydata_BloomInf_tbl[BLOOMINFO_MAX] = {
+static dkydata_bloomInfo_info_class l_kydata_BloomInf_tbl[BLOOMINFO_MAX] = {
     {BLOOM_SOFT, 0xFF, 0x40, 0x80, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00},
     {BLOOM_CLEAR, 0x28, 0x46, 0x87, 0xCF, 0xB1, 0x38, 0xD2, 0xFF, 0xFF, 0xFF, 0x60},  // Twilight
     {BLOOM_CLEAR, 0x2D, 0x46, 0x73, 0xCF, 0xB1, 0x38, 0xD2, 0xFF, 0xFF, 0xFF,
@@ -838,7 +838,7 @@ dKydata_lightsizeInfo_c* dKyd_light_tw_size_tbl_getp() {
 }
 
 /* 80056A94-80056AA8 0513D4 0014+00 0/0 1/1 0/0 .text            dKyd_BloomInf_tbl_getp__Fi */
-dKydata_BloomInfo_c* dKyd_BloomInf_tbl_getp(int tblIdx) {
+dkydata_bloomInfo_info_class* dKyd_BloomInf_tbl_getp(int tblIdx) {
     return &l_kydata_BloomInf_tbl[tblIdx];
 }
 

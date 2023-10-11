@@ -103,12 +103,15 @@ public:
     static void setMapFile(const char* map) {
         appendMapFile(map);
     }
+    static void panic(const char* file, int line, const char* msg) {
+        panic_f(file, line, "%s", msg);
+    }
 
 private:
     static OSMessageQueue sMessageQueue;
     static const char* sCpuExpName[17];
     static JSUList<JUTException::JUTExMapFile> sMapFileList;
-    static u8 sMessageBuffer[4 + 4 /* padding */];
+    static OSMessage sMessageBuffer[1 + 1 /* padding */];
     static JUTException* sErrorManager;
     static OSErrorHandler sPreUserCallback;
     static OSErrorHandler sPostUserCallback;

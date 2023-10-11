@@ -13,7 +13,6 @@
 #include "d/meter/d_meter_HIO.h"
 #include "d/msg/d_msg_string.h"
 #include "dol2asm.h"
-#include "global.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
 
@@ -242,10 +241,10 @@ int dMenu_Skill_c::_open() {
         }
     }
 
-    s16 openFrame = g_drawHIO.mSkillListScreen.mOpenFrame[0];
-    s16 closeFrame = g_drawHIO.mSkillListScreen.mCloseFrame[0];
-    mFrame = g_drawHIO.mSkillListScreen.mOpenFrame[0];
-    if (mFrame >= openFrame) {
+    s16 openWindowFrame = g_drawHIO.mSkillListScreen.mOpenFrame[dMeter_drawSkillHIO_c::WINDOW];
+    s16 closeFrame = g_drawHIO.mSkillListScreen.mCloseFrame[dMeter_drawSkillHIO_c::WINDOW];
+    mFrame = g_drawHIO.mSkillListScreen.mOpenFrame[dMeter_drawSkillHIO_c::WINDOW];
+    if (mFrame >= openWindowFrame) {
         mFrame = closeFrame;
         mStatus = 2;
         mpParent->scale(1.0f, 1.0f);
@@ -256,7 +255,7 @@ int dMenu_Skill_c::_open() {
         mpDrawCursor->onPlayAnime(0);
         return 1;
     } else {
-        f32 div = (f32)mFrame / (f32)openFrame;
+        f32 div = (f32)mFrame / (f32)openWindowFrame;
         mpParent->scale(div, div);
         mpParent->setAlphaRate(div);
         setCursorPos();
@@ -301,24 +300,24 @@ void dMenu_Skill_c::wait_init() {
 void dMenu_Skill_c::wait_move() {
     u8 oldIndex = mIndex;
     if (mDoGph_gInf_c::getFader()->getStatus() == 1) {
-        if ((mDoCPd_c::getTrig(0) & 0x200) != 0) {
+        if (mDoCPd_c::getTrigB(PAD_1) != 0) {
             mpDrawCursor->offPlayAnime(0);
             mStatus = 3;
-        } else if (mDoCPd_c::getTrigA(0)) {
+        } else if (mDoCPd_c::getTrigA(PAD_1)) {
             mProcess = PROC_WAIT_MOVE;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_OPEN, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_OPEN, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
             dMeter2Info_set2DVibration();
         } else if (mpStick->checkUpTrigger()) {
             if (mIndex) {
                 mIndex--;
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                                 -1.0f, 0);
             }
 
         } else if (mpStick->checkDownTrigger() && mIndex < mSkillNum - 1) {
             mIndex++;
-            Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
         }
         if (oldIndex != mIndex) {
@@ -354,14 +353,14 @@ void dMenu_Skill_c::read_open_init() {
 /* 801F7FF8-801F8114 1F2938 011C+00 1/0 0/0 0/0 .text            read_open_move__13dMenu_Skill_cFv
  */
 void dMenu_Skill_c::read_open_move() {
-    s16 openFrame = g_drawHIO.mSkillListScreen.mOpenFrame[1];
+    s16 openSkillDescFrame = g_drawHIO.mSkillListScreen.mOpenFrame[dMeter_drawSkillHIO_c::SKILL_DESC];
     mProcFrame++;
-    if (mProcFrame >= openFrame) {
+    if (mProcFrame >= openSkillDescFrame) {
         mProcess = PROC_OPEN_MOVE;
         mpTextParent->setAlphaRate(1.0f);
         mpBlackTex->setAlpha(g_drawHIO.mSkillListScreen.mWindowBGalpha);
     } else {
-        f32 alphaRate = (f32)mProcFrame / (f32)openFrame;
+        f32 alphaRate = (f32)mProcFrame / (f32)openSkillDescFrame;
         mpTextParent->setAlphaRate(alphaRate);
         mpBlackTex->setAlpha(g_drawHIO.mSkillListScreen.mWindowBGalpha * alphaRate);
     }
@@ -377,14 +376,14 @@ void dMenu_Skill_c::read_move_init() {
 /* 801F8150-801F8218 1F2A90 00C8+00 1/0 0/0 0/0 .text            read_move_move__13dMenu_Skill_cFv
  */
 void dMenu_Skill_c::read_move_move() {
-    if (mDoCPd_c::getTrigA(0) != 0) {
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+    if (mDoCPd_c::getTrigA(PAD_1) != 0) {
+        Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
         dMeter2Info_set2DVibration();
         mProcess = PROC_MOVE_MOVE;
 
-    } else if ((mDoCPd_c::getTrig(0) & 0x200) != 0) {
-        Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+    } else if (mDoCPd_c::getTrigB(PAD_1) != 0) {
+        Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
         dMeter2Info_set2DVibration();
         mProcess = PROC_MOVE_MOVE;
@@ -394,7 +393,7 @@ void dMenu_Skill_c::read_move_move() {
 /* 801F8218-801F826C 1F2B58 0054+00 1/0 0/0 0/0 .text            read_close_init__13dMenu_Skill_cFv
  */
 void dMenu_Skill_c::read_close_init() {
-    mProcFrame = g_drawHIO.mSkillListScreen.mCloseFrame[1];
+    mProcFrame = g_drawHIO.mSkillListScreen.mCloseFrame[dMeter_drawSkillHIO_c::SKILL_DESC];
     mStringID = 0;
     setAButtonString(0);
     setBButtonString(0);
@@ -403,14 +402,14 @@ void dMenu_Skill_c::read_close_init() {
 /* 801F826C-801F8388 1F2BAC 011C+00 1/0 0/0 0/0 .text            read_close_move__13dMenu_Skill_cFv
  */
 void dMenu_Skill_c::read_close_move() {
-    s16 closeFrame = g_drawHIO.mSkillListScreen.mCloseFrame[1];
+    s16 closeSkillDescFrame = g_drawHIO.mSkillListScreen.mCloseFrame[dMeter_drawSkillHIO_c::SKILL_DESC];
     mProcFrame--;
     if (mProcFrame <= 0) {
         mProcess = PROC_CLOSE_MOVE;
         mpTextParent->setAlphaRate(0.0f);
         mpBlackTex->setAlpha(g_drawHIO.mSkillListScreen.mWindowBGalpha);
     } else {
-        f32 alphaRate = (f32)mProcFrame / (f32)closeFrame;
+        f32 alphaRate = (f32)mProcFrame / (f32)closeSkillDescFrame;
         mpTextParent->setAlphaRate(alphaRate);
         mpBlackTex->setAlpha(g_drawHIO.mSkillListScreen.mWindowBGalpha * alphaRate);
     }

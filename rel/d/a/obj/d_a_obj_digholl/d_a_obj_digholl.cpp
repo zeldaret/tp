@@ -112,18 +112,18 @@ static actor_method_class l_daObjDigholl_Method = {
 
 /* 80BDCBA0-80BDCBD0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Digholl */
 extern actor_process_profile_definition g_profile_Obj_Digholl = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Obj_Digholl,
     &g_fpcLf_Method.mBase,
     sizeof(daObjDigholl_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x00F9,
+    249,
     &l_daObjDigholl_Method,
-    0x00044100,
-    3,
-    14,
+    0x44100,
+    fopAc_ENV_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

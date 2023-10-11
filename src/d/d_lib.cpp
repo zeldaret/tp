@@ -319,7 +319,7 @@ bool STControl::checkDownTrigger() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dLib_getEventSwitchNo(int param_0) {
+asm u8 dLib_getEventSwitchNo(int param_0) {
     nofralloc
 #include "asm/d/d_lib/dLib_getEventSwitchNo__Fi.s"
 }

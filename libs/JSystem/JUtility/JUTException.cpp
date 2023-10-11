@@ -10,7 +10,9 @@
 #include "MSL_C/stdio.h"
 #include "MSL_C/stdlib.h"
 #include "dol2asm.h"
+#include "dolphin/base/PPCArch.h"
 #include "dolphin/os/OS.h"
+#include "dolphin/vi/vi.h"
 #include "global.h"
 
 //
@@ -38,11 +40,6 @@ extern "C" u8 sConsole__12JUTException[4];
 //
 
 extern "C" void changeFrameBuffer__14JUTDirectPrintFPvUsUs();
-extern "C" void* VIGetCurrentFrameBuffer();
-extern "C" void VISetPreRetraceCallback(void*);
-extern "C" void VISetPostRetraceCallback(void*);
-extern "C" void PPCMtmsr();
-extern "C" u32 PPCMfmsr();
 extern "C" void _savegpr_25();
 extern "C" void _restgpr_25();
 extern "C" void _savegpr_28();
@@ -51,12 +48,7 @@ extern "C" void OSYieldThread();
 extern "C" void OSFillFPUContext(OSContext*);
 extern "C" void print_f__10JUTConsoleFPCce();
 extern "C" OSContext* OSGetCurrentContext();
-extern "C" void VIFlush();
-extern "C" void VISetBlack(BOOL);
-extern "C" u32 VIGetRetraceCount();
 extern "C" extern _GXRenderModeObj GXNtsc480Int;
-extern "C" void VIConfigure(_GXRenderModeObj*);
-extern "C" void VISetNextFrameBuffer(void*);
 extern "C" void _restgpr_16();
 extern "C" void fopen__13JUTDirectFileFPCc();
 extern "C" void fclose__13JUTDirectFileFv();
@@ -143,39 +135,53 @@ JUTException* JUTException::create(JUTDirectPrint* directPrint) {
 
 /* ############################################################################################## */
 /* 804508F0-804508F8 000370 0004+04 1/1 0/0 0/0 .sdata           sMessageBuffer__12JUTException */
-SECTION_SDATA u8 JUTException::sMessageBuffer[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_SDATA OSMessage JUTException::sMessageBuffer[1 + 1 /* padding */] = {0};
 
-/* 802E1EA8-802E1FCC 2DC7E8 0124+00 1/0 0/0 0/0 .text            run__12JUTExceptionFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* JUTException::run() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTException/run__12JUTExceptionFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80434578-8043458C 061298 0014+00 2/2 0/0 0/0 .bss             exCallbackObject */
 struct CallbackObject {
     /* 0x00 */ OSErrorHandler callback;
-    /* 0x04 */ s16 error;
+    /* 0x04 */ u16 error;
     /* 0x06 */ u16 pad_0x06;
     /* 0x08 */ OSContext* context;
     /* 0x0C */ int param_3;
     /* 0x10 */ int param_4;
     /* 0x14 */
 };
+
+/* 802E1EA8-802E1FCC 2DC7E8 0124+00 1/0 0/0 0/0 .text            run__12JUTExceptionFv */
+void* JUTException::run() {
+    PPCMtmsr(PPCMfmsr() & ~0x0900);
+    OSInitMessageQueue(&sMessageQueue, sMessageBuffer, 1);
+    OSMessage message;
+    while (true) {
+        OSReceiveMessage(&sMessageQueue, &message, OS_MESSAGE_BLOCK);
+        VISetPreRetraceCallback(NULL);
+        VISetPostRetraceCallback(NULL);
+        CallbackObject* cb = (CallbackObject*)message;
+        OSErrorHandler callback = cb->callback;
+        u16 error = cb->error;
+        OSContext* context = cb->context;
+        int r24 = cb->param_3;
+        int r23 = cb->param_4;
+        if (error < 17) {
+            mStackPointer = context->gpr[1];
+        }
+        mFrameMemory = (JUTExternalFB*)VIGetCurrentFrameBuffer();
+        if (!mFrameMemory) {
+            sErrorManager->createFB();
+        }
+        sErrorManager->mDirectPrint->changeFrameBuffer(mFrameMemory);
+        if (callback) {
+            callback(error, context, r24, r23);
+        }
+        OSDisableInterrupts();
+        mFrameMemory = (JUTExternalFB*)VIGetCurrentFrameBuffer();
+        sErrorManager->mDirectPrint->changeFrameBuffer(mFrameMemory);
+        sErrorManager->printContext(error, context, r24, r23);
+    }
+}
+
+/* ############################################################################################## */
+/* 80434578-8043458C 061298 0014+00 2/2 0/0 0/0 .bss             exCallbackObject */
 
 STATIC_ASSERT(sizeof(CallbackObject) == 0x14);
 static CallbackObject exCallbackObject;

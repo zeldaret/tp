@@ -1962,20 +1962,20 @@ static actor_method_class l_daObjCarry_Method = {
 
 /* 8047B130-8047B160 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Carry */
 extern actor_process_profile_definition g_profile_Obj_Carry = {
-    -3,                     // mLayerID
+    fpcLy_CURRENT_e,        // mLayerID
     8,                      // mListID
-    -3,                     // mListPrio
+    fpcPi_CURRENT_e,        // mListPrio
     PROC_Obj_Carry,         // mProcName
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daObjCarry_c),   // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
-    0x000000F4,             // mPriority
+    244,                    // mPriority
     &l_daObjCarry_Method,   // mSubMtd
-    0x00040500,             // mStatus
-    0,                      // mActorType
-    0xE                     // mCullType
+    0x40500,                // mStatus
+    fopAc_ACTOR_e,          // mActorType
+    fopAc_CULLBOX_CUSTOM_e, // mCullType
 };
 
 /* 8047B160-8047B16C 000B10 000C+00 1/1 0/0 0/0 .data            __vt__12dBgS_AcchCir */

@@ -11,12 +11,12 @@
 JSUList<JKRDvdFile> JKRDvdFile::sDvdList;
 
 /* 802D9584-802D95F8 2D3EC4 0074+00 0/0 3/3 0/0 .text            __ct__10JKRDvdFileFv */
-JKRDvdFile::JKRDvdFile() : JKRFile(), mDvdLink(this) {
+JKRDvdFile::JKRDvdFile() : mDvdLink(this) {
     initiate();
 }
 
 /* 802D95F8-802D96A0 2D3F38 00A8+00 0/0 2/2 0/0 .text            __ct__10JKRDvdFileFPCc */
-JKRDvdFile::JKRDvdFile(const char* name) : JKRFile(), mDvdLink(this) {
+JKRDvdFile::JKRDvdFile(const char* name) : mDvdLink(this) {
     initiate();
     bool result = open(name);
     mIsAvailable = result;
@@ -28,7 +28,7 @@ JKRDvdFile::JKRDvdFile(const char* name) : JKRFile(), mDvdLink(this) {
 }
 
 /* 802D96A0-802D9748 2D3FE0 00A8+00 0/0 3/3 0/0 .text            __ct__10JKRDvdFileFl */
-JKRDvdFile::JKRDvdFile(long entryNum) : JKRFile(), mDvdLink(this) {
+JKRDvdFile::JKRDvdFile(s32 entryNum) : mDvdLink(this) {
     initiate();
     bool result = open(entryNum);
     mIsAvailable = result;
@@ -57,9 +57,9 @@ void JKRDvdFile::initiate(void) {
 }
 
 /* 802D9850-802D98C4 2D4190 0074+00 1/0 1/1 0/0 .text            open__10JKRDvdFileFPCc */
-bool JKRDvdFile::open(const char* param_1) {
+bool JKRDvdFile::open(const char* name) {
     if (!mIsAvailable) {
-        mIsAvailable = DVDOpen(param_1, &mFileInfo);
+        mIsAvailable = DVDOpen(name, &mFileInfo);
         if (mIsAvailable) {
             getDvdList().append(&mDvdLink);
             getStatus();
@@ -69,7 +69,7 @@ bool JKRDvdFile::open(const char* param_1) {
 }
 
 /* 802D98C4-802D9938 2D4204 0074+00 1/0 2/2 0/0 .text            open__10JKRDvdFileFl */
-bool JKRDvdFile::open(long entryNum) {
+bool JKRDvdFile::open(s32 entryNum) {
     if (!mIsAvailable) {
         mIsAvailable = DVDFastOpen(entryNum, &mFileInfo);
         if (mIsAvailable) {
@@ -88,18 +88,18 @@ void JKRDvdFile::close() {
             mIsAvailable = false;
             getDvdList().remove(&mDvdLink);
         } else {
-            JUTException::panic_f(__FILE__, 213, "%s", "cannot close DVD file\n");
+            JUTException::panic(__FILE__, 213, "cannot close DVD file\n");
         }
     }
 }
 
 /* 802D99B4-802D9A68 2D42F4 00B4+00 1/0 0/0 0/0 .text            readData__10JKRDvdFileFPvll */
-s32 JKRDvdFile::readData(void* param_1, long length, long param_3) {
+s32 JKRDvdFile::readData(void* param_1, s32 length, s32 param_3) {
     /* clang-format off */
     // The assert condition gets stringified as "( length & 0x1f ) == 0", 
     // with out disabling clang-format the spaces in the condition will  
     // get removed and the string will be incorrect.
-    JUT_ASSERT(__FILE__, 238, ( length & 0x1f ) == 0);
+    JUT_ASSERT(238, ( length & 0x1f ) == 0);
     /* clang-format on */
 
     OSLockMutex(&mMutex1);
@@ -124,7 +124,10 @@ s32 JKRDvdFile::readData(void* param_1, long length, long param_3) {
 }
 
 /* 802D9A68-802D9A70 2D43A8 0008+00 1/0 0/0 0/0 .text            writeData__10JKRDvdFileFPCvll */
-s32 JKRDvdFile::writeData(void const* param_0, s32 param_1, s32 param_2) {
+s32 JKRDvdFile::writeData(void const* param_0, s32 length, s32 param_2) {
+    /* clang-format off */
+    JUT_ASSERT(344, ( length & 0x1f ) == 0);
+    /* clang-format on */
     return -1;
 }
 
@@ -139,7 +142,7 @@ s32 JKRDvdFile::sync(void) {
 }
 
 /* 802D9AC4-802D9AF8 2D4404 0034+00 1/1 0/0 0/0 .text doneProcess__10JKRDvdFileFlP11DVDFileInfo */
-void JKRDvdFile::doneProcess(long id, DVDFileInfo* fileInfo) {
+void JKRDvdFile::doneProcess(s32 id, DVDFileInfo* fileInfo) {
     // fileInfo->field_0x3c looks like some kind of user pointer?
     JKRDvdFile* dvdFile = *(JKRDvdFile**)((u8*)fileInfo + 0x3c);
     OSSendMessage(&dvdFile->mMessageQueue2, (OSMessage)id, OS_MESSAGE_NOBLOCK);

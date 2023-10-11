@@ -10,12 +10,12 @@ class JAISoundID;
 class JAISoundHandle {
 public:
     JAISoundHandle() {sound_ = NULL;};
-    ~JAISoundHandle() {}
+    ~JAISoundHandle() { releaseSound(); }
 
     bool isSoundAttached() const { return sound_ != NULL; }
 
     JAISound* operator->() const {
-        JUT_ASSERT("JAISound.h", 58, sound_ != 0);
+        JUT_ASSERT(58, sound_ != 0);
         return sound_;
     }
 

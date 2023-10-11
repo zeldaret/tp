@@ -13,14 +13,14 @@ public:
 class dBgS_LinkGndChk : public dBgS_GndChk {
 public:
     dBgS_LinkGndChk() { SetLink(); }
-    /* 80140EB8 */ virtual ~dBgS_LinkGndChk();
+    /* 80140EB8 */ virtual ~dBgS_LinkGndChk() {}
 };
 
 class dBgS_ObjGndChk : public dBgS_GndChk {
 public:
     dBgS_ObjGndChk() { SetObj(); }
 
-    /* 8001E020 */ virtual ~dBgS_ObjGndChk();
+    /* 8001E020 */ virtual ~dBgS_ObjGndChk(); // should be inlined
 };
 
 class dBgS_ObjGndChk_Wtr : public dBgS_ObjGndChk {

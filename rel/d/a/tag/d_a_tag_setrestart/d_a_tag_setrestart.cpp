@@ -118,18 +118,18 @@ static actor_method_class l_daTagRestart_Method = {
 
 /* 80D607E0-80D60810 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Restart */
 extern actor_process_profile_definition g_profile_Tag_Restart = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    0xFFFD,
+    fpcPi_CURRENT_e,
     PROC_Tag_Restart,
     &g_fpcLf_Method.mBase,
     sizeof(daTagRestart_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x0250,
+    592,
     &l_daTagRestart_Method,
-    0x00040000,
-    0,
-    14,
+    0x40000,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

@@ -11,6 +11,7 @@ class JKRAramArchive;
 u32 dLib_getExpandSizeFromAramArchive(JKRAramArchive* arc, char const* resName);
 BOOL dLib_checkActorInRectangle(fopAc_ac_c* param_0, fopAc_ac_c* param_1, cXyz const* param_2,
                                 cXyz const* param_3);
+u8 dLib_getEventSwitchNo(int param_0);
 
 class STControl {
 public:

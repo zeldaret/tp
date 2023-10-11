@@ -157,9 +157,9 @@ static actor_method_class l_daB_ZANTS_Method = {
 
 /* 80653390-806533C0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_B_ZANTS */
 extern actor_process_profile_definition g_profile_B_ZANTS = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_B_ZANTS,
     &g_fpcLf_Method.mBase,
     sizeof(daB_ZANTS_c),
@@ -169,8 +169,8 @@ extern actor_process_profile_definition g_profile_B_ZANTS = {
     229,
     &l_daB_ZANTS_Method,
     0x40000,
-    0,
-    14,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };
 
 /* 80652F38-80653180 0005D8 0248+00 1/1 0/0 0/0 .text   CreateHeap__11daB_ZANTS_cFv */

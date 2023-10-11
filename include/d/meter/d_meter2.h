@@ -243,6 +243,7 @@ public:
     void onRupeeSoundBit(int bit) { mRupeeSound |= (1 << bit); }
     void offRupeeSoundBit(int bit) { mRupeeSound &= ~(1 << bit); }
     bool isRupeeSoundBit(int bit) { return mRupeeSound & (1 << bit); }
+    dMeter2Draw_c* getMeterDrawPtr() { return mpMeterDraw; }
     s16 getNowLifeGauge() { return mNowLifeGauge; }
     u8 getSubContents() { return mSubContentType; }
     u16 getSubContentsStringType() { return mSubContentsStringType; }

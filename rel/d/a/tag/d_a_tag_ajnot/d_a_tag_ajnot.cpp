@@ -75,18 +75,18 @@ static actor_method_class l_daTagAJnot_Method = {
 
 /* 805A28AC-805A28DC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_AJnot */
 extern actor_process_profile_definition g_profile_Tag_AJnot = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    0xFFFD,
+    fpcPi_CURRENT_e,
     PROC_Tag_AJnot,
     &g_fpcLf_Method.mBase,
     sizeof(daTagAJnot_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x01B4,
+    436,
     &l_daTagAJnot_Method,
-    0x00044000,
-    3,
-    14,
+    0x44000,
+    fopAc_ENV_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

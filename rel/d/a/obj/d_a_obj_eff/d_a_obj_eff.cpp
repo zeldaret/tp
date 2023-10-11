@@ -84,18 +84,18 @@ static actor_method_class Mthd_Table = {
 
 /* 8057CB1C-8057CB4C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Eff */
 extern actor_process_profile_definition g_profile_Obj_Eff = {
-    -3,
+    fpcLy_CURRENT_e,
     9,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Obj_Eff,
     &g_fpcLf_Method.mBase,
     sizeof(daObjEff::Act_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x10B,
+    267,
     &daObjEff::Mthd_Table,
-    0x00040000,
-    0,
-    0,
+    0x40000,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_0_e,
 };

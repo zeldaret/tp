@@ -133,18 +133,18 @@ static actor_method_class daObjKJgjs_METHODS = {
 
 /* 80C465B0-80C465E0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_KJgjs */
 extern actor_process_profile_definition g_profile_Obj_KJgjs = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Obj_KJgjs,
     &g_fpcLf_Method.mBase,
     sizeof(daObjKJgjs_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x02A5,
+    677,
     &daObjKJgjs_METHODS,
-    0x00040100,
-    0,
-    14,
+    0x40100,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

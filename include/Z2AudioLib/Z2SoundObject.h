@@ -60,7 +60,9 @@ public:
 
     /* 802BEBDC */ virtual void init(Vec*, u8);
 
-    /* 0x20 */ void* field_0x20;  // JAUSoundAnimation*
+    void stopAnime() { animation_ = NULL; }
+
+    /* 0x20 */ void* animation_;  // JAUSoundAnimation*
     /* 0x24 */ int field_0x24;
     /* 0x28 */ float field_0x28;
     /* 0x2C */ float field_0x2c;
@@ -68,7 +70,7 @@ public:
     /* 0x34 */ int field_0x34;
     /* 0x38 */ int field_0x38;
     /* 0x3C */ int field_0x3c;
-    /* 0x40 */ int field_0x40;
+    /* 0x40 */ int curSoundIndex_;
     /* 0x44 */ bool field_0x44;
 };
 

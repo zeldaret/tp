@@ -143,7 +143,7 @@ JKRThreadSwitch::JKRThreadSwitch(JKRHeap* param_0) {
 /* 802D1A14-802D1A70 2CC354 005C+00 0/0 1/1 0/0 .text createManager__15JKRThreadSwitchFP7JKRHeap
  */
 JKRThreadSwitch* JKRThreadSwitch::createManager(JKRHeap* heap) {
-    JUT_ASSERT(__FILE__, 343, sManager == 0);
+    JUT_ASSERT(343, sManager == 0);
 
     if (!heap) {
         heap = JKRGetCurrentHeap();
@@ -217,14 +217,14 @@ void JKRThreadSwitch::callback(OSThread* current, OSThread* next) {
                     next_heap = JKRHeap::getCurrentHeap();
                 } else if (JKRHeap::getRootHeap()->isSubHeap(next_heap)) {
                     continue;
-#if DEBUG
+#ifdef DEBUG
                 } else if (!JKRHeap::getRootHeap2()->isSubHeap(next_heap)) {
                     continue;
 #endif
                 } else {
                     switch (thread->getCurrentHeapError()) {
                     case 0:
-                        JUT_PANIC(__FILE__, 508, "JKRThreadSwitch: currentHeap destroyed.");
+                        JUT_PANIC(508, "JKRThreadSwitch: currentHeap destroyed.");
                         break;
                     case 1:
                         JUTWarningConsole("JKRThreadSwitch: currentHeap destroyed.\n");
@@ -258,7 +258,7 @@ void JKRThreadSwitch::draw(JKRThreadName_* thread_name_list, JUTConsole* console
     const char* print_1 = " -------------------------------------\n";
 
     if (!console) {
-#if DEBUG
+#ifdef DEBUG
         OSReport(print_0, getTotalCount(), (int)this->field_0x18, this->field_0x10);
         OSReport(print_1);
 #endif
@@ -298,7 +298,7 @@ void JKRThreadSwitch::draw(JKRThreadName_* thread_name_list, JUTConsole* console
             u32 cost_int = (u32)(cost_per_0x18 * 100.0f);
             u32 cost_float = (u32)(cost_per_0x18 * 1000.0f) % 10;
             if (!console) {
-#if DEBUG
+#ifdef DEBUG
                 OSReport(" [%10s] switch:%5d  cost:%2d.%d%%\n", thread_print_name, switch_count,
                          cost_int, cost_float);
 #endif

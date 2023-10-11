@@ -27,18 +27,18 @@ static actor_method_class l_daTagGra_Method = {
 
 /* 80D59740-80D59770 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TAG_GRA */
 extern actor_process_profile_definition g_profile_TAG_GRA = {
-    -3,                     // mLayerID
+    fpcLy_CURRENT_e,        // mLayerID
     3,                      // mListID
-    -3,                     // mListPrio
+    fpcPi_CURRENT_e,        // mListPrio
     PROC_TAG_GRA,           // mProcName
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daTagGra_c),     // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
-    0x0014,                 // mPriority
+    20,                     // mPriority
     &l_daTagGra_Method,     // mSubMtd
-    0x00040000,             // mStatus
-    0,                      // mActorType
-    0x0E,                   // mCullType
+    0x40000,                // mStatus
+    fopAc_ACTOR_e,          // mActorType
+    fopAc_CULLBOX_CUSTOM_e, // mCullType
 };

@@ -10,7 +10,13 @@ class JUTProcBar {
 public:
     class CTime {
     public:
-        /* 802E7340 */ CTime();
+        /* 802E7340 */ CTime() { clear(); }
+
+        void clear() {
+            mCost = 0;
+            field_0x8 = 0;
+            field_0xc = 0;
+        }
 
         void start(u8 param_0, u8 param_1, u8 param_2) {
             mR = param_0;
@@ -51,6 +57,14 @@ public:
         /* 0x08 */ int mPosY;
         /* 0x0C */ int mWidth;
         /* 0x10 */ int mUserPosition;
+
+        void setBarWidth(int width) { mBarWidth = width; }
+        void setPosition(int x, int y) {
+            mPosX = x;
+            mPosY = y;
+        }
+        void setWidth(int width) { mWidth = width; }
+        void setUserPosition(int userPos) { mUserPosition = userPos; }
     };
 
     /* 802E5888 */ JUTProcBar();

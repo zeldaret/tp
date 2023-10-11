@@ -2,25 +2,30 @@
 #define JUTASSERT_H
 
 #include "dolphin/types.h"
+#include "dolphin/os/OS.h"
 
-#if DEBUG
-#define JUT_ASSERT(FILE, LINE, COND)                                                               \
-    if (!COND) {                                                                                   \
-        JUTAssertion::showAssert(JUTAssertion::getSDevice(), FILE, LINE, #COND);                   \
-        OSPanic(FILE, LINE, "Halt");                                                               \
+#ifdef DEBUG
+#define JUT_ASSERT(LINE, COND)                                                                     \
+    if ((COND) == 0) {                                                                             \
+        JUTAssertion::showAssert(JUTAssertion::getSDevice(), __FILE__, LINE, #COND);               \
+        OSPanic(__FILE__, LINE, "Halt");                                                           \
     }
+
+#define JUT_PANIC(LINE, TEXT)                                                                      \
+    JUTAssertion::showAssert(JUTAssertion::getSDevice(), __FILE__, LINE, TEXT);                    \
+    OSPanic(__FILE__, LINE, "Halt");
+
+#define JUT_WARN(LINE, ...)                                                                        \
+    JUTAssertion::setWarningMessage_f(JUTAssertion::getSDevice(), __FILE__, LINE, __VA_ARGS__);    \
+
+#define JUT_LOG(LINE, ...)                                                                         \
+    JUTAssertion::setLogMessage_f(JUTAssertion::getSDevice(), __FILE__, LINE, __VA_ARGS__)
 
 #else
 #define JUT_ASSERT(...)
-#endif
-
-#if DEBUG
-#define JUT_PANIC(FILE, LINE, TEXT)                                                                \
-    JUTAssertion::showAssert(JUTAssertion::getSDevice(), FILE, LINE, TEXT);                        \
-    OSPanic(FILE, LINE, "Halt");
-
-#else
 #define JUT_PANIC(...)
+#define JUT_WARN(...)
+#define JUT_LOG(...)
 #endif
 
 namespace JUTAssertion {
@@ -30,6 +35,11 @@ namespace JUTAssertion {
     /* 802E4A54 */ void flushMessage_dbPrint();
     /* 802E4C34 */ void setVisible(bool);
     /* 802E4C3C */ void setMessageCount(int);
+
+    u32 getSDevice();
+    void showAssert(u32 device, const char * file, int line, const char * assertion);
+    void setWarningMessage_f(u32 device, char * file, int line, const char * fmt, ...);
+    void setLogMessage_f(u32 device, char* file, int line, const char* fmt, ...);
 };
 
 extern bool sAssertVisible;

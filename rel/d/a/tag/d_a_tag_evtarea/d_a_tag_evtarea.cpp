@@ -253,18 +253,18 @@ static actor_method_class daTag_EvtArea_MethodTable = {
 
 /* 8048CE68-8048CE98 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TAG_EVTAREA */
 extern actor_process_profile_definition g_profile_TAG_EVTAREA = {
-    -3,
+    fpcLy_CURRENT_e,
     8,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_TAG_EVTAREA,
     &g_fpcLf_Method.mBase,
     sizeof(daTag_EvtArea_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x011F,
+    287,
     &daTag_EvtArea_MethodTable,
-    0x00044000,
-    0,
-    14,
+    0x44000,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

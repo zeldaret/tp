@@ -7,7 +7,7 @@
 struct dStage_MapEvent_dt_c;
 class fopAc_ac_c;
 
-#if DEBUG
+#ifdef DEBUG
 class dEvDb_bit_c {
 public:
     /* 0x00 */ char* mFlagName;
@@ -36,9 +36,9 @@ public:
     /* 0x04 */ dEvDb_reg_c* mRegTable;
     /* 0x08 */ int mBitNum;
     /* 0x0C */ int mRegNum;
-    /* 0x10 */ field_0x10;
-    /* 0x14 */ field_0x14;
-}
+    /* 0x10 */ int field_0x10;
+    /* 0x14 */ int field_0x14;
+};
 #endif
 
 class dEvt_order_c {

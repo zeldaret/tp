@@ -30,7 +30,7 @@ static int daObj_Suisya_Draw(daObj_Suisya_c* i_this) {
 
 /* 80CF0168-80CF020C 000168 00A4+00 1/1 0/0 0/0 .text            execute__14daObj_Suisya_cFv */
 int daObj_Suisya_c::execute() {
-    Z2GetAudioMgr()->mSeMgr.seStartLevel(Z2SE_OBJ_WATERMILL_ROUND, &current.pos, 0, 0, 1.0f, 1.0f,
+    Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_WATERMILL_ROUND, &current.pos, 0, 0, 1.0f, 1.0f,
                                          -1.0f, -1.0f, 0);
     shape_angle.x += 25;
 
@@ -117,9 +117,9 @@ static actor_method_class l_daObj_Suisya_Method = {
 
 /* 80CF056C-80CF059C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_SUISYA */
 extern actor_process_profile_definition g_profile_OBJ_SUISYA = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_OBJ_SUISYA,
     &g_fpcLf_Method.mBase,
     sizeof(daObj_Suisya_c),
@@ -129,6 +129,6 @@ extern actor_process_profile_definition g_profile_OBJ_SUISYA = {
     65,
     &l_daObj_Suisya_Method,
     0x40100,
-    0,
-    14,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

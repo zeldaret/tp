@@ -1,3 +1,8 @@
+/**
+ * d_a_alink_effect.inc
+ * Player Particle Effect handling
+ */
+
 /* 80120580-80120634 11AEC0 00B4+00 21/21 0/0 0/0 .text
  * setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz                  */
 // matches with literal

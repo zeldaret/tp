@@ -18,6 +18,15 @@ class dMenu_Ring_c;
 class dMenu_Skill_c;
 class dMenu_save_c;
 
+BOOL dMw_UP_TRIGGER();
+BOOL dMw_DOWN_TRIGGER();
+BOOL dMw_LEFT_TRIGGER();
+BOOL dMw_RIGHT_TRIGGER();
+BOOL dMw_A_TRIGGER();
+BOOL dMw_B_TRIGGER();
+BOOL dMw_Z_TRIGGER();
+BOOL dMw_START_TRIGGER();
+
 class dDlst_MENU_CAPTURE_c : public dDlst_base_c {
 public:
     /* 801FDFCC */ virtual void draw();/*  {

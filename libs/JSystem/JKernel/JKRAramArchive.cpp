@@ -5,8 +5,10 @@
 
 #include "JSystem/JKernel/JKRAramArchive.h"
 #include "JSystem/JKernel/JKRAram.h"
+#include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRDvdAramRipper.h"
 #include "JSystem/JKernel/JKRDvdFile.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "MSL_C/math.h"
 #include "MSL_C/string.h"
@@ -101,11 +103,11 @@ SECTION_DATA extern void* __vt__7JKRFile[8] = {
 
 /* 802D70C0-802D7168 2D1A00 00A8+00 0/0 1/1 0/0 .text
  * __ct__14JKRAramArchiveFlQ210JKRArchive15EMountDirection      */
-JKRAramArchive::JKRAramArchive(s32 param_0, JKRArchive::EMountDirection mountDirection)
-    : JKRArchive(param_0, MOUNT_ARAM) {
+JKRAramArchive::JKRAramArchive(s32 entryNumber, JKRArchive::EMountDirection mountDirection)
+    : JKRArchive(entryNumber, MOUNT_ARAM) {
     mMountDirection = mountDirection;
 
-    if (!this->open(param_0)) {
+    if (!this->open(entryNumber)) {
         return;
     }
 
@@ -122,16 +124,16 @@ JKRAramArchive::~JKRAramArchive() {
             SDIFileEntry* entry = mFiles;
             for (int i = 0; i < mArcInfoBlock->num_file_entries; entry++, i++) {
                 if (entry->data != NULL) {
-                    JKRHeap::free(entry->data, mHeap);
+                    JKRFreeToHeap(mHeap, entry->data);
                 }
             }
 
-            JKRHeap::free(mArcInfoBlock, mHeap);
+            JKRFreeToHeap(mHeap, mArcInfoBlock);
             mArcInfoBlock = NULL;
         }
 
         if (mExpandedSize != NULL) {
-            JKRHeap::free(mExpandedSize, NULL);
+            i_JKRFree(mExpandedSize);
             mExpandedSize = NULL;
         }
 
@@ -168,7 +170,7 @@ bool JKRAramArchive::open(s32 entryNum) {
     }
 
     // NOTE: a different struct is used here for sure, unfortunately i can't get any hits on this address, so gonna leave it like this for now
-    SArcHeader *mem = (SArcHeader *)JKRAllocFromSysHeap(32, -32); 
+    SArcHeader *mem = (SArcHeader *)JKRAllocFromSysHeap(32, -32);
     if (mem == NULL)  {
         mMountMode = 0;
     }
@@ -239,6 +241,9 @@ cleanup:
     }
     if (mMountMode == 0)
     {
+#ifdef DEBUG
+        OSReport(":::[%s: %d] Cannot alloc memory\n", __FILE__, 415);
+#endif
         if (mDvdFile != NULL)
         {
             delete mDvdFile;
@@ -250,7 +255,8 @@ cleanup:
 
 /* 802D75E0-802D76F4 2D1F20 0114+00 1/0 0/0 0/0 .text
  * fetchResource__14JKRAramArchiveFPQ210JKRArchive12SDIFileEntryPUl */
-void* JKRAramArchive::fetchResource(JKRArchive::SDIFileEntry* pEntry, u32* pOutSize) {
+void* JKRAramArchive::fetchResource(SDIFileEntry* pEntry, u32* pOutSize) {
+    JUT_ASSERT(442, isMounted());
     u32 outSize;
     u8* outBuf;
     if (pOutSize == NULL) {
@@ -286,8 +292,9 @@ void* JKRAramArchive::fetchResource(JKRArchive::SDIFileEntry* pEntry, u32* pOutS
 /* 802D76F4-802D77F8 2D2034 0104+00 1/0 0/0 0/0 .text
  * fetchResource__14JKRAramArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl */
 #ifdef NONMATCHING
-void* JKRAramArchive::fetchResource(void* buffer, u32 bufferSize, JKRArchive::SDIFileEntry* pEntry,
+void* JKRAramArchive::fetchResource(void* buffer, u32 bufferSize, SDIFileEntry* pEntry,
                                     u32* resourceSize) {
+    JUT_ASSERT(515, isMounted());
     u32 size = pEntry->data_size;
     if (size > bufferSize) {
         size = bufferSize;
@@ -329,7 +336,8 @@ asm void* JKRAramArchive::fetchResource(void* param_0, u32 param_1,
 
 /* 802D77F8-802D781C 2D2138 0024+00 1/1 0/0 0/0 .text
  * getAramAddress_Entry__14JKRAramArchiveFPQ210JKRArchive12SDIFileEntry */
-u32 JKRAramArchive::getAramAddress_Entry(JKRArchive::SDIFileEntry* pEntry) {
+u32 JKRAramArchive::getAramAddress_Entry(SDIFileEntry* pEntry) {
+    JUT_ASSERT(572, isMounted());
     if (pEntry == NULL) {
         return 0;
     } else {
@@ -344,8 +352,9 @@ u32 JKRAramArchive::getAramAddress(char const* name) {
 
 /* 802D7858-802D7914 2D2198 00BC+00 1/1 1/1 0/0 .text
  * fetchResource_subroutine__14JKRAramArchiveFUlUlPUcUli        */
-u32 JKRAramArchive::fetchResource_subroutine(u32 src, u32 srcLength, u8* dst, u32 dstLength,
+u32 JKRAramArchive::fetchResource_subroutine(u32 srcAram, u32 srcLength, u8* dst, u32 dstLength,
                                              int compression) {
+    JUT_ASSERT(628, ( srcAram & 0x1f ) == 0);
     u32 outLen;
     u32 srcSize = ALIGN_NEXT(srcLength, 0x20);
     u32 dstSize = ALIGN_PREV(dstLength, 0x20);
@@ -355,16 +364,16 @@ u32 JKRAramArchive::fetchResource_subroutine(u32 src, u32 srcLength, u8* dst, u3
         if (srcSize > dstSize) {
             srcSize = dstSize;
         }
-        JKRAram::aramToMainRam(src, dst, srcSize, EXPAND_SWITCH_UNKNOWN0, dstSize, NULL, -1,
+        JKRAramToMainRam(srcAram, dst, srcSize, EXPAND_SWITCH_UNKNOWN0, dstSize, NULL, -1,
                                &outLen);
         return outLen;
     case COMPRESSION_YAY0:
     case COMPRESSION_YAZ0:
-        JKRAram::aramToMainRam(src, dst, srcSize, EXPAND_SWITCH_UNKNOWN1, dstSize, NULL, -1,
+        JKRAramToMainRam(srcAram, dst, srcSize, EXPAND_SWITCH_UNKNOWN1, dstSize, NULL, -1,
                                &outLen);
         return outLen;
     default:
-        JUTException::panic_f(__FILE__, 655, "%s", "??? bad sequence\n");
+        JUTException::panic(__FILE__, 655, "??? bad sequence\n");
         return 0;
     }
 }
@@ -377,13 +386,14 @@ u32 JKRAramArchive::fetchResource_subroutine(u32 entryNum, u32 length, JKRHeap* 
     // r28 -> r29, r29 -> r30, r30 -> r31, r31 -> r28
     u32 readLen;
     u32 alignedLen = alignNext(length, 0x20);
-    u8* tmpBufAligned;
+    u8* buffer;
     switch (compression) {
     case COMPRESSION_NONE:
-        tmpBufAligned = static_cast<u8*>(JKRAllocFromHeap(pHeap, alignedLen, 0x20));
-        JKRAramToMainRam(entryNum, tmpBufAligned, alignedLen, EXPAND_SWITCH_UNKNOWN0, alignedLen,
+        buffer = static_cast<u8*>(JKRAllocFromHeap(pHeap, alignedLen, 0x20));
+        JUT_ASSERT(677, buffer != 0);
+        JKRAramToMainRam(entryNum, buffer, alignedLen, EXPAND_SWITCH_UNKNOWN0, alignedLen,
                          NULL, -1, NULL);
-        *out = tmpBufAligned;
+        *out = buffer;
         return length;
     case COMPRESSION_YAY0:
     case COMPRESSION_YAZ0:
@@ -391,14 +401,15 @@ u32 JKRAramArchive::fetchResource_subroutine(u32 entryNum, u32 length, JKRHeap* 
         u8* buf = (u8*)ALIGN_PREV((s32)&tmpBuf[0x1F], sizeof(SArcHeader));
         JKRAramToMainRam(entryNum, buf, sizeof(SArcHeader), EXPAND_SWITCH_UNKNOWN0, 0, NULL, -1, NULL);
         length = alignNext(JKRDecompExpandSize(buf), sizeof(SArcHeader));
-        tmpBufAligned = static_cast<u8*>(JKRAllocFromHeap(pHeap, length, sizeof(SArcHeader)));
+        buffer = static_cast<u8*>(JKRAllocFromHeap(pHeap, length, sizeof(SArcHeader)));
+        JUT_ASSERT(703, buffer);
 
-        JKRAramToMainRam(entryNum, tmpBufAligned, alignedLen, EXPAND_SWITCH_UNKNOWN1, length, pHeap,
+        JKRAramToMainRam(entryNum, buffer, alignedLen, EXPAND_SWITCH_UNKNOWN1, length, pHeap,
                          -1, &readLen);
-        *out = tmpBufAligned;
+        *out = buffer;
         return readLen;
     default:
-        JUTException::panic_f(__FILE__, 0x2c9, "%s", "??? bad sequence\n");
+        JUTException::panic(__FILE__, 713, "??? bad sequence\n");
         return 0;
     }
 }
@@ -415,7 +426,7 @@ asm u32 JKRAramArchive::fetchResource_subroutine(u32 param_0, u32 param_1, JKRHe
 #endif
 
 /* 802D7A64-802D7B90 2D23A4 012C+00 1/0 0/0 0/0 .text getExpandedResSize__14JKRAramArchiveCFPCv */
-u32 JKRAramArchive::getExpandedResSize(void const* ptr) const {
+u32 JKRAramArchive::getExpandedResSize(const void* ptr) const {
     if (mExpandedSize == NULL) {
         return this->getResSize(ptr);
     }

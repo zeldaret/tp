@@ -344,20 +344,20 @@ static actor_method_class l_daE_YK_Method = {
 
 /* 80807E50-80807E80 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_E_YK */
 extern actor_process_profile_definition g_profile_E_YK = {
-    -3,                      // mLayerID  
+    fpcLy_CURRENT_e,         // mLayerID  
     7,                       // mListID
-    -3,                      // mListPrio 
+    fpcPi_CURRENT_e,         // mListPrio 
     PROC_E_YK,               // mProcName        
     &g_fpcLf_Method.mBase,   // mSubMtd                    
     sizeof(e_yk_class),      // mSize                 
     0,                       // mSizeOther
     0,                       // mParameters       
     &g_fopAc_Method.base,    // mSubMtd                   
-    0x00BC,                  // mPriority     
+    188,                     // mPriority     
     &l_daE_YK_Method,        // mSubMtd               
     0x10050100,              // mStatus          
-    ACTOR_TYPE_ENEMY,        // mActorType   
-    0x0E,                    // mCullType   
+    fopAc_ENEMY_e,           // mActorType   
+    fopAc_CULLBOX_CUSTOM_e,  // mCullType   
 };
 
 /* 80807E80-80807E8C 000110 000C+00 1/1 0/0 0/0 .data            __vt__12dBgS_AcchCir */

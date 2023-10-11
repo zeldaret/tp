@@ -95,13 +95,13 @@ s32 JKRSolidHeap::adjustSize(void) {
 
 /* 802D0CB0-802D0D58 2CB5F0 00A8+00 1/0 0/0 0/0 .text            do_alloc__12JKRSolidHeapFUli */
 void* JKRSolidHeap::do_alloc(u32 size, int alignment) {
-#if DEBUG
+#ifdef DEBUG
     // TODO(Julgodis): JUTAssertion::setConfirmMessage
-    if (alignment != 0) {
+    /* if (alignment != 0) {
         int u = abs(alignment);
-        JUT_ASSERT(__FILE__, 0xdb, u < 0x80);
-        JUT_ASSERT(__FILE__, 0xdc, JGadget::binary::isPower2(u));
-    }
+        JUT_ASSERT(219, u < 0x80);
+        JUT_ASSERT(220, JGadget::binary::isPower2(u));
+    } */
 #endif
 
     lock();
@@ -210,8 +210,8 @@ void JKRSolidHeap::do_freeTail(void) {
 /* 802D1000-802D1004 2CB940 0004+00 1/0 0/0 0/0 .text            do_fillFreeArea__12JKRSolidHeapFv
  */
 void JKRSolidHeap::do_fillFreeArea() {
-#if DEBUG
-    fillMemory(mSolidHead, mEnd - mSolidHead, (uint)DAT_8074a8ba);
+#ifdef DEBUG
+    // fillMemory(mSolidHead, mEnd - mSolidHead, (uint)DAT_8074a8ba);
 #endif
 }
 
@@ -265,21 +265,22 @@ bool JKRSolidHeap::dump(void) {
 }
 /* 802D11FC-802D1258 2CBB3C 005C+00 1/0 0/0 0/0 .text
  * state_register__12JKRSolidHeapCFPQ27JKRHeap6TStateUl         */
-u32 JKRSolidHeap::state_register(JKRHeap::TState* p, u32 id) const {
-    JUT_ASSERT(__FILE__, 0x25c, p != 0);
-    JUT_ASSERT(__FILE__, 0x25d, p->getHeap() == this);
+void JKRSolidHeap::state_register(JKRHeap::TState* p, u32 id) const {
+    JUT_ASSERT(604, p != 0);
+    JUT_ASSERT(605, p->getHeap() == this);
 
     getState_(p);
     setState_u32ID_(p, id);
     setState_uUsedSize_(p, getUsedSize((JKRSolidHeap*)this));
-    setState_u32CheckCode_(p, (u32)mSolidHead + (u32)mSolidTail * 3);
-    return (u32)mSolidHead + (u32)mSolidTail * 3;
+    u32 r29 = (u32)mSolidHead;
+    r29 += (u32)mSolidTail * 3;
+    setState_u32CheckCode_(p, r29);
 }
 
 /* 802D1258-802D1288 2CBB98 0030+00 1/0 0/0 0/0 .text
  * state_compare__12JKRSolidHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState */
 bool JKRSolidHeap::state_compare(JKRHeap::TState const& r1, JKRHeap::TState const& r2) const {
-    JUT_ASSERT(__FILE__, 632, r1.getHeap() == r2.getHeap());
+    JUT_ASSERT(632, r1.getHeap() == r2.getHeap());
 
     bool result = true;
     if (r1.getCheckCode() != r2.getCheckCode()) {

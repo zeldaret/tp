@@ -32,6 +32,7 @@ public:
     /* 80CFCD98 */ virtual int Delete();
 
     void setHangPlayer() { mHangPlayer = 1; }
+    u8 getType() { return field_0x730; }
 
     /* 0x5A0 */ dEvLib_callback_c field_0x5a0;
     /* 0x5B0 */ request_of_phase_process_class mPhase;

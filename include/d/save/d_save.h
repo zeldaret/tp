@@ -14,6 +14,7 @@
 #define MAX_ITEM_SLOTS 24
 #define LIGHT_DROP_STAGE 4
 #define LETTER_INFO_BIT 64
+#define MAX_INSECT_NUM 24
 #define BOMB_BAG_MAX 3
 #define BOTTLE_MAX 4
 #define TBOX_MAX 64
@@ -522,7 +523,7 @@ public:
     cXyz& getPos() { return mPos; }
     s16 getAngleY() { return mAngleY; }
     s8 getRoomNo() { return mRoomNo; }
-    char getWarpAcceptStage() { return mWarpAcceptStage; }
+    s8 getWarpAcceptStage() { return mWarpAcceptStage; }
     void resetWarpAcceptStage() { mWarpAcceptStage = -1; }
     void setWarpAcceptStage(s8 accept) { mWarpAcceptStage = accept; }
 
@@ -666,6 +667,8 @@ public:
     BOOL isLetterGetFlag(int i_no) const;
     void onLetterReadFlag(int i_no);
     int isLetterReadFlag(int i_no) const;
+    u8 getGetNumber(int i_no) { return mGetNumber[i_no]; }
+    void setGetNumber(int i_no, u8 i_value) { mGetNumber[i_no] = i_value; }
 
 private:
     /* 0x00 */ u32 mLetterGetFlags[2];

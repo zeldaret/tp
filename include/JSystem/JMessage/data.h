@@ -43,8 +43,8 @@ struct data {
         TParse_TBlock_color(const void* data) : TParse_TBlock(data) {}
     };
 
-    static u16 getTagCode(u32 tag) { return tag & 0xFFFF; }
-    static u8 getTagGroup(u32 tag) { return (tag >> 0x10) & 0xFF; }
+    static u32 getTagCode(u32 tag) { return tag & 0xFFFF; }
+    static u32 getTagGroup(u32 tag) { return (tag >> 0x10) & 0xFF; }
 
     static u32 ga4cSignature;
 

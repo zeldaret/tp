@@ -700,20 +700,20 @@ static actor_method_class l_daDsh_Method = {
 /* 80468010-80468044 -00001 0034+00 0/0 0/0 1/0 .data            g_profile_DSHUTTER */
 extern actor_process_profile_definition2 g_profile_DSHUTTER = {
     {
-        -3,                     // mLayerID
+        fpcLy_CURRENT_e,        // mLayerID
         7,                      // mListID
-        -3,                     // mListPrio
+        fpcPi_CURRENT_e,        // mListPrio
         PROC_DSHUTTER,          // mProcName
         &g_fpcLf_Method.mBase,  // mSubMtd
         sizeof(daDsh_c),        // mSize
         0,                      // mSizeOther
         0,                      // mParameters
         &g_fopAc_Method.base,   // mSubMtd
-        0x0128,                 // mPriority
+        296,                    // mPriority
         &l_daDsh_Method,        // mSubMtd
-        0x00044000,             // mStatus
-        0,                      // mActorType
-        0,                      // mCullType
+        0x44000,                // mStatus
+        fopAc_ACTOR_e,          // mActorType
+        fopAc_CULLBOX_0_e,      // mCullType
     },
     0,
 };

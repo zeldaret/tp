@@ -5,7 +5,7 @@
 
 class JKRAssertHeap : public JKRHeap {
 protected:
-    JKRAssertHeap(void*, unsigned long, JKRHeap*, bool);
+    JKRAssertHeap(void*, u32, JKRHeap*, bool);
     virtual ~JKRAssertHeap();
 
 public:

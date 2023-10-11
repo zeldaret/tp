@@ -139,7 +139,6 @@ extern "C" void _savegpr_16();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_16();
 extern "C" void _restgpr_29();
-extern "C" void strcmp();
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 struct_80450860[4];
@@ -725,7 +724,7 @@ void Z2SeqMgr::setFieldBgmPlay(bool param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAIStreamMgr::isActive() const {
+asm bool JAIStreamMgr::isActive() const {
     nofralloc
 #include "asm/Z2AudioLib/Z2SceneMgr/isActive__12JAIStreamMgrCFv.s"
 }

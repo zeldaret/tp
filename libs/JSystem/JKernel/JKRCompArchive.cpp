@@ -5,12 +5,13 @@
 
 #include "JSystem/JKernel/JKRCompArchive.h"
 #include "JSystem/JKernel/JKRAram.h"
+#include "JSystem/JKernel/JKRAramArchive.h"
+#include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRDvdAramRipper.h"
 #include "JSystem/JKernel/JKRDvdArchive.h"
 #include "JSystem/JKernel/JKRDvdFile.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
-#include "JSystem/JKernel/JKRDecomp.h"
-#include "JSystem/JKernel/JKRAramArchive.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "MSL_C/math.h"
 #include "MSL_C/string.h"
@@ -78,7 +79,7 @@ JKRCompArchive::~JKRCompArchive() {
 }
 
 /* 802D89BC-802D8F40 2D32FC 0584+00 1/1 0/0 0/0 .text            open__14JKRCompArchiveFl */
-bool JKRCompArchive::open(long entryNum) {
+bool JKRCompArchive::open(s32 entryNum) {
     mArcInfoBlock = NULL;
     field_0x64 = 0;
     mAramPart = NULL;
@@ -107,6 +108,8 @@ bool JKRCompArchive::open(long entryNum) {
 
         mSizeOfMemPart = arcHeader->field_0x14;
         mSizeOfAramPart = arcHeader->field_0x18;
+        JUT_ASSERT(352, ( mSizeOfMemPart & 0x1f ) == 0);
+        JUT_ASSERT(353, ( mSizeOfAramPart & 0x1f ) == 0);
 
         switch (mCompression)
         {
@@ -174,14 +177,14 @@ bool JKRCompArchive::open(long entryNum) {
                         if (mSizeOfAramPart != 0) {
                             mAramPart = (JKRAramBlock*)JKRAllocFromAram(mSizeOfAramPart, JKRAramHeap::HEAD);
                             if(mAramPart == NULL) {
-                                mMountMode = 0;                                
+                                mMountMode = 0;
                             }
                             else {
                                 JKRMainRamToAram((u8 *)mem + arcHeader->header_length + arcHeader->file_data_offset + mSizeOfMemPart,
                                                  mAramPart->getAddress(), mSizeOfAramPart, EXPAND_SWITCH_UNKNOWN0, 0, NULL, -1, NULL);
                             }
                         }
-                    }                    
+                    }
                 }
             }
             mNodes = (SDIDirEntry *)((u32)mArcInfoBlock + mArcInfoBlock->node_offset);
@@ -223,6 +226,9 @@ bool JKRCompArchive::open(long entryNum) {
         JKRFreeToSysHeap(arcHeader);
     }
     if(mMountMode == 0) {
+#ifdef DEBUG
+        OSReport(":::[%s: %d] Cannot alloc memory in mounting CompArchive\n", __FILE__, 567);
+#endif
         if(mDvdFile != NULL) {
             delete mDvdFile;
         }
@@ -235,6 +241,7 @@ bool JKRCompArchive::open(long entryNum) {
 /* 802D8F40-802D90C0 2D3880 0180+00 1/0 0/0 0/0 .text
  * fetchResource__14JKRCompArchiveFPQ210JKRArchive12SDIFileEntryPUl */
 void* JKRCompArchive::fetchResource(SDIFileEntry *fileEntry, u32 *pSize) {
+    JUT_ASSERT(597, isMounted());
     u32 ptrSize;
     u32 size = fileEntry->data_size;
     int compression = JKRConvertAttrToCompressionType(fileEntry->type_flags_and_name_offset >> 0x18);
@@ -284,11 +291,12 @@ void* JKRCompArchive::fetchResource(SDIFileEntry *fileEntry, u32 *pSize) {
 void *JKRCompArchive::fetchResource(void *data, u32 compressedSize, SDIFileEntry *fileEntry, u32 *pSize)
 {
     u32 size = 0;
+    JUT_ASSERT(708, isMounted());
     u32 fileSize = fileEntry->data_size;
     u32 alignedSize = ALIGN_NEXT(fileSize, 32);
     u32 fileFlag = fileEntry->type_flags_and_name_offset >> 0x18;
     int compression = JKRConvertAttrToCompressionType(fileFlag);
-    
+
     if(fileEntry->data != NULL) {
         if (compression == COMPRESSION_YAZ0) {
             u32 expandSize = getExpandSize(fileEntry);
@@ -317,7 +325,7 @@ void *JKRCompArchive::fetchResource(void *data, u32 compressedSize, SDIFileEntry
             size = JKRDvdArchive::fetchResource_subroutine(mEntryNum, field_0x6c + fileEntry->data_offset, alignedSize, (u8 *)data,
                                                            compressedSize & ~31, compression, mCompression);
         } else {
-            JUTException::panic_f(__FILE__, 0x308, "%s", "illegal archive.");
+            JUTException::panic(__FILE__, 776, "illegal archive.");
         }
     }
 
@@ -396,7 +404,7 @@ u32 JKRCompArchive::getExpandedResSize(const void *resource) const
         DCInvalidateRange(bufPtr, sizeof(buf) / 2);
     }
     else {
-        JUTException::panic_f(__FILE__, 0x3af, "%s", "illegal resource.");
+        JUTException::panic(__FILE__, 943, "illegal resource.");
     }
     u32 expandSize = JKRDecompExpandSize(bufPtr);
     const_cast<JKRCompArchive *>(this)->setExpandSize(fileEntry, expandSize);

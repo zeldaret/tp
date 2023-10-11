@@ -37,13 +37,13 @@ public:
 
 class JKRAramStream : public JKRThread {
 private:
-    JKRAramStream(long);
+    JKRAramStream(s32);
     virtual ~JKRAramStream();
 
     /* vt[03] */ void* run(void); /* override */
 
 public:
-    static JKRAramStream* create(long);
+    static JKRAramStream* create(s32);
 
     static s32 readFromAram(void);
     static s32 writeToAram(JKRAramStreamCommand*);
@@ -61,8 +61,12 @@ private:
     static JKRHeap* transHeap;
 };
 
-inline JKRAramStream* JKRCreateAramStreamManager(long priority) {
+inline JKRAramStream* JKRCreateAramStreamManager(s32 priority) {
     return JKRAramStream::create(priority);
+}
+
+inline JKRAramStreamCommand* JKRStreamToAram_Async(JSUFileInputStream *stream, u32 addr, u32 size, u32 offset, void (*callback)(u32), u32* returnSize) {
+    return JKRAramStream::write_StreamToAram_Async(stream, addr, size, offset, returnSize);
 }
 
 #endif /* JKRARAMSTREAM_H */

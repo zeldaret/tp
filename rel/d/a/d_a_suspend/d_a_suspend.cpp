@@ -47,9 +47,9 @@ static actor_method_class daSus_METHODS = {
 
 /* 804D526C-804D529C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_SUSPEND */
 extern actor_process_profile_definition g_profile_SUSPEND = {
-    -3,
+    fpcLy_CURRENT_e,
     11,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_SUSPEND,
     &g_fpcLf_Method.mBase,
     sizeof(daSus_c),
@@ -58,7 +58,7 @@ extern actor_process_profile_definition g_profile_SUSPEND = {
     &g_fopAc_Method.base,
     763,
     &daSus_METHODS,
-    0x00060000,
+    0x60000,
     5,
-    0,
+    fopAc_CULLBOX_0_e,
 };

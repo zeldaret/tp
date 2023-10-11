@@ -260,9 +260,9 @@ static actor_method_class l_daLv4Gate_Method = {
 
 /* 80C5F4A4-80C5F4D4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Lv4Gate */
 extern actor_process_profile_definition g_profile_Obj_Lv4Gate = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Obj_Lv4Gate,
     &g_fpcLf_Method.mBase,
     sizeof(daLv4Gate_c),
@@ -272,8 +272,8 @@ extern actor_process_profile_definition g_profile_Obj_Lv4Gate = {
     637,
     &l_daLv4Gate_Method,
     0x40000,
-    0,
-    14,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };
 
 /* 80C5F4D4-80C5F4FC 0000B8 0028+00 1/1 0/0 0/0 .data            __vt__11daLv4Gate_c */

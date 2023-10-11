@@ -14,43 +14,7 @@ struct JMath {
     static u8 sincosTable_[65536];
 };
 
-struct JASWaveInfo {
-    static u32 one[1 + 1 /* padding */];
-};
-
-struct JASOscillator {
-    struct Data {};
-
-    struct EffectParams {};
-
-    /* 8029BE94 */ JASOscillator();
-    /* 8029BEC4 */ void initStart(JASOscillator::Data const*);
-    /* 8029BF68 */ void incCounter(f32);
-    /* 8029BFC8 */ void getValue() const;
-    /* 8029BFE4 */ void release();
-    /* 8029C0E0 */ void update();
-};
-
-template <typename A0>
-struct JASMemPool_MultiThreaded {};
-/* JASMemPool_MultiThreaded<JASChannel> */
-struct JASMemPool_MultiThreaded__template2 {
-    /* 802978DC */ void func_802978DC(void* _this);
-};
-
-struct JASLfo {
-    /* 8029BD14 */ JASLfo();
-    /* 8029BD44 */ void getValue() const;
-    /* 8029BDD8 */ void incCounter(f32);
-    /* 8029BE2C */ void resetCounter();
-};
-
-struct JASGenericMemPool {
-    /* 80290848 */ JASGenericMemPool();
-    /* 80290994 */ void free(void*, u32);
-};
-
-struct JASDsp {
+namespace JASDsp {
     struct TChannel {
         /* 8029DD8C */ void setWaveInfo(JASWaveInfo const&, u32, u32);
         /* 8029DEAC */ void setOscInfo(u32);
@@ -75,38 +39,6 @@ struct JASDSPChannel {
     /* 8029D44C */ void alloc(u8, s32 (*)(u32, JASDsp::TChannel*, void*), void*);
     /* 8029D4BC */ void allocForce(u8, s32 (*)(u32, JASDsp::TChannel*, void*), void*);
     /* 8029D534 */ void setPriority(u8);
-};
-
-struct JASChannel {
-    struct PanVector {};
-
-    /* 8029A800 */ JASChannel(void (*)(u32, JASChannel*, JASDsp::TChannel*, void*), void*);
-    /* 8029A918 */ ~JASChannel();
-    /* 8029A9F0 */ void play();
-    /* 8029AA60 */ void playForce();
-    /* 8029AAD0 */ void release(u16);
-    /* 8029AB64 */ void setOscInit(u32, JASOscillator::Data const*);
-    /* 8029AB98 */ void setMixConfig(u32, u16);
-    /* 8029ABA8 */ void calcEffect(JASChannel::PanVector const*);
-    /* 8029ABC0 */ void calcPan(JASChannel::PanVector const*);
-    /* 8029ABEC */ void effectOsc(u32, JASOscillator::EffectParams*);
-    /* 8029ACD4 */ void setKeySweepTarget(s32, u32);
-    /* 8029AD38 */ void updateEffectorParam(JASDsp::TChannel*, u16*,
-                                            JASOscillator::EffectParams const&);
-    /* 8029AF78 */ void dspUpdateCallback(u32, JASDsp::TChannel*, void*);
-    /* 8029B004 */ void initialUpdateDSPChannel(JASDsp::TChannel*);
-    /* 8029B324 */ void updateDSPChannel(JASDsp::TChannel*);
-    /* 8029B6A0 */ void updateAutoMixer(JASDsp::TChannel*, f32, f32, f32, f32);
-    /* 8029B7D8 */ void updateMixer(f32, f32, f32, f32, u16*);
-    /* 8029BBFC */ void free();
-    /* 8029BC0C */ void initBankDisposeMsgQueue();
-    /* 8029BC48 */ void receiveBankDisposeMsg();
-    /* 8029BCC0 */ void checkBankDispose() const;
-
-    static u8 sBankDisposeMsgQ[32];
-    static u8 sBankDisposeMsg[64];
-    static u8 sBankDisposeList[64];
-    static u8 sBankDisposeListSize[4 + 4 /* padding */];
 };
 
 struct JASCalc {
@@ -180,10 +112,6 @@ extern "C" void setPauseFlag__Q26JASDsp8TChannelFUc();
 extern "C" void setBusConnect__Q26JASDsp8TChannelFUcUc();
 extern "C" void getChannelLevel_dsp__9JASDriverFv();
 extern "C" void getOutputMode__9JASDriverFv();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void OSInitMessageQueue();
-extern "C" void OSReceiveMessage();
 extern "C" void __register_global_object();
 extern "C" void __construct_array();
 extern "C" void _savegpr_27();
@@ -234,13 +162,13 @@ asm JASChannel::JASChannel(void (*param_0)(u32, JASChannel*, JASDsp::TChannel*, 
 
 /* ############################################################################################## */
 /* 80431B90-80431BB0 05E8B0 0020+00 2/2 0/0 0/0 .bss             sBankDisposeMsgQ__10JASChannel */
-u8 JASChannel::sBankDisposeMsgQ[32];
+OSMessageQueue JASChannel::sBankDisposeMsgQ;
 
 /* 80431BB0-80431BF0 05E8D0 0040+00 1/1 0/0 0/0 .bss             sBankDisposeMsg__10JASChannel */
-u8 JASChannel::sBankDisposeMsg[64];
+OSMessage JASChannel::sBankDisposeMsg[16];
 
 /* 80431BF0-80431C30 05E910 0040+00 2/2 0/3 0/0 .bss             sBankDisposeList__10JASChannel */
-u8 JASChannel::sBankDisposeList[64];
+u32 JASChannel::sBankDisposeList[16];
 
 /* 80431C30-80431C40 05E950 000C+04 1/1 0/2 0/0 .bss             @556 */
 static u8 lit_556[12 + 4 /* padding */];
@@ -259,7 +187,7 @@ asm JASChannel::~JASChannel() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASChannel::play() {
+asm int JASChannel::play() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASChannel/play__10JASChannelFv.s"
 }
@@ -528,7 +456,7 @@ asm void JASChannel::free() {
 /* ############################################################################################## */
 /* 80451298-804512A0 000798 0004+04 3/3 0/0 0/0 .sbss            sBankDisposeListSize__10JASChannel
  */
-u8 JASChannel::sBankDisposeListSize[4 + 4 /* padding */];
+u32 JASChannel::sBankDisposeListSize;
 
 /* 8029BC0C-8029BC48 29654C 003C+00 0/0 1/1 0/0 .text initBankDisposeMsgQueue__10JASChannelFv */
 #pragma push

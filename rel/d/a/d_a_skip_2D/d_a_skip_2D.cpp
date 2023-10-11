@@ -95,18 +95,18 @@ static actor_method_class daSkip2D_MethodTable = {
 
 /* 80D4D6FC-80D4D72C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_SKIP2D */
 extern actor_process_profile_definition g_profile_SKIP2D = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    0xFFFD,
+    fpcPi_CURRENT_e,
     PROC_SKIP2D,
     &g_fpcLf_Method.mBase,
     sizeof(daSkip2D_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x0304,
+    772,
     &daSkip2D_MethodTable,
-    0x00040000,
-    0,
-    0,
+    0x40000,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_0_e,
 };

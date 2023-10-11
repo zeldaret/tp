@@ -11,8 +11,8 @@ enum J3DError {
 };
 
 enum J3DSysDrawBuffer {
-    /* 0x0 */ OPA_BUFFER,
-    /* 0x1 */ XLU_BUFFER
+    /* 0x0 */ J3DSys_OPA_BUFFER_e,
+    /* 0x1 */ J3DSys_XLU_BUFFER_e
 };
 
 class J3DMtxCalc;
@@ -22,6 +22,13 @@ class J3DShapePacket;
 class J3DShape;
 class J3DDrawBuffer;
 class J3DTexture;
+
+struct J3DTexCoordScaleInfo {
+    /* 0x0 */ u16 field_0x00;
+    /* 0x2 */ u16 field_0x02;
+    /* 0x4 */ u16 field_0x04;
+    /* 0x6 */ u16 field_0x06;
+};
 
 enum J3DSysFlag {
     J3DSysFlag_SkinPosCpu = 0x00000004,
@@ -92,6 +99,9 @@ struct J3DSys {
     J3DMatPacket* getMatPacket() { return mMatPacket; }
     void setMaterialMode(u32 mode) { mMaterialMode = mode; }
 
+    void setCurrentMtxCalc(J3DMtxCalc * pCalc) { mCurrentMtxCalc = pCalc; }
+    J3DMtxCalc * getCurrentMtxCalc() const { return mCurrentMtxCalc; }
+
     void setTexture(J3DTexture* pTex) { mTexture = pTex; }
     J3DTexture* getTexture() { return mTexture; }
 
@@ -131,7 +141,7 @@ struct J3DSys {
     static Mtx mCurrentMtx;
     static Vec mCurrentS;
     static Vec mParentS;
-    static u16 sTexCoordScaleTable[32];
+    static J3DTexCoordScaleInfo sTexCoordScaleTable[8];
 };
 
 extern u32 j3dDefaultViewNo;

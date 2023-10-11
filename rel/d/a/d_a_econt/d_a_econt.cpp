@@ -91,18 +91,18 @@ static actor_method_class l_daEcont_Method = {
 
 /* 805197AC-805197DC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_ECONT */
 extern actor_process_profile_definition g_profile_ECONT = {
-    -3,                     // mLayerID   
+    fpcLy_CURRENT_e,        // mLayerID   
     8,                      // mListID 
-    -3,                     // mListPrio  
+    fpcPi_CURRENT_e,        // mListPrio  
     PROC_ECONT,             // mProcName          
     &g_fpcLf_Method.mBase,  // mSubMtd                     
     sizeof(econt_class),    // mSize                    
     0,                      // mSizeOther 
     0,                      // mParameters        
     &g_fopAc_Method.base,   // mSubMtd                    
-    0x009B,                 // mPriority      
+    155,                    // mPriority      
     &l_daEcont_Method,      // mSubMtd                 
-    0x00044000,             // mStatus           
-    0,                      // mActorType 
-    0,                      // mCullType
+    0x44000,                // mStatus           
+    fopAc_ACTOR_e,          // mActorType 
+    fopAc_CULLBOX_0_e,      // mCullType
 };

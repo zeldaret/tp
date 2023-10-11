@@ -187,7 +187,7 @@ void dMsgStringBase_c::drawFontLocal(J2DTextBox* param_0, u8 param_1, f32 param_
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgStringBase_c::getString(u32 param_0, J2DTextBox* param_1, J2DTextBox* param_2,
+asm f32 dMsgStringBase_c::getString(u32 param_0, J2DTextBox* param_1, J2DTextBox* param_2,
                                      JUTFont* param_3, COutFont_c* param_4, u8 param_5) {
     nofralloc
 #include "asm/d/msg/d_msg_string_base/getString__16dMsgStringBase_cFUlP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc.s"

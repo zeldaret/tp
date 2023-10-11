@@ -9,10 +9,10 @@ class JKRDvdFile;
 
 class JKRAramArchive : public JKRArchive {
 public:
-    JKRAramArchive(long, JKRArchive::EMountDirection);
+    JKRAramArchive(s32, JKRArchive::EMountDirection);
     virtual ~JKRAramArchive();
 
-    bool open(long);
+    bool open(s32);
     u32 getAramAddress_Entry(SDIFileEntry*);
     u32 getAramAddress(char const*);
 
@@ -27,8 +27,6 @@ public:
 private:
     /* 0x00 */  // vtable
     /* 0x04 */  // JKRArchive
-    /* 0x5C */ JKRCompression mCompression;
-    /* 0x60 */ EMountDirection mMountDirection;
     /* 0x64 */ JKRAramBlock* mBlock;
     /* 0x68 */ JKRDvdFile* mDvdFile;
 };  // Size = 0x6C

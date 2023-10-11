@@ -6,6 +6,7 @@
 #include "d/kankyo/d_kankyo_wether.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/kankyo/d_kankyo.h"
 #include "d/kankyo/d_kankyo_rain.h"
@@ -130,7 +131,6 @@ extern "C" void dKyw_evt_wind_set_go__Fv();
 extern "C" void dKyw_rain_set__Fi();
 extern "C" extern char const* const d_kankyo_d_kankyo_wether__stringBase0;
 
-
 //
 // External References:
 //
@@ -219,53 +219,55 @@ extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u8 data_80450EE0[8];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
+static void dKyw_pntlight_set(WIND_INFLUENCE* pntwind);
+
 //
 // Declarations:
 //
 
 /* 80056AA8-80056AF8 0513E8 0050+00 3/3 0/0 0/0 .text dKyw_setDrawPacketList__FP9J3DPacketi */
-static J3DPacket* dKyw_setDrawPacketList(J3DPacket* p_packet, int param_1) {
-    if (p_packet == NULL) {
+static J3DPacket* dKyw_setDrawPacketList(J3DPacket* i_packet, int i_type) {
+    if (i_packet == NULL) {
         return NULL;
     } else {
-        dComIfGd_getListFilter()->entryImm(p_packet, 0);
-        return p_packet;
+        dComIfGd_getListFilter()->entryImm(i_packet, 0);
+        return i_packet;
     }
 }
 
 /* 80056AF8-80056B48 051438 0050+00 3/3 0/0 0/0 .text
  * dKyw_setDrawPacketListIndScreen__FP9J3DPacketi               */
-static J3DPacket* dKyw_setDrawPacketListIndScreen(J3DPacket* p_packet, int param_1) {
-    if (p_packet == NULL) {
+static J3DPacket* dKyw_setDrawPacketListIndScreen(J3DPacket* i_packet, int i_type) {
+    if (i_packet == NULL) {
         return NULL;
     } else {
-        dComIfGd_getOpaListIndScreen()->entryImm(p_packet, 0);
-        return p_packet;
+        dComIfGd_getOpaListIndScreen()->entryImm(i_packet, 0);
+        return i_packet;
     }
 }
 
 /* 80056B48-80056BD8 051488 0090+00 5/5 0/0 0/0 .text dKyw_setDrawPacketListSky__FP9J3DPacketi */
-static J3DPacket* dKyw_setDrawPacketListSky(J3DPacket* p_packet, int type) {
-    if (p_packet == NULL) {
+static J3DPacket* dKyw_setDrawPacketListSky(J3DPacket* i_packet, int i_type) {
+    if (i_packet == NULL) {
         return NULL;
     } else {
         dComIfGd_setListSky();
-        j3dSys.getDrawBuffer(type)->entryImm(p_packet, 0);
+        j3dSys.getDrawBuffer(i_type)->entryImm(i_packet, 0);
         dComIfGd_setList();
-        return p_packet;
+        return i_packet;
     }
 }
 
 /* 80056BD8-80056C60 051518 0088+00 2/2 0/0 0/0 .text dKyw_setDrawPacketListXluBg__FP9J3DPacketi
  */
-static J3DPacket* dKyw_setDrawPacketListXluBg(J3DPacket* p_packet, int type) {
-    if (p_packet == NULL) {
+static J3DPacket* dKyw_setDrawPacketListXluBg(J3DPacket* i_packet, int i_type) {
+    if (i_packet == NULL) {
         return NULL;
     } else {
         dComIfGd_setXluListBG();
-        j3dSys.getDrawBuffer(type)->entryImm(p_packet, 0);
+        j3dSys.getDrawBuffer(i_type)->entryImm(i_packet, 0);
         dComIfGd_setList();
-        return p_packet;
+        return i_packet;
     }
 }
 
@@ -283,9 +285,7 @@ void dKankyo_sunlenz_Packet::draw() {
 RAIN_EFF::~RAIN_EFF() {}
 
 /* 80056D0C-80056D10 05164C 0004+00 1/1 0/0 0/0 .text            __ct__8RAIN_EFFFv */
-RAIN_EFF::RAIN_EFF() {
-    /* empty function */
-}
+RAIN_EFF::RAIN_EFF() {}
 
 /* 80056D10-80056D58 051650 0048+00 1/0 0/0 0/0 .text            draw__19dKankyo_rain_PacketFv */
 void dKankyo_rain_Packet::draw() {
@@ -297,9 +297,7 @@ void dKankyo_rain_Packet::draw() {
 SNOW_EFF::~SNOW_EFF() {}
 
 /* 80056D94-80056D98 0516D4 0004+00 0/0 1/1 0/0 .text            __ct__8SNOW_EFFFv */
-SNOW_EFF::SNOW_EFF() {
-    /* empty function */
-}
+SNOW_EFF::SNOW_EFF() {}
 
 /* 80056D98-80056DC8 0516D8 0030+00 1/0 0/0 0/0 .text            draw__19dKankyo_snow_PacketFv */
 void dKankyo_snow_Packet::draw() {
@@ -310,9 +308,7 @@ void dKankyo_snow_Packet::draw() {
 STAR_EFF::~STAR_EFF() {}
 
 /* 80056E04-80056E08 051744 0004+00 0/0 1/1 0/0 .text            __ct__8STAR_EFFFv */
-STAR_EFF::STAR_EFF() {
-    /* empty function */
-}
+STAR_EFF::STAR_EFF() {}
 
 /* 80056E08-80056E38 051748 0030+00 1/0 0/0 0/0 .text            draw__19dKankyo_star_PacketFv */
 void dKankyo_star_Packet::draw() {
@@ -323,9 +319,7 @@ void dKankyo_star_Packet::draw() {
 CLOUD_EFF::~CLOUD_EFF() {}
 
 /* 80056E74-80056E78 0517B4 0004+00 1/1 0/0 0/0 .text            __ct__9CLOUD_EFFFv */
-CLOUD_EFF::CLOUD_EFF() {
-    /* empty function */
-}
+CLOUD_EFF::CLOUD_EFF() {}
 
 /* 80056E78-80056EA8 0517B8 0030+00 1/0 0/0 0/0 .text            draw__20dKankyo_cloud_PacketFv */
 void dKankyo_cloud_Packet::draw() {
@@ -336,9 +330,7 @@ void dKankyo_cloud_Packet::draw() {
 HOUSI_EFF::~HOUSI_EFF() {}
 
 /* 80056EE4-80056EE8 051824 0004+00 1/1 0/0 0/0 .text            __ct__9HOUSI_EFFFv */
-HOUSI_EFF::HOUSI_EFF() {
-    /* empty function */
-}
+HOUSI_EFF::HOUSI_EFF() {}
 
 /* 80056EE8-80056F18 051828 0030+00 1/0 0/0 0/0 .text            draw__20dKankyo_housi_PacketFv */
 void dKankyo_housi_Packet::draw() {
@@ -349,9 +341,7 @@ void dKankyo_housi_Packet::draw() {
 VRKUMO_EFF::~VRKUMO_EFF() {}
 
 /* 80056F54-80056F58 051894 0004+00 1/1 0/0 0/0 .text            __ct__10VRKUMO_EFFFv */
-VRKUMO_EFF::VRKUMO_EFF() {
-    /* empty function */
-}
+VRKUMO_EFF::VRKUMO_EFF() {}
 
 /* 80056F58-80056F8C 051898 0034+00 1/0 0/0 0/0 .text            draw__21dKankyo_vrkumo_PacketFv */
 void dKankyo_vrkumo_Packet::draw() {
@@ -362,9 +352,7 @@ void dKankyo_vrkumo_Packet::draw() {
 EF_ODOUR_EFF::~EF_ODOUR_EFF() {}
 
 /* 80056FC8-80056FCC 051908 0004+00 1/1 0/0 0/0 .text            __ct__12EF_ODOUR_EFFFv */
-EF_ODOUR_EFF::EF_ODOUR_EFF() {
-    /* empty function */
-}
+EF_ODOUR_EFF::EF_ODOUR_EFF() {}
 
 /* 80056FCC-80056FFC 05190C 0030+00 1/0 0/0 0/0 .text            draw__20dKankyo_odour_PacketFv */
 void dKankyo_odour_Packet::draw() {
@@ -375,9 +363,7 @@ void dKankyo_odour_Packet::draw() {
 EF_MUD_EFF::~EF_MUD_EFF() {}
 
 /* 80057038-8005703C 051978 0004+00 1/1 0/0 0/0 .text            __ct__10EF_MUD_EFFFv */
-EF_MUD_EFF::EF_MUD_EFF() {
-    /* empty function */
-}
+EF_MUD_EFF::EF_MUD_EFF() {}
 
 /* 8005703C-8005706C 05197C 0030+00 1/0 0/0 0/0 .text            draw__18dKankyo_mud_PacketFv */
 void dKankyo_mud_Packet::draw() {
@@ -388,9 +374,7 @@ void dKankyo_mud_Packet::draw() {
 EF_EVIL_EFF::~EF_EVIL_EFF() {}
 
 /* 800570A8-800570AC 0519E8 0004+00 1/1 0/0 0/0 .text            __ct__11EF_EVIL_EFFFv */
-EF_EVIL_EFF::EF_EVIL_EFF() {
-    /* empty function */
-}
+EF_EVIL_EFF::EF_EVIL_EFF() {}
 
 /* 800570AC-800570DC 0519EC 0030+00 1/0 0/0 0/0 .text            draw__19dKankyo_evil_PacketFv */
 void dKankyo_evil_Packet::draw() {
@@ -398,127 +382,127 @@ void dKankyo_evil_Packet::draw() {
 }
 
 /* 800570DC-8005710C 051A1C 0030+00 1/1 0/0 0/0 .text            dKyw_drawSun__Fi */
-static void dKyw_drawSun(int type) {
-    dKyw_setDrawPacketListSky(g_env_light.mpSunPacket, type);
+static void dKyw_drawSun(int i_type) {
+    dKyw_setDrawPacketListSky(g_env_light.mpSunPacket, i_type);
 }
 
 /* 8005710C-80057130 051A4C 0024+00 1/1 0/0 0/0 .text            dKyw_Sun_Draw__Fv */
 static void dKyw_Sun_Draw() {
-    dKyw_drawSun(XLU_BUFFER);
+    dKyw_drawSun(J3DSys_XLU_BUFFER_e);
 }
 
 /* 80057130-80057174 051A70 0044+00 1/1 0/0 0/0 .text            dKyw_drawSunlenz__Fi */
-static void dKyw_drawSunlenz(int type) {
+static void dKyw_drawSunlenz(int i_type) {
     if (g_env_light.mpSunLenzPacket->mDrawLenzInSky == false) {
-        dKyw_setDrawPacketListIndScreen(g_env_light.mpSunLenzPacket, type);
+        dKyw_setDrawPacketListIndScreen(g_env_light.mpSunLenzPacket, i_type);
     } else {
-        dKyw_setDrawPacketListSky(g_env_light.mpSunLenzPacket, type);
+        dKyw_setDrawPacketListSky(g_env_light.mpSunLenzPacket, i_type);
     }
 }
 
 /* 80057174-80057198 051AB4 0024+00 1/1 0/0 0/0 .text            dKyw_Sunlenz_Draw__Fv */
 static void dKyw_Sunlenz_Draw() {
-    dKyw_drawSunlenz(XLU_BUFFER);
+    dKyw_drawSunlenz(J3DSys_XLU_BUFFER_e);
 }
 
 /* 80057198-800571C8 051AD8 0030+00 1/1 0/0 0/0 .text            dKyw_drawRain__Fi */
-static void dKyw_drawRain(int type) {
-    dKyw_setDrawPacketList(g_env_light.mpRainPacket, type);
+static void dKyw_drawRain(int i_type) {
+    dKyw_setDrawPacketList(g_env_light.mpRainPacket, i_type);
 }
 
 /* 800571C8-800571EC 051B08 0024+00 1/1 0/0 0/0 .text            dKyw_Rain_Draw__Fv */
 static void dKyw_Rain_Draw() {
-    dKyw_drawRain(XLU_BUFFER);
+    dKyw_drawRain(J3DSys_XLU_BUFFER_e);
 }
 
 /* 800571EC-8005721C 051B2C 0030+00 1/1 0/0 0/0 .text            dKyw_drawSnow__Fi */
-static void dKyw_drawSnow(int type) {
-    dKyw_setDrawPacketList(g_env_light.mpSnowPacket, type);
+static void dKyw_drawSnow(int i_type) {
+    dKyw_setDrawPacketList(g_env_light.mpSnowPacket, i_type);
 }
 
 /* 8005721C-80057240 051B5C 0024+00 1/1 0/0 0/0 .text            dKyw_Snow_Draw__Fv */
 static void dKyw_Snow_Draw() {
-    dKyw_drawSnow(XLU_BUFFER);
+    dKyw_drawSnow(J3DSys_XLU_BUFFER_e);
 }
 
 /* 80057240-80057270 051B80 0030+00 1/1 0/0 0/0 .text            dKyw_drawStar__Fi */
-static void dKyw_drawStar(int type) {
-    dKyw_setDrawPacketListSky(g_env_light.mpStarPacket, type);
+static void dKyw_drawStar(int i_type) {
+    dKyw_setDrawPacketListSky(g_env_light.mpStarPacket, i_type);
 }
 
 /* 80057270-80057294 051BB0 0024+00 1/1 0/0 0/0 .text            dKyw_Star_Draw__Fv */
 static void dKyw_Star_Draw() {
-    dKyw_drawStar(XLU_BUFFER);
+    dKyw_drawStar(J3DSys_XLU_BUFFER_e);
 }
 
 /* 80057294-800572C4 051BD4 0030+00 1/1 0/0 0/0 .text            dKyw_drawHousi__Fi */
-static void dKyw_drawHousi(int type) {
-    dKyw_setDrawPacketList(g_env_light.mpHousiPacket, type);
+static void dKyw_drawHousi(int i_type) {
+    dKyw_setDrawPacketList(g_env_light.mpHousiPacket, i_type);
 }
 
 /* 800572C4-800572E8 051C04 0024+00 1/1 0/0 0/0 .text            dKyw_Housi_Draw__Fv */
 static void dKyw_Housi_Draw() {
-    dKyw_drawHousi(XLU_BUFFER);
+    dKyw_drawHousi(J3DSys_XLU_BUFFER_e);
 }
 
 /* 800572E8-80057318 051C28 0030+00 1/1 0/0 0/0 .text            dKyw_drawCloud__Fi */
-static void dKyw_drawCloud(int type) {
-    dKyw_setDrawPacketListIndScreen(g_env_light.mpCloudPacket, type);
+static void dKyw_drawCloud(int i_type) {
+    dKyw_setDrawPacketListIndScreen(g_env_light.mpCloudPacket, i_type);
 }
 
 /* 80057318-8005733C 051C58 0024+00 1/1 0/0 0/0 .text            dKyw_Cloud_Draw__Fv */
 static void dKyw_Cloud_Draw() {
-    dKyw_drawCloud(XLU_BUFFER);
+    dKyw_drawCloud(J3DSys_XLU_BUFFER_e);
 }
 
 /* 8005733C-8005736C 051C7C 0030+00 1/1 0/0 0/0 .text            dKyw_drawVrkumo__Fi */
-static void dKyw_drawVrkumo(int type) {
-    dKyw_setDrawPacketListSky(g_env_light.mpVrkumoPacket, type);
+static void dKyw_drawVrkumo(int i_type) {
+    dKyw_setDrawPacketListSky(g_env_light.mpVrkumoPacket, i_type);
 }
 
 /* 8005736C-80057390 051CAC 0024+00 1/1 0/0 0/0 .text            dKyw_Vrkumo_Draw__Fv */
 static void dKyw_Vrkumo_Draw() {
-    dKyw_drawVrkumo(XLU_BUFFER);
+    dKyw_drawVrkumo(J3DSys_XLU_BUFFER_e);
 }
 
 /* 80057390-800573C0 051CD0 0030+00 1/1 0/0 0/0 .text            dKyw_shstar_packet__Fi */
-static void dKyw_shstar_packet(int type) {
-    dKyw_setDrawPacketListSky(g_env_light.mpShstarPacket, type);
+static void dKyw_shstar_packet(int i_type) {
+    dKyw_setDrawPacketListSky(g_env_light.mpShstarPacket, i_type);
 }
 
 /* 800573C0-800573E4 051D00 0024+00 1/1 0/0 0/0 .text            dKyw_shstar_Draw__Fv */
 static void dKyw_shstar_Draw() {
-    dKyw_shstar_packet(XLU_BUFFER);
+    dKyw_shstar_packet(J3DSys_XLU_BUFFER_e);
 }
 
 /* 800573E4-80057414 051D24 0030+00 1/1 0/0 0/0 .text            dKyw_odour_packet__Fi */
-static void dKyw_odour_packet(int type) {
-    dKyw_setDrawPacketListIndScreen(g_env_light.mpOdourPacket, type);
+static void dKyw_odour_packet(int i_type) {
+    dKyw_setDrawPacketListIndScreen(g_env_light.mpOdourPacket, i_type);
 }
 
 /* 80057414-80057438 051D54 0024+00 1/1 0/0 0/0 .text            dKyw_Odour_Draw__Fv */
 static void dKyw_Odour_Draw() {
-    dKyw_odour_packet(XLU_BUFFER);
+    dKyw_odour_packet(J3DSys_XLU_BUFFER_e);
 }
 
 /* 80057438-80057468 051D78 0030+00 1/1 0/0 0/0 .text            dKyw_mud_packet__Fi */
-static void dKyw_mud_packet(int type) {
-    dKyw_setDrawPacketListXluBg(g_env_light.mpMudPacket, type);
+static void dKyw_mud_packet(int i_type) {
+    dKyw_setDrawPacketListXluBg(g_env_light.mpMudPacket, i_type);
 }
 
 /* 80057468-8005748C 051DA8 0024+00 1/1 0/0 0/0 .text            dKyw_mud_Draw__Fv */
 static void dKyw_mud_Draw() {
-    dKyw_mud_packet(XLU_BUFFER);
+    dKyw_mud_packet(J3DSys_XLU_BUFFER_e);
 }
 
 /* 8005748C-800574BC 051DCC 0030+00 1/1 0/0 0/0 .text            dKyw_evil_packet__Fi */
-static void dKyw_evil_packet(int type) {
-    dKyw_setDrawPacketListXluBg(g_env_light.mpEvilPacket, type);
+static void dKyw_evil_packet(int i_type) {
+    dKyw_setDrawPacketListXluBg(g_env_light.mpEvilPacket, i_type);
 }
 
 /* 800574BC-800574E0 051DFC 0024+00 1/1 0/0 0/0 .text            dKyw_evil_Draw__Fv */
 static void dKyw_evil_Draw() {
-    dKyw_evil_packet(XLU_BUFFER);
+    dKyw_evil_packet(J3DSys_XLU_BUFFER_e);
 }
 
 /* 804520E0-804520E4 0006E0 0004+00 12/12 0/0 0/0 .sdata2          @4378 */
@@ -533,18 +517,19 @@ SECTION_SDATA2 static u8 lit_4378[4] = {
 SECTION_SDATA2 static f32 lit_4379 = 1.0f;
 
 // remove these once float data is fixed
-inline JPABaseEmitter* tmp_dComIfGp_particle_set(u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3,
-                                     const csXyz* param_4, const cXyz* param_5, u8 param_6,
-                                     dPa_levelEcallBack* param_7, s8 param_8,
-                                     const GXColor* param_9, const GXColor* param_10,
-                                     const cXyz* param_11) {
+inline JPABaseEmitter* tmp_dComIfGp_particle_set(u16 param_1, const cXyz* param_2,
+                                                 const dKy_tevstr_c* param_3, const csXyz* param_4,
+                                                 const cXyz* param_5, u8 param_6,
+                                                 dPa_levelEcallBack* param_7, s8 param_8,
+                                                 const GXColor* param_9, const GXColor* param_10,
+                                                 const cXyz* param_11) {
     return g_dComIfG_gameInfo.play.getParticle()->setNormal(param_1, param_2, param_3, param_4,
                                                             param_5, param_6, param_7, param_8,
                                                             param_9, param_10, param_11, lit_4379);
 }
 
-inline JPABaseEmitter* tmp_dComIfGp_particle_set(u16 param_0, const cXyz* param_1, const csXyz* param_2,
-                                     const cXyz* param_3) {
+inline JPABaseEmitter* tmp_dComIfGp_particle_set(u16 param_0, const cXyz* param_1,
+                                                 const csXyz* param_2, const cXyz* param_3) {
     return tmp_dComIfGp_particle_set(param_0, param_1, NULL, param_2, param_3, 0xFF, NULL, -1, NULL,
                                      NULL, NULL);
 }
@@ -589,7 +574,8 @@ void dKyw_wether_init() {
 
     // Stage is Zora's Domain and Room is Outside Throne Room
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP113") && dComIfGp_roomControl_getStayNo() == 1 &&
-        dComIfG_play_c::getLayerNo(0) < 8) {
+        dComIfG_play_c::getLayerNo(0) < 8)
+    {
         cXyz tmp;
         f32 tmp0_2 = FLOAT_LABEL(lit_4378);
         tmp.z = tmp0_2;
@@ -615,7 +601,8 @@ void dKyw_wether_init() {
     // Room is Entrance or Right Wing Outside or Left Wing Outside or Central Hub Outside
     if (!strcmp(dComIfGp_getStartStageName(), "D_MN07")) {
         if ((dComIfGp_roomControl_getStayNo() == 0 || dComIfGp_roomControl_getStayNo() == 3) ||
-            dComIfGp_roomControl_getStayNo() == 6 || dComIfGp_roomControl_getStayNo() == 13) {
+            dComIfGp_roomControl_getStayNo() == 6 || dComIfGp_roomControl_getStayNo() == 13)
+        {
             g_mEnvSeMgr.initStrongWindSe();
         }
     }
@@ -790,7 +777,8 @@ static void wether_move_sun() {
             sunVisible = true;
             // Stage is Hyrule Castle or Castle Throne Room
         } else if (!strcmp(dComIfGp_getStartStageName(), "D_MN09") ||
-                   !strcmp(dComIfGp_getStartStageName(), "D_MN09A")) {
+                   !strcmp(dComIfGp_getStartStageName(), "D_MN09A"))
+        {
             sunVisible = false;
         }
 
@@ -1017,12 +1005,14 @@ static void wether_move_star() {
     s32 starsVisible = false;
     // Stage is Hyrule Castle or Castle Throne Room
     if (!strcmp(dComIfGp_getStartStageName(), "D_MN09") ||
-        !strcmp(dComIfGp_getStartStageName(), "D_MN09A")) {
+        !strcmp(dComIfGp_getStartStageName(), "D_MN09A"))
+    {
         return;
     } else {
         // Stage is Hero Shade arena
         if ((dComIfGp_checkStatus(1) && !g_env_light.mVrboxInvisible) ||
-            !strcmp(dComIfGp_getStartStageName(), "F_SP200")) {
+            !strcmp(dComIfGp_getStartStageName(), "F_SP200"))
+        {
             roomRead_class* room = dComIfGp_getStageRoom();
             if (room != NULL && room->field_0x0 > dComIfGp_roomControl_getStayNo()) {
                 starsVisible = dStage_roomRead_dt_c_GetVrboxswitch(
@@ -1068,7 +1058,8 @@ static void wether_move_star() {
                 // Stage is Hyrule Field or Outside Castle Town or Hidden Village
                 if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") ||
                     !strcmp(dComIfGp_getStartStageName(), "F_SP122") ||
-                    !strcmp(dComIfGp_getStartStageName(), "F_SP128")) {
+                    !strcmp(dComIfGp_getStartStageName(), "F_SP128"))
+                {
                     g_env_light.mStarCount = (s16)(lit_4772 * g_env_light.mStarDensity);
                 }
 
@@ -1110,14 +1101,16 @@ static void wether_move_housi() {
          dComIfGp_roomControl_getStayNo() != 11) ||
         (!strcmp(dComIfGp_getStartStageName(), "D_MN08A") ||
          !strcmp(dComIfGp_getStartStageName(), "D_MN08B") ||
-         !strcmp(dComIfGp_getStartStageName(), "D_MN08C"))) {
+         !strcmp(dComIfGp_getStartStageName(), "D_MN08C")))
+    {
         return;
     }
 
     // Stage is darkworld or Stage is Lake Hylia and Room is Lanayru Spring
     if (dKy_darkworld_check() == true ||
         (!strcmp(dComIfGp_getStartStageName(), "F_SP115") &&
-         dComIfGp_roomControl_getStayNo() == 1 && dComIfGp_getStartStageLayer() == 9)) {
+         dComIfGp_roomControl_getStayNo() == 1 && dComIfGp_getStartStageLayer() == 9))
+    {
         if (g_env_light.mInitAnmTimer != 0) {
             g_env_light.field_0xea9 = 0;
             g_env_light.mHousiCount = 200;
@@ -1133,7 +1126,8 @@ static void wether_move_housi() {
                 (!strcmp(dComIfGp_getStartStageName(), "F_SP108") &&
                  dComIfGp_getStartStageRoomNo() == 0 && dComIfGp_getStartStageLayer() == 9) ||
                 (!strcmp(dComIfGp_getStartStageName(), "F_SP115") &&
-                 dComIfGp_getStartStageLayer() == 9)) {
+                 dComIfGp_getStartStageLayer() == 9))
+            {
                 g_env_light.mHousiCount = 0;
             }
         }
@@ -1183,7 +1177,8 @@ static void wether_move_housi() {
         break;
     case TRUE:
         if (g_env_light.mHousiCount == 0 &&
-            g_env_light.mpHousiPacket->field_0x5de8 <= FLOAT_LABEL(lit_4378)) {
+            g_env_light.mpHousiPacket->field_0x5de8 <= FLOAT_LABEL(lit_4378))
+        {
             g_env_light.mHousiInitialized = false;
             delete g_env_light.mpHousiPacket;
             g_env_light.mpHousiPacket = NULL;
@@ -1326,6 +1321,139 @@ SECTION_SDATA2 static f32 lit_5192 = 24575.0f;
 SECTION_SDATA2 static f32 lit_5193 = 0.00139999995008111f;
 
 /* 80059728-80059E38 054068 0710+00 1/1 0/0 0/0 .text            wether_move_vrkumo__Fv */
+// gameinfo load issue, cmath instruction order / reg alloc
+#ifdef NONMATCHING
+static void wether_move_vrkumo() {
+    BOOL var_r31 = false;
+    static cXyz r09o(-180000.0f, 750.0f, -200000.0f);
+
+    if (dComIfGp_checkStatus(1) && !g_env_light.mVrboxInvisible) {
+        g_env_light.mVrkumoCount = 6;
+
+        if (memcmp(dComIfGp_getStartStageName(), "D_MN07", 6) == 0 ||
+            strcmp(dComIfGp_getStartStageName(), "F_SP114") == 0 ||
+            (strcmp(dComIfGp_getStartStageName(), "D_MN09B") == 0 &&
+             (g_env_light.field_0x12cc != 0 || i_dComIfGp_event_runCheck())))
+        {
+            cLib_addCalc(&g_env_light.mVrkumoStrength, 1.0f, 0.1f, 0.003f, 0.0000001f);
+        } else if (strcmp(dComIfGp_getStartStageName(), "F_SP104") == 0 &&
+                   dComIfG_play_c::getLayerNo(0) >= 3)
+        {
+            if (g_env_light.mColPatCurr >= 4) {
+                cLib_addCalc(&g_env_light.mVrkumoStrength, 1.0f, 0.1f, 0.003f, 0.0000001f);
+            } else {
+                cLib_addCalc(&g_env_light.mVrkumoStrength, 0.0f, 0.08f, 0.002f, 0.00000001f);
+            }
+        } else if ((g_env_light.mColPatCurr == 1 && g_env_light.mColPatBlend > 0.0f) ||
+                   (g_env_light.mColPatPrev == 1 && g_env_light.mColPatBlend < 1.0f) ||
+                   (g_env_light.mColPatCurr == 2 && g_env_light.mColPatBlend > 0.0f) ||
+                   (g_env_light.mColPatPrev == 2 && g_env_light.mColPatBlend < 1.0f))
+        {
+            cLib_addCalc(&g_env_light.mVrkumoStrength, 1.0f, 0.1f, 0.003f, 0.0000001f);
+        } else {
+            cLib_addCalc(&g_env_light.mVrkumoStrength, 0.0f, 0.08f, 0.002f, 0.00000001f);
+        }
+
+        g_env_light.mVrkumoCount = (s16)(g_env_light.mVrkumoStrength * 56.0f + 6.0f);
+    } else {
+        g_env_light.mVrkumoCount = 0;
+    }
+
+    if (dKy_darkworld_check()) {
+        g_env_light.mVrkumoCount = 30;
+    }
+
+    roomRead_class* room_p = dComIfGp_getStageRoom();
+    if (room_p != NULL && room_p->field_0x0 > dComIfGp_roomControl_getStayNo()) {
+        var_r31 = dStage_roomRead_dt_c_GetVrboxswitch(
+            *room_p->field_0x4[dComIfGp_roomControl_getStayNo()]);
+    }
+
+    if (strcmp(dComIfGp_getStartStageName(), "F_SP200") == 0) {
+        g_env_light.mVrkumoCount = 30;
+    } else if (var_r31 == 0) {
+        return;
+    }
+
+    switch (g_env_light.mVrkumoStatus) {
+    case 0:
+        if (g_env_light.mVrkumoCount != 0) {
+            g_env_light.mpVrkumoPacket = new (0x20) dKankyo_vrkumo_Packet();
+            if (g_env_light.mpVrkumoPacket == NULL) {
+                return;
+            }
+
+            g_env_light.mpVrkumoPacket->mpResCloudtx_01 =
+                (u8*)dComIfG_getStageRes("cloudtx_01.bti");
+            g_env_light.mpVrkumoPacket->mpResCloudtx_02 =
+                (u8*)dComIfG_getStageRes("cloudtx_02.bti");
+            g_env_light.mpVrkumoPacket->mpResCloudtx_03 =
+                (u8*)dComIfG_getStageRes("cloudtx_03.bti");
+
+            if (g_env_light.mpVrkumoPacket->mpResCloudtx_01 == NULL ||
+                g_env_light.mpVrkumoPacket->mpResCloudtx_02 == NULL ||
+                g_env_light.mpVrkumoPacket->mpResCloudtx_03 == NULL)
+            {
+                g_env_light.mVrkumoStatus = 99;
+            }
+
+            for (int i = 0; i < 100; i++) {
+                g_env_light.mpVrkumoPacket->mVrkumoEff[i].mStatus = 0;
+            }
+
+            g_env_light.mpVrkumoPacket->field_0x1150 = 0.0f;
+            g_env_light.mpVrkumoPacket->field_0x1154 = 0.0f;
+
+            vrkumo_move();
+            g_env_light.mVrkumoStatus++;
+        }
+        break;
+    case 1:
+        vrkumo_move();
+        dKyw_get_wind_vec();
+
+        cXyz sp8;
+        f32 wind_vec_x = g_env_light.mWind.vec.x;
+        f32 wind_vec_y = g_env_light.mWind.vec.y;
+        f32 wind_vec_z = g_env_light.mWind.vec.z;
+        f32 var_f31 = g_env_light.mWind.pow;
+
+        if (strcmp(dComIfGp_getStartStageName(), "R_SP127") == 0) {
+            var_f31 = 0.3f;
+        }
+
+        f32 var_f30 = JMAFastSqrt(wind_vec_x * wind_vec_x + wind_vec_z * wind_vec_z);
+        f32 temp_f27_2 = cM_atan2s(wind_vec_x, wind_vec_z);
+        f32 temp_r4_2 = cM_atan2s(wind_vec_y, var_f30);
+
+        temp_f27_2 += 24575.0f;
+
+        sp8.x = cM_ssin(temp_f27_2) * cM_scos(temp_r4_2);
+        sp8.y = cM_ssin(temp_r4_2);
+        sp8.z = cM_scos(temp_f27_2) * cM_scos(temp_r4_2);
+
+        g_env_light.mpVrkumoPacket->field_0x1150 += (sp8.x * var_f31) * 0.0014f;
+        g_env_light.mpVrkumoPacket->field_0x1154 += (sp8.z * var_f31) * 0.0014f;
+
+        while (g_env_light.mpVrkumoPacket->field_0x1150 < 0.0f) {
+            g_env_light.mpVrkumoPacket->field_0x1150 += 1.0f;
+        }
+
+        while (g_env_light.mpVrkumoPacket->field_0x1150 > 1.0f) {
+            g_env_light.mpVrkumoPacket->field_0x1150 -= 1.0f;
+        }
+
+        while (g_env_light.mpVrkumoPacket->field_0x1154 < 0.0f) {
+            g_env_light.mpVrkumoPacket->field_0x1154 += 1.0f;
+        }
+
+        while (g_env_light.mpVrkumoPacket->field_0x1154 > 1.0f) {
+            g_env_light.mpVrkumoPacket->field_0x1154 -= 1.0f;
+        }
+        break;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1334,6 +1462,7 @@ static asm void wether_move_vrkumo() {
 #include "asm/d/kankyo/d_kankyo_wether/wether_move_vrkumo__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 80059E38-80059F74 054778 013C+00 1/1 0/0 0/0 .text            wether_move_mud__Fv */
 static void wether_move_mud() {
@@ -1496,21 +1625,24 @@ SECTION_SDATA2 static f32 lit_5364[1 + 1 /* padding */] = {
 };
 
 /* 8005A340-8005A57C 054C80 023C+00 0/0 1/1 0/0 .text            dKyw_wether_proc__Fv */
-// small branch issues
+// small branch issue
 #ifdef NONMATCHING
 void dKyw_wether_proc() {
     // Stage is Faron Woods or Fishing Pond or Hyrule Field
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP108") ||
         !strcmp(dComIfGp_getStartStageName(), "F_SP127") ||
         (!strcmp(dComIfGp_getStartStageName(), "F_SP121") &&
-         FLOAT_LABEL(lit_4378) != g_env_light.mDiceWeatherTime)) {
+         FLOAT_LABEL(lit_4378) != g_env_light.mDiceWeatherTime))
+    {
         if (!dKy_darkworld_check()) {
             // Stage is Hyrule Field
-            if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") || g_env_light.mDaytime >= 75.0f ||
-                g_env_light.mDaytime <= 120.0f) {
+            if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") ||
+                !(g_env_light.mDaytime >= 75.0f) || !(g_env_light.mDaytime <= 120.0f))
+            {
                 // Stage is Hyrule Field
                 if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") &&
-                    g_env_light.mDiceWeatherMode >= 1 && g_env_light.mDiceWeatherMode < 6) {
+                    g_env_light.mDiceWeatherMode >= 1 && g_env_light.mDiceWeatherMode < 6)
+                {
                     dKy_get_dayofweek();
                     cLib_addCalc(&g_env_light.field_0xebc, lit_4379, lit_5362, lit_5363, lit_4770);
                     g_env_light.mMoyaMode = 7;
@@ -1528,7 +1660,8 @@ void dKyw_wether_proc() {
 
     // Stage is Fishing Pond
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") &&
-        (g_env_light.mPondSeason == 1 || g_env_light.mPondSeason == 3)) {
+        (g_env_light.mPondSeason == 1 || g_env_light.mPondSeason == 3))
+    {
         if (g_env_light.mPondSeason == 1) {
             g_env_light.mHousiCount = 35;
         } else {
@@ -1559,7 +1692,7 @@ static void dKyw_wind_init() {
     g_env_light.field_0xe6c = 0;
     g_env_light.field_0xe64 = 0;
     g_env_light.field_0xe66 = 0;
-    g_env_light.mWind.field_0xc = 0;
+    g_env_light.mWind.vec_override = 0;
     g_env_light.custom_windpower = tmp_0;
     g_env_light.mEvtWindSet = 0;
     g_env_light.mTeachWindExist = 0;
@@ -1593,6 +1726,150 @@ SECTION_SDATA2 static f32 lit_5530 = 0.0010000000474974513f;
 SECTION_SDATA2 static f32 lit_5531 = 0.004999999888241291f;
 
 /* 8005A5C0-8005AAE0 054F00 0520+00 0/0 2/2 0/0 .text            dKyw_wind_set__Fv */
+// matches with literals
+#ifdef NONMATCHING
+void dKyw_wind_set() {
+    s16 var_r30;
+    s16 var_r29;
+    int var_r28 = 0;
+
+    cXyz wind_vec;
+    f32 strength;
+
+    if (g_env_light.mWind.vec_override != NULL) {
+        wind_vec = *g_env_light.mWind.vec_override;
+        strength = g_env_light.custom_windpower;
+
+        cM_atan2s(wind_vec.x, wind_vec.z);
+        cM_atan2s(wind_vec.absXZ(), wind_vec.y);
+    } else {
+        dStage_FileList_dt_c* fili_p = NULL;
+        int wind_level = 0;
+
+        if (dComIfGp_roomControl_getStayNo() >= 0) {
+            fili_p = dComIfGp_roomControl_getStatusRoomDt(dComIfGp_roomControl_getStayNo())
+                         ->mRoomDt.getFileListInfo();
+        }
+
+        var_r30 = 0;
+        var_r29 = 0;
+        if (fili_p != NULL) {
+            var_r28 = dStage_FileList_dt_GlobalWindDir(fili_p);
+        }
+
+        s32 var_r4 = dComIfGp_roomControl_getStayNo();
+        if (dComIfGp_roomControl_getStatusRoomDt(var_r4) != NULL) {
+            s32 var_r4_2 = dComIfGp_roomControl_getStayNo();
+            dStage_Lbnk_c* lbnk_p =
+                dComIfGp_roomControl_getStatusRoomDt(var_r4_2)->mRoomDt.getLbnk();
+            if (lbnk_p != NULL) {
+                dStage_Lbnk_dt_c* data_p = lbnk_p->entries;
+
+                if (dStage_lbnkWIND(&data_p[dComIfG_play_c::getLayerNo(0)]) != 7) {
+                    var_r28 = dStage_lbnkWIND(&data_p[0]);
+                }
+            }
+        }
+
+        switch (var_r28) {
+        case 0:
+        case 1:
+            break;
+        case 2:
+            var_r30 = 0;
+            var_r29 = -0x4000;
+            break;
+        case 3:
+            var_r30 = 0;
+            var_r29 = 0;
+            break;
+        case 4:
+            var_r30 = 0;
+            var_r29 = 0x4000;
+            break;
+        case 5:
+            var_r30 = 0;
+            var_r29 = 0x7FFF;
+            break;
+        }
+
+        if (g_env_light.mEvtWindSet != 0 && g_env_light.mEvtWindSet != 0xFF) {
+            var_r30 = g_env_light.mEvtWindAngleX;
+            var_r29 = g_env_light.mEvtWindAngleY;
+        }
+
+        wind_vec.x = cM_scos(var_r30) * cM_ssin(var_r29);
+        wind_vec.y = cM_ssin(var_r30);
+        wind_vec.z = cM_scos(var_r30) * cM_scos(var_r29);
+
+        if (fili_p != NULL) {
+            wind_level = dStage_FileList_dt_GlobalWindLevel(fili_p);
+        }
+
+        s32 var_r4_3 = dComIfGp_roomControl_getStayNo();
+        if (dComIfGp_roomControl_getStatusRoomDt(var_r4_3) != NULL) {
+            s32 var_r4_4 = dComIfGp_roomControl_getStayNo();
+            dStage_Lbnk_c* lbnk_p =
+                dComIfGp_roomControl_getStatusRoomDt(var_r4_4)->mRoomDt.getLbnk();
+            if (lbnk_p != NULL) {
+                dStage_Lbnk_dt_c* data_p = lbnk_p->entries;
+
+                if (dStage_lbnkWlevel(&data_p[0]) != 3) {
+                    wind_level = dStage_lbnkWlevel(&data_p[0]);
+                }
+            }
+        }
+
+        switch (wind_level) {
+        case 0:
+            strength = 0.3f;
+            break;
+        case 1:
+            strength = 0.6f;
+            break;
+        case 2:
+            strength = 0.9f;
+            break;
+        default:
+            strength = 0.0f;
+            break;
+        }
+    }
+
+    if (g_env_light.mEvtWindSet != 0) {
+        strength = g_env_light.custom_windpower;
+    }
+
+    if (strength > 1.0f) {
+        strength = 1.0f;
+    }
+
+    if (strcmp(dComIfGp_getStartStageName(), "D_MN07") == 0 &&
+        (dComIfGp_roomControl_getStayNo() == 0 || dComIfGp_roomControl_getStayNo() == 3 ||
+         dComIfGp_roomControl_getStayNo() == 6 || dComIfGp_roomControl_getStayNo() == 13))
+    {
+        mDoAud_mEnvse_setWindDirection(&wind_vec);
+        if (strength <= 0.5f) {
+            mDoAud_mEnvse_setWindType(3);
+        } else {
+            mDoAud_mEnvse_setWindType(1);
+        }
+
+        s8 reverb = dComIfGp_getReverb(dComIfGp_roomControl_getStayNo());
+        mDoAud_mEnvse_startStrongWindSe(reverb);
+    }
+
+    if (g_env_light.mInitAnmTimer != 0) {
+        g_env_light.mWind.vec = wind_vec;
+        g_env_light.mWind.pow = strength;
+    } else {
+        cLib_addCalc(&g_env_light.mWind.vec.x, wind_vec.x, 0.05f, 2.0f, 0.001f);
+        cLib_addCalc(&g_env_light.mWind.vec.y, wind_vec.y, 0.05f, 2.0f, 0.001f);
+        cLib_addCalc(&g_env_light.mWind.vec.z, wind_vec.z, 0.05f, 2.0f, 0.001f);
+        cLib_addCalc(&g_env_light.mWind.pow, strength, 0.05f, 1.0f, 0.005f);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1601,6 +1878,7 @@ asm void dKyw_wind_set() {
 #include "asm/d/kankyo/d_kankyo_wether/dKyw_wind_set__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 8005AAE0-8005AAF0 055420 0010+00 1/1 6/6 7/7 .text            dKyw_get_wind_vec__Fv */
 cXyz* dKyw_get_wind_vec() {
@@ -1619,21 +1897,72 @@ cXyz dKyw_get_wind_vecpow() {
 }
 
 /* 8005AB64-8005AC30 0554A4 00CC+00 0/0 0/0 1/1 .text dKyw_plight_collision_set__FP4cXyzssfffff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyw_plight_collision_set(cXyz* param_0, s16 param_1, s16 param_2, f32 param_3,
-                                   f32 param_4, f32 param_5, f32 param_6, f32 param_7) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_plight_collision_set__FP4cXyzssfffff.s"
+void dKyw_plight_collision_set(cXyz* param_0, s16 param_1, s16 param_2, f32 param_3, f32 param_4,
+                               f32 param_5, f32 param_6, f32 param_7) {
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+
+    for (int i = 0; i < 5; i++) {
+        if (!env_light->mWindInfluenceEntity[i].mInUse) {
+            env_light->mWindInfluenceEntity[i].mInUse = true;
+            env_light->mWindInfluenceEntity[i].mMinRadius = param_4;
+            env_light->mWindInfluenceEntity[i].mSpeed = param_6;
+            env_light->mWindInfluenceEntity[i].mStrengthMaxVel = param_7;
+
+            WIND_INFLUENCE* wind_inf = &env_light->mWindInfluenceEntity[i].mInfluence;
+            wind_inf->position = *param_0;
+            wind_inf->mDirection.x = cM_scos(param_1) * cM_ssin(param_2);
+            wind_inf->mDirection.y = cM_ssin(param_1);
+            wind_inf->mDirection.z = cM_scos(param_1) * cM_scos(param_2);
+            wind_inf->mRadius = param_3;
+            wind_inf->field_0x20 = wind_inf->mRadius;
+            wind_inf->mStrength = param_5;
+
+            dKyw_pntlight_set(wind_inf);
+            break;
+        }
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804521A4-804521A8 0007A4 0004+00 1/1 0/0 0/0 .sdata2          @5630 */
 SECTION_SDATA2 static f32 lit_5630 = 1.0f / 5.0f;
 
 /* 8005AC30-8005AD44 055570 0114+00 1/1 0/0 0/0 .text            squal_proc__Fv */
+// matches with literals
+#ifdef NONMATCHING
+static void squal_proc() {
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    WIND_INFLUENCE* influence;
+
+    for (int i = 0; i < 5; i++) {
+        influence = &env_light->mWindInfluenceEntity[i].mInfluence;
+        switch (env_light->mWindInfluenceEntity[i].mInUse) {
+        case 0:
+            break;
+        case 1:
+            influence->position.x +=
+                influence->mDirection.x * env_light->mWindInfluenceEntity[i].mSpeed;
+            influence->position.y +=
+                influence->mDirection.y * env_light->mWindInfluenceEntity[i].mSpeed;
+            influence->position.z +=
+                influence->mDirection.z * env_light->mWindInfluenceEntity[i].mSpeed;
+
+            cLib_addCalc(&influence->mStrength, 0.0f, 0.2f,
+                         env_light->mWindInfluenceEntity[i].mStrengthMaxVel, 0.001f);
+
+            f32 speed = 1.0f - influence->mStrength;
+            f32 target = env_light->mWindInfluenceEntity[i].mMinRadius;
+            cLib_addCalc(&influence->mRadius, target, speed, speed * target * 0.05f, 0.01f);
+
+            if (influence->mStrength < 0.01f) {
+                dKyw_pntwind_cut(influence);
+                env_light->mWindInfluenceEntity[i].mInUse = false;
+            }
+            break;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1642,6 +1971,7 @@ static asm void squal_proc() {
 #include "asm/d/kankyo/d_kankyo_wether/squal_proc__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 8005AD44-8005AD98 055684 0054+00 1/1 0/0 0/0 .text            dKyw_pntwind_init__Fv */
 static void dKyw_pntwind_init() {
@@ -1655,44 +1985,107 @@ static void dKyw_pntwind_init() {
 }
 
 /* 8005AD98-8005ADFC 0556D8 0064+00 2/2 0/0 0/0 .text            pntwind_set__FP14WIND_INFLUENCE */
-static void pntwind_set(WIND_INFLUENCE* pntwind) {
+static void pntwind_set(WIND_INFLUENCE* i_pntwind) {
     int i = 0;
     for (; i < 30; i++) {
         if (g_env_light.mPntWind[i] == NULL) {
-            g_env_light.mPntWind[i] = pntwind;
+            g_env_light.mPntWind[i] = i_pntwind;
             g_env_light.mPntWind[i]->field_0x24 = i;
             break;
         }
     }
 
     if (i >= 30) {
-        pntwind->field_0x24 = 9999;
+        i_pntwind->field_0x24 = 9999;
     }
 }
 
 /* 8005ADFC-8005AE28 05573C 002C+00 0/0 0/0 5/5 .text dKyw_pntwind_set__FP14WIND_INFLUENCE */
-void dKyw_pntwind_set(WIND_INFLUENCE* pntwind) {
-    pntwind->mConstant = 0;
-    pntwind->field_0x29 = 0;
-    pntwind_set(pntwind);
+void dKyw_pntwind_set(WIND_INFLUENCE* i_pntwind) {
+    i_pntwind->mConstant = 0;
+    i_pntwind->field_0x29 = 0;
+    pntwind_set(i_pntwind);
 }
 
 /* 8005AE28-8005AE58 055768 0030+00 1/1 0/0 0/0 .text dKyw_pntlight_set__FP14WIND_INFLUENCE */
-static void dKyw_pntlight_set(WIND_INFLUENCE* pntwind) {
-    pntwind->mConstant = 0;
-    pntwind->field_0x29 = 1;
-    pntwind_set(pntwind);
+static void dKyw_pntlight_set(WIND_INFLUENCE* i_pntwind) {
+    i_pntwind->mConstant = 0;
+    i_pntwind->field_0x29 = 1;
+    pntwind_set(i_pntwind);
 }
 
 /* 8005AE58-8005AE90 055798 0038+00 1/1 0/0 5/5 .text dKyw_pntwind_cut__FP14WIND_INFLUENCE */
-void dKyw_pntwind_cut(WIND_INFLUENCE* pntwind_cut) {
-    if (pntwind_cut != NULL && pntwind_cut->field_0x24 >= 0 && pntwind_cut->field_0x24 < 30) {
-        g_env_light.mPntWind[pntwind_cut->field_0x24] = NULL;
+void dKyw_pntwind_cut(WIND_INFLUENCE* i_pntwind) {
+    if (i_pntwind != NULL && i_pntwind->field_0x24 >= 0 && i_pntwind->field_0x24 < 30) {
+        g_env_light.mPntWind[i_pntwind->field_0x24] = NULL;
     }
 }
 
 /* 8005AE90-8005B23C 0557D0 03AC+00 2/2 0/0 0/0 .text            pntwind_get_info__FP4cXyzP4cXyzPfUc
  */
+// matches with literals
+#ifdef NONMATCHING
+static void pntwind_get_info(cXyz* param_0, cXyz* i_dir, f32* i_power, u8 param_3) {
+    i_dir->x = 0.0f;
+    i_dir->y = 0.0f;
+    i_dir->z = 0.0f;
+    *i_power = 0.0f;
+
+    WIND_INFLUENCE* influence;
+    s32 influence_count = ARRAY_SIZE(g_env_light.mPntWind);
+    for (int i = 0; i < influence_count; i++) {
+        influence = g_env_light.mPntWind[i];
+        if (influence != NULL && influence->field_0x29 == param_3) {
+            f32 dist = param_0->abs(influence->position);
+
+            if (influence->mConstant == 0) {
+                if (dist < influence->mRadius && influence->mStrength > 0.0f && dist != 0.0f) {
+                    f32 temp_f0;
+                    if (influence->mRadius > 0.0f) {
+                        f32 temp_f0_4 = (dist / influence->mRadius);
+                        temp_f0 = 1.0f - (temp_f0_4 * temp_f0_4);
+                    } else {
+                        temp_f0 = 1.0f;
+                    }
+
+                    *i_power = influence->mStrength * temp_f0;
+
+                    cXyz sp10;
+                    sp10.x =
+                        influence->position.x + -(influence->mDirection.x) * influence->mRadius;
+                    sp10.y =
+                        influence->position.y + -(influence->mDirection.y) * influence->mRadius;
+                    sp10.z =
+                        influence->position.z + -(influence->mDirection.z) * influence->mRadius;
+                    dKyr_get_vectle_calc(&sp10, param_0, i_dir);
+
+                    if (param_0->abs(sp10) < influence->mRadius) {
+                        i_dir->x = 0.0f;
+                        i_dir->y = 0.0f;
+                        i_dir->z = 0.0f;
+                    }
+                    return;
+                }
+            } else {
+                if (dist < influence->mRadius && influence->mStrength > 0.0f && dist != 0.0f) {
+                    f32 temp_f0;
+                    if (influence->mRadius > 0.0f) {
+                        temp_f0 = 1.0f - (dist / influence->mRadius);
+                    } else {
+                        temp_f0 = 1.0f;
+                    }
+
+                    i_dir->x = influence->mDirection.x;
+                    i_dir->y = influence->mDirection.y;
+                    i_dir->z = influence->mDirection.z;
+                    *i_power = influence->mStrength * temp_f0;
+                    return;
+                }
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1701,6 +2094,7 @@ static asm void pntwind_get_info(cXyz* param_0, cXyz* param_1, f32* param_2, u8 
 #include "asm/d/kankyo/d_kankyo_wether/pntwind_get_info__FP4cXyzP4cXyzPfUc.s"
 }
 #pragma pop
+#endif
 
 /* 8005B23C-8005B260 055B7C 0024+00 3/3 0/0 0/0 .text dKyw_pntwind_get_info__FP4cXyzP4cXyzPf */
 static void dKyw_pntwind_get_info(cXyz* param_0, cXyz* param_1, f32* param_2) {
@@ -1714,26 +2108,14 @@ void dKyw_pntlight_collision_get_info(cXyz* param_0, cXyz* param_1, f32* param_2
 }
 
 /* 8005B284-8005B2F8 055BC4 0074+00 0/0 1/1 0/0 .text            dKyw_pntwind_get_vecpow__FP4cXyz */
-// missing mr instruction
-#ifdef NONMATCHING
-void dKyw_pntwind_get_vecpow(cXyz* out_vec) {
-    f32 pow;
-    cXyz vec;
+cXyz dKyw_pntwind_get_vecpow(cXyz* param_0) {
+    cXyz direction;
+    f32 power;
+    dKyw_pntwind_get_info(param_0, &direction, &power);
 
-    dKyw_pntwind_get_info(out_vec, &vec, &pow);
-    vec = vec * pow;
-    *out_vec = vec;
+    direction = direction * power;
+    return direction;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dKyw_pntwind_get_vecpow(cXyz* param_0) {
-    nofralloc
-#include "asm/d/kankyo/d_kankyo_wether/dKyw_pntwind_get_vecpow__FP4cXyz.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 804521A8-804521B0 0007A8 0004+04 2/2 0/0 0/0 .sdata2          @5855 */
@@ -1744,6 +2126,33 @@ SECTION_SDATA2 static f32 lit_5855[1 + 1 /* padding */] = {
 };
 
 /* 8005B2F8-8005B530 055C38 0238+00 0/0 3/3 13/13 .text dKyw_get_AllWind_vec__FP4cXyzP4cXyzPf */
+// matches with literals
+#ifdef NONMATCHING
+void dKyw_get_AllWind_vec(cXyz* param_0, cXyz* i_direction, f32* i_power) {
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dKyw_pntwind_get_info(param_0, i_direction, i_power);
+
+    cXyz sp54;
+    cXyz sp30;
+    cXyz sp24;
+
+    sp30 = env_light->mWind.vec * (env_light->mWind.pow * (1.0f - *i_power));
+    sp24 = *i_direction * (*i_power * 5.0f);
+    sp54 = sp30 + sp24;
+    *i_power = sp54.abs();
+
+    sp54 = sp54.normZP();
+    if (sp54 != cXyz::Zero) {
+        i_direction->x = sp54.x;
+        i_direction->y = sp54.y;
+        i_direction->z = sp54.z;
+    } else {
+        i_direction->x = env_light->mWind.vec.x;
+        i_direction->y = env_light->mWind.vec.y;
+        i_direction->z = env_light->mWind.vec.z;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1752,6 +2161,7 @@ asm void dKyw_get_AllWind_vec(cXyz* param_0, cXyz* param_1, f32* param_2) {
 #include "asm/d/kankyo/d_kankyo_wether/dKyw_get_AllWind_vec__FP4cXyzP4cXyzPf.s"
 }
 #pragma pop
+#endif
 
 /* 8005B530-8005B60C 055E70 00DC+00 0/0 0/0 5/5 .text            dKyw_get_AllWind_vecpow__FP4cXyz */
 // matches with literals
@@ -1803,5 +2213,3 @@ void dKyw_rain_set(int count) {
     g_env_light.mRainCount = count;
     g_env_light.mRainCountOrig = count;
 }
-
-/* 8037A368-8037A368 0069C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

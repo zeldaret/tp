@@ -682,6 +682,7 @@ int daNpcCd_c::loadResrc(int param_0, int param_1) {
     if (result != cPhs_COMPLEATE_e) {
         return result;
     }
+    return result;
 }
 
 /* 80156C50-80156D1C 151590 00CC+00 0/0 0/0 1/1 .text            removeResrc__9daNpcCd_cFii */

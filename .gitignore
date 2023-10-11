@@ -28,6 +28,7 @@ docs/doxygen/
 
 # Python
 __pycache__/
+venv/
 
 m2ctx.py
 ctx.c

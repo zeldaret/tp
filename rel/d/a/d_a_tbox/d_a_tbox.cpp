@@ -443,7 +443,6 @@ extern "C" extern char const* const d_a_tbox__stringBase0;
 // External References:
 //
 
-extern "C" void OSReport_Error();
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
@@ -583,7 +582,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcmp();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];

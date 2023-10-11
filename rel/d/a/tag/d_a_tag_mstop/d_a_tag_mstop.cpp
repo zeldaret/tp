@@ -156,7 +156,7 @@ static int daTagMstop_Delete(daTagMstop_c* i_this) {
 
 /* 805A63C4-805A63F8 000304 0034+00 1/1 0/0 0/0 .text            eventOrder__12daTagMstop_cFv */
 void daTagMstop_c::eventOrder() {
-    mEvtInfo.i_onCondition(1);
+    mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
     fopAcM_orderSpeakEvent(this, 0, 0);
 }
 
@@ -307,18 +307,18 @@ static actor_method_class l_daTagMstop_Method = {
 
 /* 805A69A4-805A69D4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Mstop */
 extern actor_process_profile_definition g_profile_Tag_Mstop = {
-    -3,                     // mLayerID
+    fpcLy_CURRENT_e,        // mLayerID
     7,                      // mListID
-    -3,                     // mListPrio
+    fpcPi_CURRENT_e,        // mListPrio
     PROC_Tag_Mstop,         // mProcName
     &g_fpcLf_Method.mBase,  // mSubMtd
     sizeof(daTagMstop_c),   // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
-    0x0101,                 // mPriority
+    257 ,                   // mPriority
     &l_daTagMstop_Method,   // mSubMtd
-    0x00044000,             // mStatus
-    3,                      // mActorType
-    0x0E,                   // mCullType
+    0x44000,                // mStatus
+    fopAc_ENV_e,            // mActorType
+    fopAc_CULLBOX_CUSTOM_e, // mCullType
 };

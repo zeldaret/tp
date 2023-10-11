@@ -39,7 +39,7 @@ public:
     /* vt[17] */ virtual void* do_getMaxFreeBlock(void); /* override */
     /* vt[18] */ virtual s32 do_getTotalFreeSize(void);  /* override */
 
-    /* vt[21] */ virtual u32 state_register(JKRHeap::TState*, u32) const; /* override */
+    /* vt[21] */ virtual void state_register(JKRHeap::TState*, u32) const; /* override */
     /* vt[22] */ virtual bool state_compare(JKRHeap::TState const&,
                                             JKRHeap::TState const&) const; /* override */
 
@@ -56,5 +56,9 @@ public:
 
     static JKRSolidHeap* create(u32, JKRHeap*, bool);
 };
+
+inline JKRSolidHeap* JKRCreateSolidHeap(u32 param_0, JKRHeap* heap, bool param_2) {
+    return JKRSolidHeap::create(param_0, heap, param_2);
+}
 
 #endif /* JKRSOLIDHEAP_H */

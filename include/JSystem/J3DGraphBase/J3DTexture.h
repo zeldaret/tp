@@ -32,9 +32,9 @@ public:
         mTexMtxInfo = info;
     }
     /* 803238C4 */ void load(u32) const;
-    /* 80323900 */ void calc(f32 const (*)[4]);
-    /* 80323920 */ void calcTexMtx(f32 const (*)[4]);
-    /* 80323C0C */ void calcPostTexMtx(f32 const (*)[4]);
+    /* 80323900 */ void calc(const Mtx);
+    /* 80323920 */ void calcTexMtx(const Mtx);
+    /* 80323C0C */ void calcPostTexMtx(const Mtx);
     /* 80324358 */ void loadTexMtx(u32) const;
     /* 803243BC */ void loadPostTexMtx(u32) const;
 
@@ -62,6 +62,8 @@ struct J3DTexCoord : public J3DTexCoordInfo {
         *(J3DTexCoordInfo*)this = *param_1;
     }
 
+    u8 getTexGenType() { return mTexGenType; }
+    u8 getTexGenSrc() { return mTexGenSrc; }
     u8 getTexGenMtx() { return mTexGenMtx & 0xff; }
     u16 getTexMtxReg() { return mTexMtxReg & 0xff; }
 

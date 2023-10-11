@@ -191,7 +191,6 @@ extern "C" void reinitGX__6J3DSysFv();
 extern "C" bool entry__9J3DPacketFP13J3DDrawBuffer();
 extern "C" void entryImm__13J3DDrawBufferFP9J3DPacketUs();
 extern "C" void __as__12J3DLightInfoFRC12J3DLightInfo();
-extern "C" void DCStoreRangeNoSync();
 extern "C" void PSMTXCopy();
 extern "C" void PSMTXConcat();
 extern "C" void GXSetVtxDesc();

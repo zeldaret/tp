@@ -67,18 +67,18 @@ static actor_method_class l_daSetBgObj_Method = {
 
 /* 80485F3C-80485F6C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_SET_BG_OBJ */
 extern actor_process_profile_definition g_profile_SET_BG_OBJ = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_SET_BG_OBJ,
     &g_fpcLf_Method.mBase,
     sizeof(daSetBgObj_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x02F2,
+    754,
     &l_daSetBgObj_Method,
-    0x00040100,
-    0,
-    14,
+    0x40100,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

@@ -6,6 +6,14 @@
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "JSystem/JAudio2/JASAiCtrl.h"
 #include "JSystem/JAudio2/JASDriverIF.h"
+#include "JSystem/JAudio2/JASResArcLoader.h"
+#include "JSystem/JAudio2/JASSeqParser.h"
+#include "JSystem/JAudio2/JAUInitializer.h"
+#include "JSystem/JAudio2/JAUSectionHeap.h"
+#include "JSystem/JAudio2/JAUStreamAramMgr.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
+#include "Z2AudioLib/Z2AudioArcLoader.h"
+#include "Z2AudioLib/Z2SoundHandles.h"
 #include "MSL_C/stdio.h"
 #include "MSL_C/stdlib.h"
 #include "dol2asm.h"
@@ -25,73 +33,6 @@ struct Z2Param {
     static f32 VOL_SE_CHAR_MOVE_DEFAULT;
     static f32 VOL_SE_OBJECT_DEFAULT;
     static f32 VOL_SE_ATMOSPHERE_DEFAULT;
-};
-
-struct JAUSection {
-    /* 802A50F8 */ void finishBuild();
-};
-
-struct Z2AudioArcLoader {
-    /* 802A9A34 */ Z2AudioArcLoader(JAUSection*);
-};
-
-struct JAU_JASInitializer {
-    /* 802A4AD0 */ JAU_JASInitializer();
-    /* 802A4B28 */ void initJASystem(JKRSolidHeap*);
-};
-
-struct JAU_JAIInitializer {
-    /* 802A4D3C */ JAU_JAIInitializer();
-    /* 802A4D60 */ void initJAInterface();
-};
-
-template <typename A0>
-struct JAUStreamStaticAramMgr_ {};
-/* JAUStreamStaticAramMgr_<1> */
-struct JAUStreamStaticAramMgr___template0 {
-    /* 802CDB68 */ void func_802CDB68(void* _this);
-    /* 802CDC08 */ void func_802CDC08(void* _this, u32);
-    /* 802CDCEC */ void func_802CDCEC(void* _this, u32*);
-};
-
-template <typename A0>
-struct JAUStreamAramMgrBase_ {};
-/* JAUStreamAramMgrBase_<1> */
-struct JAUStreamAramMgrBase___template0 {
-    /* 802CD7F8 */ void func_802CD7F8(void* _this);
-};
-
-struct JAUSectionHeap {
-    /* 802A5E60 */ void setSeqDataArchive(JKRArchive*);
-    /* 802A60AC */ void newDynamicSeqBlock(u32);
-};
-
-struct JAUAudioArcLoader {
-    /* 802A478C */ void load(void const*);
-};
-
-struct JAUAudioArcInterpreter {
-    /* 802A4260 */ ~JAUAudioArcInterpreter();
-};
-
-struct JASSeqParser {
-    static u8 sCallBackFunc[4];
-};
-
-struct JASResArcLoader {
-    /* 80290C04 */ void getResMaxSize(JKRArchive const*);
-};
-
-struct JASAramStream {
-    static u8 sBlockSize[4];
-};
-
-struct JAIStreamAramMgr {
-    /* 802A3B20 */ ~JAIStreamAramMgr();
-};
-
-struct JAISoundInfo {
-    /* 802A2D34 */ JAISoundInfo(bool);
 };
 
 //
@@ -228,6 +169,14 @@ SECTION_DATA extern void* __vt__10Z2AudioMgr[3] = {
 Z2AudioMgr* Z2AudioMgr::mAudioMgrPtr;
 
 /* 802CD248-802CD34C 2C7B88 0104+00 0/0 1/1 0/0 .text            __ct__10Z2AudioMgrFv */
+// wild destructors appeared!
+#ifdef NONMATCHING
+Z2AudioMgr::Z2AudioMgr() : mSoundStarter(true) {
+    mAudioMgrPtr = this;
+    mResettingFlag = false;
+    field_0x519 = false;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -236,6 +185,7 @@ asm Z2AudioMgr::Z2AudioMgr() {
 #include "asm/Z2AudioLib/Z2AudioMgr/__ct__10Z2AudioMgrFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8039CA58-8039CA58 0290B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -277,6 +227,90 @@ SECTION_SDATA2 static f32 lit_3932 = 1.0f;
 
 /* 802CD34C-802CD7F8 2C7C8C 04AC+00 0/0 1/1 0/0 .text
  * init__10Z2AudioMgrFP12JKRSolidHeapUlPvP10JKRArchive          */
+// JAUSectionHeap inheritance
+#ifdef NONMATCHING
+void Z2AudioMgr::init(JKRSolidHeap* param_0, u32 param_1, void* param_2, JKRArchive* param_3) {
+    JAU_JASInitializer stack_60;
+    stack_60.field_0x1c = 0x8c;
+    stack_60.field_0x2c = 1.3f;
+    stack_60.field_0x30 = "Audiores/Waves/";
+    stack_60.field_0x04 = param_1;
+    stack_60.initJASystem(param_0);
+    JAU_JAIInitializer stack_90;
+    stack_90.field_0x0 = 0x4e;
+    stack_90.field_0x4 = 4;
+    stack_90.field_0xc = 0x30;
+    stack_90.initJAInterface();
+    JAISeMgr *seMgr = mSoundMgr.getSeMgr();
+    JAISeCategoryArrangement stack_80;
+    stack_80.mItems[0].mMaxActiveSe = 4;
+    stack_80.mItems[0].mMaxInactiveSe = 2;
+    stack_80.mItems[1].mMaxActiveSe = 2;
+    stack_80.mItems[1].mMaxInactiveSe = 1;
+    stack_80.mItems[2].mMaxActiveSe = 6;
+    stack_80.mItems[2].mMaxInactiveSe = 3;
+    stack_80.mItems[3].mMaxActiveSe = 16;
+    stack_80.mItems[3].mMaxInactiveSe = 8;
+    stack_80.mItems[4].mMaxActiveSe = 8;
+    stack_80.mItems[4].mMaxInactiveSe = 4;
+    stack_80.mItems[5].mMaxActiveSe = 6;
+    stack_80.mItems[5].mMaxInactiveSe = 3;
+    stack_80.mItems[6].mMaxActiveSe = 6;
+    stack_80.mItems[6].mMaxInactiveSe = 3;
+    stack_80.mItems[7].mMaxActiveSe = 12;
+    stack_80.mItems[7].mMaxInactiveSe = 8;
+    stack_80.mItems[8].mMaxActiveSe = 10;
+    stack_80.mItems[8].mMaxInactiveSe = 5;
+    stack_80.mItems[9].mMaxActiveSe = 8;
+    stack_80.mItems[9].mMaxInactiveSe = 4;
+    stack_80.mItems[10].mMaxActiveSe = 4;
+    stack_80.mItems[10].mMaxInactiveSe = 2;
+    seMgr->setCategoryArrangement(stack_80);
+    seMgr->getCategory(0)->getParams()->moveVolume(0.9448819f, 0);
+    seMgr->getCategory(1)->getParams()->moveVolume(1.0f, 0);
+    seMgr->getCategory(2)->getParams()->moveVolume(0.9448819f, 0);
+    seMgr->getCategory(3)->getParams()->moveVolume(0.9448819f, 0);
+    seMgr->getCategory(4)->getParams()->moveVolume(0.9448819f, 0);
+    seMgr->getCategory(5)->getParams()->moveVolume(0.9448819f, 0);
+    seMgr->getCategory(6)->getParams()->moveVolume(0.9448819f, 0);
+    seMgr->getCategory(7)->getParams()->moveVolume(0.9448819f, 0);
+    seMgr->getCategory(8)->getParams()->moveVolume(0.9448819f, 0);
+    seMgr->getCategory(9)->getParams()->moveVolume(0.9448819f, 0);
+    seMgr->getCategory(10)->getParams()->moveVolume(1.0f, 0);
+    seMgr->getParams()->moveVolume(1.0f, 0);
+    JAISeqMgr* seqMgr = mSoundMgr.getSeqMgr();
+    seqMgr->getParams()->moveVolume(1.0f, 0);
+    JAIStreamMgr* streamMgr = mSoundMgr.getStreamMgr();
+    JAUStreamStaticAramMgr_<1>* streamStaticAramMgr = new(param_0, 0) JAUStreamStaticAramMgr_<1>();
+    streamStaticAramMgr->reserveAram(NULL, 0, 0x14);
+    streamMgr->setStreamAramMgr(streamStaticAramMgr);
+    streamMgr->getParams()->moveVolume(1.0f, 0);
+    JASPoolAllocObject<Z2Audible>::newMemPool(0x4e);
+    mSoundMgr.getSeMgr()->setAudience(&mAudience);
+    mSoundMgr.getSeqMgr()->setAudience(&mAudience);
+    JASPoolAllocObject<Z2SoundHandlePool>::newMemPool(0x4e);
+    OSReport("[Z2AudioMgr::init]before Create Section: %d\n", param_0->getFreeSize());
+    JAUSectionHeap* sectionHeap = JAUNewSectionHeap(true);
+    sectionHeap->setSeqDataArchive(param_3);
+    size_t resMaxSize = JASResArcLoader::getResMaxSize(param_3);
+    sectionHeap->newDynamicSeqBlock(0xe00);
+    sectionHeap->newDynamicSeqBlock(0x17e0);
+    sectionHeap->newDynamicSeqBlock(0x5380);
+    sectionHeap->newDynamicSeqBlock(resMaxSize);
+    Z2AudioArcLoader stack_a0(sectionHeap);
+    bool baaLoadResult = stack_a0.load(param_2);
+    JUT_ASSERT(252, baaLoadResult);
+    seqMgr->setSeqDataMgr(sectionHeap->getSeqDataMgr());
+    if (sectionHeap->getStreamDataMgr()) {
+        streamMgr->setStreamDataMgr(sectionHeap->getStreamDataMgr());
+    } else {
+        streamMgr->setStreamDataMgr(&mSoundInfo);
+    }
+    sectionHeap->finishBuild();
+    initSe();
+    JASSeqParser::registerSeqCallback(seqCallback);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -285,6 +319,7 @@ asm void Z2AudioMgr::init(JKRSolidHeap* param_0, u32 param_1, void* param_2, JKR
 #include "asm/Z2AudioLib/Z2AudioMgr/init__10Z2AudioMgrFP12JKRSolidHeapUlPvP10JKRArchive.s"
 }
 #pragma pop
+#endif
 
 /* 802CD7F8-802CD888 2C8138 0090+00 1/0 0/0 0/0 .text            __dt__24JAUStreamAramMgrBase_<1>Fv
  */
@@ -306,11 +341,11 @@ void Z2AudioMgr::setOutputMode(u32 mode) {
 
 /* 802CD8B4-802CD904 2C81F4 0050+00 1/1 0/0 0/0 .text            zeldaGFrameWork__10Z2AudioMgrFv */
 void Z2AudioMgr::zeldaGFrameWork() {
-    mStatusMgr.processTime();
+    processTime();
     mSpeechMgr.framework();
-    mSeMgr.processSeFramework();
-    mSeqMgr.processBgmFramework();
-    mStatusMgr.processHeartGaugeSound();
+    processSeFramework();
+    processBgmFramework();
+    processHeartGaugeSound();
 }
 
 /* 802CD904-802CD974 2C8244 0070+00 0/0 1/1 0/0 .text            gframeProcess__10Z2AudioMgrFv */
@@ -322,7 +357,7 @@ void Z2AudioMgr::gframeProcess() {
         }
     } else {
         mSoundMgr.framework();
-        mSceneMgr.framework();
+        framework();
     }
 }
 
@@ -378,6 +413,16 @@ asm bool Z2AudioMgr::hasReset() const {
 
 /* 802CDB1C-802CDB68 2C845C 004C+00 1/0 1/0 0/0 .text
  * startSound__10Z2AudioMgrF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f> */
+// vtable order
+#ifdef NONMATCHING
+int Z2AudioMgr::startSound(JAISoundID param_0, JAISoundHandle* param_1,
+                            JGeometry::TVec3<f32> const* param_2) {
+    if (mResettingFlag) {
+        return 0;
+    }
+    return mSoundMgr.startSound(param_0, param_1, param_2);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -388,6 +433,7 @@ extern "C" asm void func_802CDB1C() {
 #include "asm/Z2AudioLib/Z2AudioMgr/func_802CDB1C.s"
 }
 #pragma pop
+#endif
 
 /* 802CDB68-802CDC08 2C84A8 00A0+00 1/0 0/0 0/0 .text __dt__26JAUStreamStaticAramMgr_<1>Fv */
 #pragma push

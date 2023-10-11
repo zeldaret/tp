@@ -24,7 +24,14 @@ public:
         /* 80009650 */ void draw();
 
         u8 getEnable() { return mEnable; }
+        void setEnable(u8 i_enable) { mEnable = i_enable; }
         GXColor* getMonoColor() { return &mMonoColor; }
+        void setPoint(u8 i_point) { mPoint = i_point; }
+        void setBlureSize(u8 i_size) { mBlureSize = i_size; }
+        void setBlureRatio(u8 i_ratio) { mBlureRatio = i_ratio; }
+        void setBlendColor(GXColor i_color) { mBlendColor = i_color; }
+        void setMonoColor(GXColor i_color) { mMonoColor = i_color; }
+        void setMode(u8 i_mode) { mMode = i_mode; }
 
         /* 0x00 */ GXColor mBlendColor;
         /* 0x04 */ GXColor mMonoColor;

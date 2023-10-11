@@ -1,3 +1,8 @@
+/**
+ * d_a_alink_copyrod.inc
+ * Player Dominion Rod action handling
+ */
+
 #include "rel/d/a/d_a_cstatue/d_a_cstatue.h"
 
 /* 800E12E0-800E1310 0DBC20 0030+00 1/1 0/0 0/0 .text            checkLv6BossRoom__9daAlink_cFv */
@@ -68,7 +73,7 @@ BOOL daAlink_c::checkForestOldCentury() {
 /* 800E145C-800E1530 0DBD9C 00D4+00 1/0 0/0 0/0 .text            checkCopyRodTopUse__9daAlink_cFv */
 BOOL daAlink_c::checkCopyRodTopUse() {
     // Event flag 0x2580: Dominion Rod power restored
-    return (i_dComIfGs_isEventBit(0x2580) && !(mProcID == PROC_UNEQUIP && field_0x300e != 0)) ||
+    return (i_dComIfGs_isEventBit(0x2580) && !(mProcID == PROC_UNEQUIP && field_0x300e.x != 0)) ||
            i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x15 ||
            checkForestOldCentury();
 }
@@ -378,7 +383,7 @@ int daAlink_c::procCopyRodSwingInit() {
     mNormalSpeed = FLOAT_LABEL(lit_6108);
     current.angle.y = shape_angle.y;
     field_0x300c = 1;
-    field_0x300e = 0;
+    field_0x300e.x = 0;
 
     voiceStart(Z2SE_AL_V_ATTACK_S);
     mAtCps[0].SetR(lit_11442);
@@ -400,16 +405,16 @@ int daAlink_c::procCopyRodSwing() {
             setCopyRodControllAnime();
         }
     } else if (frameCtrl->getFrame() >= field_0x3478 && frameCtrl->getFrame() < field_0x347c) {
-        if (field_0x300e == 0) {
+        if (field_0x300e.x == 0) {
             seStartSwordCut(Z2SE_AL_COPYROD_SWING);
         }
 
-        field_0x300e = 1;
+        field_0x300e.x = 1;
         if (changeCutReverseProc(ANM_CUT_RECOIL_A)) {
             return 1;
         }
     } else {
-        field_0x300e = 0;
+        field_0x300e.x = 0;
     }
 
     return 1;

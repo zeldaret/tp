@@ -176,7 +176,7 @@ void daTagLv2PrChk_c::actionEnd() {}
 /* 805A5294-805A52F4 0006B4 0060+00 1/1 0/0 0/0 .text            seStartWrong__15daTagLv2PrChk_cFv
  */
 void daTagLv2PrChk_c::seStartWrong() {
-    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_SYS_RESULT_WRONG, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    Z2GetAudioMgr()->seStart(Z2SE_SYS_RESULT_WRONG, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
 }
 
 /* 805A52F4-805A52FC 000714 0008+00 1/1 0/0 0/0 .text            _delete__15daTagLv2PrChk_cFv */
@@ -212,9 +212,9 @@ static actor_method_class l_daTagLv2PrChk_Method = {
 
 /* 805A53DC-805A540C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Lv2PrChk */
 extern actor_process_profile_definition g_profile_Tag_Lv2PrChk = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_Tag_Lv2PrChk,
     &g_fpcLf_Method.mBase,
     sizeof(daTagLv2PrChk_c),
@@ -224,6 +224,6 @@ extern actor_process_profile_definition g_profile_Tag_Lv2PrChk = {
     558,
     &l_daTagLv2PrChk_Method,
     0x40000,
-    0,
-    14,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

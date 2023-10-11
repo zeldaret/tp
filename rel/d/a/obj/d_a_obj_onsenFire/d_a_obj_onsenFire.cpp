@@ -21,7 +21,7 @@ int daObjOnsenFire_c::execute() {
     dComIfGp_particle_setSimple(0x100,&current.pos,0xff,g_whiteColor,g_whiteColor,0,0.0f);
     dComIfGp_particle_setSimple(0x101,&current.pos,0xff,g_whiteColor,g_whiteColor,0,0.0f);
     dComIfGp_particle_setSimple(0x103,&current.pos,0xff,g_whiteColor,g_whiteColor,0,0.0f);
-    Z2AudioMgr::getInterface()->mSeMgr.seStartLevel(Z2SE_OBJ_ONSEN_WARM_FIRE,&current.pos,0,0,1.0f,1.0f,-1.0f,-1.0f,0);
+    Z2AudioMgr::getInterface()->seStartLevel(Z2SE_OBJ_ONSEN_WARM_FIRE,&current.pos,0,0,1.0f,1.0f,-1.0f,-1.0f,0);
     return 1;
 }
 
@@ -53,18 +53,18 @@ static actor_method_class l_daObjOnsenFire_Method = {
 
 /* 80CA84A0-80CA84D0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_ONSEN_FIRE */
 extern actor_process_profile_definition g_profile_OBJ_ONSEN_FIRE = {
-    -3,                        // mLayerID         
+    fpcLy_CURRENT_e,           // mLayerID         
     3,                         // mListID       
-    -3,                        // mListPrio        
+    fpcPi_CURRENT_e,           // mListPrio        
     PROC_OBJ_ONSEN_FIRE,       // mProcName                           
     &g_fpcLf_Method.mBase,     // mSubMtd                           
     sizeof(daObjOnsenFire_c),  // mSize                               
     0,                         // mSizeOther       
     0,                         // mParameters              
     &g_fopAc_Method.base,      // mSubMtd                          
-    0x0264,                    // mPriority                 
+    612,                       // mPriority                 
     &l_daObjOnsenFire_Method,  // mSubMtd                              
-    0x00044000,                // mStatus                 
-    0,                         // mActorType       
-    0x0E,                      // mCullType        
+    0x44000,                   // mStatus                 
+    fopAc_ACTOR_e,             // mActorType       
+    fopAc_CULLBOX_CUSTOM_e,    // mCullType        
 };

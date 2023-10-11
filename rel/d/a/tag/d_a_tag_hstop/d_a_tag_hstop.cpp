@@ -148,7 +148,7 @@ int daTagHstop_c::execute() {
                 }
             } else if (field_0x573 == 2 && !i_dComIfGp_getHorseActor()->checkTurnStand()) {
                 fopAcM_orderSpeakEvent(this, 0, 0);
-                mEvtInfo.i_onCondition(1);
+                mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
             }
         } else if (mPrm1 == 2 && !i_dComIfGp_event_runCheck()) {
             if (dComIfGs_getArrowNum() == 0 && !dComIfGs_isSwitch(0x8D, fopAcM_GetHomeRoomNo(this)))
@@ -193,18 +193,18 @@ static actor_method_class l_daTagHstop_Method = {
 
 /* 805A4B44-805A4B74 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Hstop */
 extern actor_process_profile_definition g_profile_Tag_Hstop = {
-    -3,
+    fpcLy_CURRENT_e,
     3,
-    0xFFFD,
+    fpcPi_CURRENT_e,
     PROC_Tag_Hstop,
     &g_fpcLf_Method.mBase,
     sizeof(daTagHstop_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x01B3,
+    435,
     &l_daTagHstop_Method,
-    0x00040000,
-    3,
-    14,
+    0x40000,
+    fopAc_ENV_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

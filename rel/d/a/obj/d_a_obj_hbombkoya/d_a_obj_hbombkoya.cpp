@@ -259,7 +259,7 @@ int daObjHBombkoya_c::Execute(Mtx** param_0) {
             };
 
             if (setParticle(particle_ids, 8, ptcl_set_table, 8, mTimer)) {
-                Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_OBJ_BOMB_EXPLODE, &current.pos, 0, 0, 1.0f,
+                Z2GetAudioMgr()->seStart(Z2SE_OBJ_BOMB_EXPLODE, &current.pos, 0, 0, 1.0f,
                                                 1.0f, -1.0f, -1.0f, 0);
             }
 
@@ -281,13 +281,13 @@ int daObjHBombkoya_c::Execute(Mtx** param_0) {
                                                             &shape_angle, NULL);
                 }
 
-                Z2GetAudioMgr()->mSeMgr.seStartLevel(Z2SE_OBJ_BOMB_HOUSE_BURN, &current.pos, 900, 0,
+                Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_BOMB_HOUSE_BURN, &current.pos, 900, 0,
                                                      1.0f, 1.0f, -1.0f, -1.0f, 0);
             } else {
                 i_fopAcM_onSwitch(this, getSw2No());
 
                 if (mTimer == 170) {
-                    Z2GetAudioMgr()->mSeMgr.seStart(Z2SE_OBJ_BOMB_HOUSE_EXPLD, &current.pos, 0, 0,
+                    Z2GetAudioMgr()->seStart(Z2SE_OBJ_BOMB_HOUSE_EXPLD, &current.pos, 0, 0,
                                                     1.0f, 1.0f, -1.0f, -1.0f, 0);
                 }
 

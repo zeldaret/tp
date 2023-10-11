@@ -40,6 +40,24 @@ struct J3DTextureSRTInfo {
     /* 0x08 */ s16 mRotation;
     /* 0x0C */ f32 mTranslationX;
     /* 0x10 */ f32 mTranslationY;
+
+    inline void operator=(J3DTextureSRTInfo const& other) {
+        register const f32* src = &other.mScaleX;
+        register f32* dst = &mScaleX;
+        register f32 xy;
+        asm {
+            psq_l xy, 0(src), 0, 0
+            psq_st xy, 0(dst), 0, 0
+        };
+        // Unclear why there's a 4 byte copy here.
+        *(u32*)&mRotation = *(u32*)&other.mRotation;
+        src = &other.mTranslationX;
+        dst = &mTranslationX;
+        asm {
+            psq_l xy, 0(src), 0, 0
+            psq_st xy, 0(dst), 0, 0
+        };
+    }
 };  // Size: 0x14
 
 struct J3DTexMtxInfo {
@@ -47,7 +65,7 @@ struct J3DTexMtxInfo {
     /* 80325794 */ void setEffectMtx(Mtx);
 
     /* 0x00 */ u8 mProjection;
-    /* 0x01 */ s8 mInfo;
+    /* 0x01 */ u8 mInfo;
     /* 0x04 */ Vec mCenter;
     /* 0x10 */ J3DTextureSRTInfo mSRT;
     /* 0x24 */ Mtx44 mEffectMtx;    
@@ -80,7 +98,7 @@ struct J3DFogInfo {
 struct J3DNBTScaleInfo {
     /* 8032587C */ void operator=(J3DNBTScaleInfo const&);
 
-    /* 0x0 */ u8 mbHasScale;
+    /* 0x0 */ bool mbHasScale;
     /* 0x4 */ Vec mScale;
 };  // Size: 0x10
 

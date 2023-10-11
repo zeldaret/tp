@@ -94,18 +94,18 @@ static actor_method_class daTag_Lv5Soup_MethodTable = {
 
 /* 80D5B1AC-80D5B1DC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TAG_LV5SOUP */
 extern actor_process_profile_definition g_profile_TAG_LV5SOUP = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    0xFFFD,
+    fpcPi_CURRENT_e,
     0x122,
     &g_fpcLf_Method.mBase,
     sizeof(daTag_Lv5Soup_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x0046,
+    70,
     &daTag_Lv5Soup_MethodTable,
-    0x00064100,
+    0x64100,
     5,
-    14,
+    fopAc_CULLBOX_CUSTOM_e,
 };

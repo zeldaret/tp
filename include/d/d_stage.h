@@ -108,7 +108,8 @@ struct stage_plight_info_class {
     /* 0x00 */ Vec m_position;
     /* 0x0C */ f32 m_radius;
     /* 0x10 */ u8 field_0x10[0x18 - 0x10];
-    /* 0x18 */ GXColor m_color;
+    /* 0x18 */ color_RGB_class m_color;
+    /* 0x1B */ u8 m_fluctuation;
 };  // Size: 0x1C
 
 // PALE
@@ -298,8 +299,15 @@ struct dStage_FloorInfo_c {
     // FLOR
 };
 
+class dStage_Lbnk_dt_c {
+public:
+    /* 0x0 */ u8 field_0x0[0x2 - 0x0];
+    /* 0x2 */ u8 field_0x2;
+};
+
 struct dStage_Lbnk_c {
-    // LBNK
+    /* 0x0 */ int num;
+    /* 0x4 */ dStage_Lbnk_dt_c* entries;
 };
 
 struct dStage_Elst_data {
@@ -1094,6 +1102,14 @@ inline f32 dStage_FileList_dt_SeaLevel(dStage_FileList_dt_c* p_fList) {
     return p_fList->mSeaLevel;
 }
 
+inline int dStage_FileList_dt_GlobalWindLevel(dStage_FileList_dt_c* i_fili) {
+    return (i_fili->mParameters >> 0x12) & 3;
+}
+
+inline int dStage_FileList_dt_GlobalWindDir(dStage_FileList_dt_c* i_fili) {
+    return (i_fili->mParameters >> 0xF) & 7;
+}
+
 inline f32 dStage_FileList2_dt_GetLeftRmX(dStage_FileList2_dt_c* p_fList2) {
     return p_fList2->mLeftRmX;
 }
@@ -1124,6 +1140,14 @@ inline int dStage_MapEvent_dt_c_getEventSCutSW(dStage_MapEvent_dt_c* event) {
 
 inline int dStage_MapEvent_dt_c_getEventSCutType(dStage_MapEvent_dt_c* event) {
     return event->field_0x8 >> 1 & 3;
+}
+
+inline int dStage_lbnkWIND(dStage_Lbnk_dt_c* i_data) {
+    return (i_data->field_0x2 >> 3) & 7;
+}
+
+inline int dStage_lbnkWlevel(dStage_Lbnk_dt_c* i_data) {
+    return (i_data->field_0x2 >> 6) & 3;
 }
 
 #endif /* D_D_STAGE_H */

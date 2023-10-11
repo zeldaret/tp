@@ -158,7 +158,7 @@ void dScnLogo_c::progSelDraw() {
             }
         }
 
-        if (mDoCPd_c::getTrigA(0) || mTimer == 0) {
+        if (mDoCPd_c::getTrigA(PAD_1) || mTimer == 0) {
             if (field_0x209 == 0) {
                 mProgressiveSel->getPicture()->changeTexture(mProgressivePro, 0);
                 setProgressiveMode(1);
@@ -330,7 +330,7 @@ void dScnLogo_c::warningDispDraw() {
     }
 
     if (mTimer == 0 ||
-        mDoCPd_c::getTrig(0) & (CButton::A | CButton::B | CButton::X | CButton::Y | CButton::START |
+        mDoCPd_c::getTrig(PAD_1) & (CButton::A | CButton::B | CButton::X | CButton::Y | CButton::START |
                                 CButton::Z | CButton::L | CButton::R | CButton::DPAD_LEFT |
                                 CButton::DPAD_RIGHT | CButton::DPAD_DOWN | CButton::DPAD_UP)) {
         mExecCommand = EXEC_WARNING_OUT;
@@ -536,7 +536,7 @@ static int phase_1(dScnLogo_c* logo) {
     }
 
     if (!mDoAud_zelAudio_c::isInitFlag() ||
-        Z2AudioMgr::getInterface()->mSceneMgr.checkFirstWaves()) {
+        Z2AudioMgr::getInterface()->checkFirstWaves()) {
         return 0;
     }
 
@@ -572,7 +572,7 @@ int dScnLogo_c::create() {
     mpHeap->becomeCurrentHeap();
 
     dvdDataLoad();
-    Z2AudioMgr::getInterface()->mSceneMgr.loadStaticWaves();
+    Z2AudioMgr::getInterface()->loadStaticWaves();
     mDoGph_gInf_c::setTickRate((OS_BUS_CLOCK / 4) / 60);
     mDoGph_gInf_c::waitBlanking(0);
     field_0x20a = 0;
@@ -761,9 +761,9 @@ static dScnLogo_Method l_dScnLogo_Method[5] = {
 
 /* 803C2FE4-803C300C -00001 0028+00 0/0 0/0 1/0 .data            g_profile_LOGO_SCENE */
 extern scene_process_profile_definition g_profile_LOGO_SCENE = {
-    0,
+    fpcLy_ROOT_e,
     1,
-    -3,
+    fpcPi_CURRENT_e,
     PROC_LOGO_SCENE,
     &g_fpcNd_Method.mBase,
     sizeof(dScnLogo_c),

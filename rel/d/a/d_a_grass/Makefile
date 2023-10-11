@@ -21,6 +21,7 @@ M73_LIBS := \
 M73_CFLAGS := \
 	-sdata 0 \
 	-sdata2 0 \
+	-sym on \
 
 M73_LDFLAGS := \
 	-nodefaults \

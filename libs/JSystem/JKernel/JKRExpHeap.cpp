@@ -680,7 +680,7 @@ s32 JKRExpHeap::getTotalUsedSize() const {
  * appendUsedList__10JKRExpHeapFPQ210JKRExpHeap9CMemBlock       */
 void JKRExpHeap::appendUsedList(JKRExpHeap::CMemBlock* newblock) {
     if (!newblock) {
-        JUTException::panic_f(__FILE__, 1568, "%s", "bad appendUsedList\n");
+        JUTException::panic(__FILE__, 1568, "bad appendUsedList\n");
     }
 
     CMemBlock* block = mTailUsedList;
@@ -824,7 +824,7 @@ void JKRExpHeap::joinTwoBlocks(CMemBlock* block) {
     if (endAddr > nextAddr) {
         JUTWarningConsole_f(":::Heap may be broken. (block = %x)", block);
         JKRGetCurrentHeap()->dump();
-        JUTException::panic_f(__FILE__, 1820, "%s", "Bad Block\n");
+        JUTException::panic(__FILE__, 1820, "Bad Block\n");
     }
 
     if (endAddr == nextAddr) {
@@ -1083,7 +1083,7 @@ JKRExpHeap::CMemBlock* JKRExpHeap::CMemBlock::getHeapBlock(void* ptr) {
 
 /* 802D0938-802D09E0 2CB278 00A8+00 1/0 0/0 0/0 .text
  * state_register__10JKRExpHeapCFPQ27JKRHeap6TStateUl           */
-u32 JKRExpHeap::state_register(JKRHeap::TState* p, u32 param_1) const {
+void JKRExpHeap::state_register(JKRHeap::TState* p, u32 param_1) const {
     p->mId = param_1;
     if (param_1 <= 0xff) {
         p->mUsedSize = getUsedSize(param_1);
@@ -1104,7 +1104,6 @@ u32 JKRExpHeap::state_register(JKRHeap::TState* p, u32 param_1) const {
         }
     }
     p->mCheckCode = checkCode;
-    return checkCode;
 }
 
 /* 802D09E0-802D0A10 2CB320 0030+00 1/0 0/0 0/0 .text

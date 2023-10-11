@@ -67,7 +67,7 @@ extern "C" f32 ga4cSignature__Q28JMessage4data[1 + 1 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JMessage::TResource::toMessageIndex_messageID(u32 param_0, u32 param_1,
+asm u16 JMessage::TResource::toMessageIndex_messageID(u32 param_0, u32 param_1,
                                                        bool* param_2) const {
     nofralloc
 #include "asm/JSystem/JMessage/resource/toMessageIndex_messageID__Q28JMessage9TResourceCFUlUlPb.s"
@@ -230,16 +230,13 @@ bool JMessage::TParse::parseHeader_next(void const** ppData_inout, u32* puBlock_
         return 1;
     }
 
-    pResource_ = pContainer_->resContainer_.Do_create();
+    TResourceContainer::TCResource* resContainer = &pContainer_->resContainer_;
+    pResource_ = resContainer->Do_create();
 
     if (pResource_ == NULL) {
-        if (param_2 & 0x20) {
-            return 0;
-        } else {
-            return 1;
-        }
+        return param_2 & 0x20;
     } else {
-        pContainer_->resContainer_.Push_back_hack(pResource_);
+        resContainer->Push_back(pResource_);
         pResource_->setData_header(header.getRaw());
         return 1;
     }

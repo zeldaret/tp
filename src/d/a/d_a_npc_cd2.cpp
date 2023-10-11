@@ -1790,6 +1790,7 @@ int daNpcCd2_c::loadResrc(int idx, int param_1) {
     if (result != cPhs_COMPLEATE_e) {
         return result;
     }
+    return result;
 }
 
 /* 80158CBC-80158D88 1535FC 00CC+00 0/0 0/0 4/4 .text   removeResrc__10daNpcCd2_cFii */

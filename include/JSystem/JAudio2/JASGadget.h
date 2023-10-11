@@ -2,6 +2,7 @@
 #define JASGADGET_H
 
 #include "JSystem/JUtility/JUTAssert.h"
+#include "MSL_C/string.h"
 
 template<class T>
 class JASGlobalInstance {
@@ -12,7 +13,7 @@ public:
 
     JASGlobalInstance(bool param_1) {
         if (param_1) {
-            JUT_ASSERT("JASGadget.h", 0xba, sInstance == 0);
+            JUT_ASSERT(186, sInstance == 0);
             sInstance = (T*)this;
         }
     }
@@ -49,7 +50,7 @@ public:
         return mTable[index];
     }
     void set(u32 index, T* value) {
-        JUT_ASSERT("JASGadget.h", 0xe5, index < mSize);
+        JUT_ASSERT(229, index < mSize);
         mTable[index] = value;
     }
 
@@ -61,7 +62,7 @@ private:
 template<class T, size_t N>
 class JASPtrArray : public JASPtrTable<T> {
 public:
-    JASPtrArray() : JASPtrTable(mArray, N) {}
+    JASPtrArray() : JASPtrTable<T>(mArray, N) {}
 
 private:
     /* 0x08 */ T* mArray[N];

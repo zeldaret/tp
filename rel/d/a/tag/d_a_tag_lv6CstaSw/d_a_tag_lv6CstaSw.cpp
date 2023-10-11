@@ -115,18 +115,18 @@ static actor_method_class l_daLv6CstaSw_Method = {
 
 /* 80D5B830-80D5B860 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Lv6CstaSw */
 extern actor_process_profile_definition g_profile_Tag_Lv6CstaSw = {
-    -3,
+    fpcLy_CURRENT_e,
     7,
-    0xFFFD,
+    fpcPi_CURRENT_e,
     PROC_Tag_Lv6CstaSw,
     &g_fpcLf_Method.mBase,
     sizeof(daLv6CstaSw_c),
     0,
     0,
     &g_fopAc_Method.base,
-    0x0292,
+    658,
     &l_daLv6CstaSw_Method,
-    0x00044000,
-    0,
-    14,
+    0x44000,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

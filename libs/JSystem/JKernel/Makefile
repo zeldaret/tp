@@ -57,6 +57,7 @@ LIBJKERNEL_A_O_FILES := \
 	$(BUILD_DIR)/libs/JSystem/JKernel/JKRDecomp.o \
 
 LIBJKERNEL_A_CFLAGS := \
+	-sym on \
 
 LIBJKERNEL_A_LDFLAGS := \
 	-nodefaults \

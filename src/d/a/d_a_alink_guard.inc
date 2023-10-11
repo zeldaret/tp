@@ -1,3 +1,8 @@
+/**
+ * d_a_alink_guard.inc
+ * Player Shield action handling
+ */
+
 /* 800DC548-800DC5A4 0D6E88 005C+00 13/13 0/0 0/0 .text checkEnemyGroup__9daAlink_cFP10fopAc_ac_c
  */
 BOOL daAlink_c::checkEnemyGroup(fopAc_ac_c* i_actor) {
