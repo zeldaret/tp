@@ -920,33 +920,6 @@ public:
     void setAttnPos(cXyz* i_attnPos) { mAttnPos = i_attnPos; }
 };
 
-class daNpcF_Lookat_c {
-private:
-    /* 0x00 */ cXyz field_0x00[4];
-    /* 0x30 */ cXyz* mAttnPos;
-    /* 0x34 */ csXyz field_0x34[4];
-    /* 0x4C */ csXyz field_0x4c[4];
-    /* 0x64 */ csXyz field_0x64[4];
-    /* 0x7C */ csXyz mRotAngle[4];
-    /* 0x94 */ u8 field_0x94[4];
-    /* 0x98 vtable */
-
-public:
-    /* 80151038 */ void initialize();
-    /* 801510B8 */ void setParam(f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, f32, s16,
-                                 cXyz*);
-    /* 80151350 */ void calc(fopAc_ac_c*, f32 (*)[4], csXyz**, int, int, int);
-    /* 801515D4 */ void adjustMoveDisAngle(s16&, s16, s16, s16);
-    /* 80151648 */ void initCalc(fopAc_ac_c*, f32 (*)[4], cXyz*, csXyz*, f32*, cXyz&, int);
-    /* 80151A54 */ void update(cXyz*, csXyz*, f32*);
-    /* 80151B68 */ void calcMoveDisAngle(int, cXyz*, csXyz*, cXyz, int, int);
-    /* 80151F54 */ void setRotAngle();
-    /* 80151FE0 */ void clrRotAngle();
-    virtual ~daNpcF_Lookat_c() {}
-    cXyz* getAttnPos() { return mAttnPos; }
-    void setAttnPos(cXyz* i_attnPos) { mAttnPos = i_attnPos; }
-};
-
 class daNpcF_MoveBgActor_c {
 private:
 
