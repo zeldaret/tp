@@ -22,6 +22,41 @@ struct JASSoundParams {
 
     JASSoundParams() { init(); }
 
+    void clampVolume() {
+        if (mVolume < 0.0f)
+            mVolume = 0.0f;
+        else if (mVolume > 1.0f)
+            mVolume = 1.0f;
+    }
+
+    void clampFxMix(void) {
+        if (mFxMix < 0.0f)
+            mFxMix = 0.0f;
+        else if (mFxMix > 1.0f)
+            mFxMix = 1.0f;
+    }
+
+    void clampPitch() {
+        if (mPitch < 0.0f)
+            mPitch = 0.0f;
+        else if (mPitch > 8.0f)
+            mPitch = 8.0f;
+    }
+
+    void clampPan() {
+        if (mPan < 0.0f)
+            mPan = 0.0f;
+        else if (mPan > 1.0f)
+            mPan = 1.0f;
+    }
+    
+    void clampDolby() {
+        if (mDolby < 0.0f)
+            mDolby = 0.0f;
+        else if (mDolby > 1.0f)
+            mDolby = 1.0f;
+    }
+
     /* 0x00 */ f32 mVolume;
     /* 0x04 */ f32 mFxMix;
     /* 0x08 */ f32 mPitch;
