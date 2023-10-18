@@ -685,6 +685,7 @@ public:
     virtual BOOL checkCopyRodTopUse();
     virtual bool checkCopyRodEquip() const;
     virtual BOOL checkCutJumpMode() const;
+    virtual cXyz getHeadTopPos() const;
 
     bool getSumouCameraMode() const {
         bool sumouCameraMode = false;
