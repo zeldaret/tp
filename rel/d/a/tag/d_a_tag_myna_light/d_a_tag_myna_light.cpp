@@ -117,12 +117,12 @@ bool daTag_MynaLight_c::setTurnOnOffChange() {
 
 /* 80D5D148-80D5D154 000688 000C+00 1/1 0/0 0/0 .text getTurnOnTime__17daTag_MynaLight_cFv */
 u32 daTag_MynaLight_c::getTurnOnTime() {
-    return fopAcM_GetParam(this) & 0x1F;
+    return fopAcM_GetParamBit(this, 0, 5);
 }
 
 /* 80D5D154-80D5D160 000694 000C+00 1/1 0/0 0/0 .text getTurnOffTime__17daTag_MynaLight_cFv */
 u32 daTag_MynaLight_c::getTurnOffTime() {
-    return fopAcM_GetParam(this) >> 5 & 0x1F;
+    return fopAcM_GetParamBit(this, 5, 5);
 }
 
 /* 80D5D160-80D5D210 0006A0 00B0+00 1/1 0/0 0/0 .text            initialize__17daTag_MynaLight_cFv
