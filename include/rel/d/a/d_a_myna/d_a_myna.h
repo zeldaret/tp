@@ -114,6 +114,10 @@ public:
 
     daMyna_c(){};
 
+    void onEventFlag(u8 flag) {
+        field_0x92F |= (1 << flag);
+    }
+
     typedef void (daMyna_c::*ProcFunc)();
     typedef int (daMyna_c::*BaseMotionFunc)(int);
 
