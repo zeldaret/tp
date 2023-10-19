@@ -14,10 +14,6 @@
 #define TYPE_BOOMERANG 0  // only turns when hit with boomerang
 #define TYPE_WIND 1       // automatically turns
 
-extern "C" u16 func_8059B26C(u16*);
-extern "C" u8 func_8059B288(u8*);
-extern "C" s16 func_8059B2A4(s16*);
-
 /* 8059A518-8059A5C8 000078 00B0+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
 static int nodeCallBack(J3DJoint* i_joint, int param_1) {
     if (param_1 == 0) {
@@ -181,7 +177,7 @@ void daObjSwPr_c::switchCtrl() {
 
     if (mRotateSpeed == 0) {
         i_fopAcM_offSwitch(this, sw);
-    } else if (func_8059B2A4(&mSwDelayTimer) == 0) {
+    } else if (cLib_calcTimer(&mSwDelayTimer) == 0) {
         i_fopAcM_onSwitch(this, sw);
     }
 }
@@ -222,7 +218,7 @@ void daObjSwPr_c::execute_type_boomerang() {
         }
     }
 
-    if (func_8059B288(&field_0x83a) != 0) {
+    if (cLib_calcTimer(&field_0x83a) != 0) {
         mRotateSpeed = 0x2000;
     }
 
@@ -279,7 +275,7 @@ void daObjSwPr_c::execute_type_wind() {
                 }
             }
         }
-    } else if (mSwOffDelayTimer != 0 && func_8059B26C(&mSwOffDelayTimer) == 0) {
+    } else if (mSwOffDelayTimer != 0 && cLib_calcTimer(&mSwOffDelayTimer) == 0) {
         i_fopAcM_offSwitch(this, sw);
     }
 
@@ -352,36 +348,6 @@ static int daObjSwPr_Delete(daObjSwPr_c* i_this) {
 static int daObjSwPr_Create(fopAc_ac_c* i_this) {
     return static_cast<daObjSwPr_c*>(i_this)->create();
 }
-
-/* 8059B26C-8059B288 000DCC 001C+00 1/1 0/0 0/0 .text            cLib_calcTimer<Us>__FPUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm u16 func_8059B26C(u16* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swpropeller/d_a_obj_swpropeller/func_8059B26C.s"
-}
-#pragma pop
-
-/* 8059B288-8059B2A4 000DE8 001C+00 1/1 0/0 0/0 .text            cLib_calcTimer<Uc>__FPUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm u8 func_8059B288(u8* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swpropeller/d_a_obj_swpropeller/func_8059B288.s"
-}
-#pragma pop
-
-/* 8059B2A4-8059B2C0 000E04 001C+00 1/1 0/0 0/0 .text            cLib_calcTimer<s>__FPs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm s16 func_8059B2A4(s16* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swpropeller/d_a_obj_swpropeller/func_8059B2A4.s"
-}
-#pragma pop
 
 /* 8059B38C-8059B3AC -00001 0020+00 1/0 0/0 0/0 .data            l_daObjSwPr_Method */
 static actor_method_class l_daObjSwPr_Method = {

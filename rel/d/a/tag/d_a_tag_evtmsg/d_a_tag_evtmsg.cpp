@@ -10,8 +10,6 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 
-extern "C" int func_8048D760(int*);
-
 /* 8048D818-8048D824 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -236,7 +234,7 @@ BOOL daTag_EvtMsg_c::ECut_wait(int i_staffID) {
         mTimer = timer;
     }
 
-    if (func_8048D760(&mTimer) == 0) {
+    if (cLib_calcTimer(&mTimer) == 0) {
         return 1;
     }
 
@@ -270,16 +268,6 @@ static int daTag_EvtMsg_IsDelete(void* i_this) {
 
 /* 8048D6F0-8048D760 000830 0070+00 1/0 0/0 0/0 .text            __dt__14daTag_EvtMsg_cFv */
 daTag_EvtMsg_c::~daTag_EvtMsg_c() {}
-
-/* 8048D760-8048D77C 0008A0 001C+00 1/1 0/0 0/0 .text            cLib_calcTimer<i>__FPi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm int func_8048D760(int* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_evtmsg/d_a_tag_evtmsg/func_8048D760.s"
-}
-#pragma pop
 
 /* 8048D884-8048D8A4 -00001 0020+00 1/0 0/0 0/0 .data            daTag_EvtMsg_MethodTable */
 static actor_method_class daTag_EvtMsg_MethodTable = {
