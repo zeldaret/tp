@@ -130,8 +130,8 @@ int JASTaskThread::sendCmdMsg(void (*param_0)(void*), void const* param_1, u32 p
     }
     int iVar2 = sendMessage(pvVar1);
     if (iVar2 == 0) {
-        u32 heap = JASKernel::getCommandHeap();
-       ((ThreadMemPool*)pvVar1)->free((void*)heap);
+        void* heap = JASKernel::getCommandHeap();
+       ((ThreadMemPool*)pvVar1)->free(heap);
     }
     return iVar2;
 }
@@ -146,8 +146,8 @@ int JASTaskThread::sendCmdMsg(void (*param_0)(void*), void* param_1) {
     }
     int iVar2 = sendMessage(pvVar1);
     if (iVar2 == 0) {
-        u32 heap = JASKernel::getCommandHeap();
-       ((ThreadMemPool*)pvVar1)->free((void*)heap);
+        void* heap = JASKernel::getCommandHeap();
+       ((ThreadMemPool*)pvVar1)->free(heap);
     }
     return iVar2;
 }

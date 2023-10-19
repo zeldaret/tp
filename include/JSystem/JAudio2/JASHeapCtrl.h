@@ -15,19 +15,20 @@ public:
     /* 802901AC */ void initRootHeap(void*, u32);
     /* 8029021C */ bool alloc(JASHeap*, u32);
     /* 802903F4 */ bool allocTail(JASHeap*, u32);
-    /* 802904E4 */ void free();
+    /* 802904E4 */ bool free();
     /* 80290608 */ void insertChild(JASHeap*, JASHeap*, void*, u32, bool);
-    /* 802906F0 */ void getTailHeap();
-    /* 8029077C */ void getTailOffset();
-    /* 802907E0 */ void getCurOffset();
+    /* 802906F0 */ JASHeap* getTailHeap();
+    /* 8029077C */ u32 getTailOffset();
+    /* 802907E0 */ u32 getCurOffset();
     /* 80290B54 */ ~JASHeap();
 
     void* getBase() { return mBase; }
+    bool isAllocated() { return mBase; }
 
     /* 0x00 */ JSUTree<JASHeap> mTree;
     /* 0x1C */ OSMutex mMutex;
     /* 0x34 */ JASDisposer* mDisposer;
-    /* 0x38 */ void* mBase;
+    /* 0x38 */ u8* mBase;
     /* 0x3c */ u32 mSize;
     /* 0x40 */ JASHeap* field_0x40;
 };
@@ -35,14 +36,14 @@ public:
 namespace JASKernel {
     /* 802909B8 */ void setupRootHeap(JKRSolidHeap*, u32);
     /* 80290AC0 */ JKRHeap* getSystemHeap();
-    /* 80290AC8 */ u32 getCommandHeap();
+    /* 80290AC8 */ void* getCommandHeap();
     /* 80290AD0 */ void setupAramHeap(u32, u32);
     /* 80290B08 */ JASHeap* getAramHeap();
 
     extern u8 audioAramHeap[68];
-    extern u8 sAramBase[4];
+    extern u32 sAramBase;
     extern JKRHeap* sSystemHeap;
-    extern u8 sCommandHeap[4];
+    extern void* sCommandHeap;
 };
 
 struct JASGenericMemPool {

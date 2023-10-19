@@ -212,7 +212,7 @@ public:
         return *this;
     }
 
-    T& operator*() { return *this->getObject(); }
+    T* operator*() { return this->getObject(); }
 
     T* operator->() { return this->getObject(); }
 
