@@ -8,8 +8,6 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 
-extern "C" u8 func_8059E7D0(u8*);
-
 /* 8059E838-8059E844 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -151,7 +149,7 @@ int daScExit_c::demoProc() {
 
     switch (act_id) {
     case WAIT_e:
-        if (func_8059E7D0(&mTimer) == 0) {
+        if (cLib_calcTimer(&mTimer) == 0) {
             dComIfGp_evmng_cutEnd(mStaffID);
         }
         break;
@@ -204,16 +202,6 @@ static int daScExit_Delete(daScExit_c* i_this) {
 static int daScExit_Create(daScExit_c* i_this) {
     return i_this->create();
 }
-
-/* 8059E7D0-8059E7EC 0006F0 001C+00 1/1 0/0 0/0 .text            cLib_calcTimer<Uc>__FPUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm u8 func_8059E7D0(u8* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_scene_exit2/d_a_scene_exit2/func_8059E7D0.s"
-}
-#pragma pop
 
 /* 8059E8CC-8059E8EC -00001 0020+00 1/0 0/0 0/0 .data            l_daScExit_Method */
 static actor_method_class l_daScExit_Method = {
