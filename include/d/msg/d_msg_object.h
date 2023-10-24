@@ -275,6 +275,7 @@ void dMsgObject_setFundRaising(u16 param_0);
 u16 dMsgObject_getFundRaising();
 void dMsgObject_addOffering(s16 param_0);
 u16 dMsgObject_getOffering();
+void dMsgObject_addTotalPrice(s16 param_0);
 
 inline dMsgObject_c* dMsgObject_getMsgObjectClass() {
     return dComIfGp_getMsgObjectClass();

@@ -2113,21 +2113,10 @@ int dMsgFlow_c::event020(mesg_flow_node_event* flow_node, fopAc_ac_c* actor) {
 
 /* 8024CD84-8024CDAC 2476C4 0028+00 1/0 0/0 0/0 .text
  * event021__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
-#ifdef NONMATCHING
 int dMsgFlow_c::event021(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
     cLib_calcTimer(&field_0x3c);
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dMsgFlow_c::event021(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/event021__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80454DA8-80454DAC 0033A8 0004+00 1/1 0/0 0/0 .sdata2          @6273 */
@@ -2614,15 +2603,5 @@ int dMsgFlow_c::event041(mesg_flow_node_event* flow_node, fopAc_ac_c*) {
 int dMsgFlow_c::event042(mesg_flow_node_event*, fopAc_ac_c*) {
     return 1;
 }
-
-/* 8024DAB0-8024DACC 2483F0 001C+00 3/3 0/0 0/0 .text            cLib_calcTimer<l>__FPl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void func_8024DAB0(void* _this, s32* param_0) {
-    nofralloc
-#include "asm/d/msg/d_msg_flow/func_8024DAB0.s"
-}
-#pragma pop
 
 /* 80399CB0-80399CB0 026310 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

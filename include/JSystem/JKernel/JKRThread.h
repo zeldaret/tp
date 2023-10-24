@@ -74,8 +74,8 @@ public:
 
 protected:
     void resume() { OSResumeThread(mThreadRecord); }
-    void sendMessage(OSMessage message) {
-        OSSendMessage(&mMessageQueue, message, OS_MESSAGE_NOBLOCK);
+    BOOL sendMessage(OSMessage message) {
+        return OSSendMessage(&mMessageQueue, message, OS_MESSAGE_NOBLOCK);
     }
     void sendMessageBlock(OSMessage message) {
         OSSendMessage(&mMessageQueue, message, OS_MESSAGE_BLOCK);
@@ -83,6 +83,15 @@ protected:
     OSMessage waitMessage() {
         OSMessage message;
         OSReceiveMessage(&mMessageQueue, &message, OS_MESSAGE_NOBLOCK);
+        return message;
+    }
+
+    OSMessage waitMessage(BOOL* received) {
+        OSMessage message;
+        BOOL rv = OSReceiveMessage(&mMessageQueue, &message, OS_MESSAGE_NOBLOCK);
+        if (received) {
+            *received = rv;
+        }
         return message;
     }
     OSMessage waitMessageBlock() {

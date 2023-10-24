@@ -34,6 +34,7 @@ tp/
 ├── .clang-format    # Clang format file.
 ├── .gitignore       # Files/folders to ignore changes to when making commits.
 ├── Doxyfile         # Doxygen configuration file.
+├── LICENSE.md       # License file containing information about CC0-1.0
 ├── Makefile         # Makefile for the project containing various targets.
 ├── Progress.md      # Markdown file that displays the current progress of the project.
 ├── README.md        # The file you're currently reading.
