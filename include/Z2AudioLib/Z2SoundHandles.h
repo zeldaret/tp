@@ -6,7 +6,7 @@
 #include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "dolphin/types.h"
 
-class Z2SoundHandlePool : public JAISoundHandle, public JSULink<Z2SoundHandlePool>, public JASPoolAllocObject<Z2SoundHandlePool> {
+class Z2SoundHandlePool : public JAISoundHandle, public JSULink<Z2SoundHandlePool> { // , public JASPoolAllocObject<Z2SoundHandlePool> {
 public:
     Z2SoundHandlePool() : JAISoundHandle(), JSULink<Z2SoundHandlePool>(this) {}
     ~Z2SoundHandlePool() {}
@@ -31,7 +31,8 @@ public:
 
     void setPos(const JGeometry::TVec3<f32>& pos);
 
-    int getNumHandles() const { return this->getNumLinks(); }
+    int getNumHandles() const { return getNumLinks(); }
+    JAISoundHandle* getHandle(int index) { return (Z2SoundHandlePool*)getNth(index); }
 
 private:
     /* 0xC */ u8 mNumHandles;

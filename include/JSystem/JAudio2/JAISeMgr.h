@@ -48,6 +48,7 @@ public:
     int getMaxActiveSe() const { return mMaxActiveSe; }
     void setMaxActiveSe(int se) { mMaxActiveSe = se; }
     void setMaxInactiveSe(int se) { mMaxInactiveSe = se; }
+    JSUList<JAISe>* getSeList() { return &mSeList; }
     int getNumSe() const { return mSeList.getNumLinks(); }
     JAIAudience* getAudience() { return (JAIAudience*)field_0x4.field_0x0; }
 

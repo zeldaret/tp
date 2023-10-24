@@ -7,6 +7,36 @@
 #include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JAudio2/JAISoundInfo.h"
 #include "dolphin/types.h"
+#include "dol2asm.h"
+
+extern "C" void func_802AB200(void* _this);
+extern "C" void __ct__17JASGenericMemPoolFv();
+extern "C" void __dt__17JASGenericMemPoolFv();
+extern "C" void alloc__17JASGenericMemPoolFUl();
+extern "C" void free__17JASGenericMemPoolFPvUl();
+extern "C" void releaseSound__14JAISoundHandleFv();
+extern "C" void stop__8JAISoundFUl();
+extern "C" void __dl__FPv();
+extern "C" void __ct__10JSUPtrLinkFPv();
+extern "C" void __dt__10JSUPtrLinkFv();
+extern "C" void __dt__10JSUPtrListFv();
+extern "C" void initiate__10JSUPtrListFv();
+extern "C" void append__10JSUPtrListFP10JSUPtrLink();
+extern "C" void remove__10JSUPtrListFP10JSUPtrLink();
+extern "C" void __register_global_object();
+extern "C" void _savegpr_26();
+extern "C" void _savegpr_28();
+extern "C" void _restgpr_26();
+extern "C" void _restgpr_28();
+extern "C" extern u8 data_80451348[8];
+
+/* 804341B8-804341C4 060ED8 000C+00 3/3 0/0 0/0 .bss             @632 */
+static u8 lit_632[12];
+
+/* 804341C4-804341D8 060EE4 0010+04 3/3 1/1 0/0 .bss
+ * memPool_$localstatic3$getMemPool___39JASPoolAllocObject<17Z2SoundHandlePool>Fv */
+extern u8 data_804341C4[16 + 4 /* padding */];
+u8 data_804341C4[16 + 4 /* padding */];
 
 // inline JAISoundID::JAISoundID(u32 pId) : mId(pId) {}
 
@@ -27,7 +57,7 @@ void Z2SoundHandles::initHandlesPool(u8 pNumHandles) {
 }
 
 /* 802AB120-802AB200 2A5A60 00E0+00 1/1 1/1 0/0 .text deleteHandlesPool__14Z2SoundHandlesFv */
-#if 1
+#ifdef NONMATCHING
 void Z2SoundHandles::deleteHandlesPool() {
     JSULink<Z2SoundHandlePool>* link;
     while (link = getFirst(), link != NULL) {
@@ -47,6 +77,16 @@ asm void Z2SoundHandles::deleteHandlesPool() {
 }
 #pragma pop
 #endif
+
+/* 802AB200-802AB254 2A5B40 0054+00 3/3 1/1 0/0 .text __dt__31JASMemPool<17Z2SoundHandlePool>Fv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void func_802AB200(void* _this) {
+    nofralloc
+#include "asm/Z2AudioLib/Z2SoundHandles/func_802AB200.s"
+}
+#pragma pop
 
 JAISoundHandle* Z2SoundHandles::getHandleSoundID(JAISoundID pSoundId) {
     JSULink<Z2SoundHandlePool>* link;
@@ -78,7 +118,7 @@ JAISoundHandle* Z2SoundHandles::getHandleUserData(u32 pUserData) {
 
 /* 802AB2D8-802AB3D0 2A5C18 00F8+00 0/0 3/3 0/0 .text            getFreeHandle__14Z2SoundHandlesFv
  */
-#if 1
+#ifdef NONMATCHING
 JAISoundHandle* Z2SoundHandles::getFreeHandle() {
     JSULink<Z2SoundHandlePool>* link;
     for (link = getFirst(); link != NULL; link = link->getNext()) {
@@ -112,7 +152,6 @@ asm JAISoundHandle* Z2SoundHandles::getFreeHandle() {
 
 /* 802AB3D0-802AB4A0 2A5D10 00D0+00 0/0 2/2 0/0 .text
  * getLowPrioSound__14Z2SoundHandlesF10JAISoundID               */
-#if 1
 JAISoundHandle* Z2SoundHandles::getLowPrioSound(JAISoundID pSoundId) {
     JAISoundInfo* sound_info = JASGlobalInstance<JAISoundInfo>::getInstance();
     JAISoundHandle* handle;
@@ -135,16 +174,6 @@ JAISoundHandle* Z2SoundHandles::getLowPrioSound(JAISoundID pSoundId) {
     }
     return NULL;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JAISoundHandle* Z2SoundHandles::getLowPrioSound(JAISoundID param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundHandles/getLowPrioSound__14Z2SoundHandlesF10JAISoundID.s"
-}
-#pragma pop
-#endif
 
 void Z2SoundHandles::stopAllSounds(u32 fadeout) {
     JSULink<Z2SoundHandlePool>* link;
@@ -172,7 +201,7 @@ bool Z2SoundHandles::isActive() const {
 
 /* 802AB538-802AB64C 2A5E78 0114+00 0/0 1/1 0/0 .text
  * setPos__14Z2SoundHandlesFRCQ29JGeometry8TVec3<f>             */
-#if 1
+#ifdef NONMATCHING
 void Z2SoundHandles::setPos(JGeometry::TVec3<f32> const& param_0) {
     JSULink<Z2SoundHandlePool>* link;
     for (link = getFirst(); link != NULL; link = link->getNext()) {

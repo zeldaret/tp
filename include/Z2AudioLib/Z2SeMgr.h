@@ -53,7 +53,7 @@ public:
     /* 802ADFF4 */ void setMultiTriggerSE(u32, Vec*, s8);
     /* 802AE184 */ void processSeFramework();
     /* 802AE524 */ void isLevelSe(JAISoundID);
-    /* 802AE5B0 */ void isSoundCulling(JAISoundID);
+    /* 802AE5B0 */ bool isSoundCulling(JAISoundID);
     /* 802B9AC4 */ void resetCrowdSize();
 
 private:
