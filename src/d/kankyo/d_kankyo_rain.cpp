@@ -2044,6 +2044,283 @@ SECTION_SDATA2 static f32 lit_6367 = 9800.0f;
 SECTION_SDATA2 static f32 lit_6368 = 19.0f / 50.0f;
 
 /* 8005FD48-80061324 05A688 15DC+00 0/0 1/1 0/0 .text            dKyr_snow_move__Fv */
+// mostly matches, 1 out of order instruction
+#ifdef NONMATCHING
+void dKyr_snow_move() {
+    f32* temp_r26;
+    cXyz* temp_r25;
+    dKankyo_snow_Packet* snow_p = g_env_light.mpSnowPacket;
+    SNOW_EFF* effect_p;
+    camera_class* camera_p = (camera_class*)dComIfGp_getCamera(0);
+    fopAc_ac_c* player_p = dComIfGp_getPlayer(0);
+
+    DOUBLE_POS spC8;
+    cXyz spB8;
+    cXyz spAC;
+    cXyz spA0;
+    cXyz sp94 = dKyw_get_wind_vecpow();
+    cXyz sp88 = dKyw_get_wind_vecpow();
+    cXyz sp7C;
+    cXyz sp70;
+
+    dBgS_ObjGndChk_All spE0;
+    cXyz sp64;
+
+    if (snow_p->field_0x6d88 <= g_env_light.mSnowCount) {
+        snow_p->field_0x6d88 = g_env_light.mSnowCount;
+    }
+
+    if (snow_p->field_0x6d88 == 0) {
+        return;
+    }
+
+    sp64 = player_p->current.pos;
+    sp64.y += 100.0f;
+    spE0.SetPos(&sp64);
+    f32 temp_f19 = dComIfG_Bgsp().GroundCross(&spE0);
+
+    dKy_set_eyevect_calc2(camera_p, &spB8, 500.0f, 500.0f);
+    dKy_set_eyevect_calc2(camera_p, &spAC, 1000.0f, 1000.0f);
+
+    if (snow_p->field_0x6d74.abs(camera_p->mLookat.mEye) > 1500.0f) {
+        snow_p->field_0x6d88 = 0;
+    }
+
+    snow_p->field_0x6d74 = camera_p->mLookat.mEye;
+    spA0.z = 0.0f;
+    spA0.y = 0.0f;
+    spA0.x = 0.0f;
+
+    cXyz* temp_r21 = dKyw_get_wind_vec();
+    f32 var_f20 = dKyw_get_wind_pow();
+    if (g_env_light.field_0xe92 == 1) {
+        var_f20 *= 1.2f;
+    }
+
+    if (strcmp(dComIfGp_getStartStageName(), "R_SP127") == 0) {
+        sp94.x = 0.3f;
+        sp94.y = 0.0f;
+        sp94.z = 0.0f;
+        var_f20 = 0.3f;
+    }
+
+    cXyz sp58;
+    spC8.x = camera_p->mLookat.mCenter.x - camera_p->mLookat.mEye.x;
+    spC8.y = 0.0f;
+    spC8.z = camera_p->mLookat.mCenter.z - camera_p->mLookat.mEye.z;
+    vectle_calc(&spC8, &sp58);
+
+    snow_p->field_0x6d84 =
+        cM3d_VectorProduct2d(0.0f, 0.0f, -temp_r21->x, -temp_r21->z, sp58.x, sp58.z);
+
+    f32 temp_f20_1 = fabsf((temp_r21->x * sp58.x) + (temp_r21->z * sp58.z));
+    snow_p->field_0x6d80 = ((1.0f - temp_f20_1) * var_f20) * (1.0f - fabsf(temp_r21->y + 0.3f));
+    snow_p->field_0x6d80 *= fabsf(snow_p->field_0x6d84);
+
+    for (int i = snow_p->field_0x6d88 - 1; i >= 0; i--) {
+        f32 temp_f27 = -(2.0f + cM_rndF(0.08f));
+        f32 temp_f26 = 2.0f * (5.0f + (f32)(i & 15));
+
+        effect_p = &snow_p->mSnowEff[i];
+        switch (snow_p->mSnowEff[i].mStatus) {
+        case 0:
+            effect_p->mWindSpeed = temp_f26;
+            effect_p->mGravity = temp_f27;
+            effect_p->mTimer = 0;
+            effect_p->mBasePos.x = spAC.x + cM_rndFX(1100.0f);
+            effect_p->mBasePos.y = spAC.y + 1100.0f;
+            effect_p->mBasePos.z = spAC.z + cM_rndFX(1100.0f);
+            effect_p->mPosition.x = spB8.x + cM_rndFX(550.0f);
+            effect_p->mPosition.y = spB8.y + 550.0f;
+            effect_p->mPosition.z = spB8.z + cM_rndFX(550.0f);
+            effect_p->mScale = 0.0f;
+            effect_p->mPosWaveX = cM_rndF(65536.0f);
+            effect_p->mPosWaveZ = cM_rndF(65536.0f);
+            effect_p->mStatus++;
+            break;
+        case 1:
+            f32 target = cM_rndFX(0.08f);
+            temp_r26 = &effect_p->mWindSpeed;
+            target = effect_p->mWindSpeed - target;
+
+            cLib_addCalc(temp_r26, target, 0.5f, 0.1f, 0.01f);
+
+            cXyz sp4C;
+            sp88 = sp94;
+            temp_r25 = &effect_p->mPosition;
+            if (camera_p->mLookat.mEye.abs(*temp_r25) < 500.0f &&
+                effect_p->mPosition.y < temp_f19 + 250.0f)
+            {
+                f32 var_f1_3 = ((temp_f19 + 250.0f) - effect_p->mPosition.y) / 250.0f;
+                if (var_f1_3 > 1.0f) {
+                    var_f1_3 = 1.0f;
+                }
+
+                sp88.y = var_f1_3 * 0.45f;
+            }
+
+            s16 wave_x = effect_p->mPosWaveX;
+            s16 wave_z = effect_p->mPosWaveZ;
+
+            sp4C.x = cM_scos(wave_x) * cM_ssin(wave_z);
+            sp4C.y = cM_ssin(wave_x);
+            sp4C.z = cM_scos(wave_x) * cM_scos(wave_z);
+
+            effect_p->mPosition.x += sp88.x * *temp_r26;
+            effect_p->mPosition.z += sp88.z * *temp_r26;
+            effect_p->mPosition.y += effect_p->mGravity + (sp88.y * *temp_r26);
+
+            effect_p->mPosition.x += sp4C.x * 5.3f;
+            effect_p->mPosition.y += sp4C.y * 5.3f;
+            effect_p->mPosition.z += sp4C.z * 5.3f;
+
+            sp88 = sp94;
+            if (camera_p->mLookat.mEye.abs(*temp_r25) < 500.0f &&
+                effect_p->mBasePos.y < temp_f19 + 250.0f)
+            {
+                f32 var_f1_5 = ((temp_f19 + 250.0f) - effect_p->mBasePos.y) / 250.0f;
+                if (var_f1_5 > 1.0f) {
+                    var_f1_5 = 1.0f;
+                }
+
+                sp88.y = var_f1_5 * 0.35f;
+            }
+
+            effect_p->mBasePos.x += sp88.x * *temp_r26;
+            effect_p->mBasePos.z += sp88.z * *temp_r26;
+            effect_p->mBasePos.y += effect_p->mGravity + (sp88.y * *temp_r26);
+
+            effect_p->mBasePos.x += sp4C.x * 5.3f;
+            effect_p->mBasePos.y += sp4C.y * 5.3f;
+            effect_p->mBasePos.z += sp4C.z * 5.3f;
+
+            cLib_addCalc(&effect_p->mPosWaveX, effect_p->mPosWaveX + cM_rndF(3000.0f), 0.25f,
+                         1500.0f, 0.001f);
+            cLib_addCalc(&effect_p->mPosWaveZ, effect_p->mPosWaveZ + cM_rndF(3000.0f), 0.25f,
+                         1500.0f, 0.001f);
+
+            sp7C = effect_p->mPosition;
+            f32 var_f1_6 = sp7C.abs(spB8);
+
+            if (effect_p->mTimer == 0) {
+                if (var_f1_6 > 550.0f) {
+                    effect_p->mTimer = 10;
+                    *temp_r26 = temp_f26;
+                    effect_p->mGravity = temp_f27;
+
+                    if (sp7C.abs(spB8) > 600.0f) {
+                        effect_p->mPosition.x = spB8.x + cM_rndFX(550.0f);
+                        effect_p->mPosition.y = spB8.y + cM_rndFX(550.0f);
+                        effect_p->mPosition.z = spB8.z + cM_rndFX(550.0f);
+                    } else {
+                        f32 temp_f26_2 = cM_rndFX(27.5f);
+                        get_vectle_calc(&sp7C, &spB8, &sp70);
+
+                        effect_p->mPosition.x = spB8.x + sp70.x * (temp_f26_2 + 550.0f);
+                        effect_p->mPosition.y = spB8.y + sp70.y * (temp_f26_2 + 550.0f);
+                        effect_p->mPosition.z = spB8.z + sp70.z * (temp_f26_2 + 550.0f);
+                    }
+                }
+            } else {
+                effect_p->mTimer--;
+            }
+
+            sp7C = effect_p->mBasePos;
+            if (sp7C.abs(spAC) > 1100.0f) {
+                if (sp7C.abs(spAC) > 1150.0f) {
+                    effect_p->mBasePos.x = spAC.x + cM_rndFX(1100.0f);
+                    effect_p->mBasePos.y = spAC.y + cM_rndFX(1100.0f);
+                    effect_p->mBasePos.z = spAC.z + cM_rndFX(1100.0f);
+                } else {
+                    f32 temp_f26_3 = cM_rndFX(27.5f);
+                    get_vectle_calc(&sp7C, &spAC, &sp70);
+
+                    effect_p->mBasePos.x = spAC.x + sp70.x * (temp_f26_3 + 1100.0f);
+                    effect_p->mBasePos.y = spAC.y + sp70.y * (temp_f26_3 + 1100.0f);
+                    effect_p->mBasePos.z = spAC.z + sp70.z * (temp_f26_3 + 1100.0f);
+                }
+            }
+            break;
+        }
+
+        sp7C = effect_p->mPosition;
+
+        f32 var_f26 = sp7C.abs(camera_p->mLookat.mEye) / 100.0f;
+        if (var_f26 > 1.0) {
+            var_f26 = 1.0;
+        }
+
+        var_f26 *= 0.4f;
+
+        f32 var_f1_11 = sp7C.abs(spB8);
+        if (var_f1_11 > 300.0f) {
+            f32 var_f1_12 = (550.0f - var_f1_11) / 250.0f;
+            if (var_f1_12 < 0.0f) {
+                var_f1_12 = 0.0f;
+            }
+
+            var_f26 *= var_f1_12;
+        }
+
+        if (i > g_env_light.mSnowCount - 1) {
+            cLib_addCalc(&effect_p->mScale, 0.0f, 0.2f, 0.1f, 0.01f);
+        } else {
+            effect_p->mScale = var_f26;
+        }
+
+        if (i > g_env_light.mSnowCount - 1 && effect_p->mScale < 0.01f) {
+            if (i == snow_p->field_0x6d88 - 1) {
+                snow_p->field_0x6d88--;
+            }
+        }
+
+        if (strcmp(dComIfGp_getStartStageName(), "R_SP127") == 0) {
+            if (sp7C.z > -340.0f) {
+                effect_p->mScale = 0.0f;
+            }
+        } else if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0) {
+            if (sp7C.z > 9800.0f) {
+                effect_p->mScale = 0.0f;
+            }
+        }
+
+        sp7C = effect_p->mBasePos;
+
+        f32 var_f26_3 = sp7C.abs(camera_p->mLookat.mEye) / 100.0f;
+        if (var_f26_3 > 1.0) {
+            var_f26_3 = 1.0;
+        }
+
+        var_f26_3 *= 0.38f;
+
+        f32 var_f1_14 = sp7C.abs(spAC);
+        if (var_f1_14 > 850.0f) {
+            f32 var_f1_15 = (1100.0f - var_f1_14) / 250.0f;
+            if (var_f1_15 < 0.0f) {
+                var_f1_15 = 0.0f;
+            }
+
+            var_f26_3 *= var_f1_15;
+        }
+
+        if (i > g_env_light.mSnowCount - 1) {
+            cLib_addCalc(&effect_p->field_0x30, 0.0f, 0.2f, 0.1f, 0.01f);
+        } else {
+            effect_p->field_0x30 = var_f26_3;
+        }
+
+        if (strcmp(dComIfGp_getStartStageName(), "R_SP127") == 0) {
+            if (sp7C.z > -340.0f) {
+                effect_p->field_0x30 = 0.0f;
+            }
+        } else if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0) {
+            if (sp7C.z > 9800.0f) {
+                effect_p->field_0x30 = 0.0f;
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2052,6 +2329,7 @@ asm void dKyr_snow_move() {
 #include "asm/d/kankyo/d_kankyo_rain/dKyr_snow_move__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 80061324-8006140C 05BC64 00E8+00 0/0 1/1 0/0 .text            dKyr_star_init__Fv */
 // Matches without literals
@@ -2454,6 +2732,144 @@ SECTION_SDATA2 static f32 lit_8360 = 7000.0f;
 SECTION_SDATA2 static f32 lit_8361 = 3600.0f;
 
 /* 80066048-8006653C 060988 04F4+00 0/0 1/1 0/0 .text            dKyr_drawSibuki__FPA4_fPPUc */
+// stack issues, double branch weirdness
+#ifdef NONMATCHING
+void dKyr_drawSibuki(Mtx param_0, u8** param_1) {
+    camera_class* temp_r30 = (camera_class*)dComIfGp_getCamera(0);
+    dKankyo_rain_Packet* temp_r29 = g_env_light.mpRainPacket;
+
+    Mtx sp88;
+    cXyz sp7C;
+    cXyz sp70;
+    cXyz sp64;
+    cXyz sp58;
+
+    GXTexObj sp38;
+
+    cXyz sp2C;
+    cXyz sp20;
+    cXyz sp14;
+
+    if (g_env_light.mSnowCount == 0 && g_env_light.mCameraInWater == 0 &&
+        dComIfGd_getView() != NULL)
+    {
+        MTXInverse(dComIfGd_getView()->mViewMtxNoTrans, sp88);
+        if (strcmp(dComIfGp_getStartStageName(), "F_SP113") == 0 &&
+            dComIfGp_roomControl_getStayNo() == 1)
+        {
+            if ((temp_r30->mLookat.mEye.z < 5100.0f ||
+                 (temp_r30->mLookat.mEye.x < -3250.0f && temp_r30->mLookat.mEye.y < -50.0f)) ||
+                (temp_r30->mLookat.mEye.x < -2700.0f && temp_r30->mLookat.mEye.z > 15750.0f))
+            {
+                return;
+            }
+        }
+
+        f32 var_f1 = 255.0f;
+        if (temp_r29->mStatus & 1) {
+            var_f1 = 0.0f;
+        } else if (temp_r29->mStatus & 2) {
+            var_f1 = 200.0f;
+        }
+
+        cLib_addCalc(&temp_r29->mSibukiAlpha, var_f1, 0.2f, 30.0f, 0.001f);
+        dKy_set_eyevect_calc(temp_r30, &sp2C, 7000.0f, 4000.0f);
+        dKyr_get_vectle_calc(&temp_r30->mLookat.mEye, &temp_r30->mLookat.mCenter, &sp20);
+
+        f32 var_f1_2 = 0.0f;
+        if (sp20.y > var_f1_2) {
+            if (sp20.y < 0.5f) {
+                var_f1_2 = 1.0f - (sp20.y / 0.5f);
+            }
+        } else {
+            var_f1_2 = 1.0f;
+        }
+
+        GXColor sp10;
+        sp10.r = 0xB4;
+        sp10.g = 0xC8;
+        sp10.b = 0xC8;
+        sp10.a = temp_r29->mSibukiAlpha * var_f1_2;
+
+        dKyr_set_btitex(&sp38, (ResTIMG*)*(++param_1));
+        GXSetNumChans(0);
+        GXSetTevColor(GX_TEVREG0, sp10);
+        GXSetTevColor(GX_TEVREG1, sp10);
+        GXSetNumTexGens(1);
+        GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 0x3C, GX_FALSE, 0x7D);
+        GXSetNumTevStages(1);
+        GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
+        GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C1, GX_CC_C0, GX_CC_TEXC, GX_CC_ZERO);
+        GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+        GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_A0, GX_CA_TEXA, GX_CA_ZERO);
+        GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+        GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_ONE, GX_LO_COPY);
+        GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_GREATER, 0);
+        GXSetZMode(GX_TRUE, GX_GEQUAL, GX_FALSE);
+        GXSetClipMode(GX_CLIP_DISABLE);
+        GXSetNumIndStages(0);
+        dKr_cullVtx_Set();
+        GXLoadPosMtxImm(param_0, 0);
+        GXSetCurrentMtx(0);
+
+        f32 var_f30;
+        if (dComIfGd_getView() != NULL) {
+            var_f30 = dComIfGd_getView()->mFovy / 45.0f;
+            var_f30 *= var_f30;
+            if (var_f30 >= 1.0f) {
+                var_f30 = 1.0f;
+            }
+        } else {
+            var_f30 = 0.2f;
+        }
+
+        for (int i = 0; i < g_env_light.mRainCount >> 1; i++) {
+            f32 temp_f27 = var_f30 * (15.0f + cM_rndF(10.0f));
+
+            f32 temp_f28 = cM_rndFX(3600.0f);
+            f32 temp_f29 = cM_rndFX(1500.0f);
+            f32 temp_f1 = cM_rndFX(3600.0f);
+
+            sp14.x = sp2C.x + temp_f28;
+            sp14.y = sp2C.y + temp_f29;
+            sp14.z = sp2C.z + temp_f1;
+
+            sp58.x = sp14.x - temp_f27;
+            sp58.y = sp14.y;
+            sp58.z = sp14.z - temp_f27;
+
+            sp64.x = sp14.x + temp_f27;
+            sp64.y = sp14.y;
+            sp64.z = sp14.z - temp_f27;
+
+            sp70.x = sp14.x + temp_f27;
+            sp70.y = sp14.y;
+            sp70.z = sp14.z + temp_f27;
+
+            sp7C.x = sp14.x - temp_f27;
+            sp7C.y = sp14.y;
+            sp7C.z = sp14.z + temp_f27;
+
+            GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+            GXPosition3f32(sp58.x, sp58.y, sp58.z);
+            GXTexCoord2s16(0, 0);
+
+            GXPosition3f32(sp64.x, sp64.y, sp64.z);
+            GXTexCoord2s16(0x1FF, 0);
+
+            GXPosition3f32(sp70.x, sp70.y, sp70.z);
+            GXTexCoord2s16(0x1FF, 0x1FF);
+
+            GXPosition3f32(sp7C.x, sp7C.y, sp7C.z);
+            GXTexCoord2s16(0, 0x1FF);
+            i_GXEnd();
+        }
+
+        GXSetClipMode(GX_CLIP_ENABLE);
+        J3DShape::resetVcdVatCache();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2462,6 +2878,7 @@ asm void dKyr_drawSibuki(Mtx param_0, u8** param_1) {
 #include "asm/d/kankyo/d_kankyo_rain/dKyr_drawSibuki__FPA4_fPPUc.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8037A578-8037A578 006BD8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -3279,6 +3696,20 @@ void dKyr_shstar_init() {}
 void dKyr_shstar_move() {}
 
 /* 8006B8E4-8006B924 066224 0040+00 0/0 1/1 0/0 .text            dKyr_odour_init__Fv */
+// matches with literals
+#ifdef NONMATCHING
+void dKyr_odour_init() {
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dKankyo_odour_Packet* odour_p = env_light->mpOdourPacket;
+
+    for (int i = 0; i < 2000; i++) {
+        odour_p->mOdourEff[i].mStatus = 0;
+        odour_p->mOdourEff[i].field_0x28 = 0.0f;
+        odour_p->mOdourEff[i].field_0x2c = 0.0f;
+        odour_p->mOdourEff[i].field_0x24 = 0.0f;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3287,6 +3718,7 @@ asm void dKyr_odour_init() {
 #include "asm/d/kankyo/d_kankyo_rain/dKyr_odour_init__Fv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804525CC-804525D0 000BCC 0004+00 1/1 0/0 0/0 .sdata2          @10872 */
@@ -3409,11 +3841,11 @@ void dKyr_evil_init() {
 
 /* 8006DA04-8006DA7C 068344 0078+00 0/0 1/1 0/0 .text            dKyr_evil_move__Fv */
 void dKyr_evil_move() {
-    dKankyo_evil_Packet* packet = g_env_light.mpEvilPacket;
+    dKankyo_evil_Packet* evil_p = g_env_light.mpEvilPacket;
     cXyz vec = dKyw_get_wind_vecpow();
 
     dBgS_GndChk gndchk;
-    for (int i = 0; i < packet->mEffectNum; i++) {
+    for (int i = 0; i < evil_p->mEffectNum; i++) {
     }
 }
 
@@ -3458,14 +3890,32 @@ SECTION_SDATA2 static f32 lit_11953 = 10000000.0f;
 
 /* 8006E448-8006E6B0 068D88 0268+00 1/1 0/0 0/0 .text            dKyr_near_bosslight_check__F4cXyz
  */
+// matches with literals
+#ifdef NONMATCHING
+static f32 dKyr_near_bosslight_check(cXyz param_0) {
+    f32 dist = 10000000.0f;
+    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+
+    for (int i = 0; i < 6; i++) {
+        if (env_light->field_0x0c18[i].field_0x26 == 1) {
+            if (env_light->field_0x0c18[i].mPos.abs(param_0) < dist) {
+                dist = env_light->field_0x0c18[i].mPos.abs(param_0);
+            }
+        }
+    }
+
+    return dist;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dKyr_near_bosslight_check(cXyz param_0) {
+static asm f32 dKyr_near_bosslight_check(cXyz param_0) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo_rain/dKyr_near_bosslight_check__F4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80450F48-80450F4C 000448 0004+00 1/1 0/0 0/0 .sbss            rot$11958 */

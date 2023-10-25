@@ -3624,7 +3624,7 @@ asm void dCamera_c::Up() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::Eye() {
+asm cXyz dCamera_c::Eye() {
     nofralloc
 #include "asm/d/d_camera/Eye__9dCamera_cFv.s"
 }

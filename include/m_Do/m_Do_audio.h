@@ -153,4 +153,64 @@ inline void mDoAud_mEnvse_setWindType(u8 i_type) {
     g_mEnvSeMgr.setWindType(i_type);
 }
 
+inline void mDoAud_mEnvse_initStaticEnvSe(u8 param_0, u8 param_1, u8 param_2, u8 param_3, const Vec* param_4) {
+    g_mEnvSeMgr.initStaticEnvSe(param_0, param_1, param_2, param_3, (Vec*)param_4);
+}
+
+inline void mDoAud_mEnvse_startStaticEnvSe(s8 i_reverb) {
+    g_mEnvSeMgr.startStaticEnvSe(i_reverb);
+}
+
+inline void mDoAud_mEnvse_initRiverSe(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
+    g_mEnvSeMgr.initRiverSe(param_0, param_1, param_2, param_3);
+}
+
+inline void mDoAud_mEnvse_registRiverSePos(const Vec* i_pos) {
+    g_mEnvSeMgr.registRiverSePos((Vec*)i_pos);
+}
+
+inline void mDoAud_mEnvse_startRiverSe(s8 i_reverb) {
+    g_mEnvSeMgr.startRiverSe(i_reverb);
+}
+
+inline void mDoAud_mEnvse_initFallSe(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
+    g_mEnvSeMgr.initFallSe(param_0, param_1, param_2, param_3);
+}
+
+inline void mDoAud_mEnvse_registFallSePos(const Vec* i_pos) {
+    g_mEnvSeMgr.registFallSePos((Vec*)i_pos);
+}
+
+inline void mDoAud_mEnvse_startFallSe(s8 i_reverb) {
+    g_mEnvSeMgr.startFallSe(i_reverb);
+}
+
+inline void mDoAud_mEnvse_initSmellSe(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
+    g_mEnvSeMgr.initSmellSe(param_0, param_1, param_2, param_3);
+}
+
+inline void mDoAud_mEnvse_registSmellSePos(const Vec* i_pos) {
+    g_mEnvSeMgr.registSmellSePos((Vec*)i_pos);
+}
+
+inline void mDoAud_mEnvse_startSmellSe(s8 i_reverb) {
+    g_mEnvSeMgr.startSmellSe(i_reverb);
+}
+
+inline void mDoAud_mEnvse_registWindowPos(const Vec* i_pos) {
+    g_mEnvSeMgr.registWindowPos((Vec*)i_pos);
+}
+
+inline void mDoAud_initLv3WaterSe(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
+    g_mEnvSeMgr.initLv3WaterSe(param_0, param_1, param_2, param_3);
+}
+
+inline void mDoAud_registLv3WaterSePos(u8 param_0, const Vec* i_pos) {
+    g_mEnvSeMgr.registLv3WaterSePos(param_0, (Vec*)i_pos);
+}
+
+inline void mDoAud_startLv3WaterSe(s8 i_reverb) {
+    g_mEnvSeMgr.startLv3WaterSe(i_reverb);
+}
+
 #endif /* M_DO_M_DO_AUDIO_H */

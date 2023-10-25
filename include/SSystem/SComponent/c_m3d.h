@@ -3,6 +3,7 @@
 
 #include "MSL_C/math.h"
 #include "dolphin/types.h"
+#include "dolphin/mtx/vec.h"
 
 class cM3dGAab;
 class cM3dGCps;
@@ -93,6 +94,10 @@ inline bool cM3d_IsZero(f32 f) {
 // this is the inline cM3d_IsZero but inverted. Sometimes this will get a match where the regular cM3d_IsZero inline won't
 inline bool cM3d_IsZero_inverted(f32 param_0) {
     return !(fabsf(param_0) < G_CM3D_F_ABS_MIN);
+}
+
+inline f32 cM3d_LenSq(const Vec* a, const Vec* b) {
+    return VECSquareDistance(a, b);
 }
 
 #endif

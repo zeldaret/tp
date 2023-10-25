@@ -11,7 +11,7 @@ struct dBgPc;
 struct dBgS_CaptPoly;
 
 struct KC_PrismData {
-    /* 0x0 */ f32 field_0x0;
+    /* 0x0 */ u16 field_0x0[2];
     /* 0x4 */ u16 field_0x4;
     /* 0x6 */ u16 field_0x6;
     /* 0x8 */ u16 field_0x8;
@@ -27,8 +27,12 @@ struct pkcdata {
     /* 0x0C */ KC_PrismData* m_block_data;
     /* 0x10 */ u8 field_0x10[4];
     /* 0x14 */ Vec m_area_min_pos;
-    /* 0x20 */ u8 field_0x20[4];
+    /* 0x20 */ u32 field_0x20;
     /* 0x24 */ u32 field_0x24;
+    /* 0x28 */ u32 field_0x28;
+    /* 0x2C */ u32 field_0x2c;
+    /* 0x30 */ u32 field_0x30;
+    /* 0x34 */ u32 field_0x34;
 };
 
 struct KCol_Header {
