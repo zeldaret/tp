@@ -80,6 +80,11 @@ struct Z2EnvSeMgr : public JASGlobalInstance<Z2EnvSeMgr> {
     /* 802CA794 */ void startLv3WaterSe(s8);
 
     void setWindType(u8 i_type) { mWindType = i_type; }
+    void registSmellSePos(Vec* param_0) { registEtcSePos(param_0); }
+    void startSmellSe(s8 param_0) { startEtcSe(param_0); }
+    void initSmellSe(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
+        initEtcSe(param_0, param_1, param_2, param_3);
+    }
 
     /* 0x000 */ Z2EnvSeAutoPan field_0x0;
     /* 0x01C */ Z2EnvSeAutoPan field_0x1c;

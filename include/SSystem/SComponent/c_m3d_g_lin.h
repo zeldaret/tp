@@ -20,6 +20,8 @@ public:
     void CalcPos(Vec*, f32) const;
     void CalcVec(Vec* pOut) const { VECSubtract(&this->mEnd, &this->mStart, pOut); }
     void SetEnd(const cXyz&);
+
+    void set(const Vec& i_start, const Vec& i_end) { SetStartEnd(i_start, i_end); }
     const cXyz& GetStartP(void) const { return mStart; }
     cXyz& GetStartP(void) { return mStart; }
     const cXyz& GetEndP(void) const { return mEnd; }

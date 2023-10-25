@@ -19,7 +19,6 @@ public:
     const cXyz& GetPointP() { return m_pos; }
     u32 GetWallPrecheck() const { return mWallPrecheck; }
 
-private:
     /* 0x24 */ cXyz m_pos;
     /* 0x30 */ u32 mFlags;
     /* 0x34 */ f32 mNowY;

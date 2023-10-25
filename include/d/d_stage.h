@@ -270,8 +270,8 @@ struct stage_sound_data {
 
 struct dStage_SoundInfo_c {
     // SOND
-    /* 0x0 */ int field_0x0;
-    /* 0x4 */ stage_sound_data* field_0x4;
+    /* 0x0 */ int num;
+    /* 0x4 */ stage_sound_data* entries;
 };
 
 class dStage_FileList_dt_c {
