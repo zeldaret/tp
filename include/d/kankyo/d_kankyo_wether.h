@@ -122,7 +122,7 @@ struct SNOW_EFF {
     /* 80056D58 */ ~SNOW_EFF();
     /* 80056D94 */ SNOW_EFF();
 
-    /* 0x00 */ u8 mStatus;
+    /* 0x00 */ s8 mStatus;
     /* 0x04 */ cXyz mPosition;
     /* 0x10 */ cXyz mBasePos;
     /* 0x1C */ f32 mPosWaveX;
@@ -130,7 +130,7 @@ struct SNOW_EFF {
     /* 0x24 */ f32 mGravity;
     /* 0x28 */ f32 mWindSpeed;
     /* 0x2C */ f32 mScale;
-    /* 0x30 */ u8 field_0x30[4];
+    /* 0x30 */ f32 field_0x30;
     /* 0x34 */ s16 mTimer;
 };  // Size: 0x38
 
@@ -144,7 +144,7 @@ public:
     /* 0x6D74 */ cXyz field_0x6d74;
     /* 0x6D80 */ f32 field_0x6d80;
     /* 0x6D84 */ f32 field_0x6d84;
-    /* 0x6D88 */ u16 field_0x6d88;
+    /* 0x6D88 */ s16 field_0x6d88;
     /* 0x6D8A */ u16 field_0x6d8a;
     /* 0x6D8C */ u32 field_0x6d8c;
     /* 0x6D90 */ u8 field_0x6d90;
@@ -264,7 +264,10 @@ struct EF_ODOUR_EFF {
     /* 0x00 */ u8 mStatus;
     /* 0x04 */ cXyz mPosition;
     /* 0x10 */ cXyz mBasePos;
-    /* 0x1C */ u8 field_0x1c[0x14];
+    /* 0x1C */ u8 field_0x1c[0x24 - 0x1C];
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
 };  // Size: 0x30
 
 class dKankyo_odour_Packet : public J3DPacket {

@@ -322,7 +322,7 @@ public:
     /* 80181560 */ void ForceLockOff(unsigned int);
     /* 8018159C */ void ForceLockOff(fopAc_ac_c*);
     /* 80181E20 */ void Up();
-    /* 80181E64 */ void Eye();
+    /* 80181E64 */ cXyz Eye();
     /* 80181E98 */ cXyz Center();
     /* 8018295C */ void footHeightOf(fopAc_ac_c*);
     /* 80182964 */ void push_any_key();
