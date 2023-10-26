@@ -651,7 +651,7 @@ asm void Z2SeMgr::isLevelSe(JAISoundID param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2SeMgr::isSoundCulling(JAISoundID param_0) {
+asm bool Z2SeMgr::isSoundCulling(JAISoundID param_0) {
     nofralloc
 #include "asm/Z2AudioLib/Z2SeMgr/isSoundCulling__7Z2SeMgrF10JAISoundID.s"
 }

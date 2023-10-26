@@ -21,7 +21,9 @@ struct JAUAudibleParam {
             u8 b0_5 : 1;
             u8 b0_6 : 1;
             u8 b0_7 : 1;
-            u8 b1;
+            u8 b1_0 : 1;
+            u8 b1_1 : 1;
+            u8 b1_2_7 : 6;
             u8 b2;
             u8 b3;
         } bytes;

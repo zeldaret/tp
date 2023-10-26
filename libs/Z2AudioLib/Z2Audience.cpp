@@ -1194,20 +1194,20 @@ void Z2Audience::mixChannelOut(JASSoundParams const& param_0, JAIAudible* param_
         }
         local_60.mVolume = dVar9;
         JAUAudibleParam* puVar7 = z2Audible->getAudibleParam();
-        if ((puVar7->field_0x0.bytes.b1 & 8) && (local_60.mVolume <= 0.2f)) {
+        if ((puVar7->field_0x0.bytes.b1_2_7 & 8) && (local_60.mVolume <= 0.2f)) {
             local_60.mVolume = 0.2f;
         }
     } else {
         local_60.mVolume = 1.0f;
     }
 
-    if (((z2Audible->getAudibleParam()->field_0x0.bytes.b1 >> 6) & 1) && mNumPlayers == 1) {
+    if (z2Audible->getAudibleParam()->field_0x0.bytes.b1_1 && mNumPlayers == 1) {
         local_60.mDolby = calcRelPosDolby(*(Vec*)&pZVar5->field_0x14.field_0x00, param_2);
     } else {
         local_60.mDolby = 0.5f;
     }
 
-    if ((z2Audible->getAudibleParam()->field_0x0.bytes.b1 >> 7) & 1) {
+    if (z2Audible->getAudibleParam()->field_0x0.bytes.b1_0) {
         if (mNumPlayers > 2) {
             f32 fVar1;
             if (param_2 & 1) {

@@ -122,6 +122,16 @@ struct TVec3<f32> {
         };
     }
 
+    inline TVec3<f32>& operator=(const Vec& b) {
+        setTVec3f(&b.x, &this->x);
+        return *this;
+    }
+
+    // inline TVec3<f32>& operator=(const TVec3<f32>& b) {
+    //     setTVec3f(&b.x, &this->x);
+    //     return *this;
+    // }
+
     inline TVec3<f32>& operator+=(const TVec3<f32>& b) {
         add(b);
         return *this;
