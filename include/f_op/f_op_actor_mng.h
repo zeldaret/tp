@@ -140,6 +140,7 @@ enum fopAcM_CARRY {
     /* 0x04 */ fopAcM_CARRY_SIDE = 4,
     /* 0x08 */ fopAcM_CARRY_TYPE_8 = 8,
     /* 0x10 */ fopAcM_CARRY_LIGHT = 16, // guess based on context
+    /* 0x20 */ fopAcM_CARRY_ITEM = 32,
     /* 0x30 */ fopAcM_CARRY_UNK_30 = 0x30,
 };
 
@@ -313,6 +314,10 @@ inline void fopAcM_setCullSizeFar(fopAc_ac_c* i_actor, f32 i_far) {
 
 inline f32 fopAcM_getCullSizeFar(const fopAc_ac_c* i_actor) {
     return i_actor->mCullSizeFar;
+}
+
+inline void fopAcM_SetCullSize(fopAc_ac_c* i_actor, s8 i_cullsize) {
+    i_actor->mCullType = i_cullsize;
 }
 
 inline int fopAcM_GetCullSize(const fopAc_ac_c* i_actor) {
