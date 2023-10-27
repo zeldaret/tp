@@ -1,3 +1,8 @@
+/**
+ * d_a_alink_HIO.inc
+ * Player HostIO interface handling
+ */
+
 /* 80140B88-80140B98 13B4C8 0010+00 1/1 0/0 0/0 .text            __ct__12daAlinkHIO_cFv */
 #pragma push
 #pragma optimization_level 0

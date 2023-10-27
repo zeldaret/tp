@@ -47,6 +47,7 @@ public:
     void SetWallH(f32 h) { m_wall_h = h; }
     void ClrWallHDirect() { m_flags &= ~WALL_H_DIRECT; }
     bool ChkWallHit() { return m_flags & WALL_HIT; }
+    s16 GetWallAngleY() { return m_wall_angle_y; }
 
     void SetCir(cXyz& pos) { m_cir.Set(pos.x, pos.z, pos.y + GetWallH(), m_wall_r); }
 };  // Size: 0x40
@@ -159,6 +160,7 @@ public:
     bool ChkMoveBGOnly() const { return m_flags & MOVE_BG_ONLY; }
     void SetWallHit() { m_flags |= WALL_HIT; }
     void ClrWallNone() { m_flags &= ~WALL_NONE; }
+    void OnLineCheckNone() { m_flags |= LINE_CHECK_NONE; }
     cM3dGCyl* GetWallBmdCylP() { return &m_wall_cyl; }
 
     // inline dupe
@@ -204,7 +206,7 @@ class dBgS_LinkAcch : public dBgS_Acch {
 public:
     dBgS_LinkAcch() { SetLink(); }
 
-    /* 80140F30 */ virtual ~dBgS_LinkAcch();
+    /* 80140F30 */ virtual ~dBgS_LinkAcch() {}
 };
 
 class dBgS_ObjAcch : public dBgS_Acch {

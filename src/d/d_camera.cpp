@@ -2023,7 +2023,7 @@ asm void dCamera_c::GetCameraTypeFromMapToolID(s32 param_0, s32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::GetCameraTypeFromCameraName(char const* param_0) {
+asm int dCamera_c::GetCameraTypeFromCameraName(char const* param_0) {
     nofralloc
 #include "asm/d/d_camera/GetCameraTypeFromCameraName__9dCamera_cFPCc.s"
 }
@@ -3624,7 +3624,7 @@ asm void dCamera_c::Up() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::Eye() {
+asm cXyz dCamera_c::Eye() {
     nofralloc
 #include "asm/d/d_camera/Eye__9dCamera_cFv.s"
 }

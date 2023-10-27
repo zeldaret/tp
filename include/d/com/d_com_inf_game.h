@@ -2505,6 +2505,10 @@ inline void dComIfGp_clearPlayerStatus0(int param_0, u32 flag) {
     g_dComIfG_gameInfo.play.clearPlayerStatus(param_0, 0, flag);
 }
 
+inline void dComIfGp_clearPlayerStatus1(int param_0, u32 flag) {
+    g_dComIfG_gameInfo.play.clearPlayerStatus(param_0, 1, flag);
+}
+
 inline dStage_stageDt_c* i_dComIfGp_getStage() {
     return &g_dComIfG_gameInfo.play.getStage();
 }
@@ -3082,6 +3086,10 @@ inline int dComIfGp_evmng_getMySubstanceNum(int index, char* name) {
     return dComIfGp_getPEvtManager()->getMySubstanceNum(index, name);
 }
 
+inline void dComIfGp_evmng_setGoal(cXyz* i_goal) {
+    dComIfGp_getPEvtManager()->setGoal(i_goal);
+}
+
 inline BOOL dComIfGp_evmng_ChkPresentEnd() {
     return dComIfGp_getPEvtManager()->ChkPresentEnd();
 }
@@ -3419,6 +3427,16 @@ inline u32 dComIfGp_particle_setPolyColor(u32 param_0, u16 param_1, cBgS_PolyInf
                                                           param_8, param_9, param_10);
 }
 
+inline JPABaseEmitter* dComIfGp_particle_setPolyColor(u16 param_1, cBgS_PolyInfo& param_2,
+                                          const cXyz* param_3, const dKy_tevstr_c* param_4,
+                                          const csXyz* param_5, const cXyz* param_6, int param_7,
+                                          dPa_levelEcallBack* param_8, s8 param_9,
+                                          const cXyz* param_10) {
+    return g_dComIfG_gameInfo.play.getParticle()->setPoly(param_1, param_2, param_3,
+                                                          param_4, param_5, param_6, param_7,
+                                                          param_8, param_9, param_10);
+}
+
 int dComIfGd_setSimpleShadow(cXyz* pos, f32 param_1, f32 param_2, cBgS_PolyInfo& param_3, s16 angle,
                              f32 param_5, _GXTexObj* tex);
 stage_camera_class* dComIfGp_getRoomCamera(int i_roomNo);
@@ -3552,8 +3570,22 @@ inline void dComIfGd_setListIndScreen() {
     g_dComIfG_gameInfo.drawlist.setXluListP0();
 }
 
+inline void dComIfGd_setListMiddle() {
+    g_dComIfG_gameInfo.drawlist.setOpaListMiddle();
+    g_dComIfG_gameInfo.drawlist.setXluListMiddle();
+}
+
+inline void dComIfGd_setListZxlu() {
+    g_dComIfG_gameInfo.drawlist.setOpaListZxlu();
+    g_dComIfG_gameInfo.drawlist.setXluListZxlu();
+}
+
 inline J3DDrawBuffer* dComIfGd_getOpaListBG() {
     return g_dComIfG_gameInfo.drawlist.getOpaListBG();
+}
+
+inline J3DDrawBuffer* dComIfGd_getOpaListDark() {
+    return g_dComIfG_gameInfo.drawlist.getOpaListDark();
 }
 
 inline void dComIfGd_init() {
@@ -3582,6 +3614,10 @@ inline void dComIfGd_setViewport(view_port_class* port) {
 
 inline void dComIfGd_entryZSortListZxlu(J3DPacket* i_packet, cXyz& param_1) {
     g_dComIfG_gameInfo.drawlist.entryZSortListZxlu(i_packet, param_1);
+}
+
+inline void dComIfGd_entryZSortXluList(J3DPacket* i_packet, cXyz& param_1) {
+    g_dComIfG_gameInfo.drawlist.entryZSortXluList(i_packet, param_1);
 }
 
 inline void dComIfGd_drawCopy2D() {

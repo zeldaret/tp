@@ -1,3 +1,8 @@
+/**
+ * d_a_alink_horse.inc
+ * Player Epona riding handling
+ */
+
 /* 800EC724-800EC758 0E7064 0034+00 3/3 0/0 0/0 .text daAlink_searchBoar__FP10fopAc_ac_cPv */
 #pragma push
 #pragma optimization_level 0

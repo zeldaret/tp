@@ -90,8 +90,7 @@ struct JAISoundStatus_ {
         struct {
             u8 flag1 : 1;
             u8 flag2 : 1;
-            u8 flag3 : 1;
-            u8 flag4 : 1;
+            u8 animationState : 2;
             u8 flag5 : 1;
             u8 flag6 : 1;
             u8 flag7 : 1;
@@ -227,9 +226,16 @@ public:
     virtual bool JAISound_tryDie_() = 0;
 
     JAISoundID getID() const;
+    u8 getAnimationState() const { return status_.state.flags.animationState; }
+    bool isAnimated() const { return getAnimationState() != 0; }
+    void setAnimationState(u8 pState) {
+        status_.state.flags.animationState = pState;
+    }
     u32 getUserData() const { return status_.user_data; }
+    void setUserData(u32 pUserData) { status_.user_data = pUserData; }
+    JAIAudible* getAudible() const { return audible_; }
     bool isHandleAttached() const { return handle_ != NULL; }
-
+    bool hasLifeTime() const { return status_.field_0x1.flags.flag2; }
     void removeLifeTime_() { status_.field_0x1.flags.flag1 = false; }
     void stop_JAISound_() {
         status_.state.flags.flag5 = 0;

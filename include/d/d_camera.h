@@ -243,7 +243,7 @@ public:
     /* 801647B0 */ void onRoomChange(s32);
     /* 80164878 */ void getParamTargetActor(s32);
     /* 80164944 */ void GetCameraTypeFromMapToolID(s32, s32);
-    /* 80164B64 */ void GetCameraTypeFromCameraName(char const*);
+    /* 80164B64 */ int GetCameraTypeFromCameraName(char const*);
     /* 80164C10 */ void GetCameraTypeFromToolData(stage_camera2_data_class*);
     /* 80164C64 */ void pushInfo(dCamera_c::dCamInfo_c*, s16);
     /* 80164CAC */ void popInfo(dCamera_c::dCamInfo_c*);
@@ -322,7 +322,7 @@ public:
     /* 80181560 */ void ForceLockOff(unsigned int);
     /* 8018159C */ void ForceLockOff(fopAc_ac_c*);
     /* 80181E20 */ void Up();
-    /* 80181E64 */ void Eye();
+    /* 80181E64 */ cXyz Eye();
     /* 80181E98 */ cXyz Center();
     /* 8018295C */ void footHeightOf(fopAc_ac_c*);
     /* 80182964 */ void push_any_key();
@@ -332,6 +332,7 @@ public:
 
     bool Active() { return field_0x24 == 0; }
     f32 TrimHeight() { return mTrimHeight; }
+    int Type() { return mCurType; }
 
     static u8 engine_tbl[240];
 

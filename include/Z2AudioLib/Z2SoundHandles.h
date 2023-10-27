@@ -3,9 +3,14 @@
 
 #include "JSystem/JAudio2/JAISoundHandles.h"
 #include "JSystem/JSupport/JSUList.h"
+#include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "dolphin/types.h"
 
-class Z2SoundHandlePool : public JAISoundHandle, JSULink<Z2SoundHandlePool> {};
+class Z2SoundHandlePool : public JAISoundHandle, public JSULink<Z2SoundHandlePool> { // , public JASPoolAllocObject<Z2SoundHandlePool> {
+public:
+    Z2SoundHandlePool() : JAISoundHandle(), JSULink<Z2SoundHandlePool>(this) {}
+    ~Z2SoundHandlePool() {}
+};
 
 class Z2SoundHandles : protected JSUList<Z2SoundHandlePool> {
 public:
@@ -14,8 +19,8 @@ public:
 
     void initHandlesPool(u8 pNumHandles);
     void deleteHandlesPool();
-    void getFreeHandle();
-    void getLowPrioSound(JAISoundID);
+    JAISoundHandle* getFreeHandle();
+    JAISoundHandle* getLowPrioSound(JAISoundID pSoundId);
 
     bool isActive() const;
 
@@ -26,7 +31,8 @@ public:
 
     void setPos(const JGeometry::TVec3<f32>& pos);
 
-    u32 getNumHandles() const { return this->getNumLinks(); }
+    int getNumHandles() const { return getNumLinks(); }
+    JAISoundHandle* getHandle(int index) { return (Z2SoundHandlePool*)getNth(index); }
 
 private:
     /* 0xC */ u8 mNumHandles;

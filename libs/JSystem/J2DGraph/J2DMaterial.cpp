@@ -145,7 +145,6 @@ SECTION_DATA extern void* __vt__13J2DColorBlock[3] = {
 };
 
 /* 802EA1AC-802EA2CC 2E4AEC 0120+00 0/0 1/1 0/0 .text            __ct__11J2DMaterialFv */
-#ifdef NONMATCHING
 J2DMaterial::J2DMaterial() {
     field_0x4 = 0;
     mIndex = -1;
@@ -155,16 +154,6 @@ J2DMaterial::J2DMaterial() {
     field_0x8 = 1;
     mVisible = true;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DMaterial::J2DMaterial() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMaterial/__ct__11J2DMaterialFv.s"
-}
-#pragma pop
-#endif
 
 /* 802EA2CC-802EA38C 2E4C0C 00C0+00 1/0 2/2 0/0 .text            __dt__11J2DMaterialFv */
 #pragma push
@@ -196,7 +185,6 @@ void J2DMaterial::setGX() {
 }
 
 /* 802EA410-802EA5C4 2E4D50 01B4+00 0/0 1/1 0/0 .text            createTevBlock__11J2DMaterialFib */
-#ifdef NONMATCHING
 J2DTevBlock* J2DMaterial::createTevBlock(int block_type, bool noAlign) {
     J2DTevBlock* block;
 
@@ -228,16 +216,6 @@ J2DTevBlock* J2DMaterial::createTevBlock(int block_type, bool noAlign) {
 
     return block;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DTevBlock* J2DMaterial::createTevBlock(int param_0, bool param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DMaterial/createTevBlock__11J2DMaterialFib.s"
-}
-#pragma pop
-#endif
 
 /* 802EA5C4-802EA79C 2E4F04 01D8+00 0/0 1/1 0/0 .text            createIndBlock__11J2DMaterialFib */
 J2DIndBlock* J2DMaterial::createIndBlock(int block_type, bool noAlign) {

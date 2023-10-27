@@ -4,7 +4,8 @@
 #include "JSystem/J3DGraphBase/J3DPacket.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/types.h"
+
+class WIND_INFLUENCE;
 
 void dKyw_wether_draw();
 void dKyw_wether_delete();
@@ -28,6 +29,8 @@ void dKyw_custom_windpower(f32 pow);
 void dKyw_evt_wind_set_go();
 void dKyw_wether_proc();
 void dKyw_get_AllWind_vec(cXyz* param_0, cXyz* param_1, f32* param_2);
+void dKyw_pntwind_cut(WIND_INFLUENCE* i_pntwind);
+cXyz dKyw_pntwind_get_vecpow(cXyz* param_0);
 
 class dKankyo_sun_Packet : public J3DPacket {
 public:
@@ -79,7 +82,7 @@ struct RAIN_EFF {
     /* 80056CD0 */ ~RAIN_EFF();
     /* 80056D0C */ RAIN_EFF();
 
-    /* 0x00 */ u8 mStatus;
+    /* 0x00 */ s8 mStatus;
     /* 0x04 */ cXyz mPosition;
     /* 0x10 */ cXyz mBasePos;
     /* 0x1C */ f32 field_0x1c;
@@ -119,7 +122,7 @@ struct SNOW_EFF {
     /* 80056D58 */ ~SNOW_EFF();
     /* 80056D94 */ SNOW_EFF();
 
-    /* 0x00 */ u8 mStatus;
+    /* 0x00 */ s8 mStatus;
     /* 0x04 */ cXyz mPosition;
     /* 0x10 */ cXyz mBasePos;
     /* 0x1C */ f32 mPosWaveX;
@@ -127,7 +130,7 @@ struct SNOW_EFF {
     /* 0x24 */ f32 mGravity;
     /* 0x28 */ f32 mWindSpeed;
     /* 0x2C */ f32 mScale;
-    /* 0x30 */ u8 field_0x30[4];
+    /* 0x30 */ f32 field_0x30;
     /* 0x34 */ s16 mTimer;
 };  // Size: 0x38
 
@@ -141,7 +144,7 @@ public:
     /* 0x6D74 */ cXyz field_0x6d74;
     /* 0x6D80 */ f32 field_0x6d80;
     /* 0x6D84 */ f32 field_0x6d84;
-    /* 0x6D88 */ u16 field_0x6d88;
+    /* 0x6D88 */ s16 field_0x6d88;
     /* 0x6D8A */ u16 field_0x6d8a;
     /* 0x6D8C */ u32 field_0x6d8c;
     /* 0x6D90 */ u8 field_0x6d90;
@@ -176,14 +179,18 @@ struct HOUSI_EFF {
     /* 80056EA8 */ ~HOUSI_EFF();
     /* 80056EE4 */ HOUSI_EFF();
 
-    /* 0x00 */ u8 mStatus;
+    /* 0x00 */ s8 mStatus;
     /* 0x04 */ cXyz mPosition;
     /* 0x10 */ cXyz mBasePos;
     /* 0x1C */ cXyz mSpeed;
     /* 0x28 */ cXyz mScale;
-    /* 0x34 */ u8 field_0x34[0x40 - 0x34];
+    /* 0x34 */ f32 field_0x34;
+    /* 0x38 */ f32 field_0x38;
+    /* 0x3C */ u16 field_0x3c;
     /* 0x40 */ f32 mAlpha;
-    /* 0x44 */ u8 field_0x44[0x50 - 0x44];
+    /* 0x44 */ f32 field_0x44;
+    /* 0x48 */ f32 field_0x48;
+    /* 0x4C */ u16 field_0x4c;
 };  // Size: 0x50
 
 class dKankyo_housi_Packet : public J3DPacket {
@@ -196,7 +203,7 @@ public:
     /* 0x0020 */ HOUSI_EFF mHousiEff[300];
     /* 0x5DE0 */ u8 field_0x5de0[8];
     /* 0x5DE8 */ f32 field_0x5de8;
-    /* 0x5DEC */ u8 field_0x5dec[4];
+    /* 0x5DEC */ s16 field_0x5dec;
 };  // Size: 0x5DF0
 
 struct CLOUD_EFF {
@@ -257,7 +264,10 @@ struct EF_ODOUR_EFF {
     /* 0x00 */ u8 mStatus;
     /* 0x04 */ cXyz mPosition;
     /* 0x10 */ cXyz mBasePos;
-    /* 0x1C */ u8 field_0x1c[0x14];
+    /* 0x1C */ u8 field_0x1c[0x24 - 0x1C];
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
 };  // Size: 0x30
 
 class dKankyo_odour_Packet : public J3DPacket {

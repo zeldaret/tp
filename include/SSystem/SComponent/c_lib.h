@@ -46,7 +46,7 @@ inline void cLib_onBit(T& value, u8 bit) {
 }
 
 template <typename T>
-inline T cLib_checkBit(T& value, u8 bit) {
+inline u8 cLib_checkBit(T& value, u8 bit) {
     return value & bit;
 }
 
@@ -87,7 +87,8 @@ inline T cLib_maxLimit(T val, T max) {
 
 template <typename T>
 T cLib_calcTimer(T* value) {
-    if (*value != 0) {
+    // Casting 0 to u16 may not be correct, but is matching for now
+    if (*value != (u16)0) {
         *value = *value - 1;
     }
     return *value;

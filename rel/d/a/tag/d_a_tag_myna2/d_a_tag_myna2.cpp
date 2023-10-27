@@ -7,9 +7,6 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
-// clib_calcTimer 
-extern "C" void func_80D5CA18(s16*);
-
 /* 80D5C698-80D5C708 000078 0070+00 1/1 0/0 0/0 .text            create__12daTagMyna2_cFv */
 s32 daTagMyna2_c::create() {
     fopAcM_SetupActor(this, daTagMyna2_c);
@@ -49,9 +46,7 @@ s32 daTagMyna2_c::execute() {
     if (i_dComIfGp_event_runCheck()) {
         mTimer = 5;
     } else {
-        // func_80D5CA18 is clib_calcTimer. 
-        // It should be compiler generated, but it causes matching issues currently.
-        func_80D5CA18(&mTimer);
+        cLib_calcTimer(&mTimer);
     }
 
     return 1;
@@ -74,16 +69,6 @@ static s32 daTagMyna2_Delete(daTagMyna2_c* i_this) {
     i_this->~daTagMyna2_c();
     return 1;
 }
-
-/* 80D5CA18-80D5CA34 0003F8 001C+00 1/1 0/0 0/0 .text            cLib_calcTimer<s>__FPs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void func_80D5CA18(s16* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_myna2/d_a_tag_myna2/func_80D5CA18.s"
-}
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D5CA64-80D5CA84 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagMyna2_Method */

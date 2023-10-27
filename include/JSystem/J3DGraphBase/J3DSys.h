@@ -11,8 +11,8 @@ enum J3DError {
 };
 
 enum J3DSysDrawBuffer {
-    /* 0x0 */ OPA_BUFFER,
-    /* 0x1 */ XLU_BUFFER
+    /* 0x0 */ J3DSys_OPA_BUFFER_e,
+    /* 0x1 */ J3DSys_XLU_BUFFER_e
 };
 
 class J3DMtxCalc;
@@ -98,6 +98,9 @@ struct J3DSys {
     void setMatPacket(J3DMatPacket* pPacket) { mMatPacket = pPacket; }
     J3DMatPacket* getMatPacket() { return mMatPacket; }
     void setMaterialMode(u32 mode) { mMaterialMode = mode; }
+
+    void setCurrentMtxCalc(J3DMtxCalc * pCalc) { mCurrentMtxCalc = pCalc; }
+    J3DMtxCalc * getCurrentMtxCalc() const { return mCurrentMtxCalc; }
 
     void setTexture(J3DTexture* pTex) { mTexture = pTex; }
     J3DTexture* getTexture() { return mTexture; }

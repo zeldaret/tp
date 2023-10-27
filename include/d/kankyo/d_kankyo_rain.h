@@ -1,23 +1,23 @@
 #ifndef D_KANKYO_D_KANKYO_RAIN_H
 #define D_KANKYO_D_KANKYO_RAIN_H
 
-#include "dolphin/types.h"
+#include "dolphin/mtx/mtx.h"
 
 struct cXyz;
 struct _GXColor;
 
-void dKyr_drawSun(f32 (*param_0)[4], cXyz* param_1, _GXColor& param_2, u8** param_3);
-void dKyr_drawLenzflare(f32 (*param_0)[4], cXyz* param_1, _GXColor& param_2, u8** param_3);
-void dKyr_drawSibuki(f32 (*param_0)[4], u8** param_1);
-void dKyr_drawRain(f32 (*param_0)[4], u8** param_1);
-void dKyr_drawSnow(f32 (*param_0)[4], u8** param_1);
-void dKyr_drawStar(f32 (*param_0)[4], u8** param_1);
-void drawCloudShadow(f32 (*param_0)[4], u8** param_1);
-void dKyr_drawHousi(f32 (*param_0)[4], u8** param_1);
-void drawVrkumo(f32 (*param_0)[4], _GXColor& param_1, u8** param_2);
-void dKyr_odour_draw(f32 (*param_0)[4], u8** param_1);
-void dKyr_mud_draw(f32 (*param_0)[4], u8** param_1);
-void dKyr_evil_draw(f32 (*param_0)[4], u8** param_1);
+void dKyr_drawSun(Mtx param_0, cXyz* param_1, _GXColor& param_2, u8** param_3);
+void dKyr_drawLenzflare(Mtx param_0, cXyz* param_1, _GXColor& param_2, u8** param_3);
+void dKyr_drawSibuki(Mtx param_0, u8** param_1);
+void dKyr_drawRain(Mtx param_0, u8** param_1);
+void dKyr_drawSnow(Mtx param_0, u8** param_1);
+void dKyr_drawStar(Mtx param_0, u8** param_1);
+void drawCloudShadow(Mtx param_0, u8** param_1);
+void dKyr_drawHousi(Mtx param_0, u8** param_1);
+void drawVrkumo(Mtx param_0, _GXColor& param_1, u8** param_2);
+void dKyr_odour_draw(Mtx param_0, u8** param_1);
+void dKyr_mud_draw(Mtx param_0, u8** param_1);
+void dKyr_evil_draw(Mtx param_0, u8** param_1);
 void dKyr_thunder_init();
 void dKyr_thunder_move();
 void dKyr_snow_init();
@@ -39,6 +39,7 @@ void dKyr_star_init();
 void dKyr_shstar_init();
 void dKyr_star_move();
 void dKyr_shstar_move();
+void vrkumo_move();
 void dKyr_get_vectle_calc(cXyz* param_0, cXyz* param_1, cXyz* param_2);
 
 #endif /* D_KANKYO_D_KANKYO_RAIN_H */

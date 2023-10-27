@@ -5328,7 +5328,6 @@ BOOL daNpcF_c::chkActorInArea(fopAc_ac_c* actor, cXyz center, cXyz box, s16 angY
     mDoMtx_stack_c::YrotS(-angY);
     mDoMtx_stack_c::transM(-center.x, -center.y, -center.z);
     mDoMtx_stack_c::multVec(&actor->current.pos, &relPos);
-
     f32 boxX = fabsf(box.x);
     f32 boxZ = fabsf(box.z);
     f32 posX = fabsf(relPos.x);

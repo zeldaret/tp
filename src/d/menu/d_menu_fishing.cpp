@@ -662,8 +662,7 @@ void dMenu_Fishing_c::setHIO(bool param_0) {
 
 /* 801C659C-801C65BC 1C0EDC 0020+00 1/0 0/0 0/0 .text            draw__15dMenu_Fishing_cFv */
 #ifdef NONMATCHING
-// Matches but TU has to be finished and
-// cleaned up with every other function
+// vtable padding
 void dMenu_Fishing_c::draw() {
     _draw();
 }

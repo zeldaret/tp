@@ -5,15 +5,8 @@
 
 #include "d/bg/d_bg_w_kcol.h"
 #include "d/bg/d_bg_pc.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct cM3dGTri {
-    /* 8026F8C8 */ void set(Vec const*, Vec const*, Vec const*, Vec const*);
-};
 
 //
 // Forward References:
@@ -133,7 +126,6 @@ extern "C" void _restgpr_29();
 extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* __vt__8cM3dGAab[3];
 extern "C" extern void* __vt__8cM3dGTri[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 sincosTable___5JMath[65536];
 
 //
@@ -315,6 +307,93 @@ asm bool dBgWKCol::LineCheck(cBgS_LinChk* param_0) {
 SECTION_SDATA2 static f32 lit_4293 = 0.014000000432133675f;
 
 /* 8007F628-8007F9A4 079F68 037C+00 1/0 0/0 0/0 .text GroundCross__8dBgWKColFP11cBgS_GndChk */
+#ifdef NONMATCHING
+bool dBgWKCol::GroundCross(cBgS_GndChk* i_chk) {
+    cXyz* point_p = (cXyz*)&i_chk->GetPointP();
+    cXyz sp20;
+
+    VECSubtract(point_p, &m_pkc_head->m_area_min_pos, &sp20);
+
+    u32 temp_r3 = (u32)sp20.x;
+    if (temp_r3 < 0) {
+        return 0;
+    }
+
+    if (temp_r3 > ~m_pkc_head->field_0x20) {
+        return 0;
+    }
+
+    u32 temp_r3_2 = (u32)sp20.z;
+    if (temp_r3_2 < 0) {
+        return 0;
+    }
+
+    if (temp_r3_2 > ~m_pkc_head->field_0x28) {
+        return 0;
+    }
+
+    u32 var_r25 = (u32)sp20.y;
+    if (var_r25 < 0) {
+        return 0;
+    }
+
+    if (var_r25 > ~m_pkc_head->field_0x24) {
+        var_r25 = (u32)~m_pkc_head->field_0x24;
+    }
+
+    bool var_r24 = 0;
+    int var_r23 = 0;
+    cXyz sp14;
+    while (var_r25 >= var_r23) {
+        u32 var_r22 = m_pkc_head->field_0x2c;
+        u32 var_r4 = ((temp_r3 >> var_r22) | (((temp_r3_2 >> var_r22) << m_pkc_head->field_0x34) | ((var_r25 >> var_r22) << m_pkc_head->field_0x30))) * 4;
+
+        KC_PrismData* data_p = &m_pkc_head->m_block_data[var_r4];
+        for (; data_p->field_0x0[0] >= 0; data_p++) {
+            var_r22--;
+            var_r4 = ((((((var_r25 >> var_r22) * 2) & 2 & ~4) | (((temp_r3_2 >> var_r22) << 2) & 4)) & ~1) | ((temp_r3 >> var_r22) & 1)) * 4;
+        }
+
+        u16* var_r21 = data_p->field_0x0;
+        while (var_r21[0]++ != 0) {
+            KC_PrismData* temp_r27 = &m_pkc_head->m_prism_data[var_r21[0]];
+            Vec* temp_r20 = &m_pkc_head->field_0x4[temp_r27->field_0x6];
+
+            if (temp_r20->y >= 0.014000000432133675f && !cM3d_IsZero(temp_r20->y) && (cBgW_CheckBWall(temp_r20->y) || i_chk->GetWallPrecheck())) {
+                Vec* temp_r19_2 = &m_pkc_head->field_0x0[temp_r27->field_0x4];
+                sp14.x = i_chk->m_pos.x - temp_r19_2->x;
+                sp14.z = i_chk->m_pos.z - temp_r19_2->z;
+                sp14.y = -(sp14.x * temp_r20->x + sp14.z * temp_r20->z) / temp_r19_2->y;
+
+                if (VECDotProduct(&sp14, &m_pkc_head->field_0x4[temp_r27->field_0x8]) <= 0.0075f &&
+                    VECDotProduct(&sp14, &m_pkc_head->field_0x4[temp_r27->field_0xa]) <= 0.0075f &&
+                    VECDotProduct(&sp14, &m_pkc_head->field_0x4[temp_r27->field_0xc]) <= 0.0075f)
+                {
+                    dBgPc sp64;
+                    getPolyCode(var_r21[0], &sp64);
+                    cXyz sp40(*temp_r20);
+
+                    if (!chkPolyThrough(&sp64, i_chk->GetPolyPassChk(), i_chk->GetGrpPassChk(), sp40)) {
+                        f32 tmp_height_kcw = sp14.y + temp_r19_2->y;
+                        f32 now_y = i_chk->GetNowY();
+
+                        if (now_y < tmp_height_kcw && tmp_height_kcw < i_chk->m_pos.y) {
+                            i_chk->SetPolyIndex(var_r21[0]);
+                            i_chk->SetNowY(tmp_height_kcw);
+                            var_r24 = 1;
+                            var_r23 = (u32)(tmp_height_kcw - m_pkc_head->m_area_min_pos.y);
+                        }
+                    }
+
+                }
+            }
+        }
+        var_r25 = (var_r25 & ~((1 << var_r22) - 1)) - 1;
+    }
+
+    return var_r24;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -323,6 +402,7 @@ asm bool dBgWKCol::GroundCross(cBgS_GndChk* param_0) {
 #include "asm/d/bg/d_bg_w_kcol/GroundCross__8dBgWKColFP11cBgS_GndChk.s"
 }
 #pragma pop
+#endif
 
 /* 8007F9A4-8007FF00 07A2E4 055C+00 1/0 0/0 0/0 .text ShdwDraw__8dBgWKColFP13cBgS_ShdwDraw */
 #pragma push

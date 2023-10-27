@@ -7,37 +7,27 @@
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTGamePad.h"
 #include "SSystem/SComponent/c_counter.h"
+#include "c/c_dylink.h"
 #include "d/a/d_a_player.h"
 #include "d/d_demo.h"
+#include "d/d_eye_hl.h"
 #include "d/d_item.h"
+#include "d/d_model.h"
 #include "d/d_procname.h"
+#include "d/map/d_map_path_dmap.h"
+#include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_object.h"
 #include "d/save/d_save_HIO.h"
 #include "dol2asm.h"
+#include "f_op/f_op_draw_iter.h"
+#include "f_op/f_op_msg_mng.h"
 #include "f_op/f_op_overlap_mng.h"
 #include "f_op/f_op_scene_mng.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_audio.h"
 #include "m_Do/m_Do_graphic.h"
-#include "d/d_eye_hl.h"
-
-//
-// Types:
-//
-
-struct daSus_c {
-    /* 800313BC */ void reset();
-    /* 800315A4 */ static void execute();
-};
-
-struct cDylPhs {
-    /* 8001884C */ void Link(request_of_phase_process_class*, s16);
-    /* 80018890 */ void Unlink(request_of_phase_process_class*, s16);
-};
-
-//
-// Forward References:
-//
+#include "rel/d/a/d_a_suspend/d_a_suspend.h"
 
 extern "C" void calcPauseTimer__9dScnPly_cFv();
 extern "C" void __ct__22dScnPly_env_otherHIO_cFv();
@@ -378,13 +368,7 @@ asm dScnPly_env_debugHIO_c::dScnPly_env_debugHIO_c() {
 #pragma pop
 #endif
 
-/* ############################################################################################## */
-/* 80454F2C-80454F30 00352C 0004+00 1/1 0/0 0/0 .sdata2          @4100 */
-SECTION_SDATA2 static u32 lit_4100 = 0x2A1E46FF;
-
 /* 802594AC-802597B8 253DEC 030C+00 1/0 0/0 0/0 .text            dScnPly_Draw__FP9dScnPly_c */
-// bool comparison issues
-#ifdef NONMATCHING
 static int dScnPly_Draw(dScnPly_c* scn) {
     dComIfG_Ccsp()->Move();
     dComIfG_Bgsp().ClrMoveFlag();
@@ -396,11 +380,8 @@ static int dScnPly_Draw(dScnPly_c* scn) {
             fopScnM_ChangeReq(scn, 11, l_wipeType[wipe], 5);
 
             int hour = dKy_getdaytime_hour();
-            useWhiteColor = false;
-            if (hour >= 6 && hour < 18) {
-                useWhiteColor = true;
-            }
-            bool tmp = useWhiteColor == 0;
+            useWhiteColor = hour >= 6 && hour < 18 ? true : false;
+            BOOL tmp = useWhiteColor == 0 ? 1 : 0;
 
             if (wipe == 1 || wipe == 2 || wipe == 7 || wipe == 17 || wipe == 21 ||
                 ((wipe == 8 || wipe == 10 || wipe == 18) && tmp) ||
@@ -434,9 +415,9 @@ static int dScnPly_Draw(dScnPly_c* scn) {
         dPa_control_c::onStatus(1);
         if (dScnPly_c::pauseTimer == 0) {
             dPa_control_c::onStatus(2);
-            if (dScnPly_c::pauseTimer == 0) {
-                dComIfGp_getVibration().Pause();
-            }
+        }
+        if (dScnPly_c::pauseTimer == 0) {
+            dComIfGp_getVibration().Pause();
         }
     }
 
@@ -452,16 +433,6 @@ static int dScnPly_Draw(dScnPly_c* scn) {
 
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dScnPly_Draw(dScnPly_c* param_0) {
-    nofralloc
-#include "asm/d/s/d_s_play/dScnPly_Draw__FP9dScnPly_c.s"
-}
-#pragma pop
-#endif
 
 /* 802597B8-8025987C 2540F8 00C4+00 1/0 0/0 0/0 .text            dScnPly_Execute__FP9dScnPly_c */
 static int dScnPly_Execute(dScnPly_c* scnPly) {
@@ -808,11 +779,11 @@ static asm int phase_2(dScnPly_c* param_0) {
 static int phase_3(dScnPly_c* scn) {
     if ((scn->sceneCommand != NULL && !scn->sceneCommand->sync()) || mDoAud_check1stDynamicWave()) {
         return cPhs_INIT_e;
-    } else if (!scn->field_0x1d0 == NULL && !scn->field_0x1d0->sync()) {
+    } 
+    if (!scn->field_0x1d0 == NULL && !scn->field_0x1d0->sync()) {
         return cPhs_INIT_e;
-    } else {
-        return cPhs_NEXT_e;
-    }
+    } 
+    return cPhs_NEXT_e;
 }
 
 /* ############################################################################################## */

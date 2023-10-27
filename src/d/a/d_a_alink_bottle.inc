@@ -1,3 +1,8 @@
+/**
+ * d_a_alink_bottle.inc
+ * Player Bottle action handling
+ */
+
 #include "d/d_insect.h"
 
 /* 8010E48C-8010E52C 108DCC 00A0+00 1/1 0/0 0/0 .text            bottleModelCallBack__9daAlink_cFv
@@ -119,16 +124,16 @@ int daAlink_c::procBottleDrinkInit(u16 param_0) {
     u32 id = fopAcM_GetID(this);
     dCam_getBody()->StartEventCamera(0x12, id, "Type", 1, &field_0x3194, 0);
     field_0x300c = 0;
-    field_0x300e = 0;
+    field_0x300e.x = 0;
     return 1;
 }
 
 /* 8010F698-8010F6F4 109FD8 005C+00 1/0 0/0 0/0 .text            procBottleDrink__9daAlink_cFv */
 int daAlink_c::procBottleDrink() {
-    if (field_0x300e != 0) {
+    if (field_0x300e.x != 0) {
         dComIfGp_evmng_cutEnd(field_0x3184);
     } else {
-        field_0x300e = commonBottleDrink(0);
+        field_0x300e.x = commonBottleDrink(0);
     }
 
     return 1;
@@ -170,7 +175,7 @@ int daAlink_c::procBottleOpenInit(u16 param_0) {
         }
     }
 
-    field_0x300e = 0;
+    field_0x300e.x = 0;
 
     u32 id = fopAcM_GetID(this);
     dCam_getBody()->StartEventCamera(0x12, id, "Type", 1, &field_0x3194, 0);
@@ -181,7 +186,7 @@ int daAlink_c::procBottleOpenInit(u16 param_0) {
     if (param_0 == 0x67) {
         setCylAtParam(0x200, 0, 0, 0, 0, 30.0f, 30.0f);
     }
-    field_0x3010 = 0;
+    field_0x300e.y = 0;
 
     return 1;
 }

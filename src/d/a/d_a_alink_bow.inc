@@ -1,3 +1,8 @@
+/**
+ * d_a_alink_bow.inc
+ * Player Bow and Arrow action handling
+ */
+
 #include "rel/d/a/d_a_arrow/d_a_arrow.h"
 
 /* 800DE64C-800DE740 0D8F8C 00F4+00 1/1 0/0 2/2 .text            getArrowFlyData__9daAlink_cCFPfPfi
@@ -58,7 +63,7 @@ void daAlink_c::setSlingModel() {
 
     J3DModelData* model_data = loadAramBmd(0x319, 0x2C00);
     mHeldItemModel = initModel(model_data, 0);
-    field_0x730.init(bck, 0, 2, lit_6040, 0, -1, false);
+    mItemBck.init(bck, 0, 2, lit_6040, 0, -1, false);
 
     mDoExt_setCurrentHeap(heap);
     field_0x2f95 = 5;
@@ -85,11 +90,11 @@ cXyz* daAlink_c::checkBowCameraArrowPosP(s16* param_0, s16* param_1) {
     mDoMtx_stack_c::transS(field_0x3834);
     concatMagneBootMtx();
     mDoMtx_stack_c::ZXYrotM(mBodyAngle.x, var_28, 0);
-    mDoMtx_stack_c::multVec(&localPos, &field_0x37e0);
+    mDoMtx_stack_c::multVec(&localPos, &mHeldItemRootPos);
 
     *param_0 = mBodyAngle.x;
     *param_1 = var_28;
-    return &field_0x37e0;
+    return &mHeldItemRootPos;
 }
 
 /* 800DE990-800DE9B8 0D92D0 0028+00 1/0 0/0 0/0 .text            checkArrowChargeEnd__9daAlink_cCFv
@@ -275,10 +280,10 @@ void daAlink_c::setBowModel() {
     JKRHeap* old_heap = setItemHeap();
 
     mHeldItemModel = initModel(loadAramBmd(0x314, 0x4C00), 0);
-    field_0x730.init(bck, FALSE, 2, 1.0f, 0, -1, false);
+    mItemBck.init(bck, FALSE, 2, 1.0f, 0, -1, false);
 
     mDoExt_setCurrentHeap(old_heap);
-    field_0x33dc = field_0x730.getBckAnm()->getFrameMax() - 0.001f;
+    field_0x33dc = mItemBck.getBckAnm()->getFrameMax() - 0.001f;
     field_0x2f95 = 5;
     field_0x2f94 = 0x67;
 }

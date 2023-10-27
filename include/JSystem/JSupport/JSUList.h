@@ -97,6 +97,8 @@ public:
 
     JSULink<T>* getLast() const { return (JSULink<T>*)getLastLink(); }
 
+    JSULink<T>* getNth(int index) { return (JSULink<T>*)getNthLink(index); }
+
     JSULink<T>* getEnd() const { return NULL; }
 
     u32 getNumLinks() const { return this->JSUPtrList::getNumLinks(); }
@@ -212,7 +214,7 @@ public:
         return *this;
     }
 
-    T& operator*() { return *this->getObject(); }
+    T* operator*() { return this->getObject(); }
 
     T* operator->() { return this->getObject(); }
 

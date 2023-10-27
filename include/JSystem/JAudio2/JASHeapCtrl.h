@@ -15,19 +15,20 @@ public:
     /* 802901AC */ void initRootHeap(void*, u32);
     /* 8029021C */ bool alloc(JASHeap*, u32);
     /* 802903F4 */ bool allocTail(JASHeap*, u32);
-    /* 802904E4 */ void free();
+    /* 802904E4 */ bool free();
     /* 80290608 */ void insertChild(JASHeap*, JASHeap*, void*, u32, bool);
-    /* 802906F0 */ void getTailHeap();
-    /* 8029077C */ void getTailOffset();
-    /* 802907E0 */ void getCurOffset();
+    /* 802906F0 */ JASHeap* getTailHeap();
+    /* 8029077C */ u32 getTailOffset();
+    /* 802907E0 */ u32 getCurOffset();
     /* 80290B54 */ ~JASHeap();
 
     void* getBase() { return mBase; }
+    bool isAllocated() { return mBase; }
 
     /* 0x00 */ JSUTree<JASHeap> mTree;
     /* 0x1C */ OSMutex mMutex;
     /* 0x34 */ JASDisposer* mDisposer;
-    /* 0x38 */ void* mBase;
+    /* 0x38 */ u8* mBase;
     /* 0x3c */ u32 mSize;
     /* 0x40 */ JASHeap* field_0x40;
 };
@@ -35,14 +36,14 @@ public:
 namespace JASKernel {
     /* 802909B8 */ void setupRootHeap(JKRSolidHeap*, u32);
     /* 80290AC0 */ JKRHeap* getSystemHeap();
-    /* 80290AC8 */ u32 getCommandHeap();
+    /* 80290AC8 */ void* getCommandHeap();
     /* 80290AD0 */ void setupAramHeap(u32, u32);
     /* 80290B08 */ JASHeap* getAramHeap();
 
     extern u8 audioAramHeap[68];
-    extern u8 sAramBase[4];
+    extern u32 sAramBase;
     extern JKRHeap* sSystemHeap;
-    extern u8 sCommandHeap[4];
+    extern void* sCommandHeap;
 };
 
 struct JASGenericMemPool {
@@ -69,6 +70,24 @@ namespace JASThreadingModel {
             BOOL field_0x0;
         };
     };
+
+    
+    struct ObjectLevelLockable {
+        // Should be templated on the chunk memory but couldn't initialize it inside the class itself
+        //template <typename A0>
+        struct Lock {
+            Lock(OSMutex* mutex) {
+                mMutex = mutex;
+                OSLockMutex(mMutex);
+            }
+
+            ~Lock() {
+                OSUnlockMutex(mMutex);
+            }
+
+            OSMutex* mMutex;
+        };
+    };
 };
 
 template <typename T>
@@ -77,6 +96,115 @@ public:
     void newMemPool(int param_0) { JASGenericMemPool::newMemPool(sizeof(T), param_0); }
     void* alloc(u32 n) { return JASGenericMemPool::alloc(n); }
     void free(void* ptr, u32 n) { JASGenericMemPool::free(ptr, n); }
+};
+
+template<u32 ChunkSize, typename T>
+class JASMemChunkPool {
+    struct MemoryChunk {
+        MemoryChunk(MemoryChunk* nextChunk) {
+            mNextChunk = nextChunk;
+            mUsedSize = 0;
+            mChunks = 0;
+        }
+
+        bool checkArea(void* ptr) {
+            return (u8*)this + 0xc <= (u8*)ptr && (u8*)ptr < (u8*)this + (ChunkSize + 0xc);
+        }
+
+        MemoryChunk* getNextChunk() {
+            return mNextChunk;
+        }
+
+        void* alloc(u32 size) {
+            u8* rv = mBuffer + mUsedSize;
+            mUsedSize += size;
+            mChunks++;
+            return rv;
+        }
+
+        void free() {
+            mChunks--;
+        }
+
+        bool isEmpty() {
+            return mChunks == 0;
+        }
+
+        void setNextChunk(MemoryChunk* chunk) {
+            mNextChunk = chunk;
+        }
+
+        u32 getFreeSize() {
+            return ChunkSize - mUsedSize;
+        }
+
+        void revive() {
+            mUsedSize = 0;
+        }
+
+        MemoryChunk* mNextChunk;
+        u32 mUsedSize;
+        u32 mChunks;
+        u8 mBuffer[ChunkSize];
+    };
+public:
+    bool createNewChunk() {
+        bool uVar2;
+        if (field_0x18 != NULL && field_0x18->isEmpty()) {
+            field_0x18->revive();
+            uVar2 = 1;
+        } else {
+            MemoryChunk* pMVar4 = field_0x18;
+            field_0x18 = new (JASKernel::getSystemHeap(), 0) MemoryChunk(pMVar4);
+            if (field_0x18 != NULL) {
+                uVar2 = 1;
+            } else {
+                field_0x18 = new (JKRHeap::getSystemHeap(), 0) MemoryChunk(pMVar4);
+                if (field_0x18 != NULL) {
+                    uVar2 = 1;
+                } else {
+                    field_0x18 = pMVar4;
+                    uVar2 = 0;
+                }
+            }
+        }
+        return uVar2;
+    }
+
+    void* alloc(u32 size) {
+        T::Lock lock(&mMutex);
+        if (field_0x18->getFreeSize() < size) {
+            if (ChunkSize < size) {
+                return NULL;
+            }
+            if (createNewChunk() == 0) {
+                return NULL;
+            }
+        }
+        return field_0x18->alloc(size);
+    }
+
+    void free(void* ptr) {
+        T::Lock lock(&((JASMemChunkPool<ChunkSize,T>*)ptr)->mMutex);
+        MemoryChunk* chunk = ((JASMemChunkPool<ChunkSize,T>*)ptr)->field_0x18;
+        MemoryChunk* prevChunk = NULL;
+        while (chunk != NULL) {
+            if (chunk->checkArea(this)) {
+                chunk->free();
+                if (chunk != ((JASMemChunkPool<ChunkSize,T>*)ptr)->field_0x18 && chunk->isEmpty()) {
+                    MemoryChunk* nextChunk = chunk->getNextChunk();
+                    delete chunk;
+                    prevChunk->setNextChunk(nextChunk);
+                }
+                return;
+            }
+            prevChunk = chunk;
+            chunk = chunk->getNextChunk();
+        }
+    }
+
+    /* 0x00 */ OSMutex mMutex;
+    /* 0x18 */ MemoryChunk* field_0x18;
 };
 
 template <typename T>

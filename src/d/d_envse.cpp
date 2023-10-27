@@ -4,54 +4,10 @@
 //
 
 #include "d/d_envse.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_path.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct dStage_roomControl_c {
-    /* 80024384 */ void getStatusRoomDt(int);
-};
-
-struct dStage_SoundInfo_c {};
-
-struct dPath {};
-
-struct dEnvSe_c {
-    /* 80182FD8 */ void execute_common(dStage_SoundInfo_c*, s8*, u8);
-    /* 80183480 */ void execute();
-};
-
-struct dCamera_c {
-    /* 80181E64 */ void Eye();
-};
-
-struct cXyz {};
-
-struct Vec {};
-
-struct cM3dGLin {
-    /* 8026F31C */ void SetStartEnd(Vec const&, Vec const&);
-};
-
-struct Z2EnvSeMgr {
-    /* 802C6C84 */ void initStaticEnvSe(u8, u8, u8, u8, Vec*);
-    /* 802C70C8 */ void startStaticEnvSe(s8);
-    /* 802C780C */ void registWindowPos(Vec*);
-    /* 802C80F8 */ void initRiverSe(u8, u8, u8, u8);
-    /* 802C8234 */ void registRiverSePos(Vec*);
-    /* 802C8300 */ void startRiverSe(s8);
-    /* 802C8730 */ void initFallSe(u8, u8, u8, u8);
-    /* 802C886C */ void registFallSePos(Vec*);
-    /* 802C8890 */ void startFallSe(s8);
-    /* 802C8A90 */ void initEtcSe(u8, u8, u8, u8);
-    /* 802C8C24 */ void registEtcSePos(Vec*);
-    /* 802C8C48 */ void startEtcSe(s8);
-    /* 802C950C */ void initLv3WaterSe(u8, u8, u8, u8);
-    /* 802C9F58 */ void registLv3WaterSePos(u8, Vec*);
-    /* 802CA794 */ void startLv3WaterSe(s8);
-};
 
 //
 // Forward References:
@@ -66,7 +22,6 @@ extern "C" static bool dEnvSe_IsDelete__FP8dEnvSe_c();
 extern "C" static bool dEnvSe_Delete__FP8dEnvSe_c();
 extern "C" static void dEnvSe_Create__FP8dEnvSe_c();
 extern "C" extern char const* const d_d_envse__stringBase0;
-extern "C" extern void* g_profile_ENVSE[10 + 1 /* padding */];
 
 //
 // External References:
@@ -94,29 +49,21 @@ extern "C" void startEtcSe__10Z2EnvSeMgrFSc();
 extern "C" void initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc();
 extern "C" void registLv3WaterSePos__10Z2EnvSeMgrFUcP3Vec();
 extern "C" void startLv3WaterSe__10Z2EnvSeMgrFSc();
-extern "C" void PSVECSquareDistance();
 extern "C" void _savegpr_22();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_22();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
-extern "C" void memcmp();
-extern "C" extern void* g_fopKy_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8cM3dGLin[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_mEnvSeMgr[780];
-extern "C" extern u32 __float_max;
-extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 
 //
 // Declarations:
 //
 
 /* 80182DD4-80182DDC 17D714 0008+00 1/0 0/0 0/0 .text            dEnvSe_Draw__FP8dEnvSe_c */
-static bool dEnvSe_Draw(dEnvSe_c* param_0) {
-    return true;
+static int dEnvSe_Draw(dEnvSe_c* i_this) {
+    return 1;
 }
 
 /* ############################################################################################## */
@@ -128,6 +75,59 @@ SECTION_SBSS2 static u8 data_80456B84[4];
 
 /* 80182DDC-80182FD8 17D71C 01FC+00 1/1 0/0 0/0 .text dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath
  */
+// stack issues
+#ifdef NONMATCHING
+static void dEnvSe_getNearPathPos(cXyz* param_0, cXyz* param_1, dPath* i_path) {
+    int var_r28 = 0;
+    BOOL sp10[2] = {0, 0};
+    f32 sp8;
+
+    f32 var_f31 = FLT_MAX;
+
+    dStage_dPnt_c* point_p = i_path->m_points;
+
+    cXyz sp3C;
+    cXyz sp30;
+    cM3dGLin sp14;
+
+    for (int i = 0; i < i_path->m_num; i++) {
+        sp8 = cM3d_LenSq(param_1, &point_p->m_position);
+        if (var_f31 > sp8) {
+            var_f31 = sp8;
+            var_r28 = i;
+        }
+
+        point_p++;
+    }
+
+    dStage_dPnt_c* point2_p = &i_path->m_points[var_r28];
+    if (var_r28 != 0) {
+        sp14.set(point2_p[-1].m_position, point2_p[0].m_position);
+        sp10[0] = cM3d_Len3dSqPntAndSegLine(&sp14, param_1, &sp30, &sp8);
+    }
+
+    if (var_r28 != i_path->m_num - 1) {
+        sp14.set(point2_p[0].m_position, point2_p[1].m_position);
+        sp10[1] = cM3d_Len3dSqPntAndSegLine(&sp14, param_1, &sp3C, &sp8);
+    }
+
+    if (sp10[0]) {
+        if (sp10[1]) {
+            if (cM3d_LenSq(&sp3C, param_1) > sp8) {
+                *param_0 = sp30;
+            } else {
+                *param_0 = sp3C;
+            }
+        } else {
+            *param_0 = sp30;
+        }
+    } else if (sp10[1]) {
+        *param_0 = sp3C;
+    } else {
+        param_0->set(point2_p[0].m_position);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -136,89 +136,198 @@ static asm void dEnvSe_getNearPathPos(cXyz* param_0, cXyz* param_1, dPath* param
 #include "asm/d/d_envse/dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 80394308-80394308 020968 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80394308 = "sndtag";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039430F = "";
-#pragma pop
+#endif
 
 /* 80182FD8-80183480 17D918 04A8+00 1/1 0/0 0/0 .text
  * execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEnvSe_c::execute_common(dStage_SoundInfo_c* param_0, s8* param_1, u8 param_2) {
-    nofralloc
-#include "asm/d/d_envse/execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc.s"
+int dEnvSe_c::execute_common(dStage_SoundInfo_c* i_soundInf, s8* param_1, u8 param_2) {
+    s32 roomNo = dComIfGp_roomControl_getStayNo();
+    int path_roomNo = dComIfGp_roomControl_getStayNo();
+    BOOL var_r25 = false;
+
+    if (i_soundInf == NULL) {
+        return 1;
+    }
+
+    int i = i_soundInf->num;
+    stage_sound_data* data_p = i_soundInf->entries;
+
+    cXyz cam_eye = dComIfGp_getCamera(i_dComIfGp_getPlayerCameraID(0))->mCamera.Eye();
+
+    if (param_2 == 0) {
+        path_roomNo = -1;
+    }
+
+    for (; i != 0; i--) {
+        if (memcmp(data_p->field_0x0, "sndtag", 6) == 0) {
+            if (!(*param_1 & 1)) {
+                if (data_p->field_0x17 != 0) {
+                    mDoAud_mEnvse_initStaticEnvSe(data_p->field_0x17, data_p->field_0x14,
+                                                  data_p->field_0x19, data_p->field_0x1a,
+                                                  &data_p->field_0x8);
+                }
+                *param_1 |= 1;
+            }
+
+            if (!var_r25) {
+                mDoAud_mEnvse_startStaticEnvSe(dComIfGp_getReverb(roomNo));
+            }
+            var_r25 = true;
+        } else if (data_p->field_0x17 < 8) {
+            if (!(*param_1 & 2)) {
+                mDoAud_mEnvse_initRiverSe(data_p->field_0x17, data_p->field_0x14,
+                                          data_p->field_0x19, data_p->field_0x1a);
+                *param_1 |= 2;
+            }
+
+            for (dPath* path_p = dPath_GetRoomPath(data_p->field_0x18, path_roomNo); path_p != NULL;
+                 path_p = dPath_GetNextRoomPath(path_p, path_roomNo))
+            {
+                dEnvSe_getNearPathPos(&mPos, &cam_eye, path_p);
+                mDoAud_mEnvse_registRiverSePos(&mPos);
+            }
+
+            mDoAud_mEnvse_startRiverSe(dComIfGp_getReverb(roomNo));
+        } else if (data_p->field_0x17 < 16) {
+            cXyz sp14;
+            f32 fvar12 = FLT_MAX;
+
+            if (!(*param_1 & 4)) {
+                mDoAud_mEnvse_initFallSe(data_p->field_0x17, data_p->field_0x14, data_p->field_0x19,
+                                         data_p->field_0x1a);
+                *param_1 |= 4;
+            }
+
+            mPos = cam_eye;
+
+            for (dPath* path_p = dPath_GetRoomPath(data_p->field_0x18, path_roomNo); path_p != NULL;
+                 path_p = dPath_GetNextRoomPath(path_p, path_roomNo))
+            {
+                dEnvSe_getNearPathPos(&sp14, &cam_eye, path_p);
+
+                f32 fvar11 = cM3d_LenSq(&sp14, &cam_eye);
+                if (fvar11 < fvar12) {
+                    fvar12 = fvar11;
+                    mPos = sp14;
+                }
+
+                mDoAud_mEnvse_registFallSePos(&sp14);
+            }
+
+            mDoAud_mEnvse_startFallSe(dComIfGp_getReverb(roomNo));
+        } else if (data_p->field_0x17 < 32) {
+            if (!(*param_1 & 8)) {
+                mDoAud_mEnvse_initSmellSe(data_p->field_0x17, data_p->field_0x14,
+                                          data_p->field_0x19, data_p->field_0x1a);
+                *param_1 |= 8;
+            }
+
+            for (dPath* path_p = dPath_GetRoomPath(data_p->field_0x18, path_roomNo); path_p != NULL;
+                 path_p = dPath_GetNextRoomPath(path_p, path_roomNo))
+            {
+                dEnvSe_getNearPathPos(&mPos, &cam_eye, path_p);
+                mDoAud_mEnvse_registSmellSePos(&mPos);
+            }
+
+            mDoAud_mEnvse_startSmellSe(dComIfGp_getReverb(roomNo));
+        } else if (data_p->field_0x17 < 64) {
+            for (dPath* path_p = dPath_GetRoomPath(data_p->field_0x18, path_roomNo); path_p != NULL;
+                 path_p = dPath_GetNextRoomPath(path_p, path_roomNo))
+            {
+                dEnvSe_getNearPathPos(&mPos, &cam_eye, path_p);
+                mDoAud_mEnvse_registWindowPos(&mPos);
+            }
+        } else if (data_p->field_0x17 >= 100) {
+            if (!((field_0x108 >> i) & 1)) {
+                mDoAud_initLv3WaterSe(data_p->field_0x17, data_p->field_0x14, data_p->field_0x19,
+                                      data_p->field_0x1a);
+                field_0x108 |= (1 << i);
+            }
+
+            for (dPath* path_p = dPath_GetRoomPath(data_p->field_0x18, path_roomNo); path_p != NULL;
+                 path_p = dPath_GetNextRoomPath(path_p, path_roomNo))
+            {
+                dEnvSe_getNearPathPos(&mPos, &cam_eye, path_p);
+                mDoAud_registLv3WaterSePos(data_p->field_0x17, &mPos);
+            }
+
+            mDoAud_startLv3WaterSe(dComIfGp_getReverb(roomNo));
+        }
+        data_p++;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80183480-801835A0 17DDC0 0120+00 1/1 0/0 0/0 .text            execute__8dEnvSe_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEnvSe_c::execute() {
-    nofralloc
-#include "asm/d/d_envse/execute__8dEnvSe_cFv.s"
+int dEnvSe_c::execute() {
+    s32 roomNo = dComIfGp_roomControl_getStayNo();
+    dStage_roomDt_c* roomDt_p = &dComIfGp_roomControl_getStatusRoomDt(roomNo)->mRoomDt;
+
+    if (roomDt_p == NULL) {
+        return 1;
+    }
+
+    if (mRoomNo != roomNo) {
+        field_0xfc = 0;
+        field_0xfd = 0;
+        field_0x108 = 0;
+        mRoomNo = roomNo;
+    }
+
+    execute_common(roomDt_p->getSoundInfCL(), &field_0xfc, 1);
+    execute_common(roomDt_p->getSoundInf(), &field_0xfd, 1);
+    execute_common(i_dComIfGp_getStage()->getSoundInfCL(), &field_0xfe, 0);
+
+    return execute_common(i_dComIfGp_getStage()->getSoundInf(), &field_0xff, 0);
 }
-#pragma pop
 
 /* 801835A0-801835C0 17DEE0 0020+00 1/0 0/0 0/0 .text            dEnvSe_Execute__FP8dEnvSe_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dEnvSe_Execute(dEnvSe_c* param_0) {
-    nofralloc
-#include "asm/d/d_envse/dEnvSe_Execute__FP8dEnvSe_c.s"
+static int dEnvSe_Execute(dEnvSe_c* i_this) {
+    return i_this->execute();
 }
-#pragma pop
 
 /* 801835C0-801835C8 17DF00 0008+00 1/0 0/0 0/0 .text            dEnvSe_IsDelete__FP8dEnvSe_c */
-static bool dEnvSe_IsDelete(dEnvSe_c* param_0) {
-    return true;
+static int dEnvSe_IsDelete(dEnvSe_c* i_this) {
+    return 1;
 }
 
 /* 801835C8-801835D0 17DF08 0008+00 1/0 0/0 0/0 .text            dEnvSe_Delete__FP8dEnvSe_c */
-static bool dEnvSe_Delete(dEnvSe_c* param_0) {
-    return true;
+static int dEnvSe_Delete(dEnvSe_c* i_this) {
+    return 1;
 }
 
 /* 801835D0-801835F8 17DF10 0028+00 1/0 0/0 0/0 .text            dEnvSe_Create__FP8dEnvSe_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void dEnvSe_Create(dEnvSe_c* param_0) {
-    nofralloc
-#include "asm/d/d_envse/dEnvSe_Create__FP8dEnvSe_c.s"
+static int dEnvSe_Create(dEnvSe_c* i_this) {
+    i_this->field_0xfc = 0;
+    i_this->field_0xfd = 0;
+    i_this->field_0xfe = 0;
+    i_this->field_0xff = 0;
+    i_this->mRoomNo = 0xFF;
+    i_this->field_0x108 = 0;
+
+    return cPhs_COMPLEATE_e;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803BA808-803BA81C -00001 0014+00 1/0 0/0 0/0 .data            l_dEnvSe_Method */
-SECTION_DATA static void* l_dEnvSe_Method[5] = {
-    (void*)dEnvSe_Create__FP8dEnvSe_c,  (void*)dEnvSe_Delete__FP8dEnvSe_c,
-    (void*)dEnvSe_Execute__FP8dEnvSe_c, (void*)dEnvSe_IsDelete__FP8dEnvSe_c,
-    (void*)dEnvSe_Draw__FP8dEnvSe_c,
+static leafdraw_method_class l_dEnvSe_Method = {
+    (process_method_func)dEnvSe_Create,  (process_method_func)dEnvSe_Delete,
+    (process_method_func)dEnvSe_Execute, (process_method_func)dEnvSe_IsDelete,
+    (process_method_func)dEnvSe_Draw,
 };
 
 /* 803BA81C-803BA848 -00001 0028+04 0/0 0/0 1/0 .data            g_profile_ENVSE */
-SECTION_DATA extern void* g_profile_ENVSE[10 + 1 /* padding */] = {
-    (void*)0xFFFFFFFD,
-    (void*)0x0002FFFD,
-    (void*)0x00150000,
-    (void*)&g_fpcLf_Method,
-    (void*)0x0000010C,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)&g_fopKy_Method,
-    (void*)0x02B10000,
-    (void*)&l_dEnvSe_Method,
-    /* padding */
-    NULL,
+extern kankyo_process_profile_definition g_profile_ENVSE = {
+    fpcLy_CURRENT_e,
+    2,
+    fpcPi_CURRENT_e,
+    PROC_ENVSE,
+    &g_fpcLf_Method.mBase,
+    sizeof(dEnvSe_c),
+    0,
+    0,
+    &g_fopKy_Method,
+    689,
+    &l_dEnvSe_Method,
 };
-
-/* 80394308-80394308 020968 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
