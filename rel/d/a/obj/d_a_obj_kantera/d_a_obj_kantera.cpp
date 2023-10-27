@@ -4,16 +4,16 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_kantera/d_a_obj_kantera.h"
-#include "d/cc/d_cc_d.h"
-#include "dol2asm.h"
-#include "f_op/f_op_actor_mng.h"
-#include "d/com/d_com_inf_game.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "SSystem/SComponent/c_math.h"
+#include "d/a/d_a_itembase_static.h"
+#include "d/cc/d_cc_d.h"
+#include "d/com/d_com_inf_game.h"
 #include "d/d_item.h"
 #include "d/d_item_data.h"
-#include "d/a/d_a_itembase_static.h"
 #include "d/d_procname.h"
-#include "SSystem/SComponent/c_math.h"
+#include "dol2asm.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Types:
@@ -182,16 +182,16 @@ extern "C" extern u8 data_80C39860[4];
 /* 80C39648-80C3968C 000000 0044+00 4/4 0/0 0/0 .rodata          l_cyl_src */
 const static dCcD_SrcCyl l_cyl_src = {
     {
-        {0x0, {{0x0, 0x0, 0x0}, {0xffffffff, 0x11}, 0x59}}, // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4}, // mGObjTg
-        {0x0}, // mGObjCo
-    }, // mObjInf
+        {0x0, {{0x0, 0x0, 0x0}, {0xffffffff, 0x11}, 0x59}},  // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},                  // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4},                  // mGObjTg
+        {0x0},                                               // mGObjCo
+    },                                                       // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        20.0f, // mRadius
-        40.0f // mHeight
-    } // mCyl
+        {0.0f, 0.0f, 0.0f},  // mCenter
+        20.0f,               // mRadius
+        40.0f                // mHeight
+    }                        // mCyl
 };
 
 /* 80C3968C-80C39690 000044 0004+00 0/3 0/0 0/0 .rodata          @3855 */
@@ -486,7 +486,8 @@ int daItemKantera_c::Create() {
     initBaseMtx();
     fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
     mAcchCir.SetWall(30.0f, 30.0f);
-    mAcch.Set(&fopAcM_GetPosition_p(this), &fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, &fopAcM_GetSpeed_p(this), NULL, NULL);
+    mAcch.Set(&fopAcM_GetPosition_p(this), &fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
+              &fopAcM_GetSpeed_p(this), NULL, NULL);
     mColStatus.Init(0, 0xff, this);
     mCollider.Set(l_cyl_src);
     mCollider.SetStts(&mColStatus);
@@ -745,7 +746,8 @@ int daItemKantera_c::initActionOrderGetDemo() {
     hide();
     fopAcM_orderItemEvent(this, 0, 0);
     mEvtInfo.i_onCondition(8);
-    field_0x92c = fopAcM_createItemForTrBoxDemo(&current.pos, m_itemNo, -1, fopAcM_GetRoomNo(this), NULL, NULL);
+    field_0x92c = fopAcM_createItemForTrBoxDemo(&current.pos, m_itemNo, -1, fopAcM_GetRoomNo(this),
+                                                NULL, NULL);
     setStatus(2);
     return 1;
 }
