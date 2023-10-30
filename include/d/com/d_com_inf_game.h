@@ -2900,6 +2900,10 @@ inline dKy_tevstr_c* dComIfGp_roomControl_getTevStr(int i_roomNo) {
     return g_dComIfG_gameInfo.play.getRoomControl()->getTevStr(i_roomNo);
 }
 
+inline BOOL dComIfGp_roomControl_checkRoomDisp(int i_roomNo) {
+    return g_dComIfG_gameInfo.play.getRoomControl()->checkRoomDisp(i_roomNo);
+}
+
 inline BOOL dComIfGp_roomControl_checkStatusFlag(int i_roomNo, u8 flag) {
     return g_dComIfG_gameInfo.play.getRoomControl()->checkStatusFlag(i_roomNo, flag);
 }

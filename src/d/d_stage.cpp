@@ -1545,12 +1545,12 @@ static int createRoomScene(int param_0) {
 }
 
 /* 800244E8-8002451C 01EE28 0034+00 0/0 0/0 8/13 .text checkRoomDisp__20dStage_roomControl_cCFi */
-bool dStage_roomControl_c::checkRoomDisp(int i_roomNo) const {
+BOOL dStage_roomControl_c::checkRoomDisp(int i_roomNo) const {
     if (checkStatusFlag(i_roomNo, 8)) {
-        return false;
+        return 0;
     }
 
-    return checkStatusFlag(i_roomNo, 16) ? true : false;
+    return checkStatusFlag(i_roomNo, 16) ? 1 : 0;
 }
 
 /* 8002451C-8002471C 01EE5C 0200+00 2/2 0/0 0/2 .text loadRoom__20dStage_roomControl_cFiPUcb */
