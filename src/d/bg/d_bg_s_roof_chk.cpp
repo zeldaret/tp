@@ -12,7 +12,7 @@ dBgS_RoofChk::dBgS_RoofChk() {
     m_pos.x = 0.0f;
     m_pos.y = 0.0f;
     m_pos.z = 0.0f;
-    setActorPid(0xFFFFFFFF);
+    SetActorPid(0xFFFFFFFF);
     field_0x48 = 0;
 }
 

@@ -17,7 +17,7 @@
 /* 80267C1C-80267C94 26255C 0078+00 0/0 2/2 123/123 .text            __ct__11cBgS_GndChkFv */
 cBgS_GndChk::cBgS_GndChk() {
     m_pos = cXyz::Zero;
-    setActorPid(0xFFFFFFFF);
+    SetActorPid(0xFFFFFFFF);
     mFlags = 2;
 }
 

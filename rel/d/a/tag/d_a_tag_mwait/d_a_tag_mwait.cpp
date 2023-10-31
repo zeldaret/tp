@@ -4,8 +4,8 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_mwait/d_a_tag_mwait.h"
+#include "rel/d/a/d_a_midna/d_a_midna.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "d/a/d_a_alink.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 

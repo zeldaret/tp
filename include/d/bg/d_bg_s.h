@@ -61,6 +61,8 @@ public:
 
 class dBgS_Acch;
 
+u8 dKy_pol_sound_get(cBgS_PolyInfo const* param_0);
+
 class dBgS : public cBgS {
 public:
     dBgS() {}
@@ -107,6 +109,7 @@ public:
     bool PushPullCallBack(cBgS_PolyInfo const&, fopAc_ac_c*, s16, dBgW_Base::PushPullLabel);
 
     bool WaterChk(dBgS_SplGrpChk* chk) { return SplGrpChk(chk); }
+    u32 GetMtrlSndId(cBgS_PolyInfo* param_0) { return dKy_pol_sound_get(param_0); }
 };  // Size: 0x1404
 
 bool dBgS_CheckBGroundPoly(cBgS_PolyInfo const&);
