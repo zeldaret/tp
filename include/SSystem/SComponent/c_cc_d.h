@@ -489,6 +489,7 @@ public:
     u32 ChkCoSph3DCrr() const { return mObjCo.ChkSph3DCrr(); }
     void OnAtSPrmBit(u32 flag) { mObjAt.OnSPrmBit(flag); }
     void OffAtSPrmBit(u32 flag) { mObjAt.OffSPrmBit(flag); }
+    void OffTgSPrmBit(u32 flag) { mObjTg.OffSPrmBit(flag); }
     void OffCoSPrmBit(u32 flag) { mObjCo.OffSPrmBit(flag); }
     void SetAtType(u32 type) { mObjAt.SetType(type); }
     void OnAtSetBit() { mObjAt.OnSPrmBit(1); }
