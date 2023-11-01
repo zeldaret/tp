@@ -1,6 +1,6 @@
 /**
  * d_a_obj_bbox.cpp
- * Object - Breaking Wooden Box
+ * Object - Breakable Wooden Box
  */
 
 #include "rel/d/a/obj/d_a_obj_bbox/d_a_obj_bbox.h"
