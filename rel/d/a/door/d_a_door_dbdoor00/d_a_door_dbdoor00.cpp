@@ -4,19 +4,20 @@
 //
 
 #include "rel/d/a/door/d_a_door_dbdoor00/d_a_door_dbdoor00.h"
-#include "dol2asm.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/bg/d_bg_w.h"
-#include "d/d_door_param2.h"
-#include "f_op/f_op_actor_mng.h"
-#include "d/d_procname.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "MSL_C/MSL_Common/Src/printf.h"
+#include "d/a/d_a_player.h"
+#include "d/bg/d_bg_w.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_door_param2.h"
+#include "d/d_procname.h"
+#include "dol2asm.h"
+#include "f_op/f_op_actor_mng.h"
+#include "SSystem/SComponent/c_math.h"
 
 //
 // Types:
 //
-
 
 class daDbDoor00_c : public fopAc_ac_c {
 public:
@@ -25,12 +26,12 @@ public:
     /* 8045D490 */ char* getDummyBmdName();
     /* 8045D4A0 */ char* getBmdArcName();
     /* 8045D4B0 */ char* getBmdName();
-    /* 8045D504 */ char* getDoorModelData();
+    /* 8045D504 */ J3DModelData* getDoorModelData();
     /* 8045D594 */ int CreateHeap();
     /* 8045D744 */ void calcMtx();
-    /* 8045D8F4 */ void CreateInit();
+    /* 8045D8F4 */ int CreateInit();
     /* 8045D9A8 */ int create();
-    /* 8045DA68 */ void getDemoAction();
+    /* 8045DA68 */ int getDemoAction();
     /* 8045DAB0 */ void demoProc();
     /* 8045DE44 */ int checkArea();
     /* 8045DF70 */ int checkUnlock();
@@ -216,13 +217,6 @@ char* daDbDoor00_c::getBmdArcName() {
     return "DbDoor0";
 }
 
-/* ############################################################################################## */
-/* 8045E56C-8045E56C 000038 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8045E5B9 = "%s%02d.bmd";
-#pragma pop
-
 /* 8045E664-8045E670 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -245,24 +239,20 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 SECTION_DATA static void* l_bmd_base_name = (void*)&d_a_door_dbdoor00__stringBase0;
 
 /* 8045E7B0-8045E7D0 000000 0020+00 1/1 0/0 0/0 .bss             l_bmdName$3699 */
-static u8 l_bmdName[32];
+static char l_bmdName[32];
 
 /* 8045D4B0-8045D504 0001B0 0054+00 1/1 0/0 0/0 .text            getBmdName__12daDbDoor00_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm char* daDbDoor00_c::getBmdName() {
-    nofralloc
-#include "asm/rel/d/a/door/d_a_door_dbdoor00/d_a_door_dbdoor00/getBmdName__12daDbDoor00_cFv.s"
+char* daDbDoor00_c::getBmdName() {
+    sprintf(l_bmdName, "%s%02d.bmd", l_bmd_base_name, door_param2_c::getDoorModel(this));
+    return l_bmdName;
 }
-#pragma pop
 
 /* 8045D504-8045D574 000204 0070+00 1/1 0/0 0/0 .text            getDoorModelData__12daDbDoor00_cFv
  */
-char* daDbDoor00_c::getDoorModelData() {
-    char* res = (char*)dComIfG_getStageRes(getBmdName());
+J3DModelData* daDbDoor00_c::getDoorModelData() {
+    J3DModelData* res = (J3DModelData*)dComIfG_getStageRes(getBmdName());
     if (res == NULL) {
-        res = (char*)dComIfG_getObjectRes(getBmdArcName(), getBmdName());
+        res = (J3DModelData*)dComIfG_getObjectRes(getBmdArcName(), getBmdName());
     }
     return res;
 }
@@ -272,23 +262,38 @@ static int CheckCreateHeap(fopAc_ac_c* i_this) {
     return static_cast<daDbDoor00_c*>(i_this)->CreateHeap();
 }
 
-/* ############################################################################################## */
-/* 8045E56C-8045E56C 000038 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8045E5C4 = "DbDoor00_L";
-SECTION_DEAD static char const* const stringBase_8045E5CF = "DbDoor00_R";
-#pragma pop
-
 /* 8045D594-8045D744 000294 01B0+00 1/1 0/0 0/0 .text            CreateHeap__12daDbDoor00_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daDbDoor00_c::CreateHeap() {
-    nofralloc
-#include "asm/rel/d/a/door/d_a_door_dbdoor00/d_a_door_dbdoor00/CreateHeap__12daDbDoor00_cFv.s"
+int daDbDoor00_c::CreateHeap() {
+    J3DModelData* modelData =
+        (J3DModelData*)dComIfG_getObjectRes(getAlwaysArcName(), getDummyBmdName());
+    mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    if (mpModel == NULL) {
+        return 0;
+    }
+
+    modelData = getDoorModelData();
+    mpModel2 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    if (mpModel2 == NULL) {
+        return 0;
+    }
+
+    field_0x5c0 = modelData->getJointName()->getIndex("DbDoor00_L");
+    field_0x5c1 = modelData->getJointName()->getIndex("DbDoor00_R");
+    modelData = mpModel2->getModelData();
+    J3DJoint* nodePointerL = modelData->getJointNodePointer(field_0x5c0);
+    J3DJoint* nodePointerR = modelData->getJointNodePointer(field_0x5c1);
+    nodePointerL->setCallBack(nodeCallBack);
+    nodePointerR->setCallBack(nodeCallBack);
+    mpModel2->setUserArea((u32)this);
+
+    mpBgW = new dBgW();
+    cBgD_t* dzb = (cBgD_t*)dComIfG_getObjectRes(getAlwaysArcName(), getDzb());
+    if (dzb == NULL) {
+        return 0;
+    }
+    calcMtx();
+    return mpBgW->Set(dzb, 1, &mpModel->getBaseTRMtx()) != 1 ? 1 : 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8045E534-8045E538 000000 0004+00 3/3 0/0 0/0 .rodata          @3806 */
@@ -336,6 +341,39 @@ COMPILER_STRIP_GATE(0x8045E548, &lit_3811);
 #pragma pop
 
 /* 8045D744-8045D8F4 000444 01B0+00 4/4 0/0 0/0 .text            calcMtx__12daDbDoor00_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daDbDoor00_c::calcMtx() {
+    cXyz xyz;
+
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::YrotM(orig.angle.y);
+    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel2->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    xyz.set(0.0f, 0.0f, -150.0f);
+    mDoMtx_stack_c::multVec(&xyz, &field_0x5a8);
+    xyz.set(0.0f, 0.0f, -400.0f);
+    mDoMtx_stack_c::multVec(&xyz, &field_0x5b4);
+
+    if (field_0x585 == 0) {
+        mDoMtx_stack_c::push();
+        mDoMtx_stack_c::YrotS(-field_0x58a);
+        mDoMtx_stack_c::transM(80.0f, 0.0f, 70.0f);
+        mDoMtx_stack_c::multVecZero(&field_0x59c);
+        mDoMtx_stack_c::pop();
+        mDoMtx_stack_c::multVec(&field_0x59c, &field_0x59c);
+    }
+
+    if (field_0x585 == 1) {
+        mDoMtx_stack_c::push();
+        mDoMtx_stack_c::YrotS(field_0x58a);
+        mDoMtx_stack_c::transM(-80.0f, 0.0f, 70.0f);
+        mDoMtx_stack_c::multVecZero(&field_0x59c);
+        mDoMtx_stack_c::pop();
+        mDoMtx_stack_c::multVec(&field_0x59c, &field_0x59c);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -344,48 +382,55 @@ asm void daDbDoor00_c::calcMtx() {
 #include "asm/rel/d/a/door/d_a_door_dbdoor00/d_a_door_dbdoor00/calcMtx__12daDbDoor00_cFv.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 8045E54C-8045E550 000018 0004+00 1/1 0/0 0/0 .rodata          @3826 */
-SECTION_RODATA static f32 const lit_3826 = 250.0f;
-COMPILER_STRIP_GATE(0x8045E54C, &lit_3826);
+#endif
 
 /* 8045D8F4-8045D9A8 0005F4 00B4+00 1/1 0/0 0/0 .text            CreateInit__12daDbDoor00_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daDbDoor00_c::CreateInit() {
-    nofralloc
-#include "asm/rel/d/a/door/d_a_door_dbdoor00/d_a_door_dbdoor00/CreateInit__12daDbDoor00_cFv.s"
+int daDbDoor00_c::CreateInit() {
+    s32 fRoomNo = door_param2_c::getFRoomNo(this);
+    if (fopAcM_GetRoomNo(this) == -1) {
+        fopAcM_SetRoomNo(this, fRoomNo);
+        mTevStr.mRoomNo = current.roomNo;
+    }
+    dComIfG_Bgsp().Regist(mpBgW, this);
+    field_0x584 = 1;
+    setAction(4);
+    field_0x594 = 0x1e;
+    mAttentionInfo.mPosition.y += 250.0f;
+    mEyePos.y += 250.0f;
+    mAttentionInfo.mFlags = 0x20;
+    calcMtx();
+    mpBgW->Move();
+    return 1;
 }
-#pragma pop
 
 /* 8045D9A8-8045DA68 0006A8 00C0+00 1/1 0/0 0/0 .text            create__12daDbDoor00_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daDbDoor00_c::create() {
-    nofralloc
-#include "asm/rel/d/a/door/d_a_door_dbdoor00/d_a_door_dbdoor00/create__12daDbDoor00_cFv.s"
+int daDbDoor00_c::create() {
+    fopAcM_SetupActor(this, daDbDoor00_c);
+
+    int phase = dComIfG_resLoad(&mPhaseReq2, getAlwaysArcName());
+    if (phase != cPhs_COMPLEATE_e) {
+        return phase;
+    }
+    phase = dComIfG_resLoad(&mPhaseReq, getBmdArcName());
+    if (phase != cPhs_COMPLEATE_e) {
+        return phase;
+    }
+    if (!fopAcM_entrySolidHeap(this, CheckCreateHeap, 0x8200)) {
+        return cPhs_ERROR_e;
+    }
+    CreateInit();
+    return cPhs_COMPLEATE_e;
 }
-#pragma pop
 
 /* 8045E688-8045E6AC -00001 0024+00 1/1 0/0 0/0 .data            action_table$3865 */
 static char* action_table[9] = {
-    "WAIT",
-    "SET_START",
-    "SET_ANGLE",
-    "END",
-    "OPEN",
-    "STOP_OPEN",
-    "SET_GOAL",
-    "SET_GOAL2",
-    "ADJUSTMENT",
+    "WAIT",      "SET_START", "SET_ANGLE", "END",        "OPEN",
+    "STOP_OPEN", "SET_GOAL",  "SET_GOAL2", "ADJUSTMENT",
 };
 
 /* 8045DA68-8045DAB0 000768 0048+00 1/1 0/0 0/0 .text            getDemoAction__12daDbDoor00_cFv */
-void daDbDoor00_c::getDemoAction() {
-    dComIfGp_evmng_getMyActIdx(field_0x598, action_table, ARRAY_SIZE(action_table), 0, 0);
+int daDbDoor00_c::getDemoAction() {
+    return dComIfGp_evmng_getMyActIdx(field_0x598, action_table, ARRAY_SIZE(action_table), 0, 0);
 }
 
 /* ############################################################################################## */
@@ -409,6 +454,93 @@ SECTION_DATA static void* lit_3957[9] = {
 };
 
 /* 8045DAB0-8045DE44 0007B0 0394+00 5/4 0/0 0/0 .text            demoProc__12daDbDoor00_cFv */
+#ifndef NONMATCHING
+// Later
+void daDbDoor00_c::demoProc() {
+    daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(LINK_PTR);
+    s16 doorAngle;
+    cXyz xyz;
+    s32 demoAction = getDemoAction();
+
+    if (dComIfGp_evmng_getIsAddvance(field_0x598) != 0) {
+        switch (demoAction) {
+        case 1:
+            calcMtx();
+            xyz = field_0x59c;
+            dComIfGp_evmng_setGoal(&xyz);
+            break;
+        case 2:
+            doorAngle = current.angle.y + 0x7fff;
+            player->changeDemoMoveAngle(doorAngle);
+            break;
+        case 4:
+            field_0x58c = 0;
+            field_0x5c2 = 0x1e;
+            fopAcM_seStart(this, Z2SE_OBJ_OPEN_ZELDAROOM_DOOR, 0);
+            break;
+        case 6:
+            xyz = field_0x5a8;
+            dComIfGp_evmng_setGoal(&xyz);
+            break;
+        case 7:
+            xyz = field_0x5b4;
+            dComIfGp_evmng_setGoal(&xyz);
+            break;
+        case 8:
+            calcMtx();
+            field_0x590 = 0;
+            int* integerP = dComIfGp_evmng_getMyIntegerP(field_0x598, "Timer");
+            if (integerP != NULL) {
+                field_0x590 = *integerP;
+            }
+        }
+    }
+
+    switch (demoAction) {
+    case 3:
+        break;
+    case 4:
+        if (field_0x58c < 0xfa) {
+            field_0x58c += 0x32;
+        }
+        if (field_0x58a - field_0x58c < -0x1c71) {
+            field_0x58a = -0x1c71;
+            dComIfGp_evmng_cutEnd(field_0x598);
+        } else {
+            field_0x58a -= field_0x58c;
+        }
+        calcMtx();
+        if (field_0x585 != 0) {
+            doorAngle = current.angle.y + 0x7fff - field_0x58a;
+
+        } else {
+            doorAngle = current.angle.y + 0x7fff + field_0x58a;
+        }
+        player->setPlayerPosAndAngle(&field_0x59c, doorAngle, 0);
+        if (field_0x5c2 == 0) {
+            daPy_getPlayerActorClass()->onSceneChangeArea(door_param2_c::getExitNo(this), 0xff,
+                                                          NULL);
+        }
+        field_0x5c2--;
+        return;
+    case 5:
+    case 8:
+        doorAngle = player->shape_angle.y;
+        cLib_addCalcAngleS2(&doorAngle, current.angle.y + 0x7fff, 10, 0x800);
+        xyz = player->current.pos;
+        xyz.x = xyz.x * 0.9f + field_0x59c.x * 0.1f;
+        xyz.z = xyz.z * 0.9f + field_0x59c.z * 0.1f;
+        player->setPlayerPosAndAngle(&xyz, doorAngle, 0);
+        if (field_0x590 > 0) {
+            field_0x590--;
+            return;
+        }
+        dComIfGp_evmng_cutEnd(field_0x598);
+        return;
+    }
+    dComIfGp_evmng_cutEnd(field_0x598);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -417,6 +549,7 @@ asm void daDbDoor00_c::demoProc() {
 #include "asm/rel/d/a/door/d_a_door_dbdoor00/d_a_door_dbdoor00/demoProc__12daDbDoor00_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8045E550-8045E554 00001C 0004+00 0/0 0/0 0/0 .rodata          @3953 */
@@ -469,6 +602,33 @@ COMPILER_STRIP_GATE(0x8045E568, &lit_4034);
 #pragma pop
 
 /* 8045DE44-8045DF70 000B44 012C+00 1/1 0/0 0/0 .text            checkArea__12daDbDoor00_cFv */
+#ifdef NONMATCHING
+int daDbDoor00_c::checkArea() {
+    daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(LINK_PTR);
+    cXyz sub = player->current.pos - orig.pos;
+    cXyz area = sub;
+
+    area.x = cM_scos(current.angle.y);
+    area.x *= sub.x;
+    area.x -= sub.z * cM_ssin(current.angle.y);
+    area.z = sub.z * cM_scos(current.angle.y) + sub.x * cM_ssin(current.angle.y);
+    if (area.z > 160.0f) {
+        return 0;
+    }
+    if (area.x > 200.0f || area.x < -200.0f) {
+        return 0;
+    }
+    if (fopAcM_seenActorAngleY(player, this) > 0x3000) {
+        return 0;
+    }
+    if (area.x > 0.0f) {
+        field_0x585 = 1;
+    } else {
+        field_0x585 = 0;
+    }
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -477,6 +637,7 @@ asm int daDbDoor00_c::checkArea() {
 #include "asm/rel/d/a/door/d_a_door_dbdoor00/d_a_door_dbdoor00/checkArea__12daDbDoor00_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8045DF70-8045DF78 000C70 0008+00 1/1 0/0 0/0 .text            checkUnlock__12daDbDoor00_cFv */
 int daDbDoor00_c::checkUnlock() {
@@ -545,91 +706,20 @@ int daDbDoor00_c::actionOpen() {
     return 1;
 }
 
-/* ############################################################################################## */
-/* 8045E6D0-8045E6DC -00001 000C+00 0/1 0/0 0/0 .data            @4092 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4092[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionWait__12daDbDoor00_cFv,
-};
-#pragma pop
-
-/* 8045E6DC-8045E6E8 -00001 000C+00 0/1 0/0 0/0 .data            @4093 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4093[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionLockWait__12daDbDoor00_cFv,
-};
-#pragma pop
-
-/* 8045E6E8-8045E6F4 -00001 000C+00 0/1 0/0 0/0 .data            @4094 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4094[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionLockOff__12daDbDoor00_cFv,
-};
-#pragma pop
-
-/* 8045E6F4-8045E700 -00001 000C+00 0/1 0/0 0/0 .data            @4095 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4095[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionLockDemo__12daDbDoor00_cFv,
-};
-#pragma pop
-
-/* 8045E700-8045E70C -00001 000C+00 0/1 0/0 0/0 .data            @4096 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4096[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionCloseWait__12daDbDoor00_cFv,
-};
-#pragma pop
-
-/* 8045E70C-8045E718 -00001 000C+00 0/1 0/0 0/0 .data            @4097 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4097[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionOpen__12daDbDoor00_cFv,
-};
-#pragma pop
-
-/* 8045E718-8045E760 0000B4 0048+00 0/1 0/0 0/0 .data            l_action$4091 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_action[72] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
-
-/* 8045E7D0-8045E7D4 000020 0004+00 1/1 0/0 0/0 .bss             None */
-static u8 data_8045E7D0[4];
-
 /* 8045E1EC-8045E2DC 000EEC 00F0+00 1/1 0/0 0/0 .text            execute__12daDbDoor00_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daDbDoor00_c::execute() {
-    nofralloc
-#include "asm/rel/d/a/door/d_a_door_dbdoor00/d_a_door_dbdoor00/execute__12daDbDoor00_cFv.s"
+int daDbDoor00_c::execute() {
+    typedef int (daDbDoor00_c::*actionFunc)();
+    static actionFunc l_action[] = {
+        &daDbDoor00_c::actionWait,
+        &daDbDoor00_c::actionLockWait,
+        &daDbDoor00_c::actionLockOff,
+        &daDbDoor00_c::actionLockDemo,
+        &daDbDoor00_c::actionCloseWait,
+        &daDbDoor00_c::actionOpen,
+    };
+    (this->*l_action[mAction])();
+    return 1;
 }
-#pragma pop
 
 /* 8045E2DC-8045E31C 000FDC 0040+00 1/1 0/0 0/0 .text            checkDraw__12daDbDoor00_cFv */
 int daDbDoor00_c::checkDraw() {
@@ -699,10 +789,8 @@ static int daDbdoor00_Create(fopAc_ac_c* i_this) {
 
 /* 8045E760-8045E780 -00001 0020+00 1/0 0/0 0/0 .data            l_daDbdoor00_Method */
 static actor_method_class l_daDbdoor00_Method = {
-    (process_method_func)daDbdoor00_Create,
-    (process_method_func)daDbdoor00_Delete,
-    (process_method_func)daDbdoor00_Execute,
-    (process_method_func)daDbdoor00_IsDelete,
+    (process_method_func)daDbdoor00_Create,  (process_method_func)daDbdoor00_Delete,
+    (process_method_func)daDbdoor00_Execute, (process_method_func)daDbdoor00_IsDelete,
     (process_method_func)daDbdoor00_Draw,
 };
 
@@ -711,9 +799,9 @@ extern actor_process_profile_definition g_profile_DBDOOR = {
     fpcLy_CURRENT_e,        // mLayerID
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
-    PROC_DBDOOR,            // mProcName 
+    PROC_DBDOOR,            // mProcName
     &g_fpcLf_Method.mBase,  // mSubMtd
-    sizeof(daDbDoor00_c),   // mSize 
+    sizeof(daDbDoor00_c),   // mSize
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // mSubMtd
