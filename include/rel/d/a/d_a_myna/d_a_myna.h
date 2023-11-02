@@ -17,7 +17,7 @@ struct ShopItem {
     /* 0x8 */ u16 mFlowNodeNum;
     /* 0xA */ u16 mValueNum;
     /* 0xC */ u8 mItemType;
-    /* 0xE */ u8 mItemStatus;
+    /* 0xD */ u8 mItemStatus;
 };
 STATIC_ASSERT(sizeof(ShopItem) == 0x10);
 
@@ -34,8 +34,8 @@ public:
     /* 809463B8 */ int destroy();
     /* 8094640C */ int draw();
     /* 809464CC */ int execute();
-    /* 809466D8 */ void createHeap();
-    /* 8094686C */ void jntNodeCB(J3DJoint*, J3DModel*);
+    /* 809466D8 */ int createHeap();
+    /* 8094686C */ int jntNodeCB(J3DJoint*, J3DModel*);
     /* 809468EC */ void attack_wait_init();
     /* 8094692C */ void attack_wait_move();
     /* 80946AEC */ void attack_before_talk_init();
@@ -85,8 +85,8 @@ public:
     /* 80948ADC */ void fly_return_move();
     /* 80948DFC */ void fly_body_wave();
     /* 80948E84 */ void talkAnime(msg_class*);
-    /* 80948FAC */ void chkEvent();
-    /* 809490B8 */ void orderEvent();
+    /* 80948FAC */ int chkEvent();
+    /* 809490B8 */ int orderEvent();
     /* 80949128 */ void deleteItem(int);
     /* 80949144 */ void deleteItem(unsigned int);
     /* 80949190 */ void initiate();
@@ -95,17 +95,17 @@ public:
     /* 80949588 */ void setCollision();
     /* 809495E0 */ void set_mtx();
     /* 80949744 */ void animePlay();
-    /* 8094983C */ void setMcaMorfAnm(J3DAnmTransformKey*, f32, f32, int, int, int);
+    /* 8094983C */ int setMcaMorfAnm(J3DAnmTransformKey*, f32, f32, int, int, int);
     /* 809498B8 */ void setBtpAnm(J3DAnmTexPattern*, J3DModelData*, f32, int);
     /* 809498F8 */ J3DAnmTransformKey* getTrnsfrmKeyAnm(char*);
-    /* 80949948 */ void getTexPtrnAnm(char*);
+    /* 80949948 */ J3DAnmTexPattern* getTexPtrnAnm(char*);
     /* 80949A70 */ int checkEndAnm(J3DFrameCtrl*);
     /* 80949998 */ int checkEndAnm(f32);
     /* 80949AD4 */ int getItemNumMax();
-    /* 80949AE0 */ void getItemType(void*);
-    /* 80949C0C */ void getFlowNodeNum();
+    /* 80949AE0 */ int getItemType(void*);
+    /* 80949C0C */ u16 getFlowNodeNum();
     /* 80949C44 */ void checkDead();
-    /* 80949D54 */ void chkPlayerInEvtArea(fopAc_ac_c*, cXyz);
+    /* 80949D54 */ int chkPlayerInEvtArea(fopAc_ac_c*, cXyz);
     /* 80949EE8 */ void animeControl();
     /* 8094A054 */ void setAnimeType(u8, f32);
     /* 8094A098 */ void playDefaultWaitAnime();
@@ -114,9 +114,7 @@ public:
 
     daMyna_c(){};
 
-    void onEventFlag(u8 flag) {
-        field_0x92F |= (1 << flag);
-    }
+    void onEventFlag(u8 flag) { field_0x92F |= (1 << flag); }
 
     typedef void (daMyna_c::*ProcFunc)();
     typedef int (daMyna_c::*BaseMotionFunc)(int);
