@@ -27,6 +27,7 @@
 #include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"
 #include "rel/d/a/tag/d_a_tag_mist/d_a_tag_mist.h"
 #include "rel/d/a/d_a_mirror/d_a_mirror.h"
+#include "rel/d/a/d_a_midna/d_a_midna.h"
 
 //
 // Types:

@@ -24,7 +24,7 @@ void cBgS_LinChk::ct() {
     cXyz xyz(cXyz::Zero);
     mLin.SetStartEnd(xyz, xyz);
     field_0x40 = xyz;
-    setActorPid(0xFFFFFFFF);
+    SetActorPid(0xFFFFFFFF);
     field_0x4c = 0;
     mFrontFlag = 1;
     mBackFlag = 0;
@@ -34,7 +34,7 @@ void cBgS_LinChk::ct() {
 void cBgS_LinChk::Set2(cXyz const* pStart, cXyz const* pEnd, unsigned int actorPid) {
     mLin.SetStartEnd(*pStart, *pEnd);
     field_0x40 = *pEnd;
-    setActorPid(actorPid);
+    SetActorPid(actorPid);
     field_0x4c &= ~0x10;
     ClearPi();
 }

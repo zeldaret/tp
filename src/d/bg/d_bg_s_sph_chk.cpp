@@ -9,7 +9,7 @@
 dBgS_SphChk::dBgS_SphChk() {
     SetPolyPassChk(GetPolyPassChkInfo());
     SetGrpPassChk(GetGrpPassChkInfo());
-    setActorPid(0xFFFFFFFF);
+    SetActorPid(0xFFFFFFFF);
     ClearPi();
     mCallback = NULL;
 }

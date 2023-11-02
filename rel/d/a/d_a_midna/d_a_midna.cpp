@@ -10,100 +10,6 @@
 // Types:
 //
 
-struct request_of_phase_process_class {};
-
-struct csXyz {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 80267128 */ void atan2sX_Z() const;
-    /* 80267150 */ void atan2sY_XZ() const;
-    /* 804BD8B8 */ ~cXyz();
-    /* 804BD8F4 */ cXyz();
-
-    static f32 Zero[3];
-    static u8 BaseX[12];
-};
-
-struct mDoMtx_stack_c {
-    /* 8000CD64 */ void transS(cXyz const&);
-    /* 8000CD9C */ void transM(f32, f32, f32);
-    /* 8000CE70 */ void scaleM(cXyz const&);
-    /* 8000CE38 */ void scaleM(f32, f32, f32);
-    /* 8000CF44 */ void ZXYrotM(csXyz const&);
-
-    static u8 now[48];
-};
-
-struct mDoExt_morf_c {
-    /* 8000FB7C */ void setMorf(f32);
-};
-
-struct J3DDeformData {};
-
-struct J3DModel {
-    /* 80327A2C */ void setDeformData(J3DDeformData*, u32);
-    /* 80327C58 */ void calcWeightEnvelopeMtx();
-};
-
-struct mDoExt_invisibleModel {
-    /* 8000E53C */ void create(J3DModel*, u8);
-    /* 8000E7C0 */ void entryDL(cXyz*);
-};
-
-struct J3DAnmCluster {};
-
-struct mDoExt_blkAnm {
-    /* 8000DA08 */ void init(J3DDeformData*, J3DAnmCluster*, int, int, f32, s16, s16);
-};
-
-struct J3DModelData {};
-
-struct J3DAnmTransform {};
-
-struct mDoExt_bckAnm {
-    /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
-    /* 8000D990 */ void changeBckOnly(J3DAnmTransform*);
-    /* 8000D9CC */ void entry(J3DModelData*, f32);
-};
-
-struct mDoExt_baseAnm {
-    /* 8000D428 */ void play();
-};
-
-struct J3DTransformInfo {};
-
-struct mDoExt_McaMorfCallBack2_c {};
-
-struct mDoExt_McaMorfCallBack1_c {};
-
-struct Z2Creature {
-    /* 802C03C8 */ Z2Creature();
-    /* 802C0420 */ ~Z2Creature();
-    /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
-    /* 802C0628 */ void initAnime(void*, bool, f32, f32);
-    /* 802C06D0 */ void updateAnime(f32, f32);
-};
-
-struct mDoExt_McaMorfSO {
-    /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
-                                    mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int,
-                                    int, Z2Creature*, u32, u32);
-    /* 80010E70 */ void setAnm(J3DAnmTransform*, int, f32, f32, f32, f32);
-    /* 800110B0 */ void play(u32, s8);
-    /* 800111EC */ void modelCalc();
-    /* 80011250 */ void getTransform(u16, J3DTransformInfo*);
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
 struct fopAcM_lc_c {
     /* 8001DC68 */ void lineCheck(cXyz const*, cXyz const*, fopAc_ac_c const*);
 };
@@ -113,23 +19,6 @@ struct fopAcM_gc_c {
 
     static u8 mGndCheck[84];
     static f32 mGroundY;
-};
-
-struct daPy_py_c {
-    static u8 m_midnaActor[4];
-};
-
-struct daPy_anmHeap_c {
-    struct daAlinkHEAP_TYPE {};
-
-    /* 8015ED10 */ daPy_anmHeap_c(u32);
-    /* 8015ED50 */ ~daPy_anmHeap_c();
-    /* 8015EDAC */ void initData();
-    /* 8015EDC4 */ void mallocBuffer();
-    /* 8015EE00 */ void createHeap(daPy_anmHeap_c::daAlinkHEAP_TYPE);
-    /* 8015F068 */ void loadDataIdx(u16);
-    /* 8015F118 */ void loadDataDemoRID(u16, u16);
-    /* 804BD8F8 */ void __defctor();
 };
 
 struct J3DMaterial {};
@@ -144,64 +33,10 @@ struct daMidna_hio_c0 {
     static u8 const m[32];
 };
 
-struct daMidna_c {
-    struct daMidna_ANM {};
-
-    /* 804BC3E0 */ void modelCallBack(int);
-    /* 804BC5C4 */ void changeUpperBck();
-    /* 804BC614 */ void changeFaceBck();
-    /* 804BC670 */ void baseModelCallBack(int);
-    /* 804BC740 */ void initInvModel(u16, J3DModel**, mDoExt_invisibleModel*, u32);
-    /* 804BC7D4 */ void initDemoModel(J3DModel**, char const*, u32);
-    /* 804BC868 */ void createHeap();
-    /* 804BD274 */ void create();
-    /* 804BD93C */ void allAnimePlay();
-    /* 804BDE04 */ void setMatrix();
-    /* 804BE470 */ void setBodyPartMatrix();
-    /* 804BED1C */ void setRoomInfo();
-    /* 804BEDB8 */ void setBodyPartPos();
-    /* 804BEFA0 */ void checkAppear();
-    /* 804BF070 */ void checkMidnaPosState();
-    /* 804BFF80 */ void setUpperAnime(u16, u16);
-    /* 804C0020 */ void setUpperAnimeAndSe(daMidna_c::daMidna_ANM);
-    /* 804C0094 */ void setFaceAnime(u16, u16);
-    /* 804C0134 */ void endHighModel();
-    /* 804C0238 */ void setDemoAnm();
-    /* 804C0BAC */ void setFaceBtp(u16, int);
-    /* 804C0C6C */ void setFaceBtk(u16, int);
-    /* 804C0D2C */ void setLeftHandShape(u16);
-    /* 804C0E18 */ void setRightHandShape(u16);
-    /* 804C0F04 */ void checkHairOnlyAnime(int) const;
-    /* 804C0F24 */ void setBckAnime(J3DAnmTransform*, int, f32);
-    /* 804C103C */ void setAnm();
-    /* 804C287C */ void getNeckAimAngle(cXyz const*, s16*, s16*, s16*, s16*);
-    /* 804C2A68 */ void clearEyeMove();
-    /* 804C2AB8 */ void setEyeMove(cXyz const*, s16, s16);
-    /* 804C2EBC */ void setNeckAngle();
-    /* 804C3168 */ void initHairAngle();
-    /* 804C3298 */ void setHairAngle();
-    /* 804C3F04 */ void setDemoData();
-    /* 804C4394 */ void setSimpleBrk(J3DModelData*, u16);
-    /* 804C4444 */ void setSimpleBtk(J3DModelData*, u16);
-    /* 804C44CC */ void initMidnaModel();
-    /* 804C49B8 */ void setMidnaNoDrawFlg();
-    /* 804C4AE8 */ void checkMetamorphoseEnableBase();
-    /* 804C4B68 */ void checkNoDrawState();
-    /* 804C4BC0 */ void setSound();
-    /* 804C4FDC */ void execute();
-    /* 804C5A08 */ void draw();
-    /* 804C61A4 */ ~daMidna_c();
-
-    static u8 const m_texDataTable[84];
-    static u8 const m_anmDataTable[636];
-};
-
 struct daMidna_McaMorfCB1_c {
     /* 804BC36C */ void execute(u16, J3DTransformInfo*);
     /* 804C6398 */ ~daMidna_McaMorfCB1_c();
 };
-
-struct J3DAnmBase {};
 
 struct daAlink_c {
     /* 800A3F98 */ void initDemoBck(mDoExt_bckAnm**, char const*);
@@ -219,81 +54,8 @@ struct daAlink_c {
     /* 801391DC */ void getWolfLockActorEnd();
 };
 
-struct dVibration_c {
-    /* 8006FA24 */ void StartShock(int, int, cXyz);
-};
-
-struct dSv_player_status_b_c {
-    /* 80032BEC */ void isTransformLV(int) const;
-};
-
-struct dSv_event_c {
-    /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct dStage_roomControl_c {
-    static u8 mDemoArcName[10 + 2 /* padding */];
-};
-
-struct dKy_tevstr_c {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C160 */ void syncRes(char const*, dRes_info_c*, int);
-    /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-    /* 8003C400 */ void getIDRes(char const*, u16, dRes_info_c*, int);
-};
-
-struct dPa_levelEcallBack {};
-
-struct _GXColor {};
-
-struct dPa_control_c {
-    struct level_c {
-        /* 8004B918 */ void getEmitter(u32);
-    };
-
-    /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
-                            cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
-                            _GXColor const*, cXyz const*, f32);
-};
-
 struct dMsgObject_c {
     /* 802383A4 */ void isMouthCheck();
-};
-
-struct dMsgFlow_c {
-    /* 80249F00 */ dMsgFlow_c();
-    /* 80249F48 */ ~dMsgFlow_c();
-    /* 80249F90 */ void init(fopAc_ac_c*, int, int, fopAc_ac_c**);
-    /* 8024A2D8 */ void doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
-    /* 8024A528 */ void getEventId(int*);
-};
-
-struct dEvt_control_c {
-    /* 80042518 */ void reset(void*);
-    /* 800432EC */ void convPId(unsigned int);
-};
-
-struct dEvent_manager_c {
-    /* 80047B1C */ void getMyStaffId(char const*, fopAc_ac_c*, int);
-    /* 80047F5C */ void getMyNowCutName(int);
-    /* 800480EC */ void getMySubstanceP(int, char const*, int);
-    /* 8004817C */ void cutEnd(int);
-    /* 8004882C */ void checkStartDemo();
-};
-
-struct dDlst_shadowControl_c {
-    /* 80055F1C */ void addReal(u32, J3DModel*);
-
-    static u8 mSimpleTexObj[32];
 };
 
 struct dDemo_object_c {
@@ -307,42 +69,6 @@ struct dDemo_c {
 struct dDemo_actor_c {
     /* 8003819C */ void getPrm_Morf();
     /* 80038338 */ void getDemoIDData(int*, int*, int*, u16*, u8*);
-};
-
-struct dBgS_LinkLinChk {
-    /* 80078030 */ dBgS_LinkLinChk();
-    /* 8007808C */ ~dBgS_LinkLinChk();
-};
-
-struct dBgS_LinChk {
-    /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
-};
-
-struct cBgS_PolyInfo {};
-
-struct dBgS {
-    /* 80074BE8 */ void GetPolyColor(cBgS_PolyInfo const&);
-    /* 80075100 */ void GetRoomId(cBgS_PolyInfo const&);
-};
-
-struct cBgS_LinChk {};
-
-struct cBgS {
-    /* 800743B4 */ void LineCross(cBgS_LinChk*);
-};
-
-struct _GXTexObj {};
-
-struct _GXColorS10 {};
-
-struct Quaternion {};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct JKRArchive {
-    /* 802D5ECC */ void readIdxResource(void*, u32, u32);
 };
 
 struct J3DTexNoAnm {
@@ -366,33 +92,6 @@ struct J3DTevColorAnm {
     /* 804BD128 */ J3DTevColorAnm();
 };
 
-struct J3DSys {
-    static u8 mCurrentMtx[48];
-};
-
-struct J3DAnmTextureSRTKey {
-    /* 8032B1D4 */ void searchUpdateMaterialID(J3DModelData*);
-};
-
-struct J3DAnmTevRegKey {
-    /* 8032B1F8 */ void getTevColorReg(u16, _GXColorS10*) const;
-    /* 8032B4BC */ void getTevKonstReg(u16, _GXColor*) const;
-    /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
-};
-
-struct J3DAnmTexPattern {
-    /* 8032AF50 */ void getTexNo(u16, u16*) const;
-    /* 8032B09C */ void searchUpdateMaterialID(J3DModelData*);
-};
-
-struct J3DMaterialTable {
-    /* 8032F7B4 */ void removeTexMtxAnimator(J3DAnmTextureSRTKey*);
-    /* 8032F880 */ void removeTevRegAnimator(J3DAnmTevRegKey*);
-    /* 8032FBC8 */ void entryTexNoAnimator(J3DAnmTexPattern*);
-    /* 8032FCC4 */ void entryTexMtxAnimator(J3DAnmTextureSRTKey*);
-    /* 8032FE70 */ void entryTevRegAnimator(J3DAnmTevRegKey*);
-};
-
 struct J3DMaterialAnm {
     /* 8032C320 */ void initialize();
     /* 8032C3C4 */ void calc(J3DMaterial*) const;
@@ -401,14 +100,6 @@ struct J3DMaterialAnm {
 struct J3DMatColorAnm {
     /* 804BD200 */ ~J3DMatColorAnm();
     /* 804BD23C */ J3DMatColorAnm();
-};
-
-struct J3DJoint {};
-
-struct J3DFrameCtrl {
-    /* 803283FC */ void init(s16);
-    /* 8032842C */ void checkPass(f32);
-    /* 804BD050 */ ~J3DFrameCtrl();
 };
 
 struct J3DAnmLoaderDataBaseFlag {};
@@ -646,15 +337,6 @@ extern "C" void entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey()
 extern "C" void entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
 extern "C" void load__20J3DAnmLoaderDataBaseFPCv24J3DAnmLoaderDataBaseFlag();
 extern "C" void JMAEulerToQuat__FsssP10Quaternion();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXMultVec();
-extern "C" void PSMTXMultVecSR();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSubtract();
-extern "C" void PSVECScale();
-extern "C" void PSVECSquareMag();
-extern "C" void PSVECSquareDistance();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void _savegpr_14();
@@ -673,24 +355,17 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
 extern "C" u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" f32 Zero__4cXyz[3];
 extern "C" u8 BaseX__4cXyz[12];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
 extern "C" f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" u8 m_object__7dDemo_c[4];
 extern "C" u8 m_midnaActor__9daPy_py_c[4];
 extern "C" extern u8 struct_804C6CD8[4];
@@ -1052,7 +727,8 @@ asm void daMidna_c::createHeap() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DFrameCtrl::~J3DFrameCtrl() {
+// asm J3DFrameCtrl::~J3DFrameCtrl() {
+extern "C" asm void __dt__12J3DFrameCtrlFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_midna/d_a_midna/__dt__12J3DFrameCtrlFv.s"
 }
@@ -1247,14 +923,16 @@ asm void daMidna_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_midna/d_a_midna/__dt__4cXyzFv.s"
 }
 #pragma pop
 
 /* 804BD8F4-804BD8F8 001754 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+// cXyz::cXyz() {
+extern "C" asm void __ct__4cXyzFv() {
     /* empty function */
 }
 
