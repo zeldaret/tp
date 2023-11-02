@@ -12,6 +12,7 @@
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
+#include "rel/d/a/d_a_midna/d_a_midna.h"
 #include "rel/d/a/tag/d_a_tag_mhint/d_a_tag_mhint.h"
 #include "rel/d/a/tag/d_a_tag_mstop/d_a_tag_mstop.h"
 

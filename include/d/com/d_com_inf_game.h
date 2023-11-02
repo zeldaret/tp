@@ -1248,6 +1248,10 @@ inline BOOL dComIfGs_isTbox(int i_no) {
     return g_dComIfG_gameInfo.info.getMemory().getBit().isTbox(i_no);
 }
 
+inline void dComIfGs_onTbox(int i_no) {
+    g_dComIfG_gameInfo.info.getMemory().getBit().onTbox(i_no);
+}
+
 inline BOOL dComIfGs_isSaveItem(int i_no) {
     return g_dComIfG_gameInfo.info.getMemory().getBit().isItem(i_no);
 }
@@ -1636,6 +1640,10 @@ inline u8 dComIfGs_getTmpReg(u16 i_reg) {
 
 inline u8 i_dComIfGs_getEventReg(u16 reg) {
     return g_dComIfG_gameInfo.info.getEvent().getEventReg(reg);
+}
+
+inline void dComIfGs_setEventReg(u16 reg, u8 value) {
+    g_dComIfG_gameInfo.info.getEvent().setEventReg(reg, value);
 }
 
 inline void dComIfGs_setWarashibeItem(u8 i_itemNo) {
@@ -2986,6 +2994,10 @@ inline void i_dComIfGp_event_reset() {
     g_dComIfG_gameInfo.play.getEvent().reset();
 }
 
+inline void dComIfGp_event_onEventFlag(u16 i_flag) {
+    g_dComIfG_gameInfo.play.getEvent().onEventFlag(i_flag);
+}
+
 inline void dComIfGp_evmng_cutEnd(int param_0) {
     dComIfGp_getPEvtManager()->cutEnd(param_0);
 }
@@ -3000,6 +3012,10 @@ inline BOOL dComIfGp_evmng_endCheck(s16 eventID) {
 
 inline u8 dComIfGp_event_getPreItemNo() {
     return g_dComIfG_gameInfo.play.getEvent().getPreItemNo();
+}
+
+inline void dComIfGp_event_setItemPartner(void* param_0) {
+    g_dComIfG_gameInfo.play.getEvent().setPtI(param_0);
 }
 
 inline void dComIfGp_event_setItemPartnerId(unsigned int id) {

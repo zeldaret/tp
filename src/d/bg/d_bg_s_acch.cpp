@@ -277,7 +277,7 @@ void dBgS_Acch::Set(cXyz* p_pos, cXyz* p_old_pos, fopAc_ac_c* p_actor, int table
     pm_pos = p_pos;
     pm_old_pos = p_old_pos;
     m_my_ac = p_actor;
-    setActorPid(fopAcM_GetID(p_actor));
+    SetActorPid(fopAcM_GetID(p_actor));
     pm_speed = p_speed;
     m_tbl_size = table_size;
     field_0x8c = param_4;
@@ -292,7 +292,7 @@ void dBgS_Acch::Set(fopAc_ac_c* p_actor, int table_size, dBgS_AcchCir* param_2) 
     field_0x8c = param_2;
     m_my_ac = p_actor;
 
-    setActorPid(fopAcM_GetID(p_actor));
+    SetActorPid(fopAcM_GetID(p_actor));
     pm_pos = &fopAcM_GetPosition_p(p_actor);
     pm_old_pos = &fopAcM_GetOldPosition_p(p_actor);
     pm_speed = &fopAcM_GetSpeed_p(p_actor);
@@ -335,7 +335,7 @@ void dBgS_Acch::GroundCheck(dBgS& param_0) {
                 dBgS_RoofChk tmpRoofChk;
                 data_80450F68 = 1;
             }
-            tmpRoofChk.setActorPid(m_gnd.GetActorPid());
+            tmpRoofChk.SetActorPid(m_gnd.GetActorPid());
             tmpRoofChk.i_SetPos(*pm_pos);
             f32 tmp = param_0.RoofChk(&tmpRoofChk);
             if (grnd_pos.y > tmp) {

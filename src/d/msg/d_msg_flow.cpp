@@ -14,6 +14,7 @@
 #include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_audio.h"
 #include "m_Do/m_Do_graphic.h"
+#include "rel/d/a/d_a_midna/d_a_midna.h"
 
 //
 // Forward References:

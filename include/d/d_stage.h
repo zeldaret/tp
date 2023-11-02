@@ -160,7 +160,7 @@ struct stage_camera2_data_class {
 
 struct stage_camera_class {
     /* 0x0 */ int field_0x0;
-    /* 0x4 */ stage_camera2_data_class* field_0x4;
+    /* 0x4 */ stage_camera2_data_class* mEntries;
 };
 
 struct stage_arrow_data_class {
@@ -335,7 +335,8 @@ struct dStage_DMap_c {
 
 struct dStage_MapEvent_dt_c {
     /* 0x00 */ u8 mType;
-    /* 0x01 */ u8 field_0x1[3 - 1];
+    /* 0x01 */ u8 field_0x1;
+    /* 0x02 */ u8 field_0x2;
     /* 0x03 */ u8 field_0x3;
     /* 0x04 */ u8 field_0x4;
     /* 0x05 */ u8 field_0x5;
