@@ -789,7 +789,7 @@ public:
     /* 800243B0 */ static JKRExpHeap* getMemoryBlock(int);
     /* 800243E8 */ static void setStayNo(int);
     /* 80024424 */ static void setNextStayNo(int);
-    /* 800244E8 */ bool checkRoomDisp(int) const;
+    /* 800244E8 */ BOOL checkRoomDisp(int) const;
     /* 8002451C */ int loadRoom(int, u8*, bool);
     /* 8002471C */ void zoneCountCheck(int) const;
     /* 80024844 */ static JKRExpHeap* createMemoryBlock(int, u32);

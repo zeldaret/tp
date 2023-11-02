@@ -792,6 +792,8 @@ public:
 
     void i_changeDemoPos0(const cXyz* i_posP) { mDemo.setPos0(i_posP); }
 
+    void changeDemoMoveAngle(s16 i_angle) { mDemo.setMoveAngle(i_angle); }
+
     inline static u32 i_getLastSceneMode();
     inline static u32 getLastSceneMode();
     inline static bool checkWoodSwordEquip();
