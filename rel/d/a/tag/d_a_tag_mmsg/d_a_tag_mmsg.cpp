@@ -34,7 +34,7 @@ int daTagMmsg_c::create() {
         s32 roomNo = fopAcM_GetRoomNo(this);
         cXyz* tmp =
             &dComIfGp_getRoomArrow(roomNo)
-                 ->mEntries[dComIfGp_getRoomCamera(roomNo)->field_0x4[mAttention].field_0x10]
+                 ->mEntries[dComIfGp_getRoomCamera(roomNo)->mEntries[mAttention].field_0x10]
                  .mPosition;
         mEyePos.set(tmp->x, tmp->y, tmp->z);
         mAttentionInfo.mPosition = mEyePos;

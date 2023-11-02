@@ -10,6 +10,7 @@
 #include "d/a/d_a_alink.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_lib.h"
+#include "rel/d/a/d_a_midna/d_a_midna.h"
 #include "rel/d/a/d_a_boomerang/d_a_boomerang.h"
 #include "rel/d/a/d_a_spinner/d_a_spinner.h"
 

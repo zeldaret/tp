@@ -4,8 +4,8 @@
 //
 
 #include "rel/d/a/tag/d_a_tag_mhint/d_a_tag_mhint.h"
+#include "rel/d/a/d_a_midna/d_a_midna.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "d/a/d_a_alink.h"
 #include "d/a/d_a_npc.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
@@ -111,7 +111,7 @@ int daTagMhint_c::create() {
         stage_arrow_data_class* arrow_data_p =
             &dComIfGp_getRoomArrow(fopAcM_GetRoomNo(this))
                  ->mEntries[dComIfGp_getRoomCamera(fopAcM_GetRoomNo(this))
-                                ->field_0x4[field_0x56d]
+                                ->mEntries[field_0x56d]
                                 .field_0x10];
 
         mEyePos.set(arrow_data_p->mPosition.x, arrow_data_p->mPosition.y,

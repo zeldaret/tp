@@ -25,7 +25,7 @@ public:
     void SetExtChk(cBgS_Chk&);
     bool ChkSameActorPid(unsigned int) const;
 
-    void setActorPid(u32 pid) { mActorPid = pid; }
+    void SetActorPid(u32 pid) { mActorPid = pid; }
     u32 GetActorPid() const { return mActorPid; }
     void SetPolyPassChk(cBgS_PolyPassChk* p_chk) { mPolyPassChk = p_chk; }
     void SetGrpPassChk(cBgS_GrpPassChk* p_chk) { mGrpPassChk = p_chk; }

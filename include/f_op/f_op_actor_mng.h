@@ -5,6 +5,9 @@
 #include "f_op/f_op_actor_iter.h"
 #include "f_pc/f_pc_manager.h"
 #include "f_pc/f_pc_searcher.h"
+#include "d/bg/d_bg_s.h"
+#include "d/bg/d_bg_s_lin_chk.h"
+#include "d/bg/d_bg_s_wtr_chk.h"
 
 #define fopAcM_SetupActor(ptr,ClassName) \
     if (!fopAcM_CheckCondition(ptr, fopAcCnd_INIT_e)) { \
@@ -57,10 +60,13 @@ struct fopAcM_search_prm {
     /* 0x0A */ s8 mSubType;
 };
 
-class dBgS_LinChk;
+dBgS& dComIfG_Bgsp();
+
 class fopAcM_lc_c {
 public:
     static dBgS_LinChk* getLineCheck() { return (dBgS_LinChk*)&mLineCheck; }
+    static bool checkMoveBG() { return dComIfG_Bgsp().ChkMoveBG(*(dBgS_LinChk*)&mLineCheck); }
+    static cXyz* getCrossP() { return ((dBgS_LinChk*)&mLineCheck)->GetCrossP(); }
     static bool lineCheck(const cXyz*, const cXyz*, const fopAc_ac_c*);
     static u8 mLineCheck[112];
 };
@@ -90,11 +96,11 @@ public:
     static f32 getGroundY() { return mGroundY; }
 };
 
-class dBgS_WtrChk;
 class fopAcM_wt_c {
 public:
     static dBgS_WtrChk* getWaterCheck() { return (dBgS_WtrChk*)&mWaterCheck; }
     static f32 getWaterY() { return mWaterY[0]; }
+    static int getPolyAtt0() { return dComIfG_Bgsp().GetPolyAtt0(*(dBgS_WtrChk*)&mWaterCheck); }
 
     static bool waterCheck(const cXyz*);
     static u8 mWaterCheck[84 + 4 /* padding */];
@@ -588,23 +594,27 @@ inline void make_prm_bokkuri(u32* pActorParams, csXyz* p_angle, u8 param_2, u8 p
 inline fopAc_ac_c* dComIfGp_getPlayer(int);
 
 inline s16 fopAcM_searchPlayerAngleY(const fopAc_ac_c* actor) {
-    return fopAcM_searchActorAngleY(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));
+    return fopAcM_searchActorAngleY(actor, dComIfGp_getPlayer(0));
 }
 
 inline f32 fopAcM_searchPlayerDistanceY(const fopAc_ac_c* actor) {
-    return fopAcM_searchActorDistanceY(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));
+    return fopAcM_searchActorDistanceY(actor, dComIfGp_getPlayer(0));
 }
 
 inline f32 fopAcM_searchPlayerDistanceXZ2(const fopAc_ac_c* actor) {
-    return fopAcM_searchActorDistanceXZ2(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));
+    return fopAcM_searchActorDistanceXZ2(actor, dComIfGp_getPlayer(0));
 }
 
 inline f32 fopAcM_searchPlayerDistanceXZ(const fopAc_ac_c* actor) {
-    return fopAcM_searchActorDistanceXZ(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));
+    return fopAcM_searchActorDistanceXZ(actor, dComIfGp_getPlayer(0));
 }
 
 inline f32 fopAcM_searchPlayerDistance(const fopAc_ac_c* actor) {
-    return fopAcM_searchActorDistance(actor, (fopAc_ac_c*)dComIfGp_getPlayer(0));
+    return fopAcM_searchActorDistance(actor, dComIfGp_getPlayer(0));
+}
+
+inline s32 fopAcM_seenPlayerAngleY(const fopAc_ac_c* i_actor) {
+    return fopAcM_seenActorAngleY(i_actor, dComIfGp_getPlayer(0));
 }
 
 s8 dComIfGp_getReverb(int roomNo);

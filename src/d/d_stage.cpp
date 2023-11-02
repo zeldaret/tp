@@ -1998,7 +1998,7 @@ static int dStage_playerInit(dStage_dt_c* stageDt, void* i_data, int num, void* 
 static int dStage_cameraInit(dStage_dt_c* stageDt, void* i_data, int param_2, void* param_3) {
     stage_camera_class* camera = (stage_camera_class*)((char*)i_data + 4);
     stageDt->setCamera(camera);
-    dStage_cameraCreate(camera->field_0x4, 0, 0);
+    dStage_cameraCreate(camera->mEntries, 0, 0);
     return 1;
 }
 
