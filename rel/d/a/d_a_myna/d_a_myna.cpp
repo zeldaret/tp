@@ -5,27 +5,21 @@
 
 #include "rel/d/a/d_a_myna/d_a_myna.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
+#include "d/kankyo/d_kankyo.h"
+#include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
+#include "rel/d/a/tag/d_a_tag_myna_light/d_a_tag_myna_light.h"
 
 //
 // Types:
 //
 
-struct msg_class {};
-
-struct daTag_MynaLight_c {
-    /* 80D5CE40 */ void setTurnOnOffChange();
-};
-
 struct daObj_SSItem_c {
     /* 80CE77F8 */ void getExchangeItemPtr();
-};
-
-struct dMsgObject_c {
-    /* 8023822C */ void getStatus();
 };
 
 //
@@ -266,24 +260,19 @@ extern "C" void setTurnOnOffChange__17daTag_MynaLight_cFv();
 
 /* 80945C6C-80945C8C 0000EC 0020+00 1/1 0/0 0/0 .text            createHeapCallBack__FP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void createHeapCallBack(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/createHeapCallBack__FP10fopAc_ac_c.s"
+static void createHeapCallBack(fopAc_ac_c* i_this) {
+    static_cast<daMyna_c*>(i_this)->createHeap();
 }
-#pragma pop
 
 /* 80945C8C-80945CD8 00010C 004C+00 1/1 0/0 0/0 .text            jntNodeCallBack__FP8J3DJointi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void jntNodeCallBack(J3DJoint* param_0, int param_1) {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/jntNodeCallBack__FP8J3DJointi.s"
+static int jntNodeCallBack(J3DJoint* i_jnt, int param_1) {
+    if (param_1 == 0) {
+        if (j3dSys.getModel()->getUserArea() != 0) {
+            ((daMyna_c*)j3dSys.getModel()->getUserArea())->jntNodeCB(i_jnt, j3dSys.getModel());
+        }
+    }
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8094B9F0-8094B9F4 000008 0001+03 2/2 0/0 0/0 .bss             @1109 */
@@ -403,7 +392,7 @@ static u8 daMyna_subActor[40];
 #pragma pop
 
 /* 8094BAC0-8094BAC4 0000D8 0004+00 7/7 0/0 0/0 .bss             daMyna_LightActor */
-static u8 daMyna_LightActor[4];
+static daTag_MynaLight_c* daMyna_LightActor;
 
 /* 8094BAC4-8094BAC8 0000DC 0004+00 0/2 0/0 0/0 .bss             daMyna_actor_count */
 #pragma push
@@ -422,14 +411,18 @@ static asm void daMyna_searchSSItem(void* param_0, void* param_1) {
 #pragma pop
 
 /* 80945D9C-80945E0C 00021C 0070+00 1/1 0/0 0/0 .text            daMyna_searchLight__FPvPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daMyna_searchLight(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/daMyna_searchLight__FPvPv.s"
+static void* daMyna_searchLight(void* i_mynaLightTagActor, void* param_1) {
+    if (fopAcM_IsActor(i_mynaLightTagActor) &&
+        fopAcM_GetName(i_mynaLightTagActor) == PROC_TAG_MNLIGHT)
+    {
+        u32 uVar1 = fopAcM_GetParam(param_1) & 0xF0000000;
+        u32 uVar2 = fopAcM_GetParam(i_mynaLightTagActor) & 0xF0000000;
+        if (uVar1 == uVar2) {
+            daMyna_LightActor = static_cast<daTag_MynaLight_c*>(i_mynaLightTagActor);
+        }
+    }
+    return 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8094BAC8-8094BACC 0000E0 0004+00 8/9 0/0 0/0 .bss             daMyna_evtTagActor0 */
@@ -1211,7 +1204,7 @@ static char* l_bckFileNameTBL[] = {
 };
 
 /* 8094B7DC-8094B7E0 -00001 0004+00 2/2 0/0 0/0 .data            l_btpFileNameTBL */
-static char* l_btpFileNameTBL = "MYNA.btp";
+static char* l_btpFileNameTBL[] = {"MYNA.btp"};
 
 /* 8094B7E0-8094B810 000480 0030+00 1/1 0/0 0/0 .data aParam$localstatic3$__ct__12daMyna_HIO_cFv
  */
@@ -1341,45 +1334,6 @@ SECTION_DATA u8 daMyna_c::mBaseMotionTBL[84] = {
 };
 #endif
 
-/* 8094B8B8-8094B8F8 -00001 0040+00 1/1 0/0 0/0 .data            @5409 */
-SECTION_DATA static void* lit_5409[16] = {
-    (void*)(((char*)orderEvent__8daMyna_cFv) + 0x3C),
-    (void*)(((char*)orderEvent__8daMyna_cFv) + 0x44),
-    (void*)(((char*)orderEvent__8daMyna_cFv) + 0x44),
-    (void*)(((char*)orderEvent__8daMyna_cFv) + 0x44),
-    (void*)(((char*)orderEvent__8daMyna_cFv) + 0x44),
-    (void*)(((char*)orderEvent__8daMyna_cFv) + 0x3C),
-    (void*)(((char*)orderEvent__8daMyna_cFv) + 0x44),
-    (void*)(((char*)orderEvent__8daMyna_cFv) + 0x3C),
-    (void*)(((char*)orderEvent__8daMyna_cFv) + 0x44),
-    (void*)(((char*)orderEvent__8daMyna_cFv) + 0x44),
-    (void*)(((char*)orderEvent__8daMyna_cFv) + 0x44),
-    (void*)(((char*)orderEvent__8daMyna_cFv) + 0x3C),
-    (void*)(((char*)orderEvent__8daMyna_cFv) + 0x3C),
-    (void*)(((char*)orderEvent__8daMyna_cFv) + 0x3C),
-    (void*)(((char*)orderEvent__8daMyna_cFv) + 0x3C),
-    (void*)(((char*)orderEvent__8daMyna_cFv) + 0x3C),
-};
-
-/* 8094B8F8-8094B934 -00001 003C+00 1/1 0/0 0/0 .data            @5890 */
-SECTION_DATA static void* lit_5890[15] = {
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0x5C),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0x74),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0x7C),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0x84),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0x94),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0xA4),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0xAC),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
-};
-
 /* 809460A0-80946284 000520 01E4+00 1/1 0/0 0/0 .text            create__8daMyna_cFv */
 // Matches with incorrect weak function ordering
 #ifdef NONMATCHING
@@ -1468,14 +1422,21 @@ int daMyna_c::destroy() {
 }
 
 /* 8094640C-809464CC 00088C 00C0+00 1/1 0/0 0/0 .text            draw__8daMyna_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daMyna_c::draw() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/draw__8daMyna_cFv.s"
+int daMyna_c::draw() {
+    J3DModel* model = mpMorf->getModel();
+    J3DModelData* modelData = model->getModelData();
+    g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
+    g_env_light.setLightTevColorType_MAJI(model->getModelData(), &mTevStr);
+    if (cLib_checkBit(field_0x914, 0x40)) {
+        mBtpAnm.entry(modelData);
+    }
+    fopAcM_setEffectMtx(this, modelData);
+    mpMorf->entryDL();
+    if (cLib_checkBit(field_0x914, 0x40)) {
+        mBtpAnm.remove(modelData);
+    }
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8094B1F4-8094B1F8 000044 0004+00 1/1 0/0 0/0 .rodata          @4207 */
@@ -1487,6 +1448,54 @@ SECTION_RODATA static f32 const lit_4208 = 100.0f;
 COMPILER_STRIP_GATE(0x8094B1F8, &lit_4208);
 
 /* 809464CC-809466D8 00094C 020C+00 2/2 0/0 0/0 .text            execute__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+int daMyna_c::execute() {
+    u8 uVar1 = field_0x92C;
+    u8 uVar2 = field_0x935;
+    bool isTalkNow = dMsgObject_isTalkNowCheck();
+    setItemInfo();
+    int iVar1 = chkEvent();
+    if (daMyna_LightActor == NULL) {
+        i_fpcM_Search(daMyna_searchLight, this);
+    }
+    setRoomNo();
+    mAttentionInfo.mPosition.set(current.pos.x, current.pos.y + 40.0f, current.pos.z);
+    mEyePos.set(mAttentionInfo.mPosition);
+    if (field_0x926 > 0) {
+        field_0x926--;
+    }
+    if (isTalkNow) {
+        talkAnime(mMsgFlow.getMsg());
+    } else if (field_0x824 != 0) {
+        field_0x824 = 0;
+    }
+    if (iVar1 != 0) {
+        (this->*move_proc[field_0x92C])();
+        orderEvent();
+    }
+    if (!isTalkNow) {
+        playDefaultWaitAnime();
+        setDefaultWaitAnime(uVar2);
+    }
+    if (uVar1 != field_0x92C) {
+        (this->*init_proc[field_0x92C])();
+    }
+    if (uVar2 != field_0x935) {
+        if (field_0x935 == 1) {
+            field_0x924 = cM_rndF(100.0f) + 100.0f;
+        }
+        animeControl();
+    }
+    animePlay();
+    set_mtx();
+    shape_angle = current.angle;
+    shape_angle.y = -current.angle.y;
+    setCollision();
+    checkDead();
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1495,6 +1504,7 @@ asm int daMyna_c::execute() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/execute__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8094B1FC-8094B200 00004C 0004+00 11/12 0/0 0/0 .rodata          @4270 */
@@ -1508,24 +1518,55 @@ SECTION_DEAD static char const* const stringBase_8094B355 = "MYNA.bmd";
 #pragma pop
 
 /* 809466D8-8094686C 000B58 0194+00 1/1 0/0 0/0 .text            createHeap__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+int daMyna_c::createHeap() {
+    J3DModelData* modelData =
+        static_cast<J3DModelData*>(dComIfG_getObjectRes("Npc_myna", "MYNA.bmd"));
+    mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCreature, 0x80000,
+                                  0x11020084);
+    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
+        mpMorf->stopZelAnime();
+        mpMorf = NULL;
+    }
+    if (mpMorf == NULL) {
+        return 0;
+    } else {
+        for (u16 i = 0; i < modelData->getJointNum(); i++) {
+            modelData->getJointNodePointer(i)->setCallBack(jntNodeCallBack);
+        }
+        field_0x916 = 7;
+        field_0x914 = 0;
+        field_0x918 = 0;
+        field_0x91A = 0;
+        field_0x936 = 0;
+        J3DAnmTexPattern* anmTexPattern = getTexPtrnAnm(l_btpFileNameTBL[field_0x936]);
+        if (anmTexPattern != NULL) {
+            setBtpAnm(anmTexPattern, mpMorf->getModel()->getModelData(), 1.0f, 2);
+            cLib_onBit(field_0x914, 0x44);
+        }
+        return 1;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daMyna_c::createHeap() {
+asm int daMyna_c::createHeap() {
     nofralloc
 #include "asm/rel/d/a/d_a_myna/d_a_myna/createHeap__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8094686C-809468EC 000CEC 0080+00 1/1 0/0 0/0 .text jntNodeCB__8daMyna_cFP8J3DJointP8J3DModel */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::jntNodeCB(J3DJoint* param_0, J3DModel* param_1) {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/jntNodeCB__8daMyna_cFP8J3DJointP8J3DModel.s"
+int daMyna_c::jntNodeCB(J3DJoint* i_jnt, J3DModel* i_model) {
+    u16 jntNo = i_jnt->getJntNo();
+    mDoMtx_stack_c::copy(i_model->i_getAnmMtx(jntNo));
+    i_model->setAnmMtx(jntNo, mDoMtx_stack_c::get());
+    cMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
+    return 1;
 }
-#pragma pop
 
 /* 809468EC-8094692C 000D6C 0040+00 1/0 0/0 0/0 .text            attack_wait_init__8daMyna_cFv */
 #pragma push
@@ -2014,14 +2055,13 @@ asm void daMyna_c::attack2_talk_move() {
 #pragma pop
 
 /* 809487EC-80948828 002C6C 003C+00 0/0 0/0 2/2 .text            soldoutItem__8daMyna_cFUi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::soldoutItem(unsigned int param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/soldoutItem__8daMyna_cFUi.s"
+void daMyna_c::soldoutItem(unsigned int i_itemId) {
+    for (int i = 0; i < mNumShopItems; i++) {
+        if (i_itemId == mShopItems[i].mTargetActorID) {
+            mShopItems[i].mItemStatus = 3;
+        }
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8094B228-8094B22C 000078 0004+00 1/2 0/0 0/0 .rodata          @5221 */
@@ -2078,6 +2118,17 @@ SECTION_RODATA static u8 const lit_5332[8] = {
 COMPILER_STRIP_GATE(0x8094B238, &lit_5332);
 
 /* 80948DFC-80948E84 00327C 0088+00 2/2 0/0 0/0 .text            fly_body_wave__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::fly_body_wave() {
+    if (field_0x935 == 0) {
+        field_0x91A = field_0x91A + l_HOSTIO.field_0x2E;
+        f32 fVar1 = cM_scos(field_0x91A) * l_HOSTIO.field_0x2C;
+        current.pos.y += fVar1;
+        field_0x85C.y += fVar1;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2086,6 +2137,7 @@ asm void daMyna_c::fly_body_wave() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/fly_body_wave__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80948E84-80948FAC 003304 0128+00 1/1 0/0 0/0 .text            talkAnime__8daMyna_cFP9msg_class */
 #pragma push
@@ -2098,36 +2150,101 @@ asm void daMyna_c::talkAnime(msg_class* param_0) {
 #pragma pop
 
 /* 80948FAC-809490B8 00342C 010C+00 1/1 0/0 0/0 .text            chkEvent__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+int daMyna_c::chkEvent() {
+    int retVal = 1;
+    if (daPy_py_c::i_checkNowWolf()) {
+        if (!i_dComIfGp_getEvent().i_isOrderOK()) {
+            retVal = 0;
+            if (mEvtInfo.checkCommandTalk()) {
+                if (field_0x92C == 0x10) {
+                    (this->*move_proc[field_0x92C])();
+                    retVal = 0;
+                } else {
+                    if (dComIfGp_event_chkTalkXY() == 0 || dComIfGp_evmng_ChkPresentEnd()) {
+                        field_0x92E = field_0x92C;
+                        field_0x92C = 0x10;
+                        retVal = 0;
+                    }
+                }
+                return retVal;
+            }
+        }
+    }
+    return retVal;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daMyna_c::chkEvent() {
+asm int daMyna_c::chkEvent() {
     nofralloc
 #include "asm/rel/d/a/d_a_myna/d_a_myna/chkEvent__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 809490B8-80949128 003538 0070+00 2/1 0/0 0/0 .text            orderEvent__8daMyna_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::orderEvent() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/orderEvent__8daMyna_cFv.s"
+int daMyna_c::orderEvent() {
+    if (daPy_py_c::i_checkNowWolf()) {
+        switch (field_0x92C) {
+        case 0:
+        case 5:
+        case 7:
+        case 11:
+        case 12:
+        case 13:
+        case 14:
+        case 15:
+            mAttentionInfo.mFlags = 10;
+        }
+        if (mAttentionInfo.mFlags == 10) {
+            mAttentionInfo.field_0x0[1] = 0x8B;
+            mAttentionInfo.field_0x0[3] = 0x8B;
+            mEvtInfo.i_onCondition(1);
+        }
+    }
+    return 1;
 }
-#pragma pop
+
+/* 8094B8F8-8094B934 -00001 003C+00 1/1 0/0 0/0 .data            @5890 */
+SECTION_DATA static void* lit_5890[15] = {
+    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
+    (void*)(((char*)animeControl__8daMyna_cFv) + 0x5C),
+    (void*)(((char*)animeControl__8daMyna_cFv) + 0x74),
+    (void*)(((char*)animeControl__8daMyna_cFv) + 0x7C),
+    (void*)(((char*)animeControl__8daMyna_cFv) + 0x84),
+    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
+    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
+    (void*)(((char*)animeControl__8daMyna_cFv) + 0x94),
+    (void*)(((char*)animeControl__8daMyna_cFv) + 0xA4),
+    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
+    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
+    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
+    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
+    (void*)(((char*)animeControl__8daMyna_cFv) + 0xAC),
+    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
+};
 
 /* 80949128-80949144 0035A8 001C+00 1/1 0/0 0/0 .text            deleteItem__8daMyna_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::deleteItem(int param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/deleteItem__8daMyna_cFi.s"
+void daMyna_c::deleteItem(int i_itemIndex) {
+    mShopItems[i_itemIndex].mTargetActorID = -1;
+    mShopItems[i_itemIndex].mItemStatus = 4;
 }
-#pragma pop
 
 /* 80949144-80949190 0035C4 004C+00 0/0 0/0 0/0 .text            deleteItem__8daMyna_cFUi */
+// Nonmatching, no clue what's going on here
+#ifdef NONMATCHING
+void daMyna_c::deleteItem(unsigned int i_itemId) {
+    for (int i = 0; i < mNumShopItems; i++) {
+        if (i_itemId == mShopItems[i].mTargetActorID) {
+            mShopItems[i].mTargetActorID = -1;
+            mShopItems[i].mItemStatus = 4;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2136,6 +2253,7 @@ asm void daMyna_c::deleteItem(unsigned int param_0) {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/deleteItem__8daMyna_cFUi.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8094B240-8094B244 000090 0004+00 0/1 0/0 0/0 .rodata          @5455 */
@@ -2230,16 +2348,21 @@ asm void daMyna_c::setItemInfo() {
 #pragma pop
 
 /* 80949544-80949588 0039C4 0044+00 2/2 0/0 0/0 .text            setRoomNo__8daMyna_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::setRoomNo() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/setRoomNo__8daMyna_cFv.s"
+void daMyna_c::setRoomNo() {
+    s32 roomId = dComIfG_Bgsp().GetRoomId(mGndChk);
+    fopAcM_SetRoomNo(this, roomId);
+    mStatus.SetRoomId(roomId);
 }
-#pragma pop
 
 /* 80949588-809495E0 003A08 0058+00 1/1 0/0 0/0 .text            setCollision__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::setCollision() {
+    mSph.SetC(field_0x85C);
+    mSph.SetR(15.0f);
+    dComIfG_Ccsp()->Set(&mSph);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2248,6 +2371,7 @@ asm void daMyna_c::setCollision() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/setCollision__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 809495E0-80949744 003A60 0164+00 1/1 0/0 0/0 .text            set_mtx__8daMyna_cFv */
 // Matches when l_HOSTIO is the correct type
@@ -2321,47 +2445,54 @@ asm void daMyna_c::animePlay() {
 
 /* 8094983C-809498B8 003CBC 007C+00 2/2 0/0 0/0 .text
  * setMcaMorfAnm__8daMyna_cFP18J3DAnmTransformKeyffiii          */
+// Matches with literals
+#ifdef NONMATCHING
+int daMyna_c::setMcaMorfAnm(J3DAnmTransformKey* i_anm, f32 i_rate, f32 i_morf, int i_attr,
+                            int i_start, int i_end) {
+    mpMorf->setAnm(i_anm, i_attr, i_morf, i_rate, i_start, i_end);
+    field_0x91E = 0;
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daMyna_c::setMcaMorfAnm(J3DAnmTransformKey* param_0, f32 param_1, f32 param_2, int param_3,
-                                 int param_4, int param_5) {
+asm int daMyna_c::setMcaMorfAnm(J3DAnmTransformKey* param_0, f32 param_1, f32 param_2, int param_3,
+                                int param_4, int param_5) {
     nofralloc
 #include "asm/rel/d/a/d_a_myna/d_a_myna/setMcaMorfAnm__8daMyna_cFP18J3DAnmTransformKeyffiii.s"
 }
 #pragma pop
+#endif
 
 /* 809498B8-809498F8 003D38 0040+00 2/2 0/0 0/0 .text
  * setBtpAnm__8daMyna_cFP16J3DAnmTexPatternP12J3DModelDatafi    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::setBtpAnm(J3DAnmTexPattern* param_0, J3DModelData* param_1, f32 param_2,
-                             int param_3) {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/setBtpAnm__8daMyna_cFP16J3DAnmTexPatternP12J3DModelDatafi.s"
+void daMyna_c::setBtpAnm(J3DAnmTexPattern* i_btk, J3DModelData* param_1, f32 i_rate,
+                         int i_attribute) {
+    mBtpAnm.init(&param_1->getMaterialTable(), i_btk, 1, i_attribute, i_rate, 0, -1);
 }
-#pragma pop
 
 /* 809498F8-80949948 003D78 0050+00 2/2 0/0 0/0 .text            getTrnsfrmKeyAnm__8daMyna_cFPc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DAnmTransformKey* daMyna_c::getTrnsfrmKeyAnm(char* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/getTrnsfrmKeyAnm__8daMyna_cFPc.s"
+J3DAnmTransformKey* daMyna_c::getTrnsfrmKeyAnm(char* i_resName) {
+    J3DAnmTransformKey* key;
+    if (i_resName != NULL) {
+        key = static_cast<J3DAnmTransformKey*>(dComIfG_getObjectRes("Npc_myna", i_resName));
+    } else {
+        key = NULL;
+    }
+    return key;
 }
-#pragma pop
 
 /* 80949948-80949998 003DC8 0050+00 2/2 0/0 0/0 .text            getTexPtrnAnm__8daMyna_cFPc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::getTexPtrnAnm(char* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/getTexPtrnAnm__8daMyna_cFPc.s"
+J3DAnmTexPattern* daMyna_c::getTexPtrnAnm(char* i_resName) {
+    J3DAnmTexPattern* pattern;
+    if (i_resName != NULL) {
+        pattern = static_cast<J3DAnmTexPattern*>(dComIfG_getObjectRes("Npc_myna", i_resName));
+    } else {
+        pattern = NULL;
+    }
+    return pattern;
 }
-#pragma pop
 
 /* 80949998-80949A70 003E18 00D8+00 1/1 0/0 0/0 .text            checkEndAnm__8daMyna_cFf */
 #pragma push
@@ -2374,6 +2505,25 @@ asm int daMyna_c::checkEndAnm(f32 param_0) {
 #pragma pop
 
 /* 80949A70-80949AD4 003EF0 0064+00 1/1 0/0 0/0 .text checkEndAnm__8daMyna_cFP12J3DFrameCtrl */
+// Matches with literals
+#ifdef NONMATCHING
+int daMyna_c::checkEndAnm(J3DFrameCtrl* param_0) {
+    switch (param_0->getAttribute()) {
+    case 2:
+        return param_0->checkState(2);
+    case 0:
+    case 1:
+        u8 retVal = 1;
+        if (param_0->checkState(1) == 0 && param_0->getRate() != 0.0f) {
+            retVal = 0;
+        }
+        return retVal;
+    case 3:
+    default:
+        return 0;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2382,36 +2532,94 @@ asm int daMyna_c::checkEndAnm(J3DFrameCtrl* param_0) {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/checkEndAnm__8daMyna_cFP12J3DFrameCtrl.s"
 }
 #pragma pop
+#endif
 
 /* 80949AD4-80949AE0 003F54 000C+00 1/1 0/0 0/0 .text            getItemNumMax__8daMyna_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daMyna_c::getItemNumMax() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/getItemNumMax__8daMyna_cFv.s"
+int daMyna_c::getItemNumMax() {
+    return (fopAcM_GetParam(this) >> 0x18) & 0xF;
 }
-#pragma pop
 
 /* 80949AE0-80949C0C 003F60 012C+00 1/1 0/0 0/0 .text            getItemType__8daMyna_cFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::getItemType(void* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/getItemType__8daMyna_cFPv.s"
+int daMyna_c::getItemType(void* param_0) {
+    int itemType = 0xF;
+    u8 uVar1 = fopAcM_GetParam(param_0) & 0xFF;
+
+    if (fopAcM_GetName(param_0) == PROC_OBJ_SSITEM) {
+        switch (uVar1) {
+        case 0:
+            itemType = 1;
+            break;
+        case 1:
+            itemType = 2;
+            break;
+        case 2:
+            itemType = 0;
+            break;
+        }
+    } else if (fopAcM_GetName(param_0) == PROC_OBJ_SSDRINK) {
+        switch (uVar1) {
+        case 0:
+            itemType = 3;
+            break;
+        case 1:
+            itemType = 4;
+            break;
+        case 2:
+            itemType = 5;
+            break;
+        case 3:
+            itemType = 6;
+            break;
+        case 4:
+            itemType = 7;
+            break;
+        case 5:
+            itemType = 8;
+            break;
+        }
+    } else if (fopAcM_GetName(param_0) == PROC_TAG_SSDRINK) {
+        switch (uVar1) {
+        case 0:
+            itemType = 9;
+            break;
+        case 1:
+            itemType = 10;
+            break;
+        case 2:
+            itemType = 11;
+            break;
+        case 3:
+            itemType = 12;
+            break;
+        case 4:
+            itemType = 13;
+            break;
+        case 5:
+            itemType = 14;
+            break;
+        }
+    }
+
+    return itemType;
 }
-#pragma pop
 
 /* 80949C0C-80949C44 00408C 0038+00 3/3 0/0 0/0 .text            getFlowNodeNum__8daMyna_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::getFlowNodeNum() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/getFlowNodeNum__8daMyna_cFv.s"
+u16 daMyna_c::getFlowNodeNum() {
+    u16 num = orig.angle.x;
+    bool bVar1 = false;
+    if (num == 0xFFFF || num == 0) {
+        bVar1 = true;
+    }
+
+    int num2;
+    if (!bVar1) {
+        num2 = num;
+    } else {
+        num2 = -1;
+    }
+
+    return num2;
 }
-#pragma pop
 
 /* 80949C44-80949D54 0040C4 0110+00 1/1 0/0 0/0 .text            checkDead__8daMyna_cFv */
 #pragma push
@@ -2425,14 +2633,43 @@ asm void daMyna_c::checkDead() {
 
 /* 80949D54-80949EE8 0041D4 0194+00 7/7 0/0 0/0 .text
  * chkPlayerInEvtArea__8daMyna_cFP10fopAc_ac_c4cXyz             */
+// Matches with literals
+#ifdef NONMATCHING
+int daMyna_c::chkPlayerInEvtArea(fopAc_ac_c* param_0, cXyz param_1) {
+    int retVal = 0;
+    cXyz local_60;
+    cXyz local_6c;
+
+    if (param_0 != NULL) {
+        mDoMtx_stack_c::YrotS(-param_0->current.angle.y);
+        mDoMtx_stack_c::transM(-param_0->current.pos.x, -param_0->current.pos.y,
+                               -param_0->current.pos.z);
+        mDoMtx_stack_c::multVec(&daPy_getPlayerActorClass()->current.pos, &local_6c);
+        f32 fVar1 = fabsf(param_0->mScale.x + param_1.x);
+        f32 fVar2 = fabsf(param_0->mScale.z + param_1.z);
+        f32 fVar3 = fabsf(local_6c.x);
+        f32 fVar4 = fabsf(local_6c.z);
+        local_60 = param_0->current.pos - daPy_getPlayerActorClass()->current.pos;
+        if ((fVar3 * fVar3) / (fVar1 * fVar1) + (fVar4 * fVar4) / (fVar2 * fVar2) <= 1.0f &&
+            -(param_0->mScale.y + param_1.y) < local_60.y &&
+            local_60.y < (param_0->mScale.y + param_1.y))
+        {
+            retVal = 1;
+        }
+    }
+
+    return retVal;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daMyna_c::chkPlayerInEvtArea(fopAc_ac_c* param_0, cXyz param_1) {
+asm int daMyna_c::chkPlayerInEvtArea(fopAc_ac_c* param_0, cXyz param_1) {
     nofralloc
 #include "asm/rel/d/a/d_a_myna/d_a_myna/chkPlayerInEvtArea__8daMyna_cFP10fopAc_ac_c4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8094B244-8094B248 000094 0004+00 2/3 0/0 0/0 .rodata          @5889 */
