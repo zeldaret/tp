@@ -10,67 +10,9 @@
 // Types:
 //
 
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
-
-struct mDoHIO_entry_c {
-    /* 80C5D470 */ ~mDoHIO_entry_c();
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct dalv4CandleTag_c {
-    /* 80C5D4B8 */ void setBaseMtx();
-    /* 80C5D4F0 */ void create();
-    /* 80C5D5D4 */ void Execute();
-    /* 80C5D618 */ void procMain();
-    /* 80C5D6D4 */ void init_modeWatch();
-    /* 80C5D6E0 */ void modeWatch();
-    /* 80C5D78C */ void init_modeNG();
-    /* 80C5D814 */ void modeNG();
-    /* 80C5D8A0 */ void init_modeNGWait();
-    /* 80C5D8AC */ void modeNGWait();
-    /* 80C5D8FC */ void init_modeEnd();
-    /* 80C5D908 */ void modeEnd();
-    /* 80C5D90C */ void eventStart();
-    /* 80C5D930 */ bool Draw();
-    /* 80C5D938 */ bool Delete();
-    /* 80C5DAC8 */ ~dalv4CandleTag_c();
-};
-
-struct dalv4CandleTag_HIO_c {
-    /* 80C5D44C */ dalv4CandleTag_HIO_c();
-    /* 80C5D9C0 */ ~dalv4CandleTag_HIO_c();
-};
-
 struct dSv_info_c {
     /* 800352B0 */ void offSwitch(int, int);
     /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dEvLib_callback_c {
-    /* 8004886C */ void eventUpdate();
-    /* 80048940 */ void orderEvent(int, int, int);
-    /* 80C5DA68 */ ~dEvLib_callback_c();
-    /* 80C5DAB0 */ bool eventRun();
-    /* 80C5DAB8 */ bool eventEnd();
-    /* 80C5DAC0 */ bool eventStart();
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 //
@@ -120,12 +62,9 @@ extern "C" void eventUpdate__17dEvLib_callback_cFv();
 extern "C" void orderEvent__17dEvLib_callback_cFiii();
 extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXTrans();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
@@ -278,7 +217,8 @@ asm dalv4CandleTag_HIO_c::dalv4CandleTag_HIO_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm mDoHIO_entry_c::~mDoHIO_entry_c() {
+// asm mDoHIO_entry_c::~mDoHIO_entry_c() {
+extern "C" asm void __dt__14mDoHIO_entry_cFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4CandleTag/d_a_obj_lv4CandleTag/__dt__14mDoHIO_entry_cFv.s"
 }
@@ -298,7 +238,7 @@ asm void dalv4CandleTag_c::setBaseMtx() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dalv4CandleTag_c::create() {
+asm cPhs__Step dalv4CandleTag_c::create() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4CandleTag/d_a_obj_lv4CandleTag/create__16dalv4CandleTag_cFv.s"
 }
@@ -308,7 +248,7 @@ asm void dalv4CandleTag_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dalv4CandleTag_c::Execute() {
+asm int dalv4CandleTag_c::Execute() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4CandleTag/d_a_obj_lv4CandleTag/Execute__16dalv4CandleTag_cFv.s"
 }
@@ -424,19 +364,19 @@ void dalv4CandleTag_c::modeEnd() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dalv4CandleTag_c::eventStart() {
+asm int dalv4CandleTag_c::eventStart() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4CandleTag/d_a_obj_lv4CandleTag/eventStart__16dalv4CandleTag_cFv.s"
 }
 #pragma pop
 
 /* 80C5D930-80C5D938 0005D0 0008+00 1/1 0/0 0/0 .text            Draw__16dalv4CandleTag_cFv */
-bool dalv4CandleTag_c::Draw() {
+int dalv4CandleTag_c::Draw() {
     return true;
 }
 
 /* 80C5D938-80C5D940 0005D8 0008+00 1/1 0/0 0/0 .text            Delete__16dalv4CandleTag_cFv */
-bool dalv4CandleTag_c::Delete() {
+int dalv4CandleTag_c::Delete() {
     return true;
 }
 
@@ -486,7 +426,8 @@ static asm void dalv4CandleTag_Create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dalv4CandleTag_HIO_c::~dalv4CandleTag_HIO_c() {
+// asm dalv4CandleTag_HIO_c::~dalv4CandleTag_HIO_c() {
+extern "C" asm void __dt__20dalv4CandleTag_HIO_cFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4CandleTag/d_a_obj_lv4CandleTag/__dt__20dalv4CandleTag_HIO_cFv.s"
 }
@@ -531,25 +472,29 @@ static asm void func_80C5DA60() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dEvLib_callback_c::~dEvLib_callback_c() {
+// asm dEvLib_callback_c::~dEvLib_callback_c() {
+extern "C" asm void __dt__17dEvLib_callback_cFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4CandleTag/d_a_obj_lv4CandleTag/__dt__17dEvLib_callback_cFv.s"
 }
 #pragma pop
 
 /* 80C5DAB0-80C5DAB8 000750 0008+00 2/0 0/0 0/0 .text            eventRun__17dEvLib_callback_cFv */
-bool dEvLib_callback_c::eventRun() {
+// int dEvLib_callback_c::eventRun() {
+extern "C" bool eventRun__17dEvLib_callback_cFv() {
     return true;
 }
 
 /* 80C5DAB8-80C5DAC0 000758 0008+00 2/0 0/0 0/0 .text            eventEnd__17dEvLib_callback_cFv */
-bool dEvLib_callback_c::eventEnd() {
+// int dEvLib_callback_c::eventEnd() {
+extern "C" bool eventEnd__17dEvLib_callback_cFv() {
     return true;
 }
 
 /* 80C5DAC0-80C5DAC8 000760 0008+00 1/0 0/0 0/0 .text            eventStart__17dEvLib_callback_cFv
  */
-bool dEvLib_callback_c::eventStart() {
+// int dEvLib_callback_c::eventStart() {
+extern "C" bool eventStart__17dEvLib_callback_cFv() {
     return true;
 }
 
@@ -557,7 +502,8 @@ bool dEvLib_callback_c::eventStart() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dalv4CandleTag_c::~dalv4CandleTag_c() {
+// asm dalv4CandleTag_c::~dalv4CandleTag_c() {
+extern "C" asm void __dt__16dalv4CandleTag_cFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4CandleTag/d_a_obj_lv4CandleTag/__dt__16dalv4CandleTag_cFv.s"
 }

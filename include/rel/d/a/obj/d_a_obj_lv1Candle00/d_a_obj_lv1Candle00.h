@@ -5,7 +5,6 @@
 #include "f_op/f_op_actor.h"
 #include "d/cc/d_cc_d.h"
 #include "m_Do/m_Do_hostIO.h"
-#include "dolphin/types.h"
 
 class daLv1Cdl00_HIO_c : public mDoHIO_entry_c {
 public:
@@ -35,14 +34,14 @@ public:
     /* 0x574 */ dCcD_Stts mStts;
     /* 0x5B0 */ dCcD_Cyl mCyl;
     /* 0x6EC */ cXyz mTorchPos;
-    /* 0x6F8 */ bool mIsOn;
-    /* 0x6F9 */ u8 mSwitch;
-    /* 0x6FA */ u8 mStartsOn;
+    /* 0x6F8 */ bool mIsLit;
+    /* 0x6F9 */ u8 mIsSwitch;
+    /* 0x6FA */ u8 mSwType;
     /* 0x6FC */ cXyz mLightPos;
-    /* 0x708 */ u8 field_0x708;
-    /* 0x70C */ f32 field_0x70c;
+    /* 0x708 */ u8 mLightType;
+    /* 0x70C */ f32 mIntensity;
     /* 0x710 */ LIGHT_INFLUENCE mLight;
-    /* 0x730 */ u8 field_0x730;
+    /* 0x730 */ u8 mTgHit;
     /* 0x734 */ Z2SoundObjSimple mSound;
 
     static dCcD_SrcGObjInf const mCcDObjInfo;
