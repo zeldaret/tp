@@ -21,7 +21,14 @@ struct J3DAnmColorKeyTable {
     J3DAnmKeyTableBase mAInfo;
 };  // Size = 0x18
 
-struct J3DAnmVtxColorIndexData;
+struct J3DAnmVtxColorIndexDataItem {
+    u16 count;
+    u32 offset;
+};
+
+struct J3DAnmVtxColorIndexData {
+    J3DAnmVtxColorIndexDataItem field_0x0[4];
+};
 
 struct J3DAnmColorFullTable {
     /* 0x00 */ u16 mRMaxFrame;

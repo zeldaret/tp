@@ -379,7 +379,7 @@ template<> struct TBox<TVec2<f32> > {
 template <typename T>
 struct TBox2 : TBox<TVec2<T> > {
     TBox2() {}
-    TBox2(const TVec2<f32>& i, const TVec2<f32> f) { set(i, f); }
+    TBox2(const TVec2<f32>& i, const TVec2<f32>& f) { set(i, f); }
     TBox2(f32 x0, f32 y0, f32 x1, f32 y1) { set(x0, y0, x1, y1); }
 
     void absolute() {
