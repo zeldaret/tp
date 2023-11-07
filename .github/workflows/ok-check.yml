@@ -80,4 +80,4 @@ jobs:
         done
 
         # Update the status and assignees for every issue identified
-        ${CMD[@]}
+        # ${CMD[@]}
