@@ -6,6 +6,10 @@ namespace std {
 float fabs(float num) {
     return fabsf(num);
 }
+
+float abs(float num) {
+    return fabsf(num);
+}
 }  // namespace std
 
 #endif

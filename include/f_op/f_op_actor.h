@@ -249,6 +249,9 @@ public:
     bool checkHeadLockFlg() const { return mFlags & 0x80; }
     bool checkDownFlg() const { return mFlags & 0x1; }
     cXyz& getDownPos() { return mDownPos; }
+    cXyz& getHeadLockPos() { return mHeadLockPos; }
+
+    void onCutDownHitFlg() { mFlags |= 2; }
 
     /* 0x568 */ cXyz mDownPos;
     /* 0x574 */ cXyz mHeadLockPos;
