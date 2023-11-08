@@ -4440,7 +4440,8 @@ asm void daHorse_c::getLashDashStart() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void std::fabs(f32 param_0) {
+// asm void std::fabs(f32 param_0) {
+extern "C" asm void fabs__3stdFf() {
     nofralloc
 #include "asm/d/d_camera/fabs__3stdFf.s"
 }

@@ -80,6 +80,8 @@ public:
 
     s16 getAngleY() { return shape_angle.y + field_0xa7e; }
 
+    void forceDelete() { mDeleteFlg = 1; }
+
 private:
     /* 0x568 */ J3DModel* mpModel;
     /* 0x56C */ mDoExt_bckAnm mBck;

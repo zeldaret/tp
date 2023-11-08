@@ -249,6 +249,8 @@ public:
         FLG1_UNK_8000 = 0x8000,
         FLG1_THROW_DAMAGE = 0x4000,
         FLG1_UNK_2000 = 0x2000,
+        FLG1_UNK_1000 = 0x1000,
+        FLG1_UNK_800 = 0x800,
         FLG1_UNK_80 = 0x80,
         FLG1_UNK_40 = 0x40,
         FLG1_UNK_20 = 0x20,
@@ -256,6 +258,8 @@ public:
         FLG1_UNK_4 = 4,
         FLG1_UNK_2 = 2,
         FLG1_UNK_1 = 1,
+
+        FLG1_UNK_1800 = 0x1800,
     };
 
     enum daPy_FLG2 {
@@ -304,6 +308,7 @@ public:
         FLG3_UNK_4000 = 0x4000,
         FLG3_UNK_200 = 0x200,
         FLG3_UNK_100 = 0x100,
+        FLG3_UNK_80 = 0x80,
         FLG3_UNK_40 = 0x40,
         FLG3_UNK_20 = 0x20,
         FLG3_UNK_10 = 0x10,
@@ -360,6 +365,7 @@ public:
         ERFLG2_UNK_100 = 0x100,
         ERFLG2_UNK_40 = 0x40,
         ERFLG2_UNK_20 = 0x20,
+        ERFLG2_UNK_2 = 2,
     };
 
     enum daPy_RFLG0 {
@@ -369,6 +375,7 @@ public:
         RFLG0_FRONT_ROLL_CRASH = 0x2000,
         RFLG0_ENEMY_ATTN_LOCK = 0x1000,
         RFLG0_UNK_400 = 0x400,
+        RFLG0_UNK_200 = 0x200,
         RFLG0_UNK_100 = 0x100,
         RFLG0_UNK_80 = 0x80,
         RFLG0_UNK_40 = 0x40,
@@ -750,6 +757,7 @@ public:
     void i_offNoResetFlg3(int pFlg) { mNoResetFlg3 &= ~pFlg; }
     
     void i_offResetFlg0(int flag) { mResetFlg0 &= ~flag; }
+    void i_offResetFlg1(int flag) { mResetFlg1 &= ~flag; }
     void i_onResetFlg0(int flag) { mResetFlg0 |= flag; }
     void i_onResetFlg1(int flag) { mResetFlg1 |= flag; }
     
@@ -817,5 +825,7 @@ public:
 
     static daMidna_c* m_midnaActor;
 };
+
+int daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4);
 
 #endif /* D_A_D_A_PLAYER_H */

@@ -34,6 +34,7 @@ private:
     /* 0x0 */ u8 field_0x0[0xE4];
 };  // Size: 0xE4
 
+class daHoZelda_c;
 class daHorse_c : public fopAc_ac_c {
 public:
     enum daHorse_ERFLG0 {
@@ -41,6 +42,8 @@ public:
         /* 0x010 */ MOVE_ACCEPT = 0x10,
         /* 0x080 */ RIDE_RUN_FLG = 0x80,
         /* 0x100 */ CUT_TURN_CANCEL = 0x100,
+
+        ERFLG0_UNK_18 = 0x18,
     };
 
     enum daHorse_RFLG0 {
@@ -153,7 +156,7 @@ public:
 
     bool checkNoBombProc() const { return field_0x16b4 == 0 || field_0x16b4 == 1; }
     bool checkResetStateFlg0(daHorse_RFLG0 flag) const { return mResetStateFlg0 & flag; }
-    bool checkEndResetStateFlg0(daHorse_ERFLG0 flag) { return mEndResetStateFlg0 & flag; }
+    bool checkEndResetStateFlg0(daHorse_ERFLG0 flag) const { return mEndResetStateFlg0 & flag; }
     bool checkStateFlg0(daHorse_FLG0 flag) const { return mStateFlg0 & flag; }
     f32 getNormalMaxSpeedF() { return mNormalMaxSpeedF; }
     f32 getLashMaxSpeedF() { return mLashMaxSpeedF; }
@@ -169,10 +172,29 @@ public:
     void onEndResetStateFlg0(daHorse_ERFLG0 i_flag) { mEndResetStateFlg0 |= i_flag;}
     void offNoDrawWait() { offStateFlg0(NO_DRAW_WAIT); }
     int checkSpecialWallHit(const cXyz& param_0) { return (this->*mpCheckSpecialWallHitFn)(param_0); }
+    MtxP getSaddleMtx() { return field_0x570->i_getAnmMtx(21); }
+    MtxP getRootMtx() { return field_0x570->i_getAnmMtx(0); }
+    f32 getAnmFrameMax(int i_idx) const { return field_0x5b0[i_idx].getEnd(); }
+    f32 getAnmFrame(int i_idx) const { return field_0x5b0[i_idx].getFrame(); }
+    s16 getAimNeckAngleY() const { return mAimNeckAngleY; }
+    f32 getMorfFrame() const { return mMorfFrame; }
+    f32 getBlendRate() { return field_0x594[1].getRatio(); }
+    u16 getAnmIdx(int i_idx) const { return mAnmIdx[i_idx]; }
+
+    daHoZelda_c* i_getZeldaActor() { return (daHoZelda_c*)mZeldaActorKeep.getActor(); }
 
     bool checkTurnStandCamera() const { return checkResetStateFlg0(TURN_STAND_CAMERA); }
     bool checkTurnStand() const { return checkResetStateFlg0(TURN_STAND); }
     bool checkRodeoMode() const { return checkStateFlg0(RODEO_MODE); }
+    bool checkCutTurnCancel() const { return checkEndResetStateFlg0(CUT_TURN_CANCEL); }
+    bool checkTurnCancelKeep() const { return checkStateFlg0(TURN_CANCEL_KEEP); }
+    bool checkTurn() const { return field_0x16b4 == 3 && field_0x1720 == 0; }
+    bool checkStop() const { return field_0x16b4 == 2; }
+    bool checkJump() const { return field_0x16b4 == 4; }
+    bool checkWait() const { return field_0x16b4 == 0; }
+    bool checkLand() const { return field_0x16b4 == 5 && field_0x171a == 0; }
+    bool checkGetOff() const { return fabsf(speedF) < 3.0f; }
+    bool checkEnemySearch() { return checkResetStateFlg0(ENEMY_SEARCH); }
 
     void onTagJump(f32 param_0, f32 param_1, f32 param_2) {
         field_0x1768 = param_0;
@@ -180,6 +202,10 @@ public:
         field_0x1770 = param_2;
         onEndResetStateFlg0(ERFLG0_UNK_1);
     }
+
+    void onMoveAccept() { onEndResetStateFlg0(MOVE_ACCEPT); }
+    void onPlayerLash() { onEndResetStateFlg0(ERFLG0_UNK_18); }
+    void offPlayerBackRideLash() { offStateFlg0(PLAYER_BACK_RIDE_LASH); }
 
     static u8 const m_footJointTable[8];
     static f32 const m_callLimitDistance2;
@@ -216,7 +242,9 @@ public:
     /* 0x16B8 */ u8 field_0x16b8;
     /* 0x16B9 */ u8 field_0x16b9[2];
     /* 0x16BB */ u8 mRodeoPointCnt;
-    /* 0x16BC */ u8 field_0x16bc[0x36];
+    /* 0x16BC */ u8 field_0x16bc[0x16C4 - 0x16BC];
+    /* 0x16C4 */ u16 mAnmIdx[3];
+    /* 0x16CA */ u8 field_0x16ca[0x16F2 - 0x16CA];
     /* 0x16F2 */ s16 mAimNeckAngleY;
     /* 0x16F4 */ u8 field_0x16f4[0x8];
     /* 0x16FC */ s16 mDemoMoveAngle;
@@ -225,7 +253,11 @@ public:
     /* 0x1704 */ u8 field_0x1704[2];
     /* 0x1706 */ s16 mCowHitAngle;
     /* 0x1708 */ s16 mCowHit;
-    /* 0x170A */ u8 field_0x170a[0x1E];
+    /* 0x170A */ u8 field_0x170a[0x171A - 0x170A];
+    /* 0x171A */ s16 field_0x171a;
+    /* 0x171C */ u8 field_0x171c[0x1720 - 0x171C];
+    /* 0x1720 */ s16 field_0x1720;
+    /* 0x1722 */ u8 field_0x1722[0x1728 - 0x1722];
     /* 0x1728 */ int field_0x1728;
     /* 0x172C */ u8 field_0x172c[0x14];
     /* 0x1740 */ u32 field_0x1740;

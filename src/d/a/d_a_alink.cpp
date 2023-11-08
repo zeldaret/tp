@@ -5698,65 +5698,57 @@ COMPILER_STRIP_GATE(0x8039190C, &daAlink_c::m_handRightInSidePos);
 /* 80391918-80391924 01DF78 000C+00 0/1 0/0 0/0 .rodata          horseLocalLeft$17678 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const horseLocalLeft[12] = {
-    0x41, 0xA0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static const Vec horseLocalLeft = {
+    20.0f, 0.0f, 0.0f
 };
-COMPILER_STRIP_GATE(0x80391918, &horseLocalLeft);
 #pragma pop
 
 /* 80391924-80391930 01DF84 000C+00 0/1 0/0 0/0 .rodata          horseLocalRight$17679 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const horseLocalRight[12] = {
-    0xC1, 0xA0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static const Vec horseLocalRight = {
+    -20.0f, 0.0f, 0.0f
 };
-COMPILER_STRIP_GATE(0x80391924, &horseLocalRight);
 #pragma pop
 
 /* 80391930-8039193C 01DF90 000C+00 0/1 0/0 0/0 .rodata          horseLocalBack$17680 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const horseLocalBack[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC3, 0x48, 0x00, 0x00,
+static const Vec horseLocalBack = {
+    0.0f, 0.0f, -200.0f
 };
-COMPILER_STRIP_GATE(0x80391930, &horseLocalBack);
 #pragma pop
 
 /* 8039193C-80391948 01DF9C 000C+00 0/1 0/0 0/0 .rodata          boarLocalLeft$17681 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const boarLocalLeft[12] = {
-    0x43, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC1, 0x90, 0x00, 0x00,
+static const Vec boarLocalLeft = {
+    200.0f, 0.0f, -18.0f
 };
-COMPILER_STRIP_GATE(0x8039193C, &boarLocalLeft);
 #pragma pop
 
 /* 80391948-80391954 01DFA8 000C+00 0/1 0/0 0/0 .rodata          boarLocalRight$17682 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const boarLocalRight[12] = {
-    0xC3, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC1, 0x90, 0x00, 0x00,
+static const Vec boarLocalRight = {
+    -200.0f, 0.0f, -18.0f
 };
-COMPILER_STRIP_GATE(0x80391948, &boarLocalRight);
 #pragma pop
 
 /* 80391954-80391960 01DFB4 000C+00 1/1 0/0 0/0 .rodata          localHorseRun$18095 */
-SECTION_RODATA static u8 const localHorseRun_18095[12] = {
-    0x41, 0x70, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC2, 0x34, 0x00, 0x00,
+static const Vec localHorseRun_18095 = {
+    15.0f, 0.0f, -45.0f
 };
-COMPILER_STRIP_GATE(0x80391954, &localHorseRun_18095);
 
 /* 80391960-8039196C 01DFC0 000C+00 1/1 0/0 0/0 .rodata          localHorseRun$18103 */
-SECTION_RODATA static u8 const localHorseRun_18103[12] = {
-    0x41, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
+static const Vec localHorseRun_18103 = {
+    30.0f, 0.0f, -10.0f
 };
-COMPILER_STRIP_GATE(0x80391960, &localHorseRun_18103);
 
 /* 8039196C-80391978 01DFCC 000C+00 1/1 0/0 0/0 .rodata          localOffset$18237 */
-SECTION_RODATA static u8 const localOffset_18237[12] = {
-    0xC1, 0xF0, 0x00, 0x00, 0xC1, 0x90, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static const Vec localOffset_18237 = {
+    -30.0f, -18.0f, 0.0f
 };
-COMPILER_STRIP_GATE(0x8039196C, &localOffset_18237);
 
 /* 80391978-80391984 01DFD8 000C+00 1/1 0/0 0/0 .rodata          @18938 */
 SECTION_RODATA static u8 const lit_18938[12] = {
@@ -13190,7 +13182,7 @@ static u8 lit_4416[12];
 #pragma pop
 
 /* 804255BC-804255C8 0522DC 000C+00 1/3 0/0 0/0 .bss             l_localHorseRidePos */
-static u8 l_localHorseRidePos[12];
+static Vec l_localHorseRidePos;
 
 /* 804255C8-804255D4 0522E8 000C+00 0/1 0/0 0/0 .bss             @4417 */
 #pragma push
@@ -13199,7 +13191,7 @@ static u8 lit_4417[12];
 #pragma pop
 
 /* 804255D4-804255E0 0522F4 000C+00 1/3 0/0 0/0 .bss             l_localBoarRidePos */
-static u8 l_localBoarRidePos[12];
+static Vec l_localBoarRidePos;
 
 /* 804255E0-804255EC 052300 000C+00 0/1 0/0 0/0 .bss             @4418 */
 #pragma push

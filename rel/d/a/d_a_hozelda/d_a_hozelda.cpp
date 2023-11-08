@@ -3,7 +3,8 @@
 // Translation Unit: d_a_hozelda
 //
 
-#include "rel/d/a/d_a_hozelda/d_a_hozelda.h"
+// #include "rel/d/a/d_a_hozelda/d_a_hozelda.h"
+#include "dolphin/types.h"
 #include "dol2asm.h"
 
 //
