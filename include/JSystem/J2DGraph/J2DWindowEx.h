@@ -16,9 +16,9 @@ public:
     /* 80302284 */ void setTevOrder(bool);
     /* 80302388 */ void setTevStage(bool);
     /* 803024B4 */ void setStage(J2DTevStage*, J2DWindowEx::stage_enum);
-    /* 80302A4C */ void getBlackWhite(JUtility::TColor*, JUtility::TColor*) const;
-    /* 80302BE8 */ void isSetBlackWhite(JUtility::TColor, JUtility::TColor) const;
-    /* 8030321C */ void isNeedSetAnm(u8);
+    /* 80302A4C */ bool getBlackWhite(JUtility::TColor*, JUtility::TColor*) const;
+    /* 80302BE8 */ bool isSetBlackWhite(JUtility::TColor, JUtility::TColor) const;
+    /* 8030321C */ bool isNeedSetAnm(u8);
 
     /* 80301144 */ virtual ~J2DWindowEx();
     /* 803035C0 */ virtual void setCullBack(bool);
@@ -36,7 +36,7 @@ public:
     /* 80303194 */ virtual void setAnimation(J2DAnmTevRegKey*);
     /* 80303274 */ virtual void setAnimation(J2DAnmVisibilityFull*);
     /* 8030327C */ virtual void setAnimation(J2DAnmVtxColor*);
-    /* 80303370 */ virtual J2DAnmTransform* animationPane(J2DAnmTransform const*);
+    /* 80303370 */ virtual const J2DAnmTransform* animationPane(J2DAnmTransform const*);
     /* 80301FC8 */ virtual void draw(JGeometry::TBox2<f32> const&);
     /* 80302164 */ virtual void draw(JGeometry::TBox2<f32> const&, JGeometry::TBox2<f32> const&);
     /* 80303568 */ virtual void draw(f32, f32, f32, f32);
@@ -62,6 +62,7 @@ private:
     /* 0x170 */ u8 field_0x170;
     /* 0x174 */ J2DAnmVisibilityFull* mAnmVisibilityFull;
     /* 0x178 */ J2DAnmVtxColor* mAnmVtxColor;
+    /* 0x17C */ u8 field_0x17c;
 };
 
 #endif /* J2DWINDOWEX_H */
