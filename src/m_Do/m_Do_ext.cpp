@@ -1730,8 +1730,8 @@ bool J3DTevBlock::getIndTevStage(u32 param_0) {
 }
 
 /* 8000DF8C-8000DF94 0088CC 0008+00 0/0 2/0 0/0 .text            getTevStage__11J3DTevBlockFUl */
-bool J3DTevBlock::getTevStage(u32 param_0) {
-    return false;
+J3DTevStage* J3DTevBlock::getTevStage(u32 param_0) {
+    return NULL;
 }
 
 /* 8000DF94-8000DFA0 0088D4 000C+00 0/0 2/0 0/0 .text            getTexNo__11J3DTevBlockCFUl */

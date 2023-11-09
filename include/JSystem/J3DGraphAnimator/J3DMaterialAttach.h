@@ -38,11 +38,15 @@ public:
     bool isLocked() const { return field_0x1c == 1; }
 
 private:
+    friend class J3DModelLoader;
+    friend class J3DModelLoader_v26;
+    friend class J3DModelLoader_v21;
+
     /* 0x04 */ u16 mMaterialNum;
     /* 0x06 */ u16 mUniqueMatNum;
     /* 0x08 */ J3DMaterial** mMaterialNodePointer;
     /* 0x0C */ JUTNameTab* mMaterialName;
-    /* 0x10 */ u32 field_0x10;
+    /* 0x10 */ J3DMaterial* field_0x10;
     /* 0x14 */ J3DTexture* mTexture;
     /* 0x18 */ JUTNameTab* mTextureName;
     /* 0x1C */ u16 field_0x1c;

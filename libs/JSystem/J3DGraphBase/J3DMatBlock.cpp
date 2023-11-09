@@ -2799,7 +2799,7 @@ asm void J3DTevBlock16::setTevStage(u32 param_0, J3DTevStage const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DTevBlock16::getTevStage(u32 param_0) {
+asm J3DTevStage* J3DTevBlock16::getTevStage(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getTevStage__13J3DTevBlock16FUl.s"
 }
@@ -3853,7 +3853,7 @@ asm void J3DTevBlock4::setTevStage(u32 param_0, J3DTevStage const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DTevBlock4::getTevStage(u32 param_0) {
+asm J3DTevStage* J3DTevBlock4::getTevStage(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getTevStage__12J3DTevBlock4FUl.s"
 }
@@ -4246,7 +4246,7 @@ asm void J3DTevBlock2::setTevStage(u32 param_0, J3DTevStage const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DTevBlock2::getTevStage(u32 param_0) {
+asm J3DTevStage* J3DTevBlock2::getTevStage(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getTevStage__12J3DTevBlock2FUl.s"
 }
@@ -4503,7 +4503,7 @@ asm void J3DTevBlock1::setTevStage(u32 param_0, J3DTevStage const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DTevBlock1::getTevStage(u32 param_0) {
+asm J3DTevStage* J3DTevBlock1::getTevStage(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getTevStage__12J3DTevBlock1FUl.s"
 }
@@ -4739,7 +4739,7 @@ asm void J3DTevBlockPatched::setTevStage(u32 param_0, J3DTevStage const* param_1
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DTevBlockPatched::getTevStage(u32 param_0) {
+asm J3DTevStage* J3DTevBlockPatched::getTevStage(u32 param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getTevStage__18J3DTevBlockPatchedFUl.s"
 }
