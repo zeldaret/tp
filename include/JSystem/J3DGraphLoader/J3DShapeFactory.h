@@ -1,6 +1,7 @@
 #ifndef J3DSHAPEFACTORY_H
 #define J3DSHAPEFACTORY_H
 
+#include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "dolphin/gx/GXAttr.h"
 #include "dolphin/mtx/vec.h"
 
@@ -29,23 +30,6 @@ struct J3DShapeMtxInitData {
 struct J3DShapeDrawInitData {
     /* 0x00 */ u32 mDisplayListSize;
     /* 0x04 */ u32 mDisplayListIndex;
-};
-
-struct J3DShapeBlock {
-    /* 0x00 */ u8 mMagic[4];
-    /* 0x04 */ u32 mSize;
-
-    /* 0x08 */ u16 mShapeNum;
-    /* 0x0A */ u16 _pad;
-
-    /* 0x0C */ J3DShapeInitData* mShapeInitData;
-    /* 0x10 */ u16* mIndexTable;
-    /* 0x14 */ ResNTAB* mNameTable;
-    /* 0x18 */ GXVtxDescList* mVtxDescList;
-    /* 0x1C */ u16* mMtxTable;
-    /* 0x20 */ u8* mDisplayListData;
-    /* 0x24 */ J3DShapeMtxInitData* mMtxInitData;
-    /* 0x28 */ J3DShapeDrawInitData* mDrawInitData;
 };
 
 struct J3DShapeFactory {

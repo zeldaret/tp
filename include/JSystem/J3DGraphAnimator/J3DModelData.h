@@ -37,9 +37,14 @@ public:
     u32 getNrmNum() const { return mVertexData.getNrmNum(); }
     u8 getDrawMtxFlag(u16 idx) const { return mJointTree.getDrawMtxFlag(idx); }
     u16 getDrawMtxIndex(u16 idx) const { return mJointTree.getDrawMtxIndex(idx); }
+    J3DDrawMtxData* getDrawMtxData() { return mJointTree.getDrawMtxData(); }
+    J3DShapeTable* getShapeTable() { return &mShapeTable; }
     J3DShape* getShapeNodePointer(u16 idx) const { return mShapeTable.getShapeNodePointer(idx); }
     J3DJoint* getJointNodePointer(u16 idx) const { return mJointTree.getJointNodePointer(idx); }
     J3DJointTree& getJointTree() { return mJointTree; }
+    J3DModelHierarchy const* getHierarchy() { return mJointTree.getHierarchy(); }
+    void setHierarchy(J3DModelHierarchy* hierarchy) { mJointTree.setHierarchy(hierarchy); }
+    void setBasicMtxCalc(J3DMtxCalc* calc) { mJointTree.setBasicMtxCalc(calc); }
     JUTNameTab* getJointName() const { return mJointTree.getJointName(); }
     Mtx& getInvJointMtx(s32 idx) const { return mJointTree.getInvJointMtx(idx); }
     J3DTexture* getTexture() const { return mMaterialTable.getTexture(); }
@@ -49,12 +54,13 @@ public:
     f32* getWEvlpMixWeight() const { return mJointTree.getWEvlpMixWeight(); }
     u8 getWEvlpMixMtxNum(u16 idx) const { return mJointTree.getWEvlpMixMtxNum(idx); }
     u32 getModelDataType() const { return mJointTree.getModelDataType(); }
+    void setModelDataType(u32 type) { mJointTree.setModelDataType(type); }
     void* getVtxPosArray() const { return mVertexData.getVtxPosArray(); }
     void* getVtxNrmArray() const { return mVertexData.getVtxNrmArray(); }
     GXColor* getVtxColorArray(u8 idx) const { return mVertexData.getVtxColorArray(idx); }
     bool checkFlag(u32 flag) const { return (mFlags & flag) ? true : false; }
     u32 getFlag() const { return mFlags; }
-    void* getRawData() const { return mpRawData; }
+    void const* getRawData() const { return mpRawData; }
     u16 checkBumpFlag() const { return mbHasBumpArray; }
     void setBumpFlag(u32 flag) { mbHasBumpArray = flag; }
     bool checkBBoardFlag() const { return mbHasBillboard == 1; }
@@ -78,9 +84,15 @@ public:
         syncJ3DSysFlags();
         syncJ3DSysPointers();
     }
+    void makeHierarchy(J3DJoint* joint, J3DModelHierarchy const** hierarchy) {
+        mJointTree.makeHierarchy(joint, hierarchy, &mMaterialTable, &mShapeTable);
+        mShapeTable.initShapeNodes(getDrawMtxData(), &getVertexData());
+    }
 
 private:
-    /* 0x04 */ void* mpRawData;
+    friend class J3DModelLoader;
+
+    /* 0x04 */ void const* mpRawData;
     /* 0x08 */ u32 mFlags;
     /* 0x0C */ u16 mbHasBumpArray;
     /* 0x0E */ u16 mbHasBillboard;

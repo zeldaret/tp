@@ -42,6 +42,8 @@ public:
     /* 80316E14 */ virtual void reset();
     /* 80316E70 */ virtual void change();
 
+    J3DMaterial() { initialize(); }
+    ~J3DMaterial() {}
     J3DMaterial* getNext() const { return mNext; }
     J3DShape* getShape() const { return mShape; }
     J3DTevBlock* getTevBlock() const { return mTevBlock; }

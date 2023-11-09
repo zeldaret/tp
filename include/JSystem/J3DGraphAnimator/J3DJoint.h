@@ -69,6 +69,7 @@ public:
     J3DMtxCalc* getMtxCalc() { return mMtxCalc; }
     J3DMtxCalc* getCurrentMtxCalc() { return mCurrentMtxCalc; };
     J3DJoint* getChild() { return mChild; }
+    void setMtxType(u8 type) { mKind = (mKind & ~0xf0) | (type << 4); }
 
     static J3DMtxCalc* mCurrentMtxCalc;
 

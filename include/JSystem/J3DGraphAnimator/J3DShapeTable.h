@@ -25,6 +25,8 @@ public:
     J3DShape* getShapeNodePointer(u16 idx) const { return mShapeNodePointer[idx]; }
 
 private:
+    friend class J3DModelLoader;
+    
     /* 0x4 */ u16 mShapeNum;
     /* 0x8 */ J3DShape** mShapeNodePointer;
     /* 0xC */ JUTNameTab* mShapeName;
