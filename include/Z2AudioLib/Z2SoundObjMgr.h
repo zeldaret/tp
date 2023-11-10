@@ -6,34 +6,42 @@
 
 class Z2CreatureEnemy;
 
-class Z2SoundObjMgr : protected JSUList<Z2CreatureEnemy>, public JASGlobalInstance<Z2SoundObjMgr> {
+struct Z2EnemyArea {
+    /* 0x00 */ u8 field_0x0;
+    /* 0x02 */ u16 field_0x2;
+    /* 0x04 */ u16 field_0x4;
+    /* 0x06 */ u16 field_0x6;
+};
+
+enum Z2EnemyID {
+    Z2_ENEMY_ID_0,
+};
+
+class Z2SoundObjMgr : public JASGlobalInstance<Z2SoundObjMgr>, protected JSUList<Z2CreatureEnemy> {
 public:
     Z2SoundObjMgr();
     void setForceBattleArea(bool, u16, u16, u16);
     void searchEnemy();
     void setGhostEnemyState(u8);
-    void getEnemyID(char const*, JSULink<Z2CreatureEnemy>*);
+    u8 getEnemyID(char const*, JSULink<Z2CreatureEnemy>*);
     void setBattleInit();
-    void checkBattleFinish();
+    bool checkBattleFinish();
     void deleteEnemyAll();
-    void removeEnemy(JSULink<Z2CreatureEnemy>*);
-    bool isTwilightBattle();
+    bool removeEnemy(JSULink<Z2CreatureEnemy>*);
+    u8 isTwilightBattle();
 
     bool isForceBattle() { return mForceBattle; }
 
 private:
-    /* 0x0C */ u8 field_0xc[2];
-    /* 0x0E */ u16 field_0xe;
-    /* 0x10 */ u16 field_0x10;
-    /* 0x12 */ u16 field_0x12;
+    /* 0x0C */ Z2EnemyArea mEnemyArea;
     /* 0x14 */ u8 field_0x14;
     /* 0x15 */ u8 mEnemyNumNear;
     /* 0x16 */ u8 field_0x16;
     /* 0x17 */ u8 mEnemyNumVeryFar;
     /* 0x18 */ u8 field_0x18;
     /* 0x19 */ u8 mGhostEnemyState;
-    /* 0x1A */ bool field_0x1a;
-    /* 0x1B */ bool mTwilightBattle;
+    /* 0x1A */ u8 field_0x1a;
+    /* 0x1B */ u8 mTwilightBattle;
     /* 0x1C */ bool mForceBattle;
 };  // Size = 0x20
 

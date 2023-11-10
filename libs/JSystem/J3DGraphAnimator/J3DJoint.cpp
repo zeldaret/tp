@@ -184,10 +184,6 @@ void J3DJoint::appendChild(J3DJoint* pChild) {
 SECTION_DEAD static u32 const pad_803A2080[2] = {0,0};
 #pragma pop
 
-struct copyhelper {
-    u32 x[8];
-};
-
 /* 8032F170-8032F254 329AB0 00E4+00 0/0 1/1 0/0 .text            __ct__8J3DJointFv */
 J3DJoint::J3DJoint() {
     mCallBackUserData = NULL;
@@ -198,8 +194,7 @@ J3DJoint::J3DJoint() {
     mJntNo = 0;
     mKind = 1;
     mScaleCompensate = false;
-    // This line is probably a fake match but the normal = works nothing like this.
-    *(copyhelper*)&mTransformInfo = *(copyhelper*)&j3dDefaultTransformInfo;
+    __memcpy(&mTransformInfo, &j3dDefaultTransformInfo, sizeof(J3DTransformInfo));
     mBoundingSphereRadius = 0.0f;
     mMtxCalc = NULL;
     mMesh = NULL;
