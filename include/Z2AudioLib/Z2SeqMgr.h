@@ -98,6 +98,22 @@ public:
         return field_0x08.isSoundAttached() || field_0xba != 0;
     }
 
+    u32 getMainBgmID() {
+        if (mMainBgmHandle) {
+            return mMainBgmHandle->getID();
+        }
+
+        return -1;
+    }
+
+    u32 getSubBgmID() {
+        if (mSubBgmHandle) {
+            return mSubBgmHandle->getID();
+        }
+
+        return -1;
+    }
+
 private:
     /* 0x00 */ JAISoundHandle mMainBgmHandle;
     /* 0x04 */ JAISoundHandle mSubBgmHandle;

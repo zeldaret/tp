@@ -5,6 +5,7 @@
 
 #include "rel/d/a/obj/d_a_obj_volcball/d_a_obj_volcball.h"
 #include "SSystem/SComponent/c_math.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
@@ -320,13 +321,6 @@ extern void* __vt__17dEvLib_callback_c[6];
 //
 // Declarations:
 //
-
-/* ############################################################################################## */
-/* 80D23E80-80D23E80 0000B4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80D23E80 = "M_Volcbal";
-#pragma pop
 
 /* 80D23E8C-80D23E98 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -915,48 +909,35 @@ void daObjVolcBall_c::initActionEnd() {
 }
 
 /* 80D22CD4-80D22DDC 001234 0108+00 1/0 0/0 0/0 .text            actionEnd__15daObjVolcBall_cFv */
-// weird branching
-#ifdef NONMATCHING
 void daObjVolcBall_c::actionEnd() {
-    if (mIsBigVolc == 1 ||) {
-        if (mIsBigVolc == 1 && i_fopAcM_isSwitch(this, getSwBit())) {
-            return;
-        }
+    if (mIsBigVolc != 1 || (mIsBigVolc == 1 && i_fopAcM_isSwitch(this, getSwBit()))) {
+        return;
+    }
 
-        daObjVolcBom_c* bom_p = (daObjVolcBom_c*)fopAcM_SearchByID(mBigVolcActorID);
-        if (bom_p != NULL) {
-            switch (field_0x2924) {
-            case 0:
-                bom_p->startSearch();
-                field_0x2924 = 1;
-            case 1:
-                if (field_0x2925 == 60) {
-                    field_0x2924 = 2;
-                }
-
-                field_0x2925++;
-                break;
-            case 2:
-                orderEvent(getEvNo(), 0xFF, 1);
-                field_0x2924 = 3;
-                break;
-            case 3:
-                eventUpdate();
-                break;
+    daObjVolcBom_c* bom_p = (daObjVolcBom_c*)fopAcM_SearchByID(mBigVolcActorID);
+    if (bom_p != NULL) {
+        switch (field_0x2924) {
+        case 0:
+            bom_p->startSearch();
+            field_0x2924 = 1;
+        case 1:
+            if (field_0x2925 == 60) {
+                field_0x2924 = 2;
             }
+
+            field_0x2925++;
+            break;
+        case 2:
+            orderEvent(getEvNo(), 0xFF, 1);
+            field_0x2924 = 3;
+            break;
+        case 3:
+            eventUpdate();
+            break;
         }
     }
+    
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjVolcBall_c::actionEnd() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_volcball/d_a_obj_volcball/actionEnd__15daObjVolcBall_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80D22DDC-80D22E24 00133C 0048+00 2/1 0/0 0/0 .text            eventStart__15daObjVolcBall_cFv */
 BOOL daObjVolcBall_c::eventStart() {
@@ -1191,13 +1172,13 @@ COMPILER_STRIP_GATE(0x80D23E74, &lit_4411);
 #pragma pop
 
 /* 80D23438-80D23868 001998 0430+00 1/1 0/0 0/0 .text            executeBall__15daObjVolcBall_cFv */
-// small regalloc / literals
+// literals
 #ifdef NONMATCHING
 int daObjVolcBall_c::executeBall() {
     int ret = 0;
     vball_s* ball = mBall;
 
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < 9; i++, ball++) {
         if (ball->field_0x376 != 0) {
             ball->field_0x10 = ball->field_0x4;
             ball->field_0x364.y = ball->field_0x4.y;
@@ -1251,8 +1232,6 @@ int daObjVolcBall_c::executeBall() {
 
             ret++;
         }
-
-        ball++;
     }
 
     return ret;

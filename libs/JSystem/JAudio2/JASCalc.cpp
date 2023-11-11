@@ -7,6 +7,7 @@
 #include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
 #include "MSL_C/math.h"
+#include "MSL_C/MSL_Common/Src/limits"
 
 //
 // Types:
@@ -340,13 +341,11 @@ f32 JASCalc::pow2(f32 x) {
     return ret;
 }
 
-/* 8028F69C-8028F6C4 289FDC 0028+00 0/0 4/4 0/0 .text            clamp<s,l>__7JASCalcFl */
-// Could not make clamp not inline
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void func_8028F69C(void* _this, s32 param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASCalc/func_8028F69C.s"
+template <>
+s16 JASCalc::clamp(s32 x) {
+    if (std::numeric_limits<s16>::min() >= x)
+        return std::numeric_limits<s16>::min();
+    if (x >= std::numeric_limits<s16>::max())
+        return std::numeric_limits<s16>::max();
+    return x;
 }
-#pragma pop

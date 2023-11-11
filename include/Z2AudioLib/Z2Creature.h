@@ -76,6 +76,8 @@ public:
     void setInWater(bool status) { mInWater = status; }
     bool isInWater() { return mInWater; }
     u8 getLinkState() const { return mLinkState; }
+    u8 getMoveSpeed() const { return mMoveSpeed; }
+    bool isRiding() const { return mRiding; }
 
     static Z2CreatureLink* mLinkPtr;
 
@@ -159,7 +161,6 @@ public:
     /* 802C1B7C */ void setLinkSearch(bool);
     /* 802C1B90 */ void setEnemyName(char const*);
 
-private:
     /* 0x90 */ JSULink<Z2CreatureEnemy> mLink;
     /* 0xA0 */ u8 mEnemyID;
     /* 0xA1 */ s8 field_0xa1;

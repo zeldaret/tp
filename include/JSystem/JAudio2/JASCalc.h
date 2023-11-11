@@ -10,6 +10,8 @@ struct JASCalc {
     /* 8028F454 */ static void bzerofast(void*, u32);
     /* 8028F480 */ static void bzero(void*, u32);
     /* 8028F578 */ static f32 pow2(f32);
+
+    // Could not make it work as inline - specialization is in JASCalc.cpp
     template <typename A, typename B>
     static A clamp(B x); /* {
         if (std::numeric_limits<A>::min() >= x)
