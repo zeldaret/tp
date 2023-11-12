@@ -482,8 +482,8 @@ d_a_obj_lbox |  47.423510% | 2356 | 4968
 d_a_obj_life_container |  34.456243% | 3764 | 10924
 d_a_obj_lp |  29.557762% | 2620 | 8864
 d_a_obj_lv1Candle00 | 100.000000% | 5756 | 5756
-d_a_obj_lv1Candle01 |  44.344569% | 2368 | 5340
-d_a_obj_lv2Candle |  38.160920% | 2656 | 6960
+d_a_obj_lv1Candle01 | 100.000000% | 5340 | 5340
+d_a_obj_lv2Candle | 100.000000% | 6960 | 6960
 d_a_obj_lv3Candle |  45.638126% | 2260 | 4952
 d_a_obj_lv3Water |  44.263566% | 4568 | 10320
 d_a_obj_lv3Water2 |  41.786571% | 2788 | 6672
