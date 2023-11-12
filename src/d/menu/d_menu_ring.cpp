@@ -476,8 +476,8 @@ SECTION_SDATA2 static f64 lit_4312 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 801E9118-801EA708 1E3A58 15F0+00 0/0 1/1 0/0 .text
  * __ct__12dMenu_Ring_cFP10JKRExpHeapP9STControlP10CSTControlUc */
+// literals
 #ifdef NONMATCHING
-// clrlwi instruction instead of mr 
 dMenu_Ring_c::dMenu_Ring_c(JKRExpHeap* i_heap, STControl* i_stick, CSTControl* i_cstick,
                            u8 param_3) {
     mpHeap = i_heap;
@@ -693,7 +693,7 @@ dMenu_Ring_c::dMenu_Ring_c(JKRExpHeap* i_heap, STControl* i_stick, CSTControl* i
                 mpItemTex[i][k] = new J2DPicture(mpItemBuf[i][k]);
                 mpItemTex[i][k]->setBasePosition(J2DBasePosition_4);
             }
-            dMeter2Info_setItemColor(i_textureNum, mpItemTex[i][0], mpItemTex[i][1],
+            dMeter2Info_setItemColor(item, mpItemTex[i][0], mpItemTex[i][1],
                                      mpItemTex[i][2], NULL);
             u8 texScale = dItem_data::getTexScale(item);
             f32 fVar1 = (texScale / 100.0f);

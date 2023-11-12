@@ -679,7 +679,7 @@ int daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 p
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4) {
+asm int daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4) {
     nofralloc
 #include "asm/d/a/d_a_player/daPy_addCalcShort__FPsssss.s"
 }

@@ -175,7 +175,7 @@ public:
     /* 8000DFD0 */ virtual u8 getTevStageNum() const;
     /* 80323550 */ virtual void setTevStage(u32, J3DTevStage const*);
     /* 8000E0A8 */ virtual void setTevStage(u32, J3DTevStage);
-    /* 8000DF8C */ virtual bool getTevStage(u32);
+    /* 8000DF8C */ virtual J3DTevStage* getTevStage(u32);
     /* 8032295C */ virtual void setTevSwapModeInfo(u32, J3DTevSwapModeInfo const*);
     /* 80322958 */ virtual void setTevSwapModeInfo(u32, J3DTevSwapModeInfo);
     /* 80322960 */ virtual void setTevSwapModeTable(u32, J3DTevSwapModeTable const*);
@@ -238,7 +238,7 @@ public:
     /* 803229B8 */ virtual u8 getTevStageNum() const;
     /* 80322A6C */ virtual void setTevStage(u32, J3DTevStage const*);
     /* 80322A30 */ virtual void setTevStage(u32, J3DTevStage);
-    /* 80322AA8 */ virtual bool getTevStage(u32);
+    /* 80322AA8 */ virtual J3DTevStage* getTevStage(u32);
     /* 80322AD0 */ virtual void setIndTevStage(u32, J3DIndTevStage const*);
     /* 80322ABC */ virtual void setIndTevStage(u32, J3DIndTevStage);
     /* 80322AE4 */ virtual bool getIndTevStage(u32);
@@ -308,7 +308,7 @@ public:
     /* 803221C8 */ virtual u8 getTevStageNum() const;
     /* 8032220C */ virtual void setTevStage(u32, J3DTevStage const*);
     /* 803221D0 */ virtual void setTevStage(u32, J3DTevStage);
-    /* 80322248 */ virtual bool getTevStage(u32);
+    /* 80322248 */ virtual J3DTevStage* getTevStage(u32);
     /* 80322294 */ virtual void setTevSwapModeInfo(u32, J3DTevSwapModeInfo const*);
     /* 8032225C */ virtual void setTevSwapModeInfo(u32, J3DTevSwapModeInfo);
     /* 803222DC */ virtual void setTevSwapModeTable(u32, J3DTevSwapModeTable const*);
@@ -381,7 +381,7 @@ public:
     /* 8032258C */ virtual u8 getTevStageNum() const;
     /* 803225D0 */ virtual void setTevStage(u32, J3DTevStage const*);
     /* 80322594 */ virtual void setTevStage(u32, J3DTevStage);
-    /* 8032260C */ virtual bool getTevStage(u32);
+    /* 8032260C */ virtual J3DTevStage* getTevStage(u32);
     /* 80322658 */ virtual void setTevSwapModeInfo(u32, J3DTevSwapModeInfo const*);
     /* 80322620 */ virtual void setTevSwapModeInfo(u32, J3DTevSwapModeInfo);
     /* 803226A0 */ virtual void setTevSwapModeTable(u32, J3DTevSwapModeTable const*);
@@ -454,7 +454,7 @@ public:
     /* 80321DFC */ virtual u8 getTevStageNum() const;
     /* 80321E40 */ virtual void setTevStage(u32, J3DTevStage const*);
     /* 80321E04 */ virtual void setTevStage(u32, J3DTevStage);
-    /* 80321E7C */ virtual bool getTevStage(u32);
+    /* 80321E7C */ virtual J3DTevStage* getTevStage(u32);
     /* 80321EC8 */ virtual void setTevSwapModeInfo(u32, J3DTevSwapModeInfo const*);
     /* 80321E90 */ virtual void setTevSwapModeInfo(u32, J3DTevSwapModeInfo);
     /* 80321F10 */ virtual void setTevSwapModeTable(u32, J3DTevSwapModeTable const*);
@@ -515,7 +515,7 @@ public:
     /* 8032281C */ virtual u8 getTevStageNum() const;
     /* 80322860 */ virtual void setTevStage(u32, J3DTevStage const*);
     /* 80322824 */ virtual void setTevStage(u32, J3DTevStage);
-    /* 8032289C */ virtual bool getTevStage(u32);
+    /* 8032289C */ virtual J3DTevStage* getTevStage(u32);
     /* 803228C4 */ virtual void setIndTevStage(u32, J3DIndTevStage const*);
     /* 803228B0 */ virtual void setIndTevStage(u32, J3DIndTevStage);
     /* 803228D8 */ virtual bool getIndTevStage(u32);
@@ -758,6 +758,13 @@ private:
     /* 0x0F */ u8 mDither;
 };  // Size: 0x10
 
+struct J3DIndTexCoordScaleInfo {
+    /* 0x0 */ u8 mScaleS;
+    /* 0x1 */ u8 mScaleT;
+    /* 0x2 */ u8 field_0x2;
+    /* 0x3 */ u8 field_0x3;
+};
+
 struct J3DIndTexCoordScale {
     /* 8000E024 */ ~J3DIndTexCoordScale();
     /* 8000E0E4 */ J3DIndTexCoordScale();
@@ -775,6 +782,13 @@ struct J3DIndTexMtx {
     /* 0x00 */ Mtx23 mOffsetMtx;
     /* 0x18 */ u8 mScaleExp;
 };  // Size: 0x1C
+
+struct J3DIndTexOrderInfo {
+    /* 0x0 */ u8 mMap;
+    /* 0x1 */ u8 mCoord;
+    /* 0x2 */ u8 field_0x2;
+    /* 0x3 */ u8 field_0x3;
+};
 
 struct J3DIndTexOrder {
     /* 8000E128 */ J3DIndTexOrder();

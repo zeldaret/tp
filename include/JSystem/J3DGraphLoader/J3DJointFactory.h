@@ -5,7 +5,7 @@
 #include "dolphin/types.h"
 
 class J3DJoint;
-struct ResNTAB;
+struct J3DJointBlock;
 
 struct J3DJointInitData {
     /* 0x00 */ u16 mKind;
@@ -15,18 +15,6 @@ struct J3DJointInitData {
     /* 0x28 */ Vec mMin;
     /* 0x2C */ Vec mMax;
 };  // Size: 0x30
-
-struct J3DJointBlock {
-    /* 0x00 */ u8 mMagic[4];
-    /* 0x04 */ u32 mSize;
-
-    /* 0x08 */ u16 mJointNum;
-    /* 0x0A */ u16 _pad;
-
-    /* 0x0C */ J3DJointInitData* mJointInitData;
-    /* 0x10 */ u16* mIndexTable;
-    /* 0x14 */ ResNTAB* mNameTable;
-};
 
 struct J3DJointFactory {
     /* 80337178 */ J3DJointFactory(J3DJointBlock const&);

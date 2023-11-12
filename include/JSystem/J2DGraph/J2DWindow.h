@@ -73,7 +73,7 @@ public:
         setContentsColor(param_0, param_0, param_0, param_0);
     }
 
-private:
+protected:
     /* 0x100 */ JUTTexture* field_0x100;
     /* 0x104 */ JUTTexture* field_0x104;
     /* 0x108 */ JUTTexture* field_0x108;

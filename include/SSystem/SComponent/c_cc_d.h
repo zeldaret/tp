@@ -136,9 +136,7 @@ struct cCcD_SrcCpsAttr {
 class cCcD_CpsAttr : public cCcD_ShapeAttr, public cM3dGCps {
 public:
     cCcD_CpsAttr() {}
-    void Set(const cCcD_SrcCpsAttr& pSrc) {
-        cM3dGCps::Set(pSrc.mCps);
-    }
+    void Set(const cCcD_SrcCpsAttr& pSrc) { cM3dGCps::Set(pSrc.mCps); }
     void Set(const cXyz& pStart, const cXyz& pEnd, float radius) {
         cM3dGCps::Set(pStart, pEnd, radius);
     }
@@ -175,9 +173,7 @@ struct cCcD_SrcSphAttr {
 class cCcD_SphAttr : public cCcD_ShapeAttr, public cM3dGSph {
 public:
     cCcD_SphAttr() {}
-    void Set(const cCcD_SrcSphAttr& src) {
-        cM3dGSph::Set(src.mSph);
-    }
+    void Set(const cCcD_SrcSphAttr& src) { cM3dGSph::Set(src.mSph); }
 
     /* 8008721C */ virtual ~cCcD_SphAttr() {}
     /* 80084B44 */ virtual const cXyz& GetCoCP() const { return mCenter; }
@@ -337,7 +333,7 @@ public:
     /* 80263984 */ f32 GetWeightF() const;
     /* 802649E8 vt[7] */ virtual void ClrAt() {}
     /* 802649EC vt[8] */ virtual void ClrTg() { mTg = 0; }
-    
+
     u8 GetWeightUc() const { return mWeight; }
     void SetWeight(u8 weight) { mWeight = weight; }
     fopAc_ac_c* GetAc() { return mActor; }
@@ -378,9 +374,7 @@ public:
     void OnSPrmBit(u32 flag) { mSPrm |= flag; }
     void OffSPrmBit(u32 flag) { mSPrm &= ~flag; }
 
-    void Set(cCcD_SrcObjCommonBase const& src) {
-        mSPrm = src.mSPrm;
-    }
+    void Set(cCcD_SrcObjCommonBase const& src) { mSPrm = src.mSPrm; }
 };
 
 STATIC_ASSERT(0x10 == sizeof(cCcD_ObjCommonBase));
@@ -446,9 +440,7 @@ public:
     void ClrSet() { OffSPrmBit(1); }
     u32 ChkHit() { return MskRPrm(1); }
 
-    void Set(cCcD_SrcObjCo const& src) {
-        cCcD_ObjCommonBase::Set(src.mBase);
-    }
+    void Set(cCcD_SrcObjCo const& src) { cCcD_ObjCommonBase::Set(src.mBase); }
 };
 
 STATIC_ASSERT(0x10 == sizeof(cCcD_ObjCo));
@@ -505,6 +497,7 @@ public:
     void OffAtVsPlayerBit() { mObjAt.OffSPrmBit(0xC); }
     void OnAtVsPlayerBit() { mObjAt.OnSPrmBit(0xC); }
     void OnCoSPrmBit(u32 flag) { mObjCo.OnSPrmBit(flag); }
+    void SetAtSprm(u32 prm) { mObjAt.SetSPrm(prm); }
     void SetTgSPrm(u32 prm) { mObjTg.SetSPrm(prm); }
     void SetCoSPrm(u32 prm) { mObjCo.SetSPrm(prm); }
     void ClrAtHit() { mObjAt.ClrHit(); }

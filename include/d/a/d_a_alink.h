@@ -634,6 +634,7 @@ public:
         /* 0x19B */ ANM_DIVE,
         /* 0x19C */ ANM_ODOROKU,   // ?
         /* 0x19D */ ANM_ASHIMOTO,  // ?
+        /* 0x19E */ ANM_MAX,
     };
 
     enum daAlink_UPPER {
@@ -1910,12 +1911,12 @@ public:
     /* 800E23FC */ void concatMagneBootMtx();
     /* 800E243C */ void concatMagneBootInvMtx();
     /* 800E247C */ void multVecMagneBootInvMtx(cXyz*);
-    /* 800E24B0 */ int commonMagneLineCheck(cXyz*, cXyz*);
+    /* 800E24B0 */ bool commonMagneLineCheck(cXyz*, cXyz*);
     /* 800E251C */ BOOL checkBootsMoveAnime(int);
-    /* 800E2580 */ void setHeavyBoots(int);
+    /* 800E2580 */ int setHeavyBoots(int);
     /* 800E2738 */ s16 getMagneBootsLocalAngleY(s16, int);
     /* 800E2808 */ void setMagneBootsMtx(cBgS_PolyInfo*, int);
-    /* 800E2DC4 */ void cancelMagneBootsOn();
+    /* 800E2DC4 */ int cancelMagneBootsOn();
     /* 800E2F88 */ int checkMagneBootsFly();
     /* 800E3048 */ int procBootsEquipInit();
     /* 800E30DC */ int procBootsEquip();
@@ -1953,7 +1954,7 @@ public:
     /* 800E5170 */ void checkNextActionGrab();
     /* 800E53AC */ void initGrabNextMode();
     /* 800E53F8 */ void setGrabItemThrow();
-    /* 800E57AC */ void checkUpperGrabItemThrow(f32);
+    /* 800E57AC */ BOOL checkUpperGrabItemThrow(f32);
     /* 800E5830 */ void putObjLineCheck(dBgS_LinChk&, cXyz*, fopAc_ac_c*);
     /* 800E5B6C */ void grabLineCheck(cXyz*, cXyz*);
     /* 800E5BB4 */ void setGrabItemActor(fopAc_ac_c*);
@@ -2033,14 +2034,14 @@ public:
     /* 800EC3D8 */ int procSumouWinLose();
     /* 800EC538 */ int procSumouShikoInit();
     /* 800EC5F4 */ int procSumouShiko();
-    /* 800EC76C */ void checkHorseZeldaBowMode();
-    /* 800EC7B0 */ void setHorseZeldaDamage();
-    /* 800EC7DC */ BOOL checkHorseDashAccept();
-    /* 800EC814 */ BOOL checkCowGame();
+    /* 800EC76C */ static BOOL checkHorseZeldaBowMode();
+    /* 800EC7B0 */ static void setHorseZeldaDamage();
+    /* 800EC7DC */ static BOOL checkHorseDashAccept();
+    /* 800EC814 */ static BOOL checkCowGame();
     /* 800EC87C */ int getReinRideDirection();
-    /* 800EC8F8 */ void checkReinRideBgCheck();
+    /* 800EC8F8 */ int checkReinRideBgCheck();
     /* 800ECA3C */ void commonInitForceRideRein();
-    /* 800ECAAC */ void initForceRideBoar();
+    /* 800ECAAC */ int initForceRideBoar();
     /* 800ECB58 */ void initForceRideHorse();
     /* 800ECBD0 */ void rideGetOff();
     /* 800ECD90 */ BOOL checkHorseNotDamageReaction() const;
@@ -2056,32 +2057,32 @@ public:
     /* 800ED1F0 */ void checkHorseNotGrab() const;
     /* 800ED310 */ void setHorseStirrup();
     /* 800ED4B8 */ void changeBoarRunRide();
-    /* 800ED4DC */ void setSyncHorsePos();
-    /* 800ED78C */ void setSyncBoarPos();
-    /* 800ED90C */ void setSyncBoarRunPos();
-    /* 800EDA24 */ void setSyncRidePos();
+    /* 800ED4DC */ int setSyncHorsePos();
+    /* 800ED78C */ int setSyncBoarPos();
+    /* 800ED90C */ int setSyncBoarRunPos();
+    /* 800EDA24 */ BOOL setSyncRidePos();
     /* 800EDA78 */ void setHorseTurnAnime();
     /* 800EDB48 */ void getBaseHorseAnime(daAlink_c::daAlink_ANM*);
-    /* 800EDD6C */ void checkHorseSpecialProc();
-    /* 800EDE8C */ void checkHorseServiceWaitAnime();
-    /* 800EDEEC */ void setSyncHorse(int);
-    /* 800EE64C */ void setSyncBoar(int);
-    /* 800EE918 */ void setSyncRide(int);
+    /* 800EDD6C */ int checkHorseSpecialProc();
+    /* 800EDE8C */ BOOL checkHorseServiceWaitAnime();
+    /* 800EDEEC */ int setSyncHorse(int);
+    /* 800EE64C */ int setSyncBoar(int);
+    /* 800EE918 */ int setSyncRide(int);
     /* 800EEAE8 */ void setBaseHorseAnimeFrame();
     /* 800EEC98 */ void setBaseBoarAnime();
     /* 800EED98 */ void setBaseRideAnime();
-    /* 800EEE30 */ void checkHorseSwordUpSpped();
+    /* 800EEE30 */ bool checkHorseSwordUpSpped();
     /* 800EEE5C */ void setHorseSwordUp(int);
-    /* 800EEF30 */ void setRideSubjectAngle(s16);
+    /* 800EEF30 */ int setRideSubjectAngle(s16);
     /* 800EF050 */ void setBodyAngleRideReadyAnime();
-    /* 800EF0E8 */ void checkHorseGetOffWallCheck(cXyz*, cXyz*, s16);
-    /* 800EF198 */ void checkHorseGetOffDirection();
+    /* 800EF0E8 */ BOOL checkHorseGetOffWallCheck(cXyz*, cXyz*, s16);
+    /* 800EF198 */ int checkHorseGetOffDirection();
     /* 800EF35C */ void boarForceGetOff();
     /* 800EF394 */ void horseGetOffEnd();
-    /* 800EF450 */ void checkNextActionHorse();
-    /* 800EF598 */ void checkHorseGetOff();
+    /* 800EF450 */ int checkNextActionHorse();
+    /* 800EF598 */ BOOL checkHorseGetOff();
     /* 800EF6B0 */ void checkHorseGetOffAndSetDoStatus();
-    /* 800EF884 */ void setHorseGetOff(int);
+    /* 800EF884 */ int setHorseGetOff(int);
     /* 800EF95C */ int procHorseRideInit();
     /* 800EFDC4 */ int procHorseRide();
     /* 800F038C */ int procHorseGetOffInit(int);
@@ -3167,9 +3168,12 @@ public:
     BOOL checkGrabAnimeSide() const { return checkUpperAnime(0x50); }
     BOOL checkGrabAnimeCarry() const { return checkUpperAnime(0x60); }
     bool checkHorseUnderDashStartAnime() const { return checkUnderAnime(0xDD); }
+    bool checkHorseUnderLashAnime() const { return checkUnderAnime(0x1B3); }
     bool checkUpperHorseLieAnime() const { return checkUpperAnime(0x265); }
     bool checkHorseTiredAnime() const { return checkUpperAnime(0x263); }
     bool checkHorseSwordUpAnime() const { return checkUpperAnime(0xCC); }
+    bool checkHorseUnderItemAnime() const { return checkUnderAnime(0x19); }
+    bool checkHorseWalkStartAnm() const { return checkUnderMove0BckNoArc(ANM_WSTARTH); }
     bool checkIronBallPreSwingAnime() const { return checkUpperAnime(0x19A); }
     bool checkIronBallSwingAnime() const { return checkUpperAnime(0x19B); }
     bool checkDashDamageAnime() const { return checkUpperAnime(0xAD); }
@@ -3389,7 +3393,7 @@ private:
     /* 0x006D4 */ void* field_0x06d4;
     /* 0x006D8 */ void* field_0x06d8;
     /* 0x006DC */ void* field_0x06dc;
-    /* 0x006E0 */ void* field_0x06e0;
+    /* 0x006E0 */ J3DShape* field_0x06e0;
     /* 0x006E4 */ J3DShape* field_0x06e4;
     /* 0x006E8 */ J3DShape* field_0x06e8;
     /* 0x006EC */ J3DShape* field_0x06ec;

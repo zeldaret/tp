@@ -301,7 +301,7 @@ asm void daAlink_c::setGrabItemThrow() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkUpperGrabItemThrow(f32 param_0) {
+asm BOOL daAlink_c::checkUpperGrabItemThrow(f32 param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/checkUpperGrabItemThrow__9daAlink_cFf.s"
 }

@@ -314,6 +314,10 @@ public:
      */
     static void copy(const Mtx m) { MTXCopy(m, now); }
 
+    static void rotAxisRadS(const Vec* axis, f32 rad) {
+        MTXRotAxisRad(now, axis, rad);
+    }
+
     static Mtx now;
     static Mtx buffer[16];
     static Mtx* next;

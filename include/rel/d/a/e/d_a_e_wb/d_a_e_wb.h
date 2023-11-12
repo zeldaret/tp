@@ -19,8 +19,21 @@ public:
     void setPlayerRide();
     void getOff();
     BOOL checkDownDamage();
-    u8 checkNormalRideMode() const;
+    BOOL checkNormalRideMode() const;
     void setRunRideMode();
+
+    MtxP getRideMtx() { return field_0x5e0->getModel()->i_getAnmMtx(15); }
+    f32 nowAnimeFrame() const { return field_0x5e0->getFrame(); }
+    s16 getWaitRollAngle() const { return mWaitRollAngle; }
+    bool checkGetOff() const { return speedF < 3.0f; }
+
+    J3DModel* getModel() {
+        if (field_0x5e0 != NULL) {
+            return field_0x5e0->getModel();
+        }
+
+        return NULL;
+    }
 
 private:
     /* 0x05AC */ request_of_phase_process_class mPhase;
@@ -144,6 +157,7 @@ private:
     /* 0x1722 */ s8 field_0x1722;
     /* 0x1723 */ u8 field_0x1723[0x17c4 - 0x1723];
     /* 0x17C4 */ u32 field_0x17c4;
+    /* 0x17C8 */ u8 field_0x17c8[0x17D0 - 0x17C8];
     /* 0x17D0 */ u32 field_0x17d0[4];
     /* 0x17E0 */ u8 field_0x17e0;
     /* 0x17E1 */ u8 field_0x17e1;

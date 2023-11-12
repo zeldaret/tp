@@ -210,56 +210,6 @@ struct J3DMaterial {
     /* 80332B94 */ ~J3DMaterial();
 };
 
-struct J3DMaterialBlock {};
-
-struct J3DMaterialDLBlock {};
-
-struct J3DMaterialFactory {
-    struct MaterialType {};
-
-    /* 80330234 */ J3DMaterialFactory(J3DMaterialDLBlock const&);
-    /* 8032FFEC */ J3DMaterialFactory(J3DMaterialBlock const&);
-    /* 803302BC */ void countUniqueMaterials();
-    /* 80330304 */ void countTexGens(int) const;
-    /* 8033033C */ void countStages(int) const;
-    /* 803303C4 */ void create(J3DMaterial*, J3DMaterialFactory::MaterialType, int, u32) const;
-    /* 80330440 */ void createNormalMaterial(J3DMaterial*, int, u32) const;
-    /* 80330D84 */ void createPatchedMaterial(J3DMaterial*, int, u32) const;
-    /* 8033168C */ void modifyPatchedCurrentMtx(J3DMaterial*, int) const;
-    /* 803317D4 */ void createLockedMaterial(J3DMaterial*, int, u32) const;
-    /* 80331A7C */ void calcSize(J3DMaterial*, J3DMaterialFactory::MaterialType, int, u32) const;
-    /* 80331AFC */ void calcSizeNormalMaterial(J3DMaterial*, int, u32) const;
-    /* 80331C30 */ void calcSizePatchedMaterial(J3DMaterial*, int, u32) const;
-    /* 80331D00 */ void calcSizeLockedMaterial(J3DMaterial*, int, u32) const;
-    /* 80331D18 */ void newMatColor(int, int) const;
-    /* 80331D74 */ void newColorChanNum(int) const;
-    /* 80331DAC */ void newColorChan(int, int) const;
-    /* 80331F50 */ void newAmbColor(int, int) const;
-    /* 80331FAC */ void newTexGenNum(int) const;
-    /* 80331FE4 */ void newTexCoord(int, int) const;
-    /* 80332044 */ void newTexMtx(int, int) const;
-    /* 803320CC */ void newCullMode(int) const;
-    /* 8033210C */ void newTexNo(int, int) const;
-    /* 80332154 */ void newTevOrder(int, int) const;
-    /* 803321A0 */ void newTevColor(int, int) const;
-    /* 80332210 */ void newTevKColor(int, int) const;
-    /* 8033226C */ void newTevStageNum(int) const;
-    /* 803322A4 */ void newTevStage(int, int) const;
-    /* 80332304 */ void newTevSwapModeTable(int, int) const;
-    /* 803323A0 */ void newIndTexStageNum(int) const;
-    /* 803323C8 */ void newIndTexOrder(int, int) const;
-    /* 8033240C */ void newIndTexMtx(int, int) const;
-    /* 803324B4 */ void newIndTevStage(int, int) const;
-    /* 80332648 */ void newIndTexCoordScale(int, int) const;
-    /* 8033268C */ void newFog(int) const;
-    /* 80332768 */ void newAlphaComp(int) const;
-    /* 803327E8 */ void newBlend(int) const;
-    /* 8033282C */ void newZMode(int) const;
-    /* 8033288C */ void newZCompLoc(int) const;
-    /* 803328C4 */ void newDither(int) const;
-    /* 803328FC */ void newNBTScale(int) const;
-};
-
 struct J3DLockedMaterial {
     /* 80317044 */ void initialize();
 };
@@ -636,7 +586,7 @@ asm J3DMaterialFactory::J3DMaterialFactory(J3DMaterialDLBlock const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DMaterialFactory::countUniqueMaterials() {
+asm u16 J3DMaterialFactory::countUniqueMaterials() {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DMaterialFactory/countUniqueMaterials__18J3DMaterialFactoryFv.s"
 }
@@ -667,7 +617,7 @@ asm void J3DMaterialFactory::countStages(int param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DMaterialFactory::create(J3DMaterial* param_0, J3DMaterialFactory::MaterialType param_1,
+asm J3DMaterial* J3DMaterialFactory::create(J3DMaterial* param_0, J3DMaterialFactory::MaterialType param_1,
                                     int param_2, u32 param_3) const {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DMaterialFactory/func_803303C4.s"

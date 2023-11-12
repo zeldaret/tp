@@ -383,13 +383,6 @@ asm void JASDriver::readDspBuffer(s16* param_0, u32 param_1) {
 #pragma pop
 #endif
 
-/* ############################################################################################## */
-/* 8039B2F0-8039B2F0 027950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039B30C = "DSP-MAIN";
-#pragma pop
-
 /* 8029C900-8029C9DC 297240 00DC+00 1/1 1/1 0/0 .text            finishDSPFrame__9JASDriverFv */
 void JASDriver::finishDSPFrame() {
     int r30 = sDspDacWriteBuffer + 1;
@@ -439,89 +432,45 @@ u32 JASDriver::getFrameSamples() {
     return sSubFrames * 0x50;
 }
 
-/* ############################################################################################## */
-/* 8039B2F0-8039B2F0 027950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039B315 = "MONO-MIX";
-#pragma pop
-
 /* 8029CA10-8029CAC0 297350 00B0+00 1/0 0/0 0/0 .text            mixMonoTrack__9JASDriverFPsUlPFl_Ps
  */
-// regalloc
-#ifdef NONMATCHING
-void JASDriver::mixMonoTrack(s16* param_0, u32 param_1, MixCallback param_2) {
+void JASDriver::mixMonoTrack(s16* buffer, u32 param_1, MixCallback param_2) {
     JASProbe::start(5, "MONO-MIX");
     s16* r31 = param_2(param_1);
+    s16* pTrack = buffer;
     if (r31 == NULL) {
         return;
     }
     JASProbe::stop(5);
     for (u32 i = param_1; i != 0; i--) {
-        param_0[0] = JASCalc::clamp<s16, s32>(param_0[0] + r31[0]);
-        param_0[1] = JASCalc::clamp<s16, s32>(param_0[1] + r31[0]);
-        param_0 += 2;
+        pTrack[0] = JASCalc::clamp<s16, s32>(pTrack[0] + r31[0]);
+        pTrack[1] = JASCalc::clamp<s16, s32>(pTrack[1] + r31[0]);
+        pTrack += 2;
         r31++;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDriver::mixMonoTrack(s16* param_0, u32 param_1, MixCallback param_2) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAiCtrl/mixMonoTrack__9JASDriverFPsUlPFl_Ps.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 8039B2F0-8039B2F0 027950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039B31E = "MONO(W)-MIX";
-#pragma pop
 
 /* 8029CAC0-8029CB70 297400 00B0+00 1/0 0/0 0/0 .text mixMonoTrackWide__9JASDriverFPsUlPFl_Ps */
-// instruction order
-#ifdef NONMATCHING
-void JASDriver::mixMonoTrackWide(s16* param_0, u32 param_1, MixCallback param_2) {
+void JASDriver::mixMonoTrackWide(s16* buffer, u32 param_1, MixCallback param_2) {
     JASProbe::start(5, "MONO(W)-MIX");
     s16* r31 = param_2(param_1);
+    s16* pTrack = buffer;
     if (!r31) {
         return;
     }
     JASProbe::stop(5);
     for (u32 i = param_1; i != 0; i--) {
-        param_0[0] = JASCalc::clamp<s16, s32>(param_0[0] + r31[0]);
-        param_0[1] = JASCalc::clamp<s16, s32>(param_0[1] - r31[0]);
-        param_0 += 2;
+        pTrack[0] = JASCalc::clamp<s16, s32>(pTrack[0] + r31[0]);
+        s32 src = pTrack[1];
+        src -= r31[0];
+        pTrack[1] = JASCalc::clamp<s16, s32>(src);
+        pTrack += 2;
         r31++;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDriver::mixMonoTrackWide(s16* param_0, u32 param_1, MixCallback param_2) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAiCtrl/mixMonoTrackWide__9JASDriverFPsUlPFl_Ps.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 8039B2F0-8039B2F0 027950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039B32A = "DSPMIX";
-SECTION_DEAD static char const* const stringBase_8039B331 = "MIXING";
-#pragma pop
 
 /* 8029CB70-8029CC50 2974B0 00E0+00 1/0 0/0 0/0 .text mixExtraTrack__9JASDriverFPsUlPFl_Ps */
-// missing instruction
-#ifdef NONMATCHING
-void JASDriver::mixExtraTrack(s16* param_0, u32 param_1, MixCallback param_2) {
+void JASDriver::mixExtraTrack(s16* buffer, u32 param_1, MixCallback param_2) {
     JASProbe::start(5, "DSPMIX");
     s16* r31 = param_2(param_1);
     if (!r31) {
@@ -529,51 +478,31 @@ void JASDriver::mixExtraTrack(s16* param_0, u32 param_1, MixCallback param_2) {
     }
     JASProbe::stop(5);
     JASProbe::start(6, "MIXING");
+    s16* pTrack = buffer;
     s16* r29 = r31 + getFrameSamples();
     for (u32 i = param_1; i != 0; i--) {
-        param_0[0] = JASCalc::clamp<s16, s32>(param_0[0] + r29[0]);
-        param_0[1] = JASCalc::clamp<s16, s32>(param_0[1] + r31[0]);
-        param_0 += 2;
+        pTrack[0] = JASCalc::clamp<s16, s32>(pTrack[0] + r29[0]);
+        pTrack[1] = JASCalc::clamp<s16, s32>(pTrack[1] + r31[0]);
+        pTrack += 2;
         r29++;
         r31++;
     }
     JASProbe::stop(6);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDriver::mixExtraTrack(s16* param_0, u32 param_1, MixCallback param_2) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAiCtrl/mixExtraTrack__9JASDriverFPsUlPFl_Ps.s"
-}
-#pragma pop
-#endif
 
 /* 8029CC50-8029CCD4 297590 0084+00 1/0 0/0 0/0 .text mixInterleaveTrack__9JASDriverFPsUlPFl_Ps */
-// missing instructions
-#ifdef NONMATCHING
-void JASDriver::mixInterleaveTrack(s16* param_0, u32 param_1, MixCallback param_2) {
+void JASDriver::mixInterleaveTrack(s16* buffer, u32 param_1, MixCallback param_2) {
     s16* r31 = param_2(param_1);
-    if (!r31) {
-        return;
-    }
-    for (u32 i = param_1 * 2; i != 0; i--) {
-        param_0[0] = JASCalc::clamp<s16, s32>(param_0[0] + r31[0]);
-        param_0 += 1;
-        r31++;
+    if (r31) {
+        s16* pTrack = buffer;
+        s16* r30 = r31;
+        for (u32 i = param_1 * 2; i != 0; i--) {
+            pTrack[0] = JASCalc::clamp<s16, s32>(pTrack[0] + r30[0]);
+            pTrack += 1;
+            r30++;
+        }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDriver::mixInterleaveTrack(s16* param_0, u32 param_1, MixCallback param_2) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAiCtrl/mixInterleaveTrack__9JASDriverFPsUlPFl_Ps.s"
-}
-#pragma pop
-#endif
 
 /* 8029CCD4-8029CCDC -00001 0008+00 0/0 0/0 0/0 .text            getSubFrameCounter__9JASDriverFv */
 u32 JASDriver::getSubFrameCounter() {

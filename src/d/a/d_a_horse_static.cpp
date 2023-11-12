@@ -40,7 +40,7 @@ BOOL e_wb_class::checkDownDamage() {
     return mActionID != ACT_PL_RIDE && mActionID != 0x66 && mActionID != ACT_S_DAMAGE;
 }
 
-u8 e_wb_class::checkNormalRideMode() const {
+BOOL e_wb_class::checkNormalRideMode() const {
     return mActionID != 0x66 || field_0x5b4 < 1;
 }
 

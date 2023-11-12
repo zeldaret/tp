@@ -35,6 +35,9 @@ public:
     /* 80325CAC */ virtual void calc(J3DMtxBuffer*, Vec const&, f32 const (&)[3][4]);
     /* 80325D24 */ virtual ~J3DJointTree();
 
+    J3DModelHierarchy const* getHierarchy() { return mHierarchy; }
+    void setHierarchy(J3DModelHierarchy* hierarchy) { mHierarchy = hierarchy; }
+    void setBasicMtxCalc(J3DMtxCalc* calc) { mBasicMtxCalc = calc; }
     u16 getWEvlpMtxNum() const { return mWEvlpMtxNum; }
     u8 getWEvlpMixMtxNum(u16 idx) const { return mWEvlpMixMtxNum[idx]; }
     u16 * getWEvlpMixIndex() const { return mWEvlpMixIndex; }
@@ -45,15 +48,20 @@ public:
     u16 getDrawMtxNum() const { return mDrawMtxData.mEntryNum; }
     u8 getDrawMtxFlag(u16 idx) const { return mDrawMtxData.mDrawMtxFlag[idx]; }
     u16 getDrawMtxIndex(u16 idx) const { return mDrawMtxData.mDrawMtxIndex[idx]; }
+    J3DDrawMtxData* getDrawMtxData() { return &mDrawMtxData; }
     JUTNameTab* getJointName() const { return mJointName; }
     J3DJoint* getRootNode() { return mRootNode; }
     J3DJoint* getJointNodePointer(u16 idx) const { return mJointNodePointer[idx]; }
     J3DMtxCalc* getBasicMtxCalc() const { return mBasicMtxCalc; }
     Mtx& getInvJointMtx(s32 idx) const { return mInvJointMtx[idx]; }
     u32 getModelDataType() const { return mModelDataType; }
+    void setModelDataType(u32 type) { mModelDataType = type; }
     bool checkFlag(u32 flag) { return mFlags & flag; }
+    void setFlag(u32 flag) { mFlags = flag; }
 
 private:
+    friend class J3DModelLoader;
+    
     /* 0x04 */ J3DModelHierarchy* mHierarchy;
     /* 0x08 */ u32 mFlags;
     /* 0x0C */ u32 mModelDataType;

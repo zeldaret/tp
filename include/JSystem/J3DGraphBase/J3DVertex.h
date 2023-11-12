@@ -42,6 +42,8 @@ public:
     void setVtxNrmType(GXCompType type) { mVtxNrmType = type; }
 
 private:
+    friend class J3DModelLoader;
+    
     /* 0x00 */ u32 mVtxNum;
     /* 0x04 */ u32 mNrmNum;
     /* 0x08 */ u32 mColNum;
