@@ -66,8 +66,8 @@ cPhs__Step daObjSnowSoup_c::create() {
         fopAcM_setCullSizeBox2(this, mpModel[mState]->getModelData());
         createSmkEmtCommon();
         createSmkEmtChange(mState);
-        field_0x580.set(SOUP_MODEL_OFFSET.x, SOUP_MODEL_OFFSET.y, SOUP_MODEL_OFFSET.z);
-        field_0x574.set(SOUP_MODEL_OFFSET.x, 0.0f, SOUP_MODEL_OFFSET.z);
+        mBubblePos.set(SOUP_MODEL_OFFSET.x, SOUP_MODEL_OFFSET.y, SOUP_MODEL_OFFSET.z);
+        mFirewoodPos.set(SOUP_MODEL_OFFSET.x, 0.0f, SOUP_MODEL_OFFSET.z);
     }
     return step;
 }
@@ -77,7 +77,7 @@ int daObjSnowSoup_c::Delete() {
     deleteSmkEmtCommon();
     deleteSmkEmtChange(mState);
     this->~daObjSnowSoup_c();
-    return true;
+    return 1;
 }
 
 /* 80CDFBC4-80CDFC40 0003E4 007C+00 1/1 0/0 0/0 .text            draw__15daObjSnowSoup_cFv */
@@ -85,13 +85,13 @@ int daObjSnowSoup_c::draw() {
     g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
     g_env_light.setLightTevColorType_MAJI(mpModel[mState]->mModelData, &mTevStr);
     mDoExt_modelUpdate(mpModel[mState]);
-    return true;
+    return 1;
 }
 
 /* 80CDFC40-80CDFE14 000460 01D4+00 1/1 0/0 0/0 .text            execute__15daObjSnowSoup_cFv */
 int daObjSnowSoup_c::execute() {
-    i_mDoAud_seStartLevel(0x80204, &field_0x580, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
-    i_mDoAud_seStartLevel(0x800a3, &field_0x574, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    i_mDoAud_seStartLevel(Z2SE_OBJ_NABE_BUBBLE, &mBubblePos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    i_mDoAud_seStartLevel(Z2SE_OBJ_FIREWOOD_BURNING, &mFirewoodPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     switch (mState) {
     case 0:
         if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[7])) {
@@ -100,7 +100,7 @@ int daObjSnowSoup_c::execute() {
             createSmkEmtChange(mState);
             setModelMtx();
             fopAcM_SetMtx(this, mpModel[mState]->getBaseTRMtx());
-            return true;
+            return 1;
         }
         break;
     case 1:
@@ -110,14 +110,14 @@ int daObjSnowSoup_c::execute() {
             createSmkEmtChange(mState);
             setModelMtx();
             fopAcM_SetMtx(this, mpModel[mState]->getBaseTRMtx());
-            return true;
+            return 1;
         }
         break;
     case 2:
         break;
     }
     setModelMtx();
-    return true;
+    return 1;
 }
 
 /* 80CDFE14-80CDFEA4 000634 0090+00 1/1 0/0 0/0 .text            init__15daObjSnowSoup_cFv */

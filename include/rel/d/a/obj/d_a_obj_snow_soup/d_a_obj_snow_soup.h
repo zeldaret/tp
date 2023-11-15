@@ -21,8 +21,8 @@ public:
     /* 80CE003C */ void createSmkEmtChange(int);
     /* 80CE0134 */ void deleteSmkEmtChange(int);
 
-    /* 0x574 */ cXyz field_0x574;
-    /* 0x580 */ cXyz field_0x580;
+    /* 0x574 */ cXyz mFirewoodPos;
+    /* 0x580 */ cXyz mBubblePos;
     /* 0x58C */ JPABaseEmitter* mpSmkEmtCommon[4];
     /* 0x59C */ JPABaseEmitter* mpSmkEmtChange[3][2];
     /* 0x5B4 */ J3DModel* mpModel[3];
