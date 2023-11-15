@@ -237,28 +237,28 @@ int daTagLv7Gate_c::execute() {
 
             if (dComIfGp_evmng_getIsAddvance(cut_index)) {
                 switch (*cut_name) {
-                case 0x30303032:
+                case '0002':
                     field_0x5b1 = true;
                     speedF = 96.0f;
                     break;
-                case 0x30303031:
+                case '0001':
                     break;
-                case 0x30303033:
+                case '0003':
                     break;
                 }
             }
 
             switch (*cut_name) {
-            case 0x30303031:
+            case '0001':
                 dComIfGp_evmng_cutEnd(cut_index);
                 break;
-            case 0x30303032:
+            case '0002':
                 i_mDoAud_seStartLevel(Z2SE_EN_DR_DEMO_FIRST, &mPos1, 0, 0);
                 if (!field_0x5b1) {
                     dComIfGp_evmng_cutEnd(cut_index);
                 }
                 break;
-            case 0x30303033:
+            case '0003':
                 break;
             }
 
