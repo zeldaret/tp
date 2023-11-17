@@ -362,6 +362,7 @@ public:
         ERFLG1_UNK_20000000 = 0x20000000,
         ERFLG1_UNK_10000000 = 0x10000000,
         ERFLG1_UNK_4000000 = 0x4000000,
+        ERFLG1_UNK_100000 = 0x100000,
         ERFLG1_UNK_40000 = 0x40000,
         ERFLG1_UNK_2000 = 0x2000,
         ERFLG1_UNK_800 = 0x800,
@@ -387,6 +388,7 @@ public:
     enum daPy_RFLG0 {
         RFLG0_UNK_8000000 = 0x8000000,
         RFLG0_UNK_4000000 = 0x4000000,
+        RFLG0_UNK_20000 = 0x20000,
         RFLG0_UNK_4000 = 0x4000,
         RFLG0_FRONT_ROLL_CRASH = 0x2000,
         RFLG0_ENEMY_ATTN_LOCK = 0x1000,
@@ -396,6 +398,7 @@ public:
         RFLG0_UNK_80 = 0x80,
         RFLG0_UNK_40 = 0x40,
         RFLG0_UNK_10 = 0x10,
+        RFLG0_UNK_8 = 0x8,
         RFLG0_UNK_2 = 0x2,
     };
 

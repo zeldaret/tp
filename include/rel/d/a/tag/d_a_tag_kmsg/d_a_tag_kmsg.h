@@ -13,6 +13,19 @@ public:
     /* 8048EA30 */ ~daTag_KMsg_c();
 
     void stabMasterSword() { field_0x5c2 = 1; }
+    
+    int getType() {
+        int param = fopAcM_GetParam(this) >> 0x18;
+        int type;
+
+        if (param == 0xFF) {
+            type = 0;
+        } else {
+            type = param;
+        }
+
+        return type;
+    }
 
     /* 0x568 */ u8 field_0x568[0x5C2 - 0x568];
     /* 0x5C2 */ u8 field_0x5c2;

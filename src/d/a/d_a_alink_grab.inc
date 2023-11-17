@@ -32,7 +32,7 @@ static fopAc_ac_c* daAlink_searchLightBall(fopAc_ac_c* p_actor, void* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkGrabLineCheck() {
+asm BOOL daAlink_c::checkGrabLineCheck() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkGrabLineCheck__9daAlink_cFv.s"
 }
@@ -493,7 +493,7 @@ asm int daAlink_c::procGrabStand() {
 
 /* 800E70C0-800E70FC 0E1A00 003C+00 1/1 0/0 0/0 .text
  * checkInsectActorName__9daAlink_cFP10fopAc_ac_c               */
-bool daAlink_c::checkInsectActorName(fopAc_ac_c* insectActor) {
+BOOL daAlink_c::checkInsectActorName(fopAc_ac_c* insectActor) {
     s16 insectName = fopAcM_GetName(insectActor);
 
     for (int i = 0; i < 12; i++) {

@@ -6,11 +6,20 @@
 
 struct dPath;
 
-struct daTagWljump_c : fopAc_ac_c {
+class daTagWljump_c : public fopAc_ac_c {
+public:
     /* 80D64EB8 */ int create();
     /* 80D65004 */ ~daTagWljump_c();
     /* 80D65090 */ int execute();
     /* 80D6589C */ int draw();
+
+    const cXyz* getLockPos() const {
+        if (field_0x568 < 0) {
+            return NULL;
+        } else {
+            return &mEyePos;
+        }
+    }
 
     /* 0x568 */ s8 field_0x568;
     /* 0x568 */ s8 field_0x569;

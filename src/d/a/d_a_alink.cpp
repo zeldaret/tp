@@ -25,12 +25,14 @@
 #include "rel/d/a/d_a_mirror/d_a_mirror.h"
 #include "rel/d/a/d_a_scene_exit/d_a_scene_exit.h"
 #include "rel/d/a/d_a_spinner/d_a_spinner.h"
+#include "rel/d/a/d_a_tbox/d_a_tbox.h"
 #include "rel/d/a/e/d_a_e_wb/d_a_e_wb.h"
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 #include "rel/d/a/tag/d_a_tag_Lv6Gate/d_a_tag_Lv6Gate.h"
 #include "rel/d/a/tag/d_a_tag_kmsg/d_a_tag_kmsg.h"
 #include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"
 #include "rel/d/a/tag/d_a_tag_mist/d_a_tag_mist.h"
+#include "rel/d/a/tag/d_a_tag_wljump/d_a_tag_wljump.h"
 
 //
 // Types:
@@ -15511,6 +15513,144 @@ f32 daAlink_c::getFrontRollRate() {
 
 /* 800B4B7C-800B5284 0AF4BC 0708+00 2/2 0/0 0/0 .text            decideCommonDoStatus__9daAlink_cFv
  */
+// almost, small branch issues and need fix for i_checkAttentionLock
+#ifdef NONMATCHING
+void daAlink_c::decideCommonDoStatus() {
+    if (!i_checkFmChainGrabAnime() && i_dComIfGp_getDoStatus() == 0) {
+        bool temp_r3 = checkStageName("R_SP127");
+
+        if (checkRoomOnly() && !i_checkWolf() && !temp_r3) {
+            if ((checkNoUpperAnime() || checkIronBallWaitAnime()) &&
+                (mEquipItem != NO_ITEM && i_checkModeFlg(4) && mEquipItem != 0x102))
+            {
+                if (checkCopyRodControllAnime()) {
+                    setDoStatus(0x2A);
+                } else {
+                    setDoStatus(4);
+                }
+            } else if (mFastShotTime != 0) {
+                setDoStatus(0x12);
+            }
+        } else if (i_checkWolf()) {
+            if (checkDownAttackState()) {
+                setDoStatusEmphasys(0x30);
+            } else if (checkCutHeadState()) {
+                setDoStatusEmphasys(0x77);
+            } else if (checkWolfSideStep()) {
+                setDoStatusEmphasys(0x19);
+            } else {
+                if (mTargetedActor != NULL) {
+                    if (fopAcM_GetName(mTargetedActor) == PROC_Tag_Wljump) {
+                        if (static_cast<daTagWljump_c*>(mTargetedActor)->getLockPos() != NULL) {
+                            if (!getMidnaActor()->checkNoInput()) {
+                                setDoStatus(0x93);
+                            }
+
+                            i_onResetFlg0(RFLG0_UNK_20000);
+                            field_0x3738 =
+                                *static_cast<daTagWljump_c*>(mTargetedActor)->getLockPos();
+                        }
+                    } else {
+                        setDoStatus(0x8B);
+                    }
+                } else if (i_checkAttentionLock()) {
+                    setDoStatus(0x8B);
+                } else if (field_0x30d2 == 0 &&
+                           (field_0x33a8 > getFrontRollRate() || i_checkAttentionLock()))
+                {
+                    setDoStatus(9);
+                }
+            }
+
+            if (checkNotJumpSinkLimit() &&
+                (i_dComIfGp_getDoStatus() == 0x8B || i_dComIfGp_getDoStatus() == 0x30 ||
+                 i_dComIfGp_getDoStatus() == 0x77 || i_dComIfGp_getDoStatus() == 0x19 ||
+                 i_dComIfGp_getDoStatus() == 9 || i_dComIfGp_getDoStatus() == 0x93))
+            {
+                setDoStatus(0);
+            }
+        } else {
+            int direction = getDirectionFromShapeAngle();
+            f32 temp_f31 = getFrontRollRate();
+
+            if (i_checkAttentionLock() ||
+                (mTargetedActor != NULL && (mTargetedActor == mThrowBoomerangAcKeep.getActor() ||
+                                            mTargetedActor == mCopyRodAcKeep.getActor())))
+            {
+                if (checkInputOnR() && direction != DIR_FORWARD) {
+                    if (mEquipItem == 0x103 && checkDownAttackState()) {
+                        setDoStatusEmphasys(0x30);
+                    } else if (mEquipItem == 0x103 && checkCutHeadState()) {
+                        setDoStatusEmphasys(0x77);
+                    } else {
+                        setDoStatusEmphasys(0x19);
+                    }
+                } else if (!i_checkSmallUpperGuardAnime() &&
+                           (mEquipItem == 0x103 || mEquipItem == 0x102))
+                {
+                    if (mEquipItem == 0x102) {
+                        setDoStatus(0x13);
+                    } else if (mEquipItem == 0x103 && checkDownAttackState()) {
+                        setDoStatusEmphasys(0x30);
+                    } else if (mEquipItem == 0x103 && checkCutHeadState()) {
+                        setDoStatusEmphasys(0x77);
+                    } else {
+                        setDoStatus(0x86);
+                    }
+                } else {
+                    setDoStatus(0x79);
+                }
+            } else if (((checkNoUpperAnime()) || checkIronBallWaitAnime() ||
+                        checkCopyRodControllAnime()) &&
+                       mEquipItem != NO_ITEM && i_checkModeFlg(4) && field_0x33a8 <= temp_f31)
+            {
+                if (mEquipItem == 0x102) {
+                    if (checkAttentionState()) {
+                        setDoStatus(0x13);
+                    } else {
+                        setDoStatus(0x14);
+                    }
+                } else {
+                    setDoStatus(4);
+                }
+            } else if (field_0x33a8 > temp_f31) {
+                if (mEquipItem == 0x102) {
+                    setDoStatus(0x13);
+                } else {
+                    setDoStatus(0x79);
+                }
+            } else if (mFastShotTime != 0) {
+                setDoStatus(0x12);
+            }
+
+            if ((((i_checkMagneBootsOn() || checkIronBallWaitAnime() || checkNotJumpSinkLimit()) ||
+                  (i_dComIfGp_getDoStatus() == 0x79 || i_dComIfGp_getDoStatus() == 0x86 ||
+                   i_dComIfGp_getDoStatus() == 0x30 || i_dComIfGp_getDoStatus() == 0x77 ||
+                   i_dComIfGp_getDoStatus() == 0x19)) ||
+                 (i_dComIfGp_getDoStatus() == 0x79 &&
+                  (checkKandelaarSwingAnime() || field_0x2fa8 == 6 || checkCopyRodThrowAnime() ||
+                   checkBoomerangThrowAnime()))) &&
+                (!i_checkMagneBootsOn() || i_dComIfGp_getDoStatus() != 0x79 ||
+                 !cBgW_CheckBGround(mMagneBootsTopVec.y)))
+            {
+                if (mEquipItem == 0x42 && i_checkModeFlg(4)) {
+                    setDoStatus(4);
+                } else {
+                    setDoStatus(0);
+                }
+            }
+
+            if (temp_r3 && i_dComIfGp_getDoStatus() == 0x19) {
+                setDoStatus(0);
+            }
+
+            if (i_dComIfGp_getDoStatus() == 4 && checkCopyRodControllAnime()) {
+                setDoStatus(0x2A);
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -15519,16 +15659,147 @@ asm void daAlink_c::decideCommonDoStatus() {
 #include "asm/d/a/d_a_alink/decideCommonDoStatus__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 800B5284-800B58EC 0AFBC4 0668+00 1/1 0/0 0/0 .text            decideDoStatus__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::decideDoStatus() {
-    nofralloc
-#include "asm/d/a/d_a_alink/decideDoStatus__9daAlink_cFv.s"
+void daAlink_c::decideDoStatus() {
+    if (!i_checkFmChainGrabAnime()) {
+        if (i_checkNoResetFlg0(FLG0_UNK_1000000)) {
+            setDoStatusEmphasys(0x62);
+        }
+
+        if (mTargetedActor == NULL && mAttList == NULL && i_checkResetFlg0(RFLG0_UNK_8)) {
+            setWallGrabStatus(0x15, 2);
+
+            if (field_0x2f91 == 7 || field_0x2f91 == 8 || field_0x2f91 == 6 || field_0x2f91 == 9) {
+                setDoStatus(0x20);
+            }
+        } else {
+            if (searchFmChainPos()) {
+                setChainGrabStatus(0x96);
+            } else if (mAttList != NULL) {
+                s16 actor_name = fopAcM_GetName(field_0x27f4);
+
+                if (mAttList->mType == 5 ||
+                    (mAttList->mType == 6 &&
+                     (!i_checkWolf() || static_cast<daTbox_c*>(field_0x27f4)->checkSmallTbox())))
+                {
+                    setDoStatus(6);
+                } else if (mAttList->mType == 7 && actor_name == PROC_KYTAG05) {
+                    setDoStatus(0x89);
+                } else if (i_checkWolf()) {
+                    if (mAttList->mType == 4 && !fopAcM_checkCarryNow(field_0x27f4) &&
+                        fopAcM_CheckCarryType(field_0x27f4, fopAcM_CARRY_LIGHT))
+                    {
+                        if (actor_name == PROC_B_MGN) {
+                            setDoStatus(0x91);
+                        } else if (actor_name == PROC_Obj_Yobikusa) {
+                            setDoStatusEmphasys(5);
+                        } else if (actor_name == PROC_Obj_Stone) {
+                            setDoStatus(0x47);
+                        } else if (actor_name == PROC_Obj_Drop || actor_name == PROC_Obj_Sword ||
+                                   actor_name == PROC_Obj_SmallKey)
+                        {
+                            setDoStatusEmphasys(0x39);
+                        } else if (!checkGoatCatchActor(field_0x27f4) && !checkGrabLineCheck()) {
+                            setDoStatusEmphasys(0xC);
+                        }
+                    } else if (mTargetedActor != NULL &&
+                               fopAcM_GetName(mTargetedActor) == PROC_B_MGN &&
+                               mAttention->getActionBtnB() != NULL &&
+                               mAttention->getActionBtnB()->mType == 4 &&
+                               mAttention->getActionBtnB()->getActor() == mTargetedActor)
+                    {
+                        setDoStatus(0x91);
+                    } else if (mTargetedActor != NULL &&
+                               fopAcM_GetName(mTargetedActor) == PROC_E_YM &&
+                               mAttention->getActionBtnB() != NULL &&
+                               mAttention->getActionBtnB()->mType == 7 &&
+                               mAttention->getActionBtnB()->getActor() == mTargetedActor)
+                    {
+                        i_onEndResetFlg1(ERFLG1_UNK_100000);
+                        if (mWolfEyeUp != 0) {
+                            setWolfDigStatus(2);
+                        }
+                    } else if (mAttList->mType == 7 && field_0x27f4 != NULL) {
+                        if (actor_name == PROC_Obj_Digpl || actor_name == PROC_Obj_Digholl ||
+                            actor_name == PROC_Obj_DigSnow || actor_name == PROC_Obj_Lv4DigSand ||
+                            actor_name == PROC_E_YM)
+                        {
+                            i_onEndResetFlg1(ERFLG1_UNK_100000);
+                            if (mWolfEyeUp != 0) {
+                                setWolfDigStatus(2);
+                            }
+                        } else if (actor_name == PROC_TAG_HOWL ||
+                                   actor_name == PROC_Obj_WindStone ||
+                                   actor_name == PROC_Obj_SmWStone ||
+                                   actor_name == PROC_Tag_WaraHowl)
+                        {
+                            setDoStatusEmphasys(5);
+                        } else if (actor_name == PROC_KYTAG03) {
+                            setDoStatusEmphasys(0x45);
+                        }
+                    } else if (mTargetedActor != NULL && field_0x27f4 == mTargetedActor &&
+                               actor_name == PROC_Obj_Wchain)
+                    {
+                        setDoStatusEmphasys(0x7B);
+                    } else {
+                        setTalkStatus();
+                    }
+                } else if (mAttList->mType == 7) {
+                    if ((!checkMagicArmorHeavy() &&
+                         (actor_name == PROC_HORSE || actor_name == PROC_E_WB) &&
+                         checkReinRideBgCheck()) ||
+                        actor_name == PROC_CANOE || actor_name == PROC_Obj_IceLeaf)
+                    {
+                        setDoStatus(0x17);
+                    } else if (actor_name == PROC_COW) {
+                        setDoStatus(0x38);
+                    } else if (actor_name == PROC_Obj_YIblltray) {
+                        setDoStatusEmphasys(0x99);
+                    } else if (actor_name == PROC_Tag_Lv6Gate ||
+                               (actor_name == PROC_TAG_KMSG &&
+                                static_cast<daTag_KMsg_c*>(field_0x27f4)->getType() == 3))
+                    {
+                        if (!checkEquipAnime() && checkMasterSwordEquip()) {
+                            setDoStatus(0x63);
+                        }
+                    }
+                } else if (mTargetedActor != NULL && checkGoatCatchActor(mTargetedActor) &&
+                           mAttention->getActionBtnB() != NULL &&
+                           mAttention->getActionBtnB()->mType == 4 &&
+                           mAttention->getActionBtnB()->getActor() == mTargetedActor)
+                {
+                    setDoStatus(0x91);
+                } else if (mAttList->mType == 4) {
+                    if (!fopAcM_checkCarryNow(field_0x27f4)) {
+                        if (checkGoatCatchActor(field_0x27f4)) {
+                            setDoStatus(0x91);
+                        } else if (!i_checkMagneBootsOn()) {
+                            if (checkInsectActorName(field_0x27f4)) {
+                                setDoStatusEmphasys(0x98);
+                            } else if (actor_name == PROC_Obj_SmallKey) {
+                                setDoStatusEmphasys(0x39);
+                            } else if (!checkGrabLineCheck()) {
+                                if (actor_name == PROC_Obj_Yobikusa) {
+                                    setDoStatus(0x2B);
+                                } else if (fopAcM_CheckCarryType(field_0x27f4, fopAcM_CARRY_TYPE_8))
+                                {
+                                    setDoStatusEmphasys(0x34);
+                                } else if (actor_name != PROC_B_MGN) {
+                                    setDoStatusEmphasys(0x1F);
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    setTalkStatus();
+                }
+            }
+            decideCommonDoStatus();
+        }
+    }
 }
-#pragma pop
 
 /* 800B58EC-800B5BC0 0B022C 02D4+00 25/25 0/0 0/0 .text            checkWaitAction__9daAlink_cFv */
 #pragma push

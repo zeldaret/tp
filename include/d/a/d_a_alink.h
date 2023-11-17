@@ -1940,7 +1940,7 @@ public:
     /* 800E3800 */ f32 getBombWaterMaxFallSpeed() const;
     /* 800E3810 */ f32 getBombExplodeWaterEffectLimit() const;
     /* 800E3820 */ s16 getBombInsectLimitAngle() const;
-    /* 800E38EC */ void checkGrabLineCheck();
+    /* 800E38EC */ BOOL checkGrabLineCheck();
     /* 800E3BCC */ f32 getGrabThrowRate();
     /* 800E3C1C */ BOOL checkGrabThrowAnime() const;
     /* 800E3C6C */ BOOL checkGrabAnime() const;
@@ -1978,7 +1978,7 @@ public:
     /* 800E6E0C */ int procGrabRebound();
     /* 800E6EEC */ int procGrabStandInit();
     /* 800E6FE0 */ int procGrabStand();
-    /* 800E70C0 */ bool checkInsectActorName(fopAc_ac_c*);
+    /* 800E70C0 */ BOOL checkInsectActorName(fopAc_ac_c*);
     /* 800E70FC */ int procInsectCatchInit();
     /* 800E71D4 */ bool procInsectCatch();
     /* 800E7254 */ int procPickUpInit();
@@ -3185,6 +3185,7 @@ public:
     bool checkBoomerangCatchAnime() const { return checkUpperAnime(0x52); }
     BOOL checkCopyRodReadyAnime() const { return mEquipItem == COPY_ROD && checkUpperAnime(0x54); }
     BOOL checkCanoeFishingWaitAnime() const { return checkUpperAnime(0x5D) || checkUpperAnime(0x260); }
+    BOOL checkCopyRodControllAnime() const { return checkUpperAnime(0x202); }
 
     s16 checkWolfEyeUp() const { return mWolfEyeUp; }
     void onModeFlg(u32 flag) { mModeFlg |= flag; }
@@ -3214,6 +3215,9 @@ public:
     void setFaceDemoBck(u16 param_0) { setFaceBck(param_0, 0, 0); }
     void setFaceDemoBtp(u16 param_0) { setFaceBtp(param_0, 0, 0); }
     void setFaceDemoBtk(u16 param_0) { setFaceBtk(param_0, 0, 0); }
+
+    void setGrabStatus(u8 i_status, u8 param_1) { setWallGrabStatus(i_status, param_1); }
+    void setChainGrabStatus(u8 i_status) { setGrabStatus(i_status, 2); }
 
     void cancelFmChainGrabFromOut() {
         field_0x2fa3 = 0;
