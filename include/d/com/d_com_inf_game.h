@@ -421,6 +421,8 @@ public:
     JKRAramArchive* getFieldMapArchive2() { return (JKRAramArchive*)mFieldMapArchive2; }
     JKRArchive* getOptionResArchive() { return mOptionResArchive; }
     JKRArchive* getRingResArchive() { return mRingResArchive; }
+    JKRArchive* getFontArchive() { return mFontArchive; }
+    JKRArchive* getRubyArchive() { return mRubyArchive; }
 
     void setFieldMapArchive2(JKRArchive* arc) { mFieldMapArchive2 = arc; }
     void setAnmArchive(JKRArchive* arc) { mAnmArchive = arc; }
@@ -2014,6 +2016,14 @@ inline void dComIfGp_setFontArchive(JKRArchive* arc) {
 
 inline void dComIfGp_setRubyArchive(JKRArchive* arc) {
     g_dComIfG_gameInfo.play.setRubyArchive(arc);
+}
+
+inline JKRArchive* dComIfGp_getFontArchive() {
+    return g_dComIfG_gameInfo.play.getFontArchive();
+}
+
+inline JKRArchive* dComIfGp_getRubyArchive() {
+    return g_dComIfG_gameInfo.play.getRubyArchive();
 }
 
 inline void dComIfGp_setMain2DArchive(JKRArchive* arc) {
