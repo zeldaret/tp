@@ -1,7 +1,8 @@
 /* 800E3830-800E3858 0DE170 0028+00 2/2 0/0 0/0 .text daAlink_checkLightBallA__FP10fopAc_ac_c */
 static bool daAlink_checkLightBallA(fopAc_ac_c* p_actor) {
     if (fopAcM_GetName(p_actor) == PROC_Obj_Carry &&
-        static_cast<daObjCarry_c*>(p_actor)->getType() == daObjCarry_c::TYPE_BALL_S) {
+        static_cast<daObjCarry_c*>(p_actor)->getType() == daObjCarry_c::TYPE_BALL_S)
+    {
         return true;
     }
     return false;
@@ -10,7 +11,8 @@ static bool daAlink_checkLightBallA(fopAc_ac_c* p_actor) {
 /* 800E3858-800E3880 0DE198 0028+00 2/2 0/0 0/0 .text daAlink_checkLightBallB__FP10fopAc_ac_c */
 static bool daAlink_checkLightBallB(fopAc_ac_c* p_actor) {
     if (fopAcM_GetName(p_actor) == PROC_Obj_Carry &&
-        static_cast<daObjCarry_c*>(p_actor)->getType() == daObjCarry_c::TYPE_BALL_S_2) {
+        static_cast<daObjCarry_c*>(p_actor)->getType() == daObjCarry_c::TYPE_BALL_S_2)
+    {
         return true;
     }
     return false;
@@ -19,7 +21,8 @@ static bool daAlink_checkLightBallB(fopAc_ac_c* p_actor) {
 /* 800E3880-800E38EC 0DE1C0 006C+00 1/1 0/0 0/0 .text daAlink_searchLightBall__FP10fopAc_ac_cPv */
 static fopAc_ac_c* daAlink_searchLightBall(fopAc_ac_c* p_actor, void* param_1) {
     if ((daPy_py_c::checkCarryStartLightBallA() && daAlink_checkLightBallA(p_actor)) ||
-        (daPy_py_c::checkCarryStartLightBallB() && daAlink_checkLightBallB(p_actor))) {
+        (daPy_py_c::checkCarryStartLightBallB() && daAlink_checkLightBallB(p_actor)))
+    {
         return p_actor;
     }
     return NULL;
@@ -76,7 +79,8 @@ bool daAlink_c::setForceGrab(fopAc_ac_c* p_actor, int param_1, int param_2) {
         (((mEquipItem == NO_ITEM || (param_2 != 0 && checkHookshotItem(mEquipItem)))) &&
          ((i_checkModeFlg(MODE_UNK_10000000) &&
            (checkHorseNoUpperAnime() || checkHorseTurnAnime())) ||
-          param_2 != 0 && checkHookshotAnime()))) {
+          param_2 != 0 && checkHookshotAnime())))
+    {
         deleteEquipItem(TRUE, FALSE);
         setGrabItemActor(p_actor);
         field_0x33e4 = lit_8785;
@@ -156,7 +160,8 @@ asm void daAlink_c::setGrabUpperAnime(f32 param_0) {
 BOOL daAlink_c::checkGrabRooster() {
     if (mGrabItemAcKeep.getActor() != NULL &&
         (fopAcM_GetName(mGrabItemAcKeep.getActor()) == PROC_NI ||
-         fopAcM_GetName(mGrabItemAcKeep.getActor()) == PROC_NPC_TKJ2)) {
+         fopAcM_GetName(mGrabItemAcKeep.getActor()) == PROC_NPC_TKJ2))
+    {
         return true;
     }
 
@@ -605,7 +610,7 @@ asm u8 daAlink_c::checkChainEmphasys() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u8 daAlink_c::searchFmChainPos() {
+asm BOOL daAlink_c::searchFmChainPos() {
     nofralloc
 #include "asm/d/a/d_a_alink/searchFmChainPos__9daAlink_cFv.s"
 }
@@ -629,7 +634,8 @@ bool daAlink_c::checkChainBlockPushPull() {
         if (actor != NULL) {
             s16 name = fopAcM_GetName(actor);
             if (name == PROC_Obj_ChainBlock || name == PROC_Obj_SwChain ||
-                name == PROC_Obj_ChainWall) {
+                name == PROC_Obj_ChainWall)
+            {
                 return true;
             }
         }
@@ -695,13 +701,13 @@ int daAlink_c::getWallGrabStatus() {
 }
 
 /* 800E7EF4-800E7F18 0E2834 0024+00 1/1 0/0 0/0 .text            wallGrabTrigger__9daAlink_cFv */
-void daAlink_c::wallGrabTrigger() {
-    itemTriggerCheck(BTN_R);
+BOOL daAlink_c::wallGrabTrigger() {
+    return itemTriggerCheck(BTN_R);
 }
 
 /* 800E7F18-800E7F3C 0E2858 0024+00 4/4 0/0 0/0 .text            wallGrabButton__9daAlink_cFv */
-void daAlink_c::wallGrabButton() {
-    itemButtonCheck(BTN_R);
+BOOL daAlink_c::wallGrabButton() {
+    return itemButtonCheck(BTN_R);
 }
 
 /* 800E7F3C-800E80A4 0E287C 0168+00 4/4 0/0 0/0 .text
@@ -749,7 +755,8 @@ void daAlink_c::offGoatStopGame() {
  * checkGoatCatchActor__9daAlink_cFP10fopAc_ac_c                */
 BOOL daAlink_c::checkGoatCatchActor(fopAc_ac_c* param_0) {
     s16 name = fopAcM_GetName(param_0);
-    return name == PROC_E_GOB || (name == PROC_OBJ_GRA && checkSpecialNpc(param_0)) || name == PROC_COW;
+    return name == PROC_E_GOB || (name == PROC_OBJ_GRA && checkSpecialNpc(param_0)) ||
+           name == PROC_COW;
 }
 
 /* 800E8314-800E8334 0E2C54 0020+00 2/2 0/0 0/0 .text            getGoatCatchDistance2__9daAlink_cFv
@@ -929,6 +936,31 @@ asm int daAlink_c::procGoatCatch() {
 #pragma pop
 
 /* 800EA2A8-800EA3AC 0E4BE8 0104+00 2/2 0/0 0/0 .text            procGoatStrokeInit__9daAlink_cFv */
+// matches with literals
+#ifdef NONMATCHING
+int daAlink_c::procGoatStrokeInit() {
+    if (mEquipItem != NO_ITEM) {
+        return procPreActionUnequipInit(PROC_GOAT_STROKE, field_0x27f4);
+    }
+
+    commonProcInit(PROC_GOAT_STROKE);
+    field_0x280c.setData(field_0x27f4);
+    setSingleAnimeBase(ANM_COW_STROKE);
+
+    static_cast<daCow_c*>(field_0x280c.getActor())->setNaderu();
+    mNormalSpeed = 0.0f;
+
+    if ((s16)(fopAcM_searchActorAngleY(field_0x27f4, this) - field_0x27f4->shape_angle.y) > 0) {
+        shape_angle.y = field_0x27f4->shape_angle.y - 0x4000;
+    } else {
+        shape_angle.y = field_0x27f4->shape_angle.y + 0x4000;
+    }
+
+    current.pos.x = field_0x27f4->current.pos.x - cM_ssin(shape_angle.y) * 100.0f;
+    current.pos.z = field_0x27f4->current.pos.z - cM_scos(shape_angle.y) * 100.0f;
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -937,6 +969,7 @@ asm int daAlink_c::procGoatStrokeInit() {
 #include "asm/d/a/d_a_alink/procGoatStrokeInit__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 800EA3AC-800EA3F4 0E4CEC 0048+00 1/0 0/0 0/0 .text            procGoatStroke__9daAlink_cFv */
 int daAlink_c::procGoatStroke() {

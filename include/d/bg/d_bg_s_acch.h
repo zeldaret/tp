@@ -161,6 +161,8 @@ public:
     void SetWallHit() { m_flags |= WALL_HIT; }
     void ClrWallNone() { m_flags &= ~WALL_NONE; }
     void OnLineCheckNone() { m_flags |= LINE_CHECK_NONE; }
+    void OffLineCheckNone() { m_flags &= ~LINE_CHECK_NONE; }
+    void SetWallNone() { m_flags |= WALL_NONE; }
     cM3dGCyl* GetWallBmdCylP() { return &m_wall_cyl; }
 
     // inline dupe

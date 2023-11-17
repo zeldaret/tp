@@ -195,6 +195,7 @@ public:
     bool checkLand() const { return field_0x16b4 == 5 && field_0x171a == 0; }
     bool checkGetOff() const { return fabsf(speedF) < 3.0f; }
     bool checkEnemySearch() { return checkResetStateFlg0(ENEMY_SEARCH); }
+    bool checkOriginalDemo() const { return field_0x16b8 == 3; }
 
     void onTagJump(f32 param_0, f32 param_1, f32 param_2) {
         field_0x1768 = param_0;

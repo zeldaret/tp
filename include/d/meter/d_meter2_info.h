@@ -30,7 +30,7 @@ class J2DPicture;
 class dMeterMap_c;
 
 enum dMeter2Info_warpStatus {
-    /* 0x3 */ WARP_DECIDED = 3,
+    /* 0x3 */ WARP_STATUS_DECIDED_e = 3,
 };
 
 class dMeter2Info_c {

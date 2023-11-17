@@ -30,6 +30,7 @@ public:
     bool checkJumpRideFlg() { return mJumpRideFlg; }
     void incShapeOffsetY(f32 offset) { mShapeOffsetY += offset; }
     void incShapeAngleZ(s16 incZ) { shape_angle.z += incZ; }
+    void onRodID(unsigned int i_rodID) { mRodID = i_rodID; }
 
     /* 0x0568 */ request_of_phase_process_class mPhaseReq;
     /* 0x0570 */ J3DModel* mpModel;

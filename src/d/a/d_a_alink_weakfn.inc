@@ -1127,7 +1127,7 @@ void daPy_py_c::skipPortalObjWarp() {
 }
 
 /* 80141840-80141848 13C180 0008+00 1/0 0/0 0/0 .text checkTreasureRupeeReturn__9daPy_py_cCFi */
-bool daPy_py_c::checkTreasureRupeeReturn(int param_0) const {
+BOOL daPy_py_c::checkTreasureRupeeReturn(int param_0) const {
     return false;
 }
 

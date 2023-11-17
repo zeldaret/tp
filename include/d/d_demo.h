@@ -56,7 +56,7 @@ public:
     /* 80038128 */ fopAc_ac_c* getActor();
     /* 8003815C */ void setActor(fopAc_ac_c*);
     /* 8003819C */ f32 getPrm_Morf();
-    /* 80038338 */ void getDemoIDData(int*, int*, int*, u16*, u8*);
+    /* 80038338 */ int getDemoIDData(int*, int*, int*, u16*, u8*);
     
     /* 80038098 */ virtual ~dDemo_actor_c();
     /* 800387EC */ virtual void JSGSetData(u32, void const*, u32);
@@ -280,6 +280,7 @@ public:
     static void onStatus(u32 status) { m_status |= status; }
     static void offStatus(u32 status) { m_status &= ~status; }
     static void setBranchData(const u8* p_data) { m_branchData = p_data; }
+    static s16 getBranchId() { return m_branchId; }
 
     static s16 m_branchId;
     static dDemo_system_c* m_system;

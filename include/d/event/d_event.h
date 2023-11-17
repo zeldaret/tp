@@ -161,6 +161,7 @@ public:
     fopAc_ac_c* getPtT() { return convPId(mPtT); }
     bool isChangeOK(void* param_0) { return mChangeOK == param_0; }
     u8 getPreItemNo() { return mPreItemNo; }
+    u8 getGtItm() { return mGtItm; }
 
 public:
     /* 0x000 */ u8 field_0x0[4];

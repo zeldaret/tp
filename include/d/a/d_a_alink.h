@@ -650,6 +650,7 @@ public:
     };
 
     enum daAlink_FTANM {
+        FTANM_UNK_0 = 0,
         FTANM_UNK_3 = 3,
         FTANM_UNK_4 = 4,
         FTANM_UNK_8 = 8,
@@ -667,11 +668,15 @@ public:
         FTANM_UNK_8A = 0x8A,
         FTANM_UNK_90 = 0x90,
         FTANM_UNK_96 = 0x96,
+        FTANM_UNK_9C = 0x9C,
+        FTANM_UNK_9D = 0x9D,
         FTANM_UNK_9F = 0x9F,
+        FTANM_UNK_A0 = 0xA0,
     };
 
     enum daAlink_WARP_MAT_MODE {
-        WARP_MAT_MODE_1 = 1,
+        WARP_MAT_MODE_0,
+        WARP_MAT_MODE_1,
     };
 
     enum daAlink_WANM {
@@ -1340,7 +1345,7 @@ public:
     /* 800AC738 */ void setDoubleAnimeBlendRatio(f32);
     /* 800AC754 */ void commonDoubleAnime(J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*,
                                           J3DAnmTransform*, f32, f32, f32, int);
-    /* 800ACA14 */ void setDoubleAnime(f32, f32, f32, daAlink_c::daAlink_ANM,
+    /* 800ACA14 */ int setDoubleAnime(f32, f32, f32, daAlink_c::daAlink_ANM,
                                        daAlink_c::daAlink_ANM, int, f32);
     /* 800ACD40 */ void commonSingleAnime(J3DAnmTransform*, J3DAnmTransform*, f32, f32, s16);
     /* 800ACF80 */ void setSingleAnimeBase(daAlink_c::daAlink_ANM anmID);
@@ -1483,7 +1488,7 @@ public:
     /* 800B994C */ BOOL checkItemChangeFromButton();
     /* 800B9D2C */ BOOL checkNextActionFromButton();
     /* 800B9F50 */ BOOL checkGroundSpecialMode();
-    /* 800BA09C */ void commonCheckNextAction(int);
+    /* 800BA09C */ int commonCheckNextAction(int);
     /* 800BA0D0 */ int checkNextAction(int);
     /* 800BA6A0 */ void commonChangeItem();
     /* 800BA914 */ void setItemAction();
@@ -1702,7 +1707,7 @@ public:
     /* 800D23C0 */ int checkCutAction();
     /* 800D26EC */ int getCutDirection();
     /* 800D2760 */ BOOL checkCutCancelNextMode(int);
-    /* 800D27E4 */ void checkDoCutAction();
+    /* 800D27E4 */ BOOL checkDoCutAction();
     /* 800D2890 */ BOOL checkCutBackState();
     /* 800D28F4 */ BOOL checkCutHeadState();
     /* 800D29D4 */ BOOL checkDownAttackState();
@@ -1818,7 +1823,7 @@ public:
     /* 800DDBA8 */ int procGuardAttack();
     /* 800DDE58 */ int procGuardBreakInit();
     /* 800DDF2C */ int procGuardBreak();
-    /* 800DE008 */ bool procTurnMoveInit(int);
+    /* 800DE008 */ int procTurnMoveInit(int);
     /* 800DE380 */ int procTurnMove();
     /* 800DE64C */ void getArrowFlyData(f32*, f32*, int) const;
     /* 800DE740 */ f32 getArrowIncAtR() const;
@@ -1983,7 +1988,7 @@ public:
     /* 800E7894 */ void checkSetChainPullAnime(s16);
     /* 800E794C */ s16 getChainStickAngleY(s16) const;
     /* 800E7994 */ u8 checkChainEmphasys();
-    /* 800E79F8 */ u8 searchFmChainPos();
+    /* 800E79F8 */ BOOL searchFmChainPos();
     /* 800E7AEC */ void setFmChainPosFromOut(fopAc_ac_c*, cXyz*, int);
     /* 800E7C30 */ int procFmChainUpInit();
     /* 800E7CC0 */ int procFmChainUp();
@@ -1991,8 +1996,8 @@ public:
     /* 800E7E50 */ int procFmChainStrongPull();
     /* 800E7ED0 */ void setWallGrabStatus(u8, u8);
     /* 800E7EE4 */ int getWallGrabStatus();
-    /* 800E7EF4 */ void wallGrabTrigger();
-    /* 800E7F18 */ void wallGrabButton();
+    /* 800E7EF4 */ BOOL wallGrabTrigger();
+    /* 800E7F18 */ BOOL wallGrabButton();
     /* 800E7F3C */ void setPushPullKeepData(dBgW_Base::PushPullLabel, int);
     /* 800E80A4 */ void checkPushPullTurnBlock();
     /* 800E8148 */ void checkPullBehindWall();
@@ -2337,7 +2342,7 @@ public:
     /* 80101D70 */ void swimBgCheck(f32);
     /* 801023E4 */ void setSpeedAndAngleSwim();
     /* 801029C8 */ int checkNextActionSwim();
-    /* 80102B1C */ void checkSwimAction(int);
+    /* 80102B1C */ int checkSwimAction(int);
     /* 80103058 */ int checkSwimUpAction();
     /* 801032C8 */ void swimOutAfter(int);
     /* 80103398 */ bool checkSwimFall();
@@ -2557,7 +2562,7 @@ public:
     /* 80118FF8 */ void setHighModelBck(mDoExt_bckAnm*, u16);
     /* 801190A4 */ void setHighModelFaceBtk(u16);
     /* 80119134 */ void setDemoBrk(J3DAnmTevRegKey**, J3DModel*, u16);
-    /* 801191C4 */ void setStickAnmData(J3DAnmBase*, int, int, u16, int);
+    /* 801191C4 */ f32 setStickAnmData(J3DAnmBase*, int, int, u16, int);
     /* 801195C0 */ int procDemoCommon();
     /* 801195F8 */ int procCoToolDemoInit();
     /* 801196D8 */ int procCoToolDemo();
@@ -2644,13 +2649,13 @@ public:
     /* 8011F658 */ bool checkAcceptWarp();
     /* 8011F7D8 */ void dungeonReturnWarp();
     /* 8011F9EC */ void checkWarpStart();
-    /* 8011FBC0 */ void warpModelTexScroll();
+    /* 8011FBC0 */ int warpModelTexScroll();
     /* 8011FD4C */ int procCoWarpInit(int, int);
     /* 80120124 */ int procCoWarp();
-    /* 80120440 */ void commonWaitTurnInit();
+    /* 80120440 */ int commonWaitTurnInit();
     /* 80120474 */ int commonGrabPutInit();
-    /* 80120500 */ void commonLargeDamageUpInit(int, int, s16, s16);
-    /* 80120534 */ void commonFallInit(int);
+    /* 80120500 */ int commonLargeDamageUpInit(int, int, s16, s16);
+    /* 80120534 */ int commonFallInit(int);
     /* 80120580 */ JPABaseEmitter* setEmitter(u32*, u16, cXyz const*, csXyz const*);
     /* 80120634 */ JPABaseEmitter* setEmitterPolyColor(u32*, u16, cBgS_PolyInfo&, cXyz const*, csXyz const*);
     /* 801206C4 */ JPABaseEmitter* setEmitterColor(u32*, u16, cXyz const*, csXyz const*);
@@ -3083,7 +3088,7 @@ public:
     virtual bool checkCanoeFishingGetRight() const;
     virtual u8 checkBeeChildDrink() const;
     virtual void skipPortalObjWarp();
-    virtual bool checkTreasureRupeeReturn(int) const;
+    virtual BOOL checkTreasureRupeeReturn(int) const;
     virtual void setSumouReady(fopAc_ac_c*);
     virtual bool checkAcceptDungeonWarpAlink(int);
     virtual s16 getSumouCounter() const;
@@ -3206,6 +3211,10 @@ public:
     void setFaceBasicBck(u16 param_0) { setFaceBck(param_0, 0, 0xFFFF); }
     void setFaceBasicBtp(u16 param_0) { setFaceBtp(param_0, 0, 0xFFFF); }
     void setFaceBasicBtk(u16 param_0) { setFaceBtk(param_0, 0, 0xFFFF); }
+    void setFaceDemoBck(u16 param_0) { setFaceBck(param_0, 0, 0); }
+    void setFaceDemoBtp(u16 param_0) { setFaceBtp(param_0, 0, 0); }
+    void setFaceDemoBtk(u16 param_0) { setFaceBtk(param_0, 0, 0); }
+
     void cancelFmChainGrabFromOut() {
         field_0x2fa3 = 0;
         field_0x2844.clearData();
@@ -3280,6 +3289,8 @@ public:
     bool checkGrabGlide() { return checkGrabRooster(); }
 
     bool checkCopyRodRevive() const { return mProcID == PROC_COPY_ROD_REVIVE; }
+    bool checkHorseGetOffMode() const { return mProcID == PROC_HORSE_GETOFF; }
+    bool checkHorseRideOn() const { return mProcID == PROC_HORSE_RIDE; }
 
     BOOL i_checkRideOn() const { return mRideStatus != 0; }
 
@@ -3346,7 +3357,13 @@ public:
     static u8 const m_handLeftInSidePos[12];
     static u8 const m_handRightInSidePos[12];
     static u8 m_procInitTable[5632];
+
+    #ifdef NONMATCHING
+    static daAlink_procFunc m_demoInitTable[];
+    #else
     static u8 m_demoInitTable[1140];
+    #endif
+
     static u8 m_fEffParamProc[72];
 
 private:
@@ -3375,7 +3392,7 @@ private:
     /* 0x0068C */ J3DAnmTextureSRTKey* field_0x068c;
     /* 0x00690 */ mDoExt_bckAnm* mpDemoFCTmpBck;
     /* 0x00694 */ J3DDeformData* mpDemoFCTmpBls;
-    /* 0x00698 */ void* field_0x0698;
+    /* 0x00698 */ J3DAnmCluster* field_0x0698;
     /* 0x0069C */ mDoExt_blkAnm* field_0x069c;
     /* 0x006A0 */ J3DModel* mpDemoHLTmpModel;
     /* 0x006A4 */ mDoExt_bckAnm* mpDemoHLTmpBck;
@@ -3399,7 +3416,7 @@ private:
     /* 0x006EC */ J3DShape* field_0x06ec;
     /* 0x006F0 */ J3DShape* field_0x06f0;
     /* 0x006F4 */ J3DAnmTevRegKey* field_0x06f4;
-    /* 0x006F8 */ J3DAnmBase* field_0x06f8;
+    /* 0x006F8 */ J3DAnmTevRegKey* field_0x06f8;
     /* 0x006FC */ J3DModel* field_0x06fc;  // related to human link
     /* 0x00700 */ J3DModel* field_0x0700;
     /* 0x00704 */ J3DAnmBase* field_0x0704;
@@ -3510,7 +3527,7 @@ private:
     /* 0x0285C */ daPy_actorKeep_c field_0x285c;
     /* 0x02864 */ dMsgFlow_c mMsgFlow;
     /* 0x028B0 */ int field_0x28b0[0x10];
-    /* 0x028F0 */ u32 mMsgClassID;
+    /* 0x028F0 */ unsigned int mMsgClassID;
     /* 0x028F4 */ int mAtnActorID;
     /* 0x028F8 */ int field_0x28f8;
     /* 0x028FC */ int field_0x28fc;
@@ -3818,8 +3835,7 @@ private:
     /* 0x03220 */ u32 field_0x3220;
     /* 0x03224 */ u32 field_0x3224;
     /* 0x03228 */ u32 field_0x3228[2][3];
-    /* 0x03240 */ u32 field_0x3240;
-    /* 0x03244 */ u8 field_0x3244[20];
+    /* 0x03240 */ u32 field_0x3240[6];
     /* 0x03258 */ u32 field_0x3258;
     /* 0x0325C */ u32 field_0x325c;
     /* 0x03260 */ u32 field_0x3260[2];

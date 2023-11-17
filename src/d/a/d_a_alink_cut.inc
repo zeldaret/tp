@@ -651,16 +651,16 @@ BOOL daAlink_c::checkCutCancelNextMode(int param_0) {
 }
 
 /* 800D27E4-800D2890 0CD124 00AC+00 4/4 0/0 0/0 .text            checkDoCutAction__9daAlink_cFv */
-void daAlink_c::checkDoCutAction() {
+BOOL daAlink_c::checkDoCutAction() {
     // event flag 0x2A40: Learned Jump Strike
     if (doButton() && (i_dComIfGs_isEventBit(0x2A40) || i_checkNoResetFlg3(FLG3_UNK_200))) {
-        procCutLargeJumpChargeInit();
+        return procCutLargeJumpChargeInit();
     } else if (checkDownAttackState()) {
-        procCutDownInit();
+        return procCutDownInit();
     } else if (checkCutHeadState()) {
-        procCutHeadInit();
+        return procCutHeadInit();
     } else {
-        procCutJumpInit(0);
+        return procCutJumpInit(0);
     }
 }
 
