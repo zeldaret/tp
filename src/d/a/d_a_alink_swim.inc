@@ -264,7 +264,7 @@ int daAlink_c::checkNextActionSwim() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkSwimAction(int param_0) {
+asm int daAlink_c::checkSwimAction(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/checkSwimAction__9daAlink_cFi.s"
 }

@@ -3002,6 +3002,14 @@ inline void dComIfGp_evmng_cutEnd(int param_0) {
     dComIfGp_getPEvtManager()->cutEnd(param_0);
 }
 
+inline cXyz* dComIfGp_evmng_getGoal() {
+    return dComIfGp_getPEvtManager()->getGoal();
+}
+
+inline BOOL i_dComIfGp_evmng_startCheck(char const* i_event) {
+    return g_dComIfG_gameInfo.play.getEvtManager().startCheckOld(i_event);
+}
+
 inline BOOL dComIfGp_evmng_endCheck(const char* event) {
     return g_dComIfG_gameInfo.play.getEvtManager().endCheckOld(event);
 }
@@ -3020,6 +3028,10 @@ inline void dComIfGp_event_setItemPartner(void* param_0) {
 
 inline void dComIfGp_event_setItemPartnerId(unsigned int id) {
     g_dComIfG_gameInfo.play.getEvent().setPtI_Id(id);
+}
+
+inline u8 dComIfGp_event_getGtItm() {
+    return g_dComIfG_gameInfo.play.getEvent().getGtItm();
 }
 
 inline int dComIfGp_evmng_startDemo(int param_0) {

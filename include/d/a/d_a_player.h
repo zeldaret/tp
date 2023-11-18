@@ -140,6 +140,11 @@ class daBoomerang_c;
 
 class daPy_demo_c {
 public:
+    enum {
+        DEMO_LAST_e = 0x5F,
+        DEMO_NEW_ANM0_e = 0x200,
+    };
+
     void setSpecialDemoType();
 
     void setDemoType(u16 pType) { mDemoType = pType; }
@@ -147,6 +152,7 @@ public:
     void setDemoMode(u32 mode) { mDemoMode = mode; }
     u32 getDemoMode() const { return mDemoMode; }
     int getParam1() const { return mParam1; }
+    s16 getParam2() const { return mParam2; }
     void setOriginalDemoType() { setDemoType(3); }
     void i_setSpecialDemoType() { setDemoType(5); }
     void setSystemDemoType() { setDemoType(2); }
@@ -159,6 +165,12 @@ public:
     void setParam1(int value) { mParam1 = value;}
     void setParam2(int value) { mParam2 = value;}
     void setPos0(const cXyz* pos) { mDemoPos0 = *pos;}
+    void setToolDemoType() { setDemoType(1); }
+    s16 getTimer() const { return mTimer; }
+    void decTimer() { mTimer--; }
+    void setTimer(s16 i_timer) { mTimer = i_timer; }
+    cXyz* getPos0() { return &mDemoPos0; }
+    void resetDemoType() { setDemoType(0); }
 
 private:
     /* 0x00 */ u16 mDemoType;
@@ -215,6 +227,7 @@ public:
         FLG0_UNK_10000000 = 0x10000000,
         FLG0_UNK_1000000 = 0x1000000,
         FLG0_UNDERWATER = 0x800000,
+        FLG0_UNK_200000 = 0x200000,
         FLG0_UNK_100000 = 0x100000,
         FLG0_UNK_80000 = 0x80000,
         FLG0_UNK_40000 = 0x40000,
@@ -224,6 +237,7 @@ public:
         FLG0_UNK_2000 = 0x2000,
         FLG0_MAGNE_BOOTS_ON = 0x1000,
         FLG0_PUSH_PULL_KEEP = 0x800,
+        FLG0_UNK_400 = 0x400,
         FLG0_UNK_100 = 0x100,
         FLG0_UNK_80 = 0x80,
         FLG0_UNK_40 = 0x40,
@@ -235,6 +249,7 @@ public:
 
         FLG0_HVY_STATE = FLG0_UNK_40000000 | FLG0_EQUIP_HVY_BOOTS | FLG0_UNK_20000,
         FLG0_UNK_14000 = 0x14000,
+        FLG0_UNK_10400 = 0x10400,
         FLG0_UNK_18 = FLG0_UNK_10 | FLG0_UNK_8,
     };
 
@@ -251,6 +266,7 @@ public:
         FLG1_UNK_2000 = 0x2000,
         FLG1_UNK_1000 = 0x1000,
         FLG1_UNK_800 = 0x800,
+        FLG1_UNK_200 = 0x200,
         FLG1_UNK_80 = 0x80,
         FLG1_UNK_40 = 0x40,
         FLG1_UNK_20 = 0x20,
@@ -346,6 +362,7 @@ public:
         ERFLG1_UNK_20000000 = 0x20000000,
         ERFLG1_UNK_10000000 = 0x10000000,
         ERFLG1_UNK_4000000 = 0x4000000,
+        ERFLG1_UNK_100000 = 0x100000,
         ERFLG1_UNK_40000 = 0x40000,
         ERFLG1_UNK_2000 = 0x2000,
         ERFLG1_UNK_800 = 0x800,
@@ -371,6 +388,7 @@ public:
     enum daPy_RFLG0 {
         RFLG0_UNK_8000000 = 0x8000000,
         RFLG0_UNK_4000000 = 0x4000000,
+        RFLG0_UNK_20000 = 0x20000,
         RFLG0_UNK_4000 = 0x4000,
         RFLG0_FRONT_ROLL_CRASH = 0x2000,
         RFLG0_ENEMY_ATTN_LOCK = 0x1000,
@@ -380,10 +398,12 @@ public:
         RFLG0_UNK_80 = 0x80,
         RFLG0_UNK_40 = 0x40,
         RFLG0_UNK_10 = 0x10,
+        RFLG0_UNK_8 = 0x8,
         RFLG0_UNK_2 = 0x2,
     };
 
     enum daPy_RFLG1 {
+        RFLG1_UNK_100 = 0x100,
         RFLG1_UNK_30 = 0x30,
         RFLG1_UNK_2 = 0x2,
         RFLG1_WOLF_ATTACK_REVERSE = 0x1,
@@ -654,7 +674,7 @@ public:
     virtual bool checkCanoeFishingGetRight() const;
     virtual u8 checkBeeChildDrink() const;
     virtual void skipPortalObjWarp();
-    virtual bool checkTreasureRupeeReturn(int) const;
+    virtual BOOL checkTreasureRupeeReturn(int) const;
     virtual void setSumouReady(fopAc_ac_c*);
     virtual bool checkAcceptDungeonWarpAlink(int);
     virtual s16 getSumouCounter() const;
