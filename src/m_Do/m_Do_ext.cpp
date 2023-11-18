@@ -10,6 +10,7 @@
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 //#include "JSystem/JUtility/JUTResFont.h"
+//#include "JSystem/JUtility/JUTCacheFont.h"
 #include "MSL_C/stdio.h"
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/com/d_com_inf_game.h"
@@ -3904,6 +3905,37 @@ SECTION_DEAD static char const* const stringBase_8037416B =
 
 /* 80014804-8001494C 00F144 0148+00 3/3 0/0 0/0 .text
  * mDoExt_initFontCommon__FPP7JUTFontPP7ResFONTP7JKRHeapPCcP10JKRArchiveUcUlUl */
+// Matches with FontCache include
+#ifdef NONMATCHING
+static void mDoExt_initFontCommon(JUTFont** mDoExt_font, ResFONT** mDoExt_resfont, JKRHeap* param_2,
+                                  char const* param_3, JKRArchive* param_4, u8 param_5,
+                                  u32 param_6, u32 param_7) {
+    JUT_ASSERT(7141, mDoExt_font == 0);
+    JUT_ASSERT(7142, mDoExt_resfont == 0);
+    *mDoExt_resfont = (ResFONT*)JKRGetResource('ROOT', param_3, param_4);
+    JUT_ASSERT(7144, *mDoExt_resfont != 0);
+    if (param_5 == 0) {
+        u32 cacheSize = JUTCacheFont::calcCacheSize(param_7, param_6);
+        JUTCacheFont* cacheFont = new (param_2, 0) JUTCacheFont(*mDoExt_resfont, cacheSize, param_2);
+        if (cacheFont->isValid()) {
+            *mDoExt_font = cacheFont;
+            cacheFont->setPagingType(JUTCacheFont::PAGE_TYPE_1);
+        }
+        JKRRemoveResource(*mDoExt_resfont, NULL);
+        *mDoExt_resfont = NULL;
+    } else {
+        JUTResFont* local_28 = new JUTResFont(*mDoExt_resfont, param_2);
+        *mDoExt_font = local_28;
+    }
+    if (*mDoExt_font != NULL && !(*mDoExt_font)->isValid()) {
+        // Failed to create cache font class
+        OSReport_FatalError("\nキャッシュフォントクラス作成に失敗しました\n");
+        delete *mDoExt_font;
+        *mDoExt_font = NULL;
+    }
+    JUT_ASSERT(7183, mDoExt_font != 0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3914,6 +3946,7 @@ static asm void mDoExt_initFontCommon(JUTFont** param_0, ResFONT** param_1, JKRH
 #include "asm/m_Do/m_Do_ext/mDoExt_initFontCommon__FPP7JUTFontPP7ResFONTP7JKRHeapPCcP10JKRArchiveUcUlUl.s"
 }
 #pragma pop
+#endif
 
 /* 8001494C-80014994 00F28C 0048+00 1/0 0/0 0/0 .text            __dt__7JUTFontFv */
 #pragma push
@@ -4043,6 +4076,24 @@ JUTFont* mDoExt_getSubFont() {
 }
 
 /* 80014BDC-80014C54 00F51C 0078+00 0/0 2/2 0/0 .text            mDoExt_removeSubFont__Fv */
+// Matches with JUTFont
+#ifdef NONMATCHING
+void mDoExt_removeSubFont() {
+    JUT_ASSERT(7354, mDoExt_font2_getCount > 0);
+    if (mDoExt_font2_getCount > 0) {
+        mDoExt_font2_getCount--;
+        JUT_ASSERT(7357, mDoExt_font2_getCount > 0);
+        if (mDoExt_font2_getCount == 0) {
+            delete mDoExt_font2;
+            mDoExt_font2 = NULL;
+            if (mDoExt_resfont2 != NULL) {
+                i_JKRFree(mDoExt_resfont2);
+                mDoExt_resfont2 = NULL;
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4051,6 +4102,7 @@ asm void mDoExt_removeSubFont() {
 #include "asm/m_Do/m_Do_ext/mDoExt_removeSubFont__Fv.s"
 }
 #pragma pop
+#endif
 
 /* 80014C54-80014D5C 00F594 0108+00 3/3 14/14 445/445 .text
  * mDoExt_J3DModel__create__FP12J3DModelDataUlUl                */
@@ -4278,6 +4330,12 @@ void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya>::cal
 /* 800150AC-8001513C 00F9EC 0090+00 1/0 0/0 0/0 .text
  * calc__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv
  */
+// Matching with J3DMtxCalcAnmBase inheritance
+#ifdef NONMATCHING
+void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>::calc() {
+    J3DMtxCalcCalcTransformMaya::calcTransform(getJoint()->getTransformInfo());
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4286,5 +4344,6 @@ extern "C" asm void func_800150AC(void* _this) {
 #include "asm/m_Do/m_Do_ext/func_800150AC.s"
 }
 #pragma pop
+#endif
 
 /* 803740FC-803740FC 00075C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

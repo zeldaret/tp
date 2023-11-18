@@ -222,4 +222,8 @@ inline void* JKRGetTypeResource(u32 tag, const char* name, JKRArchive* arc) {
     return JKRArchive::getGlbResource(tag, name, arc);
 }
 
+inline bool JKRRemoveResource(void* resource, JKRFileLoader* fileLoader) {
+    return JKRFileLoader::removeResource(resource, fileLoader);
+}
+
 #endif
