@@ -196,7 +196,7 @@ void daAlink_c::setCrawlMoveHoll() {
     f32 frame_ctrl_rate = mUnderFrameCtrl[0].getRate();
 
     if (frame_ctrl_rate != FLOAT_LABEL(lit_6108)) {
-        cLib_addCalcAngleS(&shape_angle.y, field_0x300c, 5, 0x1000, 0x800);
+        cLib_addCalcAngleS(&shape_angle.y, mProcVar2.field_0x300c, 5, 0x1000, 0x800);
         current.angle.y = shape_angle.y;
     }
 
@@ -330,8 +330,8 @@ int daAlink_c::procCrawlAutoMoveInit(int param_0, cXyz* param_1) {
     field_0x37c8 = *param_1;
     field_0x33cc = lit_6040;
     field_0x3198 = param_0;
-    field_0x3008 = 20;
-    field_0x300a = 300;
+    mProcVar0.field_0x3008 = 20;
+    mProcVar1.field_0x300a = 300;
 
     dComIfGp_setPlayerStatus0(0, 0x8000000);
     setCrawlMoveDirectionArrow();

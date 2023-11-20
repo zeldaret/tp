@@ -163,7 +163,7 @@ asm void daAlink_c::setKandelaarModel() {
 void daAlink_c::resetOilBottleModel() {
     deleteEquipItem(0, 1);
 
-    if (field_0x300e.x != 0) {
+    if (mProcVar3.field_0x300e.x != 0) {
         setKandelaarModel();
         mEquipItem = KANTERA;
     }

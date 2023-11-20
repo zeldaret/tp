@@ -14115,7 +14115,7 @@ asm void daAlink_c::setCollision() {
 #ifdef NONMATCHING
 f32 daAlink_c::getBaseAnimeFrame() const {
     if (mProcID == PROC_SUMOU_ACTION && mSpeedModifier > 0.0f) {
-        return field_0x300c;
+        return mProcVar2.field_0x300c;
     }
 
     return mUnderFrameCtrl[0].getFrame();
@@ -17699,7 +17699,7 @@ void daAlink_c::posMove() {
 
     if (checkRootTransClearMode()) {
         cXyz sp78 = field_0x34d4 - sp108;
-        if (mProcID == PROC_CLIMB_UP_START && field_0x300e.z != 0) {
+        if (mProcID == PROC_CLIMB_UP_START && mProcVar3.field_0x300e.z != 0) {
             sp78 = cXyz::Zero;
         }
 
@@ -19051,7 +19051,7 @@ void daAlink_c::commonProcInit(daAlink_c::daAlink_PROC i_procID) {
             initForceRideHorse();
         }
 
-        if (field_0x300c != 0) {
+        if (mProcVar2.field_0x300c != 0) {
             changeWarpMaterial(1);
         }
     } else if (mProcID == PROC_GRAB_STAND) {

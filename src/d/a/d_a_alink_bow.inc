@@ -370,7 +370,7 @@ int daAlink_c::procBowMoveInit() {
     }
 
     setBlendAtnMoveAnime(daAlinkHIO_bow_c0::m.mStartInterpolation);
-    field_0x300c = 0;
+    mProcVar2.field_0x300c = 0;
     setBowOrSlingStatus();
     return 1;
 }
@@ -379,11 +379,11 @@ int daAlink_c::procBowMoveInit() {
 int daAlink_c::procBowMove() {
     cancelBowMove();
 
-    if (mFastShotTime == 0 && field_0x300c != 0 && checkBowWaitAnime() && !itemButton()) {
+    if (mFastShotTime == 0 && mProcVar2.field_0x300c != 0 && checkBowWaitAnime() && !itemButton()) {
         resetUpperAnime(UPPER_2, lit_6041);
     }
 
-    field_0x300c = 1;
+    mProcVar2.field_0x300c = 1;
     i_onEndResetFlg0(ERFLG0_UNK_8000000);
 
     if (!checkNextAction(0)) {

@@ -3665,10 +3665,21 @@ private:
     /* 0x03002 */ s16 field_0x3002;
     /* 0x03004 */ s16 field_0x3004;
     /* 0x03006 */ s16 field_0x3006;
-    /* 0x03008 */ s16 field_0x3008;    // action var 0
-    /* 0x0300A */ s16 field_0x300a;    // action var 1
-    /* 0x0300C */ s16 field_0x300c;    // action var 2
-    /* 0x0300E */ csXyz field_0x300e;  // action var 3
+    // `mProcVar`'s are variables that are context dependent for each `PROC` action.
+    // (The exact setup may need to be simplified later)
+    union {
+        s16 field_0x3008;
+    } /* 0x03008 */ mProcVar0;
+    union {
+        s16 field_0x300a;
+    } /* 0x0300A */ mProcVar1;
+    union {
+        s16 field_0x300c;
+        s16 mPuzzleTargetAngle;
+    } /* 0x0300C */ mProcVar2;
+    union {
+        csXyz field_0x300e;
+    } /* 0x0300E */ mProcVar3;
     /* 0x03014 */ s16 mFallVoiceInit;
     /* 0x03016 */ u8 field_0x3016[2];
     /* 0x03018 */ s16 field_0x3018;

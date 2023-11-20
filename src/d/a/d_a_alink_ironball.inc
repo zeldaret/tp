@@ -359,7 +359,7 @@ int daAlink_c::procIronBallThrowInit() {
     field_0x3588 = l_ironBallBaseAnime;
     mNormalSpeed = FLOAT_LABEL(lit_6108);
     current.angle.y = shape_angle.y;
-    field_0x300c = 0;
+    mProcVar2.field_0x300c = 0;
     field_0x3018 = 3;
     field_0x3024 = 0;
     field_0x3026 = 0;
@@ -385,13 +385,13 @@ int daAlink_c::procIronBallReturnInit() {
     commonProcInit(PROC_IRON_BALL_RETURN);
 
     if (field_0x3018 == 8) {
-        field_0x300c = 1;
+        mProcVar2.field_0x300c = 1;
         setSingleAnimeParam(ANM_IRONBALL_CATCH, &daAlinkHIO_ironBall_c0::m.mCatchAnm);
         field_0x2f99 = 12;
     } else {
         setSingleAnimeBaseSpeed(ANM_IRONBALL_PULL, daAlinkHIO_ironBall_c0::m.mPullAnmSpeed, daAlinkHIO_ironBall_c0::m.mPullInterpolation);
         field_0x2f99 = 12;
-        field_0x300c = 0;
+        mProcVar2.field_0x300c = 0;
     }
 
     field_0x3588 = l_ironBallBaseAnime;
@@ -408,8 +408,8 @@ int daAlink_c::procIronBallReturn() {
 
     field_0x2f99 = 4;
 
-    if (field_0x3018 == 8 && field_0x300c == 0) {
-        field_0x300c = 1;
+    if (field_0x3018 == 8 && mProcVar2.field_0x300c == 0) {
+        mProcVar2.field_0x300c = 1;
         setSingleAnimeParam(ANM_IRONBALL_CATCH, &daAlinkHIO_ironBall_c0::m.mCatchAnm);
         field_0x2f99 = 12;
         seStartOnlyReverb(Z2SE_AL_IB_CATCH);

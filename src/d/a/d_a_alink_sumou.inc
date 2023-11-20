@@ -51,8 +51,8 @@ int daAlink_c::procSumouReadyInit() {
     field_0x34d4 = field_0x3588;
     field_0x2f99 = 4;
     mSpecialMode = 1;
-    field_0x300c = 0;
-    field_0x300e.x = 0;
+    mProcVar2.field_0x300c = 0;
+    mProcVar3.field_0x300e.x = 0;
     deleteEquipItem(0, 1);
 
     if (mThrowBoomerangAcKeep.getActor() != NULL) {
@@ -109,7 +109,7 @@ int daAlink_c::procSumouSideMoveInit() {
 
     field_0x2f99 = 12;
     setFootEffectProcType(5);
-    field_0x3008 = 15;
+    mProcVar0.field_0x3008 = 15;
 
     return 1;
 }
@@ -159,7 +159,7 @@ int daAlink_c::procSumouStaggerInit() {
     setSingleAnimeBase(ANM_SUMOU_STAGGER);
     mNormalSpeed = FLOAT_LABEL(lit_6108);
     field_0x2f99 = 12;
-    field_0x3008 = 30;
+    mProcVar0.field_0x3008 = 30;
     return 1;
 }
 
@@ -171,10 +171,10 @@ int daAlink_c::procSumouStagger() {
         return 1;
     }
 
-    field_0x3008--;
+    mProcVar0.field_0x3008--;
     if (mSpecialMode == 0x1C || mSpecialMode == 0x21 || mSpecialMode == 0x1B) {
         procSumouActionInit(0, 0, 0);
-    } else if (field_0x3008 == 0) {
+    } else if (mProcVar0.field_0x3008 == 0) {
         procSumouSideMoveInit();
     }
 
@@ -213,7 +213,7 @@ int daAlink_c::procSumouShikoInit() {
     field_0x3588 = l_waitBaseAnime;
     field_0x34d4 = field_0x3588;
     field_0x2f99 = 12;
-    field_0x300c = 0;
+    mProcVar2.field_0x300c = 0;
     mSpecialMode = 0;
 
     setFootEffectProcType(5);

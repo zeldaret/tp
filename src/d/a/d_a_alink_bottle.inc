@@ -119,21 +119,21 @@ int daAlink_c::procBottleDrinkInit(u16 param_0) {
     setBottleModel(param_0);
     dComIfGp_setPlayerStatus1(0, 0x2000);
     field_0x3194 = 1;
-    field_0x3008 = 0;
+    mProcVar0.field_0x3008 = 0;
 
     u32 id = fopAcM_GetID(this);
     dCam_getBody()->StartEventCamera(0x12, id, "Type", 1, &field_0x3194, 0);
-    field_0x300c = 0;
-    field_0x300e.x = 0;
+    mProcVar2.field_0x300c = 0;
+    mProcVar3.field_0x300e.x = 0;
     return 1;
 }
 
 /* 8010F698-8010F6F4 109FD8 005C+00 1/0 0/0 0/0 .text            procBottleDrink__9daAlink_cFv */
 int daAlink_c::procBottleDrink() {
-    if (field_0x300e.x != 0) {
+    if (mProcVar3.field_0x300e.x != 0) {
         dComIfGp_evmng_cutEnd(field_0x3184);
     } else {
-        field_0x300e.x = commonBottleDrink(0);
+        mProcVar3.field_0x300e.x = commonBottleDrink(0);
     }
 
     return 1;
@@ -158,9 +158,9 @@ int daAlink_c::procBottleOpenInit(u16 param_0) {
     keepItemData();
     setBottleModel(param_0);
     dComIfGp_setPlayerStatus1(0, 0x4000);
-    field_0x300a = 0;
+    mProcVar1.field_0x300a = 0;
     field_0x32cc = -1;
-    field_0x3008 = 1;
+    mProcVar0.field_0x3008 = 1;
 
     if (mEquipItem == FAIRY) {
         field_0x3194 = 3;
@@ -170,23 +170,23 @@ int daAlink_c::procBottleOpenInit(u16 param_0) {
         if (mEquipItem == WORM) {
             field_0x32cc = fopAcM_create(PROC_NPC_WORM, 2, &current.pos, fopAcM_GetRoomNo(this),
                                          NULL, NULL, -1);
-            field_0x3008 = 0;
-            field_0x300a = 1;
+            mProcVar0.field_0x3008 = 0;
+            mProcVar1.field_0x300a = 1;
         }
     }
 
-    field_0x300e.x = 0;
+    mProcVar3.field_0x300e.x = 0;
 
     u32 id = fopAcM_GetID(this);
     dCam_getBody()->StartEventCamera(0x12, id, "Type", 1, &field_0x3194, 0);
-    field_0x300c = 0;
+    mProcVar2.field_0x300c = 0;
 
     field_0x27c8.initialize();
 
     if (param_0 == 0x67) {
         setCylAtParam(0x200, 0, 0, 0, 0, 30.0f, 30.0f);
     }
-    field_0x300e.y = 0;
+    mProcVar3.field_0x300e.y = 0;
 
     return 1;
 }
