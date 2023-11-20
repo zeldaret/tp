@@ -1948,7 +1948,7 @@ int daAlink_c::procCoOpenTreasureInit() {
         mDoMtx_stack_c::transS(current.pos);
         mDoMtx_stack_c::YrotM(shape_angle.y);
         mDoMtx_stack_c::transM(60.0f, 45.0f, 30.0f);
-        field_0x06fc->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpKanteraModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
     }
 
     field_0x300c = 0;

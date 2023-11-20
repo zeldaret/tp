@@ -402,6 +402,7 @@ public:
 
     bool getOldFrameFlg() { return mOldFrameFlg; }
     void onOldFrameFlg() { mOldFrameFlg = true; }
+    void offOldFrameFlg() { mOldFrameFlg = false; }
     f32 getOldFrameRate() { return mOldFrameRate; }
     J3DTransformInfo* getOldFrameTransInfo(int i) { return &mOldFrameTransInfo[i]; }
     u16 getOldFrameStartJoint() { return mOldFrameStartJoint; }

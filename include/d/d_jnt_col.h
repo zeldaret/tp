@@ -13,8 +13,8 @@ public:
     /* 0x0 */ u8 field_0x0;
     /* 0x1 */ s8 mType;
     /* 0x2 */ s16 mJntNum;
-    /* 0x4 */ u32 field_0x4;
-    /* 0x8 */ void* field_0x8;
+    /* 0x4 */ f32 field_0x4;
+    /* 0x8 */ Vec* field_0x8;
 };
 
 class dJntCol_c {

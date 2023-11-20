@@ -3191,15 +3191,15 @@ int daAlink_c::execute() {
             if ((pmidna->checkMidnaTired() || pmidna->checkForceTiredColor()) &&
                 !pmidna->checkForceNormalColor())
             {
-                field_0x79c->getModelData()->entryTevRegAnimator(field_0x7ac);
-                mpWlMidnaHatModel->getModelData()->entryTevRegAnimator(field_0x7b0);
-                field_0x7a4->getModelData()->entryTevRegAnimator(field_0x7b4);
-                mpWlMidnaHairModel->getModelData()->entryTevRegAnimator(field_0x7b8);
+                mpWlMidnaModel->getModelData()->entryTevRegAnimator(mpDMidnaBrk);
+                mpWlMidnaMaskModel->getModelData()->entryTevRegAnimator(mpDMidnaMaskBrk);
+                mpWlMidnaHandModel->getModelData()->entryTevRegAnimator(mpDMidnaHandBrk);
+                mpWlMidnaHairModel->getModelData()->entryTevRegAnimator(mpDMidnaHairHandBrk);
             } else {
-                field_0x79c->getModelData()->removeTevRegAnimator(field_0x7ac);
-                mpWlMidnaHatModel->getModelData()->removeTevRegAnimator(field_0x7b0);
-                field_0x7a4->getModelData()->removeTevRegAnimator(field_0x7b4);
-                mpWlMidnaHairModel->getModelData()->removeTevRegAnimator(field_0x7b8);
+                mpWlMidnaModel->getModelData()->removeTevRegAnimator(mpDMidnaBrk);
+                mpWlMidnaMaskModel->getModelData()->removeTevRegAnimator(mpDMidnaMaskBrk);
+                mpWlMidnaHandModel->getModelData()->removeTevRegAnimator(mpDMidnaHandBrk);
+                mpWlMidnaHairModel->getModelData()->removeTevRegAnimator(mpDMidnaHairHandBrk);
             }
         }
 
@@ -3899,7 +3899,7 @@ int daAlink_c::draw() {
             }
         }
 
-        modelDraw(field_0x065c, temp_r30);
+        modelDraw(mpLinkHandModel, temp_r30);
         if (field_0x2f92 == 0xFB) {
             modelDraw(mpDemoHLTmpModel, temp_r30);
         }
@@ -3990,13 +3990,13 @@ int daAlink_c::draw() {
         }
 
         if (i_checkNoResetFlg2(FLG2_UNK_1)) {
-            modelDraw(field_0x06fc, temp_r30);
+            modelDraw(mpKanteraModel, temp_r30);
             preKandelaarDraw();
-            modelDraw(field_0x0700, temp_r30);
+            modelDraw(mpKanteraGlowModel, temp_r30);
         } else if (i_checkNoResetFlg2(FLG2_UNK_20000)) {
-            basicModelDraw(field_0x06fc);
+            basicModelDraw(mpKanteraModel);
             preKandelaarDraw();
-            basicModelDraw(field_0x0700);
+            basicModelDraw(mpKanteraGlowModel);
         }
 
         if (i_checkEquipHeavyBoots()) {
@@ -4012,7 +4012,7 @@ int daAlink_c::draw() {
                     mTevStr.mFogColor = color;
                 }
 
-                modelDraw(field_0x784[i], temp_r30);
+                modelDraw(mpLinkBootModels[i], temp_r30);
             }
 
             mTevStr.mFogColor = color;
