@@ -6,6 +6,9 @@
 #include "d/menu/d_menu_collect.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
+#include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_select_cursor.h"
 #include "d/meter/d_meter_HIO.h"
@@ -17,73 +20,15 @@
 #include "d/menu/d_menu_save.h"
 #include "d/menu/d_menu_skill.h"
 #include "d/msg/d_msg_string.h"
+#include "d/msg/d_msg_class.h"
+#include "d/msg/d_msg_object.h"
 #include "d/pane/d_pane_class.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_mtx.h"
-
-//
-// Types:
-//
-
-struct daAlink_c {
-    /* 80140064 */ void setShieldChange();
-    /* 801406A8 */ void initStatusWindow();
-    /* 80140888 */ void statusWindowExecute(cXyz const*, s16);
-    /* 80140984 */ void statusWindowDraw();
-    /* 80140AC8 */ void resetStatusWindow();
-};
-
-struct dMsgObject_c {
-    /* 802383E4 */ void getSmellTypeMessageID();
-};
-
-struct JMSMesgEntry_c {};
-
-struct J3DTexNoAnm {
-    /* 8003B1F8 */ ~J3DTexNoAnm();
-    /* 8003B240 */ J3DTexNoAnm();
-};
-
-struct J3DTexMtxAnm {
-    /* 8003B264 */ ~J3DTexMtxAnm();
-    /* 8003B2A0 */ J3DTexMtxAnm();
-};
-
-struct J3DTevKColorAnm {
-    /* 8003B150 */ ~J3DTevKColorAnm();
-    /* 8003B18C */ J3DTevKColorAnm();
-};
-
-struct J3DTevColorAnm {
-    /* 8003B1A4 */ ~J3DTevColorAnm();
-    /* 8003B1E0 */ J3DTevColorAnm();
-};
-
-struct J3DModelLoaderDataBase {
-    /* 803346BC */ void load(void const*, u32);
-};
-
-struct J3DMaterialAnm {
-    /* 8032C320 */ void initialize();
-};
-
-struct J3DMatColorAnm {
-    /* 8003B2B8 */ ~J3DMatColorAnm();
-    /* 8003B2F4 */ J3DMatColorAnm();
-};
-
-struct J3DAnmLoaderDataBaseFlag {};
-
-struct J3DAnmLoaderDataBase {
-    /* 80337B40 */ void load(void const*, J3DAnmLoaderDataBaseFlag);
-};
-
-//
-// Forward References:
-//
+#include "d/a/d_a_alink.h"
 
 extern "C" void __ct__17dMenu_Collect2D_cFP10JKRExpHeapP9STControlP10CSTControl();
 extern "C" void __dt__17dMenu_Collect2D_cFv();
@@ -385,6 +330,53 @@ SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
+#ifdef NONMATCHING
+typedef void (dMenu_Collect2D_c::*initFunc)();
+static initFunc init[] = {
+    &dMenu_Collect2D_c::wait_init,
+    &dMenu_Collect2D_c::save_open_init,
+    &dMenu_Collect2D_c::save_move_init,
+    &dMenu_Collect2D_c::save_close_init,
+    &dMenu_Collect2D_c::option_open_init,
+    &dMenu_Collect2D_c::option_move_init,
+    &dMenu_Collect2D_c::option_close_init,
+    &dMenu_Collect2D_c::letter_open_init,
+    &dMenu_Collect2D_c::letter_move_init,
+    &dMenu_Collect2D_c::letter_close_init,
+    &dMenu_Collect2D_c::fishing_open_init,
+    &dMenu_Collect2D_c::fishing_move_init,
+    &dMenu_Collect2D_c::fishing_close_init,
+    &dMenu_Collect2D_c::skill_open_init,
+    &dMenu_Collect2D_c::skill_move_init,
+    &dMenu_Collect2D_c::skill_close_init,
+    &dMenu_Collect2D_c::insect_open_init,
+    &dMenu_Collect2D_c::insect_move_init,
+    &dMenu_Collect2D_c::insect_close_init
+};
+
+typedef void (dMenu_Collect2D_c::*processFunc)();
+static processFunc process[] = {
+    &dMenu_Collect2D_c::wait_proc,
+    &dMenu_Collect2D_c::save_open_proc,
+    &dMenu_Collect2D_c::save_move_proc,
+    &dMenu_Collect2D_c::save_close_proc,
+    &dMenu_Collect2D_c::option_open_proc,
+    &dMenu_Collect2D_c::option_move_proc,
+    &dMenu_Collect2D_c::option_close_proc,
+    &dMenu_Collect2D_c::letter_open_proc,
+    &dMenu_Collect2D_c::letter_move_proc,
+    &dMenu_Collect2D_c::letter_close_proc,
+    &dMenu_Collect2D_c::fishing_open_proc,
+    &dMenu_Collect2D_c::fishing_move_proc,
+    &dMenu_Collect2D_c::fishing_close_proc,
+    &dMenu_Collect2D_c::skill_open_proc,
+    &dMenu_Collect2D_c::skill_move_proc,
+    &dMenu_Collect2D_c::skill_close_proc,
+    &dMenu_Collect2D_c::insect_open_proc,
+    &dMenu_Collect2D_c::insect_move_proc,
+    &dMenu_Collect2D_c::insect_close_proc,
+};
+#else
 /* 803BC38C-803BC398 -00001 000C+00 0/1 0/0 0/0 .data            @4422 */
 #pragma push
 #pragma force_active on
@@ -802,6 +794,7 @@ SECTION_DATA static u8 process[228] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00,
 };
+#endif
 
 /* 803BC71C-803BC72C -00001 0010+00 1/1 0/0 0/0 .data            bck_name$7583 */
 SECTION_DATA static void* bck_name_7583[4] = {
@@ -1063,6 +1056,12 @@ void dMenu_Collect2D_c::_delete() {
 
 /* 801B0570-801B05A8 1AAEB0 0038+00 1/1 0/0 0/0 .text            initialize__17dMenu_Collect2D_cFv
  */
+// Matches with sinit
+#ifdef NONMATCHING
+void dMenu_Collect2D_c::initialize() {
+    (this->*init[field_0x22c])();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1071,6 +1070,7 @@ asm void dMenu_Collect2D_c::initialize() {
 #include "asm/d/menu/d_menu_collect/initialize__17dMenu_Collect2D_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801B05A8-801B061C 1AAEE8 0074+00 2/2 0/0 0/0 .text isFishIconVisible__17dMenu_Collect2D_cFv */
 bool dMenu_Collect2D_c::isFishIconVisible() {
@@ -1134,63 +1134,49 @@ COMPILER_STRIP_GATE(0x80394F78, &lit_3778);
 /* 80394F88-80394FA0 0215E8 0018+00 0/1 0/0 0/0 .rodata          text_sv$4768 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const text_sv[24] = {
-    0x00, 0x00, 0x00, 0x73, 0x61, 0x76, 0x5F, 0x30, 0x00, 0x00, 0x00, 0x73,
-    0x61, 0x76, 0x5F, 0x31, 0x00, 0x00, 0x00, 0x73, 0x61, 0x76, 0x5F, 0x32,
+static const u64 text_sv[3] = {
+    'sav_0', 'sav_1', 'sav_2',
 };
-COMPILER_STRIP_GATE(0x80394F88, &text_sv);
 #pragma pop
 
 /* 80394FA0-80394FB8 021600 0018+00 0/1 0/0 0/0 .rodata          text_op$4769 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const text_op[24] = {
-    0x00, 0x00, 0x00, 0x6F, 0x70, 0x74, 0x5F, 0x30, 0x00, 0x00, 0x00, 0x6F,
-    0x70, 0x74, 0x5F, 0x31, 0x00, 0x00, 0x00, 0x6F, 0x70, 0x74, 0x5F, 0x32,
+static const u64 text_op[3] = {
+    'opt_0', 'opt_1', 'opt_2',
 };
-COMPILER_STRIP_GATE(0x80394FA0, &text_op);
 #pragma pop
 
 /* 80394FB8-80394FD0 021618 0018+00 0/1 0/0 0/0 .rodata          ftext_sv$4770 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const ftext_sv[24] = {
-    0x00, 0x66, 0x5F, 0x73, 0x61, 0x76, 0x5F, 0x30, 0x00, 0x66, 0x5F, 0x73,
-    0x61, 0x76, 0x5F, 0x31, 0x00, 0x66, 0x5F, 0x73, 0x61, 0x76, 0x5F, 0x32,
+static const u64 ftext_sv[3] = {
+    'f_sav_0', 'f_sav_1', 'f_sav_2',
 };
-COMPILER_STRIP_GATE(0x80394FB8, &ftext_sv);
 #pragma pop
 
 /* 80394FD0-80394FE8 021630 0018+00 0/1 0/0 0/0 .rodata          ftext_op$4771 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const ftext_op[24] = {
-    0x00, 0x66, 0x5F, 0x6F, 0x70, 0x74, 0x5F, 0x30, 0x00, 0x66, 0x5F, 0x6F,
-    0x70, 0x74, 0x5F, 0x31, 0x00, 0x66, 0x5F, 0x6F, 0x70, 0x74, 0x5F, 0x32,
+static const u64 ftext_op[3] = {
+    'f_opt_0', 'f_opt_1', 'f_opt_2',
 };
-COMPILER_STRIP_GATE(0x80394FD0, &ftext_op);
 #pragma pop
 
 /* 80394FE8-80395010 021648 0028+00 0/1 0/0 0/0 .rodata          text_a_tag$4777 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const text_a_tag_4777[40] = {
-    0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x31, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31,
-    0x5F, 0x32, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x61, 0x74, 0x65, 0x78,
-    0x74, 0x31, 0x5F, 0x34, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
+static const u64 text_a_tag_4777[5] = {
+    'atext1_1', 'atext1_2', 'atext1_3', 'atext1_4', 'atext1_5',
 };
-COMPILER_STRIP_GATE(0x80394FE8, &text_a_tag_4777);
 #pragma pop
 
 /* 80395010-80395038 021670 0028+00 0/1 0/0 0/0 .rodata          text_b_tag$4778 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const text_b_tag_4778[40] = {
-    0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x31, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31,
-    0x5F, 0x32, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x62, 0x74, 0x65, 0x78,
-    0x74, 0x31, 0x5F, 0x34, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
+static const u64 text_b_tag_4778[5] = {
+    'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5',
 };
-COMPILER_STRIP_GATE(0x80395010, &text_b_tag_4778);
 #pragma pop
 
 /* 80453F30-80453F34 002530 0004+00 2/2 0/0 0/0 .sdata2          @5173 */
@@ -1447,12 +1433,9 @@ void dMenu_Collect2D_c::setWalletMaxNum(u16 param_0) {
 
 /* ############################################################################################## */
 /* 80395050-80395078 0216B0 0028+00 1/1 0/0 0/0 .rodata          smell_tag$5891 */
-SECTION_RODATA static u8 const smell_tag[40] = {
-    0x77, 0x6F, 0x6C, 0x66, 0x5F, 0x6D, 0x65, 0x64, 0x77, 0x6F, 0x6C, 0x66, 0x5F, 0x63,
-    0x68, 0x69, 0x77, 0x6F, 0x6C, 0x66, 0x5F, 0x66, 0x69, 0x73, 0x77, 0x6F, 0x6C, 0x66,
-    0x5F, 0x69, 0x72, 0x69, 0x77, 0x6F, 0x6C, 0x66, 0x5F, 0x70, 0x6F, 0x75,
+static const u64 smell_tag[5] = {
+    'wolf_med', 'wolf_chi', 'wolf_fis', 'wolf_iri', 'wolf_pou',
 };
-COMPILER_STRIP_GATE(0x80395050, &smell_tag);
 
 /* 801B3524-801B3640 1ADE64 011C+00 1/1 0/0 0/0 .text            setSmellType__17dMenu_Collect2D_cFv
  */
@@ -1465,13 +1448,11 @@ asm void dMenu_Collect2D_c::setSmellType() {
 }
 #pragma pop
 
-/* ############################################################################################## */
 /* 80395078-80395098 0216D8 0020+00 1/1 0/0 0/0 .rodata          heart_tag$5922 */
-SECTION_RODATA static u8 const heart_tag[32] = {
-    0x68, 0x65, 0x61, 0x72, 0x74, 0x5F, 0x31, 0x6E, 0x68, 0x65, 0x61, 0x72, 0x74, 0x5F, 0x32, 0x6E,
-    0x68, 0x65, 0x61, 0x72, 0x74, 0x5F, 0x33, 0x6E, 0x68, 0x65, 0x61, 0x72, 0x74, 0x5F, 0x34, 0x6E,
+static const u64 heart_tag[4] = {
+    'heart_1n', 'heart_2n',
+    'heart_3n', 'heart_4n',
 };
-COMPILER_STRIP_GATE(0x80395078, &heart_tag);
 
 /* 801B3640-801B370C 1ADF80 00CC+00 1/1 0/0 0/0 .text setHeartPiece__17dMenu_Collect2D_cFv */
 #pragma push
@@ -1493,12 +1474,10 @@ asm void dMenu_Collect2D_c::setPohMaxNum(u8 param_0) {
 }
 #pragma pop
 
-/* ############################################################################################## */
 /* 80395098-803950A8 0216F8 0010+00 1/1 0/0 0/0 .rodata          tag$5980 */
-SECTION_RODATA static u8 const tag_5980[16] = {
-    0x00, 0x6B, 0x65, 0x6E, 0x5F, 0x67, 0x5F, 0x30, 0x00, 0x6B, 0x65, 0x6E, 0x5F, 0x67, 0x5F, 0x31,
+static const u64 tag_5980[2] = {
+    'ken_g_0', 'ken_g_1',
 };
-COMPILER_STRIP_GATE(0x80395098, &tag_5980);
 
 /* 801B39D0-801B3CF4 1AE310 0324+00 2/2 0/0 0/0 .text
  * setEquipItemFrameColorSword__17dMenu_Collect2D_cFi           */
@@ -1511,12 +1490,10 @@ asm void dMenu_Collect2D_c::setEquipItemFrameColorSword(int param_0) {
 }
 #pragma pop
 
-/* ############################################################################################## */
 /* 803950A8-803950B8 021708 0010+00 1/1 0/0 0/0 .rodata          tag$6100 */
-SECTION_RODATA static u8 const tag_6100[16] = {
-    0x74, 0x61, 0x74, 0x65, 0x5F, 0x67, 0x5F, 0x30, 0x74, 0x61, 0x74, 0x65, 0x5F, 0x67, 0x5F, 0x31,
+static const u64 tag_6100[2] = {
+   'tate_g_0', 'tate_g_1',
 };
-COMPILER_STRIP_GATE(0x803950A8, &tag_6100);
 
 /* 801B3CF4-801B3FDC 1AE634 02E8+00 2/2 0/0 0/0 .text
  * setEquipItemFrameColorShield__17dMenu_Collect2D_cFi          */
@@ -1529,13 +1506,10 @@ asm void dMenu_Collect2D_c::setEquipItemFrameColorShield(int param_0) {
 }
 #pragma pop
 
-/* ############################################################################################## */
 /* 803950B8-803950D0 021718 0018+00 1/1 0/0 0/0 .rodata          tag$6213 */
-SECTION_RODATA static u8 const tag_6213[24] = {
-    0x66, 0x75, 0x6B, 0x75, 0x5F, 0x67, 0x5F, 0x30, 0x66, 0x75, 0x6B, 0x75,
-    0x5F, 0x67, 0x5F, 0x31, 0x66, 0x75, 0x6B, 0x75, 0x5F, 0x67, 0x5F, 0x32,
+static const u64 tag_6213[3] = {
+    'fuku_g_0', 'fuku_g_1', 'fuku_g_2',
 };
-COMPILER_STRIP_GATE(0x803950B8, &tag_6213);
 
 /* 801B3FDC-801B42D8 1AE91C 02FC+00 2/2 0/0 0/0 .text
  * setEquipItemFrameColorClothes__17dMenu_Collect2D_cFi         */
@@ -1548,16 +1522,10 @@ asm void dMenu_Collect2D_c::setEquipItemFrameColorClothes(int param_0) {
 }
 #pragma pop
 
-/* ############################################################################################## */
 /* 803950D0-80395118 021730 0048+00 1/1 0/0 0/0 .rodata          kaz_n$6347 */
-SECTION_RODATA static u8 const kaz_n[72] = {
-    0x00, 0x00, 0x75, 0x7A, 0x75, 0x5F, 0x30, 0x30, 0x00, 0x00, 0x75, 0x7A, 0x75, 0x5F, 0x30,
-    0x31, 0x00, 0x00, 0x75, 0x7A, 0x75, 0x5F, 0x30, 0x32, 0x00, 0x00, 0x75, 0x7A, 0x75, 0x5F,
-    0x30, 0x33, 0x00, 0x00, 0x75, 0x7A, 0x75, 0x5F, 0x30, 0x34, 0x00, 0x00, 0x75, 0x7A, 0x75,
-    0x5F, 0x30, 0x35, 0x00, 0x00, 0x75, 0x7A, 0x75, 0x5F, 0x30, 0x36, 0x00, 0x00, 0x75, 0x7A,
-    0x75, 0x5F, 0x30, 0x37, 0x00, 0x00, 0x00, 0x68, 0x69, 0x73, 0x68, 0x69,
+static const u64 kaz_n[9] = {
+    'uzu_00', 'uzu_01', 'uzu_02', 'uzu_03', 'uzu_04', 'uzu_05', 'uzu_06', 'uzu_07', 'hishi',
 };
-COMPILER_STRIP_GATE(0x803950D0, &kaz_n);
 
 /* 801B42D8-801B46FC 1AEC18 0424+00 2/2 0/0 0/0 .text            setHIO__17dMenu_Collect2D_cFb */
 #pragma push
@@ -2038,14 +2006,10 @@ bool dMenu_Collect2D_c::isOutCheck() {
     return false;
 }
 
-/* ############################################################################################## */
 /* 80395268-80395290 0218C8 0028+00 1/1 0/0 0/0 .rodata          text_a_tag$7111 */
-SECTION_RODATA static u8 const text_a_tag_7111[40] = {
-    0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x31, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31,
-    0x5F, 0x32, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x61, 0x74, 0x65, 0x78,
-    0x74, 0x31, 0x5F, 0x34, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
+static const u64 text_a_tag_7111[5] = {
+    'atext1_1', 'atext1_2', 'atext1_3', 'atext1_4', 'atext1_5',
 };
-COMPILER_STRIP_GATE(0x80395268, &text_a_tag_7111);
 
 /* 801B5FB4-801B60B8 1B08F4 0104+00 20/20 0/0 0/0 .text setAButtonString__17dMenu_Collect2D_cFUs
  */
@@ -2060,12 +2024,9 @@ asm void dMenu_Collect2D_c::setAButtonString(u16 param_0) {
 
 /* ############################################################################################## */
 /* 80395290-803952B8 0218F0 0028+00 1/1 0/0 0/0 .rodata          text_b_tag$7134 */
-SECTION_RODATA static u8 const text_b_tag_7134[40] = {
-    0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x31, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31,
-    0x5F, 0x32, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x62, 0x74, 0x65, 0x78,
-    0x74, 0x31, 0x5F, 0x34, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
+static const u64 text_b_tag_7134[5] = {
+    'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5',
 };
-COMPILER_STRIP_GATE(0x80395290, &text_b_tag_7134);
 
 /* 801B60B8-801B61BC 1B09F8 0104+00 20/20 0/0 0/0 .text setBButtonString__17dMenu_Collect2D_cFUs
  */
@@ -2274,6 +2235,27 @@ asm void dMenu_Collect3D_c::set_mtx() {
 #pragma pop
 
 /* 801B6E70-801B6FB0 1B17B0 0140+00 1/1 0/0 0/0 .text            animePlay__17dMenu_Collect3D_cFv */
+#ifdef NONMATCHING
+// matches with literals?
+void dMenu_Collect3D_c::animePlay() {
+    if (field_0x20 != NULL) {
+        field_0x3d0 += g_drawHIO.mCollectScreen.mMaskMirrorAnimSpeed;
+        if (field_0x3d0 >= field_0x20->getEndFrame()) {
+            field_0x3d0 -= field_0x20->getEndFrame();
+        }
+        field_0x20->setFrame(field_0x3d0);
+        field_0x20->play();
+    }
+    if (field_0x1c != NULL) {
+        field_0x3d4 += g_drawHIO.mCollectScreen.mMaskMirrorAnimSpeed;
+        if (field_0x3d4 >= field_0x1c->getEndFrame()) {
+            field_0x3d4 -= field_0x1c->getEndFrame();
+        }
+        field_0x1c->setFrame(field_0x3d4);
+        field_0x1c->play();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2282,47 +2264,41 @@ asm void dMenu_Collect3D_c::animePlay() {
 #include "asm/d/menu/d_menu_collect/animePlay__17dMenu_Collect3D_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801B6FB0-801B7014 1B18F0 0064+00 1/1 0/0 0/0 .text            animeEntry__17dMenu_Collect3D_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Collect3D_c::animeEntry() {
-    nofralloc
-#include "asm/d/menu/d_menu_collect/animeEntry__17dMenu_Collect3D_cFv.s"
+void dMenu_Collect3D_c::animeEntry() {
+    if (field_0x20 != NULL) {
+        field_0x20->entry(mpModel->getModelData());
+    }
+    if (field_0x1c != NULL) {
+        field_0x1c->entry(mpModel->getModelData());
+    }
 }
-#pragma pop
 
-/* ############################################################################################## */
 /* 803952B8-803952CC 021918 0014+00 0/1 0/0 0/0 .rodata          m_kamen_offset_x$7578 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const m_kamen_offset_x[20] = {
-    0xC1, 0x60, 0x00, 0x00, 0xC1, 0x60, 0x00, 0x00, 0xC1, 0x60,
-    0x00, 0x00, 0x3F, 0xA6, 0x66, 0x66, 0x40, 0xD0, 0x00, 0x00,
+static const f32 m_kamen_offset_x[5] = {
+    -14.0f, -14.0f, -14.0f, 1.3f, 6.5f,
 };
-COMPILER_STRIP_GATE(0x803952B8, &m_kamen_offset_x);
 #pragma pop
 
 /* 803952CC-803952E0 02192C 0014+00 0/1 0/0 0/0 .rodata          m_kamen_offset_y$7579 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const m_kamen_offset_y[20] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x41, 0xB0, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
+static const f32 m_kamen_offset_y[5] = {
+    0.0f, 0.0f, 0.0f, 22.0f, 30.0f,
 };
-COMPILER_STRIP_GATE(0x803952CC, &m_kamen_offset_y);
 #pragma pop
 
 /* 803952E0-803952F4 021940 0014+00 0/1 0/0 0/0 .rodata          m_kamen_scale$7580 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const m_kamen_scale[20] = {
-    0x40, 0x26, 0x66, 0x66, 0x40, 0x26, 0x66, 0x66, 0x40, 0x0C,
-    0xCC, 0xCD, 0x3F, 0xE6, 0x66, 0x66, 0x3F, 0xE6, 0x66, 0x66,
+static const f32 m_kamen_scale[5] = {
+    2.6f, 2.6f, 2.2f, 1.8f, 1.8f,
 };
-COMPILER_STRIP_GATE(0x803952E0, &m_kamen_scale);
 #pragma pop
 
 /* 801B7014-801B71C4 1B1954 01B0+00 1/1 0/0 0/0 .text createMaskModel__17dMenu_Collect3D_cFv */
@@ -2335,35 +2311,28 @@ asm void dMenu_Collect3D_c::createMaskModel() {
 }
 #pragma pop
 
-/* ############################################################################################## */
 /* 803952F4-80395308 021954 0014+00 0/1 0/0 0/0 .rodata          m_mirror_offset_x$7682 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const m_mirror_offset_x[20] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static const f32 m_mirror_offset_x[5] = {
+    0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
 };
-COMPILER_STRIP_GATE(0x803952F4, &m_mirror_offset_x);
 #pragma pop
 
 /* 80395308-8039531C 021968 0014+00 0/1 0/0 0/0 .rodata          m_mirror_offset_y$7683 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const m_mirror_offset_y[20] = {
-    0x40, 0x80, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00, 0x40, 0x80,
-    0x00, 0x00, 0x40, 0x80, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00,
+static const f32 m_mirror_offset_y[5] = {
+   4.0f, 4.0f, 4.0f, 4.0f, 4.0f,
 };
-COMPILER_STRIP_GATE(0x80395308, &m_mirror_offset_y);
 #pragma pop
 
 /* 8039531C-80395330 02197C 0014+00 0/1 0/0 0/0 .rodata          m_mirror_scale$7684 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const m_mirror_scale[20] = {
-    0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x19,
-    0x99, 0x9A, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x19, 0x99, 0x9A,
+static const f32 m_mirror_scale[5] = {
+    0.6f, 0.6f, 0.6f, 0.6f, 0.6f,
 };
-COMPILER_STRIP_GATE(0x8039531C, &m_mirror_scale);
 #pragma pop
 
 /* 80395330-80395330 021990 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -2375,6 +2344,53 @@ SECTION_DEAD static char const* const pad_80395514 = "\0\0\0";
 #pragma pop
 
 /* 801B71C4-801B7434 1B1B04 0270+00 1/1 0/0 0/0 .text createMirrorModel__17dMenu_Collect3D_cFv */
+#ifdef NONMATCHING
+void dMenu_Collect3D_c::createMirrorModel() {
+    static char* bck_name[4] = {
+        "kageri_mirrer_spin_1.bck",
+        "kageri_mirrer_spin_2.bck",
+        "kageri_mirrer_spin_3.bck",
+        "kageri_mirrer_spin_4.bck",    
+    };
+    static char* brk_name[4] = {
+        "kageri_mirrer_spin_1.brk",
+        "kageri_mirrer_spin_2_3_4.brk",
+        "kageri_mirrer_spin_2_3_4.brk",
+        "kageri_mirrer_spin_2_3_4.brk",
+    };
+
+    s32 mirrorNum = getMirrorNum();
+    mMirrorOffsetX = m_mirror_offset_x[mirrorNum];
+    mMirrorOffsetY = m_mirror_offset_y[mirrorNum];
+    mMirrorScale = m_mirror_scale[mirrorNum];
+    field_0x3b0.set(0.0f, 0.0f, 0.0f);
+    field_0x3bc.set(0, 0, 0);
+    mpModel = NULL;
+    field_0x1c = NULL;
+    field_0x20 = NULL;
+    if (mirrorNum != 0) {
+        setJ3D("kageri_mirrer_UI.bmd", bck_name[mirrorNum -1], brk_name[mirrorNum -1]);
+        switch (mirrorNum) {
+            case 1:
+                mpModel->getModelData()->getMaterialNodePointer(4)->getShape()->hide();
+                mpModel->getModelData()->getMaterialNodePointer(5)->getShape()->hide();
+                mpModel->getModelData()->getMaterialNodePointer(6)->getShape()->hide();
+                mpModel->getModelData()->getMaterialNodePointer(7)->getShape()->hide();
+            case 2:
+                mpModel->getModelData()->getMaterialNodePointer(8)->getShape()->hide();
+                mpModel->getModelData()->getMaterialNodePointer(9)->getShape()->hide();
+                mpModel->getModelData()->getMaterialNodePointer(10)->getShape()->hide();
+                mpModel->getModelData()->getMaterialNodePointer(11)->getShape()->hide();
+            case 3:
+                mpModel->getModelData()->getMaterialNodePointer(12)->getShape()->hide();
+                mpModel->getModelData()->getMaterialNodePointer(13)->getShape()->hide();
+                mpModel->getModelData()->getMaterialNodePointer(14)->getShape()->hide();
+                mpModel->getModelData()->getMaterialNodePointer(15)->getShape()->hide();
+                break;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2383,10 +2399,11 @@ asm void dMenu_Collect3D_c::createMirrorModel() {
 #include "asm/d/menu/d_menu_collect/createMirrorModel__17dMenu_Collect3D_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801B7434-801B749C 1B1D74 0068+00 5/5 0/0 0/0 .text getCrystalNum__17dMenu_Collect3D_cFv */
-int dMenu_Collect3D_c::getCrystalNum() {
-    int count = 0;
+u8 dMenu_Collect3D_c::getCrystalNum() {
+    u8 count = 0;
     for (int i = 0; i < 4; i++) {
         if (!dComIfGs_isCollectCrystal(i)) {
             break;
@@ -2398,8 +2415,8 @@ int dMenu_Collect3D_c::getCrystalNum() {
 
 /* 801B749C-801B7504 1B1DDC 0068+00 5/5 0/0 0/0 .text            getMirrorNum__17dMenu_Collect3D_cFv
  */
-int dMenu_Collect3D_c::getMirrorNum() {
-    int count = 0;
+u8 dMenu_Collect3D_c::getMirrorNum() {
+    u8 count = 0;
     for (int i = 0; i < 4; i++) {
         if (!dComIfGs_isCollectMirror(i)) {
             break;
@@ -2413,7 +2430,7 @@ int dMenu_Collect3D_c::getMirrorNum() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Collect3D_c::getMaskMdlVisible() {
+asm u8 dMenu_Collect3D_c::getMaskMdlVisible() {
     nofralloc
 #include "asm/d/menu/d_menu_collect/getMaskMdlVisible__17dMenu_Collect3D_cFv.s"
 }
@@ -2422,7 +2439,7 @@ asm void dMenu_Collect3D_c::getMaskMdlVisible() {
 /* ############################################################################################## */
 /* 80450720-80450728 0001A0 0004+04 1/1 0/0 1/1 .sdata           mViewOffsetY__17dMenu_Collect3D_c
  */
-SECTION_SDATA f32 dMenu_Collect3D_c::mViewOffsetY = -100.0f;
+f32 dMenu_Collect3D_c::mViewOffsetY = -100.0f;
 
 /* 80453FC4-80453FC8 0025C4 0004+00 3/3 0/0 0/0 .sdata2          @7944 */
 SECTION_SDATA2 static f32 lit_7944 = 608.0f;

@@ -313,9 +313,9 @@ public:
     /* 801B6FB0 */ void animeEntry();
     /* 801B7014 */ void createMaskModel();
     /* 801B71C4 */ void createMirrorModel();
-    /* 801B7434 */ int getCrystalNum();
-    /* 801B749C */ int getMirrorNum();
-    /* 801B7504 */ void getMaskMdlVisible();
+    /* 801B7434 */ u8 getCrystalNum();
+    /* 801B749C */ u8 getMirrorNum();
+    /* 801B7504 */ u8 getMaskMdlVisible();
     /* 801B75E8 */ static void setupItem3D(Mtx);
     /* 801B7660 */ void toItem3Dpos(f32, f32, f32, cXyz*);
     /* 801B774C */ static void calcViewMtx(Mtx);
@@ -337,9 +337,9 @@ private:
     /* 0x028 */ dKy_tevstr_c field_0x28;
     /* 0x3B0 */ cXyz field_0x3b0;
     /* 0x3BC */ csXyz field_0x3bc;
-    /* 0x3C4 */ f32 field_0x3c4;
-    /* 0x3C8 */ f32 field_0x3c8;
-    /* 0x3CC */ f32 field_0x3cc;
+    /* 0x3C4 */ f32 mMirrorOffsetX;
+    /* 0x3C8 */ f32 mMirrorOffsetY;
+    /* 0x3CC */ f32 mMirrorScale;
     /* 0x3D0 */ f32 field_0x3d0;
     /* 0x3D4 */ f32 field_0x3d4;
     /* 0x3D8 */ s16 field_0x3d8;
