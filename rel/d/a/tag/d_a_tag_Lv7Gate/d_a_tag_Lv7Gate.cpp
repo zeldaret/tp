@@ -12,7 +12,7 @@
 /* 80D51B50-80D51B54 -00001 0004+00 5/5 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "Lv7Gate";
 
-inline int daTagLv7Gate_c::createHeap() {
+int daTagLv7Gate_c::createHeap() {
     // Watched City in the Sky start cutscene
     if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[510])) {
         return 1;
@@ -70,7 +70,7 @@ int daTagLv7Gate_c::create() {
     return phase;
 }
 
-inline void daTagLv7Gate_c::setPath(u8 i_path_ID) {
+void daTagLv7Gate_c::setPath(u8 i_path_ID) {
     mRoomPath = dPath_GetRoomPath(i_path_ID, fopAcM_GetRoomNo(this));
     if (mRoomPath != NULL) {
         dStage_dPnt_c* pnt = dPath_GetPnt(mRoomPath, 0);
@@ -97,11 +97,11 @@ inline void daTagLv7Gate_c::setPath(u8 i_path_ID) {
     }
 }
 
-inline void daTagLv7Gate_c::initBaseMtx() {
+void daTagLv7Gate_c::initBaseMtx() {
     fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
 }
 
-inline void daTagLv7Gate_c::setBaseMtx() {
+void daTagLv7Gate_c::setBaseMtx() {
     if (mpModel) {
         cXyz local_34(0.0f, 0.0f, speedF);
 
@@ -176,7 +176,7 @@ static int daTagLv7Gate_Execute(daTagLv7Gate_c* i_this) {
     return i_this->execute();
 }
 
-inline void daTagLv7Gate_c::flyAnime() {
+void daTagLv7Gate_c::flyAnime() {
     J3DAnmTransform* bck = NULL;
     J3DAnmTransform* bck_anm = mpBck->getBckAnm();
 
@@ -262,13 +262,11 @@ int daTagLv7Gate_c::execute() {
                 break;
             }
 
-            if (mEvtInfo.checkCommandDemoAccrpt() && mEvtId != -1) {
-                cut_index = dComIfGp_evmng_endCheck(mEvtId);
-                if (cut_index != 0) {
-                    i_dComIfGp_event_reset();
-                    mEvtId = -1;
-                    fopAcM_delete(this);
-                }
+            if (mEvtInfo.checkCommandDemoAccrpt() && mEvtId != -1 &&
+                dComIfGp_evmng_endCheck(mEvtId)) {
+                i_dComIfGp_event_reset();
+                mEvtId = -1;
+                fopAcM_delete(this);
             }
 
             field_0x5b0 = true;
@@ -292,7 +290,7 @@ int daTagLv7Gate_c::execute() {
     return 1;
 }
 
-inline bool daTagLv7Gate_c::checkPoint(f32 i_speed) {
+bool daTagLv7Gate_c::checkPoint(f32 i_speed) {
     dStage_dPnt_c* pnt = dPath_GetPnt(mRoomPath, field_0x5a0);
     mDistance -= i_speed;
     if (sqrtf(PSVECSquareDistance((Vec*)&mPos1, (Vec*)&pnt->m_position)) < i_speed ||
@@ -302,7 +300,7 @@ inline bool daTagLv7Gate_c::checkPoint(f32 i_speed) {
     return false;
 }
 
-inline bool daTagLv7Gate_c::setNextPoint() {
+bool daTagLv7Gate_c::setNextPoint() {
     bool bVar1;
     dPath_GetPnt(mRoomPath, field_0x5a0);
     field_0x5a0 += 1;
@@ -341,7 +339,7 @@ void daTagLv7Gate_c::calcFly() {
     cLib_addCalcAngleS2(&field_0x594.z, (field_0x594.y - angle_y) * 4, 0x23, 0x100);
 }
 
-inline int daTagLv7Gate_c::draw() {
+int daTagLv7Gate_c::draw() {
     if (field_0x5b1) {
         g_env_light.settingTevStruct(0, &mPos1, &mTevStr);
         g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
@@ -362,7 +360,7 @@ static int daTagLv7Gate_IsDelete(daTagLv7Gate_c* i_this) {
     return 1;
 }
 
-inline daTagLv7Gate_c::~daTagLv7Gate_c() {
+daTagLv7Gate_c::~daTagLv7Gate_c() {
     // Watched City in the Sky start cutscene
     dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[510]);
     dComIfG_resDelete(&mPhase, l_arcName);
