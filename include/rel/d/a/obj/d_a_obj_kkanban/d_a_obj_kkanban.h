@@ -1,9 +1,9 @@
 #ifndef D_A_OBJ_KKANBAN_H
 #define D_A_OBJ_KKANBAN_H
 
-#include "f_op/f_op_actor_mng.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/bg/d_bg_s_movebg_actor.h"
+#include "d/com/d_com_inf_game.h"
+#include "f_op/f_op_actor_mng.h"
 
 class daObjKKanban_c : public dBgS_MoveBgActor {
 public:

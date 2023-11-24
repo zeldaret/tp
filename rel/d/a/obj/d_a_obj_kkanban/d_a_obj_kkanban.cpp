@@ -1,12 +1,12 @@
 /**
  * d_a_obj_kkanban.cpp
  * Object - Kakariko Sign
-*/
+ */
 
 #include "rel/d/a/obj/d_a_obj_kkanban/d_a_obj_kkanban.h"
-#include "d/cc/d_cc_d.h"
-#include "SSystem/SComponent/c_math.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "SSystem/SComponent/c_math.h"
+#include "d/cc/d_cc_d.h"
 #include "d/d_procname.h"
 
 /* 80C46698-80C46768 000078 00D0+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
@@ -46,14 +46,14 @@ static char* l_arcName = "H_KKanban";
 /* 80C46F9C-80C46FF0 000004 0054+00 1/1 0/0 0/0 .data            l_tri_src */
 static dCcD_SrcTri l_tri_src = {
     {
-        {0x0, {{0x0, 0x0, 0x0}, {0x20, 0x11}, 0x0}}, // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4}, // mGObjTg
-        {0x0}, // mGObjCo
-    }, // mObjInf
+        {0x0, {{0x0, 0x0, 0x0}, {0x20, 0x11}, 0x0}},  // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},           // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4},           // mGObjTg
+        {0x0},                                        // mGObjCo
+    },                                                // mObjInf
     {
-        {{0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}} // mTri
-    } // mTriAttr
+        {{0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}}  // mTri
+    }                                                                 // mTriAttr
 };
 
 /* 80C46808-80C46928 0001E8 0120+00 1/0 0/0 0/0 .text            Create__14daObjKKanban_cFv */
@@ -79,7 +79,7 @@ int daObjKKanban_c::Create() {
 /* 80C46928-80C469F4 000308 00CC+00 1/1 0/0 0/0 .text            setTG__14daObjKKanban_cFv */
 void daObjKKanban_c::setTG() {
     cXyz tg[3];
-    
+
     tg[0].set(0.0f, 0.0f, 0.0f);
     tg[1].set(0.0f, -500.0f, -500.0f);
     tg[2].set(0.0f, -1200.0f, 760.0f);
@@ -171,27 +171,25 @@ static int daObjKKanban_MoveBGDraw(daObjKKanban_c* i_this) {
 
 /* 80C46FF0-80C47010 -00001 0020+00 1/0 0/0 0/0 .data            daObjKKanban_METHODS */
 static actor_method_class daObjKKanban_METHODS = {
-    (process_method_func)daObjKKanban_create1st,
-    (process_method_func)daObjKKanban_MoveBGDelete,
-    (process_method_func)daObjKKanban_MoveBGExecute,
-    (process_method_func)NULL,
+    (process_method_func)daObjKKanban_create1st,     (process_method_func)daObjKKanban_MoveBGDelete,
+    (process_method_func)daObjKKanban_MoveBGExecute, (process_method_func)NULL,
     (process_method_func)daObjKKanban_MoveBGDraw,
 };
 
 /* 80C47010-80C47040 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_KKanban */
 extern actor_process_profile_definition g_profile_Obj_KKanban = {
-    fpcLy_CURRENT_e,        // mLayerID
-    3,                      // mListID 
-    fpcPi_CURRENT_e,        // mListPrio
-    PROC_Obj_KKanban,       // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
-    sizeof(daObjKKanban_c), // mSize
-    0,                      // mSizeOther
-    0,                      // mParameters
-    &g_fopAc_Method.base,   // mSubMtd
-    548,                    // mPriority
-    &daObjKKanban_METHODS,  // mSubMtd
-    0x40100,                // mStatus
-    fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLBOX_CUSTOM_e, // mCullType
+    fpcLy_CURRENT_e,         // mLayerID
+    3,                       // mListID
+    fpcPi_CURRENT_e,         // mListPrio
+    PROC_Obj_KKanban,        // mProcName
+    &g_fpcLf_Method.mBase,   // mSubMtd
+    sizeof(daObjKKanban_c),  // mSize
+    0,                       // mSizeOther
+    0,                       // mParameters
+    &g_fopAc_Method.base,    // mSubMtd
+    548,                     // mPriority
+    &daObjKKanban_METHODS,   // mSubMtd
+    0x40100,                 // mStatus
+    fopAc_ACTOR_e,           // mActorType
+    fopAc_CULLBOX_CUSTOM_e,  // mCullType
 };
