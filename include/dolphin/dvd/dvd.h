@@ -136,7 +136,7 @@ BOOL DVDSetAutoInvalidation(BOOL autoInval);
 void DVDResume(void);
 static BOOL DVDCancelAsync(DVDCommandBlock* block, DVDCBCallback callback);
 s32 DVDCancel(DVDCommandBlock* block);
-
+void __DVDPrepareResetAsync(DVDCBCallback callbac);
 BOOL DVDCompareDiskID(DVDDiskID* id1, DVDDiskID* id2);
 
 #ifdef __cplusplus

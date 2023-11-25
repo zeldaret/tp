@@ -4,32 +4,23 @@
 //
 
 #include "dolphin/os/OSReboot.h"
+#include "dolphin/os/OSArena.h"
+#include "dolphin/os/OSContext.h"
+#include "dolphin/os/OSExec.h"
 #include "dolphin/types.h"
 
-//
-// External References:
-//
-
-void OSSetArenaHi();
-void OSSetArenaLo();
-void OSSetCurrentContext();
-void OSClearContext();
-void __OSBootDol();
-void OSDisableInterrupts();
-
-//
-// Declarations:
-//
-
 /* 8033F5D0-8033F640 339F10 0070+00 0/0 1/1 0/0 .text            __OSReboot */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __OSReboot(u32 param_0, u32 param_1) {
-    nofralloc
-#include "asm/dolphin/os/OSReboot/__OSReboot.s"
+void __OSReboot(u32 resetCode, u32 bootDol) {
+    struct OSContext context;
+    char* iVar1;
+	OSDisableInterrupts();
+    OSSetArenaLo((void*)0x81280000);
+    OSSetArenaHi((void*)0x812f0000);
+    OSClearContext(&context);
+    OSSetCurrentContext(&context);
+    iVar1 = NULL;
+    __OSBootDol(bootDol, resetCode | 0x80000000, &iVar1);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451688-8045168C 000B88 0004+00 2/2 0/0 0/0 .sbss            SaveStart */

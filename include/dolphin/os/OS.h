@@ -99,6 +99,11 @@ extern u8 __OSReport_Warning_disable;
 extern u8 __OSReport_System_disable;
 extern u8 __OSReport_enable;
 
+extern BOOL __OSIsGcam;
+
+extern u32 BOOT_REGION_START : 0x812FDFF0;
+extern u32 BOOT_REGION_END : 0x812FDFEC;
+
 void OSReportInit__Fv(void);  // needed for inline asm
 
 u8* OSGetStackPointer(void);
@@ -189,16 +194,6 @@ typedef struct OSBootInfo {
     /* 0x3C */ u32 fst_max_length;
 } OSBootInfo;
 
-typedef struct {
-    BOOL valid;
-    u32 restartCode;
-    u32 bootDol;
-    void* regionStart;
-    void* regionEnd;
-    BOOL argsUseDefault;
-    void* argsAddr;  // valid only when argsUseDefault = FALSE
-} OSExecParams;
-
 typedef struct BI2Debug {
     /* 0x00 */ s32 debugMonSize;
     /* 0x04 */ s32 simMemSize;
@@ -245,7 +240,7 @@ struct GLOBAL_MEMORY {
     u8 padding_0x30e0[4];
     u32 field_0x30e4; /* __OSPADButton */
     u8 padding_0x30ec[8];
-    u32 field_0x30f0; /* DOL Execute Parameters */
+    OSExecParams* field_0x30f0; /* DOL Execute Parameters */
     u8 padding_0x30f4[12];
     u32 field_0x3100; /* Physical MEM1 size */
     u32 field_0x3104; /* Simulated MEM1 size */
