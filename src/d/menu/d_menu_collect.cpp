@@ -6,6 +6,7 @@
 #include "d/menu/d_menu_collect.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
@@ -2120,6 +2121,35 @@ extern "C" asm void __dt__17dMenu_Collect3D_cFv() {
 #endif
 
 /* 801B65A8-801B6694 1B0EE8 00EC+00 1/1 0/0 0/0 .text            _create__17dMenu_Collect3D_cFv */
+#ifdef NONMATCHING
+// Later
+void dMenu_Collect3D_c::_create() {
+    mpHeap->getTotalFreeSize();
+    mpSolidHeap = mDoExt_createSolidHeapToCurrent(0x25800, mpHeap, 0x20);
+    mDoExt_setCurrentHeap((JKRHeap*)mpSolidHeap);
+    daAlink_c* linkActor = daAlink_getAlinkActorClass();
+    if (linkActor != NULL) {
+        linkActor->initStatusWindow(); // what the fuck
+    }
+    u8 maskMdl = getMaskMdlVisible();
+    if (maskMdl == 2) {
+        createMirrorModel();
+    } else if (maskMdl == 1) {
+        createMaskModel();
+    } else {
+        mpModel = NULL;
+        field_0x1c = NULL;
+        field_0x20 = NULL;
+    }
+    mpSolidHeap->adjustSize();
+    mDoExt_restoreCurrentHeap();
+    if (mpModel != NULL) {
+        dKy_tevstr_init(&field_0x28, -1, 0xff);
+        set_mtx();
+    }
+    _move(mpCollect2D->getCursorX(), mpCollect2D->getCursorY());
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2128,6 +2158,7 @@ asm void dMenu_Collect3D_c::_create() {
 #include "asm/d/menu/d_menu_collect/_create__17dMenu_Collect3D_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801B6694-801B66C8 1B0FD4 0034+00 1/1 0/0 0/0 .text            _delete__17dMenu_Collect3D_cFv */
 void dMenu_Collect3D_c::_delete() {
@@ -2302,6 +2333,48 @@ static const f32 m_kamen_scale[5] = {
 #pragma pop
 
 /* 801B7014-801B71C4 1B1954 01B0+00 1/1 0/0 0/0 .text createMaskModel__17dMenu_Collect3D_cFv */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Collect3D_c::createMaskModel() {
+    static char* bck_name[4] = {
+        "md_mask_parts_spin_1.bck",
+        "md_mask_parts_spin_2.bck",
+        "md_mask_parts_spin_3.bck",
+        "md_mask_parts_spin_4.bck",    
+    };
+    static char* brk_name[4] = {
+        "md_mask_parts_spin_1.brk",
+        "md_mask_parts_spin_2_3.brk",
+        "md_mask_parts_spin_2_3.brk",
+        "md_mask_parts_spin_4.brk",
+    };
+
+    u8 crystalNum = getCrystalNum();
+    mMaskMirrorOffsetX = m_kamen_offset_x[crystalNum];
+    mMaskMirrorOffsetY = m_kamen_offset_y[crystalNum];
+    mMaskMirrorScale = m_kamen_scale[crystalNum];
+    field_0x3b0.set(0.0f, 0.0f, 0.0f);
+    field_0x3bc.set(0, 0, 0);
+    mpModel = NULL;
+    field_0x1c = NULL;
+    field_0x20 = NULL;
+    if (crystalNum != 0) {
+        setJ3D("md_mask_UI.bmd", bck_name[crystalNum -1], brk_name[crystalNum -1]);
+        switch (crystalNum) {
+            case 1:
+                mpModel->getModelData()->getMaterialNodePointer(0)->getShape()->hide();
+                mpModel->getModelData()->getMaterialNodePointer(1)->getShape()->hide();
+            case 2:
+                mpModel->getModelData()->getMaterialNodePointer(2)->getShape()->hide();
+                mpModel->getModelData()->getMaterialNodePointer(3)->getShape()->hide();
+            case 3:
+                mpModel->getModelData()->getMaterialNodePointer(6)->getShape()->hide();
+                mpModel->getModelData()->getMaterialNodePointer(7)->getShape()->hide();
+                break;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2310,6 +2383,7 @@ asm void dMenu_Collect3D_c::createMaskModel() {
 #include "asm/d/menu/d_menu_collect/createMaskModel__17dMenu_Collect3D_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 803952F4-80395308 021954 0014+00 0/1 0/0 0/0 .rodata          m_mirror_offset_x$7682 */
 #pragma push
@@ -2345,6 +2419,7 @@ SECTION_DEAD static char const* const pad_80395514 = "\0\0\0";
 
 /* 801B71C4-801B7434 1B1B04 0270+00 1/1 0/0 0/0 .text createMirrorModel__17dMenu_Collect3D_cFv */
 #ifdef NONMATCHING
+// Matches with literals
 void dMenu_Collect3D_c::createMirrorModel() {
     static char* bck_name[4] = {
         "kageri_mirrer_spin_1.bck",
@@ -2359,10 +2434,10 @@ void dMenu_Collect3D_c::createMirrorModel() {
         "kageri_mirrer_spin_2_3_4.brk",
     };
 
-    s32 mirrorNum = getMirrorNum();
-    mMirrorOffsetX = m_mirror_offset_x[mirrorNum];
-    mMirrorOffsetY = m_mirror_offset_y[mirrorNum];
-    mMirrorScale = m_mirror_scale[mirrorNum];
+    u8 mirrorNum = getMirrorNum();
+    mMaskMirrorOffsetX = m_mirror_offset_x[mirrorNum];
+    mMaskMirrorOffsetY = m_mirror_offset_y[mirrorNum];
+    mMaskMirrorScale = m_mirror_scale[mirrorNum];
     field_0x3b0.set(0.0f, 0.0f, 0.0f);
     field_0x3bc.set(0, 0, 0);
     mpModel = NULL;
