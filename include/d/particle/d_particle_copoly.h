@@ -21,6 +21,8 @@ public:
     /* 80051524 */ JPABaseEmitter* getCenterEmitter(int, int);
 
     void clearCenterID() { clearID(field_0x8[0], &field_0x36); }
+    void changeWaterOffset(f32 i_offset) { mWaterOffset = i_offset; }
+    void changeRippleOffset(f32 i_offset) { mRippleOffset = i_offset; }
 
     /* 0x00 */ u32 field_0x0[2];
     /* 0x08 */ u32 field_0x8[2][4];

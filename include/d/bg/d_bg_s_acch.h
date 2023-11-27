@@ -167,6 +167,7 @@ public:
 
     // inline dupe
     void i_ClrGroundHit() { m_flags &= ~GROUND_HIT; }
+    bool i_ChkGroundHit() const { return m_flags & GROUND_HIT; }
 
 public:
     /* 0x02C */ u32 m_flags;

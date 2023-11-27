@@ -78,6 +78,7 @@ public:
     u8 getLinkState() const { return mLinkState; }
     u8 getMoveSpeed() const { return mMoveSpeed; }
     bool isRiding() const { return mRiding; }
+    void i_setLinkState(u8 i_state) { mLinkState = i_state; }
 
     static Z2CreatureLink* mLinkPtr;
 

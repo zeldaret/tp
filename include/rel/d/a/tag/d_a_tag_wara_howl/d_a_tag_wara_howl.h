@@ -15,7 +15,7 @@ public:
 
     /* 80D63F74 */ virtual ~daTagWrHowl_c();
 
-    u8 getTuneId() { return fopAcM_GetParamBit(this, 4, 4); }
+    s8 getTuneId() { return fopAcM_GetParamBit(this, 4, 4); }
 
     /* 0x56C */ f32 field_0x56c;
     /* 0x570 */ f32 field_0x570;

@@ -207,7 +207,7 @@ public:
 
     dAttCatch_c& getCatghTarget() { return mCatghTarget; }
     u8 getCatchChgItem() { return mCatghTarget.getChangeItem(); }
-    BOOL chkFlag(u32 flag) { return mFlags & flag; }
+    BOOL chkFlag(u32 flag) { return (mFlags & flag) ? TRUE : FALSE; }
     void setFlag(u32 flag) { mFlags |= flag; }
     void clrFlag(u32 flag) { mFlags &= ~flag; }
     int GetActionCount() { return mActionCount; }

@@ -176,7 +176,7 @@ static u8 lit_4421[12];
 #pragma pop
 
 /* 80425634-80425640 052354 000C+00 2/3 0/0 0/0 .bss             l_wolfRopeBaseAnime */
-static f32 l_wolfRopeBaseAnime[3];
+static Vec l_wolfRopeBaseAnime;
 
 /* 80425640-8042564C 052360 000C+00 0/1 0/0 0/0 .bss             @14255 */
 #pragma push
@@ -324,9 +324,9 @@ asm void daAlink_c::putObjLineCheck(dBgS_LinChk& param_0, cXyz* param_1, fopAc_a
 #pragma pop
 
 /* 800E5B6C-800E5BB4 0E04AC 0048+00 3/3 0/0 0/0 .text grabLineCheck__9daAlink_cFP4cXyzP4cXyz */
-void daAlink_c::grabLineCheck(cXyz* i_start, cXyz* i_end) {
+bool daAlink_c::grabLineCheck(cXyz* i_start, cXyz* i_end) {
     mObjLinChk.Set(i_start, i_end, mGrabItemAcKeep.getActor());
-    dComIfG_Bgsp().LineCross(&mObjLinChk);
+    return dComIfG_Bgsp().LineCross(&mObjLinChk);
 }
 
 /* 800E5BB4-800E5CBC 0E04F4 0108+00 6/6 0/0 0/0 .text setGrabItemActor__9daAlink_cFP10fopAc_ac_c
@@ -858,8 +858,8 @@ static fopAc_ac_c* daAlink_searchGoat(fopAc_ac_c* i_actor, void*) {
 /* 800E91C4-800E9210 0E3B04 004C+00 1/0 0/0 0/0 .text            cancelGoronThrowEvent__9daAlink_cFv
  */
 void daAlink_c::cancelGoronThrowEvent() {
-    if (mProcID == PROC_GOAT_CATCH && field_0x300e.z == 0) {
-        field_0x300e.z = 1;
+    if (mProcID == PROC_GOAT_CATCH && mProcVar3.field_0x300e.z == 0) {
+        mProcVar3.field_0x300e.z = 1;
         i_dComIfGp_event_reset();
     }
 }
@@ -892,14 +892,14 @@ int daAlink_c::procGoatMoveInit() {
     field_0x594 = daAlinkHIO_atnMove_c0::m.mMaxSpeed;
 
     setSingleAnimeBase(ANM_ATN_COW);
-    field_0x300c = 0;
+    mProcVar2.field_0x300c = 0;
 
     fopAc_ac_c* goat_p = (fopAc_ac_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchGoat, NULL);
     if (goat_p != NULL) {
         field_0x280c.setData(goat_p);
     }
 
-    field_0x300e.x = 0;
+    mProcVar3.field_0x300e.x = 0;
     deleteEquipItem(FALSE, FALSE);
     return 1;
 }
@@ -1002,8 +1002,8 @@ int daAlink_c::procGoronMoveInit() {
     current.angle.y = shape_angle.y + -0x4000;
     field_0x594 = daAlinkHIO_atnMove_c0::m.mMaxSpeed;
     setSingleAnimeBase(ANM_ATN_RIGHT);
-    field_0x300c = 1;
-    field_0x300e.x = 0;
+    mProcVar2.field_0x300c = 1;
+    mProcVar3.field_0x300e.x = 0;
     return 1;
 }
 

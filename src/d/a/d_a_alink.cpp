@@ -33,14 +33,11 @@
 #include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"
 #include "rel/d/a/tag/d_a_tag_mist/d_a_tag_mist.h"
 #include "rel/d/a/tag/d_a_tag_wljump/d_a_tag_wljump.h"
+#include "rel/d/a/obj/d_a_obj_sekizoa/d_a_obj_sekizoa.h"
 
 //
 // Types:
 //
-
-struct daObj_Sekizoa_c {
-    /* 801312C8 */ void setWolfHowling();
-};
 
 struct daObjMovebox {
     struct Act_c {
@@ -4787,8 +4784,8 @@ COMPILER_STRIP_GATE(0x8038FAC0, &l_crawlTopUpOffset);
 /* 8038FACC-8038FAD8 01C12C 000C+00 0/1 0/0 0/0 .rodata          l_wolfLieTopUpOffset */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const l_wolfLieTopUpOffset[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x42, 0x96, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_RODATA static Vec const l_wolfLieTopUpOffset = {
+    0.0f, 75.0f, 0.0f
 };
 COMPILER_STRIP_GATE(0x8038FACC, &l_wolfLieTopUpOffset);
 #pragma pop
@@ -4796,8 +4793,8 @@ COMPILER_STRIP_GATE(0x8038FACC, &l_wolfLieTopUpOffset);
 /* 8038FAD8-8038FAE4 01C138 000C+00 0/1 0/0 0/0 .rodata          l_crawlSideOffset */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const l_crawlSideOffset[12] = {
-    0x42, 0x5C, 0x00, 0x00, 0x42, 0xA0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_RODATA static Vec const l_crawlSideOffset = {
+    55.0f, 80.0f, 0.0f
 };
 COMPILER_STRIP_GATE(0x8038FAD8, &l_crawlSideOffset);
 #pragma pop
@@ -4805,8 +4802,8 @@ COMPILER_STRIP_GATE(0x8038FAD8, &l_crawlSideOffset);
 /* 8038FAE4-8038FAF0 01C144 000C+00 0/1 0/0 0/0 .rodata          l_wolfLieSideOffset */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const l_wolfLieSideOffset[12] = {
-    0x42, 0x5C, 0x00, 0x00, 0x42, 0x96, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_RODATA static Vec const l_wolfLieSideOffset = {
+    55.0f, 75.0f, 0.0f
 };
 COMPILER_STRIP_GATE(0x8038FAE4, &l_wolfLieSideOffset);
 #pragma pop
@@ -6228,28 +6225,41 @@ SECTION_RODATA static u32 const label[12] = {
 COMPILER_STRIP_GATE(0x80391E48, &label);
 
 /* 80391E78-80391E8C 01E4D8 0014+00 1/1 0/0 0/0 .rodata          normalType0$50859 */
-SECTION_RODATA static u8 const normalType0[20] = {
-    0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00,
-    0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_RODATA static int const normalType0[] = {
+    3, 3, 3, 0, 0,
 };
 COMPILER_STRIP_GATE(0x80391E78, &normalType0);
 
 /* 80391E8C-80391EA0 01E4EC 0014+00 1/1 0/0 0/0 .rodata          normalType1$50860 */
-SECTION_RODATA static u8 const normalType1_50860[20] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x03,
+SECTION_RODATA static int const normalType1_50860[] = {
+    0, 0, 0, 3, 3,
 };
 COMPILER_STRIP_GATE(0x80391E8C, &normalType1_50860);
 
+struct daAlink_WCutParamTbl {
+    /* 0x0 */ daAlink_c::daAlink_WANM m_anmID;
+    /* 0x4 */ u8 m_cutType;
+};  // Size: 0x8
+
 /* 80391EA0-80391EC0 01E500 0020+00 0/1 0/0 0/0 .rodata          dataTabl$51470 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const dataTabl[32] = {
-    0x00, 0x00, 0x00, 0x40, 0x2C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x2E, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x43, 0x2F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x2D, 0x00, 0x00, 0x00,
+static const daAlink_WCutParamTbl dataTabl[] = {
+    {
+        daAlink_c::WANM_ATTACK_B_LEFT,
+        daAlink_c::CUT_TYPE_WOLF_B_LEFT,
+    },
+    {
+        daAlink_c::WANM_ATTACK_B_FRONT,
+        daAlink_c::CUT_TYPE_WOLF_B_FRONT,
+    },
+    {
+        daAlink_c::WANM_ATTACK_B_TAIL,
+        daAlink_c::CUT_TYPE_WOLF_B_BACK,
+    },
+    {
+        daAlink_c::WANM_ATTACK_B_RIGHT,
+        daAlink_c::CUT_TYPE_WOLF_B_RIGHT,
+    },
 };
-COMPILER_STRIP_GATE(0x80391EA0, &dataTabl);
-#pragma pop
 
 /* 80391EC0-80391ECC 01E520 000C+00 1/1 0/0 0/0 .rodata          arm1Vec$56040 */
 SECTION_RODATA static u8 const arm1Vec[12] = {
@@ -11461,21 +11471,133 @@ SECTION_DATA static u8 l_jntColPos17[12] = {
 };
 
 /* 803B29AC-803B2A84 -00001 00D8+00 1/1 0/0 0/0 .data            l_jntColData */
-SECTION_DATA static void* l_jntColData[54] = {
-    (void*)0x01000001,     (void*)0x41900000,     (void*)&l_jntColPos0,  (void*)0x00000004,
-    (void*)0x41800000,     (void*)&l_jntColPos1,  (void*)0x01000007,     (void*)0x40E00000,
-    (void*)&l_jntColPos2,  (void*)0x0100000C,     (void*)0x40E00000,     (void*)&l_jntColPos2,
-    (void*)0x01000008,     (void*)0x40C00000,     (void*)&l_jntColPos4,  (void*)0x0100000D,
-    (void*)0x40C00000,     (void*)&l_jntColPos4,  (void*)0x00000009,     (void*)0x40C00000,
-    (void*)&l_jntColPos6,  (void*)0x0000000E,     (void*)0x40C00000,     (void*)&l_jntColPos6,
-    (void*)0x01000010,     (void*)0x41900000,     (void*)&l_jntColPos8,  (void*)0x01000012,
-    (void*)0x41000000,     (void*)&l_jntColPos9,  (void*)0x01000017,     (void*)0x41000000,
-    (void*)&l_jntColPos10, (void*)0x01000013,     (void*)0x40E00000,     (void*)&l_jntColPos11,
-    (void*)0x01000018,     (void*)0x40E00000,     (void*)&l_jntColPos12, (void*)0x01000014,
-    (void*)0x40C00000,     (void*)&l_jntColPos13, (void*)0x01000019,     (void*)0x40C00000,
-    (void*)&l_jntColPos14, (void*)0x0203000F,     (void*)0x42200000,     (void*)&l_jntColPos15,
-    (void*)0x02030005,     (void*)0x42200000,     (void*)&l_jntColPos16, (void*)0x0003000F,
-    (void*)0x42340000,     (void*)&l_jntColPos17,
+static dJntColData_c l_jntColData[] = {
+    {
+        1,
+        0,
+        1,
+        18.0f,
+        (Vec*)l_jntColPos0,
+    },
+    {
+        0,
+        0,
+        4,
+        16.0f,
+        (Vec*)l_jntColPos1,
+    },
+    {
+        1,
+        0,
+        7,
+        7.0f,
+        (Vec*)l_jntColPos2,
+    },
+    {
+        1,
+        0,
+        12,
+        7.0f,
+        (Vec*)l_jntColPos2,
+    },
+    {
+        1,
+        0,
+        8,
+        6.0f,
+        (Vec*)l_jntColPos4,
+    },
+    {
+        1,
+        0,
+        13,
+        6.0f,
+        (Vec*)l_jntColPos4,
+    },
+    {
+        0,
+        0,
+        9,
+        6.0f,
+        (Vec*)l_jntColPos6,
+    },
+    {
+        0,
+        0,
+        14,
+        6.0f,
+        (Vec*)l_jntColPos6,
+    },
+    {
+        1,
+        0,
+        16,
+        18.0f,
+        (Vec*)l_jntColPos8,
+    },
+    {
+        1,
+        0,
+        18,
+        8.0f,
+        (Vec*)l_jntColPos9,
+    },
+    {
+        1,
+        0,
+        23,
+        8.0f,
+        (Vec*)l_jntColPos10,
+    },
+    {
+        1,
+        0,
+        19,
+        7.0f,
+        (Vec*)l_jntColPos11,
+    },
+    {
+        1,
+        0,
+        24,
+        7.0f,
+        (Vec*)l_jntColPos12,
+    },
+    {
+        1,
+        0,
+        20,
+        6.0f,
+        (Vec*)l_jntColPos13,
+    },
+    {
+        1,
+        0,
+        25,
+        6.0f,
+        (Vec*)l_jntColPos14,
+    },
+    {
+        2,
+        3,
+        15,
+        40.0f,
+        (Vec*)l_jntColPos15,
+    },
+    {
+        2,
+        3,
+        5,
+        40.0f,
+        (Vec*)l_jntColPos16,
+    },
+    {
+        0,
+        3,
+        15,
+        45.0f,
+        (Vec*)l_jntColPos17,
+    },
 };
 
 /* 803B2A84-803B2A9C 00FBA4 0018+00 1/0 0/0 0/0 .data            l_wolfJntColPos0 */
@@ -11538,25 +11660,133 @@ SECTION_DATA static u8 l_wolfJntColPos16[24] = {
 };
 
 /* 803B2B68-803B2C40 -00001 00D8+00 1/1 0/0 0/0 .data            l_wolfJntColData */
-SECTION_DATA static void* l_wolfJntColData[54] = {
-    (void*)0x01000001, (void*)0x41E00000, (void*)&l_wolfJntColPos0,
-    (void*)0x00000004, (void*)0x41C80000, (void*)&l_wolfJntColPos1,
-    (void*)0x01000010, (void*)0x41200000, (void*)&l_wolfJntColPos2,
-    (void*)0x01000015, (void*)0x41200000, (void*)&l_wolfJntColPos2,
-    (void*)0x01000011, (void*)0x40C00000, (void*)&l_wolfJntColPos4,
-    (void*)0x01000016, (void*)0x40C00000, (void*)&l_wolfJntColPos4,
-    (void*)0x01000012, (void*)0x40800000, (void*)&l_wolfJntColPos6,
-    (void*)0x01000017, (void*)0x40800000, (void*)&l_wolfJntColPos6,
-    (void*)0x01000013, (void*)0x40800000, (void*)&l_wolfJntColPos8,
-    (void*)0x01000018, (void*)0x40800000, (void*)&l_wolfJntColPos8,
-    (void*)0x0100001C, (void*)0x41300000, (void*)&l_wolfJntColPos10,
-    (void*)0x01000021, (void*)0x41300000, (void*)&l_wolfJntColPos10,
-    (void*)0x0100001D, (void*)0x40E00000, (void*)&l_wolfJntColPos12,
-    (void*)0x01000022, (void*)0x40E00000, (void*)&l_wolfJntColPos12,
-    (void*)0x0100001E, (void*)0x40A00000, (void*)&l_wolfJntColPos14,
-    (void*)0x01000023, (void*)0x40A00000, (void*)&l_wolfJntColPos14,
-    (void*)0x0100001F, (void*)0x40C00000, (void*)&l_wolfJntColPos16,
-    (void*)0x01000024, (void*)0x40A00000, (void*)&l_wolfJntColPos16,
+static dJntColData_c l_wolfJntColData[] = {
+    {
+        1,
+        0,
+        1,
+        28.0f,
+        (Vec*)l_wolfJntColPos0,
+    },
+    {
+        0,
+        0,
+        4,
+        25.0f,
+        (Vec*)l_wolfJntColPos1,
+    },
+    {
+        1,
+        0,
+        16,
+        10.0f,
+        (Vec*)l_wolfJntColPos2,
+    },
+    {
+        1,
+        0,
+        21,
+        10.0f,
+        (Vec*)l_wolfJntColPos2,
+    },
+    {
+        1,
+        0,
+        17,
+        6.0f,
+        (Vec*)l_wolfJntColPos4,
+    },
+    {
+        1,
+        0,
+        22,
+        6.0f,
+        (Vec*)l_wolfJntColPos4,
+    },
+    {
+        1,
+        0,
+        18,
+        4.0f,
+        (Vec*)l_wolfJntColPos6,
+    },
+    {
+        1,
+        0,
+        23,
+        4.0f,
+        (Vec*)l_wolfJntColPos6,
+    },
+    {
+        1,
+        0,
+        19,
+        4.0f,
+        (Vec*)l_wolfJntColPos8,
+    },
+    {
+        1,
+        0,
+        24,
+        4.0f,
+        (Vec*)l_wolfJntColPos8,
+    },
+    {
+        1,
+        0,
+        28,
+        11.0f,
+        (Vec*)l_wolfJntColPos10,
+    },
+    {
+        1,
+        0,
+        33,
+        11.0f,
+        (Vec*)l_wolfJntColPos10,
+    },
+    {
+        1,
+        0,
+        29,
+        7.0f,
+        (Vec*)l_wolfJntColPos12,
+    },
+    {
+        1,
+        0,
+        34,
+        7.0f,
+        (Vec*)l_wolfJntColPos12,
+    },
+    {
+        1,
+        0,
+        30,
+        5.0f,
+        (Vec*)l_wolfJntColPos14,
+    },
+    {
+        1,
+        0,
+        35,
+        5.0f,
+        (Vec*)l_wolfJntColPos14,
+    },
+    {
+        1,
+        0,
+        31,
+        6.0f,
+        (Vec*)l_wolfJntColPos16,
+    },
+    {
+        1,
+        0,
+        36,
+        5.0f,
+        (Vec*)l_wolfJntColPos16,
+    },
 };
 
 /* 803B2C40-803B2C50 00FD60 000D+03 0/1 0/0 0/0 .data            defaultPortal$39238 */
@@ -12285,8 +12515,8 @@ extern "C" asm void __dt__14J3DMaterialAnmFv() {
 
 /* 800A48F0-800A4910 09F230 0020+00 1/1 0/0 0/0 .text            daAlink_createHeap__FP10fopAc_ac_c
  */
-static int daAlink_createHeap(fopAc_ac_c* link) {
-    return ((daAlink_c*)link)->createHeap();
+static int daAlink_createHeap(fopAc_ac_c* i_this) {
+    return ((daAlink_c*)i_this)->createHeap();
 }
 
 bool daPy_py_c::checkWoodSwordEquip() {
@@ -13895,7 +14125,7 @@ asm void daAlink_c::setCollision() {
 #ifdef NONMATCHING
 f32 daAlink_c::getBaseAnimeFrame() const {
     if (mProcID == PROC_SUMOU_ACTION && mSpeedModifier > 0.0f) {
-        return field_0x300c;
+        return mProcVar2.field_0x300c;
     }
 
     return mUnderFrameCtrl[0].getFrame();
@@ -15513,7 +15743,7 @@ f32 daAlink_c::getFrontRollRate() {
 
 /* 800B4B7C-800B5284 0AF4BC 0708+00 2/2 0/0 0/0 .text            decideCommonDoStatus__9daAlink_cFv
  */
-// almost, small branch issues and need fix for i_checkAttentionLock
+// almost, small branch issues
 #ifdef NONMATCHING
 void daAlink_c::decideCommonDoStatus() {
     if (!i_checkFmChainGrabAnime() && i_dComIfGp_getDoStatus() == 0) {
@@ -16648,9 +16878,9 @@ BOOL daAlink_c::checkItemChangeFromButton() {
         } else {
             u8 i;
             for (i = 0; i < 2; i++) {
-                int tmp = checkNewItemChange(i);
-                if (tmp && itemTriggerCheck(1 << i)) {
-                    return changeItemTriggerKeepProc(i, tmp);
+                int proc_type = checkNewItemChange(i);
+                if (proc_type != 0 && itemTriggerCheck(1 << i)) {
+                    return changeItemTriggerKeepProc(i, proc_type);
                 }
             }
 
@@ -16808,10 +17038,8 @@ int daAlink_c::commonCheckNextAction(int param_0) {
 }
 
 /* 800BA0D0-800BA6A0 0B4A10 05D0+00 91/91 0/0 0/0 .text            checkNextAction__9daAlink_cFi */
-// checkAttentionLock issue / literals
+// matches with literals
 #ifdef NONMATCHING
-#pragma push
-#pragma optimization_level 2
 int daAlink_c::checkNextAction(int param_0) {
     f32 temp_f31 = field_0x594;
 
@@ -16933,7 +17161,6 @@ int daAlink_c::checkNextAction(int param_0) {
 
     return ret;
 }
-#pragma pop
 #else
 #pragma push
 #pragma optimization_level 0
@@ -17479,7 +17706,7 @@ void daAlink_c::posMove() {
 
     if (checkRootTransClearMode()) {
         cXyz sp78 = field_0x34d4 - sp108;
-        if (mProcID == PROC_CLIMB_UP_START && field_0x300e.z != 0) {
+        if (mProcID == PROC_CLIMB_UP_START && mProcVar3.field_0x300e.z != 0) {
             sp78 = cXyz::Zero;
         }
 
@@ -18453,14 +18680,14 @@ bool daAlink_c::checkNotAutoJumpStage() {
 }
 
 /* 800C0678-800C077C 0BAFB8 0104+00 3/3 0/0 0/0 .text checkCastleTownUseItem__9daAlink_cFUs */
-bool daAlink_c::checkCastleTownUseItem(u16 item_id) {
+bool daAlink_c::checkCastleTownUseItem(u16 i_itemNo) {
     if (checkNotBattleStage()) {
-        if (item_id == KANTERA || checkTradeItem(item_id) ||
-            (item_id == DUNGEON_BACK && checkLv7DungeonShop()) ||
-            (checkRoomSpecial() && (item_id == EMPTY_BOTTLE || checkDungeonWarpItem(item_id))) ||
-            (checkStageName("R_SP128") && item_id == COPY_ROD) ||
-            (checkLv2DungeonRoomSpecial() && item_id == HVY_BOOTS) ||
-            (checkBottleItem(item_id) && item_id != EMPTY_BOTTLE))
+        if (i_itemNo == KANTERA || checkTradeItem(i_itemNo) ||
+            (i_itemNo == DUNGEON_BACK && checkLv7DungeonShop()) ||
+            (checkRoomSpecial() && (i_itemNo == EMPTY_BOTTLE || checkDungeonWarpItem(i_itemNo))) ||
+            (checkStageName("R_SP128") && i_itemNo == COPY_ROD) ||
+            (checkLv2DungeonRoomSpecial() && i_itemNo == HVY_BOOTS) ||
+            (checkBottleItem(i_itemNo) && i_itemNo != EMPTY_BOTTLE))
         {
             return true;
         } else {
@@ -18470,7 +18697,92 @@ bool daAlink_c::checkCastleTownUseItem(u16 item_id) {
     return true;
 }
 
+enum daAlink_ItemProc {
+    /*  0 */ ITEM_PROC_NONE,
+    /*  1 */ ITEM_PROC_BOOTS_EQUIP,
+    /*  2 */ ITEM_PROC_SET_HVYBOOTS,
+    /*  3 */ ITEM_PROC_BOTTLE_DRINK,
+    /*  4 */ ITEM_PROC_SPINNER_READY,
+    /*  5 */ ITEM_PROC_DUNGEON_WARP_READY,
+    /*  6 */ ITEM_PROC_BOTTLE_OPEN,
+    /*  7 */ ITEM_PROC_FISHING_FOOD,
+    /*  8 */ ITEM_PROC_KANDELAAR_POUR,
+    /*  9 */ ITEM_PROC_SUBJECTIVITY,
+    /* 10 */ ITEM_PROC_PICK_PUT,
+    /* 11 */ ITEM_PROC_OFF_KANDELAAR,
+    /* 12 */ ITEM_PROC_COMMON_CHANGE_ITEM,
+    /* 13 */ ITEM_PROC_BOTTLE_SWING,
+    /* 14 */ ITEM_PROC_NOT_USE_ITEM,
+    /* 15 */ ITEM_PROC_GRASS_WHISTLE,
+};
+
 /* 800C077C-800C0A9C 0BB0BC 0320+00 1/1 0/0 0/0 .text changeItemTriggerKeepProc__9daAlink_cFUci */
+// matches with literals
+#ifdef NONMATCHING
+int daAlink_c::changeItemTriggerKeepProc(u8 i_selItemIdx, int i_procType) {
+    u32 sel_item = dComIfGp_getSelectItem(i_selItemIdx);
+    mSelectItemId = i_selItemIdx;
+
+    if (i_procType == ITEM_PROC_GRASS_WHISTLE) {
+        procGrassWhistleWaitInit(3, -1, 0, 0, NULL);
+    } else if (i_procType == ITEM_PROC_BOTTLE_DRINK) {
+        if (i_checkReinRide()) {
+            procHorseBottleDrinkInit(sel_item);
+        } else if (checkCanoeRide()) {
+            procCanoeBottleDrinkInit(sel_item);
+        } else {
+            procBottleDrinkInit(sel_item);
+        }
+    } else if (i_procType == ITEM_PROC_KANDELAAR_POUR) {
+        if (i_checkReinRide()) {
+            procHorseKandelaarPourInit();
+        } else if (checkCanoeRide()) {
+            procCanoeKandelaarPourInit();
+        } else {
+            procKandelaarPourInit();
+        }
+    } else if (i_procType == ITEM_PROC_FISHING_FOOD) {
+        procFishingFoodInit();
+    } else if (i_procType == ITEM_PROC_BOOTS_EQUIP) {
+        procBootsEquipInit();
+    } else if (i_procType == ITEM_PROC_SET_HVYBOOTS) {
+        setHeavyBoots(1);
+    } else if (i_procType == ITEM_PROC_SPINNER_READY) {
+        procSpinnerReadyInit();
+    } else if (i_procType == ITEM_PROC_DUNGEON_WARP_READY) {
+        procDungeonWarpReadyInit();
+    } else if (i_procType == ITEM_PROC_BOTTLE_OPEN) {
+        procBottleOpenInit(sel_item);
+    } else if (i_procType == ITEM_PROC_BOTTLE_SWING) {
+        procBottleSwingInit(NULL, 0);
+    } else if (i_procType == ITEM_PROC_NOT_USE_ITEM) {
+        procNotUseItemInit(sel_item);
+    } else if (i_procType == ITEM_PROC_SUBJECTIVITY) {
+        procCoSubjectivityInit();
+        dComIfGp_setPlayerStatus0(0, 0x200000);
+        seStartSystem(Z2SE_AL_HAWK_EYE_PUTON);
+    } else if (i_procType == ITEM_PROC_PICK_PUT) {
+        procPickPutInit(1);
+    } else if (i_procType == ITEM_PROC_OFF_KANDELAAR) {
+        offKandelaarModel();
+    } else if (i_procType == ITEM_PROC_COMMON_CHANGE_ITEM) {
+        field_0x2fde = NO_ITEM;
+        itemEquip(sel_item);
+
+        if (i_dComIfGp_checkPlayerStatus0(0, 0x2000) &&
+            ((checkBowAndSlingItem(field_0x2fde) || checkHookshotItem(field_0x2fde) ||
+              field_0x2fde == COPY_ROD) ||
+             field_0x2fde == BOOMERANG))
+        {
+            commonChangeItem();
+            resetUpperAnime(UPPER_2, -1.0f);
+            checkItemActionInitStart();
+        }
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -18479,9 +18791,156 @@ asm int daAlink_c::changeItemTriggerKeepProc(u8 param_0, int param_1) {
 #include "asm/d/a/d_a_alink/changeItemTriggerKeepProc__9daAlink_cFUci.s"
 }
 #pragma pop
+#endif
 
 /* 800C0A9C-800C12DC 0BB3DC 0840+00 1/1 0/0 0/0 .text            checkNewItemChange__9daAlink_cFUc
  */
+/**
+ * Determines whether an item action can occur, and which action to use.
+ *
+ * @return a `daAlink_ItemProc` value corresponding to the `PROC` function to run in `changeItemTriggerKeepProc`
+ */
+// matches with literals
+#ifdef NONMATCHING
+int daAlink_c::checkNewItemChange(u8 param_0) {
+    u32 sel_item = dComIfGp_getSelectItem(param_0);
+
+    if (checkSpinnerRide() || sel_item == BOMB_BAG_LV1 ||
+        ((sel_item == KANTERA || checkOilBottleItem(sel_item)) &&
+         checkWaterInKandelaarOffset(mWaterY)) ||
+        (checkCanoeRide() && checkStageName("F_SP127")) || checkCloudSea() ||
+        ((i_checkModeFlg(0x40000) || i_checkNoResetFlg0(FLG0_UNDERWATER)) &&
+         !checkAcceptUseItemInWater(sel_item)) ||
+        (i_checkModeFlg(0x40000) && sel_item == WATER_BOMB) || !checkCastleTownUseItem(sel_item) ||
+        (checkBoardRide() && sel_item != 0x103) ||
+        (i_checkModeFlg(0x400) &&
+         (sel_item == EMPTY_BOTTLE || sel_item == POKE_BOMB || sel_item == IRONBALL ||
+          sel_item == COPY_ROD || checkFishingRodItem(sel_item))) ||
+        ((field_0x2fa8 == 6 || field_0x2fbd == 1 || field_0x2fbd == 2 ||
+          mWaterY - current.pos.y > 45.0f ||
+          (field_0x2fbc == 6 && mWaterY - current.pos.y >= 0.0f) || field_0x2fbd == 3) &&
+         sel_item == SPINNER) ||
+        (checkBossRoom() && checkDungeonWarpItem(sel_item)) ||
+        (sel_item == DUNGEON_EXIT &&
+         (checkLv7DungeonShop() ||
+          (checkStageName("D_MN07") && i_fopAcM_isSwitch(this, 0x4D) &&
+           !i_fopAcM_isSwitch(this, 0x18)) ||
+          (checkStageName("D_MN10") && fopAcM_GetRoomNo(this) == 15))) ||
+        (i_checkMagneBootsOn() && sel_item != 0x103 && !checkDrinkBottleItem(sel_item) &&
+         sel_item != HVY_BOOTS && !checkBowItem(sel_item)))
+    {
+        return ITEM_PROC_NONE;
+    } else if (sel_item == HVY_BOOTS || checkDungeonWarpItem(sel_item) ||
+               checkTradeItem(sel_item) ||
+               (checkBottleItem(sel_item) && sel_item != EMPTY_BOTTLE) || sel_item == SPINNER ||
+               sel_item == POKE_BOMB || sel_item == HORSE_FLUTE || sel_item == HAWK_EYE)
+    {
+        if (i_checkReinRide() || checkCanoeRide()) {
+            if (checkDrinkBottleItem(sel_item)) {
+                return ITEM_PROC_BOTTLE_DRINK;
+            }
+
+            if (checkOilBottleItem(sel_item) && checkItemSetButton(0x48) != 2) {
+                return ITEM_PROC_KANDELAAR_POUR;
+            }
+        } else if (sel_item == HVY_BOOTS) {
+            if (!checkBoardRide()) {
+                if ((mLinkAcch.ChkGroundHit() && !i_checkModeFlg(0x70C52)) ||
+                    (i_checkMagneBootsOn() && cBgW_CheckBGround(mMagneBootsTopVec.y)) ||
+                    mProcID == PROC_HANG_CLIMB)
+                {
+                    return ITEM_PROC_BOOTS_EQUIP;
+                }
+                return ITEM_PROC_SET_HVYBOOTS;
+            }
+        } else if (checkDrinkBottleItem(sel_item) && i_checkMagneBootsOn()) {
+            if (cBgW_CheckBGround(mMagneBootsTopVec.y)) {
+                return ITEM_PROC_BOTTLE_DRINK;
+            }
+        } else if (mLinkAcch.ChkGroundHit()) {
+            if (!i_checkModeFlg(0x70C52)) {
+                if (sel_item == SPINNER) {
+                    cXyz sp38(current.pos.x, current.pos.y + l_autoUpHeight, current.pos.z);
+                    cXyz sp2C(sp38);
+                    cXyz sp20;
+
+                    s16 var_r30 = 0;
+                    for (int i = 0; i < 4; i++, var_r30 += 0x2000) {
+                        sp2C.x = sp38.x + cM_ssin(var_r30) * 120.0f;
+                        sp2C.z = sp38.z + cM_scos(var_r30) * 120.0f;
+
+                        if (commonLineCheck(&sp38, &sp2C)) {
+                            sp2C.x = (sp38.x * 2.0f) - sp2C.x;
+                            sp2C.z = (sp38.z * 2.0f) - sp2C.z;
+                            sp20 = mLinkLinChk.i_GetCross();
+
+                            if (commonLineCheck(&sp38, &sp2C)) {
+                                if (mLinkLinChk.i_GetCross().abs2XZ(sp20) < 14400.0f) {
+                                    return ITEM_PROC_NONE;
+                                }
+                            }
+                        }
+                    }
+
+                    return ITEM_PROC_SPINNER_READY;
+                } else if (checkDungeonWarpItem(sel_item)) {
+                    return ITEM_PROC_DUNGEON_WARP_READY;
+                } else if (checkItemSetButton(0x108) != 2 &&
+                           (sel_item == WORM || sel_item == BEE_CHILD))
+                {
+                    int temp_r3_8 = dComIfGp_getSelectItem(checkItemSetButton(0x108));
+                    if (temp_r3_8 == WORM_ROD || temp_r3_8 == JEWEL_WORM_ROD) {
+                        if (sel_item == BEE_CHILD) {
+                            return ITEM_PROC_BOTTLE_DRINK;
+                        }
+                        return ITEM_PROC_NONE;
+                    }
+                    if (sel_item == BEE_CHILD &&
+                        (temp_r3_8 == BEE_ROD || temp_r3_8 == JEWEL_BEE_ROD))
+                    {
+                        return ITEM_PROC_BOTTLE_DRINK;
+                    }
+                    return ITEM_PROC_FISHING_FOOD;
+                } else if (checkDrinkBottleItem(sel_item)) {
+                    return ITEM_PROC_BOTTLE_DRINK;
+                } else if (checkOpenBottleItem(sel_item)) {
+                    return ITEM_PROC_BOTTLE_OPEN;
+                } else if (checkTradeItem(sel_item)) {
+                    return ITEM_PROC_NOT_USE_ITEM;
+                } else if (sel_item == HORSE_FLUTE) {
+                    return ITEM_PROC_GRASS_WHISTLE;
+                } else if (checkOilBottleItem(sel_item) && checkItemSetButton(0x48) != 2) {
+                    return ITEM_PROC_KANDELAAR_POUR;
+                } else if (sel_item == HAWK_EYE) {
+                    if (acceptSubjectModeChange()) {
+                        return ITEM_PROC_SUBJECTIVITY;
+                    }
+                } else if (sel_item == POKE_BOMB && dComIfGp_getSelectItemNum(param_0) &&
+                           field_0x2fcf < 2)
+                {
+                    return ITEM_PROC_PICK_PUT;
+                }
+            }
+        }
+    } else if (sel_item != NO_ITEM && mEquipItem != sel_item) {
+        if ((checkBombItem(sel_item) && !dComIfGp_getSelectItemNum(param_0)) ||
+            ((sel_item == NORMAL_BOMB || sel_item == WATER_BOMB) && mActiveBombNum >= 3) ||
+            (sel_item == IRONBALL && (!mLinkAcch.ChkGroundHit() || i_checkModeFlg(0x70C52))) ||
+            (sel_item == KANTERA && (i_checkNoResetFlg0(FLG0_UNDERWATER) ||
+                                     i_checkEndResetFlg1(ERFLG1_UNK_4) || i_checkModeFlg(0x40000))))
+        {
+            return ITEM_PROC_NONE;
+        }
+        return ITEM_PROC_COMMON_CHANGE_ITEM;
+    }
+
+    if (mEquipItem == sel_item && mSelectItemId != param_0 && mEquipItem == EMPTY_BOTTLE) {
+        return ITEM_PROC_BOTTLE_SWING;
+    }
+
+    return ITEM_PROC_NONE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -18490,6 +18949,7 @@ asm int daAlink_c::checkNewItemChange(u8 param_0) {
 #include "asm/d/a/d_a_alink/checkNewItemChange__9daAlink_cFUc.s"
 }
 #pragma pop
+#endif
 
 /* 800C12DC-800C1704 0BBC1C 0428+00 67/67 0/0 0/0 .text            deleteEquipItem__9daAlink_cFii */
 #pragma push
@@ -18598,7 +19058,7 @@ void daAlink_c::commonProcInit(daAlink_c::daAlink_PROC i_procID) {
             initForceRideHorse();
         }
 
-        if (field_0x300c != 0) {
+        if (mProcVar2.field_0x300c != 0) {
             changeWarpMaterial(1);
         }
     } else if (mProcID == PROC_GRAB_STAND) {

@@ -1,14 +1,16 @@
 #ifndef D_A_NPC_TK_H
 #define D_A_NPC_TK_H
 
-#include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
+#include "d/d_path.h"
 
 struct cXyz;
 class fopAc_ac_c;
 class J3DJoint;
 class J3DModel;
 
-struct daNPC_TK_c {
+class daNPC_TK_c : public fopAc_ac_c {
+public:
     /* 80B01498 */ void setBck(int, u8, f32, f32);
     /* 80B0153C */ void checkBck(int);
     /* 80B01598 */ void draw();
@@ -59,10 +61,19 @@ struct daNPC_TK_c {
     /* 80B0BBC8 */ void CreateHeap();
     /* 80B0BD24 */ void create();
 
-    void setBump() { mBump |= 4; }
+    void setBump() { mFlags |= 4; }
+    void setEventWolf() { mFlags |= 0x80; }
 
-    u8 field_0x0[0x6BE];
-    u16 mBump;
+    void setHawkPath(u8 i_pathNo) {
+        if (i_pathNo != 0xFF) {
+            field_0x6c8 = dPath_GetRoomPath(i_pathNo, fopAcM_GetRoomNo(this));
+        }
+    }
+
+    /* 0x568 */ u8 field_0x568[0x6BE - 0x568];
+    /* 0x6BE */ u16 mFlags;
+    /* 0x6C0 */ u8 field_0x6c0[0x6C8 - 0x6C0];
+    /* 0x6C8 */ dPath* field_0x6c8;
 };
 
 #endif /* D_A_NPC_TK_H */

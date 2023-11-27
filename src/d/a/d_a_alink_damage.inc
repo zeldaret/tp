@@ -33,23 +33,23 @@ void daAlink_c::setDkCaught(fopAc_ac_c* param_0) {
 
 /* 800D6E24-800D6F00 0D1764 00DC+00 2/2 0/0 0/0 .text            freezeTimerDamage__9daAlink_cFv */
 void daAlink_c::freezeTimerDamage() {
-    field_0x3008--;
-    field_0x300a++;
+    mProcVar0.field_0x3008--;
+    mProcVar1.field_0x300a++;
 
-    if (field_0x300a % 45 == 0) {
+    if (mProcVar1.field_0x300a % 45 == 0) {
         setDamagePoint(1, 1, 0, 0);
     }
 
     if (escapeTrigger()) {
-        field_0x3008 -= 2;
+        mProcVar0.field_0x3008 -= 2;
     }
 
     if (checkInputOnR() && abs((s16)(mStickAngle - mPrevStickAngle)) > 0x1000) {
-        field_0x3008 -= 2;
+        mProcVar0.field_0x3008 -= 2;
     }
 
-    if (field_0x3008 < 0) {
-        field_0x3008 = 0;
+    if (mProcVar0.field_0x3008 < 0) {
+        mProcVar0.field_0x3008 = 0;
     }
 }
 
@@ -425,7 +425,7 @@ asm int daAlink_c::procCoLargeDamageWallInit(int param_0, int param_1, s16 param
  */
 int daAlink_c::procCoLargeDamageWall() {
     if (mUnderFrameCtrl[0].checkAnmEnd()) {
-        procCoLargeDamageInit(field_0x3198, field_0x3008, field_0x3080, field_0x3082, NULL, 0);
+        procCoLargeDamageInit(field_0x3198, mProcVar0.field_0x3008, field_0x3080, field_0x3082, NULL, 0);
     }
 
     return 1;
@@ -497,8 +497,8 @@ int daAlink_c::procLandDamage() {
         }
     } else {
         if (frameCtrl->checkAnmEnd()) {
-            if (field_0x3008 > 0) {
-                field_0x3008--;
+            if (mProcVar0.field_0x3008 > 0) {
+                mProcVar0.field_0x3008--;
             } else {
                 setSingleAnimeParam(ANM_DMG_FALL_RECOVER, &daAlinkHIO_damFall_c0::m.mStandAnm);
                 field_0x3198 = 1;
@@ -582,7 +582,7 @@ asm int daAlink_c::procDkCaught() {
 void daAlink_c::setScreamWaitAnime() {
     setSingleAnimeBase(ANM_WAIT_F);
     voiceStart(Z2SE_AL_V_TERRORED);
-    field_0x300c = 1;
+    mProcVar2.field_0x300c = 1;
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     dComIfGp_getVibration().StartQuake(5, 1, cXyz(tmp_0, lit_6040, tmp_0));
@@ -597,7 +597,7 @@ int daAlink_c::procScreamWaitInit() {
     } else {
         setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed,
                                 daAlinkHIO_basic_c0::m.mAnmBlendFactor);
-        field_0x300c = 0;
+        mProcVar2.field_0x300c = 0;
     }
 
     current.angle.y = shape_angle.y;
@@ -611,7 +611,7 @@ int daAlink_c::procScreamWait() {
 
     if (!i_checkEndResetFlg1(ERFLG1_UNK_1)) {
         checkNextAction(0);
-    } else if (field_0x300c == 0 && i_checkEndResetFlg1(ERFLG1_UNK_2)) {
+    } else if (mProcVar2.field_0x300c == 0 && i_checkEndResetFlg1(ERFLG1_UNK_2)) {
         setScreamWaitAnime();
     }
 
@@ -719,7 +719,7 @@ int daAlink_c::procCoSwimFreezeReturnInit() {
 
     u32 id = fopAcM_GetID(this);
     dCam_getBody()->StartEventCamera(9, id, "Type", 1, &field_0x3194, 0);
-    field_0x300c = 0x2D;
+    mProcVar2.field_0x300c = 0x2D;
     return 1;
 }
 
@@ -727,7 +727,7 @@ int daAlink_c::procCoSwimFreezeReturnInit() {
 // matches with literals
 #ifdef NONMATCHING
 int daAlink_c::procCoSwimFreezeReturn() {
-    if (field_0x300c == 0) {
+    if (mProcVar2.field_0x300c == 0) {
         if (checkRestartDead(4, 1)) {
             i_onNoResetFlg1(FLG1_UNK_40000000);
         } else {
@@ -737,7 +737,7 @@ int daAlink_c::procCoSwimFreezeReturn() {
             dStage_changeScene(3, 0.0f, mode, fopAcM_GetRoomNo(this), shape_angle.y, -1);
         }
     } else {
-        field_0x300c--;
+        mProcVar2.field_0x300c--;
     }
 
     return 1;

@@ -33,7 +33,7 @@ public:
     static u8 const M_attr[64];
     static u8 ActionTable[72];
 
-    u8 getType() { return mSubtype & 0x7F; }
+    int getType() { return mSubtype & 0x7F; }
     u8 getPathID() { return fopAcM_GetParam(this); }
     bool isPlayerCorrect() { return (s8)(u8)(fopAcM_GetParam(this) >> 8) > 0; }
 

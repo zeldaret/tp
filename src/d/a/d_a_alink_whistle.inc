@@ -72,10 +72,10 @@ int daAlink_c::procGrassWhistleGetInit() {
     field_0x280c.setData(field_0x27f4);
 
     daObjYobikusa_c* yobikusa = (daObjYobikusa_c*)field_0x27f4;
-    field_0x300c = yobikusa->getType();
-    field_0x300e.x = yobikusa->getPathID();
-    field_0x300e.y = yobikusa->isPlayerCorrect();
-    field_0x300e.z = yobikusa->shape_angle.y + 0x8000;
+    mProcVar2.field_0x300c = yobikusa->getType();
+    mProcVar3.field_0x300e.x = yobikusa->getPathID();
+    mProcVar3.field_0x300e.y = yobikusa->isPlayerCorrect();
+    mProcVar3.field_0x300e.z = yobikusa->shape_angle.y + 0x8000;
     field_0x37c8.set(yobikusa->current.pos.x + cM_ssin(yobikusa->shape_angle.y) * 50.0f,
                      yobikusa->current.pos.y + 50.0f,
                      yobikusa->current.pos.z + cM_scos(yobikusa->shape_angle.y) * 50.0f);
@@ -99,9 +99,9 @@ int daAlink_c::procGrassWhistleGet() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
     
     if (frameCtrl->checkAnmEnd()) {
-        procGrassWhistleWaitInit(field_0x300c, field_0x300e.x, field_0x300e.y, field_0x300e.z, &field_0x37c8);
+        procGrassWhistleWaitInit(mProcVar2.field_0x300c, mProcVar3.field_0x300e.x, mProcVar3.field_0x300e.y, mProcVar3.field_0x300e.z, &field_0x37c8);
     } else if (mEquipItem == NO_ITEM && frameCtrl->getFrame() >= lit_7710) {
-        setGrassWhistleModel(field_0x300c);
+        setGrassWhistleModel(mProcVar2.field_0x300c);
         
         if (field_0x280c.getActor() != NULL) {
             fopAcM_setCarryNow(field_0x280c.getActor(), 0);
@@ -140,11 +140,11 @@ int daAlink_c::procCoHorseCallWaitInit(int param_0) {
     commonProcInit(PROC_HORSE_CALL_WAIT);
 
     if (param_0 == 4) {
-        field_0x300e.y = 2;
+        mProcVar3.field_0x300e.y = 2;
     } else if (param_0 == 1) {
-        field_0x300e.y = 0x3D;
+        mProcVar3.field_0x300e.y = 0x3D;
     } else {
-        field_0x300e.y = 0x10;
+        mProcVar3.field_0x300e.y = 0x10;
     }
 
     if (i_checkWolf()) {
@@ -204,7 +204,7 @@ int daAlink_c::procHawkSubjectInit() {
         field_0x280c.setData(actor);
     }
 
-    field_0x300c = 0;
+    mProcVar2.field_0x300c = 0;
     mBodyAngle.y = 0;
     deleteEquipItem(0, 1);
     return 1;

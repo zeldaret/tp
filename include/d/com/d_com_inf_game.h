@@ -1776,6 +1776,10 @@ inline BOOL dComIfGs_isStageMiddleBoss() {
     return g_dComIfG_gameInfo.info.getMemory().getBit().isStageBossEnemy2();
 }
 
+inline void dComIfGs_setTransformStatus(u8 i_status) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setTransformStatus(i_status);
+}
+
 void dComIfGp_setSelectItem(int index);
 s32 dComIfGp_offHeapLockFlag(int flag);
 void dComIfGp_createSubExpHeap2D();

@@ -244,7 +244,7 @@ void Z2WolfHowlMgr::calcPitchMod(f32 param_0, f32 param_1) {
 }
 
 /* 802CAED4-802CB100 2C5814 022C+00 0/0 1/1 0/0 .text startWolfHowlSound__13Z2WolfHowlMgrFffbf */
-void Z2WolfHowlMgr::startWolfHowlSound(f32 param_0, f32 param_1, bool param_2, f32 param_3) {
+s8 Z2WolfHowlMgr::startWolfHowlSound(f32 param_0, f32 param_1, bool param_2, f32 param_3) {
     if (mCorrectCurveID > 1) {
         Z2GetSeqMgr()->i_setWindStoneVol(0.0f, 0);
     }
@@ -291,7 +291,8 @@ void Z2WolfHowlMgr::startWolfHowlSound(f32 param_0, f32 param_1, bool param_2, f
             resetState();
         }
     }
-    checkLine();
+
+    return checkLine();
 }
 
 /* 802CB100-802CB320 2C5A40 0220+00 0/0 1/1 0/0 .text

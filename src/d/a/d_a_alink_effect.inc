@@ -342,7 +342,7 @@ asm void daAlink_c::setWolfBarrierHitEffect(dBgS_LinChk& param_0) {
 /* 80124144-801241E0 11EA84 009C+00 9/9 0/0 0/0 .text            setCutWaterDropEffect__9daAlink_cFv
  */
 void daAlink_c::setCutWaterDropEffect() {
-    if (field_0x32c0 > 0) {
+    if (field_0x32c0[0] > 0) {
         cXyz sp18;
         mDoMtx_multVecZero(mpLinkModel->i_getAnmMtx(1), &sp18);
         dComIfGp_particle_setColor(0x2A4, &sp18, &mTevStr, NULL, NULL, FLOAT_LABEL(lit_6108), -1,

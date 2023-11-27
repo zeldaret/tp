@@ -3,7 +3,8 @@
 // Translation Unit: d_a_kago
 //
 
-#include "rel/d/a/d_a_kago/d_a_kago.h"
+// #include "rel/d/a/d_a_kago/d_a_kago.h"
+#include "dolphin/types.h"
 #include "dol2asm.h"
 
 //

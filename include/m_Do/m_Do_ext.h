@@ -402,6 +402,7 @@ public:
 
     bool getOldFrameFlg() { return mOldFrameFlg; }
     void onOldFrameFlg() { mOldFrameFlg = true; }
+    void offOldFrameFlg() { mOldFrameFlg = false; }
     f32 getOldFrameRate() { return mOldFrameRate; }
     J3DTransformInfo* getOldFrameTransInfo(int i) { return &mOldFrameTransInfo[i]; }
     u16 getOldFrameStartJoint() { return mOldFrameStartJoint; }
@@ -505,6 +506,8 @@ public:
     /* 80014E7C */ int getMaterialID();
     /* 800134F8 */ void setMaterial();
     /* 800135D0 */ void draw();
+
+    cXyz* getPos(int i_idx) { return field_0x38[i_idx].field_0x0; }
 
 private:
     /* 0x08 */ GXTexObj field_0x8;

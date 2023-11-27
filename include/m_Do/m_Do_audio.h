@@ -129,6 +129,14 @@ inline void mDoAud_changeSubBgmStatus(s32 param_0) {
     Z2AudioMgr::getInterface()->changeSubBgmStatus(param_0);
 }
 
+inline void mDoAud_taktModeMute() {
+    Z2AudioMgr::getInterface()->taktModeMute();
+}
+
+inline void mDoAud_taktModeMuteOff() {
+    Z2AudioMgr::getInterface()->taktModeMuteOff();
+}
+
 inline void mDoAud_mEnvse_framework() {
     g_mEnvSeMgr.framework();
 }

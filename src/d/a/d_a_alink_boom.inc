@@ -160,8 +160,6 @@ void daAlink_c::setBoomerangReadyQuake() {
 }
 
 /* 800E055C-800E05E8 0DAE9C 008C+00 2/2 0/0 0/0 .text setBoomerangReadyAnime__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 2
 void daAlink_c::setBoomerangReadyAnime() {
     f32 var_f31;
     if (i_checkAttentionLock()) {
@@ -173,7 +171,6 @@ void daAlink_c::setBoomerangReadyAnime() {
     setUpperAnimeBaseSpeed(0x54, var_f31, lit_6109);
     setBoomerangReadyQuake();
 }
-#pragma pop
 
 /* 800E05E8-800E0630 0DAF28 0048+00 2/2 0/0 0/0 .text setThrowBoomerangAnime__9daAlink_cFv */
 void daAlink_c::setThrowBoomerangAnime() {
@@ -313,8 +310,6 @@ void daAlink_c::checkUpperItemActionBoomerangFly() {
 }
 
 /* 800E0BE4-800E0D8C 0DB524 01A8+00 4/4 0/0 0/0 .text checkNextActionBoomerang__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 2
 int daAlink_c::checkNextActionBoomerang() {
     if ((checkBoomerangCatchAnime() &&
          mUpperFrameCtrl[2].getFrame() <= daAlinkHIO_boom_c0::m.mCatchAnm.mCheckFrame) ||
@@ -355,7 +350,6 @@ int daAlink_c::checkNextActionBoomerang() {
         return procBoomerangMoveInit();
     }
 }
-#pragma pop
 
 /* 800E0D8C-800E0E64 0DB6CC 00D8+00 1/1 0/0 0/0 .text checkBoomerangCatchAction__9daAlink_cFv */
 int daAlink_c::checkBoomerangCatchAction() {

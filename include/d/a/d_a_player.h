@@ -259,6 +259,7 @@ public:
         FLG1_UNK_10000000 = 0x10000000,
         FLG1_UNK_4000000 = 0x4000000,
         FLG1_IS_WOLF = 0x2000000,
+        FLG1_UNK_800000 = 0x800000,
         FLG1_DASH_MODE = 0x400000,
         FLG1_UNK_10000 = 0x10000,
         FLG1_UNK_8000 = 0x8000,
@@ -290,9 +291,11 @@ public:
         FLG2_STATUS_WINDOW_DRAW = 0x400000,
         FLG2_UNK_280000 = 0x280000,
         FLG2_UNK_200000 = 0x200000,
+        FLG2_UNK_100000 = 0x100000,
         FLG2_UNK_80000 = 0x80000,
         FLG2_UNK_40000 = 0x40000,
         FLG2_UNK_20000 = 0x20000,
+        FLG2_UNK_10000 = 0x10000,
         FLG2_SCN_CHG_START = 0x8000,
         FLG2_UNK_4000 = 0x4000,
         FLG2_UNK_2000 = 0x2000,
@@ -317,11 +320,14 @@ public:
         FLG3_UNK_4000000 = 0x4000000,
         FLG3_UNK_2000000 = 0x2000000,
         FLG3_UNK_1000000 = 0x1000000,
+        FLG3_UNK_800000 = 0x800000,
         FLG3_UNK_400000 = 0x400000,
+        FLG3_UNK_200000 = 0x200000,
         FLG3_UNK_100000 = 0x100000,
         FLG3_UNK_80000 = 0x80000,
         FLG3_COPY_ROD_THROW_AFTER = 0x40000,
         FLG3_UNK_4000 = 0x4000,
+        FLG3_UNK_400 = 0x400,
         FLG3_UNK_200 = 0x200,
         FLG3_UNK_100 = 0x100,
         FLG3_UNK_80 = 0x80,
@@ -333,6 +339,7 @@ public:
 
     enum daPy_ERFLG0 {
         ERFLG0_UNK_40000000 = 0x40000000,
+        ERFLG0_UNK_20000000 = 0x20000000,
         ERFLG0_UNK_10000000 = 0x10000000,
         ERFLG0_UNK_8000000 = 0x8000000,
         ERFLG0_UNK_2000000 = 0x2000000,
@@ -362,16 +369,19 @@ public:
         ERFLG1_UNK_20000000 = 0x20000000,
         ERFLG1_UNK_10000000 = 0x10000000,
         ERFLG1_UNK_4000000 = 0x4000000,
+        ERFLG1_UNK_200000 = 0x200000,
         ERFLG1_UNK_100000 = 0x100000,
         ERFLG1_UNK_40000 = 0x40000,
+        ERFLG1_UNK_10000 = 0x10000,
         ERFLG1_UNK_2000 = 0x2000,
         ERFLG1_UNK_800 = 0x800,
         ERFLG1_UNK_400 = 0x400,
         ERFLG1_UNK_200 = 0x200,
         ERFLG1_UNK_100 = 0x100,
         ERFLG1_UNK_80 = 0x80,
-        ERFLG1_UNK_10 = 0x10,
+        ERFLG1_UNK_40 = 0x40,
         ERFLG1_UNK_20 = 0x20,
+        ERFLG1_UNK_10 = 0x10,
         ERFLG1_UNK_8 = 8,
         ERFLG1_UNK_4 = 4,
         ERFLG1_UNK_2 = 2,
@@ -386,9 +396,11 @@ public:
     };
 
     enum daPy_RFLG0 {
+        RFLG0_UNK_40000000 = 0x40000000,
         RFLG0_UNK_8000000 = 0x8000000,
         RFLG0_UNK_4000000 = 0x4000000,
         RFLG0_UNK_20000 = 0x20000,
+        RFLG0_UNK_8000 = 0x8000,
         RFLG0_UNK_4000 = 0x4000,
         RFLG0_FRONT_ROLL_CRASH = 0x2000,
         RFLG0_ENEMY_ATTN_LOCK = 0x1000,
@@ -407,6 +419,8 @@ public:
         RFLG1_UNK_30 = 0x30,
         RFLG1_UNK_2 = 0x2,
         RFLG1_WOLF_ATTACK_REVERSE = 0x1,
+
+        RFLG1_UNK_C = 0xC,
     };
 
     enum {
@@ -742,6 +756,7 @@ public:
     bool checkFrontRollCrash() const { return i_checkResetFlg0(RFLG0_FRONT_ROLL_CRASH); }
     bool checkWolfAttackReverse() const { return checkResetFlg1(RFLG1_WOLF_ATTACK_REVERSE); }
     bool checkFreezeDamage() const { return i_checkNoResetFlg1(FLG1_UNK_40000000); }
+    bool checkWolfTagLockJumpReady() const { return i_checkResetFlg0(RFLG0_UNK_20000); }
     
     void onForceAutoJump() { i_onEndResetFlg0(ERFLG0_FORCE_AUTO_JUMP); }
     void onNotAutoJump() { i_onEndResetFlg0(ERFLG0_NOT_AUTO_JUMP); }
@@ -749,6 +764,12 @@ public:
     void onShieldBackBone() { i_onEndResetFlg1(ERFLG1_GANON_FINISH); }
     void onFogFade() { i_onNoResetFlg2(FLG2_UNK_4000); }
     
+    void offCargoCarry() {
+        if (checkCargoCarry()) {
+            mSpecialMode = 0;
+        }
+    }
+
     void offGoronSideMove() {
         if (i_checkGoronSideMove()) {
             mSpecialMode = 0;
@@ -762,38 +783,38 @@ public:
 
     // some functions use these function as an inline
     // is there a better way to handle this?
-    int i_checkNoResetFlg0(daPy_FLG0 pFlag) const { return mNoResetFlg0 & pFlag; }
-    int i_checkNoResetFlg1(daPy_FLG1 pFlag) const { return mNoResetFlg1 & pFlag; }
-    int i_checkNoResetFlg2(daPy_FLG2 pFlag) const { return mNoResetFlg2 & pFlag; }
-    int i_checkNoResetFlg3(daPy_FLG3 pFlag) const { return mNoResetFlg3 & pFlag; }
+    u32 i_checkNoResetFlg0(daPy_FLG0 i_flag) const { return mNoResetFlg0 & i_flag; }
+    u32 i_checkNoResetFlg1(daPy_FLG1 i_flag) const { return mNoResetFlg1 & i_flag; }
+    u32 i_checkNoResetFlg2(daPy_FLG2 i_flag) const { return mNoResetFlg2 & i_flag; }
+    u32 i_checkNoResetFlg3(daPy_FLG3 i_flag) const { return mNoResetFlg3 & i_flag; }
     
-    void i_onNoResetFlg0(int pFlg) { mNoResetFlg0 |= pFlg; }
-    void i_onNoResetFlg1(int pFlg) { mNoResetFlg1 |= pFlg; }
-    void i_onNoResetFlg2(int pFlg) { mNoResetFlg2 |= pFlg; }
-    void i_onNoResetFlg3(int pFlg) { mNoResetFlg3 |= pFlg; }
+    void i_onNoResetFlg0(int i_flag) { mNoResetFlg0 |= i_flag; }
+    void i_onNoResetFlg1(int i_flag) { mNoResetFlg1 |= i_flag; }
+    void i_onNoResetFlg2(int i_flag) { mNoResetFlg2 |= i_flag; }
+    void i_onNoResetFlg3(int i_flag) { mNoResetFlg3 |= i_flag; }
     
-    void i_offNoResetFlg0(int pFlg) { mNoResetFlg0 &= ~pFlg; }
-    void i_offNoResetFlg1(int pFlg) { mNoResetFlg1 &= ~pFlg; }
-    void i_offNoResetFlg2(int pFlg) { mNoResetFlg2 &= ~pFlg; }
-    void i_offNoResetFlg3(int pFlg) { mNoResetFlg3 &= ~pFlg; }
+    void i_offNoResetFlg0(int i_flag) { mNoResetFlg0 &= ~i_flag; }
+    void i_offNoResetFlg1(int i_flag) { mNoResetFlg1 &= ~i_flag; }
+    void i_offNoResetFlg2(int i_flag) { mNoResetFlg2 &= ~i_flag; }
+    void i_offNoResetFlg3(int i_flag) { mNoResetFlg3 &= ~i_flag; }
     
     void i_offResetFlg0(int flag) { mResetFlg0 &= ~flag; }
     void i_offResetFlg1(int flag) { mResetFlg1 &= ~flag; }
     void i_onResetFlg0(int flag) { mResetFlg0 |= flag; }
     void i_onResetFlg1(int flag) { mResetFlg1 |= flag; }
     
-    void i_onEndResetFlg0(int flag) { mEndResetFlg0 |= flag; }
-    void i_onEndResetFlg2(int flag) { mEndResetFlg2 |= flag; }
-    void i_offEndResetFlg2(daPy_ERFLG2 flag) { mEndResetFlg2 &= ~flag; }
+    void i_onEndResetFlg0(int i_flag) { mEndResetFlg0 |= i_flag; }
+    void i_onEndResetFlg2(int i_flag) { mEndResetFlg2 |= i_flag; }
+    void i_offEndResetFlg2(daPy_ERFLG2 i_flag) { mEndResetFlg2 &= ~i_flag; }
     
-    int i_checkResetFlg0(daPy_py_c::daPy_RFLG0 flag) const { return mResetFlg0 & flag; }
-    int checkResetFlg1(daPy_py_c::daPy_RFLG1 flag) const { return mResetFlg1 & flag; }
+    u32 i_checkResetFlg0(daPy_py_c::daPy_RFLG0 i_flag) const { return mResetFlg0 & i_flag; }
+    u32 checkResetFlg1(daPy_py_c::daPy_RFLG1 i_flag) const { return mResetFlg1 & i_flag; }
     
-    int i_checkEndResetFlg0(daPy_py_c::daPy_ERFLG0 flag) const { return mEndResetFlg0 & flag; }
-    int i_checkEndResetFlg1(daPy_py_c::daPy_ERFLG1 flag) const { return mEndResetFlg1 & flag; }
-    int i_checkEndResetFlg2(daPy_py_c::daPy_ERFLG2 flag) const { return mEndResetFlg2 & flag; }
+    u32 i_checkEndResetFlg0(daPy_py_c::daPy_ERFLG0 i_flag) const { return mEndResetFlg0 & i_flag; }
+    u32 i_checkEndResetFlg1(daPy_py_c::daPy_ERFLG1 i_flag) const { return mEndResetFlg1 & i_flag; }
+    u32 i_checkEndResetFlg2(daPy_py_c::daPy_ERFLG2 i_flag) const { return mEndResetFlg2 & i_flag; }
     
-    void i_onEndResetFlg1(daPy_ERFLG1 pFlg) { mEndResetFlg1 |= pFlg; }
+    void i_onEndResetFlg1(daPy_ERFLG1 i_flag) { mEndResetFlg1 |= i_flag; }
     
     u32 i_checkWolf() const { return i_checkNoResetFlg1(FLG1_IS_WOLF); }
     BOOL i_checkEquipHeavyBoots() const { return i_checkNoResetFlg0(FLG0_EQUIP_HVY_BOOTS); }

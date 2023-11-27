@@ -87,9 +87,9 @@ int daAlink_c::loadModelDVD() {
         if (mClothesChangeWaitTimer == 2) {
             mEyeHL1.remove();
             mEyeHL2.remove();
-            field_0x79c = NULL;
-            mpWlMidnaHatModel = NULL;
-            field_0x7a4 = NULL;
+            mpWlMidnaModel = NULL;
+            mpWlMidnaMaskModel = NULL;
+            mpWlMidnaHandModel = NULL;
             mpWlMidnaHairModel = NULL;
 
             if (!i_checkNoResetFlg2(FLG2_UNK_280000)) {
@@ -291,13 +291,13 @@ void daAlink_c::statusWindowDraw() {
         basicModelDraw(mpLinkModel);
 
         if (!i_checkWolf()) {
-            basicModelDraw(field_0x065c);
+            basicModelDraw(mpLinkHandModel);
             basicModelDraw(mpLinkHatModel);
             basicModelDraw(mpLinkFaceModel);
 
             if (i_checkEquipHeavyBoots()) {
                 for (int i = 0; i < 2; i++) {
-                    basicModelDraw(field_0x784[i]);
+                    basicModelDraw(mpLinkBootModels[i]);
                 }
             }
         }

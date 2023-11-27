@@ -129,7 +129,6 @@ public:
     /* 800CFCB8 */ ~daAlink_footData_c();
     /* 800CFCF4 */ daAlink_footData_c();
 
-private:
     /* 0x00 */ u8 field_0x00[2];
     /* 0x02 */ u16 field_0x2;
     /* 0x04 */ u16 field_0x4;
@@ -666,12 +665,22 @@ public:
         FTANM_UNK_7B = 0x7B,
         FTANM_UNK_7C = 0x7C,
         FTANM_UNK_8A = 0x8A,
+        FTANM_UNK_8D = 0x8D,
+        FTANM_UNK_8E = 0x8E,
+        FTANM_UNK_8F = 0x8F,
         FTANM_UNK_90 = 0x90,
+        FTANM_UNK_91 = 0x91,
+        FTANM_UNK_95 = 0x95,
         FTANM_UNK_96 = 0x96,
+        FTANM_UNK_97 = 0x97,
+        FTANM_UNK_9A = 0x9A,
+        FTANM_UNK_9B = 0x9B,
         FTANM_UNK_9C = 0x9C,
         FTANM_UNK_9D = 0x9D,
         FTANM_UNK_9F = 0x9F,
         FTANM_UNK_A0 = 0xA0,
+        FTANM_UNK_A1 = 0xA1,
+        FTANM_UNK_A2 = 0xA2,
     };
 
     enum daAlink_WARP_MAT_MODE {
@@ -1961,7 +1970,7 @@ public:
     /* 800E53F8 */ void setGrabItemThrow();
     /* 800E57AC */ BOOL checkUpperGrabItemThrow(f32);
     /* 800E5830 */ void putObjLineCheck(dBgS_LinChk&, cXyz*, fopAc_ac_c*);
-    /* 800E5B6C */ void grabLineCheck(cXyz*, cXyz*);
+    /* 800E5B6C */ bool grabLineCheck(cXyz*, cXyz*);
     /* 800E5BB4 */ void setGrabItemActor(fopAc_ac_c*);
     /* 800E5CBC */ int procGrabReadyInit();
     /* 800E5EC8 */ int procGrabReady();
@@ -2739,8 +2748,8 @@ public:
     /* 801299A8 */ void checkWolfUseAbility();
     /* 80129A80 */ int checkWolfGroundSpecialMode();
     /* 80129B44 */ int checkNextActionWolf(int);
-    /* 8012A02C */ void wolfSideBgCheck(s16);
-    /* 8012A228 */ void checkWolfAttackReverse(int);
+    /* 8012A02C */ BOOL wolfSideBgCheck(s16);
+    /* 8012A228 */ BOOL checkWolfAttackReverse(int);
     /* 8012A330 */ int checkWolfBarrierHitReverse();
     /* 8012A41C */ bool checkWolfBarrierWallHit(cBgS_PolyInfo&);
     /* 8012A498 */ void wolfBgCheck();
@@ -2748,7 +2757,7 @@ public:
     /* 8012AD1C */ void setWolfFootMatrix();
     /* 8012B724 */ void wolfFootBgCheck();
     /* 8012BFA8 */ BOOL checkWolfWaitSlipPolygon();
-    /* 8012C1F4 */ void setWolfWaitSlip();
+    /* 8012C1F4 */ f32 setWolfWaitSlip();
     /* 8012C308 */ void checkWolfAtnDoCharge();
     /* 8012C30C */ void setWolfChainPos();
     /* 8012CB0C */ void setWolfAnmVoice();
@@ -2827,8 +2836,8 @@ public:
     /* 80133164 */ int procWolfRopeStagger();
     /* 8013384C */ int procWolfRopeSubjectivityInit();
     /* 80133930 */ int procWolfRopeSubjectivity();
-    /* 80133D6C */ void getWolfTagJumpTime() const;
-    /* 80133EF0 */ cXyz* checkMidnaLockJumpPoint() const;
+    /* 80133D6C */ int getWolfTagJumpTime() const;
+    /* 80133EF0 */ const cXyz* checkMidnaLockJumpPoint() const;
     /* 80134000 */ int procWolfTagJumpInit(fopAc_ac_c*);
     /* 80134838 */ int procWolfTagJump();
     /* 80134DB8 */ int procWolfTagJumpLandInit(fopAc_ac_c*);
@@ -2836,7 +2845,7 @@ public:
     /* 80135160 */ int procWolfGiantPuzzleInit();
     /* 801351F8 */ int procWolfGiantPuzzle();
     /* 80135458 */ void setWolfHangGroundY();
-    /* 801354C8 */ void changeWolfHangEndProc();
+    /* 801354C8 */ int changeWolfHangEndProc();
     /* 801355EC */ int procWolfHangReadyInit();
     /* 80135668 */ int procWolfHangReady();
     /* 801356F0 */ int procWolfHangWallCatchInit(int);
@@ -2854,9 +2863,9 @@ public:
     /* 80136F54 */ int procWolfScreamWaitInit();
     /* 80136FF8 */ int procWolfScreamWait();
     /* 801370E4 */ f32 getWolfLieMoveAnmSpeed();
-    /* 8013712C */ void getWolfLieMoveSpeed();
+    /* 8013712C */ f32 getWolfLieMoveSpeed();
     /* 801371A0 */ BOOL checkMidnaDisappearMode() const;
-    /* 801371FC */ void checkWolfLieContinue(int);
+    /* 801371FC */ BOOL checkWolfLieContinue(int);
     /* 801372B4 */ int checkNextActionWolfFromLie();
     /* 80137330 */ void setWolfLieMoveVoice(int);
     /* 801373F8 */ bool checkWolfLieCode();
@@ -2886,11 +2895,11 @@ public:
     /* 801391DC */ fopAc_ac_c* getWolfLockActorEnd();
     /* 801391E4 */ void searchWolfLockEnemy(fopAc_ac_c*, void*);
     /* 801392E4 */ void checkWolfComboCnt();
-    /* 801393A4 */ void checkWolfAttackAction();
+    /* 801393A4 */ BOOL checkWolfAttackAction();
     /* 801395B4 */ void setWolfEnemyThrowUpperAnime(daAlink_c::daAlink_WANM, f32);
     /* 80139600 */ BOOL setWolfEnemyHangBitePos(fopEn_enemy_c*);
     /* 801396F8 */ void setWolfBiteDamage(fopEn_enemy_c*);
-    /* 801397A4 */ void checkWolfLockAttackChargeState();
+    /* 801397A4 */ BOOL checkWolfLockAttackChargeState();
     /* 801398A8 */ int procWolfRollAttackChargeInit();
     /* 80139908 */ int procWolfRollAttackCharge();
     /* 801399C4 */ int procWolfRollAttackMoveInit();
@@ -3131,8 +3140,10 @@ public:
     bool i_checkSmallUpperGuardAnime() const { return checkUpperAnime(0x16); }
     bool i_checkFmChainGrabAnime() const { return checkUpperAnime(0x62) || checkUpperAnime(0x2A0); }
 
-    // wrapping functions that use this with "#pragma optimization_level 2" can help fix some issues, but not always
+    // this might be a fake match, but helps fix usage in many functions
+#pragma optimization_level 2
     BOOL i_checkAttentionLock() { return mAttention->Lockon(); }
+#pragma optimization_level 3
 
     bool checkUpperAnime(u16 i_idx) const { return mUpperAnmHeap[UPPER_2].getIdx() == i_idx; }
     bool checkUnderAnime(u16 i_idx) const { return mUnderAnmHeap[UNDER_2].getIdx() == i_idx; }
@@ -3161,6 +3172,7 @@ public:
     bool checkWolfGrabAnimeObj() const { return checkUpperAnime(0x2DA); }
     bool checkWolfGrabAnimeStick() const { return checkUpperAnime(0x2DB); }
     bool checkWolfGrabAnime() const { return checkWolfGrabAnimeObj() || checkWolfGrabAnimeStick(); }
+    bool checkWolfSwimDashAnime() const { return checkUnderMove0BckNoArcWolf(WANM_SWIM_DASH); }
     bool checkKandelaarSwingAnime() const { return false; }
     bool checkBowChargeWaitAnime() const { return checkUpperAnime(0xA); }
     bool checkBowReloadAnime() const { return checkUpperAnime(0x9); }
@@ -3223,9 +3235,13 @@ public:
         field_0x2fa3 = 0;
         field_0x2844.clearData();
     }
+
     s32 checkPlayerDemoMode() const { return mDemo.getDemoType(); }
+    BOOL i_checkSpecialDemoMode() const { return mDemo.getDemoType() == 5; }
+    static bool checkMidnaChargeAttack() { return i_dComIfGs_isEventBit(0x501); }
     u16 getMidnaMsgNum() const { return mMidnaMsgNum; }
     u32 getStartEvent() { return fopAcM_GetParam(this) >> 0x18; }
+
     const daAlink_AnmData* getAnmData(daAlink_ANM anmID) const { return &m_anmDataTable[anmID]; }
     const daAlink_FaceTexData* getFaceTexData(daAlink_FTANM i_anmID) const { return &m_faceTexDataTable[i_anmID]; }
 
@@ -3279,6 +3295,7 @@ public:
     void clearIronBallActor() { field_0x173c.SetActor(this); }
     BOOL checkCanoeRideOwn(const fopAc_ac_c* param_0) const { return checkCanoeRide() && mRideAcKeep.getActorConst() == param_0; }
     bool checkWolfDashMode() const { return i_checkNoResetFlg1(FLG1_DASH_MODE); }
+    bool checkWolfLieWaterIn() const { return mWaterY > current.pos.y + 20.5f; }
 
     J3DModel* initModel(J3DModelData* p_modelData, u32 param_1) {
         return initModel(p_modelData, 0x80000, param_1);
@@ -3323,10 +3340,12 @@ public:
         mDamageColorTime = 32 - (mDamageTimer % 16); 
     }
 
+    // Gets the cardinal direction of the Left Stick relative to player facing angle
     int getDirectionFromShapeAngle() const {
         return getDirectionFromAngle(field_0x2fe2 - shape_angle.y);
     }
 
+    // Gets the cardinal direction of the Left Stick relative to player angle
     int getDirectionFromCurrentAngle() const {
         return getDirectionFromAngle(field_0x2fe2 - current.angle.y);
     }
@@ -3381,7 +3400,7 @@ private:
     /* 0x00650 */ J3DModel* mpLinkModel;
     /* 0x00654 */ J3DModel* mpLinkFaceModel;
     /* 0x00658 */ J3DModel* mpLinkHatModel;
-    /* 0x0065C */ J3DModel* field_0x065c;
+    /* 0x0065C */ J3DModel* mpLinkHandModel;
     /* 0x00660 */ J3DModel* mpSwAModel;        // Ordon Sword model
     /* 0x00664 */ J3DModel* mpSwASheathModel;  // Ordon Sword sheath model
     /* 0x00668 */ J3DModel* mpSwMModel;        // Master Sword model
@@ -3410,10 +3429,10 @@ private:
     /* 0x006C4 */ J3DAnmTextureSRTKey* m_nSwordBtk;
     /* 0x006C8 */ J3DAnmTextureSRTKey* m_mSwordBtk;
     /* 0x006CC */ J3DAnmTevRegKey* m_mSwordBrk;
-    /* 0x006D0 */ void* field_0x06d0;
-    /* 0x006D4 */ void* field_0x06d4;
-    /* 0x006D8 */ void* field_0x06d8;
-    /* 0x006DC */ void* field_0x06dc;
+    /* 0x006D0 */ J3DShape* field_0x06d0;
+    /* 0x006D4 */ J3DShape* field_0x06d4;
+    /* 0x006D8 */ J3DShape* field_0x06d8;
+    /* 0x006DC */ J3DShape* field_0x06dc;
     /* 0x006E0 */ J3DShape* field_0x06e0;
     /* 0x006E4 */ J3DShape* field_0x06e4;
     /* 0x006E8 */ J3DShape* field_0x06e8;
@@ -3421,9 +3440,9 @@ private:
     /* 0x006F0 */ J3DShape* field_0x06f0;
     /* 0x006F4 */ J3DAnmTevRegKey* field_0x06f4;
     /* 0x006F8 */ J3DAnmTevRegKey* field_0x06f8;
-    /* 0x006FC */ J3DModel* field_0x06fc;  // related to human link
-    /* 0x00700 */ J3DModel* field_0x0700;
-    /* 0x00704 */ J3DAnmBase* field_0x0704;
+    /* 0x006FC */ J3DModel* mpKanteraModel;
+    /* 0x00700 */ J3DModel* mpKanteraGlowModel;
+    /* 0x00704 */ J3DAnmTextureSRTKey* mpKanteraGlowBtk;
     /* 0x00708 */ J3DModel* mHeldItemModel;
     /* 0x0070C */ J3DModel* mpHookTipModel;  // related to held item
     /* 0x00710 */ J3DModel* field_0x0710;  // related to held item
@@ -3442,16 +3461,16 @@ private:
     /* 0x00774 */ u8 field_0x0774[0x77C - 0x774];
     /* 0x0077C */ dBgS_ObjLinChk* mpHookshotLinChk;
     /* 0x00780 */ u8 field_0x780[4];
-    /* 0x00784 */ J3DModel* field_0x784[2];
+    /* 0x00784 */ J3DModel* mpLinkBootModels[2];
     /* 0x0078C */ J3DModel* mpWlChainModels[4];
-    /* 0x0079C */ J3DModel* field_0x79c;  // related to wolf
-    /* 0x007A0 */ J3DModel* mpWlMidnaHatModel;
-    /* 0x007A4 */ J3DModel* field_0x7a4;  // related to wolf
+    /* 0x0079C */ J3DModel* mpWlMidnaModel;
+    /* 0x007A0 */ J3DModel* mpWlMidnaMaskModel;
+    /* 0x007A4 */ J3DModel* mpWlMidnaHandModel;
     /* 0x007A8 */ J3DModel* mpWlMidnaHairModel;
-    /* 0x007AC */ J3DAnmTevRegKey* field_0x7ac;
-    /* 0x007B0 */ J3DAnmTevRegKey* field_0x7b0;
-    /* 0x007B4 */ J3DAnmTevRegKey* field_0x7b4;
-    /* 0x007B8 */ J3DAnmTevRegKey* field_0x7b8;
+    /* 0x007AC */ J3DAnmTevRegKey* mpDMidnaBrk;
+    /* 0x007B0 */ J3DAnmTevRegKey* mpDMidnaMaskBrk;
+    /* 0x007B4 */ J3DAnmTevRegKey* mpDMidnaHandBrk;
+    /* 0x007B8 */ J3DAnmTevRegKey* mpDMidnaHairHandBrk;
     /* 0x007BC */ mDoExt_bckAnm* m_sWindowBck;
     /* 0x007C0 */ u32 mpWarpTexData;
     /* 0x007C4 */ daPy_actorKeep_c mWolfLockAcKeep[10];
@@ -3561,8 +3580,8 @@ private:
     /* 0x02F1C */ dPaPo_c* field_0x2f1c;
     /* 0x02F20 */ dPa_hermiteEcallBack_c field_0x2f20;
     /* 0x02F38 */ dPa_hermiteEcallBack_c field_0x2f38;
-    /* 0x02F50 */ Vec* field_0x2f50;
-    /* 0x02F54 */ Vec* field_0x2f54;
+    /* 0x02F50 */ const Vec* field_0x2f50;
+    /* 0x02F54 */ const Vec* field_0x2f54;
     /* 0x02F58 */ u16* field_0x2f58;
     /* 0x02F5C */ LIGHT_INFLUENCE field_0x2f5c;
     /* 0x02F7C */ u8 field_0x2f7c[16];
@@ -3666,10 +3685,22 @@ private:
     /* 0x03002 */ s16 field_0x3002;
     /* 0x03004 */ s16 field_0x3004;
     /* 0x03006 */ s16 field_0x3006;
-    /* 0x03008 */ s16 field_0x3008;
-    /* 0x0300A */ s16 field_0x300a;
-    /* 0x0300C */ s16 field_0x300c;  // might need more accurate name
-    /* 0x0300E */ csXyz field_0x300e;
+    // `mProcVar`'s are variables that are context dependent for each `PROC` action.
+    // (The exact setup may need to be simplified later)
+    union {
+        s16 field_0x3008;
+        s16 mHowlExitID;
+    } /* 0x03008 */ mProcVar0;
+    union {
+        s16 field_0x300a;
+    } /* 0x0300A */ mProcVar1;
+    union {
+        s16 field_0x300c;
+        s16 mPuzzleAimAngle;
+    } /* 0x0300C */ mProcVar2;
+    union {
+        csXyz field_0x300e;
+    } /* 0x0300E */ mProcVar3;
     /* 0x03014 */ s16 mFallVoiceInit;
     /* 0x03016 */ u8 field_0x3016[2];
     /* 0x03018 */ s16 field_0x3018;
@@ -3682,30 +3713,10 @@ private:
     /* 0x03026 */ s16 field_0x3026;
     /* 0x03028 */ s16 field_0x3028;
     /* 0x0302A */ u8 field_0x302a[2];
-    /* 0x0302C */ s16 field_0x302c;
-    /* 0x0302E */ s16 field_0x302e;
-    /* 0x03030 */ s16 field_0x3030;
-    /* 0x03032 */ s16 field_0x3032;
-    /* 0x03034 */ s16 field_0x3034;
-    /* 0x03036 */ s16 field_0x3036;
-    /* 0x03038 */ u8 field_0x3038[2];
-    /* 0x0303A */ s16 field_0x303a;
-    /* 0x0303C */ u8 field_0x303c[4];
-    /* 0x03040 */ s16 field_0x3040;
-    /* 0x03042 */ s16 field_0x3042;
-    /* 0x03044 */ s16 field_0x3044;
-    /* 0x03046 */ s16 field_0x3046;
-    /* 0x03048 */ s16 field_0x3048;
-    /* 0x0304A */ s16 field_0x304a;
-    /* 0x0304C */ u8 field_0x304c[2];
-    /* 0x0304E */ s16 field_0x304e;
-    /* 0x03050 */ u8 field_0x3050[4];
-    /* 0x03054 */ s16 field_0x3054;
-    /* 0x03056 */ s16 field_0x3056;
-    /* 0x03058 */ u8 field_0x3058[2];
-    /* 0x0305A */ s16 field_0x305a;
-    /* 0x0305C */ s16 field_0x305c;
-    /* 0x0305E */ u8 field_0x305e[2];
+    /* 0x0302C */ s16 field_0x302c[10];
+    /* 0x03040 */ s16 field_0x3040[10];
+    /* 0x03054 */ s16 field_0x3054[3];
+    /* 0x0305A */ s16 field_0x305a[3];
     /* 0x03060 */ s16 field_0x3060;
     /* 0x03062 */ s16 field_0x3062;
     /* 0x03064 */ s16 field_0x3064;
@@ -3731,10 +3742,8 @@ private:
     /* 0x0308E */ s16 mFastShotTime;
     /* 0x03090 */ s16 field_0x3090;
     /* 0x03092 */ s16 field_0x3092;
-    /* 0x03094 */ s16 field_0x3094;
-    /* 0x03096 */ u8 field_0x3096[4];
-    /* 0x0309A */ s16 field_0x309a;
-    /* 0x0309C */ u8 field_0x309c[4];
+    /* 0x03094 */ s16 field_0x3094[3];
+    /* 0x0309A */ s16 field_0x309a[3];
     /* 0x030A0 */ s16 field_0x30a0;
     /* 0x030A2 */ s16 field_0x30a2;
     /* 0x030A4 */ s16 field_0x30a4;
@@ -3851,8 +3860,7 @@ private:
     /* 0x03298 */ u8 field_0x3298[8];
     /* 0x032A0 */ J3DGXColorS10 field_0x32a0[2];
     /* 0x032B0 */ J3DGXColorS10 field_0x32b0[2];
-    /* 0x032C0 */ s16 field_0x32c0;
-    /* 0x032C2 */ u8 field_0x32c2[2];
+    /* 0x032C0 */ s16 field_0x32c0[2];
     /* 0x032C4 */ u16 field_0x32c4;
     /* 0x032C6 */ u16 field_0x32c6;
     /* 0x032C8 */ u32 field_0x32c8;
@@ -5717,7 +5725,7 @@ public:
     static daAlinkHIO_wlAtDown_c1 const m;
 };
 
-class daAlinkHIO_wlAtWaTl_c1 {
+class daAlinkHIO_wlAtWait_c1 {
 public:
     /* 0x00 */ daAlinkHIO_anm_c field_0x0;
     /* 0x14 */ s16 field_0x14;
@@ -5731,53 +5739,21 @@ public:
     /* 0x30 */ f32 field_0x30;
     /* 0x34 */ f32 field_0x34;
     /* 0x38 */ f32 field_0x38;
-};  // Size: 0x3C
+};
 
 class daAlinkHIO_wlAtWaTl_c0 {
 public:
-    static daAlinkHIO_wlAtWaTl_c1 const m;
+    static daAlinkHIO_wlAtWait_c1 const m;
 };
-
-class daAlinkHIO_wlAtWaSc_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ s16 field_0x14;
-    /* 0x16 */ s16 field_0x16;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1C;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ f32 field_0x24;
-    /* 0x28 */ f32 field_0x28;
-    /* 0x2C */ f32 field_0x2C;
-    /* 0x30 */ f32 field_0x30;
-    /* 0x34 */ f32 field_0x34;
-    /* 0x38 */ f32 field_0x38;
-};  // Size: 0x3C
 
 class daAlinkHIO_wlAtWaSc_c0 {
 public:
-    static daAlinkHIO_wlAtWaSc_c1 const m;
+    static daAlinkHIO_wlAtWait_c1 const m;
 };
-
-class daAlinkHIO_wlAtWaLr_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ s16 field_0x14;
-    /* 0x16 */ s16 field_0x16;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1C;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ f32 field_0x24;
-    /* 0x28 */ f32 field_0x28;
-    /* 0x2C */ f32 field_0x2C;
-    /* 0x30 */ f32 field_0x30;
-    /* 0x34 */ f32 field_0x34;
-    /* 0x38 */ f32 field_0x38;
-};  // Size: 0x3C
 
 class daAlinkHIO_wlAtWaLr_c0 {
 public:
-    static daAlinkHIO_wlAtWaLr_c1 const m;
+    static daAlinkHIO_wlAtWait_c1 const m;
 };
 
 class daAlinkHIO_wlAtRoll_c1 {

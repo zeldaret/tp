@@ -30,14 +30,14 @@ static fopAc_ac_c* daAlink_searchTagKtOnFire(fopAc_ac_c* i_actor, void* param_1)
 /* 801106E8-8011078C 10B028 00A4+00 1/0 0/0 0/0 .text            setKandelaarMtx__9daAlink_cFPA4_fii
  */
 void daAlink_c::setKandelaarMtx(Mtx i_mtx, int param_1, int param_2) {
-    if (field_0x06fc != NULL) {
+    if (mpKanteraModel != NULL) {
         if (i_checkNoResetFlg2(FLG2_UNK_1)) {
             deleteEquipItem(0, 1);
         }
 
         i_onEndResetFlg1(ERFLG1_UNK_4);
 
-        field_0x06fc->i_setBaseTRMtx(i_mtx);
+        mpKanteraModel->i_setBaseTRMtx(i_mtx);
         if (param_1 == 0) {
             i_onEndResetFlg1(ERFLG1_UNK_8);
         }
@@ -163,7 +163,7 @@ asm void daAlink_c::setKandelaarModel() {
 void daAlink_c::resetOilBottleModel() {
     deleteEquipItem(0, 1);
 
-    if (field_0x300e.x != 0) {
+    if (mProcVar3.field_0x300e.x != 0) {
         setKandelaarModel();
         mEquipItem = KANTERA;
     }

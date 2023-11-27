@@ -411,6 +411,7 @@ public:
     void setLife(u16 i_life) { mLife = i_life; }
     void setMaxLife(u8 i_maxLife) { mMaxLife = i_maxLife; }
     void setSelectEquip(int i_equipId, u8 i_itemNo) { mSelectEquip[i_equipId] = i_itemNo; }
+    void setTransformStatus(u8 i_status) { mTransformStatus = i_status; }
 
 private:
     /* 0x00 */ u16 mMaxLife;
