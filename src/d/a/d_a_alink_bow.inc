@@ -167,16 +167,11 @@ asm void daAlink_c::changeArrowType() {
 #pragma pop
 
 /* 800DED88-800DEE1C 0D96C8 0094+00 1/1 0/0 0/0 .text cancelBowMoveRideNotAtn__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 2
 BOOL daAlink_c::cancelBowMoveRideNotAtn() {
     return i_checkModeFlg(0x400) && i_checkAttentionLock() && mTargetedActor == NULL;
 }
-#pragma pop
 
 /* 800DEE1C-800DEEDC 0D975C 00C0+00 3/3 0/0 0/0 .text            cancelBowMove__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 2
 BOOL daAlink_c::cancelBowMove() {
     if (mTargetedActor == NULL && !i_checkAttentionLock() && mFastShotTime == 0 &&
         !checkBowReadyAnime() && (!checkBowShootAnime() || mUpperFrameCtrl[2].checkAnmEnd()))
@@ -187,7 +182,6 @@ BOOL daAlink_c::cancelBowMove() {
 
     return false;
 }
-#pragma pop
 
 /* 800DEEDC-800DEFB8 0D981C 00DC+00 3/3 0/0 0/0 .text            setBowReadyAnime__9daAlink_cFv */
 void daAlink_c::setBowReadyAnime() {

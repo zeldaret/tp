@@ -166,9 +166,11 @@ public:
 
     inline static BOOL checkMidnaRealBody();
 
-    bool i_checkMidnaTired() {
+    static bool i_checkMidnaTired() {
         return dComIfGs_isTransformLV(3) && !i_dComIfGs_isEventBit(0x1E08);
     }
+
+    void resetRatBody() {}
 
     static u8 const m_texDataTable[84];
     static u8 const m_anmDataTable[636];

@@ -3,7 +3,8 @@
 // Translation Unit: d_a_e_yc
 //
 
-#include "rel/d/a/e/d_a_e_yc/d_a_e_yc.h"
+// #include "rel/d/a/e/d_a_e_yc/d_a_e_yc.h"
+#include "dolphin/types.h"
 #include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
 

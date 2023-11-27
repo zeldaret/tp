@@ -236,8 +236,6 @@ BOOL daAlink_c::checkUpperItemActionIronBall() {
 }
 
 /* 801153F8-801154E4 10FD38 00EC+00 2/2 0/0 0/0 .text checkNextActionIronBall__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 2
 int daAlink_c::checkNextActionIronBall() {
     if (mFastShotTime != 0) {
         mFastShotTime--;
@@ -258,7 +256,6 @@ int daAlink_c::checkNextActionIronBall() {
         return procIronBallMoveInit();
     }
 }
-#pragma pop
 
 /* 801154E4-80115564 10FE24 0080+00 1/1 0/0 0/0 .text procIronBallSubjectInit__9daAlink_cFv */
 int daAlink_c::procIronBallSubjectInit() {

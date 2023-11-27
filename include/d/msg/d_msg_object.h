@@ -151,7 +151,7 @@ public:
     /* 80238528 */ void getSelectWord(int);
     /* 80238544 */ static void setSelectWordFlag(u8);
     /* 80238574 */ void getSelectWordFlag();
-    /* 80238588 */ bool isHowlHearingMode();
+    /* 80238588 */ static bool isHowlHearingMode();
     /* 802385B4 */ static u8 getSelectBombBagID();
     /* 802385E0 */ static s16 getSelectBombPrice();
     /* 8023860C */ static void setEquipBombInfo();
@@ -362,6 +362,14 @@ inline void dMsgObject_setNowTalkFlowNo(s16 nowTalkFlowNo) {
 
 inline void dMsgObject_setEquipBombInfo() {
     dMsgObject_c::setEquipBombInfo();
+}
+
+inline bool dMsgObject_isHowlHearingMode() {
+    return dMsgObject_c::isHowlHearingMode();
+}
+
+inline void dMsgObject_onMsgSend() {
+    dMsgObject_getMsgObjectClass()->onMsgSend();
 }
 
 class dMsgObject_HowlHIO_c {

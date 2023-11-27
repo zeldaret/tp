@@ -3,7 +3,8 @@
 // Translation Unit: d_a_obj_smw_stone
 //
 
-#include "rel/d/a/obj/d_a_obj_smw_stone/d_a_obj_smw_stone.h"
+// #include "rel/d/a/obj/d_a_obj_smw_stone/d_a_obj_smw_stone.h"
+#include "dolphin/types.h"
 #include "dol2asm.h"
 
 //

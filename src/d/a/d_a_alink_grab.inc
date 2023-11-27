@@ -176,7 +176,7 @@ static u8 lit_4421[12];
 #pragma pop
 
 /* 80425634-80425640 052354 000C+00 2/3 0/0 0/0 .bss             l_wolfRopeBaseAnime */
-static f32 l_wolfRopeBaseAnime[3];
+static Vec l_wolfRopeBaseAnime;
 
 /* 80425640-8042564C 052360 000C+00 0/1 0/0 0/0 .bss             @14255 */
 #pragma push
@@ -324,9 +324,9 @@ asm void daAlink_c::putObjLineCheck(dBgS_LinChk& param_0, cXyz* param_1, fopAc_a
 #pragma pop
 
 /* 800E5B6C-800E5BB4 0E04AC 0048+00 3/3 0/0 0/0 .text grabLineCheck__9daAlink_cFP4cXyzP4cXyz */
-void daAlink_c::grabLineCheck(cXyz* i_start, cXyz* i_end) {
+bool daAlink_c::grabLineCheck(cXyz* i_start, cXyz* i_end) {
     mObjLinChk.Set(i_start, i_end, mGrabItemAcKeep.getActor());
-    dComIfG_Bgsp().LineCross(&mObjLinChk);
+    return dComIfG_Bgsp().LineCross(&mObjLinChk);
 }
 
 /* 800E5BB4-800E5CBC 0E04F4 0108+00 6/6 0/0 0/0 .text setGrabItemActor__9daAlink_cFP10fopAc_ac_c

@@ -33,14 +33,11 @@
 #include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"
 #include "rel/d/a/tag/d_a_tag_mist/d_a_tag_mist.h"
 #include "rel/d/a/tag/d_a_tag_wljump/d_a_tag_wljump.h"
+#include "rel/d/a/obj/d_a_obj_sekizoa/d_a_obj_sekizoa.h"
 
 //
 // Types:
 //
-
-struct daObj_Sekizoa_c {
-    /* 801312C8 */ void setWolfHowling();
-};
 
 struct daObjMovebox {
     struct Act_c {
@@ -6228,28 +6225,41 @@ SECTION_RODATA static u32 const label[12] = {
 COMPILER_STRIP_GATE(0x80391E48, &label);
 
 /* 80391E78-80391E8C 01E4D8 0014+00 1/1 0/0 0/0 .rodata          normalType0$50859 */
-SECTION_RODATA static u8 const normalType0[20] = {
-    0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00,
-    0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_RODATA static int const normalType0[] = {
+    3, 3, 3, 0, 0,
 };
 COMPILER_STRIP_GATE(0x80391E78, &normalType0);
 
 /* 80391E8C-80391EA0 01E4EC 0014+00 1/1 0/0 0/0 .rodata          normalType1$50860 */
-SECTION_RODATA static u8 const normalType1_50860[20] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x03,
+SECTION_RODATA static int const normalType1_50860[] = {
+    0, 0, 0, 3, 3,
 };
 COMPILER_STRIP_GATE(0x80391E8C, &normalType1_50860);
 
+struct daAlink_WCutParamTbl {
+    /* 0x0 */ daAlink_c::daAlink_WANM m_anmID;
+    /* 0x4 */ u8 m_cutType;
+};  // Size: 0x8
+
 /* 80391EA0-80391EC0 01E500 0020+00 0/1 0/0 0/0 .rodata          dataTabl$51470 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const dataTabl[32] = {
-    0x00, 0x00, 0x00, 0x40, 0x2C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x2E, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x43, 0x2F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x2D, 0x00, 0x00, 0x00,
+static const daAlink_WCutParamTbl dataTabl[] = {
+    {
+        daAlink_c::WANM_ATTACK_B_LEFT,
+        daAlink_c::CUT_TYPE_WOLF_B_LEFT,
+    },
+    {
+        daAlink_c::WANM_ATTACK_B_FRONT,
+        daAlink_c::CUT_TYPE_WOLF_B_FRONT,
+    },
+    {
+        daAlink_c::WANM_ATTACK_B_TAIL,
+        daAlink_c::CUT_TYPE_WOLF_B_BACK,
+    },
+    {
+        daAlink_c::WANM_ATTACK_B_RIGHT,
+        daAlink_c::CUT_TYPE_WOLF_B_RIGHT,
+    },
 };
-COMPILER_STRIP_GATE(0x80391EA0, &dataTabl);
-#pragma pop
 
 /* 80391EC0-80391ECC 01E520 000C+00 1/1 0/0 0/0 .rodata          arm1Vec$56040 */
 SECTION_RODATA static u8 const arm1Vec[12] = {
@@ -15733,7 +15743,7 @@ f32 daAlink_c::getFrontRollRate() {
 
 /* 800B4B7C-800B5284 0AF4BC 0708+00 2/2 0/0 0/0 .text            decideCommonDoStatus__9daAlink_cFv
  */
-// almost, small branch issues and need fix for i_checkAttentionLock
+// almost, small branch issues
 #ifdef NONMATCHING
 void daAlink_c::decideCommonDoStatus() {
     if (!i_checkFmChainGrabAnime() && i_dComIfGp_getDoStatus() == 0) {
@@ -17028,10 +17038,8 @@ int daAlink_c::commonCheckNextAction(int param_0) {
 }
 
 /* 800BA0D0-800BA6A0 0B4A10 05D0+00 91/91 0/0 0/0 .text            checkNextAction__9daAlink_cFi */
-// checkAttentionLock issue / literals
+// matches with literals
 #ifdef NONMATCHING
-#pragma push
-#pragma optimization_level 2
 int daAlink_c::checkNextAction(int param_0) {
     f32 temp_f31 = field_0x594;
 
@@ -17153,7 +17161,6 @@ int daAlink_c::checkNextAction(int param_0) {
 
     return ret;
 }
-#pragma pop
 #else
 #pragma push
 #pragma optimization_level 0

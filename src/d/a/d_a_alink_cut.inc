@@ -212,8 +212,6 @@ void daAlink_c::resetCombo(int param_0) {
 }
 
 /* 800D1454-800D152C 0CBD94 00D8+00 1/1 0/0 0/0 .text            checkComboCnt__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 2
 void daAlink_c::checkComboCnt() {
     if ((mEquipItem == EQUIP_SWORD && mComboCutCount == 2) &&
         (i_checkAttentionLock() &&
@@ -228,7 +226,6 @@ void daAlink_c::checkComboCnt() {
         resetCombo(1);
     }
 }
-#pragma pop
 
 /* 800D152C-800D1540 0CBE6C 0014+00 22/22 0/0 0/0 .text            setCutType__9daAlink_cFUc */
 void daAlink_c::setCutType(u8 type) {
@@ -545,8 +542,6 @@ bool daAlink_c::checkCutTurnInputTrigger() {
 }
 
 /* 800D23C0-800D2684 0CCD00 02C4+00 7/7 0/0 0/0 .text            checkCutAction__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 2
 int daAlink_c::checkCutAction() {
     if (commonCutAction()) {
         return 1;
@@ -600,7 +595,6 @@ int daAlink_c::checkCutAction() {
 
     return 1;
 }
-#pragma pop
 
 /* 800D2684-800D26EC 0CCFC4 0068+00 9/9 0/0 0/0 .text            checkCutTurnCharge__9daAlink_cFv */
 void daAlink_c::checkCutTurnCharge() {
@@ -797,8 +791,6 @@ asm void daAlink_c::setCutJumpSpeed(int param_0) {
 #endif
 
 /* 800D2F58-800D31B8 0CD898 0260+00 3/3 0/0 0/0 .text            procCutNormalInit__9daAlink_cFi */
-#pragma push
-#pragma optimization_level 2
 int daAlink_c::procCutNormalInit(int i_type) {
     const daAlink_cutParamTbl* cutParams = &cutParamTable_7312[i_type];
 
@@ -872,7 +864,6 @@ int daAlink_c::procCutNormalInit(int i_type) {
     initCutAtnActorSearch();
     return 1;
 }
-#pragma pop
 
 /* 800D31B8-800D34D8 0CDAF8 0320+00 1/0 0/0 0/0 .text            procCutNormal__9daAlink_cFv */
 int daAlink_c::procCutNormal() {

@@ -507,6 +507,8 @@ public:
     /* 800134F8 */ void setMaterial();
     /* 800135D0 */ void draw();
 
+    cXyz* getPos(int i_idx) { return field_0x38[i_idx].field_0x0; }
+
 private:
     /* 0x08 */ GXTexObj field_0x8;
     /* 0x28 */ GXColor field_0x28;

@@ -295,6 +295,7 @@ public:
         FLG2_UNK_80000 = 0x80000,
         FLG2_UNK_40000 = 0x40000,
         FLG2_UNK_20000 = 0x20000,
+        FLG2_UNK_10000 = 0x10000,
         FLG2_SCN_CHG_START = 0x8000,
         FLG2_UNK_4000 = 0x4000,
         FLG2_UNK_2000 = 0x2000,
@@ -319,11 +320,14 @@ public:
         FLG3_UNK_4000000 = 0x4000000,
         FLG3_UNK_2000000 = 0x2000000,
         FLG3_UNK_1000000 = 0x1000000,
+        FLG3_UNK_800000 = 0x800000,
         FLG3_UNK_400000 = 0x400000,
+        FLG3_UNK_200000 = 0x200000,
         FLG3_UNK_100000 = 0x100000,
         FLG3_UNK_80000 = 0x80000,
         FLG3_COPY_ROD_THROW_AFTER = 0x40000,
         FLG3_UNK_4000 = 0x4000,
+        FLG3_UNK_400 = 0x400,
         FLG3_UNK_200 = 0x200,
         FLG3_UNK_100 = 0x100,
         FLG3_UNK_80 = 0x80,
@@ -335,6 +339,7 @@ public:
 
     enum daPy_ERFLG0 {
         ERFLG0_UNK_40000000 = 0x40000000,
+        ERFLG0_UNK_20000000 = 0x20000000,
         ERFLG0_UNK_10000000 = 0x10000000,
         ERFLG0_UNK_8000000 = 0x8000000,
         ERFLG0_UNK_2000000 = 0x2000000,
@@ -367,6 +372,7 @@ public:
         ERFLG1_UNK_200000 = 0x200000,
         ERFLG1_UNK_100000 = 0x100000,
         ERFLG1_UNK_40000 = 0x40000,
+        ERFLG1_UNK_10000 = 0x10000,
         ERFLG1_UNK_2000 = 0x2000,
         ERFLG1_UNK_800 = 0x800,
         ERFLG1_UNK_400 = 0x400,
@@ -390,9 +396,11 @@ public:
     };
 
     enum daPy_RFLG0 {
+        RFLG0_UNK_40000000 = 0x40000000,
         RFLG0_UNK_8000000 = 0x8000000,
         RFLG0_UNK_4000000 = 0x4000000,
         RFLG0_UNK_20000 = 0x20000,
+        RFLG0_UNK_8000 = 0x8000,
         RFLG0_UNK_4000 = 0x4000,
         RFLG0_FRONT_ROLL_CRASH = 0x2000,
         RFLG0_ENEMY_ATTN_LOCK = 0x1000,
@@ -411,6 +419,8 @@ public:
         RFLG1_UNK_30 = 0x30,
         RFLG1_UNK_2 = 0x2,
         RFLG1_WOLF_ATTACK_REVERSE = 0x1,
+
+        RFLG1_UNK_C = 0xC,
     };
 
     enum {
@@ -746,6 +756,7 @@ public:
     bool checkFrontRollCrash() const { return i_checkResetFlg0(RFLG0_FRONT_ROLL_CRASH); }
     bool checkWolfAttackReverse() const { return checkResetFlg1(RFLG1_WOLF_ATTACK_REVERSE); }
     bool checkFreezeDamage() const { return i_checkNoResetFlg1(FLG1_UNK_40000000); }
+    bool checkWolfTagLockJumpReady() const { return i_checkResetFlg0(RFLG0_UNK_20000); }
     
     void onForceAutoJump() { i_onEndResetFlg0(ERFLG0_FORCE_AUTO_JUMP); }
     void onNotAutoJump() { i_onEndResetFlg0(ERFLG0_NOT_AUTO_JUMP); }
@@ -753,6 +764,12 @@ public:
     void onShieldBackBone() { i_onEndResetFlg1(ERFLG1_GANON_FINISH); }
     void onFogFade() { i_onNoResetFlg2(FLG2_UNK_4000); }
     
+    void offCargoCarry() {
+        if (checkCargoCarry()) {
+            mSpecialMode = 0;
+        }
+    }
+
     void offGoronSideMove() {
         if (i_checkGoronSideMove()) {
             mSpecialMode = 0;

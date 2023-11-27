@@ -3,7 +3,8 @@
 // Translation Unit: d_a_kytag03
 //
 
-#include "rel/d/a/kytag/d_a_kytag03/d_a_kytag03.h"
+// #include "rel/d/a/kytag/d_a_kytag03/d_a_kytag03.h"
+#include "dolphin/types.h"
 #include "dol2asm.h"
 
 //

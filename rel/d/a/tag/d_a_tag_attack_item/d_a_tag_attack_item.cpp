@@ -4,52 +4,42 @@
 //
 
 #include "rel/d/a/tag/d_a_tag_attack_item/d_a_tag_attack_item.h"
+#include "SSystem/SComponent/c_math.h"
+#include "d/a/d_a_player.h"
 #include "d/cc/d_cc_d.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/event/d_event_lib.h"
 #include "dol2asm.h"
 
 //
 // Types:
 //
 
-struct csXyz {
-    /* 802673F4 */ csXyz(s16, s16, s16);
-};
-
-struct mDoMtx_stack_c {
-    /* 8000CD64 */ void transS(cXyz const&);
-    /* 8000CF44 */ void ZXYrotM(csXyz const&);
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct daTagAtkItem_c {
+// need to figure out how to use dEvLib_callback_c properly
+class daTagAtkItem_c : public fopAc_ac_c /* , public dEvLib_callback_c */ {
+public:
     /* 805A2958 */ void setBaseMtx();
-    /* 805A2990 */ void Create();
-    /* 805A2A34 */ void create();
-    /* 805A2C48 */ void execute();
+    /* 805A2990 */ int Create();
+    /* 805A2A34 */ int create();
+    /* 805A2C48 */ int execute();
     /* 805A2CA8 */ void action();
-    /* 805A2D10 */ void eventStart();
-    /* 805A2D34 */ void eventEnd();
-    /* 805A2D58 */ void checkHit();
+    /* 805A2D58 */ BOOL checkHit();
     /* 805A2F54 */ void createItem();
-    /* 805A3038 */ bool _delete();
+    /* 805A3038 */ int _delete();
+
     /* 805A3118 */ ~daTagAtkItem_c();
-};
+    /* 805A2D10 */ BOOL eventStart();
+    /* 805A2D34 */ BOOL eventEnd();
 
-struct dEvLib_callback_c {
-    /* 8004886C */ void eventUpdate();
-    /* 80048940 */ void orderEvent(int, int, int);
-    /* 805A30A0 */ ~dEvLib_callback_c();
-    /* 805A30E8 */ bool eventRun();
-    /* 805A30F0 */ bool eventStart();
-    /* 805A30F8 */ bool eventEnd();
-};
+    u8 getEvId() { return fopAcM_GetParamBit(this, 0x18, 8); }
+    u8 getNum() { return fopAcM_GetParamBit(this, 8, 8); }
+    u8 getItemBit() { return fopAcM_GetParamBit(this, 0x10, 8); }
+    u8 getItemNo() { return fopAcM_GetParamBit(this, 0, 8); }
 
-struct cCcS {
-    /* 80264BA8 */ void Set(cCcD_Obj*);
+    /* 0x568 */ u8 temp[0x57C - 0x568];  // remove when dEvLib_callback_c setup
+    /* 0x57C */ u8 field_0x57C[0x584 - 0x57C];
+    /* 0x584 */ dCcD_Stts mCcStts;
+    /* 0x5C0 */ dCcD_Cyl mCyl;
 };
 
 //
@@ -112,62 +102,48 @@ extern "C" void _savegpr_27();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
 // Declarations:
 //
 
 /* 805A2958-805A2990 000078 0038+00 1/1 0/0 0/0 .text            setBaseMtx__14daTagAtkItem_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagAtkItem_c::setBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_attack_item/d_a_tag_attack_item/setBaseMtx__14daTagAtkItem_cFv.s"
+void daTagAtkItem_c::setBaseMtx() {
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::ZXYrotM(shape_angle);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 805A32C8-805A32CC 000000 0004+00 2/2 0/0 0/0 .rodata          @3657 */
-SECTION_RODATA static f32 const lit_3657 = 50.0f;
-COMPILER_STRIP_GATE(0x805A32C8, &lit_3657);
-
-/* 805A32CC-805A32D0 000004 0004+00 1/2 0/0 0/0 .rodata          @3658 */
-SECTION_RODATA static f32 const lit_3658 = 100.0f;
-COMPILER_STRIP_GATE(0x805A32CC, &lit_3658);
 
 /* 805A32F4-805A3338 000000 0044+00 1/1 0/0 0/0 .data            l_cyl_src */
 static dCcD_SrcCyl l_cyl_src = {
     {
-        {0x0, {{0x0, 0x0, 0x1f}, {0x400020, 0x11}, 0x78}}, // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x6}, // mGObjTg
-        {0x0}, // mGObjCo
-    }, // mObjInf
+        {0x0, {{0x0, 0x0, 0x1f}, {0x400020, 0x11}, 0x78}},  // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},                 // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x6},                 // mGObjTg
+        {0x0},                                              // mGObjCo
+    },                                                      // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        50.0f, // mRadius
-        100.0f // mHeight
-    } // mCyl
+        {0.0f, 0.0f, 0.0f},  // mCenter
+        50.0f,               // mRadius
+        100.0f               // mHeight
+    }                        // mCyl
 };
 
 /* 805A2990-805A2A34 0000B0 00A4+00 1/1 0/0 0/0 .text            Create__14daTagAtkItem_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagAtkItem_c::Create() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_attack_item/d_a_tag_attack_item/Create__14daTagAtkItem_cFv.s"
+int daTagAtkItem_c::Create() {
+    mCcStts.Init(0, 0xFF, this);
+    mCyl.Set(l_cyl_src);
+    mCyl.SetStts(&mCcStts);
+    mCyl.SetR(mScale.x * 50.0f);
+    mCyl.SetH(mScale.y * 100.0f);
+
+    current.pos.y = orig.pos.y - mScale.y * 100.0f;
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 805A3338-805A3358 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagAtkItem_Method */
@@ -249,7 +225,7 @@ SECTION_DATA extern void* __vt__17dEvLib_callback_c[6] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTagAtkItem_c::create() {
+asm int daTagAtkItem_c::create() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_attack_item/d_a_tag_attack_item/func_805A2A34.s"
 }
@@ -289,16 +265,41 @@ extern "C" asm void __dt__10dCcD_GSttsFv() {
 #pragma pop
 
 /* 805A2C48-805A2CA8 000368 0060+00 1/1 0/0 0/0 .text            execute__14daTagAtkItem_cFv */
+// matches with dEvLib_callback_c setup
+#ifdef NONMATCHING
+int daTagAtkItem_c::execute() {
+    action();
+    setBaseMtx();
+    eventUpdate();
+    mCyl.SetC(current.pos);
+    dComIfG_Ccsp()->Set(&mCyl);
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTagAtkItem_c::execute() {
+asm int daTagAtkItem_c::execute() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_attack_item/d_a_tag_attack_item/execute__14daTagAtkItem_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 805A2CA8-805A2D10 0003C8 0068+00 1/1 0/0 0/0 .text            action__14daTagAtkItem_cFv */
+// matches with dEvLib_callback_c setup
+#ifdef NONMATCHING
+void daTagAtkItem_c::action() {
+    if (checkHit()) {
+        if (getEvId() != 0xFF) {
+            orderEvent(getEvId(), 0xFF, 1);
+        } else {
+            createItem();
+            fopAcM_delete(this);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -307,155 +308,122 @@ asm void daTagAtkItem_c::action() {
 #include "asm/rel/d/a/tag/d_a_tag_attack_item/d_a_tag_attack_item/action__14daTagAtkItem_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 805A2D10-805A2D34 000430 0024+00 2/1 0/0 0/0 .text            eventStart__14daTagAtkItem_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagAtkItem_c::eventStart() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_attack_item/d_a_tag_attack_item/eventStart__14daTagAtkItem_cFv.s"
+BOOL daTagAtkItem_c::eventStart() {
+    createItem();
+    return TRUE;
 }
-#pragma pop
 
 /* 805A2D34-805A2D58 000454 0024+00 2/1 0/0 0/0 .text            eventEnd__14daTagAtkItem_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagAtkItem_c::eventEnd() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_attack_item/d_a_tag_attack_item/eventEnd__14daTagAtkItem_cFv.s"
+BOOL daTagAtkItem_c::eventEnd() {
+    fopAcM_delete(this);
+    return TRUE;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 805A32D0-805A32D8 000008 0004+04 0/1 0/0 0/0 .rodata          @3859 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3859[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x805A32D0, &lit_3859);
-#pragma pop
-
-/* 805A32D8-805A32E0 000010 0008+00 0/1 0/0 0/0 .rodata          @3860 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3860[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x805A32D8, &lit_3860);
-#pragma pop
-
-/* 805A32E0-805A32E8 000018 0008+00 0/1 0/0 0/0 .rodata          @3861 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3861[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x805A32E0, &lit_3861);
-#pragma pop
-
-/* 805A32E8-805A32F0 000020 0008+00 0/1 0/0 0/0 .rodata          @3862 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3862[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x805A32E8, &lit_3862);
-#pragma pop
 
 /* 805A2D58-805A2F54 000478 01FC+00 1/1 0/0 0/0 .text            checkHit__14daTagAtkItem_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagAtkItem_c::checkHit() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_attack_item/d_a_tag_attack_item/checkHit__14daTagAtkItem_cFv.s"
-}
-#pragma pop
+BOOL daTagAtkItem_c::checkHit() {
+    if (mCyl.ChkTgHit()) {
+        cCcD_Obj* hitobj_p = mCyl.GetTgHitObj();
+        if (hitobj_p != NULL &&
+            (hitobj_p->ChkAtType(AT_TYPE_IRON_BALL) || hitobj_p->ChkAtType(AT_TYPE_BOMB)))
+        {
+#ifdef DEBUG
+            // "Attack Reaction Item: Rotate attack hit!\n"
+            OSReport("攻撃反応アイテム：回転アタックヒット！\n");
+#endif
+            return true;
+        }
+    }
 
-/* ############################################################################################## */
-/* 805A32F0-805A32F4 000028 0004+00 1/1 0/0 0/0 .rodata          @3898 */
-SECTION_RODATA static f32 const lit_3898 = 32767.0f;
-COMPILER_STRIP_GATE(0x805A32F0, &lit_3898);
+    daPy_py_c* player_p = daPy_getPlayerActorClass();
+
+    if ((player_p->checkFrontRollCrash() || player_p->checkWolfAttackReverse()) &&
+        player_p->current.pos.absXZ(current.pos) < mScale.x * 50.0f &&
+        fabsf(player_p->current.pos.y - current.pos.y) < mScale.y * 100.0f)
+    {
+#ifdef DEBUG
+        // "Attack Reaction Item: Rotate attack hit!\n"
+        OSReport("攻撃反応アイテム：回転アタックヒット！\n");
+#endif
+        return true;
+    }
+
+    return false;
+}
 
 /* 805A2F54-805A3038 000674 00E4+00 2/2 0/0 0/0 .text            createItem__14daTagAtkItem_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagAtkItem_c::createItem() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_attack_item/d_a_tag_attack_item/createItem__14daTagAtkItem_cFv.s"
+void daTagAtkItem_c::createItem() {
+    csXyz angle(0, 0, 0);
+
+    int create_num;
+    if (getNum() == 0xFF) {
+        create_num = 1;
+    } else {
+        create_num = getNum();
+    }
+
+    int item_bit = getItemBit();
+    for (int i = 0; i < create_num; i++) {
+        angle.y += (s16)cM_rndFX(0x7FFF);
+
+        fopAcM_createItemFromTable(&orig.pos, getItemNo(), item_bit, fopAcM_GetHomeRoomNo(this),
+                                   &angle, 0, NULL, NULL, NULL, false);
+
+        if (item_bit != 0xFF) {
+            item_bit++;
+        }
+    }
 }
-#pragma pop
 
 /* 805A3038-805A3040 000758 0008+00 1/1 0/0 0/0 .text            _delete__14daTagAtkItem_cFv */
-bool daTagAtkItem_c::_delete() {
-    return true;
+int daTagAtkItem_c::_delete() {
+    return 1;
 }
 
 /* 805A3040-805A3060 000760 0020+00 1/0 0/0 0/0 .text daTagAtkItem_Execute__FP14daTagAtkItem_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagAtkItem_Execute(daTagAtkItem_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_attack_item/d_a_tag_attack_item/daTagAtkItem_Execute__FP14daTagAtkItem_c.s"
+static int daTagAtkItem_Execute(daTagAtkItem_c* i_this) {
+    return i_this->execute();
 }
-#pragma pop
 
 /* 805A3060-805A3080 000780 0020+00 1/0 0/0 0/0 .text daTagAtkItem_Delete__FP14daTagAtkItem_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagAtkItem_Delete(daTagAtkItem_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_attack_item/d_a_tag_attack_item/daTagAtkItem_Delete__FP14daTagAtkItem_c.s"
+static int daTagAtkItem_Delete(daTagAtkItem_c* i_this) {
+    return i_this->_delete();
 }
-#pragma pop
 
 /* 805A3080-805A30A0 0007A0 0020+00 1/0 0/0 0/0 .text daTagAtkItem_Create__FP14daTagAtkItem_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagAtkItem_Create(daTagAtkItem_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_attack_item/d_a_tag_attack_item/daTagAtkItem_Create__FP14daTagAtkItem_c.s"
+static int daTagAtkItem_Create(daTagAtkItem_c* i_this) {
+    return i_this->create();
 }
-#pragma pop
 
 /* 805A30A0-805A30E8 0007C0 0048+00 1/0 0/0 0/0 .text            __dt__17dEvLib_callback_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dEvLib_callback_c::~dEvLib_callback_c() {
+// asm dEvLib_callback_c::~dEvLib_callback_c() {
+extern "C" asm void __dt__17dEvLib_callback_cFv() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_attack_item/d_a_tag_attack_item/__dt__17dEvLib_callback_cFv.s"
 }
 #pragma pop
 
 /* 805A30E8-805A30F0 000808 0008+00 2/0 0/0 0/0 .text            eventRun__17dEvLib_callback_cFv */
-bool dEvLib_callback_c::eventRun() {
+// bool dEvLib_callback_c::eventRun() {
+extern "C" bool eventRun__17dEvLib_callback_cFv() {
     return true;
 }
 
 /* 805A30F0-805A30F8 000810 0008+00 1/0 0/0 0/0 .text            eventStart__17dEvLib_callback_cFv
  */
-bool dEvLib_callback_c::eventStart() {
+// bool dEvLib_callback_c::eventStart() {
+extern "C" bool eventStart__17dEvLib_callback_cFv() {
     return true;
 }
 
 /* 805A30F8-805A3100 000818 0008+00 1/0 0/0 0/0 .text            eventEnd__17dEvLib_callback_cFv */
-bool dEvLib_callback_c::eventEnd() {
+// bool dEvLib_callback_c::eventEnd() {
+extern "C" bool eventEnd__17dEvLib_callback_cFv() {
     return true;
 }
 

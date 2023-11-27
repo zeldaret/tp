@@ -1104,7 +1104,7 @@ int daAlink_c::procSideRollInit(int param_0) {
 }
 
 /* 800C5484-800C5700 0BFDC4 027C+00 1/0 0/0 0/0 .text            procSideRoll__9daAlink_cFv */
-// issues with i_checkAttentionLock
+// matches with literals
 #ifdef NONMATCHING
 int daAlink_c::procSideRoll() {
     i_onEndResetFlg0(ERFLG0_UNK_8000000);
@@ -1289,8 +1289,6 @@ int daAlink_c::procBackJumpLandInit(int i_cutDirection) {
 }
 
 /* 800C5AF0-800C5C28 0C0430 0138+00 1/0 0/0 0/0 .text            procBackJumpLand__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 2
 int daAlink_c::procBackJumpLand() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
 
@@ -1319,7 +1317,6 @@ int daAlink_c::procBackJumpLand() {
 
     return 1;
 }
-#pragma pop
 
 /* 800C5C28-800C5CA4 0C0568 007C+00 1/1 0/0 0/0 .text            procSlipInit__9daAlink_cFv */
 int daAlink_c::procSlipInit() {
@@ -2141,8 +2138,6 @@ int daAlink_c::procCrouchInit() {
 }
 
 /* 800C76F8-800C77F4 0C2038 00FC+00 1/0 0/0 0/0 .text            procCrouch__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 2
 int daAlink_c::procCrouch() {
     cLib_chaseF(&mNormalSpeed, FLOAT_LABEL(lit_6108), daAlinkHIO_move_c0::m.mDeceleration);
 
@@ -2160,7 +2155,6 @@ int daAlink_c::procCrouch() {
 
     return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804255F8-80425604 052318 000C+00 0/1 0/0 0/0 .bss             @4419 */
@@ -4558,12 +4552,9 @@ static u8 dComIfGp_getRStatus() {
 }
 
 /* 800CFF4C-800CFFA4 0CA88C 0058+00 1/1 0/0 0/0 .text            checkAttentionLock__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 2
 BOOL daAlink_c::checkAttentionLock() {
     return mAttention->Lockon();
 }
-#pragma pop
 
 /* 800CFFA4-800CFFC0 0CA8E4 001C+00 1/1 0/0 0/0 .text            dComIfGp_setItemLifeCount__FfUc */
 void dComIfGp_setItemLifeCount(f32 amount, u8 type) {
@@ -5140,7 +5131,7 @@ BOOL daAlink_c::checkCutJumpMode() const {
 
 /* 800D09DC-800D09E4 0CB31C 0008+00 1/0 0/0 0/0 .text getGiantPuzzleAimAngle__9daAlink_cCFv */
 s16 daAlink_c::getGiantPuzzleAimAngle() const {
-    return mProcVar2.field_0x300c;
+    return mProcVar2.mPuzzleAimAngle;
 }
 
 /* 800D09E4-800D09EC 0CB324 0008+00 1/0 0/0 0/0 .text getSwordChangeWaitTimer__9daAlink_cCFv */

@@ -360,7 +360,7 @@ void daAlink_c::cancelHookshotShot() {
 }
 
 /* 80108F64-8010903C 1038A4 00D8+00 4/4 0/0 0/0 .text            cancelHookshotMove__9daAlink_cFv */
-// checkAttentionLock has weird codegen
+// matches with literals
 #ifdef NONMATCHING
 bool daAlink_c::cancelHookshotMove() {
     if (mFastShotTime == 0 && mItemMode == HS_MODE_NONE_e) {
@@ -441,8 +441,6 @@ void daAlink_c::initHookshotReady() {
 
 /* 801091E4-80109284 103B24 00A0+00 1/1 0/0 0/0 .text            setHookshotReadyAnime__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 2
 void daAlink_c::setHookshotReadyAnime() {
     f32 speed;
     if (!i_checkAttentionLock() && mFastShotTime == 0) {
@@ -455,12 +453,9 @@ void daAlink_c::setHookshotReadyAnime() {
     field_0x3020 = 0;
     initHookshotReady();
 }
-#pragma pop
 
 /* 80109284-801095C8 103BC4 0344+00 3/3 0/0 0/0 .text checkUpperItemActionHookshot__9daAlink_cFv
  */
-// checkAttentionLock
-#ifdef NONMATCHING
 int daAlink_c::checkUpperItemActionHookshot() {
     if (checkHookshotWait()) {
         mSearchBallScale = FLT_MAX;
@@ -554,20 +549,8 @@ int daAlink_c::checkUpperItemActionHookshot() {
 
     return cancelUpperItemReadyAnime(0);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daAlink_c::checkUpperItemActionHookshot() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkUpperItemActionHookshot__9daAlink_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 801095C8-801097A0 103F08 01D8+00 7/7 0/0 0/0 .text checkNextActionHookshot__9daAlink_cFv */
-// matches with a i_checkAttentionLock fix
-#ifdef NONMATCHING
 int daAlink_c::checkNextActionHookshot() {
     if (mProcID == PROC_HOOKSHOT_ROOF_SHOOT || mProcID == PROC_HOOKSHOT_WALL_SHOOT) {
         return 0;
@@ -610,16 +593,6 @@ int daAlink_c::checkNextActionHookshot() {
         return procHookshotMoveInit();
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daAlink_c::checkNextActionHookshot() {
-    nofralloc
-#include "asm/d/a/d_a_alink/checkNextActionHookshot__9daAlink_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 801097A0-80109890 1040E0 00F0+00 2/2 0/0 0/0 .text            setHookshotReturnEnd__9daAlink_cFv
  */
@@ -1815,7 +1788,7 @@ asm int daAlink_c::procHookshotRoofShootInit(fopAc_ac_c* param_0) {
 
 /* 8010CD60-8010CF6C 1076A0 020C+00 1/0 0/0 0/0 .text            procHookshotRoofShoot__9daAlink_cFv
  */
-// matches with a i_checkAttentionLock fix
+// matches with literals
 #ifdef NONMATCHING
 int daAlink_c::procHookshotRoofShoot() {
     if (checkHookshotWait()) {
@@ -2153,7 +2126,7 @@ asm int daAlink_c::procHookshotWallShootInit() {
 
 /* 8010D6CC-8010D93C 10800C 0270+00 1/0 0/0 0/0 .text            procHookshotWallShoot__9daAlink_cFv
  */
-// matches with a i_checkAttentionLock fix
+// matches with literals
 #ifdef NONMATCHING
 int daAlink_c::procHookshotWallShoot() {
     if (checkHookshotWait()) {

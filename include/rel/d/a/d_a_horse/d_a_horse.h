@@ -180,6 +180,7 @@ public:
     f32 getMorfFrame() const { return mMorfFrame; }
     f32 getBlendRate() { return field_0x594[1].getRatio(); }
     u16 getAnmIdx(int i_idx) const { return mAnmIdx[i_idx]; }
+    int callHorse(const cXyz* param_0) { return (this->*mpCallHorseFn)(param_0); }
 
     daHoZelda_c* i_getZeldaActor() { return (daHoZelda_c*)mZeldaActorKeep.getActor(); }
 

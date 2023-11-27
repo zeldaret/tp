@@ -126,8 +126,6 @@ void daAlink_c::setCopyRodModel() {
 
 /* 800E1840-800E191C 0DC180 00DC+00 2/2 0/0 0/0 .text            setCopyRodReadyAnime__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 2
 void daAlink_c::setCopyRodReadyAnime() {
     f32 speed;
     if (i_checkAttentionLock()) {
@@ -148,7 +146,6 @@ void daAlink_c::setCopyRodReadyAnime() {
     mAtCps[0].SetAtType(0x1000000);
     initLockAt();
 }
-#pragma pop
 
 /* 800E191C-800E1A30 0DC25C 0114+00 1/1 0/0 0/0 .text            throwCopyRod__9daAlink_cFv */
 void daAlink_c::throwCopyRod() {
@@ -230,8 +227,6 @@ void daAlink_c::checkUpperItemActionCopyRodFly() {
 }
 
 /* 800E1C44-800E1D6C 0DC584 0128+00 2/2 0/0 0/0 .text checkNextActionCopyRod__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 2
 int daAlink_c::checkNextActionCopyRod() {
     if ((checkBoomerangCatchAnime() &&
          mUpperFrameCtrl[2].getFrame() <= daAlinkHIO_boom_c0::m.mCatchAnm.mCheckFrame) ||
@@ -258,7 +253,6 @@ int daAlink_c::checkNextActionCopyRod() {
 
     return procCopyRodMoveInit();
 }
-#pragma pop
 
 /* 800E1D6C-800E1E20 0DC6AC 00B4+00 1/1 0/0 0/0 .text            setCopyRodSight__9daAlink_cFv */
 void daAlink_c::setCopyRodSight() {
