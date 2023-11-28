@@ -110,7 +110,7 @@ BOOL daAlink_c::checkBoomerangCarry(fopAc_ac_c* i_grabActor) {
     if (i_checkNoResetFlg0(FLG0_UNK_20) && !checkEventRun() && !i_checkWolf() &&
         i_checkModeFlg(0x10000000) &&
         (checkHorseNoUpperAnime() || checkHorseTurnAnime() || checkBoomerangThrowAnime())) {
-        deleteEquipItem(0, 0);
+        deleteEquipItem(FALSE, FALSE);
         seStartOnlyReverb(JA_SE_LK_BOOM_CATCH);
         i_offNoResetFlg0(FLG0_UNK_20);
 
@@ -156,7 +156,7 @@ void daAlink_c::setBoomerangReadyQuake() {
     dComIfGp_getVibration().StartQuake(1, 1, cXyz(tmp_0, lit_6040, tmp_0));
 
     i_onNoResetFlg3(FLG3_UNK_4);
-    field_0x3018 = daAlinkHIO_boom_c0::m.mChargeTime;
+    mItemVar0.field_0x3018 = daAlinkHIO_boom_c0::m.mChargeTime;
 }
 
 /* 800E055C-800E05E8 0DAE9C 008C+00 2/2 0/0 0/0 .text setBoomerangReadyAnime__9daAlink_cFv */
@@ -283,10 +283,10 @@ int daAlink_c::returnBoomerang(int param_0) {
 /* 800E0A9C-800E0B58 0DB3DC 00BC+00 2/2 0/0 0/0 .text checkUpperItemActionBoomerang__9daAlink_cFv
  */
 int daAlink_c::checkUpperItemActionBoomerang() {
-    if (field_0x3018 != 0) {
-        field_0x3018--;
+    if (mItemVar0.field_0x3018 != 0) {
+        mItemVar0.field_0x3018--;
 
-        if (field_0x3018 == 0) {
+        if (mItemVar0.field_0x3018 == 0) {
             cancelItemUseQuake(0);
         }
     }
@@ -367,7 +367,7 @@ int daAlink_c::checkBoomerangCatchAction() {
         i_offNoResetFlg0(FLG0_UNK_20);
     }
 
-    return 0;
+    return FALSE;
 }
 
 /* 800E0E64-800E0F10 0DB7A4 00AC+00 3/3 0/0 0/0 .text            setBoomerangSight__9daAlink_cFv */

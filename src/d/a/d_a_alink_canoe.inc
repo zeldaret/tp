@@ -85,7 +85,7 @@ BOOL daAlink_c::checkFishingRodAndLureItem() const {
 void daAlink_c::initFishingRodHand() {
     field_0x2f94 = 0x65;
     field_0x2f95 = 0x65;
-    field_0x3018 = 1;
+    mItemVar0.field_0x3018 = 1;
 
     if (mEquipItem == JEWEL_WORM_ROD || mEquipItem == WORM_ROD) {
         mItemMode = 0x74;

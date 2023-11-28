@@ -196,8 +196,8 @@ int daAlink_c::returnCopyRod() {
 
 /* 800E1ADC-800E1BB4 0DC41C 00D8+00 2/2 0/0 0/0 .text checkUpperItemActionCopyRod__9daAlink_cFv */
 BOOL daAlink_c::checkUpperItemActionCopyRod() {
-    if (field_0x3018 != 0) {
-        field_0x3018--;
+    if (mItemVar0.field_0x3018 != 0) {
+        mItemVar0.field_0x3018--;
     }
 
     if (checkReadyItem() && !itemButton() && checkCopyRodReadyAnime()) {

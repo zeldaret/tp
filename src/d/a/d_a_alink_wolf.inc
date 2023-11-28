@@ -5496,7 +5496,7 @@ void daAlink_c::setWolfLockDomeModel() {
     mDoExt_setCurrentHeap(prev_heap);
 
     mEquipItem = 0x109;
-    field_0x3018 = 0;
+    mItemVar0.field_0x3018 = 0;
     mSearchBallScale = daAlinkHIO_wlAtLock_c0::m.field_0x28.mSpeed;
 
     dComIfGp_setPlayerStatus1(0, 0x800000);
@@ -5894,7 +5894,7 @@ int daAlink_c::procWolfRollAttackMove() {
                 cLib_chaseF(&mSearchBallScale, daAlinkHIO_wlAtLock_c0::m.field_0x28.mStartFrame,
                             daAlinkHIO_wlAtLock_c0::m.field_0x28.mInterpolation))
             {
-                field_0x3018 = 1;
+                mItemVar0.field_0x3018 = 1;
             }
 
             if (mWolfLockNum < 10) {
